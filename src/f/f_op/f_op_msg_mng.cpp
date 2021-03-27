@@ -3,6 +3,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_op/f_op_scene_iter.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
+#include "f/f_op/f_op_msg_mng.h"
 #include "global.h"
 
 // additional symbols needed for f_op_msg_mng.cpp
@@ -70,152 +71,152 @@ extern u8 lbl_80451C84;
 extern u8 lbl_80451C88;
 extern u8 lbl_80430188;
 
-extern "C" {
 // fopMsgM_setStageLayer__FPv
 // fopMsgM_setStageLayer__FPv(void*)
-asm void fopMsgM_setStageLayer__FPv(void) {
+asm void fopMsgM_setStageLayer(void*) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001F9B4.s"
 }
 
 // fopMsgM_SearchByID__FUi
 // fopMsgM_SearchByID__FUi(unsigned int)
-asm void fopMsgM_SearchByID__FUi(void) {
+asm void fopMsgM_SearchByID(unsigned int) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FA24.s"
 }
 
-// fopMsgM_GetAppend__FPv
-// fopMsgM_GetAppend__FPv(void*)
-asm void fopMsgM_GetAppend__FPv(void) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_8001FA44.s"
+// matches but can be improved
+u32 fopMsgM_GetAppend(void* param_1) {
+    struct unk {
+        u8 field_0x00[0xAC];
+        u32 field_0xac;
+    };
+
+    return ((unk*)param_1)->field_0xac;
 }
 
 // fopMsgM_Delete__FPv
 // fopMsgM_Delete__FPv(void*)
-asm void fopMsgM_Delete__FPv(void) {
+asm void fopMsgM_Delete(void*) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FA4C.s"
 }
 
 // createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
 // createAppend(fopAc_ac_c*, cXyz*, u32*, u32*, unsigned int)
-asm void createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi(void) {
+asm void createAppend(fopAc_ac_c*, cXyz*, u32*, u32*, unsigned int) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FA6C.s"
 }
 
 // createTimerAppend__FiUlUcUcffffUi
 // createTimerAppend__FiUlUcUcffffUi(int, u32, u8, u8, f32, f32, f32, f32, unsigned int)
-asm void createTimerAppend__FiUlUcUcffffUi(void) {
+asm void createTimerAppend(int, u32, u8, u8, f32, f32, f32, f32, unsigned int) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FB50.s"
 }
 
 // fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i
-// fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int
-// (*)(void*))
-asm void fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(void) {
+// fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int (*)(void*))
+asm void fopMsgM_create(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int (*)(void*)) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FC4C.s"
 }
 
 // fop_Timer_create__FsUcUlUcUcffffPFPv_i
 // fop_Timer_create__FsUcUlUcUcffffPFPv_i(s16, u8, u32, u8, u8, f32, f32, f32, f32, int (*)(void*))
-asm void fop_Timer_create__FsUcUlUcUcffffPFPv_i(void) {
+asm void fop_Timer_create(s16, u8, u32, u8, u8, f32, f32, f32, f32, int (*)(void*)) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FCC0.s"
 }
 
 // fopMsgM_messageSet__FUlP10fopAc_ac_cUl
 // fopMsgM_messageSet__FUlP10fopAc_ac_cUl(u32, fopAc_ac_c*, u32)
-asm void fopMsgM_messageSet__FUlP10fopAc_ac_cUl(void) {
+asm void fopMsgM_messageSet(u32, fopAc_ac_c*, u32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FD34.s"
 }
 
 // fopMsgM_messageSet__FUlUl
 // fopMsgM_messageSet__FUlP10fopAc_ac_cUl(u32, u32)
-asm void fopMsgM_messageSet__FUlUl(void) {
+asm void fopMsgM_messageSet(u32, u32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FE84.s"
 }
 
 // fopMsgM_messageSetDemo__FUl
 // fopMsgM_messageSetDemo__FUl(u32)
-asm void fopMsgM_messageSetDemo__FUl(void) {
+asm void fopMsgM_messageSetDemo(u32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FFC4.s"
 }
 
 // fopMsgM_messageGet__FPcUl
 // fopMsgM_messageGet__FPcUl(s8*, u32)
-asm void fopMsgM_messageGet__FPcUl(void) {
+asm void fopMsgM_messageGet(char*, u32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_800200C0.s"
 }
 
 // fopMsgM_setMessageID__FUi
 // fopMsgM_setMessageID__FUi(unsigned int)
-asm void fopMsgM_setMessageID__FUi(void) {
+asm void fopMsgM_setMessageID(unsigned int) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020100.s"
 }
 
 // fopMsgM_Create__FsPFPv_iPv
 // fopMsgM_Create__FsPFPv_iPv(s16, int (*)(void*), void*)
-asm void fopMsgM_Create__FsPFPv_iPv(void) {
+asm void fopMsgM_Create(s16, int (*)(void*), void*) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020108.s"
 }
 
 // setAlpha__7J2DPaneFUc
 // J2DPane::setAlpha(u8)
-asm void setAlpha__7J2DPaneFUc(void) {
+asm void J2DPane::setAlpha(u8) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020158.s"
 }
 
 // fopMsgM_valueIncrease__FiiUc
 // fopMsgM_valueIncrease__FiiUc(int, int, u8)
-asm void fopMsgM_valueIncrease__FiiUc(void) {
+asm void fopMsgM_valueIncrease(int, int, u8) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020160.s"
 }
 
 // setBlendRatio__10J2DPictureFff
 // J2DPicture::setBlendRatio(f32, f32)
-asm void setBlendRatio__10J2DPictureFff(void) {
+asm void J2DPicture::setBlendRatio(f32, f32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_800202CC.s"
 }
 
 // append__10J2DPictureFPCcf
 // J2DPicture::append(const s8*, f32)
-asm void append__10J2DPictureFPCcf(void) {
+asm void J2DPicture::append(const char*, f32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020338.s"
 }
 
 // insert__10J2DPictureFPCcUcf
 // J2DPicture::insert(const s8*, u8, f32)
-asm void insert__10J2DPictureFPCcUcf(void) {
+asm void J2DPicture::insert(const char*, u8, f32) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_80020368.s"
 }
 
 // fopMsgM_createExpHeap__FUlP7JKRHeap
 // fopMsgM_createExpHeap__FUlP7JKRHeap(u32, JKRHeap*)
-asm void fopMsgM_createExpHeap__FUlP7JKRHeap(void) {
+asm void fopMsgM_createExpHeap(u32, JKRHeap*) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8002039C.s"
 }
 
 // fopMsgM_destroyExpHeap__FP10JKRExpHeap
 // fopMsgM_destroyExpHeap__FP10JKRExpHeap(JKRExpHeap*)
-asm void fopMsgM_destroyExpHeap__FP10JKRExpHeap(void) {
+asm void fopMsgM_destroyExpHeap(JKRExpHeap*) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_800203E0.s"
 }
-};

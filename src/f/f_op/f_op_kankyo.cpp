@@ -32,7 +32,7 @@ void fopKy_Create__FPv(void);
 extern u8 fopKy_KANKYO_TYPE;
 extern u8 lbl_80451124;
 
-// Doesn't appear to be a part of anything currently define in f_pc_leaf.h
+// Doesn't appear to be a part of anything currently defined in f_pc_leaf.h
 struct unk {
     u8 field_0x00[0xd8];
     leafdraw_method_class* mpDrawMtd;
