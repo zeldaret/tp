@@ -5,6 +5,7 @@
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "f/f_op/f_op_msg_mng.h"
 #include "f/f_pc/f_pc_manager.h"
+#include "m_Do/m_Do_ext/m_Do_ext.h"
 #include "global.h"
 
 // additional symbols needed for f_op_msg_mng.cpp
@@ -197,11 +198,12 @@ void J2DPicture::insert(const char* param_1, u8 param_2, f32 param_3) {
     insert(param_1,0,param_2,param_3);
 }
 
-// fopMsgM_createExpHeap__FUlP7JKRHeap
-// fopMsgM_createExpHeap__FUlP7JKRHeap(u32, JKRHeap*)
-asm void fopMsgM_createExpHeap(u32, JKRHeap*) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_8002039C.s"
+void fopMsgM_createExpHeap(u32 param_1, JKRHeap* pJKRHeap) {
+    if (!pJKRHeap) {
+        pJKRHeap = mDoExt_getGameHeap__Fv(); // fix this in header later
+    }
+
+    JKRExpHeap::create(param_1,pJKRHeap, false);
 }
 
 // fopMsgM_destroyExpHeap__FP10JKRExpHeap
