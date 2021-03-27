@@ -6,4 +6,6 @@
 #include "dolphin/types.h"
 #include "f/f_op/f_op_actor.h"
 
+typedef int (*fopMsgCreateFunc)(void*);
+
 #endif
