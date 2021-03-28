@@ -152,8 +152,8 @@ noFadeFase:
 .global fadeFase
 fadeFase:
 	.incbin "baserom.dol", 0x3A08F8, 0x20
-.global lbl_803A3918
-lbl_803A3918:
+.global g_fopScnTg_SceneList
+g_fopScnTg_SceneList:
 	.incbin "baserom.dol", 0x3A0918, 0x58
 .global lbl_803A3970
 lbl_803A3970:

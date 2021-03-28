@@ -44,7 +44,7 @@ struct unk2 {
 
 void fopMsg_Draw(void* pUserData) {
     unk* pUnk = (unk*)pUserData;
-    fpcLf_DrawMethod(pUnk->mpDrawMtd,pUserData);
+    fpcLf_DrawMethod(pUnk->mpDrawMtd, pUserData);
 }
 
 s32 fopMsg_Execute(void* pUserData) {
@@ -52,28 +52,26 @@ s32 fopMsg_Execute(void* pUserData) {
     unk2* pUnk2 = (unk2*)pUserData;
 
     if (!lbl_80451124) {
-        ret = fpcMtd_Execute(pUnk2->mpPcMtd,pUserData);
+        ret = fpcMtd_Execute(pUnk2->mpPcMtd, pUserData);
     }
 
     return ret;
 }
 
 int fopMsg_IsDelete(void* pUserData) {
-    s32 ret = 1;
     unk2* pUnk2 = (unk2*)pUserData;
-    int tmp = fpcMtd_IsDelete(pUnk2->mpPcMtd,pUserData);
+    int tmp = fpcMtd_IsDelete(pUnk2->mpPcMtd, pUserData);
 
     if (tmp == 1) {
         fopDwTg_DrawQTo(&pUnk2->mTag);
     }
 
     return tmp;
-
 }
 
 int fopMsg_Delete(void* pUserData) {
     unk2* pUnk2 = (unk2*)pUserData;
-    int tmp = fpcMtd_Delete(pUnk2->mpPcMtd,pUserData);
+    int tmp = fpcMtd_Delete(pUnk2->mpPcMtd, pUserData);
     fopDwTg_DrawQTo(&pUnk2->mTag);
 
     return tmp;
