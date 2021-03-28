@@ -6,9 +6,9 @@ else
 fi
 
 echo "formatting src/*"
-find ./src -iname *.h -o -iname *.cpp | xargs $CF -i 
+find ./src -iname "*.h" -o -iname "*.cpp" | xargs $CF -i
 echo "formatting libs/*"
-find ./libs -iname *.h -o -iname *.cpp | xargs $CF -i 
+find ./libs -iname "*.h" -o -iname "*.cpp" | xargs $CF -i
 echo "formatting include/*"
-find ./include -iname *.h -o -iname *.cpp | xargs $CF -i 
+find ./include -iname "*.h" -o -iname "*.cpp" | xargs $CF -i
 echo "done"

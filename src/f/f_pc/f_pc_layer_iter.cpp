@@ -2,14 +2,14 @@
 #include "SComponent/c_tag_iter.h"
 #include "SComponent/c_tree_iter.h"
 
-s32 fpcLyIt_OnlyHere(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
+s32 fpcLyIt_OnlyHere(layer_class* pLayer, fpcLyIt_OnlyHereFunc pFunc, void* pUserData) {
     layer_iter lIter;
     lIter.mpFunc = pFunc;
     lIter.mpUserData = pUserData;
     return cTrIt_Method(&pLayer->mNodeListTree, (cNdIt_MethodFunc)cTgIt_MethodCall, &lIter);
 }
 
-s32 fpcLyIt_OnlyHereLY(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
+s32 fpcLyIt_OnlyHereLY(layer_class* pLayer, fpcLyIt_OnlyHereFunc pFunc, void* pUserData) {
     s32 result;
     layer_class* currentLayer = fpcLy_CurrentLayer();
     fpcLy_SetCurrentLayer(pLayer);

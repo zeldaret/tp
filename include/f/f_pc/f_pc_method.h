@@ -4,7 +4,7 @@
 
 #include "global.h"
 
-typedef s32 (*process_method_func)(void*);
+typedef int (*process_method_func)(void*);
 
 typedef struct process_method_class {
     process_method_func mpCreateFunc;

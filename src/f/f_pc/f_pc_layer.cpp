@@ -80,7 +80,7 @@ layer_class* fpcLy_CurrentLayer(void) {
     return lbl_80450D18;
 }
 
-layer_class* fpcLy_Search(u32 id) {
+layer_class* fpcLy_Search(unsigned int id) {
     layer_class* iVar1 = fpcLy_RootLayer();
     while (iVar1 != NULL) {
         if (iVar1->mLayerID == id) {
@@ -91,7 +91,7 @@ layer_class* fpcLy_Search(u32 id) {
     return NULL;
 }
 
-layer_class* fpcLy_Layer(u32 id) {
+layer_class* fpcLy_Layer(unsigned int id) {
     if (id == 0 || fpcLy_RootLayer()->mLayerID == id) {
         return fpcLy_RootLayer();
     } else if (id == ~2 || fpcLy_CurrentLayer()->mLayerID == id) {
@@ -116,11 +116,10 @@ s32 fpcLy_Delete(layer_class* pLayer) {
 }
 
 void fpcLy_Cancel(layer_class* pLayer) {
-    fpcMtdIt_Method(&pLayer->mCancelList, (cNdIt_MethodFunc)fpcLy_CancelMethod);
+    fpcMtdIt_Method(&pLayer->mCancelList, (fpcMtdIt_MethodFunc)fpcLy_CancelMethod);
 }
 
-void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_class* pLists,
-                  s32 listNum) {
+void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum) {
     void* pvVar1;
     s32 iVar2;
 
@@ -135,7 +134,7 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
     *pLayer = lbl_803A39B0;
     cNd_Create((node_class*)pLayer, NULL);
     pLayer->mLayerID = lbl_80450D24++;
-    pLayer->mpPcNode = pPcNode;
+    pLayer->mpPcNode = static_cast<process_node_class*>(pPcNode);
     if (lbl_80450D1C == 0x1) {
         lbl_80450D1C = 0x0;
         cLs_Create(&lbl_803A39DC);
