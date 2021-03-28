@@ -1,3 +1,6 @@
+#ifndef D_A_HORSE_STATIC_H_
+#define D_A_HORSE_STATIC_H_
+
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
 
 class e_wb_class {
@@ -21,3 +24,5 @@ private:
     u8 unk1684[0x2a];
     u16 unk1726;
 };
+
+#endif
