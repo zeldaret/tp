@@ -362,8 +362,8 @@ lbl_80450CD8:
 .global l_fopScnRq_IsUsingOfOverlap
 l_fopScnRq_IsUsingOfOverlap:
 	.skip 0x8
-.global lbl_80450CE8
-lbl_80450CE8:
+.global fopKy_KANKYO_TYPE
+fopKy_KANKYO_TYPE:
 	.skip 0x8
 .global lbl_80450CF0
 lbl_80450CF0:
@@ -410,8 +410,8 @@ lbl_80450D38:
 .global lbl_80450D39
 lbl_80450D39:
 	.skip 0x7
-.global lbl_80450D40
-lbl_80450D40:
+.global g_fpcNd_type
+g_fpcNd_type:
 	.skip 0x8
 .global lbl_80450D48
 lbl_80450D48:
@@ -425,8 +425,8 @@ lbl_80450D50:
 .global lbl_80450D58
 lbl_80450D58:
 	.skip 0x8
-.global lbl_80450D60
-lbl_80450D60:
+.global _mProcID
+_mProcID:
 	.skip 0x4
 .global lbl_80450D64
 lbl_80450D64:

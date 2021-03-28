@@ -132,8 +132,8 @@ lbl_8020DBB0:
 /* 8020DBC8 0020AB08  4B FF FC 1D */ bl getDispPosInside_OffsetX__11dMeterMap_cFv
 /* 8020DBCC 0020AB0C  B0 7F 00 28 */ sth r3, 0x28(r31)
 /* 8020DBD0 0020AB10  38 00 00 01 */ li r0, 1
-/* 8020DBD4 0020AB14  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020DBD8 0020AB18  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020DBD4 0020AB14  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020DBD8 0020AB18  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020DBDC 0020AB1C  98 03 00 BF */ stb r0, 0xbf(r3)
 /* 8020DBE0 0020AB20  48 00 00 28 */ b lbl_8020DC08
 lbl_8020DBE4:
@@ -143,8 +143,8 @@ lbl_8020DBE4:
 /* 8020DBF0 0020AB30  4B FF FB FD */ bl getDispPosOutSide_OffsetX__11dMeterMap_cFv
 /* 8020DBF4 0020AB34  B0 7F 00 28 */ sth r3, 0x28(r31)
 /* 8020DBF8 0020AB38  38 00 00 00 */ li r0, 0
-/* 8020DBFC 0020AB3C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020DC00 0020AB40  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020DBFC 0020AB3C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020DC00 0020AB40  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020DC04 0020AB44  98 03 00 BF */ stb r0, 0xbf(r3)
 lbl_8020DC08:
 /* 8020DC08 0020AB48  38 00 00 00 */ li r0, 0

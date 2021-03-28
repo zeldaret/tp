@@ -38,8 +38,8 @@ l_scnRqID:
 .global lbl_804505C0
 lbl_804505C0:
 	.incbin "baserom.dol", 0x3D0320, 0x8
-.global lbl_804505C8
-lbl_804505C8:
+.global i_msgID
+i_msgID:
 	.incbin "baserom.dol", 0x3D0328, 0x8
 .global g_fopDwTg_Queue
 g_fopDwTg_Queue:

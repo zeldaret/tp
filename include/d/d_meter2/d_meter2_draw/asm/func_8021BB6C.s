@@ -1,8 +1,8 @@
 /* 8021BB6C 00218AAC  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8021BB70 00218AB0  7C 08 02 A6 */ mflr r0
 /* 8021BB74 00218AB4  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8021BB78 00218AB8  3C 80 80 43 */ lis r4, lbl_80430188@ha
-/* 8021BB7C 00218ABC  38 84 01 88 */ addi r4, r4, lbl_80430188@l
+/* 8021BB78 00218AB8  3C 80 80 43 */ lis r4, g_meter2_info@ha
+/* 8021BB7C 00218ABC  38 84 01 88 */ addi r4, r4, g_meter2_info@l
 /* 8021BB80 00218AC0  A0 04 00 B0 */ lhz r0, 0xb0(r4)
 /* 8021BB84 00218AC4  54 00 07 FF */ clrlwi. r0, r0, 0x1f
 /* 8021BB88 00218AC8  41 82 00 18 */ beq lbl_8021BBA0

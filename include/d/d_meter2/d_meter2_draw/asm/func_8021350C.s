@@ -184,8 +184,8 @@ lbl_80213554:
 /* 802137E4 00210724  4E 80 04 21 */ bctrl
 /* 802137E8 00210728  48 0E CE 71 */ bl getStringPtr__10J2DTextBoxCFv
 /* 802137EC 0021072C  7C 65 1B 78 */ mr r5, r3
-/* 802137F0 00210730  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802137F4 00210734  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802137F0 00210730  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802137F4 00210734  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802137F8 00210738  38 80 00 61 */ li r4, 0x61
 /* 802137FC 0021073C  38 C0 00 00 */ li r6, 0
 /* 80213800 00210740  48 00 8A 51 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -200,8 +200,8 @@ lbl_80213554:
 /* 80213824 00210764  4E 80 04 21 */ bctrl
 /* 80213828 00210768  48 0E CE 31 */ bl getStringPtr__10J2DTextBoxCFv
 /* 8021382C 0021076C  7C 65 1B 78 */ mr r5, r3
-/* 80213830 00210770  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213834 00210774  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213830 00210770  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213834 00210774  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213838 00210778  38 80 00 61 */ li r4, 0x61
 /* 8021383C 0021077C  38 C0 00 00 */ li r6, 0
 /* 80213840 00210780  48 00 8A 11 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -216,8 +216,8 @@ lbl_80213554:
 /* 80213864 002107A4  4E 80 04 21 */ bctrl
 /* 80213868 002107A8  48 0E CD F1 */ bl getStringPtr__10J2DTextBoxCFv
 /* 8021386C 002107AC  7C 65 1B 78 */ mr r5, r3
-/* 80213870 002107B0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213874 002107B4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213870 002107B0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213874 002107B4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213878 002107B8  38 80 00 61 */ li r4, 0x61
 /* 8021387C 002107BC  38 C0 00 00 */ li r6, 0
 /* 80213880 002107C0  48 00 89 D1 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -232,8 +232,8 @@ lbl_80213554:
 /* 802138A4 002107E4  4E 80 04 21 */ bctrl
 /* 802138A8 002107E8  48 0E CD B1 */ bl getStringPtr__10J2DTextBoxCFv
 /* 802138AC 002107EC  7C 65 1B 78 */ mr r5, r3
-/* 802138B0 002107F0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802138B4 002107F4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802138B0 002107F0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802138B4 002107F4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802138B8 002107F8  38 80 00 61 */ li r4, 0x61
 /* 802138BC 002107FC  38 C0 00 00 */ li r6, 0
 /* 802138C0 00210800  48 00 89 91 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -248,8 +248,8 @@ lbl_80213554:
 /* 802138E4 00210824  4E 80 04 21 */ bctrl
 /* 802138E8 00210828  48 0E CD 71 */ bl getStringPtr__10J2DTextBoxCFv
 /* 802138EC 0021082C  7C 65 1B 78 */ mr r5, r3
-/* 802138F0 00210830  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802138F4 00210834  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802138F0 00210830  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802138F4 00210834  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802138F8 00210838  38 80 00 61 */ li r4, 0x61
 /* 802138FC 0021083C  38 C0 00 00 */ li r6, 0
 /* 80213900 00210840  48 00 89 51 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -419,8 +419,8 @@ lbl_80213554:
 /* 80213B90 00210AD0  4E 80 04 21 */ bctrl
 /* 80213B94 00210AD4  48 0E CA C5 */ bl getStringPtr__10J2DTextBoxCFv
 /* 80213B98 00210AD8  7C 65 1B 78 */ mr r5, r3
-/* 80213B9C 00210ADC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213BA0 00210AE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213B9C 00210ADC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213BA0 00210AE0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213BA4 00210AE4  38 80 00 62 */ li r4, 0x62
 /* 80213BA8 00210AE8  38 C0 00 00 */ li r6, 0
 /* 80213BAC 00210AEC  48 00 86 A5 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -435,8 +435,8 @@ lbl_80213554:
 /* 80213BD0 00210B10  4E 80 04 21 */ bctrl
 /* 80213BD4 00210B14  48 0E CA 85 */ bl getStringPtr__10J2DTextBoxCFv
 /* 80213BD8 00210B18  7C 65 1B 78 */ mr r5, r3
-/* 80213BDC 00210B1C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213BE0 00210B20  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213BDC 00210B1C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213BE0 00210B20  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213BE4 00210B24  38 80 00 62 */ li r4, 0x62
 /* 80213BE8 00210B28  38 C0 00 00 */ li r6, 0
 /* 80213BEC 00210B2C  48 00 86 65 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -451,8 +451,8 @@ lbl_80213554:
 /* 80213C10 00210B50  4E 80 04 21 */ bctrl
 /* 80213C14 00210B54  48 0E CA 45 */ bl getStringPtr__10J2DTextBoxCFv
 /* 80213C18 00210B58  7C 65 1B 78 */ mr r5, r3
-/* 80213C1C 00210B5C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213C20 00210B60  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213C1C 00210B5C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213C20 00210B60  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213C24 00210B64  38 80 00 62 */ li r4, 0x62
 /* 80213C28 00210B68  38 C0 00 00 */ li r6, 0
 /* 80213C2C 00210B6C  48 00 86 25 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -467,8 +467,8 @@ lbl_80213554:
 /* 80213C50 00210B90  4E 80 04 21 */ bctrl
 /* 80213C54 00210B94  48 0E CA 05 */ bl getStringPtr__10J2DTextBoxCFv
 /* 80213C58 00210B98  7C 65 1B 78 */ mr r5, r3
-/* 80213C5C 00210B9C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213C60 00210BA0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213C5C 00210B9C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213C60 00210BA0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213C64 00210BA4  38 80 00 62 */ li r4, 0x62
 /* 80213C68 00210BA8  38 C0 00 00 */ li r6, 0
 /* 80213C6C 00210BAC  48 00 85 E5 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -483,8 +483,8 @@ lbl_80213554:
 /* 80213C90 00210BD0  4E 80 04 21 */ bctrl
 /* 80213C94 00210BD4  48 0E C9 C5 */ bl getStringPtr__10J2DTextBoxCFv
 /* 80213C98 00210BD8  7C 65 1B 78 */ mr r5, r3
-/* 80213C9C 00210BDC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80213CA0 00210BE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80213C9C 00210BDC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80213CA0 00210BE0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80213CA4 00210BE4  38 80 00 62 */ li r4, 0x62
 /* 80213CA8 00210BE8  38 C0 00 00 */ li r6, 0
 /* 80213CAC 00210BEC  48 00 85 A5 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

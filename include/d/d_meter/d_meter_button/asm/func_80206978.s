@@ -7,8 +7,8 @@
 /* 80206990 002038D0  48 15 B8 45 */ bl _savegpr_27
 /* 80206994 002038D4  7C 7E 1B 78 */ mr r30, r3
 /* 80206998 002038D8  7C 9F 23 78 */ mr r31, r4
-/* 8020699C 002038DC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802069A0 002038E0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020699C 002038DC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802069A0 002038E0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802069A4 002038E4  88 03 00 F1 */ lbz r0, 0xf1(r3)
 /* 802069A8 002038E8  28 00 00 00 */ cmplwi r0, 0
 /* 802069AC 002038EC  41 82 00 20 */ beq lbl_802069CC
@@ -49,8 +49,8 @@ lbl_802069E4:
 /* 80206A30 00203970  81 8C 00 2C */ lwz r12, 0x2c(r12)
 /* 80206A34 00203974  7D 89 03 A6 */ mtctr r12
 /* 80206A38 00203978  4E 80 04 21 */ bctrl
-/* 80206A3C 0020397C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80206A40 00203980  3B A3 01 88 */ addi r29, r3, lbl_80430188@l
+/* 80206A3C 0020397C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80206A40 00203980  3B A3 01 88 */ addi r29, r3, g_meter2_info@l
 /* 80206A44 00203984  A8 1D 00 A8 */ lha r0, 0xa8(r29)
 /* 80206A48 00203988  2C 00 00 00 */ cmpwi r0, 0
 /* 80206A4C 0020398C  40 81 01 FC */ ble lbl_80206C48
@@ -109,8 +109,8 @@ lbl_80206B0C:
 /* 80206B14 00203A54  3B BD 00 04 */ addi r29, r29, 4
 /* 80206B18 00203A58  41 80 FF D4 */ blt lbl_80206AEC
 lbl_80206B1C:
-/* 80206B1C 00203A5C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80206B20 00203A60  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80206B1C 00203A5C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80206B20 00203A60  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80206B24 00203A64  48 01 56 CD */ bl decFloatingMessageTimer__13dMeter2Info_cFv
 /* 80206B28 00203A68  C3 E2 AD 4C */ lfs f31, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80206B2C 00203A6C  57 E0 04 63 */ rlwinm. r0, r31, 0, 0x11, 0x11
@@ -148,8 +148,8 @@ lbl_80206BA4:
 /* 80206BA4 00203AE4  A8 1E 04 B6 */ lha r0, 0x4b6(r30)
 /* 80206BA8 00203AE8  2C 00 00 00 */ cmpwi r0, 0
 /* 80206BAC 00203AEC  40 82 00 50 */ bne lbl_80206BFC
-/* 80206BB0 00203AF0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80206BB4 00203AF4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80206BB0 00203AF0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80206BB4 00203AF4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80206BB8 00203AF8  48 01 56 61 */ bl resetFloatingMessage__13dMeter2Info_cFv
 /* 80206BBC 00203AFC  48 00 00 40 */ b lbl_80206BFC
 lbl_80206BC0:

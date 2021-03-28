@@ -3,7 +3,7 @@
 #include "f/f_pc/f_pc_layer_iter.h"
 
 // g_fpcNd_type
-extern int lbl_80450D40;
+extern int g_fpcNd_type;
 // f_pc_node::g_fpcNd_IsCheckOfDeleteTiming
 extern s32 lbl_804505E0;
 
@@ -35,7 +35,7 @@ void* fpcNd_IsCreatingFromUnder(void* pProcNodeV) {
     layer_class* layer;
     process_node_class* pProcNode = static_cast<process_node_class*>(pProcNodeV);
     if (pProcNode != NULL &&
-        fpcBs_Is_JustOfType(lbl_80450D40, pProcNode->mBase.mSubType) != FALSE) {
+        fpcBs_Is_JustOfType(g_fpcNd_type, pProcNode->mBase.mSubType) != FALSE) {
         layer = &pProcNode->mLayer;
         if (fpcLy_IsCreatingMesg(layer) == 0x0) {
             return (process_node_class*)fpcLyIt_Judge(
@@ -79,7 +79,7 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
     if (pProcNode->mBase.mInitState == 0) {
         node_process_profile_definition* pProcProfileDef =
             (node_process_profile_definition*)pProcNode->mBase.mpProf;
-        pProcNode->mBase.mSubType = fpcBs_MakeOfType(&lbl_80450D40);
+        pProcNode->mBase.mSubType = fpcBs_MakeOfType(&g_fpcNd_type);
         pProcNode->mpNodeMtd = pProcProfileDef->mNDrwMthCls;
         fpcLy_Create(&pProcNode->mLayer, pProcNode, pProcNode->mLayerNodeLists, 0x10);
         pProcNode->mUnk0 = 0;

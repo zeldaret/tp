@@ -132,8 +132,8 @@ lbl_800EAF5C:
 /* 800EAF5C 000E7E9C  C0 01 00 08 */ lfs f0, 8(r1)
 /* 800EAF60 000E7EA0  D0 1E 00 0C */ stfs f0, 0xc(r30)
 lbl_800EAF64:
-/* 800EAF64 000E7EA4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 800EAF68 000E7EA8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 800EAF64 000E7EA4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 800EAF68 000E7EA8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 800EAF6C 000E7EAC  A0 03 00 AC */ lhz r0, 0xac(r3)
 /* 800EAF70 000E7EB0  60 00 00 01 */ ori r0, r0, 1
 /* 800EAF74 000E7EB4  B0 03 00 AC */ sth r0, 0xac(r3)

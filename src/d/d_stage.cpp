@@ -95,7 +95,7 @@ extern u8 lbl_803A6920;
 extern u8 lbl_803A696C;
 extern u8 lbl_80450D67;
 extern u8 lbl_80451C90;
-extern u8 lbl_80450D60;
+extern u8 _mProcID;
 extern u8 lbl_804307EC;
 extern u8 lbl_803A65CC;
 extern u8 lbl_803A65FC;

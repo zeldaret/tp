@@ -4,8 +4,8 @@
 /* 80202AA8 001FF9E8  39 61 00 20 */ addi r11, r1, 0x20
 /* 80202AAC 001FF9EC  48 15 F7 29 */ bl _savegpr_27
 /* 80202AB0 001FF9F0  7C 7F 1B 78 */ mr r31, r3
-/* 80202AB4 001FF9F4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80202AB8 001FF9F8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80202AB4 001FF9F4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80202AB8 001FF9F8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80202ABC 001FF9FC  48 01 97 5D */ bl resetFloatingMessage__13dMeter2Info_cFv
 /* 80202AC0 001FFA00  48 03 57 99 */ bl getScrnDrawPtr__12dMsgObject_cFv
 /* 80202AC4 001FFA04  30 03 FF FF */ addic r0, r3, -1

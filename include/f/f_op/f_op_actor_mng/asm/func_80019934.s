@@ -13,7 +13,7 @@
 /* 80019964 000168A4  80 63 03 FC */ lwz r3, 0x3fc(r3)
 /* 80019968 000168A8  48 00 53 49 */ bl fopScnM_SearchByID__FUi
 /* 8001996C 000168AC  7C 7F 1B 78 */ mr r31, r3
-/* 80019970 000168B0  80 6D 87 C0 */ lwz r3, lbl_80450D40-_SDA_BASE_(r13)
+/* 80019970 000168B0  80 6D 87 C0 */ lwz r3, g_fpcNd_type-_SDA_BASE_(r13)
 /* 80019974 000168B4  80 9F 00 B4 */ lwz r4, 0xb4(r31)
 /* 80019978 000168B8  48 00 6C D5 */ bl fpcBs_Is_JustOfType__Fii
 /* 8001997C 000168BC  2C 03 00 00 */ cmpwi r3, 0

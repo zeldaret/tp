@@ -164,6 +164,7 @@ public:
     void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);
     void animationTransform();
     void updateTransform(const J2DAnmTransform* transform);
+    void setAlpha(u8 param_1);
 
 private:
     /* 0x004 */ u16 _4;

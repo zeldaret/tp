@@ -13,8 +13,8 @@
 /* 8020D288 0020A1C8  38 84 EB C8 */ addi r4, r4, lbl_8042EBC8@l
 /* 8020D28C 0020A1CC  C0 24 03 A0 */ lfs f1, 0x3a0(r4)
 /* 8020D290 0020A1D0  48 04 85 41 */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D294 0020A1D4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020D298 0020A1D8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020D294 0020A1D4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020D298 0020A1D8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020D29C 0020A1DC  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 8020D2A0 0020A1E0  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D2A4 0020A1E4  80 9F 00 2C */ lwz r4, 0x2c(r31)
@@ -31,8 +31,8 @@ lbl_8020D2B0:
 /* 8020D2CC 0020A20C  38 84 EB C8 */ addi r4, r4, lbl_8042EBC8@l
 /* 8020D2D0 0020A210  C0 24 03 A8 */ lfs f1, 0x3a8(r4)
 /* 8020D2D4 0020A214  48 04 84 FD */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D2D8 0020A218  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020D2DC 0020A21C  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020D2D8 0020A218  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020D2DC 0020A21C  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020D2E0 0020A220  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 8020D2E4 0020A224  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D2E8 0020A228  80 9F 00 30 */ lwz r4, 0x30(r31)

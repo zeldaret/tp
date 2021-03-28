@@ -31,8 +31,8 @@ __ct__18dMenu_Fmap2DBack_cFv:
 /* 801CF5C8 001CC508  90 1F 12 08 */	stw r0, 0x1208(r31)
 /* 801CF5CC 001CC50C  90 1F 12 0C */	stw r0, 0x120c(r31)
 /* 801CF5D0 001CC510  38 60 00 00 */	li r3, 0
-/* 801CF5D4 001CC514  3C 80 80 43 */	lis r4, lbl_80430188@ha
-/* 801CF5D8 001CC518  38 84 01 88 */	addi r4, r4, lbl_80430188@l
+/* 801CF5D4 001CC514  3C 80 80 43 */	lis r4, g_meter2_info@ha
+/* 801CF5D8 001CC518  38 84 01 88 */	addi r4, r4, g_meter2_info@l
 /* 801CF5DC 001CC51C  98 64 00 F2 */	stb r3, 0xf2(r4)
 /* 801CF5E0 001CC520  38 80 00 00 */	li r4, 0
 /* 801CF5E4 001CC524  38 A0 00 00 */	li r5, 0
@@ -464,23 +464,23 @@ lbl_801CFC08:
 /* 801CFC5C 001CCB9C  41 80 FF AC */	blt lbl_801CFC08
 /* 801CFC60 001CCBA0  7F E3 FB 78 */	mr r3, r31
 /* 801CFC64 001CCBA4  48 00 2B 85 */	bl getMapScissorAreaSizeX__18dMenu_Fmap2DBack_cFv
-/* 801CFC68 001CCBA8  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801CFC6C 001CCBAC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801CFC68 001CCBA8  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801CFC6C 001CCBAC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801CFC70 001CCBB0  D0 23 00 70 */	stfs f1, 0x70(r3)
 /* 801CFC74 001CCBB4  7F E3 FB 78 */	mr r3, r31
 /* 801CFC78 001CCBB8  48 00 2C A9 */	bl getMapScissorAreaSizeY__18dMenu_Fmap2DBack_cFv
-/* 801CFC7C 001CCBBC  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801CFC80 001CCBC0  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801CFC7C 001CCBBC  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801CFC80 001CCBC0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801CFC84 001CCBC4  D0 23 00 74 */	stfs f1, 0x74(r3)
 /* 801CFC88 001CCBC8  7F E3 FB 78 */	mr r3, r31
 /* 801CFC8C 001CCBCC  48 00 2A AD */	bl getMapScissorAreaLX__18dMenu_Fmap2DBack_cFv
-/* 801CFC90 001CCBD0  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801CFC94 001CCBD4  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801CFC90 001CCBD0  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801CFC94 001CCBD4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801CFC98 001CCBD8  D0 23 00 78 */	stfs f1, 0x78(r3)
 /* 801CFC9C 001CCBDC  7F E3 FB 78 */	mr r3, r31
 /* 801CFCA0 001CCBE0  48 00 2A F1 */	bl getMapScissorAreaLY__18dMenu_Fmap2DBack_cFv
-/* 801CFCA4 001CCBE4  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801CFCA8 001CCBE8  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801CFCA4 001CCBE4  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801CFCA8 001CCBE8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801CFCAC 001CCBEC  D0 23 00 7C */	stfs f1, 0x7c(r3)
 /* 801CFCB0 001CCBF0  38 00 00 00 */	li r0, 0
 /* 801CFCB4 001CCBF4  90 1F 12 3C */	stw r0, 0x123c(r31)
@@ -641,8 +641,8 @@ lbl_801CFED4:
 /* 801CFEE4 001CCE24  7F C3 F3 78 */	mr r3, r30
 /* 801CFEE8 001CCE28  48 00 12 0D */	bl deleteSpotPane__18dMenu_Fmap2DBack_cFv
 /* 801CFEEC 001CCE2C  38 00 00 00 */	li r0, 0
-/* 801CFEF0 001CCE30  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801CFEF4 001CCE34  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801CFEF0 001CCE30  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801CFEF4 001CCE34  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801CFEF8 001CCE38  98 03 00 F2 */	stb r0, 0xf2(r3)
 /* 801CFEFC 001CCE3C  38 7E 00 04 */	addi r3, r30, 4
 /* 801CFF00 001CCE40  38 80 00 00 */	li r4, 0
@@ -7321,8 +7321,8 @@ lbl_801D6038:
 /* 801D606C 001D2FAC  7C 60 1B 78 */	mr r0, r3
 lbl_801D6070:
 /* 801D6070 001D2FB0  90 1F 00 54 */	stw r0, 0x54(r31)
-/* 801D6074 001D2FB4  3C 80 80 43 */	lis r4, lbl_80430188@ha
-/* 801D6078 001D2FB8  38 84 01 88 */	addi r4, r4, lbl_80430188@l
+/* 801D6074 001D2FB4  3C 80 80 43 */	lis r4, g_meter2_info@ha
+/* 801D6078 001D2FB8  38 84 01 88 */	addi r4, r4, g_meter2_info@l
 /* 801D607C 001D2FBC  88 04 00 BF */	lbz r0, 0xbf(r4)
 /* 801D6080 001D2FC0  28 00 00 09 */	cmplwi r0, 9
 /* 801D6084 001D2FC4  40 82 00 14 */	bne lbl_801D6098
@@ -8380,8 +8380,8 @@ lbl_801D6FA4:
 /* 801D6FC8 001D3F08  4E 80 04 21 */	bctrl 
 /* 801D6FCC 001D3F0C  48 12 96 8D */	bl getStringPtr__10J2DTextBoxCFv
 /* 801D6FD0 001D3F10  7C 65 1B 78 */	mr r5, r3
-/* 801D6FD4 001D3F14  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D6FD8 001D3F18  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801D6FD4 001D3F14  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D6FD8 001D3F18  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801D6FDC 001D3F1C  7F A4 EB 78 */	mr r4, r29
 /* 801D6FE0 001D3F20  38 C0 00 00 */	li r6, 0
 /* 801D6FE4 001D3F24  48 04 55 61 */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -8440,8 +8440,8 @@ lbl_801D707C:
 /* 801D70A0 001D3FE0  4E 80 04 21 */	bctrl 
 /* 801D70A4 001D3FE4  48 12 95 B5 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801D70A8 001D3FE8  7C 65 1B 78 */	mr r5, r3
-/* 801D70AC 001D3FEC  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D70B0 001D3FF0  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801D70AC 001D3FEC  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D70B0 001D3FF0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801D70B4 001D3FF4  7F A4 EB 78 */	mr r4, r29
 /* 801D70B8 001D3FF8  38 C0 00 00 */	li r6, 0
 /* 801D70BC 001D3FFC  48 04 54 89 */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -8497,8 +8497,8 @@ lbl_801D7160:
 /* 801D7164 001D40A4  3B 80 00 00 */	li r28, 0
 /* 801D7168 001D40A8  3C 60 80 39 */	lis r3, lbl_80396508@ha
 /* 801D716C 001D40AC  3B 43 65 08 */	addi r26, r3, lbl_80396508@l
-/* 801D7170 001D40B0  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D7174 001D40B4  3B 63 01 88 */	addi r27, r3, lbl_80430188@l
+/* 801D7170 001D40B0  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D7174 001D40B4  3B 63 01 88 */	addi r27, r3, g_meter2_info@l
 lbl_801D7178:
 /* 801D7178 001D40B8  80 7D 00 08 */	lwz r3, 8(r29)
 /* 801D717C 001D40BC  7C 9A E2 14 */	add r4, r26, r28
@@ -8561,8 +8561,8 @@ lbl_801D7240:
 /* 801D7244 001D4184  3B E0 00 00 */	li r31, 0
 /* 801D7248 001D4188  3C 60 80 39 */	lis r3, lbl_80396530@ha
 /* 801D724C 001D418C  3B A3 65 30 */	addi r29, r3, lbl_80396530@l
-/* 801D7250 001D4190  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D7254 001D4194  3B C3 01 88 */	addi r30, r3, lbl_80430188@l
+/* 801D7250 001D4190  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D7254 001D4194  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
 lbl_801D7258:
 /* 801D7258 001D4198  80 79 00 08 */	lwz r3, 8(r25)
 /* 801D725C 001D419C  7C 9D FA 14 */	add r4, r29, r31
@@ -8617,8 +8617,8 @@ lbl_801D7304:
 /* 801D7308 001D4248  3B E0 00 00 */	li r31, 0
 /* 801D730C 001D424C  3C 60 80 39 */	lis r3, lbl_80396558@ha
 /* 801D7310 001D4250  3B A3 65 58 */	addi r29, r3, lbl_80396558@l
-/* 801D7314 001D4254  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D7318 001D4258  3B C3 01 88 */	addi r30, r3, lbl_80430188@l
+/* 801D7314 001D4254  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D7318 001D4258  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
 lbl_801D731C:
 /* 801D731C 001D425C  80 79 00 08 */	lwz r3, 8(r25)
 /* 801D7320 001D4260  7C 9D FA 14 */	add r4, r29, r31
@@ -8704,8 +8704,8 @@ lbl_801D7440:
 /* 801D7444 001D4384  3B C0 00 00 */	li r30, 0
 /* 801D7448 001D4388  3C 60 80 39 */	lis r3, lbl_80396580@ha
 /* 801D744C 001D438C  3B 83 65 80 */	addi r28, r3, lbl_80396580@l
-/* 801D7450 001D4390  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D7454 001D4394  3B A3 01 88 */	addi r29, r3, lbl_80430188@l
+/* 801D7450 001D4390  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D7454 001D4394  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
 lbl_801D7458:
 /* 801D7458 001D4398  80 7F 00 08 */	lwz r3, 8(r31)
 /* 801D745C 001D439C  7C 9C F2 14 */	add r4, r28, r30
@@ -8796,8 +8796,8 @@ lbl_801D7594:
 /* 801D7598 001D44D8  3B C0 00 00 */	li r30, 0
 /* 801D759C 001D44DC  3C 60 80 39 */	lis r3, lbl_803965A8@ha
 /* 801D75A0 001D44E0  3B 83 65 A8 */	addi r28, r3, lbl_803965A8@l
-/* 801D75A4 001D44E4  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D75A8 001D44E8  3B A3 01 88 */	addi r29, r3, lbl_80430188@l
+/* 801D75A4 001D44E4  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D75A8 001D44E8  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
 lbl_801D75AC:
 /* 801D75AC 001D44EC  80 7F 00 08 */	lwz r3, 8(r31)
 /* 801D75B0 001D44F0  7C 9C F2 14 */	add r4, r28, r30
@@ -9594,8 +9594,8 @@ isWarpAccept__17dMenu_Fmap2DTop_cFv:
 /* 801D80AC 001D4FEC  4B E5 C9 11 */	bl isEventBit__11dSv_event_cCFUs
 /* 801D80B0 001D4FF0  2C 03 00 00 */	cmpwi r3, 0
 /* 801D80B4 001D4FF4  41 82 00 28 */	beq lbl_801D80DC
-/* 801D80B8 001D4FF8  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801D80BC 001D4FFC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801D80B8 001D4FF8  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801D80BC 001D4FFC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801D80C0 001D5000  88 03 00 BF */	lbz r0, 0xbf(r3)
 /* 801D80C4 001D5004  28 00 00 09 */	cmplwi r0, 9
 /* 801D80C8 001D5008  41 82 00 14 */	beq lbl_801D80DC

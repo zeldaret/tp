@@ -11,7 +11,7 @@
 // g_fpcDtTg_Queue
 extern node_list_class lbl_803A39A0;
 // g_fpcNd_type
-extern s32 lbl_80450D40;
+extern s32 g_fpcNd_type;
 
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
@@ -62,7 +62,7 @@ s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
         if (cTg_IsUse(&pProc->mDtTg.mBase) != 0) {
             return 1;
         } else {
-            if (fpcBs_Is_JustOfType(lbl_80450D40, pProc->mSubType) != 0) {
+            if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType) != 0) {
                 process_node_class* procNode = (process_node_class*)pProc;
                 if (fpcNd_IsDeleteTiming(procNode) == 0) {
                     return 0;

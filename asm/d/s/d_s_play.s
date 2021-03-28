@@ -682,7 +682,7 @@ lbl_80259D64:
 lbl_80259DA8:
 /* 80259DA8 00256CE8  38 00 FF FF */	li r0, -1
 lbl_80259DAC:
-/* 80259DAC 00256CEC  90 0D 87 E0 */	stw r0, lbl_80450D60-_SDA_BASE_(r13)
+/* 80259DAC 00256CEC  90 0D 87 E0 */	stw r0, _mProcID-_SDA_BASE_(r13)
 /* 80259DB0 00256CF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80259DB4 00256CF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80259DB8 00256CF8  3B E3 0F 38 */	addi r31, r3, 0xf38

@@ -30,8 +30,8 @@ lbl_80208E88:
 /* 80208E88 00205DC8  80 7F 00 68 */ lwz r3, 0x68(r31)
 /* 80208E8C 00205DCC  FC 20 00 90 */ fmr f1, f0
 /* 80208E90 00205DD0  48 04 C9 41 */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 80208E94 00205DD4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80208E98 00205DD8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80208E94 00205DD4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80208E98 00205DD8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80208E9C 00205DDC  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80208EA0 00205DE0  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80208EA4 00205DE4  80 9F 00 68 */ lwz r4, 0x68(r31)

@@ -1,6 +1,7 @@
 #include "d/d_save/d_save/d_save.h"
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "d/d_save/d_save_init/d_save_init.h"
 #include "msl_c/string.h"
 #include "os/OS.h"
@@ -46,7 +47,6 @@ extern f32 lbl_80451D58;
 extern char lbl_80379234[0x64];
 extern f32 lbl_80451D5C;
 extern u8 i_item_lst[24];
-extern u8 lbl_80430188[16];
 extern u32 _sRumbleSupported;
 
 inline int dComIfGs_isItemFirstBit(u8 i_no) {

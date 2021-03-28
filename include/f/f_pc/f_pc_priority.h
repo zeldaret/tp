@@ -12,10 +12,10 @@ typedef struct process_priority_queue_info {
 } process_priority_queue_info;
 
 typedef struct process_priority_class {
-    create_tag_class mBase;
-    process_method_tag_class mMtdTag;
-    process_priority_queue_info mInfoQ;
-    process_priority_queue_info mInfoCurr;
+    /* 0x00 */ create_tag_class mBase;
+    /* 0x14 */ process_method_tag_class mMtdTag;
+    /* 0x30 */ process_priority_queue_info mInfoQ;
+    /* 0x38 */ process_priority_queue_info mInfoCurr;
 } process_priority_class;
 
 s32 fpcPi_IsInQueue(process_priority_class* pPi);

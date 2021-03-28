@@ -11,8 +11,8 @@
 /* 8020D3E0 0020A320  80 7F 00 34 */ lwz r3, 0x34(r31)
 /* 8020D3E4 0020A324  C0 22 AE 08 */ lfs f1, lbl_80454808-_SDA2_BASE_(r2)
 /* 8020D3E8 0020A328  48 04 83 E9 */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D3EC 0020A32C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020D3F0 0020A330  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020D3EC 0020A32C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020D3F0 0020A330  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020D3F4 0020A334  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 8020D3F8 0020A338  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D3FC 0020A33C  80 9F 00 34 */ lwz r4, 0x34(r31)

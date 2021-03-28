@@ -2874,7 +2874,10 @@ swap__10J2DPictureFRfRf:
 /* 802FEA64 002FB9A4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802FEA68 002FB9A8  D0 03 00 00 */	stfs f0, 0(r3)
 /* 802FEA6C 002FB9AC  D0 24 00 00 */	stfs f1, 0(r4)
-/* 802FEA70 002FB9B0  4E 80 00 20 */	blr 
+/* 802FEA70 002FB9B0  4E 80 00 20 */	blr
+
+.global setBlendColorRatio__10J2DPictureFff
+setBlendColorRatio__10J2DPictureFff:
 /* 802FEA74 002FB9B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802FEA78 002FB9B8  7C 08 02 A6 */	mflr r0
 /* 802FEA7C 002FB9BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2885,6 +2888,9 @@ swap__10J2DPictureFRfRf:
 /* 802FEA90 002FB9D0  7C 08 03 A6 */	mtlr r0
 /* 802FEA94 002FB9D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802FEA98 002FB9D8  4E 80 00 20 */	blr 
+
+.global setBlendAlphaRatio__10J2DPictureFff
+setBlendAlphaRatio__10J2DPictureFff:
 /* 802FEA9C 002FB9DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802FEAA0 002FB9E0  7C 08 02 A6 */	mflr r0
 /* 802FEAA4 002FB9E4  90 01 00 14 */	stw r0, 0x14(r1)

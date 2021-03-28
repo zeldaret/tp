@@ -24,8 +24,8 @@ lbl_80207B10:
 /* 80207B10 00204A50  80 7F 00 34 */ lwz r3, 0x34(r31)
 /* 80207B14 00204A54  FC 20 00 90 */ fmr f1, f0
 /* 80207B18 00204A58  48 04 DC B9 */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 80207B1C 00204A5C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80207B20 00204A60  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80207B1C 00204A5C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80207B20 00204A60  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80207B24 00204A64  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80207B28 00204A68  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80207B2C 00204A6C  80 9F 00 34 */ lwz r4, 0x34(r31)

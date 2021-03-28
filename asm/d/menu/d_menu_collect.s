@@ -269,8 +269,8 @@ _delete__17dMenu_Collect2D_cFv:
 /* 801B011C 001AD05C  48 11 E6 69 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 801B0120 001AD060  88 9F 02 58 */	lbz r4, 0x258(r31)
 /* 801B0124 001AD064  88 1F 02 57 */	lbz r0, 0x257(r31)
-/* 801B0128 001AD068  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B012C 001AD06C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B0128 001AD068  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B012C 001AD06C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B0130 001AD070  98 03 00 DF */	stb r0, 0xdf(r3)
 /* 801B0134 001AD074  98 83 00 E0 */	stb r4, 0xe0(r3)
 /* 801B0138 001AD078  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -761,8 +761,8 @@ screenSet__17dMenu_Collect2D_cFv:
 /* 801B07FC 001AD73C  4E 80 04 21 */	bctrl 
 /* 801B0800 001AD740  48 14 FE 59 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B0804 001AD744  7C 65 1B 78 */	mr r5, r3
-/* 801B0808 001AD748  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B080C 001AD74C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B0808 001AD748  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B080C 001AD74C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B0810 001AD750  38 80 03 E1 */	li r4, 0x3e1
 /* 801B0814 001AD754  38 C0 00 00 */	li r6, 0
 /* 801B0818 001AD758  48 06 BD 2D */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -779,8 +779,8 @@ screenSet__17dMenu_Collect2D_cFv:
 /* 801B0844 001AD784  3A E0 00 00 */	li r23, 0
 /* 801B0848 001AD788  3C 60 80 39 */	lis r3, lbl_80395330@ha
 /* 801B084C 001AD78C  3A 83 53 30 */	addi r20, r3, lbl_80395330@l
-/* 801B0850 001AD790  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B0854 001AD794  3B 43 01 88 */	addi r26, r3, lbl_80430188@l
+/* 801B0850 001AD790  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B0854 001AD794  3B 43 01 88 */	addi r26, r3, g_meter2_info@l
 /* 801B0858 001AD798  3B 36 00 10 */	addi r25, r22, 0x10
 /* 801B085C 001AD79C  3B 16 00 28 */	addi r24, r22, 0x28
 lbl_801B0860:
@@ -1824,8 +1824,8 @@ lbl_801B179C:
 /* 801B17D4 001AE714  B0 7F 02 12 */	sth r3, 0x212(r31)
 /* 801B17D8 001AE718  B0 7F 02 1E */	sth r3, 0x21e(r31)
 /* 801B17DC 001AE71C  B0 7F 02 2A */	sth r3, 0x22a(r31)
-/* 801B17E0 001AE720  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B17E4 001AE724  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B17E0 001AE720  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B17E4 001AE724  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B17E8 001AE728  88 03 00 DF */	lbz r0, 0xdf(r3)
 /* 801B17EC 001AE72C  98 1F 02 57 */	stb r0, 0x257(r31)
 /* 801B17F0 001AE730  88 03 00 E0 */	lbz r0, 0xe0(r3)
@@ -6815,8 +6815,8 @@ lbl_801B6040:
 /* 801B6044 001B2F84  3B C0 00 00 */	li r30, 0
 /* 801B6048 001B2F88  3C 60 80 39 */	lis r3, lbl_80395268@ha
 /* 801B604C 001B2F8C  3B 83 52 68 */	addi r28, r3, lbl_80395268@l
-/* 801B6050 001B2F90  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B6054 001B2F94  3B A3 01 88 */	addi r29, r3, lbl_80430188@l
+/* 801B6050 001B2F90  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B6054 001B2F94  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
 lbl_801B6058:
 /* 801B6058 001B2F98  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801B605C 001B2F9C  7C 9C F2 14 */	add r4, r28, r30
@@ -6887,8 +6887,8 @@ lbl_801B6144:
 /* 801B6148 001B3088  3B C0 00 00 */	li r30, 0
 /* 801B614C 001B308C  3C 60 80 39 */	lis r3, lbl_80395290@ha
 /* 801B6150 001B3090  3B 83 52 90 */	addi r28, r3, lbl_80395290@l
-/* 801B6154 001B3094  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B6158 001B3098  3B A3 01 88 */	addi r29, r3, lbl_80430188@l
+/* 801B6154 001B3094  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B6158 001B3098  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
 lbl_801B615C:
 /* 801B615C 001B309C  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801B6160 001B30A0  7C 9C F2 14 */	add r4, r28, r30
@@ -6959,8 +6959,8 @@ lbl_801B622C:
 /* 801B624C 001B318C  4E 80 04 21 */	bctrl 
 /* 801B6250 001B3190  48 14 A4 09 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B6254 001B3194  7C 65 1B 78 */	mr r5, r3
-/* 801B6258 001B3198  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B625C 001B319C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B6258 001B3198  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B625C 001B319C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B6260 001B31A0  7F E4 FB 78 */	mr r4, r31
 /* 801B6264 001B31A4  38 C0 00 00 */	li r6, 0
 /* 801B6268 001B31A8  48 06 62 DD */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -6975,8 +6975,8 @@ lbl_801B622C:
 /* 801B628C 001B31CC  4E 80 04 21 */	bctrl 
 /* 801B6290 001B31D0  48 14 A3 C9 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B6294 001B31D4  7C 65 1B 78 */	mr r5, r3
-/* 801B6298 001B31D8  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B629C 001B31DC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B6298 001B31D8  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B629C 001B31DC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B62A0 001B31E0  7F E4 FB 78 */	mr r4, r31
 /* 801B62A4 001B31E4  38 C0 00 00 */	li r6, 0
 /* 801B62A8 001B31E8  48 06 62 9D */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -6991,8 +6991,8 @@ lbl_801B622C:
 /* 801B62CC 001B320C  4E 80 04 21 */	bctrl 
 /* 801B62D0 001B3210  48 14 A3 89 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B62D4 001B3214  7C 65 1B 78 */	mr r5, r3
-/* 801B62D8 001B3218  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B62DC 001B321C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B62D8 001B3218  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B62DC 001B321C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B62E0 001B3220  7F E4 FB 78 */	mr r4, r31
 /* 801B62E4 001B3224  38 C0 00 00 */	li r6, 0
 /* 801B62E8 001B3228  48 06 62 5D */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
@@ -7007,8 +7007,8 @@ lbl_801B622C:
 /* 801B630C 001B324C  4E 80 04 21 */	bctrl 
 /* 801B6310 001B3250  48 14 A3 49 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B6314 001B3254  7C 65 1B 78 */	mr r5, r3
-/* 801B6318 001B3258  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801B631C 001B325C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801B6318 001B3258  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801B631C 001B325C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801B6320 001B3260  7F E4 FB 78 */	mr r4, r31
 /* 801B6324 001B3264  38 C0 00 00 */	li r6, 0
 /* 801B6328 001B3268  48 06 62 1D */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

@@ -29,4 +29,6 @@ struct ResTIMG { /* Acts as the header to image data. Usually texture data immed
     u32 texture_data_offset;
 };
 
+class JUTTexture;
+
 #endif  // JSYSTEM_JUTILITY_TEXTURE_H

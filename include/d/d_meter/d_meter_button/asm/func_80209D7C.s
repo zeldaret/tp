@@ -12,8 +12,8 @@
 /* 80209DA8 00206CE8  7C 7B 1B 78 */ mr r27, r3
 /* 80209DAC 00206CEC  7C 9D 23 78 */ mr r29, r4
 /* 80209DB0 00206CF0  7C DC 33 78 */ mr r28, r6
-/* 80209DB4 00206CF4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80209DB8 00206CF8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80209DB4 00206CF4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80209DB8 00206CF8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80209DBC 00206CFC  80 9B 00 84 */ lwz r4, 0x84(r27)
 /* 80209DC0 00206D00  48 01 28 E5 */ bl getStringLength__13dMeter2Info_cFP10J2DTextBoxPc
 /* 80209DC4 00206D04  57 9A 10 3A */ slwi r26, r28, 2

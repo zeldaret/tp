@@ -65,8 +65,8 @@
 /* 80219B84 00216AC4  4B E1 AE 39 */ bl isEventBit__11dSv_event_cCFUs
 /* 80219B88 00216AC8  2C 03 00 00 */ cmpwi r3, 0
 /* 80219B8C 00216ACC  40 82 00 18 */ bne lbl_80219BA4
-/* 80219B90 00216AD0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80219B94 00216AD4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80219B90 00216AD0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80219B94 00216AD4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80219B98 00216AD8  A0 03 00 AE */ lhz r0, 0xae(r3)
 /* 80219B9C 00216ADC  54 00 05 29 */ rlwinm. r0, r0, 0, 0x14, 0x14
 /* 80219BA0 00216AE0  41 82 00 2C */ beq lbl_80219BCC
@@ -93,8 +93,8 @@ lbl_80219BD4:
 /* 80219BE8 00216B28  C3 A2 AE 80 */ lfs f29, lbl_80454880-_SDA2_BASE_(r2)
 /* 80219BEC 00216B2C  48 00 00 CC */ b lbl_80219CB8
 lbl_80219BF0:
-/* 80219BF0 00216B30  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80219BF4 00216B34  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80219BF0 00216B30  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80219BF4 00216B34  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80219BF8 00216B38  A0 03 00 AE */ lhz r0, 0xae(r3)
 /* 80219BFC 00216B3C  54 00 05 29 */ rlwinm. r0, r0, 0, 0x14, 0x14
 /* 80219C00 00216B40  40 82 00 34 */ bne lbl_80219C34
@@ -216,8 +216,8 @@ lbl_80219D54:
 /* 80219DB0 00216CF0  C3 A2 AE 80 */ lfs f29, lbl_80454880-_SDA2_BASE_(r2)
 /* 80219DB4 00216CF4  48 00 00 44 */ b lbl_80219DF8
 lbl_80219DB8:
-/* 80219DB8 00216CF8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80219DBC 00216CFC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80219DB8 00216CF8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80219DBC 00216CFC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80219DC0 00216D00  A0 03 00 AE */ lhz r0, 0xae(r3)
 /* 80219DC4 00216D04  54 00 05 29 */ rlwinm. r0, r0, 0, 0x14, 0x14
 /* 80219DC8 00216D08  40 82 00 30 */ bne lbl_80219DF8

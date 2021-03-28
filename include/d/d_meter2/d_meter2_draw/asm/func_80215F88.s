@@ -11,8 +11,8 @@
 /* 80215FB0 00212EF0  C0 23 00 18 */ lfs f1, 0x18(r3)
 /* 80215FB4 00212EF4  C0 1D 06 FC */ lfs f0, 0x6fc(r29)
 /* 80215FB8 00212EF8  EF E1 00 32 */ fmuls f31, f1, f0
-/* 80215FBC 00212EFC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80215FC0 00212F00  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80215FBC 00212EFC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80215FC0 00212F00  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80215FC4 00212F04  3B C3 00 E3 */ addi r30, r3, 0xe3
 /* 80215FC8 00212F08  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80215FCC 00212F0C  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l

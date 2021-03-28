@@ -26,8 +26,8 @@ lbl_80207F94:
 /* 80207F94 00204ED4  80 7F 00 40 */ lwz r3, 0x40(r31)
 /* 80207F98 00204ED8  FC 20 00 90 */ fmr f1, f0
 /* 80207F9C 00204EDC  48 04 D8 35 */ bl setAlphaRate__13CPaneMgrAlphaFf
-/* 80207FA0 00204EE0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80207FA4 00204EE4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80207FA0 00204EE0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80207FA4 00204EE4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80207FA8 00204EE8  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80207FAC 00204EEC  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80207FB0 00204EF0  80 9F 00 40 */ lwz r4, 0x40(r31)

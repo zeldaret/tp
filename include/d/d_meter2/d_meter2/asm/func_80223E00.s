@@ -8,8 +8,8 @@
 /* 80223E1C 00220D5C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80223E20 00220D60  3B A3 61 C0 */ addi r29, r3, g_dComIfG_gameInfo@l
 /* 80223E24 00220D64  3B 7D 00 9C */ addi r27, r29, 0x9c
-/* 80223E28 00220D68  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80223E2C 00220D6C  3B C3 01 88 */ addi r30, r3, lbl_80430188@l
+/* 80223E28 00220D68  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80223E2C 00220D6C  3B C3 01 88 */ addi r30, r3, g_meter2_info@l
 /* 80223E30 00220D70  3B 5D 00 EC */ addi r26, r29, 0xec
 /* 80223E34 00220D74  3B 3D 00 F8 */ addi r25, r29, 0xf8
 /* 80223E38 00220D78  3B 1D 0F 38 */ addi r24, r29, 0xf38

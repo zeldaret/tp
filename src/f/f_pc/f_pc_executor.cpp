@@ -9,7 +9,7 @@
 #include "f/f_pc/f_pc_searcher.h"
 
 // g_fpcNd_type
-extern s32 lbl_80450D40;
+extern s32 g_fpcNd_type;
 
 base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData) {
     return (base_process_class*)fpcLyIt_AllJudge(pFunc, pUserData);
@@ -44,7 +44,7 @@ s32 fpcEx_ToLineQ(base_process_class* pProc) {
         }
 
         pProc->mInitState = 2;
-        if (fpcBs_Is_JustOfType(lbl_80450D40, pProc->mSubType)) {
+        if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType)) {
             process_node_class* pNode = (process_node_class*)pProc;
             fpcLyIt_OnlyHere(&pNode->mLayer, (cNdIt_MethodFunc)fpcEx_ToLineQ, pNode);
         }
