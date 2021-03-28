@@ -17,5 +17,5 @@ void fopScnTg_ToQueue(scene_tag_class* pSceneTag) {
 }
 
 void fopScnTg_Init(scene_tag_class* pSceneTag, void* pData) {
-    cTg_Create((create_tag_class*)pSceneTag,pData);
+    cTg_Create((create_tag_class*)pSceneTag, pData);
 }
