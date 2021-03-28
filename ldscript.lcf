@@ -3322,6 +3322,11 @@ fopMsgM_destroyExpHeap__FP10JKRExpHeap
 fopMsgM_messageGet__FPcUl
 insert__10J2DPictureFPCcUcf
 append__10J2DPictureFPCcf
+fopMsg_Draw__FPv
+fopMsg_Execute__FPv
+fopMsg_IsDelete__FPv
+fopMsg_Delete__FPv
+fopMsg_Create__FPv
 }
 /*
 .init 80003100 - 80005600
