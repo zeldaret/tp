@@ -2,6 +2,7 @@
 
 #include "f/f_op/f_op_draw_tag.h"
 #include "f/f_pc/f_pc_base.h"
+#include "f/f_pc/f_pc_leaf.h"
 #include "global.h"
 
 // additional symbols needed for f_op_msg.cpp
@@ -30,39 +31,40 @@ void fopMsg_Create__FPv(void);
 extern u8 lbl_80450CF0;
 extern u8 lbl_80451124;
 
-extern "C" {
-// fopMsg_Draw__FPv
-// fopMsg_Draw__FPv(void*)
-asm void fopMsg_Draw__FPv(void) {
-    nofralloc
-#include "f/f_op/f_op_msg/asm/func_8001F488.s"
+struct unk {
+    u8 field_0x00[0xd8];
+    leafdraw_method_class* mpDrawMtd;
+};
+
+void fopMsg_Draw(void* pUserData) {
+    unk* pUnk = (unk*)pUserData;
+    fpcLf_DrawMethod(pUnk->mpDrawMtd,pUserData);
 }
 
 // fopMsg_Execute__FPv
 // fopMsg_Execute(void*)
-asm void fopMsg_Execute__FPv(void) {
+asm void fopMsg_Execute(void*) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F4B0.s"
 }
 
 // fopMsg_IsDelete__FPv
 // fopMsg_IsDelete(void*)
-asm void fopMsg_IsDelete__FPv(void) {
+asm void fopMsg_IsDelete(void*) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F4E8.s"
 }
 
 // fopMsg_Delete__FPv
 // fopMsg_Delete(void*)
-asm void fopMsg_Delete__FPv(void) {
+asm void fopMsg_Delete(void*) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F53C.s"
 }
 
 // fopMsg_Create__FPv
 // fopMsg_Create(void*)
-asm void fopMsg_Create__FPv(void) {
+asm void fopMsg_Create(void*) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F588.s"
 }
-};
