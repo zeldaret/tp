@@ -20,14 +20,11 @@ void fopVw_Create__FPv(void);
 }
 
 void fopVw_Draw(view_class* pView) {
-    fpcLf_DrawMethod(pView->pmLeafdrawMtd, pView);
+    fpcLf_DrawMethod((leafdraw_method_class*)pView->pmProcessMtd, pView);
 }
 
-// fopVw_Execute__FP10view_class
-// fopVw_Execute(view_class*)
-asm void fopVw_Execute(view_class*) {
-    nofralloc
-#include "f/f_op/f_op_view/asm/func_8001F1D0.s"
+void fopVw_Execute(view_class* pView) {
+    fpcMtd_Execute(pView->pmProcessMtd,pView);
 }
 
 // fopVw_IsDelete__FPv
