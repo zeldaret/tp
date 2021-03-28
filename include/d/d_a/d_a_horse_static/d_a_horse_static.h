@@ -1,4 +1,3 @@
-#include "dolphin/types.h"
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
 
 class e_wb_class {
