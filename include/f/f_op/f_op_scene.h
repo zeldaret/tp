@@ -11,7 +11,7 @@ public:
     /* 0x008 */ u8 field_0x08[0x24];
     /* 0x02C */ int* field_0x2C;
     /* 0x030 */ u8 field_0x30[0x17C];
-    /* 0x1AC */ nodedraw_method_class* mpNodedrawMtd;
+    /* 0x1AC */ process_method_class* mpProcessMtd;
 };
 
 #endif
