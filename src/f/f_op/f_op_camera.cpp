@@ -17,6 +17,7 @@ void func_8001E1C8(void);
 void func_8001E21C(void);
 void func_8001E270(void);
 void fopDwTg_DrawQTo__FP16create_tag_class(void);
+void fpcLf_GetPriority__FPC14leafdraw_class(void);
 }
 
 // additional symbols needed for f_op_camera.cpp
