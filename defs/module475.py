@@ -1,0 +1,131 @@
+#
+# Generate By: dol2asm
+# Module: 475
+#
+
+# Libraries
+LIBRARIES = [
+	"d/a/obj/d_a_obj_hbombkoya",
+]
+
+# Translation Units
+TRANSLATION_UNITS = [
+	"executor",
+	"unknown_translation_unit_ctors",
+	"unknown_translation_unit_dtors",
+	"d_a_obj_hbombkoya",
+]
+
+# Sections
+SECTIONS = [
+	".text",
+	".ctors",
+	".dtors",
+	".rodata",
+	".data",
+]
+
+# Symbols
+SYMBOLS = [
+	{'addr':0x80C1B800,'size':44,'pad':0,'label':"_prolog",'name':"_prolog",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1B82C,'size':44,'pad':0,'label':"_epilog",'name':"_epilog",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1B858,'size':32,'pad':0,'label':"_unresolved",'name':"_unresolved",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1B878,'size':192,'pad':0,'label':"create1st__16daObjHBombkoya_cFv",'name':"create1st__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1B938,'size':148,'pad':0,'label':"CreateHeap__16daObjHBombkoya_cFv",'name':"CreateHeap__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1B9CC,'size':360,'pad':0,'label':"Create__16daObjHBombkoya_cFv",'name':"Create__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1BB34,'size':72,'pad':0,'label':"__dt__8cM3dGAabFv",'name':"__dt__8cM3dGAabFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1BB7C,'size':292,'pad':0,'label':"setParticle__16daObjHBombkoya_cFPUsiPQ216daObjHBombkoya_c7PSetTblii",'name':"setParticle__16daObjHBombkoya_cFPUsiPQ216daObjHBombkoya_c7PSetTblii",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1BCA0,'size':1016,'pad':0,'label':"Execute__16daObjHBombkoya_cFPPA3_A4_f",'name':"Execute__16daObjHBombkoya_cFPPA3_A4_f",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C098,'size':212,'pad':0,'label':"Draw__16daObjHBombkoya_cFv",'name':"Draw__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C16C,'size':60,'pad':0,'label':"Delete__16daObjHBombkoya_cFv",'name':"Delete__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C1A8,'size':276,'pad':0,'label':"daObjHBombkoya_create1st__FP16daObjHBombkoya_c",'name':"daObjHBombkoya_create1st__FP16daObjHBombkoya_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C2BC,'size':72,'pad':0,'label':"__dt__8cM3dGCylFv",'name':"__dt__8cM3dGCylFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C304,'size':92,'pad':0,'label':"__dt__10dCcD_GSttsFv",'name':"__dt__10dCcD_GSttsFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C360,'size':32,'pad':0,'label':"daObjHBombkoya_MoveBGDelete__FP16daObjHBombkoya_c",'name':"daObjHBombkoya_MoveBGDelete__FP16daObjHBombkoya_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C380,'size':32,'pad':0,'label':"daObjHBombkoya_MoveBGExecute__FP16daObjHBombkoya_c",'name':"daObjHBombkoya_MoveBGExecute__FP16daObjHBombkoya_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C3A0,'size':44,'pad':0,'label':"daObjHBombkoya_MoveBGDraw__FP16daObjHBombkoya_c",'name':"daObjHBombkoya_MoveBGDraw__FP16daObjHBombkoya_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C3CC,'size':72,'pad':0,'label':"__dt__10cCcD_GSttsFv",'name':"__dt__10cCcD_GSttsFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C414,'size':72,'pad':0,'label':"__dt__17dEvLib_callback_cFv",'name':"__dt__17dEvLib_callback_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C45C,'size':8,'pad':0,'label':"eventStart__17dEvLib_callback_cFv",'name':"eventStart__17dEvLib_callback_cFv",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
+	{'addr':0x80C1C464,'size':8,'pad':0,'label':"eventRun__17dEvLib_callback_cFv",'name':"eventRun__17dEvLib_callback_cFv",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
+	{'addr':0x80C1C46C,'size':8,'pad':0,'label':"eventEnd__17dEvLib_callback_cFv",'name':"eventEnd__17dEvLib_callback_cFv",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
+	{'addr':0x80C1C474,'size':372,'pad':0,'label':"__dt__16daObjHBombkoya_cFv",'name':"__dt__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C5E8,'size':8,'pad':0,'label':"func_80C1C5E8",'name':"@1448@__dt__16daObjHBombkoya_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80C1C5F0,'size':4,'pad':0,'label':"data_80C1C5F0",'name':None,'lib':-1,'tu':1,'section':1,'r':[0,1,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C5F4,'size':4,'pad':0,'label':"data_80C1C5F4",'name':None,'lib':-1,'tu':2,'section':2,'r':[0,1,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C5F8,'size':4,'pad':0,'label':"lit_3699",'name':"@3699",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80C1C5FC,'size':4,'pad':0,'label':"lit_3747",'name':"@3747",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80C1C600,'size':16,'pad':0,'label':"lit_3758",'name':"@3758",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C610,'size':160,'pad':0,'label':"lit_3759",'name':"@3759",'lib':-1,'tu':3,'section':3,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C6B0,'size':6,'pad':2,'label':"lit_3762",'name':"@3762",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C6B8,'size':100,'pad':0,'label':"lit_3763",'name':"@3763",'lib':-1,'tu':3,'section':3,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C71C,'size':4,'pad':0,'label':"lit_3851",'name':"@3851",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80C1C720,'size':4,'pad':0,'label':"lit_3852",'name':"@3852",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80C1C724,'size':4,'pad':0,'label':"lit_3853",'name':"@3853",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C728,'size':10,'pad':0,'label':"stringBase0",'name':"@stringBase0",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"StringBase"},
+	{'addr':0x80C1C734,'size':4,'pad':0,'label':"l_arcName",'name':"l_arcName",'lib':-1,'tu':3,'section':4,'r':[3,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C738,'size':68,'pad':0,'label':"l_cc_cyl_src",'name':"l_cc_cyl_src",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C77C,'size':18,'pad':2,'label':"id",'name':"id$3767",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C790,'size':384,'pad':0,'label':"ptable",'name':"ptable$3776",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80C1C910,'size':32,'pad':0,'label':"daObjHBombkoya_METHODS",'name':"daObjHBombkoya_METHODS",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C930,'size':48,'pad':0,'label':"g_profile_Obj_HBombkoya",'name':"g_profile_Obj_HBombkoya",'lib':-1,'tu':3,'section':4,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C960,'size':12,'pad':0,'label':"__vt__10cCcD_GStts",'name':"__vt__10cCcD_GStts",'lib':-1,'tu':3,'section':4,'r':[3,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C96C,'size':12,'pad':0,'label':"__vt__10dCcD_GStts",'name':"__vt__10dCcD_GStts",'lib':-1,'tu':3,'section':4,'r':[2,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C978,'size':12,'pad':0,'label':"__vt__8cM3dGCyl",'name':"__vt__8cM3dGCyl",'lib':-1,'tu':3,'section':4,'r':[3,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C984,'size':24,'pad':0,'label':"__vt__17dEvLib_callback_c",'name':"__vt__17dEvLib_callback_c",'lib':-1,'tu':3,'section':4,'r':[3,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C99C,'size':12,'pad':0,'label':"__vt__8cM3dGAab",'name':"__vt__8cM3dGAab",'lib':-1,'tu':3,'section':4,'r':[4,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80C1C9A8,'size':68,'pad':0,'label':"__vt__16daObjHBombkoya_c",'name':"__vt__16daObjHBombkoya_c",'lib':-1,'tu':3,'section':4,'r':[2,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+]
+
+# Names
+SYMBOL_NAMES = {
+	"_prolog":0,
+	"_epilog":1,
+	"_unresolved":2,
+	"create1st__16daObjHBombkoya_cFv":3,
+	"CreateHeap__16daObjHBombkoya_cFv":4,
+	"Create__16daObjHBombkoya_cFv":5,
+	"__dt__8cM3dGAabFv":6,
+	"setParticle__16daObjHBombkoya_cFPUsiPQ216daObjHBombkoya_c7PSetTblii":7,
+	"Execute__16daObjHBombkoya_cFPPA3_A4_f":8,
+	"Draw__16daObjHBombkoya_cFv":9,
+	"Delete__16daObjHBombkoya_cFv":10,
+	"daObjHBombkoya_create1st__FP16daObjHBombkoya_c":11,
+	"__dt__8cM3dGCylFv":12,
+	"__dt__10dCcD_GSttsFv":13,
+	"daObjHBombkoya_MoveBGDelete__FP16daObjHBombkoya_c":14,
+	"daObjHBombkoya_MoveBGExecute__FP16daObjHBombkoya_c":15,
+	"daObjHBombkoya_MoveBGDraw__FP16daObjHBombkoya_c":16,
+	"__dt__10cCcD_GSttsFv":17,
+	"__dt__17dEvLib_callback_cFv":18,
+	"eventStart__17dEvLib_callback_cFv":19,
+	"eventRun__17dEvLib_callback_cFv":20,
+	"eventEnd__17dEvLib_callback_cFv":21,
+	"__dt__16daObjHBombkoya_cFv":22,
+	"func_80C1C5E8":23,
+	"data_80C1C5F0":24,
+	"data_80C1C5F4":25,
+	"lit_3699":26,
+	"lit_3747":27,
+	"lit_3758":28,
+	"lit_3759":29,
+	"lit_3762":30,
+	"lit_3763":31,
+	"lit_3851":32,
+	"lit_3852":33,
+	"lit_3853":34,
+	"stringBase0":35,
+	"l_arcName":36,
+	"l_cc_cyl_src":37,
+	"id":38,
+	"ptable":39,
+	"daObjHBombkoya_METHODS":40,
+	"g_profile_Obj_HBombkoya":41,
+	"__vt__10cCcD_GStts":42,
+	"__vt__10dCcD_GStts":43,
+	"__vt__8cM3dGCyl":44,
+	"__vt__17dEvLib_callback_c":45,
+	"__vt__8cM3dGAab":46,
+	"__vt__16daObjHBombkoya_c":47,
+}
+

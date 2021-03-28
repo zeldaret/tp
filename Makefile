@@ -32,12 +32,8 @@ DOL     := $(BUILD_DIR)/main.dol
 ELF     := $(DOL:.dol=.elf)
 MAP     := $(BUILD_DIR)/dolzel2.map
 
-include obj_files.mk
-
-O_FILES := $(INIT_O_FILES) $(EXTAB_O_FILES) $(EXTABINDEX_O_FILES) $(TEXT_O_FILES) \
-           $(CTORS_O_FILES) $(DTORS_O_FILES) $(RODATA_O_FILES) $(DATA_O_FILES)    \
-           $(BSS_O_FILES) $(SDATA_O_FILES) $(SBSS_O_FILES) \
-		   $(SDATA2_O_FILES) $(SBSS2_O_FILES)
+# include list of object files 
+-include obj_files.mk
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -79,7 +75,7 @@ INCLUDES := -i include -i include/dolphin/ -i src
 ASFLAGS := -mgekko -I include
 
 # Linker flags
-LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
+LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w on
 
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
@@ -104,9 +100,6 @@ ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS)
 dirs:
 	$(shell mkdir -p $(ALL_DIRS))
 
-$(LDSCRIPT): ldscript.lcf
-	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
-
 $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
 	$(SHA1SUM) -c $(TARGET).sha1
@@ -116,26 +109,30 @@ clean:
 	$(MAKE) -C tools clean
 
 tools:
-	$(MAKE) -C tools
+	@$(MAKE) -C tools
 
 docs:
 	$(DOXYGEN) Doxyfile
+	
+rels: $(RELS)
 
-$(ELF): $(O_FILES) $(LDSCRIPT)
+
+$(ELF): $(LIBS) $(O_FILES)
 	echo $(O_FILES) > build/o_files
-	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
+	python3 tools/lcf.py --output $(LDSCRIPT)
+	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 # The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.
 #	$(OBJCOPY) $@ $@
 
-$(BUILD_DIR)/%.o: %.s
-	$(AS) $(ASFLAGS) -o $@ $<
-
-$(BUILD_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
 $(BUILD_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) -c -o $@ $<
-	$(PYTHON) $(POSTPROC) -fsymbol-fixup $@
+	@mkdir -p $(@D)
+	@echo building... $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) -c -o $@ $@.iconv.cpp
+	@$(STRIP) -d -R .dead -R .comment $@
+
+# include library and rel makefiles
+-include include_link.mk
 
 ### Debug Print ###
 

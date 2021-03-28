@@ -1,8 +1,7 @@
-#ifndef JSYSTEM_J2DGRAPH_GRAFCONTEXT_H
-#define JSYSTEM_J2DGRAPH_GRAFCONTEXT_H
+#ifndef J2DGRAFCONTEXT_H
+#define J2DGRAFCONTEXT_H
 
 #include "dolphin/types.h"
 
-class J2DGrafContext {};
 
-#endif  // JSYSTEM_J2DGRAPH_GRAFCONTEXT_H
+#endif /* J2DGRAFCONTEXT_H */

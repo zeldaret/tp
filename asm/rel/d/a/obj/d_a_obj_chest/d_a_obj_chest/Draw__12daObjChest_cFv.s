@@ -1,0 +1,42 @@
+lbl_80BC9E00:
+/* 80BC9E00  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80BC9E04  7C 08 02 A6 */	mflr r0
+/* 80BC9E08  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80BC9E0C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 80BC9E10  93 C1 00 08 */	stw r30, 8(r1)
+/* 80BC9E14  7C 7E 1B 78 */	mr r30, r3
+/* 80BC9E18  3C 60 80 43 */	lis r3, g_env_light@ha
+/* 80BC9E1C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80BC9E20  38 80 00 10 */	li r4, 0x10
+/* 80BC9E24  38 BE 04 D0 */	addi r5, r30, 0x4d0
+/* 80BC9E28  38 DE 01 0C */	addi r6, r30, 0x10c
+/* 80BC9E2C  4B 5D 99 98 */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 80BC9E30  3C 60 80 43 */	lis r3, g_env_light@ha
+/* 80BC9E34  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80BC9E38  80 9E 05 A8 */	lwz r4, 0x5a8(r30)
+/* 80BC9E3C  80 84 00 04 */	lwz r4, 4(r4)
+/* 80BC9E40  38 BE 01 0C */	addi r5, r30, 0x10c
+/* 80BC9E44  4B 5D AF 5C */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 80BC9E48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80BC9E4C  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80BC9E50  80 04 5F 70 */	lwz r0, 0x5f70(r4)
+/* 80BC9E54  3C 60 80 43 */	lis r3, j3dSys@ha
+/* 80BC9E58  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 80BC9E5C  90 1F 00 48 */	stw r0, 0x48(r31)
+/* 80BC9E60  80 04 5F 74 */	lwz r0, 0x5f74(r4)
+/* 80BC9E64  90 1F 00 4C */	stw r0, 0x4c(r31)
+/* 80BC9E68  80 7E 05 A8 */	lwz r3, 0x5a8(r30)
+/* 80BC9E6C  4B 44 3E 58 */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 80BC9E70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80BC9E74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BC9E78  80 03 5F 80 */	lwz r0, 0x5f80(r3)
+/* 80BC9E7C  90 1F 00 48 */	stw r0, 0x48(r31)
+/* 80BC9E80  80 03 5F 84 */	lwz r0, 0x5f84(r3)
+/* 80BC9E84  90 1F 00 4C */	stw r0, 0x4c(r31)
+/* 80BC9E88  38 60 00 01 */	li r3, 1
+/* 80BC9E8C  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80BC9E90  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80BC9E94  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80BC9E98  7C 08 03 A6 */	mtlr r0
+/* 80BC9E9C  38 21 00 10 */	addi r1, r1, 0x10
+/* 80BC9EA0  4E 80 00 20 */	blr 

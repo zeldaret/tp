@@ -1,6 +1,7 @@
-#ifndef J3DMODELDATA_H_
-#define J3DMODELDATA_H_
+#ifndef J3DMODELDATA_H
+#define J3DMODELDATA_H
 
-struct J3DModelData {};
+#include "dolphin/types.h"
 
-#endif
+
+#endif /* J3DMODELDATA_H */

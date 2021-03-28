@@ -1,5 +1,0 @@
-/* 800D09B4 000CD8F4  88 03 2F BD */ lbz r0, 0x2fbd(r3)
-/* 800D09B8 000CD8F8  20 00 00 FF */ subfic r0, r0, 0xff
-/* 800D09BC 000CD8FC  7C 00 00 34 */ cntlzw r0, r0
-/* 800D09C0 000CD900  54 03 DE 3E */ rlwinm r3, r0, 0x1b, 0x18, 0x1f
-/* 800D09C4 000CD904  4E 80 00 20 */ blr

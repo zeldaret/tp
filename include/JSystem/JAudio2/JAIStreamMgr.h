@@ -1,15 +1,7 @@
-#ifndef JAISTREAMMGR_H_
-#define JAISTREAMMGR_H_
+#ifndef JAISTREAMMGR_H
+#define JAISTREAMMGR_H
 
-// Additional symbols needed for JAIStreamMgr
-extern "C" {
-void calc__12JAIStreamMgrFv(void);
-void isActive__12JAIStreamMgrCFv(void);
-void mixOut__12JAIStreamMgrFv(void);
-void JAIStreamMgr_NS_startSound(void);
-void stop__12JAIStreamMgrFv(void);
-void stop__12JAIStreamMgrFUl(void);
-void stopSoundID__12JAIStreamMgrF10JAISoundID(void);
-}
+#include "dolphin/types.h"
 
-#endif  // JAISTREAMMGR_H_
+
+#endif /* JAISTREAMMGR_H */

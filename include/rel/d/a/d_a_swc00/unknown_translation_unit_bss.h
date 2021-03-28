@@ -1,0 +1,7 @@
+#ifndef UNKNOWN_TRANSLATION_UNIT_BSS_H
+#define UNKNOWN_TRANSLATION_UNIT_BSS_H
+
+#include "dolphin/types.h"
+
+
+#endif /* UNKNOWN_TRANSLATION_UNIT_BSS_H */

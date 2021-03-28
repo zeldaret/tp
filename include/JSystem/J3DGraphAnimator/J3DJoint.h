@@ -1,6 +1,7 @@
-#ifndef J3DJOINT_H_
-#define J3DJOINT_H_
+#ifndef J3DJOINT_H
+#define J3DJOINT_H
 
-struct J3DJoint {};
+#include "dolphin/types.h"
 
-#endif
+
+#endif /* J3DJOINT_H */

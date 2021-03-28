@@ -1,0 +1,133 @@
+#
+# Generate By: dol2asm
+# Module: 620
+#
+
+# Libraries
+LIBRARIES = [
+	"d/a/obj/d_a_obj_sm_door",
+]
+
+# Translation Units
+TRANSLATION_UNITS = [
+	"executor",
+	"unknown_translation_unit_ctors",
+	"unknown_translation_unit_dtors",
+	"d_a_obj_sm_door",
+]
+
+# Sections
+SECTIONS = [
+	".text",
+	".ctors",
+	".dtors",
+	".rodata",
+	".data",
+]
+
+# Symbols
+SYMBOLS = [
+	{'addr':0x80CD8540,'size':44,'pad':0,'label':"_prolog",'name':"_prolog",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD856C,'size':44,'pad':0,'label':"_epilog",'name':"_epilog",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8598,'size':32,'pad':0,'label':"_unresolved",'name':"_unresolved",'lib':-1,'tu':0,'section':0,'r':[0,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD85B8,'size':32,'pad':0,'label':"daObjSM_DOOR_Create__FP10fopAc_ac_c",'name':"daObjSM_DOOR_Create__FP10fopAc_ac_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD85D8,'size':36,'pad':0,'label':"daObjSM_DOOR_Delete__FP14daObjSM_DOOR_c",'name':"daObjSM_DOOR_Delete__FP14daObjSM_DOOR_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD85FC,'size':392,'pad':0,'label':"s_obj_sub__FPvPv",'name':"s_obj_sub__FPvPv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8784,'size':12,'pad':0,'label':"ChangeModel__14daObjSM_DOOR_cFv",'name':"ChangeModel__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8790,'size':688,'pad':0,'label':"Action__14daObjSM_DOOR_cFv",'name':"Action__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8A40,'size':80,'pad':0,'label':"SetDzb__14daObjSM_DOOR_cFv",'name':"SetDzb__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8A90,'size':104,'pad':0,'label':"ReleaceDzb__14daObjSM_DOOR_cFv",'name':"ReleaceDzb__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[3,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8AF8,'size':196,'pad':0,'label':"DrawChk1__14daObjSM_DOOR_cFv",'name':"DrawChk1__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8BBC,'size':196,'pad':0,'label':"DrawChk2__14daObjSM_DOOR_cFv",'name':"DrawChk2__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8C80,'size':128,'pad':0,'label':"setBaseMtx__14daObjSM_DOOR_cFv",'name':"setBaseMtx__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8D00,'size':44,'pad':0,'label':"daObjSM_DOOR_Draw__FP14daObjSM_DOOR_c",'name':"daObjSM_DOOR_Draw__FP14daObjSM_DOOR_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8D2C,'size':32,'pad':0,'label':"daObjSM_DOOR_Execute__FP14daObjSM_DOOR_c",'name':"daObjSM_DOOR_Execute__FP14daObjSM_DOOR_c",'lib':-1,'tu':3,'section':0,'r':[2,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD8D4C,'size':736,'pad':0,'label':"create__14daObjSM_DOOR_cFv",'name':"create__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD902C,'size':112,'pad':0,'label':"__dt__12dBgS_ObjAcchFv",'name':"__dt__12dBgS_ObjAcchFv",'lib':-1,'tu':3,'section':0,'r':[3,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD909C,'size':8,'pad':0,'label':"daObjSM_DOOR_IsDelete__FP14daObjSM_DOOR_c",'name':"daObjSM_DOOR_IsDelete__FP14daObjSM_DOOR_c",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
+	{'addr':0x80CD90A4,'size':436,'pad':0,'label':"CreateHeap__14daObjSM_DOOR_cFv",'name':"CreateHeap__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD9258,'size':68,'pad':0,'label':"Create__14daObjSM_DOOR_cFv",'name':"Create__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD929C,'size':112,'pad':0,'label':"Execute__14daObjSM_DOOR_cFPPA3_A4_f",'name':"Execute__14daObjSM_DOOR_cFPPA3_A4_f",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD930C,'size':568,'pad':0,'label':"Draw__14daObjSM_DOOR_cFv",'name':"Draw__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD9544,'size':52,'pad':0,'label':"Delete__14daObjSM_DOOR_cFv",'name':"Delete__14daObjSM_DOOR_cFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD9578,'size':8,'pad':0,'label':"func_80CD9578",'name':"@36@__dt__12dBgS_ObjAcchFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD9580,'size':8,'pad':0,'label':"func_80CD9580",'name':"@20@__dt__12dBgS_ObjAcchFv",'lib':-1,'tu':3,'section':0,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
+	{'addr':0x80CD9588,'size':4,'pad':0,'label':"data_80CD9588",'name':None,'lib':-1,'tu':1,'section':1,'r':[0,1,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD958C,'size':4,'pad':0,'label':"data_80CD958C",'name':None,'lib':-1,'tu':2,'section':2,'r':[0,1,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD9590,'size':4,'pad':4,'label':"lit_3697",'name':"@3697",'lib':-1,'tu':3,'section':3,'r':[4,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD9598,'size':8,'pad':0,'label':"lit_3698",'name':"@3698",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD95A0,'size':8,'pad':0,'label':"lit_3699",'name':"@3699",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD95A8,'size':8,'pad':0,'label':"lit_3700",'name':"@3700",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD95B0,'size':4,'pad':0,'label':"lit_3701",'name':"@3701",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95B4,'size':4,'pad':0,'label':"lit_3753",'name':"@3753",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95B8,'size':4,'pad':0,'label':"lit_3829",'name':"@3829",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95BC,'size':4,'pad':0,'label':"lit_3830",'name':"@3830",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95C0,'size':4,'pad':0,'label':"lit_3831",'name':"@3831",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95C4,'size':4,'pad':0,'label':"lit_3832",'name':"@3832",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95C8,'size':8,'pad':0,'label':"lit_3834",'name':"@3834",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80CD95D0,'size':4,'pad':0,'label':"lit_4060",'name':"@4060",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95D4,'size':4,'pad':0,'label':"lit_4061",'name':"@4061",'lib':-1,'tu':3,'section':3,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95D8,'size':4,'pad':0,'label':"lit_4062",'name':"@4062",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95DC,'size':4,'pad':0,'label':"lit_4063",'name':"@4063",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95E0,'size':4,'pad':0,'label':"lit_4064",'name':"@4064",'lib':-1,'tu':3,'section':3,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80CD95E4,'size':167,'pad':0,'label':"stringBase0",'name':"@stringBase0",'lib':-1,'tu':3,'section':3,'r':[3,0,0],'sh':[0,0,0],'type':"StringBase"},
+	{'addr':0x80CD968C,'size':4,'pad':0,'label':"l_arcName",'name':"l_arcName",'lib':-1,'tu':3,'section':4,'r':[3,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80CD9690,'size':32,'pad':0,'label':"l_daObjSM_DOOR_Method",'name':"l_daObjSM_DOOR_Method",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80CD96B0,'size':48,'pad':0,'label':"g_profile_Obj_SM_DOOR",'name':"g_profile_Obj_SM_DOOR",'lib':-1,'tu':3,'section':4,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80CD96E0,'size':36,'pad':0,'label':"__vt__12dBgS_ObjAcch",'name':"__vt__12dBgS_ObjAcch",'lib':-1,'tu':3,'section':4,'r':[2,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80CD9704,'size':40,'pad':0,'label':"__vt__14daObjSM_DOOR_c",'name':"__vt__14daObjSM_DOOR_c",'lib':-1,'tu':3,'section':4,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+]
+
+# Names
+SYMBOL_NAMES = {
+	"_prolog":0,
+	"_epilog":1,
+	"_unresolved":2,
+	"daObjSM_DOOR_Create__FP10fopAc_ac_c":3,
+	"daObjSM_DOOR_Delete__FP14daObjSM_DOOR_c":4,
+	"s_obj_sub__FPvPv":5,
+	"ChangeModel__14daObjSM_DOOR_cFv":6,
+	"Action__14daObjSM_DOOR_cFv":7,
+	"SetDzb__14daObjSM_DOOR_cFv":8,
+	"ReleaceDzb__14daObjSM_DOOR_cFv":9,
+	"DrawChk1__14daObjSM_DOOR_cFv":10,
+	"DrawChk2__14daObjSM_DOOR_cFv":11,
+	"setBaseMtx__14daObjSM_DOOR_cFv":12,
+	"daObjSM_DOOR_Draw__FP14daObjSM_DOOR_c":13,
+	"daObjSM_DOOR_Execute__FP14daObjSM_DOOR_c":14,
+	"create__14daObjSM_DOOR_cFv":15,
+	"__dt__12dBgS_ObjAcchFv":16,
+	"daObjSM_DOOR_IsDelete__FP14daObjSM_DOOR_c":17,
+	"CreateHeap__14daObjSM_DOOR_cFv":18,
+	"Create__14daObjSM_DOOR_cFv":19,
+	"Execute__14daObjSM_DOOR_cFPPA3_A4_f":20,
+	"Draw__14daObjSM_DOOR_cFv":21,
+	"Delete__14daObjSM_DOOR_cFv":22,
+	"func_80CD9578":23,
+	"func_80CD9580":24,
+	"data_80CD9588":25,
+	"data_80CD958C":26,
+	"lit_3697":27,
+	"lit_3698":28,
+	"lit_3699":29,
+	"lit_3700":30,
+	"lit_3701":31,
+	"lit_3753":32,
+	"lit_3829":33,
+	"lit_3830":34,
+	"lit_3831":35,
+	"lit_3832":36,
+	"lit_3834":37,
+	"lit_4060":38,
+	"lit_4061":39,
+	"lit_4062":40,
+	"lit_4063":41,
+	"lit_4064":42,
+	"stringBase0":43,
+	"l_arcName":44,
+	"l_daObjSM_DOOR_Method":45,
+	"g_profile_Obj_SM_DOOR":46,
+	"__vt__12dBgS_ObjAcch":47,
+	"__vt__14daObjSM_DOOR_c":48,
+}
+

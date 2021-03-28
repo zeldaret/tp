@@ -1,8 +1,7 @@
-#ifndef JAISTREAMDATAMGR_H_
-#define JAISTREAMDATAMGR_H_
+#ifndef JAISTREAMDATAMGR_H
+#define JAISTREAMDATAMGR_H
 
-extern "C" {
-void __dt__16JAIStreamDataMgrFv(void);
-}
+#include "dolphin/types.h"
 
-#endif  // JAISTREAMDATAMGR_H_
+
+#endif /* JAISTREAMDATAMGR_H */

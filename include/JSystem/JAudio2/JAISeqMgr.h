@@ -1,14 +1,7 @@
-#ifndef JAISEQMGR_H_
-#define JAISEQMGR_H_
+#ifndef JAISEQMGR_H
+#define JAISEQMGR_H
 
-// Additional symbols needed for JAISeqMgr
-extern "C" {
-void calc__9JAISeqMgrFv(void);
-void mixOut__9JAISeqMgrFv(void);
-void JAISeqMgr_NS_startSound(void);
-void stopSoundID__9JAISeqMgrF10JAISoundID(void);
-void stop__9JAISeqMgrFv(void);
-void stop__9JAISeqMgrFUl(void);
-}
+#include "dolphin/types.h"
 
-#endif  // JAISEQMGR_H_
+
+#endif /* JAISEQMGR_H */

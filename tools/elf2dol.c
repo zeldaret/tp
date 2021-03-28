@@ -109,7 +109,9 @@ typedef struct {
     int text_cnt;
     int data_cnt;
     uint32_t text_elf_off[7];
+    uint32_t text_elf_size[7];
     uint32_t data_elf_off[11];
+    uint32_t data_elf_size[11];
     uint32_t flags;
     FILE* elf;
 } DOL_map;
@@ -119,12 +121,15 @@ typedef struct {
 uint32_t sdataSizes[2] = {0, 0};
 uint32_t sbssSizes[2] = {0, 0};
 
+uint32_t skip_phdr[32] = { 0 };
+
 void usage(const char* name) {
-    fprintf(stderr, "Usage: %s [-h] [-v] [--] elf-file dol-file\n", name);
+    fprintf(stderr, "Usage: %s [-h] [-v] [-s phdr] [--] elf-file dol-file\n", name);
     fprintf(stderr, " Convert an ELF file to a DOL file (by segments)\n");
     fprintf(stderr, " Options:\n");
     fprintf(stderr, "  -h    Show this help\n");
     fprintf(stderr, "  -v    Be more verbose (twice for even more)\n");
+    fprintf(stderr, "  -s    Skip PHDR\n");
 }
 
 #define die(x)                                                                                     \
@@ -155,7 +160,8 @@ void add_bss(DOL_map* map, uint32_t paddr, uint32_t memsz) {
     if (map->flags & HAVE_BSS) {
         uint32_t start = swap32(map->header.bss_addr);
         uint32_t size = swap32(map->header.bss_size);
-        if ((start + size) == paddr) {
+        uint32_t addr = (start + size);
+        if (addr == paddr) {
             map->header.bss_size = swap32(size + memsz);
         }
     } else {
@@ -170,6 +176,10 @@ void increment_bss_size(DOL_map* map, uint32_t memsz) {
     uint32_t preAdd = swap32(map->header.bss_size);
     preAdd += memsz;
     map->header.bss_size = swap32(preAdd);
+}
+
+void align_bss_size(DOL_map* map) {
+    map->header.bss_size = swap32(DOL_ALIGN(swap32(map->header.bss_size)));
 }
 
 void read_elf_segments(DOL_map* map, const char* elf, uint32_t sdata_pdhr, uint32_t sbss_pdhr,
@@ -230,6 +240,12 @@ void read_elf_segments(DOL_map* map, const char* elf, uint32_t sdata_pdhr, uint3
         ferrordie(map->elf, "reading ELF program headers");
 
     for (i = 0; i < phnum; i++) {
+        if(skip_phdr[i]) {
+            if(verbosity >= 1)
+                fprintf(stderr, "Skipping program header %d because -s\n", i);
+            continue;
+        }
+
         if (swap32(phdrs[i].p_type) == PT_LOAD) {
             uint32_t offset = swap32(phdrs[i].p_offset);
             uint32_t paddr = swap32(phdrs[i].p_vaddr);
@@ -259,8 +275,9 @@ void read_elf_segments(DOL_map* map, const char* elf, uint32_t sdata_pdhr, uint3
                         die("Error: Too many TEXT segments");
                     }
                     map->header.text_addr[map->text_cnt] = swap32(paddr);
-                    map->header.text_size[map->text_cnt] = swap32(filesz);
+                    map->header.text_size[map->text_cnt] = swap32(DOL_ALIGN(filesz));
                     map->text_elf_off[map->text_cnt] = offset;
+                    map->text_elf_size[map->text_cnt] = filesz;
                     map->text_cnt++;
                 } else {
                     // DATA or BSS segment
@@ -296,8 +313,9 @@ void read_elf_segments(DOL_map* map, const char* elf, uint32_t sdata_pdhr, uint3
                         }
 
                         map->header.data_addr[map->data_cnt] = swap32(paddr);
-                        map->header.data_size[map->data_cnt] = swap32(filesz);
+                        map->header.data_size[map->data_cnt] = swap32(DOL_ALIGN(filesz));
                         map->data_elf_off[map->data_cnt] = offset;
+                        map->data_elf_size[map->data_cnt] = filesz;
                         map->data_cnt++;
                     }
                 }
@@ -310,9 +328,14 @@ void read_elf_segments(DOL_map* map, const char* elf, uint32_t sdata_pdhr, uint3
             fprintf(stderr, "Skipping program header %d of type %d\n", i, swap32(phdrs[i].p_type));
         }
     }
+    align_bss_size(map);
     increment_bss_size(map, sdataSizes[0]);
+    align_bss_size(map);
     increment_bss_size(map, sdataSizes[1]);
+    align_bss_size(map);
     increment_bss_size(map, sbssSizes[0]);
+    align_bss_size(map);
+    // .sbss2 is added without aligning the size
     increment_bss_size(map, sbssSizes[1]);
     if (verbosity >= 2) {
         fprintf(stderr, "Segments:\n");
@@ -368,12 +391,13 @@ void map_dol(DOL_map* map) {
 
 #define BLOCK (1024 * 1024)
 
-void fcpy(FILE* dst, FILE* src, uint32_t dst_off, uint32_t src_off, uint32_t size) {
-    int left = size;
+void fcpy(FILE* dst, FILE* src, uint32_t dst_off, uint32_t src_off, uint32_t dst_size, uint32_t src_size) {
+    int left = src_size;
     int read;
     int written;
     int block;
     void* blockbuf;
+    char empty_buffer[8] = { 0,0,0,0,0,0,0,0 };
 
     if (fseek(src, src_off, SEEK_SET) < 0)
         ferrordie(src, "reading ELF segment data");
@@ -396,6 +420,14 @@ void fcpy(FILE* dst, FILE* src, uint32_t dst_off, uint32_t src_off, uint32_t siz
         }
         left -= block;
     }
+
+    left = dst_size - src_size;
+    while (left) {
+        block = MIN(sizeof(empty_buffer), left);
+        fwrite(empty_buffer, 1, block, dst);
+        left -= block;
+    }
+
     free(blockbuf);
 }
 
@@ -414,15 +446,15 @@ void write_dol(DOL_map* map, const char* dol) {
     if (verbosity >= 2) {
         fprintf(stderr, "DOL header:\n");
         for (i = 0; i < MAX(1, map->text_cnt); i++)
-            fprintf(stderr, " TEXT %d @ 0x%08x [0x%x] off 0x%x\n", i,
+            fprintf(stderr, " TEXT %d @ 0x%08x [0x%06x] off 0x%08x\n", i,
                     swap32(map->header.text_addr[i]), swap32(map->header.text_size[i]),
                     swap32(map->header.text_off[i]));
         for (i = 0; i < MAX(1, map->data_cnt); i++)
-            fprintf(stderr, " DATA %d @ 0x%08x [0x%x] off 0x%x\n", i,
+            fprintf(stderr, " DATA %d @ 0x%08x [0x%06x] off 0x%08x\n", i,
                     swap32(map->header.data_addr[i]), swap32(map->header.data_size[i]),
                     swap32(map->header.data_off[i]));
         if (swap32(map->header.bss_addr) && swap32(map->header.bss_size))
-            fprintf(stderr, " BSS @ 0x%08x [0x%x]\n", swap32(map->header.bss_addr),
+            fprintf(stderr, " BSS @ 0x%08x [0x%06x]\n", swap32(map->header.bss_addr),
                     swap32(map->header.bss_size));
         fprintf(stderr, " Entry: 0x%08x\n", swap32(map->header.entry));
         fprintf(stderr, "Writing DOL header...\n");
@@ -436,13 +468,13 @@ void write_dol(DOL_map* map, const char* dol) {
         if (verbosity >= 2)
             fprintf(stderr, "Writing TEXT segment %d...\n", i);
         fcpy(dolf, map->elf, swap32(map->header.text_off[i]), map->text_elf_off[i],
-             swap32(map->header.text_size[i]));
+             swap32(map->header.text_size[i]), map->text_elf_size[i]);
     }
     for (i = 0; i < map->data_cnt; i++) {
         if (verbosity >= 2)
             fprintf(stderr, "Writing DATA segment %d...\n", i);
         fcpy(dolf, map->elf, swap32(map->header.data_off[i]), map->data_elf_off[i],
-             swap32(map->header.data_size[i]));
+             swap32(map->header.data_size[i]), map->data_elf_size[i]);
     }
 
     if (verbosity >= 2)
@@ -468,6 +500,10 @@ int main(int argc, char** argv) {
             return 1;
         } else if (!strcmp(*arg, "-v")) {
             verbosity++;
+        } else if (!strcmp(*arg, "-s")) {
+            arg++;
+            argc--;
+            skip_phdr[atoi(arg[0])] = 1;
         } else if (!strcmp(*arg, "--")) {
             arg++;
             argc--;

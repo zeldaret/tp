@@ -1,8 +1,7 @@
-#ifndef JAUAUDIOARCINTERPRETER_H_
-#define JAUAUDIOARCINTERPRETER_H_
+#ifndef JAUAUDIOARCINTERPRETER_H
+#define JAUAUDIOARCINTERPRETER_H
 
-extern "C" {
-void __dt__22JAUAudioArcInterpreterFv(void);
-}
+#include "dolphin/types.h"
 
-#endif  // JAUAUDIOARCINTERPRETER_H_
+
+#endif /* JAUAUDIOARCINTERPRETER_H */

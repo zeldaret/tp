@@ -1,0 +1,25 @@
+lbl_80AD5CE0:
+/* 80AD5CE0  80 03 00 B0 */	lwz r0, 0xb0(r3)
+/* 80AD5CE4  54 00 06 3E */	clrlwi r0, r0, 0x18
+/* 80AD5CE8  2C 00 00 01 */	cmpwi r0, 1
+/* 80AD5CEC  41 82 00 28 */	beq lbl_80AD5D14
+/* 80AD5CF0  40 80 00 10 */	bge lbl_80AD5D00
+/* 80AD5CF4  2C 00 00 00 */	cmpwi r0, 0
+/* 80AD5CF8  40 80 00 14 */	bge lbl_80AD5D0C
+/* 80AD5CFC  48 00 00 28 */	b lbl_80AD5D24
+lbl_80AD5D00:
+/* 80AD5D00  2C 00 00 03 */	cmpwi r0, 3
+/* 80AD5D04  40 80 00 20 */	bge lbl_80AD5D24
+/* 80AD5D08  48 00 00 14 */	b lbl_80AD5D1C
+lbl_80AD5D0C:
+/* 80AD5D0C  38 60 00 00 */	li r3, 0
+/* 80AD5D10  4E 80 00 20 */	blr 
+lbl_80AD5D14:
+/* 80AD5D14  38 60 00 01 */	li r3, 1
+/* 80AD5D18  4E 80 00 20 */	blr 
+lbl_80AD5D1C:
+/* 80AD5D1C  38 60 00 02 */	li r3, 2
+/* 80AD5D20  4E 80 00 20 */	blr 
+lbl_80AD5D24:
+/* 80AD5D24  38 60 00 03 */	li r3, 3
+/* 80AD5D28  4E 80 00 20 */	blr 

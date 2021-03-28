@@ -1,0 +1,25 @@
+lbl_809EAD9C:
+/* 809EAD9C  80 03 00 B0 */	lwz r0, 0xb0(r3)
+/* 809EADA0  54 00 06 3E */	clrlwi r0, r0, 0x18
+/* 809EADA4  2C 00 00 01 */	cmpwi r0, 1
+/* 809EADA8  41 82 00 28 */	beq lbl_809EADD0
+/* 809EADAC  40 80 00 10 */	bge lbl_809EADBC
+/* 809EADB0  2C 00 00 00 */	cmpwi r0, 0
+/* 809EADB4  40 80 00 14 */	bge lbl_809EADC8
+/* 809EADB8  48 00 00 28 */	b lbl_809EADE0
+lbl_809EADBC:
+/* 809EADBC  2C 00 00 03 */	cmpwi r0, 3
+/* 809EADC0  40 80 00 20 */	bge lbl_809EADE0
+/* 809EADC4  48 00 00 14 */	b lbl_809EADD8
+lbl_809EADC8:
+/* 809EADC8  38 60 00 00 */	li r3, 0
+/* 809EADCC  4E 80 00 20 */	blr 
+lbl_809EADD0:
+/* 809EADD0  38 60 00 01 */	li r3, 1
+/* 809EADD4  4E 80 00 20 */	blr 
+lbl_809EADD8:
+/* 809EADD8  38 60 00 02 */	li r3, 2
+/* 809EADDC  4E 80 00 20 */	blr 
+lbl_809EADE0:
+/* 809EADE0  38 60 00 03 */	li r3, 3
+/* 809EADE4  4E 80 00 20 */	blr 

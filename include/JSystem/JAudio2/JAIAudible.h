@@ -1,8 +1,7 @@
-#ifndef JAIAUDIBLE_H_
-#define JAIAUDIBLE_H_
+#ifndef JAIAUDIBLE_H
+#define JAIAUDIBLE_H
 
-extern "C" {
-void __dt__10JAIAudibleFv(void);
-}
+#include "dolphin/types.h"
 
-#endif  // JAIAUDIBLE_H_
+
+#endif /* JAIAUDIBLE_H */

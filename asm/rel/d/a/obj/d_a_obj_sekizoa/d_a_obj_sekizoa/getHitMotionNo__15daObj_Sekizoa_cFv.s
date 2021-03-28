@@ -1,0 +1,17 @@
+lbl_80CD0EAC:
+/* 80CD0EAC  88 03 10 C8 */	lbz r0, 0x10c8(r3)
+/* 80CD0EB0  2C 00 00 01 */	cmpwi r0, 1
+/* 80CD0EB4  41 82 00 1C */	beq lbl_80CD0ED0
+/* 80CD0EB8  40 80 00 20 */	bge lbl_80CD0ED8
+/* 80CD0EBC  2C 00 00 00 */	cmpwi r0, 0
+/* 80CD0EC0  40 80 00 08 */	bge lbl_80CD0EC8
+/* 80CD0EC4  48 00 00 14 */	b lbl_80CD0ED8
+lbl_80CD0EC8:
+/* 80CD0EC8  38 60 00 06 */	li r3, 6
+/* 80CD0ECC  4E 80 00 20 */	blr 
+lbl_80CD0ED0:
+/* 80CD0ED0  38 60 00 11 */	li r3, 0x11
+/* 80CD0ED4  4E 80 00 20 */	blr 
+lbl_80CD0ED8:
+/* 80CD0ED8  38 60 FF FF */	li r3, -1
+/* 80CD0EDC  4E 80 00 20 */	blr 

@@ -1,0 +1,12 @@
+lbl_80362108:
+/* 80362108  D9 CB FF 70 */	stfd f14, -0x90(r11)
+/* 8036210C  D9 EB FF 78 */	stfd f15, -0x88(r11)
+/* 80362110  DA 0B FF 80 */	stfd f16, -0x80(r11)
+/* 80362114  DA 2B FF 88 */	stfd f17, -0x78(r11)
+/* 80362118  DA 4B FF 90 */	stfd f18, -0x70(r11)
+/* 8036211C  DA 6B FF 98 */	stfd f19, -0x68(r11)
+/* 80362120  DA 8B FF A0 */	stfd f20, -0x60(r11)
+/* 80362124  DA AB FF A8 */	stfd f21, -0x58(r11)
+/* 80362128  DA CB FF B0 */	stfd f22, -0x50(r11)
+/* 8036212C  DA EB FF B8 */	stfd f23, -0x48(r11)
+/* 80362130  DB 0B FF C0 */	stfd f24, -0x40(r11)

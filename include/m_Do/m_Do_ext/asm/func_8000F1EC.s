@@ -1,2 +1,0 @@
-/* 8000F1EC 0000C12C  80 6D 8D F4 */ lwz r3, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
-/* 8000F1F0 0000C130  4E 80 00 20 */ blr

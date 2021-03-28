@@ -1,0 +1,14 @@
+lbl_80ACA478:
+/* 80ACA478  A0 03 0E 22 */	lhz r0, 0xe22(r3)
+/* 80ACA47C  2C 00 00 02 */	cmpwi r0, 2
+/* 80ACA480  40 80 00 1C */	bge lbl_80ACA49C
+/* 80ACA484  2C 00 00 00 */	cmpwi r0, 0
+/* 80ACA488  40 80 00 0C */	bge lbl_80ACA494
+/* 80ACA48C  48 00 00 10 */	b lbl_80ACA49C
+/* 80ACA490  48 00 00 0C */	b lbl_80ACA49C
+lbl_80ACA494:
+/* 80ACA494  38 00 00 02 */	li r0, 2
+/* 80ACA498  B0 03 0E 22 */	sth r0, 0xe22(r3)
+lbl_80ACA49C:
+/* 80ACA49C  38 60 00 01 */	li r3, 1
+/* 80ACA4A0  4E 80 00 20 */	blr 

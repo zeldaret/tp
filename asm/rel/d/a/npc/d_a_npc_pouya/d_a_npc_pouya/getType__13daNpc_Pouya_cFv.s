@@ -1,0 +1,33 @@
+lbl_80AAE8E8:
+/* 80AAE8E8  80 03 00 B0 */	lwz r0, 0xb0(r3)
+/* 80AAE8EC  54 00 06 3E */	clrlwi r0, r0, 0x18
+/* 80AAE8F0  2C 00 00 02 */	cmpwi r0, 2
+/* 80AAE8F4  41 82 00 38 */	beq lbl_80AAE92C
+/* 80AAE8F8  40 80 00 14 */	bge lbl_80AAE90C
+/* 80AAE8FC  2C 00 00 00 */	cmpwi r0, 0
+/* 80AAE900  41 82 00 1C */	beq lbl_80AAE91C
+/* 80AAE904  40 80 00 20 */	bge lbl_80AAE924
+/* 80AAE908  48 00 00 3C */	b lbl_80AAE944
+lbl_80AAE90C:
+/* 80AAE90C  2C 00 00 04 */	cmpwi r0, 4
+/* 80AAE910  41 82 00 2C */	beq lbl_80AAE93C
+/* 80AAE914  40 80 00 30 */	bge lbl_80AAE944
+/* 80AAE918  48 00 00 1C */	b lbl_80AAE934
+lbl_80AAE91C:
+/* 80AAE91C  38 60 00 00 */	li r3, 0
+/* 80AAE920  4E 80 00 20 */	blr 
+lbl_80AAE924:
+/* 80AAE924  38 60 00 01 */	li r3, 1
+/* 80AAE928  4E 80 00 20 */	blr 
+lbl_80AAE92C:
+/* 80AAE92C  38 60 00 02 */	li r3, 2
+/* 80AAE930  4E 80 00 20 */	blr 
+lbl_80AAE934:
+/* 80AAE934  38 60 00 03 */	li r3, 3
+/* 80AAE938  4E 80 00 20 */	blr 
+lbl_80AAE93C:
+/* 80AAE93C  38 60 00 04 */	li r3, 4
+/* 80AAE940  4E 80 00 20 */	blr 
+lbl_80AAE944:
+/* 80AAE944  38 60 00 05 */	li r3, 5
+/* 80AAE948  4E 80 00 20 */	blr 
