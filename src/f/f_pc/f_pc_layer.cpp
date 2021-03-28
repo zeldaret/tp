@@ -119,8 +119,7 @@ void fpcLy_Cancel(layer_class* pLayer) {
     fpcMtdIt_Method(&pLayer->mCancelList, (fpcMtdIt_MethodFunc)fpcLy_CancelMethod);
 }
 
-void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists,
-                  int listNum) {
+void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum) {
     void* pvVar1;
     s32 iVar2;
 

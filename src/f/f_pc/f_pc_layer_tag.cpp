@@ -5,7 +5,8 @@
 // f_pc_layer_tag::crear
 extern layer_management_tag_class lbl_803A3A00;
 
-s32 fpcLyTg_ToQueue(layer_management_tag_class* pTag, unsigned int layerID, u16 listID, u16 listPrio) {
+s32 fpcLyTg_ToQueue(layer_management_tag_class* pTag, unsigned int layerID, u16 listID,
+                    u16 listPrio) {
     if (pTag->mpLayer == NULL && layerID == -1) {
         return 0;
     } else {

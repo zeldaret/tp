@@ -26,7 +26,8 @@ s32 fpcPause_Enable(void* pProcess, u8 flag) {
 
     if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType)) {
         process_node_class* pNode = (process_node_class*)pProc;
-        fpcLyIt_OnlyHere(&pNode->mLayer, (fpcLyIt_OnlyHereFunc)fpcPause_Enable, (void*)(flag & 0xFF));
+        fpcLyIt_OnlyHere(&pNode->mLayer, (fpcLyIt_OnlyHereFunc)fpcPause_Enable,
+                         (void*)(flag & 0xFF));
     }
     return 1;
 }

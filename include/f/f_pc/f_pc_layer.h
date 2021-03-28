@@ -46,8 +46,7 @@ BOOL fpcLy_CancelMethod(struct process_method_tag_class* pLayer);
 void fpcLy_CancelQTo(struct process_method_tag_class* pMthd);
 s32 fpcLy_ToCancelQ(layer_class* pLayer, struct process_method_tag_class* pMthd);
 
-void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists,
-                  int listNum);
+void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum);
 
 s32 fpcLy_Delete(layer_class* pLayer);
 
