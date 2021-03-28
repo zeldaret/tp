@@ -29,16 +29,15 @@ void fopVw_Execute(view_class* pView) {
 
 // fopVw_IsDelete__FPv
 // fopVw_IsDelete(void*)
-asm void fopVw_IsDelete(void*) {
-    nofralloc
-#include "f/f_op/f_op_view/asm/func_8001F1F8.s"
+s32 fopVw_IsDelete(void* param_1) {
+    view_class* pView = (view_class*)param_1;
+    return fpcMtd_IsDelete(pView->pmProcessMtd,pView);
 }
 
 // fopVw_Delete__FP10view_class
 // fopVw_Delete(view_class*)
-asm void fopVw_Delete(view_class*) {
-    nofralloc
-#include "f/f_op/f_op_view/asm/func_8001F220.s"
+s32 fopVw_Delete(view_class* pView) {
+    return fpcMtd_Delete(pView->pmProcessMtd,pView);
 }
 
 // fopVw_Create__FPv

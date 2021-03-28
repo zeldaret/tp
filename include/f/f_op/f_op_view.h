@@ -7,7 +7,7 @@
 class view_class {
 public:
     /* 0x00 */ u8 field_0x00[0xc0];
-    /* 0xC0 */ leafdraw_method_class* pmLeafdrawMtd;
+    /* 0xC0 */ process_method_class* pmProcessMtd;
 };
 
 #endif
