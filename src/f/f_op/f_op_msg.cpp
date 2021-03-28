@@ -71,11 +71,12 @@ int fopMsg_IsDelete(void* pUserData) {
 
 }
 
-// fopMsg_Delete__FPv
-// fopMsg_Delete(void*)
-asm void fopMsg_Delete(void*) {
-    nofralloc
-#include "f/f_op/f_op_msg/asm/func_8001F53C.s"
+int fopMsg_Delete(void* pUserData) {
+    unk2* pUnk2 = (unk2*)pUserData;
+    int tmp = fpcMtd_Delete(pUnk2->mpPcMtd,pUserData);
+    fopDwTg_DrawQTo(&pUnk2->mTag);
+
+    return tmp;
 }
 
 // fopMsg_Create__FPv
