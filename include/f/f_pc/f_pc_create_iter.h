@@ -21,7 +21,7 @@ typedef struct node_judge_data {
 } node_judge_data;
 
 typedef struct fpcCtIt_jilprm_c {
-    u32 mUnk0;
+    u32 mLayerID;
     fpcCtIt_JudgeFunc mFunc;
     void* mpUserData;
 } fpcCtIt_jilprm_c;
