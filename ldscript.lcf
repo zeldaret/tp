@@ -3289,6 +3289,8 @@ func_8001EEE4
 func_8001EEB4
 func_8001EE84
 func_8001EE64
+func_80037B0C
+chkDead__12daItemBase_cFv
 }
 /*
 .init 80003100 - 80005600

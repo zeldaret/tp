@@ -31,6 +31,10 @@ short cLib_targetAngleX(const cXyz*, const cXyz*);
 void cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*);
 s32 cLib_distanceAngleS(s16 x, s16 y);
 
+inline void cLib_offBit(u8 &pVar, u8 pBit) { pVar &= ~pBit; }
+inline void cLib_onBit(u8 &pVar, u8 pBit) { pVar |= pBit; }
+inline u8 cLib_checkBit(u8 &pVar, u8 pBit) { return pVar & pBit; }
+
 void MtxInit(void);
 void MtxTrans(float, float, float, unsigned char);
 void MtxScale(float, float, float, unsigned char);
