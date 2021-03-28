@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* F_PC_F_PC_DELETE_TAG_H */

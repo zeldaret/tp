@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* OSFONT_H */

@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* OBJECT_SOUND_H */

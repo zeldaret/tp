@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* A_NPC_D_A_NPC_CD_H */

@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* F_AP_F_AP_GAME_H */

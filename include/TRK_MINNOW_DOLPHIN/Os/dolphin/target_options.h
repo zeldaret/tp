@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* OS_DOLPHIN_TARGET_OPTIONS_H */

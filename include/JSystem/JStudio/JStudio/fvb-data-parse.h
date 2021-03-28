@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* FVB_DATA_PARSE_H */

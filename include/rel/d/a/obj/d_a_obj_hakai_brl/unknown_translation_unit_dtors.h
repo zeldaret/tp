@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* UNKNOWN_TRANSLATION_UNIT_DTORS_H */

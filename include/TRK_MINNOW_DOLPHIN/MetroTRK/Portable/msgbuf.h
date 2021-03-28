@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* METROTRK_PORTABLE_MSGBUF_H */

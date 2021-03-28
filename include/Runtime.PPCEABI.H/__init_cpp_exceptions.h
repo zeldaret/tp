@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* __INIT_CPP_EXCEPTIONS_H */

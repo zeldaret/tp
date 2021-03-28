@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* OBJECT_ID_H */

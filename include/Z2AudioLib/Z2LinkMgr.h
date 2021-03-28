@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* Z2LINKMGR_H */

@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* MSL_COMMON_SRC_MEM_FUNCS_H */
