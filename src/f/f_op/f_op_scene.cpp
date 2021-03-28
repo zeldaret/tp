@@ -32,11 +32,8 @@ void fopScn_Draw(scene_class* pScene) {
     fpcNd_DrawMethod(pScene->mpNodedrawMtd,pScene);
 }
 
-// fopScn_Execute__FP11scene_class
-// fopScn_Execute(scene_class*)
-asm void fopScn_Execute(scene_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene/asm/func_8001EB5C.s"
+void fopScn_Execute(scene_class* pScene) {
+    fpcMtd_Execute((process_method_class*)pScene->mpNodedrawMtd,pScene);
 }
 
 // fopScn_IsDelete__FPv

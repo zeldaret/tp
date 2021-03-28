@@ -3327,6 +3327,7 @@ fopMsg_Execute__FPv
 fopMsg_IsDelete__FPv
 fopMsg_Delete__FPv
 fopMsg_Create__FPv
+fopScn_Execute__FP11scene_class
 }
 /*
 .init 80003100 - 80005600
