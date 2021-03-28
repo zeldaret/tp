@@ -5,6 +5,8 @@
 #include "SComponent/c_list_iter.h"
 #include "global.h"
 
-void fpcMtdIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod);
+typedef int (*fpcMtdIt_MethodFunc)(void*);
+
+void fpcMtdIt_Method(node_list_class* pList, fpcMtdIt_MethodFunc pMethod);
 
 #endif

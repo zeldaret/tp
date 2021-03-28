@@ -5,7 +5,7 @@
 #include "SComponent/c_tag.h"
 #include "global.h"
 
-typedef s32 (*process_method_tag_func)(void*);
+typedef int (*process_method_tag_func)(void*);
 
 typedef struct process_method_tag_class {
     create_tag_class mCreateTag;

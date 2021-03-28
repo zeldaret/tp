@@ -60,14 +60,14 @@ s32 fpcPi_Delete(process_priority_class* pPi) {
     return 1;
 }
 
-s32 fpcPi_IsNormal(u32 layer, u16 listID, u16 priority) {
+s32 fpcPi_IsNormal(unsigned int layer, u16 listID, u16 priority) {
     if ((layer < 0xFFFFFFFE) && (listID < 0xFFFE) && (priority < 0xFFFE))
         return 1;
 
     return 0;
 }
 
-s32 fpcPi_Change(process_priority_class* pPi, u32 layer, u16 listID, u16 priority) {
+s32 fpcPi_Change(process_priority_class* pPi, unsigned int layer, u16 listID, u16 priority) {
     base_process_class* pProc = (base_process_class*)pPi->mBase.mpTagData;
     BOOL changed = 0;
 
@@ -129,7 +129,7 @@ s32 fpcPi_Handler(void) {
     return 1;
 }
 
-s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, u32 layer, u16 listID, u16 priority) {
+s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, unsigned int layer, u16 listID, u16 priority) {
     if (!fpcPi_IsNormal(layer, listID, priority))
         return 0;
 

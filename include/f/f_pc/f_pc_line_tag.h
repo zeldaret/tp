@@ -10,9 +10,9 @@ typedef struct line_tag {
     s32 mLineListID;
 } line_tag;
 
-s32 fpcLnTg_Move(line_tag* pLineTag, s32 newLineListID);
+s32 fpcLnTg_Move(line_tag* pLineTag, int newLineListID);
 void fpcLnTg_QueueTo(line_tag* pLineTag);
-s32 fpcLnTg_ToQueue(line_tag* pLineTag, s32 lineListID);
+s32 fpcLnTg_ToQueue(line_tag* pLineTag, int lineListID);
 void fpcLnTg_Init(line_tag* pLineTag, void* pData);
 
 #endif

@@ -48,7 +48,7 @@ JUTXfb::~JUTXfb() {
     /* sManager */ lbl_80451550 = NULL;
 }
 
-void JUTXfb::delXfb(s32 index) {
+void JUTXfb::delXfb(int index) {
     if ((this->is_xfb_allocated[index] != false) && (this->xfb_buffer[index] != NULL)) {
         delete this->xfb_buffer[index];
     }
