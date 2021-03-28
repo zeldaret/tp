@@ -151,8 +151,8 @@ private:  // NEEDS TO BE FIXED
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ u8 field_0x143c[0x2999];
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
+    /* 0x03F1D */ u8 padding;
     /* 0x03F1E */ dStage_nextStage_c mNextStage;
-    /* 0x03F2F */ u8 padding;
     /* 0x03F30 */ dStage_stageDt_c mStageData;
     u8 field_[0x9c];
     /* 0x03F34 */ dStage_roomControl_c mRoomControl;
