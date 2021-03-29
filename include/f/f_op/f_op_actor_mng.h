@@ -1,6 +1,7 @@
 #ifndef F_OP_ACTOR_MNG_H_
 #define F_OP_ACTOR_MNG_H_
 
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "SComponent/c_m3d_g_pla.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
@@ -50,7 +51,6 @@ public:
 
 struct dKy_tevstr_c;
 struct cBgS_PolyInfo;
-struct J3DModelData;
 typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 typedef int (*createFunc)(void*);
 
