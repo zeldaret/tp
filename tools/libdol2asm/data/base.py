@@ -54,6 +54,9 @@ class ArbitraryData(Symbol):
                                         exporter,
                                         builder: AsyncBuilder,
                                         c_export: bool = False):
+        if not c_export:
+            return
+            
         if self.is_static:
             if not self.force_section and not self.require_forward_reference:
                 return
@@ -64,7 +67,7 @@ class ArbitraryData(Symbol):
             await self.export_extern(builder)
 
         name = self.identifier.label
-        if not c_export and self.demangled_name:
+        if self.demangled_name:
             name = self.demangled_name.to_str(specialize_templates=False,
                                               without_template=False)
 

@@ -156,7 +156,9 @@ def value_initialized_symbol(section: Section,
             # Metrowerks is very smart... if you initialize a float with 0.0f, the storage will be moved to the one of the .bss sections.
             # Generated literals will always be (for floats and doubles) in the .sdata2 section. Thus, if we are a literal, we cannot
             # use the value 0.0f.
-            if padding_values and len(values) > 0 and not (len(values) == 1 and values[0][0] == 0):
+            is_zero = (len(values) == 1 and values[0][0] == 0)
+            is_zero_and_no_padding = is_zero and len(padding_values) == 0
+            if len(values) > 0 and not is_zero_and_no_padding:
                 return [FloatingPoint.create_f32(identifier, symbol.addr, values, padding_values)]
 
     if isinstance(symbol.access, DoubleLoadAccess):
@@ -165,7 +167,9 @@ def value_initialized_symbol(section: Section,
             padding_values = FloatingPoint.f64_from(padding_data)
 
             # Same comments as for the float case.
-            if padding_values and len(values) > 0 and not (len(values) == 1 and values[0][0] == 0):
+            is_zero = (len(values) == 1 and values[0][0] == 0)
+            is_zero_and_no_padding = is_zero and len(padding_values) == 0
+            if len(values) > 0 and not is_zero_and_no_padding:
                 return [FloatingPoint.create_f64(identifier, symbol.addr, values, padding_values)]
 
     if symbol.size == 4 and len(padding_data) % 4 == 0:

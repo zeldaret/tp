@@ -52,6 +52,15 @@ class CPPExporter:
                 await builder.write("")
                 break
 
+        for symbol in section.symbols:
+            if symbol.identifier.label == "__init_cpp_exceptions_reference":
+                continue
+            if symbol.identifier.label == "_ctors":
+                continue
+            await self.export_symbol_header(builder, symbol)
+            await symbol.export_declaration(self, builder)
+            await builder.write("")
+
     async def export_section_dtors(self, builder: AsyncBuilder, section: Section):
         await builder.write("#pragma section \".dtors$10\"")
         for symbol in section.symbols:
@@ -68,6 +77,15 @@ class CPPExporter:
                 await symbol.export_declaration(self, builder)
                 await builder.write("")
                 break
+
+        for symbol in section.symbols:
+            if symbol.identifier.label == "__destroy_global_chain_reference":
+                continue
+            if symbol.identifier.label == "__fini_cpp_exceptions_reference":
+                continue
+            await self.export_symbol_header(builder, symbol)
+            await symbol.export_declaration(self, builder)
+            await builder.write("")
 
     async def export_declarations(self,
                                   builder: AsyncBuilder,
