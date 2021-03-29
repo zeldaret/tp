@@ -58,7 +58,6 @@ extern u8 lbl_80454834;
 extern u8 lbl_80450D64;
 extern u8 lbl_803A6F88;
 // extern u8 g_meter2_info;
-extern u8 lbl_803A7288;
 
 extern "C" {
 // isEnableDispMap__11dMeterMap_cFv

@@ -30,16 +30,8 @@ void setEmptyBottleItemIn__17dSv_player_item_cFUc(u8);
 extern f32 lbl_80452BD8;
 extern f32 lbl_80452BDC;
 extern f64 lbl_80452BE0;
-extern u8 lbl_80450D64;
+extern s8 lbl_80450D64;
 extern u8 lbl_8037B0D0[0x8];
-
-struct unkEvent {  // figure out what this is later
-    u16 unk0[0x11A];
-    u8 unk565;
-    u16 unk566;
-    u8 unk567[0x439];
-};
-extern unkEvent lbl_803A7288;
 
 inline void dComIfGp_setItemLifeCount(float amount, u8 unk) {
     g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
@@ -569,7 +561,7 @@ void item_func_BILL(void) {
 }
 
 void item_func_WOOD_STATUE(void) {
-    dComIfGs_onEventBit(lbl_803A7288.unk566);
+    dComIfGs_onEventBit(lbl_803A7288.flags.unk566);
     dComIfGs_setItem(SLOT_21, WOOD_STATUE);
 }
 

@@ -352,18 +352,10 @@ public:
     void set(const char*, s8, s16, s8, s8, u8);
 
 private:
-    u8 field_0x0;
-    u8 field_0x1;
-    u8 field_0x2;
-    u8 field_0x3;
-    u8 field_0x4;
-    u8 field_0x5;
-    u8 field_0x6;
-    u8 field_0x7;
-    u8 field_0x8;
-    u8 field_0x9;
-    u8 field_0xa;
-    u8 field_0xb;
+    char mStage[8];
+    s16 mPoint;
+    u8 mRoomNo;
+    u8 mLayer;
     u8 field_0xc;
     u8 field_0xd;
     s8 enabled;

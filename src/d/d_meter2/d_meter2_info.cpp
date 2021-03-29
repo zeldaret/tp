@@ -77,7 +77,6 @@ extern u8 lbl_804510B8;
 extern u8 lbl_804549AC;
 // extern u8 g_meter2_info;
 extern u8 lbl_803AC5A0;
-extern u8 lbl_803A7288;
 
 extern "C" {
 // __ct__13dMeter2Info_cFv

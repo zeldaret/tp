@@ -54,7 +54,6 @@ extern u8 lbl_80455CF8;
 extern u8 lbl_80455CFC;
 extern u8 lbl_80455D00;
 extern u8 lbl_80455D04;
-extern u8 lbl_803A7288;
 extern u8 lbl_80455D0C;
 extern u8 lbl_80455D08;
 extern u8 lbl_80455D18;
@@ -281,11 +280,8 @@ asm void init__14Z2CreatureRideFP3VecP3VecUcUc(void) {
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C520C.s"
 }
 
-// setLinkRiding__14Z2CreatureRideFb
-// Z2CreatureRide::setLinkRiding(bool)
-asm void setLinkRiding__14Z2CreatureRideFb(void) {
-    nofralloc
-#include "Z2AudioLib/Z2LinkMgr/asm/func_802C522C.s"
+void Z2CreatureRide::setLinkRiding(bool is_riding) {
+    is_link_riding = is_riding;
 }
 
 // __ct__18Z2RideSoundStarterFP14Z2CreatureRide
