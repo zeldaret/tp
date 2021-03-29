@@ -233,7 +233,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_d_tresure.o \
             $(BUILD_DIR)/asm/sdata2/d_tresure.o \
             $(BUILD_DIR)/asm/d/d_tresure.o \
-            $(BUILD_DIR)/asm/d/d_model.o \
+            $(BUILD_DIR)/src/d/d_model.o \
             $(BUILD_DIR)/asm/rodata/rodata_d_eye_hl.o \
             $(BUILD_DIR)/asm/sdata2/d_eye_hl.o \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o \

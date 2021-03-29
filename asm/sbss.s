@@ -842,8 +842,8 @@ lbl_80450F98:
 .global lbl_80450F9C
 lbl_80450F9C:
 	.skip 0x4
-.global lbl_80450FA0
-lbl_80450FA0:
+.global _m_myObj
+_m_myObj:
 	.skip 0x8
 .global lbl_80450FA8
 lbl_80450FA8:

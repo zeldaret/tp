@@ -3330,6 +3330,20 @@ fopMsg_Create__FPv
 fopScn_Execute__FP11scene_class
 func_80037B0C
 chkDead__12daItemBase_cFv
+createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
+func_8009C8D8
+func_8009C668
+create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c
+entryObj__6dMdl_cFP10dMdl_obj_c
+search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
+entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
+create__10dMdl_mng_cFv
+__dt__6dMdl_cFv
+remove__10dMdl_mng_cFv
+reset__10dMdl_mng_cFv
+entry__10dMdl_mng_cFP12J3DModelDataUsi
+__ct__6dMdl_cFv
+draw__6dMdl_cFv
 }
 /*
 .init 80003100 - 80005600

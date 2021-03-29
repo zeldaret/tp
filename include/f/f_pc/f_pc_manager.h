@@ -20,7 +20,7 @@ void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 void fpcM_Execute(void* pProc);
 s32 fpcM_Delete(void* pProc);
-BOOL fpcM_IsCreating(u32 pID);
+BOOL fpcM_IsCreating(unsigned int pID);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2);
 void fpcM_Init(void);
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
@@ -28,7 +28,7 @@ base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, 
 s32 fpcM_IsPause(void* pProc, u8 param_2);
 void fpcM_PauseEnable(void* pProc, u8 param_2);
 void fpcM_PauseDisable(void* pProc, u8 param_2);
-void* fpcM_JudgeInLayer(u32 pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData);
+void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData);
 
 extern "C" {
 void fpcM_Delete__FPv(void);

@@ -73,6 +73,7 @@ private:
 class dComIfG_play_c {
 public:
     bool& getField0x4f7d() { return field_0x4f7d; }
+    u32& getField0x4e84() { return field_0x4e84; }
     void ct(void);
     void init(void);
     void itemInit(void);
@@ -182,7 +183,8 @@ private:  // NEEDS TO BE FIXED
     /* 0x04E0E */ u8 field_0x4e0e[0x2];
     /* 0x04E10 */ dDlst_window_c mDrawlistWindow;
     /* 0x04ED4 */ dComIfG_camera_info_class mCameraInfo;
-    /* 0x04E60 */ u8 field_0x4e60[0x28];
+    /* 0x04E60 */ u8 field_0x4e60[0x24];
+    /* 0x04E84 */ u32 field_0x4e84;
     /* 0x04E88 */ item_func give_item;
     /* 0x04EC0 */ u8 field_0x4ec0[0x24];
     /* 0x04EE4 */ u8 mRStatus;

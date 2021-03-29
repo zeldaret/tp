@@ -5,6 +5,7 @@
 #include "d/d_item/d_item/d_item.h"
 #include "d/d_kankyo/d_kankyo.h"
 #include "d/d_meter2/d_meter2_info/d_meter2_info.h"
+#include "d/d_stage/d_stage.h"
 #include "f/f_op/f_op_scene_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
@@ -296,7 +297,7 @@ extern u8 lbl_803A71C4;
 extern u8 lbl_80451D00;
 extern u8 lbl_803A37C0;
 extern u8 lbl_80451D04;
-extern u8 lbl_803F6094;
+extern dStage_roomStatus_c lbl_803F6094[0x40];
 extern u8 lbl_80451D10;
 extern u8 lbl_80451D08;
 extern u8 lbl_803A71D0;
@@ -732,10 +733,8 @@ asm void dComIfGs_onZoneSwitch__Fii(void) {
 }
 
 // getZoneNo__20dStage_roomControl_cFi
-// dStage_roomControl_c::getZoneNo(int)
-asm int getZoneNo__20dStage_roomControl_cFi(int) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002D9B0.s"
+int dStage_roomControl_c::getZoneNo(int room) {
+    return lbl_803F6094[room].getZoneNo();
 }
 
 // dComIfGs_offZoneSwitch__Fii
