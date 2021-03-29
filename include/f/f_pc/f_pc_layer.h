@@ -25,8 +25,8 @@ typedef struct layer_class {
 void fpcLy_SetCurrentLayer(layer_class* pLayer);
 layer_class* fpcLy_CurrentLayer(void);
 layer_class* fpcLy_RootLayer(void);
-layer_class* fpcLy_Layer(u32 id);
-layer_class* fpcLy_Search(u32 id);
+layer_class* fpcLy_Layer(unsigned int id);
+layer_class* fpcLy_Search(unsigned int id);
 void fpcLy_Regist(layer_class* pLayer);
 
 void fpcLy_CreatedMesg(layer_class* pLayer);
@@ -46,8 +46,7 @@ BOOL fpcLy_CancelMethod(struct process_method_tag_class* pLayer);
 void fpcLy_CancelQTo(struct process_method_tag_class* pMthd);
 s32 fpcLy_ToCancelQ(layer_class* pLayer, struct process_method_tag_class* pMthd);
 
-void fpcLy_Create(layer_class* pLayer, struct process_node_class* pPcNode, node_list_class* pLists,
-                  s32 listNum);
+void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum);
 
 s32 fpcLy_Delete(layer_class* pLayer);
 

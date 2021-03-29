@@ -46,7 +46,7 @@ s32 fpcEx_ToLineQ(base_process_class* pProc) {
         pProc->mInitState = 2;
         if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType)) {
             process_node_class* pNode = (process_node_class*)pProc;
-            fpcLyIt_OnlyHere(&pNode->mLayer, (cNdIt_MethodFunc)fpcEx_ToLineQ, pNode);
+            fpcLyIt_OnlyHere(&pNode->mLayer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, pNode);
         }
 
         return 1;
@@ -76,6 +76,6 @@ s32 fpcEx_ToExecuteQ(base_process_class* pProc) {
     }
 }
 
-void fpcEx_Handler(cNdIt_MethodFunc pFunc) {
+void fpcEx_Handler(fpcLnIt_QueueFunc pFunc) {
     fpcLnIt_Queue(pFunc);
 }

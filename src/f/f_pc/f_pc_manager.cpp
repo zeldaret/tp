@@ -45,7 +45,7 @@ void fpcM_Draw(void* pProc) {
 }
 
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
-    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (cNdIt_MethodFunc)pFunc, NULL);
+    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (fpcLyIt_OnlyHereFunc)pFunc, NULL);
 }
 
 void fpcM_Execute(void* pProc) {
@@ -56,7 +56,7 @@ s32 fpcM_Delete(void* pProc) {
     return fpcDt_Delete((base_process_class*)pProc);
 }
 
-BOOL fpcM_IsCreating(u32 pID) {
+BOOL fpcM_IsCreating(unsigned int pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 
@@ -85,8 +85,8 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             if (pFunc1) {
                 pFunc1();
             }
-            fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
-            fpcDw_Handler((cNdIt_MethodFuncFunc)fpcM_DrawIterater, (cNdIt_MethodFunc)fpcM_Draw);
+            fpcEx_Handler((fpcLnIt_QueueFunc)fpcM_Execute);
+            fpcDw_Handler((fpcDw_HandlerFuncFunc)fpcM_DrawIterater, (fpcDw_HandlerFunc)fpcM_Draw);
             if (pFunc2) {
                 pFunc2();
             }
@@ -123,7 +123,7 @@ void fpcM_PauseDisable(void* pProc, u8 param_2) {
     fpcPause_Disable((process_node_class*)pProc, param_2 & 0xFF);
 }
 
-void* fpcM_JudgeInLayer(u32 pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
+void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
     layer_class* layer = fpcLy_Layer(pLayerID);
     if (layer != NULL) {
         void* ret = fpcCtIt_JudgeInLayer(pLayerID, pFunc, pUserData);

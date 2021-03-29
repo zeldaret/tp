@@ -333,12 +333,13 @@ private:
     u16 field_0x62;
     int mVrboxNumInfo;
     int mVrboxcolNumInfo;
-};
+};  // Size: 0x6C
 
 #pragma pack(push, 1)
 class dStage_roomControl_c {
 public:
     void init(void);
+    static int getZoneNo(int room);
 
 private:
     u8 field_0x0[164];
@@ -385,6 +386,17 @@ private:
     /* 0xC */ s8 mDarkArea;
 };
 #pragma pack(pop)
+
+class dStage_roomStatus_c : dStage_roomDt_c {
+private:
+    /* 0x06C */ u8 mJ3DLightInfo[0xA0 - 0x6C];
+    /* 0x0A0 */ u8 unk_A0[0x3F7 - 0xA0];
+    /* 0x3F7 */ s8 mZoneNo;
+    /* 0x3F8 */ u8 unk_3F8[0x404 - 0x3F8];
+
+public:
+    int getZoneNo() const { return mZoneNo; }
+};  // Size: 0x404
 
 // unknown name
 struct objectNameInfo {

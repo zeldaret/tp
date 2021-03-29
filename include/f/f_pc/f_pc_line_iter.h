@@ -4,6 +4,8 @@
 
 #include "SComponent/c_node_iter.h"
 
-void fpcLnIt_Queue(cNdIt_MethodFunc pFunc);
+typedef int (*fpcLnIt_QueueFunc)(void*, void*);
+
+void fpcLnIt_Queue(fpcLnIt_QueueFunc pFunc);
 
 #endif
