@@ -73,8 +73,6 @@ void fpcPi_Delete(process_priority_class*);
 void fpcLnTg_QueueTo(line_tag*);
 void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
 void cTg_IsUse(create_tag_class*);
-extern "C" extern u8 g_fpcDtTg_Queue[12 + 4 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_IsDelete__FP18base_process_class();

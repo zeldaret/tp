@@ -11,11 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
-SECTION_BSS u8 TRK_saved_exceptionID[2 + 2 /* padding */];
-extern "C" extern u8 gTRKState[164];
-extern "C" extern u8 gTRKCPUState[1072];
-
 extern "C" void __TRK_get_MSR();
 extern "C" static void __TRK_set_MSR();
 extern "C" static void TRK_ppc_memcpy();

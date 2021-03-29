@@ -61,8 +61,6 @@ struct JKRDisposer {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRDvdFile__stringBase0;
-
 extern "C" void __ct__10JKRDvdFileFv();
 extern "C" void __ct__10JKRDvdFileFPCc();
 extern "C" void __ct__10JKRDvdFileFl();
@@ -85,7 +83,6 @@ extern "C" extern char const* const JKRDvdFile__stringBase0;
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__7JKRFile[8];
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__11JKRDisposerFv();

@@ -36,10 +36,6 @@ void J3DScaleNrmMtx(f32 (*)[4], Vec const&);
 void J3DScaleNrmMtx33(f32 (*)[3], Vec const&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
-extern "C" extern u8 const j3dDefaultTransformInfo[32];
-extern "C" extern u8 const j3dDefaultScale[12];
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern u8 PSMulUnit01[8];
 
 extern "C" static void __MTGQR7__FUl();
 extern "C" void J3DGQRSetup7__FUlUlUlUl();
@@ -64,8 +60,6 @@ extern "C" extern u8 PSMulUnit01[8];
 //
 // External References:
 //
-
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" void PSVECNormalize();
 extern "C" extern u8 sincosTable___5JMath[65536];
@@ -181,7 +175,7 @@ asm void J3DGetTranslateRotateMtx(s16 param_0, s16 param_1, s16 param_2, f32 par
 
 /* ############################################################################################## */
 /* 8045637C-80456380 0004+00 s=4 e=0 z=0  None .sdata2    @526 */
-SECTION_SDATA2 static u32 lit_526 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_526 = 1.0f;
 
 /* 80311ACC-80311B80 00B4+00 s=0 e=3 z=0  None .text
  * J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f          */

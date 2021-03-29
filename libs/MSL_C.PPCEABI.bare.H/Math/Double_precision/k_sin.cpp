@@ -23,39 +23,25 @@ extern "C" void __kernel_sin();
 
 /* ############################################################################################## */
 /* 80456A48-80456A50 0008+00 s=1 e=0 z=0  None .sdata2    @60 */
-SECTION_SDATA2 static u8 lit_60[8] = {
-    0x3F, 0x81, 0x11, 0x11, 0x11, 0x10, 0xF8, 0xA6,
-};
+SECTION_SDATA2 static f64 lit_60 = 0.00833333333332249;
 
 /* 80456A50-80456A58 0008+00 s=1 e=0 z=0  None .sdata2    @61 */
-SECTION_SDATA2 static u8 lit_61[8] = {
-    0xBF, 0x2A, 0x01, 0xA0, 0x19, 0xC1, 0x61, 0xD5,
-};
+SECTION_SDATA2 static f64 lit_61 = -0.0001984126982985795;
 
 /* 80456A58-80456A60 0008+00 s=1 e=0 z=0  None .sdata2    @62 */
-SECTION_SDATA2 static u8 lit_62[8] = {
-    0x3E, 0xC7, 0x1D, 0xE3, 0x57, 0xB1, 0xFE, 0x7D,
-};
+SECTION_SDATA2 static f64 lit_62 = 2.7557313707070068e-06;
 
 /* 80456A60-80456A68 0008+00 s=1 e=0 z=0  None .sdata2    @63 */
-SECTION_SDATA2 static u8 lit_63[8] = {
-    0xBE, 0x5A, 0xE5, 0xE6, 0x8A, 0x2B, 0x9C, 0xEB,
-};
+SECTION_SDATA2 static f64 lit_63 = -2.5050760253406863e-08;
 
 /* 80456A68-80456A70 0008+00 s=1 e=0 z=0  None .sdata2    @64 */
-SECTION_SDATA2 static u8 lit_64[8] = {
-    0x3D, 0xE5, 0xD9, 0x3A, 0x5A, 0xCF, 0xD5, 0x7C,
-};
+SECTION_SDATA2 static f64 lit_64 = 1.58969099521155e-10;
 
 /* 80456A70-80456A78 0008+00 s=1 e=0 z=0  None .sdata2    @65 */
-SECTION_SDATA2 static u8 lit_65[8] = {
-    0xBF, 0xC5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x49,
-};
+SECTION_SDATA2 static f64 lit_65 = -0.16666666666666632;
 
 /* 80456A78-80456A80 0008+00 s=1 e=0 z=0  None .sdata2    @66 */
-SECTION_SDATA2 static u8 lit_66[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_66 = 0.5;
 
 /* 8036B9F0-8036BA90 00A0+00 s=0 e=2 z=0  None .text      __kernel_sin */
 #pragma push

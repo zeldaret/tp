@@ -99,7 +99,7 @@ SECTION_SDATA2 static u8 lit_319[4] = {
 };
 
 /* 804526EC-804526F0 0004+00 s=1 e=0 z=0  None .sdata2    @320 */
-SECTION_SDATA2 static u32 lit_320 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_320 = 1000000000.0f;
 
 /* 80078BB0-80078C78 00C8+00 s=0 e=1 z=0  None .text      __ct__14dBgS_SplGrpChkFv */
 #pragma push

@@ -13,12 +13,6 @@
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Vec {};
 
 struct Z2Creature {
@@ -26,6 +20,12 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -90,20 +90,20 @@ struct daNpc_Knj_Param_c {
     /* 80A454A4 */ ~daNpc_Knj_Param_c();
 };
 
-struct J3DModel {};
-
-struct _GXColorS10 {};
-
 struct cXyz {
     /* 80A44B54 */ ~cXyz();
     /* 80A450D0 */ cXyz();
 };
 
-struct J3DAnmTexPattern {};
+struct _GXColorS10 {};
+
+struct J3DJoint {};
+
+struct J3DModel {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DJoint {};
+struct J3DAnmTexPattern {};
 
 struct daNpcT_c {
     /* 801480D0 */ void getTexPtrnAnmP(char const*, int);
@@ -291,8 +291,6 @@ static void daNpc_Knj_Delete(void*);
 static void daNpc_Knj_Execute(void*);
 static void daNpc_Knj_Draw(void*);
 static bool daNpc_Knj_IsDelete(void*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_KNJ[12];
 
 extern "C" void __dt__11daNpc_Knj_cFv();
 extern "C" void create__11daNpc_Knj_cFv();
@@ -387,14 +385,6 @@ void daNpcT_getDistTableIdx(int, int);
 void cM_rndF(f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 SECTION_INIT void memset();
 extern "C" void

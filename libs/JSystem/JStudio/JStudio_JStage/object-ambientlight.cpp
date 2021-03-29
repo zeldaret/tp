@@ -69,9 +69,6 @@ extern "C" void adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCvUl
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight[16];
-extern "C" extern void* __vt__Q27JStudio21TAdaptor_ambientLight[8];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 
 extern "C" void adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor();
 extern "C" void adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl();

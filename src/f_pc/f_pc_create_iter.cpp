@@ -47,7 +47,6 @@ void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
 void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
 void cTgIt_MethodCall(create_tag_class*, method_filter*);
 void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
-extern "C" extern u8 g_fpcCtTg_Queue[12 + 4 /* padding */];
 
 extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();

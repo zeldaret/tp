@@ -13,8 +13,6 @@
 
 extern void* const data_804BB520[2];
 
-extern void* const data_804BB520[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_mg_rod_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 804BB520-804BB528 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_804BB520[2] = {
+    (void*)__sinit_d_a_mg_rod_cpp,
+    (void*)NULL,
+};

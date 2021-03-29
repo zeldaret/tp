@@ -24,7 +24,6 @@ struct create_tag_class {};
 void fopScnTg_QueueTo(scene_tag_class*);
 void fopScnTg_ToQueue(scene_tag_class*);
 void fopScnTg_Init(scene_tag_class*, void*);
-extern "C" extern u8 g_fopScnTg_SceneList[12 + 4 /* padding */];
 
 extern "C" void fopScnTg_QueueTo__FP15scene_tag_class();
 extern "C" void fopScnTg_ToQueue__FP15scene_tag_class();

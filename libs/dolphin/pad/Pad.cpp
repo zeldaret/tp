@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __PADSpec[4 + 4 /* padding */];
-
 extern "C" static void UpdateOrigin();
 extern "C" static void PADOriginCallback();
 extern "C" static void PADOriginUpdateCallback();
@@ -38,8 +36,6 @@ extern "C" extern u8 __PADSpec[4 + 4 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 __PADFixBits[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void OSRegisterVersion();

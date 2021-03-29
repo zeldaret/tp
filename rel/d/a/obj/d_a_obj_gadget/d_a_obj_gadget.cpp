@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -22,6 +20,8 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 80BF33CC */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
@@ -204,48 +204,6 @@ static void daObj_Gadget_Execute(void*);
 static void daObj_Gadget_Draw(void*);
 static bool daObj_Gadget_IsDelete(void*);
 static void cLib_calcTimer__template0(int*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_OBJ_GADGET[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80BF4C04[4];
-extern "C" extern u8 data_80BF4C08[4];
-extern "C" extern u8 data_80BF4C0C[4];
-extern "C" extern u8 data_80BF4C10[4];
-extern "C" extern u8 data_80BF4C14[4];
-extern "C" extern u8 data_80BF4C18[4];
-extern "C" extern u8 data_80BF4C1C[4];
-extern "C" extern u8 data_80BF4C20[4];
-extern "C" extern u8 data_80BF4C24[4];
-extern "C" extern u8 data_80BF4C28[4];
-extern "C" extern u8 data_80BF4C2C[4];
-extern "C" extern u8 data_80BF4C30[4];
-extern "C" extern u8 data_80BF4C34[4];
-extern "C" extern u8 data_80BF4C38[4];
-extern "C" extern u8 data_80BF4C3C[4];
-extern "C" extern u8 data_80BF4C40[4];
-extern "C" extern u8 data_80BF4C44[4];
-extern "C" extern u8 data_80BF4C48[4];
-extern "C" extern u8 data_80BF4C4C[4];
-extern "C" extern u8 data_80BF4C50[4];
-extern "C" extern u8 data_80BF4C54[4];
-extern "C" extern u8 data_80BF4C58[4];
-extern "C" extern u8 data_80BF4C5C[4];
-extern "C" extern u8 data_80BF4C60[4];
-extern "C" extern u8 data_80BF4C64[4];
 
 extern "C" void __dt__14daObj_Gadget_cFv();
 extern "C" void create__14daObj_Gadget_cFv();
@@ -356,19 +314,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void cLib_chaseAngleS(s16*, s16, s16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

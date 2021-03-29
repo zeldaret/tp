@@ -38,13 +38,6 @@ struct JPAResourceManager {
 
 struct JPAEmitterWorkData {};
 
-struct JPAEmitterCallBack {};
-
-struct JPABaseEmitter;
-struct JPAParticleCallBack {};
-
-struct JPADrawInfo {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
@@ -54,6 +47,13 @@ struct JGeometry {
 
 struct JKRHeap {};
 
+struct JPAEmitterCallBack {};
+
+struct JPADrawInfo {};
+
+struct JPAParticleCallBack {};
+
+struct JPABaseEmitter;
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -117,7 +117,6 @@ extern "C" void __ct__14JPABaseEmitterFv();
 void* operator new(u32, JKRHeap*, int);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void getResource__18JPAResourceManagerCFUs();
 extern "C" void calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter();
@@ -274,13 +273,13 @@ SECTION_SDATA2 static u8 lit_2632[4] = {
 };
 
 /* 8045535C-80455360 0004+00 s=1 e=0 z=0  None .sdata2    @2633 */
-SECTION_SDATA2 static u32 lit_2633 = 0x42000000;
+SECTION_SDATA2 static f32 lit_2633 = 32.0f;
 
 /* 80455360-80455364 0004+00 s=1 e=0 z=0  None .sdata2    @2634 */
-SECTION_SDATA2 static u32 lit_2634 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2634 = 0.5f;
 
 /* 80455364-80455368 0004+00 s=1 e=0 z=0  None .sdata2    @2635 */
-SECTION_SDATA2 static u32 lit_2635 = 0x40400000;
+SECTION_SDATA2 static f32 lit_2635 = 3.0f;
 
 /* 80455368-80455370 0004+04 s=1 e=0 z=0  None .sdata2    @2636 */
 SECTION_SDATA2 static f32 lit_2636[1 + 1 /* padding */] = {

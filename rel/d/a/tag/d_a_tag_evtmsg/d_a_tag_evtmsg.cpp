@@ -71,8 +71,6 @@ static void daTag_EvtMsg_Execute(void*);
 static void daTag_EvtMsg_Draw(void*);
 static bool daTag_EvtMsg_IsDelete(void*);
 static void cLib_calcTimer__template0(int*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_TAG_EVTMSG[12];
 
 extern "C" void create__14daTag_EvtMsg_cFv();
 extern "C" bool Delete__14daTag_EvtMsg_cFv();
@@ -109,11 +107,6 @@ void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void daNpcF_chkEvtBit(u32);
 void daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

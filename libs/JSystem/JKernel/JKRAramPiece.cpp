@@ -43,12 +43,12 @@ struct JKRDecomp {
     /* 802DB8D0 */ void sendCommand(JKRDecompCommand*);
 };
 
-struct JKRAramBlock {};
-
 struct JKRAMCommand {
     /* 802D39EC */ JKRAMCommand();
     /* 802D3A5C */ ~JKRAMCommand();
 };
+
+struct JKRAramBlock {};
 
 struct JKRAramPiece {
     /* 802D3574 */ void prepareCommand(int, u32, u32, u32, JKRAramBlock*, void (*)(u32));
@@ -63,8 +63,6 @@ struct JKRAramPiece {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const JKRAramPiece__stringBase0;
 
 extern "C" void prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v();
 extern "C" void sendCommand__12JKRAramPieceFP12JKRAMCommand();
@@ -84,8 +82,6 @@ extern "C" extern char const* const JKRAramPiece__stringBase0;
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sMessageQueue__7JKRAram[32];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void OSReport();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();

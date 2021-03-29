@@ -57,8 +57,6 @@ static void daTag_ShopItem_Delete(void*);
 static void daTag_ShopItem_Execute(void*);
 static void daTag_ShopItem_Draw(void*);
 static bool daTag_ShopItem_IsDelete(void*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_TAG_SHOPITM[12];
 
 extern "C" void create__16daTag_ShopItem_cFv();
 extern "C" void Delete__16daTag_ShopItem_cFv();
@@ -87,10 +85,6 @@ void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
 void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
 void fpcSch_JudgeByID(void*, void*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

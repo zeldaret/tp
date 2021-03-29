@@ -62,13 +62,13 @@ struct dMsgScrn3Select_c {
 
 struct JMSMesgEntry_c {};
 
-struct JUTFont {};
-
 struct ResTIMG {};
 
 struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
 };
+
+struct JUTFont {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -78,6 +78,10 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct CSTControl {};
+
+struct JKRExpHeap {};
+
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 8003242C */ void checkLeftTrigger();
@@ -85,10 +89,6 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct CSTControl {};
 
 struct dMenu_Insect_c {
     /* 801D8114 */ dMenu_Insect_c(JKRExpHeap*, STControl*, CSTControl*, u8);
@@ -168,8 +168,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_insect__stringBase0;
-
 extern "C" void __ct__14dMenu_Insect_cFP10JKRExpHeapP9STControlP10CSTControlUc();
 extern "C" void __dt__14dMenu_Insect_cFv();
 extern "C" void _create__14dMenu_Insect_cFv();
@@ -220,14 +218,6 @@ void dMeter2Info_set2DVibration();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -502,13 +492,13 @@ SECTION_DATA static void* __vt__14dMenu_Insect_c[4 + 3 /* padding */] = {
 };
 
 /* 80454238-8045423C 0004+00 s=6 e=0 z=0  None .sdata2    @3834 */
-SECTION_SDATA2 static u32 lit_3834 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3834 = 1.0f;
 
 /* 8045423C-80454240 0004+00 s=1 e=0 z=0  None .sdata2    @3835 */
-SECTION_SDATA2 static u32 lit_3835 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_3835 = 1.0f / 10.0f;
 
 /* 80454240-80454244 0004+00 s=1 e=0 z=0  None .sdata2    @3836 */
-SECTION_SDATA2 static u32 lit_3836 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_3836 = 7.0f / 10.0f;
 
 /* 80454244-80454248 0004+00 s=5 e=0 z=0  None .sdata2    @3837 */
 SECTION_SDATA2 static u8 lit_3837[4] = {
@@ -562,16 +552,16 @@ asm void dMenu_Insect_c::_move() {
 
 /* ############################################################################################## */
 /* 80454248-8045424C 0004+00 s=1 e=0 z=0  None .sdata2    @3961 */
-SECTION_SDATA2 static u32 lit_3961 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3961 = 608.0f;
 
 /* 8045424C-80454250 0004+00 s=1 e=0 z=0  None .sdata2    @3962 */
-SECTION_SDATA2 static u32 lit_3962 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3962 = 448.0f;
 
 /* 80454250-80454254 0004+00 s=1 e=0 z=0  None .sdata2    @3963 */
-SECTION_SDATA2 static u32 lit_3963 = 0x43160000;
+SECTION_SDATA2 static f32 lit_3963 = 150.0f;
 
 /* 80454254-80454258 0004+00 s=1 e=0 z=0  None .sdata2    @3964 */
-SECTION_SDATA2 static u32 lit_3964 = 0x43F30000;
+SECTION_SDATA2 static f32 lit_3964 = 486.0f;
 
 /* 80454258-80454260 0004+04 s=1 e=0 z=0  None .sdata2    @3965 */
 SECTION_SDATA2 static f32 lit_3965[1 + 1 /* padding */] = {
@@ -612,9 +602,7 @@ asm void dMenu_Insect_c::init() {
 
 /* ############################################################################################## */
 /* 80454260-80454268 0008+00 s=2 e=0 z=0  None .sdata2    @4020 */
-SECTION_SDATA2 static u8 lit_4020[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4020 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801D894C-801D8B2C 01E0+00 s=0 e=3 z=0  None .text      _open__14dMenu_Insect_cFv */
 #pragma push
@@ -648,7 +636,7 @@ asm void dMenu_Insect_c::wait_init() {
 
 /* ############################################################################################## */
 /* 80454268-8045426C 0004+00 s=4 e=0 z=0  None .sdata2    @4089 */
-SECTION_SDATA2 static u32 lit_4089 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4089 = -1.0f;
 
 /* 801D8CCC-801D8E00 0134+00 s=1 e=0 z=0  None .text      wait_move__14dMenu_Insect_cFv */
 #pragma push
@@ -662,7 +650,7 @@ asm void dMenu_Insect_c::wait_move() {
 
 /* ############################################################################################## */
 /* 8045426C-80454270 0004+00 s=1 e=0 z=0  None .sdata2    @4135 */
-SECTION_SDATA2 static u32 lit_4135 = 0x42400000;
+SECTION_SDATA2 static f32 lit_4135 = 48.0f;
 
 /* 80454270-80454278 0004+04 s=1 e=0 z=0  None .sdata2    @4136 */
 SECTION_SDATA2 static f32 lit_4136[1 + 1 /* padding */] = {
@@ -672,9 +660,7 @@ SECTION_SDATA2 static f32 lit_4136[1 + 1 /* padding */] = {
 };
 
 /* 80454278-80454280 0008+00 s=1 e=0 z=0  None .sdata2    @4138 */
-SECTION_SDATA2 static u8 lit_4138[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4138 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801D8E00-801D91E4 03E4+00 s=1 e=0 z=0  None .text      explain_open_init__14dMenu_Insect_cFv */
 #pragma push

@@ -11,15 +11,6 @@
 // Forward References:
 //
 
-#pragma section ".ctors$10"
-__declspec(section ".ctors$10") extern void* const __init_cpp_exceptions_reference;
-#pragma section ".ctors$15"
-__declspec(section ".ctors$10") extern void* const _ctors[106];
-#pragma section ".dtors$10"
-__declspec(section ".dtors$10") extern void* const __destroy_global_chain_reference;
-#pragma section ".dtors$15"
-__declspec(section ".dtors$15") extern void* const __fini_cpp_exceptions_reference;
-
 extern "C" void __fini_cpp_exceptions();
 extern "C" void __init_cpp_exceptions();
 #pragma section ".ctors$10"
@@ -34,9 +25,6 @@ __declspec(section ".dtors$15") extern void* const __fini_cpp_exceptions_referen
 //
 // External References:
 //
-
-#pragma section "extabindex_"
-extern void* const data_8000569C[8];
 
 #pragma section "extabindex_"
 extern void* const data_8000569C[8];

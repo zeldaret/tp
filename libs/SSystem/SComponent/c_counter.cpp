@@ -12,7 +12,6 @@
 //
 
 void cCt_Counter(int);
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 
 extern "C" void cCt_Counter__Fi();
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];

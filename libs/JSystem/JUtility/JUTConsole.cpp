@@ -85,9 +85,6 @@ struct J2DOrthoGraph {
 // Forward References:
 //
 
-extern "C" extern char const* const JUTConsole__stringBase0;
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
-
 extern "C" void create__10JUTConsoleFUiUiP7JKRHeap();
 extern "C" void create__10JUTConsoleFUiPvUl();
 extern "C" void __ct__10JUTConsoleFUiUib();
@@ -129,11 +126,6 @@ extern "C" extern u8 sManager__17JUTConsoleManager[4];
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
 void J2DFillBox(f32, f32, f32, f32, JUtility::TColor);
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
 
 extern "C" void OSReport();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
@@ -263,7 +255,7 @@ asm void JUTConsole::clear() {
 
 /* ############################################################################################## */
 /* 80456118-8045611C 0004+00 s=1 e=0 z=0  None .sdata2    @2460 */
-SECTION_SDATA2 static u32 lit_2460 = 0x40000000;
+SECTION_SDATA2 static f32 lit_2460 = 2.0f;
 
 /* 8045611C-80456120 0004+00 s=1 e=0 z=0  None .sdata2    @2461 */
 SECTION_SDATA2 static u8 lit_2461[4] = {
@@ -274,16 +266,16 @@ SECTION_SDATA2 static u8 lit_2461[4] = {
 };
 
 /* 80456120-80456124 0004+00 s=1 e=0 z=0  None .sdata2    @2462 */
-SECTION_SDATA2 static u32 lit_2462 = 0x44200000;
+SECTION_SDATA2 static f32 lit_2462 = 640.0f;
 
 /* 80456124-80456128 0004+00 s=1 e=0 z=0  None .sdata2    @2463 */
-SECTION_SDATA2 static u32 lit_2463 = 0x43F00000;
+SECTION_SDATA2 static f32 lit_2463 = 480.0f;
 
 /* 80456128-8045612C 0004+00 s=1 e=0 z=0  None .sdata2    @2464 */
-SECTION_SDATA2 static u32 lit_2464 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_2464 = -1.0f;
 
 /* 8045612C-80456130 0004+00 s=1 e=0 z=0  None .sdata2    @2465 */
-SECTION_SDATA2 static u32 lit_2465 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2465 = 1.0f;
 
 /* 80456130-80456138 0004+04 s=1 e=0 z=0  None .sdata2    @2466 */
 SECTION_SDATA2 static f32 lit_2466[1 + 1 /* padding */] = {
@@ -293,14 +285,10 @@ SECTION_SDATA2 static f32 lit_2466[1 + 1 /* padding */] = {
 };
 
 /* 80456138-80456140 0008+00 s=1 e=0 z=0  None .sdata2    @2469 */
-SECTION_SDATA2 static u8 lit_2469[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2469 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80456140-80456148 0008+00 s=1 e=0 z=0  None .sdata2    @2471 */
-SECTION_SDATA2 static u8 lit_2471[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2471 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E7648-802E7BB8 0570+00 s=2 e=0 z=0  None .text
  * doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType           */

@@ -106,7 +106,7 @@ asm dBgS_RoofChk::~dBgS_RoofChk() {
 
 /* ############################################################################################## */
 /* 804526F4-804526F8 0004+00 s=1 e=0 z=0  None .sdata2    @333 */
-SECTION_SDATA2 static u32 lit_333 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_333 = 1000000000.0f;
 
 /* 80079124-8007914C 0028+00 s=0 e=1 z=0  None .text      Init__12dBgS_RoofChkFv */
 #pragma push

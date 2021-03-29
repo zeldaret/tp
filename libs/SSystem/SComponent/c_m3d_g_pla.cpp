@@ -42,8 +42,6 @@ extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
 //
 
 void cM3d_InDivPos2(Vec const*, Vec const*, f32, Vec*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec();
 extern "C" void PSVECNormalize();

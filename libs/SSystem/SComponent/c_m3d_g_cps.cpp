@@ -45,7 +45,6 @@ extern "C" void SetCps__8cM3dGCpsFRC8cM3dGCps();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGLin[3];
 
 extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
 extern "C" void SetStartEnd__8cM3dGLinFRC3VecRC3Vec();

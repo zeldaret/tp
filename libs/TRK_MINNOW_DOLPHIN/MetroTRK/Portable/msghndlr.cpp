@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 const lit_402[31 + 1 /* padding */];
-SECTION_BSS u8 IsTRKConnected[4 + 4 /* padding */];
-
 extern "C" void TRKDoSetOption();
 extern "C" void TRKDoStop();
 extern "C" void TRKDoStep();

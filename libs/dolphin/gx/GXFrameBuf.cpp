@@ -11,12 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 GXNtsc480IntDf[60];
-extern "C" extern u8 GXNtsc480Int[60];
-extern "C" extern u8 GXMpal480IntDf[60];
-extern "C" extern u8 GXPal528IntDf[60];
-extern "C" extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
-
 extern "C" void GXSetDispCopySrc();
 extern "C" void GXSetTexCopySrc();
 extern "C" void GXSetDispCopyDst();
@@ -41,8 +35,6 @@ extern "C" extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern void* __GXData;
 
 extern "C" void __GetImageTileCount();
 extern "C" void __cvt_fp2unsigned();
@@ -132,9 +124,7 @@ extern "C" asm void GXGetNumXfbLines() {
 
 /* ############################################################################################## */
 /* 804565B0-804565B8 0008+00 s=1 e=0 z=0  None .sdata2    @234 */
-SECTION_SDATA2 static u8 lit_234[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_234 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8035CD6C-8035CFA4 0238+00 s=0 e=2 z=0  None .text      GXGetYScaleFactor */
 #pragma push

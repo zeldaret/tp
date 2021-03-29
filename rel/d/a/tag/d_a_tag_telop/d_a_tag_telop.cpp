@@ -34,7 +34,6 @@ static void daTag_Telop_Execute(daTag_Telop_c*);
 static bool daTag_Telop_IsDelete(daTag_Telop_c*);
 static void daTag_Telop_Delete(daTag_Telop_c*);
 static void daTag_Telop_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_TAG_TELOP[12];
 
 extern "C" void create__13daTag_Telop_cFv();
 extern "C" void execute__13daTag_Telop_cFv();
@@ -51,9 +50,6 @@ extern "C" extern void* g_profile_TAG_TELOP[12];
 
 void fopAcM_delete(fopAc_ac_c*);
 void fopMsgM_messageSetDemo(u32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

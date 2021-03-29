@@ -27,9 +27,9 @@ struct JUTGamePad {
         /* 802E1CD8 */ CButton();
     };
 
-    struct EStickMode {};
-
     struct EWhichStick {};
+
+    struct EStickMode {};
 
     struct CStick {
         /* 802E121C */ void clear();
@@ -103,12 +103,6 @@ struct JKRDisposer {
 //
 
 static void getNumBit(u8*, int);
-extern "C" extern u8 mPadStatus__10JUTGamePad[48];
-extern "C" extern u8 sAnalogMode__10JUTGamePad[4];
-extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
 
 extern "C" void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort();
 extern "C" void __dt__10JUTGamePadFv();
@@ -159,7 +153,6 @@ extern "C" extern u8 struct_80451500[4];
 //
 
 void operator delete(void*);
-extern "C" extern u32 __float_nan;
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__11JKRDisposerFv();
@@ -378,10 +371,10 @@ static u8 lit_1373[12];
 static u8 sPatternList__19JUTGamePadLongPress[12];
 
 /* 804508E0-804508E4 0004+00 s=1 e=0 z=0  None .sdata     sPressPoint__Q210JUTGamePad6CStick */
-SECTION_SDATA static u32 sPressPoint__Q210JUTGamePad6CStick = 0x3F000000;
+SECTION_SDATA static f32 sPressPoint__Q210JUTGamePad6CStick = 0.5f;
 
 /* 804508E4-804508E8 0004+00 s=1 e=0 z=0  None .sdata     sReleasePoint__Q210JUTGamePad6CStick */
-SECTION_SDATA static u32 sReleasePoint__Q210JUTGamePad6CStick = 0x3E800000;
+SECTION_SDATA static f32 sReleasePoint__Q210JUTGamePad6CStick = 0.25f;
 
 /* 804508E8-804508EC 0004+00 s=1 e=0 z=0  None .sdata sResetPattern__Q210JUTGamePad13C3ButtonReset
  */
@@ -440,9 +433,7 @@ SECTION_SDATA2 static f32 lit_1047[1 + 1 /* padding */] = {
 };
 
 /* 80456020-80456028 0008+00 s=2 e=0 z=0  None .sdata2    @1050 */
-SECTION_SDATA2 static u8 lit_1050[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1050 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E108C-802E121C 0190+00 s=1 e=0 z=0  None .text update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
@@ -457,16 +448,10 @@ asm void JUTGamePad::CButton::update(PADStatus const* param_0, u32 param_1) {
 
 /* ############################################################################################## */
 /* 80456028-80456030 0004+04 s=2 e=0 z=0  None .sdata2    @1056 */
-SECTION_SDATA2 static u8 lit_1056[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1056[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802E121C-802E1238 001C+00 s=2 e=0 z=0  None .text      clear__Q210JUTGamePad6CStickFv */
@@ -481,14 +466,10 @@ asm void JUTGamePad::CStick::clear() {
 
 /* ############################################################################################## */
 /* 80456030-80456038 0008+00 s=1 e=0 z=0  None .sdata2    @1117 */
-SECTION_SDATA2 static u8 lit_1117[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1117 = 0.5;
 
 /* 80456038-80456040 0008+00 s=1 e=0 z=0  None .sdata2    @1118 */
-SECTION_SDATA2 static u8 lit_1118[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1118 = 3.0;
 
 /* 80456040-80456048 0008+00 s=1 e=0 z=0  None .sdata2    @1119 */
 SECTION_SDATA2 static u8 lit_1119[8] = {
@@ -496,10 +477,10 @@ SECTION_SDATA2 static u8 lit_1119[8] = {
 };
 
 /* 80456048-8045604C 0004+00 s=1 e=0 z=0  None .sdata2    @1120 */
-SECTION_SDATA2 static u32 lit_1120 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1120 = 1.0f;
 
 /* 8045604C-80456050 0004+00 s=1 e=0 z=0  None .sdata2    @1121 */
-SECTION_SDATA2 static u32 lit_1121 = 0x4622F984;
+SECTION_SDATA2 static f32 lit_1121 = 10430.37890625f;
 
 /* 802E1238-802E1500 02C8+00 s=1 e=0 z=0  None .text
  * update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl */

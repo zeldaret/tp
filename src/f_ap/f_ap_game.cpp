@@ -23,7 +23,6 @@ struct fapGm_HIO_c {
 static void fapGm_After();
 void fapGm_Execute();
 void fapGm_Create();
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
 
 extern "C" void __ct__11fapGm_HIO_cFv();
 extern "C" static void fapGm_After__Fv();
@@ -48,7 +47,6 @@ void fpcM_Management(void (*)(void), void (*)(void));
 void fpcM_Init();
 void cCt_Counter(int);
 void operator delete(void*);
-extern "C" extern u32 data_80450580;
 
 extern "C" void fopCamM_Management__Fv();
 extern "C" void fopCamM_Init__Fv();
@@ -79,10 +77,10 @@ SECTION_DATA static void* __vt__11fapGm_HIO_c[3 + 1 /* padding */] = {
 };
 
 /* 80451BC0-80451BC4 0004+00 s=1 e=0 z=0  None .sdata2    @3689 */
-SECTION_SDATA2 static u32 lit_3689 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_3689 = 9.0f / 10.0f;
 
 /* 80451BC4-80451BC8 0004+00 s=1 e=0 z=0  None .sdata2    @3690 */
-SECTION_SDATA2 static u32 lit_3690 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_3690 = 3.0f / 5.0f;
 
 /* 80018944-80018A44 0100+00 s=1 e=0 z=0  None .text      __ct__11fapGm_HIO_cFv */
 #pragma push

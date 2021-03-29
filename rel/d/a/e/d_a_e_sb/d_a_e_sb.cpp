@@ -13,13 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -29,13 +29,13 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -60,9 +60,9 @@ struct daPy_py_c {
     /* 8015F398 */ void checkMasterSwordEquip();
 };
 
-struct J3DModel {};
-
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daE_SB_c {
     /* 807816D8 */ void CreateHeap();
@@ -260,48 +260,6 @@ static void daE_SB_Execute(daE_SB_c*);
 static bool daE_SB_IsDelete(daE_SB_c*);
 static void daE_SB_Delete(daE_SB_c*);
 static void daE_SB_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_4467;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_SB[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80784FD0[4];
-extern "C" extern u8 data_80784FD4[4];
-extern "C" extern u8 data_80784FD8[4];
-extern "C" extern u8 data_80784FDC[4];
-extern "C" extern u8 data_80784FE0[4];
-extern "C" extern u8 data_80784FE4[4];
-extern "C" extern u8 data_80784FE8[4];
-extern "C" extern u8 data_80784FEC[4];
-extern "C" extern u8 data_80784FF0[4];
-extern "C" extern u8 data_80784FF4[4];
-extern "C" extern u8 data_80784FF8[4];
-extern "C" extern u8 data_80784FFC[4];
-extern "C" extern u8 data_80785000[4];
-extern "C" extern u8 data_80785004[4];
-extern "C" extern u8 data_80785008[4];
-extern "C" extern u8 data_8078500C[4];
-extern "C" extern u8 data_80785010[4];
-extern "C" extern u8 data_80785014[4];
-extern "C" extern u8 data_80785018[4];
-extern "C" extern u8 data_8078501C[4];
-extern "C" extern u8 data_80785020[4];
-extern "C" extern u8 data_80785024[4];
-extern "C" extern u8 data_80785028[4];
-extern "C" extern u8 data_8078502C[4];
-extern "C" extern u8 data_80785030[4];
 
 extern "C" void __ct__12daE_SB_HIO_cFv();
 extern "C" void CreateHeap__8daE_SB_cFv();
@@ -436,24 +394,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoMtx_ZrotM__FPA4_fs();

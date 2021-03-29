@@ -43,9 +43,6 @@ struct J3DDrawBuffer {
 // Forward References:
 //
 
-extern "C" extern u8 sortFuncTable__13J3DDrawBuffer[72];
-extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
-
 extern "C" void initialize__13J3DDrawBufferFv();
 extern "C" void allocBuffer__13J3DDrawBufferFUl();
 extern "C" void __dt__13J3DDrawBufferFv();
@@ -71,7 +68,6 @@ extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 void* operator new[](u32, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
@@ -93,15 +89,13 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80456400-80456404 0004+00 s=2 e=0 z=0  None .sdata2    @781 */
-SECTION_SDATA2 static u32 lit_781 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_781 = 1.0f;
 
 /* 80456404-80456408 0004+00 s=1 e=0 z=0  None .sdata2    @782 */
-SECTION_SDATA2 static u32 lit_782 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_782 = 10000.0f;
 
 /* 80456408-80456410 0008+00 s=2 e=0 z=0  None .sdata2    @784 */
-SECTION_SDATA2 static u8 lit_784[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_784 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80324F08-80324F70 0068+00 s=0 e=1 z=0  None .text      initialize__13J3DDrawBufferFv */
 #pragma push

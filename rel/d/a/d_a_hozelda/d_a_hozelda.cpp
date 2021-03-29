@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,17 +21,19 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
 };
 
+struct Quaternion {};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF7C */ void quatM(Quaternion const*);
 };
 
+struct J3DMaterialTable {};
+
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
-
-struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -243,7 +243,6 @@ static void daHoZelda_Delete(daHoZelda_c*);
 static void daHoZelda_Execute(daHoZelda_c*);
 static void daHoZelda_Draw(daHoZelda_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern void* g_profile_HOZELDA[12];
 
 extern "C" static void daHoZelda_searchGanon__FP10fopAc_ac_cPv();
 extern "C" void init__18daHoZelda_matAnm_cFv();
@@ -336,19 +335,6 @@ void cLib_distanceAngleS(s16, s16);
 void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
-extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u8 struct_80849010[4];
 
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

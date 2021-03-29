@@ -75,8 +75,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_calibration__stringBase0;
-
 extern "C" void __dt__19dMenu_Calibration_cFv();
 extern "C" void _move__19dMenu_Calibration_cFv();
 extern "C" void _draw__19dMenu_Calibration_cFv();
@@ -108,11 +106,6 @@ extern "C" extern char const* const d_menu_d_menu_calibration__stringBase0;
 
 void dMeter2Info_set2DVibration();
 void operator delete(void*);
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
 extern "C" void setAlphaRate__16dSelect_cursor_cFf();
@@ -308,12 +301,10 @@ asm void dMenu_Calibration_c::step1_wait_init() {
 
 /* ############################################################################################## */
 /* 80453F14-80453F18 0004+00 s=6 e=0 z=0  None .sdata2    @3885 */
-SECTION_SDATA2 static u32 lit_3885 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3885 = 1.0f;
 
 /* 80453F18-80453F20 0008+00 s=3 e=0 z=0  None .sdata2    @3887 */
-SECTION_SDATA2 static u8 lit_3887[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3887 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801AEF60-801AF084 0124+00 s=1 e=0 z=0  None .text      step1_wait_move__19dMenu_Calibration_cFv
  */

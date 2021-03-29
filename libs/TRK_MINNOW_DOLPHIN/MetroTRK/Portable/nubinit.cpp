@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
-
 extern "C" void TRKNubWelcome();
 extern "C" void TRKTerminateNub();
 extern "C" void TRKInitializeNub();
@@ -21,8 +19,6 @@ SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 extern "C" void TRKInitializeEventQueue();
 extern "C" void TRKInitializeMessageBuffers();

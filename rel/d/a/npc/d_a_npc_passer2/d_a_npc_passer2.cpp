@@ -95,11 +95,11 @@ struct dBgS_AcchCir {
     /* 80AA892C */ ~dBgS_AcchCir();
 };
 
+struct cXyz {};
+
 struct csXyz {};
 
 struct dBgS {};
-
-struct cXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -171,8 +171,6 @@ static void daNpcPasser2_Execute(void*);
 static void daNpcPasser2_Draw(void*);
 static bool daNpcPasser2_IsDelete(void*);
 static void cLib_getRndValue__template0(int, int);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_PASSER2[12];
 
 extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
 extern "C" void setAction__14daNpcPasser2_cFQ214daNpcPasser2_c6Mode_e();
@@ -229,18 +227,6 @@ void cLib_chaseF(f32*, f32, f32);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_distanceAngleS(s16, s16);
 void operator delete(void*);
-extern "C" extern u8 const m_cylDat__9daNpcCd_c[68];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 l_Cd_HIO[10684];
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void setMorf__13mDoExt_morf_cFf();

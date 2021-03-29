@@ -16,11 +16,11 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
+struct JKRArchive {};
+
 struct JUtility {
     struct TColor {};
 };
-
-struct JKRArchive {};
 
 struct dFile_warning_c {
     /* 80191BAC */ dFile_warning_c(JKRArchive*, u8);
@@ -89,8 +89,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_file_d_file_sel_warning__stringBase0;
-
 extern "C" void __ct__15dFile_warning_cFP10JKRArchiveUc();
 extern "C" void __dt__15dFile_warning_cFv();
 extern "C" void screenSet__15dFile_warning_cFv();
@@ -120,8 +118,6 @@ void mDoExt_getMesgFont();
 void mDoExt_removeMesgFont();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_removeMesgFont__Fv();
@@ -260,7 +256,7 @@ SECTION_SDATA2 static void* data_804539E8 =
     (void*)(((char*)&d_file_d_file_sel_warning__stringBase0) + 0x69);
 
 /* 804539EC-804539F0 0004+00 s=2 e=0 z=0  None .sdata2    @3799 */
-SECTION_SDATA2 static u32 lit_3799 = 0x45321000;
+SECTION_SDATA2 static f32 lit_3799 = 2849.0f;
 
 /* 80191CF4-80191F18 0224+00 s=1 e=0 z=0  None .text      screenSet__15dFile_warning_cFv */
 #pragma push
@@ -299,9 +295,7 @@ asm void dFile_warning_c::modeMove() {
 
 /* ############################################################################################## */
 /* 804539F0-804539F8 0008+00 s=3 e=0 z=0  None .sdata2    @3868 */
-SECTION_SDATA2 static u8 lit_3868[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3868 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80191FD4-801920B8 00E4+00 s=1 e=0 z=0  None .text      baseMoveAnm__15dFile_warning_cFv */
 #pragma push

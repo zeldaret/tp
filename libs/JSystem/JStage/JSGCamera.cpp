@@ -65,8 +65,6 @@ struct JStage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q26JStage7TCamera[37 + 1 /* padding */];
-
 extern "C" void __dt__Q26JStage7TCameraFv();
 extern "C" s32 JSGFGetType__Q26JStage7TCameraCFv();
 extern "C" bool JSGGetProjectionType__Q26JStage7TCameraCFv();
@@ -98,7 +96,6 @@ extern "C" extern void* __vt__Q26JStage7TCamera[37 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u32 __float_max;
 
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();
@@ -192,16 +189,10 @@ void JStage::TCamera::JSGSetProjectionType(JStage::TECameraProjection param_0) {
 
 /* ############################################################################################## */
 /* 804553D8-804553E0 0004+04 s=4 e=0 z=0  None .sdata2    @319 */
-SECTION_SDATA2 static u8 lit_319[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_319[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80280C14-80280C1C 0008+00 s=1 e=0 z=0  None .text      JSGGetProjectionNear__Q26JStage7TCameraCFv

@@ -77,13 +77,13 @@ struct J2DTevOrder {
     /* 802F1B70 */ J2DTevOrder();
 };
 
+struct J2DGXColorS10 {
+    /* 802F1B90 */ J2DGXColorS10();
+};
+
 struct J2DIndTevStage {
     /* 802EA044 */ void load(u8);
     /* 802F18A0 */ J2DIndTevStage();
-};
-
-struct J2DGXColorS10 {
-    /* 802F1B90 */ J2DGXColorS10();
 };
 
 struct J2DTevBlock8 {
@@ -420,10 +420,6 @@ struct J2DColorBlock {
 // Forward References:
 //
 
-extern "C" extern void* __vt__15J2DIndBlockFull[14];
-extern "C" extern void* __vt__11J2DTevBlock[47];
-extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
-
 extern "C" void initialize__13J2DColorBlockFv();
 extern "C" void setGX__13J2DColorBlockFv();
 extern "C" void initialize__14J2DTexGenBlockFv();
@@ -718,23 +714,6 @@ extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j2dDefaultTevStageInfo[20];
-extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
-extern "C" extern void* __vt__11J2DIndBlock[14];
-extern "C" extern u32 j2dDefaultColInfo;
-extern "C" extern u32 j2dDefaultTevOrderInfoNull;
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultTevColor[8];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultTevKColor;
-extern "C" extern u8 j2dDefaultTevSwapMode[4];
-extern "C" extern u32 j2dDefaultTevSwapModeTable;
-extern "C" extern u32 j2dDefaultBlendInfo;
-extern "C" extern u8 data_804561A4[4];
-extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
 
 extern "C" void __ct__Q28JUtility6TColorFv();
 extern "C" void* __nw__FUl();

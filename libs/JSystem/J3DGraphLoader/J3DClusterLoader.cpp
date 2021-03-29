@@ -49,7 +49,6 @@ struct J3DClusterLoader {
 static void JSUConvertOffsetToPtr__template63(void const*, void const*);
 static void JSUConvertOffsetToPtr__template64(void const*, void const*);
 static void JSUConvertOffsetToPtr__template65(void const*, void const*);
-extern "C" extern char const* const J3DClusterLoader__stringBase0;
 
 extern "C" void load__24J3DClusterLoaderDataBaseFPCv();
 extern "C" void __ct__20J3DClusterLoader_v15Fv();

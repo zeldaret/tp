@@ -11,10 +11,6 @@
 // Forward References:
 //
 
-#pragma section ".dtors$10"
-__declspec(section ".dtors$10") extern void* const __destroy_global_chain_reference;
-extern void* const pad_80B00D64[2];
-
 extern "C" void __register_global_object();
 extern "C" static void __destroy_global_chain();
 #pragma section ".dtors$10"
@@ -36,6 +32,12 @@ __declspec(section ".dtors$10") void* const __destroy_global_chain_reference = (
     __destroy_global_chain;
 
 #pragma section ".dtors$15"
+/* 80B00D64-80B00D6C 0008+00 s=0 e=0 z=0  None .dtors     None */
+void* const pad_80B00D64[2] = {
+    (void*)__destroy_global_chain,
+    (void*)NULL,
+};
+
 /* ############################################################################################## */
 /* 80B01308-80B01310 0004+04 s=2 e=0 z=0  None .bss       __global_destructor_chain */
 static u8 __global_destructor_chain[4 + 4 /* padding */];

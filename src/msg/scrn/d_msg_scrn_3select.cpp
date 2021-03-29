@@ -100,9 +100,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_3select__stringBase0;
-extern "C" extern u8 data_803C0CA0[24 + 48 /* padding */];
-
 extern "C" void __ct__17dMsgScrn3Select_cFv();
 extern "C" void __dt__17dMsgScrn3Select_cFv();
 extern "C" void __dt__14J2DAnmColorKeyFv();
@@ -142,12 +139,6 @@ void mDoExt_getMesgFont();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__10JUTNameTab[3];
-extern "C" extern void* __vt__14J2DAnmColorKey[5];
-extern "C" extern void* __vt__11J2DAnmColor[5];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
@@ -469,10 +460,10 @@ SECTION_SDATA2 static u8 lit_3909[4] = {
 };
 
 /* 80454B5C-80454B60 0004+00 s=4 e=0 z=0  None .sdata2    @3910 */
-SECTION_SDATA2 static u32 lit_3910 = 0x433E0000;
+SECTION_SDATA2 static f32 lit_3910 = 190.0f;
 
 /* 80454B60-80454B64 0004+00 s=10 e=0 z=0  None .sdata2    @3911 */
-SECTION_SDATA2 static u32 lit_3911 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3911 = 1.0f;
 
 /* 802390B4-802398CC 0818+00 s=0 e=4 z=0  None .text      __ct__17dMsgScrn3Select_cFv */
 #pragma push
@@ -547,19 +538,19 @@ asm void dMsgScrn3Select_c::translate(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 80454B64-80454B68 0004+00 s=2 e=0 z=0  None .sdata2    @4154 */
-SECTION_SDATA2 static u32 lit_4154 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4154 = 0.5f;
 
 /* 80454B68-80454B6C 0004+00 s=1 e=0 z=0  None .sdata2    @4155 */
-SECTION_SDATA2 static u32 lit_4155 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4155 = 3.0f;
 
 /* 80454B6C-80454B70 0004+00 s=1 e=0 z=0  None .sdata2    @4156 */
-SECTION_SDATA2 static u32 lit_4156 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_4156 = 9.0f / 10.0f;
 
 /* 80454B70-80454B74 0004+00 s=1 e=0 z=0  None .sdata2    @4157 */
-SECTION_SDATA2 static u32 lit_4157 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_4157 = 7.0f / 10.0f;
 
 /* 80454B74-80454B78 0004+00 s=1 e=0 z=0  None .sdata2    @4158 */
-SECTION_SDATA2 static u32 lit_4158 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_4158 = 1.0f / 20.0f;
 
 /* 80239DD4-8023A094 02C0+00 s=0 e=5 z=0  None .text      draw__17dMsgScrn3Select_cFff */
 #pragma push
@@ -585,9 +576,7 @@ asm void dMsgScrn3Select_c::selAnimeInit(u8 param_0, u8 param_1, u8 param_2, f32
 
 /* ############################################################################################## */
 /* 80454B78-80454B80 0008+00 s=2 e=0 z=0  None .sdata2    @4345 */
-SECTION_SDATA2 static u8 lit_4345[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4345 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8023A398-8023A680 02E8+00 s=0 e=5 z=0  None .text      selAnimeMove__17dMsgScrn3Select_cFUcUcb */
 #pragma push
@@ -601,7 +590,7 @@ asm void dMsgScrn3Select_c::selAnimeMove(u8 param_0, u8 param_1, bool param_2) {
 
 /* ############################################################################################## */
 /* 80454B80-80454B84 0004+00 s=2 e=0 z=0  None .sdata2    @4434 */
-SECTION_SDATA2 static u32 lit_4434 = 0x43470000;
+SECTION_SDATA2 static f32 lit_4434 = 199.0f;
 
 /* 8023A680-8023A934 02B4+00 s=0 e=9 z=0  None .text      selAnimeEnd__17dMsgScrn3Select_cFv */
 #pragma push
@@ -717,13 +706,13 @@ asm void dMsgScrn3Select_c::waitProc() {
 
 /* ############################################################################################## */
 /* 80454B84-80454B88 0004+00 s=2 e=0 z=0  None .sdata2    @4604 */
-SECTION_SDATA2 static u32 lit_4604 = 0x43978000;
+SECTION_SDATA2 static f32 lit_4604 = 303.0f;
 
 /* 80454B88-80454B8C 0004+00 s=2 e=0 z=0  None .sdata2    @4605 */
-SECTION_SDATA2 static u32 lit_4605 = 0x43960000;
+SECTION_SDATA2 static f32 lit_4605 = 300.0f;
 
 /* 80454B8C-80454B90 0004+00 s=2 e=0 z=0  None .sdata2    @4606 */
-SECTION_SDATA2 static u32 lit_4606 = 0x43C98000;
+SECTION_SDATA2 static f32 lit_4606 = 403.0f;
 
 /* 80454B90-80454B98 0004+04 s=2 e=0 z=0  None .sdata2    @4607 */
 SECTION_SDATA2 static f32 lit_4607[1 + 1 /* padding */] = {

@@ -22,8 +22,6 @@ struct JASLfo {
 // Forward References:
 //
 
-extern "C" extern u8 sFreeRunLfo__6JASLfo[24];
-
 extern "C" void __ct__6JASLfoFv();
 extern "C" void getValue__6JASLfoCFv();
 extern "C" void incCounter__6JASLfoFf();
@@ -34,8 +32,6 @@ extern "C" extern u8 sFreeRunLfo__6JASLfo[24];
 //
 // External References:
 //
-
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" extern u8 sincosTable___5JMath[65536];
 
@@ -53,7 +49,7 @@ SECTION_SDATA2 static u8 lit_341[4] = {
 };
 
 /* 804556E4-804556E8 0004+00 s=2 e=0 z=0  None .sdata2    @342 */
-SECTION_SDATA2 static u32 lit_342 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_342 = 1.0f;
 
 /* 8029BD14-8029BD44 0030+00 s=1 e=1 z=0  None .text      __ct__6JASLfoFv */
 #pragma push
@@ -67,10 +63,10 @@ asm JASLfo::JASLfo() {
 
 /* ############################################################################################## */
 /* 804556E8-804556EC 0004+00 s=1 e=0 z=0  None .sdata2    @363 */
-SECTION_SDATA2 static u32 lit_363 = 0xC6000000;
+SECTION_SDATA2 static f32 lit_363 = -8192.0f;
 
 /* 804556EC-804556F0 0004+00 s=1 e=0 z=0  None .sdata2    @364 */
-SECTION_SDATA2 static u32 lit_364 = 0x46000000;
+SECTION_SDATA2 static f32 lit_364 = 8192.0f;
 
 /* 8029BD44-8029BDD8 0094+00 s=0 e=3 z=0  None .text      getValue__6JASLfoCFv */
 #pragma push

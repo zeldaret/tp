@@ -66,8 +66,6 @@ struct JAISound {
     /* 802A24DC */ void stop(u32);
 };
 
-struct JAISeqDataRegion {};
-
 struct JAISeqMgr;
 struct JAIAudience {};
 
@@ -78,6 +76,8 @@ struct JAISeq {
     /* 802A108C */ void JAISeqMgr_calc_();
     /* 802A14FC */ void JAISeqMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
 };
+
+struct JAISeqDataRegion {};
 
 struct JAISeqMgr {
     /* 802A1804 */ void isUsingSeqData(JAISeqDataRegion const&);
@@ -103,9 +103,6 @@ struct JAISeqDataUser {
 // Forward References:
 //
 
-extern "C" extern void* __vt__9JAISeqMgr[5 + 1 /* padding */];
-extern "C" extern u8 data_804340CC[16 + 4 /* padding */];
-
 extern "C" void isUsingSeqData__9JAISeqMgrFRC16JAISeqDataRegion();
 extern "C" void releaseSeqData__9JAISeqMgrFRC16JAISeqDataRegion();
 extern "C" void __ct__9JAISeqMgrFb();
@@ -128,11 +125,6 @@ extern "C" extern u8 data_804340CC[16 + 4 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__6JAISeq[12 + 1 /* padding */];
-extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80450B68[4];
-extern "C" extern u8 data_80451320[8];
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
@@ -203,7 +195,7 @@ SECTION_DATA void* __vt__9JAISeqMgr[5 + 1 /* padding */] = {
 };
 
 /* 804557A8-804557AC 0004+00 s=1 e=0 z=0  None .sdata2    @691 */
-SECTION_SDATA2 static u32 lit_691 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_691 = 1.0f;
 
 /* 804557AC-804557B0 0004+00 s=1 e=0 z=0  None .sdata2    @692 */
 SECTION_SDATA2 static u8 lit_692[4] = {

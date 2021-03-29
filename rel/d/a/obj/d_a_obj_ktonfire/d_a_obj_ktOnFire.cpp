@@ -43,13 +43,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -113,7 +113,6 @@ static void daKtOnFire_Draw(daKtOnFire_c*);
 static void daKtOnFire_Execute(daKtOnFire_c*);
 static void daKtOnFire_Delete(daKtOnFire_c*);
 static void daKtOnFire_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Tag_KtOnFire[12];
 
 extern "C" void __ct__16daKtOnFire_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -145,17 +144,6 @@ void dComIfGp_getReverb(int);
 void dKy_plight_set(LIGHT_INFLUENCE*);
 void dKy_plight_cut(LIGHT_INFLUENCE*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern void* const pad_8058CF80[2];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();

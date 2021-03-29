@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-SECTION_BSS u8 TRK_mainError[4 + 4 /* padding */];
-
 extern "C" void TRK_main();
 SECTION_BSS u8 TRK_mainError[4 + 4 /* padding */];
 

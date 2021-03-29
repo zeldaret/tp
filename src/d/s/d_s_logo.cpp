@@ -164,8 +164,6 @@ static void dScnLogo_Draw(dScnLogo_c*);
 static void dScnLogo_Delete(dScnLogo_c*);
 static bool dScnLogo_IsDelete(dScnLogo_c*);
 static void cLib_calcTimer__template5(u16*);
-extern "C" extern char const* const d_s_d_s_logo__stringBase0;
-extern "C" extern void* g_profile_LOGO_SCENE[10];
 
 extern "C" void __ct__10dLog_HIO_cFv();
 extern "C" void preLoad_dyl_create__10dScnLogo_cFv();
@@ -233,25 +231,6 @@ void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u8 g_ntscZeldaProg[60];
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__10dDlst_2D_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sAramObject__7JKRAram[4];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
 
 SECTION_INIT void memset();
 extern "C" void mDoExt_getGameHeap__Fv();
@@ -583,27 +562,25 @@ asm void dScnLogo_c::progInDraw() {
 
 /* ############################################################################################## */
 /* 80454ED8-80454EDC 0004+00 s=1 e=0 z=0  None .sdata2    @3933 */
-SECTION_SDATA2 static u32 lit_3933 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3933 = 0.5f;
 
 /* 80454EDC-80454EE0 0004+00 s=2 e=0 z=0  None .sdata2    @3934 */
-SECTION_SDATA2 static u32 lit_3934 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3934 = 1.0f;
 
 /* 80454EE0-80454EE4 0004+00 s=1 e=0 z=0  None .sdata2    @3935 */
-SECTION_SDATA2 static u32 lit_3935 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3935 = -1.0f;
 
 /* 80454EE4-80454EE8 0004+00 s=1 e=0 z=0  None .sdata2    @3936 */
-SECTION_SDATA2 static u32 lit_3936 = 0xBF000000;
+SECTION_SDATA2 static f32 lit_3936 = -0.5f;
 
 /* 80454EE8-80454EEC 0004+00 s=2 e=0 z=0  None .sdata2    @3937 */
-SECTION_SDATA2 static u32 lit_3937 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_3937 = 255.0f;
 
 /* 80454EEC-80454EF0 0004+00 s=1 e=0 z=0  None .sdata2    @3938 */
-SECTION_SDATA2 static u32 lit_3938 = 0x43480000;
+SECTION_SDATA2 static f32 lit_3938 = 200.0f;
 
 /* 80454EF0-80454EF8 0008+00 s=2 e=0 z=0  None .sdata2    @3940 */
-SECTION_SDATA2 static u8 lit_3940[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3940 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8025631C-802568E0 05C4+00 s=1 e=0 z=0  None .text      progSelDraw__10dScnLogo_cFv */
 #pragma push

@@ -37,9 +37,9 @@ struct dPa_levelEcallBack {};
 
 struct csXyz {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -107,7 +107,6 @@ static void daTag_FWall_Execute(daTag_FWall_c*);
 static void daTag_FWall_IsDelete(daTag_FWall_c*);
 static bool daTag_FWall_Delete(daTag_FWall_c*);
 static void daTag_FWall_Create(daTag_FWall_c*);
-extern "C" extern void* g_profile_Tag_FWall[12];
 
 extern "C" static bool daTag_FWall_Draw__FP13daTag_FWall_c();
 extern "C" void execute__13daTag_FWall_cFv();
@@ -134,16 +133,6 @@ void fopAcM_fastCreate(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8
 void dCam_getBody();
 void cLib_chaseUC(u8*, u8, u8);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv();

@@ -14,9 +14,6 @@
 extern "C" extern u8 j_o_id__8dPa_name[10 + 2 /* padding */];
 extern "C" extern u8 s_o_id__8dPa_name[28];
 
-extern "C" extern u8 j_o_id__8dPa_name[10 + 2 /* padding */];
-extern "C" extern u8 s_o_id__8dPa_name[28];
-
 //
 // External References:
 //

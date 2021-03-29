@@ -32,8 +32,6 @@ struct JStage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q26JStage7TObject[15 + 1 /* padding */];
-
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();
 extern "C" void JSGUpdate__Q26JStage7TObjectFv();
@@ -147,16 +145,10 @@ s32 JStage::TObject::JSGFindNodeID(char const* param_0) const {
 
 /* ############################################################################################## */
 /* 804553F0-804553F8 0004+04 s=1 e=0 z=0  None .sdata2    @338 */
-SECTION_SDATA2 static u8 lit_338[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_338[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80280E54-80280E90 003C+00 s=1 e=11 z=0  None .text

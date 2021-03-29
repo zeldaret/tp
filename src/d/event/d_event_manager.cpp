@@ -41,13 +41,13 @@ struct dEvt_control_c {
     /* 800436F4 */ void setPtD(void*);
 };
 
+struct dEvDtData_c {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct dEvDtData_c {};
 
 struct dEvDtStaff_c {
     /* 80044134 */ void init();
@@ -148,7 +148,6 @@ static void allOffObjectCallBack(fopAc_ac_c*, void*);
 static void dEvmng_strcmp(char const*, char*);
 static void findShutterCallBack(fopAc_ac_c*, void*);
 static void dEv_talkman_get_action(int);
-extern "C" extern char const* const d_event_d_event_manager__stringBase0;
 
 extern "C" void init__18dEvent_exception_cFv();
 extern "C" void setStartDemo__18dEvent_exception_cFi();
@@ -220,12 +219,6 @@ void dEv_defaultSkipProc(void*, int);
 void dEv_defaultSkipZev(void*, int);
 void dEv_defaultSkipStb(void*, int);
 void dCam_getBody();
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
@@ -576,27 +569,17 @@ asm void dEvent_manager_c::endProc(s16 param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80451F00-80451F08 0004+04 s=1 e=0 z=0  None .sdata2    @4398 */
-SECTION_SDATA2 static u8 lit_4398[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4398[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80451F08-80451F10 0008+00 s=1 e=0 z=0  None .sdata2    @4399 */
-SECTION_SDATA2 static u8 lit_4399[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4399 = 0.5;
 
 /* 80451F10-80451F18 0008+00 s=1 e=0 z=0  None .sdata2    @4400 */
-SECTION_SDATA2 static u8 lit_4400[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4400 = 3.0;
 
 /* 80451F18-80451F20 0008+00 s=1 e=0 z=0  None .sdata2    @4401 */
 SECTION_SDATA2 static u8 lit_4401[8] = {
@@ -604,13 +587,13 @@ SECTION_SDATA2 static u8 lit_4401[8] = {
 };
 
 /* 80451F20-80451F24 0004+00 s=1 e=0 z=0  None .sdata2    @4402 */
-SECTION_SDATA2 static u32 lit_4402 = 0x43340000;
+SECTION_SDATA2 static f32 lit_4402 = 180.0f;
 
 /* 80451F24-80451F28 0004+00 s=1 e=0 z=0  None .sdata2    @4403 */
-SECTION_SDATA2 static u32 lit_4403 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4403 = 1.0f;
 
 /* 80451F28-80451F2C 0004+00 s=1 e=0 z=0  None .sdata2    @4404 */
-SECTION_SDATA2 static u32 lit_4404 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4404 = -1.0f;
 
 /* 80046E64-800473FC 0598+00 s=0 e=1 z=0  None .text      Sequencer__16dEvent_manager_cFv */
 #pragma push
@@ -914,10 +897,10 @@ asm void dEvent_manager_c::getRunEventName() {
 
 /* ############################################################################################## */
 /* 80451F2C-80451F30 0004+00 s=1 e=0 z=0  None .sdata2    @5025 */
-SECTION_SDATA2 static u32 lit_5025 = 0x41200000;
+SECTION_SDATA2 static f32 lit_5025 = 10.0f;
 
 /* 80451F30-80451F34 0004+00 s=1 e=0 z=0  None .sdata2    @5026 */
-SECTION_SDATA2 static u32 lit_5026 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_5026 = -10.0f;
 
 /* 8004846C-80048520 00B4+00 s=1 e=0 z=0  None .text      findShutterCallBack__FP10fopAc_ac_cPv */
 #pragma push
@@ -931,7 +914,7 @@ asm static void findShutterCallBack(fopAc_ac_c* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80451F34-80451F38 0004+00 s=1 e=0 z=0  None .sdata2    @5055 */
-SECTION_SDATA2 static u32 lit_5055 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_5055 = 100.0f;
 
 /* 80048520-80048618 00F8+00 s=1 e=0 z=0  None .text      specialCast_Shutter__16dEvent_manager_cFsi
  */

@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -26,6 +24,8 @@ struct cXyz {
     /* 804BD8B8 */ ~cXyz();
     /* 804BD8F4 */ cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -73,7 +73,7 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DTransformInfo {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -83,7 +83,7 @@ struct Z2Creature {
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
-struct J3DTransformInfo {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -338,15 +338,15 @@ struct J3DAnmTextureSRTKey {
     /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
 };
 
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032AF50 */ void getTexNo(u16, u16*) const;
+    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -393,8 +393,6 @@ static void daMidna_Execute(daMidna_c*);
 static void daMidna_Draw(daMidna_c*);
 static void daMidna_Delete(daMidna_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_MIDNA[12];
 
 extern "C" void init__16daMidna_matAnm_cFv();
 extern "C" void calc__16daMidna_matAnm_cCFP11J3DMaterial();
@@ -512,27 +510,6 @@ void cLib_chasePos(cXyz*, cXyz const&, f32);
 void* operator new(u32);
 void operator delete(void*);
 void JMAEulerToQuat(s16, s16, s16, Quaternion*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 struct_804C6CD8[4];
 
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

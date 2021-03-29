@@ -64,8 +64,6 @@ static void dOvlpFd3_Execute(dOvlpFd3_c*);
 static bool dOvlpFd3_IsDelete(dOvlpFd3_c*);
 static bool dOvlpFd3_Delete(dOvlpFd3_c*);
 static void dOvlpFd3_Create(void*);
-extern "C" extern void* g_profile_OVERLAP3[10];
-extern "C" extern void* __vt__16dDlst_snapShot_c[3];
 
 extern "C" void draw__16dDlst_snapShot_cFv();
 extern "C" void draw__15dOvlpFd3_dlst_cFv();
@@ -97,16 +95,6 @@ void dCam_getBody();
 void cLib_calcTimer__template4(s8*);
 void cLib_addCalc0(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
 
 extern "C" void mDoAud_setFadeOutStart__FUc();
 extern "C" void mDoAud_setFadeInStart__FUc();
@@ -199,28 +187,28 @@ SECTION_SDATA2 static u8 lit_3800[4] = {
 };
 
 /* 80454E60-80454E64 0004+00 s=1 e=0 z=0  None .sdata2    @3801 */
-SECTION_SDATA2 static u32 lit_3801 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3801 = 608.0f;
 
 /* 80454E64-80454E68 0004+00 s=1 e=0 z=0  None .sdata2    @3802 */
-SECTION_SDATA2 static u32 lit_3802 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3802 = 448.0f;
 
 /* 80454E68-80454E6C 0004+00 s=3 e=0 z=0  None .sdata2    @3803 */
-SECTION_SDATA2 static u32 lit_3803 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3803 = 1.0f;
 
 /* 80454E6C-80454E70 0004+00 s=1 e=0 z=0  None .sdata2    @3804 */
-SECTION_SDATA2 static u32 lit_3804 = 0x42700000;
+SECTION_SDATA2 static f32 lit_3804 = 60.0f;
 
 /* 80454E70-80454E74 0004+00 s=1 e=0 z=0  None .sdata2    @3805 */
-SECTION_SDATA2 static u32 lit_3805 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_3805 = 19.0f / 14.0f;
 
 /* 80454E74-80454E78 0004+00 s=1 e=0 z=0  None .sdata2    @3806 */
-SECTION_SDATA2 static u32 lit_3806 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_3806 = 100.0f;
 
 /* 80454E78-80454E7C 0004+00 s=1 e=0 z=0  None .sdata2    @3807 */
-SECTION_SDATA2 static u32 lit_3807 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_3807 = 100000.0f;
 
 /* 80454E7C-80454E80 0004+00 s=1 e=0 z=0  None .sdata2    @3808 */
-SECTION_SDATA2 static u32 lit_3808 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3808 = -1.0f;
 
 /* 80252F28-8025343C 0514+00 s=1 e=0 z=0  None .text      draw__15dOvlpFd3_dlst_cFv */
 #pragma push
@@ -336,7 +324,7 @@ asm void dOvlpFd3_c::execNextSnap() {
 
 /* ############################################################################################## */
 /* 80454E80-80454E84 0004+00 s=1 e=0 z=0  None .sdata2    @3923 */
-SECTION_SDATA2 static u32 lit_3923 = 0x3CF5C28F;
+SECTION_SDATA2 static f32 lit_3923 = 3.0f / 100.0f;
 
 /* 80253730-802537AC 007C+00 s=1 e=0 z=0  None .text      execFadeIn__10dOvlpFd3_cFv */
 #pragma push
@@ -350,7 +338,7 @@ asm void dOvlpFd3_c::execFadeIn() {
 
 /* ############################################################################################## */
 /* 80454E84-80454E88 0004+00 s=1 e=0 z=0  None .sdata2    @3947 */
-SECTION_SDATA2 static u32 lit_3947 = 0xC3C20000;
+SECTION_SDATA2 static f32 lit_3947 = -388.0f;
 
 /* 802537AC-80253880 00D4+00 s=1 e=0 z=0  None .text      dOvlpFd3_Draw__FP10dOvlpFd3_c */
 #pragma push

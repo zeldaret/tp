@@ -28,11 +28,11 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct STControl {};
+struct CSTControl {};
 
 struct JKRExpHeap {};
 
-struct CSTControl {};
+struct STControl {};
 
 struct dMenu_Fishing_c {
     /* 801C4D54 */ dMenu_Fishing_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -92,8 +92,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_fishing__stringBase0;
-
 extern "C" void __ct__15dMenu_Fishing_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__15dMenu_Fishing_cFv();
 extern "C" void _create__15dMenu_Fishing_cFv();
@@ -126,12 +124,6 @@ void mDoExt_getSubFont();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -274,10 +266,10 @@ SECTION_SDATA2 static u8 lit_3904[4] = {
 };
 
 /* 8045410C-80454110 0004+00 s=1 e=0 z=0  None .sdata2    @3905 */
-SECTION_SDATA2 static u32 lit_3905 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3905 = 608.0f;
 
 /* 80454110-80454114 0004+00 s=1 e=0 z=0  None .sdata2    @3906 */
-SECTION_SDATA2 static u32 lit_3906 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3906 = 448.0f;
 
 /* 801C514C-801C5204 00B8+00 s=1 e=1 z=0  None .text      _draw__15dMenu_Fishing_cFv */
 #pragma push
@@ -435,12 +427,10 @@ SECTION_DEAD static char const* const pad_803960CD = "\0\0";
 #pragma pop
 
 /* 80454114-80454118 0004+00 s=1 e=0 z=0  None .sdata2    @4010 */
-SECTION_SDATA2 static u32 lit_4010 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4010 = 1.0f;
 
 /* 80454118-80454120 0008+00 s=2 e=0 z=0  None .sdata2    @4012 */
-SECTION_SDATA2 static u8 lit_4012[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4012 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801C52E4-801C5470 018C+00 s=0 e=2 z=0  None .text      _open__15dMenu_Fishing_cFv */
 #pragma push

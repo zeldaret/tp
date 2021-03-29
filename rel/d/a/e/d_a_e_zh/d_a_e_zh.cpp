@@ -36,13 +36,13 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -148,11 +148,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
@@ -318,59 +318,6 @@ static bool daE_ZH_IsDelete(daE_ZH_c*);
 static void daE_ZH_Delete(daE_ZH_c*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_ZH_Create(daE_ZH_c*);
-extern "C" extern u32 const lit_4705;
-extern "C" extern u32 const lit_4707;
-extern "C" extern u32 const lit_4873;
-extern "C" extern u32 const lit_4874;
-extern "C" extern u32 const lit_4875;
-extern "C" extern u32 const lit_4876;
-extern "C" extern u32 const lit_4877;
-extern "C" extern u32 const lit_4878;
-extern "C" extern u32 const lit_4879;
-extern "C" extern u32 const lit_4880;
-extern "C" extern u32 const lit_4882;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_E_ZH[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_8082F7E8[4];
-extern "C" extern u8 data_8082F7EC[4];
-extern "C" extern u8 data_8082F7F0[4];
-extern "C" extern u8 data_8082F7F4[4];
-extern "C" extern u8 data_8082F7F8[4];
-extern "C" extern u8 data_8082F7FC[4];
-extern "C" extern u8 data_8082F800[4];
-extern "C" extern u8 data_8082F804[4];
-extern "C" extern u8 data_8082F808[4];
-extern "C" extern u8 data_8082F80C[4];
-extern "C" extern u8 data_8082F810[4];
-extern "C" extern u8 data_8082F814[4];
-extern "C" extern u8 data_8082F818[4];
-extern "C" extern u8 data_8082F81C[4];
-extern "C" extern u8 data_8082F820[4];
-extern "C" extern u8 data_8082F824[4];
-extern "C" extern u8 data_8082F828[4];
-extern "C" extern u8 data_8082F82C[4];
-extern "C" extern u8 data_8082F830[4];
-extern "C" extern u8 data_8082F834[4];
-extern "C" extern u8 data_8082F838[4];
-extern "C" extern u8 data_8082F83C[4];
-extern "C" extern u8 data_8082F840[4];
-extern "C" extern u8 data_8082F844[4];
-extern "C" extern u8 data_8082F848[4];
 
 extern "C" void __ct__12daE_ZH_HIO_cFv();
 extern "C" void draw__8daE_ZH_cFv();
@@ -525,24 +472,6 @@ void JPASetRMtxSTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__temp
                             JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mRoofY__11fopAcM_rc_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transM__14mDoMtx_stack_cFfff();

@@ -33,7 +33,6 @@ extern "C" void fopScnIt_Judge__FPFPvPv_PvPv();
 
 void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
 void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
-extern "C" extern u8 g_fopScnTg_SceneList[12 + 4 /* padding */];
 
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
 extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();

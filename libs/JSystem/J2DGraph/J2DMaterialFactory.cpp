@@ -34,12 +34,12 @@ struct J2DResReference {
     /* 8030CF44 */ void getName(u16) const;
 };
 
-struct J2DMaterialBlock {};
-
 struct J2DMaterial {
     /* 802EA410 */ void createTevBlock(int, bool);
     /* 802EA5C4 */ void createIndBlock(int, bool);
 };
+
+struct J2DMaterialBlock {};
 
 struct J2DMaterialFactory {
     /* 802F2AD0 */ J2DMaterialFactory(J2DMaterialBlock const&);
@@ -146,18 +146,6 @@ extern "C" static void func_802F42D8();
 //
 
 void* operator new(u32);
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
-extern "C" extern u32 j2dDefaultTevOrderInfoNull;
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u8 j2dDefaultTevSwapMode[4];
-extern "C" extern u32 j2dDefaultTevSwapModeTable;
-extern "C" extern u32 j2dDefaultBlendInfo;
-extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
 
 extern "C" void* __nw__FUl();
 extern "C" void getResource__15JUTResReferenceFPCvUlP10JKRArchive();

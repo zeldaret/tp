@@ -27,8 +27,6 @@ struct daItemBase_c {
 //
 
 void CheckShopItemCreateHeap(fopAc_ac_c*);
-extern "C" extern void* const mData__12daShopItem_c[276];
-extern "C" extern char const* const d_a_d_a_shop_item_static__stringBase0;
 
 extern "C" void getRotateP__12daShopItem_cFv();
 extern "C" void getPosP__12daShopItem_cFv();

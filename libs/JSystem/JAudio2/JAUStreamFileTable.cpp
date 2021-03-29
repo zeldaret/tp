@@ -33,8 +33,6 @@ struct JAIStreamDataMgr {
 // Forward References:
 //
 
-extern "C" extern void* __vt__32JAUStreamDataMgr_StreamFileTable[4];
-
 extern "C" void __ct__18JAUStreamFileTableFv();
 extern "C" void init__18JAUStreamFileTableFPCv();
 extern "C" void getNumFiles__18JAUStreamFileTableCFv();

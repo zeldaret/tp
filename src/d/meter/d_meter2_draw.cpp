@@ -31,8 +31,6 @@ struct dMsgObject_c {
 
 struct JMSMesgEntry_c {};
 
-struct ResTIMG {};
-
 struct JGeometry {
     template <typename A1>
     struct TBox2 {};
@@ -41,6 +39,8 @@ struct JGeometry {
 };
 
 struct ResTLUT {};
+
+struct ResTIMG {};
 
 struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
@@ -56,12 +56,6 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
-struct JKRExpHeap {};
-
 struct J2DGrafContext {};
 
 struct JKRArchive {
@@ -75,6 +69,8 @@ struct J2DScreen {
     /* 802F9690 */ void animation();
 };
 
+struct JKRExpHeap {};
+
 struct CPaneMgrAlpha {
     /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
     /* 802555C8 */ void show();
@@ -83,6 +79,12 @@ struct CPaneMgrAlpha {
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
 };
+
+struct JUtility {
+    struct TColor {};
+};
+
+struct J2DAnmColor {};
 
 struct J2DRotateAxis {};
 
@@ -102,8 +104,6 @@ struct CPaneMgr {
     /* 802545B0 */ void paneTrans(f32, f32);
     /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
 };
-
-struct J2DAnmColor {};
 
 struct dMeter2Draw_c {
     /* 8020FAB4 */ dMeter2Draw_c(JKRExpHeap*);
@@ -246,9 +246,6 @@ struct J2DAnmLoaderDataBase {
 // Forward References:
 //
 
-extern "C" extern u8 const data_803988B8[24];
-extern "C" extern char const* const d_meter_d_meter2_draw__stringBase0;
-
 extern "C" void __ct__13dMeter2Draw_cFP10JKRExpHeap();
 extern "C" void __dt__13dMeter2Draw_cFv();
 extern "C" void init__13dMeter2Draw_cFv();
@@ -370,13 +367,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -915,13 +905,13 @@ SECTION_SDATA2 static u8 lit_4182[4] = {
 };
 
 /* 80454884-80454888 0004+00 s=14 e=0 z=0  None .sdata2    @4183 */
-SECTION_SDATA2 static u32 lit_4183 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4183 = 1.0f;
 
 /* 80454888-8045488C 0004+00 s=5 e=0 z=0  None .sdata2    @4184 */
-SECTION_SDATA2 static u32 lit_4184 = 0x41880000;
+SECTION_SDATA2 static f32 lit_4184 = 17.0f;
 
 /* 8045488C-80454890 0004+00 s=1 e=0 z=0  None .sdata2    @4185 */
-SECTION_SDATA2 static u32 lit_4185 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_4185 = 20.0f;
 
 /* 8020FAB4-802102F8 0844+00 s=0 e=1 z=0  None .text      __ct__13dMeter2Draw_cFP10JKRExpHeap */
 #pragma push
@@ -965,10 +955,10 @@ asm void dMeter2Draw_c::exec(u32 param_0) {
 
 /* ############################################################################################## */
 /* 80454890-80454894 0004+00 s=1 e=0 z=0  None .sdata2    @4921 */
-SECTION_SDATA2 static u32 lit_4921 = 0x41800000;
+SECTION_SDATA2 static f32 lit_4921 = 16.0f;
 
 /* 80454894-80454898 0004+00 s=9 e=0 z=0  None .sdata2    @4922 */
-SECTION_SDATA2 static u32 lit_4922 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4922 = 0.5f;
 
 /* 80454898-804548A0 0004+04 s=7 e=0 z=0  None .sdata2    @4923 */
 SECTION_SDATA2 static f32 lit_4923[1 + 1 /* padding */] = {
@@ -978,9 +968,7 @@ SECTION_SDATA2 static f32 lit_4923[1 + 1 /* padding */] = {
 };
 
 /* 804548A0-804548A8 0008+00 s=13 e=0 z=0  None .sdata2    @4925 */
-SECTION_SDATA2 static u8 lit_4925[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4925 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8021151C-80211BEC 06D0+00 s=1 e=0 z=0  None .text      draw__13dMeter2Draw_cFv */
 #pragma push
@@ -1113,13 +1101,13 @@ asm void dMeter2Draw_c::drawPikari(CPaneMgr* param_0, f32* param_1, f32 param_2,
 
 /* ############################################################################################## */
 /* 804548A8-804548AC 0004+00 s=1 e=0 z=0  None .sdata2    @5784 */
-SECTION_SDATA2 static u32 lit_5784 = 0x41E00000;
+SECTION_SDATA2 static f32 lit_5784 = 28.0f;
 
 /* 804548AC-804548B0 0004+00 s=1 e=0 z=0  None .sdata2    @5785 */
-SECTION_SDATA2 static u32 lit_5785 = 0x41C00000;
+SECTION_SDATA2 static f32 lit_5785 = 24.0f;
 
 /* 804548B0-804548B4 0004+00 s=4 e=0 z=0  None .sdata2    @5786 */
-SECTION_SDATA2 static u32 lit_5786 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5786 = -1.0f;
 
 /* 802140DC-8021462C 0550+00 s=1 e=6 z=0  None .text
  * drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
@@ -1202,7 +1190,7 @@ asm void dMeter2Draw_c::setAlphaLifeAnimeMax() {
 
 /* ############################################################################################## */
 /* 804548B4-804548B8 0004+00 s=1 e=0 z=0  None .sdata2    @6143 */
-SECTION_SDATA2 static u32 lit_6143 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_6143 = 0.25f;
 
 /* 80214EB4-80215290 03DC+00 s=1 e=0 z=0  None .text      drawKanteraScreen__13dMeter2Draw_cFUc */
 #pragma push
@@ -1216,7 +1204,7 @@ asm void dMeter2Draw_c::drawKanteraScreen(u8 param_0) {
 
 /* ############################################################################################## */
 /* 804548B8-804548BC 0004+00 s=1 e=0 z=0  None .sdata2    @6175 */
-SECTION_SDATA2 static u32 lit_6175 = 0x3D000000;
+SECTION_SDATA2 static f32 lit_6175 = 0.03125f;
 
 /* 80215290-80215380 00F0+00 s=1 e=0 z=0  None .text      drawMagic__13dMeter2Draw_cFssff */
 #pragma push
@@ -1240,12 +1228,10 @@ asm void dMeter2Draw_c::setAlphaMagicChange(bool param_0) {
 
 /* ############################################################################################## */
 /* 804548BC-804548C0 0004+00 s=4 e=0 z=0  None .sdata2    @6210 */
-SECTION_SDATA2 static u32 lit_6210 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_6210 = 5.0f;
 
 /* 804548C0-804548C8 0008+00 s=9 e=0 z=0  None .sdata2    @6293 */
-SECTION_SDATA2 static u8 lit_6293[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_6293 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802154A8-802155B8 0110+00 s=1 e=1 z=0  None .text      drawKantera__13dMeter2Draw_cFllff */
 #pragma push
@@ -1334,7 +1320,7 @@ asm void dMeter2Draw_c::setAlphaOxygenAnimeMax() {
 
 /* ############################################################################################## */
 /* 804548C8-804548CC 0004+00 s=4 e=0 z=0  None .sdata2    @6524 */
-SECTION_SDATA2 static u32 lit_6524 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_6524 = 3.0f / 10.0f;
 
 /* 80215B18-80215DA4 028C+00 s=1 e=1 z=0  None .text      drawLightDrop__13dMeter2Draw_cFUcUcffffUc
  */
@@ -1727,7 +1713,7 @@ asm void dMeter2Draw_c::setAlphaButtonBAnimeMax() {
 
 /* ############################################################################################## */
 /* 804548CC-804548D0 0004+00 s=5 e=0 z=0  None .sdata2    @8207 */
-SECTION_SDATA2 static u32 lit_8207 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_8207 = 255.0f;
 
 /* 802195A4-80219788 01E4+00 s=0 e=1 z=0  None .text      setButtonIconAAlpha__13dMeter2Draw_cFUcUlb
  */
@@ -1753,10 +1739,10 @@ asm void dMeter2Draw_c::setButtonIconBAlpha(u8 param_0, u32 param_1, bool param_
 
 /* ############################################################################################## */
 /* 804548D0-804548D4 0004+00 s=1 e=0 z=0  None .sdata2    @8359 */
-SECTION_SDATA2 static u32 lit_8359 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_8359 = 2.0f / 5.0f;
 
 /* 804548D4-804548D8 0004+00 s=1 e=0 z=0  None .sdata2    @8360 */
-SECTION_SDATA2 static u32 lit_8360 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_8360 = 1.0f / 10.0f;
 
 /* 80219A84-80219E98 0414+00 s=0 e=1 z=0  None .text setButtonIconMidonaAlpha__13dMeter2Draw_cFUl
  */
@@ -1807,10 +1793,10 @@ asm void dMeter2Draw_c::getActionString(u8 param_0, u8 param_1, u8* param_2) {
 
 /* ############################################################################################## */
 /* 804548D8-804548DC 0004+00 s=2 e=0 z=0  None .sdata2    @8548 */
-SECTION_SDATA2 static u32 lit_8548 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_8548 = 100.0f;
 
 /* 804548DC-804548E0 0004+00 s=2 e=0 z=0  None .sdata2    @8549 */
-SECTION_SDATA2 static u32 lit_8549 = 0x42400000;
+SECTION_SDATA2 static f32 lit_8549 = 48.0f;
 
 /* 8021A468-8021A71C 02B4+00 s=2 e=0 z=0  None .text      changeTextureItemB__13dMeter2Draw_cFUc */
 #pragma push
@@ -1877,10 +1863,10 @@ asm void dMeter2Draw_c::drawItemNum(u8 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 804548E0-804548E4 0004+00 s=1 e=0 z=0  None .sdata2    @8774 */
-SECTION_SDATA2 static u32 lit_8774 = 0x41100000;
+SECTION_SDATA2 static f32 lit_8774 = 9.0f;
 
 /* 804548E4-804548E8 0004+00 s=1 e=0 z=0  None .sdata2    @8775 */
-SECTION_SDATA2 static u32 lit_8775 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_8775 = 3.0f / 5.0f;
 
 /* 80456B90-80456B94 0004+00 s=1 e=0 z=0  None .sbss2     @8746 */
 SECTION_SBSS2 static u8 lit_8746[4];
@@ -1916,52 +1902,52 @@ asm void dMeter2Draw_c::isButtonVisible() {
 
 /* ############################################################################################## */
 /* 804548E8-804548EC 0004+00 s=2 e=0 z=0  None .sdata2    @8992 */
-SECTION_SDATA2 static u32 lit_8992 = 0x40800000;
+SECTION_SDATA2 static f32 lit_8992 = 4.0f;
 
 /* 804548EC-804548F0 0004+00 s=1 e=0 z=0  None .sdata2    @8993 */
-SECTION_SDATA2 static u32 lit_8993 = 0xC1300000;
+SECTION_SDATA2 static f32 lit_8993 = -11.0f;
 
 /* 804548F0-804548F4 0004+00 s=4 e=0 z=0  None .sdata2    @8994 */
-SECTION_SDATA2 static u32 lit_8994 = 0x3FD9999A;
+SECTION_SDATA2 static f32 lit_8994 = 17.0f / 10.0f;
 
 /* 804548F4-804548F8 0004+00 s=3 e=0 z=0  None .sdata2    @8995 */
-SECTION_SDATA2 static u32 lit_8995 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_8995 = -4.0f;
 
 /* 804548F8-804548FC 0004+00 s=2 e=0 z=0  None .sdata2    @8996 */
-SECTION_SDATA2 static u32 lit_8996 = 0xC1133333;
+SECTION_SDATA2 static f32 lit_8996 = -46.0f / 5.0f;
 
 /* 804548FC-80454900 0004+00 s=2 e=0 z=0  None .sdata2    @8997 */
-SECTION_SDATA2 static u32 lit_8997 = 0x3F733333;
+SECTION_SDATA2 static f32 lit_8997 = 19.0f / 20.0f;
 
 /* 80454900-80454904 0004+00 s=2 e=0 z=0  None .sdata2    @8998 */
-SECTION_SDATA2 static u32 lit_8998 = 0x41133333;
+SECTION_SDATA2 static f32 lit_8998 = 46.0f / 5.0f;
 
 /* 80454904-80454908 0004+00 s=1 e=0 z=0  None .sdata2    @8999 */
-SECTION_SDATA2 static u32 lit_8999 = 0xC1600000;
+SECTION_SDATA2 static f32 lit_8999 = -14.0f;
 
 /* 80454908-8045490C 0004+00 s=2 e=0 z=0  None .sdata2    @9000 */
-SECTION_SDATA2 static u32 lit_9000 = 0x40000000;
+SECTION_SDATA2 static f32 lit_9000 = 2.0f;
 
 /* 8045490C-80454910 0004+00 s=2 e=0 z=0  None .sdata2    @9001 */
-SECTION_SDATA2 static u32 lit_9001 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_9001 = 1.5f;
 
 /* 80454910-80454914 0004+00 s=2 e=0 z=0  None .sdata2    @9002 */
-SECTION_SDATA2 static u32 lit_9002 = 0x43AF0000;
+SECTION_SDATA2 static f32 lit_9002 = 350.0f;
 
 /* 80454914-80454918 0004+00 s=1 e=0 z=0  None .sdata2    @9003 */
-SECTION_SDATA2 static u32 lit_9003 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_9003 = -2.0f;
 
 /* 80454918-8045491C 0004+00 s=1 e=0 z=0  None .sdata2    @9004 */
-SECTION_SDATA2 static u32 lit_9004 = 0xC1700000;
+SECTION_SDATA2 static f32 lit_9004 = -15.0f;
 
 /* 8045491C-80454920 0004+00 s=3 e=0 z=0  None .sdata2    @9005 */
-SECTION_SDATA2 static u32 lit_9005 = 0xBFA66666;
+SECTION_SDATA2 static f32 lit_9005 = -13.0f / 10.0f;
 
 /* 80454920-80454924 0004+00 s=2 e=0 z=0  None .sdata2    @9006 */
-SECTION_SDATA2 static u32 lit_9006 = 0xC1800000;
+SECTION_SDATA2 static f32 lit_9006 = -16.0f;
 
 /* 80454924-80454928 0004+00 s=3 e=0 z=0  None .sdata2    @9007 */
-SECTION_SDATA2 static u32 lit_9007 = 0x3FF1C71D;
+SECTION_SDATA2 static f32 lit_9007 = 1.888888955116272f;
 
 /* 8021B104-8021B364 0260+00 s=3 e=0 z=0  None .text      setItemParamX__13dMeter2Draw_cFUc */
 #pragma push
@@ -1975,19 +1961,19 @@ asm void dMeter2Draw_c::setItemParamX(u8 param_0) {
 
 /* ############################################################################################## */
 /* 80454928-8045492C 0004+00 s=3 e=0 z=0  None .sdata2    @9025 */
-SECTION_SDATA2 static u32 lit_9025 = 0x41600000;
+SECTION_SDATA2 static f32 lit_9025 = 14.0f;
 
 /* 8045492C-80454930 0004+00 s=2 e=0 z=0  None .sdata2    @9026 */
-SECTION_SDATA2 static u32 lit_9026 = 0x3FA66666;
+SECTION_SDATA2 static f32 lit_9026 = 13.0f / 10.0f;
 
 /* 80454930-80454934 0004+00 s=2 e=0 z=0  None .sdata2    @9027 */
-SECTION_SDATA2 static u32 lit_9027 = 0xC0D33333;
+SECTION_SDATA2 static f32 lit_9027 = -33.0f / 5.0f;
 
 /* 80454934-80454938 0004+00 s=2 e=0 z=0  None .sdata2    @9028 */
-SECTION_SDATA2 static u32 lit_9028 = 0x40D33333;
+SECTION_SDATA2 static f32 lit_9028 = 33.0f / 5.0f;
 
 /* 80454938-8045493C 0004+00 s=1 e=0 z=0  None .sdata2    @9029 */
-SECTION_SDATA2 static u32 lit_9029 = 0xBFE66666;
+SECTION_SDATA2 static f32 lit_9029 = -9.0f / 5.0f;
 
 /* 8021B364-8021B5B0 024C+00 s=3 e=0 z=0  None .text      setItemParamY__13dMeter2Draw_cFUc */
 #pragma push
@@ -2001,22 +1987,22 @@ asm void dMeter2Draw_c::setItemParamY(u8 param_0) {
 
 /* ############################################################################################## */
 /* 8045493C-80454940 0004+00 s=2 e=0 z=0  None .sdata2    @9047 */
-SECTION_SDATA2 static u32 lit_9047 = 0x400CCCCD;
+SECTION_SDATA2 static f32 lit_9047 = 11.0f / 5.0f;
 
 /* 80454940-80454944 0004+00 s=2 e=0 z=0  None .sdata2    @9048 */
-SECTION_SDATA2 static u32 lit_9048 = 0xC1F00000;
+SECTION_SDATA2 static f32 lit_9048 = -30.0f;
 
 /* 80454944-80454948 0004+00 s=2 e=0 z=0  None .sdata2    @9049 */
-SECTION_SDATA2 static u32 lit_9049 = 0x3F400000;
+SECTION_SDATA2 static f32 lit_9049 = 0.75f;
 
 /* 80454948-8045494C 0004+00 s=2 e=0 z=0  None .sdata2    @9050 */
-SECTION_SDATA2 static u32 lit_9050 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_9050 = 4.0f / 5.0f;
 
 /* 8045494C-80454950 0004+00 s=2 e=0 z=0  None .sdata2    @9051 */
-SECTION_SDATA2 static u32 lit_9051 = 0x3FB33333;
+SECTION_SDATA2 static f32 lit_9051 = 7.0f / 5.0f;
 
 /* 80454950-80454954 0004+00 s=1 e=0 z=0  None .sdata2    @9052 */
-SECTION_SDATA2 static u32 lit_9052 = 0xC0600000;
+SECTION_SDATA2 static f32 lit_9052 = -3.5f;
 
 /* 8021B5B0-8021B810 0260+00 s=3 e=0 z=0  None .text      setItemParamZ__13dMeter2Draw_cFUc */
 #pragma push
@@ -2030,55 +2016,55 @@ asm void dMeter2Draw_c::setItemParamZ(u8 param_0) {
 
 /* ############################################################################################## */
 /* 80454954-80454958 0004+00 s=1 e=0 z=0  None .sdata2    @9089 */
-SECTION_SDATA2 static u32 lit_9089 = 0x418A6666;
+SECTION_SDATA2 static f32 lit_9089 = 17.299999237060547f;
 
 /* 80454958-8045495C 0004+00 s=1 e=0 z=0  None .sdata2    @9090 */
-SECTION_SDATA2 static u32 lit_9090 = 0xC23B3333;
+SECTION_SDATA2 static f32 lit_9090 = -46.79999923706055f;
 
 /* 8045495C-80454960 0004+00 s=1 e=0 z=0  None .sdata2    @9091 */
-SECTION_SDATA2 static u32 lit_9091 = 0x41D00000;
+SECTION_SDATA2 static f32 lit_9091 = 26.0f;
 
 /* 80454960-80454964 0004+00 s=1 e=0 z=0  None .sdata2    @9092 */
-SECTION_SDATA2 static u32 lit_9092 = 0xC25ACCCD;
+SECTION_SDATA2 static f32 lit_9092 = -54.70000076293945f;
 
 /* 80454964-80454968 0004+00 s=1 e=0 z=0  None .sdata2    @9093 */
-SECTION_SDATA2 static u32 lit_9093 = 0x41A5999A;
+SECTION_SDATA2 static f32 lit_9093 = 20.700000762939453f;
 
 /* 80454968-8045496C 0004+00 s=1 e=0 z=0  None .sdata2    @9094 */
-SECTION_SDATA2 static u32 lit_9094 = 0xC25ECCCD;
+SECTION_SDATA2 static f32 lit_9094 = -55.70000076293945f;
 
 /* 8045496C-80454970 0004+00 s=1 e=0 z=0  None .sdata2    @9095 */
-SECTION_SDATA2 static u32 lit_9095 = 0x41766666;
+SECTION_SDATA2 static f32 lit_9095 = 77.0f / 5.0f;
 
 /* 80454970-80454974 0004+00 s=1 e=0 z=0  None .sdata2    @9096 */
-SECTION_SDATA2 static u32 lit_9096 = 0xC23F3333;
+SECTION_SDATA2 static f32 lit_9096 = -47.79999923706055f;
 
 /* 80454974-80454978 0004+00 s=1 e=0 z=0  None .sdata2    @9097 */
-SECTION_SDATA2 static u32 lit_9097 = 0x41BA6666;
+SECTION_SDATA2 static f32 lit_9097 = 23.299999237060547f;
 
 /* 80454978-8045497C 0004+00 s=1 e=0 z=0  None .sdata2    @9098 */
-SECTION_SDATA2 static u32 lit_9098 = 0x41EA6666;
+SECTION_SDATA2 static f32 lit_9098 = 29.299999237060547f;
 
 /* 8045497C-80454980 0004+00 s=1 e=0 z=0  None .sdata2    @9099 */
-SECTION_SDATA2 static u32 lit_9099 = 0x41A26666;
+SECTION_SDATA2 static f32 lit_9099 = 20.299999237060547f;
 
 /* 80454980-80454984 0004+00 s=1 e=0 z=0  None .sdata2    @9100 */
-SECTION_SDATA2 static u32 lit_9100 = 0x41400000;
+SECTION_SDATA2 static f32 lit_9100 = 12.0f;
 
 /* 80454984-80454988 0004+00 s=1 e=0 z=0  None .sdata2    @9101 */
-SECTION_SDATA2 static u32 lit_9101 = 0xC1B00000;
+SECTION_SDATA2 static f32 lit_9101 = -22.0f;
 
 /* 80454988-8045498C 0004+00 s=1 e=0 z=0  None .sdata2    @9102 */
-SECTION_SDATA2 static u32 lit_9102 = 0x41A80000;
+SECTION_SDATA2 static f32 lit_9102 = 21.0f;
 
 /* 8045498C-80454990 0004+00 s=1 e=0 z=0  None .sdata2    @9103 */
-SECTION_SDATA2 static u32 lit_9103 = 0xC23ACCCD;
+SECTION_SDATA2 static f32 lit_9103 = -46.70000076293945f;
 
 /* 80454990-80454994 0004+00 s=1 e=0 z=0  None .sdata2    @9104 */
-SECTION_SDATA2 static u32 lit_9104 = 0x41980000;
+SECTION_SDATA2 static f32 lit_9104 = 19.0f;
 
 /* 80454994-80454998 0004+00 s=1 e=0 z=0  None .sdata2    @9105 */
-SECTION_SDATA2 static u32 lit_9105 = 0xC2340000;
+SECTION_SDATA2 static f32 lit_9105 = -45.0f;
 
 /* 8021B810-8021BB6C 035C+00 s=3 e=0 z=0  None .text      setItemParamB__13dMeter2Draw_cFUc */
 #pragma push

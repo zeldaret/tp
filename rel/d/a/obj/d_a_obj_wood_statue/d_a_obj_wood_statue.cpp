@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -92,9 +92,9 @@ struct dPa_followEcallBack {
     /* 80D3A6F4 */ void __defctor();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -234,8 +234,6 @@ static void daObjWStatue_Execute(daObjWStatue_c*);
 static void daObjWStatue_Delete(daObjWStatue_c*);
 static void daObjWStatue_Create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_WoodStatue[12];
 
 extern "C" static void Reflect__FP4cXyzRC13cBgS_PolyInfof();
 extern "C" void __dt__8cM3dGPlaFv();
@@ -310,22 +308,6 @@ void dComIfGp_getReverb(int);
 void CheckFieldItemCreateHeap(fopAc_ac_c*);
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__19dPa_followEcallBack[10];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D3B8F0[4];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

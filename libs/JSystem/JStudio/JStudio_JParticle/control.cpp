@@ -74,8 +74,6 @@ struct JPAEmitterManager {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q217JStudio_JParticle13TCreateObject[6];
-
 extern "C" void __dt__Q217JStudio_JParticle13TCreateObjectFv();
 extern "C" void
 create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object();

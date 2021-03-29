@@ -49,8 +49,6 @@ extern "C" void dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi();
 // External References:
 //
 
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
 extern "C" void isSwitch__10dSv_info_cCFii();
 extern "C" void GetRoomPathId__4dBgSFRC13cBgS_PolyInfo();
@@ -96,16 +94,10 @@ asm void dPath_GetNextRoomPath(dPath const* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80452000-80452008 0004+04 s=1 e=0 z=0  None .sdata2    @3685 */
-SECTION_SDATA2 static u8 lit_3685[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3685[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8005195C-80051AC0 0164+00 s=0 e=1 z=4  None .text

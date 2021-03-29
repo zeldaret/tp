@@ -92,8 +92,6 @@ struct JKRAramArchive {
 // Forward References:
 //
 
-extern "C" extern void* __vt__10JKRArchive[20];
-
 extern "C" void check_mount_already__10JKRArchiveFlP7JKRHeap();
 extern "C" void
 mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection();
@@ -126,11 +124,6 @@ extern "C" extern void* __vt__10JKRArchive[20];
 //
 
 void* operator new(u32, JKRHeap*, int);
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
 
 extern "C" void getExpandedResSize__10JKRArchiveCFPCv();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();

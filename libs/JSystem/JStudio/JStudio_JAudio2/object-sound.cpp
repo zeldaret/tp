@@ -177,13 +177,6 @@ extern "C" void func_8028E0F4();
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound[12];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_sound[20];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
-extern "C" extern u8 data_804511F8[8];
 
 extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
 extern "C" void adaptor_do_begin__Q27JStudio8TAdaptorFv();
@@ -591,12 +584,10 @@ asm void JStudio_JAudio2::TAdaptor_sound::prepareSound_() {
 
 /* ############################################################################################## */
 /* 80455514-80455518 0004+00 s=1 e=0 z=0  None .sdata2    @1805 */
-SECTION_SDATA2 static u32 lit_1805 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1805 = 1.0f;
 
 /* 80455518-80455520 0008+00 s=1 e=0 z=0  None .sdata2    @1807 */
-SECTION_SDATA2 static u8 lit_1807[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1807 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8028DFA4-8028E054 00B0+00 s=3 e=0 z=0  None .text
  * beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv    */

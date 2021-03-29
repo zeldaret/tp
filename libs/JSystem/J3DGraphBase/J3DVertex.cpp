@@ -55,7 +55,6 @@ extern "C" void __dt__14J3DDrawMtxDataFv();
 
 void* operator new[](u32, int);
 void operator delete(void*);
-extern "C" extern u8 j3dSys[284];
 
 SECTION_INIT void memcpy();
 extern "C" void* __nwa__FUli();

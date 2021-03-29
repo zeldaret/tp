@@ -56,7 +56,6 @@ static void daTagHstop_Create(fopAc_ac_c*);
 static void daTagHstop_Delete(daTagHstop_c*);
 static void daTagHstop_Execute(daTagHstop_c*);
 static bool daTagHstop_Draw(daTagHstop_c*);
-extern "C" extern void* g_profile_Tag_Hstop[12];
 
 extern "C" void create__12daTagHstop_cFv();
 extern "C" static void daTagHstop_Create__FP10fopAc_ac_c();
@@ -75,11 +74,6 @@ extern "C" extern void* g_profile_Tag_Hstop[12];
 
 void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

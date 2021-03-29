@@ -37,8 +37,6 @@ extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff();
 
 extern "C" extern u8 sincosTable___5JMath[65536];
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-
 //
 // Declarations:
 //

@@ -24,8 +24,6 @@ struct J3DUClipper {
 // Forward References:
 //
 
-extern "C" extern char const* const J3DUClipper__stringBase0;
-
 extern "C" void init__11J3DUClipperFv();
 extern "C" void calcViewFrustum__11J3DUClipperFv();
 extern "C" void clip__11J3DUClipperCFPA4_Cf3Vecf();
@@ -49,10 +47,10 @@ extern "C" void tan();
 
 /* ############################################################################################## */
 /* 80455278-8045527C 0004+00 s=1 e=0 z=0  None .sdata2    @893 */
-SECTION_SDATA2 static u32 lit_893 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_893 = 1.0f;
 
 /* 8045527C-80455280 0004+00 s=1 e=0 z=0  None .sdata2    @894 */
-SECTION_SDATA2 static u32 lit_894 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_894 = 100000.0f;
 
 /* 80273778-8027378C 0014+00 s=0 e=1 z=0  None .text      init__11J3DUClipperFv */
 #pragma push
@@ -91,10 +89,10 @@ SECTION_RODATA static u8 const lit_902[12] = {
 };
 
 /* 80455280-80455284 0004+00 s=1 e=0 z=0  None .sdata2    @913 */
-SECTION_SDATA2 static u32 lit_913 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_913 = 0.01745329238474369f;
 
 /* 80455284-80455288 0004+00 s=1 e=0 z=0  None .sdata2    @914 */
-SECTION_SDATA2 static u32 lit_914 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_914 = 0.5f;
 
 /* 8027378C-802738FC 0170+00 s=0 e=3 z=4  None .text      calcViewFrustum__11J3DUClipperFv */
 #pragma push
@@ -118,16 +116,10 @@ asm void J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) co
 
 /* ############################################################################################## */
 /* 80455288-80455290 0004+04 s=1 e=0 z=0  None .sdata2    @991 */
-SECTION_SDATA2 static u8 lit_991[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_991[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80273A44-80273E08 03C4+00 s=0 e=3 z=2  None .text      clip__11J3DUClipperCFPA4_CfP3VecP3Vec */

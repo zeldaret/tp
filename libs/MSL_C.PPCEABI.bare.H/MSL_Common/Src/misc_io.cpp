@@ -17,8 +17,6 @@ extern "C" void __stdio_atexit();
 // External References:
 //
 
-extern "C" extern u8 __stdio_exit[4];
-
 extern "C" void __close_all();
 extern "C" extern u8 __stdio_exit[4];
 

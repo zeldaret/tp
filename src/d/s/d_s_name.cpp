@@ -115,9 +115,6 @@ static void dScnName_Execute(dScnName_c*);
 static void dScnName_IsDelete(dScnName_c*);
 static void dScnName_Delete(dScnName_c*);
 static void dScnName_Create(scene_class*);
-extern "C" extern char const* const d_s_d_s_name__stringBase0;
-extern "C" extern void* g_profile_NAME_SCENE[10];
-extern "C" extern void* g_profile_NAMEEX_SCENE[10];
 
 extern "C" void __ct__9dSn_HIO_cFv();
 extern "C" static void phase_1__FPc();
@@ -165,18 +162,6 @@ void dKy_clear_game_init();
 void dKy_setLight_init();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs();
 extern "C" void mDoMtx_concatProjView__FPA4_CfPA4_CfPA4_f();
@@ -421,24 +406,22 @@ SECTION_SDATA2 static u8 lit_3923[4] = {
 };
 
 /* 80454EFC-80454F00 0004+00 s=1 e=0 z=0  None .sdata2    @3924 */
-SECTION_SDATA2 static u32 lit_3924 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3924 = 1.0f;
 
 /* 80454F00-80454F04 0004+00 s=1 e=0 z=0  None .sdata2    @3925 */
-SECTION_SDATA2 static u32 lit_3925 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_3925 = 100000.0f;
 
 /* 80454F04-80454F08 0004+00 s=1 e=0 z=0  None .sdata2    @3926 */
-SECTION_SDATA2 static u32 lit_3926 = 0x42340000;
+SECTION_SDATA2 static f32 lit_3926 = 45.0f;
 
 /* 80454F08-80454F0C 0004+00 s=1 e=0 z=0  None .sdata2    @3927 */
-SECTION_SDATA2 static u32 lit_3927 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_3927 = 19.0f / 14.0f;
 
 /* 80454F0C-80454F10 0004+00 s=1 e=0 z=0  None .sdata2    @3928 */
-SECTION_SDATA2 static u32 lit_3928 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_3928 = -1000.0f;
 
 /* 80454F10-80454F18 0008+00 s=1 e=0 z=0  None .sdata2    @3930 */
-SECTION_SDATA2 static u8 lit_3930[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3930 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802588A0-80258B2C 028C+00 s=1 e=0 z=0  None .text      create__10dScnName_cFv */
 #pragma push

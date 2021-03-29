@@ -44,15 +44,15 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -95,8 +95,6 @@ static void daZraFreeze_Execute(daZraFreeze_c*);
 static bool daZraFreeze_IsDelete(daZraFreeze_c*);
 static void daZraFreeze_Delete(daZraFreeze_c*);
 static void daZraFreeze_create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_ZRAFREEZE[12];
 
 extern "C" void setBaseMtx__13daZraFreeze_cFv();
 extern "C" void chkActorInScreen__13daZraFreeze_cFv();
@@ -131,13 +129,6 @@ void dComIfGs_sense_type_change_Set(s8);
 void dComIfGs_wolfeye_effect_check();
 void dKy_darkworld_check();
 void cM_rndF(f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 extern "C" void transM__14mDoMtx_stack_cFfff();
 extern "C" void XYZrotM__14mDoMtx_stack_cFRC5csXyz();

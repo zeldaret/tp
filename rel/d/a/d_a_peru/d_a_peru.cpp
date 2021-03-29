@@ -22,12 +22,6 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Vec {};
 
 struct Z2Creature {
@@ -35,6 +29,12 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -144,12 +144,12 @@ struct daObjCatDoor_c {
 
 struct J3DModel {};
 
-struct _GXColorS10 {};
-
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
+
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -409,48 +409,6 @@ static void daPeru_Delete(void*);
 static void daPeru_Execute(void*);
 static void daPeru_Draw(void*);
 static bool daPeru_IsDelete(void*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_PERU[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80D4C85C[4];
-extern "C" extern u8 data_80D4C860[4];
-extern "C" extern u8 data_80D4C864[4];
-extern "C" extern u8 data_80D4C868[4];
-extern "C" extern u8 data_80D4C86C[4];
-extern "C" extern u8 data_80D4C870[4];
-extern "C" extern u8 data_80D4C874[4];
-extern "C" extern u8 data_80D4C878[4];
-extern "C" extern u8 data_80D4C87C[4];
-extern "C" extern u8 data_80D4C880[4];
-extern "C" extern u8 data_80D4C884[4];
-extern "C" extern u8 data_80D4C888[4];
-extern "C" extern u8 data_80D4C88C[4];
-extern "C" extern u8 data_80D4C890[4];
-extern "C" extern u8 data_80D4C894[4];
-extern "C" extern u8 data_80D4C898[4];
-extern "C" extern u8 data_80D4C89C[4];
-extern "C" extern u8 data_80D4C8A0[4];
-extern "C" extern u8 data_80D4C8A4[4];
-extern "C" extern u8 data_80D4C8A8[4];
-extern "C" extern u8 data_80D4C8AC[4];
-extern "C" extern u8 data_80D4C8B0[4];
-extern "C" extern u8 data_80D4C8B4[4];
-extern "C" extern u8 data_80D4C8B8[4];
-extern "C" extern u8 data_80D4C8BC[4];
 
 extern "C" void __dt__8daPeru_cFv();
 extern "C" void create__8daPeru_cFv();
@@ -633,23 +591,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();

@@ -38,9 +38,9 @@ struct dBgS_Acch {
     /* 8007732C */ void CalcWallRR();
 };
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct cBgS_PolyInfo {
     /* 802680F8 */ void ChkSetInfo() const;
@@ -157,10 +157,6 @@ void dBgS_CheckBWallPoly(cBgS_PolyInfo const&);
 void dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
 void dBgS_CheckBRoofPoly(cBgS_PolyInfo const&);
 void dBgS_GetNY(cBgS_PolyInfo const&);
-extern "C" extern void* __vt__4dBgS[5];
-extern "C" extern void* __vt__4cBgS[5];
-extern "C" extern void* __vt__11cBgS_ChkElm[4];
-extern "C" extern u8 data_80450F68[8];
 
 extern "C" void Init__11cBgS_ChkElmFv();
 extern "C" void Regist2__11cBgS_ChkElmFP9dBgW_BaseUiPv();
@@ -240,8 +236,6 @@ extern "C" extern u8 data_80450F68[8];
 void cBgW_CheckBGround(f32);
 void cBgW_CheckBRoof(f32);
 void cBgW_CheckBWall(f32);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __dt__11cBgS_ChkElmFv();
 extern "C" void __dt__4dBgSFv();

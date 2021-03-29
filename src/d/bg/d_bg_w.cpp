@@ -25,21 +25,17 @@ struct dBgW_Base {
 
 struct csXyz {};
 
-struct dBgS_SphChk {};
-
-struct dBgS_SplGrpChk {};
-
 struct cBgS_PolyInfo {
     /* 802681A4 */ void SetPolyIndex(int);
 };
 
-struct cBgS_PolyPassChk {};
+struct dBgS_RoofChk {};
 
 struct cM3dGPla {
     /* 8026F57C */ void getCrossY(cXyz const&, f32*) const;
 };
 
-struct cBgS_GrpPassChk {};
+struct cBgS_PolyPassChk {};
 
 struct Vec {};
 
@@ -50,9 +46,13 @@ struct dBgS_Acch {
     /* 800772E8 */ void CalcMovePosWork();
 };
 
-struct dBgS_CaptPoly {};
+struct dBgS_SplGrpChk {};
 
-struct dBgS_RoofChk {};
+struct cBgS_GrpPassChk {};
+
+struct dBgS_SphChk {};
+
+struct dBgS_CaptPoly {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
@@ -174,11 +174,11 @@ struct cBgW_GrpElm {
     /* 8007A1E4 */ cBgW_GrpElm();
 };
 
+struct cBgD_t {};
+
 struct cBgS_GndChk {};
 
 struct cBgS_ShdwDraw {};
-
-struct cBgD_t {};
 
 struct cBgS_LinChk {};
 
@@ -243,9 +243,6 @@ struct cBgW {
 //
 
 void dBgW_NewSet(cBgD_t*, u32, f32 (*)[3][4]);
-extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern u8 struct_80450F88[8];
 
 extern "C" void __ct__11cBgW_RwgElmFv();
 extern "C" void __dt__11cBgW_RwgElmFv();
@@ -405,11 +402,6 @@ void cM3d_Cross_SphTri(cM3dGSph const*, cM3dGTri const*, Vec*);
 void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void SetOldShapeAngleY__9dBgW_BaseFs();
 extern "C" void GetSpeedY__9dBgS_AcchFv();
@@ -841,13 +833,13 @@ asm void cBgW::MakeBlckMinMax(int param_0, cXyz* param_1, cXyz* param_2) {
 
 /* ############################################################################################## */
 /* 804526FC-80452700 0004+00 s=1 e=0 z=0  None .sdata2    @3935 */
-SECTION_SDATA2 static u32 lit_3935 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_3935 = 1000000000.0f;
 
 /* 80452700-80452704 0004+00 s=1 e=0 z=0  None .sdata2    @3936 */
-SECTION_SDATA2 static u32 lit_3936 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_3936 = -1000000000.0f;
 
 /* 80452704-80452708 0004+00 s=5 e=0 z=0  None .sdata2    @3937 */
-SECTION_SDATA2 static u32 lit_3937 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3937 = 1.0f;
 
 /* 80079A68-80079BDC 0174+00 s=1 e=0 z=0  None .text      MakeBlckBnd__4cBgWFiP4cXyzP4cXyz */
 #pragma push
@@ -901,7 +893,7 @@ asm void cBgW::ChkMemoryError() {
 
 /* ############################################################################################## */
 /* 80452708-8045270C 0004+00 s=1 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0x43000000;
+SECTION_SDATA2 static f32 lit_4073 = 128.0f;
 
 /* 80079F38-8007A184 024C+00 s=1 e=3 z=85  None .text      Set__4cBgWFP6cBgD_tUlPA3_A4_f */
 #pragma push
@@ -1007,7 +999,7 @@ asm void cBgW::RwgGroundCheckGnd(u16 param_0, cBgS_GndChk* param_1) {
 
 /* ############################################################################################## */
 /* 8045270C-80452710 0004+00 s=1 e=0 z=0  None .sdata2    @4271 */
-SECTION_SDATA2 static u32 lit_4271 = 0x3C656042;
+SECTION_SDATA2 static f32 lit_4271 = 0.014000000432133675f;
 
 /* 8007A824-8007A8F4 00D0+00 s=1 e=0 z=0  None .text      RwgGroundCheckWall__4cBgWFUsP11cBgS_GndChk
  */

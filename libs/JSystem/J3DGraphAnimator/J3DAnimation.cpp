@@ -152,11 +152,6 @@ struct J3DAnmCluster {
 
 static void J3DGetKeyFrameInterpolation__template0(f32, J3DAnmKeyTableBase*, s16*);
 static void J3DGetKeyFrameInterpolation__template1(f32, J3DAnmKeyTableBase*, f32*);
-extern "C" extern void* __vt__16J3DAnmClusterKey[5];
-extern "C" extern void* __vt__13J3DAnmCluster[5];
-extern "C" extern void* __vt__17J3DAnmClusterFull[5];
-extern "C" extern void* __vt__27J3DAnmTransformFullWithLerp[5];
-extern "C" extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */];
 
 extern "C" void init__12J3DFrameCtrlFs();
 extern "C" void checkPass__12J3DFrameCtrlFf();
@@ -235,9 +230,6 @@ extern "C" extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__10J3DAnmBase[4];
-extern "C" extern void* __vt__15J3DAnmTransform[5];
-extern "C" extern void* __vt__10JUTNameTab[3];
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFv();
@@ -262,7 +254,7 @@ extern "C" extern void* __vt__10JUTNameTab[3];
 
 /* ############################################################################################## */
 /* 80456430-80456434 0004+00 s=6 e=0 z=0  None .sdata2    @852 */
-SECTION_SDATA2 static u32 lit_852 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_852 = 1.0f;
 
 /* 80456434-80456438 0004+00 s=20 e=0 z=0  None .sdata2    @853 */
 SECTION_SDATA2 static u8 lit_853[4] = {
@@ -291,9 +283,7 @@ SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {
 };
 
 /* 80456440-80456448 0008+00 s=4 e=0 z=0  None .sdata2    @975 */
-SECTION_SDATA2 static u8 lit_975[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_975 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8032842C-803289CC 05A0+00 s=0 e=92 z=382  None .text      checkPass__12J3DFrameCtrlFf */
 #pragma push
@@ -346,9 +336,7 @@ asm void J3DAnmTransformFull::getTransform(u16 param_0, J3DTransformInfo* param_
 
 /* ############################################################################################## */
 /* 80456450-80456458 0008+00 s=2 e=0 z=0  None .sdata2    @1223 */
-SECTION_SDATA2 static u8 lit_1223[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1223 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 803291F0-80329A34 0844+00 s=1 e=0 z=0  None .text
  * getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo */
@@ -564,7 +552,7 @@ asm J3DAnmVtxColorKey::J3DAnmVtxColorKey() {
 
 /* ############################################################################################## */
 /* 80456458-8045645C 0004+00 s=3 e=0 z=0  None .sdata2    @1499 */
-SECTION_SDATA2 static u32 lit_1499 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_1499 = 255.0f;
 
 /* 8032A53C-8032A828 02EC+00 s=1 e=0 z=0  None .text getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
  */
@@ -716,7 +704,7 @@ asm void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* param_0) {
 
 /* ############################################################################################## */
 /* 8045645C-80456460 0004+00 s=1 e=0 z=0  None .sdata2    @1817 */
-SECTION_SDATA2 static u32 lit_1817 = 0xC4800000;
+SECTION_SDATA2 static f32 lit_1817 = -1024.0f;
 
 /* 80456460-80456468 0004+04 s=1 e=0 z=0  None .sdata2    @1818 */
 SECTION_SDATA2 static f32 lit_1818[1 + 1 /* padding */] = {

@@ -53,7 +53,6 @@ void MtxScale(f32, f32, f32, u8);
 void MtxPosition(cXyz*, cXyz*);
 void MtxPush();
 void MtxPull();
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 extern "C" void cLib_memCpy__FPvPCvUl();
 extern "C" void cLib_memSet__FPviUl();
@@ -90,8 +89,6 @@ extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 //
 
 void cM_atan2s(f32, f32);
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
@@ -140,16 +137,10 @@ asm void cLib_memSet(void* param_0, int param_1, u32 param_2) {
 
 /* ############################################################################################## */
 /* 804551E0-804551E8 0004+04 s=9 e=0 z=0  None .sdata2    @2262 */
-SECTION_SDATA2 static u8 lit_2262[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8026F97C-8026FA3C 00C0+00 s=0 e=50 z=178  None .text      cLib_addCalc__FPfffff */
@@ -184,14 +175,10 @@ asm void cLib_addCalc0(f32* param_0, f32 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 804551E8-804551F0 0008+00 s=7 e=0 z=0  None .sdata2    @2379 */
-SECTION_SDATA2 static u8 lit_2379[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2379 = 0.5;
 
 /* 804551F0-804551F8 0008+00 s=7 e=0 z=0  None .sdata2    @2380 */
-SECTION_SDATA2 static u8 lit_2380[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2380 = 3.0;
 
 /* 804551F8-80455200 0008+00 s=7 e=0 z=0  None .sdata2    @2381 */
 SECTION_SDATA2 static u8 lit_2381[8] = {

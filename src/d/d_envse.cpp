@@ -64,8 +64,6 @@ static void dEnvSe_Execute(dEnvSe_c*);
 static bool dEnvSe_IsDelete(dEnvSe_c*);
 static bool dEnvSe_Delete(dEnvSe_c*);
 static void dEnvSe_Create(dEnvSe_c*);
-extern "C" extern char const* const d_d_envse__stringBase0;
-extern "C" extern void* g_profile_ENVSE[10 + 1 /* padding */];
 
 extern "C" static bool dEnvSe_Draw__FP8dEnvSe_c();
 extern "C" static void dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath();
@@ -86,13 +84,6 @@ void dComIfGp_getReverb(int);
 void dPath_GetRoomPath(int, int);
 void dPath_GetNextRoomPath(dPath const*, int);
 void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
 extern "C" void dComIfGp_getReverb__Fi();

@@ -44,7 +44,6 @@ static void daObjE_CREATE_Delete(daObjE_CREATE_c*);
 static bool daObjE_CREATE_Draw(daObjE_CREATE_c*);
 static void daObjE_CREATE_Execute(daObjE_CREATE_c*);
 static bool daObjE_CREATE_IsDelete(daObjE_CREATE_c*);
-extern "C" extern void* g_profile_Obj_E_CREATE[12];
 
 extern "C" static void daObjE_CREATE_Create__FP10fopAc_ac_c();
 extern "C" static void daObjE_CREATE_Delete__FP15daObjE_CREATE_c();
@@ -72,9 +71,6 @@ void fpcSch_JudgeByID(void*, void*);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void* operator new[](u32);
 void operator delete[](void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();

@@ -35,7 +35,6 @@ struct cXyz {};
 
 static void daTagGuard_Create(fopAc_ac_c*);
 static void daTagGuard_Delete(daTagGuard_c*);
-extern "C" extern void* g_profile_TAG_GUARD[12];
 
 extern "C" void getAppearPoint__12daTagGuard_cFP3Vec();
 extern "C" void createGuard__12daTagGuard_cFUl();
@@ -52,8 +51,6 @@ void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, 
 void dPath_GetPnt(dPath const*, int);
 void dPath_GetRoomPath(int, int);
 void cLib_targetAngleY(Vec const*, Vec const*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

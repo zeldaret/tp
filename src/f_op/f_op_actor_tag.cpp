@@ -22,7 +22,6 @@ struct create_tag_class {};
 void fopAcTg_ToActorQ(create_tag_class*);
 void fopAcTg_ActorQTo(create_tag_class*);
 void fopAcTg_Init(create_tag_class*, void*);
-extern "C" extern u8 g_fopAcTg_Queue[12 + 4 /* padding */];
 
 extern "C" void fopAcTg_ToActorQ__FP16create_tag_class();
 extern "C" void fopAcTg_ActorQTo__FP16create_tag_class();

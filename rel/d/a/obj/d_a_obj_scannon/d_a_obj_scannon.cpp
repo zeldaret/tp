@@ -249,8 +249,6 @@ static void daSCannon_Delete(daSCannon_c*);
 static void daSCannon_execute(daSCannon_c*);
 static void daSCannon_draw(daSCannon_c*);
 static void cLib_calcTimer__template0(int*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_SCannon[12];
 
 extern "C" static void eventCallBack__FPvi();
 extern "C" static void daSCannon_c_createHeap__FP10fopAc_ac_c();
@@ -330,15 +328,6 @@ void JPAGetXYZRotateMtx(s16, s16, s16, f32 (*)[4]);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

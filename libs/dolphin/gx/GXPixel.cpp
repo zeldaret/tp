@@ -28,8 +28,6 @@ extern "C" void GXSetFieldMode();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 extern "C" void __GXFlushTextureState();
 extern "C" void __cvt_fp2unsigned();
 extern "C" extern void* __GXData;
@@ -48,7 +46,7 @@ SECTION_SDATA2 static u8 lit_211[4] = {
 };
 
 /* 8045661C-80456620 0004+00 s=1 e=0 z=0  None .sdata2    @212 */
-SECTION_SDATA2 static u32 lit_212 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_212 = 1.0f;
 
 /* 80456620-80456628 0004+04 s=1 e=0 z=0  None .sdata2    @213 */
 SECTION_SDATA2 static f32 lit_213[1 + 1 /* padding */] = {
@@ -58,9 +56,7 @@ SECTION_SDATA2 static f32 lit_213[1 + 1 /* padding */] = {
 };
 
 /* 80456628-80456630 0008+00 s=1 e=0 z=0  None .sdata2    @214 */
-SECTION_SDATA2 static u8 lit_214[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_214 = 1.0;
 
 /* 80456630-80456638 0004+04 s=1 e=0 z=0  None .sdata2    @215 */
 SECTION_SDATA2 static f32 lit_215[1 + 1 /* padding */] = {
@@ -70,9 +66,7 @@ SECTION_SDATA2 static f32 lit_215[1 + 1 /* padding */] = {
 };
 
 /* 80456638-80456640 0008+00 s=1 e=0 z=0  None .sdata2    @216 */
-SECTION_SDATA2 static u8 lit_216[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_216 = 0.5;
 
 /* 80456640-80456648 0004+04 s=1 e=0 z=0  None .sdata2    @217 */
 SECTION_SDATA2 static f32 lit_217[1 + 1 /* padding */] = {
@@ -82,9 +76,7 @@ SECTION_SDATA2 static f32 lit_217[1 + 1 /* padding */] = {
 };
 
 /* 80456648-80456650 0008+00 s=1 e=0 z=0  None .sdata2    @219 */
-SECTION_SDATA2 static u8 lit_219[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_219 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8035F8B8-8035FACC 0214+00 s=0 e=20 z=2  None .text      GXSetFog */
 #pragma push

@@ -44,8 +44,6 @@ struct daPPolamp_c {
     /* 80D4D10C */ void initParam();
 };
 
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -53,6 +51,8 @@ struct cXyz {
     /* 80267128 */ void atan2sX_Z() const;
     /* 80267150 */ void atan2sY_XZ() const;
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -81,48 +81,6 @@ static void daPPolamp_create(daPPolamp_c*);
 static void daPPolamp_Delete(daPPolamp_c*);
 static void daPPolamp_execute(daPPolamp_c*);
 static void daPPolamp_draw(daPPolamp_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_PPolamp[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80D4D394[4];
-extern "C" extern u8 data_80D4D398[4];
-extern "C" extern u8 data_80D4D39C[4];
-extern "C" extern u8 data_80D4D3A0[4];
-extern "C" extern u8 data_80D4D3A4[4];
-extern "C" extern u8 data_80D4D3A8[4];
-extern "C" extern u8 data_80D4D3AC[4];
-extern "C" extern u8 data_80D4D3B0[4];
-extern "C" extern u8 data_80D4D3B4[4];
-extern "C" extern u8 data_80D4D3B8[4];
-extern "C" extern u8 data_80D4D3BC[4];
-extern "C" extern u8 data_80D4D3C0[4];
-extern "C" extern u8 data_80D4D3C4[4];
-extern "C" extern u8 data_80D4D3C8[4];
-extern "C" extern u8 data_80D4D3CC[4];
-extern "C" extern u8 data_80D4D3D0[4];
-extern "C" extern u8 data_80D4D3D4[4];
-extern "C" extern u8 data_80D4D3D8[4];
-extern "C" extern u8 data_80D4D3DC[4];
-extern "C" extern u8 data_80D4D3E0[4];
-extern "C" extern u8 data_80D4D3E4[4];
-extern "C" extern u8 data_80D4D3E8[4];
-extern "C" extern u8 data_80D4D3EC[4];
-extern "C" extern u8 data_80D4D3F0[4];
-extern "C" extern u8 data_80D4D3F4[4];
 
 extern "C" static void daPPolamp_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __dt__11daPPolamp_cFv();
@@ -199,11 +157,6 @@ void cM_rndF(f32);
 void cM_rndFX(f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

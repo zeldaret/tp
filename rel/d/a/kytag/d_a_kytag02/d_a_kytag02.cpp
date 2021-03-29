@@ -38,7 +38,6 @@ static void daKytag02_Execute(kytag02_class*);
 static bool daKytag02_IsDelete(kytag02_class*);
 static void daKytag02_Delete(kytag02_class*);
 static void daKytag02_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_KYTAG02[12];
 
 extern "C" static bool daKytag02_Draw__FP13kytag02_class();
 extern "C" static void daKytag02_Execute__FP13kytag02_class();
@@ -55,12 +54,6 @@ void dComIfGp_getReverb(int);
 void dKyw_get_wind_vec();
 void dKyw_evt_wind_set(s16, s16);
 void dKyw_evt_wind_set_go();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void dComIfGp_getReverb__Fi();

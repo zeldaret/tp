@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
-
 extern "C" bool TRKTerminateSerialHandler();
 extern "C" void TRKInitializeSerialHandler();
 extern "C" void TRKProcessInput();

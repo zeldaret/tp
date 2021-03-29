@@ -11,14 +11,14 @@
 // Types:
 //
 
-struct JPAEmitterWorkData {};
-
 struct JKRHeap {};
 
 struct JPAFieldBlock {
     /* 8027D088 */ JPAFieldBlock(u8 const*, JKRHeap*);
     /* 8027D0C0 */ void init(JKRHeap*);
 };
+
+struct JPAEmitterWorkData {};
 
 struct JPABaseParticle {};
 
@@ -123,7 +123,6 @@ extern "C" void __dt__15JPAFieldGravityFv();
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock();
 extern "C" void* __nw__FUlP7JKRHeapi();
@@ -153,7 +152,7 @@ asm void JPAFieldBase::calcAffect(JPAFieldBlock* param_0, JPABaseParticle* param
 
 /* ############################################################################################## */
 /* 80455338-8045533C 0004+00 s=6 e=0 z=0  None .sdata2    @2353 */
-SECTION_SDATA2 static u32 lit_2353 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2353 = 1.0f;
 
 /* 8045533C-80455340 0004+00 s=11 e=0 z=0  None .sdata2    @2354 */
 SECTION_SDATA2 static u8 lit_2354[4] = {
@@ -199,13 +198,13 @@ asm void JPAFieldGravity::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param
 
 /* ############################################################################################## */
 /* 80455340-80455344 0004+00 s=8 e=0 z=0  None .sdata2    @2459 */
-SECTION_SDATA2 static u32 lit_2459 = 0x42000000;
+SECTION_SDATA2 static f32 lit_2459 = 32.0f;
 
 /* 80455344-80455348 0004+00 s=9 e=0 z=0  None .sdata2    @2460 */
-SECTION_SDATA2 static u32 lit_2460 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2460 = 0.5f;
 
 /* 80455348-8045534C 0004+00 s=8 e=0 z=0  None .sdata2    @2461 */
-SECTION_SDATA2 static u32 lit_2461 = 0x40400000;
+SECTION_SDATA2 static f32 lit_2461 = 3.0f;
 
 /* 8027C07C-8027C1B8 013C+00 s=1 e=0 z=0  None .text
  * prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock */
@@ -266,7 +265,7 @@ asm void JPAFieldNewton::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* par
 
 /* ############################################################################################## */
 /* 8045534C-80455350 0004+00 s=1 e=0 z=0  None .sdata2    @2656 */
-SECTION_SDATA2 static u32 lit_2656 = 0x41200000;
+SECTION_SDATA2 static f32 lit_2656 = 10.0f;
 
 /* 8027C3E0-8027C56C 018C+00 s=1 e=0 z=0  None .text
  * calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */

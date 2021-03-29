@@ -53,23 +53,21 @@ struct J2DTextBoxVBinding {};
 
 struct J2DTextBoxHBinding {};
 
-struct J2DMaterial {};
-
-struct J2DAnmBase {};
-
 struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmColor {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DAnmTexPattern {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmColor {};
-
 struct J2DAnmTransform {};
 
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmVtxColor {};
+struct J2DAnmBase {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -108,6 +106,8 @@ struct J2DPane {
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8474 */ void update();
 };
+
+struct J2DMaterial {};
 
 struct J2DTextBox {
     /* 80186C84 */ void setWhite(JUtility::TColor);
@@ -155,8 +155,6 @@ struct J2DPrint {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const J2DTextBox__stringBase0;
 
 extern "C" void __ct__10J2DTextBoxFv();
 extern "C" void __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive();
@@ -349,27 +347,17 @@ asm J2DTextBox::J2DTextBox(J2DPane* param_0, JSURandomInputStream* param_1, JKRA
 
 /* ############################################################################################## */
 /* 80456280-80456288 0004+04 s=6 e=0 z=0  None .sdata2    @1660 */
-SECTION_SDATA2 static u8 lit_1660[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1660[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80456288-80456290 0008+00 s=3 e=0 z=0  None .sdata2    @1662 */
-SECTION_SDATA2 static u8 lit_1662[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1662 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80456290-80456298 0008+00 s=2 e=0 z=0  None .sdata2    @1665 */
-SECTION_SDATA2 static u8 lit_1665[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1665 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802FF75C-802FFBC4 0468+00 s=0 e=1 z=0  None .text
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */

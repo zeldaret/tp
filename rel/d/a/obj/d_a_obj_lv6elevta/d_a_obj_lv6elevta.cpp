@@ -34,11 +34,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -99,8 +99,6 @@ static void daObjLv6ElevtA_create1st(daObjLv6ElevtA_c*);
 static void daObjLv6ElevtA_MoveBGDelete(daObjLv6ElevtA_c*);
 static void daObjLv6ElevtA_MoveBGExecute(daObjLv6ElevtA_c*);
 static void daObjLv6ElevtA_MoveBGDraw(daObjLv6ElevtA_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Lv6ElevtA[12];
 
 extern "C" void create1st__16daObjLv6ElevtA_cFv();
 extern "C" void setMtx__16daObjLv6ElevtA_cFv();
@@ -140,14 +138,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

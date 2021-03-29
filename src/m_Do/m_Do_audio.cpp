@@ -52,22 +52,22 @@ struct Z2MultiSeMgr {
     /* 802AEB34 */ ~Z2MultiSeMgr();
 };
 
-struct JAISoundID {};
-
-struct JKRSolidHeap {
-    /* 802D0BF4 */ void adjustSize();
-};
-
-struct JAISoundHandle {
-    /* 80007838 */ ~JAISoundHandle();
-    /* 802A2184 */ void releaseSound();
-};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct JKRSolidHeap {
+    /* 802D0BF4 */ void adjustSize();
+};
+
+struct JAISoundID {};
+
+struct JAISoundHandle {
+    /* 80007838 */ ~JAISoundHandle();
+    /* 802A2184 */ void releaseSound();
 };
 
 struct Z2AudioMgr {
@@ -126,11 +126,6 @@ void mDoAud_setFadeOutStart(u8);
 void mDoAud_setFadeInStart(u8);
 void mDoAud_resetProcess();
 void mDoAud_resetRecover();
-extern "C" extern char const* const m_Do_m_Do_audio__stringBase0;
-extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
-extern "C" extern u8 lit_3620[12];
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 g_mDoAud_audioHeap[4];
 
 extern "C" void reset__17mDoAud_zelAudio_cFv();
 extern "C" static void mDoAud_Create__Fv();
@@ -158,33 +153,6 @@ extern "C" extern u8 g_mDoAud_audioHeap[4];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__8JAISeMgr[5];
-extern "C" extern void* __vt__16JAISeCategoryMgr[5];
-extern "C" extern void* __vt__9JAISeqMgr[5 + 1 /* padding */];
-extern "C" extern void* __vt__10Z2SoundMgr[3 + 1 /* padding */];
-extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
-extern "C" extern void* __vt__11Z2SoundInfo[20];
-extern "C" extern void* __vt__15Z2SpeechStarter[5];
-extern "C" extern void* __vt__10Z2AudioMgr[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B64[4];
-extern "C" extern u8 data_80450B68[4];
-extern "C" extern u8 data_80450B6C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 extern "C" void OSReport_Error();
 extern "C" void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap();

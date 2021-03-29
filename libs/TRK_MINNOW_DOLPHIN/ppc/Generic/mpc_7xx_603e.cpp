@@ -28,9 +28,6 @@ extern "C" void TRKRestoreExtended1Block();
 
 extern "C" extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
 extern "C" extern u8 gTRKCPUState[1072];
-
-extern "C" extern u8 gTRKRestoreFlags[9 + 3 /* padding */];
-extern "C" extern u8 gTRKCPUState[1072];
 extern "C" void initAtt__9daBgObj_cFv();
 
 //

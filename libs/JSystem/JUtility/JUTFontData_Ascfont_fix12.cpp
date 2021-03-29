@@ -13,8 +13,6 @@
 
 extern "C" extern u8 const JUTResFONT_Ascfont_fix12[16736];
 
-extern "C" extern u8 const JUTResFONT_Ascfont_fix12[16736];
-
 //
 // External References:
 //

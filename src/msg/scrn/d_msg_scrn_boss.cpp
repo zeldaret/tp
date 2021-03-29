@@ -71,8 +71,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_boss__stringBase0;
-
 extern "C" void __ct__14dMsgScrnBoss_cFv();
 extern "C" void __dt__14dMsgScrnBoss_cFv();
 extern "C" void exec__14dMsgScrnBoss_cFv();
@@ -91,8 +89,6 @@ void mDoExt_getRubyFont();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
@@ -181,7 +177,7 @@ SECTION_DATA static void* __vt__14dMsgScrnBoss_c[22] = {
 };
 
 /* 80454BB0-80454BB4 0004+00 s=3 e=0 z=0  None .sdata2    @3854 */
-SECTION_SDATA2 static u32 lit_3854 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3854 = 1.0f;
 
 /* 8023C5C8-8023C928 0360+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnBoss_cFv */
 #pragma push

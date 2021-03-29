@@ -11,11 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __OSLastInterruptSrr0[4];
-extern "C" extern u8 __OSLastInterrupt[2 + 6 /* padding */];
-extern "C" extern u8 __OSLastInterruptTime[4];
-extern "C" extern u8 data_80451684[4];
-
 extern "C" void OSDisableInterrupts();
 extern "C" void __RAS_OSDisableInterrupts_end();
 extern "C" void OSEnableInterrupts();

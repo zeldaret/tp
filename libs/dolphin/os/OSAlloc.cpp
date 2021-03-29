@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u32 __OSCurrHeap[1 + 1 /* padding */];
-
 extern "C" static void DLInsert();
 extern "C" void OSFreeToHeap();
 extern "C" void OSSetCurrentHeap();

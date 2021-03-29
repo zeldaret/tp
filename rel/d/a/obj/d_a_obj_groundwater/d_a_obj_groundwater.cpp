@@ -83,9 +83,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -139,9 +139,6 @@ static void daGrdWater_Draw(daGrdWater_c*);
 static void daGrdWater_Execute(daGrdWater_c*);
 static void daGrdWater_Delete(daGrdWater_c*);
 static void daGrdWater_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_GRDWATER[12];
 
 extern "C" void __ct__16daGrdWater_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -185,13 +182,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void dKy_bg_MAxx_proc(void*);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();

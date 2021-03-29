@@ -47,11 +47,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -139,8 +139,6 @@ static void daObjZraRock_Execute(daObjZraRock_c*);
 static bool daObjZraRock_IsDelete(daObjZraRock_c*);
 static void daObjZraRock_Delete(daObjZraRock_c*);
 static void daObjZraRock_create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_ZraRock[12];
 
 extern "C" void setAttnPos__14daObjZraRock_cFv();
 extern "C" void setBaseMtx__14daObjZraRock_cFv();
@@ -177,12 +175,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_Trans(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

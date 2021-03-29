@@ -14,9 +14,6 @@
 extern "C" extern u8 struct_80C4A0E8[4];
 extern "C" extern u8 data_80C4A0EC[4];
 
-extern "C" extern u8 struct_80C4A0E8[4];
-extern "C" extern u8 data_80C4A0EC[4];
-
 //
 // External References:
 //

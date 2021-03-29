@@ -11,22 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 lit_457[12];
-extern "C" extern u8 lit_459[15 + 1 /* padding */];
-extern "C" extern u8 lit_460[15 + 1 /* padding */];
-extern "C" extern u8 lit_461[13 + 3 /* padding */];
-extern "C" extern u8 lit_462[10 + 2 /* padding */];
-extern "C" extern u8 lit_463[16];
-extern "C" extern u8 lit_464[20];
-extern "C" extern u8 lit_465[18 + 2 /* padding */];
-extern "C" extern u8 lit_466[20];
-extern "C" extern u8 lit_467[9 + 3 /* padding */];
-extern "C" extern u8 lit_468[9 + 7 /* padding */];
-extern "C" extern u8 InputBufferValid[16];
-extern "C" extern u8 InputBuffer[32];
-extern "C" extern u8 data_8044C820[16];
-extern "C" extern u8 __PADFixBits[4 + 4 /* padding */];
-
 extern "C" void SIBusy();
 extern "C" void SIIsChanBusy();
 extern "C" static void CompleteTransfer();

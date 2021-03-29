@@ -62,7 +62,6 @@ void J3DCalcBBoardMtx(f32 (*)[4]);
 void J3DCalcYBBoardMtx(f32 (*)[4]);
 void J3DPSCalcInverseTranspose(f32 (*)[4], f32 (*)[3]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
@@ -216,7 +215,7 @@ asm void J3DMtxBuffer::calcNrmMtx() {
 
 /* ############################################################################################## */
 /* 80456420-80456424 0004+00 s=1 e=0 z=0  None .sdata2    @1320 */
-SECTION_SDATA2 static u32 lit_1320 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1320 = 1.0f;
 
 /* 80456424-80456428 0004+00 s=1 e=0 z=0  None .sdata2    @1321 */
 SECTION_SDATA2 static u8 lit_1321[4] = {

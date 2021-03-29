@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -26,6 +24,8 @@ struct cXyz {
     /* 80267128 */ void atan2sX_Z() const;
     /* 804C6F78 */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -319,49 +319,6 @@ static void daNbomb_Create(fopAc_ac_c*);
 static void daNbomb_Delete(daNbomb_c*);
 static void daNbomb_Execute(daNbomb_c*);
 static void daNbomb_Draw(daNbomb_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_NBOMB[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_804CC6E4[4];
-extern "C" extern u8 data_804CC6E8[4];
-extern "C" extern u8 data_804CC6EC[4];
-extern "C" extern u8 data_804CC6F0[4];
-extern "C" extern u8 data_804CC6F4[4];
-extern "C" extern u8 data_804CC6F8[4];
-extern "C" extern u8 data_804CC6FC[4];
-extern "C" extern u8 data_804CC700[4];
-extern "C" extern u8 data_804CC704[4];
-extern "C" extern u8 data_804CC708[4];
-extern "C" extern u8 data_804CC70C[4];
-extern "C" extern u8 data_804CC710[4];
-extern "C" extern u8 data_804CC714[4];
-extern "C" extern u8 data_804CC718[4];
-extern "C" extern u8 data_804CC71C[4];
-extern "C" extern u8 data_804CC720[4];
-extern "C" extern u8 data_804CC724[4];
-extern "C" extern u8 data_804CC728[4];
-extern "C" extern u8 data_804CC72C[4];
-extern "C" extern u8 data_804CC730[4];
-extern "C" extern u8 data_804CC734[4];
-extern "C" extern u8 data_804CC738[4];
-extern "C" extern u8 data_804CC73C[4];
-extern "C" extern u8 data_804CC740[4];
-extern "C" extern u8 data_804CC744[4];
-extern "C" extern u8 data_804CC748[4];
 
 extern "C" void coHitCallback__9daNbomb_cFP10fopAc_ac_c();
 extern "C" static void
@@ -510,28 +467,6 @@ void cLib_chaseF(f32*, f32, f32);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 BaseZ__4cXyz[12];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

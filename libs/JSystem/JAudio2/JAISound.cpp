@@ -65,8 +65,6 @@ struct JAISound {
 // Forward References:
 //
 
-extern "C" extern char const* const JAISound__stringBase0;
-
 extern "C" void releaseSound__14JAISoundHandleFv();
 extern "C" void releaseHandle__8JAISoundFv();
 extern "C" void attachHandle__8JAISoundFP14JAISoundHandle();
@@ -157,7 +155,7 @@ asm void JAISoundStatus_::unlockIfLocked() {
 
 /* ############################################################################################## */
 /* 804557B8-804557BC 0004+00 s=3 e=0 z=0  None .sdata2    @659 */
-SECTION_SDATA2 static u32 lit_659 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_659 = 0.5f;
 
 /* 802A2280-802A22F8 0078+00 s=0 e=4 z=0  None .text
  * mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf */
@@ -189,19 +187,13 @@ SECTION_DATA static void* __vt__8JAISound[12] = {
 };
 
 /* 804557BC-804557C0 0004+00 s=2 e=0 z=0  None .sdata2    @697 */
-SECTION_SDATA2 static u32 lit_697 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_697 = 1.0f;
 
 /* 804557C0-804557C8 0004+04 s=4 e=0 z=0  None .sdata2    @698 */
-SECTION_SDATA2 static u8 lit_698[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_698[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802A22F8-802A2328 0030+00 s=0 e=3 z=0  None .text      __ct__8JAISoundFv */
@@ -251,9 +243,7 @@ asm void JAISound::newAudible(JGeometry::TVec3<f32> const& param_0,
 
 /* ############################################################################################## */
 /* 804557C8-804557D0 0008+00 s=1 e=0 z=0  None .sdata2    @766 */
-SECTION_SDATA2 static u8 lit_766[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_766 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802A24DC-802A2598 00BC+00 s=0 e=24 z=0  None .text      stop__8JAISoundFUl */
 #pragma push

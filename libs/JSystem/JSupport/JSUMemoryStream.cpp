@@ -31,8 +31,6 @@ struct JSUMemoryInputStream {
 // Forward References:
 //
 
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-
 extern "C" void setBuffer__20JSUMemoryInputStreamFPCvl();
 extern "C" void readData__20JSUMemoryInputStreamFPvl();
 extern "C" void seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom();

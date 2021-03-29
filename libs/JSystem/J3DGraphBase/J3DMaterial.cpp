@@ -107,11 +107,11 @@ struct J3DPEBlockFogOff {
     /* 80317B34 */ void initialize();
 };
 
-struct J3DBlend {};
+struct J3DFog {};
 
 struct J3DAlphaComp {};
 
-struct J3DFog {};
+struct J3DBlend {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -320,15 +320,6 @@ struct J3DColorBlock {
 // Forward References:
 //
 
-extern "C" extern void* __vt__17J3DLockedMaterial[12];
-extern "C" extern void* __vt__18J3DPatchedMaterial[12];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern void* __vt__10J3DPEBlock[31];
-extern "C" extern void* __vt__15J3DIndBlockNull[19];
-extern "C" extern void* __vt__11J3DIndBlock[19];
-extern "C" extern void* __vt__14J3DTexGenBlock[27];
-extern "C" extern void* __vt__13J3DColorBlock[36];
-
 extern "C" void createColorBlock__11J3DMaterialFUl();
 extern "C" void createTexGenBlock__11J3DMaterialFUl();
 extern "C" void createTevBlock__11J3DMaterialFi();
@@ -458,30 +449,6 @@ void operator delete(void*);
 void J3DGDSetGenMode(u8, u8, u8, u8, _GXCullMode);
 void J3DGDSetGenMode_3Param(u8, u8, u8);
 void loadNBTScale(J3DNBTScale&);
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
-extern "C" extern void* __vt__14J3DPEBlockFull[31];
-extern "C" extern void* __vt__16J3DPEBlockFogOff[31];
-extern "C" extern void* __vt__13J3DTevBlock16[55];
-extern "C" extern void* __vt__12J3DTevBlock4[55];
-extern "C" extern void* __vt__12J3DTevBlock2[55];
-extern "C" extern void* __vt__12J3DTevBlock1[55];
-extern "C" extern void* __vt__19J3DTexGenBlockBasic[27];
-extern "C" extern void* __vt__15J3DTexGenBlock4[27];
-extern "C" extern void* __vt__21J3DTexGenBlockPatched[27];
-extern "C" extern void* __vt__20J3DColorBlockLightOn[36];
-extern "C" extern void* __vt__22J3DColorBlockAmbientOn[36];
-extern "C" extern void* __vt__13J3DPEBlockXlu[31];
-extern "C" extern void* __vt__17J3DPEBlockTexEdge[31];
-extern "C" extern void* __vt__13J3DPEBlockOpa[31];
-extern "C" extern void* __vt__15J3DIndBlockFull[19];
-extern "C" extern void* __vt__11J3DTevBlock[55];
-extern "C" extern void* __vt__21J3DColorBlockLightOff[36 + 1 /* padding */];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 __GDCurrentDL[4];
-extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u8 struct_804563F8[4];
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 extern "C" void patch__10J3DPEBlockFv();
 extern "C" void patchLight__13J3DColorBlockFv();

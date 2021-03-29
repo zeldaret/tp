@@ -32,13 +32,13 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -58,9 +58,9 @@ struct fopAc_ac_c {
 
 struct fast_create_request {};
 
-struct J3DModel {};
-
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daE_BG_c {
     /* 8068585C */ void ctrlJoint(J3DJoint*, J3DModel*);
@@ -103,9 +103,9 @@ struct dStage_roomControl_c {
     /* 800244E8 */ void checkRoomDisp(int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -267,13 +267,6 @@ static bool daE_BG_IsDelete(daE_BG_c*);
 static void daE_BG_Delete(daE_BG_c*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_BG_Create(daE_BG_c*);
-extern "C" extern u32 const lit_4647;
-extern "C" extern u32 const lit_5095;
-extern "C" extern u32 const lit_5096;
-extern "C" extern u32 const lit_5097;
-extern "C" extern u32 const lit_5158;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_BG[12];
 
 extern "C" void __ct__12daE_BG_HIO_cFv();
 extern "C" void ctrlJoint__8daE_BG_cFP8J3DJointP8J3DModel();
@@ -365,23 +358,6 @@ void cLib_distanceAngleS(s16, s16);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

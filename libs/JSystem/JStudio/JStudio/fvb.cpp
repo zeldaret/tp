@@ -212,8 +212,6 @@ void find_if__template1(JGadget::TLinkList__template1::iterator,
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q37JStudio3fvb8TFactory[5];
-
 extern "C" void __dt__Q37JStudio3fvb7TObjectFv();
 extern "C" void
 prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl();
@@ -273,14 +271,6 @@ extern "C" extern void* __vt__Q37JStudio3fvb8TFactory[5];
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern void* __vt__Q27JStudio22TFunctionValue_hermite[8];
-extern "C" extern void* __vt__Q27JStudio29TFunctionValue_list_parameter[8];
-extern "C" extern void* __vt__Q27JStudio19TFunctionValue_list[8];
-extern "C" extern void* __vt__Q27JStudio25TFunctionValue_transition[8];
-extern "C" extern void* __vt__Q27JStudio23TFunctionValue_constant[8];
-extern "C" extern void* __vt__Q27JStudio24TFunctionValue_composite[8];
-extern "C" extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 
 extern "C" void __dt__Q27JStudio14TFunctionValueFv();
 extern "C" void range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd();

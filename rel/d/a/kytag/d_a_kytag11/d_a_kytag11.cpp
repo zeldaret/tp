@@ -36,7 +36,6 @@ static bool daKytag11_IsDelete(kytag11_class*);
 static bool daKytag11_Delete(kytag11_class*);
 static void daKytag11_Create(fopAc_ac_c*);
 static void dKankyo_DayProc();
-extern "C" extern void* g_profile_KYTAG11[12];
 
 extern "C" static bool daKytag11_Draw__FP13kytag11_class();
 extern "C" static void daKytag11_Execute__FP13kytag11_class();
@@ -51,13 +50,6 @@ extern "C" extern void* g_profile_KYTAG11[12];
 //
 
 void dKy_getdaytime_hour();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void offEventBit__11dSv_event_cFUs();

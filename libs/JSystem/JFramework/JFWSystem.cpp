@@ -87,15 +87,6 @@ struct JFWSystem {
 // Forward References:
 //
 
-extern "C" extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern void* renderMode__Q29JFWSystem11CSetUpParam;
-extern "C" extern u8 systemHeap__9JFWSystem[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-
 extern "C" void firstInit__9JFWSystemFv();
 extern "C" void init__9JFWSystemFv();
 extern "C" extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
@@ -112,8 +103,6 @@ extern "C" extern u8 systemConsole__9JFWSystem[4];
 //
 
 void* operator new(u32);
-extern "C" extern u8 const JUTResFONT_Ascfont_fix12[16736];
-extern "C" extern u8 GXNtsc480IntDf[60];
 
 extern "C" void alloc__7JKRHeapFUli();
 extern "C" void* __nw__FUl();
@@ -227,15 +216,13 @@ u8 systemConsole__9JFWSystem[4];
 static u8 data_804511BC[4];
 
 /* 80455240-80455244 0004+00 s=1 e=0 z=0  None .sdata2    @2242 */
-SECTION_SDATA2 static u32 lit_2242 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2242 = 0.5f;
 
 /* 80455244-80455248 0004+00 s=1 e=0 z=0  None .sdata2    @2243 */
-SECTION_SDATA2 static u32 lit_2243 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_2243 = 17.0f / 20.0f;
 
 /* 80455248-80455250 0008+00 s=1 e=0 z=0  None .sdata2    @2245 */
-SECTION_SDATA2 static u8 lit_2245[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2245 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80271D18-80272040 0328+00 s=0 e=1 z=0  None .text      init__9JFWSystemFv */
 #pragma push

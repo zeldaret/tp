@@ -108,7 +108,6 @@ void cM3d_lineVsPosSuisenCross(cM3dGLin const*, Vec const*, Vec*);
 void cM3d_lineVsPosSuisenCross(Vec const&, Vec const&, Vec const&, Vec*);
 void cM3d_2PlaneLinePosNearPos(cM3dGPla const&, cM3dGPla const&, Vec const*, Vec*);
 void cM3d_CrawVec(Vec const&, Vec const&, Vec*);
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" static void cM3d_InDivPos1__FPC3VecPC3VecfP3Vec();
 extern "C" void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec();
@@ -182,11 +181,6 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 //
 
 void cM_atan2s(f32, f32);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern void* __vt__8cM3dGSph[3];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void cM_atan2s__Fff();
 extern "C" void __ct__8cM3dGLinFRC4cXyzRC4cXyz();
@@ -256,27 +250,17 @@ asm void cM3d_Len2dSq(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
 f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 /* 80455118-80455120 0004+04 s=28 e=0 z=0  None .sdata2    @2256 */
-SECTION_SDATA2 static u8 lit_2256[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_2256[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80455120-80455128 0008+00 s=9 e=0 z=0  None .sdata2    @2257 */
-SECTION_SDATA2 static u8 lit_2257[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2257 = 0.5;
 
 /* 80455128-80455130 0008+00 s=9 e=0 z=0  None .sdata2    @2258 */
-SECTION_SDATA2 static u8 lit_2258[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2258 = 3.0;
 
 /* 80455130-80455138 0008+00 s=9 e=0 z=0  None .sdata2    @2259 */
 SECTION_SDATA2 static u8 lit_2259[8] = {
@@ -284,7 +268,7 @@ SECTION_SDATA2 static u8 lit_2259[8] = {
 };
 
 /* 80455138-8045513C 0004+00 s=14 e=0 z=0  None .sdata2    @2273 */
-SECTION_SDATA2 static u32 lit_2273 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2273 = 1.0f;
 
 /* 8026862C-80268710 00E4+00 s=0 e=10 z=3  None .text      cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf
  */
@@ -346,7 +330,7 @@ asm void cM3d_VectorProduct(cXyz const* param_0, cXyz const* param_1, cXyz const
 
 /* ############################################################################################## */
 /* 8045513C-80455140 0004+00 s=1 e=0 z=0  None .sdata2    @2346 */
-SECTION_SDATA2 static u32 lit_2346 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_2346 = 1.0f / 50.0f;
 
 /* 8026891C-802689E8 00CC+00 s=0 e=2 z=0  None .text      cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf
  */
@@ -509,7 +493,7 @@ SECTION_SDATA2 static u32 BEVEL3D_OUTCODE6 = 0x00000040;
 SECTION_SDATA2 static u32 BEVEL3D_OUTCODE7 = 0x00000080;
 
 /* 804551A8-804551AC 0004+00 s=1 e=0 z=0  None .sdata2    @3082 */
-SECTION_SDATA2 static u32 lit_3082 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3082 = -1.0f;
 
 /* 80269050-80269C2C 0BDC+00 s=0 e=2 z=0  None .text
  * cM3d_Cross_MinMaxBoxLine__FPC3VecPC3VecPC3VecPC3Vec          */
@@ -551,7 +535,7 @@ asm static void cM3d_InclusionCheckPosIn3PosBox2d(f32 param_0, f32 param_1, f32 
 
 /* ############################################################################################## */
 /* 804551AC-804551B0 0004+00 s=11 e=0 z=0  None .sdata2    @3205 */
-SECTION_SDATA2 static u32 lit_3205 = 0x3BA3D70A;
+SECTION_SDATA2 static f32 lit_3205 = 0.004999999888241291f;
 
 /* 80269E18-80269FBC 01A4+00 s=1 e=0 z=0  None .text      cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vecf */
 #pragma push
@@ -565,10 +549,10 @@ asm static void cM3d_CrossX_Tri(cM3dGTri const* param_0, Vec const* param_1, f32
 
 /* ############################################################################################## */
 /* 804551B0-804551B4 0004+00 s=7 e=0 z=0  None .sdata2    @3229 */
-SECTION_SDATA2 static u32 lit_3229 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_3229 = 20.0f;
 
 /* 804551B4-804551B8 0004+00 s=8 e=0 z=0  None .sdata2    @3230 */
-SECTION_SDATA2 static u32 lit_3230 = 0xC1A00000;
+SECTION_SDATA2 static f32 lit_3230 = -20.0f;
 
 /* 80269FBC-8026A160 01A4+00 s=1 e=0 z=0  None .text      cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vec */
 #pragma push
@@ -701,7 +685,7 @@ asm static void cM3d_CrossZ_LinTri_proc(cM3dGTri const* param_0, Vec const* para
 
 /* ############################################################################################## */
 /* 804551B8-804551BC 0004+00 s=1 e=0 z=0  None .sdata2    @3497 */
-SECTION_SDATA2 static u32 lit_3497 = 0x3C03126F;
+SECTION_SDATA2 static f32 lit_3497 = 1.0f / 125.0f;
 
 /* 8026B0A4-8026B17C 00D8+00 s=1 e=1 z=0  None .text
  * cM3d_Cross_LinTri__FPC8cM3dGLinPC8cM3dGTriP3Vecbb            */
@@ -749,10 +733,10 @@ asm void cM3d_Cross_LinSph(cM3dGLin const* param_0, cM3dGSph const* param_1, Vec
 
 /* ############################################################################################## */
 /* 804551BC-804551C0 0004+00 s=2 e=0 z=0  None .sdata2    @3739 */
-SECTION_SDATA2 static u32 lit_3739 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3739 = 2.0f;
 
 /* 804551C0-804551C4 0004+00 s=2 e=0 z=0  None .sdata2    @3740 */
-SECTION_SDATA2 static u32 lit_3740 = 0x40800000;
+SECTION_SDATA2 static f32 lit_3740 = 4.0f;
 
 /* 8026B4E8-8026B8A4 03BC+00 s=1 e=2 z=0  None .text
  * cM3d_Cross_LinSph_CrossPos__FRC8cM3dGSphRC8cM3dGLinP3VecP3Vec */
@@ -825,7 +809,7 @@ asm void cM3d_Cross_SphSph(cM3dGSph const* param_0, cM3dGSph const* param_1, Vec
 
 /* ############################################################################################## */
 /* 804551C4-804551C8 0004+00 s=8 e=0 z=0  None .sdata2    @3892 */
-SECTION_SDATA2 static u32 lit_3892 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3892 = 0.5f;
 
 /* 8026BE5C-8026BF04 00A8+00 s=1 e=0 z=0  None .text
  * cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec    */
@@ -874,7 +858,7 @@ asm void cM3d_Cross_CylCyl(cM3dGCyl const* param_0, cM3dGCyl const* param_1, Vec
 
 /* ############################################################################################## */
 /* 804551C8-804551CC 0004+00 s=1 e=0 z=0  None .sdata2    @4255 */
-SECTION_SDATA2 static u32 lit_4255 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_4255 = 1000000000.0f;
 
 /* 8026C5D0-8026C944 0374+00 s=0 e=2 z=0  None .text
  * cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec              */
@@ -1092,7 +1076,7 @@ asm void cM3d_CrawVec(Vec const& param_0, Vec const& param_1, Vec* param_2) {
 
 /* ############################################################################################## */
 /* 804551CC-804551D0 0004+00 s=1 e=0 z=0  None .sdata2    @5508 */
-SECTION_SDATA2 static u32 lit_5508 = 0x42000000;
+SECTION_SDATA2 static f32 lit_5508 = 32.0f;
 
 /* 8026EC3C-8026EC54 0018+00 s=0 e=1 z=0  None .text      __sinit_c_m3d_cpp */
 #pragma push

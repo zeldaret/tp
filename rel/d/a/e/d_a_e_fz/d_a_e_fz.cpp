@@ -245,11 +245,6 @@ static void daE_FZ_Delete(daE_FZ_c*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_FZ_Create(daE_FZ_c*);
 static void setMidnaBindEffect(fopEn_enemy_c*, Z2CreatureEnemy*, cXyz*, cXyz*);
-extern "C" extern u32 const lit_4322;
-extern "C" extern u32 const lit_4323;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_E_FZ[12];
 
 extern "C" void __ct__12daE_FZ_HIO_cFv();
 extern "C" void draw__8daE_FZ_cFv();
@@ -338,22 +333,6 @@ void MtxPosition(cXyz*, cXyz*);
 void JPASetRMtxSTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*,
                             JGeometry::TVec3__template0*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transM__14mDoMtx_stack_cFfff();

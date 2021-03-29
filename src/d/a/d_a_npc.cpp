@@ -13,12 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -28,6 +22,12 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
+};
+
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 80112C80 */ csXyz();
+    /* 8026745C */ void operator+=(csXyz&);
 };
 
 struct mDoMtx_stack_c {
@@ -44,13 +44,13 @@ struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DAnmColor {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmColor {};
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -116,21 +116,21 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct _GXColorS10 {};
+struct J3DModel {};
 
-struct dCcD_GObjInf {
-    /* 80084460 */ void ChkTgHit();
-};
+struct J3DJoint {};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
 };
 
-struct J3DModel {};
-
 struct J3DAnmTransformKey {};
 
-struct J3DJoint {};
+struct dCcD_GObjInf {
+    /* 80084460 */ void ChkTgHit();
+};
+
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -763,24 +763,6 @@ void daNpcF_chkDoBtnEqSpeak(fopAc_ac_c*);
 void daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 void daNpcF_getDistTableIdx(int, int);
 void daNpcF_clearMessageTmpBit();
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
-extern "C" extern u8 const mCcDObj__11daBaseNpc_c[48];
-extern "C" extern u8 const mCcDObjInfo__8daNpcF_c[48];
-extern "C" extern char const* const d_a_d_a_npc__stringBase0;
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern u8 mCcDSph__8daNpcT_c[64];
-extern "C" extern u8 mCcDCyl__11daBaseNpc_c[68];
-extern "C" extern u8 mCcDSph__11daBaseNpc_c[64];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern u8 mCcDSph__8daNpcF_c[64];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
-extern "C" extern u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
-extern "C" extern u8 data_80450FF8[8];
 
 extern "C" void initialize__18daNpcT_ActorMngr_cFv();
 extern "C" void entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c();
@@ -1195,29 +1177,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_targetAngleX(cXyz const*, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
-extern "C" extern void* __vt__12dBgS_AcchCir[3];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__10dCcD_GStts[3];
-extern "C" extern void* __vt__10cCcD_GStts[3];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void __dt__4cXyzFv();
@@ -1512,12 +1471,10 @@ asm void daNpcT_MatAnm_c::initialize() {
 
 /* ############################################################################################## */
 /* 804533DC-804533E0 0004+00 s=25 e=0 z=0  None .sdata2    @4140 */
-SECTION_SDATA2 static u32 lit_4140 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4140 = 1.0f;
 
 /* 804533E0-804533E8 0008+00 s=24 e=0 z=0  None .sdata2    @4142 */
-SECTION_SDATA2 static u8 lit_4142[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4142 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80145788-80145898 0110+00 s=1 e=0 z=0  None .text      calc__15daNpcT_MatAnm_cCFP11J3DMaterial */
 #pragma push
@@ -1531,7 +1488,7 @@ asm void daNpcT_MatAnm_c::calc(J3DMaterial* param_0) const {
 
 /* ############################################################################################## */
 /* 804533E8-804533EC 0004+00 s=13 e=0 z=0  None .sdata2    @4148 */
-SECTION_SDATA2 static u32 lit_4148 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4148 = -1.0f;
 
 /* 80145898-801458C0 0028+00 s=4 e=0 z=533  None .text      initialize__22daNpcT_MotionSeqMngr_cFv
  */
@@ -1690,7 +1647,7 @@ asm void daNpcT_Path_c::getDstPosH(cXyz param_0, cXyz* param_1, int param_2, int
 
 /* ############################################################################################## */
 /* 804533EC-804533F0 0004+00 s=1 e=0 z=0  None .sdata2    @4513 */
-SECTION_SDATA2 static u32 lit_4513 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4513 = 100.0f;
 
 /* 80146188-801464D8 0350+00 s=2 e=0 z=2  None .text      chkPassed1__13daNpcT_Path_cF4cXyzi */
 #pragma push
@@ -2039,10 +1996,10 @@ SECTION_DATA static void* __vt__16daNpcT_Hermite_c[3] = {
 };
 
 /* 804533F0-804533F4 0004+00 s=4 e=0 z=0  None .sdata2    @4672 */
-SECTION_SDATA2 static u32 lit_4672 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4672 = 2.0f;
 
 /* 804533F4-804533F8 0004+00 s=1 e=0 z=0  None .sdata2    @4673 */
-SECTION_SDATA2 static u32 lit_4673 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4673 = 3.0f;
 
 /* 804533F8-80453400 0004+04 s=3 e=0 z=0  None .sdata2    @4674 */
 SECTION_SDATA2 static f32 lit_4674[1 + 1 /* padding */] = {
@@ -2052,9 +2009,7 @@ SECTION_SDATA2 static f32 lit_4674[1 + 1 /* padding */] = {
 };
 
 /* 80453400-80453408 0008+00 s=1 e=0 z=0  None .sdata2    @4677 */
-SECTION_SDATA2 static u8 lit_4677[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4677 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801464D8-8014698C 04B4+00 s=1 e=0 z=0  None .text      chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii
  */
@@ -2091,14 +2046,10 @@ asm void daNpcT_JntAnm_c::initialize() {
 
 /* ############################################################################################## */
 /* 80453408-80453410 0008+00 s=8 e=0 z=0  None .sdata2    @4723 */
-SECTION_SDATA2 static u8 lit_4723[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4723 = 0.5;
 
 /* 80453410-80453418 0008+00 s=8 e=0 z=0  None .sdata2    @4724 */
-SECTION_SDATA2 static u8 lit_4724[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4724 = 3.0;
 
 /* 80453418-80453420 0008+00 s=8 e=0 z=0  None .sdata2    @4725 */
 SECTION_SDATA2 static u8 lit_4725[8] = {
@@ -2106,13 +2057,13 @@ SECTION_SDATA2 static u8 lit_4725[8] = {
 };
 
 /* 80453420-80453424 0004+00 s=5 e=0 z=0  None .sdata2    @5239 */
-SECTION_SDATA2 static u32 lit_5239 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_5239 = 182.04444885253906f;
 
 /* 80453424-80453428 0004+00 s=2 e=0 z=0  None .sdata2    @5240 */
-SECTION_SDATA2 static u32 lit_5240 = 0x38C90FDB;
+SECTION_SDATA2 static f32 lit_5240 = 9.58738019107841e-05f;
 
 /* 80453428-8045342C 0004+00 s=2 e=0 z=0  None .sdata2    @5241 */
-SECTION_SDATA2 static u32 lit_5241 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_5241 = 1000.0f;
 
 /* 80146CD8-80147858 0B80+00 s=1 e=0 z=52  None .text
  * setParam__15daNpcT_JntAnm_cFP10fopAc_ac_cP8J3DModelP4cXyziiiffffffffffP4cXyz */
@@ -2141,7 +2092,7 @@ asm void daNpcT_JntAnm_c::calc(f32 param_0) {
 
 /* ############################################################################################## */
 /* 8045342C-80453430 0004+00 s=1 e=0 z=0  None .sdata2    @5410 */
-SECTION_SDATA2 static u32 lit_5410 = 0x40490FDB;
+SECTION_SDATA2 static f32 lit_5410 = 3.1415927410125732f;
 
 /* 80147C38-80147DCC 0194+00 s=0 e=0 z=52  None .text      calcJntRad__15daNpcT_JntAnm_cFfff */
 #pragma push
@@ -2155,10 +2106,10 @@ asm void daNpcT_JntAnm_c::calcJntRad(f32 param_0, f32 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 80453430-80453434 0004+00 s=1 e=0 z=0  None .sdata2    @5422 */
-SECTION_SDATA2 static u32 lit_5422 = 0x462AA800;
+SECTION_SDATA2 static f32 lit_5422 = 10922.0f;
 
 /* 80453434-80453438 0004+00 s=1 e=0 z=0  None .sdata2    @5423 */
-SECTION_SDATA2 static u32 lit_5423 = 0x45E38800;
+SECTION_SDATA2 static f32 lit_5423 = 7281.0f;
 
 /* 80147DCC-80147E3C 0070+00 s=0 e=0 z=28  None .text
  * setParam__19daNpcT_DmgStagger_cFP10fopAc_ac_cP10fopAc_ac_cs  */
@@ -2173,10 +2124,10 @@ asm void daNpcT_DmgStagger_c::setParam(fopAc_ac_c* param_0, fopAc_ac_c* param_1,
 
 /* ############################################################################################## */
 /* 80453438-8045343C 0004+00 s=1 e=0 z=0  None .sdata2    @5459 */
-SECTION_SDATA2 static u32 lit_5459 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5459 = 1.0f / 10.0f;
 
 /* 8045343C-80453440 0004+00 s=1 e=0 z=0  None .sdata2    @5460 */
-SECTION_SDATA2 static u32 lit_5460 = 0x42FA0000;
+SECTION_SDATA2 static f32 lit_5460 = 125.0f;
 
 /* 80147E3C-80147FA4 0168+00 s=0 e=0 z=47  None .text      calc__19daNpcT_DmgStagger_cFi */
 #pragma push
@@ -2374,7 +2325,7 @@ asm void daNpcT_c::deleteRes(s8 const* param_0, char const** param_1) {
 
 /* ############################################################################################## */
 /* 80453440-80453444 0004+00 s=3 e=0 z=0  None .sdata2    @5667 */
-SECTION_SDATA2 static u32 lit_5667 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_5667 = -1000000000.0f;
 
 /* 8014852C-8014886C 0340+00 s=0 e=0 z=59  None .text      execute__8daNpcT_cFv */
 #pragma push
@@ -2388,7 +2339,7 @@ asm void daNpcT_c::execute() {
 
 /* ############################################################################################## */
 /* 80453444-80453448 0004+00 s=3 e=0 z=0  None .sdata2    @5794 */
-SECTION_SDATA2 static u32 lit_5794 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_5794 = 20.0f;
 
 /* 8014886C-80148C70 0404+00 s=0 e=0 z=58  None .text      draw__8daNpcT_cFiifP11_GXColorS10fiii */
 #pragma push
@@ -2680,7 +2631,7 @@ asm void daNpcT_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
 
 /* ############################################################################################## */
 /* 80453448-8045344C 0004+00 s=1 e=0 z=0  None .sdata2    @6667 */
-SECTION_SDATA2 static u32 lit_6667 = 0x43960000;
+SECTION_SDATA2 static f32 lit_6667 = 300.0f;
 
 /* 8014A908-8014A99C 0094+00 s=0 e=0 z=40  None .text      setPos__8daNpcT_cF4cXyz */
 #pragma push
@@ -2734,7 +2685,7 @@ asm void daNpcT_c::setDamage(int param_0, int param_1, int param_2) {
 
 /* ############################################################################################## */
 /* 8045344C-80453450 0004+00 s=7 e=0 z=0  None .sdata2    @6775 */
-SECTION_SDATA2 static u32 lit_6775 = 0x43340000;
+SECTION_SDATA2 static f32 lit_6775 = 180.0f;
 
 /* 8014ABD0-8014ACF0 0120+00 s=2 e=0 z=53  None .text chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs
  */
@@ -2772,22 +2723,22 @@ asm void daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 
 
 /* ############################################################################################## */
 /* 80453450-80453454 0004+00 s=2 e=0 z=0  None .sdata2    @6904 */
-SECTION_SDATA2 static u32 lit_6904 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_6904 = 30.0f;
 
 /* 80453454-80453458 0004+00 s=2 e=0 z=0  None .sdata2    @6905 */
-SECTION_SDATA2 static u32 lit_6905 = 0x42340000;
+SECTION_SDATA2 static f32 lit_6905 = 45.0f;
 
 /* 80453458-8045345C 0004+00 s=2 e=0 z=0  None .sdata2    @6906 */
-SECTION_SDATA2 static u32 lit_6906 = 0x42700000;
+SECTION_SDATA2 static f32 lit_6906 = 60.0f;
 
 /* 8045345C-80453460 0004+00 s=2 e=0 z=0  None .sdata2    @6907 */
-SECTION_SDATA2 static u32 lit_6907 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_6907 = 90.0f;
 
 /* 80453460-80453464 0004+00 s=2 e=0 z=0  None .sdata2    @6908 */
-SECTION_SDATA2 static u32 lit_6908 = 0x42DC0000;
+SECTION_SDATA2 static f32 lit_6908 = 110.0f;
 
 /* 80453464-80453468 0004+00 s=2 e=0 z=0  None .sdata2    @6909 */
-SECTION_SDATA2 static u32 lit_6909 = 0x43070000;
+SECTION_SDATA2 static f32 lit_6909 = 135.0f;
 
 /* 8014AE1C-8014B010 01F4+00 s=1 e=0 z=0  None .text      chkFindActor__8daNpcT_cFP10fopAc_ac_cis */
 #pragma push
@@ -2852,13 +2803,13 @@ asm void daNpcT_c::getAttnPos(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80453468-8045346C 0004+00 s=4 e=0 z=0  None .sdata2    @7089 */
-SECTION_SDATA2 static u32 lit_7089 = 0x3BB40000;
+SECTION_SDATA2 static f32 lit_7089 = 0.0054931640625f;
 
 /* 8045346C-80453470 0004+00 s=4 e=0 z=0  None .sdata2    @7090 */
-SECTION_SDATA2 static u32 lit_7090 = 0x41000000;
+SECTION_SDATA2 static f32 lit_7090 = 8.0f;
 
 /* 80453470-80453474 0004+00 s=2 e=0 z=0  None .sdata2    @7091 */
-SECTION_SDATA2 static u32 lit_7091 = 0x46800000;
+SECTION_SDATA2 static f32 lit_7091 = 16384.0f;
 
 /* 8014B4A4-8014B648 01A4+00 s=1 e=0 z=1  None .text      turn__8daNpcT_cFsii */
 #pragma push
@@ -2882,7 +2833,7 @@ asm void daNpcT_c::step(s16 param_0, int param_1, int param_2, int param_3, int 
 
 /* ############################################################################################## */
 /* 80453474-80453478 0004+00 s=1 e=0 z=0  None .sdata2    @7222 */
-SECTION_SDATA2 static u32 lit_7222 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_7222 = 17.0f / 20.0f;
 
 /* 8014B808-8014BB00 02F8+00 s=0 e=0 z=11  None .text      calcSpeedAndAngle__8daNpcT_cF4cXyziss */
 #pragma push
@@ -2896,7 +2847,7 @@ asm void daNpcT_c::calcSpeedAndAngle(cXyz param_0, int param_1, s16 param_2, s16
 
 /* ############################################################################################## */
 /* 80453478-8045347C 0004+00 s=1 e=0 z=0  None .sdata2    @7242 */
-SECTION_SDATA2 static u32 lit_7242 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_7242 = 6.0f;
 
 /* 8014BB00-8014BBF0 00F0+00 s=0 e=0 z=2  None .text getActorDistance__8daNpcT_cFP10fopAc_ac_cii
  */
@@ -2932,7 +2883,7 @@ asm void daNpcT_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int
 
 /* ############################################################################################## */
 /* 8045347C-80453480 0004+00 s=2 e=0 z=0  None .sdata2    @7337 */
-SECTION_SDATA2 static u32 lit_7337 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_7337 = 1000000000.0f;
 
 /* 8014BE2C-8014BEE4 00B8+00 s=0 e=0 z=25  None .text      getNearestActorP__8daNpcT_cFs */
 #pragma push
@@ -2974,7 +2925,7 @@ SECTION_SDATA2 static u8 id_7388[4] = {
 };
 
 /* 80453484-80453488 0004+00 s=2 e=0 z=0  None .sdata2    @7442 */
-SECTION_SDATA2 static u32 lit_7442 = 0x40800000;
+SECTION_SDATA2 static f32 lit_7442 = 4.0f;
 
 /* 8014C030-8014C200 01D0+00 s=1 e=0 z=0  None .text      setHitodamaPrtcl__8daNpcT_cFv */
 #pragma push
@@ -2988,10 +2939,10 @@ asm void daNpcT_c::setHitodamaPrtcl() {
 
 /* ############################################################################################## */
 /* 80453488-8045348C 0004+00 s=1 e=0 z=0  None .sdata2    @7550 */
-SECTION_SDATA2 static u32 lit_7550 = 0x44180000;
+SECTION_SDATA2 static f32 lit_7550 = 608.0f;
 
 /* 8045348C-80453490 0004+00 s=1 e=0 z=0  None .sdata2    @7551 */
-SECTION_SDATA2 static u32 lit_7551 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_7551 = 448.0f;
 
 /* 8014C200-8014C384 0184+00 s=0 e=0 z=2  None .text
  * daNpcT_chkActorInScreen__FP10fopAc_ac_cfffffffi              */
@@ -3622,10 +3573,10 @@ asm void daBaseNpc_lookat_c::limitter(s16 param_0, s16* param_1, s16 param_2, s1
 
 /* ############################################################################################## */
 /* 80453490-80453494 0004+00 s=2 e=0 z=0  None .sdata2    @8404 */
-SECTION_SDATA2 static u32 lit_8404 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_8404 = 0.25f;
 
 /* 80453494-80453498 0004+00 s=1 e=0 z=0  None .sdata2    @8405 */
-SECTION_SDATA2 static u32 lit_8405 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_8405 = 4.0f / 5.0f;
 
 /* 8014DBB4-8014E634 0A80+00 s=0 e=0 z=1  None .text
  * calc__18daBaseNpc_lookat_cFP10fopAc_ac_cPA4_fs               */
@@ -4379,7 +4330,7 @@ static u8 vec[12];
 static u8 data_80450FEC[4];
 
 /* 80453498-8045349C 0004+00 s=1 e=0 z=0  None .sdata2    @9971 */
-SECTION_SDATA2 static u32 lit_9971 = 0x42000000;
+SECTION_SDATA2 static f32 lit_9971 = 32.0f;
 
 /* 801510B8-80151350 0298+00 s=0 e=0 z=34  None .text
  * setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz              */
@@ -4419,7 +4370,7 @@ asm void daNpcF_Lookat_c::adjustMoveDisAngle(s16& param_0, s16 param_1, s16 para
 
 /* ############################################################################################## */
 /* 8045349C-804534A0 0004+00 s=1 e=0 z=0  None .sdata2    @10253 */
-SECTION_SDATA2 static u32 lit_10253 = 0x3F2147AE;
+SECTION_SDATA2 static f32 lit_10253 = 63.0f / 100.0f;
 
 /* 80151648-80151A54 040C+00 s=1 e=0 z=0  None .text
  * initCalc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fP4cXyzP5csXyzPfR4cXyzi */
@@ -4561,7 +4512,7 @@ asm void daNpcF_c::setMtx2() {
 
 /* ############################################################################################## */
 /* 804534A0-804534A4 0004+00 s=1 e=0 z=0  None .sdata2    @10745 */
-SECTION_SDATA2 static u32 lit_10745 = 0x47800000;
+SECTION_SDATA2 static f32 lit_10745 = 65536.0f;
 
 /* 801528C8-80152B2C 0264+00 s=0 e=0 z=76  None .text      initialize__8daNpcF_cFv */
 #pragma push
@@ -4767,10 +4718,10 @@ asm void daNpcF_c::hitChk2(dCcD_Cyl* param_0, int param_1, int param_2) {
 
 /* ############################################################################################## */
 /* 804534A4-804534A8 0004+00 s=1 e=0 z=0  None .sdata2    @11061 */
-SECTION_SDATA2 static u32 lit_11061 = 0x46000000;
+SECTION_SDATA2 static f32 lit_11061 = 8192.0f;
 
 /* 804534A8-804534AC 0004+00 s=1 e=0 z=0  None .sdata2    @11062 */
-SECTION_SDATA2 static u32 lit_11062 = 0x46471C00;
+SECTION_SDATA2 static f32 lit_11062 = 12743.0f;
 
 /* 80153658-80153718 00C0+00 s=0 e=0 z=12  None .text      setDamage__8daNpcF_cFiii */
 #pragma push
@@ -4838,7 +4789,7 @@ asm void daNpcF_c::chkActorInArea(fopAc_ac_c* param_0, cXyz param_1, cXyz param_
 
 /* ############################################################################################## */
 /* 804534AC-804534B0 0004+00 s=3 e=0 z=0  None .sdata2    @11253 */
-SECTION_SDATA2 static u32 lit_11253 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_11253 = 0.5f;
 
 /* 80153BDC-80153D1C 0140+00 s=0 e=0 z=25  None .text
  * chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci    */
@@ -4923,7 +4874,7 @@ asm void daNpcF_c::getEvtAreaTagP(int param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 804534B0-804534B4 0004+00 s=1 e=0 z=0  None .sdata2    @11605 */
-SECTION_SDATA2 static u32 lit_11605 = 0x43E10000;
+SECTION_SDATA2 static f32 lit_11605 = 450.0f;
 
 /* 8015436C-80154730 03C4+00 s=0 e=0 z=12  None .text getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii
  */

@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __GDCurrentDL[4];
-
 extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();

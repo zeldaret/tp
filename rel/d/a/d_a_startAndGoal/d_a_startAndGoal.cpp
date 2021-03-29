@@ -70,7 +70,6 @@ static void daStartAndGoal_Draw(daStartAndGoal_c*);
 static bool daStartAndGoal_IsDelete(daStartAndGoal_c*);
 static void daStartAndGoal_Delete(daStartAndGoal_c*);
 static void daStartAndGoal_create(fopAc_ac_c*);
-extern "C" extern void* g_profile_START_AND_GOAL[12];
 
 extern "C" void chkPassed2__21daStartAndGoal_Path_cF4cXyz();
 extern "C" void getType__16daStartAndGoal_cFv();
@@ -104,11 +103,6 @@ void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
 void dTimer_isStart();
 void dTimer_isReadyFlag();
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void getTimerNowTimeMs__14dComIfG_play_cFv();

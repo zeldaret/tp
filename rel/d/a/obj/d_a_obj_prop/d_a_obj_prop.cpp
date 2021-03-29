@@ -30,11 +30,11 @@ struct daObjProp_c {
     /* 80CB54F4 */ void setModelMtx();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -58,8 +58,6 @@ static void daObjProp_create(daObjProp_c*);
 static void daObjProp_Delete(daObjProp_c*);
 static void daObjProp_execute(daObjProp_c*);
 static void daObjProp_draw(daObjProp_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Prop[12];
 
 extern "C" static void daObjProp_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__11daObjProp_cFv();
@@ -90,11 +88,6 @@ void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdate__FP8J3DModel();

@@ -35,13 +35,6 @@ struct J3DSys {
 // Forward References:
 //
 
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mCurrentS__6J3DSys[12];
-extern "C" extern u8 mParentS__6J3DSys[12];
-extern "C" extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
-extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
-
 extern "C" void __ct__6J3DSysFv();
 extern "C" void loadPosMtxIndx__6J3DSysCFiUs();
 extern "C" void loadNrmMtxIndx__6J3DSysCFiUs();
@@ -72,12 +65,6 @@ void makeTexCoordTable();
 void makeAlphaCmpTable();
 void makeZModeTable();
 void makeTevSwapTable();
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u32 j3dDefaultColInfo;
-extern "C" extern u32 data_804563C8;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 data_804563D8;
-extern "C" extern u32 j3dDefaultTevKColor;
 
 extern "C" void J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize();
 extern "C" void makeTexCoordTable__Fv();
@@ -341,7 +328,7 @@ SECTION_SDATA2 static u8 lit_892[4] = {
 };
 
 /* 8045636C-80456370 0004+00 s=1 e=0 z=0  None .sdata2    @893 */
-SECTION_SDATA2 static u32 lit_893 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_893 = 1.0f;
 
 /* 80456370-80456378 0004+04 s=1 e=0 z=0  None .sdata2    @894 */
 SECTION_SDATA2 static f32 lit_894[1 + 1 /* padding */] = {

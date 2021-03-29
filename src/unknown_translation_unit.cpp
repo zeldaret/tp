@@ -22,9 +22,6 @@ struct __partial_array_destructor {
 #pragma section "extab_"
 extern "C" extern void* const _section_symbol_extab[18];
 
-#pragma section "extab_"
-extern "C" extern void* const _section_symbol_extab[18];
-
 //
 // External References:
 //

@@ -22,11 +22,6 @@ extern "C" void DSPInit();
 // External References:
 //
 
-extern "C" extern u8 __DSP_tmp_task[4];
-extern "C" extern u8 __DSP_last_task[4];
-extern "C" extern u8 __DSP_first_task[4];
-extern "C" extern u8 __DSP_curr_task[4];
-
 extern "C" void __DSPHandler();
 extern "C" void OSRegisterVersion();
 extern "C" void OSDisableInterrupts();

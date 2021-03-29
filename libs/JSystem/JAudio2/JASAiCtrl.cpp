@@ -81,8 +81,6 @@ struct JASCalc {
 // Forward References:
 //
 
-extern "C" extern char const* const JASAiCtrl__stringBase0;
-
 extern "C" void initAI__9JASDriverFPFv_v();
 extern "C" void startDMA__9JASDriverFv();
 extern "C" void stopDMA__9JASDriverFv();
@@ -109,9 +107,6 @@ extern "C" extern char const* const JASAiCtrl__stringBase0;
 
 void JASReport(char const*, ...);
 void* operator new[](u32, JKRHeap*, int);
-extern "C" extern u8 sFreeRunLfo__6JASLfo[24];
-extern "C" extern u8 JASDram[4];
-extern "C" extern u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 
 extern "C" void imixcopy__7JASCalcFPCsPCsPsUl();
 extern "C" void bzero__7JASCalcFPvUl();
@@ -226,19 +221,19 @@ asm void JASDriver::stopDMA() {
 SECTION_SDATA static u32 sMixMode__9JASDriver = 0x00000002;
 
 /* 804507B0-804507B4 0004+00 s=2 e=0 z=0  None .sdata     sDacRate__9JASDriver */
-SECTION_SDATA static u32 sDacRate__9JASDriver = 0x46FA3900;
+SECTION_SDATA static f32 sDacRate__9JASDriver = 32028.5f;
 
 /* 804507B4-804507B8 0004+00 s=4 e=0 z=0  None .sdata     sSubFrames__9JASDriver */
 SECTION_SDATA static u32 sSubFrames__9JASDriver = 0x00000007;
 
 /* 80455720-80455724 0004+00 s=1 e=0 z=0  None .sdata2    @233 */
-SECTION_SDATA2 static u32 lit_233 = 0x46FA0000;
+SECTION_SDATA2 static f32 lit_233 = 32000.0f;
 
 /* 80455724-80455728 0004+00 s=1 e=0 z=0  None .sdata2    @234 */
-SECTION_SDATA2 static u32 lit_234 = 0x473B8000;
+SECTION_SDATA2 static f32 lit_234 = 48000.0f;
 
 /* 80455728-8045572C 0004+00 s=1 e=0 z=0  None .sdata2    @235 */
-SECTION_SDATA2 static u32 lit_235 = 0x3F801D27;
+SECTION_SDATA2 static f32 lit_235 = 1.0008896589279175f;
 
 /* 8029C524-8029C568 0044+00 s=1 e=0 z=0  None .text      setOutputRate__9JASDriverF13JASOutputRate
  */
@@ -307,7 +302,7 @@ static u8 old_time[4];
 static u8 data_804512D4[4];
 
 /* 8045572C-80455730 0004+00 s=1 e=0 z=0  None .sdata2    @275 */
-SECTION_SDATA2 static u32 lit_275 = 0x3F8CCCCD;
+SECTION_SDATA2 static f32 lit_275 = 11.0f / 10.0f;
 
 /* 80455730-80455738 0004+04 s=1 e=0 z=0  None .sdata2    @276 */
 SECTION_SDATA2 static f32 lit_276[1 + 1 /* padding */] = {
@@ -317,9 +312,7 @@ SECTION_SDATA2 static f32 lit_276[1 + 1 /* padding */] = {
 };
 
 /* 80455738-80455740 0008+00 s=1 e=0 z=0  None .sdata2    @278 */
-SECTION_SDATA2 static u8 lit_278[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_278 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029C6C4-8029C7E0 011C+00 s=1 e=1 z=0  None .text      updateDSP__9JASDriverFv */
 #pragma push

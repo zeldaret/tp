@@ -41,15 +41,9 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
-
 struct J2DAnmColor {};
 
-struct J2DAnmTransform {};
+struct J2DTevStage {};
 
 struct J2DAnmVtxColor {
     /* 8030363C */ void getColor(u8, u16, _GXColor*) const;
@@ -59,27 +53,9 @@ struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
 
-struct J2DWindow {
-    struct TMaterial {};
-
-    /* 802F9A7C */ J2DWindow();
-    /* 802FA880 */ ~J2DWindow();
-    /* 802FB000 */ void resize(f32, f32);
-    /* 802FB1D8 */ void drawSelf(f32, f32);
-    /* 802FBF98 */ s32 getTypeID() const;
-};
-
 struct J2DAnmBase {};
 
-struct J2DTevStage {};
-
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-};
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -105,6 +81,30 @@ struct J2DPane {
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
+};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DWindow {
+    struct TMaterial {};
+
+    /* 802F9A7C */ J2DWindow();
+    /* 802FA880 */ ~J2DWindow();
+    /* 802FB000 */ void resize(f32, f32);
+    /* 802FB1D8 */ void drawSelf(f32, f32);
+    /* 802FBF98 */ s32 getTypeID() const;
+};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA38C */ void setGX();
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
 };
 
 struct J2DWindowEx {
@@ -157,18 +157,6 @@ struct J2DWindowEx {
 //
 // Forward References:
 //
-
-extern "C" extern u8 const lit_1557[16];
-extern "C" extern u8 const lit_1566[16];
-extern "C" extern u8 const lit_1575[16];
-extern "C" extern u8 const lit_1581[16];
-extern "C" extern u8 const lit_1587[16];
-extern "C" extern u8 const lit_1596[16];
-extern "C" extern u8 const lit_1605[16];
-extern "C" extern u8 const lit_1612[16];
-extern "C" extern u8 const lit_2530[24];
-extern "C" extern u8 const lit_2531[24];
-extern "C" extern u8 const lit_2532[30 + 2 /* padding */];
 
 extern "C" void __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void setMinSize__11J2DWindowExFv();
@@ -364,14 +352,10 @@ SECTION_DATA static void* __vt__11J2DWindowEx[51 + 1 /* padding */] = {
 };
 
 /* 804562A0-804562A8 0008+00 s=4 e=0 z=0  None .sdata2    @1549 */
-SECTION_SDATA2 static u8 lit_1549[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1549 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 804562A8-804562B0 0008+00 s=1 e=0 z=0  None .sdata2    @1552 */
-SECTION_SDATA2 static u8 lit_1552[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1552 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80300C94-80300F80 02EC+00 s=0 e=1 z=0  None .text
  * __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */
@@ -437,7 +421,7 @@ SECTION_SDATA2 static u8 lit_1827[4] = {
 };
 
 /* 804562B4-804562B8 0004+00 s=1 e=0 z=0  None .sdata2    @2256 */
-SECTION_SDATA2 static u32 lit_2256 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2256 = 1.0f;
 
 /* 804562B8-804562C0 0004+04 s=1 e=0 z=0  None .sdata2    @2257 */
 SECTION_SDATA2 static f32 lit_2257[1 + 1 /* padding */] = {

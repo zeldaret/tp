@@ -71,8 +71,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_place__stringBase0;
-
 extern "C" void __ct__15dMsgScrnPlace_cFv();
 extern "C" void __dt__15dMsgScrnPlace_cFv();
 extern "C" void exec__15dMsgScrnPlace_cFv();
@@ -92,8 +90,6 @@ void dCam_getBody();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void dCam_getBody__Fv();
@@ -191,7 +187,7 @@ SECTION_SDATA2 static u8 lit_3998[4] = {
 };
 
 /* 80454CEC-80454CF0 0004+00 s=3 e=0 z=0  None .sdata2    @3999 */
-SECTION_SDATA2 static u32 lit_3999 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3999 = 1.0f;
 
 /* 80454CF0-80454CF8 0004+04 s=1 e=0 z=0  None .sdata2    @4000 */
 SECTION_SDATA2 static f32 lit_4000[1 + 1 /* padding */] = {

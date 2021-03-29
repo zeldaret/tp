@@ -19,8 +19,6 @@ extern "C" void fclose();
 // External References:
 //
 
-extern "C" extern u8 __lower_map[256];
-
 extern "C" void free();
 extern "C" void __flush_all();
 extern "C" void __flush_buffer();

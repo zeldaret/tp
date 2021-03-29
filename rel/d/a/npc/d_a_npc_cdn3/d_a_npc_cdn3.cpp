@@ -153,13 +153,13 @@ struct dScnKy_env_light_c {
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
 };
 
+struct cXyz {
+    /* 809799F8 */ ~cXyz();
+};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8097D614 */ ~csXyz();
-};
-
-struct cXyz {
-    /* 809799F8 */ ~cXyz();
 };
 
 struct dNpcLib_lookat_c {
@@ -308,10 +308,6 @@ static void daNpcCdn3_Delete(void*);
 static void daNpcCdn3_Execute(void*);
 static void daNpcCdn3_Draw(void*);
 static bool daNpcCdn3_IsDelete(void*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_CD3[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
 
 extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
 extern "C" void setAction__11daNpcCdn3_cFQ211daNpcCdn3_c6Mode_e();
@@ -438,23 +434,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_targetAngleY(Vec const&, Vec const&);
 void cLib_distanceAngleS(s16, s16);
 void operator delete(void*);
-extern "C" extern u8 const m_cylDat__10daNpcCd2_c[68];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 l_Cd2_HIO[16396];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

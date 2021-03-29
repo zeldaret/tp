@@ -44,8 +44,6 @@ struct JSUList__template4 {
     /* 802D1F50 */ ~JSUList__template4();
 };
 
-struct JKRThreadName_ {};
-
 struct JKRHeap {
     /* 802CE438 */ void becomeCurrentHeap();
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
@@ -66,6 +64,8 @@ struct JKRThread {
     /* 802D1E14 */ bool run();
 };
 
+struct JKRThreadName_ {};
+
 struct JKRThreadSwitch {
     /* 802D199C */ JKRThreadSwitch(JKRHeap*);
     /* 802D1A14 */ void createManager(JKRHeap*);
@@ -84,10 +84,6 @@ struct JKRDisposer {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const JKRThread__stringBase0;
-extern "C" extern u8 sEndMesgQueue__7JKRTask[32];
-extern "C" extern u8 sManager__15JKRThreadSwitch[4];
 
 extern "C" void __ct__9JKRThreadFUlii();
 extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
@@ -118,9 +114,6 @@ extern "C" extern u8 sManager__15JKRThreadSwitch[4];
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
 
 extern "C" void becomeCurrentHeap__7JKRHeapFv();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
@@ -359,15 +352,13 @@ asm void JKRThreadSwitch::callback(OSThread* param_0, OSThread* param_1) {
 
 /* ############################################################################################## */
 /* 80455FC0-80455FC4 0004+00 s=1 e=0 z=0  None .sdata2    @934 */
-SECTION_SDATA2 static u32 lit_934 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_934 = 100.0f;
 
 /* 80455FC4-80455FC8 0004+00 s=1 e=0 z=0  None .sdata2    @935 */
-SECTION_SDATA2 static u32 lit_935 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_935 = 1000.0f;
 
 /* 80455FC8-80455FD0 0008+00 s=1 e=0 z=0  None .sdata2    @937 */
-SECTION_SDATA2 static u8 lit_937[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_937 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802D1C74-802D1E14 01A0+00 s=1 e=0 z=0  None .text
  * draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole       */

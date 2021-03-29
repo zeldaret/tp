@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -25,6 +23,8 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
 };
 
+struct csXyz {};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
@@ -35,12 +35,12 @@ struct fopAc_ac_c {};
 
 struct J3DModel {};
 
+struct dJntColData_c {};
+
 struct cM3dGLin {
     /* 80036A5C */ ~cM3dGLin();
     /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
 };
-
-struct dJntColData_c {};
 
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();
@@ -70,9 +70,6 @@ struct cM3dGCyl {
 // Forward References:
 //
 
-extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern void* __vt__8cM3dGSph[3];
-
 extern "C" void __ct__9dJntCol_cFv();
 extern "C" void init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli();
 extern "C" void setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz();
@@ -99,12 +96,6 @@ void cM3d_Cross_CylLin(cM3dGCyl const*, cM3dGLin const*, Vec*, Vec*);
 void cM3d_lineVsPosSuisenCross(cM3dGLin const*, Vec const*, Vec*);
 void cM3d_lineVsPosSuisenCross(Vec const&, Vec const&, Vec const&, Vec*);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 BaseZ__4cXyz[12];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -181,7 +172,7 @@ asm void dJntCol_c::init(fopAc_ac_c* param_0, dJntColData_c const* param_1, J3DM
 
 /* ############################################################################################## */
 /* 80451D60-80451D64 0004+00 s=1 e=0 z=0  None .sdata2    @3655 */
-SECTION_SDATA2 static u32 lit_3655 = 0x43FA0000;
+SECTION_SDATA2 static f32 lit_3655 = 500.0f;
 
 /* 80035CC8-80035DC8 0100+00 s=2 e=0 z=0  None .text
  * setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz       */
@@ -211,30 +202,20 @@ SECTION_DATA void* __vt__8cM3dGSph[3] = {
 };
 
 /* 80451D64-80451D68 0004+00 s=1 e=0 z=0  None .sdata2    @4141 */
-SECTION_SDATA2 static u32 lit_4141 = 0xCB189680;
+SECTION_SDATA2 static f32 lit_4141 = -10000000.0f;
 
 /* 80451D68-80451D70 0004+04 s=2 e=0 z=0  None .sdata2    @4142 */
-SECTION_SDATA2 static u8 lit_4142[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4142[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80451D70-80451D78 0008+00 s=2 e=0 z=0  None .sdata2    @4143 */
-SECTION_SDATA2 static u8 lit_4143[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4143 = 0.5;
 
 /* 80451D78-80451D80 0008+00 s=2 e=0 z=0  None .sdata2    @4144 */
-SECTION_SDATA2 static u8 lit_4144[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4144 = 3.0;
 
 /* 80451D80-80451D88 0008+00 s=2 e=0 z=0  None .sdata2    @4145 */
 SECTION_SDATA2 static u8 lit_4145[8] = {
@@ -242,16 +223,16 @@ SECTION_SDATA2 static u8 lit_4145[8] = {
 };
 
 /* 80451D88-80451D8C 0004+00 s=1 e=0 z=0  None .sdata2    @4146 */
-SECTION_SDATA2 static u32 lit_4146 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_4146 = 1.0f / 100.0f;
 
 /* 80451D8C-80451D90 0004+00 s=2 e=0 z=0  None .sdata2    @4147 */
-SECTION_SDATA2 static u32 lit_4147 = 0x38D1B717;
+SECTION_SDATA2 static f32 lit_4147 = 9.999999747378752e-05f;
 
 /* 80451D90-80451D94 0004+00 s=1 e=0 z=0  None .sdata2    @4148 */
-SECTION_SDATA2 static u32 lit_4148 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4148 = 0.5f;
 
 /* 80451D94-80451D98 0004+00 s=1 e=0 z=0  None .sdata2    @4149 */
-SECTION_SDATA2 static u32 lit_4149 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4149 = 1.0f;
 
 /* 80035DC8-80036A5C 0C94+00 s=2 e=0 z=0  None .text
  * searchNearPos__9dJntCol_cCFPC8cM3dGLinPC4cXyzP4cXyzi         */

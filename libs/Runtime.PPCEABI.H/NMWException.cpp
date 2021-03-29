@@ -29,17 +29,6 @@ extern void* const lit_240[3];
 extern void* const lit_263[3];
 #pragma section "extabindex_"
 extern void* const data_8000569C[8];
-
-#pragma section "extabindex_"
-extern void* const lit_211[3];
-#pragma section "extabindex_"
-extern void* const lit_232[3];
-#pragma section "extabindex_"
-extern void* const lit_240[3];
-#pragma section "extabindex_"
-extern void* const lit_263[3];
-#pragma section "extabindex_"
-extern void* const data_8000569C[8];
 extern "C" void __destroy_new_array();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
@@ -50,8 +39,6 @@ extern "C" void __construct_new_array();
 // External References:
 //
 
-#pragma section "extab_"
-extern "C" extern void* const _section_symbol_extab[18];
 void operator delete(void*);
 void operator delete[](void*);
 

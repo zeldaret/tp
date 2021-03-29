@@ -11,17 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 lit_14[38 + 2 /* padding */];
-extern "C" extern u8 lit_15[28];
-extern "C" extern u8 lit_80[76];
-extern "C" extern u8 lit_81[98 + 2 /* padding */];
-extern "C" extern u8 lit_82[96];
-extern "C" extern u8 lit_83[31 + 1 /* padding */];
-extern "C" extern u8 lit_84[31 + 1 /* padding */];
-extern "C" extern u8 lit_85[27 + 1 /* padding */];
-extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
-extern "C" extern u32 __OSFpscrEnableBits;
-
 extern "C" void OSSetErrorHandler();
 extern "C" void __OSUnhandledException();
 extern "C" extern u8 lit_14[38 + 2 /* padding */];
@@ -38,11 +27,6 @@ extern "C" extern u32 __OSFpscrEnableBits;
 //
 // External References:
 //
-
-extern "C" extern u8 __OSLastInterruptSrr0[4];
-extern "C" extern u8 __OSLastInterrupt[2 + 6 /* padding */];
-extern "C" extern u8 __OSLastInterruptTime[4];
-extern "C" extern u8 data_80451684[4];
 
 extern "C" void OSReport();
 extern "C" void PPCMfmsr();

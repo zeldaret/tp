@@ -17,13 +17,13 @@ struct dBgW_Base {
     /* 80074AB4 */ void SetOldShapeAngleY(s16);
 };
 
+struct cXyz {};
+
 struct csXyz {};
 
 struct cBgS_PolyInfo {};
 
 struct cBgD_t {};
-
-struct cXyz {};
 
 struct dBgWSv {
     /* 80082F98 */ void Set(cBgD_t*, u32);
@@ -36,19 +36,19 @@ struct dBgWSv {
     /* 800835DC */ ~dBgWSv();
 };
 
-struct dBgS_SphChk {};
-
-struct dBgS_SplGrpChk {};
+struct dBgS_RoofChk {};
 
 struct cBgS_PolyPassChk {};
 
-struct cBgS_GrpPassChk {};
+struct dBgS_SplGrpChk {};
 
 struct dBgS_Acch {};
 
-struct dBgS_CaptPoly {};
+struct cBgS_GrpPassChk {};
 
-struct dBgS_RoofChk {};
+struct dBgS_SphChk {};
+
+struct dBgS_CaptPoly {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
@@ -126,8 +126,6 @@ struct cBgW {
 // Forward References:
 //
 
-extern "C" extern void* __vt__6dBgWSv[65 + 1 /* padding */];
-
 extern "C" void Set__6dBgWSvFP6cBgD_tUl();
 extern "C" void CopyBackVtx__6dBgWSvFv();
 extern "C" void CrrPosWork__6dBgWSvFP4cXyziii();
@@ -144,8 +142,6 @@ extern "C" extern void* __vt__6dBgWSv[65 + 1 /* padding */];
 
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void SetOldShapeAngleY__9dBgW_BaseFs();
 extern "C" void __dt__4cBgWFv();
@@ -271,7 +267,7 @@ SECTION_SDATA2 static u8 lit_3807[4] = {
 };
 
 /* 8045275C-80452760 0004+00 s=1 e=0 z=0  None .sdata2    @3808 */
-SECTION_SDATA2 static u32 lit_3808 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3808 = 1.0f;
 
 /* 80083300-8008351C 021C+00 s=1 e=0 z=0  None .text      TransPosWork__6dBgWSvFP4cXyziii */
 #pragma push

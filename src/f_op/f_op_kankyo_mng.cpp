@@ -15,13 +15,13 @@ struct layer_class {};
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -64,7 +64,6 @@ void fpcM_Delete(void*);
 void fpcM_FastCreate(s16, int (*)(void*), void*, void*);
 void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
 void cLib_memSet(void*, int, u32);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void fpcLy_CurrentLayer__Fv();
 extern "C" void fpcM_Delete__FPv();

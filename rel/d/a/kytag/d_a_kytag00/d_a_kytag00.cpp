@@ -41,13 +41,6 @@ static void daKytag00_Execute(kytag00_class*);
 static bool daKytag00_IsDelete(kytag00_class*);
 static void daKytag00_Delete(kytag00_class*);
 static void daKytag00_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_4101;
-extern "C" extern u32 const lit_4102;
-extern "C" extern u32 const lit_4103;
-extern "C" extern u32 const lit_4104;
-extern "C" extern u32 const lit_4105;
-extern "C" extern u32 const lit_4106;
-extern "C" extern void* g_profile_KYTAG00[12];
 
 extern "C" static void get_check_pos__FP13kytag00_class();
 extern "C" static void wether_tag_reset__FP13kytag00_class();
@@ -74,13 +67,6 @@ extern "C" extern void* g_profile_KYTAG00[12];
 //
 
 void cLib_addCalc(f32*, f32, f32, f32, f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void isSwitch__10dSv_info_cCFii();

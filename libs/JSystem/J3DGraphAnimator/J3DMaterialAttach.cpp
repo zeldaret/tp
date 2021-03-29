@@ -25,11 +25,11 @@ struct J3DTevColorAnm {};
 
 struct J3DAnmTextureSRTKey {};
 
-struct J3DAnmTexPattern {};
+struct J3DAnmColor {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmColor {};
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F5A8 */ void clear();
@@ -79,8 +79,6 @@ extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultTexMtxInfo[100];
-extern "C" extern void* __vt__11J3DTexNoAnm[3];
 
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();

@@ -11,11 +11,6 @@
 // Types:
 //
 
-struct csXyz {
-    /* 80CD4C0C */ ~csXyz();
-    /* 80CD51A8 */ csXyz();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,6 +18,11 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80CD4BD0 */ ~cXyz();
     /* 80CD52A8 */ cXyz();
+};
+
+struct csXyz {
+    /* 80CD4C0C */ ~csXyz();
+    /* 80CD51A8 */ csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -57,17 +57,17 @@ struct mDoExt_brkAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -171,8 +171,6 @@ struct daObj_SekiDoor_c {
     /* 80CCD5DC */ void evtSkip();
 };
 
-struct _GXColorS10 {};
-
 struct J3DJoint {};
 
 struct dCcD_GObjInf {
@@ -184,6 +182,8 @@ struct dCcD_GObjInf {
     /* 80084658 */ void ChkCoHit();
     /* 800846F0 */ void GetCoHitObj();
 };
+
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -453,54 +453,6 @@ static void daObj_Sekizoa_Execute(void*);
 static void daObj_Sekizoa_Draw(void*);
 static bool daObj_Sekizoa_IsDelete(void*);
 static void cLib_calcTimer__template0(int*);
-extern "C" extern u32 const lit_5481;
-extern "C" extern u32 const lit_5482;
-extern "C" extern u32 const lit_5483;
-extern "C" extern u32 const lit_6332;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 data_80CD65F4[72];
-extern "C" extern u8 data_80CD663C[48];
-extern "C" extern void* g_profile_OBJ_SEKIZOA[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80CD6960[4];
-extern "C" extern u8 data_80CD6964[4];
-extern "C" extern u8 data_80CD6968[4];
-extern "C" extern u8 data_80CD696C[4];
-extern "C" extern u8 data_80CD6970[4];
-extern "C" extern u8 data_80CD6974[4];
-extern "C" extern u8 data_80CD6978[4];
-extern "C" extern u8 data_80CD697C[4];
-extern "C" extern u8 data_80CD6980[4];
-extern "C" extern u8 data_80CD6984[4];
-extern "C" extern u8 data_80CD6988[4];
-extern "C" extern u8 data_80CD698C[4];
-extern "C" extern u8 data_80CD6990[4];
-extern "C" extern u8 data_80CD6994[4];
-extern "C" extern u8 data_80CD6998[4];
-extern "C" extern u8 data_80CD699C[4];
-extern "C" extern u8 data_80CD69A0[4];
-extern "C" extern u8 data_80CD69A4[4];
-extern "C" extern u8 data_80CD69A8[4];
-extern "C" extern u8 data_80CD69AC[4];
-extern "C" extern u8 data_80CD69B0[4];
-extern "C" extern u8 data_80CD69B4[4];
-extern "C" extern u8 data_80CD69B8[4];
-extern "C" extern u8 data_80CD69BC[4];
-extern "C" extern u8 data_80CD69C0[4];
 
 extern "C" void __dt__15daObj_Sekizoa_cFv();
 extern "C" void create__15daObj_Sekizoa_cFv();
@@ -682,25 +634,6 @@ void cM_rndF(f32);
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

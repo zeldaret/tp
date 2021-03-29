@@ -13,13 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -49,16 +49,16 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {
+    /* 802C03C8 */ Z2Creature();
+    /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
+};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {
-    /* 802C03C8 */ Z2Creature();
-    /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
-};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -255,10 +255,6 @@ static void daObjCHO_Delete(daObjCHO_c*);
 static void daObjCHO_Draw(daObjCHO_c*);
 static void daObjCHO_Execute(daObjCHO_c*);
 static bool daObjCHO_IsDelete(daObjCHO_c*);
-extern "C" extern u32 const lit_4226;
-extern "C" extern u8 const lit_4229[8];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Cho[12];
 
 extern "C" void __ct__14daObj_ChoHIO_cFv();
 extern "C" void InitCcSph__10daObjCHO_cFv();
@@ -327,20 +323,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

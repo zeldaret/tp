@@ -82,6 +82,10 @@ struct J2DPEBlock {
     /* 802F1840 */ void setGX();
 };
 
+struct J2DAnmColor {
+    /* 802EB390 */ void getColor(u16, _GXColor*) const;
+};
+
 struct J2DAnmTexPattern {
     /* 8030BEE8 */ void getTexNo(u16, u16*) const;
     /* 8030BF9C */ void getResTIMG(u16) const;
@@ -95,10 +99,6 @@ struct J2DAnmTextureSRTKey {
 struct J2DAnmTevRegKey {
     /* 8030C0F0 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
-};
-
-struct J2DAnmColor {
-    /* 802EB390 */ void getColor(u16, _GXColor*) const;
 };
 
 struct J2DMaterial {
@@ -167,8 +167,6 @@ struct J2DColorBlock {
 // Forward References:
 //
 
-extern "C" extern void* __vt__11J2DIndBlock[14];
-
 extern "C" void __ct__11J2DMaterialFv();
 extern "C" void __dt__11J2DMaterialFv();
 extern "C" void setGX__11J2DMaterialFv();
@@ -214,17 +212,6 @@ extern "C" extern void* __vt__11J2DIndBlock[14];
 void* operator new(u32);
 void* operator new(u32, int);
 void operator delete(void*);
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
-extern "C" extern void* __vt__15J2DIndBlockFull[14];
-extern "C" extern void* __vt__11J2DTevBlock[47];
-extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultBlendInfo;
-extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
 
 extern "C" void __ct__Q28JUtility6TColorFv();
 extern "C" void* __nw__FUl();
@@ -442,15 +429,13 @@ asm void J2DMaterial::setAnimation(J2DAnmTevRegKey* param_0) {
 
 /* ############################################################################################## */
 /* 804561B0-804561B4 0004+00 s=1 e=0 z=0  None .sdata2    @1943 */
-SECTION_SDATA2 static u32 lit_1943 = 0x43B40000;
+SECTION_SDATA2 static f32 lit_1943 = 360.0f;
 
 /* 804561B4-804561B8 0004+00 s=1 e=0 z=0  None .sdata2    @1944 */
-SECTION_SDATA2 static u32 lit_1944 = 0x477FFF00;
+SECTION_SDATA2 static f32 lit_1944 = 65535.0f;
 
 /* 804561B8-804561C0 0008+00 s=1 e=0 z=0  None .sdata2    @1946 */
-SECTION_SDATA2 static u8 lit_1946[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1946 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802EAC78-802EB0F4 047C+00 s=0 e=1 z=0  None .text      animation__11J2DMaterialFv */
 #pragma push

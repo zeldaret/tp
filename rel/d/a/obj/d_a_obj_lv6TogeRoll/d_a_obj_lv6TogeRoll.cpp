@@ -52,10 +52,6 @@ struct daTogeRoll_HIO_c {
     /* 80C798D0 */ ~daTogeRoll_HIO_c();
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
@@ -64,6 +60,10 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 8026702C */ bool operator==(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -197,9 +197,6 @@ static void daTogeRoll_Draw(daTogeRoll_c*);
 static void daTogeRoll_Execute(daTogeRoll_c*);
 static void daTogeRoll_Delete(daTogeRoll_c*);
 static void daTogeRoll_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Lv6TogeRoll[12];
 
 extern "C" void __ct__16daTogeRoll_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -262,21 +259,6 @@ void cM3d_InDivPos2(Vec const*, Vec const*, f32, Vec*);
 void cLib_addCalcPos(cXyz*, cXyz const&, f32, f32, f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

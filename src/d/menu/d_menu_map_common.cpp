@@ -55,8 +55,6 @@ struct J2DPane {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_map_common__stringBase0;
-
 extern "C" void __ct__16dMenuMapCommon_cFv();
 extern "C" void __dt__16dMenuMapCommon_cFv();
 extern "C" void initiate__16dMenuMapCommon_cFP10JKRArchive();
@@ -78,8 +76,6 @@ extern "C" extern char const* const d_menu_d_menu_map_common__stringBase0;
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_fmapHIO[1188];
 
 extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
 extern "C" void setScale__16dSelect_cursor_cFf();
@@ -202,7 +198,7 @@ SECTION_DEAD static char const* const pad_80395D8F = "";
 #pragma pop
 
 /* 804540DC-804540E0 0004+00 s=7 e=0 z=0  None .sdata2    @3882 */
-SECTION_SDATA2 static u32 lit_3882 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3882 = 1.0f;
 
 /* 801C28D8-801C38E4 100C+00 s=0 e=2 z=0  None .text      initiate__16dMenuMapCommon_cFP10JKRArchive
  */
@@ -217,16 +213,16 @@ asm void dMenuMapCommon_c::initiate(JKRArchive* param_0) {
 
 /* ############################################################################################## */
 /* 804540E0-804540E4 0004+00 s=1 e=0 z=0  None .sdata2    @4010 */
-SECTION_SDATA2 static u32 lit_4010 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4010 = 255.0f;
 
 /* 804540E4-804540E8 0004+00 s=1 e=0 z=0  None .sdata2    @4011 */
-SECTION_SDATA2 static u32 lit_4011 = 0x3F124925;
+SECTION_SDATA2 static f32 lit_4011 = 4.0f / 7.0f;
 
 /* 804540E8-804540EC 0004+00 s=3 e=0 z=0  None .sdata2    @4012 */
-SECTION_SDATA2 static u32 lit_4012 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4012 = 0.5f;
 
 /* 804540EC-804540F0 0004+00 s=1 e=0 z=0  None .sdata2    @4013 */
-SECTION_SDATA2 static u32 lit_4013 = 0x43340000;
+SECTION_SDATA2 static f32 lit_4013 = 180.0f;
 
 /* 801C38E4-801C3EC4 05E0+00 s=0 e=2 z=0  None .text      drawIcon__16dMenuMapCommon_cFffff */
 #pragma push
@@ -240,10 +236,10 @@ asm void dMenuMapCommon_c::drawIcon(f32 param_0, f32 param_1, f32 param_2, f32 p
 
 /* ############################################################################################## */
 /* 804540F0-804540F4 0004+00 s=1 e=0 z=0  None .sdata2    @4072 */
-SECTION_SDATA2 static u32 lit_4072 = 0x3F17B426;
+SECTION_SDATA2 static f32 lit_4072 = 16.0f / 27.0f;
 
 /* 804540F4-804540F8 0004+00 s=1 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0x3ED097B4;
+SECTION_SDATA2 static f32 lit_4073 = 11.0f / 27.0f;
 
 /* 801C3EC4-801C43A8 04E4+00 s=0 e=4 z=0  None .text      iconScale__16dMenuMapCommon_cFifff */
 #pragma push
@@ -289,9 +285,7 @@ asm void dMenuMapCommon_c::setBlendRatio(u8 param_0, f32 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 804540F8-80454100 0008+00 s=2 e=0 z=0  None .sdata2    @4119 */
-SECTION_SDATA2 static u8 lit_4119[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4119 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801C452C-801C4600 00D4+00 s=0 e=1 z=0  None .text      blinkMove__16dMenuMapCommon_cFs */
 #pragma push
@@ -305,9 +299,7 @@ asm void dMenuMapCommon_c::blinkMove(s16 param_0) {
 
 /* ############################################################################################## */
 /* 80454100-80454108 0008+00 s=1 e=0 z=0  None .sdata2    @4140 */
-SECTION_SDATA2 static u8 lit_4140[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4140 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801C4600-801C4738 0138+00 s=0 e=1 z=0  None .text      moveLightDropAnime__16dMenuMapCommon_cFv
  */

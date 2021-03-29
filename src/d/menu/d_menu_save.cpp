@@ -311,10 +311,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_save__stringBase0;
-extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
-extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
-
 extern "C" void __ct__9dMs_HIO_cFv();
 extern "C" void __ct__12dMenu_save_cFv();
 extern "C" void _create__12dMenu_save_cFv();
@@ -464,17 +460,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cAPICPad_ANY_BUTTON(u32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__12dMenu_save_c[3 + 3 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getJ2dHeap__Fv();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -1333,10 +1318,10 @@ static u8 lit_3785[12];
 static u8 g_msHIO[16 + 4 /* padding */];
 
 /* 80454438-8045443C 0004+00 s=1 e=0 z=0  None .sdata2    @3849 */
-SECTION_SDATA2 static u32 lit_3849 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_3849 = 9.0f / 10.0f;
 
 /* 8045443C-80454440 0004+00 s=2 e=0 z=0  None .sdata2    @3850 */
-SECTION_SDATA2 static u32 lit_3850 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3850 = 0.5f;
 
 /* 801EF7AC-801EF904 0158+00 s=0 e=3 z=0  None .text      _create__12dMenu_save_cFv */
 #pragma push
@@ -1368,10 +1353,10 @@ SECTION_SDATA static u8 l_msgNum[2 + 2 /* padding */] = {
 };
 
 /* 80454440-80454444 0004+00 s=1 e=0 z=0  None .sdata2    @4173 */
-SECTION_SDATA2 static u32 lit_4173 = 0x41980000;
+SECTION_SDATA2 static f32 lit_4173 = 19.0f;
 
 /* 80454444-80454448 0004+00 s=1 e=0 z=0  None .sdata2    @4174 */
-SECTION_SDATA2 static u32 lit_4174 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_4174 = 20.0f;
 
 /* 80454448-8045444C 0004+00 s=13 e=0 z=0  None .sdata2    @4175 */
 SECTION_SDATA2 static u8 lit_4175[4] = {
@@ -1382,25 +1367,25 @@ SECTION_SDATA2 static u8 lit_4175[4] = {
 };
 
 /* 8045444C-80454450 0004+00 s=1 e=0 z=0  None .sdata2    @4176 */
-SECTION_SDATA2 static u32 lit_4176 = 0x43DC0000;
+SECTION_SDATA2 static f32 lit_4176 = 440.0f;
 
 /* 80454450-80454454 0004+00 s=1 e=0 z=0  None .sdata2    @4177 */
-SECTION_SDATA2 static u32 lit_4177 = 0x43460000;
+SECTION_SDATA2 static f32 lit_4177 = 198.0f;
 
 /* 80454454-80454458 0004+00 s=1 e=0 z=0  None .sdata2    @4178 */
-SECTION_SDATA2 static u32 lit_4178 = 0x41A80000;
+SECTION_SDATA2 static f32 lit_4178 = 21.0f;
 
 /* 80454458-8045445C 0004+00 s=20 e=0 z=0  None .sdata2    @4179 */
-SECTION_SDATA2 static u32 lit_4179 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4179 = 1.0f;
 
 /* 8045445C-80454460 0004+00 s=3 e=0 z=0  None .sdata2    @4180 */
-SECTION_SDATA2 static u32 lit_4180 = 0x3F75C28F;
+SECTION_SDATA2 static f32 lit_4180 = 24.0f / 25.0f;
 
 /* 80454460-80454464 0004+00 s=2 e=0 z=0  None .sdata2    @4181 */
-SECTION_SDATA2 static u32 lit_4181 = 0x3F70A3D7;
+SECTION_SDATA2 static f32 lit_4181 = 47.0f / 50.0f;
 
 /* 80454464-80454468 0004+00 s=2 e=0 z=0  None .sdata2    @4182 */
-SECTION_SDATA2 static u32 lit_4182 = 0x3CF5C28F;
+SECTION_SDATA2 static f32 lit_4182 = 3.0f / 100.0f;
 
 /* 80454468-80454470 0004+04 s=2 e=0 z=0  None .sdata2    @4183 */
 SECTION_SDATA2 static f32 lit_4183[1 + 1 /* padding */] = {
@@ -1410,9 +1395,7 @@ SECTION_SDATA2 static f32 lit_4183[1 + 1 /* padding */] = {
 };
 
 /* 80454470-80454478 0008+00 s=17 e=0 z=0  None .sdata2    @4185 */
-SECTION_SDATA2 static u8 lit_4185[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4185 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801EF904-801F0938 1034+00 s=1 e=0 z=0  None .text      screenSet__12dMenu_save_cFv */
 #pragma push
@@ -1637,7 +1620,7 @@ asm void dMenu_save_c::backSaveQuestion2() {
 
 /* ############################################################################################## */
 /* 80454478-8045447C 0004+00 s=16 e=0 z=0  None .sdata2    @4879 */
-SECTION_SDATA2 static u32 lit_4879 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4879 = -1.0f;
 
 /* 801F1B38-801F1BF8 00C0+00 s=5 e=0 z=0  None .text      closeSelect__12dMenu_save_cFv */
 #pragma push
@@ -2454,7 +2437,7 @@ asm void dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
 
 /* ############################################################################################## */
 /* 8045447C-80454480 0004+00 s=1 e=0 z=0  None .sdata2    @6327 */
-SECTION_SDATA2 static u32 lit_6327 = 0x3F570A3D;
+SECTION_SDATA2 static f32 lit_6327 = 21.0f / 25.0f;
 
 /* 80454480-80454488 0004+04 s=1 e=0 z=0  None .sdata2    @6328 */
 SECTION_SDATA2 static f32 lit_6328[1 + 1 /* padding */] = {

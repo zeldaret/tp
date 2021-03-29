@@ -78,9 +78,6 @@ struct J3DDisplayListObj {
 // Forward References:
 //
 
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
-
 extern "C" void newDisplayList__17J3DDisplayListObjFUl();
 extern "C" void newSingleDisplayList__17J3DDisplayListObjFUl();
 extern "C" void single_To_Double__17J3DDisplayListObjFv();
@@ -124,13 +121,6 @@ extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
 void* operator new(u32);
 void* operator new[](u32, int);
 void operator delete(void*);
-extern "C" extern u8 sortFuncTable__13J3DDrawBuffer[72];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 struct_804515B0[4];
-extern "C" extern u8 sTexGenBlock__17J3DDifferedTexMtx[4];
-extern "C" extern u8 sTexMtxObj__17J3DDifferedTexMtx[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
-extern "C" extern u8 __GDCurrentDL[4];
 
 SECTION_INIT void memcpy();
 extern "C" void __dt__9J3DPacketFv();

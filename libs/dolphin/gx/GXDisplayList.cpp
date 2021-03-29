@@ -17,8 +17,6 @@ extern "C" void GXCallDisplayList();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 extern "C" void __GXSetDirtyState();
 extern "C" void __GXSendFlushPrim();
 extern "C" extern void* __GXData;

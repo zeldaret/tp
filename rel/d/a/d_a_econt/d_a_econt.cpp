@@ -32,7 +32,6 @@ static void daEcont_Execute(econt_class*);
 static bool daEcont_IsDelete(econt_class*);
 static void daEcont_Delete(econt_class*);
 static void daEcont_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_ECONT[12];
 
 extern "C" static bool daEcont_Draw__FP11econt_class();
 extern "C" static void s_rd_sub__FPvPv();
@@ -53,11 +52,6 @@ void fpcEx_Search(void* (*)(void*, void*), void*);
 void dComIfG_TimerStart(int, s16);
 void dComIfG_TimerDeleteRequest(int);
 void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 data_805197E0[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();

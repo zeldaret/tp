@@ -20,8 +20,6 @@ extern "C" void CARDRead();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 extern "C" void DCInvalidateRange();
 extern "C" void __CARDDefaultApiCallback();
 extern "C" void __CARDSyncCallback();

@@ -19,9 +19,6 @@ extern "C" void _unresolved();
 // External References:
 //
 
-extern void* const data_80BB7EA4[2];
-extern u8 const data_80BB7EAC[4];
-
 extern "C" void ModuleProlog();
 extern "C" void ModuleEpilog();
 extern "C" void ModuleUnresolved();

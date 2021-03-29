@@ -58,7 +58,6 @@ void fpcLnTg_ToQueue(line_tag*, int);
 void fpcLnIt_Queue(int (*)(void*, void*));
 void fpcPause_IsEnable(void*, u8);
 void cTg_IsUse(create_tag_class*);
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_Execute__FP18base_process_class();

@@ -13,8 +13,6 @@
 
 extern void* const data_8076B448[2];
 
-extern void* const data_8076B448[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_rdb_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 8076B448-8076B450 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_8076B448[2] = {
+    (void*)__sinit_d_a_e_rdb_cpp,
+    (void*)NULL,
+};

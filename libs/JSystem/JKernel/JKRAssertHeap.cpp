@@ -77,7 +77,6 @@ extern "C" bool do_getTotalFreeSize__13JKRAssertHeapFv();
 //
 
 void operator delete(void*);
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
 
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
 extern "C" void __dt__7JKRHeapFv();

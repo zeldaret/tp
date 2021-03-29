@@ -110,7 +110,6 @@ static void daObjGWall2_create1st(daObjGWall2_c*);
 static void daObjGWall2_MoveBGDelete(daObjGWall2_c*);
 static void daObjGWall2_MoveBGExecute(daObjGWall2_c*);
 static void daObjGWall2_MoveBGDraw(daObjGWall2_c*);
-extern "C" extern void* g_profile_Obj_GanonWall2[12];
 
 extern "C" void initBaseMtx__13daObjGWall2_cFv();
 extern "C" void setBaseMtx__13daObjGWall2_cFv();
@@ -142,14 +141,6 @@ void dKy_getdaytime_hour();
 void dKy_getdaytime_minute();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

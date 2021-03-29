@@ -52,8 +52,6 @@ struct JStudio_JAudio2 {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
-
 extern "C" void __dt__Q215JStudio_JAudio213TCreateObjectFv();
 extern "C" void
 create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object();

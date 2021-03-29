@@ -148,9 +148,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Ladder[12];
-
 extern "C" void CreateHeap__Q211daObjLadder5Act_cFv();
 extern "C" void Create__Q211daObjLadder5Act_cFv();
 extern "C" void Mthd_Create__Q211daObjLadder5Act_cFv();
@@ -200,15 +197,6 @@ void dComIfGp_getReverb(int);
 void dBgS_MoveBGProc_Trans(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void dKy_pol_sound_get(cBgS_PolyInfo const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

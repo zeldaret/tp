@@ -28,7 +28,6 @@ static void mDoMemCdRWm_CalcCheckSum(void*, u32);
 static void mDoMemCdRWm_CalcCheckSumGameData(void*, u32);
 void mDoMemCdRWm_TestCheckSumGameData(void*);
 void mDoMemCdRWm_SetCheckSumGameData(u8*, u8);
-extern "C" extern char const* const m_Do_m_Do_MemCardRWmng__stringBase0;
 
 extern "C" void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl();
 extern "C" void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl();
@@ -44,9 +43,6 @@ extern "C" extern char const* const m_Do_m_Do_MemCardRWmng__stringBase0;
 //
 // External References:
 //
-
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();

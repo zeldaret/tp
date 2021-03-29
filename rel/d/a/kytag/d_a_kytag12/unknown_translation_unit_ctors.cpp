@@ -13,8 +13,6 @@
 
 extern u8 const data_8085EEF8[4];
 
-extern u8 const data_8085EEF8[4];
-
 //
 // External References:
 //
@@ -25,3 +23,10 @@ extern u8 const data_8085EEF8[4];
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 8085EEF8-8085EEFC 0004+00 s=0 e=1 z=0  None .ctors     None */
+u8 const data_8085EEF8[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

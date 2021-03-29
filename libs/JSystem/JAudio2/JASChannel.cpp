@@ -109,9 +109,6 @@ struct JASCalc {
 // Forward References:
 //
 
-extern "C" extern u8 sBankDisposeList__10JASChannel[64];
-extern "C" extern u8 lit_556[12 + 4 /* padding */];
-
 extern "C" void __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv();
 extern "C" void __dt__10JASChannelFv();
 extern "C" void play__10JASChannelFv();
@@ -140,11 +137,6 @@ extern "C" extern u8 lit_556[12 + 4 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
-extern "C" extern u8 struct_80451260[8];
 
 extern "C" void pow2__7JASCalcFf();
 extern "C" void __ct__17JASGenericMemPoolFv();
@@ -201,7 +193,7 @@ extern "C" extern u8 struct_80451260[8];
 
 /* ############################################################################################## */
 /* 80455680-80455684 0004+00 s=6 e=0 z=0  None .sdata2    @544 */
-SECTION_SDATA2 static u32 lit_544 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_544 = 1.0f;
 
 /* 80455684-80455688 0004+00 s=7 e=0 z=0  None .sdata2    @545 */
 SECTION_SDATA2 static u8 lit_545[4] = {
@@ -338,9 +330,7 @@ SECTION_DATA static void* lit_662[7] = {
 };
 
 /* 80455690-80455698 0008+00 s=1 e=0 z=0  None .sdata2    @661 */
-SECTION_SDATA2 static u8 lit_661[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_661 = 0.5;
 
 /* 8029ABEC-8029ACD4 00E8+00 s=3 e=0 z=0  None .text
  * effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams   */
@@ -355,9 +345,7 @@ asm void JASChannel::effectOsc(u32 param_0, JASOscillator::EffectParams* param_1
 
 /* ############################################################################################## */
 /* 80455698-804556A0 0008+00 s=3 e=0 z=0  None .sdata2    @685 */
-SECTION_SDATA2 static u8 lit_685[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_685 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8029ACD4-8029AD38 0064+00 s=0 e=1 z=0  None .text      setKeySweepTarget__10JASChannelFlUl */
 #pragma push
@@ -378,9 +366,7 @@ SECTION_SDATA2 static f32 lit_711[1 + 1 /* padding */] = {
 };
 
 /* 804556A8-804556B0 0008+00 s=4 e=0 z=0  None .sdata2    @714 */
-SECTION_SDATA2 static u8 lit_714[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_714 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029AD38-8029AF78 0240+00 s=2 e=0 z=0  None .text
  * updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams */
@@ -407,10 +393,10 @@ asm void JASChannel::dspUpdateCallback(u32 param_0, JASDsp::TChannel* param_1, v
 
 /* ############################################################################################## */
 /* 804556B0-804556B4 0004+00 s=2 e=0 z=0  None .sdata2    @775 */
-SECTION_SDATA2 static u32 lit_775 = 0x41400000;
+SECTION_SDATA2 static f32 lit_775 = 12.0f;
 
 /* 804556B4-804556B8 0004+00 s=2 e=0 z=0  None .sdata2    @776 */
-SECTION_SDATA2 static u32 lit_776 = 0x45800000;
+SECTION_SDATA2 static f32 lit_776 = 4096.0f;
 
 /* 8029B004-8029B324 0320+00 s=1 e=0 z=0  None .text
  * initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel    */
@@ -425,10 +411,10 @@ asm void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* param_0) {
 
 /* ############################################################################################## */
 /* 804556B8-804556BC 0004+00 s=1 e=0 z=0  None .sdata2    @832 */
-SECTION_SDATA2 static u32 lit_832 = 0x46FA3900;
+SECTION_SDATA2 static f32 lit_832 = 32028.5f;
 
 /* 804556BC-804556C0 0004+00 s=1 e=0 z=0  None .sdata2    @833 */
-SECTION_SDATA2 static u32 lit_833 = 0x473B8000;
+SECTION_SDATA2 static f32 lit_833 = 48000.0f;
 
 /* 8029B324-8029B6A0 037C+00 s=1 e=0 z=0  None .text
  * updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel           */
@@ -443,10 +429,10 @@ asm void JASChannel::updateDSPChannel(JASDsp::TChannel* param_0) {
 
 /* ############################################################################################## */
 /* 804556C0-804556C4 0004+00 s=1 e=0 z=0  None .sdata2    @846 */
-SECTION_SDATA2 static u32 lit_846 = 0x3F34FDF4;
+SECTION_SDATA2 static f32 lit_846 = 0.7070000171661377f;
 
 /* 804556C4-804556C8 0004+00 s=1 e=0 z=0  None .sdata2    @847 */
-SECTION_SDATA2 static u32 lit_847 = 0x42FF0000;
+SECTION_SDATA2 static f32 lit_847 = 127.5f;
 
 /* 8029B6A0-8029B7D8 0138+00 s=1 e=0 z=0  None .text
  * updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff        */
@@ -488,16 +474,16 @@ SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
 };
 
 /* 804556C8-804556CC 0004+00 s=1 e=0 z=0  None .sdata2    @969 */
-SECTION_SDATA2 static u32 lit_969 = 0xC4A2F983;
+SECTION_SDATA2 static f32 lit_969 = -1303.7972412109375f;
 
 /* 804556CC-804556D0 0004+00 s=1 e=0 z=0  None .sdata2    @970 */
-SECTION_SDATA2 static u32 lit_970 = 0x44A2F983;
+SECTION_SDATA2 static f32 lit_970 = 1303.7972412109375f;
 
 /* 804556D0-804556D4 0004+00 s=1 e=0 z=0  None .sdata2    @971 */
-SECTION_SDATA2 static u32 lit_971 = 0x40490FDB;
+SECTION_SDATA2 static f32 lit_971 = 3.1415927410125732f;
 
 /* 804556D4-804556D8 0004+00 s=1 e=0 z=0  None .sdata2    @972 */
-SECTION_SDATA2 static u32 lit_972 = 0x3EA6F933;
+SECTION_SDATA2 static f32 lit_972 = 0.326119989156723f;
 
 /* 804556D8-804556E0 0004+04 s=1 e=0 z=0  None .sdata2    @973 */
 SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {

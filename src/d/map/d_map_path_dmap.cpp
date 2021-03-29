@@ -174,22 +174,6 @@ struct dDlst_list_c {
 // Forward References:
 //
 
-extern "C" extern void* __vt__19renderingPlusDoor_c[41];
-extern "C" extern void* __vt__28renderingPlusDoorAndCursor_c[47];
-extern "C" extern void* __vt__16renderingDAmap_c[38];
-extern "C" extern u32 mNextRoomNo__10dMapInfo_c;
-extern "C" extern u8 data_80450E58[4];
-extern "C" extern u8 data_80450E60[4];
-extern "C" extern u8 mLayerList__8dMpath_c[4];
-extern "C" extern u8 mMinX__8dMpath_c[4];
-extern "C" extern u8 mMaxX__8dMpath_c[4];
-extern "C" extern u8 mMinZ__8dMpath_c[4];
-extern "C" extern u8 mMaxZ__8dMpath_c[4];
-extern "C" extern f32 mAllCenterX__8dMpath_c;
-extern "C" extern f32 mAllCenterZ__8dMpath_c;
-extern "C" extern f32 mAllSizeX__8dMpath_c;
-extern "C" extern f32 mAllSizeZ__8dMpath_c;
-
 extern "C" void chkGetCompass__10dMapInfo_nFv();
 extern "C" void chkGetMap__10dMapInfo_nFv();
 extern "C" void isVisitedRoom__10dMapInfo_nFi();
@@ -285,14 +269,6 @@ void dStage_GetKeepDoorInfo();
 void dStage_GetRoomKeepDoorInfo();
 void dComIfGs_isVisitedRoom(int);
 void* operator new(u32);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_texObjAgg__8dMpath_n[28];
-extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -493,7 +469,7 @@ asm void dMapInfo_n::getMapRestartAngleY() {
 
 /* ############################################################################################## */
 /* 80451E2C-80451E30 0004+00 s=4 e=0 z=0  None .sdata2    @3887 */
-SECTION_SDATA2 static u32 lit_3887 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3887 = 0.5f;
 
 /* 8003F19C-8003F1F4 0058+00 s=0 e=1 z=0  None .text      getRoomCenter__10dMapInfo_nFiPfPf */
 #pragma push
@@ -518,9 +494,7 @@ asm void dMapInfo_n::getRoomMinMaxXZ(int param_0, f32* param_1, f32* param_2, f3
 
 /* ############################################################################################## */
 /* 80451E30-80451E38 0008+00 s=1 e=0 z=0  None .sdata2    @3957 */
-SECTION_SDATA2 static u8 lit_3957[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3957 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8003F24C-8003F40C 01C0+00 s=2 e=0 z=0  None .text getFloorParameter__10dMapInfo_nFfPScPfPfPfPf
  */
@@ -767,9 +741,7 @@ asm void renderingDAmap_c::init(u8* param_0, u16 param_1, u16 param_2, u16 param
 
 /* ############################################################################################## */
 /* 80451E40-80451E48 0008+00 s=2 e=0 z=0  None .sdata2    @4211 */
-SECTION_SDATA2 static u8 lit_4211[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4211 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8003FD08-8003FD9C 0094+00 s=0 e=2 z=0  None .text      entry__16renderingDAmap_cFfffiSc */
 #pragma push
@@ -849,13 +821,13 @@ asm void renderingDAmap_c::isDrawRoom(int param_0, int param_1) const {
 
 /* ############################################################################################## */
 /* 80451E4C-80451E50 0004+00 s=1 e=0 z=0  None .sdata2    @4264 */
-SECTION_SDATA2 static u32 lit_4264 = 0xC59C4000;
+SECTION_SDATA2 static f32 lit_4264 = -5000.0f;
 
 /* 80451E50-80451E54 0004+00 s=1 e=0 z=0  None .sdata2    @4265 */
-SECTION_SDATA2 static u32 lit_4265 = 0x459C4000;
+SECTION_SDATA2 static f32 lit_4265 = 5000.0f;
 
 /* 80451E54-80451E58 0004+00 s=1 e=0 z=0  None .sdata2    @4266 */
-SECTION_SDATA2 static u32 lit_4266 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4266 = -1.0f;
 
 /* 8003FF14-8003FFC4 00B0+00 s=3 e=3 z=0  None .text      preDrawPath__16renderingDAmap_cFv */
 #pragma push
@@ -1048,7 +1020,7 @@ SECTION_RODATA static u8 const l_100x100BoxVertexList[48] = {
 };
 
 /* 80451E70-80451E74 0004+00 s=1 e=0 z=0  None .sdata2    @4484 */
-SECTION_SDATA2 static u32 lit_4484 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_4484 = 6.0f;
 
 /* 80040838-800409B4 017C+00 s=1 e=0 z=0  None .text
  * drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib */
@@ -1194,7 +1166,7 @@ SECTION_SDATA2 static u8 tboxNotStayColor_4542[4] = {
 };
 
 /* 80451EA8-80451EAC 0004+00 s=2 e=0 z=0  None .sdata2    @4600 */
-SECTION_SDATA2 static u32 lit_4600 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4600 = 2.0f;
 
 /* 80040B00-80040E84 0384+00 s=1 e=0 z=0  None .text
  * drawTreasure__28renderingPlusDoorAndCursor_cFv               */

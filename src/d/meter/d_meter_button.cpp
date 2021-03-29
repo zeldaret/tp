@@ -24,16 +24,16 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
+
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
 };
 
 struct JUTFont {};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
 
 struct dMsgObject_c {
     /* 802370A8 */ void isGetItemMessage();
@@ -54,8 +54,6 @@ struct J2DPane {
     /* 802F7100 */ void getBounds();
 };
 
-struct JKRExpHeap {};
-
 struct J2DGrafContext {};
 
 struct JKRArchive {};
@@ -65,6 +63,8 @@ struct J2DScreen {
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
 };
+
+struct JKRExpHeap {};
 
 struct CPaneMgr {
     /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
@@ -181,15 +181,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
+};
+
+struct JUtility {
+    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -219,8 +219,6 @@ struct JKRHeap {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const d_meter_d_meter_button__stringBase0;
 
 extern "C" void __ct__14dMeterButton_cFv();
 extern "C" void __dt__14dMeterButton_cFv();
@@ -326,13 +324,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -516,13 +507,13 @@ SECTION_SDATA2 static u8 lit_4146[4] = {
 };
 
 /* 8045474C-80454750 0004+00 s=30 e=0 z=0  None .sdata2    @4147 */
-SECTION_SDATA2 static u32 lit_4147 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4147 = 1.0f;
 
 /* 80454750-80454754 0004+00 s=2 e=0 z=0  None .sdata2    @4148 */
-SECTION_SDATA2 static u32 lit_4148 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4148 = 10.0f;
 
 /* 80454754-80454758 0004+00 s=1 e=0 z=0  None .sdata2    @4149 */
-SECTION_SDATA2 static u32 lit_4149 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4149 = 1.0f / 10.0f;
 
 /* 80201404-80202240 0E3C+00 s=0 e=1 z=0  None .text
  * _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb          */
@@ -542,10 +533,10 @@ asm void dMeterButton_c::_execute(u32 param_0, bool param_1, bool param_2, bool 
 
 /* ############################################################################################## */
 /* 80454758-8045475C 0004+00 s=23 e=0 z=0  None .sdata2    @4513 */
-SECTION_SDATA2 static u32 lit_4513 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4513 = -1.0f;
 
 /* 8045475C-80454760 0004+00 s=2 e=0 z=0  None .sdata2    @4514 */
-SECTION_SDATA2 static u32 lit_4514 = 0x41900000;
+SECTION_SDATA2 static f32 lit_4514 = 18.0f;
 
 /* 80454760-80454768 0004+04 s=1 e=0 z=0  None .sdata2    @4515 */
 SECTION_SDATA2 static f32 lit_4515[1 + 1 /* padding */] = {
@@ -555,9 +546,7 @@ SECTION_SDATA2 static f32 lit_4515[1 + 1 /* padding */] = {
 };
 
 /* 80454768-80454770 0008+00 s=3 e=0 z=0  None .sdata2    @4517 */
-SECTION_SDATA2 static u8 lit_4517[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4517 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80202240-80202A9C 085C+00 s=1 e=0 z=0  None .text      draw__14dMeterButton_cFv */
 #pragma push
@@ -847,31 +836,31 @@ SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
 #pragma pop
 
 /* 80454770-80454774 0004+00 s=4 e=0 z=0  None .sdata2    @5628 */
-SECTION_SDATA2 static u32 lit_5628 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5628 = 0.5f;
 
 /* 80454774-80454778 0004+00 s=2 e=0 z=0  None .sdata2    @5629 */
-SECTION_SDATA2 static u32 lit_5629 = 0x43980000;
+SECTION_SDATA2 static f32 lit_5629 = 304.0f;
 
 /* 80454778-8045477C 0004+00 s=1 e=0 z=0  None .sdata2    @5630 */
-SECTION_SDATA2 static u32 lit_5630 = 0x41000000;
+SECTION_SDATA2 static f32 lit_5630 = 8.0f;
 
 /* 8045477C-80454780 0004+00 s=1 e=0 z=0  None .sdata2    @5631 */
-SECTION_SDATA2 static u32 lit_5631 = 0x4399A000;
+SECTION_SDATA2 static f32 lit_5631 = 307.25f;
 
 /* 80454780-80454784 0004+00 s=1 e=0 z=0  None .sdata2    @5632 */
-SECTION_SDATA2 static u32 lit_5632 = 0x4399E000;
+SECTION_SDATA2 static f32 lit_5632 = 307.75f;
 
 /* 80454784-80454788 0004+00 s=1 e=0 z=0  None .sdata2    @5633 */
-SECTION_SDATA2 static u32 lit_5633 = 0x43960000;
+SECTION_SDATA2 static f32 lit_5633 = 300.0f;
 
 /* 80454788-8045478C 0004+00 s=1 e=0 z=0  None .sdata2    @5634 */
-SECTION_SDATA2 static u32 lit_5634 = 0x43984000;
+SECTION_SDATA2 static f32 lit_5634 = 304.5f;
 
 /* 8045478C-80454790 0004+00 s=1 e=0 z=0  None .sdata2    @5635 */
-SECTION_SDATA2 static u32 lit_5635 = 0x43ADC000;
+SECTION_SDATA2 static f32 lit_5635 = 347.5f;
 
 /* 80454790-80454794 0004+00 s=1 e=0 z=0  None .sdata2    @5636 */
-SECTION_SDATA2 static u32 lit_5636 = 0x43B7A000;
+SECTION_SDATA2 static f32 lit_5636 = 367.25f;
 
 /* 802047E8-80205834 104C+00 s=1 e=0 z=0  None .text      screenInitButton__14dMeterButton_cFv */
 #pragma push
@@ -895,22 +884,22 @@ asm void dMeterButton_c::screenInitText() {
 
 /* ############################################################################################## */
 /* 80454794-80454798 0004+00 s=1 e=0 z=0  None .sdata2    @6012 */
-SECTION_SDATA2 static u32 lit_6012 = 0xC1C80000;
+SECTION_SDATA2 static f32 lit_6012 = -25.0f;
 
 /* 80454798-8045479C 0004+00 s=1 e=0 z=0  None .sdata2    @6013 */
-SECTION_SDATA2 static u32 lit_6013 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_6013 = 4.0f / 5.0f;
 
 /* 8045479C-804547A0 0004+00 s=1 e=0 z=0  None .sdata2    @6014 */
-SECTION_SDATA2 static u32 lit_6014 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_6014 = -10.0f;
 
 /* 804547A0-804547A4 0004+00 s=1 e=0 z=0  None .sdata2    @6015 */
-SECTION_SDATA2 static u32 lit_6015 = 0x41C80000;
+SECTION_SDATA2 static f32 lit_6015 = 25.0f;
 
 /* 804547A4-804547A8 0004+00 s=1 e=0 z=0  None .sdata2    @6016 */
-SECTION_SDATA2 static u32 lit_6016 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_6016 = 9.0f / 10.0f;
 
 /* 804547A8-804547AC 0004+00 s=2 e=0 z=0  None .sdata2    @6017 */
-SECTION_SDATA2 static u32 lit_6017 = 0x40000000;
+SECTION_SDATA2 static f32 lit_6017 = 2.0f;
 
 /* 80205CA0-80206978 0CD8+00 s=2 e=0 z=0  None .text      updateButton__14dMeterButton_cFv */
 #pragma push
@@ -1525,7 +1514,7 @@ asm void dMeterButton_c::getCenterPosCalc(u8 param_0, char* param_1, int param_2
 
 /* ############################################################################################## */
 /* 804547AC-804547B0 0004+00 s=1 e=0 z=0  None .sdata2    @7857 */
-SECTION_SDATA2 static u32 lit_7857 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_7857 = 20.0f;
 
 /* 8020A540-8020A94C 040C+00 s=2 e=0 z=0  None .text      trans_button__14dMeterButton_cFif */
 #pragma push

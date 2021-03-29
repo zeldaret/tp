@@ -65,9 +65,6 @@ extern "C" static void func_80298FA8();
 
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern void* __vt__13JASWaveHandle[5];
-extern "C" extern void* __vt__11JASWaveBank[6];
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
 
 extern "C" void __ct__10JASWaveArcFv();
 extern "C" void __dt__10JASWaveArcFv();

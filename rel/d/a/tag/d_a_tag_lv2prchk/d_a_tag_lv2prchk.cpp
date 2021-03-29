@@ -46,8 +46,6 @@ struct Z2SeMgr {
 static void daTagLv2PrChk_Execute(daTagLv2PrChk_c*);
 static void daTagLv2PrChk_Delete(daTagLv2PrChk_c*);
 static void daTagLv2PrChk_Create(daTagLv2PrChk_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Tag_Lv2PrChk[12];
 
 extern "C" void Create__15daTagLv2PrChk_cFv();
 extern "C" void create__15daTagLv2PrChk_cFv();
@@ -66,12 +64,6 @@ extern "C" extern void* g_profile_Tag_Lv2PrChk[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_805A5410[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void onSwitch__10dSv_info_cFii();

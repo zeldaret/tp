@@ -32,11 +32,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
+struct cXyz {};
+
 struct csXyz {};
 
 struct cBgS_PolyInfo {};
-
-struct cXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -80,8 +80,6 @@ struct cBgS {
 //
 
 static void CheckCreateHeap(fopAc_ac_c*);
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 
 extern "C" void __ct__16dBgS_MoveBgActorFv();
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
@@ -108,8 +106,6 @@ extern "C" extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 void mDoMtx_YrotM(f32 (*)[4], s16);
 void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
 void* operator new(u32);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();

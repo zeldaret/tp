@@ -11,6 +11,12 @@
 // Types:
 //
 
+struct dMenu_Fmap_region_data_c {
+    /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
+};
+
+struct dMenu_Fmap_world_data_c {};
+
 struct dDrawPath_c {
     struct group_class {};
 
@@ -27,12 +33,6 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
-
-struct dMenu_Fmap_region_data_c {
-    /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
-};
-
-struct dMenu_Fmap_world_data_c {};
 
 struct renderingFmap_c {
     struct palette_e {};
@@ -125,7 +125,6 @@ struct Vec {};
 
 static void twoValueLineInterpolation(u8, u8, f32);
 static void twoColorLineInterporation(_GXColor const&, _GXColor const&, f32, _GXColor&);
-extern "C" extern char const* const d_menu_d_menu_fmap_map__stringBase0;
 
 extern "C" static void twoValueLineInterpolation__FUcUcf();
 extern "C" static void twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor();
@@ -183,15 +182,6 @@ void* operator new(u32, int);
 void* operator new[](u32, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
-extern "C" extern void* __vt__15dRenderingMap_c[23];
-extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
-extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
 extern "C" void draw__12dDlst_base_cFv();
@@ -248,9 +238,7 @@ extern "C" extern u8 struct_80450D64[4];
 
 /* ############################################################################################## */
 /* 80454178-80454180 0008+00 s=3 e=0 z=0  None .sdata2    @3689 */
-SECTION_SDATA2 static u8 lit_3689[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3689 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801CE068-801CE0CC 0064+00 s=1 e=0 z=0  None .text      twoValueLineInterpolation__FUcUcf */
 #pragma push
@@ -295,7 +283,7 @@ asm void renderingFmap_c::init(u8* param_0, u16 param_1, u16 param_2, u16 param_
 
 /* ############################################################################################## */
 /* 80454184-80454188 0004+00 s=3 e=0 z=0  None .sdata2    @3711 */
-SECTION_SDATA2 static u32 lit_3711 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3711 = 1.0f;
 
 /* 801CE188-801CE224 009C+00 s=1 e=0 z=0  None .text
  * entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff      */
@@ -382,13 +370,13 @@ asm void renderingFmap_c::getPointStagePathInnerNo(dMenu_Fmap_region_data_c* par
 
 /* ############################################################################################## */
 /* 80454188-8045418C 0004+00 s=1 e=0 z=0  None .sdata2    @3769 */
-SECTION_SDATA2 static u32 lit_3769 = 0xC59C4000;
+SECTION_SDATA2 static f32 lit_3769 = -5000.0f;
 
 /* 8045418C-80454190 0004+00 s=1 e=0 z=0  None .sdata2    @3770 */
-SECTION_SDATA2 static u32 lit_3770 = 0x459C4000;
+SECTION_SDATA2 static f32 lit_3770 = 5000.0f;
 
 /* 80454190-80454194 0004+00 s=1 e=0 z=0  None .sdata2    @3771 */
-SECTION_SDATA2 static u32 lit_3771 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3771 = -1.0f;
 
 /* 801CE410-801CE4D4 00C4+00 s=2 e=0 z=0  None .text      preDrawPath__15renderingFmap_cFv */
 #pragma push
@@ -684,10 +672,10 @@ SECTION_SDATA2 static u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */] 
 };
 
 /* 80454198-8045419C 0004+00 s=1 e=0 z=0  None .sdata2    @4104 */
-SECTION_SDATA2 static u32 lit_4104 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4104 = 0.5f;
 
 /* 8045419C-804541A0 0004+00 s=1 e=0 z=0  None .sdata2    @4105 */
-SECTION_SDATA2 static u32 lit_4105 = 0x47800000;
+SECTION_SDATA2 static f32 lit_4105 = 65536.0f;
 
 /* 804541A0-804541A8 0004+04 s=1 e=0 z=0  None .sdata2    @4106 */
 SECTION_SDATA2 static f32 lit_4106[1 + 1 /* padding */] = {
@@ -697,9 +685,7 @@ SECTION_SDATA2 static f32 lit_4106[1 + 1 /* padding */] = {
 };
 
 /* 804541A8-804541B0 0008+00 s=2 e=0 z=0  None .sdata2    @4108 */
-SECTION_SDATA2 static u8 lit_4108[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801CEE94-801CF0B4 0220+00 s=1 e=0 z=0  None .text      draw__15dMenu_FmapMap_cFv */
 #pragma push
@@ -750,7 +736,7 @@ SECTION_SDATA2 static u8 l_lineWidthPatData2[5 + 3 /* padding */] = {
 };
 
 /* 804541C0-804541C4 0004+00 s=1 e=0 z=0  None .sdata2    @4152 */
-SECTION_SDATA2 static u32 lit_4152 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_4152 = 1.5f;
 
 /* 801CF12C-801CF1D4 00A8+00 s=1 e=0 z=0  None .text      getLineWidth__15dMenu_FmapMap_cFi */
 #pragma push

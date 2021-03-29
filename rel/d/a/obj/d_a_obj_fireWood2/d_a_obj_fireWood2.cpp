@@ -44,13 +44,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -114,7 +114,6 @@ static void daFireWood2_Draw(daFireWood2_c*);
 static void daFireWood2_Execute(daFireWood2_c*);
 static void daFireWood2_Delete(daFireWood2_c*);
 static void daFireWood2_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Obj_FireWood2[12];
 
 extern "C" void __ct__17daFireWood2_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -149,16 +148,6 @@ void dKy_plight_cut(LIGHT_INFLUENCE*);
 void dKy_BossLight_set(cXyz*, _GXColor*, f32, u8);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();

@@ -99,8 +99,6 @@ extern "C" void func_802A94D4();
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern u32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
 extern "C" void parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc();
 extern "C" void parseCharacter_UTF8__Q28JMessage6localeFPPCc();

@@ -69,8 +69,6 @@ static void daTagMhint_Create(fopAc_ac_c*);
 static void daTagMhint_Delete(daTagMhint_c*);
 static void daTagMhint_Execute(daTagMhint_c*);
 static bool daTagMhint_Draw(daTagMhint_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Tag_Mhint[12];
 
 extern "C" void create__12daTagMhint_cFv();
 extern "C" static void daTagMhint_Create__FP10fopAc_ac_c();
@@ -95,13 +93,6 @@ void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void dComIfGp_getRoomCamera(int);
 void dComIfGp_getRoomArrow(int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

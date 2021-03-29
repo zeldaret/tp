@@ -50,8 +50,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_kantera_icon_meter__stringBase0;
-
 extern "C" void __ct__15dKantera_icon_cFv();
 extern "C" void __dt__15dKantera_icon_cFv();
 extern "C" void initiate__15dKantera_icon_cFv();
@@ -70,9 +68,6 @@ extern "C" extern char const* const d_d_kantera_icon_meter__stringBase0;
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
 
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
 extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
@@ -187,9 +182,7 @@ SECTION_SDATA2 static f32 lit_3759[1 + 1 /* padding */] = {
 };
 
 /* 80453F00-80453F08 0008+00 s=1 e=0 z=0  None .sdata2    @3761 */
-SECTION_SDATA2 static u8 lit_3761[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3761 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801AEC44-801AECB8 0074+00 s=0 e=4 z=0  None .text      setNowGauge__15dKantera_icon_cFUsUs */
 #pragma push
@@ -203,16 +196,10 @@ asm void dKantera_icon_c::setNowGauge(u16 param_0, u16 param_1) {
 
 /* ############################################################################################## */
 /* 80453F08-80453F10 0004+04 s=1 e=0 z=0  None .sdata2    @3776 */
-SECTION_SDATA2 static u8 lit_3776[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3776[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 801AECB8-801AED1C 0064+00 s=1 e=0 z=0  None .text      draw__19dDlst_KanteraIcon_cFv */

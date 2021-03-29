@@ -28,7 +28,6 @@ extern "C" void __dt__12JAISoundInfoFv();
 //
 
 void operator delete(void*);
-extern "C" extern u8 data_80450B5C[4];
 
 extern "C" void __dl__FPv();
 extern "C" extern u8 data_80450B5C[4];

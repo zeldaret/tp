@@ -25,10 +25,6 @@ struct daBgObj_c {
 // Forward References:
 //
 
-extern "C" extern u8 const __TRK_unknown_data[7988];
-extern "C" extern u8 const _rom_copy_info[132];
-extern "C" extern u8 const _bss_init_info[32];
-
 SECTION_INIT static void __check_pad3();
 SECTION_INIT static void __set_debug_bba();
 SECTION_INIT static void __get_debug_bba();
@@ -50,8 +46,6 @@ extern "C" extern u8 const _bss_init_info[32];
 //
 // External References:
 //
-
-extern "C" extern u8 data_804516D0[8];
 
 extern "C" void main();
 extern "C" void __OSFPRInit();

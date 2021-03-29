@@ -63,8 +63,6 @@ struct J2DScreen {
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_bright_check__stringBase0;
-
 extern "C" void __ct__14dBrightCheck_cFP10JKRArchive();
 extern "C" void __dt__14dBrightCheck_cFv();
 extern "C" void screenSet__14dBrightCheck_cFv();
@@ -85,10 +83,6 @@ void mDoExt_getMesgFont();
 void mDoExt_getRubyFont();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_getRubyFont__Fv();
@@ -254,7 +248,7 @@ void dBrightCheck_c::modeWait() {
 
 /* ############################################################################################## */
 /* 80453A04-80453A08 0004+00 s=1 e=0 z=0  None .sdata2    @3821 */
-SECTION_SDATA2 static u32 lit_3821 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3821 = 1.0f;
 
 /* 80453A08-80453A10 0004+04 s=1 e=0 z=0  None .sdata2    @3822 */
 SECTION_SDATA2 static f32 lit_3822[1 + 1 /* padding */] = {

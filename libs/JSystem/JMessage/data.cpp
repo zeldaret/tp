@@ -13,8 +13,6 @@
 
 extern "C" extern u32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
-extern "C" extern u32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
-
 //
 // External References:
 //

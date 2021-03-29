@@ -13,8 +13,6 @@
 
 extern u8 const data_807BD568[4];
 
-extern u8 const data_807BD568[4];
-
 //
 // External References:
 //
@@ -26,3 +24,10 @@ extern u8 const data_807BD568[4];
 /* ############################################################################################## */
 #pragma section ".dtors$10"
 #pragma section ".dtors$15"
+/* 807BD568-807BD56C 0004+00 s=0 e=1 z=0  None .dtors     None */
+u8 const data_807BD568[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

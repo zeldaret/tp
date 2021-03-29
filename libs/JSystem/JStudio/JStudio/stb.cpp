@@ -11,6 +11,32 @@
 // Types:
 //
 
+namespace JGadget {
+template <typename A1, typename B1>
+struct TLinkList {};
+/* TLinkList<JStudio::stb::TObject, 12> */
+struct TLinkList__template2 {
+    struct iterator {};
+};
+
+struct binary {
+    struct TParse_header_block {
+        /* 802DC8C8 */ ~TParse_header_block();
+    };
+};
+
+struct TLinkListNode {};
+
+struct TNodeLinkList {
+    struct iterator {};
+
+    /* 802DCA1C */ ~TNodeLinkList();
+    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
+    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
+};
+
+};  // namespace JGadget
+
 namespace JStudio {
 namespace stb {
 struct data {
@@ -95,32 +121,6 @@ struct object {
 
 };  // namespace JStudio
 
-namespace JGadget {
-template <typename A1, typename B1>
-struct TLinkList {};
-/* TLinkList<JStudio::stb::TObject, 12> */
-struct TLinkList__template2 {
-    struct iterator {};
-};
-
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
-};
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
-};
-
-};  // namespace JGadget
-
 namespace std {
 /*          */ template <typename A1, typename B1>
 	/*          */ void find_if(/* JGadget::TLinkList::iterator, JGadget::TLinkList::iterator, JStudio::object::TPRObject_ID_equal */);
@@ -135,8 +135,6 @@ void find_if__template2(JGadget::TLinkList__template2::iterator,
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__Q37JStudio3stb8TFactory[5];
 
 extern "C" void __ct__Q37JStudio3stb7TObjectFUlPCvUl();
 extern "C" void __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object();
@@ -181,8 +179,6 @@ extern "C" extern void* __vt__Q37JStudio3stb8TFactory[5];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */];
 
 extern "C" void
 isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();

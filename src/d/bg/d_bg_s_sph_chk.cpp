@@ -50,7 +50,6 @@ extern "C" static void func_80078B88();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGSph[3];
 
 extern "C" void __ct__8dBgS_ChkFv();
 extern "C" void __dt__8dBgS_ChkFv();

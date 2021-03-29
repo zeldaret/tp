@@ -114,14 +114,6 @@ struct JKRHeap {
 // Forward References:
 //
 
-extern "C" extern u8 const data_80397F40[24];
-extern "C" extern u8 const data_80397F58[24];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_ringHIO[344];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
-extern "C" extern u8 g_menuHIO[8];
-
 extern "C" void __ct__16dMeter_menuHIO_cFv();
 extern "C" void __ct__23dMeter_drawCollectHIO_cFv();
 extern "C" void __ct__22dMeter_drawOptionHIO_cFv();
@@ -314,22 +306,22 @@ asm dMeter_menuHIO_c::dMeter_menuHIO_c() {
 
 /* ############################################################################################## */
 /* 804544E0-804544E4 0004+00 s=12 e=0 z=0  None .sdata2    @3787 */
-SECTION_SDATA2 static u32 lit_3787 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3787 = 1.0f;
 
 /* 804544E4-804544E8 0004+00 s=5 e=0 z=0  None .sdata2    @3788 */
-SECTION_SDATA2 static u32 lit_3788 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_3788 = 1.5f;
 
 /* 804544E8-804544EC 0004+00 s=6 e=0 z=0  None .sdata2    @3789 */
-SECTION_SDATA2 static u32 lit_3789 = 0x3F8CCCCD;
+SECTION_SDATA2 static f32 lit_3789 = 11.0f / 10.0f;
 
 /* 804544EC-804544F0 0004+00 s=2 e=0 z=0  None .sdata2    @3790 */
-SECTION_SDATA2 static u32 lit_3790 = 0xC1400000;
+SECTION_SDATA2 static f32 lit_3790 = -12.0f;
 
 /* 804544F0-804544F4 0004+00 s=4 e=0 z=0  None .sdata2    @3791 */
-SECTION_SDATA2 static u32 lit_3791 = 0x3FA66666;
+SECTION_SDATA2 static f32 lit_3791 = 13.0f / 10.0f;
 
 /* 804544F4-804544F8 0004+00 s=5 e=0 z=0  None .sdata2    @3792 */
-SECTION_SDATA2 static u32 lit_3792 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_3792 = 4.0f / 5.0f;
 
 /* 804544F8-804544FC 0004+00 s=11 e=0 z=0  None .sdata2    @3793 */
 SECTION_SDATA2 static u8 lit_3793[4] = {
@@ -340,31 +332,31 @@ SECTION_SDATA2 static u8 lit_3793[4] = {
 };
 
 /* 804544FC-80454500 0004+00 s=2 e=0 z=0  None .sdata2    @3794 */
-SECTION_SDATA2 static u32 lit_3794 = 0xC0A00000;
+SECTION_SDATA2 static f32 lit_3794 = -5.0f;
 
 /* 80454500-80454504 0004+00 s=3 e=0 z=0  None .sdata2    @3795 */
-SECTION_SDATA2 static u32 lit_3795 = 0x40800000;
+SECTION_SDATA2 static f32 lit_3795 = 4.0f;
 
 /* 80454504-80454508 0004+00 s=6 e=0 z=0  None .sdata2    @3796 */
-SECTION_SDATA2 static u32 lit_3796 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_3796 = 9.0f / 10.0f;
 
 /* 80454508-8045450C 0004+00 s=1 e=0 z=0  None .sdata2    @3797 */
-SECTION_SDATA2 static u32 lit_3797 = 0xC1B26666;
+SECTION_SDATA2 static f32 lit_3797 = -22.299999237060547f;
 
 /* 8045450C-80454510 0004+00 s=1 e=0 z=0  None .sdata2    @3798 */
-SECTION_SDATA2 static u32 lit_3798 = 0x41C73333;
+SECTION_SDATA2 static f32 lit_3798 = 24.899999618530273f;
 
 /* 80454510-80454514 0004+00 s=4 e=0 z=0  None .sdata2    @3799 */
-SECTION_SDATA2 static u32 lit_3799 = 0x41C80000;
+SECTION_SDATA2 static f32 lit_3799 = 25.0f;
 
 /* 80454514-80454518 0004+00 s=1 e=0 z=0  None .sdata2    @3800 */
-SECTION_SDATA2 static u32 lit_3800 = 0xC1C73333;
+SECTION_SDATA2 static f32 lit_3800 = -24.899999618530273f;
 
 /* 80454518-8045451C 0004+00 s=1 e=0 z=0  None .sdata2    @3801 */
-SECTION_SDATA2 static u32 lit_3801 = 0xC1DC0000;
+SECTION_SDATA2 static f32 lit_3801 = -27.5f;
 
 /* 8045451C-80454520 0004+00 s=1 e=0 z=0  None .sdata2    @3802 */
-SECTION_SDATA2 static u32 lit_3802 = 0x41D00000;
+SECTION_SDATA2 static f32 lit_3802 = 26.0f;
 
 /* 801FE348-801FE4EC 01A4+00 s=1 e=0 z=0  None .text      __ct__23dMeter_drawCollectHIO_cFv */
 #pragma push
@@ -378,19 +370,19 @@ asm dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
 
 /* ############################################################################################## */
 /* 80454520-80454524 0004+00 s=3 e=0 z=0  None .sdata2    @3828 */
-SECTION_SDATA2 static u32 lit_3828 = 0x3F828F5C;
+SECTION_SDATA2 static f32 lit_3828 = 51.0f / 50.0f;
 
 /* 80454524-80454528 0004+00 s=3 e=0 z=0  None .sdata2    @3829 */
-SECTION_SDATA2 static u32 lit_3829 = 0x3F7AE148;
+SECTION_SDATA2 static f32 lit_3829 = 49.0f / 50.0f;
 
 /* 80454528-8045452C 0004+00 s=4 e=0 z=0  None .sdata2    @3830 */
-SECTION_SDATA2 static u32 lit_3830 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_3830 = 3.0f / 10.0f;
 
 /* 8045452C-80454530 0004+00 s=1 e=0 z=0  None .sdata2    @3831 */
-SECTION_SDATA2 static u32 lit_3831 = 0x42340000;
+SECTION_SDATA2 static f32 lit_3831 = 45.0f;
 
 /* 80454530-80454534 0004+00 s=1 e=0 z=0  None .sdata2    @3832 */
-SECTION_SDATA2 static u32 lit_3832 = 0x42180000;
+SECTION_SDATA2 static f32 lit_3832 = 38.0f;
 
 /* 801FE4EC-801FE5CC 00E0+00 s=1 e=0 z=0  None .text      __ct__22dMeter_drawOptionHIO_cFv */
 #pragma push
@@ -404,7 +396,7 @@ asm dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
 
 /* ############################################################################################## */
 /* 80454534-80454538 0004+00 s=4 e=0 z=0  None .sdata2    @3867 */
-SECTION_SDATA2 static u32 lit_3867 = 0xC1A00000;
+SECTION_SDATA2 static f32 lit_3867 = -20.0f;
 
 /* 801FE5CC-801FE730 0164+00 s=1 e=0 z=0  None .text      __ct__22dMeter_drawLetterHIO_cFv */
 #pragma push
@@ -544,22 +536,22 @@ SECTION_RODATA static u8 const fishnPosY[24] = {
 };
 
 /* 80454538-8045453C 0004+00 s=1 e=0 z=0  None .sdata2    @3902 */
-SECTION_SDATA2 static u32 lit_3902 = 0x3F547AE1;
+SECTION_SDATA2 static f32 lit_3902 = 83.0f / 100.0f;
 
 /* 8045453C-80454540 0004+00 s=3 e=0 z=0  None .sdata2    @3903 */
-SECTION_SDATA2 static u32 lit_3903 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_3903 = 5.0f;
 
 /* 80454540-80454544 0004+00 s=1 e=0 z=0  None .sdata2    @3904 */
-SECTION_SDATA2 static u32 lit_3904 = 0xC1B1999A;
+SECTION_SDATA2 static f32 lit_3904 = -111.0f / 5.0f;
 
 /* 80454544-80454548 0004+00 s=1 e=0 z=0  None .sdata2    @3905 */
-SECTION_SDATA2 static u32 lit_3905 = 0xC33D8000;
+SECTION_SDATA2 static f32 lit_3905 = -189.5f;
 
 /* 80454548-8045454C 0004+00 s=1 e=0 z=0  None .sdata2    @3906 */
-SECTION_SDATA2 static u32 lit_3906 = 0xC07CCCCD;
+SECTION_SDATA2 static f32 lit_3906 = -79.0f / 20.0f;
 
 /* 8045454C-80454550 0004+00 s=1 e=0 z=0  None .sdata2    @3907 */
-SECTION_SDATA2 static u32 lit_3907 = 0xC33C0000;
+SECTION_SDATA2 static f32 lit_3907 = -188.0f;
 
 /* 801FE730-801FE8DC 01AC+00 s=1 e=0 z=0  None .text      __ct__23dMeter_drawFishingHIO_cFv */
 #pragma push
@@ -573,19 +565,19 @@ asm dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
 
 /* ############################################################################################## */
 /* 80454550-80454554 0004+00 s=1 e=0 z=0  None .sdata2    @3912 */
-SECTION_SDATA2 static u32 lit_3912 = 0x429A0000;
+SECTION_SDATA2 static f32 lit_3912 = 77.0f;
 
 /* 80454554-80454558 0004+00 s=1 e=0 z=0  None .sdata2    @3913 */
-SECTION_SDATA2 static u32 lit_3913 = 0x422C0000;
+SECTION_SDATA2 static f32 lit_3913 = 43.0f;
 
 /* 80454558-8045455C 0004+00 s=1 e=0 z=0  None .sdata2    @3914 */
-SECTION_SDATA2 static u32 lit_3914 = 0x42EE0000;
+SECTION_SDATA2 static f32 lit_3914 = 119.0f;
 
 /* 8045455C-80454560 0004+00 s=5 e=0 z=0  None .sdata2    @3915 */
-SECTION_SDATA2 static u32 lit_3915 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_3915 = 20.0f;
 
 /* 80454560-80454564 0004+00 s=1 e=0 z=0  None .sdata2    @3916 */
-SECTION_SDATA2 static u32 lit_3916 = 0xC2080000;
+SECTION_SDATA2 static f32 lit_3916 = -34.0f;
 
 /* 801FE8DC-801FE954 0078+00 s=1 e=0 z=0  None .text      __ct__22dMeter_drawInsectHIO_cFv */
 #pragma push
@@ -599,7 +591,7 @@ asm dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
 
 /* ############################################################################################## */
 /* 80454564-80454568 0004+00 s=3 e=0 z=0  None .sdata2    @3921 */
-SECTION_SDATA2 static u32 lit_3921 = 0x3F400000;
+SECTION_SDATA2 static f32 lit_3921 = 0.75f;
 
 /* 801FE954-801FE990 003C+00 s=1 e=0 z=0  None .text      __ct__27dMeter_drawCalibrationHIO_cFv */
 #pragma push
@@ -613,10 +605,10 @@ asm dMeter_drawCalibrationHIO_c::dMeter_drawCalibrationHIO_c() {
 
 /* ############################################################################################## */
 /* 80454568-8045456C 0004+00 s=1 e=0 z=0  None .sdata2    @3956 */
-SECTION_SDATA2 static u32 lit_3956 = 0x42A00000;
+SECTION_SDATA2 static f32 lit_3956 = 80.0f;
 
 /* 8045456C-80454570 0004+00 s=5 e=0 z=0  None .sdata2    @3957 */
-SECTION_SDATA2 static u32 lit_3957 = 0x3F733333;
+SECTION_SDATA2 static f32 lit_3957 = 19.0f / 20.0f;
 
 /* 801FE990-801FEAF0 0160+00 s=1 e=0 z=0  None .text      __ct__21dMeter_drawSkillHIO_cFv */
 #pragma push
@@ -630,49 +622,49 @@ asm dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c() {
 
 /* ############################################################################################## */
 /* 80454570-80454574 0004+00 s=5 e=0 z=0  None .sdata2    @4028 */
-SECTION_SDATA2 static u32 lit_4028 = 0x40200000;
+SECTION_SDATA2 static f32 lit_4028 = 2.5f;
 
 /* 80454574-80454578 0004+00 s=2 e=0 z=0  None .sdata2    @4029 */
-SECTION_SDATA2 static u32 lit_4029 = 0x3F45CFFF;
+SECTION_SDATA2 static f32 lit_4029 = 0.7727050185203552f;
 
 /* 80454578-8045457C 0004+00 s=3 e=0 z=0  None .sdata2    @4030 */
-SECTION_SDATA2 static u32 lit_4030 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4030 = 3.0f;
 
 /* 8045457C-80454580 0004+00 s=1 e=0 z=0  None .sdata2    @4031 */
-SECTION_SDATA2 static u32 lit_4031 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4031 = 2.0f;
 
 /* 80454580-80454584 0004+00 s=1 e=0 z=0  None .sdata2    @4032 */
-SECTION_SDATA2 static u32 lit_4032 = 0x3F933333;
+SECTION_SDATA2 static f32 lit_4032 = 23.0f / 20.0f;
 
 /* 80454584-80454588 0004+00 s=1 e=0 z=0  None .sdata2    @4033 */
-SECTION_SDATA2 static u32 lit_4033 = 0x420C0000;
+SECTION_SDATA2 static f32 lit_4033 = 35.0f;
 
 /* 80454588-8045458C 0004+00 s=2 e=0 z=0  None .sdata2    @4034 */
-SECTION_SDATA2 static u32 lit_4034 = 0x432F0000;
+SECTION_SDATA2 static f32 lit_4034 = 175.0f;
 
 /* 8045458C-80454590 0004+00 s=1 e=0 z=0  None .sdata2    @4035 */
-SECTION_SDATA2 static u32 lit_4035 = 0xC3C40000;
+SECTION_SDATA2 static f32 lit_4035 = -392.0f;
 
 /* 80454590-80454594 0004+00 s=2 e=0 z=0  None .sdata2    @4036 */
-SECTION_SDATA2 static u32 lit_4036 = 0xC1D00000;
+SECTION_SDATA2 static f32 lit_4036 = -26.0f;
 
 /* 80454594-80454598 0004+00 s=1 e=0 z=0  None .sdata2    @4037 */
-SECTION_SDATA2 static u32 lit_4037 = 0x42860000;
+SECTION_SDATA2 static f32 lit_4037 = 67.0f;
 
 /* 80454598-8045459C 0004+00 s=3 e=0 z=0  None .sdata2    @4038 */
-SECTION_SDATA2 static u32 lit_4038 = 0x41400000;
+SECTION_SDATA2 static f32 lit_4038 = 12.0f;
 
 /* 8045459C-804545A0 0004+00 s=3 e=0 z=0  None .sdata2    @4039 */
-SECTION_SDATA2 static u32 lit_4039 = 0x41880000;
+SECTION_SDATA2 static f32 lit_4039 = 17.0f;
 
 /* 804545A0-804545A4 0004+00 s=1 e=0 z=0  None .sdata2    @4040 */
-SECTION_SDATA2 static u32 lit_4040 = 0xC1880000;
+SECTION_SDATA2 static f32 lit_4040 = -17.0f;
 
 /* 804545A4-804545A8 0004+00 s=2 e=0 z=0  None .sdata2    @4041 */
-SECTION_SDATA2 static u32 lit_4041 = 0xC0C00000;
+SECTION_SDATA2 static f32 lit_4041 = -6.0f;
 
 /* 804545A8-804545AC 0004+00 s=3 e=0 z=0  None .sdata2    @4042 */
-SECTION_SDATA2 static u32 lit_4042 = 0xC1000000;
+SECTION_SDATA2 static f32 lit_4042 = -8.0f;
 
 /* 801FEAF0-801FEFF0 0500+00 s=1 e=0 z=0  None .text      __ct__25dMeter_drawEmpButtonHIO_cFv */
 #pragma push
@@ -686,73 +678,73 @@ asm dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
 
 /* ############################################################################################## */
 /* 804545AC-804545B0 0004+00 s=4 e=0 z=0  None .sdata2    @4071 */
-SECTION_SDATA2 static u32 lit_4071 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_4071 = 6.0f / 5.0f;
 
 /* 804545B0-804545B4 0004+00 s=1 e=0 z=0  None .sdata2    @4072 */
-SECTION_SDATA2 static u32 lit_4072 = 0x434F0000;
+SECTION_SDATA2 static f32 lit_4072 = 207.0f;
 
 /* 804545B4-804545B8 0004+00 s=1 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0xC22C0000;
+SECTION_SDATA2 static f32 lit_4073 = -43.0f;
 
 /* 804545B8-804545BC 0004+00 s=5 e=0 z=0  None .sdata2    @4074 */
-SECTION_SDATA2 static u32 lit_4074 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4074 = 0.5f;
 
 /* 804545BC-804545C0 0004+00 s=1 e=0 z=0  None .sdata2    @4075 */
-SECTION_SDATA2 static u32 lit_4075 = 0x439E8000;
+SECTION_SDATA2 static f32 lit_4075 = 317.0f;
 
 /* 804545C0-804545C4 0004+00 s=5 e=0 z=0  None .sdata2    @4076 */
-SECTION_SDATA2 static u32 lit_4076 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_4076 = 7.0f / 10.0f;
 
 /* 804545C4-804545C8 0004+00 s=1 e=0 z=0  None .sdata2    @4077 */
-SECTION_SDATA2 static u32 lit_4077 = 0xC3898000;
+SECTION_SDATA2 static f32 lit_4077 = -275.0f;
 
 /* 804545C8-804545CC 0004+00 s=2 e=0 z=0  None .sdata2    @4078 */
-SECTION_SDATA2 static u32 lit_4078 = 0x42980000;
+SECTION_SDATA2 static f32 lit_4078 = 76.0f;
 
 /* 804545CC-804545D0 0004+00 s=2 e=0 z=0  None .sdata2    @4079 */
-SECTION_SDATA2 static u32 lit_4079 = 0xC1B00000;
+SECTION_SDATA2 static f32 lit_4079 = -22.0f;
 
 /* 804545D0-804545D4 0004+00 s=2 e=0 z=0  None .sdata2    @4080 */
-SECTION_SDATA2 static u32 lit_4080 = 0xC1F00000;
+SECTION_SDATA2 static f32 lit_4080 = -30.0f;
 
 /* 804545D4-804545D8 0004+00 s=4 e=0 z=0  None .sdata2    @4081 */
-SECTION_SDATA2 static u32 lit_4081 = 0x3FB33333;
+SECTION_SDATA2 static f32 lit_4081 = 7.0f / 5.0f;
 
 /* 804545D8-804545DC 0004+00 s=1 e=0 z=0  None .sdata2    @4082 */
-SECTION_SDATA2 static u32 lit_4082 = 0x43460000;
+SECTION_SDATA2 static f32 lit_4082 = 198.0f;
 
 /* 804545DC-804545E0 0004+00 s=2 e=0 z=0  None .sdata2    @4083 */
-SECTION_SDATA2 static u32 lit_4083 = 0x43200000;
+SECTION_SDATA2 static f32 lit_4083 = 160.0f;
 
 /* 804545E0-804545E4 0004+00 s=2 e=0 z=0  None .sdata2    @4084 */
-SECTION_SDATA2 static u32 lit_4084 = 0x41E00000;
+SECTION_SDATA2 static f32 lit_4084 = 28.0f;
 
 /* 804545E4-804545E8 0004+00 s=3 e=0 z=0  None .sdata2    @4085 */
-SECTION_SDATA2 static u32 lit_4085 = 0xC1900000;
+SECTION_SDATA2 static f32 lit_4085 = -18.0f;
 
 /* 804545E8-804545EC 0004+00 s=1 e=0 z=0  None .sdata2    @4086 */
-SECTION_SDATA2 static u32 lit_4086 = 0x41B80000;
+SECTION_SDATA2 static f32 lit_4086 = 23.0f;
 
 /* 804545EC-804545F0 0004+00 s=1 e=0 z=0  None .sdata2    @4087 */
-SECTION_SDATA2 static u32 lit_4087 = 0xC1800000;
+SECTION_SDATA2 static f32 lit_4087 = -16.0f;
 
 /* 804545F0-804545F4 0004+00 s=1 e=0 z=0  None .sdata2    @4088 */
-SECTION_SDATA2 static u32 lit_4088 = 0x43858000;
+SECTION_SDATA2 static f32 lit_4088 = 267.0f;
 
 /* 804545F4-804545F8 0004+00 s=1 e=0 z=0  None .sdata2    @4089 */
-SECTION_SDATA2 static u32 lit_4089 = 0x43900000;
+SECTION_SDATA2 static f32 lit_4089 = 288.0f;
 
 /* 804545F8-804545FC 0004+00 s=1 e=0 z=0  None .sdata2    @4090 */
-SECTION_SDATA2 static u32 lit_4090 = 0xC1E80000;
+SECTION_SDATA2 static f32 lit_4090 = -29.0f;
 
 /* 804545FC-80454600 0004+00 s=1 e=0 z=0  None .sdata2    @4091 */
-SECTION_SDATA2 static u32 lit_4091 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4091 = 50.0f;
 
 /* 80454600-80454604 0004+00 s=1 e=0 z=0  None .sdata2    @4092 */
-SECTION_SDATA2 static u32 lit_4092 = 0x3FE66666;
+SECTION_SDATA2 static f32 lit_4092 = 9.0f / 5.0f;
 
 /* 80454604-80454608 0004+00 s=3 e=0 z=0  None .sdata2    @4093 */
-SECTION_SDATA2 static u32 lit_4093 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_4093 = 3.0f / 5.0f;
 
 /* 801FEFF0-801FF31C 032C+00 s=1 e=0 z=0  None .text      __ct__24dMeter_drawMiniGameHIO_cFv */
 #pragma push
@@ -766,25 +758,25 @@ asm dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
 
 /* ############################################################################################## */
 /* 80454608-8045460C 0004+00 s=1 e=0 z=0  None .sdata2    @4126 */
-SECTION_SDATA2 static u32 lit_4126 = 0x3F428F5C;
+SECTION_SDATA2 static f32 lit_4126 = 19.0f / 25.0f;
 
 /* 8045460C-80454610 0004+00 s=1 e=0 z=0  None .sdata2    @4127 */
-SECTION_SDATA2 static u32 lit_4127 = 0x41300000;
+SECTION_SDATA2 static f32 lit_4127 = 11.0f;
 
 /* 80454610-80454614 0004+00 s=3 e=0 z=0  None .sdata2    @4128 */
-SECTION_SDATA2 static u32 lit_4128 = 0x40D33333;
+SECTION_SDATA2 static f32 lit_4128 = 33.0f / 5.0f;
 
 /* 80454614-80454618 0004+00 s=1 e=0 z=0  None .sdata2    @4129 */
-SECTION_SDATA2 static u32 lit_4129 = 0xC20C0000;
+SECTION_SDATA2 static f32 lit_4129 = -35.0f;
 
 /* 80454618-8045461C 0004+00 s=3 e=0 z=0  None .sdata2    @4130 */
-SECTION_SDATA2 static u32 lit_4130 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_4130 = 1.0f / 5.0f;
 
 /* 8045461C-80454620 0004+00 s=1 e=0 z=0  None .sdata2    @4131 */
-SECTION_SDATA2 static u32 lit_4131 = 0x41980000;
+SECTION_SDATA2 static f32 lit_4131 = 19.0f;
 
 /* 80454620-80454624 0004+00 s=1 e=0 z=0  None .sdata2    @4132 */
-SECTION_SDATA2 static u32 lit_4132 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4132 = 1.0f / 10.0f;
 
 /* 801FF31C-801FF5B8 029C+00 s=1 e=0 z=0  None .text      __ct__25dMeter_drawLightDropHIO_cFv */
 #pragma push
@@ -798,106 +790,106 @@ asm dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
 
 /* ############################################################################################## */
 /* 80454624-80454628 0004+00 s=1 e=0 z=0  None .sdata2    @4257 */
-SECTION_SDATA2 static u32 lit_4257 = 0x42200000;
+SECTION_SDATA2 static f32 lit_4257 = 40.0f;
 
 /* 80454628-8045462C 0004+00 s=1 e=0 z=0  None .sdata2    @4258 */
-SECTION_SDATA2 static u32 lit_4258 = 0xC0B33333;
+SECTION_SDATA2 static f32 lit_4258 = -28.0f / 5.0f;
 
 /* 8045462C-80454630 0004+00 s=1 e=0 z=0  None .sdata2    @4259 */
-SECTION_SDATA2 static u32 lit_4259 = 0xC1700000;
+SECTION_SDATA2 static f32 lit_4259 = -15.0f;
 
 /* 80454630-80454634 0004+00 s=3 e=0 z=0  None .sdata2    @4260 */
-SECTION_SDATA2 static u32 lit_4260 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_4260 = 2.0f / 5.0f;
 
 /* 80454634-80454638 0004+00 s=2 e=0 z=0  None .sdata2    @4261 */
-SECTION_SDATA2 static u32 lit_4261 = 0x41900000;
+SECTION_SDATA2 static f32 lit_4261 = 18.0f;
 
 /* 80454638-8045463C 0004+00 s=2 e=0 z=0  None .sdata2    @4262 */
-SECTION_SDATA2 static u32 lit_4262 = 0x3F0CCCCD;
+SECTION_SDATA2 static f32 lit_4262 = 11.0f / 20.0f;
 
 /* 8045463C-80454640 0004+00 s=1 e=0 z=0  None .sdata2    @4263 */
-SECTION_SDATA2 static u32 lit_4263 = 0xC2280000;
+SECTION_SDATA2 static f32 lit_4263 = -42.0f;
 
 /* 80454640-80454644 0004+00 s=2 e=0 z=0  None .sdata2    @4264 */
-SECTION_SDATA2 static u32 lit_4264 = 0x41000000;
+SECTION_SDATA2 static f32 lit_4264 = 8.0f;
 
 /* 80454644-80454648 0004+00 s=2 e=0 z=0  None .sdata2    @4265 */
-SECTION_SDATA2 static u32 lit_4265 = 0x3F6B851F;
+SECTION_SDATA2 static f32 lit_4265 = 23.0f / 25.0f;
 
 /* 80454648-8045464C 0004+00 s=1 e=0 z=0  None .sdata2    @4266 */
-SECTION_SDATA2 static u32 lit_4266 = 0xC27C0000;
+SECTION_SDATA2 static f32 lit_4266 = -63.0f;
 
 /* 8045464C-80454650 0004+00 s=1 e=0 z=0  None .sdata2    @4267 */
-SECTION_SDATA2 static u32 lit_4267 = 0xC2440000;
+SECTION_SDATA2 static f32 lit_4267 = -49.0f;
 
 /* 80454650-80454654 0004+00 s=1 e=0 z=0  None .sdata2    @4268 */
-SECTION_SDATA2 static u32 lit_4268 = 0xC2780000;
+SECTION_SDATA2 static f32 lit_4268 = -62.0f;
 
 /* 80454654-80454658 0004+00 s=1 e=0 z=0  None .sdata2    @4269 */
-SECTION_SDATA2 static u32 lit_4269 = 0xC2400000;
+SECTION_SDATA2 static f32 lit_4269 = -48.0f;
 
 /* 80454658-8045465C 0004+00 s=1 e=0 z=0  None .sdata2    @4270 */
-SECTION_SDATA2 static u32 lit_4270 = 0xC00CCCCD;
+SECTION_SDATA2 static f32 lit_4270 = -11.0f / 5.0f;
 
 /* 8045465C-80454660 0004+00 s=2 e=0 z=0  None .sdata2    @4271 */
-SECTION_SDATA2 static u32 lit_4271 = 0xBFA66666;
+SECTION_SDATA2 static f32 lit_4271 = -13.0f / 10.0f;
 
 /* 80454660-80454664 0004+00 s=1 e=0 z=0  None .sdata2    @4272 */
-SECTION_SDATA2 static u32 lit_4272 = 0xC1133333;
+SECTION_SDATA2 static f32 lit_4272 = -46.0f / 5.0f;
 
 /* 80454664-80454668 0004+00 s=1 e=0 z=0  None .sdata2    @4273 */
-SECTION_SDATA2 static u32 lit_4273 = 0xC2820000;
+SECTION_SDATA2 static f32 lit_4273 = -65.0f;
 
 /* 80454668-8045466C 0004+00 s=1 e=0 z=0  None .sdata2    @4274 */
-SECTION_SDATA2 static u32 lit_4274 = 0x40133333;
+SECTION_SDATA2 static f32 lit_4274 = 23.0f / 10.0f;
 
 /* 8045466C-80454670 0004+00 s=1 e=0 z=0  None .sdata2    @4275 */
-SECTION_SDATA2 static u32 lit_4275 = 0x41B00000;
+SECTION_SDATA2 static f32 lit_4275 = 22.0f;
 
 /* 80454670-80454674 0004+00 s=1 e=0 z=0  None .sdata2    @4276 */
-SECTION_SDATA2 static u32 lit_4276 = 0x40066666;
+SECTION_SDATA2 static f32 lit_4276 = 21.0f / 10.0f;
 
 /* 80454674-80454678 0004+00 s=2 e=0 z=0  None .sdata2    @4277 */
-SECTION_SDATA2 static u32 lit_4277 = 0xC1600000;
+SECTION_SDATA2 static f32 lit_4277 = -14.0f;
 
 /* 80454678-8045467C 0004+00 s=1 e=0 z=0  None .sdata2    @4278 */
-SECTION_SDATA2 static u32 lit_4278 = 0xC1500000;
+SECTION_SDATA2 static f32 lit_4278 = -13.0f;
 
 /* 8045467C-80454680 0004+00 s=2 e=0 z=0  None .sdata2    @4279 */
-SECTION_SDATA2 static u32 lit_4279 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4279 = -1.0f;
 
 /* 80454680-80454684 0004+00 s=1 e=0 z=0  None .sdata2    @4280 */
-SECTION_SDATA2 static u32 lit_4280 = 0x41600000;
+SECTION_SDATA2 static f32 lit_4280 = 14.0f;
 
 /* 80454684-80454688 0004+00 s=2 e=0 z=0  None .sdata2    @4281 */
-SECTION_SDATA2 static u32 lit_4281 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_4281 = 6.0f;
 
 /* 80454688-8045468C 0004+00 s=1 e=0 z=0  None .sdata2    @4282 */
-SECTION_SDATA2 static u32 lit_4282 = 0xC0966666;
+SECTION_SDATA2 static f32 lit_4282 = -47.0f / 10.0f;
 
 /* 8045468C-80454690 0004+00 s=2 e=0 z=0  None .sdata2    @4283 */
-SECTION_SDATA2 static u32 lit_4283 = 0x41133333;
+SECTION_SDATA2 static f32 lit_4283 = 46.0f / 5.0f;
 
 /* 80454690-80454694 0004+00 s=1 e=0 z=0  None .sdata2    @4284 */
-SECTION_SDATA2 static u32 lit_4284 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_4284 = -4.0f;
 
 /* 80454694-80454698 0004+00 s=2 e=0 z=0  None .sdata2    @4285 */
-SECTION_SDATA2 static u32 lit_4285 = 0x400CCCCD;
+SECTION_SDATA2 static f32 lit_4285 = 11.0f / 5.0f;
 
 /* 80454698-8045469C 0004+00 s=2 e=0 z=0  None .sdata2    @4286 */
-SECTION_SDATA2 static u32 lit_4286 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_4286 = 17.0f / 20.0f;
 
 /* 8045469C-804546A0 0004+00 s=1 e=0 z=0  None .sdata2    @4287 */
-SECTION_SDATA2 static u32 lit_4287 = 0x43480000;
+SECTION_SDATA2 static f32 lit_4287 = 200.0f;
 
 /* 804546A0-804546A4 0004+00 s=1 e=0 z=0  None .sdata2    @4288 */
-SECTION_SDATA2 static u32 lit_4288 = 0x43160000;
+SECTION_SDATA2 static f32 lit_4288 = 150.0f;
 
 /* 804546A4-804546A8 0004+00 s=1 e=0 z=0  None .sdata2    @4289 */
-SECTION_SDATA2 static u32 lit_4289 = 0x43500000;
+SECTION_SDATA2 static f32 lit_4289 = 208.0f;
 
 /* 804546A8-804546AC 0004+00 s=1 e=0 z=0  None .sdata2    @4290 */
-SECTION_SDATA2 static u32 lit_4290 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_4290 = -100.0f;
 
 /* 801FF5B8-802001AC 0BF4+00 s=1 e=0 z=0  None .text      __ct__16dMeter_drawHIO_cFv */
 #pragma push
@@ -911,46 +903,46 @@ asm dMeter_drawHIO_c::dMeter_drawHIO_c() {
 
 /* ############################################################################################## */
 /* 804546AC-804546B0 0004+00 s=1 e=0 z=0  None .sdata2    @4334 */
-SECTION_SDATA2 static u32 lit_4334 = 0x42FA0000;
+SECTION_SDATA2 static f32 lit_4334 = 125.0f;
 
 /* 804546B0-804546B4 0004+00 s=1 e=0 z=0  None .sdata2    @4335 */
-SECTION_SDATA2 static u32 lit_4335 = 0x432D0000;
+SECTION_SDATA2 static f32 lit_4335 = 173.0f;
 
 /* 804546B4-804546B8 0004+00 s=1 e=0 z=0  None .sdata2    @4336 */
-SECTION_SDATA2 static u32 lit_4336 = 0x3EB33333;
+SECTION_SDATA2 static f32 lit_4336 = 7.0f / 20.0f;
 
 /* 804546B8-804546BC 0004+00 s=1 e=0 z=0  None .sdata2    @4337 */
-SECTION_SDATA2 static u32 lit_4337 = 0xC26C0000;
+SECTION_SDATA2 static f32 lit_4337 = -59.0f;
 
 /* 804546BC-804546C0 0004+00 s=1 e=0 z=0  None .sdata2    @4338 */
-SECTION_SDATA2 static u32 lit_4338 = 0xC2800000;
+SECTION_SDATA2 static f32 lit_4338 = -64.0f;
 
 /* 804546C0-804546C4 0004+00 s=1 e=0 z=0  None .sdata2    @4339 */
-SECTION_SDATA2 static u32 lit_4339 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_4339 = 90.0f;
 
 /* 804546C4-804546C8 0004+00 s=1 e=0 z=0  None .sdata2    @4340 */
-SECTION_SDATA2 static u32 lit_4340 = 0xC2F80000;
+SECTION_SDATA2 static f32 lit_4340 = -124.0f;
 
 /* 804546C8-804546CC 0004+00 s=1 e=0 z=0  None .sdata2    @4341 */
-SECTION_SDATA2 static u32 lit_4341 = 0x42EC0000;
+SECTION_SDATA2 static f32 lit_4341 = 118.0f;
 
 /* 804546CC-804546D0 0004+00 s=1 e=0 z=0  None .sdata2    @4342 */
-SECTION_SDATA2 static u32 lit_4342 = 0xC2FE0000;
+SECTION_SDATA2 static f32 lit_4342 = -127.0f;
 
 /* 804546D0-804546D4 0004+00 s=1 e=0 z=0  None .sdata2    @4343 */
-SECTION_SDATA2 static u32 lit_4343 = 0x42380000;
+SECTION_SDATA2 static f32 lit_4343 = 46.0f;
 
 /* 804546D4-804546D8 0004+00 s=1 e=0 z=0  None .sdata2    @4344 */
-SECTION_SDATA2 static u32 lit_4344 = 0x41100000;
+SECTION_SDATA2 static f32 lit_4344 = 9.0f;
 
 /* 804546D8-804546DC 0004+00 s=1 e=0 z=0  None .sdata2    @4345 */
-SECTION_SDATA2 static u32 lit_4345 = 0xC2700000;
+SECTION_SDATA2 static f32 lit_4345 = -60.0f;
 
 /* 804546DC-804546E0 0004+00 s=1 e=0 z=0  None .sdata2    @4346 */
-SECTION_SDATA2 static u32 lit_4346 = 0xC2680000;
+SECTION_SDATA2 static f32 lit_4346 = -58.0f;
 
 /* 804546E0-804546E4 0004+00 s=1 e=0 z=0  None .sdata2    @4347 */
-SECTION_SDATA2 static u32 lit_4347 = 0x42F00000;
+SECTION_SDATA2 static f32 lit_4347 = 120.0f;
 
 /* 802001AC-802004B4 0308+00 s=1 e=0 z=0  None .text      __ct__16dMeter_ringHIO_cFv */
 #pragma push
@@ -964,16 +956,16 @@ asm dMeter_ringHIO_c::dMeter_ringHIO_c() {
 
 /* ############################################################################################## */
 /* 804546E4-804546E8 0004+00 s=1 e=0 z=0  None .sdata2    @4357 */
-SECTION_SDATA2 static u32 lit_4357 = 0x3F266666;
+SECTION_SDATA2 static f32 lit_4357 = 13.0f / 20.0f;
 
 /* 804546E8-804546EC 0004+00 s=1 e=0 z=0  None .sdata2    @4358 */
-SECTION_SDATA2 static u32 lit_4358 = 0x3FA3D70A;
+SECTION_SDATA2 static f32 lit_4358 = 32.0f / 25.0f;
 
 /* 804546EC-804546F0 0004+00 s=1 e=0 z=0  None .sdata2    @4359 */
-SECTION_SDATA2 static u32 lit_4359 = 0x3FCCCCCD;
+SECTION_SDATA2 static f32 lit_4359 = 8.0f / 5.0f;
 
 /* 804546F0-804546F4 0004+00 s=1 e=0 z=0  None .sdata2    @4360 */
-SECTION_SDATA2 static u32 lit_4360 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_4360 = 0.25f;
 
 /* 802004B4-802006C8 0214+00 s=1 e=0 z=0  None .text      __ct__19dMeter_mapIconHIO_cFv */
 #pragma push
@@ -987,49 +979,49 @@ asm dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
 
 /* ############################################################################################## */
 /* 804546F4-804546F8 0004+00 s=1 e=0 z=0  None .sdata2    @4416 */
-SECTION_SDATA2 static u32 lit_4416 = 0x47435000;
+SECTION_SDATA2 static f32 lit_4416 = 50000.0f;
 
 /* 804546F8-804546FC 0004+00 s=1 e=0 z=0  None .sdata2    @4417 */
-SECTION_SDATA2 static u32 lit_4417 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_4417 = 10000.0f;
 
 /* 804546FC-80454700 0004+00 s=1 e=0 z=0  None .sdata2    @4418 */
-SECTION_SDATA2 static u32 lit_4418 = 0xC8927C00;
+SECTION_SDATA2 static f32 lit_4418 = -300000.0f;
 
 /* 80454700-80454704 0004+00 s=1 e=0 z=0  None .sdata2    @4419 */
-SECTION_SDATA2 static u32 lit_4419 = 0x48927C00;
+SECTION_SDATA2 static f32 lit_4419 = 300000.0f;
 
 /* 80454704-80454708 0004+00 s=1 e=0 z=0  None .sdata2    @4420 */
-SECTION_SDATA2 static u32 lit_4420 = 0x430E0000;
+SECTION_SDATA2 static f32 lit_4420 = 142.0f;
 
 /* 80454708-8045470C 0004+00 s=1 e=0 z=0  None .sdata2    @4421 */
-SECTION_SDATA2 static u32 lit_4421 = 0x42740000;
+SECTION_SDATA2 static f32 lit_4421 = 61.0f;
 
 /* 8045470C-80454710 0004+00 s=1 e=0 z=0  None .sdata2    @4422 */
-SECTION_SDATA2 static u32 lit_4422 = 0x43A48000;
+SECTION_SDATA2 static f32 lit_4422 = 329.0f;
 
 /* 80454710-80454714 0004+00 s=1 e=0 z=0  None .sdata2    @4423 */
-SECTION_SDATA2 static u32 lit_4423 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4423 = 10.0f;
 
 /* 80454714-80454718 0004+00 s=1 e=0 z=0  None .sdata2    @4424 */
-SECTION_SDATA2 static u32 lit_4424 = 0x40E00000;
+SECTION_SDATA2 static f32 lit_4424 = 7.0f;
 
 /* 80454718-8045471C 0004+00 s=1 e=0 z=0  None .sdata2    @4425 */
-SECTION_SDATA2 static u32 lit_4425 = 0x3F5D6FFC;
+SECTION_SDATA2 static f32 lit_4425 = 0.8649899959564209f;
 
 /* 8045471C-80454720 0004+00 s=1 e=0 z=0  None .sdata2    @4426 */
-SECTION_SDATA2 static u32 lit_4426 = 0x40900000;
+SECTION_SDATA2 static f32 lit_4426 = 4.5f;
 
 /* 80454720-80454724 0004+00 s=1 e=0 z=0  None .sdata2    @4427 */
-SECTION_SDATA2 static u32 lit_4427 = 0xBF000000;
+SECTION_SDATA2 static f32 lit_4427 = -0.5f;
 
 /* 80454724-80454728 0004+00 s=2 e=0 z=0  None .sdata2    @4428 */
-SECTION_SDATA2 static u32 lit_4428 = 0x3F866666;
+SECTION_SDATA2 static f32 lit_4428 = 21.0f / 20.0f;
 
 /* 80454728-8045472C 0004+00 s=1 e=0 z=0  None .sdata2    @4429 */
-SECTION_SDATA2 static u32 lit_4429 = 0xC0F00000;
+SECTION_SDATA2 static f32 lit_4429 = -7.5f;
 
 /* 8045472C-80454730 0004+00 s=1 e=0 z=0  None .sdata2    @4430 */
-SECTION_SDATA2 static u32 lit_4430 = 0xC0E00000;
+SECTION_SDATA2 static f32 lit_4430 = -7.0f;
 
 /* 802006C8-80200BCC 0504+00 s=1 e=0 z=0  None .text      __ct__16dMeter_fmapHIO_cFv */
 #pragma push
@@ -1053,16 +1045,16 @@ asm dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
 
 /* ############################################################################################## */
 /* 80454730-80454734 0004+00 s=1 e=0 z=0  None .sdata2    @4485 */
-SECTION_SDATA2 static u32 lit_4485 = 0x41500000;
+SECTION_SDATA2 static f32 lit_4485 = 13.0f;
 
 /* 80454734-80454738 0004+00 s=1 e=0 z=0  None .sdata2    @4486 */
-SECTION_SDATA2 static u32 lit_4486 = 0xC2CC0000;
+SECTION_SDATA2 static f32 lit_4486 = -102.0f;
 
 /* 80454738-8045473C 0004+00 s=1 e=0 z=0  None .sdata2    @4487 */
-SECTION_SDATA2 static u32 lit_4487 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4487 = 100.0f;
 
 /* 8045473C-80454740 0004+00 s=1 e=0 z=0  None .sdata2    @4488 */
-SECTION_SDATA2 static u32 lit_4488 = 0x43110000;
+SECTION_SDATA2 static f32 lit_4488 = 145.0f;
 
 /* 80454740-80454748 0004+04 s=1 e=0 z=0  None .sdata2    @4489 */
 SECTION_SDATA2 static f32 lit_4489[1 + 1 /* padding */] = {

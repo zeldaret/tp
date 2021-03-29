@@ -71,15 +71,7 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
-
 struct J2DAnmColor {};
-
-struct J2DAnmTransform {};
 
 struct J2DAnmVtxColor {};
 
@@ -89,13 +81,7 @@ struct J2DAnmVisibilityFull {
 
 struct J2DAnmBase {};
 
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-};
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -120,6 +106,20 @@ struct J2DPane {
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
+};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA38C */ void setGX();
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
 };
 
 struct J2DPictureEx {
@@ -216,9 +216,6 @@ struct J2DPicture {
 // Forward References:
 //
 
-extern "C" extern u8 const lit_2556[32];
-extern "C" extern u8 const lit_2557[40];
-
 extern "C" void initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT();
 extern "C" void __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void __dt__12J2DPictureExFv();
@@ -300,7 +297,6 @@ extern "C" extern u8 const lit_2557[40];
 //
 
 void operator delete(void*);
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
 
 extern "C" void setBlendRatio__10J2DPictureFff();
 extern "C" void calcMtx__7J2DPaneFv();
@@ -385,7 +381,7 @@ extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
 
 /* ############################################################################################## */
 /* 804562C0-804562C4 0004+00 s=7 e=0 z=0  None .sdata2    @1517 */
-SECTION_SDATA2 static u32 lit_1517 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1517 = 1.0f;
 
 /* 80303640-803036EC 00AC+00 s=1 e=0 z=0  None .text initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
  */
@@ -691,9 +687,7 @@ asm void J2DPictureEx::isRemove(u8 param_0) const {
 
 /* ############################################################################################## */
 /* 804562C8-804562D0 0008+00 s=2 e=0 z=0  None .sdata2    @2130 */
-SECTION_SDATA2 static u8 lit_2130[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2130 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8030477C-80304890 0114+00 s=1 e=0 z=0  None .text      draw__12J2DPictureExFffUcbbb */
 #pragma push

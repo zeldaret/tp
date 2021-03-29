@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -28,6 +26,8 @@ struct cXyz {
     /* 808392D8 */ cXyz();
 };
 
+struct Quaternion {};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
@@ -35,9 +35,9 @@ struct mDoMtx_stack_c {
     /* 8000CF7C */ void quatM(Quaternion const*);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -59,11 +59,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -271,6 +271,12 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 808452E4 */ ~dBgS_AcchCir();
+};
+
 struct dBgS {
     /* 80074B98 */ void GetExitId(cBgS_PolyInfo const&);
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
@@ -278,12 +284,6 @@ struct dBgS {
     /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 808452E4 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -530,51 +530,6 @@ static void daHorse_searchSceneChangeArea(fopAc_ac_c*, void*);
 static void daHorse_Execute(daHorse_c*);
 static void daHorse_Draw(daHorse_c*);
 static void daHorse_Delete(daHorse_c*);
-extern "C" extern u32 const m_callLimitDistance2__9daHorse_c;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_HORSE[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80845DB0[4];
-extern "C" extern u8 data_80845DB4[4];
-extern "C" extern u8 data_80845DB8[4];
-extern "C" extern u8 data_80845DBC[4];
-extern "C" extern u8 data_80845DC0[4];
-extern "C" extern u8 data_80845DC4[4];
-extern "C" extern u8 data_80845DC8[4];
-extern "C" extern u8 data_80845DCC[4];
-extern "C" extern u8 data_80845DD0[4];
-extern "C" extern u8 data_80845DD4[4];
-extern "C" extern u8 data_80845DD8[4];
-extern "C" extern u8 data_80845DDC[4];
-extern "C" extern u8 data_80845DE0[4];
-extern "C" extern u8 data_80845DE4[4];
-extern "C" extern u8 data_80845DE8[4];
-extern "C" extern u8 data_80845DEC[4];
-extern "C" extern u8 data_80845DF0[4];
-extern "C" extern u8 data_80845DF4[4];
-extern "C" extern u8 data_80845DF8[4];
-extern "C" extern u8 data_80845DFC[4];
-extern "C" extern u8 data_80845E00[4];
-extern "C" extern u8 data_80845E04[4];
-extern "C" extern u8 data_80845E08[4];
-extern "C" extern u8 data_80845E0C[4];
-extern "C" extern u8 data_80845E10[4];
-extern "C" extern u8 data_80845E14[4];
 
 extern "C" void setReinPos__13daHorseRein_cFi();
 extern "C" void __dt__4cXyzFv();
@@ -805,44 +760,6 @@ void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
 void JMAEulerToQuat(s16, s16, s16, Quaternion*);
-extern "C" extern u8 const m_handLeftInSidePos__9daAlink_c[12];
-extern "C" extern u8 const m_handRightInSidePos__9daAlink_c[12];
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
-extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_typeFourData__8dPaPoF_c[60];
-extern "C" extern u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

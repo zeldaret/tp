@@ -34,7 +34,6 @@ static void daTag_ShopCamera_Delete(void*);
 static void daTag_ShopCamera_Execute(void*);
 static void daTag_ShopCamera_Draw(void*);
 static bool daTag_ShopCamera_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_SHOPCAM[12];
 
 extern "C" void create__18daTag_ShopCamera_cFv();
 extern "C" bool Delete__18daTag_ShopCamera_cFv();
@@ -55,8 +54,6 @@ extern "C" extern void* g_profile_TAG_SHOPCAM[12];
 
 void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

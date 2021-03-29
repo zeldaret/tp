@@ -153,7 +153,6 @@ void dEv_defaultSkipProc(void*, int);
 void dEv_defaultSkipZev(void*, int);
 void dEv_defaultSkipStb(void*, int);
 void dEv_noFinishSkipProc(void*, int);
-extern "C" extern char const* const d_event_d_event__stringBase0;
 
 extern "C" static bool func_80041480();
 extern "C" static void func_80041488();
@@ -229,15 +228,6 @@ void dComIfG_getStageRes(char const*);
 void dComIfG_getRoomArcName(int);
 void dComIfGs_onVisitedRoom(int);
 void dCam_getBody();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
@@ -364,7 +354,7 @@ asm void dEvt_control_c::order(u16 param_0, u16 param_1, u16 param_2, u16 param_
 
 /* ############################################################################################## */
 /* 80451EC0-80451EC4 0004+00 s=1 e=0 z=0  None .sdata2    @4361 */
-SECTION_SDATA2 static u32 lit_4361 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4361 = 1.0f;
 
 /* 80041804-80041934 0130+00 s=5 e=0 z=0  None .text      setParam__14dEvt_control_cFP12dEvt_order_c
  */
@@ -696,7 +686,7 @@ asm void dEvt_control_c::offSkipFade() {
 
 /* ############################################################################################## */
 /* 80451EC4-80451EC8 0004+00 s=1 e=0 z=0  None .sdata2    @4904 */
-SECTION_SDATA2 static u32 lit_4904 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4904 = 1.0f / 10.0f;
 
 /* 800429D4-80042BBC 01E8+00 s=1 e=0 z=0  None .text      skipper__14dEvt_control_cFv */
 #pragma push
@@ -710,7 +700,7 @@ asm void dEvt_control_c::skipper() {
 
 /* ############################################################################################## */
 /* 80451EC8-80451ECC 0004+00 s=1 e=0 z=0  None .sdata2    @5013 */
-SECTION_SDATA2 static u32 lit_5013 = 0xBD4CCCCD;
+SECTION_SDATA2 static f32 lit_5013 = -1.0f / 20.0f;
 
 /* 80042BBC-80042FA8 03EC+00 s=0 e=1 z=0  None .text      Step__14dEvt_control_cFv */
 #pragma push

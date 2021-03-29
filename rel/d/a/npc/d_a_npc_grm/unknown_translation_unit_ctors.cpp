@@ -13,8 +13,6 @@
 
 extern void* const data_809D6D5C[2];
 
-extern void* const data_809D6D5C[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_grm_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 809D6D5C-809D6D64 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_809D6D5C[2] = {
+    (void*)__sinit_d_a_npc_grm_cpp,
+    (void*)NULL,
+};

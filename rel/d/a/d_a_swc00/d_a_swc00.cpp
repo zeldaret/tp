@@ -54,14 +54,6 @@ static void daSwc00_Execute(daSwc00_c*);
 static bool daSwc00_IsDelete(daSwc00_c*);
 static bool daSwc00_Delete(daSwc00_c*);
 static void daSwc00_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_3991;
-extern "C" extern u32 const lit_3992;
-extern "C" extern u32 const lit_3993;
-extern "C" extern u32 const lit_3994;
-extern "C" extern u32 const lit_3995;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_SWC00[12];
 
 extern "C" static void hitCheck__FP9daSwc00_c();
 extern "C" static void daSwc00_Execute__FP9daSwc00_c();
@@ -91,11 +83,6 @@ void mDoMtx_YrotS(f32 (*)[4], s16);
 void fopAcM_delete(fopAc_ac_c*);
 void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
 void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_805A1F28[4];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

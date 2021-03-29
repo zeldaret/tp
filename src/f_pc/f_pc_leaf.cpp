@@ -30,9 +30,6 @@ static void fpcLf_Execute(leafdraw_class*);
 static void fpcLf_IsDelete(leafdraw_class*);
 static void fpcLf_Delete(leafdraw_class*);
 static void fpcLf_Create(leafdraw_class*);
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_fpcLf_type[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450D38[8];
 
 extern "C" void fpcLf_GetPriority__FPC14leafdraw_class();
 extern "C" void fpcLf_DrawMethod__FP21leafdraw_method_classPv();

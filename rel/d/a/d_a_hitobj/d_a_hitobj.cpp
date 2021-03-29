@@ -63,8 +63,6 @@ static void daHitobj_Execute(hitobj_class*);
 static bool daHitobj_IsDelete(hitobj_class*);
 static void daHitobj_Delete(hitobj_class*);
 static void daHitobj_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_HITOBJ[12];
 
 extern "C" static bool daHitobj_Draw__FP12hitobj_class();
 extern "C" static void daHitobj_Execute__FP12hitobj_class();
@@ -84,14 +82,6 @@ void fopKyM_Delete(void*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopKyM_Delete__FPv();

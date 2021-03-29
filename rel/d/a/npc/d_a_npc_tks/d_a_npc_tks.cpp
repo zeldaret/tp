@@ -13,18 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80B1D594 */ csXyz();
-    /* 80B1D59C */ ~csXyz();
-};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B1D598 */ cXyz();
     /* 80B1D668 */ ~cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80B1D594 */ csXyz();
+    /* 80B1D59C */ ~csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -41,15 +41,15 @@ struct mDoExt_bckAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -135,15 +135,15 @@ struct daNpcTkc_c {
     /* 80B0D37C */ void setActionFollow();
 };
 
+struct J3DAnmTextureSRTKey {};
+
 struct _GXColorS10 {};
+
+struct J3DAnmTransformKey {};
 
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
-
-struct J3DAnmTextureSRTKey {};
-
-struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -427,12 +427,6 @@ static bool daNpcTks_IsDelete(void*);
 static void cLib_checkBit__template0(u32, u32);
 static void cLib_calcTimer__template0(int*);
 static void cLib_getRndValue__template0(int, int);
-extern "C" extern u8 const lit_5040[32];
-extern "C" extern u32 const lit_7420;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* l_evtNames[2];
-extern "C" extern void* g_profile_NPC_TKS[12];
 
 extern "C" void __ct__10daNpcTks_cFv();
 extern "C" void __dt__10daNpcTks_cFv();
@@ -571,29 +565,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_targetAngleX(cXyz const*, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();

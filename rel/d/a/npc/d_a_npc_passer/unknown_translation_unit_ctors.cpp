@@ -13,8 +13,6 @@
 
 extern void* const data_80AA6980[2];
 
-extern void* const data_80AA6980[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_passer_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80AA6980-80AA6988 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80AA6980[2] = {
+    (void*)__sinit_d_a_npc_passer_cpp,
+    (void*)NULL,
+};

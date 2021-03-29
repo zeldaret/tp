@@ -65,11 +65,11 @@ struct dMeter2Draw_c {
                                    JUtility::TColor, JUtility::TColor, f32, u8);
 };
 
-struct STControl {};
+struct CSTControl {};
 
 struct JKRExpHeap {};
 
-struct CSTControl {};
+struct STControl {};
 
 struct dMenu_Ring_c {
     /* 801E9118 */ dMenu_Ring_c(JKRExpHeap*, STControl*, CSTControl*, u8);
@@ -204,9 +204,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_ring__stringBase0;
-extern "C" extern u8 pad_80454434[4];
-
 extern "C" void __ct__12dMenu_Ring_cFP10JKRExpHeapP9STControlP10CSTControlUc();
 extern "C" void __dt__12dMenu_Ring_cFv();
 extern "C" void _create__12dMenu_Ring_cFv();
@@ -291,15 +288,6 @@ void* operator new[](u32);
 void operator delete(void*);
 void operator delete[](void*);
 void J2DDrawFrame(f32, f32, f32, f32, JUtility::TColor, u8);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_ringHIO[344];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGs_setSelectItemIndex__FiUc();
@@ -606,31 +594,31 @@ SECTION_SDATA2 static u8 lit_4300[4] = {
 };
 
 /* 8045438C-80454390 0004+00 s=3 e=0 z=0  None .sdata2    @4301 */
-SECTION_SDATA2 static u32 lit_4301 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4301 = 448.0f;
 
 /* 80454390-80454394 0004+00 s=3 e=0 z=0  None .sdata2    @4302 */
-SECTION_SDATA2 static u32 lit_4302 = 0xC3E00000;
+SECTION_SDATA2 static f32 lit_4302 = -448.0f;
 
 /* 80454394-80454398 0004+00 s=3 e=0 z=0  None .sdata2    @4303 */
-SECTION_SDATA2 static u32 lit_4303 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4303 = 608.0f;
 
 /* 80454398-8045439C 0004+00 s=3 e=0 z=0  None .sdata2    @4304 */
-SECTION_SDATA2 static u32 lit_4304 = 0xC4180000;
+SECTION_SDATA2 static f32 lit_4304 = -608.0f;
 
 /* 8045439C-804543A0 0004+00 s=18 e=0 z=0  None .sdata2    @4305 */
-SECTION_SDATA2 static u32 lit_4305 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4305 = 1.0f;
 
 /* 804543A0-804543A4 0004+00 s=2 e=0 z=0  None .sdata2    @4306 */
-SECTION_SDATA2 static u32 lit_4306 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4306 = 100.0f;
 
 /* 804543A4-804543A8 0004+00 s=5 e=0 z=0  None .sdata2    @4307 */
-SECTION_SDATA2 static u32 lit_4307 = 0x42400000;
+SECTION_SDATA2 static f32 lit_4307 = 48.0f;
 
 /* 804543A8-804543AC 0004+00 s=4 e=0 z=0  None .sdata2    @4308 */
-SECTION_SDATA2 static u32 lit_4308 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4308 = 1.0f / 10.0f;
 
 /* 804543AC-804543B0 0004+00 s=4 e=0 z=0  None .sdata2    @4309 */
-SECTION_SDATA2 static u32 lit_4309 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_4309 = 3.0f / 5.0f;
 
 /* 804543B0-804543B8 0004+04 s=7 e=0 z=0  None .sdata2    @4310 */
 SECTION_SDATA2 static f32 lit_4310[1 + 1 /* padding */] = {
@@ -640,9 +628,7 @@ SECTION_SDATA2 static f32 lit_4310[1 + 1 /* padding */] = {
 };
 
 /* 804543B8-804543C0 0008+00 s=5 e=0 z=0  None .sdata2    @4312 */
-SECTION_SDATA2 static u8 lit_4312[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4312 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801E9118-801EA708 15F0+00 s=0 e=1 z=0  None .text
  * __ct__12dMenu_Ring_cFP10JKRExpHeapP9STControlP10CSTControlUc */
@@ -721,9 +707,7 @@ asm void dMenu_Ring_c::setKanteraPos(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 804543C8-804543D0 0008+00 s=6 e=0 z=0  None .sdata2    @4596 */
-SECTION_SDATA2 static u8 lit_4596[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4596 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801EB0A4-801EB2B4 0210+00 s=0 e=1 z=0  None .text      isOpen__12dMenu_Ring_cFv */
 #pragma push
@@ -757,7 +741,7 @@ asm void dMenu_Ring_c::isClose() {
 
 /* ############################################################################################## */
 /* 804543D0-804543D4 0004+00 s=1 e=0 z=0  None .sdata2    @4739 */
-SECTION_SDATA2 static u32 lit_4739 = 0x3F400000;
+SECTION_SDATA2 static f32 lit_4739 = 0.75f;
 
 /* 801EB624-801EB8C0 029C+00 s=1 e=0 z=0  None .text      getStickInfo__12dMenu_Ring_cFP9STControl
  */
@@ -783,10 +767,10 @@ asm void dMenu_Ring_c::calcStickAngle(STControl* param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 804543D4-804543D8 0004+00 s=2 e=0 z=0  None .sdata2    @4810 */
-SECTION_SDATA2 static u32 lit_4810 = 0x43980000;
+SECTION_SDATA2 static f32 lit_4810 = 304.0f;
 
 /* 804543D8-804543DC 0004+00 s=2 e=0 z=0  None .sdata2    @4811 */
-SECTION_SDATA2 static u32 lit_4811 = 0x43600000;
+SECTION_SDATA2 static f32 lit_4811 = 224.0f;
 
 /* 801EB960-801EBA38 00D8+00 s=1 e=0 z=0  None .text      setRotate__12dMenu_Ring_cFv */
 #pragma push
@@ -884,19 +868,19 @@ asm void dMenu_Ring_c::setMixItem() {
 
 /* ############################################################################################## */
 /* 804543E0-804543E4 0004+00 s=2 e=0 z=0  None .sdata2    @5366 */
-SECTION_SDATA2 static u32 lit_5366 = 0x41C00000;
+SECTION_SDATA2 static f32 lit_5366 = 24.0f;
 
 /* 804543E4-804543E8 0004+00 s=3 e=0 z=0  None .sdata2    @5367 */
-SECTION_SDATA2 static u32 lit_5367 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_5367 = 255.0f;
 
 /* 804543E8-804543EC 0004+00 s=2 e=0 z=0  None .sdata2    @5368 */
-SECTION_SDATA2 static u32 lit_5368 = 0x41700000;
+SECTION_SDATA2 static f32 lit_5368 = 15.0f;
 
 /* 804543EC-804543F0 0004+00 s=3 e=0 z=0  None .sdata2    @5369 */
-SECTION_SDATA2 static u32 lit_5369 = 0x41200000;
+SECTION_SDATA2 static f32 lit_5369 = 10.0f;
 
 /* 804543F0-804543F4 0004+00 s=2 e=0 z=0  None .sdata2    @5370 */
-SECTION_SDATA2 static u32 lit_5370 = 0x3F23D70A;
+SECTION_SDATA2 static f32 lit_5370 = 16.0f / 25.0f;
 
 /* 801ECB14-801ECF9C 0488+00 s=1 e=0 z=0  None .text      drawItem__12dMenu_Ring_cFv */
 #pragma push
@@ -950,17 +934,13 @@ asm void dMenu_Ring_c::stick_move_init() {
 
 /* ############################################################################################## */
 /* 804543F4-804543F8 0004+00 s=1 e=0 z=0  None .sdata2    @5648 */
-SECTION_SDATA2 static u32 lit_5648 = 0x428C0000;
+SECTION_SDATA2 static f32 lit_5648 = 70.0f;
 
 /* 804543F8-80454400 0008+00 s=1 e=0 z=0  None .sdata2    @5649 */
-SECTION_SDATA2 static u8 lit_5649[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5649 = 0.5;
 
 /* 80454400-80454408 0008+00 s=1 e=0 z=0  None .sdata2    @5650 */
-SECTION_SDATA2 static u8 lit_5650[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5650 = 3.0;
 
 /* 80454408-80454410 0008+00 s=1 e=0 z=0  None .sdata2    @5651 */
 SECTION_SDATA2 static u8 lit_5651[8] = {
@@ -990,7 +970,7 @@ void dMenu_Ring_c::stick_explain_force_init() {
 
 /* ############################################################################################## */
 /* 80454410-80454414 0004+00 s=2 e=0 z=0  None .sdata2    @5683 */
-SECTION_SDATA2 static u32 lit_5683 = 0x43160000;
+SECTION_SDATA2 static f32 lit_5683 = 150.0f;
 
 /* 801ED93C-801EDA0C 00D0+00 s=1 e=0 z=0  None .text      stick_explain_proc__12dMenu_Ring_cFv */
 #pragma push
@@ -1025,7 +1005,7 @@ asm void dMenu_Ring_c::setSelectItem(int param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 80454414-80454418 0004+00 s=1 e=0 z=0  None .sdata2    @5811 */
-SECTION_SDATA2 static u32 lit_5811 = 0x3FD9999A;
+SECTION_SDATA2 static f32 lit_5811 = 17.0f / 10.0f;
 
 /* 801EDC98-801EDF2C 0294+00 s=1 e=0 z=0  None .text      drawSelectItem__12dMenu_Ring_cFv */
 #pragma push
@@ -1099,7 +1079,7 @@ void dMenu_Ring_c::setCombineBomb(int param_0) {
 
 /* ############################################################################################## */
 /* 80454418-8045441C 0004+00 s=1 e=0 z=0  None .sdata2    @6143 */
-SECTION_SDATA2 static u32 lit_6143 = 0x41800000;
+SECTION_SDATA2 static f32 lit_6143 = 16.0f;
 
 /* 801EE648-801EEA84 043C+00 s=2 e=0 z=0  None .text      drawNumber__12dMenu_Ring_cFiiff */
 #pragma push
@@ -1153,7 +1133,7 @@ asm void dMenu_Ring_c::isMixItemOff() {
 
 /* ############################################################################################## */
 /* 8045441C-80454420 0004+00 s=1 e=0 z=0  None .sdata2    @6308 */
-SECTION_SDATA2 static u32 lit_6308 = 0x41900000;
+SECTION_SDATA2 static f32 lit_6308 = 18.0f;
 
 /* 801EED84-801EEF14 0190+00 s=1 e=0 z=0  None .text      setMixMessage__12dMenu_Ring_cFv */
 #pragma push
@@ -1207,7 +1187,7 @@ asm void dMenu_Ring_c::calcDistance(f32 param_0, f32 param_1, f32 param_2, f32 p
 
 /* ############################################################################################## */
 /* 80454420-80454424 0004+00 s=1 e=0 z=0  None .sdata2    @6454 */
-SECTION_SDATA2 static u32 lit_6454 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_6454 = 1000.0f;
 
 /* 801EF1A0-801EF484 02E4+00 s=1 e=0 z=0  None .text      clacEllipsePlotAverage__12dMenu_Ring_cFiff
  */

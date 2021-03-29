@@ -13,14 +13,14 @@
 
 struct JAISoundID {};
 
+struct JAISoundHandle {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);
@@ -59,8 +59,6 @@ struct JAISoundParamsMove {
 // Forward References:
 //
 
-extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
-
 extern "C" void __ct__14Z2SoundStarterFb();
 extern "C" void func_802AABF4();
 extern "C" void func_802AAC3C();
@@ -74,11 +72,6 @@ extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void openChild__8JASTrackFUl();
 extern "C" void writePort__8JASTrackFUlUs();
@@ -138,10 +131,10 @@ SECTION_SDATA2 static u8 lit_3597[4] = {
 };
 
 /* 8045585C-80455860 0004+00 s=2 e=0 z=0  None .sdata2    @3598 */
-SECTION_SDATA2 static u32 lit_3598 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3598 = 1.0f;
 
 /* 80455860-80455864 0004+00 s=2 e=0 z=0  None .sdata2    @3599 */
-SECTION_SDATA2 static u32 lit_3599 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3599 = -1.0f;
 
 /* 802AABF4-802AAC3C 0048+00 s=1 e=5 z=0  None .text
  * startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
@@ -157,12 +150,10 @@ asm void Z2SoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
 
 /* ############################################################################################## */
 /* 80455864-80455868 0004+00 s=1 e=0 z=0  None .sdata2    @3713 */
-SECTION_SDATA2 static u32 lit_3713 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3713 = 0.5f;
 
 /* 80455868-80455870 0008+00 s=1 e=0 z=0  None .sdata2    @3717 */
-SECTION_SDATA2 static u8 lit_3717[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3717 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802AAC3C-802AAEDC 02A0+00 s=2 e=2 z=0  None .text
  * startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */

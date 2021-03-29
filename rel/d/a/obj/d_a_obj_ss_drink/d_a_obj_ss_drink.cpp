@@ -13,18 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -236,9 +236,6 @@ static void daObj_SSDrink_Delete(void*);
 static void daObj_SSDrink_Execute(void*);
 static void daObj_SSDrink_Draw(void*);
 static bool daObj_SSDrink_IsDelete(void*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_OBJ_SSDRINK[12];
 
 extern "C" void __dt__15daObj_SSDrink_cFv();
 extern "C" void create__15daObj_SSDrink_cFv();
@@ -306,18 +303,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dMsgObject_addTotalPrice(s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern u8 const data_80CE692C[4];
 
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

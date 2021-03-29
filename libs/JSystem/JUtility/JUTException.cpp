@@ -122,10 +122,6 @@ struct JKRHeap {};
 //
 
 static void search_name_part(u8*, u8*, int);
-extern "C" extern char const* const JUTException__stringBase0;
-extern "C" extern u8 data_804508F8[8];
-extern "C" extern u8 sErrorManager__12JUTException[4];
-extern "C" extern u8 sConsole__12JUTException[4];
 
 extern "C" void __ct__12JUTExceptionFP14JUTDirectPrint();
 extern "C" void create__12JUTExceptionFP14JUTDirectPrint();
@@ -172,10 +168,6 @@ extern "C" extern u8 sConsole__12JUTException[4];
 void* operator new(u32);
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 GXNtsc480Int[60];
-extern "C" extern u32 __OSFpscrEnableBits;
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport();
@@ -745,7 +737,7 @@ asm void JUTException::queryMapAddress_single(char* param_0, u32 param_1, s32 pa
 
 /* ############################################################################################## */
 /* 80456054-80456058 0004+00 s=1 e=0 z=0  None .sdata2    @3034 */
-SECTION_SDATA2 static u32 lit_3034 = 0x41200000;
+SECTION_SDATA2 static f32 lit_3034 = 10.0f;
 
 /* 80456058-80456060 0004+04 s=1 e=0 z=0  None .sdata2    @3035 */
 SECTION_SDATA2 static f32 lit_3035[1 + 1 /* padding */] = {

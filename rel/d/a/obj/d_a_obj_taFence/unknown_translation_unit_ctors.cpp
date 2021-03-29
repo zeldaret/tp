@@ -13,8 +13,6 @@
 
 extern void* const data_80D060CC[2];
 
-extern void* const data_80D060CC[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_taFence_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80D060CC-80D060D4 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80D060CC[2] = {
+    (void*)__sinit_d_a_obj_taFence_cpp,
+    (void*)NULL,
+};

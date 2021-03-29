@@ -159,15 +159,6 @@ void JPAGetXYZRotateMtx(s16, s16, s16, f32 (*)[4]);
 void JPASetRMtxSTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*,
                             JGeometry::TVec3__template0*);
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle[16];
-extern "C" extern void* __vt__18JPAEmitterCallBack[7];
-extern "C" extern void* __vt__Q27JStudio17TAdaptor_particle[19];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 data_80451200[8];
 
 extern "C" void __dt__18JPAEmitterCallBackFv();
 extern "C" void JPAGetXYZRotateMtx__FsssPA4_f();
@@ -300,7 +291,7 @@ SECTION_SDATA2 static u8 lit_1361[4] = {
 };
 
 /* 80455524-80455528 0004+00 s=1 e=0 z=0  None .sdata2    @1362 */
-SECTION_SDATA2 static u32 lit_1362 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1362 = 1.0f;
 
 /* 80455528-80455530 0004+04 s=1 e=0 z=0  None .sdata2    @1363 */
 SECTION_SDATA2 static f32 lit_1363[1 + 1 /* padding */] = {
@@ -487,29 +478,19 @@ asm void JStudio_JParticle::TAdaptor_particle::adaptor_do_ON_EXIT_NOT_END(
 
 /* ############################################################################################## */
 /* 80455530-80455538 0008+00 s=1 e=0 z=0  None .sdata2    @1622 */
-SECTION_SDATA2 static u8 lit_1622[8] = {
-    0x40, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1622 = 65536.0;
 
 /* 80455538-80455540 0008+00 s=1 e=0 z=0  None .sdata2    @1623 */
-SECTION_SDATA2 static u8 lit_1623[8] = {
-    0x40, 0x76, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1623 = 360.0;
 
 /* 80455540-80455548 0008+00 s=1 e=0 z=0  None .sdata2    @1624 */
-SECTION_SDATA2 static u8 lit_1624[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1624 = 1.0;
 
 /* 80455548-80455550 0008+00 s=1 e=0 z=0  None .sdata2    @1625 */
-SECTION_SDATA2 static u8 lit_1625[8] = {
-    0x40, 0x6F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1625 = 255.0;
 
 /* 80455550-80455558 0008+00 s=2 e=0 z=0  None .sdata2    @1629 */
-SECTION_SDATA2 static u8 lit_1629[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1629 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8028ECC0-8028F060 03A0+00 s=1 e=0 z=0  None .text
  * execute__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_FP14JPABaseEmitter */

@@ -21,6 +21,8 @@ struct cM3dGAab {
     /* 8026EE24 */ void CalcCenter(cXyz*) const;
 };
 
+struct cCcD_GStts {};
+
 struct cCcD_Stts {
     /* 80263934 */ void PlusCcMove(f32, f32, f32);
     /* 8026395C */ void ClrCcMove();
@@ -28,13 +30,11 @@ struct cCcD_Stts {
     /* 80263984 */ void GetWeightF() const;
 };
 
+struct cCcD_GObjInf {};
+
 struct cCcD_Obj {
     /* 80263A48 */ void GetAc();
 };
-
-struct cCcD_GStts {};
-
-struct cCcD_GObjInf {};
 
 struct cCcS {
     /* 80030BDC */ ~cCcS();
@@ -96,9 +96,6 @@ struct cCcD_DivideArea {
 // Forward References:
 //
 
-extern "C" extern void* __vt__4cCcS[12];
-extern "C" extern f32 lit_2762[1 + 1 /* padding */];
-
 extern "C" void __ct__4cCcSFv();
 extern "C" void Ct__4cCcSFv();
 extern "C" void Dt__4cCcSFv();
@@ -134,12 +131,6 @@ extern "C" extern f32 lit_2762[1 + 1 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern void* __vt__15cCcD_DivideArea[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 data_80451158[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void __dt__4cCcSFv();
@@ -377,13 +368,13 @@ asm void cCcS::SetCoCommonHitInf(cCcD_Obj* param_0, cXyz* param_1, cCcD_Obj* par
 
 /* ############################################################################################## */
 /* 8045503C-80455040 0004+00 s=1 e=0 z=0  None .sdata2    @2759 */
-SECTION_SDATA2 static u32 lit_2759 = 0x3C03126F;
+SECTION_SDATA2 static f32 lit_2759 = 1.0f / 125.0f;
 
 /* 80455040-80455044 0004+00 s=1 e=0 z=0  None .sdata2    @2760 */
-SECTION_SDATA2 static u32 lit_2760 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2760 = 1.0f;
 
 /* 80455044-80455048 0004+00 s=1 e=0 z=0  None .sdata2    @2761 */
-SECTION_SDATA2 static u32 lit_2761 = 0x40000000;
+SECTION_SDATA2 static f32 lit_2761 = 2.0f;
 
 /* 80455048-80455050 0004+04 s=1 e=1 z=0  None .sdata2    @2762 */
 SECTION_SDATA2 f32 lit_2762[1 + 1 /* padding */] = {
@@ -393,14 +384,10 @@ SECTION_SDATA2 f32 lit_2762[1 + 1 /* padding */] = {
 };
 
 /* 80455050-80455058 0008+00 s=1 e=0 z=0  None .sdata2    @2763 */
-SECTION_SDATA2 static u8 lit_2763[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2763 = 0.5;
 
 /* 80455058-80455060 0008+00 s=1 e=0 z=0  None .sdata2    @2764 */
-SECTION_SDATA2 static u8 lit_2764[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2764 = 3.0;
 
 /* 80455060-80455068 0008+00 s=1 e=0 z=0  None .sdata2    @2765 */
 SECTION_SDATA2 static u8 lit_2765[8] = {

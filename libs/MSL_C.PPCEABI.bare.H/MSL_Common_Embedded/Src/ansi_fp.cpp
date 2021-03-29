@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern char const* const MSL_Common_Embedded_Src_ansi_fp__stringBase0;
-
 extern "C" void __num2dec();
 extern "C" static void __num2dec_internal();
 extern "C" static void __two_exp();

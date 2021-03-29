@@ -62,8 +62,6 @@ getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TPar
 // External References:
 //
 
-extern "C" extern u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32];
-
 extern "C" void
 parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit();
 extern "C" extern u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32];

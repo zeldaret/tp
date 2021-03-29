@@ -61,8 +61,6 @@ static void daKytag13_Execute(kytag13_class*);
 static bool daKytag13_IsDelete(kytag13_class*);
 static bool daKytag13_Delete(kytag13_class*);
 static void daKytag13_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_KYTAG13[12];
 
 extern "C" static bool daKytag13_Draw__FP13kytag13_class();
 extern "C" static void vectle_calc__FP10DOUBLE_POSP4cXyz();
@@ -94,15 +92,6 @@ void cM_rndFX(f32);
 void cM3d_VectorProduct2d(f32, f32, f32, f32, f32, f32);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__18dBgS_ObjGndChk_All[12];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

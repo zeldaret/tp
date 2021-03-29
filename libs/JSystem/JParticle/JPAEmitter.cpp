@@ -73,8 +73,6 @@ extern "C" void loadTexture__14JPABaseEmitterFUc11_GXTexMapID();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__18JPAEmitterCallBack[7];
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void init_p__15JPABaseParticleFP18JPAEmitterWorkData();
 extern "C" void init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -103,7 +101,7 @@ asm JPAEmitterCallBack::~JPAEmitterCallBack() {
 
 /* ############################################################################################## */
 /* 80455370-80455374 0004+00 s=1 e=0 z=0  None .sdata2    @2440 */
-SECTION_SDATA2 static u32 lit_2440 = 0x42000000;
+SECTION_SDATA2 static f32 lit_2440 = 32.0f;
 
 /* 80455374-80455378 0004+00 s=1 e=0 z=0  None .sdata2    @2441 */
 SECTION_SDATA2 static u8 lit_2441[4] = {
@@ -114,10 +112,10 @@ SECTION_SDATA2 static u8 lit_2441[4] = {
 };
 
 /* 80455378-8045537C 0004+00 s=1 e=0 z=0  None .sdata2    @2442 */
-SECTION_SDATA2 static u32 lit_2442 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2442 = 0.5f;
 
 /* 8045537C-80455380 0004+00 s=1 e=0 z=0  None .sdata2    @2443 */
-SECTION_SDATA2 static u32 lit_2443 = 0x40400000;
+SECTION_SDATA2 static f32 lit_2443 = 3.0f;
 
 /* 80455380-80455388 0004+04 s=1 e=0 z=0  None .sdata2    @2444 */
 SECTION_SDATA2 static f32 lit_2444[1 + 1 /* padding */] = {

@@ -35,7 +35,6 @@ void fpcLy_CurrentLayer();
 void fpcPause_IsEnable(void*, u8);
 void cAPIGph_BeforeOfDraw();
 void cAPIGph_AfterOfDraw();
-extern "C" extern u8 g_fpcLf_type[4 + 4 /* padding */];
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();

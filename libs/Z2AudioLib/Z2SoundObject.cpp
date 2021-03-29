@@ -137,10 +137,6 @@ struct JAISound {
 // Forward References:
 //
 
-extern "C" extern void* __vt__15Z2SoundObjAnime[8];
-extern "C" extern void* __vt__15Z2SoundObjArrow[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-
 extern "C" void __ct__14Z2SoundObjBaseFv();
 extern "C" void __dt__14Z2SoundObjBaseFv();
 extern "C" void init__14Z2SoundObjBaseFP3VecUc();
@@ -181,11 +177,6 @@ extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 //
 
 void operator delete(void*);
-extern "C" extern u32 __float_max;
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B88[4];
 
 extern "C" void releaseSound__14JAISoundHandleFv();
 extern "C" void acceptsNewAudible__8JAISoundCFv();
@@ -361,10 +352,10 @@ asm void Z2SoundObjBase::stopOK(Z2SoundHandlePool& param_0) {
 
 /* ############################################################################################## */
 /* 80455B38-80455B3C 0004+00 s=5 e=0 z=0  None .sdata2    @3559 */
-SECTION_SDATA2 static u32 lit_3559 = 0x42FE0000;
+SECTION_SDATA2 static f32 lit_3559 = 127.0f;
 
 /* 80455B3C-80455B40 0004+00 s=4 e=0 z=0  None .sdata2    @3560 */
-SECTION_SDATA2 static u32 lit_3560 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3560 = 1.0f;
 
 /* 80455B40-80455B48 0004+04 s=3 e=0 z=0  None .sdata2    @3561 */
 SECTION_SDATA2 static f32 lit_3561[1 + 1 /* padding */] = {
@@ -374,9 +365,7 @@ SECTION_SDATA2 static f32 lit_3561[1 + 1 /* padding */] = {
 };
 
 /* 80455B48-80455B50 0008+00 s=3 e=0 z=0  None .sdata2    @3564 */
-SECTION_SDATA2 static u8 lit_3564[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3564 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802BE144-802BE2D4 0190+00 s=5 e=3 z=0  None .text startSound__14Z2SoundObjBaseF10JAISoundIDUlSc
  */
@@ -525,13 +514,13 @@ SECTION_SDATA2 static u8 lit_3821[4] = {
 };
 
 /* 80455B54-80455B58 0004+00 s=2 e=0 z=0  None .sdata2    @3822 */
-SECTION_SDATA2 static u32 lit_3822 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_3822 = 1.0f / 5.0f;
 
 /* 80455B58-80455B5C 0004+00 s=2 e=0 z=0  None .sdata2    @3823 */
-SECTION_SDATA2 static u32 lit_3823 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_3823 = 2.0f / 5.0f;
 
 /* 80455B5C-80455B60 0004+00 s=2 e=0 z=0  None .sdata2    @3824 */
-SECTION_SDATA2 static u32 lit_3824 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_3824 = 3.0f / 5.0f;
 
 /* 80455B60-80455B68 0004+04 s=2 e=0 z=0  None .sdata2    @3825 */
 SECTION_SDATA2 static f32 lit_3825[1 + 1 /* padding */] = {
@@ -541,9 +530,7 @@ SECTION_SDATA2 static f32 lit_3825[1 + 1 /* padding */] = {
 };
 
 /* 80455B68-80455B70 0008+00 s=3 e=0 z=0  None .sdata2    @3828 */
-SECTION_SDATA2 static u8 lit_3828[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3828 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802BE8A0-802BE9B0 0110+00 s=1 e=0 z=0  None .text
  * startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc              */
@@ -558,16 +545,16 @@ asm void Z2SoundObjSimple::startSound(JAISoundID param_0, u32 param_1, s8 param_
 
 /* ############################################################################################## */
 /* 80455B70-80455B74 0004+00 s=1 e=0 z=0  None .sdata2    @3859 */
-SECTION_SDATA2 static u32 lit_3859 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3859 = 2.0f;
 
 /* 80455B74-80455B78 0004+00 s=1 e=0 z=0  None .sdata2    @3860 */
-SECTION_SDATA2 static u32 lit_3860 = 0x41B00000;
+SECTION_SDATA2 static f32 lit_3860 = 22.0f;
 
 /* 80455B78-80455B7C 0004+00 s=1 e=0 z=0  None .sdata2    @3861 */
-SECTION_SDATA2 static u32 lit_3861 = 0x42480000;
+SECTION_SDATA2 static f32 lit_3861 = 50.0f;
 
 /* 80455B7C-80455B80 0004+00 s=1 e=0 z=0  None .sdata2    @3862 */
-SECTION_SDATA2 static u32 lit_3862 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_3862 = 1.5f;
 
 /* 802BE9B0-802BEB38 0188+00 s=1 e=0 z=0  None .text
  * startLevelSound__16Z2SoundObjSimpleF10JAISoundIDUlSc         */

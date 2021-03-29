@@ -159,9 +159,6 @@ static void dGameover_Delete(dGameover_c*);
 static void dGameover_Create(msg_class*);
 void d_GameOver_Create(u8);
 void d_GameOver_Delete(unsigned int&);
-extern "C" extern char const* const d_d_gameover__stringBase0;
-extern "C" extern void* g_profile_GAMEOVER[10];
-extern "C" extern void* __vt__12dMenu_save_c[3 + 3 /* padding */];
 
 extern "C" void draw__24dDlst_Gameover_CAPTURE_cFv();
 extern "C" void __ct__10dGov_HIO_cFv();
@@ -222,27 +219,6 @@ void dComIfGp_offHeapLockFlag(int);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
-extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTex__13mDoGph_gInf_c[4];
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 g_menuHIO[8];
-extern "C" extern u8 sManager__10JFWDisplay[4];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getSubFont__Fv();
@@ -357,10 +333,10 @@ SECTION_SDATA2 static u8 lit_3868[4] = {
 };
 
 /* 80453B84-80453B88 0004+00 s=6 e=0 z=0  None .sdata2    @3869 */
-SECTION_SDATA2 static u32 lit_3869 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3869 = 1.0f;
 
 /* 80453B88-80453B8C 0004+00 s=1 e=0 z=0  None .sdata2    @3870 */
-SECTION_SDATA2 static u32 lit_3870 = 0x41200000;
+SECTION_SDATA2 static f32 lit_3870 = 10.0f;
 
 /* 8019ACF8-8019AFE0 02E8+00 s=1 e=0 z=0  None .text      draw__24dDlst_Gameover_CAPTURE_cFv */
 #pragma push
@@ -579,10 +555,10 @@ SECTION_DATA static void* __vt__10dGov_HIO_c[3 + 3 /* padding */] = {
 };
 
 /* 80453B8C-80453B90 0004+00 s=1 e=0 z=0  None .sdata2    @3878 */
-SECTION_SDATA2 static u32 lit_3878 = 0x402CCCCD;
+SECTION_SDATA2 static f32 lit_3878 = 27.0f / 10.0f;
 
 /* 80453B90-80453B94 0004+00 s=1 e=0 z=0  None .sdata2    @3879 */
-SECTION_SDATA2 static u32 lit_3879 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_3879 = 1.0f / 5.0f;
 
 /* 8019AFE0-8019B044 0064+00 s=1 e=0 z=0  None .text      __ct__10dGov_HIO_cFv */
 #pragma push
@@ -722,12 +698,10 @@ asm void dGameover_c::demoFadeOut_init() {
 
 /* ############################################################################################## */
 /* 80453B94-80453B98 0004+00 s=1 e=0 z=0  None .sdata2    @4069 */
-SECTION_SDATA2 static u32 lit_4069 = 0x44610000;
+SECTION_SDATA2 static f32 lit_4069 = 900.0f;
 
 /* 80453B98-80453BA0 0008+00 s=1 e=0 z=0  None .sdata2    @4071 */
-SECTION_SDATA2 static u8 lit_4071[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4071 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8019B4E4-8019B560 007C+00 s=1 e=0 z=0  None .text      demoFadeOut_proc__11dGameover_cFv */
 #pragma push
@@ -816,10 +790,10 @@ asm void dGameover_c::_delete() {
 
 /* ############################################################################################## */
 /* 80453BA0-80453BA4 0004+00 s=1 e=0 z=0  None .sdata2    @4290 */
-SECTION_SDATA2 static u32 lit_4290 = 0x43F30000;
+SECTION_SDATA2 static f32 lit_4290 = 486.0f;
 
 /* 80453BA4-80453BA8 0004+00 s=1 e=0 z=0  None .sdata2    @4291 */
-SECTION_SDATA2 static u32 lit_4291 = 0x44250000;
+SECTION_SDATA2 static f32 lit_4291 = 660.0f;
 
 /* 8019B940-8019BBFC 02BC+00 s=1 e=0 z=0  None .text
  * __ct__24dDlst_GameOverScrnDraw_cFP10JKRArchive               */
@@ -844,7 +818,7 @@ asm dDlst_GameOverScrnDraw_c::~dDlst_GameOverScrnDraw_c() {
 
 /* ############################################################################################## */
 /* 80453BA8-80453BAC 0004+00 s=1 e=0 z=0  None .sdata2    @4316 */
-SECTION_SDATA2 static u32 lit_4316 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4316 = 255.0f;
 
 /* 8019BCB0-8019BCF4 0044+00 s=3 e=0 z=0  None .text      setBackAlpha__24dDlst_GameOverScrnDraw_cFf
  */
@@ -865,13 +839,13 @@ static u8 lit_3882[12];
 static u8 l_HIO[28];
 
 /* 80453BAC-80453BB0 0004+00 s=1 e=0 z=0  None .sdata2    @4374 */
-SECTION_SDATA2 static u32 lit_4374 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4374 = 608.0f;
 
 /* 80453BB0-80453BB4 0004+00 s=1 e=0 z=0  None .sdata2    @4375 */
-SECTION_SDATA2 static u32 lit_4375 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4375 = 448.0f;
 
 /* 80453BB4-80453BB8 0004+00 s=1 e=0 z=0  None .sdata2    @4376 */
-SECTION_SDATA2 static u32 lit_4376 = 0x43980000;
+SECTION_SDATA2 static f32 lit_4376 = 304.0f;
 
 /* 80453BB8-80453BC0 0004+04 s=1 e=0 z=0  None .sdata2    @4377 */
 SECTION_SDATA2 static f32 lit_4377[1 + 1 /* padding */] = {

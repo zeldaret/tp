@@ -13,15 +13,15 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {
+    /* 8057FD30 */ ~cXyz();
+    /* 805811C0 */ cXyz();
+};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 805811BC */ csXyz();
     /* 8057FD6C */ ~csXyz();
-};
-
-struct cXyz {
-    /* 8057FD30 */ ~cXyz();
-    /* 805811C0 */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -191,8 +191,6 @@ static void daObjHHASHI_Delete(daObjHHASHI_c*);
 static void daObjHHASHI_Draw(daObjHHASHI_c*);
 static void daObjHHASHI_Execute(daObjHHASHI_c*);
 static bool daObjHHASHI_IsDelete(daObjHHASHI_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_HHASHI[12];
 
 extern "C" void initCcCylinder__13daObjHHASHI_cFv();
 extern "C" void setCcCylinder__13daObjHHASHI_cFv();
@@ -246,20 +244,6 @@ void cM_rndF(f32);
 void cM_rndFX(f32);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

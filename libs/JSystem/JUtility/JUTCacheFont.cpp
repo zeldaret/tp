@@ -94,8 +94,6 @@ struct JKRAram {
 // Forward References:
 //
 
-extern "C" extern char const* const JUTCacheFont__stringBase0;
-
 extern "C" void __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap();
 extern "C" void __dt__12JUTCacheFontFv();
 extern "C" void deleteMemBlocks_CacheFont__12JUTCacheFontFv();
@@ -131,8 +129,6 @@ void* operator new(u32, JKRHeap*, int);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern void* const saoAboutEncoding___10JUTResFont[3];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 SECTION_INIT void memcpy();
 extern "C" void* __nw__FUlP7JKRHeapi();
@@ -335,16 +331,10 @@ asm void JUTCacheFont::determineBlankPage() {
 
 /* ############################################################################################## */
 /* 80455FD0-80455FD8 0004+04 s=1 e=0 z=0  None .sdata2    @721 */
-SECTION_SDATA2 static u8 lit_721[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_721[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802DDBBC-802DDCE4 0128+00 s=1 e=0 z=0  None .text

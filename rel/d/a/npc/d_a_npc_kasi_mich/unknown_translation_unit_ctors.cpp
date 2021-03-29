@@ -13,8 +13,6 @@
 
 extern void* const data_80A2A038[2];
 
-extern void* const data_80A2A038[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_kasi_mich_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80A2A038-80A2A040 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80A2A038[2] = {
+    (void*)__sinit_d_a_npc_kasi_mich_cpp,
+    (void*)NULL,
+};

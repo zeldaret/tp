@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
@@ -188,7 +188,6 @@ static void daObj_SSItem_Delete(void*);
 static void daObj_SSItem_Execute(void*);
 static void daObj_SSItem_Draw(void*);
 static bool daObj_SSItem_IsDelete(void*);
-extern "C" extern void* g_profile_OBJ_SSITEM[12];
 
 extern "C" void __dt__14daObj_SSItem_cFv();
 extern "C" void create__14daObj_SSItem_cFv();
@@ -245,18 +244,6 @@ void fpcSch_JudgeByID(void*, void*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern u8 const data_80CE7EAC[4];
 
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

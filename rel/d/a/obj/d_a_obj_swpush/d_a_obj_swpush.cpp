@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80483450 */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -178,49 +178,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Swpush[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_804850A0[4];
-extern "C" extern u8 data_804850A4[4];
-extern "C" extern u8 data_804850A8[4];
-extern "C" extern u8 data_804850AC[4];
-extern "C" extern u8 data_804850B0[4];
-extern "C" extern u8 data_804850B4[4];
-extern "C" extern u8 data_804850B8[4];
-extern "C" extern u8 data_804850BC[4];
-extern "C" extern u8 data_804850C0[4];
-extern "C" extern u8 data_804850C4[4];
-extern "C" extern u8 data_804850C8[4];
-extern "C" extern u8 data_804850CC[4];
-extern "C" extern u8 data_804850D0[4];
-extern "C" extern u8 data_804850D4[4];
-extern "C" extern u8 data_804850D8[4];
-extern "C" extern u8 data_804850DC[4];
-extern "C" extern u8 data_804850E0[4];
-extern "C" extern u8 data_804850E4[4];
-extern "C" extern u8 data_804850E8[4];
-extern "C" extern u8 data_804850EC[4];
-extern "C" extern u8 data_804850F0[4];
-extern "C" extern u8 data_804850F4[4];
-extern "C" extern u8 data_804850F8[4];
-extern "C" extern u8 data_804850FC[4];
-extern "C" extern u8 data_80485100[4];
-
 extern "C" void prmZ_init__Q211daObjSwpush5Act_cFv();
 extern "C" void is_switch2__Q211daObjSwpush5Act_cCFv();
 extern "C" void solidHeapCB__Q211daObjSwpush5Act_cFP10fopAc_ac_c();
@@ -330,15 +287,6 @@ void cM3d_CrossY_Tri(cM3dGTri const*, Vec const*);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__6dBgWSv[65 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();

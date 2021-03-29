@@ -61,8 +61,6 @@ struct JAUAudioArcInterpreter {
 // Forward References:
 //
 
-extern "C" extern void* __vt__16Z2AudioArcLoader[17 + 1 /* padding */];
-
 extern "C" void __ct__16Z2AudioArcLoaderFP10JAUSection();
 extern "C" void readCommandMore__16Z2AudioArcLoaderFUl();
 extern "C" void readBFCA__16Z2AudioArcLoaderFPCv();
@@ -75,10 +73,6 @@ extern "C" extern void* __vt__16Z2AudioArcLoader[17 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 extern "C" void __dt__22JAUAudioArcInterpreterFv();
 extern "C" void __ct__17JAUAudioArcLoaderFP10JAUSection();

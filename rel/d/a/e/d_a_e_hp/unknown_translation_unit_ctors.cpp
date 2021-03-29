@@ -13,8 +13,6 @@
 
 extern void* const data_806EA1E0[2];
 
-extern void* const data_806EA1E0[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_hp_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 806EA1E0-806EA1E8 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_806EA1E0[2] = {
+    (void*)__sinit_d_a_e_hp_cpp,
+    (void*)NULL,
+};

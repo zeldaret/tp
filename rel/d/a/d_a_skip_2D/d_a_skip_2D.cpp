@@ -46,7 +46,6 @@ static void daSkip2D_Delete(void*);
 static void daSkip2D_Execute(void*);
 static void daSkip2D_Draw(void*);
 static bool daSkip2D_IsDelete(void*);
-extern "C" extern void* g_profile_SKIP2D[12];
 
 extern "C" static void daSkip2D_createHeap__FP10fopAc_ac_c();
 extern "C" void createHeap__10daSkip2D_cFv();
@@ -70,9 +69,6 @@ extern "C" extern void* g_profile_SKIP2D[12];
 void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

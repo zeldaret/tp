@@ -21,13 +21,13 @@ struct dPath {};
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -53,8 +53,6 @@ static void daKytag10_Execute(kytag10_class*);
 static bool daKytag10_IsDelete(kytag10_class*);
 static void daKytag10_Delete(kytag10_class*);
 static void daKytag10_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_3971;
-extern "C" extern void* g_profile_KYTAG10[12];
 
 extern "C" static void get_rail_ratio_pos__FP5dPathifPsPs();
 extern "C" static void set_path_info__FP10fopAc_ac_c();
@@ -76,11 +74,6 @@ extern "C" extern void* g_profile_KYTAG10[12];
 void dPath_GetRoomPath(int, int);
 void dKyr_get_vectle_calc(cXyz*, cXyz*, cXyz*);
 void cM_atan2s(f32, f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u32 __float_nan;
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void

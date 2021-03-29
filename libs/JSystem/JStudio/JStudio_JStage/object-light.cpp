@@ -98,14 +98,6 @@ extern "C" void func_8028D2B8();
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_light[10];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
 extern "C" void update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued();
@@ -229,27 +221,17 @@ asm void JStudio_JStage::TAdaptor_light::adaptor_do_prepare() {
 
 /* ############################################################################################## */
 /* 804554E8-804554F0 0004+04 s=1 e=0 z=0  None .sdata2    @846 */
-SECTION_SDATA2 static u8 lit_846[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_846[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 804554F0-804554F8 0008+00 s=1 e=0 z=0  None .sdata2    @847 */
-SECTION_SDATA2 static u8 lit_847[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_847 = 0.5;
 
 /* 804554F8-80455500 0008+00 s=1 e=0 z=0  None .sdata2    @848 */
-SECTION_SDATA2 static u8 lit_848[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_848 = 3.0;
 
 /* 80455500-80455508 0008+00 s=1 e=0 z=0  None .sdata2    @849 */
 SECTION_SDATA2 static u8 lit_849[8] = {
@@ -257,7 +239,7 @@ SECTION_SDATA2 static u8 lit_849[8] = {
 };
 
 /* 80455508-8045550C 0004+00 s=1 e=0 z=0  None .sdata2    @850 */
-SECTION_SDATA2 static u32 lit_850 = 0x42652EE1;
+SECTION_SDATA2 static f32 lit_850 = 57.295780181884766f;
 
 /* 8028CCB0-8028CF68 02B8+00 s=1 e=0 z=0  None .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFv       */
@@ -283,7 +265,7 @@ asm void JStudio_JStage::TAdaptor_light::adaptor_do_end() {
 
 /* ############################################################################################## */
 /* 8045550C-80455510 0004+00 s=1 e=0 z=0  None .sdata2    @898 */
-SECTION_SDATA2 static u32 lit_898 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_898 = 0.01745329238474369f;
 
 /* 8028CFBC-8028D18C 01D0+00 s=1 e=0 z=0  None .text
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFUl     */

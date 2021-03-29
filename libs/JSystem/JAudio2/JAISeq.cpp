@@ -120,9 +120,6 @@ struct JAISeq {
 // Forward References:
 //
 
-extern "C" extern void* __vt__6JAISeq[12 + 1 /* padding */];
-extern "C" extern u8 data_804340B0[16];
-
 extern "C" static void func_802A0A6C();
 extern "C" void func_802A0A8C();
 extern "C" void func_802A0B64();
@@ -152,9 +149,6 @@ extern "C" extern u8 data_804340B0[16];
 //
 
 void operator delete(void*);
-extern "C" extern u8 data_80431B04[16 + 4 /* padding */];
-extern "C" extern u8 struct_80451230[8];
-extern "C" extern u8 data_80451318[8];
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
@@ -249,7 +243,7 @@ SECTION_DATA void* __vt__6JAISeq[12 + 1 /* padding */] = {
 };
 
 /* 80455798-8045579C 0004+00 s=3 e=0 z=0  None .sdata2    @642 */
-SECTION_SDATA2 static u32 lit_642 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_642 = 1.0f;
 
 /* 8045579C-804557A0 0004+00 s=4 e=0 z=0  None .sdata2    @643 */
 SECTION_SDATA2 static u8 lit_643[4] = {

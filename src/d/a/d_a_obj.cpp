@@ -17,13 +17,6 @@ struct daPy_py_c {
     /* 8015F398 */ void checkMasterSwordEquip();
 };
 
-struct Quaternion {};
-
-struct dCcD_GObjInf {
-    /* 800844F8 */ void GetTgHitObj();
-    /* 8008457C */ void GetTgHitObjSe();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -32,6 +25,13 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266C18 */ void operator/(f32) const;
     /* 80266CBC */ void outprod(Vec const&) const;
+};
+
+struct Quaternion {};
+
+struct dCcD_GObjInf {
+    /* 800844F8 */ void GetTgHitObj();
+    /* 8008457C */ void GetTgHitObjSe();
 };
 
 struct daObj {
@@ -98,8 +98,6 @@ struct Z2SeMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_a_d_a_obj__stringBase0;
-
 extern "C" void eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi();
 extern "C" void make_eff_break_kotubo__5daObjFP10fopAc_ac_c();
 extern "C" void make_eff_break_kotubo2__5daObjFP10fopAc_ac_c();
@@ -123,14 +121,6 @@ void fopAcM_posMove(fopAc_ac_c*, cXyz const*);
 void dComIfGp_getReverb(int);
 void cM_atan2s(f32, f32);
 void cM3d_CrawVec(Vec const&, Vec const&, Vec*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mTsubo__13dPa_control_c[64];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80450DF0[8];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void fopAcM_posMove__FP10fopAc_ac_cPC4cXyz();
@@ -182,8 +172,11 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80379298-803792A8 0010+00 s=1 e=0 z=0  None .rodata    zero_quat$3920 */
-SECTION_RODATA static u8 const zero_quat[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+SECTION_RODATA static f32 const zero_quat[4] = {
+    0.0f,
+    0.0f,
+    0.0f,
+    1.0f,
 };
 
 /* 803792A8-803792B0 0007+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
@@ -196,7 +189,7 @@ SECTION_DEAD static char const* const pad_803792AF = "";
 #pragma pop
 
 /* 80451D98-80451D9C 0004+00 s=6 e=0 z=0  None .sdata2    @3671 */
-SECTION_SDATA2 static u32 lit_3671 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3671 = 1.0f;
 
 /* 80037038-80037180 0148+00 s=4 e=0 z=0  None .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
  */
@@ -271,7 +264,7 @@ static u8 lit_3732[12];
 static f32 scale_3731[3];
 
 /* 80451D9C-80451DA0 0004+00 s=1 e=0 z=0  None .sdata2    @3714 */
-SECTION_SDATA2 static u32 lit_3714 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3714 = 2.0f;
 
 /* 80037330-800373C0 0090+00 s=0 e=0 z=1  None .text
  * make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c               */
@@ -307,7 +300,7 @@ asm void daObj::posMoveF_stream(fopAc_ac_c* param_0, cXyz const* param_1, cXyz c
 
 /* ############################################################################################## */
 /* 80451DA4-80451DA8 0004+00 s=2 e=0 z=0  None .sdata2    @3836 */
-SECTION_SDATA2 static u32 lit_3836 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3836 = -1.0f;
 
 /* 800373F0-800374EC 00FC+00 s=1 e=0 z=0  None .text
  * posMoveF_resist_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzff */

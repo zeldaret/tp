@@ -11,10 +11,6 @@
 // Forward References:
 //
 
-SECTION_BSS u8 data_8044F820[4];
-SECTION_BSS extern u8 _MetroTRK_Has_Framing[4];
-SECTION_BSS extern u8 data_8044F828[8];
-
 extern "C" static void TRKLoadContext();
 extern "C" void TRKUARTInterruptHandler();
 extern "C" void InitializeProgramEndTrap();

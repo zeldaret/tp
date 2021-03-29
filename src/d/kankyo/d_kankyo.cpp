@@ -61,14 +61,6 @@ struct dStage_roomControl_c {
     /* 8019F780 */ void GetTimePass();
 };
 
-struct dKy_tevstr_c {};
-
-struct _GXColorS10 {};
-
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -77,6 +69,14 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
+
+struct _GXColorS10 {};
 
 struct dScnKy_env_light_c {
     /* 8019F2E8 */ dScnKy_env_light_c();
@@ -396,11 +396,6 @@ void dKy_shadow_mode_reset(u8);
 void dKy_shadow_mode_check(u8);
 void dKy_bg_MAxx_proc(void*);
 static void dKankyo_DayProc();
-extern "C" extern char const* const d_kankyo_d_kankyo__stringBase0;
-extern "C" extern void* g_profile_KANKYO[10];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u8 struct_80451070[8];
 
 extern "C" static void dKy_WolfPowerup_AmbCol__FP11_GXColorS10();
 extern "C" static void dKy_sense_pat_get__Fv();
@@ -646,23 +641,6 @@ void cLib_addCalc(f32*, f32, f32, f32, f32);
 void GFSetFog(_GXFogType, f32, f32, f32, f32, _GXColor);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
@@ -1024,61 +1002,61 @@ SECTION_DATA static void* lit_4364[16] = {
 };
 
 /* 80453BC0-80453BC4 0004+00 s=1 e=0 z=0  None .sdata2    @4345 */
-SECTION_SDATA2 static u32 lit_4345 = 0x443B8000;
+SECTION_SDATA2 static f32 lit_4345 = 750.0f;
 
 /* 80453BC4-80453BC8 0004+00 s=1 e=0 z=0  None .sdata2    @4346 */
-SECTION_SDATA2 static u32 lit_4346 = 0x44DAC000;
+SECTION_SDATA2 static f32 lit_4346 = 1750.0f;
 
 /* 80453BC8-80453BCC 0004+00 s=2 e=0 z=0  None .sdata2    @4347 */
-SECTION_SDATA2 static u32 lit_4347 = 0x459C4000;
+SECTION_SDATA2 static f32 lit_4347 = 5000.0f;
 
 /* 80453BCC-80453BD0 0004+00 s=1 e=0 z=0  None .sdata2    @4348 */
-SECTION_SDATA2 static u32 lit_4348 = 0x471C4000;
+SECTION_SDATA2 static f32 lit_4348 = 40000.0f;
 
 /* 80453BD0-80453BD4 0004+00 s=1 e=0 z=0  None .sdata2    @4349 */
-SECTION_SDATA2 static u32 lit_4349 = 0x457A0000;
+SECTION_SDATA2 static f32 lit_4349 = 4000.0f;
 
 /* 80453BD4-80453BD8 0004+00 s=1 e=0 z=0  None .sdata2    @4350 */
-SECTION_SDATA2 static u32 lit_4350 = 0x463B8000;
+SECTION_SDATA2 static f32 lit_4350 = 12000.0f;
 
 /* 80453BD8-80453BDC 0004+00 s=4 e=0 z=0  None .sdata2    @4351 */
-SECTION_SDATA2 static u32 lit_4351 = 0x43FA0000;
+SECTION_SDATA2 static f32 lit_4351 = 500.0f;
 
 /* 80453BDC-80453BE0 0004+00 s=1 e=0 z=0  None .sdata2    @4352 */
-SECTION_SDATA2 static u32 lit_4352 = 0x450CA000;
+SECTION_SDATA2 static f32 lit_4352 = 2250.0f;
 
 /* 80453BE0-80453BE4 0004+00 s=4 e=0 z=0  None .sdata2    @4353 */
-SECTION_SDATA2 static u32 lit_4353 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_4353 = 1000.0f;
 
 /* 80453BE4-80453BE8 0004+00 s=2 e=0 z=0  None .sdata2    @4354 */
-SECTION_SDATA2 static u32 lit_4354 = 0x44E10000;
+SECTION_SDATA2 static f32 lit_4354 = 1800.0f;
 
 /* 80453BE8-80453BEC 0004+00 s=1 e=0 z=0  None .sdata2    @4355 */
-SECTION_SDATA2 static u32 lit_4355 = 0x452BE000;
+SECTION_SDATA2 static f32 lit_4355 = 2750.0f;
 
 /* 80453BEC-80453BF0 0004+00 s=4 e=0 z=0  None .sdata2    @4356 */
-SECTION_SDATA2 static u32 lit_4356 = 0x44FA0000;
+SECTION_SDATA2 static f32 lit_4356 = 2000.0f;
 
 /* 80453BF0-80453BF4 0004+00 s=2 e=0 z=0  None .sdata2    @4357 */
-SECTION_SDATA2 static u32 lit_4357 = 0x453B8000;
+SECTION_SDATA2 static f32 lit_4357 = 3000.0f;
 
 /* 80453BF4-80453BF8 0004+00 s=4 e=0 z=0  None .sdata2    @4358 */
-SECTION_SDATA2 static u32 lit_4358 = 0x43960000;
+SECTION_SDATA2 static f32 lit_4358 = 300.0f;
 
 /* 80453BF8-80453BFC 0004+00 s=1 e=0 z=0  None .sdata2    @4359 */
-SECTION_SDATA2 static u32 lit_4359 = 0x442F0000;
+SECTION_SDATA2 static f32 lit_4359 = 700.0f;
 
 /* 80453BFC-80453C00 0004+00 s=4 e=0 z=0  None .sdata2    @4360 */
-SECTION_SDATA2 static u32 lit_4360 = 0x44BB8000;
+SECTION_SDATA2 static f32 lit_4360 = 1500.0f;
 
 /* 80453C00-80453C04 0004+00 s=1 e=0 z=0  None .sdata2    @4361 */
-SECTION_SDATA2 static u32 lit_4361 = 0x449C4000;
+SECTION_SDATA2 static f32 lit_4361 = 1250.0f;
 
 /* 80453C04-80453C08 0004+00 s=2 e=0 z=0  None .sdata2    @4362 */
-SECTION_SDATA2 static u32 lit_4362 = 0x479C4000;
+SECTION_SDATA2 static f32 lit_4362 = 80000.0f;
 
 /* 80453C08-80453C0C 0004+00 s=1 e=0 z=0  None .sdata2    @4363 */
-SECTION_SDATA2 static u32 lit_4363 = 0x45947000;
+SECTION_SDATA2 static f32 lit_4363 = 4750.0f;
 
 /* 8019CCDC-8019CE5C 0180+00 s=4 e=0 z=0  None .text      dKy_WolfPowerup_FogNearFar__FPfPf */
 #pragma push
@@ -1100,14 +1078,10 @@ SECTION_SDATA2 static u8 lit_4409[4] = {
 };
 
 /* 80453C10-80453C18 0008+00 s=12 e=0 z=0  None .sdata2    @4410 */
-SECTION_SDATA2 static u8 lit_4410[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4410 = 0.5;
 
 /* 80453C18-80453C20 0008+00 s=12 e=0 z=0  None .sdata2    @4411 */
-SECTION_SDATA2 static u8 lit_4411[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4411 = 3.0;
 
 /* 80453C20-80453C28 0008+00 s=12 e=0 z=0  None .sdata2    @4412 */
 SECTION_SDATA2 static u8 lit_4412[8] = {
@@ -1132,15 +1106,13 @@ static u8 lit_4112[12];
 u8 g_env_light[4880];
 
 /* 80453C28-80453C2C 0004+00 s=1 e=0 z=0  None .sdata2    @4441 */
-SECTION_SDATA2 static u32 lit_4441 = 0x3BB40000;
+SECTION_SDATA2 static f32 lit_4441 = 0.0054931640625f;
 
 /* 80453C2C-80453C30 0004+00 s=13 e=0 z=0  None .sdata2    @4442 */
-SECTION_SDATA2 static u32 lit_4442 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_4442 = 90.0f;
 
 /* 80453C30-80453C38 0008+00 s=25 e=0 z=0  None .sdata2    @4444 */
-SECTION_SDATA2 static u8 lit_4444[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4444 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8019CFE4-8019D1A0 01BC+00 s=4 e=0 z=0  None .text      dKy_twi_wolflight_set__Fi */
 #pragma push
@@ -1154,7 +1126,7 @@ asm static void dKy_twi_wolflight_set(int param_0) {
 
 /* ############################################################################################## */
 /* 80453C38-80453C3C 0004+00 s=1 e=0 z=0  None .sdata2    @4477 */
-SECTION_SDATA2 static u32 lit_4477 = 0x42652EE0;
+SECTION_SDATA2 static f32 lit_4477 = 57.2957763671875f;
 
 /* 8019D1A0-8019D2C4 0124+00 s=3 e=0 z=0  None .text      dKy_lightdir_set__FffP3Vec */
 #pragma push
@@ -1179,31 +1151,31 @@ SECTION_DATA static void* lit_4511[7] = {
 };
 
 /* 80453C3C-80453C40 0004+00 s=1 e=0 z=0  None .sdata2    @4502 */
-SECTION_SDATA2 static u32 lit_4502 = 0x40490FDB;
+SECTION_SDATA2 static f32 lit_4502 = 3.1415927410125732f;
 
 /* 80453C40-80453C44 0004+00 s=3 e=0 z=0  None .sdata2    @4503 */
-SECTION_SDATA2 static u32 lit_4503 = 0x43340000;
+SECTION_SDATA2 static f32 lit_4503 = 180.0f;
 
 /* 80453C44-80453C48 0004+00 s=2 e=0 z=0  None .sdata2    @4504 */
-SECTION_SDATA2 static u32 lit_4504 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_4504 = -1000.0f;
 
 /* 80453C48-80453C4C 0004+00 s=36 e=0 z=0  None .sdata2    @4505 */
-SECTION_SDATA2 static u32 lit_4505 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4505 = 1.0f;
 
 /* 80453C4C-80453C50 0004+00 s=6 e=0 z=0  None .sdata2    @4506 */
-SECTION_SDATA2 static u32 lit_4506 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4506 = 2.0f;
 
 /* 80453C50-80453C54 0004+00 s=6 e=0 z=0  None .sdata2    @4507 */
-SECTION_SDATA2 static u32 lit_4507 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4507 = -1.0f;
 
 /* 80453C54-80453C58 0004+00 s=1 e=0 z=0  None .sdata2    @4508 */
-SECTION_SDATA2 static u32 lit_4508 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_4508 = -4.0f;
 
 /* 80453C58-80453C5C 0004+00 s=2 e=0 z=0  None .sdata2    @4509 */
-SECTION_SDATA2 static u32 lit_4509 = 0x40800000;
+SECTION_SDATA2 static f32 lit_4509 = 4.0f;
 
 /* 80453C5C-80453C60 0004+00 s=1 e=0 z=0  None .sdata2    @4510 */
-SECTION_SDATA2 static u32 lit_4510 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_4510 = -2.0f;
 
 /* 8019D2C4-8019D44C 0188+00 s=3 e=0 z=0  None .text      dKy_GXInitLightSpot__FP12J3DLightInfofUc
  */
@@ -1218,7 +1190,7 @@ asm static void dKy_GXInitLightSpot(J3DLightInfo* param_0, f32 param_1, u8 param
 
 /* ############################################################################################## */
 /* 80453C60-80453C64 0004+00 s=8 e=0 z=0  None .sdata2    @4529 */
-SECTION_SDATA2 static u32 lit_4529 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4529 = 0.5f;
 
 /* 8019D44C-8019D520 00D4+00 s=2 e=0 z=0  None .text dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
  */
@@ -1327,13 +1299,13 @@ asm void dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 80453C64-80453C68 0004+00 s=4 e=0 z=0  None .sdata2    @4730 */
-SECTION_SDATA2 static u32 lit_4730 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4730 = 1.0f / 10.0f;
 
 /* 80453C68-80453C6C 0004+00 s=9 e=0 z=0  None .sdata2    @4731 */
-SECTION_SDATA2 static u32 lit_4731 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_4731 = 1.0f / 100.0f;
 
 /* 80453C6C-80453C70 0004+00 s=8 e=0 z=0  None .sdata2    @4732 */
-SECTION_SDATA2 static u32 lit_4732 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4732 = 255.0f;
 
 /* 8019D8CC-8019DD4C 0480+00 s=1 e=0 z=0  None .text dKy_FiveSenses_fullthrottle_dark_static1__Fv
  */
@@ -1358,10 +1330,10 @@ asm void dKy_FiveSenses_fullthrottle_dark() {
 
 /* ############################################################################################## */
 /* 80453C70-80453C74 0004+00 s=4 e=0 z=0  None .sdata2    @4850 */
-SECTION_SDATA2 static u32 lit_4850 = 0x49742400;
+SECTION_SDATA2 static f32 lit_4850 = 1000000.0f;
 
 /* 80453C74-80453C78 0004+00 s=1 e=0 z=0  None .sdata2    @4851 */
-SECTION_SDATA2 static u32 lit_4851 = 0x44480000;
+SECTION_SDATA2 static f32 lit_4851 = 800.0f;
 
 /* 80453C78-80453C80 0004+04 s=3 e=0 z=0  None .sdata2    @4852 */
 SECTION_SDATA2 static f32 lit_4852[1 + 1 /* padding */] = {
@@ -1402,9 +1374,7 @@ asm static void dKy_light_influence_col(int param_0) {
 
 /* ############################################################################################## */
 /* 80453C80-80453C88 0008+00 s=14 e=0 z=0  None .sdata2    @4964 */
-SECTION_SDATA2 static u8 lit_4964[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4964 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8019E430-8019E520 00F0+00 s=4 e=3 z=0  None .text      dKy_light_influence_col__FP8_GXColorf */
 #pragma push
@@ -1448,7 +1418,7 @@ asm static void dKy_light_influence_distance(cXyz param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80453C88-80453C8C 0004+00 s=2 e=0 z=0  None .sdata2    @5077 */
-SECTION_SDATA2 static u32 lit_5077 = 0x47C34FF3;
+SECTION_SDATA2 static f32 lit_5077 = 99999.8984375f;
 
 /* 8019E694-8019E708 0074+00 s=2 e=0 z=0  None .text      plight_init__Fv */
 #pragma push
@@ -1472,7 +1442,7 @@ asm static void darkmist_init() {
 
 /* ############################################################################################## */
 /* 80453C8C-80453C90 0004+00 s=6 e=0 z=0  None .sdata2    @5106 */
-SECTION_SDATA2 static u32 lit_5106 = 0x43480000;
+SECTION_SDATA2 static f32 lit_5106 = 200.0f;
 
 /* 8019E734-8019E854 0120+00 s=1 e=0 z=0  None .text      plight_set__Fv */
 #pragma push
@@ -1512,16 +1482,16 @@ SECTION_DATA static u8 test_color_tbl[24] = {
 };
 
 /* 80453C90-80453C94 0004+00 s=5 e=0 z=0  None .sdata2    @5191 */
-SECTION_SDATA2 static u32 lit_5191 = 0x3F7D70A4;
+SECTION_SDATA2 static f32 lit_5191 = 99.0f / 100.0f;
 
 /* 80453C94-80453C98 0004+00 s=9 e=0 z=0  None .sdata2    @5192 */
-SECTION_SDATA2 static u32 lit_5192 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_5192 = 100.0f;
 
 /* 80453C98-80453C9C 0004+00 s=1 e=0 z=0  None .sdata2    @5193 */
-SECTION_SDATA2 static u32 lit_5193 = 0xC2B40000;
+SECTION_SDATA2 static f32 lit_5193 = -90.0f;
 
 /* 80453C9C-80453CA0 0004+00 s=3 e=0 z=0  None .sdata2    @5194 */
-SECTION_SDATA2 static u32 lit_5194 = 0x3A83126F;
+SECTION_SDATA2 static f32 lit_5194 = 0.0010000000474974513f;
 
 /* 8019E874-8019EAA0 022C+00 s=1 e=0 z=0  None .text      dungeonlight_init__Fv */
 #pragma push
@@ -1555,22 +1525,22 @@ asm static void dKy_light_size_get(char const* param_0) {
 
 /* ############################################################################################## */
 /* 80453CA0-80453CA4 0004+00 s=2 e=0 z=0  None .sdata2    @5344 */
-SECTION_SDATA2 static u32 lit_5344 = 0x3DE147AE;
+SECTION_SDATA2 static f32 lit_5344 = 11.0f / 100.0f;
 
 /* 80453CA4-80453CA8 0004+00 s=1 e=0 z=0  None .sdata2    @5345 */
-SECTION_SDATA2 static u32 lit_5345 = 0xC37F0000;
+SECTION_SDATA2 static f32 lit_5345 = -255.0f;
 
 /* 80453CA8-80453CAC 0004+00 s=3 e=0 z=0  None .sdata2    @5346 */
-SECTION_SDATA2 static u32 lit_5346 = 0x497423FE;
+SECTION_SDATA2 static f32 lit_5346 = 999999.875f;
 
 /* 80453CAC-80453CB0 0004+00 s=7 e=0 z=0  None .sdata2    @5347 */
-SECTION_SDATA2 static u32 lit_5347 = 0x41700000;
+SECTION_SDATA2 static f32 lit_5347 = 15.0f;
 
 /* 80453CB0-80453CB4 0004+00 s=3 e=0 z=0  None .sdata2    @5348 */
-SECTION_SDATA2 static u32 lit_5348 = 0x43B40000;
+SECTION_SDATA2 static f32 lit_5348 = 360.0f;
 
 /* 80453CB4-80453CB8 0004+00 s=1 e=0 z=0  None .sdata2    @5349 */
-SECTION_SDATA2 static u32 lit_5349 = 0x3C449BA6;
+SECTION_SDATA2 static f32 lit_5349 = 0.012000000104308128f;
 
 /* 8019EC98-8019F264 05CC+00 s=1 e=0 z=0  None .text      envcolor_init__Fv */
 #pragma push
@@ -1584,7 +1554,7 @@ asm static void envcolor_init() {
 
 /* ############################################################################################## */
 /* 80453CB8-80453CBC 0004+00 s=3 e=0 z=0  None .sdata2    @5365 */
-SECTION_SDATA2 static u32 lit_5365 = 0x42F00000;
+SECTION_SDATA2 static f32 lit_5365 = 120.0f;
 
 /* 8019F264-8019F2E8 0084+00 s=1 e=1 z=0  None .text      dKy_clear_game_init__Fv */
 #pragma push
@@ -1905,13 +1875,13 @@ LIGHT_INFLUENCE::LIGHT_INFLUENCE() {
 
 /* ############################################################################################## */
 /* 80453CBC-80453CC0 0004+00 s=5 e=0 z=0  None .sdata2    @5554 */
-SECTION_SDATA2 static u32 lit_5554 = 0x42700000;
+SECTION_SDATA2 static f32 lit_5554 = 60.0f;
 
 /* 80453CC0-80453CC4 0004+00 s=3 e=0 z=0  None .sdata2    @5555 */
-SECTION_SDATA2 static u32 lit_5555 = 0x43160000;
+SECTION_SDATA2 static f32 lit_5555 = 150.0f;
 
 /* 80453CC4-80453CC8 0004+00 s=1 e=0 z=0  None .sdata2    @5556 */
-SECTION_SDATA2 static u32 lit_5556 = 0x43430000;
+SECTION_SDATA2 static f32 lit_5556 = 195.0f;
 
 /* 8019F4FC-8019F780 0284+00 s=1 e=0 z=0  None .text      setDaytime__18dScnKy_env_light_cFv */
 #pragma push
@@ -1935,22 +1905,22 @@ asm void dStage_roomControl_c::GetTimePass() {
 
 /* ############################################################################################## */
 /* 80453CC8-80453CCC 0004+00 s=2 e=0 z=0  None .sdata2    @5613 */
-SECTION_SDATA2 static u32 lit_5613 = 0x43870000;
+SECTION_SDATA2 static f32 lit_5613 = 270.0f;
 
 /* 80453CCC-80453CD0 0004+00 s=1 e=0 z=0  None .sdata2    @5614 */
-SECTION_SDATA2 static u32 lit_5614 = 0x42D20000;
+SECTION_SDATA2 static f32 lit_5614 = 105.0f;
 
 /* 80453CD0-80453CD4 0004+00 s=3 e=0 z=0  None .sdata2    @5615 */
-SECTION_SDATA2 static u32 lit_5615 = 0x43E10000;
+SECTION_SDATA2 static f32 lit_5615 = 450.0f;
 
 /* 80453CD4-80453CD8 0004+00 s=1 e=0 z=0  None .sdata2    @5616 */
-SECTION_SDATA2 static u32 lit_5616 = 0x43520000;
+SECTION_SDATA2 static f32 lit_5616 = 210.0f;
 
 /* 80453CD8-80453CDC 0004+00 s=1 e=0 z=0  None .sdata2    @5617 */
-SECTION_SDATA2 static u32 lit_5617 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_5617 = 0.01745329238474369f;
 
 /* 80453CDC-80453CE0 0004+00 s=1 e=0 z=0  None .sdata2    @5618 */
-SECTION_SDATA2 static u32 lit_5618 = 0xC73B8000;
+SECTION_SDATA2 static f32 lit_5618 = -48000.0f;
 
 /* 8019F788-8019FA08 0280+00 s=1 e=0 z=0  None .text      setSunpos__18dScnKy_env_light_cFv */
 #pragma push
@@ -2044,10 +2014,10 @@ asm void dScnKy_env_light_c::getDarkDaytime() {
 
 /* ############################################################################################## */
 /* 80453CE0-80453CE4 0004+00 s=1 e=0 z=0  None .sdata2    @5839 */
-SECTION_SDATA2 static u32 lit_5839 = 0x3D088889;
+SECTION_SDATA2 static f32 lit_5839 = 1.0f / 30.0f;
 
 /* 80453CE4-80453CE8 0004+00 s=1 e=0 z=0  None .sdata2    @5840 */
-SECTION_SDATA2 static u32 lit_5840 = 0x3D888889;
+SECTION_SDATA2 static f32 lit_5840 = 1.0f / 15.0f;
 
 /* 8019FBD4-801A0340 076C+00 s=5 e=0 z=0  None .text
  * setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc */
@@ -2083,37 +2053,37 @@ asm static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_
 static u8 struct_80451068[8];
 
 /* 80453CE8-80453CEC 0004+00 s=3 e=0 z=0  None .sdata2    @6032 */
-SECTION_SDATA2 static u32 lit_6032 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_6032 = 100000.0f;
 
 /* 80453CEC-80453CF0 0004+00 s=5 e=0 z=0  None .sdata2    @6033 */
-SECTION_SDATA2 static u32 lit_6033 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_6033 = 0.25f;
 
 /* 80453CF0-80453CF4 0004+00 s=2 e=0 z=0  None .sdata2    @6034 */
-SECTION_SDATA2 static u32 lit_6034 = 0x29E12E13;
+SECTION_SDATA2 static f32 lit_6034 = 9.9999998245167e-14f;
 
 /* 80453CF4-80453CF8 0004+00 s=4 e=0 z=0  None .sdata2    @6035 */
-SECTION_SDATA2 static u32 lit_6035 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_6035 = 1.0f / 5.0f;
 
 /* 80453CF8-80453CFC 0004+00 s=3 e=0 z=0  None .sdata2    @6036 */
-SECTION_SDATA2 static u32 lit_6036 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_6036 = 4.0f / 5.0f;
 
 /* 80453CFC-80453D00 0004+00 s=3 e=0 z=0  None .sdata2    @6037 */
-SECTION_SDATA2 static u32 lit_6037 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_6037 = 2.0f / 5.0f;
 
 /* 80453D00-80453D04 0004+00 s=2 e=0 z=0  None .sdata2    @6038 */
-SECTION_SDATA2 static u32 lit_6038 = 0x3F266666;
+SECTION_SDATA2 static f32 lit_6038 = 13.0f / 20.0f;
 
 /* 80453D04-80453D08 0004+00 s=1 e=0 z=0  None .sdata2    @6039 */
-SECTION_SDATA2 static u32 lit_6039 = 0x3F0CCCCD;
+SECTION_SDATA2 static f32 lit_6039 = 11.0f / 20.0f;
 
 /* 80453D08-80453D0C 0004+00 s=4 e=0 z=0  None .sdata2    @6040 */
-SECTION_SDATA2 static u32 lit_6040 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_6040 = 1.0f / 20.0f;
 
 /* 80453D0C-80453D10 0004+00 s=1 e=0 z=0  None .sdata2    @6041 */
-SECTION_SDATA2 static u32 lit_6041 = 0x3BA3D70A;
+SECTION_SDATA2 static f32 lit_6041 = 0.004999999888241291f;
 
 /* 80453D10-80453D14 0004+00 s=9 e=0 z=0  None .sdata2    @6042 */
-SECTION_SDATA2 static u32 lit_6042 = 0x358637BD;
+SECTION_SDATA2 static f32 lit_6042 = 9.999999974752427e-07f;
 
 /* 801A040C-801A133C 0F30+00 s=1 e=0 z=0  None .text      setLight__18dScnKy_env_light_cFv */
 #pragma push
@@ -2187,46 +2157,46 @@ asm static void cLib_addCalcU8(u8* param_0, u8 param_1, s16 param_2, s16 param_3
 
 /* ############################################################################################## */
 /* 80453D14-80453D18 0004+00 s=1 e=0 z=0  None .sdata2    @6761 */
-SECTION_SDATA2 static u32 lit_6761 = 0x42200000;
+SECTION_SDATA2 static f32 lit_6761 = 40.0f;
 
 /* 80453D18-80453D1C 0004+00 s=1 e=0 z=0  None .sdata2    @6762 */
-SECTION_SDATA2 static u32 lit_6762 = 0xC4480000;
+SECTION_SDATA2 static f32 lit_6762 = -800.0f;
 
 /* 80453D1C-80453D20 0004+00 s=1 e=0 z=0  None .sdata2    @6763 */
-SECTION_SDATA2 static u32 lit_6763 = 0xC2F00000;
+SECTION_SDATA2 static f32 lit_6763 = -120.0f;
 
 /* 80453D20-80453D24 0004+00 s=2 e=0 z=0  None .sdata2    @6764 */
-SECTION_SDATA2 static u32 lit_6764 = 0x42A00000;
+SECTION_SDATA2 static f32 lit_6764 = 80.0f;
 
 /* 80453D24-80453D28 0004+00 s=3 e=0 z=0  None .sdata2    @6765 */
-SECTION_SDATA2 static u32 lit_6765 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_6765 = 10000.0f;
 
 /* 80453D28-80453D2C 0004+00 s=3 e=0 z=0  None .sdata2    @6766 */
-SECTION_SDATA2 static u32 lit_6766 = 0x41200000;
+SECTION_SDATA2 static f32 lit_6766 = 10.0f;
 
 /* 80453D2C-80453D30 0004+00 s=1 e=0 z=0  None .sdata2    @6767 */
-SECTION_SDATA2 static u32 lit_6767 = 0xC1A00000;
+SECTION_SDATA2 static f32 lit_6767 = -20.0f;
 
 /* 80453D30-80453D34 0004+00 s=4 e=0 z=0  None .sdata2    @6768 */
-SECTION_SDATA2 static u32 lit_6768 = 0x38D1B717;
+SECTION_SDATA2 static f32 lit_6768 = 9.999999747378752e-05f;
 
 /* 80453D34-80453D38 0004+00 s=3 e=0 z=0  None .sdata2    @6769 */
-SECTION_SDATA2 static u32 lit_6769 = 0x3F400000;
+SECTION_SDATA2 static f32 lit_6769 = 0.75f;
 
 /* 80453D38-80453D3C 0004+00 s=1 e=0 z=0  None .sdata2    @6770 */
-SECTION_SDATA2 static u32 lit_6770 = 0x3E570A3D;
+SECTION_SDATA2 static f32 lit_6770 = 21.0f / 100.0f;
 
 /* 80453D3C-80453D40 0004+00 s=1 e=0 z=0  None .sdata2    @6771 */
-SECTION_SDATA2 static u32 lit_6771 = 0xC20C0000;
+SECTION_SDATA2 static f32 lit_6771 = -35.0f;
 
 /* 80453D40-80453D44 0004+00 s=2 e=0 z=0  None .sdata2    @6772 */
-SECTION_SDATA2 static u32 lit_6772 = 0x3727C5AC;
+SECTION_SDATA2 static f32 lit_6772 = 9.999999747378752e-06f;
 
 /* 80453D44-80453D48 0004+00 s=1 e=0 z=0  None .sdata2    @6773 */
-SECTION_SDATA2 static u32 lit_6773 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_6773 = -100.0f;
 
 /* 80453D48-80453D4C 0004+00 s=1 e=0 z=0  None .sdata2    @6774 */
-SECTION_SDATA2 static u32 lit_6774 = 0x3D23D70A;
+SECTION_SDATA2 static f32 lit_6774 = 1.0f / 25.0f;
 
 /* 801A2128-801A37C4 169C+00 s=2 e=0 z=0  None .text
  * settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
@@ -2253,55 +2223,55 @@ u8 g_mEnvSeMgr[780];
 static u8 lightStatusData[1856];
 
 /* 80453D4C-80453D50 0004+00 s=1 e=0 z=0  None .sdata2    @7011 */
-SECTION_SDATA2 static u32 lit_7011 = 0x46EA6000;
+SECTION_SDATA2 static f32 lit_7011 = 30000.0f;
 
 /* 80453D50-80453D54 0004+00 s=3 e=0 z=0  None .sdata2    @7012 */
-SECTION_SDATA2 static u32 lit_7012 = 0x3F7FFF58;
+SECTION_SDATA2 static f32 lit_7012 = 0.9999899864196777f;
 
 /* 80453D54-80453D58 0004+00 s=1 e=0 z=0  None .sdata2    @7013 */
-SECTION_SDATA2 static u32 lit_7013 = 0xC3FA0000;
+SECTION_SDATA2 static f32 lit_7013 = -500.0f;
 
 /* 80453D58-80453D5C 0004+00 s=1 e=0 z=0  None .sdata2    @7014 */
-SECTION_SDATA2 static u32 lit_7014 = 0xC6EA6000;
+SECTION_SDATA2 static f32 lit_7014 = -30000.0f;
 
 /* 80453D5C-80453D60 0004+00 s=1 e=0 z=0  None .sdata2    @7015 */
-SECTION_SDATA2 static u32 lit_7015 = 0x4692E000;
+SECTION_SDATA2 static f32 lit_7015 = 18800.0f;
 
 /* 80453D60-80453D64 0004+00 s=1 e=0 z=0  None .sdata2    @7016 */
-SECTION_SDATA2 static u32 lit_7016 = 0x46E29000;
+SECTION_SDATA2 static f32 lit_7016 = 29000.0f;
 
 /* 80453D64-80453D68 0004+00 s=1 e=0 z=0  None .sdata2    @7017 */
-SECTION_SDATA2 static u32 lit_7017 = 0xC7108800;
+SECTION_SDATA2 static f32 lit_7017 = -37000.0f;
 
 /* 80453D68-80453D6C 0004+00 s=1 e=0 z=0  None .sdata2    @7018 */
-SECTION_SDATA2 static u32 lit_7018 = 0x46610000;
+SECTION_SDATA2 static f32 lit_7018 = 14400.0f;
 
 /* 80453D6C-80453D70 0004+00 s=1 e=0 z=0  None .sdata2    @7019 */
-SECTION_SDATA2 static u32 lit_7019 = 0x45EA6000;
+SECTION_SDATA2 static f32 lit_7019 = 7500.0f;
 
 /* 80453D70-80453D74 0004+00 s=1 e=0 z=0  None .sdata2    @7020 */
-SECTION_SDATA2 static u32 lit_7020 = 0x4573C000;
+SECTION_SDATA2 static f32 lit_7020 = 3900.0f;
 
 /* 80453D74-80453D78 0004+00 s=1 e=0 z=0  None .sdata2    @7021 */
-SECTION_SDATA2 static u32 lit_7021 = 0x468CA000;
+SECTION_SDATA2 static f32 lit_7021 = 18000.0f;
 
 /* 80453D78-80453D7C 0004+00 s=1 e=0 z=0  None .sdata2    @7022 */
-SECTION_SDATA2 static u32 lit_7022 = 0xC5CB2000;
+SECTION_SDATA2 static f32 lit_7022 = -6500.0f;
 
 /* 80453D7C-80453D80 0004+00 s=1 e=0 z=0  None .sdata2    @7023 */
-SECTION_SDATA2 static u32 lit_7023 = 0xC61C4000;
+SECTION_SDATA2 static f32 lit_7023 = -10000.0f;
 
 /* 80453D80-80453D84 0004+00 s=1 e=0 z=0  None .sdata2    @7024 */
-SECTION_SDATA2 static u32 lit_7024 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_7024 = 3.0f / 10.0f;
 
 /* 80453D84-80453D88 0004+00 s=2 e=0 z=0  None .sdata2    @7025 */
-SECTION_SDATA2 static u32 lit_7025 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_7025 = 3.0f / 5.0f;
 
 /* 80453D88-80453D8C 0004+00 s=2 e=0 z=0  None .sdata2    @7026 */
-SECTION_SDATA2 static u32 lit_7026 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_7026 = 9.0f / 10.0f;
 
 /* 80453D8C-80453D90 0004+00 s=2 e=0 z=0  None .sdata2    @7027 */
-SECTION_SDATA2 static u32 lit_7027 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_7027 = 6.0f / 5.0f;
 
 /* 801A37C4-801A441C 0C58+00 s=2 e=14 z=515  None .text
  * settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c */
@@ -2322,10 +2292,10 @@ void dScnKy_env_light_c::setLightTevColorType(J3DModelData* param_0, dKy_tevstr_
 
 /* ############################################################################################## */
 /* 80453D90-80453D94 0004+00 s=1 e=0 z=0  None .sdata2    @7186 */
-SECTION_SDATA2 static u32 lit_7186 = 0x43390000;
+SECTION_SDATA2 static f32 lit_7186 = 185.0f;
 
 /* 80453D94-80453D98 0004+00 s=1 e=0 z=0  None .sdata2    @7187 */
-SECTION_SDATA2 static u32 lit_7187 = 0x42BE0000;
+SECTION_SDATA2 static f32 lit_7187 = 95.0f;
 
 /* 801A4420-801A4C08 07E8+00 s=2 e=0 z=0  None .text
  * setLightTevColorType_MAJI_sub__FP11J3DMaterialP12dKy_tevstr_ci */
@@ -2417,10 +2387,10 @@ SECTION_SDATA static u16 lightMask[1 + 1 /* padding */] = {
 SECTION_SDATA static void* lightStatusPt = (void*)&lightStatusData;
 
 /* 80453D98-80453D9C 0004+00 s=1 e=0 z=0  None .sdata2    @7365 */
-SECTION_SDATA2 static u32 lit_7365 = 0x42870000;
+SECTION_SDATA2 static f32 lit_7365 = 67.5f;
 
 /* 80453D9C-80453DA0 0004+00 s=1 e=0 z=0  None .sdata2    @7366 */
-SECTION_SDATA2 static u32 lit_7366 = 0x43924000;
+SECTION_SDATA2 static f32 lit_7366 = 292.5f;
 
 /* 801A516C-801A5288 011C+00 s=1 e=0 z=0  None .text      SetBaseLight__18dScnKy_env_light_cFv */
 #pragma push
@@ -2466,10 +2436,10 @@ static u8 lit_7489[12];
 static u8 S_old_camctr[12 + 4 /* padding */];
 
 /* 80453DA0-80453DA4 0004+00 s=1 e=0 z=0  None .sdata2    @7608 */
-SECTION_SDATA2 static u32 lit_7608 = 0x3BABB44E;
+SECTION_SDATA2 static f32 lit_7608 = 0.005239999853074551f;
 
 /* 80453DA4-80453DA8 0004+00 s=2 e=0 z=0  None .sdata2    @7609 */
-SECTION_SDATA2 static u32 lit_7609 = 0x420C0000;
+SECTION_SDATA2 static f32 lit_7609 = 35.0f;
 
 /* 801A572C-801A5B6C 0440+00 s=0 e=1 z=0  None .text      dKy_undwater_filter_draw__Fv */
 #pragma push
@@ -2926,7 +2896,7 @@ asm void dKy_SordFlush_set(cXyz param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80453DA8-80453DAC 0004+00 s=3 e=0 z=0  None .sdata2    @8647 */
-SECTION_SDATA2 static u32 lit_8647 = 0x481C4000;
+SECTION_SDATA2 static f32 lit_8647 = 160000.0f;
 
 /* 801A8538-801A85E8 00B0+00 s=1 e=0 z=0  None .text      GxFogSet_Sub__FP8_GXColor */
 #pragma push
@@ -3170,25 +3140,25 @@ asm static void NewAmbColGet(_GXColorS10* param_0) {
 
 /* ############################################################################################## */
 /* 80453DAC-80453DB0 0004+00 s=1 e=0 z=0  None .sdata2    @8975 */
-SECTION_SDATA2 static u32 lit_8975 = 0x42480000;
+SECTION_SDATA2 static f32 lit_8975 = 50.0f;
 
 /* 80453DB0-80453DB4 0004+00 s=2 e=0 z=0  None .sdata2    @9254 */
-SECTION_SDATA2 static u32 lit_9254 = 0x438E8000;
+SECTION_SDATA2 static f32 lit_9254 = 285.0f;
 
 /* 80453DB4-80453DB8 0004+00 s=1 e=0 z=0  None .sdata2    @9255 */
-SECTION_SDATA2 static u32 lit_9255 = 0x41880000;
+SECTION_SDATA2 static f32 lit_9255 = 17.0f;
 
 /* 80453DB8-80453DBC 0004+00 s=1 e=0 z=0  None .sdata2    @9256 */
-SECTION_SDATA2 static u32 lit_9256 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_9256 = 20.0f;
 
 /* 80453DBC-80453DC0 0004+00 s=1 e=0 z=0  None .sdata2    @9257 */
-SECTION_SDATA2 static u32 lit_9257 = 0x433E0000;
+SECTION_SDATA2 static f32 lit_9257 = 190.0f;
 
 /* 80453DC0-80453DC4 0004+00 s=1 e=0 z=0  None .sdata2    @9258 */
-SECTION_SDATA2 static u32 lit_9258 = 0x4CBEBC20;
+SECTION_SDATA2 static f32 lit_9258 = 100000000.0f;
 
 /* 80453DC4-80453DC8 0004+00 s=1 e=0 z=0  None .sdata2    @9259 */
-SECTION_SDATA2 static u32 lit_9259 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_9259 = 5.0f;
 
 /* 801A8E20-801A9BE4 0DC4+00 s=2 e=0 z=0  None .text
  * dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
@@ -3254,10 +3224,10 @@ asm void dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 para
 
 /* ############################################################################################## */
 /* 80453DC8-80453DCC 0004+00 s=1 e=0 z=0  None .sdata2    @9676 */
-SECTION_SDATA2 static u32 lit_9676 = 0x43AF0000;
+SECTION_SDATA2 static f32 lit_9676 = 350.0f;
 
 /* 80453DCC-80453DD0 0004+00 s=2 e=0 z=0  None .sdata2    @9677 */
-SECTION_SDATA2 static u32 lit_9677 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_9677 = 1.5f;
 
 /* 801AAC5C-801AAD50 00F4+00 s=0 e=1 z=0  None .text
  * dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc              */
@@ -3273,25 +3243,25 @@ asm void dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param
 
 /* ############################################################################################## */
 /* 80453DD0-80453DD4 0004+00 s=3 e=0 z=0  None .sdata2    @9722 */
-SECTION_SDATA2 static u32 lit_9722 = 0x44160000;
+SECTION_SDATA2 static f32 lit_9722 = 600.0f;
 
 /* 80453DD4-80453DD8 0004+00 s=1 e=0 z=0  None .sdata2    @9723 */
-SECTION_SDATA2 static u32 lit_9723 = 0x3F880000;
+SECTION_SDATA2 static f32 lit_9723 = 1.0625f;
 
 /* 80453DD8-80453DDC 0004+00 s=1 e=0 z=0  None .sdata2    @9724 */
-SECTION_SDATA2 static u32 lit_9724 = 0x3FD9999A;
+SECTION_SDATA2 static f32 lit_9724 = 17.0f / 10.0f;
 
 /* 80453DDC-80453DE0 0004+00 s=1 e=0 z=0  None .sdata2    @9725 */
-SECTION_SDATA2 static u32 lit_9725 = 0x428C0000;
+SECTION_SDATA2 static f32 lit_9725 = 70.0f;
 
 /* 80453DE0-80453DE4 0004+00 s=1 e=0 z=0  None .sdata2    @9726 */
-SECTION_SDATA2 static u32 lit_9726 = 0x40233334;
+SECTION_SDATA2 static f32 lit_9726 = 2.5500001907348633f;
 
 /* 80453DE4-80453DE8 0004+00 s=1 e=0 z=0  None .sdata2    @9727 */
-SECTION_SDATA2 static u32 lit_9727 = 0x4059999A;
+SECTION_SDATA2 static f32 lit_9727 = 17.0f / 5.0f;
 
 /* 80453DE8-80453DEC 0004+00 s=1 e=0 z=0  None .sdata2    @9728 */
-SECTION_SDATA2 static u32 lit_9728 = 0x42820000;
+SECTION_SDATA2 static f32 lit_9728 = 65.0f;
 
 /* 801AAD50-801AB01C 02CC+00 s=1 e=0 z=0  None .text      dKy_twilight_camelight_set__Fv */
 #pragma push
@@ -3305,13 +3275,13 @@ asm static void dKy_twilight_camelight_set() {
 
 /* ############################################################################################## */
 /* 80453DEC-80453DF0 0004+00 s=1 e=0 z=0  None .sdata2    @9779 */
-SECTION_SDATA2 static u32 lit_9779 = 0x40E73334;
+SECTION_SDATA2 static f32 lit_9779 = 7.225000381469727f;
 
 /* 80453DF0-80453DF4 0004+00 s=1 e=0 z=0  None .sdata2    @9780 */
-SECTION_SDATA2 static u32 lit_9780 = 0x41E00000;
+SECTION_SDATA2 static f32 lit_9780 = 28.0f;
 
 /* 80453DF4-80453DF8 0004+00 s=1 e=0 z=0  None .sdata2    @9781 */
-SECTION_SDATA2 static u32 lit_9781 = 0x3FA00000;
+SECTION_SDATA2 static f32 lit_9781 = 1.25f;
 
 /* 801AB01C-801AB270 0254+00 s=1 e=0 z=0  None .text      dKy_WaterIn_Light_set__Fv */
 #pragma push
@@ -3520,10 +3490,10 @@ bool dKy_withwarp_capture_check() {
 
 /* ############################################################################################## */
 /* 80453DF8-80453DFC 0004+00 s=1 e=0 z=0  None .sdata2    @10273 */
-SECTION_SDATA2 static u32 lit_10273 = 0x43C80000;
+SECTION_SDATA2 static f32 lit_10273 = 400.0f;
 
 /* 80453DFC-80453E00 0004+00 s=1 e=0 z=0  None .sdata2    @10274 */
-SECTION_SDATA2 static u32 lit_10274 = 0x44180000;
+SECTION_SDATA2 static f32 lit_10274 = 608.0f;
 
 /* 801AC2E8-801AC57C 0294+00 s=0 e=1 z=0  None .text      dKy_depth_dist_set__FPv */
 #pragma push
@@ -3587,16 +3557,16 @@ asm void dKy_darkworld_Area_set(char const* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80453E00-80453E04 0004+00 s=1 e=0 z=0  None .sdata2    @10483 */
-SECTION_SDATA2 static u32 lit_10483 = 0x42100000;
+SECTION_SDATA2 static f32 lit_10483 = 36.0f;
 
 /* 80453E04-80453E08 0004+00 s=1 e=0 z=0  None .sdata2    @10484 */
-SECTION_SDATA2 static u32 lit_10484 = 0x41E80000;
+SECTION_SDATA2 static f32 lit_10484 = 29.0f;
 
 /* 80453E08-80453E0C 0004+00 s=1 e=0 z=0  None .sdata2    @10485 */
-SECTION_SDATA2 static u32 lit_10485 = 0x44C1C000;
+SECTION_SDATA2 static f32 lit_10485 = 1550.0f;
 
 /* 80453E0C-80453E10 0004+00 s=1 e=0 z=0  None .sdata2    @10486 */
-SECTION_SDATA2 static u32 lit_10486 = 0x430C0000;
+SECTION_SDATA2 static f32 lit_10486 = 140.0f;
 
 /* 801AC918-801ACCDC 03C4+00 s=1 e=0 z=0  None .text      dKy_murky_set__FP11J3DMaterial */
 #pragma push
@@ -3656,52 +3626,52 @@ SECTION_SDATA static u8 l_alphaCompInfo[8] = {
 };
 
 /* 80453E10-80453E14 0004+00 s=1 e=0 z=0  None .sdata2    @10916 */
-SECTION_SDATA2 static u32 lit_10916 = 0x43750000;
+SECTION_SDATA2 static f32 lit_10916 = 245.0f;
 
 /* 80453E14-80453E18 0004+00 s=1 e=0 z=0  None .sdata2    @10917 */
-SECTION_SDATA2 static u32 lit_10917 = 0x42340000;
+SECTION_SDATA2 static f32 lit_10917 = 45.0f;
 
 /* 80453E18-80453E1C 0004+00 s=1 e=0 z=0  None .sdata2    @10918 */
-SECTION_SDATA2 static u32 lit_10918 = 0xBC23D70A;
+SECTION_SDATA2 static f32 lit_10918 = -1.0f / 100.0f;
 
 /* 80453E1C-80453E20 0004+00 s=1 e=0 z=0  None .sdata2    @10919 */
-SECTION_SDATA2 static u32 lit_10919 = 0x3EFAE148;
+SECTION_SDATA2 static f32 lit_10919 = 49.0f / 100.0f;
 
 /* 80453E20-80453E24 0004+00 s=1 e=0 z=0  None .sdata2    @10920 */
-SECTION_SDATA2 static u32 lit_10920 = 0xBEFAE148;
+SECTION_SDATA2 static f32 lit_10920 = -49.0f / 100.0f;
 
 /* 80453E24-80453E28 0004+00 s=1 e=0 z=0  None .sdata2    @10921 */
-SECTION_SDATA2 static u32 lit_10921 = 0x40333333;
+SECTION_SDATA2 static f32 lit_10921 = 14.0f / 5.0f;
 
 /* 80453E28-80453E2C 0004+00 s=1 e=0 z=0  None .sdata2    @10922 */
-SECTION_SDATA2 static u32 lit_10922 = 0x432A0000;
+SECTION_SDATA2 static f32 lit_10922 = 170.0f;
 
 /* 80453E2C-80453E30 0004+00 s=1 e=0 z=0  None .sdata2    @10923 */
-SECTION_SDATA2 static u32 lit_10923 = 0xC666C800;
+SECTION_SDATA2 static f32 lit_10923 = -14770.0f;
 
 /* 80453E30-80453E34 0004+00 s=1 e=0 z=0  None .sdata2    @10924 */
-SECTION_SDATA2 static u32 lit_10924 = 0xC663A800;
+SECTION_SDATA2 static f32 lit_10924 = -14570.0f;
 
 /* 80453E34-80453E38 0004+00 s=1 e=0 z=0  None .sdata2    @10925 */
-SECTION_SDATA2 static u32 lit_10925 = 0xC5B6E800;
+SECTION_SDATA2 static f32 lit_10925 = -5853.0f;
 
 /* 80453E38-80453E3C 0004+00 s=1 e=0 z=0  None .sdata2    @10926 */
-SECTION_SDATA2 static u32 lit_10926 = 0xC45BC000;
+SECTION_SDATA2 static f32 lit_10926 = -879.0f;
 
 /* 80453E3C-80453E40 0004+00 s=1 e=0 z=0  None .sdata2    @10927 */
-SECTION_SDATA2 static u32 lit_10927 = 0xBE4CCCCD;
+SECTION_SDATA2 static f32 lit_10927 = -1.0f / 5.0f;
 
 /* 80453E40-80453E44 0004+00 s=1 e=0 z=0  None .sdata2    @10928 */
-SECTION_SDATA2 static u32 lit_10928 = 0x458CA000;
+SECTION_SDATA2 static f32 lit_10928 = 4500.0f;
 
 /* 80453E44-80453E48 0004+00 s=1 e=0 z=0  None .sdata2    @10929 */
-SECTION_SDATA2 static u32 lit_10929 = 0x42960000;
+SECTION_SDATA2 static f32 lit_10929 = 75.0f;
 
 /* 80453E48-80453E4C 0004+00 s=1 e=0 z=0  None .sdata2    @10930 */
-SECTION_SDATA2 static u32 lit_10930 = 0xBF4F5C29;
+SECTION_SDATA2 static f32 lit_10930 = -81.0f / 100.0f;
 
 /* 80453E4C-80453E50 0004+00 s=1 e=0 z=0  None .sdata2    @10931 */
-SECTION_SDATA2 static u32 lit_10931 = 0x3F153F7D;
+SECTION_SDATA2 static f32 lit_10931 = 0.5830000042915344f;
 
 /* 80453E50-80453E58 0004+04 s=1 e=0 z=0  None .sdata2    @10932 */
 SECTION_SDATA2 static f32 lit_10932[1 + 1 /* padding */] = {

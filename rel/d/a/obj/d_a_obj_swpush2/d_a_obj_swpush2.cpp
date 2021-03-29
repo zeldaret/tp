@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -25,9 +25,9 @@ struct mDoMtx_stack_c {
 
 struct J3DAnmTextureSRTKey {};
 
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmColor {};
+
+struct J3DAnmTevRegKey {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -191,10 +191,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Swpush2[12];
-
 extern "C" void getArcName__Q212daObjSwpush25Act_cFv();
 extern "C" void getBmdName__Q212daObjSwpush25Act_cFv();
 extern "C" void getDzbName__Q212daObjSwpush25Act_cFv();
@@ -264,15 +260,6 @@ void dBgW_NewSet(cBgD_t*, u32, f32 (*)[3][4]);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 struct_80CFFEF8[4];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();

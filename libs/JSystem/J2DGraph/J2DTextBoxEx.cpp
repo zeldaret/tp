@@ -38,15 +38,9 @@ struct J2DTextBoxVBinding {};
 
 struct J2DTextBoxHBinding {};
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
-
 struct J2DAnmColor {};
 
-struct J2DAnmTransform {};
+struct J2DTevStage {};
 
 struct J2DAnmVtxColor {};
 
@@ -56,15 +50,7 @@ struct J2DAnmVisibilityFull {
 
 struct J2DAnmBase {};
 
-struct J2DTevStage {};
-
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-};
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -87,6 +73,20 @@ struct J2DPane {
     /* 802F83D0 */ void setAnimationVF(J2DAnmVisibilityFull*);
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8474 */ void update();
+};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA38C */ void setGX();
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
 };
 
 struct J2DTextBoxEx {
@@ -149,8 +149,6 @@ struct J2DPrint {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const J2DTextBoxEx__stringBase0;
 
 extern "C" void __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
 extern "C" void __dt__12J2DTextBoxExFv();
@@ -311,27 +309,17 @@ SECTION_DATA static void* __vt__12J2DTextBoxEx[47 + 1 /* padding */] = {
 };
 
 /* 804562D8-804562E0 0004+04 s=4 e=0 z=0  None .sdata2    @1534 */
-SECTION_SDATA2 static u8 lit_1534[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1534[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 804562E0-804562E8 0008+00 s=2 e=0 z=0  None .sdata2    @1536 */
-SECTION_SDATA2 static u8 lit_1536[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1536 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 804562E8-804562F0 0008+00 s=1 e=0 z=0  None .sdata2    @1539 */
-SECTION_SDATA2 static u8 lit_1539[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1539 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 803071E4-8030751C 0338+00 s=0 e=1 z=0  None .text
  * __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */

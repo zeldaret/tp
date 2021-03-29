@@ -87,8 +87,6 @@ struct JKRDecomp {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRMemArchive__stringBase0;
-
 extern "C" void __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection();
 extern "C" void __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag();
 extern "C" void __dt__13JKRMemArchiveFv();
@@ -107,7 +105,6 @@ extern "C" extern char const* const JKRMemArchive__stringBase0;
 //
 
 void operator delete(void*);
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
 
 SECTION_INIT void memcpy();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();

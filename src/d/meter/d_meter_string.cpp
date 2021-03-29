@@ -88,8 +88,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_meter_d_meter_string__stringBase0;
-
 extern "C" void __ct__14dMeterString_cFi();
 extern "C" void __dt__14dMeterString_cFv();
 extern "C" void _create__14dMeterString_cFv();
@@ -112,11 +110,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__11dMeterSub_c[8 + 3 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfG_TimerDeleteRequest__Fi();
@@ -201,16 +194,16 @@ SECTION_DEAD static char const* const pad_80398251 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 80454848-8045484C 0004+00 s=1 e=0 z=0  None .sdata2    @3758 */
-SECTION_SDATA2 static u32 lit_3758 = 0x43520000;
+SECTION_SDATA2 static f32 lit_3758 = 210.0f;
 
 /* 8045484C-80454850 0004+00 s=1 e=0 z=0  None .sdata2    @3759 */
-SECTION_SDATA2 static u32 lit_3759 = 0x43CD0000;
+SECTION_SDATA2 static f32 lit_3759 = 410.0f;
 
 /* 80454850-80454854 0004+00 s=1 e=0 z=0  None .sdata2    @3760 */
-SECTION_SDATA2 static u32 lit_3760 = 0x42000000;
+SECTION_SDATA2 static f32 lit_3760 = 32.0f;
 
 /* 80454854-80454858 0004+00 s=1 e=0 z=0  None .sdata2    @3761 */
-SECTION_SDATA2 static u32 lit_3761 = 0x43D18000;
+SECTION_SDATA2 static f32 lit_3761 = 419.0f;
 
 /* 80454858-8045485C 0004+00 s=3 e=0 z=0  None .sdata2    @3762 */
 SECTION_SDATA2 static u8 lit_3762[4] = {
@@ -242,13 +235,13 @@ asm void dMeterString_c::_execute(u32 param_0) {
 
 /* ############################################################################################## */
 /* 8045485C-80454860 0004+00 s=1 e=0 z=0  None .sdata2    @3819 */
-SECTION_SDATA2 static u32 lit_3819 = 0x42700000;
+SECTION_SDATA2 static f32 lit_3819 = 60.0f;
 
 /* 80454860-80454864 0004+00 s=2 e=0 z=0  None .sdata2    @3820 */
-SECTION_SDATA2 static u32 lit_3820 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3820 = 1.0f;
 
 /* 80454864-80454868 0004+00 s=2 e=0 z=0  None .sdata2    @3821 */
-SECTION_SDATA2 static u32 lit_3821 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3821 = -1.0f;
 
 /* 80454868-80454870 0004+04 s=1 e=0 z=0  None .sdata2    @3822 */
 SECTION_SDATA2 static f32 lit_3822[1 + 1 /* padding */] = {
@@ -258,9 +251,7 @@ SECTION_SDATA2 static f32 lit_3822[1 + 1 /* padding */] = {
 };
 
 /* 80454870-80454878 0008+00 s=2 e=0 z=0  None .sdata2    @3824 */
-SECTION_SDATA2 static u8 lit_3824[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3824 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8020F1B0-8020F49C 02EC+00 s=1 e=0 z=0  None .text      draw__14dMeterString_cFv */
 #pragma push
@@ -284,7 +275,7 @@ asm void dMeterString_c::_delete() {
 
 /* ############################################################################################## */
 /* 80454878-8045487C 0004+00 s=1 e=0 z=0  None .sdata2    @3866 */
-SECTION_SDATA2 static u32 lit_3866 = 0x42200000;
+SECTION_SDATA2 static f32 lit_3866 = 40.0f;
 
 /* 8020F5A4-8020F66C 00C8+00 s=2 e=1 z=0  None .text      createString__14dMeterString_cFi */
 #pragma push
@@ -308,7 +299,7 @@ asm void dMeterString_c::playBckAnimation(f32 param_0) {
 
 /* ############################################################################################## */
 /* 8045487C-80454880 0004+00 s=1 e=0 z=0  None .sdata2    @3979 */
-SECTION_SDATA2 static u32 lit_3979 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3979 = 0.5f;
 
 /* 8020F6EC-8020FA88 039C+00 s=1 e=0 z=0  None .text      drawPikari__14dMeterString_cFv */
 #pragma push

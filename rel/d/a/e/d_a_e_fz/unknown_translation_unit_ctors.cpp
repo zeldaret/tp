@@ -13,8 +13,6 @@
 
 extern void* const data_806C1924[2];
 
-extern void* const data_806C1924[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_fz_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 806C1924-806C192C 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_806C1924[2] = {
+    (void*)__sinit_d_a_e_fz_cpp,
+    (void*)NULL,
+};

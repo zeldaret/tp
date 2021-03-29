@@ -26,7 +26,6 @@ void fpcDtTg_ToDeleteQ(delete_tag_class*);
 static void fpcDtTg_DeleteQTo(delete_tag_class*);
 void fpcDtTg_Do(delete_tag_class*, int (*)(void*));
 void fpcDtTg_Init(delete_tag_class*, void*);
-extern "C" extern u8 g_fpcDtTg_Queue[12 + 4 /* padding */];
 
 extern "C" void fpcDtTg_IsEmpty__Fv();
 extern "C" void fpcDtTg_ToDeleteQ__FP16delete_tag_class();

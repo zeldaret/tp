@@ -13,8 +13,6 @@
 
 extern void* const data_80C8FAD4[2];
 
-extern void* const data_80C8FAD4[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_magLiftRot_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80C8FAD4-80C8FADC 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80C8FAD4[2] = {
+    (void*)__sinit_d_a_obj_magLiftRot_cpp,
+    (void*)NULL,
+};

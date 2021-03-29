@@ -24,8 +24,6 @@ extern "C" void __OSBootDol();
 // External References:
 //
 
-extern "C" extern u8 __OSIsGcam[4];
-
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
 extern "C" void OSReport();

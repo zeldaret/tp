@@ -35,7 +35,6 @@ static void daTagWrHowl_create(daTagWrHowl_c*);
 static void daTagWrHowl_Delete(daTagWrHowl_c*);
 static void daTagWrHowl_execute(daTagWrHowl_c*);
 static void daTagWrHowl_draw(daTagWrHowl_c*);
-extern "C" extern void* g_profile_Tag_WaraHowl[12];
 
 extern "C" void __ct__13daTagWrHowl_cFv();
 extern "C" void __dt__13daTagWrHowl_cFv();
@@ -56,9 +55,6 @@ extern "C" extern void* g_profile_Tag_WaraHowl[12];
 //
 
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

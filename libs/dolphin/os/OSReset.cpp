@@ -23,8 +23,6 @@ extern "C" void OSGetResetCode();
 // External References:
 //
 
-extern "C" extern u8 __OSRebootParams[28 + 4 /* padding */];
-
 SECTION_INIT void memset();
 extern "C" void OSReport();
 extern "C" void __OSStopAudioSystem();

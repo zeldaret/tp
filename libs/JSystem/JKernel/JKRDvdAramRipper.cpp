@@ -100,7 +100,6 @@ static void decompSZS_subroutine(u8*, u32);
 static void firstSrcData();
 static void nextSrcData(u8*);
 static void dmaBufferFlush(u32);
-extern "C" extern u32 sSZSBufferSize__16JKRDvdAramRipper;
 
 extern "C" void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl();
 extern "C" void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl();
@@ -126,10 +125,6 @@ extern "C" extern u32 sSZSBufferSize__16JKRDvdAramRipper;
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__18JSUFileInputStream[9 + 1 /* padding */];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 SECTION_INIT void memcpy();
 extern "C" void alloc__7JKRHeapFUli();

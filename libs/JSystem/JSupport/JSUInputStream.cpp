@@ -32,9 +32,6 @@ struct JSUInputStream {
 // Forward References:
 //
 
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
-
 extern "C" void __dt__14JSUInputStreamFv();
 extern "C" void read__14JSUInputStreamFPvl();
 extern "C" void skip__14JSUInputStreamFl();
@@ -50,7 +47,6 @@ extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__10JSUIosBase[3];
 
 extern "C" void __dt__20JSURandomInputStreamFv();
 extern "C" void __dl__FPv();

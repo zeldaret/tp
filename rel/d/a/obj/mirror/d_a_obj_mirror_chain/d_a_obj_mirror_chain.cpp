@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -25,6 +23,8 @@ struct cXyz {
     /* 80C96DAC */ ~cXyz();
     /* 80C9801C */ cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -168,12 +168,6 @@ static void daObjMirrorChain_Execute(daObjMirrorChain_c*);
 static bool daObjMirrorChain_IsDelete(daObjMirrorChain_c*);
 static void daObjMirrorChain_Delete(daObjMirrorChain_c*);
 static void daObjMirrorChain_Create(fopAc_ac_c*);
-extern "C" extern u8 const data_80C98060[4];
-extern "C" extern u8 const data_80C98064[4];
-extern "C" extern u8 const data_80C98068[4];
-extern "C" extern u8 const data_80C9806C[4];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_MirrorChain[12];
 
 extern "C" void draw__22dScissorBegin_packet_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -212,17 +206,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

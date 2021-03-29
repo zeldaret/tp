@@ -27,13 +27,13 @@ struct dPath {};
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -76,7 +76,6 @@ static void daKytag03_Execute(kytag03_class*);
 static bool daKytag03_IsDelete(kytag03_class*);
 static void daKytag03_Delete(kytag03_class*);
 static void daKytag03_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_KYTAG03[12];
 
 extern "C" static void dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath();
 extern "C" void __dt__8cM3dGLinFv();
@@ -110,15 +109,6 @@ void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void JPAGetXYZRotateMtx(s16, s16, s16, f32 (*)[4]);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fpcLyIt_AllJudge__FPFPvPv_PvPv();

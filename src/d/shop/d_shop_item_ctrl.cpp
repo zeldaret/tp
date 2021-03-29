@@ -54,7 +54,6 @@ void fpcFCtRq_Do(fast_create_request*);
 void cLib_addCalcPos2(cXyz*, cXyz const&, f32, f32);
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void operator delete(void*);
-extern "C" extern u32 __float_nan;
 
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();
@@ -108,16 +107,10 @@ asm dShopItemCtrl_c::~dShopItemCtrl_c() {
 
 /* ############################################################################################## */
 /* 80453AD0-80453AD8 0004+04 s=2 e=0 z=0  None .sdata2    @3659 */
-SECTION_SDATA2 static u8 lit_3659[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3659[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 801969A0-80196A3C 009C+00 s=0 e=3 z=3  None .text      getCurrentPos__15dShopItemCtrl_cFi */
@@ -152,14 +145,10 @@ asm void dShopItemCtrl_c::setRotateAnime(int param_0) {
 
 /* ############################################################################################## */
 /* 80453AD8-80453AE0 0008+00 s=1 e=0 z=0  None .sdata2    @3838 */
-SECTION_SDATA2 static u8 lit_3838[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3838 = 0.5;
 
 /* 80453AE0-80453AE8 0008+00 s=1 e=0 z=0  None .sdata2    @3839 */
-SECTION_SDATA2 static u8 lit_3839[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3839 = 3.0;
 
 /* 80453AE8-80453AF0 0008+00 s=1 e=0 z=0  None .sdata2    @3840 */
 SECTION_SDATA2 static u8 lit_3840[8] = {
@@ -167,16 +156,16 @@ SECTION_SDATA2 static u8 lit_3840[8] = {
 };
 
 /* 80453AF0-80453AF4 0004+00 s=1 e=0 z=0  None .sdata2    @3841 */
-SECTION_SDATA2 static u32 lit_3841 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3841 = 0.5f;
 
 /* 80453AF4-80453AF8 0004+00 s=1 e=0 z=0  None .sdata2    @3842 */
-SECTION_SDATA2 static u32 lit_3842 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_3842 = 1.0f / 20.0f;
 
 /* 80453AF8-80453AFC 0004+00 s=1 e=0 z=0  None .sdata2    @3843 */
-SECTION_SDATA2 static u32 lit_3843 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_3843 = 1.0f / 10.0f;
 
 /* 80453AFC-80453B00 0004+00 s=1 e=0 z=0  None .sdata2    @3844 */
-SECTION_SDATA2 static u32 lit_3844 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_3844 = 1.0f / 100.0f;
 
 /* 80196BA4-80197098 04F4+00 s=0 e=1 z=0  None .text      setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
  */

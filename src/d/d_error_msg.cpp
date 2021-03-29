@@ -83,7 +83,6 @@ struct J2DOrthoGraph {
 
 static void messageSet(u32, bool);
 static void drawCapture(u8);
-extern "C" extern char const* const d_d_error_msg__stringBase0;
 
 extern "C" static void messageSet__FUlb();
 extern "C" void draw__14dDvdErrorMsg_cFl();
@@ -100,21 +99,6 @@ void mDoAud_resetRecover();
 void mDoGph_drawFilterQuad(s8, s8);
 void mDoRst_reset(int, u32, int);
 void cLib_chaseUC(u8*, u8, u8);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u8 data_80450688[8];
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450FB0[8];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoAud_resetRecover__Fv();
@@ -18841,36 +18825,34 @@ SECTION_SDATA2 static u8 lit_3758[4] = {
 };
 
 /* 80452C1C-80452C20 0004+00 s=2 e=0 z=0  None .sdata2    @3759 */
-SECTION_SDATA2 static u32 lit_3759 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3759 = 608.0f;
 
 /* 80452C20-80452C24 0004+00 s=1 e=0 z=0  None .sdata2    @3760 */
-SECTION_SDATA2 static u32 lit_3760 = 0x43480000;
+SECTION_SDATA2 static f32 lit_3760 = 200.0f;
 
 /* 80452C24-80452C28 0004+00 s=2 e=0 z=0  None .sdata2    @3761 */
-SECTION_SDATA2 static u32 lit_3761 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3761 = 448.0f;
 
 /* 80452C28-80452C2C 0004+00 s=1 e=0 z=0  None .sdata2    @3762 */
-SECTION_SDATA2 static u32 lit_3762 = 0x41B80000;
+SECTION_SDATA2 static f32 lit_3762 = 23.0f;
 
 /* 80452C2C-80452C30 0004+00 s=1 e=0 z=0  None .sdata2    @3763 */
-SECTION_SDATA2 static u32 lit_3763 = 0x41B00000;
+SECTION_SDATA2 static f32 lit_3763 = 22.0f;
 
 /* 80452C30-80452C34 0004+00 s=3 e=0 z=0  None .sdata2    @3764 */
-SECTION_SDATA2 static u32 lit_3764 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3764 = 1.0f;
 
 /* 80452C34-80452C38 0004+00 s=1 e=0 z=0  None .sdata2    @3765 */
-SECTION_SDATA2 static u32 lit_3765 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3765 = 0.5f;
 
 /* 80452C38-80452C3C 0004+00 s=1 e=0 z=0  None .sdata2    @3766 */
-SECTION_SDATA2 static u32 lit_3766 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3766 = 2.0f;
 
 /* 80452C3C-80452C40 0004+00 s=2 e=0 z=0  None .sdata2    @3767 */
-SECTION_SDATA2 static u32 lit_3767 = 0x41200000;
+SECTION_SDATA2 static f32 lit_3767 = 10.0f;
 
 /* 80452C40-80452C48 0008+00 s=1 e=0 z=0  None .sdata2    @3769 */
-SECTION_SDATA2 static u8 lit_3769[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3769 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8009CB88-8009D194 060C+00 s=1 e=0 z=0  None .text      messageSet__FUlb */
 #pragma push

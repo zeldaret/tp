@@ -139,8 +139,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_name__stringBase0;
-
 extern "C" void __ct__9dNm_HIO_cFv();
 extern "C" void __ct__7dName_cFP7J2DPane();
 extern "C" void __dt__7dName_cFv();
@@ -198,10 +196,6 @@ void fopMsgM_messageGet(char*, u32);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_removeMesgFont__Fv();
@@ -1250,10 +1244,10 @@ SECTION_DATA static void* __vt__9dNm_HIO_c[3] = {
 };
 
 /* 80454DB0-80454DB4 0004+00 s=1 e=0 z=0  None .sdata2    @3665 */
-SECTION_SDATA2 static u32 lit_3665 = 0x3FA66666;
+SECTION_SDATA2 static f32 lit_3665 = 13.0f / 10.0f;
 
 /* 80454DB4-80454DB8 0004+00 s=1 e=0 z=0  None .sdata2    @3666 */
-SECTION_SDATA2 static u32 lit_3666 = 0x3FB33333;
+SECTION_SDATA2 static f32 lit_3666 = 7.0f / 5.0f;
 
 /* 8024E3E0-8024E408 0028+00 s=1 e=0 z=0  None .text      __ct__9dNm_HIO_cFv */
 #pragma push
@@ -1293,10 +1287,10 @@ static u8 lit_3660[12];
 static u8 g_nmHIO[20];
 
 /* 80454DB8-80454DBC 0004+00 s=1 e=0 z=0  None .sdata2    @3755 */
-SECTION_SDATA2 static u32 lit_3755 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_3755 = 9.0f / 10.0f;
 
 /* 80454DBC-80454DC0 0004+00 s=1 e=0 z=0  None .sdata2    @3756 */
-SECTION_SDATA2 static u32 lit_3756 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3756 = 0.5f;
 
 /* 8024E62C-8024E6D4 00A8+00 s=1 e=0 z=0  None .text      _create__7dName_cFv */
 #pragma push
@@ -1330,7 +1324,7 @@ asm void dName_c::initial() {
 
 /* ############################################################################################## */
 /* 80454DC0-80454DC4 0004+00 s=16 e=0 z=0  None .sdata2    @3820 */
-SECTION_SDATA2 static u32 lit_3820 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3820 = 1.0f;
 
 /* 8024E7EC-8024E9A0 01B4+00 s=0 e=2 z=0  None .text      showIcon__7dName_cFv */
 #pragma push
@@ -1344,7 +1338,7 @@ asm void dName_c::showIcon() {
 
 /* ############################################################################################## */
 /* 80454DC4-80454DC8 0004+00 s=6 e=0 z=0  None .sdata2    @3886 */
-SECTION_SDATA2 static u32 lit_3886 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3886 = -1.0f;
 
 /* 8024E9A0-8024EC10 0270+00 s=0 e=2 z=0  None .text      _move__7dName_cFv */
 #pragma push
@@ -1378,9 +1372,7 @@ asm void dName_c::playNameSet(int param_0) {
 
 /* ############################################################################################## */
 /* 80454DC8-80454DD0 0008+00 s=1 e=0 z=0  None .sdata2    @3936 */
-SECTION_SDATA2 static u8 lit_3936[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3936 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024EC84-8024ED48 00C4+00 s=1 e=0 z=0  None .text      cursorAnm__7dName_cFv */
 #pragma push
@@ -1648,13 +1640,13 @@ asm void dName_c::_draw() {
 
 /* ############################################################################################## */
 /* 80454DD4-80454DD8 0004+00 s=1 e=0 z=0  None .sdata2    @4722 */
-SECTION_SDATA2 static u32 lit_4722 = 0x3F51EB85;
+SECTION_SDATA2 static f32 lit_4722 = 41.0f / 50.0f;
 
 /* 80454DD8-80454DDC 0004+00 s=1 e=0 z=0  None .sdata2    @4723 */
-SECTION_SDATA2 static u32 lit_4723 = 0x3F451EB8;
+SECTION_SDATA2 static f32 lit_4723 = 77.0f / 100.0f;
 
 /* 80454DDC-80454DE0 0004+00 s=1 e=0 z=0  None .sdata2    @4724 */
-SECTION_SDATA2 static u32 lit_4724 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_4724 = 1.0f / 20.0f;
 
 /* 80454DE0-80454DE8 0004+04 s=1 e=0 z=0  None .sdata2    @4725 */
 SECTION_SDATA2 static f32 lit_4725[1 + 1 /* padding */] = {

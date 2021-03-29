@@ -11,6 +11,20 @@
 // Types:
 //
 
+struct JStage {
+    struct TSystem {};
+
+    struct TActor {};
+
+    struct TAmbientLight {};
+
+    struct TCamera {};
+
+    struct TFog {};
+
+    struct TLight {};
+};
+
 namespace JStudio {
 struct TObject {};
 
@@ -62,20 +76,6 @@ struct TObject_light {
 
 };  // namespace JStudio
 
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TAmbientLight {};
-
-    struct TCamera {};
-
-    struct TFog {};
-
-    struct TLight {};
-};
-
 struct JStudio_JStage {
     struct TCreateObject {
         /* 80289B00 */ ~TCreateObject();
@@ -107,8 +107,6 @@ struct JStudio_JStage {
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__Q214JStudio_JStage13TCreateObject[4];
 
 extern "C" void __dt__Q214JStudio_JStage13TCreateObjectFv();
 extern "C" void

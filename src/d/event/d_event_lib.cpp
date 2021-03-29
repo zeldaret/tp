@@ -62,7 +62,6 @@ extern "C" void __sinit_d_event_lib_cpp();
 
 void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void fopAcM_orderMapToolEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
 extern "C" void fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs();

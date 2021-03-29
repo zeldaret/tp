@@ -33,7 +33,6 @@ extern "C" void fpcPause_Init__FPv();
 
 void fpcBs_Is_JustOfType(int, int);
 void fpcLyIt_OnlyHere(layer_class*, int (*)(void*, void*), void*);
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv();

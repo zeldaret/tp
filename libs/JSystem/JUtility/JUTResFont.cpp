@@ -65,9 +65,6 @@ struct JUTResFont {
 // Forward References:
 //
 
-extern "C" extern void* const saoAboutEncoding___10JUTResFont[3];
-extern "C" extern char const* const JUTResFont__stringBase0;
-
 extern "C" void __ct__10JUTResFontFv();
 extern "C" void __ct__10JUTResFontFPC7ResFONTP7JKRHeap();
 extern "C" void __dt__10JUTResFontFv();
@@ -101,7 +98,6 @@ extern "C" extern char const* const JUTResFont__stringBase0;
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern void* __vt__7JUTFont[17];
 
 extern "C" void* __nwa__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
@@ -503,27 +499,17 @@ asm void JUTResFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1) {
 
 /* ############################################################################################## */
 /* 80455FF0-80455FF8 0004+04 s=2 e=0 z=0  None .sdata2    @647 */
-SECTION_SDATA2 static u8 lit_647[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_647[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80455FF8-80456000 0008+00 s=1 e=0 z=0  None .sdata2    @649 */
-SECTION_SDATA2 static u8 lit_649[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_649 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80456000-80456008 0008+00 s=1 e=0 z=0  None .sdata2    @651 */
-SECTION_SDATA2 static u8 lit_651[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_651 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802DF7C4-802DFBE8 0424+00 s=1 e=1 z=0  None .text      drawChar_scale__10JUTResFontFffffib */
 #pragma push

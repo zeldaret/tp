@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80267128 */ void atan2sX_Z() const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -59,10 +59,6 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Vec {};
 
 struct Z2Creature {
@@ -70,6 +66,10 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -146,6 +146,12 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 804DE220 */ ~dBgS_AcchCir();
+};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
@@ -153,12 +159,6 @@ struct cBgS_PolyInfo {
 struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 804DE220 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -294,7 +294,6 @@ static void daCstaF_Create(fopAc_ac_c*);
 static void daCstaF_Delete(daCstaF_c*);
 static void daCstaF_Execute(daCstaF_c*);
 static void daCstaF_Draw(daCstaF_c*);
-extern "C" extern void* g_profile_CSTAF[12];
 
 extern "C" static void daCstaF_rideCB__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
 extern "C" void CreateHeap__9daCstaF_cFv();
@@ -349,22 +348,6 @@ void dKy_pol_sound_get(cBgS_PolyInfo const*);
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

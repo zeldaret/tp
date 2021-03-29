@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
 struct JKRArchive {
     /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
+};
+
+struct JSUInputStream {
+    /* 802DC298 */ void read(void*, s32);
 };
 
 struct JUTResReference {

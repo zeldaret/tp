@@ -24,16 +24,16 @@ struct daObjWaterEff_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80C5C670 */ ~cXyz();
     /* 80C5C6AC */ cXyz();
 };
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -56,7 +56,6 @@ struct Z2SeMgr {
 static void daObjWaterEff_Execute(daObjWaterEff_c*);
 static void daObjWaterEff_Delete(daObjWaterEff_c*);
 static void daObjWaterEff_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Obj_WaterEff[12];
 
 extern "C" void Create__15daObjWaterEff_cFv();
 extern "C" void create__15daObjWaterEff_cFv();
@@ -75,10 +74,6 @@ extern "C" extern void* g_profile_Obj_WaterEff[12];
 
 void dKy_camera_water_in_status_check();
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void

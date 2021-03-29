@@ -119,7 +119,6 @@ struct CPaneMgr {
 void dPaneClass_showNullPane(J2DScreen*);
 static void dPaneClass_showNullPane(J2DPane*);
 void dPaneClass_setPriority(void**, JKRHeap*, J2DScreen*, char const*, u32, JKRArchive*);
-extern "C" extern void* __vt__10JSUIosBase[3];
 
 extern "C" void __ct__8CPaneMgrFv();
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
@@ -162,11 +161,6 @@ extern "C" extern void* __vt__10JSUIosBase[3];
 void mDoExt_getCurrentHeap();
 void dLib_getExpandSizeFromAramArchive(JKRAramArchive*, char const*);
 void operator delete(void*);
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
 
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc();
@@ -325,22 +319,14 @@ asm void CPaneMgr::childPaneGetSize(J2DPane* param_0) {
 
 /* ############################################################################################## */
 /* 80454E88-80454E90 0004+04 s=4 e=0 z=0  None .sdata2    @3858 */
-SECTION_SDATA2 static u8 lit_3858[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3858[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80454E90-80454E98 0008+00 s=2 e=0 z=0  None .sdata2    @3860 */
-SECTION_SDATA2 static u8 lit_3860[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3860 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80254134-802542E8 01B4+00 s=1 e=0 z=0  None .text      childPaneSetSize__8CPaneMgrFP7J2DPaneff */
 #pragma push
@@ -465,9 +451,7 @@ asm void CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3)
 
 /* ############################################################################################## */
 /* 80454EA0-80454EA8 0008+00 s=1 e=0 z=0  None .sdata2    @4349 */
-SECTION_SDATA2 static u8 lit_4349[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4349 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802548BC-80254C90 03D4+00 s=0 e=4 z=0  None .text
  * colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc
@@ -484,16 +468,16 @@ asm void CPaneMgr::colorAnime(s16 param_0, JUtility::TColor param_1, JUtility::T
 
 /* ############################################################################################## */
 /* 80454EA8-80454EAC 0004+00 s=1 e=0 z=0  None .sdata2    @4473 */
-SECTION_SDATA2 static u32 lit_4473 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4473 = 608.0f;
 
 /* 80454EAC-80454EB0 0004+00 s=1 e=0 z=0  None .sdata2    @4474 */
-SECTION_SDATA2 static u32 lit_4474 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4474 = 448.0f;
 
 /* 80454EB0-80454EB4 0004+00 s=1 e=0 z=0  None .sdata2    @4475 */
-SECTION_SDATA2 static u32 lit_4475 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4475 = -1.0f;
 
 /* 80454EB4-80454EB8 0004+00 s=1 e=0 z=0  None .sdata2    @4476 */
-SECTION_SDATA2 static u32 lit_4476 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4476 = 1.0f;
 
 /* 80254C90-80254EBC 022C+00 s=1 e=9 z=0  None .text getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs
  */

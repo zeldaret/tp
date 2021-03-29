@@ -57,7 +57,6 @@ static bool dOvlpFd2_IsDelete(dOvlpFd2_c*);
 static bool dOvlpFd2_Delete(dOvlpFd2_c*);
 static void dOvlpFd2_Create(void*);
 void cLib_calcTimer__template4(s8*);
-extern "C" extern void* g_profile_OVERLAP2[10];
 
 extern "C" void draw__15dOvlpFd2_dlst_cFv();
 extern "C" void __ct__10dOvlpFd2_cFv();
@@ -87,18 +86,6 @@ void cLib_addCalc2(f32*, f32, f32, f32);
 void cLib_addCalc0(f32*, f32, f32);
 void cLib_chaseAngleS(s16*, s16, s16);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__16dDlst_snapShot_c[3];
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
 
 extern "C" void mDoMtx_ZrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
@@ -177,28 +164,28 @@ SECTION_SDATA2 static u8 lit_3683[4] = {
 };
 
 /* 80454E28-80454E2C 0004+00 s=1 e=0 z=0  None .sdata2    @3684 */
-SECTION_SDATA2 static u32 lit_3684 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3684 = 608.0f;
 
 /* 80454E2C-80454E30 0004+00 s=1 e=0 z=0  None .sdata2    @3685 */
-SECTION_SDATA2 static u32 lit_3685 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3685 = 448.0f;
 
 /* 80454E30-80454E34 0004+00 s=4 e=0 z=0  None .sdata2    @3686 */
-SECTION_SDATA2 static u32 lit_3686 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3686 = 1.0f;
 
 /* 80454E34-80454E38 0004+00 s=1 e=0 z=0  None .sdata2    @3687 */
-SECTION_SDATA2 static u32 lit_3687 = 0x42700000;
+SECTION_SDATA2 static f32 lit_3687 = 60.0f;
 
 /* 80454E38-80454E3C 0004+00 s=1 e=0 z=0  None .sdata2    @3688 */
-SECTION_SDATA2 static u32 lit_3688 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_3688 = 19.0f / 14.0f;
 
 /* 80454E3C-80454E40 0004+00 s=1 e=0 z=0  None .sdata2    @3689 */
-SECTION_SDATA2 static u32 lit_3689 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_3689 = 100.0f;
 
 /* 80454E40-80454E44 0004+00 s=1 e=0 z=0  None .sdata2    @3690 */
-SECTION_SDATA2 static u32 lit_3690 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_3690 = 100000.0f;
 
 /* 80454E44-80454E48 0004+00 s=1 e=0 z=0  None .sdata2    @3691 */
-SECTION_SDATA2 static u32 lit_3691 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3691 = -1.0f;
 
 /* 8025247C-80252990 0514+00 s=1 e=0 z=0  None .text      draw__15dOvlpFd2_dlst_cFv */
 #pragma push
@@ -289,7 +276,7 @@ asm void dOvlpFd2_c::execFirstSnap() {
 
 /* ############################################################################################## */
 /* 80454E48-80454E4C 0004+00 s=1 e=0 z=0  None .sdata2    @3757 */
-SECTION_SDATA2 static u32 lit_3757 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_3757 = 1.0f / 20.0f;
 
 /* 80252A78-80252BC0 0148+00 s=1 e=0 z=0  None .text      execFadeOut__10dOvlpFd2_cFv */
 #pragma push
@@ -313,10 +300,10 @@ asm void dOvlpFd2_c::execNextSnap() {
 
 /* ############################################################################################## */
 /* 80454E4C-80454E50 0004+00 s=1 e=0 z=0  None .sdata2    @3794 */
-SECTION_SDATA2 static u32 lit_3794 = 0x3CF5C28F;
+SECTION_SDATA2 static f32 lit_3794 = 3.0f / 100.0f;
 
 /* 80454E50-80454E54 0004+00 s=1 e=0 z=0  None .sdata2    @3795 */
-SECTION_SDATA2 static u32 lit_3795 = 0x3A83126F;
+SECTION_SDATA2 static f32 lit_3795 = 0.0010000000474974513f;
 
 /* 80252C68-80252D0C 00A4+00 s=1 e=0 z=0  None .text      execFadeIn__10dOvlpFd2_cFv */
 #pragma push
@@ -330,7 +317,7 @@ asm void dOvlpFd2_c::execFadeIn() {
 
 /* ############################################################################################## */
 /* 80454E54-80454E58 0004+00 s=1 e=0 z=0  None .sdata2    @3822 */
-SECTION_SDATA2 static u32 lit_3822 = 0xC3D20000;
+SECTION_SDATA2 static f32 lit_3822 = -420.0f;
 
 /* 80252D0C-80252E08 00FC+00 s=1 e=0 z=0  None .text      dOvlpFd2_Draw__FP10dOvlpFd2_c */
 #pragma push

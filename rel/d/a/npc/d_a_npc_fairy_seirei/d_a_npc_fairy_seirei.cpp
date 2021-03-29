@@ -20,11 +20,7 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_evtData_c {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -32,6 +28,10 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 80541898 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_FairySeirei_c {
     /* 8053FF6C */ ~daNpc_FairySeirei_c();
@@ -67,14 +67,14 @@ struct daNpc_FairySeirei_Param_c {
     /* 80541D20 */ ~daNpc_FairySeirei_Param_c();
 };
 
-struct J3DModel {};
-
 struct cXyz {
     /* 805412D0 */ ~cXyz();
     /* 8054184C */ cXyz();
 };
 
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 8014852C */ void execute();
@@ -150,9 +150,9 @@ struct csXyz {
     /* 8054174C */ csXyz();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -291,10 +291,6 @@ static void daNpc_FairySeirei_Delete(void*);
 static void daNpc_FairySeirei_Execute(void*);
 static void daNpc_FairySeirei_Draw(void*);
 static bool daNpc_FairySeirei_IsDelete(void*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* l_loadResPtrnList[4];
-extern "C" extern void* g_profile_NPC_FAIRY_SEIREI[12];
 
 extern "C" void __dt__19daNpc_FairySeirei_cFv();
 extern "C" void create__19daNpc_FairySeirei_cFv();
@@ -395,18 +391,6 @@ void daNpcT_chkTmpBit(u32);
 void daNpcF_offTmpBit(u32);
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 SECTION_INIT void memset();
 extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();

@@ -13,8 +13,6 @@
 
 extern void* const data_80B6BCB0[2];
 
-extern void* const data_80B6BCB0[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_zanb_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80B6BCB0-80B6BCB8 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80B6BCB0[2] = {
+    (void*)__sinit_d_a_npc_zanb_cpp,
+    (void*)NULL,
+};

@@ -13,8 +13,6 @@
 
 extern void* const data_804961C0[2];
 
-extern void* const data_804961C0[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_tbox_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 804961C0-804961C8 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_804961C0[2] = {
+    (void*)__sinit_d_a_tbox_cpp,
+    (void*)NULL,
+};

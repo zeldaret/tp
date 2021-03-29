@@ -28,7 +28,6 @@ static void fopScn_Execute(scene_class*);
 static void fopScn_IsDelete(void*);
 static void fopScn_Delete(void*);
 static void fopScn_Create(void*);
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 
 extern "C" static void fopScn_Draw__FP11scene_class();
 extern "C" static void fopScn_Execute__FP11scene_class();

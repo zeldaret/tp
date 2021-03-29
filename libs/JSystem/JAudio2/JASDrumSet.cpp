@@ -52,7 +52,6 @@ extern "C" void getType__10JASDrumSetCFv();
 
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern void* __vt__7JASInst[5];
 
 extern "C" void bzero__7JASCalcFPvUl();
 extern "C" void* __nwa__FUlP7JKRHeapi();
@@ -116,7 +115,7 @@ static u8 oscp[4];
 static u8 data_80451274[4];
 
 /* 80455648-8045564C 0004+00 s=2 e=0 z=0  None .sdata2    @219 */
-SECTION_SDATA2 static u32 lit_219 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_219 = 1.0f;
 
 /* 8045564C-80455650 0004+00 s=1 e=0 z=0  None .sdata2    @220 */
 SECTION_SDATA2 static u8 lit_220[4] = {

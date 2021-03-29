@@ -24,7 +24,6 @@ struct daTagArena_c {};
 
 static void daTagArena_Create(fopAc_ac_c*);
 static void daTagArena_Delete(daTagArena_c*);
-extern "C" extern void* g_profile_Tag_Arena[12];
 
 extern "C" static void daTagArena_Create__FP10fopAc_ac_c();
 extern "C" static void daTagArena_Delete__FP12daTagArena_c();
@@ -33,9 +32,6 @@ extern "C" extern void* g_profile_Tag_Arena[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

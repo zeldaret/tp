@@ -24,7 +24,6 @@ void OSReportInit();
 static void mDoPrintf_vprintf_Interrupt(char const*, __va_list_struct*);
 static void mDoPrintf_vprintf_Thread(char const*, __va_list_struct*);
 static void mDoPrintf_vprintf(char const*, __va_list_struct*);
-extern "C" extern char const* const m_Do_m_Do_printf__stringBase0;
 
 extern "C" static void OSSwitchFiberEx__FUlUlUlUlUlUl();
 extern "C" static void my_PutString__FPCc();
@@ -53,10 +52,6 @@ extern "C" extern char const* const m_Do_m_Do_printf__stringBase0;
 //
 
 void mDoExt_GetCurrentRunningThread();
-extern "C" extern void* __files[80];
-extern "C" extern u8 lit_3620[12];
-extern "C" extern u8 struct_80450B98[4];
-extern "C" extern u8 data_80450B9C[4];
 
 extern "C" void mDoExt_GetCurrentRunningThread__Fv();
 extern "C" void PPCHalt();

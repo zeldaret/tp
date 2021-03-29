@@ -46,8 +46,6 @@ struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
 };
 
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -55,6 +53,8 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80D139FC */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -157,47 +157,6 @@ static void daObj_Toby_Delete(obj_toby_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void set_pos_check(obj_toby_class*, int);
 static void daObj_Toby_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_TOBY[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80D15950[4];
-extern "C" extern u8 data_80D15954[4];
-extern "C" extern u8 data_80D15958[4];
-extern "C" extern u8 data_80D1595C[4];
-extern "C" extern u8 data_80D15960[4];
-extern "C" extern u8 data_80D15964[4];
-extern "C" extern u8 data_80D15968[4];
-extern "C" extern u8 data_80D1596C[4];
-extern "C" extern u8 data_80D15970[4];
-extern "C" extern u8 data_80D15974[4];
-extern "C" extern u8 data_80D15978[4];
-extern "C" extern u8 data_80D1597C[4];
-extern "C" extern u8 data_80D15980[4];
-extern "C" extern u8 data_80D15984[4];
-extern "C" extern u8 data_80D15988[4];
-extern "C" extern u8 data_80D1598C[4];
-extern "C" extern u8 data_80D15990[4];
-extern "C" extern u8 data_80D15994[4];
-extern "C" extern u8 data_80D15998[4];
-extern "C" extern u8 data_80D1599C[4];
-extern "C" extern u8 data_80D159A0[4];
-extern "C" extern u8 data_80D159A4[4];
-extern "C" extern u8 data_80D159A8[4];
-extern "C" extern u8 data_80D159AC[4];
-extern "C" extern u8 data_80D159B0[4];
 
 extern "C" void __ct__16daObj_Toby_HIO_cFv();
 extern "C" static void daObj_Toby_Draw__FP14obj_toby_class();
@@ -286,14 +245,6 @@ void cLib_addCalc2(f32*, f32, f32, f32);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

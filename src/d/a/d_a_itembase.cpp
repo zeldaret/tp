@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -81,9 +81,9 @@ struct daItemBase_c {
     /* 8015B0B8 */ void getData();
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -109,8 +109,6 @@ struct J3DFrameCtrl {
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 
 extern "C" void DeleteBase__12daItemBase_cFPCc();
 extern "C" bool clothCreate__12daItemBase_cFv();
@@ -145,13 +143,6 @@ void dComIfGd_setSimpleShadow(cXyz*, f32, f32, cBgS_PolyInfo&, s16, f32, _GXTexO
 void dComIfGd_setShadow(u32, s8, J3DModel*, cXyz*, f32, f32, f32, f32, cBgS_PolyInfo&,
                         dKy_tevstr_c*, s16, f32, _GXTexObj*);
 void* operator new(u32);
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
@@ -215,7 +206,7 @@ bool daItemBase_c::__CreateHeap() {
 
 /* ############################################################################################## */
 /* 804533A8-804533AC 0004+00 s=2 e=0 z=0  None .sdata2    @3881 */
-SECTION_SDATA2 static u32 lit_3881 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3881 = 1.0f;
 
 /* 8014475C-80144B94 0438+00 s=0 e=3 z=0  None .text      CreateItemHeap__12daItemBase_cFPCcsssssss
  */
@@ -306,9 +297,7 @@ SECTION_SDATA2 static f32 lit_3953[1 + 1 /* padding */] = {
 };
 
 /* 804533B8-804533C0 0008+00 s=1 e=0 z=0  None .sdata2    @3955 */
-SECTION_SDATA2 static u8 lit_3955[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3955 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80144D70-80144EDC 016C+00 s=1 e=1 z=9  None .text      setShadow__12daItemBase_cFv */
 #pragma push
@@ -322,9 +311,7 @@ asm void daItemBase_c::setShadow() {
 
 /* ############################################################################################## */
 /* 804533C0-804533C8 0008+00 s=1 e=0 z=0  None .sdata2    @4041 */
-SECTION_SDATA2 static u8 lit_4041[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4041 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80144EDC-8014503C 0160+00 s=1 e=1 z=9  None .text      animEntry__12daItemBase_cFv */
 #pragma push

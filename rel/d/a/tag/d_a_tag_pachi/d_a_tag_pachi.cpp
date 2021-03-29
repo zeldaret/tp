@@ -75,7 +75,6 @@ struct cCcD_GStts {
 static void daTagPati_Create(fopAc_ac_c*);
 static void daTagPati_Execute(fopAc_ac_c*);
 static void daTagPati_Delete(daTagPati_c*);
-extern "C" extern void* g_profile_TAG_PATI[12];
 
 extern "C" void __dt__11daTagPati_cFv();
 extern "C" void create__11daTagPati_cFv();
@@ -96,14 +95,6 @@ extern "C" extern void* g_profile_TAG_PATI[12];
 //
 
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

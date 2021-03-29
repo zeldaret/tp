@@ -68,8 +68,6 @@ struct CPaneMgrAlpha {
 // Forward References:
 //
 
-extern "C" extern char const* const d_file_d_file_sel_info__stringBase0;
-
 extern "C" void __ct__12dFile_info_cFP10JKRArchiveUc();
 extern "C" void __dt__12dFile_info_cFv();
 extern "C" void screenSet__12dFile_info_cFv();
@@ -93,9 +91,6 @@ void mDoExt_getMesgFont();
 void mDoExt_removeMesgFont();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_removeMesgFont__Fv();
@@ -326,7 +321,7 @@ asm void dFile_info_c::_draw() {
 
 /* ############################################################################################## */
 /* 804539F8-804539FC 0004+00 s=1 e=0 z=0  None .sdata2    @4000 */
-SECTION_SDATA2 static u32 lit_4000 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4000 = 1.0f;
 
 /* 804539FC-80453A00 0004+00 s=1 e=0 z=0  None .sdata2    @4001 */
 SECTION_SDATA2 static u8 lit_4001[4] = {

@@ -21,13 +21,13 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -221,47 +221,6 @@ static bool daB_BH_IsDelete(b_bh_class*);
 static void daB_BH_Delete(b_bh_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daB_BH_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_B_BH[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_805B341C[4];
-extern "C" extern u8 data_805B3420[4];
-extern "C" extern u8 data_805B3424[4];
-extern "C" extern u8 data_805B3428[4];
-extern "C" extern u8 data_805B342C[4];
-extern "C" extern u8 data_805B3430[4];
-extern "C" extern u8 data_805B3434[4];
-extern "C" extern u8 data_805B3438[4];
-extern "C" extern u8 data_805B343C[4];
-extern "C" extern u8 data_805B3440[4];
-extern "C" extern u8 data_805B3444[4];
-extern "C" extern u8 data_805B3448[4];
-extern "C" extern u8 data_805B344C[4];
-extern "C" extern u8 data_805B3450[4];
-extern "C" extern u8 data_805B3454[4];
-extern "C" extern u8 data_805B3458[4];
-extern "C" extern u8 data_805B345C[4];
-extern "C" extern u8 data_805B3460[4];
-extern "C" extern u8 data_805B3464[4];
-extern "C" extern u8 data_805B3468[4];
-extern "C" extern u8 data_805B346C[4];
-extern "C" extern u8 data_805B3470[4];
-extern "C" extern u8 data_805B3474[4];
-extern "C" extern u8 data_805B3478[4];
-extern "C" extern u8 data_805B347C[4];
 
 extern "C" void __ct__12daB_BH_HIO_cFv();
 extern "C" static void anm_init__FP10b_bh_classifUcf();
@@ -382,22 +341,6 @@ void JPASetRMtxSTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__temp
                             JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450C98[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

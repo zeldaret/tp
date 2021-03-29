@@ -32,8 +32,6 @@ struct dDlst_shadowTri_c {
     /* 80056344 */ dDlst_shadowTri_c();
 };
 
-struct _GXTexObj {};
-
 struct Vec {};
 
 struct cXyz {
@@ -43,6 +41,8 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
 };
+
+struct _GXTexObj {};
 
 struct dDlst_shadowSimple_c {
     /* 8005520C */ void draw();
@@ -95,9 +95,11 @@ struct dDlst_peekZ_c {
     /* 80056080 */ void peekData();
 };
 
-struct dDlst_base_c {};
-
 struct J3DPacket {};
+
+struct _GXColor {};
+
+struct dDlst_base_c {};
 
 struct J3DDrawBuffer {
     /* 80324F08 */ void initialize();
@@ -107,8 +109,6 @@ struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
     /* 803254AC */ void draw() const;
 };
-
-struct _GXColor {};
 
 struct dDlst_list_c {
     /* 800560F0 */ dDlst_list_c();
@@ -259,27 +259,6 @@ static void J3DDrawBuffer__create(u32);
 static void psdRealCallBack(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*);
 static void realPolygonCheck(cXyz*, f32, f32, cXyz*, dDlst_shadowPoly_c*);
 static void setkankyoShadow(dKy_tevstr_c*, f32*);
-extern "C" extern char const* const d_d_drawlist__stringBase0;
-extern "C" extern u8 l_frontZMat[60 + 4 /* padding */];
-extern "C" extern u8 l_frontNoZSubMat[42 + 2 /* padding */];
-extern "C" extern u8 l_shadowVolDL[59 + 5 /* padding */];
-extern "C" extern u8 l_shadowVolMat[90 + 6 /* padding */];
-extern "C" extern u8 data_803A8D9C[48];
-extern "C" extern void* __vt__18dDlst_effectLine_c[3];
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__11dDlst_blo_c[3];
-extern "C" extern void* __vt__10dDlst_2D_c[3];
-extern "C" extern void* __vt__12dDlst_2DMt_c[3];
-extern "C" extern void* __vt__11dDlst_2Dm_c[3];
-extern "C" extern void* __vt__11dDlst_2DM_c[3 + 3 /* padding */];
-extern "C" extern void* __vt__11dDlst_2DT_c[3];
-extern "C" extern void* __vt__15dDlst_2DPoint_c[3];
-extern "C" extern void* __vt__14dDlst_2DQuad_c[3];
-extern "C" extern void* __vt__13dDlst_2DTri_c[3];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 data_80450ED0[4];
-extern "C" extern f32 mWipeRate__12dDlst_list_c;
-extern "C" extern u8 data_80450EE0[8];
 
 extern "C" void setViewPort__14dDlst_window_cFffffff();
 extern "C" void setScissor__14dDlst_window_cFffff();
@@ -395,27 +374,6 @@ void cLib_chaseUC(u8*, u8, u8);
 void* operator new(u32);
 void* operator new[](u32, int);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_envHIO[68];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mBackColor__13mDoGph_gInf_c[4];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mFovyRate__14mDoLib_clipper;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -624,33 +582,23 @@ SECTION_SDATA static u8 l_color_4033[4] = {
 };
 
 /* 80452008-8045200C 0004+00 s=4 e=0 z=0  None .sdata2    @4072 */
-SECTION_SDATA2 static u32 lit_4072 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4072 = 0.5f;
 
 /* 8045200C-80452010 0004+00 s=1 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0x47000000;
+SECTION_SDATA2 static f32 lit_4073 = 32768.0f;
 
 /* 80452010-80452018 0004+04 s=10 e=0 z=0  None .sdata2    @4074 */
-SECTION_SDATA2 static u8 lit_4074[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4074[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80452018-80452020 0008+00 s=8 e=0 z=0  None .sdata2    @4076 */
-SECTION_SDATA2 static u8 lit_4076[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4076 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80452020-80452028 0008+00 s=5 e=0 z=0  None .sdata2    @4079 */
-SECTION_SDATA2 static u8 lit_4079[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4079 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80051F98-80052354 03BC+00 s=1 e=0 z=0  None .text      draw__11dDlst_2DT_cFv */
 #pragma push
@@ -664,7 +612,7 @@ asm void dDlst_2DT_c::draw() {
 
 /* ############################################################################################## */
 /* 80452028-8045202C 0004+00 s=10 e=0 z=0  None .sdata2    @4270 */
-SECTION_SDATA2 static u32 lit_4270 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4270 = 1.0f;
 
 /* 80052354-80052B00 07AC+00 s=1 e=0 z=0  None .text      draw__12dDlst_2DT2_cFv */
 #pragma push
@@ -2332,7 +2280,7 @@ asm void dDlst_2DT2_c::init(ResTIMG* param_0, f32 param_1, f32 param_2, f32 para
 
 /* ############################################################################################## */
 /* 80452030-80452034 0004+00 s=2 e=0 z=0  None .sdata2    @4360 */
-SECTION_SDATA2 static u32 lit_4360 = 0x43800000;
+SECTION_SDATA2 static f32 lit_4360 = 256.0f;
 
 /* 80052C58-8005312C 04D4+00 s=1 e=0 z=0  None .text      draw__11dDlst_2DM_cFv */
 #pragma push
@@ -2484,18 +2432,16 @@ asm void cM_rnd_c::init(int param_0, int param_1, int param_2) {
 
 /* ############################################################################################## */
 /* 80452034-80452038 0004+00 s=1 e=0 z=0  None .sdata2    @4791 */
-SECTION_SDATA2 static u32 lit_4791 = 0x46ECE600;
+SECTION_SDATA2 static f32 lit_4791 = 30323.0f;
 
 /* 80452038-8045203C 0004+00 s=1 e=0 z=0  None .sdata2    @4792 */
-SECTION_SDATA2 static u32 lit_4792 = 0x46EC7A00;
+SECTION_SDATA2 static f32 lit_4792 = 30269.0f;
 
 /* 8045203C-80452040 0004+00 s=1 e=0 z=0  None .sdata2    @4793 */
-SECTION_SDATA2 static u32 lit_4793 = 0x46ECC600;
+SECTION_SDATA2 static f32 lit_4793 = 30307.0f;
 
 /* 80452040-80452048 0008+00 s=1 e=0 z=0  None .sdata2    @4794 */
-SECTION_SDATA2 static u8 lit_4794[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4794 = 1.0;
 
 /* 80053CEC-80053DE0 00F4+00 s=2 e=0 z=0  None .text      get__8cM_rnd_cFv */
 #pragma push
@@ -2519,7 +2465,7 @@ asm void cM_rnd_c::getF(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80452048-8045204C 0004+00 s=5 e=0 z=0  None .sdata2    @4806 */
-SECTION_SDATA2 static u32 lit_4806 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4806 = 2.0f;
 
 /* 80053E18-80053E60 0048+00 s=1 e=0 z=0  None .text      getFX__8cM_rnd_cFf */
 #pragma push
@@ -2543,7 +2489,7 @@ asm void cM_rnd_c::getValue(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 8045204C-80452050 0004+00 s=1 e=0 z=0  None .sdata2    @4876 */
-SECTION_SDATA2 static u32 lit_4876 = 0x46FFFE00;
+SECTION_SDATA2 static f32 lit_4876 = 32767.0f;
 
 /* 80053E9C-800541F4 0358+00 s=1 e=0 z=0  None .text      draw__18dDlst_effectLine_cFv */
 #pragma push
@@ -2641,10 +2587,10 @@ asm void dDlst_shadowReal_c::draw() {
 
 /* ############################################################################################## */
 /* 80452050-80452054 0004+00 s=1 e=0 z=0  None .sdata2    @5061 */
-SECTION_SDATA2 static u32 lit_5061 = 0xBE4CCCCD;
+SECTION_SDATA2 static f32 lit_5061 = -1.0f / 5.0f;
 
 /* 80452054-80452058 0004+00 s=1 e=0 z=0  None .sdata2    @5062 */
-SECTION_SDATA2 static u32 lit_5062 = 0xC2B40000;
+SECTION_SDATA2 static f32 lit_5062 = -90.0f;
 
 /* 80054688-80054854 01CC+00 s=1 e=0 z=0  None .text
  * psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla */
@@ -2660,16 +2606,16 @@ asm static void psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int
 
 /* ############################################################################################## */
 /* 80452058-8045205C 0004+00 s=1 e=0 z=0  None .sdata2    @5127 */
-SECTION_SDATA2 static u32 lit_5127 = 0x3B03126F;
+SECTION_SDATA2 static f32 lit_5127 = 0.0020000000949949026f;
 
 /* 8045205C-80452060 0004+00 s=1 e=0 z=0  None .sdata2    @5128 */
-SECTION_SDATA2 static u32 lit_5128 = 0x42F00000;
+SECTION_SDATA2 static f32 lit_5128 = 120.0f;
 
 /* 80452060-80452064 0004+00 s=1 e=0 z=0  None .sdata2    @5129 */
-SECTION_SDATA2 static u32 lit_5129 = 0x3E19999A;
+SECTION_SDATA2 static f32 lit_5129 = 3.0f / 20.0f;
 
 /* 80452064-80452068 0004+00 s=3 e=0 z=0  None .sdata2    @5130 */
-SECTION_SDATA2 static u32 lit_5130 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_5130 = 10000.0f;
 
 /* 80054854-80054A6C 0218+00 s=1 e=0 z=0  None .text
  * realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c       */
@@ -2695,10 +2641,10 @@ asm ShdwDrawPoly_c::~ShdwDrawPoly_c() {
 
 /* ############################################################################################## */
 /* 80452068-8045206C 0004+00 s=1 e=0 z=0  None .sdata2    @5155 */
-SECTION_SDATA2 static u32 lit_5155 = 0x41700000;
+SECTION_SDATA2 static f32 lit_5155 = 15.0f;
 
 /* 8045206C-80452070 0004+00 s=1 e=0 z=0  None .sdata2    @5156 */
-SECTION_SDATA2 static u32 lit_5156 = 0x3F266666;
+SECTION_SDATA2 static f32 lit_5156 = 13.0f / 20.0f;
 
 /* 80054ACC-80054BD0 0104+00 s=2 e=0 z=0  None .text      setkankyoShadow__FP12dKy_tevstr_cPf */
 #pragma push
@@ -2712,10 +2658,10 @@ asm static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
 
 /* ############################################################################################## */
 /* 80452070-80452074 0004+00 s=1 e=0 z=0  None .sdata2    @5267 */
-SECTION_SDATA2 static u32 lit_5267 = 0x42480000;
+SECTION_SDATA2 static f32 lit_5267 = 50.0f;
 
 /* 80452074-80452078 0004+00 s=1 e=0 z=0  None .sdata2    @5268 */
-SECTION_SDATA2 static u32 lit_5268 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_5268 = 4.0f / 5.0f;
 
 /* 80452078-80452080 0004+04 s=1 e=0 z=0  None .sdata2    @5269 */
 SECTION_SDATA2 static f32 lit_5269[1 + 1 /* padding */] = {
@@ -2725,14 +2671,10 @@ SECTION_SDATA2 static f32 lit_5269[1 + 1 /* padding */] = {
 };
 
 /* 80452080-80452088 0008+00 s=1 e=0 z=0  None .sdata2    @5270 */
-SECTION_SDATA2 static u8 lit_5270[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5270 = 0.5;
 
 /* 80452088-80452090 0008+00 s=1 e=0 z=0  None .sdata2    @5271 */
-SECTION_SDATA2 static u8 lit_5271[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5271 = 3.0;
 
 /* 80452090-80452098 0008+00 s=1 e=0 z=0  None .sdata2    @5272 */
 SECTION_SDATA2 static u8 lit_5272[8] = {
@@ -2740,13 +2682,13 @@ SECTION_SDATA2 static u8 lit_5272[8] = {
 };
 
 /* 80452098-8045209C 0004+00 s=1 e=0 z=0  None .sdata2    @5273 */
-SECTION_SDATA2 static u32 lit_5273 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_5273 = 2.0f / 5.0f;
 
 /* 8045209C-804520A0 0004+00 s=1 e=0 z=0  None .sdata2    @5274 */
-SECTION_SDATA2 static u32 lit_5274 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5274 = -1.0f;
 
 /* 804520A0-804520A4 0004+00 s=1 e=0 z=0  None .sdata2    @5275 */
-SECTION_SDATA2 static u32 lit_5275 = 0xBF000000;
+SECTION_SDATA2 static f32 lit_5275 = -0.5f;
 
 /* 80054BD0-80055028 0458+00 s=1 e=0 z=0  None .text
  * setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c */
@@ -2803,16 +2745,16 @@ asm void dDlst_shadowSimple_c::draw() {
 
 /* ############################################################################################## */
 /* 804520A4-804520A8 0004+00 s=1 e=0 z=0  None .sdata2    @5375 */
-SECTION_SDATA2 static u32 lit_5375 = 0xC37F0000;
+SECTION_SDATA2 static f32 lit_5375 = -255.0f;
 
 /* 804520A8-804520AC 0004+00 s=1 e=0 z=0  None .sdata2    @5376 */
-SECTION_SDATA2 static u32 lit_5376 = 0x3A378034;
+SECTION_SDATA2 static f32 lit_5376 = 0.000699999975040555f;
 
 /* 804520AC-804520B0 0004+00 s=1 e=0 z=0  None .sdata2    @5377 */
-SECTION_SDATA2 static u32 lit_5377 = 0x3FB33333;
+SECTION_SDATA2 static f32 lit_5377 = 7.0f / 5.0f;
 
 /* 804520B0-804520B4 0004+00 s=1 e=0 z=0  None .sdata2    @5378 */
-SECTION_SDATA2 static u32 lit_5378 = 0x41800000;
+SECTION_SDATA2 static f32 lit_5378 = 16.0f;
 
 /* 800553EC-80055684 0298+00 s=1 e=0 z=0  None .text
  * set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj      */
@@ -2890,13 +2832,13 @@ asm void dDlst_shadowControl_c::draw(f32 (*param_0)[4]) {
 
 /* ############################################################################################## */
 /* 804520B8-804520BC 0004+00 s=1 e=0 z=0  None .sdata2    @5551 */
-SECTION_SDATA2 static u32 lit_5551 = 0x3B449BA6;
+SECTION_SDATA2 static f32 lit_5551 = 0.003000000026077032f;
 
 /* 804520BC-804520C0 0004+00 s=1 e=0 z=0  None .sdata2    @5552 */
-SECTION_SDATA2 static u32 lit_5552 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_5552 = -1000.0f;
 
 /* 804520C0-804520C4 0004+00 s=1 e=0 z=0  None .sdata2    @5553 */
-SECTION_SDATA2 static u32 lit_5553 = 0x3A83126F;
+SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 
 /* 80055C74-80055F1C 02A8+00 s=0 e=1 z=1  None .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
@@ -3146,7 +3088,7 @@ asm void dDlst_list_c::reset() {
 
 /* ############################################################################################## */
 /* 804520CC-804520D0 0004+00 s=1 e=0 z=0  None .sdata2    @5747 */
-SECTION_SDATA2 static u32 lit_5747 = 0x461C3C00;
+SECTION_SDATA2 static f32 lit_5747 = 9999.0f;
 
 /* 800565EC-800566D4 00E8+00 s=0 e=2 z=0  None .text
  * entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz */
@@ -3256,13 +3198,13 @@ f32 mWipeRate__12dDlst_list_c;
 static f32 mWipeSpeed__12dDlst_list_c[1 + 1 /* padding */];
 
 /* 804520D0-804520D4 0004+00 s=1 e=0 z=0  None .sdata2    @5809 */
-SECTION_SDATA2 static u32 lit_5809 = 0x44180000;
+SECTION_SDATA2 static f32 lit_5809 = 608.0f;
 
 /* 804520D4-804520D8 0004+00 s=1 e=0 z=0  None .sdata2    @5810 */
-SECTION_SDATA2 static u32 lit_5810 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_5810 = 448.0f;
 
 /* 804520D8-804520DC 0004+00 s=1 e=0 z=0  None .sdata2    @5811 */
-SECTION_SDATA2 static u32 lit_5811 = 0x401BE76D;
+SECTION_SDATA2 static f32 lit_5811 = 2.436000108718872f;
 
 /* 8005681C-800568D8 00BC+00 s=1 e=0 z=0  None .text      wipeIn__12dDlst_list_cFfR8_GXColor */
 #pragma push
@@ -3286,7 +3228,7 @@ asm void dDlst_list_c::wipeIn(f32 param_0) {
 
 /* ############################################################################################## */
 /* 804520DC-804520E0 0004+00 s=1 e=0 z=0  None .sdata2    @5838 */
-SECTION_SDATA2 static u32 lit_5838 = 0x3F9BE76D;
+SECTION_SDATA2 static f32 lit_5838 = 1.218000054359436f;
 
 /* 80056900-800569A0 00A0+00 s=0 e=1 z=0  None .text      calcWipe__12dDlst_list_cFv */
 #pragma push

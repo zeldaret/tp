@@ -51,7 +51,6 @@ extern "C" void calcMinMax__8cM3dGCylFP4cXyzP4cXyz();
 
 void cM3d_Cross_CylSph(cM3dGCyl const*, cM3dGSph const*, Vec*, f32*);
 void cM3d_Cross_CylCyl(cM3dGCyl const*, cM3dGCyl const*, Vec*);
-extern "C" extern void* __vt__8cM3dGCyl[3];
 
 extern "C" void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf();
 extern "C" void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec();

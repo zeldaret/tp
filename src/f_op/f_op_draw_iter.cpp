@@ -31,8 +31,6 @@ extern "C" void fopDwIt_Next__FP16create_tag_class();
 
 extern "C" extern u8 g_fopDwTg_Queue[8];
 
-extern "C" extern u8 g_fopDwTg_Queue[8];
-
 //
 // Declarations:
 //

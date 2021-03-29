@@ -21,12 +21,6 @@ struct daBgObj_c {
 // Forward References:
 //
 
-extern "C" extern u8 __OSRebootParams[28 + 4 /* padding */];
-extern "C" extern u8 __OSIsGcam[4];
-extern "C" extern u8 __OSInIPL[4 + 4 /* padding */];
-extern "C" extern u8 __OSStartTime[4];
-extern "C" extern u8 data_80451634[4];
-
 extern "C" void __OSFPRInit();
 extern "C" void OSGetConsoleType();
 extern "C" static void InquiryCallback();
@@ -53,9 +47,6 @@ extern "C" extern u8 data_80451634[4];
 //
 // External References:
 //
-
-extern "C" extern u8 __DVDLongFileNameFlag[4];
-extern "C" extern u8 __PADSpec[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();

@@ -61,8 +61,6 @@ extern "C" void __dt__8JUTFaderFv();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
 
 extern "C" void __dl__FPv();
 extern "C" void
@@ -88,9 +86,7 @@ SECTION_DATA static void* __vt__8JUTFader[6] = {
 };
 
 /* 804560D0-804560D8 0008+00 s=1 e=0 z=0  None .sdata2    @2196 */
-SECTION_SDATA2 static u8 lit_2196[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2196 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E5530-802E55DC 00AC+00 s=0 e=1 z=0  None .text      __ct__8JUTFaderFiiiiQ28JUtility6TColor */
 #pragma push

@@ -96,10 +96,10 @@ asm void cM3dGAab::TopPlaneYUnder(f32 param_0) const {
 
 /* ############################################################################################## */
 /* 804551D0-804551D4 0004+00 s=1 e=0 z=0  None .sdata2    @416 */
-SECTION_SDATA2 static u32 lit_416 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_416 = 1000000000.0f;
 
 /* 804551D4-804551D8 0004+00 s=1 e=0 z=0  None .sdata2    @417 */
-SECTION_SDATA2 static u32 lit_417 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_417 = -1000000000.0f;
 
 /* 8026ECF8-8026ED1C 0024+00 s=0 e=6 z=0  None .text      ClearForMinMax__8cM3dGAabFv */
 #pragma push

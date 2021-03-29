@@ -19,13 +19,13 @@ struct mDoHIO_entry_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -69,8 +69,6 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -80,6 +78,8 @@ struct cXyz {
     /* 80705220 */ cXyz();
     /* 80705AA8 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -257,21 +257,6 @@ static void daE_Kr_Delete(e_kr_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_Kr_Create(fopAc_ac_c*);
 static void setMidnaBindEffect(fopEn_enemy_c*, Z2CreatureEnemy*, cXyz*, cXyz*);
-extern "C" extern u32 const lit_4271;
-extern "C" extern u32 const lit_4422;
-extern "C" extern u32 const lit_4426;
-extern "C" extern u32 const lit_4831;
-extern "C" extern u32 const lit_4832;
-extern "C" extern u32 const lit_4833;
-extern "C" extern u32 const lit_4834;
-extern "C" extern u32 const lit_4836;
-extern "C" extern u32 const lit_4837;
-extern "C" extern u32 const lit_4838;
-extern "C" extern u32 const lit_5112;
-extern "C" extern u32 const lit_5113;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_E_KR[12];
 
 extern "C" static void nodeCallBack__FP8J3DJointi();
 extern "C" static void anm_init__FP10e_kr_classifUcf();
@@ -377,23 +362,6 @@ void MtxScale(f32, f32, f32, u8);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

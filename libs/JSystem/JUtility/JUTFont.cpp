@@ -37,8 +37,6 @@ extern "C" void drawString_size_scale__7JUTFontFffffPCcUlb();
 // External References:
 //
 
-extern "C" extern void* __vt__7JUTFont[17];
-
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
 extern "C" extern void* __vt__7JUTFont[17];

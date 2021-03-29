@@ -12,8 +12,6 @@
 //
 
 struct JStage {
-    struct TEObject {};
-
     struct TObject {
         /* 80280DD4 */ ~TObject();
         /* 80280E1C */ bool JSGGetName() const;
@@ -29,6 +27,8 @@ struct JStage {
         /* 80280E54 */ void JSGGetNodeTransformation(u32, f32 (*)[4]) const;
     };
 
+    struct TEObject {};
+
     struct TSystem {
         /* 80280E90 */ ~TSystem();
         /* 80280EF0 */ bool JSGFGetType() const;
@@ -43,8 +43,6 @@ struct JStage {
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__Q26JStage7TSystem[20];
 
 extern "C" void __dt__Q26JStage7TSystemFv();
 extern "C" bool JSGFGetType__Q26JStage7TSystemCFv();

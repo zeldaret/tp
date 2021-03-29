@@ -141,7 +141,6 @@ static void getTelopNo(char const*);
 static void getTelopNo();
 static void getStartTelopNo();
 static void dEvDt_Next_Stage(int, int);
-extern "C" extern char const* const d_event_d_event_data__stringBase0;
 
 extern "C" static void getTelopNo__FPCc();
 extern "C" static void getTelopNo__Fv();
@@ -195,17 +194,6 @@ void d_GameOver_Delete(unsigned int&);
 void dKy_set_nexttime(f32);
 void dKy_instant_timechg(f32);
 void dKy_instant_rainchg();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_control__7dDemo_c[4];
-extern "C" extern u8 m_frameNoMsg__7dDemo_c[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern f32 mWipeRate__12dDlst_list_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
@@ -441,12 +429,10 @@ SECTION_SDATA2 static u8 lit_4264[4] = {
 };
 
 /* 80451ED4-80451ED8 0004+00 s=2 e=0 z=0  None .sdata2    @4265 */
-SECTION_SDATA2 static u32 lit_4265 = 0x41700000;
+SECTION_SDATA2 static f32 lit_4265 = 15.0f;
 
 /* 80451ED8-80451EE0 0008+00 s=1 e=0 z=0  None .sdata2    @4267 */
-SECTION_SDATA2 static u8 lit_4267[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4267 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80043A14-80043D60 034C+00 s=1 e=0 z=0  None .text      dEvDt_Next_Stage__Fii */
 #pragma push
@@ -608,9 +594,7 @@ SECTION_SDATA2 static f32 lit_4460[1 + 1 /* padding */] = {
 };
 
 /* 80451EE8-80451EF0 0008+00 s=1 e=0 z=0  None .sdata2    @4461 */
-SECTION_SDATA2 static u8 lit_4461[8] = {
-    0x40, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4461 = 24.0;
 
 /* 80044190-80044324 0194+00 s=1 e=0 z=0  None .text      specialProcLight__12dEvDtStaff_cFv */
 #pragma push
@@ -634,10 +618,10 @@ asm void dEvDtStaff_c::specialProcMessage() {
 
 /* ############################################################################################## */
 /* 80451EF0-80451EF4 0004+00 s=4 e=0 z=0  None .sdata2    @4668 */
-SECTION_SDATA2 static u32 lit_4668 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4668 = 1.0f;
 
 /* 80451EF4-80451EF8 0004+00 s=2 e=0 z=0  None .sdata2    @4669 */
-SECTION_SDATA2 static u32 lit_4669 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4669 = -1.0f;
 
 /* 80044A58-80044CB8 0260+00 s=1 e=0 z=0  None .text      specialProcSound__12dEvDtStaff_cFv */
 #pragma push
@@ -671,7 +655,7 @@ asm void dEvDtStaff_c::specialProcDirector() {
 
 /* ############################################################################################## */
 /* 80451EF8-80451EFC 0004+00 s=1 e=0 z=0  None .sdata2    @5057 */
-SECTION_SDATA2 static u32 lit_5057 = 0x41200000;
+SECTION_SDATA2 static f32 lit_5057 = 10.0f;
 
 /* 80045878-80045AFC 0284+00 s=1 e=0 z=0  None .text      specialProcPackage__12dEvDtStaff_cFv */
 #pragma push
@@ -695,7 +679,7 @@ asm void dEvDtStaff_c::specialProcTimekeeper() {
 
 /* ############################################################################################## */
 /* 80451EFC-80451F00 0004+00 s=1 e=0 z=0  None .sdata2    @5200 */
-SECTION_SDATA2 static u32 lit_5200 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_5200 = 4.0f / 5.0f;
 
 /* 80045C34-800460A8 0474+00 s=1 e=0 z=0  None .text      specialProcEffect__12dEvDtStaff_cFv */
 #pragma push

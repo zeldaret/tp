@@ -34,9 +34,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
@@ -51,7 +51,6 @@ static void daObjDigholl_Create(fopAc_ac_c*);
 static void daObjDigholl_Delete(daObjDigholl_c*);
 static void daObjDigholl_Execute(daObjDigholl_c*);
 static void daObjDigholl_Draw(daObjDigholl_c*);
-extern "C" extern void* g_profile_Obj_Digholl[12];
 
 extern "C" void create__14daObjDigholl_cFv();
 extern "C" static void daObjDigholl_Create__FP10fopAc_ac_c();
@@ -71,11 +70,6 @@ void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
 void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
 void cLib_distanceAngleS(s16, s16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

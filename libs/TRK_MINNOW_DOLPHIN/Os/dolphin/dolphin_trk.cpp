@@ -21,8 +21,6 @@ struct daBgObj_c {
 // Forward References:
 //
 
-SECTION_BSS u8 lc_base[4 + 4 /* padding */];
-
 extern "C" void InitMetroTRK();
 extern "C" void InitMetroTRK_BBA();
 extern "C" void TRK__write_aram();
@@ -36,10 +34,6 @@ SECTION_BSS u8 lc_base[4 + 4 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 const __TRK_unknown_data[7988];
-extern "C" extern u8 gTRKState[164];
-extern "C" extern u8 gTRKCPUState[1072];
 
 SECTION_INIT void TRK_memcpy();
 extern "C" extern u8 const __TRK_unknown_data[7988];

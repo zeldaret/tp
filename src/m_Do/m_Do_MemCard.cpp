@@ -53,8 +53,6 @@ struct CARDFileInfo {};
 //
 
 static void mDoMemCd_main(void*);
-extern "C" extern char const* const m_Do_m_Do_MemCard__stringBase0;
-extern "C" extern u8 g_mDoMemCd_control[8192];
 
 extern "C" void __ct__15mDoMemCd_Ctrl_cFv();
 extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
@@ -89,7 +87,6 @@ extern "C" extern u8 g_mDoMemCd_control[8192];
 void mDoExt_getAssertHeap();
 void mDoMemCdRWm_Store(CARDFileInfo*, void*, u32);
 void mDoMemCdRWm_Restore(CARDFileInfo*, void*, u32);
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 SECTION_INIT void memcpy();
 extern "C" void mDoExt_getAssertHeap__Fv();

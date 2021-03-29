@@ -152,15 +152,15 @@ struct dMenu_save_c {
     /* 801F69FC */ void _draw2();
 };
 
+struct CSTControl {};
+
+struct JKRExpHeap {};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct CSTControl {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -295,8 +295,6 @@ static void dMw_Execute(dMw_c*);
 static bool dMw_IsDelete(dMw_c*);
 static void dMw_Delete(dMw_c*);
 static void dMw_Create(msg_class*);
-extern "C" extern char const* const d_menu_d_menu_window__stringBase0;
-extern "C" extern void* g_profile_MENUWINDOW[10 + 6 /* padding */];
 
 extern "C" void dMw_UP_TRIGGER__Fv();
 extern "C" void dMw_DOWN_TRIGGER__Fv();
@@ -446,25 +444,6 @@ void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__10CSTControl[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_mwHIO[304];
-extern "C" extern u8 g_mwDHIO[520];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
@@ -1380,10 +1359,10 @@ SECTION_SDATA2 static u8 lit_4152[4] = {
 };
 
 /* 804544C4-804544C8 0004+00 s=10 e=0 z=0  None .sdata2    @4386 */
-SECTION_SDATA2 static u32 lit_4386 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4386 = 1.0f;
 
 /* 804544C8-804544CC 0004+00 s=10 e=0 z=0  None .sdata2    @4387 */
-SECTION_SDATA2 static u32 lit_4387 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4387 = -1.0f;
 
 /* 801FA244-801FA2D0 008C+00 s=1 e=0 z=0  None .text      collect_open_init__5dMw_cFUc */
 #pragma push
@@ -2347,10 +2326,10 @@ asm void dMw_c::dMw_fade_in() {
 
 /* ############################################################################################## */
 /* 804544CC-804544D0 0004+00 s=1 e=0 z=0  None .sdata2    @6000 */
-SECTION_SDATA2 static u32 lit_6000 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_6000 = 4.0f / 5.0f;
 
 /* 804544D0-804544D4 0004+00 s=1 e=0 z=0  None .sdata2    @6001 */
-SECTION_SDATA2 static u32 lit_6001 = 0x3E19999A;
+SECTION_SDATA2 static f32 lit_6001 = 3.0f / 20.0f;
 
 /* 801FCEE8-801FCF84 009C+00 s=1 e=0 z=0  None .text      checkCStickTrigger__5dMw_cFv */
 #pragma push
@@ -2404,7 +2383,7 @@ asm void dMw_c::checkMemSize() {
 
 /* ############################################################################################## */
 /* 804544D4-804544D8 0004+00 s=1 e=0 z=0  None .sdata2    @6086 */
-SECTION_SDATA2 static u32 lit_6086 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_6086 = 9.0f / 10.0f;
 
 /* 804544D8-804544E0 0004+04 s=1 e=0 z=0  None .sdata2    @6087 */
 SECTION_SDATA2 static f32 lit_6087[1 + 1 /* padding */] = {

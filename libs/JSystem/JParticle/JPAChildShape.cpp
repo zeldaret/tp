@@ -55,10 +55,10 @@ asm void JPARegistChildPrmEnv(JPAEmitterWorkData* param_0) {
 
 /* ############################################################################################## */
 /* 80455308-8045530C 0004+00 s=1 e=0 z=0  None .sdata2    @2318 */
-SECTION_SDATA2 static u32 lit_2318 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_2318 = 255.0f;
 
 /* 8045530C-80455310 0004+00 s=2 e=0 z=0  None .sdata2    @2319 */
-SECTION_SDATA2 static u32 lit_2319 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2319 = 1.0f;
 
 /* 8027AFDC-8027B008 002C+00 s=0 e=1 z=0  None .text
  * JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle */

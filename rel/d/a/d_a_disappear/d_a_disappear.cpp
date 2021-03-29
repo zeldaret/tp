@@ -19,13 +19,13 @@ struct disappear_class {};
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -54,7 +54,6 @@ static void yami_disappear(disappear_class*, f32);
 static void ghost_disappear(disappear_class*, f32);
 static void set_disappear(disappear_class*, f32);
 static void daDisappear_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_DISAPPEAR[12];
 
 extern "C" static bool daDisappear_Draw__FP15disappear_class();
 extern "C" static void s_ks_sub__FPvPv();
@@ -77,10 +76,6 @@ void fopAcM_createItemFromEnemyID(u8, cXyz const*, int, int, csXyz const*, cXyz 
 void fpcEx_Search(void* (*)(void*, void*), void*);
 void dComIfGp_getReverb(int);
 void dKy_Sound_set(cXyz, int, unsigned int, int);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();

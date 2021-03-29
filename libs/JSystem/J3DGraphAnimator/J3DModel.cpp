@@ -120,8 +120,6 @@ struct J3DDisplayListObj {
 // Forward References:
 //
 
-extern "C" extern void* __vt__8J3DModel[9];
-
 extern "C" void initialize__8J3DModelFv();
 extern "C" void entryModelData__8J3DModelFP12J3DModelDataUlUl();
 extern "C" void createShapePacket__8J3DModelFP12J3DModelData();
@@ -156,9 +154,6 @@ void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
 void J3DCalcViewBaseMtx(f32 (*)[4], Vec const&, f32 const (&)[3][4], f32 (*)[4]);
-extern "C" extern u8 const j3dDefaultScale[12];
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUl();

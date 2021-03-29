@@ -38,7 +38,6 @@ static void daKytag14_Execute(kytag14_class*);
 static bool daKytag14_IsDelete(kytag14_class*);
 static bool daKytag14_Delete(kytag14_class*);
 static void daKytag14_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_KYTAG14[12];
 
 extern "C" static bool daKytag14_Draw__FP13kytag14_class();
 extern "C" static void daKytag14_Execute__FP13kytag14_class();
@@ -50,12 +49,6 @@ extern "C" extern void* g_profile_KYTAG14[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void set__25dSv_player_return_place_cFPCcScUc();

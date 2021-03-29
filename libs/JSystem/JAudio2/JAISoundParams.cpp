@@ -39,9 +39,7 @@ extern "C" void moveDolby__18JAISoundParamsMoveFfUl();
 
 /* ############################################################################################## */
 /* 804557E8-804557F0 0008+00 s=5 e=0 z=0  None .sdata2    @292 */
-SECTION_SDATA2 static u8 lit_292[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_292 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802A2DB4-802A2E0C 0058+00 s=0 e=40 z=0  None .text      moveVolume__18JAISoundParamsMoveFfUl */
 #pragma push

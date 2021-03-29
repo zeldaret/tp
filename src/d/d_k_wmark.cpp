@@ -80,8 +80,6 @@ static void dkWmark_Create(kankyo_class*);
 static void dkWmark_Delete(dkWmark_c*);
 static void dkWmark_Execute(dkWmark_c*);
 static void dkWmark_Draw(dkWmark_c*);
-extern "C" extern char const* const d_d_k_wmark__stringBase0;
-extern "C" extern void* g_profile_WMARK[10 + 1 /* padding */];
 
 extern "C" static void dkWmark_Create__FP12kankyo_class();
 extern "C" void __dt__9dkWmark_cFv();
@@ -107,20 +105,6 @@ void fopKyM_Delete(void*);
 void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
@@ -200,13 +184,13 @@ static u8 m_nowID__9dkWmark_c[4];
 static u8 data_80451134[4];
 
 /* 80454FB0-80454FB4 0004+00 s=1 e=0 z=0  None .sdata2    @3718 */
-SECTION_SDATA2 static u32 lit_3718 = 0x3F8CCCCD;
+SECTION_SDATA2 static f32 lit_3718 = 11.0f / 10.0f;
 
 /* 80454FB4-80454FB8 0004+00 s=2 e=0 z=0  None .sdata2    @3719 */
-SECTION_SDATA2 static u32 lit_3719 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3719 = 1.0f;
 
 /* 80454FB8-80454FBC 0004+00 s=1 e=0 z=0  None .sdata2    @3720 */
-SECTION_SDATA2 static u32 lit_3720 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_3720 = 3.0f / 5.0f;
 
 /* 8026141C-80261640 0224+00 s=1 e=0 z=0  None .text      dkWmark_Create__FP12kankyo_class */
 #pragma push
@@ -240,30 +224,20 @@ asm static void dkWmark_Delete(dkWmark_c* param_0) {
 
 /* ############################################################################################## */
 /* 80454FBC-80454FC0 0004+00 s=1 e=0 z=0  None .sdata2    @3844 */
-SECTION_SDATA2 static u32 lit_3844 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_3844 = 100.0f;
 
 /* 80454FC0-80454FC8 0004+04 s=2 e=0 z=0  None .sdata2    @3845 */
-SECTION_SDATA2 static u8 lit_3845[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3845[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80454FC8-80454FD0 0008+00 s=1 e=0 z=0  None .sdata2    @3846 */
-SECTION_SDATA2 static u8 lit_3846[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3846 = 0.5;
 
 /* 80454FD0-80454FD8 0008+00 s=1 e=0 z=0  None .sdata2    @3847 */
-SECTION_SDATA2 static u8 lit_3847[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3847 = 3.0;
 
 /* 80454FD8-80454FE0 0008+00 s=1 e=0 z=0  None .sdata2    @3848 */
 SECTION_SDATA2 static u8 lit_3848[8] = {
@@ -282,7 +256,7 @@ asm void dkWmark_c::setMatrix() {
 
 /* ############################################################################################## */
 /* 80454FE0-80454FE4 0004+00 s=1 e=0 z=0  None .sdata2    @3873 */
-SECTION_SDATA2 static u32 lit_3873 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_3873 = 1.0f / 50.0f;
 
 /* 80261964-80261A18 00B4+00 s=1 e=0 z=0  None .text      dkWmark_Execute__FP9dkWmark_c */
 #pragma push
@@ -296,12 +270,10 @@ asm static void dkWmark_Execute(dkWmark_c* param_0) {
 
 /* ############################################################################################## */
 /* 80454FE4-80454FE8 0004+00 s=1 e=0 z=0  None .sdata2    @3906 */
-SECTION_SDATA2 static u32 lit_3906 = 0x42480000;
+SECTION_SDATA2 static f32 lit_3906 = 50.0f;
 
 /* 80454FE8-80454FF0 0008+00 s=1 e=0 z=0  None .sdata2    @3908 */
-SECTION_SDATA2 static u8 lit_3908[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3908 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80261A18-80261B54 013C+00 s=1 e=0 z=0  None .text      dkWmark_Draw__FP9dkWmark_c */
 #pragma push

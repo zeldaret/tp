@@ -57,8 +57,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_arrow__stringBase0;
-
 extern "C" void __ct__15dMsgScrnArrow_cFv();
 extern "C" void __dt__15dMsgScrnArrow_cFv();
 extern "C" void draw__15dMsgScrnArrow_cFv();
@@ -76,7 +74,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_arrow__stringBase0;
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
 extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
@@ -178,12 +175,10 @@ asm void dMsgScrnArrow_c::arwAnimeInit() {
 
 /* ############################################################################################## */
 /* 80454B9C-80454BA0 0004+00 s=2 e=0 z=0  None .sdata2    @3761 */
-SECTION_SDATA2 static u32 lit_3761 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3761 = 1.0f;
 
 /* 80454BA0-80454BA8 0008+00 s=2 e=0 z=0  None .sdata2    @3763 */
-SECTION_SDATA2 static u8 lit_3763[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3763 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8023BE90-8023BFC4 0134+00 s=0 e=4 z=0  None .text      arwAnimeMove__15dMsgScrnArrow_cFv */
 #pragma push

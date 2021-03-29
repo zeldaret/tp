@@ -13,8 +13,6 @@
 
 extern void* const data_807EF75C[2];
 
-extern void* const data_807EF75C[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_ww_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 807EF75C-807EF764 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_807EF75C[2] = {
+    (void*)__sinit_d_a_e_ww_cpp,
+    (void*)NULL,
+};

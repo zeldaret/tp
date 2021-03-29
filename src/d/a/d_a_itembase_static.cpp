@@ -30,7 +30,6 @@ struct daItemBase_c {
 
 void CheckItemCreateHeap(fopAc_ac_c*);
 void CheckFieldItemCreateHeap(fopAc_ac_c*);
-extern "C" extern u8 const m_data__12daItemBase_c[56];
 
 extern "C" void getItemNo__12daItemBase_cFv();
 extern "C" void hide__12daItemBase_cFv();
@@ -46,9 +45,6 @@ extern "C" extern u8 const m_data__12daItemBase_c[56];
 //
 // External References:
 //
-
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern void* field_item_res__10dItem_data[1020];
 
 extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
 extern "C" extern void* item_resource__10dItem_data[1530];

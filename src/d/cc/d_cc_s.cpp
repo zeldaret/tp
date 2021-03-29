@@ -29,8 +29,16 @@ struct dJntCol_c {
     /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
 };
 
+struct cCcD_GStts {};
+
 struct cCcD_ShapeAttr {
     struct Shape {};
+};
+
+struct cCcD_GObjInf {};
+
+struct cCcD_Obj {
+    /* 80263A48 */ void GetAc();
 };
 
 struct cCcD_Stts {
@@ -38,19 +46,11 @@ struct cCcD_Stts {
     /* 80263970 */ void PlusDmg(int);
 };
 
-struct cCcD_GObjInf {};
-
-struct dCcD_GStts {};
-
 struct dCcD_GObjInf {
     /* 800843DC */ void ChkAtNoGuard();
 };
 
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
-struct cCcD_GStts {};
+struct dCcD_GStts {};
 
 struct dCcS {
     /* 8002FF40 */ ~dCcS();
@@ -142,8 +142,6 @@ struct Vec {};
 // Forward References:
 //
 
-extern "C" extern void* __vt__4dCcS[13];
-
 extern "C" void Ct__4dCcSFv();
 extern "C" void Dt__4dCcSFv();
 extern "C" void ChkShieldFrontRange__4dCcSFP8cCcD_ObjP8cCcD_ObjiPC4cXyz();
@@ -180,16 +178,6 @@ extern "C" extern void* __vt__4dCcS[13];
 void cM3d_CalcVecZAngle(Vec const&, csXyz*);
 void cLib_distanceAngleS(s16, s16);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__15cCcD_DivideInfo[3];
-extern "C" extern void* __vt__8cM3dGSph[3];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 BaseZ__4cXyz[12];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
 extern "C" void __dt__4dCcSFv();
@@ -488,7 +476,7 @@ SECTION_DATA static u8 rank_tbl[121 + 3 /* padding */] = {
 };
 
 /* 8045277C-80452780 0004+00 s=1 e=0 z=0  None .sdata2    @3924 */
-SECTION_SDATA2 static u32 lit_3924 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_3924 = 1.0f / 100.0f;
 
 /* 80452780-80452788 0004+04 s=2 e=0 z=0  None .sdata2    @3925 */
 SECTION_SDATA2 static f32 lit_3925[1 + 1 /* padding */] = {
@@ -498,9 +486,7 @@ SECTION_SDATA2 static f32 lit_3925[1 + 1 /* padding */] = {
 };
 
 /* 80452788-80452790 0008+00 s=1 e=0 z=0  None .sdata2    @3927 */
-SECTION_SDATA2 static u8 lit_3927[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3927 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8008640C-80086754 0348+00 s=1 e=0 z=0  None .text
  * SetPosCorrect__4dCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf       */

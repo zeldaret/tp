@@ -11,13 +11,13 @@
 // Types:
 //
 
-struct J2DTextBox {};
-
-struct JUTFont {};
-
 struct COutFont_c {
     /* 80225C94 */ COutFont_c(u8);
 };
+
+struct J2DTextBox {};
+
+struct JUTFont {};
 
 struct dMsgString_c {
     /* 80191B6C */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
@@ -132,10 +132,10 @@ asm void dMsgString_c::resetStringLocal(J2DTextBox* param_0) {
 
 /* ############################################################################################## */
 /* 80454D78-80454D7C 0004+00 s=1 e=0 z=0  None .sdata2    @3777 */
-SECTION_SDATA2 static u32 lit_3777 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_3777 = 255.0f;
 
 /* 80454D7C-80454D80 0004+00 s=1 e=0 z=0  None .sdata2    @3778 */
-SECTION_SDATA2 static u32 lit_3778 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3778 = -1.0f;
 
 /* 80454D80-80454D88 0004+04 s=1 e=0 z=0  None .sdata2    @3779 */
 SECTION_SDATA2 static f32 lit_3779[1 + 1 /* padding */] = {
@@ -145,9 +145,7 @@ SECTION_SDATA2 static f32 lit_3779[1 + 1 /* padding */] = {
 };
 
 /* 80454D88-80454D90 0008+00 s=1 e=0 z=0  None .sdata2    @3781 */
-SECTION_SDATA2 static u8 lit_3781[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3781 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80249DE4-80249ED0 00EC+00 s=1 e=0 z=0  None .text
  * drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf              */

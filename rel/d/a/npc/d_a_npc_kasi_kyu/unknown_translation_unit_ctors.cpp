@@ -13,8 +13,6 @@
 
 extern void* const data_80A258A4[2];
 
-extern void* const data_80A258A4[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_kasi_kyu_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80A258A4-80A258AC 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80A258A4[2] = {
+    (void*)__sinit_d_a_npc_kasi_kyu_cpp,
+    (void*)NULL,
+};

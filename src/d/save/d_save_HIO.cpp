@@ -129,8 +129,6 @@ struct dSvBit_HIO_c {
 // Forward References:
 //
 
-extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
-
 extern "C" void __ct__29dSvBit_childSwPerfectionHIO_cFv();
 extern "C" void init__29dSvBit_childSwPerfectionHIO_cFv();
 extern "C" void __ct__26dSvBit_childSwDungeonHIO_cFv();
@@ -180,7 +178,6 @@ extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void isDarkClearLV__21dSv_player_status_b_cCFi();
 extern "C" void isTransformLV__21dSv_player_status_b_cCFi();

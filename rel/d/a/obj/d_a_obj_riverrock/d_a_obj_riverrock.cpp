@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -180,8 +180,6 @@ static void daObjRIVERROCK_Delete(daObjRIVERROCK_c*);
 static void daObjRIVERROCK_Draw(daObjRIVERROCK_c*);
 static void daObjRIVERROCK_Execute(daObjRIVERROCK_c*);
 static bool daObjRIVERROCK_IsDelete(daObjRIVERROCK_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_RIVERROCK[12];
 
 extern "C" void __ct__20daObjRIVERROCK_HIO_cFv();
 extern "C" void initCcCylinder__16daObjRIVERROCK_cFv();
@@ -228,19 +226,6 @@ void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void cLib_chaseAngleS(s16*, s16, s16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void transM__14mDoMtx_stack_cFfff();

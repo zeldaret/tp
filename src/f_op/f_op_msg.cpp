@@ -28,7 +28,6 @@ static void fopMsg_Execute(void*);
 static void fopMsg_IsDelete(void*);
 static void fopMsg_Delete(void*);
 static void fopMsg_Create(void*);
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 
 extern "C" static void fopMsg_Draw__FPv();
 extern "C" static void fopMsg_Execute__FPv();
@@ -52,7 +51,6 @@ void fpcMtd_Execute(process_method_class*, void*);
 void fpcMtd_IsDelete(process_method_class*, void*);
 void fpcMtd_Delete(process_method_class*, void*);
 void fpcMtd_Create(process_method_class*, void*);
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void fopMsgM_GetAppend__FPv();
 extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();

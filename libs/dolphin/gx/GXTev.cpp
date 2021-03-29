@@ -11,10 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 TEVCOpTableST1[20];
-extern "C" extern u8 TEVAOpTableST0[20];
-extern "C" extern u8 TEVAOpTableST1[20];
-
 extern "C" void GXSetTevOp();
 extern "C" void GXSetTevColorIn();
 extern "C" void GXSetTevAlphaIn();
@@ -38,8 +34,6 @@ extern "C" extern u8 TEVAOpTableST1[20];
 //
 // External References:
 //
-
-extern "C" extern void* __GXData;
 
 extern "C" extern void* __GXData;
 

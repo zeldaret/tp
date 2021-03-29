@@ -114,8 +114,6 @@ static void daObj_Rock_Delete(obj_rock_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void set_pos_check(obj_rock_class*, int);
 static void daObj_Rock_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_ROCK[12];
 
 extern "C" static void daObj_Rock_Draw__FP14obj_rock_class();
 extern "C" static void daObj_Rock_Execute__FP14obj_rock_class();
@@ -147,17 +145,6 @@ void MtxPosition(cXyz*, cXyz*);
 void MtxPush();
 void MtxPull();
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();

@@ -127,11 +127,6 @@ struct JAISe {
 // Forward References:
 //
 
-extern "C" extern char const* const JAISeMgr__stringBase0;
-extern "C" extern void* __vt__8JAISeMgr[5];
-extern "C" extern void* __vt__16JAISeCategoryMgr[5];
-extern "C" extern u8 data_80434084[16 + 4 /* padding */];
-
 extern "C" void isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
 extern "C" void releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
 extern "C" void JAISeMgr_calc___16JAISeCategoryMgrFv();
@@ -172,11 +167,6 @@ extern "C" extern u8 data_80434084[16 + 4 /* padding */];
 
 void JASReport(char const*, ...);
 void operator delete(void*);
-extern "C" extern void* __vt__5JAISe[22];
-extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80450B6C[4];
-extern "C" extern u8 data_80451310[8];
 
 extern "C" void __dt__16JAISeCategoryMgrFv();
 extern "C" void __ct__17JASGenericMemPoolFv();
@@ -283,7 +273,7 @@ asm JASMemPool__template0::~JASMemPool__template0() {
 
 /* ############################################################################################## */
 /* 80455788-8045578C 0004+00 s=1 e=0 z=0  None .sdata2    @822 */
-SECTION_SDATA2 static u32 lit_822 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_822 = 1.0f / 100.0f;
 
 /* 8029FC88-8029FD40 00B8+00 s=1 e=0 z=0  None .text
  * JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl               */
@@ -349,7 +339,7 @@ asm void JAISeCategoryMgr::pause(bool param_0) {
 
 /* ############################################################################################## */
 /* 8045578C-80455790 0004+00 s=4 e=0 z=0  None .sdata2    @1040 */
-SECTION_SDATA2 static u32 lit_1040 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1040 = 1.0f;
 
 /* 80455790-80455794 0004+00 s=4 e=0 z=0  None .sdata2    @1041 */
 SECTION_SDATA2 static u8 lit_1041[4] = {
@@ -360,7 +350,7 @@ SECTION_SDATA2 static u8 lit_1041[4] = {
 };
 
 /* 80455794-80455798 0004+00 s=4 e=0 z=0  None .sdata2    @1042 */
-SECTION_SDATA2 static u32 lit_1042 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_1042 = 0.5f;
 
 /* 8029FF18-802A0074 015C+00 s=1 e=0 z=0  None .text
  * JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity */

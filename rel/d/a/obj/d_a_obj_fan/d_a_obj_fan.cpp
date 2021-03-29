@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -150,7 +150,6 @@ static void daObjFan_create1st(daObjFan_c*);
 static void daObjFan_MoveBGDelete(daObjFan_c*);
 static void daObjFan_MoveBGExecute(daObjFan_c*);
 static void daObjFan_MoveBGDraw(daObjFan_c*);
-extern "C" extern void* g_profile_Obj_Fan[12];
 
 extern "C" static void searchTornado2__FPvPv();
 extern "C" void search_tornado__10daObjFan_cFv();
@@ -192,19 +191,6 @@ void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

@@ -14,9 +14,6 @@
 extern "C" extern u8 g_dComIfAc_gameInfo[8];
 extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
 
-extern "C" extern u8 g_dComIfAc_gameInfo[8];
-extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
-
 //
 // External References:
 //

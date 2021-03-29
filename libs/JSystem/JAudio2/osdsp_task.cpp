@@ -16,11 +16,6 @@ static void DsyncFrame3(u32, u32, u32, u32, u32);
 static void Dsp_Update_Request();
 void Dsp_Running_Check();
 void Dsp_Running_Start();
-extern "C" extern u8 DSP_prior_task[4];
-extern "C" extern u8 data_80451310[8];
-extern "C" extern u8 data_80451318[8];
-extern "C" extern u8 data_80451320[8];
-extern "C" extern u8 data_80451328[8];
 
 extern "C" void __DSPHandler();
 extern "C" void DsyncFrame2__FUlUlUl();
@@ -40,8 +35,6 @@ extern "C" extern u8 data_80451328[8];
 
 void DsyncFrame2ch(u32, u32, u32);
 void DsyncFrame4ch(u32, u32, u32, u32, u32);
-extern "C" extern u8 __DSP_first_task[4];
-extern "C" extern u8 __DSP_curr_task[4];
 
 extern "C" void DsyncFrame2ch__FUlUlUl();
 extern "C" void DsyncFrame4ch__FUlUlUlUlUl();

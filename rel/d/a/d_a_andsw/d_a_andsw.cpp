@@ -34,7 +34,6 @@ struct dSv_info_c {
 static void daAndsw_Execute(daAndsw_c*);
 static void daAndsw_Delete(daAndsw_c*);
 static void daAndsw_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_ANDSW[12];
 
 extern "C" void Create__9daAndsw_cFv();
 extern "C" void create__9daAndsw_cFv();
@@ -50,9 +49,6 @@ extern "C" extern void* g_profile_ANDSW[12];
 //
 
 void fopAcM_delete(fopAc_ac_c*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();

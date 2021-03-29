@@ -73,27 +73,21 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DBinding {};
-
-struct J2DMirror {};
-
-struct J2DMaterial {};
-
-struct J2DAnmBase {};
-
 struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmColor {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DAnmTexPattern {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmColor {};
-
 struct J2DAnmTransform {};
 
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmVtxColor {};
+struct J2DAnmBase {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -135,6 +129,12 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
 };
+
+struct J2DMirror {};
+
+struct J2DBinding {};
+
+struct J2DMaterial {};
 
 struct J2DPicture {
     /* 800202CC */ void setBlendRatio(f32, f32);
@@ -503,9 +503,7 @@ asm J2DPicture::J2DPicture(J2DPane* param_0, JSURandomInputStream* param_1, JKRA
 
 /* ############################################################################################## */
 /* 80456260-80456268 0008+00 s=1 e=0 z=0  None .sdata2    @1739 */
-SECTION_SDATA2 static u8 lit_1739[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1739 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802FC1D4-802FC708 0534+00 s=0 e=1 z=0  None .text
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial */
@@ -520,7 +518,7 @@ asm J2DPicture::J2DPicture(J2DPane* param_0, JSURandomInputStream* param_1, J2DM
 
 /* ############################################################################################## */
 /* 80456268-8045626C 0004+00 s=9 e=0 z=0  None .sdata2    @1767 */
-SECTION_SDATA2 static u32 lit_1767 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1767 = 1.0f;
 
 /* 802FC708-802FC800 00F8+00 s=0 e=20 z=1  None .text      __ct__10J2DPictureFPC7ResTIMG */
 #pragma push
@@ -566,9 +564,7 @@ SECTION_SDATA2 static u8 lit_2017[4] = {
 };
 
 /* 80456270-80456278 0008+00 s=7 e=0 z=0  None .sdata2    @2021 */
-SECTION_SDATA2 static u8 lit_2021[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2021 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802FCCDC-802FCD70 0094+00 s=1 e=0 z=0  None .text initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
  */
@@ -826,7 +822,7 @@ asm void J2DPicture::setBlendAlphaRatio(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 80456278-8045627C 0004+00 s=2 e=0 z=0  None .sdata2    @2758 */
-SECTION_SDATA2 static u32 lit_2758 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_2758 = 255.0f;
 
 /* 802FEAC4-802FEB94 00D0+00 s=4 e=0 z=0  None .text      setBlendKonstColor__10J2DPictureFv */
 #pragma push
@@ -873,7 +869,7 @@ asm void J2DPicture::setTexCoord(JUTTexture const* param_0, J2DBinding param_1, 
 
 /* ############################################################################################## */
 /* 8045627C-80456280 0004+00 s=1 e=0 z=0  None .sdata2    @2933 */
-SECTION_SDATA2 static u32 lit_2933 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2933 = 0.5f;
 
 /* 802FED84-802FF09C 0318+00 s=2 e=0 z=0  None .text
  * setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb */

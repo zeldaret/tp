@@ -17,16 +17,16 @@ struct Z2SpeechMgr2 {
 
 struct JAISoundID {};
 
+struct JAISoundHandle {};
+
+struct JAISound {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {};
-
-struct JAISound {};
 
 struct Z2SoundMgr {
     /* 802A9E80 */ Z2SoundMgr();
@@ -121,8 +121,6 @@ struct JAISeCategoryMgr {
 //
 
 void seqCallback(JASTrack*, u16);
-extern "C" extern char const* const Z2SoundMgr__stringBase0;
-extern "C" extern void* __vt__10Z2SoundMgr[3 + 1 /* padding */];
 
 extern "C" void seqCallback__FP8JASTrackUs();
 extern "C" void __ct__10Z2SoundMgrFv();
@@ -148,15 +146,6 @@ extern "C" extern void* __vt__10Z2SoundMgr[3 + 1 /* padding */];
 //
 
 void dComIfGs_staffroll_next_go();
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451340[8];
 
 extern "C" void dComIfGs_staffroll_next_go__Fv();
 extern "C" void setFIR__8JASTrackFPCs();
@@ -250,10 +239,10 @@ SECTION_DATA static void* lit_3690[22] = {
 };
 
 /* 80455838-8045583C 0004+00 s=5 e=0 z=0  None .sdata2    @3688 */
-SECTION_SDATA2 static u32 lit_3688 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3688 = 1.0f;
 
 /* 8045583C-80455840 0004+00 s=1 e=0 z=0  None .sdata2    @3689 */
-SECTION_SDATA2 static u32 lit_3689 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3689 = -1.0f;
 
 /* 802A9BC8-802A9E80 02B8+00 s=1 e=1 z=0  None .text      seqCallback__FP8JASTrackUs */
 #pragma push
@@ -301,7 +290,7 @@ SECTION_DEAD static char const* const pad_8039B9ED = "\0\0";
 #pragma pop
 
 /* 80455840-80455844 0004+00 s=1 e=0 z=0  None .sdata2    @3904 */
-SECTION_SDATA2 static u32 lit_3904 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_3904 = 3.0f / 10.0f;
 
 /* 80455844-80455848 0004+00 s=3 e=0 z=0  None .sdata2    @3905 */
 SECTION_SDATA2 static u8 lit_3905[4] = {
@@ -312,9 +301,7 @@ SECTION_SDATA2 static u8 lit_3905[4] = {
 };
 
 /* 80455848-80455850 0008+00 s=2 e=0 z=0  None .sdata2    @3909 */
-SECTION_SDATA2 static u8 lit_3909[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3909 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802A9EE8-802AA1B0 02C8+00 s=1 e=0 z=0  None .text
  * startSound__10Z2SoundMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */

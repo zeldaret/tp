@@ -38,9 +38,6 @@ struct mDoCPd_c {
 // Forward References:
 //
 
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-
 extern "C" void create__8mDoCPd_cFv();
 extern "C" void read__8mDoCPd_cFv();
 extern "C" void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad();
@@ -56,13 +53,6 @@ extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
 void mDoRst_resetCallBack(int, void*);
 void cLib_memSet(void*, int, u32);
 void* operator new(u32);
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
-extern "C" extern u32 data_80450580;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sAnalogMode__10JUTGamePad[4];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
 
 extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" void cLib_memSet__FPviUl();
@@ -116,10 +106,10 @@ asm void mDoCPd_c::read() {
 
 /* ############################################################################################## */
 /* 80451A20-80451A24 0004+00 s=1 e=0 z=0  None .sdata2    @3709 */
-SECTION_SDATA2 static u32 lit_3709 = 0x3D888889;
+SECTION_SDATA2 static f32 lit_3709 = 1.0f / 15.0f;
 
 /* 80451A24-80451A28 0004+00 s=1 e=0 z=0  None .sdata2    @3710 */
-SECTION_SDATA2 static u32 lit_3710 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3710 = 1.0f;
 
 /* 80451A28-80451A30 0004+04 s=1 e=0 z=0  None .sdata2    @3711 */
 SECTION_SDATA2 static f32 lit_3711[1 + 1 /* padding */] = {
@@ -129,9 +119,7 @@ SECTION_SDATA2 static f32 lit_3711[1 + 1 /* padding */] = {
 };
 
 /* 80451A30-80451A38 0008+00 s=1 e=0 z=0  None .sdata2    @3713 */
-SECTION_SDATA2 static u8 lit_3713[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3713 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80007B7C-80007CD0 0154+00 s=1 e=0 z=0  None .text
  * convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad */

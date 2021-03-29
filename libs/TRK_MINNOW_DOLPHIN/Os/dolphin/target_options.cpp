@@ -20,8 +20,6 @@ extern "C" void SetUseSerialIO();
 
 SECTION_BSS extern u8 data_8044F828[8];
 
-SECTION_BSS extern u8 data_8044F828[8];
-
 //
 // Declarations:
 //

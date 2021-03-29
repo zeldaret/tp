@@ -218,13 +218,6 @@ findUpperBound_binary_current__template3(JStudio::TFunctionValue_hermite::TItera
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q27JStudio22TFunctionValue_hermite[8];
-extern "C" extern void* __vt__Q27JStudio29TFunctionValue_list_parameter[8];
-extern "C" extern void* __vt__Q27JStudio19TFunctionValue_list[8];
-extern "C" extern void* __vt__Q27JStudio25TFunctionValue_transition[8];
-extern "C" extern void* __vt__Q27JStudio23TFunctionValue_constant[8];
-extern "C" extern void* __vt__Q27JStudio24TFunctionValue_composite[8];
-
 extern "C" void toFunction_outside__Q27JStudio14TFunctionValueFi();
 extern "C" void __ct__Q27JStudio14TFunctionValueFv();
 extern "C" void __dt__Q27JStudio14TFunctionValueFv();
@@ -326,7 +319,6 @@ extern "C" extern void* __vt__Q27JStudio24TFunctionValue_composite[8];
 //
 
 void operator delete(void*);
-extern "C" extern u32 __float_nan;
 
 extern "C" void __dl__FPv();
 extern "C" void func_802DCCD0();
@@ -495,19 +487,13 @@ SECTION_SDATA2 static u8 lit_652[8] = {
 };
 
 /* 80455408-80455410 0008+00 s=5 e=0 z=0  None .sdata2    @792 */
-SECTION_SDATA2 static u8 lit_792[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_792 = 1.0;
 
 /* 80455410-80455418 0008+00 s=1 e=0 z=0  None .sdata2    @793 */
-SECTION_SDATA2 static u8 lit_793[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_793 = 3.0;
 
 /* 80455418-80455420 0008+00 s=1 e=0 z=0  None .sdata2    @794 */
-SECTION_SDATA2 static u8 lit_794[8] = {
-    0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_794 = -2.0;
 
 /* 80281710-80281774 0064+00 s=4 e=0 z=0  None .text
  * interpolateValue_hermite__Q27JStudio13functionvalueFddddddd  */
@@ -524,19 +510,13 @@ asm void JStudio::functionvalue::interpolateValue_hermite(f64 param_0, f64 param
 
 /* ############################################################################################## */
 /* 80455420-80455428 0008+00 s=1 e=0 z=0  None .sdata2    @799 */
-SECTION_SDATA2 static u8 lit_799[8] = {
-    0x3F, 0xC5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
-};
+SECTION_SDATA2 static f64 lit_799 = 1.0 / 6.0;
 
 /* 80455428-80455430 0008+00 s=5 e=0 z=0  None .sdata2    @800 */
-SECTION_SDATA2 static u8 lit_800[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_800 = 0.5;
 
 /* 80455430-80455438 0008+00 s=1 e=0 z=0  None .sdata2    @801 */
-SECTION_SDATA2 static u8 lit_801[8] = {
-    0x3F, 0xE5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
-};
+SECTION_SDATA2 static f64 lit_801 = 2.0 / 3.0;
 
 /* 80281774-802817D8 0064+00 s=1 e=0 z=0  None .text
  * interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd */
@@ -566,9 +546,7 @@ asm void JStudio::functionvalue::interpolateValue_BSpline_nonuniform(f64 param_0
 
 /* ############################################################################################## */
 /* 80455438-80455440 0008+00 s=3 e=0 z=0  None .sdata2    @842 */
-SECTION_SDATA2 static u8 lit_842[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_842 = 2.0;
 
 /* 802818B8-80281918 0060+00 s=1 e=0 z=0  None .text
  * extrapolateParameter_turn__Q27JStudio13functionvalueFdd      */
@@ -594,9 +572,7 @@ asm void JStudio::TFunctionValueAttribute_range::range_initialize() {
 
 /* ############################################################################################## */
 /* 80455440-80455448 0008+00 s=1 e=0 z=0  None .sdata2    @867 */
-SECTION_SDATA2 static u8 lit_867[8] = {
-    0xBF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_867 = -1.0;
 
 /* 8028194C-802819F4 00A8+00 s=4 e=0 z=0  None .text
  * range_prepare__Q27JStudio29TFunctionValueAttribute_rangeFv   */
@@ -969,9 +945,7 @@ asm void JStudio::TFunctionValue_list::prepare() {
 
 /* ############################################################################################## */
 /* 80455448-80455450 0008+00 s=1 e=0 z=0  None .sdata2    @1517 */
-SECTION_SDATA2 static u8 lit_1517[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1517 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80282858-80282C10 03B8+00 s=1 e=0 z=0  None .text getValue__Q27JStudio19TFunctionValue_listFd
  */

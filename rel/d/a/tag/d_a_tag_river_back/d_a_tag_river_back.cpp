@@ -64,8 +64,6 @@ static void daTagRiverBack_Execute(daTagRiverBack_c*);
 static void daTagRiverBack_Delete(daTagRiverBack_c*);
 static void daTagRiverBack_Create(daTagRiverBack_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Tag_RiverBack[12];
 
 extern "C" void Create__16daTagRiverBack_cFv();
 extern "C" void create__16daTagRiverBack_cFv();
@@ -92,11 +90,6 @@ void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void dStage_changeScene(int, f32, u32, s8, s16, int);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D5FA68[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();

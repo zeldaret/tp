@@ -13,8 +13,6 @@
 
 extern void* const data_809A6890[2];
 
-extern void* const data_809A6890[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_df_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 809A6890-809A6898 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_809A6890[2] = {
+    (void*)__sinit_d_a_npc_df_cpp,
+    (void*)NULL,
+};

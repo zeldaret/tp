@@ -37,9 +37,9 @@ struct J2DPicture {
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmVisibilityFull {};
-
 struct J2DAnmVtxColor {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DPane {
     /* 80256018 */ void setAnimation(J2DAnmVtxColor*);

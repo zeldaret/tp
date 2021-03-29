@@ -13,15 +13,15 @@
 
 struct JAISoundID {};
 
+struct JAISoundHandle {
+    /* 802A2184 */ void releaseSound();
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
-};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
 };
 
 struct Z2SpeechStarter {
@@ -86,8 +86,6 @@ struct JAISound {
 // Forward References:
 //
 
-extern "C" extern void* __vt__15Z2SpeechStarter[5];
-
 extern "C" void __ct__12Z2SpeechMgr2Fv();
 extern "C" void __dt__15Z2SpeechStarterFv();
 extern "C" void setString__12Z2SpeechMgr2FPCUssUcUs();
@@ -109,14 +107,6 @@ extern "C" extern void* __vt__15Z2SpeechStarter[5];
 
 void dComIfGp_getReverb(int);
 void operator delete(void*);
-extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void dComIfGp_getReverb__Fi();
 extern "C" void releaseSound__14JAISoundHandleFv();
@@ -449,10 +439,10 @@ SECTION_SDATA2 static u8 lit_3836[4] = {
 };
 
 /* 80455F34-80455F38 0004+00 s=6 e=0 z=0  None .sdata2    @3837 */
-SECTION_SDATA2 static u32 lit_3837 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3837 = 1.0f;
 
 /* 80455F38-80455F3C 0004+00 s=4 e=0 z=0  None .sdata2    @3838 */
-SECTION_SDATA2 static u32 lit_3838 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_3838 = -1.0f;
 
 /* 802CBF60-802CC190 0230+00 s=1 e=2 z=0  None .text      setTextCount__12Z2SpeechMgr2Fs */
 #pragma push
@@ -466,12 +456,10 @@ asm void Z2SpeechMgr2::setTextCount(s16 param_0) {
 
 /* ############################################################################################## */
 /* 80455F3C-80455F40 0004+00 s=2 e=0 z=0  None .sdata2    @3885 */
-SECTION_SDATA2 static u32 lit_3885 = 0x42FE0000;
+SECTION_SDATA2 static f32 lit_3885 = 127.0f;
 
 /* 80455F40-80455F48 0008+00 s=2 e=0 z=0  None .sdata2    @3887 */
-SECTION_SDATA2 static u8 lit_3887[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3887 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802CC190-802CC2FC 016C+00 s=1 e=1 z=0  None .text      speakOneWord__12Z2SpeechMgr2Fb */
 #pragma push
@@ -1549,9 +1537,7 @@ SECTION_RODATA static void* const sPrm__8Z2MdnPrm[51] = {
 };
 
 /* 80455F48-80455F50 0008+00 s=3 e=0 z=0  None .sdata2    @4083 */
-SECTION_SDATA2 static u8 lit_4083[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4083 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80456BA8-80456BAC 0002+02 s=1 e=0 z=0  None .sbss2     @4003 */
 SECTION_SBSS2 static u8 lit_4003[2 + 2 /* padding */];
@@ -1623,10 +1609,10 @@ asm Z2SpeechStarter::Z2SpeechStarter() {
 
 /* ############################################################################################## */
 /* 80455F50-80455F54 0004+00 s=1 e=0 z=0  None .sdata2    @4571 */
-SECTION_SDATA2 static u32 lit_4571 = 0x3D8F5C29;
+SECTION_SDATA2 static f32 lit_4571 = 7.0f / 100.0f;
 
 /* 80455F54-80455F58 0004+00 s=1 e=0 z=0  None .sdata2    @4572 */
-SECTION_SDATA2 static u32 lit_4572 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4572 = 0.5f;
 
 /* 802CCFF8-802CD248 0250+00 s=1 e=0 z=0  None .text
  * startSound__15Z2SpeechStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */

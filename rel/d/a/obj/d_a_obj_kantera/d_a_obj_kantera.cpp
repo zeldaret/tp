@@ -98,13 +98,13 @@ struct dBgS_AcchCir {
     /* 80C38E98 */ ~dBgS_AcchCir();
 };
 
-struct csXyz {};
-
-struct dBgS {};
-
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct csXyz {};
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -152,9 +152,6 @@ static void daItemKantera_Draw(daItemKantera_c*);
 static void daItemKantera_Execute(daItemKantera_c*);
 static void daItemKantera_Delete(daItemKantera_c*);
 static void daItemKantera_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Kantera[12];
 
 extern "C" static void Reflect__FP4cXyzRC13cBgS_PolyInfof();
 extern "C" void __dt__8cM3dGPlaFv();
@@ -205,20 +202,6 @@ void CheckFieldItemCreateHeap(fopAc_ac_c*);
 void checkItemGet(u8, int);
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 data_80C39860[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();

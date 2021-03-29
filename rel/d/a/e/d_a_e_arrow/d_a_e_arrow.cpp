@@ -26,8 +26,6 @@ struct fast_create_request {};
 
 struct e_arrow_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -36,6 +34,8 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 8067CB68 */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct daAlink_c {
     /* 800DC8C4 */ void setArrowShieldActor(fopAc_ac_c*, int);
@@ -222,50 +222,6 @@ static bool daE_ARROW_IsDelete(e_arrow_class*);
 static void daE_ARROW_Delete(e_arrow_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_ARROW_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_E_ARROW[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_8067EB90[4];
-extern "C" extern u8 data_8067EB94[4];
-extern "C" extern u8 data_8067EB98[4];
-extern "C" extern u8 data_8067EB9C[4];
-extern "C" extern u8 data_8067EBA0[4];
-extern "C" extern u8 data_8067EBA4[4];
-extern "C" extern u8 data_8067EBA8[4];
-extern "C" extern u8 data_8067EBAC[4];
-extern "C" extern u8 data_8067EBB0[4];
-extern "C" extern u8 data_8067EBB4[4];
-extern "C" extern u8 data_8067EBB8[4];
-extern "C" extern u8 data_8067EBBC[4];
-extern "C" extern u8 data_8067EBC0[4];
-extern "C" extern u8 data_8067EBC4[4];
-extern "C" extern u8 data_8067EBC8[4];
-extern "C" extern u8 data_8067EBCC[4];
-extern "C" extern u8 data_8067EBD0[4];
-extern "C" extern u8 data_8067EBD4[4];
-extern "C" extern u8 data_8067EBD8[4];
-extern "C" extern u8 data_8067EBDC[4];
-extern "C" extern u8 data_8067EBE0[4];
-extern "C" extern u8 data_8067EBE4[4];
-extern "C" extern u8 data_8067EBE8[4];
-extern "C" extern u8 data_8067EBEC[4];
-extern "C" extern u8 data_8067EBF0[4];
-extern "C" extern u8 data_8067EBF4[4];
 
 extern "C" static void daE_ARROW_Draw__FP13e_arrow_class();
 extern "C" static void fire_eff_set__FP13e_arrow_class();
@@ -375,23 +331,6 @@ void cLib_addCalc2(f32*, f32, f32, f32);
 void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void MtxPosition(cXyz*, cXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

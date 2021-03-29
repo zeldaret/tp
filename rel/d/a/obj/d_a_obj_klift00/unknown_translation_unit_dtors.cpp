@@ -13,8 +13,6 @@
 
 extern u8 const data_8058C37C[4];
 
-extern u8 const data_8058C37C[4];
-
 //
 // External References:
 //
@@ -26,3 +24,10 @@ extern u8 const data_8058C37C[4];
 /* ############################################################################################## */
 #pragma section ".dtors$10"
 #pragma section ".dtors$15"
+/* 8058C37C-8058C380 0004+00 s=0 e=1 z=0  None .dtors     None */
+u8 const data_8058C37C[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

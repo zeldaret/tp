@@ -30,11 +30,11 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
+struct J3DModelData {};
 
 struct J3DAnmTransform {};
 
-struct J3DModelData {};
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -52,11 +52,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -143,8 +143,6 @@ static bool daObj_Sw_IsDelete(obj_sw_class*);
 static void daObj_Sw_Delete(obj_sw_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Sw_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_SW[12];
 
 extern "C" static void daObj_Sw_Draw__FP12obj_sw_class();
 extern "C" static void s_ks_sub__FPvPv();
@@ -198,17 +196,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

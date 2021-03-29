@@ -11,19 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 lit_473[15 + 1 /* padding */];
-extern "C" extern u8 lit_474[16];
-extern "C" extern u8 lit_475[16];
-extern "C" extern u8 lit_476[16];
-extern "C" extern u8 lit_477[17 + 3 /* padding */];
-extern "C" extern u8 lit_478[17 + 3 /* padding */];
-extern "C" extern u8 lit_479[12];
-extern "C" extern u8 lit_485[9 + 3 /* padding */];
-extern "C" extern u8 lit_486[13 + 3 /* padding */];
-extern "C" extern u8 lit_487[18 + 2 /* padding */];
-extern "C" extern u8 lit_489[14 + 2 /* padding */];
-extern "C" extern u8 lit_490[14 + 6 /* padding */];
-
 extern "C" static void SetExiInterruptMask();
 extern "C" void EXIImm();
 extern "C" void EXIImmEx();
@@ -63,8 +50,6 @@ extern "C" extern u8 lit_490[14 + 6 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 __OSInIPL[4 + 4 /* padding */];
 
 extern "C" void OSGetConsoleType();
 extern "C" void __OSGetDIConfig();

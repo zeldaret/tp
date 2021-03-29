@@ -72,7 +72,7 @@ asm void cBgW_BgId::ChkUsed() const {
 
 /* ############################################################################################## */
 /* 804550E8-804550EC 0004+00 s=1 e=0 z=0  None .sdata2    @2242 */
-SECTION_SDATA2 static u32 lit_2242 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2242 = 0.5f;
 
 /* 802681E4-802681FC 0018+00 s=1 e=22 z=8  None .text      cBgW_CheckBGround__Ff */
 #pragma push
@@ -86,7 +86,7 @@ asm void cBgW_CheckBGround(f32 param_0) {
 
 /* ############################################################################################## */
 /* 804550EC-804550F0 0004+00 s=1 e=0 z=0  None .sdata2    @2249 */
-SECTION_SDATA2 static u32 lit_2249 = 0xBF4CCCCD;
+SECTION_SDATA2 static f32 lit_2249 = -4.0f / 5.0f;
 
 /* 802681FC-80268210 0014+00 s=1 e=6 z=0  None .text      cBgW_CheckBRoof__Ff */
 #pragma push

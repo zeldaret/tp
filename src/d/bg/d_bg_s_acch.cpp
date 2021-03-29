@@ -62,9 +62,6 @@ struct dBgS_AcchCir {
 
 struct csXyz {};
 
-struct Vec {};
-
-struct dBgS_Acch;
 struct cBgS_PolyInfo {
     /* 80268074 */ cBgS_PolyInfo();
     /* 802680B0 */ ~cBgS_PolyInfo();
@@ -73,6 +70,7 @@ struct cBgS_PolyInfo {
     /* 802681A4 */ void SetPolyIndex(int);
 };
 
+struct dBgS_Acch;
 struct dBgS {
     /* 8007524C */ void WallCorrect(dBgS_Acch*);
     /* 80075374 */ void WallCorrectSort(dBgS_Acch*);
@@ -81,6 +79,8 @@ struct dBgS {
     /* 80075774 */ void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
     /* 80075B84 */ void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
 };
+
+struct Vec {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -159,8 +159,6 @@ struct cBgS {
 // Forward References:
 //
 
-extern "C" extern void* __vt__12dBgS_AcchCir[3];
-
 extern "C" void __ct__12dBgS_AcchCirFv();
 extern "C" void ClrWallHit__12dBgS_AcchCirFv();
 extern "C" void SetWallR__12dBgS_AcchCirFf();
@@ -209,13 +207,6 @@ extern "C" extern void* __vt__12dBgS_AcchCir[3];
 
 void cBgW_CheckBGround(f32);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__11dBgS_WtrChk[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450F68[8];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
 extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
@@ -373,16 +364,16 @@ asm dBgS_Acch::~dBgS_Acch() {
 
 /* ############################################################################################## */
 /* 804526C4-804526C8 0004+00 s=5 e=0 z=0  None .sdata2    @4089 */
-SECTION_SDATA2 static u32 lit_4089 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_4089 = -1000000000.0f;
 
 /* 804526C8-804526CC 0004+00 s=1 e=0 z=0  None .sdata2    @4090 */
-SECTION_SDATA2 static u32 lit_4090 = 0x42700000;
+SECTION_SDATA2 static f32 lit_4090 = 60.0f;
 
 /* 804526CC-804526D0 0004+00 s=3 e=0 z=0  None .sdata2    @4091 */
-SECTION_SDATA2 static u32 lit_4091 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_4091 = 1000000000.0f;
 
 /* 804526D0-804526D4 0004+00 s=1 e=0 z=0  None .sdata2    @4092 */
-SECTION_SDATA2 static u32 lit_4092 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_4092 = 1000.0f;
 
 /* 800760A0-800761CC 012C+00 s=0 e=4 z=338  None .text      __ct__9dBgS_AcchFv */
 #pragma push
@@ -466,7 +457,7 @@ asm void dBgS_Acch::GroundRoofProc(dBgS& param_0) {
 
 /* ############################################################################################## */
 /* 804526D4-804526D8 0004+00 s=1 e=0 z=0  None .sdata2    @4424 */
-SECTION_SDATA2 static u32 lit_4424 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4424 = 1.0f;
 
 /* 80076624-80076AAC 0488+00 s=1 e=0 z=0  None .text      LineCheck__9dBgS_AcchFR4dBgS */
 #pragma push
@@ -480,10 +471,10 @@ asm void dBgS_Acch::LineCheck(dBgS& param_0) {
 
 /* ############################################################################################## */
 /* 804526D8-804526DC 0004+00 s=1 e=0 z=0  None .sdata2    @4554 */
-SECTION_SDATA2 static u32 lit_4554 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4554 = 50.0f;
 
 /* 804526DC-804526E0 0004+00 s=1 e=0 z=0  None .sdata2    @4555 */
-SECTION_SDATA2 static u32 lit_4555 = 0x49742400;
+SECTION_SDATA2 static f32 lit_4555 = 1000000.0f;
 
 /* 80076AAC-80076F84 04D8+00 s=0 e=15 z=414  None .text      CrrPos__9dBgS_AcchFR4dBgS */
 #pragma push

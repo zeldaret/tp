@@ -53,8 +53,6 @@ struct Vec {};
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_insect__stringBase0;
-
 extern "C" void __ct__9dInsect_cFv();
 extern "C" void Insect_GetDemoMain__9dInsect_cFv();
 extern "C" void CalcZBuffer__9dInsect_cFf();
@@ -71,8 +69,6 @@ void fopAcM_orderItemEvent(fopAc_ac_c*, u16, u16);
 void fopAcM_createItemForTrBoxDemo(cXyz const*, int, int, int, csXyz const*, cXyz const*);
 void fopAcM_createItem(cXyz const*, int, int, int, csXyz const*, cXyz const*, int);
 void fopAcM_cancelCarryNow(fopAc_ac_c*);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void mDoLib_pos2camera__FP3VecP3Vec();
@@ -136,7 +132,7 @@ asm void dInsect_c::Insect_GetDemoMain() {
 
 /* ############################################################################################## */
 /* 804535E0-804535E4 0004+00 s=1 e=0 z=0  None .sdata2    @3871 */
-SECTION_SDATA2 static u32 lit_3871 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_3871 = 20.0f;
 
 /* 804535E4-804535E8 0004+00 s=1 e=0 z=0  None .sdata2    @3872 */
 SECTION_SDATA2 static u8 lit_3872[4] = {
@@ -147,16 +143,16 @@ SECTION_SDATA2 static u8 lit_3872[4] = {
 };
 
 /* 804535E8-804535EC 0004+00 s=1 e=0 z=0  None .sdata2    @3873 */
-SECTION_SDATA2 static u32 lit_3873 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3873 = 608.0f;
 
 /* 804535EC-804535F0 0004+00 s=1 e=0 z=0  None .sdata2    @3874 */
-SECTION_SDATA2 static u32 lit_3874 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3874 = 448.0f;
 
 /* 804535F0-804535F4 0004+00 s=1 e=0 z=0  None .sdata2    @3875 */
-SECTION_SDATA2 static u32 lit_3875 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_3875 = -10.0f;
 
 /* 804535F4-804535F8 0004+00 s=1 e=0 z=0  None .sdata2    @3876 */
-SECTION_SDATA2 static u32 lit_3876 = 0x4B7FFFFF;
+SECTION_SDATA2 static f32 lit_3876 = 16777215.0f;
 
 /* 804535F8-80453600 0004+04 s=1 e=0 z=0  None .sdata2    @3877 */
 SECTION_SDATA2 static f32 lit_3877[1 + 1 /* padding */] = {

@@ -13,14 +13,14 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 80D0C318 */ ~csXyz();
-    /* 80D0CE60 */ csXyz();
-};
-
 struct cXyz {
     /* 80D0C2DC */ ~cXyz();
     /* 80D0CE64 */ cXyz();
+};
+
+struct csXyz {
+    /* 80D0C318 */ ~csXyz();
+    /* 80D0CE60 */ csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -154,44 +154,6 @@ static void daObjTHASHI_Delete(daObjTHASHI_c*);
 static void daObjTHASHI_Draw(daObjTHASHI_c*);
 static void daObjTHASHI_Execute(daObjTHASHI_c*);
 static bool daObjTHASHI_IsDelete(daObjTHASHI_c*);
-extern "C" extern u8 const lit_3693[4];
-extern "C" extern u32 const lit_3694;
-extern "C" extern u32 const lit_3695[1 + 1 /* padding */];
-extern "C" extern u8 const lit_3697[8];
-extern "C" extern u32 const lit_3795;
-extern "C" extern u32 const lit_3796;
-extern "C" extern u32 const lit_3797;
-extern "C" extern u32 const lit_3833;
-extern "C" extern u32 const lit_3834;
-extern "C" extern u32 const lit_3855;
-extern "C" extern u32 const lit_3856;
-extern "C" extern u32 const lit_3857;
-extern "C" extern u32 const lit_3858;
-extern "C" extern u32 const lit_3859;
-extern "C" extern u32 const lit_3860;
-extern "C" extern u32 const lit_3861;
-extern "C" extern u32 const lit_3862;
-extern "C" extern u32 const lit_3863;
-extern "C" extern u32 const lit_3864;
-extern "C" extern u32 const lit_3947;
-extern "C" extern u32 const lit_3973;
-extern "C" extern u32 const lit_3974;
-extern "C" extern u32 const lit_3975;
-extern "C" extern u32 const lit_3976;
-extern "C" extern u32 const lit_3977;
-extern "C" extern u32 const lit_3978;
-extern "C" extern u32 const lit_4017;
-extern "C" extern u32 const lit_4018;
-extern "C" extern u32 const lit_4019[1 + 1 /* padding */];
-extern "C" extern u8 const lit_4270[8];
-extern "C" extern u8 const lit_4271[8];
-extern "C" extern u8 const lit_4272[8];
-extern "C" extern u32 const lit_4310;
-extern "C" extern u32 const lit_4433;
-extern "C" extern u32 const lit_4446;
-extern "C" extern u32 const lit_4447;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_THASHI[12];
 
 extern "C" void initCcCylinder__13daObjTHASHI_cFv();
 extern "C" static void daObjTHASHI_Create__FP10fopAc_ac_c();
@@ -272,21 +234,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

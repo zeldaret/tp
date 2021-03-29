@@ -27,8 +27,6 @@ extern "C" void __GXFlushTextureState();
 
 extern "C" extern void* __GXData;
 
-extern "C" extern void* __GXData;
-
 //
 // Declarations:
 //

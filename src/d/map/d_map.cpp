@@ -31,6 +31,8 @@ struct renderingPlusDoorAndCursor_c {
     /* 80040ADC */ void getIconPosition(dTres_c::typeGroupData_c*) const;
 };
 
+struct Vec {};
+
 struct dDrawPath_c {
     struct room_class {};
 
@@ -48,8 +50,6 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
-
-struct Vec {};
 
 struct renderingDAmap_c {
     /* 8002B150 */ ~renderingDAmap_c();
@@ -197,11 +197,6 @@ struct dDlst_base_c {
 // Forward References:
 //
 
-extern "C" extern char const* const d_map_d_map__stringBase0;
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
-extern "C" extern void* __vt__15dRenderingMap_c[23];
-
 extern "C" void getIconSize__15renderingAmap_cCFUc();
 extern "C" void draw__15renderingAmap_cFv();
 extern "C" void getDispType__15renderingAmap_cCFv();
@@ -284,23 +279,6 @@ void* operator new(u32, int);
 void* operator new[](u32, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
-extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" extern void* __vt__19renderingPlusDoor_c[41];
-extern "C" extern void* __vt__28renderingPlusDoorAndCursor_c[47];
-extern "C" extern void* __vt__16renderingDAmap_c[38];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 mNextRoomNo__10dMapInfo_c;
-extern "C" extern u8 data_80450E58[4];
-extern "C" extern u8 data_80450E60[4];
-extern "C" extern u8 mMinX__8dMpath_c[4];
-extern "C" extern u8 mMaxX__8dMpath_c[4];
-extern "C" extern u8 mMinZ__8dMpath_c[4];
-extern "C" extern u8 mMaxZ__8dMpath_c[4];
 
 extern "C" void dComIfGp_isLightDropMapVisible__Fv();
 extern "C" void isTbox__12dSv_memBit_cCFi();
@@ -408,10 +386,10 @@ asm void renderingAmap_c::getIconSize(u8 param_0) const {
 static u8 m_res__22dMap_HIO_prm_res_dst_s[4 + 4 /* padding */];
 
 /* 80451CA0-80451CA4 0004+00 s=4 e=0 z=0  None .sdata2    @3745 */
-SECTION_SDATA2 static u32 lit_3745 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3745 = 0.5f;
 
 /* 80451CA4-80451CA8 0004+00 s=1 e=0 z=0  None .sdata2    @3746 */
-SECTION_SDATA2 static u32 lit_3746 = 0x47800000;
+SECTION_SDATA2 static f32 lit_3746 = 65536.0f;
 
 /* 80451CA8-80451CB0 0004+04 s=1 e=0 z=0  None .sdata2    @3747 */
 SECTION_SDATA2 static f32 lit_3747[1 + 1 /* padding */] = {
@@ -421,14 +399,10 @@ SECTION_SDATA2 static f32 lit_3747[1 + 1 /* padding */] = {
 };
 
 /* 80451CB0-80451CB8 0008+00 s=5 e=0 z=0  None .sdata2    @3749 */
-SECTION_SDATA2 static u8 lit_3749[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3749 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80451CB8-80451CC0 0008+00 s=4 e=0 z=0  None .sdata2    @3751 */
-SECTION_SDATA2 static u8 lit_3751[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3751 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 800284D0-800288C4 03F4+00 s=2 e=0 z=0  None .text      draw__15renderingAmap_cFv */
 #pragma push
@@ -883,7 +857,7 @@ bool dMap_c::isSpecialOutline() {
 
 /* ############################################################################################## */
 /* 80451CE0-80451CE4 0004+00 s=4 e=0 z=0  None .sdata2    @4284 */
-SECTION_SDATA2 static u32 lit_4284 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4284 = 1.0f;
 
 /* 8002974C-800297A8 005C+00 s=1 e=0 z=0  None .text      copyPalette__6dMap_cFv */
 #pragma push
@@ -1102,7 +1076,7 @@ asm void dMap_c::calcMapCenterXZ(int param_0, f32* param_1, f32* param_2) {
 
 /* ############################################################################################## */
 /* 80451CE8-80451CEC 0004+00 s=1 e=0 z=0  None .sdata2    @4503 */
-SECTION_SDATA2 static u32 lit_4503 = 0x4628C000;
+SECTION_SDATA2 static f32 lit_4503 = 10800.0f;
 
 /* 80029E1C-80029F84 0168+00 s=1 e=0 z=0  None .text      calcMapCmPerTexel__6dMap_cFiPf */
 #pragma push
@@ -1186,19 +1160,19 @@ asm void dMap_c::isDrawRoomIcon(int param_0, int param_1) const {
 
 /* ############################################################################################## */
 /* 80451CEC-80451CF0 0004+00 s=1 e=0 z=0  None .sdata2    @4688 */
-SECTION_SDATA2 static u32 lit_4688 = 0xC567E000;
+SECTION_SDATA2 static f32 lit_4688 = -3710.0f;
 
 /* 80451CF0-80451CF4 0004+00 s=1 e=0 z=0  None .sdata2    @4689 */
-SECTION_SDATA2 static u32 lit_4689 = 0xC6AEFA00;
+SECTION_SDATA2 static f32 lit_4689 = -22397.0f;
 
 /* 80451CF4-80451CF8 0004+00 s=1 e=0 z=0  None .sdata2    @4690 */
-SECTION_SDATA2 static u32 lit_4690 = 0x42700000;
+SECTION_SDATA2 static f32 lit_4690 = 60.0f;
 
 /* 80451CF8-80451CFC 0004+00 s=1 e=0 z=0  None .sdata2    @4691 */
-SECTION_SDATA2 static u32 lit_4691 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4691 = 5.0f;
 
 /* 80451CFC-80451D00 0004+00 s=1 e=0 z=0  None .sdata2    @4692 */
-SECTION_SDATA2 static u32 lit_4692 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_4692 = 20.0f;
 
 /* 8002A32C-8002AB54 0828+00 s=1 e=1 z=0  None .text      _move__6dMap_cFffif */
 #pragma push

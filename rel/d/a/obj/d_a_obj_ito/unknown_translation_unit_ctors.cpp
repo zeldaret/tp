@@ -13,8 +13,6 @@
 
 extern void* const data_8047D7FC[2];
 
-extern void* const data_8047D7FC[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_ito_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 8047D7FC-8047D804 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_8047D7FC[2] = {
+    (void*)__sinit_d_a_obj_ito_cpp,
+    (void*)NULL,
+};

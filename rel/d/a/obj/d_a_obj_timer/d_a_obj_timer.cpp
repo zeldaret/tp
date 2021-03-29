@@ -57,9 +57,6 @@ struct Z2SeMgr {
 // Forward References:
 //
 
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Timer[12];
-
 extern "C" void _create__Q210daObjTimer5Act_cFv();
 extern "C" bool _delete__Q210daObjTimer5Act_cFv();
 extern "C" void mode_wait_init__Q210daObjTimer5Act_cFv();
@@ -82,11 +79,6 @@ extern "C" extern void* g_profile_Obj_Timer[12];
 
 void fopAcM_delete(fopAc_ac_c*);
 void fopDwTg_DrawQTo(create_tag_class*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_804856E8[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();

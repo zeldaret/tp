@@ -25,9 +25,9 @@ struct J3DTevKColorAnm {};
 
 struct J3DTevColorAnm {};
 
-struct J3DMaterial {};
-
 struct J3DMatColorAnm {};
+
+struct J3DMaterial {};
 
 struct J3DMaterialAnm {
     /* 800A4820 */ ~J3DMaterialAnm();
@@ -52,8 +52,6 @@ struct J3DAnmTevRegKey {
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
 
 extern "C" void initialize__14J3DMaterialAnmFv();
 extern "C" void calc__14J3DMaterialAnmCFP11J3DMaterial();

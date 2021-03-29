@@ -48,8 +48,6 @@ struct J3DDrawMtxData {
 // Forward References:
 //
 
-extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
-
 extern "C" void __ct__12J3DJointTreeFv();
 extern "C" void
 makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable();
@@ -64,8 +62,6 @@ extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 mMtxBuffer__10J3DMtxCalc[4];
-extern "C" extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__14J3DDrawMtxDataFv();

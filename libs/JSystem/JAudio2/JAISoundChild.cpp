@@ -43,7 +43,7 @@ extern "C" void assignExtBuffer__8JASTrackFUlP14JASSoundParams();
 
 /* ############################################################################################## */
 /* 804557D8-804557DC 0004+00 s=1 e=0 z=0  None .sdata2    @689 */
-SECTION_SDATA2 static u32 lit_689 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_689 = 1.0f;
 
 /* 804557DC-804557E0 0004+00 s=1 e=0 z=0  None .sdata2    @690 */
 SECTION_SDATA2 static u8 lit_690[4] = {

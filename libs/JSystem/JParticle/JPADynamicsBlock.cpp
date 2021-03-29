@@ -50,8 +50,6 @@ extern "C" void create__16JPADynamicsBlockFP18JPAEmitterWorkData();
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-
 extern "C" void createParticle__14JPABaseEmitterFv();
 extern "C" extern u8 sincosTable___5JMath[65536];
 
@@ -69,7 +67,7 @@ SECTION_SDATA2 static u8 lit_2287[4] = {
 };
 
 /* 80455314-80455318 0004+00 s=7 e=0 z=0  None .sdata2    @2288 */
-SECTION_SDATA2 static u32 lit_2288 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2288 = 1.0f;
 
 /* 80455318-80455320 0004+04 s=3 e=0 z=0  None .sdata2    @2289 */
 SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
@@ -90,9 +88,7 @@ asm static void JPAVolumePoint(JPAEmitterWorkData* param_0) {
 
 /* ############################################################################################## */
 /* 80455320-80455328 0008+00 s=6 e=0 z=0  None .sdata2    @2321 */
-SECTION_SDATA2 static u8 lit_2321[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027B220-8027B33C 011C+00 s=1 e=0 z=0  None .text      JPAVolumeLine__FP18JPAEmitterWorkData */
 #pragma push
@@ -133,9 +129,7 @@ SECTION_SDATA2 static f32 lit_2501[1 + 1 /* padding */] = {
 };
 
 /* 80455330-80455338 0008+00 s=1 e=0 z=0  None .sdata2    @2503 */
-SECTION_SDATA2 static u8 lit_2503[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2503 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8027B5F0-8027B87C 028C+00 s=1 e=0 z=0  None .text      JPAVolumeSphere__FP18JPAEmitterWorkData */
 #pragma push

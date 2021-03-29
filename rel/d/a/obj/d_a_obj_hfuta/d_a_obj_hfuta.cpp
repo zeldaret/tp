@@ -38,11 +38,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -87,49 +87,6 @@ static void daObjFuta_create1st(daObjFuta_c*);
 static void daObjFuta_MoveBGDelete(daObjFuta_c*);
 static void daObjFuta_MoveBGExecute(daObjFuta_c*);
 static void daObjFuta_MoveBGDraw(daObjFuta_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Hfuta[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80C1F2DC[4];
-extern "C" extern u8 data_80C1F2E0[4];
-extern "C" extern u8 data_80C1F2E4[4];
-extern "C" extern u8 data_80C1F2E8[4];
-extern "C" extern u8 data_80C1F2EC[4];
-extern "C" extern u8 data_80C1F2F0[4];
-extern "C" extern u8 data_80C1F2F4[4];
-extern "C" extern u8 data_80C1F2F8[4];
-extern "C" extern u8 data_80C1F2FC[4];
-extern "C" extern u8 data_80C1F300[4];
-extern "C" extern u8 data_80C1F304[4];
-extern "C" extern u8 data_80C1F308[4];
-extern "C" extern u8 data_80C1F30C[4];
-extern "C" extern u8 data_80C1F310[4];
-extern "C" extern u8 data_80C1F314[4];
-extern "C" extern u8 data_80C1F318[4];
-extern "C" extern u8 data_80C1F31C[4];
-extern "C" extern u8 data_80C1F320[4];
-extern "C" extern u8 data_80C1F324[4];
-extern "C" extern u8 data_80C1F328[4];
-extern "C" extern u8 data_80C1F32C[4];
-extern "C" extern u8 data_80C1F330[4];
-extern "C" extern u8 data_80C1F334[4];
-extern "C" extern u8 data_80C1F338[4];
-extern "C" extern u8 data_80C1F33C[4];
 
 extern "C" void initBaseMtx__11daObjFuta_cFv();
 extern "C" void setBaseMtx__11daObjFuta_cFv();
@@ -206,16 +163,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

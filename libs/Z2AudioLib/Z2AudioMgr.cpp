@@ -58,12 +58,6 @@ struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
 };
 
-struct JAISoundID {};
-
-struct JKRSolidHeap {};
-
-struct JAISoundHandle {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
@@ -72,6 +66,12 @@ struct JGeometry {
 };
 
 struct JKRArchive {};
+
+struct JKRSolidHeap {};
+
+struct JAISoundID {};
+
+struct JAISoundHandle {};
 
 struct Z2AudioMgr {
     /* 802CD248 */ Z2AudioMgr();
@@ -213,10 +213,6 @@ struct JAISeMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const Z2AudioMgr__stringBase0;
-extern "C" extern void* __vt__10Z2AudioMgr[3];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
 extern "C" void __ct__10Z2AudioMgrFv();
 extern "C" void init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive();
 extern "C" void func_802CD7F8();
@@ -242,30 +238,6 @@ void JAUNewSectionHeap(bool);
 void seqCallback(JASTrack*, u16);
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
-extern "C" extern void* __vt__16JAIStreamAramMgr[5];
-extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
-extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
-extern "C" extern void* __vt__16Z2AudioArcLoader[17 + 1 /* padding */];
-extern "C" extern void* __vt__11Z2SoundInfo[20];
-extern "C" extern void* __files[80];
-extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
-extern "C" extern u8 data_804341E4[16 + 4 /* padding */];
-extern "C" extern u32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 sCallBackFunc__12JASSeqParser[4];
-extern "C" extern u8 sBlockSize__13JASAramStream[4];
-extern "C" extern u8 data_80451348[8];
-extern "C" extern u8 data_80451354[4];
 
 extern "C" void alloc__7JASHeapFP7JASHeapUl();
 extern "C" void free__7JASHeapFv();
@@ -347,15 +319,15 @@ extern "C" extern void* __vt__11Z2SoundInfo[20];
 extern "C" extern void* __files[80];
 extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
 extern "C" extern u8 data_804341E4[16 + 4 /* padding */];
-extern "C" extern u32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_BGM_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
 extern "C" extern u8 data_80450B4C[4];
 extern "C" extern u8 data_80450B50[4];
 extern "C" extern u8 sCallBackFunc__12JASSeqParser[4];
@@ -424,10 +396,10 @@ static u8 lit_3779[12];
 static u8 lit_3783[12];
 
 /* 80455F58-80455F5C 0004+00 s=1 e=0 z=0  None .sdata2    @3931 */
-SECTION_SDATA2 static u32 lit_3931 = 0x3FA66666;
+SECTION_SDATA2 static f32 lit_3931 = 13.0f / 10.0f;
 
 /* 80455F5C-80455F60 0004+00 s=2 e=0 z=0  None .sdata2    @3932 */
-SECTION_SDATA2 static u32 lit_3932 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3932 = 1.0f;
 
 /* 802CD34C-802CD7F8 04AC+00 s=0 e=1 z=0  None .text
  * init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive          */
@@ -492,16 +464,10 @@ asm void Z2AudioMgr::resetProcess(u32 param_0, bool param_1) {
 
 /* ############################################################################################## */
 /* 80455F60-80455F68 0004+04 s=1 e=0 z=0  None .sdata2    @4035 */
-SECTION_SDATA2 static u8 lit_4035[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4035[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802CD9CC-802CDA6C 00A0+00 s=0 e=1 z=0  None .text      resetRecover__10Z2AudioMgrFv */

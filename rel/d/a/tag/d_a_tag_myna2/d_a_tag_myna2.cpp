@@ -48,7 +48,6 @@ static void daTagMyna2_Create(fopAc_ac_c*);
 static void daTagMyna2_Execute(daTagMyna2_c*);
 static void daTagMyna2_Delete(daTagMyna2_c*);
 static void cLib_calcTimer__template0(s16*);
-extern "C" extern void* g_profile_TAG_MYNA2[12];
 
 extern "C" void create__12daTagMyna2_cFv();
 extern "C" void execute__12daTagMyna2_cFv();
@@ -64,11 +63,6 @@ extern "C" extern void* g_profile_TAG_MYNA2[12];
 
 void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
 void fopAcM_searchActorAngleY(fopAc_ac_c const*, fopAc_ac_c const*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

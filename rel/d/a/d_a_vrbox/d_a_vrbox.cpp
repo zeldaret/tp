@@ -36,8 +36,6 @@ static bool daVrbox_IsDelete(vrbox_class*);
 static bool daVrbox_Delete(vrbox_class*);
 static void daVrbox_solidHeapCB(fopAc_ac_c*);
 static void daVrbox_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_VRBOX[12];
 
 extern "C" static void daVrbox_Draw__FP11vrbox_class();
 extern "C" static void daVrbox_color_set__FP11vrbox_class();
@@ -58,13 +56,6 @@ void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
 void dComIfG_getStageRes(char const*);
 void dKy_GxFog_set();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();

@@ -39,7 +39,6 @@ static void daTboxSw_Draw(daTboxSw_c*);
 static void daTboxSw_Execute(daTboxSw_c*);
 static void daTboxSw_Delete(daTboxSw_c*);
 static void daTboxSw_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_TBOX_SW[12];
 
 extern "C" bool Create__10daTboxSw_cFv();
 extern "C" void create__10daTboxSw_cFv();
@@ -57,9 +56,6 @@ extern "C" extern void* g_profile_TBOX_SW[12];
 //
 
 void fopAcM_delete(fopAc_ac_c*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();

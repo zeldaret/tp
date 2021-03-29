@@ -39,10 +39,6 @@ extern "C" void GXGetGPFifo();
 // External References:
 //
 
-extern "C" extern u8 __piReg[4];
-extern "C" extern u8 __cpReg[4];
-extern "C" extern void* __GXData;
-
 extern "C" void PPCSync();
 extern "C" void OSSetCurrentContext();
 extern "C" void OSClearContext();

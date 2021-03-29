@@ -98,8 +98,6 @@ struct J2DPicture {
 // Forward References:
 //
 
-extern "C" extern char const* const d_meter_d_meter_map__stringBase0;
-
 extern "C" void isEnableDispMap__11dMeterMap_cFv();
 extern "C" void getMapDispSizeTypeNo__11dMeterMap_cFv();
 extern "C" void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv();
@@ -143,13 +141,6 @@ void dMeter2Info_set2DVibration();
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void fopOvlpM_IsDoingReq__Fv();
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
@@ -255,9 +246,7 @@ asm void dMeterMap_c::isEventRunCheck() {
 
 /* ############################################################################################## */
 /* 80454828-80454830 0008+00 s=3 e=0 z=0  None .sdata2    @4100 */
-SECTION_SDATA2 static u8 lit_4100[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4100 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8020D72C-8020D75C 0030+00 s=2 e=0 z=0  None .text getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
  */
@@ -280,12 +269,10 @@ SECTION_SDATA2 static u8 lit_4128[4] = {
 };
 
 /* 80454834-80454838 0004+00 s=5 e=0 z=0  None .sdata2    @4129 */
-SECTION_SDATA2 static u32 lit_4129 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4129 = 1.0f;
 
 /* 80454838-80454840 0008+00 s=1 e=0 z=0  None .sdata2    @4131 */
-SECTION_SDATA2 static u8 lit_4131[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4131 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8020D75C-8020D7E4 0088+00 s=0 e=1 z=0  None .text      getMapDispEdgeTop__11dMeterMap_cFv */
 #pragma push
@@ -305,7 +292,7 @@ bool dMeterMap_c::getDispPosInside_OffsetX() {
 
 /* ############################################################################################## */
 /* 80454840-80454844 0004+00 s=1 e=0 z=0  None .sdata2    @4159 */
-SECTION_SDATA2 static u32 lit_4159 = 0xC2100000;
+SECTION_SDATA2 static f32 lit_4159 = -36.0f;
 
 /* 8020D7EC-8020D874 0088+00 s=2 e=0 z=0  None .text      getDispPosOutSide_OffsetX__11dMeterMap_cFv
  */
@@ -461,7 +448,7 @@ asm void dMeterMap_c::draw() {
 
 /* ############################################################################################## */
 /* 80454844-80454848 0004+00 s=3 e=0 z=0  None .sdata2    @4515 */
-SECTION_SDATA2 static u32 lit_4515 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4515 = -1.0f;
 
 /* 8020E070-8020E45C 03EC+00 s=2 e=0 z=0  None .text      ctrlShowMap__11dMeterMap_cFv */
 #pragma push

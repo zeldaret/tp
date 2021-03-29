@@ -17,8 +17,6 @@ extern "C" void __sys_free();
 // External References:
 //
 
-extern "C" extern u32 __OSCurrHeap[1 + 1 /* padding */];
-
 extern "C" void OSReport();
 extern "C" void OSFreeToHeap();
 extern "C" void OSSetCurrentHeap();

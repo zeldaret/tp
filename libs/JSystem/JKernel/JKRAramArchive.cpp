@@ -112,9 +112,6 @@ struct JKRAram {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRAramArchive__stringBase0;
-extern "C" extern void* __vt__7JKRFile[8];
-
 extern "C" void __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection();
 extern "C" void __dt__14JKRAramArchiveFv();
 extern "C" void open__14JKRAramArchiveFl();
@@ -135,9 +132,6 @@ extern "C" extern void* __vt__7JKRFile[8];
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 SECTION_INIT void memset();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();

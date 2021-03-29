@@ -37,8 +37,6 @@ extern "C" void SetEnd__8cM3dGLinFRC4cXyz();
 // External References:
 //
 
-extern "C" extern void* __vt__8cM3dGLin[3];
-
 extern "C" void PSVECAdd();
 extern "C" void PSVECSubtract();
 extern "C" void PSVECScale();

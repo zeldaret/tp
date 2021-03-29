@@ -91,8 +91,6 @@ static void daObj_Sekizo_Delete(void*);
 static void daObj_Sekizo_Execute(void*);
 static void daObj_Sekizo_Draw(void*);
 static bool daObj_Sekizo_IsDelete(void*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_OBJ_SEKIZO[12];
 
 extern "C" void create__14daObj_Sekizo_cFv();
 extern "C" void CreateHeap__14daObj_Sekizo_cFv();
@@ -124,13 +122,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

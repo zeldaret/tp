@@ -33,7 +33,6 @@ extern "C" void __dt__12JUTGraphFifoFv();
 //
 
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void alloc__7JKRHeapFUli();
 extern "C" void free__7JKRHeapFPv();

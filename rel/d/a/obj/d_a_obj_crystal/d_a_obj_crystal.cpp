@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -84,8 +84,6 @@ static void daObjCrystal_Draw(daObjCrystal_c*);
 static void daObjCrystal_Execute(daObjCrystal_c*);
 static void daObjCrystal_Delete(daObjCrystal_c*);
 static void daObjCrystal_Create(daObjCrystal_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Crystal[12];
 
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" void initBaseMtx__14daObjCrystal_cFv();
@@ -113,11 +111,6 @@ void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

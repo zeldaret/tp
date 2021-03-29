@@ -69,9 +69,6 @@ struct JASAudioThread {
 // Forward References:
 //
 
-extern "C" extern char const* const JASAudioThread__stringBase0;
-extern "C" extern u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
-
 extern "C" void __ct__14JASAudioThreadFiiUl();
 extern "C" void create__14JASAudioThreadFl();
 extern "C" void stop__14JASAudioThreadFv();
@@ -88,12 +85,6 @@ extern "C" extern u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 data_80450B8C[4];
-extern "C" extern u8 JASDram[4];
-extern "C" extern u8 struct_80451260[8];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void newMemPool__17JASGenericMemPoolFUli();

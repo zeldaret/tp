@@ -60,8 +60,6 @@ extern "C" void getHeight__15JPABaseParticleCFPC14JPABaseEmitter();
 void JPAGetYZRotateMtx(s16, s16, f32 (*)[4]);
 void operator delete(void*);
 void JMAVECScaleAdd(Vec const*, Vec const*, Vec*, f32);
-extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -95,7 +93,7 @@ asm JPAParticleCallBack::~JPAParticleCallBack() {
 
 /* ############################################################################################## */
 /* 80455388-8045538C 0004+00 s=2 e=0 z=0  None .sdata2    @2565 */
-SECTION_SDATA2 static u32 lit_2565 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2565 = 1.0f;
 
 /* 8045538C-80455390 0004+00 s=4 e=0 z=0  None .sdata2    @2566 */
 SECTION_SDATA2 static u8 lit_2566[4] = {
@@ -106,26 +104,22 @@ SECTION_SDATA2 static u8 lit_2566[4] = {
 };
 
 /* 80455390-80455394 0004+00 s=2 e=0 z=0  None .sdata2    @2567 */
-SECTION_SDATA2 static u32 lit_2567 = 0x42000000;
+SECTION_SDATA2 static f32 lit_2567 = 32.0f;
 
 /* 80455394-80455398 0004+00 s=2 e=0 z=0  None .sdata2    @2568 */
-SECTION_SDATA2 static u32 lit_2568 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2568 = 0.5f;
 
 /* 80455398-8045539C 0004+00 s=2 e=0 z=0  None .sdata2    @2569 */
-SECTION_SDATA2 static u32 lit_2569 = 0x40400000;
+SECTION_SDATA2 static f32 lit_2569 = 3.0f;
 
 /* 8045539C-804553A0 0004+00 s=1 e=0 z=0  None .sdata2    @2570 */
-SECTION_SDATA2 static u32 lit_2570 = 0x47000000;
+SECTION_SDATA2 static f32 lit_2570 = 32768.0f;
 
 /* 804553A0-804553A8 0008+00 s=4 e=0 z=0  None .sdata2    @2572 */
-SECTION_SDATA2 static u8 lit_2572[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2572 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 804553A8-804553B0 0008+00 s=2 e=0 z=0  None .sdata2    @2574 */
-SECTION_SDATA2 static u8 lit_2574[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2574 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8027EFEC-8027F8C8 08DC+00 s=0 e=1 z=0  None .text
  * init_p__15JPABaseParticleFP18JPAEmitterWorkData              */

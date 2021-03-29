@@ -30,8 +30,6 @@ extern "C" void TRKInitializeMessageBuffers();
 // External References:
 //
 
-SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
-
 SECTION_INIT void TRK_memset();
 SECTION_INIT void TRK_memcpy();
 extern "C" void usr_puts_serial();

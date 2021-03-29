@@ -13,8 +13,6 @@
 
 extern void* const data_80CA9B64[2];
 
-extern void* const data_80CA9B64[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_onsenTaru_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80CA9B64-80CA9B6C 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80CA9B64[2] = {
+    (void*)__sinit_d_a_obj_onsenTaru_cpp,
+    (void*)NULL,
+};

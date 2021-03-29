@@ -280,7 +280,6 @@ struct Z2SeMgr {
 //
 
 static void cLib_calcTimer__template3(s32*);
-extern "C" extern char const* const d_msg_d_msg_flow__stringBase0;
 
 extern "C" void __ct__10dMsgFlow_cFv();
 extern "C" void __dt__10dMsgFlow_cFv();
@@ -442,16 +441,6 @@ void dMsgObject_getOffering();
 void dMsgObject_addOffering(s16);
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memcpy();
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
@@ -1766,9 +1755,7 @@ asm void dMsgFlow_c::query002(mesg_flow_node_branch* param_0, fopAc_ac_c* param_
 
 /* ############################################################################################## */
 /* 80454D90-80454D98 0008+00 s=5 e=0 z=0  None .sdata2    @5116 */
-SECTION_SDATA2 static u8 lit_5116[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5116 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8024B208-8024B250 0048+00 s=1 e=0 z=0  None .text
  * query003__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -2380,9 +2367,7 @@ asm void dMsgFlow_c::event003(mesg_flow_node_event* param_0, fopAc_ac_c* param_1
 
 /* ############################################################################################## */
 /* 80454DA0-80454DA8 0008+00 s=3 e=0 z=0  None .sdata2    @6040 */
-SECTION_SDATA2 static u8 lit_6040[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_6040 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024C590-8024C5F0 0060+00 s=1 e=0 z=0  None .text
  * event004__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2574,7 +2559,7 @@ asm void dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1
 
 /* ############################################################################################## */
 /* 80454DA8-80454DAC 0004+00 s=1 e=0 z=0  None .sdata2    @6273 */
-SECTION_SDATA2 static u32 lit_6273 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_6273 = 100.0f;
 
 /* 8024CDAC-8024CE40 0094+00 s=1 e=0 z=0  None .text
  * event022__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2688,7 +2673,7 @@ asm void dMsgFlow_c::event031(mesg_flow_node_event* param_0, fopAc_ac_c* param_1
 
 /* ############################################################################################## */
 /* 80454DAC-80454DB0 0004+00 s=2 e=0 z=0  None .sdata2    @6613 */
-SECTION_SDATA2 static u32 lit_6613 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_6613 = 1.0f;
 
 /* 8024D5EC-8024D6BC 00D0+00 s=1 e=0 z=0  None .text
  * event032__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */

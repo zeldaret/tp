@@ -125,8 +125,6 @@ struct JAISeqMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const Z2SeqMgr__stringBase0;
-
 extern "C" void __ct__8Z2SeqMgrFv();
 extern "C" void bgmStart__8Z2SeqMgrFUlUll();
 extern "C" void bgmStop__8Z2SeqMgrFUll();
@@ -180,22 +178,6 @@ extern "C" extern char const* const Z2SeqMgr__stringBase0;
 // External References:
 //
 
-extern "C" extern u32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_BGM_TALKING__7Z2Param;
-extern "C" extern u32 VOL_BGM_PAUSING__7Z2Param;
-extern "C" extern u8 struct_80450860[4];
-extern "C" extern u8 struct_80450864[4];
-extern "C" extern u8 struct_80450868[4];
-extern "C" extern u32 data_8045086C;
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern f32 ENEMY_LASTHIT_MUTE_VOLUME__7Z2Param;
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-
 extern "C" void calc__9JAISeqMgrFv();
 extern "C" void stop__9JAISeqMgrFUl();
 extern "C" void mixOut__9JAISeqMgrFv();
@@ -227,9 +209,9 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern u32 VOL_BGM_TALKING__7Z2Param;
-extern "C" extern u32 VOL_BGM_PAUSING__7Z2Param;
+extern "C" extern f32 VOL_BGM_DEFAULT__7Z2Param;
+extern "C" extern f32 VOL_BGM_TALKING__7Z2Param;
+extern "C" extern f32 VOL_BGM_PAUSING__7Z2Param;
 extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 struct_80450864[4];
 extern "C" extern u8 struct_80450868[4];
@@ -249,7 +231,7 @@ extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80455998-8045599C 0004+00 s=23 e=0 z=0  None .sdata2    @3372 */
-SECTION_SDATA2 static u32 lit_3372 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3372 = 1.0f;
 
 /* 8045599C-804559A0 0004+00 s=23 e=0 z=0  None .sdata2    @3373 */
 SECTION_SDATA2 static u8 lit_3373[4] = {
@@ -278,9 +260,7 @@ SECTION_SDATA2 static f32 lit_3559[1 + 1 /* padding */] = {
 };
 
 /* 804559A8-804559B0 0008+00 s=22 e=0 z=0  None .sdata2    @3561 */
-SECTION_SDATA2 static u8 lit_3561[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3561 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802AF010-802AF408 03F8+00 s=3 e=5 z=38  None .text      bgmStart__8Z2SeqMgrFUlUll */
 #pragma push
@@ -814,40 +794,40 @@ SECTION_DATA static void* lit_4739[13] = {
 };
 
 /* 804559B0-804559B4 0004+00 s=1 e=0 z=0  None .sdata2    @4726 */
-SECTION_SDATA2 static u32 lit_4726 = 0x3F266666;
+SECTION_SDATA2 static f32 lit_4726 = 13.0f / 20.0f;
 
 /* 804559B4-804559B8 0004+00 s=10 e=0 z=0  None .sdata2    @4727 */
-SECTION_SDATA2 static u32 lit_4727 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4727 = -1.0f;
 
 /* 804559B8-804559BC 0004+00 s=1 e=0 z=0  None .sdata2    @4728 */
-SECTION_SDATA2 static u32 lit_4728 = 0x3E947AE1;
+SECTION_SDATA2 static f32 lit_4728 = 29.0f / 100.0f;
 
 /* 804559BC-804559C0 0004+00 s=1 e=0 z=0  None .sdata2    @4729 */
-SECTION_SDATA2 static u32 lit_4729 = 0x3EB33333;
+SECTION_SDATA2 static f32 lit_4729 = 7.0f / 20.0f;
 
 /* 804559C0-804559C4 0004+00 s=1 e=0 z=0  None .sdata2    @4730 */
-SECTION_SDATA2 static u32 lit_4730 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_4730 = 3.0f / 5.0f;
 
 /* 804559C4-804559C8 0004+00 s=2 e=0 z=0  None .sdata2    @4731 */
-SECTION_SDATA2 static u32 lit_4731 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4731 = 0.5f;
 
 /* 804559C8-804559CC 0004+00 s=3 e=0 z=0  None .sdata2    @4732 */
-SECTION_SDATA2 static u32 lit_4732 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_4732 = 3.0f / 10.0f;
 
 /* 804559CC-804559D0 0004+00 s=1 e=0 z=0  None .sdata2    @4733 */
-SECTION_SDATA2 static u32 lit_4733 = 0x4541C000;
+SECTION_SDATA2 static f32 lit_4733 = 3100.0f;
 
 /* 804559D0-804559D4 0004+00 s=1 e=0 z=0  None .sdata2    @4734 */
-SECTION_SDATA2 static u32 lit_4734 = 0x43480000;
+SECTION_SDATA2 static f32 lit_4734 = 200.0f;
 
 /* 804559D4-804559D8 0004+00 s=1 e=0 z=0  None .sdata2    @4735 */
-SECTION_SDATA2 static u32 lit_4735 = 0x44C80000;
+SECTION_SDATA2 static f32 lit_4735 = 1600.0f;
 
 /* 804559D8-804559DC 0004+00 s=1 e=0 z=0  None .sdata2    @4736 */
-SECTION_SDATA2 static u32 lit_4736 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_4736 = 4.0f / 5.0f;
 
 /* 804559DC-804559E0 0004+00 s=1 e=0 z=0  None .sdata2    @4737 */
-SECTION_SDATA2 static u32 lit_4737 = 0x4544E000;
+SECTION_SDATA2 static f32 lit_4737 = 3150.0f;
 
 /* 804559E0-804559E8 0004+04 s=1 e=0 z=0  None .sdata2    @4738 */
 SECTION_SDATA2 static f32 lit_4738[1 + 1 /* padding */] = {
@@ -857,9 +837,7 @@ SECTION_SDATA2 static f32 lit_4738[1 + 1 /* padding */] = {
 };
 
 /* 804559E8-804559F0 0008+00 s=1 e=0 z=0  None .sdata2    @4741 */
-SECTION_SDATA2 static u8 lit_4741[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4741 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802AFF8C-802B1DF4 1E68+00 s=5 e=8 z=26  None .text      changeBgmStatus__8Z2SeqMgrFl */
 #pragma push
@@ -1086,10 +1064,10 @@ asm void Z2SeqMgr::setTimeProcVolMod(bool param_0, u32 param_1) {
 
 /* ############################################################################################## */
 /* 80450870-80450874 0004+00 s=1 e=0 z=0  None .sdata     sDeathMtBottom */
-SECTION_SDATA static u32 sDeathMtBottom = 0xC47A0000;
+SECTION_SDATA static f32 sDeathMtBottom = -1000.0f;
 
 /* 80450874-80450878 0004+00 s=1 e=0 z=0  None .sdata     sDeathMtTop */
-SECTION_SDATA static u32 sDeathMtTop = 0x45642000;
+SECTION_SDATA static f32 sDeathMtTop = 3650.0f;
 
 /* 80450878-80450880 0004+04 s=1 e=0 z=0  None .sdata     sUnderWaterDepthMax */
 SECTION_SDATA static f32 sUnderWaterDepthMax[1 + 1 /* padding */] = {
@@ -1099,31 +1077,31 @@ SECTION_SDATA static f32 sUnderWaterDepthMax[1 + 1 /* padding */] = {
 };
 
 /* 804559F0-804559F4 0004+00 s=1 e=0 z=0  None .sdata2    @5673 */
-SECTION_SDATA2 static u32 lit_5673 = 0xC6241000;
+SECTION_SDATA2 static f32 lit_5673 = -10500.0f;
 
 /* 804559F4-804559F8 0004+00 s=1 e=0 z=0  None .sdata2    @5674 */
-SECTION_SDATA2 static u32 lit_5674 = 0xC5EA6000;
+SECTION_SDATA2 static f32 lit_5674 = -7500.0f;
 
 /* 804559F8-804559FC 0004+00 s=1 e=0 z=0  None .sdata2    @5675 */
-SECTION_SDATA2 static u32 lit_5675 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5675 = 1.0f / 10.0f;
 
 /* 804559FC-80455A00 0004+00 s=1 e=0 z=0  None .sdata2    @5676 */
-SECTION_SDATA2 static u32 lit_5676 = 0xC4BB8000;
+SECTION_SDATA2 static f32 lit_5676 = -1500.0f;
 
 /* 80455A00-80455A04 0004+00 s=1 e=0 z=0  None .sdata2    @5677 */
-SECTION_SDATA2 static u32 lit_5677 = 0xC64B2000;
+SECTION_SDATA2 static f32 lit_5677 = -13000.0f;
 
 /* 80455A04-80455A08 0004+00 s=1 e=0 z=0  None .sdata2    @5678 */
-SECTION_SDATA2 static u32 lit_5678 = 0xC58CA000;
+SECTION_SDATA2 static f32 lit_5678 = -4500.0f;
 
 /* 80455A08-80455A0C 0004+00 s=1 e=0 z=0  None .sdata2    @5679 */
-SECTION_SDATA2 static u32 lit_5679 = 0xC72FC800;
+SECTION_SDATA2 static f32 lit_5679 = -45000.0f;
 
 /* 80455A0C-80455A10 0004+00 s=1 e=0 z=0  None .sdata2    @5680 */
-SECTION_SDATA2 static u32 lit_5680 = 0xC53B8000;
+SECTION_SDATA2 static f32 lit_5680 = -3000.0f;
 
 /* 80455A10-80455A14 0004+00 s=1 e=0 z=0  None .sdata2    @5681 */
-SECTION_SDATA2 static u32 lit_5681 = 0x44610000;
+SECTION_SDATA2 static f32 lit_5681 = 900.0f;
 
 /* 802B33A8-802B3EAC 0B04+00 s=0 e=1 z=0  None .text      processBgmFramework__8Z2SeqMgrFv */
 #pragma push
@@ -1210,7 +1188,7 @@ asm void Z2SeqMgr::setBattleDistIgnore(bool param_0) {
 
 /* ############################################################################################## */
 /* 80455A14-80455A18 0004+00 s=1 e=0 z=0  None .sdata2    @5913 */
-SECTION_SDATA2 static u32 lit_5913 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_5913 = 2.0f / 5.0f;
 
 /* 802B43E0-802B4498 00B8+00 s=0 e=2 z=0  None .text      setBattleGhostMute__8Z2SeqMgrFb */
 #pragma push

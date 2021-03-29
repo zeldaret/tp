@@ -41,11 +41,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -103,8 +103,6 @@ static bool daObj_Ihasi_IsDelete(obj_ihasi_class*);
 static void daObj_Ihasi_Delete(obj_ihasi_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Ihasi_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_IHASI[12];
 
 extern "C" static void daObj_Ihasi_Draw__FP15obj_ihasi_class();
 extern "C" static void ih_normal__FP15obj_ihasi_class();
@@ -133,13 +131,6 @@ void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, cs
 void cM_rndF(f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void transM__14mDoMtx_stack_cFfff();
 extern "C" void play__14mDoExt_baseAnmFv();

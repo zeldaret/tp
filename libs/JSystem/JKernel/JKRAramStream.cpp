@@ -65,8 +65,6 @@ struct JKRAramPiece {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRAramStream__stringBase0;
-
 extern "C" void create__13JKRAramStreamFl();
 extern "C" void __ct__13JKRAramStreamFl();
 extern "C" void __dt__13JKRAramStreamFv();
@@ -86,8 +84,6 @@ extern "C" extern char const* const JKRAramStream__stringBase0;
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void alloc__7JKRHeapFUli();

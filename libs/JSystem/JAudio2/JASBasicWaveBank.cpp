@@ -67,9 +67,6 @@ struct JASBasicWaveBank {
 // Forward References:
 //
 
-extern "C" extern void* __vt__13JASWaveHandle[5];
-extern "C" extern void* __vt__11JASWaveBank[6];
-
 extern "C" void __ct__16JASBasicWaveBankFv();
 extern "C" void __dt__16JASBasicWaveBankFv();
 extern "C" void __dt__Q216JASBasicWaveBank11TWaveHandleFv();
@@ -105,7 +102,6 @@ extern "C" extern void* __vt__11JASWaveBank[6];
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
 
 extern "C" void __ct__10JASWaveArcFv();
 extern "C" void __dt__10JASWaveArcFv();

@@ -93,8 +93,6 @@ extern "C" void isTalkNow__14dMsgScrnBase_cFv();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
 extern "C" void getStatus__12dMsgObject_cFv();
@@ -209,7 +207,7 @@ SECTION_SDATA2 static u8 lit_3820[4] = {
 };
 
 /* 80454BAC-80454BB0 0004+00 s=2 e=0 z=0  None .sdata2    @3821 */
-SECTION_SDATA2 static u32 lit_3821 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3821 = 1.0f;
 
 /* 8023C16C-8023C234 00C8+00 s=1 e=9 z=0  None .text      init__14dMsgScrnBase_cFv */
 #pragma push

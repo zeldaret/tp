@@ -29,8 +29,6 @@ struct JUTPalette {
 // Forward References:
 //
 
-extern "C" extern char const* const JUTPalette__stringBase0;
-
 extern "C" void storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT();
 extern "C" void storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv();
 extern "C" void load__10JUTPaletteFv();

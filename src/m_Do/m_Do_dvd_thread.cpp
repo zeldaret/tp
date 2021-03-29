@@ -111,7 +111,6 @@ struct JASDvd {
 
 static void my_DVDConvertPathToEntrynum(char const*);
 static void cb(void*);
-extern "C" extern char const* const m_Do_m_Do_dvd_thread__stringBase0;
 
 extern "C" void main__9mDoDvdThdFPv();
 extern "C" void create__9mDoDvdThdFl();
@@ -163,7 +162,6 @@ void cLs_Create(node_list_class*);
 void cNd_ForcedClear(node_class*);
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 struct_80450C80[8];
 
 extern "C" void OSReport_FatalError();
 extern "C" void OSReport_Error();

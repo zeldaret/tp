@@ -13,8 +13,6 @@
 
 extern void* const data_809F2C44[2];
 
-extern void* const data_809F2C44[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_guard_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 809F2C44-809F2C4C 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_809F2C44[2] = {
+    (void*)__sinit_d_a_npc_guard_cpp,
+    (void*)NULL,
+};

@@ -111,8 +111,6 @@ struct JMessage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q28JMessage10TReference[4 + 1 /* padding */];
-
 extern "C" void __dt__Q28JMessage10TReferenceFv();
 extern "C" bool do_word__Q28JMessage10TReferenceCFUl();
 extern "C" void __dt__Q28JMessage10TProcessorFv();

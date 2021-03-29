@@ -460,8 +460,6 @@ void isHeart(u8);
 void isInsect(u8);
 void check_itemno(int);
 static void addBombCount(u8, u8);
-extern "C" extern char const* const d_d_item__stringBase0;
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
 
 extern "C" void execItemGet__FUc();
 extern "C" void checkItemGet__FUci();
@@ -860,9 +858,6 @@ void dComIfGs_setSelectEquipClothes(u8);
 void dComIfGs_setSelectEquipSword(u8);
 void dComIfGs_setSelectEquipShield(u8);
 void dMeter2Info_setSword(u8, bool);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void setItemBombNumCount__14dComIfG_play_cFUcs();
 extern "C" void getLayerNo__14dComIfG_play_cFi();
@@ -1455,7 +1450,7 @@ asm void checkItemGet(u8 param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80452BD8-80452BDC 0004+00 s=1 e=0 z=0  None .sdata2    @3655 */
-SECTION_SDATA2 static u32 lit_3655 = 0x40800000;
+SECTION_SDATA2 static f32 lit_3655 = 4.0f;
 
 /* 80097F2C-80097F50 0024+00 s=1 e=0 z=0  None .text      item_func_HEART__Fv */
 #pragma push
@@ -1724,7 +1719,7 @@ static void item_func_BOMB_INSECT_30() {
 
 /* ############################################################################################## */
 /* 80452BDC-80452BE0 0004+00 s=1 e=0 z=0  None .sdata2    @3794 */
-SECTION_SDATA2 static u32 lit_3794 = 0x42000000;
+SECTION_SDATA2 static f32 lit_3794 = 32.0f;
 
 /* 8009825C-80098280 0024+00 s=1 e=0 z=0  None .text      item_func_RECOVER_FAILY__Fv */
 #pragma push
@@ -1763,9 +1758,7 @@ asm static void item_func_KAKERA_HEART() {
 
 /* ############################################################################################## */
 /* 80452BE0-80452BE8 0008+00 s=1 e=0 z=0  None .sdata2    @3828 */
-SECTION_SDATA2 static u8 lit_3828[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3828 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 800982B4-80098344 0090+00 s=1 e=0 z=0  None .text      item_func_UTUWA_HEART__Fv */
 #pragma push

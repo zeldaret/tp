@@ -115,8 +115,6 @@ static void daCoach2D_create(daCoach2D_c*);
 static void daCoach2D_destroy(daCoach2D_c*);
 static void daCoach2D_execute(daCoach2D_c*);
 static void daCoach2D_draw(daCoach2D_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_COACH2D[12];
 
 extern "C" void draw__Q211daCoach2D_c6c_listFv();
 extern "C" static void daCoach2D_createHeap__FP10fopAc_ac_c();
@@ -152,10 +150,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 SECTION_INIT void memcpy();
 extern "C" void __ct__10fopAc_ac_cFv();

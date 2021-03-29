@@ -51,15 +51,13 @@ extern "C" void _restgpr_28();
 
 /* ############################################################################################## */
 /* 80456388-8045638C 0004+00 s=1 e=0 z=0  None .sdata2    @284 */
-SECTION_SDATA2 static u32 lit_284 = 0x3E000000;
+SECTION_SDATA2 static f32 lit_284 = 0.125f;
 
 /* 8045638C-80456390 0004+00 s=1 e=0 z=0  None .sdata2    @285 */
-SECTION_SDATA2 static u32 lit_285 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_285 = 1.0f / 100.0f;
 
 /* 80456390-80456398 0008+00 s=1 e=0 z=0  None .sdata2    @288 */
-SECTION_SDATA2 static u8 lit_288[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_288 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8031204C-803121A4 0158+00 s=0 e=1 z=0  None .text      loadGX__10J3DTextureCFUs11_GXTexMapID */
 #pragma push

@@ -30,13 +30,13 @@ struct J3DModelLoader_v26 {
 
 struct J3DDrawBlock {};
 
+struct J3DJointBlock {};
+
 struct J3DModelInfoBlock {};
 
 struct J3DMaterialDLBlock {};
 
 struct J3DEnvelopeBlock {};
-
-struct J3DJointBlock {};
 
 struct J3DModelLoader {
     /* 80336794 */ void countMaterialNum(void const*);
@@ -68,8 +68,6 @@ struct J3DMaterialFactory {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const J3DModelLoaderCalcSize__stringBase0;
 
 extern "C" void countMaterialNum__14J3DModelLoaderFPCv();
 extern "C" void calcLoadSize__14J3DModelLoaderFPCvUl();

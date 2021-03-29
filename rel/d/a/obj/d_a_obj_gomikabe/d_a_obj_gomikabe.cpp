@@ -13,16 +13,16 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {
+    /* 80BFE3FC */ ~cXyz();
+    /* 80BFF8CC */ cXyz();
+};
+
 struct csXyz {
     /* 80BFF8C8 */ csXyz();
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8026745C */ void operator+=(csXyz&);
     /* 80BFEA24 */ ~csXyz();
-};
-
-struct cXyz {
-    /* 80BFE3FC */ ~cXyz();
-    /* 80BFF8CC */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -206,13 +206,6 @@ static void daObjGOMIKABE_Delete(daObjGOMIKABE_c*);
 static void daObjGOMIKABE_Draw(daObjGOMIKABE_c*);
 static void daObjGOMIKABE_Execute(daObjGOMIKABE_c*);
 static bool daObjGOMIKABE_IsDelete(daObjGOMIKABE_c*);
-extern "C" extern u8 const lit_4156[8];
-extern "C" extern u8 const lit_4157[8];
-extern "C" extern u8 const lit_4158[8];
-extern "C" extern u32 const lit_4159;
-extern "C" extern u32 const lit_4160;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_GOMIKABE[12];
 
 extern "C" void __ct__19daObjGOMIKABE_HIO_cFv();
 extern "C" void initCcCylinder__15daObjGOMIKABE_cFv();
@@ -283,19 +276,6 @@ void cM_rndFX(f32);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

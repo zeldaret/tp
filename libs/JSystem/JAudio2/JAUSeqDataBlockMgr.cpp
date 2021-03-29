@@ -42,9 +42,9 @@ struct JAUSeqDataBlocks {
     /* 802A6A18 */ void hasFailedBlock(JAISoundID);
 };
 
-struct JAISeqDataUser {};
-
 struct JAISeqData {};
+
+struct JAISeqDataUser {};
 
 struct JAUDynamicSeqDataBlocks {
     /* 802A6A58 */ JAUDynamicSeqDataBlocks();
@@ -87,8 +87,6 @@ extern "C" void rearrangeLoadingSeqs___23JAUDynamicSeqDataBlocksFv();
 //
 // External References:
 //
-
-extern "C" extern u8 data_80450B50[4];
 
 extern "C" void getResSize__15JASResArcLoaderFPC10JKRArchiveUs();
 extern "C" void loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl();

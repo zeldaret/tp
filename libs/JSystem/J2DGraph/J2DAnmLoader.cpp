@@ -73,11 +73,11 @@ struct J2DAnmLoader {
     /* 8030A410 */ ~J2DAnmLoader();
 };
 
+struct J2DAnmColorKey {};
+
 struct J2DAnmBase {
     /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
 };
-
-struct J2DAnmColorKey {};
 
 struct J2DAnmKeyLoader_v15 {
     /* 80309290 */ J2DAnmKeyLoader_v15();
@@ -132,7 +132,6 @@ void JSUConvertOffsetToPtr__template39(void const*, void const*);
 void JSUConvertOffsetToPtr__template40(void const*, void const*);
 void JSUConvertOffsetToPtr__template41(void const*, void const*);
 void JSUConvertOffsetToPtr__template42(void const*, void const*);
-extern "C" extern void* __vt__14J2DAnmVtxColor[5];
 
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
 extern "C" void __ct__19J2DAnmKeyLoader_v15Fv();
@@ -196,18 +195,6 @@ void* operator new(u32);
 void operator delete(void*);
 void JSUConvertOffsetToPtr__template24(void const*, void const*);
 void JSUConvertOffsetToPtr__template28(void const*, void const*);
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
-extern "C" extern void* __vt__15J2DAnmTevRegKey[4];
-extern "C" extern void* __vt__16J2DAnmTexPattern[4];
-extern "C" extern void* __vt__19J2DAnmTextureSRTKey[4];
-extern "C" extern void* __vt__17J2DAnmVtxColorKey[5];
-extern "C" extern void* __vt__18J2DAnmVtxColorFull[5];
-extern "C" extern void* __vt__14J2DAnmColorKey[5];
-extern "C" extern void* __vt__15J2DAnmColorFull[5];
-extern "C" extern void* __vt__11J2DAnmColor[5];
-extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-extern "C" extern void* __vt__19J2DAnmTransformFull[5];
 
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
 extern "C" void* __nw__FUl();
@@ -280,16 +267,10 @@ SECTION_DATA void* __vt__14J2DAnmVtxColor[5] = {
 };
 
 /* 804562F8-80456300 0004+04 s=11 e=0 z=0  None .sdata2    @1581 */
-SECTION_SDATA2 static u8 lit_1581[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1581[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80308A6C-80309290 0824+00 s=0 e=26 z=2  None .text      load__20J2DAnmLoaderDataBaseFPCv */

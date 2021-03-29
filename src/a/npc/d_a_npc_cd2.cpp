@@ -13,12 +13,12 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct cXyz {
     /* 80009184 */ ~cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
 struct mDoMtx_stack_c {
@@ -41,13 +41,13 @@ struct mDoExt_btpAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -67,9 +67,9 @@ struct daPy_py_c {
 
 struct J3DModel {};
 
-struct J3DJoint {};
-
 struct J3DAnmTransformKey {};
+
+struct J3DJoint {};
 
 struct daNpcCd2_c {
     /* 80157D00 */ void NpcCreate(int);
@@ -186,10 +186,6 @@ struct J3DFrameCtrl {
 static void jntNodeCallBack(J3DJoint*, int);
 static void s_sub1(void*, void*);
 static void s_sub(void*, void*);
-extern "C" extern u8 const m_cylDat__10daNpcCd2_c[68];
-extern "C" extern char const* const a_npc_d_a_npc_cd2__stringBase0;
-extern "C" extern u8 l_Cd2_HIO[16396];
-extern "C" extern u8 data_80451010[8];
 
 extern "C" static void jntNodeCallBack__FP8J3DJointi();
 extern "C" void NpcCreate__10daNpcCd2_cFi();
@@ -265,17 +261,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_distanceAngleS(s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__18fOpAcm_HIO_entry_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 SECTION_INIT void memcpy();
 extern "C" void __dt__4cXyzFv();
@@ -948,7 +933,7 @@ SECTION_DEAD static char const* const pad_80393D84 = "\0\0\0";
 #pragma pop
 
 /* 804534E0-804534E4 0004+00 s=3 e=0 z=0  None .sdata2    @4050 */
-SECTION_SDATA2 static u32 lit_4050 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4050 = 1.0f;
 
 /* 80157D00-80157F28 0228+00 s=0 e=0 z=4  None .text      NpcCreate__10daNpcCd2_cFi */
 #pragma push
@@ -2176,9 +2161,7 @@ SECTION_SDATA2 static f32 lit_4586[1 + 1 /* padding */] = {
 };
 
 /* 804534F0-804534F8 0008+00 s=3 e=0 z=0  None .sdata2    @4588 */
-SECTION_SDATA2 static u8 lit_4588[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4588 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80158420-80158BB8 0798+00 s=0 e=0 z=5  None .text      setAttention__10daNpcCd2_cFi */
 #pragma push
@@ -2284,7 +2267,7 @@ asm void daNpcCd2_c::drawNpc() {
 
 /* ############################################################################################## */
 /* 804534F8-804534FC 0004+00 s=1 e=0 z=0  None .sdata2    @4845 */
-SECTION_SDATA2 static u32 lit_4845 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_4845 = 182.04444885253906f;
 
 /* 80159258-80159550 02F8+00 s=1 e=0 z=0  None .text jntNodeCB__10daNpcCd2_cFP8J3DJointP8J3DModel
  */
@@ -2307,10 +2290,10 @@ SECTION_SDATA2 static u8 id[4] = {
 };
 
 /* 80453500-80453504 0004+00 s=1 e=0 z=0  None .sdata2    @4921 */
-SECTION_SDATA2 static u32 lit_4921 = 0x41000000;
+SECTION_SDATA2 static f32 lit_4921 = 8.0f;
 
 /* 80453504-80453508 0004+00 s=1 e=0 z=0  None .sdata2    @4922 */
-SECTION_SDATA2 static u32 lit_4922 = 0x40800000;
+SECTION_SDATA2 static f32 lit_4922 = 4.0f;
 
 /* 80159550-80159708 01B8+00 s=1 e=0 z=0  None .text      setHitodamaParticle__10daNpcCd2_cFv */
 #pragma push
@@ -2361,14 +2344,10 @@ SECTION_SDATA2 static f32 lit_4970[1 + 1 /* padding */] = {
 };
 
 /* 80453510-80453518 0008+00 s=1 e=0 z=0  None .sdata2    @4971 */
-SECTION_SDATA2 static u8 lit_4971[8] = {
-    0x40, 0x7F, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4971 = 500.0;
 
 /* 80453518-80453520 0008+00 s=2 e=0 z=0  None .sdata2    @4972 */
-SECTION_SDATA2 static u8 lit_4972[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4972 = 2.0;
 
 /* 80159818-801598E8 00D0+00 s=0 e=0 z=5  None .text      checkFearSituation__10daNpcCd2_cFv */
 #pragma push
@@ -2419,14 +2398,10 @@ SECTION_SDATA2 static f32 lit_5050[1 + 1 /* padding */] = {
 };
 
 /* 80453528-80453530 0008+00 s=4 e=0 z=0  None .sdata2    @5051 */
-SECTION_SDATA2 static u8 lit_5051[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5051 = 0.5;
 
 /* 80453530-80453538 0008+00 s=4 e=0 z=0  None .sdata2    @5052 */
-SECTION_SDATA2 static u8 lit_5052[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5052 = 3.0;
 
 /* 80453538-80453540 0008+00 s=4 e=0 z=0  None .sdata2    @5053 */
 SECTION_SDATA2 static u8 lit_5053[8] = {
@@ -2554,9 +2529,7 @@ asm void PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80453548-80453550 0008+00 s=1 e=0 z=0  None .sdata2    @5359 */
-SECTION_SDATA2 static u8 lit_5359[8] = {
-    0x40, 0x6F, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5359 = 250.0;
 
 /* 8015A3E4-8015A4D8 00F4+00 s=1 e=0 z=0  None .text checkObstacleSub__11PathTrace_cFP10fopAc_ac_c
  */

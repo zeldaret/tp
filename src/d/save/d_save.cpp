@@ -298,9 +298,6 @@ struct Z2AudioMgr {
 //
 
 static void dSv_item_rename(u8);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern char const* const d_save_d_save__stringBase0;
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 
 extern "C" static void dSv_item_rename__FUc();
 extern "C" void init__21dSv_player_status_a_cFv();
@@ -477,10 +474,6 @@ void dComIfGp_setSelectItem(int);
 s32 dComIfGs_getBottleMax();
 void dComIfGs_setKeyNum(int, u8);
 void setInitEventBit();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport_Error();
@@ -614,7 +607,7 @@ asm void dSv_player_status_a_c::isMagicFlag(u8 param_0) const {
 
 /* ############################################################################################## */
 /* 80451D58-80451D5C 0004+00 s=1 e=0 z=0  None .sdata2    @3775 */
-SECTION_SDATA2 static u32 lit_3775 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_3775 = 255.0f;
 
 /* 80032B50-80032B94 0044+00 s=1 e=0 z=0  None .text      init__21dSv_player_status_b_cFv */
 #pragma push

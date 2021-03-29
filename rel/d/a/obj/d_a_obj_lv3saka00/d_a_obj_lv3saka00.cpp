@@ -45,11 +45,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
+struct cXyz {};
+
 struct csXyz {};
 
 struct cBgS_PolyInfo {};
-
-struct cXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -90,7 +90,6 @@ static void daObjLv3saka_create1st(daObjLv3saka_c*);
 static void daObjLv3saka_MoveBGDelete(daObjLv3saka_c*);
 static void daObjLv3saka_MoveBGExecute(daObjLv3saka_c*);
 static void daObjLv3saka_MoveBGDraw(daObjLv3saka_c*);
-extern "C" extern void* g_profile_Obj_Lv3R10Saka[12];
 
 extern "C" void initBaseMtx__14daObjLv3saka_cFv();
 extern "C" void setBaseMtx__14daObjLv3saka_cFv();
@@ -117,10 +116,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void* operator new(u32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();

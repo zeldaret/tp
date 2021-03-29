@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 shdwRegs[118 + 2 /* padding */];
-extern "C" extern u8 pad_80450A19[4];
-
 extern "C" static void __VIRetraceHandler();
 extern "C" void VISetPreRetraceCallback();
 extern "C" void VISetPostRetraceCallback();

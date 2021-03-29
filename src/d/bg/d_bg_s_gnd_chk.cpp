@@ -60,9 +60,6 @@ struct cBgS_GndChk {
 // Forward References:
 //
 
-extern "C" extern void* __vt__14dBgS_CamGndChk[12];
-extern "C" extern void* __vt__18dBgS_ObjGndChk_All[12];
-
 extern "C" void __ct__11dBgS_GndChkFv();
 extern "C" void __dt__11dBgS_GndChkFv();
 extern "C" void __ct__18dBgS_ObjGndChk_WtrFv();
@@ -99,7 +96,6 @@ extern "C" extern void* __vt__18dBgS_ObjGndChk_All[12];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */];
 
 extern "C" void __ct__8dBgS_ChkFv();
 extern "C" void __dt__8dBgS_ChkFv();

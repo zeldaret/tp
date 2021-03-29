@@ -41,9 +41,6 @@ extern "C" void JPACalcKeyAnmValue__FfUsPCf();
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_epsilon;
-
 extern "C" void PSMTXIdentity();
 extern "C" void PSVECMag();
 extern "C" void _savegpr_28();
@@ -57,7 +54,7 @@ extern "C" extern u32 __float_epsilon;
 
 /* ############################################################################################## */
 /* 804553B8-804553BC 0004+00 s=2 e=0 z=0  None .sdata2    @2193 */
-SECTION_SDATA2 static u32 lit_2193 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2193 = 1.0f;
 
 /* 804553BC-804553C0 0004+00 s=4 e=0 z=0  None .sdata2    @2238 */
 SECTION_SDATA2 static u8 lit_2238[4] = {

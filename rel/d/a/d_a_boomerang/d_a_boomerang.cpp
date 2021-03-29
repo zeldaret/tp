@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -24,6 +20,10 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 8049EE8C */ ~cXyz();
     /* 804A27FC */ cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
 struct mDoMtx_stack_c {
@@ -141,6 +141,8 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {};
+
 struct cBgS_PolyInfo {};
 
 struct dBgS {
@@ -149,8 +151,6 @@ struct dBgS {
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
-
-struct dBgS_AcchCir {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -346,58 +346,6 @@ static void daBoomerang_Execute(daBoomerang_c*);
 static void daBoomerang_Delete(daBoomerang_c*);
 static void daBoomerang_createHeap(fopAc_ac_c*);
 static void daBoomerang_Create(fopAc_ac_c*);
-extern "C" extern u8 const l_blurTop[12];
-extern "C" extern u8 const struct_804A2868[20];
-extern "C" extern u32 const m_minCircleR__18daBoomerang_HIO_c0;
-extern "C" extern u32 const m_middleCircleR__18daBoomerang_HIO_c0;
-extern "C" extern u32 const m_maxCircleR__18daBoomerang_HIO_c0;
-extern "C" extern u32 const m_scale__18daBoomerang_HIO_c0;
-extern "C" extern u32 const m_lockWindScale__18daBoomerang_HIO_c0;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_BOOMERANG[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 l_HIO[1 + 3 /* padding */];
-extern "C" extern u8 data_804A2D50[4];
-extern "C" extern u8 data_804A2D54[4];
-extern "C" extern u8 data_804A2D58[4];
-extern "C" extern u8 data_804A2D5C[4];
-extern "C" extern u8 data_804A2D60[4];
-extern "C" extern u8 data_804A2D64[4];
-extern "C" extern u8 data_804A2D68[4];
-extern "C" extern u8 data_804A2D6C[4];
-extern "C" extern u8 data_804A2D70[4];
-extern "C" extern u8 data_804A2D74[4];
-extern "C" extern u8 data_804A2D78[4];
-extern "C" extern u8 data_804A2D7C[4];
-extern "C" extern u8 data_804A2D80[4];
-extern "C" extern u8 data_804A2D84[4];
-extern "C" extern u8 data_804A2D88[4];
-extern "C" extern u8 data_804A2D8C[4];
-extern "C" extern u8 data_804A2D90[4];
-extern "C" extern u8 data_804A2D94[4];
-extern "C" extern u8 data_804A2D98[4];
-extern "C" extern u8 data_804A2D9C[4];
-extern "C" extern u8 data_804A2DA0[4];
-extern "C" extern u8 data_804A2DA4[4];
-extern "C" extern u8 data_804A2DA8[4];
-extern "C" extern u8 data_804A2DAC[4];
-extern "C" extern u8 data_804A2DB0[4];
-extern "C" extern u8 data_804A2DB4[4];
 
 extern "C" void createHeap__19daBoomerang_sight_cFv();
 extern "C" void initialize__19daBoomerang_sight_cFv();
@@ -542,29 +490,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mRoofY__11fopAcM_rc_c[4];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 struct_8045101C[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

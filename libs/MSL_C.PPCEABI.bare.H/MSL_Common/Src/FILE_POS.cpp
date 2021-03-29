@@ -19,8 +19,6 @@ extern "C" void ftell();
 // External References:
 //
 
-extern "C" extern u8 errno[4 + 4 /* padding */];
-
 extern "C" void __flush_buffer();
 extern "C" void __end_critical_region();
 extern "C" void __begin_critical_region();

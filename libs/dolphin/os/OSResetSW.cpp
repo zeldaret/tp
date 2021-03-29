@@ -19,9 +19,6 @@ extern "C" void OSGetResetSwitchState();
 // External References:
 //
 
-extern "C" extern u8 __OSStartTime[4];
-extern "C" extern u8 data_80451634[4];
-
 extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
 extern "C" void __OSMaskInterrupts();

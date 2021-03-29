@@ -17,11 +17,11 @@ struct ResTIMG {};
 
 struct ResFONT {};
 
+struct JKRArchive {};
+
 struct JSUInputStream {
     /* 802DC298 */ void read(void*, s32);
 };
-
-struct JKRArchive {};
 
 struct JUTResReference {
     /* 802DE078 */ void getResource(JSUInputStream*, u32, JKRArchive*);
@@ -56,20 +56,9 @@ struct JGeometry {
 
 struct J2DRotateAxis {};
 
-struct J2DAnmTextureSRTKey {};
-
-struct J2DGrafContext {
-    /* 802E8E20 */ void setScissor();
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
-
 struct J2DAnmColor {};
 
-struct J2DAnmTransform {};
+struct J2DBasePosition {};
 
 struct J2DAnmVtxColor {};
 
@@ -77,7 +66,18 @@ struct J2DAnmVisibilityFull {};
 
 struct J2DAnmBase {};
 
-struct J2DBasePosition {};
+struct J2DAnmTransform {};
+
+struct J2DGrafContext {
+    /* 802E8E20 */ void setScissor();
+    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
+};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTevRegKey {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -217,8 +217,6 @@ extern "C" void __sinit_J2DPane_cpp();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void calcMtx__7J2DPaneFv();
@@ -344,7 +342,7 @@ asm J2DPane::J2DPane() {
 
 /* ############################################################################################## */
 /* 804561F4-804561F8 0004+00 s=3 e=0 z=0  None .sdata2    @1489 */
-SECTION_SDATA2 static u32 lit_1489 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1489 = 1.0f;
 
 /* 802F5CB8-802F5D40 0088+00 s=3 e=0 z=0  None .text      initiate__7J2DPaneFv */
 #pragma push
@@ -415,14 +413,10 @@ asm J2DPane::J2DPane(J2DPane* param_0, JSURandomInputStream* param_1, u8 param_2
 
 /* ############################################################################################## */
 /* 804561F8-80456200 0008+00 s=3 e=0 z=0  None .sdata2    @1651 */
-SECTION_SDATA2 static u8 lit_1651[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1651 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80456200-80456208 0008+00 s=3 e=0 z=0  None .sdata2    @1655 */
-SECTION_SDATA2 static u8 lit_1655[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1655 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802F60C4-802F63F8 0334+00 s=1 e=3 z=0  None .text
  * makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream    */
@@ -437,7 +431,7 @@ asm void J2DPane::makePaneStream(J2DPane* param_0, JSURandomInputStream* param_1
 
 /* ############################################################################################## */
 /* 80456208-8045620C 0004+00 s=4 e=0 z=0  None .sdata2    @1725 */
-SECTION_SDATA2 static u32 lit_1725 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_1725 = 0.5f;
 
 /* 802F63F8-802F658C 0194+00 s=4 e=0 z=0  None .text      changeUseTrans__7J2DPaneFP7J2DPane */
 #pragma push
@@ -617,7 +611,7 @@ asm void J2DPane::isUsed(ResFONT const* param_0) {
 
 /* ############################################################################################## */
 /* 8045620C-80456210 0004+00 s=1 e=0 z=0  None .sdata2    @2466 */
-SECTION_SDATA2 static u32 lit_2466 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_2466 = 0.01745329238474369f;
 
 /* 802F7540-802F7680 0140+00 s=1 e=7 z=0  None .text      makeMatrix__7J2DPaneFffff */
 #pragma push
@@ -652,7 +646,7 @@ asm void J2DPane::setBasePosition(J2DBasePosition param_0) {
 
 /* ############################################################################################## */
 /* 80456210-80456214 0004+00 s=1 e=0 z=0  None .sdata2    @2547 */
-SECTION_SDATA2 static u32 lit_2547 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_2547 = 255.0f;
 
 /* 802F77D0-802F79A8 01D8+00 s=0 e=1 z=0  None .text      setInfluencedAlpha__7J2DPaneFbb */
 #pragma push
@@ -823,7 +817,7 @@ asm void J2DPane::animationPane(J2DAnmTransform const* param_0) {
 
 /* ############################################################################################## */
 /* 80456214-80456218 0004+00 s=1 e=0 z=0  None .sdata2    @2890 */
-SECTION_SDATA2 static u32 lit_2890 = 0x43B40000;
+SECTION_SDATA2 static f32 lit_2890 = 360.0f;
 
 /* 80456218-80456220 0004+04 s=1 e=0 z=0  None .sdata2    @2891 */
 SECTION_SDATA2 static f32 lit_2891[1 + 1 /* padding */] = {

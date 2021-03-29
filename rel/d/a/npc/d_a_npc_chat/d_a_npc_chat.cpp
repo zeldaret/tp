@@ -13,16 +13,16 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80985DE4 */ csXyz();
-    /* 80985DA8 */ ~csXyz();
-};
-
 struct cXyz {
     /* 80266C18 */ void operator/(f32) const;
     /* 80985DE8 */ ~cXyz();
     /* 80985E24 */ cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80985DE4 */ csXyz();
+    /* 80985DA8 */ ~csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -38,9 +38,9 @@ struct mDoExt_morf_c {
 
 struct J3DAnmTextureSRTKey {};
 
-struct J3DAnmTexPattern {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F6F8 */ void removeTexNoAnimator(J3DAnmTexPattern*);
@@ -62,13 +62,13 @@ struct mDoExt_brkAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -334,61 +334,6 @@ static void daNpcChat_Delete(void*);
 static void daNpcChat_Execute(void*);
 static void daNpcChat_Draw(void*);
 static bool daNpcChat_IsDelete(void*);
-extern "C" extern u8 const lit_5715[24];
-extern "C" extern u8 const lit_5728[20];
-extern "C" extern u8 const lit_5737[20];
-extern "C" extern u8 const lit_5744[24];
-extern "C" extern u8 const lit_5756[20];
-extern "C" extern u8 const lit_5762[20];
-extern "C" extern u8 const lit_5769[24];
-extern "C" extern u8 const lit_5776[24];
-extern "C" extern u8 const lit_5785[32];
-extern "C" extern u8 const lit_5802[24];
-extern "C" extern u8 const lit_5811[24];
-extern "C" extern u8 const lit_5820[24];
-extern "C" extern u8 const lit_5847[160];
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_CHAT[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_8098BDA4[4];
-extern "C" extern u8 data_8098BDA8[4];
-extern "C" extern u8 data_8098BDAC[4];
-extern "C" extern u8 data_8098BDB0[4];
-extern "C" extern u8 data_8098BDB4[4];
-extern "C" extern u8 data_8098BDB8[4];
-extern "C" extern u8 data_8098BDBC[4];
-extern "C" extern u8 data_8098BDC0[4];
-extern "C" extern u8 data_8098BDC4[4];
-extern "C" extern u8 data_8098BDC8[4];
-extern "C" extern u8 data_8098BDCC[4];
-extern "C" extern u8 data_8098BDD0[4];
-extern "C" extern u8 data_8098BDD4[4];
-extern "C" extern u8 data_8098BDD8[4];
-extern "C" extern u8 data_8098BDDC[4];
-extern "C" extern u8 data_8098BDE0[4];
-extern "C" extern u8 data_8098BDE4[4];
-extern "C" extern u8 data_8098BDE8[4];
-extern "C" extern u8 data_8098BDEC[4];
-extern "C" extern u8 data_8098BDF0[4];
-extern "C" extern u8 data_8098BDF4[4];
-extern "C" extern u8 data_8098BDF8[4];
-extern "C" extern u8 data_8098BDFC[4];
-extern "C" extern u8 data_8098BE00[4];
-extern "C" extern u8 data_8098BE04[4];
 
 extern "C" void __ct__11daNpcChat_cFv();
 extern "C" void __dt__8cM3dGCylFv();
@@ -547,23 +492,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_targetAngleX(cXyz const*, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();

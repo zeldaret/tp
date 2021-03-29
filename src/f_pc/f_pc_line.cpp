@@ -18,7 +18,6 @@ struct node_list_class {};
 //
 
 void fpcLn_Create();
-extern "C" extern void* g_fpcLn_Queue[2];
 
 extern "C" void fpcLn_Create__Fv();
 extern "C" extern void* g_fpcLn_Queue[2];

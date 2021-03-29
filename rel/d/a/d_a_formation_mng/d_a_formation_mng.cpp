@@ -91,8 +91,6 @@ static void daFmtMng_Execute(daFmtMng_c*);
 static bool daFmtMng_IsDelete(daFmtMng_c*);
 static void daFmtMng_Delete(daFmtMng_c*);
 static void daFmtMng_Create(fopAc_ac_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_FORMATION_MNG[12];
 
 extern "C" void initWait__10daFmtMng_cFv();
 extern "C" void initMemberPos__10daFmtMng_cFv();
@@ -150,13 +148,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_distanceAngleS(s16, s16);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();

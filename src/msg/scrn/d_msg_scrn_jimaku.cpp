@@ -85,8 +85,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_jimaku__stringBase0;
-
 extern "C" void __ct__16dMsgScrnJimaku_cFUcP10JKRExpHeap();
 extern "C" void __dt__16dMsgScrnJimaku_cFv();
 extern "C" void exec__16dMsgScrnJimaku_cFv();
@@ -106,8 +104,6 @@ void dComIfGp_getSubHeap2D(int);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 SECTION_INIT void memset();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -206,7 +202,7 @@ SECTION_SDATA2 static u8 lit_3941[4] = {
 };
 
 /* 80454CB4-80454CB8 0004+00 s=1 e=0 z=0  None .sdata2    @3942 */
-SECTION_SDATA2 static u32 lit_3942 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_3942 = 6.0f / 5.0f;
 
 /* 80244558-80244A74 051C+00 s=0 e=1 z=0  None .text      __ct__16dMsgScrnJimaku_cFUcP10JKRExpHeap
  */

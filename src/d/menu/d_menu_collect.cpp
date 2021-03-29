@@ -106,13 +106,7 @@ struct dMenu_save_c {
     /* 801F69B8 */ void _draw();
 };
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
+struct CSTControl {};
 
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
@@ -123,7 +117,13 @@ struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
-struct CSTControl {};
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+    /* 8003242C */ void checkLeftTrigger();
+    /* 800324A8 */ void checkRightTrigger();
+    /* 80032524 */ void checkUpTrigger();
+    /* 800325A0 */ void checkDownTrigger();
+};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -403,9 +403,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_collect__stringBase0;
-extern "C" extern u32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-
 extern "C" void __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__17dMenu_Collect2D_cFv();
 extern "C" void _create__17dMenu_Collect2D_cFv();
@@ -541,21 +538,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8J3DModel[9];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -1370,7 +1352,7 @@ SECTION_SDATA2 static u8 lit_4481[4] = {
 };
 
 /* 80453F2C-80453F30 0004+00 s=15 e=0 z=0  None .sdata2    @4482 */
-SECTION_SDATA2 static u32 lit_4482 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4482 = 1.0f;
 
 /* 801AFD48-801AFE34 00EC+00 s=1 e=0 z=0  None .text
  * __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl */
@@ -1459,10 +1441,10 @@ asm void dMenu_Collect2D_c::isInsectIconVisible() {
 
 /* ############################################################################################## */
 /* 80453F30-80453F34 0004+00 s=2 e=0 z=0  None .sdata2    @5173 */
-SECTION_SDATA2 static u32 lit_5173 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5173 = 0.5f;
 
 /* 80453F34-80453F38 0004+00 s=2 e=0 z=0  None .sdata2    @5174 */
-SECTION_SDATA2 static u32 lit_5174 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_5174 = -1000.0f;
 
 /* 801B074C-801B1C3C 14F0+00 s=1 e=0 z=0  None .text      screenSet__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1486,9 +1468,7 @@ asm void dMenu_Collect2D_c::animationSet() {
 
 /* ############################################################################################## */
 /* 80453F38-80453F40 0008+00 s=2 e=0 z=0  None .sdata2    @5199 */
-SECTION_SDATA2 static u8 lit_5199[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5199 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801B1CE0-801B1EDC 01FC+00 s=1 e=0 z=0  None .text
  * btkAnimeLoop0__17dMenu_Collect2D_cFP19J2DAnmTextureSRTKey    */
@@ -1503,15 +1483,13 @@ asm void dMenu_Collect2D_c::btkAnimeLoop0(J2DAnmTextureSRTKey* param_0) {
 
 /* ############################################################################################## */
 /* 80453F40-80453F44 0004+00 s=1 e=0 z=0  None .sdata2    @5268 */
-SECTION_SDATA2 static u32 lit_5268 = 0x43160000;
+SECTION_SDATA2 static f32 lit_5268 = 150.0f;
 
 /* 80453F44-80453F48 0004+00 s=1 e=0 z=0  None .sdata2    @5269 */
-SECTION_SDATA2 static u32 lit_5269 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_5269 = 1.0f / 5.0f;
 
 /* 80453F48-80453F50 0008+00 s=1 e=0 z=0  None .sdata2    @5271 */
-SECTION_SDATA2 static u8 lit_5271[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5271 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801B1EDC-801B1FAC 00D0+00 s=1 e=0 z=0  None .text      setBackAlpha__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1537,7 +1515,7 @@ SECTION_SDATA2 static u32 lit_5403 = 0x03030403;
 SECTION_SDATA2 static u32 data_80453F5C = 0x04030404;
 
 /* 80453F60-80453F64 0004+00 s=6 e=0 z=0  None .sdata2    @5531 */
-SECTION_SDATA2 static u32 lit_5531 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5531 = -1.0f;
 
 /* 801B1FAC-801B27EC 0840+00 s=1 e=0 z=0  None .text      cursorMove__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1551,25 +1529,25 @@ asm void dMenu_Collect2D_c::cursorMove() {
 
 /* ############################################################################################## */
 /* 80453F64-80453F68 0004+00 s=1 e=0 z=0  None .sdata2    @5611 */
-SECTION_SDATA2 static u32 lit_5611 = 0x3F8CCCCD;
+SECTION_SDATA2 static f32 lit_5611 = 11.0f / 10.0f;
 
 /* 80453F68-80453F6C 0004+00 s=1 e=0 z=0  None .sdata2    @5612 */
-SECTION_SDATA2 static u32 lit_5612 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_5612 = 17.0f / 20.0f;
 
 /* 80453F6C-80453F70 0004+00 s=1 e=0 z=0  None .sdata2    @5613 */
-SECTION_SDATA2 static u32 lit_5613 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_5613 = 1.0f / 20.0f;
 
 /* 80453F70-80453F74 0004+00 s=1 e=0 z=0  None .sdata2    @5614 */
-SECTION_SDATA2 static u32 lit_5614 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_5614 = 3.0f / 5.0f;
 
 /* 80453F74-80453F78 0004+00 s=1 e=0 z=0  None .sdata2    @5615 */
-SECTION_SDATA2 static u32 lit_5615 = 0x3CF5C28F;
+SECTION_SDATA2 static f32 lit_5615 = 3.0f / 100.0f;
 
 /* 80453F78-80453F7C 0004+00 s=1 e=0 z=0  None .sdata2    @5616 */
-SECTION_SDATA2 static u32 lit_5616 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5616 = 1.0f / 10.0f;
 
 /* 80453F7C-80453F80 0004+00 s=1 e=0 z=0  None .sdata2    @5617 */
-SECTION_SDATA2 static u32 lit_5617 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_5617 = 7.0f / 10.0f;
 
 /* 801B27EC-801B2A74 0288+00 s=2 e=0 z=0  None .text      cursorPosSet__17dMenu_Collect2D_cFv */
 #pragma push
@@ -2239,43 +2217,43 @@ asm void dMenu_Collect3D_c::_delete() {
 
 /* ############################################################################################## */
 /* 80453F80-80453F84 0004+00 s=1 e=0 z=0  None .sdata2    @7324 */
-SECTION_SDATA2 static u32 lit_7324 = 0x42700000;
+SECTION_SDATA2 static f32 lit_7324 = 60.0f;
 
 /* 80453F84-80453F88 0004+00 s=1 e=0 z=0  None .sdata2    @7325 */
-SECTION_SDATA2 static u32 lit_7325 = 0x44110000;
+SECTION_SDATA2 static f32 lit_7325 = 580.0f;
 
 /* 80453F88-80453F8C 0004+00 s=1 e=0 z=0  None .sdata2    @7326 */
-SECTION_SDATA2 static u32 lit_7326 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_7326 = 90.0f;
 
 /* 80453F8C-80453F90 0004+00 s=1 e=0 z=0  None .sdata2    @7327 */
-SECTION_SDATA2 static u32 lit_7327 = 0x44098000;
+SECTION_SDATA2 static f32 lit_7327 = 550.0f;
 
 /* 80453F90-80453F94 0004+00 s=1 e=0 z=0  None .sdata2    @7328 */
-SECTION_SDATA2 static u32 lit_7328 = 0x43E10000;
+SECTION_SDATA2 static f32 lit_7328 = 450.0f;
 
 /* 80453F94-80453F98 0004+00 s=1 e=0 z=0  None .sdata2    @7329 */
-SECTION_SDATA2 static u32 lit_7329 = 0xC0400000;
+SECTION_SDATA2 static f32 lit_7329 = -3.0f;
 
 /* 80453F98-80453F9C 0004+00 s=1 e=0 z=0  None .sdata2    @7330 */
-SECTION_SDATA2 static u32 lit_7330 = 0xC0A00000;
+SECTION_SDATA2 static f32 lit_7330 = -5.0f;
 
 /* 80453F9C-80453FA0 0004+00 s=1 e=0 z=0  None .sdata2    @7331 */
-SECTION_SDATA2 static u32 lit_7331 = 0x41800000;
+SECTION_SDATA2 static f32 lit_7331 = 16.0f;
 
 /* 80453FA0-80453FA4 0004+00 s=1 e=0 z=0  None .sdata2    @7332 */
-SECTION_SDATA2 static u32 lit_7332 = 0x41000000;
+SECTION_SDATA2 static f32 lit_7332 = 8.0f;
 
 /* 80453FA4-80453FA8 0004+00 s=2 e=0 z=0  None .sdata2    @7333 */
-SECTION_SDATA2 static u32 lit_7333 = 0x40000000;
+SECTION_SDATA2 static f32 lit_7333 = 2.0f;
 
 /* 80453FA8-80453FAC 0004+00 s=1 e=0 z=0  None .sdata2    @7334 */
-SECTION_SDATA2 static u32 lit_7334 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_7334 = -4.0f;
 
 /* 80453FAC-80453FB0 0004+00 s=1 e=0 z=0  None .sdata2    @7335 */
-SECTION_SDATA2 static u32 lit_7335 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_7335 = -10.0f;
 
 /* 80453FB0-80453FB4 0004+00 s=1 e=0 z=0  None .sdata2    @7336 */
-SECTION_SDATA2 static u32 lit_7336 = 0x44160000;
+SECTION_SDATA2 static f32 lit_7336 = 600.0f;
 
 /* 801B66C8-801B696C 02A4+00 s=2 e=0 z=0  None .text      _move__17dMenu_Collect3D_cFUcUc */
 #pragma push
@@ -2309,16 +2287,16 @@ asm void dMenu_Collect3D_c::setJ3D(char const* param_0, char const* param_1, cha
 
 /* ############################################################################################## */
 /* 80453FB4-80453FB8 0004+00 s=1 e=0 z=0  None .sdata2    @7505 */
-SECTION_SDATA2 static u32 lit_7505 = 0xBDCCCCCD;
+SECTION_SDATA2 static f32 lit_7505 = -1.0f / 10.0f;
 
 /* 80453FB8-80453FBC 0004+00 s=1 e=0 z=0  None .sdata2    @7506 */
-SECTION_SDATA2 static u32 lit_7506 = 0xBF19999A;
+SECTION_SDATA2 static f32 lit_7506 = -3.0f / 5.0f;
 
 /* 80453FBC-80453FC0 0004+00 s=1 e=0 z=0  None .sdata2    @7507 */
-SECTION_SDATA2 static u32 lit_7507 = 0xBECCCCCD;
+SECTION_SDATA2 static f32 lit_7507 = -2.0f / 5.0f;
 
 /* 80453FC0-80453FC4 0004+00 s=1 e=0 z=0  None .sdata2    @7508 */
-SECTION_SDATA2 static u32 lit_7508 = 0xBE99999A;
+SECTION_SDATA2 static f32 lit_7508 = -3.0f / 10.0f;
 
 /* 801B6D30-801B6E70 0140+00 s=2 e=0 z=0  None .text      set_mtx__17dMenu_Collect3D_cFv */
 #pragma push
@@ -2411,19 +2389,19 @@ SECTION_SDATA u32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */] = {
 };
 
 /* 80453FC4-80453FC8 0004+00 s=3 e=0 z=0  None .sdata2    @7944 */
-SECTION_SDATA2 static u32 lit_7944 = 0x44180000;
+SECTION_SDATA2 static f32 lit_7944 = 608.0f;
 
 /* 80453FC8-80453FCC 0004+00 s=3 e=0 z=0  None .sdata2    @7945 */
-SECTION_SDATA2 static u32 lit_7945 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_7945 = 448.0f;
 
 /* 80453FCC-80453FD0 0004+00 s=2 e=0 z=0  None .sdata2    @7946 */
-SECTION_SDATA2 static u32 lit_7946 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_7946 = -100.0f;
 
 /* 80453FD0-80453FD4 0004+00 s=1 e=0 z=0  None .sdata2    @7947 */
-SECTION_SDATA2 static u32 lit_7947 = 0x42340000;
+SECTION_SDATA2 static f32 lit_7947 = 45.0f;
 
 /* 80453FD4-80453FD8 0004+00 s=2 e=0 z=0  None .sdata2    @7948 */
-SECTION_SDATA2 static u32 lit_7948 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_7948 = 19.0f / 14.0f;
 
 /* 80453FD8-80453FE0 0004+04 s=1 e=0 z=0  None .sdata2    @7949 */
 SECTION_SDATA2 static f32 lit_7949[1 + 1 /* padding */] = {
@@ -2444,9 +2422,7 @@ asm void dMenu_Collect3D_c::setupItem3D(f32 (*param_0)[4]) {
 
 /* ############################################################################################## */
 /* 80453FE0-80453FE8 0008+00 s=1 e=0 z=0  None .sdata2    @7963 */
-SECTION_SDATA2 static u8 lit_7963[8] = {
-    0x3F, 0xD9, 0x21, 0xFB, 0x60, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_7963 = 0.39269909262657166;
 
 /* 801B7660-801B774C 00EC+00 s=1 e=0 z=0  None .text      toItem3Dpos__17dMenu_Collect3D_cFfffP4cXyz
  */

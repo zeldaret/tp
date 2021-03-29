@@ -57,8 +57,6 @@ extern "C" void pause__13JASTaskThreadFb();
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 JASDram[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void bcopy__7JASCalcFPCvPvUl();
 extern "C" void getSystemHeap__9JASKernelFv();

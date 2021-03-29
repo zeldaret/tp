@@ -13,14 +13,9 @@
 
 extern "C" extern void* g_profile_SPIRAL_DOOR[12];
 
-extern "C" extern void* g_profile_SPIRAL_DOOR[12];
-
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];

@@ -117,8 +117,6 @@ static void daSpinLift_Draw(daSpinLift_c*);
 static void daSpinLift_Execute(daSpinLift_c*);
 static void daSpinLift_Delete(daSpinLift_c*);
 static void daSpinLift_Create(fopAc_ac_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_SpinLift[12];
 
 extern "C" void __ct__16daSpinLift_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -160,13 +158,6 @@ void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();

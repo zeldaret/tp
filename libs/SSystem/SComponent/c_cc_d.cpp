@@ -41,7 +41,8 @@ struct cM3dGAab {
     /* 8026EE68 */ void PlusR(f32);
 };
 
-struct cCcD_CpsAttr;
+struct cCcD_PntAttr {};
+
 struct cCcD_ShapeAttr {
     struct Shape {};
 
@@ -53,34 +54,10 @@ struct cCcD_ShapeAttr {
     /* 802649E0 */ bool CrossCo(cCcD_ShapeAttr const&, f32*) const;
 };
 
-struct cCcD_CylAttr;
 struct cCcD_TriAttr;
-struct cCcD_PntAttr {};
-
+struct cCcD_SphAttr;
+struct cCcD_CpsAttr;
 struct cCcD_AabAttr {};
-
-struct cCcD_SphAttr {
-    /* 80084B44 */ void GetCoCP() const;
-    /* 80037A54 */ void GetCoCP();
-    /* 80264538 */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 802645C0 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084B4C */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
-    /* 80084B54 */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
-    /* 80084B5C */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
-    /* 802644EC */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
-    /* 8026457C */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
-    /* 80264688 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80084B94 */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
-    /* 80084B9C */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
-    /* 80084BA4 */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
-    /* 80084BAC */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
-    /* 80264644 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
-    /* 802645F8 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 8008721C */ ~cCcD_SphAttr();
-    /* 802646E0 */ void CalcAabBox();
-    /* 8026476C */ void GetNVec(cXyz const&, cXyz*) const;
-    /* 80264808 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
-};
 
 struct cCcD_CylAttr {
     /* 80084CC0 */ void GetCoCP() const;
@@ -123,6 +100,29 @@ struct cCcD_CpsAttr {
     /* 80085450 */ ~cCcD_CpsAttr();
     /* 80263FC4 */ void CalcAabBox();
     /* 80264014 */ void GetNVec(cXyz const&, cXyz*) const;
+};
+
+struct cCcD_SphAttr {
+    /* 80084B44 */ void GetCoCP() const;
+    /* 80037A54 */ void GetCoCP();
+    /* 80264538 */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
+    /* 802645C0 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
+    /* 80084B4C */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
+    /* 80084B54 */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
+    /* 80084B5C */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
+    /* 802644EC */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
+    /* 8026457C */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
+    /* 80264688 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
+    /* 80084B94 */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
+    /* 80084B9C */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
+    /* 80084BA4 */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
+    /* 80084BAC */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
+    /* 80264644 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
+    /* 802645F8 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
+    /* 8008721C */ ~cCcD_SphAttr();
+    /* 802646E0 */ void CalcAabBox();
+    /* 8026476C */ void GetNVec(cXyz const&, cXyz*) const;
+    /* 80264808 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 };
 
 struct cCcD_TriAttr {
@@ -215,14 +215,6 @@ struct cCcD_DivideArea {
 //
 // Forward References:
 //
-
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__12cCcD_TriAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_virtual_center__14cCcD_ShapeAttr[12];
 
 extern "C" void Set__15cCcD_DivideInfoFUlUlUl();
 extern "C" void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo();
@@ -322,11 +314,6 @@ void cM3d_Cross_CpsSph(cM3dGCps const&, cM3dGSph const&, Vec*);
 void cM3d_Cross_TriTri(cM3dGTri const&, cM3dGTri const&, Vec*);
 void cM3d_Cross_CpsTri(cM3dGCps const&, cM3dGTri, Vec*);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void GetCoCP__12cCcD_CylAttrFv();
@@ -435,10 +422,10 @@ asm void cCcD_DivideInfo::Chk(cCcD_DivideInfo const& param_0) const {
 
 /* ############################################################################################## */
 /* 80455018-8045501C 0004+00 s=1 e=0 z=0  None .sdata2    @2305 */
-SECTION_SDATA2 static u32 lit_2305 = 0x3D000000;
+SECTION_SDATA2 static f32 lit_2305 = 0.03125f;
 
 /* 8045501C-80455020 0004+00 s=2 e=0 z=0  None .sdata2    @2306 */
-SECTION_SDATA2 static u32 lit_2306 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2306 = 1.0f;
 
 /* 802633A8-802634D4 012C+00 s=0 e=2 z=0  None .text      SetArea__15cCcD_DivideAreaFRC8cM3dGAab */
 #pragma push
@@ -509,16 +496,10 @@ asm void cCcD_Stts::Init(int param_0, int param_1, void* param_2, unsigned int p
 
 /* ############################################################################################## */
 /* 80455020-80455028 0004+04 s=13 e=0 z=0  None .sdata2    @2431 */
-SECTION_SDATA2 static u8 lit_2431[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_2431[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80263904-80263934 0030+00 s=1 e=1 z=0  None .text      Ct__9cCcD_SttsFv */
@@ -563,9 +544,7 @@ asm void cCcD_Stts::PlusDmg(int param_0) {
 
 /* ############################################################################################## */
 /* 80455028-80455030 0008+00 s=1 e=0 z=0  None .sdata2    @2472 */
-SECTION_SDATA2 static u8 lit_2472[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2472 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80263984-802639B0 002C+00 s=0 e=1 z=0  None .text      GetWeightF__9cCcD_SttsCFv */
 #pragma push

@@ -202,9 +202,7 @@ SECTION_SDATA2 static f32 lit_3692[1 + 1 /* padding */] = {
 };
 
 /* 80454EC0-80454EC8 0008+00 s=3 e=0 z=0  None .sdata2    @3694 */
-SECTION_SDATA2 static u8 lit_3694[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3694 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80255658-80255758 0100+00 s=2 e=2 z=0  None .text      rateCalc__13CPaneMgrAlphaFssUc */
 #pragma push
@@ -228,9 +226,7 @@ asm void CPaneMgrAlpha::setAlpha(u8 param_0) {
 
 /* ############################################################################################## */
 /* 80454EC8-80454ED0 0008+00 s=6 e=0 z=0  None .sdata2    @3708 */
-SECTION_SDATA2 static u8 lit_3708[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3708 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802557D0-80255828 0058+00 s=1 e=173 z=5  None .text      setAlphaRate__13CPaneMgrAlphaFf */
 #pragma push
@@ -244,16 +240,10 @@ asm void CPaneMgrAlpha::setAlphaRate(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80454ED0-80454ED8 0004+04 s=2 e=0 z=0  None .sdata2    @3721 */
-SECTION_SDATA2 static u8 lit_3721[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3721[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80255828-80255878 0050+00 s=0 e=107 z=2  None .text      getAlphaRate__13CPaneMgrAlphaFv */

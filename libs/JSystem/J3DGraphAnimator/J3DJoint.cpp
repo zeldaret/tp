@@ -50,10 +50,6 @@ struct J3DJoint {
 // Forward References:
 //
 
-extern "C" extern u8 mMtxBuffer__10J3DMtxCalc[4];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
-
 extern "C" void init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf();
 extern "C" void init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf();
 extern "C" void calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo();
@@ -74,12 +70,6 @@ extern "C" extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 void J3DGetTranslateRotateMtx(J3DTransformInfo const&, f32 (*)[4]);
 void J3DGetTranslateRotateMtx(s16, s16, s16, f32, f32, f32, f32 (*)[4]);
 void JMAMTXApplyScale(f32 const (*)[4], f32 (*)[4], f32, f32, f32);
-extern "C" extern u8 const j3dDefaultTransformInfo[32];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mCurrentS__6J3DSys[12];
-extern "C" extern u8 mParentS__6J3DSys[12];
-extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 extern "C" void J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f();
 extern "C" void J3DGetTranslateRotateMtx__FsssfffPA4_f();
@@ -142,7 +132,7 @@ u8 mMtxBuffer__10J3DMtxCalc[4];
 u8 mJoint__10J3DMtxCalc[4];
 
 /* 804564A0-804564A4 0004+00 s=3 e=0 z=0  None .sdata2    @922 */
-SECTION_SDATA2 static u32 lit_922 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_922 = 1.0f;
 
 /* 8032ED30-8032EE50 0120+00 s=0 e=1 z=0  None .text
  * calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo */

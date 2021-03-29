@@ -25,11 +25,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
 
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
@@ -51,7 +51,6 @@ struct Z2SeMgr {
 static void daObjOnsenFire_Create(fopAc_ac_c*);
 static void daObjOnsenFire_Execute(daObjOnsenFire_c*);
 static void daObjOnsenFire_Delete(daObjOnsenFire_c*);
-extern "C" extern void* g_profile_OBJ_ONSEN_FIRE[12];
 
 extern "C" void create__16daObjOnsenFire_cFv();
 extern "C" void execute__16daObjOnsenFire_cFv();
@@ -63,13 +62,6 @@ extern "C" extern void* g_profile_OBJ_ONSEN_FIRE[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

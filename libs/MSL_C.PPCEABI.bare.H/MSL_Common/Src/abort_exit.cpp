@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __stdio_exit[4];
-extern "C" extern u8 data_804519A0[8];
-
 extern "C" void exit();
 extern "C" void abort();
 extern "C" extern u8 __stdio_exit[4];
@@ -22,11 +19,6 @@ extern "C" extern u8 data_804519A0[8];
 //
 // External References:
 //
-
-#pragma section ".dtors$10"
-__declspec(section ".dtors$10") extern void* const __destroy_global_chain_reference;
-#pragma section ".dtors$15"
-__declspec(section ".dtors$15") extern void* const __fini_cpp_exceptions_reference;
 
 extern "C" void _ExitProcess();
 extern "C" void __destroy_global_chain();

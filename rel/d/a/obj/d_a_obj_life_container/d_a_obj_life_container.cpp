@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -103,9 +103,9 @@ struct dPa_followEcallBack {
     /* 80049580 */ dPa_followEcallBack(u8, u8);
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -247,9 +247,6 @@ static void daObjLife_Execute(daObjLife_c*);
 static void daObjLife_Delete(daObjLife_c*);
 static void daObjLife_Create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_LifeContainer[12];
 
 extern "C" static void Reflect__FP4cXyzRC13cBgS_PolyInfof();
 extern "C" void __dt__8cM3dGPlaFv();
@@ -325,23 +322,6 @@ void cLib_addCalc(f32*, f32, f32, f32, f32);
 void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_804CE6A0[4];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

@@ -19,8 +19,6 @@ struct JAIAudience {
 // Forward References:
 //
 
-extern "C" extern void* __vt__11JAIAudience[8];
-
 extern "C" void __dt__11JAIAudienceFv();
 extern "C" extern void* __vt__11JAIAudience[8];
 

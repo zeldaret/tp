@@ -44,9 +44,6 @@ static void dispGameInfo();
 static void dispDateInfo();
 static void dispConsoleToTerminal();
 void exception_addition(JUTConsole*);
-extern "C" extern char const* const m_Do_m_Do_machine_exception__stringBase0;
-extern "C" extern u8 struct_80450C98[4];
-extern "C" extern u8 struct_80450C9C[4];
 
 extern "C" static void print_f__FPCce();
 extern "C" static void print__FPCc();
@@ -62,18 +59,6 @@ extern "C" extern u8 struct_80450C9C[4];
 //
 // External References:
 //
-
-extern "C" extern u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sPowerOnTime__7mDoMain[4];
-extern "C" extern u8 data_80450B0C[4];
-extern "C" extern u8 sHungUpTime__7mDoMain[4];
-extern "C" extern u8 data_80450B14[4];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 extern "C" void dump__14dRes_control_cFv();
 extern "C" void dump__24DynamicModuleControlBaseFv();

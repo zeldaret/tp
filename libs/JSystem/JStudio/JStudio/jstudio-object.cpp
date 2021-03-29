@@ -16,11 +16,11 @@ struct _GXColor {};
 struct Vec {};
 
 namespace JStudio {
-struct TControl {};
-
 struct data {
     struct TEOperationData {};
 };
+
+struct TControl {};
 
 struct TAdaptor {
     struct TSetVariableValue_immediate {};
@@ -195,77 +195,6 @@ struct TControl {
 // Forward References:
 //
 
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight[16];
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog[16];
-extern "C" extern u8 const sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle[16];
-extern "C" extern u8 const sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle[16];
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound[12];
-extern "C" extern char const* const jstudio_object__stringBase0;
-extern "C" extern u8 lit_1308[12];
-extern "C" extern u8 lit_1310[12];
-extern "C" extern u8 lit_1312[12];
-extern "C" extern u8 lit_1314[12];
-extern "C" extern u8 lit_1316[12];
-extern "C" extern u8 lit_1318[12];
-extern "C" extern u8 lit_1320[12];
-extern "C" extern u8 lit_1323[12];
-extern "C" extern u8 lit_1325[12];
-extern "C" extern u8 lit_1327[12];
-extern "C" extern u8 lit_1329[12];
-extern "C" extern u8 lit_1444[12];
-extern "C" extern u8 lit_1446[12];
-extern "C" extern u8 lit_1449[12];
-extern "C" extern u8 lit_1451[12];
-extern "C" extern u8 lit_1453[12];
-extern "C" extern u8 lit_1455[12];
-extern "C" extern u8 lit_1686[12];
-extern "C" extern u8 lit_1688[12];
-extern "C" extern u8 lit_1690[12];
-extern "C" extern u8 lit_1692[12];
-extern "C" extern u8 lit_1694[12];
-extern "C" extern u8 lit_1696[12];
-extern "C" extern u8 lit_1698[12];
-extern "C" extern u8 lit_1701[12];
-extern "C" extern u8 lit_1703[12];
-extern "C" extern u8 lit_1705[12];
-extern "C" extern u8 lit_1779[12];
-extern "C" extern u8 lit_1781[12];
-extern "C" extern u8 lit_1783[12];
-extern "C" extern u8 lit_1785[12];
-extern "C" extern u8 lit_1787[12];
-extern "C" extern u8 lit_1789[12];
-extern "C" extern u8 lit_1791[12];
-extern "C" extern u8 lit_1794[12];
-extern "C" extern u8 lit_1796[12];
-extern "C" extern u8 lit_1798[12];
-extern "C" extern u8 lit_1800[12];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_sound[20];
-extern "C" extern void* __vt__Q27JStudio17TAdaptor_particle[19];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_light[10];
-extern "C" extern void* __vt__Q27JStudio12TAdaptor_fog[8];
-extern "C" extern void* __vt__Q27JStudio15TAdaptor_camera[15];
-extern "C" extern void* __vt__Q27JStudio21TAdaptor_ambientLight[8];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_actor[20];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
-extern "C" extern u8 data_804511F8[8];
-extern "C" extern u8 data_80451200[8];
-
 extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
 extern "C" void update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor();
 extern "C" void update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued();
@@ -435,8 +364,6 @@ extern "C" extern u8 data_80451200[8];
 //
 
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__Q27JStudio16TAdaptor_message[9];
 
 extern "C" void getObject__Q37JStudio3fvb8TControlFPCvUl();
 extern "C" void getObject_index__Q37JStudio3fvb8TControlFUl();
@@ -1479,9 +1406,7 @@ asm void JStudio::TVariableValue::update_immediate_(JStudio::TVariableValue* par
 
 /* ############################################################################################## */
 /* 804554A0-804554A8 0008+00 s=3 e=0 z=0  None .sdata2    @803 */
-SECTION_SDATA2 static u8 lit_803[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_803 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80285ECC-80285F08 003C+00 s=1 e=0 z=0  None .text
  * update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued */
@@ -1649,7 +1574,7 @@ SECTION_SDATA2 static u8 lit_1094[4] = {
 };
 
 /* 804554AC-804554B0 0004+00 s=1 e=0 z=0  None .sdata2    @1095 */
-SECTION_SDATA2 static u32 lit_1095 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_1095 = 255.0f;
 
 /* 8028638C-802864D8 014C+00 s=0 e=4 z=0  None .text
  * adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl */

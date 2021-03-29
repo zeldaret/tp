@@ -49,10 +49,6 @@ extern "C" void setMessageCount__12JUTAssertionFi();
 // External References:
 //
 
-extern "C" extern u8 data_804508F8[8];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-
 extern "C" void setCharColor__7JUTFontFQ28JUtility6TColor();
 extern "C" void drawString_size_scale__7JUTFontFffffPCcUlb();
 extern "C" void drawString__14JUTDirectPrintFUsUsPc();
@@ -108,10 +104,10 @@ asm void JUTAssertion::flushMessage() {
 
 /* ############################################################################################## */
 /* 804560B8-804560BC 0004+00 s=1 e=0 z=0  None .sdata2    @724 */
-SECTION_SDATA2 static u32 lit_724 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_724 = 30.0f;
 
 /* 804560BC-804560C0 0004+00 s=1 e=0 z=0  None .sdata2    @725 */
-SECTION_SDATA2 static u32 lit_725 = 0x42100000;
+SECTION_SDATA2 static f32 lit_725 = 36.0f;
 
 /* 804560C0-804560C8 0004+04 s=1 e=0 z=0  None .sdata2    @726 */
 SECTION_SDATA2 static f32 lit_726[1 + 1 /* padding */] = {
@@ -121,9 +117,7 @@ SECTION_SDATA2 static f32 lit_726[1 + 1 /* padding */] = {
 };
 
 /* 804560C8-804560D0 0008+00 s=1 e=0 z=0  None .sdata2    @728 */
-SECTION_SDATA2 static u8 lit_728[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_728 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E4A54-802E4C34 01E0+00 s=0 e=1 z=0  None .text      flushMessage_dbPrint__12JUTAssertionFv */
 #pragma push

@@ -74,11 +74,6 @@ extern "C" void __sinit_Z2SoundObjMgr_cpp();
 // External References:
 //
 
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-
 extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
 extern "C" void changeBgmStatus__8Z2SeqMgrFl();
 extern "C" void changeSubBgmStatus__8Z2SeqMgrFl();
@@ -313,30 +308,28 @@ SECTION_SDATA2 static u8 lit_3694[4] = {
 };
 
 /* 80455BB4-80455BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3695 */
-SECTION_SDATA2 static u32 lit_3695 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_3695 = 100.0f;
 
 /* 80455BB8-80455BBC 0004+00 s=1 e=0 z=0  None .sdata2    @3696 */
-SECTION_SDATA2 static u32 lit_3696 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_3696 = 3.0f / 10.0f;
 
 /* 80455BBC-80455BC0 0004+00 s=1 e=0 z=0  None .sdata2    @3697 */
-SECTION_SDATA2 static u32 lit_3697 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3697 = 1.0f;
 
 /* 80455BC0-80455BC4 0004+00 s=1 e=0 z=0  None .sdata2    @3698 */
-SECTION_SDATA2 static u32 lit_3698 = 0x40200000;
+SECTION_SDATA2 static f32 lit_3698 = 2.5f;
 
 /* 80455BC4-80455BC8 0004+00 s=1 e=0 z=0  None .sdata2    @3699 */
-SECTION_SDATA2 static u32 lit_3699 = 0x459C4000;
+SECTION_SDATA2 static f32 lit_3699 = 5000.0f;
 
 /* 80455BC8-80455BCC 0004+00 s=1 e=0 z=0  None .sdata2    @3700 */
-SECTION_SDATA2 static u32 lit_3700 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3700 = 2.0f;
 
 /* 80455BCC-80455BD0 0004+00 s=1 e=0 z=0  None .sdata2    @3701 */
-SECTION_SDATA2 static u32 lit_3701 = 0x40800000;
+SECTION_SDATA2 static f32 lit_3701 = 4.0f;
 
 /* 80455BD0-80455BD8 0008+00 s=1 e=0 z=0  None .sdata2    @3703 */
-SECTION_SDATA2 static u8 lit_3703[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3703 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802BF994-802BFFEC 0658+00 s=1 e=1 z=0  None .text      searchEnemy__13Z2SoundObjMgrFv */
 #pragma push

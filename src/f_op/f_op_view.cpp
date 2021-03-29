@@ -26,7 +26,6 @@ static void fopVw_Execute(view_class*);
 static void fopVw_IsDelete(void*);
 static void fopVw_Delete(view_class*);
 static void fopVw_Create(void*);
-extern "C" extern void* g_fopVw_Method[5 + 1 /* padding */];
 
 extern "C" static void fopVw_Draw__FP10view_class();
 extern "C" static void fopVw_Execute__FP10view_class();

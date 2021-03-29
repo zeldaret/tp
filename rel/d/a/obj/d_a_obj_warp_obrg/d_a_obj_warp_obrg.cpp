@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -195,8 +195,6 @@ static void daObjWarpOBrg_MoveBGDelete(daObjWarpOBrg_c*);
 static void daObjWarpOBrg_MoveBGExecute(daObjWarpOBrg_c*);
 static void daObjWarpOBrg_MoveBGDraw(daObjWarpOBrg_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_OrdinBrg[12];
 
 extern "C" void initBaseMtx__15daObjWarpOBrg_cFv();
 extern "C" void setBaseMtx__15daObjWarpOBrg_cFv();
@@ -246,19 +244,6 @@ void cLib_targetAngleX(cXyz const*, cXyz const*);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D2BA88[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

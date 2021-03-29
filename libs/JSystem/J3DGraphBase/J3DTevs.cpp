@@ -72,32 +72,6 @@ void makeZModeTable();
 void makeTevSwapTable();
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, _GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultTexMtxInfo[100];
-extern "C" extern u8 const j3dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j3dDefaultTevStageInfo[20];
-extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
-extern "C" extern u8 j3dTevSwapTableTable[1024];
-extern "C" extern u8 j3dAlphaCmpTable[768];
-extern "C" extern u8 j3dZModeTable[96];
-extern "C" extern u32 j3dDefaultColInfo;
-extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 data_804563C8;
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 data_804563D8;
-extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
-extern "C" extern u32 j3dDefaultTevKColor;
-extern "C" extern u8 j3dDefaultTevSwapMode[4];
-extern "C" extern u32 j3dDefaultTevSwapModeTable;
-extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
-extern "C" extern u8 struct_804563F8[4];
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 extern "C" void load__11J3DLightObjCFUl();
 extern "C" void loadTexCoordGens__FUlP11J3DTexCoord();
@@ -166,9 +140,6 @@ void J3DGetTextureMtxOld(J3DTextureSRTInfo const&, Vec const&, f32 (*)[4]);
 void J3DGetTextureMtxMaya(J3DTextureSRTInfo const&, f32 (*)[4]);
 void J3DGetTextureMtxMayaOld(J3DTextureSRTInfo const&, f32 (*)[4]);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
-extern "C" extern u8 __GDCurrentDL[4];
 
 extern "C" void J3DGDSetLightAttn__F10_GXLightIDffffff();
 extern "C" void J3DGDSetLightColor__F10_GXLightID8_GXColor();
@@ -345,15 +316,13 @@ asm void getTexNoReg(void* param_0) {
 
 /* ############################################################################################## */
 /* 804563B0-804563B4 0004+00 s=1 e=0 z=0  None .sdata2    @1167 */
-SECTION_SDATA2 static u32 lit_1167 = 0x3E000000;
+SECTION_SDATA2 static f32 lit_1167 = 0.125f;
 
 /* 804563B4-804563B8 0004+00 s=1 e=0 z=0  None .sdata2    @1168 */
-SECTION_SDATA2 static u32 lit_1168 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_1168 = 1.0f / 100.0f;
 
 /* 804563B8-804563C0 0008+00 s=1 e=0 z=0  None .sdata2    @1171 */
-SECTION_SDATA2 static u8 lit_1171[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1171 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80323F94-8032413C 01A8+00 s=0 e=20 z=0  None .text      loadTexNo__FUlRCUs */
 #pragma push

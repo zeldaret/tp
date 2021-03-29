@@ -46,7 +46,6 @@ static void daTag_Howl_Delete(void*);
 static void daTag_Howl_Execute(void*);
 static void daTag_Howl_Draw(void*);
 static bool daTag_Howl_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_HOWL[12];
 
 extern "C" void create__12daTag_Howl_cFv();
 extern "C" bool destroy__12daTag_Howl_cFv();
@@ -68,11 +67,6 @@ extern "C" extern void* g_profile_TAG_HOWL[12];
 //
 
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

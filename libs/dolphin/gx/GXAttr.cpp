@@ -28,8 +28,6 @@ extern "C" void GXSetNumTexGens();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 extern "C" void __GXSetMatrixIndex();
 extern "C" extern void* __GXData;
 

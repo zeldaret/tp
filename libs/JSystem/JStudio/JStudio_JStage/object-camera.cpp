@@ -13,6 +13,14 @@
 
 struct Vec {};
 
+struct JStage {
+    struct TSystem {};
+
+    struct TCamera {};
+
+    struct TObject {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -41,14 +49,6 @@ struct TAdaptor_camera {
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TCamera {};
-
-    struct TObject {};
-};
 
 struct JStudio_JStage {
     struct TAdaptor_camera {
@@ -138,13 +138,6 @@ extern "C" void func_8028C544();
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__Q27JStudio15TAdaptor_camera[15];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
 extern "C" void update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued();

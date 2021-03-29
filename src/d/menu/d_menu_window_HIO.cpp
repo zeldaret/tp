@@ -33,9 +33,6 @@ struct dMw_DHIO_c {
 // Forward References:
 //
 
-extern "C" extern u8 g_mwHIO[304];
-extern "C" extern u8 g_mwDHIO[520];
-
 extern "C" void __ct__9dMw_HIO_cFv();
 extern "C" void init__9dMw_HIO_cFv();
 extern "C" bool getBombFlag__9dMw_HIO_cFv();
@@ -53,7 +50,6 @@ extern "C" extern u8 g_mwDHIO[520];
 //
 
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
 extern "C" void __dl__FPv();

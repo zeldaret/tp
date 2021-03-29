@@ -24,13 +24,13 @@ struct mDoHIO_entry_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -52,9 +52,9 @@ struct daPy_py_c {
 
 struct J3DModel {};
 
-struct J3DJoint {};
-
 struct J3DAnmTransformKey {};
+
+struct J3DJoint {};
 
 struct daNpcCd_c {
     /* 8015605C */ void NpcCreate(int);
@@ -91,11 +91,11 @@ struct daNpcCd_HIO_Child_c {
     /* 80157858 */ daNpcCd_HIO_Child_c();
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 80009184 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -143,11 +143,6 @@ struct Z2CreatureCitizen {
 //
 
 static void jntNodeCallBack(J3DJoint*, int);
-extern "C" extern u8 const m_cylDat__9daNpcCd_c[68];
-extern "C" extern char const* const a_npc_d_a_npc_cd__stringBase0;
-extern "C" extern void* __vt__18fOpAcm_HIO_entry_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern u8 l_Cd_HIO[10684];
 
 extern "C" static void jntNodeCallBack__FP8J3DJointi();
 extern "C" void NpcCreate__9daNpcCd_cFi();
@@ -194,13 +189,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void cLib_calcTimer__template2(int*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 data_80450FF8[8];
 
 SECTION_INIT void memcpy();
 extern "C" void __dt__4cXyzFv();
@@ -739,7 +727,7 @@ SECTION_DEAD static char const* const pad_8039324E = "\0";
 #pragma pop
 
 /* 804534B8-804534BC 0004+00 s=2 e=0 z=0  None .sdata2    @4021 */
-SECTION_SDATA2 static u32 lit_4021 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4021 = 1.0f;
 
 /* 8015605C-801561E8 018C+00 s=0 e=0 z=1  None .text      NpcCreate__9daNpcCd_cFi */
 #pragma push
@@ -897,9 +885,7 @@ SECTION_SDATA2 static f32 lit_4373[1 + 1 /* padding */] = {
 };
 
 /* 804534C8-804534D0 0008+00 s=3 e=0 z=0  None .sdata2    @4375 */
-SECTION_SDATA2 static u8 lit_4375[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4375 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801563C8-80156B4C 0784+00 s=0 e=0 z=2  None .text      setAttention__9daNpcCd_cFi */
 #pragma push
@@ -1013,7 +999,7 @@ asm void daNpcCd_c::drawNpc() {
 
 /* ############################################################################################## */
 /* 804534D0-804534D4 0004+00 s=1 e=0 z=0  None .sdata2    @4582 */
-SECTION_SDATA2 static u32 lit_4582 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_4582 = 182.04444885253906f;
 
 /* 80157084-8015736C 02E8+00 s=1 e=0 z=0  None .text      jntNodeCB__9daNpcCd_cFP8J3DJointP8J3DModel
  */
@@ -1036,10 +1022,10 @@ SECTION_SDATA2 static u8 id[4] = {
 };
 
 /* 804534D8-804534DC 0004+00 s=1 e=0 z=0  None .sdata2    @4656 */
-SECTION_SDATA2 static u32 lit_4656 = 0x41000000;
+SECTION_SDATA2 static f32 lit_4656 = 8.0f;
 
 /* 804534DC-804534E0 0004+00 s=1 e=0 z=0  None .sdata2    @4657 */
-SECTION_SDATA2 static u32 lit_4657 = 0x40800000;
+SECTION_SDATA2 static f32 lit_4657 = 4.0f;
 
 /* 8015736C-80157524 01B8+00 s=1 e=0 z=0  None .text      setHitodamaParticle__9daNpcCd_cFv */
 #pragma push

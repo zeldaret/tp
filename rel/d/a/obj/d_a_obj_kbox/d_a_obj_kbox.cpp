@@ -29,14 +29,14 @@ struct daObj_Kbox_HIO_c {
     /* 80C3EF98 */ ~daObj_Kbox_HIO_c();
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80C3D8BC */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -219,47 +219,6 @@ static bool daObj_Kbox_IsDelete(obj_kbox_class*);
 static void daObj_Kbox_Delete(obj_kbox_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Kbox_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_KBOX[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80C3F2BC[4];
-extern "C" extern u8 data_80C3F2C0[4];
-extern "C" extern u8 data_80C3F2C4[4];
-extern "C" extern u8 data_80C3F2C8[4];
-extern "C" extern u8 data_80C3F2CC[4];
-extern "C" extern u8 data_80C3F2D0[4];
-extern "C" extern u8 data_80C3F2D4[4];
-extern "C" extern u8 data_80C3F2D8[4];
-extern "C" extern u8 data_80C3F2DC[4];
-extern "C" extern u8 data_80C3F2E0[4];
-extern "C" extern u8 data_80C3F2E4[4];
-extern "C" extern u8 data_80C3F2E8[4];
-extern "C" extern u8 data_80C3F2EC[4];
-extern "C" extern u8 data_80C3F2F0[4];
-extern "C" extern u8 data_80C3F2F4[4];
-extern "C" extern u8 data_80C3F2F8[4];
-extern "C" extern u8 data_80C3F2FC[4];
-extern "C" extern u8 data_80C3F300[4];
-extern "C" extern u8 data_80C3F304[4];
-extern "C" extern u8 data_80C3F308[4];
-extern "C" extern u8 data_80C3F30C[4];
-extern "C" extern u8 data_80C3F310[4];
-extern "C" extern u8 data_80C3F314[4];
-extern "C" extern u8 data_80C3F318[4];
-extern "C" extern u8 data_80C3F31C[4];
 
 extern "C" void __ct__16daObj_Kbox_HIO_cFv();
 extern "C" static void ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
@@ -361,22 +320,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 struct_80451124[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

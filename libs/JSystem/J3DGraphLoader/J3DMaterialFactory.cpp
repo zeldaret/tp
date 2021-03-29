@@ -79,16 +79,16 @@ struct J3DTevBlockPatched {
     /* 803176E0 */ void initialize();
 };
 
-struct J3DIndTevStage {
-    /* 8000E14C */ J3DIndTevStage();
-};
-
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
 };
 
 struct J3DGXColor {
     /* 8000E538 */ J3DGXColor();
+};
+
+struct J3DIndTevStage {
+    /* 8000E14C */ J3DIndTevStage();
 };
 
 struct J3DTevBlock {
@@ -162,11 +162,11 @@ struct J3DPEBlockNull {
     /* 803329B0 */ ~J3DPEBlockNull();
 };
 
-struct J3DBlend {};
+struct J3DFog {};
 
 struct J3DAlphaComp {};
 
-struct J3DFog {};
+struct J3DBlend {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -197,8 +197,6 @@ struct J3DPEBlock {
     /* 80317394 */ void setFogOffset(u32);
 };
 
-struct J3DMaterialDLBlock {};
-
 struct J3DMaterial {
     /* 803157A0 */ void createColorBlock(u32);
     /* 803159A0 */ void createTexGenBlock(u32);
@@ -215,6 +213,8 @@ struct J3DMaterial {
 };
 
 struct J3DMaterialBlock {};
+
+struct J3DMaterialDLBlock {};
 
 struct J3DMaterialFactory {
     struct MaterialType {};
@@ -442,29 +442,6 @@ void JSUConvertOffsetToPtr__template24(void const*, void const*);
 void JSUConvertOffsetToPtr__template25(void const*, void const*);
 void JSUConvertOffsetToPtr__template26(void const*, void const*);
 void JSUConvertOffsetToPtr__template28(void const*, void const*);
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
-extern "C" extern void* __vt__17J3DLockedMaterial[12];
-extern "C" extern void* __vt__18J3DPatchedMaterial[12];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern void* __vt__10J3DPEBlock[31];
-extern "C" extern void* __vt__15J3DIndBlockNull[19];
-extern "C" extern void* __vt__11J3DIndBlock[19];
-extern "C" extern void* __vt__14J3DTexGenBlock[27];
-extern "C" extern void* __vt__13J3DColorBlock[36];
-extern "C" extern void* __vt__18J3DTevBlockPatched[55];
-extern "C" extern void* __vt__21J3DTexGenBlockPatched[27];
-extern "C" extern void* __vt__11J3DTevBlock[55];
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
-extern "C" extern u32 j3dDefaultTevSwapModeTable;
-extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 extern "C" void patchTexNoAndTexCoordScale__11J3DTevBlockFv();
 extern "C" void patch__10J3DPEBlockFv();

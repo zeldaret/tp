@@ -100,7 +100,6 @@ void J3DFifoLoadNrmMtxImm3x3(f32 (*)[3], u32);
 void J3DFifoLoadNrmMtxToTexMtx(f32 (*)[4], u32);
 void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32);
 void J3DFifoLoadTexCached(_GXTexMapID, u32, _GXTexCacheSize, u32, _GXTexCacheSize);
-extern "C" extern u8 pad_8045094C[4];
 
 extern "C" void J3DGDSetGenMode__FUcUcUcUc11_GXCullMode();
 extern "C" void J3DGDSetGenMode_3Param__FUcUcUc();
@@ -140,8 +139,6 @@ extern "C" extern u8 pad_8045094C[4];
 //
 // External References:
 //
-
-extern "C" extern u8 __GDCurrentDL[4];
 
 extern "C" void GDOverflowed();
 extern "C" void __cvt_fp2unsigned();
@@ -356,10 +353,10 @@ SECTION_SDATA static u8 GX2HWFiltConv[6 + 2 /* padding */] = {
 };
 
 /* 80456328-8045632C 0004+00 s=1 e=0 z=0  None .sdata2    @1050 */
-SECTION_SDATA2 static u32 lit_1050 = 0x42000000;
+SECTION_SDATA2 static f32 lit_1050 = 32.0f;
 
 /* 8045632C-80456330 0004+00 s=1 e=0 z=0  None .sdata2    @1051 */
-SECTION_SDATA2 static u32 lit_1051 = 0x41800000;
+SECTION_SDATA2 static f32 lit_1051 = 16.0f;
 
 /* 8030E438-8030E5D4 019C+00 s=0 e=1 z=0  None .text
  * J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy
@@ -429,7 +426,7 @@ asm void J3DGDLoadTlut(void* param_0, u32 param_1, _GXTlutSize param_2) {
 
 /* ############################################################################################## */
 /* 80456330-80456334 0004+00 s=1 e=0 z=0  None .sdata2    @1233 */
-SECTION_SDATA2 static u32 lit_1233 = 0x44800000;
+SECTION_SDATA2 static f32 lit_1233 = 1024.0f;
 
 /* 8030EB30-8030EE10 02E0+00 s=0 e=2 z=0  None .text J3DGDSetIndTexMtx__F14_GXIndTexMtxIDPA3_fSc
  */
@@ -561,9 +558,7 @@ SECTION_SDATA2 static f32 lit_1461[1 + 1 /* padding */] = {
 };
 
 /* 80456340-80456348 0008+00 s=1 e=0 z=0  None .sdata2    @1462 */
-SECTION_SDATA2 static u8 lit_1462[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1462 = 1.0;
 
 /* 80456348-80456350 0004+04 s=1 e=0 z=0  None .sdata2    @1463 */
 SECTION_SDATA2 static f32 lit_1463[1 + 1 /* padding */] = {
@@ -573,9 +568,7 @@ SECTION_SDATA2 static f32 lit_1463[1 + 1 /* padding */] = {
 };
 
 /* 80456350-80456358 0008+00 s=1 e=0 z=0  None .sdata2    @1464 */
-SECTION_SDATA2 static u8 lit_1464[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1464 = 0.5;
 
 /* 80456358-80456360 0004+04 s=1 e=0 z=0  None .sdata2    @1465 */
 SECTION_SDATA2 static f32 lit_1465[1 + 1 /* padding */] = {
@@ -585,9 +578,7 @@ SECTION_SDATA2 static f32 lit_1465[1 + 1 /* padding */] = {
 };
 
 /* 80456360-80456368 0008+00 s=1 e=0 z=0  None .sdata2    @1468 */
-SECTION_SDATA2 static u8 lit_1468[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1468 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8030F630-8030F994 0364+00 s=0 e=3 z=0  None .text      J3DGDSetFog__F10_GXFogTypeffff8_GXColor */
 #pragma push

@@ -104,8 +104,6 @@ static void phase_2(room_of_scene_class*);
 static void phase_3(room_of_scene_class*);
 static void phase_4(room_of_scene_class*);
 static void dScnRoom_Create(scene_class*);
-extern "C" extern char const* const d_s_d_s_room__stringBase0;
-extern "C" extern void* g_profile_ROOM_SCENE[10];
 
 extern "C" static bool dScnRoom_Draw__FP19room_of_scene_class();
 extern "C" static void getResetArchiveBank__FiPPCUc();
@@ -149,17 +147,6 @@ void dStage_dt_c_roomReLoader(void*, dStage_dt_c*, int);
 void dComIfG_getRoomArcName(int);
 void dComIfGp_ret_wp_set(s8);
 void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**)(void*), void*);
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mArcBankName__20dStage_roomControl_c[4];
-extern "C" extern u8 mArcBankData__20dStage_roomControl_c[4];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoExt_getArchiveHeap__Fv();

@@ -96,7 +96,6 @@ static void daTagQs_Execute(daTagQs_c*);
 static bool daTagQs_IsDelete(daTagQs_c*);
 static void daTagQs_Delete(daTagQs_c*);
 static void daTagQs_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_TAG_QS[12];
 
 extern "C" void __dt__9daTagQs_cFv();
 extern "C" void create__9daTagQs_cFv();
@@ -132,16 +131,6 @@ void dComIfGs_BossLife_public_Set(s8);
 void cM_atan2s(f32, f32);
 void cM_rndFX(f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

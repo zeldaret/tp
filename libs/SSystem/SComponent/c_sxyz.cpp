@@ -24,9 +24,6 @@ struct csXyz {
 // Forward References:
 //
 
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
-
 extern "C" void __ct__5csXyzFsss();
 extern "C" void __pl__5csXyzFR5csXyz();
 extern "C" void __apl__5csXyzFR5csXyz();
@@ -89,9 +86,7 @@ asm void csXyz::operator-(csXyz& param_0) {
 
 /* ############################################################################################## */
 /* 804550A0-804550A8 0008+00 s=1 e=0 z=0  None .sdata2    @151 */
-SECTION_SDATA2 static u8 lit_151[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_151 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802674E8-8026758C 00A4+00 s=0 e=0 z=1  None .text      __ml__5csXyzFf */
 #pragma push

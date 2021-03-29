@@ -28,8 +28,6 @@ struct JASCalc {
 // Forward References:
 //
 
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-
 extern "C" void imixcopy__7JASCalcFPCsPCsPsUl();
 extern "C" void bcopyfast__7JASCalcFPCvPvUl();
 extern "C" void bcopy__7JASCalcFPCvPvUl();
@@ -42,8 +40,6 @@ extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
 //
 // External References:
 //
-
-extern "C" extern u32 __float_huge;
 
 extern "C" void DCZeroRange();
 extern "C" extern u32 __float_huge;
@@ -172,9 +168,9 @@ SECTION_RODATA u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024] = {
 };
 
 /* 8039AFB8-8039AFD0 0018+00 s=1 e=0 z=0  None .rodata    __two_to_x$982 */
-SECTION_RODATA static u8 const __two_to_x[24] = {
-    0x3F, 0x31, 0x72, 0x18, 0x3E, 0x75, 0xFD, 0xF7, 0x3D, 0x63, 0x57, 0x06,
-    0x3C, 0x1D, 0xB2, 0x45, 0x3A, 0xAC, 0x1C, 0x81, 0x39, 0x3F, 0xE5, 0xDA,
+SECTION_RODATA static f32 const __two_to_x[6] = {
+    0.6931471824645996f,   0.240226611495018f,     0.055502913892269135f,
+    0.009625022299587727f, 0.0013131053419783711f, 0.0001830080582294613f,
 };
 
 /* 80455558-80455560 0004+04 s=1 e=0 z=0  None .sdata2    @847 */
@@ -185,9 +181,7 @@ SECTION_SDATA2 static f32 lit_847[1 + 1 /* padding */] = {
 };
 
 /* 80455560-80455568 0008+00 s=1 e=0 z=0  None .sdata2    @850 */
-SECTION_SDATA2 static u8 lit_850[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_850 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80455568-8045556C 0004+00 s=1 e=0 z=0  None .sdata2    @969 */
 SECTION_SDATA2 static u8 lit_969[4] = {
@@ -208,7 +202,7 @@ SECTION_SDATA2 static u8 two_to_frac[8] = {
 };
 
 /* 8045557C-80455580 0004+00 s=1 e=0 z=0  None .sdata2    @994 */
-SECTION_SDATA2 static u32 lit_994 = 0x3F400000;
+SECTION_SDATA2 static f32 lit_994 = 0.75f;
 
 /* 80455580-80455588 0004+04 s=1 e=0 z=0  None .sdata2    @995 */
 SECTION_SDATA2 static f32 lit_995[1 + 1 /* padding */] = {

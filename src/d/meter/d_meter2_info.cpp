@@ -60,17 +60,17 @@ struct dMeterMap_c {
     /* 8020D900 */ void isMapOpenCheck();
 };
 
+struct cXyz {};
+
 struct JMSMesgEntry_c {};
+
+struct J2DPicture {};
+
+struct JUTFont {};
 
 struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;
 };
-
-struct JUTFont {};
-
-struct cXyz {};
-
-struct J2DPicture {};
 
 struct dMeter2Info_c {
     /* 8021BDDC */ dMeter2Info_c();
@@ -146,9 +146,6 @@ void dMeter2Info_setNewLetterSender();
 void dMeter2Info_recieveLetter();
 void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
-extern "C" extern char const* const d_meter_d_meter2_info__stringBase0;
-extern "C" extern u8 letter_data__12dMenu_Letter[512];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void __ct__13dMeter2Info_cFv();
 extern "C" void __dt__13dMeter2Info_cFv();
@@ -228,9 +225,6 @@ void dComIfGs_setWarpItemData(char const*, cXyz, s16, s8, u8, u8);
 void dComIfGs_setWarpMarkFlag(u8);
 void daNpcF_getPlayerInfoFromPlayerList(int, int, cXyz&, csXyz&);
 void operator delete(void*);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 SECTION_INIT void memcpy();
 extern "C" void dComIfGs_setSelectItemIndex__FiUc();
@@ -605,19 +599,19 @@ SECTION_SDATA2 static u8 lit_3916[4] = {
 };
 
 /* 8045499C-804549A0 0004+00 s=1 e=0 z=0  None .sdata2    @3917 */
-SECTION_SDATA2 static u32 lit_3917 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3917 = 1.0f;
 
 /* 804549A0-804549A4 0004+00 s=1 e=0 z=0  None .sdata2    @3918 */
-SECTION_SDATA2 static u32 lit_3918 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_3918 = 30.0f;
 
 /* 804549A4-804549A8 0004+00 s=1 e=0 z=0  None .sdata2    @3919 */
-SECTION_SDATA2 static u32 lit_3919 = 0x43980000;
+SECTION_SDATA2 static f32 lit_3919 = 304.0f;
 
 /* 804549A8-804549AC 0004+00 s=1 e=0 z=0  None .sdata2    @3920 */
-SECTION_SDATA2 static u32 lit_3920 = 0x43600000;
+SECTION_SDATA2 static f32 lit_3920 = 224.0f;
 
 /* 804549AC-804549B0 0004+00 s=1 e=0 z=0  None .sdata2    @3921 */
-SECTION_SDATA2 static u32 lit_3921 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3921 = 608.0f;
 
 /* 804549B0-804549B8 0004+04 s=1 e=0 z=0  None .sdata2    @3922 */
 SECTION_SDATA2 static f32 lit_3922[1 + 1 /* padding */] = {
@@ -734,9 +728,7 @@ asm void dMeter2Info_c::getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_
 
 /* ############################################################################################## */
 /* 804549B8-804549C0 0008+00 s=2 e=0 z=0  None .sdata2    @4108 */
-SECTION_SDATA2 static u8 lit_4108[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8021C6A4-8021C7F4 0150+00 s=0 e=1 z=0  None .text
  * getStringLength__13dMeter2Info_cFP10J2DTextBoxPc             */
@@ -1079,9 +1071,7 @@ asm void dMeter2Info_getPlusTextureName() {
 
 /* ############################################################################################## */
 /* 804549C0-804549C8 0008+00 s=1 e=0 z=0  None .sdata2    @5206 */
-SECTION_SDATA2 static u8 lit_5206[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5206 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8021E308-8021E4B0 01A8+00 s=0 e=3 z=0  None .text      dMeter2Info_getPixel__FffffffPC7ResTIMG */
 #pragma push

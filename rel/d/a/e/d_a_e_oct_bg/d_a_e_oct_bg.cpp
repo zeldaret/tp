@@ -33,13 +33,13 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -66,9 +66,9 @@ struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
 };
 
-struct J3DModel {};
-
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daE_OctBg_c {
     /* 8073626C */ void setAction(void (daE_OctBg_c::*)());
@@ -242,48 +242,6 @@ static void useHeapInit(fopAc_ac_c*);
 static void daE_OctBg_Create(daE_OctBg_c*);
 static void daE_OctBg_Draw(daE_OctBg_c*);
 static void daE_OctBg_IsDelete(daE_OctBg_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_E_OctBg[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_8073A174[4];
-extern "C" extern u8 data_8073A178[4];
-extern "C" extern u8 data_8073A17C[4];
-extern "C" extern u8 data_8073A180[4];
-extern "C" extern u8 data_8073A184[4];
-extern "C" extern u8 data_8073A188[4];
-extern "C" extern u8 data_8073A18C[4];
-extern "C" extern u8 data_8073A190[4];
-extern "C" extern u8 data_8073A194[4];
-extern "C" extern u8 data_8073A198[4];
-extern "C" extern u8 data_8073A19C[4];
-extern "C" extern u8 data_8073A1A0[4];
-extern "C" extern u8 data_8073A1A4[4];
-extern "C" extern u8 data_8073A1A8[4];
-extern "C" extern u8 data_8073A1AC[4];
-extern "C" extern u8 data_8073A1B0[4];
-extern "C" extern u8 data_8073A1B4[4];
-extern "C" extern u8 data_8073A1B8[4];
-extern "C" extern u8 data_8073A1BC[4];
-extern "C" extern u8 data_8073A1C0[4];
-extern "C" extern u8 data_8073A1C4[4];
-extern "C" extern u8 data_8073A1C8[4];
-extern "C" extern u8 data_8073A1CC[4];
-extern "C" extern u8 data_8073A1D0[4];
-extern "C" extern u8 data_8073A1D4[4];
 
 extern "C" void __ct__15daE_OctBg_HIO_cFv();
 extern "C" void setAction__11daE_OctBg_cFM11daE_OctBg_cFPCvPv_v();
@@ -409,23 +367,6 @@ void cLib_targetAngleX(cXyz const*, cXyz const*);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

@@ -33,13 +33,13 @@ struct daObj {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -50,8 +50,6 @@ struct dPa_control_c {
 //
 // Forward References:
 //
-
-extern "C" extern void* g_profile_Obj_Eff[12];
 
 extern "C" void _create__Q28daObjEff5Act_cFv();
 extern "C" static void func_8057CA94();
@@ -65,10 +63,6 @@ extern "C" extern void* g_profile_Obj_Eff[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void

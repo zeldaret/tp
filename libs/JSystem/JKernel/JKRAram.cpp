@@ -50,9 +50,9 @@ struct JKRAramStream {
     /* 802D3B48 */ void create(s32);
 };
 
-struct JKRAramBlock {};
-
 struct JKRAMCommand {};
+
+struct JKRAramBlock {};
 
 struct JKRAramPiece {
     /* 802D3838 */ void orderSync(int, u32, u32, u32, JKRAramBlock*);
@@ -85,10 +85,6 @@ static void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
 static void decompSZS_subroutine(u8*, u8*);
 static void firstSrcData();
 static void nextSrcData(u8*);
-extern "C" extern char const* const JKRAram__stringBase0;
-extern "C" extern u8 sMessageQueue__7JKRAram[32];
-extern "C" extern u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 extern "C" void create__7JKRAramFUlUllll();
 extern "C" void __ct__7JKRAramFUlUll();
@@ -115,8 +111,6 @@ extern "C" extern u8 sAramObject__7JKRAram[4];
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 SECTION_INIT void memcpy();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();

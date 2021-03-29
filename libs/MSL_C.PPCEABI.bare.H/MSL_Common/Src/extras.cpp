@@ -18,8 +18,6 @@ extern "C" void stricmp();
 // External References:
 //
 
-extern "C" extern u8 __lower_map[256];
-
 extern "C" void __msl_strnicmp();
 extern "C" extern u8 __lower_map[256];
 

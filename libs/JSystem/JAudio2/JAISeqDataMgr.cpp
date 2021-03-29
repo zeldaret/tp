@@ -23,9 +23,6 @@ struct JAISeqDataMgr {
 // Forward References:
 //
 
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
-extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
-
 extern "C" void __dt__14JAISeqDataUserFv();
 extern "C" void __dt__13JAISeqDataMgrFv();
 extern "C" extern void* __vt__13JAISeqDataMgr[6];

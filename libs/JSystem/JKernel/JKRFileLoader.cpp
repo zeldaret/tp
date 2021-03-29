@@ -49,10 +49,6 @@ struct JKRDisposer {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRFileLoader__stringBase0;
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-
 extern "C" void __ct__13JKRFileLoaderFv();
 extern "C" void __dt__13JKRFileLoaderFv();
 extern "C" void unmount__13JKRFileLoaderFv();
@@ -73,7 +69,6 @@ extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 __lower_map[256];
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__11JKRDisposerFv();

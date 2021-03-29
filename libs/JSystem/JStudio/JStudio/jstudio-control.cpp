@@ -14,6 +14,26 @@
 struct Vec {};
 
 namespace JStudio {
+namespace ctb {
+struct TObject {};
+
+struct TControl {
+    /* 80280FC4 */ TControl();
+    /* 80280FF4 */ ~TControl();
+    /* 80281230 */ void getObject_index(u32);
+};
+
+struct TFactory {
+    /* 80281274 */ ~TFactory();
+};
+
+struct TParse {
+    /* 8028135C */ TParse(JStudio::ctb::TControl*);
+    /* 8028137C */ ~TParse();
+};
+
+};  // namespace ctb
+
 struct TCreateObject {
     /* 80285488 */ ~TCreateObject();
 };
@@ -55,26 +75,6 @@ struct TFactory {
     /* 80285560 */ void appendCreateObject(JStudio::TCreateObject*);
     /* 802855AC */ void create(JStudio::stb::data::TParse_TBlock_object const&);
 };
-
-namespace ctb {
-struct TObject {};
-
-struct TControl {
-    /* 80280FC4 */ TControl();
-    /* 80280FF4 */ ~TControl();
-    /* 80281230 */ void getObject_index(u32);
-};
-
-struct TFactory {
-    /* 80281274 */ ~TFactory();
-};
-
-struct TParse {
-    /* 8028135C */ TParse(JStudio::ctb::TControl*);
-    /* 8028137C */ ~TParse();
-};
-
-};  // namespace ctb
 
 struct TControl {
     /* 80285114 */ TControl();
@@ -136,8 +136,6 @@ struct TNodeLinkList {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q27JStudio8TFactory[5];
-
 extern "C" void __ct__Q27JStudio8TControlFv();
 extern "C" void __dt__Q27JStudio8TControlFv();
 extern "C" void setFactory__Q27JStudio8TControlFPQ27JStudio8TFactory();
@@ -162,8 +160,6 @@ extern "C" extern void* __vt__Q27JStudio8TFactory[5];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__Q27JStudio13TCreateObject[4];
-extern "C" extern u8 ga8cSignature__Q27JStudio4data[8];
 
 extern "C" void __ct__Q37JStudio3ctb8TControlFv();
 extern "C" void __dt__Q37JStudio3ctb8TControlFv();
@@ -283,7 +279,7 @@ asm void JStudio::TControl::setFactory(JStudio::TFactory* param_0) {
 
 /* ############################################################################################## */
 /* 8045545C-80455460 0004+00 s=2 e=0 z=0  None .sdata2    @772 */
-SECTION_SDATA2 static u32 lit_772 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_772 = 0.01745329238474369f;
 
 /* 80285250-802852D0 0080+00 s=3 e=1 z=0  None .text
  * transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf */

@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 struct_80450A70[8];
-
 extern "C" void CARDGetSerialNo();
 extern "C" extern u8 struct_80450A70[8];
 

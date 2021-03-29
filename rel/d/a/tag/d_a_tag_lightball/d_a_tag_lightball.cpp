@@ -40,7 +40,6 @@ static void daTagLightBall_Draw(daTagLightBall_c*);
 static void daTagLightBall_Execute(daTagLightBall_c*);
 static void daTagLightBall_Delete(daTagLightBall_c*);
 static void daTagLightBall_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Tag_LightBall[12];
 
 extern "C" void initBaseMtx__16daTagLightBall_cFv();
 extern "C" void setBaseMtx__16daTagLightBall_cFv();
@@ -62,10 +61,6 @@ extern "C" extern void* g_profile_Tag_LightBall[12];
 void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
 void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE*);
 void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();

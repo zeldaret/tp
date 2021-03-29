@@ -13,8 +13,6 @@
 
 extern u8 const data_80D1EE24[4];
 
-extern u8 const data_80D1EE24[4];
-
 //
 // External References:
 //
@@ -25,3 +23,10 @@ extern u8 const data_80D1EE24[4];
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80D1EE24-80D1EE28 0004+00 s=0 e=1 z=0  None .ctors     None */
+u8 const data_80D1EE24[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

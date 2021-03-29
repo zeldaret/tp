@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,6 +21,8 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266F48 */ void normalizeZP();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -36,11 +36,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -197,8 +197,6 @@ static void daObjPicture_create(daObjPicture_c*);
 static void daObjPicture_Delete(daObjPicture_c*);
 static void daObjPicture_execute(daObjPicture_c*);
 static void daObjPicture_draw(daObjPicture_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Picture[12];
 
 extern "C" static void daObjPicture_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__14daObjPicture_cFv();
@@ -250,24 +248,6 @@ void cLib_addCalcPosXZ2(cXyz*, cXyz const&, f32, f32);
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

@@ -28,15 +28,15 @@ struct dSv_event_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 808589A4 */ ~cXyz();
 };
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -84,49 +84,6 @@ static void daKytag06_type06_init(fopAc_ac_c*);
 static void daKytag06_type02_init(fopAc_ac_c*);
 static void daKytag06_type03_init(fopAc_ac_c*);
 static void daKytag06_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_KYTAG06[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_8085A18C[4];
-extern "C" extern u8 data_8085A190[4];
-extern "C" extern u8 data_8085A194[4];
-extern "C" extern u8 data_8085A198[4];
-extern "C" extern u8 data_8085A19C[4];
-extern "C" extern u8 data_8085A1A0[4];
-extern "C" extern u8 data_8085A1A4[4];
-extern "C" extern u8 data_8085A1A8[4];
-extern "C" extern u8 data_8085A1AC[4];
-extern "C" extern u8 data_8085A1B0[4];
-extern "C" extern u8 data_8085A1B4[4];
-extern "C" extern u8 data_8085A1B8[4];
-extern "C" extern u8 data_8085A1BC[4];
-extern "C" extern u8 data_8085A1C0[4];
-extern "C" extern u8 data_8085A1C4[4];
-extern "C" extern u8 data_8085A1C8[4];
-extern "C" extern u8 data_8085A1CC[4];
-extern "C" extern u8 data_8085A1D0[4];
-extern "C" extern u8 data_8085A1D4[4];
-extern "C" extern u8 data_8085A1D8[4];
-extern "C" extern u8 data_8085A1DC[4];
-extern "C" extern u8 data_8085A1E0[4];
-extern "C" extern u8 data_8085A1E4[4];
-extern "C" extern u8 data_8085A1E8[4];
-extern "C" extern u8 data_8085A1EC[4];
 
 extern "C" static void dice_wether_init__FUcff();
 extern "C" static void dice_wether_execute__FUcff();
@@ -218,14 +175,6 @@ void dKy_darkworld_check();
 void cM_rndF(f32);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void getLayerNo__14dComIfG_play_cFi();

@@ -13,13 +13,13 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {
+    /* 80C157D4 */ ~cXyz();
+};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8026745C */ void operator+=(csXyz&);
-};
-
-struct cXyz {
-    /* 80C157D4 */ ~cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -146,48 +146,6 @@ static void daObjH_Saku_Execute(daObjH_Saku_c*);
 static bool daObjH_Saku_IsDelete(daObjH_Saku_c*);
 static void daObjH_Saku_Delete(daObjH_Saku_c*);
 static void daObjH_Saku_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_H_Saku[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80C16658[4];
-extern "C" extern u8 data_80C1665C[4];
-extern "C" extern u8 data_80C16660[4];
-extern "C" extern u8 data_80C16664[4];
-extern "C" extern u8 data_80C16668[4];
-extern "C" extern u8 data_80C1666C[4];
-extern "C" extern u8 data_80C16670[4];
-extern "C" extern u8 data_80C16674[4];
-extern "C" extern u8 data_80C16678[4];
-extern "C" extern u8 data_80C1667C[4];
-extern "C" extern u8 data_80C16680[4];
-extern "C" extern u8 data_80C16684[4];
-extern "C" extern u8 data_80C16688[4];
-extern "C" extern u8 data_80C1668C[4];
-extern "C" extern u8 data_80C16690[4];
-extern "C" extern u8 data_80C16694[4];
-extern "C" extern u8 data_80C16698[4];
-extern "C" extern u8 data_80C1669C[4];
-extern "C" extern u8 data_80C166A0[4];
-extern "C" extern u8 data_80C166A4[4];
-extern "C" extern u8 data_80C166A8[4];
-extern "C" extern u8 data_80C166AC[4];
-extern "C" extern u8 data_80C166B0[4];
-extern "C" extern u8 data_80C166B4[4];
-extern "C" extern u8 data_80C166B8[4];
 
 extern "C" void BreakSet__13daObjH_Saku_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -269,15 +227,6 @@ void cM_rndF(f32);
 void cLib_chaseAngleS(s16*, s16, s16);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

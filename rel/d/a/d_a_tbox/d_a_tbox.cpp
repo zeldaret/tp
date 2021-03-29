@@ -13,14 +13,14 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80490DCC */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -197,11 +197,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -383,48 +383,6 @@ static void daTbox_create1st(daTbox_c*);
 static void daTbox_MoveBGDelete(daTbox_c*);
 static void daTbox_MoveBGExecute(daTbox_c*);
 static void daTbox_MoveBGDraw(daTbox_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_TBOX[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80496934[4];
-extern "C" extern u8 data_80496938[4];
-extern "C" extern u8 data_8049693C[4];
-extern "C" extern u8 data_80496940[4];
-extern "C" extern u8 data_80496944[4];
-extern "C" extern u8 data_80496948[4];
-extern "C" extern u8 data_8049694C[4];
-extern "C" extern u8 data_80496950[4];
-extern "C" extern u8 data_80496954[4];
-extern "C" extern u8 data_80496958[4];
-extern "C" extern u8 data_8049695C[4];
-extern "C" extern u8 data_80496960[4];
-extern "C" extern u8 data_80496964[4];
-extern "C" extern u8 data_80496968[4];
-extern "C" extern u8 data_8049696C[4];
-extern "C" extern u8 data_80496970[4];
-extern "C" extern u8 data_80496974[4];
-extern "C" extern u8 data_80496978[4];
-extern "C" extern u8 data_8049697C[4];
-extern "C" extern u8 data_80496980[4];
-extern "C" extern u8 data_80496984[4];
-extern "C" extern u8 data_80496988[4];
-extern "C" extern u8 data_8049698C[4];
-extern "C" extern u8 data_80496990[4];
-extern "C" extern u8 data_80496994[4];
 
 extern "C" void __ct__12daTbox_HIO_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -594,26 +552,6 @@ void cLib_chaseS(s16*, s16, s16);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

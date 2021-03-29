@@ -13,12 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 80D303D0 */ csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80D30394 */ ~csXyz();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -29,6 +23,12 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 80D303D4 */ cXyz();
     /* 80D303D8 */ ~cXyz();
+};
+
+struct csXyz {
+    /* 80D303D0 */ csXyz();
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80D30394 */ ~csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -114,7 +114,6 @@ static void daObjWchain_Create(fopAc_ac_c*);
 static void daObjWchain_Delete(daObjWchain_c*);
 static void daObjWchain_Execute(daObjWchain_c*);
 static void daObjWchain_Draw(daObjWchain_c*);
-extern "C" extern void* g_profile_Obj_Wchain[12];
 
 extern "C" void createHeap__13daObjWchain_cFv();
 extern "C" static void daObjWchain_createHeap__FP10fopAc_ac_c();
@@ -161,21 +160,6 @@ void cM_rndF(f32);
 void cM_rndFX(f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mRoofY__11fopAcM_rc_c[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

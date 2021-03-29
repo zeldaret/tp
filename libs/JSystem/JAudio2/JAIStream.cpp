@@ -49,16 +49,16 @@ struct JASAramStream {
 
 struct JAIStreamMgr {};
 
-struct JAISoundID {};
-
 struct JAISoundActivity {};
 
-struct JAIAudience {};
+struct JAISoundID {};
 
 template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
+
+struct JAIAudience {};
 
 struct JAIStream {
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
@@ -104,7 +104,6 @@ struct JAISound {
 //
 
 static void JAIStream_JASAramStreamCallback_(u32, JASAramStream*, void*);
-extern "C" extern void* __vt__9JAIStream[12];
 
 extern "C" static void JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv();
 extern "C" void func_802A3104();
@@ -128,9 +127,6 @@ extern "C" extern void* __vt__9JAIStream[12];
 //
 // External References:
 //
-
-extern "C" extern u8 data_804340B0[16];
-extern "C" extern u8 data_80451318[8];
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void alloc__17JASGenericMemPoolFUl();
@@ -251,7 +247,7 @@ asm void JAIStream::prepare_startStream_() {
 
 /* ############################################################################################## */
 /* 804557F0-804557F4 0004+00 s=2 e=0 z=0  None .sdata2    @864 */
-SECTION_SDATA2 static u32 lit_864 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_864 = 1.0f;
 
 /* 804557F4-804557F8 0004+00 s=2 e=0 z=0  None .sdata2    @865 */
 SECTION_SDATA2 static u8 lit_865[4] = {

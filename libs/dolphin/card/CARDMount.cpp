@@ -25,9 +25,6 @@ extern "C" void CARDUnmount();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-extern "C" extern u8 struct_80450A70[8];
-
 extern "C" void OSCancelAlarm();
 extern "C" void DCInvalidateRange();
 extern "C" void OSDisableInterrupts();

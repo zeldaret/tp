@@ -61,7 +61,6 @@ void fpcLd_Free(s16);
 void fpcLd_Load(s16);
 void cPhs_Set(request_of_phase_process_class*, int (**)(void*));
 void cPhs_Do(request_of_phase_process_class*, void*);
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_Create__FsUiPv();

@@ -26,11 +26,11 @@ struct daObjMBox_c {
     /* 80593394 */ void Delete();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -107,8 +107,6 @@ static void daObjMBox_Draw(daObjMBox_c*);
 static void daObjMBox_Execute(daObjMBox_c*);
 static void daObjMBox_Delete(daObjMBox_c*);
 static void daObjMBox_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_MetalBox[12];
 
 extern "C" void initBaseMtx__11daObjMBox_cFv();
 extern "C" void setBaseMtx__11daObjMBox_cFv();
@@ -142,17 +140,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

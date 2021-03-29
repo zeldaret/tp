@@ -58,12 +58,29 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
+struct _GXColor {};
+
+struct JGeometry {
+    template <typename A1>
+    struct TVec3 {};
+    /* TVec3<f32> */
+    struct TVec3__template0 {};
+};
+
 struct JPAEmitterCallBack {
     /* 80050368 */ void execute(JPABaseEmitter*);
     /* 8005036C */ void draw(JPABaseEmitter*);
     /* 80050370 */ void drawAfter(JPABaseEmitter*);
     /* 80050374 */ void executeAfter(JPABaseEmitter*);
     /* 8027E6A4 */ ~JPAEmitterCallBack();
+};
+
+struct JPADrawInfo {};
+
+struct JPAParticleCallBack {
+    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
+    /* 8027EFA4 */ ~JPAParticleCallBack();
 };
 
 struct ResTIMG {};
@@ -73,21 +90,6 @@ struct JPAResourceManager {
     /* 80273EA8 */ void checkUserIndexDuplication(u16) const;
     /* 80273EEC */ void swapTexture(ResTIMG const*, char const*);
     /* 80273FCC */ void getResUserWork(u16) const;
-};
-
-struct JPAParticleCallBack {
-    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-};
-
-struct JPADrawInfo {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
 };
 
 struct JPAEmitterManager {
@@ -102,8 +104,6 @@ struct JPAEmitterManager {
 };
 
 struct dKy_tevstr_c {};
-
-struct _GXColor {};
 
 struct dPa_simpleEcallBack {
     /* 8004ADF4 */ dPa_simpleEcallBack();
@@ -346,12 +346,12 @@ struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 };
 
-struct J3DAnmTexPattern {
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -387,18 +387,6 @@ static void static_gen_d_light8EcallBack(JPABaseEmitter*);
 static void dPa_setWindPower(JPABaseParticle*);
 static void dPa_kankyocolor_set(f32, JPABaseEmitter*, dKy_tevstr_c const*, u32, cXyz const*,
                                 _GXColor const*, _GXColor const*);
-extern "C" extern char const* const d_particle_d_particle__stringBase0;
-extern "C" extern void* __vt__22dPa_hermiteEcallBack_c[9];
-extern "C" extern void* __vt__19dPa_followEcallBack[10];
-extern "C" extern void* __vt__18dPa_levelEcallBack[9];
-extern "C" extern void* __vt__18JPAEmitterCallBack[7];
-extern "C" extern u8 mTsubo__13dPa_control_c[64];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mEmitterMng__13dPa_control_c[4];
-extern "C" extern u8 mWaterBubblePcallBack__13dPa_control_c[4];
-extern "C" extern u8 mLight8EcallBack__13dPa_control_c[4];
-extern "C" extern u8 data_80450EC4[4];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 
 extern "C" static void dPa_cleanupGX__Fv();
 extern "C" void __ct__19dPa_followEcallBackFUcUc();
@@ -601,24 +589,6 @@ void JPAGetXYZRotateMtx(s16, s16, s16, f32 (*)[4]);
 void* operator new(u32, JKRHeap*, int);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern u8 j_o_id__8dPa_name[10 + 2 /* padding */];
-extern "C" extern u8 s_o_id__8dPa_name[28];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_epsilon;
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 JPTracePCB4[4];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void OSReport();
 extern "C" void mDoExt_getArchiveHeap__Fv();
@@ -1175,15 +1145,13 @@ asm static void dPa_group_id_change(u32* param_0, u8* param_1) {
 
 /* ############################################################################################## */
 /* 80451F40-80451F44 0004+00 s=2 e=0 z=0  None .sdata2    @3880 */
-SECTION_SDATA2 static u32 lit_3880 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_3880 = 255.0f;
 
 /* 80451F44-80451F48 0004+00 s=1 e=0 z=0  None .sdata2    @3881 */
-SECTION_SDATA2 static u32 lit_3881 = 0x40800000;
+SECTION_SDATA2 static f32 lit_3881 = 4.0f;
 
 /* 80451F48-80451F50 0008+00 s=2 e=0 z=0  None .sdata2    @3883 */
-SECTION_SDATA2 static u8 lit_3883[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3883 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80049934-80049B30 01FC+00 s=1 e=0 z=0  None .text      initiateLighting8__FR8_GXColors */
 #pragma push
@@ -1322,10 +1290,10 @@ asm void dPa_gen_d_light8EcallBack::draw(JPABaseEmitter* param_0) {
 
 /* ############################################################################################## */
 /* 80451F54-80451F58 0004+00 s=1 e=0 z=0  None .sdata2    @4048 */
-SECTION_SDATA2 static u32 lit_4048 = 0x3F266666;
+SECTION_SDATA2 static f32 lit_4048 = 13.0f / 20.0f;
 
 /* 80451F58-80451F5C 0004+00 s=1 e=0 z=0  None .sdata2    @4049 */
-SECTION_SDATA2 static u32 lit_4049 = 0x41100000;
+SECTION_SDATA2 static f32 lit_4049 = 9.0f;
 
 /* 8004A3AC-8004A460 00B4+00 s=2 e=0 z=0  None .text      dPa_setWindPower__FP15JPABaseParticle */
 #pragma push
@@ -1344,7 +1312,7 @@ SECTION_RODATA static u8 const lit_4065[12] = {
 };
 
 /* 80451F5C-80451F60 0004+00 s=3 e=0 z=0  None .sdata2    @4090 */
-SECTION_SDATA2 static u32 lit_4090 = 0xBBB40000;
+SECTION_SDATA2 static f32 lit_4090 = -0.0054931640625f;
 
 /* 80451F60-80451F68 0004+04 s=3 e=0 z=0  None .sdata2    @4091 */
 SECTION_SDATA2 static f32 lit_4091[1 + 1 /* padding */] = {
@@ -1354,9 +1322,7 @@ SECTION_SDATA2 static f32 lit_4091[1 + 1 /* padding */] = {
 };
 
 /* 80451F68-80451F70 0008+00 s=7 e=0 z=0  None .sdata2    @4093 */
-SECTION_SDATA2 static u8 lit_4093[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4093 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8004A460-8004A608 01A8+00 s=1 e=0 z=0  None .text
  * draw__18dPa_modelPcallBackFP14JPABaseEmitterP15JPABaseParticle */
@@ -1568,7 +1534,7 @@ asm dPa_simpleEcallBack::dPa_simpleEcallBack() {
 
 /* ############################################################################################## */
 /* 80451F70-80451F74 0004+00 s=1 e=0 z=0  None .sdata2    @4391 */
-SECTION_SDATA2 static u32 lit_4391 = 0x43480000;
+SECTION_SDATA2 static f32 lit_4391 = 200.0f;
 
 /* 8004AE1C-8004AF94 0178+00 s=1 e=0 z=0  None .text
  * executeAfter__19dPa_simpleEcallBackFP14JPABaseEmitter        */
@@ -1648,10 +1614,10 @@ SECTION_SDATA2 static u32 lit_4482 = 0xFFFFFFFF;
 SECTION_SDATA2 static u32 lit_4483 = 0xFFFFFFFF;
 
 /* 80451F84-80451F88 0004+00 s=3 e=0 z=0  None .sdata2    @4518 */
-SECTION_SDATA2 static u32 lit_4518 = 0x42C60000;
+SECTION_SDATA2 static f32 lit_4518 = 99.0f;
 
 /* 80451F88-80451F8C 0004+00 s=10 e=0 z=0  None .sdata2    @4519 */
-SECTION_SDATA2 static u32 lit_4519 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4519 = 1.0f;
 
 /* 8004B168-8004B4E0 0378+00 s=1 e=0 z=0  None .text
  * set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif */
@@ -2067,7 +2033,7 @@ asm void dPa_control_c::draw(JPADrawInfo* param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 80451F8C-80451F90 0004+00 s=5 e=0 z=0  None .sdata2    @5066 */
-SECTION_SDATA2 static u32 lit_5066 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5066 = 0.5f;
 
 /* 8004C218-8004C838 0620+00 s=0 e=7 z=54  None .text
  * setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl */
@@ -2091,23 +2057,19 @@ SECTION_SDATA2 static u8 particleID[4] = {
 };
 
 /* 80451F94-80451F98 0004+00 s=1 e=0 z=0  None .sdata2    @5140 */
-SECTION_SDATA2 static u32 lit_5140 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_5140 = 1.0f / 20.0f;
 
 /* 80451F98-80451F9C 0004+00 s=1 e=0 z=0  None .sdata2    @5141 */
-SECTION_SDATA2 static u32 lit_5141 = 0x3E19999A;
+SECTION_SDATA2 static f32 lit_5141 = 3.0f / 20.0f;
 
 /* 80451F9C-80451FA0 0004+00 s=2 e=0 z=0  None .sdata2    @5142 */
-SECTION_SDATA2 static u32 lit_5142 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5142 = 1.0f / 10.0f;
 
 /* 80451FA0-80451FA8 0008+00 s=2 e=0 z=0  None .sdata2    @5143 */
-SECTION_SDATA2 static u8 lit_5143[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5143 = 0.5;
 
 /* 80451FA8-80451FB0 0008+00 s=2 e=0 z=0  None .sdata2    @5144 */
-SECTION_SDATA2 static u8 lit_5144[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5144 = 3.0;
 
 /* 80451FB0-80451FB8 0008+00 s=2 e=0 z=0  None .sdata2    @5145 */
 SECTION_SDATA2 static u8 lit_5145[8] = {
@@ -2362,19 +2324,19 @@ void dPa_gen_d_light8PcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle
 
 /* ############################################################################################## */
 /* 80451FD8-80451FDC 0004+00 s=3 e=0 z=0  None .sdata2    @6075 */
-SECTION_SDATA2 static u32 lit_6075 = 0x42000000;
+SECTION_SDATA2 static f32 lit_6075 = 32.0f;
 
 /* 80451FDC-80451FE0 0004+00 s=4 e=0 z=0  None .sdata2    @6076 */
-SECTION_SDATA2 static u32 lit_6076 = 0x40400000;
+SECTION_SDATA2 static f32 lit_6076 = 3.0f;
 
 /* 80451FE0-80451FE4 0004+00 s=1 e=0 z=0  None .sdata2    @6077 */
-SECTION_SDATA2 static u32 lit_6077 = 0x41200000;
+SECTION_SDATA2 static f32 lit_6077 = 10.0f;
 
 /* 80451FE4-80451FE8 0004+00 s=2 e=0 z=0  None .sdata2    @6078 */
-SECTION_SDATA2 static u32 lit_6078 = 0x40000000;
+SECTION_SDATA2 static f32 lit_6078 = 2.0f;
 
 /* 80451FE8-80451FEC 0004+00 s=3 e=0 z=0  None .sdata2    @6079 */
-SECTION_SDATA2 static u32 lit_6079 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_6079 = -1.0f;
 
 /* 8004DD1C-8004E6A8 098C+00 s=1 e=0 z=0  None .text
  * draw__19dPa_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
@@ -2389,10 +2351,10 @@ asm void dPa_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* par
 
 /* ############################################################################################## */
 /* 80451FEC-80451FF0 0004+00 s=2 e=0 z=0  None .sdata2    @6350 */
-SECTION_SDATA2 static u32 lit_6350 = 0x41480000;
+SECTION_SDATA2 static f32 lit_6350 = 12.5f;
 
 /* 80451FF0-80451FF4 0004+00 s=2 e=0 z=0  None .sdata2    @6351 */
-SECTION_SDATA2 static u32 lit_6351 = 0xC1480000;
+SECTION_SDATA2 static f32 lit_6351 = -12.5f;
 
 /* 8004E6A8-8004ED44 069C+00 s=1 e=0 z=0  None .text
  * draw__25dPa_gen_b_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
@@ -2429,7 +2391,7 @@ asm void dPa_hermiteEcallBack_c::setOldPosP(cXyz const* param_0, cXyz const* par
 
 /* ############################################################################################## */
 /* 80451FF4-80451FF8 0004+00 s=1 e=0 z=0  None .sdata2    @6846 */
-SECTION_SDATA2 static u32 lit_6846 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_6846 = -2.0f;
 
 /* 8004F6C4-8004FABC 03F8+00 s=1 e=0 z=0  None .text
  * executeAfter__22dPa_hermiteEcallBack_cFP14JPABaseEmitter     */

@@ -79,15 +79,15 @@ struct J3DAnmLoader {
     /* 80339800 */ ~J3DAnmLoader();
 };
 
-struct J3DAnmClusterKey {};
-
-struct J3DAnmClusterKeyData {};
-
 struct J3DAnmColorKeyData {};
+
+struct J3DAnmClusterKey {};
 
 struct J3DAnmColorKey {
     /* 8032AB00 */ J3DAnmColorKey();
 };
+
+struct J3DAnmClusterKeyData {};
 
 struct J3DAnmKeyLoader_v15 {
     /* 803384E0 */ J3DAnmKeyLoader_v15();
@@ -108,15 +108,15 @@ struct J3DAnmKeyLoader_v15 {
     /* 80339634 */ void setAnmVtxColor(J3DAnmVtxColorKey*, J3DAnmVtxColorKeyData const*);
 };
 
-struct J3DAnmColorFull {
-    /* 8032A93C */ J3DAnmColorFull();
-};
+struct J3DAnmClusterFullData {};
 
 struct J3DAnmColorFullData {};
 
-struct J3DAnmClusterFullData {};
-
 struct J3DAnmClusterFull {};
+
+struct J3DAnmColorFull {
+    /* 8032A93C */ J3DAnmColorFull();
+};
 
 struct J3DAnmFullLoader_v15 {
     /* 80338468 */ J3DAnmFullLoader_v15();
@@ -143,7 +143,6 @@ struct J3DAnmFullLoader_v15 {
 
 static void JSUConvertOffsetToPtr__template78(void const*, void const*);
 static void JSUConvertOffsetToPtr__template79(void const*, void const*);
-extern "C" extern char const* const J3DAnmLoader__stringBase0;
 
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
@@ -215,13 +214,6 @@ void JSUConvertOffsetToPtr__template39(void const*, void const*);
 void JSUConvertOffsetToPtr__template40(void const*, void const*);
 void JSUConvertOffsetToPtr__template41(void const*, void const*);
 void JSUConvertOffsetToPtr__template42(void const*, void const*);
-extern "C" extern void* __vt__10J3DAnmBase[4];
-extern "C" extern void* __vt__18J3DAnmTransformKey[5];
-extern "C" extern void* __vt__16J3DAnmClusterKey[5];
-extern "C" extern void* __vt__13J3DAnmCluster[5];
-extern "C" extern void* __vt__17J3DAnmClusterFull[5];
-extern "C" extern void* __vt__27J3DAnmTransformFullWithLerp[5];
-extern "C" extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */];
 
 extern "C" void OSReport();
 extern "C" void* __nw__FUl();
@@ -313,16 +305,10 @@ SECTION_DATA static void* __vt__20J3DAnmVisibilityFull[4 + 1 /* padding */] = {
 };
 
 /* 804564C0-804564C8 0004+04 s=13 e=0 z=0  None .sdata2    @889 */
-SECTION_SDATA2 static u8 lit_889[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_889[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80337B40-80338134 05F4+00 s=0 e=7 z=1  None .text

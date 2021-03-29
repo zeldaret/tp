@@ -142,7 +142,6 @@ struct JAISound {
 
 static void dComIfGs_getStartPoint();
 static void dComIfGs_isSaveSwitch(int);
-extern "C" extern char const* const Z2SceneMgr__stringBase0;
 
 extern "C" void __ct__10Z2SceneMgrFv();
 extern "C" void setInDarkness__10Z2SceneMgrFb();
@@ -187,19 +186,6 @@ extern "C" extern char const* const Z2SceneMgr__stringBase0;
 
 void dComIfGs_isStageSwitch(int, int);
 void dComIfGs_isEventBit(u16);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450860[4];
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 extern "C" void dComIfGs_isStageSwitch__Fii();
 extern "C" void isSwitch__12dSv_memBit_cCFi();
@@ -289,7 +275,7 @@ SECTION_SDATA2 static u8 lit_3511[4] = {
 };
 
 /* 80455A3C-80455A40 0004+00 s=6 e=0 z=0  None .sdata2    @3512 */
-SECTION_SDATA2 static u32 lit_3512 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3512 = 1.0f;
 
 /* 802B68E0-802B697C 009C+00 s=3 e=2 z=2  None .text      setSceneExist__10Z2SceneMgrFb */
 #pragma push
@@ -310,9 +296,7 @@ SECTION_SDATA2 static f32 lit_3529[1 + 1 /* padding */] = {
 };
 
 /* 80455A48-80455A50 0008+00 s=5 e=0 z=0  None .sdata2    @3531 */
-SECTION_SDATA2 static u8 lit_3531[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3531 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802B697C-802B6A18 009C+00 s=0 e=1 z=0  None .text      setFadeOutStart__10Z2SceneMgrFUc */
 #pragma push
@@ -717,22 +701,22 @@ SECTION_DATA static void* lit_5347[81] = {
 };
 
 /* 80455A50-80455A54 0004+00 s=1 e=0 z=0  None .sdata2    @5341 */
-SECTION_SDATA2 static u32 lit_5341 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5341 = -1.0f;
 
 /* 80455A54-80455A58 0004+00 s=2 e=0 z=0  None .sdata2    @5342 */
-SECTION_SDATA2 static u32 lit_5342 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5342 = 0.5f;
 
 /* 80455A58-80455A5C 0004+00 s=1 e=0 z=0  None .sdata2    @5343 */
-SECTION_SDATA2 static u32 lit_5343 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_5343 = 7.0f / 10.0f;
 
 /* 80455A5C-80455A60 0004+00 s=1 e=0 z=0  None .sdata2    @5344 */
-SECTION_SDATA2 static u32 lit_5344 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_5344 = 4.0f / 5.0f;
 
 /* 80455A60-80455A64 0004+00 s=1 e=0 z=0  None .sdata2    @5345 */
-SECTION_SDATA2 static u32 lit_5345 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5345 = 1.0f / 10.0f;
 
 /* 80455A64-80455A68 0004+00 s=1 e=0 z=0  None .sdata2    @5346 */
-SECTION_SDATA2 static u32 lit_5346 = 0x3DA3D70A;
+SECTION_SDATA2 static f32 lit_5346 = 2.0f / 25.0f;
 
 /* 802B6AF8-802B995C 2E64+00 s=8 e=1 z=0  None .text      setSceneName__10Z2SceneMgrFPcll */
 #pragma push

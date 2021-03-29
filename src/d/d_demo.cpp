@@ -17,9 +17,9 @@ struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
 };
 
-struct Vec {};
-
 struct J3DAnmTransform {};
+
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
@@ -46,11 +46,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80009184 */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct dKy_tevstr_c {};
 
@@ -368,18 +368,6 @@ static void dDemo_getJaiPointer(char const*, u32, int, u16*);
 void dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
 static void branchFile(char const*);
 static void getView();
-extern "C" extern char const* const d_d_demo__stringBase0;
-extern "C" extern void* __vt__17jmessage_tControl[3];
-extern "C" extern void* __vt__Q27JStudio13TCreateObject[4];
-extern "C" extern void* __vt__Q27JStudio16TAdaptor_message[9];
-extern "C" extern u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
-extern "C" extern u8 m_control__7dDemo_c[4];
-extern "C" extern u8 m_mesgControl__7dDemo_c[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 m_frame__7dDemo_c[4];
-extern "C" extern u8 m_frameNoMsg__7dDemo_c[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 m_status__7dDemo_c[4];
 
 extern "C" static void func_80037DE4();
 extern "C" static void func_80037E44();
@@ -493,29 +481,6 @@ void fpcSch_JudgeByID(void*, void*);
 void dComIfGs_staffroll_next_go_check();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__Q26JStage6TActor[35 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage7TCamera[37 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage4TFog[23 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage6TLight[27 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage7TObject[15 + 1 /* padding */];
-extern "C" extern void* __vt__Q26JStage7TSystem[20];
-extern "C" extern void* __vt__Q37JStudio3ctb8TFactory[5];
-extern "C" extern void* __vt__Q37JStudio3fvb8TFactory[5];
-extern "C" extern void* __vt__Q27JStudio8TFactory[5];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio3stb8TFactory[5];
-extern "C" extern void* __vt__Q214JStudio_JStage13TCreateObject[4];
-extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
-extern "C" extern void* __vt__Q217JStudio_JParticle13TCreateObject[6];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mEmitterMng__13dPa_control_c[4];
 
 extern "C" void OSReport_Error();
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
@@ -960,7 +925,7 @@ SECTION_SDATA2 static u8 lit_4040[4] = {
 };
 
 /* 80451DB4-80451DB8 0004+00 s=6 e=0 z=0  None .sdata2    @4041 */
-SECTION_SDATA2 static u32 lit_4041 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4041 = 1.0f;
 
 /* 80038020-80038098 0078+00 s=1 e=0 z=0  None .text      __ct__13dDemo_actor_cFv */
 #pragma push
@@ -1004,9 +969,7 @@ asm void dDemo_actor_c::setActor(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80451DB8-80451DC0 0008+00 s=4 e=0 z=0  None .sdata2    @4127 */
-SECTION_SDATA2 static u8 lit_4127[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4127 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8003819C-80038338 019C+00 s=1 e=1 z=1  None .text      getPrm_Morf__13dDemo_actor_cFv */
 #pragma push
@@ -1106,7 +1069,7 @@ asm static void dDemo_getJaiPointer(char const* param_0, u32 param_1, int param_
 
 /* ############################################################################################## */
 /* 80451DC0-80451DC4 0004+00 s=1 e=0 z=0  None .sdata2    @4152 */
-SECTION_SDATA2 static u32 lit_4152 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4152 = -1.0f;
 
 /* 80038518-800387A8 0290+00 s=0 e=0 z=2  None .text
  * dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc */
@@ -1165,10 +1128,10 @@ asm void dDemo_actor_c::JSGSetData(u32 param_0, void const* param_1, u32 param_2
 
 /* ############################################################################################## */
 /* 80451DC4-80451DC8 0004+00 s=1 e=0 z=0  None .sdata2    @4553 */
-SECTION_SDATA2 static u32 lit_4553 = 0xF49DC5AE;
+SECTION_SDATA2 static f32 lit_4553 = -1.0000000331813535e+32f;
 
 /* 80451DC8-80451DCC 0004+00 s=1 e=0 z=0  None .sdata2    @4554 */
-SECTION_SDATA2 static u32 lit_4554 = 0x749DC5AE;
+SECTION_SDATA2 static f32 lit_4554 = 1.0000000331813535e+32f;
 
 /* 80038920-80038980 0060+00 s=1 e=0 z=0  None .text      JSGSetTranslation__13dDemo_actor_cFRC3Vec
  */
@@ -1193,7 +1156,7 @@ asm void dDemo_actor_c::JSGSetScaling(Vec const& param_0) {
 
 /* ############################################################################################## */
 /* 80451DCC-80451DD0 0004+00 s=1 e=0 z=0  None .sdata2    @4567 */
-SECTION_SDATA2 static u32 lit_4567 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_4567 = 182.04444885253906f;
 
 /* 800389A8-80038A0C 0064+00 s=1 e=0 z=0  None .text      JSGSetRotation__13dDemo_actor_cFRC3Vec */
 #pragma push
@@ -1323,7 +1286,7 @@ asm void dDemo_camera_c::JSGSetProjectionFar(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80451DD0-80451DD4 0004+00 s=1 e=0 z=0  None .sdata2    @4642 */
-SECTION_SDATA2 static u32 lit_4642 = 0x42700000;
+SECTION_SDATA2 static f32 lit_4642 = 60.0f;
 
 /* 80038B54-80038B88 0034+00 s=1 e=0 z=0  None .text      JSGGetProjectionFovy__14dDemo_camera_cCFv
  */
@@ -1349,7 +1312,7 @@ asm void dDemo_camera_c::JSGSetProjectionFovy(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80451DD4-80451DD8 0004+00 s=1 e=0 z=0  None .sdata2    @4655 */
-SECTION_SDATA2 static u32 lit_4655 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_4655 = 19.0f / 14.0f;
 
 /* 80038B9C-80038BD0 0034+00 s=1 e=0 z=0  None .text JSGGetProjectionAspect__14dDemo_camera_cCFv
  */
@@ -1727,9 +1690,7 @@ asm void dDemo_system_c::JSGFindObject(JStage::TObject** param_0, char const* pa
 
 /* ############################################################################################## */
 /* 80451DE0-80451DE8 0008+00 s=1 e=0 z=0  None .sdata2    @5123 */
-SECTION_SDATA2 static u8 lit_5123[8] = {
-    0x3F, 0xA1, 0x11, 0x11, 0x20, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5123 = 0.03333333507180214;
 
 /* 80039678-80039910 0298+00 s=0 e=1 z=0  None .text      create__7dDemo_cFv */
 #pragma push

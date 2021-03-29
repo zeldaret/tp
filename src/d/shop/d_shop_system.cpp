@@ -19,8 +19,6 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct J3DModel {};
-
 struct Vec {};
 
 struct cXyz {
@@ -28,6 +26,8 @@ struct cXyz {
 };
 
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();
@@ -211,8 +211,6 @@ struct ShopCam_action_c {
 
 static void dShopSystem_searchItemActor(void*, void*);
 static void dShopSystem_searchCameraActor(void*, void*);
-extern "C" extern char const* const d_shop_d_shop_system__stringBase0;
-extern "C" extern void* __vt__13dShopSystem_c[52 + 1 /* padding */];
 
 extern "C" static void dShopSystem_searchItemActor__FPvPv();
 extern "C" static void dShopSystem_searchCameraActor__FPvPv();
@@ -289,12 +287,6 @@ void cM_atan2s(f32, f32);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__9STControl[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void fopAc_IsActor__FPv();
@@ -484,19 +476,19 @@ asm static void dShopSystem_searchCameraActor(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80453B00-80453B04 0004+00 s=1 e=0 z=0  None .sdata2    @4097 */
-SECTION_SDATA2 static u32 lit_4097 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_4097 = 9.0f / 10.0f;
 
 /* 80453B04-80453B08 0004+00 s=2 e=0 z=0  None .sdata2    @4098 */
-SECTION_SDATA2 static u32 lit_4098 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4098 = 0.5f;
 
 /* 80453B08-80453B0C 0004+00 s=5 e=0 z=0  None .sdata2    @4099 */
-SECTION_SDATA2 static u32 lit_4099 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4099 = 1.0f;
 
 /* 80453B0C-80453B10 0004+00 s=1 e=0 z=0  None .sdata2    @4100 */
-SECTION_SDATA2 static u32 lit_4100 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4100 = 1.0f / 10.0f;
 
 /* 80453B10-80453B14 0004+00 s=1 e=0 z=0  None .sdata2    @4101 */
-SECTION_SDATA2 static u32 lit_4101 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_4101 = 7.0f / 10.0f;
 
 /* 80197338-801974E4 01AC+00 s=0 e=0 z=19  None .text      initShopSystem__13dShopSystem_cFv */
 #pragma push
@@ -1010,16 +1002,16 @@ asm void dShopSystem_c::checkController(u8 param_0, dMsgFlow_c* param_1) {
 
 /* ############################################################################################## */
 /* 80453B14-80453B18 0004+00 s=4 e=0 z=0  None .sdata2    @4493 */
-SECTION_SDATA2 static u32 lit_4493 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4493 = -1.0f;
 
 /* 80453B18-80453B1C 0004+00 s=8 e=0 z=0  None .sdata2    @4494 */
-SECTION_SDATA2 static u32 lit_4494 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_4494 = 0.25f;
 
 /* 80453B1C-80453B20 0004+00 s=9 e=0 z=0  None .sdata2    @4495 */
-SECTION_SDATA2 static u32 lit_4495 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_4495 = 20.0f;
 
 /* 80453B20-80453B24 0004+00 s=9 e=0 z=0  None .sdata2    @4496 */
-SECTION_SDATA2 static u32 lit_4496 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4496 = 5.0f;
 
 /* 80197808-80197DD0 05C8+00 s=1 e=0 z=0  None .text      chooseItem3__13dShopSystem_cFUc */
 #pragma push
@@ -1115,28 +1107,28 @@ SECTION_DEAD static char const* const pad_80394C26 = "\0";
 #pragma pop
 
 /* 80453B24-80453B28 0004+00 s=1 e=0 z=0  None .sdata2    @5000 */
-SECTION_SDATA2 static u32 lit_5000 = 0xC1C80000;
+SECTION_SDATA2 static f32 lit_5000 = -25.0f;
 
 /* 80453B28-80453B2C 0004+00 s=1 e=0 z=0  None .sdata2    @5001 */
-SECTION_SDATA2 static u32 lit_5001 = 0x43160000;
+SECTION_SDATA2 static f32 lit_5001 = 150.0f;
 
 /* 80453B2C-80453B30 0004+00 s=1 e=0 z=0  None .sdata2    @5002 */
-SECTION_SDATA2 static u32 lit_5002 = 0xC2480000;
+SECTION_SDATA2 static f32 lit_5002 = -50.0f;
 
 /* 80453B30-80453B34 0004+00 s=1 e=0 z=0  None .sdata2    @5003 */
-SECTION_SDATA2 static u32 lit_5003 = 0x437A0000;
+SECTION_SDATA2 static f32 lit_5003 = 250.0f;
 
 /* 80453B34-80453B38 0004+00 s=1 e=0 z=0  None .sdata2    @5004 */
-SECTION_SDATA2 static u32 lit_5004 = 0x42700000;
+SECTION_SDATA2 static f32 lit_5004 = 60.0f;
 
 /* 80453B38-80453B3C 0004+00 s=1 e=0 z=0  None .sdata2    @5005 */
-SECTION_SDATA2 static u32 lit_5005 = 0xC3020000;
+SECTION_SDATA2 static f32 lit_5005 = -130.0f;
 
 /* 80453B3C-80453B40 0004+00 s=2 e=0 z=0  None .sdata2    @5006 */
-SECTION_SDATA2 static u32 lit_5006 = 0x43570000;
+SECTION_SDATA2 static f32 lit_5006 = 215.0f;
 
 /* 80453B40-80453B44 0004+00 s=1 e=0 z=0  None .sdata2    @5007 */
-SECTION_SDATA2 static u32 lit_5007 = 0x41700000;
+SECTION_SDATA2 static f32 lit_5007 = 15.0f;
 
 /* 80198A2C-801990B0 0684+00 s=0 e=0 z=9  None .text      itemZoom__13dShopSystem_cFP4cXyz */
 #pragma push
@@ -1216,9 +1208,7 @@ SECTION_SDATA2 static f32 lit_5296[1 + 1 /* padding */] = {
 };
 
 /* 80453B50-80453B58 0008+00 s=1 e=0 z=0  None .sdata2    @5298 */
-SECTION_SDATA2 static u8 lit_5298[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5298 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80199A18-80199BF8 01E0+00 s=1 e=0 z=0  None .text
  * seq_moving__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c       */
@@ -1401,28 +1391,28 @@ asm void dShopSystem_c::deleteObject() {
 
 /* ############################################################################################## */
 /* 80453B60-80453B64 0004+00 s=1 e=0 z=0  None .sdata2    @5687 */
-SECTION_SDATA2 static u32 lit_5687 = 0xC32F0000;
+SECTION_SDATA2 static f32 lit_5687 = -175.0f;
 
 /* 80453B64-80453B68 0004+00 s=1 e=0 z=0  None .sdata2    @5688 */
-SECTION_SDATA2 static u32 lit_5688 = 0x43250000;
+SECTION_SDATA2 static f32 lit_5688 = 165.0f;
 
 /* 80453B68-80453B6C 0004+00 s=1 e=0 z=0  None .sdata2    @5689 */
-SECTION_SDATA2 static u32 lit_5689 = 0x41200000;
+SECTION_SDATA2 static f32 lit_5689 = 10.0f;
 
 /* 80453B6C-80453B70 0004+00 s=1 e=0 z=0  None .sdata2    @5690 */
-SECTION_SDATA2 static u32 lit_5690 = 0x43610000;
+SECTION_SDATA2 static f32 lit_5690 = 225.0f;
 
 /* 80453B70-80453B74 0004+00 s=1 e=0 z=0  None .sdata2    @5691 */
-SECTION_SDATA2 static u32 lit_5691 = 0x43B90000;
+SECTION_SDATA2 static f32 lit_5691 = 370.0f;
 
 /* 80453B74-80453B78 0004+00 s=1 e=0 z=0  None .sdata2    @5692 */
-SECTION_SDATA2 static u32 lit_5692 = 0xC3340000;
+SECTION_SDATA2 static f32 lit_5692 = -180.0f;
 
 /* 80453B78-80453B7C 0004+00 s=1 e=0 z=0  None .sdata2    @5693 */
-SECTION_SDATA2 static u32 lit_5693 = 0x43750000;
+SECTION_SDATA2 static f32 lit_5693 = 245.0f;
 
 /* 80453B7C-80453B80 0004+00 s=1 e=0 z=0  None .sdata2    @5694 */
-SECTION_SDATA2 static u32 lit_5694 = 0xC3BE0000;
+SECTION_SDATA2 static f32 lit_5694 = -380.0f;
 
 /* 8019A5D0-8019AB00 0530+00 s=1 e=0 z=8  None .text      searchItemActor__13dShopSystem_cFv */
 #pragma push

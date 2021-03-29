@@ -49,8 +49,6 @@ struct JKRArchive {
 // Forward References:
 //
 
-extern "C" extern u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
-
 extern "C" void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode();
 extern "C" void __dt__10JKRArchiveFv();
 extern "C" void isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs();
@@ -73,9 +71,6 @@ extern "C" extern u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__10JKRArchive[20];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 extern "C" void findFromRoot__7JKRHeapFPv();
 extern "C" void __dl__FPv();

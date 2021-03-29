@@ -30,11 +30,11 @@ struct daObjSZbridge_c {
     /* 80D04B90 */ ~daObjSZbridge_c();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -112,8 +112,6 @@ static void daObjSZbridge_create1st(daObjSZbridge_c*);
 static void daObjSZbridge_MoveBGDelete(daObjSZbridge_c*);
 static void daObjSZbridge_MoveBGExecute(daObjSZbridge_c*);
 static void daObjSZbridge_MoveBGDraw(daObjSZbridge_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_SZbridge[12];
 
 extern "C" static void rideCallback__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
 extern "C" void rideActor__15daObjSZbridge_cFP10fopAc_ac_c();
@@ -155,14 +153,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

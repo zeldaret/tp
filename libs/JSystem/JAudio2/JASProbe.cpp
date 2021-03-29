@@ -51,10 +51,10 @@ asm void JASProbe::start(char const* param_0) {
 
 /* ############################################################################################## */
 /* 80455588-8045558C 0004+00 s=1 e=0 z=0  None .sdata2    @125 */
-SECTION_SDATA2 static u32 lit_125 = 0x426FC28F;
+SECTION_SDATA2 static f32 lit_125 = 59.939998626708984f;
 
 /* 8045558C-80455590 0004+00 s=1 e=0 z=0  None .sdata2    @126 */
-SECTION_SDATA2 static u32 lit_126 = 0x3F75C28F;
+SECTION_SDATA2 static f32 lit_126 = 24.0f / 25.0f;
 
 /* 80455590-80455598 0004+04 s=1 e=0 z=0  None .sdata2    @127 */
 SECTION_SDATA2 static f32 lit_127[1 + 1 /* padding */] = {
@@ -64,9 +64,7 @@ SECTION_SDATA2 static f32 lit_127[1 + 1 /* padding */] = {
 };
 
 /* 80455598-804555A0 0008+00 s=1 e=0 z=0  None .sdata2    @129 */
-SECTION_SDATA2 static u8 lit_129[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_129 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80290DC4-80290EE4 0120+00 s=1 e=0 z=0  None .text      stop__8JASProbeFv */
 #pragma push

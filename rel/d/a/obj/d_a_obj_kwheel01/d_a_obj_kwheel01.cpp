@@ -37,11 +37,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -128,8 +128,6 @@ static void daObjKWheel01_create1st(daObjKWheel01_c*);
 static void daObjKWheel01_MoveBGDelete(daObjKWheel01_c*);
 static void daObjKWheel01_MoveBGExecute(daObjKWheel01_c*);
 static void daObjKWheel01_MoveBGDraw(daObjKWheel01_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_KWheel01[12];
 
 extern "C" void create1st__15daObjKWheel01_cFv();
 extern "C" void setMtx__15daObjKWheel01_cFv();
@@ -172,14 +170,6 @@ void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*
 void cM_rndFX(f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transM__14mDoMtx_stack_cFfff();

@@ -67,8 +67,6 @@ static void JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);
 static void decompSZS_subroutine(u8*, u8*);
 static void firstSrcData();
 static void nextSrcData(u8*);
-extern "C" extern char const* const JKRDvdRipper__stringBase0;
-extern "C" extern u32 sSZSBufferSize__12JKRDvdRipper;
 
 extern "C" void
 loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl();
@@ -91,7 +89,6 @@ extern "C" extern u32 sSZSBufferSize__12JKRDvdRipper;
 //
 
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 SECTION_INIT void memcpy();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();

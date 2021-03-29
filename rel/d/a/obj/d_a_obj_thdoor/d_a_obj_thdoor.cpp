@@ -183,8 +183,6 @@ static void daObjThDoor_MoveBGDelete(daObjThDoor_c*);
 static void daObjThDoor_MoveBGExecute(daObjThDoor_c*);
 static void daObjThDoor_MoveBGDraw(daObjThDoor_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_TDoor[12];
 
 extern "C" static void checkPlayerPos__FP13daObjThDoor_c();
 extern "C" static void
@@ -236,19 +234,6 @@ void dComIfGp_getReverb(int);
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void cLib_chaseS(s16*, s16, s16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D0E7E0[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

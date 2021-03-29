@@ -32,15 +32,15 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -147,8 +147,6 @@ static bool daObj_Brakeeff_IsDelete(obj_brakeeff_class*);
 static void daObj_Brakeeff_Delete(obj_brakeeff_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Brakeeff_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_BEF[12];
 
 extern "C" static void daObj_Brakeeff_Draw__FP18obj_brakeeff_class();
 extern "C" static void obj_brakeeff_1__FP18obj_brakeeff_class();
@@ -182,16 +180,6 @@ void at_power_check(dCcU_AtInfo*);
 void cM_atan2s(f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

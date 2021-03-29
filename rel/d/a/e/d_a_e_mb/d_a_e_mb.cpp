@@ -20,9 +20,9 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -31,13 +31,13 @@ struct mDoExt_btpAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -68,11 +68,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -180,49 +180,6 @@ static bool daE_MB_IsDelete(e_mb_class*);
 static void daE_MB_Delete(e_mb_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_MB_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_3880;
-extern "C" extern u32 const lit_3882;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_MB[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80708D00[4];
-extern "C" extern u8 data_80708D04[4];
-extern "C" extern u8 data_80708D08[4];
-extern "C" extern u8 data_80708D0C[4];
-extern "C" extern u8 data_80708D10[4];
-extern "C" extern u8 data_80708D14[4];
-extern "C" extern u8 data_80708D18[4];
-extern "C" extern u8 data_80708D1C[4];
-extern "C" extern u8 data_80708D20[4];
-extern "C" extern u8 data_80708D24[4];
-extern "C" extern u8 data_80708D28[4];
-extern "C" extern u8 data_80708D2C[4];
-extern "C" extern u8 data_80708D30[4];
-extern "C" extern u8 data_80708D34[4];
-extern "C" extern u8 data_80708D38[4];
-extern "C" extern u8 data_80708D3C[4];
-extern "C" extern u8 data_80708D40[4];
-extern "C" extern u8 data_80708D44[4];
-extern "C" extern u8 data_80708D48[4];
-extern "C" extern u8 data_80708D4C[4];
-extern "C" extern u8 data_80708D50[4];
-extern "C" extern u8 data_80708D54[4];
-extern "C" extern u8 data_80708D58[4];
-extern "C" extern u8 data_80708D5C[4];
-extern "C" extern u8 data_80708D60[4];
 
 extern "C" void __ct__12daE_MB_HIO_cFv();
 extern "C" static void anm_init__FP10e_mb_classifUcf();
@@ -317,20 +274,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

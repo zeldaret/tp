@@ -85,39 +85,6 @@ static void Debug_console(u32);
 static void LOAD_COPYDATE(void*);
 static void debug();
 static void main01();
-extern "C" extern char const* const m_Do_m_Do_main__stringBase0;
-extern "C" extern u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
-extern "C" extern u32 data_80450580;
-extern "C" extern u32 memMargin__7mDoMain;
-extern "C" extern u8 sPowerOnTime__7mDoMain[4];
-extern "C" extern u8 data_80450B0C[4];
-extern "C" extern u8 sHungUpTime__7mDoMain[4];
-extern "C" extern u8 data_80450B14[4];
-extern "C" extern u8 data_80450B38[4];
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B54[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B64[4];
-extern "C" extern u8 data_80450B68[4];
-extern "C" extern u8 data_80450B6C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B78[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 data_80450B8C[4];
-extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450B98[4];
-extern "C" extern u8 data_80450B9C[4];
 
 extern "C" static void version_check__Fv();
 extern "C" void CheckHeap1__9HeapCheckFv();
@@ -188,22 +155,6 @@ void fapGm_Create();
 void fopAcM_initManager();
 void JUTReport(int, int, char const*, ...);
 void JUTReport(int, int, int, char const*, ...);
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_mDoAud_audioHeap[4];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
 
 SECTION_INIT void memcpy();
 extern "C" void OSReportInit__Fv();
@@ -569,10 +520,10 @@ static u8 console_scroll[4];
 static u8 data_80450B30[4];
 
 /* 80451A00-80451A04 0004+00 s=1 e=0 z=0  None .sdata2    @3884 */
-SECTION_SDATA2 static u32 lit_3884 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_3884 = 20.0f;
 
 /* 80451A04-80451A08 0004+00 s=1 e=0 z=0  None .sdata2    @3885 */
-SECTION_SDATA2 static u32 lit_3885 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_3885 = 30.0f;
 
 /* 80451A08-80451A0C 0004+00 s=1 e=0 z=0  None .sdata2    @3886 */
 SECTION_SDATA2 static u8 lit_3886[4] = {
@@ -583,7 +534,7 @@ SECTION_SDATA2 static u8 lit_3886[4] = {
 };
 
 /* 80451A0C-80451A10 0004+00 s=1 e=0 z=0  None .sdata2    @3887 */
-SECTION_SDATA2 static u32 lit_3887 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3887 = 1.0f;
 
 /* 80451A10-80451A18 0004+04 s=1 e=0 z=0  None .sdata2    @3888 */
 SECTION_SDATA2 static f32 lit_3888[1 + 1 /* padding */] = {
@@ -593,9 +544,7 @@ SECTION_SDATA2 static f32 lit_3888[1 + 1 /* padding */] = {
 };
 
 /* 80451A18-80451A20 0008+00 s=1 e=0 z=0  None .sdata2    @3890 */
-SECTION_SDATA2 static u8 lit_3890[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3890 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80005D4C-8000614C 0400+00 s=1 e=0 z=0  None .text      Debug_console__FUl */
 #pragma push

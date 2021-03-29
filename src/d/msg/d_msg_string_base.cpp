@@ -11,20 +11,20 @@
 // Types:
 //
 
+struct jmessage_string_tControl {
+    /* 8022FB5C */ jmessage_string_tControl();
+};
+
+struct COutFont_c {};
+
 struct J2DTextBox {};
 
 struct JUTFont {};
-
-struct COutFont_c {};
 
 struct jmessage_string_tReference {
     /* 8022F8C0 */ jmessage_string_tReference();
     /* 8022F9AC */ void init(J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
     /* 8022FA38 */ void getLineLength(int);
-};
-
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
 };
 
 struct jmessage_string_tSequenceProcessor {
@@ -98,8 +98,6 @@ struct TNodeLinkList {
 // Forward References:
 //
 
-extern "C" extern char const* const d_msg_d_msg_string_base__stringBase0;
-
 extern "C" void __ct__16dMsgStringBase_cFv();
 extern "C" void __dt__16dMsgStringBase_cFv();
 extern "C" void getResource__16dMsgStringBase_cFv();
@@ -125,8 +123,6 @@ extern "C" extern char const* const d_msg_d_msg_string_base__stringBase0;
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void __ct__26jmessage_string_tReferenceFv();
 extern "C" void
@@ -235,16 +231,10 @@ asm void dMsgStringBase_c::getStringLocal(u32 param_0, J2DTextBox* param_1, J2DT
 
 /* ############################################################################################## */
 /* 80454D70-80454D78 0004+04 s=2 e=0 z=0  None .sdata2    @4046 */
-SECTION_SDATA2 static u8 lit_4046[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4046[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802498D8-80249A48 0170+00 s=1 e=1 z=0  None .text

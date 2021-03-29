@@ -34,9 +34,6 @@ struct JPAParticleCallBack {
 //
 
 void cDmrNowMidnaTalk();
-extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern u8 data_80450CA0[4];
-extern "C" extern u8 JPTracePCB4[4];
 
 extern "C" void execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle();
 extern "C" void draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle();
@@ -55,7 +52,6 @@ extern "C" extern u8 JPTracePCB4[4];
 
 void fopAcM_getTalkEventPartner(fopAc_ac_c const*);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c();
 extern "C" void __dt__19JPAParticleCallBackFv();
@@ -69,7 +65,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 /* ############################################################################################## */
 /* 80451BA8-80451BAC 0004+00 s=1 e=0 z=0  None .sdata2    @3731 */
-SECTION_SDATA2 static u32 lit_3731 = 0x41C80000;
+SECTION_SDATA2 static f32 lit_3731 = 25.0f;
 
 /* 80451BAC-80451BB0 0004+00 s=1 e=0 z=0  None .sdata2    @3732 */
 SECTION_SDATA2 static u8 lit_3732[4] = {
@@ -80,15 +76,13 @@ SECTION_SDATA2 static u8 lit_3732[4] = {
 };
 
 /* 80451BB0-80451BB4 0004+00 s=1 e=0 z=0  None .sdata2    @3733 */
-SECTION_SDATA2 static u32 lit_3733 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_3733 = 3.0f / 10.0f;
 
 /* 80451BB4-80451BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3734 */
-SECTION_SDATA2 static u32 lit_3734 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3734 = 0.5f;
 
 /* 80451BB8-80451BC0 0008+00 s=1 e=0 z=0  None .sdata2    @3736 */
-SECTION_SDATA2 static u8 lit_3736[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3736 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001817C-800182A4 0128+00 s=1 e=0 z=0  None .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */

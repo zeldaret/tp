@@ -164,9 +164,6 @@ struct J3DAnmLoaderDataBase {
 //
 
 void daPy_addCalcShort(s16*, s16, s16, s16, s16);
-extern "C" extern void* __vt__18daPy_sightPacket_c[4 + 1 /* padding */];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 struct_8045101C[4];
 
 extern "C" void checkAnmEnd__16daPy_frameCtrl_cFv();
 extern "C" void updateFrame__16daPy_frameCtrl_cFv();
@@ -246,15 +243,6 @@ void* operator new(u32);
 void* operator new[](u32);
 void* operator new[](u32, int);
 void operator delete(void*);
-extern "C" extern void* __vt__18mDoExt_transAnmBas[5];
-extern "C" extern void* __vt__18J3DAnmTransformKey[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
 extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl();
@@ -324,16 +312,10 @@ extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 /* ############################################################################################## */
 /* 80453600-80453608 0004+04 s=6 e=0 z=0  None .sdata2    @4215 */
-SECTION_SDATA2 static u8 lit_4215[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4215[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8015E4CC-8015E510 0044+00 s=0 e=235 z=6  None .text      checkAnmEnd__16daPy_frameCtrl_cFv */
@@ -358,9 +340,7 @@ asm void daPy_frameCtrl_c::updateFrame() {
 
 /* ############################################################################################## */
 /* 80453608-80453610 0008+00 s=2 e=0 z=0  None .sdata2    @4237 */
-SECTION_SDATA2 static u8 lit_4237[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4237 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8015E544-8015E5B0 006C+00 s=0 e=1 z=6  None .text      setFrameCtrl__16daPy_frameCtrl_cFUcssff */
 #pragma push
@@ -375,16 +355,16 @@ asm void daPy_frameCtrl_c::setFrameCtrl(u8 param_0, s16 param_1, s16 param_2, f3
 
 /* ############################################################################################## */
 /* 80453610-80453614 0004+00 s=1 e=0 z=0  None .sdata2    @4247 */
-SECTION_SDATA2 static u32 lit_4247 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_4247 = 30.0f;
 
 /* 80453614-80453618 0004+00 s=1 e=0 z=0  None .sdata2    @4248 */
-SECTION_SDATA2 static u32 lit_4248 = 0x428C0000;
+SECTION_SDATA2 static f32 lit_4248 = 70.0f;
 
 /* 80453618-8045361C 0004+00 s=2 e=0 z=0  None .sdata2    @4249 */
-SECTION_SDATA2 static u32 lit_4249 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4249 = 50.0f;
 
 /* 8045361C-80453620 0004+00 s=1 e=0 z=0  None .sdata2    @4250 */
-SECTION_SDATA2 static u32 lit_4250 = 0x47800000;
+SECTION_SDATA2 static f32 lit_4250 = 65536.0f;
 
 /* 8015E5B0-8015E654 00A4+00 s=0 e=1 z=18  None .text initOffset__20daPy_boomerangMove_cFPC4cXyz
  */
@@ -405,10 +385,10 @@ u8 m_midnaActor__9daPy_py_c[4];
 u8 struct_8045101C[4];
 
 /* 80453620-80453624 0004+00 s=1 e=0 z=0  None .sdata2    @4332 */
-SECTION_SDATA2 static u32 lit_4332 = 0x43960000;
+SECTION_SDATA2 static f32 lit_4332 = 300.0f;
 
 /* 80453624-80453628 0004+00 s=1 e=0 z=0  None .sdata2    @4333 */
-SECTION_SDATA2 static u32 lit_4333 = 0xC42F0000;
+SECTION_SDATA2 static f32 lit_4333 = -700.0f;
 
 /* 80453628-80453630 0004+04 s=1 e=0 z=0  None .sdata2    @4334 */
 SECTION_SDATA2 static f32 lit_4334[1 + 1 /* padding */] = {
@@ -431,14 +411,10 @@ asm void daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* 
 
 /* ############################################################################################## */
 /* 80453630-80453638 0008+00 s=1 e=0 z=0  None .sdata2    @4379 */
-SECTION_SDATA2 static u8 lit_4379[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4379 = 0.5;
 
 /* 80453638-80453640 0008+00 s=1 e=0 z=0  None .sdata2    @4380 */
-SECTION_SDATA2 static u8 lit_4380[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4380 = 3.0;
 
 /* 80453640-80453648 0008+00 s=1 e=0 z=0  None .sdata2    @4381 */
 SECTION_SDATA2 static u8 lit_4381[8] = {
@@ -983,7 +959,7 @@ asm void daPy_sightPacket_c::draw() {
 
 /* ############################################################################################## */
 /* 80453680-80453684 0004+00 s=1 e=0 z=0  None .sdata2    @4699 */
-SECTION_SDATA2 static u32 lit_4699 = 0x42000000;
+SECTION_SDATA2 static f32 lit_4699 = 32.0f;
 
 /* 8015F2FC-8015F384 0088+00 s=0 e=1 z=0  None .text      setSight__18daPy_sightPacket_cFv */
 #pragma push
@@ -1028,7 +1004,7 @@ asm void daPy_py_c::checkWoodShieldEquip() {
 
 /* ############################################################################################## */
 /* 80453684-80453688 0004+00 s=1 e=0 z=0  None .sdata2    @4741 */
-SECTION_SDATA2 static u32 lit_4741 = 0xC1480000;
+SECTION_SDATA2 static f32 lit_4741 = -12.5f;
 
 /* 80453688-80453690 0004+04 s=1 e=0 z=0  None .sdata2    @4742 */
 SECTION_SDATA2 static f32 lit_4742[1 + 1 /* padding */] = {

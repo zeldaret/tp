@@ -42,7 +42,6 @@ static void JSUConvertOffsetToPtr__template74(void const*, u32);
 static void JSUConvertOffsetToPtr__template75(void const*, u32);
 static void JSUConvertOffsetToPtr__template76(void const*, u32);
 static void JSUConvertOffsetToPtr__template77(void const*, u32);
-extern "C" extern char const* const J3DShapeFactory__stringBase0;
 
 extern "C" void __ct__15J3DShapeFactoryFRC13J3DShapeBlock();
 extern "C" void create__15J3DShapeFactoryFiUlP14_GXVtxDescList();
@@ -67,13 +66,6 @@ void* operator new[](u32);
 void* operator new[](u32, int);
 void JSUConvertOffsetToPtr__template71(void const*, u32);
 void JSUConvertOffsetToPtr__template72(void const*, u32);
-extern "C" extern void* __vt__28J3DShapeMtxYBBoardConcatView[10];
-extern "C" extern void* __vt__27J3DShapeMtxBBoardConcatView[10];
-extern "C" extern void* __vt__26J3DShapeMtxMultiConcatView[10];
-extern "C" extern void* __vt__16J3DShapeMtxMulti[8];
-extern "C" extern void* __vt__21J3DShapeMtxConcatView[10];
-extern "C" extern void* __vt__11J3DShapeMtx[8 + 1 /* padding */];
-extern "C" extern void* __vt__8J3DShape[6];
 
 extern "C" void OSReport();
 extern "C" void* __nw__FUl();

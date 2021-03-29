@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -156,8 +156,6 @@ static void daObjLv5Key_Draw(daObjLv5Key_c*);
 static void daObjLv5Key_Execute(daObjLv5Key_c*);
 static void useHeapInit(fopAc_ac_c*);
 static bool daObjLv5Key_IsDelete(daObjLv5Key_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Lv5Key[12];
 
 extern "C" void CreateHeap__13daObjLv5Key_cFv();
 extern "C" void Init__13daObjLv5Key_cFv();
@@ -205,18 +203,6 @@ void fopAcM_posMove(fopAc_ac_c*, cXyz const*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void transM__14mDoMtx_stack_cFfff();

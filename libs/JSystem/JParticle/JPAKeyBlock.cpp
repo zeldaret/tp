@@ -47,9 +47,7 @@ asm JPAKeyBlock::JPAKeyBlock(u8 const* param_0) {
 
 /* ############################################################################################## */
 /* 80455350-80455358 0008+00 s=1 e=0 z=0  None .sdata2    @2215 */
-SECTION_SDATA2 static u8 lit_2215[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2215 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027D740-8027D7D4 0094+00 s=0 e=1 z=0  None .text      calc__11JPAKeyBlockFf */
 #pragma push

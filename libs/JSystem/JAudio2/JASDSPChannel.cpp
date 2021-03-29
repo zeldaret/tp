@@ -69,7 +69,6 @@ extern "C" void getHandle__13JASDSPChannelFUl();
 //
 
 void* operator new[](u32, JKRHeap*, int);
-extern "C" extern u8 JASDram[4];
 
 extern "C" void releaseHalt__6JASDspFUl();
 extern "C" void getDSPHandle__6JASDspFi();

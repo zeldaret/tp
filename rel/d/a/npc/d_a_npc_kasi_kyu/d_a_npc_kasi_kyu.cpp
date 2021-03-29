@@ -28,13 +28,13 @@ struct mDoExt_morf_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -50,11 +50,11 @@ struct fopAc_ac_c {
 
 struct J3DJoint {};
 
-struct _GXColorS10 {};
-
 struct J3DAnmTransformKey {};
 
 struct J3DAnmTexPattern {};
+
+struct _GXColorS10 {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -87,8 +87,6 @@ struct daNpcF_c {
     /* 80A25794 */ void drawOtherMdls();
 };
 
-struct J3DModel {};
-
 struct Vec {};
 
 struct cXyz {
@@ -96,6 +94,8 @@ struct cXyz {
     /* 80A25174 */ ~cXyz();
     /* 80A251B0 */ cXyz();
 };
+
+struct J3DModel {};
 
 struct daNpcKasiKyu_c {
     /* 80A219CC */ daNpcKasiKyu_c();
@@ -315,56 +315,6 @@ static void daNpcKasiKyu_Delete(void*);
 static void daNpcKasiKyu_Execute(void*);
 static void daNpcKasiKyu_Draw(void*);
 static bool daNpcKasiKyu_IsDelete(void*);
-extern "C" extern u8 const lit_4562[24];
-extern "C" extern u8 const lit_4566[52];
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 l_btpGetParamList[12];
-extern "C" extern void* l_myName;
-extern "C" extern void* lit_4960[3];
-extern "C" extern void* lit_4968[3];
-extern "C" extern void* lit_5003[3];
-extern "C" extern void* lit_5106[3];
-extern "C" extern void* g_profile_NPC_KASIKYU[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80A2606C[4];
-extern "C" extern u8 data_80A26070[4];
-extern "C" extern u8 data_80A26074[4];
-extern "C" extern u8 data_80A26078[4];
-extern "C" extern u8 data_80A2607C[4];
-extern "C" extern u8 data_80A26080[4];
-extern "C" extern u8 data_80A26084[4];
-extern "C" extern u8 data_80A26088[4];
-extern "C" extern u8 data_80A2608C[4];
-extern "C" extern u8 data_80A26090[4];
-extern "C" extern u8 data_80A26094[4];
-extern "C" extern u8 data_80A26098[4];
-extern "C" extern u8 data_80A2609C[4];
-extern "C" extern u8 data_80A260A0[4];
-extern "C" extern u8 data_80A260A4[4];
-extern "C" extern u8 data_80A260A8[4];
-extern "C" extern u8 data_80A260AC[4];
-extern "C" extern u8 data_80A260B0[4];
-extern "C" extern u8 data_80A260B4[4];
-extern "C" extern u8 data_80A260B8[4];
-extern "C" extern u8 data_80A260BC[4];
-extern "C" extern u8 data_80A260C0[4];
-extern "C" extern u8 data_80A260C4[4];
-extern "C" extern u8 data_80A260C8[4];
-extern "C" extern u8 data_80A260CC[4];
 
 extern "C" void __ct__14daNpcKasiKyu_cFv();
 extern "C" void __dt__8cM3dGCylFv();
@@ -521,20 +471,6 @@ void cLib_targetAngleX(cXyz const*, cXyz const*);
 void cLib_distanceAngleS(s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
 
 extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
 extern "C" void setMorf__13mDoExt_morf_cFf();

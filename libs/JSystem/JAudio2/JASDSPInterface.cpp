@@ -66,8 +66,6 @@ struct JASCalc {
 //
 
 void DSP_CreateMap2(u32);
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
-extern "C" extern u8 pad_8045575C[4];
 
 extern "C" void boot__6JASDspFPFPv_v();
 extern "C" void releaseHalt__6JASDspFUl();
@@ -119,7 +117,6 @@ void DspBoot(void (*)(void*));
 void DspFinishWork(u16);
 void DsyncFrame2(u32, u32, u32);
 void* operator new[](u32, JKRHeap*, int);
-extern "C" extern u8 JASDram[4];
 
 extern "C" void cDyl_InitAsyncIsDone__Fv();
 extern "C" void bzero__7JASCalcFPvUl();
@@ -199,7 +196,7 @@ asm void JASDsp::syncFrame(u32 param_0, u32 param_1, u32 param_2) {
 
 /* ############################################################################################## */
 /* 80455748-8045574C 0004+00 s=1 e=0 z=0  None .sdata2    @176 */
-SECTION_SDATA2 static u32 lit_176 = 0x40800000;
+SECTION_SDATA2 static f32 lit_176 = 4.0f;
 
 /* 8029DA04-8029DA30 002C+00 s=0 e=1 z=0  None .text      setDSPMixerLevel__6JASDspFf */
 #pragma push

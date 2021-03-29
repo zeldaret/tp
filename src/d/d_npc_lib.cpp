@@ -11,12 +11,6 @@
 // Types:
 //
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -25,6 +19,12 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
+};
+
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 80112C80 */ csXyz();
+    /* 8026745C */ void operator+=(csXyz&);
 };
 
 struct mDoMtx_stack_c {
@@ -67,10 +67,6 @@ extern "C" void __dt__16dNpcLib_lookat_cFv();
 
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -148,17 +144,13 @@ SECTION_SDATA2 static u8 lit_3864[4] = {
 };
 
 /* 80454DEC-80454DF0 0004+00 s=1 e=0 z=0  None .sdata2    @3865 */
-SECTION_SDATA2 static u32 lit_3865 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3865 = 1.0f;
 
 /* 80454DF0-80454DF8 0008+00 s=2 e=0 z=0  None .sdata2    @3866 */
-SECTION_SDATA2 static u8 lit_3866[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3866 = 0.5;
 
 /* 80454DF8-80454E00 0008+00 s=2 e=0 z=0  None .sdata2    @3867 */
-SECTION_SDATA2 static u8 lit_3867[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3867 = 3.0;
 
 /* 80454E00-80454E08 0008+00 s=2 e=0 z=0  None .sdata2    @3868 */
 SECTION_SDATA2 static u8 lit_3868[8] = {
@@ -173,9 +165,7 @@ SECTION_SDATA2 static f32 lit_3869[1 + 1 /* padding */] = {
 };
 
 /* 80454E10-80454E18 0008+00 s=2 e=0 z=0  None .sdata2    @3873 */
-SECTION_SDATA2 static u8 lit_3873[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3873 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80251534-80251B60 062C+00 s=0 e=0 z=2  None .text
  * action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi     */

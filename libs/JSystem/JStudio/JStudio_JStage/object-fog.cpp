@@ -84,12 +84,6 @@ extern "C" void func_8028CB20();
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog[16];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__Q27JStudio12TAdaptor_fog[8];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
 extern "C" void update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued();

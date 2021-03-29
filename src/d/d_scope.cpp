@@ -50,9 +50,6 @@ struct J2DPicture {
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_scope__stringBase0;
-extern "C" extern void* __vt__11dMeterSub_c[8 + 3 /* padding */];
-
 extern "C" void __ct__8dScope_cFUc();
 extern "C" void __ct__Q28JUtility6TColorFv();
 extern "C" void __dt__8dScope_cFv();
@@ -82,9 +79,6 @@ extern "C" extern void* __vt__11dMeterSub_c[8 + 3 /* padding */];
 void* operator new(u32);
 void operator delete(void*);
 void J2DDrawLine(f32, f32, f32, f32, JUtility::TColor, int);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
@@ -205,7 +199,7 @@ SECTION_DATA void* __vt__11dMeterSub_c[8 + 3 /* padding */] = {
 };
 
 /* 80453A10-80453A14 0004+00 s=4 e=0 z=0  None .sdata2    @3756 */
-SECTION_SDATA2 static u32 lit_3756 = 0x40400000;
+SECTION_SDATA2 static f32 lit_3756 = 3.0f;
 
 /* 80453A14-80453A18 0004+00 s=4 e=0 z=0  None .sdata2    @3757 */
 SECTION_SDATA2 static u8 lit_3757[4] = {
@@ -216,9 +210,7 @@ SECTION_SDATA2 static u8 lit_3757[4] = {
 };
 
 /* 80453A18-80453A20 0008+00 s=1 e=0 z=0  None .sdata2    @3759 */
-SECTION_SDATA2 static u8 lit_3759[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3759 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80193690-80193960 02D0+00 s=0 e=1 z=0  None .text      __ct__8dScope_cFUc */
 #pragma push
@@ -262,19 +254,19 @@ asm void dScope_c::_execute(u32 param_0) {
 
 /* ############################################################################################## */
 /* 80453A20-80453A24 0004+00 s=1 e=0 z=0  None .sdata2    @3879 */
-SECTION_SDATA2 static u32 lit_3879 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_3879 = 255.0f;
 
 /* 80453A24-80453A28 0004+00 s=1 e=0 z=0  None .sdata2    @3880 */
-SECTION_SDATA2 static u32 lit_3880 = 0x43980000;
+SECTION_SDATA2 static f32 lit_3880 = 304.0f;
 
 /* 80453A28-80453A2C 0004+00 s=1 e=0 z=0  None .sdata2    @3881 */
-SECTION_SDATA2 static u32 lit_3881 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3881 = 448.0f;
 
 /* 80453A2C-80453A30 0004+00 s=1 e=0 z=0  None .sdata2    @3882 */
-SECTION_SDATA2 static u32 lit_3882 = 0x43600000;
+SECTION_SDATA2 static f32 lit_3882 = 224.0f;
 
 /* 80453A30-80453A34 0004+00 s=1 e=0 z=0  None .sdata2    @3883 */
-SECTION_SDATA2 static u32 lit_3883 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3883 = 608.0f;
 
 /* 80193C68-80193FA0 0338+00 s=1 e=0 z=0  None .text      draw__8dScope_cFv */
 #pragma push
@@ -308,18 +300,16 @@ asm void dScope_c::open_init() {
 
 /* ############################################################################################## */
 /* 80453A34-80453A38 0004+00 s=2 e=0 z=0  None .sdata2    @3902 */
-SECTION_SDATA2 static u32 lit_3902 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_3902 = 1.5f;
 
 /* 80453A38-80453A3C 0004+00 s=2 e=0 z=0  None .sdata2    @3903 */
-SECTION_SDATA2 static u32 lit_3903 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_3903 = 5.0f;
 
 /* 80453A3C-80453A40 0004+00 s=2 e=0 z=0  None .sdata2    @3904 */
-SECTION_SDATA2 static u32 lit_3904 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3904 = 1.0f;
 
 /* 80453A40-80453A48 0008+00 s=2 e=0 z=0  None .sdata2    @3906 */
-SECTION_SDATA2 static u8 lit_3906[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3906 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80193FD0-80194048 0078+00 s=1 e=0 z=0  None .text      open_proc__8dScope_cFv */
 #pragma push

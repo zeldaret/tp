@@ -25,8 +25,6 @@ extern "C" void cAPIGph_AfterOfDraw__Fv();
 
 extern "C" extern void* g_cAPI_Interface[6];
 
-extern "C" extern void* g_cAPI_Interface[6];
-
 //
 // Declarations:
 //

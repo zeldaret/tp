@@ -23,9 +23,7 @@ extern "C" void floor();
 
 /* ############################################################################################## */
 /* 80456AF8-80456B00 0008+00 s=1 e=0 z=0  None .sdata2    @124 */
-SECTION_SDATA2 static u8 lit_124[8] = {
-    0x7E, 0x37, 0xE4, 0x3C, 0x88, 0x00, 0x75, 0x9C,
-};
+SECTION_SDATA2 static f64 lit_124 = 1e+300;
 
 /* 80456B00-80456B08 0008+00 s=1 e=0 z=0  None .sdata2    @125 */
 SECTION_SDATA2 static u8 lit_125[8] = {

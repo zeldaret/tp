@@ -39,9 +39,6 @@ static bool daNpc_Fish_IsDelete(npc_fish_class*);
 static bool daNpc_Fish_Delete(npc_fish_class*);
 static void fish_set(fopAc_ac_c*, fish_data_s*);
 static void daNpc_Fish_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_FISH[12];
 
 extern "C" static bool daNpc_Fish_Draw__FP14npc_fish_class();
 extern "C" static bool daNpc_Fish_Execute__FP14npc_fish_class();
@@ -59,11 +56,6 @@ extern "C" extern void* g_profile_NPC_FISH[12];
 
 void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
 void cM_rndFX(f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();

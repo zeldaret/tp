@@ -56,8 +56,6 @@ struct JUTGamePad {
 // Forward References:
 //
 
-extern "C" extern u8 data_80450F58[8];
-
 extern "C" static void func_8006F168();
 extern "C" static void func_8006F184();
 extern "C" static void func_8006F1A4();
@@ -82,12 +80,6 @@ extern "C" extern u8 data_80450F58[8];
 void dCam_getBody();
 void dKy_darkworld_check();
 void cM_rnd();
-extern "C" extern u8 const MS_patt__12dVibration_c[88];
-extern "C" extern u8 const CS_patt__12dVibration_c[88];
-extern "C" extern u8 const MQ_patt__12dVibration_c[80];
-extern "C" extern u8 const CQ_patt__12dVibration_c[80];
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void checkVibration__19dSv_player_config_cCFv();
 extern "C" void StartShake__9dCamera_cFlPUcl4cXyz();
@@ -152,9 +144,7 @@ extern "C" asm static void func_8006F1A4() {
 
 /* ############################################################################################## */
 /* 80452620-80452628 0008+00 s=1 e=0 z=0  None .sdata2    @3756 */
-SECTION_SDATA2 static u8 lit_3756[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3756 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8006F1D8-8006F268 0090+00 s=1 e=0 z=0  None .text      randombit__25@unnamed@d_vibration_cpp@Fll
  */

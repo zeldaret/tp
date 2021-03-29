@@ -46,13 +46,13 @@ struct mDoExt_invisibleModel {
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DAnmColor {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmColor {};
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -93,17 +93,17 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -124,9 +124,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
-
 struct dKy_tevstr_c {};
+
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -275,53 +275,6 @@ static void daDemo00_Execute(daDemo00_c*);
 static bool daDemo00_IsDelete(daDemo00_c*);
 static void daDemo00_Delete(daDemo00_c*);
 static void daDemo00_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_6393;
-extern "C" extern u32 const lit_6394;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* l_lightData[6];
-extern "C" extern void* g_profile_DEMO00[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_804A8E20[4];
-extern "C" extern u8 data_804A8E24[4];
-extern "C" extern u8 data_804A8E28[4];
-extern "C" extern u8 data_804A8E2C[4];
-extern "C" extern u8 data_804A8E30[4];
-extern "C" extern u8 data_804A8E34[4];
-extern "C" extern u8 data_804A8E38[4];
-extern "C" extern u8 data_804A8E3C[4];
-extern "C" extern u8 data_804A8E40[4];
-extern "C" extern u8 data_804A8E44[4];
-extern "C" extern u8 data_804A8E48[4];
-extern "C" extern u8 data_804A8E4C[4];
-extern "C" extern u8 data_804A8E50[4];
-extern "C" extern u8 data_804A8E54[4];
-extern "C" extern u8 data_804A8E58[4];
-extern "C" extern u8 data_804A8E5C[4];
-extern "C" extern u8 data_804A8E60[4];
-extern "C" extern u8 data_804A8E64[4];
-extern "C" extern u8 data_804A8E68[4];
-extern "C" extern u8 data_804A8E6C[4];
-extern "C" extern u8 data_804A8E70[4];
-extern "C" extern u8 data_804A8E74[4];
-extern "C" extern u8 data_804A8E78[4];
-extern "C" extern u8 data_804A8E7C[4];
-extern "C" extern u8 data_804A8E80[4];
-extern "C" extern u8 data_804A8E84[4];
 
 extern "C" void reset__16daDemo00_resID_cFv();
 extern "C" void reset__16daDemo00_model_cFv();
@@ -450,28 +403,6 @@ void MtxPush();
 void MtxPull();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
 
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void fadeOut__13mDoGph_gInf_cFf();

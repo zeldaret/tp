@@ -33,16 +33,16 @@ struct daObjYchndlr_c {
     /* 80C6E808 */ ~daObjYchndlr_c();
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266EF4 */ void normalize();
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -134,8 +134,6 @@ static void daObjYchndlr_create1st(daObjYchndlr_c*);
 static void daObjYchndlr_MoveBGDelete(daObjYchndlr_c*);
 static void daObjYchndlr_MoveBGExecute(daObjYchndlr_c*);
 static void daObjYchndlr_MoveBGDraw(daObjYchndlr_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Ychndlr[12];
 
 extern "C" void create1st__14daObjYchndlr_cFv();
 extern "C" void setMtx__14daObjYchndlr_cFv();
@@ -174,21 +172,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoMtx_ZrotM__FPA4_fs();

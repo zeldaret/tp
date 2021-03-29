@@ -95,8 +95,6 @@ struct dMenuFmapIconDisp_c {
 // Forward References:
 //
 
-extern "C" extern void* __vt__19dMenuFmapIconDisp_c[3];
-
 extern "C" void addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s();
 extern "C" void isArrival__22dMenu_Fmap_room_data_cFv();
 extern "C" void buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii();
@@ -134,9 +132,6 @@ void dComIfGs_isStageSwitch(int, int);
 void dComIfGp_isLightDropMapVisible();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_max;
 
 extern "C" void dComIfGs_isStageTbox__Fii();
 extern "C" void dComIfGs_isStageSwitch__Fii();
@@ -231,16 +226,10 @@ asm void dMenu_Fmap_stage_data_c::isArrival() {
 
 /* ############################################################################################## */
 /* 80451E20-80451E28 0004+04 s=5 e=0 z=0  None .sdata2    @3894 */
-SECTION_SDATA2 static u8 lit_3894[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3894[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8003D9D8-8003DB48 0170+00 s=1 e=0 z=0  None .text

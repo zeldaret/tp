@@ -49,8 +49,6 @@ struct JStage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q26JStage4TFog[23 + 1 /* padding */];
-
 extern "C" void __dt__Q26JStage4TFogFv();
 extern "C" s32 JSGFGetType__Q26JStage4TFogCFv();
 extern "C" bool JSGGetFogFunction__Q26JStage4TFogCFv();
@@ -68,7 +66,6 @@ extern "C" extern void* __vt__Q26JStage4TFog[23 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u32 __float_max;
 
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();

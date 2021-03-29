@@ -16,11 +16,6 @@ extern "C" extern u8 const CS_patt__12dVibration_c[88];
 extern "C" extern u8 const MQ_patt__12dVibration_c[80];
 extern "C" extern u8 const CQ_patt__12dVibration_c[80];
 
-extern "C" extern u8 const MS_patt__12dVibration_c[88];
-extern "C" extern u8 const CS_patt__12dVibration_c[88];
-extern "C" extern u8 const MQ_patt__12dVibration_c[80];
-extern "C" extern u8 const CQ_patt__12dVibration_c[80];
-
 //
 // External References:
 //

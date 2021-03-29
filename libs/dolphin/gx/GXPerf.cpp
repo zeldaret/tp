@@ -22,9 +22,6 @@ extern "C" void GXReadXfRasMetric();
 extern "C" extern u8 __cpReg[4];
 extern "C" extern void* __GXData;
 
-extern "C" extern u8 __cpReg[4];
-extern "C" extern void* __GXData;
-
 //
 // Declarations:
 //

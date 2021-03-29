@@ -63,54 +63,34 @@ SECTION_SDATA2 static u8 lit_145[8] = {
 };
 
 /* 80456970-80456978 0008+00 s=1 e=0 z=0  None .sdata2    @146 */
-SECTION_SDATA2 static u8 lit_146[8] = {
-    0x3F, 0xF9, 0x21, 0xFB, 0x54, 0x40, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_146 = 1.5707963267341256;
 
 /* 80456978-80456980 0008+00 s=1 e=0 z=0  None .sdata2    @147 */
-SECTION_SDATA2 static u8 lit_147[8] = {
-    0x3D, 0xD0, 0xB4, 0x61, 0x1A, 0x62, 0x63, 0x31,
-};
+SECTION_SDATA2 static f64 lit_147 = 6.077100506506192e-11;
 
 /* 80456980-80456988 0008+00 s=1 e=0 z=0  None .sdata2    @148 */
-SECTION_SDATA2 static u8 lit_148[8] = {
-    0x3D, 0xD0, 0xB4, 0x61, 0x1A, 0x60, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_148 = 6.077100506303966e-11;
 
 /* 80456988-80456990 0008+00 s=1 e=0 z=0  None .sdata2    @149 */
-SECTION_SDATA2 static u8 lit_149[8] = {
-    0x3B, 0xA3, 0x19, 0x8A, 0x2E, 0x03, 0x70, 0x73,
-};
+SECTION_SDATA2 static f64 lit_149 = 2.0222662487959506e-21;
 
 /* 80456990-80456998 0008+00 s=1 e=0 z=0  None .sdata2    @150 */
-SECTION_SDATA2 static u8 lit_150[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_150 = 0.5;
 
 /* 80456998-804569A0 0008+00 s=1 e=0 z=0  None .sdata2    @151 */
-SECTION_SDATA2 static u8 lit_151[8] = {
-    0x3F, 0xE4, 0x5F, 0x30, 0x6D, 0xC9, 0xC8, 0x83,
-};
+SECTION_SDATA2 static f64 lit_151 = 0.6366197723675814;
 
 /* 804569A0-804569A8 0008+00 s=1 e=0 z=0  None .sdata2    @152 */
-SECTION_SDATA2 static u8 lit_152[8] = {
-    0x3B, 0xA3, 0x19, 0x8A, 0x2E, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_152 = 2.0222662487111665e-21;
 
 /* 804569A8-804569B0 0008+00 s=1 e=0 z=0  None .sdata2    @153 */
-SECTION_SDATA2 static u8 lit_153[8] = {
-    0x39, 0x7B, 0x83, 0x9A, 0x25, 0x20, 0x49, 0xC1,
-};
+SECTION_SDATA2 static f64 lit_153 = 8.4784276603689e-32;
 
 /* 804569B0-804569B8 0008+00 s=1 e=0 z=0  None .sdata2    @154 */
-SECTION_SDATA2 static u8 lit_154[8] = {
-    0x41, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_154 = 16777216.0;
 
 /* 804569B8-804569C0 0008+00 s=1 e=0 z=0  None .sdata2    @157 */
-SECTION_SDATA2 static u8 lit_157[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_157 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8036A708-8036AAA8 03A0+00 s=0 e=3 z=0  None .text      __ieee754_rem_pio2 */
 #pragma push

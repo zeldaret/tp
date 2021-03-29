@@ -53,13 +53,13 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -162,8 +162,6 @@ static void daObjAvalanche_MoveBGDelete(daObjAvalanche_c*);
 static void daObjAvalanche_MoveBGExecute(daObjAvalanche_c*);
 static void daObjAvalanche_MoveBGDraw(daObjAvalanche_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Avalanche[12];
 
 extern "C" void initBaseMtx__16daObjAvalanche_cFv();
 extern "C" void setBaseMtx__16daObjAvalanche_cFv();
@@ -207,14 +205,6 @@ void dBgS_MoveBGProc_Trans(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXy
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80BA7EA0[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void play__14mDoExt_baseAnmFv();

@@ -90,15 +90,15 @@ struct dMenu_Fmap_world_data_c {
 
 struct dMenu_Fmap_stage_data_c {};
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-};
+struct CSTControl {};
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
-struct CSTControl {};
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+};
 
 struct dMenu_Fmap_c {
     /* 801C66E4 */ dMenu_Fmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8, u8, f32, f32, u8);
@@ -335,7 +335,6 @@ struct JKRAramArchive {};
 //
 
 void dMenuFmap_getStartStageName(void*);
-extern "C" extern char const* const d_menu_d_menu_fmap__stringBase0;
 
 extern "C" void __ct__9dMf_HIO_cFv();
 extern "C" void dMenuFmap_getStartStageName__FPv();
@@ -489,14 +488,6 @@ void dMeter2Info_set2DVibrationM();
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__19dMenuFmapIconDisp_c[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
 extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
@@ -1201,10 +1192,10 @@ SECTION_DATA static void* __vt__9dMf_HIO_c[3 + 1 /* padding */] = {
 static u8 mMySelfPointer__9dMf_HIO_c[4];
 
 /* 80454120-80454124 0004+00 s=1 e=0 z=0  None .sdata2    @3994 */
-SECTION_SDATA2 static u32 lit_3994 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_3994 = 1.0f / 5.0f;
 
 /* 80454124-80454128 0004+00 s=26 e=0 z=0  None .sdata2    @3995 */
-SECTION_SDATA2 static u32 lit_3995 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3995 = 1.0f;
 
 /* 801C65F8-801C662C 0034+00 s=1 e=0 z=0  None .text      __ct__9dMf_HIO_cFv */
 #pragma push
@@ -1243,16 +1234,16 @@ SECTION_SDATA2 static u8 lit_4158[4] = {
 };
 
 /* 8045412C-80454130 0004+00 s=3 e=0 z=0  None .sdata2    @4159 */
-SECTION_SDATA2 static u32 lit_4159 = 0xC4180000;
+SECTION_SDATA2 static f32 lit_4159 = -608.0f;
 
 /* 80454130-80454134 0004+00 s=3 e=0 z=0  None .sdata2    @4160 */
-SECTION_SDATA2 static u32 lit_4160 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4160 = 608.0f;
 
 /* 80454134-80454138 0004+00 s=3 e=0 z=0  None .sdata2    @4161 */
-SECTION_SDATA2 static u32 lit_4161 = 0xC3E00000;
+SECTION_SDATA2 static f32 lit_4161 = -448.0f;
 
 /* 80454138-8045413C 0004+00 s=3 e=0 z=0  None .sdata2    @4162 */
-SECTION_SDATA2 static u32 lit_4162 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4162 = 448.0f;
 
 /* 801C66E4-801C6AC8 03E4+00 s=0 e=1 z=0  None .text
  * __ct__12dMenu_Fmap_cFP10JKRExpHeapP9STControlP10CSTControlUcUcUcffUc */
@@ -1279,12 +1270,10 @@ asm dMenu_Fmap_c::~dMenu_Fmap_c() {
 
 /* ############################################################################################## */
 /* 8045413C-80454140 0004+00 s=12 e=0 z=0  None .sdata2    @4353 */
-SECTION_SDATA2 static u32 lit_4353 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4353 = 10.0f;
 
 /* 80454140-80454148 0008+00 s=16 e=0 z=0  None .sdata2    @4358 */
-SECTION_SDATA2 static u8 lit_4358[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4358 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801C6D64-801C74A4 0740+00 s=1 e=0 z=0  None .text      _create__12dMenu_Fmap_cFv */
 #pragma push
@@ -1309,13 +1298,13 @@ static u8 lit_3989[12];
 static u8 g_fmHIO[20];
 
 /* 80454148-8045414C 0004+00 s=1 e=0 z=0  None .sdata2    @4397 */
-SECTION_SDATA2 static u32 lit_4397 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_4397 = 2.0f / 5.0f;
 
 /* 8045414C-80454150 0004+00 s=2 e=0 z=0  None .sdata2    @4398 */
-SECTION_SDATA2 static u32 lit_4398 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4398 = 0.5f;
 
 /* 80454150-80454154 0004+00 s=1 e=0 z=0  None .sdata2    @4399 */
-SECTION_SDATA2 static u32 lit_4399 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4399 = 1.0f / 10.0f;
 
 /* 801C74A8-801C7650 01A8+00 s=0 e=1 z=0  None .text      _move__12dMenu_Fmap_cFv */
 #pragma push
@@ -1339,7 +1328,7 @@ asm void dMenu_Fmap_c::_draw() {
 
 /* ############################################################################################## */
 /* 80454154-80454158 0004+00 s=19 e=0 z=0  None .sdata2    @4541 */
-SECTION_SDATA2 static u32 lit_4541 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4541 = -1.0f;
 
 /* 801C77F0-801C7AFC 030C+00 s=0 e=1 z=0  None .text      getNextStatus__12dMenu_Fmap_cFPUc */
 #pragma push
@@ -1437,10 +1426,10 @@ asm void dMenu_Fmap_c::region_map_init() {
 
 /* ############################################################################################## */
 /* 80454158-8045415C 0004+00 s=2 e=0 z=0  None .sdata2    @4939 */
-SECTION_SDATA2 static u32 lit_4939 = 0x43980000;
+SECTION_SDATA2 static f32 lit_4939 = 304.0f;
 
 /* 8045415C-80454160 0004+00 s=2 e=0 z=0  None .sdata2    @4940 */
-SECTION_SDATA2 static u32 lit_4940 = 0x43600000;
+SECTION_SDATA2 static f32 lit_4940 = 224.0f;
 
 /* 801C8600-801C8B00 0500+00 s=1 e=0 z=0  None .text      region_map_proc__12dMenu_Fmap_cFv */
 #pragma push
@@ -2215,7 +2204,7 @@ asm void dMenu_Fmap_c::setAreaNameZero() {
 
 /* ############################################################################################## */
 /* 80454160-80454164 0004+00 s=1 e=0 z=0  None .sdata2    @6855 */
-SECTION_SDATA2 static u32 lit_6855 = 0x43FA0000;
+SECTION_SDATA2 static f32 lit_6855 = 500.0f;
 
 /* 801CC8DC-801CCA70 0194+00 s=2 e=0 z=0  None .text portalWarpMapMove__12dMenu_Fmap_cFP9STControl
  */
@@ -2260,7 +2249,7 @@ asm void dMenu_Fmap_c::resetRoomDataBit() {
 
 /* ############################################################################################## */
 /* 80454164-80454168 0004+00 s=2 e=0 z=0  None .sdata2    @6987 */
-SECTION_SDATA2 static u32 lit_6987 = 0x3BB40000;
+SECTION_SDATA2 static f32 lit_6987 = 0.0054931640625f;
 
 /* 801CCB08-801CCD98 0290+00 s=2 e=0 z=0  None .text      drawIcon__12dMenu_Fmap_cFfb */
 #pragma push
@@ -2434,7 +2423,7 @@ asm void dMenu_Fmap_c::drawDebugStage() {
 
 /* ############################################################################################## */
 /* 80454168-8045416C 0004+00 s=1 e=0 z=0  None .sdata2    @7300 */
-SECTION_SDATA2 static u32 lit_7300 = 0xC2480000;
+SECTION_SDATA2 static f32 lit_7300 = -50.0f;
 
 /* 801CD460-801CD5CC 016C+00 s=1 e=0 z=0  None .text      arrowPosInit__12dMenu_Fmap_cFv */
 #pragma push
@@ -2448,7 +2437,7 @@ asm void dMenu_Fmap_c::arrowPosInit() {
 
 /* ############################################################################################## */
 /* 8045416C-80454170 0004+00 s=2 e=0 z=0  None .sdata2    @7348 */
-SECTION_SDATA2 static u32 lit_7348 = 0xC1A00000;
+SECTION_SDATA2 static f32 lit_7348 = -20.0f;
 
 /* 801CD5CC-801CD770 01A4+00 s=2 e=0 z=0  None .text      tableArrowPosInit__12dMenu_Fmap_cFb */
 #pragma push
@@ -2462,10 +2451,10 @@ asm void dMenu_Fmap_c::tableArrowPosInit(bool param_0) {
 
 /* ############################################################################################## */
 /* 80454170-80454174 0004+00 s=1 e=0 z=0  None .sdata2    @7356 */
-SECTION_SDATA2 static u32 lit_7356 = 0xC7169878;
+SECTION_SDATA2 static f32 lit_7356 = -38552.46875f;
 
 /* 80454174-80454178 0004+00 s=1 e=0 z=0  None .sdata2    @7357 */
-SECTION_SDATA2 static u32 lit_7357 = 0x4716F797;
+SECTION_SDATA2 static f32 lit_7357 = 38647.58984375f;
 
 /* 801CD770-801CD814 00A4+00 s=1 e=0 z=0  None .text      yamibossArrowPosInit__12dMenu_Fmap_cFv */
 #pragma push

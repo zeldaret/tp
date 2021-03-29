@@ -20,8 +20,6 @@ extern "C" void __CARDWrite();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 extern "C" void __CARDReadSegment();
 extern "C" void __CARDWritePage();
 extern "C" void __CARDPutControlBlock();

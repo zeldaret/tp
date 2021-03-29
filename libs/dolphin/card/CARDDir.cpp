@@ -20,8 +20,6 @@ extern "C" void __CARDUpdateDir();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 SECTION_INIT void memcpy();
 extern "C" void DCStoreRange();
 extern "C" void __CARDEraseSector();

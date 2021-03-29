@@ -63,9 +63,9 @@ struct csXyz {
     /* 8051EB4C */ ~csXyz();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -73,11 +73,11 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct cCcD_Obj {};
-
 struct dCcMassS_HitInf {
     /* 8051ED98 */ ~dCcMassS_HitInf();
 };
+
+struct cCcD_Obj {};
 
 struct dGrass_data_c {
     /* 8051D88C */ void WorkCo(fopAc_ac_c*, u32, int);
@@ -209,55 +209,6 @@ static void daGrass_draw(daGrass_c*);
 static void cLib_calcTimer__template0(u8*);
 void checkGroundY(cXyz&);
 static void flowerCheckGroundY(cXyz&);
-extern "C" extern u32 const lit_5958;
-extern "C" extern u8 const lit_5961[8];
-extern "C" extern u32 const lit_6080;
-extern "C" extern u32 const lit_6081;
-extern "C" extern u32 const lit_6082;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 l_J_hana01_c_00DL[222 + 2 /* padding */];
-extern "C" extern void* g_profile_GRASS[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_805287EC[4];
-extern "C" extern u8 data_805287F0[4];
-extern "C" extern u8 data_805287F4[4];
-extern "C" extern u8 data_805287F8[4];
-extern "C" extern u8 data_805287FC[4];
-extern "C" extern u8 data_80528800[4];
-extern "C" extern u8 data_80528804[4];
-extern "C" extern u8 data_80528808[4];
-extern "C" extern u8 data_8052880C[4];
-extern "C" extern u8 data_80528810[4];
-extern "C" extern u8 data_80528814[4];
-extern "C" extern u8 data_80528818[4];
-extern "C" extern u8 data_8052881C[4];
-extern "C" extern u8 data_80528820[4];
-extern "C" extern u8 data_80528824[4];
-extern "C" extern u8 data_80528828[4];
-extern "C" extern u8 data_8052882C[4];
-extern "C" extern u8 data_80528830[4];
-extern "C" extern u8 data_80528834[4];
-extern "C" extern u8 data_80528838[4];
-extern "C" extern u8 data_8052883C[4];
-extern "C" extern u8 data_80528840[4];
-extern "C" extern u8 data_80528844[4];
-extern "C" extern u8 data_80528848[4];
-extern "C" extern u8 data_8052884C[4];
 
 extern "C" static void randam_addcol_set__FPs();
 extern "C" void createGrass__9daGrass_cFv();
@@ -408,30 +359,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void GFSetTevColorS10(_GXTevRegID, _GXColorS10);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_deleteRoom__15dGrass_packet_c[12];
-extern "C" extern u8 m_deleteRoom__16dFlower_packet_c[12];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_myObj__9daGrass_c[4];
-extern "C" extern u8 m_grass__9daGrass_c[4];
-extern "C" extern u8 m_flower__9daGrass_c[4];
-extern "C" extern u8 mLight8EcallBack__13dPa_control_c[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

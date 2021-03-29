@@ -223,9 +223,6 @@ extern "C" void setGX__12JPABaseShapeCFP18JPAEmitterWorkData();
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_epsilon;
-
 extern "C" void func_8027EEB0();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void load__10JUTTextureF11_GXTexMapID();
@@ -479,9 +476,7 @@ asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0) {
 
 /* ############################################################################################## */
 /* 804552B0-804552B8 0008+00 s=4 e=0 z=0  None .sdata2    @2623 */
-SECTION_SDATA2 static u8 lit_2623[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2623 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80277314-80277384 0070+00 s=0 e=1 z=0  None .text
  * JPACalcClrIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -604,28 +599,20 @@ asm void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
 
 /* ############################################################################################## */
 /* 804552B8-804552BC 0004+00 s=9 e=0 z=0  None .sdata2    @2740 */
-SECTION_SDATA2 static u32 lit_2740 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2740 = 0.5f;
 
 /* 804552BC-804552C0 0004+00 s=14 e=0 z=0  None .sdata2    @2741 */
-SECTION_SDATA2 static u32 lit_2741 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2741 = 1.0f;
 
 /* 804552C0-804552C8 0004+04 s=19 e=0 z=0  None .sdata2    @2742 */
-SECTION_SDATA2 static u8 lit_2742[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_2742[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 804552C8-804552D0 0008+00 s=6 e=0 z=0  None .sdata2    @2744 */
-SECTION_SDATA2 static u8 lit_2744[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2744 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802775AC-80277758 01AC+00 s=0 e=1 z=0  None .text
  * JPAGenCalcTexCrdMtxAnm__FP18JPAEmitterWorkData               */
@@ -984,10 +971,10 @@ asm static void rotTypeZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
 
 /* ############################################################################################## */
 /* 804552D0-804552D4 0004+00 s=1 e=0 z=0  None .sdata2    @3145 */
-SECTION_SDATA2 static u32 lit_3145 = 0x3EAAAA9F;
+SECTION_SDATA2 static f32 lit_3145 = 0.33333298563957214f;
 
 /* 804552D4-804552D8 0004+00 s=1 e=0 z=0  None .sdata2    @3146 */
-SECTION_SDATA2 static u32 lit_3146 = 0x3F13CD36;
+SECTION_SDATA2 static f32 lit_3146 = 0.5773500204086304f;
 
 /* 80278494-802784F0 005C+00 s=1 e=0 z=0  None .text      rotTypeXYZ__FffRA3_A4_f */
 #pragma push
@@ -1056,10 +1043,10 @@ SECTION_SDATA static void* p_dl[2] = {
 };
 
 /* 804552D8-804552DC 0004+00 s=6 e=0 z=0  None .sdata2    @3281 */
-SECTION_SDATA2 static u32 lit_3281 = 0x42000000;
+SECTION_SDATA2 static f32 lit_3281 = 32.0f;
 
 /* 804552DC-804552E0 0004+00 s=6 e=0 z=0  None .sdata2    @3282 */
-SECTION_SDATA2 static u32 lit_3282 = 0x40400000;
+SECTION_SDATA2 static f32 lit_3282 = 3.0f;
 
 /* 802785F8-80278994 039C+00 s=0 e=1 z=0  None .text
  * JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle   */

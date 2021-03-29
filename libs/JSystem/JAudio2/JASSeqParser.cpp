@@ -150,10 +150,6 @@ struct JASRegisterParam {
 // Forward References:
 //
 
-extern "C" extern char const* const JASSeqParser__stringBase0;
-extern "C" extern void* __vt__12JASSeqParser[8];
-extern "C" extern u8 sCallBackFunc__12JASSeqParser[4];
-
 extern "C" void conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition();
 extern "C" void writeReg__12JASSeqParserFP8JASTrackUlUl();
 extern "C" void readReg__12JASSeqParserCFP8JASTrackUl();
@@ -232,8 +228,6 @@ extern "C" extern u8 sCallBackFunc__12JASSeqParser[4];
 //
 
 void JASReport(char const*, ...);
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 
 extern "C" void JASReport__FPCce();
 extern "C" void setSeqData__8JASTrackFPvUl();
@@ -1118,16 +1112,16 @@ SECTION_DATA static void* lit_632[53] = {
 };
 
 /* 804555D8-804555DC 0004+00 s=6 e=0 z=0  None .sdata2    @627 */
-SECTION_SDATA2 static u32 lit_627 = 0x46FFFE00;
+SECTION_SDATA2 static f32 lit_627 = 32767.0f;
 
 /* 804555DC-804555E0 0004+00 s=2 e=0 z=0  None .sdata2    @628 */
-SECTION_SDATA2 static u32 lit_628 = 0x44BE8000;
+SECTION_SDATA2 static f32 lit_628 = 1524.0f;
 
 /* 804555E0-804555E4 0004+00 s=2 e=0 z=0  None .sdata2    @629 */
-SECTION_SDATA2 static u32 lit_629 = 0x463E8000;
+SECTION_SDATA2 static f32 lit_629 = 12192.0f;
 
 /* 804555E4-804555E8 0004+00 s=1 e=0 z=0  None .sdata2    @630 */
-SECTION_SDATA2 static u32 lit_630 = 0x3B800000;
+SECTION_SDATA2 static f32 lit_630 = 0.00390625f;
 
 /* 804555E8-804555F0 0004+04 s=1 e=0 z=0  None .sdata2    @631 */
 SECTION_SDATA2 static f32 lit_631[1 + 1 /* padding */] = {
@@ -1137,9 +1131,7 @@ SECTION_SDATA2 static f32 lit_631[1 + 1 /* padding */] = {
 };
 
 /* 804555F0-804555F8 0008+00 s=3 e=0 z=0  None .sdata2    @634 */
-SECTION_SDATA2 static u8 lit_634[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_634 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80293DC4-80293FC8 0204+00 s=8 e=0 z=0  None .text      writeReg__12JASSeqParserFP8JASTrackUlUl */
 #pragma push
@@ -1210,10 +1202,10 @@ SECTION_DATA static void* lit_720[53] = {
 };
 
 /* 804555F8-804555FC 0004+00 s=1 e=0 z=0  None .sdata2    @718 */
-SECTION_SDATA2 static u32 lit_718 = 0x43800000;
+SECTION_SDATA2 static f32 lit_718 = 256.0f;
 
 /* 804555FC-80455600 0004+00 s=1 e=0 z=0  None .sdata2    @719 */
-SECTION_SDATA2 static u32 lit_719 = 0x42800000;
+SECTION_SDATA2 static f32 lit_719 = 64.0f;
 
 /* 80293FC8-80294188 01C0+00 s=7 e=0 z=0  None .text      readReg__12JASSeqParserCFP8JASTrackUl */
 #pragma push
@@ -1714,9 +1706,7 @@ asm void JASSeqParser::cmdPrg(JASTrack* param_0, u32* param_1) {
 
 /* ############################################################################################## */
 /* 80455608-80455610 0008+00 s=4 e=0 z=0  None .sdata2    @1064 */
-SECTION_SDATA2 static u8 lit_1064[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1064 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80294BF8-80294C54 005C+00 s=1 e=0 z=0  None .text      cmdParamI__12JASSeqParserFP8JASTrackPUl */
 #pragma push

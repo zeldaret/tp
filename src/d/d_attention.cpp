@@ -63,17 +63,17 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
 struct cSAngle {
     /* 80270F68 */ cSAngle(cSAngle const&);
     /* 80270F98 */ cSAngle(s16);
     /* 802710E8 */ void Inv() const;
     /* 80271228 */ void operator-(s16) const;
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct dAttention_c {
@@ -205,12 +205,6 @@ static void distace_angle_adjust(f32, s16, f32);
 static void check_distace(cXyz*, s16, cXyz*, f32, f32, f32, f32);
 static void select_attention(fopAc_ac_c*, void*);
 static void sound_attention(fopAc_ac_c*, void*);
-extern "C" extern char const* const d_d_attention__stringBase0;
-extern "C" extern void* __vt__19dAttDraw_CallBack_c[3];
-extern "C" extern void* __vt__11dAttParam_c[3 + 1 /* padding */];
-extern "C" extern u8 pad_8045067A[4];
-extern "C" extern u8 data_80450680[8];
-extern "C" extern u8 data_80450688[8];
 
 extern "C" static void func_80070018();
 extern "C" void __ct__11dAttParam_cFl();
@@ -305,17 +299,6 @@ void fopAcIt_Judge(void* (*)(void*, void*), void*);
 void fopAcM_searchActorDistance(fopAc_ac_c const*, fopAc_ac_c const*);
 void fpcSch_JudgeByID(void*, void*);
 void operator delete(void*);
-extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 data_80450F58[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memcpy();
 extern "C" void play__14mDoExt_baseAnmFv();
@@ -464,34 +447,34 @@ SECTION_DATA void* __vt__11dAttParam_c[3 + 1 /* padding */] = {
 };
 
 /* 80452628-8045262C 0004+00 s=1 e=0 z=0  None .sdata2    @4061 */
-SECTION_SDATA2 static u32 lit_4061 = 0x42340000;
+SECTION_SDATA2 static f32 lit_4061 = 45.0f;
 
 /* 8045262C-80452630 0004+00 s=1 e=0 z=0  None .sdata2    @4062 */
-SECTION_SDATA2 static u32 lit_4062 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_4062 = 30.0f;
 
 /* 80452630-80452634 0004+00 s=1 e=0 z=0  None .sdata2    @4063 */
-SECTION_SDATA2 static u32 lit_4063 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_4063 = 90.0f;
 
 /* 80452634-80452638 0004+00 s=2 e=0 z=0  None .sdata2    @4064 */
-SECTION_SDATA2 static u32 lit_4064 = 0xBF666666;
+SECTION_SDATA2 static f32 lit_4064 = -9.0f / 10.0f;
 
 /* 80452638-8045263C 0004+00 s=1 e=0 z=0  None .sdata2    @4065 */
-SECTION_SDATA2 static u32 lit_4065 = 0x453B8000;
+SECTION_SDATA2 static f32 lit_4065 = 3000.0f;
 
 /* 8045263C-80452640 0004+00 s=1 e=0 z=0  None .sdata2    @4066 */
-SECTION_SDATA2 static u32 lit_4066 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_4066 = 1000.0f;
 
 /* 80452640-80452644 0004+00 s=1 e=0 z=0  None .sdata2    @4067 */
-SECTION_SDATA2 static u32 lit_4067 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_4067 = 6.0f;
 
 /* 80452644-80452648 0004+00 s=1 e=0 z=0  None .sdata2    @4068 */
-SECTION_SDATA2 static u32 lit_4068 = 0x40900000;
+SECTION_SDATA2 static f32 lit_4068 = 4.5f;
 
 /* 80452648-8045264C 0004+00 s=1 e=0 z=0  None .sdata2    @4069 */
-SECTION_SDATA2 static u32 lit_4069 = 0x41600000;
+SECTION_SDATA2 static f32 lit_4069 = 14.0f;
 
 /* 8045264C-80452650 0004+00 s=1 e=0 z=0  None .sdata2    @4070 */
-SECTION_SDATA2 static u32 lit_4070 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4070 = 10.0f;
 
 /* 80452650-80452654 0004+00 s=12 e=0 z=0  None .sdata2    @4071 */
 SECTION_SDATA2 static u8 lit_4071[4] = {
@@ -502,10 +485,10 @@ SECTION_SDATA2 static u8 lit_4071[4] = {
 };
 
 /* 80452654-80452658 0004+00 s=1 e=0 z=0  None .sdata2    @4072 */
-SECTION_SDATA2 static u32 lit_4072 = 0x3FD9999A;
+SECTION_SDATA2 static f32 lit_4072 = 17.0f / 10.0f;
 
 /* 80452658-8045265C 0004+00 s=10 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4073 = 1.0f;
 
 /* 80070038-80070110 00D8+00 s=1 e=0 z=0  None .text      __ct__11dAttParam_cFl */
 #pragma push
@@ -529,10 +512,10 @@ asm dAttParam_c::~dAttParam_c() {
 
 /* ############################################################################################## */
 /* 8045265C-80452660 0004+00 s=1 e=0 z=0  None .sdata2    @4084 */
-SECTION_SDATA2 static u32 lit_4084 = 0x437A0000;
+SECTION_SDATA2 static f32 lit_4084 = 250.0f;
 
 /* 80452660-80452664 0004+00 s=1 e=0 z=0  None .sdata2    @4085 */
-SECTION_SDATA2 static u32 lit_4085 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4085 = 2.0f;
 
 /* 80070158-80070178 0020+00 s=1 e=0 z=0  None .text      __ct__15dAttDrawParam_cFv */
 #pragma push
@@ -546,7 +529,7 @@ asm dAttDrawParam_c::dAttDrawParam_c() {
 
 /* ############################################################################################## */
 /* 80452664-80452668 0004+00 s=1 e=0 z=0  None .sdata2    @4092 */
-SECTION_SDATA2 static u32 lit_4092 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_4092 = 3.0f / 5.0f;
 
 /* 80070178-80070198 0020+00 s=1 e=0 z=0  None .text
  * execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo         */
@@ -685,9 +668,7 @@ SECTION_SDATA2 static f32 lit_4448[1 + 1 /* padding */] = {
 };
 
 /* 80452670-80452678 0008+00 s=3 e=0 z=0  None .sdata2    @4450 */
-SECTION_SDATA2 static u8 lit_4450[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4450 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80070BF4-80070C40 004C+00 s=2 e=0 z=0  None .text      distace_weight__Ffsf */
 #pragma push
@@ -711,14 +692,10 @@ asm static void distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 80452678-80452680 0008+00 s=3 e=0 z=0  None .sdata2    @4514 */
-SECTION_SDATA2 static u8 lit_4514[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4514 = 0.5;
 
 /* 80452680-80452688 0008+00 s=3 e=0 z=0  None .sdata2    @4515 */
-SECTION_SDATA2 static u8 lit_4515[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4515 = 3.0;
 
 /* 80452688-80452690 0008+00 s=3 e=0 z=0  None .sdata2    @4516 */
 SECTION_SDATA2 static u8 lit_4516[8] = {
@@ -738,10 +715,10 @@ asm static void check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 par
 
 /* ############################################################################################## */
 /* 80452690-80452694 0004+00 s=3 e=0 z=0  None .sdata2    @4562 */
-SECTION_SDATA2 static u32 lit_4562 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4562 = -1.0f;
 
 /* 80452694-80452698 0004+00 s=3 e=0 z=0  None .sdata2    @4563 */
-SECTION_SDATA2 static u32 lit_4563 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4563 = 0.5f;
 
 /* 80070E90-800710C0 0230+00 s=2 e=0 z=0  None .text
  * calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl              */
@@ -901,10 +878,10 @@ asm static void sound_attention(fopAc_ac_c* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80452698-8045269C 0004+00 s=1 e=0 z=0  None .sdata2    @5137 */
-SECTION_SDATA2 static u32 lit_5137 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_5137 = 10000.0f;
 
 /* 8045269C-804526A0 0004+00 s=1 e=0 z=0  None .sdata2    @5138 */
-SECTION_SDATA2 static u32 lit_5138 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5138 = 1.0f / 10.0f;
 
 /* 80071DEC-80071E84 0098+00 s=1 e=0 z=0  None .text      runSoundProc__12dAttention_cFv */
 #pragma push
@@ -1041,9 +1018,7 @@ SECTION_SDATA2 static f32 lit_5668[1 + 1 /* padding */] = {
 };
 
 /* 804526A8-804526B0 0008+00 s=1 e=0 z=0  None .sdata2    @5670 */
-SECTION_SDATA2 static u8 lit_5670[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5670 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80073004-800732AC 02A8+00 s=1 e=0 z=0  None .text      alphaAnm__10dAttDraw_cFv */
 #pragma push
@@ -1063,10 +1038,10 @@ void J3DTevBlock::setTevKColor(u32 param_0, J3DGXColor const* param_1) {
 
 /* ############################################################################################## */
 /* 804526B0-804526B4 0004+00 s=1 e=0 z=0  None .sdata2    @5784 */
-SECTION_SDATA2 static u32 lit_5784 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_5784 = 0.01745329238474369f;
 
 /* 804526B4-804526B8 0004+00 s=1 e=0 z=0  None .sdata2    @5785 */
-SECTION_SDATA2 static u32 lit_5785 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_5785 = -100.0f;
 
 /* 800732B0-8007353C 028C+00 s=1 e=0 z=0  None .text      draw__10dAttDraw_cFR4cXyzPA4_f */
 #pragma push

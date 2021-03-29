@@ -13,8 +13,6 @@
 
 extern void* const data_80ABF9CC[2];
 
-extern void* const data_80ABF9CC[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_rafrel_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80ABF9CC-80ABF9D4 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80ABF9CC[2] = {
+    (void*)__sinit_d_a_npc_rafrel_cpp,
+    (void*)NULL,
+};

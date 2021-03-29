@@ -70,8 +70,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_staff__stringBase0;
-
 extern "C" void __ct__15dMsgScrnStaff_cFUc();
 extern "C" void __dt__15dMsgScrnStaff_cFv();
 extern "C" void exec__15dMsgScrnStaff_cFv();
@@ -90,8 +88,6 @@ void mDoExt_getMesgFont();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
@@ -205,7 +201,7 @@ asm dMsgScrnStaff_c::~dMsgScrnStaff_c() {
 
 /* ############################################################################################## */
 /* 80454CFC-80454D00 0004+00 s=2 e=0 z=0  None .sdata2    @3877 */
-SECTION_SDATA2 static u32 lit_3877 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3877 = 1.0f;
 
 /* 80246EE8-80246F68 0080+00 s=1 e=0 z=0  None .text      exec__15dMsgScrnStaff_cFv */
 #pragma push

@@ -68,7 +68,6 @@ void cDyl_LinkASync(s16);
 static void cDyl_InitCallback(void*);
 void cDyl_InitAsync();
 void cDyl_InitAsyncIsDone();
-extern "C" extern char const* const c_c_dylink__stringBase0;
 
 extern "C" static void cCc_Init__Fv();
 extern "C" void cDyl_IsLinked__Fs();
@@ -95,7 +94,6 @@ void fopScnM_CreateReq(s16, s16, u16, u32);
 void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**)(void*), void*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__20DynamicModuleControl[13];
 
 SECTION_INIT void memset();
 extern "C" void OSReport_Error();

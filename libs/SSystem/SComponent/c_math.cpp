@@ -41,8 +41,6 @@ extern "C" void cM_rndFX2__Ff();
 // External References:
 //
 
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-
 extern "C" void fmod();
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
@@ -52,12 +50,10 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 /* ############################################################################################## */
 /* 804550A8-804550B0 0008+00 s=1 e=0 z=0  None .sdata2    @2201 */
-SECTION_SDATA2 static u8 lit_2201[8] = {
-    0x40, 0x19, 0x21, 0xFB, 0x60, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2201 = 6.2831854820251465;
 
 /* 804550B0-804550B4 0004+00 s=1 e=0 z=0  None .sdata2    @2215 */
-SECTION_SDATA2 static u32 lit_2215 = 0x4622F983;
+SECTION_SDATA2 static f32 lit_2215 = 10430.3779296875f;
 
 /* 802675E4-80267640 005C+00 s=0 e=23 z=11  None .text      cM_rad2s__Ff */
 #pragma push
@@ -2132,7 +2128,7 @@ SECTION_DATA static u8 atntable[2050 + 6 /* padding */] = {
 };
 
 /* 804550B4-804550B8 0004+00 s=1 e=0 z=0  None .sdata2    @2232 */
-SECTION_SDATA2 static u32 lit_2232 = 0x44800000;
+SECTION_SDATA2 static f32 lit_2232 = 1024.0f;
 
 /* 80267640-80267674 0034+00 s=1 e=0 z=0  None .text      U_GetAtanTable__Fff */
 #pragma push
@@ -2165,12 +2161,10 @@ asm void cM_atan2s(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 804550BC-804550C0 0004+00 s=1 e=0 z=0  None .sdata2    @2282 */
-SECTION_SDATA2 static u32 lit_2282 = 0x38C90FDB;
+SECTION_SDATA2 static f32 lit_2282 = 9.58738019107841e-05f;
 
 /* 804550C0-804550C8 0008+00 s=3 e=0 z=0  None .sdata2    @2284 */
-SECTION_SDATA2 static u8 lit_2284[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2284 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80267814-8026785C 0048+00 s=0 e=4 z=5  None .text      cM_atan2f__Fff */
 #pragma push
@@ -2204,10 +2198,10 @@ asm void cM_initRnd(int param_0, int param_1, int param_2) {
 
 /* ############################################################################################## */
 /* 804550C8-804550CC 0004+00 s=2 e=0 z=0  None .sdata2    @2296 */
-SECTION_SDATA2 static u32 lit_2296 = 0x46ECE600;
+SECTION_SDATA2 static f32 lit_2296 = 30323.0f;
 
 /* 804550CC-804550D0 0004+00 s=2 e=0 z=0  None .sdata2    @2297 */
-SECTION_SDATA2 static u32 lit_2297 = 0x46EC7A00;
+SECTION_SDATA2 static f32 lit_2297 = 30269.0f;
 
 /* 804550D0-804550D8 0004+04 s=2 e=0 z=0  None .sdata2    @2298 */
 SECTION_SDATA2 static f32 lit_2298[1 + 1 /* padding */] = {
@@ -2217,9 +2211,7 @@ SECTION_SDATA2 static f32 lit_2298[1 + 1 /* padding */] = {
 };
 
 /* 804550D8-804550E0 0008+00 s=2 e=0 z=0  None .sdata2    @2299 */
-SECTION_SDATA2 static u8 lit_2299[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2299 = 1.0;
 
 /* 8026786C-80267954 00E8+00 s=2 e=15 z=113  None .text      cM_rnd__Fv */
 #pragma push
@@ -2243,10 +2235,10 @@ asm void cM_rndF(f32 param_0) {
 
 /* ############################################################################################## */
 /* 804550E0-804550E4 0004+00 s=2 e=0 z=0  None .sdata2    @2311 */
-SECTION_SDATA2 static u32 lit_2311 = 0x40000000;
+SECTION_SDATA2 static f32 lit_2311 = 2.0f;
 
 /* 804550E4-804550E8 0004+00 s=2 e=0 z=0  None .sdata2    @2312 */
-SECTION_SDATA2 static u32 lit_2312 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2312 = 0.5f;
 
 /* 8026798C-802679D4 0048+00 s=0 e=24 z=450  None .text      cM_rndFX__Ff */
 #pragma push

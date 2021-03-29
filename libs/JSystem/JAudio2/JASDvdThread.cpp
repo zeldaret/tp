@@ -34,9 +34,6 @@ extern "C" void createThread__6JASDvdFliUl();
 //
 
 void* operator new(u32, JKRHeap*, int);
-extern "C" extern u8 JASDram[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 extern "C" void __ct__13JASTaskThreadFiiUl();
 extern "C" void* __nw__FUlP7JKRHeapi();

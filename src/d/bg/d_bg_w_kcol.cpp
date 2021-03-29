@@ -29,33 +29,11 @@ struct dBgW_Base {
 
 struct csXyz {};
 
-struct dBgS_SphChk {};
-
-struct cBgS_GndChk {};
+struct dBgS_RoofChk {};
 
 struct cBgS_ShdwDraw {};
 
-struct dBgS_SplGrpChk {};
-
-struct dBgPc {
-    /* 80074048 */ void setCode(sBgPc&);
-};
-
-struct cBgS_PolyPassChk {};
-
 struct Vec {};
-
-struct dBgS_CaptPoly {};
-
-struct cBgS_LinChk {};
-
-struct cBgS_PolyInfo {
-    /* 802681A4 */ void SetPolyIndex(int);
-};
-
-struct KC_PrismData {};
-
-struct cBgS_GrpPassChk {};
 
 struct dBgS_Acch {
     /* 800771E4 */ void GetSpeedY();
@@ -64,7 +42,29 @@ struct dBgS_Acch {
     /* 800772E8 */ void CalcMovePosWork();
 };
 
-struct dBgS_RoofChk {};
+struct cBgS_LinChk {};
+
+struct dBgS_SphChk {};
+
+struct dBgS_CaptPoly {};
+
+struct dBgPc {
+    /* 80074048 */ void setCode(sBgPc&);
+};
+
+struct cBgS_PolyInfo {
+    /* 802681A4 */ void SetPolyIndex(int);
+};
+
+struct KC_PrismData {};
+
+struct cBgS_PolyPassChk {};
+
+struct cBgS_GndChk {};
+
+struct dBgS_SplGrpChk {};
+
+struct cBgS_GrpPassChk {};
 
 struct dBgWKCol {
     /* 8007E6F4 */ dBgWKCol();
@@ -245,13 +245,6 @@ void cM3d_Len2dSq(f32, f32, f32, f32);
 void cM3d_Len2dSqPntAndSegLine(f32, f32, f32, f32, f32, f32, f32*, f32*, f32*);
 void cM3d_Cross_SphTri(cM3dGSph const*, cM3dGTri const*, Vec*);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void setCode__5dBgPcFR5sBgPc();
 extern "C" void __ct__6dBgPlcFv();
@@ -565,16 +558,16 @@ SECTION_SDATA2 static u8 lit_4187[4] = {
 };
 
 /* 8045271C-80452720 0004+00 s=1 e=0 z=0  None .sdata2    @4188 */
-SECTION_SDATA2 static u32 lit_4188 = 0x43FA0000;
+SECTION_SDATA2 static f32 lit_4188 = 500.0f;
 
 /* 80452720-80452724 0004+00 s=6 e=0 z=0  None .sdata2    @4189 */
-SECTION_SDATA2 static u32 lit_4189 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4189 = 1.0f;
 
 /* 80452724-80452728 0004+00 s=4 e=0 z=0  None .sdata2    @4190 */
-SECTION_SDATA2 static u32 lit_4190 = 0x3BF5C28F;
+SECTION_SDATA2 static f32 lit_4190 = 0.007499999832361937f;
 
 /* 80452728-8045272C 0004+00 s=4 e=0 z=0  None .sdata2    @4191 */
-SECTION_SDATA2 static u32 lit_4191 = 0xBBF5C28F;
+SECTION_SDATA2 static f32 lit_4191 = -0.007499999832361937f;
 
 /* 8007EE34-8007F628 07F4+00 s=1 e=0 z=0  None .text      LineCheck__8dBgWKColFP11cBgS_LinChk */
 #pragma push
@@ -588,7 +581,7 @@ asm void dBgWKCol::LineCheck(cBgS_LinChk* param_0) {
 
 /* ############################################################################################## */
 /* 8045272C-80452730 0004+00 s=1 e=0 z=0  None .sdata2    @4293 */
-SECTION_SDATA2 static u32 lit_4293 = 0x3C656042;
+SECTION_SDATA2 static f32 lit_4293 = 0.014000000432133675f;
 
 /* 8007F628-8007F9A4 037C+00 s=1 e=0 z=0  None .text      GroundCross__8dBgWKColFP11cBgS_GndChk */
 #pragma push
@@ -639,14 +632,10 @@ asm void dBgWKCol::CaptPoly(dBgS_CaptPoly& param_0) {
 static u8 l_wcsbuf[1008];
 
 /* 80452730-80452738 0008+00 s=2 e=0 z=0  None .sdata2    @5298 */
-SECTION_SDATA2 static u8 lit_5298[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5298 = 0.5;
 
 /* 80452738-80452740 0008+00 s=2 e=0 z=0  None .sdata2    @5299 */
-SECTION_SDATA2 static u8 lit_5299[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5299 = 3.0;
 
 /* 80452740-80452748 0008+00 s=2 e=0 z=0  None .sdata2    @5300 */
 SECTION_SDATA2 static u8 lit_5300[8] = {
@@ -716,9 +705,7 @@ asm void dBgWKCol::SphChk(dBgS_SphChk* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80452750-80452758 0008+00 s=1 e=0 z=0  None .sdata2    @6099 */
-SECTION_SDATA2 static u8 lit_6099[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_6099 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 800829AC-800829F0 0044+00 s=1 e=0 z=0  None .text      GetTopUnder__8dBgWKColCFPfPf */
 #pragma push

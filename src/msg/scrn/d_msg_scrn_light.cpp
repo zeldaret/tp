@@ -69,8 +69,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_light__stringBase0;
-
 extern "C" void __ct__19dMsgScrnLight_HIO_cFv();
 extern "C" void updateColor__19dMsgScrnLight_HIO_cFUc();
 extern "C" void __ct__15dMsgScrnLight_cFUcUc();
@@ -89,8 +87,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_light__stringBase0;
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_804510D8[8];
 
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
 extern "C" void setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor();
@@ -197,12 +193,10 @@ asm dMsgScrnLight_c::~dMsgScrnLight_c() {
 
 /* ############################################################################################## */
 /* 80454CDC-80454CE0 0004+00 s=2 e=0 z=0  None .sdata2    @3869 */
-SECTION_SDATA2 static u32 lit_3869 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3869 = 1.0f;
 
 /* 80454CE0-80454CE8 0008+00 s=2 e=0 z=0  None .sdata2    @3871 */
-SECTION_SDATA2 static u8 lit_3871[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3871 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80245C04-80245F90 038C+00 s=0 e=2 z=0  None .text      draw__15dMsgScrnLight_cFPffffffUc */
 #pragma push

@@ -91,8 +91,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_tree__stringBase0;
-
 extern "C" void __ct__14dMsgScrnTree_cFP7JUTFontP10JKRExpHeap();
 extern "C" void __dt__14dMsgScrnTree_cFv();
 extern "C" void exec__14dMsgScrnTree_cFv();
@@ -111,8 +109,6 @@ void dComIfGp_getSubHeap2D(int);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
@@ -216,7 +212,7 @@ SECTION_SDATA2 static u8 lit_3949[4] = {
 };
 
 /* 80454D5C-80454D60 0004+00 s=3 e=0 z=0  None .sdata2    @3950 */
-SECTION_SDATA2 static u32 lit_3950 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3950 = 1.0f;
 
 /* 80454D60-80454D68 0004+04 s=1 e=0 z=0  None .sdata2    @3951 */
 SECTION_SDATA2 static f32 lit_3951[1 + 1 /* padding */] = {
@@ -248,9 +244,7 @@ asm dMsgScrnTree_c::~dMsgScrnTree_c() {
 
 /* ############################################################################################## */
 /* 80454D68-80454D70 0008+00 s=1 e=0 z=0  None .sdata2    @4053 */
-SECTION_SDATA2 static u8 lit_4053[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4053 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80249118-80249270 0158+00 s=1 e=0 z=0  None .text      exec__14dMsgScrnTree_cFv */
 #pragma push

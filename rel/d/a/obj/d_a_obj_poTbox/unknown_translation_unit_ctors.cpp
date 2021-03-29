@@ -13,8 +13,6 @@
 
 extern void* const data_80CB4FAC[2];
 
-extern void* const data_80CB4FAC[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_poTbox_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80CB4FAC-80CB4FB4 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80CB4FAC[2] = {
+    (void*)__sinit_d_a_obj_poTbox_cpp,
+    (void*)NULL,
+};

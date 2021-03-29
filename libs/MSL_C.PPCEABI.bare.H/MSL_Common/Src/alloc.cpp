@@ -20,8 +20,6 @@ extern "C" static void deallocate_from_var_pools();
 // External References:
 //
 
-extern "C" extern u8 data_804519A0[8];
-
 SECTION_INIT void memset();
 extern "C" void __sys_free();
 extern "C" void __end_critical_region();

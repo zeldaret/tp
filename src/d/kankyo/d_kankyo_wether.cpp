@@ -27,8 +27,6 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -40,9 +38,11 @@ struct cXyz {
     /* 8026706C */ bool operator!=(Vec const&) const;
 };
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -253,9 +253,6 @@ void dKyw_custom_windpower(f32);
 void dKyw_evt_wind_set(s16, s16);
 void dKyw_evt_wind_set_go();
 void dKyw_rain_set(int);
-extern "C" extern char const* const d_kankyo_d_kankyo_wether__stringBase0;
-extern "C" extern void* __vt__19dKankyo_star_Packet[5];
-extern "C" extern void* __vt__19dKankyo_snow_Packet[5];
 
 extern "C" static void dKyw_setDrawPacketList__FP9J3DPacketi();
 extern "C" static void dKyw_setDrawPacketListIndScreen__FP9J3DPacketi();
@@ -419,17 +416,6 @@ void cM_atan2s(f32, f32);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void* operator new(u32, int);
 void operator delete(void*);
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 data_80450EE0[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void __ct__4cXyzFv();
@@ -1105,7 +1091,7 @@ SECTION_SDATA2 static u8 lit_4378[4] = {
 };
 
 /* 804520E4-804520E8 0004+00 s=11 e=0 z=0  None .sdata2    @4379 */
-SECTION_SDATA2 static u32 lit_4379 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4379 = 1.0f;
 
 /* 800574E0-800579EC 050C+00 s=0 e=1 z=0  None .text      dKyw_wether_init__Fv */
 #pragma push
@@ -1389,10 +1375,10 @@ asm void dKyw_wether_move() {
 
 /* ############################################################################################## */
 /* 804520E8-804520EC 0004+00 s=1 e=0 z=0  None .sdata2    @4610 */
-SECTION_SDATA2 static u32 lit_4610 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4610 = 255.0f;
 
 /* 804520EC-804520F0 0004+00 s=1 e=0 z=0  None .sdata2    @4611 */
-SECTION_SDATA2 static u32 lit_4611 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_4611 = 1000000000.0f;
 
 /* 80058318-80058894 057C+00 s=1 e=0 z=0  None .text      wether_move_sun__Fv */
 #pragma push
@@ -1406,15 +1392,13 @@ asm static void wether_move_sun() {
 
 /* ############################################################################################## */
 /* 804520F0-804520F4 0004+00 s=2 e=0 z=0  None .sdata2    @4668 */
-SECTION_SDATA2 static u32 lit_4668 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4668 = -1.0f;
 
 /* 804520F4-804520F8 0004+00 s=1 e=0 z=0  None .sdata2    @4669 */
-SECTION_SDATA2 static u32 lit_4669 = 0x42FA0000;
+SECTION_SDATA2 static f32 lit_4669 = 125.0f;
 
 /* 804520F8-80452100 0008+00 s=2 e=0 z=0  None .sdata2    @4671 */
-SECTION_SDATA2 static u8 lit_4671[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4671 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80058894-80058B00 026C+00 s=1 e=0 z=0  None .text      wether_move_rain__Fv */
 #pragma push
@@ -1438,40 +1422,40 @@ asm static void wether_move_snow() {
 
 /* ############################################################################################## */
 /* 80452100-80452104 0004+00 s=1 e=0 z=0  None .sdata2    @4761 */
-SECTION_SDATA2 static u32 lit_4761 = 0x43A50000;
+SECTION_SDATA2 static f32 lit_4761 = 330.0f;
 
 /* 80452104-80452108 0004+00 s=1 e=0 z=0  None .sdata2    @4762 */
-SECTION_SDATA2 static u32 lit_4762 = 0x42340000;
+SECTION_SDATA2 static f32 lit_4762 = 45.0f;
 
 /* 80452108-8045210C 0004+00 s=1 e=0 z=0  None .sdata2    @4763 */
-SECTION_SDATA2 static u32 lit_4763 = 0x438E8000;
+SECTION_SDATA2 static f32 lit_4763 = 285.0f;
 
 /* 8045210C-80452110 0004+00 s=1 e=0 z=0  None .sdata2    @4764 */
-SECTION_SDATA2 static u32 lit_4764 = 0x3CB60B61;
+SECTION_SDATA2 static f32 lit_4764 = 1.0f / 45.0f;
 
 /* 80452110-80452114 0004+00 s=2 e=0 z=0  None .sdata2    @4765 */
-SECTION_SDATA2 static u32 lit_4765 = 0x42960000;
+SECTION_SDATA2 static f32 lit_4765 = 75.0f;
 
 /* 80452114-80452118 0004+00 s=1 e=0 z=0  None .sdata2    @4766 */
-SECTION_SDATA2 static u32 lit_4766 = 0x3D088889;
+SECTION_SDATA2 static f32 lit_4766 = 1.0f / 30.0f;
 
 /* 80452118-8045211C 0004+00 s=2 e=0 z=0  None .sdata2    @4767 */
-SECTION_SDATA2 static u32 lit_4767 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4767 = 0.5f;
 
 /* 8045211C-80452120 0004+00 s=2 e=0 z=0  None .sdata2    @4768 */
-SECTION_SDATA2 static u32 lit_4768 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4768 = 1.0f / 10.0f;
 
 /* 80452120-80452124 0004+00 s=3 e=0 z=0  None .sdata2    @4769 */
-SECTION_SDATA2 static u32 lit_4769 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_4769 = 1.0f / 100.0f;
 
 /* 80452124-80452128 0004+00 s=2 e=0 z=0  None .sdata2    @4770 */
-SECTION_SDATA2 static u32 lit_4770 = 0x358637BD;
+SECTION_SDATA2 static f32 lit_4770 = 9.999999974752427e-07f;
 
 /* 80452128-8045212C 0004+00 s=1 e=0 z=0  None .sdata2    @4771 */
-SECTION_SDATA2 static u32 lit_4771 = 0x44960000;
+SECTION_SDATA2 static f32 lit_4771 = 1200.0f;
 
 /* 8045212C-80452130 0004+00 s=1 e=0 z=0  None .sdata2    @4772 */
-SECTION_SDATA2 static u32 lit_4772 = 0x43FA0000;
+SECTION_SDATA2 static f32 lit_4772 = 500.0f;
 
 /* 80058B8C-80058F18 038C+00 s=1 e=0 z=0  None .text      wether_move_star__Fv */
 #pragma push
@@ -1521,43 +1505,43 @@ static u8 lit_4965[12];
 static u8 r09o[12];
 
 /* 80452130-80452134 0004+00 s=1 e=0 z=0  None .sdata2    @5181 */
-SECTION_SDATA2 static u32 lit_5181 = 0xC82FC800;
+SECTION_SDATA2 static f32 lit_5181 = -180000.0f;
 
 /* 80452134-80452138 0004+00 s=1 e=0 z=0  None .sdata2    @5182 */
-SECTION_SDATA2 static u32 lit_5182 = 0x443B8000;
+SECTION_SDATA2 static f32 lit_5182 = 750.0f;
 
 /* 80452138-8045213C 0004+00 s=1 e=0 z=0  None .sdata2    @5183 */
-SECTION_SDATA2 static u32 lit_5183 = 0xC8435000;
+SECTION_SDATA2 static f32 lit_5183 = -200000.0f;
 
 /* 8045213C-80452140 0004+00 s=1 e=0 z=0  None .sdata2    @5184 */
-SECTION_SDATA2 static u32 lit_5184 = 0x3B449BA6;
+SECTION_SDATA2 static f32 lit_5184 = 0.003000000026077032f;
 
 /* 80452140-80452144 0004+00 s=1 e=0 z=0  None .sdata2    @5185 */
-SECTION_SDATA2 static u32 lit_5185 = 0x33D6BF95;
+SECTION_SDATA2 static f32 lit_5185 = 1.0000000116860974e-07f;
 
 /* 80452144-80452148 0004+00 s=1 e=0 z=0  None .sdata2    @5186 */
-SECTION_SDATA2 static u32 lit_5186 = 0x3DA3D70A;
+SECTION_SDATA2 static f32 lit_5186 = 2.0f / 25.0f;
 
 /* 80452148-8045214C 0004+00 s=1 e=0 z=0  None .sdata2    @5187 */
-SECTION_SDATA2 static u32 lit_5187 = 0x3B03126F;
+SECTION_SDATA2 static f32 lit_5187 = 0.0020000000949949026f;
 
 /* 8045214C-80452150 0004+00 s=1 e=0 z=0  None .sdata2    @5188 */
-SECTION_SDATA2 static u32 lit_5188 = 0x322BCC77;
+SECTION_SDATA2 static f32 lit_5188 = 9.99999993922529e-09f;
 
 /* 80452150-80452154 0004+00 s=1 e=0 z=0  None .sdata2    @5189 */
-SECTION_SDATA2 static u32 lit_5189 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_5189 = 6.0f;
 
 /* 80452154-80452158 0004+00 s=1 e=0 z=0  None .sdata2    @5190 */
-SECTION_SDATA2 static u32 lit_5190 = 0x42600000;
+SECTION_SDATA2 static f32 lit_5190 = 56.0f;
 
 /* 80452158-8045215C 0004+00 s=2 e=0 z=0  None .sdata2    @5191 */
-SECTION_SDATA2 static u32 lit_5191 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_5191 = 3.0f / 10.0f;
 
 /* 8045215C-80452160 0004+00 s=1 e=0 z=0  None .sdata2    @5192 */
-SECTION_SDATA2 static u32 lit_5192 = 0x46BFFE00;
+SECTION_SDATA2 static f32 lit_5192 = 24575.0f;
 
 /* 80452160-80452164 0004+00 s=1 e=0 z=0  None .sdata2    @5193 */
-SECTION_SDATA2 static u32 lit_5193 = 0x3AB78034;
+SECTION_SDATA2 static f32 lit_5193 = 0.00139999995008111f;
 
 /* 80059728-80059E38 0710+00 s=1 e=0 z=0  None .text      wether_move_vrkumo__Fv */
 #pragma push
@@ -1631,13 +1615,13 @@ asm void dKyw_wether_draw2() {
 
 /* ############################################################################################## */
 /* 80452164-80452168 0004+00 s=1 e=0 z=0  None .sdata2    @5361 */
-SECTION_SDATA2 static u32 lit_5361 = 0x42F00000;
+SECTION_SDATA2 static f32 lit_5361 = 120.0f;
 
 /* 80452168-8045216C 0004+00 s=3 e=0 z=0  None .sdata2    @5362 */
-SECTION_SDATA2 static u32 lit_5362 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_5362 = 1.0f / 20.0f;
 
 /* 8045216C-80452170 0004+00 s=1 e=0 z=0  None .sdata2    @5363 */
-SECTION_SDATA2 static u32 lit_5363 = 0x3B23D70A;
+SECTION_SDATA2 static f32 lit_5363 = 0.0024999999441206455f;
 
 /* 80452170-80452178 0004+04 s=1 e=0 z=0  None .sdata2    @5364 */
 SECTION_SDATA2 static f32 lit_5364[1 + 1 /* padding */] = {
@@ -1668,14 +1652,10 @@ asm static void dKyw_wind_init() {
 
 /* ############################################################################################## */
 /* 80452178-80452180 0008+00 s=3 e=0 z=0  None .sdata2    @5524 */
-SECTION_SDATA2 static u8 lit_5524[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5524 = 0.5;
 
 /* 80452180-80452188 0008+00 s=3 e=0 z=0  None .sdata2    @5525 */
-SECTION_SDATA2 static u8 lit_5525[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5525 = 3.0;
 
 /* 80452188-80452190 0008+00 s=3 e=0 z=0  None .sdata2    @5526 */
 SECTION_SDATA2 static u8 lit_5526[8] = {
@@ -1683,19 +1663,19 @@ SECTION_SDATA2 static u8 lit_5526[8] = {
 };
 
 /* 80452190-80452194 0004+00 s=1 e=0 z=0  None .sdata2    @5527 */
-SECTION_SDATA2 static u32 lit_5527 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_5527 = 3.0f / 5.0f;
 
 /* 80452194-80452198 0004+00 s=1 e=0 z=0  None .sdata2    @5528 */
-SECTION_SDATA2 static u32 lit_5528 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_5528 = 9.0f / 10.0f;
 
 /* 80452198-8045219C 0004+00 s=1 e=0 z=0  None .sdata2    @5529 */
-SECTION_SDATA2 static u32 lit_5529 = 0x40000000;
+SECTION_SDATA2 static f32 lit_5529 = 2.0f;
 
 /* 8045219C-804521A0 0004+00 s=2 e=0 z=0  None .sdata2    @5530 */
-SECTION_SDATA2 static u32 lit_5530 = 0x3A83126F;
+SECTION_SDATA2 static f32 lit_5530 = 0.0010000000474974513f;
 
 /* 804521A0-804521A4 0004+00 s=1 e=0 z=0  None .sdata2    @5531 */
-SECTION_SDATA2 static u32 lit_5531 = 0x3BA3D70A;
+SECTION_SDATA2 static f32 lit_5531 = 0.004999999888241291f;
 
 /* 8005A5C0-8005AAE0 0520+00 s=0 e=2 z=0  None .text      dKyw_wind_set__Fv */
 #pragma push
@@ -1751,7 +1731,7 @@ asm void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 
 
 /* ############################################################################################## */
 /* 804521A4-804521A8 0004+00 s=1 e=0 z=0  None .sdata2    @5630 */
-SECTION_SDATA2 static u32 lit_5630 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_5630 = 1.0f / 5.0f;
 
 /* 8005AC30-8005AD44 0114+00 s=1 e=0 z=0  None .text      squal_proc__Fv */
 #pragma push

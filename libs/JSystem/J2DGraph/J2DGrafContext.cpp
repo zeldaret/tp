@@ -51,8 +51,6 @@ struct J2DGrafContext {
 // Forward References:
 //
 
-extern "C" extern void* __vt__14J2DGrafContext[10];
-
 extern "C" void __ct__14J2DGrafContextFffff();
 extern "C" void setPort__14J2DGrafContextFv();
 extern "C" void setup2D__14J2DGrafContextFv();
@@ -148,7 +146,7 @@ SECTION_SDATA2 static u8 lit_627[4] = {
 };
 
 /* 8045614C-80456150 0004+00 s=1 e=0 z=0  None .sdata2    @628 */
-SECTION_SDATA2 static u32 lit_628 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_628 = 1.0f;
 
 /* 802E8BB4-802E8C44 0090+00 s=1 e=1 z=0  None .text      setPort__14J2DGrafContextFv */
 #pragma push
@@ -179,9 +177,7 @@ SECTION_SDATA2 static f32 lit_730[1 + 1 /* padding */] = {
 };
 
 /* 80456158-80456160 0008+00 s=1 e=0 z=0  None .sdata2    @732 */
-SECTION_SDATA2 static u8 lit_732[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_732 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802E8E20-802E90C0 02A0+00 s=1 e=2 z=0  None .text      setScissor__14J2DGrafContextFv */
 #pragma push

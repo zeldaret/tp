@@ -17,9 +17,9 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -37,11 +37,11 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
+struct J3DModelData {};
 
 struct J3DAnmTransform {};
 
-struct J3DModelData {};
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -75,14 +75,14 @@ struct daDo_HIO_c {
     /* 8066ED40 */ ~daDo_HIO_c();
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266B84 */ void operator*(f32) const;
     /* 80668134 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -277,73 +277,6 @@ static bool daDo_IsDelete(do_class*);
 static void daDo_Delete(do_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daDo_Create(fopAc_ac_c*);
-extern "C" extern u32 const lit_4193;
-extern "C" extern u32 const lit_4546;
-extern "C" extern u32 const lit_4547;
-extern "C" extern u32 const lit_4548;
-extern "C" extern u32 const lit_4549;
-extern "C" extern u32 const lit_4550;
-extern "C" extern u32 const lit_4552;
-extern "C" extern u32 const lit_4553;
-extern "C" extern u32 const lit_4554;
-extern "C" extern u32 const lit_4962;
-extern "C" extern u32 const lit_4963;
-extern "C" extern u32 const lit_4964;
-extern "C" extern u32 const lit_4965;
-extern "C" extern u32 const lit_4966;
-extern "C" extern u32 const lit_4967;
-extern "C" extern u32 const lit_4968;
-extern "C" extern u32 const lit_5346;
-extern "C" extern u32 const lit_5347;
-extern "C" extern u32 const lit_5949;
-extern "C" extern u32 const lit_5950;
-extern "C" extern u32 const lit_5951;
-extern "C" extern u32 const lit_5952;
-extern "C" extern u32 const lit_5953;
-extern "C" extern u32 const lit_5954;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_DO[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_5578[12 + 4 /* padding */];
-extern "C" extern u8 data_8066F320[12];
-extern "C" extern u8 data_8066F32C[4];
-extern "C" extern u8 data_8066F330[4];
-extern "C" extern u8 data_8066F334[4];
-extern "C" extern u8 data_8066F338[4];
-extern "C" extern u8 data_8066F33C[4];
-extern "C" extern u8 data_8066F340[4];
-extern "C" extern u8 data_8066F344[4];
-extern "C" extern u8 data_8066F348[4];
-extern "C" extern u8 data_8066F34C[4];
-extern "C" extern u8 data_8066F350[4];
-extern "C" extern u8 data_8066F354[4];
-extern "C" extern u8 data_8066F358[4];
-extern "C" extern u8 data_8066F35C[4];
-extern "C" extern u8 data_8066F360[4];
-extern "C" extern u8 data_8066F364[4];
-extern "C" extern u8 data_8066F368[4];
-extern "C" extern u8 data_8066F36C[4];
-extern "C" extern u8 data_8066F370[4];
-extern "C" extern u8 data_8066F374[4];
-extern "C" extern u8 data_8066F378[4];
-extern "C" extern u8 data_8066F37C[4];
-extern "C" extern u8 data_8066F380[4];
-extern "C" extern u8 data_8066F384[4];
-extern "C" extern u8 data_8066F388[4];
-extern "C" extern u8 data_8066F38C[4];
 
 extern "C" void __ct__10daDo_HIO_cFv();
 extern "C" static void anm_init__FP8do_classifUcf();
@@ -499,23 +432,6 @@ void MtxPosition(cXyz*, cXyz*);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

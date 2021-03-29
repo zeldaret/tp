@@ -72,10 +72,6 @@ struct CSTControl {
 void dLib_getEventSwitchNo(int);
 void dLib_checkActorInRectangle(fopAc_ac_c*, fopAc_ac_c*, cXyz const*, cXyz const*);
 void dLib_getExpandSizeFromAramArchive(JKRAramArchive*, char const*);
-extern "C" extern u8 ZeroQuat[16];
-extern "C" extern void* __vt__10CSTControl[4];
-extern "C" extern void* __vt__9STControl[4];
-extern "C" extern u8 struct_80450DF0[8];
 
 extern "C" void __ct__9STControlFssssffss();
 extern "C" void setWaitParm__9STControlFssssffss();
@@ -107,9 +103,6 @@ extern "C" extern u8 struct_80450DF0[8];
 //
 
 void mDoMtx_YrotS(f32 (*)[4], s16);
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void searchMapEventData__14dEvt_control_cFUc();

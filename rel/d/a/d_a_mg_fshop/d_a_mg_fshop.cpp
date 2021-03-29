@@ -28,9 +28,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat0_c {
     /* 800125E0 */ void init(u16, u16, int);
@@ -73,8 +73,6 @@ struct dSv_event_c {
     /* 80034A04 */ void getEventReg(u16) const;
 };
 
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
@@ -84,6 +82,8 @@ struct cXyz {
     /* 8086CC30 */ ~cXyz();
     /* 8086FF80 */ cXyz();
 };
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -221,52 +221,6 @@ static void koro2_heapinit(fopAc_ac_c*);
 static void useHeapInit(fopAc_ac_c*);
 static void BalluseHeapInit(fopAc_ac_c*);
 static void daFshop_Create(fopAc_ac_c*);
-extern "C" extern u8 const lit_5249[32];
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 lure_scale[12];
-extern "C" extern u8 lure_eye_off[12];
-extern "C" extern void* g_profile_FSHOP[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80870AC8[4];
-extern "C" extern u8 data_80870ACC[4];
-extern "C" extern u8 data_80870AD0[4];
-extern "C" extern u8 data_80870AD4[4];
-extern "C" extern u8 data_80870AD8[4];
-extern "C" extern u8 data_80870ADC[4];
-extern "C" extern u8 data_80870AE0[4];
-extern "C" extern u8 data_80870AE4[4];
-extern "C" extern u8 data_80870AE8[4];
-extern "C" extern u8 data_80870AEC[4];
-extern "C" extern u8 data_80870AF0[4];
-extern "C" extern u8 data_80870AF4[4];
-extern "C" extern u8 data_80870AF8[4];
-extern "C" extern u8 data_80870AFC[4];
-extern "C" extern u8 data_80870B00[4];
-extern "C" extern u8 data_80870B04[4];
-extern "C" extern u8 data_80870B08[4];
-extern "C" extern u8 data_80870B0C[4];
-extern "C" extern u8 data_80870B10[4];
-extern "C" extern u8 data_80870B14[4];
-extern "C" extern u8 data_80870B18[4];
-extern "C" extern u8 data_80870B1C[4];
-extern "C" extern u8 data_80870B20[4];
-extern "C" extern u8 data_80870B24[4];
-extern "C" extern u8 data_80870B28[4];
 
 extern "C" static void ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
 extern "C" static void Reel_CallBack__FP8J3DJointi();
@@ -393,19 +347,6 @@ void MtxScale(f32, f32, f32, u8);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

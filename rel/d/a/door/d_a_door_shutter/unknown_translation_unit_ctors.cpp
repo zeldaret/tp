@@ -13,8 +13,6 @@
 
 extern u8 const data_80466818[4];
 
-extern u8 const data_80466818[4];
-
 //
 // External References:
 //
@@ -25,3 +23,10 @@ extern u8 const data_80466818[4];
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80466818-8046681C 0004+00 s=0 e=1 z=0  None .ctors     None */
+u8 const data_80466818[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

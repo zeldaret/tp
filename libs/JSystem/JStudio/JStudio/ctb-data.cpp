@@ -13,8 +13,6 @@
 
 extern "C" extern u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
 
-extern "C" extern u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
-
 //
 // External References:
 //

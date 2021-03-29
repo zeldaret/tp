@@ -78,11 +78,6 @@ struct _GXTexObj {};
 // Forward References:
 //
 
-extern "C" extern char const* const d_map_d_map_path__stringBase0;
-extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
-extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" extern u8 m_texObjAgg__8dMpath_n[28];
-
 extern "C" void create__Q28dMpath_n18dTexObjAggregate_cFv();
 extern "C" void remove__Q28dMpath_n18dTexObjAggregate_cFv();
 extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class();
@@ -115,9 +110,6 @@ extern "C" extern u8 m_texObjAgg__8dMpath_n[28];
 void mDoLib_setResTimgObj(ResTIMG const*, _GXTexObj*, u32, _GXTlutObj*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_clearColor[4];
 
 extern "C" void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj();
 extern "C" void draw__12dDlst_base_cFv();
@@ -351,18 +343,16 @@ asm void dRenderingFDAmap_c::drawBack() const {
 
 /* ############################################################################################## */
 /* 80451E0C-80451E10 0004+00 s=1 e=0 z=0  None .sdata2    @3846 */
-SECTION_SDATA2 static u32 lit_3846 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3846 = 1.0f;
 
 /* 80451E10-80451E14 0004+00 s=1 e=0 z=0  None .sdata2    @3847 */
-SECTION_SDATA2 static u32 lit_3847 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3847 = 0.5f;
 
 /* 80451E14-80451E18 0004+00 s=1 e=0 z=0  None .sdata2    @3848 */
-SECTION_SDATA2 static u32 lit_3848 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_3848 = 10000.0f;
 
 /* 80451E18-80451E20 0008+00 s=1 e=0 z=0  None .sdata2    @3850 */
-SECTION_SDATA2 static u8 lit_3850[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3850 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8003D188-8003D320 0198+00 s=1 e=8 z=0  None .text      preRenderingMap__18dRenderingFDAmap_cFv */
 #pragma push

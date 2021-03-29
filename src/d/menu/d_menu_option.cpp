@@ -240,10 +240,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern u8 const data_803974D8[32];
-extern "C" extern u8 const data_80397560[40];
-extern "C" extern char const* const d_menu_d_menu_option__stringBase0;
-
 extern "C" void __ct__14dMenu_Option_cFP10JKRArchiveP9STControl();
 extern "C" void __dt__14dMenu_Option_cFv();
 extern "C" void _create__14dMenu_Option_cFv();
@@ -333,15 +329,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_getRubyFont__Fv();
@@ -1188,7 +1175,7 @@ SECTION_SDATA2 static u8 lit_4068[4] = {
 };
 
 /* 80454330-80454334 0004+00 s=18 e=0 z=0  None .sdata2    @4069 */
-SECTION_SDATA2 static u32 lit_4069 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4069 = 1.0f;
 
 /* 801E205C-801E2C1C 0BC0+00 s=1 e=0 z=0  None .text      _create__14dMenu_Option_cFv */
 #pragma push
@@ -1222,7 +1209,7 @@ asm void dMenu_Option_c::_move() {
 
 /* ############################################################################################## */
 /* 80454334-80454338 0004+00 s=1 e=0 z=0  None .sdata2    @4442 */
-SECTION_SDATA2 static u32 lit_4442 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4442 = 608.0f;
 
 /* 80454338-80454340 0004+04 s=1 e=0 z=0  None .sdata2    @4443 */
 SECTION_SDATA2 static f32 lit_4443[1 + 1 /* padding */] = {
@@ -1232,9 +1219,7 @@ SECTION_SDATA2 static f32 lit_4443[1 + 1 /* padding */] = {
 };
 
 /* 80454340-80454348 0008+00 s=1 e=0 z=0  None .sdata2    @4445 */
-SECTION_SDATA2 static u8 lit_4445[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4445 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801E36CC-801E38CC 0200+00 s=1 e=1 z=0  None .text      _draw__14dMenu_Option_cFv */
 #pragma push
@@ -1248,16 +1233,16 @@ asm void dMenu_Option_c::_draw() {
 
 /* ############################################################################################## */
 /* 80454348-8045434C 0004+00 s=1 e=0 z=0  None .sdata2    @4469 */
-SECTION_SDATA2 static u32 lit_4469 = 0x4089999A;
+SECTION_SDATA2 static f32 lit_4469 = 43.0f / 10.0f;
 
 /* 8045434C-80454350 0004+00 s=1 e=0 z=0  None .sdata2    @4470 */
-SECTION_SDATA2 static u32 lit_4470 = 0xC0A00000;
+SECTION_SDATA2 static f32 lit_4470 = -5.0f;
 
 /* 80454350-80454354 0004+00 s=5 e=0 z=0  None .sdata2    @4471 */
-SECTION_SDATA2 static u32 lit_4471 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4471 = 0.5f;
 
 /* 80454354-80454358 0004+00 s=11 e=0 z=0  None .sdata2    @4472 */
-SECTION_SDATA2 static u32 lit_4472 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4472 = -1.0f;
 
 /* 801E38CC-801E3A7C 01B0+00 s=1 e=0 z=0  None .text      drawHaihai__14dMenu_Option_cFv */
 #pragma push
@@ -1301,9 +1286,7 @@ asm void dMenu_Option_c::checkRightTrigger() {
 
 /* ############################################################################################## */
 /* 80454358-80454360 0008+00 s=8 e=0 z=0  None .sdata2    @4520 */
-SECTION_SDATA2 static u8 lit_4520[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4520 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801E3AEC-801E3B98 00AC+00 s=4 e=0 z=0  None .text      setAnimation__14dMenu_Option_cFv */
 #pragma push
@@ -1407,7 +1390,7 @@ asm void dMenu_Option_c::change_init() {
 
 /* ############################################################################################## */
 /* 80454360-80454364 0004+00 s=2 e=0 z=0  None .sdata2    @4862 */
-SECTION_SDATA2 static u32 lit_4862 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4862 = 5.0f;
 
 /* 801E48E8-801E4B34 024C+00 s=1 e=0 z=0  None .text      change_move__14dMenu_Option_cFv */
 #pragma push
@@ -1431,10 +1414,10 @@ asm void dMenu_Option_c::confirm_open_init() {
 
 /* ############################################################################################## */
 /* 80454364-80454368 0004+00 s=2 e=0 z=0  None .sdata2    @4893 */
-SECTION_SDATA2 static u32 lit_4893 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_4893 = 2.0f / 5.0f;
 
 /* 80454368-8045436C 0004+00 s=2 e=0 z=0  None .sdata2    @4894 */
-SECTION_SDATA2 static u32 lit_4894 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4894 = 1.0f / 10.0f;
 
 /* 801E4C10-801E4CE4 00D4+00 s=1 e=0 z=0  None .text      confirm_open_move__14dMenu_Option_cFv */
 #pragma push
@@ -1493,13 +1476,13 @@ asm void dMenu_Option_c::confirm_close_init() {
 
 /* ############################################################################################## */
 /* 8045436C-80454370 0004+00 s=2 e=0 z=0  None .sdata2    @5026 */
-SECTION_SDATA2 static u32 lit_5026 = 0x3F8147AE;
+SECTION_SDATA2 static f32 lit_5026 = 101.0f / 100.0f;
 
 /* 80454370-80454374 0004+00 s=2 e=0 z=0  None .sdata2    @5027 */
-SECTION_SDATA2 static u32 lit_5027 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_5027 = 17.0f / 20.0f;
 
 /* 80454374-80454378 0004+00 s=2 e=0 z=0  None .sdata2    @5028 */
-SECTION_SDATA2 static u32 lit_5028 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_5028 = 1.0f / 50.0f;
 
 /* 801E4FB0-801E51CC 021C+00 s=1 e=0 z=0  None .text      confirm_close_move__14dMenu_Option_cFv */
 #pragma push
@@ -1813,7 +1796,7 @@ bool dMenu_Option_c::dpdMenuMove() {
 
 /* ############################################################################################## */
 /* 80454378-8045437C 0004+00 s=1 e=0 z=0  None .sdata2    @6256 */
-SECTION_SDATA2 static u32 lit_6256 = 0x41200000;
+SECTION_SDATA2 static f32 lit_6256 = 10.0f;
 
 /* 801E80B4-801E8210 015C+00 s=1 e=0 z=0  None .text      paneResize__14dMenu_Option_cFUx */
 #pragma push
@@ -1879,13 +1862,13 @@ asm void dMenu_Option_c::yesnoSelectMoveAnm() {
 
 /* ############################################################################################## */
 /* 8045437C-80454380 0004+00 s=1 e=0 z=0  None .sdata2    @6507 */
-SECTION_SDATA2 static u32 lit_6507 = 0x3F75C28F;
+SECTION_SDATA2 static f32 lit_6507 = 24.0f / 25.0f;
 
 /* 80454380-80454384 0004+00 s=1 e=0 z=0  None .sdata2    @6508 */
-SECTION_SDATA2 static u32 lit_6508 = 0x3F570A3D;
+SECTION_SDATA2 static f32 lit_6508 = 21.0f / 25.0f;
 
 /* 80454384-80454388 0004+00 s=1 e=0 z=0  None .sdata2    @6509 */
-SECTION_SDATA2 static u32 lit_6509 = 0x3D75C28F;
+SECTION_SDATA2 static f32 lit_6509 = 3.0f / 50.0f;
 
 /* 801E8888-801E89F8 0170+00 s=2 e=0 z=0  None .text      yesnoCursorShow__14dMenu_Option_cFv */
 #pragma push

@@ -34,14 +34,6 @@ static void dOvlpFd_Execute(overlap1_class*);
 static bool dOvlpFd_IsDelete(overlap1_class*);
 static bool dOvlpFd_Delete(overlap1_class*);
 static void dOvlpFd_Create(void*);
-extern "C" extern void* g_profile_OVERLAP0[10];
-extern "C" extern void* g_profile_OVERLAP1[10];
-extern "C" extern void* g_profile_OVERLAP6[10];
-extern "C" extern void* g_profile_OVERLAP7[10];
-extern "C" extern void* g_profile_OVERLAP8[10];
-extern "C" extern void* g_profile_OVERLAP9[10];
-extern "C" extern void* g_profile_OVERLAP10[10];
-extern "C" extern void* g_profile_OVERLAP11[10 + 1 /* padding */];
 
 extern "C" static bool dOvlpFd_Draw__FP14overlap1_class();
 extern "C" static void dOvlpFd_startFadeIn__Fi();
@@ -70,10 +62,6 @@ void mDoAud_setFadeInStart(u8);
 void fopOvlpM_SceneIsStart();
 void fopOvlpM_IsOutReq(overlap_task_class*);
 void fopOvlpM_Done(overlap_task_class*);
-extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sManager__10JFWDisplay[4];
 
 extern "C" void mDoAud_setFadeOutStart__FUc();
 extern "C" void mDoAud_setFadeInStart__FUc();

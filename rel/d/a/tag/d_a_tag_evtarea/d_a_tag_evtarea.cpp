@@ -47,10 +47,6 @@ static void daTag_EvtArea_Delete(void*);
 static void daTag_EvtArea_Execute(void*);
 static void daTag_EvtArea_Draw(void*);
 static bool daTag_EvtArea_IsDelete(void*);
-extern "C" extern u32 const lit_3854;
-extern "C" extern u32 const lit_3855;
-extern "C" extern u32 const lit_3856;
-extern "C" extern void* g_profile_TAG_EVTAREA[12];
 
 extern "C" void create__15daTag_EvtArea_cFv();
 extern "C" bool Delete__15daTag_EvtArea_cFv();
@@ -79,11 +75,6 @@ void fopAcM_delete(fopAc_ac_c*);
 void daNpcT_chkPointInArea(cXyz, cXyz, cXyz, s16, int);
 void daNpcT_chkEvtBit(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();

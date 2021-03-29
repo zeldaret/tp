@@ -52,8 +52,6 @@ extern "C" static void func_80267F80();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern f32 Zero__4cXyz[3];
 
 extern "C" void __ct__8cBgS_ChkFv();
 extern "C" void __dt__8cBgS_ChkFv();

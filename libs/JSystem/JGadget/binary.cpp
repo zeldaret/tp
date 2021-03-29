@@ -40,7 +40,6 @@ extern "C" void parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
 
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_26();

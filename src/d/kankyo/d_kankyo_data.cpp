@@ -23,7 +23,6 @@ void dKyd_darkworld_tbl_getp();
 void dKyd_light_size_tbl_getp();
 void dKyd_light_tw_size_tbl_getp();
 void dKyd_BloomInf_tbl_getp(int);
-extern "C" extern char const* const d_kankyo_d_kankyo_data__stringBase0;
 
 extern "C" void dKyd_dmpalet_getp__Fv();
 extern "C" void dKyd_dmpselect_getp__Fv();
@@ -42,8 +41,6 @@ extern "C" extern char const* const d_kankyo_d_kankyo_data__stringBase0;
 //
 // External References:
 //
-
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" extern u8 g_env_light[4880];
 

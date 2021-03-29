@@ -57,8 +57,6 @@ struct dMapInfo_c {
 // Forward References:
 //
 
-extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
-
 extern "C" void createWork__7dTres_cFv();
 extern "C" void create__7dTres_cFv();
 extern "C" void remove__7dTres_cFv();
@@ -83,10 +81,6 @@ extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
 void mDoMtx_YrotS(f32 (*)[4], s16);
 void dPath_GetRoomPath(int, int);
 void* operator new[](u32);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450680[8];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void isDungeonItem__12dSv_memBit_cCFi();
@@ -178,7 +172,7 @@ asm void dTres_c::addData(dTres_c::list_class* param_0, s8 param_1) {
 
 /* ############################################################################################## */
 /* 80452BE8-80452BEC 0004+00 s=1 e=0 z=0  None .sdata2    @3839 */
-SECTION_SDATA2 static u32 lit_3839 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_3839 = 182.04444885253906f;
 
 /* 80452BEC-80452BF0 0004+00 s=1 e=0 z=0  None .sdata2    @3840 */
 SECTION_SDATA2 static u8 lit_3840[4] = {
@@ -189,14 +183,10 @@ SECTION_SDATA2 static u8 lit_3840[4] = {
 };
 
 /* 80452BF0-80452BF8 0008+00 s=1 e=0 z=0  None .sdata2    @3841 */
-SECTION_SDATA2 static u8 lit_3841[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3841 = 0.5;
 
 /* 80452BF8-80452C00 0008+00 s=1 e=0 z=0  None .sdata2    @3842 */
-SECTION_SDATA2 static u8 lit_3842[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3842 = 3.0;
 
 /* 80452C00-80452C08 0008+00 s=1 e=0 z=0  None .sdata2    @3843 */
 SECTION_SDATA2 static u8 lit_3843[8] = {
@@ -204,9 +194,7 @@ SECTION_SDATA2 static u8 lit_3843[8] = {
 };
 
 /* 80452C08-80452C10 0008+00 s=1 e=0 z=0  None .sdata2    @3845 */
-SECTION_SDATA2 static u8 lit_3845[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3845 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8009BE28-8009C168 0340+00 s=1 e=0 z=0  None .text checkTreasureBox__7dTres_cFPQ27dTres_c6data_s
  */

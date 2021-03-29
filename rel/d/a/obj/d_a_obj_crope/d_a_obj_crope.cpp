@@ -19,11 +19,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -121,7 +121,6 @@ static void daObjCrope_Create(fopAc_ac_c*);
 static void daObjCrope_Delete(daObjCrope_c*);
 static void daObjCrope_Execute(daObjCrope_c*);
 static void daObjCrope_Draw(daObjCrope_c*);
-extern "C" extern void* g_profile_Obj_Crope[12];
 
 extern "C" void createHeap__12daObjCrope_cFv();
 extern "C" static void daObjCrope_createHeap__FP10fopAc_ac_c();
@@ -159,17 +158,6 @@ void dKyw_get_AllWind_vec(cXyz*, cXyz*, f32*);
 void cM_rnd();
 void cM3d_Len2dSqPntAndSegLine(f32, f32, f32, f32, f32, f32, f32*, f32*, f32*);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi();

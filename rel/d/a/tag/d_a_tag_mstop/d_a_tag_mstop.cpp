@@ -64,7 +64,6 @@ static void daTagMstop_Create(fopAc_ac_c*);
 static void daTagMstop_Delete(daTagMstop_c*);
 static void daTagMstop_Execute(daTagMstop_c*);
 static bool daTagMstop_Draw(daTagMstop_c*);
-extern "C" extern void* g_profile_Tag_Mstop[12];
 
 extern "C" void create__12daTagMstop_cFv();
 extern "C" static void daTagMstop_Create__FP10fopAc_ac_c();
@@ -90,12 +89,6 @@ void dComIfGp_getRoomCamera(int);
 void dComIfGp_getRoomArrow(int);
 void daNpcF_getPlayerInfoFromPlayerList(int, int, cXyz&, csXyz&);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

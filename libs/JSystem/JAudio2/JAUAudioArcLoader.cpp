@@ -62,8 +62,6 @@ struct JAUAudioArcInterpreter {
 // Forward References:
 //
 
-extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
-
 extern "C" void __ct__17JAUAudioArcLoaderFP10JAUSection();
 extern "C" void load__17JAUAudioArcLoaderFPCv();
 extern "C" void readWS__17JAUAudioArcLoaderFUlPCvUl();
@@ -87,7 +85,6 @@ extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 data_80450B6C[4];
 
 extern "C" void __ct__22JAUAudioArcInterpreterFv();
 extern "C" void __dt__22JAUAudioArcInterpreterFv();

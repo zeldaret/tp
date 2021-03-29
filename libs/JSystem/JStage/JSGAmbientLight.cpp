@@ -41,8 +41,6 @@ struct JStage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */];
-
 extern "C" void __dt__Q26JStage13TAmbientLightFv();
 extern "C" s32 JSGFGetType__Q26JStage13TAmbientLightCFv();
 extern "C" void JSGGetColor__Q26JStage13TAmbientLightCFv();

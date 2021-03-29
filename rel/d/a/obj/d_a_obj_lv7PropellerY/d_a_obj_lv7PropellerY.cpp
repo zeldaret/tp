@@ -48,11 +48,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -103,8 +103,6 @@ static void daPropY_Draw(daPropY_c*);
 static void daPropY_Execute(daPropY_c*);
 static void daPropY_Delete(daPropY_c*);
 static void daPropY_Create(fopAc_ac_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Lv7PropY[12];
 
 extern "C" void __ct__13daPropY_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -149,13 +147,6 @@ void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*
 void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

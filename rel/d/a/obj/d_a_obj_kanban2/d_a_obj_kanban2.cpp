@@ -13,15 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 805818DC */ ~cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
 struct mDoMtx_stack_c {
@@ -242,55 +242,6 @@ static bool daObj_Kanban2_IsDelete(daObj_Kanban2_c*);
 static void daObj_Kanban2_Delete(daObj_Kanban2_c*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Kanban2_Create(daObj_Kanban2_c*);
-extern "C" extern u32 const lit_4285;
-extern "C" extern u32 const lit_4330;
-extern "C" extern u32 const lit_4331;
-extern "C" extern u32 const lit_4924;
-extern "C" extern u32 const lit_4926;
-extern "C" extern u32 const lit_4927;
-extern "C" extern u32 const lit_4928;
-extern "C" extern u32 const lit_4930;
-extern "C" extern u32 const lit_4931;
-extern "C" extern void* g_profile_OBJ_KANBAN2[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80585CEC[4];
-extern "C" extern u8 data_80585CF0[4];
-extern "C" extern u8 data_80585CF4[4];
-extern "C" extern u8 data_80585CF8[4];
-extern "C" extern u8 data_80585CFC[4];
-extern "C" extern u8 data_80585D00[4];
-extern "C" extern u8 data_80585D04[4];
-extern "C" extern u8 data_80585D08[4];
-extern "C" extern u8 data_80585D0C[4];
-extern "C" extern u8 data_80585D10[4];
-extern "C" extern u8 data_80585D14[4];
-extern "C" extern u8 data_80585D18[4];
-extern "C" extern u8 data_80585D1C[4];
-extern "C" extern u8 data_80585D20[4];
-extern "C" extern u8 data_80585D24[4];
-extern "C" extern u8 data_80585D28[4];
-extern "C" extern u8 data_80585D2C[4];
-extern "C" extern u8 data_80585D30[4];
-extern "C" extern u8 data_80585D34[4];
-extern "C" extern u8 data_80585D38[4];
-extern "C" extern u8 data_80585D3C[4];
-extern "C" extern u8 data_80585D40[4];
-extern "C" extern u8 data_80585D44[4];
-extern "C" extern u8 data_80585D48[4];
-extern "C" extern u8 data_80585D4C[4];
 
 extern "C" void __ct__19daObj_Kanban2_HIO_cFv();
 extern "C" void draw__15daObj_Kanban2_cFv();
@@ -424,21 +375,6 @@ void cLib_targetAngleX(cXyz const*, cXyz const*);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void cLib_distanceAngleS(s16, s16);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();

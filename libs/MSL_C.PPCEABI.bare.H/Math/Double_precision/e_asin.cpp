@@ -17,8 +17,6 @@ extern "C" void __ieee754_asin();
 // External References:
 //
 
-extern "C" extern u32 __float_nan;
-
 extern "C" void sqrt();
 extern "C" extern u32 __float_nan;
 
@@ -28,89 +26,55 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 80456700-80456708 0008+00 s=1 e=0 z=0  None .sdata2    @94 */
-SECTION_SDATA2 static u8 lit_94[8] = {
-    0x3F, 0xF9, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18,
-};
+SECTION_SDATA2 static f64 lit_94 = 1.5707963267948966;
 
 /* 80456708-80456710 0008+00 s=1 e=0 z=0  None .sdata2    @95 */
-SECTION_SDATA2 static u8 lit_95[8] = {
-    0x3C, 0x91, 0xA6, 0x26, 0x33, 0x14, 0x5C, 0x07,
-};
+SECTION_SDATA2 static f64 lit_95 = 6.123233995736766e-17;
 
 /* 80456710-80456718 0008+00 s=1 e=0 z=0  None .sdata2    @96 */
-SECTION_SDATA2 static u8 lit_96[8] = {
-    0x7E, 0x37, 0xE4, 0x3C, 0x88, 0x00, 0x75, 0x9C,
-};
+SECTION_SDATA2 static f64 lit_96 = 1e+300;
 
 /* 80456718-80456720 0008+00 s=1 e=0 z=0  None .sdata2    @97 */
-SECTION_SDATA2 static u8 lit_97[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_97 = 1.0;
 
 /* 80456720-80456728 0008+00 s=1 e=0 z=0  None .sdata2    @98 */
-SECTION_SDATA2 static u8 lit_98[8] = {
-    0x3F, 0xC5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
-};
+SECTION_SDATA2 static f64 lit_98 = 1.0 / 6.0;
 
 /* 80456728-80456730 0008+00 s=1 e=0 z=0  None .sdata2    @99 */
-SECTION_SDATA2 static u8 lit_99[8] = {
-    0xBF, 0xD4, 0xD6, 0x12, 0x03, 0xEB, 0x6F, 0x7D,
-};
+SECTION_SDATA2 static f64 lit_99 = -0.3255658186224009;
 
 /* 80456730-80456738 0008+00 s=1 e=0 z=0  None .sdata2    @100 */
-SECTION_SDATA2 static u8 lit_100[8] = {
-    0x3F, 0xC9, 0xC1, 0x55, 0x0E, 0x88, 0x44, 0x55,
-};
+SECTION_SDATA2 static f64 lit_100 = 0.20121253213486293;
 
 /* 80456738-80456740 0008+00 s=1 e=0 z=0  None .sdata2    @101 */
-SECTION_SDATA2 static u8 lit_101[8] = {
-    0xBF, 0xA4, 0x82, 0x28, 0xB5, 0x68, 0x8F, 0x3B,
-};
+SECTION_SDATA2 static f64 lit_101 = -0.04005553450067941;
 
 /* 80456740-80456748 0008+00 s=1 e=0 z=0  None .sdata2    @102 */
-SECTION_SDATA2 static u8 lit_102[8] = {
-    0x3F, 0x49, 0xEF, 0xE0, 0x75, 0x01, 0xB2, 0x88,
-};
+SECTION_SDATA2 static f64 lit_102 = 0.0007915349942898145;
 
 /* 80456748-80456750 0008+00 s=1 e=0 z=0  None .sdata2    @103 */
-SECTION_SDATA2 static u8 lit_103[8] = {
-    0x3F, 0x02, 0x3D, 0xE1, 0x0D, 0xFD, 0xF7, 0x09,
-};
+SECTION_SDATA2 static f64 lit_103 = 3.479331075960212e-05;
 
 /* 80456750-80456758 0008+00 s=1 e=0 z=0  None .sdata2    @104 */
-SECTION_SDATA2 static u8 lit_104[8] = {
-    0xC0, 0x03, 0x3A, 0x27, 0x1C, 0x8A, 0x2D, 0x4B,
-};
+SECTION_SDATA2 static f64 lit_104 = -2.403394911734414;
 
 /* 80456758-80456760 0008+00 s=1 e=0 z=0  None .sdata2    @105 */
-SECTION_SDATA2 static u8 lit_105[8] = {
-    0x40, 0x00, 0x2A, 0xE5, 0x9C, 0x59, 0x8A, 0xC8,
-};
+SECTION_SDATA2 static f64 lit_105 = 2.0209457602335057;
 
 /* 80456760-80456768 0008+00 s=1 e=0 z=0  None .sdata2    @106 */
-SECTION_SDATA2 static u8 lit_106[8] = {
-    0xBF, 0xE6, 0x06, 0x6C, 0x1B, 0x8D, 0x01, 0x59,
-};
+SECTION_SDATA2 static f64 lit_106 = -0.6882839716054533;
 
 /* 80456768-80456770 0008+00 s=1 e=0 z=0  None .sdata2    @107 */
-SECTION_SDATA2 static u8 lit_107[8] = {
-    0x3F, 0xB3, 0xB8, 0xC5, 0xB1, 0x2E, 0x92, 0x82,
-};
+SECTION_SDATA2 static f64 lit_107 = 0.07703815055590194;
 
 /* 80456770-80456778 0008+00 s=1 e=0 z=0  None .sdata2    @108 */
-SECTION_SDATA2 static u8 lit_108[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_108 = 0.5;
 
 /* 80456778-80456780 0008+00 s=1 e=0 z=0  None .sdata2    @109 */
-SECTION_SDATA2 static u8 lit_109[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_109 = 2.0;
 
 /* 80456780-80456788 0008+00 s=1 e=0 z=0  None .sdata2    @110 */
-SECTION_SDATA2 static u8 lit_110[8] = {
-    0x3F, 0xE9, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18,
-};
+SECTION_SDATA2 static f64 lit_110 = 0.7853981633974483;
 
 /* 803694B0-803696E8 0238+00 s=0 e=1 z=0  None .text      __ieee754_asin */
 #pragma push

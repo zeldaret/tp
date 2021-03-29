@@ -36,9 +36,6 @@ struct J3DUClipper {
 void mDoLib_setResTimgObj(ResTIMG const*, _GXTexObj*, u32, _GXTlutObj*);
 void mDoLib_project(Vec*, Vec*);
 void mDoLib_pos2camera(Vec*, Vec*);
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mFovyRate__14mDoLib_clipper;
 
 extern "C" void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj();
 extern "C" void setup__14mDoLib_clipperFffff();
@@ -55,8 +52,6 @@ extern "C" extern f32 mFovyRate__14mDoLib_clipper;
 //
 
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" void init__11J3DUClipperFv();
 extern "C" void calcViewFrustum__11J3DUClipperFv();
@@ -78,15 +73,13 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 
 /* ############################################################################################## */
 /* 80451B70-80451B74 0004+00 s=1 e=0 z=0  None .sdata2    @3634 */
-SECTION_SDATA2 static u32 lit_3634 = 0x3E000000;
+SECTION_SDATA2 static f32 lit_3634 = 0.125f;
 
 /* 80451B74-80451B78 0004+00 s=1 e=0 z=0  None .sdata2    @3635 */
-SECTION_SDATA2 static u32 lit_3635 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_3635 = 1.0f / 100.0f;
 
 /* 80451B78-80451B80 0008+00 s=1 e=0 z=0  None .sdata2    @3638 */
-SECTION_SDATA2 static u8 lit_3638[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3638 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8001513C-8001528C 0150+00 s=0 e=3 z=2  None .text
  * mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj  */
@@ -114,7 +107,7 @@ f32 mSystemFar__14mDoLib_clipper;
 f32 mFovyRate__14mDoLib_clipper;
 
 /* 80451B80-80451B84 0004+00 s=1 e=0 z=0  None .sdata2    @3739 */
-SECTION_SDATA2 static u32 lit_3739 = 0x43360B61;
+SECTION_SDATA2 static f32 lit_3739 = 182.04444885253906f;
 
 /* 8001528C-80015310 0084+00 s=0 e=1 z=0  None .text      setup__14mDoLib_clipperFffff */
 #pragma push
@@ -136,22 +129,22 @@ SECTION_SDATA2 static u8 lit_3784[4] = {
 };
 
 /* 80451B88-80451B8C 0004+00 s=1 e=0 z=0  None .sdata2    @3785 */
-SECTION_SDATA2 static u32 lit_3785 = 0x48F42400;
+SECTION_SDATA2 static f32 lit_3785 = 500000.0f;
 
 /* 80451B8C-80451B90 0004+00 s=1 e=0 z=0  None .sdata2    @3786 */
-SECTION_SDATA2 static u32 lit_3786 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3786 = 0.5f;
 
 /* 80451B90-80451B94 0004+00 s=1 e=0 z=0  None .sdata2    @3787 */
-SECTION_SDATA2 static u32 lit_3787 = 0x40000000;
+SECTION_SDATA2 static f32 lit_3787 = 2.0f;
 
 /* 80451B94-80451B98 0004+00 s=1 e=0 z=0  None .sdata2    @3788 */
-SECTION_SDATA2 static u32 lit_3788 = 0x43980000;
+SECTION_SDATA2 static f32 lit_3788 = 304.0f;
 
 /* 80451B98-80451B9C 0004+00 s=1 e=0 z=0  None .sdata2    @3789 */
-SECTION_SDATA2 static u32 lit_3789 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3789 = 608.0f;
 
 /* 80451B9C-80451BA0 0004+00 s=1 e=0 z=0  None .sdata2    @3790 */
-SECTION_SDATA2 static u32 lit_3790 = 0x43600000;
+SECTION_SDATA2 static f32 lit_3790 = 224.0f;
 
 /* 80451BA0-80451BA8 0004+04 s=1 e=0 z=0  None .sdata2    @3791 */
 SECTION_SDATA2 static f32 lit_3791[1 + 1 /* padding */] = {

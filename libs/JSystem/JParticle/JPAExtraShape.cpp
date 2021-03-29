@@ -54,8 +54,6 @@ extern "C" void init__13JPAExtraShapeFv();
 
 extern "C" extern u8 sincosTable___5JMath[65536];
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-
 //
 // Declarations:
 //
@@ -114,9 +112,7 @@ asm void JPACalcScaleAnmNormal(JPAEmitterWorkData* param_0, JPABaseParticle* par
 
 /* ############################################################################################## */
 /* 804552E8-804552F0 0008+00 s=5 e=0 z=0  None .sdata2    @2312 */
-SECTION_SDATA2 static u8 lit_2312[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2312 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027AA20-8027AA84 0064+00 s=0 e=1 z=0  None .text
  * JPACalcScaleAnmRepeatX__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -142,7 +138,7 @@ asm void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* param_0, JPABaseParticle* pa
 
 /* ############################################################################################## */
 /* 804552F0-804552F4 0004+00 s=2 e=0 z=0  None .sdata2    @2339 */
-SECTION_SDATA2 static u32 lit_2339 = 0x40000000;
+SECTION_SDATA2 static f32 lit_2339 = 2.0f;
 
 /* 8027AAE8-8027AB7C 0094+00 s=0 e=1 z=0  None .text
  * JPACalcScaleAnmReverseX__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -168,7 +164,7 @@ asm void JPACalcScaleAnmReverseY(JPAEmitterWorkData* param_0, JPABaseParticle* p
 
 /* ############################################################################################## */
 /* 804552F4-804552F8 0004+00 s=2 e=0 z=0  None .sdata2    @2390 */
-SECTION_SDATA2 static u32 lit_2390 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_2390 = 255.0f;
 
 /* 8027AC10-8027AC98 0088+00 s=0 e=1 z=0  None .text
  * JPACalcAlphaAnm__FP18JPAEmitterWorkDataP15JPABaseParticle    */
@@ -183,10 +179,10 @@ asm void JPACalcAlphaAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 
 /* ############################################################################################## */
 /* 804552F8-804552FC 0004+00 s=1 e=0 z=0  None .sdata2    @2433 */
-SECTION_SDATA2 static u32 lit_2433 = 0x46800000;
+SECTION_SDATA2 static f32 lit_2433 = 16384.0f;
 
 /* 804552FC-80455300 0004+00 s=1 e=0 z=0  None .sdata2    @2434 */
-SECTION_SDATA2 static u32 lit_2434 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_2434 = 0.5f;
 
 /* 8027AC98-8027AD88 00F0+00 s=0 e=1 z=0  None .text
  * JPACalcAlphaFlickAnm__FP18JPAEmitterWorkDataP15JPABaseParticle */
@@ -211,16 +207,10 @@ asm JPAExtraShape::JPAExtraShape(u8 const* param_0) {
 
 /* ############################################################################################## */
 /* 80455300-80455308 0004+04 s=1 e=0 z=0  None .sdata2    @2503 */
-SECTION_SDATA2 static u8 lit_2503[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_2503[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8027ADBC-8027AEBC 0100+00 s=1 e=0 z=0  None .text      init__13JPAExtraShapeFv */

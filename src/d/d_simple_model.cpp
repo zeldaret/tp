@@ -80,11 +80,6 @@ void mDoExt_destroySolidHeap(JKRSolidHeap*);
 void mDoExt_restoreCurrentHeap();
 void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
@@ -208,16 +203,10 @@ asm void dSmplMdl_draw_c::removeModel(J3DModelData* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80451F38-80451F40 0004+04 s=1 e=0 z=0  None .sdata2    @3763 */
-SECTION_SDATA2 static u8 lit_3763[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3763[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 800490EC-800491F4 0108+00 s=1 e=0 z=0  None .text      create__12diff_model_cFP12J3DModelDataiUc

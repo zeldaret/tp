@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -118,8 +118,6 @@ static void daObjFallObj_MoveBGExecute(daObjFallObj_c*);
 static void daObjFallObj_MoveBGDraw(daObjFallObj_c*);
 static void cLib_calcTimer__template0(s16*);
 static void cLib_calcTimer__template1(u8*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_FallObj[12];
 
 extern "C" void initBaseMtx__14daObjFallObj_cFv();
 extern "C" void setBaseMtx__14daObjFallObj_cFv();
@@ -170,14 +168,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_getReverb(int);
 void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 void cLib_chaseS(s16*, s16, s16);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

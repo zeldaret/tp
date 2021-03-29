@@ -61,11 +61,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 80018BD0 */ ~csXyz();
 };
-
-struct cXyz {};
 
 struct _GXColor {};
 
@@ -128,11 +128,6 @@ static void fopAc_Execute(void*);
 static void fopAc_IsDelete(void*);
 static void fopAc_Delete(void*);
 static void fopAc_Create(void*);
-extern "C" extern char const* const f_op_f_op_actor__stringBase0;
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" extern u8 stopStatus__10fopAc_ac_c[4];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__5csXyzFv();
@@ -183,14 +178,6 @@ void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
 void dKy_depth_dist_set(void*);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 g_dComIfAc_gameInfo[8];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
@@ -351,10 +338,10 @@ asm static void fopAc_Draw(void* param_0) {
 
 /* ############################################################################################## */
 /* 80451BC8-80451BCC 0004+00 s=1 e=0 z=0  None .sdata2    @4324 */
-SECTION_SDATA2 static u32 lit_4324 = 0x459C4000;
+SECTION_SDATA2 static f32 lit_4324 = 5000.0f;
 
 /* 80451BCC-80451BD0 0004+00 s=1 e=0 z=0  None .sdata2    @4325 */
-SECTION_SDATA2 static u32 lit_4325 = 0xF2FC6F7C;
+SECTION_SDATA2 static f32 lit_4325 = -9.999999848243207e+30f;
 
 /* 80018DD8-80018F78 01A0+00 s=1 e=0 z=0  None .text      fopAc_Execute__FPv */
 #pragma push
@@ -388,15 +375,13 @@ asm static void fopAc_Delete(void* param_0) {
 
 /* ############################################################################################## */
 /* 80451BD0-80451BD4 0004+00 s=2 e=0 z=0  None .sdata2    @4431 */
-SECTION_SDATA2 static u32 lit_4431 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4431 = 1.0f / 10.0f;
 
 /* 80451BD4-80451BD8 0004+00 s=1 e=0 z=0  None .sdata2    @4432 */
-SECTION_SDATA2 static u32 lit_4432 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_4432 = -100.0f;
 
 /* 80451BD8-80451BE0 0008+00 s=1 e=0 z=0  None .sdata2    @4434 */
-SECTION_SDATA2 static u8 lit_4434[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4434 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001904C-800193FC 03B0+00 s=1 e=0 z=0  None .text      fopAc_Create__FPv */
 #pragma push
@@ -457,9 +442,7 @@ SECTION_SDATA2 static f32 lit_4505[1 + 1 /* padding */] = {
 };
 
 /* 80451BE8-80451BF0 0008+00 s=1 e=0 z=0  None .sdata2    @4507 */
-SECTION_SDATA2 static u8 lit_4507[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4507 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80019520-800196A0 0180+00 s=0 e=0 z=2  None .text
  * setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c          */
@@ -482,7 +465,7 @@ SECTION_SDATA2 static u8 lit_4555[4] = {
 };
 
 /* 80451BF4-80451BF8 0004+00 s=1 e=0 z=0  None .sdata2    @4556 */
-SECTION_SDATA2 static u32 lit_4556 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_4556 = 1.0f / 20.0f;
 
 /* 80451BF8-80451C00 0004+04 s=1 e=0 z=0  None .sdata2    @4557 */
 SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {

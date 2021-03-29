@@ -33,9 +33,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
@@ -52,7 +52,6 @@ static void daObjDigpl_Create(fopAc_ac_c*);
 static void daObjDigpl_Delete(daObjDigpl_c*);
 static void daObjDigpl_Execute(daObjDigpl_c*);
 static bool daObjDigpl_Draw(daObjDigpl_c*);
-extern "C" extern void* g_profile_Obj_Digpl[12];
 
 extern "C" void create__12daObjDigpl_cFv();
 extern "C" static void daObjDigpl_Create__FP10fopAc_ac_c();
@@ -78,14 +77,6 @@ void fopAcM_createItemFromTable(cXyz const*, int, int, int, csXyz const*, int, c
 void fopAcM_createItem(cXyz const*, int, int, int, csXyz const*, cXyz const*, int);
 void dPath_GetRoomPath(int, int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();

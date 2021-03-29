@@ -39,8 +39,6 @@ struct JASBank {
 // Forward References:
 //
 
-extern "C" extern void* __vt__7JASBank[5];
-
 extern "C" void __ct__12JASBasicBankFv();
 extern "C" void newInstTable__12JASBasicBankFUcP7JKRHeap();
 extern "C" void getInstParam__12JASBasicBankCFiiiP12JASInstParam();

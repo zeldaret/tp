@@ -23,11 +23,11 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -58,8 +58,6 @@ static bool daObj_Kage_IsDelete(obj_kage_class*);
 static void daObj_Kage_Delete(obj_kage_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Kage_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_KAGE[12];
 
 extern "C" static void daObj_Kage_Draw__FP14obj_kage_class();
 extern "C" static void daObj_Kage_Execute__FP14obj_kage_class();
@@ -89,12 +87,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void cM_rndF(f32);
 void cLib_addCalc2(f32*, f32, f32, f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

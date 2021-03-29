@@ -13,8 +13,6 @@
 
 extern u8 const data_8048DD60[4];
 
-extern u8 const data_8048DD60[4];
-
 //
 // External References:
 //
@@ -26,3 +24,10 @@ extern u8 const data_8048DD60[4];
 /* ############################################################################################## */
 #pragma section ".dtors$10"
 #pragma section ".dtors$15"
+/* 8048DD60-8048DD64 0004+00 s=0 e=1 z=0  None .dtors     None */
+u8 const data_8048DD60[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

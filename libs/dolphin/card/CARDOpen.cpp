@@ -22,9 +22,6 @@ extern "C" void CARDClose();
 // External References:
 //
 
-extern "C" extern u8 __CARDDiskNone[32];
-extern "C" extern u8 struct_80450A70[8];
-
 extern "C" void __CARDGetControlBlock();
 extern "C" void __CARDPutControlBlock();
 extern "C" void __CARDGetDirBlock();

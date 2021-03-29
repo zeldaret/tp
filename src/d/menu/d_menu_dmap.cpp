@@ -133,6 +133,10 @@ struct dMenu_StageMapCtrl_c {
 
 struct J2DOrthoGraph {};
 
+struct JKRExpHeap {
+    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
+};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -140,10 +144,6 @@ struct STControl {
     /* 800324A8 */ void checkRightTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
-};
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct dMenu_ItemExplain_c {
@@ -330,8 +330,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_dmap__stringBase0;
-
 extern "C" void __ct__14dMenu_DmapBg_cFP10JKRExpHeapP9STControl();
 extern "C" void mapScreenInit__14dMenu_DmapBg_cFv();
 extern "C" void mapScreenAnime__14dMenu_DmapBg_cFv();
@@ -440,23 +438,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
-extern "C" extern void* __vt__15dRenderingMap_c[23];
-extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
-extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" extern void* __vt__19renderingPlusDoor_c[41];
-extern "C" extern void* __vt__16renderingDAmap_c[38];
-extern "C" extern void* __vt__19dMenu_DmapMapCtrl_c[10 + 51 /* padding */];
-extern "C" extern void* __vt__15renderingDmap_c[43 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 mAllSizeX__8dMpath_c;
-extern "C" extern f32 mAllSizeZ__8dMpath_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
@@ -1246,7 +1227,7 @@ SECTION_SDATA2 static u8 lit_3962[4] = {
 };
 
 /* 80453FEC-80453FF0 0004+00 s=26 e=0 z=0  None .sdata2    @3963 */
-SECTION_SDATA2 static u32 lit_3963 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3963 = 1.0f;
 
 /* 801B7F20-801B8110 01F0+00 s=1 e=0 z=0  None .text
  * __ct__14dMenu_DmapBg_cFP10JKRExpHeapP9STControl              */
@@ -1261,7 +1242,7 @@ asm dMenu_DmapBg_c::dMenu_DmapBg_c(JKRExpHeap* param_0, STControl* param_1) {
 
 /* ############################################################################################## */
 /* 80453FF0-80453FF4 0004+00 s=1 e=0 z=0  None .sdata2    @4073 */
-SECTION_SDATA2 static u32 lit_4073 = 0xC1700000;
+SECTION_SDATA2 static f32 lit_4073 = -15.0f;
 
 /* 801B8110-801B884C 073C+00 s=1 e=0 z=0  None .text      mapScreenInit__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1275,12 +1256,10 @@ asm void dMenu_DmapBg_c::mapScreenInit() {
 
 /* ############################################################################################## */
 /* 80453FF4-80453FF8 0004+00 s=2 e=0 z=0  None .sdata2    @4106 */
-SECTION_SDATA2 static u32 lit_4106 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_4106 = 2.0f / 5.0f;
 
 /* 80453FF8-80454000 0008+00 s=8 e=0 z=0  None .sdata2    @4108 */
-SECTION_SDATA2 static u8 lit_4108[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801B884C-801B88F4 00A8+00 s=1 e=0 z=0  None .text      mapScreenAnime__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1314,7 +1293,7 @@ asm void dMenu_DmapBg_c::iconScaleAnmInit(f32 param_0, f32 param_1, u8 param_2) 
 
 /* ############################################################################################## */
 /* 80454000-80454004 0004+00 s=1 e=0 z=0  None .sdata2    @4133 */
-SECTION_SDATA2 static u32 lit_4133 = 0x3D4CCCCD;
+SECTION_SDATA2 static f32 lit_4133 = 1.0f / 20.0f;
 
 /* 801B8954-801B8A0C 00B8+00 s=2 e=0 z=0  None .text      iconScaleAnm__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1328,10 +1307,10 @@ asm void dMenu_DmapBg_c::iconScaleAnm() {
 
 /* ############################################################################################## */
 /* 80454004-80454008 0004+00 s=1 e=0 z=0  None .sdata2    @4191 */
-SECTION_SDATA2 static u32 lit_4191 = 0x43200000;
+SECTION_SDATA2 static f32 lit_4191 = 160.0f;
 
 /* 80454008-8045400C 0004+00 s=1 e=0 z=0  None .sdata2    @4192 */
-SECTION_SDATA2 static u32 lit_4192 = 0x43A08000;
+SECTION_SDATA2 static f32 lit_4192 = 321.0f;
 
 /* 801B8A0C-801B8DE4 03D8+00 s=1 e=0 z=0  None .text      buttonIconScreenInit__14dMenu_DmapBg_cFv
  */
@@ -1375,7 +1354,7 @@ static u8 player_py[4];
 static u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
 
 /* 8045400C-80454010 0004+00 s=7 e=0 z=0  None .sdata2    @4249 */
-SECTION_SDATA2 static u32 lit_4249 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4249 = 0.5f;
 
 /* 801B8F94-801B90BC 0128+00 s=1 e=0 z=0  None .text      setCButtonString__14dMenu_DmapBg_cFUl */
 #pragma push
@@ -1419,16 +1398,16 @@ asm void dMenu_DmapBg_c::deleteExplain() {
 
 /* ############################################################################################## */
 /* 80454010-80454014 0004+00 s=1 e=0 z=0  None .sdata2    @4312 */
-SECTION_SDATA2 static u32 lit_4312 = 0x3F733333;
+SECTION_SDATA2 static f32 lit_4312 = 19.0f / 20.0f;
 
 /* 80454014-80454018 0004+00 s=7 e=0 z=0  None .sdata2    @4313 */
-SECTION_SDATA2 static u32 lit_4313 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_4313 = 9.0f / 10.0f;
 
 /* 80454018-8045401C 0004+00 s=1 e=0 z=0  None .sdata2    @4314 */
-SECTION_SDATA2 static u32 lit_4314 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4314 = 1.0f / 10.0f;
 
 /* 8045401C-80454020 0004+00 s=1 e=0 z=0  None .sdata2    @4315 */
-SECTION_SDATA2 static u32 lit_4315 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_4315 = 3.0f / 5.0f;
 
 /* 801B91DC-801B944C 0270+00 s=1 e=0 z=0  None .text      baseScreenInit__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1487,7 +1466,7 @@ asm void dMenu_DmapBg_c::setGoldAnimation(bool param_0) {
 
 /* ############################################################################################## */
 /* 80454020-80454024 0004+00 s=3 e=0 z=0  None .sdata2    @4643 */
-SECTION_SDATA2 static u32 lit_4643 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4643 = 255.0f;
 
 /* 801BA7F0-801BA974 0184+00 s=3 e=0 z=0  None .text      setGoldFrameAlphaRate__14dMenu_DmapBg_cFf
  */
@@ -1524,24 +1503,22 @@ asm void dMenu_DmapBg_c::decGoldFrameAlphaRate() {
 
 /* ############################################################################################## */
 /* 80454024-80454028 0004+00 s=4 e=0 z=0  None .sdata2    @4784 */
-SECTION_SDATA2 static u32 lit_4784 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4784 = 608.0f;
 
 /* 80454028-8045402C 0004+00 s=4 e=0 z=0  None .sdata2    @4785 */
-SECTION_SDATA2 static u32 lit_4785 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4785 = 448.0f;
 
 /* 8045402C-80454030 0004+00 s=1 e=0 z=0  None .sdata2    @4786 */
-SECTION_SDATA2 static u32 lit_4786 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4786 = 2.0f;
 
 /* 80454030-80454034 0004+00 s=1 e=0 z=0  None .sdata2    @4787 */
-SECTION_SDATA2 static u32 lit_4787 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_4787 = 7.0f / 10.0f;
 
 /* 80454034-80454038 0004+00 s=1 e=0 z=0  None .sdata2    @4788 */
-SECTION_SDATA2 static u32 lit_4788 = 0xC20C0000;
+SECTION_SDATA2 static f32 lit_4788 = -35.0f;
 
 /* 80454038-80454040 0008+00 s=2 e=0 z=0  None .sdata2    @4790 */
-SECTION_SDATA2 static u8 lit_4790[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4790 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801BAB10-801BB334 0824+00 s=1 e=0 z=0  None .text      draw__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1555,7 +1532,7 @@ asm void dMenu_DmapBg_c::draw() {
 
 /* ############################################################################################## */
 /* 80454040-80454044 0004+00 s=1 e=0 z=0  None .sdata2    @4848 */
-SECTION_SDATA2 static u32 lit_4848 = 0x41CC0000;
+SECTION_SDATA2 static f32 lit_4848 = 25.5f;
 
 /* 801BB334-801BB464 0130+00 s=1 e=0 z=0  None .text      update__14dMenu_DmapBg_cFv */
 #pragma push
@@ -1584,10 +1561,10 @@ asm void dMenu_DmapBg_c::drawCursor() {
 
 /* ############################################################################################## */
 /* 80454044-80454048 0004+00 s=3 e=0 z=0  None .sdata2    @4926 */
-SECTION_SDATA2 static u32 lit_4926 = 0xC4180000;
+SECTION_SDATA2 static f32 lit_4926 = -608.0f;
 
 /* 80454048-8045404C 0004+00 s=3 e=0 z=0  None .sdata2    @4927 */
-SECTION_SDATA2 static u32 lit_4927 = 0xC3E00000;
+SECTION_SDATA2 static f32 lit_4927 = -448.0f;
 
 /* 801BB498-801BB634 019C+00 s=0 e=1 z=0  None .text
  * __ct__12dMenu_Dmap_cFP10JKRExpHeapP9STControlP10CSTControlUcUc */
@@ -1603,7 +1580,7 @@ asm dMenu_Dmap_c::dMenu_Dmap_c(JKRExpHeap* param_0, STControl* param_1, CSTContr
 
 /* ############################################################################################## */
 /* 8045404C-80454050 0004+00 s=1 e=0 z=0  None .sdata2    @5277 */
-SECTION_SDATA2 static u32 lit_5277 = 0x40E00000;
+SECTION_SDATA2 static f32 lit_5277 = 7.0f;
 
 /* 801BB634-801BC788 1154+00 s=1 e=0 z=0  None .text      screenInit__12dMenu_Dmap_cFv */
 #pragma push
@@ -1617,7 +1594,7 @@ asm void dMenu_Dmap_c::screenInit() {
 
 /* ############################################################################################## */
 /* 80454050-80454054 0004+00 s=2 e=0 z=0  None .sdata2    @5288 */
-SECTION_SDATA2 static u32 lit_5288 = 0x3BB40000;
+SECTION_SDATA2 static f32 lit_5288 = 0.0054931640625f;
 
 /* 801BC788-801BC848 00C0+00 s=1 e=0 z=0  None .text      getPlayerIconPos__12dMenu_Dmap_cFScf */
 #pragma push
@@ -1765,7 +1742,7 @@ asm void J2DPicture::insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 80454054-80454058 0004+00 s=1 e=0 z=0  None .sdata2    @6017 */
-SECTION_SDATA2 static u32 lit_6017 = 0x3F34B4B5;
+SECTION_SDATA2 static f32 lit_6017 = 12.0f / 17.0f;
 
 /* 801BDDA4-801BDEF8 0154+00 s=0 e=1 z=0  None .text      _move__12dMenu_Dmap_cFv */
 #pragma push
@@ -1799,10 +1776,10 @@ asm void dMenu_Dmap_c::mapBgAnime() {
 
 /* ############################################################################################## */
 /* 80454058-8045405C 0004+00 s=2 e=0 z=0  None .sdata2    @6180 */
-SECTION_SDATA2 static u32 lit_6180 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_6180 = 100.0f;
 
 /* 8045405C-80454060 0004+00 s=7 e=0 z=0  None .sdata2    @6181 */
-SECTION_SDATA2 static u32 lit_6181 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_6181 = -1.0f;
 
 /* 801BDF6C-801BE328 03BC+00 s=1 e=0 z=0  None .text      mapControl__12dMenu_Dmap_cFv */
 #pragma push

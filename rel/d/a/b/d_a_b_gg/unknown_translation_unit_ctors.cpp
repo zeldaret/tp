@@ -13,8 +13,6 @@
 
 extern void* const data_805ED04C[2];
 
-extern void* const data_805ED04C[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_b_gg_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 805ED04C-805ED054 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_805ED04C[2] = {
+    (void*)__sinit_d_a_b_gg_cpp,
+    (void*)NULL,
+};

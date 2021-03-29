@@ -16,11 +16,6 @@ extern "C" extern void* item_resource__10dItem_data[1530];
 extern "C" extern void* field_item_res__10dItem_data[1020];
 extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
 
-extern "C" extern char const* const d_d_item_data__stringBase0;
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-
 //
 // External References:
 //

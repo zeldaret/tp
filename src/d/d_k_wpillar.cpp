@@ -111,7 +111,6 @@ static void dkWpillar_Create(kankyo_class*);
 static void dkWpillar_Delete(dkWpillar_c*);
 static void dkWpillar_Execute(dkWpillar_c*);
 static void dkWpillar_Draw(dkWpillar_c*);
-extern "C" extern void* g_profile_WPILLAR[10 + 1 /* padding */];
 
 extern "C" void create__11dkWpillar_cFv();
 extern "C" static void dkWpillar_Create__FP12kankyo_class();
@@ -137,17 +136,6 @@ void fopAcM_getWaterY(cXyz const*, f32*);
 void fopKyM_Delete(void*);
 void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern f32 lit_2762[1 + 1 /* padding */];
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -213,13 +201,13 @@ SECTION_SDATA2 static u8 l_arcName[7 + 1 /* padding */] = {
 };
 
 /* 80454FF8-80454FFC 0004+00 s=1 e=0 z=0  None .sdata2    @3838 */
-SECTION_SDATA2 static u32 lit_3838 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3838 = 1.0f;
 
 /* 80454FFC-80455000 0004+00 s=1 e=0 z=0  None .sdata2    @3839 */
-SECTION_SDATA2 static u32 lit_3839 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3839 = 0.5f;
 
 /* 80455000-80455004 0004+00 s=1 e=0 z=0  None .sdata2    @3840 */
-SECTION_SDATA2 static u32 lit_3840 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_3840 = 0.25f;
 
 /* 80261B54-80261F04 03B0+00 s=1 e=0 z=0  None .text      create__11dkWpillar_cFv */
 #pragma push

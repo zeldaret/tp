@@ -34,7 +34,6 @@ static void daE_YM_TAG_Execute(daE_YM_TAG_c*);
 static bool daE_YM_TAG_IsDelete(daE_YM_TAG_c*);
 static bool daE_YM_TAG_Delete(daE_YM_TAG_c*);
 static void daE_YM_TAG_Create(daE_YM_TAG_c*);
-extern "C" extern void* g_profile_E_YM_TAG[12];
 
 extern "C" static bool daE_YM_TAG_Draw__FP12daE_YM_TAG_c();
 extern "C" static void s_e_ym__FPvPv();
@@ -54,8 +53,6 @@ void fopAc_IsActor(void*);
 void fopAcM_delete(fopAc_ac_c*);
 void fpcEx_Search(void* (*)(void*, void*), void*);
 void fpcM_IsCreating(unsigned int);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();

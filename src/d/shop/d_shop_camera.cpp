@@ -68,9 +68,6 @@ void cM_atan2s(f32, f32);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void cLib_addCalcPos2(cXyz*, cXyz const&, f32, f32);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 
 extern "C" void Stay__9dCamera_cFv();
 extern "C" void SetTrimSize__9dCamera_cFl();
@@ -136,13 +133,13 @@ SECTION_DATA static void* lit_3771[3] = {
 };
 
 /* 80453A88-80453A8C 0004+00 s=1 e=0 z=0  None .sdata2    @3796 */
-SECTION_SDATA2 static u32 lit_3796 = 0x3E800000;
+SECTION_SDATA2 static f32 lit_3796 = 0.25f;
 
 /* 80453A8C-80453A90 0004+00 s=1 e=0 z=0  None .sdata2    @3797 */
-SECTION_SDATA2 static u32 lit_3797 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_3797 = 20.0f;
 
 /* 80453A90-80453A94 0004+00 s=1 e=0 z=0  None .sdata2    @3798 */
-SECTION_SDATA2 static u32 lit_3798 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_3798 = 5.0f;
 
 /* 80195C9C-80195E18 017C+00 s=0 e=0 z=9  None .text      shop_cam_action_init__16ShopCam_action_cFv
  */
@@ -165,14 +162,10 @@ SECTION_SDATA2 static u8 lit_3916[4] = {
 };
 
 /* 80453A98-80453AA0 0008+00 s=1 e=0 z=0  None .sdata2    @3917 */
-SECTION_SDATA2 static u8 lit_3917[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3917 = 0.5;
 
 /* 80453AA0-80453AA8 0008+00 s=1 e=0 z=0  None .sdata2    @3918 */
-SECTION_SDATA2 static u8 lit_3918[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3918 = 3.0;
 
 /* 80453AA8-80453AB0 0008+00 s=1 e=0 z=0  None .sdata2    @3919 */
 SECTION_SDATA2 static u8 lit_3919[8] = {
@@ -180,7 +173,7 @@ SECTION_SDATA2 static u8 lit_3919[8] = {
 };
 
 /* 80453AB0-80453AB4 0004+00 s=1 e=0 z=0  None .sdata2    @3920 */
-SECTION_SDATA2 static u32 lit_3920 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3920 = 1.0f;
 
 /* 80195E18-8019630C 04F4+00 s=1 e=0 z=0  None .text      shop_cam_action__16ShopCam_action_cFv */
 #pragma push
@@ -235,7 +228,7 @@ asm void ShopCam_action_c::move() {
 
 /* ############################################################################################## */
 /* 80453AB4-80453AB8 0004+00 s=2 e=0 z=0  None .sdata2    @3992 */
-SECTION_SDATA2 static u32 lit_3992 = 0x42340000;
+SECTION_SDATA2 static f32 lit_3992 = 45.0f;
 
 /* 80196544-80196608 00C4+00 s=0 e=1 z=0  None .text
  * setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
@@ -268,22 +261,22 @@ asm void ShopCam_action_c::setCamDataIdx2(fopAc_ac_c* param_0, fopAc_ac_c* param
 
 /* ############################################################################################## */
 /* 80453AB8-80453ABC 0004+00 s=1 e=0 z=0  None .sdata2    @4059 */
-SECTION_SDATA2 static u32 lit_4059 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4059 = 0.5f;
 
 /* 80453ABC-80453AC0 0004+00 s=1 e=0 z=0  None .sdata2    @4060 */
-SECTION_SDATA2 static u32 lit_4060 = 0x43270000;
+SECTION_SDATA2 static f32 lit_4060 = 167.0f;
 
 /* 80453AC0-80453AC4 0004+00 s=1 e=0 z=0  None .sdata2    @4061 */
-SECTION_SDATA2 static u32 lit_4061 = 0x435C0000;
+SECTION_SDATA2 static f32 lit_4061 = 220.0f;
 
 /* 80453AC4-80453AC8 0004+00 s=1 e=0 z=0  None .sdata2    @4062 */
-SECTION_SDATA2 static u32 lit_4062 = 0x42F00000;
+SECTION_SDATA2 static f32 lit_4062 = 120.0f;
 
 /* 80453AC8-80453ACC 0004+00 s=1 e=0 z=0  None .sdata2    @4063 */
-SECTION_SDATA2 static u32 lit_4063 = 0xC2480000;
+SECTION_SDATA2 static f32 lit_4063 = -50.0f;
 
 /* 80453ACC-80453AD0 0004+00 s=1 e=0 z=0  None .sdata2    @4064 */
-SECTION_SDATA2 static u32 lit_4064 = 0x43AF0000;
+SECTION_SDATA2 static f32 lit_4064 = 350.0f;
 
 /* 801966D4-801968B8 01E4+00 s=2 e=0 z=0  None .text      _debugSetCamera__16ShopCam_action_cFv */
 #pragma push

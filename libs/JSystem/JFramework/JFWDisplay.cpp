@@ -121,8 +121,6 @@ static void JFWThreadAlarmHandler(OSAlarm*, OSContext*);
 static void JFWDrawDoneAlarm();
 static void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*);
 static void diagnoseGpHang();
-extern "C" extern char const* const JFWDisplay__stringBase0;
-extern "C" extern u8 sManager__10JFWDisplay[4];
 
 extern "C" void ctor_subroutine__10JFWDisplayFb();
 extern "C" void __ct__10JFWDisplayFP7JKRHeapQ26JUTXfb10EXfbNumberb();
@@ -162,16 +160,6 @@ extern "C" extern u8 sManager__10JFWDisplay[4];
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
-extern "C" extern u8 sVideoLastTick__8JUTVideo[4];
-extern "C" extern u8 sVideoInterval__8JUTVideo[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JUTProcBar[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
 
 extern "C" void OSReport();
 extern "C" void* __nw__FUl();
@@ -512,7 +500,7 @@ asm void JFWDisplay::preGX() {
 
 /* ############################################################################################## */
 /* 80455254-80455258 0004+00 s=1 e=0 z=0  None .sdata2    @2497 */
-SECTION_SDATA2 static u32 lit_2497 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_2497 = -1.0f;
 
 /* 80455258-80455260 0004+04 s=3 e=0 z=0  None .sdata2    @2498 */
 SECTION_SDATA2 static f32 lit_2498[1 + 1 /* padding */] = {
@@ -522,9 +510,7 @@ SECTION_SDATA2 static f32 lit_2498[1 + 1 /* padding */] = {
 };
 
 /* 80455260-80455268 0008+00 s=4 e=0 z=0  None .sdata2    @2500 */
-SECTION_SDATA2 static u8 lit_2500[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2500 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8027268C-80272798 010C+00 s=1 e=0 z=0  None .text      endGX__10JFWDisplayFv */
 #pragma push
@@ -684,9 +670,7 @@ asm void JFWDisplay::clearEfb(int param_0, int param_1, int param_2, int param_3
 
 /* ############################################################################################## */
 /* 80455268-80455270 0008+00 s=1 e=0 z=0  None .sdata2    @2933 */
-SECTION_SDATA2 static u8 lit_2933[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2933 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027331C-802733A8 008C+00 s=1 e=0 z=0  None .text      calcCombinationRatio__10JFWDisplayFv */
 #pragma push
@@ -700,9 +684,7 @@ asm void JFWDisplay::calcCombinationRatio() {
 
 /* ############################################################################################## */
 /* 80455270-80455278 0008+00 s=1 e=0 z=0  None .sdata2    @2964 */
-SECTION_SDATA2 static u8 lit_2964[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2964 = 0.5;
 
 /* 802733A8-80273484 00DC+00 s=2 e=0 z=0  None .text      JFWDrawDoneAlarm__Fv */
 #pragma push

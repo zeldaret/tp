@@ -38,7 +38,6 @@ extern "C" void fpcLnTg_Init__FP8line_tagPv();
 void cTg_SingleCutFromTree(create_tag_class*);
 void cTg_AdditionToTree(node_lists_tree_class*, int, create_tag_class*);
 void cTg_Create(create_tag_class*, void*);
-extern "C" extern void* g_fpcLn_Queue[2];
 
 extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
 extern "C" void cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class();

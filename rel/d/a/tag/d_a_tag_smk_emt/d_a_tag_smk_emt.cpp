@@ -29,15 +29,15 @@ struct daTagSmkEmt_c {
 
 struct dPa_levelEcallBack {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct cXyz {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -53,7 +53,6 @@ static void daTagSmkEmt_create(daTagSmkEmt_c*);
 static void daTagSmkEmt_Delete(daTagSmkEmt_c*);
 static void daTagSmkEmt_execute(daTagSmkEmt_c*);
 static void daTagSmkEmt_draw(daTagSmkEmt_c*);
-extern "C" extern void* g_profile_Tag_SmkEmt[12];
 
 extern "C" void __ct__13daTagSmkEmt_cFv();
 extern "C" void __dt__13daTagSmkEmt_cFv();
@@ -74,9 +73,6 @@ extern "C" extern void* g_profile_Tag_SmkEmt[12];
 //
 
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 SECTION_INIT void memset();
 extern "C" void __ct__10fopAc_ac_cFv();

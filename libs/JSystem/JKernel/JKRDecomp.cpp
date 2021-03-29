@@ -71,7 +71,6 @@ extern "C" void __dt__16JKRDecompCommandFv();
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();

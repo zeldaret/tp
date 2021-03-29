@@ -22,8 +22,6 @@ struct J3DTevStage {
     /* 8003AACC */ J3DTevStage(J3DTevStageInfo const&);
 };
 
-struct J3DMaterialBlock_v21 {};
-
 struct J3DMaterial {
     /* 803157A0 */ void createColorBlock(u32);
     /* 803159A0 */ void createTexGenBlock(u32);
@@ -32,6 +30,8 @@ struct J3DMaterial {
     /* 80315F60 */ void createPEBlock(u32, u32);
     /* 80316240 */ void initialize();
 };
+
+struct J3DMaterialBlock_v21 {};
 
 struct J3DMaterialFactory_v21 {
     /* 80332DA4 */ J3DMaterialFactory_v21(J3DMaterialBlock_v21 const&);
@@ -123,15 +123,6 @@ void JSUConvertOffsetToPtr__template55(void const*, void const*);
 void JSUConvertOffsetToPtr__template56(void const*, void const*);
 void JSUConvertOffsetToPtr__template57(void const*, void const*);
 void JSUConvertOffsetToPtr__template59(void const*, void const*);
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultTevSwapModeTable;
-extern "C" extern u32 j3dDefaultBlendInfo;
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
-extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 
 extern "C" void __ct__11J3DTevStageFv();
 extern "C" void __ct__11J3DTevStageFRC15J3DTevStageInfo();

@@ -39,7 +39,6 @@ void fpcLy_SetCurrentLayer(layer_class*);
 void fpcLy_CurrentLayer();
 void cTrIt_Method(node_lists_tree_class*, int (*)(node_class*, void*), void*);
 void cTgIt_MethodCall(create_tag_class*, method_filter*);
-extern "C" extern void* g_fpcLn_Queue[2];
 
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
 extern "C" void fpcLy_CurrentLayer__Fv();

@@ -47,7 +47,6 @@ extern "C" void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGAab[3];
 
 extern "C" void __ct__8cBgS_ChkFv();
 extern "C" void __dt__8cBgS_ChkFv();

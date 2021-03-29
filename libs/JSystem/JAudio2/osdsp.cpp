@@ -26,8 +26,6 @@ extern "C" void DSPAddPriorTask__FP15STRUCT_DSP_TASK();
 // External References:
 //
 
-extern "C" extern u8 DSP_prior_task[4];
-
 extern "C" void OSReport();
 extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();

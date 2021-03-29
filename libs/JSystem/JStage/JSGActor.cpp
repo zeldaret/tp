@@ -59,8 +59,6 @@ struct JStage {
 // Forward References:
 //
 
-extern "C" extern void* __vt__Q26JStage6TActor[35 + 1 /* padding */];
-
 extern "C" void __dt__Q26JStage6TActorFv();
 extern "C" s32 JSGFGetType__Q26JStage6TActorCFv();
 extern "C" void JSGGetTranslation__Q26JStage6TActorCFP3Vec();
@@ -220,16 +218,10 @@ void JStage::TActor::JSGSetAnimation(u32 param_0) {
 
 /* ############################################################################################## */
 /* 804553C8-804553D0 0004+04 s=5 e=0 z=0  None .sdata2    @343 */
-SECTION_SDATA2 static u8 lit_343[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_343[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80280AE0-80280AE8 0008+00 s=1 e=1 z=0  None .text      JSGGetAnimationFrame__Q26JStage6TActorCFv

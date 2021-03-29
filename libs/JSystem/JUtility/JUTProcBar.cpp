@@ -44,7 +44,6 @@ struct JKRHeap {
 static void addrToXPos(void*, int);
 static void byteToXLen(int, int);
 static void heapBar(JKRHeap*, int, int, int, int, int);
-extern "C" extern u8 sManager__10JUTProcBar[4];
 
 extern "C" void __ct__10JUTProcBarFv();
 extern "C" void __dt__10JUTProcBarFv();
@@ -71,15 +70,6 @@ void operator delete(void*);
 void J2DDrawLine(f32, f32, f32, f32, JUtility::TColor, int);
 void J2DFillBox(f32, f32, f32, f32, JUtility::TColor);
 void J2DDrawFrame(f32, f32, f32, f32, JUtility::TColor, u8);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mCodeStart__7JKRHeap[4];
-extern "C" extern u8 mCodeEnd__7JKRHeap[4];
-extern "C" extern u8 mUserRamStart__7JKRHeap[4];
-extern "C" extern u8 mUserRamEnd__7JKRHeap[4];
-extern "C" extern u8 mMemorySize__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
 
 extern "C" void getTotalFreeSize__7JKRHeapFv();
 extern "C" void* __nw__FUl();
@@ -157,16 +147,16 @@ asm void JUTProcBar::destroy() {
 
 /* ############################################################################################## */
 /* 80450900-80450904 0004+00 s=2 e=0 z=0  None .sdata     oneFrameRate */
-SECTION_SDATA static u32 oneFrameRate = 0x41000000;
+SECTION_SDATA static f32 oneFrameRate = 8.0f;
 
 /* 80450904-80450908 0004+00 s=2 e=0 z=0  None .sdata     oneFrameRateUser */
-SECTION_SDATA static u32 oneFrameRateUser = 0x41200000;
+SECTION_SDATA static f32 oneFrameRateUser = 10.0f;
 
 /* 804560D8-804560DC 0004+00 s=1 e=0 z=0  None .sdata2    @2258 */
-SECTION_SDATA2 static u32 lit_2258 = 0x41000000;
+SECTION_SDATA2 static f32 lit_2258 = 8.0f;
 
 /* 804560DC-804560E0 0004+00 s=2 e=0 z=0  None .sdata2    @2259 */
-SECTION_SDATA2 static u32 lit_2259 = 0x41200000;
+SECTION_SDATA2 static f32 lit_2259 = 10.0f;
 
 /* 802E5A60-802E5B30 00D0+00 s=0 e=1 z=0  None .text      clear__10JUTProcBarFv */
 #pragma push
@@ -187,9 +177,7 @@ SECTION_SDATA2 static f32 lit_2279[1 + 1 /* padding */] = {
 };
 
 /* 804560E8-804560F0 0008+00 s=7 e=0 z=0  None .sdata2    @2281 */
-SECTION_SDATA2 static u8 lit_2281[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2281 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E5B30-802E5CC4 0194+00 s=1 e=0 z=0  None .text
  * bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor */
@@ -206,27 +194,25 @@ asm void JUTProcBar::bar_subroutine(int param_0, int param_1, int param_2, int p
 
 /* ############################################################################################## */
 /* 804560F0-804560F4 0004+00 s=2 e=0 z=0  None .sdata2    @2308 */
-SECTION_SDATA2 static u32 lit_2308 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_2308 = 20.0f;
 
 /* 804560F4-804560F8 0004+00 s=1 e=0 z=0  None .sdata2    @2309 */
-SECTION_SDATA2 static u32 lit_2309 = 0x46823400;
+SECTION_SDATA2 static f32 lit_2309 = 16666.0f;
 
 /* 804560F8-804560FC 0004+00 s=1 e=0 z=0  None .sdata2    @2310 */
-SECTION_SDATA2 static u32 lit_2310 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_2310 = 30.0f;
 
 /* 804560FC-80456100 0004+00 s=1 e=0 z=0  None .sdata2    @2311 */
-SECTION_SDATA2 static u32 lit_2311 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_2311 = 1.0f / 10.0f;
 
 /* 80456100-80456104 0004+00 s=1 e=0 z=0  None .sdata2    @2312 */
-SECTION_SDATA2 static u32 lit_2312 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_2312 = 1.0f / 5.0f;
 
 /* 80456104-80456108 0004+00 s=1 e=0 z=0  None .sdata2    @2313 */
-SECTION_SDATA2 static u32 lit_2313 = 0x42700000;
+SECTION_SDATA2 static f32 lit_2313 = 60.0f;
 
 /* 80456108-80456110 0008+00 s=3 e=0 z=0  None .sdata2    @2315 */
-SECTION_SDATA2 static u8 lit_2315[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2315 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802E5CC4-802E5E08 0144+00 s=1 e=0 z=0  None .text      adjustMeterLength__10JUTProcBarFUlPfffPi
  */
@@ -264,10 +250,10 @@ static u8 cntUser[4];
 static u8 data_80451568[8];
 
 /* 80456110-80456114 0004+00 s=1 e=0 z=0  None .sdata2    @2580 */
-SECTION_SDATA2 static u32 lit_2580 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2580 = 1.0f;
 
 /* 80456114-80456118 0004+00 s=1 e=0 z=0  None .sdata2    @2581 */
-SECTION_SDATA2 static u32 lit_2581 = 0x40400000;
+SECTION_SDATA2 static f32 lit_2581 = 3.0f;
 
 /* 802E5E3C-802E6D3C 0F00+00 s=1 e=0 z=0  None .text      drawProcessBar__10JUTProcBarFv */
 #pragma push

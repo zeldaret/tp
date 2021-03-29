@@ -13,10 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -24,6 +20,10 @@ struct cXyz {
     /* 8047DBB0 */ ~cXyz();
     /* 8047DBEC */ cXyz();
 };
+
+struct Quaternion {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -36,17 +36,15 @@ struct mDoMtx_stack_c {
 
 struct fopAc_ac_c {};
 
-struct dBgW_Base {
-    struct PushPullLabel {};
-};
-
 struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct daObjMovebox {
-    struct BgcSrc_c {};
+struct dBgW_Base {
+    struct PushPullLabel {};
+};
 
+struct daObjMovebox {
     struct Act_c {
         struct Prm_e {};
 
@@ -82,6 +80,8 @@ struct daObjMovebox {
         /* 80480728 */ void Draw();
         /* 804808FC */ void Delete();
     };
+
+    struct BgcSrc_c {};
 
     struct Bgc_c {
         /* 8047DAEC */ Bgc_c();
@@ -290,53 +290,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-extern "C" extern u32 const lit_4774;
-extern "C" extern u32 const lit_4775;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Movebox[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 lit_4762[12 + 4 /* padding */];
-extern "C" extern u8 data_80482BEC[12];
-extern "C" extern u8 data_80482BF8[4];
-extern "C" extern u8 data_80482BFC[4];
-extern "C" extern u8 data_80482C00[4];
-extern "C" extern u8 data_80482C04[4];
-extern "C" extern u8 data_80482C08[4];
-extern "C" extern u8 data_80482C0C[4];
-extern "C" extern u8 data_80482C10[4];
-extern "C" extern u8 data_80482C14[4];
-extern "C" extern u8 data_80482C18[4];
-extern "C" extern u8 data_80482C1C[4];
-extern "C" extern u8 data_80482C20[4];
-extern "C" extern u8 data_80482C24[4];
-extern "C" extern u8 data_80482C28[4];
-extern "C" extern u8 data_80482C2C[4];
-extern "C" extern u8 data_80482C30[4];
-extern "C" extern u8 data_80482C34[4];
-extern "C" extern u8 data_80482C38[4];
-extern "C" extern u8 data_80482C3C[4];
-extern "C" extern u8 data_80482C40[4];
-extern "C" extern u8 data_80482C44[4];
-extern "C" extern u8 data_80482C48[4];
-extern "C" extern u8 data_80482C4C[4];
-extern "C" extern u8 data_80482C50[4];
-extern "C" extern u8 data_80482C54[4];
-extern "C" extern u8 data_80482C58[4];
-
 extern "C" void __ct__Q212daObjMovebox5Bgc_cFv();
 extern "C" void __dt__4cXyzFv();
 extern "C" void __ct__4cXyzFv();
@@ -480,24 +433,6 @@ void dBgS_MoveBGProc_Trans(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXy
 void dKy_pol_sound_get(cBgS_PolyInfo const*);
 void cM_rnd();
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern void* M_dir_base__Q212daObjMovebox5Act_c[2];
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

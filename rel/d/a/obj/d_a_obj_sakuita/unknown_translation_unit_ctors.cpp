@@ -13,8 +13,6 @@
 
 extern u8 const data_80CC50AC[4];
 
-extern u8 const data_80CC50AC[4];
-
 //
 // External References:
 //
@@ -25,3 +23,10 @@ extern u8 const data_80CC50AC[4];
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80CC50AC-80CC50B0 0004+00 s=0 e=1 z=0  None .ctors     None */
+u8 const data_80CC50AC[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

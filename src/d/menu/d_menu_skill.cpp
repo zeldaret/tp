@@ -44,14 +44,14 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
+struct CSTControl {};
+
+struct JKRExpHeap {};
+
 struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct CSTControl {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -133,8 +133,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_skill__stringBase0;
-
 extern "C" void __ct__13dMenu_Skill_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__13dMenu_Skill_cFv();
 extern "C" void _create__13dMenu_Skill_cFv();
@@ -179,14 +177,6 @@ void dMeter2Info_set2DVibration();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -353,7 +343,7 @@ SECTION_SDATA2 static u8 lit_3808[4] = {
 };
 
 /* 8045448C-80454490 0004+00 s=6 e=0 z=0  None .sdata2    @3809 */
-SECTION_SDATA2 static u32 lit_3809 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3809 = 1.0f;
 
 /* 801F7224-801F7348 0124+00 s=0 e=2 z=0  None .text
  * __ct__13dMenu_Skill_cFP10JKRExpHeapP9STControlP10CSTControl  */
@@ -378,16 +368,16 @@ asm dMenu_Skill_c::~dMenu_Skill_c() {
 
 /* ############################################################################################## */
 /* 80454490-80454494 0004+00 s=1 e=0 z=0  None .sdata2    @3904 */
-SECTION_SDATA2 static u32 lit_3904 = 0x3F8147AE;
+SECTION_SDATA2 static f32 lit_3904 = 101.0f / 100.0f;
 
 /* 80454494-80454498 0004+00 s=1 e=0 z=0  None .sdata2    @3905 */
-SECTION_SDATA2 static u32 lit_3905 = 0x3F59999A;
+SECTION_SDATA2 static f32 lit_3905 = 17.0f / 20.0f;
 
 /* 80454498-8045449C 0004+00 s=1 e=0 z=0  None .sdata2    @3906 */
-SECTION_SDATA2 static u32 lit_3906 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_3906 = 1.0f / 50.0f;
 
 /* 8045449C-804544A0 0004+00 s=1 e=0 z=0  None .sdata2    @3907 */
-SECTION_SDATA2 static u32 lit_3907 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3907 = 0.5f;
 
 /* 801F763C-801F7718 00DC+00 s=1 e=0 z=0  None .text      _create__13dMenu_Skill_cFv */
 #pragma push
@@ -411,10 +401,10 @@ asm void dMenu_Skill_c::_move() {
 
 /* ############################################################################################## */
 /* 804544A0-804544A4 0004+00 s=1 e=0 z=0  None .sdata2    @3944 */
-SECTION_SDATA2 static u32 lit_3944 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3944 = 608.0f;
 
 /* 804544A4-804544A8 0004+00 s=1 e=0 z=0  None .sdata2    @3945 */
-SECTION_SDATA2 static u32 lit_3945 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_3945 = 448.0f;
 
 /* 804544A8-804544B0 0004+04 s=3 e=0 z=0  None .sdata2    @3946 */
 SECTION_SDATA2 static f32 lit_3946[1 + 1 /* padding */] = {
@@ -625,9 +615,7 @@ SECTION_DEAD static char const* const pad_80397E32 = "\0\0\0\0\0";
 #pragma pop
 
 /* 804544B0-804544B8 0008+00 s=4 e=0 z=0  None .sdata2    @4016 */
-SECTION_SDATA2 static u8 lit_4016[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4016 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801F7A40-801F7C1C 01DC+00 s=0 e=2 z=0  None .text      _open__13dMenu_Skill_cFv */
 #pragma push
@@ -681,9 +669,7 @@ asm void dMenu_Skill_c::read_open_init() {
 
 /* ############################################################################################## */
 /* 804544B8-804544C0 0008+00 s=2 e=0 z=0  None .sdata2    @4104 */
-SECTION_SDATA2 static u8 lit_4104[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4104 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801F7FF8-801F8114 011C+00 s=1 e=0 z=0  None .text      read_open_move__13dMenu_Skill_cFv */
 #pragma push

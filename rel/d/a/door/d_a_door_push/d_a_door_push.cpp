@@ -137,10 +137,6 @@ static void daDoorPush_MoveBGDelete(daDoorPush_c*);
 static void daDoorPush_MoveBGExecute(daDoorPush_c*);
 static void daDoorPush_MoveBGDraw(daDoorPush_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 const lit_3985;
-extern "C" extern u32 const lit_3986;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_PushDoor[12];
 
 extern "C" static void PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
 extern "C" static void PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
@@ -193,15 +189,6 @@ void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 struct_80679070[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

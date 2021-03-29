@@ -69,11 +69,11 @@ struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct dKy_tevstr_c {};
+struct cBgS_PolyInfo {};
 
 struct _GXColor {};
 
-struct cBgS_PolyInfo {};
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -301,21 +301,6 @@ void fopAcM_getWaterStream(cXyz const*, cBgS_PolyInfo const&, cXyz*, int*, int);
 void fopAcM_getPolygonAngle(cBgS_PolyInfo const&, s16);
 void fopAcM_getPolygonAngle(cM3dGPla const*, s16);
 void fopAcM_initManager();
-extern "C" extern char const* const f_op_f_op_actor_mng__stringBase0;
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__11dBgS_WtrChk[12];
-extern "C" extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */];
-extern "C" extern u8 lit_5078[12];
-extern "C" extern u8 data_803F1C18[12];
-extern "C" extern u8 lit_5115[12];
-extern "C" extern u8 data_803F1C30[12];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mRoofY__11fopAcM_rc_c[4];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 
 extern "C" void fopAcM_FastCreate__FsPFPv_iPvPv();
 extern "C" void fopAcM_setStageLayer__FPv();
@@ -496,24 +481,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void MtxPosition(cXyz*, cXyz*);
 void operator delete(void*);
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_top__13daTagStream_c[4];
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
@@ -711,7 +678,7 @@ asm void fopAcM_CreateAppend() {
 
 /* ############################################################################################## */
 /* 80451C00-80451C04 0004+00 s=1 e=0 z=0  None .sdata2    @4263 */
-SECTION_SDATA2 static u32 lit_4263 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4263 = 10.0f;
 
 /* 80019B1C-80019C78 015C+00 s=4 e=0 z=0  None .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
@@ -1056,14 +1023,10 @@ asm void fopAcM_seenActorAngleY(fopAc_ac_c const* param_0, fopAc_ac_c const* par
 
 /* ############################################################################################## */
 /* 80451C08-80451C10 0008+00 s=3 e=0 z=0  None .sdata2    @4745 */
-SECTION_SDATA2 static u8 lit_4745[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4745 = 0.5;
 
 /* 80451C10-80451C18 0008+00 s=3 e=0 z=0  None .sdata2    @4746 */
-SECTION_SDATA2 static u8 lit_4746[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4746 = 3.0;
 
 /* 80451C18-80451C20 0008+00 s=4 e=0 z=0  None .sdata2    @4747 */
 SECTION_SDATA2 static u8 lit_4747[8] = {
@@ -1116,10 +1079,10 @@ asm void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const* param_0, fopAc_ac_c con
 
 /* ############################################################################################## */
 /* 80451C20-80451C24 0004+00 s=1 e=0 z=0  None .sdata2    @4922 */
-SECTION_SDATA2 static u32 lit_4922 = 0x42200000;
+SECTION_SDATA2 static f32 lit_4922 = 40.0f;
 
 /* 80451C24-80451C28 0004+00 s=1 e=0 z=0  None .sdata2    @4923 */
-SECTION_SDATA2 static u32 lit_4923 = 0x425C0000;
+SECTION_SDATA2 static f32 lit_4923 = 55.0f;
 
 /* 8001AAE0-8001AC40 0160+00 s=0 e=0 z=2  None .text
  * fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif               */
@@ -1422,7 +1385,7 @@ asm void fopAcM_createItemForTrBoxDemo(cXyz const* param_0, int param_1, int par
 
 /* ############################################################################################## */
 /* 80451C28-80451C2C 0004+00 s=1 e=0 z=0  None .sdata2    @5584 */
-SECTION_SDATA2 static u32 lit_5584 = 0x417FFF97;
+SECTION_SDATA2 static f32 lit_5584 = 15.999899864196777f;
 
 /* 8001BCFC-8001BE14 0118+00 s=2 e=0 z=0  None .text      fopAcM_getItemNoFromTableNo__FUc */
 #pragma push
@@ -1527,7 +1490,7 @@ asm void fopAcM_createItemForSimpleDemo(cXyz const* param_0, int param_1, int pa
 
 /* ############################################################################################## */
 /* 80451C2C-80451C30 0004+00 s=2 e=0 z=0  None .sdata2    @5711 */
-SECTION_SDATA2 static u32 lit_5711 = 0x46FFFE00;
+SECTION_SDATA2 static f32 lit_5711 = 32767.0f;
 
 /* 8001C240-8001C3E0 01A0+00 s=1 e=1 z=17  None .text
  * fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi               */
@@ -1555,19 +1518,19 @@ asm static void fopAcM_fastCreateItem2(cXyz const* param_0, int param_1, int par
 
 /* ############################################################################################## */
 /* 80451C30-80451C34 0004+00 s=1 e=0 z=0  None .sdata2    @5808 */
-SECTION_SDATA2 static u32 lit_5808 = 0x40000000;
+SECTION_SDATA2 static f32 lit_5808 = 2.0f;
 
 /* 80451C34-80451C38 0004+00 s=1 e=0 z=0  None .sdata2    @5809 */
-SECTION_SDATA2 static u32 lit_5809 = 0x46000000;
+SECTION_SDATA2 static f32 lit_5809 = 8192.0f;
 
 /* 80451C38-80451C3C 0004+00 s=4 e=0 z=0  None .sdata2    @5810 */
-SECTION_SDATA2 static u32 lit_5810 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_5810 = 1.0f;
 
 /* 80451C3C-80451C40 0004+00 s=1 e=0 z=0  None .sdata2    @5811 */
-SECTION_SDATA2 static u32 lit_5811 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_5811 = 3.0f / 10.0f;
 
 /* 80451C40-80451C44 0004+00 s=1 e=0 z=0  None .sdata2    @5812 */
-SECTION_SDATA2 static u32 lit_5812 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 
 /* 8001C5B0-8001C870 02C0+00 s=3 e=0 z=4  None .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
@@ -1584,7 +1547,7 @@ asm void fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, cs
 
 /* ############################################################################################## */
 /* 80451C44-80451C48 0004+00 s=1 e=0 z=0  None .sdata2    @5845 */
-SECTION_SDATA2 static u32 lit_5845 = 0x45000000;
+SECTION_SDATA2 static f32 lit_5845 = 2048.0f;
 
 /* 8001C870-8001C95C 00EC+00 s=0 e=0 z=1  None .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
@@ -1674,7 +1637,7 @@ asm void fopAcM_otoCheck(fopAc_ac_c const* param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 80451C48-80451C4C 0004+00 s=2 e=0 z=0  None .sdata2    @6035 */
-SECTION_SDATA2 static u32 lit_6035 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_6035 = 100.0f;
 
 /* 8001CDFC-8001CED0 00D4+00 s=0 e=0 z=49  None .text
  * fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c           */
@@ -1689,7 +1652,7 @@ asm void fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_
 
 /* ############################################################################################## */
 /* 80451C4C-80451C50 0004+00 s=1 e=0 z=0  None .sdata2    @6068 */
-SECTION_SDATA2 static u32 lit_6068 = 0x42480000;
+SECTION_SDATA2 static f32 lit_6068 = 50.0f;
 
 /* 8001CED0-8001CFD8 0108+00 s=0 e=0 z=18  None .text      fopAcM_wayBgCheck__FPC10fopAc_ac_cff */
 #pragma push
@@ -1783,7 +1746,7 @@ bool fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) 
 
 /* ############################################################################################## */
 /* 80451C54-80451C58 0004+00 s=1 e=0 z=0  None .sdata2    @6174 */
-SECTION_SDATA2 static u32 lit_6174 = 0x43160000;
+SECTION_SDATA2 static f32 lit_6174 = 150.0f;
 
 /* 8001D1FC-8001D32C 0130+00 s=0 e=0 z=12  None .text      fopAcM_carryOffRevise__FP10fopAc_ac_c */
 #pragma push
@@ -1898,7 +1861,7 @@ u8 mRoofY__11fopAcM_rc_c[4];
 f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 
 /* 80451C58-80451C5C 0004+00 s=2 e=0 z=0  None .sdata2    @6353 */
-SECTION_SDATA2 static u32 lit_6353 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_6353 = -1000000000.0f;
 
 /* 8001D890-8001D900 0070+00 s=0 e=2 z=19  None .text      fopAcM_getWaterY__FPC4cXyzPf */
 #pragma push
@@ -1996,7 +1959,7 @@ asm void fopAcM_gc_c::gndCheck(cXyz const* param_0) {
 
 /* ############################################################################################## */
 /* 80451C5C-80451C60 0004+00 s=1 e=0 z=0  None .sdata2    @6517 */
-SECTION_SDATA2 static u32 lit_6517 = 0x4E6E6B28;
+SECTION_SDATA2 static f32 lit_6517 = 1000000000.0f;
 
 /* 8001DD1C-8001DD84 0068+00 s=0 e=0 z=3  None .text      roofCheck__11fopAcM_rc_cFPC4cXyz */
 #pragma push

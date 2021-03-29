@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern void* __files[80];
-
 extern "C" void __flush_all();
 extern "C" void __close_all();
 extern "C" extern void* __files[80];

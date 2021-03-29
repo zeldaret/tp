@@ -49,7 +49,6 @@ extern "C" static void AlarmHandler__FP7OSAlarmP9OSContext();
 //
 
 void mDoExt_getAssertHeap();
-extern "C" extern u8 data_80450C88[8];
 
 extern "C" void mDoExt_getAssertHeap__Fv();
 extern "C" void suspend__9mDoDvdThdFv();

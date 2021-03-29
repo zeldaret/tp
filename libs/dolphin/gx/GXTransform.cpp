@@ -34,8 +34,6 @@ extern "C" void __GXSetMatrixIndex();
 
 extern "C" extern void* __GXData;
 
-extern "C" extern void* __GXData;
-
 //
 // Declarations:
 //
@@ -50,10 +48,10 @@ SECTION_SDATA2 static u8 lit_26[4] = {
 };
 
 /* 80456654-80456658 0004+00 s=2 e=0 z=0  None .sdata2    @27 */
-SECTION_SDATA2 static u32 lit_27 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_27 = 1.0f;
 
 /* 80456658-8045665C 0004+00 s=2 e=0 z=0  None .sdata2    @28 */
-SECTION_SDATA2 static u32 lit_28 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_28 = 0.5f;
 
 /* 8035FF60-803600D4 0174+00 s=0 e=1 z=0  None .text      GXProject */
 #pragma push
@@ -137,7 +135,7 @@ extern "C" asm void GXLoadTexMtxImm() {
 
 /* ############################################################################################## */
 /* 8045665C-80456660 0004+00 s=1 e=0 z=0  None .sdata2    @201 */
-SECTION_SDATA2 static u32 lit_201 = 0x43AB0000;
+SECTION_SDATA2 static f32 lit_201 = 342.0f;
 
 /* 803603D4-80360464 0090+00 s=1 e=0 z=0  None .text      __GXSetViewport */
 #pragma push

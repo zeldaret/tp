@@ -12,7 +12,6 @@
 //
 
 void fpcPf_Get(s16);
-extern "C" extern u8 g_fpcPf_ProfileList_p[4 + 4 /* padding */];
 
 extern "C" void fpcPf_Get__Fs();
 extern "C" extern u8 g_fpcPf_ProfileList_p[4 + 4 /* padding */];

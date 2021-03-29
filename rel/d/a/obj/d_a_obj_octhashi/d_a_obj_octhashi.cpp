@@ -13,16 +13,16 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {
+    /* 80CA54A8 */ ~cXyz();
+    /* 80CA6250 */ cXyz();
+};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 80CA624C */ csXyz();
     /* 8026745C */ void operator+=(csXyz&);
     /* 80CA546C */ ~csXyz();
-};
-
-struct cXyz {
-    /* 80CA54A8 */ ~cXyz();
-    /* 80CA6250 */ cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -200,14 +200,6 @@ static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
 static void daObjOCTHASHI_Draw(daObjOCTHASHI_c*);
 static void daObjOCTHASHI_Execute(daObjOCTHASHI_c*);
 static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c*);
-extern "C" extern u8 const lit_3887[8];
-extern "C" extern u8 const lit_3888[8];
-extern "C" extern u8 const lit_3889[8];
-extern "C" extern u32 const lit_3890;
-extern "C" extern u32 const lit_3903;
-extern "C" extern u32 const lit_3904;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OCTHASHI[12];
 
 extern "C" void initCcCylinder__15daObjOCTHASHI_cFv();
 extern "C" static void daObjOCTHASHI_Create__FP10fopAc_ac_c();
@@ -270,22 +262,6 @@ void def_se_set(Z2Creature*, cCcD_Obj*, u32, fopAc_ac_c*);
 void cM_rndFX(f32);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80CA6680[4];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

@@ -141,20 +141,16 @@ asm void JUTTexture::init() {
 
 /* ############################################################################################## */
 /* 80455FD8-80455FDC 0004+00 s=2 e=0 z=0  None .sdata2    @453 */
-SECTION_SDATA2 static u32 lit_453 = 0x3E000000;
+SECTION_SDATA2 static f32 lit_453 = 0.125f;
 
 /* 80455FDC-80455FE0 0004+00 s=2 e=0 z=0  None .sdata2    @454 */
-SECTION_SDATA2 static u32 lit_454 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_454 = 100.0f;
 
 /* 80455FE0-80455FE8 0008+00 s=2 e=0 z=0  None .sdata2    @456 */
-SECTION_SDATA2 static u8 lit_456[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_456 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80455FE8-80455FF0 0008+00 s=2 e=0 z=0  None .sdata2    @459 */
-SECTION_SDATA2 static u8 lit_459[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_459 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802DE658-802DE744 00EC+00 s=2 e=0 z=0  None .text      initTexObj__10JUTTextureFv */
 #pragma push

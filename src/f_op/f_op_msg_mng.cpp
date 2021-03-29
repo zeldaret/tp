@@ -115,12 +115,6 @@ void fpcLy_CurrentLayer();
 void fpcM_Delete(void*);
 void fpcPi_Change(process_priority_class*, unsigned int, u16, u16);
 void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
 
 extern "C" void mDoExt_getGameHeap__Fv();
 extern "C" void fopScnM_SearchByID__FUi();
@@ -347,24 +341,22 @@ SECTION_DATA static void* lit_4305[7 + 1 /* padding */] = {
 };
 
 /* 80451C74-80451C78 0004+00 s=1 e=0 z=0  None .sdata2    @4167 */
-SECTION_SDATA2 static u32 lit_4167 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4167 = 0.5f;
 
 /* 80451C78-80451C7C 0004+00 s=1 e=0 z=0  None .sdata2    @4298 */
-SECTION_SDATA2 static u32 lit_4298 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4298 = 1.0f;
 
 /* 80451C7C-80451C80 0004+00 s=1 e=0 z=0  None .sdata2    @4299 */
-SECTION_SDATA2 static u32 lit_4299 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4299 = 2.0f;
 
 /* 80451C80-80451C84 0004+00 s=1 e=0 z=0  None .sdata2    @4300 */
-SECTION_SDATA2 static u32 lit_4300 = 0x47000000;
+SECTION_SDATA2 static f32 lit_4300 = 32768.0f;
 
 /* 80451C84-80451C88 0004+00 s=1 e=0 z=0  None .sdata2    @4301 */
-SECTION_SDATA2 static u32 lit_4301 = 0x477FFF00;
+SECTION_SDATA2 static f32 lit_4301 = 65535.0f;
 
 /* 80451C88-80451C90 0008+00 s=1 e=0 z=0  None .sdata2    @4303 */
-SECTION_SDATA2 static u8 lit_4303[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80020160-800202CC 016C+00 s=1 e=4 z=2  None .text      fopMsgM_valueIncrease__FiiUc */
 #pragma push

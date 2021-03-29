@@ -13,8 +13,6 @@
 
 extern void* const data_8071C530[2];
 
-extern void* const data_8071C530[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_mk_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 8071C530-8071C538 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_8071C530[2] = {
+    (void*)__sinit_d_a_e_mk_cpp,
+    (void*)NULL,
+};

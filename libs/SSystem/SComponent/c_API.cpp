@@ -13,8 +13,6 @@
 
 extern "C" extern void* g_cAPI_Interface[6];
 
-extern "C" extern void* g_cAPI_Interface[6];
-
 //
 // External References:
 //

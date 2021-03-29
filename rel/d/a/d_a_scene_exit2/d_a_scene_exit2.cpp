@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -73,9 +73,6 @@ static void daScExit_Execute(daScExit_c*);
 static void daScExit_Delete(daScExit_c*);
 static void daScExit_Create(daScExit_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u8 const lit_3800[4];
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_SCENE_EXIT2[12];
 
 extern "C" void initBaseMtx__10daScExit_cFv();
 extern "C" void setBaseMtx__10daScExit_cFv();
@@ -110,11 +107,6 @@ void dStage_changeScene(int, f32, u32, s8, s16, int);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_getReverb(int);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_8059E920[4];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

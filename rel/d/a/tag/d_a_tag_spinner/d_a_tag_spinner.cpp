@@ -15,9 +15,9 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct dPath {};
-
 struct cXyz {};
+
+struct dPath {};
 
 struct daTagSppath_c {
     /* 80D62024 */ void getNearPathPos(cXyz*, dPath*);
@@ -47,7 +47,6 @@ static void search_spinner_sub(void*, void*);
 static void daTagSpinner_Execute(daTagSpinner_c*);
 static void daTagSpinner_Delete(daTagSpinner_c*);
 static void daTagSpinner_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Tag_Spinner[12];
 
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" static void search_spinner_sub__FPvPv();
@@ -71,11 +70,6 @@ void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
 void fopAc_IsActor(void*);
 void fopAcIt_Judge(void* (*)(void*, void*), void*);
 void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();

@@ -13,8 +13,6 @@
 
 extern void* const data_80587D70[2];
 
-extern void* const data_80587D70[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_kbacket_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80587D70-80587D78 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80587D70[2] = {
+    (void*)__sinit_d_a_obj_kbacket_cpp,
+    (void*)NULL,
+};

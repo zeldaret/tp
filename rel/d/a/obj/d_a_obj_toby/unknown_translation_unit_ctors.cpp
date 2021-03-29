@@ -13,8 +13,6 @@
 
 extern void* const data_80D155D4[2];
 
-extern void* const data_80D155D4[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_toby_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80D155D4-80D155DC 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80D155D4[2] = {
+    (void*)__sinit_d_a_obj_toby_cpp,
+    (void*)NULL,
+};

@@ -16,8 +16,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct dPath {};
-
 struct Vec {};
 
 struct cXyz {
@@ -25,6 +23,8 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266F48 */ void normalizeZP();
 };
+
+struct dPath {};
 
 struct daTagSppath_c {
     /* 80D61C18 */ void create();
@@ -90,8 +90,6 @@ static void daTagSppath_Create(fopAc_ac_c*);
 static void daTagSppath_Delete(daTagSppath_c*);
 static void daTagSppath_Execute(daTagSppath_c*);
 static bool daTagSppath_Draw(daTagSppath_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Tag_Sppath[12];
 
 extern "C" void create__13daTagSppath_cFv();
 extern "C" void __dt__10dCcD_GSttsFv();
@@ -117,16 +115,6 @@ void dPath_GetRoomPath(int, int);
 void dPath_GetNextRoomPath(dPath const*, int);
 void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

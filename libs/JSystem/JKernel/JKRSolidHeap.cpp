@@ -60,8 +60,6 @@ struct JKRSolidHeap {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRSolidHeap__stringBase0;
-
 extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
 extern "C" void do_destroy__12JKRSolidHeapFv();
 extern "C" void __ct__12JKRSolidHeapFPvUlP7JKRHeapb();
@@ -91,8 +89,6 @@ extern "C" extern char const* const JKRSolidHeap__stringBase0;
 //
 
 void operator delete(void*);
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
 
 extern "C" bool dump_sort__7JKRHeapFv();
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
@@ -331,14 +327,10 @@ SECTION_SDATA2 static f32 lit_693[1 + 1 /* padding */] = {
 };
 
 /* 80455FB0-80455FB8 0008+00 s=1 e=0 z=0  None .sdata2    @695 */
-SECTION_SDATA2 static u8 lit_695[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_695 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80455FB8-80455FC0 0008+00 s=1 e=0 z=0  None .sdata2    @697 */
-SECTION_SDATA2 static u8 lit_697[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_697 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802D10FC-802D11FC 0100+00 s=1 e=0 z=0  None .text      dump__12JKRSolidHeapFv */
 #pragma push

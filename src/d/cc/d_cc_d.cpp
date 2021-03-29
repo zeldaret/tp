@@ -153,7 +153,8 @@ struct cM3dGCps {
     /* 8026F03C */ void Set(cM3dGCpsS const&);
 };
 
-struct cCcD_CpsAttr;
+struct cCcD_PntAttr {};
+
 struct cCcD_ShapeAttr {
     struct Shape {};
 
@@ -163,32 +164,9 @@ struct cCcD_ShapeAttr {
 };
 
 struct cCcD_TriAttr;
-struct cCcD_CylAttr;
-struct cCcD_PntAttr {};
-
+struct cCcD_SphAttr;
+struct cCcD_CpsAttr;
 struct cCcD_AabAttr {};
-
-struct cCcD_SphAttr {
-    /* 80084B44 */ void GetCoCP() const;
-    /* 80037A54 */ void GetCoCP();
-    /* 80264538 */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 802645C0 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084B4C */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
-    /* 80084B54 */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
-    /* 80084B5C */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
-    /* 802644EC */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
-    /* 8026457C */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
-    /* 80264688 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80084B94 */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
-    /* 80084B9C */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
-    /* 80084BA4 */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
-    /* 80084BAC */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
-    /* 80264644 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
-    /* 802645F8 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 802646E0 */ void CalcAabBox();
-    /* 8026476C */ void GetNVec(cXyz const&, cXyz*) const;
-    /* 80264808 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
-};
 
 struct cCcD_CylAttr {
     /* 80084CC0 */ void GetCoCP() const;
@@ -229,6 +207,28 @@ struct cCcD_CpsAttr {
     /* 80263F74 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
     /* 80263FC4 */ void CalcAabBox();
     /* 80264014 */ void GetNVec(cXyz const&, cXyz*) const;
+};
+
+struct cCcD_SphAttr {
+    /* 80084B44 */ void GetCoCP() const;
+    /* 80037A54 */ void GetCoCP();
+    /* 80264538 */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
+    /* 802645C0 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
+    /* 80084B4C */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
+    /* 80084B54 */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
+    /* 80084B5C */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
+    /* 802644EC */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
+    /* 8026457C */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
+    /* 80264688 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
+    /* 80084B94 */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
+    /* 80084B9C */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
+    /* 80084BA4 */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
+    /* 80084BAC */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
+    /* 80264644 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
+    /* 802645F8 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
+    /* 802646E0 */ void CalcAabBox();
+    /* 8026476C */ void GetNVec(cXyz const&, cXyz*) const;
+    /* 80264808 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 };
 
 struct cCcD_TriAttr {
@@ -313,13 +313,6 @@ struct cCcD_GObjInf {
 //
 
 void dCcD_GetGObjInf(cCcD_Obj*);
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Tri[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__10dCcD_GStts[3];
-extern "C" extern void* __vt__10cCcD_GStts[3];
 
 extern "C" void ClrActorInfo__22dCcD_GAtTgCoCommonBaseFv();
 extern "C" void ct__22dCcD_GAtTgCoCommonBaseFv();
@@ -463,20 +456,6 @@ extern "C" extern void* __vt__10cCcD_GStts[3];
 void fopAcIt_Judge(void* (*)(void*, void*), void*);
 void fpcSch_JudgeByID(void*, void*);
 void operator delete(void*);
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__15cCcD_DivideInfo[3];
-extern "C" extern void* __vt__8cM3dGSph[3];
-extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__12cCcD_TriAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_virtual_center__14cCcD_ShapeAttr[12];
-extern "C" extern f32 Zero__4cXyz[3];
 
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();

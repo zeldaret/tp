@@ -31,7 +31,6 @@ struct daTagSetBall_c {
 static void daTagSetBall_Execute(daTagSetBall_c*);
 static void daTagSetBall_Delete(daTagSetBall_c*);
 static void daTagSetBall_Create(daTagSetBall_c*);
-extern "C" extern void* g_profile_Tag_SetBall[12];
 
 extern "C" void initBaseMtx__14daTagSetBall_cFv();
 extern "C" void setBaseMtx__14daTagSetBall_cFv();
@@ -47,9 +46,6 @@ extern "C" extern void* g_profile_Tag_SetBall[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];

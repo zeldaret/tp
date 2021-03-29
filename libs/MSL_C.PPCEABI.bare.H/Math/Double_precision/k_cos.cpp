@@ -23,49 +23,31 @@ extern "C" void __kernel_cos();
 
 /* ############################################################################################## */
 /* 804569C0-804569C8 0008+00 s=1 e=0 z=0  None .sdata2    @65 */
-SECTION_SDATA2 static u8 lit_65[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_65 = 1.0;
 
 /* 804569C8-804569D0 0008+00 s=1 e=0 z=0  None .sdata2    @66 */
-SECTION_SDATA2 static u8 lit_66[8] = {
-    0x3F, 0xA5, 0x55, 0x55, 0x55, 0x55, 0x55, 0x4C,
-};
+SECTION_SDATA2 static f64 lit_66 = 0.0416666666666666;
 
 /* 804569D0-804569D8 0008+00 s=1 e=0 z=0  None .sdata2    @67 */
-SECTION_SDATA2 static u8 lit_67[8] = {
-    0xBF, 0x56, 0xC1, 0x6C, 0x16, 0xC1, 0x51, 0x77,
-};
+SECTION_SDATA2 static f64 lit_67 = -0.001388888888887411;
 
 /* 804569D8-804569E0 0008+00 s=1 e=0 z=0  None .sdata2    @68 */
-SECTION_SDATA2 static u8 lit_68[8] = {
-    0x3E, 0xFA, 0x01, 0xA0, 0x19, 0xCB, 0x15, 0x90,
-};
+SECTION_SDATA2 static f64 lit_68 = 2.480158728947673e-05;
 
 /* 804569E0-804569E8 0008+00 s=1 e=0 z=0  None .sdata2    @69 */
-SECTION_SDATA2 static u8 lit_69[8] = {
-    0xBE, 0x92, 0x7E, 0x4F, 0x80, 0x9C, 0x52, 0xAD,
-};
+SECTION_SDATA2 static f64 lit_69 = -2.7557314351390663e-07;
 
 /* 804569E8-804569F0 0008+00 s=1 e=0 z=0  None .sdata2    @70 */
-SECTION_SDATA2 static u8 lit_70[8] = {
-    0x3E, 0x21, 0xEE, 0x9E, 0xBD, 0xB4, 0xB1, 0xC4,
-};
+SECTION_SDATA2 static f64 lit_70 = 2.087572321298175e-09;
 
 /* 804569F0-804569F8 0008+00 s=1 e=0 z=0  None .sdata2    @71 */
-SECTION_SDATA2 static u8 lit_71[8] = {
-    0xBD, 0xA8, 0xFA, 0xE9, 0xBE, 0x88, 0x38, 0xD4,
-};
+SECTION_SDATA2 static f64 lit_71 = -1.1359647557788195e-11;
 
 /* 804569F8-80456A00 0008+00 s=1 e=0 z=0  None .sdata2    @72 */
-SECTION_SDATA2 static u8 lit_72[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_72 = 0.5;
 
 /* 80456A00-80456A08 0008+00 s=1 e=0 z=0  None .sdata2    @73 */
-SECTION_SDATA2 static u8 lit_73[8] = {
-    0x3F, 0xD2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_73 = 0.28125;
 
 /* 8036AAA8-8036AB9C 00F4+00 s=0 e=2 z=0  None .text      __kernel_cos */
 #pragma push

@@ -46,8 +46,6 @@ struct JASBasicInst {
 // Forward References:
 //
 
-extern "C" extern void* __vt__7JASInst[5];
-
 extern "C" void __ct__12JASBasicInstFv();
 extern "C" void __dt__12JASBasicInstFv();
 extern "C" void getParam__12JASBasicInstCFiiP12JASInstParam();

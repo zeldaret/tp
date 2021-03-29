@@ -114,7 +114,6 @@ static void daTag_AllMato_Delete(void*);
 static void daTag_AllMato_Execute(void*);
 static void daTag_AllMato_Draw(void*);
 static bool daTag_AllMato_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_ALLMATO[12];
 
 extern "C" void create__15daTag_AllMato_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -167,12 +166,6 @@ void dCam_getBody();
 void cM3d_Cross_LinSph(cM3dGLin const*, cM3dGSph const*, Vec*);
 void cM3d_Cross_CylLin(cM3dGCyl const*, cM3dGLin const*, Vec*, Vec*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

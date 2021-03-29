@@ -60,9 +60,6 @@ extern "C" bool checkCutJumpCancelTurn__9daPy_py_cCFv();
 void dCcD_GetGObjInf(cCcD_Obj*);
 void cM_atan2s(f32, f32);
 void cM_rndFX(f32);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void getHitSeID__12dCcD_GObjInfFUci();
 extern "C" void dCcD_GetGObjInf__FP8cCcD_Obj();
@@ -174,27 +171,17 @@ asm void at_power_check(dCcU_AtInfo* param_0) {
 
 /* ############################################################################################## */
 /* 80452798-804527A0 0004+04 s=1 e=0 z=0  None .sdata2    @4212 */
-SECTION_SDATA2 static u8 lit_4212[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_4212[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 804527A0-804527A8 0008+00 s=1 e=0 z=0  None .sdata2    @4213 */
-SECTION_SDATA2 static u8 lit_4213[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4213 = 0.5;
 
 /* 804527A8-804527B0 0008+00 s=1 e=0 z=0  None .sdata2    @4214 */
-SECTION_SDATA2 static u8 lit_4214[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4214 = 3.0;
 
 /* 804527B0-804527B8 0008+00 s=1 e=0 z=0  None .sdata2    @4215 */
 SECTION_SDATA2 static u8 lit_4215[8] = {
@@ -202,10 +189,10 @@ SECTION_SDATA2 static u8 lit_4215[8] = {
 };
 
 /* 804527B8-804527BC 0004+00 s=1 e=0 z=0  None .sdata2    @4216 */
-SECTION_SDATA2 static u32 lit_4216 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4216 = 100.0f;
 
 /* 804527BC-804527C0 0004+00 s=1 e=0 z=0  None .sdata2    @4217 */
-SECTION_SDATA2 static u32 lit_4217 = 0x457A0000;
+SECTION_SDATA2 static f32 lit_4217 = 4000.0f;
 
 /* 804527C0-804527C8 0004+04 s=1 e=0 z=0  None .sdata2    @4218 */
 SECTION_SDATA2 static f32 lit_4218[1 + 1 /* padding */] = {

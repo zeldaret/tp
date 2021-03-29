@@ -263,8 +263,6 @@ static void dMeter2_Execute(dMeter2_c*);
 static bool dMeter2_IsDelete(dMeter2_c*);
 static void dMeter2_Delete(dMeter2_c*);
 static void dMeter2_Create(msg_class*);
-extern "C" extern char const* const d_meter_d_meter2__stringBase0;
-extern "C" extern void* g_profile_METER2[10];
 
 extern "C" void _create__9dMeter2_cFv();
 extern "C" void _execute__9dMeter2_cFv();
@@ -345,17 +343,6 @@ bool dMeter2Info_is2DActiveTouchArea();
 void dTimer_createStockTimer();
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
-extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_mwHIO[304];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_ringHIO[344];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void fopMsgM_setStageLayer__FPv();
@@ -545,7 +532,7 @@ SECTION_SDATA2 static u8 lit_4662[4] = {
 };
 
 /* 804549CC-804549D0 0004+00 s=13 e=0 z=0  None .sdata2    @4663 */
-SECTION_SDATA2 static u32 lit_4663 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4663 = 1.0f;
 
 /* 8021EA14-8021F128 0714+00 s=1 e=0 z=0  None .text      _create__9dMeter2_cFv */
 #pragma push
@@ -643,14 +630,10 @@ asm void dMeter2_c::checkStatus() {
 
 /* ############################################################################################## */
 /* 804549D8-804549E0 0008+00 s=4 e=0 z=0  None .sdata2    @5267 */
-SECTION_SDATA2 static u8 lit_5267[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5267 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 804549E0-804549E8 0008+00 s=2 e=0 z=0  None .sdata2    @5268 */
-SECTION_SDATA2 static u8 lit_5268[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5268 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8021FD60-80220180 0420+00 s=1 e=0 z=0  None .text      moveLife__9dMeter2_cFv */
 #pragma push
@@ -664,7 +647,7 @@ asm void dMeter2_c::moveLife() {
 
 /* ############################################################################################## */
 /* 804549E8-804549EC 0004+00 s=4 e=0 z=0  None .sdata2    @5791 */
-SECTION_SDATA2 static u32 lit_5791 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_5791 = 1.0f / 10.0f;
 
 /* 80220180-8022051C 039C+00 s=1 e=0 z=0  None .text      moveKantera__9dMeter2_cFv */
 #pragma push
@@ -678,7 +661,7 @@ asm void dMeter2_c::moveKantera() {
 
 /* ############################################################################################## */
 /* 804549EC-804549F0 0004+00 s=2 e=0 z=0  None .sdata2    @5933 */
-SECTION_SDATA2 static u32 lit_5933 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5933 = 0.5f;
 
 /* 8022051C-80220888 036C+00 s=1 e=0 z=0  None .text      moveOxygen__9dMeter2_cFv */
 #pragma push
@@ -692,10 +675,10 @@ asm void dMeter2_c::moveOxygen() {
 
 /* ############################################################################################## */
 /* 804549F0-804549F4 0004+00 s=3 e=0 z=0  None .sdata2    @6051 */
-SECTION_SDATA2 static u32 lit_6051 = 0x41200000;
+SECTION_SDATA2 static f32 lit_6051 = 10.0f;
 
 /* 804549F4-804549F8 0004+00 s=1 e=0 z=0  None .sdata2    @6052 */
-SECTION_SDATA2 static u32 lit_6052 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_6052 = 1.0f / 5.0f;
 
 /* 80220888-80220C30 03A8+00 s=1 e=0 z=0  None .text      moveLightDrop__9dMeter2_cFv */
 #pragma push
@@ -729,7 +712,7 @@ asm void dMeter2_c::moveKey() {
 
 /* ############################################################################################## */
 /* 804549F8-804549FC 0004+00 s=2 e=0 z=0  None .sdata2    @6564 */
-SECTION_SDATA2 static u32 lit_6564 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_6564 = 1.0f / 100.0f;
 
 /* 80221244-802217F4 05B0+00 s=1 e=0 z=0  None .text      moveButtonA__9dMeter2_cFv */
 #pragma push
@@ -813,10 +796,10 @@ asm void dMeter2_c::moveButtonXY() {
 
 /* ############################################################################################## */
 /* 804549FC-80454A00 0004+00 s=1 e=0 z=0  None .sdata2    @7509 */
-SECTION_SDATA2 static u32 lit_7509 = 0x41700000;
+SECTION_SDATA2 static f32 lit_7509 = 15.0f;
 
 /* 80454A00-80454A04 0004+00 s=1 e=0 z=0  None .sdata2    @7510 */
-SECTION_SDATA2 static u32 lit_7510 = 0x42480000;
+SECTION_SDATA2 static f32 lit_7510 = 50.0f;
 
 /* 80222E88-802230F8 0270+00 s=1 e=0 z=0  None .text      moveButtonCross__9dMeter2_cFv */
 #pragma push
@@ -985,7 +968,7 @@ asm void dMeter2_c::alphaAnimeButton() {
 
 /* ############################################################################################## */
 /* 80454A04-80454A08 0004+00 s=1 e=0 z=0  None .sdata2    @9090 */
-SECTION_SDATA2 static u32 lit_9090 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_9090 = 255.0f;
 
 /* 80454A08-80454A10 0004+04 s=1 e=0 z=0  None .sdata2    @9091 */
 SECTION_SDATA2 static f32 lit_9091[1 + 1 /* padding */] = {

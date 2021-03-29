@@ -13,8 +13,6 @@
 
 extern "C" extern u8 data_80CFE008[4];
 
-extern "C" extern u8 data_80CFE008[4];
-
 //
 // External References:
 //

@@ -83,15 +83,15 @@ struct dPa_followEcallBack {
     /* 80BE02B0 */ void __defctor();
 };
 
-struct csXyz {
-    /* 80BE02D8 */ ~csXyz();
-    /* 80BE0314 */ csXyz();
-};
-
 struct cXyz {
     /* 802670AC */ void isZero() const;
     /* 80BE0318 */ ~cXyz();
     /* 80BE0354 */ cXyz();
+};
+
+struct csXyz {
+    /* 80BE02D8 */ ~csXyz();
+    /* 80BE0314 */ csXyz();
 };
 
 struct dKy_tevstr_c {};
@@ -215,10 +215,6 @@ static void daObjDrop_Delete(daObjDrop_c*);
 static void daObjDrop_Create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(u8*);
 static void cLib_calcTimer__template1(s8*);
-extern "C" extern u32 const lit_4037;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Drop[12];
 
 extern "C" static void searchParentSub__FPvPv();
 extern "C" void Create__11daObjDrop_cFv();
@@ -293,24 +289,6 @@ void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void cLib_chasePos(cXyz*, cXyz const&, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__19dPa_followEcallBack[10];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
-extern "C" extern u8 struct_80BE2238[4];
 
 extern "C" void fadeOut_f__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void __ct__10fopAc_ac_cFv();

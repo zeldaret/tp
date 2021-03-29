@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern char const* const MSL_Common_Src_printf__stringBase0;
-
 extern "C" void sprintf();
 extern "C" void snprintf();
 extern "C" void vsnprintf();
@@ -33,9 +31,6 @@ extern "C" extern char const* const MSL_Common_Src_printf__stringBase0;
 //
 // External References:
 //
-
-extern "C" extern void* __files[80];
-extern "C" extern u8 __ctype_map[256];
 
 SECTION_INIT void memcpy();
 extern "C" void __va_arg();

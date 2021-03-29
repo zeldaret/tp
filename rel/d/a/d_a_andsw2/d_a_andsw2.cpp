@@ -60,7 +60,6 @@ static bool daAndsw2_actionWait(daAndsw2_c*);
 static void daAndsw2_Execute(daAndsw2_c*);
 static void daAndsw2_Delete(daAndsw2_c*);
 static void daAndsw2_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_ANDSW2[12];
 
 extern "C" void getEventNo__10daAndsw2_cFv();
 extern "C" void getSwbit__10daAndsw2_cFv();
@@ -93,9 +92,6 @@ extern "C" extern void* g_profile_ANDSW2[12];
 void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void dLib_getEventSwitchNo(int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

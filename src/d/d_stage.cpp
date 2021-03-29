@@ -97,31 +97,31 @@ struct dStage_startStage_c {
     /* 8002419C */ void set(char const*, s8, s16, s8);
 };
 
-struct dStage_dPath_c {};
-
-struct dStage_FileList2_dt_c {};
-
-struct dStage_SoundInfo_c {};
-
-struct dStage_MemoryMap_c {};
-
 struct dStage_MapEventInfo_c {};
 
-struct dStage_Elst_c {};
-
-struct dStage_dPnt_c {};
-
-struct dStage_FloorInfo_c {};
-
-struct dStage_MemoryConfig_c {};
-
-struct dStage_DMap_c {};
+struct dStage_dPath_c {};
 
 struct dStage_FileList_dt_c {};
 
-struct dStage_Lbnk_c {};
+struct dStage_MemoryMap_c {};
+
+struct dStage_dPnt_c {};
 
 struct dStage_Multi_c {};
+
+struct dStage_MemoryConfig_c {};
+
+struct dStage_FloorInfo_c {};
+
+struct dStage_FileList2_dt_c {};
+
+struct dStage_DMap_c {};
+
+struct dStage_Lbnk_c {};
+
+struct dStage_Elst_c {};
+
+struct dStage_SoundInfo_c {};
 
 struct dStage_stageDt_c {
     /* 8002483C */ void getStagInfo() const;
@@ -505,17 +505,6 @@ void dStage_changeSceneExitId(cBgS_PolyInfo&, f32, u32, s8, s16);
 void dStage_changeScene(int, f32, u32, s8, s16, int);
 void dStage_changeScene4Event(int, s8, int, bool, f32, u32, s16, int);
 void dStage_restartRoom(u32, u32, int);
-extern "C" extern char const* const d_d_stage__stringBase0;
-extern "C" extern void* __vt__16dStage_stageDt_c[93];
-extern "C" extern void* __vt__11dStage_dt_c[93];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 data_80450D68[4];
-extern "C" extern u8 mArcBankName__20dStage_roomControl_c[4];
-extern "C" extern u8 mArcBankData__20dStage_roomControl_c[4];
-extern "C" extern u8 pad_80450D7C[4];
 
 extern "C" void set__18dStage_nextStage_cFPCcScsScScUc();
 extern "C" static void dStage_SetErrorRoom__Fv();
@@ -850,11 +839,6 @@ void dKy_set_nexttime(f32);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
-extern "C" extern u8 data_804505F0[8];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 extern "C" void OSReport();
 extern "C" void OSReport_Error();
@@ -3196,12 +3180,10 @@ asm void dStage_changeSceneExitId(cBgS_PolyInfo& param_0, f32 param_1, u32 param
 
 /* ############################################################################################## */
 /* 80451C94-80451C98 0004+00 s=2 e=0 z=0  None .sdata2    @5315 */
-SECTION_SDATA2 static u32 lit_5315 = 0x41700000;
+SECTION_SDATA2 static f32 lit_5315 = 15.0f;
 
 /* 80451C98-80451CA0 0008+00 s=2 e=0 z=0  None .sdata2    @5317 */
-SECTION_SDATA2 static u8 lit_5317[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5317 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80027170-800272E0 0170+00 s=1 e=10 z=63  None .text      dStage_changeScene__FifUlScsi */
 #pragma push

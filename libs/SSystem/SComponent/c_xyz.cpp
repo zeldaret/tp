@@ -39,11 +39,6 @@ struct cXyz {
 // Forward References:
 //
 
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 BaseZ__4cXyz[12];
-
 extern "C" void __pl__4cXyzCFRC3Vec();
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void __ml__4cXyzCFf();
@@ -73,8 +68,6 @@ extern "C" extern u8 BaseZ__4cXyz[12];
 //
 
 void cM_atan2s(f32, f32);
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_epsilon;
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void cM_atan2s__Fff();
@@ -134,7 +127,7 @@ asm void cXyz::operator*(Vec const& param_0) const {
 
 /* ############################################################################################## */
 /* 80455070-80455074 0004+00 s=3 e=0 z=0  None .sdata2    @2201 */
-SECTION_SDATA2 static u32 lit_2201 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2201 = 1.0f;
 
 /* 80266C18-80266C6C 0054+00 s=0 e=3 z=12  None .text      __dv__4cXyzCFf */
 #pragma push
@@ -184,7 +177,7 @@ static u8 lit_2450[12];
 f32 Zero__4cXyz[3];
 
 /* 80455074-80455078 0004+00 s=4 e=0 z=0  None .sdata2    @2288 */
-SECTION_SDATA2 static u32 lit_2288 = 0x2EAFEBFF;
+SECTION_SDATA2 static f32 lit_2288 = 7.999999968033578e-11f;
 
 /* 80266D30-80266DC4 0094+00 s=1 e=4 z=0  None .text      normZP__4cXyzCFv */
 #pragma push
@@ -219,10 +212,10 @@ SECTION_RODATA static u8 const lit_2299[12 + 4 /* padding */] = {
 };
 
 /* 80455078-8045507C 0004+00 s=1 e=0 z=0  None .sdata2    @2325 */
-SECTION_SDATA2 static u32 lit_2325 = 0x3FA00000;
+SECTION_SDATA2 static f32 lit_2325 = 1.25f;
 
 /* 8045507C-80455080 0004+00 s=1 e=0 z=0  None .sdata2    @2326 */
-SECTION_SDATA2 static u32 lit_2326 = 0x49742400;
+SECTION_SDATA2 static f32 lit_2326 = 1000000.0f;
 
 /* 80455080-80455084 0004+00 s=3 e=0 z=0  None .sdata2    @2327 */
 SECTION_SDATA2 static u8 lit_2327[4] = {
@@ -294,7 +287,7 @@ asm bool cXyz::operator!=(Vec const& param_0) const {
 
 /* ############################################################################################## */
 /* 80455084-80455088 0004+00 s=1 e=0 z=0  None .sdata2    @2405 */
-SECTION_SDATA2 static u32 lit_2405 = 0x42000000;
+SECTION_SDATA2 static f32 lit_2405 = 32.0f;
 
 /* 802670AC-80267128 007C+00 s=0 e=4 z=7  None .text      isZero__4cXyzCFv */
 #pragma push
@@ -318,14 +311,10 @@ asm void cXyz::atan2sX_Z() const {
 
 /* ############################################################################################## */
 /* 80455088-80455090 0008+00 s=1 e=0 z=0  None .sdata2    @2446 */
-SECTION_SDATA2 static u8 lit_2446[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2446 = 0.5;
 
 /* 80455090-80455098 0008+00 s=1 e=0 z=0  None .sdata2    @2447 */
-SECTION_SDATA2 static u8 lit_2447[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2447 = 3.0;
 
 /* 80455098-804550A0 0008+00 s=1 e=0 z=0  None .sdata2    @2448 */
 SECTION_SDATA2 static u8 lit_2448[8] = {

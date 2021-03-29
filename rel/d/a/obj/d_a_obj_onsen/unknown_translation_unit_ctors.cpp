@@ -13,8 +13,6 @@
 
 extern u8 const data_80CA8114[4];
 
-extern u8 const data_80CA8114[4];
-
 //
 // External References:
 //
@@ -25,3 +23,10 @@ extern u8 const data_80CA8114[4];
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80CA8114-80CA8118 0004+00 s=0 e=1 z=0  None .ctors     None */
+u8 const data_80CA8114[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

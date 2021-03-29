@@ -38,7 +38,6 @@ static void fpcPi_IsNormal(unsigned int, u16, u16);
 void fpcPi_Change(process_priority_class*, unsigned int, u16, u16);
 void fpcPi_Handler();
 void fpcPi_Init(process_priority_class*, void*, unsigned int, u16, u16);
-extern "C" extern u8 data_804505F0[8];
 
 extern "C" void fpcPi_IsInQueue__FP22process_priority_class();
 extern "C" static void fpcPi_QueueTo__FP22process_priority_class();

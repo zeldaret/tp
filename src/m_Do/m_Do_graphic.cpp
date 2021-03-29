@@ -58,9 +58,9 @@ struct dDlst_shadowControl_c {
     /* 80055A14 */ void draw(f32 (*)[4]);
 };
 
-struct J3DDrawBuffer {};
-
 struct dDlst_base_c {};
+
+struct J3DDrawBuffer {};
 
 struct dDlst_list_c {
     /* 80056390 */ void init();
@@ -156,18 +156,6 @@ static void setLight();
 static void drawItem3D();
 void mDoGph_Painter();
 void mDoGph_Create();
-extern "C" extern char const* const m_Do_m_Do_graphic__stringBase0;
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" extern u8 mBackColor__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTex__13mDoGph_gInf_c[4];
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 struct_80450BE4[4];
 
 extern "C" static void createTimg__FUsUsUl();
 extern "C" void create__13mDoGph_gInf_cFv();
@@ -232,29 +220,6 @@ void cLib_memSet(void*, int, u32);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_HIO[64 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 mPadStatus__10JUTGamePad[48];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 data_80450580;
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JUTProcBar[4];
 
 extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
 extern "C" void mDoExt_getArchiveHeap__Fv();
@@ -489,7 +454,7 @@ SECTION_SDATA2 static u8 lit_4062[4] = {
 };
 
 /* 80451A3C-80451A40 0004+00 s=8 e=0 z=0  None .sdata2    @4063 */
-SECTION_SDATA2 static u32 lit_4063 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4063 = 1.0f;
 
 /* 80007FD8-80008028 0050+00 s=1 e=6 z=15  None .text      fadeOut__13mDoGph_gInf_cFfR8_GXColor */
 #pragma push
@@ -556,7 +521,7 @@ asm void mDoGph_gInf_c::fadeOut(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80451A40-80451A44 0004+00 s=5 e=0 z=0  None .sdata2    @4105 */
-SECTION_SDATA2 static u32 lit_4105 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4105 = 10.0f;
 
 /* 800080F4-80008330 023C+00 s=1 e=0 z=0  None .text      darwFilter__F8_GXColor */
 #pragma push
@@ -570,7 +535,7 @@ asm static void darwFilter(_GXColor param_0) {
 
 /* ############################################################################################## */
 /* 80451A44-80451A48 0004+00 s=1 e=0 z=0  None .sdata2    @4131 */
-SECTION_SDATA2 static u32 lit_4131 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4131 = 255.0f;
 
 /* 80008330-8000841C 00EC+00 s=1 e=0 z=0  None .text      calcFade__13mDoGph_gInf_cFv */
 #pragma push
@@ -640,26 +605,22 @@ SECTION_SDATA static u8 data_8045059C[4] = {
 };
 
 /* 80451A48-80451A4C 0004+00 s=1 e=0 z=0  None .sdata2    @4422 */
-SECTION_SDATA2 static u32 lit_4422 = 0xC37F0000;
+SECTION_SDATA2 static f32 lit_4422 = -255.0f;
 
 /* 80451A4C-80451A50 0004+00 s=2 e=0 z=0  None .sdata2    @4423 */
-SECTION_SDATA2 static u32 lit_4423 = 0x42700000;
+SECTION_SDATA2 static f32 lit_4423 = 60.0f;
 
 /* 80451A50-80451A54 0004+00 s=1 e=0 z=0  None .sdata2    @4424 */
-SECTION_SDATA2 static u32 lit_4424 = 0x42400000;
+SECTION_SDATA2 static f32 lit_4424 = 48.0f;
 
 /* 80451A54-80451A58 0004+00 s=1 e=0 z=0  None .sdata2    @4425 */
-SECTION_SDATA2 static u32 lit_4425 = 0x43C80000;
+SECTION_SDATA2 static f32 lit_4425 = 400.0f;
 
 /* 80451A58-80451A60 0008+00 s=1 e=0 z=0  None .sdata2    @4426 */
-SECTION_SDATA2 static u8 lit_4426[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4426 = 0.5;
 
 /* 80451A60-80451A68 0008+00 s=1 e=0 z=0  None .sdata2    @4427 */
-SECTION_SDATA2 static u8 lit_4427[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4427 = 3.0;
 
 /* 80451A68-80451A70 0008+00 s=1 e=0 z=0  None .sdata2    @4428 */
 SECTION_SDATA2 static u8 lit_4428[8] = {
@@ -667,46 +628,46 @@ SECTION_SDATA2 static u8 lit_4428[8] = {
 };
 
 /* 80451A70-80451A74 0004+00 s=1 e=0 z=0  None .sdata2    @4429 */
-SECTION_SDATA2 static u32 lit_4429 = 0x438C0000;
+SECTION_SDATA2 static f32 lit_4429 = 280.0f;
 
 /* 80451A74-80451A78 0004+00 s=1 e=0 z=0  None .sdata2    @4430 */
-SECTION_SDATA2 static u32 lit_4430 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_4430 = 4.0f / 5.0f;
 
 /* 80451A78-80451A7C 0004+00 s=1 e=0 z=0  None .sdata2    @4431 */
-SECTION_SDATA2 static u32 lit_4431 = 0xC3340000;
+SECTION_SDATA2 static f32 lit_4431 = -180.0f;
 
 /* 80451A7C-80451A80 0004+00 s=1 e=0 z=0  None .sdata2    @4432 */
-SECTION_SDATA2 static u32 lit_4432 = 0x42960000;
+SECTION_SDATA2 static f32 lit_4432 = 75.0f;
 
 /* 80451A80-80451A84 0004+00 s=1 e=0 z=0  None .sdata2    @4433 */
-SECTION_SDATA2 static u32 lit_4433 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4433 = 3.0f;
 
 /* 80451A84-80451A88 0004+00 s=1 e=0 z=0  None .sdata2    @4434 */
-SECTION_SDATA2 static u32 lit_4434 = 0x497423F0;
+SECTION_SDATA2 static f32 lit_4434 = 999999.0f;
 
 /* 80451A88-80451A8C 0004+00 s=1 e=0 z=0  None .sdata2    @4435 */
-SECTION_SDATA2 static u32 lit_4435 = 0x42A00000;
+SECTION_SDATA2 static f32 lit_4435 = 80.0f;
 
 /* 80451A8C-80451A90 0004+00 s=1 e=0 z=0  None .sdata2    @4436 */
-SECTION_SDATA2 static u32 lit_4436 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4436 = 1.0f / 10.0f;
 
 /* 80451A90-80451A94 0004+00 s=1 e=0 z=0  None .sdata2    @4437 */
-SECTION_SDATA2 static u32 lit_4437 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4437 = 100.0f;
 
 /* 80451A94-80451A98 0004+00 s=1 e=0 z=0  None .sdata2    @4438 */
-SECTION_SDATA2 static u32 lit_4438 = 0x38D1B717;
+SECTION_SDATA2 static f32 lit_4438 = 9.999999747378752e-05f;
 
 /* 80451A98-80451A9C 0004+00 s=1 e=0 z=0  None .sdata2    @4439 */
-SECTION_SDATA2 static u32 lit_4439 = 0xC37E0000;
+SECTION_SDATA2 static f32 lit_4439 = -254.0f;
 
 /* 80451A9C-80451AA0 0004+00 s=1 e=0 z=0  None .sdata2    @4440 */
-SECTION_SDATA2 static u32 lit_4440 = 0x43FE8000;
+SECTION_SDATA2 static f32 lit_4440 = 509.0f;
 
 /* 80451AA0-80451AA4 0004+00 s=1 e=0 z=0  None .sdata2    @4441 */
-SECTION_SDATA2 static u32 lit_4441 = 0x3B23D70A;
+SECTION_SDATA2 static f32 lit_4441 = 0.0024999999441206455f;
 
 /* 80451AA4-80451AA8 0004+00 s=1 e=0 z=0  None .sdata2    @4442 */
-SECTION_SDATA2 static u32 lit_4442 = 0xBB23D70A;
+SECTION_SDATA2 static f32 lit_4442 = -0.0024999999441206455f;
 
 /* 80008630-80009184 0B54+00 s=1 e=0 z=0  None .text drawDepth2__FP10view_classP15view_port_classi
  */
@@ -731,10 +692,10 @@ asm cXyz::~cXyz() {
 
 /* ############################################################################################## */
 /* 80451AA8-80451AAC 0004+00 s=3 e=0 z=0  None .sdata2    @4480 */
-SECTION_SDATA2 static u32 lit_4480 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4480 = 448.0f;
 
 /* 80451AAC-80451AB0 0004+00 s=3 e=0 z=0  None .sdata2    @4481 */
-SECTION_SDATA2 static u32 lit_4481 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4481 = 608.0f;
 
 /* 800091C0-800094B4 02F4+00 s=1 e=0 z=0  None .text      trimming__FP10view_classP15view_port_class
  */
@@ -794,7 +755,7 @@ SECTION_SDATA2 static u8 lit_4528[4] = {
 SECTION_SDATA2 static u32 data_80451AB8 = 0x00000040;
 
 /* 80451ABC-80451AC0 0004+00 s=1 e=0 z=0  None .sdata2    @4592 */
-SECTION_SDATA2 static u32 lit_4592 = 0x40800000;
+SECTION_SDATA2 static f32 lit_4592 = 4.0f;
 
 /* 80451AC0-80451AC8 0004+04 s=1 e=0 z=0  None .sdata2    @4593 */
 SECTION_SDATA2 static f32 lit_4593[1 + 1 /* padding */] = {
@@ -804,9 +765,7 @@ SECTION_SDATA2 static f32 lit_4593[1 + 1 /* padding */] = {
 };
 
 /* 80451AC8-80451AD0 0008+00 s=1 e=0 z=0  None .sdata2    @4595 */
-SECTION_SDATA2 static u8 lit_4595[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4595 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80456B60-80456B68 0004+04 s=1 e=0 z=0  None .sbss2     @4530 */
 SECTION_SBSS2 static u8 lit_4530[4 + 4 /* padding */];
@@ -844,10 +803,10 @@ asm static void motionBlure(view_class* param_0) {
 
 /* ############################################################################################## */
 /* 80451AD0-80451AD4 0004+00 s=1 e=0 z=0  None .sdata2    @4641 */
-SECTION_SDATA2 static u32 lit_4641 = 0xC708B800;
+SECTION_SDATA2 static f32 lit_4641 = -35000.0f;
 
 /* 80451AD4-80451AD8 0004+00 s=1 e=0 z=0  None .sdata2    @4642 */
-SECTION_SDATA2 static u32 lit_4642 = 0xC6EA6000;
+SECTION_SDATA2 static f32 lit_4642 = -30000.0f;
 
 /* 8000A504-8000A58C 0088+00 s=1 e=0 z=0  None .text      setLight__Fv */
 #pragma push
@@ -882,28 +841,28 @@ SECTION_DEAD static char const* const pad_80373DE7 = "";
 #pragma pop
 
 /* 80451AD8-80451ADC 0004+00 s=1 e=0 z=0  None .sdata2    @5023 */
-SECTION_SDATA2 static u32 lit_5023 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5023 = -1.0f;
 
 /* 80451ADC-80451AE0 0004+00 s=1 e=0 z=0  None .sdata2    @5024 */
-SECTION_SDATA2 static u32 lit_5024 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_5024 = 0.5f;
 
 /* 80451AE0-80451AE4 0004+00 s=1 e=0 z=0  None .sdata2    @5025 */
-SECTION_SDATA2 static u32 lit_5025 = 0xBF000000;
+SECTION_SDATA2 static f32 lit_5025 = -0.5f;
 
 /* 80451AE4-80451AE8 0004+00 s=1 e=0 z=0  None .sdata2    @5026 */
-SECTION_SDATA2 static u32 lit_5026 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_5026 = 19.0f / 14.0f;
 
 /* 80451AE8-80451AEC 0004+00 s=1 e=0 z=0  None .sdata2    @5027 */
-SECTION_SDATA2 static u32 lit_5027 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_5027 = 100000.0f;
 
 /* 80451AEC-80451AF0 0004+00 s=1 e=0 z=0  None .sdata2    @5028 */
-SECTION_SDATA2 static u32 lit_5028 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_5028 = -2.0f;
 
 /* 80451AF0-80451AF4 0004+00 s=1 e=0 z=0  None .sdata2    @5029 */
-SECTION_SDATA2 static u32 lit_5029 = 0xC7C35000;
+SECTION_SDATA2 static f32 lit_5029 = -100000.0f;
 
 /* 80451AF4-80451AF8 0004+00 s=1 e=0 z=0  None .sdata2    @5030 */
-SECTION_SDATA2 static u32 lit_5030 = 0x43980000;
+SECTION_SDATA2 static f32 lit_5030 = 304.0f;
 
 /* 80451AF8-80451B00 0004+04 s=1 e=0 z=0  None .sdata2    @5031 */
 SECTION_SDATA2 static f32 lit_5031[1 + 1 /* padding */] = {

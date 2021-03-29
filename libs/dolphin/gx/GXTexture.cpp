@@ -41,8 +41,6 @@ extern "C" void __GXSetTmemConfig();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 SECTION_INIT void memset();
 extern "C" void __GXFlushTextureState();
 extern "C" extern void* __GXData;
@@ -173,9 +171,7 @@ SECTION_SDATA2 static f32 lit_220[1 + 1 /* padding */] = {
 };
 
 /* 804565F0-804565F8 0008+00 s=1 e=0 z=0  None .sdata2    @222 */
-SECTION_SDATA2 static u8 lit_222[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_222 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8035DE40-8035E08C 024C+00 s=2 e=22 z=3  None .text      GXInitTexObj */
 #pragma push
@@ -247,16 +243,16 @@ SECTION_SDATA static u8 GX2HWFiltConv[6 + 2 /* padding */] = {
 };
 
 /* 804565F8-804565FC 0004+00 s=1 e=0 z=0  None .sdata2    @288 */
-SECTION_SDATA2 static u32 lit_288 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_288 = -4.0f;
 
 /* 804565FC-80456600 0004+00 s=1 e=0 z=0  None .sdata2    @289 */
-SECTION_SDATA2 static u32 lit_289 = 0x40800000;
+SECTION_SDATA2 static f32 lit_289 = 4.0f;
 
 /* 80456600-80456604 0004+00 s=1 e=0 z=0  None .sdata2    @290 */
-SECTION_SDATA2 static u32 lit_290 = 0x407F5C29;
+SECTION_SDATA2 static f32 lit_290 = 3.990000009536743f;
 
 /* 80456604-80456608 0004+00 s=1 e=0 z=0  None .sdata2    @291 */
-SECTION_SDATA2 static u32 lit_291 = 0x42000000;
+SECTION_SDATA2 static f32 lit_291 = 32.0f;
 
 /* 80456608-8045660C 0004+00 s=1 e=0 z=0  None .sdata2    @292 */
 SECTION_SDATA2 static u8 lit_292[4] = {
@@ -267,7 +263,7 @@ SECTION_SDATA2 static u8 lit_292[4] = {
 };
 
 /* 8045660C-80456610 0004+00 s=1 e=0 z=0  None .sdata2    @293 */
-SECTION_SDATA2 static u32 lit_293 = 0x41200000;
+SECTION_SDATA2 static f32 lit_293 = 10.0f;
 
 /* 8035E0D4-8035E238 0164+00 s=0 e=21 z=4  None .text      GXInitTexObjLOD */
 #pragma push

@@ -19,8 +19,6 @@ extern "C" void GDSetArrayRaw();
 // External References:
 //
 
-extern "C" extern u8 __GDCurrentDL[4];
-
 extern "C" void GDOverflowed();
 extern "C" extern u8 __GDCurrentDL[4];
 

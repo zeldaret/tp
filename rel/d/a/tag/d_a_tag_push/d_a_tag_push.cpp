@@ -53,7 +53,6 @@ static void daTag_Push_Delete(void*);
 static void daTag_Push_Execute(void*);
 static void daTag_Push_Draw(void*);
 static bool daTag_Push_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_PUSH[12];
 
 extern "C" void srchActor__12daTag_Push_cFPvPv();
 extern "C" void create__12daTag_Push_cFv();
@@ -81,10 +80,6 @@ void fpcEx_Search(void* (*)(void*, void*), void*);
 void fpcEx_IsExist(unsigned int);
 void daNpcT_chkPointInArea(cXyz, cXyz, cXyz, s16, int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

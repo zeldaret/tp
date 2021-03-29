@@ -30,7 +30,6 @@ static void fopCam_Execute(camera_class*);
 static void fopCam_IsDelete(camera_class*);
 static void fopCam_Delete(camera_class*);
 static void fopCam_Create(void*);
-extern "C" extern void* g_fopCam_Method[5 + 1 /* padding */];
 
 extern "C" static void fopCam_Draw__FP12camera_class();
 extern "C" static void fopCam_Execute__FP12camera_class();
@@ -52,8 +51,6 @@ void fpcMtd_Execute(process_method_class*, void*);
 void fpcMtd_IsDelete(process_method_class*, void*);
 void fpcMtd_Delete(process_method_class*, void*);
 void fpcMtd_Create(process_method_class*, void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();
 extern "C" void fopDwTg_DrawQTo__FP16create_tag_class();

@@ -57,23 +57,21 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct J2DMaterial {};
-
-struct J2DAnmBase {};
-
 struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmColor {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DAnmTexPattern {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmColor {};
-
 struct J2DAnmTransform {};
 
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmVtxColor {};
+struct J2DAnmBase {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -113,6 +111,8 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
 };
+
+struct J2DMaterial {};
 
 struct J2DWindow {
     struct TMaterial {};
@@ -371,14 +371,10 @@ SECTION_RODATA static u8 const lit_1849[16] = {
 };
 
 /* 80456240-80456248 0008+00 s=7 e=0 z=0  None .sdata2    @1971 */
-SECTION_SDATA2 static u8 lit_1971[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1971 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80456248-80456250 0008+00 s=2 e=0 z=0  None .sdata2    @1974 */
-SECTION_SDATA2 static u8 lit_1974[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1974 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802F9C10-802FA118 0508+00 s=0 e=1 z=0  None .text
  * __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial */
@@ -548,7 +544,7 @@ asm void J2DWindow::drawFrameTexture(JUTTexture* param_0, f32 param_1, f32 param
 
 /* ############################################################################################## */
 /* 80456254-80456258 0004+00 s=1 e=0 z=0  None .sdata2    @2984 */
-SECTION_SDATA2 static u32 lit_2984 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2984 = 1.0f;
 
 /* 80456258-80456260 0004+04 s=1 e=0 z=0  None .sdata2    @2985 */
 SECTION_SDATA2 static f32 lit_2985[1 + 1 /* padding */] = {

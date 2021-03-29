@@ -139,8 +139,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_talk__stringBase0;
-
 extern "C" void __ct__14dMsgScrnTalk_cFUcUcP10JKRExpHeap();
 extern "C" void __dt__14dMsgScrnTalk_cFv();
 extern "C" void exec__14dMsgScrnTalk_cFv();
@@ -171,9 +169,6 @@ void dComIfGp_getSubHeap2D(int);
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 SECTION_INIT void memset();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -292,7 +287,7 @@ SECTION_DATA static void* __vt__14dMsgScrnTalk_c[22] = {
 };
 
 /* 80454D00-80454D04 0004+00 s=2 e=0 z=0  None .sdata2    @4086 */
-SECTION_SDATA2 static u32 lit_4086 = 0x41900000;
+SECTION_SDATA2 static f32 lit_4086 = 18.0f;
 
 /* 80454D04-80454D08 0004+00 s=3 e=0 z=0  None .sdata2    @4087 */
 SECTION_SDATA2 static u8 lit_4087[4] = {
@@ -303,10 +298,10 @@ SECTION_SDATA2 static u8 lit_4087[4] = {
 };
 
 /* 80454D08-80454D0C 0004+00 s=1 e=0 z=0  None .sdata2    @4088 */
-SECTION_SDATA2 static u32 lit_4088 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_4088 = -10.0f;
 
 /* 80454D0C-80454D10 0004+00 s=1 e=0 z=0  None .sdata2    @4089 */
-SECTION_SDATA2 static u32 lit_4089 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_4089 = 6.0f / 5.0f;
 
 /* 80246FF0-80247A90 0AA0+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnTalk_cFUcUcP10JKRExpHeap
  */
@@ -331,7 +326,7 @@ asm dMsgScrnTalk_c::~dMsgScrnTalk_c() {
 
 /* ############################################################################################## */
 /* 80454D10-80454D14 0004+00 s=2 e=0 z=0  None .sdata2    @4197 */
-SECTION_SDATA2 static u32 lit_4197 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4197 = 1.0f;
 
 /* 80247D34-80247E4C 0118+00 s=1 e=0 z=0  None .text      exec__14dMsgScrnTalk_cFv */
 #pragma push
@@ -345,10 +340,10 @@ asm void dMsgScrnTalk_c::exec() {
 
 /* ############################################################################################## */
 /* 80454D14-80454D18 0004+00 s=1 e=0 z=0  None .sdata2    @4278 */
-SECTION_SDATA2 static u32 lit_4278 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_4278 = 4.0f / 5.0f;
 
 /* 80454D18-80454D1C 0004+00 s=1 e=0 z=0  None .sdata2    @4279 */
-SECTION_SDATA2 static u32 lit_4279 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4279 = -1.0f;
 
 /* 80247E4C-802480F0 02A4+00 s=1 e=0 z=0  None .text      drawSelf__14dMsgScrnTalk_cFv */
 #pragma push
@@ -485,37 +480,37 @@ asm void dMsgScrnTalk_c::fukiAlpha(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80454D1C-80454D20 0004+00 s=1 e=0 z=0  None .sdata2    @4489 */
-SECTION_SDATA2 static u32 lit_4489 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4489 = 608.0f;
 
 /* 80454D20-80454D24 0004+00 s=1 e=0 z=0  None .sdata2    @4490 */
-SECTION_SDATA2 static u32 lit_4490 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4490 = 448.0f;
 
 /* 80454D24-80454D28 0004+00 s=1 e=0 z=0  None .sdata2    @4491 */
-SECTION_SDATA2 static u32 lit_4491 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4491 = 0.5f;
 
 /* 80454D28-80454D2C 0004+00 s=1 e=0 z=0  None .sdata2    @4492 */
-SECTION_SDATA2 static u32 lit_4492 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4492 = 50.0f;
 
 /* 80454D2C-80454D30 0004+00 s=1 e=0 z=0  None .sdata2    @4493 */
-SECTION_SDATA2 static u32 lit_4493 = 0x42D20000;
+SECTION_SDATA2 static f32 lit_4493 = 105.0f;
 
 /* 80454D30-80454D34 0004+00 s=1 e=0 z=0  None .sdata2    @4494 */
-SECTION_SDATA2 static u32 lit_4494 = 0x43F30000;
+SECTION_SDATA2 static f32 lit_4494 = 486.0f;
 
 /* 80454D34-80454D38 0004+00 s=1 e=0 z=0  None .sdata2    @4495 */
-SECTION_SDATA2 static u32 lit_4495 = 0x43660000;
+SECTION_SDATA2 static f32 lit_4495 = 230.0f;
 
 /* 80454D38-80454D3C 0004+00 s=1 e=0 z=0  None .sdata2    @4496 */
-SECTION_SDATA2 static u32 lit_4496 = 0x436B0000;
+SECTION_SDATA2 static f32 lit_4496 = 235.0f;
 
 /* 80454D3C-80454D40 0004+00 s=1 e=0 z=0  None .sdata2    @4497 */
-SECTION_SDATA2 static u32 lit_4497 = 0x43B18000;
+SECTION_SDATA2 static f32 lit_4497 = 355.0f;
 
 /* 80454D40-80454D44 0004+00 s=1 e=0 z=0  None .sdata2    @4498 */
-SECTION_SDATA2 static u32 lit_4498 = 0x43510000;
+SECTION_SDATA2 static f32 lit_4498 = 209.0f;
 
 /* 80454D44-80454D48 0004+00 s=1 e=0 z=0  None .sdata2    @4499 */
-SECTION_SDATA2 static u32 lit_4499 = 0xC33E0000;
+SECTION_SDATA2 static f32 lit_4499 = -190.0f;
 
 /* 80454D48-80454D50 0004+04 s=1 e=0 z=0  None .sdata2    @4500 */
 SECTION_SDATA2 static f32 lit_4500[1 + 1 /* padding */] = {
@@ -525,9 +520,7 @@ SECTION_SDATA2 static f32 lit_4500[1 + 1 /* padding */] = {
 };
 
 /* 80454D50-80454D58 0008+00 s=1 e=0 z=0  None .sdata2    @4502 */
-SECTION_SDATA2 static u8 lit_4502[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4502 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024835C-80248954 05F8+00 s=1 e=0 z=0  None .text      fukiPosCalc__14dMsgScrnTalk_cFUc */
 #pragma push

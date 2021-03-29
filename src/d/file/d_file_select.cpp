@@ -93,9 +93,9 @@ struct dSelect_cursor_c {
     /* 801952A0 */ void setAlphaRate(f32);
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -110,6 +110,8 @@ struct dName_c {
     /* 80250560 */ void _draw();
 };
 
+struct COutFont_c {};
+
 struct JUtility {
     struct TColor {};
 };
@@ -122,8 +124,6 @@ struct J2DTextBox {
 };
 
 struct JUTFont {};
-
-struct COutFont_c {};
 
 struct dMsgString_c {
     /* 80191B6C */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
@@ -530,14 +530,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_file_d_file_select__stringBase0;
-extern "C" extern void* lit_7799[3];
-extern "C" extern void* lit_7801[3];
-extern "C" extern void* lit_7803[3];
-extern "C" extern void* lit_7808[3];
-extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
-extern "C" extern void* __vt__10JUTNameTab[3];
-
 extern "C" void __ct__9dFs_HIO_cFv();
 extern "C" void __ct__14dFile_select_cFP10JKRArchive();
 extern "C" void __dt__14dFile_select_cFv();
@@ -763,30 +755,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cAPICPad_ANY_BUTTON(u32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__15J2DAnmTevRegKey[4];
-extern "C" extern void* __vt__19J2DAnmTextureSRTKey[4];
-extern "C" extern void* __vt__11J2DAnmColor[5];
-extern "C" extern void* __vt__8J3DModel[9];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memcpy();
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
@@ -2076,7 +2044,7 @@ SECTION_DATA static void* __vt__9dFs_HIO_c[3 + 1 /* padding */] = {
 };
 
 /* 80453928-8045392C 0004+00 s=1 e=0 z=0  None .sdata2    @3812 */
-SECTION_SDATA2 static u32 lit_3812 = 0x3F8E147B;
+SECTION_SDATA2 static f32 lit_3812 = 111.0f / 100.0f;
 
 /* 801835F8-8018366C 0074+00 s=1 e=0 z=0  None .text      __ct__9dFs_HIO_cFv */
 #pragma push
@@ -2156,7 +2124,7 @@ static u8 lit_3807[12];
 static u8 g_fsHIO[36];
 
 /* 8045392C-80453930 0004+00 s=1 e=0 z=0  None .sdata2    @4165 */
-SECTION_SDATA2 static u32 lit_4165 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_4165 = 9.0f / 10.0f;
 
 /* 80453930-80453938 0004+04 s=5 e=0 z=0  None .sdata2    @4166 */
 SECTION_SDATA2 static f32 lit_4166[1 + 1 /* padding */] = {
@@ -2187,9 +2155,7 @@ asm void dFile_select_c::_move() {
 
 /* ############################################################################################## */
 /* 80453938-80453940 0008+00 s=34 e=0 z=0  None .sdata2    @4342 */
-SECTION_SDATA2 static u8 lit_4342[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4342 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80184664-801848A0 023C+00 s=1 e=0 z=0  None .text      selFileWakuAnm__14dFile_select_cFv */
 #pragma push
@@ -2275,10 +2241,10 @@ asm void dFile_select_c::selectDataBaseMoveAnm() {
 
 /* ############################################################################################## */
 /* 80453940-80453944 0004+00 s=38 e=0 z=0  None .sdata2    @4611 */
-SECTION_SDATA2 static u32 lit_4611 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4611 = 1.0f;
 
 /* 80453944-80453948 0004+00 s=19 e=0 z=0  None .sdata2    @4612 */
-SECTION_SDATA2 static u32 lit_4612 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4612 = -1.0f;
 
 /* 80184E38-80185040 0208+00 s=1 e=0 z=0  None .text      dataSelectInAnmSet__14dFile_select_cFv */
 #pragma push
@@ -2578,7 +2544,7 @@ asm void dFile_select_c::nameToDataSelectMove() {
 
 /* ############################################################################################## */
 /* 8045394C-80453950 0004+00 s=4 e=0 z=0  None .sdata2    @5472 */
-SECTION_SDATA2 static u32 lit_5472 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_5472 = 255.0f;
 
 /* 80453950-80453958 0004+04 s=4 e=0 z=0  None .sdata2    @5473 */
 SECTION_SDATA2 static f32 lit_5473[1 + 1 /* padding */] = {
@@ -2588,9 +2554,7 @@ SECTION_SDATA2 static f32 lit_5473[1 + 1 /* padding */] = {
 };
 
 /* 80453958-80453960 0008+00 s=4 e=0 z=0  None .sdata2    @5475 */
-SECTION_SDATA2 static u8 lit_5475[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5475 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8018759C-801876A0 0104+00 s=1 e=0 z=0  None .text      nameInputFade__14dFile_select_cFv */
 #pragma push
@@ -2674,10 +2638,10 @@ asm void dFile_select_c::backSelectMove() {
 
 /* ############################################################################################## */
 /* 80453960-80453964 0004+00 s=1 e=0 z=0  None .sdata2    @5614 */
-SECTION_SDATA2 static u32 lit_5614 = 0x42C60000;
+SECTION_SDATA2 static f32 lit_5614 = 99.0f;
 
 /* 80453964-80453968 0004+00 s=1 e=0 z=0  None .sdata2    @5615 */
-SECTION_SDATA2 static u32 lit_5615 = 0x42DA0000;
+SECTION_SDATA2 static f32 lit_5615 = 109.0f;
 
 /* 80187BE8-80187DB8 01D0+00 s=6 e=0 z=0  None .text      copySelMoveAnmInitSet__14dFile_select_cFii
  */
@@ -2841,13 +2805,13 @@ asm void dFile_select_c::yesnoSelectMoveAnm() {
 
 /* ############################################################################################## */
 /* 80453968-8045396C 0004+00 s=6 e=0 z=0  None .sdata2    @6069 */
-SECTION_SDATA2 static u32 lit_6069 = 0x3F75C28F;
+SECTION_SDATA2 static f32 lit_6069 = 24.0f / 25.0f;
 
 /* 8045396C-80453970 0004+00 s=3 e=0 z=0  None .sdata2    @6070 */
-SECTION_SDATA2 static u32 lit_6070 = 0x3F570A3D;
+SECTION_SDATA2 static f32 lit_6070 = 21.0f / 25.0f;
 
 /* 80453970-80453974 0004+00 s=3 e=0 z=0  None .sdata2    @6071 */
-SECTION_SDATA2 static u32 lit_6071 = 0x3D75C28F;
+SECTION_SDATA2 static f32 lit_6071 = 3.0f / 50.0f;
 
 /* 8018912C-8018929C 0170+00 s=9 e=0 z=0  None .text      yesnoCursorShow__14dFile_select_cFv */
 #pragma push
@@ -3087,46 +3051,46 @@ void dFile_select_c::nextModeWait() {
 
 /* ############################################################################################## */
 /* 80453974-80453978 0004+00 s=1 e=0 z=0  None .sdata2    @6867 */
-SECTION_SDATA2 static u32 lit_6867 = 0x41C00000;
+SECTION_SDATA2 static f32 lit_6867 = 24.0f;
 
 /* 80453978-8045397C 0004+00 s=1 e=0 z=0  None .sdata2    @6868 */
-SECTION_SDATA2 static u32 lit_6868 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_6868 = 20.0f;
 
 /* 8045397C-80453980 0004+00 s=1 e=0 z=0  None .sdata2    @6869 */
-SECTION_SDATA2 static u32 lit_6869 = 0x43DC0000;
+SECTION_SDATA2 static f32 lit_6869 = 440.0f;
 
 /* 80453980-80453984 0004+00 s=1 e=0 z=0  None .sdata2    @6870 */
-SECTION_SDATA2 static u32 lit_6870 = 0x43460000;
+SECTION_SDATA2 static f32 lit_6870 = 198.0f;
 
 /* 80453984-80453988 0004+00 s=1 e=0 z=0  None .sdata2    @6871 */
-SECTION_SDATA2 static u32 lit_6871 = 0x41A80000;
+SECTION_SDATA2 static f32 lit_6871 = 21.0f;
 
 /* 80453988-8045398C 0004+00 s=3 e=0 z=0  None .sdata2    @6872 */
-SECTION_SDATA2 static u32 lit_6872 = 0x3F70A3D7;
+SECTION_SDATA2 static f32 lit_6872 = 47.0f / 50.0f;
 
 /* 8045398C-80453990 0004+00 s=3 e=0 z=0  None .sdata2    @6873 */
-SECTION_SDATA2 static u32 lit_6873 = 0x3CF5C28F;
+SECTION_SDATA2 static f32 lit_6873 = 3.0f / 100.0f;
 
 /* 80453990-80453994 0004+00 s=3 e=0 z=0  None .sdata2    @6874 */
-SECTION_SDATA2 static u32 lit_6874 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_6874 = 7.0f / 10.0f;
 
 /* 80453994-80453998 0004+00 s=1 e=0 z=0  None .sdata2    @6875 */
-SECTION_SDATA2 static u32 lit_6875 = 0x436E0000;
+SECTION_SDATA2 static f32 lit_6875 = 238.0f;
 
 /* 80453998-8045399C 0004+00 s=1 e=0 z=0  None .sdata2    @6876 */
-SECTION_SDATA2 static u32 lit_6876 = 0x422C0000;
+SECTION_SDATA2 static f32 lit_6876 = 43.0f;
 
 /* 8045399C-804539A0 0004+00 s=1 e=0 z=0  None .sdata2    @6877 */
-SECTION_SDATA2 static u32 lit_6877 = 0x44320000;
+SECTION_SDATA2 static f32 lit_6877 = 712.0f;
 
 /* 804539A0-804539A4 0004+00 s=1 e=0 z=0  None .sdata2    @6878 */
-SECTION_SDATA2 static u32 lit_6878 = 0x43020000;
+SECTION_SDATA2 static f32 lit_6878 = 130.0f;
 
 /* 804539A4-804539A8 0004+00 s=3 e=0 z=0  None .sdata2    @6879 */
-SECTION_SDATA2 static u32 lit_6879 = 0x44180000;
+SECTION_SDATA2 static f32 lit_6879 = 608.0f;
 
 /* 804539A8-804539AC 0004+00 s=3 e=0 z=0  None .sdata2    @6880 */
-SECTION_SDATA2 static u32 lit_6880 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_6880 = 448.0f;
 
 /* 8018ADA0-8018BEE0 1140+00 s=1 e=0 z=0  None .text      screenSet__14dFile_select_cFv */
 #pragma push
@@ -3196,7 +3160,7 @@ SECTION_SDATA static u8 l_msgNum[3 + 1 /* padding */] = {
 };
 
 /* 804539AC-804539B0 0004+00 s=1 e=0 z=0  None .sdata2    @7146 */
-SECTION_SDATA2 static u32 lit_7146 = 0x4447C000;
+SECTION_SDATA2 static f32 lit_7146 = 799.0f;
 
 /* 8018C8F4-8018CCD0 03DC+00 s=1 e=0 z=0  None .text      screenSet3Menu__14dFile_select_cFv */
 #pragma push
@@ -3220,7 +3184,7 @@ asm void dFile_select_c::screenSetDetail() {
 
 /* ############################################################################################## */
 /* 804539B0-804539B4 0004+00 s=1 e=0 z=0  None .sdata2    @7201 */
-SECTION_SDATA2 static u32 lit_7201 = 0x453B8000;
+SECTION_SDATA2 static f32 lit_7201 = 3000.0f;
 
 /* 8018CE38-8018CF50 0118+00 s=2 e=0 z=0  None .text      setWakuAnm__14dFile_select_cFv */
 #pragma push
@@ -4045,7 +4009,7 @@ asm void dFile_select3D_c::freeHeap() {
 
 /* ############################################################################################## */
 /* 804539B4-804539B8 0004+00 s=1 e=0 z=0  None .sdata2    @8459 */
-SECTION_SDATA2 static u32 lit_8459 = 0x44340000;
+SECTION_SDATA2 static f32 lit_8459 = 720.0f;
 
 /* 801904E4-801905A8 00C4+00 s=1 e=0 z=0  None .text      _move__16dFile_select3D_cFv */
 #pragma push
@@ -4079,7 +4043,7 @@ asm void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char
 
 /* ############################################################################################## */
 /* 804539B8-804539BC 0004+00 s=1 e=0 z=0  None .sdata2    @8608 */
-SECTION_SDATA2 static u32 lit_8608 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_8608 = 1.0f / 10.0f;
 
 /* 8019095C-80190A14 00B8+00 s=2 e=0 z=0  None .text      set_mtx__16dFile_select3D_cFv */
 #pragma push
@@ -4133,7 +4097,7 @@ asm void dFile_select3D_c::createMirrorModel() {
 
 /* ############################################################################################## */
 /* 804539BC-804539C0 0004+00 s=1 e=0 z=0  None .sdata2    @8978 */
-SECTION_SDATA2 static u32 lit_8978 = 0x40000000;
+SECTION_SDATA2 static f32 lit_8978 = 2.0f;
 
 /* 804539C0-804539C8 0004+04 s=1 e=0 z=0  None .sdata2    @8979 */
 SECTION_SDATA2 static f32 lit_8979[1 + 1 /* padding */] = {
@@ -4143,12 +4107,10 @@ SECTION_SDATA2 static f32 lit_8979[1 + 1 /* padding */] = {
 };
 
 /* 804539C8-804539D0 0008+00 s=1 e=0 z=0  None .sdata2    @8980 */
-SECTION_SDATA2 static u8 lit_8980[8] = {
-    0x3F, 0xD9, 0x21, 0xFB, 0x60, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_8980 = 0.39269909262657166;
 
 /* 804539D0-804539D4 0004+00 s=1 e=0 z=0  None .sdata2    @8981 */
-SECTION_SDATA2 static u32 lit_8981 = 0x3FADB6DB;
+SECTION_SDATA2 static f32 lit_8981 = 19.0f / 14.0f;
 
 /* 80190FE8-801910D4 00EC+00 s=1 e=0 z=0  None .text      toItem3Dpos__16dFile_select3D_cFfffP4cXyz
  */
@@ -4163,7 +4125,7 @@ asm void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cX
 
 /* ############################################################################################## */
 /* 804539D4-804539D8 0004+00 s=1 e=0 z=0  None .sdata2    @8993 */
-SECTION_SDATA2 static u32 lit_8993 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_8993 = -1000.0f;
 
 /* 801910D4-80191130 005C+00 s=1 e=0 z=0  None .text      calcViewMtx__16dFile_select3D_cFPA4_f */
 #pragma push

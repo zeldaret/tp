@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
@@ -162,8 +162,6 @@ static bool daObjZraMark_IsDelete(daObjZraMark_c*);
 static void daObjZraMark_Delete(daObjZraMark_c*);
 static void daObjZraMark_create(fopAc_ac_c*);
 static void cLib_getRndValue__template0(int, int);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_ZRA_MARK[12];
 
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
 extern "C" void Create__14daObjZraMark_cFv();
@@ -218,22 +216,6 @@ void dComIfGp_getReverb(int);
 void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();

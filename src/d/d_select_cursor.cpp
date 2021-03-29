@@ -88,8 +88,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_d_select_cursor__stringBase0;
-
 extern "C" void __ct__19dSelect_cursorHIO_cFv();
 extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
 extern "C" void __dt__16dSelect_cursor_cFv();
@@ -117,11 +115,6 @@ extern "C" extern char const* const d_d_select_cursor__stringBase0;
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
-extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void animation__14dSelect_icon_cFv();
 extern "C" void setAlpha__14dSelect_icon_cFUc();
@@ -288,10 +281,10 @@ SECTION_DATA static void* __vt__19dSelect_cursorHIO_c[3 + 1 /* padding */] = {
 };
 
 /* 80453A48-80453A4C 0004+00 s=4 e=0 z=0  None .sdata2    @3673 */
-SECTION_SDATA2 static u32 lit_3673 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3673 = 1.0f;
 
 /* 80453A4C-80453A50 0004+00 s=1 e=0 z=0  None .sdata2    @3674 */
-SECTION_SDATA2 static u32 lit_3674 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_3674 = 3.0f / 10.0f;
 
 /* 801941E4-80194220 003C+00 s=1 e=0 z=0  None .text      __ct__19dSelect_cursorHIO_cFv */
 #pragma push
@@ -345,12 +338,10 @@ asm void dSelect_cursor_c::draw() {
 
 /* ############################################################################################## */
 /* 80453A54-80453A58 0004+00 s=3 e=0 z=0  None .sdata2    @4062 */
-SECTION_SDATA2 static u32 lit_4062 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4062 = 0.5f;
 
 /* 80453A58-80453A60 0008+00 s=3 e=0 z=0  None .sdata2    @4064 */
-SECTION_SDATA2 static u8 lit_4064[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4064 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80194CC0-801950F4 0434+00 s=1 e=0 z=0  None .text      update__16dSelect_cursor_cFv */
 #pragma push
@@ -364,7 +355,7 @@ asm void dSelect_cursor_c::update() {
 
 /* ############################################################################################## */
 /* 80453A60-80453A64 0004+00 s=1 e=0 z=0  None .sdata2    @4089 */
-SECTION_SDATA2 static u32 lit_4089 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4089 = -1.0f;
 
 /* 801950F4-801951B0 00BC+00 s=0 e=30 z=0  None .text      setPos__16dSelect_cursor_cFffP7J2DPaneb
  */
@@ -410,7 +401,7 @@ asm void dSelect_cursor_c::setAlphaRate(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80453A64-80453A68 0004+00 s=2 e=0 z=0  None .sdata2    @4157 */
-SECTION_SDATA2 static u32 lit_4157 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4157 = 5.0f;
 
 /* 80195330-801953CC 009C+00 s=0 e=1 z=0  None .text      addAlpha__16dSelect_cursor_cFv */
 #pragma push
@@ -456,10 +447,10 @@ asm void dSelect_cursor_c::setBtk0Animation(J2DAnmTextureSRTKey* param_0) {
 
 /* ############################################################################################## */
 /* 80453A68-80453A6C 0004+00 s=1 e=0 z=0  None .sdata2    @4237 */
-SECTION_SDATA2 static u32 lit_4237 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_4237 = 20.0f;
 
 /* 80453A6C-80453A70 0004+00 s=1 e=0 z=0  None .sdata2    @4238 */
-SECTION_SDATA2 static u32 lit_4238 = 0x41200000;
+SECTION_SDATA2 static f32 lit_4238 = 10.0f;
 
 /* 80195724-801958E0 01BC+00 s=1 e=0 z=0  None .text      setCursorAnimation__16dSelect_cursor_cFv
  */

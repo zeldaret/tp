@@ -15,12 +15,6 @@ struct request_of_phase_process_class {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Vec {};
 
 struct Z2Creature {
@@ -28,6 +22,12 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -74,15 +74,15 @@ struct daNpcF_c {
     /* 8096C744 */ void drawOtherMdls();
 };
 
-struct csXyz {
-    /* 8096C0E4 */ ~csXyz();
-    /* 8096C120 */ csXyz();
-};
-
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 8096C124 */ ~cXyz();
     /* 8096C160 */ cXyz();
+};
+
+struct csXyz {
+    /* 8096C0E4 */ ~csXyz();
+    /* 8096C120 */ csXyz();
 };
 
 struct daNpcF_Lookat_c {
@@ -102,9 +102,9 @@ struct daNpcF_ActorMngr_c {
     /* 8096BFD8 */ daNpcF_ActorMngr_c();
 };
 
-struct J3DModel {};
-
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daNpcBlueNS_c {
     /* 8096896C */ daNpcBlueNS_c();
@@ -323,11 +323,6 @@ static void daNpcBlueNS_Execute(void*);
 static void daNpcBlueNS_Draw(void*);
 static bool daNpcBlueNS_IsDelete(void*);
 static void cLib_calcTimer__template0(int*);
-extern "C" extern u8 const lit_4926[36];
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_5122[3];
-extern "C" extern void* g_profile_NPC_BLUENS[12];
 
 extern "C" void __ct__13daNpcBlueNS_cFv();
 extern "C" void __dt__8cM3dGCylFv();
@@ -452,22 +447,6 @@ void cLib_targetAngleY(Vec const*, Vec const*);
 void cLib_targetAngleX(cXyz const*, cXyz const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u32 __float_nan;
 
 extern "C" void
 __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();

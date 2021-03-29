@@ -84,11 +84,11 @@ struct JAUSeqCollection {
     /* 802A66AC */ void init(void const*);
 };
 
-struct JAISoundID {};
+struct JAISeqData {};
 
 struct JAISeqDataUser {};
 
-struct JAISeqData {};
+struct JAISoundID {};
 
 struct JAUSectionHeap {
     struct TSectionHeapData {
@@ -183,7 +183,6 @@ struct JAISeqDataMgr {
 
 static void JAUNewSectionHeap(JKRSolidHeap*, bool);
 void JAUNewSectionHeap(bool);
-extern "C" extern char const* const JAUSectionHeap__stringBase0;
 
 extern "C" void __ct__Q210JAUSection12TSectionDataFv();
 extern "C" void resetRegisteredBankTables__Q210JAUSection12TSectionDataFv();
@@ -240,19 +239,6 @@ void* operator new[](u32);
 void* operator new[](u32, int);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern void* __vt__11JASBankList[3 + 1 /* padding */];
-extern "C" extern void* __vt__7JASBank[5];
-extern "C" extern void* __vt__12JASVoiceBank[5 + 1 /* padding */];
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
-extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
-extern "C" extern void* __vt__32JAUStreamDataMgr_StreamFileTable[4];
-extern "C" extern void* __files[80];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B54[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 JASDram[4];
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();

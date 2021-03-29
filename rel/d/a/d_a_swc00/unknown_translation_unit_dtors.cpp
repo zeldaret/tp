@@ -13,8 +13,6 @@
 
 extern u8 const data_805A1D90[4];
 
-extern u8 const data_805A1D90[4];
-
 //
 // External References:
 //
@@ -26,3 +24,10 @@ extern u8 const data_805A1D90[4];
 /* ############################################################################################## */
 #pragma section ".dtors$10"
 #pragma section ".dtors$15"
+/* 805A1D90-805A1D94 0004+00 s=0 e=1 z=0  None .dtors     None */
+u8 const data_805A1D90[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};

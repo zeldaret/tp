@@ -13,10 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -27,6 +23,10 @@ struct cXyz {
     /* 8026706C */ bool operator!=(Vec const&) const;
     /* 80BAF8BC */ ~cXyz();
     /* 80BB0ED0 */ cXyz();
+};
+
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
 struct mDoMtx_stack_c {
@@ -361,52 +361,6 @@ static void daObjBm_MoveBGExecute(daObjBm_c*);
 static void daObjBm_MoveBGDraw(daObjBm_c*);
 static void cLib_calcTimer__template0(u16*);
 static void cLib_calcTimer__template1(u8*);
-extern "C" extern u8 const M_lin20__Q29daObjBm_c5Bgc_c[368];
-extern "C" extern u32 const lit_5157;
-extern "C" extern u32 const lit_5299;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Bemos[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_5249[12 + 4 /* padding */];
-extern "C" extern u8 data_80BB51B4[112];
-extern "C" extern u8 data_80BB5224[4];
-extern "C" extern u8 data_80BB5228[4];
-extern "C" extern u8 data_80BB522C[4];
-extern "C" extern u8 data_80BB5230[4];
-extern "C" extern u8 data_80BB5234[4];
-extern "C" extern u8 data_80BB5238[4];
-extern "C" extern u8 data_80BB523C[4];
-extern "C" extern u8 data_80BB5240[4];
-extern "C" extern u8 data_80BB5244[4];
-extern "C" extern u8 data_80BB5248[4];
-extern "C" extern u8 data_80BB524C[4];
-extern "C" extern u8 data_80BB5250[4];
-extern "C" extern u8 data_80BB5254[4];
-extern "C" extern u8 data_80BB5258[4];
-extern "C" extern u8 data_80BB525C[4];
-extern "C" extern u8 data_80BB5260[4];
-extern "C" extern u8 data_80BB5264[4];
-extern "C" extern u8 data_80BB5268[4];
-extern "C" extern u8 data_80BB526C[4];
-extern "C" extern u8 data_80BB5270[4];
-extern "C" extern u8 data_80BB5274[4];
-extern "C" extern u8 data_80BB5278[4];
-extern "C" extern u8 data_80BB527C[4];
-extern "C" extern u8 data_80BB5280[4];
-extern "C" extern u8 data_80BB5284[4];
 
 extern "C" void PPCallBack__9daObjBm_cFP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
 extern "C" static void nodeCallBack__FP8J3DJointi();
@@ -572,28 +526,6 @@ void cLib_chaseAngleS(s16*, s16, s16);
 void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

@@ -72,10 +72,10 @@ SECTION_SDATA2 static u8 lit_113[4] = {
 };
 
 /* 80456544-80456548 0004+00 s=3 e=0 z=0  None .sdata2    @118 */
-SECTION_SDATA2 static u32 lit_118 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_118 = 0.5f;
 
 /* 80456548-8045654C 0004+00 s=3 e=0 z=0  None .sdata2    @119 */
-SECTION_SDATA2 static u32 lit_119 = 0x40400000;
+SECTION_SDATA2 static f32 lit_119 = 3.0f;
 
 /* 803470F4-80347138 0044+00 s=2 e=16 z=0  None .text      PSVECNormalize */
 #pragma push
@@ -139,7 +139,7 @@ extern "C" asm void C_VECHalfAngle() {
 
 /* ############################################################################################## */
 /* 8045654C-80456550 0004+00 s=1 e=0 z=0  None .sdata2    @161 */
-SECTION_SDATA2 static u32 lit_161 = 0x40000000;
+SECTION_SDATA2 static f32 lit_161 = 2.0f;
 
 /* 803472C8-8034739C 00D4+00 s=0 e=1 z=11  None .text      C_VECReflect */
 #pragma push

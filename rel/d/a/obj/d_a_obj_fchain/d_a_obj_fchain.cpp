@@ -13,11 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 80BE6328 */ ~csXyz();
-    /* 80BE6364 */ csXyz();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -29,6 +24,11 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 80BE6368 */ ~cXyz();
     /* 80BE63A4 */ cXyz();
+};
+
+struct csXyz {
+    /* 80BE6328 */ ~csXyz();
+    /* 80BE6364 */ csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -102,8 +102,6 @@ static void daObjFchain_Create(fopAc_ac_c*);
 static void daObjFchain_Delete(daObjFchain_c*);
 static void daObjFchain_Execute(daObjFchain_c*);
 static void daObjFchain_Draw(daObjFchain_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Fchain[12];
 
 extern "C" void createHeap__13daObjFchain_cFv();
 extern "C" static void daObjFchain_createHeap__FP10fopAc_ac_c();
@@ -141,18 +139,6 @@ void cM_rnd();
 void cM_rndF(f32);
 void cM_rndFX(f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

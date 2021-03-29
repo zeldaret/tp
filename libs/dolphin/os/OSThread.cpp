@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 IdleThread[792];
-extern "C" extern u8 data_804516D0[8];
-
 extern "C" static void DefaultSwitchThreadCallback();
 extern "C" void OSSetSwitchThreadCallback();
 extern "C" void __OSThreadInit();
@@ -48,9 +45,6 @@ extern "C" extern u8 data_804516D0[8];
 //
 // External References:
 //
-
-extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
-extern "C" extern u32 __OSFpscrEnableBits;
 
 extern "C" void OSReport();
 extern "C" void OSPanic();

@@ -43,9 +43,6 @@ struct TFunctionValue_list_parameter {
 // Forward References:
 //
 
-extern "C" extern char const* const JUTDirectPrint__stringBase0;
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-
 extern "C" void __ct__14JUTDirectPrintFv();
 extern "C" void start__14JUTDirectPrintFv();
 extern "C" void erase__14JUTDirectPrintFiiii();
@@ -377,59 +374,37 @@ asm void JUTDirectPrint::setCharColor(JUtility::TColor param_0) {
 
 /* ############################################################################################## */
 /* 80456060-80456068 0008+00 s=1 e=0 z=0  None .sdata2    @503 */
-SECTION_SDATA2 static u8 lit_503[8] = {
-    0x40, 0x60, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_503 = 128.0;
 
 /* 80456068-80456070 0008+00 s=1 e=0 z=0  None .sdata2    @504 */
-SECTION_SDATA2 static u8 lit_504[8] = {
-    0x3F, 0xDC, 0x18, 0x93, 0x74, 0xBC, 0x6A, 0x7F,
-};
+SECTION_SDATA2 static f64 lit_504 = 0.439;
 
 /* 80456070-80456078 0008+00 s=1 e=0 z=0  None .sdata2    @505 */
-SECTION_SDATA2 static u8 lit_505[8] = {
-    0xBF, 0xC2, 0xF1, 0xA9, 0xFB, 0xE7, 0x6C, 0x8B,
-};
+SECTION_SDATA2 static f64 lit_505 = -0.148;
 
 /* 80456078-80456080 0008+00 s=1 e=0 z=0  None .sdata2    @506 */
-SECTION_SDATA2 static u8 lit_506[8] = {
-    0x3F, 0xD2, 0x9F, 0xBE, 0x76, 0xC8, 0xB4, 0x39,
-};
+SECTION_SDATA2 static f64 lit_506 = 0.291;
 
 /* 80456080-80456088 0008+00 s=1 e=0 z=0  None .sdata2    @507 */
-SECTION_SDATA2 static u8 lit_507[8] = {
-    0x3F, 0xD7, 0x8D, 0x4F, 0xDF, 0x3B, 0x64, 0x5A,
-};
+SECTION_SDATA2 static f64 lit_507 = 0.368;
 
 /* 80456088-80456090 0008+00 s=1 e=0 z=0  None .sdata2    @508 */
-SECTION_SDATA2 static u8 lit_508[8] = {
-    0x3F, 0xB2, 0x2D, 0x0E, 0x56, 0x04, 0x18, 0x93,
-};
+SECTION_SDATA2 static f64 lit_508 = 0.071;
 
 /* 80456090-80456098 0008+00 s=1 e=0 z=0  None .sdata2    @509 */
-SECTION_SDATA2 static u8 lit_509[8] = {
-    0x40, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_509 = 16.0;
 
 /* 80456098-804560A0 0008+00 s=1 e=0 z=0  None .sdata2    @510 */
-SECTION_SDATA2 static u8 lit_510[8] = {
-    0x3F, 0xB9, 0x16, 0x87, 0x2B, 0x02, 0x0C, 0x4A,
-};
+SECTION_SDATA2 static f64 lit_510 = 0.098;
 
 /* 804560A0-804560A8 0008+00 s=1 e=0 z=0  None .sdata2    @511 */
-SECTION_SDATA2 static u8 lit_511[8] = {
-    0x3F, 0xD0, 0x72, 0xB0, 0x20, 0xC4, 0x9B, 0xA6,
-};
+SECTION_SDATA2 static f64 lit_511 = 0.257;
 
 /* 804560A8-804560B0 0008+00 s=1 e=0 z=0  None .sdata2    @512 */
-SECTION_SDATA2 static u8 lit_512[8] = {
-    0x3F, 0xE0, 0x20, 0xC4, 0x9B, 0xA5, 0xE3, 0x54,
-};
+SECTION_SDATA2 static f64 lit_512 = 0.504;
 
 /* 804560B0-804560B8 0008+00 s=1 e=0 z=0  None .sdata2    @514 */
-SECTION_SDATA2 static u8 lit_514[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_514 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E47C8-802E495C 0194+00 s=2 e=0 z=0  None .text      setCharColor__14JUTDirectPrintFUcUcUc */
 #pragma push

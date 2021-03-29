@@ -75,8 +75,6 @@ extern "C" static void func_80299520();
 //
 
 void* operator new(u32, JKRHeap*, int);
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
-extern "C" extern u8 JASDram[4];
 
 extern "C" void __ct__16JASBasicWaveBankFv();
 extern "C" void getWaveGroup__16JASBasicWaveBankFUl();

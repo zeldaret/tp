@@ -13,8 +13,6 @@
 
 extern void* const data_80780DB0[2];
 
-extern void* const data_80780DB0[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_e_s1_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80780DB0-80780DB8 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80780DB0[2] = {
+    (void*)__sinit_d_a_e_s1_cpp,
+    (void*)NULL,
+};

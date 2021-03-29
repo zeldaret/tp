@@ -85,8 +85,6 @@ struct JKRDvdFile {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRFileCache__stringBase0;
-
 extern "C" void mount__12JKRFileCacheFPCcP7JKRHeapPCc();
 extern "C" void __ct__12JKRFileCacheFPCcPCc();
 extern "C" void __dt__12JKRFileCacheFv();
@@ -119,9 +117,6 @@ extern "C" extern char const* const JKRFileCache__stringBase0;
 
 void* operator new(u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 SECTION_INIT void memcpy();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();

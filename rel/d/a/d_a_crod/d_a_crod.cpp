@@ -11,14 +11,14 @@
 // Types:
 //
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80267128 */ void atan2sX_Z() const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -172,7 +172,6 @@ static void daCrod_Create(fopAc_ac_c*);
 static void daCrod_Delete(daCrod_c*);
 static void daCrod_Execute(daCrod_c*);
 static void daCrod_Draw(daCrod_c*);
-extern "C" extern void* g_profile_CROD[12];
 
 extern "C" void createHeap__8daCrod_cFv();
 extern "C" static void daCrod_createHeap__FP10fopAc_ac_c();
@@ -211,20 +210,6 @@ void dKy_plight_set(LIGHT_INFLUENCE*);
 void dKy_plight_cut(LIGHT_INFLUENCE*);
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_804A4218[4];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

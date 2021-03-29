@@ -23,8 +23,6 @@ extern "C" void __OSInitMemoryProtection();
 // External References:
 //
 
-extern "C" extern u8 __OSErrorTable[68 + 12 /* padding */];
-
 extern "C" void DCInvalidateRange();
 extern "C" void DCFlushRange();
 extern "C" void __OSUnhandledException();

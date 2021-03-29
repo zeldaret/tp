@@ -30,8 +30,6 @@ static void dKyeff_Execute(dKyeff_c*);
 static bool dKyeff_IsDelete(dKyeff_c*);
 static void dKyeff_Delete(dKyeff_c*);
 static void dKyeff_Create(kankyo_class*);
-extern "C" extern char const* const d_d_kyeff__stringBase0;
-extern "C" extern void* g_profile_KYEFF[10 + 1 /* padding */];
 
 extern "C" static void dKyeff_Draw__FP8dKyeff_c();
 extern "C" void execute__8dKyeff_cFv();
@@ -52,11 +50,6 @@ void dKyw_wether_move();
 void dKyw_wether_move_draw();
 void dKyw_wether_draw();
 void dKy_FiveSenses_fullthrottle_dark();
-extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
 
 extern "C" void dKyw_wether_init__Fv();
 extern "C" void dKyw_wether_delete__Fv();
@@ -143,18 +136,16 @@ SECTION_SDATA2 static u8 lit_3804[4] = {
 };
 
 /* 80453E5C-80453E60 0004+00 s=1 e=0 z=0  None .sdata2    @3805 */
-SECTION_SDATA2 static u32 lit_3805 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3805 = 1.0f;
 
 /* 80453E60-80453E68 0008+00 s=1 e=0 z=0  None .sdata2    @3812 */
-SECTION_SDATA2 static u8 lit_3812[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3812 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80453E68-80453E6C 0004+00 s=1 e=0 z=0  None .sdata2    @3843 */
-SECTION_SDATA2 static u32 lit_3843 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_3843 = 7.0f / 10.0f;
 
 /* 80453E6C-80453E70 0004+00 s=1 e=0 z=0  None .sdata2    @3844 */
-SECTION_SDATA2 static u32 lit_3844 = 0x41700000;
+SECTION_SDATA2 static f32 lit_3844 = 15.0f;
 
 /* 801ADE00-801ADEA0 00A0+00 s=1 e=0 z=0  None .text      dKyeff_Create__FP12kankyo_class */
 #pragma push

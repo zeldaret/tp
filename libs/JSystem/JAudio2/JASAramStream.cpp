@@ -93,10 +93,6 @@ struct JASAramStream {
 // Forward References:
 //
 
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 sBlockSize__13JASAramStream[4];
-extern "C" extern u8 struct_80451260[8];
-
 extern "C" void initSystem__13JASAramStreamFUlUl();
 extern "C" void __ct__13JASAramStreamFv();
 extern "C" void init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv();
@@ -131,9 +127,6 @@ extern "C" extern u8 struct_80451260[8];
 
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sBankDisposeList__10JASChannel[64];
-extern "C" extern u8 lit_556[12 + 4 /* padding */];
-extern "C" extern u8 JASDram[4];
 
 extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl();
 extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPv();
@@ -215,10 +208,10 @@ SECTION_SDATA2 static u8 lit_390[4] = {
 };
 
 /* 80455614-80455618 0004+00 s=2 e=0 z=0  None .sdata2    @391 */
-SECTION_SDATA2 static u32 lit_391 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_391 = 1.0f;
 
 /* 80455618-8045561C 0004+00 s=2 e=0 z=0  None .sdata2    @392 */
-SECTION_SDATA2 static u32 lit_392 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_392 = 0.5f;
 
 /* 802963A8-8029649C 00F4+00 s=0 e=1 z=0  None .text      __ct__13JASAramStreamFv */
 #pragma push
@@ -354,12 +347,10 @@ asm void JASAramStream::prepareFinishTask(void* param_0) {
 
 /* ############################################################################################## */
 /* 8045561C-80455620 0004+00 s=1 e=0 z=0  None .sdata2    @531 */
-SECTION_SDATA2 static u32 lit_531 = 0x42FE0000;
+SECTION_SDATA2 static f32 lit_531 = 127.0f;
 
 /* 80455620-80455628 0008+00 s=3 e=0 z=0  None .sdata2    @533 */
-SECTION_SDATA2 static u8 lit_533[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_533 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80296920-80296AE8 01C8+00 s=1 e=0 z=0  None .text      headerLoad__13JASAramStreamFUli */
 #pragma push

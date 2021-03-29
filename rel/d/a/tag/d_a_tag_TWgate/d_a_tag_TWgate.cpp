@@ -22,13 +22,13 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -105,9 +105,9 @@ struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -164,8 +164,6 @@ static void daTagTWGate_Delete(daTagTWGate_c*);
 static void daTagTWGate_Execute(daTagTWGate_c*);
 static void daTagTWGate_Draw(daTagTWGate_c*);
 static bool daTagTWGate_IsDelete(daTagTWGate_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Tag_TWGate[12];
 
 extern "C" void initWait__13daTagTWGate_cFv();
 extern "C" void executeWait__13daTagTWGate_cFv();
@@ -222,12 +220,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_setNextStage(char const*, s16, s8, s8);
 void dEv_noFinishSkipProc(void*, int);
 void* operator new(u32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

@@ -20,8 +20,6 @@ extern "C" void CARDWrite();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 extern "C" void DCStoreRange();
 extern "C" void OSGetTime();
 extern "C" void __CARDDefaultApiCallback();

@@ -26,17 +26,17 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -55,10 +55,6 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
-struct J3DJoint {};
-
-struct daNpcT_evtData_c {};
-
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_motionAnmData_c {};
@@ -70,6 +66,10 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 80B672D8 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct J3DJoint {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_ykW_c {
     /* 80B5EF0C */ ~daNpc_ykW_c();
@@ -145,19 +145,19 @@ struct daNpc_ykM_c {
 
 struct daNpcT_pntData_c {};
 
-struct J3DModel {};
-
 struct csXyz {
     /* 80B66C38 */ ~csXyz();
     /* 80B671D4 */ csXyz();
 };
 
-struct _GXColorS10 {};
+struct J3DModel {};
 
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
+
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -291,11 +291,11 @@ struct dPath {};
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -307,14 +307,14 @@ struct dPa_control_c {
                                 cXyz const*);
 };
 
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80B67320 */ ~dBgS_AcchCir();
+};
+
+struct dBgS {
+    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
 };
 
 struct dBgS_Acch {
@@ -498,59 +498,6 @@ static void daNpc_ykW_Draw(void*);
 static bool daNpc_ykW_IsDelete(void*);
 static void cLib_calcTimer__template0(int*);
 static void cLib_getRndValue__template0(f32, f32);
-extern "C" extern u32 const lit_6511;
-extern "C" extern u32 const lit_6512;
-extern "C" extern u32 const lit_6513;
-extern "C" extern u32 const lit_6514;
-extern "C" extern u32 const lit_6515;
-extern "C" extern u32 const lit_6516;
-extern "C" extern u32 const lit_6517;
-extern "C" extern u32 const lit_6518;
-extern "C" extern u32 const lit_6521;
-extern "C" extern u32 const lit_6522;
-extern "C" extern u32 const lit_6523;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_YKW[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80B68DD4[4];
-extern "C" extern u8 data_80B68DD8[4];
-extern "C" extern u8 data_80B68DDC[4];
-extern "C" extern u8 data_80B68DE0[4];
-extern "C" extern u8 data_80B68DE4[4];
-extern "C" extern u8 data_80B68DE8[4];
-extern "C" extern u8 data_80B68DEC[4];
-extern "C" extern u8 data_80B68DF0[4];
-extern "C" extern u8 data_80B68DF4[4];
-extern "C" extern u8 data_80B68DF8[4];
-extern "C" extern u8 data_80B68DFC[4];
-extern "C" extern u8 data_80B68E00[4];
-extern "C" extern u8 data_80B68E04[4];
-extern "C" extern u8 data_80B68E08[4];
-extern "C" extern u8 data_80B68E0C[4];
-extern "C" extern u8 data_80B68E10[4];
-extern "C" extern u8 data_80B68E14[4];
-extern "C" extern u8 data_80B68E18[4];
-extern "C" extern u8 data_80B68E1C[4];
-extern "C" extern u8 data_80B68E20[4];
-extern "C" extern u8 data_80B68E24[4];
-extern "C" extern u8 data_80B68E28[4];
-extern "C" extern u8 data_80B68E2C[4];
-extern "C" extern u8 data_80B68E30[4];
-extern "C" extern u8 data_80B68E34[4];
 
 extern "C" void __dt__11daNpc_ykW_cFv();
 extern "C" void create__11daNpc_ykW_cFv();
@@ -777,28 +724,6 @@ void cLib_chaseF(f32*, f32, f32);
 void cLib_targetAngleY(Vec const*, Vec const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

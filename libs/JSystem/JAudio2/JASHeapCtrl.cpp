@@ -68,8 +68,6 @@ struct JASGenericMemPool {
 // Forward References:
 //
 
-extern "C" extern u8 JASDram[4];
-
 extern "C" void __ct__7JASHeapFP11JASDisposer();
 extern "C" void initRootHeap__7JASHeapFPvUl();
 extern "C" void alloc__7JASHeapFP7JASHeapUl();
@@ -102,7 +100,6 @@ void* operator new(u32, JKRHeap*, int);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void* __nwa__FUlP7JKRHeapi();

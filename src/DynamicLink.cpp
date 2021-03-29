@@ -90,8 +90,6 @@ struct DynamicModuleControl {
 //
 
 static void calcSum2(u16 const*, u32);
-extern "C" extern char const* const DynamicLink__stringBase0;
-extern "C" extern void* __vt__20DynamicModuleControl[13];
 
 extern "C" void __dt__24DynamicModuleControlBaseFv();
 extern "C" void __ct__24DynamicModuleControlBaseFv();
@@ -346,9 +344,7 @@ SECTION_SDATA2 static f32 lit_3772[1 + 1 /* padding */] = {
 };
 
 /* 80455010-80455018 0008+00 s=1 e=0 z=0  None .sdata2    @3774 */
-SECTION_SDATA2 static u8 lit_3774[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3774 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80262470-80262660 01F0+00 s=2 e=2 z=0  None .text      dump__24DynamicModuleControlBaseFv */
 #pragma push

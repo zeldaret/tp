@@ -12,7 +12,6 @@
 //
 
 void JASReport(char const*, ...);
-extern "C" extern u8 struct_80451230[8];
 
 extern "C" void JASReport__FPCce();
 extern "C" extern u8 struct_80451230[8];

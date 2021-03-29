@@ -81,7 +81,6 @@ static void daTag_Msg_Delete(void*);
 static void daTag_Msg_Execute(void*);
 static void daTag_Msg_Draw(void*);
 static bool daTag_Msg_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_MSG[12];
 
 extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
 extern "C" void __dt__11daTag_Msg_cFv();
@@ -114,12 +113,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

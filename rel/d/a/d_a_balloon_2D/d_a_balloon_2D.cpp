@@ -130,8 +130,6 @@ static void daBalloon2D_create(daBalloon2D_c*);
 static void daBalloon2D_destroy(daBalloon2D_c*);
 static void daBalloon2D_execute(daBalloon2D_c*);
 static void daBalloon2D_draw(daBalloon2D_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_BALLOON2D[12];
 
 extern "C" void draw__Q213daBalloon2D_c6c_listFv();
 extern "C" static void daBalloon2D_createHeap__FP10fopAc_ac_c();
@@ -183,11 +181,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 SECTION_INIT void memcpy();
 extern "C" void mDoExt_getMesgFont__Fv();

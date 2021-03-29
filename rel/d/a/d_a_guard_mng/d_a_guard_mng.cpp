@@ -41,7 +41,6 @@ static void daGuardMng_Execute(daGuardMng_c*);
 static bool daGuardMng_IsDelete(daGuardMng_c*);
 static void daGuardMng_Delete(daGuardMng_c*);
 static void daGuardMng_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_GUARD_MNG[12];
 
 extern "C" static void s_sub__FPvPv();
 extern "C" void checkMerchantNum__12daGuardMng_cFv();
@@ -58,9 +57,6 @@ extern "C" extern void* g_profile_GUARD_MNG[12];
 
 void fopAc_IsActor(void*);
 void fpcEx_Search(void* (*)(void*, void*), void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

@@ -119,7 +119,6 @@ extern "C" void __sinit_JASBNKParser_cpp();
 
 void* operator new(u32, JKRHeap*, int);
 void* operator new[](u32, JKRHeap*, int);
-extern "C" extern u8 JASDram[4];
 
 extern "C" void bcopy__7JASCalcFPCvPvUl();
 extern "C" void __ct__17JASGenericMemPoolFv();
@@ -199,9 +198,7 @@ SECTION_SDATA2 static f32 lit_835[1 + 1 /* padding */] = {
 };
 
 /* 80455660-80455668 0008+00 s=1 e=0 z=0  None .sdata2    @838 */
-SECTION_SDATA2 static u8 lit_838[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_838 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029963C-80299A3C 0400+00 s=1 e=0 z=0  None .text
  * createBasicBank__Q212JASBNKParser4Ver1FPCvP7JKRHeap          */
@@ -216,9 +213,7 @@ asm void JASBNKParser::Ver1::createBasicBank(void const* param_0, JKRHeap* param
 
 /* ############################################################################################## */
 /* 80455668-80455670 0008+00 s=1 e=0 z=0  None .sdata2    @990 */
-SECTION_SDATA2 static u8 lit_990[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_990 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80299A3C-80299E68 042C+00 s=1 e=0 z=0  None .text
  * createBasicBank__Q212JASBNKParser4Ver0FPCvP7JKRHeap          */
@@ -233,7 +228,7 @@ asm void JASBNKParser::Ver0::createBasicBank(void const* param_0, JKRHeap* param
 
 /* ############################################################################################## */
 /* 80455670-80455674 0004+00 s=1 e=0 z=0  None .sdata2    @1045 */
-SECTION_SDATA2 static u32 lit_1045 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1045 = 1.0f;
 
 /* 80455674-80455678 0004+00 s=1 e=0 z=0  None .sdata2    @1046 */
 SECTION_SDATA2 static u8 lit_1046[4] = {

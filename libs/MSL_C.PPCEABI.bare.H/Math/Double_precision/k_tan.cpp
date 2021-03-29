@@ -34,24 +34,16 @@ SECTION_RODATA static u8 const T[104] = {
 };
 
 /* 80456A80-80456A88 0008+00 s=1 e=0 z=0  None .sdata2    @94 */
-SECTION_SDATA2 static u8 lit_94[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_94 = 1.0;
 
 /* 80456A88-80456A90 0008+00 s=1 e=0 z=0  None .sdata2    @95 */
-SECTION_SDATA2 static u8 lit_95[8] = {
-    0xBF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_95 = -1.0;
 
 /* 80456A90-80456A98 0008+00 s=1 e=0 z=0  None .sdata2    @96 */
-SECTION_SDATA2 static u8 lit_96[8] = {
-    0x3F, 0xE9, 0x21, 0xFB, 0x54, 0x44, 0x2D, 0x18,
-};
+SECTION_SDATA2 static f64 lit_96 = 0.7853981633974483;
 
 /* 80456A98-80456AA0 0008+00 s=1 e=0 z=0  None .sdata2    @97 */
-SECTION_SDATA2 static u8 lit_97[8] = {
-    0x3C, 0x81, 0xA6, 0x26, 0x33, 0x14, 0x5C, 0x07,
-};
+SECTION_SDATA2 static f64 lit_97 = 3.061616997868383e-17;
 
 /* 80456AA0-80456AA8 0008+00 s=1 e=0 z=0  None .sdata2    @98 */
 SECTION_SDATA2 static u8 lit_98[8] = {
@@ -59,14 +51,10 @@ SECTION_SDATA2 static u8 lit_98[8] = {
 };
 
 /* 80456AA8-80456AB0 0008+00 s=1 e=0 z=0  None .sdata2    @99 */
-SECTION_SDATA2 static u8 lit_99[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_99 = 2.0;
 
 /* 80456AB0-80456AB8 0008+00 s=1 e=0 z=0  None .sdata2    @101 */
-SECTION_SDATA2 static u8 lit_101[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_101 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8036BA90-8036BCA4 0214+00 s=0 e=1 z=0  None .text      __kernel_tan */
 #pragma push

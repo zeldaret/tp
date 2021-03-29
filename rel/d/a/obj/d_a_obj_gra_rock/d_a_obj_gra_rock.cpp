@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -51,11 +51,11 @@ struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -207,7 +207,6 @@ static void daObjGraRock_create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(s16*);
 static void cLib_calcTimer__template1(u8*);
 static void cLib_getRndValue__template0(int, int);
-extern "C" extern void* g_profile_Obj_GraRock[12];
 
 extern "C" void setAttnPos__14daObjGraRock_cFv();
 extern "C" void setBaseMtx__14daObjGraRock_cFv();
@@ -258,19 +257,6 @@ void daNpcF_onEvtBit(u32);
 void daNpcF_getDistTableIdx(int, int);
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();

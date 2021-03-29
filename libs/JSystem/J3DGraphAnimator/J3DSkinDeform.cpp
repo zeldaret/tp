@@ -60,7 +60,6 @@ struct J3DShape {
 
 static void J3DPSWeightMTXMultVec(f32 (*)[4], f32, Vec*, Vec*);
 static void J3DPSWeightMTXMultVecSR(f32 (*)[4], f32, Vec*, Vec*);
-extern "C" extern char const* const J3DSkinDeform__stringBase0;
 
 extern "C" void __ct__12J3DSkinNListFv();
 extern "C" static void J3DPSWeightMTXMultVec__FPA4_ffP3VecP3Vec();
@@ -95,7 +94,6 @@ void* operator new[](u32, int);
 void operator delete(void*);
 void J3DGQRSetup7(u32, u32, u32, u32);
 void J3DPSCalcInverseTranspose(f32 (*)[4], f32 (*)[3]);
-extern "C" extern u8 PSMulUnit01[8];
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport();
@@ -216,7 +214,7 @@ static u8 sWorkArea_WEvlpMixMtx__13J3DSkinDeform[4096];
 static u8 sWorkArea_WEvlpMixWeight__13J3DSkinDeform[4096];
 
 /* 80456468-8045646C 0004+00 s=1 e=0 z=0  None .sdata2    @1110 */
-SECTION_SDATA2 static u32 lit_1110 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1110 = 1.0f;
 
 /* 8032C9B0-8032CF44 0594+00 s=0 e=1 z=0  None .text initSkinInfo__13J3DSkinDeformFP12J3DModelData
  */

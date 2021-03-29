@@ -119,13 +119,13 @@ struct J3DModelLoaderDataBase {
 
 struct J3DDrawBlock {};
 
+struct J3DJointBlock {};
+
 struct J3DModelInfoBlock {};
 
 struct J3DMaterialDLBlock {};
 
 struct J3DEnvelopeBlock {};
-
-struct J3DJointBlock {};
 
 struct J3DModelLoader {
     /* 8033468C */ J3DModelLoader();
@@ -217,7 +217,6 @@ static void JSUConvertOffsetToPtr__template69(void const*, void const*);
 void JSUConvertOffsetToPtr__template70(void const*, void const*);
 void JSUConvertOffsetToPtr__template71(void const*, u32);
 void JSUConvertOffsetToPtr__template72(void const*, u32);
-extern "C" extern char const* const J3DModelLoader__stringBase0;
 
 extern "C" void __ct__14J3DModelLoaderFv();
 extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
@@ -279,14 +278,6 @@ void JSUConvertOffsetToPtr__template24(void const*, void const*);
 void JSUConvertOffsetToPtr__template28(void const*, void const*);
 void JSUConvertOffsetToPtr__template39(void const*, void const*);
 void JSUConvertOffsetToPtr__template41(void const*, void const*);
-extern "C" extern void* data_803A3360[11];
-extern "C" extern void* __vt__19J3DMtxCalcNoAnmBase[11];
-extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mCurrentS__6J3DSys[12];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
 
 extern "C" void OSReport();
 extern "C" void setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform();

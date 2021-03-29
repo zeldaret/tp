@@ -40,8 +40,6 @@ struct cXyz {};
 
 static void daSetBgObj_Delete(daSetBgObj_c*);
 static void daSetBgObj_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_SET_BG_OBJ[12];
 
 extern "C" void CreateInit__12daSetBgObj_cFv();
 extern "C" void create__12daSetBgObj_cFv();
@@ -58,9 +56,6 @@ extern "C" extern void* g_profile_SET_BG_OBJ[12];
 void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();

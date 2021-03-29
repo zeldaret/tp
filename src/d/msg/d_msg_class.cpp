@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct jmessage_tControl {
-    /* 802299EC */ jmessage_tControl();
-};
-
 struct jmessage_tReference {
     /* 80228B04 */ jmessage_tReference();
     /* 80228CB4 */ ~jmessage_tReference();
@@ -51,6 +47,10 @@ struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
+};
+
+struct jmessage_tControl {
+    /* 802299EC */ jmessage_tControl();
 };
 
 struct jmessage_tSequenceProcessor {
@@ -115,15 +115,20 @@ struct jmessage_tMeasureProcessor {
     /* 8022B5F4 */ ~jmessage_tMeasureProcessor();
 };
 
+struct jmessage_string_tControl {
+    /* 8022FB5C */ jmessage_string_tControl();
+    /* 802328DC */ ~jmessage_string_tControl();
+};
+
+struct COutFont_c {
+    /* 80226CF8 */ void initialize();
+};
+
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
 };
 
 struct JUTFont {};
-
-struct COutFont_c {
-    /* 80226CF8 */ void initialize();
-};
 
 struct jmessage_string_tReference {
     /* 8022F8C0 */ jmessage_string_tReference();
@@ -138,11 +143,6 @@ struct jmessage_string_tReference {
     /* 8022FACC */ void setOutfontLength(int, f32);
     /* 8022FAF0 */ void clearOutfontLength(int);
     /* 8022FB24 */ void getLineCountNowPage();
-};
-
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
-    /* 802328DC */ ~jmessage_string_tControl();
 };
 
 struct jmessage_string_tSequenceProcessor {
@@ -314,7 +314,6 @@ static void getFontCCColorTable(u8, u8);
 static void getFontGCColorTable(u8, u8);
 static void getOutFontNumberType(int);
 static void getPohNum();
-extern "C" extern char const* const d_msg_d_msg_class__stringBase0;
 
 extern "C" static void checkCharInfoCharactor__Fi();
 extern "C" static void changeCodeToChar__FUs();
@@ -473,18 +472,6 @@ void dMeter2Info_getNewLetterNum();
 void dMsgObject_getFundRaising();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__17jmessage_tControl[3];
-extern "C" extern void* __vt__Q28JMessage10TReference[4 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 g_msg_unit[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -1651,10 +1638,10 @@ SECTION_DATA static void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
 };
 
 /* 80454A58-80454A5C 0004+00 s=1 e=0 z=0  None .sdata2    @4025 */
-SECTION_SDATA2 static u32 lit_4025 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_4025 = 9.0f / 10.0f;
 
 /* 80454A5C-80454A60 0004+00 s=14 e=0 z=0  None .sdata2    @4026 */
-SECTION_SDATA2 static u32 lit_4026 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4026 = 0.5f;
 
 /* 80454A60-80454A64 0004+00 s=25 e=0 z=0  None .sdata2    @4027 */
 SECTION_SDATA2 static u8 lit_4027[4] = {
@@ -1665,7 +1652,7 @@ SECTION_SDATA2 static u8 lit_4027[4] = {
 };
 
 /* 80454A64-80454A68 0004+00 s=23 e=0 z=0  None .sdata2    @4028 */
-SECTION_SDATA2 static u32 lit_4028 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4028 = 1.0f;
 
 /* 80228B04-80228CB4 01B0+00 s=0 e=1 z=0  None .text      __ct__19jmessage_tReferenceFv */
 #pragma push
@@ -1805,9 +1792,7 @@ asm void jmessage_tReference::resetReference() {
 
 /* ############################################################################################## */
 /* 80454A70-80454A78 0008+00 s=16 e=0 z=0  None .sdata2    @4198 */
-SECTION_SDATA2 static u8 lit_4198[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4198 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80229034-80229168 0134+00 s=0 e=1 z=0  None .text      pageSend__19jmessage_tReferenceFv */
 #pragma push
@@ -1821,7 +1806,7 @@ asm void jmessage_tReference::pageSend() {
 
 /* ############################################################################################## */
 /* 80454A78-80454A7C 0004+00 s=4 e=0 z=0  None .sdata2    @4291 */
-SECTION_SDATA2 static u32 lit_4291 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4291 = -1.0f;
 
 /* 80229168-802294A8 0340+00 s=0 e=2 z=0  None .text      selectMessage__19jmessage_tReferenceFv */
 #pragma push
@@ -2056,12 +2041,10 @@ SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
 #pragma pop
 
 /* 80454A7C-80454A80 0004+00 s=5 e=0 z=0  None .sdata2    @5151 */
-SECTION_SDATA2 static u32 lit_5151 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_5151 = 100.0f;
 
 /* 80454A80-80454A88 0008+00 s=5 e=0 z=0  None .sdata2    @5154 */
-SECTION_SDATA2 static u8 lit_5154[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5154 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8022A268-8022B0B0 0E48+00 s=5 e=0 z=0  None .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
  */
@@ -2165,10 +2148,10 @@ void jmessage_tSequenceProcessor::do_reset() {
 
 /* ############################################################################################## */
 /* 80454A88-80454A8C 0004+00 s=1 e=0 z=0  None .sdata2    @5490 */
-SECTION_SDATA2 static u32 lit_5490 = 0x41200000;
+SECTION_SDATA2 static f32 lit_5490 = 10.0f;
 
 /* 80454A8C-80454A90 0004+00 s=2 e=0 z=0  None .sdata2    @5491 */
-SECTION_SDATA2 static u32 lit_5491 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_5491 = 255.0f;
 
 /* 8022B658-8022BA3C 03E4+00 s=1 e=0 z=0  None .text
  * do_begin__27jmessage_tSequenceProcessorFPCvPCc               */
@@ -2338,7 +2321,7 @@ asm void jmessage_tRenderingProcessor::do_end() {
 
 /* ############################################################################################## */
 /* 80454A90-80454A94 0004+00 s=1 e=0 z=0  None .sdata2    @6374 */
-SECTION_SDATA2 static u32 lit_6374 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_6374 = 3.0f / 10.0f;
 
 /* 8022D0A0-8022D74C 06AC+00 s=1 e=0 z=0  None .text
  * do_character__28jmessage_tRenderingProcessorFi               */
@@ -2452,7 +2435,7 @@ asm void jmessage_tRenderingProcessor::do_transY(s16 param_0, bool param_1) {
 
 /* ############################################################################################## */
 /* 80454A94-80454A98 0004+00 s=1 e=0 z=0  None .sdata2    @6781 */
-SECTION_SDATA2 static u32 lit_6781 = 0x41C00000;
+SECTION_SDATA2 static f32 lit_6781 = 24.0f;
 
 /* 8022EAE4-8022ED10 022C+00 s=2 e=0 z=0  None .text
  * do_outfont__28jmessage_tRenderingProcessorFUcUl              */

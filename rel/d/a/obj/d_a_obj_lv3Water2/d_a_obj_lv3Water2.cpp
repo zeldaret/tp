@@ -57,13 +57,13 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -142,9 +142,6 @@ static void daLv3Water2_Draw(daLv3Water2_c*);
 static void daLv3Water2_Execute(daLv3Water2_c*);
 static void daLv3Water2_Delete(daLv3Water2_c*);
 static void daLv3Water2_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Lv3Water2[12];
 
 extern "C" void __ct__17daLv3Water2_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -188,15 +185,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_getReverb(int);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void play__14mDoExt_baseAnmFv();

@@ -38,7 +38,6 @@ static void daKytag01_Execute(kytag01_class*);
 static bool daKytag01_IsDelete(kytag01_class*);
 static bool daKytag01_Delete(kytag01_class*);
 static void daKytag01_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_KYTAG01[12];
 
 extern "C" static void get_check_pos__FP13kytag01_class();
 extern "C" static void mist_tag_move__FP13kytag01_class();
@@ -59,13 +58,6 @@ void dKy_fog_startendz_set(f32, f32, f32);
 void dKy_change_colpat(u8);
 void cM_atan2s(f32, f32);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();

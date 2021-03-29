@@ -27,11 +27,11 @@ struct daObjBombf_c {
     /* 80BBADF8 */ void draw();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -61,7 +61,6 @@ static void daObjBombf_Create(fopAc_ac_c*);
 static void daObjBombf_Delete(daObjBombf_c*);
 static void daObjBombf_Execute(daObjBombf_c*);
 static void daObjBombf_Draw(daObjBombf_c*);
-extern "C" extern void* g_profile_Obj_Bombf[12];
 
 extern "C" void createHeap__12daObjBombf_cFv();
 extern "C" static void daObjBombf_createHeap__FP10fopAc_ac_c();
@@ -93,11 +92,6 @@ void fpcSch_JudgeByID(void*, void*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

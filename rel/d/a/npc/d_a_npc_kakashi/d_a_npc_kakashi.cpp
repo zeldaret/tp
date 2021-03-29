@@ -17,16 +17,16 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {
+    /* 802C03C8 */ Z2Creature();
+    /* 802C0420 */ ~Z2Creature();
+};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {
-    /* 802C03C8 */ Z2Creature();
-    /* 802C0420 */ ~Z2Creature();
-};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -40,15 +40,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DModel {};
-
-struct daNpcT_evtData_c {};
-
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_motionAnmData_c {};
-
-struct J3DJoint {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -56,6 +50,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 8054E460 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct J3DJoint {};
+
+struct J3DModel {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_Kakashi_c {
     /* 8054B36C */ ~daNpc_Kakashi_c();
@@ -104,16 +104,14 @@ struct daNpc_Kakashi_Param_c {
     /* 8054EA58 */ ~daNpc_Kakashi_Param_c();
 };
 
-struct csXyz {
-    /* 8054DED8 */ ~csXyz();
-    /* 8054E8F8 */ csXyz();
-};
-
-struct _GXColorS10 {};
-
 struct cXyz {
     /* 8054DDD0 */ ~cXyz();
     /* 8054E414 */ cXyz();
+};
+
+struct csXyz {
+    /* 8054DED8 */ ~csXyz();
+    /* 8054E8F8 */ csXyz();
 };
 
 struct dCcD_GObjInf {
@@ -123,6 +121,8 @@ struct dCcD_GObjInf {
     /* 800844F8 */ void GetTgHitObj();
     /* 800845B0 */ void getHitSeID(u8, int);
 };
+
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -212,9 +212,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -374,48 +374,6 @@ static void daNpc_Kakashi_Execute(void*);
 static void daNpc_Kakashi_Draw(void*);
 static bool daNpc_Kakashi_IsDelete(void*);
 static void cLib_calcTimer__template0(s16*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_KAKASHI[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_8054F244[4];
-extern "C" extern u8 data_8054F248[4];
-extern "C" extern u8 data_8054F24C[4];
-extern "C" extern u8 data_8054F250[4];
-extern "C" extern u8 data_8054F254[4];
-extern "C" extern u8 data_8054F258[4];
-extern "C" extern u8 data_8054F25C[4];
-extern "C" extern u8 data_8054F260[4];
-extern "C" extern u8 data_8054F264[4];
-extern "C" extern u8 data_8054F268[4];
-extern "C" extern u8 data_8054F26C[4];
-extern "C" extern u8 data_8054F270[4];
-extern "C" extern u8 data_8054F274[4];
-extern "C" extern u8 data_8054F278[4];
-extern "C" extern u8 data_8054F27C[4];
-extern "C" extern u8 data_8054F280[4];
-extern "C" extern u8 data_8054F284[4];
-extern "C" extern u8 data_8054F288[4];
-extern "C" extern u8 data_8054F28C[4];
-extern "C" extern u8 data_8054F290[4];
-extern "C" extern u8 data_8054F294[4];
-extern "C" extern u8 data_8054F298[4];
-extern "C" extern u8 data_8054F29C[4];
-extern "C" extern u8 data_8054F2A0[4];
-extern "C" extern u8 data_8054F2A4[4];
 
 extern "C" void __dt__15daNpc_Kakashi_cFv();
 extern "C" void create__15daNpc_Kakashi_cFv();
@@ -582,26 +540,6 @@ void cM_rndF(f32);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern u8 mCcDSph__8daNpcT_c[64];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80451124[4];
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

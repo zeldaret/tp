@@ -13,8 +13,6 @@
 
 extern void* const data_805A2518[2];
 
-extern void* const data_805A2518[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_tag_CstaSw_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 805A2518-805A2520 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_805A2518[2] = {
+    (void*)__sinit_d_a_tag_CstaSw_cpp,
+    (void*)NULL,
+};

@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct csXyz {};
-
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,6 +19,10 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 80266FDC */ void normalizeRS();
 };
+
+struct Quaternion {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -65,8 +65,6 @@ void mDoMtx_concatProjView(f32 const (*)[4], f32 const (*)[4], f32 (*)[4]);
 void mDoMtx_inverseTranspose(f32 const (*)[4], f32 (*)[4]);
 void mDoMtx_QuatConcat(Quaternion const*, Quaternion const*, Quaternion*);
 void mDoMtx_MtxToRot(f32 const (*)[4], csXyz*);
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
 
 extern "C" static void mDoMtx_XYZrotS__FPA4_fsss();
 extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
@@ -109,9 +107,6 @@ extern "C" extern u8 now__14mDoMtx_stack_c[48];
 
 void cM_atan2s(f32, f32);
 void operator delete(void*);
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_epsilon;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 extern "C" void __mi__4cXyzCFRC3Vec();
 extern "C" void outprod__4cXyzCFRC3Vec();
@@ -180,7 +175,7 @@ asm void mDoMtx_ZXYrotM(f32 (*param_0)[4], s16 param_1, s16 param_2, s16 param_3
 
 /* ############################################################################################## */
 /* 80451B08-80451B0C 0004+00 s=6 e=0 z=0  None .sdata2    @3676 */
-SECTION_SDATA2 static u32 lit_3676 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3676 = 1.0f;
 
 /* 80451B0C-80451B10 0004+00 s=7 e=0 z=0  None .sdata2    @3677 */
 SECTION_SDATA2 static u8 lit_3677[4] = {

@@ -37,6 +37,8 @@ struct dSelect_cursor_c {
     /* 801952A0 */ void setAlphaRate(f32);
 };
 
+struct COutFont_c {};
+
 struct J2DTextBox {
     /* 801DFA28 */ void getWhite() const;
     /* 801DFA34 */ void getBlack() const;
@@ -45,8 +47,6 @@ struct J2DTextBox {
 };
 
 struct JUTFont {};
-
-struct COutFont_c {};
 
 struct dMsgString_c {
     /* 801E1D10 */ void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
@@ -77,14 +77,14 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
+struct CSTControl {};
+
+struct JKRExpHeap {};
+
 struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct CSTControl {};
 
 struct dMenu_Letter_c {
     /* 801DCDC0 */ dMenu_Letter_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -187,8 +187,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_letter__stringBase0;
-
 extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__14dMenu_Letter_cFv();
 extern "C" void _create__14dMenu_Letter_cFv();
@@ -253,14 +251,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 letter_data__12dMenu_Letter[512];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -503,7 +493,7 @@ SECTION_SDATA2 static u8 lit_3827[4] = {
 };
 
 /* 804542E4-804542E8 0004+00 s=10 e=0 z=0  None .sdata2    @3828 */
-SECTION_SDATA2 static u32 lit_3828 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3828 = 1.0f;
 
 /* 801DCDC0-801DCF34 0174+00 s=0 e=2 z=0  None .text
  * __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl */
@@ -528,16 +518,16 @@ asm dMenu_Letter_c::~dMenu_Letter_c() {
 
 /* ############################################################################################## */
 /* 804542E8-804542EC 0004+00 s=1 e=0 z=0  None .sdata2    @3964 */
-SECTION_SDATA2 static u32 lit_3964 = 0x3F87AE14;
+SECTION_SDATA2 static f32 lit_3964 = 53.0f / 50.0f;
 
 /* 804542EC-804542F0 0004+00 s=1 e=0 z=0  None .sdata2    @3965 */
-SECTION_SDATA2 static u32 lit_3965 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_3965 = 9.0f / 10.0f;
 
 /* 804542F0-804542F4 0004+00 s=1 e=0 z=0  None .sdata2    @3966 */
-SECTION_SDATA2 static u32 lit_3966 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_3966 = 1.0f / 50.0f;
 
 /* 804542F4-804542F8 0004+00 s=1 e=0 z=0  None .sdata2    @3967 */
-SECTION_SDATA2 static u32 lit_3967 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_3967 = 2.0f / 5.0f;
 
 /* 801DD36C-801DD474 0108+00 s=1 e=0 z=0  None .text      _create__14dMenu_Letter_cFv */
 #pragma push
@@ -561,10 +551,10 @@ asm void dMenu_Letter_c::_move() {
 
 /* ############################################################################################## */
 /* 804542F8-804542FC 0004+00 s=1 e=0 z=0  None .sdata2    @4054 */
-SECTION_SDATA2 static u32 lit_4054 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4054 = 608.0f;
 
 /* 804542FC-80454300 0004+00 s=1 e=0 z=0  None .sdata2    @4055 */
-SECTION_SDATA2 static u32 lit_4055 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4055 = 448.0f;
 
 /* 80454300-80454308 0004+04 s=3 e=0 z=0  None .sdata2    @4056 */
 SECTION_SDATA2 static f32 lit_4056[1 + 1 /* padding */] = {
@@ -574,9 +564,7 @@ SECTION_SDATA2 static f32 lit_4056[1 + 1 /* padding */] = {
 };
 
 /* 80454308-80454310 0008+00 s=3 e=0 z=0  None .sdata2    @4058 */
-SECTION_SDATA2 static u8 lit_4058[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4058 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801DD50C-801DD934 0428+00 s=1 e=1 z=0  None .text      _draw__14dMenu_Letter_cFv */
 #pragma push
@@ -778,9 +766,7 @@ SECTION_DEAD char const* const stringBase_80396E82 = "zelda_collect_soubi_do_ico
 #pragma pop
 
 /* 80454310-80454318 0008+00 s=7 e=0 z=0  None .sdata2    @4171 */
-SECTION_SDATA2 static u8 lit_4171[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4171 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801DDA74-801DDC98 0224+00 s=0 e=2 z=0  None .text      _open__14dMenu_Letter_cFv */
 #pragma push
@@ -834,10 +820,10 @@ asm void dMenu_Letter_c::slide_right_init() {
 
 /* ############################################################################################## */
 /* 80454318-8045431C 0004+00 s=3 e=0 z=0  None .sdata2    @4308 */
-SECTION_SDATA2 static u32 lit_4308 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4308 = 0.5f;
 
 /* 8045431C-80454320 0004+00 s=2 e=0 z=0  None .sdata2    @4309 */
-SECTION_SDATA2 static u32 lit_4309 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4309 = 50.0f;
 
 /* 80454320-80454328 0004+04 s=2 e=0 z=0  None .sdata2    @4310 */
 SECTION_SDATA2 static f32 lit_4310[1 + 1 /* padding */] = {

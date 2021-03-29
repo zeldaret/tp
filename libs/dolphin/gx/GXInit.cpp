@@ -11,12 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __piReg[4];
-extern "C" extern u8 __cpReg[4];
-extern "C" extern u8 __peReg[4];
-extern "C" extern u8 __memReg[4];
-extern "C" extern void* __GXData;
-
 extern "C" static void __GXDefaultTexRegionCallback();
 extern "C" static void __GXDefaultTlutRegionCallback();
 extern "C" static void __GXShutdown();
@@ -32,11 +26,6 @@ extern "C" extern void* __GXData;
 //
 // External References:
 //
-
-extern "C" extern u8 GXNtsc480IntDf[60];
-extern "C" extern u8 GXMpal480IntDf[60];
-extern "C" extern u8 GXPal528IntDf[60];
-extern "C" extern u8 GXEurgb60Hz480IntDf[60 + 4 /* padding */];
 
 extern "C" void PPCSync();
 extern "C" void PPCMfhid2();
@@ -387,7 +376,7 @@ SECTION_SDATA static void* __GXVersion[1 + 1 /* padding */] = {
 static u8 resetFuncRegistered[4];
 
 /* 80456584-80456588 0004+00 s=1 e=0 z=0  None .sdata2    @267 */
-SECTION_SDATA2 static u32 lit_267 = 0x4B800000;
+SECTION_SDATA2 static f32 lit_267 = 16777216.0f;
 
 /* 80456588-8045658C 0004+00 s=2 e=0 z=0  None .sdata2    @268 */
 SECTION_SDATA2 static u8 lit_268[4] = {
@@ -423,15 +412,13 @@ SECTION_SDATA2 static u8 lit_270[4] = {
 SECTION_SDATA2 static u32 lit_271 = 0xFFFFFFFF;
 
 /* 80456598-8045659C 0004+00 s=1 e=0 z=0  None .sdata2    @331 */
-SECTION_SDATA2 static u32 lit_331 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_331 = 1.0f;
 
 /* 8045659C-804565A0 0004+00 s=1 e=0 z=0  None .sdata2    @332 */
-SECTION_SDATA2 static u32 lit_332 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_332 = 1.0f / 10.0f;
 
 /* 804565A0-804565A8 0008+00 s=1 e=0 z=0  None .sdata2    @334 */
-SECTION_SDATA2 static u8 lit_334[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_334 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80359C70-8035A5A8 0938+00 s=1 e=0 z=0  None .text      __GXInitGX */
 #pragma push

@@ -204,12 +204,6 @@ static void addWarpMaterial(J3DModelData*);
 static void getArcHeader(JKRArchive*);
 static void myGetMemBlockSize(void*);
 static void myGetMemBlockSize0(void*);
-extern "C" extern char const* const d_d_resorce__stringBase0;
-extern "C" extern void* __vt__10J3DAnmBase[4];
-extern "C" extern void* __vt__15J3DAnmTransform[5];
-extern "C" extern void* __vt__18mDoExt_transAnmBas[5];
-extern "C" extern void* __vt__18J3DAnmTransformKey[5];
-extern "C" extern void* __vt__11J3DTexNoAnm[3];
 
 extern "C" void __ct__11dRes_info_cFv();
 extern "C" void __dt__11dRes_info_cFv();
@@ -288,15 +282,6 @@ void mDoExt_resIDToIndex(JKRArchive*, u16);
 void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 j3dDefaultTevSwapMode[4];
 
 extern "C" void OSReport_Error();
 extern "C" void OSReport_Warning();
@@ -861,9 +846,7 @@ asm void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80451DF8-80451E00 0008+00 s=1 e=0 z=0  None .sdata2    @4277 */
-SECTION_SDATA2 static u8 lit_4277[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4277 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80451E00-80451E08 0004+04 s=1 e=0 z=0  None .sdata2    @4333 */
 SECTION_SDATA2 static f32 lit_4333[1 + 1 /* padding */] = {

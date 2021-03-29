@@ -87,7 +87,6 @@ static void daTag_KMsg_Delete(void*);
 static void daTag_KMsg_Execute(void*);
 static void daTag_KMsg_Draw(void*);
 static bool daTag_KMsg_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_KMSG[12];
 
 extern "C" void create__12daTag_KMsg_cFv();
 extern "C" void Delete__12daTag_KMsg_cFv();
@@ -116,10 +115,6 @@ void daNpcT_chkDoBtnIsSpeak(fopAc_ac_c*);
 void daNpcT_getDistTableIdx(int, int);
 void daNpcT_chkEvtBit(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

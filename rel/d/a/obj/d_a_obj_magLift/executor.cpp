@@ -19,10 +19,6 @@ extern "C" void _unresolved();
 // External References:
 //
 
-extern void* const data_80C8E648[2];
-#pragma section ".dtors$10"
-__declspec(section ".dtors$10") extern void* const __destroy_global_chain_reference;
-
 extern "C" void ModuleProlog();
 extern "C" void ModuleEpilog();
 extern "C" void ModuleUnresolved();

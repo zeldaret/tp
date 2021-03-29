@@ -187,8 +187,6 @@ static void daObjKshtr_MoveBGDelete(daObjKshtr_c*);
 static void daObjKshtr_MoveBGExecute(daObjKshtr_c*);
 static void daObjKshtr_MoveBGDraw(daObjKshtr_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Kshutter[12];
 
 extern "C" void initBaseMtx__12daObjKshtr_cFv();
 extern "C" void setBaseMtx__12daObjKshtr_cFv();
@@ -260,17 +258,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 struct_80C4A0E8[4];
-extern "C" extern u8 data_80C4A0EC[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

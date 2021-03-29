@@ -13,8 +13,6 @@
 
 extern void* const data_80BF4930[2];
 
-extern void* const data_80BF4930[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_gadget_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80BF4930-80BF4938 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80BF4930[2] = {
+    (void*)__sinit_d_a_obj_gadget_cpp,
+    (void*)NULL,
+};

@@ -52,15 +52,33 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct J2DAnmBase {};
+struct J2DAnmColor {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA1AC */ J2DMaterial();
+    /* 802EA2CC */ ~J2DMaterial();
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
+    /* 802EAC78 */ void animation();
+};
 
 struct J2DGrafContext {};
-
-struct J2DAnmTransform {};
 
 struct J2DAnmVtxColor {};
 
 struct J2DAnmVisibilityFull {};
+
+struct J2DAnmBase {};
+
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -89,24 +107,6 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
     /* 802F8478 */ void drawSelf(f32, f32);
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmColor {};
-
-struct J2DMaterial {
-    /* 802EA1AC */ J2DMaterial();
-    /* 802EA2CC */ ~J2DMaterial();
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-    /* 802EAC78 */ void animation();
 };
 
 struct J2DWindowEx {
@@ -199,8 +199,6 @@ struct J2DDataManage {
 // Forward References:
 //
 
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
-
 extern "C" void __ct__9J2DScreenFv();
 extern "C" void __dt__9J2DScreenFv();
 extern "C" void clean__9J2DScreenFv();
@@ -245,12 +243,6 @@ void* operator new[](u32);
 void* operator new[](u32, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern void* __vt__10JSUIosBase[3];
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
 
 extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void clearAnmTransform__9J2DScreenFv();
@@ -406,7 +398,7 @@ SECTION_SDATA2 static u8 lit_1561[4] = {
 };
 
 /* 80456224-80456228 0004+00 s=2 e=0 z=0  None .sdata2    @1562 */
-SECTION_SDATA2 static u32 lit_1562 = 0x44200000;
+SECTION_SDATA2 static f32 lit_1562 = 640.0f;
 
 /* 80456228-80456230 0004+04 s=2 e=0 z=0  None .sdata2    @1563 */
 SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
@@ -491,9 +483,7 @@ asm void J2DScreen::checkSignature(JSURandomInputStream* param_0) {
 
 /* ############################################################################################## */
 /* 80456230-80456238 0008+00 s=1 e=0 z=0  None .sdata2    @1705 */
-SECTION_SDATA2 static u8 lit_1705[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1705 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802F8894-802F8990 00FC+00 s=1 e=0 z=0  None .text
  * getScreenInformation__9J2DScreenFP20JSURandomInputStream     */
@@ -532,10 +522,10 @@ asm void J2DScreen::createPane(J2DScrnBlockHeader const& param_0, JSURandomInput
 
 /* ############################################################################################## */
 /* 80456238-8045623C 0004+00 s=1 e=0 z=0  None .sdata2    @1829 */
-SECTION_SDATA2 static u32 lit_1829 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_1829 = -1.0f;
 
 /* 8045623C-80456240 0004+00 s=1 e=0 z=0  None .sdata2    @1830 */
-SECTION_SDATA2 static u32 lit_1830 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1830 = 1.0f;
 
 /* 802F8ED4-802F90A0 01CC+00 s=0 e=51 z=4  None .text      draw__9J2DScreenFffPC14J2DGrafContext */
 #pragma push

@@ -48,10 +48,10 @@ SECTION_SDATA2 static u8 lit_130[4] = {
 };
 
 /* 80456554-80456558 0004+00 s=1 e=0 z=0  None .sdata2    @133 */
-SECTION_SDATA2 static u32 lit_133 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_133 = 1.0f;
 
 /* 80456558-8045655C 0004+00 s=1 e=0 z=0  None .sdata2    @135 */
-SECTION_SDATA2 static u32 lit_135 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_135 = 0.5f;
 
 /* 80347474-80347500 008C+00 s=0 e=1 z=0  None .text      C_QUATRotAxisRad */
 #pragma push
@@ -65,7 +65,7 @@ extern "C" asm void C_QUATRotAxisRad() {
 
 /* ############################################################################################## */
 /* 8045655C-80456560 0004+00 s=1 e=0 z=0  None .sdata2    @261 */
-SECTION_SDATA2 static u32 lit_261 = 0x3F7FFF58;
+SECTION_SDATA2 static f32 lit_261 = 0.9999899864196777f;
 
 /* 80347500-80347674 0174+00 s=0 e=0 z=2  None .text      C_QUATSlerp */
 #pragma push

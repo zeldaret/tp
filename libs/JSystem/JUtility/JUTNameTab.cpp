@@ -37,8 +37,6 @@ extern "C" void calcKeyCode__10JUTNameTabCFPCc();
 // External References:
 //
 
-extern "C" extern void* __vt__10JUTNameTab[3];
-
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
 extern "C" void strcmp();

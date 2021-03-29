@@ -67,13 +67,13 @@ struct dSv_event_c {
     /* 80034A04 */ void getEventReg(u16) const;
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct cXyz {
     /* 804E00A0 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -157,48 +157,6 @@ static void daDitem_Delete(daDitem_c*);
 static void daDitem_Create(daDitem_c*);
 static void daDitem_Execute(daDitem_c*);
 static void daDitem_Draw(daDitem_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Demo_Item[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_804E1CBC[4];
-extern "C" extern u8 data_804E1CC0[4];
-extern "C" extern u8 data_804E1CC4[4];
-extern "C" extern u8 data_804E1CC8[4];
-extern "C" extern u8 data_804E1CCC[4];
-extern "C" extern u8 data_804E1CD0[4];
-extern "C" extern u8 data_804E1CD4[4];
-extern "C" extern u8 data_804E1CD8[4];
-extern "C" extern u8 data_804E1CDC[4];
-extern "C" extern u8 data_804E1CE0[4];
-extern "C" extern u8 data_804E1CE4[4];
-extern "C" extern u8 data_804E1CE8[4];
-extern "C" extern u8 data_804E1CEC[4];
-extern "C" extern u8 data_804E1CF0[4];
-extern "C" extern u8 data_804E1CF4[4];
-extern "C" extern u8 data_804E1CF8[4];
-extern "C" extern u8 data_804E1CFC[4];
-extern "C" extern u8 data_804E1D00[4];
-extern "C" extern u8 data_804E1D04[4];
-extern "C" extern u8 data_804E1D08[4];
-extern "C" extern u8 data_804E1D0C[4];
-extern "C" extern u8 data_804E1D10[4];
-extern "C" extern u8 data_804E1D14[4];
-extern "C" extern u8 data_804E1D18[4];
-extern "C" extern u8 data_804E1D1C[4];
 
 extern "C" bool __CreateHeap__9daDitem_cFv();
 extern "C" void CreateInit__9daDitem_cFv();
@@ -298,19 +256,6 @@ void cLib_chaseUC(u8*, u8, u8);
 void cLib_chaseF(f32*, f32, f32);
 void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 struct_80450D64[4];
 
 SECTION_INIT void __init_data();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

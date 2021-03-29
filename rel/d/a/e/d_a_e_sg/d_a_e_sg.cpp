@@ -37,10 +37,6 @@ struct dStage_roomControl_c {
     /* 800244E8 */ void checkRoomDisp(int) const;
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
@@ -49,6 +45,10 @@ struct cXyz {
     /* 8078A4DC */ ~cXyz();
     /* 8078DD7C */ cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -75,9 +75,9 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dJntColData_c {};
-
 struct J3DModel {};
+
+struct dJntColData_c {};
 
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();
@@ -205,52 +205,6 @@ static bool daE_SG_IsDelete(e_sg_class*);
 static void daE_SG_Delete(e_sg_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daE_SG_Create(fopAc_ac_c*);
-extern "C" extern u8 const lit_4743[12];
-extern "C" extern u32 const lit_4805;
-extern "C" extern u32 const lit_4806;
-extern "C" extern u32 const lit_4807;
-extern "C" extern u32 const lit_4808;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_SG[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_8078E1E0[4];
-extern "C" extern u8 data_8078E1E4[4];
-extern "C" extern u8 data_8078E1E8[4];
-extern "C" extern u8 data_8078E1EC[4];
-extern "C" extern u8 data_8078E1F0[4];
-extern "C" extern u8 data_8078E1F4[4];
-extern "C" extern u8 data_8078E1F8[4];
-extern "C" extern u8 data_8078E1FC[4];
-extern "C" extern u8 data_8078E200[4];
-extern "C" extern u8 data_8078E204[4];
-extern "C" extern u8 data_8078E208[4];
-extern "C" extern u8 data_8078E20C[4];
-extern "C" extern u8 data_8078E210[4];
-extern "C" extern u8 data_8078E214[4];
-extern "C" extern u8 data_8078E218[4];
-extern "C" extern u8 data_8078E21C[4];
-extern "C" extern u8 data_8078E220[4];
-extern "C" extern u8 data_8078E224[4];
-extern "C" extern u8 data_8078E228[4];
-extern "C" extern u8 data_8078E22C[4];
-extern "C" extern u8 data_8078E230[4];
-extern "C" extern u8 data_8078E234[4];
-extern "C" extern u8 data_8078E238[4];
-extern "C" extern u8 data_8078E23C[4];
-extern "C" extern u8 data_8078E240[4];
 
 extern "C" void __ct__12daE_SG_HIO_cFv();
 extern "C" static void nodeCallBack__FP8J3DJointi();
@@ -372,23 +326,6 @@ void cLib_addCalc0(f32*, f32, f32);
 void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void MtxPosition(cXyz*, cXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

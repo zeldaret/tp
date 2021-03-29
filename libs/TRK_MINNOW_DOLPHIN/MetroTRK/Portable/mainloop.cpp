@@ -17,8 +17,6 @@ extern "C" void TRKNubMainLoop();
 // External References:
 //
 
-extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
-
 extern "C" void TRKDestructEvent();
 extern "C" void TRKGetNextEvent();
 extern "C" void TRKGetBuffer();

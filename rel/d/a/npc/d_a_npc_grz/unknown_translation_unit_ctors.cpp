@@ -13,8 +13,6 @@
 
 extern void* const data_809EF1E0[2];
 
-extern void* const data_809EF1E0[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_grz_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 809EF1E0-809EF1E8 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_809EF1E0[2] = {
+    (void*)__sinit_d_a_npc_grz_cpp,
+    (void*)NULL,
+};

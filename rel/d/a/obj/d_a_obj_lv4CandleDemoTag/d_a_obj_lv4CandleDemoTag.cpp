@@ -72,8 +72,6 @@ static void dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c*);
 static void dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c*);
 static void dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c*);
 static void dalv4CandleDemoTag_Create(fopAc_ac_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Tag_Lv4CandleDm[12];
 
 extern "C" void __ct__24dalv4CandleDemoTag_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -119,10 +117,6 @@ void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
 void fopAcM_myRoomSearchEnemy(s8);
 void dPath_GetRoomPath(int, int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

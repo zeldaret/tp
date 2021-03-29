@@ -43,8 +43,6 @@ static void daNocrm_create(daNocrm_c*);
 static bool daNocrm_Delete(daNocrm_c*);
 static void daNocrm_execute(daNocrm_c*);
 static bool daNocrm_draw(daNocrm_c*);
-extern "C" extern char const* const d_a_d_a_no_chg_room__stringBase0;
-extern "C" extern void* g_profile_NO_CHG_ROOM[12];
 
 extern "C" static void isLoadRoom__Fi();
 extern "C" void execute__9daNocrm_cFv();
@@ -63,14 +61,6 @@ extern "C" extern void* g_profile_NO_CHG_ROOM[12];
 void mDoMtx_YrotM(f32 (*)[4], s16);
 void fopScnM_SearchByID(unsigned int);
 void fpcNd_IsDeleteTiming(process_node_class*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_804505F0[8];
-extern "C" extern u8 data_80450D68[4];
 
 extern "C" void OSReport_Warning();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -150,7 +140,7 @@ SECTION_DEAD static char const* const pad_8039267C = "\0\0\0";
 #pragma pop
 
 /* 804533CC-804533D0 0004+00 s=1 e=0 z=0  None .sdata2    @3832 */
-SECTION_SDATA2 static u32 lit_3832 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_3832 = 1000.0f;
 
 /* 804533D0-804533D8 0004+04 s=1 e=0 z=0  None .sdata2    @3833 */
 SECTION_SDATA2 static f32 lit_3833[1 + 1 /* padding */] = {

@@ -63,7 +63,6 @@ extern "C" void __dt__12JASSeqParserFv();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__12JASSeqParser[8];
 
 extern "C" void checkNoteStop__8JASTrackCFUl();
 extern "C" void init__12JASSeqReaderFv();

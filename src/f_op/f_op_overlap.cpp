@@ -26,7 +26,6 @@ static void fopOvlp_Execute(void*);
 static void fopOvlp_IsDelete(void*);
 static void fopOvlp_Delete(void*);
 static void fopOvlp_Create(void*);
-extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
 
 extern "C" static void fopOvlp_Draw__FPv();
 extern "C" static void fopOvlp_Execute__FPv();

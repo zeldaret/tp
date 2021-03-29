@@ -27,8 +27,6 @@ struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
 
-struct J3DModel {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -42,6 +40,8 @@ struct cXyz {
 };
 
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();
@@ -183,7 +183,6 @@ static void daNpc_shopMaro_Delete(void*);
 static bool daNpc_shopMaro_Execute(void*);
 static bool daNpc_shopMaro_Draw(void*);
 static bool daNpc_shopMaro_IsDelete(void*);
-extern "C" extern void* g_profile_NPC_SMARO[12];
 
 extern "C" static void daNpc_shopMaro_Create__FPv();
 extern "C" static void daNpc_shopMaro_Delete__FPv();
@@ -255,13 +254,6 @@ extern "C" extern void* g_profile_NPC_SMARO[12];
 
 void cM_rndF(f32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__13dShopSystem_c[52 + 1 /* padding */];
-extern "C" extern void* __vt__9cCcD_Stts[8];
 
 SECTION_INIT void memset();
 extern "C" void __ct__10fopAc_ac_cFv();

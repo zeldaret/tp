@@ -89,16 +89,6 @@ void* operator new[](u32, int);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
 void operator delete[](void*);
-extern "C" extern char const* const JKRHeap__stringBase0;
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
-extern "C" extern u8 mCodeStart__7JKRHeap[4];
-extern "C" extern u8 mCodeEnd__7JKRHeap[4];
-extern "C" extern u8 mUserRamStart__7JKRHeap[4];
-extern "C" extern u8 mUserRamEnd__7JKRHeap[4];
-extern "C" extern u8 mMemorySize__7JKRHeap[4];
 
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
 extern "C" void __dt__7JKRHeapFv();
@@ -161,8 +151,6 @@ extern "C" extern u8 mMemorySize__7JKRHeap[4];
 //
 // External References:
 //
-
-extern "C" extern u8 data_804508B0[8];
 
 extern "C" bool dump_sort__7JKRHeapFv();
 extern "C" void __ct__11JKRDisposerFv();

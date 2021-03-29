@@ -51,8 +51,6 @@ struct J3DPacket {
 // Forward References:
 //
 
-extern "C" extern void* __vt__6dMdl_c[5 + 1 /* padding */];
-
 extern "C" void draw__6dMdl_cFv();
 extern "C" void create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c();
 extern "C" void entryObj__6dMdl_cFP10dMdl_obj_c();
@@ -75,12 +73,6 @@ void dKy_setLight_again();
 void dKy_GxFog_tevstr_set(dKy_tevstr_c*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void dKy_setLight_nowroom_actor__FP12dKy_tevstr_c();
 extern "C" void dKy_setLight_again__Fv();

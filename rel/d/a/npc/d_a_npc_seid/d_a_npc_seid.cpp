@@ -13,12 +13,6 @@
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Vec {};
 
 struct Z2Creature {
@@ -26,6 +20,12 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
+
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -89,20 +89,20 @@ struct daNpc_seiD_Param_c {
     /* 80ACB2F0 */ ~daNpc_seiD_Param_c();
 };
 
-struct J3DModel {};
-
-struct _GXColorS10 {};
+struct J3DAnmTextureSRTKey {};
 
 struct cXyz {
     /* 80ACA99C */ ~cXyz();
     /* 80ACAF18 */ cXyz();
 };
 
-struct J3DAnmTextureSRTKey {};
+struct J3DJoint {};
+
+struct J3DModel {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DJoint {};
+struct _GXColorS10 {};
 
 struct daNpcT_c {
     /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
@@ -284,8 +284,6 @@ static void daNpc_seiD_Delete(void*);
 static void daNpc_seiD_Execute(void*);
 static void daNpc_seiD_Draw(void*);
 static bool daNpc_seiD_IsDelete(void*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_NPC_SEID[12];
 
 extern "C" void __dt__12daNpc_seiD_cFv();
 extern "C" void create__12daNpc_seiD_cFv();
@@ -380,14 +378,6 @@ void dComIfGs_wolfeye_effect_check();
 void cM_rndF(f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 SECTION_INIT void memset();
 extern "C" void

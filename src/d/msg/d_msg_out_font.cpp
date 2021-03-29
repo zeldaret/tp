@@ -51,8 +51,6 @@ struct COutFontSet_c {
 // Forward References:
 //
 
-extern "C" extern char const* const d_msg_d_msg_out_font__stringBase0;
-
 extern "C" void __ct__13COutFontSet_cFv();
 extern "C" void __dt__13COutFontSet_cFv();
 extern "C" void initialize__13COutFontSet_cFv();
@@ -78,8 +76,6 @@ void fopMsgM_valueIncrease(int, int, u8);
 void dMeter2Info_getNumberTextureName(int);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void fopMsgM_valueIncrease__FiiUc();
 extern "C" void dMeter2Info_getNumberTextureName__Fi();
@@ -427,7 +423,7 @@ SECTION_SDATA2 static u8 lit_3748[4] = {
 };
 
 /* 80454A14-80454A18 0004+00 s=6 e=0 z=0  None .sdata2    @3749 */
-SECTION_SDATA2 static u32 lit_3749 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3749 = 1.0f;
 
 /* 80225C3C-80225C70 0034+00 s=2 e=0 z=0  None .text      initialize__13COutFontSet_cFv */
 #pragma push
@@ -483,9 +479,7 @@ asm void COutFont_c::setPane(J2DPicture* param_0) {
 
 /* ############################################################################################## */
 /* 80454A18-80454A20 0008+00 s=2 e=0 z=0  None .sdata2    @4397 */
-SECTION_SDATA2 static u8 lit_4397[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4397 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80225EA8-80226CF8 0E50+00 s=2 e=0 z=0  None .text      createPane__10COutFont_cFv */
 #pragma push
@@ -531,45 +525,43 @@ asm void COutFont_c::setAlphaRatio(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80454A20-80454A24 0004+00 s=1 e=0 z=0  None .sdata2    @4986 */
-SECTION_SDATA2 static u32 lit_4986 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4986 = 2.0f;
 
 /* 80454A24-80454A28 0004+00 s=1 e=0 z=0  None .sdata2    @4987 */
-SECTION_SDATA2 static u32 lit_4987 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4987 = 3.0f;
 
 /* 80454A28-80454A2C 0004+00 s=1 e=0 z=0  None .sdata2    @4988 */
-SECTION_SDATA2 static u32 lit_4988 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4988 = 0.5f;
 
 /* 80454A2C-80454A30 0004+00 s=1 e=0 z=0  None .sdata2    @4989 */
-SECTION_SDATA2 static u32 lit_4989 = 0x43B40000;
+SECTION_SDATA2 static f32 lit_4989 = 360.0f;
 
 /* 80454A30-80454A34 0004+00 s=1 e=0 z=0  None .sdata2    @4990 */
-SECTION_SDATA2 static u32 lit_4990 = 0x41E00000;
+SECTION_SDATA2 static f32 lit_4990 = 28.0f;
 
 /* 80454A34-80454A38 0004+00 s=1 e=0 z=0  None .sdata2    @4991 */
-SECTION_SDATA2 static u32 lit_4991 = 0x42480000;
+SECTION_SDATA2 static f32 lit_4991 = 50.0f;
 
 /* 80454A38-80454A3C 0004+00 s=1 e=0 z=0  None .sdata2    @4992 */
-SECTION_SDATA2 static u32 lit_4992 = 0x434D0000;
+SECTION_SDATA2 static f32 lit_4992 = 205.0f;
 
 /* 80454A3C-80454A40 0004+00 s=1 e=0 z=0  None .sdata2    @4993 */
-SECTION_SDATA2 static u32 lit_4993 = 0x41100000;
+SECTION_SDATA2 static f32 lit_4993 = 9.0f;
 
 /* 80454A40-80454A44 0004+00 s=1 e=0 z=0  None .sdata2    @4994 */
-SECTION_SDATA2 static u32 lit_4994 = 0x41900000;
+SECTION_SDATA2 static f32 lit_4994 = 18.0f;
 
 /* 80454A44-80454A48 0004+00 s=1 e=0 z=0  None .sdata2    @4995 */
-SECTION_SDATA2 static u32 lit_4995 = 0xC0400000;
+SECTION_SDATA2 static f32 lit_4995 = -3.0f;
 
 /* 80454A48-80454A4C 0004+00 s=1 e=0 z=0  None .sdata2    @4996 */
-SECTION_SDATA2 static u32 lit_4996 = 0x40800000;
+SECTION_SDATA2 static f32 lit_4996 = 4.0f;
 
 /* 80454A4C-80454A50 0004+00 s=1 e=0 z=0  None .sdata2    @4997 */
-SECTION_SDATA2 static u32 lit_4997 = 0x3FA00000;
+SECTION_SDATA2 static f32 lit_4997 = 1.25f;
 
 /* 80454A50-80454A58 0008+00 s=1 e=0 z=0  None .sdata2    @5001 */
-SECTION_SDATA2 static u8 lit_5001[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_5001 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80226DB0-80228448 1698+00 s=2 e=0 z=0  None .text      draw__10COutFont_cFP10J2DTextBoxfff */
 #pragma push

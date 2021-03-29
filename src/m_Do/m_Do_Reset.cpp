@@ -47,10 +47,6 @@ static void my_OSCancelAlarmAll();
 static void destroyVideo();
 void mDoRst_reset(int, u32, int);
 void mDoRst_resetCallBack(int, void*);
-extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450C80[8];
-extern "C" extern u8 data_80450C88[8];
 
 extern "C" static void my_OSCancelAlarmAll__Fv();
 extern "C" static void destroyVideo__Fv();
@@ -68,13 +64,6 @@ extern "C" extern u8 data_80450C88[8];
 
 void mDoDvdErr_ThdCleanup();
 void cAPICPad_recalibrate();
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 extern "C" void OSAttention();
 extern "C" void main__9mDoDvdThdFPv();

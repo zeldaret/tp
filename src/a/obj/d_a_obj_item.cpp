@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -24,6 +22,8 @@ struct cXyz {
     /* 8026702C */ bool operator==(Vec const&) const;
     /* 8026706C */ bool operator!=(Vec const&) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -260,8 +260,6 @@ static void daItem_Draw(daItem_c*);
 static void daItem_Execute(daItem_c*);
 static void daItem_Delete(daItem_c*);
 static void daItem_Create(fopAc_ac_c*);
-extern "C" extern char const* const a_obj_d_a_obj_item__stringBase0;
-extern "C" extern void* g_profile_ITEM[12];
 
 extern "C" static void Reflect__FP4cXyzRC13cBgS_PolyInfof();
 extern "C" void getData__12daItemBase_cFv();
@@ -355,30 +353,6 @@ void cM_rndF(f32);
 void cM_rndFX(f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern u8 const m_data__12daItemBase_c[56];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
-extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 data_80451010[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -517,27 +491,17 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80453550-80453558 0004+04 s=11 e=0 z=0  None .sdata2    @3857 */
-SECTION_SDATA2 static u8 lit_3857[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3857[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80453558-80453560 0008+00 s=2 e=0 z=0  None .sdata2    @3858 */
-SECTION_SDATA2 static u8 lit_3858[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3858 = 0.5;
 
 /* 80453560-80453568 0008+00 s=2 e=0 z=0  None .sdata2    @3859 */
-SECTION_SDATA2 static u8 lit_3859[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3859 = 3.0;
 
 /* 80453568-80453570 0008+00 s=2 e=0 z=0  None .sdata2    @3860 */
 SECTION_SDATA2 static u8 lit_3860[8] = {
@@ -596,7 +560,7 @@ asm void daItem_c::setBaseMtx_0() {
 
 /* ############################################################################################## */
 /* 80453570-80453574 0004+00 s=3 e=0 z=0  None .sdata2    @3923 */
-SECTION_SDATA2 static u32 lit_3923 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3923 = 0.5f;
 
 /* 8015B1C8-8015B254 008C+00 s=1 e=0 z=0  None .text      setBaseMtx_1__8daItem_cFv */
 #pragma push
@@ -766,13 +730,13 @@ SECTION_DATA static u8 m_cyl_src__8daItem_c[68] = {
 };
 
 /* 80453574-80453578 0004+00 s=1 e=0 z=0  None .sdata2    @4067 */
-SECTION_SDATA2 static u32 lit_4067 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_4067 = 30.0f;
 
 /* 80453578-8045357C 0004+00 s=1 e=0 z=0  None .sdata2    @4068 */
-SECTION_SDATA2 static u32 lit_4068 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_4068 = 10000.0f;
 
 /* 8045357C-80453580 0004+00 s=7 e=0 z=0  None .sdata2    @4069 */
-SECTION_SDATA2 static u32 lit_4069 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4069 = 1.0f;
 
 /* 80453580-80453588 0004+04 s=2 e=0 z=0  None .sdata2    @4070 */
 SECTION_SDATA2 static f32 lit_4070[1 + 1 /* padding */] = {
@@ -782,9 +746,7 @@ SECTION_SDATA2 static f32 lit_4070[1 + 1 /* padding */] = {
 };
 
 /* 80453588-80453590 0008+00 s=3 e=0 z=0  None .sdata2    @4072 */
-SECTION_SDATA2 static u8 lit_4072[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4072 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8015B3D8-8015B7BC 03E4+00 s=1 e=0 z=0  None .text      CreateInit__8daItem_cFv */
 #pragma push
@@ -909,10 +871,10 @@ asm Z2SoundObjSimple::~Z2SoundObjSimple() {
 
 /* ############################################################################################## */
 /* 80453590-80453594 0004+00 s=1 e=0 z=0  None .sdata2    @4320 */
-SECTION_SDATA2 static u32 lit_4320 = 0x43960000;
+SECTION_SDATA2 static f32 lit_4320 = 300.0f;
 
 /* 80453594-80453598 0004+00 s=1 e=0 z=0  None .sdata2    @4321 */
-SECTION_SDATA2 static u32 lit_4321 = 0x41900000;
+SECTION_SDATA2 static f32 lit_4321 = 18.0f;
 
 /* 8015BA9C-8015BD84 02E8+00 s=1 e=0 z=0  None .text      _daItem_execute__8daItem_cFv */
 #pragma push
@@ -991,7 +953,7 @@ asm void daItem_c::procMainForceGet() {
 
 /* ############################################################################################## */
 /* 80453598-8045359C 0004+00 s=3 e=0 z=0  None .sdata2    @4404 */
-SECTION_SDATA2 static u32 lit_4404 = 0x41700000;
+SECTION_SDATA2 static f32 lit_4404 = 15.0f;
 
 /* 8015C058-8015C134 00DC+00 s=4 e=0 z=0  None .text      procInitSimpleGetDemo__8daItem_cFv */
 #pragma push
@@ -1053,7 +1015,7 @@ asm void daItem_c::procMainGetDemoEvent() {
 
 /* ############################################################################################## */
 /* 8045359C-804535A0 0004+00 s=2 e=0 z=0  None .sdata2    @4506 */
-SECTION_SDATA2 static u32 lit_4506 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4506 = 2.0f;
 
 /* 8015C41C-8015C514 00F8+00 s=1 e=0 z=0  None .text      procInitBoomerangCarry__8daItem_cFv */
 #pragma push
@@ -1067,7 +1029,7 @@ asm void daItem_c::procInitBoomerangCarry() {
 
 /* ############################################################################################## */
 /* 804535A0-804535A4 0004+00 s=2 e=0 z=0  None .sdata2    @4524 */
-SECTION_SDATA2 static u32 lit_4524 = 0x43480000;
+SECTION_SDATA2 static f32 lit_4524 = 200.0f;
 
 /* 8015C514-8015C5F4 00E0+00 s=1 e=0 z=0  None .text      procMainBoomerangCarry__8daItem_cFv */
 #pragma push
@@ -1111,7 +1073,7 @@ asm void daItem_c::procInitBoomHitWait() {
 
 /* ############################################################################################## */
 /* 804535A4-804535A8 0004+00 s=2 e=0 z=0  None .sdata2    @4665 */
-SECTION_SDATA2 static u32 lit_4665 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4665 = 100.0f;
 
 /* 804535A8-804535B0 0004+04 s=2 e=0 z=0  None .sdata2    @4666 */
 SECTION_SDATA2 static f32 lit_4666[1 + 1 /* padding */] = {
@@ -1121,9 +1083,7 @@ SECTION_SDATA2 static f32 lit_4666[1 + 1 /* padding */] = {
 };
 
 /* 804535B0-804535B8 0008+00 s=3 e=0 z=0  None .sdata2    @4668 */
-SECTION_SDATA2 static u8 lit_4668[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4668 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8015C738-8015CAB8 0380+00 s=1 e=0 z=0  None .text      procMainBoomHitWait__8daItem_cFv */
 #pragma push
@@ -1177,7 +1137,7 @@ asm void daItem_c::mode_wait() {
 
 /* ############################################################################################## */
 /* 804535B8-804535BC 0004+00 s=1 e=0 z=0  None .sdata2    @4781 */
-SECTION_SDATA2 static u32 lit_4781 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_4781 = 1.0f / 10.0f;
 
 /* 8015CDCC-8015CE94 00C8+00 s=1 e=0 z=0  None .text      mode_water__8daItem_cFv */
 #pragma push
@@ -1211,7 +1171,7 @@ asm void daItem_c::itemGetNextExecute() {
 
 /* ############################################################################################## */
 /* 804535BC-804535C0 0004+00 s=3 e=0 z=0  None .sdata2    @4923 */
-SECTION_SDATA2 static u32 lit_4923 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4923 = -1.0f;
 
 /* 8015D0A8-8015D370 02C8+00 s=2 e=0 z=0  None .text      itemGet__8daItem_cFv */
 #pragma push
@@ -1265,7 +1225,7 @@ asm void daItem_c::deleteItem() {
 
 /* ############################################################################################## */
 /* 804535C0-804535C4 0004+00 s=1 e=0 z=0  None .sdata2    @4979 */
-SECTION_SDATA2 static u32 lit_4979 = 0x3F733333;
+SECTION_SDATA2 static f32 lit_4979 = 19.0f / 20.0f;
 
 /* 8015D4AC-8015D56C 00C0+00 s=1 e=0 z=0  None .text      itemActionForRupee__8daItem_cFv */
 #pragma push
@@ -1309,10 +1269,10 @@ asm void daItem_c::itemActionForBoomerang() {
 
 /* ############################################################################################## */
 /* 804535C4-804535C8 0004+00 s=3 e=0 z=0  None .sdata2    @5050 */
-SECTION_SDATA2 static u32 lit_5050 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_5050 = 5.0f;
 
 /* 804535C8-804535CC 0004+00 s=1 e=0 z=0  None .sdata2    @5051 */
-SECTION_SDATA2 static u32 lit_5051 = 0x40400000;
+SECTION_SDATA2 static f32 lit_5051 = 3.0f;
 
 /* 8015D734-8015D834 0100+00 s=2 e=0 z=0  None .text      bg_check__8daItem_cFv */
 #pragma push
@@ -1354,7 +1314,7 @@ asm void daItem_c::CountTimer() {
 
 /* ############################################################################################## */
 /* 804535CC-804535D0 0004+00 s=1 e=0 z=0  None .sdata2    @5110 */
-SECTION_SDATA2 static u32 lit_5110 = 0x41A00000;
+SECTION_SDATA2 static f32 lit_5110 = 20.0f;
 
 /* 8015D9F0-8015DAAC 00BC+00 s=1 e=0 z=0  None .text      initAction__8daItem_cFv */
 #pragma push
@@ -1388,16 +1348,16 @@ asm void daItem_c::initScale() {
 
 /* ############################################################################################## */
 /* 804535D0-804535D4 0004+00 s=1 e=0 z=0  None .sdata2    @5230 */
-SECTION_SDATA2 static u32 lit_5230 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_5230 = 7.0f / 10.0f;
 
 /* 804535D4-804535D8 0004+00 s=1 e=0 z=0  None .sdata2    @5231 */
-SECTION_SDATA2 static u32 lit_5231 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_5231 = 6.0f / 5.0f;
 
 /* 804535D8-804535DC 0004+00 s=1 e=0 z=0  None .sdata2    @5232 */
-SECTION_SDATA2 static u32 lit_5232 = 0x3F0CCCCD;
+SECTION_SDATA2 static f32 lit_5232 = 11.0f / 20.0f;
 
 /* 804535DC-804535E0 0004+00 s=1 e=0 z=0  None .sdata2    @5233 */
-SECTION_SDATA2 static u32 lit_5233 = 0x42480000;
+SECTION_SDATA2 static f32 lit_5233 = 50.0f;
 
 /* 8015DC40-8015DE38 01F8+00 s=2 e=0 z=0  None .text      initSpeed__8daItem_cFi */
 #pragma push

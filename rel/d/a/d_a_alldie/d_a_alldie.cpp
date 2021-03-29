@@ -52,7 +52,6 @@ static void daAlldie_Execute(daAlldie_c*);
 static bool daAlldie_IsDelete(daAlldie_c*);
 static void daAlldie_Delete(daAlldie_c*);
 static void daAlldie_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_ALLDIE[12];
 
 extern "C" void getEventNo__10daAlldie_cFv();
 extern "C" void getSwbit__10daAlldie_cFv();
@@ -76,9 +75,6 @@ extern "C" extern void* g_profile_ALLDIE[12];
 
 void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
 void fopAcM_myRoomSearchEnemy(s8);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

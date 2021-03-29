@@ -29,8 +29,6 @@ extern "C" void cAPICPad_ANY_BUTTON__FUl();
 // External References:
 //
 
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-
 extern "C" void recalibrate__8mDoCPd_cFv();
 extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
 

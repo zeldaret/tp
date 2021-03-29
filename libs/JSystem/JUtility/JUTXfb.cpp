@@ -32,8 +32,6 @@ struct JUTXfb {
 // Forward References:
 //
 
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-
 extern "C" void clearIndex__6JUTXfbFv();
 extern "C" void common_init__6JUTXfbFi();
 extern "C" void __ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber();
@@ -51,8 +49,6 @@ extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 void* operator new(u32);
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
 
 extern "C" void* __nw__FUl();
 extern "C" void* __nwa__FUlP7JKRHeapi();

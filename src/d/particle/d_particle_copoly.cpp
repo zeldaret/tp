@@ -11,13 +11,13 @@
 // Types:
 //
 
-struct csXyz {};
+struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct cBgS_PolyInfo {};
 
-struct cXyz {};
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -79,10 +79,6 @@ struct cBgS {
 // Forward References:
 //
 
-extern "C" extern u8 m_emitterTwoData__8dPaPoT_c[36];
-extern "C" extern u8 m_typeFourData__8dPaPoF_c[60];
-extern "C" extern u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
-
 extern "C" void init__7dPaPo_cFP9dBgS_Acchff();
 extern "C" void checkWaterIn__7dPaPo_cFP4cXyzPC4cXyzPC12dKy_tevstr_cUlScff();
 extern "C" void setEffect__7dPaPo_cFPUliPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzScPUcPUc();
@@ -114,7 +110,6 @@ extern "C" extern u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
 //
 
 void fopKyM_createWpillar(cXyz const*, f32, int);
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void fopKyM_createWpillar__FPC4cXyzfi();
 extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
@@ -151,16 +146,10 @@ asm void dPaPo_c::init(dBgS_Acch* param_0, f32 param_1, f32 param_2) {
 
 /* ############################################################################################## */
 /* 80451FF8-80452000 0004+04 s=1 e=0 z=0  None .sdata2    @3672 */
-SECTION_SDATA2 static u8 lit_3672[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3672[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80050CC4-80050E7C 01B8+00 s=1 e=0 z=0  None .text

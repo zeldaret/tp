@@ -13,6 +13,14 @@
 
 struct Vec {};
 
+struct JStage {
+    struct TSystem {};
+
+    struct TActor {};
+
+    struct TObject {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -49,14 +57,6 @@ struct TAdaptor_actor {
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TObject {};
-};
 
 struct JStudio_JStage {
     struct TAdaptor_actor {
@@ -172,14 +172,6 @@ extern "C" void func_8028B5E0();
 //
 
 void operator delete(void*);
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_actor[20];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 extern "C" void toFunction_outside__Q27JStudio14TFunctionValueFi();
 extern "C" void getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf();
@@ -645,16 +637,10 @@ asm void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(JStudio::TControl const* pa
 
 /* ############################################################################################## */
 /* 804554E0-804554E8 0004+04 s=1 e=0 z=0  None .sdata2    @1081 */
-SECTION_SDATA2 static u8 lit_1081[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1081[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 8028B064-8028B138 00D4+00 s=1 e=0 z=0  None .text

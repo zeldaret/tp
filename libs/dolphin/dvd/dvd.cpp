@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 lit_789[65 + 3 /* padding */];
-
 extern "C" static void defaultOptionalCommandChecker();
 extern "C" void DVDInit();
 extern "C" static void stateReadingFST();
@@ -65,8 +63,6 @@ extern "C" extern u8 lit_789[65 + 3 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern u8 __DVDThreadQueue[8];
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport();

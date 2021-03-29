@@ -16,7 +16,6 @@ static bool daNpc_Mk_Delete(void*);
 static bool daNpc_Mk_Execute(void*);
 static bool daNpc_Mk_Draw(void*);
 static bool daNpc_Mk_IsDelete(void*);
-extern "C" extern void* g_profile_NPC_MK[12];
 
 extern "C" static bool daNpc_Mk_Create__FPv();
 extern "C" static bool daNpc_Mk_Delete__FPv();
@@ -28,9 +27,6 @@ extern "C" extern void* g_profile_NPC_MK[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];

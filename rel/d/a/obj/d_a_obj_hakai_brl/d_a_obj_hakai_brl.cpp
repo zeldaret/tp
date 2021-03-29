@@ -32,11 +32,11 @@ struct daObjHBarrel_c {
     /* 80C17090 */ void callEmt();
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -144,8 +144,6 @@ static void daObjHBarrel_create(daObjHBarrel_c*);
 static void daObjHBarrel_Delete(daObjHBarrel_c*);
 static void daObjHBarrel_execute(daObjHBarrel_c*);
 static void daObjHBarrel_draw(daObjHBarrel_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_HBarrel[12];
 
 extern "C" static void daObjHBarrel_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__14daObjHBarrel_cFv();
@@ -186,19 +184,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_getReverb(int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdate__FP8J3DModel();

@@ -177,9 +177,6 @@ static void daTitle_Draw(daTitle_c*);
 static void daTitle_Execute(daTitle_c*);
 static void daTitle_Delete(daTitle_c*);
 static void daTitle_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_TITLE[12];
 
 extern "C" void __ct__11daTit_HIO_cFv();
 extern "C" void CreateHeap__9daTitle_cFv();
@@ -234,18 +231,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();

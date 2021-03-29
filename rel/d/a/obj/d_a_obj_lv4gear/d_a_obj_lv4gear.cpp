@@ -69,9 +69,6 @@ static void daObjLv4Gear_Draw(daObjLv4Gear_c*);
 static void daObjLv4Gear_Execute(daObjLv4Gear_c*);
 static void daObjLv4Gear_Delete(daObjLv4Gear_c*);
 static void daObjLv4Gear_Create(daObjLv4Gear_c*);
-extern "C" extern u8 const l_size[8];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Lv4Gear[12];
 
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" static void searchSwSpinSub__FPvPv();
@@ -108,12 +105,6 @@ void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGp_getReverb(int);
 void cLib_chaseS(s16*, s16, s16);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

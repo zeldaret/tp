@@ -30,8 +30,6 @@ extern "C" static void DBGEXIImm();
 // External References:
 //
 
-extern "C" extern u32 data_80450AF0;
-
 extern "C" void OSDisableInterrupts();
 extern "C" void OSRestoreInterrupts();
 extern "C" void __OSSetInterruptHandler();

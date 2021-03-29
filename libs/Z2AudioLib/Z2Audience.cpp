@@ -11,18 +11,16 @@
 // Types:
 //
 
-struct Vec {};
+struct JASSoundParams {
+    /* 8029E3B0 */ void clamp();
+    /* 8029E47C */ void combine(JASSoundParams const&, JASSoundParams const&);
+};
 
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
-};
-
-struct JASSoundParams {
-    /* 8029E3B0 */ void clamp();
-    /* 8029E47C */ void combine(JASSoundParams const&, JASSoundParams const&);
 };
 
 struct Z2Audible {
@@ -34,6 +32,8 @@ struct Z2Audible {
     /* 802BC218 */ void getDistVolBit();
     /* 802BD510 */ ~Z2Audible();
 };
+
+struct Vec {};
 
 struct Z2AudioCamera {
     /* 802BC758 */ Z2AudioCamera();
@@ -138,10 +138,6 @@ struct JAIAudience {
 // Forward References:
 //
 
-extern "C" extern u8 data_804341E4[16 + 4 /* padding */];
-extern "C" extern u8 data_80451354[4];
-extern "C" extern u8 struct_80451358[8];
-
 extern "C" void func_802BBCDC();
 extern "C" void func_802BBD18();
 extern "C" void func_802BBD94();
@@ -202,20 +198,6 @@ extern "C" extern u8 struct_80451358[8];
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__10JAIAudible[5 + 1 /* padding */];
-extern "C" extern void* __vt__11JAIAudience[8];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 MAX_VOLUME_DISTANCE__7Z2Param;
-extern "C" extern u32 DOLBY_CENTER_VALUE__7Z2Param;
-extern "C" extern u32 DOLBY_FLONT_DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 DISTANCE_FX_PARAM__7Z2Param;
-extern "C" extern u32 SONIC_SPEED__7Z2Param;
-extern "C" extern u32 __float_epsilon;
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern f32 MIN_DISTANCE_VOLUME__7Z2Param;
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
@@ -250,13 +232,13 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__10JAIAudible[5 + 1 /* padding */];
 extern "C" extern void* __vt__11JAIAudience[8];
 extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 MAX_VOLUME_DISTANCE__7Z2Param;
-extern "C" extern u32 DOLBY_CENTER_VALUE__7Z2Param;
-extern "C" extern u32 DOLBY_FLONT_DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
-extern "C" extern u32 DISTANCE_FX_PARAM__7Z2Param;
-extern "C" extern u32 SONIC_SPEED__7Z2Param;
+extern "C" extern f32 DISTANCE_MAX__7Z2Param;
+extern "C" extern f32 MAX_VOLUME_DISTANCE__7Z2Param;
+extern "C" extern f32 DOLBY_CENTER_VALUE__7Z2Param;
+extern "C" extern f32 DOLBY_FLONT_DISTANCE_MAX__7Z2Param;
+extern "C" extern f32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
+extern "C" extern f32 DISTANCE_FX_PARAM__7Z2Param;
+extern "C" extern f32 SONIC_SPEED__7Z2Param;
 extern "C" extern u32 __float_epsilon;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B4C[4];
@@ -323,13 +305,13 @@ SECTION_DATA static void* __vt__9Z2Audible[5 + 1 /* padding */] = {
 };
 
 /* 80455AA4-80455AA8 0004+00 s=16 e=0 z=0  None .sdata2    @894 */
-SECTION_SDATA2 static u32 lit_894 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_894 = 1.0f;
 
 /* 80455AA8-80455AAC 0004+00 s=10 e=0 z=0  None .sdata2    @895 */
-SECTION_SDATA2 static u32 lit_895 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_895 = 0.5f;
 
 /* 80455AAC-80455AB0 0004+00 s=5 e=0 z=0  None .sdata2    @896 */
-SECTION_SDATA2 static u32 lit_896 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_896 = -1.0f;
 
 /* 802BBD94-802BBE74 00E0+00 s=1 e=0 z=0  None .text
  * __ct__9Z2AudibleFRCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>Ulb */
@@ -375,22 +357,22 @@ asm void Z2Audible::getOuterParams(int param_0) {
 
 /* ############################################################################################## */
 /* 80455AB0-80455AB4 0004+00 s=4 e=0 z=0  None .sdata2    @998 */
-SECTION_SDATA2 static u32 lit_998 = 0x40400000;
+SECTION_SDATA2 static f32 lit_998 = 3.0f;
 
 /* 80455AB4-80455AB8 0004+00 s=1 e=0 z=0  None .sdata2    @999 */
-SECTION_SDATA2 static u32 lit_999 = 0x41700000;
+SECTION_SDATA2 static f32 lit_999 = 15.0f;
 
 /* 80455AB8-80455ABC 0004+00 s=4 e=0 z=0  None .sdata2    @1000 */
-SECTION_SDATA2 static u32 lit_1000 = 0x3E99999A;
+SECTION_SDATA2 static f32 lit_1000 = 3.0f / 10.0f;
 
 /* 80455ABC-80455AC0 0004+00 s=1 e=0 z=0  None .sdata2    @1001 */
-SECTION_SDATA2 static u32 lit_1001 = 0x3A83126F;
+SECTION_SDATA2 static f32 lit_1001 = 0.0010000000474974513f;
 
 /* 80455AC0-80455AC4 0004+00 s=2 e=0 z=0  None .sdata2    @1002 */
-SECTION_SDATA2 static u32 lit_1002 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_1002 = 1.0f / 10.0f;
 
 /* 80455AC4-80455AC8 0004+00 s=1 e=0 z=0  None .sdata2    @1003 */
-SECTION_SDATA2 static u32 lit_1003 = 0x3D088889;
+SECTION_SDATA2 static f32 lit_1003 = 1.0f / 30.0f;
 
 /* 80455AC8-80455AD0 0004+04 s=1 e=0 z=0  None .sdata2    @1004 */
 SECTION_SDATA2 static f32 lit_1004[1 + 1 /* padding */] = {
@@ -400,9 +382,7 @@ SECTION_SDATA2 static f32 lit_1004[1 + 1 /* padding */] = {
 };
 
 /* 80455AD0-80455AD8 0008+00 s=4 e=0 z=0  None .sdata2    @1008 */
-SECTION_SDATA2 static u8 lit_1008[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1008 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802BBEE4-802BC204 0320+00 s=1 e=0 z=0  None .text
  * setOuterParams__9Z2AudibleFRC14JASSoundParamsRC14JASSoundParamsi */
@@ -448,7 +428,7 @@ asm Z2Audience3DSetting::Z2Audience3DSetting() {
 
 /* ############################################################################################## */
 /* 80455AD8-80455ADC 0004+00 s=4 e=0 z=0  None .sdata2    @1036 */
-SECTION_SDATA2 static u32 lit_1036 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_1036 = 1.5f;
 
 /* 802BC284-802BC308 0084+00 s=1 e=0 z=0  None .text      init__19Z2Audience3DSettingFv */
 #pragma push
@@ -462,34 +442,34 @@ asm void Z2Audience3DSetting::init() {
 
 /* ############################################################################################## */
 /* 80455ADC-80455AE0 0004+00 s=2 e=0 z=0  None .sdata2    @1058 */
-SECTION_SDATA2 static u32 lit_1058 = 0x3FA00000;
+SECTION_SDATA2 static f32 lit_1058 = 1.25f;
 
 /* 80455AE0-80455AE4 0004+00 s=3 e=0 z=0  None .sdata2    @1059 */
-SECTION_SDATA2 static u32 lit_1059 = 0x40000000;
+SECTION_SDATA2 static f32 lit_1059 = 2.0f;
 
 /* 80455AE4-80455AE8 0004+00 s=2 e=0 z=0  None .sdata2    @1060 */
-SECTION_SDATA2 static u32 lit_1060 = 0x40800000;
+SECTION_SDATA2 static f32 lit_1060 = 4.0f;
 
 /* 80455AE8-80455AEC 0004+00 s=2 e=0 z=0  None .sdata2    @1061 */
-SECTION_SDATA2 static u32 lit_1061 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_1061 = 6.0f;
 
 /* 80455AEC-80455AF0 0004+00 s=2 e=0 z=0  None .sdata2    @1062 */
-SECTION_SDATA2 static u32 lit_1062 = 0x41000000;
+SECTION_SDATA2 static f32 lit_1062 = 8.0f;
 
 /* 80455AF0-80455AF4 0004+00 s=2 e=0 z=0  None .sdata2    @1063 */
-SECTION_SDATA2 static u32 lit_1063 = 0x3F666666;
+SECTION_SDATA2 static f32 lit_1063 = 9.0f / 10.0f;
 
 /* 80455AF4-80455AF8 0004+00 s=2 e=0 z=0  None .sdata2    @1064 */
-SECTION_SDATA2 static u32 lit_1064 = 0x3F4CCCCD;
+SECTION_SDATA2 static f32 lit_1064 = 4.0f / 5.0f;
 
 /* 80455AF8-80455AFC 0004+00 s=2 e=0 z=0  None .sdata2    @1065 */
-SECTION_SDATA2 static u32 lit_1065 = 0x3F333333;
+SECTION_SDATA2 static f32 lit_1065 = 7.0f / 10.0f;
 
 /* 80455AFC-80455B00 0004+00 s=2 e=0 z=0  None .sdata2    @1066 */
-SECTION_SDATA2 static u32 lit_1066 = 0x3F19999A;
+SECTION_SDATA2 static f32 lit_1066 = 3.0f / 5.0f;
 
 /* 80455B00-80455B04 0004+00 s=2 e=0 z=0  None .sdata2    @1067 */
-SECTION_SDATA2 static u32 lit_1067 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_1067 = 2.0f / 5.0f;
 
 /* 802BC308-802BC4D0 01C8+00 s=2 e=0 z=0  None .text      initVolumeDist__19Z2Audience3DSettingFv */
 #pragma push
@@ -549,7 +529,7 @@ asm Z2AudioCamera::Z2AudioCamera() {
 
 /* ############################################################################################## */
 /* 80455B04-80455B08 0004+00 s=1 e=0 z=0  None .sdata2    @1135 */
-SECTION_SDATA2 static u32 lit_1135 = 0x47C35000;
+SECTION_SDATA2 static f32 lit_1135 = 100000.0f;
 
 /* 802BC788-802BC7DC 0054+00 s=1 e=0 z=0  None .text      init__13Z2AudioCameraFv */
 #pragma push
@@ -595,25 +575,25 @@ SECTION_RODATA static u8 const lit_1193[12 + 4 /* padding */] = {
 };
 
 /* 80455B08-80455B0C 0004+00 s=1 e=0 z=0  None .sdata2    @1267 */
-SECTION_SDATA2 static u32 lit_1267 = 0xC1B60B61;
+SECTION_SDATA2 static f32 lit_1267 = -22.755556106567383f;
 
 /* 80455B0C-80455B10 0004+00 s=1 e=0 z=0  None .sdata2    @1268 */
-SECTION_SDATA2 static u32 lit_1268 = 0x41B60B61;
+SECTION_SDATA2 static f32 lit_1268 = 22.755556106567383f;
 
 /* 80455B10-80455B14 0004+00 s=1 e=0 z=0  None .sdata2    @1269 */
-SECTION_SDATA2 static u32 lit_1269 = 0x42480000;
+SECTION_SDATA2 static f32 lit_1269 = 50.0f;
 
 /* 80455B14-80455B18 0004+00 s=1 e=0 z=0  None .sdata2    @1270 */
-SECTION_SDATA2 static u32 lit_1270 = 0x40093F9A;
+SECTION_SDATA2 static f32 lit_1270 = 2.1445069313049316f;
 
 /* 80455B18-80455B1C 0004+00 s=2 e=0 z=0  None .sdata2    @1271 */
-SECTION_SDATA2 static u32 lit_1271 = 0x42000000;
+SECTION_SDATA2 static f32 lit_1271 = 32.0f;
 
 /* 80455B1C-80455B20 0004+00 s=1 e=0 z=0  None .sdata2    @1272 */
-SECTION_SDATA2 static u32 lit_1272 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_1272 = -100.0f;
 
 /* 80455B20-80455B24 0004+00 s=1 e=0 z=0  None .sdata2    @1273 */
-SECTION_SDATA2 static u32 lit_1273 = 0x3C8EFA35;
+SECTION_SDATA2 static f32 lit_1273 = 0.01745329238474369f;
 
 /* 802BC8AC-802BCBEC 0340+00 s=1 e=0 z=0  None .text
  * setCameraState__13Z2AudioCameraFPA4_fR3VecR3Vecffbb          */
@@ -661,16 +641,16 @@ asm void Z2AudioCamera::isInSight(Vec& param_0) const {
 
 /* ############################################################################################## */
 /* 80455B24-80455B28 0004+00 s=1 e=0 z=0  None .sdata2    @1334 */
-SECTION_SDATA2 static u32 lit_1334 = 0x43480000;
+SECTION_SDATA2 static f32 lit_1334 = 200.0f;
 
 /* 80455B28-80455B2C 0004+00 s=1 e=0 z=0  None .sdata2    @1335 */
-SECTION_SDATA2 static u32 lit_1335 = 0x43C80000;
+SECTION_SDATA2 static f32 lit_1335 = 400.0f;
 
 /* 80455B2C-80455B30 0004+00 s=2 e=0 z=0  None .sdata2    @1336 */
-SECTION_SDATA2 static u32 lit_1336 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_1336 = 1.0f / 5.0f;
 
 /* 80455B30-80455B34 0004+00 s=1 e=0 z=0  None .sdata2    @1337 */
-SECTION_SDATA2 static u32 lit_1337 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_1337 = 255.0f;
 
 /* 802BCD28-802BCDA8 0080+00 s=1 e=0 z=0  None .text      __ct__9Z2SpotMicFv */
 #pragma push
@@ -959,7 +939,7 @@ asm void Z2Audience::calcFxMix_(f32 param_0, int param_1) const {
 
 /* ############################################################################################## */
 /* 80455B34-80455B38 0004+00 s=1 e=0 z=0  None .sdata2    @1988 */
-SECTION_SDATA2 static u32 lit_1988 = 0x3D888889;
+SECTION_SDATA2 static f32 lit_1988 = 1.0f / 15.0f;
 
 /* 802BDD48-802BDED4 018C+00 s=1 e=0 z=0  None .text
  * calcPitch___10Z2AudienceCFP16Z2AudibleChannelPC9Z2AudiblePC13Z2AudioCamera */

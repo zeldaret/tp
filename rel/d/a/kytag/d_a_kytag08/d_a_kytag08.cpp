@@ -27,13 +27,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -69,8 +69,6 @@ static bool daKytag08_IsDelete(kytag08_class*);
 static void daKytag08_Delete(kytag08_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daKytag08_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_KYTAG08[12];
 
 extern "C" static bool daKytag08_Draw__FP13kytag08_class();
 extern "C" static void daKytag08_Execute__FP13kytag08_class();
@@ -96,12 +94,6 @@ void dKy_darkworld_check();
 void dKy_shadow_mode_check(u8);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
 extern "C" void __ct__10fopAc_ac_cFv();

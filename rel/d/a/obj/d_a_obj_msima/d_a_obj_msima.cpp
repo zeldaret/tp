@@ -60,10 +60,6 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
 struct Vec {};
 
 struct cXyz {
@@ -72,6 +68,10 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80C9B890 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -157,47 +157,6 @@ static bool daObj_Msima_IsDelete(obj_msima_class*);
 static void daObj_Msima_Delete(obj_msima_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Msima_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_MSIMA[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 data_80C9CFA0[4];
-extern "C" extern u8 data_80C9CFA4[4];
-extern "C" extern u8 data_80C9CFA8[4];
-extern "C" extern u8 data_80C9CFAC[4];
-extern "C" extern u8 data_80C9CFB0[4];
-extern "C" extern u8 data_80C9CFB4[4];
-extern "C" extern u8 data_80C9CFB8[4];
-extern "C" extern u8 data_80C9CFBC[4];
-extern "C" extern u8 data_80C9CFC0[4];
-extern "C" extern u8 data_80C9CFC4[4];
-extern "C" extern u8 data_80C9CFC8[4];
-extern "C" extern u8 data_80C9CFCC[4];
-extern "C" extern u8 data_80C9CFD0[4];
-extern "C" extern u8 data_80C9CFD4[4];
-extern "C" extern u8 data_80C9CFD8[4];
-extern "C" extern u8 data_80C9CFDC[4];
-extern "C" extern u8 data_80C9CFE0[4];
-extern "C" extern u8 data_80C9CFE4[4];
-extern "C" extern u8 data_80C9CFE8[4];
-extern "C" extern u8 data_80C9CFEC[4];
-extern "C" extern u8 data_80C9CFF0[4];
-extern "C" extern u8 data_80C9CFF4[4];
-extern "C" extern u8 data_80C9CFF8[4];
-extern "C" extern u8 data_80C9CFFC[4];
-extern "C" extern u8 data_80C9D000[4];
 
 extern "C" void __ct__17daObj_Msima_HIO_cFv();
 extern "C" static void ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
@@ -291,16 +250,6 @@ void cLib_addCalc0(f32*, f32, f32);
 void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80450C98[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

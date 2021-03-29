@@ -25,9 +25,6 @@ struct pair__template0 {
 // Forward References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 asinAcosTable___5JMath[4128];
-
 extern "C" void __sinit_JMATrigonometric_cpp();
 extern "C" void func_80339CB0();
 extern "C" extern u8 sincosTable___5JMath[65536];
@@ -60,32 +57,20 @@ static u8 atanTable___5JMath[4128];
 u8 asinAcosTable___5JMath[4128];
 
 /* 804564D8-804564E0 0004+04 s=2 e=0 z=0  None .sdata2    @326 */
-SECTION_SDATA2 static u8 lit_326[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_326[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 804564E0-804564E8 0008+00 s=1 e=0 z=0  None .sdata2    @436 */
-SECTION_SDATA2 static u8 lit_436[8] = {
-    0x40, 0x19, 0x21, 0xFB, 0x60, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_436 = 6.2831854820251465;
 
 /* 804564E8-804564F0 0008+00 s=1 e=0 z=0  None .sdata2    @437 */
-SECTION_SDATA2 static u8 lit_437[8] = {
-    0x40, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_437 = 8192.0;
 
 /* 804564F0-804564F8 0008+00 s=1 e=0 z=0  None .sdata2    @438 */
-SECTION_SDATA2 static u8 lit_438[8] = {
-    0x3F, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_438 = 0.0009765625;
 
 /* 804564F8-80456500 0004+04 s=1 e=0 z=0  None .sdata2    @439 */
 SECTION_SDATA2 static f32 lit_439[1 + 1 /* padding */] = {
@@ -95,9 +80,7 @@ SECTION_SDATA2 static f32 lit_439[1 + 1 /* padding */] = {
 };
 
 /* 80456500-80456508 0008+00 s=1 e=0 z=0  None .sdata2    @441 */
-SECTION_SDATA2 static u8 lit_441[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_441 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80339AEC-80339CB0 01C4+00 s=0 e=1 z=0  None .text      __sinit_JMATrigonometric_cpp */
 #pragma push

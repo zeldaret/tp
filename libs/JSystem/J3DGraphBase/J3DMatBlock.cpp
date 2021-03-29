@@ -115,9 +115,9 @@ struct J3DTevStage {};
 
 struct J3DTevOrder {};
 
-struct J3DIndTevStage {};
-
 struct J3DGXColorS10 {};
+
+struct J3DIndTevStage {};
 
 struct J3DGXColor {};
 
@@ -448,9 +448,9 @@ struct J3DPEBlockOpa {
     /* 80323334 */ ~J3DPEBlockOpa();
 };
 
-struct J3DBlend {};
-
 struct J3DAlphaComp {};
+
+struct J3DBlend {};
 
 struct J3DFog {};
 
@@ -686,26 +686,6 @@ struct J3DColorBlockAmbientOn {
 //
 // Forward References:
 //
-
-extern "C" extern char const* const J3DMatBlock__stringBase0;
-extern "C" extern void* __vt__14J3DPEBlockFull[31];
-extern "C" extern void* __vt__16J3DPEBlockFogOff[31];
-extern "C" extern void* __vt__13J3DTevBlock16[55];
-extern "C" extern void* __vt__12J3DTevBlock4[55];
-extern "C" extern void* __vt__12J3DTevBlock2[55];
-extern "C" extern void* __vt__12J3DTevBlock1[55];
-extern "C" extern void* __vt__18J3DTevBlockPatched[55];
-extern "C" extern void* __vt__19J3DTexGenBlockBasic[27];
-extern "C" extern void* __vt__15J3DTexGenBlock4[27];
-extern "C" extern void* __vt__21J3DTexGenBlockPatched[27];
-extern "C" extern void* __vt__20J3DColorBlockLightOn[36];
-extern "C" extern void* __vt__22J3DColorBlockAmbientOn[36];
-extern "C" extern void* __vt__13J3DPEBlockXlu[31];
-extern "C" extern void* __vt__17J3DPEBlockTexEdge[31];
-extern "C" extern void* __vt__13J3DPEBlockOpa[31];
-extern "C" extern void* __vt__15J3DIndBlockFull[19];
-extern "C" extern void* __vt__11J3DTevBlock[55];
-extern "C" extern void* __vt__21J3DColorBlockLightOff[36 + 1 /* padding */];
 
 extern "C" void initialize__21J3DColorBlockLightOffFv();
 extern "C" void initialize__22J3DColorBlockAmbientOnFv();
@@ -1203,22 +1183,6 @@ void isTexNoReg(void*);
 void getTexNoReg(void*);
 void loadTexNo(u32, u16 const&);
 void patchTexNo_PtrToIdx(u32, u16 const&);
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern void* __vt__10J3DPEBlock[31];
-extern "C" extern void* __vt__11J3DIndBlock[19];
-extern "C" extern void* __vt__14J3DTexGenBlock[27];
-extern "C" extern void* __vt__13J3DColorBlock[36];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
-extern "C" extern u8 j3dTevSwapTableTable[1024];
-extern "C" extern u8 j3dAlphaCmpTable[768];
-extern "C" extern u8 j3dZModeTable[96];
-extern "C" extern u8 __GDCurrentDL[4];
-extern "C" extern u32 j3dDefaultColInfo;
-extern "C" extern u32 j3dDefaultAmbInfo;
-extern "C" extern u32 j3dDefaultTevColor;
-extern "C" extern u32 data_804563D8;
-extern "C" extern u32 j3dDefaultTevKColor;
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport();

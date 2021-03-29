@@ -70,9 +70,6 @@ extern "C" void __dt__12J3DModelDataFv();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 __GDCurrentDL[4];
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__13J3DVertexDataFv();

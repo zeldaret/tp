@@ -19,9 +19,6 @@ extern "C" void _unresolved();
 // External References:
 //
 
-extern u8 const data_80456C7C[4];
-extern u8 const data_80456C80[4];
-
 extern "C" void ModuleUnresolved();
 extern "C" void ModuleConstructorsX();
 extern "C" void ModuleDestructorsX();

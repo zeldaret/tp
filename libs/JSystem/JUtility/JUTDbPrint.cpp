@@ -46,7 +46,6 @@ struct J2DOrthoGraph {
 
 void JUTReport(int, int, char const*, ...);
 void JUTReport(int, int, int, char const*, ...);
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 
 extern "C" void __ct__10JUTDbPrintFP7JUTFontP7JKRHeap();
 extern "C" void start__10JUTDbPrintFP7JUTFontP7JKRHeap();
@@ -64,10 +63,6 @@ extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 //
 
 void* operator new(u32);
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
 
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
@@ -152,15 +147,13 @@ asm void JUTDbPrint::flush() {
 
 /* ############################################################################################## */
 /* 80456008-8045600C 0004+00 s=1 e=0 z=0  None .sdata2    @835 */
-SECTION_SDATA2 static u32 lit_835 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_835 = -1.0f;
 
 /* 8045600C-80456010 0004+00 s=1 e=0 z=0  None .sdata2    @836 */
-SECTION_SDATA2 static u32 lit_836 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_836 = 1.0f;
 
 /* 80456010-80456018 0008+00 s=2 e=0 z=0  None .sdata2    @838 */
-SECTION_SDATA2 static u8 lit_838[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_838 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802E02DC-802E0440 0164+00 s=1 e=0 z=0  None .text      flush__10JUTDbPrintFiiii */
 #pragma push

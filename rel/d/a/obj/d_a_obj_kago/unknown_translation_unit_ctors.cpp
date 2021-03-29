@@ -13,8 +13,6 @@
 
 extern void* const data_80C33C6C[2];
 
-extern void* const data_80C33C6C[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_obj_kago_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80C33C6C-80C33C74 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80C33C6C[2] = {
+    (void*)__sinit_d_a_obj_kago_cpp,
+    (void*)NULL,
+};

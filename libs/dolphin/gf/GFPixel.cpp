@@ -58,12 +58,10 @@ SECTION_SDATA2 static u8 lit_293[4] = {
 };
 
 /* 80455F6C-80455F70 0004+00 s=1 e=0 z=0  None .sdata2    @294 */
-SECTION_SDATA2 static u32 lit_294 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_294 = 0.5f;
 
 /* 80455F70-80455F78 0008+00 s=1 e=0 z=0  None .sdata2    @295 */
-SECTION_SDATA2 static u8 lit_295[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_295 = 1.0;
 
 /* 80455F78-80455F80 0004+04 s=1 e=0 z=0  None .sdata2    @296 */
 SECTION_SDATA2 static f32 lit_296[1 + 1 /* padding */] = {
@@ -73,9 +71,7 @@ SECTION_SDATA2 static f32 lit_296[1 + 1 /* padding */] = {
 };
 
 /* 80455F80-80455F88 0008+00 s=1 e=0 z=0  None .sdata2    @297 */
-SECTION_SDATA2 static u8 lit_297[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_297 = 0.5;
 
 /* 80455F88-80455F90 0004+04 s=1 e=0 z=0  None .sdata2    @298 */
 SECTION_SDATA2 static f32 lit_298[1 + 1 /* padding */] = {
@@ -85,9 +81,7 @@ SECTION_SDATA2 static f32 lit_298[1 + 1 /* padding */] = {
 };
 
 /* 80455F90-80455F98 0008+00 s=1 e=0 z=0  None .sdata2    @301 */
-SECTION_SDATA2 static u8 lit_301[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_301 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802CDE9C-802CE004 0168+00 s=0 e=1 z=0  None .text      GFSetFog__F10_GXFogTypeffff8_GXColor */
 #pragma push

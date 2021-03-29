@@ -13,8 +13,6 @@
 
 extern void* const data_80A1A31C[2];
 
-extern void* const data_80A1A31C[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_jagar_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 80A1A31C-80A1A324 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_80A1A31C[2] = {
+    (void*)__sinit_d_a_npc_jagar_cpp,
+    (void*)NULL,
+};

@@ -29,11 +29,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct cXyz {};
+
 struct dKy_tevstr_c {};
 
 struct J3DModelData {};
-
-struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -77,7 +77,6 @@ static void daTagHjump_Create(fopAc_ac_c*);
 static void daTagHjump_Delete(daTagHjump_c*);
 static void daTagHjump_Execute(daTagHjump_c*);
 static void daTagHjump_Draw(daTagHjump_c*);
-extern "C" extern void* g_profile_Tag_Hjump[12];
 
 extern "C" void CreateHeap__12daTagHjump_cFv();
 extern "C" void create__12daTagHjump_cFv();
@@ -103,15 +102,6 @@ void fpoAcM_relativePos(fopAc_ac_c const*, cXyz const*, cXyz*);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();

@@ -25,10 +25,6 @@ struct dMsgUnit_c {
 // Forward References:
 //
 
-extern "C" extern char const* const d_msg_d_msg_unit__stringBase0;
-extern "C" extern u8 g_msg_unit[4 + 4 /* padding */];
-extern "C" extern u8 data_804510D8[8];
-
 extern "C" void __ct__10dMsgUnit_cFv();
 extern "C" void __dt__10dMsgUnit_cFv();
 extern "C" void setTag__10dMsgUnit_cFiiPcb();
@@ -42,8 +38,6 @@ extern "C" extern u8 data_804510D8[8];
 //
 
 void operator delete(void*);
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
 
 extern "C" void getDaytime__18dScnKy_env_light_cFv();
 extern "C" void __dl__FPv();
@@ -106,10 +100,10 @@ SECTION_DEAD static char const* const pad_80399705 = "\0\0";
 #pragma pop
 
 /* 80454B40-80454B44 0004+00 s=1 e=0 z=0  None .sdata2    @3702 */
-SECTION_SDATA2 static u32 lit_3702 = 0x49742400;
+SECTION_SDATA2 static f32 lit_3702 = 1000000.0f;
 
 /* 80454B44-80454B48 0004+00 s=1 e=0 z=0  None .sdata2    @3703 */
-SECTION_SDATA2 static u32 lit_3703 = 0x42700000;
+SECTION_SDATA2 static f32 lit_3703 = 60.0f;
 
 /* 80454B48-80454B50 0004+04 s=1 e=0 z=0  None .sdata2    @3704 */
 SECTION_SDATA2 static f32 lit_3704[1 + 1 /* padding */] = {
@@ -119,9 +113,7 @@ SECTION_SDATA2 static f32 lit_3704[1 + 1 /* padding */] = {
 };
 
 /* 80454B50-80454B58 0008+00 s=1 e=0 z=0  None .sdata2    @3707 */
-SECTION_SDATA2 static u8 lit_3707[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3707 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80238CEC-8023907C 0390+00 s=0 e=5 z=0  None .text      setTag__10dMsgUnit_cFiiPcb */
 #pragma push

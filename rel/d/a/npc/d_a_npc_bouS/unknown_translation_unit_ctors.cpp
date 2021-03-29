@@ -13,8 +13,6 @@
 
 extern void* const data_809783FC[2];
 
-extern void* const data_809783FC[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_bouS_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 809783FC-80978404 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_809783FC[2] = {
+    (void*)__sinit_d_a_npc_bouS_cpp,
+    (void*)NULL,
+};

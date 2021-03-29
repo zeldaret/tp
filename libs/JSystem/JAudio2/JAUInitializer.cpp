@@ -112,22 +112,6 @@ extern "C" void initJAInterface__18JAU_JAIInitializerFv();
 // External References:
 //
 
-extern "C" extern u8 data_80431AF4[16];
-extern "C" extern u8 data_80431B04[16 + 4 /* padding */];
-extern "C" extern u8 data_80434084[16 + 4 /* padding */];
-extern "C" extern u8 data_804340B0[16];
-extern "C" extern u8 data_804340CC[16 + 4 /* padding */];
-extern "C" extern u8 data_804340FC[16 + 4 /* padding */];
-extern "C" extern u8 data_80450B8C[4];
-extern "C" extern u8 JASDram[4];
-extern "C" extern u8 struct_80451230[8];
-extern "C" extern u8 data_80451310[8];
-extern "C" extern u8 data_80451318[8];
-extern "C" extern u8 data_80451320[8];
-extern "C" extern u8 data_80451328[8];
-extern "C" extern u8 sManager__15JKRThreadSwitch[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
-
 extern "C" void getThreadPointer__6JASDvdFv();
 extern "C" void createThread__6JASDvdFliUl();
 extern "C" void __ct__17JASGenericMemPoolFv();

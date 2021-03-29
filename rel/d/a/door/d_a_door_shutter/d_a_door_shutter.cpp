@@ -195,11 +195,11 @@ struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -333,11 +333,6 @@ static void daDoor20_Execute(daDoor20_c*);
 static void daDoor20_Delete(daDoor20_c*);
 static void daDoor20_Create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 const lit_5338;
-extern "C" extern u32 const lit_5339;
-extern "C" extern u32 const lit_5340;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_DOOR20[12];
 
 extern "C" void getStopBmdName__10daDoor20_cFv();
 extern "C" void getStopModelData__10daDoor20_cFv();
@@ -464,19 +459,6 @@ void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 void cLib_chaseF(f32*, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 mNextRoomNo__10dMapInfo_c;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

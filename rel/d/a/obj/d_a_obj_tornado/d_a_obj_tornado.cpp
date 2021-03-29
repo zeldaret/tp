@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct csXyz {};
-
 struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -98,8 +98,6 @@ static void daObjTrnd_Draw(daObjTrnd_c*);
 static void daObjTrnd_Execute(daObjTrnd_c*);
 static void daObjTrnd_Delete(daObjTrnd_c*);
 static void daObjTrnd_Create(daObjTrnd_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Tornado[12];
 
 extern "C" void setPntWind__11daObjTrnd_cFv();
 extern "C" void cutPntWind__11daObjTrnd_cFv();
@@ -133,19 +131,6 @@ void dKyr_get_vectle_calc(cXyz*, cXyz*, cXyz*);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void cLib_chaseF(f32*, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

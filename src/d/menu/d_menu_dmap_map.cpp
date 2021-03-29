@@ -45,6 +45,8 @@ struct renderingDmap_c {
     /* 801C263C */ bool isRendIcon() const;
 };
 
+struct Vec {};
+
 struct dDrawPath_c {
     struct line_class {};
 
@@ -61,8 +63,6 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
-
-struct Vec {};
 
 struct renderingDAmap_c {
     /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);
@@ -194,10 +194,6 @@ struct dMapInfo_c {
 // Forward References:
 //
 
-extern "C" extern void* l_data[61];
-extern "C" extern void* __vt__19dMenu_DmapMapCtrl_c[10 + 51 /* padding */];
-extern "C" extern void* __vt__15renderingDmap_c[43 + 1 /* padding */];
-
 extern "C" void hasMap__15renderingDmap_cCFv();
 extern "C" void isDrawIconSingle2__15renderingDmap_cCFPCQ27dTres_c6data_sbbi();
 extern "C" void getPlayerCursorSize__15renderingDmap_cFv();
@@ -273,18 +269,6 @@ void fopMsgM_valueIncrease(int, int, u8);
 void* operator new(u32, int);
 void* operator new[](u32, int);
 void operator delete[](void*);
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 data_80450E58[4];
-extern "C" extern u8 data_80450E60[4];
-extern "C" extern u8 mLayerList__8dMpath_c[4];
-extern "C" extern f32 mAllCenterX__8dMpath_c;
-extern "C" extern f32 mAllCenterZ__8dMpath_c;
-extern "C" extern f32 mAllSizeX__8dMpath_c;
-extern "C" extern f32 mAllSizeZ__8dMpath_c;
 
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void fopMsgM_valueIncrease__FiiUc();
@@ -552,7 +536,7 @@ asm void renderingDmap_c::getLineWidthZoomSmall(int param_0) {
 
 /* ############################################################################################## */
 /* 80454094-80454098 0004+00 s=4 e=0 z=0  None .sdata2    @3837 */
-SECTION_SDATA2 static u32 lit_3837 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_3837 = 0.5f;
 
 /* 801C0C10-801C0C48 0038+00 s=1 e=0 z=0  None .text      getLineWidth__15renderingDmap_cFi */
 #pragma push
@@ -763,9 +747,7 @@ SECTION_SDATA2 static f32 lit_3946[1 + 1 /* padding */] = {
 };
 
 /* 804540A0-804540A8 0008+00 s=2 e=0 z=0  None .sdata2    @3947 */
-SECTION_SDATA2 static u8 lit_3947[8] = {
-    0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3947 = 1.0;
 
 /* 801C0EE0-801C0F24 0044+00 s=0 e=2 z=0  None .text      getMapBlendPer__20dMenu_StageMapCtrl_cCFv
  */
@@ -892,14 +874,10 @@ asm void dMenu_StageMapCtrl_c::setPlusNowStayFloorNo(s8 param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 804540A8-804540B0 0008+00 s=1 e=0 z=0  None .sdata2    @4168 */
-SECTION_SDATA2 static u8 lit_4168[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4168 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 804540B0-804540B8 0008+00 s=2 e=0 z=0  None .sdata2    @4170 */
-SECTION_SDATA2 static u8 lit_4170[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4170 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801C12B4-801C1878 05C4+00 s=2 e=0 z=0  None .text      moveFloor__20dMenu_StageMapCtrl_cFv */
 #pragma push
@@ -945,7 +923,7 @@ asm void dMenu_StageMapCtrl_c::zoomIn_init_proc() {
 
 /* ############################################################################################## */
 /* 804540B8-804540BC 0004+00 s=1 e=0 z=0  None .sdata2    @4245 */
-SECTION_SDATA2 static u32 lit_4245 = 0x45610000;
+SECTION_SDATA2 static f32 lit_4245 = 3600.0f;
 
 /* 801C18C0-801C1B14 0254+00 s=1 e=0 z=0  None .text
  * getZoomMinMaxCheck__19dMenu_DmapMapCtrl_cFPfPfPfPfPbPb       */
@@ -972,10 +950,10 @@ asm void dMenu_DmapMapCtrl_c::calcZoomCenter(f32* param_0, f32* param_1) {
 
 /* ############################################################################################## */
 /* 804540BC-804540C0 0004+00 s=1 e=0 z=0  None .sdata2    @4277 */
-SECTION_SDATA2 static u32 lit_4277 = 0x4628C000;
+SECTION_SDATA2 static f32 lit_4277 = 10800.0f;
 
 /* 804540C0-804540C4 0004+00 s=1 e=0 z=0  None .sdata2    @4278 */
-SECTION_SDATA2 static u32 lit_4278 = 0x3FC00000;
+SECTION_SDATA2 static f32 lit_4278 = 1.5f;
 
 /* 801C1BA4-801C1C40 009C+00 s=1 e=0 z=0  None .text      getZoomCmPerPixel__19dMenu_DmapMapCtrl_cFv
  */
@@ -1184,7 +1162,7 @@ asm void dMenu_DmapMapCtrl_c::isEnableZoomMove() const {
 
 /* ############################################################################################## */
 /* 804540C4-804540C8 0004+00 s=1 e=0 z=0  None .sdata2    @4395 */
-SECTION_SDATA2 static u32 lit_4395 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_4395 = 1.0f / 100.0f;
 
 /* 801C205C-801C2198 013C+00 s=1 e=0 z=0  None .text      zoomWait_proc__20dMenu_StageMapCtrl_cFv */
 #pragma push
@@ -1314,10 +1292,10 @@ static u8 m_zoomCenterMinZ__20dMenu_StageMapCtrl_c[4];
 static u8 m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c[4 + 4 /* padding */];
 
 /* 804540C8-804540CC 0004+00 s=1 e=0 z=0  None .sdata2    @4460 */
-SECTION_SDATA2 static u32 lit_4460 = 0x3F99999A;
+SECTION_SDATA2 static f32 lit_4460 = 6.0f / 5.0f;
 
 /* 804540CC-804540D0 0004+00 s=1 e=0 z=0  None .sdata2    @4461 */
-SECTION_SDATA2 static u32 lit_4461 = 0x43900000;
+SECTION_SDATA2 static f32 lit_4461 = 288.0f;
 
 /* 804540D0-804540D8 0004+04 s=1 e=0 z=0  None .sdata2    @4462 */
 SECTION_SDATA2 static f32 lit_4462[1 + 1 /* padding */] = {

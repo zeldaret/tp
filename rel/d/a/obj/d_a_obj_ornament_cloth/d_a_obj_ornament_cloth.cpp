@@ -92,8 +92,6 @@ static void daObjOnCloth_Execute(daObjOnCloth_c*);
 static bool daObjOnCloth_IsDelete(daObjOnCloth_c*);
 static void daObjOnCloth_Delete(daObjOnCloth_c*);
 static void daObjOnCloth_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_OnCloth[12];
 
 extern "C" void create_init__14daObjOnCloth_cFv();
 extern "C" void initBaseMtx__14daObjOnCloth_cFv();
@@ -132,15 +130,6 @@ void cM_atan2s(f32, f32);
 void cM_rnd();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

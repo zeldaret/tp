@@ -50,10 +50,6 @@ struct dMsgScrn3Select_c {
 
 struct JMSMesgEntry_c {};
 
-struct JUTFont {};
-
-struct ResTIMG {};
-
 struct JGeometry {
     template <typename A1>
     struct TBox2 {};
@@ -63,10 +59,14 @@ struct JGeometry {
 
 struct ResTLUT {};
 
+struct ResTIMG {};
+
 struct J2DPicture {
     /* 802FC708 */ J2DPicture(ResTIMG const*);
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
 };
+
+struct JUTFont {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -75,17 +75,17 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct JKRArchive {};
+
 struct J2DOrthoGraph {};
+
+struct JKRExpHeap {};
 
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct JKRArchive {};
 
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
@@ -174,8 +174,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const d_menu_d_menu_item_explain__stringBase0;
-
 extern "C" void __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb();
 extern "C" void __dt__19dMenu_ItemExplain_cFv();
 extern "C" void move__19dMenu_ItemExplain_cFv();
@@ -215,12 +213,6 @@ void dMeter2Info_getNumberTextureName(int);
 void dMeter2Info_set2DVibration();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_ringHIO[344];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGs_isDungeonItemWarp__Fi();
@@ -456,13 +448,13 @@ SECTION_SDATA2 static u8 lit_4062[4] = {
 };
 
 /* 8045428C-80454290 0004+00 s=4 e=0 z=0  None .sdata2    @4063 */
-SECTION_SDATA2 static u32 lit_4063 = 0x43490000;
+SECTION_SDATA2 static f32 lit_4063 = 201.0f;
 
 /* 80454290-80454294 0004+00 s=1 e=0 z=0  None .sdata2    @4064 */
-SECTION_SDATA2 static u32 lit_4064 = 0x41800000;
+SECTION_SDATA2 static f32 lit_4064 = 16.0f;
 
 /* 80454294-80454298 0004+00 s=2 e=0 z=0  None .sdata2    @4065 */
-SECTION_SDATA2 static u32 lit_4065 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4065 = 0.5f;
 
 /* 80454298-804542A0 0004+04 s=1 e=0 z=0  None .sdata2    @4066 */
 SECTION_SDATA2 static f32 lit_4066[1 + 1 /* padding */] = {
@@ -472,9 +464,7 @@ SECTION_SDATA2 static f32 lit_4066[1 + 1 /* padding */] = {
 };
 
 /* 804542A0-804542A8 0008+00 s=1 e=0 z=0  None .sdata2    @4068 */
-SECTION_SDATA2 static u8 lit_4068[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4068 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801DA754-801DAFF0 089C+00 s=0 e=2 z=0  None .text
  * __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb */
@@ -510,19 +500,19 @@ asm void dMenu_ItemExplain_c::move() {
 
 /* ############################################################################################## */
 /* 804542A8-804542AC 0004+00 s=1 e=0 z=0  None .sdata2    @4302 */
-SECTION_SDATA2 static u32 lit_4302 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4302 = 608.0f;
 
 /* 804542AC-804542B0 0004+00 s=1 e=0 z=0  None .sdata2    @4303 */
-SECTION_SDATA2 static u32 lit_4303 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4303 = 448.0f;
 
 /* 804542B0-804542B4 0004+00 s=5 e=0 z=0  None .sdata2    @4304 */
-SECTION_SDATA2 static u32 lit_4304 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4304 = -1.0f;
 
 /* 804542B4-804542B8 0004+00 s=1 e=0 z=0  None .sdata2    @4305 */
-SECTION_SDATA2 static u32 lit_4305 = 0x43F30000;
+SECTION_SDATA2 static f32 lit_4305 = 486.0f;
 
 /* 804542B8-804542BC 0004+00 s=1 e=0 z=0  None .sdata2    @4306 */
-SECTION_SDATA2 static u32 lit_4306 = 0x43510000;
+SECTION_SDATA2 static f32 lit_4306 = 209.0f;
 
 /* 801DB514-801DB744 0230+00 s=0 e=2 z=0  None .text draw__19dMenu_ItemExplain_cFP13J2DOrthoGraph
  */
@@ -537,13 +527,13 @@ asm void dMenu_ItemExplain_c::draw(J2DOrthoGraph* param_0) {
 
 /* ############################################################################################## */
 /* 804542BC-804542C0 0004+00 s=2 e=0 z=0  None .sdata2    @4346 */
-SECTION_SDATA2 static u32 lit_4346 = 0x42400000;
+SECTION_SDATA2 static f32 lit_4346 = 48.0f;
 
 /* 804542C0-804542C4 0004+00 s=1 e=0 z=0  None .sdata2    @4347 */
-SECTION_SDATA2 static u32 lit_4347 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4347 = 5.0f;
 
 /* 804542C4-804542C8 0004+00 s=8 e=0 z=0  None .sdata2    @4348 */
-SECTION_SDATA2 static u32 lit_4348 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4348 = 1.0f;
 
 /* 801DB744-801DB818 00D4+00 s=1 e=0 z=0  None .text      drawKantera__19dMenu_ItemExplain_cFv */
 #pragma push
@@ -577,10 +567,10 @@ asm void dMenu_ItemExplain_c::open_init() {
 
 /* ############################################################################################## */
 /* 804542C8-804542CC 0004+00 s=1 e=0 z=0  None .sdata2    @4452 */
-SECTION_SDATA2 static u32 lit_4452 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4452 = 2.0f;
 
 /* 804542CC-804542D0 0004+00 s=1 e=0 z=0  None .sdata2    @4453 */
-SECTION_SDATA2 static u32 lit_4453 = 0x43160000;
+SECTION_SDATA2 static f32 lit_4453 = 150.0f;
 
 /* 801DBAB4-801DBB50 009C+00 s=1 e=0 z=0  None .text      open_proc__19dMenu_ItemExplain_cFv */
 #pragma push
@@ -710,7 +700,7 @@ asm void dMenu_ItemExplain_c::openExplainTx(u32 param_0, u32 param_1) {
 
 /* ############################################################################################## */
 /* 804542D0-804542D4 0004+00 s=1 e=0 z=0  None .sdata2    @4820 */
-SECTION_SDATA2 static u32 lit_4820 = 0x40E00000;
+SECTION_SDATA2 static f32 lit_4820 = 7.0f;
 
 /* 801DC7AC-801DC7FC 0050+00 s=1 e=2 z=0  None .text      getAlphaRatio__19dMenu_ItemExplain_cFv */
 #pragma push
@@ -745,12 +735,10 @@ asm void dMenu_ItemExplain_c::getWarpMarkFlag() {
 
 /* ############################################################################################## */
 /* 804542D4-804542D8 0004+00 s=1 e=0 z=0  None .sdata2    @4948 */
-SECTION_SDATA2 static u32 lit_4948 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4948 = 100.0f;
 
 /* 804542D8-804542E0 0008+00 s=1 e=0 z=0  None .sdata2    @4950 */
-SECTION_SDATA2 static u8 lit_4950[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4950 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801DCBBC-801DCC8C 00D0+00 s=2 e=0 z=0  None .text      setScale__19dMenu_ItemExplain_cFv */
 #pragma push

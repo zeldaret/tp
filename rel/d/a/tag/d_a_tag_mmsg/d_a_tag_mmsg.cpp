@@ -39,7 +39,6 @@ static void daTagMmsg_Create(fopAc_ac_c*);
 static void daTagMmsg_Delete(daTagMmsg_c*);
 static void daTagMmsg_Execute(daTagMmsg_c*);
 static bool daTagMmsg_Draw(daTagMmsg_c*);
-extern "C" extern void* g_profile_Tag_Mmsg[12];
 
 extern "C" void create__11daTagMmsg_cFv();
 extern "C" static void daTagMmsg_Create__FP10fopAc_ac_c();
@@ -60,11 +59,6 @@ void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
 void dComIfGp_getRoomCamera(int);
 void dComIfGp_getRoomArrow(int);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

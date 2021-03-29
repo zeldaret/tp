@@ -52,8 +52,6 @@ struct J3DShape {
 
 static void J3DLoadCPCmd(u8, u32);
 static void J3DLoadArrayBasePtr(_GXAttr, void*);
-extern "C" extern void* __vt__8J3DShape[6];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void initialize__8J3DShapeFv();
 extern "C" void addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl();
@@ -83,13 +81,6 @@ void* operator new[](u32);
 void J3DGDSetVtxAttrFmtv(_GXVtxFmt, _GXVtxAttrFmtList const*, bool);
 void J3DFifoLoadPosMtxImm(f32 (*)[4], u32);
 void J3DFifoLoadNrmMtxImm(f32 (*)[4], u32);
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentPipeline__11J3DShapeMtx[4];
-extern "C" extern u8 sCurrentScaleFlag__11J3DShapeMtx[4];
-extern "C" extern u8 struct_804515B0[4];
-extern "C" extern u8 sTexMtxLoadType__11J3DShapeMtx[4];
-extern "C" extern u8 __GDCurrentDL[4];
 
 extern "C" void* __nwa__FUl();
 extern "C" void J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb();
@@ -130,16 +121,10 @@ extern "C" extern u8 __GDCurrentDL[4];
 
 /* ############################################################################################## */
 /* 804563A0-804563A8 0004+04 s=1 e=0 z=0  None .sdata2    @687 */
-SECTION_SDATA2 static u8 lit_687[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_687[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80314B48-80314BB8 0070+00 s=0 e=1 z=0  None .text      initialize__8J3DShapeFv */

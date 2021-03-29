@@ -27,8 +27,6 @@ extern "C" void GXSetChanCtrl();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 extern "C" void cosf();
 extern "C" extern void* __GXData;
 
@@ -69,34 +67,34 @@ SECTION_SDATA2 static u8 lit_134[4] = {
 };
 
 /* 804565BC-804565C0 0004+00 s=1 e=0 z=0  None .sdata2    @135 */
-SECTION_SDATA2 static u32 lit_135 = 0x42B40000;
+SECTION_SDATA2 static f32 lit_135 = 90.0f;
 
 /* 804565C0-804565C4 0004+00 s=1 e=0 z=0  None .sdata2    @136 */
-SECTION_SDATA2 static u32 lit_136 = 0x40490FDB;
+SECTION_SDATA2 static f32 lit_136 = 3.1415927410125732f;
 
 /* 804565C4-804565C8 0004+00 s=1 e=0 z=0  None .sdata2    @137 */
-SECTION_SDATA2 static u32 lit_137 = 0x43340000;
+SECTION_SDATA2 static f32 lit_137 = 180.0f;
 
 /* 804565C8-804565CC 0004+00 s=1 e=0 z=0  None .sdata2    @138 */
-SECTION_SDATA2 static u32 lit_138 = 0xC47A0000;
+SECTION_SDATA2 static f32 lit_138 = -1000.0f;
 
 /* 804565CC-804565D0 0004+00 s=1 e=0 z=0  None .sdata2    @139 */
-SECTION_SDATA2 static u32 lit_139 = 0x447A0000;
+SECTION_SDATA2 static f32 lit_139 = 1000.0f;
 
 /* 804565D0-804565D4 0004+00 s=2 e=0 z=0  None .sdata2    @140 */
-SECTION_SDATA2 static u32 lit_140 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_140 = 1.0f;
 
 /* 804565D4-804565D8 0004+00 s=1 e=0 z=0  None .sdata2    @141 */
-SECTION_SDATA2 static u32 lit_141 = 0x40000000;
+SECTION_SDATA2 static f32 lit_141 = 2.0f;
 
 /* 804565D8-804565DC 0004+00 s=1 e=0 z=0  None .sdata2    @142 */
-SECTION_SDATA2 static u32 lit_142 = 0xC0800000;
+SECTION_SDATA2 static f32 lit_142 = -4.0f;
 
 /* 804565DC-804565E0 0004+00 s=1 e=0 z=0  None .sdata2    @143 */
-SECTION_SDATA2 static u32 lit_143 = 0x40800000;
+SECTION_SDATA2 static f32 lit_143 = 4.0f;
 
 /* 804565E0-804565E4 0004+00 s=1 e=0 z=0  None .sdata2    @144 */
-SECTION_SDATA2 static u32 lit_144 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_144 = -2.0f;
 
 /* 8035D64C-8035D7DC 0190+00 s=1 e=2 z=0  None .text      GXInitLightSpot */
 #pragma push
@@ -110,7 +108,7 @@ extern "C" asm void GXInitLightSpot() {
 
 /* ############################################################################################## */
 /* 804565E4-804565E8 0004+00 s=1 e=0 z=0  None .sdata2    @160 */
-SECTION_SDATA2 static u32 lit_160 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_160 = 0.5f;
 
 /* 8035D7DC-8035D8AC 00D0+00 s=0 e=2 z=0  None .text      GXInitLightDistAttn */
 #pragma push

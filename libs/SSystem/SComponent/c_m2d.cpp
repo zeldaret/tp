@@ -28,19 +28,16 @@ extern "C" void cM2d_CrossCirLin__FR8cM2dGCirffffPfPf();
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
 /* 804550F0-804550F4 0004+00 s=1 e=0 z=0  None .sdata2    @2266 */
-SECTION_SDATA2 static u32 lit_2266 = 0x40000000;
+SECTION_SDATA2 static f32 lit_2266 = 2.0f;
 
 /* 804550F4-804550F8 0004+00 s=1 e=0 z=0  None .sdata2    @2267 */
-SECTION_SDATA2 static u32 lit_2267 = 0x40800000;
+SECTION_SDATA2 static f32 lit_2267 = 4.0f;
 
 /* 804550F8-804550FC 0004+00 s=1 e=0 z=0  None .sdata2    @2268 */
 SECTION_SDATA2 static u8 lit_2268[4] = {
@@ -51,17 +48,13 @@ SECTION_SDATA2 static u8 lit_2268[4] = {
 };
 
 /* 804550FC-80455100 0004+00 s=1 e=0 z=0  None .sdata2    @2269 */
-SECTION_SDATA2 static u32 lit_2269 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_2269 = 1.0f;
 
 /* 80455100-80455108 0008+00 s=1 e=0 z=0  None .sdata2    @2270 */
-SECTION_SDATA2 static u8 lit_2270[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2270 = 0.5;
 
 /* 80455108-80455110 0008+00 s=1 e=0 z=0  None .sdata2    @2271 */
-SECTION_SDATA2 static u8 lit_2271[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2271 = 3.0;
 
 /* 80455110-80455118 0008+00 s=1 e=0 z=0  None .sdata2    @2272 */
 SECTION_SDATA2 static u8 lit_2272[8] = {

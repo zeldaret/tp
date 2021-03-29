@@ -84,8 +84,6 @@ struct JKRExpHeap {
 // Forward References:
 //
 
-extern "C" extern char const* const JKRExpHeap__stringBase0;
-
 extern "C" void createRoot__10JKRExpHeapFib();
 extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
 extern "C" void create__10JKRExpHeapFPvUlP7JKRHeapb();
@@ -136,9 +134,6 @@ extern "C" extern char const* const JKRExpHeap__stringBase0;
 //
 
 void operator delete(void*);
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
 
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
 extern "C" void __dt__7JKRHeapFv();
@@ -579,9 +574,7 @@ SECTION_SDATA2 static f32 lit_1121[1 + 1 /* padding */] = {
 };
 
 /* 80455FA0-80455FA8 0008+00 s=2 e=0 z=0  None .sdata2    @1123 */
-SECTION_SDATA2 static u8 lit_1123[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1123 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802D03B8-802D05CC 0214+00 s=1 e=0 z=0  None .text      dump__10JKRExpHeapFv */
 #pragma push

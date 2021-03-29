@@ -19,8 +19,6 @@ extern "C" void CARDCreate();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 SECTION_INIT void memcpy();
 extern "C" void OSGetTime();
 extern "C" void __CARDDefaultApiCallback();

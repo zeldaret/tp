@@ -33,8 +33,6 @@ void fpcNd_IsDeleteTiming(process_node_class*);
 static void fpcNd_IsDelete(process_node_class*);
 static void fpcNd_Delete(process_node_class*);
 static void fpcNd_Create(process_node_class*);
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 extern "C" void fpcNd_DrawMethod__FP21nodedraw_method_classPv();
 extern "C" static void fpcNd_Draw__FP18process_node_class();

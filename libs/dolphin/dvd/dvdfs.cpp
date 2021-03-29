@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __DVDLongFileNameFlag[4];
-extern "C" extern u8 __DVDThreadQueue[8];
-
 extern "C" void __DVDFSInit();
 extern "C" void DVDConvertPathToEntrynum();
 extern "C" void DVDFastOpen();

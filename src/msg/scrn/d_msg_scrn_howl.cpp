@@ -149,10 +149,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_howl__stringBase0;
-extern "C" extern u8 data_803C1120[56];
-extern "C" extern u8 data_803C1158[56];
-
 extern "C" void __ct__14dMsgScrnHowl_cFv();
 extern "C" void __dt__14dMsgScrnHowl_cFv();
 extern "C" void exec__14dMsgScrnHowl_cFv();
@@ -204,10 +200,6 @@ void dPaneClass_showNullPane(J2DScreen*);
 void cLib_addCalc2(f32*, f32, f32, f32);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void
@@ -513,13 +505,13 @@ SECTION_SDATA2 static u8 lit_4427[4] = {
 };
 
 /* 80454C54-80454C58 0004+00 s=1 e=0 z=0  None .sdata2    @4428 */
-SECTION_SDATA2 static u32 lit_4428 = 0x43AF0000;
+SECTION_SDATA2 static f32 lit_4428 = 350.0f;
 
 /* 80454C58-80454C5C 0004+00 s=2 e=0 z=0  None .sdata2    @4429 */
-SECTION_SDATA2 static u32 lit_4429 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4429 = 255.0f;
 
 /* 80454C5C-80454C60 0004+00 s=2 e=0 z=0  None .sdata2    @4430 */
-SECTION_SDATA2 static u32 lit_4430 = 0x40400000;
+SECTION_SDATA2 static f32 lit_4430 = 3.0f;
 
 /* 80454C60-80454C68 0004+04 s=8 e=0 z=0  None .sdata2    @4431 */
 SECTION_SDATA2 static f32 lit_4431[1 + 1 /* padding */] = {
@@ -529,9 +521,7 @@ SECTION_SDATA2 static f32 lit_4431[1 + 1 /* padding */] = {
 };
 
 /* 80454C68-80454C70 0008+00 s=4 e=0 z=0  None .sdata2    @4434 */
-SECTION_SDATA2 static u8 lit_4434[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4434 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024096C-80241784 0E18+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnHowl_cFv */
 #pragma push
@@ -555,10 +545,10 @@ asm dMsgScrnHowl_c::~dMsgScrnHowl_c() {
 
 /* ############################################################################################## */
 /* 80454C70-80454C74 0004+00 s=7 e=0 z=0  None .sdata2    @4561 */
-SECTION_SDATA2 static u32 lit_4561 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4561 = 0.5f;
 
 /* 80454C74-80454C78 0004+00 s=2 e=0 z=0  None .sdata2    @4562 */
-SECTION_SDATA2 static u32 lit_4562 = 0x3E4CCCCD;
+SECTION_SDATA2 static f32 lit_4562 = 1.0f / 5.0f;
 
 /* 80454C78-80454C80 0004+04 s=2 e=0 z=0  None .sdata2    @4563 */
 SECTION_SDATA2 static f32 lit_4563[1 + 1 /* padding */] = {
@@ -579,9 +569,7 @@ asm void dMsgScrnHowl_c::exec() {
 
 /* ############################################################################################## */
 /* 80454C80-80454C88 0008+00 s=6 e=0 z=0  None .sdata2    @4587 */
-SECTION_SDATA2 static u8 lit_4587[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4587 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80241C30-80241D58 0128+00 s=1 e=0 z=0  None .text      drawSelf__14dMsgScrnHowl_cFv */
 #pragma push
@@ -717,22 +705,22 @@ asm void dMsgScrnHowl_c::resetLine() {
 
 /* ############################################################################################## */
 /* 80454C88-80454C8C 0004+00 s=2 e=0 z=0  None .sdata2    @4824 */
-SECTION_SDATA2 static u32 lit_4824 = 0x41F00000;
+SECTION_SDATA2 static f32 lit_4824 = 30.0f;
 
 /* 80454C8C-80454C90 0004+00 s=1 e=0 z=0  None .sdata2    @4825 */
-SECTION_SDATA2 static u32 lit_4825 = 0x41800000;
+SECTION_SDATA2 static f32 lit_4825 = 16.0f;
 
 /* 80454C90-80454C94 0004+00 s=1 e=0 z=0  None .sdata2    @4826 */
-SECTION_SDATA2 static u32 lit_4826 = 0x42000000;
+SECTION_SDATA2 static f32 lit_4826 = 32.0f;
 
 /* 80454C94-80454C98 0004+00 s=4 e=0 z=0  None .sdata2    @4827 */
-SECTION_SDATA2 static u32 lit_4827 = 0x40000000;
+SECTION_SDATA2 static f32 lit_4827 = 2.0f;
 
 /* 80454C98-80454C9C 0004+00 s=1 e=0 z=0  None .sdata2    @4828 */
-SECTION_SDATA2 static u32 lit_4828 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4828 = 5.0f;
 
 /* 80454C9C-80454CA0 0004+00 s=1 e=0 z=0  None .sdata2    @4829 */
-SECTION_SDATA2 static u32 lit_4829 = 0x41700000;
+SECTION_SDATA2 static f32 lit_4829 = 15.0f;
 
 /* 80242198-802427A8 0610+00 s=1 e=0 z=0  None .text      drawWave__14dMsgScrnHowl_cFv */
 #pragma push
@@ -756,7 +744,7 @@ asm void dMsgScrnHowl_c::drawGuide() {
 
 /* ############################################################################################## */
 /* 80454CA0-80454CA4 0004+00 s=1 e=0 z=0  None .sdata2    @5203 */
-SECTION_SDATA2 static u32 lit_5203 = 0x41900000;
+SECTION_SDATA2 static f32 lit_5203 = 18.0f;
 
 /* 80242FE4-802435BC 05D8+00 s=1 e=0 z=0  None .text      drawGuide2__14dMsgScrnHowl_cFv */
 #pragma push
@@ -770,10 +758,10 @@ asm void dMsgScrnHowl_c::drawGuide2() {
 
 /* ############################################################################################## */
 /* 80454CA4-80454CA8 0004+00 s=1 e=0 z=0  None .sdata2    @5233 */
-SECTION_SDATA2 static u32 lit_5233 = 0x41400000;
+SECTION_SDATA2 static f32 lit_5233 = 12.0f;
 
 /* 80454CA8-80454CAC 0004+00 s=1 e=0 z=0  None .sdata2    @5234 */
-SECTION_SDATA2 static u32 lit_5234 = 0x42480000;
+SECTION_SDATA2 static f32 lit_5234 = 50.0f;
 
 /* 802435BC-80243838 027C+00 s=1 e=0 z=0  None .text      drawEffect__14dMsgScrnHowl_cFv */
 #pragma push
@@ -867,7 +855,7 @@ asm void dMsgScrnHowl_c::addCountGuide(s16 param_0) {
 
 /* ############################################################################################## */
 /* 80454CAC-80454CB0 0004+00 s=1 e=0 z=0  None .sdata2    @5508 */
-SECTION_SDATA2 static u32 lit_5508 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5508 = -1.0f;
 
 /* 80243F94-80244108 0174+00 s=2 e=0 z=0  None .text      getNowPlotPitch__14dMsgScrnHowl_cFf */
 #pragma push

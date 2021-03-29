@@ -35,10 +35,6 @@ struct JUTDirectPrint {
 // Forward References:
 //
 
-extern "C" extern u8 sManager__8JUTVideo[4];
-extern "C" extern u8 sVideoLastTick__8JUTVideo[4];
-extern "C" extern u8 sVideoInterval__8JUTVideo[4];
-
 extern "C" void createManager__8JUTVideoFPC16_GXRenderModeObj();
 extern "C" void destroyManager__8JUTVideoFv();
 extern "C" void __ct__8JUTVideoFPC16_GXRenderModeObj();
@@ -60,8 +56,6 @@ extern "C" extern u8 sVideoInterval__8JUTVideo[4];
 
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();

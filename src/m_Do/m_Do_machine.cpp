@@ -112,9 +112,6 @@ static void fault_callback_scroll(u16, OSContext*, u32, u32);
 static void my_PrintHeap(char const*, u32);
 static void my_SysPrintHeap(char const*, void*, u32);
 void mDoMch_Create();
-extern "C" extern char const* const m_Do_m_Do_machine__stringBase0;
-extern "C" extern u8 g_ntscZeldaProg[60];
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 
 extern "C" static void myGetHeapTypeByString__FP7JKRHeap();
 extern "C" static void myMemoryErrorRoutine__FPvUli();
@@ -156,35 +153,6 @@ void exception_addition(JUTConsole*);
 void cAPICPad_recalibrate();
 void cM_initRnd(int, int, int);
 void* operator new(u32);
-extern "C" extern u8 g_mDoMemCd_control[8192];
-extern "C" extern u32 data_80450580;
-extern "C" extern u32 memMargin__7mDoMain;
-extern "C" extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern void* renderMode__Q29JFWSystem11CSetUpParam;
-extern "C" extern u8 data_804508B0[8];
-extern "C" extern u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
-extern "C" extern u32 sSZSBufferSize__12JKRDvdRipper;
-extern "C" extern u32 sSZSBufferSize__16JKRDvdAramRipper;
-extern "C" extern u8 sHungUpTime__7mDoMain[4];
-extern "C" extern u8 data_80450B14[4];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 commandHeap[4];
-extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 systemHeap__9JFWSystem[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
-extern "C" extern u8 sErrorManager__12JUTException[4];
-extern "C" extern u8 sConsole__12JUTException[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
 
 extern "C" void OSReportDisable();
 extern "C" void OSReportEnable();
@@ -469,10 +437,10 @@ asm static void myExceptionCallback(u16 param_0, OSContext* param_1, u32 param_2
 
 /* ############################################################################################## */
 /* 80451B00-80451B04 0004+00 s=1 e=0 z=0  None .sdata2    @3940 */
-SECTION_SDATA2 static u32 lit_3940 = 0x41000000;
+SECTION_SDATA2 static f32 lit_3940 = 8.0f;
 
 /* 80451B04-80451B08 0004+00 s=1 e=0 z=0  None .sdata2    @3941 */
-SECTION_SDATA2 static u32 lit_3941 = 0x40C00000;
+SECTION_SDATA2 static f32 lit_3941 = 6.0f;
 
 /* 8000B95C-8000BCF4 0398+00 s=1 e=0 z=0  None .text      fault_callback_scroll__FUsP9OSContextUlUl
  */

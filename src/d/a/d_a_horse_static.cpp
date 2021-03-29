@@ -29,8 +29,6 @@ struct Z2CreatureRide {
 // Forward References:
 //
 
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-
 extern "C" void checkWait__10e_wb_classFv();
 extern "C" void setPlayerRideNow__10e_wb_classFv();
 extern "C" void setPlayerRide__10e_wb_classFv();

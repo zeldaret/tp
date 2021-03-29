@@ -24,7 +24,6 @@ struct create_tag {};
 void fpcCtTg_ToCreateQ(create_tag*);
 void fpcCtTg_CreateQTo(create_tag*);
 void fpcCtTg_Init(create_tag*, void*);
-extern "C" extern u8 g_fpcCtTg_Queue[12 + 4 /* padding */];
 
 extern "C" void fpcCtTg_ToCreateQ__FP10create_tag();
 extern "C" void fpcCtTg_CreateQTo__FP10create_tag();

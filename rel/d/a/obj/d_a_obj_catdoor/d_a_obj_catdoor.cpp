@@ -92,8 +92,6 @@ static void daObjCatDoor_Execute(daObjCatDoor_c*);
 static bool daObjCatDoor_IsDelete(daObjCatDoor_c*);
 static void daObjCatDoor_Delete(daObjCatDoor_c*);
 static void daObjCatDoor_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_CatDoor[12];
 
 extern "C" void attr__14daObjCatDoor_cCFv();
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
@@ -120,13 +118,6 @@ void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
 void dComIfG_resLoad(request_of_phase_process_class*, char const*);
 void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void cLib_chaseS(s16*, s16, s16);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();

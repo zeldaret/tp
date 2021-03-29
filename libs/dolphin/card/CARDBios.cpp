@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-extern "C" extern u8 __CARDDiskNone[32];
-
 extern "C" void __CARDDefaultApiCallback();
 extern "C" void __CARDSyncCallback();
 extern "C" void __CARDExtHandler();

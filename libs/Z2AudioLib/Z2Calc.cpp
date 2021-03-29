@@ -36,9 +36,6 @@ struct JMath {
 // Forward References:
 //
 
-extern "C" extern u32 cEqualCSlope__6Z2Calc;
-extern "C" extern u32 cEqualPSlope__6Z2Calc;
-
 extern "C" void linearTransform__6Z2CalcFfffffb();
 extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
 extern "C" void getRandom__6Z2CalcFfff();
@@ -46,8 +43,8 @@ extern "C" void getRandom_0_1__6Z2CalcFv();
 extern "C" void setParam__Q26Z2Calc8FNoise1fFfff();
 extern "C" void tau__Q26Z2Calc8FNoise1fFf();
 extern "C" void calcNoise1f__Q26Z2Calc8FNoise1fFv();
-extern "C" extern u32 cEqualCSlope__6Z2Calc;
-extern "C" extern u32 cEqualPSlope__6Z2Calc;
+extern "C" extern f32 cEqualCSlope__6Z2Calc;
+extern "C" extern f32 cEqualPSlope__6Z2Calc;
 
 //
 // External References:
@@ -74,10 +71,10 @@ asm void Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 para
 
 /* ############################################################################################## */
 /* 80455820-80455824 0004+00 s=0 e=1 z=0  None .sdata2    cEqualCSlope__6Z2Calc */
-SECTION_SDATA2 u32 cEqualCSlope__6Z2Calc = 0x3F800000;
+SECTION_SDATA2 f32 cEqualCSlope__6Z2Calc = 1.0f;
 
 /* 80455824-80455828 0004+00 s=0 e=1 z=0  None .sdata2    cEqualPSlope__6Z2Calc */
-SECTION_SDATA2 u32 cEqualPSlope__6Z2Calc = 0x3F000000;
+SECTION_SDATA2 f32 cEqualPSlope__6Z2Calc = 0.5f;
 
 /* 80455828-8045582C 0004+00 s=1 e=0 z=0  None .sdata2    @380 */
 SECTION_SDATA2 static u8 lit_380[4] = {
@@ -88,7 +85,7 @@ SECTION_SDATA2 static u8 lit_380[4] = {
 };
 
 /* 8045582C-80455830 0004+00 s=4 e=0 z=0  None .sdata2    @381 */
-SECTION_SDATA2 static u32 lit_381 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_381 = 1.0f;
 
 /* 802A96F4-802A9814 0120+00 s=0 e=29 z=0  None .text
  * getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign             */
@@ -104,10 +101,10 @@ asm void Z2Calc::getParamByExp(f32 param_0, f32 param_1, f32 param_2, f32 param_
 
 /* ############################################################################################## */
 /* 80455830-80455834 0004+00 s=1 e=0 z=0  None .sdata2    @396 */
-SECTION_SDATA2 static u32 lit_396 = 0x40000000;
+SECTION_SDATA2 static f32 lit_396 = 2.0f;
 
 /* 80455834-80455838 0004+00 s=1 e=0 z=0  None .sdata2    @397 */
-SECTION_SDATA2 static u32 lit_397 = 0xC0000000;
+SECTION_SDATA2 static f32 lit_397 = -2.0f;
 
 /* 802A9814-802A98D4 00C0+00 s=0 e=2 z=0  None .text      getRandom__6Z2CalcFfff */
 #pragma push

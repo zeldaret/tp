@@ -62,7 +62,6 @@ void J2DFillBox(f32, f32, f32, f32, JUtility::TColor);
 static void J2DFillBox(JGeometry::TBox2__template0 const&, JUtility::TColor);
 void J2DDrawFrame(f32, f32, f32, f32, JUtility::TColor, u8);
 static void J2DDrawFrame(JGeometry::TBox2__template0 const&, JUtility::TColor, u8);
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
 
 extern "C" void __ct__13J2DOrthoGraphFv();
 extern "C" void __ct__13J2DOrthoGraphFffffff();
@@ -81,8 +80,6 @@ extern "C" extern void* __vt__13J2DOrthoGraph[10];
 //
 // External References:
 //
-
-extern "C" extern void* __vt__14J2DGrafContext[10];
 
 extern "C" void __dt__13J2DOrthoGraphFv();
 extern "C" void __ct__14J2DGrafContextFffff();
@@ -125,16 +122,10 @@ SECTION_DATA void* __vt__13J2DOrthoGraph[10] = {
 };
 
 /* 80456160-80456168 0004+04 s=3 e=0 z=0  None .sdata2    @522 */
-SECTION_SDATA2 static u8 lit_522[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_522[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 802E9670-802E96D0 0060+00 s=3 e=1 z=0  None .text      __ct__13J2DOrthoGraphFv */

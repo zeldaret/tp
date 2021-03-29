@@ -63,24 +63,6 @@ struct J2DIndBlock {
 // Forward References:
 //
 
-extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j2dDefaultTexMtxInfo[36];
-extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j2dDefaultTevStageInfo[20];
-extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
-extern "C" extern u32 j2dDefaultColInfo;
-extern "C" extern u32 j2dDefaultTevOrderInfoNull;
-extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
-extern "C" extern u8 j2dDefaultTevColor[8];
-extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];
-extern "C" extern u32 j2dDefaultTevKColor;
-extern "C" extern u8 j2dDefaultTevSwapMode[4];
-extern "C" extern u32 j2dDefaultTevSwapModeTable;
-extern "C" extern u32 j2dDefaultBlendInfo;
-extern "C" extern u8 data_804561A4[4];
-extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
-
 extern "C" void load__9J2DTexMtxFUl();
 extern "C" void calc__9J2DTexMtxFv();
 extern "C" void getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f();
@@ -162,10 +144,10 @@ asm void J2DTexMtx::calc() {
 
 /* ############################################################################################## */
 /* 80456168-8045616C 0004+00 s=2 e=0 z=0  None .sdata2    @1488 */
-SECTION_SDATA2 static u32 lit_1488 = 0x40490FDB;
+SECTION_SDATA2 static f32 lit_1488 = 3.1415927410125732f;
 
 /* 8045616C-80456170 0004+00 s=2 e=0 z=0  None .sdata2    @1489 */
-SECTION_SDATA2 static u32 lit_1489 = 0x43340000;
+SECTION_SDATA2 static f32 lit_1489 = 180.0f;
 
 /* 80456170-80456174 0004+00 s=2 e=0 z=0  None .sdata2    @1490 */
 SECTION_SDATA2 static u8 lit_1490[4] = {
@@ -176,7 +158,7 @@ SECTION_SDATA2 static u8 lit_1490[4] = {
 };
 
 /* 80456174-80456178 0004+00 s=2 e=0 z=0  None .sdata2    @1491 */
-SECTION_SDATA2 static u32 lit_1491 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1491 = 1.0f;
 
 /* 802E9D2C-802E9EBC 0190+00 s=1 e=0 z=0  None .text
  * getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f     */
@@ -192,7 +174,7 @@ asm void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1,
 
 /* ############################################################################################## */
 /* 80456178-8045617C 0004+00 s=1 e=0 z=0  None .sdata2    @1507 */
-SECTION_SDATA2 static u32 lit_1507 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_1507 = 0.5f;
 
 /* 802E9EBC-802EA044 0188+00 s=1 e=0 z=0  None .text
  * getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f     */

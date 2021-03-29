@@ -59,11 +59,6 @@ extern "C" void noteOnOsc__7JASBankFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelP
 // External References:
 //
 
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 sBankDisposeList__10JASChannel[64];
-extern "C" extern u8 lit_556[12 + 4 /* padding */];
-extern "C" extern u8 struct_80451260[8];
-
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void alloc__17JASGenericMemPoolFUl();
 extern "C" void func_802978DC();
@@ -92,7 +87,7 @@ extern "C" extern u8 struct_80451260[8];
 static u8 lit_156[12 + 4 /* padding */];
 
 /* 80455630-80455634 0004+00 s=1 e=0 z=0  None .sdata2    @248 */
-SECTION_SDATA2 static u32 lit_248 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_248 = 1.0f;
 
 /* 80455634-80455638 0004+00 s=1 e=0 z=0  None .sdata2    @249 */
 SECTION_SDATA2 static u8 lit_249[4] = {
@@ -103,7 +98,7 @@ SECTION_SDATA2 static u8 lit_249[4] = {
 };
 
 /* 80455638-8045563C 0004+00 s=1 e=0 z=0  None .sdata2    @250 */
-SECTION_SDATA2 static u32 lit_250 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_250 = 0.5f;
 
 /* 80297930-80297C40 0310+00 s=0 e=1 z=0  None .text
  * noteOn__7JASBankFPC7JASBankiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
@@ -136,7 +131,7 @@ SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
 };
 
 /* 8045563C-80455640 0004+00 s=1 e=0 z=0  None .sdata2    @290 */
-SECTION_SDATA2 static u32 lit_290 = 0x4682C008;
+SECTION_SDATA2 static f32 lit_290 = 16736.015625f;
 
 /* 80297C40-80297D78 0138+00 s=1 e=0 z=0  None .text
  * noteOnOsc__7JASBankFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */

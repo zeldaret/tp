@@ -77,9 +77,9 @@ struct dStage_roomControl_c {
     /* 800243B0 */ void getMemoryBlock(int);
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -195,8 +195,6 @@ static void daBg_Execute(daBg_c*);
 static bool daBg_IsDelete(daBg_c*);
 static void daBg_Delete(daBg_c*);
 static void daBg_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_BG[13];
 
 extern "C" void setArcName__6daBg_cFv();
 extern "C" static void createMatAnm__FP12J3DModelDataUs();
@@ -250,18 +248,6 @@ void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
 void dKy_bg_MAxx_proc(void*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mRoom__7daSus_c[256];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 m_frame__7dDemo_c[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void play__14mDoExt_baseAnmFv();

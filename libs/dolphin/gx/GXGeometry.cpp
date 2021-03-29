@@ -25,8 +25,6 @@ extern "C" static void __GXSetGenMode();
 // External References:
 //
 
-extern "C" extern void* __GXData;
-
 extern "C" void __GXSetVCD();
 extern "C" void __GXCalculateVLim();
 extern "C" void __GXSetVAT();

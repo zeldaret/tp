@@ -24,7 +24,6 @@ struct daTagSchedule_c {};
 
 static void daTagSchedule_Create(fopAc_ac_c*);
 static void daTagSchedule_Delete(daTagSchedule_c*);
-extern "C" extern void* g_profile_Tag_Schedule[12];
 
 extern "C" static void daTagSchedule_Create__FP10fopAc_ac_c();
 extern "C" static void daTagSchedule_Delete__FP15daTagSchedule_c();
@@ -33,9 +32,6 @@ extern "C" extern void* g_profile_Tag_Schedule[12];
 //
 // External References:
 //
-
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

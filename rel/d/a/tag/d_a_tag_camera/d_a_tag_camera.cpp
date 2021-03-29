@@ -59,8 +59,6 @@ static void daTag_Cam_Execute(daTag_Cam_c*);
 static bool daTag_Cam_IsDelete(daTag_Cam_c*);
 static void daTag_Cam_Delete(daTag_Cam_c*);
 static void daTag_Cam_Create(fopAc_ac_c*);
-extern "C" extern void* const lit_4358[22];
-extern "C" extern void* g_profile_TAG_CAMERA[12];
 
 extern "C" static bool func_80489A98();
 extern "C" static void func_80489AA0();
@@ -107,12 +105,6 @@ extern "C" extern void* g_profile_TAG_CAMERA[12];
 
 void mDoMtx_YrotM(f32 (*)[4], s16);
 void dCam_getBody();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 struct_80450D64[4];
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();

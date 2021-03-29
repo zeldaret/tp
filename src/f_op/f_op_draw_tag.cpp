@@ -25,7 +25,6 @@ void fopDwTg_ToDrawQ(create_tag_class*, int);
 void fopDwTg_DrawQTo(create_tag_class*);
 void fopDwTg_Init(create_tag_class*, void*);
 void fopDwTg_CreateQueue();
-extern "C" extern u8 g_fopDwTg_Queue[8];
 
 extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();
 extern "C" void fopDwTg_DrawQTo__FP16create_tag_class();

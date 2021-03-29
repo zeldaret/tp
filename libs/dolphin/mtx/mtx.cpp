@@ -44,7 +44,7 @@ extern "C" void cosf();
 
 /* ############################################################################################## */
 /* 80456508-8045650C 0004+00 s=6 e=0 z=0  None .sdata2    @96 */
-SECTION_SDATA2 static u32 lit_96 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_96 = 1.0f;
 
 /* 8045650C-80456510 0004+00 s=6 e=0 z=0  None .sdata2    @97 */
 SECTION_SDATA2 static u8 lit_97[4] = {
@@ -122,10 +122,10 @@ extern "C" asm static void PSMTXRotTrig() {
 
 /* ############################################################################################## */
 /* 80456510-80456514 0004+00 s=2 e=0 z=0  None .sdata2    @190 */
-SECTION_SDATA2 static u32 lit_190 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_190 = 0.5f;
 
 /* 80456514-80456518 0004+00 s=1 e=0 z=0  None .sdata2    @191 */
-SECTION_SDATA2 static u32 lit_191 = 0x40400000;
+SECTION_SDATA2 static f32 lit_191 = 3.0f;
 
 /* 803467C8-80346878 00B0+00 s=1 e=0 z=0  None .text      __PSMTXRotAxisRadInternal */
 #pragma push
@@ -209,10 +209,10 @@ extern "C" asm void C_MTXLookAt() {
 
 /* ############################################################################################## */
 /* 80456518-8045651C 0004+00 s=1 e=0 z=0  None .sdata2    @206 */
-SECTION_SDATA2 static u32 lit_206 = 0x40000000;
+SECTION_SDATA2 static f32 lit_206 = 2.0f;
 
 /* 8045651C-80456520 0004+00 s=1 e=0 z=0  None .sdata2    @227 */
-SECTION_SDATA2 static u32 lit_227 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_227 = -1.0f;
 
 /* 80456520-80456528 0004+04 s=1 e=0 z=0  None .sdata2    @230 */
 SECTION_SDATA2 static f32 lit_230[1 + 1 /* padding */] = {

@@ -13,8 +13,6 @@
 
 extern "C" extern u8 struct_80BBA970[4];
 
-extern "C" extern u8 struct_80BBA970[4];
-
 //
 // External References:
 //

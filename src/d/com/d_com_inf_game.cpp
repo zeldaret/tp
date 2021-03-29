@@ -509,19 +509,6 @@ void dComIfGs_offVisitedRoom(int);
 void dComIfGs_isVisitedRoom(int);
 void dComIfGs_staffroll_next_go();
 void dComIfGs_staffroll_next_go_check();
-extern "C" extern char const* const d_com_d_com_inf_game__stringBase0;
-extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
-extern "C" extern void* __vt__12dCcMassS_Obj[3];
-extern "C" extern void* __vt__15cCcD_DivideArea[3];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__15cCcD_DivideInfo[3];
-extern "C" extern void* __vt__12dCcMassS_Mng[3 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_clearColor[4];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 g_saftyWhiteColor;
 
 extern "C" void ct__14dComIfG_play_cFv();
 extern "C" void init__14dComIfG_play_cFv();
@@ -740,29 +727,6 @@ void dMenuFmap_getStartStageName(void*);
 void cPhs_Handler(request_of_phase_process_class*, int (**)(void*), void*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern void* __vt__16dStage_stageDt_c[93];
-extern "C" extern void* __vt__11dStage_dt_c[93];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__19dAttDraw_CallBack_c[3];
-extern "C" extern void* __vt__11dAttParam_c[3 + 1 /* padding */];
-extern "C" extern void* __vt__4dBgS[5];
-extern "C" extern void* __vt__4cBgS[5];
-extern "C" extern void* __vt__11cBgS_ChkElm[4];
-extern "C" extern void* __vt__4dCcS[13];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__4cCcS[12];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 SECTION_INIT void memset();
 extern "C" void OSReport_Error();
@@ -1455,7 +1419,7 @@ asm void dComIfGp_getReverb(int param_0) {
 
 /* ############################################################################################## */
 /* 80451D00-80451D04 0004+00 s=2 e=0 z=0  None .sdata2    @5090 */
-SECTION_SDATA2 static u32 lit_5090 = 0xCE6E6B28;
+SECTION_SDATA2 static f32 lit_5090 = -1000000000.0f;
 
 /* 8002D0B4-8002D1AC 00F8+00 s=0 e=3 z=34  None .text
  * dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj */
@@ -1851,9 +1815,7 @@ SECTION_SDATA2 static f32 lit_6335[1 + 1 /* padding */] = {
 };
 
 /* 80451D10-80451D18 0008+00 s=1 e=0 z=0  None .sdata2    @6337 */
-SECTION_SDATA2 static u8 lit_6337[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_6337 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8002E22C-8002E2DC 00B0+00 s=1 e=0 z=0  None .text      dComIfGp_createSubExpHeap2D__Fv */
 #pragma push
@@ -2013,10 +1975,10 @@ asm void dComIfG_getTrigA(u32 param_0) {
 
 /* ############################################################################################## */
 /* 80451D18-80451D1C 0004+00 s=1 e=0 z=0  None .sdata2    @6980 */
-SECTION_SDATA2 static u32 lit_6980 = 0xC7B05E00;
+SECTION_SDATA2 static f32 lit_6980 = -90300.0f;
 
 /* 80451D1C-80451D20 0004+00 s=1 e=0 z=0  None .sdata2    @6981 */
-SECTION_SDATA2 static u32 lit_6981 = 0x474A5800;
+SECTION_SDATA2 static f32 lit_6981 = 51800.0f;
 
 /* 8002E9F0-8002EC54 0264+00 s=0 e=1 z=0  None .text      dComIfGp_calcNowRegion__Fv */
 #pragma push
@@ -2403,9 +2365,7 @@ asm void dComIfGs_shake_kandelaar_check() {
 
 /* ############################################################################################## */
 /* 80451D20-80451D28 0008+00 s=1 e=0 z=0  None .sdata2    @7580 */
-SECTION_SDATA2 static u8 lit_7580[8] = {
-    0x3F, 0xE3, 0x33, 0x33, 0x33, 0x33, 0x33, 0x33,
-};
+SECTION_SDATA2 static f64 lit_7580 = 0.6;
 
 /* 8002FA54-8002FA84 0030+00 s=0 e=4 z=96  None .text      dComIfGs_wolfeye_effect_check__Fv */
 #pragma push

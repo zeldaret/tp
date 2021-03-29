@@ -72,8 +72,6 @@ struct JAISound {
 // Forward References:
 //
 
-extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
-
 extern "C" void __ct__14Z2SoundHandlesFv();
 extern "C" void __dt__14Z2SoundHandlesFv();
 extern "C" void initHandlesPool__14Z2SoundHandlesFUc();
@@ -93,8 +91,6 @@ extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
 //
 
 void operator delete(void*);
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80451348[8];
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();

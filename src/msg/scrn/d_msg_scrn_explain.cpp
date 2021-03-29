@@ -69,16 +69,16 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
+
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
 };
 
 struct JUTFont {};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
 
 struct dMsgObject_c {
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
@@ -140,8 +140,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-extern "C" extern char const* const msg_scrn_d_msg_scrn_explain__stringBase0;
-
 extern "C" void __ct__17dMsgScrnExplain_cFP9STControlUcbUc();
 extern "C" void __dt__17dMsgScrnExplain_cFv();
 extern "C" void move__17dMsgScrnExplain_cFv();
@@ -174,12 +172,6 @@ void dMeter2Info_set2DVibrationM();
 void dPaneClass_showNullPane(J2DScreen*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void checkTrigger__9STControlFv();
@@ -380,10 +372,10 @@ SECTION_DATA static void* __vt__17dMsgScrnExplain_c[3] = {
 };
 
 /* 80454BB8-80454BBC 0004+00 s=5 e=0 z=0  None .sdata2    @3978 */
-SECTION_SDATA2 static u32 lit_3978 = 0x44180000;
+SECTION_SDATA2 static f32 lit_3978 = 608.0f;
 
 /* 80454BBC-80454BC0 0004+00 s=1 e=0 z=0  None .sdata2    @3979 */
-SECTION_SDATA2 static u32 lit_3979 = 0xC1200000;
+SECTION_SDATA2 static f32 lit_3979 = -10.0f;
 
 /* 80454BC0-80454BC4 0004+00 s=5 e=0 z=0  None .sdata2    @3980 */
 SECTION_SDATA2 static u8 lit_3980[4] = {
@@ -394,7 +386,7 @@ SECTION_SDATA2 static u8 lit_3980[4] = {
 };
 
 /* 80454BC4-80454BC8 0004+00 s=1 e=0 z=0  None .sdata2    @3981 */
-SECTION_SDATA2 static u32 lit_3981 = 0xC33E0000;
+SECTION_SDATA2 static f32 lit_3981 = -190.0f;
 
 /* 8023CC88-8023D538 08B0+00 s=0 e=2 z=0  None .text      __ct__17dMsgScrnExplain_cFP9STControlUcbUc
  */
@@ -419,7 +411,7 @@ asm dMsgScrnExplain_c::~dMsgScrnExplain_c() {
 
 /* ############################################################################################## */
 /* 80454BC8-80454BCC 0004+00 s=1 e=0 z=0  None .sdata2    @4078 */
-SECTION_SDATA2 static u32 lit_4078 = 0xC20C0000;
+SECTION_SDATA2 static f32 lit_4078 = -35.0f;
 
 /* 8023D7D8-8023D918 0140+00 s=0 e=4 z=0  None .text      move__17dMsgScrnExplain_cFv */
 #pragma push
@@ -433,19 +425,19 @@ asm void dMsgScrnExplain_c::move() {
 
 /* ############################################################################################## */
 /* 80454BCC-80454BD0 0004+00 s=1 e=0 z=0  None .sdata2    @4120 */
-SECTION_SDATA2 static u32 lit_4120 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4120 = 448.0f;
 
 /* 80454BD0-80454BD4 0004+00 s=4 e=0 z=0  None .sdata2    @4121 */
-SECTION_SDATA2 static u32 lit_4121 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_4121 = -1.0f;
 
 /* 80454BD4-80454BD8 0004+00 s=1 e=0 z=0  None .sdata2    @4122 */
-SECTION_SDATA2 static u32 lit_4122 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_4122 = -100.0f;
 
 /* 80454BD8-80454BDC 0004+00 s=1 e=0 z=0  None .sdata2    @4123 */
-SECTION_SDATA2 static u32 lit_4123 = 0x43F30000;
+SECTION_SDATA2 static f32 lit_4123 = 486.0f;
 
 /* 80454BDC-80454BE0 0004+00 s=1 e=0 z=0  None .sdata2    @4124 */
-SECTION_SDATA2 static u32 lit_4124 = 0x43510000;
+SECTION_SDATA2 static f32 lit_4124 = 209.0f;
 
 /* 8023D918-8023DAD0 01B8+00 s=0 e=3 z=0  None .text      draw__17dMsgScrnExplain_cFP13J2DOrthoGraph
  */
@@ -487,7 +479,7 @@ asm void dMsgScrnExplain_c::open_request_proc() {
 
 /* ############################################################################################## */
 /* 80454BE0-80454BE4 0004+00 s=6 e=0 z=0  None .sdata2    @4211 */
-SECTION_SDATA2 static u32 lit_4211 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_4211 = 1.0f;
 
 /* 8023DBE4-8023DC7C 0098+00 s=1 e=0 z=0  None .text      open_init__17dMsgScrnExplain_cFv */
 #pragma push
@@ -501,7 +493,7 @@ asm void dMsgScrnExplain_c::open_init() {
 
 /* ############################################################################################## */
 /* 80454BE4-80454BE8 0004+00 s=2 e=0 z=0  None .sdata2    @4230 */
-SECTION_SDATA2 static u32 lit_4230 = 0x43160000;
+SECTION_SDATA2 static f32 lit_4230 = 150.0f;
 
 /* 8023DC7C-8023DD90 0114+00 s=1 e=0 z=0  None .text      open_proc__17dMsgScrnExplain_cFv */
 #pragma push
@@ -535,7 +527,7 @@ asm void dMsgScrnExplain_c::move_proc() {
 
 /* ############################################################################################## */
 /* 80454BE8-80454BEC 0004+00 s=1 e=0 z=0  None .sdata2    @4294 */
-SECTION_SDATA2 static u32 lit_4294 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_4294 = 0.5f;
 
 /* 8023DE8C-8023E0F4 0268+00 s=1 e=0 z=0  None .text      move_select_init__17dMsgScrnExplain_cFv */
 #pragma push
@@ -591,12 +583,10 @@ asm void dMsgScrnExplain_c::openExplain(u32 param_0, u8 param_1, u8 param_2, u8 
 
 /* ############################################################################################## */
 /* 80454BEC-80454BF0 0004+00 s=1 e=0 z=0  None .sdata2    @4414 */
-SECTION_SDATA2 static u32 lit_4414 = 0x40A00000;
+SECTION_SDATA2 static f32 lit_4414 = 5.0f;
 
 /* 80454BF0-80454BF8 0008+00 s=1 e=0 z=0  None .sdata2    @4416 */
-SECTION_SDATA2 static u8 lit_4416[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_4416 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8023E5CC-8023E640 0074+00 s=2 e=0 z=0  None .text      getAlphaRatio__17dMsgScrnExplain_cFv */
 #pragma push

@@ -89,8 +89,6 @@ struct JAISe {
 // Forward References:
 //
 
-extern "C" extern void* __vt__5JAISe[22];
-
 extern "C" void func_8029F03C();
 extern "C" void mixOut___5JAISeFRC14JASSoundParams();
 extern "C" void stopTrack___5JAISeFv();
@@ -179,7 +177,7 @@ SECTION_DATA void* __vt__5JAISe[22] = {
 };
 
 /* 80455778-8045577C 0004+00 s=2 e=0 z=0  None .sdata2    @626 */
-SECTION_SDATA2 static u32 lit_626 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_626 = 1.0f;
 
 /* 8045577C-80455780 0004+00 s=2 e=0 z=0  None .sdata2    @627 */
 SECTION_SDATA2 static u8 lit_627[4] = {
@@ -190,7 +188,7 @@ SECTION_SDATA2 static u8 lit_627[4] = {
 };
 
 /* 80455780-80455784 0004+00 s=2 e=0 z=0  None .sdata2    @628 */
-SECTION_SDATA2 static u32 lit_628 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_628 = 0.5f;
 
 /* 8029F03C-8029F0F8 00BC+00 s=0 e=1 z=0  None .text
  * __ct__5JAISeFP8JAISeMgrP27JAISoundStrategyMgr<5JAISe>Ul      */
@@ -235,7 +233,7 @@ asm void JAISe::startTrack_(JASSoundParams const& param_0) {
 
 /* ############################################################################################## */
 /* 80455784-80455788 0004+00 s=2 e=0 z=0  None .sdata2    @736 */
-SECTION_SDATA2 static u32 lit_736 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_736 = 1.0f / 100.0f;
 
 /* 8029F304-8029F4CC 01C8+00 s=0 e=1 z=0  None .text
  * JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity */

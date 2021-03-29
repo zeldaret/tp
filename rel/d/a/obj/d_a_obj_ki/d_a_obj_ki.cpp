@@ -49,12 +49,12 @@ struct daObj_Ki_HIO_c {
     /* 80C44AA8 */ ~daObj_Ki_HIO_c();
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 80C4408C */ ~cXyz();
     /* 80C44AA0 */ cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -109,8 +109,6 @@ static bool daObj_Ki_IsDelete(obj_ki_class*);
 static void daObj_Ki_Delete(obj_ki_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void daObj_Ki_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_KI[12];
 
 extern "C" void __ct__14daObj_Ki_HIO_cFv();
 extern "C" static void nodeCallBack__FP8J3DJointi();
@@ -149,15 +147,6 @@ void MtxScale(f32, f32, f32, u8);
 void MtxPosition(cXyz*, cXyz*);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

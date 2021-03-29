@@ -29,8 +29,6 @@ extern "C" void __ct__11dBgS_WtrChkFv();
 // External References:
 //
 
-extern "C" extern void* __vt__11dBgS_WtrChk[12];
-
 extern "C" void __ct__14dBgS_SplGrpChkFv();
 extern "C" extern void* __vt__11dBgS_WtrChk[12];
 

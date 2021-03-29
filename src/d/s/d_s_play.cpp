@@ -241,11 +241,6 @@ static void phase_5(dScnPly_c*);
 static void phase_6(dScnPly_c*);
 static s32 phase_compleate(void*);
 static void dScnPly_Create(scene_class*);
-extern "C" extern char const* const d_s_d_s_play__stringBase0;
-extern "C" extern void* g_profile_PLAY_SCENE[10];
-extern "C" extern void* g_profile_OPENING_SCENE[10];
-extern "C" extern u8 g_envHIO[68];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void calcPauseTimer__9dScnPly_cFv();
 extern "C" void __ct__22dScnPly_env_otherHIO_cFv();
@@ -321,36 +316,6 @@ void dMeter2Info_setSword(u8, bool);
 void dMeter2Info_setShield(u8, bool);
 void cLib_calcTimer__template4(s8*);
 void operator delete(void*);
-extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
-extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 data_804505F0[8];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u32 g_saftyWhiteColor;
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
-extern "C" extern u8 data_80450D68[4];
-extern "C" extern u8 struct_80450D8C[4];
-extern "C" extern u8 m_emitter__8daYkgr_c[4];
-extern "C" extern u8 data_80450EC4[4];
-extern "C" extern u8 data_80450ED0[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" extern u8 struct_80451500[4];
 
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void mDoAud_load1stDynamicWave__Fv();
@@ -678,7 +643,7 @@ SECTION_SDATA2 static u16 T_JOINT_dylKeyTbl[1 + 1 /* padding */] = {
 };
 
 /* 80454F1C-80454F20 0004+00 s=1 e=0 z=0  None .sdata2    @4055 */
-SECTION_SDATA2 static u32 lit_4055 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_4055 = 255.0f;
 
 /* 80259440-80259468 0028+00 s=1 e=0 z=0  None .text      __ct__22dScnPly_env_otherHIO_cFv */
 #pragma push
@@ -692,10 +657,10 @@ asm dScnPly_env_otherHIO_c::dScnPly_env_otherHIO_c() {
 
 /* ############################################################################################## */
 /* 80454F20-80454F24 0004+00 s=1 e=0 z=0  None .sdata2    @4066 */
-SECTION_SDATA2 static u32 lit_4066 = 0xC2C80000;
+SECTION_SDATA2 static f32 lit_4066 = -100.0f;
 
 /* 80454F24-80454F28 0004+00 s=1 e=0 z=0  None .sdata2    @4067 */
-SECTION_SDATA2 static u32 lit_4067 = 0x42C80000;
+SECTION_SDATA2 static f32 lit_4067 = 100.0f;
 
 /* 80454F28-80454F2C 0004+00 s=2 e=0 z=0  None .sdata2    @4068 */
 SECTION_SDATA2 static u8 lit_4068[4] = {
@@ -912,10 +877,10 @@ static u8 lit_4050[12];
 u8 g_envHIO[68];
 
 /* 80454F30-80454F34 0004+00 s=1 e=0 z=0  None .sdata2    @4804 */
-SECTION_SDATA2 static u32 lit_4804 = 0x44180000;
+SECTION_SDATA2 static f32 lit_4804 = 608.0f;
 
 /* 80454F34-80454F38 0004+00 s=1 e=0 z=0  None .sdata2    @4805 */
-SECTION_SDATA2 static u32 lit_4805 = 0x43E00000;
+SECTION_SDATA2 static f32 lit_4805 = 448.0f;
 
 /* 80454F38-80454F40 0004+04 s=1 e=0 z=0  None .sdata2    @4806 */
 SECTION_SDATA2 static f32 lit_4806[1 + 1 /* padding */] = {

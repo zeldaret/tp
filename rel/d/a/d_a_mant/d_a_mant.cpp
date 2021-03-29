@@ -29,8 +29,6 @@ struct daMant_packet_c {
 
 struct dStage_dt_c {};
 
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -40,6 +38,8 @@ struct cXyz {
     /* 80861F60 */ ~cXyz();
     /* 80862C40 */ cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -87,14 +87,6 @@ static void daMant_Execute(mant_class*);
 static bool daMant_IsDelete(mant_class*);
 static bool daMant_Delete(mant_class*);
 static void daMant_Create(fopAc_ac_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 l_pos[2028];
-extern "C" extern u8 l_normal[12];
-extern "C" extern u8 l_texCoord[1352];
-extern "C" extern u8 l_Egnd_mantDL[1004];
-extern "C" extern void* pal_d;
-extern "C" extern void* tex_d[2];
-extern "C" extern void* g_profile_MANT[12];
 
 extern "C" void draw__15daMant_packet_cFv();
 extern "C" static void daMant_Draw__FP10mant_class();
@@ -144,16 +136,6 @@ void cLib_addCalc0(f32*, f32, f32);
 void MtxTrans(f32, f32, f32, u8);
 void MtxPosition(cXyz*, cXyz*);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

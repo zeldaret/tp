@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-extern "C" extern u8 pad_8045197C[4];
-
 extern "C" void GXSetMisc();
 extern "C" void GXFlush();
 extern "C" void __GXAbort();
@@ -39,10 +37,6 @@ extern "C" extern u8 pad_8045197C[4];
 //
 // External References:
 //
-
-extern "C" extern u8 __peReg[4];
-extern "C" extern u8 __memReg[4];
-extern "C" extern void* __GXData;
 
 extern "C" void PPCSync();
 extern "C" void OSSetCurrentContext();

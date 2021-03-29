@@ -19,14 +19,14 @@ struct JUTTexture {
 
 struct JPAEmitterWorkData {};
 
-struct JPABaseEmitter {
-    /* 8027EDD4 */ void processTillStartFrame();
-    /* 8027EE14 */ void processTermination();
-};
-
 struct JPABaseParticle {
     /* 8027FFD0 */ void calc_p(JPAEmitterWorkData*);
     /* 80280260 */ void calc_c(JPAEmitterWorkData*);
+};
+
+struct JPABaseEmitter {
+    /* 8027EDD4 */ void processTillStartFrame();
+    /* 8027EE14 */ void processTermination();
 };
 
 struct JKRHeap {
@@ -734,13 +734,13 @@ asm void JPAResource::draw(JPAEmitterWorkData* param_0, JPABaseEmitter* param_1)
 
 /* ############################################################################################## */
 /* 80455290-80455294 0004+00 s=2 e=0 z=0  None .sdata2    @3189 */
-SECTION_SDATA2 static u32 lit_3189 = 0x3F828F5C;
+SECTION_SDATA2 static f32 lit_3189 = 51.0f / 50.0f;
 
 /* 80455294-80455298 0004+00 s=2 e=0 z=0  None .sdata2    @3190 */
-SECTION_SDATA2 static u32 lit_3190 = 0x3ECCCCCD;
+SECTION_SDATA2 static f32 lit_3190 = 2.0f / 5.0f;
 
 /* 80455298-8045529C 0004+00 s=1 e=0 z=0  None .sdata2    @3191 */
-SECTION_SDATA2 static u32 lit_3191 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3191 = 1.0f;
 
 /* 8045529C-804552A0 0004+00 s=2 e=0 z=0  None .sdata2    @3192 */
 SECTION_SDATA2 static u8 lit_3192[4] = {
@@ -751,9 +751,7 @@ SECTION_SDATA2 static u8 lit_3192[4] = {
 };
 
 /* 804552A0-804552A8 0008+00 s=3 e=0 z=0  None .sdata2    @3194 */
-SECTION_SDATA2 static u8 lit_3194[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3194 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80275B74-80275EB0 033C+00 s=1 e=0 z=0  None .text      drawP__11JPAResourceFP18JPAEmitterWorkData
  */

@@ -48,8 +48,6 @@ static void daSwLBall_Execute(daSwLBall_c*);
 static void daSwLBall_Delete(daSwLBall_c*);
 static void daSwLBall_Create(fopAc_ac_c*);
 static void cLib_calcTimer__template0(u8*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_SwLBall[12];
 
 extern "C" static void s_lb_sub__FPvPv();
 extern "C" void checkArea_sub__11daSwLBall_cFP10fopAc_ac_c();
@@ -82,9 +80,6 @@ void fpcSch_JudgeByID(void*, void*);
 void dLib_checkActorInRectangle(fopAc_ac_c*, fopAc_ac_c*, cXyz const*, cXyz const*);
 void cLib_chaseF(f32*, f32, f32);
 void cLib_targetAngleY(Vec const*, Vec const*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();

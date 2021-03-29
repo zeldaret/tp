@@ -33,8 +33,6 @@ struct JSUFileInputStream {
 // Forward References:
 //
 
-extern "C" extern void* __vt__18JSUFileInputStream[9 + 1 /* padding */];
-
 extern "C" void __ct__18JSUFileInputStreamFP7JKRFile();
 extern "C" void readData__18JSUFileInputStreamFPvl();
 extern "C" void seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom();
@@ -45,10 +43,6 @@ extern "C" extern void* __vt__18JSUFileInputStream[9 + 1 /* padding */];
 //
 // External References:
 //
-
-extern "C" extern void* __vt__10JSUIosBase[3];
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
 
 extern "C" void getAvailable__20JSURandomInputStreamCFv();
 extern "C" void __dt__18JSUFileInputStreamFv();

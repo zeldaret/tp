@@ -80,22 +80,14 @@ asm dSi_HIO_c::dSi_HIO_c() {
 
 /* ############################################################################################## */
 /* 80453A70-80453A78 0004+04 s=1 e=0 z=0  None .sdata2    @3740 */
-SECTION_SDATA2 static u8 lit_3740[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_3740[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80453A78-80453A80 0008+00 s=1 e=0 z=0  None .sdata2    @3773 */
-SECTION_SDATA2 static u8 lit_3773[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3773 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80195A3C-80195B40 0104+00 s=0 e=1 z=0  None .text      animation__14dSelect_icon_cFv */
 #pragma push

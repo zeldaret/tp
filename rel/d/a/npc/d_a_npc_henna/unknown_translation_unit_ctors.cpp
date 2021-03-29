@@ -13,8 +13,6 @@
 
 extern void* const data_8054A950[2];
 
-extern void* const data_8054A950[2];
-
 //
 // External References:
 //
@@ -27,3 +25,8 @@ extern "C" void __sinit_d_a_npc_henna_cpp();
 
 /* ############################################################################################## */
 #pragma section ".ctors$10"
+/* 8054A950-8054A958 0008+00 s=0 e=1 z=0  None .ctors     None */
+void* const data_8054A950[2] = {
+    (void*)__sinit_d_a_npc_henna_cpp,
+    (void*)NULL,
+};

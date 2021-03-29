@@ -86,20 +86,6 @@ struct J3DDifferedTexMtx {
 // Forward References:
 //
 
-extern "C" extern u8 data_803CDB70[20];
-extern "C" extern void* __vt__28J3DShapeMtxYBBoardConcatView[10];
-extern "C" extern void* __vt__27J3DShapeMtxBBoardConcatView[10];
-extern "C" extern void* __vt__26J3DShapeMtxMultiConcatView[10];
-extern "C" extern void* __vt__16J3DShapeMtxMulti[8];
-extern "C" extern void* __vt__21J3DShapeMtxConcatView[10];
-extern "C" extern void* __vt__11J3DShapeMtx[8 + 1 /* padding */];
-extern "C" extern u8 sCurrentPipeline__11J3DShapeMtx[4];
-extern "C" extern u8 sCurrentScaleFlag__11J3DShapeMtx[4];
-extern "C" extern u8 struct_804515B0[4];
-extern "C" extern u8 sTexMtxLoadType__11J3DShapeMtx[4];
-extern "C" extern u8 sTexGenBlock__17J3DDifferedTexMtx[4];
-extern "C" extern u8 sTexMtxObj__17J3DDifferedTexMtx[4];
-
 extern "C" void resetMtxLoadCache__11J3DShapeMtxFv();
 extern "C" void loadMtxIndx_PNGP__11J3DShapeMtxCFiUs();
 extern "C" void loadMtxIndx_PCPU__11J3DShapeMtxCFiUs();
@@ -175,7 +161,6 @@ void J3DGetTextureMtxMayaOld(J3DTextureSRTInfo const&, f32 (*)[4]);
 void J3DScaleNrmMtx(f32 (*)[4], Vec const&);
 void J3DScaleNrmMtx33(f32 (*)[3], Vec const&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
-extern "C" extern u8 j3dSys[284];
 
 extern "C" bool getUseMtxNum__11J3DShapeMtxCFv();
 extern "C" void __dl__FPv();
@@ -607,7 +592,7 @@ asm void J3DShapeMtxMultiConcatView::loadNrmMtx(int param_0, u16 param_1, f32 (*
 
 /* ############################################################################################## */
 /* 8045639C-804563A0 0004+00 s=1 e=0 z=0  None .sdata2    @1423 */
-SECTION_SDATA2 static u32 lit_1423 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1423 = 1.0f;
 
 /* 803142D4-803143E4 0110+00 s=1 e=0 z=0  None .text      load__27J3DShapeMtxBBoardConcatViewCFv */
 #pragma push

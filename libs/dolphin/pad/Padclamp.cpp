@@ -36,32 +36,20 @@ extern "C" asm static void ClampStick() {
 
 /* ############################################################################################## */
 /* 80456560-80456568 0004+04 s=1 e=0 z=0  None .sdata2    @160 */
-SECTION_SDATA2 static u8 lit_160[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_160[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80456568-80456570 0008+00 s=1 e=0 z=0  None .sdata2    @161 */
-SECTION_SDATA2 static u8 lit_161[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_161 = 0.5;
 
 /* 80456570-80456578 0008+00 s=1 e=0 z=0  None .sdata2    @162 */
-SECTION_SDATA2 static u8 lit_162[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_162 = 3.0;
 
 /* 80456578-80456580 0008+00 s=1 e=0 z=0  None .sdata2    @164 */
-SECTION_SDATA2 static u8 lit_164[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_164 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8034DEEC-8034E094 01A8+00 s=1 e=0 z=0  None .text      ClampCircle */
 #pragma push

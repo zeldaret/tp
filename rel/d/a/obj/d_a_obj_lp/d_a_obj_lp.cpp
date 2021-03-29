@@ -31,9 +31,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat0_c {
     /* 800125E0 */ void init(u16, u16, int);
@@ -105,48 +105,6 @@ static void daObj_Lp_Delete(obj_lp_class*);
 static void useHeapInit(fopAc_ac_c*);
 static void set_pos_check(obj_lp_class*, int);
 static void daObj_Lp_Create(fopAc_ac_c*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_LP[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_80C55BB4[4];
-extern "C" extern u8 data_80C55BB8[4];
-extern "C" extern u8 data_80C55BBC[4];
-extern "C" extern u8 data_80C55BC0[4];
-extern "C" extern u8 data_80C55BC4[4];
-extern "C" extern u8 data_80C55BC8[4];
-extern "C" extern u8 data_80C55BCC[4];
-extern "C" extern u8 data_80C55BD0[4];
-extern "C" extern u8 data_80C55BD4[4];
-extern "C" extern u8 data_80C55BD8[4];
-extern "C" extern u8 data_80C55BDC[4];
-extern "C" extern u8 data_80C55BE0[4];
-extern "C" extern u8 data_80C55BE4[4];
-extern "C" extern u8 data_80C55BE8[4];
-extern "C" extern u8 data_80C55BEC[4];
-extern "C" extern u8 data_80C55BF0[4];
-extern "C" extern u8 data_80C55BF4[4];
-extern "C" extern u8 data_80C55BF8[4];
-extern "C" extern u8 data_80C55BFC[4];
-extern "C" extern u8 data_80C55C00[4];
-extern "C" extern u8 data_80C55C04[4];
-extern "C" extern u8 data_80C55C08[4];
-extern "C" extern u8 data_80C55C0C[4];
-extern "C" extern u8 data_80C55C10[4];
-extern "C" extern u8 data_80C55C14[4];
 
 extern "C" static void daObj_Lp_Draw__FP12obj_lp_class();
 extern "C" static void s_ks_sub__FPvPv();
@@ -234,15 +192,6 @@ void MtxPosition(cXyz*, cXyz*);
 void MtxPush();
 void MtxPull();
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

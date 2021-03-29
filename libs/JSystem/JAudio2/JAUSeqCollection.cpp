@@ -11,11 +11,11 @@
 // Types:
 //
 
-struct JAISeqDataUser {};
+struct JAISeqData {};
 
 struct JAISoundID {};
 
-struct JAISeqData {};
+struct JAISeqDataUser {};
 
 struct JAUSeqDataMgr_SeqCollection {
     /* 802A677C */ JAUSeqDataMgr_SeqCollection();
@@ -57,7 +57,6 @@ extern "C" void __dt__27JAUSeqDataMgr_SeqCollectionFv();
 //
 
 void operator delete(void*);
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
 
 extern "C" void __dt__13JAISeqDataMgrFv();
 extern "C" void __dl__FPv();

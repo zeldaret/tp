@@ -58,13 +58,16 @@ struct J3DAnmTextureSRTKey {
     /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmTexPattern;
+struct J3DAnmColor {
+    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
 struct J3DAnmTevRegKey {
     /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmColor {
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DMaterialTable {
@@ -72,10 +75,6 @@ struct J3DMaterialTable {
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
     /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct mDoExt_btpAnm {
@@ -139,14 +138,14 @@ struct mDoExt_MtxCalcAnmBlendTbl {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DTransformInfo {};
 
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
-struct J3DTransformInfo {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -213,11 +212,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
 };
 
-struct ResTIMG {};
+struct _GXColor {};
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -237,14 +236,14 @@ struct mDoExt_3DlineMat0_c {
     /* 80014E84 */ bool getMaterialID();
 };
 
-struct J3DDrawBuffer;
+struct J3DPacket;
+struct J3DDrawBuffer {
+    /* 8032548C */ void entryImm(J3DPacket*, u16);
+};
+
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
     /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
-
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
 struct dDlst_list_c {
@@ -422,9 +421,9 @@ struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 };
 
-struct J3DBlend {};
-
 struct J3DAlphaComp {};
+
+struct J3DBlend {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -606,21 +605,6 @@ void mDoExt_removeSubFont();
 void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
 void mDoExt_setAraCacheSize(u32);
 void mDoExt_GetCurrentRunningThread();
-extern "C" extern char const* const m_Do_m_Do_ext__stringBase0;
-extern "C" extern void* __vt__7JUTFont[17];
-extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* data_803A3360[11];
-extern "C" extern void* __vt__19J3DMtxCalcNoAnmBase[11];
-extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
-extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 commandHeap[4];
-extern "C" extern u8 archiveHeap[4];
 
 extern "C" static void mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs();
 extern "C" void initPlay__14mDoExt_baseAnmFsifss();
@@ -887,30 +871,6 @@ void* operator new[](u32);
 void operator delete(void*);
 void JMAEulerToQuat(s16, s16, s16, Quaternion*);
 void JMAQuatLerp(Quaternion const*, Quaternion const*, f32, Quaternion*);
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j3dDefaultTevStageInfo[20];
-extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
-extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern void* __vt__8J3DModel[9];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mParentS__6J3DSys[12];
-extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u8 __GDCurrentDL[4];
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
-extern "C" extern u8 j3dDefaultTevSwapMode[4];
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
-extern "C" extern u8 struct_804563F8[4];
 
 extern "C" void OSReport_FatalError();
 extern "C" void OSReport_Error();
@@ -1071,7 +1031,7 @@ extern "C" extern u8 struct_804563F8[4];
 
 /* ############################################################################################## */
 /* 80451B18-80451B1C 0004+00 s=11 e=0 z=0  None .sdata2    @3847 */
-SECTION_SDATA2 static u32 lit_3847 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_3847 = 1.0f;
 
 /* 8000D0AC-8000D320 0274+00 s=5 e=0 z=0  None .text
  * mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs              */
@@ -1094,9 +1054,7 @@ SECTION_SDATA2 static u8 lit_3876[4] = {
 };
 
 /* 80451B20-80451B28 0008+00 s=10 e=0 z=0  None .sdata2    @3878 */
-SECTION_SDATA2 static u8 lit_3878[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_3878 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8000D320-8000D428 0108+00 s=6 e=0 z=0  None .text      initPlay__14mDoExt_baseAnmFsifss */
 #pragma push
@@ -3155,7 +3113,7 @@ asm mDoExt_McaMorf::~mDoExt_McaMorf() {
 
 /* ############################################################################################## */
 /* 80451B28-80451B2C 0004+00 s=3 e=0 z=0  None .sdata2    @5939 */
-SECTION_SDATA2 static u32 lit_5939 = 0xBF800000;
+SECTION_SDATA2 static f32 lit_5939 = -1.0f;
 
 /* 8000FD94-80010074 02E0+00 s=1 e=0 z=0  None .text
  * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
@@ -3421,7 +3379,7 @@ asm void mDoExt_McaMorf2::calc() {
 
 /* ############################################################################################## */
 /* 80451B2C-80451B30 0004+00 s=6 e=0 z=0  None .sdata2    @6819 */
-SECTION_SDATA2 static u32 lit_6819 = 0x3F000000;
+SECTION_SDATA2 static f32 lit_6819 = 0.5f;
 
 /* 80011D70-80011FCC 025C+00 s=1 e=0 z=2  None .text
  * setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff */
@@ -3554,9 +3512,7 @@ SECTION_SDATA2 static f32 lit_7404[1 + 1 /* padding */] = {
 };
 
 /* 80451B38-80451B40 0008+00 s=2 e=0 z=0  None .sdata2    @7406 */
-SECTION_SDATA2 static u8 lit_7406[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_7406 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80012874-80012E3C 05C8+00 s=0 e=0 z=2  None .text
  * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
@@ -3583,10 +3539,10 @@ asm void mDoExt_3DlineMat0_c::update(int param_0, _GXColor& param_1, dKy_tevstr_
 
 /* ############################################################################################## */
 /* 80451B40-80451B44 0004+00 s=1 e=0 z=0  None .sdata2    @7624 */
-SECTION_SDATA2 static u32 lit_7624 = 0x3E000000;
+SECTION_SDATA2 static f32 lit_7624 = 0.125f;
 
 /* 80451B44-80451B48 0004+00 s=1 e=0 z=0  None .sdata2    @7625 */
-SECTION_SDATA2 static u32 lit_7625 = 0x3C23D70A;
+SECTION_SDATA2 static f32 lit_7625 = 1.0f / 100.0f;
 
 /* 80013360-800134F8 0198+00 s=0 e=0 z=19  None .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
  */
@@ -3621,14 +3577,10 @@ asm void mDoExt_3DlineMat1_c::draw() {
 
 /* ############################################################################################## */
 /* 80451B48-80451B50 0008+00 s=2 e=0 z=0  None .sdata2    @7919 */
-SECTION_SDATA2 static u8 lit_7919[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_7919 = 0.5;
 
 /* 80451B50-80451B58 0008+00 s=2 e=0 z=0  None .sdata2    @7920 */
-SECTION_SDATA2 static u8 lit_7920[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_7920 = 3.0;
 
 /* 80451B58-80451B60 0008+00 s=2 e=0 z=0  None .sdata2    @7921 */
 SECTION_SDATA2 static u8 lit_7921[8] = {
@@ -3636,10 +3588,10 @@ SECTION_SDATA2 static u8 lit_7921[8] = {
 };
 
 /* 80451B60-80451B64 0004+00 s=2 e=0 z=0  None .sdata2    @7922 */
-SECTION_SDATA2 static u32 lit_7922 = 0x3DCCCCCD;
+SECTION_SDATA2 static f32 lit_7922 = 1.0f / 10.0f;
 
 /* 80451B64-80451B68 0004+00 s=1 e=0 z=0  None .sdata2    @7923 */
-SECTION_SDATA2 static u32 lit_7923 = 0x3CA3D70A;
+SECTION_SDATA2 static f32 lit_7923 = 1.0f / 50.0f;
 
 /* 80451B68-80451B70 0004+04 s=1 e=0 z=0  None .sdata2    @7924 */
 SECTION_SDATA2 static f32 lit_7924[1 + 1 /* padding */] = {

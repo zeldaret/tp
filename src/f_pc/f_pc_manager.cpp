@@ -105,11 +105,6 @@ void fpcDw_Handler(int (*)(int (*)(void*, void*)), int (*)(void*, void*));
 void fpcFCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
 void cAPIGph_Painter();
 void MtxInit();
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 struct_80450D38[8];
-extern "C" extern u8 data_80450EC4[4];
 
 extern "C" void fpcCtIt_JudgeInLayer__FUiPFPvPv_PvPv();
 extern "C" void fpcCt_IsCreatingByID__FUi();

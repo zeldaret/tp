@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
@@ -154,8 +154,6 @@ static void daObj_Nougu_Delete(void*);
 static void daObj_Nougu_Execute(void*);
 static void daObj_Nougu_Draw(void*);
 static bool daObj_Nougu_IsDelete(void*);
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_NOUGU[12];
 
 extern "C" void __dt__13daObj_Nougu_cFv();
 extern "C" void __dt__8dCcD_SphFv();
@@ -203,18 +201,6 @@ void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 void dComIfGd_setShadow(u32, s8, J3DModel*, cXyz*, f32, f32, f32, f32, cBgS_PolyInfo&,
                         dKy_tevstr_c*, s16, f32, _GXTexObj*);
 void operator delete(void*);
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();

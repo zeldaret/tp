@@ -13,13 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -159,7 +159,6 @@ static void daObjMHole_Draw(daObjMHole_c*);
 static void daObjMHole_Execute(daObjMHole_c*);
 static void daObjMHole_Delete(daObjMHole_c*);
 static void daObjMHole_Create(fopAc_ac_c*);
-extern "C" extern void* g_profile_Obj_MHole[12];
 
 extern "C" static void searchParentSub__FPvPv();
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
@@ -204,19 +203,6 @@ void dKyw_get_wind_vec();
 void JPAGetXYZRotateMtx(s16, s16, s16, f32 (*)[4]);
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern u8 const j3dDefaultMtx[48];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 __float_nan;
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();

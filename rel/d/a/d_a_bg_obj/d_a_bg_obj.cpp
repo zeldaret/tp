@@ -54,9 +54,9 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct cCcD_Obj {};
-
 struct J3DModel {};
+
+struct cCcD_Obj {};
 
 struct daBgObj_c {
     struct spec_data_c {
@@ -283,8 +283,6 @@ static void daBgObj_create1st(daBgObj_c*);
 static void daBgObj_MoveBGDelete(daBgObj_c*);
 static void daBgObj_MoveBGExecute(daBgObj_c*);
 static void daBgObj_MoveBGDraw(daBgObj_c*);
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_BG_OBJ[12];
 
 extern "C" static void getBmdName__Fii();
 extern "C" static void getBtkName__Fii();
@@ -376,22 +374,6 @@ void cM_atan2s(f32, f32);
 void* operator new(u32);
 void operator delete(void*);
 void J3DGetTranslateRotateMtx(J3DTransformInfo const&, f32 (*)[4]);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Tri[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_TriAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void OSReport_Error();
 extern "C" void mDoMtx_YrotS__FPA4_fs();

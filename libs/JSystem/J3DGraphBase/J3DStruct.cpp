@@ -73,7 +73,7 @@ asm void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
 
 /* ############################################################################################## */
 /* 80456410-80456414 0004+00 s=1 e=0 z=0  None .sdata2    @409 */
-SECTION_SDATA2 static u32 lit_409 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_409 = 1.0f;
 
 /* 80456414-80456418 0004+00 s=1 e=0 z=0  None .sdata2    @410 */
 SECTION_SDATA2 static u8 lit_410[4] = {

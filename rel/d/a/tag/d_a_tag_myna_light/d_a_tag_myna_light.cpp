@@ -30,13 +30,13 @@ struct daTag_MynaLight_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct cXyz {};
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -62,7 +62,6 @@ static void daTag_MynaLight_Delete(void*);
 static void daTag_MynaLight_Execute(void*);
 static void daTag_MynaLight_Draw(void*);
 static bool daTag_MynaLight_IsDelete(void*);
-extern "C" extern void* g_profile_TAG_MNLIGHT[12];
 
 extern "C" void create__17daTag_MynaLight_cFv();
 extern "C" void Delete__17daTag_MynaLight_cFv();
@@ -89,11 +88,6 @@ void dComIfGp_getReverb(int);
 void dKy_BossLight_set(cXyz*, _GXColor*, f32, u8);
 void cLib_addCalc(f32*, f32, f32, f32, f32);
 void operator delete(void*);
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();

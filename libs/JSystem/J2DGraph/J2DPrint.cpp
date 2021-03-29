@@ -75,7 +75,6 @@ extern "C" void getNumberF32__8J2DPrintFPPCUcffi();
 
 void* operator new[](u32, JKRHeap*, int);
 void operator delete(void*);
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 extern "C" void* __nwa__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
@@ -195,12 +194,10 @@ asm J2DPrint::~J2DPrint() {
 
 /* ############################################################################################## */
 /* 804561CC-804561D0 0004+00 s=1 e=0 z=0  None .sdata2    @644 */
-SECTION_SDATA2 static u32 lit_644 = 0x42000000;
+SECTION_SDATA2 static f32 lit_644 = 32.0f;
 
 /* 804561D0-804561D8 0008+00 s=6 e=0 z=0  None .sdata2    @650 */
-SECTION_SDATA2 static u8 lit_650[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_650 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802F4468-802F4658 01F0+00 s=1 e=0 z=0  None .text
  * private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
@@ -266,9 +263,7 @@ SECTION_SDATA2 static f32 lit_786[1 + 1 /* padding */] = {
 };
 
 /* 804561E0-804561E8 0008+00 s=2 e=0 z=0  None .sdata2    @791 */
-SECTION_SDATA2 static u8 lit_791[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_791 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802F4828-802F4B4C 0324+00 s=0 e=4 z=0  None .text
  * printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc */
@@ -285,7 +280,7 @@ asm void J2DPrint::printReturn(char const* param_0, f32 param_1, f32 param_2,
 
 /* ############################################################################################## */
 /* 804561E8-804561EC 0004+00 s=1 e=0 z=0  None .sdata2    @913 */
-SECTION_SDATA2 static u32 lit_913 = 0x461C4000;
+SECTION_SDATA2 static f32 lit_913 = 10000.0f;
 
 /* 802F4B4C-802F52E8 079C+00 s=2 e=0 z=0  None .text
  * parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb              */
@@ -301,7 +296,7 @@ asm void J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param
 
 /* ############################################################################################## */
 /* 804561EC-804561F0 0004+00 s=2 e=0 z=0  None .sdata2    @937 */
-SECTION_SDATA2 static u32 lit_937 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_937 = 1.0f;
 
 /* 802F52E8-802F5410 0128+00 s=2 e=0 z=0  None .text      doCtrlCode__8J2DPrintFi */
 #pragma push

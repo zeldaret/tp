@@ -22,8 +22,6 @@ extern "C" static void DoneCallback();
 // External References:
 //
 
-extern "C" extern u8 __CARDBlock[544];
-
 SECTION_INIT void memset();
 extern "C" void DSPAddTask();
 extern "C" void DCInvalidateRange();

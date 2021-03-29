@@ -24,13 +24,13 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Z2Creature {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -50,9 +50,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat0_c {
     /* 800125E0 */ void init(u16, u16, int);
@@ -322,55 +322,6 @@ static void kabe_initial_pos_set(e_st_class*);
 static void roof_initial_pos_set(e_st_class*);
 static void daE_ST_Create(fopAc_ac_c*);
 static void setMidnaBindEffect(fopEn_enemy_c*, Z2CreatureEnemy*, cXyz*, cXyz*);
-extern "C" extern u32 const lit_5038;
-extern "C" extern u32 const lit_6480;
-extern "C" extern u32 const lit_6484;
-extern "C" extern u32 const lit_6485;
-extern "C" extern u32 const lit_6486;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern u8 base_j[32];
-extern "C" extern void* g_profile_E_ST[12];
-extern "C" extern u8 lit_1107[1 + 3 /* padding */];
-extern "C" extern u8 lit_1105[1 + 3 /* padding */];
-extern "C" extern u8 lit_1104[1 + 3 /* padding */];
-extern "C" extern u8 lit_1099[1 + 3 /* padding */];
-extern "C" extern u8 lit_1097[1 + 3 /* padding */];
-extern "C" extern u8 lit_1095[1 + 3 /* padding */];
-extern "C" extern u8 lit_1094[1 + 3 /* padding */];
-extern "C" extern u8 lit_1057[1 + 3 /* padding */];
-extern "C" extern u8 lit_1055[1 + 3 /* padding */];
-extern "C" extern u8 lit_1053[1 + 3 /* padding */];
-extern "C" extern u8 lit_1052[1 + 3 /* padding */];
-extern "C" extern u8 lit_1014[1 + 3 /* padding */];
-extern "C" extern u8 lit_1012[1 + 3 /* padding */];
-extern "C" extern u8 lit_1010[1 + 3 /* padding */];
-extern "C" extern u8 lit_1009[1 + 3 /* padding */];
-extern "C" extern u8 data_807A6E78[4];
-extern "C" extern u8 data_807A6E7C[4];
-extern "C" extern u8 data_807A6E80[4];
-extern "C" extern u8 data_807A6E84[4];
-extern "C" extern u8 data_807A6E88[4];
-extern "C" extern u8 data_807A6E8C[4];
-extern "C" extern u8 data_807A6E90[4];
-extern "C" extern u8 data_807A6E94[4];
-extern "C" extern u8 data_807A6E98[4];
-extern "C" extern u8 data_807A6E9C[4];
-extern "C" extern u8 data_807A6EA0[4];
-extern "C" extern u8 data_807A6EA4[4];
-extern "C" extern u8 data_807A6EA8[4];
-extern "C" extern u8 data_807A6EAC[4];
-extern "C" extern u8 data_807A6EB0[4];
-extern "C" extern u8 data_807A6EB4[4];
-extern "C" extern u8 data_807A6EB8[4];
-extern "C" extern u8 data_807A6EBC[4];
-extern "C" extern u8 data_807A6EC0[4];
-extern "C" extern u8 data_807A6EC4[4];
-extern "C" extern u8 data_807A6EC8[4];
-extern "C" extern u8 data_807A6ECC[4];
-extern "C" extern u8 data_807A6ED0[4];
-extern "C" extern u8 data_807A6ED4[4];
-extern "C" extern u8 data_807A6ED8[4];
 
 extern "C" void __ct__12daE_ST_HIO_cFv();
 extern "C" static void anm_init__FP10e_st_classifUcf();
@@ -537,30 +488,6 @@ void MtxPush();
 void MtxPull();
 void* operator new(u32);
 void operator delete(void*);
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 struct_80451124[4];
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();

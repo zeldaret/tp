@@ -130,16 +130,6 @@ struct J2DAnmBase {
 
 static void J2DGetKeyFrameInterpolation__template0(f32, J3DAnmKeyTableBase*, s16*);
 static void J2DGetKeyFrameInterpolation__template1(f32, J3DAnmKeyTableBase*, f32*);
-extern "C" extern void* __vt__15J2DAnmTevRegKey[4];
-extern "C" extern void* __vt__16J2DAnmTexPattern[4];
-extern "C" extern void* __vt__19J2DAnmTextureSRTKey[4];
-extern "C" extern void* __vt__17J2DAnmVtxColorKey[5];
-extern "C" extern void* __vt__18J2DAnmVtxColorFull[5];
-extern "C" extern void* __vt__14J2DAnmColorKey[5];
-extern "C" extern void* __vt__15J2DAnmColorFull[5];
-extern "C" extern void* __vt__11J2DAnmColor[5];
-extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-extern "C" extern void* __vt__19J2DAnmTransformFull[5];
 
 extern "C" void getTransform__19J2DAnmTransformFullCFUsP16J3DTransformInfo();
 extern "C" void calcTransform__18J2DAnmTransformKeyCFfUsP16J3DTransformInfo();
@@ -186,11 +176,6 @@ extern "C" extern void* __vt__19J2DAnmTransformFull[5];
 void* operator new(u32);
 void* operator new[](u32);
 void operator delete(void*);
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
-extern "C" extern void* __vt__10JUTNameTab[3];
-extern "C" extern void* __vt__14J2DAnmVtxColor[5];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
 extern "C" void __dt__15J2DAnmTevRegKeyFv();
@@ -229,22 +214,14 @@ extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80456300-80456308 0004+04 s=10 e=0 z=0  None .sdata2    @1573 */
-SECTION_SDATA2 static u8 lit_1573[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+SECTION_SDATA2 static f32 lit_1573[1 + 1 /* padding */] = {
+    0.0f,
     /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0.0f,
 };
 
 /* 80456308-80456310 0008+00 s=5 e=0 z=0  None .sdata2    @1576 */
-SECTION_SDATA2 static u8 lit_1576[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_1576 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8030A590-8030AAFC 056C+00 s=1 e=0 z=0  None .text
  * getTransform__19J2DAnmTransformFullCFUsP16J3DTransformInfo   */
@@ -259,7 +236,7 @@ asm void J2DAnmTransformFull::getTransform(u16 param_0, J3DTransformInfo* param_
 
 /* ############################################################################################## */
 /* 80456310-80456314 0004+00 s=2 e=0 z=0  None .sdata2    @1619 */
-SECTION_SDATA2 static u32 lit_1619 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_1619 = 1.0f;
 
 /* 8030AAFC-8030AF24 0428+00 s=1 e=0 z=0  None .text
  * calcTransform__18J2DAnmTransformKeyCFfUsP16J3DTransformInfo  */
@@ -297,7 +274,7 @@ asm void J2DAnmColorFull::getColor(u16 param_0, _GXColor* param_1) const {
 
 /* ############################################################################################## */
 /* 80456314-80456318 0004+00 s=3 e=0 z=0  None .sdata2    @1748 */
-SECTION_SDATA2 static u32 lit_1748 = 0x437F0000;
+SECTION_SDATA2 static f32 lit_1748 = 255.0f;
 
 /* 8030B200-8030B4C4 02C4+00 s=1 e=0 z=0  None .text      getColor__14J2DAnmColorKeyCFUsP8_GXColor
  */
@@ -409,10 +386,10 @@ asm void J2DAnmVisibilityFull::getVisibility(u16 param_0, u8* param_1) const {
 
 /* ############################################################################################## */
 /* 80456318-8045631C 0004+00 s=1 e=0 z=0  None .sdata2    @2110 */
-SECTION_SDATA2 static u32 lit_2110 = 0xC4800000;
+SECTION_SDATA2 static f32 lit_2110 = -1024.0f;
 
 /* 8045631C-80456320 0004+00 s=1 e=0 z=0  None .sdata2    @2111 */
-SECTION_SDATA2 static u32 lit_2111 = 0x447FC000;
+SECTION_SDATA2 static f32 lit_2111 = 1023.0f;
 
 /* 8030C0F0-8030C3B4 02C4+00 s=0 e=1 z=0  None .text
  * getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10          */
@@ -449,9 +426,7 @@ asm void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* param_0) {
 
 /* ############################################################################################## */
 /* 80456320-80456328 0008+00 s=1 e=0 z=0  None .sdata2    @2379 */
-SECTION_SDATA2 static u8 lit_2379[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
+SECTION_SDATA2 static f64 lit_2379 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8030C77C-8030C9B0 0234+00 s=6 e=0 z=0  None .text
  * J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs    */

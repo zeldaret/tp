@@ -11,16 +11,16 @@
 // Types:
 //
 
+struct JKRArchive {
+    /* 802D5D38 */ void getResource(u16);
+    /* 802D610C */ void countResource() const;
+};
+
 struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
 };
 
 struct Z2FxLineConfig {};
-
-struct JKRArchive {
-    /* 802D5D38 */ void getResource(u16);
-    /* 802D610C */ void countResource() const;
-};
 
 struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
@@ -64,12 +64,6 @@ extern "C" void setSceneFx__11Z2FxLineMgrFl();
 //
 
 void* operator new[](u32, JKRHeap*, int);
-extern "C" extern void* __vt__10JSUIosBase[3];
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
-extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B80[4];
 
 extern "C" void setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
