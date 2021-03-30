@@ -6,6 +6,7 @@
 #include "f_pc/f_pc_base.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "SSystem/SComponent/c_malloc.h"
 
 //
 // Types:
@@ -22,11 +23,6 @@ struct layer_management_tag_class {};
 struct layer_class {};
 
 struct delete_tag_class {};
-
-struct cMl {
-    /* 80263228 */ void memalignB(int, u32);
-    /* 80263260 */ void free(void*);
-};
 
 struct base_process_class {};
 
