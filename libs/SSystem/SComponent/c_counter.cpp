@@ -7,33 +7,23 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-void cCt_Counter(int);
-
-extern "C" void cCt_Counter__Fi();
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
+struct counter_class {
+    s32 mCounter0;
+    s32 mCounter1;
+    s32 mTimer;
+};
 
 /* ############################################################################################## */
 /* 80430CD8-80430CE8 000C+04 s=1 e=12 z=22  None .bss       g_Counter */
-u8 g_Counter[12 + 4 /* padding */];
+counter_class g_Counter;
 
 /* 80265E1C-80265E64 0048+00 s=0 e=1 z=0  None .text      cCt_Counter__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cCt_Counter(int param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_counter/cCt_Counter__Fi.s"
+void cCt_Counter(int resetCounter1) {
+    if (resetCounter1 == 1) {
+        g_Counter.mCounter1 = 0;
+    } else {
+        g_Counter.mCounter1++;
+    }
+
+    g_Counter.mCounter0++;
 }
-#pragma pop
