@@ -10,7 +10,7 @@ lbl_8026758C:
 /* 802675AC  80 01 00 08 */	lwz r0, 8(r1)
 /* 802675B0  90 0D 8B E0 */	stw r0, Zero__5csXyz(r13)
 /* 802675B4  A0 01 00 0C */	lhz r0, 0xc(r1)
-/* 802675B8  B0 0D 8B E4 */	sth r0, data_80451164(r13)
+/* 802675B8  B0 0D 8B E4 */	sth r0, Zero__5csXyz+4(r13)
 /* 802675BC  38 6D 8B E0 */	la r3, Zero__5csXyz(r13) /* 80451160-_SDA_BASE_ */
 /* 802675C0  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
 /* 802675C4  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l

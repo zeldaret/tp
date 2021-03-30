@@ -7,56 +7,21 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct node_list_class {};
-
-struct node_class {};
-
-//
-// Forward References:
-//
-
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
-void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
-
-extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
-extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
-
-//
-// External References:
-//
-
-void cNdIt_Method(node_class*, int (*)(node_class*, void*), void*);
-void cNdIt_Judge(node_class*, void* (*)(node_class*, void*), void*);
-
-extern "C" void cNdIt_Method__FP10node_classPFP10node_classPv_iPv();
-extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
-
-//
-// Declarations:
-//
 
 /* 80266060-80266098 0038+00 s=0 e=5 z=0  None .text
  * cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLsIt_Method(node_list_class* param_0, int (*)(node_class*, void*), void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_list_iter/cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv.s"
+int cLsIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod, void* pUserData) {
+    if (pList->mSize > 0)
+        return cNdIt_Method(pList->mpHead, pMethod, pUserData);
+    else
+        return 1;
 }
-#pragma pop
 
 /* 80266098-802660D0 0038+00 s=0 e=4 z=0  None .text
  * cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cLsIt_Judge(node_list_class* param_0, void* (*)(node_class*, void*), void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_list_iter/cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv.s"
+void* cLsIt_Judge(node_list_class* pList, cNdIt_JudgeFunc pJudge, void* pUserData) {
+    if (pList->mSize > 0)
+        return cNdIt_Judge(pList->mpHead, pJudge, pUserData);
+    else
+        return NULL;
 }
-#pragma pop

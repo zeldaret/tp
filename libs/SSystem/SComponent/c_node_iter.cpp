@@ -7,53 +7,35 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct node_class {};
-
-//
-// Forward References:
-//
-
-void cNdIt_Method(node_class*, int (*)(node_class*, void*), void*);
-void cNdIt_Judge(node_class*, void* (*)(node_class*, void*), void*);
-
-extern "C" void cNdIt_Method__FP10node_classPFP10node_classPv_iPv();
-extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 80266324-802663B4 0090+00 s=0 e=1 z=0  None .text
  * cNdIt_Method__FP10node_classPFP10node_classPv_iPv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cNdIt_Method(node_class* param_0, int (*)(node_class*, void*), void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_node_iter/cNdIt_Method__FP10node_classPFP10node_classPv_iPv.s"
+int cNdIt_Method(node_class* pNode, cNdIt_MethodFunc pMethod, void* pUserData) {
+    int ret = 1;
+    node_class* pNext = NODE_GET_NEXT(pNode);
+
+    while (pNode) {
+        int methodRet = pMethod(pNode, pUserData);
+        if (!methodRet)
+            ret = 0;
+        pNode = pNext;
+        pNext = NODE_GET_NEXT(pNext);
+    }
+
+    return ret;
 }
-#pragma pop
 
 /* 802663B4-80266440 008C+00 s=0 e=1 z=0  None .text
  * cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cNdIt_Judge(node_class* param_0, void* (*)(node_class*, void*), void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_node_iter/cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv.s"
+void* cNdIt_Judge(node_class* pNode, cNdIt_JudgeFunc pJudge, void* pUserData) {
+    node_class* pNext = NODE_GET_NEXT(pNode);
+
+    while (pNode) {
+        void* pJudgeRet = pJudge(pNode, pUserData);
+        if (pJudgeRet != NULL)
+            return pJudgeRet;
+        pNode = pNext;
+        pNext = NODE_GET_NEXT(pNext);
+    }
+
+    return NULL;
 }
-#pragma pop

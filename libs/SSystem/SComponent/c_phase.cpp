@@ -7,31 +7,9 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-//
-// Forward References:
-//
-
-void cPhs_Reset(request_of_phase_process_class*);
-void cPhs_Set(request_of_phase_process_class*, int (**)(void*));
-static void cPhs_UnCompleate(request_of_phase_process_class*);
-static void cPhs_Compleate(request_of_phase_process_class*);
-static void cPhs_Next(request_of_phase_process_class*);
-void cPhs_Do(request_of_phase_process_class*, void*);
-void cPhs_Handler(request_of_phase_process_class*, int (**)(void*), void*);
-
-extern "C" void cPhs_Reset__FP30request_of_phase_process_class();
-extern "C" void cPhs_Set__FP30request_of_phase_process_classPPFPv_i();
 extern "C" static void cPhs_UnCompleate__FP30request_of_phase_process_class();
 extern "C" static void cPhs_Compleate__FP30request_of_phase_process_class();
 extern "C" static void cPhs_Next__FP30request_of_phase_process_class();
-extern "C" void cPhs_Do__FP30request_of_phase_process_classPv();
-extern "C" void cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv();
 
 //
 // External References:
@@ -43,77 +21,97 @@ extern "C" void cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv();
 
 /* 80266624-80266630 000C+00 s=1 e=2 z=0  None .text
  * cPhs_Reset__FP30request_of_phase_process_class               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cPhs_Reset(request_of_phase_process_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_Reset__FP30request_of_phase_process_class.s"
+void cPhs_Reset(request_of_phase_process_class* pPhase) {
+    pPhase->mPhaseStep = 0;
 }
-#pragma pop
 
 /* 80266630-80266640 0010+00 s=0 e=3 z=0  None .text
  * cPhs_Set__FP30request_of_phase_process_classPPFPv_i          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cPhs_Set(request_of_phase_process_class* param_0, int (**)(void*)) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_Set__FP30request_of_phase_process_classPPFPv_i.s"
+void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable) {
+    pPhase->mpHandlerTable = pHandlerTable;
+    pPhase->mPhaseStep = 0;
 }
-#pragma pop
 
 /* 80266640-80266668 0028+00 s=1 e=0 z=0  None .text
  * cPhs_UnCompleate__FP30request_of_phase_process_class         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void cPhs_UnCompleate(request_of_phase_process_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_UnCompleate__FP30request_of_phase_process_class.s"
+void cPhs_UnCompleate(request_of_phase_process_class* pPhase) {
+    pPhase->mpHandlerTable = NULL;
+    cPhs_Reset(pPhase);
 }
-#pragma pop
 
 /* 80266668-80266678 0010+00 s=2 e=0 z=0  None .text
  * cPhs_Compleate__FP30request_of_phase_process_class           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void cPhs_Compleate(request_of_phase_process_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_Compleate__FP30request_of_phase_process_class.s"
+int cPhs_Compleate(request_of_phase_process_class* pPhase) {
+    pPhase->mpHandlerTable = NULL;
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80266678-802666D8 0060+00 s=1 e=0 z=0  None .text cPhs_Next__FP30request_of_phase_process_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void cPhs_Next(request_of_phase_process_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_Next__FP30request_of_phase_process_class.s"
+int cPhs_Next(request_of_phase_process_class* pPhase) {
+    if (const cPhs__Handler* handlerTable = pPhase->mpHandlerTable) {
+        pPhase->mPhaseStep++;
+        cPhs__Handler handler = handlerTable[pPhase->mPhaseStep];
+
+        // Double null check here actually matters for emitted assembly.
+        // Wee old compilers.
+        if (handler == NULL || handler == NULL) {
+            return cPhs_Compleate(pPhase);
+        } else {
+            return 1;
+        }
+    }
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 802666D8-802667AC 00D4+00 s=1 e=3 z=0  None .text cPhs_Do__FP30request_of_phase_process_classPv
  */
+#if NON_MATCHING
+int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
+    if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
+        // the load of pUserData seems to be slightly scrambled..
+        const cPhs__Handler pHandler = pHandlerTable[pPhase->mPhaseStep];
+        const int newStep = pHandler(pUserData);
+
+        switch (newStep) {
+        case 1:
+            return cPhs_Next(pPhase);
+        case 2: {
+            const int step2 = cPhs_Next(pPhase);
+            return step2 == 1 ? 2 : cPhs_COMPLEATE_e;
+        }
+        case cPhs_COMPLEATE_e:
+            return cPhs_Compleate(pPhase);
+        case 3: {
+            cPhs_UnCompleate(pPhase);
+            return 3;
+        }
+        case cPhs_ERROR_e:
+            cPhs_UnCompleate(pPhase);
+            return cPhs_ERROR_e;
+        }
+
+        return newStep;
+    } else {
+        return cPhs_Compleate(pPhase);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cPhs_Do(request_of_phase_process_class* param_0, void* param_1) {
+asm int cPhs_Do(request_of_phase_process_class* param_0, void* param_1) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_Do__FP30request_of_phase_process_classPv.s"
 }
 #pragma pop
+#endif
 
 /* 802667AC-802667D4 0028+00 s=0 e=2 z=0  None .text
  * cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cPhs_Handler(request_of_phase_process_class* param_0, int (**)(void*), void* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_phase/cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv.s"
+int cPhs_Handler(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable,
+                 void* pUserData) {
+    pPhase->mpHandlerTable = pHandlerTable;
+    return cPhs_Do(pPhase, pUserData);
 }
-#pragma pop

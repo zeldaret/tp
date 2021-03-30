@@ -11,32 +11,28 @@
 // Types:
 //
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80267404 */ void operator+(csXyz&);
-    /* 8026745C */ void operator+=(csXyz&);
-    /* 80267490 */ void operator-(csXyz&);
-    /* 802674E8 */ void operator*(f32);
+struct SVec {
+    s16 mX, mY, mZ;
 };
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __pl__5csXyzFR5csXyz();
-extern "C" void __apl__5csXyzFR5csXyz();
-extern "C" void __mi__5csXyzFR5csXyz();
-extern "C" void __ml__5csXyzFf();
-extern "C" void __sinit_c_sxyz_cpp();
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
+class csXyz : public SVec {
+public:
+    static const csXyz Zero;
+    /* 80018BD0 */ ~csXyz() {}
+    /* inline   */ csXyz() {}
+    /* inline   */ csXyz(const csXyz& other) : SVec(other){};
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80267404 */ csXyz operator+(csXyz&);
+    /* 8026745C */ void operator+=(csXyz&);
+    /* 80267490 */ csXyz operator-(csXyz&);
+    /* 802674E8 */ csXyz operator*(f32);
+};
 
 //
 // External References:
 //
 
+extern "C" void __ct__5csXyzFsss();
 extern "C" void __dt__5csXyzFv();
 extern "C" void __register_global_object();
 
@@ -45,58 +41,37 @@ extern "C" void __register_global_object();
 //
 
 /* 802673F4-80267404 0010+00 s=4 e=19 z=119  None .text      __ct__5csXyzFsss */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__ct__5csXyzFsss.s"
+csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
+    mX = param_0;
+    mY = param_1;
+    mZ = param_2;
 }
-#pragma pop
 
 /* 80267404-8026745C 0058+00 s=0 e=0 z=3  None .text      __pl__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator+(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__pl__5csXyzFR5csXyz.s"
+csXyz csXyz::operator+(csXyz& param_0) {
+    return csXyz(mX + param_0.mX, mY + param_0.mY, mZ + param_0.mZ);
 }
-#pragma pop
 
 /* 8026745C-80267490 0034+00 s=0 e=2 z=11  None .text      __apl__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator+=(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__apl__5csXyzFR5csXyz.s"
+void csXyz::operator+=(csXyz& param_0) {
+    mX += param_0.mX;
+    mY += param_0.mY;
+    mZ += param_0.mZ;
 }
-#pragma pop
 
 /* 80267490-802674E8 0058+00 s=0 e=0 z=1  None .text      __mi__5csXyzFR5csXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator-(csXyz& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__mi__5csXyzFR5csXyz.s"
+csXyz csXyz::operator-(csXyz& param_0) {
+    return csXyz(mX - param_0.mX, mY - param_0.mY, mZ - param_0.mZ);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804550A0-804550A8 0008+00 s=1 e=0 z=0  None .sdata2    @151 */
-SECTION_SDATA2 static f64 lit_151 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802674E8-8026758C 00A4+00 s=0 e=0 z=1  None .text      __ml__5csXyzFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void csXyz::operator*(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__ml__5csXyzFf.s"
+csXyz csXyz::operator*(f32 param_0) {
+    return csXyz(mX* param_0, mY * param_0, mZ * param_0);
 }
-#pragma pop
+
+#ifdef NON_MATCHING
+csXyz Zero__5csXyz = csXyz(0,0,0);
+#else
 
 /* ############################################################################################## */
 /* 80430DA8-80430DB8 000C+04 s=1 e=0 z=0  None .bss       @262 */
@@ -117,3 +92,5 @@ extern "C" asm void __sinit_c_sxyz_cpp() {
 #include "asm/SSystem/SComponent/c_sxyz/__sinit_c_sxyz_cpp.s"
 }
 #pragma pop
+
+#endif

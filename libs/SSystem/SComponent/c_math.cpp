@@ -3,7 +3,7 @@
 // Translation Unit: c_math
 //
 
-#include "SSystem/SComponent/c_math.h"
+// #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

@@ -75,7 +75,8 @@ INCLUDES := -i include -i include/dolphin/ -i src
 ASFLAGS := -mgekko -I include
 
 # Linker flags
-LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w on
+# LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w on
+LDFLAGS := -map $(MAP) -fp hard -nodefaults -w on
 
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)

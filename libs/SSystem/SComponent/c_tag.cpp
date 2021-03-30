@@ -4,149 +4,94 @@
 //
 
 #include "SSystem/SComponent/c_tag.h"
+#include "SSystem/SComponent/c_tree.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct node_lists_tree_class {};
-
-struct node_list_class {};
-
-struct node_class {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-void cTg_IsUse(create_tag_class*);
-void cTg_SingleCutFromTree(create_tag_class*);
-void cTg_AdditionToTree(node_lists_tree_class*, int, create_tag_class*);
-void cTg_InsertToTree(node_lists_tree_class*, int, create_tag_class*, int);
-void cTg_GetFirst(node_list_class*);
-void cTg_SingleCut(create_tag_class*);
-void cTg_Addition(node_list_class*, create_tag_class*);
-void cTg_Create(create_tag_class*, void*);
-
-extern "C" void cTg_IsUse__FP16create_tag_class();
-extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
-extern "C" void cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class();
-extern "C" void cTg_InsertToTree__FP21node_lists_tree_classiP16create_tag_classi();
-extern "C" void cTg_GetFirst__FP15node_list_class();
-extern "C" void cTg_SingleCut__FP16create_tag_class();
-extern "C" void cTg_Addition__FP15node_list_classP16create_tag_class();
-extern "C" void cTg_Create__FP16create_tag_classPv();
-
-//
-// External References:
-//
-
-void cLs_SingleCut(node_class*);
-void cLs_Addition(node_list_class*, node_class*);
-void cLs_GetFirst(node_list_class*);
-void cNd_Create(node_class*, void*);
-void cTr_SingleCut(node_class*);
-void cTr_Addition(node_lists_tree_class*, int, node_class*);
-void cTr_Insert(node_lists_tree_class*, int, node_class*, int);
-
-extern "C" void cLs_SingleCut__FP10node_class();
-extern "C" void cLs_Addition__FP15node_list_classP10node_class();
-extern "C" void cLs_GetFirst__FP15node_list_class();
-extern "C" void cNd_Create__FP10node_classPv();
-extern "C" void cTr_SingleCut__FP10node_class();
-extern "C" void cTr_Addition__FP21node_lists_tree_classiP10node_class();
-extern "C" void cTr_Insert__FP21node_lists_tree_classiP10node_classi();
-
-//
-// Declarations:
-//
-
 /* 80266880-8026688C 000C+00 s=0 e=3 z=0  None .text      cTg_IsUse__FP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_IsUse(create_tag_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_IsUse__FP16create_tag_class.s"
+int cTg_IsUse(create_tag_class* pTag) {
+    return pTag->mbIsUse;
 }
-#pragma pop
 
 /* 8026688C-802668CC 0040+00 s=0 e=4 z=0  None .text cTg_SingleCutFromTree__FP16create_tag_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_SingleCutFromTree(create_tag_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_SingleCutFromTree__FP16create_tag_class.s"
+int cTg_SingleCutFromTree(create_tag_class* pTag) {
+    if (pTag->mbIsUse == true) {
+        pTag->mbIsUse = false;
+        cTr_SingleCut(&pTag->mpNode);
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802668CC-8026691C 0050+00 s=0 e=3 z=0  None .text
  * cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_AdditionToTree(node_lists_tree_class* param_0, int param_1,
-                            create_tag_class* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class.s"
+int cTg_AdditionToTree(node_lists_tree_class* pTree, int listIdx, create_tag_class* pTag) {
+    if (!pTag->mbIsUse) {
+        int ret = cTr_Addition(pTree, listIdx, &pTag->mpNode);
+        if (ret) {
+            pTag->mbIsUse = true;
+            return ret;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8026691C-8026696C 0050+00 s=0 e=1 z=0  None .text
  * cTg_InsertToTree__FP21node_lists_tree_classiP16create_tag_classi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_InsertToTree(node_lists_tree_class* param_0, int param_1, create_tag_class* param_2,
-                          int param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_InsertToTree__FP21node_lists_tree_classiP16create_tag_classi.s"
+int cTg_InsertToTree(node_lists_tree_class* pTree, int listIdx, create_tag_class* pTag, int idx) {
+    if (!pTag->mbIsUse) {
+        int ret = cTr_Insert(pTree, listIdx, &pTag->mpNode, idx);
+        if (ret) {
+            pTag->mbIsUse = true;
+            return ret;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8026696C-802669A4 0038+00 s=0 e=1 z=0  None .text      cTg_GetFirst__FP15node_list_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_GetFirst(node_list_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_GetFirst__FP15node_list_class.s"
+node_class* cTg_GetFirst(node_list_class* pList) {
+    create_tag_class* pTag = (create_tag_class*)cLs_GetFirst(pList);
+    if (pTag != NULL) {
+        pTag->mbIsUse = false;
+    } else {
+        pTag = NULL;
+    }
+    return &pTag->mpNode;
 }
-#pragma pop
 
 /* 802669A4-802669E4 0040+00 s=0 e=7 z=0  None .text      cTg_SingleCut__FP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_SingleCut(create_tag_class* param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_SingleCut__FP16create_tag_class.s"
+int cTg_SingleCut(create_tag_class* pTag) {
+    if (pTag->mbIsUse == 1) {
+        pTag->mbIsUse = false;
+        cLs_SingleCut(&pTag->mpNode);
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 802669E4-80266A34 0050+00 s=0 e=7 z=0  None .text
  * cTg_Addition__FP15node_list_classP16create_tag_class         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_Addition(node_list_class* param_0, create_tag_class* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_Addition__FP15node_list_classP16create_tag_class.s"
+int cTg_Addition(node_list_class* pList, create_tag_class* pTag) {
+    if (!pTag->mbIsUse) {
+        int ret = cLs_Addition(pList, &pTag->mpNode);
+        if (ret) {
+            pTag->mbIsUse = true;
+            return ret;
+        }
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 80266A34-80266A7C 0048+00 s=0 e=10 z=0  None .text      cTg_Create__FP16create_tag_classPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cTg_Create(create_tag_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_tag/cTg_Create__FP16create_tag_classPv.s"
+void cTg_Create(create_tag_class* pTag, void* pData) {
+    cNd_Create(&pTag->mpNode, NULL);
+    pTag->mpTagData = pData;
+    pTag->mbIsUse = false;
 }
-#pragma pop
