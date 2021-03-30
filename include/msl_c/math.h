@@ -59,6 +59,9 @@ f32 sinf(f32);
 f64 sqrt(f64);
 f64 tan(f64);
 f32 tanf(f32);
+
+__declspec(section ".sdata") extern f32 __float_nan;
+__declspec(section ".sdata") extern f32 __float_epsilon;
 }
 
 #endif
