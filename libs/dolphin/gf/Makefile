@@ -26,7 +26,6 @@ $(BUILD_DIR)/libgf.a: $(LIBGF_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libgf.a
 	@echo $(LIBGF_A_O_FILES) > build/LIBGF_A_ofiles
 	@$(LD) -xm l $(LIBGF_A_LDFLAGS) -o $(BUILD_DIR)/libgf.a @build/LIBGF_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libgf.a
 
 $(BUILD_DIR)/libs/dolphin/gf/%.o: libs/dolphin/gf/%.cpp
 	@mkdir -p $(@D)

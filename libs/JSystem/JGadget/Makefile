@@ -24,7 +24,6 @@ $(BUILD_DIR)/libJGadget.a: $(LIBJGADGET_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJGadget.a
 	@echo $(LIBJGADGET_A_O_FILES) > build/LIBJGADGET_A_ofiles
 	@$(LD) -xm l $(LIBJGADGET_A_LDFLAGS) -o $(BUILD_DIR)/libJGadget.a @build/LIBJGADGET_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJGadget.a
 
 $(BUILD_DIR)/libs/JSystem/JGadget/%.o: libs/JSystem/JGadget/%.cpp
 	@mkdir -p $(@D)

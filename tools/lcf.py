@@ -60,6 +60,8 @@ def lcf(output_path):
         for name, align in SECTIONS:
             file.write("\t\t%s ALIGN(0x%X):{}\n" % (name, align))
 
+        file.write("\t\t/DISCARD/ : { *(.dead) }\n")
+
         file.write("\t} > text\n")
         file.write("\t_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;\n")
         file.write("\t_stack_end = _f_sbss2 + SIZEOF(.sbss2);\n")
@@ -114,8 +116,9 @@ def lcf(output_path):
             if x['type'] == "StringBase":
                 continue
 
-            rc = x['r']
             require_force_active = False
+            """
+            rc = x['r']
 
             # the static reference count is unchanged as the linker seems not to strip
             # static variables and functions. i.e., if the static reference count is
@@ -137,10 +140,41 @@ def lcf(output_path):
             if static_rc == 0 and extern_rc == 0 and rels_rc == 0:
                 require_force_active = True
 
+            if rels_rc > 0:
+                require_force_active = True
+
+            if k.startswith("__sinit_"):
+                require_force_active = True
+
+            if k.startswith("__vt__"):
+                require_force_active = True
+            """
+
+            if not x['is_reachable']:
+                require_force_active = True
+
             # generate the force active.
             # the linker 
             if require_force_active:
-                file.write("\t\"%s\"\n" % (k))
+                file.write(f"\t\"{x['label']}\"\n")
+                if not x['label'] in main_names:
+                    file.write(f"\t\"{x['name']}\"\n")
+                file.write(f"\t/* {x['label'] in main_names} */ \n")
+
+        for x in module0.SYMBOLS:
+            if x['type'] == "StringBase":
+                continue
+
+            if x['is_reachable']:
+                if x['label'] !=  x['name']:
+                    file.write(f"\t\"{x['name']}\"\n")
+
+        for symbol in symbols:
+            if not symbol.name:
+                continue
+
+            if "__template" in symbol.name:
+                file.write("\t\"%s\"\n" % (symbol.name))
 
         file.write("\n")
         file.write("}\n")
@@ -180,6 +214,7 @@ SECTIONS = [
     (".sdata2", 0x20),
     (".sbss2", 0x20),
     (".stack", 0x100),
+    #(".dead", 0x100),
 ]
 
 # custom force actives

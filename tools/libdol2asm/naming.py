@@ -200,6 +200,9 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                             symbol.return_type = return_type
                         else:
                             symbol.return_type = return_type
+
+                    #if not symbol.uses_class_template:
+                    #    symbol.identifier.is_name_safe = True
                 else:
                     context.warning(
                         f"one of the demangled parameters could not be converted to data-type.")
@@ -213,13 +216,13 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
             context.error(f"\t{p.class_name}")
             context.error(f"\t{p.to_str()}")
 
-    if symbol.reference_count.extern > 0 or isinstance(symbol, StringBase):
+    if not symbol.is_static or isinstance(symbol, StringBase):
         label_collisions[symbol.identifier.label] += 1
         reference_collisions[symbol.identifier.reference] += 1
 
 
 def nameCollision(context, label_collisions, reference_collisions, parent_name, symbol):
-    if symbol.reference_count.extern > 0 or isinstance(symbol, StringBase):
+    if not symbol.is_static or isinstance(symbol, StringBase):
         if label_collisions[symbol.identifier.label] > 1 or reference_collisions[symbol.identifier.reference] > 1:
             obj_prefix = parent_name.replace(
                 "/", "_").replace(".", "_").replace("-", "_")

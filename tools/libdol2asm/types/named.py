@@ -26,6 +26,9 @@ class ClassName:
         for template in self.templates:
             template.traverse(callback, depth)
 
+    @property
+    def has_templates(self) -> bool:
+        return len(self.templates) > 0
 
 @dataclass(frozen=True, eq=True)
 class NamedType(Type):
@@ -57,7 +60,7 @@ class NamedType(Type):
 
     @property
     def has_template(self) -> bool:
-        return any([len(x.templates) > 0 for x in self.names])
+        return any([x.has_templates for x in self.names])
 
     @property
     def has_class(self) -> bool:

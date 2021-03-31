@@ -75,10 +75,10 @@ INCLUDES := -i include -i include/dolphin/ -i src
 ASFLAGS := -mgekko -I include
 
 # Linker flags
-LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w on
+LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -pragma "cats off" -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
@@ -120,7 +120,7 @@ rels: $(RELS)
 $(ELF): $(LIBS) $(O_FILES)
 	echo $(O_FILES) > build/o_files
 	python3 tools/lcf.py --output $(LDSCRIPT)
-	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
+	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
 # The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.
 #	$(OBJCOPY) $@ $@
 
@@ -129,7 +129,6 @@ $(BUILD_DIR)/%.o: %.cpp
 	@echo building... $<
 	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
 	@$(CC) $(CFLAGS) -c -o $@ $@.iconv.cpp
-	@$(STRIP) -d -R .dead -R .comment $@
 
 # include library and rel makefiles
 -include include_link.mk

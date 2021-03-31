@@ -22,7 +22,6 @@ $(BUILD_DIR)/libsi.a: $(LIBSI_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libsi.a
 	@echo $(LIBSI_A_O_FILES) > build/LIBSI_A_ofiles
 	@$(LD) -xm l $(LIBSI_A_LDFLAGS) -o $(BUILD_DIR)/libsi.a @build/LIBSI_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libsi.a
 
 $(BUILD_DIR)/libs/dolphin/si/%.o: libs/dolphin/si/%.cpp
 	@mkdir -p $(@D)

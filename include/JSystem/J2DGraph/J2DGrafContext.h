@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* J2DGRAFCONTEXT_H */

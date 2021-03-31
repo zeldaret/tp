@@ -20,7 +20,6 @@ $(BUILD_DIR)/libai.a: $(LIBAI_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libai.a
 	@echo $(LIBAI_A_O_FILES) > build/LIBAI_A_ofiles
 	@$(LD) -xm l $(LIBAI_A_LDFLAGS) -o $(BUILD_DIR)/libai.a @build/LIBAI_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libai.a
 
 $(BUILD_DIR)/libs/dolphin/ai/%.o: libs/dolphin/ai/%.cpp
 	@mkdir -p $(@D)

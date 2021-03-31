@@ -22,7 +22,6 @@ $(BUILD_DIR)/libexi.a: $(LIBEXI_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libexi.a
 	@echo $(LIBEXI_A_O_FILES) > build/LIBEXI_A_ofiles
 	@$(LD) -xm l $(LIBEXI_A_LDFLAGS) -o $(BUILD_DIR)/libexi.a @build/LIBEXI_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libexi.a
 
 $(BUILD_DIR)/libs/exi/%.o: libs/exi/%.cpp
 	@mkdir -p $(@D)

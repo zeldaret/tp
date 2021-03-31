@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* JAISTREAMDATAMGR_H */

@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* C_BG_S_SHDW_DRAW_H */

@@ -271,7 +271,8 @@ class Dol2AsmSplitter:
                         self.symbol_table.add_section(module, section)
 
     def combine_symbols(self):
-        print(f"{self.step_count:2} Calculate function alignment and merge unaligned symbols")
+        print(
+            f"{self.step_count:2} Calculate function alignment and merge unaligned symbols")
         self.step_count += 1
 
         for module in self.modules:
@@ -302,6 +303,8 @@ class Dol2AsmSplitter:
                 for tu in lib.translation_units.values():
                     for section in tu.sections.values():
                         for symbol in section.symbols:
+                            if isinstance(symbol, ReferenceArray):
+                                continue
                             if not isinstance(symbol, ArbitraryData) and not isinstance(symbol, Integer):
                                 continue
 
@@ -489,7 +492,9 @@ class Dol2AsmSplitter:
         entrypoint = self.symbol_table[0, settings.ENTRY_POINT]
         entrypoint.add_reference(None)
 
-        valid_range = AddressRange(0x00000000, 0xFFFFFFFF)
+        valid_range = AddressRange(
+            self.symbol_table.symbols.begin(), 
+            self.symbol_table.symbols.end())
 
         # these symbols are required to be external, because otherwise the linker will not find them
         __fini_cpp_exceptions = self.symbol_table[0, 0x8036283C]
@@ -500,24 +505,31 @@ class Dol2AsmSplitter:
         # TODO: Use multiprocessing to speed this up
         total_rc_step_count = 0
         for module in self.modules:
-            if not module.index in self.gen_modules:
-                continue
             for lib in module.libraries.values():
                 for tu in lib.translation_units.values():
                     total_rc_step_count += sum([len(x.symbols)
                                                 for x in tu.sections.values()])
 
+        sinit_functions = set()
+        entrypoints = {
+            settings.ENTRY_POINT
+        }
         with Progress(console=get_console(), transient=True, refresh_per_second=1) as progress:
-            task = progress.add_task(
-                f"processing...", total=total_rc_step_count)
+            task1 = progress.add_task(
+                f"step 1...", total=total_rc_step_count)
             for module in self.modules:
-                if not module.index in self.gen_modules:
-                    continue
                 for lib in module.libraries.values():
                     for tu in lib.translation_units.values():
                         count = 0
                         for section in tu.sections.values():
                             for symbol in section.symbols:
+                                if isinstance(symbol, SInitFunction):
+                                    sinit_functions.add(symbol.addr)
+                                if symbol.identifier.name == "_prolog":
+                                    entrypoints.add(symbol.addr)
+                                elif symbol.identifier.name == "_epilog":
+                                    entrypoints.add(symbol.addr)
+
                                 symbol.gather_references(
                                     self.context, valid_range)
                                 references = self.symbol_table.all(
@@ -525,7 +537,43 @@ class Dol2AsmSplitter:
                                 for reference in references:
                                     reference.add_reference(symbol)
                             count += len(section.symbols)
-                        progress.update(task, advance=count)
+                        progress.update(task1, advance=count)
+
+
+        for module in self.modules:
+            found = set()
+
+            def reachable(current, depth):
+                pad = '  ' * depth
+                if current in found:
+                    return
+
+                symbol = self.symbol_table[-1, current]
+                if not symbol:
+                    return
+                if symbol._module != module.index:
+                    return
+                
+                #print(f"{pad}{current:08X} {symbol.identifier.name} ({len(symbol.references)})")
+
+                found.add(current)
+                for reference in symbol.references:
+                    reachable(reference, depth + 1)
+
+            
+            for entrypoint in entrypoints:
+                reachable(entrypoint, 0)
+            for function in sinit_functions:
+                reachable(function, 0)
+            
+            for lib in module.libraries.values():
+                for tu in lib.translation_units.values():
+                    for section in tu.sections.values():
+                        for symbol in section.symbols:
+                            if symbol.addr in sinit_functions:
+                                continue
+                            if symbol.addr in found:
+                                symbol.is_reachable = True
 
     def library_paths(self):
         print(f"{self.step_count:2} Determine library paths")

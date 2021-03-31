@@ -65,7 +65,7 @@ def value_initialized_symbol(section: Section,
     """ Create symbols from data. This will try to find strings, integers, floats, and other special symbols. """
 
     # all virtual tables begin with "__vt"
-    if identifier.name and identifier.name.startswith("__vt"):
+    if symbol.name and symbol.name.startswith("__vt"):
         assert section.name == ".data"
         assert symbol.size % 4 == 0
         assert len(padding_data) % 4 == 0
@@ -110,17 +110,27 @@ def value_initialized_symbol(section: Section,
                 count += 1
 
             _ctors_data = padding_data[0:count*4]
-            return [
-                ReferenceArray.create(
+
+            __init_cpp_exceptions_reference = ReferenceArray.create(
                     identifier,
                     symbol.addr,
                     data,
-                    bytearray()),
-                ReferenceArray.create(
-                    Identifier("_ctors", symbol.addr + 4, "_ctors"),
-                    symbol.addr + 4,
-                    _ctors_data,
-                    bytearray()),
+                    bytearray())
+
+            # instead of creating the _ctors ourself we let the linker do it
+            _ctors = ArbitraryData(
+                identifier=Identifier("_xx", symbol.addr + 4, "_ctors"),
+                addr=symbol.addr + 4,
+                size=len(_ctors_data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True)
+
+            return [
+                __init_cpp_exceptions_reference,
+                _ctors
             ]
 
     if section.name == ".dtors":
@@ -144,7 +154,18 @@ def value_initialized_symbol(section: Section,
         elif symbol.name == "__fini_cpp_exceptions_reference":
             assert len(data) == 4
             assert len(padding_data) == 0
-            return [ReferenceArray.create(identifier, symbol.addr, data, bytearray())]
+
+            __fini_cpp_exceptions_reference = ReferenceArray.create(
+                identifier, symbol.addr, data, bytearray())
+                
+            __dtors_null_terminator = ReferenceArray.create(
+                    Identifier("_xx", symbol.addr + 4, "__dtors_null_terminator"), 
+                    symbol.addr + 4, bytearray([0, 0, 0, 0]), bytearray())
+
+            return [
+                __fini_cpp_exceptions_reference,
+                __dtors_null_terminator,
+            ]
 
     if isinstance(symbol.access, FloatLoadAccess):
         is_float_constant = identifier.name and identifier.name.startswith(

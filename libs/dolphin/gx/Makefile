@@ -46,7 +46,6 @@ $(BUILD_DIR)/libgx.a: $(LIBGX_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libgx.a
 	@echo $(LIBGX_A_O_FILES) > build/LIBGX_A_ofiles
 	@$(LD) -xm l $(LIBGX_A_LDFLAGS) -o $(BUILD_DIR)/libgx.a @build/LIBGX_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libgx.a
 
 $(BUILD_DIR)/libs/dolphin/gx/%.o: libs/dolphin/gx/%.cpp
 	@mkdir -p $(@D)

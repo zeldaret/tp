@@ -10,6 +10,7 @@ from .symbol import *
 class ArbitraryData(Symbol):
     data: bytes = field(default=None, repr=False)
     padding_data: bytes = field(default=None, repr=False)
+    zero_length: bool = False
 
     @property
     def element_size(self):
@@ -38,6 +39,8 @@ class ArbitraryData(Symbol):
         return type
 
     def array_type(self):
+        if self.zero_length:
+            return ZeroArrayType.create(self.element_type()) 
         return PaddingArrayType.create(
             self.element_type(),
             self.size // self.element_size,

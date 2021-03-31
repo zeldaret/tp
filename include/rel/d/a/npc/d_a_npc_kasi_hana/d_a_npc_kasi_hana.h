@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* D_A_NPC_KASI_HANA_H */

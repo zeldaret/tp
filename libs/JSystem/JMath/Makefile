@@ -24,7 +24,6 @@ $(BUILD_DIR)/libJMath.a: $(LIBJMATH_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJMath.a
 	@echo $(LIBJMATH_A_O_FILES) > build/LIBJMATH_A_ofiles
 	@$(LD) -xm l $(LIBJMATH_A_LDFLAGS) -o $(BUILD_DIR)/libJMath.a @build/LIBJMATH_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJMath.a
 
 $(BUILD_DIR)/libs/JSystem/JMath/%.o: libs/JSystem/JMath/%.cpp
 	@mkdir -p $(@D)

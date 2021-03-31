@@ -25,6 +25,40 @@ class Function(Symbol):
     asm: bool = False
 
     @property
+    def uses_any_templates(self):
+        if self.func_name and self.func_name.has_template:
+            return True
+        
+        is_templated = [False]
+        def callback(tp, depth):
+            if isinstance(tp, NamedType):
+                is_templated[0] |= tp.has_template
+            if is_templated[0]:
+                return True                
+
+        if self.return_type:
+            self.return_type.traverse(callback, 0)
+        for arg_type in self.argument_types:
+            arg_type.traverse(callback, 0)
+
+        return is_templated[0]
+
+    @property
+    def uses_class_template(self):
+        return self.func_name and self.func_name.has_template
+
+    @property
+    def is_static(self):
+        static = super().is_static
+        if not static:
+            return False
+
+        if not self.func_name:
+            return True
+
+        return not self.uses_any_templates
+
+    @property
     def label(self):
         return self.identifier.label
 
@@ -96,13 +130,23 @@ class Function(Symbol):
                                      without_template: bool = False,
                                      comment_arguments: bool = False,
                                      template_args: List[str] = None):
-        # prints internal references for the function
-        if False:
-            if not forward:
-                refs = self.internal_references(exporter.context, exporter.gst)
-                await builder.write(f"/* internal references (count {len(refs)})")
-                for ref in refs:
-                    await builder.write(f"// {ref.addr:08X} {ref.label}")
+        await builder.write(f"// {self.is_static} {self.uses_any_templates}")
+        
+        lines = []
+        def callback(tp, depth):
+            pad = '\t' * depth
+            template = False
+            if isinstance(tp, NamedType):
+                template = tp.has_template
+            lines.append(f"// {pad} {tp.type()} {template}")
+
+        if self.return_type:
+            self.return_type.traverse(callback, 0)
+        for arg_type in self.argument_types:
+            arg_type.traverse(callback, 0)
+
+        for line in lines:
+            await builder.write(line)           
 
         declspec = "extern \"C\" "
         if not original and self.is_demangled():

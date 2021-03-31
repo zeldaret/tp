@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* D_D_VIB_PATTERN_H */

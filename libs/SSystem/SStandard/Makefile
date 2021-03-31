@@ -20,7 +20,6 @@ $(BUILD_DIR)/libSStandard.a: $(LIBSSTANDARD_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libSStandard.a
 	@echo $(LIBSSTANDARD_A_O_FILES) > build/LIBSSTANDARD_A_ofiles
 	@$(LD) -xm l $(LIBSSTANDARD_A_LDFLAGS) -o $(BUILD_DIR)/libSStandard.a @build/LIBSSTANDARD_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libSStandard.a
 
 $(BUILD_DIR)/libs/SSystem/SStandard/%.o: libs/SSystem/SStandard/%.cpp
 	@mkdir -p $(@D)

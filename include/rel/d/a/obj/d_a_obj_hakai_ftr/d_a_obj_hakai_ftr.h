@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* D_A_OBJ_HAKAI_FTR_H */

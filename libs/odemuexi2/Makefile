@@ -20,7 +20,6 @@ $(BUILD_DIR)/libodemuexi2.a: $(LIBODEMUEXI2_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libodemuexi2.a
 	@echo $(LIBODEMUEXI2_A_O_FILES) > build/LIBODEMUEXI2_A_ofiles
 	@$(LD) -xm l $(LIBODEMUEXI2_A_LDFLAGS) -o $(BUILD_DIR)/libodemuexi2.a @build/LIBODEMUEXI2_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libodemuexi2.a
 
 $(BUILD_DIR)/libs/odemuexi2/%.o: libs/odemuexi2/%.cpp
 	@mkdir -p $(@D)

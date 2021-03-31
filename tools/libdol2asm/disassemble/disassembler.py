@@ -487,7 +487,8 @@ class AccessCollector(Disassembler):
         if not self.is_label_candidate(value):
             return
 
-        if value == 0x8037a118:
+        if insn.address == 0x80143294:
+            print(f"{insn.address:08X}")
             assert False
 
         assert not insn.address in self.accesses
@@ -509,6 +510,20 @@ class AccessCollector(Disassembler):
         r2_addr = self.r2AddrInsns[insn.address]
         r13_addr = self.r13AddrInsns[insn.address]
 
+        """
+        if address == 0x80143294:
+            print(insn.address in self.splitDataLoads)
+            print(is_load_store_reg_offset(insn, None))
+            if insn.address in self.splitDataLoads:
+            value = self.splitDataLoads[address]
+            rA = insn.reg_name(insn.operands[0].reg)
+            rB = insn.reg_name(insn.operands[1].mem.base)
+            print(f"{value:08X} {rA} {rB}")
+            print(f"{insn.mnemonic} {insn.op_str}")
+            sys.exit(1)
+        """
+
+        
         if insn.id in {PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
             for op in insn.operands:
                 if op.type == PPC_OP_IMM:

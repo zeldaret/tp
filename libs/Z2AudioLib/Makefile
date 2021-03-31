@@ -60,7 +60,6 @@ $(BUILD_DIR)/libZ2AudioLib.a: $(LIBZ2AUDIOLIB_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libZ2AudioLib.a
 	@echo $(LIBZ2AUDIOLIB_A_O_FILES) > build/LIBZ2AUDIOLIB_A_ofiles
 	@$(LD) -xm l $(LIBZ2AUDIOLIB_A_LDFLAGS) -o $(BUILD_DIR)/libZ2AudioLib.a @build/LIBZ2AUDIOLIB_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libZ2AudioLib.a
 
 $(BUILD_DIR)/libs/Z2AudioLib/%.o: libs/Z2AudioLib/%.cpp
 	@mkdir -p $(@D)

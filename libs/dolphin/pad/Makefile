@@ -22,7 +22,6 @@ $(BUILD_DIR)/libpad.a: $(LIBPAD_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libpad.a
 	@echo $(LIBPAD_A_O_FILES) > build/LIBPAD_A_ofiles
 	@$(LD) -xm l $(LIBPAD_A_LDFLAGS) -o $(BUILD_DIR)/libpad.a @build/LIBPAD_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libpad.a
 
 $(BUILD_DIR)/libs/dolphin/pad/%.o: libs/dolphin/pad/%.cpp
 	@mkdir -p $(@D)

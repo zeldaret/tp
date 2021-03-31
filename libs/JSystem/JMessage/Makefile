@@ -28,7 +28,6 @@ $(BUILD_DIR)/libJMessage.a: $(LIBJMESSAGE_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJMessage.a
 	@echo $(LIBJMESSAGE_A_O_FILES) > build/LIBJMESSAGE_A_ofiles
 	@$(LD) -xm l $(LIBJMESSAGE_A_LDFLAGS) -o $(BUILD_DIR)/libJMessage.a @build/LIBJMESSAGE_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJMessage.a
 
 $(BUILD_DIR)/libs/JSystem/JMessage/%.o: libs/JSystem/JMessage/%.cpp
 	@mkdir -p $(@D)

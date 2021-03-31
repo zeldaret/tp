@@ -46,7 +46,6 @@ $(BUILD_DIR)/libJStudio.a: $(LIBJSTUDIO_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJStudio.a
 	@echo $(LIBJSTUDIO_A_O_FILES) > build/LIBJSTUDIO_A_ofiles
 	@$(LD) -xm l $(LIBJSTUDIO_A_LDFLAGS) -o $(BUILD_DIR)/libJStudio.a @build/LIBJSTUDIO_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJStudio.a
 
 $(BUILD_DIR)/libs/JSystem/JStudio/JStudio/%.o: libs/JSystem/JStudio/JStudio/%.cpp
 	@mkdir -p $(@D)

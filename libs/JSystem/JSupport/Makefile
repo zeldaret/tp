@@ -26,7 +26,6 @@ $(BUILD_DIR)/libJSupport.a: $(LIBJSUPPORT_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJSupport.a
 	@echo $(LIBJSUPPORT_A_O_FILES) > build/LIBJSUPPORT_A_ofiles
 	@$(LD) -xm l $(LIBJSUPPORT_A_LDFLAGS) -o $(BUILD_DIR)/libJSupport.a @build/LIBJSUPPORT_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJSupport.a
 
 $(BUILD_DIR)/libs/JSystem/JSupport/%.o: libs/JSystem/JSupport/%.cpp
 	@mkdir -p $(@D)

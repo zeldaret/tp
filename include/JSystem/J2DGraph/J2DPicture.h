@@ -3,4 +3,5 @@
 
 #include "dolphin/types.h"
 
+
 #endif /* J2DPICTURE_H */

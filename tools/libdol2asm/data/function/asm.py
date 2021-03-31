@@ -7,32 +7,10 @@ from pathlib import Path
 from ...builder import AsyncBuilder
 from ...disassemble import AccessCollector
 from ... import util
+from .. import static_analyze
 from ..base import *
 from ..symbol import *
 from .base import *
-
-"""
-@dataclass(eq=False)
-class Block(ArbitraryData):
-    sda_hack_references: Set[int] = field(default=None, repr=False)
-
-    def _get_internal_references(self, context, symbol_table):
-        collector = AccessCollector([])
-        for x in collector.execute_generator(self.addr, self.data, self.size):
-            pass
-        sda_hack_symbols = [symbol_table[self._module, x]
-                            for x in collector.sda_hack_references]
-        self.sda_hack_references = set([
-            (x._module, x.addr) 
-            for x in sda_hack_symbols 
-            if x
-        ])
-        symbols = [
-            symbol_table[self._module, x.addr]
-            for x in collector.accesses.values()
-        ]
-        return set([(x._module, x.addr) for x in symbols if x])
-"""
 
 @dataclass
 class Block():
@@ -53,7 +31,6 @@ class Block():
             return None
         return self.identifier.label
 
-from .. import static_analyze
 
 @dataclass(eq=False)
 class ASMFunction(Function):
@@ -63,6 +40,7 @@ class ASMFunction(Function):
     data: bytearray = None
 
     def gather_references(self, context, valid_range):
+        """
         addrs = static_analyze.function(self.data, self.addr, self.size)
         function_range = AddressRange(self.start, self.end)
         self.references = [ 
@@ -70,7 +48,25 @@ class ASMFunction(Function):
             for addr in addrs.values() 
             if addr in valid_range and not addr in function_range
         ]
+        """
 
+        collector = AccessCollector([])
+        for i, addr in collector.execute_generator(self.addr, self.data, self.size):
+            pass
+
+        function_range = AddressRange(self.start, self.end)
+        self.references = [ 
+            access.addr 
+            for access in collector.accesses.values() 
+            if access.addr in valid_range and not access.addr in function_range
+        ]
+
+        self.test_references = [ 
+            (access.at, access.addr)
+            for access in collector.accesses.values() 
+            if access.addr in valid_range and not access.addr in function_range
+        ]
+        
     async def export_function_body(self, exporter, builder: AsyncBuilder):
         await builder.write(f" {{")
         await builder.write(f"\tnofralloc")
@@ -79,6 +75,15 @@ class ASMFunction(Function):
 
     async def export_declaration(self, exporter, builder: AsyncBuilder):
         assert self.padding == 0
+
+
+        for k,v in self.test_references:
+            symbol_name = "???"
+            symbol = exporter.gst[-1, v]
+            if symbol:
+                symbol_name = symbol.label
+            await builder.write(f"//\t{k:08X}: {v:08X} ({symbol_name})")
+
 
         await builder.write("#pragma push")
         await builder.write("#pragma optimization_level 0")
@@ -101,10 +106,6 @@ class ASMFunction(Function):
 
         blocks = []
         for symbol in group:
-            #block = Block(
-            #    Identifier("lbl", symbol.addr, None),
-            #    symbol.addr, symbol.size,
-            #    data=section.data_for_symbol(symbol))
             block = Block(
                 Identifier("lbl", symbol.addr, None),
                 symbol.addr, symbol.size,

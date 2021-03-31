@@ -24,7 +24,6 @@ $(BUILD_DIR)/libdsp.a: $(LIBDSP_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libdsp.a
 	@echo $(LIBDSP_A_O_FILES) > build/LIBDSP_A_ofiles
 	@$(LD) -xm l $(LIBDSP_A_LDFLAGS) -o $(BUILD_DIR)/libdsp.a @build/LIBDSP_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libdsp.a
 
 $(BUILD_DIR)/libs/dolphin/dsp/%.o: libs/dolphin/dsp/%.cpp
 	@mkdir -p $(@D)

@@ -37,7 +37,6 @@ class CPPExporter:
             symbol._section, symbol.identifier.name))
 
     async def export_section_ctors(self, builder: AsyncBuilder, section: Section):
-        await builder.write("#pragma section \".ctors$10\"")
         for symbol in section.symbols:
             if symbol.identifier.label == "__init_cpp_exceptions_reference":
                 await self.export_symbol_header(builder, symbol)
@@ -57,12 +56,12 @@ class CPPExporter:
                 continue
             if symbol.identifier.label == "_ctors":
                 continue
+            # TODO: Not sure about this???
             await self.export_symbol_header(builder, symbol)
             await symbol.export_declaration(self, builder)
             await builder.write("")
 
     async def export_section_dtors(self, builder: AsyncBuilder, section: Section):
-        await builder.write("#pragma section \".dtors$10\"")
         for symbol in section.symbols:
             if symbol.identifier.label == "__destroy_global_chain_reference":
                 await self.export_symbol_header(builder, symbol)
@@ -70,9 +69,15 @@ class CPPExporter:
                 await builder.write("")
                 break
 
-        await builder.write("#pragma section \".dtors$15\"")
         for symbol in section.symbols:
             if symbol.identifier.label == "__fini_cpp_exceptions_reference":
+                await self.export_symbol_header(builder, symbol)
+                await symbol.export_declaration(self, builder)
+                await builder.write("")
+                break
+
+        for symbol in section.symbols:
+            if symbol.identifier.label == "__dtors_null_terminator":
                 await self.export_symbol_header(builder, symbol)
                 await symbol.export_declaration(self, builder)
                 await builder.write("")
@@ -82,6 +87,8 @@ class CPPExporter:
             if symbol.identifier.label == "__destroy_global_chain_reference":
                 continue
             if symbol.identifier.label == "__fini_cpp_exceptions_reference":
+                continue
+            if symbol.identifier.label == "__dtors_null_terminator":
                 continue
             await self.export_symbol_header(builder, symbol)
             await symbol.export_declaration(self, builder)

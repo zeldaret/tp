@@ -94,7 +94,6 @@ $(BUILD_DIR)/libSComponent.a: $(LIBSCOMPONENT_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libSComponent.a
 	@echo $(LIBSCOMPONENT_A_O_FILES) > build/LIBSCOMPONENT_A_ofiles
 	@$(LD) -xm l $(LIBSCOMPONENT_A_LDFLAGS) -o $(BUILD_DIR)/libSComponent.a @build/LIBSCOMPONENT_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libSComponent.a
 
 $(BUILD_DIR)/libs/SSystem/SComponent/%.o: libs/SSystem/SComponent/%.cpp
 	@mkdir -p $(@D)

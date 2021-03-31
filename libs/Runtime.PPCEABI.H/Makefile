@@ -36,7 +36,6 @@ $(BUILD_DIR)/libRuntime.PPCEABI.H.a: $(LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libRuntime.PPCEABI.H.a
 	@echo $(LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/LIBRUNTIME_PPCEABI_H_A_ofiles
 	@$(LD) -xm l $(LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/libRuntime.PPCEABI.H.a @build/LIBRUNTIME_PPCEABI_H_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/libs/Runtime.PPCEABI.H/%.o: libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

@@ -61,7 +61,7 @@ async def create_library(library: Library):
         await builder.write(f"\t@echo linking... {target_path}")
         await builder.write(f"\t@echo $({prefix}_O_FILES) > {input_file}")
         await builder.write(f"\t@$(LD) -xm l $({prefix}_LDFLAGS) -o {target_path} @{input_file}")
-        await builder.write(f"\t@$(STRIP) -d -R .dead -R .comment {target_path}")
+        #await builder.write(f"\t@$(STRIP) -d -R .dead -R .comment {target_path}")
         await builder.write("")
 
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
@@ -147,7 +147,7 @@ async def create_rel(module: Module):
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
         await builder.write(f"\t@mkdir -p $(@D)")
         await builder.write(f"\t$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $<")
-        await builder.write(f"\t$(STRIP) -d -R .dead -R .comment $@")
+        #await builder.write(f"\t$(STRIP) -d -R .dead -R .comment $@")
         await builder.write("")
 
         for library in libraries[1:]:
@@ -212,7 +212,7 @@ async def create_rel(module: Module):
             await builder.write(f"{target_path}: $({prefix}_O_FILES)")
             await builder.write(f"\t@echo $({prefix}_O_FILES) > {input_file}")
             await builder.write(f"\t$(LD) -xm l $({prefix}_LDFLAGS) -o {target_path} @{input_file}")
-            await builder.write(f"\t$(STRIP) -d -R .dead -R .comment {target_path}")
+            #await builder.write(f"\t$(STRIP) -d -R .dead -R .comment {target_path}")
             await builder.write("")
 
             await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
