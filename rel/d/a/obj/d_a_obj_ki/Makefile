@@ -28,15 +28,16 @@ M500_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map500.map\
 
 $(M500_TARGET): $(M500_O_FILES) $(M500_LIBS)
 	@echo $(M500_LIBS) $(M500_O_FILES) > build/M500_ofiles
-	$(LD) -partial $(M500_LDFLAGS) -o $(M500_TARGET) @build/M500_ofiles
+	$(LD) -opt_partial $(M500_LDFLAGS) -o $(M500_TARGET) @build/M500_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/%.o: rel/d/a/obj/d_a_obj_ki/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M500_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_ki/libs/Runtime.PPCEABI.H/Makefile
 

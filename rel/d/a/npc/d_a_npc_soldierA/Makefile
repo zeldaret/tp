@@ -28,15 +28,16 @@ M365_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map365.map\
 
 $(M365_TARGET): $(M365_O_FILES) $(M365_LIBS)
 	@echo $(M365_LIBS) $(M365_O_FILES) > build/M365_ofiles
-	$(LD) -partial $(M365_LDFLAGS) -o $(M365_TARGET) @build/M365_ofiles
+	$(LD) -opt_partial $(M365_LDFLAGS) -o $(M365_TARGET) @build/M365_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/%.o: rel/d/a/npc/d_a_npc_soldierA/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M365_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_soldierA/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M687_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map687.map\
 
 $(M687_TARGET): $(M687_O_FILES) $(M687_LIBS)
 	@echo $(M687_LIBS) $(M687_O_FILES) > build/M687_ofiles
-	$(LD) -partial $(M687_LDFLAGS) -o $(M687_TARGET) @build/M687_ofiles
+	$(LD) -opt_partial $(M687_LDFLAGS) -o $(M687_TARGET) @build/M687_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/%.o: rel/d/a/obj/d_a_obj_wflag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M687_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

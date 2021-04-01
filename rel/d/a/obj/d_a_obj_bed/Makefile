@@ -28,15 +28,16 @@ M405_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map405.map\
 
 $(M405_TARGET): $(M405_O_FILES) $(M405_LIBS)
 	@echo $(M405_LIBS) $(M405_O_FILES) > build/M405_ofiles
-	$(LD) -partial $(M405_LDFLAGS) -o $(M405_TARGET) @build/M405_ofiles
+	$(LD) -opt_partial $(M405_LDFLAGS) -o $(M405_TARGET) @build/M405_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.o: rel/d/a/obj/d_a_obj_bed/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M405_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_bed/libs/Runtime.PPCEABI.H/Makefile
 

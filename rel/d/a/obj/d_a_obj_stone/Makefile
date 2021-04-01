@@ -31,14 +31,15 @@ M633_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map633.map\
 
 $(M633_TARGET): $(M633_O_FILES) $(M633_LIBS)
 	@echo $(M633_LIBS) $(M633_O_FILES) > build/M633_ofiles
-	$(LD) -partial $(M633_LDFLAGS) -o $(M633_TARGET) @build/M633_ofiles
+	$(LD) -opt_partial $(M633_LDFLAGS) -o $(M633_TARGET) @build/M633_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/%.o: rel/d/a/obj/d_a_obj_stone/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M633_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

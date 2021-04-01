@@ -29,14 +29,15 @@ M742_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map742.map\
 
 $(M742_TARGET): $(M742_O_FILES) $(M742_LIBS)
 	@echo $(M742_LIBS) $(M742_O_FILES) > build/M742_ofiles
-	$(LD) -partial $(M742_LDFLAGS) -o $(M742_TARGET) @build/M742_ofiles
+	$(LD) -opt_partial $(M742_LDFLAGS) -o $(M742_TARGET) @build/M742_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/%.o: rel/d/a/tag/d_a_tag_shop_item/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M742_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

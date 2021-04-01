@@ -29,14 +29,15 @@ M17_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map17.map\
 
 $(M17_TARGET): $(M17_O_FILES) $(M17_LIBS)
 	@echo $(M17_LIBS) $(M17_O_FILES) > build/M17_ofiles
-	$(LD) -partial $(M17_LDFLAGS) -o $(M17_TARGET) @build/M17_ofiles
+	$(LD) -opt_partial $(M17_LDFLAGS) -o $(M17_TARGET) @build/M17_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/%.o: rel/d/a/obj/d_a_obj_burnbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M17_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

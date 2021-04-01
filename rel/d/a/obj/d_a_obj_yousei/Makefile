@@ -29,14 +29,15 @@ M54_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map54.map\
 
 $(M54_TARGET): $(M54_O_FILES) $(M54_LIBS)
 	@echo $(M54_LIBS) $(M54_O_FILES) > build/M54_ofiles
-	$(LD) -partial $(M54_LDFLAGS) -o $(M54_TARGET) @build/M54_ofiles
+	$(LD) -opt_partial $(M54_LDFLAGS) -o $(M54_TARGET) @build/M54_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yousei/%.o: rel/d/a/obj/d_a_obj_yousei/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M54_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M646_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map646.map\
 
 $(M646_TARGET): $(M646_O_FILES) $(M646_LIBS)
 	@echo $(M646_LIBS) $(M646_O_FILES) > build/M646_ofiles
-	$(LD) -partial $(M646_LDFLAGS) -o $(M646_TARGET) @build/M646_ofiles
+	$(LD) -opt_partial $(M646_LDFLAGS) -o $(M646_TARGET) @build/M646_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/%.o: rel/d/a/obj/d_a_obj_swspinner/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M646_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

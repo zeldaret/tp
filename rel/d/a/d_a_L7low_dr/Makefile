@@ -29,14 +29,15 @@ M136_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map136.map\
 
 $(M136_TARGET): $(M136_O_FILES) $(M136_LIBS)
 	@echo $(M136_LIBS) $(M136_O_FILES) > build/M136_ofiles
-	$(LD) -partial $(M136_LDFLAGS) -o $(M136_TARGET) @build/M136_ofiles
+	$(LD) -opt_partial $(M136_LDFLAGS) -o $(M136_TARGET) @build/M136_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_L7low_dr/%.o: rel/d/a/d_a_L7low_dr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M136_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

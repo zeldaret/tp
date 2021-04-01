@@ -29,14 +29,15 @@ M661_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map661.map\
 
 $(M661_TARGET): $(M661_O_FILES) $(M661_LIBS)
 	@echo $(M661_LIBS) $(M661_O_FILES) > build/M661_ofiles
-	$(LD) -partial $(M661_LDFLAGS) -o $(M661_TARGET) @build/M661_ofiles
+	$(LD) -opt_partial $(M661_LDFLAGS) -o $(M661_TARGET) @build/M661_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/%.o: rel/d/a/obj/d_a_obj_tmoon/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M661_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

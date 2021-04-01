@@ -29,14 +29,15 @@ M162_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map162.map\
 
 $(M162_TARGET): $(M162_O_FILES) $(M162_LIBS)
 	@echo $(M162_LIBS) $(M162_O_FILES) > build/M162_ofiles
-	$(LD) -partial $(M162_LDFLAGS) -o $(M162_TARGET) @build/M162_ofiles
+	$(LD) -opt_partial $(M162_LDFLAGS) -o $(M162_TARGET) @build/M162_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_coach_fire/%.o: rel/d/a/d_a_coach_fire/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M162_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

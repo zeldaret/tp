@@ -28,15 +28,16 @@ M82_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map82.map\
 
 $(M82_TARGET): $(M82_O_FILES) $(M82_LIBS)
 	@echo $(M82_LIBS) $(M82_O_FILES) > build/M82_ofiles
-	$(LD) -partial $(M82_LDFLAGS) -o $(M82_TARGET) @build/M82_ofiles
+	$(LD) -opt_partial $(M82_LDFLAGS) -o $(M82_TARGET) @build/M82_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/%.o: rel/d/a/npc/d_a_npc_henna/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M82_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_henna/libs/Runtime.PPCEABI.H/Makefile
 

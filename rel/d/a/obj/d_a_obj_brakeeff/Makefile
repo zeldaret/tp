@@ -29,14 +29,15 @@ M16_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map16.map\
 
 $(M16_TARGET): $(M16_O_FILES) $(M16_LIBS)
 	@echo $(M16_LIBS) $(M16_O_FILES) > build/M16_ofiles
-	$(LD) -partial $(M16_LDFLAGS) -o $(M16_TARGET) @build/M16_ofiles
+	$(LD) -opt_partial $(M16_LDFLAGS) -o $(M16_TARGET) @build/M16_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/%.o: rel/d/a/obj/d_a_obj_brakeeff/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M16_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

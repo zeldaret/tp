@@ -28,15 +28,16 @@ M395_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map395.map\
 
 $(M395_TARGET): $(M395_O_FILES) $(M395_LIBS)
 	@echo $(M395_LIBS) $(M395_O_FILES) > build/M395_ofiles
-	$(LD) -partial $(M395_LDFLAGS) -o $(M395_TARGET) @build/M395_ofiles
+	$(LD) -opt_partial $(M395_LDFLAGS) -o $(M395_TARGET) @build/M395_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/%.o: rel/d/a/obj/d_a_obj_TvCdlst/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M395_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_TvCdlst/libs/Runtime.PPCEABI.H/Makefile
 

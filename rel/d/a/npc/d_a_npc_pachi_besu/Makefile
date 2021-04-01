@@ -28,15 +28,16 @@ M342_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map342.map\
 
 $(M342_TARGET): $(M342_O_FILES) $(M342_LIBS)
 	@echo $(M342_LIBS) $(M342_O_FILES) > build/M342_ofiles
-	$(LD) -partial $(M342_LDFLAGS) -o $(M342_TARGET) @build/M342_ofiles
+	$(LD) -opt_partial $(M342_LDFLAGS) -o $(M342_TARGET) @build/M342_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_besu/%.o: rel/d/a/npc/d_a_npc_pachi_besu/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M342_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_pachi_besu/libs/Runtime.PPCEABI.H/Makefile
 

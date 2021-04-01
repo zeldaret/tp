@@ -28,15 +28,16 @@ M703_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map703.map\
 
 $(M703_TARGET): $(M703_O_FILES) $(M703_LIBS)
 	@echo $(M703_LIBS) $(M703_O_FILES) > build/M703_ofiles
-	$(LD) -partial $(M703_LDFLAGS) -o $(M703_TARGET) @build/M703_ofiles
+	$(LD) -opt_partial $(M703_LDFLAGS) -o $(M703_TARGET) @build/M703_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_peru/%.o: rel/d/a/d_a_peru/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M703_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_peru/libs/Runtime.PPCEABI.H/Makefile
 

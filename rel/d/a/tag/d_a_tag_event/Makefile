@@ -29,14 +29,15 @@ M30_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map30.map\
 
 $(M30_TARGET): $(M30_O_FILES) $(M30_LIBS)
 	@echo $(M30_LIBS) $(M30_O_FILES) > build/M30_ofiles
-	$(LD) -partial $(M30_LDFLAGS) -o $(M30_TARGET) @build/M30_ofiles
+	$(LD) -opt_partial $(M30_LDFLAGS) -o $(M30_TARGET) @build/M30_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/%.o: rel/d/a/tag/d_a_tag_event/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M30_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

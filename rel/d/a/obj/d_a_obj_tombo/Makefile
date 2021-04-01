@@ -28,15 +28,16 @@ M666_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map666.map\
 
 $(M666_TARGET): $(M666_O_FILES) $(M666_LIBS)
 	@echo $(M666_LIBS) $(M666_O_FILES) > build/M666_ofiles
-	$(LD) -partial $(M666_LDFLAGS) -o $(M666_TARGET) @build/M666_ofiles
+	$(LD) -opt_partial $(M666_LDFLAGS) -o $(M666_TARGET) @build/M666_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tombo/%.o: rel/d/a/obj/d_a_obj_tombo/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M666_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_tombo/libs/Runtime.PPCEABI.H/Makefile
 

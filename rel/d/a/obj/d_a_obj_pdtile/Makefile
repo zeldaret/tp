@@ -29,14 +29,15 @@ M590_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map590.map\
 
 $(M590_TARGET): $(M590_O_FILES) $(M590_LIBS)
 	@echo $(M590_LIBS) $(M590_O_FILES) > build/M590_ofiles
-	$(LD) -partial $(M590_LDFLAGS) -o $(M590_TARGET) @build/M590_ofiles
+	$(LD) -opt_partial $(M590_LDFLAGS) -o $(M590_TARGET) @build/M590_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/%.o: rel/d/a/obj/d_a_obj_pdtile/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M590_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

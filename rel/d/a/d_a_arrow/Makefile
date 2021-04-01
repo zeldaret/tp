@@ -28,15 +28,16 @@ M45_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map45.map\
 
 $(M45_TARGET): $(M45_O_FILES) $(M45_LIBS)
 	@echo $(M45_LIBS) $(M45_O_FILES) > build/M45_ofiles
-	$(LD) -partial $(M45_LDFLAGS) -o $(M45_TARGET) @build/M45_ofiles
+	$(LD) -opt_partial $(M45_LDFLAGS) -o $(M45_TARGET) @build/M45_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_arrow/%.o: rel/d/a/d_a_arrow/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M45_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_arrow/libs/Runtime.PPCEABI.H/Makefile
 

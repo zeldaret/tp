@@ -28,15 +28,16 @@ M540_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map540.map\
 
 $(M540_TARGET): $(M540_O_FILES) $(M540_LIBS)
 	@echo $(M540_LIBS) $(M540_O_FILES) > build/M540_ofiles
-	$(LD) -partial $(M540_LDFLAGS) -o $(M540_TARGET) @build/M540_ofiles
+	$(LD) -opt_partial $(M540_LDFLAGS) -o $(M540_TARGET) @build/M540_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/%.o: rel/d/a/obj/d_a_obj_lv5IceWall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M540_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv5IceWall/libs/Runtime.PPCEABI.H/Makefile
 

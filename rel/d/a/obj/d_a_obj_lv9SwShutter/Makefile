@@ -28,15 +28,16 @@ M564_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map564.map\
 
 $(M564_TARGET): $(M564_O_FILES) $(M564_LIBS)
 	@echo $(M564_LIBS) $(M564_O_FILES) > build/M564_ofiles
-	$(LD) -partial $(M564_LDFLAGS) -o $(M564_TARGET) @build/M564_ofiles
+	$(LD) -opt_partial $(M564_LDFLAGS) -o $(M564_TARGET) @build/M564_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/%.o: rel/d/a/obj/d_a_obj_lv9SwShutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M564_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv9SwShutter/libs/Runtime.PPCEABI.H/Makefile
 

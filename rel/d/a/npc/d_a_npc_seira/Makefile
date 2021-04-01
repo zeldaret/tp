@@ -28,15 +28,16 @@ M356_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map356.map\
 
 $(M356_TARGET): $(M356_O_FILES) $(M356_LIBS)
 	@echo $(M356_LIBS) $(M356_O_FILES) > build/M356_ofiles
-	$(LD) -partial $(M356_LDFLAGS) -o $(M356_TARGET) @build/M356_ofiles
+	$(LD) -opt_partial $(M356_LDFLAGS) -o $(M356_TARGET) @build/M356_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/%.o: rel/d/a/npc/d_a_npc_seira/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M356_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_seira/libs/Runtime.PPCEABI.H/Makefile
 

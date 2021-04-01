@@ -31,14 +31,15 @@ M100_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map100.map\
 
 $(M100_TARGET): $(M100_O_FILES) $(M100_LIBS)
 	@echo $(M100_LIBS) $(M100_O_FILES) > build/M100_ofiles
-	$(LD) -partial $(M100_LDFLAGS) -o $(M100_TARGET) @build/M100_ofiles
+	$(LD) -opt_partial $(M100_LDFLAGS) -o $(M100_TARGET) @build/M100_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/%.o: rel/d/a/obj/d_a_obj_kgate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M100_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

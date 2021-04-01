@@ -28,15 +28,16 @@ M159_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map159.map\
 
 $(M159_TARGET): $(M159_O_FILES) $(M159_LIBS)
 	@echo $(M159_LIBS) $(M159_O_FILES) > build/M159_ofiles
-	$(LD) -partial $(M159_LDFLAGS) -o $(M159_TARGET) @build/M159_ofiles
+	$(LD) -opt_partial $(M159_LDFLAGS) -o $(M159_TARGET) @build/M159_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_balloon_2D/%.o: rel/d/a/d_a_balloon_2D/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M159_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_balloon_2D/libs/Runtime.PPCEABI.H/Makefile
 

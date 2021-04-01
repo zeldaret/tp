@@ -28,15 +28,16 @@ M460_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map460.map\
 
 $(M460_TARGET): $(M460_O_FILES) $(M460_LIBS)
 	@echo $(M460_LIBS) $(M460_O_FILES) > build/M460_ofiles
-	$(LD) -partial $(M460_LDFLAGS) -o $(M460_TARGET) @build/M460_ofiles
+	$(LD) -opt_partial $(M460_LDFLAGS) -o $(M460_TARGET) @build/M460_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/%.o: rel/d/a/obj/d_a_obj_gm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M460_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_gm/libs/Runtime.PPCEABI.H/Makefile
 

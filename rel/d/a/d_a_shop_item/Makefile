@@ -29,14 +29,15 @@ M118_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map118.map\
 
 $(M118_TARGET): $(M118_O_FILES) $(M118_LIBS)
 	@echo $(M118_LIBS) $(M118_O_FILES) > build/M118_ofiles
-	$(LD) -partial $(M118_LDFLAGS) -o $(M118_TARGET) @build/M118_ofiles
+	$(LD) -opt_partial $(M118_LDFLAGS) -o $(M118_TARGET) @build/M118_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_shop_item/%.o: rel/d/a/d_a_shop_item/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M118_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

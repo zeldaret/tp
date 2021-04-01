@@ -28,15 +28,16 @@ M567_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map567.map\
 
 $(M567_TARGET): $(M567_O_FILES) $(M567_LIBS)
 	@echo $(M567_LIBS) $(M567_O_FILES) > build/M567_ofiles
-	$(LD) -partial $(M567_LDFLAGS) -o $(M567_TARGET) @build/M567_ofiles
+	$(LD) -opt_partial $(M567_LDFLAGS) -o $(M567_TARGET) @build/M567_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/%.o: rel/d/a/obj/d_a_obj_maki/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M567_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_maki/libs/Runtime.PPCEABI.H/Makefile
 

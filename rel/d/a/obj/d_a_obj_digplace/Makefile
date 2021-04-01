@@ -29,14 +29,15 @@ M93_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map93.map\
 
 $(M93_TARGET): $(M93_O_FILES) $(M93_LIBS)
 	@echo $(M93_LIBS) $(M93_O_FILES) > build/M93_ofiles
-	$(LD) -partial $(M93_LDFLAGS) -o $(M93_TARGET) @build/M93_ofiles
+	$(LD) -opt_partial $(M93_LDFLAGS) -o $(M93_TARGET) @build/M93_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/%.o: rel/d/a/obj/d_a_obj_digplace/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M93_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M308_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map308.map\
 
 $(M308_TARGET): $(M308_O_FILES) $(M308_LIBS)
 	@echo $(M308_LIBS) $(M308_O_FILES) > build/M308_ofiles
-	$(LD) -partial $(M308_LDFLAGS) -o $(M308_TARGET) @build/M308_ofiles
+	$(LD) -opt_partial $(M308_LDFLAGS) -o $(M308_TARGET) @build/M308_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grm/%.o: rel/d/a/npc/d_a_npc_grm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M308_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_grm/libs/Runtime.PPCEABI.H/Makefile
 

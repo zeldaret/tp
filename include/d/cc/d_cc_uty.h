@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* D_CC_D_CC_UTY_H */

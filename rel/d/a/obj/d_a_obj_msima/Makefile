@@ -28,15 +28,16 @@ M577_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map577.map\
 
 $(M577_TARGET): $(M577_O_FILES) $(M577_LIBS)
 	@echo $(M577_LIBS) $(M577_O_FILES) > build/M577_ofiles
-	$(LD) -partial $(M577_LDFLAGS) -o $(M577_TARGET) @build/M577_ofiles
+	$(LD) -opt_partial $(M577_LDFLAGS) -o $(M577_TARGET) @build/M577_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.o: rel/d/a/obj/d_a_obj_msima/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_msima/libs/Runtime.PPCEABI.H/Makefile
 

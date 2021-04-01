@@ -29,14 +29,15 @@ M468_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map468.map\
 
 $(M468_TARGET): $(M468_O_FILES) $(M468_LIBS)
 	@echo $(M468_LIBS) $(M468_O_FILES) > build/M468_ofiles
-	$(LD) -partial $(M468_LDFLAGS) -o $(M468_TARGET) @build/M468_ofiles
+	$(LD) -opt_partial $(M468_LDFLAGS) -o $(M468_TARGET) @build/M468_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/%.o: rel/d/a/obj/d_a_obj_grz_rock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M468_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

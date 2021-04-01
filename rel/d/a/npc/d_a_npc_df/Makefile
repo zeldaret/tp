@@ -28,15 +28,16 @@ M297_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map297.map\
 
 $(M297_TARGET): $(M297_O_FILES) $(M297_LIBS)
 	@echo $(M297_LIBS) $(M297_O_FILES) > build/M297_ofiles
-	$(LD) -partial $(M297_LDFLAGS) -o $(M297_TARGET) @build/M297_ofiles
+	$(LD) -opt_partial $(M297_LDFLAGS) -o $(M297_TARGET) @build/M297_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_df/%.o: rel/d/a/npc/d_a_npc_df/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M297_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_df/libs/Runtime.PPCEABI.H/Makefile
 

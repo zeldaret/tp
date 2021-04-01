@@ -28,15 +28,16 @@ M235_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map235.map\
 
 $(M235_TARGET): $(M235_O_FILES) $(M235_LIBS)
 	@echo $(M235_LIBS) $(M235_O_FILES) > build/M235_ofiles
-	$(LD) -partial $(M235_LDFLAGS) -o $(M235_TARGET) @build/M235_ofiles
+	$(LD) -opt_partial $(M235_LDFLAGS) -o $(M235_TARGET) @build/M235_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_sw/%.o: rel/d/a/e/d_a_e_sw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M235_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_sw/libs/Runtime.PPCEABI.H/Makefile
 

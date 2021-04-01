@@ -29,14 +29,15 @@ M123_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map123.map\
 
 $(M123_TARGET): $(M123_O_FILES) $(M123_LIBS)
 	@echo $(M123_LIBS) $(M123_O_FILES) > build/M123_ofiles
-	$(LD) -partial $(M123_LDFLAGS) -o $(M123_TARGET) @build/M123_ofiles
+	$(LD) -opt_partial $(M123_LDFLAGS) -o $(M123_TARGET) @build/M123_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/%.o: rel/d/a/tag/d_a_tag_attack_item/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M123_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

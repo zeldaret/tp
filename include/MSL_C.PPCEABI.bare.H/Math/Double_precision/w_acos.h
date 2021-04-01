@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* MATH_DOUBLE_PRECISION_W_ACOS_H */

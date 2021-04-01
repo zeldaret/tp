@@ -29,14 +29,15 @@ M639_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map639.map\
 
 $(M639_TARGET): $(M639_O_FILES) $(M639_LIBS)
 	@echo $(M639_LIBS) $(M639_O_FILES) > build/M639_ofiles
-	$(LD) -partial $(M639_LDFLAGS) -o $(M639_TARGET) @build/M639_ofiles
+	$(LD) -opt_partial $(M639_LDFLAGS) -o $(M639_TARGET) @build/M639_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.o: rel/d/a/obj/d_a_obj_swBallB/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

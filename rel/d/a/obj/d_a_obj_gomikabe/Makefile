@@ -28,15 +28,16 @@ M462_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map462.map\
 
 $(M462_TARGET): $(M462_O_FILES) $(M462_LIBS)
 	@echo $(M462_LIBS) $(M462_O_FILES) > build/M462_ofiles
-	$(LD) -partial $(M462_LDFLAGS) -o $(M462_TARGET) @build/M462_ofiles
+	$(LD) -opt_partial $(M462_LDFLAGS) -o $(M462_TARGET) @build/M462_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/%.o: rel/d/a/obj/d_a_obj_gomikabe/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M462_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_gomikabe/libs/Runtime.PPCEABI.H/Makefile
 

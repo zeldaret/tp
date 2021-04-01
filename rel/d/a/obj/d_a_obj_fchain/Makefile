@@ -29,14 +29,15 @@ M444_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map444.map\
 
 $(M444_TARGET): $(M444_O_FILES) $(M444_LIBS)
 	@echo $(M444_LIBS) $(M444_O_FILES) > build/M444_ofiles
-	$(LD) -partial $(M444_LDFLAGS) -o $(M444_TARGET) @build/M444_ofiles
+	$(LD) -opt_partial $(M444_LDFLAGS) -o $(M444_TARGET) @build/M444_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/%.o: rel/d/a/obj/d_a_obj_fchain/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M444_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

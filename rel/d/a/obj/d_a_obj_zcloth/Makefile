@@ -29,14 +29,15 @@ M695_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map695.map\
 
 $(M695_TARGET): $(M695_O_FILES) $(M695_LIBS)
 	@echo $(M695_LIBS) $(M695_O_FILES) > build/M695_ofiles
-	$(LD) -partial $(M695_LDFLAGS) -o $(M695_TARGET) @build/M695_ofiles
+	$(LD) -opt_partial $(M695_LDFLAGS) -o $(M695_TARGET) @build/M695_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zcloth/%.o: rel/d/a/obj/d_a_obj_zcloth/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M695_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

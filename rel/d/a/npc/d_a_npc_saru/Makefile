@@ -28,15 +28,16 @@ M352_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map352.map\
 
 $(M352_TARGET): $(M352_O_FILES) $(M352_LIBS)
 	@echo $(M352_LIBS) $(M352_O_FILES) > build/M352_ofiles
-	$(LD) -partial $(M352_LDFLAGS) -o $(M352_TARGET) @build/M352_ofiles
+	$(LD) -opt_partial $(M352_LDFLAGS) -o $(M352_TARGET) @build/M352_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/%.o: rel/d/a/npc/d_a_npc_saru/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M352_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_saru/libs/Runtime.PPCEABI.H/Makefile
 

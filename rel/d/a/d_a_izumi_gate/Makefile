@@ -29,14 +29,15 @@ M264_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map264.map\
 
 $(M264_TARGET): $(M264_O_FILES) $(M264_LIBS)
 	@echo $(M264_LIBS) $(M264_O_FILES) > build/M264_ofiles
-	$(LD) -partial $(M264_LDFLAGS) -o $(M264_TARGET) @build/M264_ofiles
+	$(LD) -opt_partial $(M264_LDFLAGS) -o $(M264_TARGET) @build/M264_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_izumi_gate/%.o: rel/d/a/d_a_izumi_gate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M264_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

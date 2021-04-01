@@ -28,15 +28,16 @@ M180_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map180.map\
 
 $(M180_TARGET): $(M180_O_FILES) $(M180_LIBS)
 	@echo $(M180_LIBS) $(M180_O_FILES) > build/M180_ofiles
-	$(LD) -partial $(M180_LDFLAGS) -o $(M180_TARGET) @build/M180_ofiles
+	$(LD) -opt_partial $(M180_LDFLAGS) -o $(M180_TARGET) @build/M180_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_cr/%.o: rel/d/a/e/d_a_e_cr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M180_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_cr/libs/Runtime.PPCEABI.H/Makefile
 

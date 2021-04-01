@@ -29,14 +29,15 @@ M443_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map443.map\
 
 $(M443_TARGET): $(M443_O_FILES) $(M443_LIBS)
 	@echo $(M443_LIBS) $(M443_O_FILES) > build/M443_ofiles
-	$(LD) -partial $(M443_LDFLAGS) -o $(M443_TARGET) @build/M443_ofiles
+	$(LD) -opt_partial $(M443_LDFLAGS) -o $(M443_TARGET) @build/M443_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/%.o: rel/d/a/obj/d_a_obj_fan/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M443_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

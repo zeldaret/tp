@@ -19,7 +19,6 @@ M282LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/d_a_ni/libRuntime.PPCEABI.H.a: $(M282LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M282LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M282LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M282LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/d_a_ni/libRuntime.PPCEABI.H.a @build/M282LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/d_a_ni/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/d_a_ni/libs/Runtime.PPCEABI.H/%.o: rel/d/a/d_a_ni/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

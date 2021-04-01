@@ -28,15 +28,16 @@ M459_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map459.map\
 
 $(M459_TARGET): $(M459_O_FILES) $(M459_LIBS)
 	@echo $(M459_LIBS) $(M459_O_FILES) > build/M459_ofiles
-	$(LD) -partial $(M459_LDFLAGS) -o $(M459_TARGET) @build/M459_ofiles
+	$(LD) -opt_partial $(M459_LDFLAGS) -o $(M459_TARGET) @build/M459_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/%.o: rel/d/a/obj/d_a_obj_glowSphere/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M459_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_glowSphere/libs/Runtime.PPCEABI.H/Makefile
 

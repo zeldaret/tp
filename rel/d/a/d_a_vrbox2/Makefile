@@ -29,14 +29,15 @@ M44_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map44.map\
 
 $(M44_TARGET): $(M44_O_FILES) $(M44_LIBS)
 	@echo $(M44_LIBS) $(M44_O_FILES) > build/M44_ofiles
-	$(LD) -partial $(M44_LDFLAGS) -o $(M44_TARGET) @build/M44_ofiles
+	$(LD) -opt_partial $(M44_LDFLAGS) -o $(M44_TARGET) @build/M44_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.o: rel/d/a/d_a_vrbox2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

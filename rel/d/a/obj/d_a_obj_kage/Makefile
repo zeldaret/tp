@@ -29,14 +29,15 @@ M490_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map490.map\
 
 $(M490_TARGET): $(M490_O_FILES) $(M490_LIBS)
 	@echo $(M490_LIBS) $(M490_O_FILES) > build/M490_ofiles
-	$(LD) -partial $(M490_LDFLAGS) -o $(M490_TARGET) @build/M490_ofiles
+	$(LD) -opt_partial $(M490_LDFLAGS) -o $(M490_TARGET) @build/M490_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/%.o: rel/d/a/obj/d_a_obj_kage/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M490_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

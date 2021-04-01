@@ -29,14 +29,15 @@ M103_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map103.map\
 
 $(M103_TARGET): $(M103_O_FILES) $(M103_LIBS)
 	@echo $(M103_LIBS) $(M103_O_FILES) > build/M103_ofiles
-	$(LD) -partial $(M103_LDFLAGS) -o $(M103_TARGET) @build/M103_ofiles
+	$(LD) -opt_partial $(M103_LDFLAGS) -o $(M103_TARGET) @build/M103_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ladder/%.o: rel/d/a/obj/d_a_obj_ladder/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M103_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

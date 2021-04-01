@@ -29,14 +29,15 @@ M132_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map132.map\
 
 $(M132_TARGET): $(M132_O_FILES) $(M132_LIBS)
 	@echo $(M132_LIBS) $(M132_O_FILES) > build/M132_ofiles
-	$(LD) -partial $(M132_LDFLAGS) -o $(M132_TARGET) @build/M132_ofiles
+	$(LD) -opt_partial $(M132_LDFLAGS) -o $(M132_TARGET) @build/M132_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.o: rel/d/a/tag/d_a_tag_spring/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M132_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

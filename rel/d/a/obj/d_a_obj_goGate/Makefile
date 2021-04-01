@@ -28,15 +28,16 @@ M461_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map461.map\
 
 $(M461_TARGET): $(M461_O_FILES) $(M461_LIBS)
 	@echo $(M461_LIBS) $(M461_O_FILES) > build/M461_ofiles
-	$(LD) -partial $(M461_LDFLAGS) -o $(M461_TARGET) @build/M461_ofiles
+	$(LD) -opt_partial $(M461_LDFLAGS) -o $(M461_TARGET) @build/M461_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/%.o: rel/d/a/obj/d_a_obj_goGate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M461_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_goGate/libs/Runtime.PPCEABI.H/Makefile
 

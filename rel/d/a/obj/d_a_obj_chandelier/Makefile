@@ -29,14 +29,15 @@ M421_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map421.map\
 
 $(M421_TARGET): $(M421_O_FILES) $(M421_LIBS)
 	@echo $(M421_LIBS) $(M421_O_FILES) > build/M421_ofiles
-	$(LD) -partial $(M421_LDFLAGS) -o $(M421_TARGET) @build/M421_ofiles
+	$(LD) -opt_partial $(M421_LDFLAGS) -o $(M421_TARGET) @build/M421_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.o: rel/d/a/obj/d_a_obj_chandelier/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M421_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

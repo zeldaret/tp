@@ -28,15 +28,16 @@ M626_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map626.map\
 
 $(M626_TARGET): $(M626_O_FILES) $(M626_LIBS)
 	@echo $(M626_LIBS) $(M626_O_FILES) > build/M626_ofiles
-	$(LD) -partial $(M626_LDFLAGS) -o $(M626_TARGET) @build/M626_ofiles
+	$(LD) -opt_partial $(M626_LDFLAGS) -o $(M626_TARGET) @build/M626_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/%.o: rel/d/a/obj/d_a_obj_snowEffTag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M626_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_snowEffTag/libs/Runtime.PPCEABI.H/Makefile
 

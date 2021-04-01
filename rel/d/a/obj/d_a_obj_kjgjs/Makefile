@@ -29,14 +29,15 @@ M503_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map503.map\
 
 $(M503_TARGET): $(M503_O_FILES) $(M503_LIBS)
 	@echo $(M503_LIBS) $(M503_O_FILES) > build/M503_ofiles
-	$(LD) -partial $(M503_LDFLAGS) -o $(M503_TARGET) @build/M503_ofiles
+	$(LD) -opt_partial $(M503_LDFLAGS) -o $(M503_TARGET) @build/M503_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kjgjs/%.o: rel/d/a/obj/d_a_obj_kjgjs/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M503_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

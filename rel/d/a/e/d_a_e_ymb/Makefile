@@ -28,15 +28,16 @@ M255_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map255.map\
 
 $(M255_TARGET): $(M255_O_FILES) $(M255_LIBS)
 	@echo $(M255_LIBS) $(M255_O_FILES) > build/M255_ofiles
-	$(LD) -partial $(M255_LDFLAGS) -o $(M255_TARGET) @build/M255_ofiles
+	$(LD) -opt_partial $(M255_LDFLAGS) -o $(M255_TARGET) @build/M255_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.o: rel/d/a/e/d_a_e_ymb/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_ymb/libs/Runtime.PPCEABI.H/Makefile
 

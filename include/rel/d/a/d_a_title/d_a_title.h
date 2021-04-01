@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* D_A_TITLE_H */

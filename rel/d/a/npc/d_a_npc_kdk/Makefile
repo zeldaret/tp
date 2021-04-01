@@ -29,14 +29,15 @@ M326_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map326.map\
 
 $(M326_TARGET): $(M326_O_FILES) $(M326_LIBS)
 	@echo $(M326_LIBS) $(M326_O_FILES) > build/M326_ofiles
-	$(LD) -partial $(M326_LDFLAGS) -o $(M326_TARGET) @build/M326_ofiles
+	$(LD) -opt_partial $(M326_LDFLAGS) -o $(M326_TARGET) @build/M326_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/%.o: rel/d/a/npc/d_a_npc_kdk/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M326_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

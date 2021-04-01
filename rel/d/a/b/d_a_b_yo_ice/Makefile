@@ -28,15 +28,16 @@ M154_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map154.map\
 
 $(M154_TARGET): $(M154_O_FILES) $(M154_LIBS)
 	@echo $(M154_LIBS) $(M154_O_FILES) > build/M154_ofiles
-	$(LD) -partial $(M154_LDFLAGS) -o $(M154_TARGET) @build/M154_ofiles
+	$(LD) -opt_partial $(M154_LDFLAGS) -o $(M154_TARGET) @build/M154_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/%.o: rel/d/a/b/d_a_b_yo_ice/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M154_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_yo_ice/libs/Runtime.PPCEABI.H/Makefile
 

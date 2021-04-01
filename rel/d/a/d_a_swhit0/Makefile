@@ -29,14 +29,15 @@ M26_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map26.map\
 
 $(M26_TARGET): $(M26_O_FILES) $(M26_LIBS)
 	@echo $(M26_LIBS) $(M26_O_FILES) > build/M26_ofiles
-	$(LD) -partial $(M26_LDFLAGS) -o $(M26_TARGET) @build/M26_ofiles
+	$(LD) -opt_partial $(M26_LDFLAGS) -o $(M26_TARGET) @build/M26_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swhit0/%.o: rel/d/a/d_a_swhit0/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M26_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

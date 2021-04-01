@@ -28,15 +28,16 @@ M423_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map423.map\
 
 $(M423_TARGET): $(M423_O_FILES) $(M423_LIBS)
 	@echo $(M423_LIBS) $(M423_O_FILES) > build/M423_ofiles
-	$(LD) -partial $(M423_LDFLAGS) -o $(M423_TARGET) @build/M423_ofiles
+	$(LD) -opt_partial $(M423_LDFLAGS) -o $(M423_TARGET) @build/M423_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/%.o: rel/d/a/obj/d_a_obj_cho/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M423_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_cho/libs/Runtime.PPCEABI.H/Makefile
 

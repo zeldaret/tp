@@ -28,15 +28,16 @@ M155_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map155.map\
 
 $(M155_TARGET): $(M155_O_FILES) $(M155_LIBS)
 	@echo $(M155_LIBS) $(M155_O_FILES) > build/M155_ofiles
-	$(LD) -partial $(M155_LDFLAGS) -o $(M155_TARGET) @build/M155_ofiles
+	$(LD) -opt_partial $(M155_LDFLAGS) -o $(M155_TARGET) @build/M155_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant/%.o: rel/d/a/b/d_a_b_zant/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M155_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_zant/libs/Runtime.PPCEABI.H/Makefile
 

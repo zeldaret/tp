@@ -29,14 +29,15 @@ M575_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map575.map\
 
 $(M575_TARGET): $(M575_O_FILES) $(M575_LIBS)
 	@echo $(M575_LIBS) $(M575_O_FILES) > build/M575_ofiles
-	$(LD) -partial $(M575_LDFLAGS) -o $(M575_TARGET) @build/M575_ofiles
+	$(LD) -opt_partial $(M575_LDFLAGS) -o $(M575_TARGET) @build/M575_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M575_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

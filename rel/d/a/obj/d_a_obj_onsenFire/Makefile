@@ -29,14 +29,15 @@ M587_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map587.map\
 
 $(M587_TARGET): $(M587_O_FILES) $(M587_LIBS)
 	@echo $(M587_LIBS) $(M587_O_FILES) > build/M587_ofiles
-	$(LD) -partial $(M587_LDFLAGS) -o $(M587_TARGET) @build/M587_ofiles
+	$(LD) -opt_partial $(M587_LDFLAGS) -o $(M587_TARGET) @build/M587_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenFire/%.o: rel/d/a/obj/d_a_obj_onsenFire/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M587_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

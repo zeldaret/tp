@@ -28,15 +28,16 @@ M366_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map366.map\
 
 $(M366_TARGET): $(M366_O_FILES) $(M366_LIBS)
 	@echo $(M366_LIBS) $(M366_O_FILES) > build/M366_ofiles
-	$(LD) -partial $(M366_LDFLAGS) -o $(M366_TARGET) @build/M366_ofiles
+	$(LD) -opt_partial $(M366_LDFLAGS) -o $(M366_TARGET) @build/M366_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/%.o: rel/d/a/npc/d_a_npc_soldierB/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M366_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_soldierB/libs/Runtime.PPCEABI.H/Makefile
 

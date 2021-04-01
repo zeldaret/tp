@@ -29,14 +29,15 @@ M471_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map471.map\
 
 $(M471_TARGET): $(M471_O_FILES) $(M471_LIBS)
 	@echo $(M471_LIBS) $(M471_O_FILES) > build/M471_ofiles
-	$(LD) -partial $(M471_LDFLAGS) -o $(M471_TARGET) @build/M471_ofiles
+	$(LD) -opt_partial $(M471_LDFLAGS) -o $(M471_TARGET) @build/M471_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_ftr/%.o: rel/d/a/obj/d_a_obj_hakai_ftr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M471_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

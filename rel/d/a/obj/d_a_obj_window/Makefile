@@ -29,14 +29,15 @@ M689_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map689.map\
 
 $(M689_TARGET): $(M689_O_FILES) $(M689_LIBS)
 	@echo $(M689_LIBS) $(M689_O_FILES) > build/M689_ofiles
-	$(LD) -partial $(M689_LDFLAGS) -o $(M689_TARGET) @build/M689_ofiles
+	$(LD) -opt_partial $(M689_LDFLAGS) -o $(M689_TARGET) @build/M689_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/%.o: rel/d/a/obj/d_a_obj_window/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M689_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

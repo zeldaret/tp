@@ -31,14 +31,15 @@ M678_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map678.map\
 
 $(M678_TARGET): $(M678_O_FILES) $(M678_LIBS)
 	@echo $(M678_LIBS) $(M678_O_FILES) > build/M678_ofiles
-	$(LD) -partial $(M678_LDFLAGS) -o $(M678_TARGET) @build/M678_ofiles
+	$(LD) -opt_partial $(M678_LDFLAGS) -o $(M678_TARGET) @build/M678_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/%.o: rel/d/a/obj/d_a_obj_warp_obrg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M678_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

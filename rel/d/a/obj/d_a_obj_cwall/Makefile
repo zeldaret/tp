@@ -28,15 +28,16 @@ M433_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map433.map\
 
 $(M433_TARGET): $(M433_O_FILES) $(M433_LIBS)
 	@echo $(M433_LIBS) $(M433_O_FILES) > build/M433_ofiles
-	$(LD) -partial $(M433_LDFLAGS) -o $(M433_TARGET) @build/M433_ofiles
+	$(LD) -opt_partial $(M433_LDFLAGS) -o $(M433_TARGET) @build/M433_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/%.o: rel/d/a/obj/d_a_obj_cwall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M433_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_cwall/libs/Runtime.PPCEABI.H/Makefile
 

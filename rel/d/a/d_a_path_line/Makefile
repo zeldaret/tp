@@ -29,14 +29,15 @@ M23_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map23.map\
 
 $(M23_TARGET): $(M23_O_FILES) $(M23_LIBS)
 	@echo $(M23_LIBS) $(M23_O_FILES) > build/M23_ofiles
-	$(LD) -partial $(M23_LDFLAGS) -o $(M23_TARGET) @build/M23_ofiles
+	$(LD) -opt_partial $(M23_LDFLAGS) -o $(M23_TARGET) @build/M23_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_path_line/%.o: rel/d/a/d_a_path_line/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M23_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

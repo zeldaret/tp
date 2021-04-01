@@ -28,15 +28,16 @@ M323_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map323.map\
 
 $(M323_TARGET): $(M323_O_FILES) $(M323_LIBS)
 	@echo $(M323_LIBS) $(M323_O_FILES) > build/M323_ofiles
-	$(LD) -partial $(M323_LDFLAGS) -o $(M323_TARGET) @build/M323_ofiles
+	$(LD) -opt_partial $(M323_LDFLAGS) -o $(M323_TARGET) @build/M323_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/%.o: rel/d/a/npc/d_a_npc_kasi_hana/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M323_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_kasi_hana/libs/Runtime.PPCEABI.H/Makefile
 

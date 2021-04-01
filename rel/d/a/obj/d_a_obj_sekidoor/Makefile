@@ -28,15 +28,16 @@ M616_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map616.map\
 
 $(M616_TARGET): $(M616_O_FILES) $(M616_LIBS)
 	@echo $(M616_LIBS) $(M616_O_FILES) > build/M616_ofiles
-	$(LD) -partial $(M616_LDFLAGS) -o $(M616_TARGET) @build/M616_ofiles
+	$(LD) -opt_partial $(M616_LDFLAGS) -o $(M616_TARGET) @build/M616_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/%.o: rel/d/a/obj/d_a_obj_sekidoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M616_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_sekidoor/libs/Runtime.PPCEABI.H/Makefile
 

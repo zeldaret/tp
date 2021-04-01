@@ -28,15 +28,16 @@ M477_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map477.map\
 
 $(M477_TARGET): $(M477_O_FILES) $(M477_LIBS)
 	@echo $(M477_LIBS) $(M477_O_FILES) > build/M477_ofiles
-	$(LD) -partial $(M477_LDFLAGS) -o $(M477_TARGET) @build/M477_ofiles
+	$(LD) -opt_partial $(M477_LDFLAGS) -o $(M477_TARGET) @build/M477_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/%.o: rel/d/a/obj/d_a_obj_hfuta/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M477_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_hfuta/libs/Runtime.PPCEABI.H/Makefile
 

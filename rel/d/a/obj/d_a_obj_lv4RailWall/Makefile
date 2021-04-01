@@ -31,14 +31,15 @@ M529_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map529.map\
 
 $(M529_TARGET): $(M529_O_FILES) $(M529_LIBS)
 	@echo $(M529_LIBS) $(M529_O_FILES) > build/M529_ofiles
-	$(LD) -partial $(M529_LDFLAGS) -o $(M529_TARGET) @build/M529_ofiles
+	$(LD) -opt_partial $(M529_LDFLAGS) -o $(M529_TARGET) @build/M529_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/%.o: rel/d/a/obj/d_a_obj_lv4RailWall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M529_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

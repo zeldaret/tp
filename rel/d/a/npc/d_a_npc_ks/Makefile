@@ -28,15 +28,16 @@ M330_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map330.map\
 
 $(M330_TARGET): $(M330_O_FILES) $(M330_LIBS)
 	@echo $(M330_LIBS) $(M330_O_FILES) > build/M330_ofiles
-	$(LD) -partial $(M330_LDFLAGS) -o $(M330_TARGET) @build/M330_ofiles
+	$(LD) -opt_partial $(M330_LDFLAGS) -o $(M330_TARGET) @build/M330_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/%.o: rel/d/a/npc/d_a_npc_ks/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M330_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_ks/libs/Runtime.PPCEABI.H/Makefile
 

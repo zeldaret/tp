@@ -29,14 +29,15 @@ M704_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map704.map\
 
 $(M704_TARGET): $(M704_O_FILES) $(M704_LIBS)
 	@echo $(M704_LIBS) $(M704_O_FILES) > build/M704_ofiles
-	$(LD) -partial $(M704_LDFLAGS) -o $(M704_TARGET) @build/M704_ofiles
+	$(LD) -opt_partial $(M704_LDFLAGS) -o $(M704_TARGET) @build/M704_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ppolamp/%.o: rel/d/a/d_a_ppolamp/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M704_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

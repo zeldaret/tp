@@ -28,15 +28,16 @@ M161_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map161.map\
 
 $(M161_TARGET): $(M161_O_FILES) $(M161_LIBS)
 	@echo $(M161_LIBS) $(M161_O_FILES) > build/M161_ofiles
-	$(LD) -partial $(M161_LDFLAGS) -o $(M161_TARGET) @build/M161_ofiles
+	$(LD) -opt_partial $(M161_LDFLAGS) -o $(M161_TARGET) @build/M161_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_coach_2D/%.o: rel/d/a/d_a_coach_2D/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M161_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_coach_2D/libs/Runtime.PPCEABI.H/Makefile
 

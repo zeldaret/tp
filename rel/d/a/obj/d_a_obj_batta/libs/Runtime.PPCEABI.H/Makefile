@@ -19,7 +19,6 @@ M403LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/libRuntime.PPCEABI.H.a: $(M403LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M403LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M403LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M403LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/libRuntime.PPCEABI.H.a @build/M403LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_batta/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

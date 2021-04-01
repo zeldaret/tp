@@ -28,15 +28,16 @@ M334_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map334.map\
 
 $(M334_TARGET): $(M334_O_FILES) $(M334_LIBS)
 	@echo $(M334_LIBS) $(M334_O_FILES) > build/M334_ofiles
-	$(LD) -partial $(M334_LDFLAGS) -o $(M334_TARGET) @build/M334_ofiles
+	$(LD) -opt_partial $(M334_LDFLAGS) -o $(M334_TARGET) @build/M334_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/%.o: rel/d/a/npc/d_a_npc_lud/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M334_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_lud/libs/Runtime.PPCEABI.H/Makefile
 

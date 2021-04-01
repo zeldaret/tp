@@ -28,15 +28,16 @@ M313_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map313.map\
 
 $(M313_TARGET): $(M313_O_FILES) $(M313_LIBS)
 	@echo $(M313_LIBS) $(M313_O_FILES) > build/M313_ofiles
-	$(LD) -partial $(M313_LDFLAGS) -o $(M313_TARGET) @build/M313_ofiles
+	$(LD) -opt_partial $(M313_LDFLAGS) -o $(M313_TARGET) @build/M313_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grz/%.o: rel/d/a/npc/d_a_npc_grz/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M313_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_grz/libs/Runtime.PPCEABI.H/Makefile
 

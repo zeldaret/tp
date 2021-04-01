@@ -28,15 +28,16 @@ M20_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map20.map\
 
 $(M20_TARGET): $(M20_O_FILES) $(M20_LIBS)
 	@echo $(M20_LIBS) $(M20_O_FILES) > build/M20_ofiles
-	$(LD) -partial $(M20_LDFLAGS) -o $(M20_TARGET) @build/M20_ofiles
+	$(LD) -opt_partial $(M20_LDFLAGS) -o $(M20_TARGET) @build/M20_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/%.o: rel/d/a/obj/d_a_obj_movebox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M20_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_movebox/libs/Runtime.PPCEABI.H/Makefile
 

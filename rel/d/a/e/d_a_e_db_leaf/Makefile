@@ -29,14 +29,15 @@ M183_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map183.map\
 
 $(M183_TARGET): $(M183_O_FILES) $(M183_LIBS)
 	@echo $(M183_LIBS) $(M183_O_FILES) > build/M183_ofiles
-	$(LD) -partial $(M183_LDFLAGS) -o $(M183_TARGET) @build/M183_ofiles
+	$(LD) -opt_partial $(M183_LDFLAGS) -o $(M183_TARGET) @build/M183_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/%.o: rel/d/a/e/d_a_e_db_leaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M183_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

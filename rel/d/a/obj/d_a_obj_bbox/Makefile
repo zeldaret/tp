@@ -29,14 +29,15 @@ M404_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map404.map\
 
 $(M404_TARGET): $(M404_O_FILES) $(M404_LIBS)
 	@echo $(M404_LIBS) $(M404_O_FILES) > build/M404_ofiles
-	$(LD) -partial $(M404_LDFLAGS) -o $(M404_TARGET) @build/M404_ofiles
+	$(LD) -opt_partial $(M404_LDFLAGS) -o $(M404_TARGET) @build/M404_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bbox/%.o: rel/d/a/obj/d_a_obj_bbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M404_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

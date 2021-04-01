@@ -29,14 +29,15 @@ M492_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map492.map\
 
 $(M492_TARGET): $(M492_O_FILES) $(M492_LIBS)
 	@echo $(M492_LIBS) $(M492_O_FILES) > build/M492_ofiles
-	$(LD) -partial $(M492_LDFLAGS) -o $(M492_TARGET) @build/M492_ofiles
+	$(LD) -opt_partial $(M492_LDFLAGS) -o $(M492_TARGET) @build/M492_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/%.o: rel/d/a/obj/d_a_obj_kaisou/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M492_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

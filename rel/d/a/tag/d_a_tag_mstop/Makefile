@@ -29,14 +29,15 @@ M131_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map131.map\
 
 $(M131_TARGET): $(M131_O_FILES) $(M131_LIBS)
 	@echo $(M131_LIBS) $(M131_O_FILES) > build/M131_ofiles
-	$(LD) -partial $(M131_LDFLAGS) -o $(M131_TARGET) @build/M131_ofiles
+	$(LD) -opt_partial $(M131_LDFLAGS) -o $(M131_TARGET) @build/M131_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/%.o: rel/d/a/tag/d_a_tag_mstop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M131_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

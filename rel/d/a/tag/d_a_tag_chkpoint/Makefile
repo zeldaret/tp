@@ -29,14 +29,15 @@ M29_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map29.map\
 
 $(M29_TARGET): $(M29_O_FILES) $(M29_LIBS)
 	@echo $(M29_LIBS) $(M29_O_FILES) > build/M29_ofiles
-	$(LD) -partial $(M29_LDFLAGS) -o $(M29_TARGET) @build/M29_ofiles
+	$(LD) -opt_partial $(M29_LDFLAGS) -o $(M29_TARGET) @build/M29_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/%.o: rel/d/a/tag/d_a_tag_chkpoint/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M29_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M749_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map749.map\
 
 $(M749_TARGET): $(M749_O_FILES) $(M749_LIBS)
 	@echo $(M749_LIBS) $(M749_O_FILES) > build/M749_ofiles
-	$(LD) -partial $(M749_LDFLAGS) -o $(M749_TARGET) @build/M749_ofiles
+	$(LD) -opt_partial $(M749_LDFLAGS) -o $(M749_TARGET) @build/M749_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/%.o: rel/d/a/tag/d_a_tag_wara_howl/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M749_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

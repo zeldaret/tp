@@ -28,15 +28,16 @@ M241_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map241.map\
 
 $(M241_TARGET): $(M241_O_FILES) $(M241_LIBS)
 	@echo $(M241_LIBS) $(M241_O_FILES) > build/M241_ofiles
-	$(LD) -partial $(M241_LDFLAGS) -o $(M241_TARGET) @build/M241_ofiles
+	$(LD) -opt_partial $(M241_LDFLAGS) -o $(M241_TARGET) @build/M241_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_tt/%.o: rel/d/a/e/d_a_e_tt/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M241_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_tt/libs/Runtime.PPCEABI.H/Makefile
 

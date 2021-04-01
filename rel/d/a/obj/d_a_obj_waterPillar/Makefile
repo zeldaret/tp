@@ -28,15 +28,16 @@ M680_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map680.map\
 
 $(M680_TARGET): $(M680_O_FILES) $(M680_LIBS)
 	@echo $(M680_LIBS) $(M680_O_FILES) > build/M680_ofiles
-	$(LD) -partial $(M680_LDFLAGS) -o $(M680_TARGET) @build/M680_ofiles
+	$(LD) -opt_partial $(M680_LDFLAGS) -o $(M680_TARGET) @build/M680_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterPillar/%.o: rel/d/a/obj/d_a_obj_waterPillar/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M680_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_waterPillar/libs/Runtime.PPCEABI.H/Makefile
 

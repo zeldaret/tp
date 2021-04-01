@@ -28,15 +28,16 @@ M601_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map601.map\
 
 $(M601_TARGET): $(M601_O_FILES) $(M601_LIBS)
 	@echo $(M601_LIBS) $(M601_O_FILES) > build/M601_ofiles
-	$(LD) -partial $(M601_LDFLAGS) -o $(M601_TARGET) @build/M601_ofiles
+	$(LD) -opt_partial $(M601_LDFLAGS) -o $(M601_TARGET) @build/M601_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/%.o: rel/d/a/obj/d_a_obj_rfHole/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M601_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_rfHole/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M634_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map634.map\
 
 $(M634_TARGET): $(M634_O_FILES) $(M634_LIBS)
 	@echo $(M634_LIBS) $(M634_O_FILES) > build/M634_ofiles
-	$(LD) -partial $(M634_LDFLAGS) -o $(M634_TARGET) @build/M634_ofiles
+	$(LD) -opt_partial $(M634_LDFLAGS) -o $(M634_TARGET) @build/M634_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/%.o: rel/d/a/obj/d_a_obj_stopper/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M634_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_stopper/libs/Runtime.PPCEABI.H/Makefile
 

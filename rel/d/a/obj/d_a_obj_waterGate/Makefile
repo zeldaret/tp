@@ -28,15 +28,16 @@ M679_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map679.map\
 
 $(M679_TARGET): $(M679_O_FILES) $(M679_LIBS)
 	@echo $(M679_LIBS) $(M679_O_FILES) > build/M679_ofiles
-	$(LD) -partial $(M679_LDFLAGS) -o $(M679_TARGET) @build/M679_ofiles
+	$(LD) -opt_partial $(M679_LDFLAGS) -o $(M679_TARGET) @build/M679_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterGate/%.o: rel/d/a/obj/d_a_obj_waterGate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M679_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_waterGate/libs/Runtime.PPCEABI.H/Makefile
 

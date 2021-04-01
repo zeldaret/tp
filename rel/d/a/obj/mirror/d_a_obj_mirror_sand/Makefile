@@ -29,14 +29,15 @@ M574_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map574.map\
 
 $(M574_TARGET): $(M574_O_FILES) $(M574_LIBS)
 	@echo $(M574_LIBS) $(M574_O_FILES) > build/M574_ofiles
-	$(LD) -partial $(M574_LDFLAGS) -o $(M574_TARGET) @build/M574_ofiles
+	$(LD) -opt_partial $(M574_LDFLAGS) -o $(M574_TARGET) @build/M574_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_sand/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M574_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

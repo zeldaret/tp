@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* JASDRIVERIF_H */

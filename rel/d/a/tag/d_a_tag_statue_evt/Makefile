@@ -31,14 +31,15 @@ M133_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map133.map\
 
 $(M133_TARGET): $(M133_O_FILES) $(M133_LIBS)
 	@echo $(M133_LIBS) $(M133_O_FILES) > build/M133_ofiles
-	$(LD) -partial $(M133_LDFLAGS) -o $(M133_TARGET) @build/M133_ofiles
+	$(LD) -opt_partial $(M133_LDFLAGS) -o $(M133_TARGET) @build/M133_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/%.o: rel/d/a/tag/d_a_tag_statue_evt/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M133_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

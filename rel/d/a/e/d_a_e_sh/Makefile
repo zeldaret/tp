@@ -28,15 +28,16 @@ M230_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map230.map\
 
 $(M230_TARGET): $(M230_O_FILES) $(M230_LIBS)
 	@echo $(M230_LIBS) $(M230_O_FILES) > build/M230_ofiles
-	$(LD) -partial $(M230_LDFLAGS) -o $(M230_TARGET) @build/M230_ofiles
+	$(LD) -opt_partial $(M230_LDFLAGS) -o $(M230_TARGET) @build/M230_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_sh/%.o: rel/d/a/e/d_a_e_sh/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M230_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_sh/libs/Runtime.PPCEABI.H/Makefile
 

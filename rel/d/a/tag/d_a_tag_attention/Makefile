@@ -29,14 +29,15 @@ M57_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map57.map\
 
 $(M57_TARGET): $(M57_O_FILES) $(M57_LIBS)
 	@echo $(M57_LIBS) $(M57_O_FILES) > build/M57_ofiles
-	$(LD) -partial $(M57_LDFLAGS) -o $(M57_TARGET) @build/M57_ofiles
+	$(LD) -opt_partial $(M57_LDFLAGS) -o $(M57_TARGET) @build/M57_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/%.o: rel/d/a/tag/d_a_tag_attention/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M57_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

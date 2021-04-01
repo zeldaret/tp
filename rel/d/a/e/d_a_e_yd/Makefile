@@ -28,15 +28,16 @@ M248_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map248.map\
 
 $(M248_TARGET): $(M248_O_FILES) $(M248_LIBS)
 	@echo $(M248_LIBS) $(M248_O_FILES) > build/M248_ofiles
-	$(LD) -partial $(M248_LDFLAGS) -o $(M248_TARGET) @build/M248_ofiles
+	$(LD) -opt_partial $(M248_LDFLAGS) -o $(M248_TARGET) @build/M248_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yd/%.o: rel/d/a/e/d_a_e_yd/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M248_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_yd/libs/Runtime.PPCEABI.H/Makefile
 

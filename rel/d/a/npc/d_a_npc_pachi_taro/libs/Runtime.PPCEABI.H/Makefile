@@ -19,7 +19,6 @@ M344LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/libRuntime.PPCEABI.H.a: $(M344LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M344LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M344LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M344LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/libRuntime.PPCEABI.H.a @build/M344LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_pachi_taro/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

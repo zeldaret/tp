@@ -28,15 +28,16 @@ M594_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map594.map\
 
 $(M594_TARGET): $(M594_O_FILES) $(M594_LIBS)
 	@echo $(M594_LIBS) $(M594_O_FILES) > build/M594_ofiles
-	$(LD) -partial $(M594_LDFLAGS) -o $(M594_TARGET) @build/M594_ofiles
+	$(LD) -opt_partial $(M594_LDFLAGS) -o $(M594_TARGET) @build/M594_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pleaf/%.o: rel/d/a/obj/d_a_obj_pleaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M594_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_pleaf/libs/Runtime.PPCEABI.H/Makefile
 

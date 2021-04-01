@@ -29,14 +29,15 @@ M95_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map95.map\
 
 $(M95_TARGET): $(M95_O_FILES) $(M95_LIBS)
 	@echo $(M95_LIBS) $(M95_O_FILES) > build/M95_ofiles
-	$(LD) -partial $(M95_LDFLAGS) -o $(M95_TARGET) @build/M95_ofiles
+	$(LD) -opt_partial $(M95_LDFLAGS) -o $(M95_TARGET) @build/M95_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/%.o: rel/d/a/obj/d_a_obj_fmobj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M95_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

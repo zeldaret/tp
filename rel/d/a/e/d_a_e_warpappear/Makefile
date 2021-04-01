@@ -29,14 +29,15 @@ M243_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map243.map\
 
 $(M243_TARGET): $(M243_O_FILES) $(M243_LIBS)
 	@echo $(M243_LIBS) $(M243_O_FILES) > build/M243_ofiles
-	$(LD) -partial $(M243_LDFLAGS) -o $(M243_TARGET) @build/M243_ofiles
+	$(LD) -opt_partial $(M243_LDFLAGS) -o $(M243_TARGET) @build/M243_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/%.o: rel/d/a/e/d_a_e_warpappear/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M243_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

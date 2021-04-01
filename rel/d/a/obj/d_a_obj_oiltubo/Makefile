@@ -29,14 +29,15 @@ M585_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map585.map\
 
 $(M585_TARGET): $(M585_O_FILES) $(M585_LIBS)
 	@echo $(M585_LIBS) $(M585_O_FILES) > build/M585_ofiles
-	$(LD) -partial $(M585_LDFLAGS) -o $(M585_TARGET) @build/M585_ofiles
+	$(LD) -opt_partial $(M585_LDFLAGS) -o $(M585_TARGET) @build/M585_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/%.o: rel/d/a/obj/d_a_obj_oiltubo/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M585_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M28_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map28.map\
 
 $(M28_TARGET): $(M28_O_FILES) $(M28_LIBS)
 	@echo $(M28_LIBS) $(M28_O_FILES) > build/M28_ofiles
-	$(LD) -partial $(M28_LDFLAGS) -o $(M28_TARGET) @build/M28_ofiles
+	$(LD) -opt_partial $(M28_LDFLAGS) -o $(M28_TARGET) @build/M28_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/%.o: rel/d/a/tag/d_a_tag_camera/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M28_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

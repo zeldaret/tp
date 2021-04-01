@@ -29,14 +29,15 @@ M708_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map708.map\
 
 $(M708_TARGET): $(M708_O_FILES) $(M708_LIBS)
 	@echo $(M708_LIBS) $(M708_O_FILES) > build/M708_ofiles
-	$(LD) -partial $(M708_LDFLAGS) -o $(M708_TARGET) @build/M708_ofiles
+	$(LD) -opt_partial $(M708_LDFLAGS) -o $(M708_TARGET) @build/M708_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swLBall/%.o: rel/d/a/d_a_swLBall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M708_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

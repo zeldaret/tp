@@ -29,14 +29,15 @@ M276_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map276.map\
 
 $(M276_TARGET): $(M276_O_FILES) $(M276_LIBS)
 	@echo $(M276_LIBS) $(M276_O_FILES) > build/M276_ofiles
-	$(LD) -partial $(M276_LDFLAGS) -o $(M276_TARGET) @build/M276_ofiles
+	$(LD) -opt_partial $(M276_LDFLAGS) -o $(M276_TARGET) @build/M276_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag16/%.o: rel/d/a/kytag/d_a_kytag16/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M276_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

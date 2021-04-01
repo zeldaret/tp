@@ -29,14 +29,15 @@ M40_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map40.map\
 
 $(M40_TARGET): $(M40_O_FILES) $(M40_LIBS)
 	@echo $(M40_LIBS) $(M40_O_FILES) > build/M40_ofiles
-	$(LD) -partial $(M40_LDFLAGS) -o $(M40_TARGET) @build/M40_ofiles
+	$(LD) -opt_partial $(M40_LDFLAGS) -o $(M40_TARGET) @build/M40_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/%.o: rel/d/a/tag/d_a_tag_telop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M40_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M413_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map413.map\
 
 $(M413_TARGET): $(M413_O_FILES) $(M413_LIBS)
 	@echo $(M413_LIBS) $(M413_O_FILES) > build/M413_ofiles
-	$(LD) -partial $(M413_LDFLAGS) -o $(M413_TARGET) @build/M413_ofiles
+	$(LD) -opt_partial $(M413_LDFLAGS) -o $(M413_TARGET) @build/M413_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/%.o: rel/d/a/obj/d_a_obj_boumato/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M413_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_boumato/libs/Runtime.PPCEABI.H/Makefile
 

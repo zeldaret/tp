@@ -28,15 +28,16 @@ M86_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map86.map\
 
 $(M86_TARGET): $(M86_O_FILES) $(M86_LIBS)
 	@echo $(M86_LIBS) $(M86_O_FILES) > build/M86_ofiles
-	$(LD) -partial $(M86_LDFLAGS) -o $(M86_TARGET) @build/M86_ofiles
+	$(LD) -opt_partial $(M86_LDFLAGS) -o $(M86_TARGET) @build/M86_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/%.o: rel/d/a/npc/d_a_npc_maro/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M86_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_maro/libs/Runtime.PPCEABI.H/Makefile
 

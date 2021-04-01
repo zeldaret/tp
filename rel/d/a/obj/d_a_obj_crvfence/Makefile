@@ -29,14 +29,15 @@ M426_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map426.map\
 
 $(M426_TARGET): $(M426_O_FILES) $(M426_LIBS)
 	@echo $(M426_LIBS) $(M426_O_FILES) > build/M426_ofiles
-	$(LD) -partial $(M426_LDFLAGS) -o $(M426_TARGET) @build/M426_ofiles
+	$(LD) -opt_partial $(M426_LDFLAGS) -o $(M426_TARGET) @build/M426_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.o: rel/d/a/obj/d_a_obj_crvfence/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

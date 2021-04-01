@@ -31,14 +31,15 @@ M71_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map71.map\
 
 $(M71_TARGET): $(M71_O_FILES) $(M71_LIBS)
 	@echo $(M71_LIBS) $(M71_O_FILES) > build/M71_ofiles
-	$(LD) -partial $(M71_LDFLAGS) -o $(M71_TARGET) @build/M71_ofiles
+	$(LD) -opt_partial $(M71_LDFLAGS) -o $(M71_TARGET) @build/M71_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_econt/%.o: rel/d/a/d_a_econt/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M71_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

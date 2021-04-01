@@ -28,15 +28,16 @@ M527_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map527.map\
 
 $(M527_TARGET): $(M527_O_FILES) $(M527_LIBS)
 	@echo $(M527_LIBS) $(M527_O_FILES) > build/M527_ofiles
-	$(LD) -partial $(M527_LDFLAGS) -o $(M527_TARGET) @build/M527_ofiles
+	$(LD) -opt_partial $(M527_LDFLAGS) -o $(M527_TARGET) @build/M527_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4HsTarget/%.o: rel/d/a/obj/d_a_obj_lv4HsTarget/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M527_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv4HsTarget/libs/Runtime.PPCEABI.H/Makefile
 

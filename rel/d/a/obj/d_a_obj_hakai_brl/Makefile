@@ -29,14 +29,15 @@ M470_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map470.map\
 
 $(M470_TARGET): $(M470_O_FILES) $(M470_LIBS)
 	@echo $(M470_LIBS) $(M470_O_FILES) > build/M470_ofiles
-	$(LD) -partial $(M470_LDFLAGS) -o $(M470_TARGET) @build/M470_ofiles
+	$(LD) -opt_partial $(M470_LDFLAGS) -o $(M470_TARGET) @build/M470_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/%.o: rel/d/a/obj/d_a_obj_hakai_brl/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M470_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

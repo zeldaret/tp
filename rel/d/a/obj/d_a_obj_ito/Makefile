@@ -28,15 +28,16 @@ M19_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map19.map\
 
 $(M19_TARGET): $(M19_O_FILES) $(M19_LIBS)
 	@echo $(M19_LIBS) $(M19_O_FILES) > build/M19_ofiles
-	$(LD) -partial $(M19_LDFLAGS) -o $(M19_TARGET) @build/M19_ofiles
+	$(LD) -opt_partial $(M19_LDFLAGS) -o $(M19_TARGET) @build/M19_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ito/%.o: rel/d/a/obj/d_a_obj_ito/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M19_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_ito/libs/Runtime.PPCEABI.H/Makefile
 

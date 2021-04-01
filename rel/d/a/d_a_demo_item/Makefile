@@ -28,15 +28,16 @@ M63_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map63.map\
 
 $(M63_TARGET): $(M63_O_FILES) $(M63_LIBS)
 	@echo $(M63_LIBS) $(M63_O_FILES) > build/M63_ofiles
-	$(LD) -partial $(M63_LDFLAGS) -o $(M63_TARGET) @build/M63_ofiles
+	$(LD) -opt_partial $(M63_LDFLAGS) -o $(M63_TARGET) @build/M63_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_demo_item/%.o: rel/d/a/d_a_demo_item/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M63_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_demo_item/libs/Runtime.PPCEABI.H/Makefile
 

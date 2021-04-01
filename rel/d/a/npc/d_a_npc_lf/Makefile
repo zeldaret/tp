@@ -28,15 +28,16 @@ M333_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map333.map\
 
 $(M333_TARGET): $(M333_O_FILES) $(M333_LIBS)
 	@echo $(M333_LIBS) $(M333_O_FILES) > build/M333_ofiles
-	$(LD) -partial $(M333_LDFLAGS) -o $(M333_TARGET) @build/M333_ofiles
+	$(LD) -opt_partial $(M333_LDFLAGS) -o $(M333_TARGET) @build/M333_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/%.o: rel/d/a/npc/d_a_npc_lf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M333_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_lf/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M752_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map752.map\
 
 $(M752_TARGET): $(M752_O_FILES) $(M752_LIBS)
 	@echo $(M752_LIBS) $(M752_O_FILES) > build/M752_ofiles
-	$(LD) -partial $(M752_LDFLAGS) -o $(M752_TARGET) @build/M752_ofiles
+	$(LD) -opt_partial $(M752_LDFLAGS) -o $(M752_TARGET) @build/M752_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/%.o: rel/d/a/tag/d_a_tag_wljump/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M752_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M670_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map670.map\
 
 $(M670_TARGET): $(M670_O_FILES) $(M670_LIBS)
 	@echo $(M670_LIBS) $(M670_O_FILES) > build/M670_ofiles
-	$(LD) -partial $(M670_LDFLAGS) -o $(M670_TARGET) @build/M670_ofiles
+	$(LD) -opt_partial $(M670_LDFLAGS) -o $(M670_TARGET) @build/M670_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/%.o: rel/d/a/obj/d_a_obj_treesh/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M670_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_treesh/libs/Runtime.PPCEABI.H/Makefile
 

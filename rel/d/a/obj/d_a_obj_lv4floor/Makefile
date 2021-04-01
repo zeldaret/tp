@@ -31,14 +31,15 @@ M534_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map534.map\
 
 $(M534_TARGET): $(M534_O_FILES) $(M534_LIBS)
 	@echo $(M534_LIBS) $(M534_O_FILES) > build/M534_ofiles
-	$(LD) -partial $(M534_LDFLAGS) -o $(M534_TARGET) @build/M534_ofiles
+	$(LD) -opt_partial $(M534_LDFLAGS) -o $(M534_TARGET) @build/M534_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/%.o: rel/d/a/obj/d_a_obj_lv4floor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M534_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

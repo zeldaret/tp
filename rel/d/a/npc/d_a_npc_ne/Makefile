@@ -28,15 +28,16 @@ M340_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map340.map\
 
 $(M340_TARGET): $(M340_O_FILES) $(M340_LIBS)
 	@echo $(M340_LIBS) $(M340_O_FILES) > build/M340_ofiles
-	$(LD) -partial $(M340_LDFLAGS) -o $(M340_TARGET) @build/M340_ofiles
+	$(LD) -opt_partial $(M340_LDFLAGS) -o $(M340_TARGET) @build/M340_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/%.o: rel/d/a/npc/d_a_npc_ne/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M340_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_ne/libs/Runtime.PPCEABI.H/Makefile
 

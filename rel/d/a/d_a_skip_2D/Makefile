@@ -29,14 +29,15 @@ M705_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map705.map\
 
 $(M705_TARGET): $(M705_O_FILES) $(M705_LIBS)
 	@echo $(M705_LIBS) $(M705_O_FILES) > build/M705_ofiles
-	$(LD) -partial $(M705_LDFLAGS) -o $(M705_TARGET) @build/M705_ofiles
+	$(LD) -opt_partial $(M705_LDFLAGS) -o $(M705_TARGET) @build/M705_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_skip_2D/%.o: rel/d/a/d_a_skip_2D/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M705_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

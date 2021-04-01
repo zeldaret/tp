@@ -28,15 +28,16 @@ M550_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map550.map\
 
 $(M550_TARGET): $(M550_O_FILES) $(M550_LIBS)
 	@echo $(M550_LIBS) $(M550_O_FILES) > build/M550_ofiles
-	$(LD) -partial $(M550_LDFLAGS) -o $(M550_TARGET) @build/M550_ofiles
+	$(LD) -opt_partial $(M550_LDFLAGS) -o $(M550_TARGET) @build/M550_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.o: rel/d/a/obj/d_a_obj_lv6TogeRoll/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M550_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv6TogeRoll/libs/Runtime.PPCEABI.H/Makefile
 

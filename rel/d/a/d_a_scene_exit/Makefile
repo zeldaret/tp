@@ -29,14 +29,15 @@ M24_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map24.map\
 
 $(M24_TARGET): $(M24_O_FILES) $(M24_LIBS)
 	@echo $(M24_LIBS) $(M24_O_FILES) > build/M24_ofiles
-	$(LD) -partial $(M24_LDFLAGS) -o $(M24_TARGET) @build/M24_ofiles
+	$(LD) -opt_partial $(M24_LDFLAGS) -o $(M24_TARGET) @build/M24_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_scene_exit/%.o: rel/d/a/d_a_scene_exit/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M24_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

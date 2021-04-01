@@ -29,14 +29,15 @@ M536_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map536.map\
 
 $(M536_TARGET): $(M536_O_FILES) $(M536_LIBS)
 	@echo $(M536_LIBS) $(M536_O_FILES) > build/M536_ofiles
-	$(LD) -partial $(M536_LDFLAGS) -o $(M536_TARGET) @build/M536_ofiles
+	$(LD) -opt_partial $(M536_LDFLAGS) -o $(M536_TARGET) @build/M536_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.o: rel/d/a/obj/d_a_obj_lv4prelvtr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

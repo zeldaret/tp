@@ -31,14 +31,15 @@ M494_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map494.map\
 
 $(M494_TARGET): $(M494_O_FILES) $(M494_LIBS)
 	@echo $(M494_LIBS) $(M494_O_FILES) > build/M494_ofiles
-	$(LD) -partial $(M494_LDFLAGS) -o $(M494_TARGET) @build/M494_ofiles
+	$(LD) -opt_partial $(M494_LDFLAGS) -o $(M494_TARGET) @build/M494_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/%.o: rel/d/a/obj/d_a_obj_kantera/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M494_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

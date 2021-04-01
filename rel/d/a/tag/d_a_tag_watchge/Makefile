@@ -29,14 +29,15 @@ M750_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map750.map\
 
 $(M750_TARGET): $(M750_O_FILES) $(M750_LIBS)
 	@echo $(M750_LIBS) $(M750_O_FILES) > build/M750_ofiles
-	$(LD) -partial $(M750_LDFLAGS) -o $(M750_TARGET) @build/M750_ofiles
+	$(LD) -opt_partial $(M750_LDFLAGS) -o $(M750_TARGET) @build/M750_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/%.o: rel/d/a/tag/d_a_tag_watchge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M750_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

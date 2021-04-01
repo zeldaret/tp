@@ -28,15 +28,16 @@ M138_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map138.map\
 
 $(M138_TARGET): $(M138_O_FILES) $(M138_LIBS)
 	@echo $(M138_LIBS) $(M138_O_FILES) > build/M138_ofiles
-	$(LD) -partial $(M138_LDFLAGS) -o $(M138_TARGET) @build/M138_ofiles
+	$(LD) -opt_partial $(M138_LDFLAGS) -o $(M138_TARGET) @build/M138_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_bh/%.o: rel/d/a/b/d_a_b_bh/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M138_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_bh/libs/Runtime.PPCEABI.H/Makefile
 

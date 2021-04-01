@@ -28,15 +28,16 @@ M546_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map546.map\
 
 $(M546_TARGET): $(M546_O_FILES) $(M546_LIBS)
 	@echo $(M546_LIBS) $(M546_O_FILES) > build/M546_ofiles
-	$(LD) -partial $(M546_LDFLAGS) -o $(M546_TARGET) @build/M546_ofiles
+	$(LD) -opt_partial $(M546_LDFLAGS) -o $(M546_TARGET) @build/M546_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.o: rel/d/a/obj/d_a_obj_lv6Lblock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv6Lblock/libs/Runtime.PPCEABI.H/Makefile
 

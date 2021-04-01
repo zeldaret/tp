@@ -29,14 +29,15 @@ M363_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map363.map\
 
 $(M363_TARGET): $(M363_O_FILES) $(M363_LIBS)
 	@echo $(M363_LIBS) $(M363_O_FILES) > build/M363_ofiles
-	$(LD) -partial $(M363_LDFLAGS) -o $(M363_TARGET) @build/M363_ofiles
+	$(LD) -opt_partial $(M363_LDFLAGS) -o $(M363_TARGET) @build/M363_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.o: rel/d/a/npc/d_a_npc_shop_maro/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

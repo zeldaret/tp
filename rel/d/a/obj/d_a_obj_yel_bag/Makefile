@@ -28,15 +28,16 @@ M693_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map693.map\
 
 $(M693_TARGET): $(M693_O_FILES) $(M693_LIBS)
 	@echo $(M693_LIBS) $(M693_O_FILES) > build/M693_ofiles
-	$(LD) -partial $(M693_LDFLAGS) -o $(M693_TARGET) @build/M693_ofiles
+	$(LD) -opt_partial $(M693_LDFLAGS) -o $(M693_TARGET) @build/M693_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/%.o: rel/d/a/obj/d_a_obj_yel_bag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M693_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_yel_bag/libs/Runtime.PPCEABI.H/Makefile
 

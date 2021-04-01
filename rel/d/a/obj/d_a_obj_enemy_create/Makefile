@@ -29,14 +29,15 @@ M441_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map441.map\
 
 $(M441_TARGET): $(M441_O_FILES) $(M441_LIBS)
 	@echo $(M441_LIBS) $(M441_O_FILES) > build/M441_ofiles
-	$(LD) -partial $(M441_LDFLAGS) -o $(M441_TARGET) @build/M441_ofiles
+	$(LD) -opt_partial $(M441_LDFLAGS) -o $(M441_TARGET) @build/M441_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/%.o: rel/d/a/obj/d_a_obj_enemy_create/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M441_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M557_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map557.map\
 
 $(M557_TARGET): $(M557_O_FILES) $(M557_LIBS)
 	@echo $(M557_LIBS) $(M557_O_FILES) > build/M557_ofiles
-	$(LD) -partial $(M557_LDFLAGS) -o $(M557_TARGET) @build/M557_ofiles
+	$(LD) -opt_partial $(M557_LDFLAGS) -o $(M557_TARGET) @build/M557_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/%.o: rel/d/a/obj/d_a_obj_lv7BsGate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M557_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv7BsGate/libs/Runtime.PPCEABI.H/Makefile
 

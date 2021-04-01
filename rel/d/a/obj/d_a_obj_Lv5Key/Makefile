@@ -29,14 +29,15 @@ M393_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map393.map\
 
 $(M393_TARGET): $(M393_O_FILES) $(M393_LIBS)
 	@echo $(M393_LIBS) $(M393_O_FILES) > build/M393_ofiles
-	$(LD) -partial $(M393_LDFLAGS) -o $(M393_TARGET) @build/M393_ofiles
+	$(LD) -opt_partial $(M393_LDFLAGS) -o $(M393_TARGET) @build/M393_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.o: rel/d/a/obj/d_a_obj_Lv5Key/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M393_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

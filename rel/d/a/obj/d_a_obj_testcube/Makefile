@@ -29,14 +29,15 @@ M655_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map655.map\
 
 $(M655_TARGET): $(M655_O_FILES) $(M655_LIBS)
 	@echo $(M655_LIBS) $(M655_O_FILES) > build/M655_ofiles
-	$(LD) -partial $(M655_LDFLAGS) -o $(M655_TARGET) @build/M655_ofiles
+	$(LD) -opt_partial $(M655_LDFLAGS) -o $(M655_TARGET) @build/M655_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/%.o: rel/d/a/obj/d_a_obj_testcube/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M655_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

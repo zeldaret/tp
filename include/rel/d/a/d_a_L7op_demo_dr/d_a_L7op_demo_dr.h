@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* D_A_L7OP_DEMO_DR_H */

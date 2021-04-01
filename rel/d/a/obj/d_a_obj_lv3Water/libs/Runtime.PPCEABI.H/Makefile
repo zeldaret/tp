@@ -19,7 +19,6 @@ M518LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/libRuntime.PPCEABI.H.a: $(M518LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M518LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M518LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M518LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/libRuntime.PPCEABI.H.a @build/M518LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_lv3Water/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

@@ -31,14 +31,15 @@ M584_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map584.map\
 
 $(M584_TARGET): $(M584_O_FILES) $(M584_LIBS)
 	@echo $(M584_LIBS) $(M584_O_FILES) > build/M584_ofiles
-	$(LD) -partial $(M584_LDFLAGS) -o $(M584_TARGET) @build/M584_ofiles
+	$(LD) -opt_partial $(M584_LDFLAGS) -o $(M584_TARGET) @build/M584_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/%.o: rel/d/a/obj/d_a_obj_octhashi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M584_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M84_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map84.map\
 
 $(M84_TARGET): $(M84_O_FILES) $(M84_LIBS)
 	@echo $(M84_LIBS) $(M84_O_FILES) > build/M84_ofiles
-	$(LD) -partial $(M84_LDFLAGS) -o $(M84_TARGET) @build/M84_ofiles
+	$(LD) -opt_partial $(M84_LDFLAGS) -o $(M84_TARGET) @build/M84_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/%.o: rel/d/a/npc/d_a_npc_kkri/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M84_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_kkri/libs/Runtime.PPCEABI.H/Makefile
 

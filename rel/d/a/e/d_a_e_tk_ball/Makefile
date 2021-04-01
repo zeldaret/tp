@@ -29,14 +29,15 @@ M240_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map240.map\
 
 $(M240_TARGET): $(M240_O_FILES) $(M240_LIBS)
 	@echo $(M240_LIBS) $(M240_O_FILES) > build/M240_ofiles
-	$(LD) -partial $(M240_LDFLAGS) -o $(M240_TARGET) @build/M240_ofiles
+	$(LD) -opt_partial $(M240_LDFLAGS) -o $(M240_TARGET) @build/M240_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/%.o: rel/d/a/e/d_a_e_tk_ball/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M240_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

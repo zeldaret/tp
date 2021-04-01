@@ -29,14 +29,15 @@ M737_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map737.map\
 
 $(M737_TARGET): $(M737_O_FILES) $(M737_LIBS)
 	@echo $(M737_LIBS) $(M737_O_FILES) > build/M737_ofiles
-	$(LD) -partial $(M737_LDFLAGS) -o $(M737_TARGET) @build/M737_ofiles
+	$(LD) -opt_partial $(M737_LDFLAGS) -o $(M737_TARGET) @build/M737_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/%.o: rel/d/a/tag/d_a_tag_rmbit_sw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M737_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

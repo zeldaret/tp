@@ -29,14 +29,15 @@ M409_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map409.map\
 
 $(M409_TARGET): $(M409_O_FILES) $(M409_LIBS)
 	@echo $(M409_LIBS) $(M409_O_FILES) > build/M409_ofiles
-	$(LD) -partial $(M409_LDFLAGS) -o $(M409_TARGET) @build/M409_ofiles
+	$(LD) -opt_partial $(M409_LDFLAGS) -o $(M409_TARGET) @build/M409_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.o: rel/d/a/obj/d_a_obj_bky_rock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

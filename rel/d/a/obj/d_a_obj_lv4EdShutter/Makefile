@@ -28,15 +28,16 @@ M525_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map525.map\
 
 $(M525_TARGET): $(M525_O_FILES) $(M525_LIBS)
 	@echo $(M525_LIBS) $(M525_O_FILES) > build/M525_ofiles
-	$(LD) -partial $(M525_LDFLAGS) -o $(M525_TARGET) @build/M525_ofiles
+	$(LD) -opt_partial $(M525_LDFLAGS) -o $(M525_TARGET) @build/M525_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/%.o: rel/d/a/obj/d_a_obj_lv4EdShutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M525_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv4EdShutter/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M345_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map345.map\
 
 $(M345_TARGET): $(M345_O_FILES) $(M345_LIBS)
 	@echo $(M345_LIBS) $(M345_O_FILES) > build/M345_ofiles
-	$(LD) -partial $(M345_LDFLAGS) -o $(M345_TARGET) @build/M345_ofiles
+	$(LD) -opt_partial $(M345_LDFLAGS) -o $(M345_TARGET) @build/M345_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/%.o: rel/d/a/npc/d_a_npc_passer/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M345_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

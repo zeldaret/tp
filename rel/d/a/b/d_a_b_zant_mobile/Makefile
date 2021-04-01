@@ -28,15 +28,16 @@ M157_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map157.map\
 
 $(M157_TARGET): $(M157_O_FILES) $(M157_LIBS)
 	@echo $(M157_LIBS) $(M157_O_FILES) > build/M157_ofiles
-	$(LD) -partial $(M157_LDFLAGS) -o $(M157_TARGET) @build/M157_ofiles
+	$(LD) -opt_partial $(M157_LDFLAGS) -o $(M157_TARGET) @build/M157_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_mobile/%.o: rel/d/a/b/d_a_b_zant_mobile/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M157_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_zant_mobile/libs/Runtime.PPCEABI.H/Makefile
 

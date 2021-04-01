@@ -19,7 +19,6 @@ M83LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/libRuntime.PPCEABI.H.a: $(M83LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M83LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M83LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M83LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/libRuntime.PPCEABI.H.a @build/M83LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_kakashi/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

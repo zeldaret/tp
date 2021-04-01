@@ -29,14 +29,15 @@ M512_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map512.map\
 
 $(M512_TARGET): $(M512_O_FILES) $(M512_LIBS)
 	@echo $(M512_LIBS) $(M512_O_FILES) > build/M512_ofiles
-	$(LD) -partial $(M512_LDFLAGS) -o $(M512_TARGET) @build/M512_ofiles
+	$(LD) -opt_partial $(M512_LDFLAGS) -o $(M512_TARGET) @build/M512_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/%.o: rel/d/a/obj/d_a_obj_laundry_rope/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M512_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

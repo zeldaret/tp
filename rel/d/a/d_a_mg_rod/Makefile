@@ -28,15 +28,16 @@ M50_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map50.map\
 
 $(M50_TARGET): $(M50_O_FILES) $(M50_LIBS)
 	@echo $(M50_LIBS) $(M50_O_FILES) > build/M50_ofiles
-	$(LD) -partial $(M50_LDFLAGS) -o $(M50_TARGET) @build/M50_ofiles
+	$(LD) -opt_partial $(M50_LDFLAGS) -o $(M50_TARGET) @build/M50_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_rod/%.o: rel/d/a/d_a_mg_rod/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M50_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_mg_rod/libs/Runtime.PPCEABI.H/Makefile
 

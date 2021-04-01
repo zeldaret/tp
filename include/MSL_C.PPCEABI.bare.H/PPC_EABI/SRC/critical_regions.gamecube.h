@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* PPC_EABI_SRC_CRITICAL_REGIONSGAMECUBE_H */

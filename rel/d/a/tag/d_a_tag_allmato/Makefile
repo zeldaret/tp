@@ -29,14 +29,15 @@ M27_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map27.map\
 
 $(M27_TARGET): $(M27_O_FILES) $(M27_LIBS)
 	@echo $(M27_LIBS) $(M27_O_FILES) > build/M27_ofiles
-	$(LD) -partial $(M27_LDFLAGS) -o $(M27_TARGET) @build/M27_ofiles
+	$(LD) -opt_partial $(M27_LDFLAGS) -o $(M27_TARGET) @build/M27_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/%.o: rel/d/a/tag/d_a_tag_allmato/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M27_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

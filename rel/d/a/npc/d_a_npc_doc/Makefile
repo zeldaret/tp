@@ -28,15 +28,16 @@ M298_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map298.map\
 
 $(M298_TARGET): $(M298_O_FILES) $(M298_LIBS)
 	@echo $(M298_LIBS) $(M298_O_FILES) > build/M298_ofiles
-	$(LD) -partial $(M298_LDFLAGS) -o $(M298_TARGET) @build/M298_ofiles
+	$(LD) -opt_partial $(M298_LDFLAGS) -o $(M298_TARGET) @build/M298_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/%.o: rel/d/a/npc/d_a_npc_doc/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M298_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_doc/libs/Runtime.PPCEABI.H/Makefile
 

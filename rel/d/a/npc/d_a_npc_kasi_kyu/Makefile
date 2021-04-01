@@ -28,15 +28,16 @@ M324_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map324.map\
 
 $(M324_TARGET): $(M324_O_FILES) $(M324_LIBS)
 	@echo $(M324_LIBS) $(M324_O_FILES) > build/M324_ofiles
-	$(LD) -partial $(M324_LDFLAGS) -o $(M324_TARGET) @build/M324_ofiles
+	$(LD) -opt_partial $(M324_LDFLAGS) -o $(M324_TARGET) @build/M324_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_kyu/%.o: rel/d/a/npc/d_a_npc_kasi_kyu/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M324_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_kasi_kyu/libs/Runtime.PPCEABI.H/Makefile
 

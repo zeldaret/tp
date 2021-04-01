@@ -28,15 +28,16 @@ M562_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map562.map\
 
 $(M562_TARGET): $(M562_O_FILES) $(M562_LIBS)
 	@echo $(M562_LIBS) $(M562_O_FILES) > build/M562_ofiles
-	$(LD) -partial $(M562_LDFLAGS) -o $(M562_TARGET) @build/M562_ofiles
+	$(LD) -opt_partial $(M562_LDFLAGS) -o $(M562_TARGET) @build/M562_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/%.o: rel/d/a/obj/d_a_obj_lv8OptiLift/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M562_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv8OptiLift/libs/Runtime.PPCEABI.H/Makefile
 

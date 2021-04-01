@@ -29,14 +29,15 @@ M735_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map735.map\
 
 $(M735_TARGET): $(M735_O_FILES) $(M735_LIBS)
 	@echo $(M735_LIBS) $(M735_O_FILES) > build/M735_ofiles
-	$(LD) -partial $(M735_LDFLAGS) -o $(M735_TARGET) @build/M735_ofiles
+	$(LD) -opt_partial $(M735_LDFLAGS) -o $(M735_TARGET) @build/M735_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/%.o: rel/d/a/tag/d_a_tag_ret_room/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M735_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M681_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map681.map\
 
 $(M681_TARGET): $(M681_O_FILES) $(M681_LIBS)
 	@echo $(M681_LIBS) $(M681_O_FILES) > build/M681_ofiles
-	$(LD) -partial $(M681_LDFLAGS) -o $(M681_TARGET) @build/M681_ofiles
+	$(LD) -opt_partial $(M681_LDFLAGS) -o $(M681_TARGET) @build/M681_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.o: rel/d/a/obj/d_a_obj_waterfall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M681_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

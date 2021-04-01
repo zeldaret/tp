@@ -28,15 +28,16 @@ M201_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map201.map\
 
 $(M201_TARGET): $(M201_O_FILES) $(M201_LIBS)
 	@echo $(M201_LIBS) $(M201_O_FILES) > build/M201_ofiles
-	$(LD) -partial $(M201_LDFLAGS) -o $(M201_TARGET) @build/M201_ofiles
+	$(LD) -opt_partial $(M201_LDFLAGS) -o $(M201_TARGET) @build/M201_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hz/%.o: rel/d/a/e/d_a_e_hz/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M201_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_hz/libs/Runtime.PPCEABI.H/Makefile
 

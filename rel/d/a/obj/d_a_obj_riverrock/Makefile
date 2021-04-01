@@ -28,15 +28,16 @@ M603_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map603.map\
 
 $(M603_TARGET): $(M603_O_FILES) $(M603_LIBS)
 	@echo $(M603_LIBS) $(M603_O_FILES) > build/M603_ofiles
-	$(LD) -partial $(M603_LDFLAGS) -o $(M603_TARGET) @build/M603_ofiles
+	$(LD) -opt_partial $(M603_LDFLAGS) -o $(M603_TARGET) @build/M603_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/%.o: rel/d/a/obj/d_a_obj_riverrock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M603_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_riverrock/libs/Runtime.PPCEABI.H/Makefile
 

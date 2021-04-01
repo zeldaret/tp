@@ -31,14 +31,15 @@ M621_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map621.map\
 
 $(M621_TARGET): $(M621_O_FILES) $(M621_LIBS)
 	@echo $(M621_LIBS) $(M621_O_FILES) > build/M621_ofiles
-	$(LD) -partial $(M621_LDFLAGS) -o $(M621_TARGET) @build/M621_ofiles
+	$(LD) -opt_partial $(M621_LDFLAGS) -o $(M621_TARGET) @build/M621_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smallkey/%.o: rel/d/a/obj/d_a_obj_smallkey/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M621_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

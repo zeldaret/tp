@@ -29,14 +29,15 @@ M135_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map135.map\
 
 $(M135_TARGET): $(M135_O_FILES) $(M135_LIBS)
 	@echo $(M135_LIBS) $(M135_O_FILES) > build/M135_ofiles
-	$(LD) -partial $(M135_LDFLAGS) -o $(M135_TARGET) @build/M135_ofiles
+	$(LD) -opt_partial $(M135_LDFLAGS) -o $(M135_TARGET) @build/M135_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/%.o: rel/d/a/d_a_L7demo_dr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M135_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

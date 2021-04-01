@@ -29,14 +29,15 @@ M688_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map688.map\
 
 $(M688_TARGET): $(M688_O_FILES) $(M688_LIBS)
 	@echo $(M688_LIBS) $(M688_O_FILES) > build/M688_ofiles
-	$(LD) -partial $(M688_LDFLAGS) -o $(M688_TARGET) @build/M688_ofiles
+	$(LD) -opt_partial $(M688_LDFLAGS) -o $(M688_TARGET) @build/M688_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/%.o: rel/d/a/obj/d_a_obj_wind_stone/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M688_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

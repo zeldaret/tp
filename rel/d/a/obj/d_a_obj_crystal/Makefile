@@ -29,14 +29,15 @@ M432_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map432.map\
 
 $(M432_TARGET): $(M432_O_FILES) $(M432_LIBS)
 	@echo $(M432_LIBS) $(M432_O_FILES) > build/M432_ofiles
-	$(LD) -partial $(M432_LDFLAGS) -o $(M432_TARGET) @build/M432_ofiles
+	$(LD) -opt_partial $(M432_LDFLAGS) -o $(M432_TARGET) @build/M432_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/%.o: rel/d/a/obj/d_a_obj_crystal/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M432_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

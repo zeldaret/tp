@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* D_A_TAG_RET_ROOM_H */

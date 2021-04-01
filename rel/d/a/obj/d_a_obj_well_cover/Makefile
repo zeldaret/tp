@@ -31,14 +31,15 @@ M686_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map686.map\
 
 $(M686_TARGET): $(M686_O_FILES) $(M686_LIBS)
 	@echo $(M686_LIBS) $(M686_O_FILES) > build/M686_ofiles
-	$(LD) -partial $(M686_LDFLAGS) -o $(M686_TARGET) @build/M686_ofiles
+	$(LD) -opt_partial $(M686_LDFLAGS) -o $(M686_TARGET) @build/M686_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/%.o: rel/d/a/obj/d_a_obj_well_cover/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M686_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

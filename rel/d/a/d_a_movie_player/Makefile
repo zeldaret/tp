@@ -29,14 +29,15 @@ M280_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map280.map\
 
 $(M280_TARGET): $(M280_O_FILES) $(M280_LIBS)
 	@echo $(M280_LIBS) $(M280_O_FILES) > build/M280_ofiles
-	$(LD) -partial $(M280_LDFLAGS) -o $(M280_TARGET) @build/M280_ofiles
+	$(LD) -opt_partial $(M280_LDFLAGS) -o $(M280_TARGET) @build/M280_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_movie_player/%.o: rel/d/a/d_a_movie_player/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M280_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

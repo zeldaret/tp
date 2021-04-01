@@ -29,14 +29,15 @@ M4_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map4.map\
 
 $(M4_TARGET): $(M4_O_FILES) $(M4_LIBS)
 	@echo $(M4_LIBS) $(M4_O_FILES) > build/M4_ofiles
-	$(LD) -partial $(M4_LDFLAGS) -o $(M4_TARGET) @build/M4_ofiles
+	$(LD) -opt_partial $(M4_LDFLAGS) -o $(M4_TARGET) @build/M4_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_bg_obj/%.o: rel/d/a/d_a_bg_obj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M4_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

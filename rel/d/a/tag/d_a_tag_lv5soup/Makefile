@@ -29,14 +29,15 @@ M726_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map726.map\
 
 $(M726_TARGET): $(M726_O_FILES) $(M726_LIBS)
 	@echo $(M726_LIBS) $(M726_O_FILES) > build/M726_ofiles
-	$(LD) -partial $(M726_LDFLAGS) -o $(M726_TARGET) @build/M726_ofiles
+	$(LD) -opt_partial $(M726_LDFLAGS) -o $(M726_TARGET) @build/M726_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/%.o: rel/d/a/tag/d_a_tag_lv5soup/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M726_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

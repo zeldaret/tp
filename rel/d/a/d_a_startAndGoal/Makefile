@@ -29,14 +29,15 @@ M706_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map706.map\
 
 $(M706_TARGET): $(M706_O_FILES) $(M706_LIBS)
 	@echo $(M706_LIBS) $(M706_O_FILES) > build/M706_ofiles
-	$(LD) -partial $(M706_LDFLAGS) -o $(M706_TARGET) @build/M706_ofiles
+	$(LD) -opt_partial $(M706_LDFLAGS) -o $(M706_TARGET) @build/M706_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.o: rel/d/a/d_a_startAndGoal/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M706_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

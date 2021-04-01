@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* GCN_EXI2_GDEV_GCN_MAIN_H */

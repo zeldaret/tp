@@ -28,15 +28,16 @@ M148_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map148.map\
 
 $(M148_TARGET): $(M148_O_FILES) $(M148_LIBS)
 	@echo $(M148_LIBS) $(M148_O_FILES) > build/M148_ofiles
-	$(LD) -partial $(M148_LDFLAGS) -o $(M148_TARGET) @build/M148_ofiles
+	$(LD) -opt_partial $(M148_LDFLAGS) -o $(M148_TARGET) @build/M148_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_mgn/%.o: rel/d/a/b/d_a_b_mgn/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M148_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_mgn/libs/Runtime.PPCEABI.H/Makefile
 

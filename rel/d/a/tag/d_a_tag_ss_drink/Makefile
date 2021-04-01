@@ -29,14 +29,15 @@ M746_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map746.map\
 
 $(M746_TARGET): $(M746_O_FILES) $(M746_LIBS)
 	@echo $(M746_LIBS) $(M746_O_FILES) > build/M746_ofiles
-	$(LD) -partial $(M746_LDFLAGS) -o $(M746_TARGET) @build/M746_ofiles
+	$(LD) -opt_partial $(M746_LDFLAGS) -o $(M746_TARGET) @build/M746_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/%.o: rel/d/a/tag/d_a_tag_ss_drink/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M746_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M549_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map549.map\
 
 $(M549_TARGET): $(M549_O_FILES) $(M549_LIBS)
 	@echo $(M549_LIBS) $(M549_O_FILES) > build/M549_ofiles
-	$(LD) -partial $(M549_LDFLAGS) -o $(M549_TARGET) @build/M549_ofiles
+	$(LD) -opt_partial $(M549_LDFLAGS) -o $(M549_TARGET) @build/M549_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.o: rel/d/a/obj/d_a_obj_lv6Tenbin/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M549_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv6Tenbin/libs/Runtime.PPCEABI.H/Makefile
 

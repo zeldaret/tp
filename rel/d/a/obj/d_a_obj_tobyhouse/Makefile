@@ -28,15 +28,16 @@ M664_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map664.map\
 
 $(M664_TARGET): $(M664_O_FILES) $(M664_LIBS)
 	@echo $(M664_LIBS) $(M664_O_FILES) > build/M664_ofiles
-	$(LD) -partial $(M664_LDFLAGS) -o $(M664_TARGET) @build/M664_ofiles
+	$(LD) -opt_partial $(M664_LDFLAGS) -o $(M664_TARGET) @build/M664_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/%.o: rel/d/a/obj/d_a_obj_tobyhouse/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M664_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_tobyhouse/libs/Runtime.PPCEABI.H/Makefile
 

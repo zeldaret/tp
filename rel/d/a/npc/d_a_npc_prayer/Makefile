@@ -28,15 +28,16 @@ M349_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map349.map\
 
 $(M349_TARGET): $(M349_O_FILES) $(M349_LIBS)
 	@echo $(M349_LIBS) $(M349_O_FILES) > build/M349_ofiles
-	$(LD) -partial $(M349_LDFLAGS) -o $(M349_TARGET) @build/M349_ofiles
+	$(LD) -opt_partial $(M349_LDFLAGS) -o $(M349_TARGET) @build/M349_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/%.o: rel/d/a/npc/d_a_npc_prayer/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M349_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_prayer/libs/Runtime.PPCEABI.H/Makefile
 

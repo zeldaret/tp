@@ -29,14 +29,15 @@ M9_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map9.map\
 
 $(M9_TARGET): $(M9_O_FILES) $(M9_LIBS)
 	@echo $(M9_LIBS) $(M9_O_FILES) > build/M9_ofiles
-	$(LD) -partial $(M9_LDFLAGS) -o $(M9_TARGET) @build/M9_ofiles
+	$(LD) -opt_partial $(M9_LDFLAGS) -o $(M9_TARGET) @build/M9_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/%.o: rel/d/a/door/d_a_door_spiral/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M9_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

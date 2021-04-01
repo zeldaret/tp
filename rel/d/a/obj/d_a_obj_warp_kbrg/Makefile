@@ -31,14 +31,15 @@ M677_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map677.map\
 
 $(M677_TARGET): $(M677_O_FILES) $(M677_LIBS)
 	@echo $(M677_LIBS) $(M677_O_FILES) > build/M677_ofiles
-	$(LD) -partial $(M677_LDFLAGS) -o $(M677_TARGET) @build/M677_ofiles
+	$(LD) -opt_partial $(M677_LDFLAGS) -o $(M677_TARGET) @build/M677_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_kbrg/%.o: rel/d/a/obj/d_a_obj_warp_kbrg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M677_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

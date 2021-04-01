@@ -28,15 +28,16 @@ M493_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map493.map\
 
 $(M493_TARGET): $(M493_O_FILES) $(M493_LIBS)
 	@echo $(M493_LIBS) $(M493_O_FILES) > build/M493_ofiles
-	$(LD) -partial $(M493_LDFLAGS) -o $(M493_TARGET) @build/M493_ofiles
+	$(LD) -opt_partial $(M493_LDFLAGS) -o $(M493_TARGET) @build/M493_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/%.o: rel/d/a/obj/d_a_obj_kamakiri/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M493_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_kamakiri/libs/Runtime.PPCEABI.H/Makefile
 

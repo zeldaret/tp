@@ -28,15 +28,16 @@ M96_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map96.map\
 
 $(M96_TARGET): $(M96_O_FILES) $(M96_LIBS)
 	@echo $(M96_LIBS) $(M96_O_FILES) > build/M96_ofiles
-	$(LD) -partial $(M96_LDFLAGS) -o $(M96_TARGET) @build/M96_ofiles
+	$(LD) -opt_partial $(M96_LDFLAGS) -o $(M96_TARGET) @build/M96_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/%.o: rel/d/a/obj/d_a_obj_gptaru/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M96_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_gptaru/libs/Runtime.PPCEABI.H/Makefile
 

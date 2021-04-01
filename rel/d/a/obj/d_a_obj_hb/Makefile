@@ -31,14 +31,15 @@ M474_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map474.map\
 
 $(M474_TARGET): $(M474_O_FILES) $(M474_LIBS)
 	@echo $(M474_LIBS) $(M474_O_FILES) > build/M474_ofiles
-	$(LD) -partial $(M474_LDFLAGS) -o $(M474_TARGET) @build/M474_ofiles
+	$(LD) -opt_partial $(M474_LDFLAGS) -o $(M474_TARGET) @build/M474_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/%.o: rel/d/a/obj/d_a_obj_hb/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M474_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M479_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map479.map\
 
 $(M479_TARGET): $(M479_O_FILES) $(M479_LIBS)
 	@echo $(M479_LIBS) $(M479_O_FILES) > build/M479_ofiles
-	$(LD) -partial $(M479_LDFLAGS) -o $(M479_TARGET) @build/M479_ofiles
+	$(LD) -opt_partial $(M479_LDFLAGS) -o $(M479_TARGET) @build/M479_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/%.o: rel/d/a/obj/d_a_obj_ice_l/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M479_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

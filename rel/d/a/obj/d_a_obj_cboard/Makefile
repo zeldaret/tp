@@ -29,14 +29,15 @@ M92_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map92.map\
 
 $(M92_TARGET): $(M92_O_FILES) $(M92_LIBS)
 	@echo $(M92_LIBS) $(M92_O_FILES) > build/M92_ofiles
-	$(LD) -partial $(M92_LDFLAGS) -o $(M92_TARGET) @build/M92_ofiles
+	$(LD) -opt_partial $(M92_LDFLAGS) -o $(M92_TARGET) @build/M92_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/%.o: rel/d/a/obj/d_a_obj_cboard/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M92_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

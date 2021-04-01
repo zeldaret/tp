@@ -29,14 +29,15 @@ M600_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map600.map\
 
 $(M600_TARGET): $(M600_O_FILES) $(M600_LIBS)
 	@echo $(M600_LIBS) $(M600_O_FILES) > build/M600_ofiles
-	$(LD) -partial $(M600_LDFLAGS) -o $(M600_TARGET) @build/M600_ofiles
+	$(LD) -opt_partial $(M600_LDFLAGS) -o $(M600_TARGET) @build/M600_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/%.o: rel/d/a/obj/d_a_obj_rcircle/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M600_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M406_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map406.map\
 
 $(M406_TARGET): $(M406_O_FILES) $(M406_LIBS)
 	@echo $(M406_LIBS) $(M406_O_FILES) > build/M406_ofiles
-	$(LD) -partial $(M406_LDFLAGS) -o $(M406_TARGET) @build/M406_ofiles
+	$(LD) -opt_partial $(M406_LDFLAGS) -o $(M406_TARGET) @build/M406_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/%.o: rel/d/a/obj/d_a_obj_bemos/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M406_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_bemos/libs/Runtime.PPCEABI.H/Makefile
 

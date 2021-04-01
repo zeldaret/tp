@@ -31,14 +31,15 @@ M411_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map411.map\
 
 $(M411_TARGET): $(M411_O_FILES) $(M411_LIBS)
 	@echo $(M411_LIBS) $(M411_O_FILES) > build/M411_ofiles
-	$(LD) -partial $(M411_LDFLAGS) -o $(M411_TARGET) @build/M411_ofiles
+	$(LD) -opt_partial $(M411_LDFLAGS) -o $(M411_TARGET) @build/M411_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/%.o: rel/d/a/obj/d_a_obj_bmshutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M411_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

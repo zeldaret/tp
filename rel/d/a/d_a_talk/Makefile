@@ -29,14 +29,15 @@ M754_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map754.map\
 
 $(M754_TARGET): $(M754_O_FILES) $(M754_LIBS)
 	@echo $(M754_LIBS) $(M754_O_FILES) > build/M754_ofiles
-	$(LD) -partial $(M754_LDFLAGS) -o $(M754_TARGET) @build/M754_ofiles
+	$(LD) -opt_partial $(M754_LDFLAGS) -o $(M754_TARGET) @build/M754_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_talk/%.o: rel/d/a/d_a_talk/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

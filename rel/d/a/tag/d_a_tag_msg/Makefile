@@ -29,14 +29,15 @@ M38_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map38.map\
 
 $(M38_TARGET): $(M38_O_FILES) $(M38_LIBS)
 	@echo $(M38_LIBS) $(M38_O_FILES) > build/M38_ofiles
-	$(LD) -partial $(M38_LDFLAGS) -o $(M38_TARGET) @build/M38_ofiles
+	$(LD) -opt_partial $(M38_LDFLAGS) -o $(M38_TARGET) @build/M38_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_msg/%.o: rel/d/a/tag/d_a_tag_msg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M38_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

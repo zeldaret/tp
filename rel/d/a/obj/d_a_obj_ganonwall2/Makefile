@@ -29,14 +29,15 @@ M456_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map456.map\
 
 $(M456_TARGET): $(M456_O_FILES) $(M456_LIBS)
 	@echo $(M456_LIBS) $(M456_O_FILES) > build/M456_ofiles
-	$(LD) -partial $(M456_LDFLAGS) -o $(M456_TARGET) @build/M456_ofiles
+	$(LD) -opt_partial $(M456_LDFLAGS) -o $(M456_TARGET) @build/M456_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/%.o: rel/d/a/obj/d_a_obj_ganonwall2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M456_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

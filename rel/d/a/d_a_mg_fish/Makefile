@@ -28,15 +28,16 @@ M78_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map78.map\
 
 $(M78_TARGET): $(M78_O_FILES) $(M78_LIBS)
 	@echo $(M78_LIBS) $(M78_O_FILES) > build/M78_ofiles
-	$(LD) -partial $(M78_LDFLAGS) -o $(M78_TARGET) @build/M78_ofiles
+	$(LD) -opt_partial $(M78_LDFLAGS) -o $(M78_TARGET) @build/M78_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_fish/%.o: rel/d/a/d_a_mg_fish/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M78_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_mg_fish/libs/Runtime.PPCEABI.H/Makefile
 

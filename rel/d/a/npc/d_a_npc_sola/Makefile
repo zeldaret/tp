@@ -28,15 +28,16 @@ M364_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map364.map\
 
 $(M364_TARGET): $(M364_O_FILES) $(M364_LIBS)
 	@echo $(M364_LIBS) $(M364_O_FILES) > build/M364_ofiles
-	$(LD) -partial $(M364_LDFLAGS) -o $(M364_TARGET) @build/M364_ofiles
+	$(LD) -opt_partial $(M364_LDFLAGS) -o $(M364_TARGET) @build/M364_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.o: rel/d/a/npc/d_a_npc_sola/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M364_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_sola/libs/Runtime.PPCEABI.H/Makefile
 

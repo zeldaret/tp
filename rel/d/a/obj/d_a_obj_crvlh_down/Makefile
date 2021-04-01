@@ -29,14 +29,15 @@ M429_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map429.map\
 
 $(M429_TARGET): $(M429_O_FILES) $(M429_LIBS)
 	@echo $(M429_LIBS) $(M429_O_FILES) > build/M429_ofiles
-	$(LD) -partial $(M429_LDFLAGS) -o $(M429_TARGET) @build/M429_ofiles
+	$(LD) -opt_partial $(M429_LDFLAGS) -o $(M429_TARGET) @build/M429_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/%.o: rel/d/a/obj/d_a_obj_crvlh_down/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M429_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

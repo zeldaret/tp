@@ -28,15 +28,16 @@ M398_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map398.map\
 
 $(M398_TARGET): $(M398_O_FILES) $(M398_LIBS)
 	@echo $(M398_LIBS) $(M398_O_FILES) > build/M398_ofiles
-	$(LD) -partial $(M398_LDFLAGS) -o $(M398_TARGET) @build/M398_ofiles
+	$(LD) -opt_partial $(M398_LDFLAGS) -o $(M398_TARGET) @build/M398_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/%.o: rel/d/a/obj/d_a_obj_ari/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M398_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_ari/libs/Runtime.PPCEABI.H/Makefile
 

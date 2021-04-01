@@ -28,15 +28,16 @@ M414_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map414.map\
 
 $(M414_TARGET): $(M414_O_FILES) $(M414_LIBS)
 	@echo $(M414_LIBS) $(M414_O_FILES) > build/M414_ofiles
-	$(LD) -partial $(M414_LDFLAGS) -o $(M414_TARGET) @build/M414_ofiles
+	$(LD) -opt_partial $(M414_LDFLAGS) -o $(M414_TARGET) @build/M414_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brg/%.o: rel/d/a/obj/d_a_obj_brg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M414_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_brg/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M121_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map121.map\
 
 $(M121_TARGET): $(M121_O_FILES) $(M121_LIBS)
 	@echo $(M121_LIBS) $(M121_O_FILES) > build/M121_ofiles
-	$(LD) -partial $(M121_LDFLAGS) -o $(M121_TARGET) @build/M121_ofiles
+	$(LD) -opt_partial $(M121_LDFLAGS) -o $(M121_TARGET) @build/M121_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/%.o: rel/d/a/tag/d_a_tag_cstasw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M121_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_cstasw/libs/Runtime.PPCEABI.H/Makefile
 

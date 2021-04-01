@@ -28,15 +28,16 @@ M119_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map119.map\
 
 $(M119_TARGET): $(M119_O_FILES) $(M119_LIBS)
 	@echo $(M119_LIBS) $(M119_O_FILES) > build/M119_ofiles
-	$(LD) -partial $(M119_LDFLAGS) -o $(M119_TARGET) @build/M119_ofiles
+	$(LD) -opt_partial $(M119_LDFLAGS) -o $(M119_TARGET) @build/M119_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_sq/%.o: rel/d/a/d_a_sq/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M119_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_sq/libs/Runtime.PPCEABI.H/Makefile
 

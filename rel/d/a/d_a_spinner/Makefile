@@ -28,15 +28,16 @@ M55_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map55.map\
 
 $(M55_TARGET): $(M55_O_FILES) $(M55_LIBS)
 	@echo $(M55_LIBS) $(M55_O_FILES) > build/M55_ofiles
-	$(LD) -partial $(M55_LDFLAGS) -o $(M55_TARGET) @build/M55_ofiles
+	$(LD) -opt_partial $(M55_LDFLAGS) -o $(M55_TARGET) @build/M55_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_spinner/%.o: rel/d/a/d_a_spinner/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M55_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_spinner/libs/Runtime.PPCEABI.H/Makefile
 

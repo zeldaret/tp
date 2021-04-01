@@ -29,14 +29,15 @@ M554_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map554.map\
 
 $(M554_TARGET): $(M554_O_FILES) $(M554_LIBS)
 	@echo $(M554_LIBS) $(M554_O_FILES) > build/M554_ofiles
-	$(LD) -partial $(M554_LDFLAGS) -o $(M554_TARGET) @build/M554_ofiles
+	$(LD) -opt_partial $(M554_LDFLAGS) -o $(M554_TARGET) @build/M554_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/%.o: rel/d/a/obj/d_a_obj_lv6egate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M554_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

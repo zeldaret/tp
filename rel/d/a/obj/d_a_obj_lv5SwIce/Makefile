@@ -28,15 +28,16 @@ M541_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map541.map\
 
 $(M541_TARGET): $(M541_O_FILES) $(M541_LIBS)
 	@echo $(M541_LIBS) $(M541_O_FILES) > build/M541_ofiles
-	$(LD) -partial $(M541_LDFLAGS) -o $(M541_TARGET) @build/M541_ofiles
+	$(LD) -opt_partial $(M541_LDFLAGS) -o $(M541_TARGET) @build/M541_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5SwIce/%.o: rel/d/a/obj/d_a_obj_lv5SwIce/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M541_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv5SwIce/libs/Runtime.PPCEABI.H/Makefile
 

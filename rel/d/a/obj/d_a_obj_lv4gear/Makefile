@@ -29,14 +29,15 @@ M535_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map535.map\
 
 $(M535_TARGET): $(M535_O_FILES) $(M535_LIBS)
 	@echo $(M535_LIBS) $(M535_O_FILES) > build/M535_ofiles
-	$(LD) -partial $(M535_LDFLAGS) -o $(M535_TARGET) @build/M535_ofiles
+	$(LD) -opt_partial $(M535_LDFLAGS) -o $(M535_TARGET) @build/M535_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/%.o: rel/d/a/obj/d_a_obj_lv4gear/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M535_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

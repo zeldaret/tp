@@ -29,14 +29,15 @@ M702_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map702.map\
 
 $(M702_TARGET): $(M702_O_FILES) $(M702_LIBS)
 	@echo $(M702_LIBS) $(M702_O_FILES) > build/M702_ofiles
-	$(LD) -partial $(M702_LDFLAGS) -o $(M702_TARGET) @build/M702_ofiles
+	$(LD) -opt_partial $(M702_LDFLAGS) -o $(M702_TARGET) @build/M702_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_passer_mng/%.o: rel/d/a/d_a_passer_mng/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M702_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

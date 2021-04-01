@@ -28,15 +28,16 @@ M379_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map379.map\
 
 $(M379_TARGET): $(M379_O_FILES) $(M379_LIBS)
 	@echo $(M379_LIBS) $(M379_O_FILES) > build/M379_ofiles
-	$(LD) -partial $(M379_LDFLAGS) -o $(M379_TARGET) @build/M379_ofiles
+	$(LD) -opt_partial $(M379_LDFLAGS) -o $(M379_TARGET) @build/M379_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/%.o: rel/d/a/npc/d_a_npc_yamid/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M379_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_yamid/libs/Runtime.PPCEABI.H/Makefile
 

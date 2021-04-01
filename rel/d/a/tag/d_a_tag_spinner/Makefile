@@ -29,14 +29,15 @@ M744_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map744.map\
 
 $(M744_TARGET): $(M744_O_FILES) $(M744_LIBS)
 	@echo $(M744_LIBS) $(M744_O_FILES) > build/M744_ofiles
-	$(LD) -partial $(M744_LDFLAGS) -o $(M744_TARGET) @build/M744_ofiles
+	$(LD) -opt_partial $(M744_LDFLAGS) -o $(M744_TARGET) @build/M744_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.o: rel/d/a/tag/d_a_tag_spinner/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

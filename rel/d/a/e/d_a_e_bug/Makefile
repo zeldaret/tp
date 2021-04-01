@@ -28,15 +28,16 @@ M179_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map179.map\
 
 $(M179_TARGET): $(M179_O_FILES) $(M179_LIBS)
 	@echo $(M179_LIBS) $(M179_O_FILES) > build/M179_ofiles
-	$(LD) -partial $(M179_LDFLAGS) -o $(M179_TARGET) @build/M179_ofiles
+	$(LD) -opt_partial $(M179_LDFLAGS) -o $(M179_TARGET) @build/M179_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bug/%.o: rel/d/a/e/d_a_e_bug/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M179_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_bug/libs/Runtime.PPCEABI.H/Makefile
 

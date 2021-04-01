@@ -31,14 +31,15 @@ M635_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map635.map\
 
 $(M635_TARGET): $(M635_O_FILES) $(M635_LIBS)
 	@echo $(M635_LIBS) $(M635_O_FILES) > build/M635_ofiles
-	$(LD) -partial $(M635_LDFLAGS) -o $(M635_TARGET) @build/M635_ofiles
+	$(LD) -opt_partial $(M635_LDFLAGS) -o $(M635_TARGET) @build/M635_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/%.o: rel/d/a/obj/d_a_obj_stopper2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M635_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M358_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map358.map\
 
 $(M358_TARGET): $(M358_O_FILES) $(M358_LIBS)
 	@echo $(M358_LIBS) $(M358_O_FILES) > build/M358_ofiles
-	$(LD) -partial $(M358_LDFLAGS) -o $(M358_TARGET) @build/M358_ofiles
+	$(LD) -opt_partial $(M358_LDFLAGS) -o $(M358_TARGET) @build/M358_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/%.o: rel/d/a/npc/d_a_npc_seirei/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M358_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_seirei/libs/Runtime.PPCEABI.H/Makefile
 

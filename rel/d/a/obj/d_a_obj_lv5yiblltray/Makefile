@@ -29,14 +29,15 @@ M543_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map543.map\
 
 $(M543_TARGET): $(M543_O_FILES) $(M543_LIBS)
 	@echo $(M543_LIBS) $(M543_O_FILES) > build/M543_ofiles
-	$(LD) -partial $(M543_LDFLAGS) -o $(M543_TARGET) @build/M543_ofiles
+	$(LD) -opt_partial $(M543_LDFLAGS) -o $(M543_TARGET) @build/M543_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.o: rel/d/a/obj/d_a_obj_lv5yiblltray/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

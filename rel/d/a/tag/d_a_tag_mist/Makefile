@@ -29,14 +29,15 @@ M37_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map37.map\
 
 $(M37_TARGET): $(M37_O_FILES) $(M37_LIBS)
 	@echo $(M37_LIBS) $(M37_O_FILES) > build/M37_ofiles
-	$(LD) -partial $(M37_LDFLAGS) -o $(M37_TARGET) @build/M37_ofiles
+	$(LD) -opt_partial $(M37_LDFLAGS) -o $(M37_TARGET) @build/M37_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/%.o: rel/d/a/tag/d_a_tag_mist/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M37_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

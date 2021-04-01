@@ -28,15 +28,16 @@ M250_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map250.map\
 
 $(M250_TARGET): $(M250_O_FILES) $(M250_LIBS)
 	@echo $(M250_LIBS) $(M250_O_FILES) > build/M250_ofiles
-	$(LD) -partial $(M250_LDFLAGS) -o $(M250_TARGET) @build/M250_ofiles
+	$(LD) -opt_partial $(M250_LDFLAGS) -o $(M250_TARGET) @build/M250_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yg/%.o: rel/d/a/e/d_a_e_yg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M250_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_yg/libs/Runtime.PPCEABI.H/Makefile
 

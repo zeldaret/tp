@@ -28,15 +28,16 @@ M402_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map402.map\
 
 $(M402_TARGET): $(M402_O_FILES) $(M402_LIBS)
 	@echo $(M402_LIBS) $(M402_O_FILES) > build/M402_ofiles
-	$(LD) -partial $(M402_LDFLAGS) -o $(M402_TARGET) @build/M402_ofiles
+	$(LD) -opt_partial $(M402_LDFLAGS) -o $(M402_TARGET) @build/M402_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.o: rel/d/a/obj/d_a_obj_barDesk/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M402_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_barDesk/libs/Runtime.PPCEABI.H/Makefile
 

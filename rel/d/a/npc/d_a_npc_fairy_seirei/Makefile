@@ -28,15 +28,16 @@ M80_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map80.map\
 
 $(M80_TARGET): $(M80_O_FILES) $(M80_LIBS)
 	@echo $(M80_LIBS) $(M80_O_FILES) > build/M80_ofiles
-	$(LD) -partial $(M80_LDFLAGS) -o $(M80_TARGET) @build/M80_ofiles
+	$(LD) -opt_partial $(M80_LDFLAGS) -o $(M80_TARGET) @build/M80_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/%.o: rel/d/a/npc/d_a_npc_fairy_seirei/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M80_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_fairy_seirei/libs/Runtime.PPCEABI.H/Makefile
 

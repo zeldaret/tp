@@ -29,14 +29,15 @@ M741_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map741.map\
 
 $(M741_TARGET): $(M741_O_FILES) $(M741_LIBS)
 	@echo $(M741_LIBS) $(M741_O_FILES) > build/M741_ofiles
-	$(LD) -partial $(M741_LDFLAGS) -o $(M741_TARGET) @build/M741_ofiles
+	$(LD) -opt_partial $(M741_LDFLAGS) -o $(M741_TARGET) @build/M741_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/%.o: rel/d/a/tag/d_a_tag_shop_camera/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M741_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

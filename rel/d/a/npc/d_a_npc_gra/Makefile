@@ -28,15 +28,16 @@ M305_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map305.map\
 
 $(M305_TARGET): $(M305_O_FILES) $(M305_LIBS)
 	@echo $(M305_LIBS) $(M305_O_FILES) > build/M305_ofiles
-	$(LD) -partial $(M305_LDFLAGS) -o $(M305_TARGET) @build/M305_ofiles
+	$(LD) -opt_partial $(M305_LDFLAGS) -o $(M305_TARGET) @build/M305_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/%.o: rel/d/a/npc/d_a_npc_gra/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M305_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_gra/libs/Runtime.PPCEABI.H/Makefile
 

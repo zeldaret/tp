@@ -28,15 +28,16 @@ M595_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map595.map\
 
 $(M595_TARGET): $(M595_O_FILES) $(M595_LIBS)
 	@echo $(M595_LIBS) $(M595_O_FILES) > build/M595_ofiles
-	$(LD) -partial $(M595_LDFLAGS) -o $(M595_TARGET) @build/M595_ofiles
+	$(LD) -opt_partial $(M595_LDFLAGS) -o $(M595_TARGET) @build/M595_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poCandle/%.o: rel/d/a/obj/d_a_obj_poCandle/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M595_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_poCandle/libs/Runtime.PPCEABI.H/Makefile
 

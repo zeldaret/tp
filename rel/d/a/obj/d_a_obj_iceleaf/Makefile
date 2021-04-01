@@ -31,14 +31,15 @@ M482_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map482.map\
 
 $(M482_TARGET): $(M482_O_FILES) $(M482_LIBS)
 	@echo $(M482_LIBS) $(M482_O_FILES) > build/M482_ofiles
-	$(LD) -partial $(M482_LDFLAGS) -o $(M482_TARGET) @build/M482_ofiles
+	$(LD) -opt_partial $(M482_LDFLAGS) -o $(M482_TARGET) @build/M482_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceleaf/%.o: rel/d/a/obj/d_a_obj_iceleaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M482_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

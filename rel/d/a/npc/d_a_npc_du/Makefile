@@ -28,15 +28,16 @@ M301_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map301.map\
 
 $(M301_TARGET): $(M301_O_FILES) $(M301_LIBS)
 	@echo $(M301_LIBS) $(M301_O_FILES) > build/M301_ofiles
-	$(LD) -partial $(M301_LDFLAGS) -o $(M301_TARGET) @build/M301_ofiles
+	$(LD) -opt_partial $(M301_LDFLAGS) -o $(M301_TARGET) @build/M301_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.o: rel/d/a/npc/d_a_npc_du/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M301_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_du/libs/Runtime.PPCEABI.H/Makefile
 

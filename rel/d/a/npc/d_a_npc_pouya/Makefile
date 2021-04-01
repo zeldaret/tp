@@ -28,15 +28,16 @@ M348_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map348.map\
 
 $(M348_TARGET): $(M348_O_FILES) $(M348_LIBS)
 	@echo $(M348_LIBS) $(M348_O_FILES) > build/M348_ofiles
-	$(LD) -partial $(M348_LDFLAGS) -o $(M348_TARGET) @build/M348_ofiles
+	$(LD) -opt_partial $(M348_LDFLAGS) -o $(M348_TARGET) @build/M348_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/%.o: rel/d/a/npc/d_a_npc_pouya/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M348_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_pouya/libs/Runtime.PPCEABI.H/Makefile
 

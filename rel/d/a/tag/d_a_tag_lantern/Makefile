@@ -28,15 +28,16 @@ M36_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map36.map\
 
 $(M36_TARGET): $(M36_O_FILES) $(M36_LIBS)
 	@echo $(M36_LIBS) $(M36_O_FILES) > build/M36_ofiles
-	$(LD) -partial $(M36_LDFLAGS) -o $(M36_TARGET) @build/M36_ofiles
+	$(LD) -opt_partial $(M36_LDFLAGS) -o $(M36_TARGET) @build/M36_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/%.o: rel/d/a/tag/d_a_tag_lantern/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M36_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_lantern/libs/Runtime.PPCEABI.H/Makefile
 

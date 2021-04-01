@@ -28,15 +28,16 @@ M360_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map360.map\
 
 $(M360_TARGET): $(M360_O_FILES) $(M360_LIBS)
 	@echo $(M360_LIBS) $(M360_O_FILES) > build/M360_ofiles
-	$(LD) -partial $(M360_LDFLAGS) -o $(M360_TARGET) @build/M360_ofiles
+	$(LD) -opt_partial $(M360_LDFLAGS) -o $(M360_TARGET) @build/M360_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.o: rel/d/a/npc/d_a_npc_shaman/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M360_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_shaman/libs/Runtime.PPCEABI.H/Makefile
 

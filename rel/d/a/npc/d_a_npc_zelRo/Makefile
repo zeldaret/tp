@@ -28,15 +28,16 @@ M388_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map388.map\
 
 $(M388_TARGET): $(M388_O_FILES) $(M388_LIBS)
 	@echo $(M388_LIBS) $(M388_O_FILES) > build/M388_ofiles
-	$(LD) -partial $(M388_LDFLAGS) -o $(M388_TARGET) @build/M388_ofiles
+	$(LD) -opt_partial $(M388_LDFLAGS) -o $(M388_TARGET) @build/M388_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/%.o: rel/d/a/npc/d_a_npc_zelRo/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M388_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_zelRo/libs/Runtime.PPCEABI.H/Makefile
 

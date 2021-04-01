@@ -28,15 +28,16 @@ M88_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map88.map\
 
 $(M88_TARGET): $(M88_O_FILES) $(M88_LIBS)
 	@echo $(M88_LIBS) $(M88_O_FILES) > build/M88_ofiles
-	$(LD) -partial $(M88_LDFLAGS) -o $(M88_TARGET) @build/M88_ofiles
+	$(LD) -opt_partial $(M88_LDFLAGS) -o $(M88_TARGET) @build/M88_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/%.o: rel/d/a/npc/d_a_npc_tkj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M88_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_tkj/libs/Runtime.PPCEABI.H/Makefile
 

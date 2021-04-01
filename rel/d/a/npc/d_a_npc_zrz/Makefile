@@ -28,15 +28,16 @@ M392_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map392.map\
 
 $(M392_TARGET): $(M392_O_FILES) $(M392_LIBS)
 	@echo $(M392_LIBS) $(M392_O_FILES) > build/M392_ofiles
-	$(LD) -partial $(M392_LDFLAGS) -o $(M392_TARGET) @build/M392_ofiles
+	$(LD) -opt_partial $(M392_LDFLAGS) -o $(M392_TARGET) @build/M392_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/%.o: rel/d/a/npc/d_a_npc_zrz/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M392_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_zrz/libs/Runtime.PPCEABI.H/Makefile
 

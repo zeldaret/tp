@@ -31,14 +31,15 @@ M51_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map51.map\
 
 $(M51_TARGET): $(M51_O_FILES) $(M51_LIBS)
 	@echo $(M51_LIBS) $(M51_O_FILES) > build/M51_ofiles
-	$(LD) -partial $(M51_LDFLAGS) -o $(M51_TARGET) @build/M51_ofiles
+	$(LD) -opt_partial $(M51_LDFLAGS) -o $(M51_TARGET) @build/M51_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_midna/%.o: rel/d/a/d_a_midna/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

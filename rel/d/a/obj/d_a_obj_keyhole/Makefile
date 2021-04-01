@@ -28,15 +28,16 @@ M499_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map499.map\
 
 $(M499_TARGET): $(M499_O_FILES) $(M499_LIBS)
 	@echo $(M499_LIBS) $(M499_O_FILES) > build/M499_ofiles
-	$(LD) -partial $(M499_LDFLAGS) -o $(M499_TARGET) @build/M499_ofiles
+	$(LD) -opt_partial $(M499_LDFLAGS) -o $(M499_TARGET) @build/M499_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/%.o: rel/d/a/obj/d_a_obj_keyhole/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M499_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_keyhole/libs/Runtime.PPCEABI.H/Makefile
 

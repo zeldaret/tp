@@ -29,14 +29,15 @@ M425_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map425.map\
 
 $(M425_TARGET): $(M425_O_FILES) $(M425_LIBS)
 	@echo $(M425_LIBS) $(M425_O_FILES) > build/M425_ofiles
-	$(LD) -partial $(M425_LDFLAGS) -o $(M425_TARGET) @build/M425_ofiles
+	$(LD) -opt_partial $(M425_LDFLAGS) -o $(M425_TARGET) @build/M425_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/%.o: rel/d/a/obj/d_a_obj_crope/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M425_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

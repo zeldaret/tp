@@ -31,14 +31,15 @@ M531_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map531.map\
 
 $(M531_TARGET): $(M531_O_FILES) $(M531_LIBS)
 	@echo $(M531_LIBS) $(M531_O_FILES) > build/M531_ofiles
-	$(LD) -partial $(M531_LDFLAGS) -o $(M531_TARGET) @build/M531_ofiles
+	$(LD) -opt_partial $(M531_LDFLAGS) -o $(M531_TARGET) @build/M531_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/%.o: rel/d/a/obj/d_a_obj_lv4bridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M531_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

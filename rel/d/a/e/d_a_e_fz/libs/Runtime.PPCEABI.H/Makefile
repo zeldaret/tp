@@ -19,7 +19,6 @@ M191LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/e/d_a_e_fz/libRuntime.PPCEABI.H.a: $(M191LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M191LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M191LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M191LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/e/d_a_e_fz/libRuntime.PPCEABI.H.a @build/M191LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/e/d_a_e_fz/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_fz/libs/Runtime.PPCEABI.H/%.o: rel/d/a/e/d_a_e_fz/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

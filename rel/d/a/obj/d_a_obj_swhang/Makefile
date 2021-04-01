@@ -31,14 +31,15 @@ M643_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map643.map\
 
 $(M643_TARGET): $(M643_O_FILES) $(M643_LIBS)
 	@echo $(M643_LIBS) $(M643_O_FILES) > build/M643_ofiles
-	$(LD) -partial $(M643_LDFLAGS) -o $(M643_TARGET) @build/M643_ofiles
+	$(LD) -opt_partial $(M643_LDFLAGS) -o $(M643_TARGET) @build/M643_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/%.o: rel/d/a/obj/d_a_obj_swhang/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M643_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

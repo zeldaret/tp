@@ -29,14 +29,15 @@ M124_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map124.map\
 
 $(M124_TARGET): $(M124_O_FILES) $(M124_LIBS)
 	@echo $(M124_LIBS) $(M124_O_FILES) > build/M124_ofiles
-	$(LD) -partial $(M124_LDFLAGS) -o $(M124_TARGET) @build/M124_ofiles
+	$(LD) -opt_partial $(M124_LDFLAGS) -o $(M124_TARGET) @build/M124_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/%.o: rel/d/a/tag/d_a_tag_gstart/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M124_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

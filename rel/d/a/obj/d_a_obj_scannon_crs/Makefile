@@ -29,14 +29,15 @@ M614_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map614.map\
 
 $(M614_TARGET): $(M614_O_FILES) $(M614_LIBS)
 	@echo $(M614_LIBS) $(M614_O_FILES) > build/M614_ofiles
-	$(LD) -partial $(M614_LDFLAGS) -o $(M614_TARGET) @build/M614_ofiles
+	$(LD) -opt_partial $(M614_LDFLAGS) -o $(M614_TARGET) @build/M614_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/%.o: rel/d/a/obj/d_a_obj_scannon_crs/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M614_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

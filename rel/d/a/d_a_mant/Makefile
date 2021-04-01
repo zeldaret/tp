@@ -29,14 +29,15 @@ M277_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map277.map\
 
 $(M277_TARGET): $(M277_O_FILES) $(M277_LIBS)
 	@echo $(M277_LIBS) $(M277_O_FILES) > build/M277_ofiles
-	$(LD) -partial $(M277_LDFLAGS) -o $(M277_TARGET) @build/M277_ofiles
+	$(LD) -opt_partial $(M277_LDFLAGS) -o $(M277_TARGET) @build/M277_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mant/%.o: rel/d/a/d_a_mant/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M277_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

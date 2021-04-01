@@ -31,14 +31,15 @@ M110_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map110.map\
 
 $(M110_TARGET): $(M110_O_FILES) $(M110_LIBS)
 	@echo $(M110_LIBS) $(M110_O_FILES) > build/M110_ofiles
-	$(LD) -partial $(M110_LDFLAGS) -o $(M110_TARGET) @build/M110_ofiles
+	$(LD) -opt_partial $(M110_LDFLAGS) -o $(M110_TARGET) @build/M110_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.o: rel/d/a/obj/d_a_obj_rope_bridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M110_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

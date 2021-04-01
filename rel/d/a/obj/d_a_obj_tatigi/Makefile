@@ -29,14 +29,15 @@ M653_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map653.map\
 
 $(M653_TARGET): $(M653_O_FILES) $(M653_LIBS)
 	@echo $(M653_LIBS) $(M653_O_FILES) > build/M653_ofiles
-	$(LD) -partial $(M653_LDFLAGS) -o $(M653_TARGET) @build/M653_ofiles
+	$(LD) -opt_partial $(M653_LDFLAGS) -o $(M653_TARGET) @build/M653_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.o: rel/d/a/obj/d_a_obj_tatigi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M653_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

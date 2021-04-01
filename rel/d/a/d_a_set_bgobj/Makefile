@@ -29,14 +29,15 @@ M25_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map25.map\
 
 $(M25_TARGET): $(M25_O_FILES) $(M25_LIBS)
 	@echo $(M25_LIBS) $(M25_O_FILES) > build/M25_ofiles
-	$(LD) -partial $(M25_LDFLAGS) -o $(M25_TARGET) @build/M25_ofiles
+	$(LD) -opt_partial $(M25_LDFLAGS) -o $(M25_TARGET) @build/M25_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_set_bgobj/%.o: rel/d/a/d_a_set_bgobj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M25_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

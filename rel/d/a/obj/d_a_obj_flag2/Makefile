@@ -29,14 +29,15 @@ M450_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map450.map\
 
 $(M450_TARGET): $(M450_O_FILES) $(M450_LIBS)
 	@echo $(M450_LIBS) $(M450_O_FILES) > build/M450_ofiles
-	$(LD) -partial $(M450_LDFLAGS) -o $(M450_TARGET) @build/M450_ofiles
+	$(LD) -opt_partial $(M450_LDFLAGS) -o $(M450_TARGET) @build/M450_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.o: rel/d/a/obj/d_a_obj_flag2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M450_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

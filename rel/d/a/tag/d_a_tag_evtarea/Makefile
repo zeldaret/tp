@@ -29,14 +29,15 @@ M32_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map32.map\
 
 $(M32_TARGET): $(M32_O_FILES) $(M32_LIBS)
 	@echo $(M32_LIBS) $(M32_O_FILES) > build/M32_ofiles
-	$(LD) -partial $(M32_LDFLAGS) -o $(M32_TARGET) @build/M32_ofiles
+	$(LD) -opt_partial $(M32_LDFLAGS) -o $(M32_TARGET) @build/M32_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.o: rel/d/a/tag/d_a_tag_evtarea/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

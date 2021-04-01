@@ -29,14 +29,15 @@ M745_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map745.map\
 
 $(M745_TARGET): $(M745_O_FILES) $(M745_LIBS)
 	@echo $(M745_LIBS) $(M745_O_FILES) > build/M745_ofiles
-	$(LD) -partial $(M745_LDFLAGS) -o $(M745_TARGET) @build/M745_ofiles
+	$(LD) -opt_partial $(M745_LDFLAGS) -o $(M745_TARGET) @build/M745_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/%.o: rel/d/a/tag/d_a_tag_sppath/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M745_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

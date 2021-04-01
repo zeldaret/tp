@@ -29,14 +29,15 @@ M542_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map542.map\
 
 $(M542_TARGET): $(M542_O_FILES) $(M542_LIBS)
 	@echo $(M542_LIBS) $(M542_O_FILES) > build/M542_ofiles
-	$(LD) -partial $(M542_LDFLAGS) -o $(M542_TARGET) @build/M542_ofiles
+	$(LD) -opt_partial $(M542_LDFLAGS) -o $(M542_TARGET) @build/M542_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/%.o: rel/d/a/obj/d_a_obj_lv5ychndlr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M542_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

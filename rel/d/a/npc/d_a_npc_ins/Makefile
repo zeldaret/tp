@@ -28,15 +28,16 @@ M321_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map321.map\
 
 $(M321_TARGET): $(M321_O_FILES) $(M321_LIBS)
 	@echo $(M321_LIBS) $(M321_O_FILES) > build/M321_ofiles
-	$(LD) -partial $(M321_LDFLAGS) -o $(M321_TARGET) @build/M321_ofiles
+	$(LD) -opt_partial $(M321_LDFLAGS) -o $(M321_TARGET) @build/M321_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.o: rel/d/a/npc/d_a_npc_ins/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M321_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_ins/libs/Runtime.PPCEABI.H/Makefile
 

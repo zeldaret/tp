@@ -29,14 +29,15 @@ M341_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map341.map\
 
 $(M341_TARGET): $(M341_O_FILES) $(M341_LIBS)
 	@echo $(M341_LIBS) $(M341_O_FILES) > build/M341_ofiles
-	$(LD) -partial $(M341_LDFLAGS) -o $(M341_TARGET) @build/M341_ofiles
+	$(LD) -opt_partial $(M341_LDFLAGS) -o $(M341_TARGET) @build/M341_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/%.o: rel/d/a/npc/d_a_npc_p2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M341_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

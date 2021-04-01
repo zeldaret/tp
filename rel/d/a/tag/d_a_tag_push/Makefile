@@ -29,14 +29,15 @@ M39_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map39.map\
 
 $(M39_TARGET): $(M39_O_FILES) $(M39_LIBS)
 	@echo $(M39_LIBS) $(M39_O_FILES) > build/M39_ofiles
-	$(LD) -partial $(M39_LDFLAGS) -o $(M39_TARGET) @build/M39_ofiles
+	$(LD) -opt_partial $(M39_LDFLAGS) -o $(M39_TARGET) @build/M39_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_push/%.o: rel/d/a/tag/d_a_tag_push/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M39_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

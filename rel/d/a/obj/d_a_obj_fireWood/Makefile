@@ -28,15 +28,16 @@ M445_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map445.map\
 
 $(M445_TARGET): $(M445_O_FILES) $(M445_LIBS)
 	@echo $(M445_LIBS) $(M445_O_FILES) > build/M445_ofiles
-	$(LD) -partial $(M445_LDFLAGS) -o $(M445_TARGET) @build/M445_ofiles
+	$(LD) -opt_partial $(M445_LDFLAGS) -o $(M445_TARGET) @build/M445_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/%.o: rel/d/a/obj/d_a_obj_fireWood/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M445_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_fireWood/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M58_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map58.map\
 
 $(M58_TARGET): $(M58_O_FILES) $(M58_LIBS)
 	@echo $(M58_LIBS) $(M58_O_FILES) > build/M58_ofiles
-	$(LD) -partial $(M58_LDFLAGS) -o $(M58_TARGET) @build/M58_ofiles
+	$(LD) -opt_partial $(M58_LDFLAGS) -o $(M58_TARGET) @build/M58_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_alldie/%.o: rel/d/a/d_a_alldie/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M58_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

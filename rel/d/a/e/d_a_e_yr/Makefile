@@ -28,15 +28,16 @@ M256_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map256.map\
 
 $(M256_TARGET): $(M256_O_FILES) $(M256_LIBS)
 	@echo $(M256_LIBS) $(M256_O_FILES) > build/M256_ofiles
-	$(LD) -partial $(M256_LDFLAGS) -o $(M256_TARGET) @build/M256_ofiles
+	$(LD) -opt_partial $(M256_LDFLAGS) -o $(M256_TARGET) @build/M256_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yr/%.o: rel/d/a/e/d_a_e_yr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M256_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_yr/libs/Runtime.PPCEABI.H/Makefile
 

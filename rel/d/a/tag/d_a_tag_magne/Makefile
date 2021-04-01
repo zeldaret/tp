@@ -29,14 +29,15 @@ M129_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map129.map\
 
 $(M129_TARGET): $(M129_O_FILES) $(M129_LIBS)
 	@echo $(M129_LIBS) $(M129_O_FILES) > build/M129_ofiles
-	$(LD) -partial $(M129_LDFLAGS) -o $(M129_TARGET) @build/M129_ofiles
+	$(LD) -opt_partial $(M129_LDFLAGS) -o $(M129_TARGET) @build/M129_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/%.o: rel/d/a/tag/d_a_tag_magne/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M129_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

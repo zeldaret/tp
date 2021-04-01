@@ -28,15 +28,16 @@ M394_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map394.map\
 
 $(M394_TARGET): $(M394_O_FILES) $(M394_LIBS)
 	@echo $(M394_LIBS) $(M394_O_FILES) > build/M394_ofiles
-	$(LD) -partial $(M394_LDFLAGS) -o $(M394_TARGET) @build/M394_ofiles
+	$(LD) -opt_partial $(M394_LDFLAGS) -o $(M394_TARGET) @build/M394_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/%.o: rel/d/a/obj/d_a_obj_Turara/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M394_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_Turara/libs/Runtime.PPCEABI.H/Makefile
 

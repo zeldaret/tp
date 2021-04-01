@@ -29,14 +29,15 @@ M46_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map46.map\
 
 $(M46_TARGET): $(M46_O_FILES) $(M46_LIBS)
 	@echo $(M46_LIBS) $(M46_O_FILES) > build/M46_ofiles
-	$(LD) -partial $(M46_LDFLAGS) -o $(M46_TARGET) @build/M46_ofiles
+	$(LD) -opt_partial $(M46_LDFLAGS) -o $(M46_TARGET) @build/M46_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_boomerang/%.o: rel/d/a/d_a_boomerang/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M46_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

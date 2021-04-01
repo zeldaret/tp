@@ -29,14 +29,15 @@ M472_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map472.map\
 
 $(M472_TARGET): $(M472_O_FILES) $(M472_LIBS)
 	@echo $(M472_LIBS) $(M472_O_FILES) > build/M472_ofiles
-	$(LD) -partial $(M472_LDFLAGS) -o $(M472_TARGET) @build/M472_ofiles
+	$(LD) -opt_partial $(M472_LDFLAGS) -o $(M472_TARGET) @build/M472_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/%.o: rel/d/a/obj/d_a_obj_hasu2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M472_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

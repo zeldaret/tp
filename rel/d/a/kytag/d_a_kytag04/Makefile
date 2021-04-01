@@ -29,14 +29,15 @@ M14_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map14.map\
 
 $(M14_TARGET): $(M14_O_FILES) $(M14_LIBS)
 	@echo $(M14_LIBS) $(M14_O_FILES) > build/M14_ofiles
-	$(LD) -partial $(M14_LDFLAGS) -o $(M14_TARGET) @build/M14_ofiles
+	$(LD) -opt_partial $(M14_LDFLAGS) -o $(M14_TARGET) @build/M14_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/%.o: rel/d/a/kytag/d_a_kytag04/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M14_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

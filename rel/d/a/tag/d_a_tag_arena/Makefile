@@ -29,14 +29,15 @@ M714_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map714.map\
 
 $(M714_TARGET): $(M714_O_FILES) $(M714_LIBS)
 	@echo $(M714_LIBS) $(M714_O_FILES) > build/M714_ofiles
-	$(LD) -partial $(M714_LDFLAGS) -o $(M714_TARGET) @build/M714_ofiles
+	$(LD) -opt_partial $(M714_LDFLAGS) -o $(M714_TARGET) @build/M714_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/%.o: rel/d/a/tag/d_a_tag_arena/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M714_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

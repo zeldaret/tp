@@ -130,23 +130,25 @@ class Function(Symbol):
                                      without_template: bool = False,
                                      comment_arguments: bool = False,
                                      template_args: List[str] = None):
-        await builder.write(f"// {self.is_static} {self.uses_any_templates}")
-        
-        lines = []
-        def callback(tp, depth):
-            pad = '\t' * depth
-            template = False
-            if isinstance(tp, NamedType):
-                template = tp.has_template
-            lines.append(f"// {pad} {tp.type()} {template}")
 
-        if self.return_type:
-            self.return_type.traverse(callback, 0)
-        for arg_type in self.argument_types:
-            arg_type.traverse(callback, 0)
+        if False:
+            await builder.write(f"// {self.is_static} {self.uses_any_templates}")
+            
+            lines = []
+            def callback(tp, depth):
+                pad = '\t' * depth
+                template = False
+                if isinstance(tp, NamedType):
+                    template = tp.has_template
+                lines.append(f"// {pad} {tp.type()} {template}")
 
-        for line in lines:
-            await builder.write(line)           
+            if self.return_type:
+                self.return_type.traverse(callback, 0)
+            for arg_type in self.argument_types:
+                arg_type.traverse(callback, 0)
+
+            for line in lines:
+                await builder.write(line)           
 
         declspec = "extern \"C\" "
         if not original and self.is_demangled():

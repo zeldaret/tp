@@ -28,15 +28,16 @@ M545_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map545.map\
 
 $(M545_TARGET): $(M545_O_FILES) $(M545_LIBS)
 	@echo $(M545_LIBS) $(M545_O_FILES) > build/M545_ofiles
-	$(LD) -partial $(M545_LDFLAGS) -o $(M545_TARGET) @build/M545_ofiles
+	$(LD) -opt_partial $(M545_LDFLAGS) -o $(M545_TARGET) @build/M545_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.o: rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M545_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv6FurikoTrap/libs/Runtime.PPCEABI.H/Makefile
 

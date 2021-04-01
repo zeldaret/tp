@@ -29,14 +29,15 @@ M483_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map483.map\
 
 $(M483_TARGET): $(M483_O_FILES) $(M483_LIBS)
 	@echo $(M483_LIBS) $(M483_O_FILES) > build/M483_ofiles
-	$(LD) -partial $(M483_LDFLAGS) -o $(M483_TARGET) @build/M483_ofiles
+	$(LD) -opt_partial $(M483_LDFLAGS) -o $(M483_TARGET) @build/M483_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ihasi/%.o: rel/d/a/obj/d_a_obj_ihasi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M483_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

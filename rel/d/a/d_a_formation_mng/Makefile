@@ -29,14 +29,15 @@ M260_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map260.map\
 
 $(M260_TARGET): $(M260_O_FILES) $(M260_LIBS)
 	@echo $(M260_LIBS) $(M260_O_FILES) > build/M260_ofiles
-	$(LD) -partial $(M260_LDFLAGS) -o $(M260_TARGET) @build/M260_ofiles
+	$(LD) -opt_partial $(M260_LDFLAGS) -o $(M260_TARGET) @build/M260_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_formation_mng/%.o: rel/d/a/d_a_formation_mng/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M260_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

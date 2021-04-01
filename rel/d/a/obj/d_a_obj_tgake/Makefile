@@ -29,14 +29,15 @@ M656_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map656.map\
 
 $(M656_TARGET): $(M656_O_FILES) $(M656_LIBS)
 	@echo $(M656_LIBS) $(M656_O_FILES) > build/M656_ofiles
-	$(LD) -partial $(M656_LDFLAGS) -o $(M656_TARGET) @build/M656_ofiles
+	$(LD) -opt_partial $(M656_LDFLAGS) -o $(M656_TARGET) @build/M656_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/%.o: rel/d/a/obj/d_a_obj_tgake/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M656_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

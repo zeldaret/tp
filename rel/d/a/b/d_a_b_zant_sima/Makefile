@@ -29,14 +29,15 @@ M158_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map158.map\
 
 $(M158_TARGET): $(M158_O_FILES) $(M158_LIBS)
 	@echo $(M158_LIBS) $(M158_O_FILES) > build/M158_ofiles
-	$(LD) -partial $(M158_LDFLAGS) -o $(M158_TARGET) @build/M158_ofiles
+	$(LD) -opt_partial $(M158_LDFLAGS) -o $(M158_TARGET) @build/M158_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/%.o: rel/d/a/b/d_a_b_zant_sima/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M158_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

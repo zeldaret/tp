@@ -29,14 +29,15 @@ M43_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map43.map\
 
 $(M43_TARGET): $(M43_O_FILES) $(M43_LIBS)
 	@echo $(M43_LIBS) $(M43_O_FILES) > build/M43_ofiles
-	$(LD) -partial $(M43_LDFLAGS) -o $(M43_TARGET) @build/M43_ofiles
+	$(LD) -opt_partial $(M43_LDFLAGS) -o $(M43_TARGET) @build/M43_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_vrbox/%.o: rel/d/a/d_a_vrbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M43_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M33_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map33.map\
 
 $(M33_TARGET): $(M33_O_FILES) $(M33_LIBS)
 	@echo $(M33_LIBS) $(M33_O_FILES) > build/M33_ofiles
-	$(LD) -partial $(M33_LDFLAGS) -o $(M33_TARGET) @build/M33_ofiles
+	$(LD) -opt_partial $(M33_LDFLAGS) -o $(M33_TARGET) @build/M33_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/%.o: rel/d/a/tag/d_a_tag_evtmsg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M33_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

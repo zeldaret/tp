@@ -29,14 +29,15 @@ M602_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map602.map\
 
 $(M602_TARGET): $(M602_O_FILES) $(M602_LIBS)
 	@echo $(M602_LIBS) $(M602_O_FILES) > build/M602_ofiles
-	$(LD) -partial $(M602_LDFLAGS) -o $(M602_TARGET) @build/M602_ofiles
+	$(LD) -opt_partial $(M602_LDFLAGS) -o $(M602_TARGET) @build/M602_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/%.o: rel/d/a/obj/d_a_obj_rgate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M602_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

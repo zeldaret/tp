@@ -29,14 +29,15 @@ M417_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map417.map\
 
 $(M417_TARGET): $(M417_O_FILES) $(M417_LIBS)
 	@echo $(M417_LIBS) $(M417_O_FILES) > build/M417_ofiles
-	$(LD) -partial $(M417_LDFLAGS) -o $(M417_TARGET) @build/M417_ofiles
+	$(LD) -opt_partial $(M417_LDFLAGS) -o $(M417_TARGET) @build/M417_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/%.o: rel/d/a/obj/d_a_obj_catdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M417_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

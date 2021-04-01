@@ -28,15 +28,16 @@ M523_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map523.map\
 
 $(M523_TARGET): $(M523_O_FILES) $(M523_LIBS)
 	@echo $(M523_LIBS) $(M523_O_FILES) > build/M523_ofiles
-	$(LD) -partial $(M523_LDFLAGS) -o $(M523_TARGET) @build/M523_ofiles
+	$(LD) -opt_partial $(M523_LDFLAGS) -o $(M523_TARGET) @build/M523_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M523_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv4CandleDemoTag/libs/Runtime.PPCEABI.H/Makefile
 

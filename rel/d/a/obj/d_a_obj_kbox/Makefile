@@ -28,15 +28,16 @@ M497_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map497.map\
 
 $(M497_TARGET): $(M497_O_FILES) $(M497_LIBS)
 	@echo $(M497_LIBS) $(M497_O_FILES) > build/M497_ofiles
-	$(LD) -partial $(M497_LDFLAGS) -o $(M497_TARGET) @build/M497_ofiles
+	$(LD) -opt_partial $(M497_LDFLAGS) -o $(M497_TARGET) @build/M497_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kbox/%.o: rel/d/a/obj/d_a_obj_kbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M497_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_kbox/libs/Runtime.PPCEABI.H/Makefile
 

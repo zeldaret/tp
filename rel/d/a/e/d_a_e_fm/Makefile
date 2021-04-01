@@ -28,15 +28,16 @@ M66_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map66.map\
 
 $(M66_TARGET): $(M66_O_FILES) $(M66_LIBS)
 	@echo $(M66_LIBS) $(M66_O_FILES) > build/M66_ofiles
-	$(LD) -partial $(M66_LDFLAGS) -o $(M66_TARGET) @build/M66_ofiles
+	$(LD) -opt_partial $(M66_LDFLAGS) -o $(M66_TARGET) @build/M66_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_fm/%.o: rel/d/a/e/d_a_e_fm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M66_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_fm/libs/Runtime.PPCEABI.H/Makefile
 

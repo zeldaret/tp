@@ -31,14 +31,15 @@ M675_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map675.map\
 
 $(M675_TARGET): $(M675_O_FILES) $(M675_LIBS)
 	@echo $(M675_LIBS) $(M675_O_FILES) > build/M675_ofiles
-	$(LD) -partial $(M675_LDFLAGS) -o $(M675_TARGET) @build/M675_ofiles
+	$(LD) -opt_partial $(M675_LDFLAGS) -o $(M675_TARGET) @build/M675_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/%.o: rel/d/a/obj/d_a_obj_volcball/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M675_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

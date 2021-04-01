@@ -29,14 +29,15 @@ M208_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map208.map\
 
 $(M208_TARGET): $(M208_O_FILES) $(M208_LIBS)
 	@echo $(M208_LIBS) $(M208_O_FILES) > build/M208_ofiles
-	$(LD) -partial $(M208_LDFLAGS) -o $(M208_TARGET) @build/M208_ofiles
+	$(LD) -opt_partial $(M208_LDFLAGS) -o $(M208_TARGET) @build/M208_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_md/%.o: rel/d/a/e/d_a_e_md/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M208_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

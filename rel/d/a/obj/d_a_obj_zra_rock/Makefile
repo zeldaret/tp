@@ -29,14 +29,15 @@ M701_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map701.map\
 
 $(M701_TARGET): $(M701_O_FILES) $(M701_LIBS)
 	@echo $(M701_LIBS) $(M701_O_FILES) > build/M701_ofiles
-	$(LD) -partial $(M701_LDFLAGS) -o $(M701_TARGET) @build/M701_ofiles
+	$(LD) -opt_partial $(M701_LDFLAGS) -o $(M701_TARGET) @build/M701_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/%.o: rel/d/a/obj/d_a_obj_zra_rock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M701_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

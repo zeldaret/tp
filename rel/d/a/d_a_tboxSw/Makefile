@@ -29,14 +29,15 @@ M755_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map755.map\
 
 $(M755_TARGET): $(M755_O_FILES) $(M755_LIBS)
 	@echo $(M755_LIBS) $(M755_O_FILES) > build/M755_ofiles
-	$(LD) -partial $(M755_LDFLAGS) -o $(M755_TARGET) @build/M755_ofiles
+	$(LD) -opt_partial $(M755_LDFLAGS) -o $(M755_TARGET) @build/M755_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.o: rel/d/a/d_a_tboxSw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M755_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

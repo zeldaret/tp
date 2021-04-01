@@ -28,15 +28,16 @@ M206_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map206.map\
 
 $(M206_TARGET): $(M206_O_FILES) $(M206_LIBS)
 	@echo $(M206_LIBS) $(M206_O_FILES) > build/M206_ofiles
-	$(LD) -partial $(M206_LDFLAGS) -o $(M206_TARGET) @build/M206_ofiles
+	$(LD) -opt_partial $(M206_LDFLAGS) -o $(M206_TARGET) @build/M206_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_kr/%.o: rel/d/a/e/d_a_e_kr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M206_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_kr/libs/Runtime.PPCEABI.H/Makefile
 

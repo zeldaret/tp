@@ -28,15 +28,16 @@ M397_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map397.map\
 
 $(M397_TARGET): $(M397_O_FILES) $(M397_LIBS)
 	@echo $(M397_LIBS) $(M397_O_FILES) > build/M397_ofiles
-	$(LD) -partial $(M397_LDFLAGS) -o $(M397_TARGET) @build/M397_ofiles
+	$(LD) -opt_partial $(M397_LDFLAGS) -o $(M397_TARGET) @build/M397_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/%.o: rel/d/a/obj/d_a_obj_amiShutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M397_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_amiShutter/libs/Runtime.PPCEABI.H/Makefile
 

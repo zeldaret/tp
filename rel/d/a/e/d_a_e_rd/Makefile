@@ -28,15 +28,16 @@ M70_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map70.map\
 
 $(M70_TARGET): $(M70_O_FILES) $(M70_LIBS)
 	@echo $(M70_LIBS) $(M70_O_FILES) > build/M70_ofiles
-	$(LD) -partial $(M70_LDFLAGS) -o $(M70_TARGET) @build/M70_ofiles
+	$(LD) -opt_partial $(M70_LDFLAGS) -o $(M70_TARGET) @build/M70_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_rd/%.o: rel/d/a/e/d_a_e_rd/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M70_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_rd/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M733_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map733.map\
 
 $(M733_TARGET): $(M733_O_FILES) $(M733_LIBS)
 	@echo $(M733_LIBS) $(M733_O_FILES) > build/M733_ofiles
-	$(LD) -partial $(M733_LDFLAGS) -o $(M733_TARGET) @build/M733_ofiles
+	$(LD) -opt_partial $(M733_LDFLAGS) -o $(M733_TARGET) @build/M733_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/%.o: rel/d/a/tag/d_a_tag_poFire/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M733_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_poFire/libs/Runtime.PPCEABI.H/Makefile
 

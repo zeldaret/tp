@@ -28,15 +28,16 @@ M283_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map283.map\
 
 $(M283_TARGET): $(M283_O_FILES) $(M283_LIBS)
 	@echo $(M283_LIBS) $(M283_O_FILES) > build/M283_ofiles
-	$(LD) -partial $(M283_LDFLAGS) -o $(M283_TARGET) @build/M283_ofiles
+	$(LD) -opt_partial $(M283_LDFLAGS) -o $(M283_TARGET) @build/M283_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/%.o: rel/d/a/npc/d_a_npc_aru/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M283_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_aru/libs/Runtime.PPCEABI.H/Makefile
 

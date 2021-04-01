@@ -28,15 +28,16 @@ M401_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map401.map\
 
 $(M401_TARGET): $(M401_O_FILES) $(M401_LIBS)
 	@echo $(M401_LIBS) $(M401_O_FILES) > build/M401_ofiles
-	$(LD) -partial $(M401_LDFLAGS) -o $(M401_TARGET) @build/M401_ofiles
+	$(LD) -opt_partial $(M401_LDFLAGS) -o $(M401_TARGET) @build/M401_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/%.o: rel/d/a/obj/d_a_obj_balloon/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M401_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_balloon/libs/Runtime.PPCEABI.H/Makefile
 

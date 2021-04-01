@@ -29,14 +29,15 @@ M672_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map672.map\
 
 $(M672_TARGET): $(M672_O_FILES) $(M672_LIBS)
 	@echo $(M672_LIBS) $(M672_O_FILES) > build/M672_ofiles
-	$(LD) -partial $(M672_LDFLAGS) -o $(M672_TARGET) @build/M672_ofiles
+	$(LD) -opt_partial $(M672_LDFLAGS) -o $(M672_TARGET) @build/M672_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/%.o: rel/d/a/obj/d_a_obj_udoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M672_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

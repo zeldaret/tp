@@ -28,15 +28,16 @@ M632_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map632.map\
 
 $(M632_TARGET): $(M632_O_FILES) $(M632_LIBS)
 	@echo $(M632_LIBS) $(M632_O_FILES) > build/M632_ofiles
-	$(LD) -partial $(M632_LDFLAGS) -o $(M632_TARGET) @build/M632_ofiles
+	$(LD) -opt_partial $(M632_LDFLAGS) -o $(M632_TARGET) @build/M632_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/%.o: rel/d/a/obj/d_a_obj_stairBlock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M632_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_stairBlock/libs/Runtime.PPCEABI.H/Makefile
 

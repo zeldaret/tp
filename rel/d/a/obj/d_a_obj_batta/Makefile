@@ -28,15 +28,16 @@ M403_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map403.map\
 
 $(M403_TARGET): $(M403_O_FILES) $(M403_LIBS)
 	@echo $(M403_LIBS) $(M403_O_FILES) > build/M403_ofiles
-	$(LD) -partial $(M403_LDFLAGS) -o $(M403_TARGET) @build/M403_ofiles
+	$(LD) -opt_partial $(M403_LDFLAGS) -o $(M403_TARGET) @build/M403_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/%.o: rel/d/a/obj/d_a_obj_batta/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M403_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_batta/libs/Runtime.PPCEABI.H/Makefile
 

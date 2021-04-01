@@ -28,15 +28,16 @@ M618_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map618.map\
 
 $(M618_TARGET): $(M618_O_FILES) $(M618_LIBS)
 	@echo $(M618_LIBS) $(M618_O_FILES) > build/M618_ofiles
-	$(LD) -partial $(M618_LDFLAGS) -o $(M618_TARGET) @build/M618_ofiles
+	$(LD) -opt_partial $(M618_LDFLAGS) -o $(M618_TARGET) @build/M618_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/%.o: rel/d/a/obj/d_a_obj_sekizoa/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M618_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_sekizoa/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M435_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map435.map\
 
 $(M435_TARGET): $(M435_O_FILES) $(M435_LIBS)
 	@echo $(M435_LIBS) $(M435_O_FILES) > build/M435_ofiles
-	$(LD) -partial $(M435_LDFLAGS) -o $(M435_TARGET) @build/M435_ofiles
+	$(LD) -opt_partial $(M435_LDFLAGS) -o $(M435_TARGET) @build/M435_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/%.o: rel/d/a/obj/d_a_obj_dan/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M435_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_dan/libs/Runtime.PPCEABI.H/Makefile
 

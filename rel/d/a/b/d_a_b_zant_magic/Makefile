@@ -29,14 +29,15 @@ M156_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map156.map\
 
 $(M156_TARGET): $(M156_O_FILES) $(M156_LIBS)
 	@echo $(M156_LIBS) $(M156_O_FILES) > build/M156_ofiles
-	$(LD) -partial $(M156_LDFLAGS) -o $(M156_TARGET) @build/M156_ofiles
+	$(LD) -opt_partial $(M156_LDFLAGS) -o $(M156_TARGET) @build/M156_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.o: rel/d/a/b/d_a_b_zant_magic/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M156_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

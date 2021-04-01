@@ -28,15 +28,16 @@ M373_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map373.map\
 
 $(M373_TARGET): $(M373_O_FILES) $(M373_LIBS)
 	@echo $(M373_LIBS) $(M373_O_FILES) > build/M373_ofiles
-	$(LD) -partial $(M373_LDFLAGS) -o $(M373_TARGET) @build/M373_ofiles
+	$(LD) -opt_partial $(M373_LDFLAGS) -o $(M373_TARGET) @build/M373_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tks/%.o: rel/d/a/npc/d_a_npc_tks/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M373_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_tks/libs/Runtime.PPCEABI.H/Makefile
 

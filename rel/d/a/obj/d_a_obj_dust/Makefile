@@ -29,14 +29,15 @@ M440_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map440.map\
 
 $(M440_TARGET): $(M440_O_FILES) $(M440_LIBS)
 	@echo $(M440_LIBS) $(M440_O_FILES) > build/M440_ofiles
-	$(LD) -partial $(M440_LDFLAGS) -o $(M440_TARGET) @build/M440_ofiles
+	$(LD) -opt_partial $(M440_LDFLAGS) -o $(M440_TARGET) @build/M440_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/%.o: rel/d/a/obj/d_a_obj_dust/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M440_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

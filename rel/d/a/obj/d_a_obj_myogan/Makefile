@@ -28,15 +28,16 @@ M579_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map579.map\
 
 $(M579_TARGET): $(M579_O_FILES) $(M579_LIBS)
 	@echo $(M579_LIBS) $(M579_O_FILES) > build/M579_ofiles
-	$(LD) -partial $(M579_LDFLAGS) -o $(M579_TARGET) @build/M579_ofiles
+	$(LD) -opt_partial $(M579_LDFLAGS) -o $(M579_TARGET) @build/M579_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/%.o: rel/d/a/obj/d_a_obj_myogan/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M579_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_myogan/libs/Runtime.PPCEABI.H/Makefile
 

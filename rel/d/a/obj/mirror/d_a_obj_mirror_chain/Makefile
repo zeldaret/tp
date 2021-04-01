@@ -29,14 +29,15 @@ M573_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map573.map\
 
 $(M573_TARGET): $(M573_O_FILES) $(M573_LIBS)
 	@echo $(M573_LIBS) $(M573_O_FILES) > build/M573_ofiles
-	$(LD) -partial $(M573_LDFLAGS) -o $(M573_TARGET) @build/M573_ofiles
+	$(LD) -opt_partial $(M573_LDFLAGS) -o $(M573_TARGET) @build/M573_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -31,14 +31,15 @@ M400_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map400.map\
 
 $(M400_TARGET): $(M400_O_FILES) $(M400_LIBS)
 	@echo $(M400_LIBS) $(M400_O_FILES) > build/M400_ofiles
-	$(LD) -partial $(M400_LDFLAGS) -o $(M400_TARGET) @build/M400_ofiles
+	$(LD) -opt_partial $(M400_LDFLAGS) -o $(M400_TARGET) @build/M400_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_avalanche/%.o: rel/d/a/obj/d_a_obj_avalanche/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M400_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

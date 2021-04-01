@@ -29,14 +29,15 @@ M740_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map740.map\
 
 $(M740_TARGET): $(M740_O_FILES) $(M740_LIBS)
 	@echo $(M740_LIBS) $(M740_O_FILES) > build/M740_ofiles
-	$(LD) -partial $(M740_LDFLAGS) -o $(M740_TARGET) @build/M740_ofiles
+	$(LD) -opt_partial $(M740_LDFLAGS) -o $(M740_TARGET) @build/M740_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/%.o: rel/d/a/tag/d_a_tag_setrestart/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M740_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

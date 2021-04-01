@@ -31,14 +31,15 @@ M568_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map568.map\
 
 $(M568_TARGET): $(M568_O_FILES) $(M568_LIBS)
 	@echo $(M568_LIBS) $(M568_O_FILES) > build/M568_ofiles
-	$(LD) -partial $(M568_LDFLAGS) -o $(M568_TARGET) @build/M568_ofiles
+	$(LD) -opt_partial $(M568_LDFLAGS) -o $(M568_TARGET) @build/M568_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_master_sword/%.o: rel/d/a/obj/d_a_obj_master_sword/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M568_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

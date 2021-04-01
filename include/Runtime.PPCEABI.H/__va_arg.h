@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* __VA_ARG_H */

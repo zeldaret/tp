@@ -29,14 +29,15 @@ M89_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map89.map\
 
 $(M89_TARGET): $(M89_O_FILES) $(M89_LIBS)
 	@echo $(M89_LIBS) $(M89_O_FILES) > build/M89_ofiles
-	$(LD) -partial $(M89_LDFLAGS) -o $(M89_TARGET) @build/M89_ofiles
+	$(LD) -opt_partial $(M89_LDFLAGS) -o $(M89_TARGET) @build/M89_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/%.o: rel/d/a/obj/d_a_obj_bhashi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M89_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

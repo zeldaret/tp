@@ -29,14 +29,15 @@ M109_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map109.map\
 
 $(M109_TARGET): $(M109_O_FILES) $(M109_LIBS)
 	@echo $(M109_LIBS) $(M109_O_FILES) > build/M109_ofiles
-	$(LD) -partial $(M109_LDFLAGS) -o $(M109_TARGET) @build/M109_ofiles
+	$(LD) -opt_partial $(M109_LDFLAGS) -o $(M109_TARGET) @build/M109_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.o: rel/d/a/obj/d_a_obj_ornament_cloth/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M109_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

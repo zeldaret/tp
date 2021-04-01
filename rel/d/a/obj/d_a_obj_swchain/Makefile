@@ -29,14 +29,15 @@ M642_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map642.map\
 
 $(M642_TARGET): $(M642_O_FILES) $(M642_LIBS)
 	@echo $(M642_LIBS) $(M642_O_FILES) > build/M642_ofiles
-	$(LD) -partial $(M642_LDFLAGS) -o $(M642_TARGET) @build/M642_ofiles
+	$(LD) -opt_partial $(M642_LDFLAGS) -o $(M642_TARGET) @build/M642_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/%.o: rel/d/a/obj/d_a_obj_swchain/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M642_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

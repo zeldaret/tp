@@ -28,15 +28,16 @@ M127_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map127.map\
 
 $(M127_TARGET): $(M127_O_FILES) $(M127_LIBS)
 	@echo $(M127_LIBS) $(M127_O_FILES) > build/M127_ofiles
-	$(LD) -partial $(M127_LDFLAGS) -o $(M127_TARGET) @build/M127_ofiles
+	$(LD) -opt_partial $(M127_LDFLAGS) -o $(M127_TARGET) @build/M127_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/%.o: rel/d/a/tag/d_a_tag_hstop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M127_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_hstop/libs/Runtime.PPCEABI.H/Makefile
 

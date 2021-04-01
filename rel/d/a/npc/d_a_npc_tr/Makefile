@@ -28,15 +28,16 @@ M375_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map375.map\
 
 $(M375_TARGET): $(M375_O_FILES) $(M375_LIBS)
 	@echo $(M375_LIBS) $(M375_O_FILES) > build/M375_ofiles
-	$(LD) -partial $(M375_LDFLAGS) -o $(M375_TARGET) @build/M375_ofiles
+	$(LD) -opt_partial $(M375_LDFLAGS) -o $(M375_TARGET) @build/M375_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/%.o: rel/d/a/npc/d_a_npc_tr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M375_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_tr/libs/Runtime.PPCEABI.H/Makefile
 

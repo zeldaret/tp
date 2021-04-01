@@ -28,15 +28,16 @@ M565_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map565.map\
 
 $(M565_TARGET): $(M565_O_FILES) $(M565_LIBS)
 	@echo $(M565_LIBS) $(M565_O_FILES) > build/M565_ofiles
-	$(LD) -partial $(M565_LDFLAGS) -o $(M565_TARGET) @build/M565_ofiles
+	$(LD) -opt_partial $(M565_LDFLAGS) -o $(M565_TARGET) @build/M565_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/%.o: rel/d/a/obj/d_a_obj_magLift/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M565_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_magLift/libs/Runtime.PPCEABI.H/Makefile
 

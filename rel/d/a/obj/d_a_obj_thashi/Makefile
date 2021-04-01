@@ -29,14 +29,15 @@ M657_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map657.map\
 
 $(M657_TARGET): $(M657_O_FILES) $(M657_LIBS)
 	@echo $(M657_LIBS) $(M657_O_FILES) > build/M657_ofiles
-	$(LD) -partial $(M657_LDFLAGS) -o $(M657_TARGET) @build/M657_ofiles
+	$(LD) -opt_partial $(M657_LDFLAGS) -o $(M657_TARGET) @build/M657_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thashi/%.o: rel/d/a/obj/d_a_obj_thashi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M657_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

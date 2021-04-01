@@ -28,15 +28,16 @@ M203_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map203.map\
 
 $(M203_TARGET): $(M203_O_FILES) $(M203_LIBS)
 	@echo $(M203_LIBS) $(M203_O_FILES) > build/M203_ofiles
-	$(LD) -partial $(M203_LDFLAGS) -o $(M203_TARGET) @build/M203_ofiles
+	$(LD) -opt_partial $(M203_LDFLAGS) -o $(M203_TARGET) @build/M203_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_is/%.o: rel/d/a/e/d_a_e_is/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M203_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_is/libs/Runtime.PPCEABI.H/Makefile
 

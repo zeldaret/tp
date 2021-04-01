@@ -31,14 +31,15 @@ M437_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map437.map\
 
 $(M437_TARGET): $(M437_O_FILES) $(M437_LIBS)
 	@echo $(M437_LIBS) $(M437_O_FILES) > build/M437_ofiles
-	$(LD) -partial $(M437_LDFLAGS) -o $(M437_TARGET) @build/M437_ofiles
+	$(LD) -opt_partial $(M437_LDFLAGS) -o $(M437_TARGET) @build/M437_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/%.o: rel/d/a/obj/d_a_obj_digsnow/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M437_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

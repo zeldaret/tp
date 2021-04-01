@@ -28,15 +28,16 @@ M210_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map210.map\
 
 $(M210_TARGET): $(M210_O_FILES) $(M210_LIBS)
 	@echo $(M210_LIBS) $(M210_O_FILES) > build/M210_ofiles
-	$(LD) -partial $(M210_LDFLAGS) -o $(M210_TARGET) @build/M210_ofiles
+	$(LD) -opt_partial $(M210_LDFLAGS) -o $(M210_TARGET) @build/M210_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_mk/%.o: rel/d/a/e/d_a_e_mk/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M210_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_mk/libs/Runtime.PPCEABI.H/Makefile
 

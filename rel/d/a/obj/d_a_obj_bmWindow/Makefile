@@ -28,15 +28,16 @@ M410_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map410.map\
 
 $(M410_TARGET): $(M410_O_FILES) $(M410_LIBS)
 	@echo $(M410_LIBS) $(M410_O_FILES) > build/M410_ofiles
-	$(LD) -partial $(M410_LDFLAGS) -o $(M410_TARGET) @build/M410_ofiles
+	$(LD) -opt_partial $(M410_LDFLAGS) -o $(M410_TARGET) @build/M410_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmWindow/%.o: rel/d/a/obj/d_a_obj_bmWindow/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M410_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_bmWindow/libs/Runtime.PPCEABI.H/Makefile
 

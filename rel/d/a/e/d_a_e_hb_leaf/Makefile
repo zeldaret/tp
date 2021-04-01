@@ -29,14 +29,15 @@ M198_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map198.map\
 
 $(M198_TARGET): $(M198_O_FILES) $(M198_LIBS)
 	@echo $(M198_LIBS) $(M198_O_FILES) > build/M198_ofiles
-	$(LD) -partial $(M198_LDFLAGS) -o $(M198_TARGET) @build/M198_ofiles
+	$(LD) -opt_partial $(M198_LDFLAGS) -o $(M198_TARGET) @build/M198_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hb_leaf/%.o: rel/d/a/e/d_a_e_hb_leaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M198_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

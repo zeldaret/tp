@@ -28,15 +28,16 @@ M85_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map85.map\
 
 $(M85_TARGET): $(M85_O_FILES) $(M85_LIBS)
 	@echo $(M85_LIBS) $(M85_O_FILES) > build/M85_ofiles
-	$(LD) -partial $(M85_LDFLAGS) -o $(M85_TARGET) @build/M85_ofiles
+	$(LD) -opt_partial $(M85_LDFLAGS) -o $(M85_TARGET) @build/M85_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.o: rel/d/a/npc/d_a_npc_kolin/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_kolin/libs/Runtime.PPCEABI.H/Makefile
 

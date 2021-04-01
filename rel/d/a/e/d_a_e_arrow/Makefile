@@ -28,15 +28,16 @@ M171_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map171.map\
 
 $(M171_TARGET): $(M171_O_FILES) $(M171_LIBS)
 	@echo $(M171_LIBS) $(M171_O_FILES) > build/M171_ofiles
-	$(LD) -partial $(M171_LDFLAGS) -o $(M171_TARGET) @build/M171_ofiles
+	$(LD) -opt_partial $(M171_LDFLAGS) -o $(M171_TARGET) @build/M171_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_arrow/%.o: rel/d/a/e/d_a_e_arrow/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M171_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_arrow/libs/Runtime.PPCEABI.H/Makefile
 

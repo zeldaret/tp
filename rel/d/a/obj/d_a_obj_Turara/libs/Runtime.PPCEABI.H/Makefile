@@ -19,7 +19,6 @@ M394LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/libRuntime.PPCEABI.H.a: $(M394LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M394LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M394LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M394LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/libRuntime.PPCEABI.H.a @build/M394LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_Turara/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

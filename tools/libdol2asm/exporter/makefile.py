@@ -137,11 +137,13 @@ async def create_rel(module: Module):
         await builder.write("\t-linkmode moreram \\")
         await builder.write("\t-sdata 0 \\")
         await builder.write("\t-sdata2 0 \\")
+        await builder.write("\t-lcf $(BUILD_DIR)/rel_ldscript.lcf \\")
+        await builder.write(f"\t-unused -map $(BUILD_DIR)/map{module.index}.map\\")
         await builder.write("")
-        
+
         await builder.write(f"$({prefix}_TARGET): $({prefix}_O_FILES) $({prefix}_LIBS)")
         await builder.write(f"\t@echo $({prefix}_LIBS) $({prefix}_O_FILES) > {input_file}")
-        await builder.write(f"\t$(LD) -partial $({prefix}_LDFLAGS) -o $({prefix}_TARGET) @{input_file}")
+        await builder.write(f"\t$(LD) -opt_partial $({prefix}_LDFLAGS) -o $({prefix}_TARGET) @{input_file}")
         await builder.write("")
 
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")

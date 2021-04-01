@@ -28,15 +28,16 @@ M200_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map200.map\
 
 $(M200_TARGET): $(M200_O_FILES) $(M200_LIBS)
 	@echo $(M200_LIBS) $(M200_O_FILES) > build/M200_ofiles
-	$(LD) -partial $(M200_LDFLAGS) -o $(M200_TARGET) @build/M200_ofiles
+	$(LD) -opt_partial $(M200_LDFLAGS) -o $(M200_TARGET) @build/M200_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hp/%.o: rel/d/a/e/d_a_e_hp/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M200_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_hp/libs/Runtime.PPCEABI.H/Makefile
 

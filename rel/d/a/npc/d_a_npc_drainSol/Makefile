@@ -28,15 +28,16 @@ M300_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map300.map\
 
 $(M300_TARGET): $(M300_O_FILES) $(M300_LIBS)
 	@echo $(M300_LIBS) $(M300_O_FILES) > build/M300_ofiles
-	$(LD) -partial $(M300_LDFLAGS) -o $(M300_TARGET) @build/M300_ofiles
+	$(LD) -opt_partial $(M300_LDFLAGS) -o $(M300_TARGET) @build/M300_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/%.o: rel/d/a/npc/d_a_npc_drainSol/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M300_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_drainSol/libs/Runtime.PPCEABI.H/Makefile
 

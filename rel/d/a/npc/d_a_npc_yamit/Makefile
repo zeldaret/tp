@@ -28,15 +28,16 @@ M381_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map381.map\
 
 $(M381_TARGET): $(M381_O_FILES) $(M381_LIBS)
 	@echo $(M381_LIBS) $(M381_O_FILES) > build/M381_ofiles
-	$(LD) -partial $(M381_LDFLAGS) -o $(M381_TARGET) @build/M381_ofiles
+	$(LD) -opt_partial $(M381_LDFLAGS) -o $(M381_TARGET) @build/M381_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamit/%.o: rel/d/a/npc/d_a_npc_yamit/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M381_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_yamit/libs/Runtime.PPCEABI.H/Makefile
 

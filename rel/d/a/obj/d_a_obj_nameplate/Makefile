@@ -29,14 +29,15 @@ M108_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map108.map\
 
 $(M108_TARGET): $(M108_O_FILES) $(M108_LIBS)
 	@echo $(M108_LIBS) $(M108_O_FILES) > build/M108_ofiles
-	$(LD) -partial $(M108_LDFLAGS) -o $(M108_TARGET) @build/M108_ofiles
+	$(LD) -opt_partial $(M108_LDFLAGS) -o $(M108_TARGET) @build/M108_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/%.o: rel/d/a/obj/d_a_obj_nameplate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M108_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

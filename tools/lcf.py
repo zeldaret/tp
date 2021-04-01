@@ -12,13 +12,8 @@ VERSION = "1.0"
 
 import os
 import sys
-import click
 import io
 from pathlib import Path
-
-class PathPath(click.Path):
-    def convert(self, value, param, ctx):
-        return Path(super().convert(value, param, ctx))
 
 # laod the symbol definition file for main.dol
 sys.path.append('defs')
@@ -26,10 +21,7 @@ import module0
 import libar
 import libelf
 
-@click.command()
-@click.version_option(VERSION)
-@click.option('--output', '-o', 'output_path', required=False, type=PathPath(file_okay=True, dir_okay=False), default="ldscript.lcf")
-def lcf(output_path):
+def lcf_generate(output_path, rel_output_path):
     """ Script for generating .lcf files """
     
     # load symbols from compiled files
@@ -46,6 +38,20 @@ def lcf(output_path):
         with open(o_file, 'rb') as file:
             obj = libelf.load_object_from_file(None, o_file, file)
             symbols.extend(get_symbols_from_object_file(obj))
+
+    # write rel ldscript file
+    with rel_output_path.open("w") as file:
+        file.write("SECTIONS {\n")
+        for name, align in SECTIONS:
+            if name == "extab_":
+                name = "extab"
+            if name == "extabindex_":
+                name = "extabindex"   
+            file.write("\t%s ALIGN(0x%X):{}\n" % (name, align))
+
+        file.write("\t/DISCARD/ : { *(.dead) }\n")
+        file.write("}\n")
+
 
     # write the file
     with output_path.open("w") as file:
@@ -117,48 +123,16 @@ def lcf(output_path):
                 continue
 
             require_force_active = False
-            """
-            rc = x['r']
-
-            # the static reference count is unchanged as the linker seems not to strip
-            # static variables and functions. i.e., if the static reference count is
-            # non-zero then the symbol does not need force active.
-            static_rc = rc[0]
-            extern_rc = rc[1]
-            rels_rc = rc[2]
-
-            # the symbol is only referenced by rels and is required to be forceactive.
-            # I assume the process of generating rels will generate a list of forceactive
-            # symbols that we can later use instead.
-            if static_rc == 0 and extern_rc == 0 and rels_rc > 0:
-                require_force_active = True
-
-            # symbol has no references! this indicates that there is a problem with
-            # dol2asm. as symbols without references should have been remove by the linker
-            # when Nintendo did the first compile. Most be reference which we currently cannot
-            # determine.
-            if static_rc == 0 and extern_rc == 0 and rels_rc == 0:
-                require_force_active = True
-
-            if rels_rc > 0:
-                require_force_active = True
-
-            if k.startswith("__sinit_"):
-                require_force_active = True
-
-            if k.startswith("__vt__"):
-                require_force_active = True
-            """
-
+  
+            # if the symbol is not reachable from the __start add it as forceactive
             if not x['is_reachable']:
                 require_force_active = True
 
-            # generate the force active.
-            # the linker 
             if require_force_active:
                 file.write(f"\t\"{x['label']}\"\n")
                 if not x['label'] in main_names:
                     file.write(f"\t\"{x['name']}\"\n")
+                #else:
                 file.write(f"\t/* {x['label'] in main_names} */ \n")
 
         for x in module0.SYMBOLS:
@@ -267,5 +241,24 @@ ARCHIVES = [
     "build/dolzel2/libodenotstub.a",
 ]
 
-if __name__ == "__main__":
-    lcf()
+try:
+    import click
+
+    class PathPath(click.Path):
+        def convert(self, value, param, ctx):
+            return Path(super().convert(value, param, ctx))
+
+    @click.command()
+    @click.version_option(VERSION)
+    @click.option('--output', '-o', 'output_path', required=False, type=PathPath(file_okay=True, dir_okay=False), default="build/dolzel2/ldscript.lcf")
+    @click.option('--output-rel', '-r', 'rel_output_path', required=False, type=PathPath(file_okay=True, dir_okay=False), default="build/dolzel2/rel_ldscript.lcf")
+    def lcf(output_path, rel_output_path):
+        lcf_generate(output_path, rel_output_path)
+
+    if __name__ == "__main__":
+        lcf()
+except ModuleNotFoundError:
+    if __name__ == "__main__":
+        output_path = Path("build/dolzel2/ldscript.lcf")
+        rel_output_path = Path("build/dolzel2/rel_ldscript.lcf")
+        lcf_generate(output_path, rel_output_path)

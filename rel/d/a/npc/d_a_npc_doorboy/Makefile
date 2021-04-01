@@ -28,15 +28,16 @@ M299_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map299.map\
 
 $(M299_TARGET): $(M299_O_FILES) $(M299_LIBS)
 	@echo $(M299_LIBS) $(M299_O_FILES) > build/M299_ofiles
-	$(LD) -partial $(M299_LDFLAGS) -o $(M299_TARGET) @build/M299_ofiles
+	$(LD) -opt_partial $(M299_LDFLAGS) -o $(M299_TARGET) @build/M299_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/%.o: rel/d/a/npc/d_a_npc_doorboy/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M299_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_doorboy/libs/Runtime.PPCEABI.H/Makefile
 

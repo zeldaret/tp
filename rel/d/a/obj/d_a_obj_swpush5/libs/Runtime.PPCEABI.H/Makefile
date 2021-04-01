@@ -19,7 +19,6 @@ M115LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/libRuntime.PPCEABI.H.a: $(M115LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M115LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M115LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M115LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/libRuntime.PPCEABI.H.a @build/M115LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_swpush5/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

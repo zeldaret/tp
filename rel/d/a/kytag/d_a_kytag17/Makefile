@@ -29,14 +29,15 @@ M15_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map15.map\
 
 $(M15_TARGET): $(M15_O_FILES) $(M15_LIBS)
 	@echo $(M15_LIBS) $(M15_O_FILES) > build/M15_ofiles
-	$(LD) -partial $(M15_LDFLAGS) -o $(M15_TARGET) @build/M15_ofiles
+	$(LD) -opt_partial $(M15_LDFLAGS) -o $(M15_TARGET) @build/M15_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag17/%.o: rel/d/a/kytag/d_a_kytag17/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M15_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

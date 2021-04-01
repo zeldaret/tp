@@ -28,15 +28,16 @@ M384_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map384.map\
 
 $(M384_TARGET): $(M384_O_FILES) $(M384_LIBS)
 	@echo $(M384_LIBS) $(M384_O_FILES) > build/M384_ofiles
-	$(LD) -partial $(M384_LDFLAGS) -o $(M384_TARGET) @build/M384_ofiles
+	$(LD) -opt_partial $(M384_LDFLAGS) -o $(M384_TARGET) @build/M384_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/%.o: rel/d/a/npc/d_a_npc_ykw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M384_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_ykw/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M193_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map193.map\
 
 $(M193_TARGET): $(M193_O_FILES) $(M193_LIBS)
 	@echo $(M193_LIBS) $(M193_O_FILES) > build/M193_ofiles
-	$(LD) -partial $(M193_LDFLAGS) -o $(M193_TARGET) @build/M193_ofiles
+	$(LD) -opt_partial $(M193_LDFLAGS) -o $(M193_TARGET) @build/M193_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ge/%.o: rel/d/a/e/d_a_e_ge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M193_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_ge/libs/Runtime.PPCEABI.H/Makefile
 

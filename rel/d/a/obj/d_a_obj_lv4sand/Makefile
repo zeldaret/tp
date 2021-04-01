@@ -31,14 +31,15 @@ M538_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map538.map\
 
 $(M538_TARGET): $(M538_O_FILES) $(M538_LIBS)
 	@echo $(M538_LIBS) $(M538_O_FILES) > build/M538_ofiles
-	$(LD) -partial $(M538_LDFLAGS) -o $(M538_TARGET) @build/M538_ofiles
+	$(LD) -opt_partial $(M538_LDFLAGS) -o $(M538_TARGET) @build/M538_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.o: rel/d/a/obj/d_a_obj_lv4sand/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M538_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

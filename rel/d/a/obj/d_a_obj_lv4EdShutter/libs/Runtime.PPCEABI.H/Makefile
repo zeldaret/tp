@@ -19,7 +19,6 @@ M525LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/libRuntime.PPCEABI.H.a: $(M525LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M525LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M525LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M525LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/libRuntime.PPCEABI.H.a @build/M525LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_lv4EdShutter/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

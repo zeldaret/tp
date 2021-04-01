@@ -29,14 +29,15 @@ M473_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map473.map\
 
 $(M473_TARGET): $(M473_O_FILES) $(M473_LIBS)
 	@echo $(M473_LIBS) $(M473_O_FILES) > build/M473_ofiles
-	$(LD) -partial $(M473_LDFLAGS) -o $(M473_TARGET) @build/M473_ofiles
+	$(LD) -opt_partial $(M473_LDFLAGS) -o $(M473_TARGET) @build/M473_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/%.o: rel/d/a/obj/d_a_obj_hata/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M473_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M598_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map598.map\
 
 $(M598_TARGET): $(M598_O_FILES) $(M598_LIBS)
 	@echo $(M598_LIBS) $(M598_O_FILES) > build/M598_ofiles
-	$(LD) -partial $(M598_LDFLAGS) -o $(M598_TARGET) @build/M598_ofiles
+	$(LD) -opt_partial $(M598_LDFLAGS) -o $(M598_TARGET) @build/M598_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_prop/%.o: rel/d/a/obj/d_a_obj_prop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M598_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

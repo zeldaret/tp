@@ -29,14 +29,15 @@ M101_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map101.map\
 
 $(M101_TARGET): $(M101_O_FILES) $(M101_LIBS)
 	@echo $(M101_LIBS) $(M101_O_FILES) > build/M101_ofiles
-	$(LD) -partial $(M101_LDFLAGS) -o $(M101_TARGET) @build/M101_ofiles
+	$(LD) -opt_partial $(M101_LDFLAGS) -o $(M101_TARGET) @build/M101_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/%.o: rel/d/a/obj/d_a_obj_klift00/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M101_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

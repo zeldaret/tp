@@ -28,15 +28,16 @@ M134_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map134.map\
 
 $(M134_TARGET): $(M134_O_FILES) $(M134_LIBS)
 	@echo $(M134_LIBS) $(M134_O_FILES) > build/M134_ofiles
-	$(LD) -partial $(M134_LDFLAGS) -o $(M134_TARGET) @build/M134_ofiles
+	$(LD) -opt_partial $(M134_LDFLAGS) -o $(M134_TARGET) @build/M134_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ykgr/%.o: rel/d/a/d_a_ykgr/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M134_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_ykgr/libs/Runtime.PPCEABI.H/Makefile
 

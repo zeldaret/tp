@@ -29,14 +29,15 @@ M532_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map532.map\
 
 $(M532_TARGET): $(M532_O_FILES) $(M532_LIBS)
 	@echo $(M532_LIBS) $(M532_O_FILES) > build/M532_ofiles
-	$(LD) -partial $(M532_LDFLAGS) -o $(M532_TARGET) @build/M532_ofiles
+	$(LD) -opt_partial $(M532_LDFLAGS) -o $(M532_TARGET) @build/M532_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/%.o: rel/d/a/obj/d_a_obj_lv4chandelier/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M532_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

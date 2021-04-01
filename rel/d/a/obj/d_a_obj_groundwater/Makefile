@@ -28,15 +28,16 @@ M467_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map467.map\
 
 $(M467_TARGET): $(M467_O_FILES) $(M467_LIBS)
 	@echo $(M467_LIBS) $(M467_O_FILES) > build/M467_ofiles
-	$(LD) -partial $(M467_LDFLAGS) -o $(M467_TARGET) @build/M467_ofiles
+	$(LD) -opt_partial $(M467_LDFLAGS) -o $(M467_TARGET) @build/M467_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_groundwater/%.o: rel/d/a/obj/d_a_obj_groundwater/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M467_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_groundwater/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M684_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map684.map\
 
 $(M684_TARGET): $(M684_O_FILES) $(M684_LIBS)
 	@echo $(M684_LIBS) $(M684_O_FILES) > build/M684_ofiles
-	$(LD) -partial $(M684_LDFLAGS) -o $(M684_TARGET) @build/M684_ofiles
+	$(LD) -opt_partial $(M684_LDFLAGS) -o $(M684_TARGET) @build/M684_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/%.o: rel/d/a/obj/d_a_obj_web0/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M684_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_web0/libs/Runtime.PPCEABI.H/Makefile
 

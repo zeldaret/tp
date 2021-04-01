@@ -28,15 +28,16 @@ M371_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map371.map\
 
 $(M371_TARGET): $(M371_O_FILES) $(M371_LIBS)
 	@echo $(M371_LIBS) $(M371_O_FILES) > build/M371_ofiles
-	$(LD) -partial $(M371_LDFLAGS) -o $(M371_TARGET) @build/M371_ofiles
+	$(LD) -opt_partial $(M371_LDFLAGS) -o $(M371_TARGET) @build/M371_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkc/%.o: rel/d/a/npc/d_a_npc_tkc/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M371_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_tkc/libs/Runtime.PPCEABI.H/Makefile
 

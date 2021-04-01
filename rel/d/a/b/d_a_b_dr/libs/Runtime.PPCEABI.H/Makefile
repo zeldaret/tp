@@ -19,7 +19,6 @@ M140LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/b/d_a_b_dr/libRuntime.PPCEABI.H.a: $(M140LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M140LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M140LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M140LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/b/d_a_b_dr/libRuntime.PPCEABI.H.a @build/M140LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/b/d_a_b_dr/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_dr/libs/Runtime.PPCEABI.H/%.o: rel/d/a/b/d_a_b_dr/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

@@ -28,15 +28,16 @@ M599_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map599.map\
 
 $(M599_TARGET): $(M599_O_FILES) $(M599_LIBS)
 	@echo $(M599_LIBS) $(M599_O_FILES) > build/M599_ofiles
-	$(LD) -partial $(M599_LDFLAGS) -o $(M599_TARGET) @build/M599_ofiles
+	$(LD) -opt_partial $(M599_LDFLAGS) -o $(M599_TARGET) @build/M599_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/%.o: rel/d/a/obj/d_a_obj_pumpkin/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M599_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_pumpkin/libs/Runtime.PPCEABI.H/Makefile
 

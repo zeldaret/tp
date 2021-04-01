@@ -29,14 +29,15 @@ M668_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map668.map\
 
 $(M668_TARGET): $(M668_O_FILES) $(M668_LIBS)
 	@echo $(M668_LIBS) $(M668_O_FILES) > build/M668_ofiles
-	$(LD) -partial $(M668_LDFLAGS) -o $(M668_TARGET) @build/M668_ofiles
+	$(LD) -opt_partial $(M668_LDFLAGS) -o $(M668_TARGET) @build/M668_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/%.o: rel/d/a/obj/d_a_obj_tornado2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M668_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

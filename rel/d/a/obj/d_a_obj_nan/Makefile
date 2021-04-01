@@ -28,15 +28,16 @@ M581_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map581.map\
 
 $(M581_TARGET): $(M581_O_FILES) $(M581_LIBS)
 	@echo $(M581_LIBS) $(M581_O_FILES) > build/M581_ofiles
-	$(LD) -partial $(M581_LDFLAGS) -o $(M581_TARGET) @build/M581_ofiles
+	$(LD) -opt_partial $(M581_LDFLAGS) -o $(M581_TARGET) @build/M581_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/%.o: rel/d/a/obj/d_a_obj_nan/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M581_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_nan/libs/Runtime.PPCEABI.H/Makefile
 

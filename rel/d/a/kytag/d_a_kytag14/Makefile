@@ -29,14 +29,15 @@ M77_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map77.map\
 
 $(M77_TARGET): $(M77_O_FILES) $(M77_LIBS)
 	@echo $(M77_LIBS) $(M77_O_FILES) > build/M77_ofiles
-	$(LD) -partial $(M77_LDFLAGS) -o $(M77_TARGET) @build/M77_ofiles
+	$(LD) -opt_partial $(M77_LDFLAGS) -o $(M77_TARGET) @build/M77_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag14/%.o: rel/d/a/kytag/d_a_kytag14/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M77_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

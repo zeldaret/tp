@@ -28,15 +28,16 @@ M306_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map306.map\
 
 $(M306_TARGET): $(M306_O_FILES) $(M306_LIBS)
 	@echo $(M306_LIBS) $(M306_O_FILES) > build/M306_ofiles
-	$(LD) -partial $(M306_LDFLAGS) -o $(M306_TARGET) @build/M306_ofiles
+	$(LD) -opt_partial $(M306_LDFLAGS) -o $(M306_TARGET) @build/M306_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/%.o: rel/d/a/npc/d_a_npc_grc/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M306_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_grc/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M114_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map114.map\
 
 $(M114_TARGET): $(M114_O_FILES) $(M114_LIBS)
 	@echo $(M114_LIBS) $(M114_O_FILES) > build/M114_ofiles
-	$(LD) -partial $(M114_LDFLAGS) -o $(M114_TARGET) @build/M114_ofiles
+	$(LD) -opt_partial $(M114_LDFLAGS) -o $(M114_TARGET) @build/M114_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpropeller/%.o: rel/d/a/obj/d_a_obj_swpropeller/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M114_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

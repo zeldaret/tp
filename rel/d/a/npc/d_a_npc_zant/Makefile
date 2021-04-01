@@ -28,15 +28,16 @@ M386_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map386.map\
 
 $(M386_TARGET): $(M386_O_FILES) $(M386_LIBS)
 	@echo $(M386_LIBS) $(M386_O_FILES) > build/M386_ofiles
-	$(LD) -partial $(M386_LDFLAGS) -o $(M386_TARGET) @build/M386_ofiles
+	$(LD) -opt_partial $(M386_LDFLAGS) -o $(M386_TARGET) @build/M386_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/%.o: rel/d/a/npc/d_a_npc_zant/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M386_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_zant/libs/Runtime.PPCEABI.H/Makefile
 

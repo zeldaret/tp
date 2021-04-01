@@ -29,14 +29,15 @@ M424_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map424.map\
 
 $(M424_TARGET): $(M424_O_FILES) $(M424_LIBS)
 	@echo $(M424_LIBS) $(M424_O_FILES) > build/M424_ofiles
-	$(LD) -partial $(M424_LDFLAGS) -o $(M424_TARGET) @build/M424_ofiles
+	$(LD) -opt_partial $(M424_LDFLAGS) -o $(M424_TARGET) @build/M424_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/%.o: rel/d/a/obj/d_a_obj_cowdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M424_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

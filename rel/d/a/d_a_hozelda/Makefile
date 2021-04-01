@@ -31,14 +31,15 @@ M263_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map263.map\
 
 $(M263_TARGET): $(M263_O_FILES) $(M263_LIBS)
 	@echo $(M263_LIBS) $(M263_O_FILES) > build/M263_ofiles
-	$(LD) -partial $(M263_LDFLAGS) -o $(M263_TARGET) @build/M263_ofiles
+	$(LD) -opt_partial $(M263_LDFLAGS) -o $(M263_TARGET) @build/M263_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_hozelda/%.o: rel/d/a/d_a_hozelda/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M263_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

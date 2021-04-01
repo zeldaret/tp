@@ -31,14 +31,15 @@ M439_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map439.map\
 
 $(M439_TARGET): $(M439_O_FILES) $(M439_LIBS)
 	@echo $(M439_LIBS) $(M439_O_FILES) > build/M439_ofiles
-	$(LD) -partial $(M439_LDFLAGS) -o $(M439_TARGET) @build/M439_ofiles
+	$(LD) -opt_partial $(M439_LDFLAGS) -o $(M439_TARGET) @build/M439_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/%.o: rel/d/a/obj/d_a_obj_drop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M439_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

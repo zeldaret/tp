@@ -19,7 +19,6 @@ M79LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/libRuntime.PPCEABI.H.a: $(M79LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M79LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M79LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M79LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/libRuntime.PPCEABI.H.a @build/M79LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_besu/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

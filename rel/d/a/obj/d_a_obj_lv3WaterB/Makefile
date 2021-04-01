@@ -29,14 +29,15 @@ M520_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map520.map\
 
 $(M520_TARGET): $(M520_O_FILES) $(M520_LIBS)
 	@echo $(M520_LIBS) $(M520_O_FILES) > build/M520_ofiles
-	$(LD) -partial $(M520_LDFLAGS) -o $(M520_TARGET) @build/M520_ofiles
+	$(LD) -opt_partial $(M520_LDFLAGS) -o $(M520_TARGET) @build/M520_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/%.o: rel/d/a/obj/d_a_obj_lv3WaterB/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M520_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

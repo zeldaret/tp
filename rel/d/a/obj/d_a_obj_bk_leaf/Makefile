@@ -29,14 +29,15 @@ M408_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map408.map\
 
 $(M408_TARGET): $(M408_O_FILES) $(M408_LIBS)
 	@echo $(M408_LIBS) $(M408_O_FILES) > build/M408_ofiles
-	$(LD) -partial $(M408_LDFLAGS) -o $(M408_TARGET) @build/M408_ofiles
+	$(LD) -opt_partial $(M408_LDFLAGS) -o $(M408_TARGET) @build/M408_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/%.o: rel/d/a/obj/d_a_obj_bk_leaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M408_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

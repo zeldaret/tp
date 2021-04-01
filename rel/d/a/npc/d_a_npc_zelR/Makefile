@@ -28,15 +28,16 @@ M387_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map387.map\
 
 $(M387_TARGET): $(M387_O_FILES) $(M387_LIBS)
 	@echo $(M387_LIBS) $(M387_O_FILES) > build/M387_ofiles
-	$(LD) -partial $(M387_LDFLAGS) -o $(M387_TARGET) @build/M387_ofiles
+	$(LD) -opt_partial $(M387_LDFLAGS) -o $(M387_TARGET) @build/M387_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/%.o: rel/d/a/npc/d_a_npc_zelR/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M387_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_zelR/libs/Runtime.PPCEABI.H/Makefile
 

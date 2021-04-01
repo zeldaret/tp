@@ -29,14 +29,15 @@ M555_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map555.map\
 
 $(M555_TARGET): $(M555_O_FILES) $(M555_LIBS)
 	@echo $(M555_LIBS) $(M555_O_FILES) > build/M555_ofiles
-	$(LD) -partial $(M555_LDFLAGS) -o $(M555_TARGET) @build/M555_ofiles
+	$(LD) -opt_partial $(M555_LDFLAGS) -o $(M555_TARGET) @build/M555_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/%.o: rel/d/a/obj/d_a_obj_lv6elevta/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M555_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

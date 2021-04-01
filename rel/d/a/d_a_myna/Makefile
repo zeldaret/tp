@@ -28,15 +28,16 @@ M281_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map281.map\
 
 $(M281_TARGET): $(M281_O_FILES) $(M281_LIBS)
 	@echo $(M281_LIBS) $(M281_O_FILES) > build/M281_ofiles
-	$(LD) -partial $(M281_LDFLAGS) -o $(M281_TARGET) @build/M281_ofiles
+	$(LD) -opt_partial $(M281_LDFLAGS) -o $(M281_TARGET) @build/M281_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_myna/%.o: rel/d/a/d_a_myna/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M281_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_myna/libs/Runtime.PPCEABI.H/Makefile
 

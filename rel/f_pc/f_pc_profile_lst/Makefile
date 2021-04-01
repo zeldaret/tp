@@ -29,14 +29,15 @@ M1_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map1.map\
 
 $(M1_TARGET): $(M1_O_FILES) $(M1_LIBS)
 	@echo $(M1_LIBS) $(M1_O_FILES) > build/M1_ofiles
-	$(LD) -partial $(M1_LDFLAGS) -o $(M1_TARGET) @build/M1_ofiles
+	$(LD) -opt_partial $(M1_LDFLAGS) -o $(M1_TARGET) @build/M1_ofiles
 
 $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.o: rel/f_pc/f_pc_profile_lst/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M1_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M258_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map258.map\
 
 $(M258_TARGET): $(M258_O_FILES) $(M258_LIBS)
 	@echo $(M258_LIBS) $(M258_O_FILES) > build/M258_ofiles
-	$(LD) -partial $(M258_LDFLAGS) -o $(M258_TARGET) @build/M258_ofiles
+	$(LD) -opt_partial $(M258_LDFLAGS) -o $(M258_TARGET) @build/M258_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_zm/%.o: rel/d/a/e/d_a_e_zm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M258_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_zm/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M743_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map743.map\
 
 $(M743_TARGET): $(M743_O_FILES) $(M743_LIBS)
 	@echo $(M743_LIBS) $(M743_O_FILES) > build/M743_ofiles
-	$(LD) -partial $(M743_LDFLAGS) -o $(M743_TARGET) @build/M743_ofiles
+	$(LD) -opt_partial $(M743_LDFLAGS) -o $(M743_TARGET) @build/M743_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/%.o: rel/d/a/tag/d_a_tag_smk_emt/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M743_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

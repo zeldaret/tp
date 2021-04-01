@@ -46,6 +46,10 @@ logging.basicConfig(
 LOG = logging.getLogger("rich")
 LOG.setLevel(logging.INFO)
 
+loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
+for logger in loggers:
+    logger.setLevel(logging.INFO)
+
 @click.group()
 @click.version_option(VERSION)
 def tp():
@@ -64,7 +68,6 @@ def progress(debug, matchning, format):
         LOG.setLevel(logging.DEBUG)
 
     calculate_progress(matchning, format)
-
 
 def calculate_progress(matchning, format):
     if not matchning:
@@ -85,6 +88,15 @@ def calculate_progress(matchning, format):
     total_size = len(data)
     format_size = 0x100
 
+
+    # assume everything is decompiled
+    sections = dict([
+        (section.name, [section.aligned_size, section.aligned_size, section.addr])
+        for section in dol.sections
+        if section.data
+    ])
+
+
     init = dol.get_named_section(".init")
     assert init
     init_decompiled_size = init.size
@@ -93,16 +105,8 @@ def calculate_progress(matchning, format):
     assert text
     text_decompiled_size = text.size
 
-    data_sections = [
-        section
-        for section in dol.sections
-        if section.data and not section.addr in {init.addr, text.addr}
-    ]
-
-    data_size = sum([section.size for section in data_sections])
-
     # find all _used_ asm files
-    asm_files = find_used_asm_files(not matchning)
+    asm_files = find_used_asm_files(not matchning, use_progress_bar=(format == "FANCY"))
 
     # calculate the range each asm file occupies
     ranges = find_function_ranges(asm_files)
@@ -113,20 +117,12 @@ def calculate_progress(matchning, format):
     # substract the size of each asm function
     for function_range in ranges:
         if function_range[0] >= init.addr and function_range[1] < init.addr + init.size:
-            init_decompiled_size -= (function_range[1] - function_range[0])
+            sections[".init"][0] -= (function_range[1] - function_range[0])
         elif function_range[0] >= text.addr and function_range[1] < text.addr + text.size:
-            text_decompiled_size -= (function_range[1] - function_range[0])
+            sections[".text"][0]-= (function_range[1] - function_range[0])
 
-    # calculate the progress
-    init_result = init_decompiled_size / init.size
-    text_result = text_decompiled_size / text.size
-    total_decompiled_size = (init_decompiled_size +
-                             text_decompiled_size + data_size + format_size)
-    total_result = total_decompiled_size / total_size
-
-    init_pct = 100 * init_result
-    text_pct = 100 * text_result
-    total_pct = 100 * total_result
+    total_decompiled_size = format_size + sum([info[0] for info in sections.values()])
+    total_pct = 100 * (total_decompiled_size / total_size)
 
     if format == "FANCY":
         table = Table(title="main.dol")
@@ -138,12 +134,13 @@ def calculate_progress(matchning, format):
         table.add_column("Total (bytes)", justify="right",
                          style="bright_magenta")
 
-        table.add_row(".init", f"{init_pct:10.6f}%",
-                      f"{init_decompiled_size}", f"{init.size}")
-        table.add_row(".text", f"{text_pct:10.6f}%",
-                      f"{text_decompiled_size}", f"{text.size}")
-        table.add_row("total", f"{total_pct:10.6f}%",
-                      f"{total_decompiled_size}", f"{total_size}")
+        for name, info in sections.items():
+            pct = 100 * (info[0] / info[1])
+            table.add_row(name, f"{pct:10.6f}%", f"{info[0]}", f"{info[1]}")
+
+        table.add_row("", "", "", "")
+        table.add_row("total", f"{total_pct:10.6f}%", f"{total_decompiled_size}", f"{total_size}")
+        
         CONSOLE.print(table)
     elif format == "CSV":
         version = 1
@@ -152,8 +149,8 @@ def calculate_progress(matchning, format):
         git_hash = git_object.hexsha
         data = [
             str(version), timestamp, git_hash,
-            str(init_decompiled_size), str(init.size),
-            str(text_decompiled_size), str(text.size),
+            str(sections[".init"][0]), str(sections[".init"][1]),
+            str(sections[".text"][0]), str(sections[".text"][1]),
             str(total_decompiled_size), str(total_size),
 
         ]
@@ -167,6 +164,8 @@ def calculate_progress(matchning, format):
             "color": 'yellow',
         }))
     else:
+        init_pct = 100 * (sections[".init"][0] / sections[".init"][1])
+        text_pct = 100 * (sections[".text"][0] / sections[".text"][1])
         print(init_pct, text_pct, total_pct)
         LOG.error("unknown format: '{format}'")
 
@@ -390,22 +389,26 @@ def find_includes(lines, non_matching, ext=".s"):
     return includes
 
 
-def find_used_asm_files(non_matching):
+def find_used_asm_files(non_matching, use_progress_bar=True):
 
     cpp_files = find_all_cpp_files()
     includes = set()
 
-    with Progress(console=CONSOLE, transient=True, refresh_per_second=1) as progress:
-        task = progress.add_task(f"preprocessing...", total=len(cpp_files))
+    if use_progress_bar:
+        with Progress(console=CONSOLE, transient=True, refresh_per_second=1) as progress:
+            task = progress.add_task(f"preprocessing...", total=len(cpp_files))
 
+            for cpp_file in cpp_files:
+                with cpp_file.open("r") as file:
+                    includes.update(find_includes(file.readlines(), non_matching))
+
+                progress.update(task, advance=1)
+    else:
         for cpp_file in cpp_files:
             with cpp_file.open("r") as file:
                 includes.update(find_includes(file.readlines(), non_matching))
 
-            progress.update(task, advance=1)
-
     # TODO: NON_MATCHING
-
     LOG.debug(f"find_used_asm_files: found {len(includes)} included .s files")
 
     return includes

@@ -29,14 +29,15 @@ M692_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map692.map\
 
 $(M692_TARGET): $(M692_O_FILES) $(M692_LIBS)
 	@echo $(M692_LIBS) $(M692_O_FILES) > build/M692_ofiles
-	$(LD) -partial $(M692_LDFLAGS) -o $(M692_TARGET) @build/M692_ofiles
+	$(LD) -opt_partial $(M692_LDFLAGS) -o $(M692_TARGET) @build/M692_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wsword/%.o: rel/d/a/obj/d_a_obj_wsword/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M692_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M751_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map751.map\
 
 $(M751_TARGET): $(M751_O_FILES) $(M751_LIBS)
 	@echo $(M751_LIBS) $(M751_O_FILES) > build/M751_ofiles
-	$(LD) -partial $(M751_LDFLAGS) -o $(M751_TARGET) @build/M751_ofiles
+	$(LD) -opt_partial $(M751_LDFLAGS) -o $(M751_TARGET) @build/M751_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/%.o: rel/d/a/tag/d_a_tag_waterfall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M751_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_waterfall/libs/Runtime.PPCEABI.H/Makefile
 

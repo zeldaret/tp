@@ -29,14 +29,15 @@ M261_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map261.map\
 
 $(M261_TARGET): $(M261_O_FILES) $(M261_LIBS)
 	@echo $(M261_LIBS) $(M261_O_FILES) > build/M261_ofiles
-	$(LD) -partial $(M261_LDFLAGS) -o $(M261_TARGET) @build/M261_ofiles
+	$(LD) -opt_partial $(M261_LDFLAGS) -o $(M261_TARGET) @build/M261_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_guard_mng/%.o: rel/d/a/d_a_guard_mng/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M261_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

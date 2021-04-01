@@ -28,15 +28,16 @@ M141_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map141.map\
 
 $(M141_TARGET): $(M141_O_FILES) $(M141_LIBS)
 	@echo $(M141_LIBS) $(M141_O_FILES) > build/M141_ofiles
-	$(LD) -partial $(M141_LDFLAGS) -o $(M141_TARGET) @build/M141_ofiles
+	$(LD) -opt_partial $(M141_LDFLAGS) -o $(M141_TARGET) @build/M141_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_dre/%.o: rel/d/a/b/d_a_b_dre/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M141_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/b/d_a_b_dre/libs/Runtime.PPCEABI.H/Makefile
 

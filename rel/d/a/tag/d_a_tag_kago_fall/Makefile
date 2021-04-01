@@ -29,14 +29,15 @@ M724_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map724.map\
 
 $(M724_TARGET): $(M724_O_FILES) $(M724_LIBS)
 	@echo $(M724_LIBS) $(M724_O_FILES) > build/M724_ofiles
-	$(LD) -partial $(M724_LDFLAGS) -o $(M724_TARGET) @build/M724_ofiles
+	$(LD) -opt_partial $(M724_LDFLAGS) -o $(M724_TARGET) @build/M724_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/%.o: rel/d/a/tag/d_a_tag_kago_fall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M724_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

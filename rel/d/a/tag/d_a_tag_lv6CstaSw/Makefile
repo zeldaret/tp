@@ -28,15 +28,16 @@ M727_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map727.map\
 
 $(M727_TARGET): $(M727_O_FILES) $(M727_LIBS)
 	@echo $(M727_LIBS) $(M727_O_FILES) > build/M727_ofiles
-	$(LD) -partial $(M727_LDFLAGS) -o $(M727_TARGET) @build/M727_ofiles
+	$(LD) -opt_partial $(M727_LDFLAGS) -o $(M727_TARGET) @build/M727_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.o: rel/d/a/tag/d_a_tag_lv6CstaSw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/tag/d_a_tag_lv6CstaSw/libs/Runtime.PPCEABI.H/Makefile
 

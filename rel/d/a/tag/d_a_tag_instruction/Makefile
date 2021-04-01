@@ -29,14 +29,15 @@ M723_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map723.map\
 
 $(M723_TARGET): $(M723_O_FILES) $(M723_LIBS)
 	@echo $(M723_LIBS) $(M723_O_FILES) > build/M723_ofiles
-	$(LD) -partial $(M723_LDFLAGS) -o $(M723_TARGET) @build/M723_ofiles
+	$(LD) -opt_partial $(M723_LDFLAGS) -o $(M723_TARGET) @build/M723_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/%.o: rel/d/a/tag/d_a_tag_instruction/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M723_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

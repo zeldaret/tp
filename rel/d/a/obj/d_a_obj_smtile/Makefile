@@ -28,15 +28,16 @@ M624_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map624.map\
 
 $(M624_TARGET): $(M624_O_FILES) $(M624_LIBS)
 	@echo $(M624_LIBS) $(M624_O_FILES) > build/M624_ofiles
-	$(LD) -partial $(M624_LDFLAGS) -o $(M624_TARGET) @build/M624_ofiles
+	$(LD) -opt_partial $(M624_LDFLAGS) -o $(M624_TARGET) @build/M624_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/%.o: rel/d/a/obj/d_a_obj_smtile/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M624_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_smtile/libs/Runtime.PPCEABI.H/Makefile
 

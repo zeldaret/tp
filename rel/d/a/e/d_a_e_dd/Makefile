@@ -28,15 +28,16 @@ M184_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map184.map\
 
 $(M184_TARGET): $(M184_O_FILES) $(M184_LIBS)
 	@echo $(M184_LIBS) $(M184_O_FILES) > build/M184_ofiles
-	$(LD) -partial $(M184_LDFLAGS) -o $(M184_TARGET) @build/M184_ofiles
+	$(LD) -opt_partial $(M184_LDFLAGS) -o $(M184_TARGET) @build/M184_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_dd/%.o: rel/d/a/e/d_a_e_dd/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M184_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_dd/libs/Runtime.PPCEABI.H/Makefile
 

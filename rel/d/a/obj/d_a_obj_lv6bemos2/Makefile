@@ -31,14 +31,15 @@ M553_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map553.map\
 
 $(M553_TARGET): $(M553_O_FILES) $(M553_LIBS)
 	@echo $(M553_LIBS) $(M553_O_FILES) > build/M553_ofiles
-	$(LD) -partial $(M553_LDFLAGS) -o $(M553_TARGET) @build/M553_ofiles
+	$(LD) -opt_partial $(M553_LDFLAGS) -o $(M553_TARGET) @build/M553_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos2/%.o: rel/d/a/obj/d_a_obj_lv6bemos2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M553_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

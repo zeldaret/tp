@@ -28,15 +28,16 @@ M353_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map353.map\
 
 $(M353_TARGET): $(M353_O_FILES) $(M353_LIBS)
 	@echo $(M353_LIBS) $(M353_O_FILES) > build/M353_ofiles
-	$(LD) -partial $(M353_LDFLAGS) -o $(M353_TARGET) @build/M353_ofiles
+	$(LD) -opt_partial $(M353_LDFLAGS) -o $(M353_TARGET) @build/M353_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/%.o: rel/d/a/npc/d_a_npc_seib/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M353_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_seib/libs/Runtime.PPCEABI.H/Makefile
 

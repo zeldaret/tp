@@ -28,15 +28,16 @@ M652_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map652.map\
 
 $(M652_TARGET): $(M652_O_FILES) $(M652_LIBS)
 	@echo $(M652_LIBS) $(M652_O_FILES) > build/M652_ofiles
-	$(LD) -partial $(M652_LDFLAGS) -o $(M652_TARGET) @build/M652_ofiles
+	$(LD) -opt_partial $(M652_LDFLAGS) -o $(M652_TARGET) @build/M652_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/%.o: rel/d/a/obj/d_a_obj_takaraDai/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M652_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_takaraDai/libs/Runtime.PPCEABI.H/Makefile
 

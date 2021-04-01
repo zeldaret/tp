@@ -28,15 +28,16 @@ M487_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map487.map\
 
 $(M487_TARGET): $(M487_O_FILES) $(M487_LIBS)
 	@echo $(M487_LIBS) $(M487_O_FILES) > build/M487_ofiles
-	$(LD) -partial $(M487_LDFLAGS) -o $(M487_TARGET) @build/M487_ofiles
+	$(LD) -opt_partial $(M487_LDFLAGS) -o $(M487_TARGET) @build/M487_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/%.o: rel/d/a/obj/d_a_obj_itamato/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M487_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_itamato/libs/Runtime.PPCEABI.H/Makefile
 

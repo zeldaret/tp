@@ -28,15 +28,16 @@ M452_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map452.map\
 
 $(M452_TARGET): $(M452_O_FILES) $(M452_LIBS)
 	@echo $(M452_LIBS) $(M452_O_FILES) > build/M452_ofiles
-	$(LD) -partial $(M452_LDFLAGS) -o $(M452_TARGET) @build/M452_ofiles
+	$(LD) -opt_partial $(M452_LDFLAGS) -o $(M452_TARGET) @build/M452_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/%.o: rel/d/a/obj/d_a_obj_food/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M452_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_food/libs/Runtime.PPCEABI.H/Makefile
 

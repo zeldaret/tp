@@ -31,14 +31,15 @@ M167_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map167.map\
 
 $(M167_TARGET): $(M167_O_FILES) $(M167_LIBS)
 	@echo $(M167_LIBS) $(M167_O_FILES) > build/M167_ofiles
-	$(LD) -partial $(M167_LDFLAGS) -o $(M167_TARGET) @build/M167_ofiles
+	$(LD) -opt_partial $(M167_LDFLAGS) -o $(M167_TARGET) @build/M167_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/%.o: rel/d/a/door/d_a_door_bossL5/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M167_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

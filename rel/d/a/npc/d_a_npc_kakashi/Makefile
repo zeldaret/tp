@@ -28,15 +28,16 @@ M83_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map83.map\
 
 $(M83_TARGET): $(M83_O_FILES) $(M83_LIBS)
 	@echo $(M83_LIBS) $(M83_O_FILES) > build/M83_ofiles
-	$(LD) -partial $(M83_LDFLAGS) -o $(M83_TARGET) @build/M83_ofiles
+	$(LD) -opt_partial $(M83_LDFLAGS) -o $(M83_TARGET) @build/M83_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.o: rel/d/a/npc/d_a_npc_kakashi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_kakashi/libs/Runtime.PPCEABI.H/Makefile
 

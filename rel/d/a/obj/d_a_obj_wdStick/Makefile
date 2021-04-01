@@ -28,15 +28,16 @@ M683_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map683.map\
 
 $(M683_TARGET): $(M683_O_FILES) $(M683_LIBS)
 	@echo $(M683_LIBS) $(M683_O_FILES) > build/M683_ofiles
-	$(LD) -partial $(M683_LDFLAGS) -o $(M683_TARGET) @build/M683_ofiles
+	$(LD) -opt_partial $(M683_LDFLAGS) -o $(M683_TARGET) @build/M683_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/%.o: rel/d/a/obj/d_a_obj_wdStick/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M683_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_wdStick/libs/Runtime.PPCEABI.H/Makefile
 

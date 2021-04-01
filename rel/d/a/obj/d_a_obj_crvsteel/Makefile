@@ -29,14 +29,15 @@ M431_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map431.map\
 
 $(M431_TARGET): $(M431_O_FILES) $(M431_LIBS)
 	@echo $(M431_LIBS) $(M431_O_FILES) > build/M431_ofiles
-	$(LD) -partial $(M431_LDFLAGS) -o $(M431_TARGET) @build/M431_ofiles
+	$(LD) -opt_partial $(M431_LDFLAGS) -o $(M431_TARGET) @build/M431_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.o: rel/d/a/obj/d_a_obj_crvsteel/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

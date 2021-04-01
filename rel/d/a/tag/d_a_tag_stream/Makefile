@@ -29,14 +29,15 @@ M747_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map747.map\
 
 $(M747_TARGET): $(M747_O_FILES) $(M747_LIBS)
 	@echo $(M747_LIBS) $(M747_O_FILES) > build/M747_ofiles
-	$(LD) -partial $(M747_LDFLAGS) -o $(M747_TARGET) @build/M747_ofiles
+	$(LD) -opt_partial $(M747_LDFLAGS) -o $(M747_TARGET) @build/M747_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/%.o: rel/d/a/tag/d_a_tag_stream/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M747_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M279_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map279.map\
 
 $(M279_TARGET): $(M279_O_FILES) $(M279_LIBS)
 	@echo $(M279_LIBS) $(M279_O_FILES) > build/M279_ofiles
-	$(LD) -partial $(M279_LDFLAGS) -o $(M279_TARGET) @build/M279_ofiles
+	$(LD) -opt_partial $(M279_LDFLAGS) -o $(M279_TARGET) @build/M279_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mirror/%.o: rel/d/a/d_a_mirror/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M279_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

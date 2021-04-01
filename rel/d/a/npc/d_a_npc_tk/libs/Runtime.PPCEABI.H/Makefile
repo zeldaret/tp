@@ -19,7 +19,6 @@ M370LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/libRuntime.PPCEABI.H.a: $(M370LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M370LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M370LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M370LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/libRuntime.PPCEABI.H.a @build/M370LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tk/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_tk/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

@@ -29,14 +29,15 @@ M8_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map8.map\
 
 $(M8_TARGET): $(M8_O_FILES) $(M8_LIBS)
 	@echo $(M8_LIBS) $(M8_O_FILES) > build/M8_ofiles
-	$(LD) -partial $(M8_LDFLAGS) -o $(M8_TARGET) @build/M8_ofiles
+	$(LD) -opt_partial $(M8_LDFLAGS) -o $(M8_TARGET) @build/M8_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/%.o: rel/d/a/door/d_a_door_shutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M8_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

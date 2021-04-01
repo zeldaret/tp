@@ -29,14 +29,15 @@ M725_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map725.map\
 
 $(M725_TARGET): $(M725_O_FILES) $(M725_LIBS)
 	@echo $(M725_LIBS) $(M725_O_FILES) > build/M725_ofiles
-	$(LD) -partial $(M725_LDFLAGS) -o $(M725_TARGET) @build/M725_ofiles
+	$(LD) -opt_partial $(M725_LDFLAGS) -o $(M725_TARGET) @build/M725_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.o: rel/d/a/tag/d_a_tag_lightball/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M725_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

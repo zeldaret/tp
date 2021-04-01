@@ -28,15 +28,16 @@ M558_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map558.map\
 
 $(M558_TARGET): $(M558_O_FILES) $(M558_LIBS)
 	@echo $(M558_LIBS) $(M558_O_FILES) > build/M558_ofiles
-	$(LD) -partial $(M558_LDFLAGS) -o $(M558_TARGET) @build/M558_ofiles
+	$(LD) -opt_partial $(M558_LDFLAGS) -o $(M558_TARGET) @build/M558_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/%.o: rel/d/a/obj/d_a_obj_lv7PropellerY/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M558_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv7PropellerY/libs/Runtime.PPCEABI.H/Makefile
 

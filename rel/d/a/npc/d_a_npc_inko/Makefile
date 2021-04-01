@@ -29,14 +29,15 @@ M320_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map320.map\
 
 $(M320_TARGET): $(M320_O_FILES) $(M320_LIBS)
 	@echo $(M320_LIBS) $(M320_O_FILES) > build/M320_ofiles
-	$(LD) -partial $(M320_LDFLAGS) -o $(M320_TARGET) @build/M320_ofiles
+	$(LD) -opt_partial $(M320_LDFLAGS) -o $(M320_TARGET) @build/M320_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/%.o: rel/d/a/npc/d_a_npc_inko/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M320_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

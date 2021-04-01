@@ -28,15 +28,16 @@ M344_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map344.map\
 
 $(M344_TARGET): $(M344_O_FILES) $(M344_LIBS)
 	@echo $(M344_LIBS) $(M344_O_FILES) > build/M344_ofiles
-	$(LD) -partial $(M344_LDFLAGS) -o $(M344_TARGET) @build/M344_ofiles
+	$(LD) -opt_partial $(M344_LDFLAGS) -o $(M344_TARGET) @build/M344_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.o: rel/d/a/npc/d_a_npc_pachi_taro/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M344_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_pachi_taro/libs/Runtime.PPCEABI.H/Makefile
 

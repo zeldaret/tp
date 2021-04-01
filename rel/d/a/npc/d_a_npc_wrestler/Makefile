@@ -28,15 +28,16 @@ M378_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map378.map\
 
 $(M378_TARGET): $(M378_O_FILES) $(M378_LIBS)
 	@echo $(M378_LIBS) $(M378_O_FILES) > build/M378_ofiles
-	$(LD) -partial $(M378_LDFLAGS) -o $(M378_TARGET) @build/M378_ofiles
+	$(LD) -opt_partial $(M378_LDFLAGS) -o $(M378_TARGET) @build/M378_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/%.o: rel/d/a/npc/d_a_npc_wrestler/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M378_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_wrestler/libs/Runtime.PPCEABI.H/Makefile
 

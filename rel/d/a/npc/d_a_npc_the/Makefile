@@ -28,15 +28,16 @@ M368_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map368.map\
 
 $(M368_TARGET): $(M368_O_FILES) $(M368_LIBS)
 	@echo $(M368_LIBS) $(M368_O_FILES) > build/M368_ofiles
-	$(LD) -partial $(M368_LDFLAGS) -o $(M368_TARGET) @build/M368_ofiles
+	$(LD) -opt_partial $(M368_LDFLAGS) -o $(M368_TARGET) @build/M368_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_the/%.o: rel/d/a/npc/d_a_npc_the/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M368_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_the/libs/Runtime.PPCEABI.H/Makefile
 

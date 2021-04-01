@@ -19,7 +19,6 @@ M579LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/libRuntime.PPCEABI.H.a: $(M579LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M579LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M579LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M579LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/libRuntime.PPCEABI.H.a @build/M579LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_myogan/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

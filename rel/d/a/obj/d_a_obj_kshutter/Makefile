@@ -31,14 +31,15 @@ M506_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map506.map\
 
 $(M506_TARGET): $(M506_O_FILES) $(M506_LIBS)
 	@echo $(M506_LIBS) $(M506_O_FILES) > build/M506_ofiles
-	$(LD) -partial $(M506_LDFLAGS) -o $(M506_TARGET) @build/M506_ofiles
+	$(LD) -opt_partial $(M506_LDFLAGS) -o $(M506_TARGET) @build/M506_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.o: rel/d/a/obj/d_a_obj_kshutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M506_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

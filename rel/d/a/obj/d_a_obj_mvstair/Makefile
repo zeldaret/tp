@@ -31,14 +31,15 @@ M578_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map578.map\
 
 $(M578_TARGET): $(M578_O_FILES) $(M578_LIBS)
 	@echo $(M578_LIBS) $(M578_O_FILES) > build/M578_ofiles
-	$(LD) -partial $(M578_LDFLAGS) -o $(M578_TARGET) @build/M578_ofiles
+	$(LD) -opt_partial $(M578_LDFLAGS) -o $(M578_TARGET) @build/M578_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.o: rel/d/a/obj/d_a_obj_mvstair/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

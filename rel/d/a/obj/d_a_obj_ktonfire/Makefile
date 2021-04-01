@@ -28,15 +28,16 @@ M102_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map102.map\
 
 $(M102_TARGET): $(M102_O_FILES) $(M102_LIBS)
 	@echo $(M102_LIBS) $(M102_O_FILES) > build/M102_ofiles
-	$(LD) -partial $(M102_LDFLAGS) -o $(M102_TARGET) @build/M102_ofiles
+	$(LD) -opt_partial $(M102_LDFLAGS) -o $(M102_TARGET) @build/M102_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ktonfire/%.o: rel/d/a/obj/d_a_obj_ktonfire/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M102_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_ktonfire/libs/Runtime.PPCEABI.H/Makefile
 

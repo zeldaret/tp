@@ -19,7 +19,6 @@ M269LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/libRuntime.PPCEABI.H.a: $(M269LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M269LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M269LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M269LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/libRuntime.PPCEABI.H.a @build/M269LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/libs/Runtime.PPCEABI.H/%.o: rel/d/a/kytag/d_a_kytag06/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

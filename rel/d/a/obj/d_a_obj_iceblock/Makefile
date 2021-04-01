@@ -31,14 +31,15 @@ M481_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map481.map\
 
 $(M481_TARGET): $(M481_O_FILES) $(M481_LIBS)
 	@echo $(M481_LIBS) $(M481_O_FILES) > build/M481_ofiles
-	$(LD) -partial $(M481_LDFLAGS) -o $(M481_TARGET) @build/M481_ofiles
+	$(LD) -opt_partial $(M481_LDFLAGS) -o $(M481_TARGET) @build/M481_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/%.o: rel/d/a/obj/d_a_obj_iceblock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M481_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

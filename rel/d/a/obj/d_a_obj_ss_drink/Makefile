@@ -29,14 +29,15 @@ M630_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map630.map\
 
 $(M630_TARGET): $(M630_O_FILES) $(M630_LIBS)
 	@echo $(M630_LIBS) $(M630_O_FILES) > build/M630_ofiles
-	$(LD) -partial $(M630_LDFLAGS) -o $(M630_TARGET) @build/M630_ofiles
+	$(LD) -opt_partial $(M630_LDFLAGS) -o $(M630_TARGET) @build/M630_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/%.o: rel/d/a/obj/d_a_obj_ss_drink/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M630_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

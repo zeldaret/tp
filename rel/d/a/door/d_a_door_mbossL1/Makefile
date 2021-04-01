@@ -31,14 +31,15 @@ M168_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map168.map\
 
 $(M168_TARGET): $(M168_O_FILES) $(M168_LIBS)
 	@echo $(M168_LIBS) $(M168_O_FILES) > build/M168_ofiles
-	$(LD) -partial $(M168_LDFLAGS) -o $(M168_TARGET) @build/M168_ofiles
+	$(LD) -opt_partial $(M168_LDFLAGS) -o $(M168_TARGET) @build/M168_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/%.o: rel/d/a/door/d_a_door_mbossL1/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M168_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

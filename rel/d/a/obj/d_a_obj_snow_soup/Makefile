@@ -29,14 +29,15 @@ M627_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map627.map\
 
 $(M627_TARGET): $(M627_O_FILES) $(M627_LIBS)
 	@echo $(M627_LIBS) $(M627_O_FILES) > build/M627_ofiles
-	$(LD) -partial $(M627_LDFLAGS) -o $(M627_TARGET) @build/M627_ofiles
+	$(LD) -opt_partial $(M627_LDFLAGS) -o $(M627_TARGET) @build/M627_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/%.o: rel/d/a/obj/d_a_obj_snow_soup/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M627_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

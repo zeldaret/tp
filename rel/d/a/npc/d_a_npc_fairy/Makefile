@@ -28,15 +28,16 @@ M302_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map302.map\
 
 $(M302_TARGET): $(M302_O_FILES) $(M302_LIBS)
 	@echo $(M302_LIBS) $(M302_O_FILES) > build/M302_ofiles
-	$(LD) -partial $(M302_LDFLAGS) -o $(M302_TARGET) @build/M302_ofiles
+	$(LD) -opt_partial $(M302_LDFLAGS) -o $(M302_TARGET) @build/M302_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/%.o: rel/d/a/npc/d_a_npc_fairy/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M302_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_fairy/libs/Runtime.PPCEABI.H/Makefile
 

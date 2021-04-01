@@ -28,15 +28,16 @@ M328_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map328.map\
 
 $(M328_TARGET): $(M328_O_FILES) $(M328_LIBS)
 	@echo $(M328_LIBS) $(M328_O_FILES) > build/M328_ofiles
-	$(LD) -partial $(M328_LDFLAGS) -o $(M328_TARGET) @build/M328_ofiles
+	$(LD) -opt_partial $(M328_LDFLAGS) -o $(M328_TARGET) @build/M328_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/%.o: rel/d/a/npc/d_a_npc_knj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M328_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_knj/libs/Runtime.PPCEABI.H/Makefile
 

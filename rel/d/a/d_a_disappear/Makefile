@@ -29,14 +29,15 @@ M49_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map49.map\
 
 $(M49_TARGET): $(M49_O_FILES) $(M49_LIBS)
 	@echo $(M49_LIBS) $(M49_O_FILES) > build/M49_ofiles
-	$(LD) -partial $(M49_LDFLAGS) -o $(M49_TARGET) @build/M49_ofiles
+	$(LD) -opt_partial $(M49_LDFLAGS) -o $(M49_TARGET) @build/M49_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_disappear/%.o: rel/d/a/d_a_disappear/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M49_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

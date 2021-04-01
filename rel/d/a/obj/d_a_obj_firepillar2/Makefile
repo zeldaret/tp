@@ -31,14 +31,15 @@ M448_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map448.map\
 
 $(M448_TARGET): $(M448_O_FILES) $(M448_LIBS)
 	@echo $(M448_LIBS) $(M448_O_FILES) > build/M448_ofiles
-	$(LD) -partial $(M448_LDFLAGS) -o $(M448_TARGET) @build/M448_ofiles
+	$(LD) -opt_partial $(M448_LDFLAGS) -o $(M448_TARGET) @build/M448_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar2/%.o: rel/d/a/obj/d_a_obj_firepillar2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M448_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

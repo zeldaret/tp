@@ -28,15 +28,16 @@ M231_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map231.map\
 
 $(M231_TARGET): $(M231_O_FILES) $(M231_LIBS)
 	@echo $(M231_LIBS) $(M231_O_FILES) > build/M231_ofiles
-	$(LD) -partial $(M231_LDFLAGS) -o $(M231_TARGET) @build/M231_ofiles
+	$(LD) -opt_partial $(M231_LDFLAGS) -o $(M231_TARGET) @build/M231_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_sm/%.o: rel/d/a/e/d_a_e_sm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M231_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_sm/libs/Runtime.PPCEABI.H/Makefile
 

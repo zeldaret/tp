@@ -29,14 +29,15 @@ M237_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map237.map\
 
 $(M237_TARGET): $(M237_O_FILES) $(M237_LIBS)
 	@echo $(M237_LIBS) $(M237_O_FILES) > build/M237_ofiles
-	$(LD) -partial $(M237_LDFLAGS) -o $(M237_TARGET) @build/M237_ofiles
+	$(LD) -opt_partial $(M237_LDFLAGS) -o $(M237_TARGET) @build/M237_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.o: rel/d/a/e/d_a_e_th_ball/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M237_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

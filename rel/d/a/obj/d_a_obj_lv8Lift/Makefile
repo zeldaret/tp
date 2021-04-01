@@ -28,15 +28,16 @@ M561_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map561.map\
 
 $(M561_TARGET): $(M561_O_FILES) $(M561_LIBS)
 	@echo $(M561_LIBS) $(M561_O_FILES) > build/M561_ofiles
-	$(LD) -partial $(M561_LDFLAGS) -o $(M561_TARGET) @build/M561_ofiles
+	$(LD) -opt_partial $(M561_LDFLAGS) -o $(M561_TARGET) @build/M561_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/%.o: rel/d/a/obj/d_a_obj_lv8Lift/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M561_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv8Lift/libs/Runtime.PPCEABI.H/Makefile
 

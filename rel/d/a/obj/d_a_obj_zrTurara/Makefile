@@ -28,15 +28,16 @@ M697_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map697.map\
 
 $(M697_TARGET): $(M697_O_FILES) $(M697_LIBS)
 	@echo $(M697_LIBS) $(M697_O_FILES) > build/M697_ofiles
-	$(LD) -partial $(M697_LDFLAGS) -o $(M697_TARGET) @build/M697_ofiles
+	$(LD) -opt_partial $(M697_LDFLAGS) -o $(M697_TARGET) @build/M697_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/%.o: rel/d/a/obj/d_a_obj_zrTurara/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M697_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_zrTurara/libs/Runtime.PPCEABI.H/Makefile
 

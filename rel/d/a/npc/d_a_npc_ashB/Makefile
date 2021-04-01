@@ -28,15 +28,16 @@ M285_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map285.map\
 
 $(M285_TARGET): $(M285_O_FILES) $(M285_LIBS)
 	@echo $(M285_LIBS) $(M285_O_FILES) > build/M285_ofiles
-	$(LD) -partial $(M285_LDFLAGS) -o $(M285_TARGET) @build/M285_ofiles
+	$(LD) -opt_partial $(M285_LDFLAGS) -o $(M285_TARGET) @build/M285_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/%.o: rel/d/a/npc/d_a_npc_ashB/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M285_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_ashB/libs/Runtime.PPCEABI.H/Makefile
 

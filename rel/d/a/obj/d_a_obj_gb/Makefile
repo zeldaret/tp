@@ -29,14 +29,15 @@ M457_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map457.map\
 
 $(M457_TARGET): $(M457_O_FILES) $(M457_LIBS)
 	@echo $(M457_LIBS) $(M457_O_FILES) > build/M457_ofiles
-	$(LD) -partial $(M457_LDFLAGS) -o $(M457_TARGET) @build/M457_ofiles
+	$(LD) -opt_partial $(M457_LDFLAGS) -o $(M457_TARGET) @build/M457_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gb/%.o: rel/d/a/obj/d_a_obj_gb/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M457_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M266_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map266.map\
 
 $(M266_TARGET): $(M266_O_FILES) $(M266_LIBS)
 	@echo $(M266_LIBS) $(M266_O_FILES) > build/M266_ofiles
-	$(LD) -partial $(M266_LDFLAGS) -o $(M266_TARGET) @build/M266_ofiles
+	$(LD) -opt_partial $(M266_LDFLAGS) -o $(M266_TARGET) @build/M266_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag01/%.o: rel/d/a/kytag/d_a_kytag01/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M266_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

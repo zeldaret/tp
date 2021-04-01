@@ -31,14 +31,15 @@ M736_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map736.map\
 
 $(M736_TARGET): $(M736_O_FILES) $(M736_LIBS)
 	@echo $(M736_LIBS) $(M736_O_FILES) > build/M736_ofiles
-	$(LD) -partial $(M736_LDFLAGS) -o $(M736_TARGET) @build/M736_ofiles
+	$(LD) -opt_partial $(M736_LDFLAGS) -o $(M736_TARGET) @build/M736_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/%.o: rel/d/a/tag/d_a_tag_river_back/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M736_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

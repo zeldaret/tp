@@ -29,14 +29,15 @@ M709_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map709.map\
 
 $(M709_TARGET): $(M709_O_FILES) $(M709_LIBS)
 	@echo $(M709_LIBS) $(M709_O_FILES) > build/M709_ofiles
-	$(LD) -partial $(M709_LDFLAGS) -o $(M709_TARGET) @build/M709_ofiles
+	$(LD) -opt_partial $(M709_LDFLAGS) -o $(M709_TARGET) @build/M709_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swTime/%.o: rel/d/a/d_a_swTime/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M709_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

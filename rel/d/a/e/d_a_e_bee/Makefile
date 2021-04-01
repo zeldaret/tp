@@ -28,15 +28,16 @@ M173_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map173.map\
 
 $(M173_TARGET): $(M173_O_FILES) $(M173_LIBS)
 	@echo $(M173_LIBS) $(M173_O_FILES) > build/M173_ofiles
-	$(LD) -partial $(M173_LDFLAGS) -o $(M173_TARGET) @build/M173_ofiles
+	$(LD) -opt_partial $(M173_LDFLAGS) -o $(M173_TARGET) @build/M173_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bee/%.o: rel/d/a/e/d_a_e_bee/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M173_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_bee/libs/Runtime.PPCEABI.H/Makefile
 

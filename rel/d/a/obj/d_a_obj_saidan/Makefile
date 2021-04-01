@@ -28,15 +28,16 @@ M610_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map610.map\
 
 $(M610_TARGET): $(M610_O_FILES) $(M610_LIBS)
 	@echo $(M610_LIBS) $(M610_O_FILES) > build/M610_ofiles
-	$(LD) -partial $(M610_LDFLAGS) -o $(M610_TARGET) @build/M610_ofiles
+	$(LD) -opt_partial $(M610_LDFLAGS) -o $(M610_TARGET) @build/M610_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/%.o: rel/d/a/obj/d_a_obj_saidan/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M610_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_saidan/libs/Runtime.PPCEABI.H/Makefile
 

@@ -31,14 +31,15 @@ M420_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map420.map\
 
 $(M420_TARGET): $(M420_O_FILES) $(M420_LIBS)
 	@echo $(M420_LIBS) $(M420_O_FILES) > build/M420_ofiles
-	$(LD) -partial $(M420_LDFLAGS) -o $(M420_TARGET) @build/M420_ofiles
+	$(LD) -opt_partial $(M420_LDFLAGS) -o $(M420_TARGET) @build/M420_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/%.o: rel/d/a/obj/d_a_obj_cdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M420_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

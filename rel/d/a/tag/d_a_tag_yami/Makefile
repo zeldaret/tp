@@ -29,14 +29,15 @@ M753_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map753.map\
 
 $(M753_TARGET): $(M753_O_FILES) $(M753_LIBS)
 	@echo $(M753_LIBS) $(M753_O_FILES) > build/M753_ofiles
-	$(LD) -partial $(M753_LDFLAGS) -o $(M753_TARGET) @build/M753_ofiles
+	$(LD) -opt_partial $(M753_LDFLAGS) -o $(M753_TARGET) @build/M753_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_yami/%.o: rel/d/a/tag/d_a_tag_yami/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M753_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

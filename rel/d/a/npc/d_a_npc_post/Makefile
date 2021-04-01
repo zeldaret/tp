@@ -28,15 +28,16 @@ M347_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map347.map\
 
 $(M347_TARGET): $(M347_O_FILES) $(M347_LIBS)
 	@echo $(M347_LIBS) $(M347_O_FILES) > build/M347_ofiles
-	$(LD) -partial $(M347_LDFLAGS) -o $(M347_TARGET) @build/M347_ofiles
+	$(LD) -opt_partial $(M347_LDFLAGS) -o $(M347_TARGET) @build/M347_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/%.o: rel/d/a/npc/d_a_npc_post/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M347_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_post/libs/Runtime.PPCEABI.H/Makefile
 

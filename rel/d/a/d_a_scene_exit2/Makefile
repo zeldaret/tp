@@ -31,14 +31,15 @@ M117_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map117.map\
 
 $(M117_TARGET): $(M117_O_FILES) $(M117_LIBS)
 	@echo $(M117_LIBS) $(M117_O_FILES) > build/M117_ofiles
-	$(LD) -partial $(M117_LDFLAGS) -o $(M117_TARGET) @build/M117_ofiles
+	$(LD) -opt_partial $(M117_LDFLAGS) -o $(M117_TARGET) @build/M117_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_scene_exit2/%.o: rel/d/a/d_a_scene_exit2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M117_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

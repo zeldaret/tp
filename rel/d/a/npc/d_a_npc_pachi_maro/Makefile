@@ -28,15 +28,16 @@ M343_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map343.map\
 
 $(M343_TARGET): $(M343_O_FILES) $(M343_LIBS)
 	@echo $(M343_LIBS) $(M343_O_FILES) > build/M343_ofiles
-	$(LD) -partial $(M343_LDFLAGS) -o $(M343_TARGET) @build/M343_ofiles
+	$(LD) -opt_partial $(M343_LDFLAGS) -o $(M343_TARGET) @build/M343_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_maro/%.o: rel/d/a/npc/d_a_npc_pachi_maro/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M343_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_pachi_maro/libs/Runtime.PPCEABI.H/Makefile
 

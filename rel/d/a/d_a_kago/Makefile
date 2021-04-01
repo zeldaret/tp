@@ -28,15 +28,16 @@ M265_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map265.map\
 
 $(M265_TARGET): $(M265_O_FILES) $(M265_LIBS)
 	@echo $(M265_LIBS) $(M265_O_FILES) > build/M265_ofiles
-	$(LD) -partial $(M265_LDFLAGS) -o $(M265_TARGET) @build/M265_ofiles
+	$(LD) -opt_partial $(M265_LDFLAGS) -o $(M265_TARGET) @build/M265_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_kago/%.o: rel/d/a/d_a_kago/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M265_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_kago/libs/Runtime.PPCEABI.H/Makefile
 

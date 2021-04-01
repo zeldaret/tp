@@ -29,14 +29,15 @@ M434_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map434.map\
 
 $(M434_TARGET): $(M434_O_FILES) $(M434_LIBS)
 	@echo $(M434_LIBS) $(M434_O_FILES) > build/M434_ofiles
-	$(LD) -partial $(M434_LDFLAGS) -o $(M434_TARGET) @build/M434_ofiles
+	$(LD) -opt_partial $(M434_LDFLAGS) -o $(M434_TARGET) @build/M434_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/%.o: rel/d/a/obj/d_a_obj_damCps/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M434_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

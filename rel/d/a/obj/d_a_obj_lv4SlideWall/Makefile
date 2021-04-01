@@ -28,15 +28,16 @@ M530_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map530.map\
 
 $(M530_TARGET): $(M530_O_FILES) $(M530_LIBS)
 	@echo $(M530_LIBS) $(M530_O_FILES) > build/M530_ofiles
-	$(LD) -partial $(M530_LDFLAGS) -o $(M530_TARGET) @build/M530_ofiles
+	$(LD) -opt_partial $(M530_LDFLAGS) -o $(M530_TARGET) @build/M530_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/%.o: rel/d/a/obj/d_a_obj_lv4SlideWall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M530_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv4SlideWall/libs/Runtime.PPCEABI.H/Makefile
 

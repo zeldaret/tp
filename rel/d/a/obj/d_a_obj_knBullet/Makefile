@@ -29,14 +29,15 @@ M505_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map505.map\
 
 $(M505_TARGET): $(M505_O_FILES) $(M505_LIBS)
 	@echo $(M505_LIBS) $(M505_O_FILES) > build/M505_ofiles
-	$(LD) -partial $(M505_LDFLAGS) -o $(M505_TARGET) @build/M505_ofiles
+	$(LD) -opt_partial $(M505_LDFLAGS) -o $(M505_TARGET) @build/M505_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.o: rel/d/a/obj/d_a_obj_knBullet/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M505_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

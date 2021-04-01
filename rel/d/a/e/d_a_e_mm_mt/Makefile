@@ -29,14 +29,15 @@ M213_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map213.map\
 
 $(M213_TARGET): $(M213_O_FILES) $(M213_LIBS)
 	@echo $(M213_LIBS) $(M213_O_FILES) > build/M213_ofiles
-	$(LD) -partial $(M213_LDFLAGS) -o $(M213_TARGET) @build/M213_ofiles
+	$(LD) -opt_partial $(M213_LDFLAGS) -o $(M213_TARGET) @build/M213_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/%.o: rel/d/a/e/d_a_e_mm_mt/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M213_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

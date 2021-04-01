@@ -28,15 +28,16 @@ M322_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map322.map\
 
 $(M322_TARGET): $(M322_O_FILES) $(M322_LIBS)
 	@echo $(M322_LIBS) $(M322_O_FILES) > build/M322_ofiles
-	$(LD) -partial $(M322_LDFLAGS) -o $(M322_TARGET) @build/M322_ofiles
+	$(LD) -opt_partial $(M322_LDFLAGS) -o $(M322_TARGET) @build/M322_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/%.o: rel/d/a/npc/d_a_npc_jagar/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M322_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_jagar/libs/Runtime.PPCEABI.H/Makefile
 

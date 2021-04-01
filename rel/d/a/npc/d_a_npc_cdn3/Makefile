@@ -29,14 +29,15 @@ M290_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map290.map\
 
 $(M290_TARGET): $(M290_O_FILES) $(M290_LIBS)
 	@echo $(M290_LIBS) $(M290_O_FILES) > build/M290_ofiles
-	$(LD) -partial $(M290_LDFLAGS) -o $(M290_TARGET) @build/M290_ofiles
+	$(LD) -opt_partial $(M290_LDFLAGS) -o $(M290_TARGET) @build/M290_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/%.o: rel/d/a/npc/d_a_npc_cdn3/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M290_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

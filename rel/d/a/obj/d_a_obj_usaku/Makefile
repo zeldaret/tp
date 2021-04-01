@@ -29,14 +29,15 @@ M673_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map673.map\
 
 $(M673_TARGET): $(M673_O_FILES) $(M673_LIBS)
 	@echo $(M673_LIBS) $(M673_O_FILES) > build/M673_ofiles
-	$(LD) -partial $(M673_LDFLAGS) -o $(M673_TARGET) @build/M673_ofiles
+	$(LD) -opt_partial $(M673_LDFLAGS) -o $(M673_TARGET) @build/M673_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.o: rel/d/a/obj/d_a_obj_usaku/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M673_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

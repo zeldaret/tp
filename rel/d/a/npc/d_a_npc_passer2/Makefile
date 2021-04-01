@@ -29,14 +29,15 @@ M346_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map346.map\
 
 $(M346_TARGET): $(M346_O_FILES) $(M346_LIBS)
 	@echo $(M346_LIBS) $(M346_O_FILES) > build/M346_ofiles
-	$(LD) -partial $(M346_LDFLAGS) -o $(M346_TARGET) @build/M346_ofiles
+	$(LD) -opt_partial $(M346_LDFLAGS) -o $(M346_TARGET) @build/M346_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer2/%.o: rel/d/a/npc/d_a_npc_passer2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M346_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -31,14 +31,15 @@ M589_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map589.map\
 
 $(M589_TARGET): $(M589_O_FILES) $(M589_LIBS)
 	@echo $(M589_LIBS) $(M589_O_FILES) > build/M589_ofiles
-	$(LD) -partial $(M589_LDFLAGS) -o $(M589_TARGET) @build/M589_ofiles
+	$(LD) -opt_partial $(M589_LDFLAGS) -o $(M589_TARGET) @build/M589_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/%.o: rel/d/a/obj/d_a_obj_pdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M589_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

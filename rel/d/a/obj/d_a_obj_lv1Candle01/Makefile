@@ -28,15 +28,16 @@ M516_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map516.map\
 
 $(M516_TARGET): $(M516_O_FILES) $(M516_LIBS)
 	@echo $(M516_LIBS) $(M516_O_FILES) > build/M516_ofiles
-	$(LD) -partial $(M516_LDFLAGS) -o $(M516_TARGET) @build/M516_ofiles
+	$(LD) -opt_partial $(M516_LDFLAGS) -o $(M516_TARGET) @build/M516_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/%.o: rel/d/a/obj/d_a_obj_lv1Candle01/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M516_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv1Candle01/libs/Runtime.PPCEABI.H/Makefile
 

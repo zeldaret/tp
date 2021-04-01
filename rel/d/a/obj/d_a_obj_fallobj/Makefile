@@ -29,14 +29,15 @@ M442_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map442.map\
 
 $(M442_TARGET): $(M442_O_FILES) $(M442_LIBS)
 	@echo $(M442_LIBS) $(M442_O_FILES) > build/M442_ofiles
-	$(LD) -partial $(M442_LDFLAGS) -o $(M442_TARGET) @build/M442_ofiles
+	$(LD) -opt_partial $(M442_LDFLAGS) -o $(M442_TARGET) @build/M442_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.o: rel/d/a/obj/d_a_obj_fallobj/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M442_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

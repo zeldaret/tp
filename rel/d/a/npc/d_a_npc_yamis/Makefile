@@ -28,15 +28,16 @@ M380_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map380.map\
 
 $(M380_TARGET): $(M380_O_FILES) $(M380_LIBS)
 	@echo $(M380_LIBS) $(M380_O_FILES) > build/M380_ofiles
-	$(LD) -partial $(M380_LDFLAGS) -o $(M380_TARGET) @build/M380_ofiles
+	$(LD) -opt_partial $(M380_LDFLAGS) -o $(M380_TARGET) @build/M380_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/%.o: rel/d/a/npc/d_a_npc_yamis/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M380_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_yamis/libs/Runtime.PPCEABI.H/Makefile
 

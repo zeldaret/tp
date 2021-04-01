@@ -19,7 +19,6 @@ M685LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/libRuntime.PPCEABI.H.a: $(M685LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M685LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M685LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M685LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/libRuntime.PPCEABI.H.a @build/M685LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web1/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_web1/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

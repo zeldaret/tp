@@ -28,15 +28,16 @@ M79_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map79.map\
 
 $(M79_TARGET): $(M79_O_FILES) $(M79_LIBS)
 	@echo $(M79_LIBS) $(M79_O_FILES) > build/M79_ofiles
-	$(LD) -partial $(M79_LDFLAGS) -o $(M79_TARGET) @build/M79_ofiles
+	$(LD) -opt_partial $(M79_LDFLAGS) -o $(M79_TARGET) @build/M79_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/%.o: rel/d/a/npc/d_a_npc_besu/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M79_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_besu/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M81_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map81.map\
 
 $(M81_TARGET): $(M81_O_FILES) $(M81_LIBS)
 	@echo $(M81_LIBS) $(M81_O_FILES) > build/M81_ofiles
-	$(LD) -partial $(M81_LDFLAGS) -o $(M81_TARGET) @build/M81_ofiles
+	$(LD) -opt_partial $(M81_LDFLAGS) -o $(M81_TARGET) @build/M81_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.o: rel/d/a/npc/d_a_npc_fish/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M81_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

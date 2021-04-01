@@ -28,15 +28,16 @@ M469_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map469.map\
 
 $(M469_TARGET): $(M469_O_FILES) $(M469_LIBS)
 	@echo $(M469_LIBS) $(M469_O_FILES) > build/M469_ofiles
-	$(LD) -partial $(M469_LDFLAGS) -o $(M469_TARGET) @build/M469_ofiles
+	$(LD) -opt_partial $(M469_LDFLAGS) -o $(M469_TARGET) @build/M469_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/%.o: rel/d/a/obj/d_a_obj_h_saku/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M469_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_h_saku/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M254_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map254.map\
 
 $(M254_TARGET): $(M254_O_FILES) $(M254_LIBS)
 	@echo $(M254_LIBS) $(M254_O_FILES) > build/M254_ofiles
-	$(LD) -partial $(M254_LDFLAGS) -o $(M254_TARGET) @build/M254_ofiles
+	$(LD) -opt_partial $(M254_LDFLAGS) -o $(M254_TARGET) @build/M254_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/%.o: rel/d/a/e/d_a_e_ym_tag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M254_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

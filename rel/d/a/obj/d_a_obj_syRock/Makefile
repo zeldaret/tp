@@ -28,15 +28,16 @@ M648_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map648.map\
 
 $(M648_TARGET): $(M648_O_FILES) $(M648_LIBS)
 	@echo $(M648_LIBS) $(M648_O_FILES) > build/M648_ofiles
-	$(LD) -partial $(M648_LDFLAGS) -o $(M648_TARGET) @build/M648_ofiles
+	$(LD) -opt_partial $(M648_LDFLAGS) -o $(M648_TARGET) @build/M648_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/%.o: rel/d/a/obj/d_a_obj_syRock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M648_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_syRock/libs/Runtime.PPCEABI.H/Makefile
 

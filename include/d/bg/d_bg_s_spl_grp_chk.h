@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* D_BG_D_BG_S_SPL_GRP_CHK_H */

@@ -29,14 +29,15 @@ M569_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map569.map\
 
 $(M569_TARGET): $(M569_O_FILES) $(M569_LIBS)
 	@echo $(M569_LIBS) $(M569_O_FILES) > build/M569_ofiles
-	$(LD) -partial $(M569_LDFLAGS) -o $(M569_TARGET) @build/M569_ofiles
+	$(LD) -opt_partial $(M569_LDFLAGS) -o $(M569_TARGET) @build/M569_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/%.o: rel/d/a/obj/d_a_obj_mato/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M569_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

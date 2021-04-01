@@ -28,15 +28,16 @@ M524_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map524.map\
 
 $(M524_TARGET): $(M524_O_FILES) $(M524_LIBS)
 	@echo $(M524_LIBS) $(M524_O_FILES) > build/M524_ofiles
-	$(LD) -partial $(M524_LDFLAGS) -o $(M524_TARGET) @build/M524_ofiles
+	$(LD) -opt_partial $(M524_LDFLAGS) -o $(M524_TARGET) @build/M524_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleTag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M524_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv4CandleTag/libs/Runtime.PPCEABI.H/Makefile
 

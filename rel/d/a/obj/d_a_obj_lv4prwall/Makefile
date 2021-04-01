@@ -29,14 +29,15 @@ M537_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map537.map\
 
 $(M537_TARGET): $(M537_O_FILES) $(M537_LIBS)
 	@echo $(M537_LIBS) $(M537_O_FILES) > build/M537_ofiles
-	$(LD) -partial $(M537_LDFLAGS) -o $(M537_TARGET) @build/M537_ofiles
+	$(LD) -opt_partial $(M537_LDFLAGS) -o $(M537_TARGET) @build/M537_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/%.o: rel/d/a/obj/d_a_obj_lv4prwall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M537_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

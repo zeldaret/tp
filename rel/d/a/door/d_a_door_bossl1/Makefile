@@ -31,14 +31,15 @@ M64_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map64.map\
 
 $(M64_TARGET): $(M64_O_FILES) $(M64_LIBS)
 	@echo $(M64_LIBS) $(M64_O_FILES) > build/M64_ofiles
-	$(LD) -partial $(M64_LDFLAGS) -o $(M64_TARGET) @build/M64_ofiles
+	$(LD) -opt_partial $(M64_LDFLAGS) -o $(M64_TARGET) @build/M64_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.o: rel/d/a/door/d_a_door_bossl1/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M64_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

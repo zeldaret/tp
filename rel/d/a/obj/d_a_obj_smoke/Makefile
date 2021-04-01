@@ -29,14 +29,15 @@ M623_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map623.map\
 
 $(M623_TARGET): $(M623_O_FILES) $(M623_LIBS)
 	@echo $(M623_LIBS) $(M623_O_FILES) > build/M623_ofiles
-	$(LD) -partial $(M623_LDFLAGS) -o $(M623_TARGET) @build/M623_ofiles
+	$(LD) -opt_partial $(M623_LDFLAGS) -o $(M623_TARGET) @build/M623_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smoke/%.o: rel/d/a/obj/d_a_obj_smoke/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M623_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

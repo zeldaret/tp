@@ -29,14 +29,15 @@ M11_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map11.map\
 
 $(M11_TARGET): $(M11_O_FILES) $(M11_LIBS)
 	@echo $(M11_LIBS) $(M11_O_FILES) > build/M11_ofiles
-	$(LD) -partial $(M11_LDFLAGS) -o $(M11_TARGET) @build/M11_ofiles
+	$(LD) -opt_partial $(M11_LDFLAGS) -o $(M11_TARGET) @build/M11_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ep/%.o: rel/d/a/d_a_ep/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M11_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

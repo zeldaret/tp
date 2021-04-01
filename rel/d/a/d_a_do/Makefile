@@ -28,15 +28,16 @@ M165_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map165.map\
 
 $(M165_TARGET): $(M165_O_FILES) $(M165_LIBS)
 	@echo $(M165_LIBS) $(M165_O_FILES) > build/M165_ofiles
-	$(LD) -partial $(M165_LDFLAGS) -o $(M165_TARGET) @build/M165_ofiles
+	$(LD) -opt_partial $(M165_LDFLAGS) -o $(M165_TARGET) @build/M165_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_do/%.o: rel/d/a/d_a_do/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M165_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_do/libs/Runtime.PPCEABI.H/Makefile
 

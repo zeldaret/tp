@@ -28,15 +28,16 @@ M544_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map544.map\
 
 $(M544_TARGET): $(M544_O_FILES) $(M544_LIBS)
 	@echo $(M544_LIBS) $(M544_O_FILES) > build/M544_ofiles
-	$(LD) -partial $(M544_LDFLAGS) -o $(M544_TARGET) @build/M544_ofiles
+	$(LD) -opt_partial $(M544_LDFLAGS) -o $(M544_TARGET) @build/M544_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/%.o: rel/d/a/obj/d_a_obj_lv6ChangeGate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M544_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv6ChangeGate/libs/Runtime.PPCEABI.H/Makefile
 

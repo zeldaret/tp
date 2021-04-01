@@ -28,15 +28,16 @@ M278_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map278.map\
 
 $(M278_TARGET): $(M278_O_FILES) $(M278_LIBS)
 	@echo $(M278_LIBS) $(M278_O_FILES) > build/M278_ofiles
-	$(LD) -partial $(M278_LDFLAGS) -o $(M278_TARGET) @build/M278_ofiles
+	$(LD) -opt_partial $(M278_LDFLAGS) -o $(M278_TARGET) @build/M278_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.o: rel/d/a/d_a_mg_fshop/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_mg_fshop/libs/Runtime.PPCEABI.H/Makefile
 

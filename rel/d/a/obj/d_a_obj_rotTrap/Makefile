@@ -28,15 +28,16 @@ M606_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map606.map\
 
 $(M606_TARGET): $(M606_O_FILES) $(M606_LIBS)
 	@echo $(M606_LIBS) $(M606_O_FILES) > build/M606_ofiles
-	$(LD) -partial $(M606_LDFLAGS) -o $(M606_TARGET) @build/M606_ofiles
+	$(LD) -opt_partial $(M606_LDFLAGS) -o $(M606_TARGET) @build/M606_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/%.o: rel/d/a/obj/d_a_obj_rotTrap/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M606_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_rotTrap/libs/Runtime.PPCEABI.H/Makefile
 

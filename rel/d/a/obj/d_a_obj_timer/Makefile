@@ -31,14 +31,15 @@ M22_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map22.map\
 
 $(M22_TARGET): $(M22_O_FILES) $(M22_LIBS)
 	@echo $(M22_LIBS) $(M22_O_FILES) > build/M22_ofiles
-	$(LD) -partial $(M22_LDFLAGS) -o $(M22_TARGET) @build/M22_ofiles
+	$(LD) -opt_partial $(M22_LDFLAGS) -o $(M22_TARGET) @build/M22_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/%.o: rel/d/a/obj/d_a_obj_timer/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M22_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

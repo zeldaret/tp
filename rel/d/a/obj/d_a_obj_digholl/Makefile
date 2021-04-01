@@ -29,14 +29,15 @@ M436_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map436.map\
 
 $(M436_TARGET): $(M436_O_FILES) $(M436_LIBS)
 	@echo $(M436_LIBS) $(M436_O_FILES) > build/M436_ofiles
-	$(LD) -partial $(M436_LDFLAGS) -o $(M436_TARGET) @build/M436_ofiles
+	$(LD) -opt_partial $(M436_LDFLAGS) -o $(M436_TARGET) @build/M436_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/%.o: rel/d/a/obj/d_a_obj_digholl/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M436_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

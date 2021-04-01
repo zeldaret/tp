@@ -29,14 +29,15 @@ M722_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map722.map\
 
 $(M722_TARGET): $(M722_O_FILES) $(M722_LIBS)
 	@echo $(M722_LIBS) $(M722_O_FILES) > build/M722_ofiles
-	$(LD) -partial $(M722_LDFLAGS) -o $(M722_TARGET) @build/M722_ofiles
+	$(LD) -opt_partial $(M722_LDFLAGS) -o $(M722_TARGET) @build/M722_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_guard/%.o: rel/d/a/tag/d_a_tag_guard/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M722_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

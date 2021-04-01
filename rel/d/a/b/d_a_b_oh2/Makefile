@@ -29,14 +29,15 @@ M151_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map151.map\
 
 $(M151_TARGET): $(M151_O_FILES) $(M151_LIBS)
 	@echo $(M151_LIBS) $(M151_O_FILES) > build/M151_ofiles
-	$(LD) -partial $(M151_LDFLAGS) -o $(M151_TARGET) @build/M151_ofiles
+	$(LD) -opt_partial $(M151_LDFLAGS) -o $(M151_TARGET) @build/M151_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/%.o: rel/d/a/b/d_a_b_oh2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M151_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

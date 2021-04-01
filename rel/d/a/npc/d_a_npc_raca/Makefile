@@ -28,15 +28,16 @@ M350_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map350.map\
 
 $(M350_TARGET): $(M350_O_FILES) $(M350_LIBS)
 	@echo $(M350_LIBS) $(M350_O_FILES) > build/M350_ofiles
-	$(LD) -partial $(M350_LDFLAGS) -o $(M350_TARGET) @build/M350_ofiles
+	$(LD) -opt_partial $(M350_LDFLAGS) -o $(M350_TARGET) @build/M350_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.o: rel/d/a/npc/d_a_npc_raca/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M350_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_raca/libs/Runtime.PPCEABI.H/Makefile
 

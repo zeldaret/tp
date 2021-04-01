@@ -28,15 +28,16 @@ M163_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map163.map\
 
 $(M163_TARGET): $(M163_O_FILES) $(M163_LIBS)
 	@echo $(M163_LIBS) $(M163_O_FILES) > build/M163_ofiles
-	$(LD) -partial $(M163_LDFLAGS) -o $(M163_TARGET) @build/M163_ofiles
+	$(LD) -opt_partial $(M163_LDFLAGS) -o $(M163_TARGET) @build/M163_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_cow/%.o: rel/d/a/d_a_cow/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M163_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_cow/libs/Runtime.PPCEABI.H/Makefile
 

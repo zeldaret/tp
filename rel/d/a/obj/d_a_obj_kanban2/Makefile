@@ -28,15 +28,16 @@ M98_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map98.map\
 
 $(M98_TARGET): $(M98_O_FILES) $(M98_LIBS)
 	@echo $(M98_LIBS) $(M98_O_FILES) > build/M98_ofiles
-	$(LD) -partial $(M98_LDFLAGS) -o $(M98_TARGET) @build/M98_ofiles
+	$(LD) -opt_partial $(M98_LDFLAGS) -o $(M98_TARGET) @build/M98_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kanban2/%.o: rel/d/a/obj/d_a_obj_kanban2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M98_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_kanban2/libs/Runtime.PPCEABI.H/Makefile
 

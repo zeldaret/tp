@@ -31,14 +31,15 @@ M641_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map641.map\
 
 $(M641_TARGET): $(M641_O_FILES) $(M641_LIBS)
 	@echo $(M641_LIBS) $(M641_O_FILES) > build/M641_ofiles
-	$(LD) -partial $(M641_LDFLAGS) -o $(M641_TARGET) @build/M641_ofiles
+	$(LD) -opt_partial $(M641_LDFLAGS) -o $(M641_TARGET) @build/M641_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/%.o: rel/d/a/obj/d_a_obj_swLight/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M641_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

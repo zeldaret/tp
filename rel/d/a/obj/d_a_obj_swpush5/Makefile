@@ -28,15 +28,16 @@ M115_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map115.map\
 
 $(M115_TARGET): $(M115_O_FILES) $(M115_LIBS)
 	@echo $(M115_LIBS) $(M115_O_FILES) > build/M115_ofiles
-	$(LD) -partial $(M115_LDFLAGS) -o $(M115_TARGET) @build/M115_ofiles
+	$(LD) -opt_partial $(M115_LDFLAGS) -o $(M115_TARGET) @build/M115_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush5/%.o: rel/d/a/obj/d_a_obj_swpush5/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M115_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_swpush5/libs/Runtime.PPCEABI.H/Makefile
 

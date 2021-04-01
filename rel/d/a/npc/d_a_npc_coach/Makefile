@@ -29,14 +29,15 @@ M296_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map296.map\
 
 $(M296_TARGET): $(M296_O_FILES) $(M296_LIBS)
 	@echo $(M296_LIBS) $(M296_O_FILES) > build/M296_ofiles
-	$(LD) -partial $(M296_LDFLAGS) -o $(M296_TARGET) @build/M296_ofiles
+	$(LD) -opt_partial $(M296_LDFLAGS) -o $(M296_TARGET) @build/M296_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/%.o: rel/d/a/npc/d_a_npc_coach/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M296_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

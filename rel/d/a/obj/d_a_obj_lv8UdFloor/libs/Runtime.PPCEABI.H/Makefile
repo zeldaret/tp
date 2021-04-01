@@ -19,7 +19,6 @@ M563LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/libRuntime.PPCEABI.H.a: $(M563LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M563LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M563LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M563LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/libRuntime.PPCEABI.H.a @build/M563LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/libs/Runtime.PPCEABI.H/%.o: rel/d/a/obj/d_a_obj_lv8UdFloor/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

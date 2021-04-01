@@ -31,14 +31,15 @@ M640_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map640.map\
 
 $(M640_TARGET): $(M640_O_FILES) $(M640_LIBS)
 	@echo $(M640_LIBS) $(M640_O_FILES) > build/M640_ofiles
-	$(LD) -partial $(M640_LDFLAGS) -o $(M640_TARGET) @build/M640_ofiles
+	$(LD) -opt_partial $(M640_LDFLAGS) -o $(M640_TARGET) @build/M640_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.o: rel/d/a/obj/d_a_obj_swBallC/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M640_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

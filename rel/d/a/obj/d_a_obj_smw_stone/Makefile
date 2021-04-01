@@ -29,14 +29,15 @@ M625_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map625.map\
 
 $(M625_TARGET): $(M625_O_FILES) $(M625_LIBS)
 	@echo $(M625_LIBS) $(M625_O_FILES) > build/M625_ofiles
-	$(LD) -partial $(M625_LDFLAGS) -o $(M625_TARGET) @build/M625_ofiles
+	$(LD) -opt_partial $(M625_LDFLAGS) -o $(M625_TARGET) @build/M625_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.o: rel/d/a/obj/d_a_obj_smw_stone/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M625_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

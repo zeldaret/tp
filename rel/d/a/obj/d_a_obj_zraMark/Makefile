@@ -29,14 +29,15 @@ M699_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map699.map\
 
 $(M699_TARGET): $(M699_O_FILES) $(M699_LIBS)
 	@echo $(M699_LIBS) $(M699_O_FILES) > build/M699_ofiles
-	$(LD) -partial $(M699_LDFLAGS) -o $(M699_TARGET) @build/M699_ofiles
+	$(LD) -opt_partial $(M699_LDFLAGS) -o $(M699_TARGET) @build/M699_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/%.o: rel/d/a/obj/d_a_obj_zraMark/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M699_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

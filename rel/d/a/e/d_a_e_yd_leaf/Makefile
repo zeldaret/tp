@@ -29,14 +29,15 @@ M249_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map249.map\
 
 $(M249_TARGET): $(M249_O_FILES) $(M249_LIBS)
 	@echo $(M249_LIBS) $(M249_O_FILES) > build/M249_ofiles
-	$(LD) -partial $(M249_LDFLAGS) -o $(M249_TARGET) @build/M249_ofiles
+	$(LD) -opt_partial $(M249_LDFLAGS) -o $(M249_TARGET) @build/M249_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/%.o: rel/d/a/e/d_a_e_yd_leaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M249_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

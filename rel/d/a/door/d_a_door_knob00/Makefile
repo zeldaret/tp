@@ -29,14 +29,15 @@ M7_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map7.map\
 
 $(M7_TARGET): $(M7_O_FILES) $(M7_LIBS)
 	@echo $(M7_LIBS) $(M7_O_FILES) > build/M7_ofiles
-	$(LD) -partial $(M7_LDFLAGS) -o $(M7_TARGET) @build/M7_ofiles
+	$(LD) -opt_partial $(M7_LDFLAGS) -o $(M7_TARGET) @build/M7_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/%.o: rel/d/a/door/d_a_door_knob00/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M7_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

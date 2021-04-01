@@ -29,14 +29,15 @@ M105_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map105.map\
 
 $(M105_TARGET): $(M105_O_FILES) $(M105_LIBS)
 	@echo $(M105_LIBS) $(M105_O_FILES) > build/M105_ofiles
-	$(LD) -partial $(M105_LDFLAGS) -o $(M105_TARGET) @build/M105_ofiles
+	$(LD) -opt_partial $(M105_LDFLAGS) -o $(M105_TARGET) @build/M105_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/%.o: rel/d/a/obj/d_a_obj_magne_arm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M105_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

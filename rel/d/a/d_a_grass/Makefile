@@ -28,15 +28,16 @@ M73_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map73.map\
 
 $(M73_TARGET): $(M73_O_FILES) $(M73_LIBS)
 	@echo $(M73_LIBS) $(M73_O_FILES) > build/M73_ofiles
-	$(LD) -partial $(M73_LDFLAGS) -o $(M73_TARGET) @build/M73_ofiles
+	$(LD) -opt_partial $(M73_LDFLAGS) -o $(M73_TARGET) @build/M73_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_grass/%.o: rel/d/a/d_a_grass/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M73_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_grass/libs/Runtime.PPCEABI.H/Makefile
 

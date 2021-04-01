@@ -29,14 +29,15 @@ M272_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map272.map\
 
 $(M272_TARGET): $(M272_O_FILES) $(M272_LIBS)
 	@echo $(M272_LIBS) $(M272_O_FILES) > build/M272_ofiles
-	$(LD) -partial $(M272_LDFLAGS) -o $(M272_TARGET) @build/M272_ofiles
+	$(LD) -opt_partial $(M272_LDFLAGS) -o $(M272_TARGET) @build/M272_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/%.o: rel/d/a/kytag/d_a_kytag09/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M272_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M355_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map355.map\
 
 $(M355_TARGET): $(M355_O_FILES) $(M355_LIBS)
 	@echo $(M355_LIBS) $(M355_O_FILES) > build/M355_ofiles
-	$(LD) -partial $(M355_LDFLAGS) -o $(M355_TARGET) @build/M355_ofiles
+	$(LD) -opt_partial $(M355_LDFLAGS) -o $(M355_TARGET) @build/M355_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/%.o: rel/d/a/npc/d_a_npc_seid/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M355_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_seid/libs/Runtime.PPCEABI.H/Makefile
 

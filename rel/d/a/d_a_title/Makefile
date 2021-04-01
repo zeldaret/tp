@@ -28,15 +28,16 @@ M756_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map756.map\
 
 $(M756_TARGET): $(M756_O_FILES) $(M756_LIBS)
 	@echo $(M756_LIBS) $(M756_O_FILES) > build/M756_ofiles
-	$(LD) -partial $(M756_LDFLAGS) -o $(M756_TARGET) @build/M756_ofiles
+	$(LD) -opt_partial $(M756_LDFLAGS) -o $(M756_TARGET) @build/M756_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_title/%.o: rel/d/a/d_a_title/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M756_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_title/libs/Runtime.PPCEABI.H/Makefile
 

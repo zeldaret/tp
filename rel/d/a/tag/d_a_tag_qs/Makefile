@@ -29,14 +29,15 @@ M734_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map734.map\
 
 $(M734_TARGET): $(M734_O_FILES) $(M734_LIBS)
 	@echo $(M734_LIBS) $(M734_O_FILES) > build/M734_ofiles
-	$(LD) -partial $(M734_LDFLAGS) -o $(M734_TARGET) @build/M734_ofiles
+	$(LD) -opt_partial $(M734_LDFLAGS) -o $(M734_TARGET) @build/M734_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/%.o: rel/d/a/tag/d_a_tag_qs/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M734_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

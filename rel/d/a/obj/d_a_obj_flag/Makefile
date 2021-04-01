@@ -29,14 +29,15 @@ M449_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map449.map\
 
 $(M449_TARGET): $(M449_O_FILES) $(M449_LIBS)
 	@echo $(M449_LIBS) $(M449_O_FILES) > build/M449_ofiles
-	$(LD) -partial $(M449_LDFLAGS) -o $(M449_TARGET) @build/M449_ofiles
+	$(LD) -opt_partial $(M449_LDFLAGS) -o $(M449_TARGET) @build/M449_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/%.o: rel/d/a/obj/d_a_obj_flag/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M449_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

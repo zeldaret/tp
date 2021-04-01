@@ -29,14 +29,15 @@ M696_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map696.map\
 
 $(M696_TARGET): $(M696_O_FILES) $(M696_LIBS)
 	@echo $(M696_LIBS) $(M696_O_FILES) > build/M696_ofiles
-	$(LD) -partial $(M696_LDFLAGS) -o $(M696_TARGET) @build/M696_ofiles
+	$(LD) -opt_partial $(M696_LDFLAGS) -o $(M696_TARGET) @build/M696_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/%.o: rel/d/a/obj/d_a_obj_zdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M696_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

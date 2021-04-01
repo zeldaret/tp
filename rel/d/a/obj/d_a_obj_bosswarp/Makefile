@@ -31,14 +31,15 @@ M91_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map91.map\
 
 $(M91_TARGET): $(M91_O_FILES) $(M91_LIBS)
 	@echo $(M91_LIBS) $(M91_O_FILES) > build/M91_ofiles
-	$(LD) -partial $(M91_LDFLAGS) -o $(M91_TARGET) @build/M91_ofiles
+	$(LD) -opt_partial $(M91_LDFLAGS) -o $(M91_TARGET) @build/M91_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.o: rel/d/a/obj/d_a_obj_bosswarp/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

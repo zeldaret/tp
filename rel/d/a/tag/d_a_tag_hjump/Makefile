@@ -29,14 +29,15 @@ M126_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map126.map\
 
 $(M126_TARGET): $(M126_O_FILES) $(M126_LIBS)
 	@echo $(M126_LIBS) $(M126_O_FILES) > build/M126_ofiles
-	$(LD) -partial $(M126_LDFLAGS) -o $(M126_TARGET) @build/M126_ofiles
+	$(LD) -opt_partial $(M126_LDFLAGS) -o $(M126_TARGET) @build/M126_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/%.o: rel/d/a/tag/d_a_tag_hjump/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M126_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

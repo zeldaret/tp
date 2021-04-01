@@ -29,14 +29,15 @@ M428_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map428.map\
 
 $(M428_TARGET): $(M428_O_FILES) $(M428_LIBS)
 	@echo $(M428_LIBS) $(M428_O_FILES) > build/M428_ofiles
-	$(LD) -partial $(M428_LDFLAGS) -o $(M428_TARGET) @build/M428_ofiles
+	$(LD) -opt_partial $(M428_LDFLAGS) -o $(M428_TARGET) @build/M428_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/%.o: rel/d/a/obj/d_a_obj_crvhahen/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M428_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -28,15 +28,16 @@ M61_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map61.map\
 
 $(M61_TARGET): $(M61_O_FILES) $(M61_LIBS)
 	@echo $(M61_LIBS) $(M61_O_FILES) > build/M61_ofiles
-	$(LD) -partial $(M61_LDFLAGS) -o $(M61_TARGET) @build/M61_ofiles
+	$(LD) -opt_partial $(M61_LDFLAGS) -o $(M61_TARGET) @build/M61_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_canoe/%.o: rel/d/a/d_a_canoe/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M61_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_canoe/libs/Runtime.PPCEABI.H/Makefile
 

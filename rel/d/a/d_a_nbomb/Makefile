@@ -28,15 +28,16 @@ M52_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map52.map\
 
 $(M52_TARGET): $(M52_O_FILES) $(M52_LIBS)
 	@echo $(M52_LIBS) $(M52_O_FILES) > build/M52_ofiles
-	$(LD) -partial $(M52_LDFLAGS) -o $(M52_TARGET) @build/M52_ofiles
+	$(LD) -opt_partial $(M52_LDFLAGS) -o $(M52_TARGET) @build/M52_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_nbomb/%.o: rel/d/a/d_a_nbomb/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M52_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/d_a_nbomb/libs/Runtime.PPCEABI.H/Makefile
 

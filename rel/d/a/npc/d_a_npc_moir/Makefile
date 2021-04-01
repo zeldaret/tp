@@ -28,15 +28,16 @@ M338_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map338.map\
 
 $(M338_TARGET): $(M338_O_FILES) $(M338_LIBS)
 	@echo $(M338_LIBS) $(M338_O_FILES) > build/M338_ofiles
-	$(LD) -partial $(M338_LDFLAGS) -o $(M338_TARGET) @build/M338_ofiles
+	$(LD) -opt_partial $(M338_LDFLAGS) -o $(M338_TARGET) @build/M338_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/%.o: rel/d/a/npc/d_a_npc_moir/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M338_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_moir/libs/Runtime.PPCEABI.H/Makefile
 

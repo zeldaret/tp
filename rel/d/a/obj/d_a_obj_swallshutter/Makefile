@@ -28,15 +28,16 @@ M111_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map111.map\
 
 $(M111_TARGET): $(M111_O_FILES) $(M111_LIBS)
 	@echo $(M111_LIBS) $(M111_O_FILES) > build/M111_ofiles
-	$(LD) -partial $(M111_LDFLAGS) -o $(M111_TARGET) @build/M111_ofiles
+	$(LD) -opt_partial $(M111_LDFLAGS) -o $(M111_TARGET) @build/M111_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/%.o: rel/d/a/obj/d_a_obj_swallshutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M111_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_swallshutter/libs/Runtime.PPCEABI.H/Makefile
 

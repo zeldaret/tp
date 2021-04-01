@@ -28,15 +28,16 @@ M519_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map519.map\
 
 $(M519_TARGET): $(M519_O_FILES) $(M519_LIBS)
 	@echo $(M519_LIBS) $(M519_O_FILES) > build/M519_ofiles
-	$(LD) -partial $(M519_LDFLAGS) -o $(M519_TARGET) @build/M519_ofiles
+	$(LD) -opt_partial $(M519_LDFLAGS) -o $(M519_TARGET) @build/M519_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/%.o: rel/d/a/obj/d_a_obj_lv3Water2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M519_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv3Water2/libs/Runtime.PPCEABI.H/Makefile
 

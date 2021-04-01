@@ -28,15 +28,16 @@ M659_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map659.map\
 
 $(M659_TARGET): $(M659_O_FILES) $(M659_LIBS)
 	@echo $(M659_LIBS) $(M659_O_FILES) > build/M659_ofiles
-	$(LD) -partial $(M659_LDFLAGS) -o $(M659_TARGET) @build/M659_ofiles
+	$(LD) -opt_partial $(M659_LDFLAGS) -o $(M659_TARGET) @build/M659_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timeFire/%.o: rel/d/a/obj/d_a_obj_timeFire/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M659_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_timeFire/libs/Runtime.PPCEABI.H/Makefile
 

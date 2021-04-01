@@ -29,14 +29,15 @@ M362_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map362.map\
 
 $(M362_TARGET): $(M362_O_FILES) $(M362_LIBS)
 	@echo $(M362_LIBS) $(M362_O_FILES) > build/M362_ofiles
-	$(LD) -partial $(M362_LDFLAGS) -o $(M362_TARGET) @build/M362_ofiles
+	$(LD) -opt_partial $(M362_LDFLAGS) -o $(M362_TARGET) @build/M362_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/%.o: rel/d/a/npc/d_a_npc_shop0/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M362_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

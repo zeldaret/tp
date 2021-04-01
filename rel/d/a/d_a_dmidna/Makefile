@@ -29,14 +29,15 @@ M5_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map5.map\
 
 $(M5_TARGET): $(M5_O_FILES) $(M5_LIBS)
 	@echo $(M5_LIBS) $(M5_O_FILES) > build/M5_ofiles
-	$(LD) -partial $(M5_LDFLAGS) -o $(M5_TARGET) @build/M5_ofiles
+	$(LD) -opt_partial $(M5_LDFLAGS) -o $(M5_TARGET) @build/M5_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_dmidna/%.o: rel/d/a/d_a_dmidna/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M5_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

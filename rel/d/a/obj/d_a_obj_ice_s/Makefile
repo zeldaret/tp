@@ -28,15 +28,16 @@ M480_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map480.map\
 
 $(M480_TARGET): $(M480_O_FILES) $(M480_LIBS)
 	@echo $(M480_LIBS) $(M480_O_FILES) > build/M480_ofiles
-	$(LD) -partial $(M480_LDFLAGS) -o $(M480_TARGET) @build/M480_ofiles
+	$(LD) -opt_partial $(M480_LDFLAGS) -o $(M480_TARGET) @build/M480_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_s/%.o: rel/d/a/obj/d_a_obj_ice_s/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M480_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_ice_s/libs/Runtime.PPCEABI.H/Makefile
 

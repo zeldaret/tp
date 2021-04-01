@@ -31,14 +31,15 @@ M608_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map608.map\
 
 $(M608_TARGET): $(M608_O_FILES) $(M608_LIBS)
 	@echo $(M608_LIBS) $(M608_O_FILES) > build/M608_ofiles
-	$(LD) -partial $(M608_LDFLAGS) -o $(M608_TARGET) @build/M608_ofiles
+	$(LD) -opt_partial $(M608_LDFLAGS) -o $(M608_TARGET) @build/M608_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rstair/%.o: rel/d/a/obj/d_a_obj_rstair/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M608_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

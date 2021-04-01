@@ -29,14 +29,15 @@ M700_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map700.map\
 
 $(M700_TARGET): $(M700_O_FILES) $(M700_LIBS)
 	@echo $(M700_LIBS) $(M700_O_FILES) > build/M700_ofiles
-	$(LD) -partial $(M700_LDFLAGS) -o $(M700_TARGET) @build/M700_ofiles
+	$(LD) -opt_partial $(M700_LDFLAGS) -o $(M700_TARGET) @build/M700_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_freeze/%.o: rel/d/a/obj/d_a_obj_zra_freeze/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M700_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

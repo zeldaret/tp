@@ -28,15 +28,16 @@ M416_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map416.map\
 
 $(M416_TARGET): $(M416_O_FILES) $(M416_LIBS)
 	@echo $(M416_LIBS) $(M416_O_FILES) > build/M416_ofiles
-	$(LD) -partial $(M416_LDFLAGS) -o $(M416_TARGET) @build/M416_ofiles
+	$(LD) -opt_partial $(M416_LDFLAGS) -o $(M416_TARGET) @build/M416_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.o: rel/d/a/obj/d_a_obj_bubblePilar/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M416_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_bubblePilar/libs/Runtime.PPCEABI.H/Makefile
 

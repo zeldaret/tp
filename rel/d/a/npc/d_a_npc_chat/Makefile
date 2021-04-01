@@ -28,15 +28,16 @@ M291_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map291.map\
 
 $(M291_TARGET): $(M291_O_FILES) $(M291_LIBS)
 	@echo $(M291_LIBS) $(M291_O_FILES) > build/M291_ofiles
-	$(LD) -partial $(M291_LDFLAGS) -o $(M291_TARGET) @build/M291_ofiles
+	$(LD) -opt_partial $(M291_LDFLAGS) -o $(M291_TARGET) @build/M291_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_chat/%.o: rel/d/a/npc/d_a_npc_chat/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M291_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_chat/libs/Runtime.PPCEABI.H/Makefile
 

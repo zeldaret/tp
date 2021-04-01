@@ -28,15 +28,16 @@ M361_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map361.map\
 
 $(M361_TARGET): $(M361_O_FILES) $(M361_LIBS)
 	@echo $(M361_LIBS) $(M361_O_FILES) > build/M361_ofiles
-	$(LD) -partial $(M361_LDFLAGS) -o $(M361_TARGET) @build/M361_ofiles
+	$(LD) -opt_partial $(M361_LDFLAGS) -o $(M361_TARGET) @build/M361_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.o: rel/d/a/npc/d_a_npc_shoe/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_shoe/libs/Runtime.PPCEABI.H/Makefile
 

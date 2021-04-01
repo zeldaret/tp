@@ -29,14 +29,15 @@ M107_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map107.map\
 
 $(M107_TARGET): $(M107_O_FILES) $(M107_LIBS)
 	@echo $(M107_LIBS) $(M107_O_FILES) > build/M107_ofiles
-	$(LD) -partial $(M107_LDFLAGS) -o $(M107_TARGET) @build/M107_ofiles
+	$(LD) -opt_partial $(M107_LDFLAGS) -o $(M107_TARGET) @build/M107_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/%.o: rel/d/a/obj/d_a_obj_mgate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M107_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

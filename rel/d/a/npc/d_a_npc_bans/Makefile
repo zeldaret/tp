@@ -28,15 +28,16 @@ M286_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map286.map\
 
 $(M286_TARGET): $(M286_O_FILES) $(M286_LIBS)
 	@echo $(M286_LIBS) $(M286_O_FILES) > build/M286_ofiles
-	$(LD) -partial $(M286_LDFLAGS) -o $(M286_TARGET) @build/M286_ofiles
+	$(LD) -opt_partial $(M286_LDFLAGS) -o $(M286_TARGET) @build/M286_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/%.o: rel/d/a/npc/d_a_npc_bans/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M286_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_bans/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M739_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map739.map\
 
 $(M739_TARGET): $(M739_O_FILES) $(M739_LIBS)
 	@echo $(M739_LIBS) $(M739_O_FILES) > build/M739_ofiles
-	$(LD) -partial $(M739_LDFLAGS) -o $(M739_TARGET) @build/M739_ofiles
+	$(LD) -opt_partial $(M739_LDFLAGS) -o $(M739_TARGET) @build/M739_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.o: rel/d/a/tag/d_a_tag_setBall/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M739_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

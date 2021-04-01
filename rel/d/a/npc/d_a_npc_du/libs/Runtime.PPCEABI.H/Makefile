@@ -19,7 +19,6 @@ M301LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/libRuntime.PPCEABI.H.a: $(M301LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M301LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M301LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M301LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/libRuntime.PPCEABI.H.a @build/M301LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_du/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

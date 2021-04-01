@@ -29,14 +29,15 @@ M10_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map10.map\
 
 $(M10_TARGET): $(M10_O_FILES) $(M10_LIBS)
 	@echo $(M10_LIBS) $(M10_O_FILES) > build/M10_ofiles
-	$(LD) -partial $(M10_LDFLAGS) -o $(M10_TARGET) @build/M10_ofiles
+	$(LD) -opt_partial $(M10_LDFLAGS) -o $(M10_TARGET) @build/M10_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_dshutter/%.o: rel/d/a/d_a_dshutter/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M10_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

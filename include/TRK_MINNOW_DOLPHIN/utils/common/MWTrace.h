@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* UTILS_COMMON_MWTRACE_H */

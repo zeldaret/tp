@@ -29,14 +29,15 @@ M592_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map592.map\
 
 $(M592_TARGET): $(M592_O_FILES) $(M592_LIBS)
 	@echo $(M592_LIBS) $(M592_O_FILES) > build/M592_ofiles
-	$(LD) -partial $(M592_LDFLAGS) -o $(M592_TARGET) @build/M592_ofiles
+	$(LD) -opt_partial $(M592_LDFLAGS) -o $(M592_TARGET) @build/M592_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/%.o: rel/d/a/obj/d_a_obj_picture/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M592_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

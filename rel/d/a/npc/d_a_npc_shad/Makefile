@@ -28,15 +28,16 @@ M359_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map359.map\
 
 $(M359_TARGET): $(M359_O_FILES) $(M359_LIBS)
 	@echo $(M359_LIBS) $(M359_O_FILES) > build/M359_ofiles
-	$(LD) -partial $(M359_LDFLAGS) -o $(M359_TARGET) @build/M359_ofiles
+	$(LD) -opt_partial $(M359_LDFLAGS) -o $(M359_TARGET) @build/M359_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/%.o: rel/d/a/npc/d_a_npc_shad/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M359_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_shad/libs/Runtime.PPCEABI.H/Makefile
 

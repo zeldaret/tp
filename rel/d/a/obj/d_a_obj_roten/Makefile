@@ -29,14 +29,15 @@ M607_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map607.map\
 
 $(M607_TARGET): $(M607_O_FILES) $(M607_LIBS)
 	@echo $(M607_LIBS) $(M607_O_FILES) > build/M607_ofiles
-	$(LD) -partial $(M607_LDFLAGS) -o $(M607_TARGET) @build/M607_ofiles
+	$(LD) -opt_partial $(M607_LDFLAGS) -o $(M607_TARGET) @build/M607_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/%.o: rel/d/a/obj/d_a_obj_roten/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M607_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

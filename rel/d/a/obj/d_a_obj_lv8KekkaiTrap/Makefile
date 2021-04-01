@@ -28,15 +28,16 @@ M560_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map560.map\
 
 $(M560_TARGET): $(M560_O_FILES) $(M560_LIBS)
 	@echo $(M560_LIBS) $(M560_O_FILES) > build/M560_ofiles
-	$(LD) -partial $(M560_LDFLAGS) -o $(M560_TARGET) @build/M560_ofiles
+	$(LD) -opt_partial $(M560_LDFLAGS) -o $(M560_TARGET) @build/M560_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.o: rel/d/a/obj/d_a_obj_lv8KekkaiTrap/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M560_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv8KekkaiTrap/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M609_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map609.map\
 
 $(M609_TARGET): $(M609_O_FILES) $(M609_LIBS)
 	@echo $(M609_LIBS) $(M609_O_FILES) > build/M609_ofiles
-	$(LD) -partial $(M609_LDFLAGS) -o $(M609_TARGET) @build/M609_ofiles
+	$(LD) -opt_partial $(M609_LDFLAGS) -o $(M609_TARGET) @build/M609_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/%.o: rel/d/a/obj/d_a_obj_rw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M609_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_rw/libs/Runtime.PPCEABI.H/Makefile
 

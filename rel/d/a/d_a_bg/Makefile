@@ -29,14 +29,15 @@ M3_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map3.map\
 
 $(M3_TARGET): $(M3_O_FILES) $(M3_LIBS)
 	@echo $(M3_LIBS) $(M3_O_FILES) > build/M3_ofiles
-	$(LD) -partial $(M3_LDFLAGS) -o $(M3_TARGET) @build/M3_ofiles
+	$(LD) -opt_partial $(M3_LDFLAGS) -o $(M3_TARGET) @build/M3_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_bg/%.o: rel/d/a/d_a_bg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M3_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

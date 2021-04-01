@@ -28,15 +28,16 @@ M382_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map382.map\
 
 $(M382_TARGET): $(M382_O_FILES) $(M382_LIBS)
 	@echo $(M382_LIBS) $(M382_O_FILES) > build/M382_ofiles
-	$(LD) -partial $(M382_LDFLAGS) -o $(M382_TARGET) @build/M382_ofiles
+	$(LD) -opt_partial $(M382_LDFLAGS) -o $(M382_TARGET) @build/M382_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/%.o: rel/d/a/npc/d_a_npc_yelia/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M382_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_yelia/libs/Runtime.PPCEABI.H/Makefile
 

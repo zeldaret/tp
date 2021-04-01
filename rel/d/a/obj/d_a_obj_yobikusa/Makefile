@@ -29,14 +29,15 @@ M116_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map116.map\
 
 $(M116_TARGET): $(M116_O_FILES) $(M116_LIBS)
 	@echo $(M116_LIBS) $(M116_O_FILES) > build/M116_ofiles
-	$(LD) -partial $(M116_LDFLAGS) -o $(M116_TARGET) @build/M116_ofiles
+	$(LD) -opt_partial $(M116_LDFLAGS) -o $(M116_TARGET) @build/M116_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yobikusa/%.o: rel/d/a/obj/d_a_obj_yobikusa/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M116_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

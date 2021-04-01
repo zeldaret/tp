@@ -28,15 +28,16 @@ M69_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map69.map\
 
 $(M69_TARGET): $(M69_O_FILES) $(M69_LIBS)
 	@echo $(M69_LIBS) $(M69_O_FILES) > build/M69_ofiles
-	$(LD) -partial $(M69_LDFLAGS) -o $(M69_TARGET) @build/M69_ofiles
+	$(LD) -opt_partial $(M69_LDFLAGS) -o $(M69_TARGET) @build/M69_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_nest/%.o: rel/d/a/e/d_a_e_nest/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M69_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_nest/libs/Runtime.PPCEABI.H/Makefile
 

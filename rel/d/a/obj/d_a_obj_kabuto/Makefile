@@ -28,15 +28,16 @@ M488_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map488.map\
 
 $(M488_TARGET): $(M488_O_FILES) $(M488_LIBS)
 	@echo $(M488_LIBS) $(M488_O_FILES) > build/M488_ofiles
-	$(LD) -partial $(M488_LDFLAGS) -o $(M488_TARGET) @build/M488_ofiles
+	$(LD) -opt_partial $(M488_LDFLAGS) -o $(M488_TARGET) @build/M488_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kabuto/%.o: rel/d/a/obj/d_a_obj_kabuto/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M488_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_kabuto/libs/Runtime.PPCEABI.H/Makefile
 

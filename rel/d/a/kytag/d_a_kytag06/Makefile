@@ -28,15 +28,16 @@ M269_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map269.map\
 
 $(M269_TARGET): $(M269_O_FILES) $(M269_LIBS)
 	@echo $(M269_LIBS) $(M269_O_FILES) > build/M269_ofiles
-	$(LD) -partial $(M269_LDFLAGS) -o $(M269_TARGET) @build/M269_ofiles
+	$(LD) -opt_partial $(M269_LDFLAGS) -o $(M269_TARGET) @build/M269_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/%.o: rel/d/a/kytag/d_a_kytag06/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M269_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/kytag/d_a_kytag06/libs/Runtime.PPCEABI.H/Makefile
 

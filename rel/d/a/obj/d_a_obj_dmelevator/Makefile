@@ -28,15 +28,16 @@ M438_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map438.map\
 
 $(M438_TARGET): $(M438_O_FILES) $(M438_LIBS)
 	@echo $(M438_LIBS) $(M438_O_FILES) > build/M438_ofiles
-	$(LD) -partial $(M438_LDFLAGS) -o $(M438_TARGET) @build/M438_ofiles
+	$(LD) -opt_partial $(M438_LDFLAGS) -o $(M438_TARGET) @build/M438_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/%.o: rel/d/a/obj/d_a_obj_dmelevator/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M438_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_dmelevator/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M236_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map236.map\
 
 $(M236_TARGET): $(M236_O_FILES) $(M236_LIBS)
 	@echo $(M236_LIBS) $(M236_O_FILES) > build/M236_ofiles
-	$(LD) -partial $(M236_LDFLAGS) -o $(M236_TARGET) @build/M236_ofiles
+	$(LD) -opt_partial $(M236_LDFLAGS) -o $(M236_TARGET) @build/M236_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_th/%.o: rel/d/a/e/d_a_e_th/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M236_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_th/libs/Runtime.PPCEABI.H/Makefile
 

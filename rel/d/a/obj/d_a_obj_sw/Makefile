@@ -29,14 +29,15 @@ M637_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map637.map\
 
 $(M637_TARGET): $(M637_O_FILES) $(M637_LIBS)
 	@echo $(M637_LIBS) $(M637_O_FILES) > build/M637_ofiles
-	$(LD) -partial $(M637_LDFLAGS) -o $(M637_TARGET) @build/M637_ofiles
+	$(LD) -opt_partial $(M637_LDFLAGS) -o $(M637_TARGET) @build/M637_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/%.o: rel/d/a/obj/d_a_obj_sw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M637_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

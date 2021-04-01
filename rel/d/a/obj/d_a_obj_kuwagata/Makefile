@@ -28,15 +28,16 @@ M507_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map507.map\
 
 $(M507_TARGET): $(M507_O_FILES) $(M507_LIBS)
 	@echo $(M507_LIBS) $(M507_O_FILES) > build/M507_ofiles
-	$(LD) -partial $(M507_LDFLAGS) -o $(M507_TARGET) @build/M507_ofiles
+	$(LD) -opt_partial $(M507_LDFLAGS) -o $(M507_TARGET) @build/M507_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/%.o: rel/d/a/obj/d_a_obj_kuwagata/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M507_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_kuwagata/libs/Runtime.PPCEABI.H/Makefile
 

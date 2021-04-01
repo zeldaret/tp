@@ -31,14 +31,15 @@ M447_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map447.map\
 
 $(M447_TARGET): $(M447_O_FILES) $(M447_LIBS)
 	@echo $(M447_LIBS) $(M447_O_FILES) > build/M447_ofiles
-	$(LD) -partial $(M447_LDFLAGS) -o $(M447_TARGET) @build/M447_ofiles
+	$(LD) -opt_partial $(M447_LDFLAGS) -o $(M447_TARGET) @build/M447_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.o: rel/d/a/obj/d_a_obj_firepillar/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

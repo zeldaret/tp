@@ -29,14 +29,15 @@ M738_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map738.map\
 
 $(M738_TARGET): $(M738_O_FILES) $(M738_LIBS)
 	@echo $(M738_LIBS) $(M738_O_FILES) > build/M738_ofiles
-	$(LD) -partial $(M738_LDFLAGS) -o $(M738_TARGET) @build/M738_ofiles
+	$(LD) -opt_partial $(M738_LDFLAGS) -o $(M738_TARGET) @build/M738_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/%.o: rel/d/a/tag/d_a_tag_schedule/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M738_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

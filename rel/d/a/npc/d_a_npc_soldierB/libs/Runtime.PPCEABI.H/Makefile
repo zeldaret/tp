@@ -19,7 +19,6 @@ M366LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/libRuntime.PPCEABI.H.a: $(M366LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M366LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M366LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M366LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/libRuntime.PPCEABI.H.a @build/M366LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierB/libs/Runtime.PPCEABI.H/%.o: rel/d/a/npc/d_a_npc_soldierB/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

@@ -29,14 +29,15 @@ M757_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map757.map\
 
 $(M757_TARGET): $(M757_O_FILES) $(M757_LIBS)
 	@echo $(M757_LIBS) $(M757_O_FILES) > build/M757_ofiles
-	$(LD) -partial $(M757_LDFLAGS) -o $(M757_TARGET) @build/M757_ofiles
+	$(LD) -opt_partial $(M757_LDFLAGS) -o $(M757_TARGET) @build/M757_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_warp_bug/%.o: rel/d/a/d_a_warp_bug/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M757_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

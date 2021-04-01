@@ -28,15 +28,16 @@ M104_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map104.map\
 
 $(M104_TARGET): $(M104_O_FILES) $(M104_LIBS)
 	@echo $(M104_LIBS) $(M104_O_FILES) > build/M104_ofiles
-	$(LD) -partial $(M104_LDFLAGS) -o $(M104_TARGET) @build/M104_ofiles
+	$(LD) -opt_partial $(M104_LDFLAGS) -o $(M104_TARGET) @build/M104_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv2candle/%.o: rel/d/a/obj/d_a_obj_lv2candle/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M104_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_lv2candle/libs/Runtime.PPCEABI.H/Makefile
 

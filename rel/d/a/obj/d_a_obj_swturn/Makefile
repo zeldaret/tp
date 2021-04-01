@@ -31,14 +31,15 @@ M647_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map647.map\
 
 $(M647_TARGET): $(M647_O_FILES) $(M647_LIBS)
 	@echo $(M647_LIBS) $(M647_O_FILES) > build/M647_ofiles
-	$(LD) -partial $(M647_LDFLAGS) -o $(M647_TARGET) @build/M647_ofiles
+	$(LD) -opt_partial $(M647_LDFLAGS) -o $(M647_TARGET) @build/M647_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.o: rel/d/a/obj/d_a_obj_swturn/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M647_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

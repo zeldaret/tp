@@ -28,15 +28,16 @@ M671_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map671.map\
 
 $(M671_TARGET): $(M671_O_FILES) $(M671_LIBS)
 	@echo $(M671_LIBS) $(M671_O_FILES) > build/M671_ofiles
-	$(LD) -partial $(M671_LDFLAGS) -o $(M671_TARGET) @build/M671_ofiles
+	$(LD) -opt_partial $(M671_LDFLAGS) -o $(M671_TARGET) @build/M671_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/%.o: rel/d/a/obj/d_a_obj_twGate/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M671_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_twGate/libs/Runtime.PPCEABI.H/Makefile
 

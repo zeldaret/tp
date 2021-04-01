@@ -29,14 +29,15 @@ M303_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map303.map\
 
 $(M303_TARGET): $(M303_O_FILES) $(M303_LIBS)
 	@echo $(M303_LIBS) $(M303_O_FILES) > build/M303_ofiles
-	$(LD) -partial $(M303_LDFLAGS) -o $(M303_TARGET) @build/M303_ofiles
+	$(LD) -opt_partial $(M303_LDFLAGS) -o $(M303_TARGET) @build/M303_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/%.o: rel/d/a/npc/d_a_npc_fguard/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M303_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

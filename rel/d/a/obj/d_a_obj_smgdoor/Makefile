@@ -31,14 +31,15 @@ M622_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map622.map\
 
 $(M622_TARGET): $(M622_O_FILES) $(M622_LIBS)
 	@echo $(M622_LIBS) $(M622_O_FILES) > build/M622_ofiles
-	$(LD) -partial $(M622_LDFLAGS) -o $(M622_TARGET) @build/M622_ofiles
+	$(LD) -opt_partial $(M622_LDFLAGS) -o $(M622_TARGET) @build/M622_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/%.o: rel/d/a/obj/d_a_obj_smgdoor/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M622_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

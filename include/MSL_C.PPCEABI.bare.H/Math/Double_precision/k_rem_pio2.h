@@ -3,5 +3,4 @@
 
 #include "dolphin/types.h"
 
-
 #endif /* MATH_DOUBLE_PRECISION_K_REM_PIO2_H */

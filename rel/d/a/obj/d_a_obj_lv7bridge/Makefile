@@ -31,14 +31,15 @@ M559_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map559.map\
 
 $(M559_TARGET): $(M559_O_FILES) $(M559_LIBS)
 	@echo $(M559_LIBS) $(M559_O_FILES) > build/M559_ofiles
-	$(LD) -partial $(M559_LDFLAGS) -o $(M559_TARGET) @build/M559_ofiles
+	$(LD) -opt_partial $(M559_LDFLAGS) -o $(M559_TARGET) @build/M559_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/%.o: rel/d/a/obj/d_a_obj_lv7bridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M559_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

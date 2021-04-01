@@ -29,14 +29,15 @@ M485_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map485.map\
 
 $(M485_TARGET): $(M485_O_FILES) $(M485_LIBS)
 	@echo $(M485_LIBS) $(M485_O_FILES) > build/M485_ofiles
-	$(LD) -partial $(M485_LDFLAGS) -o $(M485_TARGET) @build/M485_ofiles
+	$(LD) -opt_partial $(M485_LDFLAGS) -o $(M485_TARGET) @build/M485_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.o: rel/d/a/obj/d_a_obj_inobone/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

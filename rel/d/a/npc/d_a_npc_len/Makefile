@@ -28,15 +28,16 @@ M332_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map332.map\
 
 $(M332_TARGET): $(M332_O_FILES) $(M332_LIBS)
 	@echo $(M332_LIBS) $(M332_O_FILES) > build/M332_ofiles
-	$(LD) -partial $(M332_LDFLAGS) -o $(M332_TARGET) @build/M332_ofiles
+	$(LD) -opt_partial $(M332_LDFLAGS) -o $(M332_TARGET) @build/M332_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_len/%.o: rel/d/a/npc/d_a_npc_len/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M332_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_len/libs/Runtime.PPCEABI.H/Makefile
 

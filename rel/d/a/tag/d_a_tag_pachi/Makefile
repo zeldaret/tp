@@ -29,14 +29,15 @@ M732_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map732.map\
 
 $(M732_TARGET): $(M732_O_FILES) $(M732_LIBS)
 	@echo $(M732_LIBS) $(M732_O_FILES) > build/M732_ofiles
-	$(LD) -partial $(M732_LDFLAGS) -o $(M732_TARGET) @build/M732_ofiles
+	$(LD) -opt_partial $(M732_LDFLAGS) -o $(M732_TARGET) @build/M732_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/%.o: rel/d/a/tag/d_a_tag_pachi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M732_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

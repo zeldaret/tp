@@ -28,15 +28,16 @@ M650_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map650.map\
 
 $(M650_TARGET): $(M650_O_FILES) $(M650_LIBS)
 	@echo $(M650_LIBS) $(M650_O_FILES) > build/M650_ofiles
-	$(LD) -partial $(M650_LDFLAGS) -o $(M650_TARGET) @build/M650_ofiles
+	$(LD) -opt_partial $(M650_LDFLAGS) -o $(M650_TARGET) @build/M650_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/%.o: rel/d/a/obj/d_a_obj_taFence/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M650_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_taFence/libs/Runtime.PPCEABI.H/Makefile
 

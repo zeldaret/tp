@@ -29,14 +29,15 @@ M56_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map56.map\
 
 $(M56_TARGET): $(M56_O_FILES) $(M56_LIBS)
 	@echo $(M56_LIBS) $(M56_O_FILES) > build/M56_ofiles
-	$(LD) -partial $(M56_LDFLAGS) -o $(M56_TARGET) @build/M56_ofiles
+	$(LD) -opt_partial $(M56_LDFLAGS) -o $(M56_TARGET) @build/M56_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_suspend/%.o: rel/d/a/d_a_suspend/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M56_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

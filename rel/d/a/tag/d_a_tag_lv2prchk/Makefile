@@ -31,14 +31,15 @@ M128_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map128.map\
 
 $(M128_TARGET): $(M128_O_FILES) $(M128_LIBS)
 	@echo $(M128_LIBS) $(M128_O_FILES) > build/M128_ofiles
-	$(LD) -partial $(M128_LDFLAGS) -o $(M128_TARGET) @build/M128_ofiles
+	$(LD) -opt_partial $(M128_LDFLAGS) -o $(M128_TARGET) @build/M128_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/%.o: rel/d/a/tag/d_a_tag_lv2prchk/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M128_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

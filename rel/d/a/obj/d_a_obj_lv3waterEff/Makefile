@@ -29,14 +29,15 @@ M522_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map522.map\
 
 $(M522_TARGET): $(M522_O_FILES) $(M522_LIBS)
 	@echo $(M522_LIBS) $(M522_O_FILES) > build/M522_ofiles
-	$(LD) -partial $(M522_LDFLAGS) -o $(M522_TARGET) @build/M522_ofiles
+	$(LD) -opt_partial $(M522_LDFLAGS) -o $(M522_TARGET) @build/M522_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3waterEff/%.o: rel/d/a/obj/d_a_obj_lv3waterEff/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M522_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M649_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map649.map\
 
 $(M649_TARGET): $(M649_O_FILES) $(M649_LIBS)
 	@echo $(M649_LIBS) $(M649_O_FILES) > build/M649_ofiles
-	$(LD) -partial $(M649_LDFLAGS) -o $(M649_TARGET) @build/M649_ofiles
+	$(LD) -opt_partial $(M649_LDFLAGS) -o $(M649_TARGET) @build/M649_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/%.o: rel/d/a/obj/d_a_obj_szbridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M649_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

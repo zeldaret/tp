@@ -28,15 +28,16 @@ M583_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map583.map\
 
 $(M583_TARGET): $(M583_O_FILES) $(M583_LIBS)
 	@echo $(M583_LIBS) $(M583_O_FILES) > build/M583_ofiles
-	$(LD) -partial $(M583_LDFLAGS) -o $(M583_TARGET) @build/M583_ofiles
+	$(LD) -opt_partial $(M583_LDFLAGS) -o $(M583_TARGET) @build/M583_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/%.o: rel/d/a/obj/d_a_obj_nougu/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M583_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_nougu/libs/Runtime.PPCEABI.H/Makefile
 

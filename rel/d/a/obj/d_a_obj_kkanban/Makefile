@@ -29,14 +29,15 @@ M504_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map504.map\
 
 $(M504_TARGET): $(M504_O_FILES) $(M504_LIBS)
 	@echo $(M504_LIBS) $(M504_O_FILES) > build/M504_ofiles
-	$(LD) -partial $(M504_LDFLAGS) -o $(M504_TARGET) @build/M504_ofiles
+	$(LD) -opt_partial $(M504_LDFLAGS) -o $(M504_TARGET) @build/M504_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/%.o: rel/d/a/obj/d_a_obj_kkanban/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M504_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

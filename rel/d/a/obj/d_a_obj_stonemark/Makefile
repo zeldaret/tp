@@ -29,14 +29,15 @@ M113_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map113.map\
 
 $(M113_TARGET): $(M113_O_FILES) $(M113_LIBS)
 	@echo $(M113_LIBS) $(M113_O_FILES) > build/M113_ofiles
-	$(LD) -partial $(M113_LDFLAGS) -o $(M113_TARGET) @build/M113_ofiles
+	$(LD) -opt_partial $(M113_LDFLAGS) -o $(M113_TARGET) @build/M113_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/%.o: rel/d/a/obj/d_a_obj_stonemark/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M113_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

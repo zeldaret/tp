@@ -29,14 +29,15 @@ M106_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map106.map\
 
 $(M106_TARGET): $(M106_O_FILES) $(M106_LIBS)
 	@echo $(M106_LIBS) $(M106_O_FILES) > build/M106_ofiles
-	$(LD) -partial $(M106_LDFLAGS) -o $(M106_TARGET) @build/M106_ofiles
+	$(LD) -opt_partial $(M106_LDFLAGS) -o $(M106_TARGET) @build/M106_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/%.o: rel/d/a/obj/d_a_obj_metalbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M106_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

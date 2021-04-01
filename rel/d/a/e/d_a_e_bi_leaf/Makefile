@@ -29,14 +29,15 @@ M176_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map176.map\
 
 $(M176_TARGET): $(M176_O_FILES) $(M176_LIBS)
 	@echo $(M176_LIBS) $(M176_O_FILES) > build/M176_ofiles
-	$(LD) -partial $(M176_LDFLAGS) -o $(M176_TARGET) @build/M176_ofiles
+	$(LD) -opt_partial $(M176_LDFLAGS) -o $(M176_TARGET) @build/M176_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/%.o: rel/d/a/e/d_a_e_bi_leaf/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M176_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

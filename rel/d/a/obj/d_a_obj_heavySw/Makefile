@@ -28,15 +28,16 @@ M476_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map476.map\
 
 $(M476_TARGET): $(M476_O_FILES) $(M476_LIBS)
 	@echo $(M476_LIBS) $(M476_O_FILES) > build/M476_ofiles
-	$(LD) -partial $(M476_LDFLAGS) -o $(M476_TARGET) @build/M476_ofiles
+	$(LD) -opt_partial $(M476_LDFLAGS) -o $(M476_TARGET) @build/M476_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/%.o: rel/d/a/obj/d_a_obj_heavySw/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M476_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_heavySw/libs/Runtime.PPCEABI.H/Makefile
 

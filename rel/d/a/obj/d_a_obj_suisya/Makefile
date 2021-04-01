@@ -29,14 +29,15 @@ M636_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map636.map\
 
 $(M636_TARGET): $(M636_O_FILES) $(M636_LIBS)
 	@echo $(M636_LIBS) $(M636_O_FILES) > build/M636_ofiles
-	$(LD) -partial $(M636_LDFLAGS) -o $(M636_TARGET) @build/M636_ofiles
+	$(LD) -opt_partial $(M636_LDFLAGS) -o $(M636_TARGET) @build/M636_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.o: rel/d/a/obj/d_a_obj_suisya/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M636_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

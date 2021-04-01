@@ -29,14 +29,15 @@ M97_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map97.map\
 
 $(M97_TARGET): $(M97_O_FILES) $(M97_LIBS)
 	@echo $(M97_LIBS) $(M97_O_FILES) > build/M97_ofiles
-	$(LD) -partial $(M97_LDFLAGS) -o $(M97_TARGET) @build/M97_ofiles
+	$(LD) -opt_partial $(M97_LDFLAGS) -o $(M97_TARGET) @build/M97_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/%.o: rel/d/a/obj/d_a_obj_hhashi/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M97_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

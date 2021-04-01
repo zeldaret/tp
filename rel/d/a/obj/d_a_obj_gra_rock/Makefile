@@ -29,14 +29,15 @@ M465_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map465.map\
 
 $(M465_TARGET): $(M465_O_FILES) $(M465_LIBS)
 	@echo $(M465_LIBS) $(M465_O_FILES) > build/M465_ofiles
-	$(LD) -partial $(M465_LDFLAGS) -o $(M465_TARGET) @build/M465_ofiles
+	$(LD) -opt_partial $(M465_LDFLAGS) -o $(M465_TARGET) @build/M465_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/%.o: rel/d/a/obj/d_a_obj_gra_rock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M465_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

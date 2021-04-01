@@ -29,14 +29,15 @@ M407_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map407.map\
 
 $(M407_TARGET): $(M407_O_FILES) $(M407_LIBS)
 	@echo $(M407_LIBS) $(M407_O_FILES) > build/M407_ofiles
-	$(LD) -partial $(M407_LDFLAGS) -o $(M407_TARGET) @build/M407_ofiles
+	$(LD) -opt_partial $(M407_LDFLAGS) -o $(M407_TARGET) @build/M407_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/%.o: rel/d/a/obj/d_a_obj_bhbridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M407_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

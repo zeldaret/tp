@@ -29,14 +29,15 @@ M719_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map719.map\
 
 $(M719_TARGET): $(M719_O_FILES) $(M719_LIBS)
 	@echo $(M719_LIBS) $(M719_O_FILES) > build/M719_ofiles
-	$(LD) -partial $(M719_LDFLAGS) -o $(M719_TARGET) @build/M719_ofiles
+	$(LD) -opt_partial $(M719_LDFLAGS) -o $(M719_TARGET) @build/M719_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/%.o: rel/d/a/tag/d_a_tag_escape/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M719_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

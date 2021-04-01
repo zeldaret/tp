@@ -29,14 +29,15 @@ M130_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map130.map\
 
 $(M130_TARGET): $(M130_O_FILES) $(M130_LIBS)
 	@echo $(M130_LIBS) $(M130_O_FILES) > build/M130_ofiles
-	$(LD) -partial $(M130_LDFLAGS) -o $(M130_TARGET) @build/M130_ofiles
+	$(LD) -opt_partial $(M130_LDFLAGS) -o $(M130_TARGET) @build/M130_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/%.o: rel/d/a/tag/d_a_tag_mhint/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M130_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

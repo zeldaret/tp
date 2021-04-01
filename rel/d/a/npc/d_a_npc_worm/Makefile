@@ -29,14 +29,15 @@ M377_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map377.map\
 
 $(M377_TARGET): $(M377_O_FILES) $(M377_LIBS)
 	@echo $(M377_LIBS) $(M377_O_FILES) > build/M377_ofiles
-	$(LD) -partial $(M377_LDFLAGS) -o $(M377_TARGET) @build/M377_ofiles
+	$(LD) -opt_partial $(M377_LDFLAGS) -o $(M377_TARGET) @build/M377_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/%.o: rel/d/a/npc/d_a_npc_worm/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M377_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

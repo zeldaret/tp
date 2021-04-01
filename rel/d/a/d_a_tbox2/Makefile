@@ -31,14 +31,15 @@ M42_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map42.map\
 
 $(M42_TARGET): $(M42_O_FILES) $(M42_LIBS)
 	@echo $(M42_LIBS) $(M42_O_FILES) > build/M42_ofiles
-	$(LD) -partial $(M42_LDFLAGS) -o $(M42_TARGET) @build/M42_ofiles
+	$(LD) -opt_partial $(M42_LDFLAGS) -o $(M42_TARGET) @build/M42_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_tbox2/%.o: rel/d/a/d_a_tbox2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

@@ -29,14 +29,15 @@ M604_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map604.map\
 
 $(M604_TARGET): $(M604_O_FILES) $(M604_LIBS)
 	@echo $(M604_LIBS) $(M604_O_FILES) > build/M604_ofiles
-	$(LD) -partial $(M604_LDFLAGS) -o $(M604_TARGET) @build/M604_ofiles
+	$(LD) -opt_partial $(M604_LDFLAGS) -o $(M604_TARGET) @build/M604_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/%.o: rel/d/a/obj/d_a_obj_rock/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M604_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

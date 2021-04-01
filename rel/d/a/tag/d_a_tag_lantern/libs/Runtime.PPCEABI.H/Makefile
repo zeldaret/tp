@@ -19,7 +19,6 @@ M36LIBRUNTIME_PPCEABI_H_A_LDFLAGS := \
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/libRuntime.PPCEABI.H.a: $(M36LIBRUNTIME_PPCEABI_H_A_O_FILES)
 	@echo $(M36LIBRUNTIME_PPCEABI_H_A_O_FILES) > build/M36LIBRUNTIME_PPCEABI_H_A_ofiles
 	$(LD) -xm l $(M36LIBRUNTIME_PPCEABI_H_A_LDFLAGS) -o $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/libRuntime.PPCEABI.H.a @build/M36LIBRUNTIME_PPCEABI_H_A_ofiles
-	$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/libRuntime.PPCEABI.H.a
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/libs/Runtime.PPCEABI.H/%.o: rel/d/a/tag/d_a_tag_lantern/libs/Runtime.PPCEABI.H/%.cpp
 	@mkdir -p $(@D)

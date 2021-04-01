@@ -29,14 +29,15 @@ M34_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map34.map\
 
 $(M34_TARGET): $(M34_O_FILES) $(M34_LIBS)
 	@echo $(M34_LIBS) $(M34_O_FILES) > build/M34_ofiles
-	$(LD) -partial $(M34_LDFLAGS) -o $(M34_TARGET) @build/M34_ofiles
+	$(LD) -opt_partial $(M34_LDFLAGS) -o $(M34_TARGET) @build/M34_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/%.o: rel/d/a/tag/d_a_tag_howl/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M34_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

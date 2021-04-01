@@ -28,15 +28,16 @@ M446_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map446.map\
 
 $(M446_TARGET): $(M446_O_FILES) $(M446_LIBS)
 	@echo $(M446_LIBS) $(M446_O_FILES) > build/M446_ofiles
-	$(LD) -partial $(M446_LDFLAGS) -o $(M446_TARGET) @build/M446_ofiles
+	$(LD) -opt_partial $(M446_LDFLAGS) -o $(M446_TARGET) @build/M446_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/%.o: rel/d/a/obj/d_a_obj_fireWood2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M446_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_fireWood2/libs/Runtime.PPCEABI.H/Makefile
 

@@ -29,14 +29,15 @@ M314_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map314.map\
 
 $(M314_TARGET): $(M314_O_FILES) $(M314_LIBS)
 	@echo $(M314_LIBS) $(M314_O_FILES) > build/M314_ofiles
-	$(LD) -partial $(M314_LDFLAGS) -o $(M314_TARGET) @build/M314_ofiles
+	$(LD) -opt_partial $(M314_LDFLAGS) -o $(M314_TARGET) @build/M314_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_guard/%.o: rel/d/a/npc/d_a_npc_guard/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M314_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

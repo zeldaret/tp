@@ -29,14 +29,15 @@ M669_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map669.map\
 
 $(M669_TARGET): $(M669_O_FILES) $(M669_LIBS)
 	@echo $(M669_LIBS) $(M669_O_FILES) > build/M669_ofiles
-	$(LD) -partial $(M669_LDFLAGS) -o $(M669_TARGET) @build/M669_ofiles
+	$(LD) -opt_partial $(M669_LDFLAGS) -o $(M669_TARGET) @build/M669_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/%.o: rel/d/a/obj/d_a_obj_tp/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M669_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

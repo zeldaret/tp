@@ -28,15 +28,16 @@ M629_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map629.map\
 
 $(M629_TARGET): $(M629_O_FILES) $(M629_LIBS)
 	@echo $(M629_LIBS) $(M629_O_FILES) > build/M629_ofiles
-	$(LD) -partial $(M629_LDFLAGS) -o $(M629_TARGET) @build/M629_ofiles
+	$(LD) -opt_partial $(M629_LDFLAGS) -o $(M629_TARGET) @build/M629_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/%.o: rel/d/a/obj/d_a_obj_spinLift/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M629_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_spinLift/libs/Runtime.PPCEABI.H/Makefile
 

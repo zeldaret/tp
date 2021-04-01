@@ -28,15 +28,16 @@ M605_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map605.map\
 
 $(M605_TARGET): $(M605_O_FILES) $(M605_LIBS)
 	@echo $(M605_LIBS) $(M605_O_FILES) > build/M605_ofiles
-	$(LD) -partial $(M605_LDFLAGS) -o $(M605_TARGET) @build/M605_ofiles
+	$(LD) -opt_partial $(M605_LDFLAGS) -o $(M605_TARGET) @build/M605_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.o: rel/d/a/obj/d_a_obj_rotBridge/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M605_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_rotBridge/libs/Runtime.PPCEABI.H/Makefile
 

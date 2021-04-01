@@ -28,15 +28,16 @@ M660_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map660.map\
 
 $(M660_TARGET): $(M660_O_FILES) $(M660_LIBS)
 	@echo $(M660_LIBS) $(M660_O_FILES) > build/M660_ofiles
-	$(LD) -partial $(M660_LDFLAGS) -o $(M660_TARGET) @build/M660_ofiles
+	$(LD) -opt_partial $(M660_LDFLAGS) -o $(M660_TARGET) @build/M660_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/%.o: rel/d/a/obj/d_a_obj_tks/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M660_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_tks/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,15 +28,16 @@ M389_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map389.map\
 
 $(M389_TARGET): $(M389_O_FILES) $(M389_LIBS)
 	@echo $(M389_LIBS) $(M389_O_FILES) > build/M389_ofiles
-	$(LD) -partial $(M389_LDFLAGS) -o $(M389_TARGET) @build/M389_ofiles
+	$(LD) -opt_partial $(M389_LDFLAGS) -o $(M389_TARGET) @build/M389_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelda/%.o: rel/d/a/npc/d_a_npc_zelda/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M389_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_zelda/libs/Runtime.PPCEABI.H/Makefile
 

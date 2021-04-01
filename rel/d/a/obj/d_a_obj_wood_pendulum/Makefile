@@ -29,14 +29,15 @@ M690_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map690.map\
 
 $(M690_TARGET): $(M690_O_FILES) $(M690_LIBS)
 	@echo $(M690_LIBS) $(M690_O_FILES) > build/M690_ofiles
-	$(LD) -partial $(M690_LDFLAGS) -o $(M690_TARGET) @build/M690_ofiles
+	$(LD) -opt_partial $(M690_LDFLAGS) -o $(M690_TARGET) @build/M690_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.o: rel/d/a/obj/d_a_obj_wood_pendulum/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

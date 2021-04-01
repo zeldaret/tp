@@ -31,14 +31,15 @@ M644_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map644.map\
 
 $(M644_TARGET): $(M644_O_FILES) $(M644_LIBS)
 	@echo $(M644_LIBS) $(M644_O_FILES) > build/M644_ofiles
-	$(LD) -partial $(M644_LDFLAGS) -o $(M644_TARGET) @build/M644_ofiles
+	$(LD) -opt_partial $(M644_LDFLAGS) -o $(M644_TARGET) @build/M644_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/%.o: rel/d/a/obj/d_a_obj_sword/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M644_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

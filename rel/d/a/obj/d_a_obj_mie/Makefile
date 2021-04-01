@@ -28,15 +28,16 @@ M571_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map571.map\
 
 $(M571_TARGET): $(M571_O_FILES) $(M571_LIBS)
 	@echo $(M571_LIBS) $(M571_O_FILES) > build/M571_ofiles
-	$(LD) -partial $(M571_LDFLAGS) -o $(M571_TARGET) @build/M571_ofiles
+	$(LD) -opt_partial $(M571_LDFLAGS) -o $(M571_TARGET) @build/M571_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/%.o: rel/d/a/obj/d_a_obj_mie/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M571_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_mie/libs/Runtime.PPCEABI.H/Makefile
 

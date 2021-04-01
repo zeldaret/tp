@@ -29,14 +29,15 @@ M612_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map612.map\
 
 $(M612_TARGET): $(M612_O_FILES) $(M612_LIBS)
 	@echo $(M612_LIBS) $(M612_O_FILES) > build/M612_ofiles
-	$(LD) -partial $(M612_LDFLAGS) -o $(M612_TARGET) @build/M612_ofiles
+	$(LD) -opt_partial $(M612_LDFLAGS) -o $(M612_TARGET) @build/M612_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.o: rel/d/a/obj/d_a_obj_sakuita_rope/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

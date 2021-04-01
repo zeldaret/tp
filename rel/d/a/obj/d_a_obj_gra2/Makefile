@@ -28,15 +28,16 @@ M463_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map463.map\
 
 $(M463_TARGET): $(M463_O_FILES) $(M463_LIBS)
 	@echo $(M463_LIBS) $(M463_O_FILES) > build/M463_ofiles
-	$(LD) -partial $(M463_LDFLAGS) -o $(M463_TARGET) @build/M463_ofiles
+	$(LD) -opt_partial $(M463_LDFLAGS) -o $(M463_TARGET) @build/M463_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/%.o: rel/d/a/obj/d_a_obj_gra2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M463_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_gra2/libs/Runtime.PPCEABI.H/Makefile
 

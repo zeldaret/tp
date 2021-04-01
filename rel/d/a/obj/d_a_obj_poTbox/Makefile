@@ -28,15 +28,16 @@ M597_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map597.map\
 
 $(M597_TARGET): $(M597_O_FILES) $(M597_LIBS)
 	@echo $(M597_LIBS) $(M597_O_FILES) > build/M597_ofiles
-	$(LD) -partial $(M597_LDFLAGS) -o $(M597_TARGET) @build/M597_ofiles
+	$(LD) -opt_partial $(M597_LDFLAGS) -o $(M597_TARGET) @build/M597_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/%.o: rel/d/a/obj/d_a_obj_poTbox/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M597_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/obj/d_a_obj_poTbox/libs/Runtime.PPCEABI.H/Makefile
 

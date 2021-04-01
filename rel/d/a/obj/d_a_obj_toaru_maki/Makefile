@@ -29,14 +29,15 @@ M662_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map662.map\
 
 $(M662_TARGET): $(M662_O_FILES) $(M662_LIBS)
 	@echo $(M662_LIBS) $(M662_O_FILES) > build/M662_ofiles
-	$(LD) -partial $(M662_LDFLAGS) -o $(M662_TARGET) @build/M662_ofiles
+	$(LD) -opt_partial $(M662_LDFLAGS) -o $(M662_TARGET) @build/M662_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/%.o: rel/d/a/obj/d_a_obj_toaru_maki/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M662_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

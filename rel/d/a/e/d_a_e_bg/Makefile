@@ -28,15 +28,16 @@ M174_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map174.map\
 
 $(M174_TARGET): $(M174_O_FILES) $(M174_LIBS)
 	@echo $(M174_LIBS) $(M174_O_FILES) > build/M174_ofiles
-	$(LD) -partial $(M174_LDFLAGS) -o $(M174_TARGET) @build/M174_ofiles
+	$(LD) -opt_partial $(M174_LDFLAGS) -o $(M174_TARGET) @build/M174_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bg/%.o: rel/d/a/e/d_a_e_bg/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M174_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/e/d_a_e_bg/libs/Runtime.PPCEABI.H/Makefile
 

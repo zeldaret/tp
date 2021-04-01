@@ -29,14 +29,15 @@ M6_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map6.map\
 
 $(M6_TARGET): $(M6_O_FILES) $(M6_LIBS)
 	@echo $(M6_LIBS) $(M6_O_FILES) > build/M6_ofiles
-	$(LD) -partial $(M6_LDFLAGS) -o $(M6_TARGET) @build/M6_ofiles
+	$(LD) -opt_partial $(M6_LDFLAGS) -o $(M6_TARGET) @build/M6_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/%.o: rel/d/a/door/d_a_door_dbdoor00/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M6_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

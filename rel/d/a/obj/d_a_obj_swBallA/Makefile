@@ -29,14 +29,15 @@ M638_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map638.map\
 
 $(M638_TARGET): $(M638_O_FILES) $(M638_LIBS)
 	@echo $(M638_LIBS) $(M638_O_FILES) > build/M638_ofiles
-	$(LD) -partial $(M638_LDFLAGS) -o $(M638_TARGET) @build/M638_ofiles
+	$(LD) -opt_partial $(M638_LDFLAGS) -o $(M638_TARGET) @build/M638_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallA/%.o: rel/d/a/obj/d_a_obj_swBallA/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M638_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 

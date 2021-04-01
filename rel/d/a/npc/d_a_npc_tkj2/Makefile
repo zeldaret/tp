@@ -28,15 +28,16 @@ M372_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map372.map\
 
 $(M372_TARGET): $(M372_O_FILES) $(M372_LIBS)
 	@echo $(M372_LIBS) $(M372_O_FILES) > build/M372_ofiles
-	$(LD) -partial $(M372_LDFLAGS) -o $(M372_TARGET) @build/M372_ofiles
+	$(LD) -opt_partial $(M372_LDFLAGS) -o $(M372_TARGET) @build/M372_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/%.o: rel/d/a/npc/d_a_npc_tkj2/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M372_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 include rel/d/a/npc/d_a_npc_tkj2/libs/Runtime.PPCEABI.H/Makefile
 

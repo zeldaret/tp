@@ -31,14 +31,15 @@ M120_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
+	-unused -map $(BUILD_DIR)/map120.map\
 
 $(M120_TARGET): $(M120_O_FILES) $(M120_LIBS)
 	@echo $(M120_LIBS) $(M120_O_FILES) > build/M120_ofiles
-	$(LD) -partial $(M120_LDFLAGS) -o $(M120_TARGET) @build/M120_ofiles
+	$(LD) -opt_partial $(M120_LDFLAGS) -o $(M120_TARGET) @build/M120_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swc00/%.o: rel/d/a/d_a_swc00/%.cpp
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(M120_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
 
 
