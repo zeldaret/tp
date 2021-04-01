@@ -6,162 +6,113 @@
 #include "f_pc/f_pc_deletor.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct process_priority_class {};
-
-struct process_node_class {};
-
-struct node_list_class {};
-
-struct node_class {};
-
-struct line_tag {};
-
-struct layer_class {};
-
-struct delete_tag_class {};
-
-struct create_tag_class {};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-void fpcDt_IsComplete();
-static void fpcDt_deleteMethod(base_process_class*);
-void fpcDt_Handler();
-static void fpcDt_ToQueue(base_process_class*);
-static void fpcDt_ToDeleteQ(base_process_class*);
-void fpcDt_Delete(void*);
-
-extern "C" void fpcDt_IsComplete__Fv();
-extern "C" static void fpcDt_deleteMethod__FP18base_process_class();
-extern "C" void fpcDt_Handler__Fv();
-extern "C" static void fpcDt_ToQueue__FP18base_process_class();
-extern "C" static void fpcDt_ToDeleteQ__FP18base_process_class();
-extern "C" void fpcDt_Delete__FPv();
-
-//
-// External References:
-//
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_IsDelete(base_process_class*);
-void fpcBs_Delete(base_process_class*);
-void fpcCt_IsDoing(base_process_class*);
-void fpcCt_Abort(base_process_class*);
-void fpcDtTg_IsEmpty();
-void fpcDtTg_ToDeleteQ(delete_tag_class*);
-void fpcDtTg_Do(delete_tag_class*, int (*)(void*));
-void fpcEx_IsExist(unsigned int);
-void fpcEx_ExecuteQTo(base_process_class*);
-void fpcLy_DeletingMesg(layer_class*);
-void fpcLy_DeletedMesg(layer_class*);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_Cancel(layer_class*);
-void fpcLyIt_OnlyHereLY(layer_class*, int (*)(void*, void*), void*);
-void fpcLd_Free(s16);
-void fpcNd_IsDeleteTiming(process_node_class*);
-void fpcPi_IsInQueue(process_priority_class*);
-void fpcPi_Delete(process_priority_class*);
-void fpcLnTg_QueueTo(line_tag*);
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
-void cTg_IsUse(create_tag_class*);
-
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcBs_IsDelete__FP18base_process_class();
-extern "C" void fpcBs_Delete__FP18base_process_class();
-extern "C" void fpcCt_IsDoing__FP18base_process_class();
-extern "C" void fpcCt_Abort__FP18base_process_class();
-extern "C" void fpcDtTg_IsEmpty__Fv();
-extern "C" void fpcDtTg_ToDeleteQ__FP16delete_tag_class();
-extern "C" void fpcDtTg_Do__FP16delete_tag_classPFPv_i();
-extern "C" void fpcEx_IsExist__FUi();
-extern "C" void fpcEx_ExecuteQTo__FP18base_process_class();
-extern "C" void fpcLy_DeletingMesg__FP11layer_class();
-extern "C" void fpcLy_DeletedMesg__FP11layer_class();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_Cancel__FP11layer_class();
-extern "C" void fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv();
-extern "C" void fpcLd_Free__Fs();
-extern "C" void fpcNd_IsDeleteTiming__FP18process_node_class();
-extern "C" void fpcPi_IsInQueue__FP22process_priority_class();
-extern "C" void fpcPi_Delete__FP22process_priority_class();
-extern "C" void fpcLnTg_QueueTo__FP8line_tag();
-extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
-extern "C" void cTg_IsUse__FP16create_tag_class();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_fpcDtTg_Queue[12 + 4 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
+#include "f_pc/f_pc_load.h"
+#include "SSystem/SComponent/c_list_iter.h"
+#include "f_pc/f_pc_node.h"
+#include "f_pc/f_pc_layer_iter.h"
+#include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_creator.h"
 
 //
 // Declarations:
 //
 
 /* 80021040-80021060 0020+00 s=0 e=1 z=0  None .text      fpcDt_IsComplete__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcDt_IsComplete() {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_IsComplete__Fv.s"
+BOOL fpcDt_IsComplete() {
+    return fpcDtTg_IsEmpty();
 }
-#pragma pop
 
 /* 80021060-800210D4 0074+00 s=1 e=0 z=0  None .text      fpcDt_deleteMethod__FP18base_process_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcDt_deleteMethod(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_deleteMethod__FP18base_process_class.s"
+s32 fpcDt_deleteMethod(base_process_class* pProc) {
+    layer_class* layer = pProc->mDtTg.mpLayer;
+    s16 typeID = pProc->mBsTypeId;
+
+    fpcLy_SetCurrentLayer(layer);
+    fpcLnTg_QueueTo(&pProc->mLnTg);
+    if (fpcBs_Delete(pProc) == 1) {
+        fpcLy_DeletedMesg(layer);
+        fpcLd_Free(typeID);
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 800210D4-8002110C 0038+00 s=0 e=1 z=0  None .text      fpcDt_Handler__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcDt_Handler() {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_Handler__Fv.s"
+void fpcDt_Handler(void) {
+    cLsIt_Method(&g_fpcDtTg_Queue, (cNdIt_MethodFunc)fpcDtTg_Do, fpcDt_deleteMethod);
 }
-#pragma pop
 
 /* 8002110C-80021188 007C+00 s=1 e=0 z=0  None .text      fpcDt_ToQueue__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcDt_ToQueue(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_ToQueue__FP18base_process_class.s"
+s32 fpcDt_ToQueue(base_process_class* pProc) {
+    if (pProc->mUnk0 != 1 && fpcBs_IsDelete(pProc) == 1) {
+        if (fpcPi_IsInQueue(&pProc->mPi) == 1) {
+            fpcPi_Delete(&pProc->mPi);
+        }
+        pProc->mDtTg.mpLayer = pProc->mLyTg.mpLayer;
+        fpcDtTg_ToDeleteQ(&pProc->mDtTg);
+        fpcLy_DeletingMesg(pProc->mLyTg.mpLayer);
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 80021188-800212A4 011C+00 s=1 e=0 z=0  None .text      fpcDt_ToDeleteQ__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcDt_ToDeleteQ(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_ToDeleteQ__FP18base_process_class.s"
+s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
+    if (pProc->mUnk0 == 1) {
+        return 0;
+    } else {
+        if (cTg_IsUse(&pProc->mDtTg.mBase) != 0) {
+            return 1;
+        } else {
+            if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType) != 0) {
+                process_node_class* procNode = (process_node_class*)pProc;
+                if (fpcNd_IsDeleteTiming(procNode) == 0) {
+                    return 0;
+                } else {
+                    layer_class* layer = &procNode->mLayer;
+                    fpcLy_Cancel(layer);
+                    if (fpcLyIt_OnlyHereLY(layer, (fpcLyIt_OnlyHereFunc)fpcDt_ToDeleteQ, NULL) ==
+                        0) {
+                        return 0;
+                    }
+                }
+            }
+            if (fpcDt_ToQueue(pProc) == 1) {
+                // return type has to be BOOL
+                if (fpcEx_IsExist(pProc->mBsPcId) == 1) {
+                    if (fpcEx_ExecuteQTo(pProc) == 0) {
+                        return 0;
+                    }
+                } else {
+                    // return type is wrong, has to be BOOL
+                    if (fpcCt_Abort(pProc) == 0) {
+                        return 0;
+                    }
+                }
+                pProc->mInitState = 3;
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 800212A4-80021308 0064+00 s=0 e=3 z=0  None .text      fpcDt_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcDt_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_deletor/fpcDt_Delete__FPv.s"
+s32 fpcDt_Delete(void* pProcV) {
+    base_process_class* pProc = static_cast<base_process_class*>(pProcV);
+    if (pProc != NULL) {
+        if (fpcCt_IsDoing(pProc) == 1)
+            return 0;
+
+        if (pProc->mInitState == 3)
+            return 0;
+
+        return fpcDt_ToDeleteQ(pProc);
+    } else {
+        return 1;
+    }
 }
-#pragma pop

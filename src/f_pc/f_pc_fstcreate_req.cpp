@@ -6,93 +6,63 @@
 #include "f_pc/f_pc_fstcreate_req.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct layer_class {};
-
-struct fast_create_request {};
-
-struct create_request_method_class {};
-
-struct create_request {};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-void fpcFCtRq_Do(fast_create_request*);
-static bool fpcFCtRq_Delete(fast_create_request*);
-void fpcFCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-
-extern "C" void fpcFCtRq_Do__FP19fast_create_request();
-extern "C" static bool fpcFCtRq_Delete__FP19fast_create_request();
-extern "C" void fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-
-//
-// External References:
-//
-
-void fpcBs_MakeOfId();
-void fpcBs_Create(s16, unsigned int, void*);
-void fpcBs_SubCreate(base_process_class*);
-void fpcCtRq_Cancel(create_request*);
-void fpcCtRq_Create(layer_class*, u32, create_request_method_class*);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLd_Use(s16);
-
-extern "C" void fpcBs_MakeOfId__Fv();
-extern "C" void fpcBs_Create__FsUiPv();
-extern "C" void fpcBs_SubCreate__FP18base_process_class();
-extern "C" void fpcCtRq_Cancel__FP14create_request();
-extern "C" void fpcCtRq_Create__FP11layer_classUlP27create_request_method_class();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLd_Use__Fs();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
+#include "f_pc/f_pc_load.h"
 
 //
 // Declarations:
 //
 
 /* 80023A48-80023A98 0050+00 s=1 e=3 z=52  None .text      fpcFCtRq_Do__FP19fast_create_request */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcFCtRq_Do(fast_create_request* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_fstcreate_req/fpcFCtRq_Do__FP19fast_create_request.s"
+s32 fpcFCtRq_Do(fast_create_request* pFstCreateReq) {
+    if (pFstCreateReq->mpFastCreateFunc != NULL &&
+        pFstCreateReq->mpFastCreateFunc(pFstCreateReq->mBase.mpRes,
+                                        pFstCreateReq->mpFastCreateData) == 0) {
+        return 3;
+    } else {
+        return 4;
+    }
 }
-#pragma pop
 
 /* 80023A98-80023AA0 0008+00 s=1 e=0 z=0  None .text      fpcFCtRq_Delete__FP19fast_create_request
  */
-static bool fpcFCtRq_Delete(fast_create_request* param_0) {
-    return true;
+s32 fpcFCtRq_Delete(fast_create_request* pFstCreateReq) {
+    return 1;
 }
 
 /* ############################################################################################## */
 /* 803A3AE0-803A3AF0 000C+04 s=1 e=0 z=0  None .data      submethod$2214 */
-SECTION_DATA static void* submethod[3 + 1 /* padding */] = {
-    (void*)fpcFCtRq_Do__FP19fast_create_request,
-    (void*)NULL,
-    (void*)fpcFCtRq_Delete__FP19fast_create_request,
-    /* padding */
+create_request_method_class submethod = {
+    (cPhs__Handler)fpcFCtRq_Do,
     NULL,
+    (process_method_func)fpcFCtRq_Delete
 };
 
 /* 80023AA0-80023B70 00D0+00 s=0 e=3 z=43  None .text
  * fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcFCtRq_Request(layer_class* param_0, s16 param_1, int (*)(void*, void*), void* param_3,
-                          void* param_4) {
-    nofralloc
-#include "asm/f_pc/f_pc_fstcreate_req/fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv.s"
+base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
+                                     fstCreateFunc pFastCreateFunc, void* pFastCreateData,
+                                     void* pData) {
+    if (!fpcLd_Use(pProcTypeID)) {
+        return NULL;
+    } else {
+        fast_create_request* request =
+            (fast_create_request*)fpcCtRq_Create(pLayer, 0x50, &submethod);
+        if (request != NULL) {
+            base_process_class* proc;
+            fpcLy_SetCurrentLayer(pLayer);
+            proc = fpcBs_Create(pProcTypeID, fpcBs_MakeOfId(), pData);
+            if (proc != NULL) {
+                proc->mpCtRq = (struct create_request*)request;
+                request->mBase.mpRes = proc;
+                request->mBase.mBsPcId = proc->mBsPcId;
+                if (fpcBs_SubCreate(proc) == 2) {
+                    request->mpFastCreateFunc = pFastCreateFunc;
+                    request->mpFastCreateData = pFastCreateData;
+                    return proc;
+                }
+            }
+            fpcCtRq_Cancel(&request->mBase);
+        }
+        return NULL;
+    }
 }
-#pragma pop

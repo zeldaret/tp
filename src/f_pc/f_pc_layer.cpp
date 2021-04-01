@@ -6,351 +6,192 @@
 #include "f_pc/f_pc_layer.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct process_method_tag_class {};
-
-struct node_lists_tree_class {};
-
-struct node_list_class {};
-
-struct node_class {};
-
-struct layer_class {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-void fpcLy_CancelQTo(process_method_tag_class*);
-void fpcLy_ToCancelQ(layer_class*, process_method_tag_class*);
-static void fpcLy_CancelMethod(process_method_tag_class*);
-void fpcLy_IntoQueue(layer_class*, int, create_tag_class*, int);
-void fpcLy_ToQueue(layer_class*, int, create_tag_class*);
-void fpcLy_QueueTo(layer_class*, create_tag_class*);
-void fpcLy_IsDeletingMesg(layer_class*);
-void fpcLy_DeletingMesg(layer_class*);
-void fpcLy_DeletedMesg(layer_class*);
-void fpcLy_IsCreatingMesg(layer_class*);
-void fpcLy_CreatingMesg(layer_class*);
-void fpcLy_CreatedMesg(layer_class*);
-void fpcLy_RootLayer();
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-static void fpcLy_Search(unsigned int);
-void fpcLy_Layer(unsigned int);
-static void fpcLy_Regist(layer_class*);
-void fpcLy_Delete(layer_class*);
-void fpcLy_Cancel(layer_class*);
-void fpcLy_Create(layer_class*, void*, node_list_class*, int);
-
-extern "C" void fpcLy_CancelQTo__FP24process_method_tag_class();
-extern "C" void fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class();
-extern "C" static void fpcLy_CancelMethod__FP24process_method_tag_class();
-extern "C" void fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi();
-extern "C" void fpcLy_ToQueue__FP11layer_classiP16create_tag_class();
-extern "C" void fpcLy_QueueTo__FP11layer_classP16create_tag_class();
-extern "C" void fpcLy_IsDeletingMesg__FP11layer_class();
-extern "C" void fpcLy_DeletingMesg__FP11layer_class();
-extern "C" void fpcLy_DeletedMesg__FP11layer_class();
-extern "C" void fpcLy_IsCreatingMesg__FP11layer_class();
-extern "C" void fpcLy_CreatingMesg__FP11layer_class();
-extern "C" void fpcLy_CreatedMesg__FP11layer_class();
-extern "C" void fpcLy_RootLayer__Fv();
-extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" static void fpcLy_Search__FUi();
-extern "C" void fpcLy_Layer__FUi();
-extern "C" static void fpcLy_Regist__FP11layer_class();
-extern "C" void fpcLy_Delete__FP11layer_class();
-extern "C" void fpcLy_Cancel__FP11layer_class();
-extern "C" void fpcLy_Create__FP11layer_classPvP15node_list_classi();
-
-//
-// External References:
-//
-
-void fpcMtdIt_Method(node_list_class*, int (*)(void*));
-void fpcMtdTg_Do(process_method_tag_class*);
-void fpcMtdTg_ToMethodQ(node_list_class*, process_method_tag_class*);
-void fpcMtdTg_MethodQTo(process_method_tag_class*);
-void cLs_SingleCut(node_class*);
-void cLs_Addition(node_list_class*, node_class*);
-void cLs_Create(node_list_class*);
-void cNd_Create(node_class*, void*);
-void cTr_Create(node_lists_tree_class*, node_list_class*, int);
-void cTg_SingleCutFromTree(create_tag_class*);
-void cTg_AdditionToTree(node_lists_tree_class*, int, create_tag_class*);
-void cTg_InsertToTree(node_lists_tree_class*, int, create_tag_class*, int);
-
-extern "C" void fpcMtdIt_Method__FP15node_list_classPFPv_i();
-extern "C" void fpcMtdTg_Do__FP24process_method_tag_class();
-extern "C" void fpcMtdTg_ToMethodQ__FP15node_list_classP24process_method_tag_class();
-extern "C" void fpcMtdTg_MethodQTo__FP24process_method_tag_class();
-extern "C" void cLs_SingleCut__FP10node_class();
-extern "C" void cLs_Addition__FP15node_list_classP10node_class();
-extern "C" void cLs_Create__FP15node_list_class();
-extern "C" void cNd_Create__FP10node_classPv();
-extern "C" void cTr_Create__FP21node_lists_tree_classP15node_list_classi();
-extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
-extern "C" void cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class();
-extern "C" void cTg_InsertToTree__FP21node_lists_tree_classiP16create_tag_classi();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
+#include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_method_tag.h"
+#include "f_pc/f_pc_method_iter.h"
+#include "f_pc/f_pc_layer.h"
 
 //
 // Declarations:
 //
 
+// hack to make functions that return comparisons as int match
+extern int __cntlzw(unsigned int);
+inline BOOL checkEqual(s32 a, s32 b) {
+    return (u32)__cntlzw(a - b) >> 5;
+}
+
 /* 80021588-800215A8 0020+00 s=0 e=4 z=0  None .text fpcLy_CancelQTo__FP24process_method_tag_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_CancelQTo(process_method_tag_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CancelQTo__FP24process_method_tag_class.s"
+void fpcLy_CancelQTo(process_method_tag_class* pMthd) {
+    fpcMtdTg_MethodQTo(pMthd);
 }
-#pragma pop
 
 /* 800215A8-800215CC 0024+00 s=0 e=3 z=0  None .text
  * fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_ToCancelQ(layer_class* param_0, process_method_tag_class* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class.s"
+s32 fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd) {
+    return fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
-#pragma pop
 
 /* 800215CC-800215F8 002C+00 s=1 e=0 z=0  None .text
  * fpcLy_CancelMethod__FP24process_method_tag_class             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcLy_CancelMethod(process_method_tag_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CancelMethod__FP24process_method_tag_class.s"
+BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
+    return checkEqual(1, fpcMtdTg_Do(pLayer));
 }
-#pragma pop
 
 /* 800215F8-8002161C 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_IntoQueue(layer_class* param_0, int param_1, create_tag_class* param_2,
-                         int param_3) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi.s"
+s32 fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx) {
+    return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);
 }
-#pragma pop
 
 /* 8002161C-80021640 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_ToQueue__FP11layer_classiP16create_tag_class           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_ToQueue(layer_class* param_0, int param_1, create_tag_class* param_2) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_ToQueue__FP11layer_classiP16create_tag_class.s"
+s32 fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag) {
+    return cTg_AdditionToTree(&pLayer->mNodeListTree, treeListIdx, pTag);
 }
-#pragma pop
 
 /* 80021640-80021664 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_QueueTo__FP11layer_classP16create_tag_class            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_QueueTo(layer_class* param_0, create_tag_class* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_QueueTo__FP11layer_classP16create_tag_class.s"
+s32 fpcLy_QueueTo(layer_class* pLayer, create_tag_class* pTag) {
+    return cTg_SingleCutFromTree(pTag);
 }
-#pragma pop
 
 /* 80021664-80021678 0014+00 s=0 e=1 z=0  None .text      fpcLy_IsDeletingMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_IsDeletingMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_IsDeletingMesg__FP11layer_class.s"
+BOOL fpcLy_IsDeletingMesg(layer_class* pLayer) {
+    return pLayer->counts.mDeletingCount > 0;
 }
-#pragma pop
 
 /* 80021678-80021688 0010+00 s=0 e=1 z=0  None .text      fpcLy_DeletingMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_DeletingMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_DeletingMesg__FP11layer_class.s"
+void fpcLy_DeletingMesg(layer_class* pLayer) {
+    pLayer->counts.mDeletingCount++;
 }
-#pragma pop
 
 /* 80021688-800216A0 0018+00 s=0 e=1 z=0  None .text      fpcLy_DeletedMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_DeletedMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_DeletedMesg__FP11layer_class.s"
+void fpcLy_DeletedMesg(layer_class* pLayer) {
+    if (pLayer->counts.mDeletingCount > 0) {
+        pLayer->counts.mDeletingCount--;
+    }
 }
-#pragma pop
 
 /* 800216A0-800216B4 0014+00 s=0 e=2 z=0  None .text      fpcLy_IsCreatingMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_IsCreatingMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_IsCreatingMesg__FP11layer_class.s"
+BOOL fpcLy_IsCreatingMesg(layer_class* pLayer) {
+    return pLayer->counts.mCreatingCount > 0;
 }
-#pragma pop
 
 /* 800216B4-800216C4 0010+00 s=0 e=2 z=0  None .text      fpcLy_CreatingMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_CreatingMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CreatingMesg__FP11layer_class.s"
+void fpcLy_CreatingMesg(layer_class* pLayer) {
+    pLayer->counts.mCreatingCount++;
 }
-#pragma pop
 
 /* 800216C4-800216DC 0018+00 s=0 e=2 z=0  None .text      fpcLy_CreatedMesg__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_CreatedMesg(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CreatedMesg__FP11layer_class.s"
+void fpcLy_CreatedMesg(layer_class* pLayer) {
+    if (pLayer->counts.mCreatingCount > 0) {
+        pLayer->counts.mCreatingCount--;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A39B0-803A39DC 002C+00 s=2 e=0 z=0  None .data      l_fpcLy_Crear */
-SECTION_DATA static u8 l_fpcLy_Crear[44] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF,
-    0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+layer_class l_fpcLy_Crear = {
+    NULL, NULL, 0,
+    0xFFFFFFFF,
+    NULL, 0,
+    NULL,
+    NULL, NULL, 0,
+    0, 0,
 };
 
 /* 803A39DC-803A39E8 000C+00 s=3 e=0 z=0  None .data      l_fpcLy_LayerList */
-SECTION_DATA static u8 l_fpcLy_LayerList[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+node_list_class l_fpcLy_LayerList = {
+    NULL,
+    NULL,
+    0,
 };
 
 /* 800216DC-800216EC 0010+00 s=2 e=3 z=0  None .text      fpcLy_RootLayer__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_RootLayer() {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_RootLayer__Fv.s"
+layer_class* fpcLy_RootLayer(void) {
+    return (layer_class*)l_fpcLy_LayerList.mpHead;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450D18-80450D1C 0004+00 s=2 e=0 z=0  None .sbss      l_fpcLy_CurrLayer_p */
-static u8 l_fpcLy_CurrLayer_p[4];
+static layer_class* l_fpcLy_CurrLayer_p;
 
 /* 800216EC-800216F4 0008+00 s=1 e=13 z=0  None .text      fpcLy_SetCurrentLayer__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_SetCurrentLayer(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_SetCurrentLayer__FP11layer_class.s"
+void fpcLy_SetCurrentLayer(layer_class* pLayer) {
+    l_fpcLy_CurrLayer_p = pLayer;
 }
-#pragma pop
 
 /* 800216F4-800216FC 0008+00 s=1 e=21 z=0  None .text      fpcLy_CurrentLayer__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_CurrentLayer() {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CurrentLayer__Fv.s"
+layer_class* fpcLy_CurrentLayer(void) {
+    return l_fpcLy_CurrLayer_p;
 }
-#pragma pop
 
 /* 800216FC-8002174C 0050+00 s=1 e=0 z=0  None .text      fpcLy_Search__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcLy_Search(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Search__FUi.s"
+layer_class* fpcLy_Search(unsigned int id) {
+    layer_class* iVar1 = fpcLy_RootLayer();
+    while (iVar1 != NULL) {
+        if (iVar1->mLayerID == id) {
+            return iVar1;
+        }
+        iVar1 = (layer_class*)iVar1->mNode.mpNextNode;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 8002174C-800217BC 0070+00 s=0 e=5 z=0  None .text      fpcLy_Layer__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_Layer(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Layer__FUi.s"
+layer_class* fpcLy_Layer(unsigned int id) {
+    if (id == 0 || fpcLy_RootLayer()->mLayerID == id) {
+        return fpcLy_RootLayer();
+    } else if (id == ~2 || fpcLy_CurrentLayer()->mLayerID == id) {
+        return fpcLy_CurrentLayer();
+    } else {
+        return fpcLy_Search(id);
+    }
 }
-#pragma pop
 
 /* 800217BC-800217E8 002C+00 s=1 e=0 z=0  None .text      fpcLy_Regist__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcLy_Regist(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Regist__FP11layer_class.s"
+void fpcLy_Regist(layer_class* pLayer) {
+    cLs_Addition(&l_fpcLy_LayerList, (node_class*)pLayer);
 }
-#pragma pop
 
 /* 800217E8-8002189C 00B4+00 s=0 e=1 z=0  None .text      fpcLy_Delete__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_Delete(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Delete__FP11layer_class.s"
+s32 fpcLy_Delete(layer_class* pLayer) {
+    if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mCancelList.mSize == 0) {
+        cLs_SingleCut((node_class*)pLayer);
+        *pLayer = l_fpcLy_Crear;
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 8002189C-800218C8 002C+00 s=0 e=1 z=0  None .text      fpcLy_Cancel__FP11layer_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_Cancel(layer_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Cancel__FP11layer_class.s"
+void fpcLy_Cancel(layer_class* pLayer) {
+    fpcMtdIt_Method(&pLayer->mCancelList, (fpcMtdIt_MethodFunc)fpcLy_CancelMethod);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450D1C-80450D20 0004+00 s=1 e=0 z=0  None .sbss      IsInitOfLayerList$2308 */
-static u8 IsInitOfLayerList[4];
-
-/* 80450D20-80450D24 0004+00 s=1 e=0 z=0  None .sbss      None */
-static u8 data_80450D20[4];
-
-/* 80450D24-80450D28 0004+00 s=1 e=0 z=0  None .sbss      layer_id$2311 */
-static u8 layer_id[4];
-
-/* 80450D28-80450D30 0008+00 s=1 e=0 z=0  None .sbss      None */
-static u8 data_80450D28[8];
 
 /* 800218C8-80021A00 0138+00 s=0 e=2 z=0  None .text
  * fpcLy_Create__FP11layer_classPvP15node_list_classi           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_Create(layer_class* param_0, void* param_1, node_list_class* param_2, int param_3) {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_Create__FP11layer_classPvP15node_list_classi.s"
+void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum) {
+    void* pvVar1;
+    s32 iVar2;
+
+    static int IsInitOfLayerList = 1;
+    static int layer_id = 0;
+    *pLayer = l_fpcLy_Crear;
+    cNd_Create((node_class*)pLayer, NULL);
+    pLayer->mLayerID = layer_id++;
+    pLayer->mpPcNode = static_cast<process_node_class*>(pPcNode);
+    if (IsInitOfLayerList == 0x1) {
+        IsInitOfLayerList = 0x0;
+        cLs_Create(&l_fpcLy_LayerList);
+        fpcLy_SetCurrentLayer(pLayer);
+    }
+    (pLayer->mNodeListTree).mpLists = pLists;
+    (pLayer->mNodeListTree).mNumLists = listNum;
+    cTr_Create(&pLayer->mNodeListTree, (pLayer->mNodeListTree).mpLists,
+               (pLayer->mNodeListTree).mNumLists);
+    fpcLy_Regist(pLayer);
 }
-#pragma pop

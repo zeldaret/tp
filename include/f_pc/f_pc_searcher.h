@@ -1,6 +1,15 @@
-#ifndef F_PC_F_PC_SEARCHER_H
-#define F_PC_F_PC_SEARCHER_H
 
+#ifndef F_PC_SEARCHER_H_
+#define F_PC_SEARCHER_H_
+
+#include "f_pc/f_pc_base.h"
 #include "dolphin/types.h"
 
-#endif /* F_PC_F_PC_SEARCHER_H */
+void* fpcSch_JudgeForPName(void* pProc, void* pUserData);
+void* fpcSch_JudgeByID(void* pProc, void* pUserData);
+
+extern "C" {
+void fpcSch_JudgeForPName__FPvPv(void);
+}
+
+#endif

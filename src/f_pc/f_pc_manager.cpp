@@ -6,14 +6,29 @@
 #include "f_pc/f_pc_manager.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_create_iter.h"
+#include "f_pc/f_pc_creator.h"
+#include "f_pc/f_pc_delete_tag.h"
+#include "f_pc/f_pc_deletor.h"
+#include "f_pc/f_pc_draw.h"
+#include "f_pc/f_pc_executor.h"
+#include "f_pc/f_pc_fstcreate_req.h"
+#include "f_pc/f_pc_layer_iter.h"
+#include "f_pc/f_pc_layer_tag.h"
+#include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_line.h"
+#include "f_pc/f_pc_line_iter.h"
+#include "f_pc/f_pc_line_tag.h"
+#include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_node_req.h"
+#include "f_pc/f_pc_pause.h"
+#include "f_pc/f_pc_priority.h"
+#include "f_pc/f_pc_profile.h"
 
 //
 // Types:
 //
-
-struct node_list_class {};
-
-struct layer_class {};
 
 struct dShutdownErrorMsg_c {
     /* 8009D790 */ void execute();
@@ -36,8 +51,6 @@ struct dComIfG_play_c {
     /* 8002CAC4 */ void drawSimpleModel();
 };
 
-struct base_process_class {};
-
 struct Z2SoundMgr {
     /* 802AA6B0 */ void pauseAllGameSound(bool);
 };
@@ -51,19 +64,6 @@ struct JUTGamePad {
 //
 // Forward References:
 //
-
-void fpcM_Draw(void*);
-static void fpcM_DrawIterater(int (*)(void*, void*));
-void fpcM_Execute(void*);
-void fpcM_Delete(void*);
-void fpcM_IsCreating(unsigned int);
-void fpcM_Management(void (*)(void), void (*)(void));
-void fpcM_Init();
-void fpcM_FastCreate(s16, int (*)(void*), void*, void*);
-void fpcM_IsPause(void*, u8);
-void fpcM_PauseEnable(void*, u8);
-void fpcM_PauseDisable(void*, u8);
-void fpcM_JudgeInLayer(unsigned int, void* (*)(void*, void*), void*);
 
 extern "C" void fpcM_Draw__FPv();
 extern "C" static void fpcM_DrawIterater__FPFPvPv_i();
@@ -82,29 +82,6 @@ extern "C" void fpcM_JudgeInLayer__FUiPFPvPv_PvPv();
 // External References:
 //
 
-void fpcCtIt_JudgeInLayer(unsigned int, void* (*)(void*, void*), void*);
-void fpcCt_IsCreatingByID(unsigned int);
-void fpcCt_Handler();
-void fpcDt_Handler();
-void fpcDt_Delete(void*);
-void fpcEx_Execute(base_process_class*);
-void fpcEx_Handler(int (*)(void*, void*));
-void fpcLy_RootLayer();
-void fpcLy_CurrentLayer();
-void fpcLy_Layer(unsigned int);
-void fpcLy_Create(layer_class*, void*, node_list_class*, int);
-void fpcLyIt_OnlyHere(layer_class*, int (*)(void*, void*), void*);
-void fpcLyIt_Judge(layer_class*, void* (*)(void*, void*), void*);
-void fpcLn_Create();
-void fpcPi_Handler();
-void fpcPause_IsEnable(void*, u8);
-void fpcPause_Enable(void*, u8);
-void fpcPause_Disable(void*, u8);
-void fpcDw_Execute(base_process_class*);
-void fpcDw_Handler(int (*)(int (*)(void*, void*)), int (*)(void*, void*));
-void fpcFCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-void cAPIGph_Painter();
-void MtxInit();
 
 extern "C" void fpcCtIt_JudgeInLayer__FUiPFPvPv_PvPv();
 extern "C" void fpcCt_IsCreatingByID__FUi();
@@ -149,61 +126,40 @@ extern "C" extern u8 data_80450EC4[4];
 // Declarations:
 //
 
+/* 80450D38-80450D40 0008+00 s=0 e=1 z=0  None .sbss      None */
+u8 struct_80450D38[8];
+
 /* 800220A0-800220C0 0020+00 s=1 e=1 z=0  None .text      fpcM_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Draw(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Draw__FPv.s"
+void fpcM_Draw(void* pProc) {
+    fpcDw_Execute((base_process_class*)pProc);
 }
-#pragma pop
 
 /* 800220C0-800220F8 0038+00 s=1 e=0 z=0  None .text      fpcM_DrawIterater__FPFPvPv_i */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcM_DrawIterater(int (*)(void*, void*)) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_DrawIterater__FPFPvPv_i.s"
+s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
+    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (fpcLyIt_OnlyHereFunc)pFunc, NULL);
 }
-#pragma pop
 
 /* 800220F8-80022118 0020+00 s=1 e=0 z=1  None .text      fpcM_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Execute(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Execute__FPv.s"
+void fpcM_Execute(void* pProc) {
+    fpcEx_Execute((base_process_class*)pProc);
 }
-#pragma pop
 
 /* 80022118-80022138 0020+00 s=0 e=7 z=0  None .text      fpcM_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Delete(void* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Delete__FPv.s"
+s32 fpcM_Delete(void* pProc) {
+    return fpcDt_Delete((base_process_class*)pProc);
 }
-#pragma pop
 
 /* 80022138-80022158 0020+00 s=0 e=6 z=43  None .text      fpcM_IsCreating__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_IsCreating(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_IsCreating__FUi.s"
+BOOL fpcM_IsCreating(unsigned int pID) {
+    return fpcCt_IsCreatingByID(pID);
 }
-#pragma pop
 
+// TODO, uses a lot of functions outside f_pc/SSystem
 /* 80022158-800222B8 0160+00 s=0 e=1 z=0  None .text      fpcM_Management__FPFv_vPFv_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcM_Management(void (*)(void), void (*)(void)) {
+asm void fpcM_Management(fpcM_ManagementFunc, fpcM_ManagementFunc) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_Management__FPFv_vPFv_v.s"
 }
@@ -211,67 +167,49 @@ asm void fpcM_Management(void (*)(void), void (*)(void)) {
 
 /* ############################################################################################## */
 /* 803F4DB0-803F4DDC 002C+00 s=1 e=0 z=0  None .bss       rootlayer$3716 */
-static u8 rootlayer[44];
+static layer_class rootlayer;
 
 /* 803F4DDC-803F4E58 0078+04 s=1 e=0 z=0  None .bss       queue$3717 */
-static u8 queue[120 + 4 /* padding */];
+static node_list_class queue[10];
 
 /* 800222B8-800222F4 003C+00 s=0 e=1 z=0  None .text      fpcM_Init__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_Init() {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_Init__Fv.s"
+void fpcM_Init(void) {
+    fpcLy_Create(&rootlayer, NULL, queue, 10);
+    fpcLn_Create();
 }
-#pragma pop
 
 /* 800222F4-80022348 0054+00 s=0 e=3 z=0  None .text      fpcM_FastCreate__FsPFPv_iPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_FastCreate(s16 param_0, int (*)(void*), void* param_2, void* param_3) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_FastCreate__FsPFPv_iPvPv.s"
+base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
+                                    void* pData) {
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3,
+                            pData);
 }
-#pragma pop
 
 /* 80022348-8002236C 0024+00 s=0 e=1 z=0  None .text      fpcM_IsPause__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_IsPause(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_IsPause__FPvUc.s"
+s32 fpcM_IsPause(void* pProc, u8 param_2) {
+    return fpcPause_IsEnable((base_process_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
 /* 8002236C-80022390 0024+00 s=0 e=1 z=0  None .text      fpcM_PauseEnable__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_PauseEnable(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_PauseEnable__FPvUc.s"
+void fpcM_PauseEnable(void* pProc, u8 param_2) {
+    fpcPause_Enable((process_node_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
 /* 80022390-800223B4 0024+00 s=0 e=1 z=0  None .text      fpcM_PauseDisable__FPvUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_PauseDisable(void* param_0, u8 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_PauseDisable__FPvUc.s"
+void fpcM_PauseDisable(void* pProc, u8 param_2) {
+    fpcPause_Disable((process_node_class*)pProc, param_2 & 0xFF);
 }
-#pragma pop
 
 /* 800223B4-80022428 0074+00 s=0 e=1 z=0  None .text      fpcM_JudgeInLayer__FUiPFPvPv_PvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcM_JudgeInLayer(unsigned int param_0, void* (*)(void*, void*), void* param_2) {
-    nofralloc
-#include "asm/f_pc/f_pc_manager/fpcM_JudgeInLayer__FUiPFPvPv_PvPv.s"
+void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
+    layer_class* layer = fpcLy_Layer(pLayerID);
+    if (layer != NULL) {
+        void* ret = fpcCtIt_JudgeInLayer(pLayerID, pFunc, pUserData);
+        if (ret == NULL) {
+            ret = fpcLyIt_Judge(layer, pFunc, pUserData);
+        }
+        return ret;
+    } else {
+        return NULL;
+    }
 }
-#pragma pop

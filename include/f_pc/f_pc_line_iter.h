@@ -1,6 +1,11 @@
-#ifndef F_PC_F_PC_LINE_ITER_H
-#define F_PC_F_PC_LINE_ITER_H
 
-#include "dolphin/types.h"
+#ifndef F_PC_LINE_ITER_H_
+#define F_PC_LINE_ITER_H_
 
-#endif /* F_PC_F_PC_LINE_ITER_H */
+#include "SSystem/SComponent/c_node_iter.h"
+
+typedef int (*fpcLnIt_QueueFunc)(void*, void*);
+
+void fpcLnIt_Queue(fpcLnIt_QueueFunc pFunc);
+
+#endif

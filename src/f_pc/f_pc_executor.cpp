@@ -6,154 +6,89 @@
 #include "f_pc/f_pc_executor.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct line_tag {};
-
-struct layer_management_tag_class {};
-
-struct layer_class {};
-
-struct create_tag_class {};
-
-struct base_process_class {};
-
-//
-// Forward References:
-//
-
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void fpcEx_SearchByID(unsigned int);
-void fpcEx_IsExist(unsigned int);
-void fpcEx_Execute(base_process_class*);
-static void fpcEx_ToLineQ(base_process_class*);
-void fpcEx_ExecuteQTo(base_process_class*);
-void fpcEx_ToExecuteQ(base_process_class*);
-void fpcEx_Handler(int (*)(void*, void*));
-
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void fpcEx_IsExist__FUi();
-extern "C" void fpcEx_Execute__FP18base_process_class();
-extern "C" static void fpcEx_ToLineQ__FP18base_process_class();
-extern "C" void fpcEx_ExecuteQTo__FP18base_process_class();
-extern "C" void fpcEx_ToExecuteQ__FP18base_process_class();
-extern "C" void fpcEx_Handler__FPFPvPv_i();
-
-//
-// External References:
-//
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_Execute(base_process_class*);
-void fpcLyIt_OnlyHere(layer_class*, int (*)(void*, void*), void*);
-void fpcLyIt_AllJudge(void* (*)(void*, void*), void*);
-void fpcLyTg_ToQueue(layer_management_tag_class*, unsigned int, u16, u16);
-void fpcLyTg_QueueTo(layer_management_tag_class*);
-void fpcSch_JudgeByID(void*, void*);
-void fpcLnTg_ToQueue(line_tag*, int);
-void fpcLnIt_Queue(int (*)(void*, void*));
-void fpcPause_IsEnable(void*, u8);
-void cTg_IsUse(create_tag_class*);
-
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcBs_Execute__FP18base_process_class();
-extern "C" void fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv();
-extern "C" void fpcLyIt_AllJudge__FPFPvPv_PvPv();
-extern "C" void fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs();
-extern "C" void fpcLyTg_QueueTo__FP26layer_management_tag_class();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void fpcLnTg_ToQueue__FP8line_tagi();
-extern "C" void fpcLnIt_Queue__FPFPvPv_i();
-extern "C" void fpcPause_IsEnable__FPvUc();
-extern "C" void cTg_IsUse__FP16create_tag_class();
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
+#include "f_pc/f_pc_searcher.h"
+#include "f_pc/f_pc_node.h"
+#include "f_pc/f_pc_pause.h"
 
 //
 // Declarations:
 //
 
 /* 80021338-80021358 0020+00 s=1 e=9 z=291  None .text      fpcEx_Search__FPFPvPv_PvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_Search(void* (*)(void*, void*), void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_Search__FPFPvPv_PvPv.s"
+base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData) {
+    return (base_process_class*)fpcLyIt_AllJudge(pFunc, pUserData);
 }
-#pragma pop
 
 /* 80021358-8002139C 0044+00 s=1 e=5 z=30  None .text      fpcEx_SearchByID__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_SearchByID(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_SearchByID__FUi.s"
+base_process_class* fpcEx_SearchByID(unsigned int id) {
+    if (id + 2 <= 1)
+        return NULL;
+
+    return fpcEx_Search(fpcSch_JudgeByID, &id);
 }
-#pragma pop
 
 /* 8002139C-800213C4 0028+00 s=0 e=7 z=42  None .text      fpcEx_IsExist__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_IsExist(unsigned int param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_IsExist__FUi.s"
+BOOL fpcEx_IsExist(unsigned int id) {
+    return fpcEx_SearchByID(id) != NULL ? 1 : 0;
 }
-#pragma pop
 
 /* 800213C4-80021418 0054+00 s=0 e=1 z=0  None .text      fpcEx_Execute__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_Execute(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_Execute__FP18base_process_class.s"
+s32 fpcEx_Execute(base_process_class* pProc) {
+    if (pProc->mInitState != 2 || fpcPause_IsEnable(pProc, 1) == 1)
+        return 0;
+    return fpcBs_Execute(pProc);
 }
-#pragma pop
 
 /* 80021418-800214C4 00AC+00 s=1 e=0 z=0  None .text      fpcEx_ToLineQ__FP18base_process_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void fpcEx_ToLineQ(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_ToLineQ__FP18base_process_class.s"
+s32 fpcEx_ToLineQ(base_process_class* pProc) {
+    layer_class* pLayer = pProc->mLyTg.mpLayer;
+    base_process_class* pLayerPcNode = &pLayer->mpPcNode->mBase;
+
+    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg.mBase) == TRUE) {
+        s32 ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
+        if (ret == 0) {
+            fpcLyTg_QueueTo(&pProc->mLyTg);
+            return 0;
+        }
+
+        pProc->mInitState = 2;
+        if (fpcBs_Is_JustOfType(g_fpcNd_type, pProc->mSubType)) {
+            process_node_class* pNode = (process_node_class*)pProc;
+            fpcLyIt_OnlyHere(&pNode->mLayer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, pNode);
+        }
+
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 800214C4-80021510 004C+00 s=0 e=1 z=0  None .text      fpcEx_ExecuteQTo__FP18base_process_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_ExecuteQTo(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_ExecuteQTo__FP18base_process_class.s"
+s32 fpcEx_ExecuteQTo(base_process_class* pProc) {
+    s32 ret = fpcLyTg_QueueTo(&pProc->mLyTg);
+    if (ret == 1) {
+        pProc->mInitState = 3;
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 80021510-80021568 0058+00 s=0 e=1 z=0  None .text      fpcEx_ToExecuteQ__FP18base_process_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_ToExecuteQ(base_process_class* param_0) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_ToExecuteQ__FP18base_process_class.s"
+s32 fpcEx_ToExecuteQ(base_process_class* pProc) {
+    s32 ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer,
+                              pProc->mPi.mInfoCurr.mListID, pProc->mPi.mInfoCurr.mListPrio);
+    if (ret == 1) {
+        fpcEx_ToLineQ(pProc);
+        return 1;
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 80021568-80021588 0020+00 s=0 e=1 z=0  None .text      fpcEx_Handler__FPFPvPv_i */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcEx_Handler(int (*)(void*, void*)) {
-    nofralloc
-#include "asm/f_pc/f_pc_executor/fpcEx_Handler__FPFPvPv_i.s"
+void fpcEx_Handler(fpcLnIt_QueueFunc pFunc) {
+    fpcLnIt_Queue(pFunc);
 }
-#pragma pop

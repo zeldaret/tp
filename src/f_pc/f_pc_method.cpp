@@ -8,85 +8,37 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct process_method_class {};
-
-//
-// Forward References:
-//
-
-void fpcMtd_Method(int (*)(void*), void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
-
-extern "C" void fpcMtd_Method__FPFPv_iPv();
-extern "C" void fpcMtd_Execute__FP20process_method_classPv();
-extern "C" void fpcMtd_IsDelete__FP20process_method_classPv();
-extern "C" void fpcMtd_Delete__FP20process_method_classPv();
-extern "C" void fpcMtd_Create__FP20process_method_classPv();
-
-//
-// External References:
-//
-
-//
 // Declarations:
 //
 
 /* 80022428-80022460 0038+00 s=4 e=6 z=0  None .text      fpcMtd_Method__FPFPv_iPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcMtd_Method(int (*)(void*), void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_method/fpcMtd_Method__FPFPv_iPv.s"
+s32 fpcMtd_Method(process_method_func pFunc, void* pUserData) {
+    if (pFunc != NULL)
+        return pFunc(pUserData);
+    else
+        return 1;
 }
-#pragma pop
 
 /* 80022460-80022484 0024+00 s=0 e=10 z=0  None .text fpcMtd_Execute__FP20process_method_classPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcMtd_Execute(process_method_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_method/fpcMtd_Execute__FP20process_method_classPv.s"
+s32 fpcMtd_Execute(process_method_class* pMthd, void* pUserData) {
+    return fpcMtd_Method(pMthd->mpExecuteFunc, pUserData);
 }
-#pragma pop
 
 /* 80022484-800224A8 0024+00 s=0 e=10 z=0  None .text fpcMtd_IsDelete__FP20process_method_classPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcMtd_IsDelete(process_method_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_method/fpcMtd_IsDelete__FP20process_method_classPv.s"
+s32 fpcMtd_IsDelete(process_method_class* pMthd, void* pUserData) {
+    return fpcMtd_Method(pMthd->mpIsDeleteFunc, pUserData);
 }
-#pragma pop
 
 /* 800224A8-800224CC 0024+00 s=0 e=10 z=0  None .text      fpcMtd_Delete__FP20process_method_classPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcMtd_Delete(process_method_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_method/fpcMtd_Delete__FP20process_method_classPv.s"
+s32 fpcMtd_Delete(process_method_class* pMthd, void* pUserData) {
+    return fpcMtd_Method(pMthd->mpDeleteFunc, pUserData);
 }
-#pragma pop
 
 /* 800224CC-800224F0 0024+00 s=0 e=10 z=0  None .text      fpcMtd_Create__FP20process_method_classPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcMtd_Create(process_method_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_method/fpcMtd_Create__FP20process_method_classPv.s"
+s32 fpcMtd_Create(process_method_class* pMthd, void* pUserData) {
+    return fpcMtd_Method(pMthd->mpCreateFunc, pUserData);
 }
-#pragma pop

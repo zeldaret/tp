@@ -1,6 +1,10 @@
-#ifndef F_PC_F_PC_LINE_H
-#define F_PC_F_PC_LINE_H
+#ifndef F_PC_LINE_H_
+#define F_PC_LINE_H_
 
-#include "dolphin/types.h"
+#include "SSystem/SComponent/c_tree.h"
 
-#endif /* F_PC_F_PC_LINE_H */
+void fpcLn_Create(void);
+
+extern node_lists_tree_class g_fpcLn_Queue;
+
+#endif
