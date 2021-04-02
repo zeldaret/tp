@@ -261,15 +261,6 @@ private:
     u32 unk2200;
 };
 
-class daHorse_c {
-public:
-    u32 getZeldaActor(void);
-
-private:
-    u8 unk[0x1254];
-    daPy_actorKeep_c actorKeep;
-};
-
 extern "C" {
 void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc_ac_c*,
                                                                            dCcD_GObjInf*,

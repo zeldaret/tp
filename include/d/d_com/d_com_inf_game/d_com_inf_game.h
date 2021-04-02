@@ -2,6 +2,7 @@
 #define D_COM_INF_GAME_H_
 
 #include "SComponent/c_xyz.h"
+#include "d/d_a/d_a_player/d_a_player.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
@@ -191,10 +192,10 @@ private:
     /* 0x04E6C */ float mCameraUnk1;
     /* 0x04E70 */ s16 mCameraUnk2;
     /* 0x04E72 */ s16 field_0x4e72;
-    /* 0x04E74 */ fopAc_ac_c* mPlayer;  // type might be wrong
+    /* 0x04E74 */ daPy_py_c* mPlayer;
     /* 0x04E78 */ s8 mPlayerCameraID[4];
-    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr;  // type might be wrong
-    /* 0x04E80 */ fopAc_ac_c* mHorseActor;
+    /* 0x04E7C */ daPy_py_c* mPlayerPtr;  // type might be wrong
+    /* 0x04E80 */ daHorse_c* mHorseActor;
     /* 0x04E84 */ u32 mMsgObjectClass;
     /* 0x04E88 */ float mItemLifeCount;
     /* 0x04E8C */ int mItemRupeeCount;

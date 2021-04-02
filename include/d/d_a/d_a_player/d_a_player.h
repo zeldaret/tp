@@ -189,10 +189,20 @@ public:
     int getAtnActorID(void) const;  // might not be int
 
 private:
-    u8 unk[0x4e6];
+    /* 0x0000 */ u8 unk[0x4d0];
+    /* 0x04D0 */ cXyz mPosition;
     s16 mGiantPuzzleAimAngle;
     u32 unk0x578;
     u32 unk0x588;
+};
+
+class daHorse_c {
+public:
+    u32 getZeldaActor(void);
+
+private:
+    u8 unk[0x1254];
+    daPy_actorKeep_c actorKeep;
 };
 
 #endif
