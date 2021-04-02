@@ -39,7 +39,6 @@ public:
 private:
     /* 0x0000 */ cBgS cbgs;
     /* 0x1400 */ void* vtable;
-    // 0x1408 dBgS_HIO dbgs_hio; only on debug rom?
 };
 #pragma pack(pop)
 #endif
