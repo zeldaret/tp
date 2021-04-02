@@ -2,7 +2,6 @@
 #define D_COM_INF_GAME_H_
 
 #include "SComponent/c_xyz.h"
-#include "f/f_op/f_op_actor.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
@@ -15,6 +14,7 @@
 #include "d/d_stage/d_stage.h"
 #include "d/d_timer/d_timer.h"
 #include "d/d_vibration/d_vibration.h"
+#include "f/f_op/f_op_actor.h"
 
 #pragma pack(push, 1)
 class dComIfG_camera_info_class {
@@ -131,11 +131,11 @@ public:
 private:
     /* 0x00000 */ dBgS mDBgS;
     /* 0x01404 */ dCcS mDCcS;
-    /* 0x03EC4 */ u8 field_0x3ec4[4]; // might be part of dCcS
+    /* 0x03EC4 */ u8 field_0x3ec4[4];  // might be part of dCcS
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03ED5 */ u8 field_0x3ed5; // probably padding
+    /* 0x03ED5 */ u8 field_0x3ed5;  // probably padding
     /* 0x03ED6 */ dStage_nextStage_c mNextStage;
-    /* 0x03EE7 */ u8 field_0x3ee7; // probably padding
+    /* 0x03EE7 */ u8 field_0x3ee7;  // probably padding
     /* 0x03EE8 */ dStage_stageDt_c mStageData;
     /* 0x03F8C */ dStage_roomControl_c* mRoomControl;
     /* 0x03F90 */ dEvt_control_c mEvent;
@@ -191,9 +191,9 @@ private:
     /* 0x04E6C */ float mCameraUnk1;
     /* 0x04E70 */ s16 mCameraUnk2;
     /* 0x04E72 */ s16 field_0x4e72;
-    /* 0x04E74 */ fopAc_ac_c* mPlayer; // type might be wrong
+    /* 0x04E74 */ fopAc_ac_c* mPlayer;  // type might be wrong
     /* 0x04E78 */ s8 mPlayerCameraID[4];
-    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr; // type might be wrong
+    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr;  // type might be wrong
     /* 0x04E80 */ fopAc_ac_c* mHorseActor;
     /* 0x04E84 */ u32 mMsgObjectClass;
     /* 0x04E88 */ float mItemLifeCount;
@@ -227,19 +227,19 @@ private:
     /* 0x04EE2 */ u8 mMesgStatus;
     /* 0x04EE3 */ u8 field_0x4ee3;
     /* 0x04EE4 */ u8 mRStatus;
-    /* 0x04EE5 */ u8 mAStatus; // B button
+    /* 0x04EE5 */ u8 mAStatus;  // B button
     /* 0x04EE6 */ u8 field_0x4ee6;
     /* 0x04EE7 */ u8 mNunStatus;
     /* 0x04EE8 */ u8 mBottleStatus;
     /* 0x04EE9 */ u8 mRemoConStatus;
     /* 0x04EEA */ u8 field_0x4eea[2];
-    /* 0x04EEC */ u8 mDoStatus; // A button
+    /* 0x04EEC */ u8 mDoStatus;  // A button
     /* 0x04EED */ u8 field_0x4eed;
     /* 0x04EEE */ u8 m3DStatus;
-    /* 0x04EEF */ u8 field_0x4eef; // related to NunStatusForce
-    /* 0x04EF0 */ u8 field_0x4ef0; // related to NunStatus
-    /* 0x04EF1 */ u8 field_0x4ef1; // related to RemoConStatusForce
-    /* 0x04EF2 */ u8 field_0x4ef2; // related to RemoConStatus
+    /* 0x04EEF */ u8 field_0x4eef;  // related to NunStatusForce
+    /* 0x04EF0 */ u8 field_0x4ef0;  // related to NunStatus
+    /* 0x04EF1 */ u8 field_0x4ef1;  // related to RemoConStatusForce
+    /* 0x04EF2 */ u8 field_0x4ef2;  // related to RemoConStatus
     /* 0x04EF3 */ u8 field_0x4ef3[2];
     /* 0x04EF5 */ u8 m3DDirection;
     /* 0x04EF6 */ u8 m3DDirectionForce;
@@ -251,9 +251,9 @@ private:
     /* 0x04EFC */ u8 mRStatusForce;
     /* 0x04EFD */ u8 mAStatusForce;
     /* 0x04EFE */ u8 field_0x4efe;
-    /* 0x04EFF */ u8 field_0x4eff; // related to NunStatusForce
+    /* 0x04EFF */ u8 field_0x4eff;  // related to NunStatusForce
     /* 0x04F00 */ u8 mBottleStatusForce;
-    /* 0x04F01 */ u8 field_0x4f01; // related to RemoConStatusForce
+    /* 0x04F01 */ u8 field_0x4f01;  // related to RemoConStatusForce
     /* 0x04F02 */ u8 field_0x4f02[2];
     /* 0x04F04 */ u8 mDoStatusForce;
     /* 0x04F05 */ u8 mTouchStatusForce;
@@ -261,24 +261,24 @@ private:
     /* 0x04F07 */ u8 mCStickStatusForce;
     /* 0x04F08 */ u8 mSButtonStatusForce;
     /* 0x04F09 */ u8 mZStatusForce;
-    /* 0x04F0A */ u8 mRSetFlag; // related to RStatus
-    /* 0x04F0B */ u8 mASetFlag; // related to AStatus
+    /* 0x04F0A */ u8 mRSetFlag;  // related to RStatus
+    /* 0x04F0B */ u8 mASetFlag;  // related to AStatus
     /* 0x04F0C */ u8 field_0x4f0c;
-    /* 0x04F0D */ u8 mNunSetFlag; // related to NunStatus
-    /* 0x04F0E */ u8 mBottleSetFlag; // related to BottleStatus
-    /* 0x04F0F */ u8 mRemoConSetFlag; // related to RemoConStatus
+    /* 0x04F0D */ u8 mNunSetFlag;      // related to NunStatus
+    /* 0x04F0E */ u8 mBottleSetFlag;   // related to BottleStatus
+    /* 0x04F0F */ u8 mRemoConSetFlag;  // related to RemoConStatus
     /* 0x04F10 */ u8 field_0x4f10[2];
-    /* 0x04F12 */ u8 mDoSetFlag; // related to DoStatus
-    /* 0x04F13 */ u8 m3DSetFlag; // related to 3DStatus
-    /* 0x04F14 */ u8 mCStickSetFlag; // related to CStickStatus
-    /* 0x04F15 */ u8 mSButtonSetFlag; // related to SButtonStatus
-    /* 0x04F16 */ u8 mZSetFlag; // related to ZStatus
+    /* 0x04F12 */ u8 mDoSetFlag;       // related to DoStatus
+    /* 0x04F13 */ u8 m3DSetFlag;       // related to 3DStatus
+    /* 0x04F14 */ u8 mCStickSetFlag;   // related to CStickStatus
+    /* 0x04F15 */ u8 mSButtonSetFlag;  // related to SButtonStatus
+    /* 0x04F16 */ u8 mZSetFlag;        // related to ZStatus
     /* 0x04F17 */ u8 mRSetFlagForce;
     /* 0x04F18 */ u8 mASetFlagForce;
     /* 0x04F19 */ u8 field_0x4f19;
-    /* 0x04F1A */ u8 field_0x4f1a; // related to NunStatusForce
+    /* 0x04F1A */ u8 field_0x4f1a;  // related to NunStatusForce
     /* 0x04F1B */ u8 mBottleSetFlagForce;
-    /* 0x04F1C */ u8 field_0x4f1c; // related to RemoConStatusForce
+    /* 0x04F1C */ u8 field_0x4f1c;  // related to RemoConStatusForce
     /* 0x04F1D */ u8 field_0x4f1d[2];
     /* 0x04F1F */ u8 mDoSetFlagForce;
     /* 0x04F20 */ u8 m3DSetFlagForce;
@@ -287,20 +287,20 @@ private:
     /* 0x04F23 */ u8 mZSetFlagForce;
     /* 0x04F24 */ u8 mXStatus;
     /* 0x04F25 */ u8 mXStatusForce;
-    /* 0x04F26 */ u8 field_0x4fbe; // related to XStatus
+    /* 0x04F26 */ u8 field_0x4fbe;  // related to XStatus
     /* 0x04F27 */ u8 mXSetFlagForce;
     /* 0x04F28 */ u8 mYStatus;
     /* 0x04F29 */ u8 mYStatusForce;
-    /* 0x04F2A */ u8 mYSetFlag; // related to YStatus
+    /* 0x04F2A */ u8 mYSetFlag;  // related to YStatus
     /* 0x04F2B */ u8 mYSetFlagForce;
     /* 0x04F2C */ u8 mNunZStatus;
-    /* 0x04F2D */ u8 mNunZSetFlag; // related to NunZStatus
-    /* 0x04F2E */ u8 field_0x4fc6; // related to NunZStatusForce
-    /* 0x04F2F */ u8 field_0x4fc7; // related to NunZStatusForce
+    /* 0x04F2D */ u8 mNunZSetFlag;  // related to NunZStatus
+    /* 0x04F2E */ u8 field_0x4fc6;  // related to NunZStatusForce
+    /* 0x04F2F */ u8 field_0x4fc7;  // related to NunZStatusForce
     /* 0x04F30 */ u8 mNunCStatus;
-    /* 0x04F31 */ u8 mNunCSetFlag; // related to NunCStatus
-    /* 0x04F32 */ u8 field_0x4fca; // related to NunCStatusForce
-    /* 0x04F33 */ u8 field_0x4fcb; // related to NunCStatusForce
+    /* 0x04F31 */ u8 mNunCSetFlag;  // related to NunCStatus
+    /* 0x04F32 */ u8 field_0x4fca;  // related to NunCStatusForce
+    /* 0x04F33 */ u8 field_0x4fcb;  // related to NunCStatusForce
     /* 0x04F34 */ u8 mSelectItem[8];
     /* 0x04F3C */ u8 mSelectEquip[6];
     /* 0x04F42 */ u8 mBaseAnimeID;
@@ -311,8 +311,8 @@ private:
     /* 0x04F47 */ u8 field_0x4f47[2];
     /* 0x04F49 */ u8 mDirection;
     /* 0x04F4A */ u8 field_0x4f4a;
-    /* 0x04F4B */ u8 field_0x4f4b; // related to itemInit
-    /* 0x04F4C */ u8 field_0x4f4c; // related to itemInit
+    /* 0x04F4B */ u8 field_0x4f4b;  // related to itemInit
+    /* 0x04F4C */ u8 field_0x4f4c;  // related to itemInit
     /* 0x04F4D */ u8 field_0x4f4d;
     /* 0x04F4E */ u8 mMesgCancelButton;
     /* 0x04F4F */ u8 field_0x4f4f[2];
@@ -335,12 +335,12 @@ private:
     /* 0x04F84 */ JKRExpHeap* mExpHeap2D;
     /* 0x04F88 */ JKRExpHeap* mSubExpHeap2D[2];
     /* 0x04F90 */ JKRExpHeap* mMsgExpHeap;
-    /* 0x04F94 */ char field_0x4F94[8]; // related to setWarpItemData
-    /* 0x04F9C */ cXyz field_0x4f9c;    // related to setWarpItemData
+    /* 0x04F94 */ char field_0x4F94[8];  // related to setWarpItemData
+    /* 0x04F9C */ cXyz field_0x4f9c;     // related to setWarpItemData
     /* 0x04FA8 */ u8 field_0x4fa8[2];
-    /* 0x04FAA */ u8 field_0x4faa;      // related to setWarpItemData
-    /* 0x04FAB */ u8 field_0x4fab;      // related to setWarpItemData
-    /* 0x04FAC */ u8 field_0x4fac;      // related to setWarpItemData
+    /* 0x04FAA */ u8 field_0x4faa;  // related to setWarpItemData
+    /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
+    /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
     /* 0x04FAD */ u8 field_0x4fad[3];
     /* 0x04FB0 */ void* mMesgCamInfo;
     /* 0x04FB4 */ int mMesgCamInfoBasicID;
@@ -426,8 +426,6 @@ private:
 #pragma pack(pop)
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
-
-//int i = sizeof(dSv_info_c);
 
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);

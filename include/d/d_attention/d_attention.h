@@ -94,7 +94,7 @@ class dAttDraw_c {
     /* 0x172 */ u8 field_0x172;
     /* 0x173 */ u8 field_0x173;
     /* 0x174 */ u8 field_0x174;
-    /* 0x175 */ u8 field_0x175; 
+    /* 0x175 */ u8 field_0x175;
 };
 #pragma pack(pop)
 
@@ -123,7 +123,7 @@ private:
     /* 0x03E0 */ dAttList_c attention_list2[4];
     int* field_0x430;
     int field_0x434;
-    /* 0x0438 */  dAttList_c attention_list3[4];
+    /* 0x0438 */ dAttList_c attention_list3[4];
     int* field_0x488;
     int field_0x48c;
     dAttHint_c attention_hint;
