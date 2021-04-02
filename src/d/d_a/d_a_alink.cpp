@@ -5147,8 +5147,8 @@ asm void checkAttentionLock__9daAlink_cFv(void) {
 #include "d/d_a/d_a_alink/asm/func_800CFF4C.s"
 }
 
-void dComIfGp_setItemLifeCount(float amount, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
+void dComIfGp_setItemLifeCount(float amount, u8 type) {
+    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, type);
 }
 
 // cMtx_multVec__FPA4_CfPC3VecP3Vec

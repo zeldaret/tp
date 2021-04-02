@@ -2,6 +2,7 @@
 #define D_COM_INF_GAME_H_
 
 #include "SComponent/c_xyz.h"
+#include "f/f_op/f_op_actor.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
@@ -12,30 +13,8 @@
 #include "d/d_resource/d_resource.h"
 #include "d/d_save/d_save/d_save.h"
 #include "d/d_stage/d_stage.h"
+#include "d/d_timer/d_timer.h"
 #include "d/d_vibration/d_vibration.h"
-
-#pragma pack(push, 1)
-struct item_func {
-    float hearts;    // bf80
-    u32 rupees;      // bf84
-    s16 small_keys;  // bf88
-    s16 max_life;    // bf8a
-    s16 magic;       // bf8c
-    u16 unk;         // bf8e
-    s16 magic_lv;    // bf90
-    u8 unk2[2];      // bf92/93 // removed stuff?
-    u32 unk3;        // bf94  //related to lantern?
-    u32 unk4;        // bf98  //related to lantern?
-    u32 unk5;        // bf9c  //related to lantern?
-    int oxygen;      // bfa0
-    u32 unk7;        // bfa4  //related to oxygen?
-    int max_oxygen;  // bfa8
-    u32 unk9;        // bfac  //related to oxygen?
-    u32 unk10;       // bfb0  //related to oxygen?
-    s16 arrows;      // bfb4
-    s16 seeds;       // bfb6
-};
-#pragma pack(pop)
 
 #pragma pack(push, 1)
 class dComIfG_camera_info_class {
@@ -72,8 +51,6 @@ private:
 #pragma pack(push, 1)
 class dComIfG_play_c {
 public:
-    bool& getField0x4f7d() { return field_0x4f7d; }
-    u32& getField0x4e84() { return field_0x4e84; }
     void ct(void);
     void init(void);
     void itemInit(void);
@@ -101,120 +78,296 @@ public:
     int getTimerMode(void);
     void setTimerType(u8);
     u8 getTimerType(void);
-    // void setTimerPtr(dTimer_c*);
-    u32 getTimerPtr(void);
+    void setTimerPtr(dTimer_c*);
+    dTimer_c* getTimerPtr(void);
     void setWarpItemData(const char*, cXyz, s16, s8, u8, u8);
 
     // inlines
-    dStage_roomControl_c& getRoomControl() { return mRoomControl; }
-    item_func& getGiveItem() { return give_item; }
-    u8& getUnkHeart() { return unk_heart; }
+    bool& isPauseFlag() { return mPauseFlag; }
+    u32& getMsgObjectClass() { return mMsgObjectClass; }
+    dStage_roomControl_c* getRoomControl() { return mRoomControl; }
+    u8& getItemLifeCountType() { return mItemLifeCountType; }
     void setItem(u8 slot, u8 i_no) {
         mItemSlot = slot;
         mItemID = i_no;
     }
+
     void setUnkWarashibe1(u8 num) { mItemSlot = num; }
     void setUnkWarashibe2(u8 num) { mItemID = num; }
-    void setZStatus(u8 status, u8 unk) {
+
+    void setZStatus(u8 status, u8 flag) {
         mZStatus = status;
-        unkZStatus = unk;
+        mZSetFlag = flag;
     }
-    void setRStatus(u8 status, u8 unk) {
+    void setRStatus(u8 status, u8 flag) {
         mRStatus = status;
-        unkRStatus = unk;
+        mRSetFlag = flag;
     }
-    void setDoStatus(u8 status, u8 unk) {
+    void setDoStatus(u8 status, u8 flag) {
         mDoStatus = status;
-        unkDoStatus = unk;
+        mDoSetFlag = flag;
     }
-    void setAStatus(u8 status, u8 unk) {
+    void setAStatus(u8 status, u8 flag) {
         mAStatus = status;
-        unkAStatus = unk;
+        mASetFlag = flag;
     }
-    void setItemLifeCount(float hearts, u8 unk) {
-        give_item.hearts += hearts;
-        unk_heart = unk;
+    void setItemLifeCount(float hearts, u8 type) {
+        mItemLifeCount += hearts;
+        mItemLifeCountType = type;
     }
-    void setItemRupeeCount(long rupees) { give_item.rupees += rupees; }
-    void setItemMagicCount(short magic) { give_item.magic += magic; }
-    void setItemMaxMagicCount(short max) { give_item.magic_lv += max; }
-    void setItemArrowNumCount(short arrows) { give_item.arrows += arrows; }
-    void setItemPachinkoNumCount(short seeds) { give_item.seeds += seeds; }
-    void setItemKeyNumCount(short keys) { give_item.small_keys += keys; }
-    void setItemMaxLifeCount(short max) { give_item.max_life += max; }
-    void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
-    void setMaxOxygen(long max) { give_item.max_oxygen = max; }
+    void setItemRupeeCount(int rupees) { mItemRupeeCount += rupees; }
+    void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
+    void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
+    void setItemArrowNumCount(s16 arrows) { mItemArrowNumCount += arrows; }
+    void setItemPachinkoNumCount(s16 seeds) { mItemPachinkoNumCount += seeds; }
+    void setItemKeyNumCount(s16 keys) { mItemKeyNumCount += keys; }
+    void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
+    void setOxygen(int oxygen) { mOxygen = oxygen; }
+    void setMaxOxygen(int max) { mMaxOxygen = max; }
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
     inline char* getStartStageName() { return mStartStage.getName(); }
 
-private:  // NEEDS TO BE FIXED
-    /* 0x00000 */ dBgS dbgs;
-    /* 0x0143C */ u8 field_0x143c[0x2999];
+private:
+    /* 0x00000 */ dBgS mDBgS;
+    /* 0x01404 */ dCcS mDCcS;
+    /* 0x03EC4 */ u8 field_0x3ec4[4]; // might be part of dCcS
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03F1D */ u8 padding;
-    /* 0x03F1E */ dStage_nextStage_c mNextStage;
-    /* 0x03F30 */ dStage_stageDt_c mStageData;
-    u8 field_[0x9c];
-    /* 0x03F34 */ dStage_roomControl_c mRoomControl;
-    /* 0x03FD8 */ dEvt_control_c mEventControl;
-    /* 0x0409C */ u8 field_0x409c[0x24];
-    /* 0x040C0 */ dEvent_manager_c mEventManager;
-    /* 0x0475B */ u8 field_0x475B[0x2D];
-    /* 0x04788 */ void* vtable;
-    /* 0x0478C */ u8 field_0x478c[0x1C];
-    /* 0x047A8 */ dAttDraw_c mAttentionDraw;
-    /* 0x0490C */ u8 field_0x490c[0x1AC];
-    /* 0x04AB8 */ dAttList_c mAttentionList1;
-    /* 0x04ACC */ u8 field_0x4acc[0x94];
-    /* 0x04B60 */ dAttList_c mAttentionList2;
-    /* 0x04B74 */ u8 field_0x4b74[0x44];
-    /* 0x04BB8 */ dAttList_c mAttentionList3;
-    /* 0x04BCC */ u8 field_0x4bcc[0xBC];
-    /* 0x04c88 */ void* vtable2;
-    /* 0x04C8C */ u8 field_0x4c8c[0x55];
-    /* 0x04CE1 */ u8 field_0x4ce1[0x37];
-    /* 0x04D18 */ dVibration_c mVibration;
-    /* 0x04DA8 */ u8 field_0x4da8[0x5C];
-    /* 0x04E04 */ u32 field_0x4e04;
-    /* 0x04E08 */ u8 field_0x4e08[0x4];
-    /* 0x04E0C */ u8 field_0x4e0c;
-    /* 0x04E0D */ u8 field_0x4e0d;
-    /* 0x04E0E */ u8 field_0x4e0e[0x2];
-    /* 0x04E10 */ dDlst_window_c mDrawlistWindow;
-    /* 0x04ED4 */ dComIfG_camera_info_class mCameraInfo;
-    /* 0x04E60 */ u8 field_0x4e60[0x24];
-    /* 0x04E84 */ u32 field_0x4e84;
-    /* 0x04E88 */ item_func give_item;
-    /* 0x04EC0 */ u8 field_0x4ec0[0x24];
+    /* 0x03ED5 */ u8 field_0x3ed5; // probably padding
+    /* 0x03ED6 */ dStage_nextStage_c mNextStage;
+    /* 0x03EE7 */ u8 field_0x3ee7; // probably padding
+    /* 0x03EE8 */ dStage_stageDt_c mStageData;
+    /* 0x03F8C */ dStage_roomControl_c* mRoomControl;
+    /* 0x03F90 */ dEvt_control_c mEvent;
+    /* 0x040C0 */ dEvent_manager_c mEvtManager;
+    /* 0x0477C */ u8 field_0x477C[4];
+    /* 0x04780 */ dAttention_c mAttention;
+    /* 0x04C88 */ u8 field_0x4c88[0x14];
+    /* 0x04C9C */ dVibration_c mVibration;
+    /* 0x04D2C */ u8 field_0x4d2c[4];
+    /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
+    /* 0x04D34 */ JKRArchive* mMsgArchive[11];
+    /* 0x04D60 */ JKRArchive* mDemoMsgArchive;
+    /* 0x04D64 */ JKRArchive* mMeterButtonArchive;
+    /* 0x04D68 */ void* field_0x4d68;
+    /* 0x04D6C */ JKRArchive* mFontArchive;
+    /* 0x04D70 */ JKRArchive* mRubyArchive;
+    /* 0x04D74 */ JKRArchive* mAnmArchive;
+    /* 0x04D78 */ void* field_0x4d78[2];
+    /* 0x04D80 */ JKRArchive* mCollectResArchive;
+    /* 0x04D84 */ JKRArchive* mFmapResArchive;
+    /* 0x04D88 */ JKRArchive* mDmapResArchive;
+    /* 0x04D8C */ JKRArchive* mOptionResArchive;
+    /* 0x04D90 */ void* field_0x4d90[2];
+    /* 0x04D98 */ JKRArchive* mItemIconArchive;
+    /* 0x04D9C */ JKRArchive* mNameResArchive;
+    /* 0x04DA0 */ JKRArchive* mErrorResArchive;
+    /* 0x04DA4 */ void* field_0x4da4;
+    /* 0x04DA8 */ JKRArchive* mAllMapArchive;
+    /* 0x04DAC */ JKRArchive* mMsgCommonArchive;
+    /* 0x04DB0 */ JKRArchive* mRingResArchive;
+    /* 0x04DB4 */ void* field_0x4db4;
+    /* 0x04DB8 */ JKRArchive* mCardIconResArchive;
+    /* 0x04DBC */ JKRArchive* mMsgDtArchive[15];
+    /* 0x04DF8 */ JKRArchive* mMain2DArchive;
+    /* 0x04DFC */ void* field_0x4dfc[2];
+    /* 0x04E04 */ void* mParticle;
+    /* 0x04E08 */ void* mSimpleModel;
+    /* 0x04E0C */ u8 mWindowNum;
+    /* 0x04E0D */ u8 mLayerOld;
+    /* 0x04E0E */ u16 mStatus;
+    /* 0x04E10 */ dDlst_window_c mWindow;
+    /* 0x04E3C */ dComIfG_camera_info_class* mCameraInfo;
+    /* 0x04E40 */ s8 mCameraWinID;
+    /* 0x04E41 */ s8 mCameraPlayer1ID;
+    /* 0x04E42 */ s8 mCameraPlayer2ID;
+    /* 0x04E43 */ u8 field_0x4e43;
+    /* 0x04E44 */ int mCameraAttentionStatus;
+    /* 0x04E48 */ float mCameraZoomScale;
+    /* 0x04E4C */ float mCameraZoomForcus;
+    /* 0x04E50 */ void* mCameraParamFileName;
+    /* 0x04E54 */ cXyz mCameraPos;
+    /* 0x04E60 */ cXyz mCameraTarget;
+    /* 0x04E6C */ float mCameraUnk1;
+    /* 0x04E70 */ s16 mCameraUnk2;
+    /* 0x04E72 */ s16 field_0x4e72;
+    /* 0x04E74 */ fopAc_ac_c* mPlayer; // type might be wrong
+    /* 0x04E78 */ s8 mPlayerCameraID[4];
+    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr; // type might be wrong
+    /* 0x04E80 */ fopAc_ac_c* mHorseActor;
+    /* 0x04E84 */ u32 mMsgObjectClass;
+    /* 0x04E88 */ float mItemLifeCount;
+    /* 0x04E8C */ int mItemRupeeCount;
+    /* 0x04E90 */ s16 mItemKeyNumCount;
+    /* 0x04E92 */ s16 mItemMaxLifeCount;
+    /* 0x04E94 */ s16 mItemMagicCount;
+    /* 0x04E96 */ s16 mItemNowMagicCount;
+    /* 0x04E98 */ s16 mItemMaxMagicCount;
+    /* 0x04E9A */ s16 field_0x4e9a;
+    /* 0x04E9C */ int mItemOilCount;
+    /* 0x04EA0 */ int mItemNowOil;
+    /* 0x04EA4 */ int mItemMaxOilCount;
+    /* 0x04EA8 */ int mOxygen;
+    /* 0x04EAC */ int mNowOxygen;
+    /* 0x04EB0 */ int mMaxOxygen;
+    /* 0x04EB4 */ int mOxygenCount;
+    /* 0x04EB8 */ int mMaxOxygenCount;
+    /* 0x04EBC */ s16 mItemArrowNumCount;
+    /* 0x04EBE */ s16 mItemPachinkoNumCount;
+    /* 0x04EC0 */ s16 mItemMaxArrowNumCount;
+    /* 0x04EC2 */ s16 mItemBombNumCount[3];
+    /* 0x04EC8 */ u8 field_0x4ec8[4];
+    /* 0x04ECC */ s16 mItemMaxBombNumCount1;
+    /* 0x04ECE */ s16 mItemMaxBombNumCount2;
+    /* 0x04ED0 */ u8 field_0x4ed0[6];
+    /* 0x04ED6 */ s16 mItemMaxBombNumCount3;
+    /* 0x04ED8 */ u8 field_0x4ed8[6];
+    /* 0x04EDE */ u16 mItemNowLife;
+    /* 0x04EE0 */ u8 field_0x4ee0[2];
+    /* 0x04EE2 */ u8 mMesgStatus;
+    /* 0x04EE3 */ u8 field_0x4ee3;
     /* 0x04EE4 */ u8 mRStatus;
-    /* 0x04EE5 */ u8 mAStatus;
-    /* 0x04EE6 */ u8 field_0x4ec6[0x6];
-    /* 0x04EEC */ u8 mDoStatus;
-    /* 0x04EED */ u8 field_0x4eed[0xE];
+    /* 0x04EE5 */ u8 mAStatus; // B button
+    /* 0x04EE6 */ u8 field_0x4ee6;
+    /* 0x04EE7 */ u8 mNunStatus;
+    /* 0x04EE8 */ u8 mBottleStatus;
+    /* 0x04EE9 */ u8 mRemoConStatus;
+    /* 0x04EEA */ u8 field_0x4eea[2];
+    /* 0x04EEC */ u8 mDoStatus; // A button
+    /* 0x04EED */ u8 field_0x4eed;
+    /* 0x04EEE */ u8 m3DStatus;
+    /* 0x04EEF */ u8 field_0x4eef; // related to NunStatusForce
+    /* 0x04EF0 */ u8 field_0x4ef0; // related to NunStatus
+    /* 0x04EF1 */ u8 field_0x4ef1; // related to RemoConStatusForce
+    /* 0x04EF2 */ u8 field_0x4ef2; // related to RemoConStatus
+    /* 0x04EF3 */ u8 field_0x4ef3[2];
+    /* 0x04EF5 */ u8 m3DDirection;
+    /* 0x04EF6 */ u8 m3DDirectionForce;
+    /* 0x04EF7 */ u8 mCStickStatus;
+    /* 0x04EF8 */ u8 mCStickDirection;
+    /* 0x04EF9 */ u8 mCStickDirectionForce;
+    /* 0x04EFA */ u8 mSButtonStatus;
     /* 0x04EFB */ u8 mZStatus;
-    /* 0x04EFC */ u8 field_0x4efc[0xE];
-    /* 0x04F0A */ u8 unkRStatus;
-    /* 0x04F0B */ u8 unkAStatus;
-    /* 0x04F0C */ u8 field_0x4f0c[0x6];
-    /* 0x04F12 */ u8 unkDoStatus;
-    /* 0x04F13 */ u8 field_0x4f13[0x3];
-    /* 0x04F16 */ u8 unkZStatus;
-    /* 0x04F17 */ u8 field_0x4f17[0x2E];
+    /* 0x04EFC */ u8 mRStatusForce;
+    /* 0x04EFD */ u8 mAStatusForce;
+    /* 0x04EFE */ u8 field_0x4efe;
+    /* 0x04EFF */ u8 field_0x4eff; // related to NunStatusForce
+    /* 0x04F00 */ u8 mBottleStatusForce;
+    /* 0x04F01 */ u8 field_0x4f01; // related to RemoConStatusForce
+    /* 0x04F02 */ u8 field_0x4f02[2];
+    /* 0x04F04 */ u8 mDoStatusForce;
+    /* 0x04F05 */ u8 mTouchStatusForce;
+    /* 0x04F06 */ u8 m3DStatusForce;
+    /* 0x04F07 */ u8 mCStickStatusForce;
+    /* 0x04F08 */ u8 mSButtonStatusForce;
+    /* 0x04F09 */ u8 mZStatusForce;
+    /* 0x04F0A */ u8 mRSetFlag; // related to RStatus
+    /* 0x04F0B */ u8 mASetFlag; // related to AStatus
+    /* 0x04F0C */ u8 field_0x4f0c;
+    /* 0x04F0D */ u8 mNunSetFlag; // related to NunStatus
+    /* 0x04F0E */ u8 mBottleSetFlag; // related to BottleStatus
+    /* 0x04F0F */ u8 mRemoConSetFlag; // related to RemoConStatus
+    /* 0x04F10 */ u8 field_0x4f10[2];
+    /* 0x04F12 */ u8 mDoSetFlag; // related to DoStatus
+    /* 0x04F13 */ u8 m3DSetFlag; // related to 3DStatus
+    /* 0x04F14 */ u8 mCStickSetFlag; // related to CStickStatus
+    /* 0x04F15 */ u8 mSButtonSetFlag; // related to SButtonStatus
+    /* 0x04F16 */ u8 mZSetFlag; // related to ZStatus
+    /* 0x04F17 */ u8 mRSetFlagForce;
+    /* 0x04F18 */ u8 mASetFlagForce;
+    /* 0x04F19 */ u8 field_0x4f19;
+    /* 0x04F1A */ u8 field_0x4f1a; // related to NunStatusForce
+    /* 0x04F1B */ u8 mBottleSetFlagForce;
+    /* 0x04F1C */ u8 field_0x4f1c; // related to RemoConStatusForce
+    /* 0x04F1D */ u8 field_0x4f1d[2];
+    /* 0x04F1F */ u8 mDoSetFlagForce;
+    /* 0x04F20 */ u8 m3DSetFlagForce;
+    /* 0x04F21 */ u8 mCStickSetFlagForce;
+    /* 0x04F22 */ u8 mSButtonSetFlagForce;
+    /* 0x04F23 */ u8 mZSetFlagForce;
+    /* 0x04F24 */ u8 mXStatus;
+    /* 0x04F25 */ u8 mXStatusForce;
+    /* 0x04F26 */ u8 field_0x4fbe; // related to XStatus
+    /* 0x04F27 */ u8 mXSetFlagForce;
+    /* 0x04F28 */ u8 mYStatus;
+    /* 0x04F29 */ u8 mYStatusForce;
+    /* 0x04F2A */ u8 mYSetFlag; // related to YStatus
+    /* 0x04F2B */ u8 mYSetFlagForce;
+    /* 0x04F2C */ u8 mNunZStatus;
+    /* 0x04F2D */ u8 mNunZSetFlag; // related to NunZStatus
+    /* 0x04F2E */ u8 field_0x4fc6; // related to NunZStatusForce
+    /* 0x04F2F */ u8 field_0x4fc7; // related to NunZStatusForce
+    /* 0x04F30 */ u8 mNunCStatus;
+    /* 0x04F31 */ u8 mNunCSetFlag; // related to NunCStatus
+    /* 0x04F32 */ u8 field_0x4fca; // related to NunCStatusForce
+    /* 0x04F33 */ u8 field_0x4fcb; // related to NunCStatusForce
+    /* 0x04F34 */ u8 mSelectItem[8];
+    /* 0x04F3C */ u8 mSelectEquip[6];
+    /* 0x04F42 */ u8 mBaseAnimeID;
+    /* 0x04F43 */ u8 mFaceAnimeID;
+    /* 0x04F44 */ u8 mNowAnimeID;
     /* 0x04F45 */ u8 mItemSlot;
     /* 0x04F46 */ u8 mItemID;
-    /* 0x04F47 */ u8 field_0x4f47[0x13];
+    /* 0x04F47 */ u8 field_0x4f47[2];
+    /* 0x04F49 */ u8 mDirection;
+    /* 0x04F4A */ u8 field_0x4f4a;
+    /* 0x04F4B */ u8 field_0x4f4b; // related to itemInit
+    /* 0x04F4C */ u8 field_0x4f4c; // related to itemInit
+    /* 0x04F4D */ u8 field_0x4f4d;
+    /* 0x04F4E */ u8 mMesgCancelButton;
+    /* 0x04F4F */ u8 field_0x4f4f[2];
+    /* 0x04F51 */ u8 mGameoverStatus;
+    /* 0x04F52 */ u8 field_0x4f52[5];
+    /* 0x04F57 */ u8 mHeapLockFlag;
+    /* 0x04F58 */ u8 mSubHeapLockFlag[2];
     /* 0x04F5A */ u8 mNowVibration;
-    /* 0x04F5B */ u8 field_0x4f5b[0x22];
-    /* 0x04F7D */ bool field_0x4f7d;
-    /* 0x04F7E */ u8 unk_heart;
-    /* 0x04F7F */ u8 field_0x4f7f;
-    /* 0x04F80 */ u8 field_0x4f80[0x78];
-    /* 0x04FF8 */ u32 mTimerPtr;
+    /* 0x04F5B */ u8 field_0x4f5b[2];
+    /* 0x04F5D */ u8 mWolfAbility;
+    /* 0x04F5E */ u8 field_0x4f5e[11];
+    /* 0x04F69 */ u8 mNeedLightDropNum;
+    /* 0x04F6A */ u8 field_0x4f6a[18];
+    /* 0x04F7C */ u8 mMesgBgm;
+    /* 0x04F7D */ bool mPauseFlag;
+    /* 0x04F7E */ u8 mItemLifeCountType;
+    /* 0x04F7F */ u8 mOxygenShowFlag;
+    /* 0x04F80 */ u8 mShow2D;
+    /* 0x04F81 */ u8 field_0x4f81[3];
+    /* 0x04F84 */ JKRExpHeap* mExpHeap2D;
+    /* 0x04F88 */ JKRExpHeap* mSubExpHeap2D[2];
+    /* 0x04F90 */ JKRExpHeap* mMsgExpHeap;
+    /* 0x04F94 */ char field_0x4F94[8]; // related to setWarpItemData
+    /* 0x04F9C */ cXyz field_0x4f9c;    // related to setWarpItemData
+    /* 0x04FA8 */ u8 field_0x4fa8[2];
+    /* 0x04FAA */ u8 field_0x4faa;      // related to setWarpItemData
+    /* 0x04FAB */ u8 field_0x4fab;      // related to setWarpItemData
+    /* 0x04FAC */ u8 field_0x4fac;      // related to setWarpItemData
+    /* 0x04FAD */ u8 field_0x4fad[3];
+    /* 0x04FB0 */ void* mMesgCamInfo;
+    /* 0x04FB4 */ int mMesgCamInfoBasicID;
+    /* 0x04FB8 */ fopAc_ac_c* mMesgCamInfoActor1;
+    /* 0x04FBC */ fopAc_ac_c* mMesgCamInfoActor2;
+    /* 0x04FC0 */ fopAc_ac_c* mMesgCamInfoActor3;
+    /* 0x04FC4 */ fopAc_ac_c* mMesgCamInfoActor4;
+    /* 0x04FC8 */ fopAc_ac_c* mMesgCamInfoActor5;
+    /* 0x04FCC */ fopAc_ac_c* mMesgCamInfoActor6;
+    /* 0x04FD0 */ fopAc_ac_c* mMesgCamInfoActor7;
+    /* 0x04FD4 */ fopAc_ac_c* mMesgCamInfoActor8;
+    /* 0x04FD8 */ fopAc_ac_c* mMesgCamInfoActor9;
+    /* 0x04FDC */ fopAc_ac_c* mMesgCamInfoActor10;
+    /* 0x04FE0 */ int mPlayerStatus;
+    /* 0x04FE4 */ u8 field_0x4fe4[0x14];
+    /* 0x04FF8 */ dTimer_c* mTimerPtr;
     /* 0x04FFC */ int mTimerNowTimeMs;
     /* 0x05000 */ int mTimerLimitTimeMs;
     /* 0x05004 */ int mTimerMode;
     /* 0x05008 */ u8 mTimerType;
+    /* 0x0500C */ dDlst_window_c* mCurrentWindow;
+    /* 0x05010 */ void* mCurrentView;
+    /* 0x05014 */ void* mCurrentViewport;
+    /* 0x05018 */ void* mCurrentGrafPort;
+    /* 0x0501C */ void* mItemTable;
+    /* 0x0501D */ u8 field_0x501d[7];
+    /* 0x05024 */ char mLastPlayStageName[8];
 };
 #pragma pack(pop)
 
@@ -224,9 +377,6 @@ public:
     dComIfG_inf_c(void);
     void ct(void);
 
-    // temp until we map the item short function names
-    item_func& getPlayGiveItem() { return play.getGiveItem(); }
-    u8& getPlayUnkHeart() { return play.getUnkHeart(); }
     // temp for setWarashibeItem
     void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
     void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
@@ -245,15 +395,14 @@ public:
 
 private:
     /* 0x00000 */ dSv_info_c info;
-    /* 0x00EEB */ u8 field_0xeeb[0x39];
+    /* 0x00EEC */ u8 field_0xeec[0x38];
     /* 0x00F24 */ u32 saveTotalTime;
     /* 0x00F28 */ u32 saveStartTime;
-    /* 0x00F2C */ u32 field_0xf30;
-    /* 0x00F30 */ u32 field_0xf34;
-    u8 unk[3];
-    /* 0x00F34 */ dComIfG_play_c play;
-    /* 0x05F60 */ u8 field_0x5f60[0x33];
-    /* 0x05F70 */ dDlst_list_c draw_list_list;
+    /* 0x00F2C */ u32 field_0xf2c;
+    /* 0x00F30 */ u32 field_0xf30;
+    /* 0x00F34 */ u32 field_0xf34;
+    /* 0x00F38 */ dComIfG_play_c play;
+    /* 0x05F64 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8];
     /* 0x1C2F8 */ dRes_info_c resource_info1;
     /* 0x1C31C */ u8 unk19[0x11DC];
@@ -278,38 +427,40 @@ private:
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
+//int i = sizeof(dSv_info_c);
+
 void dComIfGp_setItemLifeCount(float, u8);
 void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
 
-inline void dComIfGp_setRStatus(u8 status, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setRStatus(status, unk);
+inline void dComIfGp_setRStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.getPlay().setRStatus(status, flag);
 }
-inline void dComIfGp_setDoStatus(u8 status, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setDoStatus(status, unk);
+inline void dComIfGp_setDoStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.getPlay().setDoStatus(status, flag);
 }
-inline void dComIfGp_setAStatus(u8 status, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setAStatus(status, unk);
+inline void dComIfGp_setAStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.getPlay().setAStatus(status, flag);
 }
-inline void dComIfGp_setZStatus(u8 status, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
+inline void dComIfGp_setZStatus(u8 status, u8 flag) {
+    g_dComIfG_gameInfo.getPlay().setZStatus(status, flag);
 }
-inline void dComIfGp_setItemMagicCount(short amount) {
+inline void dComIfGp_setItemMagicCount(s16 amount) {
     g_dComIfG_gameInfo.getPlay().setItemMagicCount(amount);
 }
-inline void dComIfGp_setItemMaxMagicCount(short max) {
+inline void dComIfGp_setItemMaxMagicCount(s16 max) {
     g_dComIfG_gameInfo.getPlay().setItemMaxMagicCount(max);
 }
-inline void dComIfGp_setItemArrowNumCount(short amount) {
+inline void dComIfGp_setItemArrowNumCount(s16 amount) {
     g_dComIfG_gameInfo.getPlay().setItemArrowNumCount(amount);
 }
-inline void dComIfGp_setItemPachinkoNumCount(short amount) {
+inline void dComIfGp_setItemPachinkoNumCount(s16 amount) {
     g_dComIfG_gameInfo.getPlay().setItemPachinkoNumCount(amount);
 }
-inline void dComIfGp_setItemKeyNumCount(short amount) {
+inline void dComIfGp_setItemKeyNumCount(s16 amount) {
     g_dComIfG_gameInfo.getPlay().setItemKeyNumCount(amount);
 }
-inline void dComIfGp_setItemMaxLifeCount(short max) {
+inline void dComIfGp_setItemMaxLifeCount(s16 max) {
     g_dComIfG_gameInfo.getPlay().setItemMaxLifeCount(max);
 }
 inline void dComIfGs_onDungeonItemMap(void) {
@@ -324,10 +475,10 @@ inline void dComIfGs_onDungeonItemWarp(void) {
 inline void dComIfGs_setItem(int slot, u8 i_no) {
     g_dComIfG_gameInfo.getSaveFile().getPlayerItem().setItem(slot, i_no);
 }
-inline void dComIfGs_setOxygen(long amount) {
+inline void dComIfGs_setOxygen(int amount) {
     g_dComIfG_gameInfo.getPlay().setOxygen(amount);
 }
-inline void dComIfGs_setMaxOxygen(long max) {
+inline void dComIfGs_setMaxOxygen(int max) {
     g_dComIfG_gameInfo.getPlay().setMaxOxygen(max);
 }
 inline void dComIfGs_setOil(u16 amount) {

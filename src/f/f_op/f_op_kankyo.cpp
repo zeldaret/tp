@@ -42,7 +42,7 @@ struct unk {
 #ifdef NON_MATCHING
 void fopKy_Draw(void* i_pUserData) {
     unk* pMtd = (unk*)i_pUserData;
-    if (!g_dComIfG_gameInfo.getPlay().getField0x4f7d()) {
+    if (!g_dComIfG_gameInfo.getPlay().isPauseFlag()) {
         fpcLf_DrawMethod(pMtd->mpDrawMtd, i_pUserData);
     }
 }
