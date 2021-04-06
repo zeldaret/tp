@@ -8,8 +8,8 @@ lbl_80BE66B4:
 /* 80BE66CC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BE66D0  7C 9E 23 78 */	mr r30, r4
 /* 80BE66D4  FF E0 08 90 */	fmr f31, f1
-/* 80BE66D8  3C 60 80 BE */	lis r3, l_arcName@ha
-/* 80BE66DC  3B E3 74 38 */	addi r31, r3, l_arcName@l
+/* 80BE66D8  3C 60 80 BE */	lis r3, l_arcName@ha /* 0x80BE7438@ha */
+/* 80BE66DC  3B E3 74 38 */	addi r31, r3, l_arcName@l /* 0x80BE7438@l */
 /* 80BE66E0  C0 24 00 08 */	lfs f1, 8(r4)
 /* 80BE66E4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80BE66E8  D0 01 00 0C */	stfs f0, 0xc(r1)
@@ -17,7 +17,7 @@ lbl_80BE66B4:
 /* 80BE66F0  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80BE66F4  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80BE66F8  38 61 00 0C */	addi r3, r1, 0xc
-/* 80BE66FC  4B 76 0A 3C */	b PSVECSquareMag
+/* 80BE66FC  4B 76 0A 3D */	bl PSVECSquareMag
 /* 80BE6700  C0 1F 00 40 */	lfs f0, 0x40(r31)
 /* 80BE6704  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BE6708  40 81 00 58 */	ble lbl_80BE6760
@@ -46,8 +46,8 @@ lbl_80BE6760:
 /* 80BE6760  C8 1F 00 58 */	lfd f0, 0x58(r31)
 /* 80BE6764  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BE6768  40 80 00 10 */	bge lbl_80BE6778
-/* 80BE676C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80BE6770  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80BE676C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80BE6770  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80BE6774  48 00 00 70 */	b lbl_80BE67E4
 lbl_80BE6778:
 /* 80BE6778  D0 21 00 08 */	stfs f1, 8(r1)
@@ -81,8 +81,8 @@ lbl_80BE67D0:
 lbl_80BE67D4:
 /* 80BE67D4  2C 00 00 01 */	cmpwi r0, 1
 /* 80BE67D8  40 82 00 0C */	bne lbl_80BE67E4
-/* 80BE67DC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80BE67E0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80BE67DC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80BE67E0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80BE67E4:
 /* 80BE67E4  C0 1E 00 04 */	lfs f0, 4(r30)
 /* 80BE67E8  EC 00 F8 2A */	fadds f0, f0, f31
@@ -110,7 +110,7 @@ lbl_80BE680C:
 lbl_80BE683C:
 /* 80BE683C  38 61 00 18 */	addi r3, r1, 0x18
 /* 80BE6840  7F C4 F3 78 */	mr r4, r30
-/* 80BE6844  4B 68 07 04 */	b normalizeZP__4cXyzFv
+/* 80BE6844  4B 68 07 05 */	bl normalizeZP__4cXyzFv
 /* 80BE6848  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80BE684C  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80BE6850  83 E1 00 2C */	lwz r31, 0x2c(r1)

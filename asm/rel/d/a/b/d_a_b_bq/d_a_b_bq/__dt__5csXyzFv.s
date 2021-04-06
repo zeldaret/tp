@@ -7,7 +7,7 @@ lbl_805BA124:
 /* 805BA138  41 82 00 10 */	beq lbl_805BA148
 /* 805BA13C  7C 80 07 35 */	extsh. r0, r4
 /* 805BA140  40 81 00 08 */	ble lbl_805BA148
-/* 805BA144  4B D1 4B F8 */	b __dl__FPv
+/* 805BA144  4B D1 4B F9 */	bl __dl__FPv
 lbl_805BA148:
 /* 805BA148  7F E3 FB 78 */	mr r3, r31
 /* 805BA14C  83 E1 00 0C */	lwz r31, 0xc(r1)

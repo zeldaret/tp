@@ -3,11 +3,11 @@ lbl_801ADE00:
 /* 801ADE04  7C 08 02 A6 */	mflr r0
 /* 801ADE08  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801ADE0C  4B EA 96 D5 */	bl dKyw_wether_init__Fv
-/* 801ADE10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801ADE14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801ADE10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801ADE14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801ADE18  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 801ADE1C  3C 80 80 39 */	lis r4, d_d_kyeff__stringBase0@ha
-/* 801ADE20  38 84 4F 38 */	addi r4, r4, d_d_kyeff__stringBase0@l
+/* 801ADE1C  3C 80 80 39 */	lis r4, d_d_kyeff__stringBase0@ha /* 0x80394F38@ha */
+/* 801ADE20  38 84 4F 38 */	addi r4, r4, d_d_kyeff__stringBase0@l /* 0x80394F38@l */
 /* 801ADE24  48 1B AB 71 */	bl strcmp
 /* 801ADE28  2C 03 00 00 */	cmpwi r3, 0
 /* 801ADE2C  40 82 00 60 */	bne lbl_801ADE8C
@@ -15,8 +15,8 @@ lbl_801ADE00:
 /* 801ADE34  38 A1 00 08 */	addi r5, r1, 8
 /* 801ADE38  48 19 4B 3D */	bl OSTicksToCalendarTime
 /* 801ADE3C  C0 02 A4 5C */	lfs f0, lit_3805(r2)
-/* 801ADE40  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801ADE44  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801ADE40  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801ADE44  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801ADE48  D0 03 0E 48 */	stfs f0, 0xe48(r3)
 /* 801ADE4C  C0 02 A4 58 */	lfs f0, lit_3804(r2)
 /* 801ADE50  D0 03 0E 4C */	stfs f0, 0xe4c(r3)

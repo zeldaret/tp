@@ -17,8 +17,6 @@ struct daPy_py_c {
     /* 8015F398 */ void checkMasterSwordEquip();
 };
 
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -33,6 +31,8 @@ struct dCcD_GObjInf {
     /* 800844F8 */ void GetTgHitObj();
     /* 8008457C */ void GetTgHitObjSe();
 };
+
+struct Quaternion {};
 
 struct daObj {
     /* 80037038 */ void eff_break_tsubo(fopAc_ac_c*, cXyz, int);
@@ -117,11 +117,6 @@ extern "C" extern char const* const d_a_d_a_obj__stringBase0;
 // External References:
 //
 
-void fopAcM_posMove(fopAc_ac_c*, cXyz const*);
-void dComIfGp_getReverb(int);
-void cM_atan2s(f32, f32);
-void cM3d_CrawVec(Vec const&, Vec const&, Vec*);
-
 extern "C" void __dt__4cXyzFv();
 extern "C" void fopAcM_posMove__FP10fopAc_ac_cPC4cXyz();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -171,51 +166,11 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80379298-803792A8 0010+00 s=1 e=0 z=0  None .rodata    zero_quat$3920 */
-SECTION_RODATA static f32 const zero_quat[4] = {
-    0.0f,
-    0.0f,
-    0.0f,
-    1.0f,
-};
-
-/* 803792A8-803792B0 0007+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803792A8 = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803792AF = "";
-#pragma pop
-
-/* 80451D98-80451D9C 0004+00 s=6 e=0 z=0  None .sdata2    @3671 */
+/* 80451D98-80451D9C 000398 0004+00 6/6 0/0 0/0 .sdata2          @3671 */
 SECTION_SDATA2 static f32 lit_3671 = 1.0f;
 
-/* 80037038-80037180 0148+00 s=4 e=0 z=0  None .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
+/* 80037038-80037180 031978 0148+00 4/4 0/0 0/0 .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
  */
-//	80037048: 803621D0 (_savegpr_26)
-//	80037058: 803792A8 (d_a_d_a_obj__stringBase0)
-//	8003705C: 803792A8 (d_a_d_a_obj__stringBase0)
-//	80037064: 804061C0 (g_dComIfG_gameInfo)
-//	80037068: 804061C0 (g_dComIfG_gameInfo)
-//	8003707C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80037084: 803792A8 (d_a_d_a_obj__stringBase0)
-//	80037088: 803792A8 (d_a_d_a_obj__stringBase0)
-//	80037098: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	800370A8: 804061C0 (g_dComIfG_gameInfo)
-//	800370AC: 804061C0 (g_dComIfG_gameInfo)
-//	800370B4: 80450E90 (mEcallback__18dPa_modelEcallBack)
-//	800370EC: 80451D98 (lit_3671)
-//	800370F0: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8003710C: 8004AC00
-//(setModel__18dPa_modelEcallBackFP14JPABaseEmitterP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc)
-//	80037120: 80424794 (mTsubo__13dPa_control_c)
-//	80037124: 80424794 (mTsubo__13dPa_control_c)
-//	80037160: 80451D98 (lit_3671)
-//	80037164: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8003716C: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,27 +181,14 @@ asm void daObj::eff_break_tsubo(fopAc_ac_c* param_0, cXyz param_1, int param_2) 
 #pragma pop
 
 /* ############################################################################################## */
-/* 804245E8-804245F4 000C+00 s=1 e=0 z=0  None .bss       @3677 */
+/* 804245E8-804245F4 051308 000C+00 1/1 0/0 0/0 .bss             @3677 */
 static u8 lit_3677[12];
 
-/* 804245F4-80424600 000C+00 s=1 e=0 z=0  None .bss       scale$3676 */
+/* 804245F4-80424600 051314 000C+00 1/1 0/0 0/0 .bss             scale$3676 */
 static f32 scale_3676[3];
 
-/* 80037180-80037210 0090+00 s=0 e=0 z=2  None .text make_eff_break_kotubo__5daObjFP10fopAc_ac_c
+/* 80037180-80037210 031AC0 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo__5daObjFP10fopAc_ac_c
  */
-//	80037194: 80450DF0 (struct_80450DF0)
-//	800371A0: 80451D98 (lit_3671)
-//	800371A4: 804245F4 (scale_3676)
-//	800371A8: 804245F4 (scale_3676)
-//	800371B4: 80009184 (__dt__4cXyzFv)
-//	800371B8: 80009184 (__dt__4cXyzFv)
-//	800371BC: 804245E8 (lit_3677)
-//	800371C0: 804245E8 (lit_3677)
-//	800371C4: 80361C24 (__register_global_object)
-//	800371CC: 80450DF0 (struct_80450DF0)
-//	800371D0: 804245F4 (scale_3676)
-//	800371D4: 804245F4 (scale_3676)
-//	800371F8: 80037038 (eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,27 +199,14 @@ asm void daObj::make_eff_break_kotubo(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80424600-8042460C 000C+00 s=1 e=0 z=0  None .bss       @3692 */
+/* 80424600-8042460C 051320 000C+00 1/1 0/0 0/0 .bss             @3692 */
 static u8 lit_3692[12];
 
-/* 8042460C-80424618 000C+00 s=1 e=0 z=0  None .bss       scale$3691 */
+/* 8042460C-80424618 05132C 000C+00 1/1 0/0 0/0 .bss             scale$3691 */
 static f32 scale_3691[3];
 
-/* 80037210-800372A0 0090+00 s=0 e=0 z=2  None .text make_eff_break_kotubo2__5daObjFP10fopAc_ac_c
+/* 80037210-800372A0 031B50 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo2__5daObjFP10fopAc_ac_c
  */
-//	80037224: 80450DF1 (struct_80450DF0)
-//	80037230: 80451D98 (lit_3671)
-//	80037234: 8042460C (scale_3691)
-//	80037238: 8042460C (scale_3691)
-//	80037244: 80009184 (__dt__4cXyzFv)
-//	80037248: 80009184 (__dt__4cXyzFv)
-//	8003724C: 80424600 (lit_3692)
-//	80037250: 80424600 (lit_3692)
-//	80037254: 80361C24 (__register_global_object)
-//	8003725C: 80450DF1 (struct_80450DF0)
-//	80037260: 8042460C (scale_3691)
-//	80037264: 8042460C (scale_3691)
-//	80037288: 80037038 (eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,27 +217,14 @@ asm void daObj::make_eff_break_kotubo2(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80424618-80424624 000C+00 s=1 e=0 z=0  None .bss       @3719 */
+/* 80424618-80424624 051338 000C+00 1/1 0/0 0/0 .bss             @3719 */
 static u8 lit_3719[12];
 
-/* 80424624-80424630 000C+00 s=1 e=0 z=0  None .bss       scale$3718 */
+/* 80424624-80424630 051344 000C+00 1/1 0/0 0/0 .bss             scale$3718 */
 static f32 scale_3718[3];
 
-/* 800372A0-80037330 0090+00 s=0 e=0 z=1  None .text
+/* 800372A0-80037330 031BE0 0090+00 0/0 0/0 1/1 .text
  * make_eff_break_gm_kotubo__5daObjFP10fopAc_ac_c               */
-//	800372B4: 80450DF2 (struct_80450DF0)
-//	800372C0: 80451D98 (lit_3671)
-//	800372C4: 80424624 (scale_3718)
-//	800372C8: 80424624 (scale_3718)
-//	800372D4: 80009184 (__dt__4cXyzFv)
-//	800372D8: 80009184 (__dt__4cXyzFv)
-//	800372DC: 80424618 (lit_3719)
-//	800372E0: 80424618 (lit_3719)
-//	800372E4: 80361C24 (__register_global_object)
-//	800372EC: 80450DF2 (struct_80450DF0)
-//	800372F0: 80424624 (scale_3718)
-//	800372F4: 80424624 (scale_3718)
-//	80037318: 80037038 (eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,30 +235,17 @@ asm void daObj::make_eff_break_gm_kotubo(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80424630-8042463C 000C+00 s=1 e=0 z=0  None .bss       @3732 */
+/* 80424630-8042463C 051350 000C+00 1/1 0/0 0/0 .bss             @3732 */
 static u8 lit_3732[12];
 
-/* 8042463C-80424648 000C+00 s=1 e=0 z=0  None .bss       scale$3731 */
+/* 8042463C-80424648 05135C 000C+00 1/1 0/0 0/0 .bss             scale$3731 */
 static f32 scale_3731[3];
 
-/* 80451D9C-80451DA0 0004+00 s=1 e=0 z=0  None .sdata2    @3714 */
+/* 80451D9C-80451DA0 00039C 0004+00 1/1 0/0 0/0 .sdata2          @3714 */
 SECTION_SDATA2 static f32 lit_3714 = 2.0f;
 
-/* 80037330-800373C0 0090+00 s=0 e=0 z=1  None .text
+/* 80037330-800373C0 031C70 0090+00 0/0 0/0 1/1 .text
  * make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c               */
-//	80037344: 80450DF3 (struct_80450DF0)
-//	80037350: 80451D9C (lit_3714)
-//	80037354: 8042463C (scale_3731)
-//	80037358: 8042463C (scale_3731)
-//	80037364: 80009184 (__dt__4cXyzFv)
-//	80037368: 80009184 (__dt__4cXyzFv)
-//	8003736C: 80424630 (lit_3732)
-//	80037370: 80424630 (lit_3732)
-//	80037374: 80361C24 (__register_global_object)
-//	8003737C: 80450DF3 (struct_80450DF0)
-//	80037380: 8042463C (scale_3731)
-//	80037384: 8042463C (scale_3731)
-//	800373A8: 80037038 (eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,7 +256,7 @@ asm void daObj::make_eff_break_gm_ootubo(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451DA0-80451DA4 0004+00 s=4 e=0 z=0  None .sdata2    @3801 */
+/* 80451DA0-80451DA4 0003A0 0004+00 4/4 0/0 0/0 .sdata2          @3801 */
 SECTION_SDATA2 static u8 lit_3801[4] = {
     0x00,
     0x00,
@@ -361,10 +264,8 @@ SECTION_SDATA2 static u8 lit_3801[4] = {
     0x00,
 };
 
-/* 800373C0-800373F0 0030+00 s=0 e=0 z=4  None .text
+/* 800373C0-800373F0 031D00 0030+00 0/0 0/0 4/4 .text
  * posMoveF_stream__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzff        */
-//	800373D0: 80451DA0 (lit_3801)
-//	800373DC: 80037620 (posMoveF_grade__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzffPC4cXyzffPC4cXyz)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,58 +277,34 @@ asm void daObj::posMoveF_stream(fopAc_ac_c* param_0, cXyz const* param_1, cXyz c
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451DA4-80451DA8 0004+00 s=2 e=0 z=0  None .sdata2    @3836 */
+/* 80451DA4-80451DA8 0003A4 0004+00 2/2 0/0 0/0 .sdata2          @3836 */
 SECTION_SDATA2 static f32 lit_3836 = -1.0f;
 
-/* 800373F0-800374EC 00FC+00 s=1 e=0 z=0  None .text
+/* 800373F0-800374EC 031D30 00FC+00 1/1 0/0 0/0 .text
  * posMoveF_resist_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzff */
-//	80037424: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	800374A8: 80451DA4 (lit_3836)
-//	800374AC: 803470D8 (PSVECScale)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_800373F0() {
+static asm void func_800373F0() {
     nofralloc
 #include "asm/d/a/d_a_obj/func_800373F0.s"
 }
 #pragma pop
 
-/* 800374EC-80037620 0134+00 s=1 e=0 z=0  None .text
+/* 800374EC-80037620 031E2C 0134+00 1/1 0/0 0/0 .text
  * posMoveF_grade_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzffPC4cXyzPC4cXyz
  */
-//	8003750C: 803621DC (_savegpr_29)
-//	80037524: 80430CF4 (Zero__4cXyz)
-//	80037528: 80430CF4 (Zero__4cXyz)
-//	8003757C: 80347090 (PSVECAdd)
-//	80037588: 80347194 (PSVECDotProduct)
-//	8003758C: 80451DA0 (lit_3801)
-//	800375B4: 8026EBBC (cM3d_CrawVec__FRC3VecRC3VecP3Vec)
-//	800375C4: 80347090 (PSVECAdd)
-//	800375D4: 8026EBBC (cM3d_CrawVec__FRC3VecRC3VecP3Vec)
-//	800375E4: 80266B84 (__ml__4cXyzCFf)
-//	800375F4: 803470B4 (PSVECSubtract)
-//	8003760C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_800374EC() {
+static asm void func_800374EC() {
     nofralloc
 #include "asm/d/a/d_a_obj/func_800374EC.s"
 }
 #pragma pop
 
-/* 80037620-80037788 0168+00 s=1 e=0 z=0  None .text
+/* 80037620-80037788 031F60 0168+00 1/1 0/0 0/0 .text
  * posMoveF_grade__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzffPC4cXyzffPC4cXyz */
-//	80037640: 803621D8 (_savegpr_28)
-//	80037664: 800373F0 (func_800373F0)
-//	80037684: 800374EC (func_800374EC)
-//	80037698: 80439A20 (sincosTable___5JMath)
-//	8003769C: 80439A20 (sincosTable___5JMath)
-//	80037734: 80451DA0 (lit_3801)
-//	8003774C: 80267674 (cM_atan2s__Fff)
-//	8003775C: 8001A660 (fopAcM_posMove__FP10fopAc_ac_cPC4cXyz)
-//	80037774: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -440,35 +317,24 @@ asm void daObj::posMoveF_grade(fopAc_ac_c* param_0, cXyz const* param_1, cXyz co
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451DA8-80451DB0 0004+04 s=1 e=0 z=0  None .sdata2    @3956 */
+/* 80379298-803792A8 0058F8 0010+00 1/1 0/0 0/0 .rodata          zero_quat$3920 */
+SECTION_RODATA static f32 const zero_quat[4] = {
+    0.0f,
+    0.0f,
+    0.0f,
+    1.0f,
+};
+SECTION_DEAD void* const cg_80379298 = (void*)(&zero_quat);
+
+/* 80451DA8-80451DB0 0003A8 0004+04 1/1 0/0 0/0 .sdata2          @3956 */
 SECTION_SDATA2 static f32 lit_3956[1 + 1 /* padding */] = {
     9.99999905104687e-09f,
     /* padding */
     0.0f,
 };
 
-/* 80037788-80037900 0178+00 s=0 e=0 z=1  None .text      quat_rotBaseY__5daObjFP10QuaternionRC4cXyz
+/* 80037788-80037900 0320C8 0178+00 0/0 0/0 1/1 .text quat_rotBaseY__5daObjFP10QuaternionRC4cXyz
  */
-//	800377B8: 80347138 (PSVECSquareMag)
-//	800377C0: 80451DA8 (lit_3956)
-//	800377D0: 80430D24 (BaseY__4cXyz)
-//	800377D4: 80430D24 (BaseY__4cXyz)
-//	800377DC: 80266CBC (outprod__4cXyzCFRC3Vec)
-//	800377FC: 80347138 (PSVECSquareMag)
-//	80037804: 80451DA8 (lit_3956)
-//	8003781C: 80266C18 (__dv__4cXyzCFf)
-//	80037838: 80430D24 (BaseY__4cXyz)
-//	8003783C: 80430D24 (BaseY__4cXyz)
-//	80037844: 80347194 (PSVECDotProduct)
-//	80037848: 8036C6E0 (acos)
-//	80037850: 80451DA0 (lit_3801)
-//	8003786C: 80451D98 (lit_3671)
-//	80037874: 803470D8 (PSVECScale)
-//	80037884: 80347474 (C_QUATRotAxisRad)
-//	8003788C: 80379298 (zero_quat)
-//	80037890: 80379298 (zero_quat)
-//	800378B4: 80379298 (zero_quat)
-//	800378B8: 80379298 (zero_quat)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -478,19 +344,8 @@ asm void daObj::quat_rotBaseY(Quaternion* param_0, cXyz const& param_1) {
 }
 #pragma pop
 
-/* 80037900-80037A4C 014C+00 s=0 e=0 z=3  None .text HitSeStart__5daObjFPC4cXyziPC12dCcD_GObjInfUl
- */
-//	80037910: 803621CC (_savegpr_25)
-//	80037928: 8008457C (GetTgHitObjSe__12dCcD_GObjInfFv)
-//	80037934: 80083688 (GetAc__22dCcD_GAtTgCoCommonBaseFv)
-//	80037940: 800844F8 (GetTgHitObj__12dCcD_GObjInfFv)
-//	800379AC: 8015F398 (checkMasterSwordEquip__9daPy_py_cFv)
-//	800379FC: 8002D06C (dComIfGp_getReverb__Fi)
-//	80037A08: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80037A1C: 80451D98 (lit_3671)
-//	80037A24: 80451DA4 (lit_3836)
-//	80037A30: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80037A38: 80362218 (_restgpr_25)
+/* 80037900-80037A4C 032240 014C+00 0/0 0/0 3/3 .text
+ * HitSeStart__5daObjFPC4cXyziPC12dCcD_GObjInfUl                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,7 +356,7 @@ asm void daObj::HitSeStart(cXyz const* param_0, int param_1, dCcD_GObjInf const*
 }
 #pragma pop
 
-/* 80037A4C-80037A54 0008+00 s=0 e=2 z=0  None .text      GetCoCP__12cCcD_CylAttrFv */
+/* 80037A4C-80037A54 03238C 0008+00 0/0 2/0 0/0 .text            GetCoCP__12cCcD_CylAttrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -511,7 +366,7 @@ asm void cCcD_CylAttr::GetCoCP() {
 }
 #pragma pop
 
-/* 80037A54-80037A5C 0008+00 s=0 e=2 z=0  None .text      GetCoCP__12cCcD_SphAttrFv */
+/* 80037A54-80037A5C 032394 0008+00 0/0 2/0 0/0 .text            GetCoCP__12cCcD_SphAttrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -519,4 +374,13 @@ asm void cCcD_SphAttr::GetCoCP() {
     nofralloc
 #include "asm/d/a/d_a_obj/GetCoCP__12cCcD_SphAttrFv.s"
 }
+#pragma pop
+
+/* 803792A8-803792B0 005908 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803792A8 = "Always";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803792AF = "";
 #pragma pop

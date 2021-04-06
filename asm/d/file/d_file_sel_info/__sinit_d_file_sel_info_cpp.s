@@ -1,6 +1,6 @@
 lbl_80192E88:
-/* 80192E88  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80192E8C  38 A3 B4 98 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80192E88  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BB498@ha */
+/* 80192E8C  38 A3 B4 98 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BB498@l */
 /* 80192E90  80 65 00 C0 */	lwz r3, 0xc0(r5)
 /* 80192E94  80 05 00 C4 */	lwz r0, 0xc4(r5)
 /* 80192E98  90 65 00 D8 */	stw r3, 0xd8(r5)

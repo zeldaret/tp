@@ -3,17 +3,15 @@
 #
 
 M136_TARGET := $(BUILD_DIR)/rel/d/a/d_a_L7low_dr.plf
+M136_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_L7low_dr.lcf
+M136_MAP := $(BUILD_DIR)/rel/d/a/d_a_L7low_dr.map
 
 M136_CPP_FILES := \
-	rel/d/a/d_a_L7low_dr/executor.cpp \
-	rel/d/a/d_a_L7low_dr/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_L7low_dr/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_L7low_dr/d_a_L7low_dr.cpp \
 
 M136_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_L7low_dr/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7low_dr/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7low_dr/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_L7low_dr/d_a_L7low_dr.o \
 
 M136_LIBS := \
@@ -29,15 +27,21 @@ M136_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map136.map\
+	-m _prolog \
+	-lcf $(M136_LDSCRIPT) \
+	-unused -map $(M136_MAP) \
+	-w off \
 
 $(M136_TARGET): $(M136_O_FILES) $(M136_LIBS)
+	@echo [136] creating $(M136_TARGET)
 	@echo $(M136_LIBS) $(M136_O_FILES) > build/M136_ofiles
-	$(LD) -opt_partial $(M136_LDFLAGS) -o $(M136_TARGET) @build/M136_ofiles
+	@python3 tools/lcf.py rel 136 --output $(M136_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M136_LDFLAGS) -o $(M136_TARGET) @build/M136_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_L7low_dr/%.o: rel/d/a/d_a_L7low_dr/%.cpp
+	@echo [136] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M136_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M136_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

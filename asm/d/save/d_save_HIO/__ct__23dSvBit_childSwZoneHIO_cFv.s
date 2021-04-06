@@ -1,6 +1,6 @@
 lbl_8025BCB0:
-/* 8025BCB0  3C 80 80 3C */	lis r4, __vt__23dSvBit_childSwZoneHIO_c@ha
-/* 8025BCB4  38 04 33 6C */	addi r0, r4, __vt__23dSvBit_childSwZoneHIO_c@l
+/* 8025BCB0  3C 80 80 3C */	lis r4, __vt__23dSvBit_childSwZoneHIO_c@ha /* 0x803C336C@ha */
+/* 8025BCB4  38 04 33 6C */	addi r0, r4, __vt__23dSvBit_childSwZoneHIO_c@l /* 0x803C336C@l */
 /* 8025BCB8  90 03 00 00 */	stw r0, 0(r3)
 /* 8025BCBC  38 C0 00 00 */	li r6, 0
 /* 8025BCC0  38 80 00 00 */	li r4, 0

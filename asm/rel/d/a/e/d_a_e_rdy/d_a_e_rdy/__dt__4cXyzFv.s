@@ -7,7 +7,7 @@ lbl_80779D98:
 /* 80779DAC  41 82 00 10 */	beq lbl_80779DBC
 /* 80779DB0  7C 80 07 35 */	extsh. r0, r4
 /* 80779DB4  40 81 00 08 */	ble lbl_80779DBC
-/* 80779DB8  4B B5 4F 84 */	b __dl__FPv
+/* 80779DB8  4B B5 4F 85 */	bl __dl__FPv
 lbl_80779DBC:
 /* 80779DBC  7F E3 FB 78 */	mr r3, r31
 /* 80779DC0  83 E1 00 0C */	lwz r31, 0xc(r1)

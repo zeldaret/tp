@@ -3,17 +3,17 @@ lbl_80BE0658:
 /* 80BE065C  7C 08 02 A6 */	mflr r0
 /* 80BE0660  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80BE0664  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BE0668  4B 78 1B 60 */	b _savegpr_24
+/* 80BE0668  4B 78 1B 61 */	bl _savegpr_24
 /* 80BE066C  7C 78 1B 78 */	mr r24, r3
 /* 80BE0670  3B 20 00 00 */	li r25, 0
 /* 80BE0674  3B E0 00 00 */	li r31, 0
 /* 80BE0678  3B C0 00 00 */	li r30, 0
 /* 80BE067C  3B A0 00 00 */	li r29, 0
-/* 80BE0680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE0684  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
+/* 80BE0680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE0684  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE0688  3F 60 00 01 */	lis r27, 0x0001 /* 0x0000838A@ha */
-/* 80BE068C  3C 60 80 BE */	lis r3, lit_4119@ha
-/* 80BE0690  3B 83 20 04 */	addi r28, r3, lit_4119@l
+/* 80BE068C  3C 60 80 BE */	lis r3, lit_4119@ha /* 0x80BE2004@ha */
+/* 80BE0690  3B 83 20 04 */	addi r28, r3, lit_4119@l /* 0x80BE2004@l */
 lbl_80BE0694:
 /* 80BE0694  80 7A 5D 3C */	lwz r3, 0x5d3c(r26)
 /* 80BE0698  38 1D 05 D8 */	addi r0, r29, 0x5d8
@@ -34,7 +34,7 @@ lbl_80BE0694:
 /* 80BE06D4  39 38 04 EC */	addi r9, r24, 0x4ec
 /* 80BE06D8  39 40 00 FF */	li r10, 0xff
 /* 80BE06DC  C0 3C 00 00 */	lfs f1, 0(r28)
-/* 80BE06E0  4B 46 C3 B0 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80BE06E0  4B 46 C3 B1 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80BE06E4  38 1F 05 CC */	addi r0, r31, 0x5cc
 /* 80BE06E8  7C 78 01 2E */	stwx r3, r24, r0
 /* 80BE06EC  3B 39 00 01 */	addi r25, r25, 1
@@ -44,7 +44,7 @@ lbl_80BE0694:
 /* 80BE06FC  3B BD 00 14 */	addi r29, r29, 0x14
 /* 80BE0700  41 80 FF 94 */	blt lbl_80BE0694
 /* 80BE0704  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BE0708  4B 78 1B 0C */	b _restgpr_24
+/* 80BE0708  4B 78 1B 0D */	bl _restgpr_24
 /* 80BE070C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80BE0710  7C 08 03 A6 */	mtlr r0
 /* 80BE0714  38 21 00 40 */	addi r1, r1, 0x40

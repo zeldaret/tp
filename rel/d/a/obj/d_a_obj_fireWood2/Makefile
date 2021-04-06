@@ -3,19 +3,20 @@
 #
 
 M446_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2.plf
+M446_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2.lcf
+M446_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2.map
 
 M446_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fireWood2/executor.cpp \
-	rel/d/a/obj/d_a_obj_fireWood2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_fireWood2/d_a_obj_fireWood2.cpp \
 
 M446_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/d_a_obj_fireWood2.o \
 
 M446_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/libRuntime.PPCEABI.H.a \
 
 M446_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M446_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map446.map\
+	-m _prolog \
+	-lcf $(M446_LDSCRIPT) \
+	-unused -map $(M446_MAP) \
+	-w off \
 
 $(M446_TARGET): $(M446_O_FILES) $(M446_LIBS)
+	@echo [446] creating $(M446_TARGET)
 	@echo $(M446_LIBS) $(M446_O_FILES) > build/M446_ofiles
-	$(LD) -opt_partial $(M446_LDFLAGS) -o $(M446_TARGET) @build/M446_ofiles
+	@python3 tools/lcf.py rel 446 --output $(M446_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M446_LDFLAGS) -o $(M446_TARGET) @build/M446_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood2/%.o: rel/d/a/obj/d_a_obj_fireWood2/%.cpp
+	@echo [446] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M446_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M446_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_fireWood2/libs/Runtime.PPCEABI.H/Makefile
 

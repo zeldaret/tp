@@ -5,8 +5,8 @@ lbl_8070EC60:
 /* 8070EC6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8070EC70  93 C1 00 08 */	stw r30, 8(r1)
 /* 8070EC74  7C 7E 1B 78 */	mr r30, r3
-/* 8070EC78  3C 80 80 71 */	lis r4, lit_3828@ha
-/* 8070EC7C  3B E4 39 74 */	addi r31, r4, lit_3828@l
+/* 8070EC78  3C 80 80 71 */	lis r4, lit_3828@ha /* 0x80713974@ha */
+/* 8070EC7C  3B E4 39 74 */	addi r31, r4, lit_3828@l /* 0x80713974@l */
 /* 8070EC80  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 8070EC84  2C 00 00 01 */	cmpwi r0, 1
 /* 8070EC88  41 82 00 3C */	beq lbl_8070ECC4
@@ -39,7 +39,7 @@ lbl_8070ECE8:
 /* 8070ECE8  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8070ECEC  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8070ECF0  C0 5F 00 70 */	lfs f2, 0x70(r31)
-/* 8070ECF4  4B B6 0D 8C */	b cLib_addCalc0__FPfff
+/* 8070ECF4  4B B6 0D 8D */	bl cLib_addCalc0__FPfff
 /* 8070ECF8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8070ECFC  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8070ED00  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -3,17 +3,15 @@
 #
 
 M701_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock.plf
+M701_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock.lcf
+M701_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock.map
 
 M701_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_zra_rock/executor.cpp \
-	rel/d/a/obj/d_a_obj_zra_rock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_zra_rock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_zra_rock/d_a_obj_zra_rock.cpp \
 
 M701_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/d_a_obj_zra_rock.o \
 
 M701_LIBS := \
@@ -29,15 +27,21 @@ M701_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map701.map\
+	-m _prolog \
+	-lcf $(M701_LDSCRIPT) \
+	-unused -map $(M701_MAP) \
+	-w off \
 
 $(M701_TARGET): $(M701_O_FILES) $(M701_LIBS)
+	@echo [701] creating $(M701_TARGET)
 	@echo $(M701_LIBS) $(M701_O_FILES) > build/M701_ofiles
-	$(LD) -opt_partial $(M701_LDFLAGS) -o $(M701_TARGET) @build/M701_ofiles
+	@python3 tools/lcf.py rel 701 --output $(M701_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M701_LDFLAGS) -o $(M701_TARGET) @build/M701_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zra_rock/%.o: rel/d/a/obj/d_a_obj_zra_rock/%.cpp
+	@echo [701] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M701_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M701_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -19,8 +19,8 @@ lbl_8011E90C:
 /* 8011E920  90 1F 31 98 */	stw r0, 0x3198(r31)
 /* 8011E924  7F E3 FB 78 */	mr r3, r31
 /* 8011E928  4B FF FF 15 */	bl setSwordPushAnime__9daAlink_cFv
-/* 8011E92C  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 8011E930  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 8011E92C  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 8011E930  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 8011E934  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011E938  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011E93C  D0 1F 35 8C */	stfs f0, 0x358c(r31)

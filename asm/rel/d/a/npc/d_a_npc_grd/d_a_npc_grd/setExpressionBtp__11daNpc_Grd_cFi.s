@@ -3,7 +3,7 @@ lbl_809D1670:
 /* 809D1674  7C 08 02 A6 */	mflr r0
 /* 809D1678  90 01 00 24 */	stw r0, 0x24(r1)
 /* 809D167C  39 61 00 20 */	addi r11, r1, 0x20
-/* 809D1680  4B 99 0B 5C */	b _savegpr_29
+/* 809D1680  4B 99 0B 5D */	bl _savegpr_29
 /* 809D1684  7C 7D 1B 78 */	mr r29, r3
 /* 809D1688  7C 9E 23 78 */	mr r30, r4
 /* 809D168C  38 80 00 00 */	li r4, 0
@@ -13,18 +13,18 @@ lbl_809D1670:
 /* 809D169C  7C A0 00 38 */	and r0, r5, r0
 /* 809D16A0  90 03 09 9C */	stw r0, 0x99c(r3)
 /* 809D16A4  57 C0 18 38 */	slwi r0, r30, 3
-/* 809D16A8  3C A0 80 9D */	lis r5, l_btpGetParamList@ha
-/* 809D16AC  38 C5 3C 9C */	addi r6, r5, l_btpGetParamList@l
+/* 809D16A8  3C A0 80 9D */	lis r5, l_btpGetParamList@ha /* 0x809D3C9C@ha */
+/* 809D16AC  38 C5 3C 9C */	addi r6, r5, l_btpGetParamList@l /* 0x809D3C9C@l */
 /* 809D16B0  7C A6 00 2E */	lwzx r5, r6, r0
 /* 809D16B4  2C 05 00 00 */	cmpwi r5, 0
 /* 809D16B8  41 80 00 24 */	blt lbl_809D16DC
 /* 809D16BC  7C 86 02 14 */	add r4, r6, r0
 /* 809D16C0  80 04 00 04 */	lwz r0, 4(r4)
 /* 809D16C4  54 00 10 3A */	slwi r0, r0, 2
-/* 809D16C8  3C 80 80 9D */	lis r4, l_resNames@ha
-/* 809D16CC  38 84 3C FC */	addi r4, r4, l_resNames@l
+/* 809D16C8  3C 80 80 9D */	lis r4, l_resNames@ha /* 0x809D3CFC@ha */
+/* 809D16CC  38 84 3C FC */	addi r4, r4, l_resNames@l /* 0x809D3CFC@l */
 /* 809D16D0  7C 84 00 2E */	lwzx r4, r4, r0
-/* 809D16D4  4B 78 14 94 */	b getTexPtrnAnmP__8daNpcF_cFPci
+/* 809D16D4  4B 78 14 95 */	bl getTexPtrnAnmP__8daNpcF_cFPci
 /* 809D16D8  7C 64 1B 78 */	mr r4, r3
 lbl_809D16DC:
 /* 809D16DC  2C 1E 00 02 */	cmpwi r30, 2
@@ -56,10 +56,10 @@ lbl_809D1728:
 /* 809D172C  80 63 00 04 */	lwz r3, 4(r3)
 /* 809D1730  80 A3 00 04 */	lwz r5, 4(r3)
 /* 809D1734  7F A3 EB 78 */	mr r3, r29
-/* 809D1738  3C C0 80 9D */	lis r6, lit_4450@ha
-/* 809D173C  C0 26 3A 80 */	lfs f1, lit_4450@l(r6)
+/* 809D1738  3C C0 80 9D */	lis r6, lit_4450@ha /* 0x809D3A80@ha */
+/* 809D173C  C0 26 3A 80 */	lfs f1, lit_4450@l(r6)  /* 0x809D3A80@l */
 /* 809D1740  7F E6 FB 78 */	mr r6, r31
-/* 809D1744  4B 78 15 80 */	b setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
+/* 809D1744  4B 78 15 81 */	bl setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 809D1748  2C 03 00 00 */	cmpwi r3, 0
 /* 809D174C  41 82 00 2C */	beq lbl_809D1778
 /* 809D1750  80 1D 09 9C */	lwz r0, 0x99c(r29)
@@ -77,7 +77,7 @@ lbl_809D1778:
 /* 809D1778  38 60 00 00 */	li r3, 0
 lbl_809D177C:
 /* 809D177C  39 61 00 20 */	addi r11, r1, 0x20
-/* 809D1780  4B 99 0A A8 */	b _restgpr_29
+/* 809D1780  4B 99 0A A9 */	bl _restgpr_29
 /* 809D1784  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 809D1788  7C 08 03 A6 */	mtlr r0
 /* 809D178C  38 21 00 20 */	addi r1, r1, 0x20

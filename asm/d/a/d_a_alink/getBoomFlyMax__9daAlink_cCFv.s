@@ -11,13 +11,13 @@ lbl_800E00C0:
 /* 800E00E4  4E 80 04 21 */	bctrl 
 /* 800E00E8  28 03 00 00 */	cmplwi r3, 0
 /* 800E00EC  40 82 00 14 */	bne lbl_800E0100
-/* 800E00F0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha
-/* 800E00F4  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l
+/* 800E00F0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E00F4  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E00F8  C0 23 00 40 */	lfs f1, 0x40(r3)
 /* 800E00FC  48 00 00 10 */	b lbl_800E010C
 lbl_800E0100:
-/* 800E0100  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha
-/* 800E0104  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l
+/* 800E0100  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0104  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E0108  C0 23 00 3C */	lfs f1, 0x3c(r3)
 lbl_800E010C:
 /* 800E010C  80 01 00 14 */	lwz r0, 0x14(r1)

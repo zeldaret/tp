@@ -96,8 +96,8 @@ lbl_800080F4:
 /* 8000826C  38 61 00 10 */	addi r3, r1, 0x10
 /* 80008270  38 80 00 01 */	li r4, 1
 /* 80008274  48 35 7E 61 */	bl GXSetProjection
-/* 80008278  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8000827C  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80008278  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8000827C  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80008280  38 80 00 00 */	li r4, 0
 /* 80008284  48 35 7F C9 */	bl GXLoadPosMtxImm
 /* 80008288  80 1F 00 00 */	lwz r0, 0(r31)
@@ -123,7 +123,7 @@ lbl_800080F4:
 /* 800082D8  48 35 44 8D */	bl GXBegin
 /* 800082DC  38 A0 00 00 */	li r5, 0
 /* 800082E0  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 800082E4  98 A4 80 00 */	stb r5, 0x8000(r4)
+/* 800082E4  98 A4 80 00 */	stb r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 800082E8  98 A4 80 00 */	stb r5, -0x8000(r4)
 /* 800082EC  38 60 FF FB */	li r3, -5
 /* 800082F0  98 64 80 00 */	stb r3, -0x8000(r4)

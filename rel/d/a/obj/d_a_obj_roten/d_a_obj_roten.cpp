@@ -38,11 +38,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -84,9 +84,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -97,12 +97,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObj_Roten_Create(void*);
-static void daObj_Roten_Delete(void*);
-static void daObj_Roten_Execute(void*);
-static void daObj_Roten_Draw(void*);
-static bool daObj_Roten_IsDelete(void*);
 
 extern "C" void initBaseMtx__13daObj_Roten_cFv();
 extern "C" void setBaseMtx__13daObj_Roten_cFv();
@@ -119,38 +113,11 @@ extern "C" static void daObj_Roten_Execute__FPv();
 extern "C" static void daObj_Roten_Draw__FPv();
 extern "C" static bool daObj_Roten_IsDelete__FPv();
 extern "C" void __dt__13daObj_Roten_cFv();
-extern "C" extern u32 const lit_3779;
-extern "C" extern u32 const lit_3780;
-extern "C" extern u8 const lit_3781[4];
-extern "C" extern u32 const lit_3782;
-extern "C" extern u32 const lit_3783;
-extern "C" extern u32 const lit_3784;
-extern "C" extern u32 const lit_3785;
-extern "C" extern u32 const lit_3786;
-extern "C" extern u32 const lit_3853;
-extern "C" extern u32 const lit_3878;
-extern "C" extern u32 const lit_3879;
-extern "C" extern u32 const lit_3880;
-extern "C" extern u32 const lit_3881;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_ROTEN[12];
-extern "C" extern void* __vt__13daObj_Roten_c[11];
+extern "C" extern char const* const d_a_obj_roten__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void dKy_BossLight_set(cXyz*, _GXColor*, f32, u8);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
@@ -198,8 +165,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80CC0B58-80CC0B94 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__13daObj_Roten_cFv */
-//	80CC0B80: 80CC0B94 (setBaseMtx__13daObj_Roten_cFv)
+/* 80CC0B58-80CC0B94 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,20 +175,7 @@ asm void daObj_Roten_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80CC0B94-80CC0C20 008C+00 s=2 e=0 z=0  None .text      setBaseMtx__13daObj_Roten_cFv */
-//	80CC0BA8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BAC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BBC: 803468E8 (PSMTXTrans)
-//	80CC0BC0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BC4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BD4: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
-//	80CC0BD8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BDC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0BE8: 803464B0 (PSMTXCopy)
-//	80CC0BF8: 8000CE38 (scaleM__14mDoMtx_stack_cFfff)
-//	80CC0BFC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0C00: 803DD470 (now__14mDoMtx_stack_c)
-//	80CC0C08: 803464B0 (PSMTXCopy)
+/* 80CC0B94-80CC0C20 0000B4 008C+00 2/2 0/0 0/0 .text            setBaseMtx__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -233,26 +186,76 @@ asm void daObj_Roten_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CC1400-80CC1404 0004+00 s=2 e=0 z=0  None .rodata    @3778 */
+/* 80CC1400-80CC1404 000000 0004+00 2/2 0/0 0/0 .rodata          @3778 */
 SECTION_RODATA static u32 const lit_3778 = 0x41200000;
+SECTION_DEAD void* const cg_80CC1400 = (void*)(&lit_3778);
 
-/* 80CC0C20-80CC0EC4 02A4+00 s=1 e=0 z=0  None .text      Create__13daObj_Roten_cFv */
-//	80CC0C38: 80CC1400 (lit_3778)
-//	80CC0C3C: 80CC1400 (lit_3778)
-//	80CC0C40: 80CC0B58 (initBaseMtx__13daObj_Roten_cFv)
-//	80CC0CB8: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//	80CC0CE4: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0CE8: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0D4C: 80439A20 (sincosTable___5JMath)
-//	80CC0D50: 80439A20 (sincosTable___5JMath)
-//	80CC0DFC: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0E00: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0E44: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CC0E58: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0E5C: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0EA0: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
+/* 80CC1404-80CC1408 000004 0004+00 0/1 0/0 0/0 .rodata          @3779 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3779 = 0x42B40000;
+SECTION_DEAD void* const cg_80CC1404 = (void*)(&lit_3779);
+#pragma pop
+
+/* 80CC1408-80CC140C 000008 0004+00 0/1 0/0 0/0 .rodata          @3780 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3780 = 0x43870000;
+SECTION_DEAD void* const cg_80CC1408 = (void*)(&lit_3780);
+#pragma pop
+
+/* 80CC140C-80CC1410 00000C 0004+00 0/2 0/0 0/0 .rodata          @3781 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3781[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80CC140C = (void*)(&lit_3781);
+#pragma pop
+
+/* 80CC1410-80CC1414 000010 0004+00 0/1 0/0 0/0 .rodata          @3782 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3782 = 0xC2A00000;
+SECTION_DEAD void* const cg_80CC1410 = (void*)(&lit_3782);
+#pragma pop
+
+/* 80CC1414-80CC1418 000014 0004+00 0/1 0/0 0/0 .rodata          @3783 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3783 = 0x43310000;
+SECTION_DEAD void* const cg_80CC1414 = (void*)(&lit_3783);
+#pragma pop
+
+/* 80CC1418-80CC141C 000018 0004+00 0/1 0/0 0/0 .rodata          @3784 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3784 = 0x42DC0000;
+SECTION_DEAD void* const cg_80CC1418 = (void*)(&lit_3784);
+#pragma pop
+
+/* 80CC141C-80CC1420 00001C 0004+00 0/1 0/0 0/0 .rodata          @3785 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3785 = 0x3ECCCCCD;
+SECTION_DEAD void* const cg_80CC141C = (void*)(&lit_3785);
+#pragma pop
+
+/* 80CC1420-80CC1424 000020 0004+00 0/1 0/0 0/0 .rodata          @3786 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3786 = 0x3E800000;
+SECTION_DEAD void* const cg_80CC1420 = (void*)(&lit_3786);
+#pragma pop
+
+/* 80CC1424-80CC1428 000024 0004+00 1/3 0/0 0/0 .rodata          @3787 */
+SECTION_RODATA static u32 const lit_3787 = 0x3F800000;
+SECTION_DEAD void* const cg_80CC1424 = (void*)(&lit_3787);
+
+/* 80CC0C20-80CC0EC4 000140 02A4+00 1/0 0/0 0/0 .text            Create__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,77 +266,13 @@ asm void daObj_Roten_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CC1404-80CC1408 0004+00 s=0 e=0 z=0  None .rodata    @3779 */
-SECTION_RODATA u32 const lit_3779 = 0x42B40000;
+/* 80CC144C-80CC1450 -00001 0004+00 1/1 0/0 0/0 .data            l_resFileName */
+SECTION_DATA static void* l_resFileName = (void*)&d_a_obj_roten__stringBase0;
 
-/* 80CC1408-80CC140C 0004+00 s=0 e=0 z=0  None .rodata    @3780 */
-SECTION_RODATA u32 const lit_3780 = 0x43870000;
-
-/* 80CC140C-80CC1410 0004+00 s=0 e=0 z=0  None .rodata    @3781 */
-SECTION_RODATA u8 const lit_3781[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80CC1410-80CC1414 0004+00 s=0 e=0 z=0  None .rodata    @3782 */
-SECTION_RODATA u32 const lit_3782 = 0xC2A00000;
-
-/* 80CC1414-80CC1418 0004+00 s=0 e=0 z=0  None .rodata    @3783 */
-SECTION_RODATA u32 const lit_3783 = 0x43310000;
-
-/* 80CC1418-80CC141C 0004+00 s=0 e=0 z=0  None .rodata    @3784 */
-SECTION_RODATA u32 const lit_3784 = 0x42DC0000;
-
-/* 80CC141C-80CC1420 0004+00 s=0 e=0 z=0  None .rodata    @3785 */
-SECTION_RODATA u32 const lit_3785 = 0x3ECCCCCD;
-
-/* 80CC1420-80CC1424 0004+00 s=0 e=0 z=0  None .rodata    @3786 */
-SECTION_RODATA u32 const lit_3786 = 0x3E800000;
-
-/* 80CC1424-80CC1428 0004+00 s=1 e=0 z=0  None .rodata    @3787 */
-SECTION_RODATA static u32 const lit_3787 = 0x3F800000;
-
-/* 80CC1428-80CC142C 0004+00 s=1 e=0 z=0  None .rodata    @3844 */
-SECTION_RODATA static u32 const lit_3844 = 0xBF800000;
-
-/* 80CC142C-80CC1430 0004+00 s=0 e=0 z=0  None .rodata    @3853 */
-SECTION_RODATA u32 const lit_3853 = 0xBC6642FF;
-
-/* 80CC1430-80CC1434 0004+00 s=0 e=0 z=0  None .rodata    @3878 */
-SECTION_RODATA u32 const lit_3878 = 0x3F000000;
-
-/* 80CC1434-80CC1438 0004+00 s=0 e=0 z=0  None .rodata    @3879 */
-SECTION_RODATA u32 const lit_3879 = 0x3DCCCCCD;
-
-/* 80CC1438-80CC143C 0004+00 s=0 e=0 z=0  None .rodata    @3880 */
-SECTION_RODATA u32 const lit_3880 = 0x38D1B717;
-
-/* 80CC143C-80CC1440 0004+00 s=0 e=0 z=0  None .rodata    @3881 */
-SECTION_RODATA u32 const lit_3881 = 0x358637BD;
-
-/* 80CC1440-80CC144A 000A+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CC1440 = "Obj_roten";
-#pragma pop
-
-/* 80CC144C-80CC1450 0004+00 s=1 e=0 z=0  None .data      l_resFileName */
-SECTION_DATA static void* l_resFileName = (void*)&stringBase0;
-
-/* 80CC1450-80CC1454 0004+00 s=1 e=0 z=0  None .data      l_bmdFileIdx */
+/* 80CC1450-80CC1454 000004 0004+00 1/1 0/0 0/0 .data            l_bmdFileIdx */
 SECTION_DATA static u32 l_bmdFileIdx = 0x00000004;
 
-/* 80CC0EC4-80CC0F40 007C+00 s=1 e=0 z=0  None .text      CreateHeap__13daObj_Roten_cFv */
-//	80CC0EDC: 80CC1450 (l_bmdFileIdx)
-//	80CC0EE0: 80CC1450 (l_bmdFileIdx)
-//	80CC0EE4: 80CC12E4 (getResName__13daObj_Roten_cFv)
-//	80CC0EEC: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0EF0: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0F00: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80CC0F10: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80CC0EC4-80CC0F40 0003E4 007C+00 1/0 0/0 0/0 .text            CreateHeap__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -344,10 +283,10 @@ asm void daObj_Roten_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CC1454-80CC1458 0004+00 s=1 e=0 z=0  None .data      l_dzbFileIdx */
+/* 80CC1454-80CC1458 000008 0004+00 1/1 0/0 0/0 .data            l_dzbFileIdx */
 SECTION_DATA static u32 l_dzbFileIdx = 0x00000007;
 
-/* 80CC1458-80CC1478 0020+00 s=1 e=0 z=0  None .data      daObj_Roten_MethodTable */
+/* 80CC1458-80CC1478 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Roten_MethodTable */
 SECTION_DATA static void* daObj_Roten_MethodTable[8] = {
     (void*)daObj_Roten_Create__FPv,
     (void*)daObj_Roten_Delete__FPv,
@@ -359,8 +298,8 @@ SECTION_DATA static void* daObj_Roten_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 80CC1478-80CC14A8 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_ROTEN */
-SECTION_DATA void* g_profile_OBJ_ROTEN[12] = {
+/* 80CC1478-80CC14A8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_ROTEN */
+SECTION_DATA extern void* g_profile_OBJ_ROTEN[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x011F0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C8, (void*)NULL,
@@ -369,8 +308,8 @@ SECTION_DATA void* g_profile_OBJ_ROTEN[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80CC14A8-80CC14D4 002C+00 s=2 e=0 z=0  None .data      __vt__13daObj_Roten_c */
-SECTION_DATA void* __vt__13daObj_Roten_c[11] = {
+/* 80CC14A8-80CC14D4 00005C 002C+00 2/2 0/0 0/0 .data            __vt__13daObj_Roten_c */
+SECTION_DATA extern void* __vt__13daObj_Roten_c[11] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__13daObj_Roten_cFv,
@@ -384,27 +323,7 @@ SECTION_DATA void* __vt__13daObj_Roten_c[11] = {
     (void*)__dt__13daObj_Roten_cFv,
 };
 
-/* 80CC0F40-80CC1038 00F8+00 s=1 e=0 z=0  None .text      create__13daObj_Roten_cFv */
-//	80CC0F6C: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80CC0F70: 80CC14A8 (__vt__13daObj_Roten_c)
-//	80CC0F74: 80CC14A8 (__vt__13daObj_Roten_c)
-//	80CC0F88: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0F8C: 804061C0 (g_dComIfG_gameInfo)
-//	80CC0F94: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CC0F98: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CC0FA0: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80CC0FB8: 80CC12E4 (getResName__13daObj_Roten_cFv)
-//	80CC0FC4: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80CC0FD8: 80CC12E4 (getResName__13daObj_Roten_cFv)
-//	80CC0FE4: 80CC1454 (l_dzbFileIdx)
-//	80CC0FE8: 80CC1454 (l_dzbFileIdx)
-//	80CC0FF0: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80CC0FF4:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80CC1000:
-//800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
-//	80CC1018: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
+/* 80CC0F40-80CC1038 000460 00F8+00 1/1 0/0 0/0 .text            create__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -414,25 +333,13 @@ asm void daObj_Roten_c::create() {
 }
 #pragma pop
 
-/* 80CC1038-80CC1138 0100+00 s=1 e=0 z=0  None .text      Execute__13daObj_Roten_cFPPA3_A4_f */
-//	80CC1060: 80450D64 (struct_80450D64)
-//	80CC1064: 80450D64 (struct_80450D64)
-//	80CC1074: 8002D06C (dComIfGp_getReverb__Fi)
-//	80CC1088: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CC108C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CC10A0: 80CC1424 (lit_3787)
-//	80CC10A4: 80CC1424 (lit_3787)
-//	80CC10AC: 80CC1428 (lit_3844)
-//	80CC10B0: 80CC1428 (lit_3844)
-//	80CC10BC: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CC10D0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CC10D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CC10EC: 80CC1424 (lit_3787)
-//	80CC10F0: 80CC1424 (lit_3787)
-//	80CC10F8: 80CC1428 (lit_3844)
-//	80CC10FC: 80CC1428 (lit_3844)
-//	80CC1108: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CC1118: 80CC0B94 (setBaseMtx__13daObj_Roten_cFv)
+/* ############################################################################################## */
+/* 80CC1428-80CC142C 000028 0004+00 1/1 0/0 0/0 .rodata          @3844 */
+SECTION_RODATA static u32 const lit_3844 = 0xBF800000;
+SECTION_DEAD void* const cg_80CC1428 = (void*)(&lit_3844);
+
+/* 80CC1038-80CC1138 000558 0100+00 1/0 0/0 0/0 .text            Execute__13daObj_Roten_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,23 +349,43 @@ asm void daObj_Roten_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80CC1138-80CC1254 011C+00 s=1 e=0 z=0  None .text      Draw__13daObj_Roten_cFv */
-//	80CC1150: 80CC1400 (lit_3778)
-//	80CC1154: 80CC1400 (lit_3778)
-//	80CC1178: 8026F97C (cLib_addCalc__FPfffff)
-//	80CC1194: 8026F97C (cLib_addCalc__FPfffff)
-//	80CC11C4: 801A9D60 (dKy_BossLight_set__FP4cXyzP8_GXColorfUc)
-//	80CC11C8: 8042CA54 (g_env_light)
-//	80CC11CC: 8042CA54 (g_env_light)
-//	80CC11DC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80CC11E0: 8042CA54 (g_env_light)
-//	80CC11E4: 8042CA54 (g_env_light)
-//	80CC11F4: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80CC11F8:
-// 804061C0 (g_dComIfG_gameInfo) 	80CC11FC: 804061C0 (g_dComIfG_gameInfo) 	80CC1204: 80434AC8
-// (j3dSys) 	80CC1208: 80434AC8 (j3dSys) 	80CC121C: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80CC1220: 804061C0 (g_dComIfG_gameInfo)
-//	80CC1224: 804061C0 (g_dComIfG_gameInfo)
+/* ############################################################################################## */
+/* 80CC142C-80CC1430 00002C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3853 = 0xBC6642FF;
+SECTION_DEAD void* const cg_80CC142C = (void*)(&lit_3853);
+#pragma pop
+
+/* 80CC1430-80CC1434 000030 0004+00 0/1 0/0 0/0 .rodata          @3878 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3878 = 0x3F000000;
+SECTION_DEAD void* const cg_80CC1430 = (void*)(&lit_3878);
+#pragma pop
+
+/* 80CC1434-80CC1438 000034 0004+00 0/1 0/0 0/0 .rodata          @3879 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3879 = 0x3DCCCCCD;
+SECTION_DEAD void* const cg_80CC1434 = (void*)(&lit_3879);
+#pragma pop
+
+/* 80CC1438-80CC143C 000038 0004+00 0/1 0/0 0/0 .rodata          @3880 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3880 = 0x38D1B717;
+SECTION_DEAD void* const cg_80CC1438 = (void*)(&lit_3880);
+#pragma pop
+
+/* 80CC143C-80CC1440 00003C 0004+00 0/1 0/0 0/0 .rodata          @3881 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3881 = 0x358637BD;
+SECTION_DEAD void* const cg_80CC143C = (void*)(&lit_3881);
+#pragma pop
+
+/* 80CC1138-80CC1254 000658 011C+00 1/0 0/0 0/0 .text            Draw__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,9 +395,7 @@ asm void daObj_Roten_c::Draw() {
 }
 #pragma pop
 
-/* 80CC1254-80CC12E4 0090+00 s=1 e=0 z=0  None .text      Delete__13daObj_Roten_cFv */
-//	80CC12BC: 80CC12E4 (getResName__13daObj_Roten_cFv)
-//	80CC12C8: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80CC1254-80CC12E4 000774 0090+00 1/0 0/0 0/0 .text            Delete__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -480,9 +405,7 @@ asm void daObj_Roten_c::Delete() {
 }
 #pragma pop
 
-/* 80CC12E4-80CC12F4 0010+00 s=3 e=0 z=0  None .text      getResName__13daObj_Roten_cFv */
-//	80CC12E4: 80CC144C (l_resFileName)
-//	80CC12E8: 80CC144C (l_resFileName)
+/* 80CC12E4-80CC12F4 000804 0010+00 3/3 0/0 0/0 .text            getResName__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -492,61 +415,52 @@ asm void daObj_Roten_c::getResName() {
 }
 #pragma pop
 
-/* 80CC12F4-80CC1314 0020+00 s=1 e=0 z=0  None .text      daObj_Roten_Create__FPv */
-//	80CC1300: 80CC0F40 (create__13daObj_Roten_cFv)
+/* 80CC12F4-80CC1314 000814 0020+00 1/0 0/0 0/0 .text            daObj_Roten_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Roten_Create(void* param_0) {
+static asm void daObj_Roten_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten/daObj_Roten_Create__FPv.s"
 }
 #pragma pop
 
-/* 80CC1314-80CC1334 0020+00 s=1 e=0 z=0  None .text      daObj_Roten_Delete__FPv */
-//	80CC1320: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
+/* 80CC1314-80CC1334 000834 0020+00 1/0 0/0 0/0 .text            daObj_Roten_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Roten_Delete(void* param_0) {
+static asm void daObj_Roten_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten/daObj_Roten_Delete__FPv.s"
 }
 #pragma pop
 
-/* 80CC1334-80CC1354 0020+00 s=1 e=0 z=0  None .text      daObj_Roten_Execute__FPv */
-//	80CC1340: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
+/* 80CC1334-80CC1354 000854 0020+00 1/0 0/0 0/0 .text            daObj_Roten_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Roten_Execute(void* param_0) {
+static asm void daObj_Roten_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten/daObj_Roten_Execute__FPv.s"
 }
 #pragma pop
 
-/* 80CC1354-80CC1380 002C+00 s=1 e=0 z=0  None .text      daObj_Roten_Draw__FPv */
+/* 80CC1354-80CC1380 000874 002C+00 1/0 0/0 0/0 .text            daObj_Roten_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Roten_Draw(void* param_0) {
+static asm void daObj_Roten_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten/daObj_Roten_Draw__FPv.s"
 }
 #pragma pop
 
-/* 80CC1380-80CC1388 0008+00 s=1 e=0 z=0  None .text      daObj_Roten_IsDelete__FPv */
+/* 80CC1380-80CC1388 0008A0 0008+00 1/0 0/0 0/0 .text            daObj_Roten_IsDelete__FPv */
 static bool daObj_Roten_IsDelete(void* param_0) {
     return true;
 }
 
-/* 80CC1388-80CC13F8 0070+00 s=1 e=0 z=0  None .text      __dt__13daObj_Roten_cFv */
-//	80CC13A8: 80CC14A8 (__vt__13daObj_Roten_c)
-//	80CC13AC: 80CC14A8 (__vt__13daObj_Roten_c)
-//	80CC13B8: 803AB9A0 (__vt__16dBgS_MoveBgActor)
-//	80CC13BC: 803AB9A0 (__vt__16dBgS_MoveBgActor)
-//	80CC13C8: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80CC13D8: 802CED3C (__dl__FPv)
+/* 80CC1388-80CC13F8 0008A8 0070+00 1/0 0/0 0/0 .text            __dt__13daObj_Roten_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -554,4 +468,11 @@ asm daObj_Roten_c::~daObj_Roten_c() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten/__dt__13daObj_Roten_cFv.s"
 }
+#pragma pop
+
+/* 80CC1440-80CC144A 000040 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CC1440 = "Obj_roten";
 #pragma pop

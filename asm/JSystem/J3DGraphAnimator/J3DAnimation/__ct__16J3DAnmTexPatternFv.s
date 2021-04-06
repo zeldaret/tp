@@ -4,8 +4,8 @@ lbl_8032AED8:
 /* 8032AEE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032AEE4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032AEE8  7C 7F 1B 78 */	mr r31, r3
-/* 8032AEEC  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha
-/* 8032AEF0  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l
+/* 8032AEEC  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8032AEF0  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8032AEF4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032AEF8  38 80 00 00 */	li r4, 0
 /* 8032AEFC  98 9F 00 04 */	stb r4, 4(r31)
@@ -13,8 +13,8 @@ lbl_8032AED8:
 /* 8032AF04  B0 9F 00 06 */	sth r4, 6(r31)
 /* 8032AF08  C0 02 CA 34 */	lfs f0, lit_853(r2)
 /* 8032AF0C  D0 1F 00 08 */	stfs f0, 8(r31)
-/* 8032AF10  3C 60 80 3D */	lis r3, __vt__16J3DAnmTexPattern@ha
-/* 8032AF14  38 03 ED 50 */	addi r0, r3, __vt__16J3DAnmTexPattern@l
+/* 8032AF10  3C 60 80 3D */	lis r3, __vt__16J3DAnmTexPattern@ha /* 0x803CED50@ha */
+/* 8032AF14  38 03 ED 50 */	addi r0, r3, __vt__16J3DAnmTexPattern@l /* 0x803CED50@l */
 /* 8032AF18  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032AF1C  90 9F 00 0C */	stw r4, 0xc(r31)
 /* 8032AF20  90 9F 00 10 */	stw r4, 0x10(r31)

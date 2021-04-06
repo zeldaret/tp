@@ -3,19 +3,20 @@
 #
 
 M185_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_df.plf
+M185_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_df.lcf
+M185_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_df.map
 
 M185_CPP_FILES := \
-	rel/d/a/e/d_a_e_df/executor.cpp \
-	rel/d/a/e/d_a_e_df/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_df/d_a_e_df.cpp \
 
 M185_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_df/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_df/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_df/d_a_e_df.o \
 
 M185_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_df/libRuntime.PPCEABI.H.a \
 
 M185_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M185_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map185.map\
+	-m _prolog \
+	-lcf $(M185_LDSCRIPT) \
+	-unused -map $(M185_MAP) \
+	-w off \
 
 $(M185_TARGET): $(M185_O_FILES) $(M185_LIBS)
+	@echo [185] creating $(M185_TARGET)
 	@echo $(M185_LIBS) $(M185_O_FILES) > build/M185_ofiles
-	$(LD) -opt_partial $(M185_LDFLAGS) -o $(M185_TARGET) @build/M185_ofiles
+	@python3 tools/lcf.py rel 185 --output $(M185_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M185_LDFLAGS) -o $(M185_TARGET) @build/M185_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_df/%.o: rel/d/a/e/d_a_e_df/%.cpp
+	@echo [185] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M185_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M185_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_df/libs/Runtime.PPCEABI.H/Makefile
 

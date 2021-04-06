@@ -28,8 +28,8 @@ lbl_807E5C48:
 /* 807E5C6C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 807E5C70  C0 1F 04 D8 */	lfs f0, 0x4d8(r31)
 /* 807E5C74  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 807E5C78  3C 60 80 7E */	lis r3, lit_3964@ha
-/* 807E5C7C  C0 03 73 80 */	lfs f0, lit_3964@l(r3)
+/* 807E5C78  3C 60 80 7E */	lis r3, lit_3964@ha /* 0x807E7380@ha */
+/* 807E5C7C  C0 03 73 80 */	lfs f0, lit_3964@l(r3)  /* 0x807E7380@l */
 /* 807E5C80  D0 01 00 08 */	stfs f0, 8(r1)
 /* 807E5C84  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 807E5C88  D0 01 00 10 */	stfs f0, 0x10(r1)

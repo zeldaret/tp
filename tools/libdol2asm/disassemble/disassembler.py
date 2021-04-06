@@ -102,6 +102,8 @@ def combine_split_load_value(hiLoadInsn, loLoadInsn):
         value |= loLoadInsn.operands[2].imm
     elif loLoadInsn.id == PPC_INS_ADDI:
         value += sign_extend_16(loLoadInsn.operands[2].imm)
+    elif loLoadInsn.id == PPC_INS_ADDIC:
+        value += sign_extend_16(loLoadInsn.operands[2].imm)
     elif is_load_store_reg_offset(loLoadInsn, hiLoadInsn.operands[0].reg):
         value += sign_extend_16(loLoadInsn.operands[1].mem.disp)
     else:
@@ -416,7 +418,7 @@ class Disassembler:
         #elif insn.id == PPC_INS_LWZU and insn.operands[1].mem.base in self.lisInsns:
         #    hiLoadInsn = self.lisInsns[insn.operands[1].reg]
 
-        elif (insn.id in {PPC_INS_ADDI, PPC_INS_ORI} and insn.operands[1].reg in self.lisInsns) \
+        elif (insn.id in {PPC_INS_ADDI, PPC_INS_ADDIC, PPC_INS_ORI} and insn.operands[1].reg in self.lisInsns) \
                 or (is_load_store_reg_offset(insn, None) and insn.operands[1].mem.base in self.lisInsns):
             hiLoadInsn = self.lisInsns[insn.operands[1].reg]
 
@@ -548,7 +550,7 @@ class AccessCollector(Disassembler):
         if insn.address in self.splitDataLoads and insn.id == PPC_INS_LIS:
             value = self.splitDataLoads[insn.address]
             self.add_load_access(insn, value)
-        elif insn.address in self.splitDataLoads and insn.id in {PPC_INS_ADDI, PPC_INS_ORI}:
+        elif insn.address in self.splitDataLoads and insn.id in {PPC_INS_ADDI, PPC_INS_ADDIC, PPC_INS_ORI}:
             value = self.splitDataLoads[insn.address]
             self.add_load_access(insn, value)
         elif insn.address in self.splitDataLoads and is_load_store_reg_offset(insn, None):

@@ -225,23 +225,6 @@ struct JKRExpHeap {};
 // Forward References:
 //
 
-static void dScnPly_Draw(dScnPly_c*);
-static void dScnPly_Execute(dScnPly_c*);
-static void dScnPly_IsDelete(dScnPly_c);
-static void dScnPly_Delete(dScnPly_c*);
-static void phase_00(dScnPly_c*);
-static void phase_01(dScnPly_c*);
-static s32 phase_0(dScnPly_c*);
-static void phase_1(dScnPly_c*);
-static void phase_1_0(dScnPly_c*);
-static void phase_2(dScnPly_c*);
-static void phase_3(dScnPly_c*);
-static void phase_4(dScnPly_c*);
-static void phase_5(dScnPly_c*);
-static void phase_6(dScnPly_c*);
-static s32 phase_compleate(void*);
-static void dScnPly_Create(scene_class*);
-
 extern "C" void calcPauseTimer__9dScnPly_cFv();
 extern "C" void __ct__22dScnPly_env_otherHIO_cFv();
 extern "C" void __ct__22dScnPly_env_debugHIO_cFv();
@@ -270,59 +253,10 @@ extern "C" void __dt__17dScnPly_env_HIO_cFv();
 extern "C" void __dt__17dScnPly_reg_HIO_cFv();
 extern "C" void __dt__21dScnPly_preLoad_HIO_cFv();
 extern "C" extern char const* const d_s_d_s_play__stringBase0;
-extern "C" extern void* g_profile_PLAY_SCENE[10];
-extern "C" extern void* g_profile_OPENING_SCENE[10];
-extern "C" extern void* __vt__22dScnPly_env_debugHIO_c[3];
-extern "C" extern void* __vt__22dScnPly_env_otherHIO_c[3];
-extern "C" extern void* __vt__17dScnPly_env_HIO_c[3];
-extern "C" extern void* __vt__17dScnPly_reg_HIO_c[3];
-extern "C" extern void* __vt__21dScnPly_preLoad_HIO_c[3];
-extern "C" extern u8 d_s_d_s_play__lit_4049[12];
-extern "C" extern u8 d_s_d_s_play__lit_4050[12];
-extern "C" extern u8 g_envHIO[68];
-extern "C" extern u8 struct_80451124[4];
 
 //
 // External References:
 //
-
-void mDoAud_setSceneName(char const*, s32, s32);
-void mDoAud_load1stDynamicWave();
-void mDoAud_resetRecover();
-void mDoRst_resetCallBack(int, void*);
-void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
-void fopOvlpM_IsPeek();
-void fopScnM_ChangeReq(scene_class*, s16, s16, u16);
-void fopMsgM_createExpHeap(u32, JKRHeap*);
-void fopMsgM_destroyExpHeap(JKRExpHeap*);
-void fopDwIt_Begin();
-void fopDwIt_Next(create_tag_class*);
-void fpcM_Draw(void*);
-void dStage_stagInfo_GetParticleNo(stage_stag_info_class*, int);
-void dStage_infoCreate();
-void dStage_Create();
-void dStage_Delete();
-void dComIfG_resetToOpening(scene_class*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGs_BossLife_public_Set(s8);
-void dComIfGp_calcNowRegion();
-void dComIfGp_world_dark_set(u8);
-void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**)(void*), void*);
-void execItemGet(u8);
-void dKy_getdaytime_hour();
-void dKy_getdaytime_minute();
-void dKy_itudemo_se();
-void dKy_get_dayofweek();
-void dKy_darkworld_check();
-void dKy_darkworld_stage_check(char const*, int);
-void dKy_darkworld_spot_check(char const*, int);
-void dKy_darkworld_Area_set(char const*, int);
-void dMeter2Info_setCloth(u8, bool);
-void dMeter2Info_setSword(u8, bool);
-void dMeter2Info_setShield(u8, bool);
-void cLib_calcTimer__template4(s8*);
-void operator delete(void*);
 
 extern "C" void mDoAud_setSceneName__FPCcll();
 extern "C" void mDoAud_load1stDynamicWave__Fv();
@@ -420,7 +354,7 @@ extern "C" void dMeter2Info_setCloth__FUcb();
 extern "C" void dMeter2Info_setSword__FUcb();
 extern "C" void dMeter2Info_setShield__FUcb();
 extern "C" void readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c();
-extern "C" void func_80252E70();
+extern "C" void func_80252E70(s8*);
 extern "C" void ClearPi__13cBgS_PolyInfoFv();
 extern "C" void setInDarkness__10Z2SceneMgrFb();
 extern "C" void check1stDynamicWave__10Z2SceneMgrFv();
@@ -474,42 +408,40 @@ extern "C" extern u8 struct_80451500[4];
 //
 
 /* ############################################################################################## */
-/* 804510F8-80451100 0008+00 s=2 e=0 z=0  None .sbss      resPhase */
+/* 804510F8-80451100 0005F8 0008+00 2/2 0/0 0/0 .sbss            resPhase */
 static u8 resPhase[8];
 
-/* 80451100-80451108 0008+00 s=2 e=0 z=0  None .sbss      dylPhase */
+/* 80451100-80451108 000600 0008+00 2/2 0/0 0/0 .sbss            dylPhase */
 static u8 dylPhase[8];
 
-/* 80451108-8045110C 0004+00 s=1 e=0 z=0  None .sbss      dylPreLoadTime1 */
+/* 80451108-8045110C 000608 0004+00 1/1 0/0 0/0 .sbss            dylPreLoadTime1 */
 static u8 dylPreLoadTime1[4];
 
-/* 8045110C-80451110 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 8045110C-80451110 00060C 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_8045110C[4];
 
-/* 80451110-80451114 0004+00 s=1 e=0 z=0  None .sbss      resPreLoadTime0 */
+/* 80451110-80451114 000610 0004+00 1/1 0/0 0/0 .sbss            resPreLoadTime0 */
 static u8 resPreLoadTime0[4];
 
-/* 80451114-80451118 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 80451114-80451118 000614 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80451114[4];
 
-/* 80451118-8045111C 0004+00 s=1 e=0 z=0  None .sbss      resPreLoadTime1 */
+/* 80451118-8045111C 000618 0004+00 1/1 0/0 0/0 .sbss            resPreLoadTime1 */
 static u8 resPreLoadTime1[4];
 
-/* 8045111C-80451120 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 8045111C-80451120 00061C 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_8045111C[4];
 
-/* 80451120-80451124 0004+00 s=1 e=0 z=0  None .sbss      g_preLoadHIO */
+/* 80451120-80451124 000620 0004+00 1/1 0/0 0/0 .sbss            g_preLoadHIO */
 static u8 g_preLoadHIO[4];
 
-/* 80451124-80451128 0004+00 s=3 e=7 z=38  None .sbss      None */
+/* 80451124-80451128 -00001 0004+00 3/3 7/7 38/38 .sbss            None */
+/* 80451124 0001+00 data_80451124 None */
+/* 80451125 0003+00 data_80451125 None */
+extern u8 struct_80451124[4];
 u8 struct_80451124[4];
 
-/* 80259400-80259440 0040+00 s=1 e=0 z=0  None .text      calcPauseTimer__9dScnPly_cFv */
-//	8025940C: 80451125 (struct_80451124)
-//	80259418: 80451124 (struct_80451124)
-//	80259420: 80451125 (struct_80451124)
-//	80259428: 80451124 (struct_80451124)
-//	8025942C: 80252E70 (func_80252E70)
+/* 80259400-80259440 253D40 0040+00 1/1 0/0 0/0 .text            calcPauseTimer__9dScnPly_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -520,7 +452,7 @@ asm void dScnPly_c::calcPauseTimer() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C3158-803C3188 002E+02 s=1 e=0 z=0  None .data      l_wipeType$4081 */
+/* 803C3158-803C3188 020278 002E+02 1/1 0/0 0/0 .data            l_wipeType$4081 */
 SECTION_DATA static u8 l_wipeType[46 + 2 /* padding */] = {
     0x00,
     0x00,
@@ -573,7 +505,7 @@ SECTION_DATA static u8 l_wipeType[46 + 2 /* padding */] = {
     0x00,
 };
 
-/* 803C3188-803C3194 000A+02 s=1 e=0 z=0  None .data      camparamarc$4608 */
+/* 803C3188-803C3194 0202A8 000A+02 1/1 0/0 0/0 .data            camparamarc$4608 */
 SECTION_DATA static u8 camparamarc[10 + 2 /* padding */] = {
     0x43,
     0x61,
@@ -590,7 +522,7 @@ SECTION_DATA static u8 camparamarc[10 + 2 /* padding */] = {
     0x00,
 };
 
-/* 803C3194-803C31C0 002C+00 s=1 e=0 z=0  None .data      l_method$4860 */
+/* 803C3194-803C31C0 -00001 002C+00 1/1 0/0 0/0 .data            l_method$4860 */
 SECTION_DATA static void* l_method[11] = {
     (void*)phase_00__FP9dScnPly_c, (void*)phase_1__FP9dScnPly_c, (void*)phase_1_0__FP9dScnPly_c,
     (void*)phase_01__FP9dScnPly_c, (void*)phase_0__FP9dScnPly_c, (void*)phase_2__FP9dScnPly_c,
@@ -598,15 +530,15 @@ SECTION_DATA static void* l_method[11] = {
     (void*)phase_6__FP9dScnPly_c,  (void*)phase_compleate__FPv,
 };
 
-/* 803C31C0-803C31D4 0014+00 s=2 e=0 z=0  None .data      l_dScnPly_Method */
+/* 803C31C0-803C31D4 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnPly_Method */
 SECTION_DATA static void* l_dScnPly_Method[5] = {
     (void*)dScnPly_Create__FP11scene_class, (void*)dScnPly_Delete__FP9dScnPly_c,
     (void*)dScnPly_Execute__FP9dScnPly_c,   (void*)dScnPly_IsDelete__F9dScnPly_c,
     (void*)dScnPly_Draw__FP9dScnPly_c,
 };
 
-/* 803C31D4-803C31FC 0028+00 s=0 e=0 z=1  None .data      g_profile_PLAY_SCENE */
-SECTION_DATA void* g_profile_PLAY_SCENE[10] = {
+/* 803C31D4-803C31FC -00001 0028+00 0/0 0/0 1/0 .data            g_profile_PLAY_SCENE */
+SECTION_DATA extern void* g_profile_PLAY_SCENE[10] = {
     (void*)NULL,
     (void*)0x0001FFFD,
     (void*)0x000B0000,
@@ -619,8 +551,8 @@ SECTION_DATA void* g_profile_PLAY_SCENE[10] = {
     (void*)NULL,
 };
 
-/* 803C31FC-803C3224 0028+00 s=0 e=0 z=1  None .data      g_profile_OPENING_SCENE */
-SECTION_DATA void* g_profile_OPENING_SCENE[10] = {
+/* 803C31FC-803C3224 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_OPENING_SCENE */
+SECTION_DATA extern void* g_profile_OPENING_SCENE[10] = {
     (void*)NULL,
     (void*)0x0001FFFD,
     (void*)0x000C0000,
@@ -633,34 +565,31 @@ SECTION_DATA void* g_profile_OPENING_SCENE[10] = {
     (void*)NULL,
 };
 
-/* 803C3224-803C3230 000C+00 s=3 e=0 z=0  None .data      __vt__22dScnPly_env_debugHIO_c */
-SECTION_DATA void* __vt__22dScnPly_env_debugHIO_c[3] = {
+/* 803C3224-803C3230 020344 000C+00 3/3 0/0 0/0 .data            __vt__22dScnPly_env_debugHIO_c */
+SECTION_DATA extern void* __vt__22dScnPly_env_debugHIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__22dScnPly_env_debugHIO_cFv,
 };
 
-/* 803C3230-803C323C 000C+00 s=3 e=0 z=0  None .data      __vt__22dScnPly_env_otherHIO_c */
-SECTION_DATA void* __vt__22dScnPly_env_otherHIO_c[3] = {
+/* 803C3230-803C323C 020350 000C+00 3/3 0/0 0/0 .data            __vt__22dScnPly_env_otherHIO_c */
+SECTION_DATA extern void* __vt__22dScnPly_env_otherHIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__22dScnPly_env_otherHIO_cFv,
 };
 
-/* 80454F18-80454F1C 0002+02 s=1 e=0 z=0  None .sdata2    T_JOINT_dylKeyTbl */
+/* 80454F18-80454F1C 003518 0002+02 1/0 0/0 0/0 .sdata2          T_JOINT_dylKeyTbl */
 SECTION_SDATA2 static u16 T_JOINT_dylKeyTbl[1 + 1 /* padding */] = {
     0x0106,
     /* padding */
     0x0000,
 };
 
-/* 80454F1C-80454F20 0004+00 s=1 e=0 z=0  None .sdata2    @4055 */
+/* 80454F1C-80454F20 00351C 0004+00 1/1 0/0 0/0 .sdata2          @4055 */
 SECTION_SDATA2 static f32 lit_4055 = 255.0f;
 
-/* 80259440-80259468 0028+00 s=1 e=0 z=0  None .text      __ct__22dScnPly_env_otherHIO_cFv */
-//	80259440: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	80259444: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	8025944C: 80454F1C (lit_4055)
+/* 80259440-80259468 253D80 0028+00 1/1 0/0 0/0 .text            __ct__22dScnPly_env_otherHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -671,13 +600,13 @@ asm dScnPly_env_otherHIO_c::dScnPly_env_otherHIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F20-80454F24 0004+00 s=1 e=0 z=0  None .sdata2    @4066 */
+/* 80454F20-80454F24 003520 0004+00 1/1 0/0 0/0 .sdata2          @4066 */
 SECTION_SDATA2 static f32 lit_4066 = -100.0f;
 
-/* 80454F24-80454F28 0004+00 s=1 e=0 z=0  None .sdata2    @4067 */
+/* 80454F24-80454F28 003524 0004+00 1/1 0/0 0/0 .sdata2          @4067 */
 SECTION_SDATA2 static f32 lit_4067 = 100.0f;
 
-/* 80454F28-80454F2C 0004+00 s=2 e=0 z=0  None .sdata2    @4068 */
+/* 80454F28-80454F2C 003528 0004+00 2/2 0/0 0/0 .sdata2          @4068 */
 SECTION_SDATA2 static u8 lit_4068[4] = {
     0x00,
     0x00,
@@ -685,12 +614,7 @@ SECTION_SDATA2 static u8 lit_4068[4] = {
     0x00,
 };
 
-/* 80259468-802594AC 0044+00 s=1 e=0 z=0  None .text      __ct__22dScnPly_env_debugHIO_cFv */
-//	80259468: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	8025946C: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	80259474: 80454F20 (lit_4066)
-//	80259484: 80454F24 (lit_4067)
-//	80259494: 80454F28 (lit_4068)
+/* 80259468-802594AC 253DA8 0044+00 1/1 0/0 0/0 .text            __ct__22dScnPly_env_debugHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -701,236 +625,79 @@ asm dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F2C-80454F30 0004+00 s=1 e=0 z=0  None .sdata2    @4100 */
+/* 80454F2C-80454F30 00352C 0004+00 1/1 0/0 0/0 .sdata2          @4100 */
 SECTION_SDATA2 static u32 lit_4100 = 0x2A1E46FF;
 
-/* 802594AC-802597B8 030C+00 s=1 e=0 z=0  None .text      dScnPly_Draw__FP9dScnPly_c */
-//	802594BC: 803621D8 (_savegpr_28)
-//	802594C4: 804061C0 (g_dComIfG_gameInfo)
-//	802594C8: 804061C0 (g_dComIfG_gameInfo)
-//	802594D4: 800872B0 (Move__4dCcSFv)
-//	802594D8: 804061C0 (g_dComIfG_gameInfo)
-//	802594DC: 804061C0 (g_dComIfG_gameInfo)
-//	802594E8: 8007493C (ClrMoveFlag__4dBgSFv)
-//	802594EC: 8001E558 (fopOvlpM_IsPeek__Fv)
-//	802594FC: 8002CD44 (dComIfG_resetToOpening__FP11scene_class)
-//	80259508: 804061C0 (g_dComIfG_gameInfo)
-//	8025950C: 804061C0 (g_dComIfG_gameInfo)
-//	80259534: 803C3158 (l_wipeType)
-//	80259538: 803C3158 (l_wipeType)
-//	80259544: 8001ECE0 (fopScnM_ChangeReq__FP11scene_classssUs)
-//	80259548: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	802595D8: 8045060C (g_saftyWhiteColor)
-//	802595E4: 80450BC8 (mFader__13mDoGph_gInf_c)
-//	8025961C: 80454F2C (lit_4100)
-//	80259624: 801AC57C (dKy_darkworld_check__Fv)
-//	80259654: 80450BC8 (mFader__13mDoGph_gInf_c)
-//	8025967C: 80450604 (g_blackColor)
-//	80259688: 80450BC8 (mFader__13mDoGph_gInf_c)
-//	802596AC: 8009C8C0 (reset__10dMdl_mng_cFv)
-//	802596B0: 804061C0 (g_dComIfG_gameInfo)
-//	802596B4: 804061C0 (g_dComIfG_gameInfo)
-//	802596C4: 80451124 (struct_80451124)
-//	802596E0: 8006F268 (Run__12dVibration_cFv)
-//	802596E4: 800315A4 (execute__7daSus_cFv)
-//	802596EC: 800749A8 (Move__4dBgSFv)
-//	802596F0: 804061C0 (g_dComIfG_gameInfo)
-//	802596F4: 804061C0 (g_dComIfG_gameInfo)
-//	802596FC: 8004C078 (calc3D__13dPa_control_cFv)
-//	80259704: 8004C0EC (calc2D__13dPa_control_cFv)
-//	80259708: 80430CD8 (g_Counter)
-//	8025970C: 80430CD8 (g_Counter)
-//	80259720: 80450EC4 (data_80450EC4)
-//	80259728: 80450EC4 (data_80450EC4)
-//	8025972C: 80451124 (struct_80451124)
-//	80259740: 80450EC4 (data_80450EC4)
-//	80259750: 8006FF38 (Pause__12dVibration_cFv)
-//	80259754: 80020444 (fopDwIt_Begin__Fv)
-//	80259764: 800220A0 (fpcM_Draw__FPv)
-//	8025976C: 80020480 (fopDwIt_Next__FP16create_tag_class)
-//	80259788: 8009CA48 (update__12dEyeHL_mng_cFv)
-//	80259790: 800872D0 (Draw__4dCcSFv)
-//	80259798: 80072BD4 (Draw__12dAttention_cFv)
-//	802597A4: 80362224 (_restgpr_28)
+/* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnPly_Draw(dScnPly_c* param_0) {
+static asm void dScnPly_Draw(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_Draw__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 802597B8-8025987C 00C4+00 s=1 e=0 z=0  None .text      dScnPly_Execute__FP9dScnPly_c */
-//	802597CC: 80259BFC (offReset__9dScnPly_cFv)
-//	802597D4: 80450D68 (data_80450D68)
-//	802597DC: 804505F0 (data_804505F0)
-//	802597E0: 8001E558 (fopOvlpM_IsPeek__Fv)
-//	802597EC: 80450BBA (struct_80450BB8)
-//	802597F8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259800: 802BA294 (sceneBgmStart__10Z2SceneMgrFv)
-//	80259804: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8025980C: 802BA120 (load2ndDynamicWave__10Z2SceneMgrFv)
-//	80259814: 80450BBA (struct_80450BB8)
-//	8025981C: 80259400 (calcPauseTimer__9dScnPly_cFv)
-//	80259830: 801A8AD8 (dKy_itudemo_se__Fv)
-//	80259834: 804061C0 (g_dComIfG_gameInfo)
-//	80259838: 804061C0 (g_dComIfG_gameInfo)
-//	80259848: 80039DA4 (update__7dDemo_cFv)
-//	8025984C: 804061C0 (g_dComIfG_gameInfo)
-//	80259850: 804061C0 (g_dComIfG_gameInfo)
-//	80259858: 80042BBC (Step__14dEvt_control_cFv)
-//	80259860: 80072924 (Run__12dAttention_cFv)
+/* 802597B8-8025987C 2540F8 00C4+00 1/0 0/0 0/0 .text            dScnPly_Execute__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnPly_Execute(dScnPly_c* param_0) {
+static asm void dScnPly_Execute(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_Execute__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025987C-802598AC 0030+00 s=1 e=0 z=0  None .text      dScnPly_IsDelete__F9dScnPly_c */
-//	80259888: 804061C0 (g_dComIfG_gameInfo)
-//	8025988C: 804061C0 (g_dComIfG_gameInfo)
-//	80259894: 8004C054 (cleanup__13dPa_control_cFv)
+/* 8025987C-802598AC 2541BC 0030+00 1/0 0/0 0/0 .text            dScnPly_IsDelete__F9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnPly_IsDelete(dScnPly_c param_0) {
+static asm void dScnPly_IsDelete(dScnPly_c param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_IsDelete__F9dScnPly_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450760-80450764 0004+00 s=1 e=0 z=0  None .sdata     T_JOINT_resName */
+/* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 extern "C" void* T_JOINT_resName;
 
-/* 80454F18-80454F1C 0002+02 s=1 e=0 z=0  None .sdata2    T_JOINT_dylKeyTbl */
+/* 80454F18-80454F1C 003518 0002+02 1/0 0/0 0/0 .sdata2          T_JOINT_dylKeyTbl */
 extern "C" u16 T_JOINT_dylKeyTbl[1 + 1 /* padding */];
 
-/* 8039A2C8-8039A2D8 0010+00 s=4 e=0 z=0  None .rodata    PreLoadInfoT */
+/* 8039A2C8-8039A2D8 -00001 0010+00 4/4 0/0 0/0 .rodata          PreLoadInfoT */
 SECTION_RODATA static void* const PreLoadInfoT[4] = {
     (void*)(((char*)&d_s_d_s_play__stringBase0) + 0x7),
     (void*)&T_JOINT_dylKeyTbl,
     (void*)&T_JOINT_resName,
     (void*)0x01010000,
 };
+SECTION_DEAD void* const cg_8039A2C8 = (void*)(&PreLoadInfoT);
 
-/* 8039A2D8-8039A388 00A9+07 s=5 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039A2D8 = "Always";
-SECTION_DEAD char const* const stringBase_8039A2DF = "T_JOINT";
-SECTION_DEAD char const* const stringBase_8039A2E7 = "F_SP109";
-SECTION_DEAD char const* const stringBase_8039A2EF = "F_SP116";
-SECTION_DEAD char const* const stringBase_8039A2F7 = "F_SP108";
-SECTION_DEAD char const* const stringBase_8039A2FF = "F_SP115";
-SECTION_DEAD char const* const stringBase_8039A307 = "F_SP117";
-SECTION_DEAD char const* const stringBase_8039A30F = "F_SP104";
-SECTION_DEAD char const* const stringBase_8039A317 = "D_SB10";
-SECTION_DEAD char const* const stringBase_8039A31E = "D_MN08D";
-SECTION_DEAD char const* const stringBase_8039A326 = "R_SP107";
-SECTION_DEAD char const* const stringBase_8039A32E = "F_SP121";
-SECTION_DEAD char const* const stringBase_8039A336 = "F_SP127";
-SECTION_DEAD char const* const stringBase_8039A33E = "Start StageName:RoomNo [%s:%d]\n";
-SECTION_DEAD char const* const stringBase_8039A35E = "Stg_00";
-SECTION_DEAD char const* const stringBase_8039A365 = "Event";
-SECTION_DEAD char const* const stringBase_8039A36B = "/res/Object/";
-SECTION_DEAD char const* const stringBase_8039A378 = "CamParam";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A381 = "\0\0\0\0\0\0";
-#pragma pop
-
-/* 80450760-80450764 0004+00 s=1 e=0 z=0  None .sdata     T_JOINT_resName */
+/* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 SECTION_SDATA static void* T_JOINT_resName = (void*)&d_s_d_s_play__stringBase0;
 
-/* 80450764-80450768 0004+00 s=4 e=0 z=0  None .sdata     None */
+/* 80450764-80450768 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
 SECTION_SDATA static u8 struct_80450764[4] = {
-    /* 80450764 0001 data_80450764 None */
+    /* 80450764 0001+00 data_80450764 None */
     0xFF,
-    /* 80450765 0003 data_80450765 None */
+    /* 80450765 0003+00 data_80450765 None */
     0x01,
     0x00,
     0x00,
 };
 
-/* 802598AC-80259AC4 0218+00 s=1 e=0 z=0  None .text      dScnPly_Delete__FP9dScnPly_c */
-//	802598BC: 803621D0 (_savegpr_26)
-//	802598C0: 800313BC (reset__7daSus_cFv)
-//	802598C4: 8003FC70 (remove__8dMpath_cFv)
-//	802598C8: 8009BC60 (remove__7dTres_cFv)
-//	802598CC: 804061C0 (g_dComIfG_gameInfo)
-//	802598D0: 804061C0 (g_dComIfG_gameInfo)
-//	802598E0: 80070774 (__dt__12dAttention_cFv)
-//	802598E8: 8006FFF8 (Remove__12dVibration_cFv)
-//	80259900: 804061C0 (g_dComIfG_gameInfo)
-//	80259904: 804061C0 (g_dComIfG_gameInfo)
-//	8025990C: 80085F08 (Dt__4dCcSFv)
-//	80259910: 80026DF8 (dStage_Delete__Fv)
-//	80259918: 800431E8 (remove__14dEvt_control_cFv)
-//	8025991C: 804061C0 (g_dComIfG_gameInfo)
-//	80259920: 804061C0 (g_dComIfG_gameInfo)
-//	8025992C: 8004BFD4 (removeScene__13dPa_control_cFb)
-//	80259930: 804061C0 (g_dComIfG_gameInfo)
-//	80259934: 804061C0 (g_dComIfG_gameInfo)
-//	80259960: 80039910 (remove__7dDemo_cFv)
-//	80259964: 804061C0 (g_dComIfG_gameInfo)
-//	80259968: 804061C0 (g_dComIfG_gameInfo)
-//	80259970: 800203E0 (fopMsgM_destroyExpHeap__FP10JKRExpHeap)
-//	8025997C: 804061C0 (g_dComIfG_gameInfo)
-//	80259980: 804061C0 (g_dComIfG_gameInfo)
-//	80259988: 800203E0 (fopMsgM_destroyExpHeap__FP10JKRExpHeap)
-//	80259998: 8002CA70 (deleteSimpleModel__14dComIfG_play_cFv)
-//	8025999C: 8009C864 (remove__10dMdl_mng_cFv)
-//	802599A0: 803DD428 (m_bloom__13mDoGph_gInf_c)
-//	802599A4: 803DD428 (m_bloom__13mDoGph_gInf_c)
-//	802599A8: 800095F8 (remove__Q213mDoGph_gInf_c7bloom_cFv)
-//	802599AC: 804061C0 (g_dComIfG_gameInfo)
-//	802599B0: 804061C0 (g_dComIfG_gameInfo)
-//	802599C4: 80450764 (struct_80450764)
-//	802599D0: 8039A2C8 (PreLoadInfoT)
-//	802599D4: 8039A2C8 (PreLoadInfoT)
-//	80259A0C: 804510F8 (resPhase)
-//	80259A18: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80259A30: 8039A2C8 (PreLoadInfoT)
-//	80259A34: 8039A2C8 (PreLoadInfoT)
-//	80259A38: 80450764 (struct_80450764)
-//	80259A74: 80451100 (dylPhase)
-//	80259A80: 80018890 (Unlink__7cDylPhsFP30request_of_phase_process_classs)
-//	80259A9C: 8002B22C (init__14dComIfG_play_cFv)
-//	80259AA4: 802E4C3C (setMessageCount__12JUTAssertionFi)
-//	80259AB0: 8036221C (_restgpr_26)
+/* 802598AC-80259AC4 2541EC 0218+00 1/0 0/0 0/0 .text            dScnPly_Delete__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnPly_Delete(dScnPly_c* param_0) {
+static asm void dScnPly_Delete(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_Delete__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 80259AC4-80259BFC 0138+00 s=1 e=0 z=0  None .text      resetGame__9dScnPly_cFv */
-//	80259AE8: 80024954 (resetArchiveBank__20dStage_roomControl_cFi)
-//	80259AFC: 800072C4 (mDoAud_resetRecover__Fv)
-//	80259B10: 80450C78 (mResetData__6mDoRst)
-//	80259B2C: 804061C0 (g_dComIfG_gameInfo)
-//	80259B30: 804061C0 (g_dComIfG_gameInfo)
-//	80259B58: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259B5C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259B64: 80368994 (strcmp)
-//	80259B74: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259B78: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259B80: 80368994 (strcmp)
-//	80259B8C: 804061C0 (g_dComIfG_gameInfo)
-//	80259B90: 804061C0 (g_dComIfG_gameInfo)
-//	80259BB0: 80024954 (resetArchiveBank__20dStage_roomControl_cFi)
-//	80259BC8: 804061C0 (g_dComIfG_gameInfo)
-//	80259BCC: 804061C0 (g_dComIfG_gameInfo)
-//	80259BDC: 80450BE6 (struct_80450BE4)
-//	80259BE0: 80450ED0 (data_80450ED0)
+/* 80259AC4-80259BFC 254404 0138+00 1/1 0/0 0/0 .text            resetGame__9dScnPly_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -940,16 +707,7 @@ asm void dScnPly_c::resetGame() {
 }
 #pragma pop
 
-/* 80259BFC-80259C70 0074+00 s=1 e=0 z=0  None .text      offReset__9dScnPly_cFv */
-//	80259C1C: 8001E558 (fopOvlpM_IsPeek__Fv)
-//	80259C2C: 80450C78 (mResetData__6mDoRst)
-//	80259C34: 80450C78 (mResetData__6mDoRst)
-//	80259C3C: 80450C78 (mResetData__6mDoRst)
-//	80259C44: 80451501 (struct_80451500)
-//	80259C48: 8001574C (mDoRst_resetCallBack__FiPv)
-//	80259C4C: 8001574C (mDoRst_resetCallBack__FiPv)
-//	80259C50: 804514EC (sCallback__Q210JUTGamePad13C3ButtonReset)
-//	80259C54: 804514F0 (sCallbackArg__Q210JUTGamePad13C3ButtonReset)
+/* 80259BFC-80259C70 25453C 0074+00 1/1 0/0 0/0 .text            offReset__9dScnPly_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -959,444 +717,150 @@ asm void dScnPly_c::offReset() {
 }
 #pragma pop
 
-/* 80259C70-80259CAC 003C+00 s=1 e=0 z=0  None .text      phase_00__FP9dScnPly_c */
-//	80259C7C: 80259AC4 (resetGame__9dScnPly_cFv)
-//	80259C94: 80450BE4 (struct_80450BE4)
+/* 80259C70-80259CAC 2545B0 003C+00 1/0 0/0 0/0 .text            phase_00__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_00(dScnPly_c* param_0) {
+static asm void phase_00(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_00__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 80259CAC-80259D7C 00D0+00 s=1 e=0 z=0  None .text      phase_01__FP9dScnPly_c */
-//	80259CC0: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80259CC4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259CCC: 8019FA3C (dKy_getdaytime_minute__Fv)
-//	80259CD0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259CD8: 801A8B38 (dKy_get_dayofweek__Fv)
-//	80259CDC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259CE4: 801AC57C (dKy_darkworld_check__Fv)
-//	80259CF0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259CFC: 802B68B0 (setInDarkness__10Z2SceneMgrFb)
-//	80259D04: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80259D10: 802B68B0 (setInDarkness__10Z2SceneMgrFb)
-//	80259D14: 804061C0 (g_dComIfG_gameInfo)
-//	80259D18: 804061C0 (g_dComIfG_gameInfo)
-//	80259D38: 8002C950 (getLayerNo_common__14dComIfG_play_cFPCcii)
-//	80259D48: 800071BC (mDoAud_setSceneName__FPCcll)
-//	80259D4C: 800071F8 (mDoAud_load1stDynamicWave__Fv)
+/* 80259CAC-80259D7C 2545EC 00D0+00 1/0 0/0 0/0 .text            phase_01__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_01(dScnPly_c* param_0) {
+static asm void phase_01(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_01__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 80259D7C-80259D84 0008+00 s=1 e=0 z=0  None .text      phase_0__FP9dScnPly_c */
+/* 80259D7C-80259D84 2546BC 0008+00 1/0 0/0 0/0 .text            phase_0__FP9dScnPly_c */
 static s32 phase_0(dScnPly_c* param_0) {
     return 2;
 }
 
-/* 80259D84-8025A438 06B4+00 s=1 e=0 z=0  None .text      phase_1__FP9dScnPly_c */
-//	80259D94: 803621DC (_savegpr_29)
-//	80259DAC: 80450D60 (mProcID__20dStage_roomControl_c)
-//	80259DB0: 804061C0 (g_dComIfG_gameInfo)
-//	80259DB4: 804061C0 (g_dComIfG_gameInfo)
-//	80259DC4: 8002B3B8 (setStartStage__14dComIfG_play_cFP19dStage_startStage_c)
-//	80259DC8: 804061C0 (g_dComIfG_gameInfo)
-//	80259DCC: 804061C0 (g_dComIfG_gameInfo)
-//	80259DDC: 8015F660 (checkRoomRestartStart__9daPy_py_cFv)
-//	80259DEC: 804061C0 (g_dComIfG_gameInfo)
-//	80259DF0: 804061C0 (g_dComIfG_gameInfo)
-//	80259E04: 8002B434 (getLayerNo_common_common__14dComIfG_play_cFPCcii)
-//	80259E10: 804061C0 (g_dComIfG_gameInfo)
-//	80259E14: 804061C0 (g_dComIfG_gameInfo)
-//	80259E24: 804061C0 (g_dComIfG_gameInfo)
-//	80259E28: 804061C0 (g_dComIfG_gameInfo)
-//	80259E38: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259E3C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259E44: 80368994 (strcmp)
-//	80259E50: 804061C0 (g_dComIfG_gameInfo)
-//	80259E54: 804061C0 (g_dComIfG_gameInfo)
-//	80259E78: 80032B94 (onDarkClearLV__21dSv_player_status_b_cFi)
-//	80259E80: 80097E8C (execItemGet__FUc)
-//	80259E8C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259E90: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259E98: 80368994 (strcmp)
-//	80259EA4: 804061C0 (g_dComIfG_gameInfo)
-//	80259EA8: 804061C0 (g_dComIfG_gameInfo)
-//	80259ECC: 80032B94 (onDarkClearLV__21dSv_player_status_b_cFi)
-//	80259ED8: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259EDC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259EE4: 80368994 (strcmp)
-//	80259EF0: 804061C0 (g_dComIfG_gameInfo)
-//	80259EF4: 804061C0 (g_dComIfG_gameInfo)
-//	80259F18: 80032B94 (onDarkClearLV__21dSv_player_status_b_cFi)
-//	80259F24: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259F28: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259F30: 80368994 (strcmp)
-//	80259F3C: 804061C0 (g_dComIfG_gameInfo)
-//	80259F40: 804061C0 (g_dComIfG_gameInfo)
-//	80259F64: 80032B94 (onDarkClearLV__21dSv_player_status_b_cFi)
-//	80259F6C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259F70: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	80259F78: 80368994 (strcmp)
-//	80259F84: 804061C0 (g_dComIfG_gameInfo)
-//	80259F88: 804061C0 (g_dComIfG_gameInfo)
-//	80259FB8: 80033E60 (onFirstBit__21dSv_player_get_item_cFUc)
-//	80259FBC: 804061C0 (g_dComIfG_gameInfo)
-//	80259FC0: 804061C0 (g_dComIfG_gameInfo)
-//	80259FD0: 80032FB8 (setItem__17dSv_player_item_cFiUc)
-//	80259FD8: 804061C0 (g_dComIfG_gameInfo)
-//	80259FDC: 804061C0 (g_dComIfG_gameInfo)
-//	80259FE8: 801AC70C (dKy_darkworld_stage_check__FPCci)
-//	80259FFC: 8002F504 (dComIfGp_world_dark_set__FUc)
-//	8025A010: 801AC7E0 (dKy_darkworld_spot_check__FPCci)
-//	8025A024: 8002F504 (dComIfGp_world_dark_set__FUc)
-//	8025A030: 8002F504 (dComIfGp_world_dark_set__FUc)
-//	8025A038: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A03C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A044: 80368994 (strcmp)
-//	8025A070: 8002C950 (getLayerNo_common__14dComIfG_play_cFPCcii)
-//	8025A088: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A08C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A094: 80368994 (strcmp)
-//	8025A0BC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A0C0: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A0C8: 80368994 (strcmp)
-//	8025A0D8: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	8025A0E8: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A0EC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A0F4: 80368994 (strcmp)
-//	8025A11C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A120: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A128: 80368994 (strcmp)
-//	8025A150: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A154: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A15C: 80368994 (strcmp)
-//	8025A184: 8002F504 (dComIfGp_world_dark_set__FUc)
-//	8025A18C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A190: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A198: 80368994 (strcmp)
-//	8025A1B0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A1B4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A1CC: 80034B98 (onSwitch__12dSv_danBit_cFi)
-//	8025A1DC: 801AC870 (dKy_darkworld_Area_set__FPCci)
-//	8025A1E4: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A1E8: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A1F0: 80368994 (strcmp)
-//	8025A208: 804061C0 (g_dComIfG_gameInfo)
-//	8025A20C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A224: 804061C0 (g_dComIfG_gameInfo)
-//	8025A228: 804061C0 (g_dComIfG_gameInfo)
-//	8025A234: 80032BD0 (onTransformLV__21dSv_player_status_b_cFi)
-//	8025A240: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A244: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A24C: 80368994 (strcmp)
-//	8025A264: 804061C0 (g_dComIfG_gameInfo)
-//	8025A268: 804061C0 (g_dComIfG_gameInfo)
-//	8025A280: 80032BD0 (onTransformLV__21dSv_player_status_b_cFi)
-//	8025A28C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A290: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A298: 80368994 (strcmp)
-//	8025A2B0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A2B4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A2CC: 80032BD0 (onTransformLV__21dSv_player_status_b_cFi)
-//	8025A2D8: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A2DC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A2E4: 80368994 (strcmp)
-//	8025A2FC: 804061C0 (g_dComIfG_gameInfo)
-//	8025A300: 804061C0 (g_dComIfG_gameInfo)
-//	8025A31C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A320: 804061C0 (g_dComIfG_gameInfo)
-//	8025A32C: 80032BD0 (onTransformLV__21dSv_player_status_b_cFi)
-//	8025A334: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A338: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A340: 80368994 (strcmp)
-//	8025A358: 804061C0 (g_dComIfG_gameInfo)
-//	8025A35C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A36C: 8042CA54 (g_env_light)
-//	8025A370: 8042CA54 (g_env_light)
-//	8025A398: 8002D8FC (dComIfGs_BossLife_public_Set__FSc)
-//	8025A3A0: 8042CA54 (g_env_light)
-//	8025A3A4: 8042CA54 (g_env_light)
-//	8025A3AC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A3B0: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A3C8: 802E85C8 (JUTReportConsole_f)
-//	8025A3D0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A3D4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A3DC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A3E0: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A3F8: 8003C160 (syncRes__14dRes_control_cFPCcP11dRes_info_ci)
-//	8025A408: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A40C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A418: 8003C5BC (setStageRes__14dRes_control_cFPCcP7JKRHeap)
-//	8025A424: 80362228 (_restgpr_29)
+/* 80259D84-8025A438 2546C4 06B4+00 1/0 0/0 0/0 .text            phase_1__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_1(dScnPly_c* param_0) {
+static asm void phase_1(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_1__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025A438-8025A4F8 00C0+00 s=1 e=0 z=0  None .text      phase_1_0__FP9dScnPly_c */
-//	8025A448: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A44C: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A454: 804061C0 (g_dComIfG_gameInfo)
-//	8025A458: 804061C0 (g_dComIfG_gameInfo)
-//	8025A46C: 8003C160 (syncRes__14dRes_control_cFPCcP11dRes_info_ci)
-//	8025A480: 80026CDC (dStage_infoCreate__Fv)
-//	8025A484: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A488: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A4A4: 8003C078 (setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap)
-//	8025A4A8: 803C3188 (camparamarc)
-//	8025A4AC: 803C3188 (camparamarc)
-//	8025A4B0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A4B4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A4BC: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A4C0: 8039A2D8 (d_s_d_s_play__stringBase0)
-//	8025A4DC: 8003C078 (setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap)
+/* 8025A438-8025A4F8 254D78 00C0+00 1/0 0/0 0/0 .text            phase_1_0__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_1_0(dScnPly_c* param_0) {
+static asm void phase_1_0(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_1_0__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025A4F8-8025A5D4 00DC+00 s=1 e=0 z=0  None .text      phase_2__FP9dScnPly_c */
-//	8025A508: 803621DC (_savegpr_29)
-//	8025A510: 804061C0 (g_dComIfG_gameInfo)
-//	8025A514: 804061C0 (g_dComIfG_gameInfo)
-//	8025A524: 8003C470 (syncAllRes__14dRes_control_cFP11dRes_info_ci)
-//	8025A540: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	8025A548: 804061C0 (g_dComIfG_gameInfo)
-//	8025A54C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A56C: 80025738 (dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi)
-//	8025A59C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A5A0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A5AC: 8004BDFC (readScene__13dPa_control_cFUcPP21mDoDvdThd_toMainRam_c)
-//	8025A5B4: 8023800C (readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c)
-//	8025A5C0: 80362228 (_restgpr_29)
+/* 8025A4F8-8025A5D4 254E38 00DC+00 1/0 0/0 0/0 .text            phase_2__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_2(dScnPly_c* param_0) {
+static asm void phase_2(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_2__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025A5D4-8025A654 0080+00 s=1 e=0 z=0  None .text      phase_3__FP9dScnPly_c */
-//	8025A600: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8025A608: 802BA09C (check1stDynamicWave__10Z2SceneMgrFv)
+/* 8025A5D4-8025A654 254F14 0080+00 1/0 0/0 0/0 .text            phase_3__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_3(dScnPly_c* param_0) {
+static asm void phase_3(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_3__FP9dScnPly_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430778-80430784 000C+00 s=1 e=0 z=0  None .bss       @4041 */
+/* 80430778-80430784 05D498 000C+00 1/1 0/0 0/0 .bss             @4041 */
 static u8 lit_4041[12];
 
-/* 80430784-80430790 000C+00 s=0 e=0 z=0  None .bss       @4049 */
-u8 d_s_d_s_play__lit_4049[12];
+/* 80430784-80430790 05D4A4 000C+00 0/1 0/0 0/0 .bss             @4049 */
+#pragma push
+#pragma force_active on
+static u8 lit_4049[12];
+#pragma pop
 
-/* 80430790-8043079C 000C+00 s=0 e=0 z=0  None .bss       @4050 */
-u8 d_s_d_s_play__lit_4050[12];
+/* 80430790-8043079C 05D4B0 000C+00 0/1 0/0 0/0 .bss             @4050 */
+#pragma push
+#pragma force_active on
+static u8 lit_4050[12];
+#pragma pop
 
-/* 8043079C-804307E0 0044+00 s=1 e=3 z=0  None .bss       g_envHIO */
+/* 8043079C-804307E0 05D4BC 0044+00 1/2 3/3 0/0 .bss             g_envHIO */
+extern u8 g_envHIO[68];
 u8 g_envHIO[68];
 
-/* 80454F30-80454F34 0004+00 s=1 e=0 z=0  None .sdata2    @4804 */
+/* 80454F30-80454F34 003530 0004+00 1/1 0/0 0/0 .sdata2          @4804 */
 SECTION_SDATA2 static f32 lit_4804 = 608.0f;
 
-/* 80454F34-80454F38 0004+00 s=1 e=0 z=0  None .sdata2    @4805 */
+/* 80454F34-80454F38 003534 0004+00 1/1 0/0 0/0 .sdata2          @4805 */
 SECTION_SDATA2 static f32 lit_4805 = 448.0f;
 
-/* 80454F38-80454F40 0004+04 s=1 e=0 z=0  None .sdata2    @4806 */
+/* 80454F38-80454F40 003538 0004+04 1/1 0/0 0/0 .sdata2          @4806 */
 SECTION_SDATA2 static f32 lit_4806[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8025A654-8025A9F4 03A0+00 s=1 e=0 z=0  None .text      phase_4__FP9dScnPly_c */
-//	8025A664: 803621D8 (_savegpr_28)
-//	8025A67C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A680: 804061C0 (g_dComIfG_gameInfo)
-//	8025A688: 8004BEB0 (createScene__13dPa_control_cFPCv)
-//	8025A6B0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A6B4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A6C0: 8004BEB0 (createScene__13dPa_control_cFPCv)
-//	8025A6D4: 804061C0 (g_dComIfG_gameInfo)
-//	8025A6D8: 804061C0 (g_dComIfG_gameInfo)
-//	8025A6F8: 8002E9F0 (dComIfGp_calcNowRegion__Fv)
-//	8025A6FC: 804061C0 (g_dComIfG_gameInfo)
-//	8025A700: 804061C0 (g_dComIfG_gameInfo)
-//	8025A71C: 803F1C48 (mLineCheck__11fopAcM_lc_c)
-//	8025A720: 803F1C48 (mLineCheck__11fopAcM_lc_c)
-//	8025A728: 80268120 (ClearPi__13cBgS_PolyInfoFv)
-//	8025A72C: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	8025A730: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	8025A738: 80268120 (ClearPi__13cBgS_PolyInfoFv)
-//	8025A73C: 803F1D24 (mRoofCheck__11fopAcM_rc_c)
-//	8025A740: 803F1D24 (mRoofCheck__11fopAcM_rc_c)
-//	8025A744: 80268120 (ClearPi__13cBgS_PolyInfoFv)
-//	8025A748: 803F1D80 (mWaterCheck__11fopAcM_wt_c)
-//	8025A74C: 803F1D80 (mWaterCheck__11fopAcM_wt_c)
-//	8025A750: 80268120 (ClearPi__13cBgS_PolyInfoFv)
-//	8025A754: 804061C0 (g_dComIfG_gameInfo)
-//	8025A758: 804061C0 (g_dComIfG_gameInfo)
-//	8025A760: 80085ED4 (Ct__4dCcSFv)
-//	8025A764: 80039678 (create__7dDemo_cFv)
-//	8025A76C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A770: 804061C0 (g_dComIfG_gameInfo)
-//	8025A7A0: 80454F28 (lit_4068)
-//	8025A7A8: 80454F30 (lit_4804)
-//	8025A7AC: 80454F34 (lit_4805)
-//	8025A7B4: 80454F38 (lit_4806)
-//	8025A7B8: 80051AC0 (setViewPort__14dDlst_window_cFffffff)
-//	8025A7C0: 80454F28 (lit_4068)
-//	8025A7C8: 80454F30 (lit_4804)
-//	8025A7CC: 80454F34 (lit_4805)
-//	8025A7D0: 80051ADC (setScissor__14dDlst_window_cFffff)
-//	8025A7D8: 804061C0 (g_dComIfG_gameInfo)
-//	8025A7DC: 804061C0 (g_dComIfG_gameInfo)
-//	8025A81C: 8002039C (fopMsgM_createExpHeap__FUlP7JKRHeap)
-//	8025A820: 804061C0 (g_dComIfG_gameInfo)
-//	8025A824: 804061C0 (g_dComIfG_gameInfo)
-//	8025A838: 8002039C (fopMsgM_createExpHeap__FUlP7JKRHeap)
-//	8025A83C: 804061C0 (g_dComIfG_gameInfo)
-//	8025A840: 804061C0 (g_dComIfG_gameInfo)
-//	8025A870: 80019D98 (fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc)
-//	8025A874: 804061C0 (g_dComIfG_gameInfo)
-//	8025A878: 804061C0 (g_dComIfG_gameInfo)
-//	8025A87C: 80034FCC (init__10dSv_info_cFv)
-//	8025A880: 804061C0 (g_dComIfG_gameInfo)
-//	8025A884: 804061C0 (g_dComIfG_gameInfo)
-//	8025A8A0: 8021E4B0 (dMeter2Info_setCloth__FUcb)
-//	8025A8AC: 8021E530 (dMeter2Info_setSword__FUcb)
-//	8025A8B8: 8021E5D4 (dMeter2Info_setShield__FUcb)
-//	8025A8BC: 804061C0 (g_dComIfG_gameInfo)
-//	8025A8C0: 804061C0 (g_dComIfG_gameInfo)
-//	8025A8CC: 8003498C (onEventBit__11dSv_event_cFUs)
-//	8025A8D0: 8003FB70 (create__8dMpath_cFv)
-//	8025A8D4: 8009BC18 (create__7dTres_cFv)
-//	8025A8D8: 80026D38 (dStage_Create__Fv)
-//	8025A8E0: 8002CA1C (createSimpleModel__14dComIfG_play_cFv)
-//	8025A8E4: 8009C7AC (create__10dMdl_mng_cFv)
-//	8025A8E8: 804511C0 (sManager__10JFWDisplay)
-//	8025A910: 8043079C (g_envHIO)
-//	8025A914: 8043079C (g_envHIO)
-//	8025A91C: 804307EC (g_save_bit_HIO)
-//	8025A920: 804307EC (g_save_bit_HIO)
-//	8025A938: 80070198 (__ct__12dAttention_cFP10fopAc_ac_cUl)
-//	8025A940: 8006FF04 (Init__12dVibration_cFv)
-//	8025A948: 80450D98 (m_emitter__8daYkgr_c)
-//	8025A94C: 80450D8C (struct_80450D8C)
-//	8025A954: 80450D8D (struct_80450D8C)
-//	8025A95C: 80450D8E (struct_80450D8C)
-//	8025A960: 804061C0 (g_dComIfG_gameInfo)
-//	8025A964: 804061C0 (g_dComIfG_gameInfo)
-//	8025A970: 80450BE6 (struct_80450BE4)
-//	8025A974: 80450BBA (struct_80450BB8)
-//	8025A978: 80451124 (struct_80451124)
-//	8025A97C: 80451125 (struct_80451124)
-//	8025A984: 80450764 (struct_80450764)
-//	8025A988: 80450765 (struct_80450764)
-//	8025A99C: 8039A2C8 (PreLoadInfoT)
-//	8025A9A0: 8039A2C8 (PreLoadInfoT)
-//	8025A9A8: 80368994 (strcmp)
-//	8025A9B4: 80450764 (struct_80450764)
-//	8025A9B8: 80450764 (struct_80450764)
-//	8025A9CC: 803426FC (OSGetTime)
-//	8025A9D0: 80451114 (data_80451114)
-//	8025A9D4: 80451110 (resPreLoadTime0)
-//	8025A9E0: 80362224 (_restgpr_28)
+/* 8025A654-8025A9F4 254F94 03A0+00 1/0 0/0 0/0 .text            phase_4__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_4(dScnPly_c* param_0) {
+static asm void phase_4(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_4__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025A9F4-8025AAC0 00CC+00 s=1 e=0 z=0  None .text      phase_5__FP9dScnPly_c */
-//	8025AA04: 803621D0 (_savegpr_26)
-//	8025AA08: 80450764 (struct_80450764)
-//	8025AA18: 8039A2C8 (PreLoadInfoT)
-//	8025AA1C: 8039A2C8 (PreLoadInfoT)
-//	8025AA58: 804510F8 (resPhase)
-//	8025AA64: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	8025AA90: 803426FC (OSGetTime)
-//	8025AA94: 8045111C (data_8045111C)
-//	8025AA98: 80451118 (resPreLoadTime1)
-//	8025AAAC: 8036221C (_restgpr_26)
+/* 8025A9F4-8025AAC0 255334 00CC+00 1/0 0/0 0/0 .text            phase_5__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_5(dScnPly_c* param_0) {
+static asm void phase_5(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_5__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025AAC0-8025AB8C 00CC+00 s=1 e=0 z=0  None .text      phase_6__FP9dScnPly_c */
-//	8025AAD0: 803621D0 (_savegpr_26)
-//	8025AAD4: 80450764 (struct_80450764)
-//	8025AAE4: 8039A2C8 (PreLoadInfoT)
-//	8025AAE8: 8039A2C8 (PreLoadInfoT)
-//	8025AB24: 80451100 (dylPhase)
-//	8025AB30: 8001884C (Link__7cDylPhsFP30request_of_phase_process_classs)
-//	8025AB5C: 803426FC (OSGetTime)
-//	8025AB60: 8045110C (data_8045110C)
-//	8025AB64: 80451108 (dylPreLoadTime1)
-//	8025AB78: 8036221C (_restgpr_26)
+/* 8025AAC0-8025AB8C 255400 00CC+00 1/0 0/0 0/0 .text            phase_6__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_6(dScnPly_c* param_0) {
+static asm void phase_6(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_6__FP9dScnPly_c.s"
 }
 #pragma pop
 
-/* 8025AB8C-8025AB94 0008+00 s=1 e=0 z=0  None .text      phase_compleate__FPv */
+/* 8025AB8C-8025AB94 2554CC 0008+00 1/0 0/0 0/0 .text            phase_compleate__FPv */
 static s32 phase_compleate(void* param_0) {
     return 4;
 }
 
-/* 8025AB94-8025ABC4 0030+00 s=1 e=0 z=0  None .text      dScnPly_Create__FP11scene_class */
-//	8025ABA8: 803C3194 (l_method)
-//	8025ABAC: 803C3194 (l_method)
-//	8025ABB0: 8002FB20 (dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv)
+/* 8025AB94-8025ABC4 2554D4 0030+00 1/0 0/0 0/0 .text            dScnPly_Create__FP11scene_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnPly_Create(scene_class* param_0) {
+static asm void dScnPly_Create(scene_class* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_Create__FP11scene_class.s"
 }
 #pragma pop
 
-/* 8025ABC4-8025AC0C 0048+00 s=1 e=0 z=0  None .text      __dt__22dScnPly_env_debugHIO_cFv */
-//	8025ABDC: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	8025ABE0: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	8025ABF0: 802CED3C (__dl__FPv)
+/* 8025ABC4-8025AC0C 255504 0048+00 1/0 0/0 0/0 .text            __dt__22dScnPly_env_debugHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1406,10 +870,7 @@ asm dScnPly_env_debugHIO_c::~dScnPly_env_debugHIO_c() {
 }
 #pragma pop
 
-/* 8025AC0C-8025AC54 0048+00 s=1 e=0 z=0  None .text      __dt__22dScnPly_env_otherHIO_cFv */
-//	8025AC24: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	8025AC28: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	8025AC38: 802CED3C (__dl__FPv)
+/* 8025AC0C-8025AC54 25554C 0048+00 1/0 0/0 0/0 .text            __dt__22dScnPly_env_otherHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1420,61 +881,35 @@ asm dScnPly_env_otherHIO_c::~dScnPly_env_otherHIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C323C-803C3248 000C+00 s=2 e=0 z=0  None .data      __vt__17dScnPly_env_HIO_c */
-SECTION_DATA void* __vt__17dScnPly_env_HIO_c[3] = {
+/* 803C323C-803C3248 02035C 000C+00 2/2 0/0 0/0 .data            __vt__17dScnPly_env_HIO_c */
+SECTION_DATA extern void* __vt__17dScnPly_env_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17dScnPly_env_HIO_cFv,
 };
 
-/* 803C3248-803C3254 000C+00 s=2 e=0 z=0  None .data      __vt__17dScnPly_reg_HIO_c */
-SECTION_DATA void* __vt__17dScnPly_reg_HIO_c[3] = {
+/* 803C3248-803C3254 020368 000C+00 2/2 0/0 0/0 .data            __vt__17dScnPly_reg_HIO_c */
+SECTION_DATA extern void* __vt__17dScnPly_reg_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17dScnPly_reg_HIO_cFv,
 };
 
-/* 803C3254-803C3260 000C+00 s=2 e=0 z=0  None .data      __vt__21dScnPly_preLoad_HIO_c */
-SECTION_DATA void* __vt__21dScnPly_preLoad_HIO_c[3] = {
+/* 803C3254-803C3260 020374 000C+00 2/2 0/0 0/0 .data            __vt__21dScnPly_preLoad_HIO_c */
+SECTION_DATA extern void* __vt__21dScnPly_preLoad_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__21dScnPly_preLoad_HIO_cFv,
 };
 
-/* 80451128-80451130 0004+04 s=1 e=0 z=0  None .sbss      g_regHIO */
+/* 80451128-80451130 000628 0004+04 1/1 0/0 0/0 .sbss            g_regHIO */
 static u8 g_regHIO[4 + 4 /* padding */];
 
-/* 8025AC54-8025AD04 00B0+00 s=0 e=0 z=0  None .text      __sinit_d_s_play_cpp */
-//	8025AC64: 80430778 (lit_4041)
-//	8025AC68: 80430778 (lit_4041)
-//	8025AC6C: 803B61B4 (__vt__14mDoHIO_entry_c)
-//	8025AC70: 803B61B4 (__vt__14mDoHIO_entry_c)
-//	8025AC74: 80451120 (g_preLoadHIO)
-//	8025AC78: 803C3254 (__vt__21dScnPly_preLoad_HIO_c)
-//	8025AC7C: 803C3254 (__vt__21dScnPly_preLoad_HIO_c)
-//	8025AC80: 80451120 (g_preLoadHIO)
-//	8025AC84: 80451120 (g_preLoadHIO)
-//	8025AC88: 8025ADC0 (__dt__21dScnPly_preLoad_HIO_cFv)
-//	8025AC8C: 8025ADC0 (__dt__21dScnPly_preLoad_HIO_cFv)
-//	8025AC94: 80361C24 (__register_global_object)
-//	8025AC98: 803C3248 (__vt__17dScnPly_reg_HIO_c)
-//	8025AC9C: 803C3248 (__vt__17dScnPly_reg_HIO_c)
-//	8025ACA0: 80451128 (g_regHIO)
-//	8025ACA4: 80451128 (g_regHIO)
-//	8025ACA8: 8025AD78 (__dt__17dScnPly_reg_HIO_cFv)
-//	8025ACAC: 8025AD78 (__dt__17dScnPly_reg_HIO_cFv)
-//	8025ACB4: 80361C24 (__register_global_object)
-//	8025ACB8: 803C323C (__vt__17dScnPly_env_HIO_c)
-//	8025ACBC: 803C323C (__vt__17dScnPly_env_HIO_c)
-//	8025ACCC: 80259440 (__ct__22dScnPly_env_otherHIO_cFv)
-//	8025ACD8: 80259468 (__ct__22dScnPly_env_debugHIO_cFv)
-//	8025ACE0: 8025AD04 (__dt__17dScnPly_env_HIO_cFv)
-//	8025ACE4: 8025AD04 (__dt__17dScnPly_env_HIO_cFv)
-//	8025ACEC: 80361C24 (__register_global_object)
+/* 8025AC54-8025AD04 255594 00B0+00 0/0 1/0 0/0 .text            __sinit_d_s_play_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_s_play_cpp() {
+asm void __sinit_d_s_play_cpp() {
     nofralloc
 #include "asm/d/s/d_s_play/__sinit_d_s_play_cpp.s"
 }
@@ -1485,14 +920,7 @@ extern "C" asm void __sinit_d_s_play_cpp() {
 SECTION_CTORS void* const _ctors_8025AC54 = (void*)__sinit_d_s_play_cpp;
 #pragma pop
 
-/* 8025AD04-8025AD78 0074+00 s=2 e=0 z=0  None .text      __dt__17dScnPly_env_HIO_cFv */
-//	8025AD1C: 803C323C (__vt__17dScnPly_env_HIO_c)
-//	8025AD20: 803C323C (__vt__17dScnPly_env_HIO_c)
-//	8025AD30: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	8025AD34: 803C3224 (__vt__22dScnPly_env_debugHIO_c)
-//	8025AD44: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	8025AD48: 803C3230 (__vt__22dScnPly_env_otherHIO_c)
-//	8025AD5C: 802CED3C (__dl__FPv)
+/* 8025AD04-8025AD78 255644 0074+00 2/1 0/0 0/0 .text            __dt__17dScnPly_env_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1502,10 +930,7 @@ asm dScnPly_env_HIO_c::~dScnPly_env_HIO_c() {
 }
 #pragma pop
 
-/* 8025AD78-8025ADC0 0048+00 s=2 e=0 z=0  None .text      __dt__17dScnPly_reg_HIO_cFv */
-//	8025AD90: 803C3248 (__vt__17dScnPly_reg_HIO_c)
-//	8025AD94: 803C3248 (__vt__17dScnPly_reg_HIO_c)
-//	8025ADA4: 802CED3C (__dl__FPv)
+/* 8025AD78-8025ADC0 2556B8 0048+00 2/1 0/0 0/0 .text            __dt__17dScnPly_reg_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1515,12 +940,7 @@ asm dScnPly_reg_HIO_c::~dScnPly_reg_HIO_c() {
 }
 #pragma pop
 
-/* 8025ADC0-8025AE1C 005C+00 s=2 e=0 z=0  None .text      __dt__21dScnPly_preLoad_HIO_cFv */
-//	8025ADD8: 803C3254 (__vt__21dScnPly_preLoad_HIO_c)
-//	8025ADDC: 803C3254 (__vt__21dScnPly_preLoad_HIO_c)
-//	8025ADE8: 803B61B4 (__vt__14mDoHIO_entry_c)
-//	8025ADEC: 803B61B4 (__vt__14mDoHIO_entry_c)
-//	8025AE00: 802CED3C (__dl__FPv)
+/* 8025ADC0-8025AE1C 255700 005C+00 2/1 0/0 0/0 .text            __dt__21dScnPly_preLoad_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1528,4 +948,30 @@ asm dScnPly_preLoad_HIO_c::~dScnPly_preLoad_HIO_c() {
     nofralloc
 #include "asm/d/s/d_s_play/__dt__21dScnPly_preLoad_HIO_cFv.s"
 }
+#pragma pop
+
+/* 8039A2D8-8039A388 026938 00A9+07 5/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039A2D8 = "Always";
+SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
+SECTION_DEAD static char const* const stringBase_8039A2E7 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8039A2EF = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8039A2F7 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039A2FF = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8039A307 = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8039A30F = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8039A317 = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8039A31E = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8039A326 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8039A32E = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8039A336 = "F_SP127";
+SECTION_DEAD static char const* const stringBase_8039A33E = "Start StageName:RoomNo [%s:%d]\n";
+SECTION_DEAD static char const* const stringBase_8039A35E = "Stg_00";
+SECTION_DEAD static char const* const stringBase_8039A365 = "Event";
+SECTION_DEAD static char const* const stringBase_8039A36B = "/res/Object/";
+SECTION_DEAD static char const* const stringBase_8039A378 = "CamParam";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A381 = "\0\0\0\0\0\0";
 #pragma pop

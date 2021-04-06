@@ -3,12 +3,12 @@ lbl_80A20350:
 /* 80A20354  7C 08 02 A6 */	mflr r0
 /* 80A20358  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80A2035C  39 61 00 40 */	addi r11, r1, 0x40
-/* 80A20360  4B 94 1E 74 */	b _savegpr_27
+/* 80A20360  4B 94 1E 75 */	bl _savegpr_27
 /* 80A20364  7C 7F 1B 78 */	mr r31, r3
 /* 80A20368  7C 9B 23 78 */	mr r27, r4
 /* 80A2036C  7C BC 2B 78 */	mr r28, r5
-/* 80A20370  3C 60 80 A2 */	lis r3, lit_3908@ha
-/* 80A20374  3B C3 10 80 */	addi r30, r3, lit_3908@l
+/* 80A20370  3C 60 80 A2 */	lis r3, lit_3908@ha /* 0x80A21080@ha */
+/* 80A20374  3B C3 10 80 */	addi r30, r3, lit_3908@l /* 0x80A21080@l */
 /* 80A20378  80 7E 02 B8 */	lwz r3, 0x2b8(r30)
 /* 80A2037C  80 1E 02 BC */	lwz r0, 0x2bc(r30)
 /* 80A20380  90 61 00 10 */	stw r3, 0x10(r1)
@@ -16,13 +16,13 @@ lbl_80A20350:
 /* 80A20388  80 1E 02 C0 */	lwz r0, 0x2c0(r30)
 /* 80A2038C  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80A20390  38 7F 14 48 */	addi r3, r31, 0x1448
-/* 80A20394  4B 73 03 58 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A20394  4B 73 03 59 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A20398  90 61 00 10 */	stw r3, 0x10(r1)
 /* 80A2039C  38 7F 14 50 */	addi r3, r31, 0x1450
-/* 80A203A0  4B 73 03 4C */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A203A0  4B 73 03 4D */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A203A4  90 61 00 14 */	stw r3, 0x14(r1)
 /* 80A203A8  38 7F 14 58 */	addi r3, r31, 0x1458
-/* 80A203AC  4B 73 03 40 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A203AC  4B 73 03 41 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A203B0  90 61 00 18 */	stw r3, 0x18(r1)
 /* 80A203B4  80 7E 02 C4 */	lwz r3, 0x2c4(r30)
 /* 80A203B8  80 1E 02 C8 */	lwz r0, 0x2c8(r30)
@@ -63,7 +63,7 @@ lbl_80A20430:
 /* 80A20438  38 81 00 08 */	addi r4, r1, 8
 /* 80A2043C  38 A0 00 00 */	li r5, 0
 /* 80A20440  38 C1 00 10 */	addi r6, r1, 0x10
-/* 80A20444  4B 73 39 40 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80A20444  4B 73 39 41 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80A20448  2C 03 00 00 */	cmpwi r3, 0
 /* 80A2044C  41 82 00 DC */	beq lbl_80A20528
 /* 80A20450  3B A0 00 01 */	li r29, 1
@@ -91,7 +91,7 @@ lbl_80A20498:
 /* 80A204A0  38 81 00 08 */	addi r4, r1, 8
 /* 80A204A4  38 A0 00 00 */	li r5, 0
 /* 80A204A8  38 C1 00 10 */	addi r6, r1, 0x10
-/* 80A204AC  4B 73 38 D8 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80A204AC  4B 73 38 D9 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80A204B0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A204B4  41 82 00 74 */	beq lbl_80A20528
 /* 80A204B8  3B A0 00 01 */	li r29, 1
@@ -118,7 +118,7 @@ lbl_80A20500:
 /* 80A20504  38 80 00 00 */	li r4, 0
 /* 80A20508  38 A0 00 00 */	li r5, 0
 /* 80A2050C  38 C1 00 10 */	addi r6, r1, 0x10
-/* 80A20510  4B 73 38 74 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80A20510  4B 73 38 75 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80A20514  2C 03 00 00 */	cmpwi r3, 0
 /* 80A20518  41 82 00 10 */	beq lbl_80A20528
 /* 80A2051C  3B A0 00 01 */	li r29, 1
@@ -128,7 +128,7 @@ lbl_80A20524:
 lbl_80A20528:
 /* 80A20528  7F A3 EB 78 */	mr r3, r29
 /* 80A2052C  39 61 00 40 */	addi r11, r1, 0x40
-/* 80A20530  4B 94 1C F0 */	b _restgpr_27
+/* 80A20530  4B 94 1C F1 */	bl _restgpr_27
 /* 80A20534  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80A20538  7C 08 03 A6 */	mtlr r0
 /* 80A2053C  38 21 00 40 */	addi r1, r1, 0x40

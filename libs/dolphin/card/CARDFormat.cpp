@@ -12,7 +12,7 @@
 //
 
 extern "C" static void FormatCallback();
-extern "C" static void __CARDFormatRegionAsync();
+extern "C" void __CARDFormatRegionAsync();
 extern "C" void CARDFormat();
 
 //
@@ -43,80 +43,31 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80357484-803575C8 0144+00 s=1 e=0 z=0  None .text      FormatCallback */
-//	8035749C: 8044CBC0 (__CARDBlock)
-//	803574AC: 8044CBC0 (__CARDBlock)
-//	803574E8: 803539B8 (__CARDEraseSector)
-//	80357528: 803553AC (__CARDWrite)
-//	80357554: 80003540 (memcpy)
-//	80357578: 80003540 (memcpy)
-//	80357590: 80353C6C (__CARDPutControlBlock)
+/* 80357484-803575C8 351DC4 0144+00 1/1 0/0 0/0 .text            FormatCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void FormatCallback() {
+static asm void FormatCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/FormatCallback.s"
 }
 #pragma pop
 
-/* 803575C8-80357C20 0658+00 s=1 e=0 z=0  None .text      __CARDFormatRegionAsync */
-//	803575E8: 80353BB4 (__CARDGetControlBlock)
-//	8035760C: 80003458 (memset)
-//	8035761C: 80340144 (__OSLockSram)
-//	80357634: 80340538 (__OSUnlockSram)
-//	80357638: 803426FC (OSGetTime)
-//	8035764C: 803401A0 (__OSLockSramEx)
-//	8035769C: 80362694 (__shr2i)
-//	803576D4: 80362694 (__shr2i)
-//	80357708: 80362694 (__shr2i)
-//	80357744: 80362694 (__shr2i)
-//	80357774: 80362694 (__shr2i)
-//	803577B0: 80362694 (__shr2i)
-//	803577E0: 80362694 (__shr2i)
-//	8035781C: 80362694 (__shr2i)
-//	8035784C: 80362694 (__shr2i)
-//	80357888: 80362694 (__shr2i)
-//	803578B8: 80362694 (__shr2i)
-//	803578F4: 80362694 (__shr2i)
-//	80357924: 80362694 (__shr2i)
-//	80357960: 80362694 (__shr2i)
-//	80357990: 80362694 (__shr2i)
-//	803579CC: 80362694 (__shr2i)
-//	80357A28: 80362694 (__shr2i)
-//	80357A60: 80362694 (__shr2i)
-//	80357A88: 8034055C (__OSUnlockSramEx)
-//	80357ABC: 803559E0 (__CARDCheckSum)
-//	80357AE8: 80003458 (memset)
-//	80357B04: 803559E0 (__CARDCheckSum)
-//	80357B44: 80003458 (memset)
-//	80357B74: 803559E0 (__CARDCheckSum)
-//	80357B98: 80352A30 (__CARDDefaultApiCallback)
-//	80357B9C: 80352A30 (__CARDDefaultApiCallback)
-//	80357BB8: 8033B5DC (DCStoreRange)
-//	80357BC4: 80357484 (FormatCallback)
-//	80357BCC: 80357484 (FormatCallback)
-//	80357BE4: 803539B8 (__CARDEraseSector)
-//	80357BF8: 80353C6C (__CARDPutControlBlock)
+/* 803575C8-80357C20 351F08 0658+00 1/1 0/0 0/0 .text            __CARDFormatRegionAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDFormatRegionAsync() {
+asm void __CARDFormatRegionAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/__CARDFormatRegionAsync.s"
 }
 #pragma pop
 
-/* 80357C20-80357C74 0054+00 s=0 e=1 z=0  None .text      CARDFormat */
-//	80357C34: 80353B74 (__CARDGetFontEncode)
-//	80357C38: 80352A34 (__CARDSyncCallback)
-//	80357C40: 80352A34 (__CARDSyncCallback)
-//	80357C48: 803575C8 (__CARDFormatRegionAsync)
-//	80357C5C: 80353E20 (__CARDSync)
+/* 80357C20-80357C74 352560 0054+00 0/0 1/1 0/0 .text            CARDFormat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDFormat() {
+asm void CARDFormat() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/CARDFormat.s"
 }

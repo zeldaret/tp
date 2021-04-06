@@ -4,10 +4,10 @@ lbl_80A5280C:
 /* 80A52814  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A52818  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A5281C  7C 7F 1B 78 */	mr r31, r3
-/* 80A52820  3C 60 80 A5 */	lis r3, s_sw_sub__FPvPv@ha
-/* 80A52824  38 63 BA 14 */	addi r3, r3, s_sw_sub__FPvPv@l
+/* 80A52820  3C 60 80 A5 */	lis r3, s_sw_sub__FPvPv@ha /* 0x80A4BA14@ha */
+/* 80A52824  38 63 BA 14 */	addi r3, r3, s_sw_sub__FPvPv@l /* 0x80A4BA14@l */
 /* 80A52828  7F E4 FB 78 */	mr r4, r31
-/* 80A5282C  4B 5C EB 0C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80A5282C  4B 5C EB 0D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80A52830  90 7F 09 34 */	stw r3, 0x934(r31)
 /* 80A52834  80 9F 09 34 */	lwz r4, 0x934(r31)
 /* 80A52838  28 04 00 00 */	cmplwi r4, 0
@@ -17,8 +17,8 @@ lbl_80A5280C:
 lbl_80A52848:
 /* 80A52848  38 60 00 00 */	li r3, 0
 /* 80A5284C  80 04 09 1C */	lwz r0, 0x91c(r4)
-/* 80A52850  3C 80 80 A6 */	lis r4, saru_p@ha
-/* 80A52854  38 84 E4 78 */	addi r4, r4, saru_p@l
+/* 80A52850  3C 80 80 A6 */	lis r4, saru_p@ha /* 0x80A5E478@ha */
+/* 80A52854  38 84 E4 78 */	addi r4, r4, saru_p@l /* 0x80A5E478@l */
 /* 80A52858  7C 09 03 A6 */	mtctr r0
 /* 80A5285C  2C 00 00 00 */	cmpwi r0, 0
 /* 80A52860  40 81 00 20 */	ble lbl_80A52880

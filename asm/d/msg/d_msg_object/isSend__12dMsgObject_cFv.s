@@ -6,8 +6,8 @@ lbl_802369D8:
 /* 802369E8  93 C1 00 08 */	stw r30, 8(r1)
 /* 802369EC  7C 7F 1B 78 */	mr r31, r3
 /* 802369F0  38 00 00 00 */	li r0, 0
-/* 802369F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802369F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802369F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802369F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802369FC  98 03 5E 3C */	stb r0, 0x5e3c(r3)
 /* 80236A00  98 03 5E 57 */	stb r0, 0x5e57(r3)
 /* 80236A04  8B C3 5E 86 */	lbz r30, 0x5e86(r3)
@@ -59,8 +59,8 @@ lbl_80236A90:
 /* 80236AA8  40 82 00 38 */	bne lbl_80236AE0
 /* 80236AAC  7F E3 FB 78 */	mr r3, r31
 /* 80236AB0  48 00 11 4D */	bl setButtonStatusLocal__12dMsgObject_cFv
-/* 80236AB4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80236AB8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80236AB4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80236AB8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80236ABC  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80236AC0  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80236AC4  40 82 00 0C */	bne lbl_80236AD0
@@ -97,8 +97,8 @@ lbl_80236B1C:
 /* 80236B24  40 82 00 98 */	bne lbl_80236BBC
 /* 80236B28  7F E3 FB 78 */	mr r3, r31
 /* 80236B2C  48 00 10 D1 */	bl setButtonStatusLocal__12dMsgObject_cFv
-/* 80236B30  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80236B34  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80236B30  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80236B34  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80236B38  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80236B3C  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80236B40  40 82 00 0C */	bne lbl_80236B4C
@@ -122,8 +122,8 @@ lbl_80236B54:
 /* 80236B80  38 60 00 02 */	li r3, 2
 /* 80236B84  48 00 00 5C */	b lbl_80236BE0
 lbl_80236B88:
-/* 80236B88  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80236B8C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80236B88  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80236B8C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80236B90  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80236B94  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80236B98  40 82 00 0C */	bne lbl_80236BA4

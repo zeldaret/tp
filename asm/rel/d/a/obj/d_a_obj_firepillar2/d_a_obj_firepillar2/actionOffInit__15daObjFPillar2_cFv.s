@@ -12,8 +12,8 @@ lbl_80BEA81C:
 /* 80BEA82C  54 00 E7 3E */	rlwinm r0, r0, 0x1c, 0x1c, 0x1f
 /* 80BEA830  28 00 00 01 */	cmplwi r0, 1
 /* 80BEA834  40 82 00 14 */	bne lbl_80BEA848
-/* 80BEA838  3C 80 80 BF */	lis r4, lit_3961@ha
-/* 80BEA83C  C0 04 B4 E8 */	lfs f0, lit_3961@l(r4)
+/* 80BEA838  3C 80 80 BF */	lis r4, lit_3961@ha /* 0x80BEB4E8@ha */
+/* 80BEA83C  C0 04 B4 E8 */	lfs f0, lit_3961@l(r4)  /* 0x80BEB4E8@l */
 /* 80BEA840  80 83 05 74 */	lwz r4, 0x574(r3)
 /* 80BEA844  D0 04 00 0C */	stfs f0, 0xc(r4)
 lbl_80BEA848:

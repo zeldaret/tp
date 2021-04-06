@@ -47,8 +47,8 @@ lbl_801A8934:
 /* 801A8998  D0 3F 00 2C */	stfs f1, 0x2c(r31)
 /* 801A899C  D0 3F 00 30 */	stfs f1, 0x30(r31)
 /* 801A89A0  38 60 00 00 */	li r3, 0
-/* 801A89A4  3C 80 80 43 */	lis r4, lightStatusData@ha
-/* 801A89A8  38 84 E0 7C */	addi r4, r4, lightStatusData@l
+/* 801A89A4  3C 80 80 43 */	lis r4, lightStatusData@ha /* 0x8042E07C@ha */
+/* 801A89A8  38 84 E0 7C */	addi r4, r4, lightStatusData@l /* 0x8042E07C@l */
 /* 801A89AC  38 00 00 06 */	li r0, 6
 /* 801A89B0  7C 09 03 A6 */	mtctr r0
 lbl_801A89B4:

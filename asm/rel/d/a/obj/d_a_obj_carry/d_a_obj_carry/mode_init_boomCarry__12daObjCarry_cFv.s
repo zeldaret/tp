@@ -5,7 +5,7 @@ lbl_80474EA8:
 /* 80474EB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80474EB8  7C 7F 1B 78 */	mr r31, r3
 /* 80474EBC  38 7F 05 74 */	addi r3, r31, 0x574
-/* 80474EC0  4B C0 24 E4 */	b ClrMoveBGOnly__9dBgS_AcchFv
+/* 80474EC0  4B C0 24 E5 */	bl ClrMoveBGOnly__9dBgS_AcchFv
 /* 80474EC4  80 1F 05 A0 */	lwz r0, 0x5a0(r31)
 /* 80474EC8  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 80474ECC  90 1F 05 A0 */	stw r0, 0x5a0(r31)
@@ -29,18 +29,18 @@ lbl_80474EA8:
 /* 80474F14  7F E3 FB 78 */	mr r3, r31
 /* 80474F18  4B FF DF 45 */	bl calc_gravity__12daObjCarry_cFv
 /* 80474F1C  D0 3F 05 30 */	stfs f1, 0x530(r31)
-/* 80474F20  3C 60 80 48 */	lis r3, lit_6043@ha
-/* 80474F24  C0 03 A4 34 */	lfs f0, lit_6043@l(r3)
+/* 80474F20  3C 60 80 48 */	lis r3, lit_6043@ha /* 0x8047A434@ha */
+/* 80474F24  C0 03 A4 34 */	lfs f0, lit_6043@l(r3)  /* 0x8047A434@l */
 /* 80474F28  D0 1F 05 34 */	stfs f0, 0x534(r31)
 /* 80474F2C  7F E3 FB 78 */	mr r3, r31
 /* 80474F30  4B FF A7 75 */	bl data__12daObjCarry_cFv
 /* 80474F34  88 03 00 36 */	lbz r0, 0x36(r3)
 /* 80474F38  98 1F 07 A0 */	stb r0, 0x7a0(r31)
 /* 80474F3C  38 7F 07 C8 */	addi r3, r31, 0x7c8
-/* 80474F40  4B C0 F6 08 */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80474F40  4B C0 F6 09 */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80474F44  38 7F 0D 28 */	addi r3, r31, 0xd28
 /* 80474F48  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 80474F4C  4B CE 96 64 */	b initOffset__20daPy_boomerangMove_cFPC4cXyz
+/* 80474F4C  4B CE 96 65 */	bl initOffset__20daPy_boomerangMove_cFPC4cXyz
 /* 80474F50  88 1F 0D B0 */	lbz r0, 0xdb0(r31)
 /* 80474F54  28 00 00 01 */	cmplwi r0, 1
 /* 80474F58  40 82 00 20 */	bne lbl_80474F78
@@ -56,7 +56,7 @@ lbl_80474F78:
 /* 80474F7C  2C 00 00 03 */	cmpwi r0, 3
 /* 80474F80  40 82 00 0C */	bne lbl_80474F8C
 /* 80474F84  38 7F 05 88 */	addi r3, r31, 0x588
-/* 80474F88  4B C0 40 18 */	b ClrIronBall__16dBgS_PolyPassChkFv
+/* 80474F88  4B C0 40 19 */	bl ClrIronBall__16dBgS_PolyPassChkFv
 lbl_80474F8C:
 /* 80474F8C  38 00 00 09 */	li r0, 9
 /* 80474F90  98 1F 0C F1 */	stb r0, 0xcf1(r31)

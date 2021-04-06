@@ -5,8 +5,8 @@ lbl_801E2014:
 /* 801E2020  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801E2024  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801E2028  41 82 00 1C */	beq lbl_801E2044
-/* 801E202C  3C A0 80 3C */	lis r5, __vt__14dMenu_Option_c@ha
-/* 801E2030  38 05 DE 54 */	addi r0, r5, __vt__14dMenu_Option_c@l
+/* 801E202C  3C A0 80 3C */	lis r5, __vt__14dMenu_Option_c@ha /* 0x803BDE54@ha */
+/* 801E2030  38 05 DE 54 */	addi r0, r5, __vt__14dMenu_Option_c@l /* 0x803BDE54@l */
 /* 801E2034  90 1F 00 00 */	stw r0, 0(r31)
 /* 801E2038  7C 80 07 35 */	extsh. r0, r4
 /* 801E203C  40 81 00 08 */	ble lbl_801E2044

@@ -5,7 +5,7 @@ lbl_8099CB34:
 /* 8099CB40  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 8099CB44  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 8099CB48  39 61 00 50 */	addi r11, r1, 0x50
-/* 8099CB4C  4B 9C 56 8C */	b _savegpr_28
+/* 8099CB4C  4B 9C 56 8D */	bl _savegpr_28
 /* 8099CB50  7C 7F 1B 78 */	mr r31, r3
 /* 8099CB54  7C 80 23 78 */	mr r0, r4
 /* 8099CB58  7C BC 2B 78 */	mr r28, r5
@@ -18,14 +18,14 @@ lbl_8099CB34:
 /* 8099CB74  41 82 00 44 */	beq lbl_8099CBB8
 /* 8099CB78  38 61 00 08 */	addi r3, r1, 8
 /* 8099CB7C  7C 05 03 78 */	mr r5, r0
-/* 8099CB80  4B 8C 9F B4 */	b __mi__4cXyzCFRC3Vec
+/* 8099CB80  4B 8C 9F B5 */	bl __mi__4cXyzCFRC3Vec
 /* 8099CB84  C0 21 00 08 */	lfs f1, 8(r1)
 /* 8099CB88  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 8099CB8C  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8099CB90  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8099CB94  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 8099CB98  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 8099CB9C  4B 8C AA D8 */	b cM_atan2s__Fff
+/* 8099CB9C  4B 8C AA D9 */	bl cM_atan2s__Fff
 /* 8099CBA0  7C BC 18 50 */	subf r5, r28, r3
 /* 8099CBA4  A8 1F 01 52 */	lha r0, 0x152(r31)
 /* 8099CBA8  7C 1C 00 50 */	subf r0, r28, r0
@@ -38,12 +38,12 @@ lbl_8099CBB8:
 /* 8099CBC0  7C 05 00 D0 */	neg r0, r5
 /* 8099CBC4  7C 05 07 34 */	extsh r5, r0
 lbl_8099CBC8:
-/* 8099CBC8  3C 60 80 9A */	lis r3, lit_4490@ha
-/* 8099CBCC  C0 63 D3 04 */	lfs f3, lit_4490@l(r3)
+/* 8099CBC8  3C 60 80 9A */	lis r3, lit_4490@ha /* 0x8099D304@ha */
+/* 8099CBCC  C0 63 D3 04 */	lfs f3, lit_4490@l(r3)  /* 0x8099D304@l */
 /* 8099CBD0  EC 83 F8 24 */	fdivs f4, f3, f31
 /* 8099CBD4  A8 1F 01 34 */	lha r0, 0x134(r31)
-/* 8099CBD8  3C 60 80 9A */	lis r3, lit_5181@ha
-/* 8099CBDC  C8 43 D3 1C */	lfd f2, lit_5181@l(r3)
+/* 8099CBD8  3C 60 80 9A */	lis r3, lit_5181@ha /* 0x8099D31C@ha */
+/* 8099CBDC  C8 43 D3 1C */	lfd f2, lit_5181@l(r3)  /* 0x8099D31C@l */
 /* 8099CBE0  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 8099CBE4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8099CBE8  3C 60 43 30 */	lis r3, 0x4330
@@ -67,7 +67,7 @@ lbl_8099CBC8:
 /* 8099CC30  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 8099CC34  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 8099CC38  39 61 00 50 */	addi r11, r1, 0x50
-/* 8099CC3C  4B 9C 55 E8 */	b _restgpr_28
+/* 8099CC3C  4B 9C 55 E9 */	bl _restgpr_28
 /* 8099CC40  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8099CC44  7C 08 03 A6 */	mtlr r0
 /* 8099CC48  38 21 00 60 */	addi r1, r1, 0x60

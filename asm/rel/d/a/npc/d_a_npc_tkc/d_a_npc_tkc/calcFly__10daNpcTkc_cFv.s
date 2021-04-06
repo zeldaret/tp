@@ -9,12 +9,12 @@ lbl_80B0DEF8:
 /* 80B0DF14  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80B0DF18  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80B0DF1C  7C 7F 1B 78 */	mr r31, r3
-/* 80B0DF20  3C 60 80 B1 */	lis r3, m__16daNpcTkc_Param_c@ha
-/* 80B0DF24  3B C3 08 B4 */	addi r30, r3, m__16daNpcTkc_Param_c@l
+/* 80B0DF20  3C 60 80 B1 */	lis r3, m__16daNpcTkc_Param_c@ha /* 0x80B108B4@ha */
+/* 80B0DF24  3B C3 08 B4 */	addi r30, r3, m__16daNpcTkc_Param_c@l /* 0x80B108B4@l */
 /* 80B0DF28  A8 1F 0D 78 */	lha r0, 0xd78(r31)
 /* 80B0DF2C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80B0DF30  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80B0DF34  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80B0DF30  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80B0DF34  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80B0DF38  7C 23 04 2E */	lfsx f1, r3, r0
 /* 80B0DF3C  38 9E 00 00 */	addi r4, r30, 0
 /* 80B0DF40  C0 04 00 98 */	lfs f0, 0x98(r4)
@@ -33,20 +33,20 @@ lbl_80B0DEF8:
 /* 80B0DF74  38 61 00 2C */	addi r3, r1, 0x2c
 /* 80B0DF78  38 9F 04 A8 */	addi r4, r31, 0x4a8
 /* 80B0DF7C  38 BF 04 D0 */	addi r5, r31, 0x4d0
-/* 80B0DF80  4B 75 8B B4 */	b __mi__4cXyzCFRC3Vec
+/* 80B0DF80  4B 75 8B B5 */	bl __mi__4cXyzCFRC3Vec
 /* 80B0DF84  38 7E 00 00 */	addi r3, r30, 0
 /* 80B0DF88  C0 23 00 90 */	lfs f1, 0x90(r3)
 /* 80B0DF8C  C8 5E 01 10 */	lfd f2, 0x110(r30)
-/* 80B0DF90  4B 85 E7 F0 */	b pow
+/* 80B0DF90  4B 85 E7 F1 */	bl pow
 /* 80B0DF94  FF C0 08 18 */	frsp f30, f1
 /* 80B0DF98  38 61 00 2C */	addi r3, r1, 0x2c
-/* 80B0DF9C  4B 83 91 9C */	b PSVECSquareMag
+/* 80B0DF9C  4B 83 91 9D */	bl PSVECSquareMag
 /* 80B0DFA0  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 80B0DFA4  40 81 00 5C */	ble lbl_80B0E000
 /* 80B0DFA8  38 61 00 20 */	addi r3, r1, 0x20
 /* 80B0DFAC  38 9F 04 A8 */	addi r4, r31, 0x4a8
 /* 80B0DFB0  38 BF 04 D0 */	addi r5, r31, 0x4d0
-/* 80B0DFB4  4B 75 8B 80 */	b __mi__4cXyzCFRC3Vec
+/* 80B0DFB4  4B 75 8B 81 */	bl __mi__4cXyzCFRC3Vec
 /* 80B0DFB8  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 80B0DFBC  D0 1F 0D 38 */	stfs f0, 0xd38(r31)
 /* 80B0DFC0  C0 01 00 24 */	lfs f0, 0x24(r1)
@@ -55,11 +55,11 @@ lbl_80B0DEF8:
 /* 80B0DFCC  D0 1F 0D 40 */	stfs f0, 0xd40(r31)
 /* 80B0DFD0  38 61 00 14 */	addi r3, r1, 0x14
 /* 80B0DFD4  38 9F 0D 38 */	addi r4, r31, 0xd38
-/* 80B0DFD8  4B 75 8F 70 */	b normalizeZP__4cXyzFv
+/* 80B0DFD8  4B 75 8F 71 */	bl normalizeZP__4cXyzFv
 /* 80B0DFDC  38 7F 0D 38 */	addi r3, r31, 0xd38
 /* 80B0DFE0  7C 64 1B 78 */	mr r4, r3
 /* 80B0DFE4  C0 3E 01 18 */	lfs f1, 0x118(r30)
-/* 80B0DFE8  4B 83 90 F0 */	b PSVECScale
+/* 80B0DFE8  4B 83 90 F1 */	bl PSVECScale
 /* 80B0DFEC  38 60 00 14 */	li r3, 0x14
 /* 80B0DFF0  38 80 00 14 */	li r4, 0x14
 /* 80B0DFF4  48 00 27 1D */	bl func_80B10710
@@ -86,13 +86,13 @@ lbl_80B0E000:
 /* 80B0E044  D3 DF 0D 40 */	stfs f30, 0xd40(r31)
 /* 80B0E048  38 61 00 08 */	addi r3, r1, 8
 /* 80B0E04C  38 9F 0D 38 */	addi r4, r31, 0xd38
-/* 80B0E050  4B 75 8E F8 */	b normalizeZP__4cXyzFv
+/* 80B0E050  4B 75 8E F9 */	bl normalizeZP__4cXyzFv
 /* 80B0E054  C0 3E 00 B8 */	lfs f1, 0xb8(r30)
 /* 80B0E058  C0 5E 01 18 */	lfs f2, 0x118(r30)
 /* 80B0E05C  48 00 26 79 */	bl func_80B106D4
 /* 80B0E060  38 7F 0D 38 */	addi r3, r31, 0xd38
 /* 80B0E064  7C 64 1B 78 */	mr r4, r3
-/* 80B0E068  4B 83 90 70 */	b PSVECScale
+/* 80B0E068  4B 83 90 71 */	bl PSVECScale
 /* 80B0E06C  38 60 00 1E */	li r3, 0x1e
 /* 80B0E070  38 80 00 5A */	li r4, 0x5a
 /* 80B0E074  48 00 26 9D */	bl func_80B10710
@@ -102,7 +102,7 @@ lbl_80B0E07C:
 /* 80B0E080  38 9F 0D 38 */	addi r4, r31, 0xd38
 /* 80B0E084  38 BE 00 00 */	addi r5, r30, 0
 /* 80B0E088  C0 25 00 94 */	lfs f1, 0x94(r5)
-/* 80B0E08C  4B 76 27 20 */	b cLib_chasePos__FP4cXyzRC4cXyzf
+/* 80B0E08C  4B 76 27 21 */	bl cLib_chasePos__FP4cXyzRC4cXyzf
 /* 80B0E090  C0 3F 04 FC */	lfs f1, 0x4fc(r31)
 /* 80B0E094  C0 1E 01 28 */	lfs f0, 0x128(r30)
 /* 80B0E098  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -127,7 +127,7 @@ lbl_80B0E0D8:
 /* 80B0E0D8  38 7F 0D 50 */	addi r3, r31, 0xd50
 /* 80B0E0DC  38 9F 04 F8 */	addi r4, r31, 0x4f8
 /* 80B0E0E0  7C 65 1B 78 */	mr r5, r3
-/* 80B0E0E4  4B 83 8F D0 */	b PSVECSubtract
+/* 80B0E0E4  4B 83 8F D1 */	bl PSVECSubtract
 /* 80B0E0E8  38 7E 00 00 */	addi r3, r30, 0
 /* 80B0E0EC  A8 03 00 A0 */	lha r0, 0xa0(r3)
 /* 80B0E0F0  B0 1F 08 F0 */	sth r0, 0x8f0(r31)

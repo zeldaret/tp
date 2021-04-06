@@ -38,8 +38,8 @@ lbl_801F2C7C:
 lbl_801F2C84:
 /* 801F2C84  38 00 00 01 */	li r0, 1
 /* 801F2C88  98 1F 01 BB */	stb r0, 0x1bb(r31)
-/* 801F2C8C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801F2C90  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801F2C8C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801F2C90  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801F2C94  88 83 00 DD */	lbz r4, 0xdd(r3)
 /* 801F2C98  28 04 00 00 */	cmplwi r4, 0
 /* 801F2C9C  41 82 00 08 */	beq lbl_801F2CA4

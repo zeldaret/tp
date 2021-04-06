@@ -3,7 +3,7 @@ lbl_80B47BA4:
 /* 80B47BA8  7C 08 02 A6 */	mflr r0
 /* 80B47BAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B47BB0  38 63 0F 90 */	addi r3, r3, 0xf90
-/* 80B47BB4  4B 81 A4 94 */	b __ptmf_cmpr
+/* 80B47BB4  4B 81 A4 95 */	bl __ptmf_cmpr
 /* 80B47BB8  7C 60 00 34 */	cntlzw r0, r3
 /* 80B47BBC  54 03 D9 7E */	srwi r3, r0, 5
 /* 80B47BC0  80 01 00 14 */	lwz r0, 0x14(r1)

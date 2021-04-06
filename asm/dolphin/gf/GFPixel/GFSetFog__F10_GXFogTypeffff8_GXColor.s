@@ -63,7 +63,7 @@ lbl_802CDF40:
 /* 802CDF70  83 A1 00 0C */	lwz r29, 0xc(r1)
 /* 802CDF74  38 80 00 61 */	li r4, 0x61
 /* 802CDF78  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802CDF7C  98 83 80 00 */	stb r4, 0x8000(r3)
+/* 802CDF7C  98 83 80 00 */	stb r4, 0x8000(r3)  /* 0xCC008000@l */
 /* 802CDF80  54 00 A3 3E */	srwi r0, r0, 0xc
 /* 802CDF84  64 00 EE 00 */	oris r0, r0, 0xee00
 /* 802CDF88  90 03 80 00 */	stw r0, -0x8000(r3)
@@ -73,7 +73,7 @@ lbl_802CDF40:
 /* 802CDF98  48 09 41 15 */	bl __cvt_fp2unsigned
 /* 802CDF9C  64 60 EF 00 */	oris r0, r3, 0xef00
 /* 802CDFA0  3C C0 CC 01 */	lis r6, 0xCC01 /* 0xCC008000@ha */
-/* 802CDFA4  90 06 80 00 */	stw r0, 0x8000(r6)
+/* 802CDFA4  90 06 80 00 */	stw r0, 0x8000(r6)  /* 0xCC008000@l */
 /* 802CDFA8  38 A0 00 61 */	li r5, 0x61
 /* 802CDFAC  98 A6 80 00 */	stb r5, -0x8000(r6)
 /* 802CDFB0  67 C0 F0 00 */	oris r0, r30, 0xf000

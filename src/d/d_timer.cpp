@@ -122,9 +122,9 @@ struct dComIfG_play_c {
     /* 8002CBDC */ void getTimerPtr();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -171,21 +171,6 @@ struct CPaneMgr {
 //
 // Forward References:
 //
-
-static void dTimer_Draw(dTimer_c*);
-static void dTimer_Execute(dTimer_c*);
-static bool dTimer_IsDelete(dTimer_c*);
-static void dTimer_Delete(dTimer_c*);
-static void dTimer_Create(msg_class*);
-void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
-void dTimer_createStockTimer();
-void dTimer_createGetIn2D(s32, cXyz);
-static void dTimer_createStart2D(s32, u16);
-void dTimer_isStart();
-void dTimer_getRestTimeMs();
-void dTimer_show();
-void dTimer_hide();
-void dTimer_isReadyFlag();
 
 extern "C" void _create__8dTimer_cFv();
 extern "C" void _execute__8dTimer_cFv();
@@ -246,28 +231,10 @@ extern "C" void dTimer_isReadyFlag__Fv();
 extern "C" void __dt__21dDlst_TimerScrnDraw_cFv();
 extern "C" void createGetIn__8dTimer_cF4cXyz();
 extern "C" extern char const* const d_d_timer__stringBase0;
-extern "C" extern void* g_profile_TIMER[10];
-extern "C" extern void* __vt__21dDlst_TimerScrnDraw_c[4];
 
 //
 // External References:
 //
-
-void mDoExt_setCurrentHeap(JKRHeap*);
-void mDoExt_getMesgFont();
-void mDoLib_project(Vec*, Vec*);
-void fopMsgM_GetAppend(void*);
-void fopMsgM_Delete(void*);
-void fop_Timer_create(s16, u8, u32, u8, u8, f32, f32, f32, f32, int (*)(void*));
-void fopMsgM_createExpHeap(u32, JKRHeap*);
-void fopMsgM_destroyExpHeap(JKRExpHeap*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dMeter2Info_getNumberTextureName(int);
-void dPaneClass_showNullPane(J2DScreen*);
-void cM_rndFX(f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -347,22 +314,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8039A3D8-8039A488 00AC+04 s=7 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039A3D8 = "Timer";
-SECTION_DEAD char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
-SECTION_DEAD char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
-SECTION_DEAD char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
-SECTION_DEAD char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
-SECTION_DEAD char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
-SECTION_DEAD char const* const stringBase_8039A47C = "F_SP115";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
-#pragma pop
-
-/* 80454F40-80454F44 0004+00 s=10 e=0 z=0  None .sdata2    @3919 */
+/* 80454F40-80454F44 003540 0004+00 10/10 0/0 0/0 .sdata2          @3919 */
 SECTION_SDATA2 static u8 lit_3919[4] = {
     0x00,
     0x00,
@@ -370,82 +322,10 @@ SECTION_SDATA2 static u8 lit_3919[4] = {
     0x00,
 };
 
-/* 80454F44-80454F48 0004+00 s=2 e=0 z=0  None .sdata2    @3920 */
+/* 80454F44-80454F48 003544 0004+00 2/2 0/0 0/0 .sdata2          @3920 */
 SECTION_SDATA2 static f32 lit_3920 = 145.0f;
 
-/* 8025CA0C-8025CF04 04F8+00 s=1 e=0 z=0  None .text      _create__8dTimer_cFv */
-//	8025CA1C: 803621D8 (_savegpr_28)
-//	8025CA28: 8039A3D8 (d_d_timer__stringBase0)
-//	8025CA2C: 8039A3D8 (d_d_timer__stringBase0)
-//	8025CA30: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	8025CA40: 8001FA44 (fopMsgM_GetAppend__FPv)
-//	8025CA54: 8039A3D8 (d_d_timer__stringBase0)
-//	8025CA58: 8039A3D8 (d_d_timer__stringBase0)
-//	8025CA5C: 804061C0 (g_dComIfG_gameInfo)
-//	8025CA60: 804061C0 (g_dComIfG_gameInfo)
-//	8025CA70: 8003C1E4 (getResInfo__14dRes_control_cFPCcP11dRes_info_ci)
-//	8025CA7C: 804061C0 (g_dComIfG_gameInfo)
-//	8025CA80: 804061C0 (g_dComIfG_gameInfo)
-//	8025CA94: 8002039C (fopMsgM_createExpHeap__FUlP7JKRHeap)
-//	8025CAA0: 8000F1CC (mDoExt_setCurrentHeap__FP7JKRHeap)
-//	8025CAB4: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	8025CABC: 802CEC4C (__nw__FUl)
-//	8025CAC8: 8025DB38 (__ct__21dDlst_TimerScrnDraw_cFv)
-//	8025CAE4: 804061C0 (g_dComIfG_gameInfo)
-//	8025CAE8: 804061C0 (g_dComIfG_gameInfo)
-//	8025CAF0: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	8025CB00: 8025DFBC (setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive)
-//	8025CB10: 8025DFBC (setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive)
-//	8025CB18: 8000F1CC (mDoExt_setCurrentHeap__FP7JKRHeap)
-//	8025CB34: 8025FAC4 (setShowType__21dDlst_TimerScrnDraw_cFUc)
-//	8025CB44: 804061C0 (g_dComIfG_gameInfo)
-//	8025CB48: 804061C0 (g_dComIfG_gameInfo)
-//	8025CB54: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	8025CB60: 8002CBAC (getTimerLimitTimeMs__14dComIfG_play_cFv)
-//	8025CBA0: 80032804 (getTime__11dLib_time_cFv)
-//	8025CBB8: 8002CB9C (getTimerNowTimeMs__14dComIfG_play_cFv)
-//	8025CC10: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	8025CC1C: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025CC28: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025CC30: 8025DA54 (getLimitTimeMs__8dTimer_cFv)
-//	8025CC3C: 8002CBA4 (setTimerLimitTimeMs__14dComIfG_play_cFi)
-//	8025CC48: 8002CBB4 (setTimerMode__14dComIfG_play_cFi)
-//	8025CC54: 8002CBD4 (setTimerPtr__14dComIfG_play_cFP8dTimer_c)
-//	8025CC60: 8025D7C0 (stock_start__8dTimer_cFs)
-//	8025CC94: 80454F40 (lit_3919)
-//	8025CC9C: 80454F44 (lit_3920)
-//	8025CCAC: 80454F40 (lit_3919)
-//	8025CCB4: 80454F44 (lit_3920)
-//	8025CCC4: 80454F40 (lit_3919)
-//	8025CCCC: 80454F44 (lit_3920)
-//	8025CCDC: 80454F40 (lit_3919)
-//	8025CCE4: 80454F44 (lit_3920)
-//	8025CD48: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025CD50: 804061C0 (g_dComIfG_gameInfo)
-//	8025CD54: 804061C0 (g_dComIfG_gameInfo)
-//	8025CD60: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025CD68: 8025DA54 (getLimitTimeMs__8dTimer_cFv)
-//	8025CD74: 8002CBA4 (setTimerLimitTimeMs__14dComIfG_play_cFi)
-//	8025CD80: 8002CBB4 (setTimerMode__14dComIfG_play_cFi)
-//	8025CD8C: 8002CBD4 (setTimerPtr__14dComIfG_play_cFP8dTimer_c)
-//	8025CDB8: 8025EB20 (hideDenominator__21dDlst_TimerScrnDraw_cFv)
-//	8025CDE0: 8025EB20 (hideDenominator__21dDlst_TimerScrnDraw_cFv)
-//	8025CE0C: 8042EBC8 (g_drawHIO)
-//	8025CE10: 8042EBC8 (g_drawHIO)
-//	8025CE18: 80454F40 (lit_3919)
-//	8025CE24: 8025FA6C (setCounterPos__21dDlst_TimerScrnDraw_cFff)
-//	8025CE34: 8042EBC8 (g_drawHIO)
-//	8025CE38: 8042EBC8 (g_drawHIO)
-//	8025CE44: 80454F40 (lit_3919)
-//	8025CE50: 8025FA6C (setCounterPos__21dDlst_TimerScrnDraw_cFff)
-//	8025CE60: 8042EBC8 (g_drawHIO)
-//	8025CE64: 8042EBC8 (g_drawHIO)
-//	8025CE70: 80454F40 (lit_3919)
-//	8025CE7C: 8025FA98 (setImagePos__21dDlst_TimerScrnDraw_cFff)
-//	8025CE8C: 8042EBC8 (g_drawHIO)
-//	8025CE90: 8042EBC8 (g_drawHIO)
-//	8025CEA0: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	8025CEF0: 80362224 (_restgpr_28)
+/* 8025CA0C-8025CF04 25734C 04F8+00 1/1 0/0 0/0 .text            _create__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -456,53 +336,10 @@ asm void dTimer_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F48-80454F4C 0004+00 s=3 e=0 z=0  None .sdata2    @4050 */
+/* 80454F48-80454F4C 003548 0004+00 3/3 0/0 0/0 .sdata2          @4050 */
 SECTION_SDATA2 static f32 lit_4050 = 25.0f;
 
-/* 8025CF04-8025D33C 0438+00 s=1 e=0 z=0  None .text      _execute__8dTimer_cFv */
-//	8025CF28: 804061C0 (g_dComIfG_gameInfo)
-//	8025CF2C: 804061C0 (g_dComIfG_gameInfo)
-//	8025CF3C: 8001FA4C (fopMsgM_Delete__FPv)
-//	8025CF4C: 804061C0 (g_dComIfG_gameInfo)
-//	8025CF50: 804061C0 (g_dComIfG_gameInfo)
-//	8025CF60: 8023822C (getStatus__12dMsgObject_cFv)
-//	8025CF84: 8025D7E8 (stop__8dTimer_cFUc)
-//	8025CF8C: 8025DA9C (getRestTimeMs__8dTimer_cFv)
-//	8025D00C: 8025D708 (stock_start__8dTimer_cFv)
-//	8025D01C: 8025D538 (start__8dTimer_cFi)
-//	8025D050: 80260AA8 (checkStartAnimeEnd__21dDlst_TimerScrnDraw_cFv)
-//	8025D068: 80032804 (getTime__11dLib_time_cFv)
-//	8025D078: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025D080: 804061C0 (g_dComIfG_gameInfo)
-//	8025D084: 804061C0 (g_dComIfG_gameInfo)
-//	8025D090: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025D098: 8025DA54 (getLimitTimeMs__8dTimer_cFv)
-//	8025D0A4: 8002CBA4 (setTimerLimitTimeMs__14dComIfG_play_cFi)
-//	8025D0AC: 8025DA9C (getRestTimeMs__8dTimer_cFv)
-//	8025D0E8: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025D0F4: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025D124: 80454F44 (lit_3920)
-//	8025D130: 80454F48 (lit_4050)
-//	8025D144: 80454F40 (lit_3919)
-//	8025D174: 804061C0 (g_dComIfG_gameInfo)
-//	8025D178: 804061C0 (g_dComIfG_gameInfo)
-//	8025D188: 8023822C (getStatus__12dMsgObject_cFv)
-//	8025D1AC: 8025D86C (restart__8dTimer_cFUc)
-//	8025D1E4: 8025D86C (restart__8dTimer_cFUc)
-//	8025D1EC: 8042EBC8 (g_drawHIO)
-//	8025D1F0: 8042EBC8 (g_drawHIO)
-//	8025D220: 80260574 (createStart__21dDlst_TimerScrnDraw_cFUs)
-//	8025D228: 8025DBE0 (setHIO__21dDlst_TimerScrnDraw_cFv)
-//	8025D23C: 8025FF98 (closeAnime__21dDlst_TimerScrnDraw_cFv)
-//	8025D24C: 8001FA4C (fopMsgM_Delete__FPv)
-//	8025D298: 8025FB74 (anime__21dDlst_TimerScrnDraw_cFv)
-//	8025D2E0: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025D2EC: 8025EEF0 (setTimer__21dDlst_TimerScrnDraw_cFi)
-//	8025D2F8: 8025DA9C (getRestTimeMs__8dTimer_cFv)
-//	8025D304: 8025EEF0 (setTimer__21dDlst_TimerScrnDraw_cFi)
-//	8025D30C: 80430188 (g_meter2_info)
-//	8025D310: 80430188 (g_meter2_info)
-//	8025D31C: 8025F180 (setCounter__21dDlst_TimerScrnDraw_cFUcUc)
+/* 8025CF04-8025D33C 257844 0438+00 1/1 0/0 0/0 .text            _execute__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -512,13 +349,7 @@ asm void dTimer_c::_execute() {
 }
 #pragma pop
 
-/* 8025D33C-8025D3BC 0080+00 s=1 e=0 z=0  None .text      _draw__8dTimer_cFv */
-//	8025D350: 804061C0 (g_dComIfG_gameInfo)
-//	8025D354: 804061C0 (g_dComIfG_gameInfo)
-//	8025D364: 8023822C (getStatus__12dMsgObject_cFv)
-//	8025D388: 804061C0 (g_dComIfG_gameInfo)
-//	8025D38C: 804061C0 (g_dComIfG_gameInfo)
-//	8025D3A0: 80056794 (set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c)
+/* 8025D33C-8025D3BC 257C7C 0080+00 1/1 0/0 0/0 .text            _draw__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -528,32 +359,7 @@ asm void dTimer_c::_draw() {
 }
 #pragma pop
 
-/* 8025D3BC-8025D524 0168+00 s=1 e=0 z=0  None .text      _delete__8dTimer_cFv */
-//	8025D3E0: 8000F1CC (mDoExt_setCurrentHeap__FP7JKRHeap)
-//	8025D3EC: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	8025D3F4: 8025EC5C (deleteScreen__21dDlst_TimerScrnDraw_cFv)
-//	8025D424: 800203E0 (fopMsgM_destroyExpHeap__FP10JKRExpHeap)
-//	8025D434: 8000F1CC (mDoExt_setCurrentHeap__FP7JKRHeap)
-//	8025D464: 8025D9F0 (getTimeMs__8dTimer_cFv)
-//	8025D46C: 804061C0 (g_dComIfG_gameInfo)
-//	8025D470: 804061C0 (g_dComIfG_gameInfo)
-//	8025D47C: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025D484: 8025DA54 (getLimitTimeMs__8dTimer_cFv)
-//	8025D490: 8002CBA4 (setTimerLimitTimeMs__14dComIfG_play_cFi)
-//	8025D49C: 8002CBB4 (setTimerMode__14dComIfG_play_cFi)
-//	8025D4A4: 804061C0 (g_dComIfG_gameInfo)
-//	8025D4A8: 804061C0 (g_dComIfG_gameInfo)
-//	8025D4B8: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
-//	8025D4C4: 8002CBA4 (setTimerLimitTimeMs__14dComIfG_play_cFi)
-//	8025D4D0: 8002CBB4 (setTimerMode__14dComIfG_play_cFi)
-//	8025D4D4: 804061C0 (g_dComIfG_gameInfo)
-//	8025D4D8: 804061C0 (g_dComIfG_gameInfo)
-//	8025D4E4: 8002CBD4 (setTimerPtr__14dComIfG_play_cFP8dTimer_c)
-//	8025D4EC: 8039A3D8 (d_d_timer__stringBase0)
-//	8025D4F0: 8039A3D8 (d_d_timer__stringBase0)
-//	8025D4F4: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	8025D4FC: 804061C0 (g_dComIfG_gameInfo)
-//	8025D500: 804061C0 (g_dComIfG_gameInfo)
+/* 8025D3BC-8025D524 257CFC 0168+00 1/1 0/0 0/0 .text            _delete__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -563,7 +369,7 @@ asm void dTimer_c::_delete() {
 }
 #pragma pop
 
-/* 8025D524-8025D538 0014+00 s=0 e=1 z=0  None .text      deleteCheck__8dTimer_cFv */
+/* 8025D524-8025D538 257E64 0014+00 0/0 1/1 0/0 .text            deleteCheck__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -573,14 +379,7 @@ asm void dTimer_c::deleteCheck() {
 }
 #pragma pop
 
-/* 8025D538-8025D618 00E0+00 s=1 e=1 z=0  None .text      start__8dTimer_cFi */
-//	8025D570: 80032804 (getTime__11dLib_time_cFv)
-//	8025D5A8: 8025D7E8 (stop__8dTimer_cFUc)
-//	8025D5BC: 80260574 (createStart__21dDlst_TimerScrnDraw_cFUs)
-//	8025D5C0: 8042EBC8 (g_drawHIO)
-//	8025D5C4: 8042EBC8 (g_drawHIO)
-//	8025D5DC: 8042EBC8 (g_drawHIO)
-//	8025D5E0: 8042EBC8 (g_drawHIO)
+/* 8025D538-8025D618 257E78 00E0+00 1/1 1/1 0/0 .text            start__8dTimer_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -590,13 +389,7 @@ asm void dTimer_c::start(int param_0) {
 }
 #pragma pop
 
-/* 8025D618-8025D708 00F0+00 s=0 e=1 z=0  None .text      start__8dTimer_cFis */
-//	8025D65C: 80261188 (dTimer_createStart2D__FlUs)
-//	8025D660: 8042EBC8 (g_drawHIO)
-//	8025D664: 8042EBC8 (g_drawHIO)
-//	8025D678: 80032804 (getTime__11dLib_time_cFv)
-//	8025D694: 8025D7E8 (stop__8dTimer_cFUc)
-//	8025D6E4: 8025D7E8 (stop__8dTimer_cFUc)
+/* 8025D618-8025D708 257F58 00F0+00 0/0 1/1 0/0 .text            start__8dTimer_cFis */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -606,11 +399,7 @@ asm void dTimer_c::start(int param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 8025D708-8025D7C0 00B8+00 s=1 e=0 z=0  None .text      stock_start__8dTimer_cFv */
-//	8025D730: 80032804 (getTime__11dLib_time_cFv)
-//	8025D744: 804061C0 (g_dComIfG_gameInfo)
-//	8025D748: 804061C0 (g_dComIfG_gameInfo)
-//	8025D750: 8002CB9C (getTimerNowTimeMs__14dComIfG_play_cFv)
+/* 8025D708-8025D7C0 258048 00B8+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -620,7 +409,7 @@ asm void dTimer_c::stock_start() {
 }
 #pragma pop
 
-/* 8025D7C0-8025D7E8 0028+00 s=1 e=0 z=0  None .text      stock_start__8dTimer_cFs */
+/* 8025D7C0-8025D7E8 258100 0028+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -630,8 +419,7 @@ asm void dTimer_c::stock_start(s16 param_0) {
 }
 #pragma pop
 
-/* 8025D7E8-8025D86C 0084+00 s=3 e=1 z=0  None .text      stop__8dTimer_cFUc */
-//	8025D838: 80032804 (getTime__11dLib_time_cFv)
+/* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -641,8 +429,7 @@ asm void dTimer_c::stop(u8 param_0) {
 }
 #pragma pop
 
-/* 8025D86C-8025D920 00B4+00 s=1 e=1 z=0  None .text      restart__8dTimer_cFUc */
-//	8025D8C0: 80032804 (getTime__11dLib_time_cFv)
+/* 8025D86C-8025D920 2581AC 00B4+00 1/1 1/1 0/0 .text            restart__8dTimer_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -652,12 +439,7 @@ asm void dTimer_c::restart(u8 param_0) {
 }
 #pragma pop
 
-/* 8025D920-8025D9E0 00C0+00 s=0 e=1 z=0  None .text      end__8dTimer_cFi */
-//	8025D950: 80032804 (getTime__11dLib_time_cFv)
-//	8025D9A4: 80362324 (__div2i)
-//	8025D9A8: 804061C0 (g_dComIfG_gameInfo)
-//	8025D9AC: 804061C0 (g_dComIfG_gameInfo)
-//	8025D9B4: 8002CB94 (setTimerNowTimeMs__14dComIfG_play_cFi)
+/* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -667,7 +449,7 @@ asm void dTimer_c::end(int param_0) {
 }
 #pragma pop
 
-/* 8025D9E0-8025D9F0 0010+00 s=0 e=1 z=0  None .text      deleteRequest__8dTimer_cFv */
+/* 8025D9E0-8025D9F0 258320 0010+00 0/0 1/1 0/0 .text            deleteRequest__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -677,8 +459,7 @@ asm void dTimer_c::deleteRequest() {
 }
 #pragma pop
 
-/* 8025D9F0-8025DA54 0064+00 s=3 e=0 z=0  None .text      getTimeMs__8dTimer_cFv */
-//	8025DA3C: 80362324 (__div2i)
+/* 8025D9F0-8025DA54 258330 0064+00 3/3 0/0 0/0 .text            getTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -688,8 +469,7 @@ asm void dTimer_c::getTimeMs() {
 }
 #pragma pop
 
-/* 8025DA54-8025DA9C 0048+00 s=3 e=0 z=0  None .text      getLimitTimeMs__8dTimer_cFv */
-//	8025DA84: 80362324 (__div2i)
+/* 8025DA54-8025DA9C 258394 0048+00 3/3 0/0 0/0 .text            getLimitTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -699,8 +479,7 @@ asm void dTimer_c::getLimitTimeMs() {
 }
 #pragma pop
 
-/* 8025DA9C-8025DB10 0074+00 s=2 e=0 z=1  None .text      getRestTimeMs__8dTimer_cFv */
-//	8025DAF8: 80362324 (__div2i)
+/* 8025DA9C-8025DB10 2583DC 0074+00 2/2 0/0 1/1 .text            getRestTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -710,7 +489,7 @@ asm void dTimer_c::getRestTimeMs() {
 }
 #pragma pop
 
-/* 8025DB10-8025DB38 0028+00 s=1 e=0 z=4  None .text      isStart__8dTimer_cFv */
+/* 8025DB10-8025DB38 258450 0028+00 1/1 0/0 4/4 .text            isStart__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -721,7 +500,7 @@ asm void dTimer_c::isStart() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C33C0-803C33E4 0024+00 s=1 e=0 z=0  None .data      @5239 */
+/* 803C33C0-803C33E4 -00001 0024+00 1/1 0/0 0/0 .data            @5239 */
 SECTION_DATA static void* lit_5239[9] = {
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x2B8),
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x250),
@@ -734,15 +513,15 @@ SECTION_DATA static void* lit_5239[9] = {
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x294),
 };
 
-/* 803C33E4-803C33F8 0014+00 s=1 e=0 z=0  None .data      l_dTimer_Method */
+/* 803C33E4-803C33F8 -00001 0014+00 1/0 0/0 0/0 .data            l_dTimer_Method */
 SECTION_DATA static void* l_dTimer_Method[5] = {
     (void*)dTimer_Create__FP9msg_class, (void*)dTimer_Delete__FP8dTimer_c,
     (void*)dTimer_Execute__FP8dTimer_c, (void*)dTimer_IsDelete__FP8dTimer_c,
     (void*)dTimer_Draw__FP8dTimer_c,
 };
 
-/* 803C33F8-803C3420 0028+00 s=0 e=0 z=1  None .data      g_profile_TIMER */
-SECTION_DATA void* g_profile_TIMER[10] = {
+/* 803C33F8-803C3420 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_TIMER */
+SECTION_DATA extern void* g_profile_TIMER[10] = {
     (void*)0xFFFFFFFD, (void*)0x000CFFFD,
     (void*)0x03150000, (void*)&g_fpcLf_Method,
     (void*)0x00000170, (void*)NULL,
@@ -750,21 +529,15 @@ SECTION_DATA void* g_profile_TIMER[10] = {
     (void*)0x03000000, (void*)&l_dTimer_Method,
 };
 
-/* 803C3420-803C3430 0010+00 s=2 e=0 z=0  None .data      __vt__21dDlst_TimerScrnDraw_c */
-SECTION_DATA void* __vt__21dDlst_TimerScrnDraw_c[4] = {
+/* 803C3420-803C3430 020540 0010+00 2/2 0/0 0/0 .data            __vt__21dDlst_TimerScrnDraw_c */
+SECTION_DATA extern void* __vt__21dDlst_TimerScrnDraw_c[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__21dDlst_TimerScrnDraw_cFv,
     (void*)__dt__21dDlst_TimerScrnDraw_cFv,
 };
 
-/* 8025DB38-8025DBE0 00A8+00 s=1 e=0 z=0  None .text      __ct__21dDlst_TimerScrnDraw_cFv */
-//	8025DB38: 803A6F88 (__vt__12dDlst_base_c)
-//	8025DB3C: 803A6F88 (__vt__12dDlst_base_c)
-//	8025DB44: 803C3420 (__vt__21dDlst_TimerScrnDraw_c)
-//	8025DB48: 803C3420 (__vt__21dDlst_TimerScrnDraw_c)
-//	8025DB70: 8042EBC8 (g_drawHIO)
-//	8025DB74: 8042EBC8 (g_drawHIO)
+/* 8025DB38-8025DBE0 258478 00A8+00 1/1 0/0 0/0 .text            __ct__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -774,46 +547,8 @@ asm dDlst_TimerScrnDraw_c::dDlst_TimerScrnDraw_c() {
 }
 #pragma pop
 
-/* 8025DBE0-8025DFBC 03DC+00 s=1 e=0 z=0  None .text      setHIO__21dDlst_TimerScrnDraw_cFv */
-//	8025DBF0: 803621DC (_savegpr_29)
-//	8025DC10: 8042EBC8 (g_drawHIO)
-//	8025DC14: 8042EBC8 (g_drawHIO)
-//	8025DC24: 8025FA00 (setParentPos__21dDlst_TimerScrnDraw_cFff)
-//	8025DC28: 8042EBC8 (g_drawHIO)
-//	8025DC2C: 8042EBC8 (g_drawHIO)
-//	8025DC7C: 8042EBC8 (g_drawHIO)
-//	8025DC80: 8042EBC8 (g_drawHIO)
-//	8025DCA8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025DCE8: 8042EBC8 (g_drawHIO)
-//	8025DCEC: 8042EBC8 (g_drawHIO)
-//	8025DCF8: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	8025DD0C: 8042EBC8 (g_drawHIO)
-//	8025DD10: 8042EBC8 (g_drawHIO)
-//	8025DD20: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	8025DD3C: 8042EBC8 (g_drawHIO)
-//	8025DD40: 8042EBC8 (g_drawHIO)
-//	8025DD70: 8042EBC8 (g_drawHIO)
-//	8025DD74: 8042EBC8 (g_drawHIO)
-//	8025DDBC: 8042EBC8 (g_drawHIO)
-//	8025DDC0: 8042EBC8 (g_drawHIO)
-//	8025DDF8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025DE24: 8042EBC8 (g_drawHIO)
-//	8025DE28: 8042EBC8 (g_drawHIO)
-//	8025DE38: 8025FA6C (setCounterPos__21dDlst_TimerScrnDraw_cFff)
-//	8025DE3C: 8042EBC8 (g_drawHIO)
-//	8025DE40: 8042EBC8 (g_drawHIO)
-//	8025DE88: 8042EBC8 (g_drawHIO)
-//	8025DE8C: 8042EBC8 (g_drawHIO)
-//	8025DEC4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025DEF0: 8042EBC8 (g_drawHIO)
-//	8025DEF4: 8042EBC8 (g_drawHIO)
-//	8025DF04: 8025FA98 (setImagePos__21dDlst_TimerScrnDraw_cFff)
-//	8025DF08: 8042EBC8 (g_drawHIO)
-//	8025DF0C: 8042EBC8 (g_drawHIO)
-//	8025DF54: 8042EBC8 (g_drawHIO)
-//	8025DF58: 8042EBC8 (g_drawHIO)
-//	8025DF90: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025DFA8: 80362228 (_restgpr_29)
+/* 8025DBE0-8025DFBC 258520 03DC+00 1/1 0/0 0/0 .text            setHIO__21dDlst_TimerScrnDraw_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -823,34 +558,8 @@ asm void dDlst_TimerScrnDraw_c::setHIO() {
 }
 #pragma pop
 
-/* 8025DFBC-8025E240 0284+00 s=1 e=0 z=0  None .text
+/* 8025DFBC-8025E240 2588FC 0284+00 1/1 0/0 0/0 .text
  * setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive            */
-//	8025DFF4: 8025E66C (setScreenBoatRace__21dDlst_TimerScrnDraw_cFv)
-//	8025E004: 8025E8B8 (setScreenRider__21dDlst_TimerScrnDraw_cFv)
-//	8025E00C: 8025E240 (setScreenBase__21dDlst_TimerScrnDraw_cFv)
-//	8025E018: 8025FAC4 (setShowType__21dDlst_TimerScrnDraw_cFUc)
-//	8025E020: 802CEC4C (__nw__FUl)
-//	8025E02C: 802F8498 (__ct__9J2DScreenFv)
-//	8025E03C: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E040: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E050: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	8025E058: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	8025E08C: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E090: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E09C: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	8025E0A0: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	8025E0AC: 802CEC4C (__nw__FUl)
-//	8025E0D4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E0E4: 802CEC4C (__nw__FUl)
-//	8025E108: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E118: 802CEC4C (__nw__FUl)
-//	8025E13C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E148: 800149F0 (mDoExt_getMesgFont__Fv)
-//	8025E188: 800149F0 (mDoExt_getMesgFont__Fv)
-//	8025E1C8: 80454F40 (lit_3919)
-//	8025E214: 80454F40 (lit_3919)
-//	8025E218: 80260AD4 (playBckAnimation__21dDlst_TimerScrnDraw_cFf)
-//	8025E21C: 80454F40 (lit_3919)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -860,26 +569,7 @@ asm void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* param_1) {
 }
 #pragma pop
 
-/* 8025E240-8025E66C 042C+00 s=1 e=0 z=0  None .text      setScreenBase__21dDlst_TimerScrnDraw_cFv
- */
-//	8025E258: 802CEC4C (__nw__FUl)
-//	8025E264: 802F8498 (__ct__9J2DScreenFv)
-//	8025E274: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E278: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E288: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	8025E290: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	8025E2A0: 802CEC4C (__nw__FUl)
-//	8025E2C4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E2D4: 80454F40 (lit_3919)
-//	8025E2D8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025E2E0: 802CEC4C (__nw__FUl)
-//	8025E304: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E314: 80454F40 (lit_3919)
-//	8025E318: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025E320: 802CEC4C (__nw__FUl)
-//	8025E348: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E358: 80454F40 (lit_3919)
-//	8025E35C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
+/* 8025E240-8025E66C 258B80 042C+00 1/1 0/0 0/0 .text setScreenBase__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -889,24 +579,8 @@ asm void dDlst_TimerScrnDraw_c::setScreenBase() {
 }
 #pragma pop
 
-/* 8025E66C-8025E8B8 024C+00 s=1 e=0 z=0  None .text setScreenBoatRace__21dDlst_TimerScrnDraw_cFv
+/* 8025E66C-8025E8B8 258FAC 024C+00 1/1 0/0 0/0 .text setScreenBoatRace__21dDlst_TimerScrnDraw_cFv
  */
-//	8025E684: 802CEC4C (__nw__FUl)
-//	8025E690: 802F8498 (__ct__9J2DScreenFv)
-//	8025E6A0: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E6A4: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E6B4: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	8025E6BC: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	8025E6C4: 802CEC4C (__nw__FUl)
-//	8025E6EC: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E6FC: 802CEC4C (__nw__FUl)
-//	8025E720: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E730: 80454F40 (lit_3919)
-//	8025E734: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025E744: 802CEC4C (__nw__FUl)
-//	8025E76C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E77C: 80454F40 (lit_3919)
-//	8025E780: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -916,22 +590,7 @@ asm void dDlst_TimerScrnDraw_c::setScreenBoatRace() {
 }
 #pragma pop
 
-/* 8025E8B8-8025EB20 0268+00 s=1 e=0 z=0  None .text      setScreenRider__21dDlst_TimerScrnDraw_cFv
- */
-//	8025E8D0: 802CEC4C (__nw__FUl)
-//	8025E8DC: 802F8498 (__ct__9J2DScreenFv)
-//	8025E8EC: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E8F0: 8039A3D8 (d_d_timer__stringBase0)
-//	8025E900: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	8025E908: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	8025E918: 802CEC4C (__nw__FUl)
-//	8025E93C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E94C: 80454F40 (lit_3919)
-//	8025E950: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025E960: 802CEC4C (__nw__FUl)
-//	8025E988: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8025E998: 80454F40 (lit_3919)
-//	8025E99C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
+/* 8025E8B8-8025EB20 2591F8 0268+00 1/1 0/0 0/0 .text setScreenRider__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -941,7 +600,7 @@ asm void dDlst_TimerScrnDraw_c::setScreenRider() {
 }
 #pragma pop
 
-/* 8025EB20-8025EC5C 013C+00 s=1 e=0 z=0  None .text      hideDenominator__21dDlst_TimerScrnDraw_cFv
+/* 8025EB20-8025EC5C 259460 013C+00 1/1 0/0 0/0 .text hideDenominator__21dDlst_TimerScrnDraw_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -952,7 +611,7 @@ asm void dDlst_TimerScrnDraw_c::hideDenominator() {
 }
 #pragma pop
 
-/* 8025EC5C-8025EE24 01C8+00 s=1 e=0 z=0  None .text      deleteScreen__21dDlst_TimerScrnDraw_cFv */
+/* 8025EC5C-8025EE24 25959C 01C8+00 1/1 0/0 0/0 .text deleteScreen__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -962,14 +621,8 @@ asm void dDlst_TimerScrnDraw_c::deleteScreen() {
 }
 #pragma pop
 
-/* 8025EE24-8025EECC 00A8+00 s=2 e=0 z=0  None .text
+/* 8025EE24-8025EECC 259764 00A8+00 2/2 0/0 0/0 .text
  * changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei      */
-//	8025EE34: 803621D8 (_savegpr_28)
-//	8025EE54: 804061C0 (g_dComIfG_gameInfo)
-//	8025EE58: 804061C0 (g_dComIfG_gameInfo)
-//	8025EE68: 8025EECC (getNumber__21dDlst_TimerScrnDraw_cFi)
-//	8025EE94: 8025EECC (getNumber__21dDlst_TimerScrnDraw_cFi)
-//	8025EEB8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -979,8 +632,7 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 }
 #pragma pop
 
-/* 8025EECC-8025EEF0 0024+00 s=1 e=0 z=0  None .text      getNumber__21dDlst_TimerScrnDraw_cFi */
-//	8025EEDC: 8021E2C8 (dMeter2Info_getNumberTextureName__Fi)
+/* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -991,42 +643,21 @@ asm void dDlst_TimerScrnDraw_c::getNumber(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F4C-80454F50 0004+00 s=5 e=0 z=0  None .sdata2    @4124 */
+/* 80454F4C-80454F50 00354C 0004+00 5/5 0/0 0/0 .sdata2          @4124 */
 SECTION_SDATA2 static f32 lit_4124 = 1.0f;
 
-/* 80454F50-80454F58 0004+04 s=3 e=0 z=0  None .sdata2    @4125 */
+/* 80454F50-80454F58 003550 0004+04 3/3 0/0 0/0 .sdata2          @4125 */
 SECTION_SDATA2 static f32 lit_4125[1 + 1 /* padding */] = {
     -1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454F58-80454F60 0008+00 s=7 e=0 z=0  None .sdata2    @4627 */
+/* 80454F58-80454F60 003558 0008+00 7/7 0/0 0/0 .sdata2          @4627 */
 SECTION_SDATA2 static f64 lit_4627 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8025EEF0-8025F180 0290+00 s=1 e=0 z=0  None .text      setTimer__21dDlst_TimerScrnDraw_cFi */
-//	8025EF00: 803621C0 (_savegpr_22)
-//	8025EF08: 80430188 (g_meter2_info)
-//	8025EF0C: 80430188 (g_meter2_info)
-//	8025EF98: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025EFB0: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025EFC8: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025EFE0: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025EFF8: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F010: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F030: 804061C0 (g_dComIfG_gameInfo)
-//	8025F034: 804061C0 (g_dComIfG_gameInfo)
-//	8025F078: 80454F58 (lit_4627)
-//	8025F0A8: 80454F48 (lit_4050)
-//	8025F0B4: 8042EBC8 (g_drawHIO)
-//	8025F0B8: 8042EBC8 (g_drawHIO)
-//	8025F0D4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F100: 80454F58 (lit_4627)
-//	8025F130: 80454F48 (lit_4050)
-//	8025F13C: 8042EBC8 (g_drawHIO)
-//	8025F140: 8042EBC8 (g_drawHIO)
-//	8025F15C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F16C: 8036220C (_restgpr_22)
+/* 8025EEF0-8025F180 259830 0290+00 1/1 0/0 0/0 .text            setTimer__21dDlst_TimerScrnDraw_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1036,40 +667,7 @@ asm void dDlst_TimerScrnDraw_c::setTimer(int param_0) {
 }
 #pragma pop
 
-/* 8025F180-8025FA00 0880+00 s=1 e=0 z=0  None .text      setCounter__21dDlst_TimerScrnDraw_cFUcUc
- */
-//	8025F190: 803621C8 (_savegpr_24)
-//	8025F298: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F4A0: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F73C: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F754: 8025EE24 (changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei)
-//	8025F768: 804061C0 (g_dComIfG_gameInfo)
-//	8025F76C: 804061C0 (g_dComIfG_gameInfo)
-//	8025F7B0: 80454F4C (lit_4124)
-//	8025F7BC: 80454F58 (lit_4627)
-//	8025F7EC: 80454F48 (lit_4050)
-//	8025F7F8: 8042EBC8 (g_drawHIO)
-//	8025F7FC: 8042EBC8 (g_drawHIO)
-//	8025F818: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F844: 80454F4C (lit_4124)
-//	8025F850: 80454F58 (lit_4627)
-//	8025F880: 80454F48 (lit_4050)
-//	8025F88C: 8042EBC8 (g_drawHIO)
-//	8025F890: 8042EBC8 (g_drawHIO)
-//	8025F8AC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F8DC: 80454F4C (lit_4124)
-//	8025F8E8: 80454F58 (lit_4627)
-//	8025F918: 80454F48 (lit_4050)
-//	8025F924: 8042EBC8 (g_drawHIO)
-//	8025F928: 8042EBC8 (g_drawHIO)
-//	8025F944: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F970: 80454F4C (lit_4124)
-//	8025F97C: 80454F58 (lit_4627)
-//	8025F9AC: 80454F48 (lit_4050)
-//	8025F9B8: 8042EBC8 (g_drawHIO)
-//	8025F9BC: 8042EBC8 (g_drawHIO)
-//	8025F9D8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025F9EC: 80362214 (_restgpr_24)
+/* 8025F180-8025FA00 259AC0 0880+00 1/1 0/0 0/0 .text setCounter__21dDlst_TimerScrnDraw_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1079,9 +677,7 @@ asm void dDlst_TimerScrnDraw_c::setCounter(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 8025FA00-8025FA2C 002C+00 s=1 e=0 z=0  None .text      setParentPos__21dDlst_TimerScrnDraw_cFff
- */
-//	8025FA18: 802545B0 (paneTrans__8CPaneMgrFff)
+/* 8025FA00-8025FA2C 25A340 002C+00 1/1 0/0 0/0 .text setParentPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1091,8 +687,7 @@ asm void dDlst_TimerScrnDraw_c::setParentPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA2C-8025FA6C 0040+00 s=4 e=0 z=0  None .text      setTimerPos__21dDlst_TimerScrnDraw_cFff */
-//	8025FA58: 802545B0 (paneTrans__8CPaneMgrFff)
+/* 8025FA2C-8025FA6C 25A36C 0040+00 4/4 0/0 0/0 .text setTimerPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1102,9 +697,7 @@ asm void dDlst_TimerScrnDraw_c::setTimerPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA6C-8025FA98 002C+00 s=4 e=0 z=0  None .text      setCounterPos__21dDlst_TimerScrnDraw_cFff
- */
-//	8025FA84: 802545B0 (paneTrans__8CPaneMgrFff)
+/* 8025FA6C-8025FA98 25A3AC 002C+00 4/4 0/0 0/0 .text setCounterPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1114,8 +707,7 @@ asm void dDlst_TimerScrnDraw_c::setCounterPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA98-8025FAC4 002C+00 s=4 e=0 z=0  None .text      setImagePos__21dDlst_TimerScrnDraw_cFff */
-//	8025FAB0: 802545B0 (paneTrans__8CPaneMgrFff)
+/* 8025FA98-8025FAC4 25A3D8 002C+00 4/4 0/0 0/0 .text setImagePos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1125,16 +717,7 @@ asm void dDlst_TimerScrnDraw_c::setImagePos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FAC4-8025FB74 00B0+00 s=2 e=0 z=0  None .text      setShowType__21dDlst_TimerScrnDraw_cFUc */
-//	8025FAE0: 804061C0 (g_dComIfG_gameInfo)
-//	8025FAE4: 804061C0 (g_dComIfG_gameInfo)
-//	8025FAEC: 8002CBC4 (setTimerType__14dComIfG_play_cFUc)
-//	8025FB04: 802555C8 (show__13CPaneMgrAlphaFv)
-//	8025FB0C: 80255608 (hide__13CPaneMgrAlphaFv)
-//	8025FB24: 802555C8 (show__13CPaneMgrAlphaFv)
-//	8025FB34: 802555C8 (show__13CPaneMgrAlphaFv)
-//	8025FB48: 80255608 (hide__13CPaneMgrAlphaFv)
-//	8025FB58: 80255608 (hide__13CPaneMgrAlphaFv)
+/* 8025FAC4-8025FB74 25A404 00B0+00 2/2 0/0 0/0 .text setShowType__21dDlst_TimerScrnDraw_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1145,7 +728,7 @@ asm void dDlst_TimerScrnDraw_c::setShowType(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F60-80454F68 0006+02 s=1 e=0 z=0  None .sdata2    animeFrame$5017 */
+/* 80454F60-80454F68 003560 0006+02 1/1 0/0 0/0 .sdata2          animeFrame$5017 */
 SECTION_SDATA2 static u8 animeFrame[6 + 2 /* padding */] = {
     0x00,
     0x07,
@@ -1158,50 +741,10 @@ SECTION_SDATA2 static u8 animeFrame[6 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80454F68-80454F6C 0004+00 s=3 e=0 z=0  None .sdata2    @5094 */
+/* 80454F68-80454F6C 003568 0004+00 3/3 0/0 0/0 .sdata2          @5094 */
 SECTION_SDATA2 static f32 lit_5094 = -50.0f;
 
-/* 8025FB74-8025FF98 0424+00 s=1 e=0 z=0  None .text      anime__21dDlst_TimerScrnDraw_cFv */
-//	8025FB94: 803621DC (_savegpr_29)
-//	8025FBAC: 80454F60 (animeFrame)
-//	8025FBD4: 80454F60 (animeFrame)
-//	8025FBE8: 80454F58 (lit_4627)
-//	8025FC44: 80454F68 (lit_5094)
-//	8025FC48: 80454F4C (lit_4124)
-//	8025FC7C: 8042EBC8 (g_drawHIO)
-//	8025FC80: 8042EBC8 (g_drawHIO)
-//	8025FC90: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	8025FCA4: 8042EBC8 (g_drawHIO)
-//	8025FCA8: 8042EBC8 (g_drawHIO)
-//	8025FCBC: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	8025FCC8: 8042EBC8 (g_drawHIO)
-//	8025FCCC: 8042EBC8 (g_drawHIO)
-//	8025FCE8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025FD04: 8042EBC8 (g_drawHIO)
-//	8025FD08: 8042EBC8 (g_drawHIO)
-//	8025FD38: 8042EBC8 (g_drawHIO)
-//	8025FD3C: 8042EBC8 (g_drawHIO)
-//	8025FD90: 80454F60 (animeFrame)
-//	8025FDB4: 80454F58 (lit_4627)
-//	8025FE10: 80454F68 (lit_5094)
-//	8025FE14: 80454F4C (lit_4124)
-//	8025FE38: 8042EBC8 (g_drawHIO)
-//	8025FE3C: 8042EBC8 (g_drawHIO)
-//	8025FE50: 8025FA6C (setCounterPos__21dDlst_TimerScrnDraw_cFff)
-//	8025FE5C: 8042EBC8 (g_drawHIO)
-//	8025FE60: 8042EBC8 (g_drawHIO)
-//	8025FE7C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025FE80: 8042EBC8 (g_drawHIO)
-//	8025FE84: 8042EBC8 (g_drawHIO)
-//	8025FED4: 8042EBC8 (g_drawHIO)
-//	8025FED8: 8042EBC8 (g_drawHIO)
-//	8025FEEC: 8025FA98 (setImagePos__21dDlst_TimerScrnDraw_cFff)
-//	8025FEF8: 8042EBC8 (g_drawHIO)
-//	8025FEFC: 8042EBC8 (g_drawHIO)
-//	8025FF18: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8025FF1C: 8042EBC8 (g_drawHIO)
-//	8025FF20: 8042EBC8 (g_drawHIO)
-//	8025FF84: 80362228 (_restgpr_29)
+/* 8025FB74-8025FF98 25A4B4 0424+00 1/1 0/0 0/0 .text            anime__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1212,34 +755,10 @@ asm void dDlst_TimerScrnDraw_c::anime() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F6C-80454F70 0004+00 s=1 e=0 z=0  None .sdata2    @5143 */
+/* 80454F6C-80454F70 00356C 0004+00 1/1 0/0 0/0 .sdata2          @5143 */
 SECTION_SDATA2 static f32 lit_5143 = 49.0f;
 
-/* 8025FF98-802601E4 024C+00 s=1 e=0 z=0  None .text      closeAnime__21dDlst_TimerScrnDraw_cFv */
-//	8025FFE0: 80454F58 (lit_4627)
-//	80260010: 80454F6C (lit_5143)
-//	8026004C: 80454F68 (lit_5094)
-//	80260078: 8042EBC8 (g_drawHIO)
-//	8026007C: 8042EBC8 (g_drawHIO)
-//	8026008C: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	802600A0: 8042EBC8 (g_drawHIO)
-//	802600A4: 8042EBC8 (g_drawHIO)
-//	802600B8: 8025FA2C (setTimerPos__21dDlst_TimerScrnDraw_cFff)
-//	802600C4: 8042EBC8 (g_drawHIO)
-//	802600C8: 8042EBC8 (g_drawHIO)
-//	802600E4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80260100: 8042EBC8 (g_drawHIO)
-//	80260104: 8042EBC8 (g_drawHIO)
-//	80260118: 8025FA6C (setCounterPos__21dDlst_TimerScrnDraw_cFff)
-//	80260124: 8042EBC8 (g_drawHIO)
-//	80260128: 8042EBC8 (g_drawHIO)
-//	80260144: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80260160: 8042EBC8 (g_drawHIO)
-//	80260164: 8042EBC8 (g_drawHIO)
-//	80260178: 8025FA98 (setImagePos__21dDlst_TimerScrnDraw_cFff)
-//	80260184: 8042EBC8 (g_drawHIO)
-//	80260188: 8042EBC8 (g_drawHIO)
-//	802601A4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
+/* 8025FF98-802601E4 25A8D8 024C+00 1/1 0/0 0/0 .text closeAnime__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1250,78 +769,35 @@ asm void dDlst_TimerScrnDraw_c::closeAnime() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F70-80454F74 0004+00 s=3 e=0 z=0  None .sdata2    @5227 */
+/* 80454F70-80454F74 003570 0004+00 3/3 0/0 0/0 .sdata2          @5227 */
 SECTION_SDATA2 static f32 lit_5227 = 40.0f;
 
-/* 80454F74-80454F78 0004+00 s=2 e=0 z=0  None .sdata2    @5228 */
+/* 80454F74-80454F78 003574 0004+00 2/2 0/0 0/0 .sdata2          @5228 */
 SECTION_SDATA2 static f32 lit_5228 = 60.0f;
 
-/* 80454F78-80454F7C 0004+00 s=1 e=0 z=0  None .sdata2    @5229 */
+/* 80454F78-80454F7C 003578 0004+00 1/1 0/0 0/0 .sdata2          @5229 */
 SECTION_SDATA2 static f32 lit_5229 = -100.0f;
 
-/* 80454F7C-80454F80 0004+00 s=1 e=0 z=0  None .sdata2    @5230 */
+/* 80454F7C-80454F80 00357C 0004+00 1/1 0/0 0/0 .sdata2          @5230 */
 SECTION_SDATA2 static f32 lit_5230 = 100.0f;
 
-/* 80454F80-80454F84 0004+00 s=1 e=0 z=0  None .sdata2    @5231 */
+/* 80454F80-80454F84 003580 0004+00 1/1 0/0 0/0 .sdata2          @5231 */
 SECTION_SDATA2 static f32 lit_5231 = 75.0f;
 
-/* 80454F84-80454F88 0004+00 s=1 e=0 z=0  None .sdata2    @5232 */
+/* 80454F84-80454F88 003584 0004+00 1/1 0/0 0/0 .sdata2          @5232 */
 SECTION_SDATA2 static f32 lit_5232 = -75.0f;
 
-/* 80454F88-80454F8C 0004+00 s=1 e=0 z=0  None .sdata2    @5233 */
+/* 80454F88-80454F8C 003588 0004+00 1/1 0/0 0/0 .sdata2          @5233 */
 SECTION_SDATA2 static f32 lit_5233 = 200.0f;
 
-/* 80454F8C-80454F90 0004+00 s=1 e=0 z=0  None .sdata2    @5234 */
+/* 80454F8C-80454F90 00358C 0004+00 1/1 0/0 0/0 .sdata2          @5234 */
 SECTION_SDATA2 static f32 lit_5234 = 150.0f;
 
-/* 80454F90-80454F94 0004+00 s=1 e=0 z=0  None .sdata2    @5235 */
+/* 80454F90-80454F94 003590 0004+00 1/1 0/0 0/0 .sdata2          @5235 */
 SECTION_SDATA2 static f32 lit_5235 = 20.0f;
 
-/* 802601E4-80260574 0390+00 s=2 e=0 z=0  None .text      createGetIn__21dDlst_TimerScrnDraw_cF4cXyz
+/* 802601E4-80260574 25AB24 0390+00 2/1 0/0 0/0 .text createGetIn__21dDlst_TimerScrnDraw_cF4cXyz
  */
-//	80260210: 80430188 (g_meter2_info)
-//	80260214: 80430188 (g_meter2_info)
-//	80260224: 8021C250 (getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c)
-//	8026024C: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80260254: 80368B2C (strcpy)
-//	80260278: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80260280: 80368B2C (strcpy)
-//	80260290: 80454F70 (lit_5227)
-//	802602A0: 80454F50 (lit_4125)
-//	802602B4: 8042EBC8 (g_drawHIO)
-//	802602B8: 8042EBC8 (g_drawHIO)
-//	80260328: 8042EBC8 (g_drawHIO)
-//	8026032C: 8042EBC8 (g_drawHIO)
-//	80260334: 80454F58 (lit_4627)
-//	80260350: 80454F74 (lit_5228)
-//	8026037C: 80454F70 (lit_5227)
-//	802603FC: 80454F40 (lit_3919)
-//	8026041C: 803C33C0 (lit_5239)
-//	80260420: 803C33C0 (lit_5239)
-//	80260434: 80454F78 (lit_5229)
-//	8026043C: 80454F7C (lit_5230)
-//	80260444: 80454F80 (lit_5231)
-//	8026044C: 80454F78 (lit_5229)
-//	80260450: 80454F80 (lit_5231)
-//	80260458: 80454F7C (lit_5230)
-//	8026045C: 80454F80 (lit_5231)
-//	80260464: 80454F68 (lit_5094)
-//	8026046C: 80454F78 (lit_5229)
-//	80260470: 80454F84 (lit_5232)
-//	80260478: 80454F7C (lit_5230)
-//	8026047C: 80454F84 (lit_5232)
-//	80260484: 80454F88 (lit_5233)
-//	80260488: 8026798C (cM_rndFX__Ff)
-//	80260490: 80454F8C (lit_5234)
-//	80260494: 8026798C (cM_rndFX__Ff)
-//	8026049C: 80454F90 (lit_5235)
-//	802604A0: 8026798C (cM_rndFX__Ff)
-//	802604C4: 80454F90 (lit_5235)
-//	802604C8: 8026798C (cM_rndFX__Ff)
-//	80260508: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8026051C: 80454F4C (lit_4124)
-//	80260524: 80454F50 (lit_4125)
-//	80260530: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1331,16 +807,7 @@ asm void dDlst_TimerScrnDraw_c::createGetIn(cXyz param_0) {
 }
 #pragma pop
 
-/* 80260574-80260690 011C+00 s=3 e=0 z=0  None .text      createStart__21dDlst_TimerScrnDraw_cFUs */
-//	80260588: 80430188 (g_meter2_info)
-//	8026058C: 80430188 (g_meter2_info)
-//	8026059C: 8021C250 (getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c)
-//	802605C4: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	802605CC: 80368B2C (strcpy)
-//	802605F0: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	802605F8: 80368B2C (strcpy)
-//	80260608: 80454F70 (lit_5227)
-//	80260618: 80454F50 (lit_4125)
+/* 80260574-80260690 25AEB4 011C+00 3/3 0/0 0/0 .text createStart__21dDlst_TimerScrnDraw_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1351,51 +818,16 @@ asm void dDlst_TimerScrnDraw_c::createStart(u16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F94-80454F98 0004+00 s=1 e=0 z=0  None .sdata2    @5325 */
+/* 80454F94-80454F98 003594 0004+00 1/1 0/0 0/0 .sdata2          @5325 */
 SECTION_SDATA2 static f32 lit_5325 = 3.0f / 20.0f;
 
-/* 80454F98-80454F9C 0004+00 s=2 e=0 z=0  None .sdata2    @5326 */
+/* 80454F98-80454F9C 003598 0004+00 2/2 0/0 0/0 .sdata2          @5326 */
 SECTION_SDATA2 static f32 lit_5326 = 0.5f;
 
-/* 80454F9C-80454FA0 0004+00 s=1 e=0 z=0  None .sdata2    @5327 */
+/* 80454F9C-80454FA0 00359C 0004+00 1/1 0/0 0/0 .sdata2          @5327 */
 SECTION_SDATA2 static f32 lit_5327 = 18.0f;
 
-/* 80260690-80260AA8 0418+00 s=1 e=0 z=0  None .text      draw__21dDlst_TimerScrnDraw_cFv */
-//	802606B8: 803621D0 (_savegpr_26)
-//	802606C0: 804061C0 (g_dComIfG_gameInfo)
-//	802606C4: 804061C0 (g_dComIfG_gameInfo)
-//	802606E4: 80454F40 (lit_3919)
-//	802606F0: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	802606F4: 8042EBC8 (g_drawHIO)
-//	802606F8: 8042EBC8 (g_drawHIO)
-//	80260700: 80454F58 (lit_4627)
-//	8026071C: 80454F74 (lit_5228)
-//	80260748: 80454F40 (lit_3919)
-//	80260764: 80454F4C (lit_4124)
-//	80260768: 80454F74 (lit_5228)
-//	80260798: 80260AD4 (playBckAnimation__21dDlst_TimerScrnDraw_cFf)
-//	802607A4: 80454F58 (lit_4627)
-//	802607D8: 80260AD4 (playBckAnimation__21dDlst_TimerScrnDraw_cFf)
-//	802607F4: 80260AD4 (playBckAnimation__21dDlst_TimerScrnDraw_cFf)
-//	80260814: 80454F58 (lit_4627)
-//	8026087C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80260890: 80454F58 (lit_4627)
-//	802608FC: 80454F70 (lit_5227)
-//	80260904: 80454F94 (lit_5325)
-//	80260908: 80454F98 (lit_5326)
-//	80260920: 80454F40 (lit_3919)
-//	8026092C: 80454F58 (lit_4627)
-//	80260974: 802545B0 (paneTrans__8CPaneMgrFff)
-//	802609A4: 80454F40 (lit_3919)
-//	802609B0: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	802609B8: 80454F40 (lit_3919)
-//	802609CC: 80260B54 (drawPikari__21dDlst_TimerScrnDraw_cFi)
-//	802609D4: 80454F50 (lit_4125)
-//	802609F4: 80454F58 (lit_4627)
-//	80260A18: 80454F9C (lit_5327)
-//	80260A34: 80454F58 (lit_4627)
-//	80260A58: 80454F9C (lit_5327)
-//	80260A94: 8036221C (_restgpr_26)
+/* 80260690-80260AA8 25AFD0 0418+00 1/0 0/0 0/0 .text            draw__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1405,9 +837,8 @@ asm void dDlst_TimerScrnDraw_c::draw() {
 }
 #pragma pop
 
-/* 80260AA8-80260AD4 002C+00 s=1 e=0 z=0  None .text checkStartAnimeEnd__21dDlst_TimerScrnDraw_cFv
- */
-//	80260AB4: 80454F40 (lit_3919)
+/* 80260AA8-80260AD4 25B3E8 002C+00 1/1 0/0 0/0 .text
+ * checkStartAnimeEnd__21dDlst_TimerScrnDraw_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1417,9 +848,8 @@ asm void dDlst_TimerScrnDraw_c::checkStartAnimeEnd() {
 }
 #pragma pop
 
-/* 80260AD4-80260B54 0080+00 s=2 e=0 z=0  None .text playBckAnimation__21dDlst_TimerScrnDraw_cFf
+/* 80260AD4-80260B54 25B414 0080+00 2/2 0/0 0/0 .text playBckAnimation__21dDlst_TimerScrnDraw_cFf
  */
-//	80260B1C: 802F7FCC (animationTransform__7J2DPaneFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1429,28 +859,7 @@ asm void dDlst_TimerScrnDraw_c::playBckAnimation(f32 param_0) {
 }
 #pragma pop
 
-/* 80260B54-80260F04 03B0+00 s=1 e=0 z=0  None .text      drawPikari__21dDlst_TimerScrnDraw_cFi */
-//	80260BA4: 803621BC (_savegpr_21)
-//	80260BCC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80260BF0: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80260BFC: 80454F40 (lit_3919)
-//	80260C10: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80260C18: 80454F4C (lit_4124)
-//	80260C30: 802F7AFC (getParentPane__7J2DPaneFv)
-//	80260C3C: 80454F58 (lit_4627)
-//	80260CE8: 80454F98 (lit_5326)
-//	80260CFC: 8042EBC8 (g_drawHIO)
-//	80260D00: 8042EBC8 (g_drawHIO)
-//	80260D04: 80430188 (g_meter2_info)
-//	80260D08: 80430188 (g_meter2_info)
-//	80260D10: 80454F58 (lit_4627)
-//	80260DF0: 80454F98 (lit_5326)
-//	80260E24: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80260E54: 80454F98 (lit_5326)
-//	80260E88: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80260EF0: 80362208 (_restgpr_21)
+/* 80260B54-80260F04 25B494 03B0+00 1/1 0/0 0/0 .text drawPikari__21dDlst_TimerScrnDraw_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1460,64 +869,52 @@ asm void dDlst_TimerScrnDraw_c::drawPikari(int param_0) {
 }
 #pragma pop
 
-/* 80260F04-80260F24 0020+00 s=1 e=0 z=0  None .text      dTimer_Draw__FP8dTimer_c */
-//	80260F10: 8025D33C (_draw__8dTimer_cFv)
+/* 80260F04-80260F24 25B844 0020+00 1/0 0/0 0/0 .text            dTimer_Draw__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Draw(dTimer_c* param_0) {
+static asm void dTimer_Draw(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Draw__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F24-80260F44 0020+00 s=1 e=0 z=0  None .text      dTimer_Execute__FP8dTimer_c */
-//	80260F30: 8025CF04 (_execute__8dTimer_cFv)
+/* 80260F24-80260F44 25B864 0020+00 1/0 0/0 0/0 .text            dTimer_Execute__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Execute(dTimer_c* param_0) {
+static asm void dTimer_Execute(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Execute__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F44-80260F4C 0008+00 s=1 e=0 z=0  None .text      dTimer_IsDelete__FP8dTimer_c */
+/* 80260F44-80260F4C 25B884 0008+00 1/0 0/0 0/0 .text            dTimer_IsDelete__FP8dTimer_c */
 static bool dTimer_IsDelete(dTimer_c* param_0) {
     return true;
 }
 
-/* 80260F4C-80260F6C 0020+00 s=1 e=0 z=0  None .text      dTimer_Delete__FP8dTimer_c */
-//	80260F58: 8025D3BC (_delete__8dTimer_cFv)
+/* 80260F4C-80260F6C 25B88C 0020+00 1/0 0/0 0/0 .text            dTimer_Delete__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Delete(dTimer_c* param_0) {
+static asm void dTimer_Delete(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Delete__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F6C-80260F8C 0020+00 s=1 e=0 z=0  None .text      dTimer_Create__FP9msg_class */
-//	80260F78: 8025CA0C (_create__8dTimer_cFv)
+/* 80260F6C-80260F8C 25B8AC 0020+00 1/0 0/0 0/0 .text            dTimer_Create__FP9msg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Create(msg_class* param_0) {
+static asm void dTimer_Create(msg_class* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Create__FP9msg_class.s"
 }
 #pragma pop
 
-/* 80260F8C-80261034 00A8+00 s=0 e=1 z=9  None .text      dTimer_createTimer__FlUlUcUcffff */
-//	80260F9C: 80362140 (_savefpr_28)
-//	80260FA4: 803621D8 (_savegpr_28)
-//	80260FC8: 804061C0 (g_dComIfG_gameInfo)
-//	80260FCC: 804061C0 (g_dComIfG_gameInfo)
-//	80260FD4: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	80261008: 8001FCC0 (fop_Timer_create__FsUcUlUcUcffffPFPv_i)
-//	80261018: 8036218C (_restfpr_28)
-//	80261020: 80362224 (_restgpr_28)
+/* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1529,34 +926,19 @@ asm void dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f3
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454FA0-80454FA4 0004+00 s=1 e=0 z=0  None .sdata2    @5544 */
+/* 80454FA0-80454FA4 0035A0 0004+00 1/1 0/0 0/0 .sdata2          @5544 */
 SECTION_SDATA2 static f32 lit_5544 = 221.0f;
 
-/* 80454FA4-80454FA8 0004+00 s=1 e=0 z=0  None .sdata2    @5545 */
+/* 80454FA4-80454FA8 0035A4 0004+00 1/1 0/0 0/0 .sdata2          @5545 */
 SECTION_SDATA2 static f32 lit_5545 = 439.0f;
 
-/* 80454FA8-80454FAC 0004+00 s=1 e=0 z=0  None .sdata2    @5546 */
+/* 80454FA8-80454FAC 0035A8 0004+00 1/1 0/0 0/0 .sdata2          @5546 */
 SECTION_SDATA2 static f32 lit_5546 = 32.0f;
 
-/* 80454FAC-80454FB0 0004+00 s=1 e=0 z=0  None .sdata2    @5547 */
+/* 80454FAC-80454FB0 0035AC 0004+00 1/1 0/0 0/0 .sdata2          @5547 */
 SECTION_SDATA2 static f32 lit_5547 = 419.0f;
 
-/* 80261034-80261100 00CC+00 s=0 e=1 z=0  None .text      dTimer_createStockTimer__Fv */
-//	80261044: 804061C0 (g_dComIfG_gameInfo)
-//	80261048: 804061C0 (g_dComIfG_gameInfo)
-//	80261054: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	80261064: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	80261074: 8002CBBC (getTimerMode__14dComIfG_play_cFv)
-//	80261084: 8039A3D8 (d_d_timer__stringBase0)
-//	80261088: 8039A3D8 (d_d_timer__stringBase0)
-//	80261090: 80368994 (strcmp)
-//	802610A4: 8002CBB4 (setTimerMode__14dComIfG_play_cFi)
-//	802610B4: 8002CBCC (getTimerType__14dComIfG_play_cFv)
-//	802610CC: 80454FA0 (lit_5544)
-//	802610D0: 80454FA4 (lit_5545)
-//	802610D4: 80454FA8 (lit_5546)
-//	802610D8: 80454FAC (lit_5547)
-//	802610E0: 8001FCC0 (fop_Timer_create__FsUcUlUcUcffffPFPv_i)
+/* 80261034-80261100 25B974 00CC+00 0/0 1/1 0/0 .text            dTimer_createStockTimer__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1566,13 +948,7 @@ asm void dTimer_createStockTimer() {
 }
 #pragma pop
 
-/* 80261100-80261188 0088+00 s=0 e=0 z=1  None .text      dTimer_createGetIn2D__Fl4cXyz */
-//	80261118: 804061C0 (g_dComIfG_gameInfo)
-//	8026111C: 804061C0 (g_dComIfG_gameInfo)
-//	80261128: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	8026113C: 80015310 (mDoLib_project__FP3VecP3Vec)
-//	8026115C: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261164: 802613DC (createGetIn__8dTimer_cF4cXyz)
+/* 80261100-80261188 25BA40 0088+00 0/0 0/0 1/1 .text            dTimer_createGetIn2D__Fl4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1582,27 +958,17 @@ asm void dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
 }
 #pragma pop
 
-/* 80261188-802611F0 0068+00 s=1 e=0 z=0  None .text      dTimer_createStart2D__FlUs */
-//	802611A0: 804061C0 (g_dComIfG_gameInfo)
-//	802611A4: 804061C0 (g_dComIfG_gameInfo)
-//	802611B0: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	802611C0: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	802611CC: 80260574 (createStart__21dDlst_TimerScrnDraw_cFUs)
+/* 80261188-802611F0 25BAC8 0068+00 1/1 0/0 0/0 .text            dTimer_createStart2D__FlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_createStart2D(s32 param_0, u16 param_1) {
+static asm void dTimer_createStart2D(s32 param_0, u16 param_1) {
     nofralloc
 #include "asm/d/d_timer/dTimer_createStart2D__FlUs.s"
 }
 #pragma pop
 
-/* 802611F0-80261244 0054+00 s=0 e=0 z=5  None .text      dTimer_isStart__Fv */
-//	80261200: 804061C0 (g_dComIfG_gameInfo)
-//	80261204: 804061C0 (g_dComIfG_gameInfo)
-//	80261210: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261220: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261224: 8025DB10 (isStart__8dTimer_cFv)
+/* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1612,12 +978,7 @@ asm void dTimer_isStart() {
 }
 #pragma pop
 
-/* 80261244-80261298 0054+00 s=0 e=0 z=2  None .text      dTimer_getRestTimeMs__Fv */
-//	80261254: 804061C0 (g_dComIfG_gameInfo)
-//	80261258: 804061C0 (g_dComIfG_gameInfo)
-//	80261264: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261274: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261278: 8025DA9C (getRestTimeMs__8dTimer_cFv)
+/* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1627,11 +988,7 @@ asm void dTimer_getRestTimeMs() {
 }
 #pragma pop
 
-/* 80261298-802612EC 0054+00 s=0 e=0 z=2  None .text      dTimer_show__Fv */
-//	802612A8: 804061C0 (g_dComIfG_gameInfo)
-//	802612AC: 804061C0 (g_dComIfG_gameInfo)
-//	802612B8: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	802612C8: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
+/* 80261298-802612EC 25BBD8 0054+00 0/0 0/0 2/2 .text            dTimer_show__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1641,11 +998,7 @@ asm void dTimer_show() {
 }
 #pragma pop
 
-/* 802612EC-80261340 0054+00 s=0 e=0 z=2  None .text      dTimer_hide__Fv */
-//	802612FC: 804061C0 (g_dComIfG_gameInfo)
-//	80261300: 804061C0 (g_dComIfG_gameInfo)
-//	8026130C: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	8026131C: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
+/* 802612EC-80261340 25BC2C 0054+00 0/0 0/0 2/2 .text            dTimer_hide__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1655,11 +1008,7 @@ asm void dTimer_hide() {
 }
 #pragma pop
 
-/* 80261340-80261394 0054+00 s=0 e=0 z=1  None .text      dTimer_isReadyFlag__Fv */
-//	80261350: 804061C0 (g_dComIfG_gameInfo)
-//	80261354: 804061C0 (g_dComIfG_gameInfo)
-//	80261360: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
-//	80261370: 8002CBDC (getTimerPtr__14dComIfG_play_cFv)
+/* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1669,10 +1018,7 @@ asm void dTimer_isReadyFlag() {
 }
 #pragma pop
 
-/* 80261394-802613DC 0048+00 s=1 e=0 z=0  None .text      __dt__21dDlst_TimerScrnDraw_cFv */
-//	802613AC: 803C3420 (__vt__21dDlst_TimerScrnDraw_c)
-//	802613B0: 803C3420 (__vt__21dDlst_TimerScrnDraw_c)
-//	802613C0: 802CED3C (__dl__FPv)
+/* 80261394-802613DC 25BCD4 0048+00 1/0 0/0 0/0 .text            __dt__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1682,8 +1028,7 @@ asm dDlst_TimerScrnDraw_c::~dDlst_TimerScrnDraw_c() {
 }
 #pragma pop
 
-/* 802613DC-8026141C 0040+00 s=1 e=0 z=0  None .text      createGetIn__8dTimer_cF4cXyz */
-//	80261408: 802601E4 (createGetIn__21dDlst_TimerScrnDraw_cF4cXyz)
+/* 802613DC-8026141C 25BD1C 0040+00 1/1 0/0 0/0 .text            createGetIn__8dTimer_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1691,4 +1036,19 @@ asm void dTimer_c::createGetIn(cXyz param_0) {
     nofralloc
 #include "asm/d/d_timer/createGetIn__8dTimer_cF4cXyz.s"
 }
+#pragma pop
+
+/* 8039A3D8-8039A488 026A38 00AC+04 7/7 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039A3D8 = "Timer";
+SECTION_DEAD static char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
+SECTION_DEAD static char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
+SECTION_DEAD static char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
+SECTION_DEAD static char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
+SECTION_DEAD static char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
+SECTION_DEAD static char const* const stringBase_8039A47C = "F_SP115";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
 #pragma pop

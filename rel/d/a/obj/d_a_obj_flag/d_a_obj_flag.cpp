@@ -28,15 +28,15 @@ struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
 };
 
-struct FlagJoint_c {
-    /* 80BEC3BC */ ~FlagJoint_c();
-    /* 80BEC4E0 */ FlagJoint_c();
-};
-
 struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
     /* 80267490 */ void operator-(csXyz&);
     /* 802674E8 */ void operator*(f32);
+};
+
+struct FlagJoint_c {
+    /* 80BEC3BC */ ~FlagJoint_c();
+    /* 80BEC4E0 */ FlagJoint_c();
 };
 
 struct daObjFlag_c {
@@ -49,9 +49,9 @@ struct daObjFlag_c {
     /* 80BEBE64 */ void getSwingY(f32);
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -64,9 +64,9 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -79,14 +79,6 @@ struct J3DJoint {};
 //
 // Forward References:
 //
-
-static void nodeCallBack(J3DJoint*, int);
-static void createSolidHeap(fopAc_ac_c*);
-static void daObjFlag_Draw(daObjFlag_c*);
-static void daObjFlag_Execute(daObjFlag_c*);
-static bool daObjFlag_IsDelete(daObjFlag_c*);
-static void daObjFlag_Delete(daObjFlag_c*);
-static void daObjFlag_Create(fopAc_ac_c*);
 
 extern "C" void create_init__11daObjFlag_cFv();
 extern "C" void initBaseMtx__11daObjFlag_cFv();
@@ -104,34 +96,12 @@ extern "C" static void daObjFlag_Delete__FP11daObjFlag_c();
 extern "C" void __dt__11FlagJoint_cFv();
 extern "C" static void daObjFlag_Create__FP10fopAc_ac_c();
 extern "C" void __ct__11FlagJoint_cFv();
-extern "C" extern u8 const lit_3759[4];
-extern "C" extern u32 const lit_3760;
-extern "C" extern u32 const lit_3761;
-extern "C" extern u32 const lit_3762;
-extern "C" extern u32 const lit_3803;
-extern "C" extern u32 const lit_3832;
-extern "C" extern u32 const lit_3833;
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_flag__stringBase0;
 extern "C" extern void* g_profile_Obj_Flag[12];
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKyw_get_AllWind_vec(cXyz*, cXyz*, f32*);
-void cM_atan2s(f32, f32);
-void cM_rnd();
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_chaseS(s16*, s16, s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -180,94 +150,26 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80BEC4EC-80BEC520 0034+00 s=4 e=0 z=0  None .rodata    M_attr__11daObjFlag_c */
+/* 80BEC4EC-80BEC520 000000 0034+00 4/4 0/0 0/0 .rodata          M_attr__11daObjFlag_c */
 SECTION_RODATA static u8 const M_attr__11daObjFlag_c[52] = {
     0x45, 0x7A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x00,
     0x0F, 0x07, 0xD0, 0x05, 0xDC, 0x0F, 0xA0, 0x07, 0x08, 0x00, 0x00, 0x00, 0x00,
     0x03, 0xE8, 0x01, 0x90, 0x00, 0x00, 0x00, 0x00, 0x01, 0x2C, 0x01, 0x01, 0x00,
     0x00, 0x46, 0x3B, 0x80, 0x00, 0x45, 0x3B, 0x80, 0x00, 0x46, 0x3B, 0x80, 0x00,
 };
+SECTION_DEAD void* const cg_80BEC4EC = (void*)(&M_attr__11daObjFlag_c);
 
-/* 80BEC520-80BEC524 0004+00 s=1 e=0 z=0  None .rodata    @3637 */
+/* 80BEC520-80BEC524 000034 0004+00 1/1 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static u32 const lit_3637 = 0x477FFF00;
+SECTION_DEAD void* const cg_80BEC520 = (void*)(&lit_3637);
 
-/* 80BEC524-80BEC52C 0008+00 s=1 e=0 z=0  None .rodata    @3639 */
+/* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
 SECTION_RODATA static u8 const lit_3639[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80BEC524 = (void*)(&lit_3639);
 
-/* 80BEC52C-80BEC530 0004+00 s=0 e=0 z=0  None .rodata    @3759 */
-SECTION_RODATA u8 const lit_3759[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BEC530-80BEC534 0004+00 s=0 e=0 z=0  None .rodata    @3760 */
-SECTION_RODATA u32 const lit_3760 = 0x42FE0000;
-
-/* 80BEC534-80BEC538 0004+00 s=0 e=0 z=0  None .rodata    @3761 */
-SECTION_RODATA u32 const lit_3761 = 0x3F800000;
-
-/* 80BEC538-80BEC53C 0004+00 s=0 e=0 z=0  None .rodata    @3762 */
-SECTION_RODATA u32 const lit_3762 = 0xBF800000;
-
-/* 80BEC53C-80BEC544 0008+00 s=1 e=0 z=0  None .rodata    @3764 */
-SECTION_RODATA static u8 const lit_3764[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80BEC544-80BEC548 0004+00 s=1 e=0 z=0  None .rodata    @3791 */
-SECTION_RODATA static u32 const lit_3791 = 0x3F333333;
-
-/* 80BEC548-80BEC54C 0004+00 s=0 e=0 z=0  None .rodata    @3803 */
-SECTION_RODATA u32 const lit_3803 = 0x46800000;
-
-/* 80BEC54C-80BEC550 0004+00 s=0 e=0 z=0  None .rodata    @3832 */
-SECTION_RODATA u32 const lit_3832 = 0x45D05555;
-
-/* 80BEC550-80BEC554 0004+00 s=0 e=0 z=0  None .rodata    @3833 */
-SECTION_RODATA u32 const lit_3833 = 0x457A0000;
-
-/* 80BEC554-80BEC57D 0029+00 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BEC554 = "spec.dat";
-SECTION_DEAD char const* const stringBase_80BEC55D = "flag%02d.bmd";
-SECTION_DEAD char const* const stringBase_80BEC56A = "FlagObj";
-SECTION_DEAD char const* const stringBase_80BEC572 = "model0.bmd";
-#pragma pop
-
-/* 80BEB778-80BEB8F0 0178+00 s=1 e=0 z=0  None .text      create_init__11daObjFlag_cFv */
-//	80BEB78C: 80031870 (getArcName__12daSetBgObj_cFP10fopAc_ac_c)
-//	80BEB790: 80BEC554 (stringBase0)
-//	80BEB794: 80BEC554 (stringBase0)
-//	80BEB798: 804061C0 (g_dComIfG_gameInfo)
-//	80BEB79C: 804061C0 (g_dComIfG_gameInfo)
-//	80BEB7AC: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80BEB7B8: 80BEC524 (lit_3639)
-//	80BEB7BC: 80BEC524 (lit_3639)
-//	80BEB804: 8026786C (cM_rnd__Fv)
-//	80BEB808: 80BEC520 (lit_3637)
-//	80BEB80C: 80BEC520 (lit_3637)
-//	80BEB824: 8026786C (cM_rnd__Fv)
-//	80BEB828: 80BEC520 (lit_3637)
-//	80BEB82C: 80BEC520 (lit_3637)
-//	80BEB854: 8026786C (cM_rnd__Fv)
-//	80BEB858: 80BEC520 (lit_3637)
-//	80BEB85C: 80BEC520 (lit_3637)
-//	80BEB874: 8026786C (cM_rnd__Fv)
-//	80BEB878: 80BEC520 (lit_3637)
-//	80BEB87C: 80BEC520 (lit_3637)
-//	80BEB894: 8026786C (cM_rnd__Fv)
-//	80BEB898: 80BEC520 (lit_3637)
-//	80BEB89C: 80BEC520 (lit_3637)
-//	80BEB8B4: 8026786C (cM_rnd__Fv)
-//	80BEB8B8: 80BEC520 (lit_3637)
-//	80BEB8BC: 80BEC520 (lit_3637)
-//	80BEB8D8: 80BEB8F0 (initBaseMtx__11daObjFlag_cFv)
+/* 80BEB778-80BEB8F0 000078 0178+00 1/1 0/0 0/0 .text            create_init__11daObjFlag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,18 +179,7 @@ asm void daObjFlag_c::create_init() {
 }
 #pragma pop
 
-/* 80BEB8F0-80BEB984 0094+00 s=1 e=0 z=0  None .text      initBaseMtx__11daObjFlag_cFv */
-//	80BEB908: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80BEB90C: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB910: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB91C: 803464B0 (PSMTXCopy)
-//	80BEB93C: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80BEB940: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB944: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB94C: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80BEB950: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB954: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEB960: 803464B0 (PSMTXCopy)
+/* 80BEB8F0-80BEB984 0001F0 0094+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjFlag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,7 +189,7 @@ asm void daObjFlag_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BEB984-80BEB9AC 0028+00 s=1 e=0 z=0  None .text      getJointAngle__11daObjFlag_cFP5csXyzi */
+/* 80BEB984-80BEB9AC 000284 0028+00 1/1 0/0 0/0 .text getJointAngle__11daObjFlag_cFP5csXyzi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,28 +199,47 @@ asm void daObjFlag_c::getJointAngle(csXyz* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80BEB9AC-80BEBC58 02AC+00 s=1 e=0 z=0  None .text      calcJointAngle__11daObjFlag_cFv */
-//	80BEB9CC: 803621D0 (_savegpr_26)
-//	80BEB9D4: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEB9D8: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEB9E8: 8005B2F8 (dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf)
-//	80BEBA10: 803620AC (__cvt_fp2unsigned)
-//	80BEBA18: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80BEBA1C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80BEBA44: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80BEBA50: 80267674 (cM_atan2s__Fff)
-//	80BEBA68: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80BEBA9C: 80BEBC58 (calcAngleSwingZ__11daObjFlag_cFP11FlagJoint_cf)
-//	80BEBAC8: 80439A20 (sincosTable___5JMath)
-//	80BEBACC: 80439A20 (sincosTable___5JMath)
-//	80BEBADC: 80BEBE64 (getSwingY__11daObjFlag_cFf)
-//	80BEBB48: 80267490 (__mi__5csXyzFR5csXyz)
-//	80BEBB8C: 802674E8 (__ml__5csXyzFf)
-//	80BEBBB0: 8026745C (__apl__5csXyzFR5csXyz)
-//	80BEBBC8: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80BEBBD8: 80267490 (__mi__5csXyzFR5csXyz)
-//	80BEBC10: 80BEBDAC (calcAngleSwingX__11daObjFlag_cFP11FlagJoint_cf)
-//	80BEBC44: 8036221C (_restgpr_26)
+/* ############################################################################################## */
+/* 80BEC52C-80BEC530 000040 0004+00 0/3 0/0 0/0 .rodata          @3759 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3759[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80BEC52C = (void*)(&lit_3759);
+#pragma pop
+
+/* 80BEC530-80BEC534 000044 0004+00 0/1 0/0 0/0 .rodata          @3760 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3760 = 0x42FE0000;
+SECTION_DEAD void* const cg_80BEC530 = (void*)(&lit_3760);
+#pragma pop
+
+/* 80BEC534-80BEC538 000048 0004+00 0/1 0/0 0/0 .rodata          @3761 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3761 = 0x3F800000;
+SECTION_DEAD void* const cg_80BEC534 = (void*)(&lit_3761);
+#pragma pop
+
+/* 80BEC538-80BEC53C 00004C 0004+00 0/1 0/0 0/0 .rodata          @3762 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3762 = 0xBF800000;
+SECTION_DEAD void* const cg_80BEC538 = (void*)(&lit_3762);
+#pragma pop
+
+/* 80BEC53C-80BEC544 000050 0008+00 1/4 0/0 0/0 .rodata          @3764 */
+SECTION_RODATA static u8 const lit_3764[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80BEC53C = (void*)(&lit_3764);
+
+/* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -339,26 +249,13 @@ asm void daObjFlag_c::calcJointAngle() {
 }
 #pragma pop
 
-/* 80BEBC58-80BEBDAC 0154+00 s=1 e=0 z=0  None .text
+/* ############################################################################################## */
+/* 80BEC544-80BEC548 000058 0004+00 1/1 0/0 0/0 .rodata          @3791 */
+SECTION_RODATA static u32 const lit_3791 = 0x3F333333;
+SECTION_DEAD void* const cg_80BEC544 = (void*)(&lit_3791);
+
+/* 80BEBC58-80BEBDAC 000558 0154+00 1/1 0/0 0/0 .text
  * calcAngleSwingZ__11daObjFlag_cFP11FlagJoint_cf               */
-//	80BEBC5C: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBC60: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBC68: 80BEC53C (lit_3764)
-//	80BEBC6C: 80BEC53C (lit_3764)
-//	80BEBC88: 80BEC544 (lit_3791)
-//	80BEBC8C: 80BEC544 (lit_3791)
-//	80BEBCA8: 80439A20 (sincosTable___5JMath)
-//	80BEBCAC: 80439A20 (sincosTable___5JMath)
-//	80BEBCF0: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBCF4: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBD0C: 80439A20 (sincosTable___5JMath)
-//	80BEBD10: 80439A20 (sincosTable___5JMath)
-//	80BEBD38: 80439A20 (sincosTable___5JMath)
-//	80BEBD3C: 80439A20 (sincosTable___5JMath)
-//	80BEBD48: 80BEC53C (lit_3764)
-//	80BEBD4C: 80BEC53C (lit_3764)
-//	80BEBD80: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBD84: 80BEC4EC (M_attr__11daObjFlag_c)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,12 +265,16 @@ asm void daObjFlag_c::calcAngleSwingZ(FlagJoint_c* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80BEBDAC-80BEBE64 00B8+00 s=1 e=0 z=0  None .text
+/* ############################################################################################## */
+/* 80BEC548-80BEC54C 00005C 0004+00 0/1 0/0 0/0 .rodata          @3803 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3803 = 0x46800000;
+SECTION_DEAD void* const cg_80BEC548 = (void*)(&lit_3803);
+#pragma pop
+
+/* 80BEBDAC-80BEBE64 0006AC 00B8+00 1/1 0/0 0/0 .text
  * calcAngleSwingX__11daObjFlag_cFP11FlagJoint_cf               */
-//	80BEBDB8: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBDBC: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBE30: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80BEBE50: 802706D0 (cLib_chaseS__FPsss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -383,11 +284,22 @@ asm void daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80BEBE64-80BEBFC8 0164+00 s=1 e=0 z=0  None .text      getSwingY__11daObjFlag_cFf */
-//	80BEBE68: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBE6C: 80BEC4EC (M_attr__11daObjFlag_c)
-//	80BEBEA4: 80439A20 (sincosTable___5JMath)
-//	80BEBEA8: 80439A20 (sincosTable___5JMath)
+/* ############################################################################################## */
+/* 80BEC54C-80BEC550 000060 0004+00 0/1 0/0 0/0 .rodata          @3832 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3832 = 0x45D05555;
+SECTION_DEAD void* const cg_80BEC54C = (void*)(&lit_3832);
+#pragma pop
+
+/* 80BEC550-80BEC554 000064 0004+00 0/1 0/0 0/0 .rodata          @3833 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3833 = 0x457A0000;
+SECTION_DEAD void* const cg_80BEC550 = (void*)(&lit_3833);
+#pragma pop
+
+/* 80BEBE64-80BEBFC8 000764 0164+00 1/1 0/0 0/0 .text            getSwingY__11daObjFlag_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -397,130 +309,65 @@ asm void daObjFlag_c::getSwingY(f32 param_0) {
 }
 #pragma pop
 
-/* 80BEBFC8-80BEC0B8 00F0+00 s=1 e=0 z=0  None .text      nodeCallBack__FP8J3DJointi */
-//	80BEBFF0: 80434AC8 (j3dSys)
-//	80BEBFF4: 80434AC8 (j3dSys)
-//	80BEC008: 80BEB984 (getJointAngle__11daObjFlag_cFP5csXyzi)
-//	80BEC01C: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC020: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC024: 803464B0 (PSMTXCopy)
-//	80BEC034: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC038: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC03C: 8000C39C (mDoMtx_XrotM__FPA4_fs)
-//	80BEC04C: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC050: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC054: 8000C4CC (mDoMtx_ZrotM__FPA4_fs)
-//	80BEC064: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC068: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC06C: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80BEC070: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC074: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC084: 803464B0 (PSMTXCopy)
-//	80BEC088: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC08C: 803DD470 (now__14mDoMtx_stack_c)
-//	80BEC090: 80434BE4 (mCurrentMtx__6J3DSys)
-//	80BEC094: 80434BE4 (mCurrentMtx__6J3DSys)
-//	80BEC098: 803464B0 (PSMTXCopy)
+/* 80BEBFC8-80BEC0B8 0008C8 00F0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
 
-/* 80BEC0B8-80BEC234 017C+00 s=1 e=0 z=0  None .text      createSolidHeap__FP10fopAc_ac_c */
-//	80BEC0FC: 80BEC554 (stringBase0)
-//	80BEC100: 80BEC554 (stringBase0)
-//	80BEC10C: 803664DC (sprintf)
-//	80BEC12C: 80BEC554 (stringBase0)
-//	80BEC130: 80BEC554 (stringBase0)
-//	80BEC13C: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC140: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC150: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80BEC160: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80BEC16C: 80BEBFC8 (nodeCallBack__FP8J3DJointi)
-//	80BEC170: 80BEBFC8 (nodeCallBack__FP8J3DJointi)
-//	80BEC1B4: 80031870 (getArcName__12daSetBgObj_cFP10fopAc_ac_c)
-//	80BEC1B8: 80BEC554 (stringBase0)
-//	80BEC1BC: 80BEC554 (stringBase0)
-//	80BEC1C4: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC1C8: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC1D8: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80BEC1E8: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80BEC0B8-80BEC234 0009B8 017C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createSolidHeap(fopAc_ac_c* param_0) {
+static asm void createSolidHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BEC234-80BEC300 00CC+00 s=1 e=0 z=0  None .text      daObjFlag_Draw__FP11daObjFlag_c */
-//	80BEC24C: 8042CA54 (g_env_light)
-//	80BEC250: 8042CA54 (g_env_light)
-//	80BEC260: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80BEC264: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC268: 804061C0 (g_dComIfG_gameInfo)
-//	80BEC270: 80434AC8 (j3dSys)
-//	80BEC274: 80434AC8 (j3dSys)
-//	80BEC284: 8042CA54 (g_env_light)
-//	80BEC288: 8042CA54 (g_env_light)
-//	80BEC298: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80BEC2A0:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel) 	80BEC2B0: 8042CA54 (g_env_light) 	80BEC2B4:
-// 8042CA54 (g_env_light) 	80BEC2C0: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80BEC2C8:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel) 	80BEC2CC: 804061C0 (g_dComIfG_gameInfo)
-// 80BEC2D0: 804061C0 (g_dComIfG_gameInfo)
+/* 80BEC234-80BEC300 000B34 00CC+00 1/0 0/0 0/0 .text            daObjFlag_Draw__FP11daObjFlag_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjFlag_Draw(daObjFlag_c* param_0) {
+static asm void daObjFlag_Draw(daObjFlag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/daObjFlag_Draw__FP11daObjFlag_c.s"
 }
 #pragma pop
 
-/* 80BEC300-80BEC338 0038+00 s=1 e=0 z=0  None .text      daObjFlag_Execute__FP11daObjFlag_c */
-//	80BEC320: 80BEB9AC (calcJointAngle__11daObjFlag_cFv)
+/* 80BEC300-80BEC338 000C00 0038+00 1/0 0/0 0/0 .text            daObjFlag_Execute__FP11daObjFlag_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjFlag_Execute(daObjFlag_c* param_0) {
+static asm void daObjFlag_Execute(daObjFlag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/daObjFlag_Execute__FP11daObjFlag_c.s"
 }
 #pragma pop
 
-/* 80BEC338-80BEC340 0008+00 s=1 e=0 z=0  None .text      daObjFlag_IsDelete__FP11daObjFlag_c */
+/* 80BEC338-80BEC340 000C38 0008+00 1/0 0/0 0/0 .text            daObjFlag_IsDelete__FP11daObjFlag_c
+ */
 static bool daObjFlag_IsDelete(daObjFlag_c* param_0) {
     return true;
 }
 
-/* 80BEC340-80BEC3BC 007C+00 s=1 e=0 z=0  None .text      daObjFlag_Delete__FP11daObjFlag_c */
-//	80BEC35C: 80BEC554 (stringBase0)
-//	80BEC360: 80BEC554 (stringBase0)
-//	80BEC368: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80BEC370: 80031870 (getArcName__12daSetBgObj_cFP10fopAc_ac_c)
-//	80BEC37C: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80BEC384: 80BEC3BC (__dt__11FlagJoint_cFv)
-//	80BEC388: 80BEC3BC (__dt__11FlagJoint_cFv)
-//	80BEC394: 80361CE8 (__destroy_arr)
-//	80BEC3A0: 80018C8C (__dt__10fopAc_ac_cFv)
+/* 80BEC340-80BEC3BC 000C40 007C+00 1/0 0/0 0/0 .text            daObjFlag_Delete__FP11daObjFlag_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjFlag_Delete(daObjFlag_c* param_0) {
+static asm void daObjFlag_Delete(daObjFlag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/daObjFlag_Delete__FP11daObjFlag_c.s"
 }
 #pragma pop
 
-/* 80BEC3BC-80BEC3F8 003C+00 s=2 e=0 z=0  None .text      __dt__11FlagJoint_cFv */
-//	80BEC3DC: 802CED3C (__dl__FPv)
+/* 80BEC3BC-80BEC3F8 000CBC 003C+00 2/2 0/0 0/0 .text            __dt__11FlagJoint_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,38 +377,23 @@ asm FlagJoint_c::~FlagJoint_c() {
 }
 #pragma pop
 
-/* 80BEC3F8-80BEC4E0 00E8+00 s=1 e=0 z=0  None .text      daObjFlag_Create__FP10fopAc_ac_c */
-//	80BEC428: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80BEC430: 80BEC4E0 (__ct__11FlagJoint_cFv)
-//	80BEC434: 80BEC4E0 (__ct__11FlagJoint_cFv)
-//	80BEC438: 80BEC3BC (__dt__11FlagJoint_cFv)
-//	80BEC43C: 80BEC3BC (__dt__11FlagJoint_cFv)
-//	80BEC448: 80361D60 (__construct_array)
-//	80BEC45C: 80BEC554 (stringBase0)
-//	80BEC460: 80BEC554 (stringBase0)
-//	80BEC468: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80BEC47C: 80031870 (getArcName__12daSetBgObj_cFP10fopAc_ac_c)
-//	80BEC488: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80BEC49C: 80BEC0B8 (createSolidHeap__FP10fopAc_ac_c)
-//	80BEC4A0: 80BEC0B8 (createSolidHeap__FP10fopAc_ac_c)
-//	80BEC4A8: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80BEC4C0: 80BEB778 (create_init__11daObjFlag_cFv)
+/* 80BEC3F8-80BEC4E0 000CF8 00E8+00 1/0 0/0 0/0 .text            daObjFlag_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjFlag_Create(fopAc_ac_c* param_0) {
+static asm void daObjFlag_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag/daObjFlag_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BEC4E0-80BEC4E4 0004+00 s=1 e=0 z=0  None .text      __ct__11FlagJoint_cFv */
+/* 80BEC4E0-80BEC4E4 000DE0 0004+00 1/1 0/0 0/0 .text            __ct__11FlagJoint_cFv */
 FlagJoint_c::FlagJoint_c() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80BEC580-80BEC5A0 0020+00 s=1 e=0 z=0  None .data      l_daObjFlag_Method */
+/* 80BEC580-80BEC5A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag_Method */
 SECTION_DATA static void* l_daObjFlag_Method[8] = {
     (void*)daObjFlag_Create__FP10fopAc_ac_c,
     (void*)daObjFlag_Delete__FP11daObjFlag_c,
@@ -573,8 +405,8 @@ SECTION_DATA static void* l_daObjFlag_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BEC5A0-80BEC5D0 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Flag */
-SECTION_DATA void* g_profile_Obj_Flag[12] = {
+/* 80BEC5A0-80BEC5D0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Flag */
+SECTION_DATA extern void* g_profile_Obj_Flag[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x013B0000, (void*)&g_fpcLf_Method,
     (void*)0x000005EC, (void*)NULL,
@@ -582,3 +414,13 @@ SECTION_DATA void* g_profile_Obj_Flag[12] = {
     (void*)0x001A0000, (void*)&l_daObjFlag_Method,
     (void*)0x00040000, (void*)0x000E0000,
 };
+
+/* 80BEC554-80BEC57D 000068 0029+00 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BEC554 = "spec.dat";
+SECTION_DEAD static char const* const stringBase_80BEC55D = "flag%02d.bmd";
+SECTION_DEAD static char const* const stringBase_80BEC56A = "FlagObj";
+SECTION_DEAD static char const* const stringBase_80BEC572 = "model0.bmd";
+#pragma pop

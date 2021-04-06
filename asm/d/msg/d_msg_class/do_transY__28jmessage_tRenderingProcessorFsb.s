@@ -11,8 +11,8 @@ lbl_8022E9C0:
 /* 8022E9E4  7F A0 07 35 */	extsh. r0, r29
 /* 8022E9E8  40 80 00 48 */	bge lbl_8022EA30
 /* 8022E9EC  38 61 00 18 */	addi r3, r1, 0x18
-/* 8022E9F0  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022E9F4  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022E9F0  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022E9F4  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022E9F8  38 84 00 3A */	addi r4, r4, 0x3a
 /* 8022E9FC  7F A0 07 34 */	extsh r0, r29
 /* 8022EA00  7F C0 00 D0 */	neg r30, r0
@@ -20,8 +20,8 @@ lbl_8022E9C0:
 /* 8022EA08  4C C6 31 82 */	crclr 6
 /* 8022EA0C  48 13 7A D1 */	bl sprintf
 /* 8022EA10  38 61 00 08 */	addi r3, r1, 8
-/* 8022EA14  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022EA18  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022EA14  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022EA18  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022EA1C  38 84 00 10 */	addi r4, r4, 0x10
 /* 8022EA20  7F C5 F3 78 */	mr r5, r30
 /* 8022EA24  4C C6 31 82 */	crclr 6
@@ -29,16 +29,16 @@ lbl_8022E9C0:
 /* 8022EA2C  48 00 00 40 */	b lbl_8022EA6C
 lbl_8022EA30:
 /* 8022EA30  38 61 00 18 */	addi r3, r1, 0x18
-/* 8022EA34  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022EA38  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022EA34  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022EA38  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022EA3C  38 84 00 10 */	addi r4, r4, 0x10
 /* 8022EA40  7F BE 07 34 */	extsh r30, r29
 /* 8022EA44  7F C5 F3 78 */	mr r5, r30
 /* 8022EA48  4C C6 31 82 */	crclr 6
 /* 8022EA4C  48 13 7A 91 */	bl sprintf
 /* 8022EA50  38 61 00 08 */	addi r3, r1, 8
-/* 8022EA54  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022EA58  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022EA54  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022EA58  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022EA5C  38 84 00 3A */	addi r4, r4, 0x3a
 /* 8022EA60  7F C5 F3 78 */	mr r5, r30
 /* 8022EA64  4C C6 31 82 */	crclr 6

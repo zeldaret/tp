@@ -3,19 +3,20 @@
 #
 
 M352_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru.plf
+M352_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru.lcf
+M352_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru.map
 
 M352_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_saru/executor.cpp \
-	rel/d/a/npc/d_a_npc_saru/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_saru/d_a_npc_saru.cpp \
 
 M352_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/d_a_npc_saru.o \
 
 M352_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/libRuntime.PPCEABI.H.a \
 
 M352_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M352_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map352.map\
+	-m _prolog \
+	-lcf $(M352_LDSCRIPT) \
+	-unused -map $(M352_MAP) \
+	-w off \
 
 $(M352_TARGET): $(M352_O_FILES) $(M352_LIBS)
+	@echo [352] creating $(M352_TARGET)
 	@echo $(M352_LIBS) $(M352_O_FILES) > build/M352_ofiles
-	$(LD) -opt_partial $(M352_LDFLAGS) -o $(M352_TARGET) @build/M352_ofiles
+	@python3 tools/lcf.py rel 352 --output $(M352_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M352_LDFLAGS) -o $(M352_TARGET) @build/M352_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_saru/%.o: rel/d/a/npc/d_a_npc_saru/%.cpp
+	@echo [352] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M352_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M352_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_saru/libs/Runtime.PPCEABI.H/Makefile
 

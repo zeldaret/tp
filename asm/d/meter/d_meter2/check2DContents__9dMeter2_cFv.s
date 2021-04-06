@@ -7,16 +7,16 @@ lbl_80223BC4:
 /* 80223BD8  80 03 01 18 */	lwz r0, 0x118(r3)
 /* 80223BDC  28 00 00 00 */	cmplwi r0, 0
 /* 80223BE0  40 82 00 FC */	bne lbl_80223CDC
-/* 80223BE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80223BE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80223BE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80223BE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80223BEC  88 03 5E 8F */	lbz r0, 0x5e8f(r3)
 /* 80223BF0  28 00 00 00 */	cmplwi r0, 0
 /* 80223BF4  41 82 00 0C */	beq lbl_80223C00
 /* 80223BF8  28 00 00 05 */	cmplwi r0, 5
 /* 80223BFC  40 82 01 F0 */	bne lbl_80223DEC
 lbl_80223C00:
-/* 80223C00  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80223C04  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80223C00  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80223C04  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80223C08  4B FF 85 D5 */	bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80223C0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80223C10  40 82 00 88 */	bne lbl_80223C98
@@ -74,13 +74,13 @@ lbl_80223CD4:
 /* 80223CD4  90 1F 01 18 */	stw r0, 0x118(r31)
 /* 80223CD8  48 00 01 14 */	b lbl_80223DEC
 lbl_80223CDC:
-/* 80223CDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80223CE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80223CDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80223CE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80223CE4  88 03 5E 8F */	lbz r0, 0x5e8f(r3)
 /* 80223CE8  28 00 00 05 */	cmplwi r0, 5
 /* 80223CEC  40 82 01 00 */	bne lbl_80223DEC
-/* 80223CF0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80223CF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80223CF0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80223CF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80223CF8  4B FF 84 E5 */	bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80223CFC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80223D00  40 82 00 EC */	bne lbl_80223DEC

@@ -3,10 +3,10 @@ lbl_80D48FA8:
 /* 80D48FAC  7C 08 02 A6 */	mflr r0
 /* 80D48FB0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D48FB4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D48FB8  4B 61 92 24 */	b _savegpr_29
+/* 80D48FB8  4B 61 92 25 */	bl _savegpr_29
 /* 80D48FBC  7C 7F 1B 78 */	mr r31, r3
-/* 80D48FC0  3C 60 80 D5 */	lis r3, m__14daPeru_Param_c@ha
-/* 80D48FC4  3B C3 C0 60 */	addi r30, r3, m__14daPeru_Param_c@l
+/* 80D48FC0  3C 60 80 D5 */	lis r3, m__14daPeru_Param_c@ha /* 0x80D4C060@ha */
+/* 80D48FC4  3B C3 C0 60 */	addi r30, r3, m__14daPeru_Param_c@l /* 0x80D4C060@l */
 /* 80D48FC8  A0 1F 0E 22 */	lhz r0, 0xe22(r31)
 /* 80D48FCC  2C 00 00 02 */	cmpwi r0, 2
 /* 80D48FD0  41 82 00 A8 */	beq lbl_80D49078
@@ -25,7 +25,7 @@ lbl_80D48FF4:
 /* 80D48FFC  41 82 00 24 */	beq lbl_80D49020
 /* 80D49000  83 BF 0B 5C */	lwz r29, 0xb5c(r31)
 /* 80D49004  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 80D49008  4B 3F C8 90 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80D49008  4B 3F C8 91 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80D4900C  93 BF 0B 5C */	stw r29, 0xb5c(r31)
 /* 80D49010  38 00 00 02 */	li r0, 2
 /* 80D49014  90 1F 0B 58 */	stw r0, 0xb58(r31)
@@ -37,7 +37,7 @@ lbl_80D49020:
 /* 80D49028  41 82 00 24 */	beq lbl_80D4904C
 /* 80D4902C  83 BF 0B 80 */	lwz r29, 0xb80(r31)
 /* 80D49030  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80D49034  4B 3F C8 64 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80D49034  4B 3F C8 65 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80D49038  93 BF 0B 80 */	stw r29, 0xb80(r31)
 /* 80D4903C  38 00 00 08 */	li r0, 8
 /* 80D49040  90 1F 0B 7C */	stw r0, 0xb7c(r31)
@@ -67,7 +67,7 @@ lbl_80D49078:
 /* 80D49098  41 82 00 24 */	beq lbl_80D490BC
 /* 80D4909C  83 BF 0B 80 */	lwz r29, 0xb80(r31)
 /* 80D490A0  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80D490A4  4B 3F C7 F4 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80D490A4  4B 3F C7 F5 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80D490A8  93 BF 0B 80 */	stw r29, 0xb80(r31)
 /* 80D490AC  38 00 00 00 */	li r0, 0
 /* 80D490B0  90 1F 0B 7C */	stw r0, 0xb7c(r31)
@@ -92,7 +92,7 @@ lbl_80D490F0:
 /* 80D490F0  38 60 00 00 */	li r3, 0
 lbl_80D490F4:
 /* 80D490F4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D490F8  4B 61 91 30 */	b _restgpr_29
+/* 80D490F8  4B 61 91 31 */	bl _restgpr_29
 /* 80D490FC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D49100  7C 08 03 A6 */	mtlr r0
 /* 80D49104  38 21 00 20 */	addi r1, r1, 0x20

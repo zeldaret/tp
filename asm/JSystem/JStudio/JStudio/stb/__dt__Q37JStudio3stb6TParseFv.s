@@ -7,8 +7,8 @@ lbl_80289660:
 /* 80289674  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80289678  7C 9F 23 78 */	mr r31, r4
 /* 8028967C  41 82 00 28 */	beq lbl_802896A4
-/* 80289680  3C 80 80 3C */	lis r4, __vt__Q37JStudio3stb6TParse@ha
-/* 80289684  38 04 56 A0 */	addi r0, r4, __vt__Q37JStudio3stb6TParse@l
+/* 80289680  3C 80 80 3C */	lis r4, __vt__Q37JStudio3stb6TParse@ha /* 0x803C56A0@ha */
+/* 80289684  38 04 56 A0 */	addi r0, r4, __vt__Q37JStudio3stb6TParse@l /* 0x803C56A0@l */
 /* 80289688  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028968C  38 80 00 00 */	li r4, 0
 /* 80289690  48 05 32 39 */	bl __dt__Q37JGadget6binary19TParse_header_blockFv

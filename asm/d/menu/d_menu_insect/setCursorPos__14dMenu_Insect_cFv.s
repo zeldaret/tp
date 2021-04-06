@@ -32,8 +32,8 @@ lbl_801DA1EC:
 /* 801DA264  4B FB AE 91 */	bl setPos__16dSelect_cursor_cFffP7J2DPaneb
 /* 801DA268  3B 60 00 00 */	li r27, 0
 /* 801DA26C  3B A0 00 00 */	li r29, 0
-/* 801DA270  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801DA274  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l
+/* 801DA270  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801DA274  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l /* 0x8042EBC8@l */
 lbl_801DA278:
 /* 801DA278  7C 1B F8 00 */	cmpw r27, r31
 /* 801DA27C  40 82 00 30 */	bne lbl_801DA2AC

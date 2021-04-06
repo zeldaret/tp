@@ -3,17 +3,15 @@
 #
 
 M625_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone.plf
+M625_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone.lcf
+M625_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone.map
 
 M625_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_smw_stone/executor.cpp \
-	rel/d/a/obj/d_a_obj_smw_stone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_smw_stone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone.cpp \
 
 M625_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone.o \
 
 M625_LIBS := \
@@ -29,15 +27,21 @@ M625_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map625.map\
+	-m _prolog \
+	-lcf $(M625_LDSCRIPT) \
+	-unused -map $(M625_MAP) \
+	-w off \
 
 $(M625_TARGET): $(M625_O_FILES) $(M625_LIBS)
+	@echo [625] creating $(M625_TARGET)
 	@echo $(M625_LIBS) $(M625_O_FILES) > build/M625_ofiles
-	$(LD) -opt_partial $(M625_LDFLAGS) -o $(M625_TARGET) @build/M625_ofiles
+	@python3 tools/lcf.py rel 625 --output $(M625_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M625_LDFLAGS) -o $(M625_TARGET) @build/M625_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smw_stone/%.o: rel/d/a/obj/d_a_obj_smw_stone/%.cpp
+	@echo [625] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M625_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M625_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

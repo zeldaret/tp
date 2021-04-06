@@ -17,14 +17,6 @@ struct request_of_phase_process_class {};
 // Forward References:
 //
 
-void cPhs_Reset(request_of_phase_process_class*);
-void cPhs_Set(request_of_phase_process_class*, int (**)(void*));
-static void cPhs_UnCompleate(request_of_phase_process_class*);
-static void cPhs_Compleate(request_of_phase_process_class*);
-static void cPhs_Next(request_of_phase_process_class*);
-void cPhs_Do(request_of_phase_process_class*, void*);
-void cPhs_Handler(request_of_phase_process_class*, int (**)(void*), void*);
-
 extern "C" void cPhs_Reset__FP30request_of_phase_process_class();
 extern "C" void cPhs_Set__FP30request_of_phase_process_classPPFPv_i();
 extern "C" static void cPhs_UnCompleate__FP30request_of_phase_process_class();
@@ -41,7 +33,7 @@ extern "C" void cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv();
 // Declarations:
 //
 
-/* 80266624-80266630 000C+00 s=1 e=2 z=0  None .text
+/* 80266624-80266630 260F64 000C+00 1/1 2/2 0/0 .text
  * cPhs_Reset__FP30request_of_phase_process_class               */
 #pragma push
 #pragma optimization_level 0
@@ -52,7 +44,7 @@ asm void cPhs_Reset(request_of_phase_process_class* param_0) {
 }
 #pragma pop
 
-/* 80266630-80266640 0010+00 s=0 e=3 z=0  None .text
+/* 80266630-80266640 260F70 0010+00 0/0 3/3 0/0 .text
  * cPhs_Set__FP30request_of_phase_process_classPPFPv_i          */
 #pragma push
 #pragma optimization_level 0
@@ -63,49 +55,41 @@ asm void cPhs_Set(request_of_phase_process_class* param_0, int (**)(void*)) {
 }
 #pragma pop
 
-/* 80266640-80266668 0028+00 s=1 e=0 z=0  None .text
+/* 80266640-80266668 260F80 0028+00 1/1 0/0 0/0 .text
  * cPhs_UnCompleate__FP30request_of_phase_process_class         */
-//	80266654: 80266624 (cPhs_Reset__FP30request_of_phase_process_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cPhs_UnCompleate(request_of_phase_process_class* param_0) {
+static asm void cPhs_UnCompleate(request_of_phase_process_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_UnCompleate__FP30request_of_phase_process_class.s"
 }
 #pragma pop
 
-/* 80266668-80266678 0010+00 s=2 e=0 z=0  None .text
+/* 80266668-80266678 260FA8 0010+00 2/2 0/0 0/0 .text
  * cPhs_Compleate__FP30request_of_phase_process_class           */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cPhs_Compleate(request_of_phase_process_class* param_0) {
+static asm void cPhs_Compleate(request_of_phase_process_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_Compleate__FP30request_of_phase_process_class.s"
 }
 #pragma pop
 
-/* 80266678-802666D8 0060+00 s=1 e=0 z=0  None .text cPhs_Next__FP30request_of_phase_process_class
- */
-//	802666B4: 80266668 (cPhs_Compleate__FP30request_of_phase_process_class)
+/* 80266678-802666D8 260FB8 0060+00 1/1 0/0 0/0 .text
+ * cPhs_Next__FP30request_of_phase_process_class                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cPhs_Next(request_of_phase_process_class* param_0) {
+static asm void cPhs_Next(request_of_phase_process_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_Next__FP30request_of_phase_process_class.s"
 }
 #pragma pop
 
-/* 802666D8-802667AC 00D4+00 s=1 e=3 z=0  None .text cPhs_Do__FP30request_of_phase_process_classPv
- */
-//	80266740: 80266678 (cPhs_Next__FP30request_of_phase_process_class)
-//	8026674C: 80266678 (cPhs_Next__FP30request_of_phase_process_class)
-//	80266768: 80266668 (cPhs_Compleate__FP30request_of_phase_process_class)
-//	80266774: 80266640 (cPhs_UnCompleate__FP30request_of_phase_process_class)
-//	80266784: 80266640 (cPhs_UnCompleate__FP30request_of_phase_process_class)
-//	80266794: 80266668 (cPhs_Compleate__FP30request_of_phase_process_class)
+/* 802666D8-802667AC 261018 00D4+00 1/1 3/3 0/0 .text
+ * cPhs_Do__FP30request_of_phase_process_classPv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -115,9 +99,8 @@ asm void cPhs_Do(request_of_phase_process_class* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 802667AC-802667D4 0028+00 s=0 e=2 z=0  None .text
+/* 802667AC-802667D4 2610EC 0028+00 0/0 2/2 0/0 .text
  * cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv    */
-//	802667C0: 802666D8 (cPhs_Do__FP30request_of_phase_process_classPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

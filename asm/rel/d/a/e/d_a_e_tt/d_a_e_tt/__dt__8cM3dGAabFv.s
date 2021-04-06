@@ -5,12 +5,12 @@ lbl_807C1844:
 /* 807C1850  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807C1854  7C 7F 1B 79 */	or. r31, r3, r3
 /* 807C1858  41 82 00 1C */	beq lbl_807C1874
-/* 807C185C  3C A0 80 7C */	lis r5, __vt__8cM3dGAab@ha
-/* 807C1860  38 05 23 2C */	addi r0, r5, __vt__8cM3dGAab@l
+/* 807C185C  3C A0 80 7C */	lis r5, __vt__8cM3dGAab@ha /* 0x807C232C@ha */
+/* 807C1860  38 05 23 2C */	addi r0, r5, __vt__8cM3dGAab@l /* 0x807C232C@l */
 /* 807C1864  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 807C1868  7C 80 07 35 */	extsh. r0, r4
 /* 807C186C  40 81 00 08 */	ble lbl_807C1874
-/* 807C1870  4B B0 D4 CC */	b __dl__FPv
+/* 807C1870  4B B0 D4 CD */	bl __dl__FPv
 lbl_807C1874:
 /* 807C1874  7F E3 FB 78 */	mr r3, r31
 /* 807C1878  83 E1 00 0C */	lwz r31, 0xc(r1)

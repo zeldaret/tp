@@ -49,15 +49,15 @@ lbl_8034EBB4:
 /* 8034EBE4  7C A0 00 78 */	andc r0, r5, r0
 /* 8034EBE8  1C 84 00 0C */	mulli r4, r4, 0xc
 /* 8034EBEC  90 0D 92 D0 */	stw r0, ResettingBits(r13)
-/* 8034EBF0  3C 60 80 45 */	lis r3, Origin@ha
-/* 8034EBF4  38 03 CB 80 */	addi r0, r3, Origin@l
+/* 8034EBF0  3C 60 80 45 */	lis r3, Origin@ha /* 0x8044CB80@ha */
+/* 8034EBF4  38 03 CB 80 */	addi r0, r3, Origin@l /* 0x8044CB80@l */
 /* 8034EBF8  7C 60 22 14 */	add r3, r0, r4
 /* 8034EBFC  38 80 00 00 */	li r4, 0
 /* 8034EC00  38 A0 00 0C */	li r5, 0xc
 /* 8034EC04  4B CB 48 55 */	bl memset
-/* 8034EC08  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha
+/* 8034EC08  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha /* 0x8034E6C0@ha */
 /* 8034EC0C  80 6D 84 A4 */	lwz r3, ResettingChan(r13)
-/* 8034EC10  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l
+/* 8034EC10  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l /* 0x8034E6C0@l */
 /* 8034EC14  4B FF 75 41 */	bl SIGetTypeAsync
 lbl_8034EC18:
 /* 8034EC18  7F E3 FB 78 */	mr r3, r31

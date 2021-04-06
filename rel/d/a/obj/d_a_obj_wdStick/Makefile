@@ -3,19 +3,20 @@
 #
 
 M683_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick.plf
+M683_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick.lcf
+M683_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick.map
 
 M683_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wdStick/executor.cpp \
-	rel/d/a/obj/d_a_obj_wdStick/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick.cpp \
 
 M683_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick.o \
 
 M683_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/libRuntime.PPCEABI.H.a \
 
 M683_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M683_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map683.map\
+	-m _prolog \
+	-lcf $(M683_LDSCRIPT) \
+	-unused -map $(M683_MAP) \
+	-w off \
 
 $(M683_TARGET): $(M683_O_FILES) $(M683_LIBS)
+	@echo [683] creating $(M683_TARGET)
 	@echo $(M683_LIBS) $(M683_O_FILES) > build/M683_ofiles
-	$(LD) -opt_partial $(M683_LDFLAGS) -o $(M683_TARGET) @build/M683_ofiles
+	@python3 tools/lcf.py rel 683 --output $(M683_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M683_LDFLAGS) -o $(M683_TARGET) @build/M683_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wdStick/%.o: rel/d/a/obj/d_a_obj_wdStick/%.cpp
+	@echo [683] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M683_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M683_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_wdStick/libs/Runtime.PPCEABI.H/Makefile
 

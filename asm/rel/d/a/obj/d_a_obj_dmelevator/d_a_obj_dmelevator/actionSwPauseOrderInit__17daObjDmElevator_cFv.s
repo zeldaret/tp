@@ -12,7 +12,7 @@ lbl_80BDE7B0:
 /* 80BDE7D8  38 80 00 02 */	li r4, 2
 /* 80BDE7DC  38 A0 00 00 */	li r5, 0
 /* 80BDE7E0  38 C0 00 00 */	li r6, 0
-/* 80BDE7E4  4B 43 D1 24 */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 80BDE7E4  4B 43 D1 25 */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 80BDE7E8  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80BDE7EC  60 00 00 02 */	ori r0, r0, 2
 /* 80BDE7F0  B0 1F 00 FA */	sth r0, 0xfa(r31)

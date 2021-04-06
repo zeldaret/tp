@@ -3,18 +3,16 @@
 #
 
 M584_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi.plf
+M584_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi.lcf
+M584_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi.map
 
 M584_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_octhashi/executor.cpp \
-	rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi.cpp \
 
 M584_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/d_a_obj_octhashi.o \
 
@@ -31,15 +29,21 @@ M584_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map584.map\
+	-m _prolog \
+	-lcf $(M584_LDSCRIPT) \
+	-unused -map $(M584_MAP) \
+	-w off \
 
 $(M584_TARGET): $(M584_O_FILES) $(M584_LIBS)
+	@echo [584] creating $(M584_TARGET)
 	@echo $(M584_LIBS) $(M584_O_FILES) > build/M584_ofiles
-	$(LD) -opt_partial $(M584_LDFLAGS) -o $(M584_TARGET) @build/M584_ofiles
+	@python3 tools/lcf.py rel 584 --output $(M584_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M584_LDFLAGS) -o $(M584_TARGET) @build/M584_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_octhashi/%.o: rel/d/a/obj/d_a_obj_octhashi/%.cpp
+	@echo [584] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M584_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M584_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

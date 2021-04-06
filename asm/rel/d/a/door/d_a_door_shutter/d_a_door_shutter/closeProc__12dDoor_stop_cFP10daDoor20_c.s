@@ -3,11 +3,11 @@ lbl_804662C0:
 /* 804662C4  7C 08 02 A6 */	mflr r0
 /* 804662C8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804662CC  39 61 00 20 */	addi r11, r1, 0x20
-/* 804662D0  4B EF BF 0C */	b _savegpr_29
+/* 804662D0  4B EF BF 0D */	bl _savegpr_29
 /* 804662D4  7C 7D 1B 78 */	mr r29, r3
 /* 804662D8  7C 9E 23 78 */	mr r30, r4
-/* 804662DC  3C 60 80 46 */	lis r3, lit_4018@ha
-/* 804662E0  3B E3 68 20 */	addi r31, r3, lit_4018@l
+/* 804662DC  3C 60 80 46 */	lis r3, lit_4018@ha /* 0x80466820@ha */
+/* 804662E0  3B E3 68 20 */	addi r31, r3, lit_4018@l /* 0x80466820@l */
 /* 804662E4  88 1D 00 0B */	lbz r0, 0xb(r29)
 /* 804662E8  28 00 00 00 */	cmplwi r0, 0
 /* 804662EC  40 82 00 0C */	bne lbl_804662F8
@@ -17,11 +17,11 @@ lbl_804662F8:
 /* 804662F8  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 804662FC  C0 3F 00 AC */	lfs f1, 0xac(r31)
 /* 80466300  C0 5F 00 B0 */	lfs f2, 0xb0(r31)
-/* 80466304  4B E0 A4 3C */	b cLib_chaseF__FPfff
+/* 80466304  4B E0 A4 3D */	bl cLib_chaseF__FPfff
 /* 80466308  38 7D 00 04 */	addi r3, r29, 4
 /* 8046630C  C0 3F 00 0C */	lfs f1, 0xc(r31)
 /* 80466310  C0 5E 05 2C */	lfs f2, 0x52c(r30)
-/* 80466314  4B E0 A4 2C */	b cLib_chaseF__FPfff
+/* 80466314  4B E0 A4 2D */	bl cLib_chaseF__FPfff
 /* 80466318  2C 03 00 00 */	cmpwi r3, 0
 /* 8046631C  41 82 00 14 */	beq lbl_80466330
 /* 80466320  38 00 00 00 */	li r0, 0
@@ -32,7 +32,7 @@ lbl_80466330:
 /* 80466330  38 60 00 00 */	li r3, 0
 lbl_80466334:
 /* 80466334  39 61 00 20 */	addi r11, r1, 0x20
-/* 80466338  4B EF BE F0 */	b _restgpr_29
+/* 80466338  4B EF BE F1 */	bl _restgpr_29
 /* 8046633C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80466340  7C 08 03 A6 */	mtlr r0
 /* 80466344  38 21 00 20 */	addi r1, r1, 0x20

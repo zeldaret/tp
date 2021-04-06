@@ -14,8 +14,8 @@ lbl_800D6FE0:
 /* 800D7010  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
 /* 800D7014  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800D7018  EF E2 00 32 */	fmuls f31, f2, f0
-/* 800D701C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha
-/* 800D7020  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l
+/* 800D701C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha /* 0x8038E454@ha */
+/* 800D7020  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l /* 0x8038E454@l */
 /* 800D7024  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 800D7028  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 800D702C  4C 41 13 82 */	cror 2, 1, 2
@@ -24,8 +24,8 @@ lbl_800D6FE0:
 /* 800D7038  4B FF FE F5 */	bl checkNoLandDamageSlidePolygon__9daAlink_cFv
 /* 800D703C  2C 03 00 00 */	cmpwi r3, 0
 /* 800D7040  40 82 00 44 */	bne lbl_800D7084
-/* 800D7044  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha
-/* 800D7048  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l
+/* 800D7044  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha /* 0x8038E454@ha */
+/* 800D7048  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l /* 0x8038E454@l */
 /* 800D704C  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800D7050  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 800D7054  4C 41 13 82 */	cror 2, 1, 2

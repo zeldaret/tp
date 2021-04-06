@@ -3,8 +3,8 @@ lbl_8002D25C:
 /* 8002D260  7C 08 02 A6 */	mflr r0
 /* 8002D264  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8002D268  7C 64 1B 78 */	mr r4, r3
-/* 8002D26C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002D270  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002D26C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002D270  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002D274  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8002D278  4B FF 71 0D */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8002D27C  28 03 00 00 */	cmplwi r3, 0

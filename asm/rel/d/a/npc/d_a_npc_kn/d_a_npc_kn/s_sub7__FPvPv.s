@@ -6,7 +6,7 @@ lbl_80A30F5C:
 /* 80A30F6C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A30F70  7C 7E 1B 78 */	mr r30, r3
 /* 80A30F74  7C 9F 23 78 */	mr r31, r4
-/* 80A30F78  4B 5E 7D 68 */	b fopAc_IsActor__FPv
+/* 80A30F78  4B 5E 7D 69 */	bl fopAc_IsActor__FPv
 /* 80A30F7C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A30F80  41 82 00 20 */	beq lbl_80A30FA0
 /* 80A30F84  A8 1E 00 08 */	lha r0, 8(r30)

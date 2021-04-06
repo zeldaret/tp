@@ -18,8 +18,8 @@ lbl_80808768:
 /* 808087A8  C0 03 06 DC */	lfs f0, 0x6dc(r3)
 /* 808087AC  EC 01 00 2A */	fadds f0, f1, f0
 /* 808087B0  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 808087B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808087B8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 808087B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808087B8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808087BC  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 808087C0  38 00 00 FF */	li r0, 0xff
 /* 808087C4  90 01 00 08 */	stw r0, 8(r1)
@@ -38,9 +38,9 @@ lbl_80808768:
 /* 808087F8  39 00 00 00 */	li r8, 0
 /* 808087FC  39 3E 04 E4 */	addi r9, r30, 0x4e4
 /* 80808800  39 41 00 2C */	addi r10, r1, 0x2c
-/* 80808804  3D 60 80 81 */	lis r11, lit_3927@ha
-/* 80808808  C0 2B 59 9C */	lfs f1, lit_3927@l(r11)
-/* 8080880C  4B 84 4C C0 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80808804  3D 60 80 81 */	lis r11, lit_3927@ha /* 0x8081599C@ha */
+/* 80808808  C0 2B 59 9C */	lfs f1, lit_3927@l(r11)  /* 0x8081599C@l */
+/* 8080880C  4B 84 4C C1 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80808810  90 7E 0A D8 */	stw r3, 0xad8(r30)
 /* 80808814  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80808818  38 00 00 FF */	li r0, 0xff
@@ -60,9 +60,9 @@ lbl_80808768:
 /* 80808850  39 00 00 00 */	li r8, 0
 /* 80808854  39 3E 04 E4 */	addi r9, r30, 0x4e4
 /* 80808858  39 41 00 2C */	addi r10, r1, 0x2c
-/* 8080885C  3D 60 80 81 */	lis r11, lit_3927@ha
-/* 80808860  C0 2B 59 9C */	lfs f1, lit_3927@l(r11)
-/* 80808864  4B 84 4C 68 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 8080885C  3D 60 80 81 */	lis r11, lit_3927@ha /* 0x8081599C@ha */
+/* 80808860  C0 2B 59 9C */	lfs f1, lit_3927@l(r11)  /* 0x8081599C@l */
+/* 80808864  4B 84 4C 69 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80808868  90 7E 0A DC */	stw r3, 0xadc(r30)
 /* 8080886C  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80808870  83 C1 00 38 */	lwz r30, 0x38(r1)

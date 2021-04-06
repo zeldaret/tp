@@ -1,16 +1,16 @@
 lbl_809CD868:
-/* 809CD868  3C 80 80 9D */	lis r4, cNullVec__6Z2Calc@ha
-/* 809CD86C  38 C4 F8 1C */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 809CD870  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 809CD874  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 809CD868  3C 80 80 9D */	lis r4, cNullVec__6Z2Calc@ha /* 0x809CF81C@ha */
+/* 809CD86C  38 C4 F8 1C */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x809CF81C@l */
+/* 809CD870  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809CD874  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 809CD878  80 85 00 00 */	lwz r4, 0(r5)
 /* 809CD87C  80 05 00 04 */	lwz r0, 4(r5)
 /* 809CD880  90 83 0E 00 */	stw r4, 0xe00(r3)
 /* 809CD884  90 03 0E 04 */	stw r0, 0xe04(r3)
 /* 809CD888  80 05 00 08 */	lwz r0, 8(r5)
 /* 809CD88C  90 03 0E 08 */	stw r0, 0xe08(r3)
-/* 809CD890  3C 80 80 9D */	lis r4, m__17daNpc_grC_Param_c@ha
-/* 809CD894  38 84 F5 1C */	addi r4, r4, m__17daNpc_grC_Param_c@l
+/* 809CD890  3C 80 80 9D */	lis r4, m__17daNpc_grC_Param_c@ha /* 0x809CF51C@ha */
+/* 809CD894  38 84 F5 1C */	addi r4, r4, m__17daNpc_grC_Param_c@l /* 0x809CF51C@l */
 /* 809CD898  88 04 00 6A */	lbz r0, 0x6a(r4)
 /* 809CD89C  28 00 00 00 */	cmplwi r0, 0
 /* 809CD8A0  41 82 00 20 */	beq lbl_809CD8C0

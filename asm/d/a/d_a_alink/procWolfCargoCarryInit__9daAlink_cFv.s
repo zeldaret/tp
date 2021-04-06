@@ -29,8 +29,8 @@ lbl_8013DB9C:
 lbl_8013DBD4:
 /* 8013DBD4  38 00 00 00 */	li r0, 0
 /* 8013DBD8  B0 1E 30 0C */	sth r0, 0x300c(r30)
-/* 8013DBDC  3C 60 80 14 */	lis r3, daAlink_searchEnemyCargo__FP10fopAc_ac_cPv@ha
-/* 8013DBE0  38 63 DB 58 */	addi r3, r3, daAlink_searchEnemyCargo__FP10fopAc_ac_cPv@l
+/* 8013DBDC  3C 60 80 14 */	lis r3, daAlink_searchEnemyCargo__FP10fopAc_ac_cPv@ha /* 0x8013DB58@ha */
+/* 8013DBE0  38 63 DB 58 */	addi r3, r3, daAlink_searchEnemyCargo__FP10fopAc_ac_cPv@l /* 0x8013DB58@l */
 /* 8013DBE4  38 80 00 00 */	li r4, 0
 /* 8013DBE8  4B ED BC 11 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8013DBEC  7C 64 1B 79 */	or. r4, r3, r3
@@ -40,8 +40,8 @@ lbl_8013DBD4:
 lbl_8013DBFC:
 /* 8013DBFC  3B E0 00 86 */	li r31, 0x86
 lbl_8013DC00:
-/* 8013DC00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013DC04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013DC00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013DC04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013DC08  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8013DC0C  4B F0 AC 21 */	bl checkStartDemo__16dEvent_manager_cFv
 /* 8013DC10  2C 03 00 00 */	cmpwi r3, 0

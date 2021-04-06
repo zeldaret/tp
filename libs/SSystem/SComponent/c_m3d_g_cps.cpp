@@ -39,13 +39,10 @@ extern "C" void __dt__8cM3dGCpsFv();
 extern "C" void Set__8cM3dGCpsFRC4cXyzRC4cXyzf();
 extern "C" void Set__8cM3dGCpsFRC9cM3dGCpsS();
 extern "C" void SetCps__8cM3dGCpsFRC8cM3dGCps();
-extern "C" extern void* __vt__8cM3dGCps[3 + 7 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
 extern "C" void SetStartEnd__8cM3dGLinFRC3VecRC3Vec();
@@ -57,8 +54,8 @@ extern "C" extern void* __vt__8cM3dGLin[3];
 //
 
 /* ############################################################################################## */
-/* 803C3FF8-803C4020 000C+1C s=2 e=0 z=0  None .data      __vt__8cM3dGCps */
-SECTION_DATA void* __vt__8cM3dGCps[3 + 7 /* padding */] = {
+/* 803C3FF8-803C4020 021118 000C+1C 2/2 0/0 0/0 .data            __vt__8cM3dGCps */
+SECTION_DATA extern void* __vt__8cM3dGCps[3 + 7 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCpsFv,
@@ -72,11 +69,7 @@ SECTION_DATA void* __vt__8cM3dGCps[3 + 7 /* padding */] = {
     NULL,
 };
 
-/* 8026EF88-8026EFA4 001C+00 s=0 e=5 z=20  None .text      __ct__8cM3dGCpsFv */
-//	8026EF88: 803A78F8 (__vt__8cM3dGLin)
-//	8026EF8C: 803A78F8 (__vt__8cM3dGLin)
-//	8026EF94: 803C3FF8 (__vt__8cM3dGCps)
-//	8026EF98: 803C3FF8 (__vt__8cM3dGCps)
+/* 8026EF88-8026EFA4 2698C8 001C+00 0/0 5/5 20/20 .text            __ct__8cM3dGCpsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,12 +79,7 @@ asm cM3dGCps::cM3dGCps() {
 }
 #pragma pop
 
-/* 8026EFA4-8026F000 005C+00 s=1 e=7 z=6  None .text      __dt__8cM3dGCpsFv */
-//	8026EFBC: 803C3FF8 (__vt__8cM3dGCps)
-//	8026EFC0: 803C3FF8 (__vt__8cM3dGCps)
-//	8026EFCC: 803A78F8 (__vt__8cM3dGLin)
-//	8026EFD0: 803A78F8 (__vt__8cM3dGLin)
-//	8026EFE4: 802CED3C (__dl__FPv)
+/* 8026EFA4-8026F000 2698E4 005C+00 1/0 7/7 6/6 .text            __dt__8cM3dGCpsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -101,8 +89,7 @@ asm cM3dGCps::~cM3dGCps() {
 }
 #pragma pop
 
-/* 8026F000-8026F03C 003C+00 s=1 e=2 z=10  None .text      Set__8cM3dGCpsFRC4cXyzRC4cXyzf */
-//	8026F01C: 8026F2E8 (SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz)
+/* 8026F000-8026F03C 269940 003C+00 1/1 2/2 10/10 .text            Set__8cM3dGCpsFRC4cXyzRC4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,8 +99,7 @@ asm void cM3dGCps::Set(cXyz const& param_0, cXyz const& param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8026F03C-8026F080 0044+00 s=0 e=1 z=10  None .text      Set__8cM3dGCpsFRC9cM3dGCpsS */
-//	8026F05C: 8026F31C (SetStartEnd__8cM3dGLinFRC3VecRC3Vec)
+/* 8026F03C-8026F080 26997C 0044+00 0/0 1/1 10/10 .text            Set__8cM3dGCpsFRC9cM3dGCpsS */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,8 +109,7 @@ asm void cM3dGCps::Set(cM3dGCpsS const& param_0) {
 }
 #pragma pop
 
-/* 8026F080-8026F0A8 0028+00 s=0 e=1 z=0  None .text      SetCps__8cM3dGCpsFRC8cM3dGCps */
-//	8026F094: 8026F000 (Set__8cM3dGCpsFRC4cXyzRC4cXyzf)
+/* 8026F080-8026F0A8 2699C0 0028+00 0/0 1/1 0/0 .text            SetCps__8cM3dGCpsFRC8cM3dGCps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

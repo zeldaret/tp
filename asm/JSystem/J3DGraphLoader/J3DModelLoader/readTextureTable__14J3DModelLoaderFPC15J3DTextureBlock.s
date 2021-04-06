@@ -38,8 +38,8 @@ lbl_80335FDC:
 /* 80335FE0  4B F9 8C 6D */	bl __nw__FUl
 /* 80335FE4  28 03 00 00 */	cmplwi r3, 0
 /* 80335FE8  41 82 00 20 */	beq lbl_80336008
-/* 80335FEC  3C 80 80 3D */	lis r4, __vt__10J3DTexture@ha
-/* 80335FF0  38 04 F1 E8 */	addi r0, r4, __vt__10J3DTexture@l
+/* 80335FEC  3C 80 80 3D */	lis r4, __vt__10J3DTexture@ha /* 0x803CF1E8@ha */
+/* 80335FF0  38 04 F1 E8 */	addi r0, r4, __vt__10J3DTexture@l /* 0x803CF1E8@l */
 /* 80335FF4  90 03 00 08 */	stw r0, 8(r3)
 /* 80335FF8  B3 A3 00 00 */	sth r29, 0(r3)
 /* 80335FFC  38 00 00 00 */	li r0, 0

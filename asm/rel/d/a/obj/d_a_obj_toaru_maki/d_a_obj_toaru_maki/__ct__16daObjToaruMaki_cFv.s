@@ -4,9 +4,9 @@ lbl_80D13098:
 /* 80D130A0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D130A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D130A8  7C 7F 1B 78 */	mr r31, r3
-/* 80D130AC  4B 30 5A B8 */	b __ct__10fopAc_ac_cFv
-/* 80D130B0  3C 60 80 D1 */	lis r3, __vt__16daObjToaruMaki_c@ha
-/* 80D130B4  38 03 36 7C */	addi r0, r3, __vt__16daObjToaruMaki_c@l
+/* 80D130AC  4B 30 5A B9 */	bl __ct__10fopAc_ac_cFv
+/* 80D130B0  3C 60 80 D1 */	lis r3, __vt__16daObjToaruMaki_c@ha /* 0x80D1367C@ha */
+/* 80D130B4  38 03 36 7C */	addi r0, r3, __vt__16daObjToaruMaki_c@l /* 0x80D1367C@l */
 /* 80D130B8  90 1F 05 70 */	stw r0, 0x570(r31)
 /* 80D130BC  38 00 00 00 */	li r0, 0
 /* 80D130C0  90 1F 05 78 */	stw r0, 0x578(r31)

@@ -1,7 +1,7 @@
 lbl_80BE3BD4:
 /* 80BE3BD4  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80BE3BD8  3C 80 80 BE */	lis r4, lit_3677@ha
-/* 80BE3BDC  38 84 4A B0 */	addi r4, r4, lit_3677@l
+/* 80BE3BD8  3C 80 80 BE */	lis r4, lit_3677@ha /* 0x80BE4AB0@ha */
+/* 80BE3BDC  38 84 4A B0 */	addi r4, r4, lit_3677@l /* 0x80BE4AB0@l */
 /* 80BE3BE0  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80BE3BE4  54 00 66 3E */	rlwinm r0, r0, 0xc, 0x18, 0x1f
 /* 80BE3BE8  28 00 00 FF */	cmplwi r0, 0xff

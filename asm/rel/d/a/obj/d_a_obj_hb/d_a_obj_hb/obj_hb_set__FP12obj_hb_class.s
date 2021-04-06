@@ -5,8 +5,8 @@ lbl_80C19AD8:
 /* 80C19AE4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C19AE8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C19AEC  7C 7E 1B 78 */	mr r30, r3
-/* 80C19AF0  3C 60 80 C2 */	lis r3, lit_3665@ha
-/* 80C19AF4  3B E3 B6 00 */	addi r31, r3, lit_3665@l
+/* 80C19AF0  3C 60 80 C2 */	lis r3, lit_3665@ha /* 0x80C1B600@ha */
+/* 80C19AF4  3B E3 B6 00 */	addi r31, r3, lit_3665@l /* 0x80C1B600@l */
 /* 80C19AF8  A8 1E 06 54 */	lha r0, 0x654(r30)
 /* 80C19AFC  2C 00 00 01 */	cmpwi r0, 1
 /* 80C19B00  41 82 00 38 */	beq lbl_80C19B38
@@ -32,12 +32,12 @@ lbl_80C19B38:
 /* 80C19B48  C0 3F 00 0C */	lfs f1, 0xc(r31)
 /* 80C19B4C  FC 40 08 90 */	fmr f2, f1
 /* 80C19B50  C0 7F 00 34 */	lfs f3, 0x34(r31)
-/* 80C19B54  4B 65 5E E8 */	b cLib_addCalc2__FPffff
+/* 80C19B54  4B 65 5E E9 */	bl cLib_addCalc2__FPffff
 /* 80C19B58  38 7E 04 EC */	addi r3, r30, 0x4ec
 /* 80C19B5C  C0 3F 00 38 */	lfs f1, 0x38(r31)
 /* 80C19B60  C0 5F 00 3C */	lfs f2, 0x3c(r31)
 /* 80C19B64  C0 7F 00 40 */	lfs f3, 0x40(r31)
-/* 80C19B68  4B 65 5E D4 */	b cLib_addCalc2__FPffff
+/* 80C19B68  4B 65 5E D5 */	bl cLib_addCalc2__FPffff
 /* 80C19B6C  C0 1F 00 44 */	lfs f0, 0x44(r31)
 /* 80C19B70  D0 1E 06 88 */	stfs f0, 0x688(r30)
 /* 80C19B74  A8 1E 06 72 */	lha r0, 0x672(r30)

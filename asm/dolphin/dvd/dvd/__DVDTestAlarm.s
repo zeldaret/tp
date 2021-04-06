@@ -1,8 +1,8 @@
 lbl_8034B83C:
 /* 8034B83C  7C 08 02 A6 */	mflr r0
-/* 8034B840  3C 80 80 45 */	lis r4, ResetAlarm@ha
+/* 8034B840  3C 80 80 45 */	lis r4, ResetAlarm@ha /* 0x8044C970@ha */
 /* 8034B844  90 01 00 04 */	stw r0, 4(r1)
-/* 8034B848  38 04 C9 70 */	addi r0, r4, ResetAlarm@l
+/* 8034B848  38 04 C9 70 */	addi r0, r4, ResetAlarm@l /* 0x8044C970@l */
 /* 8034B84C  7C 03 00 40 */	cmplw r3, r0
 /* 8034B850  94 21 FF F8 */	stwu r1, -8(r1)
 /* 8034B854  40 82 00 0C */	bne lbl_8034B860

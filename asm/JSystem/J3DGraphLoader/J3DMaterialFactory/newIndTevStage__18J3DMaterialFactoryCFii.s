@@ -1,6 +1,6 @@
 lbl_803324B4:
-/* 803324B4  3C E0 80 3A */	lis r7, j3dDefaultIndTevStageInfo@ha
-/* 803324B8  39 07 1F B0 */	addi r8, r7, j3dDefaultIndTevStageInfo@l
+/* 803324B4  3C E0 80 3A */	lis r7, j3dDefaultIndTevStageInfo@ha /* 0x803A1FB0@ha */
+/* 803324B8  39 07 1F B0 */	addi r8, r7, j3dDefaultIndTevStageInfo@l /* 0x803A1FB0@l */
 /* 803324BC  88 08 00 00 */	lbz r0, 0(r8)
 /* 803324C0  54 07 07 B6 */	rlwinm r7, r0, 0, 0x1e, 0x1b
 /* 803324C4  88 08 00 01 */	lbz r0, 1(r8)

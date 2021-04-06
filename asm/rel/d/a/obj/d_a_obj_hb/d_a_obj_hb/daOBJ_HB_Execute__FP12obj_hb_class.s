@@ -30,7 +30,7 @@ lbl_80C1AFE0:
 /* 80C1AFE4  4B FF F7 65 */	bl action__FP12obj_hb_class
 /* 80C1AFE8  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80C1AFEC  7C 03 07 74 */	extsb r3, r0
-/* 80C1AFF0  4B 41 20 7C */	b dComIfGp_getReverb__Fi
+/* 80C1AFF0  4B 41 20 7D */	bl dComIfGp_getReverb__Fi
 /* 80C1AFF4  7C 65 1B 78 */	mr r5, r3
 /* 80C1AFF8  38 7F 05 C0 */	addi r3, r31, 0x5c0
 /* 80C1AFFC  38 80 00 00 */	li r4, 0
@@ -41,8 +41,8 @@ lbl_80C1AFE0:
 /* 80C1B010  C0 3F 04 AC */	lfs f1, 0x4ac(r31)
 /* 80C1B014  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
 /* 80C1B018  EC 21 00 28 */	fsubs f1, f1, f0
-/* 80C1B01C  3C 60 80 C2 */	lis r3, lit_3823@ha
-/* 80C1B020  C0 03 B6 48 */	lfs f0, lit_3823@l(r3)
+/* 80C1B01C  3C 60 80 C2 */	lis r3, lit_3823@ha /* 0x80C1B648@ha */
+/* 80C1B020  C0 03 B6 48 */	lfs f0, lit_3823@l(r3)  /* 0x80C1B648@l */
 /* 80C1B024  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C1B028  40 81 00 0C */	ble lbl_80C1B034
 /* 80C1B02C  38 00 00 01 */	li r0, 1
@@ -58,8 +58,8 @@ lbl_80C1B034:
 /* 80C1B050  98 9F 06 B1 */	stb r4, 0x6b1(r31)
 /* 80C1B054  B0 9F 06 52 */	sth r4, 0x652(r31)
 /* 80C1B058  B0 9F 06 54 */	sth r4, 0x654(r31)
-/* 80C1B05C  3C 60 80 C2 */	lis r3, lit_3667@ha
-/* 80C1B060  C0 23 B6 08 */	lfs f1, lit_3667@l(r3)
+/* 80C1B05C  3C 60 80 C2 */	lis r3, lit_3667@ha /* 0x80C1B608@ha */
+/* 80C1B060  C0 23 B6 08 */	lfs f1, lit_3667@l(r3)  /* 0x80C1B608@l */
 /* 80C1B064  D0 3F 04 EC */	stfs f1, 0x4ec(r31)
 /* 80C1B068  C0 1F 04 A8 */	lfs f0, 0x4a8(r31)
 /* 80C1B06C  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)

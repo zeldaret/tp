@@ -7,8 +7,8 @@ lbl_800F99FC:
 /* 800F9A10  7C 7B 1B 78 */	mr r27, r3
 /* 800F9A14  7C 9C 23 78 */	mr r28, r4
 /* 800F9A18  7C BD 2B 78 */	mr r29, r5
-/* 800F9A1C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800F9A20  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
+/* 800F9A1C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F9A20  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F9A24  80 1F 5F 18 */	lwz r0, 0x5f18(r31)
 /* 800F9A28  54 1E 9F FE */	rlwinm r30, r0, 0x13, 0x1f, 0x1f
 /* 800F9A2C  38 80 00 37 */	li r4, 0x37

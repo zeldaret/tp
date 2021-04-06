@@ -3,7 +3,7 @@ lbl_80458274:
 /* 80458278  7C 08 02 A6 */	mflr r0
 /* 8045827C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80458280  80 63 00 00 */	lwz r3, 0(r3)
-/* 80458284  4B BB 51 A4 */	b play__14mDoExt_baseAnmFv
+/* 80458284  4B BB 51 A5 */	bl play__14mDoExt_baseAnmFv
 /* 80458288  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8045828C  7C 08 03 A6 */	mtlr r0
 /* 80458290  38 21 00 10 */	addi r1, r1, 0x10

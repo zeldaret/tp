@@ -5,8 +5,8 @@ lbl_80A8C8F8:
 /* 80A8C904  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80A8C908  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80A8C90C  7C 7E 1B 78 */	mr r30, r3
-/* 80A8C910  3C 80 80 A9 */	lis r4, lit_3990@ha
-/* 80A8C914  3B E4 24 1C */	addi r31, r4, lit_3990@l
+/* 80A8C910  3C 80 80 A9 */	lis r4, lit_3990@ha /* 0x80A9241C@ha */
+/* 80A8C914  3B E4 24 1C */	addi r31, r4, lit_3990@l /* 0x80A9241C@l */
 /* 80A8C918  38 00 00 05 */	li r0, 5
 /* 80A8C91C  B0 03 06 56 */	sth r0, 0x656(r3)
 /* 80A8C920  38 00 00 01 */	li r0, 1
@@ -27,7 +27,7 @@ lbl_80A8C944:
 /* 80A8C958  38 00 00 01 */	li r0, 1
 /* 80A8C95C  B0 1E 06 46 */	sth r0, 0x646(r30)
 /* 80A8C960  C0 3F 00 18 */	lfs f1, 0x18(r31)
-/* 80A8C964  4B 7D AF F0 */	b cM_rndF__Ff
+/* 80A8C964  4B 7D AF F1 */	bl cM_rndF__Ff
 /* 80A8C968  C0 1F 00 30 */	lfs f0, 0x30(r31)
 /* 80A8C96C  EC 00 08 2A */	fadds f0, f0, f1
 /* 80A8C970  FC 00 00 1E */	fctiwz f0, f0

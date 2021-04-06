@@ -6,10 +6,10 @@ lbl_80055A14:
 /* 80055A24  48 30 C7 B1 */	bl _savegpr_27
 /* 80055A28  7C 7E 1B 78 */	mr r30, r3
 /* 80055A2C  7C 9B 23 78 */	mr r27, r4
-/* 80055A30  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 80055A34  3B E3 87 A0 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80055A38  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80055A3C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80055A30  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803A87A0@ha */
+/* 80055A34  3B E3 87 A0 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803A87A0@l */
+/* 80055A38  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80055A3C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80055A40  48 2B AC FD */	bl reinitGX__6J3DSysFv
 /* 80055A44  38 60 00 00 */	li r3, 0
 /* 80055A48  48 30 96 8D */	bl GXSetNumIndStages

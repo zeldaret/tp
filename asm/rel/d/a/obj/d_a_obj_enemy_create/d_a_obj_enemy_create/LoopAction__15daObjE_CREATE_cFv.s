@@ -26,11 +26,11 @@ lbl_80BE34F8:
 /* 80BE34F8  88 9F 05 6C */	lbz r4, 0x56c(r31)
 /* 80BE34FC  28 04 00 FF */	cmplwi r4, 0xff
 /* 80BE3500  41 82 00 30 */	beq lbl_80BE3530
-/* 80BE3504  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE3508  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE3504  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE3508  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE350C  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BE3510  7C 05 07 74 */	extsb r5, r0
-/* 80BE3514  4B 45 1E 4C */	b isSwitch__10dSv_info_cCFii
+/* 80BE3514  4B 45 1E 4D */	bl isSwitch__10dSv_info_cCFii
 /* 80BE3518  2C 03 00 00 */	cmpwi r3, 0
 /* 80BE351C  41 82 00 14 */	beq lbl_80BE3530
 /* 80BE3520  38 00 00 00 */	li r0, 0

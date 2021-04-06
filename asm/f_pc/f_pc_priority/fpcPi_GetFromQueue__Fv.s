@@ -3,8 +3,8 @@ lbl_80023214:
 /* 80023218  7C 08 02 A6 */	mflr r0
 /* 8002321C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80023220  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80023224  3C 60 80 3F */	lis r3, l_fpcPi_Queue@ha
-/* 80023228  38 63 4E 58 */	addi r3, r3, l_fpcPi_Queue@l
+/* 80023224  3C 60 80 3F */	lis r3, l_fpcPi_Queue@ha /* 0x803F4E58@ha */
+/* 80023228  38 63 4E 58 */	addi r3, r3, l_fpcPi_Queue@l /* 0x803F4E58@l */
 /* 8002322C  48 24 37 41 */	bl cTg_GetFirst__FP15node_list_class
 /* 80023230  28 03 00 00 */	cmplwi r3, 0
 /* 80023234  41 82 00 1C */	beq lbl_80023250

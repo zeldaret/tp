@@ -7,7 +7,7 @@ lbl_80CC63E4:
 /* 80CC63F8  41 82 00 10 */	beq lbl_80CC6408
 /* 80CC63FC  7C 80 07 35 */	extsh. r0, r4
 /* 80CC6400  40 81 00 08 */	ble lbl_80CC6408
-/* 80CC6404  4B 60 89 38 */	b __dl__FPv
+/* 80CC6404  4B 60 89 39 */	bl __dl__FPv
 lbl_80CC6408:
 /* 80CC6408  7F E3 FB 78 */	mr r3, r31
 /* 80CC640C  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -14,8 +14,8 @@ lbl_800166A4:
 /* 800166D4  48 2B B0 85 */	bl __dt__9JKRThreadFv
 /* 800166D8  4B FF 86 0D */	bl mDoExt_getAssertHeap__Fv
 /* 800166DC  48 2B 7D 5D */	bl becomeCurrentHeap__7JKRHeapFv
-/* 800166E0  3C 60 80 3E */	lis r3, DvdErr_thread@ha
-/* 800166E4  3B E3 EC C0 */	addi r31, r3, DvdErr_thread@l
+/* 800166E0  3C 60 80 3E */	lis r3, DvdErr_thread@ha /* 0x803DECC0@ha */
+/* 800166E4  3B E3 EC C0 */	addi r31, r3, DvdErr_thread@l /* 0x803DECC0@l */
 lbl_800166E8:
 /* 800166E8  48 33 4A E1 */	bl DVDGetDriveStatus
 /* 800166EC  2C 03 FF FF */	cmpwi r3, -1

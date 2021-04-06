@@ -110,8 +110,8 @@ lbl_802EF0D0:
 /* 802EF100  39 29 00 01 */	addi r9, r9, 1
 /* 802EF104  42 00 FF CC */	bdnz lbl_802EF0D0
 /* 802EF108  38 A0 00 00 */	li r5, 0
-/* 802EF10C  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802EF110  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l
+/* 802EF10C  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802EF110  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802EF114  38 00 00 08 */	li r0, 8
 /* 802EF118  7C 09 03 A6 */	mtctr r0
 lbl_802EF11C:

@@ -7,10 +7,10 @@ lbl_8046E93C:
 /* 8046E950  38 7F 05 A0 */	addi r3, r31, 0x5a0
 /* 8046E954  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8046E958  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
-/* 8046E95C  3C 80 80 47 */	lis r4, l_arcName@ha
-/* 8046E960  38 84 EE D4 */	addi r4, r4, l_arcName@l
+/* 8046E95C  3C 80 80 47 */	lis r4, l_arcName@ha /* 0x8046EED4@ha */
+/* 8046E960  38 84 EE D4 */	addi r4, r4, l_arcName@l /* 0x8046EED4@l */
 /* 8046E964  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8046E968  4B BB E5 54 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8046E968  4B BB E5 55 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8046E96C  7C 60 1B 78 */	mr r0, r3
 /* 8046E970  2C 00 00 04 */	cmpwi r0, 4
 /* 8046E974  40 82 00 60 */	bne lbl_8046E9D4
@@ -25,16 +25,16 @@ lbl_8046E990:
 lbl_8046E994:
 /* 8046E994  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 8046E998  7F E3 FB 78 */	mr r3, r31
-/* 8046E99C  3C 80 80 47 */	lis r4, l_arcName@ha
-/* 8046E9A0  38 84 EE D4 */	addi r4, r4, l_arcName@l
+/* 8046E99C  3C 80 80 47 */	lis r4, l_arcName@ha /* 0x8046EED4@ha */
+/* 8046E9A0  38 84 EE D4 */	addi r4, r4, l_arcName@l /* 0x8046EED4@l */
 /* 8046E9A4  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8046E9A8  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha
-/* 8046E9AC  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l
-/* 8046E9B0  3C E0 80 47 */	lis r7, l_heap_size@ha
-/* 8046E9B4  38 E7 EE 54 */	addi r7, r7, l_heap_size@l
+/* 8046E9A8  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha /* 0x80075AD8@ha */
+/* 8046E9AC  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l /* 0x80075AD8@l */
+/* 8046E9B0  3C E0 80 47 */	lis r7, l_heap_size@ha /* 0x8046EE54@ha */
+/* 8046E9B4  38 E7 EE 54 */	addi r7, r7, l_heap_size@l /* 0x8046EE54@l */
 /* 8046E9B8  7C E7 00 2E */	lwzx r7, r7, r0
 /* 8046E9BC  39 00 00 00 */	li r8, 0
-/* 8046E9C0  4B C0 9D FC */	b MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
+/* 8046E9C0  4B C0 9D FD */	bl MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
 /* 8046E9C4  7C 60 1B 78 */	mr r0, r3
 /* 8046E9C8  2C 00 00 05 */	cmpwi r0, 5
 /* 8046E9CC  40 82 00 08 */	bne lbl_8046E9D4

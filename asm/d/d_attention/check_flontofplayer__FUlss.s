@@ -11,8 +11,8 @@ lbl_80070B3C:
 lbl_80070B4C:
 /* 80070B4C  38 C0 00 00 */	li r6, 0
 /* 80070B50  38 E0 00 00 */	li r7, 0
-/* 80070B54  3D 00 80 3B */	lis r8, ftp_table@ha
-/* 80070B58  39 28 9C 18 */	addi r9, r8, ftp_table@l
+/* 80070B54  3D 00 80 3B */	lis r8, ftp_table@ha /* 0x803A9C18@ha */
+/* 80070B58  39 28 9C 18 */	addi r9, r8, ftp_table@l /* 0x803A9C18@l */
 /* 80070B5C  7C 88 07 34 */	extsh r8, r4
 /* 80070B60  38 8D 80 F4 */	la r4, ang_table(r13) /* 80450674-_SDA_BASE_ */
 /* 80070B64  38 00 00 03 */	li r0, 3
@@ -32,11 +32,11 @@ lbl_80070B8C:
 /* 80070B94  42 00 FF D8 */	bdnz lbl_80070B6C
 /* 80070B98  38 80 00 10 */	li r4, 0x10
 /* 80070B9C  38 C0 00 20 */	li r6, 0x20
-/* 80070BA0  3C E0 80 3B */	lis r7, ftp_table@ha
-/* 80070BA4  39 27 9C 18 */	addi r9, r7, ftp_table@l
+/* 80070BA0  3C E0 80 3B */	lis r7, ftp_table@ha /* 0x803A9C18@ha */
+/* 80070BA4  39 27 9C 18 */	addi r9, r7, ftp_table@l /* 0x803A9C18@l */
 /* 80070BA8  7C A8 07 34 */	extsh r8, r5
-/* 80070BAC  3C A0 80 3B */	lis r5, ang_table2@ha
-/* 80070BB0  38 E5 9C 3C */	addi r7, r5, ang_table2@l
+/* 80070BAC  3C A0 80 3B */	lis r5, ang_table2@ha /* 0x803A9C3C@ha */
+/* 80070BB0  38 E5 9C 3C */	addi r7, r5, ang_table2@l /* 0x803A9C3C@l */
 /* 80070BB4  38 00 00 06 */	li r0, 6
 /* 80070BB8  7C 09 03 A6 */	mtctr r0
 lbl_80070BBC:

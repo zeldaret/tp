@@ -7,8 +7,8 @@ lbl_8030751C:
 /* 80307530  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80307534  7C 9F 23 78 */	mr r31, r4
 /* 80307538  41 82 00 58 */	beq lbl_80307590
-/* 8030753C  3C 60 80 3D */	lis r3, __vt__12J2DTextBoxEx@ha
-/* 80307540  38 03 D6 08 */	addi r0, r3, __vt__12J2DTextBoxEx@l
+/* 8030753C  3C 60 80 3D */	lis r3, __vt__12J2DTextBoxEx@ha /* 0x803CD608@ha */
+/* 80307540  38 03 D6 08 */	addi r0, r3, __vt__12J2DTextBoxEx@l /* 0x803CD608@l */
 /* 80307544  90 1E 00 00 */	stw r0, 0(r30)
 /* 80307548  88 1E 01 40 */	lbz r0, 0x140(r30)
 /* 8030754C  28 00 00 00 */	cmplwi r0, 0

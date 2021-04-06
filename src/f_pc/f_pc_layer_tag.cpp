@@ -21,11 +21,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fpcLyTg_ToQueue(layer_management_tag_class*, unsigned int, u16, u16);
-void fpcLyTg_QueueTo(layer_management_tag_class*);
-void fpcLyTg_Move(layer_management_tag_class*, unsigned int, u16, u16);
-void fpcLyTg_Init(layer_management_tag_class*, unsigned int, void*);
-
 extern "C" void fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs();
 extern "C" void fpcLyTg_QueueTo__FP26layer_management_tag_class();
 extern "C" void fpcLyTg_Move__FP26layer_management_tag_classUiUsUs();
@@ -34,12 +29,6 @@ extern "C" void fpcLyTg_Init__FP26layer_management_tag_classUiPv();
 //
 // External References:
 //
-
-void fpcLy_IntoQueue(layer_class*, int, create_tag_class*, int);
-void fpcLy_ToQueue(layer_class*, int, create_tag_class*);
-void fpcLy_QueueTo(layer_class*, create_tag_class*);
-void fpcLy_Layer(unsigned int);
-void cTg_Create(create_tag_class*, void*);
 
 extern "C" void fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi();
 extern "C" void fpcLy_ToQueue__FP11layer_classiP16create_tag_class();
@@ -55,13 +44,8 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 80021CD4-80021DCC 00F8+00 s=1 e=1 z=0  None .text
+/* 80021CD4-80021DCC 01C614 00F8+00 1/1 1/1 0/0 .text
  * fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs        */
-//	80021CE4: 803621D8 (_savegpr_28)
-//	80021D3C: 8002174C (fpcLy_Layer__FUi)
-//	80021D64: 8002161C (fpcLy_ToQueue__FP11layer_classiP16create_tag_class)
-//	80021D94: 800215F8 (fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi)
-//	80021DB8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,9 +56,8 @@ asm void fpcLyTg_ToQueue(layer_management_tag_class* param_0, unsigned int param
 }
 #pragma pop
 
-/* 80021DCC-80021E2C 0060+00 s=1 e=2 z=0  None .text
+/* 80021DCC-80021E2C 01C70C 0060+00 1/1 2/2 0/0 .text
  * fpcLyTg_QueueTo__FP26layer_management_tag_class              */
-//	80021DE8: 80021640 (fpcLy_QueueTo__FP11layer_classP16create_tag_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,13 +67,8 @@ asm void fpcLyTg_QueueTo(layer_management_tag_class* param_0) {
 }
 #pragma pop
 
-/* 80021E2C-80021EB0 0084+00 s=0 e=1 z=0  None .text
+/* 80021E2C-80021EB0 01C76C 0084+00 0/0 1/1 0/0 .text
  * fpcLyTg_Move__FP26layer_management_tag_classUiUsUs           */
-//	80021E3C: 803621D4 (_savegpr_27)
-//	80021E54: 8002174C (fpcLy_Layer__FUi)
-//	80021E6C: 80021DCC (fpcLyTg_QueueTo__FP26layer_management_tag_class)
-//	80021E8C: 80021CD4 (fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs)
-//	80021E9C: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,7 +80,7 @@ asm void fpcLyTg_Move(layer_management_tag_class* param_0, unsigned int param_1,
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3A00-803A3A20 001C+04 s=1 e=0 z=0  None .data      crear$2239 */
+/* 803A3A00-803A3A20 000B20 001C+04 1/1 0/0 0/0 .data            crear$2239 */
 SECTION_DATA static u8 crear[28 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -139,14 +117,8 @@ SECTION_DATA static u8 crear[28 + 4 /* padding */] = {
     0x00,
 };
 
-/* 80021EB0-80021F64 00B4+00 s=0 e=1 z=0  None .text
+/* 80021EB0-80021F64 01C7F0 00B4+00 0/0 1/1 0/0 .text
  * fpcLyTg_Init__FP26layer_management_tag_classUiPv             */
-//	80021ED0: 803A3A00 (crear)
-//	80021ED4: 803A3A00 (crear)
-//	80021F00: 803A3A00 (crear)
-//	80021F04: 803A3A00 (crear)
-//	80021F28: 80266A34 (cTg_Create__FP16create_tag_classPv)
-//	80021F30: 8002174C (fpcLy_Layer__FUi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

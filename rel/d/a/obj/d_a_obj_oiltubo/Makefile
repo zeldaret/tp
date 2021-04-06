@@ -3,17 +3,15 @@
 #
 
 M585_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo.plf
+M585_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo.lcf
+M585_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo.map
 
 M585_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_oiltubo/executor.cpp \
-	rel/d/a/obj/d_a_obj_oiltubo/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_oiltubo/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_oiltubo/d_a_obj_oiltubo.cpp \
 
 M585_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/d_a_obj_oiltubo.o \
 
 M585_LIBS := \
@@ -29,15 +27,21 @@ M585_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map585.map\
+	-m _prolog \
+	-lcf $(M585_LDSCRIPT) \
+	-unused -map $(M585_MAP) \
+	-w off \
 
 $(M585_TARGET): $(M585_O_FILES) $(M585_LIBS)
+	@echo [585] creating $(M585_TARGET)
 	@echo $(M585_LIBS) $(M585_O_FILES) > build/M585_ofiles
-	$(LD) -opt_partial $(M585_LDFLAGS) -o $(M585_TARGET) @build/M585_ofiles
+	@python3 tools/lcf.py rel 585 --output $(M585_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M585_LDFLAGS) -o $(M585_TARGET) @build/M585_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_oiltubo/%.o: rel/d/a/obj/d_a_obj_oiltubo/%.cpp
+	@echo [585] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M585_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M585_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

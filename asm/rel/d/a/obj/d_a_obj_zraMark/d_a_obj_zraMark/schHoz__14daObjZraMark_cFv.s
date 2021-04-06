@@ -6,7 +6,7 @@ lbl_80D432C8:
 /* 80D432D8  90 01 00 08 */	stw r0, 8(r1)
 /* 80D432DC  38 60 02 57 */	li r3, 0x257
 /* 80D432E0  38 81 00 08 */	addi r4, r1, 8
-/* 80D432E4  4B 2D 67 48 */	b fopAcM_SearchByName__FsPP10fopAc_ac_c
+/* 80D432E4  4B 2D 67 49 */	bl fopAcM_SearchByName__FsPP10fopAc_ac_c
 /* 80D432E8  2C 03 00 00 */	cmpwi r3, 0
 /* 80D432EC  41 82 00 14 */	beq lbl_80D43300
 /* 80D432F0  80 61 00 08 */	lwz r3, 8(r1)

@@ -1,6 +1,6 @@
 lbl_8021C0E0:
-/* 8021C0E0  3C E0 80 40 */	lis r7, g_dComIfG_gameInfo@ha
-/* 8021C0E4  38 E7 61 C0 */	addi r7, r7, g_dComIfG_gameInfo@l
+/* 8021C0E0  3C E0 80 40 */	lis r7, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021C0E4  38 E7 61 C0 */	addi r7, r7, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021C0E8  88 07 4F AD */	lbz r0, 0x4fad(r7)
 /* 8021C0EC  28 00 00 00 */	cmplwi r0, 0
 /* 8021C0F0  41 82 00 0C */	beq lbl_8021C0FC

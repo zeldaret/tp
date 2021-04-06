@@ -18,26 +18,26 @@ lbl_80A38930:
 lbl_80A38970:
 /* 80A38970  7F C3 F3 78 */	mr r3, r30
 /* 80A38974  4B FF 3B 11 */	bl beforeMove__10daNpc_Kn_cFv
-/* 80A38978  3C 60 80 A4 */	lis r3, lit_4204@ha
-/* 80A3897C  C0 23 09 00 */	lfs f1, lit_4204@l(r3)
+/* 80A38978  3C 60 80 A4 */	lis r3, lit_4204@ha /* 0x80A40900@ha */
+/* 80A3897C  C0 23 09 00 */	lfs f1, lit_4204@l(r3)  /* 0x80A40900@l */
 /* 80A38980  C0 1E 05 2C */	lfs f0, 0x52c(r30)
 /* 80A38984  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80A38988  41 82 00 14 */	beq lbl_80A3899C
 /* 80A3898C  7F C3 F3 78 */	mr r3, r30
 /* 80A38990  38 9E 08 A8 */	addi r4, r30, 0x8a8
-/* 80A38994  4B 5E 1D 38 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 80A38994  4B 5E 1D 39 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80A38998  48 00 00 10 */	b lbl_80A389A8
 lbl_80A3899C:
 /* 80A3899C  7F C3 F3 78 */	mr r3, r30
 /* 80A389A0  38 9E 08 A8 */	addi r4, r30, 0x8a8
-/* 80A389A4  4B 5E 1C BC */	b fopAcM_posMove__FP10fopAc_ac_cPC4cXyz
+/* 80A389A4  4B 5E 1C BD */	bl fopAcM_posMove__FP10fopAc_ac_cPC4cXyz
 lbl_80A389A8:
 /* 80A389A8  38 7E 06 D0 */	addi r3, r30, 0x6d0
-/* 80A389AC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80A389B0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80A389AC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A389B0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A389B4  3B E4 0F 38 */	addi r31, r4, 0xf38
 /* 80A389B8  7F E4 FB 78 */	mr r4, r31
-/* 80A389BC  4B 63 E0 F0 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80A389BC  4B 63 E0 F1 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80A389C0  80 1E 07 AC */	lwz r0, 0x7ac(r30)
 /* 80A389C4  90 1E 09 64 */	stw r0, 0x964(r30)
 /* 80A389C8  80 1E 07 B0 */	lwz r0, 0x7b0(r30)
@@ -68,14 +68,14 @@ lbl_80A389A8:
 /* 80A38A2C  90 1E 09 9C */	stw r0, 0x99c(r30)
 /* 80A38A30  38 7E 09 78 */	addi r3, r30, 0x978
 /* 80A38A34  A8 9E 04 DE */	lha r4, 0x4de(r30)
-/* 80A38A38  4B 5E 50 AC */	b fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos
+/* 80A38A38  4B 5E 50 AD */	bl fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos
 /* 80A38A3C  B0 7E 0D F0 */	sth r3, 0xdf0(r30)
 /* 80A38A40  C0 1E 07 68 */	lfs f0, 0x768(r30)
 /* 80A38A44  D0 1E 0E 14 */	stfs f0, 0xe14(r30)
 /* 80A38A48  7F C3 F3 78 */	mr r3, r30
 /* 80A38A4C  4B FF 3A B1 */	bl afterMoved__10daNpc_Kn_cFv
-/* 80A38A50  3C 60 80 A4 */	lis r3, lit_4205@ha
-/* 80A38A54  C0 23 09 04 */	lfs f1, lit_4205@l(r3)
+/* 80A38A50  3C 60 80 A4 */	lis r3, lit_4205@ha /* 0x80A40904@ha */
+/* 80A38A54  C0 23 09 04 */	lfs f1, lit_4205@l(r3)  /* 0x80A40904@l */
 /* 80A38A58  C0 1E 0E 14 */	lfs f0, 0xe14(r30)
 /* 80A38A5C  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80A38A60  41 82 00 14 */	beq lbl_80A38A74
@@ -145,8 +145,8 @@ lbl_80A38B44:
 /* 80A38B44  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80A38B48  40 82 00 18 */	bne lbl_80A38B60
 lbl_80A38B4C:
-/* 80A38B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A38B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A38B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A38B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A38B54  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80A38B58  28 00 00 00 */	cmplwi r0, 0
 /* 80A38B5C  40 82 00 18 */	bne lbl_80A38B74

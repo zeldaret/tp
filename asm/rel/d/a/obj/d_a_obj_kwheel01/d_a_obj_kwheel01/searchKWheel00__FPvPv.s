@@ -5,7 +5,7 @@ lbl_80C4EFEC:
 /* 80C4EFF8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C4EFFC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C4F000  41 82 00 30 */	beq lbl_80C4F030
-/* 80C4F004  4B 3C 9C DC */	b fopAc_IsActor__FPv
+/* 80C4F004  4B 3C 9C DD */	bl fopAc_IsActor__FPv
 /* 80C4F008  2C 03 00 00 */	cmpwi r3, 0
 /* 80C4F00C  41 82 00 24 */	beq lbl_80C4F030
 /* 80C4F010  A8 1F 00 0E */	lha r0, 0xe(r31)

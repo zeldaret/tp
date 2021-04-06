@@ -5,23 +5,23 @@ lbl_80AD1834:
 /* 80AD1840  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80AD1844  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80AD1848  7C 7F 1B 78 */	mr r31, r3
-/* 80AD184C  3C 60 80 AD */	lis r3, m__20daNpc_Seira2_Param_c@ha
-/* 80AD1850  3B C3 4A 60 */	addi r30, r3, m__20daNpc_Seira2_Param_c@l
+/* 80AD184C  3C 60 80 AD */	lis r3, m__20daNpc_Seira2_Param_c@ha /* 0x80AD4A60@ha */
+/* 80AD1850  3B C3 4A 60 */	addi r30, r3, m__20daNpc_Seira2_Param_c@l /* 0x80AD4A60@l */
 /* 80AD1854  38 7F 0D 24 */	addi r3, r31, 0xd24
 /* 80AD1858  38 80 00 00 */	li r4, 0
 /* 80AD185C  38 1F 0E 38 */	addi r0, r31, 0xe38
 /* 80AD1860  7C A3 00 50 */	subf r5, r3, r0
-/* 80AD1864  4B 53 1B F4 */	b memset
+/* 80AD1864  4B 53 1B F5 */	bl memset
 /* 80AD1868  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 80AD186C  4B 67 40 2C */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD186C  4B 67 40 2D */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD1870  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80AD1874  4B 67 40 24 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD1874  4B 67 40 25 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD1878  38 7F 0B 98 */	addi r3, r31, 0xb98
-/* 80AD187C  4B 67 3E 58 */	b initialize__18daNpcT_ActorMngr_cFv
+/* 80AD187C  4B 67 3E 59 */	bl initialize__18daNpcT_ActorMngr_cFv
 /* 80AD1880  38 7F 0B A0 */	addi r3, r31, 0xba0
-/* 80AD1884  4B 67 3E 50 */	b initialize__18daNpcT_ActorMngr_cFv
+/* 80AD1884  4B 67 3E 51 */	bl initialize__18daNpcT_ActorMngr_cFv
 /* 80AD1888  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80AD188C  4B 67 54 0C */	b initialize__15daNpcT_JntAnm_cFv
+/* 80AD188C  4B 67 54 0D */	bl initialize__15daNpcT_JntAnm_cFv
 /* 80AD1890  38 60 00 00 */	li r3, 0
 /* 80AD1894  38 80 00 00 */	li r4, 0
 /* 80AD1898  7C 87 23 78 */	mr r7, r4
@@ -49,7 +49,7 @@ lbl_80AD18B0:
 /* 80AD18EC  38 00 00 01 */	li r0, 1
 /* 80AD18F0  98 1F 0E 26 */	stb r0, 0xe26(r31)
 /* 80AD18F4  C0 3E 00 B4 */	lfs f1, 0xb4(r30)
-/* 80AD18F8  4B 79 60 5C */	b cM_rndF__Ff
+/* 80AD18F8  4B 79 60 5D */	bl cM_rndF__Ff
 /* 80AD18FC  FC 00 08 1E */	fctiwz f0, f1
 /* 80AD1900  D8 01 00 08 */	stfd f0, 8(r1)
 /* 80AD1904  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -61,17 +61,17 @@ lbl_80AD18B0:
 /* 80AD191C  38 80 00 00 */	li r4, 0
 /* 80AD1920  38 1F 10 F0 */	addi r0, r31, 0x10f0
 /* 80AD1924  7C A3 00 50 */	subf r5, r3, r0
-/* 80AD1928  4B 53 1B 30 */	b memset
+/* 80AD1928  4B 53 1B 31 */	bl memset
 /* 80AD192C  80 7F 09 6C */	lwz r3, 0x96c(r31)
 /* 80AD1930  28 03 00 00 */	cmplwi r3, 0
 /* 80AD1934  41 82 00 08 */	beq lbl_80AD193C
-/* 80AD1938  4B 67 3E 2C */	b initialize__15daNpcT_MatAnm_cFv
+/* 80AD1938  4B 67 3E 2D */	bl initialize__15daNpcT_MatAnm_cFv
 lbl_80AD193C:
 /* 80AD193C  38 7F 10 C4 */	addi r3, r31, 0x10c4
-/* 80AD1940  4B 67 3D 94 */	b initialize__18daNpcT_ActorMngr_cFv
+/* 80AD1940  4B 67 3D 95 */	bl initialize__18daNpcT_ActorMngr_cFv
 /* 80AD1944  7F E3 FB 78 */	mr r3, r31
 /* 80AD1948  A8 9F 04 B6 */	lha r4, 0x4b6(r31)
-/* 80AD194C  4B 67 90 CC */	b setAngle__8daNpcT_cFs
+/* 80AD194C  4B 67 90 CD */	bl setAngle__8daNpcT_cFs
 /* 80AD1950  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80AD1954  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 80AD1958  80 01 00 24 */	lwz r0, 0x24(r1)

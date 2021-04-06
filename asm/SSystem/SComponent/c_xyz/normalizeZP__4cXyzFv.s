@@ -18,8 +18,8 @@ lbl_80266F48:
 /* 80266F88  48 0E 01 6D */	bl PSVECNormalize
 /* 80266F8C  48 00 00 20 */	b lbl_80266FAC
 lbl_80266F90:
-/* 80266F90  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80266F94  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80266F90  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80266F94  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80266F98  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80266F9C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80266FA0  D0 1F 00 04 */	stfs f0, 4(r31)

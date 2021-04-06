@@ -5,8 +5,8 @@ lbl_803345FC:
 /* 80334608  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8033460C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80334610  41 82 00 1C */	beq lbl_8033462C
-/* 80334614  3C A0 80 3D */	lis r5, __vt__16J3DClusterLoader@ha
-/* 80334618  38 05 F0 F8 */	addi r0, r5, __vt__16J3DClusterLoader@l
+/* 80334614  3C A0 80 3D */	lis r5, __vt__16J3DClusterLoader@ha /* 0x803CF0F8@ha */
+/* 80334618  38 05 F0 F8 */	addi r0, r5, __vt__16J3DClusterLoader@l /* 0x803CF0F8@l */
 /* 8033461C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80334620  7C 80 07 35 */	extsh. r0, r4
 /* 80334624  40 81 00 08 */	ble lbl_8033462C

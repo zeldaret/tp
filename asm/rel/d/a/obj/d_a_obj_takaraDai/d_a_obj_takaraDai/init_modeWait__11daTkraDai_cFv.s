@@ -1,9 +1,9 @@
 lbl_80D074D0:
 /* 80D074D0  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80D074D4  3C 80 80 D0 */	lis r4, lit_3627@ha
-/* 80D074D8  38 A4 78 08 */	addi r5, r4, lit_3627@l
-/* 80D074DC  3C 80 80 D0 */	lis r4, l_HIO@ha
-/* 80D074E0  38 84 79 1C */	addi r4, r4, l_HIO@l
+/* 80D074D4  3C 80 80 D0 */	lis r4, lit_3627@ha /* 0x80D07808@ha */
+/* 80D074D8  38 A4 78 08 */	addi r5, r4, lit_3627@l /* 0x80D07808@l */
+/* 80D074DC  3C 80 80 D0 */	lis r4, l_HIO@ha /* 0x80D0791C@ha */
+/* 80D074E0  38 84 79 1C */	addi r4, r4, l_HIO@l /* 0x80D0791C@l */
 /* 80D074E4  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80D074E8  D0 03 05 DC */	stfs f0, 0x5dc(r3)
 /* 80D074EC  C0 65 00 44 */	lfs f3, 0x44(r5)

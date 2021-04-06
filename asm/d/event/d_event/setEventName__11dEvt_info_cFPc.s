@@ -10,8 +10,8 @@ lbl_80043428:
 /* 80043448  B0 1F 00 08 */	sth r0, 8(r31)
 /* 8004344C  48 00 00 20 */	b lbl_8004346C
 lbl_80043450:
-/* 80043450  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80043454  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80043450  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80043454  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80043458  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8004345C  38 A0 00 FF */	li r5, 0xff
 /* 80043460  38 C0 FF FF */	li r6, -1

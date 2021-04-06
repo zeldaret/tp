@@ -14,13 +14,13 @@ lbl_8006FF38:
 /* 8006FF68  2C 00 FF FF */	cmpwi r0, -1
 /* 8006FF6C  41 82 00 30 */	beq lbl_8006FF9C
 lbl_8006FF70:
-/* 8006FF70  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 8006FF74  80 83 D2 D8 */	lwz r4, m_gamePad__8mDoCPd_c@l(r3)
+/* 8006FF70  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 8006FF74  80 83 D2 D8 */	lwz r4, m_gamePad__8mDoCPd_c@l(r3)  /* 0x803DD2D8@l */
 /* 8006FF78  38 64 00 68 */	addi r3, r4, 0x68
 /* 8006FF7C  A8 84 00 7C */	lha r4, 0x7c(r4)
 /* 8006FF80  48 27 19 C9 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFs
-/* 8006FF84  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 8006FF88  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 8006FF84  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 8006FF88  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 8006FF8C  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006FF90  A8 63 00 7C */	lha r3, 0x7c(r3)
 /* 8006FF94  38 80 00 01 */	li r4, 1

@@ -14,19 +14,19 @@ lbl_800C3C3C:
 /* 800C3C6C  48 00 00 B4 */	b lbl_800C3D20
 lbl_800C3C70:
 /* 800C3C70  7F E3 FB 78 */	mr r3, r31
-/* 800C3C74  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C3C78  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C3C74  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C3C78  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C3C7C  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C3C80  4B FE A1 95 */	bl setBlendMoveAnime__9daAlink_cFf
-/* 800C3C84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C3C88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C3C84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C3C88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C3C8C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800C3C90  60 00 08 00 */	ori r0, r0, 0x800
 /* 800C3C94  90 03 5F 18 */	stw r0, 0x5f18(r3)
 /* 800C3C98  2C 1E 00 00 */	cmpwi r30, 0
 /* 800C3C9C  41 82 00 48 */	beq lbl_800C3CE4
-/* 800C3CA0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800C3CA4  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800C3CA0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C3CA4  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C3CA8  A8 83 00 14 */	lha r4, 0x14(r3)
 /* 800C3CAC  54 83 10 3A */	slwi r3, r4, 2
 /* 800C3CB0  38 03 4A 56 */	addi r0, r3, 0x4a56
@@ -43,8 +43,8 @@ lbl_800C3C70:
 /* 800C3CDC  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800C3CE0  48 00 00 24 */	b lbl_800C3D04
 lbl_800C3CE4:
-/* 800C3CE4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800C3CE8  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800C3CE4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C3CE8  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C3CEC  A8 63 00 14 */	lha r3, 0x14(r3)
 /* 800C3CF0  54 60 08 3C */	slwi r0, r3, 1
 /* 800C3CF4  B0 1F 30 0E */	sth r0, 0x300e(r31)
@@ -52,8 +52,8 @@ lbl_800C3CE4:
 /* 800C3CFC  38 00 00 03 */	li r0, 3
 /* 800C3D00  B0 1F 30 0A */	sth r0, 0x300a(r31)
 lbl_800C3D04:
-/* 800C3D04  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800C3D08  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800C3D04  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C3D08  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C3D0C  A8 63 00 14 */	lha r3, 0x14(r3)
 /* 800C3D10  54 60 08 3C */	slwi r0, r3, 1
 /* 800C3D14  B0 1F 30 0E */	sth r0, 0x300e(r31)

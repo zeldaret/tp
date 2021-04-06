@@ -32,8 +32,8 @@ lbl_8000A160:
 /* 8000A1D8  54 00 00 38 */	rlwinm r0, r0, 0, 0, 0x1c
 /* 8000A1DC  7C 1C 07 34 */	extsh r28, r0
 /* 8000A1E0  83 6D 86 50 */	lwz r27, mFrameBufferTex__13mDoGph_gInf_c(r13)
-/* 8000A1E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000A1E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8000A1E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A1E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A1EC  88 03 5E B5 */	lbz r0, 0x5eb5(r3)
 /* 8000A1F0  28 00 00 00 */	cmplwi r0, 0
 /* 8000A1F4  40 82 00 84 */	bne lbl_8000A278

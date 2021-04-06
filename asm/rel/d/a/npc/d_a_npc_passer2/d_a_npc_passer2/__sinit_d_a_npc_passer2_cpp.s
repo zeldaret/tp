@@ -1,6 +1,6 @@
 lbl_80AA8644:
-/* 80AA8644  3C 60 80 AB */	lis r3, cNullVec__6Z2Calc@ha
-/* 80AA8648  38 A3 8A 68 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80AA8644  3C 60 80 AB */	lis r3, cNullVec__6Z2Calc@ha /* 0x80AA8A68@ha */
+/* 80AA8648  38 A3 8A 68 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80AA8A68@l */
 /* 80AA864C  80 65 00 20 */	lwz r3, 0x20(r5)
 /* 80AA8650  80 05 00 24 */	lwz r0, 0x24(r5)
 /* 80AA8654  90 65 00 38 */	stw r3, 0x38(r5)

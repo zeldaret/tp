@@ -5,20 +5,20 @@ lbl_8057EC60:
 /* 8057EC6C  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 8057EC70  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 8057EC74  7C 7E 1B 78 */	mr r30, r3
-/* 8057EC78  3C 60 80 58 */	lis r3, lit_3656@ha
-/* 8057EC7C  3B E3 F5 70 */	addi r31, r3, lit_3656@l
+/* 8057EC78  3C 60 80 58 */	lis r3, lit_3656@ha /* 0x8057F570@ha */
+/* 8057EC7C  3B E3 F5 70 */	addi r31, r3, lit_3656@l /* 0x8057F570@l */
 /* 8057EC80  88 1E 09 34 */	lbz r0, 0x934(r30)
 /* 8057EC84  28 00 00 00 */	cmplwi r0, 0
 /* 8057EC88  41 82 00 60 */	beq lbl_8057ECE8
 /* 8057EC8C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8057EC90  7C 03 07 74 */	extsb r3, r0
-/* 8057EC94  4B AA E3 D8 */	b dComIfGp_getReverb__Fi
+/* 8057EC94  4B AA E3 D9 */	bl dComIfGp_getReverb__Fi
 /* 8057EC98  7C 67 1B 78 */	mr r7, r3
 /* 8057EC9C  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008013A@ha */
 /* 8057ECA0  38 03 01 3A */	addi r0, r3, 0x013A /* 0x0008013A@l */
 /* 8057ECA4  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8057ECA8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8057ECAC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8057ECA8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8057ECAC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8057ECB0  80 63 00 00 */	lwz r3, 0(r3)
 /* 8057ECB4  38 81 00 24 */	addi r4, r1, 0x24
 /* 8057ECB8  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -28,7 +28,7 @@ lbl_8057EC60:
 /* 8057ECC8  C0 7F 00 8C */	lfs f3, 0x8c(r31)
 /* 8057ECCC  FC 80 18 90 */	fmr f4, f3
 /* 8057ECD0  39 00 00 00 */	li r8, 0
-/* 8057ECD4  4B D2 D8 38 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 8057ECD4  4B D2 D8 39 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 8057ECD8  88 7E 09 34 */	lbz r3, 0x934(r30)
 /* 8057ECDC  38 03 FF FF */	addi r0, r3, -1
 /* 8057ECE0  98 1E 09 34 */	stb r0, 0x934(r30)
@@ -37,12 +37,12 @@ lbl_8057ECE8:
 /* 8057ECE8  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008013A@ha */
 /* 8057ECEC  38 03 01 3A */	addi r0, r3, 0x013A /* 0x0008013A@l */
 /* 8057ECF0  90 01 00 20 */	stw r0, 0x20(r1)
-/* 8057ECF4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8057ECF8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8057ECF4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8057ECF8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8057ECFC  80 63 00 00 */	lwz r3, 0(r3)
 /* 8057ED00  38 81 00 20 */	addi r4, r1, 0x20
 /* 8057ED04  38 A0 00 00 */	li r5, 0
-/* 8057ED08  4B D2 EB A8 */	b seStop__7Z2SeMgrF10JAISoundIDUl
+/* 8057ED08  4B D2 EB A9 */	bl seStop__7Z2SeMgrF10JAISoundIDUl
 /* 8057ED0C  7F C3 F3 78 */	mr r3, r30
 /* 8057ED10  48 00 01 1D */	bl mode_init_explosion__10daGpTaru_cFv
 lbl_8057ED14:
@@ -56,14 +56,14 @@ lbl_8057ED14:
 /* 8057ED30  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8057ED34  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8057ED38  C0 3F 00 70 */	lfs f1, 0x70(r31)
-/* 8057ED3C  3C 60 80 58 */	lis r3, l_HIO@ha
-/* 8057ED40  39 43 F8 E4 */	addi r10, r3, l_HIO@l
+/* 8057ED3C  3C 60 80 58 */	lis r3, l_HIO@ha /* 0x8057F8E4@ha */
+/* 8057ED40  39 43 F8 E4 */	addi r10, r3, l_HIO@l /* 0x8057F8E4@l */
 /* 8057ED44  C0 0A 00 34 */	lfs f0, 0x34(r10)
 /* 8057ED48  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8057ED4C  EC 02 00 2A */	fadds f0, f2, f0
 /* 8057ED50  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 8057ED54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8057ED58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8057ED54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8057ED58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8057ED5C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8057ED60  38 00 00 FF */	li r0, 0xff
 /* 8057ED64  90 01 00 08 */	stw r0, 8(r1)
@@ -82,10 +82,10 @@ lbl_8057ED14:
 /* 8057ED98  39 20 00 00 */	li r9, 0
 /* 8057ED9C  39 4A 00 20 */	addi r10, r10, 0x20
 /* 8057EDA0  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8057EDA4  4B AC E7 28 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 8057EDA4  4B AC E7 29 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8057EDA8  90 7E 09 4C */	stw r3, 0x94c(r30)
-/* 8057EDAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8057EDB0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8057EDAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8057EDB0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8057EDB4  80 1E 09 44 */	lwz r0, 0x944(r30)
 /* 8057EDB8  1C 00 30 00 */	mulli r0, r0, 0x3000
 /* 8057EDBC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c

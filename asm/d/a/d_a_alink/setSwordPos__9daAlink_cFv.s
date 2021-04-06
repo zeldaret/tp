@@ -5,8 +5,8 @@ lbl_800A92F0:
 /* 800A92FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800A9300  93 C1 00 08 */	stw r30, 8(r1)
 /* 800A9304  7C 7E 1B 78 */	mr r30, r3
-/* 800A9308  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800A930C  3B E3 D6 58 */	addi r31, r3, lit_3757@l
+/* 800A9308  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800A930C  3B E3 D6 58 */	addi r31, r3, lit_3757@l /* 0x8038D658@l */
 /* 800A9310  C0 1E 05 BC */	lfs f0, 0x5bc(r30)
 /* 800A9314  D0 1E 34 B0 */	stfs f0, 0x34b0(r30)
 /* 800A9318  C0 1E 05 C0 */	lfs f0, 0x5c0(r30)

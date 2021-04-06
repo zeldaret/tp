@@ -47,8 +47,8 @@ lbl_802D54A8:
 /* 802D54BC  54 00 DE 3F */	rlwinm. r0, r0, 0x1b, 0x18, 0x1f
 /* 802D54C0  41 82 00 24 */	beq lbl_802D54E4
 /* 802D54C4  7F 63 DB 78 */	mr r3, r27
-/* 802D54C8  3C 80 80 3A */	lis r4, JKRFileCache__stringBase0@ha
-/* 802D54CC  38 84 D1 58 */	addi r4, r4, JKRFileCache__stringBase0@l
+/* 802D54C8  3C 80 80 3A */	lis r4, JKRFileCache__stringBase0@ha /* 0x8039D158@ha */
+/* 802D54CC  38 84 D1 58 */	addi r4, r4, JKRFileCache__stringBase0@l /* 0x8039D158@l */
 /* 802D54D0  48 09 35 ED */	bl strcat
 /* 802D54D4  7F 63 DB 78 */	mr r3, r27
 /* 802D54D8  7F 84 E3 78 */	mr r4, r28

@@ -13,13 +13,13 @@ lbl_8012F6EC:
 /* 8012F718  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 8012F71C  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 8012F720  41 82 00 14 */	beq lbl_8012F734
-/* 8012F724  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012F728  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 8012F724  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012F728  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012F72C  C0 44 00 A8 */	lfs f2, 0xa8(r4)
 /* 8012F730  48 00 00 10 */	b lbl_8012F740
 lbl_8012F734:
-/* 8012F734  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8012F738  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 8012F734  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8012F738  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8012F73C  C0 44 00 40 */	lfs f2, 0x40(r4)
 lbl_8012F740:
 /* 8012F740  48 14 10 01 */	bl cLib_chaseF__FPfff
@@ -38,8 +38,8 @@ lbl_8012F740:
 /* 8012F774  48 00 00 CD */	bl procWolfSlipTurnInit__9daAlink_cFi
 /* 8012F778  48 00 00 AC */	b lbl_8012F824
 lbl_8012F77C:
-/* 8012F77C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8012F780  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8012F77C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8012F780  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8012F784  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8012F788  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8012F78C  7C 64 02 14 */	add r3, r4, r0

@@ -57,19 +57,10 @@ extern "C" void __ct__9dInsect_cFv();
 extern "C" void Insect_GetDemoMain__9dInsect_cFv();
 extern "C" void CalcZBuffer__9dInsect_cFf();
 extern "C" extern char const* const d_d_insect__stringBase0;
-extern "C" extern void* __vt__9dInsect_c[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void mDoLib_project(Vec*, Vec*);
-void mDoLib_pos2camera(Vec*, Vec*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderItemEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_createItemForTrBoxDemo(cXyz const*, int, int, int, csXyz const*, cXyz const*);
-void fopAcM_createItem(cXyz const*, int, int, int, csXyz const*, cXyz const*, int);
-void fopAcM_cancelCarryNow(fopAc_ac_c*);
 
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void mDoLib_pos2camera__FP3VecP3Vec();
@@ -94,8 +85,8 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 803BA078-803BA088 000C+04 s=1 e=0 z=0  None .data      __vt__9dInsect_c */
-SECTION_DATA void* __vt__9dInsect_c[3 + 1 /* padding */] = {
+/* 803BA078-803BA088 017198 000C+04 1/1 0/0 0/0 .data            __vt__9dInsect_c */
+SECTION_DATA extern void* __vt__9dInsect_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)Insect_Release__9dInsect_cFv,
@@ -103,10 +94,7 @@ SECTION_DATA void* __vt__9dInsect_c[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8015E010-8015E078 0068+00 s=0 e=0 z=13  None .text      __ct__9dInsect_cFv */
-//	8015E024: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8015E028: 803BA078 (__vt__9dInsect_c)
-//	8015E02C: 803BA078 (__vt__9dInsect_c)
+/* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -116,36 +104,8 @@ asm dInsect_c::dInsect_c() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80393D98-80393DA8 0010+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
-#pragma pop
-
-/* 8015E078-8015E26C 01F4+00 s=0 e=0 z=24  None .text      Insect_GetDemoMain__9dInsect_cFv */
-//	8015E0D0: 8001CBA0 (fopAcM_cancelCarryNow__FP10fopAc_ac_c)
-//	8015E0E0: 8001B9D0 (fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs)
-//	8015E10C: 8001BC74 (fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz)
-//	8015E120: 801D9F3C (isCatchNotGiveInsect__14dMenu_Insect_cFUc)
-//	8015E164: 804061C0 (g_dComIfG_gameInfo)
-//	8015E168: 804061C0 (g_dComIfG_gameInfo)
-//	8015E170: 800436EC (setPtI_Id__14dEvt_control_cFUi)
-//	8015E190: 8001B9D0 (fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs)
-//	8015E1A4: 804061C0 (g_dComIfG_gameInfo)
-//	8015E1A8: 804061C0 (g_dComIfG_gameInfo)
-//	8015E1B0: 80393D98 (d_d_insect__stringBase0)
-//	8015E1B4: 80393D98 (d_d_insect__stringBase0)
-//	8015E1B8: 80047ADC (endCheckOld__16dEvent_manager_cFPCc)
-//	8015E1C8: 80042468 (reset__14dEvt_control_cFv)
-//	8015E1CC: 804061C0 (g_dComIfG_gameInfo)
-//	8015E1D0: 804061C0 (g_dComIfG_gameInfo)
-//	8015E1E0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8015E1E4: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8015E1EC: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	8015E23C: 8001C240 (fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi)
-//	8015E250: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 8015E078-8015E26C 1589B8 01F4+00 0/0 0/0 24/24 .text            Insect_GetDemoMain__9dInsect_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -156,10 +116,10 @@ asm void dInsect_c::Insect_GetDemoMain() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804535E0-804535E4 0004+00 s=1 e=0 z=0  None .sdata2    @3871 */
+/* 804535E0-804535E4 001BE0 0004+00 1/1 0/0 0/0 .sdata2          @3871 */
 SECTION_SDATA2 static f32 lit_3871 = 20.0f;
 
-/* 804535E4-804535E8 0004+00 s=1 e=0 z=0  None .sdata2    @3872 */
+/* 804535E4-804535E8 001BE4 0004+00 1/1 0/0 0/0 .sdata2          @3872 */
 SECTION_SDATA2 static u8 lit_3872[4] = {
     0x00,
     0x00,
@@ -167,44 +127,26 @@ SECTION_SDATA2 static u8 lit_3872[4] = {
     0x00,
 };
 
-/* 804535E8-804535EC 0004+00 s=1 e=0 z=0  None .sdata2    @3873 */
+/* 804535E8-804535EC 001BE8 0004+00 1/1 0/0 0/0 .sdata2          @3873 */
 SECTION_SDATA2 static f32 lit_3873 = 608.0f;
 
-/* 804535EC-804535F0 0004+00 s=1 e=0 z=0  None .sdata2    @3874 */
+/* 804535EC-804535F0 001BEC 0004+00 1/1 0/0 0/0 .sdata2          @3874 */
 SECTION_SDATA2 static f32 lit_3874 = 448.0f;
 
-/* 804535F0-804535F4 0004+00 s=1 e=0 z=0  None .sdata2    @3875 */
+/* 804535F0-804535F4 001BF0 0004+00 1/1 0/0 0/0 .sdata2          @3875 */
 SECTION_SDATA2 static f32 lit_3875 = -10.0f;
 
-/* 804535F4-804535F8 0004+00 s=1 e=0 z=0  None .sdata2    @3876 */
+/* 804535F4-804535F8 001BF4 0004+00 1/1 0/0 0/0 .sdata2          @3876 */
 SECTION_SDATA2 static f32 lit_3876 = 16777215.0f;
 
-/* 804535F8-80453600 0004+04 s=1 e=0 z=0  None .sdata2    @3877 */
+/* 804535F8-80453600 001BF8 0004+04 1/1 0/0 0/0 .sdata2          @3877 */
 SECTION_SDATA2 static f32 lit_3877[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8015E26C-8015E3F8 018C+00 s=0 e=0 z=3  None .text      CalcZBuffer__9dInsect_cFf */
-//	8015E2B4: 804535E0 (lit_3871)
-//	8015E2C8: 80015310 (mDoLib_project__FP3VecP3Vec)
-//	8015E2CC: 804061C0 (g_dComIfG_gameInfo)
-//	8015E2D0: 804061C0 (g_dComIfG_gameInfo)
-//	8015E2E8: 804535E4 (lit_3872)
-//	8015E2F0: 804535E4 (lit_3872)
-//	8015E2FC: 804535E8 (lit_3873)
-//	8015E314: 804535EC (lit_3874)
-//	8015E324: 804061C0 (g_dComIfG_gameInfo)
-//	8015E328: 804061C0 (g_dComIfG_gameInfo)
-//	8015E350: 80056018 (newData__13dDlst_peekZ_cFssPUl)
-//	8015E360: 804061C0 (g_dComIfG_gameInfo)
-//	8015E364: 804061C0 (g_dComIfG_gameInfo)
-//	8015E37C: 800154EC (mDoLib_pos2camera__FP3VecP3Vec)
-//	8015E38C: 804535E4 (lit_3872)
-//	8015E398: 804535F0 (lit_3875)
-//	8015E3A0: 804535F4 (lit_3876)
-//	8015E3A4: 804535F8 (lit_3877)
+/* 8015E26C-8015E3F8 158BAC 018C+00 0/0 0/0 3/3 .text            CalcZBuffer__9dInsect_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,4 +154,11 @@ asm void dInsect_c::CalcZBuffer(f32 param_0) {
     nofralloc
 #include "asm/d/d_insect/CalcZBuffer__9dInsect_cFf.s"
 }
+#pragma pop
+
+/* 80393D98-80393DA8 0203F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
 #pragma pop

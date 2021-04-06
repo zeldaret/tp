@@ -10,7 +10,7 @@ lbl_80A3877C:
 /* 80A3879C  39 00 00 00 */	li r8, 0
 /* 80A387A0  39 20 FF FF */	li r9, -1
 /* 80A387A4  38 63 06 70 */	addi r3, r3, 0x670
-/* 80A387A8  4B 5D 4D A4 */	b init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss
+/* 80A387A8  4B 5D 4D A5 */	bl init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss
 /* 80A387AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80A387B0  7C 08 03 A6 */	mtlr r0
 /* 80A387B4  38 21 00 10 */	addi r1, r1, 0x10

@@ -3,14 +3,14 @@ lbl_8047B9E0:
 /* 8047B9E4  7C 08 02 A6 */	mflr r0
 /* 8047B9E8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8047B9EC  39 61 00 30 */	addi r11, r1, 0x30
-/* 8047B9F0  4B EE 67 E4 */	b _savegpr_27
+/* 8047B9F0  4B EE 67 E5 */	bl _savegpr_27
 /* 8047B9F4  7C 7F 1B 78 */	mr r31, r3
 /* 8047B9F8  80 03 04 A4 */	lwz r0, 0x4a4(r3)
 /* 8047B9FC  90 01 00 08 */	stw r0, 8(r1)
-/* 8047BA00  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8047BA04  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8047BA00  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8047BA04  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8047BA08  38 81 00 08 */	addi r4, r1, 8
-/* 8047BA0C  4B B9 DD EC */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8047BA0C  4B B9 DD ED */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8047BA10  7C 7C 1B 78 */	mr r28, r3
 /* 8047BA14  3B 60 00 00 */	li r27, 0
 /* 8047BA18  3B C0 00 00 */	li r30, 0
@@ -48,8 +48,8 @@ lbl_8047BA78:
 /* 8047BA8C  7C 00 07 75 */	extsb. r0, r0
 /* 8047BA90  41 82 00 3C */	beq lbl_8047BACC
 /* 8047BA94  C0 3F 14 E8 */	lfs f1, 0x14e8(r31)
-/* 8047BA98  3C 60 80 48 */	lis r3, lit_3820@ha
-/* 8047BA9C  C0 03 D8 20 */	lfs f0, lit_3820@l(r3)
+/* 8047BA98  3C 60 80 48 */	lis r3, lit_3820@ha /* 0x8047D820@ha */
+/* 8047BA9C  C0 03 D8 20 */	lfs f0, lit_3820@l(r3)  /* 0x8047D820@l */
 /* 8047BAA0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8047BAA4  40 81 00 28 */	ble lbl_8047BACC
 /* 8047BAA8  7F E3 FB 78 */	mr r3, r31
@@ -57,10 +57,10 @@ lbl_8047BA78:
 /* 8047BAB0  7F 65 DB 78 */	mr r5, r27
 /* 8047BAB4  4B FF FA 51 */	bl cut_line_calc__FP13obj_ito_classP5ito_si
 /* 8047BAB8  38 7F 14 E8 */	addi r3, r31, 0x14e8
-/* 8047BABC  3C 80 80 48 */	lis r4, lit_3946@ha
-/* 8047BAC0  C0 24 D8 3C */	lfs f1, lit_3946@l(r4)
+/* 8047BABC  3C 80 80 48 */	lis r4, lit_3946@ha /* 0x8047D83C@ha */
+/* 8047BAC0  C0 24 D8 3C */	lfs f1, lit_3946@l(r4)  /* 0x8047D83C@l */
 /* 8047BAC4  FC 40 08 90 */	fmr f2, f1
-/* 8047BAC8  4B DF 3F B8 */	b cLib_addCalc0__FPfff
+/* 8047BAC8  4B DF 3F B9 */	bl cLib_addCalc0__FPfff
 lbl_8047BACC:
 /* 8047BACC  3B 7B 00 01 */	addi r27, r27, 1
 /* 8047BAD0  2C 1B 00 06 */	cmpwi r27, 6
@@ -68,7 +68,7 @@ lbl_8047BACC:
 /* 8047BAD8  3B BD 00 20 */	addi r29, r29, 0x20
 /* 8047BADC  41 80 FF 44 */	blt lbl_8047BA20
 /* 8047BAE0  39 61 00 30 */	addi r11, r1, 0x30
-/* 8047BAE4  4B EE 67 3C */	b _restgpr_27
+/* 8047BAE4  4B EE 67 3D */	bl _restgpr_27
 /* 8047BAE8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8047BAEC  7C 08 03 A6 */	mtlr r0
 /* 8047BAF0  38 21 00 30 */	addi r1, r1, 0x30

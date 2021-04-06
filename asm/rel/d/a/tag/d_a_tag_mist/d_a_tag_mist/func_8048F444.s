@@ -11,15 +11,15 @@ lbl_8048F444:
 /* 8048F468  7F E0 FB 79 */	or. r0, r31, r31
 /* 8048F46C  41 82 00 2C */	beq lbl_8048F498
 /* 8048F470  7C 1E 03 78 */	mr r30, r0
-/* 8048F474  4B B8 96 F0 */	b __ct__10fopAc_ac_cFv
+/* 8048F474  4B B8 96 F1 */	bl __ct__10fopAc_ac_cFv
 /* 8048F478  38 7E 05 70 */	addi r3, r30, 0x570
-/* 8048F47C  3C 80 80 49 */	lis r4, __ct__4cXyzFv@ha
-/* 8048F480  38 84 F5 54 */	addi r4, r4, __ct__4cXyzFv@l
-/* 8048F484  3C A0 80 49 */	lis r5, __dt__4cXyzFv@ha
-/* 8048F488  38 A5 F5 18 */	addi r5, r5, __dt__4cXyzFv@l
+/* 8048F47C  3C 80 80 49 */	lis r4, __ct__4cXyzFv@ha /* 0x8048F554@ha */
+/* 8048F480  38 84 F5 54 */	addi r4, r4, __ct__4cXyzFv@l /* 0x8048F554@l */
+/* 8048F484  3C A0 80 49 */	lis r5, __dt__4cXyzFv@ha /* 0x8048F518@ha */
+/* 8048F488  38 A5 F5 18 */	addi r5, r5, __dt__4cXyzFv@l /* 0x8048F518@l */
 /* 8048F48C  38 C0 00 0C */	li r6, 0xc
 /* 8048F490  38 E0 00 04 */	li r7, 4
-/* 8048F494  4B ED 28 CC */	b __construct_array
+/* 8048F494  4B ED 28 CD */	bl __construct_array
 lbl_8048F498:
 /* 8048F498  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8048F49C  60 00 00 08 */	ori r0, r0, 8

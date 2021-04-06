@@ -7,8 +7,8 @@ lbl_8048C730:
 /* 8048C744  7C 7F 1B 78 */	mr r31, r3
 /* 8048C748  88 03 04 BA */	lbz r0, 0x4ba(r3)
 /* 8048C74C  7C 05 07 74 */	extsb r5, r0
-/* 8048C750  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha
-/* 8048C754  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)
+/* 8048C750  3C 80 80 45 */	lis r4, struct_80450D64+0x0@ha /* 0x80450D64@ha */
+/* 8048C754  88 04 0D 64 */	lbz r0, struct_80450D64+0x0@l(r4)  /* 0x80450D64@l */
 /* 8048C758  7C 00 07 74 */	extsb r0, r0
 /* 8048C75C  7C 05 00 00 */	cmpw r5, r0
 /* 8048C760  40 82 01 18 */	bne lbl_8048C878
@@ -16,7 +16,7 @@ lbl_8048C730:
 /* 8048C768  2C 03 00 00 */	cmpwi r3, 0
 /* 8048C76C  41 82 00 14 */	beq lbl_8048C780
 /* 8048C770  7F E3 FB 78 */	mr r3, r31
-/* 8048C774  4B B8 D5 08 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8048C774  4B B8 D5 09 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 8048C778  38 60 00 01 */	li r3, 1
 /* 8048C77C  48 00 01 00 */	b lbl_8048C87C
 lbl_8048C780:
@@ -35,8 +35,8 @@ lbl_8048C780:
 /* 8048C7B0  2C 00 00 08 */	cmpwi r0, 8
 /* 8048C7B4  40 82 00 18 */	bne lbl_8048C7CC
 /* 8048C7B8  C0 3F 05 54 */	lfs f1, 0x554(r31)
-/* 8048C7BC  3C 60 80 49 */	lis r3, lit_3853@ha
-/* 8048C7C0  C0 03 CD D0 */	lfs f0, lit_3853@l(r3)
+/* 8048C7BC  3C 60 80 49 */	lis r3, lit_3853@ha /* 0x8048CDD0@ha */
+/* 8048C7C0  C0 03 CD D0 */	lfs f0, lit_3853@l(r3)  /* 0x8048CDD0@l */
 /* 8048C7C4  EC 01 00 2A */	fadds f0, f1, f0
 /* 8048C7C8  D0 1F 05 54 */	stfs f0, 0x554(r31)
 lbl_8048C7CC:
@@ -56,8 +56,8 @@ lbl_8048C7CC:
 /* 8048C800  7C 60 00 78 */	andc r0, r3, r0
 /* 8048C804  2C 00 00 0F */	cmpwi r0, 0xf
 /* 8048C808  40 82 00 60 */	bne lbl_8048C868
-/* 8048C80C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048C810  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8048C80C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048C810  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048C814  80 7E 5D AC */	lwz r3, 0x5dac(r30)
 /* 8048C818  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
 /* 8048C81C  D0 01 00 08 */	stfs f0, 8(r1)

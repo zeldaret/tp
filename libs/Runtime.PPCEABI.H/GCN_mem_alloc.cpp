@@ -32,7 +32,7 @@ extern "C" extern u32 __OSCurrHeap[1 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803A21A8-803A21E0 0036+02 s=1 e=0 z=0  None .rodata    @55 */
+/* 803A21A8-803A21E0 02E808 0036+02 1/1 0/0 0/0 .rodata          @55 */
 SECTION_RODATA static u8 const lit_55[54 + 2 /* padding */] = {
     0x47,
     0x43,
@@ -92,8 +92,9 @@ SECTION_RODATA static u8 const lit_55[54 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A21A8 = (void*)(&lit_55);
 
-/* 803A21E0-803A2220 0039+07 s=1 e=0 z=0  None .rodata    @56 */
+/* 803A21E0-803A2220 02E840 0039+07 1/1 0/0 0/0 .rodata          @56 */
 SECTION_RODATA static u8 const lit_56[57 + 7 /* padding */] = {
     0x4D,
     0x65,
@@ -161,28 +162,13 @@ SECTION_RODATA static u8 const lit_56[57 + 7 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A21E0 = (void*)(&lit_56);
 
-/* 80362914-803629CC 00B8+00 s=0 e=1 z=0  None .text      __sys_free */
-//	80362930: 80450990 (__OSCurrHeap)
-//	8036293C: 803A21A8 (lit_55)
-//	80362940: 803A21A8 (lit_55)
-//	80362948: 80006ABC (OSReport)
-//	8036294C: 803A21E0 (lit_56)
-//	80362950: 803A21E0 (lit_56)
-//	80362958: 80006ABC (OSReport)
-//	8036295C: 8033B294 (OSGetArenaLo)
-//	80362964: 8033B28C (OSGetArenaHi)
-//	80362978: 8033B1B0 (OSInitAlloc)
-//	80362980: 8033B2A4 (OSSetArenaLo)
-//	80362994: 8033B220 (OSCreateHeap)
-//	80362998: 8033B1A0 (OSSetCurrentHeap)
-//	803629A0: 8033B2A4 (OSSetArenaLo)
-//	803629A4: 80450990 (__OSCurrHeap)
-//	803629AC: 8033B124 (OSFreeToHeap)
+/* 80362914-803629CC 35D254 00B8+00 0/0 1/1 0/0 .text            __sys_free */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sys_free() {
+asm void __sys_free() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/GCN_mem_alloc/__sys_free.s"
 }

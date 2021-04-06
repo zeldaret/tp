@@ -9,7 +9,7 @@ lbl_80B440C0:
 /* 80B440DC  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B440E0  28 00 00 00 */	cmplwi r0, 0
 /* 80B440E4  40 82 00 1C */	bne lbl_80B44100
-/* 80B440E8  4B 4E B9 6C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B440E8  4B 4E B9 6D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B440EC  2C 03 00 00 */	cmpwi r3, 0
 /* 80B440F0  40 82 00 14 */	bne lbl_80B44104
 /* 80B440F4  88 1E 0A 89 */	lbz r0, 0xa89(r30)

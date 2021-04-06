@@ -3,19 +3,20 @@
 #
 
 M478_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget.plf
+M478_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget.lcf
+M478_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget.map
 
 M478_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hsTarget/executor.cpp \
-	rel/d/a/obj/d_a_obj_hsTarget/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_hsTarget/d_a_obj_hsTarget.cpp \
 
 M478_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget/d_a_obj_hsTarget.o \
 
 M478_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget/libRuntime.PPCEABI.H.a \
 
 M478_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M478_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map478.map\
+	-m _prolog \
+	-lcf $(M478_LDSCRIPT) \
+	-unused -map $(M478_MAP) \
+	-w off \
 
 $(M478_TARGET): $(M478_O_FILES) $(M478_LIBS)
+	@echo [478] creating $(M478_TARGET)
 	@echo $(M478_LIBS) $(M478_O_FILES) > build/M478_ofiles
-	$(LD) -opt_partial $(M478_LDFLAGS) -o $(M478_TARGET) @build/M478_ofiles
+	@python3 tools/lcf.py rel 478 --output $(M478_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M478_LDFLAGS) -o $(M478_TARGET) @build/M478_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hsTarget/%.o: rel/d/a/obj/d_a_obj_hsTarget/%.cpp
+	@echo [478] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M478_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M478_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_hsTarget/libs/Runtime.PPCEABI.H/Makefile
 

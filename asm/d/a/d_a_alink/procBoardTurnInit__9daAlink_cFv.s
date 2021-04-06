@@ -10,8 +10,8 @@ lbl_80107060:
 /* 80107080  38 80 00 F7 */	li r4, 0xf7
 /* 80107084  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 80107088  C0 42 92 B8 */	lfs f2, lit_6040(r2)
-/* 8010708C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80107090  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010708C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107090  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80107094  A8 A5 00 14 */	lha r5, 0x14(r5)
 /* 80107098  C0 62 92 C4 */	lfs f3, lit_6109(r2)
 /* 8010709C  4B FA 5F 71 */	bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf

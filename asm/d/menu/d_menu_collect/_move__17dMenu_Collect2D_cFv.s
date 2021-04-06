@@ -7,8 +7,8 @@ lbl_801B5CD4:
 /* 801B5CE8  7C 7E 1B 78 */	mr r30, r3
 /* 801B5CEC  8B E3 02 2C */	lbz r31, 0x22c(r3)
 /* 801B5CF0  1C BF 00 0C */	mulli r5, r31, 0xc
-/* 801B5CF4  3C 80 80 3C */	lis r4, process@ha
-/* 801B5CF8  38 04 C6 38 */	addi r0, r4, process@l
+/* 801B5CF4  3C 80 80 3C */	lis r4, process@ha /* 0x803BC638@ha */
+/* 801B5CF8  38 04 C6 38 */	addi r0, r4, process@l /* 0x803BC638@l */
 /* 801B5CFC  7D 80 2A 14 */	add r12, r0, r5
 /* 801B5D00  48 1A C3 85 */	bl __ptmf_scall
 /* 801B5D04  60 00 00 00 */	nop 
@@ -17,8 +17,8 @@ lbl_801B5CD4:
 /* 801B5D10  41 82 00 20 */	beq lbl_801B5D30
 /* 801B5D14  7F C3 F3 78 */	mr r3, r30
 /* 801B5D18  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801B5D1C  3C 80 80 3C */	lis r4, init@ha
-/* 801B5D20  38 04 C4 70 */	addi r0, r4, init@l
+/* 801B5D1C  3C 80 80 3C */	lis r4, init@ha /* 0x803BC470@ha */
+/* 801B5D20  38 04 C4 70 */	addi r0, r4, init@l /* 0x803BC470@l */
 /* 801B5D24  7D 80 2A 14 */	add r12, r0, r5
 /* 801B5D28  48 1A C3 5D */	bl __ptmf_scall
 /* 801B5D2C  60 00 00 00 */	nop 

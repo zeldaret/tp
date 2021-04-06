@@ -3,18 +3,16 @@
 #
 
 M22_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer.plf
+M22_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer.lcf
+M22_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer.map
 
 M22_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_timer/executor.cpp \
-	rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_timer/d_a_obj_timer.cpp \
 
 M22_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer.o \
 
@@ -31,15 +29,21 @@ M22_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map22.map\
+	-m _prolog \
+	-lcf $(M22_LDSCRIPT) \
+	-unused -map $(M22_MAP) \
+	-w off \
 
 $(M22_TARGET): $(M22_O_FILES) $(M22_LIBS)
+	@echo [ 22] creating $(M22_TARGET)
 	@echo $(M22_LIBS) $(M22_O_FILES) > build/M22_ofiles
-	$(LD) -opt_partial $(M22_LDFLAGS) -o $(M22_TARGET) @build/M22_ofiles
+	@python3 tools/lcf.py rel 22 --output $(M22_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M22_LDFLAGS) -o $(M22_TARGET) @build/M22_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_timer/%.o: rel/d/a/obj/d_a_obj_timer/%.cpp
+	@echo [ 22] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M22_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M22_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

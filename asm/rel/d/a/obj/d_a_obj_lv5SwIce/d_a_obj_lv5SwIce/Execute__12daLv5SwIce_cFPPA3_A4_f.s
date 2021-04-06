@@ -13,7 +13,7 @@ lbl_80C6CDD0:
 /* 80C6CDFC  7F C3 F3 78 */	mr r3, r30
 /* 80C6CE00  4B FF FC 21 */	bl setBaseMtx__12daLv5SwIce_cFv
 /* 80C6CE04  38 7E 05 BC */	addi r3, r30, 0x5bc
-/* 80C6CE08  4B 41 6A 28 */	b Move__10dCcD_GSttsFv
+/* 80C6CE08  4B 41 6A 29 */	bl Move__10dCcD_GSttsFv
 /* 80C6CE0C  38 60 00 01 */	li r3, 1
 /* 80C6CE10  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C6CE14  83 C1 00 08 */	lwz r30, 8(r1)

@@ -13,15 +13,15 @@ lbl_800183DC:
 /* 80018408  7C 7E 1B 78 */	mr r30, r3
 /* 8001840C  48 2B 60 2D */	bl becomeCurrentHeap__7JKRHeapFv
 /* 80018410  7C 7D 1B 78 */	mr r29, r3
-/* 80018414  3C 60 80 3F */	lis r3, DMC@ha
-/* 80018418  38 63 0F 50 */	addi r3, r3, DMC@l
+/* 80018414  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 80018418  38 63 0F 50 */	addi r3, r3, DMC@l /* 0x803F0F50@l */
 /* 8001841C  38 80 00 00 */	li r4, 0
 /* 80018420  38 A0 0C 60 */	li r5, 0xc60
 /* 80018424  4B FE B0 35 */	bl memset
 /* 80018428  3B 80 00 00 */	li r28, 0
 /* 8001842C  3B 40 00 00 */	li r26, 0
-/* 80018430  3C 60 80 37 */	lis r3, DynamicNameTable@ha
-/* 80018434  3B E3 46 40 */	addi r31, r3, DynamicNameTable@l
+/* 80018430  3C 60 80 37 */	lis r3, DynamicNameTable@ha /* 0x80374640@ha */
+/* 80018434  3B E3 46 40 */	addi r31, r3, DynamicNameTable@l /* 0x80374640@l */
 lbl_80018438:
 /* 80018438  7F 7F D2 14 */	add r27, r31, r26
 /* 8001843C  80 1B 00 04 */	lwz r0, 4(r27)
@@ -29,8 +29,8 @@ lbl_80018438:
 /* 80018444  41 82 00 BC */	beq lbl_80018500
 /* 80018448  3A E0 00 00 */	li r23, 0
 /* 8001844C  3B 20 00 00 */	li r25, 0
-/* 80018450  3C 60 80 3F */	lis r3, DMC@ha
-/* 80018454  3B 03 0F 50 */	addi r24, r3, DMC@l
+/* 80018450  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 80018454  3B 03 0F 50 */	addi r24, r3, DMC@l /* 0x803F0F50@l */
 lbl_80018458:
 /* 80018458  7C 78 C8 2E */	lwzx r3, r24, r25
 /* 8001845C  28 03 00 00 */	cmplwi r3, 0
@@ -47,8 +47,8 @@ lbl_80018458:
 /* 80018488  7C 98 C8 2E */	lwzx r4, r24, r25
 /* 8001848C  A8 1B 00 00 */	lha r0, 0(r27)
 /* 80018490  54 00 10 3A */	slwi r0, r0, 2
-/* 80018494  3C 60 80 3F */	lis r3, DMC@ha
-/* 80018498  38 63 0F 50 */	addi r3, r3, DMC@l
+/* 80018494  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 80018498  38 63 0F 50 */	addi r3, r3, DMC@l /* 0x803F0F50@l */
 /* 8001849C  7C 83 01 2E */	stwx r4, r3, r0
 /* 800184A0  48 00 00 14 */	b lbl_800184B4
 lbl_800184A4:
@@ -59,8 +59,8 @@ lbl_800184A4:
 lbl_800184B4:
 /* 800184B4  A8 1B 00 00 */	lha r0, 0(r27)
 /* 800184B8  54 00 10 3A */	slwi r0, r0, 2
-/* 800184BC  3C 60 80 3F */	lis r3, DMC@ha
-/* 800184C0  38 63 0F 50 */	addi r3, r3, DMC@l
+/* 800184BC  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 800184C0  38 63 0F 50 */	addi r3, r3, DMC@l /* 0x803F0F50@l */
 /* 800184C4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800184C8  28 00 00 00 */	cmplwi r0, 0
 /* 800184CC  40 82 00 34 */	bne lbl_80018500
@@ -74,8 +74,8 @@ lbl_800184B4:
 lbl_800184EC:
 /* 800184EC  A8 1B 00 00 */	lha r0, 0(r27)
 /* 800184F0  54 00 10 3A */	slwi r0, r0, 2
-/* 800184F4  3C 60 80 3F */	lis r3, DMC@ha
-/* 800184F8  38 63 0F 50 */	addi r3, r3, DMC@l
+/* 800184F4  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 800184F8  38 63 0F 50 */	addi r3, r3, DMC@l /* 0x803F0F50@l */
 /* 800184FC  7C 83 01 2E */	stwx r4, r3, r0
 lbl_80018500:
 /* 80018500  3B 9C 00 01 */	addi r28, r28, 1

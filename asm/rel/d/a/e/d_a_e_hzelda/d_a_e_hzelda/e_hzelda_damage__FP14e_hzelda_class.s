@@ -5,15 +5,15 @@ lbl_806F28C8:
 /* 806F28D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806F28D8  93 C1 00 08 */	stw r30, 8(r1)
 /* 806F28DC  7C 7F 1B 78 */	mr r31, r3
-/* 806F28E0  3C 80 80 6F */	lis r4, lit_3767@ha
-/* 806F28E4  3B C4 55 14 */	addi r30, r4, lit_3767@l
+/* 806F28E0  3C 80 80 6F */	lis r4, lit_3767@ha /* 0x806F5514@ha */
+/* 806F28E4  3B C4 55 14 */	addi r30, r4, lit_3767@l /* 0x806F5514@l */
 /* 806F28E8  38 00 00 05 */	li r0, 5
 /* 806F28EC  B0 03 06 B4 */	sth r0, 0x6b4(r3)
 /* 806F28F0  A8 03 06 98 */	lha r0, 0x698(r3)
 /* 806F28F4  28 00 00 0B */	cmplwi r0, 0xb
 /* 806F28F8  41 81 01 2C */	bgt lbl_806F2A24
-/* 806F28FC  3C 80 80 6F */	lis r4, lit_4500@ha
-/* 806F2900  38 84 56 84 */	addi r4, r4, lit_4500@l
+/* 806F28FC  3C 80 80 6F */	lis r4, lit_4500@ha /* 0x806F5684@ha */
+/* 806F2900  38 84 56 84 */	addi r4, r4, lit_4500@l /* 0x806F5684@l */
 /* 806F2904  54 00 10 3A */	slwi r0, r0, 2
 /* 806F2908  7C 04 00 2E */	lwzx r0, r4, r0
 /* 806F290C  7C 09 03 A6 */	mtctr r0

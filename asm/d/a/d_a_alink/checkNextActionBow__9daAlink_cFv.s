@@ -172,8 +172,8 @@ lbl_800DFA70:
 /* 800DFA74  41 82 00 58 */	beq lbl_800DFACC
 /* 800DFA78  2C 1F 00 00 */	cmpwi r31, 0
 /* 800DFA7C  41 82 00 50 */	beq lbl_800DFACC
-/* 800DFA80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DFA84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DFA80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DFA84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DFA88  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800DFA8C  64 00 00 20 */	oris r0, r0, 0x20
 /* 800DFA90  90 03 5F 18 */	stw r0, 0x5f18(r3)

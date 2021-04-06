@@ -25,16 +25,16 @@ struct daBgObj_c {
 // Forward References:
 //
 
-SECTION_INIT static void __check_pad3();
-SECTION_INIT static void __set_debug_bba();
-SECTION_INIT static void __get_debug_bba();
+SECTION_INIT void __check_pad3();
+SECTION_INIT void __set_debug_bba();
+SECTION_INIT void __get_debug_bba();
 SECTION_INIT void __start();
-SECTION_INIT static void __init_registers();
+SECTION_INIT void __init_registers();
 SECTION_INIT void __init_data();
-SECTION_INIT static void __init_hardware();
-SECTION_INIT static void __flush_cache();
+SECTION_INIT void __init_hardware();
+SECTION_INIT void __flush_cache();
 SECTION_INIT void memset();
-SECTION_INIT static void __fill_mem();
+SECTION_INIT void __fill_mem();
 SECTION_INIT void memcpy();
 SECTION_INIT void TRK_memset();
 SECTION_INIT void TRK_memcpy();
@@ -69,54 +69,37 @@ extern "C" void Set__Q29daBgObj_c11spec_data_cFPv();
 //
 
 /* ############################################################################################## */
-/* 80003100-80003140 0040+00 s=1 e=0 z=0  None .init      __check_pad3 */
-//	8000312C: 8033F8AC (OSResetSystem)
+/* 80003100-80003140 000000 0040+00 1/1 0/0 0/0 .init            __check_pad3 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __check_pad3() {
+SECTION_INIT asm void __check_pad3() {
     nofralloc
 #include "asm/init/__check_pad3.s"
 }
 #pragma pop
 
-/* 80003140-8000314C 000C+00 s=1 e=0 z=0  None .init      __set_debug_bba */
-//	80003144: 804516D0 (data_804516D0)
+/* 80003140-8000314C 000040 000C+00 1/1 0/0 0/0 .init            __set_debug_bba */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __set_debug_bba() {
+SECTION_INIT asm void __set_debug_bba() {
     nofralloc
 #include "asm/init/__set_debug_bba.s"
 }
 #pragma pop
 
-/* 8000314C-80003154 0008+00 s=1 e=0 z=0  None .init      __get_debug_bba */
-//	8000314C: 804516D0 (data_804516D0)
+/* 8000314C-80003154 00004C 0008+00 1/1 0/0 0/0 .init            __get_debug_bba */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __get_debug_bba() {
+SECTION_INIT asm void __get_debug_bba() {
     nofralloc
 #include "asm/init/__get_debug_bba.s"
 }
 #pragma pop
 
-/* 80003154-800032B0 015C+00 s=0 e=1 z=0  None .init      __start */
-//	80003154: 800032B0 (__init_registers)
-//	80003158: 80003400 (__init_hardware)
-//	8000316C: 80003340 (__init_data)
-//	800031E0: 80003140 (__set_debug_bba)
-//	800031E8: 80371560 (InitMetroTRK)
-//	800031EC: 80371560 (InitMetroTRK)
-//	80003260: 80346398 (DBInit)
-//	80003264: 80339F60 (OSInit)
-//	80003288: 80003100 (__check_pad3)
-//	8000328C: 8000314C (__get_debug_bba)
-//	80003298: 803715F8 (InitMetroTRK_BBA)
-//	8000329C: 80342B78 (__init_user)
-//	800032A8: 80006454 (main)
-//	800032AC: 803629CC (exit)
+/* 80003154-800032B0 000054 015C+00 0/0 1/0 0/0 .init            __start */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,30 +109,17 @@ SECTION_INIT asm void __start() {
 }
 #pragma pop
 
-/* 800032B0-80003340 0090+00 s=1 e=0 z=0  None .init      __init_registers */
-//	80003324: 80457BC8 (_epilog)
-//	80003328: 80457BC8 (_epilog)
-//	8000332C: 80459A00 (Set__Q29daBgObj_c11spec_data_cFPv)
-//	80003330: 80459A00 (Set__Q29daBgObj_c11spec_data_cFPv)
-//	80003334: 80458580 (createHeap__6daBg_cFv)
-//	80003338: 80458580 (createHeap__6daBg_cFv)
+/* 800032B0-80003340 0001B0 0090+00 1/1 0/0 0/0 .init            __init_registers */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __init_registers() {
+SECTION_INIT asm void __init_registers() {
     nofralloc
 #include "asm/init/__init_registers.s"
 }
 #pragma pop
 
-/* 80003340-80003400 00C0+00 s=1 e=0 z=1  None .init      __init_data */
-//	80003358: 80005544 (_rom_copy_info)
-//	8000335C: 80005544 (_rom_copy_info)
-//	80003394: 80003540 (memcpy)
-//	800033A0: 80003424 (__flush_cache)
-//	800033AC: 800055C8 (_bss_init_info)
-//	800033B0: 800055C8 (_bss_init_info)
-//	800033D8: 80003458 (memset)
+/* 80003340-80003400 000240 00C0+00 1/1 0/0 1/1 .init            __init_data */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -159,31 +129,27 @@ SECTION_INIT asm void __init_data() {
 }
 #pragma pop
 
-/* 80003400-80003424 0024+00 s=1 e=0 z=0  None .init      __init_hardware */
-//	80003410: 8033A80C (__OSPSInit)
-//	80003414: 80339DD4 (__OSFPRInit)
-//	80003418: 8033BAF0 (__OSCacheInit)
+/* 80003400-80003424 000300 0024+00 1/1 0/0 0/0 .init            __init_hardware */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __init_hardware() {
+SECTION_INIT asm void __init_hardware() {
     nofralloc
 #include "asm/init/__init_hardware.s"
 }
 #pragma pop
 
-/* 80003424-80003458 0034+00 s=1 e=0 z=0  None .init      __flush_cache */
+/* 80003424-80003458 000324 0034+00 1/1 0/0 0/0 .init            __flush_cache */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __flush_cache() {
+SECTION_INIT asm void __flush_cache() {
     nofralloc
 #include "asm/init/__flush_cache.s"
 }
 #pragma pop
 
-/* 80003458-80003488 0030+00 s=1 e=55 z=137  None .init      memset */
-//	8000346C: 80003488 (__fill_mem)
+/* 80003458-80003488 000358 0030+00 1/1 55/55 137/137 .init            memset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -193,17 +159,17 @@ SECTION_INIT asm void memset() {
 }
 #pragma pop
 
-/* 80003488-80003540 00B8+00 s=1 e=0 z=0  None .init      __fill_mem */
+/* 80003488-80003540 000388 00B8+00 1/1 0/0 0/0 .init            __fill_mem */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-SECTION_INIT asm static void __fill_mem() {
+SECTION_INIT asm void __fill_mem() {
     nofralloc
 #include "asm/init/__fill_mem.s"
 }
 #pragma pop
 
-/* 80003540-80003590 0050+00 s=1 e=63 z=6  None .init      memcpy */
+/* 80003540-80003590 000440 0050+00 1/1 63/63 6/6 .init            memcpy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,8 +179,7 @@ SECTION_INIT asm void memcpy() {
 }
 #pragma pop
 
-/* 80003590-800035C0 0030+00 s=0 e=1 z=0  None .init      TRK_memset */
-//	800035A4: 8036F580 (TRK_fill_mem)
+/* 80003590-800035C0 000490 0030+00 0/0 1/1 0/0 .init            TRK_memset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -224,7 +189,7 @@ SECTION_INIT asm void TRK_memset() {
 }
 #pragma pop
 
-/* 800035C0-800035E4 0024+00 s=0 e=12 z=0  None .init      TRK_memcpy */
+/* 800035C0-800035E4 0004C0 0024+00 0/0 12/12 0/0 .init            TRK_memcpy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -234,8 +199,8 @@ SECTION_INIT asm void TRK_memcpy() {
 }
 #pragma pop
 
-/* 800035E4-80005518 1F34+00 s=0 e=1 z=0  None .init      __TRK_unknown_data */
-SECTION_INIT u8 const __TRK_unknown_data[7988] = {
+/* 800035E4-80005518 0004E4 1F34+00 0/0 1/1 0/0 .init            __TRK_unknown_data */
+SECTION_INIT extern u8 const __TRK_unknown_data[7988] = {
     0x4D, 0x65, 0x74, 0x72, 0x6F, 0x77, 0x65, 0x72, 0x6B, 0x73, 0x20, 0x54, 0x61, 0x72, 0x67, 0x65,
     0x74, 0x20, 0x52, 0x65, 0x73, 0x69, 0x64, 0x65, 0x6E, 0x74, 0x20, 0x4B, 0x65, 0x72, 0x6E, 0x65,
     0x6C, 0x20, 0x66, 0x6F, 0x72, 0x20, 0x50, 0x6F, 0x77, 0x65, 0x72, 0x50, 0x43, 0x00, 0x00, 0x00,
@@ -738,8 +703,7 @@ SECTION_INIT u8 const __TRK_unknown_data[7988] = {
     0x4C, 0x00, 0x00, 0x64,
 };
 
-/* 80005518-80005544 002C+00 s=0 e=1 z=0  None .init      __TRK_reset */
-//	80005530: 8033F8AC (OSResetSystem)
+/* 80005518-80005544 002418 002C+00 0/0 1/1 0/0 .init            __TRK_reset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -749,8 +713,8 @@ SECTION_INIT asm void __TRK_reset() {
 }
 #pragma pop
 
-/* 80005544-800055C8 0084+00 s=1 e=0 z=0  None .init      _rom_copy_info */
+/* 80005544-800055C8 002444 0084+00 1/1 0/0 0/0 .init            _rom_copy_info */
 /* generated by the linker */
 
-/* 800055C8-800055E8 0020+00 s=1 e=0 z=0  None .init      _bss_init_info */
+/* 800055C8-800055E8 0024C8 0020+00 1/1 0/0 0/0 .init            _bss_init_info */
 /* generated by the linker */

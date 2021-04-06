@@ -6,7 +6,7 @@ lbl_804D0F98:
 /* 804D0FA8  28 00 00 00 */	cmplwi r0, 0
 /* 804D0FAC  41 82 00 0C */	beq lbl_804D0FB8
 /* 804D0FB0  80 63 06 B0 */	lwz r3, 0x6b0(r3)
-/* 804D0FB4  4B B4 03 5C */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 804D0FB4  4B B4 03 5D */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 lbl_804D0FB8:
 /* 804D0FB8  38 60 00 01 */	li r3, 1
 /* 804D0FBC  80 01 00 14 */	lwz r0, 0x14(r1)

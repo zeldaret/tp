@@ -19,8 +19,8 @@ lbl_800DB610:
 /* 800DB654  48 00 00 34 */	b lbl_800DB688
 lbl_800DB658:
 /* 800DB658  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800DB65C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha
-/* 800DB660  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l
+/* 800DB65C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha /* 0x8038E49C@ha */
+/* 800DB660  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l /* 0x8038E49C@l */
 /* 800DB664  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800DB668  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DB66C  40 81 00 1C */	ble lbl_800DB688

@@ -7,8 +7,8 @@ lbl_802A6468:
 /* 802A647C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A6480  7C 9F 23 78 */	mr r31, r4
 /* 802A6484  41 82 00 D4 */	beq lbl_802A6558
-/* 802A6488  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha
-/* 802A648C  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l
+/* 802A6488  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha /* 0x803C9B24@ha */
+/* 802A648C  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l /* 0x803C9B24@l */
 /* 802A6490  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A6494  34 1E 00 38 */	addic. r0, r30, 0x38
 /* 802A6498  41 82 00 90 */	beq lbl_802A6528

@@ -10,8 +10,8 @@ lbl_8004CF90:
 /* 8004CFB0  7C DD 33 78 */	mr r29, r6
 /* 8004CFB4  7C FE 3B 78 */	mr r30, r7
 /* 8004CFB8  7D 1F 43 78 */	mr r31, r8
-/* 8004CFBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8004CFC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8004CFBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8004CFC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8004CFC4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8004CFC8  7F 44 D3 78 */	mr r4, r26
 /* 8004CFCC  48 02 76 95 */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo

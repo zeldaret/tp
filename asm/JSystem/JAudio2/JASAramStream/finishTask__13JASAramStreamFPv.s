@@ -4,8 +4,8 @@ lbl_80296868:
 /* 80296870  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80296874  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80296878  7C 7F 1B 78 */	mr r31, r3
-/* 8029687C  3C 60 80 29 */	lis r3, channelProcCallback__13JASAramStreamFPv@ha
-/* 80296880  38 63 6D 74 */	addi r3, r3, channelProcCallback__13JASAramStreamFPv@l
+/* 8029687C  3C 60 80 29 */	lis r3, channelProcCallback__13JASAramStreamFPv@ha /* 0x80296D74@ha */
+/* 80296880  38 63 6D 74 */	addi r3, r3, channelProcCallback__13JASAramStreamFPv@l /* 0x80296D74@l */
 /* 80296884  7F E4 FB 78 */	mr r4, r31
 /* 80296888  48 00 79 3D */	bl rejectCallback__9JASDriverFPFPv_lPv
 /* 8029688C  81 9F 01 50 */	lwz r12, 0x150(r31)

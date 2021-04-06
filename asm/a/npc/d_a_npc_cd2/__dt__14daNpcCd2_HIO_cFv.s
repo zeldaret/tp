@@ -7,29 +7,29 @@ lbl_8015A860:
 /* 8015A874  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8015A878  7C 9F 23 78 */	mr r31, r4
 /* 8015A87C  41 82 00 74 */	beq lbl_8015A8F0
-/* 8015A880  3C 60 80 3C */	lis r3, __vt__14daNpcCd2_HIO_c@ha
-/* 8015A884  38 03 9D 78 */	addi r0, r3, __vt__14daNpcCd2_HIO_c@l
+/* 8015A880  3C 60 80 3C */	lis r3, __vt__14daNpcCd2_HIO_c@ha /* 0x803B9D78@ha */
+/* 8015A884  38 03 9D 78 */	addi r0, r3, __vt__14daNpcCd2_HIO_c@l /* 0x803B9D78@l */
 /* 8015A888  90 1E 00 00 */	stw r0, 0(r30)
 /* 8015A88C  38 7E 20 C4 */	addi r3, r30, 0x20c4
-/* 8015A890  3C 80 80 16 */	lis r4, __dt__21daNpcCd2_HIO_WChild_cFv@ha
-/* 8015A894  38 84 A6 78 */	addi r4, r4, __dt__21daNpcCd2_HIO_WChild_cFv@l
+/* 8015A890  3C 80 80 16 */	lis r4, __dt__21daNpcCd2_HIO_WChild_cFv@ha /* 0x8015A678@ha */
+/* 8015A894  38 84 A6 78 */	addi r4, r4, __dt__21daNpcCd2_HIO_WChild_cFv@l /* 0x8015A678@l */
 /* 8015A898  38 A0 02 3C */	li r5, 0x23c
 /* 8015A89C  38 C0 00 0E */	li r6, 0xe
 /* 8015A8A0  48 20 74 49 */	bl __destroy_arr
 /* 8015A8A4  38 7E 00 04 */	addi r3, r30, 4
-/* 8015A8A8  3C 80 80 16 */	lis r4, __dt__21daNpcCd2_HIO_MChild_cFv@ha
-/* 8015A8AC  38 84 A7 98 */	addi r4, r4, __dt__21daNpcCd2_HIO_MChild_cFv@l
+/* 8015A8A8  3C 80 80 16 */	lis r4, __dt__21daNpcCd2_HIO_MChild_cFv@ha /* 0x8015A798@ha */
+/* 8015A8AC  38 84 A7 98 */	addi r4, r4, __dt__21daNpcCd2_HIO_MChild_cFv@l /* 0x8015A798@l */
 /* 8015A8B0  38 A0 02 0C */	li r5, 0x20c
 /* 8015A8B4  38 C0 00 10 */	li r6, 0x10
 /* 8015A8B8  48 20 74 31 */	bl __destroy_arr
 /* 8015A8BC  28 1E 00 00 */	cmplwi r30, 0
 /* 8015A8C0  41 82 00 20 */	beq lbl_8015A8E0
-/* 8015A8C4  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha
-/* 8015A8C8  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l
+/* 8015A8C4  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha /* 0x803B61A8@ha */
+/* 8015A8C8  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l /* 0x803B61A8@l */
 /* 8015A8CC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8015A8D0  41 82 00 10 */	beq lbl_8015A8E0
-/* 8015A8D4  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 8015A8D8  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 8015A8D4  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x803B61B4@ha */
+/* 8015A8D8  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x803B61B4@l */
 /* 8015A8DC  90 1E 00 00 */	stw r0, 0(r30)
 lbl_8015A8E0:
 /* 8015A8E0  7F E0 07 35 */	extsh. r0, r31

@@ -4,8 +4,8 @@ lbl_80BDD124:
 /* 80BDD12C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BDD130  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BDD134  7C 7F 1B 78 */	mr r31, r3
-/* 80BDD138  3C 60 80 BE */	lis r3, lit_3744@ha
-/* 80BDD13C  38 83 D6 C8 */	addi r4, r3, lit_3744@l
+/* 80BDD138  3C 60 80 BE */	lis r3, lit_3744@ha /* 0x80BDD6C8@ha */
+/* 80BDD13C  38 83 D6 C8 */	addi r4, r3, lit_3744@l /* 0x80BDD6C8@l */
 /* 80BDD140  C0 44 00 04 */	lfs f2, 4(r4)
 /* 80BDD144  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)
 /* 80BDD148  C0 1F 09 40 */	lfs f0, 0x940(r31)
@@ -25,7 +25,7 @@ lbl_80BDD178:
 /* 80BDD17C  C0 3F 09 40 */	lfs f1, 0x940(r31)
 /* 80BDD180  C0 04 00 10 */	lfs f0, 0x10(r4)
 /* 80BDD184  EC 21 00 28 */	fsubs f1, f1, f0
-/* 80BDD188  4B 69 35 B8 */	b cLib_chaseF__FPfff
+/* 80BDD188  4B 69 35 B9 */	bl cLib_chaseF__FPfff
 /* 80BDD18C  2C 03 00 00 */	cmpwi r3, 0
 /* 80BDD190  41 82 00 18 */	beq lbl_80BDD1A8
 /* 80BDD194  88 1F 09 3C */	lbz r0, 0x93c(r31)

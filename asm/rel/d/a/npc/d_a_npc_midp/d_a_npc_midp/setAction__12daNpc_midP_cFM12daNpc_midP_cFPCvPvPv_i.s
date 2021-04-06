@@ -9,13 +9,13 @@ lbl_80A72254:
 /* 80A72270  38 00 00 03 */	li r0, 3
 /* 80A72274  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A72278  38 7E 0F 90 */	addi r3, r30, 0xf90
-/* 80A7227C  4B 8E FD 9C */	b __ptmf_test
+/* 80A7227C  4B 8E FD 9D */	bl __ptmf_test
 /* 80A72280  2C 03 00 00 */	cmpwi r3, 0
 /* 80A72284  41 82 00 18 */	beq lbl_80A7229C
 /* 80A72288  7F C3 F3 78 */	mr r3, r30
 /* 80A7228C  38 80 00 00 */	li r4, 0
 /* 80A72290  39 9E 0F 90 */	addi r12, r30, 0xf90
-/* 80A72294  4B 8E FD F0 */	b __ptmf_scall
+/* 80A72294  4B 8E FD F1 */	bl __ptmf_scall
 /* 80A72298  60 00 00 00 */	nop 
 lbl_80A7229C:
 /* 80A7229C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A7229C:
 /* 80A722B4  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A722B8  90 1E 0F 98 */	stw r0, 0xf98(r30)
 /* 80A722BC  38 7E 0F 90 */	addi r3, r30, 0xf90
-/* 80A722C0  4B 8E FD 58 */	b __ptmf_test
+/* 80A722C0  4B 8E FD 59 */	bl __ptmf_test
 /* 80A722C4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A722C8  41 82 00 18 */	beq lbl_80A722E0
 /* 80A722CC  7F C3 F3 78 */	mr r3, r30
 /* 80A722D0  38 80 00 00 */	li r4, 0
 /* 80A722D4  39 9E 0F 90 */	addi r12, r30, 0xf90
-/* 80A722D8  4B 8E FD AC */	b __ptmf_scall
+/* 80A722D8  4B 8E FD AD */	bl __ptmf_scall
 /* 80A722DC  60 00 00 00 */	nop 
 lbl_80A722E0:
 /* 80A722E0  38 60 00 01 */	li r3, 1

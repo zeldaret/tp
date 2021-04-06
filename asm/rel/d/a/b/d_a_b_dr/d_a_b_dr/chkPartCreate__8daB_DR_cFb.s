@@ -3,7 +3,7 @@ lbl_805BC0B8:
 /* 805BC0BC  7C 08 02 A6 */	mflr r0
 /* 805BC0C0  90 01 00 54 */	stw r0, 0x54(r1)
 /* 805BC0C4  39 61 00 50 */	addi r11, r1, 0x50
-/* 805BC0C8  4B DA 60 F8 */	b _savegpr_22
+/* 805BC0C8  4B DA 60 F9 */	bl _savegpr_22
 /* 805BC0CC  7C 77 1B 78 */	mr r23, r3
 /* 805BC0D0  3B 60 00 00 */	li r27, 0
 /* 805BC0D4  3B 40 00 00 */	li r26, 0
@@ -45,10 +45,10 @@ lbl_805BC140:
 lbl_805BC14C:
 /* 805BC14C  7C 1B C8 00 */	cmpw r27, r25
 /* 805BC150  40 80 00 E0 */	bge lbl_805BC230
-/* 805BC154  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 805BC158  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l
-/* 805BC15C  3C 60 80 5C */	lis r3, BREAK_PARTS_DT@ha
-/* 805BC160  3B C3 6D 40 */	addi r30, r3, BREAK_PARTS_DT@l
+/* 805BC154  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805BC158  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 805BC15C  3C 60 80 5C */	lis r3, BREAK_PARTS_DT@ha /* 0x805C6D40@ha */
+/* 805BC160  3B C3 6D 40 */	addi r30, r3, BREAK_PARTS_DT@l /* 0x805C6D40@l */
 /* 805BC164  7F BF EB 78 */	mr r31, r29
 /* 805BC168  1E DB 00 0C */	mulli r22, r27, 0xc
 /* 805BC16C  48 00 00 B4 */	b lbl_805BC220
@@ -62,7 +62,7 @@ lbl_805BC170:
 /* 805BC188  1C 00 00 30 */	mulli r0, r0, 0x30
 /* 805BC18C  7C 63 02 14 */	add r3, r3, r0
 /* 805BC190  7F A4 EB 78 */	mr r4, r29
-/* 805BC194  4B D8 A3 1C */	b PSMTXCopy
+/* 805BC194  4B D8 A3 1D */	bl PSMTXCopy
 /* 805BC198  C0 1D 00 0C */	lfs f0, 0xc(r29)
 /* 805BC19C  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 805BC1A0  C0 1D 00 1C */	lfs f0, 0x1c(r29)
@@ -71,7 +71,7 @@ lbl_805BC170:
 /* 805BC1AC  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 805BC1B0  7F E3 FB 78 */	mr r3, r31
 /* 805BC1B4  38 81 00 08 */	addi r4, r1, 8
-/* 805BC1B8  4B A5 0A 48 */	b mDoMtx_MtxToRot__FPA4_CfP5csXyz
+/* 805BC1B8  4B A5 0A 49 */	bl mDoMtx_MtxToRot__FPA4_CfP5csXyz
 /* 805BC1BC  38 80 00 14 */	li r4, 0x14
 /* 805BC1C0  2C 18 00 03 */	cmpwi r24, 3
 /* 805BC1C4  40 82 00 08 */	bne lbl_805BC1CC
@@ -91,7 +91,7 @@ lbl_805BC1CC:
 /* 805BC1F8  38 E1 00 08 */	addi r7, r1, 8
 /* 805BC1FC  39 01 00 10 */	addi r8, r1, 0x10
 /* 805BC200  39 20 FF FF */	li r9, -1
-/* 805BC204  4B A5 DB 94 */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 805BC204  4B A5 DB 95 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 805BC208  80 77 07 E0 */	lwz r3, 0x7e0(r23)
 /* 805BC20C  38 03 00 01 */	addi r0, r3, 1
 /* 805BC210  90 17 07 E0 */	stw r0, 0x7e0(r23)
@@ -105,7 +105,7 @@ lbl_805BC220:
 /* 805BC22C  41 80 FF 44 */	blt lbl_805BC170
 lbl_805BC230:
 /* 805BC230  39 61 00 50 */	addi r11, r1, 0x50
-/* 805BC234  4B DA 5F D8 */	b _restgpr_22
+/* 805BC234  4B DA 5F D9 */	bl _restgpr_22
 /* 805BC238  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 805BC23C  7C 08 03 A6 */	mtlr r0
 /* 805BC240  38 21 00 50 */	addi r1, r1, 0x50

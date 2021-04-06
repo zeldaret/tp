@@ -6,13 +6,13 @@ lbl_801EC20C:
 /* 801EC21C  48 17 5F B5 */	bl _savegpr_26
 /* 801EC220  7C 7E 1B 78 */	mr r30, r3
 /* 801EC224  3B E0 00 00 */	li r31, 0
-/* 801EC228  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EC22C  3B 83 FA FC */	addi r28, r3, g_ringHIO@l
-/* 801EC230  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801EC234  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801EC228  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EC22C  3B 83 FA FC */	addi r28, r3, g_ringHIO@l /* 0x8042FAFC@l */
+/* 801EC230  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801EC234  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801EC238  3B 63 00 9C */	addi r27, r3, 0x9c
-/* 801EC23C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801EC240  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
+/* 801EC23C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801EC240  3B A3 01 88 */	addi r29, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801EC244  48 00 01 48 */	b lbl_801EC38C
 lbl_801EC248:
 /* 801EC248  88 1E 06 CF */	lbz r0, 0x6cf(r30)

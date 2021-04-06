@@ -30,10 +30,10 @@ lbl_80A23598:
 /* 80A23598  2C 00 00 01 */	cmpwi r0, 1
 /* 80A2359C  40 82 00 58 */	bne lbl_80A235F4
 /* 80A235A0  A8 9F 09 96 */	lha r4, 0x996(r31)
-/* 80A235A4  3C A0 80 A2 */	lis r5, lit_4448@ha
-/* 80A235A8  C0 25 59 58 */	lfs f1, lit_4448@l(r5)
+/* 80A235A4  3C A0 80 A2 */	lis r5, lit_4448@ha /* 0x80A25958@ha */
+/* 80A235A8  C0 25 59 58 */	lfs f1, lit_4448@l(r5)  /* 0x80A25958@l */
 /* 80A235AC  38 A0 00 00 */	li r5, 0
-/* 80A235B0  4B 73 09 44 */	b turn__8daNpcF_cFsfi
+/* 80A235B0  4B 73 09 45 */	bl turn__8daNpcF_cFsfi
 /* 80A235B4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A235B8  41 82 00 2C */	beq lbl_80A235E4
 /* 80A235BC  A8 1F 04 DE */	lha r0, 0x4de(r31)

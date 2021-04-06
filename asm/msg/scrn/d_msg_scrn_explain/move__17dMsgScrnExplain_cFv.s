@@ -18,8 +18,8 @@ lbl_8023D7D8:
 lbl_8023D818:
 /* 8023D818  3B 80 00 00 */	li r28, 0
 /* 8023D81C  3B E0 00 00 */	li r31, 0
-/* 8023D820  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023D824  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l
+/* 8023D820  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023D824  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 lbl_8023D828:
 /* 8023D828  38 1F 00 20 */	addi r0, r31, 0x20
 /* 8023D82C  7C 7B 00 2E */	lwzx r3, r27, r0
@@ -38,8 +38,8 @@ lbl_8023D828:
 /* 8023D860  7F 63 DB 78 */	mr r3, r27
 /* 8023D864  88 1B 00 60 */	lbz r0, 0x60(r27)
 /* 8023D868  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8023D86C  3C 80 80 3C */	lis r4, move_process@ha
-/* 8023D870  38 04 0F 24 */	addi r0, r4, move_process@l
+/* 8023D86C  3C 80 80 3C */	lis r4, move_process@ha /* 0x803C0F24@ha */
+/* 8023D870  38 04 0F 24 */	addi r0, r4, move_process@l /* 0x803C0F24@l */
 /* 8023D874  7D 80 2A 14 */	add r12, r0, r5
 /* 8023D878  48 12 48 0D */	bl __ptmf_scall
 /* 8023D87C  60 00 00 00 */	nop 
@@ -48,14 +48,14 @@ lbl_8023D828:
 /* 8023D888  41 82 00 20 */	beq lbl_8023D8A8
 /* 8023D88C  7F 63 DB 78 */	mr r3, r27
 /* 8023D890  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8023D894  3C 80 80 3C */	lis r4, init_process@ha
-/* 8023D898  38 04 0E 94 */	addi r0, r4, init_process@l
+/* 8023D894  3C 80 80 3C */	lis r4, init_process@ha /* 0x803C0E94@ha */
+/* 8023D898  38 04 0E 94 */	addi r0, r4, init_process@l /* 0x803C0E94@l */
 /* 8023D89C  7D 80 2A 14 */	add r12, r0, r5
 /* 8023D8A0  48 12 47 E5 */	bl __ptmf_scall
 /* 8023D8A4  60 00 00 00 */	nop 
 lbl_8023D8A8:
-/* 8023D8A8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023D8AC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 8023D8A8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023D8AC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023D8B0  C3 C3 00 9C */	lfs f30, 0x9c(r3)
 /* 8023D8B4  C3 E3 00 70 */	lfs f31, 0x70(r3)
 /* 8023D8B8  80 7B 00 2C */	lwz r3, 0x2c(r27)

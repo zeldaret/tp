@@ -14,9 +14,9 @@ lbl_807AD134:
 /* 807AD138  7C 64 1B 79 */	or. r4, r3, r3
 /* 807AD13C  41 82 00 28 */	beq lbl_807AD164
 /* 807AD140  7F E3 FB 78 */	mr r3, r31
-/* 807AD144  4B 86 D6 9C */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 807AD148  3C 60 80 7B */	lis r3, l_HIO@ha
-/* 807AD14C  38 63 02 10 */	addi r3, r3, l_HIO@l
+/* 807AD144  4B 86 D6 9D */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 807AD148  3C 60 80 7B */	lis r3, l_HIO@ha /* 0x807B0210@ha */
+/* 807AD14C  38 63 02 10 */	addi r3, r3, l_HIO@l /* 0x807B0210@l */
 /* 807AD150  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 807AD154  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807AD158  40 80 00 0C */	bge lbl_807AD164

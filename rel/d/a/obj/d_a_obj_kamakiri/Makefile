@@ -3,19 +3,20 @@
 #
 
 M493_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri.plf
+M493_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri.lcf
+M493_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri.map
 
 M493_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kamakiri/executor.cpp \
-	rel/d/a/obj/d_a_obj_kamakiri/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kamakiri/d_a_obj_kamakiri.cpp \
 
 M493_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/d_a_obj_kamakiri.o \
 
 M493_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/libRuntime.PPCEABI.H.a \
 
 M493_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M493_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map493.map\
+	-m _prolog \
+	-lcf $(M493_LDSCRIPT) \
+	-unused -map $(M493_MAP) \
+	-w off \
 
 $(M493_TARGET): $(M493_O_FILES) $(M493_LIBS)
+	@echo [493] creating $(M493_TARGET)
 	@echo $(M493_LIBS) $(M493_O_FILES) > build/M493_ofiles
-	$(LD) -opt_partial $(M493_LDFLAGS) -o $(M493_TARGET) @build/M493_ofiles
+	@python3 tools/lcf.py rel 493 --output $(M493_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M493_LDFLAGS) -o $(M493_TARGET) @build/M493_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kamakiri/%.o: rel/d/a/obj/d_a_obj_kamakiri/%.cpp
+	@echo [493] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M493_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M493_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kamakiri/libs/Runtime.PPCEABI.H/Makefile
 

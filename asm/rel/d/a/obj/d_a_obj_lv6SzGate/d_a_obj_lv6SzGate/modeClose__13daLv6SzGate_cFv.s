@@ -7,30 +7,30 @@ lbl_80C7624C:
 /* 80C76260  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C76264  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C76268  7C 7E 1B 78 */	mr r30, r3
-/* 80C7626C  3C 60 80 C7 */	lis r3, lit_3627@ha
-/* 80C76270  3B E3 66 30 */	addi r31, r3, lit_3627@l
+/* 80C7626C  3C 60 80 C7 */	lis r3, lit_3627@ha /* 0x80C76630@ha */
+/* 80C76270  3B E3 66 30 */	addi r31, r3, lit_3627@l /* 0x80C76630@l */
 /* 80C76274  38 7E 05 2C */	addi r3, r30, 0x52c
-/* 80C76278  3C 80 80 C7 */	lis r4, l_HIO@ha
-/* 80C7627C  38 84 67 E4 */	addi r4, r4, l_HIO@l
+/* 80C76278  3C 80 80 C7 */	lis r4, l_HIO@ha /* 0x80C767E4@ha */
+/* 80C7627C  38 84 67 E4 */	addi r4, r4, l_HIO@l /* 0x80C767E4@l */
 /* 80C76280  C0 24 00 08 */	lfs f1, 8(r4)
 /* 80C76284  C0 44 00 0C */	lfs f2, 0xc(r4)
-/* 80C76288  4B 5F A4 B8 */	b cLib_chaseF__FPfff
+/* 80C76288  4B 5F A4 B9 */	bl cLib_chaseF__FPfff
 /* 80C7628C  38 7E 05 E4 */	addi r3, r30, 0x5e4
 /* 80C76290  C0 3F 00 14 */	lfs f1, 0x14(r31)
 /* 80C76294  C0 5F 00 18 */	lfs f2, 0x18(r31)
 /* 80C76298  C0 7E 05 2C */	lfs f3, 0x52c(r30)
 /* 80C7629C  C0 9F 00 28 */	lfs f4, 0x28(r31)
-/* 80C762A0  4B 5F 96 DC */	b cLib_addCalc__FPfffff
+/* 80C762A0  4B 5F 96 DD */	bl cLib_addCalc__FPfffff
 /* 80C762A4  FF E0 08 90 */	fmr f31, f1
 /* 80C762A8  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C762AC  7C 03 07 74 */	extsb r3, r0
-/* 80C762B0  4B 3B 6D BC */	b dComIfGp_getReverb__Fi
+/* 80C762B0  4B 3B 6D BD */	bl dComIfGp_getReverb__Fi
 /* 80C762B4  7C 67 1B 78 */	mr r7, r3
 /* 80C762B8  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801EF@ha */
 /* 80C762BC  38 03 01 EF */	addi r0, r3, 0x01EF /* 0x000801EF@l */
 /* 80C762C0  90 01 00 08 */	stw r0, 8(r1)
-/* 80C762C4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C762C8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C762C4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C762C8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C762CC  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C762D0  38 81 00 08 */	addi r4, r1, 8
 /* 80C762D4  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -40,7 +40,7 @@ lbl_80C7624C:
 /* 80C762E4  C0 7F 00 1C */	lfs f3, 0x1c(r31)
 /* 80C762E8  FC 80 18 90 */	fmr f4, f3
 /* 80C762EC  39 00 00 00 */	li r8, 0
-/* 80C762F0  4B 63 62 1C */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C762F0  4B 63 62 1D */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80C762F4  C0 1F 00 14 */	lfs f0, 0x14(r31)
 /* 80C762F8  FC 00 F8 00 */	fcmpu cr0, f0, f31
 /* 80C762FC  40 82 00 0C */	bne lbl_80C76308

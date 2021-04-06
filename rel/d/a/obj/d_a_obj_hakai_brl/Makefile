@@ -3,17 +3,15 @@
 #
 
 M470_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl.plf
+M470_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl.lcf
+M470_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl.map
 
 M470_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hakai_brl/executor.cpp \
-	rel/d/a/obj/d_a_obj_hakai_brl/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_hakai_brl/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl.cpp \
 
 M470_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl.o \
 
 M470_LIBS := \
@@ -29,15 +27,21 @@ M470_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map470.map\
+	-m _prolog \
+	-lcf $(M470_LDSCRIPT) \
+	-unused -map $(M470_MAP) \
+	-w off \
 
 $(M470_TARGET): $(M470_O_FILES) $(M470_LIBS)
+	@echo [470] creating $(M470_TARGET)
 	@echo $(M470_LIBS) $(M470_O_FILES) > build/M470_ofiles
-	$(LD) -opt_partial $(M470_LDFLAGS) -o $(M470_TARGET) @build/M470_ofiles
+	@python3 tools/lcf.py rel 470 --output $(M470_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M470_LDFLAGS) -o $(M470_TARGET) @build/M470_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hakai_brl/%.o: rel/d/a/obj/d_a_obj_hakai_brl/%.cpp
+	@echo [470] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M470_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M470_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

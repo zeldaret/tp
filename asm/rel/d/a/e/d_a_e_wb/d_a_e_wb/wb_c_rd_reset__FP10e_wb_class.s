@@ -27,7 +27,7 @@ lbl_807DA720:
 /* 807DA74C  38 E0 00 00 */	li r7, 0
 /* 807DA750  39 00 00 00 */	li r8, 0
 /* 807DA754  39 20 FF FF */	li r9, -1
-/* 807DA758  4B 83 F6 40 */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 807DA758  4B 83 F6 41 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 807DA75C  38 60 01 D4 */	li r3, 0x1d4
 /* 807DA760  63 E4 00 02 */	ori r4, r31, 2
 /* 807DA764  38 A1 00 08 */	addi r5, r1, 8
@@ -36,7 +36,7 @@ lbl_807DA720:
 /* 807DA770  38 E0 00 00 */	li r7, 0
 /* 807DA774  39 00 00 00 */	li r8, 0
 /* 807DA778  39 20 FF FF */	li r9, -1
-/* 807DA77C  4B 83 F6 1C */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 807DA77C  4B 83 F6 1D */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 807DA780  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 807DA784  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 807DA788  80 01 00 24 */	lwz r0, 0x24(r1)

@@ -146,8 +146,8 @@ lbl_802C1854:
 /* 802C187C  38 04 FF E8 */	addi r0, r4, -24
 /* 802C1880  28 00 00 1E */	cmplwi r0, 0x1e
 /* 802C1884  41 81 00 8C */	bgt lbl_802C1910
-/* 802C1888  3C 80 80 3D */	lis r4, lit_4340@ha
-/* 802C188C  38 84 B6 A8 */	addi r4, r4, lit_4340@l
+/* 802C1888  3C 80 80 3D */	lis r4, lit_4340@ha /* 0x803CB6A8@ha */
+/* 802C188C  38 84 B6 A8 */	addi r4, r4, lit_4340@l /* 0x803CB6A8@l */
 /* 802C1890  54 00 10 3A */	slwi r0, r0, 2
 /* 802C1894  7C 04 00 2E */	lwzx r0, r4, r0
 /* 802C1898  7C 09 03 A6 */	mtctr r0

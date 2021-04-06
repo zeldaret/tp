@@ -398,8 +398,8 @@ lbl_8025F758:
 /* 8025F760  3B 5A 00 04 */	addi r26, r26, 4
 /* 8025F764  41 80 FF C0 */	blt lbl_8025F724
 lbl_8025F768:
-/* 8025F768  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025F76C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025F768  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025F76C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025F770  88 03 4F AC */	lbz r0, 0x4fac(r3)
 /* 8025F774  28 00 00 01 */	cmplwi r0, 1
 /* 8025F778  40 82 00 10 */	bne lbl_8025F788
@@ -436,8 +436,8 @@ lbl_8025F794:
 /* 8025F7EC  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F7F0  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8025F7F4  EC 23 00 28 */	fsubs f1, f3, f0
-/* 8025F7F8  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F7FC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F7F8  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F7FC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F800  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F804  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F808  7C 84 02 14 */	add r4, r4, r0
@@ -474,8 +474,8 @@ lbl_8025F828:
 /* 8025F880  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F884  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8025F888  EC 23 00 28 */	fsubs f1, f3, f0
-/* 8025F88C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F890  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F88C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F890  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F894  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F898  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F89C  7C 84 02 14 */	add r4, r4, r0
@@ -513,8 +513,8 @@ lbl_8025F8C0:
 /* 8025F918  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F91C  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8025F920  EC 23 00 28 */	fsubs f1, f3, f0
-/* 8025F924  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F928  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F924  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F928  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F92C  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F930  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F934  7C 84 02 14 */	add r4, r4, r0
@@ -551,8 +551,8 @@ lbl_8025F954:
 /* 8025F9AC  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F9B0  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8025F9B4  EC 23 00 28 */	fsubs f1, f3, f0
-/* 8025F9B8  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F9BC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F9B8  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F9BC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F9C0  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F9C4  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F9C8  7C 84 02 14 */	add r4, r4, r0

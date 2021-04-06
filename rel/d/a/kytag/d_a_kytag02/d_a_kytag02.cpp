@@ -33,29 +33,16 @@ struct Z2EnvSeMgr {
 // Forward References:
 //
 
-static bool daKytag02_Draw(kytag02_class*);
-static void daKytag02_Execute(kytag02_class*);
-static bool daKytag02_IsDelete(kytag02_class*);
-static void daKytag02_Delete(kytag02_class*);
-static void daKytag02_Create(fopAc_ac_c*);
-
 extern "C" static bool daKytag02_Draw__FP13kytag02_class();
 extern "C" static void daKytag02_Execute__FP13kytag02_class();
 extern "C" static bool daKytag02_IsDelete__FP13kytag02_class();
 extern "C" static void daKytag02_Delete__FP13kytag02_class();
 extern "C" static void daKytag02_Create__FP10fopAc_ac_c();
-extern "C" extern u32 const lit_3667;
-extern "C" extern u32 const lit_3669;
 extern "C" extern void* g_profile_KYTAG02[12];
 
 //
 // External References:
 //
-
-void dComIfGp_getReverb(int);
-void dKyw_get_wind_vec();
-void dKyw_evt_wind_set(s16, s16);
-void dKyw_evt_wind_set_go();
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -79,112 +66,78 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
-/* 80855AB8-80855AC0 0008+00 s=1 e=0 z=0  None .text      daKytag02_Draw__FP13kytag02_class */
+/* 80855AB8-80855AC0 000078 0008+00 1/0 0/0 0/0 .text            daKytag02_Draw__FP13kytag02_class
+ */
 static bool daKytag02_Draw(kytag02_class* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80855DFC-80855E00 0004+00 s=1 e=0 z=0  None .rodata    @3666 */
+/* 80855DFC-80855E00 000000 0004+00 1/1 0/0 0/0 .rodata          @3666 */
 SECTION_RODATA static u32 const lit_3666 = 0x3E8A3D71;
+SECTION_DEAD void* const cg_80855DFC = (void*)(&lit_3666);
 
-/* 80855AC0-80855CC4 0204+00 s=1 e=0 z=0  None .text      daKytag02_Execute__FP13kytag02_class */
-//	80855AD0: 803621D8 (_savegpr_28)
-//	80855AD8: 80855DFC (lit_3666)
-//	80855ADC: 80855DFC (lit_3666)
-//	80855AE0: 8042CA54 (g_env_light)
-//	80855AE4: 8042CA54 (g_env_light)
-//	80855AE8: 8005AAE0 (dKyw_get_wind_vec__Fv)
-//	80855AF0: 804061C0 (g_dComIfG_gameInfo)
-//	80855AF4: 804061C0 (g_dComIfG_gameInfo)
-//	80855B04: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80855B10: 8005B638 (dKyw_evt_wind_set_go__Fv)
-//	80855B1C: 8005B61C (dKyw_evt_wind_set__Fss)
-//	80855B8C: 8042DD70 (g_mEnvSeMgr)
-//	80855B90: 8042DD70 (g_mEnvSeMgr)
-//	80855BC4: 8042DD70 (g_mEnvSeMgr)
-//	80855BC8: 8042DD70 (g_mEnvSeMgr)
-//	80855C08: 8042DD70 (g_mEnvSeMgr)
-//	80855C0C: 8042DD70 (g_mEnvSeMgr)
-//	80855C40: 8042CA54 (g_env_light)
-//	80855C44: 8042CA54 (g_env_light)
-//	80855C74: 8042DD70 (g_mEnvSeMgr)
-//	80855C78: 8042DD70 (g_mEnvSeMgr)
-//	80855C80: 802C7FC8 (setWindDirection__10Z2EnvSeMgrFP3Vec)
-//	80855C84: 80450D64 (struct_80450D64)
-//	80855C88: 80450D64 (struct_80450D64)
-//	80855C94: 8002D06C (dComIfGp_getReverb__Fi)
-//	80855C9C: 8042DD70 (g_mEnvSeMgr)
-//	80855CA0: 8042DD70 (g_mEnvSeMgr)
-//	80855CA4: 802C800C (startStrongWindSe__10Z2EnvSeMgrFSc)
-//	80855CB0: 80362224 (_restgpr_28)
+/* 80855E00-80855E04 000004 0004+00 0/1 0/0 0/0 .rodata          @3667 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daKytag02_Execute(kytag02_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag02/d_a_kytag02/daKytag02_Execute__FP13kytag02_class.s"
-}
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3667 = 0x3ECF5C28;
+SECTION_DEAD void* const cg_80855E00 = (void*)(&lit_3667);
 #pragma pop
 
-/* 80855CC4-80855CCC 0008+00 s=1 e=0 z=0  None .text      daKytag02_IsDelete__FP13kytag02_class */
-static bool daKytag02_IsDelete(kytag02_class* param_0) {
-    return true;
-}
-
-/* 80855CCC-80855CEC 0020+00 s=1 e=0 z=0  None .text      daKytag02_Delete__FP13kytag02_class */
-//	80855CD0: 8042CA54 (g_env_light)
-//	80855CD4: 8042CA54 (g_env_light)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daKytag02_Delete(kytag02_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag02/d_a_kytag02/daKytag02_Delete__FP13kytag02_class.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80855E00-80855E04 0004+00 s=0 e=0 z=0  None .rodata    @3667 */
-SECTION_RODATA u32 const lit_3667 = 0x3ECF5C28;
-
-/* 80855E04-80855E08 0004+00 s=1 e=0 z=0  None .rodata    @3668 */
+/* 80855E04-80855E08 000008 0004+00 1/2 0/0 0/0 .rodata          @3668 */
 SECTION_RODATA static u8 const lit_3668[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80855E04 = (void*)(&lit_3668);
 
-/* 80855CEC-80855DF4 0108+00 s=1 e=0 z=0  None .text      daKytag02_Create__FP10fopAc_ac_c */
-//	80855D04: 8042CA54 (g_env_light)
-//	80855D08: 8042CA54 (g_env_light)
-//	80855D0C: 8005AAE0 (dKyw_get_wind_vec__Fv)
-//	80855D28: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80855D4C: 80855E04 (lit_3668)
-//	80855D50: 80855E04 (lit_3668)
-//	80855D60: 804061C0 (g_dComIfG_gameInfo)
-//	80855D64: 804061C0 (g_dComIfG_gameInfo)
-//	80855D74: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80855D80: 8005B638 (dKyw_evt_wind_set_go__Fv)
-//	80855D8C: 8005B61C (dKyw_evt_wind_set__Fss)
-//	80855DCC: 8042DD70 (g_mEnvSeMgr)
-//	80855DD0: 8042DD70 (g_mEnvSeMgr)
-//	80855DD4: 802C7FBC (initStrongWindSe__10Z2EnvSeMgrFv)
+/* 80855E08-80855E0C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3669 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3669 = 0x3E99999A;
+SECTION_DEAD void* const cg_80855E08 = (void*)(&lit_3669);
+#pragma pop
+
+/* 80855AC0-80855CC4 000080 0204+00 1/0 0/0 0/0 .text daKytag02_Execute__FP13kytag02_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKytag02_Create(fopAc_ac_c* param_0) {
+static asm void daKytag02_Execute(kytag02_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag02/d_a_kytag02/daKytag02_Execute__FP13kytag02_class.s"
+}
+#pragma pop
+
+/* 80855CC4-80855CCC 000284 0008+00 1/0 0/0 0/0 .text daKytag02_IsDelete__FP13kytag02_class */
+static bool daKytag02_IsDelete(kytag02_class* param_0) {
+    return true;
+}
+
+/* 80855CCC-80855CEC 00028C 0020+00 1/0 0/0 0/0 .text            daKytag02_Delete__FP13kytag02_class
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daKytag02_Delete(kytag02_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag02/d_a_kytag02/daKytag02_Delete__FP13kytag02_class.s"
+}
+#pragma pop
+
+/* 80855CEC-80855DF4 0002AC 0108+00 1/0 0/0 0/0 .text            daKytag02_Create__FP10fopAc_ac_c */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daKytag02_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag02/d_a_kytag02/daKytag02_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80855E08-80855E0C 0004+00 s=0 e=0 z=0  None .rodata    @3669 */
-SECTION_RODATA u32 const lit_3669 = 0x3E99999A;
-
-/* 80855E0C-80855E2C 0020+00 s=1 e=0 z=0  None .data      l_daKytag02_Method */
+/* 80855E0C-80855E2C -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag02_Method */
 SECTION_DATA static void* l_daKytag02_Method[8] = {
     (void*)daKytag02_Create__FP10fopAc_ac_c,
     (void*)daKytag02_Delete__FP13kytag02_class,
@@ -196,8 +149,8 @@ SECTION_DATA static void* l_daKytag02_Method[8] = {
     (void*)NULL,
 };
 
-/* 80855E2C-80855E5C 0030+00 s=0 e=0 z=1  None .data      g_profile_KYTAG02 */
-SECTION_DATA void* g_profile_KYTAG02[12] = {
+/* 80855E2C-80855E5C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG02 */
+SECTION_DATA extern void* g_profile_KYTAG02[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02AC0000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,

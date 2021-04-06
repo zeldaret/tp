@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -37,9 +37,9 @@ struct daObjCrystal_c {
     /* 80BD67C8 */ void _delete();
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -79,12 +79,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void CheckCreateHeap(fopAc_ac_c*);
-static void daObjCrystal_Draw(daObjCrystal_c*);
-static void daObjCrystal_Execute(daObjCrystal_c*);
-static void daObjCrystal_Delete(daObjCrystal_c*);
-static void daObjCrystal_Create(daObjCrystal_c*);
-
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" void initBaseMtx__14daObjCrystal_cFv();
 extern "C" void setBaseMtx__14daObjCrystal_cFv();
@@ -98,22 +92,12 @@ extern "C" static void daObjCrystal_Draw__FP14daObjCrystal_c();
 extern "C" static void daObjCrystal_Execute__FP14daObjCrystal_c();
 extern "C" static void daObjCrystal_Delete__FP14daObjCrystal_c();
 extern "C" static void daObjCrystal_Create__FP14daObjCrystal_c();
-extern "C" extern u8 const data_80BD68C0[8];
-extern "C" extern u8 const data_80BD68C8[8];
-extern "C" extern u8 const data_80BD68D0[8];
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_crystal__stringBase0;
 extern "C" extern void* g_profile_Obj_Crystal[12];
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void JPASetRMtxTVecfromMtx(f32 const (*)[4], f32 (*)[4], JGeometry::TVec3__template0*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -148,19 +132,17 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 80BD6398-80BD63B8 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
-//	80BD63A4: 80BD65B0 (CreateHeap__14daObjCrystal_cFv)
+/* 80BD6398-80BD63B8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BD63B8-80BD6410 0058+00 s=1 e=0 z=0  None .text      initBaseMtx__14daObjCrystal_cFv */
-//	80BD63FC: 80BD6410 (setBaseMtx__14daObjCrystal_cFv)
+/* 80BD63B8-80BD6410 000098 0058+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -170,15 +152,7 @@ asm void daObjCrystal_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BD6410-80BD6470 0060+00 s=2 e=0 z=0  None .text      setBaseMtx__14daObjCrystal_cFv */
-//	80BD6428: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80BD6430: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80BD6434: 803DD470 (now__14mDoMtx_stack_c)
-//	80BD6438: 803DD470 (now__14mDoMtx_stack_c)
-//	80BD6444: 803464B0 (PSMTXCopy)
-//	80BD6448: 803DD470 (now__14mDoMtx_stack_c)
-//	80BD644C: 803DD470 (now__14mDoMtx_stack_c)
-//	80BD6458: 803464B0 (PSMTXCopy)
+/* 80BD6410-80BD6470 0000F0 0060+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -189,47 +163,11 @@ asm void daObjCrystal_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD68BC-80BD68C0 0004+00 s=2 e=0 z=0  None .rodata    @3693 */
+/* 80BD68BC-80BD68C0 000000 0004+00 2/2 0/0 0/0 .rodata          @3693 */
 SECTION_RODATA static u32 const lit_3693 = 0x3F800000;
+SECTION_DEAD void* const cg_80BD68BC = (void*)(&lit_3693);
 
-/* 80BD68C0-80BD68C8 0008+00 s=0 e=0 z=0  None .rodata    l_bmd$3697 */
-SECTION_RODATA u8 const data_80BD68C0[8] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
-};
-
-/* 80BD68C8-80BD68D0 0008+00 s=0 e=0 z=0  None .rodata    l_diff_flag$3698 */
-SECTION_RODATA u8 const data_80BD68C8[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00,
-};
-
-/* 80BD68D0-80BD68D8 0008+00 s=0 e=0 z=0  None .rodata    l_flag$3699 */
-SECTION_RODATA u8 const data_80BD68D0[8] = {
-    0x19, 0x00, 0x00, 0x84, 0x11, 0x00, 0x00, 0x84,
-};
-
-/* 80BD68D8-80BD68EE 0016+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BD68D8 = "H_Suisho";
-SECTION_DEAD char const* const stringBase_80BD68E1 = "polySurface1";
-#pragma pop
-
-/* 80BD6470-80BD65B0 0140+00 s=1 e=0 z=0  None .text      Create__14daObjCrystal_cFv */
-//	80BD6480: 803621D8 (_savegpr_28)
-//	80BD6488: 80BD63B8 (initBaseMtx__14daObjCrystal_cFv)
-//	80BD6498: 804061C0 (g_dComIfG_gameInfo)
-//	80BD649C: 804061C0 (g_dComIfG_gameInfo)
-//	80BD64E0: 80BD68BC (lit_3693)
-//	80BD64E4: 80BD68BC (lit_3693)
-//	80BD64E8: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80BD650C: 80BD68D8 (stringBase0)
-//	80BD6510: 80BD68D8 (stringBase0)
-//	80BD6520: 802DEAF8 (getName__10JUTNameTabCFUs)
-//	80BD6528: 80368994 (strcmp)
-//	80BD6590: 802807E0 (func_802807E0)
-//	80BD659C: 80362224 (_restgpr_28)
+/* 80BD6470-80BD65B0 000150 0140+00 1/1 0/0 0/0 .text            Create__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -240,20 +178,37 @@ asm void daObjCrystal_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD68F0-80BD68F4 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80BD68C0-80BD68C8 000004 0008+00 0/1 0/0 0/0 .rodata          l_bmd$3697 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_bmd[8] = {
+    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
+};
+SECTION_DEAD void* const cg_80BD68C0 = (void*)(&l_bmd);
+#pragma pop
 
-/* 80BD65B0-80BD6664 00B4+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjCrystal_cFv */
-//	80BD65C0: 803621C8 (_savegpr_24)
-//	80BD65C8: 80BD68BC (lit_3693)
-//	80BD65CC: 80BD68BC (lit_3693)
-//	80BD65D8: 804061C0 (g_dComIfG_gameInfo)
-//	80BD65DC: 804061C0 (g_dComIfG_gameInfo)
-//	80BD65E4: 80BD68F0 (l_arcName)
-//	80BD65E8: 80BD68F0 (l_arcName)
-//	80BD660C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80BD6618: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80BD6650: 80362214 (_restgpr_24)
+/* 80BD68C8-80BD68D0 00000C 0008+00 0/1 0/0 0/0 .rodata          l_diff_flag$3698 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_diff_flag[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80BD68C8 = (void*)(&l_diff_flag);
+#pragma pop
+
+/* 80BD68D0-80BD68D8 000014 0008+00 0/1 0/0 0/0 .rodata          l_flag$3699 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_flag[8] = {
+    0x19, 0x00, 0x00, 0x84, 0x11, 0x00, 0x00, 0x84,
+};
+SECTION_DEAD void* const cg_80BD68D0 = (void*)(&l_flag);
+#pragma pop
+
+/* 80BD68F0-80BD68F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crystal__stringBase0;
+
+/* 80BD65B0-80BD6664 000290 00B4+00 1/1 0/0 0/0 .text            CreateHeap__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,15 +218,7 @@ asm void daObjCrystal_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80BD6664-80BD6718 00B4+00 s=1 e=0 z=0  None .text      create__14daObjCrystal_cFv */
-//	80BD6690: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80BD66A4: 80BD68F0 (l_arcName)
-//	80BD66A8: 80BD68F0 (l_arcName)
-//	80BD66B0: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80BD66C4: 80BD6398 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80BD66C8: 80BD6398 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80BD66D0: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80BD66E8: 80BD6470 (Create__14daObjCrystal_cFv)
+/* 80BD6664-80BD6718 000344 00B4+00 1/1 0/0 0/0 .text            create__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,8 +228,7 @@ asm void daObjCrystal_c::create() {
 }
 #pragma pop
 
-/* 80BD6718-80BD673C 0024+00 s=1 e=0 z=0  None .text      execute__14daObjCrystal_cFv */
-//	80BD6724: 80BD6410 (setBaseMtx__14daObjCrystal_cFv)
+/* 80BD6718-80BD673C 0003F8 0024+00 1/1 0/0 0/0 .text            execute__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,16 +238,7 @@ asm void daObjCrystal_c::execute() {
 }
 #pragma pop
 
-/* 80BD673C-80BD67C8 008C+00 s=1 e=0 z=0  None .text      draw__14daObjCrystal_cFv */
-//	80BD674C: 803621D4 (_savegpr_27)
-//	80BD6754: 8042CA54 (g_env_light)
-//	80BD6758: 8042CA54 (g_env_light)
-//	80BD6768: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80BD6774: 8042CA54 (g_env_light)
-//	80BD6778: 8042CA54 (g_env_light)
-//	80BD6790: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80BD6798:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel) 	80BD67B4: 80362220 (_restgpr_27)
+/* 80BD673C-80BD67C8 00041C 008C+00 1/1 0/0 0/0 .text            draw__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -311,10 +248,7 @@ asm void daObjCrystal_c::draw() {
 }
 #pragma pop
 
-/* 80BD67C8-80BD6834 006C+00 s=1 e=0 z=0  None .text      _delete__14daObjCrystal_cFv */
-//	80BD6810: 80BD68F0 (l_arcName)
-//	80BD6814: 80BD68F0 (l_arcName)
-//	80BD681C: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80BD67C8-80BD6834 0004A8 006C+00 1/1 0/0 0/0 .text            _delete__14daObjCrystal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -324,53 +258,48 @@ asm void daObjCrystal_c::_delete() {
 }
 #pragma pop
 
-/* 80BD6834-80BD6854 0020+00 s=1 e=0 z=0  None .text      daObjCrystal_Draw__FP14daObjCrystal_c */
-//	80BD6840: 80BD673C (draw__14daObjCrystal_cFv)
+/* 80BD6834-80BD6854 000514 0020+00 1/0 0/0 0/0 .text daObjCrystal_Draw__FP14daObjCrystal_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCrystal_Draw(daObjCrystal_c* param_0) {
+static asm void daObjCrystal_Draw(daObjCrystal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal/daObjCrystal_Draw__FP14daObjCrystal_c.s"
 }
 #pragma pop
 
-/* 80BD6854-80BD6874 0020+00 s=1 e=0 z=0  None .text      daObjCrystal_Execute__FP14daObjCrystal_c
- */
-//	80BD6860: 80BD6718 (execute__14daObjCrystal_cFv)
+/* 80BD6854-80BD6874 000534 0020+00 1/0 0/0 0/0 .text daObjCrystal_Execute__FP14daObjCrystal_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCrystal_Execute(daObjCrystal_c* param_0) {
+static asm void daObjCrystal_Execute(daObjCrystal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal/daObjCrystal_Execute__FP14daObjCrystal_c.s"
 }
 #pragma pop
 
-/* 80BD6874-80BD6894 0020+00 s=1 e=0 z=0  None .text      daObjCrystal_Delete__FP14daObjCrystal_c */
-//	80BD6880: 80BD67C8 (_delete__14daObjCrystal_cFv)
+/* 80BD6874-80BD6894 000554 0020+00 1/0 0/0 0/0 .text daObjCrystal_Delete__FP14daObjCrystal_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCrystal_Delete(daObjCrystal_c* param_0) {
+static asm void daObjCrystal_Delete(daObjCrystal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal/daObjCrystal_Delete__FP14daObjCrystal_c.s"
 }
 #pragma pop
 
-/* 80BD6894-80BD68B4 0020+00 s=1 e=0 z=0  None .text      daObjCrystal_Create__FP14daObjCrystal_c */
-//	80BD68A0: 80BD6664 (create__14daObjCrystal_cFv)
+/* 80BD6894-80BD68B4 000574 0020+00 1/0 0/0 0/0 .text daObjCrystal_Create__FP14daObjCrystal_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCrystal_Create(daObjCrystal_c* param_0) {
+static asm void daObjCrystal_Create(daObjCrystal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal/daObjCrystal_Create__FP14daObjCrystal_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD68F4-80BD6914 0020+00 s=1 e=0 z=0  None .data      l_daObjCrystal_Method */
+/* 80BD68F4-80BD6914 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCrystal_Method */
 SECTION_DATA static void* l_daObjCrystal_Method[8] = {
     (void*)daObjCrystal_Create__FP14daObjCrystal_c,
     (void*)daObjCrystal_Delete__FP14daObjCrystal_c,
@@ -382,8 +311,8 @@ SECTION_DATA static void* l_daObjCrystal_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BD6914-80BD6944 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Crystal */
-SECTION_DATA void* g_profile_Obj_Crystal[12] = {
+/* 80BD6914-80BD6944 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Crystal */
+SECTION_DATA extern void* g_profile_Obj_Crystal[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01A40000, (void*)&g_fpcLf_Method,
     (void*)0x00000580, (void*)NULL,
@@ -391,3 +320,11 @@ SECTION_DATA void* g_profile_Obj_Crystal[12] = {
     (void*)0x02430000, (void*)&l_daObjCrystal_Method,
     (void*)0x00040000, (void*)0x000E0000,
 };
+
+/* 80BD68D8-80BD68EE 00001C 0016+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BD68D8 = "H_Suisho";
+SECTION_DEAD static char const* const stringBase_80BD68E1 = "polySurface1";
+#pragma pop

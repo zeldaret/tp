@@ -20,8 +20,8 @@ lbl_803216FC:
 /* 8032171C  B0 1F 00 0C */	sth r0, 0xc(r31)
 /* 80321720  28 04 00 0B */	cmplwi r4, 0xb
 /* 80321724  41 81 00 B4 */	bgt lbl_803217D8
-/* 80321728  3C 60 80 3D */	lis r3, lit_5150@ha
-/* 8032172C  38 63 DF 90 */	addi r3, r3, lit_5150@l
+/* 80321728  3C 60 80 3D */	lis r3, lit_5150@ha /* 0x803CDF90@ha */
+/* 8032172C  38 63 DF 90 */	addi r3, r3, lit_5150@l /* 0x803CDF90@l */
 /* 80321730  54 80 10 3A */	slwi r0, r4, 2
 /* 80321734  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80321738  7C 09 03 A6 */	mtctr r0
@@ -29,12 +29,12 @@ lbl_803216FC:
 /* 80321740  38 00 00 1E */	li r0, 0x1e
 /* 80321744  B0 1F 00 0C */	sth r0, 0xc(r31)
 /* 80321748  7C 7C F0 2E */	lwzx r3, r28, r30
-/* 8032174C  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha
-/* 80321750  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l
+/* 8032174C  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha /* 0x803A1E5C@ha */
+/* 80321750  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l /* 0x803A1E5C@l */
 /* 80321754  48 00 24 B9 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80321758  48 00 00 98 */	b lbl_803217F0
-/* 8032175C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80321760  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8032175C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80321760  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80321764  38 81 00 38 */	addi r4, r1, 0x38
 /* 80321768  48 02 4E 49 */	bl PSMTXInverse
 /* 8032176C  38 00 00 00 */	li r0, 0
@@ -46,12 +46,12 @@ lbl_803216FC:
 /* 80321784  38 00 00 00 */	li r0, 0
 /* 80321788  B0 1F 00 0C */	sth r0, 0xc(r31)
 /* 8032178C  7C 7C F0 2E */	lwzx r3, r28, r30
-/* 80321790  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha
-/* 80321794  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l
+/* 80321790  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha /* 0x803A1E5C@ha */
+/* 80321794  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l /* 0x803A1E5C@l */
 /* 80321798  48 00 24 75 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 8032179C  48 00 00 54 */	b lbl_803217F0
-/* 803217A0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803217A4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 803217A0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803217A4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803217A8  38 81 00 08 */	addi r4, r1, 8
 /* 803217AC  48 02 4E 05 */	bl PSMTXInverse
 /* 803217B0  C0 02 C9 AC */	lfs f0, lit_5060(r2)
@@ -68,8 +68,8 @@ lbl_803217D8:
 /* 803217D8  38 00 00 3C */	li r0, 0x3c
 /* 803217DC  B0 1F 00 0C */	sth r0, 0xc(r31)
 /* 803217E0  7C 7C F0 2E */	lwzx r3, r28, r30
-/* 803217E4  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha
-/* 803217E8  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l
+/* 803217E4  3C 80 80 3A */	lis r4, j3dDefaultMtx@ha /* 0x803A1E5C@ha */
+/* 803217E8  38 84 1E 5C */	addi r4, r4, j3dDefaultMtx@l /* 0x803A1E5C@l */
 /* 803217EC  48 00 24 21 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 lbl_803217F0:
 /* 803217F0  3B BD 00 01 */	addi r29, r29, 1

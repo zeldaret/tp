@@ -8,8 +8,8 @@ lbl_802DB6E0:
 /* 802DB6F8  38 80 08 00 */	li r4, 0x800
 /* 802DB6FC  38 A0 00 10 */	li r5, 0x10
 /* 802DB700  4B FF 5E 69 */	bl __ct__9JKRThreadFUlii
-/* 802DB704  3C 60 80 3D */	lis r3, __vt__9JKRDecomp@ha
-/* 802DB708  38 03 C4 A0 */	addi r0, r3, __vt__9JKRDecomp@l
+/* 802DB704  3C 60 80 3D */	lis r3, __vt__9JKRDecomp@ha /* 0x803CC4A0@ha */
+/* 802DB708  38 03 C4 A0 */	addi r0, r3, __vt__9JKRDecomp@l /* 0x803CC4A0@l */
 /* 802DB70C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802DB710  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 802DB714  48 06 60 A1 */	bl OSResumeThread

@@ -7,15 +7,15 @@ lbl_80C9AAB0:
 /* 80C9AAC4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C9AAC8  7C 9F 23 78 */	mr r31, r4
 /* 80C9AACC  41 82 00 28 */	beq lbl_80C9AAF4
-/* 80C9AAD0  3C 80 80 3B */	lis r4, __vt__4dBgW@ha
-/* 80C9AAD4  38 04 BA 80 */	addi r0, r4, __vt__4dBgW@l
+/* 80C9AAD0  3C 80 80 3B */	lis r4, __vt__4dBgW@ha /* 0x803ABA80@ha */
+/* 80C9AAD4  38 04 BA 80 */	addi r0, r4, __vt__4dBgW@l /* 0x803ABA80@l */
 /* 80C9AAD8  90 1E 00 04 */	stw r0, 4(r30)
 /* 80C9AADC  38 80 00 00 */	li r4, 0
-/* 80C9AAE0  4B 3D E8 5C */	b __dt__4cBgWFv
+/* 80C9AAE0  4B 3D E8 5D */	bl __dt__4cBgWFv
 /* 80C9AAE4  7F E0 07 35 */	extsh. r0, r31
 /* 80C9AAE8  40 81 00 0C */	ble lbl_80C9AAF4
 /* 80C9AAEC  7F C3 F3 78 */	mr r3, r30
-/* 80C9AAF0  4B 63 42 4C */	b __dl__FPv
+/* 80C9AAF0  4B 63 42 4D */	bl __dl__FPv
 lbl_80C9AAF4:
 /* 80C9AAF4  7F C3 F3 78 */	mr r3, r30
 /* 80C9AAF8  83 E1 00 0C */	lwz r31, 0xc(r1)

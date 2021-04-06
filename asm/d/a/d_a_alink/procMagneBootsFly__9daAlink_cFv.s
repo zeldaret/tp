@@ -6,8 +6,8 @@ lbl_800E3454:
 /* 800E3464  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 800E3468  7C 7F 1B 78 */	mr r31, r3
 /* 800E346C  C0 23 34 78 */	lfs f1, 0x3478(r3)
-/* 800E3470  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800E3474  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800E3470  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800E3474  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800E3478  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 800E347C  EC 01 00 2A */	fadds f0, f1, f0
 /* 800E3480  D0 1F 34 78 */	stfs f0, 0x3478(r31)
@@ -17,8 +17,8 @@ lbl_800E3454:
 /* 800E3490  40 81 00 08 */	ble lbl_800E3498
 /* 800E3494  D0 3F 34 78 */	stfs f1, 0x3478(r31)
 lbl_800E3498:
-/* 800E3498  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E349C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E3498  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E349C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E34A0  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 800E34A4  7F C3 F3 78 */	mr r3, r30
 /* 800E34A8  38 9F 1E 2C */	addi r4, r31, 0x1e2c
@@ -104,8 +104,8 @@ lbl_800E35D8:
 /* 800E35D8  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800E35DC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E35E0  40 80 00 10 */	bge lbl_800E35F0
-/* 800E35E4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800E35E8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800E35E4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800E35E8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800E35EC  48 00 00 70 */	b lbl_800E365C
 lbl_800E35F0:
 /* 800E35F0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -139,8 +139,8 @@ lbl_800E3648:
 lbl_800E364C:
 /* 800E364C  2C 00 00 01 */	cmpwi r0, 1
 /* 800E3650  40 82 00 0C */	bne lbl_800E365C
-/* 800E3654  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800E3658  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800E3654  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800E3658  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800E365C:
 /* 800E365C  C0 02 93 00 */	lfs f0, lit_6895(r2)
 /* 800E3660  FC 01 00 40 */	fcmpo cr0, f1, f0

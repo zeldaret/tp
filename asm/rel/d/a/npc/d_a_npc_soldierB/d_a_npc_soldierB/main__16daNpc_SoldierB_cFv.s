@@ -3,10 +3,10 @@ lbl_80AF39B8:
 /* 80AF39BC  7C 08 02 A6 */	mflr r0
 /* 80AF39C0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80AF39C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80AF39C8  4B 86 E8 14 */	b _savegpr_29
+/* 80AF39C8  4B 86 E8 15 */	bl _savegpr_29
 /* 80AF39CC  7C 7E 1B 78 */	mr r30, r3
-/* 80AF39D0  3C 80 80 AF */	lis r4, cNullVec__6Z2Calc@ha
-/* 80AF39D4  3B E4 5C 10 */	addi r31, r4, cNullVec__6Z2Calc@l
+/* 80AF39D0  3C 80 80 AF */	lis r4, cNullVec__6Z2Calc@ha /* 0x80AF5C10@ha */
+/* 80AF39D4  3B E4 5C 10 */	addi r31, r4, cNullVec__6Z2Calc@l /* 0x80AF5C10@l */
 /* 80AF39D8  48 00 0D 99 */	bl doEvent__16daNpc_SoldierB_cFv
 /* 80AF39DC  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF39E0  40 82 00 10 */	bne lbl_80AF39F0
@@ -21,7 +21,7 @@ lbl_80AF39F0:
 /* 80AF3A00  88 1E 09 F4 */	lbz r0, 0x9f4(r30)
 /* 80AF3A04  28 00 00 00 */	cmplwi r0, 0
 /* 80AF3A08  41 82 00 14 */	beq lbl_80AF3A1C
-/* 80AF3A0C  4B 53 C0 48 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80AF3A0C  4B 53 C0 49 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80AF3A10  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF3A14  40 82 00 08 */	bne lbl_80AF3A1C
 lbl_80AF3A18:
@@ -32,13 +32,13 @@ lbl_80AF3A1C:
 /* 80AF3A24  38 00 00 00 */	li r0, 0
 /* 80AF3A28  90 1E 05 5C */	stw r0, 0x55c(r30)
 lbl_80AF3A2C:
-/* 80AF3A2C  3C 60 80 AF */	lis r3, m__22daNpc_SoldierB_Param_c@ha
-/* 80AF3A30  38 63 5A D4 */	addi r3, r3, m__22daNpc_SoldierB_Param_c@l
+/* 80AF3A2C  3C 60 80 AF */	lis r3, m__22daNpc_SoldierB_Param_c@ha /* 0x80AF5AD4@ha */
+/* 80AF3A30  38 63 5A D4 */	addi r3, r3, m__22daNpc_SoldierB_Param_c@l /* 0x80AF5AD4@l */
 /* 80AF3A34  88 03 00 6A */	lbz r0, 0x6a(r3)
 /* 80AF3A38  28 00 00 00 */	cmplwi r0, 0
 /* 80AF3A3C  40 82 00 AC */	bne lbl_80AF3AE8
-/* 80AF3A40  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AF3A44  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AF3A40  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AF3A44  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AF3A48  88 63 4F AD */	lbz r3, 0x4fad(r3)
 /* 80AF3A4C  28 03 00 00 */	cmplwi r3, 0
 /* 80AF3A50  41 82 00 30 */	beq lbl_80AF3A80
@@ -82,13 +82,13 @@ lbl_80AF3AAC:
 /* 80AF3AD8  38 E0 00 28 */	li r7, 0x28
 /* 80AF3ADC  39 00 00 FF */	li r8, 0xff
 /* 80AF3AE0  39 20 00 01 */	li r9, 1
-/* 80AF3AE4  4B 65 FD 98 */	b orderEvent__8daNpcF_cFiPcUsUsUcUs
+/* 80AF3AE4  4B 65 FD 99 */	bl orderEvent__8daNpcF_cFiPcUsUsUcUs
 lbl_80AF3AE8:
 /* 80AF3AE8  88 1E 09 EE */	lbz r0, 0x9ee(r30)
 /* 80AF3AEC  28 00 00 00 */	cmplwi r0, 0
 /* 80AF3AF0  41 82 00 1C */	beq lbl_80AF3B0C
-/* 80AF3AF4  3C 60 80 AF */	lis r3, lit_4454@ha
-/* 80AF3AF8  C0 03 5B 54 */	lfs f0, lit_4454@l(r3)
+/* 80AF3AF4  3C 60 80 AF */	lis r3, lit_4454@ha /* 0x80AF5B54@ha */
+/* 80AF3AF8  C0 03 5B 54 */	lfs f0, lit_4454@l(r3)  /* 0x80AF5B54@l */
 /* 80AF3AFC  D0 1E 09 74 */	stfs f0, 0x974(r30)
 /* 80AF3B00  D0 1E 09 7C */	stfs f0, 0x97c(r30)
 /* 80AF3B04  38 00 00 00 */	li r0, 0
@@ -98,7 +98,7 @@ lbl_80AF3B0C:
 /* 80AF3B10  48 00 08 D5 */	bl playMotion__16daNpc_SoldierB_cFv
 /* 80AF3B14  38 60 00 01 */	li r3, 1
 /* 80AF3B18  39 61 00 20 */	addi r11, r1, 0x20
-/* 80AF3B1C  4B 86 E7 0C */	b _restgpr_29
+/* 80AF3B1C  4B 86 E7 0D */	bl _restgpr_29
 /* 80AF3B20  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80AF3B24  7C 08 03 A6 */	mtlr r0
 /* 80AF3B28  38 21 00 20 */	addi r1, r1, 0x20

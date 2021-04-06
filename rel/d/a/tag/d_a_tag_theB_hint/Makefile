@@ -3,17 +3,15 @@
 #
 
 M748_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint.plf
+M748_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint.lcf
+M748_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint.map
 
 M748_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_theB_hint/executor.cpp \
-	rel/d/a/tag/d_a_tag_theB_hint/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_theB_hint/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_theB_hint/d_a_tag_theB_hint.cpp \
 
 M748_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint/d_a_tag_theB_hint.o \
 
 M748_LIBS := \
@@ -29,15 +27,21 @@ M748_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map748.map\
+	-m _prolog \
+	-lcf $(M748_LDSCRIPT) \
+	-unused -map $(M748_MAP) \
+	-w off \
 
 $(M748_TARGET): $(M748_O_FILES) $(M748_LIBS)
+	@echo [748] creating $(M748_TARGET)
 	@echo $(M748_LIBS) $(M748_O_FILES) > build/M748_ofiles
-	$(LD) -opt_partial $(M748_LDFLAGS) -o $(M748_TARGET) @build/M748_ofiles
+	@python3 tools/lcf.py rel 748 --output $(M748_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M748_LDFLAGS) -o $(M748_TARGET) @build/M748_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_theB_hint/%.o: rel/d/a/tag/d_a_tag_theB_hint/%.cpp
+	@echo [748] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M748_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M748_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

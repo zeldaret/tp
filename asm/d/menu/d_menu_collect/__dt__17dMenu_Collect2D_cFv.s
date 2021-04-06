@@ -7,8 +7,8 @@ lbl_801AFE34:
 /* 801AFE48  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801AFE4C  7C 9F 23 78 */	mr r31, r4
 /* 801AFE50  41 82 00 38 */	beq lbl_801AFE88
-/* 801AFE54  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect2D_c@ha
-/* 801AFE58  38 03 C7 C4 */	addi r0, r3, __vt__17dMenu_Collect2D_c@l
+/* 801AFE54  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect2D_c@ha /* 0x803BC7C4@ha */
+/* 801AFE58  38 03 C7 C4 */	addi r0, r3, __vt__17dMenu_Collect2D_c@l /* 0x803BC7C4@l */
 /* 801AFE5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801AFE60  80 7E 00 08 */	lwz r3, 8(r30)
 /* 801AFE64  28 03 00 00 */	cmplwi r3, 0

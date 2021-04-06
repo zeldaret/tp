@@ -9,8 +9,8 @@ lbl_8019A0D0:
 /* 8019A0EC  38 80 00 03 */	li r4, 3
 /* 8019A0F0  48 00 02 55 */	bl setSeq__13dShopSystem_cFUc
 /* 8019A0F4  38 00 00 01 */	li r0, 1
-/* 8019A0F8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8019A0FC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8019A0F8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8019A0FC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8019A100  98 03 00 BD */	stb r0, 0xbd(r3)
 /* 8019A104  7F E3 FB 78 */	mr r3, r31
 /* 8019A108  48 00 02 5D */	bl setSoldOut__13dShopSystem_cFv
@@ -23,8 +23,8 @@ lbl_8019A114:
 /* 8019A120  38 80 00 01 */	li r4, 1
 /* 8019A124  48 00 02 21 */	bl setSeq__13dShopSystem_cFUc
 /* 8019A128  38 00 00 01 */	li r0, 1
-/* 8019A12C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8019A130  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8019A12C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8019A130  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8019A134  98 03 00 BD */	stb r0, 0xbd(r3)
 /* 8019A138  38 60 00 01 */	li r3, 1
 /* 8019A13C  48 00 00 08 */	b lbl_8019A144

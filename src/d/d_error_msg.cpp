@@ -81,9 +81,6 @@ struct J2DOrthoGraph {
 // Forward References:
 //
 
-static void messageSet(u32, bool);
-static void drawCapture(u8);
-
 extern "C" static void messageSet__FUlb();
 extern "C" void draw__14dDvdErrorMsg_cFl();
 extern "C" void execute__14dDvdErrorMsg_cFv();
@@ -94,11 +91,6 @@ extern "C" extern char const* const d_d_error_msg__stringBase0;
 //
 // External References:
 //
-
-void mDoAud_resetRecover();
-void mDoGph_drawFilterQuad(s8, s8);
-void mDoRst_reset(int, u32, int);
-void cLib_chaseUC(u8*, u8, u8);
 
 extern "C" void OSReport_Error();
 extern "C" void mDoAud_resetRecover__Fv();
@@ -177,15 +169,16 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8037B140-8037B180 0040+00 s=1 e=0 z=0  None .rodata    black_tex */
+/* 8037B140-8037B180 0077A0 0040+00 1/1 0/0 0/0 .rodata          black_tex */
 SECTION_RODATA static u8 const black_tex[64] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x08, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_8037B140 = (void*)(&black_tex);
 
-/* 8037B180-8037B3E0 0260+00 s=1 e=0 z=0  None .rodata    msg_data */
+/* 8037B180-8037B3E0 0077E0 0260+00 1/1 0/0 0/0 .rodata          msg_data */
 SECTION_RODATA static u8 const msg_data[608] = {
     0x4D, 0x45, 0x53, 0x47, 0x62, 0x6D, 0x67, 0x31, 0x00, 0x00, 0x02, 0x60, 0x00, 0x00, 0x00, 0x02,
     0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -226,8 +219,9 @@ SECTION_RODATA static u8 const msg_data[608] = {
     0x6F, 0x72, 0x20, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6C, 0x73, 0x2E, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_8037B180 = (void*)(&msg_data);
 
-/* 8037B3E0-8038D640 12260+00 s=1 e=0 z=0  None .rodata    font_data */
+/* 8037B3E0-8038D640 -00001 12260+00 1/1 0/0 0/0 .rodata          font_data */
 SECTION_RODATA static void* const font_data[18584] = {
     (void*)0x464F4E54,
     (void*)0x62666E31,
@@ -18815,8 +18809,9 @@ SECTION_RODATA static void* const font_data[18584] = {
     (void*)0x69727473,
     (void*)0xE1B80000,
 };
+SECTION_DEAD void* const cg_8037B3E0 = (void*)(&font_data);
 
-/* 80452C18-80452C1C 0004+00 s=3 e=0 z=0  None .sdata2    @3758 */
+/* 80452C18-80452C1C 001218 0004+00 3/3 0/0 0/0 .sdata2          @3758 */
 SECTION_SDATA2 static u8 lit_3758[4] = {
     0x00,
     0x00,
@@ -18824,143 +18819,55 @@ SECTION_SDATA2 static u8 lit_3758[4] = {
     0x00,
 };
 
-/* 80452C1C-80452C20 0004+00 s=2 e=0 z=0  None .sdata2    @3759 */
+/* 80452C1C-80452C20 00121C 0004+00 2/2 0/0 0/0 .sdata2          @3759 */
 SECTION_SDATA2 static f32 lit_3759 = 608.0f;
 
-/* 80452C20-80452C24 0004+00 s=1 e=0 z=0  None .sdata2    @3760 */
+/* 80452C20-80452C24 001220 0004+00 1/1 0/0 0/0 .sdata2          @3760 */
 SECTION_SDATA2 static f32 lit_3760 = 200.0f;
 
-/* 80452C24-80452C28 0004+00 s=2 e=0 z=0  None .sdata2    @3761 */
+/* 80452C24-80452C28 001224 0004+00 2/2 0/0 0/0 .sdata2          @3761 */
 SECTION_SDATA2 static f32 lit_3761 = 448.0f;
 
-/* 80452C28-80452C2C 0004+00 s=1 e=0 z=0  None .sdata2    @3762 */
+/* 80452C28-80452C2C 001228 0004+00 1/1 0/0 0/0 .sdata2          @3762 */
 SECTION_SDATA2 static f32 lit_3762 = 23.0f;
 
-/* 80452C2C-80452C30 0004+00 s=1 e=0 z=0  None .sdata2    @3763 */
+/* 80452C2C-80452C30 00122C 0004+00 1/1 0/0 0/0 .sdata2          @3763 */
 SECTION_SDATA2 static f32 lit_3763 = 22.0f;
 
-/* 80452C30-80452C34 0004+00 s=3 e=0 z=0  None .sdata2    @3764 */
+/* 80452C30-80452C34 001230 0004+00 3/3 0/0 0/0 .sdata2          @3764 */
 SECTION_SDATA2 static f32 lit_3764 = 1.0f;
 
-/* 80452C34-80452C38 0004+00 s=1 e=0 z=0  None .sdata2    @3765 */
+/* 80452C34-80452C38 001234 0004+00 1/1 0/0 0/0 .sdata2          @3765 */
 SECTION_SDATA2 static f32 lit_3765 = 0.5f;
 
-/* 80452C38-80452C3C 0004+00 s=1 e=0 z=0  None .sdata2    @3766 */
+/* 80452C38-80452C3C 001238 0004+00 1/1 0/0 0/0 .sdata2          @3766 */
 SECTION_SDATA2 static f32 lit_3766 = 2.0f;
 
-/* 80452C3C-80452C40 0004+00 s=2 e=0 z=0  None .sdata2    @3767 */
+/* 80452C3C-80452C40 00123C 0004+00 2/2 0/0 0/0 .sdata2          @3767 */
 SECTION_SDATA2 static f32 lit_3767 = 10.0f;
 
-/* 80452C40-80452C48 0008+00 s=1 e=0 z=0  None .sdata2    @3769 */
+/* 80452C40-80452C48 001240 0008+00 1/1 0/0 0/0 .sdata2          @3769 */
 SECTION_SDATA2 static f64 lit_3769 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8009CB88-8009D194 060C+00 s=1 e=0 z=0  None .text      messageSet__FUlb */
-//	8009CBA8: 803621D4 (_savegpr_27)
-//	8009CBB0: 8037B180 (msg_data)
-//	8009CBB4: 8037B180 (msg_data)
-//	8009CBD8: 80452C18 (lit_3758)
-//	8009CBE4: 80452C1C (lit_3759)
-//	8009CBEC: 80452C20 (lit_3760)
-//	8009CC14: 8037B3E0 (font_data)
-//	8009CC18: 8037B3E0 (font_data)
-//	8009CC24: 802FFBC4 (func_802FFBC4)
-//	8009CC28: 80452C18 (lit_3758)
-//	8009CC34: 80452C1C (lit_3759)
-//	8009CC3C: 80452C20 (lit_3760)
-//	8009CC64: 8037B3E0 (font_data)
-//	8009CC68: 8037B3E0 (font_data)
-//	8009CC74: 802FFBC4 (func_802FFBC4)
-//	8009CC78: 80452C18 (lit_3758)
-//	8009CC84: 80452C1C (lit_3759)
-//	8009CC8C: 80452C24 (lit_3761)
-//	8009CCA8: 8037B140 (black_tex)
-//	8009CCAC: 8037B140 (black_tex)
-//	8009CCB4: 802FC800 (func_802FC800)
-//	8009CCBC: 8037B3E0 (font_data)
-//	8009CCC0: 8037B3E0 (font_data)
-//	8009CCC8: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	8009CD60: 80452C28 (lit_3762)
-//	8009CD68: 80452C2C (lit_3763)
-//	8009CD88: 80452C18 (lit_3758)
-//	8009CDA0: 80452C18 (lit_3758)
-//	8009CDB8: 80452C30 (lit_3764)
-//	8009CDC0: 80452C28 (lit_3762)
-//	8009CE88: 80452C18 (lit_3758)
-//	8009CEA0: 80452C18 (lit_3758)
-//	8009CEB8: 80452C30 (lit_3764)
-//	8009CEC0: 80452C28 (lit_3762)
-//	8009CF74: 80452C18 (lit_3758)
-//	8009CFA8: 80452C28 (lit_3762)
-//	8009D024: 80452C40 (lit_3769)
-//	8009D060: 80452C30 (lit_3764)
-//	8009D0B0: 80452C18 (lit_3758)
-//	8009D0B4: 80452C1C (lit_3759)
-//	8009D0BC: 80452C34 (lit_3765)
-//	8009D0C8: 80452C24 (lit_3761)
-//	8009D0FC: 802FDC70 (draw__10J2DPictureFffffbbb)
-//	8009D104: 80452C38 (lit_3766)
-//	8009D10C: 80452C3C (lit_3767)
-//	8009D118: 80452C1C (lit_3759)
-//	8009D120: 80300490 (draw__10J2DTextBoxFfff18J2DTextBoxHBinding)
-//	8009D130: 80452C1C (lit_3759)
-//	8009D138: 80300490 (draw__10J2DTextBoxFfff18J2DTextBoxHBinding)
-//	8009D144: 802DF000 (__dt__10JUTResFontFv)
-//	8009D150: 802FCFF0 (__dt__10J2DPictureFv)
-//	8009D15C: 803001E0 (__dt__10J2DTextBoxFv)
-//	8009D168: 803001E0 (__dt__10J2DTextBoxFv)
-//	8009D180: 80362220 (_restgpr_27)
+/* 8009CB88-8009D194 0974C8 060C+00 1/1 0/0 0/0 .text            messageSet__FUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void messageSet(u32 param_0, bool param_1) {
+static asm void messageSet(u32 param_0, bool param_1) {
     nofralloc
 #include "asm/d/d_error_msg/messageSet__FUlb.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452C48-80452C50 0004+04 s=1 e=0 z=0  None .sdata2    @3835 */
+/* 80452C48-80452C50 001248 0004+04 1/1 0/0 0/0 .sdata2          @3835 */
 SECTION_SDATA2 static f32 lit_3835[1 + 1 /* padding */] = {
     -1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8009D194-8009D354 01C0+00 s=1 e=0 z=0  None .text      draw__14dDvdErrorMsg_cFl */
-//	8009D1A8: 80450600 (g_clearColor)
-//	8009D1D8: 804511C0 (sManager__10JFWDisplay)
-//	8009D1FC: 80007F90 (beginRender__13mDoGph_gInf_cFv)
-//	8009D204: 8035FC70 (GXSetAlphaUpdate)
-//	8009D208: 80434AC8 (j3dSys)
-//	8009D20C: 80434AC8 (j3dSys)
-//	8009D210: 803100BC (drawInit__6J3DSysFv)
-//	8009D218: 80452C18 (lit_3758)
-//	8009D220: 80452C1C (lit_3759)
-//	8009D224: 80452C24 (lit_3761)
-//	8009D228: 80452C48 (lit_3835)
-//	8009D22C: 80452C30 (lit_3764)
-//	8009D230: 802E96D0 (__ct__13J2DOrthoGraphFffffff)
-//	8009D234: 80452C18 (lit_3758)
-//	8009D240: 80452C1C (lit_3759)
-//	8009D248: 80452C24 (lit_3761)
-//	8009D258: 80452C48 (lit_3835)
-//	8009D25C: 80452C30 (lit_3764)
-//	8009D260: 802E980C (func_802E980C)
-//	8009D268: 802E97B4 (setPort__13J2DOrthoGraphFv)
-//	8009D270: 804061C0 (g_dComIfG_gameInfo)
-//	8009D274: 804061C0 (g_dComIfG_gameInfo)
-//	8009D28C: 8009CB88 (messageSet__FUlb)
-//	8009D2A4: 8009CB88 (messageSet__FUlb)
-//	8009D2BC: 8009CB88 (messageSet__FUlb)
-//	8009D2D4: 8009CB88 (messageSet__FUlb)
-//	8009D2EC: 8009CB88 (messageSet__FUlb)
-//	8009D304: 8009CB88 (messageSet__FUlb)
-//	8009D308: 804511C0 (sManager__10JFWDisplay)
-//	8009D320: 804511C0 (sManager__10JFWDisplay)
-//	8009D328: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	8009D32C: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	8009D334: 803CC9B8 (__vt__14J2DGrafContext)
-//	8009D338: 803CC9B8 (__vt__14J2DGrafContext)
+/* 8009D194-8009D354 097AD4 01C0+00 1/1 0/0 0/0 .text            draw__14dDvdErrorMsg_cFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -18970,28 +18877,7 @@ asm void dDvdErrorMsg_c::draw(s32 param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8038D640-8038D658 0013+05 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8038D640 = "DVD Error !! <%d>\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
-#pragma pop
-
-/* 8009D354-8009D410 00BC+00 s=0 e=1 z=0  None .text      execute__14dDvdErrorMsg_cFv */
-//	8009D364: 8034B1C8 (DVDGetDriveStatus)
-//	8009D378: 80450FB0 (struct_80450FB0)
-//	8009D388: 80450FB0 (struct_80450FB0)
-//	8009D38C: 80450FB0 (struct_80450FB0)
-//	8009D398: 8038D640 (d_d_error_msg__stringBase0)
-//	8009D39C: 8038D640 (d_d_error_msg__stringBase0)
-//	8009D3A8: 80006C0C (OSReport_Error)
-//	8009D3B8: 80450FB0 (struct_80450FB0)
-//	8009D3C0: 80450C78 (mResetData__6mDoRst)
-//	8009D3F4: 8009D194 (draw__14dDvdErrorMsg_cFl)
-//	8009D3F8: 80450FB0 (struct_80450FB0)
+/* 8009D354-8009D410 097C94 00BC+00 0/0 1/1 0/0 .text            execute__14dDvdErrorMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -19002,104 +18888,20 @@ asm void dDvdErrorMsg_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456B78-80456B80 0004+04 s=1 e=0 z=0  None .sbss2     @3873 */
+/* 80456B78-80456B80 000018 0004+04 1/1 0/0 0/0 .sbss2           @3873 */
 SECTION_SBSS2 static u8 lit_3873[4 + 4 /* padding */];
 
-/* 8009D410-8009D790 0380+00 s=1 e=0 z=0  None .text      drawCapture__FUc */
-//	8009D424: 80450FB2 (struct_80450FB0)
-//	8009D434: 80450FB1 (struct_80450FB0)
-//	8009D43C: 80450FB2 (struct_80450FB0)
-//	8009D440: 80450FB1 (struct_80450FB0)
-//	8009D45C: 8035CA80 (GXSetTexCopySrc)
-//	8009D468: 80450BCC (mFrameBufferTimg__13mDoGph_gInf_c)
-//	8009D474: 8035CB30 (GXSetTexCopyDst)
-//	8009D478: 80450BD0 (mFrameBufferTex__13mDoGph_gInf_c)
-//	8009D480: 8035D46C (GXCopyTex)
-//	8009D488: 80450FB1 (struct_80450FB0)
-//	8009D48C: 80450600 (g_clearColor)
-//	8009D4BC: 804511C0 (sManager__10JFWDisplay)
-//	8009D4E0: 80007F90 (beginRender__13mDoGph_gInf_cFv)
-//	8009D4E8: 8035FC70 (GXSetAlphaUpdate)
-//	8009D4EC: 80434AC8 (j3dSys)
-//	8009D4F0: 80434AC8 (j3dSys)
-//	8009D4F4: 803100BC (drawInit__6J3DSysFv)
-//	8009D4F8: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D4FC: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D500: 80450BD0 (mFrameBufferTex__13mDoGph_gInf_c)
-//	8009D50C: 80450BCC (mFrameBufferTimg__13mDoGph_gInf_c)
-//	8009D520: 8035DE40 (GXInitTexObj)
-//	8009D524: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D528: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D534: 80452C18 (lit_3758)
-//	8009D54C: 8035E0D4 (GXInitTexObjLOD)
-//	8009D550: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D554: 803DD3E8 (mFrameBufferTexObj__13mDoGph_gInf_c)
-//	8009D55C: 8035E414 (GXLoadTexObj)
-//	8009D564: 8035DB30 (GXSetNumChans)
-//	8009D56C: 8035F0D4 (GXSetNumIndStages)
-//	8009D574: 8035BDFC (GXSetNumTexGens)
-//	8009D590: 8035BB7C (GXSetTexCoordGen2)
-//	8009D598: 8035F890 (GXSetNumTevStages)
-//	8009D59C: 80456B78 (lit_3873)
-//	8009D5B8: 8035F37C (GXSetTevColor)
-//	8009D5CC: 8035F6F4 (GXSetTevOrder)
-//	8009D5E4: 8035F224 (GXSetTevColorIn)
-//	8009D600: 8035F2AC (GXSetTevColorOp)
-//	8009D618: 8035F268 (GXSetTevAlphaIn)
-//	8009D634: 8035F314 (GXSetTevAlphaOp)
-//	8009D63C: 8035FCD0 (GXSetZCompLoc)
-//	8009D64C: 8035FC9C (GXSetZMode)
-//	8009D660: 8035FBF0 (GXSetBlendMode)
-//	8009D678: 8035F624 (GXSetAlphaCompare)
-//	8009D67C: 80450600 (g_clearColor)
-//	8009D688: 80452C18 (lit_3758)
-//	8009D69C: 8035F8B8 (GXSetFog)
-//	8009D6AC: 8035FACC (GXSetFogRangeAdj)
-//	8009D6B4: 8035C984 (GXSetCullMode)
-//	8009D6BC: 8035FDD8 (GXSetDither)
-//	8009D6C4: 80452C18 (lit_3758)
-//	8009D6C8: 80452C30 (lit_3764)
-//	8009D6D8: 80452C3C (lit_3767)
-//	8009D6DC: 80346FF8 (C_MTXOrtho)
-//	8009D6E0: 803A2FD8 (g_mDoMtx_identity)
-//	8009D6E4: 803A2FD8 (g_mDoMtx_identity)
-//	8009D6EC: 8036024C (GXLoadPosMtxImm)
-//	8009D6F8: 803600D4 (GXSetProjection)
-//	8009D700: 803602EC (GXSetCurrentMtx)
-//	8009D704: 8035B58C (GXClearVtxDesc)
-//	8009D710: 8035AEB8 (GXSetVtxDesc)
-//	8009D71C: 8035AEB8 (GXSetVtxDesc)
-//	8009D734: 8035B5C4 (GXSetVtxAttrFmt)
-//	8009D74C: 8035B5C4 (GXSetVtxAttrFmt)
-//	8009D758: 800094B4 (mDoGph_drawFilterQuad__FScSc)
-//	8009D75C: 804511C0 (sManager__10JFWDisplay)
-//	8009D774: 804511C0 (sManager__10JFWDisplay)
+/* 8009D410-8009D790 097D50 0380+00 1/1 0/0 0/0 .text            drawCapture__FUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void drawCapture(u8 param_0) {
+static asm void drawCapture(u8 param_0) {
     nofralloc
 #include "asm/d/d_error_msg/drawCapture__FUc.s"
 }
 #pragma pop
 
-/* 8009D790-8009D87C 00EC+00 s=0 e=1 z=0  None .text      execute__19dShutdownErrorMsg_cFv */
-//	8009D79C: 80450C78 (mResetData__6mDoRst)
-//	8009D7C0: 80450688 (data_80450688)
-//	8009D7CC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8009D7DC: 800072C4 (mDoAud_resetRecover__Fv)
-//	8009D7E8: 80450688 (data_80450688)
-//	8009D7EC: 8009D410 (drawCapture__FUc)
-//	8009D7F8: 80450BB8 (struct_80450BB8)
-//	8009D804: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8009D810: 802CD974 (resetProcess__10Z2AudioMgrFUlb)
-//	8009D814: 80450688 (data_80450688)
-//	8009D818: 8009D410 (drawCapture__FUc)
-//	8009D81C: 80450688 (data_80450688)
-//	8009D828: 8027065C (cLib_chaseUC__FPUcUcUc)
-//	8009D834: 80450C78 (mResetData__6mDoRst)
-//	8009D850: 80015614 (mDoRst_reset__FiUli)
-//	8009D864: 80015614 (mDoRst_reset__FiUli)
+/* 8009D790-8009D87C 0980D0 00EC+00 0/0 1/1 0/0 .text            execute__19dShutdownErrorMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -19107,4 +18909,13 @@ asm void dShutdownErrorMsg_c::execute() {
     nofralloc
 #include "asm/d/d_error_msg/execute__19dShutdownErrorMsg_cFv.s"
 }
+#pragma pop
+
+/* 8038D640-8038D658 019CA0 0013+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8038D640 = "DVD Error !! <%d>\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
 #pragma pop

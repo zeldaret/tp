@@ -6,8 +6,8 @@ lbl_801FA590:
 /* 801FA5A0  7C 7F 1B 78 */	mr r31, r3
 /* 801FA5A4  38 A0 00 0A */	li r5, 0xa
 /* 801FA5A8  98 A3 01 44 */	stb r5, 0x144(r3)
-/* 801FA5AC  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801FA5B0  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801FA5AC  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FA5B0  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801FA5B4  88 04 00 B9 */	lbz r0, 0xb9(r4)
 /* 801FA5B8  98 04 00 BA */	stb r0, 0xba(r4)
 /* 801FA5BC  98 A4 00 B9 */	stb r5, 0xb9(r4)

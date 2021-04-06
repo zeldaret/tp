@@ -18,8 +18,8 @@ lbl_8002E6B4:
 /* 8002E6C4  28 05 00 59 */	cmplwi r5, 0x59
 /* 8002E6C8  40 82 00 1C */	bne lbl_8002E6E4
 lbl_8002E6CC:
-/* 8002E6CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002E6D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002E6CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002E6D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002E6D4  38 63 00 F8 */	addi r3, r3, 0xf8
 /* 8002E6D8  48 00 5A 21 */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8002E6DC  54 63 06 3E */	clrlwi r3, r3, 0x18

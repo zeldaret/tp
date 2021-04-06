@@ -2,10 +2,10 @@ lbl_8059E2E4:
 /* 8059E2E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8059E2E8  7C 08 02 A6 */	mflr r0
 /* 8059E2EC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8059E2F0  3C 80 80 5A */	lis r4, cNullVec__6Z2Calc@ha
-/* 8059E2F4  38 E4 E8 38 */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 8059E2F8  3C 80 80 5A */	lis r4, data_8059E920@ha
-/* 8059E2FC  38 C4 E9 20 */	addi r6, r4, data_8059E920@l
+/* 8059E2F0  3C 80 80 5A */	lis r4, cNullVec__6Z2Calc@ha /* 0x8059E838@ha */
+/* 8059E2F4  38 E4 E8 38 */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x8059E838@l */
+/* 8059E2F8  3C 80 80 5A */	lis r4, data_8059E920@ha /* 0x8059E920@ha */
+/* 8059E2FC  38 C4 E9 20 */	addi r6, r4, data_8059E920@l /* 0x8059E920@l */
 /* 8059E300  88 06 00 00 */	lbz r0, 0(r6)
 /* 8059E304  7C 00 07 75 */	extsb. r0, r0
 /* 8059E308  40 82 00 70 */	bne lbl_8059E378
@@ -41,7 +41,7 @@ lbl_8059E378:
 /* 8059E37C  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8059E380  39 87 00 58 */	addi r12, r7, 0x58
 /* 8059E384  7D 8C 02 14 */	add r12, r12, r0
-/* 8059E388  4B DC 3C FC */	b __ptmf_scall
+/* 8059E388  4B DC 3C FD */	bl __ptmf_scall
 /* 8059E38C  60 00 00 00 */	nop 
 /* 8059E390  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8059E394  7C 08 03 A6 */	mtlr r0

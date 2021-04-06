@@ -51,8 +51,8 @@ lbl_802DD994:
 /* 802DD9A4  80 78 00 4C */	lwz r3, 0x4c(r24)
 /* 802DD9A8  A0 03 00 08 */	lhz r0, 8(r3)
 /* 802DD9AC  54 04 10 3A */	slwi r4, r0, 2
-/* 802DD9B0  3C 60 80 3A */	lis r3, saoAboutEncoding___10JUTResFont@ha
-/* 802DD9B4  38 03 D3 90 */	addi r0, r3, saoAboutEncoding___10JUTResFont@l
+/* 802DD9B0  3C 60 80 3A */	lis r3, saoAboutEncoding___10JUTResFont@ha /* 0x8039D390@ha */
+/* 802DD9B4  38 03 D3 90 */	addi r0, r3, saoAboutEncoding___10JUTResFont@l /* 0x8039D390@l */
 /* 802DD9B8  7C 00 22 14 */	add r0, r0, r4
 /* 802DD9BC  90 18 00 6C */	stw r0, 0x6c(r24)
 /* 802DD9C0  48 00 01 18 */	b lbl_802DDAD8
@@ -84,8 +84,8 @@ lbl_802DD9EC:
 /* 802DDA20  4B FF 49 1D */	bl mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
 /* 802DDA24  28 03 00 00 */	cmplwi r3, 0
 /* 802DDA28  40 82 00 24 */	bne lbl_802DDA4C
-/* 802DDA2C  3C 60 80 3A */	lis r3, JUTCacheFont__stringBase0@ha
-/* 802DDA30  38 C3 D2 F0 */	addi r6, r3, JUTCacheFont__stringBase0@l
+/* 802DDA2C  3C 60 80 3A */	lis r3, JUTCacheFont__stringBase0@ha /* 0x8039D2F0@ha */
+/* 802DDA30  38 C3 D2 F0 */	addi r6, r3, JUTCacheFont__stringBase0@l /* 0x8039D2F0@l */
 /* 802DDA34  38 66 00 22 */	addi r3, r6, 0x22
 /* 802DDA38  38 80 01 DD */	li r4, 0x1dd
 /* 802DDA3C  38 A6 00 33 */	addi r5, r6, 0x33
@@ -128,8 +128,8 @@ lbl_802DDAB8:
 /* 802DDAC0  3A B5 00 04 */	addi r21, r21, 4
 /* 802DDAC4  48 00 00 14 */	b lbl_802DDAD8
 lbl_802DDAC8:
-/* 802DDAC8  3C 60 80 3A */	lis r3, JUTCacheFont__stringBase0@ha
-/* 802DDACC  38 63 D2 F0 */	addi r3, r3, JUTCacheFont__stringBase0@l
+/* 802DDAC8  3C 60 80 3A */	lis r3, JUTCacheFont__stringBase0@ha /* 0x8039D2F0@ha */
+/* 802DDACC  38 63 D2 F0 */	addi r3, r3, JUTCacheFont__stringBase0@l /* 0x8039D2F0@l */
 /* 802DDAD0  38 63 00 5C */	addi r3, r3, 0x5c
 /* 802DDAD4  48 00 AB 75 */	bl JUTReportConsole
 lbl_802DDAD8:

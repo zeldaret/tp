@@ -27,10 +27,7 @@ async def create_library(library: Library):
 
         await builder.write(f"{prefix}_CPP_FILES := \\")
         for tu in library.translation_units.values():
-            # Skip empty translation units
-            if len(tu.sections) == 0:
-                continue
-            if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
+            if tu.is_empty:
                 continue
             
             await builder.write(f"\t{tu.source_path(library)} \\")
@@ -38,10 +35,7 @@ async def create_library(library: Library):
 
         await builder.write(f"{prefix}_O_FILES := \\")
         for tu in library.translation_units.values():
-            # Skip empty translation units
-            if len(tu.sections) == 0:
-                continue
-            if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
+            if tu.is_empty:
                 continue
             
             await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(library)} \\")
@@ -73,7 +67,7 @@ async def create_library(library: Library):
     
     debug(f"generated Makefile: '{makefile_path}'")
 
-async def create_rel(module: Module):
+async def create_rel(module: Module, rel_path: Path):
     libraries = list(module.libraries.values())
     base = libraries[0]
     prefix = f"m{module.index}".upper()
@@ -87,6 +81,8 @@ async def create_rel(module: Module):
 
     target = f"{base.name}.plf"
     target_path = f"$(BUILD_DIR)/rel/{target}"
+    ldscript_path = f"$(BUILD_DIR)/rel/{base.name}.lcf"
+    map_path = f"$(BUILD_DIR)/rel/{base.name}.map"
     input_file = f"build/{prefix}_ofiles"
 
     async with AsyncBuilder(makefile_path) as builder:
@@ -96,28 +92,28 @@ async def create_rel(module: Module):
         await builder.write("")
 
         await builder.write(f"{prefix}_TARGET := {target_path}")
+        await builder.write(f"{prefix}_LDSCRIPT := {ldscript_path}")
+        await builder.write(f"{prefix}_MAP := {map_path}")
         await builder.write("")
 
         await builder.write(f"{prefix}_CPP_FILES := \\")
         for tu in base.translation_units.values():
-            # Skip empty translation units
-            if len(tu.sections) == 0:
+            if tu.is_empty:
                 continue
-            if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
-                continue
-
-            await builder.write(f"\t{tu.source_path(base)} \\")
+            if tu.special == "rel":
+                await builder.write(f"\t{rel_path.joinpath(tu.name)}.cpp \\")
+            else:
+                await builder.write(f"\t{tu.source_path(base)} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_O_FILES := \\")
         for tu in base.translation_units.values():
-            # Skip empty translation units
-            if len(tu.sections) == 0:
+            if tu.is_empty:
                 continue
-            if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
-                continue
-            
-            await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(base)} \\")
+            if tu.special == "rel":
+                await builder.write(f"\t$(BUILD_DIR)/{rel_path.joinpath(tu.name)}.o \\")
+            else:
+                await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(base)} \\")
         await builder.write("")
 
         await builder.write(f"{prefix}_LIBS := \\")
@@ -137,19 +133,24 @@ async def create_rel(module: Module):
         await builder.write("\t-linkmode moreram \\")
         await builder.write("\t-sdata 0 \\")
         await builder.write("\t-sdata2 0 \\")
-        await builder.write("\t-lcf $(BUILD_DIR)/rel_ldscript.lcf \\")
-        await builder.write(f"\t-unused -map $(BUILD_DIR)/map{module.index}.map\\")
+        await builder.write("\t-m _prolog \\")
+        await builder.write(f"\t-lcf $({prefix}_LDSCRIPT) \\")
+        await builder.write(f"\t-unused -map $({prefix}_MAP) \\")
+        await builder.write(f"\t-w off \\")
         await builder.write("")
 
         await builder.write(f"$({prefix}_TARGET): $({prefix}_O_FILES) $({prefix}_LIBS)")
+        await builder.write(f"\t@echo [{module.index:>3}] creating $({prefix}_TARGET)")
         await builder.write(f"\t@echo $({prefix}_LIBS) $({prefix}_O_FILES) > {input_file}")
-        await builder.write(f"\t$(LD) -opt_partial $({prefix}_LDFLAGS) -o $({prefix}_TARGET) @{input_file}")
+        await builder.write(f"\t@python3 tools/lcf.py rel {module.index} --output $({prefix}_LDSCRIPT)")
+        await builder.write(f"\t@$(LD) -opt_partial -strip_partial $({prefix}_LDFLAGS) -o $({prefix}_TARGET) @{input_file}")
         await builder.write("")
 
         await builder.write(f"{o_path}/%.o: {cpp_path}/%.cpp")
+        await builder.write(f"\t@echo [{module.index:>3}] building $@")
         await builder.write(f"\t@mkdir -p $(@D)")
-        await builder.write(f"\t$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $<")
-        #await builder.write(f"\t$(STRIP) -d -R .dead -R .comment $@")
+        await builder.write(f"\t@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<")
+        await builder.write(f"\t@$(CC) $(CFLAGS) $({prefix}_CFLAGS) -c -o $@ $@.iconv.cpp")
         await builder.write("")
 
         for library in libraries[1:]:
@@ -181,10 +182,7 @@ async def create_rel(module: Module):
 
             await builder.write(f"{prefix}_CPP_FILES := \\")
             for tu in library.translation_units.values():
-                # Skip empty translation units
-                if len(tu.sections) == 0:
-                    continue
-                if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
+                if tu.is_empty:
                     continue
 
                 await builder.write(f"\t{tu.source_path(library)} \\")
@@ -192,16 +190,15 @@ async def create_rel(module: Module):
 
             await builder.write(f"{prefix}_O_FILES := \\")
             for tu in library.translation_units.values():
-                # Skip empty translation units
-                if len(tu.sections) == 0:
+                if tu.is_empty:
                     continue
-                if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
-                    continue
-                
+
                 await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(library)} \\")
             await builder.write("")
 
             await builder.write(f"{prefix}_CFLAGS := \\")
+            await builder.write("\t-sdata 0 \\")
+            await builder.write("\t-sdata2 0 \\")
             await builder.write("")
 
             await builder.write(f"{prefix}_LDFLAGS := \\")
@@ -209,6 +206,8 @@ async def create_rel(module: Module):
             await builder.write("\t-fp hard \\")
             await builder.write("\t-proc gekko \\")
             await builder.write("\t-linkmode moreram \\")
+            await builder.write("\t-sdata 0 \\")
+            await builder.write("\t-sdata2 0 \\")
             await builder.write("")
             
             await builder.write(f"{target_path}: $({prefix}_O_FILES)")
@@ -248,10 +247,7 @@ async def create_obj_files(modules: Module):
         await builder.write(f"O_FILES := \\")
         base = modules[0].libraries[None]
         for tu in base.translation_units.values():
-            # Skip empty translation units
-            if len(tu.sections) == 0:
-                continue
-            if sum([len(x.symbols) for x in tu.sections.values()]) == 0:
+            if tu.is_empty:
                 continue
 
             await builder.write(f"\t$(BUILD_DIR)/{tu.object_path(base)} \\")

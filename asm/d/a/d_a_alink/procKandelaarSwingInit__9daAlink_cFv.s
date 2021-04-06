@@ -4,8 +4,8 @@ lbl_80111440:
 /* 80111448  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8011144C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80111450  7C 7F 1B 78 */	mr r31, r3
-/* 80111454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80111458  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80111454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80111458  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011145C  38 64 5B 54 */	addi r3, r4, 0x5b54
 /* 80111460  80 84 5B 64 */	lwz r4, 0x5b64(r4)
 /* 80111464  4B F6 25 29 */	bl convPId__11dAttCatch_cFUi
@@ -55,14 +55,14 @@ lbl_801114D8:
 /* 80111504  2C 00 00 29 */	cmpwi r0, 0x29
 /* 80111508  41 82 00 34 */	beq lbl_8011153C
 lbl_8011150C:
-/* 8011150C  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 80111510  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 8011150C  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 80111510  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 80111514  38 63 00 A5 */	addi r3, r3, 0xa5
 /* 80111518  4B F8 C5 49 */	bl checkStageName__9daAlink_cFPCc
 /* 8011151C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80111520  41 82 00 58 */	beq lbl_80111578
-/* 80111524  3C 60 80 11 */	lis r3, daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv@ha
-/* 80111528  38 63 06 68 */	addi r3, r3, daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv@l
+/* 80111524  3C 60 80 11 */	lis r3, daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv@ha /* 0x80110668@ha */
+/* 80111528  38 63 06 68 */	addi r3, r3, daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv@l /* 0x80110668@l */
 /* 8011152C  38 80 00 00 */	li r4, 0
 /* 80111530  4B F0 82 C9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80111534  28 03 00 00 */	cmplwi r3, 0
@@ -70,12 +70,12 @@ lbl_8011150C:
 lbl_8011153C:
 /* 8011153C  7F E3 FB 78 */	mr r3, r31
 /* 80111540  38 80 01 08 */	li r4, 0x108
-/* 80111544  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 80111548  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 80111544  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 80111548  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 8011154C  38 A5 00 50 */	addi r5, r5, 0x50
 /* 80111550  4B F9 BB A5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 80111554  3C 60 80 39 */	lis r3, m__20daAlinkHIO_bottle_c0@ha
-/* 80111558  38 63 E9 0C */	addi r3, r3, m__20daAlinkHIO_bottle_c0@l
+/* 80111554  3C 60 80 39 */	lis r3, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 80111558  38 63 E9 0C */	addi r3, r3, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 8011155C  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 80111560  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 80111564  C0 02 93 3C */	lfs f0, lit_7808(r2)
@@ -86,11 +86,11 @@ lbl_8011153C:
 lbl_80111578:
 /* 80111578  7F E3 FB 78 */	mr r3, r31
 /* 8011157C  38 80 01 0B */	li r4, 0x10b
-/* 80111580  3C A0 80 39 */	lis r5, m__23daAlinkHIO_kandelaar_c0@ha
-/* 80111584  38 A5 E7 7C */	addi r5, r5, m__23daAlinkHIO_kandelaar_c0@l
+/* 80111580  3C A0 80 39 */	lis r5, m__23daAlinkHIO_kandelaar_c0@ha /* 0x8038E77C@ha */
+/* 80111584  38 A5 E7 7C */	addi r5, r5, m__23daAlinkHIO_kandelaar_c0@l /* 0x8038E77C@l */
 /* 80111588  4B F9 BB 6D */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 8011158C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_kandelaar_c0@ha
-/* 80111590  38 63 E7 7C */	addi r3, r3, m__23daAlinkHIO_kandelaar_c0@l
+/* 8011158C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_kandelaar_c0@ha /* 0x8038E77C@ha */
+/* 80111590  38 63 E7 7C */	addi r3, r3, m__23daAlinkHIO_kandelaar_c0@l /* 0x8038E77C@l */
 /* 80111594  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80111598  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 8011159C  C0 02 93 24 */	lfs f0, lit_7450(r2)

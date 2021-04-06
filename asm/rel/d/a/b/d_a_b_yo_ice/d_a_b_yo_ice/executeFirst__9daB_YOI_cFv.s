@@ -7,8 +7,8 @@ lbl_8063A96C:
 /* 8063A980  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8063A984  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 8063A988  7C 7E 1B 78 */	mr r30, r3
-/* 8063A98C  3C 60 80 64 */	lis r3, lit_3776@ha
-/* 8063A990  3B E3 DC 84 */	addi r31, r3, lit_3776@l
+/* 8063A98C  3C 60 80 64 */	lis r3, lit_3776@ha /* 0x8063DC84@ha */
+/* 8063A990  3B E3 DC 84 */	addi r31, r3, lit_3776@l /* 0x8063DC84@l */
 /* 8063A994  38 61 00 18 */	addi r3, r1, 0x18
 /* 8063A998  80 9E 06 68 */	lwz r4, 0x668(r30)
 /* 8063A99C  48 00 32 B9 */	bl getIceCenterPos__8daB_YO_cFv
@@ -38,7 +38,7 @@ lbl_8063A9E8:
 /* 8063A9F4  38 00 00 01 */	li r0, 1
 /* 8063A9F8  90 1E 06 98 */	stw r0, 0x698(r30)
 /* 8063A9FC  C0 3F 00 1C */	lfs f1, 0x1c(r31)
-/* 8063AA00  4B C2 CF 8C */	b cM_rndFX__Ff
+/* 8063AA00  4B C2 CF 8D */	bl cM_rndFX__Ff
 /* 8063AA04  C0 1F 00 18 */	lfs f0, 0x18(r31)
 /* 8063AA08  EC 00 08 2A */	fadds f0, f0, f1
 /* 8063AA0C  FC 00 00 1E */	fctiwz f0, f0
@@ -56,8 +56,8 @@ lbl_8063AA24:
 /* 8063AA38  38 03 0A AA */	addi r0, r3, 0xaaa
 /* 8063AA3C  C0 21 00 24 */	lfs f1, 0x24(r1)
 /* 8063AA40  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8063AA44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8063AA48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8063AA44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8063AA48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8063AA4C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8063AA50  EC 1F 00 32 */	fmuls f0, f31, f0
 /* 8063AA54  EC 01 00 2A */	fadds f0, f1, f0
@@ -80,13 +80,13 @@ lbl_8063AA24:
 /* 8063AA98  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8063AA9C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8063AAA0  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 8063AAA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8063AAA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8063AAA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8063AAA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8063AAAC  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8063AAB0  38 80 00 04 */	li r4, 4
 /* 8063AAB4  38 A0 00 1F */	li r5, 0x1f
 /* 8063AAB8  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8063AABC  4B A3 4F 68 */	b StartShock__12dVibration_cFii4cXyz
+/* 8063AABC  4B A3 4F 69 */	bl StartShock__12dVibration_cFii4cXyz
 /* 8063AAC0  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8063AAC4  D0 1E 06 80 */	stfs f0, 0x680(r30)
 /* 8063AAC8  38 00 00 02 */	li r0, 2
@@ -113,13 +113,13 @@ lbl_8063AADC:
 /* 8063AB18  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 8063AB1C  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 8063AB20  C0 5F 00 20 */	lfs f2, 0x20(r31)
-/* 8063AB24  4B C3 5C 1C */	b cLib_chaseF__FPfff
+/* 8063AB24  4B C3 5C 1D */	bl cLib_chaseF__FPfff
 /* 8063AB28  48 00 00 14 */	b lbl_8063AB3C
 lbl_8063AB2C:
 /* 8063AB2C  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 8063AB30  C0 3F 00 24 */	lfs f1, 0x24(r31)
 /* 8063AB34  C0 5F 00 20 */	lfs f2, 0x20(r31)
-/* 8063AB38  4B C3 5C 08 */	b cLib_chaseF__FPfff
+/* 8063AB38  4B C3 5C 09 */	bl cLib_chaseF__FPfff
 lbl_8063AB3C:
 /* 8063AB3C  80 1E 06 A8 */	lwz r0, 0x6a8(r30)
 /* 8063AB40  2C 00 00 00 */	cmpwi r0, 0
@@ -127,8 +127,8 @@ lbl_8063AB3C:
 /* 8063AB48  80 1E 06 8C */	lwz r0, 0x68c(r30)
 /* 8063AB4C  1C 00 19 99 */	mulli r0, r0, 0x1999
 /* 8063AB50  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 8063AB54  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8063AB58  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8063AB54  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8063AB58  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8063AB5C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8063AB60  7C 64 02 14 */	add r3, r4, r0
 /* 8063AB64  C0 03 00 04 */	lfs f0, 4(r3)
@@ -145,7 +145,7 @@ lbl_8063AB3C:
 /* 8063AB90  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 8063AB94  38 81 00 24 */	addi r4, r1, 0x24
 /* 8063AB98  C0 3F 00 28 */	lfs f1, 0x28(r31)
-/* 8063AB9C  4B C3 5D F4 */	b cLib_chasePosXZ__FP4cXyzRC4cXyzf
+/* 8063AB9C  4B C3 5D F5 */	bl cLib_chasePosXZ__FP4cXyzRC4cXyzf
 lbl_8063ABA0:
 /* 8063ABA0  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 8063ABA4  CB E1 00 40 */	lfd f31, 0x40(r1)

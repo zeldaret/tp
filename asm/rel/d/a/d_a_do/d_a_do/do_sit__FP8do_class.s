@@ -5,8 +5,8 @@ lbl_8066A3D0:
 /* 8066A3DC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8066A3E0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8066A3E4  7C 7E 1B 78 */	mr r30, r3
-/* 8066A3E8  3C 80 80 67 */	lis r4, lit_3662@ha
-/* 8066A3EC  3B E4 ED E8 */	addi r31, r4, lit_3662@l
+/* 8066A3E8  3C 80 80 67 */	lis r4, lit_3662@ha /* 0x8066EDE8@ha */
+/* 8066A3EC  3B E4 ED E8 */	addi r31, r4, lit_3662@l /* 0x8066EDE8@l */
 /* 8066A3F0  38 80 00 01 */	li r4, 1
 /* 8066A3F4  98 83 06 16 */	stb r4, 0x616(r3)
 /* 8066A3F8  C0 1F 00 7C */	lfs f0, 0x7c(r31)
@@ -41,7 +41,7 @@ lbl_8066A450:
 /* 8066A460  38 00 00 03 */	li r0, 3
 /* 8066A464  B0 1E 05 F6 */	sth r0, 0x5f6(r30)
 /* 8066A468  C0 3F 00 84 */	lfs f1, 0x84(r31)
-/* 8066A46C  4B BF D4 E8 */	b cM_rndF__Ff
+/* 8066A46C  4B BF D4 E9 */	bl cM_rndF__Ff
 /* 8066A470  C0 1F 00 84 */	lfs f0, 0x84(r31)
 /* 8066A474  EC 00 08 2A */	fadds f0, f0, f1
 /* 8066A478  FC 00 00 1E */	fctiwz f0, f0
@@ -56,7 +56,7 @@ lbl_8066A48C:
 /* 8066A498  38 00 00 02 */	li r0, 2
 /* 8066A49C  B0 1E 05 F6 */	sth r0, 0x5f6(r30)
 /* 8066A4A0  C0 3F 00 84 */	lfs f1, 0x84(r31)
-/* 8066A4A4  4B BF D4 B0 */	b cM_rndF__Ff
+/* 8066A4A4  4B BF D4 B1 */	bl cM_rndF__Ff
 /* 8066A4A8  C0 1F 00 84 */	lfs f0, 0x84(r31)
 /* 8066A4AC  EC 00 08 2A */	fadds f0, f0, f1
 /* 8066A4B0  FC 00 00 1E */	fctiwz f0, f0
@@ -121,7 +121,7 @@ lbl_8066A580:
 /* 8066A580  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8066A584  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 8066A588  C0 5F 00 0C */	lfs f2, 0xc(r31)
-/* 8066A58C  4B C0 54 F4 */	b cLib_addCalc0__FPfff
+/* 8066A58C  4B C0 54 F5 */	bl cLib_addCalc0__FPfff
 /* 8066A590  C0 5E 05 C8 */	lfs f2, 0x5c8(r30)
 /* 8066A594  C0 3F 00 20 */	lfs f1, 0x20(r31)
 /* 8066A598  C0 1E 06 7C */	lfs f0, 0x67c(r30)

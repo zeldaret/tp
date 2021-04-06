@@ -10,12 +10,12 @@ lbl_80130440:
 /* 80130460  4B F9 1B 0D */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80130464  7F C3 F3 78 */	mr r3, r30
 /* 80130468  38 80 00 6B */	li r4, 0x6b
-/* 8013046C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha
-/* 80130470  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l
+/* 8013046C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 80130470  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 80130474  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 80130478  4B FF 93 D1 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-/* 8013047C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 80130480  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013047C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 80130480  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 80130484  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 80130488  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013048C  D0 1E 35 8C */	stfs f0, 0x358c(r30)

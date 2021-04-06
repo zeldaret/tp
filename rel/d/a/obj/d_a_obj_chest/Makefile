@@ -3,18 +3,16 @@
 #
 
 M422_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest.plf
+M422_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest.lcf
+M422_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest.map
 
 M422_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_chest/executor.cpp \
-	rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_chest/d_a_obj_chest.cpp \
 
 M422_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest.o \
 
@@ -31,15 +29,21 @@ M422_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map422.map\
+	-m _prolog \
+	-lcf $(M422_LDSCRIPT) \
+	-unused -map $(M422_MAP) \
+	-w off \
 
 $(M422_TARGET): $(M422_O_FILES) $(M422_LIBS)
+	@echo [422] creating $(M422_TARGET)
 	@echo $(M422_LIBS) $(M422_O_FILES) > build/M422_ofiles
-	$(LD) -opt_partial $(M422_LDFLAGS) -o $(M422_TARGET) @build/M422_ofiles
+	@python3 tools/lcf.py rel 422 --output $(M422_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M422_LDFLAGS) -o $(M422_TARGET) @build/M422_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/%.o: rel/d/a/obj/d_a_obj_chest/%.cpp
+	@echo [422] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M422_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M422_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

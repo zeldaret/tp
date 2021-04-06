@@ -29,11 +29,11 @@ lbl_80116E9C:
 /* 80116F08  80 1E 05 74 */	lwz r0, 0x574(r30)
 /* 80116F0C  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80116F10  41 82 00 28 */	beq lbl_80116F38
-/* 80116F14  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 80116F18  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 80116F14  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 80116F18  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 80116F1C  C0 23 00 08 */	lfs f1, 8(r3)
-/* 80116F20  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 80116F24  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 80116F20  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 80116F24  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 80116F28  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 80116F2C  EF 61 00 24 */	fdivs f27, f1, f0
 /* 80116F30  EF 7B 06 F2 */	fmuls f27, f27, f27

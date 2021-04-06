@@ -40,7 +40,7 @@ lbl_802F9120:
 /* 802F91B8  48 06 35 AD */	bl GXBegin
 /* 802F91BC  C0 02 C8 20 */	lfs f0, lit_1561(r2)
 /* 802F91C0  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802F91C4  D0 03 80 00 */	stfs f0, 0x8000(r3)
+/* 802F91C4  D0 03 80 00 */	stfs f0, 0x8000(r3)  /* 0xCC008000@l */
 /* 802F91C8  C0 02 C8 20 */	lfs f0, lit_1561(r2)
 /* 802F91CC  D0 03 80 00 */	stfs f0, -0x8000(r3)
 /* 802F91D0  C0 02 C8 20 */	lfs f0, lit_1561(r2)

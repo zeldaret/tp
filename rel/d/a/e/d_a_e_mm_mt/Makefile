@@ -3,17 +3,15 @@
 #
 
 M213_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt.plf
+M213_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt.lcf
+M213_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt.map
 
 M213_CPP_FILES := \
-	rel/d/a/e/d_a_e_mm_mt/executor.cpp \
-	rel/d/a/e/d_a_e_mm_mt/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_mm_mt/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_mm_mt/d_a_e_mm_mt.cpp \
 
 M213_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/d_a_e_mm_mt.o \
 
 M213_LIBS := \
@@ -29,15 +27,21 @@ M213_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map213.map\
+	-m _prolog \
+	-lcf $(M213_LDSCRIPT) \
+	-unused -map $(M213_MAP) \
+	-w off \
 
 $(M213_TARGET): $(M213_O_FILES) $(M213_LIBS)
+	@echo [213] creating $(M213_TARGET)
 	@echo $(M213_LIBS) $(M213_O_FILES) > build/M213_ofiles
-	$(LD) -opt_partial $(M213_LDFLAGS) -o $(M213_TARGET) @build/M213_ofiles
+	@python3 tools/lcf.py rel 213 --output $(M213_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M213_LDFLAGS) -o $(M213_TARGET) @build/M213_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_mm_mt/%.o: rel/d/a/e/d_a_e_mm_mt/%.cpp
+	@echo [213] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M213_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M213_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

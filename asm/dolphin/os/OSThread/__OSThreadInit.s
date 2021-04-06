@@ -1,6 +1,6 @@
 lbl_80340B1C:
 /* 80340B1C  7C 08 02 A6 */	mflr r0
-/* 80340B20  3C 60 80 45 */	lis r3, RunQueue@ha
+/* 80340B20  3C 60 80 45 */	lis r3, RunQueue@ha /* 0x8044BB78@ha */
 /* 80340B24  90 01 00 04 */	stw r0, 4(r1)
 /* 80340B28  38 00 00 02 */	li r0, 2
 /* 80340B2C  38 80 00 10 */	li r4, 0x10
@@ -10,7 +10,7 @@ lbl_80340B1C:
 /* 80340B3C  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 80340B40  3B A0 00 00 */	li r29, 0
 /* 80340B44  93 81 00 08 */	stw r28, 8(r1)
-/* 80340B48  3B 83 BB 78 */	addi r28, r3, RunQueue@l
+/* 80340B48  3B 83 BB 78 */	addi r28, r3, RunQueue@l /* 0x8044BB78@l */
 /* 80340B4C  3B FC 04 18 */	addi r31, r28, 0x418
 /* 80340B50  B0 1C 06 E0 */	sth r0, 0x6e0(r28)
 /* 80340B54  38 00 00 01 */	li r0, 1
@@ -27,7 +27,7 @@ lbl_80340B1C:
 /* 80340B80  3F C0 80 00 */	lis r30, 0x8000 /* 0x800000D8@ha */
 /* 80340B84  38 7F 00 00 */	addi r3, r31, 0
 /* 80340B88  93 BC 07 0C */	stw r29, 0x70c(r28)
-/* 80340B8C  93 FE 00 D8 */	stw r31, 0x00D8(r30)
+/* 80340B8C  93 FE 00 D8 */	stw r31, 0x00D8(r30)  /* 0x800000D8@l */
 /* 80340B90  4B FF B4 71 */	bl OSClearContext
 /* 80340B94  7F E3 FB 78 */	mr r3, r31
 /* 80340B98  4B FF B2 A1 */	bl OSSetCurrentContext

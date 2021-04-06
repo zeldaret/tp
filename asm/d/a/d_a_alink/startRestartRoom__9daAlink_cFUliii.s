@@ -14,8 +14,8 @@ lbl_800BDF60:
 /* 800BDF90  40 82 02 C0 */	bne lbl_800BE250
 /* 800BDF94  2C 1F 00 00 */	cmpwi r31, 0
 /* 800BDF98  40 82 00 2C */	bne lbl_800BDFC4
-/* 800BDF9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BDFA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BDF9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BDFA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BDFA4  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800BDFA8  7F 84 E3 78 */	mr r4, r28
 /* 800BDFAC  38 A0 00 00 */	li r5, 0
@@ -57,8 +57,8 @@ lbl_800BE030:
 /* 800BE030  48 05 AA A1 */	bl checkFinalBattle__9daAlink_cFv
 /* 800BE034  2C 03 00 00 */	cmpwi r3, 0
 /* 800BE038  40 82 01 08 */	bne lbl_800BE140
-/* 800BE03C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BE040  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BE03C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BE040  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BE044  38 83 0D BC */	addi r4, r3, 0xdbc
 /* 800BE048  38 7C 37 80 */	addi r3, r28, 0x3780
 /* 800BE04C  48 28 93 51 */	bl PSVECSquareDistance
@@ -90,8 +90,8 @@ lbl_800BE0B0:
 /* 800BE0B0  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800BE0B4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800BE0B8  40 80 00 10 */	bge lbl_800BE0C8
-/* 800BE0BC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800BE0C0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800BE0BC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800BE0C0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800BE0C4  48 00 00 70 */	b lbl_800BE134
 lbl_800BE0C8:
 /* 800BE0C8  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -125,8 +125,8 @@ lbl_800BE120:
 lbl_800BE124:
 /* 800BE124  2C 00 00 01 */	cmpwi r0, 1
 /* 800BE128  40 82 00 0C */	bne lbl_800BE134
-/* 800BE12C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800BE130  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800BE12C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800BE130  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800BE134:
 /* 800BE134  C0 02 93 A0 */	lfs f0, lit_9054(r2)
 /* 800BE138  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -134,8 +134,8 @@ lbl_800BE134:
 lbl_800BE140:
 /* 800BE140  3B E0 00 00 */	li r31, 0
 lbl_800BE144:
-/* 800BE144  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BE148  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BE144  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BE148  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BE14C  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800BE150  38 80 20 08 */	li r4, 0x2008
 /* 800BE154  4B F7 68 69 */	bl isEventBit__11dSv_event_cCFUs
@@ -176,8 +176,8 @@ lbl_800BE1CC:
 /* 800BE1D0  7F C4 F3 78 */	mr r4, r30
 /* 800BE1D4  38 A1 00 08 */	addi r5, r1, 8
 /* 800BE1D8  4B FF FC 49 */	bl setLastSceneDamage__9daAlink_cFiPUl
-/* 800BE1DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BE1E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BE1DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BE1E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BE1E4  88 03 0D B4 */	lbz r0, 0xdb4(r3)
 /* 800BE1E8  7C 03 07 74 */	extsb r3, r0
 /* 800BE1EC  7F E4 FB 78 */	mr r4, r31

@@ -18,8 +18,8 @@ lbl_80023AA0:
 lbl_80023AE0:
 /* 80023AE0  7F 43 D3 78 */	mr r3, r26
 /* 80023AE4  38 80 00 50 */	li r4, 0x50
-/* 80023AE8  3C A0 80 3A */	lis r5, submethod@ha
-/* 80023AEC  38 A5 3A E0 */	addi r5, r5, submethod@l
+/* 80023AE8  3C A0 80 3A */	lis r5, submethod@ha /* 0x803A3AE0@ha */
+/* 80023AEC  38 A5 3A E0 */	addi r5, r5, submethod@l /* 0x803A3AE0@l */
 /* 80023AF0  4B FF D2 C1 */	bl fpcCtRq_Create__FP11layer_classUlP27create_request_method_class
 /* 80023AF4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80023AF8  41 82 00 5C */	beq lbl_80023B54

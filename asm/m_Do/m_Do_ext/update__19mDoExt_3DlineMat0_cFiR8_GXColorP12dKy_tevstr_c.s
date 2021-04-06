@@ -30,8 +30,8 @@ lbl_80012E94:
 lbl_80012EA8:
 /* 80012EA8  B0 92 00 14 */	sth r4, 0x14(r18)
 lbl_80012EAC:
-/* 80012EAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80012EB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80012EAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80012EB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80012EB4  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 80012EB8  83 D2 00 18 */	lwz r30, 0x18(r18)
 /* 80012EBC  A0 12 00 14 */	lhz r0, 0x14(r18)

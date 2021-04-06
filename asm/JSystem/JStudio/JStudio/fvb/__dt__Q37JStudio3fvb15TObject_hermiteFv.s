@@ -7,13 +7,13 @@ lbl_80284CE4:
 /* 80284CF8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80284CFC  7C 9F 23 78 */	mr r31, r4
 /* 80284D00  41 82 00 4C */	beq lbl_80284D4C
-/* 80284D04  3C 60 80 3C */	lis r3, __vt__Q37JStudio3fvb15TObject_hermite@ha
-/* 80284D08  38 03 4A 50 */	addi r0, r3, __vt__Q37JStudio3fvb15TObject_hermite@l
+/* 80284D04  3C 60 80 3C */	lis r3, __vt__Q37JStudio3fvb15TObject_hermite@ha /* 0x803C4A50@ha */
+/* 80284D08  38 03 4A 50 */	addi r0, r3, __vt__Q37JStudio3fvb15TObject_hermite@l /* 0x803C4A50@l */
 /* 80284D0C  90 1E 00 08 */	stw r0, 8(r30)
 /* 80284D10  34 1E 00 18 */	addic. r0, r30, 0x18
 /* 80284D14  41 82 00 1C */	beq lbl_80284D30
-/* 80284D18  3C 60 80 3C */	lis r3, __vt__Q27JStudio22TFunctionValue_hermite@ha
-/* 80284D1C  38 03 48 E0 */	addi r0, r3, __vt__Q27JStudio22TFunctionValue_hermite@l
+/* 80284D18  3C 60 80 3C */	lis r3, __vt__Q27JStudio22TFunctionValue_hermite@ha /* 0x803C48E0@ha */
+/* 80284D1C  38 03 48 E0 */	addi r0, r3, __vt__Q27JStudio22TFunctionValue_hermite@l /* 0x803C48E0@l */
 /* 80284D20  90 1E 00 18 */	stw r0, 0x18(r30)
 /* 80284D24  38 7E 00 18 */	addi r3, r30, 0x18
 /* 80284D28  38 80 00 00 */	li r4, 0

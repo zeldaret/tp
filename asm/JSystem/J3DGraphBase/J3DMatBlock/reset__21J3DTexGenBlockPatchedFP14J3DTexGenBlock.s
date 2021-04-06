@@ -58,8 +58,8 @@ lbl_803200FC:
 /* 8032015C  48 01 B4 81 */	bl DCStoreRange
 /* 80320160  48 00 00 18 */	b lbl_80320178
 lbl_80320164:
-/* 80320164  3C 60 80 3A */	lis r3, J3DMatBlock__stringBase0@ha
-/* 80320168  38 63 1E A8 */	addi r3, r3, J3DMatBlock__stringBase0@l
+/* 80320164  3C 60 80 3A */	lis r3, J3DMatBlock__stringBase0@ha /* 0x803A1EA8@ha */
+/* 80320168  38 63 1E A8 */	addi r3, r3, J3DMatBlock__stringBase0@l /* 0x803A1EA8@l */
 /* 8032016C  7F A4 EB 78 */	mr r4, r29
 /* 80320170  4C C6 31 82 */	crclr 6
 /* 80320174  4B CE 69 49 */	bl OSReport

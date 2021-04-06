@@ -4,13 +4,13 @@ lbl_8094DD10:
 /* 8094DD18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8094DD1C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8094DD20  7C 7F 1B 78 */	mr r31, r3
-/* 8094DD24  4B 6C AF BC */	b fopAc_IsActor__FPv
+/* 8094DD24  4B 6C AF BD */	bl fopAc_IsActor__FPv
 /* 8094DD28  2C 03 00 00 */	cmpwi r3, 0
 /* 8094DD2C  41 82 00 30 */	beq lbl_8094DD5C
 /* 8094DD30  A8 1F 00 08 */	lha r0, 8(r31)
 /* 8094DD34  2C 00 00 FE */	cmpwi r0, 0xfe
 /* 8094DD38  40 82 00 24 */	bne lbl_8094DD5C
-/* 8094DD3C  4B 81 1B 60 */	b checkBoomerangCharge__9daPy_py_cFv
+/* 8094DD3C  4B 81 1B 61 */	bl checkBoomerangCharge__9daPy_py_cFv
 /* 8094DD40  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8094DD44  41 82 00 18 */	beq lbl_8094DD5C
 /* 8094DD48  80 1F 00 B0 */	lwz r0, 0xb0(r31)

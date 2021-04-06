@@ -4,7 +4,7 @@ lbl_80A5B544:
 /* 80A5B54C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A5B550  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A5B554  7C 7F 1B 78 */	mr r31, r3
-/* 80A5B558  4B 5B D7 88 */	b fopAc_IsActor__FPv
+/* 80A5B558  4B 5B D7 89 */	bl fopAc_IsActor__FPv
 /* 80A5B55C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A5B560  41 82 00 9C */	beq lbl_80A5B5FC
 /* 80A5B564  A8 1F 00 08 */	lha r0, 8(r31)

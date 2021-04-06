@@ -5,17 +5,17 @@ lbl_80BED22C:
 /* 80BED238  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BED23C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BED240  7C 7E 1B 78 */	mr r30, r3
-/* 80BED244  3C 80 80 BF */	lis r4, M_attr__12daObjFlag2_c@ha
-/* 80BED248  3B E4 E0 DC */	addi r31, r4, M_attr__12daObjFlag2_c@l
-/* 80BED24C  4B 44 46 24 */	b getArcName__12daSetBgObj_cFP10fopAc_ac_c
-/* 80BED250  3C 80 80 BF */	lis r4, stringBase0@ha
-/* 80BED254  38 84 E1 E8 */	addi r4, r4, stringBase0@l
-/* 80BED258  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80BED25C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80BED244  3C 80 80 BF */	lis r4, M_attr__12daObjFlag2_c@ha /* 0x80BEE0DC@ha */
+/* 80BED248  3B E4 E0 DC */	addi r31, r4, M_attr__12daObjFlag2_c@l /* 0x80BEE0DC@l */
+/* 80BED24C  4B 44 46 25 */	bl getArcName__12daSetBgObj_cFP10fopAc_ac_c
+/* 80BED250  3C 80 80 BF */	lis r4, d_a_obj_flag2__stringBase0@ha /* 0x80BEE1E8@ha */
+/* 80BED254  38 84 E1 E8 */	addi r4, r4, d_a_obj_flag2__stringBase0@l /* 0x80BEE1E8@l */
+/* 80BED258  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BED25C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BED260  3C A5 00 02 */	addis r5, r5, 2
 /* 80BED264  38 C0 00 80 */	li r6, 0x80
 /* 80BED268  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80BED26C  4B 44 F1 10 */	b getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
+/* 80BED26C  4B 44 F1 11 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80BED270  80 03 00 00 */	lwz r0, 0(r3)
 /* 80BED274  54 00 04 3E */	clrlwi r0, r0, 0x10
 /* 80BED278  C8 3F 00 98 */	lfd f1, 0x98(r31)
@@ -38,7 +38,7 @@ lbl_80BED22C:
 /* 80BED2BC  C0 9F 00 8C */	lfs f4, 0x8c(r31)
 /* 80BED2C0  C0 BF 00 90 */	lfs f5, 0x90(r31)
 /* 80BED2C4  FC C0 20 90 */	fmr f6, f4
-/* 80BED2C8  4B 42 D2 80 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80BED2C8  4B 42 D2 81 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80BED2CC  38 61 00 08 */	addi r3, r1, 8
 /* 80BED2D0  38 9E 07 00 */	addi r4, r30, 0x700
 /* 80BED2D4  48 00 0D E5 */	bl getTargetPos__11FlagCloth_cFv
@@ -67,7 +67,7 @@ lbl_80BED22C:
 /* 80BED330  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80BED334  7C 04 07 74 */	extsb r4, r0
 /* 80BED338  38 A0 00 FF */	li r5, 0xff
-/* 80BED33C  4B 5B B5 B0 */	b dKy_tevstr_init__FP12dKy_tevstr_cScUc
+/* 80BED33C  4B 5B B5 B1 */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
 /* 80BED340  7F C3 F3 78 */	mr r3, r30
 /* 80BED344  48 00 00 25 */	bl initBaseMtx__12daObjFlag2_cFv
 /* 80BED348  7F C3 F3 78 */	mr r3, r30

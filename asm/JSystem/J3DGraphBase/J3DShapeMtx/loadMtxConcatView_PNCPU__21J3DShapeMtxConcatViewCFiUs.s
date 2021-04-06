@@ -8,8 +8,8 @@ lbl_80313A14:
 /* 80313A2C  80 0D 90 40 */	lwz r0, sTexGenBlock__17J3DDifferedTexMtx(r13)
 /* 80313A30  28 00 00 00 */	cmplwi r0, 0
 /* 80313A34  41 82 00 34 */	beq lbl_80313A68
-/* 80313A38  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313A3C  38 83 4A C8 */	addi r4, r3, j3dSys@l
+/* 80313A38  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313A3C  38 83 4A C8 */	addi r4, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313A40  80 64 00 40 */	lwz r3, 0x40(r4)
 /* 80313A44  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 80313A48  80 84 01 04 */	lwz r4, 0x104(r4)
@@ -21,8 +21,8 @@ lbl_80313A14:
 /* 80313A60  38 61 00 08 */	addi r3, r1, 8
 /* 80313A64  4B FF F7 C9 */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_80313A68:
-/* 80313A68  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313A6C  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 80313A68  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313A6C  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313A70  80 7F 00 40 */	lwz r3, 0x40(r31)
 /* 80313A74  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 80313A78  1F DE 00 03 */	mulli r30, r30, 3

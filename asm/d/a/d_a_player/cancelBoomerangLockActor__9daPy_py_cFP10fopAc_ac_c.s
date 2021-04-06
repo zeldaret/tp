@@ -3,8 +3,8 @@ lbl_8015F8E4:
 /* 8015F8E8  7C 08 02 A6 */	mflr r0
 /* 8015F8EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8015F8F0  7C 64 1B 78 */	mr r4, r3
-/* 8015F8F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F8F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F8F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F8F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F8FC  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8015F900  4B F8 08 CD */	bl cancelBoomerangLock__9daAlink_cFP10fopAc_ac_c
 /* 8015F904  80 01 00 14 */	lwz r0, 0x14(r1)

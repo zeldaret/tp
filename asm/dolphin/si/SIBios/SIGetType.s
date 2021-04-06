@@ -5,20 +5,20 @@ lbl_80345F90:
 /* 80345F9C  BF 61 00 14 */	stmw r27, 0x14(r1)
 /* 80345FA0  7C 7B 1B 78 */	mr r27, r3
 /* 80345FA4  4B FF 77 51 */	bl OSDisableInterrupts
-/* 80345FA8  3C 80 80 3D */	lis r4, Type@ha
+/* 80345FA8  3C 80 80 3D */	lis r4, Type@ha /* 0x803D1210@ha */
 /* 80345FAC  57 65 10 3A */	slwi r5, r27, 2
-/* 80345FB0  38 04 12 10 */	addi r0, r4, Type@l
+/* 80345FB0  38 04 12 10 */	addi r0, r4, Type@l /* 0x803D1210@l */
 /* 80345FB4  7F C0 2A 14 */	add r30, r0, r5
 /* 80345FB8  83 9E 00 00 */	lwz r28, 0(r30)
 /* 80345FBC  7C 7D 1B 78 */	mr r29, r3
 /* 80345FC0  4B FF C7 5D */	bl __OSGetSystemTime
-/* 80345FC4  3C A0 80 45 */	lis r5, TypeTime@ha
+/* 80345FC4  3C A0 80 45 */	lis r5, TypeTime@ha /* 0x8044C750@ha */
 /* 80345FC8  57 66 18 38 */	slwi r6, r27, 3
-/* 80345FCC  38 05 C7 50 */	addi r0, r5, TypeTime@l
+/* 80345FCC  38 05 C7 50 */	addi r0, r5, TypeTime@l /* 0x8044C750@l */
 /* 80345FD0  7F E0 32 14 */	add r31, r0, r6
 /* 80345FD4  80 DF 00 04 */	lwz r6, 4(r31)
-/* 80345FD8  3C A0 80 3D */	lis r5, Si@ha
-/* 80345FDC  38 A5 11 FC */	addi r5, r5, Si@l
+/* 80345FD8  3C A0 80 3D */	lis r5, Si@ha /* 0x803D11FC@ha */
+/* 80345FDC  38 A5 11 FC */	addi r5, r5, Si@l /* 0x803D11FC@l */
 /* 80345FE0  80 1F 00 00 */	lwz r0, 0(r31)
 /* 80345FE4  7C 86 20 10 */	subfc r4, r6, r4
 /* 80345FE8  7C 00 19 10 */	subfe r0, r0, r3
@@ -42,7 +42,7 @@ lbl_80346024:
 /* 8034602C  48 00 00 B4 */	b lbl_803460E0
 lbl_80346030:
 /* 80346030  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 80346034  80 C3 00 F8 */	lwz r6, 0x00F8(r3)
+/* 80346034  80 C3 00 F8 */	lwz r6, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80346038  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
 /* 8034603C  38 A5 4D D3 */	addi r5, r5, 0x4DD3 /* 0x10624DD3@l */
 /* 80346040  54 C6 F0 BE */	srwi r6, r6, 2
@@ -65,7 +65,7 @@ lbl_80346030:
 /* 80346084  48 00 00 BC */	b lbl_80346140
 lbl_80346088:
 /* 80346088  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 8034608C  80 C3 00 F8 */	lwz r6, 0x00F8(r3)
+/* 8034608C  80 C3 00 F8 */	lwz r6, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80346090  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
 /* 80346094  38 A5 4D D3 */	addi r5, r5, 0x4DD3 /* 0x10624DD3@l */
 /* 80346098  54 C6 F0 BE */	srwi r6, r6, 2
@@ -91,11 +91,11 @@ lbl_803460E0:
 /* 803460E0  4B FF C6 3D */	bl __OSGetSystemTime
 /* 803460E4  90 9F 00 04 */	stw r4, 4(r31)
 /* 803460E8  3C 80 43 1C */	lis r4, 0x431C /* 0x431BDE83@ha */
-/* 803460EC  3C A0 80 34 */	lis r5, GetTypeCallback@ha
+/* 803460EC  3C A0 80 34 */	lis r5, GetTypeCallback@ha /* 0x80345CF8@ha */
 /* 803460F0  90 7F 00 00 */	stw r3, 0(r31)
 /* 803460F4  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 803460F8  39 05 5C F8 */	addi r8, r5, GetTypeCallback@l
-/* 803460FC  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 803460F8  39 05 5C F8 */	addi r8, r5, GetTypeCallback@l /* 0x80345CF8@l */
+/* 803460FC  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80346100  38 84 DE 83 */	addi r4, r4, 0xDE83 /* 0x431BDE83@l */
 /* 80346104  38 7B 00 00 */	addi r3, r27, 0
 /* 80346108  54 00 F0 BE */	srwi r0, r0, 2

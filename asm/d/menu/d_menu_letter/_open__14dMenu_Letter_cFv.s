@@ -10,8 +10,8 @@ lbl_801DDA74:
 /* 801DDA94  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 801DDA98  28 00 00 00 */	cmplwi r0, 0
 /* 801DDA9C  40 82 00 1C */	bne lbl_801DDAB8
-/* 801DDAA0  3C 60 80 39 */	lis r3, d_menu_d_menu_letter__stringBase0@ha
-/* 801DDAA4  38 63 6D C0 */	addi r3, r3, d_menu_d_menu_letter__stringBase0@l
+/* 801DDAA0  3C 60 80 39 */	lis r3, d_menu_d_menu_letter__stringBase0@ha /* 0x80396DC0@ha */
+/* 801DDAA4  38 63 6D C0 */	addi r3, r3, d_menu_d_menu_letter__stringBase0@l /* 0x80396DC0@l */
 /* 801DDAA8  38 80 00 00 */	li r4, 0
 /* 801DDAAC  38 A0 00 00 */	li r5, 0
 /* 801DDAB0  4B E3 83 65 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
@@ -46,8 +46,8 @@ lbl_801DDB18:
 /* 801DDB18  38 60 00 00 */	li r3, 0
 /* 801DDB1C  48 00 01 5C */	b lbl_801DDC78
 lbl_801DDB20:
-/* 801DDB20  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801DDB24  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l
+/* 801DDB20  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801DDB24  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801DDB28  A8 9D 07 58 */	lha r4, 0x758(r29)
 /* 801DDB2C  A8 7D 07 5C */	lha r3, 0x75c(r29)
 /* 801DDB30  B0 9F 03 68 */	sth r4, 0x368(r31)

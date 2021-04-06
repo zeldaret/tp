@@ -3,17 +3,15 @@
 #
 
 M421_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier.plf
+M421_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier.lcf
+M421_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier.map
 
 M421_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_chandelier/executor.cpp \
-	rel/d/a/obj/d_a_obj_chandelier/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_chandelier/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_chandelier/d_a_obj_chandelier.cpp \
 
 M421_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/d_a_obj_chandelier.o \
 
 M421_LIBS := \
@@ -29,15 +27,21 @@ M421_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map421.map\
+	-m _prolog \
+	-lcf $(M421_LDSCRIPT) \
+	-unused -map $(M421_MAP) \
+	-w off \
 
 $(M421_TARGET): $(M421_O_FILES) $(M421_LIBS)
+	@echo [421] creating $(M421_TARGET)
 	@echo $(M421_LIBS) $(M421_O_FILES) > build/M421_ofiles
-	$(LD) -opt_partial $(M421_LDFLAGS) -o $(M421_TARGET) @build/M421_ofiles
+	@python3 tools/lcf.py rel 421 --output $(M421_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M421_LDFLAGS) -o $(M421_TARGET) @build/M421_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chandelier/%.o: rel/d/a/obj/d_a_obj_chandelier/%.cpp
+	@echo [421] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M421_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M421_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

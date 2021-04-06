@@ -4,16 +4,16 @@ lbl_80D26468:
 /* 80D26470  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80D26474  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80D26478  7C 7F 1B 78 */	mr r31, r3
-/* 80D2647C  3C 60 80 D2 */	lis r3, l_arcName@ha
-/* 80D26480  38 63 6C 74 */	addi r3, r3, l_arcName@l
+/* 80D2647C  3C 60 80 D2 */	lis r3, l_arcName@ha /* 0x80D26C74@ha */
+/* 80D26480  38 63 6C 74 */	addi r3, r3, l_arcName@l /* 0x80D26C74@l */
 /* 80D26484  80 63 00 00 */	lwz r3, 0(r3)
 /* 80D26488  38 80 00 08 */	li r4, 8
-/* 80D2648C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80D26490  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80D2648C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D26490  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D26494  3C A5 00 02 */	addis r5, r5, 2
 /* 80D26498  38 C0 00 80 */	li r6, 0x80
 /* 80D2649C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80D264A0  4B 31 5E 4C */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80D264A0  4B 31 5E 4D */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80D264A4  38 80 00 00 */	li r4, 0
 /* 80D264A8  38 A1 00 08 */	addi r5, r1, 8
 /* 80D264AC  81 83 00 00 */	lwz r12, 0(r3)

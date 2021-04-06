@@ -5,10 +5,10 @@ lbl_809538F8:
 /* 80953904  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80953908  93 C1 00 08 */	stw r30, 8(r1)
 /* 8095390C  7C 7E 1B 78 */	mr r30, r3
-/* 80953910  3C 80 80 95 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80953914  3B E4 78 E8 */	addi r31, r4, cNullVec__6Z2Calc@l
-/* 80953918  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 8095391C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80953910  3C 80 80 95 */	lis r4, cNullVec__6Z2Calc@ha /* 0x809578E8@ha */
+/* 80953914  3B E4 78 E8 */	addi r31, r4, cNullVec__6Z2Calc@l /* 0x809578E8@l */
+/* 80953918  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8095391C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80953920  80 85 00 00 */	lwz r4, 0(r5)
 /* 80953924  80 05 00 04 */	lwz r0, 4(r5)
 /* 80953928  90 83 0F A4 */	stw r4, 0xfa4(r3)

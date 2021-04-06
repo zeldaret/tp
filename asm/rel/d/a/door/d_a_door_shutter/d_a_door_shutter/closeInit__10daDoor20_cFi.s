@@ -7,14 +7,14 @@ lbl_80462738:
 /* 8046274C  A0 03 06 8E */	lhz r0, 0x68e(r3)
 /* 80462750  60 00 00 02 */	ori r0, r0, 2
 /* 80462754  B0 03 06 8E */	sth r0, 0x68e(r3)
-/* 80462758  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8046275C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80462758  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8046275C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80462760  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80462764  80 9F 05 C4 */	lwz r4, 0x5c4(r31)
 /* 80462768  7F E5 FB 78 */	mr r5, r31
-/* 8046276C  4B C1 22 9C */	b Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
+/* 8046276C  4B C1 22 9D */	bl Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
 /* 80462770  7F E3 FB 78 */	mr r3, r31
-/* 80462774  4B BD 7A 14 */	b getKind__13door_param2_cFP10fopAc_ac_c
+/* 80462774  4B BD 7A 15 */	bl getKind__13door_param2_cFP10fopAc_ac_c
 /* 80462778  2C 03 00 02 */	cmpwi r3, 2
 /* 8046277C  41 82 00 1C */	beq lbl_80462798
 /* 80462780  40 80 00 14 */	bge lbl_80462794

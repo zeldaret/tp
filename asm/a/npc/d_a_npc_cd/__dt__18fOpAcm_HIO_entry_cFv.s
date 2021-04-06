@@ -5,12 +5,12 @@ lbl_801578C0:
 /* 801578CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801578D0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801578D4  41 82 00 30 */	beq lbl_80157904
-/* 801578D8  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha
-/* 801578DC  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l
+/* 801578D8  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha /* 0x803B61A8@ha */
+/* 801578DC  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l /* 0x803B61A8@l */
 /* 801578E0  90 1F 00 00 */	stw r0, 0(r31)
 /* 801578E4  41 82 00 10 */	beq lbl_801578F4
-/* 801578E8  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 801578EC  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 801578E8  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x803B61B4@ha */
+/* 801578EC  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x803B61B4@l */
 /* 801578F0  90 1F 00 00 */	stw r0, 0(r31)
 lbl_801578F4:
 /* 801578F4  7C 80 07 35 */	extsh. r0, r4

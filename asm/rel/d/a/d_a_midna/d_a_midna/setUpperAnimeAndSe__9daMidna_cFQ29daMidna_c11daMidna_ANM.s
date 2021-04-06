@@ -6,8 +6,8 @@ lbl_804C0020:
 /* 804C0030  93 C1 00 08 */	stw r30, 8(r1)
 /* 804C0034  7C 7E 1B 78 */	mr r30, r3
 /* 804C0038  1C A4 00 0C */	mulli r5, r4, 0xc
-/* 804C003C  3C 80 80 4C */	lis r4, m_anmDataTable__9daMidna_c@ha
-/* 804C0040  38 04 65 E4 */	addi r0, r4, m_anmDataTable__9daMidna_c@l
+/* 804C003C  3C 80 80 4C */	lis r4, m_anmDataTable__9daMidna_c@ha /* 0x804C65E4@ha */
+/* 804C0040  38 04 65 E4 */	addi r0, r4, m_anmDataTable__9daMidna_c@l /* 0x804C65E4@l */
 /* 804C0044  7F E0 2A 14 */	add r31, r0, r5
 /* 804C0048  A0 9F 00 00 */	lhz r4, 0(r31)
 /* 804C004C  3C A0 00 01 */	lis r5, 0x0001 /* 0x0000FFFF@ha */

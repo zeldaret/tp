@@ -12,8 +12,8 @@ lbl_80BDEECC:
 /* 80BDEEF4  48 00 04 2D */	bl moveInit__17daObjDmElevator_cFv
 /* 80BDEEF8  48 00 00 54 */	b lbl_80BDEF4C
 lbl_80BDEEFC:
-/* 80BDEEFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80BDEF00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80BDEEFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BDEF00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BDEF04  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80BDEF08  28 00 00 00 */	cmplwi r0, 0
 /* 80BDEF0C  40 82 00 40 */	bne lbl_80BDEF4C
@@ -28,7 +28,7 @@ lbl_80BDEEFC:
 /* 80BDEF30  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80BDEF34  38 E0 00 00 */	li r7, 0
 /* 80BDEF38  39 00 00 01 */	li r8, 1
-/* 80BDEF3C  4B 43 C7 40 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80BDEF3C  4B 43 C7 41 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80BDEF40  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80BDEF44  60 00 00 02 */	ori r0, r0, 2
 /* 80BDEF48  B0 1F 00 FA */	sth r0, 0xfa(r31)

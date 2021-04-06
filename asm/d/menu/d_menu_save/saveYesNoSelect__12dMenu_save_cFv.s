@@ -10,8 +10,8 @@ lbl_801F40D8:
 /* 801F40F8  40 82 01 2C */	bne lbl_801F4224
 /* 801F40FC  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 801F4100  4B E3 E0 9D */	bl checkTrigger__9STControlFv
-/* 801F4104  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801F4108  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801F4104  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801F4108  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801F410C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801F4110  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801F4114  41 82 00 10 */	beq lbl_801F4124

@@ -35,8 +35,8 @@ lbl_80074790:
 /* 800747C0  D0 1F 00 08 */	stfs f0, 8(r31)
 /* 800747C4  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 800747C8  D0 1F 00 0C */	stfs f0, 0xc(r31)
-/* 800747CC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800747D0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800747CC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800747D0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800747D4  90 01 00 18 */	stw r0, 0x18(r1)
 /* 800747D8  38 60 00 01 */	li r3, 1
 lbl_800747DC:

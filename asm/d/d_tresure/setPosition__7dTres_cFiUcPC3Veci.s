@@ -11,8 +11,8 @@ lbl_8009C3CC:
 /* 8009C3F0  7F 83 E3 78 */	mr r3, r28
 /* 8009C3F4  4B FF FF 6D */	bl getFirstData__7dTres_cFUc
 /* 8009C3F8  7C 7F 1B 78 */	mr r31, r3
-/* 8009C3FC  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha
-/* 8009C400  38 63 54 38 */	addi r3, r3, mTypeGroupListAll__7dTres_c@l
+/* 8009C3FC  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha /* 0x80425438@ha */
+/* 8009C400  38 63 54 38 */	addi r3, r3, mTypeGroupListAll__7dTres_c@l /* 0x80425438@l */
 /* 8009C404  57 80 06 3E */	clrlwi r0, r28, 0x18
 /* 8009C408  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8009C40C  7C 63 02 14 */	add r3, r3, r0

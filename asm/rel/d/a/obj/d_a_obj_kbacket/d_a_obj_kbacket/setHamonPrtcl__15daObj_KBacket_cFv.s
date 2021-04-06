@@ -9,12 +9,12 @@ lbl_80587B68:
 /* 80587B84  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80587B88  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80587B8C  38 81 00 08 */	addi r4, r1, 8
-/* 80587B90  3C A0 80 58 */	lis r5, lit_4479@ha
-/* 80587B94  C0 25 7E 34 */	lfs f1, lit_4479@l(r5)
-/* 80587B98  3C A0 80 58 */	lis r5, lit_4483@ha
-/* 80587B9C  C0 45 7E 44 */	lfs f2, lit_4483@l(r5)
+/* 80587B90  3C A0 80 58 */	lis r5, lit_4479@ha /* 0x80587E34@ha */
+/* 80587B94  C0 25 7E 34 */	lfs f1, lit_4479@l(r5)  /* 0x80587E34@l */
+/* 80587B98  3C A0 80 58 */	lis r5, lit_4483@ha /* 0x80587E44@ha */
+/* 80587B9C  C0 45 7E 44 */	lfs f2, lit_4483@l(r5)  /* 0x80587E44@l */
 /* 80587BA0  38 63 0A 34 */	addi r3, r3, 0xa34
-/* 80587BA4  4B A9 55 68 */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 80587BA4  4B A9 55 69 */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 /* 80587BA8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80587BAC  7C 08 03 A6 */	mtlr r0
 /* 80587BB0  38 21 00 20 */	addi r1, r1, 0x20

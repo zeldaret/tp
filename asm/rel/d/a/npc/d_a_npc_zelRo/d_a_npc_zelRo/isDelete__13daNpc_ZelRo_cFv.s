@@ -13,7 +13,7 @@ lbl_80B729DC:
 /* 80B729E4  48 00 00 18 */	b lbl_80B729FC
 lbl_80B729E8:
 /* 80B729E8  38 60 00 2D */	li r3, 0x2d
-/* 80B729EC  4B 5D A0 C0 */	b daNpcT_chkEvtBit__FUl
+/* 80B729EC  4B 5D A0 C1 */	bl daNpcT_chkEvtBit__FUl
 /* 80B729F0  7C 60 00 34 */	cntlzw r0, r3
 /* 80B729F4  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80B729F8  48 00 00 08 */	b lbl_80B72A00

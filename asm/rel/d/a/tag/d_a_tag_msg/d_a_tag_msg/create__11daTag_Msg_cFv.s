@@ -11,12 +11,12 @@ lbl_8048F878:
 /* 8048F89C  7F C0 F3 79 */	or. r0, r30, r30
 /* 8048F8A0  41 82 00 20 */	beq lbl_8048F8C0
 /* 8048F8A4  7C 1F 03 78 */	mr r31, r0
-/* 8048F8A8  4B B8 92 BC */	b __ct__10fopAc_ac_cFv
-/* 8048F8AC  3C 60 80 49 */	lis r3, __vt__11daTag_Msg_c@ha
-/* 8048F8B0  38 03 02 34 */	addi r0, r3, __vt__11daTag_Msg_c@l
+/* 8048F8A8  4B B8 92 BD */	bl __ct__10fopAc_ac_cFv
+/* 8048F8AC  3C 60 80 49 */	lis r3, __vt__11daTag_Msg_c@ha /* 0x80490234@ha */
+/* 8048F8B0  38 03 02 34 */	addi r0, r3, __vt__11daTag_Msg_c@l /* 0x80490234@l */
 /* 8048F8B4  90 1F 05 68 */	stw r0, 0x568(r31)
 /* 8048F8B8  38 7F 05 80 */	addi r3, r31, 0x580
-/* 8048F8BC  4B DB A6 44 */	b __ct__10dMsgFlow_cFv
+/* 8048F8BC  4B DB A6 45 */	bl __ct__10dMsgFlow_cFv
 lbl_8048F8C0:
 /* 8048F8C0  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 8048F8C4  60 00 00 08 */	ori r0, r0, 8
@@ -26,7 +26,7 @@ lbl_8048F8CC:
 /* 8048F8D0  48 00 06 BD */	bl getResName__11daTag_Msg_cFv
 /* 8048F8D4  7C 64 1B 78 */	mr r4, r3
 /* 8048F8D8  38 7E 05 74 */	addi r3, r30, 0x574
-/* 8048F8DC  4B B9 D5 E0 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8048F8DC  4B B9 D5 E1 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8048F8E0  7C 7F 1B 78 */	mr r31, r3
 /* 8048F8E4  2C 1F 00 04 */	cmpwi r31, 4
 /* 8048F8E8  40 82 00 50 */	bne lbl_8048F938
@@ -41,10 +41,10 @@ lbl_8048F8CC:
 /* 8048F90C  38 00 FF FF */	li r0, -1
 /* 8048F910  B0 1E 05 D0 */	sth r0, 0x5d0(r30)
 /* 8048F914  7F C3 F3 78 */	mr r3, r30
-/* 8048F918  3C 80 80 49 */	lis r4, createHeapCallBack__FP10fopAc_ac_c@ha
-/* 8048F91C  38 84 F7 D8 */	addi r4, r4, createHeapCallBack__FP10fopAc_ac_c@l
+/* 8048F918  3C 80 80 49 */	lis r4, createHeapCallBack__FP10fopAc_ac_c@ha /* 0x8048F7D8@ha */
+/* 8048F91C  38 84 F7 D8 */	addi r4, r4, createHeapCallBack__FP10fopAc_ac_c@l /* 0x8048F7D8@l */
 /* 8048F920  38 A0 00 10 */	li r5, 0x10
-/* 8048F924  4B B8 AB 8C */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 8048F924  4B B8 AB 8D */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 8048F928  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8048F92C  40 82 00 0C */	bne lbl_8048F938
 /* 8048F930  38 60 00 05 */	li r3, 5

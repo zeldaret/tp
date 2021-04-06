@@ -8,7 +8,7 @@ lbl_8034FCB4:
 /* 8034FCCC  3B C3 00 00 */	addi r30, r3, 0
 /* 8034FCD0  4B FE DA 25 */	bl OSDisableInterrupts
 /* 8034FCD4  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC005030@ha */
-/* 8034FCD8  A0 04 50 30 */	lhz r0, 0x5030(r4)
+/* 8034FCD8  A0 04 50 30 */	lhz r0, 0x5030(r4)  /* 0xCC005030@l */
 /* 8034FCDC  38 A4 50 00 */	addi r5, r4, 0x5000
 /* 8034FCE0  38 C4 50 00 */	addi r6, r4, 0x5000
 /* 8034FCE4  38 E4 50 00 */	addi r7, r4, 0x5000

@@ -1,8 +1,8 @@
 lbl_80B4EFAC:
-/* 80B4EFAC  3C 80 80 B5 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80B4EFB0  38 C4 24 DC */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80B4EFB4  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80B4EFB8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80B4EFAC  3C 80 80 B5 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80B524DC@ha */
+/* 80B4EFB0  38 C4 24 DC */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80B524DC@l */
+/* 80B4EFB4  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80B4EFB8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80B4EFBC  80 85 00 00 */	lwz r4, 0(r5)
 /* 80B4EFC0  80 05 00 04 */	lwz r0, 4(r5)
 /* 80B4EFC4  90 83 0F A4 */	stw r4, 0xfa4(r3)

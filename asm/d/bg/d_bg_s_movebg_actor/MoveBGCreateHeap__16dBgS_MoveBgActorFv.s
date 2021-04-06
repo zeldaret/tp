@@ -34,8 +34,8 @@ lbl_80078730:
 /* 8007873C  41 82 00 58 */	beq lbl_80078794
 /* 80078740  80 6D 89 F0 */	lwz r3, m_name__16dBgS_MoveBgActor(r13)
 /* 80078744  80 8D 89 F4 */	lwz r4, m_dzb_id__16dBgS_MoveBgActor(r13)
-/* 80078748  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8007874C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80078748  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8007874C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80078750  3C A5 00 02 */	addis r5, r5, 2
 /* 80078754  38 C0 00 80 */	li r6, 0x80
 /* 80078758  38 A5 C2 F8 */	addi r5, r5, -15624

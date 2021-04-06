@@ -14,8 +14,8 @@ lbl_8001D6C0:
 /* 8001D6C4  B0 01 00 10 */	sth r0, 0x10(r1)
 /* 8001D6C8  88 03 00 0A */	lbz r0, 0xa(r3)
 /* 8001D6CC  98 01 00 12 */	stb r0, 0x12(r1)
-/* 8001D6D0  3C 60 80 02 */	lis r3, fopAcM_findObjectCB__FPC10fopAc_ac_cPv@ha
-/* 8001D6D4  38 63 D5 EC */	addi r3, r3, fopAcM_findObjectCB__FPC10fopAc_ac_cPv@l
+/* 8001D6D0  3C 60 80 02 */	lis r3, fopAcM_findObjectCB__FPC10fopAc_ac_cPv@ha /* 0x8001D5EC@ha */
+/* 8001D6D4  38 63 D5 EC */	addi r3, r3, fopAcM_findObjectCB__FPC10fopAc_ac_cPv@l /* 0x8001D5EC@l */
 /* 8001D6D8  38 81 00 08 */	addi r4, r1, 8
 /* 8001D6DC  4B FF C1 1D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 lbl_8001D6E0:

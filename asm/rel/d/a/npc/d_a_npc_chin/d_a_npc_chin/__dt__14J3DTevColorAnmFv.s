@@ -7,7 +7,7 @@ lbl_8098CB7C:
 /* 8098CB90  41 82 00 10 */	beq lbl_8098CBA0
 /* 8098CB94  7C 80 07 35 */	extsh. r0, r4
 /* 8098CB98  40 81 00 08 */	ble lbl_8098CBA0
-/* 8098CB9C  4B 94 21 A0 */	b __dl__FPv
+/* 8098CB9C  4B 94 21 A1 */	bl __dl__FPv
 lbl_8098CBA0:
 /* 8098CBA0  7F E3 FB 78 */	mr r3, r31
 /* 8098CBA4  83 E1 00 0C */	lwz r31, 0xc(r1)

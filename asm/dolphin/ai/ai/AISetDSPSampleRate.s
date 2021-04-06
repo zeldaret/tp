@@ -8,7 +8,7 @@ lbl_8034FE54:
 /* 8034FE6C  7C 1A 18 40 */	cmplw r26, r3
 /* 8034FE70  41 82 00 B0 */	beq lbl_8034FF20
 /* 8034FE74  3F E0 CC 00 */	lis r31, 0xCC00 /* 0xCC006C00@ha */
-/* 8034FE78  80 1F 6C 00 */	lwz r0, 0x6C00(r31)
+/* 8034FE78  80 1F 6C 00 */	lwz r0, 0x6C00(r31)  /* 0xCC006C00@l */
 /* 8034FE7C  28 1A 00 00 */	cmplwi r26, 0
 /* 8034FE80  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
 /* 8034FE84  90 1F 6C 00 */	stw r0, 0x6c00(r31)

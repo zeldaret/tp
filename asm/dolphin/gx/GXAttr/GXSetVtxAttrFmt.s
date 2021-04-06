@@ -8,8 +8,8 @@ lbl_8035B5C4:
 /* 8035B5DC  39 28 00 3C */	addi r9, r8, 0x3c
 /* 8035B5E0  39 48 00 5C */	addi r10, r8, 0x5c
 /* 8035B5E4  41 81 02 0C */	bgt lbl_8035B7F0
-/* 8035B5E8  3D 00 80 3D */	lis r8, lit_476@ha
-/* 8035B5EC  39 08 23 50 */	addi r8, r8, lit_476@l
+/* 8035B5E8  3D 00 80 3D */	lis r8, lit_476@ha /* 0x803D2350@ha */
+/* 8035B5EC  39 08 23 50 */	addi r8, r8, lit_476@l /* 0x803D2350@l */
 /* 8035B5F0  54 00 10 3A */	slwi r0, r0, 2
 /* 8035B5F4  7C 08 00 2E */	lwzx r0, r8, r0
 /* 8035B5F8  7C 09 03 A6 */	mtctr r0

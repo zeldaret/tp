@@ -25,8 +25,8 @@ lbl_801FD304:
 /* 801FD330  7F C3 F3 78 */	mr r3, r30
 /* 801FD334  4B FF FB B5 */	bl checkCStickTrigger__5dMw_cFv
 lbl_801FD338:
-/* 801FD338  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801FD33C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801FD338  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801FD33C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801FD340  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 801FD344  28 00 00 00 */	cmplwi r0, 0
 /* 801FD348  41 82 00 10 */	beq lbl_801FD358
@@ -47,8 +47,8 @@ lbl_801FD378:
 /* 801FD378  7F C3 F3 78 */	mr r3, r30
 /* 801FD37C  88 1E 01 46 */	lbz r0, 0x146(r30)
 /* 801FD380  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801FD384  3C 80 80 3C */	lis r4, move_proc@ha
-/* 801FD388  38 04 ED F0 */	addi r0, r4, move_proc@l
+/* 801FD384  3C 80 80 3C */	lis r4, move_proc@ha /* 0x803BEDF0@ha */
+/* 801FD388  38 04 ED F0 */	addi r0, r4, move_proc@l /* 0x803BEDF0@l */
 /* 801FD38C  7D 80 2A 14 */	add r12, r0, r5
 /* 801FD390  48 16 4C F5 */	bl __ptmf_scall
 /* 801FD394  60 00 00 00 */	nop 
@@ -58,14 +58,14 @@ lbl_801FD378:
 /* 801FD3A4  7F C3 F3 78 */	mr r3, r30
 /* 801FD3A8  7F A4 EB 78 */	mr r4, r29
 /* 801FD3AC  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 801FD3B0  3C A0 80 3C */	lis r5, init_proc@ha
-/* 801FD3B4  38 05 EA A8 */	addi r0, r5, init_proc@l
+/* 801FD3B0  3C A0 80 3C */	lis r5, init_proc@ha /* 0x803BEAA8@ha */
+/* 801FD3B4  38 05 EA A8 */	addi r0, r5, init_proc@l /* 0x803BEAA8@l */
 /* 801FD3B8  7D 80 32 14 */	add r12, r0, r6
 /* 801FD3BC  48 16 4C C9 */	bl __ptmf_scall
 /* 801FD3C0  60 00 00 00 */	nop 
 lbl_801FD3C4:
-/* 801FD3C4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801FD3C8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801FD3C4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801FD3C8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801FD3CC  88 03 00 39 */	lbz r0, 0x39(r3)
 /* 801FD3D0  28 00 00 00 */	cmplwi r0, 0
 /* 801FD3D4  40 82 00 24 */	bne lbl_801FD3F8
@@ -78,8 +78,8 @@ lbl_801FD3C4:
 /* 801FD3F0  38 80 00 01 */	li r4, 1
 /* 801FD3F4  4B FF F9 09 */	bl dMw_offButtonBit__5dMw_cFUc
 lbl_801FD3F8:
-/* 801FD3F8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801FD3FC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801FD3F8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801FD3FC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801FD400  88 03 00 3B */	lbz r0, 0x3b(r3)
 /* 801FD404  28 00 00 00 */	cmplwi r0, 0
 /* 801FD408  40 82 00 24 */	bne lbl_801FD42C

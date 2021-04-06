@@ -3,7 +3,7 @@ lbl_80459904:
 /* 80459908  7C 08 02 A6 */	mflr r0
 /* 8045990C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80459910  39 61 00 20 */	addi r11, r1, 0x20
-/* 80459914  4B F0 88 C8 */	b _savegpr_29
+/* 80459914  4B F0 88 C9 */	bl _savegpr_29
 /* 80459918  7C 7F 1B 78 */	mr r31, r3
 /* 8045991C  A0 04 00 00 */	lhz r0, 0(r4)
 /* 80459920  B0 03 00 00 */	sth r0, 0(r3)
@@ -154,11 +154,11 @@ lbl_80459B08:
 /* 80459B14  7C 7D 1B 78 */	mr r29, r3
 /* 80459B18  48 00 00 18 */	b lbl_80459B30
 lbl_80459B1C:
-/* 80459B1C  3C 60 80 46 */	lis r3, struct_8045CA20+0x0@ha
-/* 80459B20  38 63 CA 20 */	addi r3, r3, struct_8045CA20+0x0@l
+/* 80459B1C  3C 60 80 46 */	lis r3, d_a_bg_obj__stringBase0@ha /* 0x8045CA20@ha */
+/* 80459B20  38 63 CA 20 */	addi r3, r3, d_a_bg_obj__stringBase0@l /* 0x8045CA20@l */
 /* 80459B24  38 63 00 66 */	addi r3, r3, 0x66
 /* 80459B28  4C C6 31 82 */	crclr 6
-/* 80459B2C  4B BA D0 E0 */	b OSReport_Error
+/* 80459B2C  4B BA D0 E1 */	bl OSReport_Error
 lbl_80459B30:
 /* 80459B30  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 80459B34  41 82 00 14 */	beq lbl_80459B48
@@ -171,7 +171,7 @@ lbl_80459B48:
 /* 80459B48  38 60 00 01 */	li r3, 1
 lbl_80459B4C:
 /* 80459B4C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80459B50  4B F0 86 D8 */	b _restgpr_29
+/* 80459B50  4B F0 86 D9 */	bl _restgpr_29
 /* 80459B54  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80459B58  7C 08 03 A6 */	mtlr r0
 /* 80459B5C  38 21 00 20 */	addi r1, r1, 0x20

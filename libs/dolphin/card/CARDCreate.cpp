@@ -41,61 +41,31 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80358108-80358238 0130+00 s=1 e=0 z=0  None .text      CreateCallbackFat */
-//	8035811C: 8044CBC0 (__CARDBlock)
-//	80358124: 8044CBC0 (__CARDBlock)
-//	80358144: 8035577C (__CARDGetDirBlock)
-//	80358160: 80003540 (memcpy)
-//	80358174: 80003540 (memcpy)
-//	803581D4: 803426FC (OSGetTime)
-//	803581E0: 80362324 (__div2i)
-//	803581F0: 8035591C (__CARDUpdateDir)
-//	80358204: 80353C6C (__CARDPutControlBlock)
+/* 80358108-80358238 352A48 0130+00 1/1 0/0 0/0 .text            CreateCallbackFat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CreateCallbackFat() {
+static asm void CreateCallbackFat() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CreateCallbackFat.s"
 }
 #pragma pop
 
-/* 80358238-80358458 0220+00 s=1 e=0 z=0  None .text      CARDCreateAsync */
-//	80358260: 80368BE4 (strlen)
-//	8035827C: 80353BB4 (__CARDGetControlBlock)
-//	803582BC: 8035577C (__CARDGetDirBlock)
-//	80358300: 8036608C (memcmp)
-//	80358320: 8036608C (memcmp)
-//	80358334: 80357C74 (__CARDCompareFileName)
-//	80358348: 80353C6C (__CARDPutControlBlock)
-//	80358378: 80353C6C (__CARDPutControlBlock)
-//	80358384: 80355414 (__CARDGetFatBlock)
-//	803583A8: 80353C6C (__CARDPutControlBlock)
-//	803583C0: 80352A30 (__CARDDefaultApiCallback)
-//	803583C4: 80352A30 (__CARDDefaultApiCallback)
-//	803583FC: 80368AE8 (strncpy)
-//	80358404: 80358108 (CreateCallbackFat)
-//	80358408: 80358108 (CreateCallbackFat)
-//	80358428: 803555B8 (__CARDAllocBlock)
-//	80358438: 80353C6C (__CARDPutControlBlock)
+/* 80358238-80358458 352B78 0220+00 1/1 0/0 0/0 .text            CARDCreateAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDCreateAsync() {
+static asm void CARDCreateAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CARDCreateAsync.s"
 }
 #pragma pop
 
-/* 80358458-803584A0 0048+00 s=0 e=1 z=0  None .text      CARDCreate */
-//	8035845C: 80352A34 (__CARDSyncCallback)
-//	80358464: 80352A34 (__CARDSyncCallback)
-//	80358474: 80358238 (CARDCreateAsync)
-//	80358488: 80353E20 (__CARDSync)
+/* 80358458-803584A0 352D98 0048+00 0/0 1/1 0/0 .text            CARDCreate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDCreate() {
+asm void CARDCreate() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CARDCreate.s"
 }

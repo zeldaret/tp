@@ -23,12 +23,12 @@ lbl_8048DE78:
 /* 8048DECC  7F E0 FB 79 */	or. r0, r31, r31
 /* 8048DED0  41 82 00 20 */	beq lbl_8048DEF0
 /* 8048DED4  7C 1E 03 78 */	mr r30, r0
-/* 8048DED8  4B B8 AC 8C */	b __ct__10fopAc_ac_cFv
-/* 8048DEDC  3C 60 80 49 */	lis r3, __vt__12daTag_KMsg_c@ha
-/* 8048DEE0  38 03 EB A0 */	addi r0, r3, __vt__12daTag_KMsg_c@l
+/* 8048DED8  4B B8 AC 8D */	bl __ct__10fopAc_ac_cFv
+/* 8048DEDC  3C 60 80 49 */	lis r3, __vt__12daTag_KMsg_c@ha /* 0x8048EBA0@ha */
+/* 8048DEE0  38 03 EB A0 */	addi r0, r3, __vt__12daTag_KMsg_c@l /* 0x8048EBA0@l */
 /* 8048DEE4  90 1E 05 C8 */	stw r0, 0x5c8(r30)
 /* 8048DEE8  38 7E 05 70 */	addi r3, r30, 0x570
-/* 8048DEEC  4B DB C0 14 */	b __ct__10dMsgFlow_cFv
+/* 8048DEEC  4B DB C0 15 */	bl __ct__10dMsgFlow_cFv
 lbl_8048DEF0:
 /* 8048DEF0  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8048DEF4  60 00 00 08 */	ori r0, r0, 8
@@ -43,10 +43,10 @@ lbl_8048DEFC:
 /* 8048DF14  2C 00 00 03 */	cmpwi r0, 3
 /* 8048DF18  40 82 00 24 */	bne lbl_8048DF3C
 /* 8048DF1C  38 7F 05 68 */	addi r3, r31, 0x568
-/* 8048DF20  3C 80 80 49 */	lis r4, struct_8048EAFC+0x0@ha
-/* 8048DF24  38 84 EA FC */	addi r4, r4, struct_8048EAFC+0x0@l
+/* 8048DF20  3C 80 80 49 */	lis r4, d_a_tag_kmsg__stringBase0@ha /* 0x8048EAFC@ha */
+/* 8048DF24  38 84 EA FC */	addi r4, r4, d_a_tag_kmsg__stringBase0@l /* 0x8048EAFC@l */
 /* 8048DF28  38 84 00 23 */	addi r4, r4, 0x23
-/* 8048DF2C  4B B9 EF 90 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8048DF2C  4B B9 EF 91 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8048DF30  2C 03 00 04 */	cmpwi r3, 4
 /* 8048DF34  41 82 00 08 */	beq lbl_8048DF3C
 /* 8048DF38  48 00 00 8C */	b lbl_8048DFC4
@@ -66,8 +66,8 @@ lbl_8048DF3C:
 /* 8048DF6C  40 82 00 18 */	bne lbl_8048DF84
 lbl_8048DF70:
 /* 8048DF70  C0 3F 04 F0 */	lfs f1, 0x4f0(r31)
-/* 8048DF74  3C 60 80 49 */	lis r3, lit_3884@ha
-/* 8048DF78  C0 03 EA DC */	lfs f0, lit_3884@l(r3)
+/* 8048DF74  3C 60 80 49 */	lis r3, lit_3884@ha /* 0x8048EADC@ha */
+/* 8048DF78  C0 03 EA DC */	lfs f0, lit_3884@l(r3)  /* 0x8048EADC@l */
 /* 8048DF7C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8048DF80  D0 1F 04 F0 */	stfs f0, 0x4f0(r31)
 lbl_8048DF84:

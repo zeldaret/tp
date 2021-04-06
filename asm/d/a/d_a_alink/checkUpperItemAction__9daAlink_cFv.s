@@ -179,8 +179,8 @@ lbl_800B784C:
 /* 800B785C  7F A4 EB 78 */	mr r4, r29
 /* 800B7860  4B FF B9 F1 */	bl setDoStatus__9daAlink_cFUc
 /* 800B7864  57 A4 06 3E */	clrlwi r4, r29, 0x18
-/* 800B7868  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B786C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B7868  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B786C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B7870  88 03 5E 24 */	lbz r0, 0x5e24(r3)
 /* 800B7874  7C 04 00 40 */	cmplw r4, r0
 /* 800B7878  40 82 00 10 */	bne lbl_800B7888
@@ -189,8 +189,8 @@ lbl_800B784C:
 /* 800B7884  40 82 00 30 */	bne lbl_800B78B4
 lbl_800B7888:
 /* 800B7888  57 A4 06 3E */	clrlwi r4, r29, 0x18
-/* 800B788C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B7890  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B788C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B7890  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B7894  88 03 5E 1D */	lbz r0, 0x5e1d(r3)
 /* 800B7898  7C 04 00 40 */	cmplw r4, r0
 /* 800B789C  40 82 02 C4 */	bne lbl_800B7B60
@@ -233,8 +233,8 @@ lbl_800B78FC:
 /* 800B7920  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800B7924  41 82 00 1C */	beq lbl_800B7940
 lbl_800B7928:
-/* 800B7928  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha
-/* 800B792C  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l
+/* 800B7928  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha /* 0x8038E49C@ha */
+/* 800B792C  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l /* 0x8038E49C@l */
 /* 800B7930  A8 63 00 16 */	lha r3, 0x16(r3)
 /* 800B7934  A8 1F 30 F6 */	lha r0, 0x30f6(r31)
 /* 800B7938  7C 03 00 50 */	subf r0, r3, r0
@@ -251,8 +251,8 @@ lbl_800B7940:
 /* 800B7960  48 2A D7 71 */	bl abs
 /* 800B7964  2C 03 10 00 */	cmpwi r3, 0x1000
 /* 800B7968  40 81 00 1C */	ble lbl_800B7984
-/* 800B796C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha
-/* 800B7970  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l
+/* 800B796C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha /* 0x8038E49C@ha */
+/* 800B7970  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l /* 0x8038E49C@l */
 /* 800B7974  A8 63 00 16 */	lha r3, 0x16(r3)
 /* 800B7978  A8 1F 30 F6 */	lha r0, 0x30f6(r31)
 /* 800B797C  7C 03 00 50 */	subf r0, r3, r0

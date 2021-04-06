@@ -3,17 +3,15 @@
 #
 
 M44_TARGET := $(BUILD_DIR)/rel/d/a/d_a_vrbox2.plf
+M44_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_vrbox2.lcf
+M44_MAP := $(BUILD_DIR)/rel/d/a/d_a_vrbox2.map
 
 M44_CPP_FILES := \
-	rel/d/a/d_a_vrbox2/executor.cpp \
-	rel/d/a/d_a_vrbox2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_vrbox2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_vrbox2/d_a_vrbox2.cpp \
 
 M44_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_vrbox2/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_vrbox2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_vrbox2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_vrbox2/d_a_vrbox2.o \
 
 M44_LIBS := \
@@ -29,15 +27,21 @@ M44_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map44.map\
+	-m _prolog \
+	-lcf $(M44_LDSCRIPT) \
+	-unused -map $(M44_MAP) \
+	-w off \
 
 $(M44_TARGET): $(M44_O_FILES) $(M44_LIBS)
+	@echo [ 44] creating $(M44_TARGET)
 	@echo $(M44_LIBS) $(M44_O_FILES) > build/M44_ofiles
-	$(LD) -opt_partial $(M44_LDFLAGS) -o $(M44_TARGET) @build/M44_ofiles
+	@python3 tools/lcf.py rel 44 --output $(M44_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M44_LDFLAGS) -o $(M44_TARGET) @build/M44_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_vrbox2/%.o: rel/d/a/d_a_vrbox2/%.cpp
+	@echo [ 44] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M44_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

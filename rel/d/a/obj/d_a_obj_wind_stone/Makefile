@@ -3,17 +3,15 @@
 #
 
 M688_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone.plf
+M688_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone.lcf
+M688_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone.map
 
 M688_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wind_stone/executor.cpp \
-	rel/d/a/obj/d_a_obj_wind_stone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_wind_stone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone.cpp \
 
 M688_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone.o \
 
 M688_LIBS := \
@@ -29,15 +27,21 @@ M688_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map688.map\
+	-m _prolog \
+	-lcf $(M688_LDSCRIPT) \
+	-unused -map $(M688_MAP) \
+	-w off \
 
 $(M688_TARGET): $(M688_O_FILES) $(M688_LIBS)
+	@echo [688] creating $(M688_TARGET)
 	@echo $(M688_LIBS) $(M688_O_FILES) > build/M688_ofiles
-	$(LD) -opt_partial $(M688_LDFLAGS) -o $(M688_TARGET) @build/M688_ofiles
+	@python3 tools/lcf.py rel 688 --output $(M688_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M688_LDFLAGS) -o $(M688_TARGET) @build/M688_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wind_stone/%.o: rel/d/a/obj/d_a_obj_wind_stone/%.cpp
+	@echo [688] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M688_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M688_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

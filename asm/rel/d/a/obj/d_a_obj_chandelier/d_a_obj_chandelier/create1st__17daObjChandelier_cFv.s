@@ -21,23 +21,23 @@ lbl_80BC80B4:
 /* 80BC80BC  41 82 00 08 */	beq lbl_80BC80C4
 /* 80BC80C0  38 7F 05 A0 */	addi r3, r31, 0x5a0
 lbl_80BC80C4:
-/* 80BC80C4  3C 80 80 BD */	lis r4, l_arcName@ha
-/* 80BC80C8  38 84 8D 64 */	addi r4, r4, l_arcName@l
+/* 80BC80C4  3C 80 80 BD */	lis r4, l_arcName@ha /* 0x80BC8D64@ha */
+/* 80BC80C8  38 84 8D 64 */	addi r4, r4, l_arcName@l /* 0x80BC8D64@l */
 /* 80BC80CC  80 84 00 00 */	lwz r4, 0(r4)
-/* 80BC80D0  4B 46 4D EC */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80BC80D0  4B 46 4D ED */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80BC80D4  7C 7E 1B 78 */	mr r30, r3
 /* 80BC80D8  2C 1E 00 04 */	cmpwi r30, 4
 /* 80BC80DC  40 82 00 68 */	bne lbl_80BC8144
 /* 80BC80E0  7F E3 FB 78 */	mr r3, r31
-/* 80BC80E4  3C 80 80 BD */	lis r4, l_arcName@ha
-/* 80BC80E8  38 84 8D 64 */	addi r4, r4, l_arcName@l
+/* 80BC80E4  3C 80 80 BD */	lis r4, l_arcName@ha /* 0x80BC8D64@ha */
+/* 80BC80E8  38 84 8D 64 */	addi r4, r4, l_arcName@l /* 0x80BC8D64@l */
 /* 80BC80EC  80 84 00 00 */	lwz r4, 0(r4)
 /* 80BC80F0  38 A0 00 07 */	li r5, 7
-/* 80BC80F4  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha
-/* 80BC80F8  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l
+/* 80BC80F4  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha /* 0x80075AD8@ha */
+/* 80BC80F8  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l /* 0x80075AD8@l */
 /* 80BC80FC  38 E0 45 00 */	li r7, 0x4500
 /* 80BC8100  39 1F 05 B4 */	addi r8, r31, 0x5b4
-/* 80BC8104  4B 4B 06 B8 */	b MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
+/* 80BC8104  4B 4B 06 B9 */	bl MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
 /* 80BC8108  7C 7E 1B 78 */	mr r30, r3
 /* 80BC810C  2C 1E 00 05 */	cmpwi r30, 5
 /* 80BC8110  40 82 00 08 */	bne lbl_80BC8118
@@ -53,7 +53,7 @@ lbl_80BC8118:
 /* 80BC8134  80 7F 05 E8 */	lwz r3, 0x5e8(r31)
 /* 80BC8138  80 83 00 04 */	lwz r4, 4(r3)
 /* 80BC813C  7F E3 FB 78 */	mr r3, r31
-/* 80BC8140  4B 45 24 38 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80BC8140  4B 45 24 39 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 lbl_80BC8144:
 /* 80BC8144  7F C3 F3 78 */	mr r3, r30
 lbl_80BC8148:

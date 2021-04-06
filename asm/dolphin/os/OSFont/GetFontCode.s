@@ -7,8 +7,8 @@ lbl_8033D3E0:
 /* 8033D3F4  41 80 00 24 */	blt lbl_8033D418
 /* 8033D3F8  28 00 00 DF */	cmplwi r0, 0xdf
 /* 8033D3FC  41 81 00 1C */	bgt lbl_8033D418
-/* 8033D400  3C 60 80 3D */	lis r3, HankakuToCode@ha
-/* 8033D404  38 63 FC 48 */	addi r3, r3, HankakuToCode@l
+/* 8033D400  3C 60 80 3D */	lis r3, HankakuToCode@ha /* 0x803CFC48@ha */
+/* 8033D404  38 63 FC 48 */	addi r3, r3, HankakuToCode@l /* 0x803CFC48@l */
 /* 8033D408  54 00 08 3C */	slwi r0, r0, 1
 /* 8033D40C  7C 63 02 14 */	add r3, r3, r0
 /* 8033D410  A0 63 FF C0 */	lhz r3, -0x40(r3)
@@ -87,9 +87,9 @@ lbl_8033D504:
 /* 8033D510  38 63 FF FF */	addi r3, r3, -1
 lbl_8033D514:
 /* 8033D514  7C 05 1A 14 */	add r0, r5, r3
-/* 8033D518  3C 60 80 3D */	lis r3, Zenkaku2Code@ha
+/* 8033D518  3C 60 80 3D */	lis r3, Zenkaku2Code@ha /* 0x803CFDC8@ha */
 /* 8033D51C  54 04 08 3C */	slwi r4, r0, 1
-/* 8033D520  38 03 FD C8 */	addi r0, r3, Zenkaku2Code@l
+/* 8033D520  38 03 FD C8 */	addi r0, r3, Zenkaku2Code@l /* 0x803CFDC8@l */
 /* 8033D524  7C 60 22 14 */	add r3, r0, r4
 /* 8033D528  A0 63 00 00 */	lhz r3, 0(r3)
 /* 8033D52C  4E 80 00 20 */	blr 

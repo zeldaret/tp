@@ -1,7 +1,7 @@
 lbl_8004DCA0:
 /* 8004DCA0  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8004DCA4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8004DCA8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8004DCA4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8004DCA8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8004DCAC  88 03 0F 3D */	lbz r0, 0xf3d(r3)
 /* 8004DCB0  28 00 00 01 */	cmplwi r0, 1
 /* 8004DCB4  40 82 00 3C */	bne lbl_8004DCF0

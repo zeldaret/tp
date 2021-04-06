@@ -31,8 +31,8 @@ lbl_801EF7FC:
 lbl_801EF81C:
 /* 801EF81C  4B E1 F6 15 */	bl mDoExt_getJ2dHeap__Fv
 /* 801EF820  7C 65 1B 78 */	mr r5, r3
-/* 801EF824  3C 60 80 39 */	lis r3, d_menu_d_menu_save__stringBase0@ha
-/* 801EF828  38 63 79 60 */	addi r3, r3, d_menu_d_menu_save__stringBase0@l
+/* 801EF824  3C 60 80 39 */	lis r3, d_menu_d_menu_save__stringBase0@ha /* 0x80397960@ha */
+/* 801EF828  38 63 79 60 */	addi r3, r3, d_menu_d_menu_save__stringBase0@l /* 0x80397960@l */
 /* 801EF82C  38 80 00 00 */	li r4, 0
 /* 801EF830  4B E2 65 E5 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801EF834  90 7E 00 08 */	stw r3, 8(r30)
@@ -87,8 +87,8 @@ lbl_801EF8D4:
 /* 801EF8D4  7F C3 F3 78 */	mr r3, r30
 /* 801EF8D8  48 00 10 81 */	bl displayInit__12dMenu_save_cFv
 /* 801EF8DC  38 00 FF FF */	li r0, -1
-/* 801EF8E0  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801EF8E4  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801EF8E0  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801EF8E4  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801EF8E8  98 03 00 04 */	stb r0, 4(r3)
 /* 801EF8EC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801EF8F0  83 C1 00 08 */	lwz r30, 8(r1)

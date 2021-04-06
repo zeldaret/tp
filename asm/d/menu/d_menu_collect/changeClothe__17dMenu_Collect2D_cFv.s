@@ -16,8 +16,8 @@ lbl_801B2F14:
 /* 801B2F18  40 80 01 9C */	bge lbl_801B30B4
 /* 801B2F1C  48 00 01 14 */	b lbl_801B3030
 lbl_801B2F20:
-/* 801B2F20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B2F24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B2F20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B2F24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B2F28  88 03 00 13 */	lbz r0, 0x13(r3)
 /* 801B2F2C  28 00 00 2F */	cmplwi r0, 0x2f
 /* 801B2F30  41 82 01 84 */	beq lbl_801B30B4
@@ -27,8 +27,8 @@ lbl_801B2F20:
 /* 801B2F40  7F E3 FB 78 */	mr r3, r31
 /* 801B2F44  38 80 00 00 */	li r4, 0
 /* 801B2F48  48 00 10 95 */	bl setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi
-/* 801B2F4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B2F50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B2F4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B2F50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B2F54  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 801B2F58  38 80 00 00 */	li r4, 0
 /* 801B2F5C  81 83 06 28 */	lwz r12, 0x628(r3)
@@ -51,8 +51,8 @@ lbl_801B2F20:
 /* 801B2FA0  48 06 BA 31 */	bl dMeter2Info_set2DVibration__Fv
 /* 801B2FA4  48 00 01 10 */	b lbl_801B30B4
 lbl_801B2FA8:
-/* 801B2FA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B2FAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B2FA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B2FAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B2FB0  88 03 00 13 */	lbz r0, 0x13(r3)
 /* 801B2FB4  28 00 00 31 */	cmplwi r0, 0x31
 /* 801B2FB8  41 82 00 FC */	beq lbl_801B30B4
@@ -62,8 +62,8 @@ lbl_801B2FA8:
 /* 801B2FC8  7F E3 FB 78 */	mr r3, r31
 /* 801B2FCC  38 80 00 01 */	li r4, 1
 /* 801B2FD0  48 00 10 0D */	bl setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi
-/* 801B2FD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B2FD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B2FD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B2FD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B2FDC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 801B2FE0  38 80 00 00 */	li r4, 0
 /* 801B2FE4  81 83 06 28 */	lwz r12, 0x628(r3)
@@ -86,8 +86,8 @@ lbl_801B2FA8:
 /* 801B3028  48 06 B9 A9 */	bl dMeter2Info_set2DVibration__Fv
 /* 801B302C  48 00 00 88 */	b lbl_801B30B4
 lbl_801B3030:
-/* 801B3030  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B3034  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B3030  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3034  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3038  88 03 00 13 */	lbz r0, 0x13(r3)
 /* 801B303C  28 00 00 30 */	cmplwi r0, 0x30
 /* 801B3040  41 82 00 74 */	beq lbl_801B30B4
@@ -97,8 +97,8 @@ lbl_801B3030:
 /* 801B3050  7F E3 FB 78 */	mr r3, r31
 /* 801B3054  38 80 00 02 */	li r4, 2
 /* 801B3058  48 00 0F 85 */	bl setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi
-/* 801B305C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B3060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B305C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3064  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 801B3068  38 80 00 00 */	li r4, 0
 /* 801B306C  81 83 06 28 */	lwz r12, 0x628(r3)

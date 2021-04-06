@@ -1,6 +1,6 @@
 lbl_80051614:
-/* 80051614  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 80051618  38 63 85 F8 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 80051614  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803A85F8@ha */
+/* 80051618  38 63 85 F8 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803A85F8@l */
 /* 8005161C  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 80051620  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80051624  90 83 00 30 */	stw r4, 0x30(r3)

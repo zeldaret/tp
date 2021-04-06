@@ -14,12 +14,12 @@ lbl_800C40F0:
 /* 800C4120  98 1F 2F 9D */	stb r0, 0x2f9d(r31)
 /* 800C4124  7F E3 FB 78 */	mr r3, r31
 /* 800C4128  38 80 00 22 */	li r4, 0x22
-/* 800C412C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_sideStep_c0@ha
-/* 800C4130  38 A5 D8 64 */	addi r5, r5, m__22daAlinkHIO_sideStep_c0@l
+/* 800C412C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_sideStep_c0@ha /* 0x8038D864@ha */
+/* 800C4130  38 A5 D8 64 */	addi r5, r5, m__22daAlinkHIO_sideStep_c0@l /* 0x8038D864@l */
 /* 800C4134  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800C4138  4B FE 8F BD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C413C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha
-/* 800C4140  38 63 D8 64 */	addi r3, r3, m__22daAlinkHIO_sideStep_c0@l
+/* 800C413C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha /* 0x8038D864@ha */
+/* 800C4140  38 63 D8 64 */	addi r3, r3, m__22daAlinkHIO_sideStep_c0@l /* 0x8038D864@l */
 /* 800C4144  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 800C4148  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800C414C  38 00 00 02 */	li r0, 2
@@ -41,12 +41,12 @@ lbl_800C4180:
 /* 800C4184  3B C0 00 40 */	li r30, 0x40
 lbl_800C4188:
 /* 800C4188  7F E3 FB 78 */	mr r3, r31
-/* 800C418C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_sideStep_c0@ha
-/* 800C4190  38 A5 D8 64 */	addi r5, r5, m__22daAlinkHIO_sideStep_c0@l
+/* 800C418C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_sideStep_c0@ha /* 0x8038D864@ha */
+/* 800C4190  38 A5 D8 64 */	addi r5, r5, m__22daAlinkHIO_sideStep_c0@l /* 0x8038D864@l */
 /* 800C4194  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800C4198  4B FE 8F 5D */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C419C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha
-/* 800C41A0  38 63 D8 64 */	addi r3, r3, m__22daAlinkHIO_sideStep_c0@l
+/* 800C419C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha /* 0x8038D864@ha */
+/* 800C41A0  38 63 D8 64 */	addi r3, r3, m__22daAlinkHIO_sideStep_c0@l /* 0x8038D864@l */
 /* 800C41A4  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800C41A8  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800C41AC  38 00 00 01 */	li r0, 1
@@ -68,8 +68,8 @@ lbl_800C4188:
 /* 800C41EC  41 82 00 30 */	beq lbl_800C421C
 /* 800C41F0  7F E3 FB 78 */	mr r3, r31
 /* 800C41F4  7F C4 F3 78 */	mr r4, r30
-/* 800C41F8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_atnMove_c0@ha
-/* 800C41FC  38 A5 D7 14 */	addi r5, r5, m__21daAlinkHIO_atnMove_c0@l
+/* 800C41F8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800C41FC  38 A5 D7 14 */	addi r5, r5, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800C4200  C0 25 00 08 */	lfs f1, 8(r5)
 /* 800C4204  C0 42 92 BC */	lfs f2, lit_6041(r2)
 /* 800C4208  4B FE 91 A1 */	bl setUpperAnimeBaseSpeed__9daAlink_cFUsff

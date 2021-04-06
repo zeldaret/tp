@@ -7,7 +7,7 @@ lbl_80A47B20:
 /* 80A47B34  41 82 00 10 */	beq lbl_80A47B44
 /* 80A47B38  7C 80 07 35 */	extsh. r0, r4
 /* 80A47B3C  40 81 00 08 */	ble lbl_80A47B44
-/* 80A47B40  4B 88 71 FC */	b __dl__FPv
+/* 80A47B40  4B 88 71 FD */	bl __dl__FPv
 lbl_80A47B44:
 /* 80A47B44  7F E3 FB 78 */	mr r3, r31
 /* 80A47B48  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -3,14 +3,14 @@ lbl_80A372D0:
 /* 80A372D4  7C 08 02 A6 */	mflr r0
 /* 80A372D8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80A372DC  39 61 00 40 */	addi r11, r1, 0x40
-/* 80A372E0  4B 92 AE F0 */	b _savegpr_26
+/* 80A372E0  4B 92 AE F1 */	bl _savegpr_26
 /* 80A372E4  7C 7E 1B 78 */	mr r30, r3
-/* 80A372E8  3C 60 80 A4 */	lis r3, mCcDObjData__10daNpc_Kn_c@ha
-/* 80A372EC  3B 63 08 C8 */	addi r27, r3, mCcDObjData__10daNpc_Kn_c@l
+/* 80A372E8  3C 60 80 A4 */	lis r3, mCcDObjData__10daNpc_Kn_c@ha /* 0x80A408C8@ha */
+/* 80A372EC  3B 63 08 C8 */	addi r27, r3, mCcDObjData__10daNpc_Kn_c@l /* 0x80A408C8@l */
 /* 80A372F0  3B E0 00 00 */	li r31, 0
 /* 80A372F4  3B A0 00 00 */	li r29, 0
-/* 80A372F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A372FC  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 80A372F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A372FC  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_80A37300:
 /* 80A37300  20 1F 00 02 */	subfic r0, r31, 2
 /* 80A37304  7C 00 00 34 */	cntlzw r0, r0
@@ -41,14 +41,14 @@ lbl_80A37358:
 /* 80A37358  39 40 00 00 */	li r10, 0
 /* 80A3735C  C0 3B 00 38 */	lfs f1, 0x38(r27)
 /* 80A37360  C0 5E 05 2C */	lfs f2, 0x52c(r30)
-/* 80A37364  4B 61 9C A4 */	b setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
+/* 80A37364  4B 61 9C A5 */	bl setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
 /* 80A37368  88 1A 15 E0 */	lbz r0, 0x15e0(r26)
 /* 80A3736C  28 00 00 00 */	cmplwi r0, 0
 /* 80A37370  41 82 00 8C */	beq lbl_80A373FC
 /* 80A37374  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 80A37378  38 63 02 10 */	addi r3, r3, 0x210
 /* 80A3737C  80 9A 16 0C */	lwz r4, 0x160c(r26)
-/* 80A37380  4B 61 45 98 */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 80A37380  4B 61 45 99 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80A37384  28 03 00 00 */	cmplwi r3, 0
 /* 80A37388  41 82 00 74 */	beq lbl_80A373FC
 /* 80A3738C  2C 1F 00 02 */	cmpwi r31, 2
@@ -90,7 +90,7 @@ lbl_80A373FC:
 /* 80A37410  41 80 FE F0 */	blt lbl_80A37300
 /* 80A37414  38 60 00 01 */	li r3, 1
 /* 80A37418  39 61 00 40 */	addi r11, r1, 0x40
-/* 80A3741C  4B 92 AE 00 */	b _restgpr_26
+/* 80A3741C  4B 92 AE 01 */	bl _restgpr_26
 /* 80A37420  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80A37424  7C 08 03 A6 */	mtlr r0
 /* 80A37428  38 21 00 40 */	addi r1, r1, 0x40

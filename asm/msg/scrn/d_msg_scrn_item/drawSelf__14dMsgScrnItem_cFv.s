@@ -7,8 +7,8 @@ lbl_8023FB24:
 /* 8023FB38  39 61 00 30 */	addi r11, r1, 0x30
 /* 8023FB3C  48 12 26 91 */	bl _savegpr_25
 /* 8023FB40  7C 7B 1B 78 */	mr r27, r3
-/* 8023FB44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8023FB48  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023FB44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8023FB48  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8023FB4C  83 A3 5F 50 */	lwz r29, 0x5f50(r3)
 /* 8023FB50  7F A3 EB 78 */	mr r3, r29
 /* 8023FB54  81 9D 00 00 */	lwz r12, 0(r29)
@@ -24,8 +24,8 @@ lbl_8023FB24:
 /* 8023FB7C  FF E0 08 90 */	fmr f31, f1
 /* 8023FB80  3B C0 00 00 */	li r30, 0
 /* 8023FB84  3B 40 00 00 */	li r26, 0
-/* 8023FB88  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023FB8C  3B 23 02 8C */	addi r25, r3, g_MsgObject_HIO_c@l
+/* 8023FB88  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FB8C  3B 23 02 8C */	addi r25, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023FB90  48 00 00 3C */	b lbl_8023FBCC
 lbl_8023FB94:
 /* 8023FB94  80 1B 00 50 */	lwz r0, 0x50(r27)
@@ -50,8 +50,8 @@ lbl_8023FBD8:
 /* 8023FBD8  80 7B 00 0C */	lwz r3, 0xc(r27)
 /* 8023FBDC  48 01 47 0D */	bl getGlobalPosX__8CPaneMgrFv
 /* 8023FBE0  7F 63 DB 78 */	mr r3, r27
-/* 8023FBE4  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8023FBE8  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 8023FBE4  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FBE8  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023FBEC  C0 24 00 E0 */	lfs f1, 0xe0(r4)
 /* 8023FBF0  C0 02 B2 20 */	lfs f0, lit_4476(r2)
 /* 8023FBF4  EC 21 00 28 */	fsubs f1, f1, f0
@@ -71,10 +71,10 @@ lbl_8023FBD8:
 /* 8023FC2C  4B FF C1 95 */	bl draw__15dMsgScrnArrow_cFv
 /* 8023FC30  3B 80 00 00 */	li r28, 0
 /* 8023FC34  3B 40 00 00 */	li r26, 0
-/* 8023FC38  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023FC3C  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l
-/* 8023FC40  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8023FC44  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l
+/* 8023FC38  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FC3C  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
+/* 8023FC40  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8023FC44  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l /* 0x8042EBC8@l */
 lbl_8023FC48:
 /* 8023FC48  3B BA 00 C8 */	addi r29, r26, 0xc8
 /* 8023FC4C  7C 7B E8 2E */	lwzx r3, r27, r29
@@ -201,8 +201,8 @@ lbl_8023FDF0:
 /* 8023FE00  41 81 00 40 */	bgt lbl_8023FE40
 /* 8023FE04  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 8023FE08  1C 80 00 18 */	mulli r4, r0, 0x18
-/* 8023FE0C  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha
-/* 8023FE10  38 03 C5 A0 */	addi r0, r3, item_resource__10dItem_data@l
+/* 8023FE0C  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha /* 0x803AC5A0@ha */
+/* 8023FE10  38 03 C5 A0 */	addi r0, r3, item_resource__10dItem_data@l /* 0x803AC5A0@l */
 /* 8023FE14  7C 60 22 14 */	add r3, r0, r4
 /* 8023FE18  88 03 00 12 */	lbz r0, 0x12(r3)
 /* 8023FE1C  C8 22 B2 10 */	lfd f1, lit_4199(r2)

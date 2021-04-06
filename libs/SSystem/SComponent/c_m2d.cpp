@@ -17,8 +17,6 @@ struct cM2dGCir {};
 // Forward References:
 //
 
-void cM2d_CrossCirLin(cM2dGCir&, f32, f32, f32, f32, f32*, f32*);
-
 extern "C" void cM2d_CrossCirLin__FR8cM2dGCirffffPfPf();
 
 //
@@ -33,13 +31,13 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 804550F0-804550F4 0004+00 s=1 e=0 z=0  None .sdata2    @2266 */
+/* 804550F0-804550F4 0036F0 0004+00 1/1 0/0 0/0 .sdata2          @2266 */
 SECTION_SDATA2 static f32 lit_2266 = 2.0f;
 
-/* 804550F4-804550F8 0004+00 s=1 e=0 z=0  None .sdata2    @2267 */
+/* 804550F4-804550F8 0036F4 0004+00 1/1 0/0 0/0 .sdata2          @2267 */
 SECTION_SDATA2 static f32 lit_2267 = 4.0f;
 
-/* 804550F8-804550FC 0004+00 s=1 e=0 z=0  None .sdata2    @2268 */
+/* 804550F8-804550FC 0036F8 0004+00 1/1 0/0 0/0 .sdata2          @2268 */
 SECTION_SDATA2 static u8 lit_2268[4] = {
     0x00,
     0x00,
@@ -47,42 +45,21 @@ SECTION_SDATA2 static u8 lit_2268[4] = {
     0x00,
 };
 
-/* 804550FC-80455100 0004+00 s=1 e=0 z=0  None .sdata2    @2269 */
+/* 804550FC-80455100 0036FC 0004+00 1/1 0/0 0/0 .sdata2          @2269 */
 SECTION_SDATA2 static f32 lit_2269 = 1.0f;
 
-/* 80455100-80455108 0008+00 s=1 e=0 z=0  None .sdata2    @2270 */
+/* 80455100-80455108 003700 0008+00 1/1 0/0 0/0 .sdata2          @2270 */
 SECTION_SDATA2 static f64 lit_2270 = 0.5;
 
-/* 80455108-80455110 0008+00 s=1 e=0 z=0  None .sdata2    @2271 */
+/* 80455108-80455110 003708 0008+00 1/1 0/0 0/0 .sdata2          @2271 */
 SECTION_SDATA2 static f64 lit_2271 = 3.0;
 
-/* 80455110-80455118 0008+00 s=1 e=0 z=0  None .sdata2    @2272 */
+/* 80455110-80455118 003710 0008+00 1/1 0/0 0/0 .sdata2          @2272 */
 SECTION_SDATA2 static u8 lit_2272[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80268260-80268560 0300+00 s=0 e=4 z=0  None .text      cM2d_CrossCirLin__FR8cM2dGCirffffPfPf */
-//	80268280: 804550F0 (lit_2266)
-//	802682B4: 80451180 (G_CM3D_F_ABS_MIN)
-//	802682E0: 804550F4 (lit_2267)
-//	80268310: 804550F8 (lit_2268)
-//	8026831C: 804550FC (lit_2269)
-//	80268330: 80455100 (lit_2270)
-//	80268338: 80455108 (lit_2271)
-//	80268380: 80455110 (lit_2272)
-//	8026838C: 80450AE0 (__float_nan)
-//	80268390: 80450AE0 (__float_nan)
-//	802683FC: 80450AE0 (__float_nan)
-//	80268400: 80450AE0 (__float_nan)
-//	80268418: 804550F8 (lit_2268)
-//	80268428: 80455100 (lit_2270)
-//	80268430: 80455108 (lit_2271)
-//	80268478: 80455110 (lit_2272)
-//	80268484: 80450AE0 (__float_nan)
-//	80268488: 80450AE0 (__float_nan)
-//	802684F4: 80450AE0 (__float_nan)
-//	802684F8: 80450AE0 (__float_nan)
-//	80268528: 80451180 (G_CM3D_F_ABS_MIN)
+/* 80268260-80268560 262BA0 0300+00 0/0 4/4 0/0 .text cM2d_CrossCirLin__FR8cM2dGCirffffPfPf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

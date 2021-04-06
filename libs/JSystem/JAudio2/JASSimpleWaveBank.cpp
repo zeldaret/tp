@@ -58,15 +58,10 @@ extern "C" bool getArcCount__17JASSimpleWaveBankCFv();
 extern "C" void onLoadDone__10JASWaveArcFv();
 extern "C" void onEraseDone__10JASWaveArcFv();
 extern "C" static void func_80298FA8();
-extern "C" extern void* __vt__Q217JASSimpleWaveBank11TWaveHandle[5];
-extern "C" extern void* __vt__17JASSimpleWaveBank[12 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new[](u32, JKRHeap*, int);
-void operator delete(void*);
 
 extern "C" void __ct__10JASWaveArcFv();
 extern "C" void __dt__10JASWaveArcFv();
@@ -86,9 +81,8 @@ extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803C7798-803C77AC 0014+00 s=2 e=0 z=0  None .data      __vt__Q217JASSimpleWaveBank11TWaveHandle
- */
-SECTION_DATA void* __vt__Q217JASSimpleWaveBank11TWaveHandle[5] = {
+/* 803C7798-803C77AC 0248B8 0014+00 2/2 0/0 0/0 .data __vt__Q217JASSimpleWaveBank11TWaveHandle */
+SECTION_DATA extern void* __vt__Q217JASSimpleWaveBank11TWaveHandle[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q217JASSimpleWaveBank11TWaveHandleFv,
@@ -96,8 +90,8 @@ SECTION_DATA void* __vt__Q217JASSimpleWaveBank11TWaveHandle[5] = {
     (void*)getWavePtr__Q217JASSimpleWaveBank11TWaveHandleCFv,
 };
 
-/* 803C77AC-803C77E0 0030+04 s=2 e=0 z=0  None .data      __vt__17JASSimpleWaveBank */
-SECTION_DATA void* __vt__17JASSimpleWaveBank[12 + 1 /* padding */] = {
+/* 803C77AC-803C77E0 0248CC 0030+04 2/2 0/0 0/0 .data            __vt__17JASSimpleWaveBank */
+SECTION_DATA extern void* __vt__17JASSimpleWaveBank[12 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17JASSimpleWaveBankFv,
@@ -114,12 +108,7 @@ SECTION_DATA void* __vt__17JASSimpleWaveBank[12 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80298C94-80298CF4 0060+00 s=0 e=1 z=0  None .text      __ct__17JASSimpleWaveBankFv */
-//	80298CA8: 803C7780 (__vt__11JASWaveBank)
-//	80298CAC: 803C7780 (__vt__11JASWaveBank)
-//	80298CB8: 8029A13C (__ct__10JASWaveArcFv)
-//	80298CBC: 803C77AC (__vt__17JASSimpleWaveBank)
-//	80298CC0: 803C77AC (__vt__17JASSimpleWaveBank)
+/* 80298C94-80298CF4 2935D4 0060+00 0/0 1/1 0/0 .text            __ct__17JASSimpleWaveBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -129,16 +118,7 @@ asm JASSimpleWaveBank::JASSimpleWaveBank() {
 }
 #pragma pop
 
-/* 80298CF4-80298D84 0090+00 s=2 e=0 z=0  None .text      __dt__17JASSimpleWaveBankFv */
-//	80298D14: 803C77AC (__vt__17JASSimpleWaveBank)
-//	80298D18: 803C77AC (__vt__17JASSimpleWaveBank)
-//	80298D2C: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298D30: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298D34: 80361C6C (__destroy_new_array)
-//	80298D40: 8029A1B4 (__dt__10JASWaveArcFv)
-//	80298D4C: 803C7780 (__vt__11JASWaveBank)
-//	80298D50: 803C7780 (__vt__11JASWaveBank)
-//	80298D64: 802CED3C (__dl__FPv)
+/* 80298CF4-80298D84 293634 0090+00 2/1 0/0 0/0 .text            __dt__17JASSimpleWaveBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,13 +128,8 @@ asm JASSimpleWaveBank::~JASSimpleWaveBank() {
 }
 #pragma pop
 
-/* 80298D84-80298DE0 005C+00 s=3 e=0 z=0  None .text      __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298D84-80298DE0 2936C4 005C+00 3/2 0/0 0/0 .text __dt__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-//	80298D9C: 803C7798 (__vt__Q217JASSimpleWaveBank11TWaveHandle)
-//	80298DA0: 803C7798 (__vt__Q217JASSimpleWaveBank11TWaveHandle)
-//	80298DAC: 803C7754 (__vt__13JASWaveHandle)
-//	80298DB0: 803C7754 (__vt__13JASWaveHandle)
-//	80298DC4: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,19 +139,8 @@ asm JASSimpleWaveBank::TWaveHandle::~TWaveHandle() {
 }
 #pragma pop
 
-/* 80298DE0-80298E60 0080+00 s=0 e=1 z=0  None .text
+/* 80298DE0-80298E60 293720 0080+00 0/0 1/1 0/0 .text
  * setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap            */
-//	80298DF0: 803621DC (_savegpr_29)
-//	80298E04: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E08: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E0C: 80361C6C (__destroy_new_array)
-//	80298E20: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	80298E24: 80298F5C (__ct__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E28: 80298F5C (__ct__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E2C: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E30: 80298D84 (__dt__Q217JASSimpleWaveBank11TWaveHandleFv)
-//	80298E3C: 80361F14 (__construct_new_array)
-//	80298E4C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -186,7 +150,7 @@ asm void JASSimpleWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 80298E60-80298E84 0024+00 s=1 e=0 z=0  None .text      getWaveHandle__17JASSimpleWaveBankCFUl */
+/* 80298E60-80298E84 2937A0 0024+00 1/0 0/0 0/0 .text getWaveHandle__17JASSimpleWaveBankCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,7 +160,7 @@ asm void JASSimpleWaveBank::getWaveHandle(u32 param_0) const {
 }
 #pragma pop
 
-/* 80298E84-80298F18 0094+00 s=0 e=1 z=0  None .text
+/* 80298E84-80298F18 2937C4 0094+00 0/0 1/1 0/0 .text
  * setWaveInfo__17JASSimpleWaveBankFUlRC11JASWaveInfo           */
 #pragma push
 #pragma optimization_level 0
@@ -207,7 +171,8 @@ asm void JASSimpleWaveBank::setWaveInfo(u32 param_0, JASWaveInfo const& param_1)
 }
 #pragma pop
 
-/* 80298F18-80298F38 0020+00 s=1 e=0 z=0  None .text      getWaveArc__17JASSimpleWaveBankFUl */
+/* 80298F18-80298F38 293858 0020+00 1/0 0/0 0/0 .text            getWaveArc__17JASSimpleWaveBankFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +182,7 @@ asm void JASSimpleWaveBank::getWaveArc(u32 param_0) {
 }
 #pragma pop
 
-/* 80298F38-80298F5C 0024+00 s=1 e=0 z=0  None .text
+/* 80298F38-80298F5C 293878 0024+00 1/0 0/0 0/0 .text
  * getWavePtr__Q217JASSimpleWaveBank11TWaveHandleCFv            */
 #pragma push
 #pragma optimization_level 0
@@ -228,13 +193,8 @@ asm void JASSimpleWaveBank::TWaveHandle::getWavePtr() const {
 }
 #pragma pop
 
-/* 80298F5C-80298F90 0034+00 s=1 e=0 z=0  None .text      __ct__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298F5C-80298F90 29389C 0034+00 1/1 0/0 0/0 .text __ct__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-//	80298F5C: 803C7754 (__vt__13JASWaveHandle)
-//	80298F60: 803C7754 (__vt__13JASWaveHandle)
-//	80298F68: 803C7798 (__vt__Q217JASSimpleWaveBank11TWaveHandle)
-//	80298F6C: 803C7798 (__vt__Q217JASSimpleWaveBank11TWaveHandle)
-//	80298F7C: 804507B8 (one__11JASWaveInfo)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -244,7 +204,7 @@ asm JASSimpleWaveBank::TWaveHandle::TWaveHandle() {
 }
 #pragma pop
 
-/* 80298F90-80298F98 0008+00 s=1 e=0 z=0  None .text
+/* 80298F90-80298F98 2938D0 0008+00 1/0 0/0 0/0 .text
  * getWaveInfo__Q217JASSimpleWaveBank11TWaveHandleCFv           */
 #pragma push
 #pragma optimization_level 0
@@ -255,27 +215,27 @@ asm void JASSimpleWaveBank::TWaveHandle::getWaveInfo() const {
 }
 #pragma pop
 
-/* 80298F98-80298FA0 0008+00 s=1 e=0 z=0  None .text      getArcCount__17JASSimpleWaveBankCFv */
+/* 80298F98-80298FA0 2938D8 0008+00 1/0 0/0 0/0 .text            getArcCount__17JASSimpleWaveBankCFv
+ */
 bool JASSimpleWaveBank::getArcCount() const {
     return true;
 }
 
-/* 80298FA0-80298FA4 0004+00 s=1 e=1 z=0  None .text      onLoadDone__10JASWaveArcFv */
+/* 80298FA0-80298FA4 2938E0 0004+00 1/0 1/0 0/0 .text            onLoadDone__10JASWaveArcFv */
 void JASWaveArc::onLoadDone() {
     /* empty function */
 }
 
-/* 80298FA4-80298FA8 0004+00 s=1 e=1 z=0  None .text      onEraseDone__10JASWaveArcFv */
+/* 80298FA4-80298FA8 2938E4 0004+00 1/0 1/0 0/0 .text            onEraseDone__10JASWaveArcFv */
 void JASWaveArc::onEraseDone() {
     /* empty function */
 }
 
-/* 80298FA8-80298FB0 0008+00 s=1 e=0 z=0  None .text      @4@__dt__17JASSimpleWaveBankFv */
-//	80298FAC: 80298CF4 (__dt__17JASSimpleWaveBankFv)
+/* 80298FA8-80298FB0 2938E8 0008+00 1/0 0/0 0/0 .text            @4@__dt__17JASSimpleWaveBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80298FA8() {
+static asm void func_80298FA8() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASSimpleWaveBank/func_80298FA8.s"
 }

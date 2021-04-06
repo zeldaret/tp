@@ -7,7 +7,7 @@ lbl_8034FBF4:
 /* 8034FC08  7C 7E 1B 78 */	mr r30, r3
 /* 8034FC0C  4B FE DA E9 */	bl OSDisableInterrupts
 /* 8034FC10  3C 80 80 00 */	lis r4, 0x8000 /* 0x800030E3@ha */
-/* 8034FC14  88 04 30 E3 */	lbz r0, 0x30E3(r4)
+/* 8034FC14  88 04 30 E3 */	lbz r0, 0x30E3(r4)  /* 0x800030E3@l */
 /* 8034FC18  54 00 06 73 */	rlwinm. r0, r0, 0, 0x19, 0x19
 /* 8034FC1C  41 82 00 0C */	beq lbl_8034FC28
 /* 8034FC20  3B E0 00 01 */	li r31, 1
@@ -16,7 +16,7 @@ lbl_8034FC28:
 /* 8034FC28  3B E0 00 00 */	li r31, 0
 lbl_8034FC2C:
 /* 8034FC2C  3C 80 80 00 */	lis r4, 0x8000 /* 0x800030E3@ha */
-/* 8034FC30  88 04 30 E3 */	lbz r0, 0x30E3(r4)
+/* 8034FC30  88 04 30 E3 */	lbz r0, 0x30E3(r4)  /* 0x800030E3@l */
 /* 8034FC34  2C 1E 00 00 */	cmpwi r30, 0
 /* 8034FC38  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
 /* 8034FC3C  98 04 30 E3 */	stb r0, 0x30e3(r4)

@@ -6,8 +6,8 @@ lbl_80181664:
 /* 80181674  93 C1 00 08 */	stw r30, 8(r1)
 /* 80181678  7C 7E 1B 78 */	mr r30, r3
 /* 8018167C  4B E9 CC 8D */	bl fopCamM_GetParam__FP12camera_class
-/* 80181680  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80181684  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80181680  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80181684  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80181688  1F E3 00 38 */	mulli r31, r3, 0x38
 /* 8018168C  7C 64 FA 14 */	add r3, r4, r31
 /* 80181690  88 03 5D 78 */	lbz r0, 0x5d78(r3)
@@ -26,8 +26,8 @@ lbl_80181664:
 /* 801816C4  4B F1 C1 B9 */	bl getE3Zhint__9daAlink_cFv
 /* 801816C8  2C 03 00 00 */	cmpwi r3, 0
 /* 801816CC  40 82 00 24 */	bne lbl_801816F0
-/* 801816D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801816D4  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 801816D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801816D4  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801816D8  7C A0 FA 14 */	add r5, r0, r31
 /* 801816DC  80 85 5D 7C */	lwz r4, 0x5d7c(r5)
 /* 801816E0  3C 60 FF FF */	lis r3, 0xFFFF /* 0xFFFEFFD4@ha */

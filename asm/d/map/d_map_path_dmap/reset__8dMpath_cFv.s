@@ -22,8 +22,8 @@ lbl_8003FC00:
 /* 8003FC18  2C 06 00 40 */	cmpwi r6, 0x40
 /* 8003FC1C  38 63 00 04 */	addi r3, r3, 4
 /* 8003FC20  41 80 FF D4 */	blt lbl_8003FBF4
-/* 8003FC24  3C 60 80 45 */	lis r3, __float_max@ha
-/* 8003FC28  C0 23 0A E8 */	lfs f1, __float_max@l(r3)
+/* 8003FC24  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 8003FC28  C0 23 0A E8 */	lfs f1, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 8003FC2C  D0 2D 88 E8 */	stfs f1, mMinX__8dMpath_c(r13)
 /* 8003FC30  FC 00 08 50 */	fneg f0, f1
 /* 8003FC34  D0 0D 88 EC */	stfs f0, mMaxX__8dMpath_c(r13)

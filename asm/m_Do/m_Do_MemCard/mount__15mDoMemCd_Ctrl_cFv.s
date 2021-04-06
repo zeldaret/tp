@@ -5,8 +5,8 @@ lbl_80017148:
 /* 80017154  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80017158  7C 7F 1B 78 */	mr r31, r3
 /* 8001715C  88 63 1F BC */	lbz r3, 0x1fbc(r3)
-/* 80017160  3C 80 80 3E */	lis r4, MemCardWorkArea0@ha
-/* 80017164  38 84 0F 40 */	addi r4, r4, MemCardWorkArea0@l
+/* 80017160  3C 80 80 3E */	lis r4, MemCardWorkArea0@ha /* 0x803E0F40@ha */
+/* 80017164  38 84 0F 40 */	addi r4, r4, MemCardWorkArea0@l /* 0x803E0F40@l */
 /* 80017168  38 A0 00 00 */	li r5, 0
 /* 8001716C  48 34 01 89 */	bl CARDMount
 /* 80017170  2C 03 FF FB */	cmpwi r3, -5
@@ -45,8 +45,8 @@ lbl_800171D8:
 /* 800171E0  38 03 00 0D */	addi r0, r3, 0xd
 /* 800171E4  28 00 00 0D */	cmplwi r0, 0xd
 /* 800171E8  41 81 00 74 */	bgt lbl_8001725C
-/* 800171EC  3C 60 80 3A */	lis r3, lit_3850@ha
-/* 800171F0  38 63 35 30 */	addi r3, r3, lit_3850@l
+/* 800171EC  3C 60 80 3A */	lis r3, lit_3850@ha /* 0x803A3530@ha */
+/* 800171F0  38 63 35 30 */	addi r3, r3, lit_3850@l /* 0x803A3530@l */
 /* 800171F4  54 00 10 3A */	slwi r0, r0, 2
 /* 800171F8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800171FC  7C 09 03 A6 */	mtctr r0

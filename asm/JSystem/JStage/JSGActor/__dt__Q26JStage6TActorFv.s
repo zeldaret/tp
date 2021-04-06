@@ -7,8 +7,8 @@ lbl_80280A48:
 /* 80280A5C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80280A60  7C 9F 23 78 */	mr r31, r4
 /* 80280A64  41 82 00 28 */	beq lbl_80280A8C
-/* 80280A68  3C 80 80 3C */	lis r4, __vt__Q26JStage6TActor@ha
-/* 80280A6C  38 04 45 A8 */	addi r0, r4, __vt__Q26JStage6TActor@l
+/* 80280A68  3C 80 80 3C */	lis r4, __vt__Q26JStage6TActor@ha /* 0x803C45A8@ha */
+/* 80280A6C  38 04 45 A8 */	addi r0, r4, __vt__Q26JStage6TActor@l /* 0x803C45A8@l */
 /* 80280A70  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280A74  38 80 00 00 */	li r4, 0
 /* 80280A78  48 00 03 5D */	bl __dt__Q26JStage7TObjectFv

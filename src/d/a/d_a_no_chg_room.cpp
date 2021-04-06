@@ -38,12 +38,6 @@ struct dBgS {
 // Forward References:
 //
 
-static void isLoadRoom(int);
-static void daNocrm_create(daNocrm_c*);
-static bool daNocrm_Delete(daNocrm_c*);
-static void daNocrm_execute(daNocrm_c*);
-static bool daNocrm_draw(daNocrm_c*);
-
 extern "C" static void isLoadRoom__Fi();
 extern "C" void execute__9daNocrm_cFv();
 extern "C" void getRoomNo__9daNocrm_cFi();
@@ -57,10 +51,6 @@ extern "C" extern void* g_profile_NO_CHG_ROOM[12];
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void fopScnM_SearchByID(unsigned int);
-void fpcNd_IsDeleteTiming(process_node_class*);
 
 extern "C" void OSReport_Warning();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -89,26 +79,18 @@ extern "C" extern u8 data_80450D68[4];
 // Declarations:
 //
 
-/* 801451EC-801452DC 00F0+00 s=1 e=0 z=0  None .text      isLoadRoom__Fi */
-//	801451FC: 803621D8 (_savegpr_28)
-//	80145204: 804061C0 (g_dComIfG_gameInfo)
-//	80145208: 804061C0 (g_dComIfG_gameInfo)
-//	80145248: 803F6094 (mStatus__20dStage_roomControl_c)
-//	8014524C: 803F6094 (mStatus__20dStage_roomControl_c)
-//	8014528C: 8001ECB0 (fopScnM_SearchByID__FUi)
-//	8014529C: 8002265C (fpcNd_IsDeleteTiming__FP18process_node_class)
-//	801452C8: 80362224 (_restgpr_28)
+/* 801451EC-801452DC 13FB2C 00F0+00 1/1 0/0 0/0 .text            isLoadRoom__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void isLoadRoom(int param_0) {
+static asm void isLoadRoom(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_no_chg_room/isLoadRoom__Fi.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804533C8-804533CC 0004+00 s=2 e=0 z=0  None .sdata2    @3762 */
+/* 804533C8-804533CC 0019C8 0004+00 2/2 0/0 0/0 .sdata2          @3762 */
 SECTION_SDATA2 static u8 lit_3762[4] = {
     0x00,
     0x00,
@@ -116,24 +98,7 @@ SECTION_SDATA2 static u8 lit_3762[4] = {
     0x00,
 };
 
-/* 801452DC-80145508 022C+00 s=1 e=0 z=0  None .text      execute__9daNocrm_cFv */
-//	801452F4: 804061C0 (g_dComIfG_gameInfo)
-//	801452F8: 804061C0 (g_dComIfG_gameInfo)
-//	80145334: 804061C0 (g_dComIfG_gameInfo)
-//	80145338: 804061C0 (g_dComIfG_gameInfo)
-//	80145398: 80346D6C (PSMTXMultVec)
-//	801453A0: 804533C8 (lit_3762)
-//	80145400: 804061C0 (g_dComIfG_gameInfo)
-//	80145404: 804061C0 (g_dComIfG_gameInfo)
-//	80145430: 804533C8 (lit_3762)
-//	8014544C: 80145508 (getRoomNo__9daNocrm_cFi)
-//	80145450: 801451EC (isLoadRoom__Fi)
-//	80145470: 804533C8 (lit_3762)
-//	8014549C: 80346D6C (PSMTXMultVec)
-//	801454A0: 804061C0 (g_dComIfG_gameInfo)
-//	801454A4: 804061C0 (g_dComIfG_gameInfo)
-//	801454D8: 804505F0 (data_804505F0)
-//	801454E4: 80450D68 (data_80450D68)
+/* 801452DC-80145508 13FC1C 022C+00 1/1 0/0 0/0 .text            execute__9daNocrm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,15 +108,7 @@ asm void daNocrm_c::execute() {
 }
 #pragma pop
 
-/* 80145508-801455A8 00A0+00 s=1 e=0 z=0  None .text      getRoomNo__9daNocrm_cFi */
-//	80145544: 804533C8 (lit_3762)
-//	80145560: 80346D6C (PSMTXMultVec)
-//	80145568: 8001DCBC (gndCheck__11fopAcM_gc_cFPC4cXyz)
-//	8014556C: 804061C0 (g_dComIfG_gameInfo)
-//	80145570: 804061C0 (g_dComIfG_gameInfo)
-//	80145578: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	8014557C: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	80145584: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80145508-801455A8 13FE48 00A0+00 1/1 0/0 0/0 .text            getRoomNo__9daNocrm_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -162,78 +119,48 @@ asm void daNocrm_c::getRoomNo(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80392640-80392680 003C+04 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80392640 =
-    "部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039267C = "\0\0\0";
-#pragma pop
-
-/* 804533CC-804533D0 0004+00 s=1 e=0 z=0  None .sdata2    @3832 */
+/* 804533CC-804533D0 0019CC 0004+00 1/1 0/0 0/0 .sdata2          @3832 */
 SECTION_SDATA2 static f32 lit_3832 = 1000.0f;
 
-/* 804533D0-804533D8 0004+04 s=1 e=0 z=0  None .sdata2    @3833 */
+/* 804533D0-804533D8 0019D0 0004+04 1/1 0/0 0/0 .sdata2          @3833 */
 SECTION_SDATA2 static f32 lit_3833[1 + 1 /* padding */] = {
     100.0f,
     /* padding */
     0.0f,
 };
 
-/* 801455A8-801456A4 00FC+00 s=1 e=0 z=0  None .text      daNocrm_create__FP9daNocrm_c */
-//	801455D0: 80018B64 (__ct__10fopAc_ac_cFv)
-//	801455FC: 80392640 (d_a_d_a_no_chg_room__stringBase0)
-//	80145600: 80392640 (d_a_d_a_no_chg_room__stringBase0)
-//	80145608: 80006CEC (OSReport_Warning)
-//	80145614: 803DD470 (now__14mDoMtx_stack_c)
-//	80145618: 803DD470 (now__14mDoMtx_stack_c)
-//	80145628: 803468E8 (PSMTXTrans)
-//	8014562C: 803DD470 (now__14mDoMtx_stack_c)
-//	80145630: 803DD470 (now__14mDoMtx_stack_c)
-//	80145638: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	8014563C: 803DD470 (now__14mDoMtx_stack_c)
-//	80145640: 803DD470 (now__14mDoMtx_stack_c)
-//	80145648: 803464B0 (PSMTXCopy)
-//	8014564C: 803DD470 (now__14mDoMtx_stack_c)
-//	80145650: 803DD470 (now__14mDoMtx_stack_c)
-//	80145658: 803465B0 (PSMTXInverse)
-//	80145670: 804533CC (lit_3832)
-//	80145678: 804533D0 (lit_3833)
-//	8014567C: 803470D8 (PSVECScale)
+/* 801455A8-801456A4 13FEE8 00FC+00 1/0 0/0 0/0 .text            daNocrm_create__FP9daNocrm_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNocrm_create(daNocrm_c* param_0) {
+static asm void daNocrm_create(daNocrm_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_no_chg_room/daNocrm_create__FP9daNocrm_c.s"
 }
 #pragma pop
 
-/* 801456A4-801456AC 0008+00 s=1 e=0 z=0  None .text      daNocrm_Delete__FP9daNocrm_c */
+/* 801456A4-801456AC 13FFE4 0008+00 1/0 0/0 0/0 .text            daNocrm_Delete__FP9daNocrm_c */
 static bool daNocrm_Delete(daNocrm_c* param_0) {
     return true;
 }
 
-/* 801456AC-801456CC 0020+00 s=1 e=0 z=0  None .text      daNocrm_execute__FP9daNocrm_c */
-//	801456B8: 801452DC (execute__9daNocrm_cFv)
+/* 801456AC-801456CC 13FFEC 0020+00 1/0 0/0 0/0 .text            daNocrm_execute__FP9daNocrm_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNocrm_execute(daNocrm_c* param_0) {
+static asm void daNocrm_execute(daNocrm_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_no_chg_room/daNocrm_execute__FP9daNocrm_c.s"
 }
 #pragma pop
 
-/* 801456CC-801456D4 0008+00 s=1 e=0 z=0  None .text      daNocrm_draw__FP9daNocrm_c */
+/* 801456CC-801456D4 14000C 0008+00 1/0 0/0 0/0 .text            daNocrm_draw__FP9daNocrm_c */
 static bool daNocrm_draw(daNocrm_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 803B3658-803B3678 0020+00 s=1 e=0 z=0  None .data      daNocrm_METHODS */
+/* 803B3658-803B3678 -00001 0020+00 1/0 0/0 0/0 .data            daNocrm_METHODS */
 SECTION_DATA static void* daNocrm_METHODS[8] = {
     (void*)daNocrm_create__FP9daNocrm_c,
     (void*)daNocrm_Delete__FP9daNocrm_c,
@@ -245,8 +172,8 @@ SECTION_DATA static void* daNocrm_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 803B3678-803B36A8 0030+00 s=0 e=0 z=1  None .data      g_profile_NO_CHG_ROOM */
-SECTION_DATA void* g_profile_NO_CHG_ROOM[12] = {
+/* 803B3678-803B36A8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NO_CHG_ROOM */
+SECTION_DATA extern void* g_profile_NO_CHG_ROOM[12] = {
     (void*)0xFFFFFFFD, (void*)0x0002FFFD,
     (void*)0x001A0000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,
@@ -254,3 +181,13 @@ SECTION_DATA void* g_profile_NO_CHG_ROOM[12] = {
     (void*)0x02FA0000, (void*)&daNocrm_METHODS,
     (void*)0x00060000, (void*)0x05000000,
 };
+
+/* 80392640-80392680 01ECA0 003C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80392640 =
+    "部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039267C = "\0\0\0";
+#pragma pop

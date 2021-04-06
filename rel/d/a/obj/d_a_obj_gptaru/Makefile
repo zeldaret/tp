@@ -3,19 +3,20 @@
 #
 
 M96_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru.plf
+M96_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru.lcf
+M96_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru.map
 
 M96_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_gptaru/executor.cpp \
-	rel/d/a/obj/d_a_obj_gptaru/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru.cpp \
 
 M96_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/d_a_obj_gpTaru.o \
 
 M96_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/libRuntime.PPCEABI.H.a \
 
 M96_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M96_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map96.map\
+	-m _prolog \
+	-lcf $(M96_LDSCRIPT) \
+	-unused -map $(M96_MAP) \
+	-w off \
 
 $(M96_TARGET): $(M96_O_FILES) $(M96_LIBS)
+	@echo [ 96] creating $(M96_TARGET)
 	@echo $(M96_LIBS) $(M96_O_FILES) > build/M96_ofiles
-	$(LD) -opt_partial $(M96_LDFLAGS) -o $(M96_TARGET) @build/M96_ofiles
+	@python3 tools/lcf.py rel 96 --output $(M96_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M96_LDFLAGS) -o $(M96_TARGET) @build/M96_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gptaru/%.o: rel/d/a/obj/d_a_obj_gptaru/%.cpp
+	@echo [ 96] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M96_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M96_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_gptaru/libs/Runtime.PPCEABI.H/Makefile
 

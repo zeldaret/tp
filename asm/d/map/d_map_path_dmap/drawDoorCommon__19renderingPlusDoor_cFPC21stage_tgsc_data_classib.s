@@ -46,8 +46,8 @@ lbl_8004068C:
 /* 800406A8  48 00 00 69 */	bl checkDispDoorS__19renderingPlusDoor_cFiif
 /* 800406AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800406B0  41 82 00 30 */	beq lbl_800406E0
-/* 800406B4  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha
-/* 800406B8  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l
+/* 800406B4  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha /* 0x80424684@ha */
+/* 800406B8  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l /* 0x80424684@l */
 /* 800406BC  80 63 00 00 */	lwz r3, 0(r3)
 /* 800406C0  38 80 00 00 */	li r4, 0
 /* 800406C4  48 31 DD 51 */	bl GXLoadTexObj

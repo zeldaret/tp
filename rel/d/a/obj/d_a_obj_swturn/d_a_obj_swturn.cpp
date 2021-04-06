@@ -53,9 +53,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -74,9 +74,9 @@ struct dBgW_Base {
 
 struct dBgW {};
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -104,12 +104,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
-static void daObjSwTurn_create1st(daObjSwTurn_c*);
-static void daObjSwTurn_MoveBGDelete(daObjSwTurn_c*);
-static void daObjSwTurn_MoveBGExecute(daObjSwTurn_c*);
-static void daObjSwTurn_MoveBGDraw(daObjSwTurn_c*);
-
 extern "C" static void PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
 extern "C" void initBaseMtx__13daObjSwTurn_cFv();
 extern "C" void setBaseMtx__13daObjSwTurn_cFv();
@@ -130,36 +124,11 @@ extern "C" static void daObjSwTurn_create1st__FP13daObjSwTurn_c();
 extern "C" static void daObjSwTurn_MoveBGDelete__FP13daObjSwTurn_c();
 extern "C" static void daObjSwTurn_MoveBGExecute__FP13daObjSwTurn_c();
 extern "C" static void daObjSwTurn_MoveBGDraw__FP13daObjSwTurn_c();
-extern "C" extern u32 const l_rot_time;
-extern "C" extern u16 const l_tame_time_1st[1 + 1 /* padding */];
-extern "C" extern u16 const l_tame_time_cnt[1 + 1 /* padding */];
-extern "C" extern u32 const lit_4100[1 + 1 /* padding */];
-extern "C" extern u8 const lit_4102[8];
-extern "C" extern u32 const lit_4127;
-extern "C" extern u32 const lit_4189;
-extern "C" extern u32 const lit_4304;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3813[3];
-extern "C" extern void* lit_3814[3];
-extern "C" extern u8 data_80D0210C[24];
-extern "C" extern void* g_profile_Obj_SwTurn[12];
-extern "C" extern void* __vt__13daObjSwTurn_c[10];
+extern "C" extern char const* const d_a_obj_swturn__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -213,71 +182,75 @@ extern "C" extern u8 data_80D021A0[4];
 //
 
 /* ############################################################################################## */
-/* 80D0206C-80D02074 0008+00 s=5 e=0 z=0  None .rodata    l_bmd */
+/* 80D0206C-80D02074 000000 0008+00 5/5 0/0 0/0 .rodata          l_bmd */
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
+SECTION_DEAD void* const cg_80D0206C = (void*)(&l_bmd);
 
-/* 80D02074-80D0207C 0008+00 s=1 e=0 z=0  None .rodata    l_dzb */
+/* 80D02074-80D0207C 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
+SECTION_DEAD void* const cg_80D02074 = (void*)(&l_dzb);
 
-/* 80D0207C-80D02084 0008+00 s=1 e=0 z=0  None .rodata    l_heap_size */
+/* 80D0207C-80D02084 000010 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x45, 0x30, 0x00, 0x00, 0x2B, 0xE0,
 };
+SECTION_DEAD void* const cg_80D0207C = (void*)(&l_heap_size);
 
-/* 80D02084-80D02088 0004+00 s=0 e=0 z=0  None .rodata    l_rot_time */
-SECTION_RODATA u32 const l_rot_time = 0x005A001E;
+/* 80D02084-80D02088 000018 0004+00 0/3 0/0 0/0 .rodata          l_rot_time */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const l_rot_time = 0x005A001E;
+SECTION_DEAD void* const cg_80D02084 = (void*)(&l_rot_time);
+#pragma pop
 
-/* 80D02088-80D0208C 0002+02 s=0 e=0 z=0  None .rodata    l_tame_time_1st */
-SECTION_RODATA u16 const l_tame_time_1st[1 + 1 /* padding */] = {
+/* 80D02088-80D0208C 00001C 0002+02 0/1 0/0 0/0 .rodata          l_tame_time_1st */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u16 const l_tame_time_1st[1 + 1 /* padding */] = {
     0x2F2F,
     /* padding */
     0x0000,
 };
+SECTION_DEAD void* const cg_80D02088 = (void*)(&l_tame_time_1st);
+#pragma pop
 
-/* 80D0208C-80D02090 0002+02 s=0 e=0 z=0  None .rodata    l_tame_time_cnt */
-SECTION_RODATA u16 const l_tame_time_cnt[1 + 1 /* padding */] = {
+/* 80D0208C-80D02090 000020 0002+02 0/1 0/0 0/0 .rodata          l_tame_time_cnt */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u16 const l_tame_time_cnt[1 + 1 /* padding */] = {
     0x2323,
     /* padding */
     0x0000,
 };
+SECTION_DEAD void* const cg_80D0208C = (void*)(&l_tame_time_cnt);
+#pragma pop
 
-/* 80D02090-80D02094 0004+00 s=1 e=0 z=0  None .rodata    @3698 */
+/* 80D02090-80D02094 000024 0004+00 1/4 0/0 0/0 .rodata          @3698 */
 SECTION_RODATA static u8 const lit_3698[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80D02090 = (void*)(&lit_3698);
 
-/* 80D00BD8-80D00CD8 0100+00 s=1 e=0 z=0  None .text
+/* 80D00BD8-80D00CD8 000078 0100+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
-//	80D00BE8: 803621DC (_savegpr_29)
-//	80D00C08: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80D00C24: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00C28: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00C38: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80D00C3C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00C40: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00C4C: 80346D6C (PSMTXMultVec)
-//	80D00C54: 80D02090 (lit_3698)
-//	80D00C58: 80D02090 (lit_3698)
-//	80D00CC4: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
+static asm void PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
                            dBgW_Base::PushPullLabel param_3) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn/PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel.s"
 }
 #pragma pop
 
-/* 80D00CD8-80D00D14 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__13daObjSwTurn_cFv */
-//	80D00D00: 80D00D14 (setBaseMtx__13daObjSwTurn_cFv)
+/* 80D00CD8-80D00D14 000178 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,17 +260,7 @@ asm void daObjSwTurn_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80D00D14-80D00D78 0064+00 s=3 e=0 z=0  None .text      setBaseMtx__13daObjSwTurn_cFv */
-//	80D00D2C: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80D00D30: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D34: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D3C: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80D00D40: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D44: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D50: 803464B0 (PSMTXCopy)
-//	80D00D54: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D58: 803DD470 (now__14mDoMtx_stack_c)
-//	80D00D60: 803464B0 (PSMTXCopy)
+/* 80D00D14-80D00D78 0001B4 0064+00 3/3 0/0 0/0 .text            setBaseMtx__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,22 +270,7 @@ asm void daObjSwTurn_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80D00D78-80D00EE4 016C+00 s=1 e=0 z=0  None .text      Create__13daObjSwTurn_cFv */
-//	80D00D98: 804061C0 (g_dComIfG_gameInfo)
-//	80D00D9C: 804061C0 (g_dComIfG_gameInfo)
-//	80D00DB0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D00E1C: 804061C0 (g_dComIfG_gameInfo)
-//	80D00E20: 804061C0 (g_dComIfG_gameInfo)
-//	80D00E34: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D00E4C: 804061C0 (g_dComIfG_gameInfo)
-//	80D00E50: 804061C0 (g_dComIfG_gameInfo)
-//	80D00E64: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D00EA0: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80D00EA4: 80D00BD8 (PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80D00EA8: 80D00BD8 (PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80D00EB8: 80D01160 (init_modeWait__13daObjSwTurn_cFv)
-//	80D00EC0: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
-//	80D00EC8: 80D00CD8 (initBaseMtx__13daObjSwTurn_cFv)
+/* 80D00D78-80D00EE4 000218 016C+00 1/0 0/0 0/0 .text            Create__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -333,66 +281,15 @@ asm void daObjSwTurn_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D02094-80D02098 0004+00 s=1 e=0 z=0  None .rodata    @4098 */
-SECTION_RODATA static u32 const lit_4098 = 0x3F800000;
-
-/* 80D02098-80D0209C 0004+00 s=1 e=0 z=0  None .rodata    @4099 */
-SECTION_RODATA static u32 const lit_4099 = 0xBF800000;
-
-/* 80D0209C-80D020A4 0004+04 s=0 e=0 z=0  None .rodata    @4100 */
-SECTION_RODATA u32 const lit_4100[1 + 1 /* padding */] = {
-    0x41200000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80D020A4-80D020AC 0008+00 s=0 e=0 z=0  None .rodata    @4102 */
-SECTION_RODATA u8 const lit_4102[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80D020AC-80D020B0 0004+00 s=0 e=0 z=0  None .rodata    @4127 */
-SECTION_RODATA u32 const lit_4127 = 0x47000000;
-
-/* 80D020B0-80D020B4 0004+00 s=0 e=0 z=0  None .rodata    @4189 */
-SECTION_RODATA u32 const lit_4189 = 0x46800000;
-
-/* 80D020B4-80D020B8 0004+00 s=0 e=0 z=0  None .rodata    @4304 */
-SECTION_RODATA u32 const lit_4304 = 0x45AAA800;
-
-/* 80D020B8-80D020CC 0014+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80D020B8[20] = {
-    /* 80D020B8 0009 stringBase_80D020B8 @stringBase0 */
-    0x50,
-    0x5F,
-    0x4C,
-    0x76,
-    0x34,
-    0x74,
-    0x73,
-    0x77,
-    0x00,
-    /* 80D020C1 000B data_80D020C1 None */
-    0x50,
-    0x5F,
-    0x4C,
-    0x76,
-    0x34,
-    0x74,
-    0x73,
-    0x77,
-    0x44,
-    0x00,
-    0x00,
-};
-
-/* 80D020CC-80D020D8 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80D020CC-80D020D8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80D020D8-80D020EC 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80D020D8-80D020EC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -400,22 +297,15 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80D020EC-80D020F4 0008+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 80D020EC-80D020F4 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
-    (void*)(((char*)&struct_80D020B8) + 0x0) /* @stringBase0 */,
-    (void*)(((char*)&struct_80D020B8) + 0x9) /* None */,
+    (void*)&d_a_obj_swturn__stringBase0,
+    (void*)(((char*)&d_a_obj_swturn__stringBase0) + 0x9),
 };
 
-/* 80D00EE4-80D00F64 0080+00 s=1 e=0 z=0  None .text      CreateHeap__13daObjSwTurn_cFv */
-//	80D00F00: 80D020EC (l_arcName)
-//	80D00F04: 80D020EC (l_arcName)
-//	80D00F0C: 80D0206C (l_bmd)
-//	80D00F10: 80D0206C (l_bmd)
-//	80D00F18: 804061C0 (g_dComIfG_gameInfo)
-//	80D00F1C: 804061C0 (g_dComIfG_gameInfo)
-//	80D00F2C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80D00F3C: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80D00EE4-80D00F64 000384 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -425,20 +315,7 @@ asm void daObjSwTurn_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D00F64-80D01074 0110+00 s=1 e=0 z=0  None .text      create1st__13daObjSwTurn_cFv */
-//	80D00FF0: 80D020EC (l_arcName)
-//	80D00FF4: 80D020EC (l_arcName)
-//	80D00FFC: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80D01018: 80D020EC (l_arcName)
-//	80D0101C: 80D020EC (l_arcName)
-//	80D01024: 80D02074 (l_dzb)
-//	80D01028: 80D02074 (l_dzb)
-//	80D01030: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80D01034:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80D01038:
-//80D0207C (l_heap_size) 	80D0103C: 80D0207C (l_heap_size) 	80D01048: 800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
+/* 80D00F64-80D01074 000404 0110+00 1/1 0/0 0/0 .text            create1st__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -448,9 +325,8 @@ asm void daObjSwTurn_c::create1st() {
 }
 #pragma pop
 
-/* 80D01074-80D010D4 0060+00 s=1 e=0 z=0  None .text      Execute__13daObjSwTurn_cFPPA3_A4_f */
-//	80D0109C: 80D010D4 (mode_proc_call__13daObjSwTurn_cFv)
-//	80D010AC: 80D00D14 (setBaseMtx__13daObjSwTurn_cFv)
+/* 80D01074-80D010D4 000514 0060+00 1/0 0/0 0/0 .text            Execute__13daObjSwTurn_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -460,12 +336,38 @@ asm void daObjSwTurn_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80D010D4-80D01160 008C+00 s=1 e=0 z=0  None .text      mode_proc_call__13daObjSwTurn_cFv */
-//	80D010E0: 80D020CC (cNullVec__6Z2Calc)
-//	80D010E4: 80D020CC (cNullVec__6Z2Calc)
-//	80D010E8: 80D021A0 (data_80D021A0)
-//	80D010EC: 80D021A0 (data_80D021A0)
-//	80D01148: 80362084 (__ptmf_scall)
+/* ############################################################################################## */
+/* 80D020F4-80D02100 -00001 000C+00 0/1 0/0 0/0 .data            @3813 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3813[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)modeWait__13daObjSwTurn_cFv,
+};
+#pragma pop
+
+/* 80D02100-80D0210C -00001 000C+00 0/1 0/0 0/0 .data            @3814 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3814[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)modeRotate__13daObjSwTurn_cFv,
+};
+#pragma pop
+
+/* 80D0210C-80D02124 000040 0018+00 0/1 0/0 0/0 .data            l_func$3812 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_func[24] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+#pragma pop
+
+/* 80D010D4-80D01160 000574 008C+00 1/1 0/0 0/0 .text            mode_proc_call__13daObjSwTurn_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,7 +377,7 @@ asm void daObjSwTurn_c::mode_proc_call() {
 }
 #pragma pop
 
-/* 80D01160-80D01198 0038+00 s=3 e=0 z=0  None .text      init_modeWait__13daObjSwTurn_cFv */
+/* 80D01160-80D01198 000600 0038+00 3/3 0/0 0/0 .text            init_modeWait__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -485,43 +387,36 @@ asm void daObjSwTurn_c::init_modeWait() {
 }
 #pragma pop
 
-/* 80D01198-80D01770 05D8+00 s=1 e=0 z=0  None .text      modeWait__13daObjSwTurn_cFv */
-//	80D011A8: 803621D4 (_savegpr_27)
-//	80D011B0: 80D0206C (l_bmd)
-//	80D011B4: 80D0206C (l_bmd)
-//	80D011B8: 804061C0 (g_dComIfG_gameInfo)
-//	80D011BC: 804061C0 (g_dComIfG_gameInfo)
-//	80D01384: 80270608 (cLib_addCalcAngleS2__FPssss)
-//	80D0139C: 80270608 (cLib_addCalcAngleS2__FPssss)
-//	80D013C0: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D013D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D013D8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01400: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01418: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D0142C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01430: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01458: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01474: 80439A20 (sincosTable___5JMath)
-//	80D01478: 80439A20 (sincosTable___5JMath)
-//	80D014F8: 804061C0 (g_dComIfG_gameInfo)
-//	80D014FC: 804061C0 (g_dComIfG_gameInfo)
-//	80D01508: 80035200 (onSwitch__10dSv_info_cFii)
-//	80D01520: 80D01770 (init_modeRotate__13daObjSwTurn_cFv)
-//	80D01560: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80D01598: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D015AC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D015B0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D015D8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01664: 804061C0 (g_dComIfG_gameInfo)
-//	80D01668: 804061C0 (g_dComIfG_gameInfo)
-//	80D01688: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80D016A4: 803DD470 (now__14mDoMtx_stack_c)
-//	80D016A8: 803DD470 (now__14mDoMtx_stack_c)
-//	80D016B8: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80D016BC: 803DD470 (now__14mDoMtx_stack_c)
-//	80D016C0: 803DD470 (now__14mDoMtx_stack_c)
-//	80D016CC: 80346D6C (PSMTXMultVec)
-//	80D0175C: 80362220 (_restgpr_27)
+/* ############################################################################################## */
+/* 80D02094-80D02098 000028 0004+00 1/5 0/0 0/0 .rodata          @4098 */
+SECTION_RODATA static u32 const lit_4098 = 0x3F800000;
+SECTION_DEAD void* const cg_80D02094 = (void*)(&lit_4098);
+
+/* 80D02098-80D0209C 00002C 0004+00 1/5 0/0 0/0 .rodata          @4099 */
+SECTION_RODATA static u32 const lit_4099 = 0xBF800000;
+SECTION_DEAD void* const cg_80D02098 = (void*)(&lit_4099);
+
+/* 80D0209C-80D020A4 000030 0004+04 0/1 0/0 0/0 .rodata          @4100 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4100[1 + 1 /* padding */] = {
+    0x41200000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_80D0209C = (void*)(&lit_4100);
+#pragma pop
+
+/* 80D020A4-80D020AC 000038 0008+00 0/4 0/0 0/0 .rodata          @4102 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4102[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80D020A4 = (void*)(&lit_4102);
+#pragma pop
+
+/* 80D01198-80D01770 000638 05D8+00 1/0 0/0 0/0 .text            modeWait__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -531,17 +426,16 @@ asm void daObjSwTurn_c::modeWait() {
 }
 #pragma pop
 
-/* 80D01770-80D018B4 0144+00 s=1 e=0 z=0  None .text      init_modeRotate__13daObjSwTurn_cFv */
-//	80D01788: 80D0206C (l_bmd)
-//	80D0178C: 80D0206C (l_bmd)
-//	80D017BC: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D017D0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D017D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D017FC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D0180C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01820: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01824: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0184C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* ############################################################################################## */
+/* 80D020AC-80D020B0 000040 0004+00 0/1 0/0 0/0 .rodata          @4127 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4127 = 0x47000000;
+SECTION_DEAD void* const cg_80D020AC = (void*)(&lit_4127);
+#pragma pop
+
+/* 80D01770-80D018B4 000C10 0144+00 1/1 0/0 0/0 .text            init_modeRotate__13daObjSwTurn_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -551,17 +445,7 @@ asm void daObjSwTurn_c::init_modeRotate() {
 }
 #pragma pop
 
-/* 80D018B4-80D01958 00A4+00 s=1 e=0 z=0  None .text      modeRotate__13daObjSwTurn_cFv */
-//	80D018E4: 80D01958 (rotate_sub_0__13daObjSwTurn_cFv)
-//	80D018F0: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01904: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01908: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0191C: 80D02094 (lit_4098)
-//	80D01920: 80D02094 (lit_4098)
-//	80D01928: 80D02098 (lit_4099)
-//	80D0192C: 80D02098 (lit_4099)
-//	80D01938: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01940: 80D01B60 (rotate_sub_1__13daObjSwTurn_cFv)
+/* 80D018B4-80D01958 000D54 00A4+00 1/0 0/0 0/0 .text            modeRotate__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -571,25 +455,15 @@ asm void daObjSwTurn_c::modeRotate() {
 }
 #pragma pop
 
-/* 80D01958-80D01B60 0208+00 s=1 e=0 z=0  None .text      rotate_sub_0__13daObjSwTurn_cFv */
-//	80D01970: 80D0206C (l_bmd)
-//	80D01974: 80D0206C (l_bmd)
-//	80D01A70: 804061C0 (g_dComIfG_gameInfo)
-//	80D01A74: 804061C0 (g_dComIfG_gameInfo)
-//	80D01A88: 80035200 (onSwitch__10dSv_info_cFii)
-//	80D01A90: 804061C0 (g_dComIfG_gameInfo)
-//	80D01A94: 804061C0 (g_dComIfG_gameInfo)
-//	80D01AA8: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80D01AAC: 804061C0 (g_dComIfG_gameInfo)
-//	80D01AB0: 804061C0 (g_dComIfG_gameInfo)
-//	80D01ACC: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01AE0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01AE4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01B0C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01B24: 804061C0 (g_dComIfG_gameInfo)
-//	80D01B28: 804061C0 (g_dComIfG_gameInfo)
-//	80D01B3C: 8006FA24 (StartShock__12dVibration_cFii4cXyz)
-//	80D01B44: 80D01160 (init_modeWait__13daObjSwTurn_cFv)
+/* ############################################################################################## */
+/* 80D020B0-80D020B4 000044 0004+00 0/1 0/0 0/0 .rodata          @4189 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4189 = 0x46800000;
+SECTION_DEAD void* const cg_80D020B0 = (void*)(&lit_4189);
+#pragma pop
+
+/* 80D01958-80D01B60 000DF8 0208+00 1/1 0/0 0/0 .text            rotate_sub_0__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -599,43 +473,15 @@ asm void daObjSwTurn_c::rotate_sub_0() {
 }
 #pragma pop
 
-/* 80D01B60-80D01EB0 0350+00 s=1 e=0 z=0  None .text      rotate_sub_1__13daObjSwTurn_cFv */
-//	80D01B78: 80D0206C (l_bmd)
-//	80D01B7C: 80D0206C (l_bmd)
-//	80D01C84: 804061C0 (g_dComIfG_gameInfo)
-//	80D01C88: 804061C0 (g_dComIfG_gameInfo)
-//	80D01C9C: 80035200 (onSwitch__10dSv_info_cFii)
-//	80D01CA0: 804061C0 (g_dComIfG_gameInfo)
-//	80D01CA4: 804061C0 (g_dComIfG_gameInfo)
-//	80D01CB8: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80D01CC4: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01CD8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01CDC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01D04: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01D1C: 804061C0 (g_dComIfG_gameInfo)
-//	80D01D20: 804061C0 (g_dComIfG_gameInfo)
-//	80D01D34: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80D01D38: 804061C0 (g_dComIfG_gameInfo)
-//	80D01D3C: 804061C0 (g_dComIfG_gameInfo)
-//	80D01D50: 80035200 (onSwitch__10dSv_info_cFii)
-//	80D01D5C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01D70: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01D74: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01D9C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01DAC: 804061C0 (g_dComIfG_gameInfo)
-//	80D01DB0: 804061C0 (g_dComIfG_gameInfo)
-//	80D01DC4: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80D01DC8: 804061C0 (g_dComIfG_gameInfo)
-//	80D01DCC: 804061C0 (g_dComIfG_gameInfo)
-//	80D01DE0: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80D01E0C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D01E20: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01E24: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D01E4C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D01E50: 804061C0 (g_dComIfG_gameInfo)
-//	80D01E54: 804061C0 (g_dComIfG_gameInfo)
-//	80D01E8C: 8006FA24 (StartShock__12dVibration_cFii4cXyz)
-//	80D01E94: 80D01160 (init_modeWait__13daObjSwTurn_cFv)
+/* ############################################################################################## */
+/* 80D020B4-80D020B8 000048 0004+00 0/1 0/0 0/0 .rodata          @4304 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4304 = 0x45AAA800;
+SECTION_DEAD void* const cg_80D020B4 = (void*)(&lit_4304);
+#pragma pop
+
+/* 80D01B60-80D01EB0 001000 0350+00 1/1 0/0 0/0 .text            rotate_sub_1__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -645,19 +491,7 @@ asm void daObjSwTurn_c::rotate_sub_1() {
 }
 #pragma pop
 
-/* 80D01EB0-80D01F58 00A8+00 s=1 e=0 z=0  None .text      Draw__13daObjSwTurn_cFv */
-//	80D01EC8: 80D00D14 (setBaseMtx__13daObjSwTurn_cFv)
-//	80D01ECC: 8042CA54 (g_env_light)
-//	80D01ED0: 8042CA54 (g_env_light)
-//	80D01EE0: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80D01EE4: 8042CA54 (g_env_light)
-//	80D01EE8: 8042CA54 (g_env_light)
-//	80D01EF8: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80D01EFC:
-// 804061C0 (g_dComIfG_gameInfo) 	80D01F00: 804061C0 (g_dComIfG_gameInfo) 	80D01F08: 80434AC8
-// (j3dSys) 	80D01F0C: 80434AC8 (j3dSys) 	80D01F20: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80D01F24: 804061C0 (g_dComIfG_gameInfo)
-//	80D01F28: 804061C0 (g_dComIfG_gameInfo)
+/* 80D01EB0-80D01F58 001350 00A8+00 1/0 0/0 0/0 .text            Draw__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -667,10 +501,7 @@ asm void daObjSwTurn_c::Draw() {
 }
 #pragma pop
 
-/* 80D01F58-80D01F98 0040+00 s=1 e=0 z=0  None .text      Delete__13daObjSwTurn_cFv */
-//	80D01F74: 80D020EC (l_arcName)
-//	80D01F78: 80D020EC (l_arcName)
-//	80D01F80: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80D01F58-80D01F98 0013F8 0040+00 1/0 0/0 0/0 .text            Delete__13daObjSwTurn_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -681,27 +512,7 @@ asm void daObjSwTurn_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D020F4-80D02100 000C+00 s=0 e=0 z=0  None .data      @3813 */
-SECTION_DATA void* lit_3813[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__13daObjSwTurn_cFv,
-};
-
-/* 80D02100-80D0210C 000C+00 s=0 e=0 z=0  None .data      @3814 */
-SECTION_DATA void* lit_3814[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeRotate__13daObjSwTurn_cFv,
-};
-
-/* 80D0210C-80D02124 0018+00 s=0 e=0 z=0  None .data      l_func$3812 */
-SECTION_DATA u8 data_80D0210C[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D02124-80D02144 0020+00 s=1 e=0 z=0  None .data      daObjSwTurn_METHODS */
+/* 80D02124-80D02144 -00001 0020+00 1/0 0/0 0/0 .data            daObjSwTurn_METHODS */
 SECTION_DATA static void* daObjSwTurn_METHODS[8] = {
     (void*)daObjSwTurn_create1st__FP13daObjSwTurn_c,
     (void*)daObjSwTurn_MoveBGDelete__FP13daObjSwTurn_c,
@@ -713,8 +524,8 @@ SECTION_DATA static void* daObjSwTurn_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D02144-80D02174 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_SwTurn */
-SECTION_DATA void* g_profile_Obj_SwTurn[12] = {
+/* 80D02144-80D02174 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SwTurn */
+SECTION_DATA extern void* g_profile_Obj_SwTurn[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x001E0000, (void*)&g_fpcLf_Method,
     (void*)0x000005E0, (void*)NULL,
@@ -723,8 +534,8 @@ SECTION_DATA void* g_profile_Obj_SwTurn[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80D02174-80D0219C 0028+00 s=1 e=0 z=0  None .data      __vt__13daObjSwTurn_c */
-SECTION_DATA void* __vt__13daObjSwTurn_c[10] = {
+/* 80D02174-80D0219C 0000A8 0028+00 1/1 0/0 0/0 .data            __vt__13daObjSwTurn_c */
+SECTION_DATA extern void* __vt__13daObjSwTurn_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__13daObjSwTurn_cFv,
@@ -737,52 +548,52 @@ SECTION_DATA void* __vt__13daObjSwTurn_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80D01F98-80D01FF8 0060+00 s=1 e=0 z=0  None .text      daObjSwTurn_create1st__FP13daObjSwTurn_c
- */
-//	80D01FC0: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80D01FC4: 80D02174 (__vt__13daObjSwTurn_c)
-//	80D01FC8: 80D02174 (__vt__13daObjSwTurn_c)
-//	80D01FE0: 80D00F64 (create1st__13daObjSwTurn_cFv)
+/* 80D01F98-80D01FF8 001438 0060+00 1/0 0/0 0/0 .text daObjSwTurn_create1st__FP13daObjSwTurn_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSwTurn_create1st(daObjSwTurn_c* param_0) {
+static asm void daObjSwTurn_create1st(daObjSwTurn_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn/daObjSwTurn_create1st__FP13daObjSwTurn_c.s"
 }
 #pragma pop
 
-/* 80D01FF8-80D02018 0020+00 s=1 e=0 z=0  None .text daObjSwTurn_MoveBGDelete__FP13daObjSwTurn_c
+/* 80D01FF8-80D02018 001498 0020+00 1/0 0/0 0/0 .text daObjSwTurn_MoveBGDelete__FP13daObjSwTurn_c
  */
-//	80D02004: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSwTurn_MoveBGDelete(daObjSwTurn_c* param_0) {
+static asm void daObjSwTurn_MoveBGDelete(daObjSwTurn_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn/daObjSwTurn_MoveBGDelete__FP13daObjSwTurn_c.s"
 }
 #pragma pop
 
-/* 80D02018-80D02038 0020+00 s=1 e=0 z=0  None .text daObjSwTurn_MoveBGExecute__FP13daObjSwTurn_c
+/* 80D02018-80D02038 0014B8 0020+00 1/0 0/0 0/0 .text daObjSwTurn_MoveBGExecute__FP13daObjSwTurn_c
  */
-//	80D02024: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSwTurn_MoveBGExecute(daObjSwTurn_c* param_0) {
+static asm void daObjSwTurn_MoveBGExecute(daObjSwTurn_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn/daObjSwTurn_MoveBGExecute__FP13daObjSwTurn_c.s"
 }
 #pragma pop
 
-/* 80D02038-80D02064 002C+00 s=1 e=0 z=0  None .text      daObjSwTurn_MoveBGDraw__FP13daObjSwTurn_c
- */
+/* 80D02038-80D02064 0014D8 002C+00 1/0 0/0 0/0 .text daObjSwTurn_MoveBGDraw__FP13daObjSwTurn_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSwTurn_MoveBGDraw(daObjSwTurn_c* param_0) {
+static asm void daObjSwTurn_MoveBGDraw(daObjSwTurn_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn/daObjSwTurn_MoveBGDraw__FP13daObjSwTurn_c.s"
 }
+#pragma pop
+
+/* 80D020B8-80D020CB 00004C 0013+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D020B8 = "P_Lv4tsw";
+SECTION_DEAD static char const* const stringBase_80D020C1 = "P_Lv4tswD";
 #pragma pop

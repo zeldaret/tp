@@ -7,8 +7,8 @@ lbl_8028C808:
 /* 8028C81C  7C 7E 1B 78 */	mr r30, r3
 /* 8028C820  83 E3 00 8C */	lwz r31, 0x8c(r3)
 /* 8028C824  38 81 00 0C */	addi r4, r1, 0xc
-/* 8028C828  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha
-/* 8028C82C  38 A5 AA CC */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l
+/* 8028C828  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha /* 0x8039AACC@ha */
+/* 8028C82C  38 A5 AA CC */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l /* 0x8039AACC@l */
 /* 8028C830  4B FF 9B 5D */	bl adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
 /* 8028C834  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8028C838  90 01 00 08 */	stw r0, 8(r1)

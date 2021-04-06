@@ -7,8 +7,8 @@ lbl_800C7C64:
 /* 800C7C78  39 61 00 40 */	addi r11, r1, 0x40
 /* 800C7C7C  48 29 A5 5D */	bl _savegpr_28
 /* 800C7C80  7C 7D 1B 78 */	mr r29, r3
-/* 800C7C84  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800C7C88  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 800C7C84  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800C7C88  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 800C7C8C  A8 03 30 0A */	lha r0, 0x300a(r3)
 /* 800C7C90  2C 00 00 00 */	cmpwi r0, 0
 /* 800C7C94  41 82 00 38 */	beq lbl_800C7CCC
@@ -19,8 +19,8 @@ lbl_800C7C64:
 /* 800C7CA8  4B FE DC 45 */	bl checkWaitAction__9daAlink_cFv
 /* 800C7CAC  48 00 00 18 */	b lbl_800C7CC4
 lbl_800C7CB0:
-/* 800C7CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C7CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C7CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C7CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C7CB8  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800C7CBC  80 9D 31 84 */	lwz r4, 0x3184(r29)
 /* 800C7CC0  4B F8 04 BD */	bl cutEnd__16dEvent_manager_cFi
@@ -63,8 +63,8 @@ lbl_800C7CF8:
 /* 800C7D44  28 00 00 3A */	cmplwi r0, 0x3a
 /* 800C7D48  40 82 00 70 */	bne lbl_800C7DB8
 lbl_800C7D4C:
-/* 800C7D4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C7D50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C7D4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C7D50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C7D54  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800C7D58  80 9D 31 84 */	lwz r4, 0x3184(r29)
 /* 800C7D5C  4B F8 04 21 */	bl cutEnd__16dEvent_manager_cFi
@@ -99,11 +99,11 @@ lbl_800C7DB8:
 /* 800C7DC4  90 01 00 0C */	stw r0, 0xc(r1)
 /* 800C7DC8  80 1F 4A 20 */	lwz r0, 0x4a20(r31)
 /* 800C7DCC  90 01 00 10 */	stw r0, 0x10(r1)
-/* 800C7DD0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 800C7DD4  3B 83 56 1C */	addi r28, r3, l_wolfBaseAnime@l
+/* 800C7DD0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 800C7DD4  3B 83 56 1C */	addi r28, r3, l_wolfBaseAnime@l /* 0x8042561C@l */
 /* 800C7DD8  C0 3C 00 08 */	lfs f1, 8(r28)
-/* 800C7DDC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C7DE0  3B E3 55 14 */	addi r31, r3, l_waitBaseAnime@l
+/* 800C7DDC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C7DE0  3B E3 55 14 */	addi r31, r3, l_waitBaseAnime@l /* 0x80425514@l */
 /* 800C7DE4  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 800C7DE8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800C7DEC  D0 01 00 10 */	stfs f0, 0x10(r1)
@@ -117,8 +117,8 @@ lbl_800C7DB8:
 /* 800C7E0C  7F A3 EB 78 */	mr r3, r29
 /* 800C7E10  38 80 00 00 */	li r4, 0
 /* 800C7E14  4B FF 79 89 */	bl setMetamorphoseModel__9daAlink_cFi
-/* 800C7E18  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C7E1C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800C7E18  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C7E1C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800C7E20  D0 1D 35 88 */	stfs f0, 0x3588(r29)
 /* 800C7E24  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7E28  D0 1D 35 8C */	stfs f0, 0x358c(r29)
@@ -130,8 +130,8 @@ lbl_800C7E38:
 /* 800C7E3C  38 80 00 6F */	li r4, 0x6f
 /* 800C7E40  C0 22 92 BC */	lfs f1, lit_6041(r2)
 /* 800C7E44  48 06 18 65 */	bl setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf
-/* 800C7E48  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 800C7E4C  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 800C7E48  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 800C7E4C  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 800C7E50  D0 1D 35 88 */	stfs f0, 0x3588(r29)
 /* 800C7E54  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7E58  D0 1D 35 8C */	stfs f0, 0x358c(r29)
@@ -149,8 +149,8 @@ lbl_800C7E80:
 /* 800C7E84  4B F4 4E E1 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800C7E88  38 7D 04 E4 */	addi r3, r29, 0x4e4
 /* 800C7E8C  4B F4 50 B9 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
-/* 800C7E90  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800C7E94  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800C7E90  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800C7E94  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800C7E98  38 81 00 08 */	addi r4, r1, 8
 /* 800C7E9C  38 BD 04 D0 */	addi r5, r29, 0x4d0
 /* 800C7EA0  48 27 EE CD */	bl PSMTXMultVec
@@ -212,8 +212,8 @@ lbl_800C7F40:
 /* 800C7F74  4B FE D9 79 */	bl checkWaitAction__9daAlink_cFv
 /* 800C7F78  48 00 03 50 */	b lbl_800C82C8
 lbl_800C7F7C:
-/* 800C7F7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C7F80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C7F7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C7F80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C7F84  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800C7F88  80 9D 31 84 */	lwz r4, 0x3184(r29)
 /* 800C7F8C  4B F8 01 F1 */	bl cutEnd__16dEvent_manager_cFi
@@ -251,8 +251,8 @@ lbl_800C7FE8:
 /* 800C8000  A8 1D 30 10 */	lha r0, 0x3010(r29)
 /* 800C8004  2C 00 00 00 */	cmpwi r0, 0
 /* 800C8008  41 82 00 18 */	beq lbl_800C8020
-/* 800C800C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C8010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C800C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C8010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C8014  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800C8018  38 80 5E 40 */	li r4, 0x5e40
 /* 800C801C  4B F6 C9 71 */	bl onEventBit__11dSv_event_cFUs

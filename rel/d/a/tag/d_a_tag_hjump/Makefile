@@ -3,17 +3,15 @@
 #
 
 M126_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump.plf
+M126_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump.lcf
+M126_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump.map
 
 M126_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_hjump/executor.cpp \
-	rel/d/a/tag/d_a_tag_hjump/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_hjump/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump.cpp \
 
 M126_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump.o \
 
 M126_LIBS := \
@@ -29,15 +27,21 @@ M126_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map126.map\
+	-m _prolog \
+	-lcf $(M126_LDSCRIPT) \
+	-unused -map $(M126_MAP) \
+	-w off \
 
 $(M126_TARGET): $(M126_O_FILES) $(M126_LIBS)
+	@echo [126] creating $(M126_TARGET)
 	@echo $(M126_LIBS) $(M126_O_FILES) > build/M126_ofiles
-	$(LD) -opt_partial $(M126_LDFLAGS) -o $(M126_TARGET) @build/M126_ofiles
+	@python3 tools/lcf.py rel 126 --output $(M126_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M126_LDFLAGS) -o $(M126_TARGET) @build/M126_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hjump/%.o: rel/d/a/tag/d_a_tag_hjump/%.cpp
+	@echo [126] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M126_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M126_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

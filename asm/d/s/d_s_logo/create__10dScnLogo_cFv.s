@@ -27,7 +27,7 @@ lbl_80257B14:
 /* 80257B40  48 06 2A 2D */	bl loadStaticWaves__10Z2SceneMgrFv
 /* 80257B44  80 8D 8C 40 */	lwz r4, sManager__10JFWDisplay(r13)
 /* 80257B48  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 80257B4C  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 80257B4C  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80257B50  54 03 F0 BE */	srwi r3, r0, 2
 /* 80257B54  38 00 00 3C */	li r0, 0x3c
 /* 80257B58  7C 03 03 96 */	divwu r0, r3, r0
@@ -85,8 +85,8 @@ lbl_80257C0C:
 lbl_80257C18:
 /* 80257C18  38 80 00 00 */	li r4, 0
 /* 80257C1C  98 8D 8F 81 */	stb r4, struct_80451500+0x1(r13)
-/* 80257C20  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
-/* 80257C24  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
+/* 80257C20  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha /* 0x8001574C@ha */
+/* 80257C24  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l /* 0x8001574C@l */
 /* 80257C28  90 0D 8F 6C */	stw r0, sCallback__Q210JUTGamePad13C3ButtonReset(r13)
 /* 80257C2C  90 8D 8F 70 */	stw r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset(r13)
 /* 80257C30  80 6D 86 F8 */	lwz r3, mResetData__6mDoRst(r13)

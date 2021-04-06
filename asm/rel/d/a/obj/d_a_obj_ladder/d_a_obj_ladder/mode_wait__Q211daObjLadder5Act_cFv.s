@@ -8,11 +8,11 @@ lbl_8058D5B8:
 /* 8058D5D0  38 A0 00 08 */	li r5, 8
 /* 8058D5D4  48 00 07 41 */	bl func_8058DD14
 /* 8058D5D8  7C 64 1B 78 */	mr r4, r3
-/* 8058D5DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8058D5E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8058D5DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8058D5E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8058D5E4  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8058D5E8  7C 05 07 74 */	extsb r5, r0
-/* 8058D5EC  4B AA 7D 74 */	b isSwitch__10dSv_info_cCFii
+/* 8058D5EC  4B AA 7D 75 */	bl isSwitch__10dSv_info_cCFii
 /* 8058D5F0  2C 03 00 00 */	cmpwi r3, 0
 /* 8058D5F4  41 82 00 0C */	beq lbl_8058D600
 /* 8058D5F8  7F E3 FB 78 */	mr r3, r31

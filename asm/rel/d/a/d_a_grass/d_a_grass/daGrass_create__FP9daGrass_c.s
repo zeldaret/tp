@@ -9,7 +9,7 @@ lbl_8051C2B0:
 /* 8051C2CC  40 82 00 1C */	bne lbl_8051C2E8
 /* 8051C2D0  28 1F 00 00 */	cmplwi r31, 0
 /* 8051C2D4  41 82 00 08 */	beq lbl_8051C2DC
-/* 8051C2D8  4B AF C8 8C */	b __ct__10fopAc_ac_cFv
+/* 8051C2D8  4B AF C8 8D */	bl __ct__10fopAc_ac_cFv
 lbl_8051C2DC:
 /* 8051C2DC  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8051C2E0  60 00 00 08 */	ori r0, r0, 8

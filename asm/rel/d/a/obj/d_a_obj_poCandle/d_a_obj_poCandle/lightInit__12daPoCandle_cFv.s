@@ -1,6 +1,6 @@
 lbl_80CB1D74:
-/* 80CB1D74  3C 80 80 CB */	lis r4, lit_3635@ha
-/* 80CB1D78  38 84 26 B8 */	addi r4, r4, lit_3635@l
+/* 80CB1D74  3C 80 80 CB */	lis r4, lit_3635@ha /* 0x80CB26B8@ha */
+/* 80CB1D78  38 84 26 B8 */	addi r4, r4, lit_3635@l /* 0x80CB26B8@l */
 /* 80CB1D7C  C0 03 05 C4 */	lfs f0, 0x5c4(r3)
 /* 80CB1D80  D0 03 05 E0 */	stfs f0, 0x5e0(r3)
 /* 80CB1D84  C0 03 05 C8 */	lfs f0, 0x5c8(r3)

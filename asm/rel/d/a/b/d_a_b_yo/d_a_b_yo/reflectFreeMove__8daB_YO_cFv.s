@@ -3,11 +3,11 @@ lbl_80632598:
 /* 8063259C  7C 08 02 A6 */	mflr r0
 /* 806325A0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 806325A4  39 61 00 30 */	addi r11, r1, 0x30
-/* 806325A8  4B D2 FC 34 */	b _savegpr_29
+/* 806325A8  4B D2 FC 35 */	bl _savegpr_29
 /* 806325AC  7C 7D 1B 78 */	mr r29, r3
-/* 806325B0  3C 60 80 64 */	lis r3, lit_3788@ha
-/* 806325B4  3B C3 97 F4 */	addi r30, r3, lit_3788@l
-/* 806325B8  4B C3 52 B4 */	b cM_rnd__Fv
+/* 806325B0  3C 60 80 64 */	lis r3, lit_3788@ha /* 0x806397F4@ha */
+/* 806325B4  3B C3 97 F4 */	addi r30, r3, lit_3788@l /* 0x806397F4@l */
+/* 806325B8  4B C3 52 B5 */	bl cM_rnd__Fv
 /* 806325BC  C0 1E 00 98 */	lfs f0, 0x98(r30)
 /* 806325C0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 806325C4  40 80 00 10 */	bge lbl_806325D4
@@ -21,13 +21,13 @@ lbl_806325DC:
 /* 806325DC  38 00 00 01 */	li r0, 1
 /* 806325E0  98 1D 0F AF */	stb r0, 0xfaf(r29)
 /* 806325E4  7F A3 EB 78 */	mr r3, r29
-/* 806325E8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806325EC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 806325E8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806325EC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806325F0  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 806325F4  4B 9E 81 1C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806325F4  4B 9E 81 1D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806325F8  7C 7F 1B 78 */	mr r31, r3
 /* 806325FC  C0 3E 01 5C */	lfs f1, 0x15c(r30)
-/* 80632600  4B C3 53 8C */	b cM_rndFX__Ff
+/* 80632600  4B C3 53 8D */	bl cM_rndFX__Ff
 /* 80632604  7F E0 07 34 */	extsh r0, r31
 /* 80632608  C8 5E 00 50 */	lfd f2, 0x50(r30)
 /* 8063260C  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -46,7 +46,7 @@ lbl_806325DC:
 /* 80632640  C0 1E 01 60 */	lfs f0, 0x160(r30)
 /* 80632644  D0 1D 05 2C */	stfs f0, 0x52c(r29)
 /* 80632648  39 61 00 30 */	addi r11, r1, 0x30
-/* 8063264C  4B D2 FB DC */	b _restgpr_29
+/* 8063264C  4B D2 FB DD */	bl _restgpr_29
 /* 80632650  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80632654  7C 08 03 A6 */	mtlr r0
 /* 80632658  38 21 00 30 */	addi r1, r1, 0x30

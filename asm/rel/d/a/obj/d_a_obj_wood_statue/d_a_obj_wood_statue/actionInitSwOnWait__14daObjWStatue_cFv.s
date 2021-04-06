@@ -10,7 +10,7 @@ lbl_80D3AD30:
 /* 80D3AD50  80 03 08 0C */	lwz r0, 0x80c(r3)
 /* 80D3AD54  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80D3AD58  90 03 08 0C */	stw r0, 0x80c(r3)
-/* 80D3AD5C  4B 2F CD 08 */	b hide__12daItemBase_cFv
+/* 80D3AD5C  4B 2F CD 09 */	bl hide__12daItemBase_cFv
 /* 80D3AD60  38 00 00 03 */	li r0, 3
 /* 80D3AD64  98 1F 09 38 */	stb r0, 0x938(r31)
 /* 80D3AD68  38 00 00 00 */	li r0, 0

@@ -3,17 +3,15 @@
 #
 
 M408_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf.plf
+M408_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf.lcf
+M408_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf.map
 
 M408_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bk_leaf/executor.cpp \
-	rel/d/a/obj/d_a_obj_bk_leaf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bk_leaf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf.cpp \
 
 M408_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf.o \
 
 M408_LIBS := \
@@ -29,15 +27,21 @@ M408_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map408.map\
+	-m _prolog \
+	-lcf $(M408_LDSCRIPT) \
+	-unused -map $(M408_MAP) \
+	-w off \
 
 $(M408_TARGET): $(M408_O_FILES) $(M408_LIBS)
+	@echo [408] creating $(M408_TARGET)
 	@echo $(M408_LIBS) $(M408_O_FILES) > build/M408_ofiles
-	$(LD) -opt_partial $(M408_LDFLAGS) -o $(M408_TARGET) @build/M408_ofiles
+	@python3 tools/lcf.py rel 408 --output $(M408_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M408_LDFLAGS) -o $(M408_TARGET) @build/M408_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bk_leaf/%.o: rel/d/a/obj/d_a_obj_bk_leaf/%.cpp
+	@echo [408] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M408_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M408_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

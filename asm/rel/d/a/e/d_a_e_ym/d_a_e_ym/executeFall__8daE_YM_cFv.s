@@ -5,12 +5,12 @@ lbl_8080CFC8:
 /* 8080CFD4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8080CFD8  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8080CFDC  7C 7E 1B 78 */	mr r30, r3
-/* 8080CFE0  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 8080CFE4  3B E3 59 94 */	addi r31, r3, lit_3925@l
+/* 8080CFE0  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 8080CFE4  3B E3 59 94 */	addi r31, r3, lit_3925@l /* 0x80815994@l */
 /* 8080CFE8  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 8080CFEC  C0 3F 00 DC */	lfs f1, 0xdc(r31)
 /* 8080CFF0  C0 5F 00 58 */	lfs f2, 0x58(r31)
-/* 8080CFF4  4B A6 37 4C */	b cLib_chaseF__FPfff
+/* 8080CFF4  4B A6 37 4D */	bl cLib_chaseF__FPfff
 /* 8080CFF8  80 1E 06 98 */	lwz r0, 0x698(r30)
 /* 8080CFFC  2C 00 00 01 */	cmpwi r0, 1
 /* 8080D000  41 82 00 5C */	beq lbl_8080D05C
@@ -70,10 +70,10 @@ lbl_8080D05C:
 /* 8080D0CC  38 7E 07 20 */	addi r3, r30, 0x720
 /* 8080D0D0  C0 3F 00 94 */	lfs f1, 0x94(r31)
 /* 8080D0D4  C0 5F 00 B8 */	lfs f2, 0xb8(r31)
-/* 8080D0D8  4B 86 8E 80 */	b SetWall__12dBgS_AcchCirFff
+/* 8080D0D8  4B 86 8E 81 */	bl SetWall__12dBgS_AcchCirFff
 /* 8080D0DC  38 7E 07 60 */	addi r3, r30, 0x760
 /* 8080D0E0  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 8080D0E4  4B 86 A0 30 */	b SetGroundUpY__9dBgS_AcchFf
+/* 8080D0E4  4B 86 A0 31 */	bl SetGroundUpY__9dBgS_AcchFf
 /* 8080D0E8  A8 1E 06 68 */	lha r0, 0x668(r30)
 /* 8080D0EC  B0 1E 04 E4 */	sth r0, 0x4e4(r30)
 /* 8080D0F0  A8 1E 06 6C */	lha r0, 0x66c(r30)
@@ -84,7 +84,7 @@ lbl_8080D05C:
 /* 8080D104  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 8080D108  A8 7E 04 DE */	lha r3, 0x4de(r30)
 /* 8080D10C  A8 9E 06 EA */	lha r4, 0x6ea(r30)
-/* 8080D110  4B A6 3D 14 */	b cLib_distanceAngleS__Fss
+/* 8080D110  4B A6 3D 15 */	bl cLib_distanceAngleS__Fss
 /* 8080D114  7C 60 07 34 */	extsh r0, r3
 /* 8080D118  2C 00 10 00 */	cmpwi r0, 0x1000
 /* 8080D11C  40 80 00 40 */	bge lbl_8080D15C
@@ -92,7 +92,7 @@ lbl_8080D05C:
 /* 8080D124  A8 9E 06 EA */	lha r4, 0x6ea(r30)
 /* 8080D128  38 04 10 00 */	addi r0, r4, 0x1000
 /* 8080D12C  7C 04 07 34 */	extsh r4, r0
-/* 8080D130  4B A6 3C F4 */	b cLib_distanceAngleS__Fss
+/* 8080D130  4B A6 3C F5 */	bl cLib_distanceAngleS__Fss
 /* 8080D134  7C 60 07 34 */	extsh r0, r3
 /* 8080D138  2C 00 10 00 */	cmpwi r0, 0x1000
 /* 8080D13C  40 80 00 14 */	bge lbl_8080D150
@@ -128,11 +128,11 @@ lbl_8080D1A0:
 /* 8080D1A8  38 7E 04 E6 */	addi r3, r30, 0x4e6
 /* 8080D1AC  A8 9E 04 DE */	lha r4, 0x4de(r30)
 /* 8080D1B0  38 A0 10 00 */	li r5, 0x1000
-/* 8080D1B4  4B A6 39 DC */	b cLib_chaseAngleS__FPsss
+/* 8080D1B4  4B A6 39 DD */	bl cLib_chaseAngleS__FPsss
 /* 8080D1B8  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 8080D1BC  38 80 00 00 */	li r4, 0
 /* 8080D1C0  38 A0 08 00 */	li r5, 0x800
-/* 8080D1C4  4B A6 39 CC */	b cLib_chaseAngleS__FPsss
+/* 8080D1C4  4B A6 39 CD */	bl cLib_chaseAngleS__FPsss
 /* 8080D1C8  7F C3 F3 78 */	mr r3, r30
 /* 8080D1CC  4B FF B8 11 */	bl setElecEffect2__8daE_YM_cFv
 /* 8080D1D0  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070196@ha */
@@ -146,8 +146,8 @@ lbl_8080D1A0:
 /* 8080D1F0  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 8080D1F4  7D 89 03 A6 */	mtctr r12
 /* 8080D1F8  4E 80 04 21 */	bctrl 
-/* 8080D1FC  3C 60 80 81 */	lis r3, l_HIO@ha
-/* 8080D200  38 63 5D 38 */	addi r3, r3, l_HIO@l
+/* 8080D1FC  3C 60 80 81 */	lis r3, l_HIO@ha /* 0x80815D38@ha */
+/* 8080D200  38 63 5D 38 */	addi r3, r3, l_HIO@l /* 0x80815D38@l */
 /* 8080D204  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8080D208  FC 00 00 1E */	fctiwz f0, f0
 /* 8080D20C  D8 01 00 20 */	stfd f0, 0x20(r1)

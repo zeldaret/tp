@@ -3,19 +3,20 @@
 #
 
 M256_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_yr.plf
+M256_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_yr.lcf
+M256_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_yr.map
 
 M256_CPP_FILES := \
-	rel/d/a/e/d_a_e_yr/executor.cpp \
-	rel/d/a/e/d_a_e_yr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_yr/d_a_e_yr.cpp \
 
 M256_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/d_a_e_yr.o \
 
 M256_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yr/libRuntime.PPCEABI.H.a \
 
 M256_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M256_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map256.map\
+	-m _prolog \
+	-lcf $(M256_LDSCRIPT) \
+	-unused -map $(M256_MAP) \
+	-w off \
 
 $(M256_TARGET): $(M256_O_FILES) $(M256_LIBS)
+	@echo [256] creating $(M256_TARGET)
 	@echo $(M256_LIBS) $(M256_O_FILES) > build/M256_ofiles
-	$(LD) -opt_partial $(M256_LDFLAGS) -o $(M256_TARGET) @build/M256_ofiles
+	@python3 tools/lcf.py rel 256 --output $(M256_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M256_LDFLAGS) -o $(M256_TARGET) @build/M256_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yr/%.o: rel/d/a/e/d_a_e_yr/%.cpp
+	@echo [256] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M256_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M256_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_yr/libs/Runtime.PPCEABI.H/Makefile
 

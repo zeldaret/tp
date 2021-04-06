@@ -11,8 +11,8 @@ lbl_80202240:
 /* 80202264  39 61 03 30 */	addi r11, r1, 0x330
 /* 80202268  48 15 FF 55 */	bl _savegpr_21
 /* 8020226C  7C 7E 1B 78 */	mr r30, r3
-/* 80202270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80202274  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80202270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80202274  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80202278  82 A3 5F 50 */	lwz r21, 0x5f50(r3)
 /* 8020227C  7E A3 AB 78 */	mr r3, r21
 /* 80202280  81 95 00 00 */	lwz r12, 0(r21)
@@ -32,8 +32,8 @@ lbl_80202240:
 /* 802022B8  7E A4 AB 78 */	mr r4, r21
 /* 802022BC  48 0F 6C 19 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_802022C0:
-/* 802022C0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 802022C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 802022C0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 802022C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 802022C8  88 03 00 F1 */	lbz r0, 0xf1(r3)
 /* 802022CC  28 00 00 00 */	cmplwi r0, 0
 /* 802022D0  41 82 00 18 */	beq lbl_802022E8
@@ -86,12 +86,12 @@ lbl_80202384:
 /* 80202384  3B 60 00 00 */	li r27, 0
 /* 80202388  3B 40 00 00 */	li r26, 0
 /* 8020238C  3B 00 00 00 */	li r24, 0
-/* 80202390  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80202394  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l
-/* 80202398  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020239C  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l
-/* 802023A0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 802023A4  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
+/* 80202390  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80202394  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 80202398  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020239C  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l /* 0x8042EBC8@l */
+/* 802023A0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 802023A4  3B A3 01 88 */	addi r29, r3, g_meter2_info@l /* 0x80430188@l */
 /* 802023A8  C3 A2 AD 48 */	lfs f29, lit_4146(r2)
 lbl_802023AC:
 /* 802023AC  3A C0 00 00 */	li r22, 0

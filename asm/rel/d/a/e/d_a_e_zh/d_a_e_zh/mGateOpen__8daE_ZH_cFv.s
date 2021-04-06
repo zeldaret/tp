@@ -5,8 +5,8 @@ lbl_808298BC:
 /* 808298C8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 808298CC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 808298D0  7C 7F 1B 78 */	mr r31, r3
-/* 808298D4  3C 60 80 83 */	lis r3, lit_3778@ha
-/* 808298D8  3B C3 F2 08 */	addi r30, r3, lit_3778@l
+/* 808298D4  3C 60 80 83 */	lis r3, lit_3778@ha /* 0x8082F208@ha */
+/* 808298D8  3B C3 F2 08 */	addi r30, r3, lit_3778@l /* 0x8082F208@l */
 /* 808298DC  80 1F 07 9C */	lwz r0, 0x79c(r31)
 /* 808298E0  2C 00 00 02 */	cmpwi r0, 2
 /* 808298E4  41 82 00 7C */	beq lbl_80829960
@@ -41,7 +41,7 @@ lbl_80829948:
 /* 8082994C  C0 3E 00 24 */	lfs f1, 0x24(r30)
 /* 80829950  C0 5E 00 28 */	lfs f2, 0x28(r30)
 /* 80829954  C0 7E 00 04 */	lfs f3, 4(r30)
-/* 80829958  4B A4 60 E4 */	b cLib_addCalc2__FPffff
+/* 80829958  4B A4 60 E5 */	bl cLib_addCalc2__FPffff
 /* 8082995C  48 00 00 84 */	b lbl_808299E0
 lbl_80829960:
 /* 80829960  80 1F 07 A4 */	lwz r0, 0x7a4(r31)
@@ -61,8 +61,8 @@ lbl_80829960:
 /* 80829998  C0 3E 00 30 */	lfs f1, 0x30(r30)
 /* 8082999C  80 1F 07 A4 */	lwz r0, 0x7a4(r31)
 /* 808299A0  54 00 44 2E */	rlwinm r0, r0, 8, 0x10, 0x17
-/* 808299A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 808299A8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 808299A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 808299A8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 808299AC  7C 43 04 2E */	lfsx f2, r3, r0
 /* 808299B0  C0 1E 00 34 */	lfs f0, 0x34(r30)
 /* 808299B4  EC 00 00 B2 */	fmuls f0, f0, f2
@@ -70,13 +70,13 @@ lbl_80829960:
 /* 808299BC  38 7F 07 7C */	addi r3, r31, 0x77c
 /* 808299C0  C0 5E 00 28 */	lfs f2, 0x28(r30)
 /* 808299C4  C0 7E 00 04 */	lfs f3, 4(r30)
-/* 808299C8  4B A4 60 74 */	b cLib_addCalc2__FPffff
+/* 808299C8  4B A4 60 75 */	bl cLib_addCalc2__FPffff
 /* 808299CC  48 00 00 14 */	b lbl_808299E0
 lbl_808299D0:
 /* 808299D0  38 7F 07 7C */	addi r3, r31, 0x77c
 /* 808299D4  C0 3E 00 28 */	lfs f1, 0x28(r30)
 /* 808299D8  C0 5E 00 04 */	lfs f2, 4(r30)
-/* 808299DC  4B A4 60 A4 */	b cLib_addCalc0__FPfff
+/* 808299DC  4B A4 60 A5 */	bl cLib_addCalc0__FPfff
 lbl_808299E0:
 /* 808299E0  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 808299E4  83 C1 00 28 */	lwz r30, 0x28(r1)

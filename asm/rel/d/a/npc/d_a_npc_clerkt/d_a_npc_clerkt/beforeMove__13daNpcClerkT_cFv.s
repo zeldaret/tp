@@ -9,7 +9,7 @@ lbl_8099BEA8:
 /* 8099BEC4  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8099BEC8  28 00 00 00 */	cmplwi r0, 0
 /* 8099BECC  40 82 00 1C */	bne lbl_8099BEE8
-/* 8099BED0  4B 69 3B 84 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8099BED0  4B 69 3B 85 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8099BED4  2C 03 00 00 */	cmpwi r3, 0
 /* 8099BED8  40 82 00 14 */	bne lbl_8099BEEC
 /* 8099BEDC  88 1E 0A 89 */	lbz r0, 0xa89(r30)

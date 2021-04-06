@@ -72,8 +72,6 @@ extern "C" void loadTexture__14JPABaseEmitterFUc11_GXTexMapID();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void init_p__15JPABaseParticleFP18JPAEmitterWorkData();
 extern "C" void init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void __dl__FPv();
@@ -89,10 +87,7 @@ extern "C" extern u32 __float_epsilon;
 // Declarations:
 //
 
-/* 8027E6A4-8027E6EC 0048+00 s=0 e=14 z=16  None .text      __dt__18JPAEmitterCallBackFv */
-//	8027E6BC: 803A8578 (__vt__18JPAEmitterCallBack)
-//	8027E6C0: 803A8578 (__vt__18JPAEmitterCallBack)
-//	8027E6D0: 802CED3C (__dl__FPv)
+/* 8027E6A4-8027E6EC 278FE4 0048+00 0/0 14/14 16/16 .text            __dt__18JPAEmitterCallBackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,10 +98,10 @@ asm JPAEmitterCallBack::~JPAEmitterCallBack() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455370-80455374 0004+00 s=1 e=0 z=0  None .sdata2    @2440 */
+/* 80455370-80455374 003970 0004+00 1/1 0/0 0/0 .sdata2          @2440 */
 SECTION_SDATA2 static f32 lit_2440 = 32.0f;
 
-/* 80455374-80455378 0004+00 s=1 e=0 z=0  None .sdata2    @2441 */
+/* 80455374-80455378 003974 0004+00 1/1 0/0 0/0 .sdata2          @2441 */
 SECTION_SDATA2 static u8 lit_2441[4] = {
     0x00,
     0x00,
@@ -114,30 +109,21 @@ SECTION_SDATA2 static u8 lit_2441[4] = {
     0x00,
 };
 
-/* 80455378-8045537C 0004+00 s=1 e=0 z=0  None .sdata2    @2442 */
+/* 80455378-8045537C 003978 0004+00 1/1 0/0 0/0 .sdata2          @2442 */
 SECTION_SDATA2 static f32 lit_2442 = 0.5f;
 
-/* 8045537C-80455380 0004+00 s=1 e=0 z=0  None .sdata2    @2443 */
+/* 8045537C-80455380 00397C 0004+00 1/1 0/0 0/0 .sdata2          @2443 */
 SECTION_SDATA2 static f32 lit_2443 = 3.0f;
 
-/* 80455380-80455388 0004+04 s=1 e=0 z=0  None .sdata2    @2444 */
+/* 80455380-80455388 003980 0004+04 1/1 0/0 0/0 .sdata2          @2444 */
 SECTION_SDATA2 static f32 lit_2444[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8027E6EC-8027EA40 0354+00 s=0 e=1 z=0  None .text
+/* 8027E6EC-8027EA40 27902C 0354+00 0/0 1/1 0/0 .text
  * init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource    */
-//	8027E790: 80455370 (lit_2440)
-//	8027E794: 80450AEC (__float_epsilon)
-//	8027E798: 80450AEC (__float_epsilon)
-//	8027E7AC: 80455374 (lit_2441)
-//	8027E7CC: 80455378 (lit_2442)
-//	8027E7D4: 8045537C (lit_2443)
-//	8027E958: 80346484 (PSMTXIdentity)
-//	8027E95C: 80455380 (lit_2444)
-//	8027E96C: 80455374 (lit_2441)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,8 +133,8 @@ asm void JPABaseEmitter::init(JPAEmitterManager* param_0, JPAResource* param_1) 
 }
 #pragma pop
 
-/* 8027EA40-8027EB60 0120+00 s=0 e=3 z=0  None .text      createParticle__14JPABaseEmitterFv */
-//	8027EB38: 8027EFEC (init_p__15JPABaseParticleFP18JPAEmitterWorkData)
+/* 8027EA40-8027EB60 279380 0120+00 0/0 3/3 0/0 .text            createParticle__14JPABaseEmitterFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,9 +144,8 @@ asm void JPABaseEmitter::createParticle() {
 }
 #pragma pop
 
-/* 8027EB60-8027EC60 0100+00 s=0 e=1 z=0  None .text
+/* 8027EB60-8027EC60 2794A0 0100+00 0/0 1/1 0/0 .text
  * createChild__14JPABaseEmitterFP15JPABaseParticle             */
-//	8027EC3C: 8027F8C8 (init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -170,7 +155,7 @@ asm void JPABaseEmitter::createChild(JPABaseParticle* param_0) {
 }
 #pragma pop
 
-/* 8027EC60-8027EDD4 0174+00 s=0 e=2 z=21  None .text      deleteAllParticle__14JPABaseEmitterFv */
+/* 8027EC60-8027EDD4 2795A0 0174+00 0/0 2/2 21/21 .text deleteAllParticle__14JPABaseEmitterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,8 +165,7 @@ asm void JPABaseEmitter::deleteAllParticle() {
 }
 #pragma pop
 
-/* 8027EDD4-8027EE14 0040+00 s=0 e=1 z=0  None .text      processTillStartFrame__14JPABaseEmitterFv
- */
+/* 8027EDD4-8027EE14 279714 0040+00 0/0 1/1 0/0 .text processTillStartFrame__14JPABaseEmitterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -191,7 +175,7 @@ asm void JPABaseEmitter::processTillStartFrame() {
 }
 #pragma pop
 
-/* 8027EE14-8027EEB0 009C+00 s=0 e=1 z=0  None .text      processTermination__14JPABaseEmitterFv */
+/* 8027EE14-8027EEB0 279754 009C+00 0/0 1/1 0/0 .text processTermination__14JPABaseEmitterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,11 +185,8 @@ asm void JPABaseEmitter::processTermination() {
 }
 #pragma pop
 
-/* 8027EEB0-8027EF30 0080+00 s=0 e=1 z=0  None .text
+/* 8027EEB0-8027EF30 2797F0 0080+00 0/0 1/1 0/0 .text
  * calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f> */
-//	8027EEDC: 80346968 (PSMTXScale)
-//	8027EEEC: 803464E4 (PSMTXConcat)
-//	8027EF14: 80346D6C (PSMTXMultVec)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,7 +196,7 @@ asm void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<f32>* param_
 }
 #pragma pop
 
-/* 8027EF30-8027EF40 0010+00 s=0 e=1 z=0  None .text getCurrentCreateNumber__14JPABaseEmitterCFv
+/* 8027EF30-8027EF40 279870 0010+00 0/0 1/1 0/0 .text getCurrentCreateNumber__14JPABaseEmitterCFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -226,7 +207,8 @@ asm void JPABaseEmitter::getCurrentCreateNumber() const {
 }
 #pragma pop
 
-/* 8027EF40-8027EF50 0010+00 s=0 e=3 z=0  None .text      getDrawCount__14JPABaseEmitterCFv */
+/* 8027EF40-8027EF50 279880 0010+00 0/0 3/3 0/0 .text            getDrawCount__14JPABaseEmitterCFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,9 +218,8 @@ asm void JPABaseEmitter::getDrawCount() const {
 }
 #pragma pop
 
-/* 8027EF50-8027EFA4 0054+00 s=0 e=1 z=0  None .text loadTexture__14JPABaseEmitterFUc11_GXTexMapID
- */
-//	8027EF8C: 802DE840 (load__10JUTTextureF11_GXTexMapID)
+/* 8027EF50-8027EFA4 279890 0054+00 0/0 1/1 0/0 .text
+ * loadTexture__14JPABaseEmitterFUc11_GXTexMapID                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -3,17 +3,15 @@
 #
 
 M49_TARGET := $(BUILD_DIR)/rel/d/a/d_a_disappear.plf
+M49_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_disappear.lcf
+M49_MAP := $(BUILD_DIR)/rel/d/a/d_a_disappear.map
 
 M49_CPP_FILES := \
-	rel/d/a/d_a_disappear/executor.cpp \
-	rel/d/a/d_a_disappear/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_disappear/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_disappear/d_a_disappear.cpp \
 
 M49_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_disappear/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_disappear/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_disappear/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_disappear/d_a_disappear.o \
 
 M49_LIBS := \
@@ -29,15 +27,21 @@ M49_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map49.map\
+	-m _prolog \
+	-lcf $(M49_LDSCRIPT) \
+	-unused -map $(M49_MAP) \
+	-w off \
 
 $(M49_TARGET): $(M49_O_FILES) $(M49_LIBS)
+	@echo [ 49] creating $(M49_TARGET)
 	@echo $(M49_LIBS) $(M49_O_FILES) > build/M49_ofiles
-	$(LD) -opt_partial $(M49_LDFLAGS) -o $(M49_TARGET) @build/M49_ofiles
+	@python3 tools/lcf.py rel 49 --output $(M49_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M49_LDFLAGS) -o $(M49_TARGET) @build/M49_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_disappear/%.o: rel/d/a/d_a_disappear/%.cpp
+	@echo [ 49] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M49_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M49_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

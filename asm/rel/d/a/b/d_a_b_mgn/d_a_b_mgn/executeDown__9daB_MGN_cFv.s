@@ -5,13 +5,13 @@ lbl_8060A72C:
 /* 8060A738  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8060A73C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8060A740  7C 7E 1B 78 */	mr r30, r3
-/* 8060A744  3C 80 80 61 */	lis r4, lit_3928@ha
-/* 8060A748  3B E4 FD E0 */	addi r31, r4, lit_3928@l
+/* 8060A744  3C 80 80 61 */	lis r4, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060A748  3B E4 FD E0 */	addi r31, r4, lit_3928@l /* 0x8060FDE0@l */
 /* 8060A74C  88 03 0A FA */	lbz r0, 0xafa(r3)
 /* 8060A750  28 00 00 08 */	cmplwi r0, 8
 /* 8060A754  41 81 05 4C */	bgt lbl_8060ACA0
-/* 8060A758  3C 80 80 61 */	lis r4, lit_6423@ha
-/* 8060A75C  38 84 02 A4 */	addi r4, r4, lit_6423@l
+/* 8060A758  3C 80 80 61 */	lis r4, lit_6423@ha /* 0x806102A4@ha */
+/* 8060A75C  38 84 02 A4 */	addi r4, r4, lit_6423@l /* 0x806102A4@l */
 /* 8060A760  54 00 10 3A */	slwi r0, r0, 2
 /* 8060A764  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8060A768  7C 09 03 A6 */	mtctr r0
@@ -82,13 +82,13 @@ lbl_8060A850:
 /* 8060A850  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060A854  38 63 00 0C */	addi r3, r3, 0xc
 /* 8060A858  C0 3F 01 38 */	lfs f1, 0x138(r31)
-/* 8060A85C  4B D1 DB D0 */	b checkPass__12J3DFrameCtrlFf
+/* 8060A85C  4B D1 DB D1 */	bl checkPass__12J3DFrameCtrlFf
 /* 8060A860  2C 03 00 00 */	cmpwi r3, 0
 /* 8060A864  40 82 00 1C */	bne lbl_8060A880
 /* 8060A868  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060A86C  38 63 00 0C */	addi r3, r3, 0xc
 /* 8060A870  C0 3F 01 3C */	lfs f1, 0x13c(r31)
-/* 8060A874  4B D1 DB B8 */	b checkPass__12J3DFrameCtrlFf
+/* 8060A874  4B D1 DB B9 */	bl checkPass__12J3DFrameCtrlFf
 /* 8060A878  2C 03 00 00 */	cmpwi r3, 0
 /* 8060A87C  41 82 00 60 */	beq lbl_8060A8DC
 lbl_8060A880:
@@ -97,13 +97,13 @@ lbl_8060A880:
 /* 8060A888  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8060A88C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 8060A890  D0 21 00 24 */	stfs f1, 0x24(r1)
-/* 8060A894  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060A898  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060A894  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060A898  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060A89C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8060A8A0  38 80 00 08 */	li r4, 8
 /* 8060A8A4  38 A0 00 1F */	li r5, 0x1f
 /* 8060A8A8  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 8060A8AC  4B A6 51 78 */	b StartShock__12dVibration_cFii4cXyz
+/* 8060A8AC  4B A6 51 79 */	bl StartShock__12dVibration_cFii4cXyz
 /* 8060A8B0  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704F6@ha */
 /* 8060A8B4  38 03 04 F6 */	addi r0, r3, 0x04F6 /* 0x000704F6@l */
 /* 8060A8B8  90 01 00 0C */	stw r0, 0xc(r1)
@@ -134,13 +134,13 @@ lbl_8060A904:
 /* 8060A914  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8060A918  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8060A91C  D0 21 00 18 */	stfs f1, 0x18(r1)
-/* 8060A920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060A924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060A920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060A924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060A928  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8060A92C  38 80 00 03 */	li r4, 3
 /* 8060A930  38 A0 00 1F */	li r5, 0x1f
 /* 8060A934  38 C1 00 10 */	addi r6, r1, 0x10
-/* 8060A938  4B A6 51 D8 */	b StartQuake__12dVibration_cFii4cXyz
+/* 8060A938  4B A6 51 D9 */	bl StartQuake__12dVibration_cFii4cXyz
 /* 8060A93C  88 1E 0A FC */	lbz r0, 0xafc(r30)
 /* 8060A940  28 00 00 00 */	cmplwi r0, 0
 /* 8060A944  40 82 00 20 */	bne lbl_8060A964
@@ -180,13 +180,13 @@ lbl_8060A9A8:
 /* 8060A9BC  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060A9C0  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060A9C4  C0 5F 00 08 */	lfs f2, 8(r31)
-/* 8060A9C8  4B C6 5D 78 */	b cLib_chaseF__FPfff
+/* 8060A9C8  4B C6 5D 79 */	bl cLib_chaseF__FPfff
 /* 8060A9CC  48 00 00 14 */	b lbl_8060A9E0
 lbl_8060A9D0:
 /* 8060A9D0  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060A9D4  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060A9D8  C0 5F 00 48 */	lfs f2, 0x48(r31)
-/* 8060A9DC  4B C6 5D 64 */	b cLib_chaseF__FPfff
+/* 8060A9DC  4B C6 5D 65 */	bl cLib_chaseF__FPfff
 lbl_8060A9E0:
 /* 8060A9E0  80 1E 0B 88 */	lwz r0, 0xb88(r30)
 /* 8060A9E4  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
@@ -195,13 +195,13 @@ lbl_8060A9E0:
 /* 8060A9F0  A8 1E 0B 58 */	lha r0, 0xb58(r30)
 /* 8060A9F4  7C 03 00 50 */	subf r0, r3, r0
 /* 8060A9F8  7C 03 07 34 */	extsh r3, r0
-/* 8060A9FC  4B D5 A6 D4 */	b abs
+/* 8060A9FC  4B D5 A6 D5 */	bl abs
 /* 8060AA00  2C 03 60 00 */	cmpwi r3, 0x6000
 /* 8060AA04  40 81 00 14 */	ble lbl_8060AA18
 /* 8060AA08  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060AA0C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060AA10  C0 5F 00 70 */	lfs f2, 0x70(r31)
-/* 8060AA14  4B C6 5D 2C */	b cLib_chaseF__FPfff
+/* 8060AA14  4B C6 5D 2D */	bl cLib_chaseF__FPfff
 lbl_8060AA18:
 /* 8060AA18  C0 3E 05 2C */	lfs f1, 0x52c(r30)
 /* 8060AA1C  C0 1F 01 2C */	lfs f0, 0x12c(r31)
@@ -229,11 +229,11 @@ lbl_8060AA48:
 /* 8060AA6C  90 1E 22 44 */	stw r0, 0x2244(r30)
 /* 8060AA70  7F C3 F3 78 */	mr r3, r30
 /* 8060AA74  4B FF D1 89 */	bl offBodySlideAt__9daB_MGN_cFv
-/* 8060AA78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060AA7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060AA78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060AA7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060AA80  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8060AA84  38 80 00 1F */	li r4, 0x1f
-/* 8060AA88  4B A6 53 0C */	b StopQuake__12dVibration_cFi
+/* 8060AA88  4B A6 53 0D */	bl StopQuake__12dVibration_cFi
 lbl_8060AA8C:
 /* 8060AA8C  C0 3E 05 2C */	lfs f1, 0x52c(r30)
 /* 8060AA90  C0 1F 00 04 */	lfs f0, 4(r31)
@@ -262,8 +262,8 @@ lbl_8060AAE0:
 /* 8060AAE0  38 00 00 06 */	li r0, 6
 /* 8060AAE4  98 1E 0A FA */	stb r0, 0xafa(r30)
 lbl_8060AAE8:
-/* 8060AAE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060AAEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060AAE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060AAEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060AAF0  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8060AAF4  88 03 05 68 */	lbz r0, 0x568(r3)
 /* 8060AAF8  28 00 00 39 */	cmplwi r0, 0x39
@@ -283,7 +283,7 @@ lbl_8060AB18:
 /* 8060AB2C  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060AB30  C0 3F 00 A0 */	lfs f1, 0xa0(r31)
 /* 8060AB34  C0 5F 00 70 */	lfs f2, 0x70(r31)
-/* 8060AB38  4B C6 5C 08 */	b cLib_chaseF__FPfff
+/* 8060AB38  4B C6 5C 09 */	bl cLib_chaseF__FPfff
 /* 8060AB3C  7F C3 F3 78 */	mr r3, r30
 /* 8060AB40  4B FF B8 E5 */	bl setBodySlideEffect__9daB_MGN_cFv
 /* 8060AB44  48 00 00 14 */	b lbl_8060AB58
@@ -291,7 +291,7 @@ lbl_8060AB48:
 /* 8060AB48  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060AB4C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060AB50  C0 5F 01 2C */	lfs f2, 0x12c(r31)
-/* 8060AB54  4B C6 5B EC */	b cLib_chaseF__FPfff
+/* 8060AB54  4B C6 5B ED */	bl cLib_chaseF__FPfff
 lbl_8060AB58:
 /* 8060AB58  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060AB5C  C0 23 00 1C */	lfs f1, 0x1c(r3)

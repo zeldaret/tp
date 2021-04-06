@@ -1,6 +1,6 @@
 lbl_8055BD1C:
-/* 8055BD1C  3C 80 80 56 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 8055BD20  38 04 5C 08 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 8055BD1C  3C 80 80 56 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80565C08@ha */
+/* 8055BD20  38 04 5C 08 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80565C08@l */
 /* 8055BD24  90 03 00 00 */	stw r0, 0(r3)
 /* 8055BD28  38 80 00 00 */	li r4, 0
 /* 8055BD2C  B0 83 00 04 */	sth r4, 4(r3)

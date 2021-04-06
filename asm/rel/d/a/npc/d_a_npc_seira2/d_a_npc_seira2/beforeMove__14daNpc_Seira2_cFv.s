@@ -9,7 +9,7 @@ lbl_80AD2030:
 /* 80AD204C  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80AD2050  28 00 00 00 */	cmplwi r0, 0
 /* 80AD2054  40 82 00 1C */	bne lbl_80AD2070
-/* 80AD2058  4B 55 D9 FC */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80AD2058  4B 55 D9 FD */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80AD205C  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD2060  40 82 00 14 */	bne lbl_80AD2074
 /* 80AD2064  88 1E 0A 89 */	lbz r0, 0xa89(r30)

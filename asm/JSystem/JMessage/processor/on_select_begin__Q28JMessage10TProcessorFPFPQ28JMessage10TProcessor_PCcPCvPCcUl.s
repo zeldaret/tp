@@ -9,8 +9,8 @@ lbl_802A7E38:
 /* 802A7E54  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 802A7E58  28 00 00 04 */	cmplwi r0, 4
 /* 802A7E5C  40 80 00 68 */	bge lbl_802A7EC4
-/* 802A7E60  3C E0 80 2B */	lis r7, process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A7E64  38 07 82 F4 */	addi r0, r7, process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A7E60  3C E0 80 2B */	lis r7, process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A82F4@ha */
+/* 802A7E64  38 07 82 F4 */	addi r0, r7, process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A82F4@l */
 /* 802A7E68  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 802A7E6C  90 9E 00 28 */	stw r4, 0x28(r30)
 /* 802A7E70  90 DE 00 2C */	stw r6, 0x2c(r30)

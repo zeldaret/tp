@@ -5,12 +5,12 @@ lbl_8094DA0C:
 /* 8094DA18  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 8094DA1C  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 8094DA20  39 61 00 30 */	addi r11, r1, 0x30
-/* 8094DA24  4B A1 47 B8 */	b _savegpr_29
+/* 8094DA24  4B A1 47 B9 */	bl _savegpr_29
 /* 8094DA28  7C 7D 1B 78 */	mr r29, r3
-/* 8094DA2C  3C 60 80 95 */	lis r3, lit_3958@ha
-/* 8094DA30  3B E3 11 C0 */	addi r31, r3, lit_3958@l
-/* 8094DA34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8094DA38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8094DA2C  3C 60 80 95 */	lis r3, lit_3958@ha /* 0x809511C0@ha */
+/* 8094DA30  3B E3 11 C0 */	addi r31, r3, lit_3958@l /* 0x809511C0@l */
+/* 8094DA34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8094DA38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8094DA3C  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 8094DA40  C0 3D 05 C0 */	lfs f1, 0x5c0(r29)
 /* 8094DA44  C0 1D 04 D0 */	lfs f0, 0x4d0(r29)
@@ -20,7 +20,7 @@ lbl_8094DA0C:
 /* 8094DA54  C0 1D 04 D8 */	lfs f0, 0x4d8(r29)
 /* 8094DA58  EC 42 00 28 */	fsubs f2, f2, f0
 /* 8094DA5C  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 8094DA60  4B 91 9C 14 */	b cM_atan2s__Fff
+/* 8094DA60  4B 91 9C 15 */	bl cM_atan2s__Fff
 /* 8094DA64  B0 7D 05 DC */	sth r3, 0x5dc(r29)
 /* 8094DA68  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8094DA6C  EC 20 00 32 */	fmuls f1, f0, f0
@@ -56,7 +56,7 @@ lbl_8094DAD4:
 /* 8094DAD8  C0 3F 00 14 */	lfs f1, 0x14(r31)
 /* 8094DADC  C0 5F 00 20 */	lfs f2, 0x20(r31)
 /* 8094DAE0  C0 7F 00 38 */	lfs f3, 0x38(r31)
-/* 8094DAE4  4B 92 1F 58 */	b cLib_addCalc2__FPffff
+/* 8094DAE4  4B 92 1F 59 */	bl cLib_addCalc2__FPffff
 /* 8094DAE8  C0 5D 04 D4 */	lfs f2, 0x4d4(r29)
 /* 8094DAEC  C0 3F 00 50 */	lfs f1, 0x50(r31)
 /* 8094DAF0  C0 1E 04 D4 */	lfs f0, 0x4d4(r30)
@@ -84,7 +84,7 @@ lbl_8094DB3C:
 /* 8094DB40  A8 9D 05 DC */	lha r4, 0x5dc(r29)
 /* 8094DB44  38 A0 00 04 */	li r5, 4
 /* 8094DB48  38 C0 04 00 */	li r6, 0x400
-/* 8094DB4C  4B 92 2A BC */	b cLib_addCalcAngleS2__FPssss
+/* 8094DB4C  4B 92 2A BD */	bl cLib_addCalcAngleS2__FPssss
 /* 8094DB50  A8 1D 06 04 */	lha r0, 0x604(r29)
 /* 8094DB54  2C 00 00 00 */	cmpwi r0, 0
 /* 8094DB58  41 82 00 10 */	beq lbl_8094DB68
@@ -100,7 +100,7 @@ lbl_8094DB78:
 /* 8094DB78  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 8094DB7C  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 8094DB80  39 61 00 30 */	addi r11, r1, 0x30
-/* 8094DB84  4B A1 46 A4 */	b _restgpr_29
+/* 8094DB84  4B A1 46 A5 */	bl _restgpr_29
 /* 8094DB88  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8094DB8C  7C 08 03 A6 */	mtlr r0
 /* 8094DB90  38 21 00 40 */	addi r1, r1, 0x40

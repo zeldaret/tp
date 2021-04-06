@@ -7,8 +7,8 @@ lbl_801BCDF4:
 /* 801BCE08  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801BCE0C  7C 9E 23 78 */	mr r30, r4
 /* 801BCE10  41 82 03 18 */	beq lbl_801BD128
-/* 801BCE14  3C 60 80 3C */	lis r3, __vt__12dMenu_Dmap_c@ha
-/* 801BCE18  38 03 CB 10 */	addi r0, r3, __vt__12dMenu_Dmap_c@l
+/* 801BCE14  3C 60 80 3C */	lis r3, __vt__12dMenu_Dmap_c@ha /* 0x803BCB10@ha */
+/* 801BCE18  38 03 CB 10 */	addi r0, r3, __vt__12dMenu_Dmap_c@l /* 0x803BCB10@l */
 /* 801BCE1C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801BCE20  80 7F 00 E8 */	lwz r3, 0xe8(r31)
 /* 801BCE24  48 11 19 61 */	bl getTotalFreeSize__7JKRHeapFv
@@ -223,8 +223,8 @@ lbl_801BD0EC:
 /* 801BD100  90 1F 00 EC */	stw r0, 0xec(r31)
 lbl_801BD104:
 /* 801BD104  38 00 00 00 */	li r0, 0
-/* 801BD108  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801BD10C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801BD108  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BD10C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801BD110  98 03 00 F2 */	stb r0, 0xf2(r3)
 /* 801BD114  90 0D 8B 00 */	stw r0, myclass__12dMenu_Dmap_c(r13)
 /* 801BD118  7F C0 07 35 */	extsh. r0, r30

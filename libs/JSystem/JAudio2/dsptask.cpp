@@ -17,13 +17,6 @@ struct STRUCT_DSP_TASK {};
 // Forward References:
 //
 
-static void DspHandShake(void*);
-void DspBoot(void (*)(void*));
-void DSPSendCommands2(u32*, u32, void (*)(u16));
-static void DspInitWork();
-static void DspStartWork(u32, void (*)(u16));
-void DspFinishWork(u16);
-
 extern "C" static void DspHandShake__FPv();
 extern "C" void DspBoot__FPFPv_v();
 extern "C" void DSPSendCommands2__FPUlUlPFUs_v();
@@ -34,10 +27,6 @@ extern "C" void DspFinishWork__FUs();
 //
 // External References:
 //
-
-void DSPAddPriorTask(STRUCT_DSP_TASK*);
-void Dsp_Running_Check();
-void Dsp_Running_Start();
 
 extern "C" void DSPAddPriorTask__FP15STRUCT_DSP_TASK();
 extern "C" void Dsp_Running_Check__Fv();
@@ -57,23 +46,19 @@ extern "C" void _restgpr_26();
 // Declarations:
 //
 
-/* 8029E6E0-8029E718 0038+00 s=1 e=0 z=0  None .text      DspHandShake__FPv */
-//	8029E6F0: 80352440 (DSPCheckMailFromDSP)
-//	8029E6FC: 80352450 (DSPReadMailFromDSP)
-//	8029E700: 80352440 (DSPCheckMailFromDSP)
-//	8029E704: 8029EFA0 (Dsp_Running_Start__Fv)
+/* 8029E6E0-8029E718 299020 0038+00 1/1 0/0 0/0 .text            DspHandShake__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void DspHandShake(void* param_0) {
+static asm void DspHandShake(void* param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DspHandShake__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C7920-803C9820 1F00+00 s=1 e=0 z=0  None .data      jdsp */
+/* 803C7920-803C9820 024A40 1F00+00 1/1 0/0 0/0 .data            jdsp */
 SECTION_DATA static u8 jdsp[7936] = {
     0x02, 0x9F, 0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00,
     0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0x9F, 0x06, 0xA5,
@@ -573,26 +558,13 @@ SECTION_DATA static u8 jdsp[7936] = {
     0x80, 0x01, 0x02, 0xBF, 0x00, 0xF4, 0x02, 0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80431F80-80431FE0 0050+10 s=1 e=0 z=0  None .bss       audio_task */
+/* 80431F80-80431FE0 05ECA0 0050+10 1/1 0/0 0/0 .bss             audio_task */
 static u8 audio_task[80 + 16 /* padding */];
 
-/* 80431FE0-80433FE0 2000+00 s=1 e=0 z=0  None .bss       AUDIO_YIELD_BUFFER */
+/* 80431FE0-80433FE0 05ED00 2000+00 1/1 0/0 0/0 .bss             AUDIO_YIELD_BUFFER */
 static u8 AUDIO_YIELD_BUFFER[8192];
 
-/* 8029E720-8029E7CC 00AC+00 s=0 e=1 z=0  None .text      DspBoot__FPFPv_v */
-//	8029E734: 8029E8E0 (DspInitWork__Fv)
-//	8029E738: 803C7920 (jdsp)
-//	8029E73C: 80431FE0 (AUDIO_YIELD_BUFFER)
-//	8029E740: 803C7920 (jdsp)
-//	8029E744: 80431F80 (audio_task)
-//	8029E748: 80431FE0 (AUDIO_YIELD_BUFFER)
-//	8029E74C: 8029E6E0 (DspHandShake__FPv)
-//	8029E750: 80431F80 (audio_task)
-//	8029E760: 8029E6E0 (DspHandShake__FPv)
-//	8029E7A8: 803524BC (DSPInit)
-//	8029E7AC: 80431F80 (audio_task)
-//	8029E7B0: 80431F80 (audio_task)
-//	8029E7B4: 8029EAA0 (DSPAddPriorTask__FP15STRUCT_DSP_TASK)
+/* 8029E720-8029E7CC 299060 00AC+00 0/0 1/1 0/0 .text            DspBoot__FPFPv_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -603,20 +575,7 @@ asm void DspBoot(void (*)(void*)) {
 }
 #pragma pop
 
-/* 8029E7E0-8029E8C8 00E8+00 s=0 e=4 z=0  None .text      DSPSendCommands2__FPUlUlPFUs_v */
-//	8029E7F0: 803621D0 (_savegpr_26)
-//	8029E800: 8029EF80 (Dsp_Running_Check__Fv)
-//	8029E80C: 8033D6F4 (OSDisableInterrupts)
-//	8029E814: 80352430 (DSPCheckMailToDSP)
-//	8029E824: 8033D71C (OSRestoreInterrupts)
-//	8029E834: 80352468 (DSPSendMailToDSP)
-//	8029E838: 8035247C (DSPAssertInt)
-//	8029E840: 80352430 (DSPCheckMailToDSP)
-//	8029E868: 8029E920 (DspStartWork__FUlPFUs_v)
-//	8029E880: 80352468 (DSPSendMailToDSP)
-//	8029E888: 80352430 (DSPCheckMailToDSP)
-//	8029E8A8: 8033D71C (OSRestoreInterrupts)
-//	8029E8B4: 8036221C (_restgpr_26)
+/* 8029E7E0-8029E8C8 299120 00E8+00 0/0 4/4 0/0 .text            DSPSendCommands2__FPUlUlPFUs_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -628,51 +587,39 @@ asm void DSPSendCommands2(u32* param_0, u32 param_1, void (*)(u16)) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80433FE0-80434060 0080+00 s=3 e=0 z=0  None .bss       taskwork */
+/* 80433FE0-80434060 060D00 0080+00 3/3 0/0 0/0 .bss             taskwork */
 static u8 taskwork[128];
 
-/* 8029E8E0-8029E90C 002C+00 s=1 e=0 z=0  None .text      DspInitWork__Fv */
-//	8029E8E4: 80433FE0 (taskwork)
-//	8029E8F0: 80433FE0 (taskwork)
+/* 8029E8E0-8029E90C 299220 002C+00 1/1 0/0 0/0 .text            DspInitWork__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void DspInitWork() {
+static asm void DspInitWork() {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DspInitWork__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451300-80451304 0004+00 s=2 e=0 z=0  None .sbss      taskreadp */
+/* 80451300-80451304 000800 0004+00 2/2 0/0 0/0 .sbss            taskreadp */
 static u8 taskreadp[4];
 
-/* 80451304-80451308 0004+00 s=1 e=0 z=0  None .sbss      taskwritep */
+/* 80451304-80451308 000804 0004+00 1/1 0/0 0/0 .sbss            taskwritep */
 static u8 taskwritep[4];
 
-/* 8029E920-8029E968 0048+00 s=1 e=0 z=0  None .text      DspStartWork__FUlPFUs_v */
-//	8029E920: 80451304 (taskwritep)
-//	8029E924: 80451300 (taskreadp)
-//	8029E940: 80433FE0 (taskwork)
-//	8029E94C: 80451304 (taskwritep)
-//	8029E950: 80433FE0 (taskwork)
+/* 8029E920-8029E968 299260 0048+00 1/1 0/0 0/0 .text            DspStartWork__FUlPFUs_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void DspStartWork(u32 param_0, void (*)(u16)) {
+static asm void DspStartWork(u32 param_0, void (*)(u16)) {
     nofralloc
 #include "asm/JSystem/JAudio2/dsptask/DspStartWork__FUlPFUs_v.s"
 }
 #pragma pop
 
-/* 8029E980-8029E9E8 0068+00 s=0 e=1 z=0  None .text      DspFinishWork__FUs */
-//	8029E988: 80433FE0 (taskwork)
-//	8029E994: 80433FE0 (taskwork)
-//	8029E998: 80451300 (taskreadp)
-//	8029E9C8: 80451300 (taskreadp)
-//	8029E9D4: 80451300 (taskreadp)
+/* 8029E980-8029E9E8 2992C0 0068+00 0/0 1/1 0/0 .text            DspFinishWork__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

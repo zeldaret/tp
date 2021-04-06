@@ -7,20 +7,20 @@ lbl_801BD144:
 /* 801BD158  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801BD15C  7C 9F 23 78 */	mr r31, r4
 /* 801BD160  41 82 00 58 */	beq lbl_801BD1B8
-/* 801BD164  3C 60 80 3C */	lis r3, __vt__19dMenu_DmapMapCtrl_c@ha
-/* 801BD168  38 03 CD 74 */	addi r0, r3, __vt__19dMenu_DmapMapCtrl_c@l
+/* 801BD164  3C 60 80 3C */	lis r3, __vt__19dMenu_DmapMapCtrl_c@ha /* 0x803BCD74@ha */
+/* 801BD168  38 03 CD 74 */	addi r0, r3, __vt__19dMenu_DmapMapCtrl_c@l /* 0x803BCD74@l */
 /* 801BD16C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801BD170  41 82 00 38 */	beq lbl_801BD1A8
-/* 801BD174  3C 60 80 3C */	lis r3, __vt__20dMenu_StageMapCtrl_c@ha
-/* 801BD178  38 03 CA EC */	addi r0, r3, __vt__20dMenu_StageMapCtrl_c@l
+/* 801BD174  3C 60 80 3C */	lis r3, __vt__20dMenu_StageMapCtrl_c@ha /* 0x803BCAEC@ha */
+/* 801BD178  38 03 CA EC */	addi r0, r3, __vt__20dMenu_StageMapCtrl_c@l /* 0x803BCAEC@l */
 /* 801BD17C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801BD180  41 82 00 28 */	beq lbl_801BD1A8
-/* 801BD184  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha
-/* 801BD188  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l
+/* 801BD184  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha /* 0x803BCAE0@ha */
+/* 801BD188  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l /* 0x803BCAE0@l */
 /* 801BD18C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801BD190  38 7E 00 04 */	addi r3, r30, 4
-/* 801BD194  3C 80 80 1C */	lis r4, __dt__15renderingDmap_cFv@ha
-/* 801BD198  38 84 03 80 */	addi r4, r4, __dt__15renderingDmap_cFv@l
+/* 801BD194  3C 80 80 1C */	lis r4, __dt__15renderingDmap_cFv@ha /* 0x801C0380@ha */
+/* 801BD198  38 84 03 80 */	addi r4, r4, __dt__15renderingDmap_cFv@l /* 0x801C0380@l */
 /* 801BD19C  38 A0 00 38 */	li r5, 0x38
 /* 801BD1A0  38 C0 00 02 */	li r6, 2
 /* 801BD1A4  48 1A 4B 45 */	bl __destroy_arr

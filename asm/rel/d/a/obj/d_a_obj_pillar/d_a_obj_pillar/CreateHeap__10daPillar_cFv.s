@@ -7,23 +7,23 @@ lbl_80CAF7A8:
 /* 80CAF7BC  7C 7F 1B 78 */	mr r31, r3
 /* 80CAF7C0  88 03 07 40 */	lbz r0, 0x740(r3)
 /* 80CAF7C4  54 00 10 3A */	slwi r0, r0, 2
-/* 80CAF7C8  3C 60 80 CB */	lis r3, l_arcName@ha
-/* 80CAF7CC  38 63 0B 08 */	addi r3, r3, l_arcName@l
+/* 80CAF7C8  3C 60 80 CB */	lis r3, l_arcName@ha /* 0x80CB0B08@ha */
+/* 80CAF7CC  38 63 0B 08 */	addi r3, r3, l_arcName@l /* 0x80CB0B08@l */
 /* 80CAF7D0  7C 63 00 2E */	lwzx r3, r3, r0
-/* 80CAF7D4  3C 80 80 CB */	lis r4, l_bmd@ha
-/* 80CAF7D8  38 84 09 D4 */	addi r4, r4, l_bmd@l
+/* 80CAF7D4  3C 80 80 CB */	lis r4, l_bmd@ha /* 0x80CB09D4@ha */
+/* 80CAF7D8  38 84 09 D4 */	addi r4, r4, l_bmd@l /* 0x80CB09D4@l */
 /* 80CAF7DC  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80CAF7E0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80CAF7E4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80CAF7E0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CAF7E4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CAF7E8  3F C5 00 02 */	addis r30, r5, 2
 /* 80CAF7EC  3B DE C2 F8 */	addi r30, r30, -15624
 /* 80CAF7F0  7F C5 F3 78 */	mr r5, r30
 /* 80CAF7F4  38 C0 00 80 */	li r6, 0x80
-/* 80CAF7F8  4B 38 CA F4 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80CAF7F8  4B 38 CA F5 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80CAF7FC  3C 80 00 08 */	lis r4, 8
 /* 80CAF800  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80CAF804  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80CAF808  4B 36 54 4C */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80CAF808  4B 36 54 4D */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80CAF80C  90 7F 05 A8 */	stw r3, 0x5a8(r31)
 /* 80CAF810  80 1F 05 A8 */	lwz r0, 0x5a8(r31)
 /* 80CAF814  28 00 00 00 */	cmplwi r0, 0
@@ -37,19 +37,19 @@ lbl_80CAF824:
 /* 80CAF830  40 82 00 58 */	bne lbl_80CAF888
 /* 80CAF834  88 1F 07 40 */	lbz r0, 0x740(r31)
 /* 80CAF838  54 00 10 3A */	slwi r0, r0, 2
-/* 80CAF83C  3C 60 80 CB */	lis r3, l_arcName@ha
-/* 80CAF840  38 63 0B 08 */	addi r3, r3, l_arcName@l
+/* 80CAF83C  3C 60 80 CB */	lis r3, l_arcName@ha /* 0x80CB0B08@ha */
+/* 80CAF840  38 63 0B 08 */	addi r3, r3, l_arcName@l /* 0x80CB0B08@l */
 /* 80CAF844  7C 63 00 2E */	lwzx r3, r3, r0
-/* 80CAF848  3C 80 80 CB */	lis r4, l_shadowBmd@ha
-/* 80CAF84C  38 84 09 E4 */	addi r4, r4, l_shadowBmd@l
+/* 80CAF848  3C 80 80 CB */	lis r4, l_shadowBmd@ha /* 0x80CB09E4@ha */
+/* 80CAF84C  38 84 09 E4 */	addi r4, r4, l_shadowBmd@l /* 0x80CB09E4@l */
 /* 80CAF850  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80CAF854  7F C5 F3 78 */	mr r5, r30
 /* 80CAF858  38 C0 00 80 */	li r6, 0x80
-/* 80CAF85C  4B 38 CA 90 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80CAF85C  4B 38 CA 91 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80CAF860  3C 80 00 08 */	lis r4, 8
 /* 80CAF864  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80CAF868  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80CAF86C  4B 36 53 E8 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80CAF86C  4B 36 53 E9 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80CAF870  90 7F 07 24 */	stw r3, 0x724(r31)
 /* 80CAF874  80 1F 07 24 */	lwz r0, 0x724(r31)
 /* 80CAF878  28 00 00 00 */	cmplwi r0, 0

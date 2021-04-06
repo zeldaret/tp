@@ -5,12 +5,12 @@ lbl_8000D8EC:
 /* 8000D8F8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000D8FC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000D900  41 82 00 30 */	beq lbl_8000D930
-/* 8000D904  3C 60 80 3A */	lis r3, __vt__17J3DMtxCalcAnmBase@ha
-/* 8000D908  38 03 34 3C */	addi r0, r3, __vt__17J3DMtxCalcAnmBase@l
+/* 8000D904  3C 60 80 3A */	lis r3, __vt__17J3DMtxCalcAnmBase@ha /* 0x803A343C@ha */
+/* 8000D908  38 03 34 3C */	addi r0, r3, __vt__17J3DMtxCalcAnmBase@l /* 0x803A343C@l */
 /* 8000D90C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000D910  41 82 00 10 */	beq lbl_8000D920
-/* 8000D914  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha
-/* 8000D918  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l
+/* 8000D914  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha /* 0x803A3468@ha */
+/* 8000D918  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l /* 0x803A3468@l */
 /* 8000D91C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8000D920:
 /* 8000D920  7C 80 07 35 */	extsh. r0, r4

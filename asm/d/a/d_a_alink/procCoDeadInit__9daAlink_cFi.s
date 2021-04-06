@@ -13,8 +13,8 @@ lbl_8011BE54:
 /* 8011BE80  38 60 00 01 */	li r3, 1
 /* 8011BE84  48 00 03 18 */	b lbl_8011C19C
 lbl_8011BE88:
-/* 8011BE88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011BE8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011BE88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011BE8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011BE90  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8011BE94  7F C4 F3 78 */	mr r4, r30
 /* 8011BE98  38 A0 00 00 */	li r5, 0
@@ -49,8 +49,8 @@ lbl_8011BEE0:
 /* 8011BF04  41 82 00 24 */	beq lbl_8011BF28
 /* 8011BF08  7F C3 F3 78 */	mr r3, r30
 /* 8011BF0C  38 80 00 00 */	li r4, 0
-/* 8011BF10  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8011BF14  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8011BF10  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8011BF14  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8011BF18  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 8011BF1C  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011BF20  48 00 D7 B9 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
@@ -58,8 +58,8 @@ lbl_8011BEE0:
 lbl_8011BF28:
 /* 8011BF28  7F C3 F3 78 */	mr r3, r30
 /* 8011BF2C  38 80 00 19 */	li r4, 0x19
-/* 8011BF30  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 8011BF34  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 8011BF30  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 8011BF34  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 8011BF38  C0 25 00 1C */	lfs f1, 0x1c(r5)
 /* 8011BF3C  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011BF40  4B F9 10 A1 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -80,8 +80,8 @@ lbl_8011BF50:
 /* 8011BF74  7F C3 F3 78 */	mr r3, r30
 /* 8011BF78  38 80 00 9D */	li r4, 0x9d
 /* 8011BF7C  4B F9 39 25 */	bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
-/* 8011BF80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011BF84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011BF80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011BF84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011BF88  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8011BF8C  64 00 00 10 */	oris r0, r0, 0x10
 /* 8011BF90  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -139,8 +139,8 @@ lbl_8011C03C:
 /* 8011C04C  4E 80 04 21 */	bctrl 
 /* 8011C050  28 03 00 00 */	cmplwi r3, 0
 /* 8011C054  41 82 00 30 */	beq lbl_8011C084
-/* 8011C058  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011C05C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011C058  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011C05C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011C060  80 83 5D B8 */	lwz r4, 0x5db8(r3)
 /* 8011C064  38 00 00 03 */	li r0, 3
 /* 8011C068  98 04 16 B8 */	stb r0, 0x16b8(r4)
@@ -167,8 +167,8 @@ lbl_8011C0B0:
 /* 8011C0B0  54 60 03 5B */	rlwinm. r0, r3, 0, 0xd, 0xd
 /* 8011C0B4  41 82 00 50 */	beq lbl_8011C104
 /* 8011C0B8  3B E0 01 18 */	li r31, 0x118
-/* 8011C0BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011C0C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011C0BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011C0C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011C0C4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8011C0C8  64 00 00 10 */	oris r0, r0, 0x10
 /* 8011C0CC  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -210,8 +210,8 @@ lbl_8011C14C:
 /* 8011C14C  38 80 00 00 */	li r4, 0
 /* 8011C150  B0 9E 30 0E */	sth r4, 0x300e(r30)
 /* 8011C154  B0 9E 30 08 */	sth r4, 0x3008(r30)
-/* 8011C158  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011C15C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011C158  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011C15C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011C160  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8011C164  64 00 20 00 */	oris r0, r0, 0x2000
 /* 8011C168  90 03 5F 18 */	stw r0, 0x5f18(r3)

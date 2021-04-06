@@ -12,8 +12,8 @@ lbl_801ED93C:
 /* 801ED964  88 03 00 E0 */	lbz r0, 0xe0(r3)
 /* 801ED968  28 00 00 00 */	cmplwi r0, 0
 /* 801ED96C  40 82 00 40 */	bne lbl_801ED9AC
-/* 801ED970  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801ED974  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801ED970  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801ED974  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801ED978  88 03 00 C0 */	lbz r0, 0xc0(r3)
 /* 801ED97C  28 00 00 01 */	cmplwi r0, 1
 /* 801ED980  40 82 00 0C */	bne lbl_801ED98C
@@ -25,8 +25,8 @@ lbl_801ED98C:
 /* 801ED994  48 02 F0 71 */	bl warpInProc__13dMeter2Info_cFv
 lbl_801ED998:
 /* 801ED998  38 00 00 00 */	li r0, 0
-/* 801ED99C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801ED9A0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801ED99C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801ED9A0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801ED9A4  98 03 00 E8 */	stb r0, 0xe8(r3)
 /* 801ED9A8  98 1F 06 B0 */	stb r0, 0x6b0(r31)
 lbl_801ED9AC:

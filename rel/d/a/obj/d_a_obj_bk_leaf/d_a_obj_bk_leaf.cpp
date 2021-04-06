@@ -70,12 +70,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void CheckCreateHeap(fopAc_ac_c*);
-static void daBkLeaf_Draw(daBkLeaf_c*);
-static void daBkLeaf_Execute(daBkLeaf_c*);
-static void daBkLeaf_Delete(daBkLeaf_c*);
-static void daBkLeaf_Create(fopAc_ac_c*);
-
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" void setBokkuri__10daBkLeaf_cFv();
 extern "C" void initBaseMtx__10daBkLeaf_cFv();
@@ -91,30 +85,11 @@ extern "C" static void daBkLeaf_Draw__FP10daBkLeaf_c();
 extern "C" static void daBkLeaf_Execute__FP10daBkLeaf_c();
 extern "C" static void daBkLeaf_Delete__FP10daBkLeaf_c();
 extern "C" static void daBkLeaf_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* l_bmdName;
-extern "C" extern void* l_bckName;
-extern "C" extern void* g_profile_Obj_BkLeaf[12];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
+extern "C" extern char const* const d_a_obj_bk_leaf__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fpcSch_JudgeByID(void*, void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -149,19 +124,17 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 80BB60D8-80BB60F8 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
-//	80BB60E4: 80BB629C (CreateHeap__10daBkLeaf_cFv)
+/* 80BB60D8-80BB60F8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BB60F8-80BB618C 0094+00 s=2 e=0 z=0  None .text      setBokkuri__10daBkLeaf_cFv */
-//	80BB6170: 80019EF0 (fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i)
+/* 80BB60F8-80BB618C 000098 0094+00 2/2 0/0 0/0 .text            setBokkuri__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -171,8 +144,7 @@ asm void daBkLeaf_c::setBokkuri() {
 }
 #pragma pop
 
-/* 80BB618C-80BB61C8 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__10daBkLeaf_cFv */
-//	80BB61B4: 80BB61C8 (setBaseMtx__10daBkLeaf_cFv)
+/* 80BB618C-80BB61C8 00012C 003C+00 1/1 0/0 0/0 .text            initBaseMtx__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -182,14 +154,7 @@ asm void daBkLeaf_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BB61C8-80BB621C 0054+00 s=2 e=0 z=0  None .text      setBaseMtx__10daBkLeaf_cFv */
-//	80BB61E0: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80BB61E4: 803DD470 (now__14mDoMtx_stack_c)
-//	80BB61E8: 803DD470 (now__14mDoMtx_stack_c)
-//	80BB61F0: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80BB61F4: 803DD470 (now__14mDoMtx_stack_c)
-//	80BB61F8: 803DD470 (now__14mDoMtx_stack_c)
-//	80BB6204: 803464B0 (PSMTXCopy)
+/* 80BB61C8-80BB621C 000168 0054+00 2/2 0/0 0/0 .text            setBaseMtx__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,10 +164,7 @@ asm void daBkLeaf_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80BB621C-80BB629C 0080+00 s=1 e=0 z=0  None .text      Create__10daBkLeaf_cFv */
-//	80BB6230: 80BB618C (initBaseMtx__10daBkLeaf_cFv)
-//	80BB624C: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80BB6274: 80BB60F8 (setBokkuri__10daBkLeaf_cFv)
+/* 80BB621C-80BB629C 0001BC 0080+00 1/1 0/0 0/0 .text            Create__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,61 +175,19 @@ asm void daBkLeaf_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BB6710-80BB6714 0004+00 s=2 e=0 z=0  None .rodata    @3742 */
+/* 80BB6710-80BB6714 000000 0004+00 2/2 0/0 0/0 .rodata          @3742 */
 SECTION_RODATA static u32 const lit_3742 = 0x3F800000;
+SECTION_DEAD void* const cg_80BB6710 = (void*)(&lit_3742);
 
-/* 80BB6714-80BB6718 0004+00 s=1 e=0 z=0  None .rodata    @3811 */
-SECTION_RODATA static u8 const lit_3811[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BB6718-80BB6720 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BB6718 = "Obj_bkl";
-#pragma pop
-
-/* 80BB6720-80BB6738 0018+00 s=2 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80BB6720[24] = {
-    /* 80BB6720 0007 data_80BB6720 None */
-    0x68,
-    0x6C,
-    0x2E,
-    0x62,
-    0x6D,
-    0x64,
-    0x00,
-    /* 80BB6727 0011 data_80BB6727 None */
-    0x68,
-    0x6C,
-    0x5F,
-    0x73,
-    0x68,
-    0x61,
-    0x6B,
-    0x65,
-    0x31,
-    0x2E,
-    0x62,
-    0x63,
-    0x6B,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BB6738-80BB6744 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80BB6738-80BB6744 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80BB6744-80BB6758 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80BB6744-80BB6758 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -275,17 +195,24 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80BB6758-80BB675C 0004+00 s=2 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80BB6758-80BB675C -00001 0004+00 2/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_bk_leaf__stringBase0;
 
-/* 80BB675C-80BB6760 0004+00 s=0 e=0 z=0  None .data      l_bmdName */
-SECTION_DATA void* l_bmdName = (void*)(((char*)&struct_80BB6720) + 0x0) /* None */;
+/* 80BB675C-80BB6760 -00001 0004+00 0/1 0/0 0/0 .data            l_bmdName */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* l_bmdName = (void*)(((char*)&d_a_obj_bk_leaf__stringBase0) + 0x8);
+#pragma pop
 
-/* 80BB6760-80BB6764 0004+00 s=0 e=0 z=0  None .data      l_bckName */
-SECTION_DATA void* l_bckName = (void*)(((char*)&struct_80BB6720) + 0x7) /* None */;
+/* 80BB6760-80BB6764 -00001 0004+00 0/1 0/0 0/0 .data            l_bckName */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* l_bckName = (void*)(((char*)&d_a_obj_bk_leaf__stringBase0) + 0xF);
+#pragma pop
 
-/* 80BB6764-80BB6784 0020+00 s=1 e=0 z=0  None .data      l_daBkLeaf_Method */
+/* 80BB6764-80BB6784 -00001 0020+00 1/0 0/0 0/0 .data            l_daBkLeaf_Method */
 SECTION_DATA static void* l_daBkLeaf_Method[8] = {
     (void*)daBkLeaf_Create__FP10fopAc_ac_c,
     (void*)daBkLeaf_Delete__FP10daBkLeaf_c,
@@ -297,8 +224,8 @@ SECTION_DATA static void* l_daBkLeaf_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BB6784-80BB67B4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_BkLeaf */
-SECTION_DATA void* g_profile_Obj_BkLeaf[12] = {
+/* 80BB6784-80BB67B4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BkLeaf */
+SECTION_DATA extern void* g_profile_Obj_BkLeaf[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C00000, (void*)&g_fpcLf_Method,
     (void*)0x00000580, (void*)NULL,
@@ -307,30 +234,14 @@ SECTION_DATA void* g_profile_Obj_BkLeaf[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80BB67B4-80BB67C0 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
+/* 80BB67B4-80BB67C0 00007C 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80BB629C-80BB63AC 0110+00 s=1 e=0 z=0  None .text      CreateHeap__10daBkLeaf_cFv */
-//	80BB62AC: 803621DC (_savegpr_29)
-//	80BB62B4: 80BB6738 (cNullVec__6Z2Calc)
-//	80BB62B8: 80BB6738 (cNullVec__6Z2Calc)
-//	80BB62C4: 804061C0 (g_dComIfG_gameInfo)
-//	80BB62C8: 804061C0 (g_dComIfG_gameInfo)
-//	80BB62DC: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80BB62EC: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80BB6318: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80BB6324: 802CEC4C (__nw__FUl)
-//	80BB6330: 80BB67B4 (__vt__12J3DFrameCtrl)
-//	80BB6334: 80BB67B4 (__vt__12J3DFrameCtrl)
-//	80BB6340: 803283FC (init__12J3DFrameCtrlFs)
-//	80BB6368: 80BB6710 (lit_3742)
-//	80BB636C: 80BB6710 (lit_3742)
-//	80BB637C: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
-//	80BB6398: 80362228 (_restgpr_29)
+/* 80BB629C-80BB63AC 00023C 0110+00 1/1 0/0 0/0 .text            CreateHeap__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -340,10 +251,7 @@ asm void daBkLeaf_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80BB63AC-80BB63F4 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-//	80BB63C4: 80BB67B4 (__vt__12J3DFrameCtrl)
-//	80BB63C8: 80BB67B4 (__vt__12J3DFrameCtrl)
-//	80BB63D8: 802CED3C (__dl__FPv)
+/* 80BB63AC-80BB63F4 00034C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,15 +261,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80BB63F4-80BB64A8 00B4+00 s=1 e=0 z=0  None .text      create__10daBkLeaf_cFv */
-//	80BB6420: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80BB6434: 80BB6758 (l_arcName)
-//	80BB6438: 80BB6758 (l_arcName)
-//	80BB6440: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80BB6454: 80BB60D8 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80BB6458: 80BB60D8 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80BB6460: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80BB6478: 80BB621C (Create__10daBkLeaf_cFv)
+/* 80BB63F4-80BB64A8 000394 00B4+00 1/1 0/0 0/0 .text            create__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -371,16 +271,17 @@ asm void daBkLeaf_c::create() {
 }
 #pragma pop
 
-/* 80BB64A8-80BB65C4 011C+00 s=1 e=0 z=0  None .text      execute__10daBkLeaf_cFv */
-//	80BB64F0: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80BB64F4: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80BB64FC: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80BB6510: 80BB6714 (lit_3811)
-//	80BB6514: 80BB6714 (lit_3811)
-//	80BB6520: 80BB6710 (lit_3742)
-//	80BB6524: 80BB6710 (lit_3742)
-//	80BB6560: 80BB60F8 (setBokkuri__10daBkLeaf_cFv)
-//	80BB65A8: 80BB61C8 (setBaseMtx__10daBkLeaf_cFv)
+/* ############################################################################################## */
+/* 80BB6714-80BB6718 000004 0004+00 1/1 0/0 0/0 .rodata          @3811 */
+SECTION_RODATA static u8 const lit_3811[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80BB6714 = (void*)(&lit_3811);
+
+/* 80BB64A8-80BB65C4 000448 011C+00 1/1 0/0 0/0 .text            execute__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,16 +291,7 @@ asm void daBkLeaf_c::execute() {
 }
 #pragma pop
 
-/* 80BB65C4-80BB6654 0090+00 s=1 e=0 z=0  None .text      draw__10daBkLeaf_cFv */
-//	80BB65D8: 8042CA54 (g_env_light)
-//	80BB65DC: 8042CA54 (g_env_light)
-//	80BB65EC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80BB65F0: 8042CA54 (g_env_light)
-//	80BB65F4: 8042CA54 (g_env_light)
-//	80BB6604: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80BB6618:
-// 8000D9CC (entry__13mDoExt_bckAnmFP12J3DModelDataf) 	80BB6620: 8000DCC4
-//(mDoExt_modelUpdateDL__FP8J3DModel)
+/* 80BB65C4-80BB6654 000564 0090+00 1/1 0/0 0/0 .text            draw__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -409,10 +301,7 @@ asm void daBkLeaf_c::draw() {
 }
 #pragma pop
 
-/* 80BB6654-80BB6688 0034+00 s=1 e=0 z=0  None .text      _delete__10daBkLeaf_cFv */
-//	80BB6660: 80BB6758 (l_arcName)
-//	80BB6664: 80BB6758 (l_arcName)
-//	80BB6670: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80BB6654-80BB6688 0005F4 0034+00 1/1 0/0 0/0 .text            _delete__10daBkLeaf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -422,46 +311,51 @@ asm void daBkLeaf_c::_delete() {
 }
 #pragma pop
 
-/* 80BB6688-80BB66A8 0020+00 s=1 e=0 z=0  None .text      daBkLeaf_Draw__FP10daBkLeaf_c */
-//	80BB6694: 80BB65C4 (draw__10daBkLeaf_cFv)
+/* 80BB6688-80BB66A8 000628 0020+00 1/0 0/0 0/0 .text            daBkLeaf_Draw__FP10daBkLeaf_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBkLeaf_Draw(daBkLeaf_c* param_0) {
+static asm void daBkLeaf_Draw(daBkLeaf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf/daBkLeaf_Draw__FP10daBkLeaf_c.s"
 }
 #pragma pop
 
-/* 80BB66A8-80BB66C8 0020+00 s=1 e=0 z=0  None .text      daBkLeaf_Execute__FP10daBkLeaf_c */
-//	80BB66B4: 80BB64A8 (execute__10daBkLeaf_cFv)
+/* 80BB66A8-80BB66C8 000648 0020+00 1/0 0/0 0/0 .text            daBkLeaf_Execute__FP10daBkLeaf_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBkLeaf_Execute(daBkLeaf_c* param_0) {
+static asm void daBkLeaf_Execute(daBkLeaf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf/daBkLeaf_Execute__FP10daBkLeaf_c.s"
 }
 #pragma pop
 
-/* 80BB66C8-80BB66E8 0020+00 s=1 e=0 z=0  None .text      daBkLeaf_Delete__FP10daBkLeaf_c */
-//	80BB66D4: 80BB6654 (_delete__10daBkLeaf_cFv)
+/* 80BB66C8-80BB66E8 000668 0020+00 1/0 0/0 0/0 .text            daBkLeaf_Delete__FP10daBkLeaf_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBkLeaf_Delete(daBkLeaf_c* param_0) {
+static asm void daBkLeaf_Delete(daBkLeaf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf/daBkLeaf_Delete__FP10daBkLeaf_c.s"
 }
 #pragma pop
 
-/* 80BB66E8-80BB6708 0020+00 s=1 e=0 z=0  None .text      daBkLeaf_Create__FP10fopAc_ac_c */
-//	80BB66F4: 80BB63F4 (create__10daBkLeaf_cFv)
+/* 80BB66E8-80BB6708 000688 0020+00 1/0 0/0 0/0 .text            daBkLeaf_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBkLeaf_Create(fopAc_ac_c* param_0) {
+static asm void daBkLeaf_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf/daBkLeaf_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80BB6718-80BB6735 000008 001D+00 3/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BB6718 = "Obj_bkl";
+SECTION_DEAD static char const* const stringBase_80BB6720 = "hl.bmd";
+SECTION_DEAD static char const* const stringBase_80BB6727 = "hl_shake1.bck";
 #pragma pop

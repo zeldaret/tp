@@ -3,19 +3,20 @@
 #
 
 M36_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern.plf
+M36_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern.lcf
+M36_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern.map
 
 M36_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_lantern/executor.cpp \
-	rel/d/a/tag/d_a_tag_lantern/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_lantern/d_a_tag_lantern.cpp \
 
 M36_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/d_a_tag_lantern.o \
 
 M36_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/libRuntime.PPCEABI.H.a \
 
 M36_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M36_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map36.map\
+	-m _prolog \
+	-lcf $(M36_LDSCRIPT) \
+	-unused -map $(M36_MAP) \
+	-w off \
 
 $(M36_TARGET): $(M36_O_FILES) $(M36_LIBS)
+	@echo [ 36] creating $(M36_TARGET)
 	@echo $(M36_LIBS) $(M36_O_FILES) > build/M36_ofiles
-	$(LD) -opt_partial $(M36_LDFLAGS) -o $(M36_TARGET) @build/M36_ofiles
+	@python3 tools/lcf.py rel 36 --output $(M36_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M36_LDFLAGS) -o $(M36_TARGET) @build/M36_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lantern/%.o: rel/d/a/tag/d_a_tag_lantern/%.cpp
+	@echo [ 36] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M36_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M36_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_lantern/libs/Runtime.PPCEABI.H/Makefile
 

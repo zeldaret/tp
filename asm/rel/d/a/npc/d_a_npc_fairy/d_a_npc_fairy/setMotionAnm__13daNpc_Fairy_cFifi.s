@@ -5,7 +5,7 @@ lbl_809B2C20:
 /* 809B2C2C  DB E1 00 80 */	stfd f31, 0x80(r1)
 /* 809B2C30  F3 E1 00 88 */	psq_st f31, 136(r1), 0, 0 /* qr0 */
 /* 809B2C34  39 61 00 80 */	addi r11, r1, 0x80
-/* 809B2C38  4B 9A F5 9C */	b _savegpr_27
+/* 809B2C38  4B 9A F5 9D */	bl _savegpr_27
 /* 809B2C3C  7C 7B 1B 78 */	mr r27, r3
 /* 809B2C40  7C 9C 23 78 */	mr r28, r4
 /* 809B2C44  FF E0 08 90 */	fmr f31, f1
@@ -58,7 +58,7 @@ lbl_809B2CC8:
 /* 809B2CF8  80 01 00 50 */	lwz r0, 0x50(r1)
 /* 809B2CFC  54 00 10 3A */	slwi r0, r0, 2
 /* 809B2D00  7C 84 00 2E */	lwzx r4, r4, r0
-/* 809B2D04  4B 79 53 90 */	b getTrnsfrmKeyAnmP__8daNpcT_cFPCci
+/* 809B2D04  4B 79 53 91 */	bl getTrnsfrmKeyAnmP__8daNpcT_cFPCci
 /* 809B2D08  7C 7F 1B 78 */	mr r31, r3
 lbl_809B2D0C:
 /* 809B2D0C  2C 1D 00 00 */	cmpwi r29, 0
@@ -76,13 +76,13 @@ lbl_809B2D0C:
 lbl_809B2D3C:
 /* 809B2D3C  7F 63 DB 78 */	mr r3, r27
 /* 809B2D40  7F E4 FB 78 */	mr r4, r31
-/* 809B2D44  3C A0 80 9C */	lis r5, lit_3916@ha
-/* 809B2D48  C0 25 93 78 */	lfs f1, lit_3916@l(r5)
+/* 809B2D44  3C A0 80 9C */	lis r5, lit_3916@ha /* 0x809B9378@ha */
+/* 809B2D48  C0 25 93 78 */	lfs f1, lit_3916@l(r5)  /* 0x809B9378@l */
 /* 809B2D4C  FC 40 F8 90 */	fmr f2, f31
 /* 809B2D50  80 A1 00 4C */	lwz r5, 0x4c(r1)
 /* 809B2D54  38 C0 00 00 */	li r6, 0
 /* 809B2D58  38 E0 FF FF */	li r7, -1
-/* 809B2D5C  4B 79 54 A8 */	b setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii
+/* 809B2D5C  4B 79 54 A9 */	bl setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii
 /* 809B2D60  2C 03 00 00 */	cmpwi r3, 0
 /* 809B2D64  41 82 00 1C */	beq lbl_809B2D80
 /* 809B2D68  80 1B 0D 98 */	lwz r0, 0xd98(r27)
@@ -128,7 +128,7 @@ lbl_809B2DA0:
 /* 809B2DFC  54 00 10 3A */	slwi r0, r0, 2
 /* 809B2E00  7C 84 00 2E */	lwzx r4, r4, r0
 /* 809B2E04  80 A1 00 08 */	lwz r5, 8(r1)
-/* 809B2E08  4B 79 53 04 */	b getTexSRTKeyAnmP__8daNpcT_cFPCci
+/* 809B2E08  4B 79 53 05 */	bl getTexSRTKeyAnmP__8daNpcT_cFPCci
 /* 809B2E0C  7C 7E 1B 78 */	mr r30, r3
 lbl_809B2E10:
 /* 809B2E10  80 1B 0D 98 */	lwz r0, 0xd98(r27)
@@ -154,7 +154,7 @@ lbl_809B2E58:
 /* 809B2E58  E3 E1 00 88 */	psq_l f31, 136(r1), 0, 0 /* qr0 */
 /* 809B2E5C  CB E1 00 80 */	lfd f31, 0x80(r1)
 /* 809B2E60  39 61 00 80 */	addi r11, r1, 0x80
-/* 809B2E64  4B 9A F3 BC */	b _restgpr_27
+/* 809B2E64  4B 9A F3 BD */	bl _restgpr_27
 /* 809B2E68  80 01 00 94 */	lwz r0, 0x94(r1)
 /* 809B2E6C  7C 08 03 A6 */	mtlr r0
 /* 809B2E70  38 21 00 90 */	addi r1, r1, 0x90

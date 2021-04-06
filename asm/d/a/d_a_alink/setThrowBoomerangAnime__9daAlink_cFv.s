@@ -6,8 +6,8 @@ lbl_800E05E8:
 /* 800E05F8  7C 7F 1B 78 */	mr r31, r3
 /* 800E05FC  38 80 00 53 */	li r4, 0x53
 /* 800E0600  38 A0 00 02 */	li r5, 2
-/* 800E0604  3C C0 80 39 */	lis r6, m__18daAlinkHIO_boom_c0@ha
-/* 800E0608  38 C6 E6 C8 */	addi r6, r6, m__18daAlinkHIO_boom_c0@l
+/* 800E0604  3C C0 80 39 */	lis r6, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0608  38 C6 E6 C8 */	addi r6, r6, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E060C  4B FC D0 E5 */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800E0610  7F E3 FB 78 */	mr r3, r31
 /* 800E0614  38 80 00 00 */	li r4, 0

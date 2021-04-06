@@ -5,9 +5,9 @@ lbl_80657B78:
 /* 80657B84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80657B88  93 C1 00 08 */	stw r30, 8(r1)
 /* 80657B8C  7C 7E 1B 78 */	mr r30, r3
-/* 80657B90  3C 80 80 66 */	lis r4, M_attr__13daCoachFire_c@ha
-/* 80657B94  3B E4 83 E8 */	addi r31, r4, M_attr__13daCoachFire_c@l
-/* 80657B98  4B 9C 1D 2C */	b fopAcM_setStageLayer__FPv
+/* 80657B90  3C 80 80 66 */	lis r4, M_attr__13daCoachFire_c@ha /* 0x806583E8@ha */
+/* 80657B94  3B E4 83 E8 */	addi r31, r4, M_attr__13daCoachFire_c@l /* 0x806583E8@l */
+/* 80657B98  4B 9C 1D 2D */	bl fopAcM_setStageLayer__FPv
 /* 80657B9C  7F C3 F3 78 */	mr r3, r30
 /* 80657BA0  C0 3F 00 10 */	lfs f1, 0x10(r31)
 /* 80657BA4  C0 5F 00 14 */	lfs f2, 0x14(r31)
@@ -15,7 +15,7 @@ lbl_80657B78:
 /* 80657BAC  C0 9F 00 18 */	lfs f4, 0x18(r31)
 /* 80657BB0  C0 BF 00 1C */	lfs f5, 0x1c(r31)
 /* 80657BB4  FC C0 20 90 */	fmr f6, f4
-/* 80657BB8  4B 9C 29 90 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80657BB8  4B 9C 29 91 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80657BBC  38 00 01 01 */	li r0, 0x101
 /* 80657BC0  90 1E 05 5C */	stw r0, 0x55c(r30)
 /* 80657BC4  38 00 00 24 */	li r0, 0x24
@@ -38,7 +38,7 @@ lbl_80657B78:
 /* 80657C08  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80657C0C  D0 1E 05 7C */	stfs f0, 0x57c(r30)
 /* 80657C10  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80657C14  4B B4 FB 7C */	b dKy_plight_set__FP15LIGHT_INFLUENCE
+/* 80657C14  4B B4 FB 7D */	bl dKy_plight_set__FP15LIGHT_INFLUENCE
 /* 80657C18  38 00 00 00 */	li r0, 0
 /* 80657C1C  90 1E 06 FC */	stw r0, 0x6fc(r30)
 /* 80657C20  7F C3 F3 78 */	mr r3, r30

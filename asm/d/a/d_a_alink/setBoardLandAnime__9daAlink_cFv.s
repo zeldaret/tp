@@ -5,8 +5,8 @@ lbl_801066EC:
 /* 801066F8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801066FC  7C 7F 1B 78 */	mr r31, r3
 /* 80106700  38 80 00 F8 */	li r4, 0xf8
-/* 80106704  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80106708  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 80106704  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80106708  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010670C  38 A5 00 28 */	addi r5, r5, 0x28
 /* 80106710  4B FA 69 E5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 80106714  7F E3 FB 78 */	mr r3, r31
@@ -21,8 +21,8 @@ lbl_801066EC:
 /* 80106738  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 8010673C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80106740  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80106744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80106748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80106744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80106748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010674C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80106750  38 80 00 02 */	li r4, 2
 /* 80106754  38 A0 00 0F */	li r5, 0xf

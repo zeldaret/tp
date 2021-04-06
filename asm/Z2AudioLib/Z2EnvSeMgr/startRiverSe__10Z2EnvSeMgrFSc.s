@@ -25,8 +25,8 @@ lbl_802C8300:
 /* 802C835C  38 03 FF FB */	addi r0, r3, -5
 /* 802C8360  28 00 00 29 */	cmplwi r0, 0x29
 /* 802C8364  41 81 00 3C */	bgt lbl_802C83A0
-/* 802C8368  3C 60 80 3D */	lis r3, lit_4622@ha
-/* 802C836C  38 63 BA 28 */	addi r3, r3, lit_4622@l
+/* 802C8368  3C 60 80 3D */	lis r3, lit_4622@ha /* 0x803CBA28@ha */
+/* 802C836C  38 63 BA 28 */	addi r3, r3, lit_4622@l /* 0x803CBA28@l */
 /* 802C8370  54 00 10 3A */	slwi r0, r0, 2
 /* 802C8374  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802C8378  7C 09 03 A6 */	mtctr r0

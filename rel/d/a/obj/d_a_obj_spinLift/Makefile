@@ -3,19 +3,20 @@
 #
 
 M629_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift.plf
+M629_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift.lcf
+M629_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift.map
 
 M629_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_spinLift/executor.cpp \
-	rel/d/a/obj/d_a_obj_spinLift/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_spinLift/d_a_obj_spinLift.cpp \
 
 M629_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/d_a_obj_spinLift.o \
 
 M629_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/libRuntime.PPCEABI.H.a \
 
 M629_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M629_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map629.map\
+	-m _prolog \
+	-lcf $(M629_LDSCRIPT) \
+	-unused -map $(M629_MAP) \
+	-w off \
 
 $(M629_TARGET): $(M629_O_FILES) $(M629_LIBS)
+	@echo [629] creating $(M629_TARGET)
 	@echo $(M629_LIBS) $(M629_O_FILES) > build/M629_ofiles
-	$(LD) -opt_partial $(M629_LDFLAGS) -o $(M629_TARGET) @build/M629_ofiles
+	@python3 tools/lcf.py rel 629 --output $(M629_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M629_LDFLAGS) -o $(M629_TARGET) @build/M629_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_spinLift/%.o: rel/d/a/obj/d_a_obj_spinLift/%.cpp
+	@echo [629] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M629_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M629_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_spinLift/libs/Runtime.PPCEABI.H/Makefile
 

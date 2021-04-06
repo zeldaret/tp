@@ -3,19 +3,20 @@
 #
 
 M558_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY.plf
+M558_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY.lcf
+M558_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY.map
 
 M558_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv7PropellerY/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv7PropellerY/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv7PropellerY/d_a_obj_lv7PropellerY.cpp \
 
 M558_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/d_a_obj_lv7PropellerY.o \
 
 M558_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/libRuntime.PPCEABI.H.a \
 
 M558_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M558_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map558.map\
+	-m _prolog \
+	-lcf $(M558_LDSCRIPT) \
+	-unused -map $(M558_MAP) \
+	-w off \
 
 $(M558_TARGET): $(M558_O_FILES) $(M558_LIBS)
+	@echo [558] creating $(M558_TARGET)
 	@echo $(M558_LIBS) $(M558_O_FILES) > build/M558_ofiles
-	$(LD) -opt_partial $(M558_LDFLAGS) -o $(M558_TARGET) @build/M558_ofiles
+	@python3 tools/lcf.py rel 558 --output $(M558_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M558_LDFLAGS) -o $(M558_TARGET) @build/M558_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7PropellerY/%.o: rel/d/a/obj/d_a_obj_lv7PropellerY/%.cpp
+	@echo [558] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M558_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M558_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv7PropellerY/libs/Runtime.PPCEABI.H/Makefile
 

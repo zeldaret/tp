@@ -48,12 +48,12 @@ lbl_80358BC8:
 /* 80358BDC  7F A0 EB 78 */	mr r0, r29
 /* 80358BE0  48 00 00 0C */	b lbl_80358BEC
 lbl_80358BE4:
-/* 80358BE4  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha
-/* 80358BE8  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l
+/* 80358BE4  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha /* 0x80352A30@ha */
+/* 80358BE8  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l /* 0x80352A30@l */
 lbl_80358BEC:
 /* 80358BEC  80 81 00 1C */	lwz r4, 0x1c(r1)
-/* 80358BF0  3C 60 80 36 */	lis r3, EraseCallback@ha
-/* 80358BF4  38 A3 8A 84 */	addi r5, r3, EraseCallback@l
+/* 80358BF0  3C 60 80 36 */	lis r3, EraseCallback@ha /* 0x80358A84@ha */
+/* 80358BF4  38 A3 8A 84 */	addi r5, r3, EraseCallback@l /* 0x80358A84@l */
 /* 80358BF8  90 04 00 D0 */	stw r0, 0xd0(r4)
 /* 80358BFC  80 61 00 1C */	lwz r3, 0x1c(r1)
 /* 80358C00  93 E3 00 B4 */	stw r31, 0xb4(r3)

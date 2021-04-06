@@ -3,12 +3,12 @@ lbl_80783B4C:
 /* 80783B50  7C 08 02 A6 */	mflr r0
 /* 80783B54  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80783B58  39 61 00 20 */	addi r11, r1, 0x20
-/* 80783B5C  4B BD E6 7C */	b _savegpr_28
+/* 80783B5C  4B BD E6 7D */	bl _savegpr_28
 /* 80783B60  7C 7C 1B 78 */	mr r28, r3
-/* 80783B64  3C 60 80 78 */	lis r3, lit_1109@ha
-/* 80783B68  3B A3 4F 38 */	addi r29, r3, lit_1109@l
-/* 80783B6C  3C 60 80 78 */	lis r3, lit_3658@ha
-/* 80783B70  3B C3 4D 68 */	addi r30, r3, lit_3658@l
+/* 80783B64  3C 60 80 78 */	lis r3, lit_1109@ha /* 0x80784F38@ha */
+/* 80783B68  3B A3 4F 38 */	addi r29, r3, lit_1109@l /* 0x80784F38@l */
+/* 80783B6C  3C 60 80 78 */	lis r3, lit_3658@ha /* 0x80784D68@ha */
+/* 80783B70  3B C3 4D 68 */	addi r30, r3, lit_3658@l /* 0x80784D68@l */
 /* 80783B74  80 1C 06 0C */	lwz r0, 0x60c(r28)
 /* 80783B78  2C 00 00 00 */	cmpwi r0, 0
 /* 80783B7C  40 81 00 28 */	ble lbl_80783BA4
@@ -26,13 +26,13 @@ lbl_80783BA4:
 /* 80783BA8  60 00 00 01 */	ori r0, r0, 1
 /* 80783BAC  90 1C 0A 74 */	stw r0, 0xa74(r28)
 /* 80783BB0  38 7C 09 04 */	addi r3, r28, 0x904
-/* 80783BB4  4B 8F FC 7C */	b Move__10dCcD_GSttsFv
+/* 80783BB4  4B 8F FC 7D */	bl Move__10dCcD_GSttsFv
 /* 80783BB8  38 7C 0A 5C */	addi r3, r28, 0xa5c
-/* 80783BBC  4B 90 08 A4 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80783BBC  4B 90 08 A5 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80783BC0  28 03 00 00 */	cmplwi r3, 0
 /* 80783BC4  41 82 03 E0 */	beq lbl_80783FA4
 /* 80783BC8  38 7C 0A 5C */	addi r3, r28, 0xa5c
-/* 80783BCC  4B 90 09 2C */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80783BCC  4B 90 09 2D */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80783BD0  90 7C 0B 98 */	stw r3, 0xb98(r28)
 /* 80783BD4  88 1C 05 D0 */	lbz r0, 0x5d0(r28)
 /* 80783BD8  28 00 00 00 */	cmplwi r0, 0
@@ -45,11 +45,11 @@ lbl_80783BEC:
 /* 80783BF0  90 1C 0B B0 */	stw r0, 0xbb0(r28)
 lbl_80783BF4:
 /* 80783BF4  38 7C 0A 5C */	addi r3, r28, 0xa5c
-/* 80783BF8  4B 90 09 00 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80783BF8  4B 90 09 01 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80783BFC  7C 7F 1B 78 */	mr r31, r3
 /* 80783C00  7F 83 E3 78 */	mr r3, r28
 /* 80783C04  38 9C 0B 98 */	addi r4, r28, 0xb98
-/* 80783C08  4B 90 3F FC */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 80783C08  4B 90 3F FD */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 80783C0C  38 00 00 0F */	li r0, 0xf
 /* 80783C10  90 1C 06 0C */	stw r0, 0x60c(r28)
 /* 80783C14  80 1F 00 10 */	lwz r0, 0x10(r31)
@@ -64,8 +64,8 @@ lbl_80783C28:
 /* 80783C34  38 00 00 05 */	li r0, 5
 /* 80783C38  90 1C 06 0C */	stw r0, 0x60c(r28)
 lbl_80783C3C:
-/* 80783C3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80783C40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80783C3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80783C40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80783C44  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80783C48  88 65 05 69 */	lbz r3, 0x569(r5)
 /* 80783C4C  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -78,7 +78,7 @@ lbl_80783C3C:
 lbl_80783C68:
 /* 80783C68  38 7C 04 D0 */	addi r3, r28, 0x4d0
 /* 80783C6C  80 9D 00 94 */	lwz r4, 0x94(r29)
-/* 80783C70  4B AE CF 94 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80783C70  4B AE CF 95 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80783C74  7C 63 07 34 */	extsh r3, r3
 /* 80783C78  A8 1C 04 E6 */	lha r0, 0x4e6(r28)
 /* 80783C7C  7C 03 00 50 */	subf r0, r3, r0
@@ -198,7 +198,7 @@ lbl_80783DE4:
 /* 80783E30  A8 7C 05 E6 */	lha r3, 0x5e6(r28)
 /* 80783E34  38 03 FF FF */	addi r0, r3, -1
 /* 80783E38  B0 1C 05 E6 */	sth r0, 0x5e6(r28)
-/* 80783E3C  4B 9D B5 5C */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 80783E3C  4B 9D B5 5D */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80783E40  2C 03 00 00 */	cmpwi r3, 0
 /* 80783E44  41 82 00 10 */	beq lbl_80783E54
 /* 80783E48  A8 7C 05 E6 */	lha r3, 0x5e6(r28)
@@ -278,7 +278,7 @@ lbl_80783F50:
 /* 80783F58  A8 7C 05 E6 */	lha r3, 0x5e6(r28)
 /* 80783F5C  38 03 FF FF */	addi r0, r3, -1
 /* 80783F60  B0 1C 05 E6 */	sth r0, 0x5e6(r28)
-/* 80783F64  4B 9D B4 34 */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 80783F64  4B 9D B4 35 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80783F68  2C 03 00 00 */	cmpwi r3, 0
 /* 80783F6C  41 82 00 10 */	beq lbl_80783F7C
 /* 80783F70  A8 7C 05 E6 */	lha r3, 0x5e6(r28)
@@ -299,7 +299,7 @@ lbl_80783F9C:
 /* 80783FA0  4B FF FA FD */	bl NoChanceMotion__8daE_SB_cFv
 lbl_80783FA4:
 /* 80783FA4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80783FA8  4B BD E2 7C */	b _restgpr_28
+/* 80783FA8  4B BD E2 7D */	bl _restgpr_28
 /* 80783FAC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80783FB0  7C 08 03 A6 */	mtlr r0
 /* 80783FB4  38 21 00 20 */	addi r1, r1, 0x20

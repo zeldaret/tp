@@ -110,8 +110,8 @@ lbl_802BFAF4:
 /* 802BFB18  38 18 FF F6 */	addi r0, r24, -10
 /* 802BFB1C  28 00 00 2F */	cmplwi r0, 0x2f
 /* 802BFB20  41 81 00 7C */	bgt lbl_802BFB9C
-/* 802BFB24  3C 60 80 3D */	lis r3, lit_3704@ha
-/* 802BFB28  38 63 B1 70 */	addi r3, r3, lit_3704@l
+/* 802BFB24  3C 60 80 3D */	lis r3, lit_3704@ha /* 0x803CB170@ha */
+/* 802BFB28  38 63 B1 70 */	addi r3, r3, lit_3704@l /* 0x803CB170@l */
 /* 802BFB2C  54 00 10 3A */	slwi r0, r0, 2
 /* 802BFB30  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802BFB34  7C 09 03 A6 */	mtctr r0
@@ -149,8 +149,8 @@ lbl_802BFB9C:
 /* 802BFBB0  28 04 00 00 */	cmplwi r4, 0
 /* 802BFBB4  41 82 02 8C */	beq lbl_802BFE40
 /* 802BFBB8  57 06 25 36 */	rlwinm r6, r24, 4, 0x14, 0x1b
-/* 802BFBBC  3C A0 80 3D */	lis r5, mEnemyInfo@ha
-/* 802BFBC0  38 05 AD 70 */	addi r0, r5, mEnemyInfo@l
+/* 802BFBBC  3C A0 80 3D */	lis r5, mEnemyInfo@ha /* 0x803CAD70@ha */
+/* 802BFBC0  38 05 AD 70 */	addi r0, r5, mEnemyInfo@l /* 0x803CAD70@l */
 /* 802BFBC4  7C C0 32 14 */	add r6, r0, r6
 /* 802BFBC8  80 A6 00 08 */	lwz r5, 8(r6)
 /* 802BFBCC  80 06 00 0C */	lwz r0, 0xc(r6)
@@ -174,8 +174,8 @@ lbl_802BFC04:
 /* 802BFC10  40 82 00 08 */	bne lbl_802BFC18
 /* 802BFC14  C3 E2 C1 CC */	lfs f31, lit_3701(r2)
 lbl_802BFC18:
-/* 802BFC18  3C A0 80 3A */	lis r5, lit_3380@ha
-/* 802BFC1C  38 C5 C2 40 */	addi r6, r5, lit_3380@l
+/* 802BFC18  3C A0 80 3A */	lis r5, lit_3380@ha /* 0x8039C240@ha */
+/* 802BFC1C  38 C5 C2 40 */	addi r6, r5, lit_3380@l /* 0x8039C240@l */
 /* 802BFC20  80 A6 00 00 */	lwz r5, 0(r6)
 /* 802BFC24  80 06 00 04 */	lwz r0, 4(r6)
 /* 802BFC28  90 A1 00 1C */	stw r5, 0x1c(r1)

@@ -3,15 +3,15 @@ lbl_80014AA4:
 /* 80014AA8  7C 08 02 A6 */	mflr r0
 /* 80014AAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80014AB0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80014AB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80014AB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80014AB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80014AB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80014ABC  83 E3 5C A8 */	lwz r31, 0x5ca8(r3)
 /* 80014AC0  4B FF A2 C1 */	bl mDoExt_getZeldaHeap__Fv
 /* 80014AC4  7C 65 1B 78 */	mr r5, r3
 /* 80014AC8  38 6D 86 D0 */	la r3, mDoExt_font1(r13) /* 80450C50-_SDA_BASE_ */
 /* 80014ACC  38 8D 86 D8 */	la r4, mDoExt_resfont1(r13) /* 80450C58-_SDA_BASE_ */
-/* 80014AD0  3C C0 80 37 */	lis r6, fontdata_8253@ha
-/* 80014AD4  38 C6 40 D4 */	addi r6, r6, fontdata_8253@l
+/* 80014AD0  3C C0 80 37 */	lis r6, fontdata_8253@ha /* 0x803740D4@ha */
+/* 80014AD4  38 C6 40 D4 */	addi r6, r6, fontdata_8253@l /* 0x803740D4@l */
 /* 80014AD8  7F E7 FB 78 */	mr r7, r31
 /* 80014ADC  39 00 00 01 */	li r8, 1
 /* 80014AE0  39 20 00 01 */	li r9, 1

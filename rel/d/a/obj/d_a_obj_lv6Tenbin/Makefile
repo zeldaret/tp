@@ -3,19 +3,20 @@
 #
 
 M549_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin.plf
+M549_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin.lcf
+M549_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin.map
 
 M549_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6Tenbin/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6Tenbin/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6Tenbin/d_a_obj_lv6Tenbin.cpp \
 
 M549_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/d_a_obj_lv6Tenbin.o \
 
 M549_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/libRuntime.PPCEABI.H.a \
 
 M549_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M549_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map549.map\
+	-m _prolog \
+	-lcf $(M549_LDSCRIPT) \
+	-unused -map $(M549_MAP) \
+	-w off \
 
 $(M549_TARGET): $(M549_O_FILES) $(M549_LIBS)
+	@echo [549] creating $(M549_TARGET)
 	@echo $(M549_LIBS) $(M549_O_FILES) > build/M549_ofiles
-	$(LD) -opt_partial $(M549_LDFLAGS) -o $(M549_TARGET) @build/M549_ofiles
+	@python3 tools/lcf.py rel 549 --output $(M549_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M549_LDFLAGS) -o $(M549_TARGET) @build/M549_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Tenbin/%.o: rel/d/a/obj/d_a_obj_lv6Tenbin/%.cpp
+	@echo [549] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M549_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M549_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6Tenbin/libs/Runtime.PPCEABI.H/Makefile
 

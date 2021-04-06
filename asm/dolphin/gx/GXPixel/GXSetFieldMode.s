@@ -13,7 +13,7 @@ lbl_8035FE78:
 /* 8035FEA4  80 85 00 7C */	lwz r4, 0x7c(r5)
 /* 8035FEA8  50 04 B2 52 */	rlwimi r4, r0, 0x16, 9, 9
 /* 8035FEAC  90 85 00 7C */	stw r4, 0x7c(r5)
-/* 8035FEB0  9B DF 80 00 */	stb r30, 0x8000(r31)
+/* 8035FEB0  9B DF 80 00 */	stb r30, 0x8000(r31)  /* 0xCC008000@l */
 /* 8035FEB4  80 05 00 7C */	lwz r0, 0x7c(r5)
 /* 8035FEB8  90 1F 80 00 */	stw r0, -0x8000(r31)
 /* 8035FEBC  4B FF F2 B9 */	bl __GXFlushTextureState

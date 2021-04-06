@@ -9,9 +9,9 @@ lbl_80D55FD8:
 /* 80D55FF4  40 82 00 28 */	bne lbl_80D5601C
 /* 80D55FF8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D55FFC  41 82 00 14 */	beq lbl_80D56010
-/* 80D56000  4B 2C 2B 64 */	b __ct__10fopAc_ac_cFv
-/* 80D56004  3C 60 80 D5 */	lis r3, __vt__18daTag_BottleItem_c@ha
-/* 80D56008  38 03 66 CC */	addi r0, r3, __vt__18daTag_BottleItem_c@l
+/* 80D56000  4B 2C 2B 65 */	bl __ct__10fopAc_ac_cFv
+/* 80D56004  3C 60 80 D5 */	lis r3, __vt__18daTag_BottleItem_c@ha /* 0x80D566CC@ha */
+/* 80D56008  38 03 66 CC */	addi r0, r3, __vt__18daTag_BottleItem_c@l /* 0x80D566CC@l */
 /* 80D5600C  90 1F 05 78 */	stw r0, 0x578(r31)
 lbl_80D56010:
 /* 80D56010  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
@@ -21,7 +21,7 @@ lbl_80D5601C:
 /* 80D5601C  7F E3 FB 78 */	mr r3, r31
 /* 80D56020  48 00 00 B9 */	bl setTypeFromParam__18daTag_BottleItem_cFv
 /* 80D56024  88 7F 05 76 */	lbz r3, 0x576(r31)
-/* 80D56028  4B 34 56 E0 */	b isBottleItem__FUc
+/* 80D56028  4B 34 56 E1 */	bl isBottleItem__FUc
 /* 80D5602C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D56030  40 82 00 0C */	bne lbl_80D5603C
 /* 80D56034  38 60 00 05 */	li r3, 5

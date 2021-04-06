@@ -6,8 +6,8 @@ lbl_80233FD8:
 /* 80233FE8  48 12 E1 ED */	bl _savegpr_27
 /* 80233FEC  7C 7B 1B 78 */	mr r27, r3
 /* 80233FF0  7C 9E 23 78 */	mr r30, r4
-/* 80233FF4  3C A0 80 43 */	lis r5, g_MsgObject_HIO_c@ha
-/* 80233FF8  38 A5 02 8C */	addi r5, r5, g_MsgObject_HIO_c@l
+/* 80233FF4  3C A0 80 43 */	lis r5, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80233FF8  38 A5 02 8C */	addi r5, r5, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80233FFC  88 05 03 59 */	lbz r0, 0x359(r5)
 /* 80234000  28 00 00 00 */	cmplwi r0, 0
 /* 80234004  40 82 00 0C */	bne lbl_80234010

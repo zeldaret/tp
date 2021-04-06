@@ -5,8 +5,8 @@ lbl_8027EFA4:
 /* 8027EFB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027EFB4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027EFB8  41 82 00 1C */	beq lbl_8027EFD4
-/* 8027EFBC  3C A0 80 3A */	lis r5, __vt__19JPAParticleCallBack@ha
-/* 8027EFC0  38 05 35 7C */	addi r0, r5, __vt__19JPAParticleCallBack@l
+/* 8027EFBC  3C A0 80 3A */	lis r5, __vt__19JPAParticleCallBack@ha /* 0x803A357C@ha */
+/* 8027EFC0  38 05 35 7C */	addi r0, r5, __vt__19JPAParticleCallBack@l /* 0x803A357C@l */
 /* 8027EFC4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027EFC8  7C 80 07 35 */	extsh. r0, r4
 /* 8027EFCC  40 81 00 08 */	ble lbl_8027EFD4

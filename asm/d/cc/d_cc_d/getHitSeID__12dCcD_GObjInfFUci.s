@@ -21,7 +21,7 @@ lbl_800845E4:
 /* 800845F4  4E 80 00 20 */	blr 
 lbl_800845F8:
 /* 800845F8  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
-/* 800845FC  3C 60 80 38 */	lis r3, m_hitSeID__12dCcD_GObjInf@ha
-/* 80084600  38 63 A7 80 */	addi r3, r3, m_hitSeID__12dCcD_GObjInf@l
+/* 800845FC  3C 60 80 38 */	lis r3, m_hitSeID__12dCcD_GObjInf@ha /* 0x8037A780@ha */
+/* 80084600  38 63 A7 80 */	addi r3, r3, m_hitSeID__12dCcD_GObjInf@l /* 0x8037A780@l */
 /* 80084604  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80084608  4E 80 00 20 */	blr 

@@ -3,8 +3,8 @@ lbl_8002779C:
 /* 800277A0  7C 08 02 A6 */	mflr r0
 /* 800277A4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800277A8  4B FF C6 ED */	bl dStage_SetErrorRoom__Fv
-/* 800277AC  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha
-/* 800277B0  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l
+/* 800277AC  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 800277B0  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 800277B4  38 63 01 E8 */	addi r3, r3, 0x1e8
 /* 800277B8  4C C6 31 82 */	crclr 6
 /* 800277BC  4B FD F3 01 */	bl OSReport

@@ -10,8 +10,8 @@ lbl_800E23A4:
 /* 800E23C4  48 07 C1 09 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E23C8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800E23CC  41 82 00 18 */	beq lbl_800E23E4
-/* 800E23D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E23D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E23D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E23D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E23D8  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800E23DC  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 800E23E0  4B F6 5D 9D */	bl cutEnd__16dEvent_manager_cFi

@@ -3,19 +3,20 @@
 #
 
 M361_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe.plf
+M361_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe.lcf
+M361_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe.map
 
 M361_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_shoe/executor.cpp \
-	rel/d/a/npc/d_a_npc_shoe/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_shoe/d_a_npc_shoe.cpp \
 
 M361_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/d_a_npc_shoe.o \
 
 M361_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/libRuntime.PPCEABI.H.a \
 
 M361_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M361_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map361.map\
+	-m _prolog \
+	-lcf $(M361_LDSCRIPT) \
+	-unused -map $(M361_MAP) \
+	-w off \
 
 $(M361_TARGET): $(M361_O_FILES) $(M361_LIBS)
+	@echo [361] creating $(M361_TARGET)
 	@echo $(M361_LIBS) $(M361_O_FILES) > build/M361_ofiles
-	$(LD) -opt_partial $(M361_LDFLAGS) -o $(M361_TARGET) @build/M361_ofiles
+	@python3 tools/lcf.py rel 361 --output $(M361_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M361_LDFLAGS) -o $(M361_TARGET) @build/M361_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shoe/%.o: rel/d/a/npc/d_a_npc_shoe/%.cpp
+	@echo [361] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M361_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_shoe/libs/Runtime.PPCEABI.H/Makefile
 

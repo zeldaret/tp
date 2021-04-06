@@ -5,8 +5,8 @@ lbl_801963B4:
 /* 801963C0  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 801963C4  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 801963C8  7C 7E 1B 78 */	mr r30, r3
-/* 801963CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801963D0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 801963CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801963D0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801963D4  80 64 5D AC */	lwz r3, 0x5dac(r4)
 /* 801963D8  80 03 05 70 */	lwz r0, 0x570(r3)
 /* 801963DC  54 00 01 46 */	rlwinm r0, r0, 0, 5, 3
@@ -54,8 +54,8 @@ lbl_801963B4:
 /* 80196484  C0 3E 00 BC */	lfs f1, 0xbc(r30)
 /* 80196488  38 C0 00 00 */	li r6, 0
 /* 8019648C  4B FE A7 15 */	bl Reset__9dCamera_cF4cXyz4cXyzfs
-/* 80196490  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80196494  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80196490  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80196494  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80196498  80 64 00 00 */	lwz r3, 0(r4)
 /* 8019649C  80 04 00 04 */	lwz r0, 4(r4)
 /* 801964A0  90 7E 00 00 */	stw r3, 0(r30)

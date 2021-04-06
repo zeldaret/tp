@@ -22,8 +22,8 @@ lbl_80022CE4:
 /* 80022CE8  7F C4 F3 78 */	mr r4, r30
 /* 80022CEC  48 24 EF C1 */	bl sBs_ClearArea__FPvUl
 /* 80022CF0  38 BF FF FC */	addi r5, r31, -4
-/* 80022CF4  3C 60 80 3A */	lis r3, clear@ha
-/* 80022CF8  38 63 3A 44 */	addi r3, r3, clear@l
+/* 80022CF4  3C 60 80 3A */	lis r3, clear@ha /* 0x803A3A44@ha */
+/* 80022CF8  38 63 3A 44 */	addi r3, r3, clear@l /* 0x803A3A44@l */
 /* 80022CFC  38 83 FF FC */	addi r4, r3, -4
 /* 80022D00  38 00 00 02 */	li r0, 2
 /* 80022D04  7C 09 03 A6 */	mtctr r0
@@ -35,8 +35,8 @@ lbl_80022D08:
 /* 80022D18  42 00 FF F0 */	bdnz lbl_80022D08
 /* 80022D1C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80022D20  90 05 00 04 */	stw r0, 4(r5)
-/* 80022D24  3C 60 80 3A */	lis r3, clear@ha
-/* 80022D28  38 63 3A 44 */	addi r3, r3, clear@l
+/* 80022D24  3C 60 80 3A */	lis r3, clear@ha /* 0x803A3A44@ha */
+/* 80022D28  38 63 3A 44 */	addi r3, r3, clear@l /* 0x803A3A44@l */
 /* 80022D2C  38 BF 00 10 */	addi r5, r31, 0x10
 /* 80022D30  38 83 00 10 */	addi r4, r3, 0x10
 /* 80022D34  38 00 00 03 */	li r0, 3
@@ -49,8 +49,8 @@ lbl_80022D3C:
 /* 80022D4C  42 00 FF F0 */	bdnz lbl_80022D3C
 /* 80022D50  80 04 00 04 */	lwz r0, 4(r4)
 /* 80022D54  90 05 00 04 */	stw r0, 4(r5)
-/* 80022D58  3C 60 80 3A */	lis r3, clear@ha
-/* 80022D5C  38 83 3A 44 */	addi r4, r3, clear@l
+/* 80022D58  3C 60 80 3A */	lis r3, clear@ha /* 0x803A3A44@ha */
+/* 80022D5C  38 83 3A 44 */	addi r4, r3, clear@l /* 0x803A3A44@l */
 /* 80022D60  80 64 00 30 */	lwz r3, 0x30(r4)
 /* 80022D64  80 04 00 34 */	lwz r0, 0x34(r4)
 /* 80022D68  90 7F 00 30 */	stw r3, 0x30(r31)
@@ -81,8 +81,8 @@ lbl_80022D3C:
 /* 80022DCC  7F E4 FB 78 */	mr r4, r31
 /* 80022DD0  48 24 3C 65 */	bl cTg_Create__FP16create_tag_classPv
 /* 80022DD4  38 7F 00 14 */	addi r3, r31, 0x14
-/* 80022DD8  3C 80 80 02 */	lis r4, fpcNdRq_Cancel__FP19node_create_request@ha
-/* 80022DDC  38 84 2A A4 */	addi r4, r4, fpcNdRq_Cancel__FP19node_create_request@l
+/* 80022DD8  3C 80 80 02 */	lis r4, fpcNdRq_Cancel__FP19node_create_request@ha /* 0x80022AA4@ha */
+/* 80022DDC  38 84 2A A4 */	addi r4, r4, fpcNdRq_Cancel__FP19node_create_request@l /* 0x80022AA4@l */
 /* 80022DE0  7F E5 FB 78 */	mr r5, r31
 /* 80022DE4  48 00 0A 15 */	bl fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv
 /* 80022DE8  80 6D 87 C8 */	lwz r3, request_id(r13)

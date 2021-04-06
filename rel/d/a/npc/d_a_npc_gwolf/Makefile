@@ -3,19 +3,20 @@
 #
 
 M315_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf.plf
+M315_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf.lcf
+M315_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf.map
 
 M315_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_gwolf/executor.cpp \
-	rel/d/a/npc/d_a_npc_gwolf/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_gwolf/d_a_npc_gwolf.cpp \
 
 M315_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf/d_a_npc_gwolf.o \
 
 M315_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf/libRuntime.PPCEABI.H.a \
 
 M315_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M315_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map315.map\
+	-m _prolog \
+	-lcf $(M315_LDSCRIPT) \
+	-unused -map $(M315_MAP) \
+	-w off \
 
 $(M315_TARGET): $(M315_O_FILES) $(M315_LIBS)
+	@echo [315] creating $(M315_TARGET)
 	@echo $(M315_LIBS) $(M315_O_FILES) > build/M315_ofiles
-	$(LD) -opt_partial $(M315_LDFLAGS) -o $(M315_TARGET) @build/M315_ofiles
+	@python3 tools/lcf.py rel 315 --output $(M315_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M315_LDFLAGS) -o $(M315_TARGET) @build/M315_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gwolf/%.o: rel/d/a/npc/d_a_npc_gwolf/%.cpp
+	@echo [315] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M315_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M315_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_gwolf/libs/Runtime.PPCEABI.H/Makefile
 

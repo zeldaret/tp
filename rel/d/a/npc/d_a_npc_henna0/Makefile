@@ -3,17 +3,15 @@
 #
 
 M317_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0.plf
+M317_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0.lcf
+M317_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0.map
 
 M317_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_henna0/executor.cpp \
-	rel/d/a/npc/d_a_npc_henna0/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_henna0/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_henna0/d_a_npc_henna0.cpp \
 
 M317_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0/d_a_npc_henna0.o \
 
 M317_LIBS := \
@@ -29,15 +27,21 @@ M317_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map317.map\
+	-m _prolog \
+	-lcf $(M317_LDSCRIPT) \
+	-unused -map $(M317_MAP) \
+	-w off \
 
 $(M317_TARGET): $(M317_O_FILES) $(M317_LIBS)
+	@echo [317] creating $(M317_TARGET)
 	@echo $(M317_LIBS) $(M317_O_FILES) > build/M317_ofiles
-	$(LD) -opt_partial $(M317_LDFLAGS) -o $(M317_TARGET) @build/M317_ofiles
+	@python3 tools/lcf.py rel 317 --output $(M317_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M317_LDFLAGS) -o $(M317_TARGET) @build/M317_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna0/%.o: rel/d/a/npc/d_a_npc_henna0/%.cpp
+	@echo [317] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M317_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M317_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

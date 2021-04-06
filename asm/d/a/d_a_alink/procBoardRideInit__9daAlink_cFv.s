@@ -8,8 +8,8 @@ lbl_80106774:
 /* 8010678C  4B FB B7 E1 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80106790  7F E3 FB 78 */	mr r3, r31
 /* 80106794  38 80 00 D7 */	li r4, 0xd7
-/* 80106798  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 8010679C  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 80106798  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 8010679C  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 801067A0  C0 26 00 04 */	lfs f1, 4(r6)
 /* 801067A4  C0 42 93 44 */	lfs f2, lit_7977(r2)
 /* 801067A8  A8 A6 00 00 */	lha r5, 0(r6)
@@ -91,8 +91,8 @@ lbl_801068CC:
 /* 801068CC  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 801068D0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801068D4  40 80 00 10 */	bge lbl_801068E4
-/* 801068D8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801068DC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801068D8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801068DC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801068E0  48 00 00 70 */	b lbl_80106950
 lbl_801068E4:
 /* 801068E4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -126,8 +126,8 @@ lbl_8010693C:
 lbl_80106940:
 /* 80106940  2C 00 00 01 */	cmpwi r0, 1
 /* 80106944  40 82 00 0C */	bne lbl_80106950
-/* 80106948  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8010694C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80106948  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8010694C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80106950:
 /* 80106950  C0 42 95 F8 */	lfs f2, lit_28405(r2)
 /* 80106954  C0 1F 05 30 */	lfs f0, 0x530(r31)
@@ -137,8 +137,8 @@ lbl_80106950:
 /* 80106964  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 80106968  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8010696C  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 80106970  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 80106974  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 80106970  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 80106974  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 80106978  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8010697C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80106980  D0 1F 35 8C */	stfs f0, 0x358c(r31)

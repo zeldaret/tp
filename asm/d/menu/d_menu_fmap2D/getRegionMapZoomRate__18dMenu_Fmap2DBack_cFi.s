@@ -8,8 +8,8 @@ lbl_801D2B64:
 /* 801D2B7C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801D2B80  7C 7E 1B 78 */	mr r30, r3
 /* 801D2B84  7C 9F 23 78 */	mr r31, r4
-/* 801D2B88  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801D2B8C  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l
+/* 801D2B88  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D2B8C  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D2B90  88 04 03 08 */	lbz r0, 0x308(r4)
 /* 801D2B94  28 00 00 00 */	cmplwi r0, 0
 /* 801D2B98  40 82 00 30 */	bne lbl_801D2BC8

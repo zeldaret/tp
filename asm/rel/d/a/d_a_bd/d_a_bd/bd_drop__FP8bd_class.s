@@ -13,8 +13,8 @@ lbl_804D8E20:
 /* 804D8E4C  48 00 00 28 */	b lbl_804D8E74
 lbl_804D8E50:
 /* 804D8E50  38 80 00 05 */	li r4, 5
-/* 804D8E54  3C A0 80 4E */	lis r5, lit_4171@ha
-/* 804D8E58  C0 25 9E A8 */	lfs f1, lit_4171@l(r5)
+/* 804D8E54  3C A0 80 4E */	lis r5, lit_4171@ha /* 0x804D9EA8@ha */
+/* 804D8E58  C0 25 9E A8 */	lfs f1, lit_4171@l(r5)  /* 0x804D9EA8@l */
 /* 804D8E5C  38 A0 00 02 */	li r5, 2
 /* 804D8E60  FC 40 08 90 */	fmr f2, f1
 /* 804D8E64  4B FF DE 41 */	bl anm_init__FP8bd_classifUcf
@@ -22,8 +22,8 @@ lbl_804D8E50:
 /* 804D8E6C  38 03 00 01 */	addi r0, r3, 1
 /* 804D8E70  B0 1F 06 1C */	sth r0, 0x61c(r31)
 lbl_804D8E74:
-/* 804D8E74  3C 60 80 4E */	lis r3, lit_3964@ha
-/* 804D8E78  C0 03 9E 78 */	lfs f0, lit_3964@l(r3)
+/* 804D8E74  3C 60 80 4E */	lis r3, lit_3964@ha /* 0x804D9E78@ha */
+/* 804D8E78  C0 03 9E 78 */	lfs f0, lit_3964@l(r3)  /* 0x804D9E78@l */
 /* 804D8E7C  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 804D8E80  80 1F 06 C8 */	lwz r0, 0x6c8(r31)
 /* 804D8E84  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a

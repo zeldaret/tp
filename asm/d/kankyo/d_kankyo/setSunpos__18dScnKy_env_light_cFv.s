@@ -9,20 +9,20 @@ lbl_8019F788:
 /* 8019F7A4  39 61 00 30 */	addi r11, r1, 0x30
 /* 8019F7A8  48 1C 2A 35 */	bl _savegpr_29
 /* 8019F7AC  7C 7D 1B 78 */	mr r29, r3
-/* 8019F7B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019F7B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019F7B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019F7B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019F7B8  83 C3 5D 74 */	lwz r30, 0x5d74(r3)
 /* 8019F7BC  28 1E 00 00 */	cmplwi r30, 0
 /* 8019F7C0  41 82 02 20 */	beq lbl_8019F9E0
 /* 8019F7C4  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 8019F7C8  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019F7CC  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019F7C8  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019F7CC  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019F7D0  38 84 01 82 */	addi r4, r4, 0x182
 /* 8019F7D4  48 1C 91 C1 */	bl strcmp
 /* 8019F7D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8019F7DC  41 82 02 04 */	beq lbl_8019F9E0
-/* 8019F7E0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F7E4  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8019F7E0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F7E4  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F7E8  C0 7F 12 44 */	lfs f3, 0x1244(r31)
 /* 8019F7EC  C0 42 A2 2C */	lfs f2, lit_4442(r2)
 /* 8019F7F0  FC 03 10 40 */	fcmpo cr0, f3, f2

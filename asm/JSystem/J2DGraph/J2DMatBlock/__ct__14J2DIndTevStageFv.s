@@ -1,7 +1,7 @@
 lbl_802F18A0:
 /* 802F18A0  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 802F18A4  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802F18A8  38 A4 1B F4 */	addi r5, r4, j2dDefaultIndTevStageInfo@l
+/* 802F18A4  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802F18A8  38 A4 1B F4 */	addi r5, r4, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802F18AC  80 85 00 00 */	lwz r4, 0(r5)
 /* 802F18B0  80 05 00 04 */	lwz r0, 4(r5)
 /* 802F18B4  90 81 00 08 */	stw r4, 8(r1)

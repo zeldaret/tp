@@ -3,7 +3,7 @@ lbl_80B96740:
 /* 80B96744  7C 08 02 A6 */	mflr r0
 /* 80B96748  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B9674C  38 63 14 0C */	addi r3, r3, 0x140c
-/* 80B96750  4B 7C B8 F8 */	b __ptmf_cmpr
+/* 80B96750  4B 7C B8 F9 */	bl __ptmf_cmpr
 /* 80B96754  7C 60 00 34 */	cntlzw r0, r3
 /* 80B96758  54 03 D9 7E */	srwi r3, r0, 5
 /* 80B9675C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -4,8 +4,8 @@ lbl_801F8150:
 /* 801F8158  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801F815C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801F8160  7C 7F 1B 78 */	mr r31, r3
-/* 801F8164  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801F8168  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801F8164  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801F8168  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801F816C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801F8170  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801F8174  41 82 00 48 */	beq lbl_801F81BC

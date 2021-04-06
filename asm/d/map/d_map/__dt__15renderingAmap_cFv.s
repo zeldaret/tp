@@ -5,36 +5,36 @@ lbl_8002ADB0:
 /* 8002ADBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002ADC0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8002ADC4  41 82 00 90 */	beq lbl_8002AE54
-/* 8002ADC8  3C 60 80 3A */	lis r3, __vt__15renderingAmap_c@ha
-/* 8002ADCC  38 03 70 F4 */	addi r0, r3, __vt__15renderingAmap_c@l
+/* 8002ADC8  3C 60 80 3A */	lis r3, __vt__15renderingAmap_c@ha /* 0x803A70F4@ha */
+/* 8002ADCC  38 03 70 F4 */	addi r0, r3, __vt__15renderingAmap_c@l /* 0x803A70F4@l */
 /* 8002ADD0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002ADD4  41 82 00 70 */	beq lbl_8002AE44
-/* 8002ADD8  3C 60 80 3A */	lis r3, __vt__28renderingPlusDoorAndCursor_c@ha
-/* 8002ADDC  38 03 7E 24 */	addi r0, r3, __vt__28renderingPlusDoorAndCursor_c@l
+/* 8002ADD8  3C 60 80 3A */	lis r3, __vt__28renderingPlusDoorAndCursor_c@ha /* 0x803A7E24@ha */
+/* 8002ADDC  38 03 7E 24 */	addi r0, r3, __vt__28renderingPlusDoorAndCursor_c@l /* 0x803A7E24@l */
 /* 8002ADE0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002ADE4  41 82 00 60 */	beq lbl_8002AE44
-/* 8002ADE8  3C 60 80 3A */	lis r3, __vt__19renderingPlusDoor_c@ha
-/* 8002ADEC  38 03 7D 80 */	addi r0, r3, __vt__19renderingPlusDoor_c@l
+/* 8002ADE8  3C 60 80 3A */	lis r3, __vt__19renderingPlusDoor_c@ha /* 0x803A7D80@ha */
+/* 8002ADEC  38 03 7D 80 */	addi r0, r3, __vt__19renderingPlusDoor_c@l /* 0x803A7D80@l */
 /* 8002ADF0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002ADF4  41 82 00 50 */	beq lbl_8002AE44
-/* 8002ADF8  3C 60 80 3A */	lis r3, __vt__16renderingDAmap_c@ha
-/* 8002ADFC  38 03 7E E0 */	addi r0, r3, __vt__16renderingDAmap_c@l
+/* 8002ADF8  3C 60 80 3A */	lis r3, __vt__16renderingDAmap_c@ha /* 0x803A7EE0@ha */
+/* 8002ADFC  38 03 7E E0 */	addi r0, r3, __vt__16renderingDAmap_c@l /* 0x803A7EE0@l */
 /* 8002AE00  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002AE04  41 82 00 40 */	beq lbl_8002AE44
-/* 8002AE08  3C 60 80 3A */	lis r3, __vt__18dRenderingFDAmap_c@ha
-/* 8002AE0C  38 03 7C 90 */	addi r0, r3, __vt__18dRenderingFDAmap_c@l
+/* 8002AE08  3C 60 80 3A */	lis r3, __vt__18dRenderingFDAmap_c@ha /* 0x803A7C90@ha */
+/* 8002AE0C  38 03 7C 90 */	addi r0, r3, __vt__18dRenderingFDAmap_c@l /* 0x803A7C90@l */
 /* 8002AE10  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002AE14  41 82 00 30 */	beq lbl_8002AE44
-/* 8002AE18  3C 60 80 3A */	lis r3, __vt__15dRenderingMap_c@ha
-/* 8002AE1C  38 03 6F D4 */	addi r0, r3, __vt__15dRenderingMap_c@l
+/* 8002AE18  3C 60 80 3A */	lis r3, __vt__15dRenderingMap_c@ha /* 0x803A6FD4@ha */
+/* 8002AE1C  38 03 6F D4 */	addi r0, r3, __vt__15dRenderingMap_c@l /* 0x803A6FD4@l */
 /* 8002AE20  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002AE24  41 82 00 20 */	beq lbl_8002AE44
-/* 8002AE28  3C 60 80 3A */	lis r3, __vt__28dDrawPathWithNormalPattern_c@ha
-/* 8002AE2C  38 03 6F 94 */	addi r0, r3, __vt__28dDrawPathWithNormalPattern_c@l
+/* 8002AE28  3C 60 80 3A */	lis r3, __vt__28dDrawPathWithNormalPattern_c@ha /* 0x803A6F94@ha */
+/* 8002AE2C  38 03 6F 94 */	addi r0, r3, __vt__28dDrawPathWithNormalPattern_c@l /* 0x803A6F94@l */
 /* 8002AE30  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002AE34  41 82 00 10 */	beq lbl_8002AE44
-/* 8002AE38  3C 60 80 3A */	lis r3, __vt__11dDrawPath_c@ha
-/* 8002AE3C  38 03 7C F8 */	addi r0, r3, __vt__11dDrawPath_c@l
+/* 8002AE38  3C 60 80 3A */	lis r3, __vt__11dDrawPath_c@ha /* 0x803A7CF8@ha */
+/* 8002AE3C  38 03 7C F8 */	addi r0, r3, __vt__11dDrawPath_c@l /* 0x803A7CF8@l */
 /* 8002AE40  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8002AE44:
 /* 8002AE44  7C 80 07 35 */	extsh. r0, r4

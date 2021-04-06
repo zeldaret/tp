@@ -7,8 +7,8 @@ lbl_802E19D8:
 /* 802E19EC  7C 7B 1B 78 */	mr r27, r3
 /* 802E19F0  3B 80 00 00 */	li r28, 0
 /* 802E19F4  3B C0 00 00 */	li r30, 0
-/* 802E19F8  3C 60 80 3D */	lis r3, channel_mask@ha
-/* 802E19FC  3B A3 C6 00 */	addi r29, r3, channel_mask@l
+/* 802E19F8  3C 60 80 3D */	lis r3, channel_mask@ha /* 0x803CC600@ha */
+/* 802E19FC  3B A3 C6 00 */	addi r29, r3, channel_mask@l /* 0x803CC600@l */
 /* 802E1A00  3B ED 8F 64 */	la r31, mStatus__Q210JUTGamePad7CRumble(r13) /* 804514E4-_SDA_BASE_ */
 lbl_802E1A04:
 /* 802E1A04  80 6D 8F 68 */	lwz r3, mEnabled__Q210JUTGamePad7CRumble(r13)

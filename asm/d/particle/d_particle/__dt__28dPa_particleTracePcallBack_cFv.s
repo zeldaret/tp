@@ -7,8 +7,8 @@ lbl_8004FC68:
 /* 8004FC7C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FC80  7C 9F 23 78 */	mr r31, r4
 /* 8004FC84  41 82 00 28 */	beq lbl_8004FCAC
-/* 8004FC88  3C 80 80 3B */	lis r4, __vt__28dPa_particleTracePcallBack_c@ha
-/* 8004FC8C  38 04 83 8C */	addi r0, r4, __vt__28dPa_particleTracePcallBack_c@l
+/* 8004FC88  3C 80 80 3B */	lis r4, __vt__28dPa_particleTracePcallBack_c@ha /* 0x803A838C@ha */
+/* 8004FC8C  38 04 83 8C */	addi r0, r4, __vt__28dPa_particleTracePcallBack_c@l /* 0x803A838C@l */
 /* 8004FC90  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FC94  38 80 00 00 */	li r4, 0
 /* 8004FC98  48 22 F3 0D */	bl __dt__19JPAParticleCallBackFv

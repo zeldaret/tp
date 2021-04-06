@@ -5,10 +5,10 @@ lbl_80211BEC:
 /* 80211BF8  39 61 00 30 */	addi r11, r1, 0x30
 /* 80211BFC  48 15 05 D1 */	bl _savegpr_25
 /* 80211C00  7C 7C 1B 78 */	mr r28, r3
-/* 80211C04  3C 60 80 3A */	lis r3, a_tag@ha
-/* 80211C08  3B C3 82 58 */	addi r30, r3, a_tag@l
-/* 80211C0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80211C10  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80211C04  3C 60 80 3A */	lis r3, a_tag@ha /* 0x80398258@ha */
+/* 80211C08  3B C3 82 58 */	addi r30, r3, a_tag@l /* 0x80398258@l */
+/* 80211C0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80211C10  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80211C14  A3 5F 00 02 */	lhz r26, 2(r31)
 /* 80211C18  4B E1 C0 91 */	bl dComIfGs_getMaxLifeGauge__Fv
 /* 80211C1C  54 63 04 3E */	clrlwi r3, r3, 0x10
@@ -136,12 +136,12 @@ lbl_80211DDC:
 /* 80211DE0  80 7C 01 24 */	lwz r3, 0x124(r28)
 /* 80211DE4  C0 22 AE 80 */	lfs f1, lit_4182(r2)
 /* 80211DE8  48 04 39 E9 */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 80211DEC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80211DF0  38 A3 EB C8 */	addi r5, r3, g_drawHIO@l
+/* 80211DEC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80211DF0  38 A3 EB C8 */	addi r5, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80211DF4  C0 25 00 08 */	lfs f1, 8(r5)
 /* 80211DF8  C0 42 AE 80 */	lfs f2, lit_4182(r2)
-/* 80211DFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80211E00  A0 83 61 C0 */	lhz r4, g_dComIfG_gameInfo@l(r3)
+/* 80211DFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80211E00  A0 83 61 C0 */	lhz r4, g_dComIfG_gameInfo@l(r3)  /* 0x804061C0@l */
 /* 80211E04  54 80 04 3E */	clrlwi r0, r4, 0x10
 /* 80211E08  28 00 00 32 */	cmplwi r0, 0x32
 /* 80211E0C  41 81 00 08 */	bgt lbl_80211E14
@@ -151,8 +151,8 @@ lbl_80211E14:
 /* 80211E18  7F 83 E3 78 */	mr r3, r28
 /* 80211E1C  7C 84 07 34 */	extsh r4, r4
 /* 80211E20  7C 05 07 34 */	extsh r5, r0
-/* 80211E24  3C C0 80 43 */	lis r6, g_drawHIO@ha
-/* 80211E28  38 C6 EB C8 */	addi r6, r6, g_drawHIO@l
+/* 80211E24  3C C0 80 43 */	lis r6, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80211E28  38 C6 EB C8 */	addi r6, r6, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80211E2C  C0 06 00 28 */	lfs f0, 0x28(r6)
 /* 80211E30  EC 20 08 2A */	fadds f1, f0, f1
 /* 80211E34  C0 06 00 2C */	lfs f0, 0x2c(r6)

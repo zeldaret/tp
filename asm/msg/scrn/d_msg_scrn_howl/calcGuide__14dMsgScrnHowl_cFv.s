@@ -8,8 +8,8 @@ lbl_80243A50:
 /* 80243A68  A0 03 21 38 */	lhz r0, 0x2138(r3)
 /* 80243A6C  28 00 00 00 */	cmplwi r0, 0
 /* 80243A70  41 82 01 58 */	beq lbl_80243BC8
-/* 80243A74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80243A78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80243A74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80243A78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80243A7C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80243A80  80 03 2E 0C */	lwz r0, 0x2e0c(r3)
 /* 80243A84  28 00 00 00 */	cmplwi r0, 0

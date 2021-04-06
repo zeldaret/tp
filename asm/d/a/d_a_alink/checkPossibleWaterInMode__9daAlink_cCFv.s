@@ -3,8 +3,8 @@ lbl_80101CB8:
 /* 80101CBC  80 03 31 A0 */	lwz r0, 0x31a0(r3)
 /* 80101CC0  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 80101CC4  40 82 00 24 */	bne lbl_80101CE8
-/* 80101CC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80101CCC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80101CC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80101CCC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80101CD0  80 04 5F 1C */	lwz r0, 0x5f1c(r4)
 /* 80101CD4  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80101CD8  40 82 00 10 */	bne lbl_80101CE8

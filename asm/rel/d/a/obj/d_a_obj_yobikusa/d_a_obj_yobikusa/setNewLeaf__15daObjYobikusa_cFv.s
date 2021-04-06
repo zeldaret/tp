@@ -5,20 +5,20 @@ lbl_8059D454:
 /* 8059D460  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8059D464  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8059D468  7C 7E 1B 78 */	mr r30, r3
-/* 8059D46C  3C 60 80 5A */	lis r3, M_attr__15daObjYobikusa_c@ha
-/* 8059D470  3B E3 DE 7C */	addi r31, r3, M_attr__15daObjYobikusa_c@l
+/* 8059D46C  3C 60 80 5A */	lis r3, M_attr__15daObjYobikusa_c@ha /* 0x8059DE7C@ha */
+/* 8059D470  3B E3 DE 7C */	addi r31, r3, M_attr__15daObjYobikusa_c@l /* 0x8059DE7C@l */
 /* 8059D474  38 7E 07 40 */	addi r3, r30, 0x740
 /* 8059D478  C0 3F 00 5C */	lfs f1, 0x5c(r31)
 /* 8059D47C  38 9F 00 00 */	addi r4, r31, 0
 /* 8059D480  C0 44 00 24 */	lfs f2, 0x24(r4)
-/* 8059D484  4B CD 32 BC */	b cLib_chaseF__FPfff
+/* 8059D484  4B CD 32 BD */	bl cLib_chaseF__FPfff
 /* 8059D488  38 9F 00 00 */	addi r4, r31, 0
 /* 8059D48C  C0 04 00 28 */	lfs f0, 0x28(r4)
 /* 8059D490  D0 1E 07 44 */	stfs f0, 0x744(r30)
 /* 8059D494  A8 1E 07 68 */	lha r0, 0x768(r30)
 /* 8059D498  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8059D49C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8059D4A0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8059D49C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8059D4A0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8059D4A4  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8059D4A8  C0 1E 07 44 */	lfs f0, 0x744(r30)
 /* 8059D4AC  EC 00 00 72 */	fmuls f0, f0, f1

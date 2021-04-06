@@ -20,8 +20,8 @@ lbl_801B3734:
 /* 801B3750  7F E0 20 50 */	subf r31, r0, r4
 /* 801B3754  3B A0 00 00 */	li r29, 0
 /* 801B3758  40 81 00 7C */	ble lbl_801B37D4
-/* 801B375C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B3760  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801B375C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3760  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3764  83 A4 5D 30 */	lwz r29, 0x5d30(r4)
 /* 801B3768  48 06 AB 61 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 801B376C  7C 65 1B 78 */	mr r5, r3
@@ -71,8 +71,8 @@ lbl_801B3800:
 /* 801B3814  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 801B3818  41 82 00 78 */	beq lbl_801B3890
 lbl_801B381C:
-/* 801B381C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B3820  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801B381C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3820  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3824  83 A4 5D 30 */	lwz r29, 0x5d30(r4)
 /* 801B3828  48 06 AA A1 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 801B382C  7C 65 1B 78 */	mr r5, r3
@@ -113,8 +113,8 @@ lbl_801B3890:
 /* 801B38B4  38 00 00 00 */	li r0, 0
 /* 801B38B8  98 03 00 B0 */	stb r0, 0xb0(r3)
 lbl_801B38BC:
-/* 801B38BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B38C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B38BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B38C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B38C4  83 A3 5D 30 */	lwz r29, 0x5d30(r3)
 /* 801B38C8  7F E3 FB 78 */	mr r3, r31
 /* 801B38CC  48 06 A9 FD */	bl dMeter2Info_getNumberTextureName__Fi

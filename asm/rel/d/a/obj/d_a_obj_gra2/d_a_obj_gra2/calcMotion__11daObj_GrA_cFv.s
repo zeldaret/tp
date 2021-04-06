@@ -8,20 +8,20 @@ lbl_80C017F0:
 /* 80C01808  28 00 00 16 */	cmplwi r0, 0x16
 /* 80C0180C  40 80 00 48 */	bge lbl_80C01854
 /* 80C01810  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80C01814  3C 60 80 C1 */	lis r3, mBaseMotionList__11daObj_GrA_c@ha
-/* 80C01818  38 03 04 DC */	addi r0, r3, mBaseMotionList__11daObj_GrA_c@l
+/* 80C01814  3C 60 80 C1 */	lis r3, mBaseMotionList__11daObj_GrA_c@ha /* 0x80C104DC@ha */
+/* 80C01818  38 03 04 DC */	addi r0, r3, mBaseMotionList__11daObj_GrA_c@l /* 0x80C104DC@l */
 /* 80C0181C  7C 60 22 14 */	add r3, r0, r4
-/* 80C01820  4B 76 07 F8 */	b __ptmf_test
+/* 80C01820  4B 76 07 F9 */	bl __ptmf_test
 /* 80C01824  2C 03 00 00 */	cmpwi r3, 0
 /* 80C01828  41 82 00 2C */	beq lbl_80C01854
 /* 80C0182C  7F E3 FB 78 */	mr r3, r31
 /* 80C01830  88 9F 0A 8D */	lbz r4, 0xa8d(r31)
 /* 80C01834  A0 1F 0A 90 */	lhz r0, 0xa90(r31)
 /* 80C01838  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 80C0183C  3C A0 80 C1 */	lis r5, mBaseMotionList__11daObj_GrA_c@ha
-/* 80C01840  38 05 04 DC */	addi r0, r5, mBaseMotionList__11daObj_GrA_c@l
+/* 80C0183C  3C A0 80 C1 */	lis r5, mBaseMotionList__11daObj_GrA_c@ha /* 0x80C104DC@ha */
+/* 80C01840  38 05 04 DC */	addi r0, r5, mBaseMotionList__11daObj_GrA_c@l /* 0x80C104DC@l */
 /* 80C01844  7D 80 32 14 */	add r12, r0, r6
-/* 80C01848  4B 76 08 3C */	b __ptmf_scall
+/* 80C01848  4B 76 08 3D */	bl __ptmf_scall
 /* 80C0184C  60 00 00 00 */	nop 
 /* 80C01850  90 7F 0A 88 */	stw r3, 0xa88(r31)
 lbl_80C01854:
@@ -29,20 +29,20 @@ lbl_80C01854:
 /* 80C01858  28 00 00 0E */	cmplwi r0, 0xe
 /* 80C0185C  40 80 00 44 */	bge lbl_80C018A0
 /* 80C01860  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80C01864  3C 60 80 C1 */	lis r3, mFaceMotionList__11daObj_GrA_c@ha
-/* 80C01868  38 03 06 8C */	addi r0, r3, mFaceMotionList__11daObj_GrA_c@l
+/* 80C01864  3C 60 80 C1 */	lis r3, mFaceMotionList__11daObj_GrA_c@ha /* 0x80C1068C@ha */
+/* 80C01868  38 03 06 8C */	addi r0, r3, mFaceMotionList__11daObj_GrA_c@l /* 0x80C1068C@l */
 /* 80C0186C  7C 60 22 14 */	add r3, r0, r4
-/* 80C01870  4B 76 07 A8 */	b __ptmf_test
+/* 80C01870  4B 76 07 A9 */	bl __ptmf_test
 /* 80C01874  2C 03 00 00 */	cmpwi r3, 0
 /* 80C01878  41 82 00 28 */	beq lbl_80C018A0
 /* 80C0187C  7F E3 FB 78 */	mr r3, r31
 /* 80C01880  88 9F 0A 8E */	lbz r4, 0xa8e(r31)
 /* 80C01884  A0 1F 0A 92 */	lhz r0, 0xa92(r31)
 /* 80C01888  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 80C0188C  3C A0 80 C1 */	lis r5, mFaceMotionList__11daObj_GrA_c@ha
-/* 80C01890  38 05 06 8C */	addi r0, r5, mFaceMotionList__11daObj_GrA_c@l
+/* 80C0188C  3C A0 80 C1 */	lis r5, mFaceMotionList__11daObj_GrA_c@ha /* 0x80C1068C@ha */
+/* 80C01890  38 05 06 8C */	addi r0, r5, mFaceMotionList__11daObj_GrA_c@l /* 0x80C1068C@l */
 /* 80C01894  7D 80 32 14 */	add r12, r0, r6
-/* 80C01898  4B 76 07 EC */	b __ptmf_scall
+/* 80C01898  4B 76 07 ED */	bl __ptmf_scall
 /* 80C0189C  60 00 00 00 */	nop 
 lbl_80C018A0:
 /* 80C018A0  38 00 00 00 */	li r0, 0

@@ -7,8 +7,8 @@ lbl_80301144:
 /* 80301158  7C 7C 1B 79 */	or. r28, r3, r3
 /* 8030115C  7C 9D 23 78 */	mr r29, r4
 /* 80301160  41 82 00 B0 */	beq lbl_80301210
-/* 80301164  3C 60 80 3D */	lis r3, __vt__11J2DWindowEx@ha
-/* 80301168  38 03 D3 E8 */	addi r0, r3, __vt__11J2DWindowEx@l
+/* 80301164  3C 60 80 3D */	lis r3, __vt__11J2DWindowEx@ha /* 0x803CD3E8@ha */
+/* 80301168  38 03 D3 E8 */	addi r0, r3, __vt__11J2DWindowEx@l /* 0x803CD3E8@l */
 /* 8030116C  90 1C 00 00 */	stw r0, 0(r28)
 /* 80301170  3B C0 00 00 */	li r30, 0
 /* 80301174  3B E0 00 01 */	li r31, 1

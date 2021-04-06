@@ -21,8 +21,8 @@ lbl_802DFDD8:
 /* 802DFE24  41 80 00 20 */	blt lbl_802DFE44
 /* 802DFE28  28 1E 00 7F */	cmplwi r30, 0x7f
 /* 802DFE2C  40 80 00 18 */	bge lbl_802DFE44
-/* 802DFE30  3C 60 80 3A */	lis r3, halftofull@ha
-/* 802DFE34  38 63 D3 9C */	addi r3, r3, halftofull@l
+/* 802DFE30  3C 60 80 3A */	lis r3, halftofull@ha /* 0x8039D39C@ha */
+/* 802DFE34  38 63 D3 9C */	addi r3, r3, halftofull@l /* 0x8039D39C@l */
 /* 802DFE38  57 C0 08 3C */	slwi r0, r30, 1
 /* 802DFE3C  7C 63 02 14 */	add r3, r3, r0
 /* 802DFE40  A3 C3 FF C0 */	lhz r30, -0x40(r3)

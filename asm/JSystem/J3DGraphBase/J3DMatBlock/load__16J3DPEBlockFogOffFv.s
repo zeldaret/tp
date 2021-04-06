@@ -13,8 +13,8 @@ lbl_8031EC50:
 /* 8031EC7C  48 04 24 59 */	bl GDOverflowed
 lbl_8031EC80:
 /* 8031EC80  88 FF 00 07 */	lbz r7, 7(r31)
-/* 8031EC84  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha
-/* 8031EC88  38 83 6E 60 */	addi r4, r3, j3dAlphaCmpTable@l
+/* 8031EC84  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha /* 0x80436E60@ha */
+/* 8031EC88  38 83 6E 60 */	addi r4, r3, j3dAlphaCmpTable@l /* 0x80436E60@l */
 /* 8031EC8C  A0 1F 00 04 */	lhz r0, 4(r31)
 /* 8031EC90  1C 00 00 03 */	mulli r0, r0, 3
 /* 8031EC94  7C 64 02 14 */	add r3, r4, r0
@@ -192,8 +192,8 @@ lbl_8031EF00:
 /* 8031EF24  38 03 00 01 */	addi r0, r3, 1
 /* 8031EF28  90 04 00 08 */	stw r0, 8(r4)
 /* 8031EF2C  98 A3 00 00 */	stb r5, 0(r3)
-/* 8031EF30  3C 60 80 43 */	lis r3, j3dZModeTable@ha
-/* 8031EF34  38 83 71 60 */	addi r4, r3, j3dZModeTable@l
+/* 8031EF30  3C 60 80 43 */	lis r3, j3dZModeTable@ha /* 0x80437160@ha */
+/* 8031EF34  38 83 71 60 */	addi r4, r3, j3dZModeTable@l /* 0x80437160@l */
 /* 8031EF38  A0 1F 00 0C */	lhz r0, 0xc(r31)
 /* 8031EF3C  1C 00 00 03 */	mulli r0, r0, 3
 /* 8031EF40  7C 64 02 14 */	add r3, r4, r0

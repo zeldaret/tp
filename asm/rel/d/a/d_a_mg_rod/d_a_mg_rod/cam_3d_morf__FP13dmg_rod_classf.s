@@ -13,42 +13,42 @@ lbl_804B5E60:
 /* 804B5E8C  C0 7F 13 F4 */	lfs f3, 0x13f4(r31)
 /* 804B5E90  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5E94  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5E98  4B DB 9B A4 */	b cLib_addCalc2__FPffff
+/* 804B5E98  4B DB 9B A5 */	bl cLib_addCalc2__FPffff
 /* 804B5E9C  38 7F 13 C8 */	addi r3, r31, 0x13c8
 /* 804B5EA0  C0 3F 13 E0 */	lfs f1, 0x13e0(r31)
 /* 804B5EA4  FC 40 F8 90 */	fmr f2, f31
 /* 804B5EA8  C0 7F 13 F8 */	lfs f3, 0x13f8(r31)
 /* 804B5EAC  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5EB0  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5EB4  4B DB 9B 88 */	b cLib_addCalc2__FPffff
+/* 804B5EB4  4B DB 9B 89 */	bl cLib_addCalc2__FPffff
 /* 804B5EB8  38 7F 13 CC */	addi r3, r31, 0x13cc
 /* 804B5EBC  C0 3F 13 E4 */	lfs f1, 0x13e4(r31)
 /* 804B5EC0  FC 40 F8 90 */	fmr f2, f31
 /* 804B5EC4  C0 7F 13 FC */	lfs f3, 0x13fc(r31)
 /* 804B5EC8  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5ECC  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5ED0  4B DB 9B 6C */	b cLib_addCalc2__FPffff
+/* 804B5ED0  4B DB 9B 6D */	bl cLib_addCalc2__FPffff
 /* 804B5ED4  38 7F 13 B8 */	addi r3, r31, 0x13b8
 /* 804B5ED8  C0 3F 13 D0 */	lfs f1, 0x13d0(r31)
 /* 804B5EDC  FC 40 F8 90 */	fmr f2, f31
 /* 804B5EE0  C0 7F 13 E8 */	lfs f3, 0x13e8(r31)
 /* 804B5EE4  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5EE8  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5EEC  4B DB 9B 50 */	b cLib_addCalc2__FPffff
+/* 804B5EEC  4B DB 9B 51 */	bl cLib_addCalc2__FPffff
 /* 804B5EF0  38 7F 13 BC */	addi r3, r31, 0x13bc
 /* 804B5EF4  C0 3F 13 D4 */	lfs f1, 0x13d4(r31)
 /* 804B5EF8  FC 40 F8 90 */	fmr f2, f31
 /* 804B5EFC  C0 7F 13 EC */	lfs f3, 0x13ec(r31)
 /* 804B5F00  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5F04  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5F08  4B DB 9B 34 */	b cLib_addCalc2__FPffff
+/* 804B5F08  4B DB 9B 35 */	bl cLib_addCalc2__FPffff
 /* 804B5F0C  38 7F 13 C0 */	addi r3, r31, 0x13c0
 /* 804B5F10  C0 3F 13 D8 */	lfs f1, 0x13d8(r31)
 /* 804B5F14  FC 40 F8 90 */	fmr f2, f31
 /* 804B5F18  C0 7F 13 F0 */	lfs f3, 0x13f0(r31)
 /* 804B5F1C  C0 1F 14 10 */	lfs f0, 0x1410(r31)
 /* 804B5F20  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804B5F24  4B DB 9B 18 */	b cLib_addCalc2__FPffff
+/* 804B5F24  4B DB 9B 19 */	bl cLib_addCalc2__FPffff
 /* 804B5F28  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 804B5F2C  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 804B5F30  83 E1 00 0C */	lwz r31, 0xc(r1)

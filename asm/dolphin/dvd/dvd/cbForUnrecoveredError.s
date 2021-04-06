@@ -17,8 +17,8 @@ lbl_8034972C:
 /* 80349734  48 00 00 A5 */	bl stateGoToRetry
 /* 80349738  48 00 00 10 */	b lbl_80349748
 lbl_8034973C:
-/* 8034973C  3C 60 80 35 */	lis r3, cbForUnrecoveredErrorRetry@ha
-/* 80349740  38 63 97 58 */	addi r3, r3, cbForUnrecoveredErrorRetry@l
+/* 8034973C  3C 60 80 35 */	lis r3, cbForUnrecoveredErrorRetry@ha /* 0x80349758@ha */
+/* 80349740  38 63 97 58 */	addi r3, r3, cbForUnrecoveredErrorRetry@l /* 0x80349758@l */
 /* 80349744  4B FF E9 5D */	bl DVDLowRequestError
 lbl_80349748:
 /* 80349748  80 01 00 0C */	lwz r0, 0xc(r1)

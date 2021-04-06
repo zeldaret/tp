@@ -36,11 +36,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,9 +55,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -78,11 +78,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjLv4Floor_create1st(daObjLv4Floor_c*);
-static void daObjLv4Floor_MoveBGDelete(daObjLv4Floor_c*);
-static void daObjLv4Floor_MoveBGExecute(daObjLv4Floor_c*);
-static void daObjLv4Floor_MoveBGDraw(daObjLv4Floor_c*);
-
 extern "C" void initBaseMtx__15daObjLv4Floor_cFv();
 extern "C" void setBaseMtx__15daObjLv4Floor_cFv();
 extern "C" void Create__15daObjLv4Floor_cFv();
@@ -101,30 +96,11 @@ extern "C" static void daObjLv4Floor_create1st__FP15daObjLv4Floor_c();
 extern "C" static void daObjLv4Floor_MoveBGDelete__FP15daObjLv4Floor_c();
 extern "C" static void daObjLv4Floor_MoveBGExecute__FP15daObjLv4Floor_c();
 extern "C" static void daObjLv4Floor_MoveBGDraw__FP15daObjLv4Floor_c();
-extern "C" extern u32 const lit_3711;
-extern "C" extern u32 const lit_3712;
-extern "C" extern u32 const lit_3713;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3678[3];
-extern "C" extern void* lit_3679[3];
-extern "C" extern void* lit_3680[3];
-extern "C" extern u8 data_80C67DE4[36];
-extern "C" extern void* g_profile_Obj_Lv4Floor[12];
-extern "C" extern void* __vt__15daObjLv4Floor_c[10];
+extern "C" extern char const* const d_a_obj_lv4floor__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_chaseF(f32*, f32, f32);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -161,8 +137,7 @@ extern "C" extern u8 data_80C67E80[4];
 // Declarations:
 //
 
-/* 80C677F8-80C67834 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__15daObjLv4Floor_cFv */
-//	80C67820: 80C67834 (setBaseMtx__15daObjLv4Floor_cFv)
+/* 80C677F8-80C67834 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,19 +147,7 @@ asm void daObjLv4Floor_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80C67834-80C678B0 007C+00 s=2 e=0 z=0  None .text      setBaseMtx__15daObjLv4Floor_cFv */
-//	80C67848: 803DD470 (now__14mDoMtx_stack_c)
-//	80C6784C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C67864: 803468E8 (PSMTXTrans)
-//	80C67868: 803DD470 (now__14mDoMtx_stack_c)
-//	80C6786C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C67874: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80C67878: 803DD470 (now__14mDoMtx_stack_c)
-//	80C6787C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C67888: 803464B0 (PSMTXCopy)
-//	80C6788C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C67890: 803DD470 (now__14mDoMtx_stack_c)
-//	80C67898: 803464B0 (PSMTXCopy)
+/* 80C67834-80C678B0 0000B4 007C+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -194,8 +157,7 @@ asm void daObjLv4Floor_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C678B0-80C678D4 0024+00 s=1 e=0 z=0  None .text      Create__15daObjLv4Floor_cFv */
-//	80C678BC: 80C677F8 (initBaseMtx__15daObjLv4Floor_cFv)
+/* 80C678B0-80C678D4 000130 0024+00 1/0 0/0 0/0 .text            Create__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -206,37 +168,15 @@ asm void daObjLv4Floor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C67D80-80C67D84 0004+00 s=2 e=0 z=0  None .rodata    @3704 */
-SECTION_RODATA static u8 const lit_3704[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80C67D84-80C67D88 0004+00 s=0 e=0 z=0  None .rodata    @3711 */
-SECTION_RODATA u32 const lit_3711 = 0x40733333;
-
-/* 80C67D88-80C67D8C 0004+00 s=0 e=0 z=0  None .rodata    @3712 */
-SECTION_RODATA u32 const lit_3712 = 0x3DA3D70A;
-
-/* 80C67D8C-80C67D90 0004+00 s=0 e=0 z=0  None .rodata    @3713 */
-SECTION_RODATA u32 const lit_3713 = 0xC4BB8000;
-
-/* 80C67D90-80C67D9A 000A+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C67D90 = "P_L4Floor";
-#pragma pop
-
-/* 80C67D9C-80C67DA8 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C67D9C-80C67DA8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C67DA8-80C67DBC 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C67DA8-80C67DBC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -244,17 +184,12 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C67DBC-80C67DC0 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80C67DBC-80C67DC0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv4floor__stringBase0;
 
-/* 80C678D4-80C67944 0070+00 s=1 e=0 z=0  None .text      CreateHeap__15daObjLv4Floor_cFv */
-//	80C678E8: 80C67DBC (l_arcName)
-//	80C678EC: 80C67DBC (l_arcName)
-//	80C678F8: 804061C0 (g_dComIfG_gameInfo)
-//	80C678FC: 804061C0 (g_dComIfG_gameInfo)
-//	80C6790C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C6791C: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80C678D4-80C67944 000154 0070+00 1/0 0/0 0/0 .text            CreateHeap__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,21 +199,7 @@ asm void daObjLv4Floor_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C67944-80C679E4 00A0+00 s=1 e=0 z=0  None .text      create1st__15daObjLv4Floor_cFv */
-//	80C6795C: 80C67DBC (l_arcName)
-//	80C67960: 80C67DBC (l_arcName)
-//	80C67968: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C67978: 804061C0 (g_dComIfG_gameInfo)
-//	80C6797C: 804061C0 (g_dComIfG_gameInfo)
-//	80C67990: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C679A8: 80C67DBC (l_arcName)
-//	80C679AC: 80C67DBC (l_arcName)
-//	80C679B8: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C679BC:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C679C8:
-//800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
+/* 80C67944-80C679E4 0001C4 00A0+00 1/1 0/0 0/0 .text            create1st__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,9 +209,7 @@ asm void daObjLv4Floor_c::create1st() {
 }
 #pragma pop
 
-/* 80C679E4-80C67A30 004C+00 s=1 e=0 z=0  None .text      Execute__15daObjLv4Floor_cFPPA3_A4_f */
-//	80C67A00: 80C67A30 (action__15daObjLv4Floor_cFv)
-//	80C67A10: 80C67834 (setBaseMtx__15daObjLv4Floor_cFv)
+/* 80C679E4-80C67A30 000264 004C+00 1/0 0/0 0/0 .text Execute__15daObjLv4Floor_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -300,12 +219,48 @@ asm void daObjLv4Floor_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C67A30-80C67AD4 00A4+00 s=1 e=0 z=0  None .text      action__15daObjLv4Floor_cFv */
-//	80C67A3C: 80C67D9C (cNullVec__6Z2Calc)
-//	80C67A40: 80C67D9C (cNullVec__6Z2Calc)
-//	80C67A44: 80C67E80 (data_80C67E80)
-//	80C67A48: 80C67E80 (data_80C67E80)
-//	80C67ABC: 80362084 (__ptmf_scall)
+/* ############################################################################################## */
+/* 80C67DC0-80C67DCC -00001 000C+00 0/1 0/0 0/0 .data            @3678 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3678[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)mode_wait__15daObjLv4Floor_cFv,
+};
+#pragma pop
+
+/* 80C67DCC-80C67DD8 -00001 000C+00 0/1 0/0 0/0 .data            @3679 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3679[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)mode_move__15daObjLv4Floor_cFv,
+};
+#pragma pop
+
+/* 80C67DD8-80C67DE4 -00001 000C+00 0/1 0/0 0/0 .data            @3680 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3680[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)mode_dead__15daObjLv4Floor_cFv,
+};
+#pragma pop
+
+/* 80C67DE4-80C67E08 000048 0024+00 0/1 0/0 0/0 .data            l_func$3677 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_func[36] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+#pragma pop
+
+/* 80C67A30-80C67AD4 0002B0 00A4+00 1/1 0/0 0/0 .text            action__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,11 +270,7 @@ asm void daObjLv4Floor_c::action() {
 }
 #pragma pop
 
-/* 80C67AD4-80C67B28 0054+00 s=1 e=0 z=0  None .text      mode_wait__15daObjLv4Floor_cFv */
-//	80C67AE8: 804061C0 (g_dComIfG_gameInfo)
-//	80C67AEC: 804061C0 (g_dComIfG_gameInfo)
-//	80C67B00: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C67B10: 80C67B28 (mode_init_move__15daObjLv4Floor_cFv)
+/* 80C67AD4-80C67B28 000354 0054+00 1/0 0/0 0/0 .text            mode_wait__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,9 +280,18 @@ asm void daObjLv4Floor_c::mode_wait() {
 }
 #pragma pop
 
-/* 80C67B28-80C67B40 0018+00 s=1 e=0 z=0  None .text      mode_init_move__15daObjLv4Floor_cFv */
-//	80C67B28: 80C67D80 (lit_3704)
-//	80C67B2C: 80C67D80 (lit_3704)
+/* ############################################################################################## */
+/* 80C67D80-80C67D84 000000 0004+00 2/2 0/0 0/0 .rodata          @3704 */
+SECTION_RODATA static u8 const lit_3704[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80C67D80 = (void*)(&lit_3704);
+
+/* 80C67B28-80C67B40 0003A8 0018+00 1/1 0/0 0/0 .text            mode_init_move__15daObjLv4Floor_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -341,12 +301,29 @@ asm void daObjLv4Floor_c::mode_init_move() {
 }
 #pragma pop
 
-/* 80C67B40-80C67BA8 0068+00 s=1 e=0 z=0  None .text      mode_move__15daObjLv4Floor_cFv */
-//	80C67B58: 80C67D80 (lit_3704)
-//	80C67B5C: 80C67D80 (lit_3704)
-//	80C67B6C: 80270740 (cLib_chaseF__FPfff)
-//	80C67B7C: 80270740 (cLib_chaseF__FPfff)
-//	80C67B8C: 80C67BA8 (mode_init_dead__15daObjLv4Floor_cFv)
+/* ############################################################################################## */
+/* 80C67D84-80C67D88 000004 0004+00 0/1 0/0 0/0 .rodata          @3711 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3711 = 0x40733333;
+SECTION_DEAD void* const cg_80C67D84 = (void*)(&lit_3711);
+#pragma pop
+
+/* 80C67D88-80C67D8C 000008 0004+00 0/1 0/0 0/0 .rodata          @3712 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3712 = 0x3DA3D70A;
+SECTION_DEAD void* const cg_80C67D88 = (void*)(&lit_3712);
+#pragma pop
+
+/* 80C67D8C-80C67D90 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3713 = 0xC4BB8000;
+SECTION_DEAD void* const cg_80C67D8C = (void*)(&lit_3713);
+#pragma pop
+
+/* 80C67B40-80C67BA8 0003C0 0068+00 1/0 0/0 0/0 .text            mode_move__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -356,7 +333,8 @@ asm void daObjLv4Floor_c::mode_move() {
 }
 #pragma pop
 
-/* 80C67BA8-80C67BB4 000C+00 s=1 e=0 z=0  None .text      mode_init_dead__15daObjLv4Floor_cFv */
+/* 80C67BA8-80C67BB4 000428 000C+00 1/1 0/0 0/0 .text            mode_init_dead__15daObjLv4Floor_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -366,8 +344,7 @@ asm void daObjLv4Floor_c::mode_init_dead() {
 }
 #pragma pop
 
-/* 80C67BB4-80C67BD4 0020+00 s=1 e=0 z=0  None .text      mode_dead__15daObjLv4Floor_cFv */
-//	80C67BC0: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 80C67BB4-80C67BD4 000434 0020+00 1/0 0/0 0/0 .text            mode_dead__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -377,18 +354,7 @@ asm void daObjLv4Floor_c::mode_dead() {
 }
 #pragma pop
 
-/* 80C67BD4-80C67C78 00A4+00 s=1 e=0 z=0  None .text      Draw__15daObjLv4Floor_cFv */
-//	80C67BEC: 8042CA54 (g_env_light)
-//	80C67BF0: 8042CA54 (g_env_light)
-//	80C67C00: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80C67C04: 8042CA54 (g_env_light)
-//	80C67C08: 8042CA54 (g_env_light)
-//	80C67C18: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C67C1C:
-// 804061C0 (g_dComIfG_gameInfo) 	80C67C20: 804061C0 (g_dComIfG_gameInfo) 	80C67C28: 80434AC8
-// (j3dSys) 	80C67C2C: 80434AC8 (j3dSys) 	80C67C40: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80C67C44: 804061C0 (g_dComIfG_gameInfo)
-//	80C67C48: 804061C0 (g_dComIfG_gameInfo)
+/* 80C67BD4-80C67C78 000454 00A4+00 1/0 0/0 0/0 .text            Draw__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -398,10 +364,7 @@ asm void daObjLv4Floor_c::Draw() {
 }
 #pragma pop
 
-/* 80C67C78-80C67CAC 0034+00 s=1 e=0 z=0  None .text      Delete__15daObjLv4Floor_cFv */
-//	80C67C84: 80C67DBC (l_arcName)
-//	80C67C88: 80C67DBC (l_arcName)
-//	80C67C94: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80C67C78-80C67CAC 0004F8 0034+00 1/0 0/0 0/0 .text            Delete__15daObjLv4Floor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -412,35 +375,7 @@ asm void daObjLv4Floor_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C67DC0-80C67DCC 000C+00 s=0 e=0 z=0  None .data      @3678 */
-SECTION_DATA void* lit_3678[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_wait__15daObjLv4Floor_cFv,
-};
-
-/* 80C67DCC-80C67DD8 000C+00 s=0 e=0 z=0  None .data      @3679 */
-SECTION_DATA void* lit_3679[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_move__15daObjLv4Floor_cFv,
-};
-
-/* 80C67DD8-80C67DE4 000C+00 s=0 e=0 z=0  None .data      @3680 */
-SECTION_DATA void* lit_3680[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_dead__15daObjLv4Floor_cFv,
-};
-
-/* 80C67DE4-80C67E08 0024+00 s=0 e=0 z=0  None .data      l_func$3677 */
-SECTION_DATA u8 data_80C67DE4[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C67E08-80C67E28 0020+00 s=1 e=0 z=0  None .data      daObjLv4Floor_METHODS */
+/* 80C67E08-80C67E28 -00001 0020+00 1/0 0/0 0/0 .data            daObjLv4Floor_METHODS */
 SECTION_DATA static void* daObjLv4Floor_METHODS[8] = {
     (void*)daObjLv4Floor_create1st__FP15daObjLv4Floor_c,
     (void*)daObjLv4Floor_MoveBGDelete__FP15daObjLv4Floor_c,
@@ -452,8 +387,8 @@ SECTION_DATA static void* daObjLv4Floor_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C67E28-80C67E58 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Lv4Floor */
-SECTION_DATA void* g_profile_Obj_Lv4Floor[12] = {
+/* 80C67E28-80C67E58 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4Floor */
+SECTION_DATA extern void* g_profile_Obj_Lv4Floor[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00C20000, (void*)&g_fpcLf_Method,
     (void*)0x000005B4, (void*)NULL,
@@ -462,8 +397,8 @@ SECTION_DATA void* g_profile_Obj_Lv4Floor[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C67E58-80C67E80 0028+00 s=1 e=0 z=0  None .data      __vt__15daObjLv4Floor_c */
-SECTION_DATA void* __vt__15daObjLv4Floor_c[10] = {
+/* 80C67E58-80C67E80 0000BC 0028+00 1/1 0/0 0/0 .data            __vt__15daObjLv4Floor_c */
+SECTION_DATA extern void* __vt__15daObjLv4Floor_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__15daObjLv4Floor_cFv,
@@ -476,52 +411,53 @@ SECTION_DATA void* __vt__15daObjLv4Floor_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C67CAC-80C67D0C 0060+00 s=1 e=0 z=0  None .text daObjLv4Floor_create1st__FP15daObjLv4Floor_c
+/* 80C67CAC-80C67D0C 00052C 0060+00 1/0 0/0 0/0 .text daObjLv4Floor_create1st__FP15daObjLv4Floor_c
  */
-//	80C67CD4: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80C67CD8: 80C67E58 (__vt__15daObjLv4Floor_c)
-//	80C67CDC: 80C67E58 (__vt__15daObjLv4Floor_c)
-//	80C67CF4: 80C67944 (create1st__15daObjLv4Floor_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjLv4Floor_create1st(daObjLv4Floor_c* param_0) {
+static asm void daObjLv4Floor_create1st(daObjLv4Floor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor/daObjLv4Floor_create1st__FP15daObjLv4Floor_c.s"
 }
 #pragma pop
 
-/* 80C67D0C-80C67D2C 0020+00 s=1 e=0 z=0  None .text
+/* 80C67D0C-80C67D2C 00058C 0020+00 1/0 0/0 0/0 .text
  * daObjLv4Floor_MoveBGDelete__FP15daObjLv4Floor_c              */
-//	80C67D18: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjLv4Floor_MoveBGDelete(daObjLv4Floor_c* param_0) {
+static asm void daObjLv4Floor_MoveBGDelete(daObjLv4Floor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor/daObjLv4Floor_MoveBGDelete__FP15daObjLv4Floor_c.s"
 }
 #pragma pop
 
-/* 80C67D2C-80C67D4C 0020+00 s=1 e=0 z=0  None .text
+/* 80C67D2C-80C67D4C 0005AC 0020+00 1/0 0/0 0/0 .text
  * daObjLv4Floor_MoveBGExecute__FP15daObjLv4Floor_c             */
-//	80C67D38: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjLv4Floor_MoveBGExecute(daObjLv4Floor_c* param_0) {
+static asm void daObjLv4Floor_MoveBGExecute(daObjLv4Floor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor/daObjLv4Floor_MoveBGExecute__FP15daObjLv4Floor_c.s"
 }
 #pragma pop
 
-/* 80C67D4C-80C67D78 002C+00 s=1 e=0 z=0  None .text daObjLv4Floor_MoveBGDraw__FP15daObjLv4Floor_c
- */
+/* 80C67D4C-80C67D78 0005CC 002C+00 1/0 0/0 0/0 .text
+ * daObjLv4Floor_MoveBGDraw__FP15daObjLv4Floor_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjLv4Floor_MoveBGDraw(daObjLv4Floor_c* param_0) {
+static asm void daObjLv4Floor_MoveBGDraw(daObjLv4Floor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor/daObjLv4Floor_MoveBGDraw__FP15daObjLv4Floor_c.s"
 }
+#pragma pop
+
+/* 80C67D90-80C67D9A 000010 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C67D90 = "P_L4Floor";
 #pragma pop

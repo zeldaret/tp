@@ -5,14 +5,14 @@ lbl_80CDB128:
 /* 80CDB134  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80CDB138  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80CDB13C  7C 7F 1B 78 */	mr r31, r3
-/* 80CDB140  3C 60 80 CE */	lis r3, l_cyl_src@ha
-/* 80CDB144  3B C3 B7 F4 */	addi r30, r3, l_cyl_src@l
+/* 80CDB140  3C 60 80 CE */	lis r3, l_cyl_src@ha /* 0x80CDB7F4@ha */
+/* 80CDB144  3B C3 B7 F4 */	addi r30, r3, l_cyl_src@l /* 0x80CDB7F4@l */
 /* 80CDB148  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 80CDB14C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CDB150  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CDB14C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDB150  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDB154  80 84 5D 74 */	lwz r4, 0x5d74(r4)
 /* 80CDB158  38 84 00 D8 */	addi r4, r4, 0xd8
-/* 80CDB15C  4B 66 C2 40 */	b PSVECSquareDistance
+/* 80CDB15C  4B 66 C2 41 */	bl PSVECSquareDistance
 /* 80CDB160  C0 1E 00 44 */	lfs f0, 0x44(r30)
 /* 80CDB164  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80CDB168  40 81 00 58 */	ble lbl_80CDB1C0
@@ -41,8 +41,8 @@ lbl_80CDB1C0:
 /* 80CDB1C0  C8 1E 00 58 */	lfd f0, 0x58(r30)
 /* 80CDB1C4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80CDB1C8  40 80 00 10 */	bge lbl_80CDB1D8
-/* 80CDB1CC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80CDB1D0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80CDB1CC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80CDB1D0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80CDB1D4  48 00 00 70 */	b lbl_80CDB244
 lbl_80CDB1D8:
 /* 80CDB1D8  D0 21 00 08 */	stfs f1, 8(r1)
@@ -76,8 +76,8 @@ lbl_80CDB230:
 lbl_80CDB234:
 /* 80CDB234  2C 00 00 01 */	cmpwi r0, 1
 /* 80CDB238  40 82 00 0C */	bne lbl_80CDB244
-/* 80CDB23C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80CDB240  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80CDB23C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80CDB240  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80CDB244:
 /* 80CDB244  C0 1E 00 98 */	lfs f0, 0x98(r30)
 /* 80CDB248  EC 21 00 24 */	fdivs f1, f1, f0

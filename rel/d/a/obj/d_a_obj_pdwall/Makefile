@@ -3,17 +3,15 @@
 #
 
 M591_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall.plf
+M591_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall.lcf
+M591_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall.map
 
 M591_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_pdwall/executor.cpp \
-	rel/d/a/obj/d_a_obj_pdwall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_pdwall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_pdwall/d_a_obj_pdwall.cpp \
 
 M591_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall/d_a_obj_pdwall.o \
 
 M591_LIBS := \
@@ -29,15 +27,21 @@ M591_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map591.map\
+	-m _prolog \
+	-lcf $(M591_LDSCRIPT) \
+	-unused -map $(M591_MAP) \
+	-w off \
 
 $(M591_TARGET): $(M591_O_FILES) $(M591_LIBS)
+	@echo [591] creating $(M591_TARGET)
 	@echo $(M591_LIBS) $(M591_O_FILES) > build/M591_ofiles
-	$(LD) -opt_partial $(M591_LDFLAGS) -o $(M591_TARGET) @build/M591_ofiles
+	@python3 tools/lcf.py rel 591 --output $(M591_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M591_LDFLAGS) -o $(M591_TARGET) @build/M591_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdwall/%.o: rel/d/a/obj/d_a_obj_pdwall/%.cpp
+	@echo [591] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M591_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M591_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

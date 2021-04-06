@@ -63,8 +63,8 @@ lbl_800FBD98:
 /* 800FBDB4  48 00 00 34 */	b lbl_800FBDE8
 lbl_800FBDB8:
 /* 800FBDB8  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800FBDBC  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FBDC0  38 63 E1 64 */	addi r3, r3, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FBDBC  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FBDC0  38 63 E1 64 */	addi r3, r3, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FBDC4  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800FBDC8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800FBDCC  40 81 00 1C */	ble lbl_800FBDE8

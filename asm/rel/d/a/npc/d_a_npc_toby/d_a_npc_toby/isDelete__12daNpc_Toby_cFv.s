@@ -21,26 +21,26 @@ lbl_80B1F2B4:
 /* 80B1F2B8  48 00 00 B8 */	b lbl_80B1F370
 lbl_80B1F2BC:
 /* 80B1F2BC  38 60 00 54 */	li r3, 0x54
-/* 80B1F2C0  4B 62 D7 EC */	b daNpcT_chkEvtBit__FUl
+/* 80B1F2C0  4B 62 D7 ED */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F2C4  48 00 00 AC */	b lbl_80B1F370
 lbl_80B1F2C8:
 /* 80B1F2C8  38 60 00 54 */	li r3, 0x54
-/* 80B1F2CC  4B 62 D7 E0 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F2CC  4B 62 D7 E1 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F2D0  7C 60 00 34 */	cntlzw r0, r3
 /* 80B1F2D4  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80B1F2D8  48 00 00 98 */	b lbl_80B1F370
 lbl_80B1F2DC:
 /* 80B1F2DC  3B E0 00 00 */	li r31, 0
 /* 80B1F2E0  38 60 01 36 */	li r3, 0x136
-/* 80B1F2E4  4B 62 D7 C8 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F2E4  4B 62 D7 C9 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F2E8  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F2EC  41 82 00 24 */	beq lbl_80B1F310
 /* 80B1F2F0  38 60 01 90 */	li r3, 0x190
-/* 80B1F2F4  4B 62 D7 B8 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F2F4  4B 62 D7 B9 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F2F8  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F2FC  41 82 00 14 */	beq lbl_80B1F310
 /* 80B1F300  38 60 01 E4 */	li r3, 0x1e4
-/* 80B1F304  4B 62 D7 A8 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F304  4B 62 D7 A9 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F308  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F30C  41 82 00 08 */	beq lbl_80B1F314
 lbl_80B1F310:
@@ -51,19 +51,19 @@ lbl_80B1F314:
 lbl_80B1F31C:
 /* 80B1F31C  3B E0 00 00 */	li r31, 0
 /* 80B1F320  38 60 01 36 */	li r3, 0x136
-/* 80B1F324  4B 62 D7 88 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F324  4B 62 D7 89 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F328  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F32C  41 82 00 34 */	beq lbl_80B1F360
 /* 80B1F330  38 60 01 90 */	li r3, 0x190
-/* 80B1F334  4B 62 D7 78 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F334  4B 62 D7 79 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F338  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F33C  41 82 00 24 */	beq lbl_80B1F360
 /* 80B1F340  38 60 01 E4 */	li r3, 0x1e4
-/* 80B1F344  4B 62 D7 68 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F344  4B 62 D7 69 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F348  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F34C  40 82 00 14 */	bne lbl_80B1F360
 /* 80B1F350  38 60 01 E5 */	li r3, 0x1e5
-/* 80B1F354  4B 62 D7 58 */	b daNpcT_chkEvtBit__FUl
+/* 80B1F354  4B 62 D7 59 */	bl daNpcT_chkEvtBit__FUl
 /* 80B1F358  2C 03 00 00 */	cmpwi r3, 0
 /* 80B1F35C  41 82 00 08 */	beq lbl_80B1F364
 lbl_80B1F360:

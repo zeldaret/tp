@@ -59,8 +59,8 @@ lbl_80A1D6C8:
 /* 80A1D6DC  41 82 00 80 */	beq lbl_80A1D75C
 /* 80A1D6E0  7F E3 FB 78 */	mr r3, r31
 /* 80A1D6E4  A0 9E 00 00 */	lhz r4, 0(r30)
-/* 80A1D6E8  3C A0 80 A2 */	lis r5, lit_3908@ha
-/* 80A1D6EC  C0 25 10 80 */	lfs f1, lit_3908@l(r5)
+/* 80A1D6E8  3C A0 80 A2 */	lis r5, lit_3908@ha /* 0x80A21080@ha */
+/* 80A1D6EC  C0 25 10 80 */	lfs f1, lit_3908@l(r5)  /* 0x80A21080@l */
 /* 80A1D6F0  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80A1D6F4  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 80A1D6F8  7D 89 03 A6 */	mtctr r12
@@ -72,24 +72,24 @@ lbl_80A1D6C8:
 /* 80A1D710  A8 1F 09 E0 */	lha r0, 0x9e0(r31)
 /* 80A1D714  2C 00 00 0B */	cmpwi r0, 0xb
 /* 80A1D718  40 82 00 14 */	bne lbl_80A1D72C
-/* 80A1D71C  3C 60 80 A2 */	lis r3, m__21daNpcKasiHana_Param_c@ha
-/* 80A1D720  38 63 10 C8 */	addi r3, r3, m__21daNpcKasiHana_Param_c@l
+/* 80A1D71C  3C 60 80 A2 */	lis r3, m__21daNpcKasiHana_Param_c@ha /* 0x80A210C8@ha */
+/* 80A1D720  38 63 10 C8 */	addi r3, r3, m__21daNpcKasiHana_Param_c@l /* 0x80A210C8@l */
 /* 80A1D724  C0 23 00 44 */	lfs f1, 0x44(r3)
 /* 80A1D728  48 00 00 20 */	b lbl_80A1D748
 lbl_80A1D72C:
-/* 80A1D72C  3C 60 80 A2 */	lis r3, lit_3908@ha
-/* 80A1D730  C0 03 10 80 */	lfs f0, lit_3908@l(r3)
+/* 80A1D72C  3C 60 80 A2 */	lis r3, lit_3908@ha /* 0x80A21080@ha */
+/* 80A1D730  C0 03 10 80 */	lfs f0, lit_3908@l(r3)  /* 0x80A21080@l */
 /* 80A1D734  C0 5F 09 7C */	lfs f2, 0x97c(r31)
 /* 80A1D738  FC 00 10 40 */	fcmpo cr0, f0, f2
 /* 80A1D73C  4C 40 13 82 */	cror 2, 0, 2
 /* 80A1D740  40 82 00 08 */	bne lbl_80A1D748
 /* 80A1D744  FC 20 10 90 */	fmr f1, f2
 lbl_80A1D748:
-/* 80A1D748  3C 60 80 A2 */	lis r3, lit_3908@ha
-/* 80A1D74C  C0 03 10 80 */	lfs f0, lit_3908@l(r3)
+/* 80A1D748  3C 60 80 A2 */	lis r3, lit_3908@ha /* 0x80A21080@ha */
+/* 80A1D74C  C0 03 10 80 */	lfs f0, lit_3908@l(r3)  /* 0x80A21080@l */
 /* 80A1D750  D0 1F 09 78 */	stfs f0, 0x978(r31)
 /* 80A1D754  80 7F 05 68 */	lwz r3, 0x568(r31)
-/* 80A1D758  4B 5F 24 24 */	b setMorf__13mDoExt_morf_cFf
+/* 80A1D758  4B 5F 24 25 */	bl setMorf__13mDoExt_morf_cFf
 lbl_80A1D75C:
 /* 80A1D75C  A8 1F 09 DA */	lha r0, 0x9da(r31)
 /* 80A1D760  B0 1F 09 DC */	sth r0, 0x9dc(r31)

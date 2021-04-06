@@ -1,6 +1,6 @@
 lbl_80C561C0:
-/* 80C561C0  3C 80 80 C5 */	lis r4, mCcDObjInfo__12daLv1Cdl00_c@ha
-/* 80C561C4  38 84 6A 50 */	addi r4, r4, mCcDObjInfo__12daLv1Cdl00_c@l
+/* 80C561C0  3C 80 80 C5 */	lis r4, mCcDObjInfo__12daLv1Cdl00_c@ha /* 0x80C56A50@ha */
+/* 80C561C4  38 84 6A 50 */	addi r4, r4, mCcDObjInfo__12daLv1Cdl00_c@l /* 0x80C56A50@l */
 /* 80C561C8  C0 03 06 EC */	lfs f0, 0x6ec(r3)
 /* 80C561CC  D0 03 06 FC */	stfs f0, 0x6fc(r3)
 /* 80C561D0  C0 03 06 F0 */	lfs f0, 0x6f0(r3)

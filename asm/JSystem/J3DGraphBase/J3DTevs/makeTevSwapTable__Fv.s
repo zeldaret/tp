@@ -1,6 +1,6 @@
 lbl_80324314:
-/* 80324314  3C 60 80 43 */	lis r3, j3dTevSwapTableTable@ha
-/* 80324318  38 03 6A 60 */	addi r0, r3, j3dTevSwapTableTable@l
+/* 80324314  3C 60 80 43 */	lis r3, j3dTevSwapTableTable@ha /* 0x80436A60@ha */
+/* 80324318  38 03 6A 60 */	addi r0, r3, j3dTevSwapTableTable@l /* 0x80436A60@l */
 /* 8032431C  7C 03 03 78 */	mr r3, r0
 /* 80324320  38 80 00 00 */	li r4, 0
 lbl_80324324:

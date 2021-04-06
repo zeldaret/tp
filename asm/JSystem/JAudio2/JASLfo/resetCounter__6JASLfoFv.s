@@ -7,8 +7,8 @@ lbl_8029BE2C:
 /* 8029BE40  4C 80 00 20 */	bgelr 
 /* 8029BE44  2C 00 00 00 */	cmpwi r0, 0
 /* 8029BE48  4D 80 00 20 */	bltlr 
-/* 8029BE4C  3C 80 80 43 */	lis r4, sFreeRunLfo__6JASLfo@ha
-/* 8029BE50  38 84 1C 40 */	addi r4, r4, sFreeRunLfo__6JASLfo@l
+/* 8029BE4C  3C 80 80 43 */	lis r4, sFreeRunLfo__6JASLfo@ha /* 0x80431C40@ha */
+/* 8029BE50  38 84 1C 40 */	addi r4, r4, sFreeRunLfo__6JASLfo@l /* 0x80431C40@l */
 /* 8029BE54  C0 04 00 08 */	lfs f0, 8(r4)
 /* 8029BE58  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8029BE5C  4E 80 00 20 */	blr 

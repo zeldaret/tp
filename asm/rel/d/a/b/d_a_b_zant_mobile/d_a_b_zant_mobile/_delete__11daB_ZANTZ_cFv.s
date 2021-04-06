@@ -8,21 +8,21 @@ lbl_80651D1C:
 /* 80651D34  28 00 00 00 */	cmplwi r0, 0
 /* 80651D38  41 82 00 10 */	beq lbl_80651D48
 /* 80651D3C  38 00 00 00 */	li r0, 0
-/* 80651D40  3C 60 80 65 */	lis r3, data_80652928@ha
-/* 80651D44  98 03 29 28 */	stb r0, data_80652928@l(r3)
+/* 80651D40  3C 60 80 65 */	lis r3, data_80652928@ha /* 0x80652928@ha */
+/* 80651D44  98 03 29 28 */	stb r0, data_80652928@l(r3)  /* 0x80652928@l */
 lbl_80651D48:
 /* 80651D48  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 80651D4C  3C 80 80 65 */	lis r4, stringBase0@ha
-/* 80651D50  38 84 27 D0 */	addi r4, r4, stringBase0@l
+/* 80651D4C  3C 80 80 65 */	lis r4, d_a_b_zant_mobile__stringBase0@ha /* 0x806527D0@ha */
+/* 80651D50  38 84 27 D0 */	addi r4, r4, d_a_b_zant_mobile__stringBase0@l /* 0x806527D0@l */
 /* 80651D54  38 84 00 06 */	addi r4, r4, 6
-/* 80651D58  4B 9D B2 B0 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80651D58  4B 9D B2 B1 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80651D5C  80 9F 06 A4 */	lwz r4, 0x6a4(r31)
 /* 80651D60  28 04 00 00 */	cmplwi r4, 0
 /* 80651D64  41 82 00 14 */	beq lbl_80651D78
-/* 80651D68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80651D6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80651D68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80651D6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80651D70  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80651D74  4B A2 24 DC */	b Release__4cBgSFP9dBgW_Base
+/* 80651D74  4B A2 24 DD */	bl Release__4cBgSFP9dBgW_Base
 lbl_80651D78:
 /* 80651D78  38 7F 05 BC */	addi r3, r31, 0x5bc
 /* 80651D7C  81 9F 05 BC */	lwz r12, 0x5bc(r31)

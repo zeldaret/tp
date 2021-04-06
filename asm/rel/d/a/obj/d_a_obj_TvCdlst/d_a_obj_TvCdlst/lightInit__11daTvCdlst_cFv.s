@@ -1,6 +1,6 @@
 lbl_80B9F164:
-/* 80B9F164  3C 80 80 BA */	lis r4, mCcDObjInfo__11daTvCdlst_c@ha
-/* 80B9F168  38 84 F8 90 */	addi r4, r4, mCcDObjInfo__11daTvCdlst_c@l
+/* 80B9F164  3C 80 80 BA */	lis r4, mCcDObjInfo__11daTvCdlst_c@ha /* 0x80B9F890@ha */
+/* 80B9F168  38 84 F8 90 */	addi r4, r4, mCcDObjInfo__11daTvCdlst_c@l /* 0x80B9F890@l */
 /* 80B9F16C  C0 03 06 EC */	lfs f0, 0x6ec(r3)
 /* 80B9F170  D0 03 07 00 */	stfs f0, 0x700(r3)
 /* 80B9F174  C0 03 06 F0 */	lfs f0, 0x6f0(r3)

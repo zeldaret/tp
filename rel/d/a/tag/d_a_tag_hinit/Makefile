@@ -3,17 +3,15 @@
 #
 
 M125_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit.plf
+M125_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit.lcf
+M125_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit.map
 
 M125_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_hinit/executor.cpp \
-	rel/d/a/tag/d_a_tag_hinit/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_hinit/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit.cpp \
 
 M125_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit.o \
 
 M125_LIBS := \
@@ -29,15 +27,21 @@ M125_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map125.map\
+	-m _prolog \
+	-lcf $(M125_LDSCRIPT) \
+	-unused -map $(M125_MAP) \
+	-w off \
 
 $(M125_TARGET): $(M125_O_FILES) $(M125_LIBS)
+	@echo [125] creating $(M125_TARGET)
 	@echo $(M125_LIBS) $(M125_O_FILES) > build/M125_ofiles
-	$(LD) -opt_partial $(M125_LDFLAGS) -o $(M125_TARGET) @build/M125_ofiles
+	@python3 tools/lcf.py rel 125 --output $(M125_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M125_LDFLAGS) -o $(M125_TARGET) @build/M125_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hinit/%.o: rel/d/a/tag/d_a_tag_hinit/%.cpp
+	@echo [125] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M125_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M125_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

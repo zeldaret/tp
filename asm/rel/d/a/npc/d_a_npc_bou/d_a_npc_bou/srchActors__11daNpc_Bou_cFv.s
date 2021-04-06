@@ -17,48 +17,48 @@ lbl_8096E1BC:
 /* 8096E1C4  48 00 00 A4 */	b lbl_8096E268
 lbl_8096E1C8:
 /* 8096E1C8  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 8096E1CC  4B 7D 75 3C */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 8096E1CC  4B 7D 75 3D */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8096E1D0  28 03 00 00 */	cmplwi r3, 0
 /* 8096E1D4  40 82 00 94 */	bne lbl_8096E268
 /* 8096E1D8  7F E3 FB 78 */	mr r3, r31
 /* 8096E1DC  4B FF F7 D9 */	bl getCowP__11daNpc_Bou_cFv
 /* 8096E1E0  7C 64 1B 78 */	mr r4, r3
 /* 8096E1E4  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 8096E1E8  4B 7D 74 F8 */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 8096E1E8  4B 7D 74 F9 */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 /* 8096E1EC  48 00 00 7C */	b lbl_8096E268
 lbl_8096E1F0:
 /* 8096E1F0  38 7F 0F 94 */	addi r3, r31, 0xf94
-/* 8096E1F4  4B 7D 75 14 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 8096E1F4  4B 7D 75 15 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8096E1F8  28 03 00 00 */	cmplwi r3, 0
 /* 8096E1FC  40 82 00 1C */	bne lbl_8096E218
 /* 8096E200  7F E3 FB 78 */	mr r3, r31
 /* 8096E204  38 80 01 5A */	li r4, 0x15a
-/* 8096E208  4B 7D DC 24 */	b getNearestActorP__8daNpcT_cFs
+/* 8096E208  4B 7D DC 25 */	bl getNearestActorP__8daNpcT_cFs
 /* 8096E20C  7C 64 1B 78 */	mr r4, r3
 /* 8096E210  38 7F 0F 94 */	addi r3, r31, 0xf94
-/* 8096E214  4B 7D 74 CC */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 8096E214  4B 7D 74 CD */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_8096E218:
 /* 8096E218  38 7F 0F 8C */	addi r3, r31, 0xf8c
-/* 8096E21C  4B 7D 74 EC */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 8096E21C  4B 7D 74 ED */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8096E220  28 03 00 00 */	cmplwi r3, 0
 /* 8096E224  40 82 00 44 */	bne lbl_8096E268
 /* 8096E228  7F E3 FB 78 */	mr r3, r31
 /* 8096E22C  38 80 02 58 */	li r4, 0x258
-/* 8096E230  4B 7D DB FC */	b getNearestActorP__8daNpcT_cFs
+/* 8096E230  4B 7D DB FD */	bl getNearestActorP__8daNpcT_cFs
 /* 8096E234  7C 64 1B 78 */	mr r4, r3
 /* 8096E238  38 7F 0F 8C */	addi r3, r31, 0xf8c
-/* 8096E23C  4B 7D 74 A4 */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 8096E23C  4B 7D 74 A5 */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 /* 8096E240  48 00 00 28 */	b lbl_8096E268
 lbl_8096E244:
 /* 8096E244  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 8096E248  4B 7D 74 C0 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 8096E248  4B 7D 74 C1 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8096E24C  28 03 00 00 */	cmplwi r3, 0
 /* 8096E250  40 82 00 18 */	bne lbl_8096E268
 /* 8096E254  7F E3 FB 78 */	mr r3, r31
 /* 8096E258  4B FF F7 5D */	bl getCowP__11daNpc_Bou_cFv
 /* 8096E25C  7C 64 1B 78 */	mr r4, r3
 /* 8096E260  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 8096E264  4B 7D 74 7C */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 8096E264  4B 7D 74 7D */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_8096E268:
 /* 8096E268  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8096E26C  80 01 00 14 */	lwz r0, 0x14(r1)

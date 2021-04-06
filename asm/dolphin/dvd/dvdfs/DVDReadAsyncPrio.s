@@ -14,9 +14,9 @@ lbl_80348D54:
 /* 80348D84  7C 1D 00 40 */	cmplw r29, r0
 /* 80348D88  40 81 00 1C */	ble lbl_80348DA4
 lbl_80348D8C:
-/* 80348D8C  3C 60 80 3D */	lis r3, lit_239@ha
+/* 80348D8C  3C 60 80 3D */	lis r3, lit_239@ha /* 0x803D1480@ha */
 /* 80348D90  4C C6 31 82 */	crclr 6
-/* 80348D94  38 A3 14 80 */	addi r5, r3, lit_239@l
+/* 80348D94  38 A3 14 80 */	addi r5, r3, lit_239@l /* 0x803D1480@l */
 /* 80348D98  38 6D 84 60 */	la r3, lit_118(r13) /* 804509E0-_SDA_BASE_ */
 /* 80348D9C  38 80 02 EE */	li r4, 0x2ee
 /* 80348DA0  4B CB E0 DD */	bl OSPanic
@@ -28,16 +28,16 @@ lbl_80348DA4:
 /* 80348DB4  7C 04 00 40 */	cmplw r4, r0
 /* 80348DB8  41 80 00 1C */	blt lbl_80348DD4
 lbl_80348DBC:
-/* 80348DBC  3C 60 80 3D */	lis r3, lit_239@ha
+/* 80348DBC  3C 60 80 3D */	lis r3, lit_239@ha /* 0x803D1480@ha */
 /* 80348DC0  4C C6 31 82 */	crclr 6
-/* 80348DC4  38 A3 14 80 */	addi r5, r3, lit_239@l
+/* 80348DC4  38 A3 14 80 */	addi r5, r3, lit_239@l /* 0x803D1480@l */
 /* 80348DC8  38 6D 84 60 */	la r3, lit_118(r13) /* 804509E0-_SDA_BASE_ */
 /* 80348DCC  38 80 02 F4 */	li r4, 0x2f4
 /* 80348DD0  4B CB E0 AD */	bl OSPanic
 lbl_80348DD4:
 /* 80348DD4  93 DA 00 38 */	stw r30, 0x38(r26)
-/* 80348DD8  3C 60 80 35 */	lis r3, cbForReadAsync@ha
-/* 80348DDC  38 E3 8E 14 */	addi r7, r3, cbForReadAsync@l
+/* 80348DD8  3C 60 80 35 */	lis r3, cbForReadAsync@ha /* 0x80348E14@ha */
+/* 80348DDC  38 E3 8E 14 */	addi r7, r3, cbForReadAsync@l /* 0x80348E14@l */
 /* 80348DE0  80 1A 00 30 */	lwz r0, 0x30(r26)
 /* 80348DE4  38 7A 00 00 */	addi r3, r26, 0
 /* 80348DE8  38 9B 00 00 */	addi r4, r27, 0

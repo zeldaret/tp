@@ -87,8 +87,8 @@ lbl_800B234C:
 /* 800B235C  4E 80 04 21 */	bctrl 
 /* 800B2360  28 03 00 00 */	cmplwi r3, 0
 /* 800B2364  41 82 00 28 */	beq lbl_800B238C
-/* 800B2368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B236C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B2368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B236C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B2370  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800B2374  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 800B2378  A8 BF 04 E6 */	lha r5, 0x4e6(r31)

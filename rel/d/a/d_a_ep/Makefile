@@ -3,17 +3,15 @@
 #
 
 M11_TARGET := $(BUILD_DIR)/rel/d/a/d_a_ep.plf
+M11_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_ep.lcf
+M11_MAP := $(BUILD_DIR)/rel/d/a/d_a_ep.map
 
 M11_CPP_FILES := \
-	rel/d/a/d_a_ep/executor.cpp \
-	rel/d/a/d_a_ep/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_ep/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_ep/d_a_ep.cpp \
 
 M11_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_ep/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ep/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ep/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_ep/d_a_ep.o \
 
 M11_LIBS := \
@@ -29,15 +27,21 @@ M11_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map11.map\
+	-m _prolog \
+	-lcf $(M11_LDSCRIPT) \
+	-unused -map $(M11_MAP) \
+	-w off \
 
 $(M11_TARGET): $(M11_O_FILES) $(M11_LIBS)
+	@echo [ 11] creating $(M11_TARGET)
 	@echo $(M11_LIBS) $(M11_O_FILES) > build/M11_ofiles
-	$(LD) -opt_partial $(M11_LDFLAGS) -o $(M11_TARGET) @build/M11_ofiles
+	@python3 tools/lcf.py rel 11 --output $(M11_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M11_LDFLAGS) -o $(M11_TARGET) @build/M11_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ep/%.o: rel/d/a/d_a_ep/%.cpp
+	@echo [ 11] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M11_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M11_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

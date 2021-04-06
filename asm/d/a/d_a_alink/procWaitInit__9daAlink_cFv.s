@@ -53,8 +53,8 @@ lbl_800C3460:
 /* 800C346C  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800C3470  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 800C3474  7F C3 F3 78 */	mr r3, r30
-/* 800C3478  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C347C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C3478  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C347C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C3480  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C3484  4B FE A9 91 */	bl setBlendMoveAnime__9daAlink_cFf
 /* 800C3488  A8 1E 04 E6 */	lha r0, 0x4e6(r30)

@@ -81,8 +81,8 @@ lbl_80338F98:
 /* 80338FA4  48 00 06 91 */	bl setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData
 /* 80338FA8  48 00 00 18 */	b lbl_80338FC0
 lbl_80338FAC:
-/* 80338FAC  3C 60 80 3A */	lis r3, J3DAnmLoader__stringBase0@ha
-/* 80338FB0  38 63 21 30 */	addi r3, r3, J3DAnmLoader__stringBase0@l
+/* 80338FAC  3C 60 80 3A */	lis r3, J3DAnmLoader__stringBase0@ha /* 0x803A2130@ha */
+/* 80338FB0  38 63 21 30 */	addi r3, r3, J3DAnmLoader__stringBase0@l /* 0x803A2130@l */
 /* 80338FB4  38 63 00 29 */	addi r3, r3, 0x29
 /* 80338FB8  4C C6 31 82 */	crclr 6
 /* 80338FBC  4B CC DB 01 */	bl OSReport

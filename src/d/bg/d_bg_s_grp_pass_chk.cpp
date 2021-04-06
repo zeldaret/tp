@@ -27,14 +27,10 @@ struct cBgS_GrpPassChk {
 extern "C" void __ct__15dBgS_GrpPassChkFv();
 extern "C" void __dt__15dBgS_GrpPassChkFv();
 extern "C" void __dt__15cBgS_GrpPassChkFv();
-extern "C" extern void* __vt__15dBgS_GrpPassChk[3];
-extern "C" extern void* __vt__15cBgS_GrpPassChk[3];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -43,25 +39,21 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803AB7A8-803AB7B4 000C+00 s=2 e=0 z=0  None .data      __vt__15dBgS_GrpPassChk */
-SECTION_DATA void* __vt__15dBgS_GrpPassChk[3] = {
+/* 803AB7A8-803AB7B4 0088C8 000C+00 2/2 0/0 0/0 .data            __vt__15dBgS_GrpPassChk */
+SECTION_DATA extern void* __vt__15dBgS_GrpPassChk[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15dBgS_GrpPassChkFv,
 };
 
-/* 803AB7B4-803AB7C0 000C+00 s=3 e=0 z=0  None .data      __vt__15cBgS_GrpPassChk */
-SECTION_DATA void* __vt__15cBgS_GrpPassChk[3] = {
+/* 803AB7B4-803AB7C0 0088D4 000C+00 3/3 0/0 0/0 .data            __vt__15cBgS_GrpPassChk */
+SECTION_DATA extern void* __vt__15cBgS_GrpPassChk[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15cBgS_GrpPassChkFv,
 };
 
-/* 80077BA0-80077BC4 0024+00 s=0 e=1 z=0  None .text      __ct__15dBgS_GrpPassChkFv */
-//	80077BA0: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077BA4: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077BAC: 803AB7A8 (__vt__15dBgS_GrpPassChk)
-//	80077BB0: 803AB7A8 (__vt__15dBgS_GrpPassChk)
+/* 80077BA0-80077BC4 0724E0 0024+00 0/0 1/1 0/0 .text            __ct__15dBgS_GrpPassChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -71,12 +63,7 @@ asm dBgS_GrpPassChk::dBgS_GrpPassChk() {
 }
 #pragma pop
 
-/* 80077BC4-80077C20 005C+00 s=1 e=1 z=0  None .text      __dt__15dBgS_GrpPassChkFv */
-//	80077BDC: 803AB7A8 (__vt__15dBgS_GrpPassChk)
-//	80077BE0: 803AB7A8 (__vt__15dBgS_GrpPassChk)
-//	80077BEC: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077BF0: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077C04: 802CED3C (__dl__FPv)
+/* 80077BC4-80077C20 072504 005C+00 1/0 1/1 0/0 .text            __dt__15dBgS_GrpPassChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,10 +73,7 @@ asm dBgS_GrpPassChk::~dBgS_GrpPassChk() {
 }
 #pragma pop
 
-/* 80077C20-80077C68 0048+00 s=1 e=0 z=0  None .text      __dt__15cBgS_GrpPassChkFv */
-//	80077C38: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077C3C: 803AB7B4 (__vt__15cBgS_GrpPassChk)
-//	80077C4C: 802CED3C (__dl__FPv)
+/* 80077C20-80077C68 072560 0048+00 1/0 0/0 0/0 .text            __dt__15cBgS_GrpPassChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

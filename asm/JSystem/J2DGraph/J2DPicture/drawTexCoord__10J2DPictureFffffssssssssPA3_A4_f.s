@@ -91,7 +91,7 @@ lbl_802FE41C:
 /* 802FE4DC  38 A0 00 04 */	li r5, 4
 /* 802FE4E0  48 05 E2 85 */	bl GXBegin
 /* 802FE4E4  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802FE4E8  D3 83 80 00 */	stfs f28, 0x8000(r3)
+/* 802FE4E8  D3 83 80 00 */	stfs f28, 0x8000(r3)  /* 0xCC008000@l */
 /* 802FE4EC  D3 A3 80 00 */	stfs f29, -0x8000(r3)
 /* 802FE4F0  C0 02 C8 6C */	lfs f0, lit_2017(r2)
 /* 802FE4F4  D0 03 80 00 */	stfs f0, -0x8000(r3)

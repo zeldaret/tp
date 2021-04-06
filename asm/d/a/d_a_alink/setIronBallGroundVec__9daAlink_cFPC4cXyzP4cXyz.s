@@ -63,8 +63,8 @@ lbl_80112D74:
 /* 80112D74  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80112D78  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80112D7C  40 80 00 10 */	bge lbl_80112D8C
-/* 80112D80  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80112D84  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80112D80  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80112D84  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80112D88  48 00 00 70 */	b lbl_80112DF8
 lbl_80112D8C:
 /* 80112D8C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -98,8 +98,8 @@ lbl_80112DE4:
 lbl_80112DE8:
 /* 80112DE8  2C 00 00 01 */	cmpwi r0, 1
 /* 80112DEC  40 82 00 0C */	bne lbl_80112DF8
-/* 80112DF0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80112DF4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80112DF0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80112DF4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80112DF8:
 /* 80112DF8  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 80112DFC  EC 00 F8 2A */	fadds f0, f0, f31

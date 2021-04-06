@@ -6,8 +6,8 @@ lbl_800AFAA8:
 /* 800AFAB8  93 C1 00 08 */	stw r30, 8(r1)
 /* 800AFABC  7C 7E 1B 78 */	mr r30, r3
 /* 800AFAC0  54 85 10 3A */	slwi r5, r4, 2
-/* 800AFAC4  3C 80 80 39 */	lis r4, m_faceTexDataTable__9daAlink_c@ha
-/* 800AFAC8  38 04 14 A8 */	addi r0, r4, m_faceTexDataTable__9daAlink_c@l
+/* 800AFAC4  3C 80 80 39 */	lis r4, m_faceTexDataTable__9daAlink_c@ha /* 0x803914A8@ha */
+/* 800AFAC8  38 04 14 A8 */	addi r0, r4, m_faceTexDataTable__9daAlink_c@l /* 0x803914A8@l */
 /* 800AFACC  7F E0 2A 14 */	add r31, r0, r5
 /* 800AFAD0  A0 9F 00 00 */	lhz r4, 0(r31)
 /* 800AFAD4  38 A0 00 01 */	li r5, 1

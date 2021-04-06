@@ -2,8 +2,8 @@ lbl_80A11C50:
 /* 80A11C50  38 04 FF 40 */	addi r0, r4, -192
 /* 80A11C54  28 00 00 17 */	cmplwi r0, 0x17
 /* 80A11C58  41 81 00 D8 */	bgt lbl_80A11D30
-/* 80A11C5C  3C 60 80 A1 */	lis r3, lit_5553@ha
-/* 80A11C60  38 63 44 2C */	addi r3, r3, lit_5553@l
+/* 80A11C5C  3C 60 80 A1 */	lis r3, lit_5553@ha /* 0x80A1442C@ha */
+/* 80A11C60  38 63 44 2C */	addi r3, r3, lit_5553@l /* 0x80A1442C@l */
 /* 80A11C64  54 00 10 3A */	slwi r0, r0, 2
 /* 80A11C68  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A11C6C  7C 09 03 A6 */	mtctr r0
@@ -81,7 +81,7 @@ lbl_80A11D2C:
 /* 80A11D2C  38 80 00 17 */	li r4, 0x17
 lbl_80A11D30:
 /* 80A11D30  54 84 18 38 */	slwi r4, r4, 3
-/* 80A11D34  3C 60 80 A1 */	lis r3, l_insectParams@ha
-/* 80A11D38  38 03 3D AC */	addi r0, r3, l_insectParams@l
+/* 80A11D34  3C 60 80 A1 */	lis r3, l_insectParams@ha /* 0x80A13DAC@ha */
+/* 80A11D38  38 03 3D AC */	addi r0, r3, l_insectParams@l /* 0x80A13DAC@l */
 /* 80A11D3C  7C 60 22 14 */	add r3, r0, r4
 /* 80A11D40  4E 80 00 20 */	blr 

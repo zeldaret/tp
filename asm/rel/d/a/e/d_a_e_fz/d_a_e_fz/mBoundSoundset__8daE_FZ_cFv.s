@@ -5,7 +5,7 @@ lbl_806BEBA0:
 /* 806BEBAC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806BEBB0  7C 7F 1B 78 */	mr r31, r3
 /* 806BEBB4  C0 23 05 2C */	lfs f1, 0x52c(r3)
-/* 806BEBB8  4B CA 34 F4 */	b __cvt_fp2unsigned
+/* 806BEBB8  4B CA 34 F5 */	bl __cvt_fp2unsigned
 /* 806BEBBC  7C 65 1B 78 */	mr r5, r3
 /* 806BEBC0  28 05 00 01 */	cmplwi r5, 1
 /* 806BEBC4  40 80 00 08 */	bge lbl_806BEBCC

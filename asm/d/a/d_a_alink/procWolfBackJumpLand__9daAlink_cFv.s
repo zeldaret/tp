@@ -27,8 +27,8 @@ lbl_8012E6D0:
 /* 8012E6E0  80 1E 06 14 */	lwz r0, 0x614(r30)
 /* 8012E6E4  28 00 00 10 */	cmplwi r0, 0x10
 /* 8012E6E8  40 82 00 1C */	bne lbl_8012E704
-/* 8012E6EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012E6F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012E6EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012E6F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012E6F4  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8012E6F8  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8012E6FC  4B F1 9A 81 */	bl cutEnd__16dEvent_manager_cFi
@@ -40,8 +40,8 @@ lbl_8012E704:
 /* 8012E710  48 00 00 28 */	b lbl_8012E738
 lbl_8012E714:
 /* 8012E714  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8012E718  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlBackJump_c0@ha
-/* 8012E71C  38 63 F0 10 */	addi r3, r3, m__24daAlinkHIO_wlBackJump_c0@l
+/* 8012E718  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlBackJump_c0@ha /* 0x8038F010@ha */
+/* 8012E71C  38 63 F0 10 */	addi r3, r3, m__24daAlinkHIO_wlBackJump_c0@l /* 0x8038F010@l */
 /* 8012E720  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 8012E724  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8012E728  40 81 00 10 */	ble lbl_8012E738

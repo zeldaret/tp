@@ -5,10 +5,10 @@ lbl_8051BD4C:
 /* 8051BD58  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 8051BD5C  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 8051BD60  39 61 00 30 */	addi r11, r1, 0x30
-/* 8051BD64  4B E4 64 70 */	b _savegpr_27
+/* 8051BD64  4B E4 64 71 */	bl _savegpr_27
 /* 8051BD68  7C 7B 1B 78 */	mr r27, r3
-/* 8051BD6C  3C 60 80 52 */	lis r3, lit_3999@ha
-/* 8051BD70  3B E3 30 28 */	addi r31, r3, lit_3999@l
+/* 8051BD6C  3C 60 80 52 */	lis r3, lit_3999@ha /* 0x80523028@ha */
+/* 8051BD70  3B E3 30 28 */	addi r31, r3, lit_3999@l /* 0x80523028@l */
 /* 8051BD74  A8 9B 00 00 */	lha r4, 0(r27)
 /* 8051BD78  54 83 06 FE */	clrlwi r3, r4, 0x1b
 /* 8051BD7C  7C 7E 1B 78 */	mr r30, r3
@@ -30,7 +30,7 @@ lbl_8051BD4C:
 /* 8051BDBC  EC 02 00 32 */	fmuls f0, f2, f0
 /* 8051BDC0  EF E3 00 2A */	fadds f31, f3, f0
 /* 8051BDC4  C0 3F 00 FC */	lfs f1, 0xfc(r31)
-/* 8051BDC8  4B D4 BB 8C */	b cM_rndF__Ff
+/* 8051BDC8  4B D4 BB 8D */	bl cM_rndF__Ff
 /* 8051BDCC  EF FF 00 72 */	fmuls f31, f31, f1
 /* 8051BDD0  7F C0 07 34 */	extsh r0, r30
 /* 8051BDD4  2C 00 00 1F */	cmpwi r0, 0x1f
@@ -108,7 +108,7 @@ lbl_8051BEC4:
 /* 8051BEDC  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 8051BEE0  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 8051BEE4  39 61 00 30 */	addi r11, r1, 0x30
-/* 8051BEE8  4B E4 63 38 */	b _restgpr_27
+/* 8051BEE8  4B E4 63 39 */	bl _restgpr_27
 /* 8051BEEC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8051BEF0  7C 08 03 A6 */	mtlr r0
 /* 8051BEF4  38 21 00 40 */	addi r1, r1, 0x40

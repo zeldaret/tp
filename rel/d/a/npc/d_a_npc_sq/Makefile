@@ -3,19 +3,20 @@
 #
 
 M367_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq.plf
+M367_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq.lcf
+M367_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq.map
 
 M367_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_sq/executor.cpp \
-	rel/d/a/npc/d_a_npc_sq/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_sq/d_a_npc_sq.cpp \
 
 M367_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/d_a_npc_sq.o \
 
 M367_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/libRuntime.PPCEABI.H.a \
 
 M367_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M367_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map367.map\
+	-m _prolog \
+	-lcf $(M367_LDSCRIPT) \
+	-unused -map $(M367_MAP) \
+	-w off \
 
 $(M367_TARGET): $(M367_O_FILES) $(M367_LIBS)
+	@echo [367] creating $(M367_TARGET)
 	@echo $(M367_LIBS) $(M367_O_FILES) > build/M367_ofiles
-	$(LD) -opt_partial $(M367_LDFLAGS) -o $(M367_TARGET) @build/M367_ofiles
+	@python3 tools/lcf.py rel 367 --output $(M367_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M367_LDFLAGS) -o $(M367_TARGET) @build/M367_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sq/%.o: rel/d/a/npc/d_a_npc_sq/%.cpp
+	@echo [367] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M367_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M367_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_sq/libs/Runtime.PPCEABI.H/Makefile
 

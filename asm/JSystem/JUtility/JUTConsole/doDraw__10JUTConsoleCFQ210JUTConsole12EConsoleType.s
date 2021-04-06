@@ -48,11 +48,11 @@ lbl_802E76AC:
 /* 802E76FC  48 00 1F D5 */	bl __ct__13J2DOrthoGraphFffffff
 /* 802E7700  38 61 01 08 */	addi r3, r1, 0x108
 /* 802E7704  48 00 20 B1 */	bl setPort__13J2DOrthoGraphFv
-/* 802E7708  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E770C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E7708  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E770C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E7710  90 01 01 08 */	stw r0, 0x108(r1)
-/* 802E7714  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802E7718  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802E7714  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E7718  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E771C  90 01 01 08 */	stw r0, 0x108(r1)
 /* 802E7720  48 00 00 70 */	b lbl_802E7790
 lbl_802E7724:
@@ -77,11 +77,11 @@ lbl_802E7724:
 /* 802E776C  48 00 1F 65 */	bl __ct__13J2DOrthoGraphFffffff
 /* 802E7770  38 61 00 34 */	addi r3, r1, 0x34
 /* 802E7774  48 00 20 41 */	bl setPort__13J2DOrthoGraphFv
-/* 802E7778  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E777C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E7778  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E777C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E7780  90 01 00 34 */	stw r0, 0x34(r1)
-/* 802E7784  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802E7788  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802E7784  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E7788  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E778C  90 01 00 34 */	stw r0, 0x34(r1)
 lbl_802E7790:
 /* 802E7790  57 C0 06 3F */	clrlwi. r0, r30, 0x18

@@ -110,14 +110,10 @@ extern "C" void getNameResource__12JKRFileCacheFUlPCc();
 extern "C" void readFsResource__12JKRFileCacheFPvUlPCc();
 extern "C" void readNameResource__12JKRFileCacheFPvUlUlPCc();
 extern "C" extern char const* const JKRFileCache__stringBase0;
-extern "C" extern void* __vt__12JKRFileCache[19 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
 
 SECTION_INIT void memcpy();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
@@ -167,15 +163,7 @@ extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802D49B4-802D4AB4 0100+00 s=0 e=2 z=0  None .text      mount__12JKRFileCacheFPCcP7JKRHeapPCc */
-//	802D49C4: 803621D4 (_savegpr_27)
-//	802D49EC: 80368BE4 (strlen)
-//	802D4A10: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4A14: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4A44: 80368994 (strcmp)
-//	802D4A7C: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D4A90: 802D4AB4 (__ct__12JKRFileCacheFPCcPCc)
-//	802D4AA0: 80362220 (_restgpr_27)
+/* 802D49B4-802D4AB4 2CF2F4 0100+00 0/0 2/2 0/0 .text mount__12JKRFileCacheFPCcP7JKRHeapPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -186,18 +174,8 @@ asm void JKRFileCache::mount(char const* param_0, JKRHeap* param_1, char const* 
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039D158-8039D160 0006+02 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039D158 = "/";
-SECTION_DEAD char const* const stringBase_8039D15A = "dvd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D15E = "\0";
-#pragma pop
-
-/* 803CC238-803CC288 004C+04 s=2 e=0 z=0  None .data      __vt__12JKRFileCache */
-SECTION_DATA void* __vt__12JKRFileCache[19 + 1 /* padding */] = {
+/* 803CC238-803CC288 029358 004C+04 2/2 0/0 0/0 .data            __vt__12JKRFileCache */
+SECTION_DATA extern void* __vt__12JKRFileCache[19 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JKRFileCacheFv,
@@ -221,41 +199,7 @@ SECTION_DATA void* __vt__12JKRFileCache[19 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802D4AB4-802D4C70 01BC+00 s=1 e=0 z=0  None .text      __ct__12JKRFileCacheFPCcPCc */
-//	802D4AC4: 803621D8 (_savegpr_28)
-//	802D4AD4: 802D40F0 (__ct__13JKRFileLoaderFv)
-//	802D4AD8: 803CC238 (__vt__12JKRFileCache)
-//	802D4ADC: 803CC238 (__vt__12JKRFileCache)
-//	802D4AE8: 802DBF14 (initiate__10JSUPtrListFv)
-//	802D4AF0: 802CE83C (findFromRoot__7JKRHeapFPv)
-//	802D4B10: 80368BE4 (strlen)
-//	802D4B24: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D4B2C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4B38: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D4B48: 80368B2C (strcpy)
-//	802D4B54: 80368B2C (strcpy)
-//	802D4B6C: 802D5624 (convStrLower__12JKRFileCacheCFPc)
-//	802D4B78: 802D5624 (convStrLower__12JKRFileCacheCFPc)
-//	802D4B80: 8039D158 (JKRFileCache__stringBase0)
-//	802D4B84: 8039D158 (JKRFileCache__stringBase0)
-//	802D4B88: 80368ABC (strcat)
-//	802D4BA0: 803688DC (strrchr)
-//	802D4BAC: 80368BE4 (strlen)
-//	802D4BB4: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4BBC: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D4BCC: 80368B2C (strcpy)
-//	802D4BD8: 802D5624 (convStrLower__12JKRFileCacheCFPc)
-//	802D4BF4: 8039D158 (JKRFileCache__stringBase0)
-//	802D4BF8: 8039D158 (JKRFileCache__stringBase0)
-//	802D4C04: 80368BE4 (strlen)
-//	802D4C0C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4C14: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D4C24: 80368B2C (strcpy)
-//	802D4C30: 802D5624 (convStrLower__12JKRFileCacheCFPc)
-//	802D4C3C: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4C40: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4C48: 802DBFF0 (prepend__10JSUPtrListFP10JSUPtrLink)
-//	802D4C5C: 80362224 (_restgpr_28)
+/* 802D4AB4-802D4C70 2CF3F4 01BC+00 1/1 0/0 0/0 .text            __ct__12JKRFileCacheFPCcPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -265,20 +209,7 @@ asm JKRFileCache::JKRFileCache(char const* param_0, char const* param_1) {
 }
 #pragma pop
 
-/* 802D4C70-802D4D44 00D4+00 s=1 e=0 z=0  None .text      __dt__12JKRFileCacheFv */
-//	802D4C90: 803CC238 (__vt__12JKRFileCache)
-//	802D4C94: 803CC238 (__vt__12JKRFileCache)
-//	802D4CBC: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D4CCC: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4CD0: 802CE548 (free__7JKRHeapFPv)
-//	802D4CE0: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4CE4: 802CE548 (free__7JKRHeapFPv)
-//	802D4CE8: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4CEC: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D4CF4: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D4D08: 802DBEAC (__dt__10JSUPtrListFv)
-//	802D4D14: 802D4148 (__dt__13JKRFileLoaderFv)
-//	802D4D24: 802CED3C (__dl__FPv)
+/* 802D4C70-802D4D44 2CF5B0 00D4+00 1/0 0/0 0/0 .text            __dt__12JKRFileCacheFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,19 +219,8 @@ asm JKRFileCache::~JKRFileCache() {
 }
 #pragma pop
 
-/* 802D4D44-802D4DD8 0094+00 s=1 e=0 z=0  None .text      becomeCurrent__12JKRFileCacheFPCc */
-//	802D4D54: 803621DC (_savegpr_29)
-//	802D4D5C: 802D551C (getDvdPathName__12JKRFileCacheCFPCc)
-//	802D4D64: 80348CF4 (DVDChangeDir)
-//	802D4D7C: 80451418 (sCurrentVolume__13JKRFileLoader)
-//	802D4D80: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4D88: 802CE548 (free__7JKRHeapFPv)
-//	802D4DA0: 8039D158 (JKRFileCache__stringBase0)
-//	802D4DA4: 8039D158 (JKRFileCache__stringBase0)
-//	802D4DA8: 80368ABC (strcat)
-//	802D4DB0: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4DB8: 802CE548 (free__7JKRHeapFPv)
-//	802D4DC4: 80362228 (_restgpr_29)
+/* 802D4D44-802D4DD8 2CF684 0094+00 1/0 0/0 0/0 .text            becomeCurrent__12JKRFileCacheFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -310,21 +230,7 @@ asm void JKRFileCache::becomeCurrent(char const* param_0) {
 }
 #pragma pop
 
-/* 802D4DD8-802D4EDC 0104+00 s=1 e=0 z=0  None .text      getResource__12JKRFileCacheFPCc */
-//	802D4DE8: 803621D8 (_savegpr_28)
-//	802D4DF4: 802D551C (getDvdPathName__12JKRFileCacheCFPCc)
-//	802D4E04: 802D95F8 (__ct__10JKRDvdFileFPCc)
-//	802D4E1C: 802D53E4 (findCacheBlock__12JKRFileCacheCFUl)
-//	802D4E40: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D4E5C: 802D9518 (read__7JKRFileFPvll)
-//	802D4E64: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4E6C: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D4E84: 802D566C (__ct__Q212JKRFileCache11CCacheBlockFUlUlPCv)
-//	802D4E90: 802DBF4C (append__10JSUPtrListFP10JSUPtrLink)
-//	802D4EA8: 80451370 (sSystemHeap__7JKRHeap)
-//	802D4EB0: 802CE548 (free__7JKRHeapFPv)
-//	802D4EBC: 802D9748 (__dt__10JKRDvdFileFv)
-//	802D4EC8: 80362224 (_restgpr_28)
+/* 802D4DD8-802D4EDC 2CF718 0104+00 1/0 0/0 0/0 .text            getResource__12JKRFileCacheFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,12 +240,8 @@ asm void JKRFileCache::getResource(char const* param_0) {
 }
 #pragma pop
 
-/* 802D4EDC-802D4F64 0088+00 s=1 e=0 z=0  None .text      getResource__12JKRFileCacheFUlPCc */
-//	802D4EEC: 803621DC (_savegpr_29)
-//	802D4EFC: 80368BE4 (strlen)
-//	802D4F10: 80368B2C (strcpy)
-//	802D4F20: 802D5410 (findFile__12JKRFileCacheCFPcPCc)
-//	802D4F50: 80362228 (_restgpr_29)
+/* 802D4EDC-802D4F64 2CF81C 0088+00 1/0 0/0 0/0 .text            getResource__12JKRFileCacheFUlPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -349,17 +251,7 @@ asm void JKRFileCache::getResource(u32 param_0, char const* param_1) {
 }
 #pragma pop
 
-/* 802D4F64-802D503C 00D8+00 s=1 e=0 z=0  None .text      readResource__12JKRFileCacheFPvUlPCc */
-//	802D4F74: 803621D4 (_savegpr_27)
-//	802D4F88: 802D551C (getDvdPathName__12JKRFileCacheCFPCc)
-//	802D4F98: 802D95F8 (__ct__10JKRDvdFileFPCc)
-//	802D4FD0: 802D53E4 (findCacheBlock__12JKRFileCacheCFUl)
-//	802D4FEC: 802D9518 (read__7JKRFileFPvll)
-//	802D5000: 80003540 (memcpy)
-//	802D5008: 80451370 (sSystemHeap__7JKRHeap)
-//	802D5010: 802CE548 (free__7JKRHeapFPv)
-//	802D501C: 802D9748 (__dt__10JKRDvdFileFv)
-//	802D5028: 80362220 (_restgpr_27)
+/* 802D4F64-802D503C 2CF8A4 00D8+00 1/0 0/0 0/0 .text readResource__12JKRFileCacheFPvUlPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -369,12 +261,7 @@ asm void JKRFileCache::readResource(void* param_0, u32 param_1, char const* para
 }
 #pragma pop
 
-/* 802D503C-802D50D4 0098+00 s=1 e=0 z=0  None .text      readResource__12JKRFileCacheFPvUlUlPCc */
-//	802D504C: 803621D4 (_savegpr_27)
-//	802D5064: 80368BE4 (strlen)
-//	802D5078: 80368B2C (strcpy)
-//	802D5088: 802D5410 (findFile__12JKRFileCacheCFPcPCc)
-//	802D50C0: 80362220 (_restgpr_27)
+/* 802D503C-802D50D4 2CF97C 0098+00 1/0 0/0 0/0 .text readResource__12JKRFileCacheFPvUlUlPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,13 +271,8 @@ asm void JKRFileCache::readResource(void* param_0, u32 param_1, u32 param_2, cha
 }
 #pragma pop
 
-/* 802D50D4-802D5164 0090+00 s=1 e=0 z=0  None .text      removeResourceAll__12JKRFileCacheFv */
-//	802D50E4: 803621DC (_savegpr_29)
-//	802D5100: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D510C: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D5138: 802DBE14 (__dt__10JSUPtrLinkFv)
-//	802D5140: 802CED3C (__dl__FPv)
-//	802D5150: 80362228 (_restgpr_29)
+/* 802D50D4-802D5164 2CFA14 0090+00 1/0 0/0 0/0 .text            removeResourceAll__12JKRFileCacheFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -400,14 +282,8 @@ asm void JKRFileCache::removeResourceAll() {
 }
 #pragma pop
 
-/* 802D5164-802D51F8 0094+00 s=1 e=0 z=0  None .text      removeResource__12JKRFileCacheFPv */
-//	802D5174: 803621DC (_savegpr_29)
-//	802D5180: 802D53B8 (findCacheBlock__12JKRFileCacheCFPCv)
-//	802D51AC: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D51B8: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D51D0: 802DBE14 (__dt__10JSUPtrLinkFv)
-//	802D51D8: 802CED3C (__dl__FPv)
-//	802D51E4: 80362228 (_restgpr_29)
+/* 802D5164-802D51F8 2CFAA4 0094+00 1/0 0/0 0/0 .text            removeResource__12JKRFileCacheFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,11 +293,8 @@ asm void JKRFileCache::removeResource(void* param_0) {
 }
 #pragma pop
 
-/* 802D51F8-802D526C 0074+00 s=1 e=0 z=0  None .text      detachResource__12JKRFileCacheFPv */
-//	802D5210: 802D53B8 (findCacheBlock__12JKRFileCacheCFPCv)
-//	802D522C: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D5244: 802DBE14 (__dt__10JSUPtrLinkFv)
-//	802D524C: 802CED3C (__dl__FPv)
+/* 802D51F8-802D526C 2CFB38 0074+00 1/0 0/0 0/0 .text            detachResource__12JKRFileCacheFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -431,8 +304,7 @@ asm void JKRFileCache::detachResource(void* param_0) {
 }
 #pragma pop
 
-/* 802D526C-802D52A0 0034+00 s=1 e=0 z=0  None .text      getResSize__12JKRFileCacheCFPCv */
-//	802D5278: 802D53B8 (findCacheBlock__12JKRFileCacheCFPCv)
+/* 802D526C-802D52A0 2CFBAC 0034+00 1/0 0/0 0/0 .text            getResSize__12JKRFileCacheCFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,13 +314,7 @@ asm void JKRFileCache::getResSize(void const* param_0) const {
 }
 #pragma pop
 
-/* 802D52A0-802D531C 007C+00 s=1 e=0 z=0  None .text      countFile__12JKRFileCacheCFPCc */
-//	802D52B8: 802D551C (getDvdPathName__12JKRFileCacheCFPCc)
-//	802D52C4: 80348F80 (DVDOpenDir)
-//	802D52E0: 80349040 (DVDReadDir)
-//	802D52F0: 803490E4 (DVDCloseDir)
-//	802D52F4: 80451370 (sSystemHeap__7JKRHeap)
-//	802D52FC: 802CE548 (free__7JKRHeapFPv)
+/* 802D52A0-802D531C 2CFBE0 007C+00 1/0 0/0 0/0 .text            countFile__12JKRFileCacheCFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -458,13 +324,8 @@ asm void JKRFileCache::countFile(char const* param_0) const {
 }
 #pragma pop
 
-/* 802D531C-802D53B8 009C+00 s=1 e=0 z=0  None .text      getFirstFile__12JKRFileCacheCFPCc */
-//	802D5330: 802D551C (getDvdPathName__12JKRFileCacheCFPCc)
-//	802D533C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D5344: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D5354: 802D4770 (__ct__12JKRDvdFinderFPCc)
-//	802D535C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D5364: 802CE548 (free__7JKRHeapFPv)
+/* 802D531C-802D53B8 2CFC5C 009C+00 1/0 0/0 0/0 .text            getFirstFile__12JKRFileCacheCFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -474,7 +335,8 @@ asm void JKRFileCache::getFirstFile(char const* param_0) const {
 }
 #pragma pop
 
-/* 802D53B8-802D53E4 002C+00 s=3 e=0 z=0  None .text      findCacheBlock__12JKRFileCacheCFPCv */
+/* 802D53B8-802D53E4 2CFCF8 002C+00 3/3 0/0 0/0 .text            findCacheBlock__12JKRFileCacheCFPCv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -484,7 +346,8 @@ asm void JKRFileCache::findCacheBlock(void const* param_0) const {
 }
 #pragma pop
 
-/* 802D53E4-802D5410 002C+00 s=2 e=0 z=0  None .text      findCacheBlock__12JKRFileCacheCFUl */
+/* 802D53E4-802D5410 2CFD24 002C+00 2/2 0/0 0/0 .text            findCacheBlock__12JKRFileCacheCFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -494,19 +357,7 @@ asm void JKRFileCache::findCacheBlock(u32 param_0) const {
 }
 #pragma pop
 
-/* 802D5410-802D551C 010C+00 s=2 e=0 z=0  None .text      findFile__12JKRFileCacheCFPcPCc */
-//	802D5420: 803621D0 (_savegpr_26)
-//	802D5438: 80368BE4 (strlen)
-//	802D5448: 80348F80 (DVDOpenDir)
-//	802D547C: 80368B2C (strcpy)
-//	802D54B0: 80368994 (strcmp)
-//	802D54C8: 8039D158 (JKRFileCache__stringBase0)
-//	802D54CC: 8039D158 (JKRFileCache__stringBase0)
-//	802D54D0: 80368ABC (strcat)
-//	802D54DC: 80368ABC (strcat)
-//	802D54EC: 80349040 (DVDReadDir)
-//	802D54FC: 803490E4 (DVDCloseDir)
-//	802D5508: 8036221C (_restgpr_26)
+/* 802D5410-802D551C 2CFD50 010C+00 2/2 0/0 0/0 .text            findFile__12JKRFileCacheCFPcPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,23 +367,8 @@ asm void JKRFileCache::findFile(char* param_0, char const* param_1) const {
 }
 #pragma pop
 
-/* 802D551C-802D5624 0108+00 s=5 e=0 z=0  None .text      getDvdPathName__12JKRFileCacheCFPCc */
-//	802D552C: 803621DC (_savegpr_29)
-//	802D5548: 80368BE4 (strlen)
-//	802D5554: 80368BE4 (strlen)
-//	802D5560: 80451370 (sSystemHeap__7JKRHeap)
-//	802D5568: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D5578: 80368B2C (strcpy)
-//	802D55A0: 80368ABC (strcat)
-//	802D55B0: 80368ABC (strcat)
-//	802D55BC: 80368BE4 (strlen)
-//	802D55C8: 80368BE4 (strlen)
-//	802D55D4: 80451370 (sSystemHeap__7JKRHeap)
-//	802D55DC: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D55EC: 80368B2C (strcpy)
-//	802D55F8: 80368ABC (strcat)
-//	802D5604: 802D5624 (convStrLower__12JKRFileCacheCFPc)
-//	802D5610: 80362228 (_restgpr_29)
+/* 802D551C-802D5624 2CFE5C 0108+00 5/5 0/0 0/0 .text            getDvdPathName__12JKRFileCacheCFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -542,8 +378,7 @@ asm void JKRFileCache::getDvdPathName(char const* param_0) const {
 }
 #pragma pop
 
-/* 802D5624-802D566C 0048+00 s=2 e=0 z=0  None .text      convStrLower__12JKRFileCacheCFPc */
-//	802D5640: 80365470 (tolower)
+/* 802D5624-802D566C 2CFF64 0048+00 2/2 0/0 0/0 .text            convStrLower__12JKRFileCacheCFPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -553,11 +388,8 @@ asm void JKRFileCache::convStrLower(char* param_0) const {
 }
 #pragma pop
 
-/* 802D566C-802D56C8 005C+00 s=1 e=0 z=0  None .text __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
+/* 802D566C-802D56C8 2CFFAC 005C+00 1/1 0/0 0/0 .text __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
  */
-//	802D567C: 803621D8 (_savegpr_28)
-//	802D5694: 802DBDFC (__ct__10JSUPtrLinkFPv)
-//	802D56B4: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -567,7 +399,8 @@ asm JKRFileCache::CCacheBlock::CCacheBlock(u32 param_0, u32 param_1, void const*
 }
 #pragma pop
 
-/* 802D56C8-802D56F4 002C+00 s=1 e=0 z=0  None .text      getFsResource__12JKRFileCacheFPCc */
+/* 802D56C8-802D56F4 2D0008 002C+00 1/0 0/0 0/0 .text            getFsResource__12JKRFileCacheFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -577,7 +410,7 @@ asm void JKRFileCache::getFsResource(char const* param_0) {
 }
 #pragma pop
 
-/* 802D56F4-802D5720 002C+00 s=1 e=0 z=0  None .text      getNameResource__12JKRFileCacheFUlPCc */
+/* 802D56F4-802D5720 2D0034 002C+00 1/0 0/0 0/0 .text getNameResource__12JKRFileCacheFUlPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -587,7 +420,7 @@ asm void JKRFileCache::getNameResource(u32 param_0, char const* param_1) {
 }
 #pragma pop
 
-/* 802D5720-802D574C 002C+00 s=1 e=0 z=0  None .text      readFsResource__12JKRFileCacheFPvUlPCc */
+/* 802D5720-802D574C 2D0060 002C+00 1/0 0/0 0/0 .text readFsResource__12JKRFileCacheFPvUlPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -597,7 +430,7 @@ asm void JKRFileCache::readFsResource(void* param_0, u32 param_1, char const* pa
 }
 #pragma pop
 
-/* 802D574C-802D5778 002C+00 s=1 e=0 z=0  None .text      readNameResource__12JKRFileCacheFPvUlUlPCc
+/* 802D574C-802D5778 2D008C 002C+00 1/0 0/0 0/0 .text readNameResource__12JKRFileCacheFPvUlUlPCc
  */
 #pragma push
 #pragma optimization_level 0
@@ -607,4 +440,14 @@ asm void JKRFileCache::readNameResource(void* param_0, u32 param_1, u32 param_2,
     nofralloc
 #include "asm/JSystem/JKernel/JKRFileCache/readNameResource__12JKRFileCacheFPvUlUlPCc.s"
 }
+#pragma pop
+
+/* 8039D158-8039D160 0297B8 0006+02 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039D158 = "/";
+SECTION_DEAD static char const* const stringBase_8039D15A = "dvd";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D15E = "\0";
 #pragma pop

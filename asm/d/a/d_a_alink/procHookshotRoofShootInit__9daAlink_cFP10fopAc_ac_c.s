@@ -35,8 +35,8 @@ lbl_8010CCBC:
 /* 8010CD00  4B FF E9 45 */	bl initHookshotRoofWaitActor__9daAlink_cFP10fopAc_ac_c
 /* 8010CD04  7F C3 F3 78 */	mr r3, r30
 /* 8010CD08  4B FF C4 69 */	bl initHookshotReady__9daAlink_cFv
-/* 8010CD0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010CD10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010CD0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010CD10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010CD14  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8010CD18  64 00 00 01 */	oris r0, r0, 1
 /* 8010CD1C  90 03 5F 1C */	stw r0, 0x5f1c(r3)

@@ -3,19 +3,20 @@
 #
 
 M242_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_vt.plf
+M242_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_vt.lcf
+M242_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_vt.map
 
 M242_CPP_FILES := \
-	rel/d/a/e/d_a_e_vt/executor.cpp \
-	rel/d/a/e/d_a_e_vt/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_vt/d_a_e_vt.cpp \
 
 M242_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_vt/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_vt/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_vt/d_a_e_vt.o \
 
 M242_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_vt/libRuntime.PPCEABI.H.a \
 
 M242_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M242_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map242.map\
+	-m _prolog \
+	-lcf $(M242_LDSCRIPT) \
+	-unused -map $(M242_MAP) \
+	-w off \
 
 $(M242_TARGET): $(M242_O_FILES) $(M242_LIBS)
+	@echo [242] creating $(M242_TARGET)
 	@echo $(M242_LIBS) $(M242_O_FILES) > build/M242_ofiles
-	$(LD) -opt_partial $(M242_LDFLAGS) -o $(M242_TARGET) @build/M242_ofiles
+	@python3 tools/lcf.py rel 242 --output $(M242_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M242_LDFLAGS) -o $(M242_TARGET) @build/M242_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_vt/%.o: rel/d/a/e/d_a_e_vt/%.cpp
+	@echo [242] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M242_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M242_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_vt/libs/Runtime.PPCEABI.H/Makefile
 

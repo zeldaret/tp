@@ -3,17 +3,15 @@
 #
 
 M444_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain.plf
+M444_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain.lcf
+M444_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain.map
 
 M444_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fchain/executor.cpp \
-	rel/d/a/obj/d_a_obj_fchain/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_fchain/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_fchain/d_a_obj_fchain.cpp \
 
 M444_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/d_a_obj_fchain.o \
 
 M444_LIBS := \
@@ -29,15 +27,21 @@ M444_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map444.map\
+	-m _prolog \
+	-lcf $(M444_LDSCRIPT) \
+	-unused -map $(M444_MAP) \
+	-w off \
 
 $(M444_TARGET): $(M444_O_FILES) $(M444_LIBS)
+	@echo [444] creating $(M444_TARGET)
 	@echo $(M444_LIBS) $(M444_O_FILES) > build/M444_ofiles
-	$(LD) -opt_partial $(M444_LDFLAGS) -o $(M444_TARGET) @build/M444_ofiles
+	@python3 tools/lcf.py rel 444 --output $(M444_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M444_LDFLAGS) -o $(M444_TARGET) @build/M444_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fchain/%.o: rel/d/a/obj/d_a_obj_fchain/%.cpp
+	@echo [444] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M444_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M444_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

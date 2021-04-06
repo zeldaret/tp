@@ -46,8 +46,8 @@ lbl_801CEF30:
 /* 801CEF3C  4B FF FB E1 */	bl setPointColor__15dMenu_FmapMap_cFf
 /* 801CEF40  80 BF 00 C4 */	lwz r5, 0xc4(r31)
 /* 801CEF44  A8 85 01 68 */	lha r4, 0x168(r5)
-/* 801CEF48  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 801CEF4C  38 63 0C D8 */	addi r3, r3, g_Counter@l
+/* 801CEF48  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 801CEF4C  38 63 0C D8 */	addi r3, r3, g_Counter@l /* 0x80430CD8@l */
 /* 801CEF50  80 63 00 00 */	lwz r3, 0(r3)
 /* 801CEF54  7C 03 23 96 */	divwu r0, r3, r4
 /* 801CEF58  7C 00 21 D6 */	mullw r0, r0, r4
@@ -74,8 +74,8 @@ lbl_801CEF30:
 /* 801CEFAC  D8 01 00 40 */	stfd f0, 0x40(r1)
 /* 801CEFB0  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 801CEFB4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 801CEFB8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 801CEFBC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 801CEFB8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 801CEFBC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801CEFC0  7C 03 04 2E */	lfsx f0, r3, r0
 /* 801CEFC4  EC 02 00 32 */	fmuls f0, f2, f0
 /* 801CEFC8  EC 22 00 2A */	fadds f1, f2, f0
@@ -89,8 +89,8 @@ lbl_801CEF30:
 /* 801CEFE8  4B FF FA C5 */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
 /* 801CEFEC  80 BF 00 C4 */	lwz r5, 0xc4(r31)
 /* 801CEFF0  A8 85 01 6A */	lha r4, 0x16a(r5)
-/* 801CEFF4  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 801CEFF8  38 63 0C D8 */	addi r3, r3, g_Counter@l
+/* 801CEFF4  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 801CEFF8  38 63 0C D8 */	addi r3, r3, g_Counter@l /* 0x80430CD8@l */
 /* 801CEFFC  80 63 00 00 */	lwz r3, 0(r3)
 /* 801CF000  7C 03 23 96 */	divwu r0, r3, r4
 /* 801CF004  7C 00 21 D6 */	mullw r0, r0, r4
@@ -119,8 +119,8 @@ lbl_801CEF30:
 /* 801CF060  D8 01 00 58 */	stfd f0, 0x58(r1)
 /* 801CF064  80 01 00 5C */	lwz r0, 0x5c(r1)
 /* 801CF068  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 801CF06C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 801CF070  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 801CF06C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 801CF070  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801CF074  7C 05 04 2E */	lfsx f0, r5, r0
 /* 801CF078  EC 02 00 32 */	fmuls f0, f2, f0
 /* 801CF07C  EC 22 00 2A */	fadds f1, f2, f0

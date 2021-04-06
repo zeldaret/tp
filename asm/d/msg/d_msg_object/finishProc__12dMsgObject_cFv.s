@@ -59,8 +59,8 @@ lbl_80235B9C:
 /* 80235BB0  48 00 C4 D1 */	bl isKeyCheck__14dMsgScrnHowl_cFv
 /* 80235BB4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235BB8  41 82 00 1C */	beq lbl_80235BD4
-/* 80235BBC  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80235BC0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80235BBC  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80235BC0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80235BC4  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80235BC8  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 80235BCC  41 82 00 08 */	beq lbl_80235BD4
@@ -69,8 +69,8 @@ lbl_80235BD4:
 /* 80235BD4  7F E3 FB 78 */	mr r3, r31
 /* 80235BD8  48 00 0E 01 */	bl isSend__12dMsgObject_cFv
 /* 80235BDC  7C 7E 1B 78 */	mr r30, r3
-/* 80235BE0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80235BE4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80235BE0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80235BE4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80235BE8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80235BEC  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80235BF0  40 82 00 1C */	bne lbl_80235C0C

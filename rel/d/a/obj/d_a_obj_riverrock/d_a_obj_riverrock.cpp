@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -59,9 +59,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -161,9 +161,9 @@ struct Z2SoundObjBase {
     /* 802BDFF8 */ void deleteObject();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -174,12 +174,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjRIVERROCK_Create(fopAc_ac_c*);
-static void daObjRIVERROCK_Delete(daObjRIVERROCK_c*);
-static void daObjRIVERROCK_Draw(daObjRIVERROCK_c*);
-static void daObjRIVERROCK_Execute(daObjRIVERROCK_c*);
-static bool daObjRIVERROCK_IsDelete(daObjRIVERROCK_c*);
 
 extern "C" void __ct__20daObjRIVERROCK_HIO_cFv();
 extern "C" void initCcCylinder__16daObjRIVERROCK_cFv();
@@ -208,50 +202,11 @@ extern "C" void Draw__16daObjRIVERROCK_cFv();
 extern "C" void Delete__16daObjRIVERROCK_cFv();
 extern "C" void __dt__20daObjRIVERROCK_HIO_cFv();
 extern "C" void __sinit_d_a_obj_riverrock_cpp();
-extern "C" extern u32 const lit_3742;
-extern "C" extern u32 const lit_3743;
-extern "C" extern u32 const lit_3744;
-extern "C" extern u32 const lit_3745;
-extern "C" extern u32 const lit_3746;
-extern "C" extern u32 const lit_3747;
-extern "C" extern u32 const lit_3748;
-extern "C" extern u32 const lit_3749;
-extern "C" extern u32 const lit_3861;
-extern "C" extern u32 const lit_3862;
-extern "C" extern u32 const lit_3895;
-extern "C" extern u32 const lit_3896;
-extern "C" extern u32 const lit_4026;
-extern "C" extern u32 const lit_4027;
-extern "C" extern u32 const lit_4028;
-extern "C" extern u32 const lit_4029;
-extern "C" extern u32 const lit_4030;
-extern "C" extern u32 const lit_4031;
-extern "C" extern u32 const lit_4032;
-extern "C" extern u8 const lit_4034[8];
-extern "C" extern u32 const lit_4119;
-extern "C" extern u32 const lit_4120;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_RIVERROCK[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__16daObjRIVERROCK_c[10];
-extern "C" extern void* __vt__20daObjRIVERROCK_HIO_c[3];
+extern "C" extern char const* const d_a_obj_riverrock__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_setupStageTexture(J3DModelData*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_chaseAngleS(s16*, s16, s16);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void transM__14mDoMtx_stack_cFfff();
@@ -324,119 +279,19 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80CBDA5C-80CBDA60 0004+00 s=6 e=0 z=0  None .rodata    @3631 */
+/* 80CBDA5C-80CBDA60 000000 0004+00 6/6 0/0 0/0 .rodata          @3631 */
 SECTION_RODATA static u8 const lit_3631[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80CBDA5C = (void*)(&lit_3631);
 
-/* 80CBDA60-80CBDAA4 0044+00 s=1 e=0 z=0  None .rodata    ccCylSrc$3635 */
-SECTION_RODATA static u8 const ccCylSrc[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0xFA, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
-};
+/* 80CBDB40-80CBDB44 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_riverrock__stringBase0;
 
-/* 80CBDAA4-80CBDAAC 0004+04 s=1 e=0 z=0  None .rodata    @3642 */
-SECTION_RODATA static u32 const lit_3642[1 + 1 /* padding */] = {
-    0x447A0000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80CBDAAC-80CBDAB4 0008+00 s=2 e=0 z=0  None .rodata    @3669 */
-SECTION_RODATA static u8 const lit_3669[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80CBDAB4-80CBDAB8 0004+00 s=0 e=0 z=0  None .rodata    @3742 */
-SECTION_RODATA u32 const lit_3742 = 0x442F0000;
-
-/* 80CBDAB8-80CBDABC 0004+00 s=0 e=0 z=0  None .rodata    @3743 */
-SECTION_RODATA u32 const lit_3743 = 0x45B09000;
-
-/* 80CBDABC-80CBDAC0 0004+00 s=0 e=0 z=0  None .rodata    @3744 */
-SECTION_RODATA u32 const lit_3744 = 0x45322000;
-
-/* 80CBDAC0-80CBDAC4 0004+00 s=0 e=0 z=0  None .rodata    @3745 */
-SECTION_RODATA u32 const lit_3745 = 0x43960000;
-
-/* 80CBDAC4-80CBDAC8 0004+00 s=0 e=0 z=0  None .rodata    @3746 */
-SECTION_RODATA u32 const lit_3746 = 0xC3960000;
-
-/* 80CBDAC8-80CBDACC 0004+00 s=0 e=0 z=0  None .rodata    @3747 */
-SECTION_RODATA u32 const lit_3747 = 0x3F800000;
-
-/* 80CBDACC-80CBDAD0 0004+00 s=0 e=0 z=0  None .rodata    @3748 */
-SECTION_RODATA u32 const lit_3748 = 0xBF800000;
-
-/* 80CBDAD0-80CBDAD4 0004+00 s=0 e=0 z=0  None .rodata    @3749 */
-SECTION_RODATA u32 const lit_3749 = 0x40400000;
-
-/* 80CBDAD4-80CBDAD8 0004+00 s=1 e=0 z=0  None .rodata    @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0x4562C000;
-
-/* 80CBDAD8-80CBDADC 0004+00 s=0 e=0 z=0  None .rodata    @3861 */
-SECTION_RODATA u32 const lit_3861 = 0x43480000;
-
-/* 80CBDADC-80CBDAE0 0004+00 s=0 e=0 z=0  None .rodata    @3862 */
-SECTION_RODATA u32 const lit_3862 = 0x438C0000;
-
-/* 80CBDAE0-80CBDAE4 0004+00 s=0 e=0 z=0  None .rodata    @3895 */
-SECTION_RODATA u32 const lit_3895 = 0x43160000;
-
-/* 80CBDAE4-80CBDAE8 0004+00 s=0 e=0 z=0  None .rodata    @3896 */
-SECTION_RODATA u32 const lit_3896 = 0xC3160000;
-
-/* 80CBDAE8-80CBDAEC 0004+00 s=0 e=0 z=0  None .rodata    @4026 */
-SECTION_RODATA u32 const lit_4026 = 0xC1100000;
-
-/* 80CBDAEC-80CBDAF0 0004+00 s=0 e=0 z=0  None .rodata    @4027 */
-SECTION_RODATA u32 const lit_4027 = 0x3F000000;
-
-/* 80CBDAF0-80CBDAF4 0004+00 s=0 e=0 z=0  None .rodata    @4028 */
-SECTION_RODATA u32 const lit_4028 = 0x3D4CCCCD;
-
-/* 80CBDAF4-80CBDAF8 0004+00 s=0 e=0 z=0  None .rodata    @4029 */
-SECTION_RODATA u32 const lit_4029 = 0x452F0000;
-
-/* 80CBDAF8-80CBDAFC 0004+00 s=0 e=0 z=0  None .rodata    @4030 */
-SECTION_RODATA u32 const lit_4030 = 0x45BB8000;
-
-/* 80CBDAFC-80CBDB00 0004+00 s=0 e=0 z=0  None .rodata    @4031 */
-SECTION_RODATA u32 const lit_4031 = 0xC5BB8000;
-
-/* 80CBDB00-80CBDB04 0004+00 s=0 e=0 z=0  None .rodata    @4032 */
-SECTION_RODATA u32 const lit_4032 = 0xC3FA0000;
-
-/* 80CBDB04-80CBDB0C 0008+00 s=0 e=0 z=0  None .rodata    @4034 */
-SECTION_RODATA u8 const lit_4034[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CBDB0C-80CBDB10 0004+00 s=0 e=0 z=0  None .rodata    @4119 */
-SECTION_RODATA u32 const lit_4119 = 0xC47A0000;
-
-/* 80CBDB10-80CBDB14 0004+00 s=0 e=0 z=0  None .rodata    @4120 */
-SECTION_RODATA u32 const lit_4120 = 0x43FA0000;
-
-/* 80CBDB14-80CBDB3E 002A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CBDB14 = "RiverRock";
-SECTION_DEAD char const* const stringBase_80CBDB1E = "M_RiverRock.bmd";
-SECTION_DEAD char const* const stringBase_80CBDB2E = "M_RiverRock.dzb";
-#pragma pop
-
-/* 80CBDB40-80CBDB44 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80CBDB44-80CBDB64 0020+00 s=1 e=0 z=0  None .data      l_daObjRIVERROCK_Method */
+/* 80CBDB44-80CBDB64 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjRIVERROCK_Method */
 SECTION_DATA static void* l_daObjRIVERROCK_Method[8] = {
     (void*)daObjRIVERROCK_Create__FP10fopAc_ac_c,
     (void*)daObjRIVERROCK_Delete__FP16daObjRIVERROCK_c,
@@ -448,8 +303,8 @@ SECTION_DATA static void* l_daObjRIVERROCK_Method[8] = {
     (void*)NULL,
 };
 
-/* 80CBDB64-80CBDB94 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_RIVERROCK */
-SECTION_DATA void* g_profile_Obj_RIVERROCK[12] = {
+/* 80CBDB64-80CBDB94 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_RIVERROCK */
+SECTION_DATA extern void* g_profile_Obj_RIVERROCK[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00750000, (void*)&g_fpcLf_Method,
     (void*)0x0000079C, (void*)NULL,
@@ -458,22 +313,22 @@ SECTION_DATA void* g_profile_Obj_RIVERROCK[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80CBDB94-80CBDBA0 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA void* __vt__8cM3dGCyl[3] = {
+/* 80CBDB94-80CBDBA0 000054 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80CBDBA0-80CBDBAC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA void* __vt__8cM3dGAab[3] = {
+/* 80CBDBA0-80CBDBAC 000060 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80CBDBAC-80CBDBD4 0028+00 s=1 e=0 z=0  None .data      __vt__16daObjRIVERROCK_c */
-SECTION_DATA void* __vt__16daObjRIVERROCK_c[10] = {
+/* 80CBDBAC-80CBDBD4 00006C 0028+00 1/1 0/0 0/0 .data            __vt__16daObjRIVERROCK_c */
+SECTION_DATA extern void* __vt__16daObjRIVERROCK_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__16daObjRIVERROCK_cFv,
@@ -486,18 +341,14 @@ SECTION_DATA void* __vt__16daObjRIVERROCK_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80CBDBD4-80CBDBE0 000C+00 s=2 e=0 z=0  None .data      __vt__20daObjRIVERROCK_HIO_c */
-SECTION_DATA void* __vt__20daObjRIVERROCK_HIO_c[3] = {
+/* 80CBDBD4-80CBDBE0 000094 000C+00 2/2 0/0 0/0 .data            __vt__20daObjRIVERROCK_HIO_c */
+SECTION_DATA extern void* __vt__20daObjRIVERROCK_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20daObjRIVERROCK_HIO_cFv,
 };
 
-/* 80CBC6CC-80CBC6F4 0028+00 s=1 e=0 z=0  None .text      __ct__20daObjRIVERROCK_HIO_cFv */
-//	80CBC6CC: 80CBDBD4 (__vt__20daObjRIVERROCK_HIO_c)
-//	80CBC6D0: 80CBDBD4 (__vt__20daObjRIVERROCK_HIO_c)
-//	80CBC6E0: 80CBDA5C (lit_3631)
-//	80CBC6E4: 80CBDA5C (lit_3631)
+/* 80CBC6CC-80CBC6F4 0000EC 0028+00 1/1 0/0 0/0 .text            __ct__20daObjRIVERROCK_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -507,12 +358,18 @@ asm daObjRIVERROCK_HIO_c::daObjRIVERROCK_HIO_c() {
 }
 #pragma pop
 
-/* 80CBC6F4-80CBC754 0060+00 s=1 e=0 z=0  None .text      initCcCylinder__16daObjRIVERROCK_cFv */
-//	80CBC718: 80083860 (Init__9dCcD_SttsFiiP10fopAc_ac_c)
-//	80CBC720: 80CBDA60 (ccCylSrc)
-//	80CBC724: 80CBDA60 (ccCylSrc)
-//	80CBC728: 800848B4 (Set__8dCcD_CylFRC11dCcD_SrcCyl)
-//	80CBC73C: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
+/* ############################################################################################## */
+/* 80CBDA60-80CBDAA4 000004 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3635 */
+SECTION_RODATA static u8 const ccCylSrc[68] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0xFA, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80CBDA60 = (void*)(&ccCylSrc);
+
+/* 80CBC6F4-80CBC754 000114 0060+00 1/1 0/0 0/0 .text initCcCylinder__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -522,14 +379,16 @@ asm void daObjRIVERROCK_c::initCcCylinder() {
 }
 #pragma pop
 
-/* 80CBC754-80CBC7B4 0060+00 s=1 e=0 z=0  None .text      SetCcCyl__16daObjRIVERROCK_cFv */
-//	80CBC770: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	80CBC778: 80CBDAA4 (lit_3642)
-//	80CBC77C: 80CBDAA4 (lit_3642)
-//	80CBC788: 8026F200 (SetR__8cM3dGCylFf)
-//	80CBC78C: 804061C0 (g_dComIfG_gameInfo)
-//	80CBC790: 804061C0 (g_dComIfG_gameInfo)
-//	80CBC79C: 80264BA8 (Set__4cCcSFP8cCcD_Obj)
+/* ############################################################################################## */
+/* 80CBDAA4-80CBDAAC 000048 0004+04 1/3 0/0 0/0 .rodata          @3642 */
+SECTION_RODATA static u32 const lit_3642[1 + 1 /* padding */] = {
+    0x447A0000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_80CBDAA4 = (void*)(&lit_3642);
+
+/* 80CBC754-80CBC7B4 000174 0060+00 1/1 0/0 0/0 .text            SetCcCyl__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -539,36 +398,35 @@ asm void daObjRIVERROCK_c::SetCcCyl() {
 }
 #pragma pop
 
-/* 80CBC7B4-80CBC7D4 0020+00 s=1 e=0 z=0  None .text      daObjRIVERROCK_Create__FP10fopAc_ac_c */
-//	80CBC7C0: 80CBD3C0 (create__16daObjRIVERROCK_cFv)
+/* 80CBC7B4-80CBC7D4 0001D4 0020+00 1/0 0/0 0/0 .text daObjRIVERROCK_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjRIVERROCK_Create(fopAc_ac_c* param_0) {
+static asm void daObjRIVERROCK_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/daObjRIVERROCK_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80CBC7D4-80CBC7F8 0024+00 s=1 e=0 z=0  None .text daObjRIVERROCK_Delete__FP16daObjRIVERROCK_c
+/* 80CBC7D4-80CBC7F8 0001F4 0024+00 1/0 0/0 0/0 .text daObjRIVERROCK_Delete__FP16daObjRIVERROCK_c
  */
-//	80CBC7E0: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjRIVERROCK_Delete(daObjRIVERROCK_c* param_0) {
+static asm void daObjRIVERROCK_Delete(daObjRIVERROCK_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/daObjRIVERROCK_Delete__FP16daObjRIVERROCK_c.s"
 }
 #pragma pop
 
-/* 80CBC7F8-80CBC8BC 00C4+00 s=1 e=0 z=0  None .text      BreakWaitAction__16daObjRIVERROCK_cFv */
-//	80CBC814: 80439A20 (sincosTable___5JMath)
-//	80CBC818: 80439A20 (sincosTable___5JMath)
-//	80CBC824: 80CBDAAC (lit_3669)
-//	80CBC828: 80CBDAAC (lit_3669)
-//	80CBC86C: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80CBC88C: 80270B90 (cLib_chaseAngleS__FPsss)
+/* ############################################################################################## */
+/* 80CBDAAC-80CBDAB4 000050 0008+00 2/3 0/0 0/0 .rodata          @3669 */
+SECTION_RODATA static u8 const lit_3669[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80CBDAAC = (void*)(&lit_3669);
+
+/* 80CBC7F8-80CBC8BC 000218 00C4+00 1/1 0/0 0/0 .text BreakWaitAction__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -578,43 +436,64 @@ asm void daObjRIVERROCK_c::BreakWaitAction() {
 }
 #pragma pop
 
-/* 80CBC8BC-80CBCC3C 0380+00 s=1 e=0 z=0  None .text      CheckBG__16daObjRIVERROCK_cFv */
-//	80CBC8CC: 803621DC (_savegpr_29)
-//	80CBC8D4: 80CBDA5C (lit_3631)
-//	80CBC8D8: 80CBDA5C (lit_3631)
-//	80CBC948: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80CBC950: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBC968: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80CBC970: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBC988: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80CBC98C: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBC990: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBC99C: 80346D6C (PSMTXMultVec)
-//	80CBC9A0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBC9A4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBC9B0: 80346D6C (PSMTXMultVec)
-//	80CBC9D4: 80077C68 (__ct__11dBgS_LinChkFv)
-//	80CBC9E8: 80077D64 (Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c)
-//	80CBC9EC: 804061C0 (g_dComIfG_gameInfo)
-//	80CBC9F0: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCA00: 800743B4 (LineCross__4cBgSFP11cBgS_LinChk)
-//	80CBCA14: 80074CBC (GetSpecialCode__4dBgSFRC13cBgS_PolyInfo)
-//	80CBCA40: 8002D06C (dComIfGp_getReverb__Fi)
-//	80CBCA54: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CBCA58: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CBCA80: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CBCA90: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCA94: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCAA0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80CBCAD0: 8006FA24 (StartShock__12dVibration_cFii4cXyz)
-//	80CBCAF4: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCAF8: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCB40: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBCB88: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBCC20: 80077CDC (__dt__11dBgS_LinChkFv)
-//	80CBCC28: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80CBDAB4-80CBDAB8 000058 0004+00 0/1 0/0 0/0 .rodata          @3742 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3742 = 0x442F0000;
+SECTION_DEAD void* const cg_80CBDAB4 = (void*)(&lit_3742);
+#pragma pop
+
+/* 80CBDAB8-80CBDABC 00005C 0004+00 0/1 0/0 0/0 .rodata          @3743 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3743 = 0x45B09000;
+SECTION_DEAD void* const cg_80CBDAB8 = (void*)(&lit_3743);
+#pragma pop
+
+/* 80CBDABC-80CBDAC0 000060 0004+00 0/1 0/0 0/0 .rodata          @3744 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3744 = 0x45322000;
+SECTION_DEAD void* const cg_80CBDABC = (void*)(&lit_3744);
+#pragma pop
+
+/* 80CBDAC0-80CBDAC4 000064 0004+00 0/1 0/0 0/0 .rodata          @3745 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3745 = 0x43960000;
+SECTION_DEAD void* const cg_80CBDAC0 = (void*)(&lit_3745);
+#pragma pop
+
+/* 80CBDAC4-80CBDAC8 000068 0004+00 0/1 0/0 0/0 .rodata          @3746 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3746 = 0xC3960000;
+SECTION_DEAD void* const cg_80CBDAC4 = (void*)(&lit_3746);
+#pragma pop
+
+/* 80CBDAC8-80CBDACC 00006C 0004+00 0/3 0/0 0/0 .rodata          @3747 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3747 = 0x3F800000;
+SECTION_DEAD void* const cg_80CBDAC8 = (void*)(&lit_3747);
+#pragma pop
+
+/* 80CBDACC-80CBDAD0 000070 0004+00 0/2 0/0 0/0 .rodata          @3748 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3748 = 0xBF800000;
+SECTION_DEAD void* const cg_80CBDACC = (void*)(&lit_3748);
+#pragma pop
+
+/* 80CBDAD0-80CBDAD4 000074 0004+00 0/1 0/0 0/0 .rodata          @3749 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3749 = 0x40400000;
+SECTION_DEAD void* const cg_80CBDAD0 = (void*)(&lit_3749);
+#pragma pop
+
+/* 80CBC8BC-80CBCC3C 0002DC 0380+00 1/1 0/0 0/0 .text            CheckBG__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -625,22 +504,20 @@ asm void daObjRIVERROCK_c::CheckBG() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CBDBE8-80CBDBEC 0004+00 s=2 e=0 z=0  None .bss       None */
+/* 80CBDAD4-80CBDAD8 000078 0004+00 1/1 0/0 0/0 .rodata          @3758 */
+SECTION_RODATA static u32 const lit_3758 = 0x4562C000;
+SECTION_DEAD void* const cg_80CBDAD4 = (void*)(&lit_3758);
+
+/* 80CBDBE8-80CBDBEC 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80CBDBE8[4];
 
-/* 80CBDBEC-80CBDBF8 000C+00 s=1 e=0 z=0  None .bss       @3626 */
+/* 80CBDBEC-80CBDBF8 00000C 000C+00 1/1 0/0 0/0 .bss             @3626 */
 static u8 lit_3626[12];
 
-/* 80CBDBF8-80CBDC08 0010+00 s=4 e=0 z=0  None .bss       l_HIO */
+/* 80CBDBF8-80CBDC08 000018 0010+00 4/4 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[16];
 
-/* 80CBCC3C-80CBCCC0 0084+00 s=1 e=0 z=0  None .text      BreakMoveAction__16daObjRIVERROCK_cFv */
-//	80CBCC58: 80CBDAD4 (lit_3758)
-//	80CBCC5C: 80CBDAD4 (lit_3758)
-//	80CBCC60: 80CBDBF8 (l_HIO)
-//	80CBCC64: 80CBDBF8 (l_HIO)
-//	80CBCC84: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80CBCCA8: 80CBC8BC (CheckBG__16daObjRIVERROCK_cFv)
+/* 80CBCC3C-80CBCCC0 00065C 0084+00 1/1 0/0 0/0 .text BreakMoveAction__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -650,13 +527,8 @@ asm void daObjRIVERROCK_c::BreakMoveAction() {
 }
 #pragma pop
 
-/* 80CBCCC0-80CBCD94 00D4+00 s=1 e=0 z=0  None .text      BrokenAction__16daObjRIVERROCK_cFv */
-//	80CBCCDC: 80439A20 (sincosTable___5JMath)
-//	80CBCCE0: 80439A20 (sincosTable___5JMath)
-//	80CBCCEC: 80CBDAAC (lit_3669)
-//	80CBCCF0: 80CBDAAC (lit_3669)
-//	80CBCD4C: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80CBCD6C: 80270B90 (cLib_chaseAngleS__FPsss)
+/* 80CBCCC0-80CBCD94 0006E0 00D4+00 1/1 0/0 0/0 .text            BrokenAction__16daObjRIVERROCK_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -666,10 +538,8 @@ asm void daObjRIVERROCK_c::BrokenAction() {
 }
 #pragma pop
 
-/* 80CBCD94-80CBCDE8 0054+00 s=1 e=0 z=0  None .text      BreakAction__16daObjRIVERROCK_cFv */
-//	80CBCDC4: 80CBC7F8 (BreakWaitAction__16daObjRIVERROCK_cFv)
-//	80CBCDCC: 80CBCC3C (BreakMoveAction__16daObjRIVERROCK_cFv)
-//	80CBCDD4: 80CBCCC0 (BrokenAction__16daObjRIVERROCK_cFv)
+/* 80CBCD94-80CBCDE8 0007B4 0054+00 1/1 0/0 0/0 .text            BreakAction__16daObjRIVERROCK_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -679,9 +549,7 @@ asm void daObjRIVERROCK_c::BreakAction() {
 }
 #pragma pop
 
-/* 80CBCDE8-80CBCE2C 0044+00 s=1 e=0 z=0  None .text      Action__16daObjRIVERROCK_cFv */
-//	80CBCE10: 80CBD1C4 (WaitAction__16daObjRIVERROCK_cFv)
-//	80CBCE18: 80CBCD94 (BreakAction__16daObjRIVERROCK_cFv)
+/* 80CBCDE8-80CBCE2C 000808 0044+00 1/1 0/0 0/0 .text            Action__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -691,45 +559,22 @@ asm void daObjRIVERROCK_c::Action() {
 }
 #pragma pop
 
-/* 80CBCE2C-80CBD1C4 0398+00 s=3 e=0 z=0  None .text      BreakSet__16daObjRIVERROCK_cFv */
-//	80CBCE3C: 803621DC (_savegpr_29)
-//	80CBCE44: 80CBDA5C (lit_3631)
-//	80CBCE48: 80CBDA5C (lit_3631)
-//	80CBCE6C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80CBCE80: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CBCE84: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CBCEAC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CBCEC8: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80CBCED0: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBCEE8: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80CBCEEC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBCEF0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBCEFC: 80346D6C (PSMTXMultVec)
-//	80CBCF18: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCF1C: 804061C0 (g_dComIfG_gameInfo)
-//	80CBCF64: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBCFAC: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBCFF4: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBD03C: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBD084: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBD0CC: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBD114: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CBD124: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD128: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD134: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80CBD154: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD158: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD16C: 8006FA24 (StartShock__12dVibration_cFii4cXyz)
-//	80CBD174: 80CBDBF8 (l_HIO)
-//	80CBD178: 80CBDBF8 (l_HIO)
-//	80CBD1B0: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80CBDAD8-80CBDADC 00007C 0004+00 0/1 0/0 0/0 .rodata          @3861 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3861 = 0x43480000;
+SECTION_DEAD void* const cg_80CBDAD8 = (void*)(&lit_3861);
+#pragma pop
+
+/* 80CBDADC-80CBDAE0 000080 0004+00 0/1 0/0 0/0 .rodata          @3862 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3862 = 0x438C0000;
+SECTION_DEAD void* const cg_80CBDADC = (void*)(&lit_3862);
+#pragma pop
+
+/* 80CBCE2C-80CBD1C4 00084C 0398+00 3/3 0/0 0/0 .text            BreakSet__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -739,9 +584,7 @@ asm void daObjRIVERROCK_c::BreakSet() {
 }
 #pragma pop
 
-/* 80CBD1C4-80CBD204 0040+00 s=1 e=0 z=0  None .text      WaitAction__16daObjRIVERROCK_cFv */
-//	80CBD1DC: 80084460 (ChkTgHit__12dCcD_GObjInfFv)
-//	80CBD1EC: 80CBCE2C (BreakSet__16daObjRIVERROCK_cFv)
+/* 80CBD1C4-80CBD204 000BE4 0040+00 1/1 0/0 0/0 .text            WaitAction__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -751,27 +594,22 @@ asm void daObjRIVERROCK_c::WaitAction() {
 }
 #pragma pop
 
-/* 80CBD204-80CBD2FC 00F8+00 s=1 e=0 z=0  None .text      setBaseMtx__16daObjRIVERROCK_cFv */
-//	80CBD21C: 80CBDA5C (lit_3631)
-//	80CBD220: 80CBDA5C (lit_3631)
-//	80CBD244: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80CBD24C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBD264: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80CBD26C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBD284: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80CBD28C: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	80CBD290: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD294: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD2A0: 803464B0 (PSMTXCopy)
-//	80CBD2AC: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80CBD2B4: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CBD2BC: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	80CBD2C0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD2C4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD2D0: 803464B0 (PSMTXCopy)
-//	80CBD2D4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD2D8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CBD2E0: 803464B0 (PSMTXCopy)
+/* ############################################################################################## */
+/* 80CBDAE0-80CBDAE4 000084 0004+00 0/1 0/0 0/0 .rodata          @3895 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3895 = 0x43160000;
+SECTION_DEAD void* const cg_80CBDAE0 = (void*)(&lit_3895);
+#pragma pop
+
+/* 80CBDAE4-80CBDAE8 000088 0004+00 0/1 0/0 0/0 .rodata          @3896 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3896 = 0xC3160000;
+SECTION_DEAD void* const cg_80CBDAE4 = (void*)(&lit_3896);
+#pragma pop
+
+/* 80CBD204-80CBD2FC 000C24 00F8+00 1/1 0/0 0/0 .text            setBaseMtx__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -781,38 +619,28 @@ asm void daObjRIVERROCK_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80CBD2FC-80CBD328 002C+00 s=1 e=0 z=0  None .text      daObjRIVERROCK_Draw__FP16daObjRIVERROCK_c
- */
+/* 80CBD2FC-80CBD328 000D1C 002C+00 1/0 0/0 0/0 .text daObjRIVERROCK_Draw__FP16daObjRIVERROCK_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjRIVERROCK_Draw(daObjRIVERROCK_c* param_0) {
+static asm void daObjRIVERROCK_Draw(daObjRIVERROCK_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/daObjRIVERROCK_Draw__FP16daObjRIVERROCK_c.s"
 }
 #pragma pop
 
-/* 80CBD328-80CBD348 0020+00 s=2 e=0 z=0  None .text daObjRIVERROCK_Execute__FP16daObjRIVERROCK_c
+/* 80CBD328-80CBD348 000D48 0020+00 2/1 0/0 0/0 .text daObjRIVERROCK_Execute__FP16daObjRIVERROCK_c
  */
-//	80CBD334: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjRIVERROCK_Execute(daObjRIVERROCK_c* param_0) {
+static asm void daObjRIVERROCK_Execute(daObjRIVERROCK_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/daObjRIVERROCK_Execute__FP16daObjRIVERROCK_c.s"
 }
 #pragma pop
 
-/* 80CBD348-80CBD3C0 0078+00 s=1 e=0 z=0  None .text      CreateHeap__16daObjRIVERROCK_cFv */
-//	80CBD35C: 80CBDB40 (l_arcName)
-//	80CBD360: 80CBDB40 (l_arcName)
-//	80CBD368: 80CBDB14 (stringBase0)
-//	80CBD36C: 80CBDB14 (stringBase0)
-//	80CBD374: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD378: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD388: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80CBD398: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80CBD348-80CBD3C0 000D68 0078+00 1/0 0/0 0/0 .text            CreateHeap__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -822,61 +650,66 @@ asm void daObjRIVERROCK_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80CBD3C0-80CBD71C 035C+00 s=1 e=0 z=0  None .text      create__16daObjRIVERROCK_cFv */
-//	80CBD3D0: 803621DC (_savegpr_29)
-//	80CBD3D8: 80CBDA5C (lit_3631)
-//	80CBD3DC: 80CBDA5C (lit_3631)
-//	80CBD3F8: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80CBD3FC: 80CBDBAC (__vt__16daObjRIVERROCK_c)
-//	80CBD400: 80CBDBAC (__vt__16daObjRIVERROCK_c)
-//	80CBD40C: 802BE844 (__ct__16Z2SoundObjSimpleFv)
-//	80CBD410: 803C3728 (__vt__9cCcD_Stts)
-//	80CBD414: 803C3728 (__vt__9cCcD_Stts)
-//	80CBD420: 80083760 (__ct__10dCcD_GSttsFv)
-//	80CBD424: 803AC2E4 (__vt__9dCcD_Stts)
-//	80CBD428: 803AC2E4 (__vt__9dCcD_Stts)
-//	80CBD440: 80083A28 (__ct__12dCcD_GObjInfFv)
-//	80CBD444: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80CBD448: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80CBD450: 80CBDBA0 (__vt__8cM3dGAab)
-//	80CBD454: 80CBDBA0 (__vt__8cM3dGAab)
-//	80CBD45C: 80CBDB94 (__vt__8cM3dGCyl)
-//	80CBD460: 80CBDB94 (__vt__8cM3dGCyl)
-//	80CBD468: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80CBD46C: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80CBD47C: 803AC050 (__vt__8dCcD_Cyl)
-//	80CBD480: 803AC050 (__vt__8dCcD_Cyl)
-//	80CBD4A8: 80CBDB40 (l_arcName)
-//	80CBD4AC: 80CBDB40 (l_arcName)
-//	80CBD4B4: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80CBD4CC: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD4D0: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD4D8: 80CBDB40 (l_arcName)
-//	80CBD4DC: 80CBDB40 (l_arcName)
-//	80CBD4E4: 80CBDB14 (stringBase0)
-//	80CBD4E8: 80CBDB14 (stringBase0)
-//	80CBD4F4: 8003C6B8 (getObjectResName2Index__14dRes_control_cFPCcPCc)
-//	80CBD50C: 80CBDB40 (l_arcName)
-//	80CBD510: 80CBDB40 (l_arcName)
-//	80CBD518: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80CBD51C:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80CBD528:
-//800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
-//	80CBD544: 8000EA80 (mDoExt_setupStageTexture__FP12J3DModelData)
-//	80CBD5E4: 80CBDBE8 (data_80CBDBE8)
-//	80CBD5E8: 80CBDBE8 (data_80CBDBE8)
-//	80CBD604: 80CBDBF8 (l_HIO)
-//	80CBD608: 80CBDBF8 (l_HIO)
-//	80CBD698: 80CBC6F4 (initCcCylinder__16daObjRIVERROCK_cFv)
-//	80CBD6A8: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD6AC: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD6B8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80CBD6C8: 80CBCE2C (BreakSet__16daObjRIVERROCK_cFv)
-//	80CBD6F4: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//	80CBD6FC: 80CBD328 (daObjRIVERROCK_Execute__FP16daObjRIVERROCK_c)
-//	80CBD708: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80CBDAE8-80CBDAEC 00008C 0004+00 0/1 0/0 0/0 .rodata          @4026 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4026 = 0xC1100000;
+SECTION_DEAD void* const cg_80CBDAE8 = (void*)(&lit_4026);
+#pragma pop
+
+/* 80CBDAEC-80CBDAF0 000090 0004+00 0/1 0/0 0/0 .rodata          @4027 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4027 = 0x3F000000;
+SECTION_DEAD void* const cg_80CBDAEC = (void*)(&lit_4027);
+#pragma pop
+
+/* 80CBDAF0-80CBDAF4 000094 0004+00 0/1 0/0 0/0 .rodata          @4028 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4028 = 0x3D4CCCCD;
+SECTION_DEAD void* const cg_80CBDAF0 = (void*)(&lit_4028);
+#pragma pop
+
+/* 80CBDAF4-80CBDAF8 000098 0004+00 0/1 0/0 0/0 .rodata          @4029 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4029 = 0x452F0000;
+SECTION_DEAD void* const cg_80CBDAF4 = (void*)(&lit_4029);
+#pragma pop
+
+/* 80CBDAF8-80CBDAFC 00009C 0004+00 0/1 0/0 0/0 .rodata          @4030 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4030 = 0x45BB8000;
+SECTION_DEAD void* const cg_80CBDAF8 = (void*)(&lit_4030);
+#pragma pop
+
+/* 80CBDAFC-80CBDB00 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4031 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4031 = 0xC5BB8000;
+SECTION_DEAD void* const cg_80CBDAFC = (void*)(&lit_4031);
+#pragma pop
+
+/* 80CBDB00-80CBDB04 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4032 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4032 = 0xC3FA0000;
+SECTION_DEAD void* const cg_80CBDB00 = (void*)(&lit_4032);
+#pragma pop
+
+/* 80CBDB04-80CBDB0C 0000A8 0008+00 0/1 0/0 0/0 .rodata          @4034 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4034[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80CBDB04 = (void*)(&lit_4034);
+#pragma pop
+
+/* 80CBD3C0-80CBD71C 000DE0 035C+00 1/1 0/0 0/0 .text            create__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -886,10 +719,7 @@ asm void daObjRIVERROCK_c::create() {
 }
 #pragma pop
 
-/* 80CBD71C-80CBD764 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-//	80CBD734: 80CBDB94 (__vt__8cM3dGCyl)
-//	80CBD738: 80CBDB94 (__vt__8cM3dGCyl)
-//	80CBD748: 802CED3C (__dl__FPv)
+/* 80CBD71C-80CBD764 00113C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -899,10 +729,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80CBD764-80CBD7AC 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-//	80CBD77C: 80CBDBA0 (__vt__8cM3dGAab)
-//	80CBD780: 80CBDBA0 (__vt__8cM3dGAab)
-//	80CBD790: 802CED3C (__dl__FPv)
+/* 80CBD764-80CBD7AC 001184 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -912,16 +739,28 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80CBD7AC-80CBD7B4 0008+00 s=1 e=0 z=0  None .text daObjRIVERROCK_IsDelete__FP16daObjRIVERROCK_c
- */
+/* 80CBD7AC-80CBD7B4 0011CC 0008+00 1/0 0/0 0/0 .text
+ * daObjRIVERROCK_IsDelete__FP16daObjRIVERROCK_c                */
 static bool daObjRIVERROCK_IsDelete(daObjRIVERROCK_c* param_0) {
     return true;
 }
 
-/* 80CBD7B4-80CBD814 0060+00 s=1 e=0 z=0  None .text      Create__16daObjRIVERROCK_cFv */
-//	80CBD7C0: 80CBDA5C (lit_3631)
-//	80CBD7C4: 80CBDA5C (lit_3631)
-//	80CBD7FC: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
+/* ############################################################################################## */
+/* 80CBDB0C-80CBDB10 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4119 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4119 = 0xC47A0000;
+SECTION_DEAD void* const cg_80CBDB0C = (void*)(&lit_4119);
+#pragma pop
+
+/* 80CBDB10-80CBDB14 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4120 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4120 = 0x43FA0000;
+SECTION_DEAD void* const cg_80CBDB10 = (void*)(&lit_4120);
+#pragma pop
+
+/* 80CBD7B4-80CBD814 0011D4 0060+00 1/0 0/0 0/0 .text            Create__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -931,15 +770,7 @@ asm void daObjRIVERROCK_c::Create() {
 }
 #pragma pop
 
-/* 80CBD814-80CBD8E0 00CC+00 s=1 e=0 z=0  None .text      Execute__16daObjRIVERROCK_cFPPA3_A4_f */
-//	80CBD830: 80CBCDE8 (Action__16daObjRIVERROCK_cFv)
-//	80CBD84C: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD850: 804061C0 (g_dComIfG_gameInfo)
-//	80CBD85C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80CBD880: 80CBCE2C (BreakSet__16daObjRIVERROCK_cFv)
-//	80CBD890: 80CBC754 (SetCcCyl__16daObjRIVERROCK_cFv)
-//	80CBD898: 80CBD204 (setBaseMtx__16daObjRIVERROCK_cFv)
-//	80CBD8A4: 8002D06C (dComIfGp_getReverb__Fi)
+/* 80CBD814-80CBD8E0 001234 00CC+00 1/0 0/0 0/0 .text Execute__16daObjRIVERROCK_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -949,16 +780,7 @@ asm void daObjRIVERROCK_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80CBD8E0-80CBD964 0084+00 s=1 e=0 z=0  None .text      Draw__16daObjRIVERROCK_cFv */
-//	80CBD8F4: 8042CA54 (g_env_light)
-//	80CBD8F8: 8042CA54 (g_env_light)
-//	80CBD908: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80CBD90C: 8042CA54 (g_env_light)
-//	80CBD910: 8042CA54 (g_env_light)
-//	80CBD920: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80CBD924:
-// 804061C0 (g_dComIfG_gameInfo) 	80CBD928: 804061C0 (g_dComIfG_gameInfo) 	80CBD930: 80434AC8
-// (j3dSys) 	80CBD934: 80434AC8 (j3dSys) 	80CBD948: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
+/* 80CBD8E0-80CBD964 001300 0084+00 1/0 0/0 0/0 .text            Draw__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -968,13 +790,7 @@ asm void daObjRIVERROCK_c::Draw() {
 }
 #pragma pop
 
-/* 80CBD964-80CBD9C4 0060+00 s=1 e=0 z=0  None .text      Delete__16daObjRIVERROCK_cFv */
-//	80CBD97C: 80CBDB40 (l_arcName)
-//	80CBD980: 80CBDB40 (l_arcName)
-//	80CBD988: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80CBD99C: 80CBDBE8 (data_80CBDBE8)
-//	80CBD9A0: 80CBDBE8 (data_80CBDBE8)
-//	80CBD9A8: 802BDFF8 (deleteObject__14Z2SoundObjBaseFv)
+/* 80CBD964-80CBD9C4 001384 0060+00 1/0 0/0 0/0 .text            Delete__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -984,10 +800,7 @@ asm void daObjRIVERROCK_c::Delete() {
 }
 #pragma pop
 
-/* 80CBD9C4-80CBDA0C 0048+00 s=2 e=0 z=0  None .text      __dt__20daObjRIVERROCK_HIO_cFv */
-//	80CBD9DC: 80CBDBD4 (__vt__20daObjRIVERROCK_HIO_c)
-//	80CBD9E0: 80CBDBD4 (__vt__20daObjRIVERROCK_HIO_c)
-//	80CBD9F0: 802CED3C (__dl__FPv)
+/* 80CBD9C4-80CBDA0C 0013E4 0048+00 2/1 0/0 0/0 .text            __dt__20daObjRIVERROCK_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -997,19 +810,11 @@ asm daObjRIVERROCK_HIO_c::~daObjRIVERROCK_HIO_c() {
 }
 #pragma pop
 
-/* 80CBDA0C-80CBDA48 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_riverrock_cpp */
-//	80CBDA18: 80CBDBF8 (l_HIO)
-//	80CBDA1C: 80CBDBF8 (l_HIO)
-//	80CBDA20: 80CBC6CC (__ct__20daObjRIVERROCK_HIO_cFv)
-//	80CBDA24: 80CBD9C4 (__dt__20daObjRIVERROCK_HIO_cFv)
-//	80CBDA28: 80CBD9C4 (__dt__20daObjRIVERROCK_HIO_cFv)
-//	80CBDA2C: 80CBDBEC (lit_3626)
-//	80CBDA30: 80CBDBEC (lit_3626)
-//	80CBDA34: 80CBC658 (__register_global_object)
+/* 80CBDA0C-80CBDA48 00142C 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_riverrock_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_riverrock_cpp() {
+asm void __sinit_d_a_obj_riverrock_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock/__sinit_d_a_obj_riverrock_cpp.s"
 }
@@ -1018,4 +823,13 @@ extern "C" asm void __sinit_d_a_obj_riverrock_cpp() {
 #pragma push
 #pragma force_active on
 SECTION_CTORS void* const _ctors_80CBDA0C = (void*)__sinit_d_a_obj_riverrock_cpp;
+#pragma pop
+
+/* 80CBDB14-80CBDB3E 0000B8 002A+00 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CBDB14 = "RiverRock";
+SECTION_DEAD static char const* const stringBase_80CBDB1E = "M_RiverRock.bmd";
+SECTION_DEAD static char const* const stringBase_80CBDB2E = "M_RiverRock.dzb";
 #pragma pop

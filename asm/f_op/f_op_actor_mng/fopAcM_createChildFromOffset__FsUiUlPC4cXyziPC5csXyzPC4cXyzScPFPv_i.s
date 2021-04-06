@@ -14,15 +14,15 @@ lbl_80019F78:
 /* 80019FA8  7D 5E 53 78 */	mr r30, r10
 /* 80019FAC  83 E1 00 68 */	lwz r31, 0x68(r1)
 /* 80019FB0  93 41 00 08 */	stw r26, 8(r1)
-/* 80019FB4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80019FB8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80019FB4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80019FB8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80019FBC  38 81 00 08 */	addi r4, r1, 8
 /* 80019FC0  4B FF F8 39 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80019FC4  A8 A3 04 DE */	lha r5, 0x4de(r3)
 /* 80019FC8  28 17 00 00 */	cmplwi r23, 0
 /* 80019FCC  40 82 00 24 */	bne lbl_80019FF0
-/* 80019FD0  3C 80 80 43 */	lis r4, Zero__4cXyz@ha
-/* 80019FD4  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)
+/* 80019FD0  3C 80 80 43 */	lis r4, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80019FD4  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)  /* 0x80430CF4@l */
 /* 80019FD8  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80019FDC  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80019FE0  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -70,8 +70,8 @@ lbl_8001A048:
 /* 8001A078  B0 01 00 0E */	sth r0, 0xe(r1)
 /* 8001A07C  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
 /* 8001A080  C1 01 00 30 */	lfs f8, 0x30(r1)
-/* 8001A084  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8001A088  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8001A084  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8001A088  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8001A08C  7C A3 04 2E */	lfsx f5, r3, r0
 /* 8001A090  EC 28 01 72 */	fmuls f1, f8, f5
 /* 8001A094  C0 C1 00 28 */	lfs f6, 0x28(r1)

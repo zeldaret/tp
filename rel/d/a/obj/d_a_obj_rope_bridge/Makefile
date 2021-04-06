@@ -3,18 +3,16 @@
 #
 
 M110_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge.plf
+M110_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge.lcf
+M110_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge.map
 
 M110_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rope_bridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_rope_bridge/d_a_obj_rope_bridge.cpp \
 
 M110_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/d_a_obj_rope_bridge.o \
 
@@ -31,15 +29,21 @@ M110_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map110.map\
+	-m _prolog \
+	-lcf $(M110_LDSCRIPT) \
+	-unused -map $(M110_MAP) \
+	-w off \
 
 $(M110_TARGET): $(M110_O_FILES) $(M110_LIBS)
+	@echo [110] creating $(M110_TARGET)
 	@echo $(M110_LIBS) $(M110_O_FILES) > build/M110_ofiles
-	$(LD) -opt_partial $(M110_LDFLAGS) -o $(M110_TARGET) @build/M110_ofiles
+	@python3 tools/lcf.py rel 110 --output $(M110_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M110_LDFLAGS) -o $(M110_TARGET) @build/M110_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rope_bridge/%.o: rel/d/a/obj/d_a_obj_rope_bridge/%.cpp
+	@echo [110] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M110_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M110_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,15 +5,15 @@ lbl_8046027C:
 /* 80460288  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8046028C  7C 7F 1B 78 */	mr r31, r3
 /* 80460290  80 63 05 A0 */	lwz r3, 0x5a0(r3)
-/* 80460294  4B E0 7F 40 */	b ChkUsed__9cBgW_BgIdCFv
+/* 80460294  4B E0 7F 41 */	bl ChkUsed__9cBgW_BgIdCFv
 /* 80460298  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8046029C  40 82 00 1C */	bne lbl_804602B8
-/* 804602A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804602A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804602A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804602A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804602A8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 804602AC  80 9F 05 A0 */	lwz r4, 0x5a0(r31)
 /* 804602B0  7F E5 FB 78 */	mr r5, r31
-/* 804602B4  4B C1 47 54 */	b Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
+/* 804602B4  4B C1 47 55 */	bl Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
 lbl_804602B8:
 /* 804602B8  38 00 00 01 */	li r0, 1
 /* 804602BC  98 1F 06 0E */	stb r0, 0x60e(r31)

@@ -137,8 +137,8 @@ lbl_8027B7DC:
 /* 8027B7EC  EC 03 00 32 */	fmuls f0, f3, f0
 /* 8027B7F0  EC 02 00 2A */	fadds f0, f2, f0
 /* 8027B7F4  EC 21 00 32 */	fmuls f1, f1, f0
-/* 8027B7F8  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 8027B7FC  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 8027B7F8  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8027B7FC  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8027B800  38 C5 00 04 */	addi r6, r5, 4
 /* 8027B804  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8027B808  7C 06 04 2E */	lfsx f0, r6, r0

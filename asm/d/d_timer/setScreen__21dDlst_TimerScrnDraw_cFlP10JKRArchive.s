@@ -36,8 +36,8 @@ lbl_8025E010:
 lbl_8025E034:
 /* 8025E034  90 1F 00 08 */	stw r0, 8(r31)
 /* 8025E038  80 7F 00 08 */	lwz r3, 8(r31)
-/* 8025E03C  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha
-/* 8025E040  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l
+/* 8025E03C  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha /* 0x8039A3D8@ha */
+/* 8025E040  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l /* 0x8039A3D8@l */
 /* 8025E044  38 84 00 06 */	addi r4, r4, 6
 /* 8025E048  3C A0 00 02 */	lis r5, 2
 /* 8025E04C  80 DF 00 7C */	lwz r6, 0x7c(r31)
@@ -56,8 +56,8 @@ lbl_8025E034:
 /* 8025E080  38 60 00 07 */	li r3, 7
 /* 8025E084  64 63 00 07 */	oris r3, r3, 7
 /* 8025E088  7C 75 E3 A6 */	mtspr 0x395, r3
-/* 8025E08C  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha
-/* 8025E090  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l
+/* 8025E08C  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha /* 0x8039A3D8@ha */
+/* 8025E090  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l /* 0x8039A3D8@l */
 /* 8025E094  38 64 00 26 */	addi r3, r4, 0x26
 /* 8025E098  80 9F 00 7C */	lwz r4, 0x7c(r31)
 /* 8025E09C  48 07 61 D5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader

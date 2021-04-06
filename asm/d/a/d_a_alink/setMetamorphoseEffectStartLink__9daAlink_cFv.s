@@ -18,8 +18,8 @@ lbl_80124738:
 /* 80124778  7F E3 FB 78 */	mr r3, r31
 /* 8012477C  38 9F 32 00 */	addi r4, r31, 0x3200
 /* 80124780  38 A0 06 E8 */	li r5, 0x6e8
-/* 80124784  3C C0 80 43 */	lis r6, Zero__4cXyz@ha
-/* 80124788  38 C6 0C F4 */	addi r6, r6, Zero__4cXyz@l
+/* 80124784  3C C0 80 43 */	lis r6, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80124788  38 C6 0C F4 */	addi r6, r6, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 8012478C  38 E0 00 00 */	li r7, 0
 /* 80124790  4B FF BD F1 */	bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80124794  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -10,7 +10,7 @@ lbl_80CFE928:
 /* 80CFE948  40 82 00 1C */	bne lbl_80CFE964
 /* 80CFE94C  28 1F 00 00 */	cmplwi r31, 0
 /* 80CFE950  41 82 00 08 */	beq lbl_80CFE958
-/* 80CFE954  4B 31 A2 10 */	b __ct__10fopAc_ac_cFv
+/* 80CFE954  4B 31 A2 11 */	bl __ct__10fopAc_ac_cFv
 lbl_80CFE958:
 /* 80CFE958  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80CFE95C  60 00 00 08 */	ori r0, r0, 8
@@ -31,8 +31,8 @@ lbl_80CFE964:
 /* 80CFE994  C0 3F 04 EC */	lfs f1, 0x4ec(r31)
 /* 80CFE998  80 1F 05 C0 */	lwz r0, 0x5c0(r31)
 /* 80CFE99C  1C 00 00 38 */	mulli r0, r0, 0x38
-/* 80CFE9A0  3C 60 80 D0 */	lis r3, M_attr__Q212daObjSwpush25Act_c@ha
-/* 80CFE9A4  38 A3 FC 00 */	addi r5, r3, M_attr__Q212daObjSwpush25Act_c@l
+/* 80CFE9A0  3C 60 80 D0 */	lis r3, M_attr__Q212daObjSwpush25Act_c@ha /* 0x80CFFC00@ha */
+/* 80CFE9A4  38 A3 FC 00 */	addi r5, r3, M_attr__Q212daObjSwpush25Act_c@l /* 0x80CFFC00@l */
 /* 80CFE9A8  7C 65 02 14 */	add r3, r5, r0
 /* 80CFE9AC  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80CFE9B0  EC 01 00 32 */	fmuls f0, f1, f0
@@ -45,12 +45,12 @@ lbl_80CFE964:
 /* 80CFE9CC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80CFE9D0  D0 1F 04 F4 */	stfs f0, 0x4f4(r31)
 /* 80CFE9D4  7F E3 FB 78 */	mr r3, r31
-/* 80CFE9D8  3C 80 80 D0 */	lis r4, solidHeapCB__Q212daObjSwpush25Act_cFP10fopAc_ac_c@ha
-/* 80CFE9DC  38 84 E1 AC */	addi r4, r4, solidHeapCB__Q212daObjSwpush25Act_cFP10fopAc_ac_c@l
+/* 80CFE9D8  3C 80 80 D0 */	lis r4, solidHeapCB__Q212daObjSwpush25Act_cFP10fopAc_ac_c@ha /* 0x80CFE1AC@ha */
+/* 80CFE9DC  38 84 E1 AC */	addi r4, r4, solidHeapCB__Q212daObjSwpush25Act_cFP10fopAc_ac_c@l /* 0x80CFE1AC@l */
 /* 80CFE9E0  80 1F 05 C0 */	lwz r0, 0x5c0(r31)
 /* 80CFE9E4  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 80CFE9E8  7C A5 00 2E */	lwzx r5, r5, r0
-/* 80CFE9EC  4B 31 BA C4 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80CFE9EC  4B 31 BA C5 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80CFE9F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CFE9F4  40 82 00 0C */	bne lbl_80CFEA00
 /* 80CFE9F8  38 60 00 05 */	li r3, 5

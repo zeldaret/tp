@@ -21,8 +21,8 @@ lbl_8011BAE8:
 lbl_8011BB04:
 /* 8011BB04  7F E3 FB 78 */	mr r3, r31
 /* 8011BB08  38 80 00 36 */	li r4, 0x36
-/* 8011BB0C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_pushpull_c0@ha
-/* 8011BB10  38 A5 E2 10 */	addi r5, r5, m__22daAlinkHIO_pushpull_c0@l
+/* 8011BB0C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_pushpull_c0@ha /* 0x8038E210@ha */
+/* 8011BB10  38 A5 E2 10 */	addi r5, r5, m__22daAlinkHIO_pushpull_c0@l /* 0x8038E210@l */
 /* 8011BB14  C0 25 00 10 */	lfs f1, 0x10(r5)
 /* 8011BB18  C0 45 00 14 */	lfs f2, 0x14(r5)
 /* 8011BB1C  4B F9 14 C5 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

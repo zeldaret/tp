@@ -20,7 +20,7 @@ lbl_804847DC:
 /* 804847F8  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 804847FC  38 E0 00 00 */	li r7, 0
 /* 80484800  39 00 00 01 */	li r8, 1
-/* 80484804  4B B9 6E 78 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80484804  4B B9 6E 79 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80484808  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 8048480C  60 00 00 02 */	ori r0, r0, 2
 /* 80484810  B0 1F 00 FA */	sth r0, 0xfa(r31)

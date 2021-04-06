@@ -3,19 +3,20 @@
 #
 
 M392_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz.plf
+M392_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz.lcf
+M392_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz.map
 
 M392_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_zrz/executor.cpp \
-	rel/d/a/npc/d_a_npc_zrz/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_zrz/d_a_npc_zrz.cpp \
 
 M392_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/d_a_npc_zrz.o \
 
 M392_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/libRuntime.PPCEABI.H.a \
 
 M392_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M392_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map392.map\
+	-m _prolog \
+	-lcf $(M392_LDSCRIPT) \
+	-unused -map $(M392_MAP) \
+	-w off \
 
 $(M392_TARGET): $(M392_O_FILES) $(M392_LIBS)
+	@echo [392] creating $(M392_TARGET)
 	@echo $(M392_LIBS) $(M392_O_FILES) > build/M392_ofiles
-	$(LD) -opt_partial $(M392_LDFLAGS) -o $(M392_TARGET) @build/M392_ofiles
+	@python3 tools/lcf.py rel 392 --output $(M392_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M392_LDFLAGS) -o $(M392_TARGET) @build/M392_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zrz/%.o: rel/d/a/npc/d_a_npc_zrz/%.cpp
+	@echo [392] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M392_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M392_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_zrz/libs/Runtime.PPCEABI.H/Makefile
 

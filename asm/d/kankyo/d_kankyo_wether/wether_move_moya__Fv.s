@@ -4,8 +4,8 @@ lbl_80059580:
 /* 80059588  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8005958C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80059590  48 30 8C 4D */	bl _savegpr_29
-/* 80059594  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80059598  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 80059594  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80059598  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8005959C  88 1F 0E B4 */	lbz r0, 0xeb4(r31)
 /* 800595A0  2C 00 00 01 */	cmpwi r0, 1
 /* 800595A4  41 82 01 08 */	beq lbl_800596AC
@@ -23,36 +23,36 @@ lbl_800595B8:
 /* 800595D0  7C 7D 1B 79 */	or. r29, r3, r3
 /* 800595D4  41 82 00 50 */	beq lbl_80059624
 /* 800595D8  7F A4 EB 78 */	mr r4, r29
-/* 800595DC  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 800595E0  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 800595DC  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 800595E0  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 800595E4  90 1D 00 00 */	stw r0, 0(r29)
 /* 800595E8  38 00 00 00 */	li r0, 0
 /* 800595EC  90 1D 00 04 */	stw r0, 4(r29)
 /* 800595F0  90 1D 00 08 */	stw r0, 8(r29)
 /* 800595F4  90 1D 00 0C */	stw r0, 0xc(r29)
-/* 800595F8  3C 60 80 3B */	lis r3, __vt__20dKankyo_cloud_Packet@ha
-/* 800595FC  38 03 9B 24 */	addi r0, r3, __vt__20dKankyo_cloud_Packet@l
+/* 800595F8  3C 60 80 3B */	lis r3, __vt__20dKankyo_cloud_Packet@ha /* 0x803A9B24@ha */
+/* 800595FC  38 03 9B 24 */	addi r0, r3, __vt__20dKankyo_cloud_Packet@l /* 0x803A9B24@l */
 /* 80059600  90 1D 00 00 */	stw r0, 0(r29)
 /* 80059604  38 64 00 18 */	addi r3, r4, 0x18
-/* 80059608  3C 80 80 05 */	lis r4, __ct__9CLOUD_EFFFv@ha
-/* 8005960C  38 84 6E 74 */	addi r4, r4, __ct__9CLOUD_EFFFv@l
-/* 80059610  3C A0 80 05 */	lis r5, __dt__9CLOUD_EFFFv@ha
-/* 80059614  38 A5 6E 38 */	addi r5, r5, __dt__9CLOUD_EFFFv@l
+/* 80059608  3C 80 80 05 */	lis r4, __ct__9CLOUD_EFFFv@ha /* 0x80056E74@ha */
+/* 8005960C  38 84 6E 74 */	addi r4, r4, __ct__9CLOUD_EFFFv@l /* 0x80056E74@l */
+/* 80059610  3C A0 80 05 */	lis r5, __dt__9CLOUD_EFFFv@ha /* 0x80056E38@ha */
+/* 80059614  38 A5 6E 38 */	addi r5, r5, __dt__9CLOUD_EFFFv@l /* 0x80056E38@l */
 /* 80059618  38 C0 00 38 */	li r6, 0x38
 /* 8005961C  38 E0 00 32 */	li r7, 0x32
 /* 80059620  48 30 87 41 */	bl __construct_array
 lbl_80059624:
-/* 80059624  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80059628  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 80059624  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80059628  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8005962C  93 BE 0E C0 */	stw r29, 0xec0(r30)
 /* 80059630  28 1D 00 00 */	cmplwi r29, 0
 /* 80059634  41 82 00 DC */	beq lbl_80059710
-/* 80059638  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_wether__stringBase0@ha
-/* 8005963C  38 63 A3 68 */	addi r3, r3, d_kankyo_d_kankyo_wether__stringBase0@l
+/* 80059638  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_wether__stringBase0@ha /* 0x8037A368@ha */
+/* 8005963C  38 63 A3 68 */	addi r3, r3, d_kankyo_d_kankyo_wether__stringBase0@l /* 0x8037A368@l */
 /* 80059640  38 63 00 82 */	addi r3, r3, 0x82
 /* 80059644  38 80 00 53 */	li r4, 0x53
-/* 80059648  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8005964C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80059648  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8005964C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80059650  3C A5 00 02 */	addis r5, r5, 2
 /* 80059654  38 C0 00 80 */	li r6, 0x80
 /* 80059658  38 A5 C2 F8 */	addi r5, r5, -15624
@@ -84,8 +84,8 @@ lbl_800596AC:
 /* 800596B8  48 00 14 39 */	bl dKyw_get_wind_pow__Fv
 lbl_800596BC:
 /* 800596BC  48 00 7D 7D */	bl cloud_shadow_move__Fv
-/* 800596C0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800596C4  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 800596C0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800596C4  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800596C8  80 1E 0E B8 */	lwz r0, 0xeb8(r30)
 /* 800596CC  2C 00 00 00 */	cmpwi r0, 0
 /* 800596D0  40 82 00 40 */	bne lbl_80059710

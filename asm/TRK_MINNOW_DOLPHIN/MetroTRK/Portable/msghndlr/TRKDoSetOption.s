@@ -1,10 +1,10 @@
 lbl_8036DD14:
 /* 8036DD14  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036DD18  7C 08 02 A6 */	mflr r0
-/* 8036DD1C  3C 80 80 3A */	lis r4, lit_321@ha
+/* 8036DD1C  3C 80 80 3A */	lis r4, lit_321@ha /* 0x803A28D0@ha */
 /* 8036DD20  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8036DD24  93 E1 00 4C */	stw r31, 0x4c(r1)
-/* 8036DD28  3B E4 28 D0 */	addi r31, r4, lit_321@l
+/* 8036DD28  3B E4 28 D0 */	addi r31, r4, lit_321@l /* 0x803A28D0@l */
 /* 8036DD2C  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 8036DD30  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 8036DD34  8B C3 00 1C */	lbz r30, 0x1c(r3)

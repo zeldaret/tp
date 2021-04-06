@@ -8,11 +8,11 @@ lbl_802A1914:
 /* 802A192C  41 82 00 08 */	beq lbl_802A1934
 /* 802A1930  93 ED 85 E8 */	stw r31, data_80450B68(r13)
 lbl_802A1934:
-/* 802A1934  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha
-/* 802A1938  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l
+/* 802A1934  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
+/* 802A1938  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l /* 0x803C9940@l */
 /* 802A193C  90 1F 00 00 */	stw r0, 0(r31)
-/* 802A1940  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha
-/* 802A1944  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l
+/* 802A1940  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha /* 0x803C9958@ha */
+/* 802A1944  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l /* 0x803C9958@l */
 /* 802A1948  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A194C  38 00 00 00 */	li r0, 0
 /* 802A1950  90 1F 00 08 */	stw r0, 8(r31)

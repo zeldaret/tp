@@ -4,7 +4,7 @@ lbl_807423F0:
 /* 807423F8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807423FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80742400  7C 7F 1B 78 */	mr r31, r3
-/* 80742404  4B 8D 68 DC */	b fopAc_IsActor__FPv
+/* 80742404  4B 8D 68 DD */	bl fopAc_IsActor__FPv
 /* 80742408  2C 03 00 00 */	cmpwi r3, 0
 /* 8074240C  41 82 00 24 */	beq lbl_80742430
 /* 80742410  A8 1F 00 08 */	lha r0, 8(r31)

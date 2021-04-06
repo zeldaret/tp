@@ -3,17 +3,15 @@
 #
 
 M455_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall.plf
+M455_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall.lcf
+M455_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall.map
 
 M455_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ganonwall/executor.cpp \
-	rel/d/a/obj/d_a_obj_ganonwall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ganonwall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ganonwall/d_a_obj_ganonwall.cpp \
 
 M455_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/d_a_obj_ganonwall.o \
 
 M455_LIBS := \
@@ -29,15 +27,21 @@ M455_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map455.map\
+	-m _prolog \
+	-lcf $(M455_LDSCRIPT) \
+	-unused -map $(M455_MAP) \
+	-w off \
 
 $(M455_TARGET): $(M455_O_FILES) $(M455_LIBS)
+	@echo [455] creating $(M455_TARGET)
 	@echo $(M455_LIBS) $(M455_O_FILES) > build/M455_ofiles
-	$(LD) -opt_partial $(M455_LDFLAGS) -o $(M455_TARGET) @build/M455_ofiles
+	@python3 tools/lcf.py rel 455 --output $(M455_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M455_LDFLAGS) -o $(M455_TARGET) @build/M455_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall/%.o: rel/d/a/obj/d_a_obj_ganonwall/%.cpp
+	@echo [455] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M455_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M455_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

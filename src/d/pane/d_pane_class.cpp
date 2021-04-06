@@ -116,10 +116,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-void dPaneClass_showNullPane(J2DScreen*);
-static void dPaneClass_showNullPane(J2DPane*);
-void dPaneClass_setPriority(void**, JKRHeap*, J2DScreen*, char const*, u32, JKRArchive*);
-
 extern "C" void __ct__8CPaneMgrFv();
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
 extern "C" void __dt__8CPaneMgrFv();
@@ -152,16 +148,10 @@ extern "C" void __dt__20JSUMemoryInputStreamFv();
 extern "C" void __dt__20JSURandomInputStreamFv();
 extern "C" void __dt__10JSUIosBaseFv();
 extern "C" void __sinit_d_pane_class_cpp();
-extern "C" extern void* __vt__10JSUIosBase[3];
-extern "C" extern void* __vt__8CPaneMgr[4 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void mDoExt_getCurrentHeap();
-void dLib_getExpandSizeFromAramArchive(JKRAramArchive*, char const*);
-void operator delete(void*);
 
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc();
@@ -209,15 +199,15 @@ extern "C" extern void* __vt__13J2DOrthoGraph[10];
 //
 
 /* ############################################################################################## */
-/* 803C2DF8-803C2E04 000C+00 s=2 e=4 z=0  None .data      __vt__10JSUIosBase */
-SECTION_DATA void* __vt__10JSUIosBase[3] = {
+/* 803C2DF8-803C2E04 01FF18 000C+00 2/2 4/4 0/0 .data            __vt__10JSUIosBase */
+SECTION_DATA extern void* __vt__10JSUIosBase[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10JSUIosBaseFv,
 };
 
-/* 803C2E04-803C2E18 0010+04 s=3 e=0 z=0  None .data      __vt__8CPaneMgr */
-SECTION_DATA void* __vt__8CPaneMgr[4 + 1 /* padding */] = {
+/* 803C2E04-803C2E18 01FF24 0010+04 3/3 0/0 0/0 .data            __vt__8CPaneMgr */
+SECTION_DATA extern void* __vt__8CPaneMgr[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8CPaneMgrFv,
@@ -226,10 +216,7 @@ SECTION_DATA void* __vt__8CPaneMgr[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80253930-80253984 0054+00 s=0 e=11 z=0  None .text      __ct__8CPaneMgrFv */
-//	80253944: 802553EC (__ct__13CPaneMgrAlphaFv)
-//	80253948: 803C2E04 (__vt__8CPaneMgr)
-//	8025394C: 803C2E04 (__vt__8CPaneMgr)
+/* 80253930-80253984 24E270 0054+00 0/0 11/11 0/0 .text            __ct__8CPaneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,14 +226,8 @@ asm CPaneMgr::CPaneMgr() {
 }
 #pragma pop
 
-/* 80253984-80253A18 0094+00 s=0 e=58 z=2  None .text __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
- */
-//	80253994: 803621D0 (_savegpr_26)
-//	802539B0: 802553EC (__ct__13CPaneMgrAlphaFv)
-//	802539B4: 803C2E04 (__vt__8CPaneMgr)
-//	802539B8: 803C2E04 (__vt__8CPaneMgr)
-//	802539F8: 80253C08 (initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap)
-//	80253A04: 8036221C (_restgpr_26)
+/* 80253984-80253A18 24E2C4 0094+00 0/0 58/58 2/2 .text
+ * __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -256,13 +237,7 @@ asm CPaneMgr::CPaneMgr(J2DScreen* param_0, u64 param_1, u8 param_2, JKRExpHeap* 
 }
 #pragma pop
 
-/* 80253A18-80253AB4 009C+00 s=1 e=11 z=0  None .text      __dt__8CPaneMgrFv */
-//	80253A38: 803C2E04 (__vt__8CPaneMgr)
-//	80253A3C: 803C2E04 (__vt__8CPaneMgr)
-//	80253A54: 802CE548 (free__7JKRHeapFPv)
-//	80253A70: 802CE548 (free__7JKRHeapFPv)
-//	80253A84: 8025546C (__dt__13CPaneMgrAlphaFv)
-//	80253A94: 802CED3C (__dl__FPv)
+/* 80253A18-80253AB4 24E358 009C+00 1/0 11/11 0/0 .text            __dt__8CPaneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,9 +247,7 @@ asm CPaneMgr::~CPaneMgr() {
 }
 #pragma pop
 
-/* 80253AB4-80253B2C 0078+00 s=1 e=0 z=0  None .text      setAlpha__8CPaneMgrFUc */
-//	80253AE8: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80253AF8: 80255B5C (childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc)
+/* 80253AB4-80253B2C 24E3F4 0078+00 1/0 0/0 0/0 .text            setAlpha__8CPaneMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,11 +257,7 @@ asm void CPaneMgr::setAlpha(u8 param_0) {
 }
 #pragma pop
 
-/* 80253B2C-80253C08 00DC+00 s=0 e=3 z=0  None .text      reinit__8CPaneMgrFv */
-//	80253B44: 802F7100 (getBounds__7J2DPaneFv)
-//	80253B54: 802F7100 (getBounds__7J2DPaneFv)
-//	80253B64: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80253B70: 80254364 (getGlobalPosY__8CPaneMgrFv)
+/* 80253B2C-80253C08 24E46C 00DC+00 0/0 3/3 0/0 .text            reinit__8CPaneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,21 +267,8 @@ asm void CPaneMgr::reinit() {
 }
 #pragma pop
 
-/* 80253C08-80254000 03F8+00 s=1 e=0 z=0  None .text      initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap
+/* 80253C08-80254000 24E548 03F8+00 1/1 0/0 0/0 .text initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap
  */
-//	80253C38: 8000F1EC (mDoExt_getCurrentHeap__Fv)
-//	80253C68: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80253C74: 80255A60 (childPaneCount__13CPaneMgrAlphaFP7J2DPane)
-//	80253C94: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80253CA8: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80253CB4: 80254018 (childPaneGetSize__8CPaneMgrFP7J2DPane)
-//	80253CD0: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80253CE4: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80253CF0: 80255ACC (childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane)
-//	80253CF8: 802F7100 (getBounds__7J2DPaneFv)
-//	80253D08: 802F7100 (getBounds__7J2DPaneFv)
-//	80253D18: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80253D24: 80254364 (getGlobalPosY__8CPaneMgrFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -322,7 +278,7 @@ asm void CPaneMgr::initiate(J2DPane* param_0, JKRExpHeap* param_1) {
 }
 #pragma pop
 
-/* 80254000-8025400C 000C+00 s=0 e=1 z=0  None .text      getBlack__9J2DWindowCFv */
+/* 80254000-8025400C 24E940 000C+00 0/0 1/0 0/0 .text            getBlack__9J2DWindowCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,7 +288,7 @@ asm void J2DWindow::getBlack() const {
 }
 #pragma pop
 
-/* 8025400C-80254018 000C+00 s=0 e=1 z=0  None .text      getWhite__9J2DWindowCFv */
+/* 8025400C-80254018 24E94C 000C+00 0/0 1/0 0/0 .text            getWhite__9J2DWindowCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,11 +298,7 @@ asm void J2DWindow::getWhite() const {
 }
 #pragma pop
 
-/* 80254018-80254134 011C+00 s=1 e=0 z=0  None .text      childPaneGetSize__8CPaneMgrFP7J2DPane */
-//	8025403C: 802F7100 (getBounds__7J2DPaneFv)
-//	8025405C: 802F7100 (getBounds__7J2DPaneFv)
-//	802540F8: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	8025410C: 802F7AC4 (getNextChildPane__7J2DPaneFv)
+/* 80254018-80254134 24E958 011C+00 1/1 0/0 0/0 .text childPaneGetSize__8CPaneMgrFP7J2DPane */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -357,24 +309,17 @@ asm void CPaneMgr::childPaneGetSize(J2DPane* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454E88-80454E90 0004+04 s=4 e=0 z=0  None .sdata2    @3858 */
+/* 80454E88-80454E90 003488 0004+04 4/4 0/0 0/0 .sdata2          @3858 */
 SECTION_SDATA2 static f32 lit_3858[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454E90-80454E98 0008+00 s=2 e=0 z=0  None .sdata2    @3860 */
+/* 80454E90-80454E98 003490 0008+00 2/2 0/0 0/0 .sdata2          @3860 */
 SECTION_SDATA2 static f64 lit_3860 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80254134-802542E8 01B4+00 s=1 e=0 z=0  None .text      childPaneSetSize__8CPaneMgrFP7J2DPaneff */
-//	80254178: 80454E90 (lit_3860)
-//	802541D0: 80454E90 (lit_3860)
-//	8025421C: 80454E88 (lit_3858)
-//	80254238: 80454E90 (lit_3860)
-//	80254278: 802F71DC (rotate__7J2DPaneFff13J2DRotateAxisf)
-//	8025428C: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	802542A8: 802F7AC4 (getNextChildPane__7J2DPaneFv)
+/* 80254134-802542E8 24EA74 01B4+00 1/1 0/0 0/0 .text childPaneSetSize__8CPaneMgrFP7J2DPaneff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,11 +329,7 @@ asm void CPaneMgr::childPaneSetSize(J2DPane* param_0, f32 param_1, f32 param_2) 
 }
 #pragma pop
 
-/* 802542E8-80254364 007C+00 s=2 e=18 z=0  None .text      getGlobalPosX__8CPaneMgrFv */
-//	80254308: 802F7100 (getBounds__7J2DPaneFv)
-//	80254314: 802F7AFC (getParentPane__7J2DPaneFv)
-//	80254324: 802F7100 (getBounds__7J2DPaneFv)
-//	80254334: 802F7AFC (getParentPane__7J2DPaneFv)
+/* 802542E8-80254364 24EC28 007C+00 2/2 18/18 0/0 .text            getGlobalPosX__8CPaneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -398,11 +339,7 @@ asm void CPaneMgr::getGlobalPosX() {
 }
 #pragma pop
 
-/* 80254364-802543E0 007C+00 s=2 e=15 z=0  None .text      getGlobalPosY__8CPaneMgrFv */
-//	80254384: 802F7100 (getBounds__7J2DPaneFv)
-//	80254390: 802F7AFC (getParentPane__7J2DPaneFv)
-//	802543A0: 802F7100 (getBounds__7J2DPaneFv)
-//	802543B0: 802F7AFC (getParentPane__7J2DPaneFv)
+/* 80254364-802543E0 24ECA4 007C+00 2/2 15/15 0/0 .text            getGlobalPosY__8CPaneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -412,7 +349,7 @@ asm void CPaneMgr::getGlobalPosY() {
 }
 #pragma pop
 
-/* 802543E0-80254408 0028+00 s=0 e=1 z=0  None .text      setWhite__9J2DWindowFQ28JUtility6TColor */
+/* 802543E0-80254408 24ED20 0028+00 0/0 1/0 0/0 .text setWhite__9J2DWindowFQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -422,8 +359,7 @@ asm void J2DWindow::setWhite(JUtility::TColor param_0) {
 }
 #pragma pop
 
-/* 80254408-80254430 0028+00 s=0 e=1 z=0  None .text      setBlack__10J2DTextBoxFQ28JUtility6TColor
- */
+/* 80254408-80254430 24ED48 0028+00 0/0 1/0 0/0 .text setBlack__10J2DTextBoxFQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -433,7 +369,7 @@ asm void J2DTextBox::setBlack(JUtility::TColor param_0) {
 }
 #pragma pop
 
-/* 80254430-80254458 0028+00 s=0 e=1 z=0  None .text      setBlack__9J2DWindowFQ28JUtility6TColor */
+/* 80254430-80254458 24ED70 0028+00 0/0 1/0 0/0 .text setBlack__9J2DWindowFQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -443,7 +379,7 @@ asm void J2DWindow::setBlack(JUtility::TColor param_0) {
 }
 #pragma pop
 
-/* 80254458-80254568 0110+00 s=1 e=7 z=0  None .text
+/* 80254458-80254568 24ED98 0110+00 1/1 7/7 0/0 .text
  * setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
@@ -454,7 +390,7 @@ asm void CPaneMgr::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 }
 #pragma pop
 
-/* 80254568-802545B0 0048+00 s=0 e=1 z=0  None .text
+/* 80254568-802545B0 24EEA8 0048+00 0/0 1/0 0/0 .text
  * setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
@@ -466,15 +402,14 @@ asm void J2DWindow::setBlackWhite(JUtility::TColor param_0, JUtility::TColor par
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454E98-80454EA0 0004+04 s=3 e=0 z=0  None .sdata2    @4046 */
+/* 80454E98-80454EA0 003498 0004+04 3/3 0/0 0/0 .sdata2          @4046 */
 SECTION_SDATA2 static f32 lit_4046[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 802545B0-80254638 0088+00 s=0 e=51 z=3  None .text      paneTrans__8CPaneMgrFff */
-//	802545E0: 80454E98 (lit_4046)
+/* 802545B0-80254638 24EEF0 0088+00 0/0 51/51 3/3 .text            paneTrans__8CPaneMgrFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -484,14 +419,7 @@ asm void CPaneMgr::paneTrans(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80254638-802547CC 0194+00 s=0 e=5 z=0  None .text      paneScale__8CPaneMgrFff */
-//	80254694: 802F7100 (getBounds__7J2DPaneFv)
-//	802546AC: 802F7100 (getBounds__7J2DPaneFv)
-//	802546F4: 80454E98 (lit_4046)
-//	80254728: 80454E88 (lit_3858)
-//	80254754: 802F71DC (rotate__7J2DPaneFff13J2DRotateAxisf)
-//	80254770: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80254784: 80254134 (childPaneSetSize__8CPaneMgrFP7J2DPaneff)
+/* 80254638-802547CC 24EF78 0194+00 0/0 5/5 0/0 .text            paneScale__8CPaneMgrFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,8 +429,7 @@ asm void CPaneMgr::paneScale(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 802547CC-802548BC 00F0+00 s=0 e=10 z=0  None .text      scaleAnime__8CPaneMgrFsffUc */
-//	8025481C: 80255658 (rateCalc__13CPaneMgrAlphaFssUc)
+/* 802547CC-802548BC 24F10C 00F0+00 0/0 10/10 0/0 .text            scaleAnime__8CPaneMgrFsffUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -513,33 +440,12 @@ asm void CPaneMgr::scaleAnime(s16 param_0, f32 param_1, f32 param_2, u8 param_3)
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454EA0-80454EA8 0008+00 s=1 e=0 z=0  None .sdata2    @4349 */
+/* 80454EA0-80454EA8 0034A0 0008+00 1/1 0/0 0/0 .sdata2          @4349 */
 SECTION_SDATA2 static f64 lit_4349 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802548BC-80254C90 03D4+00 s=0 e=4 z=0  None .text
+/* 802548BC-80254C90 24F1FC 03D4+00 0/0 4/4 0/0 .text
  * colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc
  */
-//	802548CC: 803621D4 (_savegpr_27)
-//	80254908: 80255658 (rateCalc__13CPaneMgrAlphaFssUc)
-//	80254928: 80454EA0 (lit_4349)
-//	80254944: 80454E90 (lit_3860)
-//	80254984: 80454EA0 (lit_4349)
-//	802549A0: 80454E90 (lit_3860)
-//	802549E8: 80454EA0 (lit_4349)
-//	80254A04: 80454E90 (lit_3860)
-//	80254A4C: 80454EA0 (lit_4349)
-//	80254A68: 80454E90 (lit_3860)
-//	80254AB0: 80454EA0 (lit_4349)
-//	80254ACC: 80454E90 (lit_3860)
-//	80254B0C: 80454EA0 (lit_4349)
-//	80254B28: 80454E90 (lit_3860)
-//	80254B70: 80454EA0 (lit_4349)
-//	80254B8C: 80454E90 (lit_3860)
-//	80254BD4: 80454EA0 (lit_4349)
-//	80254BF0: 80454E90 (lit_3860)
-//	80254C44: 80254458 (setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor)
-//	80254C68: 80254458 (setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor)
-//	80254C7C: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -551,48 +457,20 @@ asm void CPaneMgr::colorAnime(s16 param_0, JUtility::TColor param_1, JUtility::T
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454EA8-80454EAC 0004+00 s=1 e=0 z=0  None .sdata2    @4473 */
+/* 80454EA8-80454EAC 0034A8 0004+00 1/1 0/0 0/0 .sdata2          @4473 */
 SECTION_SDATA2 static f32 lit_4473 = 608.0f;
 
-/* 80454EAC-80454EB0 0004+00 s=1 e=0 z=0  None .sdata2    @4474 */
+/* 80454EAC-80454EB0 0034AC 0004+00 1/1 0/0 0/0 .sdata2          @4474 */
 SECTION_SDATA2 static f32 lit_4474 = 448.0f;
 
-/* 80454EB0-80454EB4 0004+00 s=1 e=0 z=0  None .sdata2    @4475 */
+/* 80454EB0-80454EB4 0034B0 0004+00 1/1 0/0 0/0 .sdata2          @4475 */
 SECTION_SDATA2 static f32 lit_4475 = -1.0f;
 
-/* 80454EB4-80454EB8 0004+00 s=1 e=0 z=0  None .sdata2    @4476 */
+/* 80454EB4-80454EB8 0034B4 0004+00 1/1 0/0 0/0 .sdata2          @4476 */
 SECTION_SDATA2 static f32 lit_4476 = 1.0f;
 
-/* 80254C90-80254EBC 022C+00 s=1 e=9 z=0  None .text getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs
- */
-//	80254CA0: 803621C8 (_savegpr_24)
-//	80254CC4: 802F7AFC (getParentPane__7J2DPaneFv)
-//	80254CD0: 80454E88 (lit_3858)
-//	80254CD8: 80454EA8 (lit_4473)
-//	80254CDC: 80454EAC (lit_4474)
-//	80254CE0: 80454EB0 (lit_4475)
-//	80254CE4: 80454EB4 (lit_4476)
-//	80254CE8: 802E96D0 (__ct__13J2DOrthoGraphFffffff)
-//	80254CEC: 80454E88 (lit_3858)
-//	80254CF8: 80454EA8 (lit_4473)
-//	80254D00: 80454EAC (lit_4474)
-//	80254D10: 80454EB0 (lit_4475)
-//	80254D14: 80454EB4 (lit_4476)
-//	80254D18: 802E980C (func_802E980C)
-//	80254D4C: 803464B0 (PSMTXCopy)
-//	80254D5C: 803464E4 (PSMTXConcat)
-//	80254D80: 803464B0 (PSMTXCopy)
-//	80254D90: 80454E88 (lit_3858)
-//	80254DB8: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	80254DBC: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	80254DC4: 803CC9B8 (__vt__14J2DGrafContext)
-//	80254DC8: 803CC9B8 (__vt__14J2DGrafContext)
-//	80254DDC: 80254FB8 (getBounds__8CPaneMgrFP7J2DPane)
-//	80254E8C: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	80254E90: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	80254E98: 803CC9B8 (__vt__14J2DGrafContext)
-//	80254E9C: 803CC9B8 (__vt__14J2DGrafContext)
-//	80254EA8: 80362214 (_restgpr_24)
+/* 80254C90-80254EBC 24F5D0 022C+00 1/1 9/9 0/0 .text
+ * getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -603,13 +481,8 @@ asm void CPaneMgr::getGlobalVtx(J2DPane* param_0, f32 (*param_1)[3][4], u8 param
 }
 #pragma pop
 
-/* 80254EBC-80254FB8 00FC+00 s=0 e=56 z=1  None .text      getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
+/* 80254EBC-80254FB8 24F7FC 00FC+00 0/0 56/56 1/1 .text getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
  */
-//	80254ECC: 803621D8 (_savegpr_28)
-//	80254EF4: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	80254F2C: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	80254F48: 80454E98 (lit_4046)
-//	80254FA4: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -620,16 +493,10 @@ asm void CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430748-80430758 0010+00 s=2 e=0 z=0  None .bss       static_mBounds */
+/* 80430748-80430758 05D468 0010+00 2/2 0/0 0/0 .bss             static_mBounds */
 static u8 static_mBounds[16];
 
-/* 80254FB8-802550E8 0130+00 s=1 e=0 z=0  None .text      getBounds__8CPaneMgrFP7J2DPane */
-//	80254FD0: 803621DC (_savegpr_29)
-//	80254FE0: 802F7100 (getBounds__7J2DPaneFv)
-//	80255008: 802F7AFC (getParentPane__7J2DPaneFv)
-//	802550A4: 80430748 (static_mBounds)
-//	802550B0: 80430748 (static_mBounds)
-//	802550D4: 80362228 (_restgpr_29)
+/* 80254FB8-802550E8 24F8F8 0130+00 1/1 0/0 0/0 .text            getBounds__8CPaneMgrFP7J2DPane */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -639,8 +506,7 @@ asm void CPaneMgr::getBounds(J2DPane* param_0) {
 }
 #pragma pop
 
-/* 802550E8-8025512C 0044+00 s=0 e=54 z=3  None .text      dPaneClass_showNullPane__FP9J2DScreen */
-//	80255118: 8025512C (dPaneClass_showNullPane__FP7J2DPane)
+/* 802550E8-8025512C 24FA28 0044+00 0/0 54/54 3/3 .text dPaneClass_showNullPane__FP9J2DScreen */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -650,39 +516,19 @@ asm void dPaneClass_showNullPane(J2DScreen* param_0) {
 }
 #pragma pop
 
-/* 8025512C-80255184 0058+00 s=1 e=0 z=0  None .text      dPaneClass_showNullPane__FP7J2DPane */
-//	8025515C: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255168: 802F7AC4 (getNextChildPane__7J2DPaneFv)
+/* 8025512C-80255184 24FA6C 0058+00 1/1 0/0 0/0 .text            dPaneClass_showNullPane__FP7J2DPane
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dPaneClass_showNullPane(J2DPane* param_0) {
+static asm void dPaneClass_showNullPane(J2DPane* param_0) {
     nofralloc
 #include "asm/d/pane/d_pane_class/dPaneClass_showNullPane__FP7J2DPane.s"
 }
 #pragma pop
 
-/* 80255184-802552B8 0134+00 s=0 e=1 z=0  None .text
+/* 80255184-802552B8 24FAC4 0134+00 0/0 1/1 0/0 .text
  * dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive */
-//	80255194: 803621CC (_savegpr_25)
-//	802551C4: 80032738 (dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc)
-//	802551E4: 802CE4D4 (alloc__7JKRHeapFUli)
-//	8025521C: 803C2DF8 (__vt__10JSUIosBase)
-//	80255220: 803C2DF8 (__vt__10JSUIosBase)
-//	80255230: 803CC4D4 (__vt__14JSUInputStream)
-//	80255234: 803CC4D4 (__vt__14JSUInputStream)
-//	8025523C: 803CC4B0 (__vt__20JSURandomInputStream)
-//	80255240: 803CC4B0 (__vt__20JSURandomInputStream)
-//	80255248: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	8025524C: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	80255254: 802DC520 (setBuffer__20JSUMemoryInputStreamFPCvl)
-//	80255268: 802F8748 (setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive)
-//	80255270: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	80255274: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	8025527C: 803CC4B0 (__vt__20JSURandomInputStream)
-//	80255280: 803CC4B0 (__vt__20JSURandomInputStream)
-//	80255290: 802DC23C (__dt__14JSUInputStreamFv)
-//	802552A4: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -693,13 +539,7 @@ asm void dPaneClass_setPriority(void** param_0, JKRHeap* param_1, J2DScreen* par
 }
 #pragma pop
 
-/* 802552B8-80255328 0070+00 s=0 e=1 z=0  None .text      __dt__20JSUMemoryInputStreamFv */
-//	802552D8: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802552DC: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802552E8: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802552EC: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802552F8: 802DC23C (__dt__14JSUInputStreamFv)
-//	80255308: 802CED3C (__dl__FPv)
+/* 802552B8-80255328 24FBF8 0070+00 0/0 1/0 0/0 .text            __dt__20JSUMemoryInputStreamFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -709,11 +549,7 @@ asm JSUMemoryInputStream::~JSUMemoryInputStream() {
 }
 #pragma pop
 
-/* 80255328-80255388 0060+00 s=0 e=1 z=0  None .text      __dt__20JSURandomInputStreamFv */
-//	80255348: 803CC4B0 (__vt__20JSURandomInputStream)
-//	8025534C: 803CC4B0 (__vt__20JSURandomInputStream)
-//	80255358: 802DC23C (__dt__14JSUInputStreamFv)
-//	80255368: 802CED3C (__dl__FPv)
+/* 80255328-80255388 24FC68 0060+00 0/0 1/0 0/0 .text            __dt__20JSURandomInputStreamFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -723,10 +559,7 @@ asm JSURandomInputStream::~JSURandomInputStream() {
 }
 #pragma pop
 
-/* 80255388-802553D0 0048+00 s=1 e=0 z=0  None .text      __dt__10JSUIosBaseFv */
-//	802553A0: 803C2DF8 (__vt__10JSUIosBase)
-//	802553A4: 803C2DF8 (__vt__10JSUIosBase)
-//	802553B4: 802CED3C (__dl__FPv)
+/* 80255388-802553D0 24FCC8 0048+00 1/0 0/0 0/0 .text            __dt__10JSUIosBaseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -736,14 +569,11 @@ asm JSUIosBase::~JSUIosBase() {
 }
 #pragma pop
 
-/* 802553D0-802553EC 001C+00 s=0 e=0 z=0  None .text      __sinit_d_pane_class_cpp */
-//	802553D0: 80454E88 (lit_3858)
-//	802553D4: 80430748 (static_mBounds)
-//	802553D8: 80430748 (static_mBounds)
+/* 802553D0-802553EC 24FD10 001C+00 0/0 1/0 0/0 .text            __sinit_d_pane_class_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_pane_class_cpp() {
+asm void __sinit_d_pane_class_cpp() {
     nofralloc
 #include "asm/d/pane/d_pane_class/__sinit_d_pane_class_cpp.s"
 }

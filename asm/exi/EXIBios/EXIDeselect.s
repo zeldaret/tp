@@ -8,8 +8,8 @@ lbl_80343994:
 /* 803439AC  93 81 00 10 */	stw r28, 0x10(r1)
 /* 803439B0  3B E3 00 00 */	addi r31, r3, 0
 /* 803439B4  54 64 30 32 */	slwi r4, r3, 6
-/* 803439B8  3C 60 80 45 */	lis r3, Ecb@ha
-/* 803439BC  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 803439B8  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 803439BC  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 803439C0  7F C0 22 14 */	add r30, r0, r4
 /* 803439C4  4B FF 9D 31 */	bl OSDisableInterrupts
 /* 803439C8  7C 7C 1B 78 */	mr r28, r3

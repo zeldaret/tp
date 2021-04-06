@@ -1,6 +1,6 @@
 lbl_801EF654:
-/* 801EF654  3C 80 80 3C */	lis r4, __vt__9dMs_HIO_c@ha
-/* 801EF658  38 04 E7 CC */	addi r0, r4, __vt__9dMs_HIO_c@l
+/* 801EF654  3C 80 80 3C */	lis r4, __vt__9dMs_HIO_c@ha /* 0x803BE7CC@ha */
+/* 801EF658  38 04 E7 CC */	addi r0, r4, __vt__9dMs_HIO_c@l /* 0x803BE7CC@l */
 /* 801EF65C  90 03 00 00 */	stw r0, 0(r3)
 /* 801EF660  38 80 00 0F */	li r4, 0xf
 /* 801EF664  98 83 00 05 */	stb r4, 5(r3)

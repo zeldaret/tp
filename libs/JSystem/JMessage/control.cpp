@@ -51,13 +51,10 @@ extern "C" void render__Q28JMessage8TControlFv();
 extern "C" void setMessageCode__Q28JMessage8TControlFUsUs();
 extern "C" void setMessageID__Q28JMessage8TControlFUlUlPb();
 extern "C" void setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs();
-extern "C" extern void* __vt__Q28JMessage8TControl[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void reset__Q28JMessage10TProcessorFv();
 extern "C" void getResource_groupID__Q28JMessage10TProcessorCFUs();
@@ -74,8 +71,8 @@ extern "C" void _restgpr_28();
 //
 
 /* ############################################################################################## */
-/* 803C9B60-803C9B70 000C+04 s=2 e=0 z=0  None .data      __vt__Q28JMessage8TControl */
-SECTION_DATA void* __vt__Q28JMessage8TControl[3 + 1 /* padding */] = {
+/* 803C9B60-803C9B70 026C80 000C+04 2/2 0/0 0/0 .data            __vt__Q28JMessage8TControl */
+SECTION_DATA extern void* __vt__Q28JMessage8TControl[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q28JMessage8TControlFv,
@@ -83,9 +80,7 @@ SECTION_DATA void* __vt__Q28JMessage8TControl[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802A7548-802A758C 0044+00 s=0 e=2 z=0  None .text      __ct__Q28JMessage8TControlFv */
-//	802A7548: 803C9B60 (__vt__Q28JMessage8TControl)
-//	802A754C: 803C9B60 (__vt__Q28JMessage8TControl)
+/* 802A7548-802A758C 2A1E88 0044+00 0/0 2/2 0/0 .text            __ct__Q28JMessage8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -95,10 +90,7 @@ asm JMessage::TControl::TControl() {
 }
 #pragma pop
 
-/* 802A758C-802A75D4 0048+00 s=1 e=2 z=0  None .text      __dt__Q28JMessage8TControlFv */
-//	802A75A4: 803C9B60 (__vt__Q28JMessage8TControl)
-//	802A75A8: 803C9B60 (__vt__Q28JMessage8TControl)
-//	802A75B8: 802CED3C (__dl__FPv)
+/* 802A758C-802A75D4 2A1ECC 0048+00 1/0 2/2 0/0 .text            __dt__Q28JMessage8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,9 +100,7 @@ asm JMessage::TControl::~TControl() {
 }
 #pragma pop
 
-/* 802A75D4-802A7634 0060+00 s=0 e=9 z=0  None .text      reset__Q28JMessage8TControlFv */
-//	802A760C: 802A7B90 (reset__Q28JMessage10TProcessorFv)
-//	802A761C: 802A7B90 (reset__Q28JMessage10TProcessorFv)
+/* 802A75D4-802A7634 2A1F14 0060+00 0/0 9/9 0/0 .text            reset__Q28JMessage8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -120,8 +110,7 @@ asm void JMessage::TControl::reset() {
 }
 #pragma pop
 
-/* 802A7634-802A76BC 0088+00 s=0 e=4 z=0  None .text      update__Q28JMessage8TControlFv */
-//	802A7680: 802A8418 (process__Q28JMessage18TSequenceProcessorFPCc)
+/* 802A7634-802A76BC 2A1F74 0088+00 0/0 4/4 0/0 .text            update__Q28JMessage8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,13 +120,7 @@ asm void JMessage::TControl::update() {
 }
 #pragma pop
 
-/* 802A76BC-802A77E8 012C+00 s=0 e=5 z=0  None .text      render__Q28JMessage8TControlFv */
-//	802A76CC: 803621D8 (_savegpr_28)
-//	802A7718: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	802A771C:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	802A77CC: 802A8B20 (process__Q28JMessage19TRenderingProcessorFPCc)
-//	802A77D4: 80362224 (_restgpr_28)
+/* 802A76BC-802A77E8 2A1FFC 012C+00 0/0 5/5 0/0 .text            render__Q28JMessage8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,15 +130,7 @@ asm void JMessage::TControl::render() {
 }
 #pragma pop
 
-/* 802A77E8-802A78F4 010C+00 s=0 e=1 z=0  None .text      setMessageCode__Q28JMessage8TControlFUsUs
- */
-//	802A77F8: 803621D8 (_savegpr_28)
-//	802A7824: 802A7A20
-//(setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs) 	802A787C:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	802A7880: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	802A78E0:
-// 80362224 (_restgpr_28)
+/* 802A77E8-802A78F4 2A2128 010C+00 0/0 1/1 0/0 .text setMessageCode__Q28JMessage8TControlFUsUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,16 +140,7 @@ asm void JMessage::TControl::setMessageCode(u16 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802A78F4-802A7A20 012C+00 s=0 e=6 z=0  None .text      setMessageID__Q28JMessage8TControlFUlUlPb
- */
-//	802A7904: 803621D8 (_savegpr_28)
-//	802A7924: 802A7CD4 (toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb)
-//	802A7950: 802A7A20
-//(setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs) 	802A79A8:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	802A79AC: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	802A7A0C:
-// 80362224 (_restgpr_28)
+/* 802A78F4-802A7A20 2A2234 012C+00 0/0 6/6 0/0 .text setMessageID__Q28JMessage8TControlFUlUlPb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -184,11 +150,8 @@ asm void JMessage::TControl::setMessageID(u32 param_0, u32 param_1, bool* param_
 }
 #pragma pop
 
-/* 802A7A20-802A7AF8 00D8+00 s=2 e=1 z=0  None .text
+/* 802A7A20-802A7AF8 2A2360 00D8+00 2/2 1/1 0/0 .text
  * setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs */
-//	802A7A30: 803621D8 (_savegpr_28)
-//	802A7A4C: 802A7C54 (getResource_groupID__Q28JMessage10TProcessorCFUs)
-//	802A7AE4: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

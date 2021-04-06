@@ -45,10 +45,10 @@ lbl_804D69E4:
 /* 804D69FC  7F C3 F3 78 */	mr r3, r30
 /* 804D6A00  4B FF F4 05 */	bl getSwbit__10daAndsw2_cFv
 /* 804D6A04  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 804D6A08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804D6A0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804D6A08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804D6A0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804D6A10  7F E5 FB 78 */	mr r5, r31
-/* 804D6A14  4B B5 E8 9C */	b offSwitch__10dSv_info_cFii
+/* 804D6A14  4B B5 E8 9D */	bl offSwitch__10dSv_info_cFii
 lbl_804D6A18:
 /* 804D6A18  38 60 00 01 */	li r3, 1
 /* 804D6A1C  83 E1 00 0C */	lwz r31, 0xc(r1)

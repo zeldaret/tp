@@ -21,8 +21,8 @@ lbl_80039B6C:
 /* 80039BB8  48 2A 2D 59 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80039BBC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80039BC0  40 82 00 2C */	bne lbl_80039BEC
-/* 80039BC4  3C 60 80 38 */	lis r3, d_d_demo__stringBase0@ha
-/* 80039BC8  38 63 97 F8 */	addi r3, r3, d_d_demo__stringBase0@l
+/* 80039BC4  3C 60 80 38 */	lis r3, d_d_demo__stringBase0@ha /* 0x803797F8@ha */
+/* 80039BC8  38 63 97 F8 */	addi r3, r3, d_d_demo__stringBase0@l /* 0x803797F8@l */
 /* 80039BCC  38 63 00 08 */	addi r3, r3, 8
 /* 80039BD0  4C C6 31 82 */	crclr 6
 /* 80039BD4  4B FC D0 39 */	bl OSReport_Error
@@ -48,20 +48,20 @@ lbl_80039C04:
 /* 80039C1C  88 0D 88 D0 */	lbz r0, data_80450E50(r13)
 /* 80039C20  7C 00 07 75 */	extsb. r0, r0
 /* 80039C24  40 82 00 28 */	bne lbl_80039C4C
-/* 80039C28  3C 60 80 42 */	lis r3, l_translation@ha
-/* 80039C2C  38 63 46 68 */	addi r3, r3, l_translation@l
-/* 80039C30  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
-/* 80039C34  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
-/* 80039C38  3C A0 80 42 */	lis r5, lit_5233@ha
-/* 80039C3C  38 A5 46 5C */	addi r5, r5, lit_5233@l
+/* 80039C28  3C 60 80 42 */	lis r3, l_translation@ha /* 0x80424668@ha */
+/* 80039C2C  38 63 46 68 */	addi r3, r3, l_translation@l /* 0x80424668@l */
+/* 80039C30  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 80039C34  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80009184@l */
+/* 80039C38  3C A0 80 42 */	lis r5, lit_5233@ha /* 0x8042465C@ha */
+/* 80039C3C  38 A5 46 5C */	addi r5, r5, lit_5233@l /* 0x8042465C@l */
 /* 80039C40  48 32 7F E5 */	bl __register_global_object
 /* 80039C44  38 00 00 01 */	li r0, 1
 /* 80039C48  98 0D 88 D0 */	stb r0, data_80450E50(r13)
 lbl_80039C4C:
 /* 80039C4C  80 8D 88 AC */	lwz r4, m_translation__7dDemo_c(r13)
 /* 80039C50  C0 04 00 00 */	lfs f0, 0(r4)
-/* 80039C54  3C 60 80 42 */	lis r3, l_translation@ha
-/* 80039C58  D4 03 46 68 */	stfsu f0, l_translation@l(r3)
+/* 80039C54  3C 60 80 42 */	lis r3, l_translation@ha /* 0x80424668@ha */
+/* 80039C58  D4 03 46 68 */	stfsu f0, l_translation@l(r3)  /* 0x80424668@l */
 /* 80039C5C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80039C60  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80039C64  C0 04 00 08 */	lfs f0, 8(r4)

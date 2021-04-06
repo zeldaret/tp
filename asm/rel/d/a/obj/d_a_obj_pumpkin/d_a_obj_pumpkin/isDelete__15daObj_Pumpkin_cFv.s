@@ -19,13 +19,13 @@ lbl_80CB787C:
 /* 80CB7880  48 00 00 38 */	b lbl_80CB78B8
 lbl_80CB7884:
 /* 80CB7884  38 60 00 1E */	li r3, 0x1e
-/* 80CB7888  4B 49 52 24 */	b daNpcT_chkEvtBit__FUl
+/* 80CB7888  4B 49 52 25 */	bl daNpcT_chkEvtBit__FUl
 /* 80CB788C  7C 60 00 34 */	cntlzw r0, r3
 /* 80CB7890  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80CB7894  48 00 00 24 */	b lbl_80CB78B8
 lbl_80CB7898:
 /* 80CB7898  38 60 00 92 */	li r3, 0x92
-/* 80CB789C  4B 49 52 10 */	b daNpcT_chkEvtBit__FUl
+/* 80CB789C  4B 49 52 11 */	bl daNpcT_chkEvtBit__FUl
 /* 80CB78A0  7C 60 00 34 */	cntlzw r0, r3
 /* 80CB78A4  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80CB78A8  48 00 00 10 */	b lbl_80CB78B8

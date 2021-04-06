@@ -39,8 +39,8 @@ lbl_800F5248:
 /* 800F5270  4B FB 89 09 */	bl setOldRootQuaternion__9daAlink_cFsss
 /* 800F5274  80 7C 20 60 */	lwz r3, 0x2060(r28)
 /* 800F5278  83 63 00 1C */	lwz r27, 0x1c(r3)
-/* 800F527C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F5280  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800F527C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F5280  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800F5284  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 800F5288  7C 00 00 D0 */	neg r0, r0
 /* 800F528C  7C 04 07 34 */	extsh r4, r0
@@ -52,8 +52,8 @@ lbl_800F5248:
 /* 800F52A4  C0 1E 04 D8 */	lfs f0, 0x4d8(r30)
 /* 800F52A8  FC 60 00 50 */	fneg f3, f0
 /* 800F52AC  4B F1 7A F1 */	bl transM__14mDoMtx_stack_cFfff
-/* 800F52B0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F52B4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800F52B0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F52B4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800F52B8  38 9C 04 D0 */	addi r4, r28, 0x4d0
 /* 800F52BC  38 A1 00 08 */	addi r5, r1, 8
 /* 800F52C0  48 25 1A AD */	bl PSMTXMultVec

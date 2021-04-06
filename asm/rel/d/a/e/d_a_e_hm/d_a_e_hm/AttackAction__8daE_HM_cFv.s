@@ -21,10 +21,10 @@ lbl_806E345C:
 /* 806E3464  40 82 00 50 */	bne lbl_806E34B4
 /* 806E3468  38 80 00 06 */	li r4, 6
 /* 806E346C  38 A0 00 00 */	li r5, 0
-/* 806E3470  3C C0 80 6E */	lis r6, lit_4385@ha
-/* 806E3474  C0 26 5A 00 */	lfs f1, lit_4385@l(r6)
-/* 806E3478  3C C0 80 6E */	lis r6, lit_3793@ha
-/* 806E347C  C0 46 59 28 */	lfs f2, lit_3793@l(r6)
+/* 806E3470  3C C0 80 6E */	lis r6, lit_4385@ha /* 0x806E5A00@ha */
+/* 806E3474  C0 26 5A 00 */	lfs f1, lit_4385@l(r6)  /* 0x806E5A00@l */
+/* 806E3478  3C C0 80 6E */	lis r6, lit_3793@ha /* 0x806E5928@ha */
+/* 806E347C  C0 46 59 28 */	lfs f2, lit_3793@l(r6)  /* 0x806E5928@l */
 /* 806E3480  4B FF DA 0D */	bl SetAnm__8daE_HM_cFiiff
 /* 806E3484  A8 7F 05 D6 */	lha r3, 0x5d6(r31)
 /* 806E3488  38 03 00 01 */	addi r0, r3, 1

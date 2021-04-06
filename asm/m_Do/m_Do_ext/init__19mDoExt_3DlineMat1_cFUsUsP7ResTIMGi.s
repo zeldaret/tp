@@ -15,8 +15,8 @@ lbl_80013360:
 /* 80013394  54 83 2A F4 */	rlwinm r3, r4, 5, 0xb, 0x1a
 /* 80013398  38 63 00 10 */	addi r3, r3, 0x10
 /* 8001339C  48 2B B9 29 */	bl __nwa__FUl
-/* 800133A0  3C 80 80 01 */	lis r4, __ct__15mDoExt_3Dline_cFv@ha
-/* 800133A4  38 84 26 BC */	addi r4, r4, __ct__15mDoExt_3Dline_cFv@l
+/* 800133A0  3C 80 80 01 */	lis r4, __ct__15mDoExt_3Dline_cFv@ha /* 0x800126BC@ha */
+/* 800133A4  38 84 26 BC */	addi r4, r4, __ct__15mDoExt_3Dline_cFv@l /* 0x800126BC@l */
 /* 800133A8  38 A0 00 00 */	li r5, 0
 /* 800133AC  38 C0 00 20 */	li r6, 0x20
 /* 800133B0  7F A7 EB 78 */	mr r7, r29

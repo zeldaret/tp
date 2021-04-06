@@ -4,8 +4,8 @@ lbl_8085814C:
 /* 80858154  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80858158  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8085815C  93 C1 00 08 */	stw r30, 8(r1)
-/* 80858160  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80858164  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 80858160  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80858164  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80858168  38 00 00 00 */	li r0, 0
 /* 8085816C  90 1F 0E D8 */	stw r0, 0xed8(r31)
 /* 80858170  8B DF 12 C8 */	lbz r30, 0x12c8(r31)
@@ -35,7 +35,7 @@ lbl_808581B8:
 /* 808581C4  90 1F 0E 80 */	stw r0, 0xe80(r31)
 lbl_808581C8:
 /* 808581C8  80 7F 0E 80 */	lwz r3, 0xe80(r31)
-/* 808581CC  4B 80 34 80 */	b dKyw_rain_set__Fi
+/* 808581CC  4B 80 34 81 */	bl dKyw_rain_set__Fi
 /* 808581D0  48 00 00 34 */	b lbl_80858204
 lbl_808581D4:
 /* 808581D4  3B C0 00 01 */	li r30, 1
@@ -48,7 +48,7 @@ lbl_808581E0:
 /* 808581EC  40 80 00 10 */	bge lbl_808581FC
 /* 808581F0  38 63 00 01 */	addi r3, r3, 1
 /* 808581F4  90 7F 0E 80 */	stw r3, 0xe80(r31)
-/* 808581F8  4B 80 34 54 */	b dKyw_rain_set__Fi
+/* 808581F8  4B 80 34 55 */	bl dKyw_rain_set__Fi
 lbl_808581FC:
 /* 808581FC  38 00 00 01 */	li r0, 1
 /* 80858200  90 1F 0E D8 */	stw r0, 0xed8(r31)
@@ -57,14 +57,14 @@ lbl_80858204:
 /* 80858208  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 8085820C  7C 03 00 40 */	cmplw r3, r0
 /* 80858210  41 82 00 24 */	beq lbl_80858234
-/* 80858214  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80858218  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80858214  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80858218  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8085821C  88 03 12 D8 */	lbz r0, 0x12d8(r3)
 /* 80858220  28 00 00 00 */	cmplwi r0, 0
 /* 80858224  40 82 00 10 */	bne lbl_80858234
 /* 80858228  9B DF 12 C8 */	stb r30, 0x12c8(r31)
 /* 8085822C  7F C3 F3 78 */	mr r3, r30
-/* 80858230  4B 95 05 B4 */	b dKy_change_colpat__FUc
+/* 80858230  4B 95 05 B5 */	bl dKy_change_colpat__FUc
 lbl_80858234:
 /* 80858234  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80858238  83 C1 00 08 */	lwz r30, 8(r1)

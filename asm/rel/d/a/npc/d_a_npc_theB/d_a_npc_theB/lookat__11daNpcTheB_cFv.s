@@ -3,10 +3,10 @@ lbl_80AFED24:
 /* 80AFED28  7C 08 02 A6 */	mflr r0
 /* 80AFED2C  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80AFED30  39 61 00 60 */	addi r11, r1, 0x60
-/* 80AFED34  4B 86 34 A8 */	b _savegpr_29
+/* 80AFED34  4B 86 34 A9 */	bl _savegpr_29
 /* 80AFED38  7C 7F 1B 78 */	mr r31, r3
-/* 80AFED3C  3C 60 80 B0 */	lis r3, m__17daNpcTheB_Param_c@ha
-/* 80AFED40  38 83 0D 6C */	addi r4, r3, m__17daNpcTheB_Param_c@l
+/* 80AFED3C  3C 60 80 B0 */	lis r3, m__17daNpcTheB_Param_c@ha /* 0x80B00D6C@ha */
+/* 80AFED40  38 83 0D 6C */	addi r4, r3, m__17daNpcTheB_Param_c@l /* 0x80B00D6C@l */
 /* 80AFED44  38 A0 00 00 */	li r5, 0
 /* 80AFED48  80 7F 05 68 */	lwz r3, 0x568(r31)
 /* 80AFED4C  83 C3 00 04 */	lwz r30, 4(r3)
@@ -59,8 +59,8 @@ lbl_80AFED24:
 /* 80AFEE08  41 80 00 28 */	blt lbl_80AFEE30
 /* 80AFEE0C  2C 00 00 03 */	cmpwi r0, 3
 /* 80AFEE10  40 80 00 20 */	bge lbl_80AFEE30
-/* 80AFEE14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AFEE18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AFEE14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AFEE18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AFEE1C  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80AFEE20  2C 00 00 02 */	cmpwi r0, 2
 /* 80AFEE24  40 82 00 0C */	bne lbl_80AFEE30
@@ -93,7 +93,7 @@ lbl_80AFEE64:
 /* 80AFEE84  FD 00 28 90 */	fmr f8, f5
 /* 80AFEE88  A8 9F 08 F2 */	lha r4, 0x8f2(r31)
 /* 80AFEE8C  38 A1 00 24 */	addi r5, r1, 0x24
-/* 80AFEE90  4B 65 22 28 */	b setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
+/* 80AFEE90  4B 65 22 29 */	bl setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
 /* 80AFEE94  38 7F 0B DC */	addi r3, r31, 0xbdc
 /* 80AFEE98  7F E4 FB 78 */	mr r4, r31
 /* 80AFEE9C  38 BE 00 24 */	addi r5, r30, 0x24
@@ -101,9 +101,9 @@ lbl_80AFEE64:
 /* 80AFEEA4  38 E0 00 00 */	li r7, 0
 /* 80AFEEA8  7F A8 EB 78 */	mr r8, r29
 /* 80AFEEAC  39 20 00 00 */	li r9, 0
-/* 80AFEEB0  4B 65 24 A0 */	b calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
+/* 80AFEEB0  4B 65 24 A1 */	bl calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
 /* 80AFEEB4  39 61 00 60 */	addi r11, r1, 0x60
-/* 80AFEEB8  4B 86 33 70 */	b _restgpr_29
+/* 80AFEEB8  4B 86 33 71 */	bl _restgpr_29
 /* 80AFEEBC  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80AFEEC0  7C 08 03 A6 */	mtlr r0
 /* 80AFEEC4  38 21 00 60 */	addi r1, r1, 0x60

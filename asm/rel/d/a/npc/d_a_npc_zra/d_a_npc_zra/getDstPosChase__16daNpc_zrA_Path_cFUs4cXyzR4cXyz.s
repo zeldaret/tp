@@ -3,7 +3,7 @@ lbl_80B78CFC:
 /* 80B78D00  7C 08 02 A6 */	mflr r0
 /* 80B78D04  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80B78D08  39 61 00 40 */	addi r11, r1, 0x40
-/* 80B78D0C  4B 7E 94 C4 */	b _savegpr_26
+/* 80B78D0C  4B 7E 94 C5 */	bl _savegpr_26
 /* 80B78D10  7C 7B 1B 78 */	mr r27, r3
 /* 80B78D14  7C 9C 23 78 */	mr r28, r4
 /* 80B78D18  7C BD 2B 78 */	mr r29, r5
@@ -67,7 +67,7 @@ lbl_80B78DE4:
 lbl_80B78DEC:
 /* 80B78DEC  57 83 04 3E */	clrlwi r3, r28, 0x10
 /* 80B78DF0  39 61 00 40 */	addi r11, r1, 0x40
-/* 80B78DF4  4B 7E 94 28 */	b _restgpr_26
+/* 80B78DF4  4B 7E 94 29 */	bl _restgpr_26
 /* 80B78DF8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80B78DFC  7C 08 03 A6 */	mtlr r0
 /* 80B78E00  38 21 00 40 */	addi r1, r1, 0x40

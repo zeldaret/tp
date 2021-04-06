@@ -8,10 +8,10 @@ lbl_80B30BEC:
 /* 80B30C04  88 03 0E 02 */	lbz r0, 0xe02(r3)
 /* 80B30C08  28 00 00 00 */	cmplwi r0, 0
 /* 80B30C0C  40 82 00 80 */	bne lbl_80B30C8C
-/* 80B30C10  3C 60 80 B3 */	lis r3, s_sub1__FPvPv@ha
-/* 80B30C14  38 63 0B 80 */	addi r3, r3, s_sub1__FPvPv@l
+/* 80B30C10  3C 60 80 B3 */	lis r3, s_sub1__FPvPv@ha /* 0x80B30B80@ha */
+/* 80B30C14  38 63 0B 80 */	addi r3, r3, s_sub1__FPvPv@l /* 0x80B30B80@l */
 /* 80B30C18  7F C4 F3 78 */	mr r4, r30
-/* 80B30C1C  4B 4F 07 1C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80B30C1C  4B 4F 07 1D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80B30C20  28 03 00 00 */	cmplwi r3, 0
 /* 80B30C24  41 82 00 68 */	beq lbl_80B30C8C
 /* 80B30C28  7C 7F 1B 78 */	mr r31, r3
@@ -30,8 +30,8 @@ lbl_80B30BEC:
 /* 80B30C5C  48 01 09 BD */	bl getArenaPos__12daTagArena_cFv
 /* 80B30C60  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80B30C64  D0 1E 0D F8 */	stfs f0, 0xdf8(r30)
-/* 80B30C68  3C 60 80 B4 */	lis r3, lit_4804@ha
-/* 80B30C6C  C0 23 18 B8 */	lfs f1, lit_4804@l(r3)
+/* 80B30C68  3C 60 80 B4 */	lis r3, lit_4804@ha /* 0x80B418B8@ha */
+/* 80B30C6C  C0 23 18 B8 */	lfs f1, lit_4804@l(r3)  /* 0x80B418B8@l */
 /* 80B30C70  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 80B30C74  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80B30C78  D0 1E 0D FC */	stfs f0, 0xdfc(r30)

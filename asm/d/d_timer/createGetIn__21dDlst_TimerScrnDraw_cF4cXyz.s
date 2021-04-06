@@ -10,8 +10,8 @@ lbl_802601E4:
 /* 80260204  93 C1 00 B8 */	stw r30, 0xb8(r1)
 /* 80260208  7C 7E 1B 78 */	mr r30, r3
 /* 8026020C  7C 9F 23 78 */	mr r31, r4
-/* 80260210  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80260214  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80260210  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80260214  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80260218  38 80 03 E4 */	li r4, 0x3e4
 /* 8026021C  38 A1 00 40 */	addi r5, r1, 0x40
 /* 80260220  38 C0 00 00 */	li r6, 0
@@ -51,8 +51,8 @@ lbl_802601E4:
 /* 802602A8  54 00 20 36 */	slwi r0, r0, 4
 /* 802602AC  7C 7E 02 14 */	add r3, r30, r0
 /* 802602B0  D0 03 00 84 */	stfs f0, 0x84(r3)
-/* 802602B4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802602B8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802602B4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802602B8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802602BC  88 03 0B CA */	lbz r0, 0xbca(r3)
 /* 802602C0  28 00 00 01 */	cmplwi r0, 1
 /* 802602C4  40 82 00 48 */	bne lbl_8026030C
@@ -82,8 +82,8 @@ lbl_8026031C:
 /* 8026031C  98 83 00 00 */	stb r4, 0(r3)
 /* 80260320  38 63 00 01 */	addi r3, r3, 1
 /* 80260324  42 00 FF F8 */	bdnz lbl_8026031C
-/* 80260328  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8026032C  38 83 EB C8 */	addi r4, r3, g_drawHIO@l
+/* 80260328  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8026032C  38 83 EB C8 */	addi r4, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80260330  A8 04 0B AE */	lha r0, 0xbae(r4)
 /* 80260334  C8 62 B5 58 */	lfd f3, lit_4627(r2)
 /* 80260338  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -149,8 +149,8 @@ lbl_802603FC:
 /* 80260410  88 03 00 8D */	lbz r0, 0x8d(r3)
 /* 80260414  28 00 00 08 */	cmplwi r0, 8
 /* 80260418  41 81 00 6C */	bgt lbl_80260484
-/* 8026041C  3C 60 80 3C */	lis r3, lit_5239@ha
-/* 80260420  38 63 33 C0 */	addi r3, r3, lit_5239@l
+/* 8026041C  3C 60 80 3C */	lis r3, lit_5239@ha /* 0x803C33C0@ha */
+/* 80260420  38 63 33 C0 */	addi r3, r3, lit_5239@l /* 0x803C33C0@l */
 /* 80260424  54 00 10 3A */	slwi r0, r0, 2
 /* 80260428  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8026042C  7C 09 03 A6 */	mtctr r0

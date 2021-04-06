@@ -129,34 +129,34 @@ lbl_809B209C:
 /* 809B21BC  98 01 03 99 */	stb r0, 0x399(r1)
 /* 809B21C0  80 7F 00 00 */	lwz r3, 0(r31)
 /* 809B21C4  83 C3 00 04 */	lwz r30, 4(r3)
-/* 809B21C8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 809B21CC  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 809B21C8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 809B21CC  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 809B21D0  38 80 00 00 */	li r4, 0
 /* 809B21D4  38 A1 00 08 */	addi r5, r1, 8
 /* 809B21D8  38 C1 00 14 */	addi r6, r1, 0x14
-/* 809B21DC  4B 7F 15 E8 */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 809B21E0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 809B21E4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 809B21DC  4B 7F 15 E9 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 809B21E0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 809B21E4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 809B21E8  80 9E 00 04 */	lwz r4, 4(r30)
 /* 809B21EC  38 A1 00 14 */	addi r5, r1, 0x14
-/* 809B21F0  4B 7F 2B B0 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 809B21F0  4B 7F 2B B1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 809B21F4  83 DE 00 04 */	lwz r30, 4(r30)
 /* 809B21F8  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 809B21FC  38 7F 00 0C */	addi r3, r31, 0xc
 /* 809B2200  38 9E 00 58 */	addi r4, r30, 0x58
-/* 809B2204  4B 65 B4 D4 */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 809B2204  4B 65 B4 D5 */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 809B2208  C0 3F 00 34 */	lfs f1, 0x34(r31)
 /* 809B220C  38 7F 00 24 */	addi r3, r31, 0x24
 /* 809B2210  38 9E 00 58 */	addi r4, r30, 0x58
-/* 809B2214  4B 65 B5 94 */	b entry__13mDoExt_brkAnmFP16J3DMaterialTablef
+/* 809B2214  4B 65 B5 95 */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 809B2218  80 7F 00 00 */	lwz r3, 0(r31)
-/* 809B221C  4B 65 EF A4 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 809B221C  4B 65 EF A5 */	bl entryDL__16mDoExt_McaMorfSOFv
 /* 809B2220  38 7E 00 58 */	addi r3, r30, 0x58
 /* 809B2224  80 9F 00 38 */	lwz r4, 0x38(r31)
-/* 809B2228  4B 97 D6 58 */	b removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
+/* 809B2228  4B 97 D6 59 */	bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 809B222C  38 7E 00 58 */	addi r3, r30, 0x58
 /* 809B2230  80 9F 00 20 */	lwz r4, 0x20(r31)
-/* 809B2234  4B 97 D5 80 */	b removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
+/* 809B2234  4B 97 D5 81 */	bl removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 /* 809B2238  83 E1 03 AC */	lwz r31, 0x3ac(r1)
 /* 809B223C  83 C1 03 A8 */	lwz r30, 0x3a8(r1)
 /* 809B2240  80 01 03 B4 */	lwz r0, 0x3b4(r1)

@@ -8,8 +8,8 @@ lbl_8024A95C:
 /* 8024A974  7C 9B 23 78 */	mr r27, r4
 /* 8024A978  7C BD 2B 78 */	mr r29, r5
 /* 8024A97C  7C DC 33 78 */	mr r28, r6
-/* 8024A980  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha
-/* 8024A984  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l
+/* 8024A980  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024A984  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024A988  38 84 00 0B */	addi r4, r4, 0xb
 /* 8024A98C  4B FF FD 61 */	bl getMsgDataBlock__10dMsgFlow_cFPCc
 /* 8024A990  A0 1D 00 02 */	lhz r0, 2(r29)
@@ -32,8 +32,8 @@ lbl_8024A95C:
 /* 8024A9D4  4B DD 54 B1 */	bl fopMsgM_messageSet__FUlUl
 /* 8024A9D8  48 00 00 50 */	b lbl_8024AA28
 lbl_8024A9DC:
-/* 8024A9DC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8024A9E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8024A9DC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8024A9E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8024A9E4  A0 03 00 A4 */	lhz r0, 0xa4(r3)
 /* 8024A9E8  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8024A9EC  40 82 00 3C */	bne lbl_8024AA28

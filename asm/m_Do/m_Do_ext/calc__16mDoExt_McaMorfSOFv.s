@@ -14,8 +14,8 @@ lbl_80010B68:
 /* 80010B98  41 82 02 B0 */	beq lbl_80010E48
 /* 80010B9C  80 6D 90 74 */	lwz r3, mJoint__10J3DMtxCalc(r13)
 /* 80010BA0  A3 E3 00 14 */	lhz r31, 0x14(r3)
-/* 80010BA4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80010BA8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80010BA4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80010BA8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80010BAC  93 83 00 30 */	stw r28, 0x30(r3)
 /* 80010BB0  80 7C 00 20 */	lwz r3, 0x20(r28)
 /* 80010BB4  28 03 00 00 */	cmplwi r3, 0

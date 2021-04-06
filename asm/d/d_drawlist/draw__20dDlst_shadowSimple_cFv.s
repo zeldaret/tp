@@ -5,8 +5,8 @@ lbl_8005520C:
 /* 80055218  39 61 00 20 */	addi r11, r1, 0x20
 /* 8005521C  48 30 CF C1 */	bl _savegpr_29
 /* 80055220  7C 7D 1B 78 */	mr r29, r3
-/* 80055224  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 80055228  3B C3 87 A0 */	addi r30, r3, cNullVec__6Z2Calc@l
+/* 80055224  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803A87A0@ha */
+/* 80055228  3B C3 87 A0 */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x803A87A0@l */
 /* 8005522C  88 1D 00 00 */	lbz r0, 0(r29)
 /* 80055230  38 6D 80 D0 */	la r3, l_color_5326(r13) /* 80450650-_SDA_BASE_ */
 /* 80055234  98 03 00 03 */	stb r0, 3(r3)

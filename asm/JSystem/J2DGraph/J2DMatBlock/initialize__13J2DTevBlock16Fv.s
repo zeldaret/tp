@@ -110,8 +110,8 @@ lbl_802F0550:
 /* 802F0580  39 29 00 01 */	addi r9, r9, 1
 /* 802F0584  42 00 FF CC */	bdnz lbl_802F0550
 /* 802F0588  38 A0 00 00 */	li r5, 0
-/* 802F058C  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802F0590  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l
+/* 802F058C  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802F0590  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802F0594  38 00 00 10 */	li r0, 0x10
 /* 802F0598  7C 09 03 A6 */	mtctr r0
 lbl_802F059C:

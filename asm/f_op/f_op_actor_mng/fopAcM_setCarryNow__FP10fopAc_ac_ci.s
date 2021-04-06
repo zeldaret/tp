@@ -11,8 +11,8 @@ lbl_8001CB48:
 /* 8001CB6C  41 82 00 20 */	beq lbl_8001CB8C
 /* 8001CB70  4B FF CD 55 */	bl fopAcM_setStageLayer__FPv
 /* 8001CB74  A0 9F 04 94 */	lhz r4, 0x494(r31)
-/* 8001CB78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001CB7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001CB78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001CB7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001CB80  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8001CB84  7C 05 07 74 */	extsb r5, r0
 /* 8001CB88  48 01 8A BD */	bl onActor__10dSv_info_cFii

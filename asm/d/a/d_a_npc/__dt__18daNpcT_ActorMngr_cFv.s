@@ -5,8 +5,8 @@ lbl_8014D108:
 /* 8014D114  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8014D118  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8014D11C  41 82 00 1C */	beq lbl_8014D138
-/* 8014D120  3C A0 80 3B */	lis r5, __vt__18daNpcT_ActorMngr_c@ha
-/* 8014D124  38 05 3B 48 */	addi r0, r5, __vt__18daNpcT_ActorMngr_c@l
+/* 8014D120  3C A0 80 3B */	lis r5, __vt__18daNpcT_ActorMngr_c@ha /* 0x803B3B48@ha */
+/* 8014D124  38 05 3B 48 */	addi r0, r5, __vt__18daNpcT_ActorMngr_c@l /* 0x803B3B48@l */
 /* 8014D128  90 1F 00 04 */	stw r0, 4(r31)
 /* 8014D12C  7C 80 07 35 */	extsh. r0, r4
 /* 8014D130  40 81 00 08 */	ble lbl_8014D138

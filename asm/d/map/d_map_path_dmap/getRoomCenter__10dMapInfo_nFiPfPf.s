@@ -1,6 +1,6 @@
 lbl_8003F19C:
-/* 8003F19C  3C C0 80 3F */	lis r6, mStatus__20dStage_roomControl_c@ha
-/* 8003F1A0  38 C6 60 94 */	addi r6, r6, mStatus__20dStage_roomControl_c@l
+/* 8003F19C  3C C0 80 3F */	lis r6, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8003F1A0  38 C6 60 94 */	addi r6, r6, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8003F1A4  1C 03 04 04 */	mulli r0, r3, 0x404
 /* 8003F1A8  7C 66 02 14 */	add r3, r6, r0
 /* 8003F1AC  80 63 00 20 */	lwz r3, 0x20(r3)

@@ -5,7 +5,7 @@ lbl_80CB2FD4:
 /* 80CB2FE0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CB2FE4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CB2FE8  41 82 00 24 */	beq lbl_80CB300C
-/* 80CB2FEC  4B 36 5C F4 */	b fopAc_IsActor__FPv
+/* 80CB2FEC  4B 36 5C F5 */	bl fopAc_IsActor__FPv
 /* 80CB2FF0  2C 03 00 00 */	cmpwi r3, 0
 /* 80CB2FF4  41 82 00 18 */	beq lbl_80CB300C
 /* 80CB2FF8  A8 1F 00 0E */	lha r0, 0xe(r31)

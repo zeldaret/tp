@@ -20,8 +20,8 @@ lbl_8027CE64:
 /* 8027CEAC  10 9E 07 BA */	ps_madd f4, f30, f30, f0
 /* 8027CEB0  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8027CEB4  C0 22 B9 40 */	lfs f1, lit_2459(r2)
-/* 8027CEB8  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8027CEBC  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8027CEB8  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8027CEBC  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8027CEC0  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8027CEC4  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8027CEC8  4C 40 13 82 */	cror 2, 0, 2

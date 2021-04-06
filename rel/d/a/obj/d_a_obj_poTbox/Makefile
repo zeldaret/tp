@@ -3,19 +3,20 @@
 #
 
 M597_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox.plf
+M597_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox.lcf
+M597_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox.map
 
 M597_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_poTbox/executor.cpp \
-	rel/d/a/obj/d_a_obj_poTbox/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_poTbox/d_a_obj_poTbox.cpp \
 
 M597_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/d_a_obj_poTbox.o \
 
 M597_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/libRuntime.PPCEABI.H.a \
 
 M597_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M597_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map597.map\
+	-m _prolog \
+	-lcf $(M597_LDSCRIPT) \
+	-unused -map $(M597_MAP) \
+	-w off \
 
 $(M597_TARGET): $(M597_O_FILES) $(M597_LIBS)
+	@echo [597] creating $(M597_TARGET)
 	@echo $(M597_LIBS) $(M597_O_FILES) > build/M597_ofiles
-	$(LD) -opt_partial $(M597_LDFLAGS) -o $(M597_TARGET) @build/M597_ofiles
+	@python3 tools/lcf.py rel 597 --output $(M597_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M597_LDFLAGS) -o $(M597_TARGET) @build/M597_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poTbox/%.o: rel/d/a/obj/d_a_obj_poTbox/%.cpp
+	@echo [597] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M597_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M597_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_poTbox/libs/Runtime.PPCEABI.H/Makefile
 

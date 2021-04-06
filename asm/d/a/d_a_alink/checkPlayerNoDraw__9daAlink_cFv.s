@@ -1,7 +1,7 @@
 lbl_800CF344:
 /* 800CF344  38 A0 00 01 */	li r5, 1
-/* 800CF348  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800CF34C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800CF348  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CF34C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CF350  80 03 31 7C */	lwz r0, 0x317c(r3)
 /* 800CF354  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 800CF358  7C 84 02 14 */	add r4, r4, r0

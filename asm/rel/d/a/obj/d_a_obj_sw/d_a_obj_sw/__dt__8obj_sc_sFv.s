@@ -9,17 +9,17 @@ lbl_80CF2F3C:
 /* 80CF2F58  41 82 00 34 */	beq lbl_80CF2F8C
 /* 80CF2F5C  34 1E 00 44 */	addic. r0, r30, 0x44
 /* 80CF2F60  41 82 00 1C */	beq lbl_80CF2F7C
-/* 80CF2F64  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha
-/* 80CF2F68  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l
+/* 80CF2F64  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 80CF2F68  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 80CF2F6C  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 80CF2F70  38 7E 00 44 */	addi r3, r30, 0x44
 /* 80CF2F74  38 80 00 00 */	li r4, 0
-/* 80CF2F78  4B 5C AF D0 */	b __dt__14Z2SoundObjBaseFv
+/* 80CF2F78  4B 5C AF D1 */	bl __dt__14Z2SoundObjBaseFv
 lbl_80CF2F7C:
 /* 80CF2F7C  7F E0 07 35 */	extsh. r0, r31
 /* 80CF2F80  40 81 00 0C */	ble lbl_80CF2F8C
 /* 80CF2F84  7F C3 F3 78 */	mr r3, r30
-/* 80CF2F88  4B 5D BD B4 */	b __dl__FPv
+/* 80CF2F88  4B 5D BD B5 */	bl __dl__FPv
 lbl_80CF2F8C:
 /* 80CF2F8C  7F C3 F3 78 */	mr r3, r30
 /* 80CF2F90  83 E1 00 0C */	lwz r31, 0xc(r1)

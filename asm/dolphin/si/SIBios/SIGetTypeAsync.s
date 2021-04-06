@@ -12,17 +12,17 @@ lbl_80346154:
 /* 8034617C  3B C3 00 00 */	addi r30, r3, 0
 /* 80346180  38 7C 00 00 */	addi r3, r28, 0
 /* 80346184  4B FF FE 0D */	bl SIGetType
-/* 80346188  3C 80 80 3D */	lis r4, Type@ha
+/* 80346188  3C 80 80 3D */	lis r4, Type@ha /* 0x803D1210@ha */
 /* 8034618C  57 85 10 3A */	slwi r5, r28, 2
-/* 80346190  38 04 12 10 */	addi r0, r4, Type@l
+/* 80346190  38 04 12 10 */	addi r0, r4, Type@l /* 0x803D1210@l */
 /* 80346194  7C 80 2A 14 */	add r4, r0, r5
 /* 80346198  80 04 00 00 */	lwz r0, 0(r4)
 /* 8034619C  3B A3 00 00 */	addi r29, r3, 0
 /* 803461A0  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 803461A4  41 82 00 AC */	beq lbl_80346250
-/* 803461A8  3C 60 80 45 */	lis r3, TypeCallback@ha
+/* 803461A8  3C 60 80 45 */	lis r3, TypeCallback@ha /* 0x8044C790@ha */
 /* 803461AC  57 84 20 36 */	slwi r4, r28, 4
-/* 803461B0  38 03 C7 90 */	addi r0, r3, TypeCallback@l
+/* 803461B0  38 03 C7 90 */	addi r0, r3, TypeCallback@l /* 0x8044C790@l */
 /* 803461B4  7C 80 22 14 */	add r4, r0, r4
 /* 803461B8  80 04 00 00 */	lwz r0, 0(r4)
 /* 803461BC  38 A0 00 00 */	li r5, 0

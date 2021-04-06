@@ -5,8 +5,8 @@ lbl_8009EB18:
 /* 8009EB24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8009EB28  7C 7F 1B 78 */	mr r31, r3
 /* 8009EB2C  38 7F 2C 18 */	addi r3, r31, 0x2c18
-/* 8009EB30  3C 80 80 43 */	lis r4, mCurrentMtx__6J3DSys@ha
-/* 8009EB34  38 84 4B E4 */	addi r4, r4, mCurrentMtx__6J3DSys@l
+/* 8009EB30  3C 80 80 43 */	lis r4, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8009EB34  38 84 4B E4 */	addi r4, r4, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8009EB38  48 2A 79 79 */	bl PSMTXCopy
 /* 8009EB3C  38 00 00 00 */	li r0, 0
 /* 8009EB40  98 1F 2F 90 */	stb r0, 0x2f90(r31)

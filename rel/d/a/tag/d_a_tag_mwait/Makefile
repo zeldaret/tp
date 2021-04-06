@@ -3,17 +3,15 @@
 #
 
 M729_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait.plf
+M729_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait.lcf
+M729_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait.map
 
 M729_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_mwait/executor.cpp \
-	rel/d/a/tag/d_a_tag_mwait/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_mwait/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait.cpp \
 
 M729_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait.o \
 
 M729_LIBS := \
@@ -29,15 +27,21 @@ M729_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map729.map\
+	-m _prolog \
+	-lcf $(M729_LDSCRIPT) \
+	-unused -map $(M729_MAP) \
+	-w off \
 
 $(M729_TARGET): $(M729_O_FILES) $(M729_LIBS)
+	@echo [729] creating $(M729_TARGET)
 	@echo $(M729_LIBS) $(M729_O_FILES) > build/M729_ofiles
-	$(LD) -opt_partial $(M729_LDFLAGS) -o $(M729_TARGET) @build/M729_ofiles
+	@python3 tools/lcf.py rel 729 --output $(M729_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M729_LDFLAGS) -o $(M729_TARGET) @build/M729_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mwait/%.o: rel/d/a/tag/d_a_tag_mwait/%.cpp
+	@echo [729] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M729_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M729_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

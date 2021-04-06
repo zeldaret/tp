@@ -3,19 +3,20 @@
 #
 
 M347_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post.plf
+M347_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post.lcf
+M347_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post.map
 
 M347_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_post/executor.cpp \
-	rel/d/a/npc/d_a_npc_post/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_post/d_a_npc_post.cpp \
 
 M347_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/d_a_npc_post.o \
 
 M347_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/libRuntime.PPCEABI.H.a \
 
 M347_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M347_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map347.map\
+	-m _prolog \
+	-lcf $(M347_LDSCRIPT) \
+	-unused -map $(M347_MAP) \
+	-w off \
 
 $(M347_TARGET): $(M347_O_FILES) $(M347_LIBS)
+	@echo [347] creating $(M347_TARGET)
 	@echo $(M347_LIBS) $(M347_O_FILES) > build/M347_ofiles
-	$(LD) -opt_partial $(M347_LDFLAGS) -o $(M347_TARGET) @build/M347_ofiles
+	@python3 tools/lcf.py rel 347 --output $(M347_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M347_LDFLAGS) -o $(M347_TARGET) @build/M347_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_post/%.o: rel/d/a/npc/d_a_npc_post/%.cpp
+	@echo [347] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M347_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M347_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_post/libs/Runtime.PPCEABI.H/Makefile
 

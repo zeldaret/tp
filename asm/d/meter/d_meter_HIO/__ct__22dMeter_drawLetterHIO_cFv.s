@@ -1,6 +1,6 @@
 lbl_801FE5CC:
-/* 801FE5CC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawLetterHIO_c@ha
-/* 801FE5D0  38 04 F1 78 */	addi r0, r4, __vt__22dMeter_drawLetterHIO_c@l
+/* 801FE5CC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawLetterHIO_c@ha /* 0x803BF178@ha */
+/* 801FE5D0  38 04 F1 78 */	addi r0, r4, __vt__22dMeter_drawLetterHIO_c@l /* 0x803BF178@l */
 /* 801FE5D4  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE5D8  38 00 FF FF */	li r0, -1
 /* 801FE5DC  90 03 00 3C */	stw r0, 0x3c(r3)

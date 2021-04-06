@@ -16,8 +16,8 @@ lbl_80C04690:
 /* 80C04694  88 1F 07 F1 */	lbz r0, 0x7f1(r31)
 /* 80C04698  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C0469C  40 82 00 1C */	bne lbl_80C046B8
-/* 80C046A0  3C 60 80 C1 */	lis r3, lit_4333@ha
-/* 80C046A4  C0 23 FB 98 */	lfs f1, lit_4333@l(r3)
+/* 80C046A0  3C 60 80 C1 */	lis r3, lit_4333@ha /* 0x80C0FB98@ha */
+/* 80C046A4  C0 23 FB 98 */	lfs f1, lit_4333@l(r3)  /* 0x80C0FB98@l */
 /* 80C046A8  C0 1F 07 F8 */	lfs f0, 0x7f8(r31)
 /* 80C046AC  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80C046B0  41 82 00 08 */	beq lbl_80C046B8
@@ -27,8 +27,8 @@ lbl_80C046B8:
 /* 80C046BC  41 82 00 2C */	beq lbl_80C046E8
 /* 80C046C0  7F E3 FB 78 */	mr r3, r31
 /* 80C046C4  38 80 00 04 */	li r4, 4
-/* 80C046C8  3C A0 80 C1 */	lis r5, lit_4618@ha
-/* 80C046CC  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)
+/* 80C046C8  3C A0 80 C1 */	lis r5, lit_4618@ha /* 0x80C0FBB4@ha */
+/* 80C046CC  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)  /* 0x80C0FBB4@l */
 /* 80C046D0  4B FF D0 DD */	bl setFaceMotion__11daObj_GrA_cFif
 /* 80C046D4  7F E3 FB 78 */	mr r3, r31
 /* 80C046D8  38 80 00 18 */	li r4, 0x18

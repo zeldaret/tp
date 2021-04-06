@@ -24,7 +24,7 @@ lbl_80CEDA24:
 /* 80CEDA7C  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80CEDA80  38 E0 00 00 */	li r7, 0
 /* 80CEDA84  39 00 00 01 */	li r8, 1
-/* 80CEDA88  4B 32 DB F4 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80CEDA88  4B 32 DB F5 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80CEDA8C  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CEDA90  60 00 00 02 */	ori r0, r0, 2
 /* 80CEDA94  B0 1F 00 FA */	sth r0, 0xfa(r31)

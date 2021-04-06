@@ -17,20 +17,12 @@ struct scene_class {};
 // Forward References:
 //
 
-void fopScnPause_Enable(scene_class*);
-void fopScnPause_Disable(scene_class*);
-
 extern "C" void fopScnPause_Enable__FP11scene_class();
 extern "C" void fopScnPause_Disable__FP11scene_class();
 
 //
 // External References:
 //
-
-void fpcEx_IsExist(unsigned int);
-void fpcM_IsPause(void*, u8);
-void fpcM_PauseEnable(void*, u8);
-void fpcM_PauseDisable(void*, u8);
 
 extern "C" void fpcEx_IsExist__FUi();
 extern "C" void fpcM_IsPause__FPvUc();
@@ -41,9 +33,8 @@ extern "C" void fpcM_PauseDisable__FPvUc();
 // Declarations:
 //
 
-/* 80020548-80020594 004C+00 s=0 e=2 z=0  None .text      fopScnPause_Enable__FP11scene_class */
-//	80020564: 8002236C (fpcM_PauseEnable__FPvUc)
-//	80020570: 8002236C (fpcM_PauseEnable__FPvUc)
+/* 80020548-80020594 01AE88 004C+00 0/0 2/2 0/0 .text            fopScnPause_Enable__FP11scene_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,14 +44,7 @@ asm void fopScnPause_Enable(scene_class* param_0) {
 }
 #pragma pop
 
-/* 80020594-8002064C 00B8+00 s=0 e=2 z=0  None .text      fopScnPause_Disable__FP11scene_class */
-//	800205C4: 80022390 (fpcM_PauseDisable__FPvUc)
-//	800205D0: 80022390 (fpcM_PauseDisable__FPvUc)
-//	800205DC: 8002139C (fpcEx_IsExist__FUi)
-//	800205F0: 80022348 (fpcM_IsPause__FPvUc)
-//	80020604: 80022390 (fpcM_PauseDisable__FPvUc)
-//	80020610: 80022348 (fpcM_IsPause__FPvUc)
-//	80020624: 80022390 (fpcM_PauseDisable__FPvUc)
+/* 80020594-8002064C 01AED4 00B8+00 0/0 2/2 0/0 .text fopScnPause_Disable__FP11scene_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

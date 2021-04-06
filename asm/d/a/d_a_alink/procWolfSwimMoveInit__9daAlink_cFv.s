@@ -10,8 +10,8 @@ lbl_8013871C:
 /* 8013873C  4B FF FA 4D */	bl getWolfSwimMoveAnmSpeed__9daAlink_cFv
 /* 80138740  7F E3 FB 78 */	mr r3, r31
 /* 80138744  38 80 00 38 */	li r4, 0x38
-/* 80138748  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha
-/* 8013874C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l
+/* 80138748  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 8013874C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 80138750  C0 45 00 78 */	lfs f2, 0x78(r5)
 /* 80138754  4B FF 0F 85 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80138758  80 1F 05 70 */	lwz r0, 0x570(r31)
@@ -22,8 +22,8 @@ lbl_8013871C:
 /* 8013876C  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 80138770  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 lbl_80138774:
-/* 80138774  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80138778  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80138774  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80138778  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013877C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80138780  64 00 00 10 */	oris r0, r0, 0x10
 /* 80138784  90 03 5F 18 */	stw r0, 0x5f18(r3)

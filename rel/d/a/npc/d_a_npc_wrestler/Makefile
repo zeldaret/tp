@@ -3,19 +3,20 @@
 #
 
 M378_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler.plf
+M378_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler.lcf
+M378_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler.map
 
 M378_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_wrestler/executor.cpp \
-	rel/d/a/npc/d_a_npc_wrestler/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_wrestler/d_a_npc_wrestler.cpp \
 
 M378_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/d_a_npc_wrestler.o \
 
 M378_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/libRuntime.PPCEABI.H.a \
 
 M378_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M378_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map378.map\
+	-m _prolog \
+	-lcf $(M378_LDSCRIPT) \
+	-unused -map $(M378_MAP) \
+	-w off \
 
 $(M378_TARGET): $(M378_O_FILES) $(M378_LIBS)
+	@echo [378] creating $(M378_TARGET)
 	@echo $(M378_LIBS) $(M378_O_FILES) > build/M378_ofiles
-	$(LD) -opt_partial $(M378_LDFLAGS) -o $(M378_TARGET) @build/M378_ofiles
+	@python3 tools/lcf.py rel 378 --output $(M378_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M378_LDFLAGS) -o $(M378_TARGET) @build/M378_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_wrestler/%.o: rel/d/a/npc/d_a_npc_wrestler/%.cpp
+	@echo [378] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M378_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M378_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_wrestler/libs/Runtime.PPCEABI.H/Makefile
 

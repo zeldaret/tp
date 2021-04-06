@@ -3,17 +3,15 @@
 #
 
 M277_TARGET := $(BUILD_DIR)/rel/d/a/d_a_mant.plf
+M277_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_mant.lcf
+M277_MAP := $(BUILD_DIR)/rel/d/a/d_a_mant.map
 
 M277_CPP_FILES := \
-	rel/d/a/d_a_mant/executor.cpp \
-	rel/d/a/d_a_mant/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_mant/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_mant/d_a_mant.cpp \
 
 M277_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_mant/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mant/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mant/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_mant/d_a_mant.o \
 
 M277_LIBS := \
@@ -29,15 +27,21 @@ M277_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map277.map\
+	-m _prolog \
+	-lcf $(M277_LDSCRIPT) \
+	-unused -map $(M277_MAP) \
+	-w off \
 
 $(M277_TARGET): $(M277_O_FILES) $(M277_LIBS)
+	@echo [277] creating $(M277_TARGET)
 	@echo $(M277_LIBS) $(M277_O_FILES) > build/M277_ofiles
-	$(LD) -opt_partial $(M277_LDFLAGS) -o $(M277_TARGET) @build/M277_ofiles
+	@python3 tools/lcf.py rel 277 --output $(M277_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M277_LDFLAGS) -o $(M277_TARGET) @build/M277_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mant/%.o: rel/d/a/d_a_mant/%.cpp
+	@echo [277] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M277_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M277_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

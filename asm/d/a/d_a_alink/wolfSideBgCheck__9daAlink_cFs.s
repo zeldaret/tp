@@ -20,8 +20,8 @@ lbl_8012A02C:
 /* 8012A074  38 60 00 00 */	li r3, 0
 /* 8012A078  48 00 01 78 */	b lbl_8012A1F0
 lbl_8012A07C:
-/* 8012A07C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8012A080  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8012A07C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8012A080  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8012A084  38 C3 00 04 */	addi r6, r3, 4
 /* 8012A088  54 80 04 38 */	rlwinm r0, r4, 0, 0x10, 0x1c
 /* 8012A08C  7F E6 04 2E */	lfsx f31, r6, r0

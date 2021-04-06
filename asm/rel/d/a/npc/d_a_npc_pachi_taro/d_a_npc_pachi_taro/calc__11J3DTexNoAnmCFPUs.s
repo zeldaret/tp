@@ -6,7 +6,7 @@ lbl_80AA02E0:
 /* 80AA02F0  7C 85 23 78 */	mr r5, r4
 /* 80AA02F4  80 63 00 08 */	lwz r3, 8(r3)
 /* 80AA02F8  A0 86 00 04 */	lhz r4, 4(r6)
-/* 80AA02FC  4B 88 AC 54 */	b getTexNo__16J3DAnmTexPatternCFUsPUs
+/* 80AA02FC  4B 88 AC 55 */	bl getTexNo__16J3DAnmTexPatternCFUsPUs
 /* 80AA0300  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80AA0304  7C 08 03 A6 */	mtlr r0
 /* 80AA0308  38 21 00 10 */	addi r1, r1, 0x10

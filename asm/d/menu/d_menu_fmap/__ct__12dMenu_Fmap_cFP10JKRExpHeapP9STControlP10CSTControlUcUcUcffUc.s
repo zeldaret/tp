@@ -18,8 +18,8 @@ lbl_801C66E4:
 /* 801C6724  FF C0 08 90 */	fmr f30, f1
 /* 801C6728  FF E0 10 90 */	fmr f31, f2
 /* 801C672C  7D 5F 53 78 */	mr r31, r10
-/* 801C6730  3C 60 80 3C */	lis r3, __vt__12dMenu_Fmap_c@ha
-/* 801C6734  38 03 D6 64 */	addi r0, r3, __vt__12dMenu_Fmap_c@l
+/* 801C6730  3C 60 80 3C */	lis r3, __vt__12dMenu_Fmap_c@ha /* 0x803BD664@ha */
+/* 801C6734  38 03 D6 64 */	addi r0, r3, __vt__12dMenu_Fmap_c@l /* 0x803BD664@l */
 /* 801C6738  90 1D 00 00 */	stw r0, 0(r29)
 /* 801C673C  38 7D 00 C4 */	addi r3, r29, 0xc4
 /* 801C6740  48 08 37 C1 */	bl __ct__10dMsgFlow_cFv
@@ -102,11 +102,11 @@ lbl_801C6820:
 /* 801C686C  38 00 00 06 */	li r0, 6
 /* 801C6870  98 1D 03 00 */	stb r0, 0x300(r29)
 /* 801C6874  38 7D 02 50 */	addi r3, r29, 0x250
-/* 801C6878  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha
-/* 801C687C  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l
+/* 801C6878  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha /* 0x803960E8@ha */
+/* 801C687C  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l /* 0x803960E8@l */
 /* 801C6880  48 1A 22 AD */	bl strcpy
-/* 801C6884  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801C6888  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801C6884  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801C6888  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801C688C  80 83 00 08 */	lwz r4, 8(r3)
 /* 801C6890  28 04 00 00 */	cmplwi r4, 0
 /* 801C6894  41 82 00 20 */	beq lbl_801C68B4
@@ -118,8 +118,8 @@ lbl_801C6820:
 /* 801C68AC  90 1D 00 64 */	stw r0, 0x64(r29)
 /* 801C68B0  48 00 00 14 */	b lbl_801C68C4
 lbl_801C68B4:
-/* 801C68B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801C68B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801C68B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801C68B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801C68BC  80 03 5C 68 */	lwz r0, 0x5c68(r3)
 /* 801C68C0  90 1D 00 64 */	stw r0, 0x64(r29)
 lbl_801C68C4:
@@ -127,8 +127,8 @@ lbl_801C68C4:
 /* 801C68C8  98 1D 03 01 */	stb r0, 0x301(r29)
 /* 801C68CC  88 1D 03 00 */	lbz r0, 0x300(r29)
 /* 801C68D0  98 1D 03 02 */	stb r0, 0x302(r29)
-/* 801C68D4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C68D8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801C68D4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C68D8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C68DC  88 03 00 BF */	lbz r0, 0xbf(r3)
 /* 801C68E0  28 00 00 04 */	cmplwi r0, 4
 /* 801C68E4  40 82 00 18 */	bne lbl_801C68FC

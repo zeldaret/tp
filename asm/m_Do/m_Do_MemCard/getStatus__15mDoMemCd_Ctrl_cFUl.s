@@ -12,8 +12,8 @@ lbl_80016D74:
 /* 80016D9C  80 1E 1F C4 */	lwz r0, 0x1fc4(r30)
 /* 80016DA0  28 00 00 0D */	cmplwi r0, 0xd
 /* 80016DA4  41 81 00 88 */	bgt lbl_80016E2C
-/* 80016DA8  3C 60 80 3A */	lis r3, lit_3770@ha
-/* 80016DAC  38 63 34 F8 */	addi r3, r3, lit_3770@l
+/* 80016DA8  3C 60 80 3A */	lis r3, lit_3770@ha /* 0x803A34F8@ha */
+/* 80016DAC  38 63 34 F8 */	addi r3, r3, lit_3770@l /* 0x803A34F8@l */
 /* 80016DB0  54 00 10 3A */	slwi r0, r0, 2
 /* 80016DB4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80016DB8  7C 09 03 A6 */	mtctr r0

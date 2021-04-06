@@ -15,28 +15,28 @@ lbl_800732B0:
 /* 800732E4  54 00 10 3A */	slwi r0, r0, 2
 /* 800732E8  7C 7D 00 2E */	lwzx r3, r29, r0
 /* 800732EC  83 E3 00 04 */	lwz r31, 4(r3)
-/* 800732F0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800732F4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800732F0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800732F4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800732F8  C0 24 00 00 */	lfs f1, 0(r4)
 /* 800732FC  C0 44 00 04 */	lfs f2, 4(r4)
 /* 80073300  C0 1D 01 6C */	lfs f0, 0x16c(r29)
 /* 80073304  EC 42 00 2A */	fadds f2, f2, f0
 /* 80073308  C0 64 00 08 */	lfs f3, 8(r4)
 /* 8007330C  48 2D 35 DD */	bl PSMTXTrans
-/* 80073310  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80073314  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80073310  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80073314  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80073318  7F 64 DB 78 */	mr r4, r27
 /* 8007331C  7C 65 1B 78 */	mr r5, r3
 /* 80073320  48 2D 31 C5 */	bl PSMTXConcat
-/* 80073324  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80073328  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80073324  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80073328  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8007332C  88 1D 01 70 */	lbz r0, 0x170(r29)
 /* 80073330  54 00 10 3A */	slwi r0, r0, 2
 /* 80073334  7C 9D 00 2E */	lwzx r4, r29, r0
 /* 80073338  38 84 00 24 */	addi r4, r4, 0x24
 /* 8007333C  48 2D 31 75 */	bl PSMTXCopy
-/* 80073340  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80073344  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l
+/* 80073340  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80073344  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80073348  80 7B 61 B0 */	lwz r3, 0x61b0(r27)
 /* 8007334C  C0 42 8C B0 */	lfs f2, lit_5784(r2)
 /* 80073350  C0 22 8C 94 */	lfs f1, lit_4563(r2)
@@ -46,8 +46,8 @@ lbl_800732B0:
 /* 80073360  48 2F 93 09 */	bl tan
 /* 80073364  FF E0 08 18 */	frsp f31, f1
 /* 80073368  C0 22 8C B4 */	lfs f1, lit_5785(r2)
-/* 8007336C  3C 60 80 42 */	lis r3, g_AttDwHIO@ha
-/* 80073370  3B 83 4B 0C */	addi r28, r3, g_AttDwHIO@l
+/* 8007336C  3C 60 80 42 */	lis r3, g_AttDwHIO@ha /* 0x80424B0C@ha */
+/* 80073370  3B 83 4B 0C */	addi r28, r3, g_AttDwHIO@l /* 0x80424B0C@l */
 /* 80073374  C0 1C 00 08 */	lfs f0, 8(r28)
 /* 80073378  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8007337C  EF C0 F8 24 */	fdivs f30, f0, f31
@@ -138,19 +138,19 @@ lbl_80073444:
 /* 800734C8  38 9F 00 58 */	addi r4, r31, 0x58
 /* 800734CC  4B F9 A2 DD */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 lbl_800734D0:
-/* 800734D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800734D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800734D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800734D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800734D8  80 03 5F B4 */	lwz r0, 0x5fb4(r3)
-/* 800734DC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 800734E0  3B C3 4A C8 */	addi r30, r3, j3dSys@l
+/* 800734DC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 800734E0  3B C3 4A C8 */	addi r30, r3, j3dSys@l /* 0x80434AC8@l */
 /* 800734E4  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 800734E8  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 800734EC  88 1D 01 70 */	lbz r0, 0x170(r29)
 /* 800734F0  54 00 10 3A */	slwi r0, r0, 2
 /* 800734F4  7C 7D 00 2E */	lwzx r3, r29, r0
 /* 800734F8  4B F9 A7 CD */	bl mDoExt_modelUpdateDL__FP8J3DModel
-/* 800734FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80073500  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800734FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80073500  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80073504  80 03 5F 80 */	lwz r0, 0x5f80(r3)
 /* 80073508  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 8007350C  80 03 5F 84 */	lwz r0, 0x5f84(r3)

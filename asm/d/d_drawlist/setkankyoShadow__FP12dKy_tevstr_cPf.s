@@ -1,7 +1,7 @@
 lbl_80054ACC:
 /* 80054ACC  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80054AD0  3C A0 80 43 */	lis r5, g_env_light@ha
-/* 80054AD4  38 A5 CA 54 */	addi r5, r5, g_env_light@l
+/* 80054AD0  3C A0 80 43 */	lis r5, g_env_light@ha /* 0x8042CA54@ha */
+/* 80054AD4  38 A5 CA 54 */	addi r5, r5, g_env_light@l /* 0x8042CA54@l */
 /* 80054AD8  28 03 00 00 */	cmplwi r3, 0
 /* 80054ADC  41 82 00 18 */	beq lbl_80054AF4
 /* 80054AE0  C0 24 00 00 */	lfs f1, 0(r4)
@@ -35,8 +35,8 @@ lbl_80054B28:
 /* 80054B44  EC 01 00 2A */	fadds f0, f1, f0
 /* 80054B48  D0 04 00 00 */	stfs f0, 0(r4)
 lbl_80054B4C:
-/* 80054B4C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80054B50  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80054B4C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80054B50  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80054B54  88 03 07 A4 */	lbz r0, 0x7a4(r3)
 /* 80054B58  28 00 00 02 */	cmplwi r0, 2
 /* 80054B5C  40 82 00 58 */	bne lbl_80054BB4

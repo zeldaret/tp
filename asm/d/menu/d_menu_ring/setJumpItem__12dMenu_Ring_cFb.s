@@ -98,14 +98,14 @@ lbl_801EBFB8:
 /* 801EBFB8  88 1E 06 B3 */	lbz r0, 0x6b3(r30)
 /* 801EBFBC  28 00 00 00 */	cmplwi r0, 0
 /* 801EBFC0  40 82 00 60 */	bne lbl_801EC020
-/* 801EBFC4  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EBFC8  38 63 FA FC */	addi r3, r3, g_ringHIO@l
+/* 801EBFC4  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EBFC8  38 63 FA FC */	addi r3, r3, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EBFCC  C0 03 00 14 */	lfs f0, 0x14(r3)
 /* 801EBFD0  D0 1E 05 38 */	stfs f0, 0x538(r30)
 /* 801EBFD4  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 801EBFD8  D0 1E 05 3C */	stfs f0, 0x53c(r30)
-/* 801EBFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801EBFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801EBFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801EBFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801EBFE4  38 80 00 00 */	li r4, 0
 /* 801EBFE8  4B E4 6A 75 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBFEC  88 9E 06 B4 */	lbz r4, 0x6b4(r30)
@@ -125,14 +125,14 @@ lbl_801EC014:
 lbl_801EC020:
 /* 801EC020  28 00 00 01 */	cmplwi r0, 1
 /* 801EC024  40 82 00 5C */	bne lbl_801EC080
-/* 801EC028  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EC02C  38 63 FA FC */	addi r3, r3, g_ringHIO@l
+/* 801EC028  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EC02C  38 63 FA FC */	addi r3, r3, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EC030  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 801EC034  D0 1E 05 38 */	stfs f0, 0x538(r30)
 /* 801EC038  C0 03 00 14 */	lfs f0, 0x14(r3)
 /* 801EC03C  D0 1E 05 3C */	stfs f0, 0x53c(r30)
-/* 801EC040  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801EC044  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801EC040  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801EC044  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801EC048  38 80 00 01 */	li r4, 1
 /* 801EC04C  4B E4 6A 11 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC050  88 9E 06 B5 */	lbz r4, 0x6b5(r30)

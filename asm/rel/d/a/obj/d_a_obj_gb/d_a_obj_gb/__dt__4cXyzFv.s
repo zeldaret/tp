@@ -7,7 +7,7 @@ lbl_80BF678C:
 /* 80BF67A0  41 82 00 10 */	beq lbl_80BF67B0
 /* 80BF67A4  7C 80 07 35 */	extsh. r0, r4
 /* 80BF67A8  40 81 00 08 */	ble lbl_80BF67B0
-/* 80BF67AC  4B 6D 85 90 */	b __dl__FPv
+/* 80BF67AC  4B 6D 85 91 */	bl __dl__FPv
 lbl_80BF67B0:
 /* 80BF67B0  7F E3 FB 78 */	mr r3, r31
 /* 80BF67B4  83 E1 00 0C */	lwz r31, 0xc(r1)

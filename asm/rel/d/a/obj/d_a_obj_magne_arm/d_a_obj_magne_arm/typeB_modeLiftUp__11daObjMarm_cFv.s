@@ -5,8 +5,8 @@ lbl_80590F30:
 /* 80590F3C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80590F40  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80590F44  7C 7E 1B 78 */	mr r30, r3
-/* 80590F48  3C 60 80 59 */	lis r3, l_magne_scale@ha
-/* 80590F4C  3B E3 28 48 */	addi r31, r3, l_magne_scale@l
+/* 80590F48  3C 60 80 59 */	lis r3, l_magne_scale@ha /* 0x80592848@ha */
+/* 80590F4C  3B E3 28 48 */	addi r31, r3, l_magne_scale@l /* 0x80592848@l */
 /* 80590F50  38 7E 0A 17 */	addi r3, r30, 0xa17
 /* 80590F54  48 00 18 C1 */	bl func_80592814
 /* 80590F58  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -17,7 +17,7 @@ lbl_80590F30:
 /* 80590F6C  38 A0 00 14 */	li r5, 0x14
 /* 80590F70  38 C0 00 32 */	li r6, 0x32
 /* 80590F74  38 E0 00 0A */	li r7, 0xa
-/* 80590F78  4B CD F5 C8 */	b cLib_addCalcAngleS__FPsssss
+/* 80590F78  4B CD F5 C9 */	bl cLib_addCalcAngleS__FPsssss
 /* 80590F7C  A8 7E 0A 00 */	lha r3, 0xa00(r30)
 /* 80590F80  A8 1E 0A 0C */	lha r0, 0xa0c(r30)
 /* 80590F84  7C 03 02 14 */	add r0, r3, r0

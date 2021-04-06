@@ -12,8 +12,8 @@ lbl_800545D4:
 /* 800545FC  38 60 00 01 */	li r3, 1
 /* 80054600  38 81 00 08 */	addi r4, r1, 8
 /* 80054604  48 30 AD 79 */	bl GXSetTevColor
-/* 80054608  3C 60 80 3B */	lis r3, l_shadowProjMat@ha
-/* 8005460C  38 63 88 E0 */	addi r3, r3, l_shadowProjMat@l
+/* 80054608  3C 60 80 3B */	lis r3, l_shadowProjMat@ha /* 0x803A88E0@ha */
+/* 8005460C  38 63 88 E0 */	addi r3, r3, l_shadowProjMat@l /* 0x803A88E0@l */
 /* 80054610  38 80 00 40 */	li r4, 0x40
 /* 80054614  48 30 B8 DD */	bl GXCallDisplayList
 /* 80054618  38 60 00 00 */	li r3, 0

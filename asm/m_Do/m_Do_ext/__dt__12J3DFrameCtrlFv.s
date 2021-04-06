@@ -5,8 +5,8 @@ lbl_8000F9D8:
 /* 8000F9E4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000F9E8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000F9EC  41 82 00 1C */	beq lbl_8000FA08
-/* 8000F9F0  3C A0 80 3A */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 8000F9F4  38 05 33 54 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 8000F9F0  3C A0 80 3A */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8000F9F4  38 05 33 54 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 8000F9F8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000F9FC  7C 80 07 35 */	extsh. r0, r4
 /* 8000FA00  40 81 00 08 */	ble lbl_8000FA08

@@ -1,7 +1,7 @@
 lbl_80CC8F30:
 /* 80CC8F30  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80CC8F34  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CC8F38  38 63 93 04 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 80CC8F34  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CC9304@ha */
+/* 80CC8F38  38 63 93 04 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x80CC9304@l */
 /* 80CC8F3C  80 83 00 44 */	lwz r4, 0x44(r3)
 /* 80CC8F40  80 03 00 48 */	lwz r0, 0x48(r3)
 /* 80CC8F44  90 83 00 74 */	stw r4, 0x74(r3)
@@ -52,8 +52,8 @@ lbl_80CC8F30:
 /* 80CC8FF8  90 05 00 28 */	stw r0, 0x28(r5)
 /* 80CC8FFC  80 03 00 F8 */	lwz r0, 0xf8(r3)
 /* 80CC9000  90 05 00 2C */	stw r0, 0x2c(r5)
-/* 80CC9004  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80CC9008  84 C4 21 80 */	lwzu r6, __ptmf_null@l(r4)
+/* 80CC9004  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80CC9008  84 C4 21 80 */	lwzu r6, __ptmf_null@l(r4)  /* 0x803A2180@l */
 /* 80CC900C  80 A4 00 04 */	lwz r5, 4(r4)
 /* 80CC9010  90 C1 00 08 */	stw r6, 8(r1)
 /* 80CC9014  90 A1 00 0C */	stw r5, 0xc(r1)

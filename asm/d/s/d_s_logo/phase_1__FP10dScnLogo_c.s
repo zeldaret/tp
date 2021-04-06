@@ -22,10 +22,10 @@ lbl_80257A04:
 /* 80257A04  38 60 00 00 */	li r3, 0
 /* 80257A08  48 00 00 54 */	b lbl_80257A5C
 lbl_80257A0C:
-/* 80257A0C  3C 60 80 3A */	lis r3, d_s_d_s_logo__stringBase0@ha
-/* 80257A10  38 63 9F FC */	addi r3, r3, d_s_d_s_logo__stringBase0@l
-/* 80257A14  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80257A18  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80257A0C  3C 60 80 3A */	lis r3, d_s_d_s_logo__stringBase0@ha /* 0x80399FFC@ha */
+/* 80257A10  38 63 9F FC */	addi r3, r3, d_s_d_s_logo__stringBase0@l /* 0x80399FFC@l */
+/* 80257A14  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80257A18  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80257A1C  3C 84 00 02 */	addis r4, r4, 2
 /* 80257A20  38 A0 00 80 */	li r5, 0x80
 /* 80257A24  38 C3 00 0E */	addi r6, r3, 0xe

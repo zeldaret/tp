@@ -30,8 +30,8 @@ lbl_800412C0:
 /* 80041330  EC 00 10 28 */	fsubs f0, f0, f2
 /* 80041334  EC 01 00 24 */	fdivs f0, f1, f0
 /* 80041338  EF C3 00 32 */	fmuls f30, f3, f0
-/* 8004133C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80041340  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8004133C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80041340  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80041344  C0 24 00 00 */	lfs f1, 0(r4)
 /* 80041348  C0 42 84 28 */	lfs f2, lit_3796(r2)
 /* 8004134C  C0 64 00 08 */	lfs f3, 8(r4)
@@ -40,16 +40,16 @@ lbl_800412C0:
 /* 80041358  C0 42 84 38 */	lfs f2, lit_4202(r2)
 /* 8004135C  FC 60 F0 90 */	fmr f3, f30
 /* 80041360  4B FC BA D9 */	bl scaleM__14mDoMtx_stack_cFfff
-/* 80041364  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80041368  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80041364  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80041368  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8004136C  7F 84 E3 78 */	mr r4, r28
 /* 80041370  4B FC B0 C5 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80041374  3B 80 00 00 */	li r28, 0
 /* 80041378  3B E0 00 00 */	li r31, 0
-/* 8004137C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80041380  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l
-/* 80041384  3C 60 80 38 */	lis r3, l_offset@ha
-/* 80041388  3B C3 9D 5C */	addi r30, r3, l_offset@l
+/* 8004137C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80041380  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80041384  3C 60 80 38 */	lis r3, l_offset@ha /* 0x80379D5C@ha */
+/* 80041388  3B C3 9D 5C */	addi r30, r3, l_offset@l /* 0x80379D5C@l */
 lbl_8004138C:
 /* 8004138C  7F A3 EB 78 */	mr r3, r29
 /* 80041390  7C 9E FA 14 */	add r4, r30, r31
@@ -89,7 +89,7 @@ lbl_80041414:
 /* 80041414  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80041418  7C A5 1A 14 */	add r5, r5, r3
 /* 8004141C  C0 05 00 00 */	lfs f0, 0(r5)
-/* 80041420  D0 04 80 00 */	stfs f0, 0x8000(r4)
+/* 80041420  D0 04 80 00 */	stfs f0, 0x8000(r4)  /* 0xCC008000@l */
 /* 80041424  C0 05 00 08 */	lfs f0, 8(r5)
 /* 80041428  D0 04 80 00 */	stfs f0, -0x8000(r4)
 /* 8004142C  38 63 00 0C */	addi r3, r3, 0xc

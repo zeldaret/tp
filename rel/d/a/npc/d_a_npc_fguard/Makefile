@@ -3,17 +3,15 @@
 #
 
 M303_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard.plf
+M303_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard.lcf
+M303_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard.map
 
 M303_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_fguard/executor.cpp \
-	rel/d/a/npc/d_a_npc_fguard/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_fguard/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_fguard/d_a_npc_fguard.cpp \
 
 M303_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/d_a_npc_fguard.o \
 
 M303_LIBS := \
@@ -29,15 +27,21 @@ M303_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map303.map\
+	-m _prolog \
+	-lcf $(M303_LDSCRIPT) \
+	-unused -map $(M303_MAP) \
+	-w off \
 
 $(M303_TARGET): $(M303_O_FILES) $(M303_LIBS)
+	@echo [303] creating $(M303_TARGET)
 	@echo $(M303_LIBS) $(M303_O_FILES) > build/M303_ofiles
-	$(LD) -opt_partial $(M303_LDFLAGS) -o $(M303_TARGET) @build/M303_ofiles
+	@python3 tools/lcf.py rel 303 --output $(M303_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M303_LDFLAGS) -o $(M303_TARGET) @build/M303_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fguard/%.o: rel/d/a/npc/d_a_npc_fguard/%.cpp
+	@echo [303] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M303_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M303_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

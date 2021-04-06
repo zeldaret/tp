@@ -26,11 +26,11 @@ lbl_801F4724:
 /* 801F4784  88 1F 00 54 */	lbz r0, 0x54(r31)
 /* 801F4788  54 00 10 3A */	slwi r0, r0, 2
 /* 801F478C  7F E3 FB 78 */	mr r3, r31
-/* 801F4790  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha
-/* 801F4794  38 84 DF A8 */	addi r4, r4, SelOpenEndFrameTbl@l
+/* 801F4790  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha /* 0x803BDFA8@ha */
+/* 801F4794  38 84 DF A8 */	addi r4, r4, SelOpenEndFrameTbl@l /* 0x803BDFA8@l */
 /* 801F4798  7C 84 00 2E */	lwzx r4, r4, r0
-/* 801F479C  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha
-/* 801F47A0  38 A5 DF 9C */	addi r5, r5, SelOpenStartFrameTbl@l
+/* 801F479C  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha /* 0x803BDF9C@ha */
+/* 801F47A0  38 A5 DF 9C */	addi r5, r5, SelOpenStartFrameTbl@l /* 0x803BDF9C@l */
 /* 801F47A4  7C A5 00 2E */	lwzx r5, r5, r0
 /* 801F47A8  48 00 0D 61 */	bl selectDataMoveAnmInitSet__12dMenu_save_cFii
 /* 801F47AC  7F E3 FB 78 */	mr r3, r31

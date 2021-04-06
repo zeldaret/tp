@@ -17,7 +17,7 @@ lbl_80A94A20:
 /* 80A94A24  2C 00 00 00 */	cmpwi r0, 0
 /* 80A94A28  40 82 00 24 */	bne lbl_80A94A4C
 /* 80A94A2C  38 7F 0F A0 */	addi r3, r31, 0xfa0
-/* 80A94A30  4B 6B 0C D8 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A94A30  4B 6B 0C D9 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A94A34  28 03 00 00 */	cmplwi r3, 0
 /* 80A94A38  41 82 00 0C */	beq lbl_80A94A44
 /* 80A94A3C  38 00 FF FF */	li r0, -1
@@ -31,7 +31,7 @@ lbl_80A94A4C:
 /* 80A94A54  A0 1F 0E 30 */	lhz r0, 0xe30(r31)
 /* 80A94A58  B0 1F 0F 9C */	sth r0, 0xf9c(r31)
 /* 80A94A5C  7F E3 FB 78 */	mr r3, r31
-/* 80A94A60  4B 6B 57 C4 */	b evtChange__8daNpcT_cFv
+/* 80A94A60  4B 6B 57 C5 */	bl evtChange__8daNpcT_cFv
 lbl_80A94A64:
 /* 80A94A64  38 60 00 00 */	li r3, 0
 /* 80A94A68  83 E1 00 0C */	lwz r31, 0xc(r1)

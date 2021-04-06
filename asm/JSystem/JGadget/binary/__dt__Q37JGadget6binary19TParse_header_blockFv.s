@@ -5,8 +5,8 @@ lbl_802DC8C8:
 /* 802DC8D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802DC8D8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802DC8DC  41 82 00 1C */	beq lbl_802DC8F8
-/* 802DC8E0  3C A0 80 3C */	lis r5, __vt__Q37JGadget6binary19TParse_header_block@ha
-/* 802DC8E4  38 05 48 8C */	addi r0, r5, __vt__Q37JGadget6binary19TParse_header_block@l
+/* 802DC8E0  3C A0 80 3C */	lis r5, __vt__Q37JGadget6binary19TParse_header_block@ha /* 0x803C488C@ha */
+/* 802DC8E4  38 05 48 8C */	addi r0, r5, __vt__Q37JGadget6binary19TParse_header_block@l /* 0x803C488C@l */
 /* 802DC8E8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802DC8EC  7C 80 07 35 */	extsh. r0, r4
 /* 802DC8F0  40 81 00 08 */	ble lbl_802DC8F8

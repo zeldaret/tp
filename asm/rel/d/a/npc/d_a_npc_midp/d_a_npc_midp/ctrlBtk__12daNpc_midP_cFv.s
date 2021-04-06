@@ -15,11 +15,11 @@ lbl_80A71860:
 /* 80A71894  54 00 04 3E */	clrlwi r0, r0, 0x10
 /* 80A71898  7C 00 1E 70 */	srawi r0, r0, 3
 /* 80A7189C  54 00 18 38 */	slwi r0, r0, 3
-/* 80A718A0  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80A718A4  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l
+/* 80A718A0  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80A718A4  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80A718A8  7C 45 04 2E */	lfsx f2, r5, r0
-/* 80A718AC  3C 80 80 A7 */	lis r4, lit_4551@ha
-/* 80A718B0  C0 24 3A 70 */	lfs f1, lit_4551@l(r4)
+/* 80A718AC  3C 80 80 A7 */	lis r4, lit_4551@ha /* 0x80A73A70@ha */
+/* 80A718B0  C0 24 3A 70 */	lfs f1, lit_4551@l(r4)  /* 0x80A73A70@l */
 /* 80A718B4  C0 03 0D E4 */	lfs f0, 0xde4(r3)
 /* 80A718B8  EC 00 00 B2 */	fmuls f0, f0, f2
 /* 80A718BC  EC 01 00 32 */	fmuls f0, f1, f0

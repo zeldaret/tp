@@ -5,8 +5,8 @@ lbl_801EC504:
 /* 801EC510  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801EC514  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801EC518  7C 7F 1B 78 */	mr r31, r3
-/* 801EC51C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801EC520  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801EC51C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801EC520  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801EC524  38 63 00 9C */	addi r3, r3, 0x9c
 /* 801EC528  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
 /* 801EC52C  7C 9F 02 14 */	add r4, r31, r0
@@ -25,8 +25,8 @@ lbl_801EC504:
 /* 801EC560  88 04 00 E0 */	lbz r0, 0xe0(r4)
 /* 801EC564  28 00 00 00 */	cmplwi r0, 0
 /* 801EC568  40 82 01 D4 */	bne lbl_801EC73C
-/* 801EC56C  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 801EC570  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 801EC56C  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801EC570  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801EC574  80 84 00 34 */	lwz r4, 0x34(r4)
 /* 801EC578  54 80 06 B5 */	rlwinm. r0, r4, 0, 0x1a, 0x1a
 /* 801EC57C  41 82 00 44 */	beq lbl_801EC5C0
@@ -82,8 +82,8 @@ lbl_801EC5E4:
 /* 801EC638  7F E3 FB 78 */	mr r3, r31
 /* 801EC63C  88 1F 06 B0 */	lbz r0, 0x6b0(r31)
 /* 801EC640  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801EC644  3C 80 80 3C */	lis r4, stick_init@ha
-/* 801EC648  38 04 DE AC */	addi r0, r4, stick_init@l
+/* 801EC644  3C 80 80 3C */	lis r4, stick_init@ha /* 0x803BDEAC@ha */
+/* 801EC648  38 04 DE AC */	addi r0, r4, stick_init@l /* 0x803BDEAC@l */
 /* 801EC64C  7D 80 2A 14 */	add r12, r0, r5
 /* 801EC650  48 17 5A 35 */	bl __ptmf_scall
 /* 801EC654  60 00 00 00 */	nop 
@@ -123,8 +123,8 @@ lbl_801EC680:
 /* 801EC6D4  7F E3 FB 78 */	mr r3, r31
 /* 801EC6D8  88 1F 06 B0 */	lbz r0, 0x6b0(r31)
 /* 801EC6DC  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801EC6E0  3C 80 80 3C */	lis r4, stick_init@ha
-/* 801EC6E4  38 04 DE AC */	addi r0, r4, stick_init@l
+/* 801EC6E0  3C 80 80 3C */	lis r4, stick_init@ha /* 0x803BDEAC@ha */
+/* 801EC6E4  38 04 DE AC */	addi r0, r4, stick_init@l /* 0x803BDEAC@l */
 /* 801EC6E8  7D 80 2A 14 */	add r12, r0, r5
 /* 801EC6EC  48 17 59 99 */	bl __ptmf_scall
 /* 801EC6F0  60 00 00 00 */	nop 

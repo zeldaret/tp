@@ -8,21 +8,21 @@ lbl_804BC7D4:
 /* 804BC7EC  7C DF 33 78 */	mr r31, r6
 /* 804BC7F0  38 00 00 00 */	li r0, 0
 /* 804BC7F4  90 04 00 00 */	stw r0, 0(r4)
-/* 804BC7F8  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 804BC7FC  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l
+/* 804BC7F8  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 804BC7FC  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l /* 0x80406194@l */
 /* 804BC800  7C A4 2B 78 */	mr r4, r5
-/* 804BC804  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 804BC808  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 804BC804  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804BC808  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804BC80C  3C A5 00 02 */	addis r5, r5, 2
 /* 804BC810  38 C0 00 80 */	li r6, 0x80
 /* 804BC814  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 804BC818  4B B7 FB 64 */	b getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
+/* 804BC818  4B B7 FB 65 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 804BC81C  28 03 00 00 */	cmplwi r3, 0
 /* 804BC820  41 82 00 2C */	beq lbl_804BC84C
 /* 804BC824  3C 80 00 08 */	lis r4, 8
 /* 804BC828  67 E5 11 00 */	oris r5, r31, 0x1100
 /* 804BC82C  60 A5 00 84 */	ori r5, r5, 0x84
-/* 804BC830  4B B5 84 24 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 804BC830  4B B5 84 25 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 804BC834  90 7E 00 00 */	stw r3, 0(r30)
 /* 804BC838  80 1E 00 00 */	lwz r0, 0(r30)
 /* 804BC83C  28 00 00 00 */	cmplwi r0, 0

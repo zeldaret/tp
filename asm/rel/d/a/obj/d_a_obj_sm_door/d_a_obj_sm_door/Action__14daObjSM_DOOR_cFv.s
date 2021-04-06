@@ -3,10 +3,10 @@ lbl_80CD8790:
 /* 80CD8794  7C 08 02 A6 */	mflr r0
 /* 80CD8798  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80CD879C  39 61 00 50 */	addi r11, r1, 0x50
-/* 80CD87A0  4B 68 9A 3C */	b _savegpr_29
+/* 80CD87A0  4B 68 9A 3D */	bl _savegpr_29
 /* 80CD87A4  7C 7D 1B 78 */	mr r29, r3
-/* 80CD87A8  3C 80 80 CE */	lis r4, lit_3697@ha
-/* 80CD87AC  3B E4 95 90 */	addi r31, r4, lit_3697@l
+/* 80CD87A8  3C 80 80 CE */	lis r4, lit_3697@ha /* 0x80CD9590@ha */
+/* 80CD87AC  3B E4 95 90 */	addi r31, r4, lit_3697@l /* 0x80CD9590@l */
 /* 80CD87B0  A8 03 05 AC */	lha r0, 0x5ac(r3)
 /* 80CD87B4  2C 00 00 01 */	cmpwi r0, 1
 /* 80CD87B8  41 82 00 78 */	beq lbl_80CD8830
@@ -19,10 +19,10 @@ lbl_80CD87CC:
 /* 80CD87D0  40 80 02 58 */	bge lbl_80CD8A28
 /* 80CD87D4  48 00 02 10 */	b lbl_80CD89E4
 lbl_80CD87D8:
-/* 80CD87D8  3C 60 80 CE */	lis r3, s_obj_sub__FPvPv@ha
-/* 80CD87DC  38 63 85 FC */	addi r3, r3, s_obj_sub__FPvPv@l
+/* 80CD87D8  3C 60 80 CE */	lis r3, s_obj_sub__FPvPv@ha /* 0x80CD85FC@ha */
+/* 80CD87DC  38 63 85 FC */	addi r3, r3, s_obj_sub__FPvPv@l /* 0x80CD85FC@l */
 /* 80CD87E0  7F A4 EB 78 */	mr r4, r29
-/* 80CD87E4  4B 34 8B 54 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80CD87E4  4B 34 8B 55 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80CD87E8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80CD87EC  41 82 02 3C */	beq lbl_80CD8A28
 /* 80CD87F0  88 1E 05 DC */	lbz r0, 0x5dc(r30)
@@ -38,15 +38,15 @@ lbl_80CD8810:
 /* 80CD8814  28 00 00 05 */	cmplwi r0, 5
 /* 80CD8818  40 82 02 10 */	bne lbl_80CD8A28
 /* 80CD881C  7F A3 EB 78 */	mr r3, r29
-/* 80CD8820  4B 34 14 5C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80CD8820  4B 34 14 5D */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80CD8824  7F C3 F3 78 */	mr r3, r30
-/* 80CD8828  4B 34 14 54 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80CD8828  4B 34 14 55 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80CD882C  48 00 01 FC */	b lbl_80CD8A28
 lbl_80CD8830:
-/* 80CD8830  3C 60 80 CE */	lis r3, s_obj_sub__FPvPv@ha
-/* 80CD8834  38 63 85 FC */	addi r3, r3, s_obj_sub__FPvPv@l
+/* 80CD8830  3C 60 80 CE */	lis r3, s_obj_sub__FPvPv@ha /* 0x80CD85FC@ha */
+/* 80CD8834  38 63 85 FC */	addi r3, r3, s_obj_sub__FPvPv@l /* 0x80CD85FC@l */
 /* 80CD8838  7F A4 EB 78 */	mr r4, r29
-/* 80CD883C  4B 34 8A FC */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80CD883C  4B 34 8A FD */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80CD8840  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80CD8844  41 82 01 E4 */	beq lbl_80CD8A28
 /* 80CD8848  C0 5D 04 D8 */	lfs f2, 0x4d8(r29)
@@ -62,7 +62,7 @@ lbl_80CD8830:
 /* 80CD8870  D0 41 00 24 */	stfs f2, 0x24(r1)
 /* 80CD8874  38 61 00 10 */	addi r3, r1, 0x10
 /* 80CD8878  38 81 00 1C */	addi r4, r1, 0x1c
-/* 80CD887C  4B 66 EB 20 */	b PSVECSquareDistance
+/* 80CD887C  4B 66 EB 21 */	bl PSVECSquareDistance
 /* 80CD8880  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80CD8884  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80CD8888  40 81 00 58 */	ble lbl_80CD88E0
@@ -91,8 +91,8 @@ lbl_80CD88E0:
 /* 80CD88E0  C8 1F 00 18 */	lfd f0, 0x18(r31)
 /* 80CD88E4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80CD88E8  40 80 00 10 */	bge lbl_80CD88F8
-/* 80CD88EC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80CD88F0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80CD88EC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80CD88F0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80CD88F4  48 00 00 70 */	b lbl_80CD8964
 lbl_80CD88F8:
 /* 80CD88F8  D0 21 00 08 */	stfs f1, 8(r1)
@@ -126,8 +126,8 @@ lbl_80CD8950:
 lbl_80CD8954:
 /* 80CD8954  2C 00 00 01 */	cmpwi r0, 1
 /* 80CD8958  40 82 00 0C */	bne lbl_80CD8964
-/* 80CD895C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80CD8960  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80CD895C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80CD8960  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80CD8964:
 /* 80CD8964  C0 1F 00 28 */	lfs f0, 0x28(r31)
 /* 80CD8968  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -135,8 +135,8 @@ lbl_80CD8964:
 /* 80CD8970  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008029E@ha */
 /* 80CD8974  38 03 02 9E */	addi r0, r3, 0x029E /* 0x0008029E@l */
 /* 80CD8978  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80CD897C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CD8980  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CD897C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CD8980  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CD8984  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CD8988  38 81 00 0C */	addi r4, r1, 0xc
 /* 80CD898C  38 BD 04 D0 */	addi r5, r29, 0x4d0
@@ -147,7 +147,7 @@ lbl_80CD8964:
 /* 80CD89A0  C0 7F 00 30 */	lfs f3, 0x30(r31)
 /* 80CD89A4  FC 80 18 90 */	fmr f4, f3
 /* 80CD89A8  39 00 00 00 */	li r8, 0
-/* 80CD89AC  4B 5D 2F D8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CD89AC  4B 5D 2F D9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80CD89B0  A8 7D 05 AC */	lha r3, 0x5ac(r29)
 /* 80CD89B4  38 03 00 01 */	addi r0, r3, 1
 /* 80CD89B8  B0 1D 05 AC */	sth r0, 0x5ac(r29)
@@ -158,9 +158,9 @@ lbl_80CD89C4:
 /* 80CD89C8  28 00 00 05 */	cmplwi r0, 5
 /* 80CD89CC  40 82 00 5C */	bne lbl_80CD8A28
 /* 80CD89D0  7F A3 EB 78 */	mr r3, r29
-/* 80CD89D4  4B 34 12 A8 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80CD89D4  4B 34 12 A9 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80CD89D8  7F C3 F3 78 */	mr r3, r30
-/* 80CD89DC  4B 34 12 A0 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80CD89DC  4B 34 12 A1 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80CD89E0  48 00 00 48 */	b lbl_80CD8A28
 lbl_80CD89E4:
 /* 80CD89E4  88 1D 05 B8 */	lbz r0, 0x5b8(r29)
@@ -179,10 +179,10 @@ lbl_80CD89E4:
 /* 80CD8A18  88 1D 05 B8 */	lbz r0, 0x5b8(r29)
 /* 80CD8A1C  28 00 00 04 */	cmplwi r0, 4
 /* 80CD8A20  40 80 00 08 */	bge lbl_80CD8A28
-/* 80CD8A24  4B 34 12 58 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80CD8A24  4B 34 12 59 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80CD8A28:
 /* 80CD8A28  39 61 00 50 */	addi r11, r1, 0x50
-/* 80CD8A2C  4B 68 97 FC */	b _restgpr_29
+/* 80CD8A2C  4B 68 97 FD */	bl _restgpr_29
 /* 80CD8A30  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80CD8A34  7C 08 03 A6 */	mtlr r0
 /* 80CD8A38  38 21 00 50 */	addi r1, r1, 0x50

@@ -4,17 +4,17 @@ lbl_8020ED60:
 /* 8020ED68  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8020ED6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8020ED70  7C 7F 1B 78 */	mr r31, r3
-/* 8020ED74  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha
-/* 8020ED78  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l
+/* 8020ED74  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 8020ED78  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 8020ED7C  90 03 00 00 */	stw r0, 0(r3)
-/* 8020ED80  3C A0 80 3C */	lis r5, __vt__11dMeterSub_c@ha
-/* 8020ED84  38 05 B6 D4 */	addi r0, r5, __vt__11dMeterSub_c@l
+/* 8020ED80  3C A0 80 3C */	lis r5, __vt__11dMeterSub_c@ha /* 0x803BB6D4@ha */
+/* 8020ED84  38 05 B6 D4 */	addi r0, r5, __vt__11dMeterSub_c@l /* 0x803BB6D4@l */
 /* 8020ED88  90 03 00 00 */	stw r0, 0(r3)
-/* 8020ED8C  3C A0 80 3C */	lis r5, __vt__14dMeterString_c@ha
-/* 8020ED90  38 05 F3 08 */	addi r0, r5, __vt__14dMeterString_c@l
+/* 8020ED8C  3C A0 80 3C */	lis r5, __vt__14dMeterString_c@ha /* 0x803BF308@ha */
+/* 8020ED90  38 05 F3 08 */	addi r0, r5, __vt__14dMeterString_c@l /* 0x803BF308@l */
 /* 8020ED94  90 03 00 00 */	stw r0, 0(r3)
-/* 8020ED98  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8020ED9C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8020ED98  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020ED9C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020EDA0  80 05 5C E0 */	lwz r0, 0x5ce0(r5)
 /* 8020EDA4  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8020EDA8  38 00 00 00 */	li r0, 0

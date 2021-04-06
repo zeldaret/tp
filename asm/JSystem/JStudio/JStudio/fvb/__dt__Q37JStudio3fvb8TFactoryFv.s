@@ -5,8 +5,8 @@ lbl_80284918:
 /* 80284924  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80284928  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8028492C  41 82 00 1C */	beq lbl_80284948
-/* 80284930  3C A0 80 3C */	lis r5, __vt__Q37JStudio3fvb8TFactory@ha
-/* 80284934  38 05 4A 30 */	addi r0, r5, __vt__Q37JStudio3fvb8TFactory@l
+/* 80284930  3C A0 80 3C */	lis r5, __vt__Q37JStudio3fvb8TFactory@ha /* 0x803C4A30@ha */
+/* 80284934  38 05 4A 30 */	addi r0, r5, __vt__Q37JStudio3fvb8TFactory@l /* 0x803C4A30@l */
 /* 80284938  90 1F 00 00 */	stw r0, 0(r31)
 /* 8028493C  7C 80 07 35 */	extsh. r0, r4
 /* 80284940  40 81 00 08 */	ble lbl_80284948

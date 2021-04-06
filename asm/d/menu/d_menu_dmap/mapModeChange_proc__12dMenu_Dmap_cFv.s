@@ -87,8 +87,8 @@ lbl_801BF70C:
 /* 801BF860  7F E3 FB 78 */	mr r3, r31
 /* 801BF864  88 1F 01 7D */	lbz r0, 0x17d(r31)
 /* 801BF868  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BF86C  3C 80 80 3C */	lis r4, map_init_process@ha
-/* 801BF870  38 04 C9 D8 */	addi r0, r4, map_init_process@l
+/* 801BF86C  3C 80 80 3C */	lis r4, map_init_process@ha /* 0x803BC9D8@ha */
+/* 801BF870  38 04 C9 D8 */	addi r0, r4, map_init_process@l /* 0x803BC9D8@l */
 /* 801BF874  7D 80 2A 14 */	add r12, r0, r5
 /* 801BF878  48 1A 28 0D */	bl __ptmf_scall
 /* 801BF87C  60 00 00 00 */	nop 

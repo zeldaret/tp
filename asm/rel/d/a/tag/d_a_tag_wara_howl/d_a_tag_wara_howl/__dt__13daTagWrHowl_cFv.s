@@ -7,15 +7,15 @@ lbl_80D63F74:
 /* 80D63F88  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D63F8C  7C 9F 23 78 */	mr r31, r4
 /* 80D63F90  41 82 00 28 */	beq lbl_80D63FB8
-/* 80D63F94  3C 80 80 D6 */	lis r4, __vt__13daTagWrHowl_c@ha
-/* 80D63F98  38 04 42 54 */	addi r0, r4, __vt__13daTagWrHowl_c@l
+/* 80D63F94  3C 80 80 D6 */	lis r4, __vt__13daTagWrHowl_c@ha /* 0x80D64254@ha */
+/* 80D63F98  38 04 42 54 */	addi r0, r4, __vt__13daTagWrHowl_c@l /* 0x80D64254@l */
 /* 80D63F9C  90 1E 05 68 */	stw r0, 0x568(r30)
 /* 80D63FA0  38 80 00 00 */	li r4, 0
-/* 80D63FA4  4B 2B 4C E8 */	b __dt__10fopAc_ac_cFv
+/* 80D63FA4  4B 2B 4C E9 */	bl __dt__10fopAc_ac_cFv
 /* 80D63FA8  7F E0 07 35 */	extsh. r0, r31
 /* 80D63FAC  40 81 00 0C */	ble lbl_80D63FB8
 /* 80D63FB0  7F C3 F3 78 */	mr r3, r30
-/* 80D63FB4  4B 56 AD 88 */	b __dl__FPv
+/* 80D63FB4  4B 56 AD 89 */	bl __dl__FPv
 lbl_80D63FB8:
 /* 80D63FB8  7F C3 F3 78 */	mr r3, r30
 /* 80D63FBC  83 E1 00 0C */	lwz r31, 0xc(r1)

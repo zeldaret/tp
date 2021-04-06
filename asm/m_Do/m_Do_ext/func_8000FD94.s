@@ -75,8 +75,8 @@ lbl_8000FE90:
 /* 8000FEA0  7C 7D 1B 79 */	or. r29, r3, r3
 /* 8000FEA4  41 82 00 14 */	beq lbl_8000FEB8
 /* 8000FEA8  48 2A EC ED */	bl __ct__15Z2SoundObjAnimeFv
-/* 8000FEAC  3C 60 80 3A */	lis r3, __vt__15mDoExt_zelAnime@ha
-/* 8000FEB0  38 03 32 DC */	addi r0, r3, __vt__15mDoExt_zelAnime@l
+/* 8000FEAC  3C 60 80 3A */	lis r3, __vt__15mDoExt_zelAnime@ha /* 0x803A32DC@ha */
+/* 8000FEB0  38 03 32 DC */	addi r0, r3, __vt__15mDoExt_zelAnime@l /* 0x803A32DC@l */
 /* 8000FEB4  90 1D 00 10 */	stw r0, 0x10(r29)
 lbl_8000FEB8:
 /* 8000FEB8  93 B5 00 4C */	stw r29, 0x4c(r21)

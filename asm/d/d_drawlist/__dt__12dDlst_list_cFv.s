@@ -18,8 +18,8 @@ lbl_800564B4:
 /* 800564C8  2C 1E 00 15 */	cmpwi r30, 0x15
 /* 800564CC  41 80 FF E8 */	blt lbl_800564B4
 /* 800564D0  3C 7C 00 01 */	addis r3, r28, 1
-/* 800564D4  3C 80 80 01 */	lis r4, __dt__26mDoExt_3DlineMatSortPacketFv@ha
-/* 800564D8  38 84 4E 20 */	addi r4, r4, __dt__26mDoExt_3DlineMatSortPacketFv@l
+/* 800564D4  3C 80 80 01 */	lis r4, __dt__26mDoExt_3DlineMatSortPacketFv@ha /* 0x80014E20@ha */
+/* 800564D8  38 84 4E 20 */	addi r4, r4, __dt__26mDoExt_3DlineMatSortPacketFv@l /* 0x80014E20@l */
 /* 800564DC  38 A0 00 14 */	li r5, 0x14
 /* 800564E0  38 C0 00 03 */	li r6, 3
 /* 800564E4  38 63 61 54 */	addi r3, r3, 0x6154
@@ -27,8 +27,8 @@ lbl_800564B4:
 /* 800564EC  34 1C 02 5C */	addic. r0, r28, 0x25c
 /* 800564F0  41 82 00 1C */	beq lbl_8005650C
 /* 800564F4  38 7C 36 6C */	addi r3, r28, 0x366c
-/* 800564F8  3C 80 80 05 */	lis r4, __dt__18dDlst_shadowReal_cFv@ha
-/* 800564FC  38 84 61 F8 */	addi r4, r4, __dt__18dDlst_shadowReal_cFv@l
+/* 800564F8  3C 80 80 05 */	lis r4, __dt__18dDlst_shadowReal_cFv@ha /* 0x800561F8@ha */
+/* 800564FC  38 84 61 F8 */	addi r4, r4, __dt__18dDlst_shadowReal_cFv@l /* 0x800561F8@l */
 /* 80056500  38 A0 25 54 */	li r5, 0x2554
 /* 80056504  38 C0 00 08 */	li r6, 8
 /* 80056508  48 30 B7 E1 */	bl __destroy_arr

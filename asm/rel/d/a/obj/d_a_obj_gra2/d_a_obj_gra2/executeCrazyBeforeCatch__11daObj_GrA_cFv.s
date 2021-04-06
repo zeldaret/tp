@@ -4,8 +4,8 @@ lbl_80C0C364:
 /* 80C0C36C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C0C370  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C0C374  7C 7F 1B 78 */	mr r31, r3
-/* 80C0C378  3C 80 80 C1 */	lis r4, lit_9223@ha
-/* 80C0C37C  C0 24 FD 7C */	lfs f1, lit_9223@l(r4)
+/* 80C0C378  3C 80 80 C1 */	lis r4, lit_9223@ha /* 0x80C0FD7C@ha */
+/* 80C0C37C  C0 24 FD 7C */	lfs f1, lit_9223@l(r4)  /* 0x80C0FD7C@l */
 /* 80C0C380  38 80 00 01 */	li r4, 1
 /* 80C0C384  4B FF FB B1 */	bl calcCatchPos__11daObj_GrA_cFfi
 /* 80C0C388  A0 7F 0A 48 */	lhz r3, 0xa48(r31)

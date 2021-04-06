@@ -8,8 +8,8 @@ lbl_8025AAC0:
 /* 8025AAD8  7C 80 07 75 */	extsb. r0, r4
 /* 8025AADC  41 80 00 94 */	blt lbl_8025AB70
 /* 8025AAE0  3B A0 00 02 */	li r29, 2
-/* 8025AAE4  3C 60 80 3A */	lis r3, PreLoadInfoT@ha
-/* 8025AAE8  38 63 A2 C8 */	addi r3, r3, PreLoadInfoT@l
+/* 8025AAE4  3C 60 80 3A */	lis r3, PreLoadInfoT@ha /* 0x8039A2C8@ha */
+/* 8025AAE8  38 63 A2 C8 */	addi r3, r3, PreLoadInfoT@l /* 0x8039A2C8@l */
 /* 8025AAEC  7C 80 07 74 */	extsb r0, r4
 /* 8025AAF0  54 00 20 36 */	slwi r0, r0, 4
 /* 8025AAF4  7C 63 02 14 */	add r3, r3, r0

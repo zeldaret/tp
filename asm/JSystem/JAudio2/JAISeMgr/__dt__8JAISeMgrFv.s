@@ -7,12 +7,12 @@ lbl_802A08FC:
 /* 802A0910  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A0914  7C 9F 23 78 */	mr r31, r4
 /* 802A0918  41 82 00 60 */	beq lbl_802A0978
-/* 802A091C  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha
-/* 802A0920  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l
+/* 802A091C  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha /* 0x803C98B0@ha */
+/* 802A0920  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l /* 0x803C98B0@l */
 /* 802A0924  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A0928  38 7E 00 14 */	addi r3, r30, 0x14
-/* 802A092C  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha
-/* 802A0930  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l
+/* 802A092C  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha /* 0x800078DC@ha */
+/* 802A0930  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l /* 0x800078DC@l */
 /* 802A0934  38 A0 00 6C */	li r5, 0x6c
 /* 802A0938  38 C0 00 10 */	li r6, 0x10
 /* 802A093C  48 0C 13 AD */	bl __destroy_arr

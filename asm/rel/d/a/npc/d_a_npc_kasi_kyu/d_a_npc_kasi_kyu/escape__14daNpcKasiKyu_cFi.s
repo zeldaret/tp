@@ -5,8 +5,8 @@ lbl_80A2493C:
 /* 80A24948  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80A2494C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80A24950  7C 7E 1B 78 */	mr r30, r3
-/* 80A24954  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha
-/* 80A24958  3B E4 58 B8 */	addi r31, r4, m__20daNpcKasiKyu_Param_c@l
+/* 80A24954  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A24958  3B E4 58 B8 */	addi r31, r4, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A2495C  A8 03 14 04 */	lha r0, 0x1404(r3)
 /* 80A24960  2C 00 00 01 */	cmpwi r0, 1
 /* 80A24964  41 82 00 6C */	beq lbl_80A249D0

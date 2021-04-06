@@ -7,8 +7,8 @@ lbl_80021EB0:
 /* 80021EC4  7C 7E 1B 78 */	mr r30, r3
 /* 80021EC8  7C 9F 23 78 */	mr r31, r4
 /* 80021ECC  38 DE FF FC */	addi r6, r30, -4
-/* 80021ED0  3C 60 80 3A */	lis r3, crear@ha
-/* 80021ED4  38 63 3A 00 */	addi r3, r3, crear@l
+/* 80021ED0  3C 60 80 3A */	lis r3, crear@ha /* 0x803A3A00@ha */
+/* 80021ED4  38 63 3A 00 */	addi r3, r3, crear@l /* 0x803A3A00@l */
 /* 80021ED8  38 83 FF FC */	addi r4, r3, -4
 /* 80021EDC  38 00 00 02 */	li r0, 2
 /* 80021EE0  7C 09 03 A6 */	mtctr r0
@@ -20,8 +20,8 @@ lbl_80021EE4:
 /* 80021EF4  42 00 FF F0 */	bdnz lbl_80021EE4
 /* 80021EF8  80 04 00 04 */	lwz r0, 4(r4)
 /* 80021EFC  90 06 00 04 */	stw r0, 4(r6)
-/* 80021F00  3C 60 80 3A */	lis r3, crear@ha
-/* 80021F04  38 63 3A 00 */	addi r3, r3, crear@l
+/* 80021F00  3C 60 80 3A */	lis r3, crear@ha /* 0x803A3A00@ha */
+/* 80021F04  38 63 3A 00 */	addi r3, r3, crear@l /* 0x803A3A00@l */
 /* 80021F08  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 80021F0C  90 1E 00 14 */	stw r0, 0x14(r30)
 /* 80021F10  A0 03 00 18 */	lhz r0, 0x18(r3)

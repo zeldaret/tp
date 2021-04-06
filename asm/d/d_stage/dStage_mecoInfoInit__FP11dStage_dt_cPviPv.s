@@ -13,8 +13,8 @@ lbl_80026298:
 /* 800262C4  41 82 00 40 */	beq lbl_80026304
 /* 800262C8  80 DF 00 04 */	lwz r6, 4(r31)
 /* 800262CC  38 E0 00 00 */	li r7, 0
-/* 800262D0  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 800262D4  38 83 60 94 */	addi r4, r3, mStatus__20dStage_roomControl_c@l
+/* 800262D0  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 800262D4  38 83 60 94 */	addi r4, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 800262D8  48 00 00 20 */	b lbl_800262F8
 lbl_800262DC:
 /* 800262DC  88 A6 00 01 */	lbz r5, 1(r6)

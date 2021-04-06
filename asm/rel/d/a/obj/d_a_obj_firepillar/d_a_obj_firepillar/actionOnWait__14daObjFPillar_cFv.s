@@ -6,13 +6,13 @@ lbl_80BE97B8:
 /* 80BE97C8  7C 7F 1B 78 */	mr r31, r3
 /* 80BE97CC  C0 43 04 F0 */	lfs f2, 0x4f0(r3)
 /* 80BE97D0  38 7F 09 40 */	addi r3, r31, 0x940
-/* 80BE97D4  3C 80 80 BF */	lis r4, lit_3784@ha
-/* 80BE97D8  C0 04 9A B0 */	lfs f0, lit_3784@l(r4)
+/* 80BE97D4  3C 80 80 BF */	lis r4, lit_3784@ha /* 0x80BE9AB0@ha */
+/* 80BE97D8  C0 04 9A B0 */	lfs f0, lit_3784@l(r4)  /* 0x80BE9AB0@l */
 /* 80BE97DC  EC 20 00 B2 */	fmuls f1, f0, f2
-/* 80BE97E0  3C 80 80 BF */	lis r4, lit_3853@ha
-/* 80BE97E4  C0 04 9A B4 */	lfs f0, lit_3853@l(r4)
+/* 80BE97E0  3C 80 80 BF */	lis r4, lit_3853@ha /* 0x80BE9AB4@ha */
+/* 80BE97E4  C0 04 9A B4 */	lfs f0, lit_3853@l(r4)  /* 0x80BE9AB4@l */
 /* 80BE97E8  EC 40 00 B2 */	fmuls f2, f0, f2
-/* 80BE97EC  4B 68 6F 54 */	b cLib_chaseF__FPfff
+/* 80BE97EC  4B 68 6F 55 */	bl cLib_chaseF__FPfff
 /* 80BE97F0  A0 7F 09 72 */	lhz r3, 0x972(r31)
 /* 80BE97F4  28 03 00 00 */	cmplwi r3, 0
 /* 80BE97F8  40 82 00 10 */	bne lbl_80BE9808
@@ -24,11 +24,11 @@ lbl_80BE9808:
 /* 80BE980C  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80BE9810  28 04 00 FF */	cmplwi r4, 0xff
 /* 80BE9814  41 82 00 3C */	beq lbl_80BE9850
-/* 80BE9818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE981C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE9818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE981C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE9820  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80BE9824  7C 05 07 74 */	extsb r5, r0
-/* 80BE9828  4B 44 BB 38 */	b isSwitch__10dSv_info_cCFii
+/* 80BE9828  4B 44 BB 39 */	bl isSwitch__10dSv_info_cCFii
 /* 80BE982C  2C 03 00 00 */	cmpwi r3, 0
 /* 80BE9830  41 82 00 14 */	beq lbl_80BE9844
 /* 80BE9834  A0 7F 09 72 */	lhz r3, 0x972(r31)

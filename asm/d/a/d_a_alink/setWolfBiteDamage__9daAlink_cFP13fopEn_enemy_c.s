@@ -16,14 +16,14 @@ lbl_801396F8:
 /* 80139730  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80139734  C0 03 02 9C */	lfs f0, 0x29c(r3)
 /* 80139738  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8013973C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80139740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013973C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80139740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80139744  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80139748  38 80 00 01 */	li r4, 1
 /* 8013974C  38 C1 00 14 */	addi r6, r1, 0x14
 /* 80139750  38 E7 04 E4 */	addi r7, r7, 0x4e4
-/* 80139754  3D 00 80 42 */	lis r8, l_wolfBiteHitMarkScale@ha
-/* 80139758  39 08 56 F8 */	addi r8, r8, l_wolfBiteHitMarkScale@l
+/* 80139754  3D 00 80 42 */	lis r8, l_wolfBiteHitMarkScale@ha /* 0x804256F8@ha */
+/* 80139758  39 08 56 F8 */	addi r8, r8, l_wolfBiteHitMarkScale@l /* 0x804256F8@l */
 /* 8013975C  39 20 00 00 */	li r9, 0
 /* 80139760  4B F1 2A B9 */	bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 /* 80139764  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -31,8 +31,8 @@ lbl_801396F8:
 /* 8013976C  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 80139770  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80139774  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80139778  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013977C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80139778  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013977C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80139780  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80139784  38 80 00 03 */	li r4, 3
 /* 80139788  38 A0 00 1F */	li r5, 0x1f

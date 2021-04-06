@@ -3,19 +3,20 @@
 #
 
 M330_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks.plf
+M330_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks.lcf
+M330_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks.map
 
 M330_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ks/executor.cpp \
-	rel/d/a/npc/d_a_npc_ks/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ks/d_a_npc_ks.cpp \
 
 M330_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/d_a_npc_ks.o \
 
 M330_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/libRuntime.PPCEABI.H.a \
 
 M330_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M330_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map330.map\
+	-m _prolog \
+	-lcf $(M330_LDSCRIPT) \
+	-unused -map $(M330_MAP) \
+	-w off \
 
 $(M330_TARGET): $(M330_O_FILES) $(M330_LIBS)
+	@echo [330] creating $(M330_TARGET)
 	@echo $(M330_LIBS) $(M330_O_FILES) > build/M330_ofiles
-	$(LD) -opt_partial $(M330_LDFLAGS) -o $(M330_TARGET) @build/M330_ofiles
+	@python3 tools/lcf.py rel 330 --output $(M330_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M330_LDFLAGS) -o $(M330_TARGET) @build/M330_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ks/%.o: rel/d/a/npc/d_a_npc_ks/%.cpp
+	@echo [330] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M330_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M330_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ks/libs/Runtime.PPCEABI.H/Makefile
 

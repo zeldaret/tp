@@ -12,24 +12,24 @@ lbl_806EA690:
 /* 806EA6B8  7C BF 2B 78 */	mr r31, r5
 /* 806EA6BC  FF C0 08 90 */	fmr f30, f1
 /* 806EA6C0  FF E0 10 90 */	fmr f31, f2
-/* 806EA6C4  3C 60 80 6F */	lis r3, stringBase0@ha
-/* 806EA6C8  38 63 09 5C */	addi r3, r3, stringBase0@l
-/* 806EA6CC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 806EA6D0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 806EA6C4  3C 60 80 6F */	lis r3, d_a_e_hz__stringBase0@ha /* 0x806F095C@ha */
+/* 806EA6C8  38 63 09 5C */	addi r3, r3, d_a_e_hz__stringBase0@l /* 0x806F095C@l */
+/* 806EA6CC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806EA6D0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806EA6D4  3C A5 00 02 */	addis r5, r5, 2
 /* 806EA6D8  38 C0 00 80 */	li r6, 0x80
 /* 806EA6DC  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 806EA6E0  4B 95 1C 0C */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 806EA6E0  4B 95 1C 0D */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 806EA6E4  7C 64 1B 78 */	mr r4, r3
 /* 806EA6E8  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 806EA6EC  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 806EA6F0  FC 20 F0 90 */	fmr f1, f30
 /* 806EA6F4  FC 40 F8 90 */	fmr f2, f31
-/* 806EA6F8  3C C0 80 6F */	lis r6, lit_3967@ha
-/* 806EA6FC  C0 66 08 64 */	lfs f3, lit_3967@l(r6)
-/* 806EA700  3C C0 80 6F */	lis r6, lit_4010@ha
-/* 806EA704  C0 86 08 B4 */	lfs f4, lit_4010@l(r6)
-/* 806EA708  4B 92 67 68 */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 806EA6F8  3C C0 80 6F */	lis r6, lit_3967@ha /* 0x806F0864@ha */
+/* 806EA6FC  C0 66 08 64 */	lfs f3, lit_3967@l(r6)  /* 0x806F0864@l */
+/* 806EA700  3C C0 80 6F */	lis r6, lit_4010@ha /* 0x806F08B4@ha */
+/* 806EA704  C0 86 08 B4 */	lfs f4, lit_4010@l(r6)  /* 0x806F08B4@l */
+/* 806EA708  4B 92 67 69 */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 806EA70C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 806EA710  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 806EA714  E3 C1 00 18 */	psq_l f30, 24(r1), 0, 0 /* qr0 */

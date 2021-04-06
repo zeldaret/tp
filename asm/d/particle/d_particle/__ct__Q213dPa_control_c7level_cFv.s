@@ -5,8 +5,8 @@ lbl_8004B688:
 /* 8004B694  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004B698  7C 7F 1B 78 */	mr r31, r3
 /* 8004B69C  38 7F 00 08 */	addi r3, r31, 8
-/* 8004B6A0  3C 80 80 05 */	lis r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@ha
-/* 8004B6A4  38 84 FB FC */	addi r4, r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@l
+/* 8004B6A0  3C 80 80 05 */	lis r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@ha /* 0x8004FBFC@ha */
+/* 8004B6A4  38 84 FB FC */	addi r4, r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@l /* 0x8004FBFC@l */
 /* 8004B6A8  38 A0 00 00 */	li r5, 0
 /* 8004B6AC  38 C0 00 18 */	li r6, 0x18
 /* 8004B6B0  38 E0 00 80 */	li r7, 0x80

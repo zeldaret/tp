@@ -3,7 +3,7 @@ lbl_80606C6C:
 /* 80606C70  7C 08 02 A6 */	mflr r0
 /* 80606C74  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80606C78  39 61 00 20 */	addi r11, r1, 0x20
-/* 80606C7C  4B D5 B5 5C */	b _savegpr_28
+/* 80606C7C  4B D5 B5 5D */	bl _savegpr_28
 /* 80606C80  7C 7C 1B 78 */	mr r28, r3
 /* 80606C84  7C BD 2B 78 */	mr r29, r5
 /* 80606C88  3B E0 00 00 */	li r31, 0
@@ -26,11 +26,11 @@ lbl_80606C94:
 /* 80606CC8  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80606CCC  D0 1E 26 6C */	stfs f0, 0x266c(r30)
 /* 80606CD0  7C 83 23 78 */	mr r3, r4
-/* 80606CD4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80606CD8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80606CD4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80606CD8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80606CDC  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 80606CE0  38 84 04 D0 */	addi r4, r4, 0x4d0
-/* 80606CE4  4B C6 9F 20 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80606CE4  4B C6 9F 21 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80606CE8  57 E0 08 3C */	slwi r0, r31, 1
 /* 80606CEC  7C 9C 02 14 */	add r4, r28, r0
 /* 80606CF0  B0 64 26 C0 */	sth r3, 0x26c0(r4)
@@ -40,15 +40,15 @@ lbl_80606C94:
 /* 80606D00  28 00 00 00 */	cmplwi r0, 0
 /* 80606D04  40 82 00 1C */	bne lbl_80606D20
 /* 80606D08  C0 3E 26 68 */	lfs f1, 0x2668(r30)
-/* 80606D0C  3C 60 80 61 */	lis r3, lit_4626@ha
-/* 80606D10  C0 03 FE 48 */	lfs f0, lit_4626@l(r3)
+/* 80606D0C  3C 60 80 61 */	lis r3, lit_4626@ha /* 0x8060FE48@ha */
+/* 80606D10  C0 03 FE 48 */	lfs f0, lit_4626@l(r3)  /* 0x8060FE48@l */
 /* 80606D14  EC 01 00 2A */	fadds f0, f1, f0
 /* 80606D18  D0 1E 26 68 */	stfs f0, 0x2668(r30)
 /* 80606D1C  48 00 00 18 */	b lbl_80606D34
 lbl_80606D20:
 /* 80606D20  C0 3E 26 6C */	lfs f1, 0x266c(r30)
-/* 80606D24  3C 60 80 61 */	lis r3, lit_4626@ha
-/* 80606D28  C0 03 FE 48 */	lfs f0, lit_4626@l(r3)
+/* 80606D24  3C 60 80 61 */	lis r3, lit_4626@ha /* 0x8060FE48@ha */
+/* 80606D28  C0 03 FE 48 */	lfs f0, lit_4626@l(r3)  /* 0x8060FE48@l */
 /* 80606D2C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80606D30  D0 1E 26 6C */	stfs f0, 0x266c(r30)
 lbl_80606D34:
@@ -60,7 +60,7 @@ lbl_80606D3C:
 /* 80606D44  38 60 FF FF */	li r3, -1
 lbl_80606D48:
 /* 80606D48  39 61 00 20 */	addi r11, r1, 0x20
-/* 80606D4C  4B D5 B4 D8 */	b _restgpr_28
+/* 80606D4C  4B D5 B4 D9 */	bl _restgpr_28
 /* 80606D50  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80606D54  7C 08 03 A6 */	mtlr r0
 /* 80606D58  38 21 00 20 */	addi r1, r1, 0x20

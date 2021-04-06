@@ -3,7 +3,7 @@ lbl_8055BF0C:
 /* 8055BF10  7C 08 02 A6 */	mflr r0
 /* 8055BF14  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8055BF18  39 61 00 20 */	addi r11, r1, 0x20
-/* 8055BF1C  4B E0 62 C0 */	b _savegpr_29
+/* 8055BF1C  4B E0 62 C1 */	bl _savegpr_29
 /* 8055BF20  7C 7D 1B 78 */	mr r29, r3
 /* 8055BF24  83 C3 09 6C */	lwz r30, 0x96c(r3)
 /* 8055BF28  28 1E 00 00 */	cmplwi r30, 0
@@ -25,14 +25,14 @@ lbl_8055BF5C:
 /* 8055BF64  38 A0 00 00 */	li r5, 0
 /* 8055BF68  C0 3D 0D E8 */	lfs f1, 0xde8(r29)
 /* 8055BF6C  38 C0 00 00 */	li r6, 0
-/* 8055BF70  3C E0 80 56 */	lis r7, lit_4319@ha
-/* 8055BF74  C0 47 4C A4 */	lfs f2, lit_4319@l(r7)
+/* 8055BF70  3C E0 80 56 */	lis r7, lit_4319@ha /* 0x80564CA4@ha */
+/* 8055BF74  C0 47 4C A4 */	lfs f2, lit_4319@l(r7)  /* 0x80564CA4@l */
 /* 8055BF78  38 E0 00 00 */	li r7, 0
 /* 8055BF7C  39 00 00 00 */	li r8, 0
 /* 8055BF80  39 20 00 00 */	li r9, 0
-/* 8055BF84  4B BE C8 E8 */	b draw__8daNpcT_cFiifP11_GXColorS10fiii
+/* 8055BF84  4B BE C8 E9 */	bl draw__8daNpcT_cFiifP11_GXColorS10fiii
 /* 8055BF88  39 61 00 20 */	addi r11, r1, 0x20
-/* 8055BF8C  4B E0 62 9C */	b _restgpr_29
+/* 8055BF8C  4B E0 62 9D */	bl _restgpr_29
 /* 8055BF90  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8055BF94  7C 08 03 A6 */	mtlr r0
 /* 8055BF98  38 21 00 20 */	addi r1, r1, 0x20

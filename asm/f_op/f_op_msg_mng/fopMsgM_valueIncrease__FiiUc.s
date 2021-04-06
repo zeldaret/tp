@@ -30,8 +30,8 @@ lbl_80020190:
 /* 800201C4  54 A0 06 3E */	clrlwi r0, r5, 0x18
 /* 800201C8  28 00 00 06 */	cmplwi r0, 6
 /* 800201CC  41 81 00 48 */	bgt lbl_80020214
-/* 800201D0  3C 60 80 3A */	lis r3, lit_4305@ha
-/* 800201D4  38 63 39 70 */	addi r3, r3, lit_4305@l
+/* 800201D0  3C 60 80 3A */	lis r3, lit_4305@ha /* 0x803A3970@ha */
+/* 800201D4  38 63 39 70 */	addi r3, r3, lit_4305@l /* 0x803A3970@l */
 /* 800201D8  54 00 10 3A */	slwi r0, r0, 2
 /* 800201DC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800201E0  7C 09 03 A6 */	mtctr r0
@@ -67,8 +67,8 @@ lbl_80020214:
 /* 8002024C  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 80020250  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80020254  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80020258  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8002025C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80020258  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8002025C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80020260  7C 03 04 2E */	lfsx f0, r3, r0
 /* 80020264  EC 20 00 32 */	fmuls f1, f0, f0
 /* 80020268  48 00 00 5C */	b lbl_800202C4
@@ -80,8 +80,8 @@ lbl_80020214:
 /* 80020280  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 80020284  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80020288  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8002028C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80020290  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8002028C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80020290  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80020294  7C 03 04 2E */	lfsx f0, r3, r0
 /* 80020298  EC 20 00 32 */	fmuls f1, f0, f0
 /* 8002029C  48 00 00 28 */	b lbl_800202C4
@@ -91,8 +91,8 @@ lbl_80020214:
 /* 800202AC  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 800202B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800202B4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800202B8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800202BC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800202B8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800202BC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800202C0  7C 23 04 2E */	lfsx f1, r3, r0
 lbl_800202C4:
 /* 800202C4  38 21 00 20 */	addi r1, r1, 0x20

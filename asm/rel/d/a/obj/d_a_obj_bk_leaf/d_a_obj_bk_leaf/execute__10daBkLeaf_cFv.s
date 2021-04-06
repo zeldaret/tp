@@ -18,20 +18,20 @@ lbl_80BB64DC:
 /* 80BB64E4  41 82 00 C0 */	beq lbl_80BB65A4
 /* 80BB64E8  80 1F 05 78 */	lwz r0, 0x578(r31)
 /* 80BB64EC  90 01 00 08 */	stw r0, 8(r1)
-/* 80BB64F0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80BB64F4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80BB64F0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80BB64F4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80BB64F8  38 81 00 08 */	addi r4, r1, 8
-/* 80BB64FC  4B 46 32 FC */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80BB64FC  4B 46 32 FD */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80BB6500  28 03 00 00 */	cmplwi r3, 0
 /* 80BB6504  40 82 00 A0 */	bne lbl_80BB65A4
 /* 80BB6508  38 00 00 3C */	li r0, 0x3c
 /* 80BB650C  B0 1F 05 7E */	sth r0, 0x57e(r31)
-/* 80BB6510  3C 60 80 BB */	lis r3, lit_3811@ha
-/* 80BB6514  C0 03 67 14 */	lfs f0, lit_3811@l(r3)
+/* 80BB6510  3C 60 80 BB */	lis r3, lit_3811@ha /* 0x80BB6714@ha */
+/* 80BB6514  C0 03 67 14 */	lfs f0, lit_3811@l(r3)  /* 0x80BB6714@l */
 /* 80BB6518  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80BB651C  D0 03 00 10 */	stfs f0, 0x10(r3)
-/* 80BB6520  3C 60 80 BB */	lis r3, lit_3742@ha
-/* 80BB6524  C0 03 67 10 */	lfs f0, lit_3742@l(r3)
+/* 80BB6520  3C 60 80 BB */	lis r3, lit_3742@ha /* 0x80BB6710@ha */
+/* 80BB6524  C0 03 67 10 */	lfs f0, lit_3742@l(r3)  /* 0x80BB6710@l */
 /* 80BB6528  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80BB652C  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80BB6530  38 00 00 01 */	li r0, 1

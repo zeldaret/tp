@@ -20,15 +20,15 @@ lbl_80463FF8:
 /* 80464000  41 82 00 98 */	beq lbl_80464098
 /* 80464004  28 04 00 02 */	cmplwi r4, 2
 /* 80464008  40 82 00 64 */	bne lbl_8046406C
-/* 8046400C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80464010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8046400C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80464010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80464014  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80464018  3C 80 80 46 */	lis r4, struct_804668D8+0x0@ha
-/* 8046401C  38 84 68 D8 */	addi r4, r4, struct_804668D8+0x0@l
+/* 80464018  3C 80 80 46 */	lis r4, d_a_door_shutter__stringBase0@ha /* 0x804668D8@ha */
+/* 8046401C  38 84 68 D8 */	addi r4, r4, d_a_door_shutter__stringBase0@l /* 0x804668D8@l */
 /* 80464020  38 84 01 59 */	addi r4, r4, 0x159
 /* 80464024  38 A0 00 00 */	li r5, 0
 /* 80464028  38 C0 00 00 */	li r6, 0
-/* 8046402C  4B BE 3A F0 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 8046402C  4B BE 3A F1 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 80464030  90 7F 06 CC */	stw r3, 0x6cc(r31)
 /* 80464034  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 80464038  B0 1F 04 E6 */	sth r0, 0x4e6(r31)

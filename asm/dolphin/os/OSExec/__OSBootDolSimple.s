@@ -37,9 +37,9 @@ lbl_8033CE40:
 /* 8033CE48  48 00 E4 2D */	bl DVDSetAutoInvalidation
 /* 8033CE4C  48 00 E4 39 */	bl DVDResume
 /* 8033CE50  38 00 00 00 */	li r0, 0
-/* 8033CE54  3C 60 80 34 */	lis r3, Callback@ha
+/* 8033CE54  3C 60 80 34 */	lis r3, Callback@ha /* 0x8033CCB0@ha */
 /* 8033CE58  90 0D 90 D8 */	stw r0, Prepared(r13)
-/* 8033CE5C  38 63 CC B0 */	addi r3, r3, Callback@l
+/* 8033CE5C  38 63 CC B0 */	addi r3, r3, Callback@l /* 0x8033CCB0@l */
 /* 8033CE60  48 00 E8 C1 */	bl __DVDPrepareResetAsync
 /* 8033CE64  38 60 FF E0 */	li r3, -32
 /* 8033CE68  48 00 0C 55 */	bl __OSMaskInterrupts
@@ -122,8 +122,8 @@ lbl_8033CF28:
 /* 8033CF70  38 04 00 1F */	addi r0, r4, 0x1f
 /* 8033CF74  54 04 00 34 */	rlwinm r4, r0, 0, 0, 0x1a
 /* 8033CF78  4B FF E7 19 */	bl ICInvalidateRange
-/* 8033CF7C  3C 60 80 3D */	lis r3, lit_115@ha
-/* 8033CF80  38 83 FC 38 */	addi r4, r3, lit_115@l
+/* 8033CF7C  3C 60 80 3D */	lis r3, lit_115@ha /* 0x803CFC38@ha */
+/* 8033CF80  38 83 FC 38 */	addi r4, r3, lit_115@l /* 0x803CFC38@l */
 /* 8033CF84  7F C3 F3 78 */	mr r3, r30
 /* 8033CF88  38 A0 00 0A */	li r5, 0xa
 /* 8033CF8C  48 02 B9 C9 */	bl strncmp
@@ -145,7 +145,7 @@ lbl_8033CFA4:
 /* 8033CFC4  48 00 00 94 */	b lbl_8033D058
 lbl_8033CFC8:
 /* 8033CFC8  3F 60 80 00 */	lis r27, 0x8000 /* 0x800030F4@ha */
-/* 8033CFCC  80 1B 30 F4 */	lwz r0, 0x30F4(r27)
+/* 8033CFCC  80 1B 30 F4 */	lwz r0, 0x30F4(r27)  /* 0x800030F4@l */
 /* 8033CFD0  2C 00 00 00 */	cmpwi r0, 0
 /* 8033CFD4  41 82 00 78 */	beq lbl_8033D04C
 /* 8033CFD8  38 60 00 40 */	li r3, 0x40
@@ -177,7 +177,7 @@ lbl_8033D024:
 /* 8033D030  40 82 FF E0 */	bne lbl_8033D010
 /* 8033D034  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030F4@ha */
 /* 8033D038  80 1B 00 38 */	lwz r0, 0x38(r27)
-/* 8033D03C  80 63 30 F4 */	lwz r3, 0x30F4(r3)
+/* 8033D03C  80 63 30 F4 */	lwz r3, 0x30F4(r3)  /* 0x800030F4@l */
 /* 8033D040  7C 03 02 14 */	add r0, r3, r0
 /* 8033D044  90 0D 90 DC */	stw r0, apploaderPosition(r13)
 /* 8033D048  48 00 00 0C */	b lbl_8033D054
@@ -208,9 +208,9 @@ lbl_8033D064:
 /* 8033D09C  4B CC 64 A5 */	bl memcpy
 /* 8033D0A0  3C 80 80 00 */	lis r4, 0x8000 /* 0x800030F0@ha */
 /* 8033D0A4  81 81 00 C0 */	lwz r12, 0xc0(r1)
-/* 8033D0A8  3C 60 80 00 */	lis r3, OSReport@ha
-/* 8033D0AC  93 64 30 F0 */	stw r27, 0x30F0(r4)
-/* 8033D0B0  38 63 6A BC */	addi r3, r3, OSReport@l
+/* 8033D0A8  3C 60 80 00 */	lis r3, OSReport@ha /* 0x80006ABC@ha */
+/* 8033D0AC  93 64 30 F0 */	stw r27, 0x30F0(r4)  /* 0x800030F0@l */
+/* 8033D0B0  38 63 6A BC */	addi r3, r3, OSReport@l /* 0x80006ABC@l */
 /* 8033D0B4  7D 88 03 A6 */	mtlr r12
 /* 8033D0B8  4E 80 00 21 */	blrl 
 /* 8033D0BC  7F 63 DB 78 */	mr r3, r27
@@ -267,7 +267,7 @@ lbl_8033D11C:
 /* 8033D168  4B CC 63 D9 */	bl memcpy
 /* 8033D16C  3C 80 80 00 */	lis r4, 0x8000 /* 0x800030F0@ha */
 /* 8033D170  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC003000@ha */
-/* 8033D174  93 64 30 F0 */	stw r27, 0x30F0(r4)
+/* 8033D174  93 64 30 F0 */	stw r27, 0x30F0(r4)  /* 0x800030F0@l */
 /* 8033D178  38 63 30 00 */	addi r3, r3, 0x3000 /* 0xCC003000@l */
 /* 8033D17C  38 00 00 07 */	li r0, 7
 /* 8033D180  90 03 00 24 */	stw r0, 0x24(r3)
@@ -277,11 +277,11 @@ lbl_8033D11C:
 /* 8033D190  48 00 00 A0 */	b lbl_8033D230
 lbl_8033D194:
 /* 8033D194  3C 80 81 30 */	lis r4, 0x8130 /* 0x812FDFF0@ha */
-/* 8033D198  93 84 DF F0 */	stw r28, 0xDFF0(r4)
+/* 8033D198  93 84 DF F0 */	stw r28, 0xDFF0(r4)  /* 0x812FDFF0@l */
 /* 8033D19C  38 00 00 01 */	li r0, 1
 /* 8033D1A0  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E2@ha */
 /* 8033D1A4  93 A4 DF EC */	stw r29, -0x2014(r4)
-/* 8033D1A8  98 03 30 E2 */	stb r0, 0x30E2(r3)
+/* 8033D1A8  98 03 30 E2 */	stb r0, 0x30E2(r3)  /* 0x800030E2@l */
 /* 8033D1AC  4B FF FB 51 */	bl GetApploaderPosition
 /* 8033D1B0  80 1E 00 14 */	lwz r0, 0x14(r30)
 /* 8033D1B4  3C 80 81 30 */	lis r4, 0x8130

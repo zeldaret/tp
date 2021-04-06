@@ -1,13 +1,13 @@
 lbl_8035C670:
 /* 8035C670  7C 08 02 A6 */	mflr r0
-/* 8035C674  3C 60 80 36 */	lis r3, GXTokenInterruptHandler@ha
+/* 8035C674  3C 60 80 36 */	lis r3, GXTokenInterruptHandler@ha /* 0x8035C524@ha */
 /* 8035C678  90 01 00 04 */	stw r0, 4(r1)
-/* 8035C67C  38 83 C5 24 */	addi r4, r3, GXTokenInterruptHandler@l
+/* 8035C67C  38 83 C5 24 */	addi r4, r3, GXTokenInterruptHandler@l /* 0x8035C524@l */
 /* 8035C680  38 60 00 12 */	li r3, 0x12
 /* 8035C684  94 21 FF F8 */	stwu r1, -8(r1)
 /* 8035C688  4B FE 10 B9 */	bl __OSSetInterruptHandler
-/* 8035C68C  3C 60 80 36 */	lis r3, GXFinishInterruptHandler@ha
-/* 8035C690  38 83 C5 F0 */	addi r4, r3, GXFinishInterruptHandler@l
+/* 8035C68C  3C 60 80 36 */	lis r3, GXFinishInterruptHandler@ha /* 0x8035C5F0@ha */
+/* 8035C690  38 83 C5 F0 */	addi r4, r3, GXFinishInterruptHandler@l /* 0x8035C5F0@l */
 /* 8035C694  38 60 00 13 */	li r3, 0x13
 /* 8035C698  4B FE 10 A9 */	bl __OSSetInterruptHandler
 /* 8035C69C  38 6D 93 F4 */	la r3, FinishQueue(r13) /* 80451974-_SDA_BASE_ */

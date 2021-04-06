@@ -5,12 +5,12 @@ lbl_80C3CEA8:
 /* 80C3CEB4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80C3CEB8  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80C3CEBC  7C 7F 1B 78 */	mr r31, r3
-/* 80C3CEC0  3C 60 80 C4 */	lis r3, M_attr__15daObjKazeNeko_c@ha
-/* 80C3CEC4  3B C3 D3 DC */	addi r30, r3, M_attr__15daObjKazeNeko_c@l
+/* 80C3CEC0  3C 60 80 C4 */	lis r3, M_attr__15daObjKazeNeko_c@ha /* 0x80C3D3DC@ha */
+/* 80C3CEC4  3B C3 D3 DC */	addi r30, r3, M_attr__15daObjKazeNeko_c@l /* 0x80C3D3DC@l */
 /* 80C3CEC8  80 1F 07 38 */	lwz r0, 0x738(r31)
 /* 80C3CECC  2C 00 00 00 */	cmpwi r0, 0
 /* 80C3CED0  40 82 00 A8 */	bne lbl_80C3CF78
-/* 80C3CED4  4B 41 DC 1C */	b dKyw_get_wind_pow__Fv
+/* 80C3CED4  4B 41 DC 1D */	bl dKyw_get_wind_pow__Fv
 /* 80C3CED8  38 9E 00 00 */	addi r4, r30, 0
 /* 80C3CEDC  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80C3CEE0  EC 00 00 72 */	fmuls f0, f0, f1
@@ -34,12 +34,12 @@ lbl_80C3CEA8:
 /* 80C3CF28  38 7F 07 40 */	addi r3, r31, 0x740
 /* 80C3CF2C  C0 3E 00 3C */	lfs f1, 0x3c(r30)
 /* 80C3CF30  C0 44 00 10 */	lfs f2, 0x10(r4)
-/* 80C3CF34  4B 63 38 0C */	b cLib_chaseF__FPfff
+/* 80C3CF34  4B 63 38 0D */	bl cLib_chaseF__FPfff
 /* 80C3CF38  3C 60 00 08 */	lis r3, 0x0008 /* 0x000800CA@ha */
 /* 80C3CF3C  38 03 00 CA */	addi r0, r3, 0x00CA /* 0x000800CA@l */
 /* 80C3CF40  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80C3CF44  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C3CF48  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C3CF44  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C3CF48  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C3CF4C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C3CF50  38 81 00 0C */	addi r4, r1, 0xc
 /* 80C3CF54  38 BF 07 2C */	addi r5, r31, 0x72c
@@ -50,14 +50,14 @@ lbl_80C3CEA8:
 /* 80C3CF68  C0 7E 00 88 */	lfs f3, 0x88(r30)
 /* 80C3CF6C  FC 80 18 90 */	fmr f4, f3
 /* 80C3CF70  39 00 00 00 */	li r8, 0
-/* 80C3CF74  4B 66 F5 98 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C3CF74  4B 66 F5 99 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80C3CF78:
 /* 80C3CF78  38 7F 05 F0 */	addi r3, r31, 0x5f0
-/* 80C3CF7C  4B 44 74 E4 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80C3CF7C  4B 44 74 E5 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80C3CF80  28 03 00 00 */	cmplwi r3, 0
 /* 80C3CF84  41 82 00 30 */	beq lbl_80C3CFB4
 /* 80C3CF88  38 7F 06 8C */	addi r3, r31, 0x68c
-/* 80C3CF8C  4B 44 66 FC */	b GetAc__22dCcD_GAtTgCoCommonBaseFv
+/* 80C3CF8C  4B 44 66 FD */	bl GetAc__22dCcD_GAtTgCoCommonBaseFv
 /* 80C3CF90  A8 03 00 08 */	lha r0, 8(r3)
 /* 80C3CF94  2C 00 01 00 */	cmpwi r0, 0x100
 /* 80C3CF98  40 82 00 1C */	bne lbl_80C3CFB4
@@ -79,13 +79,13 @@ lbl_80C3CFB4:
 /* 80C3CFD4  41 81 00 30 */	bgt lbl_80C3D004
 /* 80C3CFD8  38 00 01 00 */	li r0, 0x100
 /* 80C3CFDC  B0 01 00 08 */	sth r0, 8(r1)
-/* 80C3CFE0  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 80C3CFE4  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 80C3CFE0  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 80C3CFE4  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 80C3CFE8  38 81 00 08 */	addi r4, r1, 8
-/* 80C3CFEC  4B 3D C8 0C */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80C3CFEC  4B 3D C8 0D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80C3CFF0  28 03 00 00 */	cmplwi r3, 0
 /* 80C3CFF4  41 82 00 10 */	beq lbl_80C3D004
-/* 80C3CFF8  4B EC D5 70 */	b endHawkCamera__10daNPC_TK_cFv
+/* 80C3CFF8  4B EC D5 71 */	bl endHawkCamera__10daNPC_TK_cFv
 /* 80C3CFFC  38 00 00 01 */	li r0, 1
 /* 80C3D000  98 1F 07 52 */	stb r0, 0x752(r31)
 lbl_80C3D004:

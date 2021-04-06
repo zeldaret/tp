@@ -28,11 +28,11 @@ lbl_805AD7F0:
 /* 805AD814  B0 1F 04 E8 */	sth r0, 0x4e8(r31)
 /* 805AD818  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 805AD81C  7C 03 07 74 */	extsb r3, r0
-/* 805AD820  4B A7 F8 4C */	b dComIfGp_getReverb__Fi
+/* 805AD820  4B A7 F8 4D */	bl dComIfGp_getReverb__Fi
 /* 805AD824  7C 65 1B 78 */	mr r5, r3
 /* 805AD828  80 7F 07 88 */	lwz r3, 0x788(r31)
 /* 805AD82C  38 80 00 00 */	li r4, 0
-/* 805AD830  4B A6 38 80 */	b play__16mDoExt_McaMorfSOFUlSc
+/* 805AD830  4B A6 38 81 */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 805AD834  7F E3 FB 78 */	mr r3, r31
 /* 805AD838  4B FF D9 F9 */	bl mtx_set__9daL7ODR_cFv
 /* 805AD83C  38 60 00 01 */	li r3, 1

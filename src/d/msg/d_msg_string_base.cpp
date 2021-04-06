@@ -116,14 +116,10 @@ extern "C" void getMessage__16dMsgStringBase_cFUlPc();
 extern "C" void resetStringLocal__16dMsgStringBase_cFP10J2DTextBox();
 extern "C" void drawOutFontLocal__16dMsgStringBase_cFP10J2DTextBoxf();
 extern "C" extern char const* const d_msg_d_msg_string_base__stringBase0;
-extern "C" extern void* __vt__16dMsgStringBase_c[8];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __ct__26jmessage_string_tReferenceFv();
 extern "C" void
@@ -162,8 +158,8 @@ extern "C" extern u8 g_meter2_info[248];
 //
 
 /* ############################################################################################## */
-/* 803C1478-803C1498 0020+00 s=2 e=0 z=0  None .data      __vt__16dMsgStringBase_c */
-SECTION_DATA void* __vt__16dMsgStringBase_c[8] = {
+/* 803C1478-803C1498 01E598 0020+00 2/2 0/0 0/0 .data            __vt__16dMsgStringBase_c */
+SECTION_DATA extern void* __vt__16dMsgStringBase_c[8] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)getString__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc,
@@ -175,25 +171,7 @@ SECTION_DATA void* __vt__16dMsgStringBase_c[8] = {
     (void*)drawFontLocal__16dMsgStringBase_cFP10J2DTextBoxUcffffUlUc,
 };
 
-/* 802493B4-80249528 0174+00 s=0 e=2 z=0  None .text      __ct__16dMsgStringBase_cFv */
-//	802493C8: 803C1478 (__vt__16dMsgStringBase_c)
-//	802493CC: 803C1478 (__vt__16dMsgStringBase_c)
-//	802493DC: 80249700 (getResource__16dMsgStringBase_cFv)
-//	802493E4: 802CEC4C (__nw__FUl)
-//	802493F0: 802A906C (__ct__Q28JMessage18TResourceContainerFv)
-//	80249400: 802CEC4C (__nw__FUl)
-//	8024940C: 8022FB5C (__ct__24jmessage_string_tControlFv)
-//	8024941C: 802CEC4C (__nw__FUl)
-//	80249428: 8022F8C0 (__ct__26jmessage_string_tReferenceFv)
-//	80249438: 802CEC4C (__nw__FUl)
-//	8024944C: 80230A08
-//(__ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl)
-//	8024945C: 802CEC4C (__nw__FUl)
-//	8024946C: 80230BC8 (__ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference)
-//	8024947C: 802CEC4C (__nw__FUl)
-//	8024948C: 802A9130 (__ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer)
-//	802494D0: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	802494D8: 802A75D4 (reset__Q28JMessage8TControlFv)
+/* 802493B4-80249528 243CF4 0174+00 0/0 2/2 0/0 .text            __ct__16dMsgStringBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -203,19 +181,7 @@ asm dMsgStringBase_c::dMsgStringBase_c() {
 }
 #pragma pop
 
-/* 80249528-80249700 01D8+00 s=0 e=1 z=0  None .text      __dt__16dMsgStringBase_cFv */
-//	80249538: 803621D8 (_savegpr_28)
-//	80249548: 803C1478 (__vt__16dMsgStringBase_c)
-//	8024954C: 803C1478 (__vt__16dMsgStringBase_c)
-//	80249580: 802DCA58 (erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator)
-//	802495C8: 802A8EF8 (__dt__Q38JMessage18TResourceContainer10TCResourceFv)
-//	802495D0: 802CED3C (__dl__FPv)
-//	802496A4: 80430188 (g_meter2_info)
-//	802496A8: 80430188 (g_meter2_info)
-//	802496B8: 804061C0 (g_dComIfG_gameInfo)
-//	802496BC: 804061C0 (g_dComIfG_gameInfo)
-//	802496E0: 802CED3C (__dl__FPv)
-//	802496EC: 80362224 (_restgpr_28)
+/* 80249528-80249700 243E68 01D8+00 0/0 1/1 0/0 .text            __dt__16dMsgStringBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -225,27 +191,8 @@ asm dMsgStringBase_c::~dMsgStringBase_c() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80399C98-80399CB0 0013+05 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399C98 = "zel_00.bmg";
-SECTION_DEAD char const* const stringBase_80399CA3 = ""
-                                                     "\x1B"
-                                                     "CR[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399CAB = "\0\0\0\0";
-#pragma pop
-
-/* 80249700-80249768 0068+00 s=1 e=2 z=0  None .text      getResource__16dMsgStringBase_cFv */
-//	80249714: 80430188 (g_meter2_info)
-//	80249718: 80430188 (g_meter2_info)
-//	80249730: 804061C0 (g_dComIfG_gameInfo)
-//	80249734: 804061C0 (g_dComIfG_gameInfo)
-//	80249744: 80399C98 (d_msg_d_msg_string_base__stringBase0)
-//	80249748: 80399C98 (d_msg_d_msg_string_base__stringBase0)
-//	8024974C: 802D5B38 (getGlbResource__10JKRArchiveFUlPCcP10JKRArchive)
+/* 80249700-80249768 244040 0068+00 1/1 2/2 0/0 .text            getResource__16dMsgStringBase_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -255,19 +202,8 @@ asm void dMsgStringBase_c::getResource() {
 }
 #pragma pop
 
-/* 80249768-802498D8 0170+00 s=1 e=1 z=0  None .text
+/* 80249768-802498D8 2440A8 0170+00 1/1 1/1 0/0 .text
  * getStringLocal__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-//	8024977C: 803621CC (_savegpr_25)
-//	8024979C: 80430188 (g_meter2_info)
-//	802497A0: 80430188 (g_meter2_info)
-//	802497E0: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	8024980C: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	80249828: 8022F9AC
-//(init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc) 80249858:
-// 802A78F4 (setMessageID__Q28JMessage8TControlFUlUlPb) 	80249860: 802A7634
-//(update__Q28JMessage8TControlFv) 	80249868: 802A76BC (render__Q28JMessage8TControlFv) 80249874:
-// 8022FA38 (getLineLength__26jmessage_string_tReferenceFi) 	80249880: 802A75D4
-//(reset__Q28JMessage8TControlFv) 	802498C4: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -279,27 +215,16 @@ asm void dMsgStringBase_c::getStringLocal(u32 param_0, J2DTextBox* param_1, J2DT
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454D70-80454D78 0004+04 s=2 e=0 z=0  None .sdata2    @4046 */
+/* 80454D70-80454D78 003370 0004+04 2/2 0/0 0/0 .sdata2          @4046 */
 SECTION_SDATA2 static f32 lit_4046[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 802498D8-80249A48 0170+00 s=1 e=1 z=0  None .text
+/* 802498D8-80249A48 244218 0170+00 1/1 1/1 0/0 .text
  * getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
  */
-//	802498E8: 803621C4 (_savegpr_23)
-//	80249910: 80430188 (g_meter2_info)
-//	80249914: 80430188 (g_meter2_info)
-//	80249954: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	80249980: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	8024999C: 8022F9AC
-//(init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc) 802499DC:
-// 802A78F4 (setMessageID__Q28JMessage8TControlFUlUlPb) 	802499E4: 802A7634
-//(update__Q28JMessage8TControlFv) 	802499EC: 802A76BC (render__Q28JMessage8TControlFv) 802499F4:
-// 802A75D4 (reset__Q28JMessage8TControlFv) 	80249A2C: 80454D70 (lit_4046) 	80249A34: 80362210
-//(_restgpr_23)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -311,7 +236,7 @@ asm void dMsgStringBase_c::getStringPageLocal(u32 param_0, u8 param_1, u8 param_
 }
 #pragma pop
 
-/* 80249A48-80249A70 0028+00 s=0 e=1 z=0  None .text      getPageMax__16dMsgStringBase_cFi */
+/* 80249A48-80249A70 244388 0028+00 0/0 1/1 0/0 .text            getPageMax__16dMsgStringBase_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -321,19 +246,7 @@ asm void dMsgStringBase_c::getPageMax(int param_0) {
 }
 #pragma pop
 
-/* 80249A70-80249BAC 013C+00 s=1 e=0 z=0  None .text      getMessageLocal__16dMsgStringBase_cFUlPc
- */
-//	80249A80: 803621DC (_savegpr_29)
-//	80249A90: 80430188 (g_meter2_info)
-//	80249A94: 80430188 (g_meter2_info)
-//	80249AD4: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	80249B00: 802DC910 (parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl)
-//	80249B1C: 8022F9AC
-//(init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc) 80249B30:
-// 802A78F4 (setMessageID__Q28JMessage8TControlFUlUlPb) 	80249B38: 802A7634
-//(update__Q28JMessage8TControlFv) 	80249B40: 802A76BC (render__Q28JMessage8TControlFv) 80249B48:
-// 802A75D4 (reset__Q28JMessage8TControlFv) 	80249B8C: 80368B2C (strcpy) 	80249B90: 80454D70
-// (lit_4046) 	80249B98: 80362228 (_restgpr_29)
+/* 80249A70-80249BAC 2443B0 013C+00 1/1 0/0 0/0 .text getMessageLocal__16dMsgStringBase_cFUlPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -343,17 +256,15 @@ asm void dMsgStringBase_c::getMessageLocal(u32 param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80249BAC-80249BB0 0004+00 s=1 e=0 z=0  None .text
+/* 80249BAC-80249BB0 2444EC 0004+00 1/0 0/0 0/0 .text
  * drawFontLocal__16dMsgStringBase_cFP10J2DTextBoxUcffffUlUc    */
 void dMsgStringBase_c::drawFontLocal(J2DTextBox* param_0, u8 param_1, f32 param_2, f32 param_3,
                                      f32 param_4, f32 param_5, u32 param_6, u8 param_7) {
     /* empty function */
 }
 
-/* 80249BB0-80249BD0 0020+00 s=1 e=0 z=0  None .text
+/* 80249BB0-80249BD0 2444F0 0020+00 1/0 0/0 0/0 .text
  * getString__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-//	80249BBC: 80249768
-//(getStringLocal__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,10 +275,8 @@ asm void dMsgStringBase_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBo
 }
 #pragma pop
 
-/* 80249BD0-80249BF8 0028+00 s=1 e=0 z=0  None .text
+/* 80249BD0-80249BF8 244510 0028+00 1/0 0/0 0/0 .text
  * getStringPage__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-//	80249BE4: 802498D8
-//(getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -379,8 +288,8 @@ asm void dMsgStringBase_c::getStringPage(u32 param_0, u8 param_1, u8 param_2, J2
 }
 #pragma pop
 
-/* 80249BF8-80249C18 0020+00 s=1 e=1 z=0  None .text      getMessage__16dMsgStringBase_cFUlPc */
-//	80249C04: 80249A70 (getMessageLocal__16dMsgStringBase_cFUlPc)
+/* 80249BF8-80249C18 244538 0020+00 1/0 1/0 0/0 .text            getMessage__16dMsgStringBase_cFUlPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,14 +299,26 @@ asm void dMsgStringBase_c::getMessage(u32 param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80249C18-80249C1C 0004+00 s=1 e=0 z=0  None .text
+/* 80249C18-80249C1C 244558 0004+00 1/0 0/0 0/0 .text
  * resetStringLocal__16dMsgStringBase_cFP10J2DTextBox           */
 void dMsgStringBase_c::resetStringLocal(J2DTextBox* param_0) {
     /* empty function */
 }
 
-/* 80249C1C-80249C20 0004+00 s=1 e=0 z=0  None .text
+/* 80249C1C-80249C20 24455C 0004+00 1/0 0/0 0/0 .text
  * drawOutFontLocal__16dMsgStringBase_cFP10J2DTextBoxf          */
 void dMsgStringBase_c::drawOutFontLocal(J2DTextBox* param_0, f32 param_1) {
     /* empty function */
 }
+
+/* 80399C98-80399CB0 0262F8 0013+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399C98 = "zel_00.bmg";
+SECTION_DEAD static char const* const stringBase_80399CA3 = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399CAB = "\0\0\0\0";
+#pragma pop

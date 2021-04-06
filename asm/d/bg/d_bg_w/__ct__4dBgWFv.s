@@ -5,8 +5,8 @@ lbl_8007B970:
 /* 8007B97C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8007B980  7C 7F 1B 78 */	mr r31, r3
 /* 8007B984  4B FF D9 11 */	bl __ct__4cBgWFv
-/* 8007B988  3C 60 80 3B */	lis r3, __vt__4dBgW@ha
-/* 8007B98C  38 03 BA 80 */	addi r0, r3, __vt__4dBgW@l
+/* 8007B988  3C 60 80 3B */	lis r3, __vt__4dBgW@ha /* 0x803ABA80@ha */
+/* 8007B98C  38 03 BA 80 */	addi r0, r3, __vt__4dBgW@l /* 0x803ABA80@l */
 /* 8007B990  90 1F 00 04 */	stw r0, 4(r31)
 /* 8007B994  38 00 00 00 */	li r0, 0
 /* 8007B998  90 1F 00 B0 */	stw r0, 0xb0(r31)

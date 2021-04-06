@@ -3,19 +3,20 @@
 #
 
 M581_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan.plf
+M581_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan.lcf
+M581_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan.map
 
 M581_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_nan/executor.cpp \
-	rel/d/a/obj/d_a_obj_nan/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_nan/d_a_obj_nan.cpp \
 
 M581_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/d_a_obj_nan.o \
 
 M581_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/libRuntime.PPCEABI.H.a \
 
 M581_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M581_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map581.map\
+	-m _prolog \
+	-lcf $(M581_LDSCRIPT) \
+	-unused -map $(M581_MAP) \
+	-w off \
 
 $(M581_TARGET): $(M581_O_FILES) $(M581_LIBS)
+	@echo [581] creating $(M581_TARGET)
 	@echo $(M581_LIBS) $(M581_O_FILES) > build/M581_ofiles
-	$(LD) -opt_partial $(M581_LDFLAGS) -o $(M581_TARGET) @build/M581_ofiles
+	@python3 tools/lcf.py rel 581 --output $(M581_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M581_LDFLAGS) -o $(M581_TARGET) @build/M581_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nan/%.o: rel/d/a/obj/d_a_obj_nan/%.cpp
+	@echo [581] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M581_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M581_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_nan/libs/Runtime.PPCEABI.H/Makefile
 

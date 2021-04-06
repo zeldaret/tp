@@ -3,7 +3,7 @@ lbl_80A855E8:
 /* 80A855EC  7C 08 02 A6 */	mflr r0
 /* 80A855F0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A855F4  38 63 0D CC */	addi r3, r3, 0xdcc
-/* 80A855F8  4B 8D CA 50 */	b __ptmf_cmpr
+/* 80A855F8  4B 8D CA 51 */	bl __ptmf_cmpr
 /* 80A855FC  7C 60 00 34 */	cntlzw r0, r3
 /* 80A85600  54 03 D9 7E */	srwi r3, r0, 5
 /* 80A85604  80 01 00 14 */	lwz r0, 0x14(r1)

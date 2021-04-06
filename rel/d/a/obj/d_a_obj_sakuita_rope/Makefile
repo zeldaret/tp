@@ -3,17 +3,15 @@
 #
 
 M612_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope.plf
+M612_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope.lcf
+M612_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope.map
 
 M612_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sakuita_rope/executor.cpp \
-	rel/d/a/obj/d_a_obj_sakuita_rope/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_sakuita_rope/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_sakuita_rope/d_a_obj_sakuita_rope.cpp \
 
 M612_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/d_a_obj_sakuita_rope.o \
 
 M612_LIBS := \
@@ -29,15 +27,21 @@ M612_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map612.map\
+	-m _prolog \
+	-lcf $(M612_LDSCRIPT) \
+	-unused -map $(M612_MAP) \
+	-w off \
 
 $(M612_TARGET): $(M612_O_FILES) $(M612_LIBS)
+	@echo [612] creating $(M612_TARGET)
 	@echo $(M612_LIBS) $(M612_O_FILES) > build/M612_ofiles
-	$(LD) -opt_partial $(M612_LDFLAGS) -o $(M612_TARGET) @build/M612_ofiles
+	@python3 tools/lcf.py rel 612 --output $(M612_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M612_LDFLAGS) -o $(M612_TARGET) @build/M612_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita_rope/%.o: rel/d/a/obj/d_a_obj_sakuita_rope/%.cpp
+	@echo [612] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M612_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

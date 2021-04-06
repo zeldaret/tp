@@ -5,17 +5,17 @@ lbl_8058A294:
 /* 8058A2A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8058A2A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8058A2A8  7C 7E 1B 78 */	mr r30, r3
-/* 8058A2AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8058A2B0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8058A2AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8058A2B0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8058A2B4  38 7F 4F F8 */	addi r3, r31, 0x4ff8
 /* 8058A2B8  A8 9E 0B A6 */	lha r4, 0xba6(r30)
-/* 8058A2BC  4B AB D7 BC */	b endCheck__16dEvent_manager_cFs
+/* 8058A2BC  4B AB D7 BD */	bl endCheck__16dEvent_manager_cFs
 /* 8058A2C0  2C 03 00 00 */	cmpwi r3, 0
 /* 8058A2C4  41 82 00 18 */	beq lbl_8058A2DC
 /* 8058A2C8  38 00 00 02 */	li r0, 2
 /* 8058A2CC  98 1E 0B A4 */	stb r0, 0xba4(r30)
 /* 8058A2D0  38 7F 4E C8 */	addi r3, r31, 0x4ec8
-/* 8058A2D4  4B AB 81 94 */	b reset__14dEvt_control_cFv
+/* 8058A2D4  4B AB 81 95 */	bl reset__14dEvt_control_cFv
 /* 8058A2D8  48 00 00 0C */	b lbl_8058A2E4
 lbl_8058A2DC:
 /* 8058A2DC  7F C3 F3 78 */	mr r3, r30

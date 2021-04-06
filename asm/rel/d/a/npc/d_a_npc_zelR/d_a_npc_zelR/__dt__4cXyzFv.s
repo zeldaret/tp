@@ -7,7 +7,7 @@ lbl_80B70C9C:
 /* 80B70CB0  41 82 00 10 */	beq lbl_80B70CC0
 /* 80B70CB4  7C 80 07 35 */	extsh. r0, r4
 /* 80B70CB8  40 81 00 08 */	ble lbl_80B70CC0
-/* 80B70CBC  4B 75 E0 80 */	b __dl__FPv
+/* 80B70CBC  4B 75 E0 81 */	bl __dl__FPv
 lbl_80B70CC0:
 /* 80B70CC0  7F E3 FB 78 */	mr r3, r31
 /* 80B70CC4  83 E1 00 0C */	lwz r31, 0xc(r1)

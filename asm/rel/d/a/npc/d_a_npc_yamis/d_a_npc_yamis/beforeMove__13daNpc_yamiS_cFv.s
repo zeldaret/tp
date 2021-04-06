@@ -9,7 +9,7 @@ lbl_80B476D8:
 /* 80B476F4  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B476F8  28 00 00 00 */	cmplwi r0, 0
 /* 80B476FC  40 82 00 1C */	bne lbl_80B47718
-/* 80B47700  4B 4E 83 54 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B47700  4B 4E 83 55 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B47704  2C 03 00 00 */	cmpwi r3, 0
 /* 80B47708  40 82 00 14 */	bne lbl_80B4771C
 /* 80B4770C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

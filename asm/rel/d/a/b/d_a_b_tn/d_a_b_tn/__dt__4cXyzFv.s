@@ -7,7 +7,7 @@ lbl_8062E5CC:
 /* 8062E5E0  41 82 00 10 */	beq lbl_8062E5F0
 /* 8062E5E4  7C 80 07 35 */	extsh. r0, r4
 /* 8062E5E8  40 81 00 08 */	ble lbl_8062E5F0
-/* 8062E5EC  4B CA 07 50 */	b __dl__FPv
+/* 8062E5EC  4B CA 07 51 */	bl __dl__FPv
 lbl_8062E5F0:
 /* 8062E5F0  7F E3 FB 78 */	mr r3, r31
 /* 8062E5F4  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -9,8 +9,8 @@ lbl_802D1C74:
 /* 802D1C90  7C 7A 1B 78 */	mr r26, r3
 /* 802D1C94  7C 9B 23 78 */	mr r27, r4
 /* 802D1C98  7C BC 2B 79 */	or. r28, r5, r5
-/* 802D1C9C  3C 60 80 3A */	lis r3, JKRThread__stringBase0@ha
-/* 802D1CA0  38 63 CF A8 */	addi r3, r3, JKRThread__stringBase0@l
+/* 802D1C9C  3C 60 80 3A */	lis r3, JKRThread__stringBase0@ha /* 0x8039CFA8@ha */
+/* 802D1CA0  38 63 CF A8 */	addi r3, r3, JKRThread__stringBase0@l /* 0x8039CFA8@l */
 /* 802D1CA4  3B 23 00 5D */	addi r25, r3, 0x5d
 /* 802D1CA8  3B A3 00 7F */	addi r29, r3, 0x7f
 /* 802D1CAC  41 82 00 34 */	beq lbl_802D1CE0
@@ -27,8 +27,8 @@ lbl_802D1C74:
 /* 802D1CD8  7F A4 EB 78 */	mr r4, r29
 /* 802D1CDC  48 01 5F 5D */	bl print__10JUTConsoleFPCc
 lbl_802D1CE0:
-/* 802D1CE0  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
-/* 802D1CE4  83 C3 42 8C */	lwz r30, sThreadList__9JKRThread@l(r3)
+/* 802D1CE0  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha /* 0x8043428C@ha */
+/* 802D1CE4  83 C3 42 8C */	lwz r30, sThreadList__9JKRThread@l(r3)  /* 0x8043428C@l */
 /* 802D1CE8  48 00 01 04 */	b lbl_802D1DEC
 lbl_802D1CEC:
 /* 802D1CEC  83 3E 00 00 */	lwz r25, 0(r30)
@@ -57,8 +57,8 @@ lbl_802D1D38:
 /* 802D1D38  28 1D 00 00 */	cmplwi r29, 0
 /* 802D1D3C  40 82 00 24 */	bne lbl_802D1D60
 /* 802D1D40  38 61 00 08 */	addi r3, r1, 8
-/* 802D1D44  3C 80 80 3A */	lis r4, JKRThread__stringBase0@ha
-/* 802D1D48  38 84 CF A8 */	addi r4, r4, JKRThread__stringBase0@l
+/* 802D1D44  3C 80 80 3A */	lis r4, JKRThread__stringBase0@ha /* 0x8039CFA8@ha */
+/* 802D1D48  38 84 CF A8 */	addi r4, r4, JKRThread__stringBase0@l /* 0x8039CFA8@l */
 /* 802D1D4C  38 84 00 A7 */	addi r4, r4, 0xa7
 /* 802D1D50  80 B9 00 70 */	lwz r5, 0x70(r25)
 /* 802D1D54  4C C6 31 82 */	crclr 6
@@ -91,8 +91,8 @@ lbl_802D1D60:
 /* 802D1DBC  28 1C 00 00 */	cmplwi r28, 0
 /* 802D1DC0  41 82 00 28 */	beq lbl_802D1DE8
 /* 802D1DC4  7F 83 E3 78 */	mr r3, r28
-/* 802D1DC8  3C 80 80 3A */	lis r4, JKRThread__stringBase0@ha
-/* 802D1DCC  38 84 CF A8 */	addi r4, r4, JKRThread__stringBase0@l
+/* 802D1DC8  3C 80 80 3A */	lis r4, JKRThread__stringBase0@ha /* 0x8039CFA8@ha */
+/* 802D1DCC  38 84 CF A8 */	addi r4, r4, JKRThread__stringBase0@l /* 0x8039CFA8@l */
 /* 802D1DD0  38 84 00 AA */	addi r4, r4, 0xaa
 /* 802D1DD4  7F A5 EB 78 */	mr r5, r29
 /* 802D1DD8  7F E6 FB 78 */	mr r6, r31

@@ -7,7 +7,7 @@ lbl_80966E9C:
 /* 80966EB0  41 82 00 10 */	beq lbl_80966EC0
 /* 80966EB4  7C 80 07 35 */	extsh. r0, r4
 /* 80966EB8  40 81 00 08 */	ble lbl_80966EC0
-/* 80966EBC  4B 96 7E 80 */	b __dl__FPv
+/* 80966EBC  4B 96 7E 81 */	bl __dl__FPv
 lbl_80966EC0:
 /* 80966EC0  7F E3 FB 78 */	mr r3, r31
 /* 80966EC4  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -25,107 +25,8 @@ extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8037AD68-8037B0D0 0366+02 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8037AD68 = "F_gD_rupy";
-SECTION_DEAD char const* const stringBase_8037AD72 = "O_gD_bomb";
-SECTION_DEAD char const* const stringBase_8037AD7C = "O_gD_arow";
-SECTION_DEAD char const* const stringBase_8037AD86 = "O_gD_tane";
-SECTION_DEAD char const* const stringBase_8037AD90 = "O_gD_PG";
-SECTION_DEAD char const* const stringBase_8037AD98 = "O_gD_BI";
-SECTION_DEAD char const* const stringBase_8037ADA0 = "T_gD_key";
-SECTION_DEAD char const* const stringBase_8037ADA9 = "O_gD_hutk";
-SECTION_DEAD char const* const stringBase_8037ADB3 = "O_gD_hutu";
-SECTION_DEAD char const* const stringBase_8037ADBD = "T_gD_map";
-SECTION_DEAD char const* const stringBase_8037ADC6 = "T_gD_kmps";
-SECTION_DEAD char const* const stringBase_8037ADD0 = "O_gD_TKS";
-SECTION_DEAD char const* const stringBase_8037ADD9 = "T_gD_bkey";
-SECTION_DEAD char const* const stringBase_8037ADE3 = "O_gD_TKC";
-SECTION_DEAD char const* const stringBase_8037ADEC = "O_gD_SWA";
-SECTION_DEAD char const* const stringBase_8037ADF5 = "T_gD_SHB";
-SECTION_DEAD char const* const stringBase_8037ADFE = "O_gD_SHC";
-SECTION_DEAD char const* const stringBase_8037AE07 = "O_gD_SHA";
-SECTION_DEAD char const* const stringBase_8037AE10 = "O_gD_mem2";
-SECTION_DEAD char const* const stringBase_8037AE1A = "O_gD_marm";
-SECTION_DEAD char const* const stringBase_8037AE24 = "O_gD_zora";
-SECTION_DEAD char const* const stringBase_8037AE2E = "O_gD_Injy";
-SECTION_DEAD char const* const stringBase_8037AE38 = "O_gD_puL2";
-SECTION_DEAD char const* const stringBase_8037AE42 = "O_gD_puL3";
-SECTION_DEAD char const* const stringBase_8037AE4C = "O_gD_sang";
-SECTION_DEAD char const* const stringBase_8037AE56 = "O_gD_hawk";
-SECTION_DEAD char const* const stringBase_8037AE60 = "O_gD_SWB";
-SECTION_DEAD char const* const stringBase_8037AE69 = "O_gD_boom";
-SECTION_DEAD char const* const stringBase_8037AE73 = "O_gD_SP";
-SECTION_DEAD char const* const stringBase_8037AE7B = "O_gD_IB";
-SECTION_DEAD char const* const stringBase_8037AE83 = "O_gD_bow";
-SECTION_DEAD char const* const stringBase_8037AE8C = "O_gD_HS";
-SECTION_DEAD char const* const stringBase_8037AE94 = "O_gD_boot";
-SECTION_DEAD char const* const stringBase_8037AE9E = "O_gD_CROD";
-SECTION_DEAD char const* const stringBase_8037AEA8 = "T_gD_kt";
-SECTION_DEAD char const* const stringBase_8037AEB0 = "O_gD_uktr";
-SECTION_DEAD char const* const stringBase_8037AEBA = "O_gD_pach";
-SECTION_DEAD char const* const stringBase_8037AEC4 = "O_gD_bmL2";
-SECTION_DEAD char const* const stringBase_8037AECE = "O_gD_bomc";
-SECTION_DEAD char const* const stringBase_8037AED8 = "O_gD_quL1";
-SECTION_DEAD char const* const stringBase_8037AEE2 = "O_gD_quL2";
-SECTION_DEAD char const* const stringBase_8037AEEC = "O_gD_quL3";
-SECTION_DEAD char const* const stringBase_8037AEF6 = "O_gD_bott";
-SECTION_DEAD char const* const stringBase_8037AF00 = "Obj_kntr";
-SECTION_DEAD char const* const stringBase_8037AF09 = "O_gD_lttr";
-SECTION_DEAD char const* const stringBase_8037AF13 = "O_gD_bill";
-SECTION_DEAD char const* const stringBase_8037AF1D = "O_gD_wood";
-SECTION_DEAD char const* const stringBase_8037AF27 = "O_gD_pend";
-SECTION_DEAD char const* const stringBase_8037AF31 = "O_gD_hk_s";
-SECTION_DEAD char const* const stringBase_8037AF3B = "N_gD_Lpod";
-SECTION_DEAD char const* const stringBase_8037AF45 = "O_gD_kabo";
-SECTION_DEAD char const* const stringBase_8037AF4F = "O_gD_kabm";
-SECTION_DEAD char const* const stringBase_8037AF59 = "O_gD_choo";
-SECTION_DEAD char const* const stringBase_8037AF63 = "O_gD_chom";
-SECTION_DEAD char const* const stringBase_8037AF6D = "O_gD_kuwo";
-SECTION_DEAD char const* const stringBase_8037AF77 = "O_gD_kuwm";
-SECTION_DEAD char const* const stringBase_8037AF81 = "O_gD_bato";
-SECTION_DEAD char const* const stringBase_8037AF8B = "O_gD_batm";
-SECTION_DEAD char const* const stringBase_8037AF95 = "O_gD_nano";
-SECTION_DEAD char const* const stringBase_8037AF9F = "O_gD_nanm";
-SECTION_DEAD char const* const stringBase_8037AFA9 = "O_gD_dano";
-SECTION_DEAD char const* const stringBase_8037AFB3 = "O_gD_danm";
-SECTION_DEAD char const* const stringBase_8037AFBD = "O_gD_kamo";
-SECTION_DEAD char const* const stringBase_8037AFC7 = "O_gD_kamm";
-SECTION_DEAD char const* const stringBase_8037AFD1 = "O_gD_teno";
-SECTION_DEAD char const* const stringBase_8037AFDB = "O_gD_tenm";
-SECTION_DEAD char const* const stringBase_8037AFE5 = "O_gD_kato";
-SECTION_DEAD char const* const stringBase_8037AFEF = "O_gD_katm";
-SECTION_DEAD char const* const stringBase_8037AFF9 = "O_gD_tono";
-SECTION_DEAD char const* const stringBase_8037B003 = "O_gD_tonm";
-SECTION_DEAD char const* const stringBase_8037B00D = "O_gD_ario";
-SECTION_DEAD char const* const stringBase_8037B017 = "O_gD_arim";
-SECTION_DEAD char const* const stringBase_8037B021 = "O_gD_kago";
-SECTION_DEAD char const* const stringBase_8037B02B = "O_gD_kagm";
-SECTION_DEAD char const* const stringBase_8037B035 = "O_gD_tama";
-SECTION_DEAD char const* const stringBase_8037B03F = "O_gD_komo";
-SECTION_DEAD char const* const stringBase_8037B049 = "O_gD_pump";
-SECTION_DEAD char const* const stringBase_8037B053 = "O_gD_chee";
-SECTION_DEAD char const* const stringBase_8037B05D = "O_gD_bkey";
-SECTION_DEAD char const* const stringBase_8037B067 = "D_MKey_01";
-SECTION_DEAD char const* const stringBase_8037B071 = "D_MKey_02";
-SECTION_DEAD char const* const stringBase_8037B07B = "D_MKey_03";
-SECTION_DEAD char const* const stringBase_8037B085 = "O_gD_Mkey";
-SECTION_DEAD char const* const stringBase_8037B08F = "Always";
-SECTION_DEAD char const* const stringBase_8037B096 = "T_g_key";
-SECTION_DEAD char const* const stringBase_8037B09E = "T_g_bkey";
-SECTION_DEAD char const* const stringBase_8037B0A7 = "O_g_SWA";
-SECTION_DEAD char const* const stringBase_8037B0AF = "T_g_SHB";
-SECTION_DEAD char const* const stringBase_8037B0B7 = "O_g_ZORA";
-SECTION_DEAD char const* const stringBase_8037B0C0 = "T_g_kt";
-SECTION_DEAD char const* const stringBase_8037B0C7 = "O_wood";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037B0CE = "\0";
-#pragma pop
-
-/* 803AC5A0-803ADD88 17E8+00 s=0 e=10 z=2  None .data      item_resource__10dItem_data */
-SECTION_DATA void* item_resource__10dItem_data[1530] = {
+/* 803AC5A0-803ADD88 -00001 17E8+00 0/0 10/10 2/2 .data            item_resource__10dItem_data */
+SECTION_DATA extern void* item_resource__10dItem_data[1530] = {
     (void*)&d_d_item_data__stringBase0,
     (void*)0x0004FFFF,
     (void*)0xFFFF0007,
@@ -1658,8 +1559,8 @@ SECTION_DATA void* item_resource__10dItem_data[1530] = {
     (void*)NULL,
 };
 
-/* 803ADD88-803AED78 0FF0+00 s=0 e=3 z=14  None .data      field_item_res__10dItem_data */
-SECTION_DATA void* field_item_res__10dItem_data[1020] = {
+/* 803ADD88-803AED78 -00001 0FF0+00 0/0 3/3 14/14 .data            field_item_res__10dItem_data */
+SECTION_DATA extern void* field_item_res__10dItem_data[1020] = {
     (void*)(((char*)&d_d_item_data__stringBase0) + 0x327),
     (void*)0x0014FFFF,
     (void*)0x0030FF00,
@@ -2682,8 +2583,8 @@ SECTION_DATA void* field_item_res__10dItem_data[1020] = {
     (void*)0x10000000,
 };
 
-/* 803AED78-803AF178 03FC+04 s=0 e=9 z=9  None .data      item_info__10dItem_data */
-SECTION_DATA u8 item_info__10dItem_data[1020 + 4 /* padding */] = {
+/* 803AED78-803AF178 00BE98 03FC+04 0/0 9/9 9/9 .data            item_info__10dItem_data */
+SECTION_DATA extern u8 item_info__10dItem_data[1020 + 4 /* padding */] = {
     0x0F,
     0x28,
     0x1E,
@@ -3710,3 +3611,102 @@ SECTION_DATA u8 item_info__10dItem_data[1020 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+
+/* 8037AD68-8037B0D0 0073C8 0366+02 2/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8037AD68 = "F_gD_rupy";
+SECTION_DEAD static char const* const stringBase_8037AD72 = "O_gD_bomb";
+SECTION_DEAD static char const* const stringBase_8037AD7C = "O_gD_arow";
+SECTION_DEAD static char const* const stringBase_8037AD86 = "O_gD_tane";
+SECTION_DEAD static char const* const stringBase_8037AD90 = "O_gD_PG";
+SECTION_DEAD static char const* const stringBase_8037AD98 = "O_gD_BI";
+SECTION_DEAD static char const* const stringBase_8037ADA0 = "T_gD_key";
+SECTION_DEAD static char const* const stringBase_8037ADA9 = "O_gD_hutk";
+SECTION_DEAD static char const* const stringBase_8037ADB3 = "O_gD_hutu";
+SECTION_DEAD static char const* const stringBase_8037ADBD = "T_gD_map";
+SECTION_DEAD static char const* const stringBase_8037ADC6 = "T_gD_kmps";
+SECTION_DEAD static char const* const stringBase_8037ADD0 = "O_gD_TKS";
+SECTION_DEAD static char const* const stringBase_8037ADD9 = "T_gD_bkey";
+SECTION_DEAD static char const* const stringBase_8037ADE3 = "O_gD_TKC";
+SECTION_DEAD static char const* const stringBase_8037ADEC = "O_gD_SWA";
+SECTION_DEAD static char const* const stringBase_8037ADF5 = "T_gD_SHB";
+SECTION_DEAD static char const* const stringBase_8037ADFE = "O_gD_SHC";
+SECTION_DEAD static char const* const stringBase_8037AE07 = "O_gD_SHA";
+SECTION_DEAD static char const* const stringBase_8037AE10 = "O_gD_mem2";
+SECTION_DEAD static char const* const stringBase_8037AE1A = "O_gD_marm";
+SECTION_DEAD static char const* const stringBase_8037AE24 = "O_gD_zora";
+SECTION_DEAD static char const* const stringBase_8037AE2E = "O_gD_Injy";
+SECTION_DEAD static char const* const stringBase_8037AE38 = "O_gD_puL2";
+SECTION_DEAD static char const* const stringBase_8037AE42 = "O_gD_puL3";
+SECTION_DEAD static char const* const stringBase_8037AE4C = "O_gD_sang";
+SECTION_DEAD static char const* const stringBase_8037AE56 = "O_gD_hawk";
+SECTION_DEAD static char const* const stringBase_8037AE60 = "O_gD_SWB";
+SECTION_DEAD static char const* const stringBase_8037AE69 = "O_gD_boom";
+SECTION_DEAD static char const* const stringBase_8037AE73 = "O_gD_SP";
+SECTION_DEAD static char const* const stringBase_8037AE7B = "O_gD_IB";
+SECTION_DEAD static char const* const stringBase_8037AE83 = "O_gD_bow";
+SECTION_DEAD static char const* const stringBase_8037AE8C = "O_gD_HS";
+SECTION_DEAD static char const* const stringBase_8037AE94 = "O_gD_boot";
+SECTION_DEAD static char const* const stringBase_8037AE9E = "O_gD_CROD";
+SECTION_DEAD static char const* const stringBase_8037AEA8 = "T_gD_kt";
+SECTION_DEAD static char const* const stringBase_8037AEB0 = "O_gD_uktr";
+SECTION_DEAD static char const* const stringBase_8037AEBA = "O_gD_pach";
+SECTION_DEAD static char const* const stringBase_8037AEC4 = "O_gD_bmL2";
+SECTION_DEAD static char const* const stringBase_8037AECE = "O_gD_bomc";
+SECTION_DEAD static char const* const stringBase_8037AED8 = "O_gD_quL1";
+SECTION_DEAD static char const* const stringBase_8037AEE2 = "O_gD_quL2";
+SECTION_DEAD static char const* const stringBase_8037AEEC = "O_gD_quL3";
+SECTION_DEAD static char const* const stringBase_8037AEF6 = "O_gD_bott";
+SECTION_DEAD static char const* const stringBase_8037AF00 = "Obj_kntr";
+SECTION_DEAD static char const* const stringBase_8037AF09 = "O_gD_lttr";
+SECTION_DEAD static char const* const stringBase_8037AF13 = "O_gD_bill";
+SECTION_DEAD static char const* const stringBase_8037AF1D = "O_gD_wood";
+SECTION_DEAD static char const* const stringBase_8037AF27 = "O_gD_pend";
+SECTION_DEAD static char const* const stringBase_8037AF31 = "O_gD_hk_s";
+SECTION_DEAD static char const* const stringBase_8037AF3B = "N_gD_Lpod";
+SECTION_DEAD static char const* const stringBase_8037AF45 = "O_gD_kabo";
+SECTION_DEAD static char const* const stringBase_8037AF4F = "O_gD_kabm";
+SECTION_DEAD static char const* const stringBase_8037AF59 = "O_gD_choo";
+SECTION_DEAD static char const* const stringBase_8037AF63 = "O_gD_chom";
+SECTION_DEAD static char const* const stringBase_8037AF6D = "O_gD_kuwo";
+SECTION_DEAD static char const* const stringBase_8037AF77 = "O_gD_kuwm";
+SECTION_DEAD static char const* const stringBase_8037AF81 = "O_gD_bato";
+SECTION_DEAD static char const* const stringBase_8037AF8B = "O_gD_batm";
+SECTION_DEAD static char const* const stringBase_8037AF95 = "O_gD_nano";
+SECTION_DEAD static char const* const stringBase_8037AF9F = "O_gD_nanm";
+SECTION_DEAD static char const* const stringBase_8037AFA9 = "O_gD_dano";
+SECTION_DEAD static char const* const stringBase_8037AFB3 = "O_gD_danm";
+SECTION_DEAD static char const* const stringBase_8037AFBD = "O_gD_kamo";
+SECTION_DEAD static char const* const stringBase_8037AFC7 = "O_gD_kamm";
+SECTION_DEAD static char const* const stringBase_8037AFD1 = "O_gD_teno";
+SECTION_DEAD static char const* const stringBase_8037AFDB = "O_gD_tenm";
+SECTION_DEAD static char const* const stringBase_8037AFE5 = "O_gD_kato";
+SECTION_DEAD static char const* const stringBase_8037AFEF = "O_gD_katm";
+SECTION_DEAD static char const* const stringBase_8037AFF9 = "O_gD_tono";
+SECTION_DEAD static char const* const stringBase_8037B003 = "O_gD_tonm";
+SECTION_DEAD static char const* const stringBase_8037B00D = "O_gD_ario";
+SECTION_DEAD static char const* const stringBase_8037B017 = "O_gD_arim";
+SECTION_DEAD static char const* const stringBase_8037B021 = "O_gD_kago";
+SECTION_DEAD static char const* const stringBase_8037B02B = "O_gD_kagm";
+SECTION_DEAD static char const* const stringBase_8037B035 = "O_gD_tama";
+SECTION_DEAD static char const* const stringBase_8037B03F = "O_gD_komo";
+SECTION_DEAD static char const* const stringBase_8037B049 = "O_gD_pump";
+SECTION_DEAD static char const* const stringBase_8037B053 = "O_gD_chee";
+SECTION_DEAD static char const* const stringBase_8037B05D = "O_gD_bkey";
+SECTION_DEAD static char const* const stringBase_8037B067 = "D_MKey_01";
+SECTION_DEAD static char const* const stringBase_8037B071 = "D_MKey_02";
+SECTION_DEAD static char const* const stringBase_8037B07B = "D_MKey_03";
+SECTION_DEAD static char const* const stringBase_8037B085 = "O_gD_Mkey";
+SECTION_DEAD static char const* const stringBase_8037B08F = "Always";
+SECTION_DEAD static char const* const stringBase_8037B096 = "T_g_key";
+SECTION_DEAD static char const* const stringBase_8037B09E = "T_g_bkey";
+SECTION_DEAD static char const* const stringBase_8037B0A7 = "O_g_SWA";
+SECTION_DEAD static char const* const stringBase_8037B0AF = "T_g_SHB";
+SECTION_DEAD static char const* const stringBase_8037B0B7 = "O_g_ZORA";
+SECTION_DEAD static char const* const stringBase_8037B0C0 = "T_g_kt";
+SECTION_DEAD static char const* const stringBase_8037B0C7 = "O_wood";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037B0CE = "\0";
+#pragma pop

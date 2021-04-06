@@ -1,8 +1,8 @@
 lbl_8077AB8C:
-/* 8077AB8C  3C 80 80 78 */	lis r4, lit_3903@ha
-/* 8077AB90  38 A4 0D C4 */	addi r5, r4, lit_3903@l
-/* 8077AB94  3C 80 80 78 */	lis r4, __vt__12daE_S1_HIO_c@ha
-/* 8077AB98  38 04 13 28 */	addi r0, r4, __vt__12daE_S1_HIO_c@l
+/* 8077AB8C  3C 80 80 78 */	lis r4, lit_3903@ha /* 0x80780DC4@ha */
+/* 8077AB90  38 A4 0D C4 */	addi r5, r4, lit_3903@l /* 0x80780DC4@l */
+/* 8077AB94  3C 80 80 78 */	lis r4, __vt__12daE_S1_HIO_c@ha /* 0x80781328@ha */
+/* 8077AB98  38 04 13 28 */	addi r0, r4, __vt__12daE_S1_HIO_c@l /* 0x80781328@l */
 /* 8077AB9C  90 03 00 00 */	stw r0, 0(r3)
 /* 8077ABA0  38 00 FF FF */	li r0, -1
 /* 8077ABA4  98 03 00 04 */	stb r0, 4(r3)

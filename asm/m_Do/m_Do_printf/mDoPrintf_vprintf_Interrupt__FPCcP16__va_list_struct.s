@@ -17,10 +17,10 @@ lbl_800068DC:
 /* 80006918  7F C4 F3 78 */	mr r4, r30
 /* 8000691C  38 A0 00 00 */	li r5, 0
 /* 80006920  38 C0 00 00 */	li r6, 0
-/* 80006924  3C E0 80 36 */	lis r7, vprintf@ha
-/* 80006928  38 E7 67 04 */	addi r7, r7, vprintf@l
-/* 8000692C  3D 00 80 3E */	lis r8, mDoPrintf_FiberStack@ha
-/* 80006930  39 08 B7 40 */	addi r8, r8, mDoPrintf_FiberStack@l
+/* 80006924  3C E0 80 36 */	lis r7, vprintf@ha /* 0x80366704@ha */
+/* 80006928  38 E7 67 04 */	addi r7, r7, vprintf@l /* 0x80366704@l */
+/* 8000692C  3D 00 80 3E */	lis r8, mDoPrintf_FiberStack@ha /* 0x803DB740@ha */
+/* 80006930  39 08 B7 40 */	addi r8, r8, mDoPrintf_FiberStack@l /* 0x803DB740@l */
 /* 80006934  39 08 08 00 */	addi r8, r8, 0x800
 /* 80006938  4B FF FE 61 */	bl OSSwitchFiberEx__FUlUlUlUlUlUl
 /* 8000693C  38 00 00 00 */	li r0, 0

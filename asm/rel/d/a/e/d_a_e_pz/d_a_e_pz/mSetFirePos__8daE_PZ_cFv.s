@@ -6,7 +6,7 @@ lbl_80758DA4:
 /* 80758DB4  7C 7F 1B 78 */	mr r31, r3
 /* 80758DB8  80 63 04 A4 */	lwz r3, 0x4a4(r3)
 /* 80758DBC  38 81 00 08 */	addi r4, r1, 8
-/* 80758DC0  4B 8C 0B FC */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 80758DC0  4B 8C 0B FD */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 80758DC4  2C 03 00 00 */	cmpwi r3, 0
 /* 80758DC8  41 82 00 28 */	beq lbl_80758DF0
 /* 80758DCC  80 61 00 08 */	lwz r3, 8(r1)

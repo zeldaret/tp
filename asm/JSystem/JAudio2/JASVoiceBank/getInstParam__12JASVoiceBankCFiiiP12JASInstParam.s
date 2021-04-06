@@ -4,8 +4,8 @@ lbl_80297F74:
 /* 80297F7C  38 60 00 00 */	li r3, 0
 /* 80297F80  4E 80 00 20 */	blr 
 lbl_80297F84:
-/* 80297F84  3C 60 80 3A */	lis r3, sOscData__12JASVoiceBank@ha
-/* 80297F88  38 03 B1 B8 */	addi r0, r3, sOscData__12JASVoiceBank@l
+/* 80297F84  3C 60 80 3A */	lis r3, sOscData__12JASVoiceBank@ha /* 0x8039B1B8@ha */
+/* 80297F88  38 03 B1 B8 */	addi r0, r3, sOscData__12JASVoiceBank@l /* 0x8039B1B8@l */
 /* 80297F8C  90 0D 8C E8 */	stw r0, sOscTable__12JASVoiceBank(r13)
 /* 80297F90  B0 87 00 1A */	sth r4, 0x1a(r7)
 /* 80297F94  38 00 00 01 */	li r0, 1

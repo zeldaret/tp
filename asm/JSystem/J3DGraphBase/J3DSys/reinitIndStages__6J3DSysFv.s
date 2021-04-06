@@ -43,18 +43,18 @@ lbl_80310D58:
 /* 80310DE4  38 A0 00 00 */	li r5, 0
 /* 80310DE8  48 04 E0 BD */	bl GXSetIndTexCoordScale
 /* 80310DEC  38 60 00 01 */	li r3, 1
-/* 80310DF0  3C 80 80 3D */	lis r4, IndMtx@ha
-/* 80310DF4  38 84 D8 E0 */	addi r4, r4, IndMtx@l
+/* 80310DF0  3C 80 80 3D */	lis r4, IndMtx@ha /* 0x803CD8E0@ha */
+/* 80310DF4  38 84 D8 E0 */	addi r4, r4, IndMtx@l /* 0x803CD8E0@l */
 /* 80310DF8  38 A0 00 01 */	li r5, 1
 /* 80310DFC  48 04 DF 31 */	bl GXSetIndTexMtx
 /* 80310E00  38 60 00 02 */	li r3, 2
-/* 80310E04  3C 80 80 3D */	lis r4, IndMtx@ha
-/* 80310E08  38 84 D8 E0 */	addi r4, r4, IndMtx@l
+/* 80310E04  3C 80 80 3D */	lis r4, IndMtx@ha /* 0x803CD8E0@ha */
+/* 80310E08  38 84 D8 E0 */	addi r4, r4, IndMtx@l /* 0x803CD8E0@l */
 /* 80310E0C  38 A0 00 01 */	li r5, 1
 /* 80310E10  48 04 DF 1D */	bl GXSetIndTexMtx
 /* 80310E14  38 60 00 03 */	li r3, 3
-/* 80310E18  3C 80 80 3D */	lis r4, IndMtx@ha
-/* 80310E1C  38 84 D8 E0 */	addi r4, r4, IndMtx@l
+/* 80310E18  3C 80 80 3D */	lis r4, IndMtx@ha /* 0x803CD8E0@ha */
+/* 80310E1C  38 84 D8 E0 */	addi r4, r4, IndMtx@l /* 0x803CD8E0@l */
 /* 80310E20  38 A0 00 01 */	li r5, 1
 /* 80310E24  48 04 DF 09 */	bl GXSetIndTexMtx
 /* 80310E28  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -5,8 +5,8 @@ lbl_802289A8:
 /* 802289B4  38 60 FF FF */	li r3, -1
 /* 802289B8  4E 80 00 20 */	blr 
 lbl_802289BC:
-/* 802289BC  3C A0 80 43 */	lis r5, g_MsgObject_HIO_c@ha
-/* 802289C0  38 A5 02 8C */	addi r5, r5, g_MsgObject_HIO_c@l
+/* 802289BC  3C A0 80 43 */	lis r5, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802289C0  38 A5 02 8C */	addi r5, r5, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802289C4  88 05 03 20 */	lbz r0, 0x320(r5)
 /* 802289C8  28 00 00 00 */	cmplwi r0, 0
 /* 802289CC  41 82 00 28 */	beq lbl_802289F4
@@ -21,8 +21,8 @@ lbl_802289BC:
 /* 802289F0  4E 80 00 20 */	blr 
 lbl_802289F4:
 /* 802289F4  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
-/* 802289F8  3C 60 80 3A */	lis r3, colorTable_3877@ha
-/* 802289FC  38 63 95 EC */	addi r3, r3, colorTable_3877@l
+/* 802289F8  3C 60 80 3A */	lis r3, colorTable_3877@ha /* 0x803995EC@ha */
+/* 802289FC  38 63 95 EC */	addi r3, r3, colorTable_3877@l /* 0x803995EC@l */
 /* 80228A00  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80228A04  28 06 00 00 */	cmplwi r6, 0
 /* 80228A08  4C 82 00 20 */	bnelr 

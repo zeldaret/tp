@@ -102,8 +102,8 @@ struct JStudio_JStage {
     struct TVariableValueOutput_object_ {};
     /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_actor, JStage::TActor> */
     struct TVariableValueOutput_object___template0 {
-        /* 8028B580 */ ~TVariableValueOutput_object___template0();
-        /* 8028B5E0 */ void operator()(f32, JStudio::TAdaptor*) const;
+        /* 8028B580 */ void func_8028B580();
+        /* 8028B5E0 */ void func_8028B5E0(f32, JStudio::TAdaptor*) /* const */;
     };
 
     struct TAdaptor_object_ {
@@ -165,28 +165,11 @@ extern "C" void __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FR
 extern "C" void func_8028B198();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
 extern "C" void func_8028B580();
-extern "C" void func_8028B5E0();
-extern "C" extern u8 lit_1083[12];
-extern "C" extern u8 lit_1084[12];
-extern "C" extern u8 lit_1089[12];
-extern "C" extern u8 lit_1090[12];
-extern "C" extern u8 lit_1091[12];
-extern "C" extern u8 lit_1096[12];
-extern "C" extern u8 lit_1097[12];
-extern "C" extern u8 lit_1098[12];
-extern "C" extern void* __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_[4];
-extern "C" extern void* __vt__Q214JStudio_JStage14TAdaptor_actor[20 + 20 /* padding */];
-extern "C" extern void* data_803C5864[4 + 5 /* padding */];
-extern "C" extern u8 lit_1088[12];
-extern "C" extern u8 lit_1095[12];
-extern "C" extern u8 lit_1102[12];
-extern "C" extern u8 lit_1103[12];
+extern "C" void func_8028B5E0(f32, JStudio::TAdaptor*);
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void toFunction_outside__Q27JStudio14TFunctionValueFi();
 extern "C" void getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf();
@@ -228,64 +211,88 @@ extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding
 //
 
 /* ############################################################################################## */
-/* 803C5730-803C573C 000C+00 s=2 e=0 z=0  None .data      @890 */
+/* 803C5730-803C573C 022850 000C+00 2/2 0/0 0/0 .data            @890 */
 SECTION_DATA static u8 lit_890[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x58, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C573C-803C5748 000C+00 s=1 e=0 z=0  None .data      @899 */
+/* 803C573C-803C5748 02285C 000C+00 1/1 0/0 0/0 .data            @899 */
 SECTION_DATA static u8 lit_899[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C5748-803C5754 000C+00 s=1 e=0 z=0  None .data      @916 */
+/* 803C5748-803C5754 022868 000C+00 1/1 0/0 0/0 .data            @916 */
 SECTION_DATA static u8 lit_916[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7C, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C5754-803C5760 000C+00 s=0 e=0 z=0  None .data      @1083 */
-SECTION_DATA u8 lit_1083[12] = {
+/* 803C5754-803C5760 022874 000C+00 0/1 0/0 0/0 .data            @1083 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1083[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x74, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C5760-803C576C 000C+00 s=0 e=0 z=0  None .data      @1084 */
-SECTION_DATA u8 lit_1084[12] = {
+/* 803C5760-803C576C 022880 000C+00 0/1 0/0 0/0 .data            @1084 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1084[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C576C-803C5778 000C+00 s=0 e=0 z=0  None .data      @1089 */
-SECTION_DATA u8 lit_1089[12] = {
+/* 803C576C-803C5778 02288C 000C+00 0/1 0/0 0/0 .data            @1089 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1089[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C5778-803C5784 000C+00 s=0 e=0 z=0  None .data      @1090 */
-SECTION_DATA u8 lit_1090[12] = {
+/* 803C5778-803C5784 022898 000C+00 0/1 0/0 0/0 .data            @1090 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1090[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C5784-803C5790 000C+00 s=0 e=0 z=0  None .data      @1091 */
-SECTION_DATA u8 lit_1091[12] = {
+/* 803C5784-803C5790 0228A4 000C+00 0/1 0/0 0/0 .data            @1091 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1091[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C5790-803C579C 000C+00 s=0 e=0 z=0  None .data      @1096 */
-SECTION_DATA u8 lit_1096[12] = {
+/* 803C5790-803C579C 0228B0 000C+00 0/1 0/0 0/0 .data            @1096 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1096[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x84, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C579C-803C57A8 000C+00 s=0 e=0 z=0  None .data      @1097 */
-SECTION_DATA u8 lit_1097[12] = {
+/* 803C579C-803C57A8 0228BC 000C+00 0/1 0/0 0/0 .data            @1097 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1097[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C57A8-803C57B4 000C+00 s=0 e=0 z=0  None .data      @1098 */
-SECTION_DATA u8 lit_1098[12] = {
+/* 803C57A8-803C57B4 0228C8 000C+00 0/1 0/0 0/0 .data            @1098 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_1098[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x88, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 803C57B4-803C57C4 0010+00 s=1 e=0 z=0  None .data
+/* 803C57B4-803C57C4 0228D4 0010+00 1/2 0/0 0/0 .data
  * __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_ */
-SECTION_DATA void* __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_[4] = {
+SECTION_DATA extern void* __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)
@@ -293,9 +300,8 @@ SECTION_DATA void* __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION
     (void*)__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv,
 };
 
-/* 803C57C4-803C5864 0050+50 s=2 e=0 z=0  None .data      __vt__Q214JStudio_JStage14TAdaptor_actor
- */
-SECTION_DATA void* __vt__Q214JStudio_JStage14TAdaptor_actor[20 + 20 /* padding */] = {
+/* 803C57C4-803C5864 0228E4 0050+50 2/2 0/0 0/0 .data __vt__Q214JStudio_JStage14TAdaptor_actor */
+SECTION_DATA extern void* __vt__Q214JStudio_JStage14TAdaptor_actor[20 + 20 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q214JStudio_JStage14TAdaptor_actorFv,
@@ -351,19 +357,8 @@ SECTION_DATA void* __vt__Q214JStudio_JStage14TAdaptor_actor[20 + 20 /* padding *
     NULL,
 };
 
-/* 8028A5F0-8028A6B4 00C4+00 s=0 e=1 z=0  None .text
+/* 8028A5F0-8028A6B4 284F30 00C4+00 0/0 1/1 0/0 .text
  * __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor */
-//	8028A600: 803621DC (_savegpr_29)
-//	8028A614: 803C5610 (__vt__Q27JStudio8TAdaptor)
-//	8028A618: 803C5610 (__vt__Q27JStudio8TAdaptor)
-//	8028A638: 803C55A0 (__vt__Q27JStudio14TAdaptor_actor)
-//	8028A63C: 803C55A0 (__vt__Q27JStudio14TAdaptor_actor)
-//	8028A644: 8028B568 (__ct__Q27JStudio14TVariableValueFv)
-//	8028A648: 8028B568 (__ct__Q27JStudio14TVariableValueFv)
-//	8028A658: 80361D60 (__construct_array)
-//	8028A664: 803C57C4 (__vt__Q214JStudio_JStage14TAdaptor_actor)
-//	8028A668: 803C57C4 (__vt__Q214JStudio_JStage14TAdaptor_actor)
-//	8028A6A0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -374,12 +369,8 @@ asm JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_
 }
 #pragma pop
 
-/* 8028A6B4-8028A728 0074+00 s=1 e=0 z=0  None .text      __dt__Q214JStudio_JStage14TAdaptor_actorFv
+/* 8028A6B4-8028A728 284FF4 0074+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage14TAdaptor_actorFv
  */
-//	8028A6D4: 803C57C4 (__vt__Q214JStudio_JStage14TAdaptor_actor)
-//	8028A6D8: 803C57C4 (__vt__Q214JStudio_JStage14TAdaptor_actor)
-//	8028A6F8: 802868B0 (__dt__Q27JStudio14TAdaptor_actorFv)
-//	8028A708: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,37 +381,43 @@ asm JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80431188-80431194 000C+00 s=1 e=0 z=0  None .bss       @1087 */
+/* 80431188-80431194 05DEA8 000C+00 1/1 0/0 0/0 .bss             @1087 */
 static u8 lit_1087[12];
 
-/* 80431194-804311A0 000C+00 s=0 e=0 z=0  None .bss       @1088 */
-u8 lit_1088[12];
+/* 80431194-804311A0 05DEB4 000C+00 0/1 0/0 0/0 .bss             @1088 */
+#pragma push
+#pragma force_active on
+static u8 lit_1088[12];
+#pragma pop
 
-/* 804311A0-804311E0 0040+00 s=2 e=0 z=0  None .bss
+/* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
 static u8 saoVVOutput___Q214JStudio_JStage14TAdaptor_actor[64];
 
-/* 804311E0-804311EC 000C+00 s=0 e=0 z=0  None .bss       @1095 */
-u8 lit_1095[12];
+/* 804311E0-804311EC 05DF00 000C+00 0/1 0/0 0/0 .bss             @1095 */
+#pragma push
+#pragma force_active on
+static u8 lit_1095[12];
+#pragma pop
 
-/* 804311EC-804311F8 000C+00 s=0 e=0 z=0  None .bss       @1102 */
-u8 lit_1102[12];
+/* 804311EC-804311F8 05DF0C 000C+00 0/1 0/0 0/0 .bss             @1102 */
+#pragma push
+#pragma force_active on
+static u8 lit_1102[12];
+#pragma pop
 
-/* 804311F8-80431204 000C+00 s=0 e=0 z=0  None .bss       @1103 */
-u8 lit_1103[12];
+/* 804311F8-80431204 05DF18 000C+00 0/1 0/0 0/0 .bss             @1103 */
+#pragma push
+#pragma force_active on
+static u8 lit_1103[12];
+#pragma pop
 
-/* 80431204-80431298 0090+04 s=2 e=0 z=0  None .bss
+/* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
  * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
 static u8 saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor[144 + 4 /* padding */];
 
-/* 8028A728-8028A7B4 008C+00 s=1 e=0 z=0  None .text
+/* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
-//	8028A728: 804311A0 (saoVVOutput___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A72C: 804311A0 (saoVVOutput___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A754: 804511F0 (soOutput_none___Q27JStudio14TVariableValue)
-//	8028A76C: 80431204 (saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A770: 80431204 (saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A798: 804511F0 (soOutput_none___Q27JStudio14TVariableValue)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -430,21 +427,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
 }
 #pragma pop
 
-/* 8028A7B4-8028A8D8 0124+00 s=1 e=0 z=0  None .text
+/* 8028A7B4-8028A8D8 2850F4 0124+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv       */
-//	8028A7C4: 803621D4 (_savegpr_27)
-//	8028A80C: 8028AECC (getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl)
-//	8028A810: 804311A0 (saoVVOutput___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A814: 804311A0 (saoVVOutput___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A81C: 80285EB8 (update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued)
-//	8028A820: 80285EB8 (update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued)
-//	8028A834: 80362084 (__ptmf_scall)
-//	8028A868: 80431204 (saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A86C: 80431204 (saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor)
-//	8028A874: 80285EB8 (update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued)
-//	8028A878: 80285EB8 (update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued)
-//	8028A88C: 80362084 (__ptmf_scall)
-//	8028A8C4: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -454,7 +438,7 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
 }
 #pragma pop
 
-/* 8028A8D8-8028A92C 0054+00 s=1 e=0 z=0  None .text
+/* 8028A8D8-8028A92C 285218 0054+00 1/0 0/0 0/0 .text
  * adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFv         */
 #pragma push
 #pragma optimization_level 0
@@ -465,9 +449,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_end() {
 }
 #pragma pop
 
-/* 8028A92C-8028A974 0048+00 s=1 e=0 z=0  None .text
+/* 8028A92C-8028A974 28526C 0048+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFUl     */
-//	8028A948: 8028AD38 (setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,9 +460,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_update(u32 param_0) {
 }
 #pragma pop
 
-/* 8028A974-8028A998 0024+00 s=1 e=0 z=0  None .text
+/* 8028A974-8028A998 2852B4 0024+00 1/0 0/0 0/0 .text
  * adaptor_do_data__Q214JStudio_JStage14TAdaptor_actorFPCvUlPCvUl */
-//	8028A984: 8028A470 (adaptor_object_data___Q214JStudio_JStage16TAdaptor_object_FPCvUlPCvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -490,12 +472,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_data(void const* param_0, u3
 }
 #pragma pop
 
-/* 8028A998-8028A9F0 0058+00 s=1 e=0 z=0  None .text
+/* 8028A998-8028A9F0 2852D8 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_SHAPE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-//	8028A9B0: 803C5730 (lit_890)
-//	8028A9B4: 803C5730 (lit_890)
-//	8028A9DC: 8028ACFC
-//(setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -506,12 +484,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOpera
 }
 #pragma pop
 
-/* 8028A9F0-8028AA48 0058+00 s=1 e=0 z=0  None .text
+/* 8028A9F0-8028AA48 285330 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-//	8028AA08: 803C573C (lit_899)
-//	8028AA0C: 803C573C (lit_899)
-//	8028AA34: 8028ACFC
-//(setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -523,7 +497,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationD
 }
 #pragma pop
 
-/* 8028AA48-8028AA5C 0014+00 s=1 e=0 z=0  None .text
+/* 8028AA48-8028AA5C 285388 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
 #pragma push
@@ -537,13 +511,9 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOpera
 }
 #pragma pop
 
-/* 8028AA5C-8028AAB4 0058+00 s=1 e=0 z=0  None .text
+/* 8028AA5C-8028AAB4 28539C 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_TEXTURE_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-//	8028AA74: 803C5748 (lit_916)
-//	8028AA78: 803C5748 (lit_916)
-//	8028AAA0: 8028ACFC
-//(setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,7 +525,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOp
 }
 #pragma pop
 
-/* 8028AAB4-8028AAC8 0014+00 s=1 e=0 z=0  None .text
+/* 8028AAB4-8028AAC8 2853F4 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
 #pragma push
@@ -568,9 +538,8 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
 }
 #pragma pop
 
-/* 8028AAC8-8028AB0C 0044+00 s=1 e=0 z=0  None .text
+/* 8028AAC8-8028AB0C 285408 0044+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-//	8028AAF0: 8028A4BC (adaptor_object_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -581,11 +550,9 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOper
 }
 #pragma pop
 
-/* 8028AB0C-8028AB68 005C+00 s=1 e=0 z=0  None .text
+/* 8028AB0C-8028AB68 28544C 005C+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-//	8028AB40: 8028A50C
-//(adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -597,7 +564,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperatio
 }
 #pragma pop
 
-/* 8028AB68-8028ABF0 0088+00 s=1 e=0 z=0  None .text
+/* 8028AB68-8028ABF0 2854A8 0088+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
 #pragma push
@@ -611,7 +578,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperat
 }
 #pragma pop
 
-/* 8028ABF0-8028AC04 0014+00 s=1 e=0 z=0  None .text
+/* 8028ABF0-8028AC04 285530 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
 #pragma push
@@ -625,9 +592,8 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOper
 }
 #pragma pop
 
-/* 8028AC04-8028AC48 0044+00 s=1 e=0 z=0  None .text
+/* 8028AC04-8028AC48 285544 0044+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-//	8028AC2C: 8028A4BC (adaptor_object_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -638,11 +604,9 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOp
 }
 #pragma pop
 
-/* 8028AC48-8028ACA4 005C+00 s=1 e=0 z=0  None .text
+/* 8028AC48-8028ACA4 285588 005C+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-//	8028AC7C: 8028A50C
-//(adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -654,7 +618,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperat
 }
 #pragma pop
 
-/* 8028ACA4-8028ACFC 0058+00 s=1 e=0 z=0  None .text
+/* 8028ACA4-8028ACFC 2855E4 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
 #pragma push
@@ -668,10 +632,9 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOper
 }
 #pragma pop
 
-/* 8028ACFC-8028AD38 003C+00 s=3 e=0 z=0  None .text
+/* 8028ACFC-8028AD38 28563C 003C+00 3/3 0/0 0/0 .text
  * setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl
  */
-//	8028AD20: 80362084 (__ptmf_scall)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -683,21 +646,8 @@ asm void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*)(u32
 }
 #pragma pop
 
-/* 8028AD38-8028AECC 0194+00 s=1 e=0 z=0  None .text
+/* 8028AD38-8028AECC 285678 0194+00 1/1 0/0 0/0 .text
  * setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl */
-//	8028AD58: 8039AA68 (sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD5C: 8039AA68 (sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD60: 80286274 (adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl)
-//	8028AD6C: 8039AA74 (sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD70: 8039AA74 (sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD74: 80286274 (adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl)
-//	8028AD80: 8039AA80 (sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD84: 8039AA80 (sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028AD88: 80286274 (adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl)
-//	8028ADB8: 80346D6C (PSMTXMultVec)
-//	8028AE30: 8028A1F8
-//(transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl)
-//	8028AE54: 80285BCC (getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -707,23 +657,8 @@ asm void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(JStudio::TControl const* pa
 }
 #pragma pop
 
-/* 8028AECC-8028B064 0198+00 s=1 e=0 z=0  None .text
+/* 8028AECC-8028B064 28580C 0198+00 1/1 0/0 0/0 .text
  * getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl */
-//	8028AEDC: 803621DC (_savegpr_29)
-//	8028AF60: 80346D6C (PSMTXMultVec)
-//	8028AFD8: 8028A328
-//(transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl)
-//	8028AFFC: 80285BCC (getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf)
-//	8028B014: 8039AA68 (sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B018: 8039AA68 (sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B020: 80286204 (adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec)
-//	8028B028: 8039AA74 (sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B02C: 8039AA74 (sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B034: 80286204 (adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec)
-//	8028B03C: 8039AA80 (sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B040: 8039AA80 (sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor)
-//	8028B048: 80286204 (adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec)
-//	8028B050: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -734,21 +669,15 @@ asm void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(JStudio::TControl const* pa
 #pragma pop
 
 /* ############################################################################################## */
-/* 804554E0-804554E8 0004+04 s=1 e=0 z=0  None .sdata2    @1081 */
+/* 804554E0-804554E8 003AE0 0004+04 1/1 0/0 0/0 .sdata2          @1081 */
 SECTION_SDATA2 static f32 lit_1081[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 8028B064-8028B138 00D4+00 s=1 e=0 z=0  None .text
+/* 8028B064-8028B138 2859A4 00D4+00 1/0 0/0 0/0 .text
  * __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStudio8TAdaptor */
-//	8028B084: 803621D8 (_savegpr_28)
-//	8028B0AC: 80362084 (__ptmf_scall)
-//	8028B0D0: 804554E0 (lit_1081)
-//	8028B0E0: 80281648 (toFunction_outside__Q27JStudio14TFunctionValueFi)
-//	8028B108: 80362084 (__ptmf_scall)
-//	8028B124: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -759,12 +688,8 @@ asm void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
 }
 #pragma pop
 
-/* 8028B138-8028B198 0060+00 s=2 e=0 z=0  None .text
+/* 8028B138-8028B198 285A78 0060+00 2/1 0/0 0/0 .text
  * __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv */
-//	8028B158: 803C57B4 (__vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_)
-//	8028B15C: 803C57B4 (__vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_)
-//	8028B168: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B178: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -775,10 +700,10 @@ asm JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMA
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C5864-803C5888 0010+14 s=2 e=0 z=0  None .data
+/* 803C5864-803C5888 022984 0010+14 2/2 0/0 0/0 .data
  * __vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>
  */
-SECTION_DATA void* data_803C5864[4 + 5 /* padding */] = {
+SECTION_DATA extern void* data_803C5864[4 + 5 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)func_8028B5E0,
@@ -791,59 +716,11 @@ SECTION_DATA void* data_803C5864[4 + 5 /* padding */] = {
     NULL,
 };
 
-/* 8028B198-8028B568 03D0+00 s=0 e=0 z=0  None .text      __sinit_object-actor_cpp */
-//	8028B1A8: 803621D4 (_savegpr_27)
-//	8028B1AC: 803C5730 (lit_890)
-//	8028B1B0: 803C5730 (lit_890)
-//	8028B1B4: 80431188 (lit_1087)
-//	8028B1B8: 80431188 (lit_1087)
-//	8028B1BC: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B1C0: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B1C8: 803C5864 (data_803C5864)
-//	8028B1CC: 803C5864 (data_803C5864)
-//	8028B234: 8028B580 (func_8028B580)
-//	8028B238: 8028B580 (func_8028B580)
-//	8028B240: 80361C24 (__register_global_object)
-//	8028B244: 803C5864 (data_803C5864)
-//	8028B248: 803C5864 (data_803C5864)
-//	8028B258: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B25C: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B260: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B268: 803C5864 (data_803C5864)
-//	8028B26C: 803C5864 (data_803C5864)
-//	8028B27C: 803A2180 (__ptmf_null)
-//	8028B280: 803A2180 (__ptmf_null)
-//	8028B2D0: 8028B580 (func_8028B580)
-//	8028B2D4: 8028B580 (func_8028B580)
-//	8028B2DC: 80361C24 (__register_global_object)
-//	8028B2E0: 803C5864 (data_803C5864)
-//	8028B2E4: 803C5864 (data_803C5864)
-//	8028B2F4: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B2F8: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B2FC: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B39C: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B3A0: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B3A8: 80361C24 (__register_global_object)
-//	8028B3BC: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B3C0: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B3C4: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B468: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B46C: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B474: 80361C24 (__register_global_object)
-//	8028B488: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B48C: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B490: 803C5640 (__vt__Q37JStudio14TVariableValue7TOutput)
-//	8028B4B0: 803A2180 (__ptmf_null)
-//	8028B4B4: 803A2180 (__ptmf_null)
-//	8028B52C: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B530: 8028B138 (__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv)
-//	8028B538: 80361C24 (__register_global_object)
-//	8028B54C: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B554: 80362220 (_restgpr_27)
+/* 8028B198-8028B568 285AD8 03D0+00 0/0 1/0 0/0 .text            __sinit_object-actor_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028B198() {
+asm void func_8028B198() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B198.s"
 }
@@ -854,8 +731,8 @@ extern "C" asm void func_8028B198() {
 SECTION_CTORS void* const _ctors_8028B198 = (void*)func_8028B198;
 #pragma pop
 
-/* 8028B568-8028B580 0018+00 s=1 e=6 z=0  None .text      __ct__Q27JStudio14TVariableValueFv */
-//	8028B574: 804511F0 (soOutput_none___Q27JStudio14TVariableValue)
+/* 8028B568-8028B580 285EA8 0018+00 1/1 6/6 0/0 .text            __ct__Q27JStudio14TVariableValueFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -865,32 +742,25 @@ asm JStudio::TVariableValue::TVariableValue() {
 }
 #pragma pop
 
-/* 8028B580-8028B5E0 0060+00 s=2 e=0 z=0  None .text
+/* 8028B580-8028B5E0 285EC0 0060+00 2/1 0/0 0/0 .text
  * __dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv
  */
-//	8028B5A0: 803C5864 (data_803C5864)
-//	8028B5A4: 803C5864 (data_803C5864)
-//	8028B5B0: 80285E0C (__dt__Q37JStudio14TVariableValue7TOutputFv)
-//	8028B5C0: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JStudio_JStage::TVariableValueOutput_object___template0::
-    ~TVariableValueOutput_object___template0() {
+extern "C" asm void func_8028B580() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B580.s"
 }
 #pragma pop
 
-/* 8028B5E0-8028B610 0030+00 s=1 e=0 z=0  None .text
+/* 8028B5E0-8028B610 285F20 0030+00 1/0 0/0 0/0 .text
  * __cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor
  */
-//	8028B5F8: 80362084 (__ptmf_scall)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio_JStage::TVariableValueOutput_object___template0::operator()(
-    f32 param_0, JStudio::TAdaptor* param_1) const {
+extern "C" asm void func_8028B5E0(f32 param_0, JStudio::TAdaptor* param_1) /* const */ {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B5E0.s"
 }

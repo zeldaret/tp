@@ -24,42 +24,42 @@ extern "C" void TRKPositionFile();
 // Declarations:
 //
 
-/* 803711D0-803711D8 0008+00 s=0 e=2 z=0  None .text      TRKAccessFile */
+/* 803711D0-803711D8 36BB10 0008+00 0/0 2/2 0/0 .text            TRKAccessFile */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 16
-extern "C" asm void TRKAccessFile() {
+asm void TRKAccessFile() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp/TRKAccessFile.s"
 }
 #pragma pop
 
-/* 803711D8-803711E0 0008+00 s=0 e=0 z=0  None .text      TRKOpenFile */
+/* 803711D8-803711E0 36BB18 0008+00 0/0 0/0 0/0 .text            TRKOpenFile */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKOpenFile() {
+asm void TRKOpenFile() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp/TRKOpenFile.s"
 }
 #pragma pop
 
-/* 803711E0-803711E8 0008+00 s=0 e=0 z=0  None .text      TRKCloseFile */
+/* 803711E0-803711E8 36BB20 0008+00 0/0 0/0 0/0 .text            TRKCloseFile */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKCloseFile() {
+asm void TRKCloseFile() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp/TRKCloseFile.s"
 }
 #pragma pop
 
-/* 803711E8-803711F0 0008+00 s=0 e=0 z=0  None .text      TRKPositionFile */
+/* 803711E8-803711F0 36BB28 0008+00 0/0 0/0 0/0 .text            TRKPositionFile */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKPositionFile() {
+asm void TRKPositionFile() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Export/targsupp/TRKPositionFile.s"
 }

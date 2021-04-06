@@ -14,8 +14,8 @@ lbl_8013852C:
 /* 8013855C  C3 E2 92 C0 */	lfs f31, lit_6108(r2)
 /* 80138560  48 00 00 10 */	b lbl_80138570
 lbl_80138564:
-/* 80138564  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha
-/* 80138568  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l
+/* 80138564  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 80138568  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 8013856C  C3 E3 00 68 */	lfs f31, 0x68(r3)
 lbl_80138570:
 /* 80138570  7F E3 FB 78 */	mr r3, r31
@@ -41,19 +41,19 @@ lbl_801385B0:
 /* 801385B8  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 801385BC  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 801385C0  41 82 00 14 */	beq lbl_801385D4
-/* 801385C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha
-/* 801385C8  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l
+/* 801385C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 801385C8  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 801385CC  C0 25 00 64 */	lfs f1, 0x64(r5)
 /* 801385D0  48 00 00 10 */	b lbl_801385E0
 lbl_801385D4:
-/* 801385D4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha
-/* 801385D8  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l
+/* 801385D4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 801385D8  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 801385DC  C0 25 00 88 */	lfs f1, 0x88(r5)
 lbl_801385E0:
 /* 801385E0  FC 40 F8 90 */	fmr f2, f31
 /* 801385E4  4B FF 10 F5 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
-/* 801385E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801385EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801385E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801385EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801385F0  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 801385F4  64 00 00 10 */	oris r0, r0, 0x10
 /* 801385F8  90 03 5F 18 */	stw r0, 0x5f18(r3)

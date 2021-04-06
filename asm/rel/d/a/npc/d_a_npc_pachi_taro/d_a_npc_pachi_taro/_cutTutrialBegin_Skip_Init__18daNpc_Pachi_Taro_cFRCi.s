@@ -8,7 +8,7 @@ lbl_80A9ECF0:
 /* 80A9ED08  48 00 00 0C */	b lbl_80A9ED14
 lbl_80A9ED0C:
 /* 80A9ED0C  38 60 02 60 */	li r3, 0x260
-/* 80A9ED10  4B 6A DD 1C */	b daNpcT_onEvtBit__FUl
+/* 80A9ED10  4B 6A DD 1D */	bl daNpcT_onEvtBit__FUl
 lbl_80A9ED14:
 /* 80A9ED14  38 60 00 01 */	li r3, 1
 /* 80A9ED18  80 01 00 14 */	lwz r0, 0x14(r1)

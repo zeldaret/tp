@@ -19,8 +19,8 @@ lbl_800C4FFC:
 /* 800C5040  48 00 01 04 */	b lbl_800C5144
 lbl_800C5044:
 /* 800C5044  C0 3E 00 10 */	lfs f1, 0x10(r30)
-/* 800C5048  3C 60 80 39 */	lis r3, m__23daAlinkHIO_frontRoll_c0@ha
-/* 800C504C  38 63 D7 BC */	addi r3, r3, m__23daAlinkHIO_frontRoll_c0@l
+/* 800C5048  3C 60 80 39 */	lis r3, m__23daAlinkHIO_frontRoll_c0@ha /* 0x8038D7BC@ha */
+/* 800C504C  38 63 D7 BC */	addi r3, r3, m__23daAlinkHIO_frontRoll_c0@l /* 0x8038D7BC@l */
 /* 800C5050  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800C5054  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C5058  40 81 00 20 */	ble lbl_800C5078
@@ -64,8 +64,8 @@ lbl_800C50D4:
 /* 800C50E0  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800C50E4  7F E3 FB 78 */	mr r3, r31
 /* 800C50E8  7F C4 F3 78 */	mr r4, r30
-/* 800C50EC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_frontRoll_c0@ha
-/* 800C50F0  38 A5 D7 BC */	addi r5, r5, m__23daAlinkHIO_frontRoll_c0@l
+/* 800C50EC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_frontRoll_c0@ha /* 0x8038D7BC@ha */
+/* 800C50F0  38 A5 D7 BC */	addi r5, r5, m__23daAlinkHIO_frontRoll_c0@l /* 0x8038D7BC@l */
 /* 800C50F4  C0 25 00 18 */	lfs f1, 0x18(r5)
 /* 800C50F8  48 03 CB FD */	bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 /* 800C50FC  38 00 00 00 */	li r0, 0

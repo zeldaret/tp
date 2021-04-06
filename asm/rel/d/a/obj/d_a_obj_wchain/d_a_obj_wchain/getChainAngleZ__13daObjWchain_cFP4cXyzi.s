@@ -7,8 +7,8 @@ lbl_80D305E4:
 /* 80D305F8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80D305FC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80D30600  7C BE 2B 78 */	mr r30, r5
-/* 80D30604  3C 60 80 D3 */	lis r3, l_arcName@ha
-/* 80D30608  3B E3 19 24 */	addi r31, r3, l_arcName@l
+/* 80D30604  3C 60 80 D3 */	lis r3, l_arcName@ha /* 0x80D31924@ha */
+/* 80D30608  3B E3 19 24 */	addi r31, r3, l_arcName@l /* 0x80D31924@l */
 /* 80D3060C  C0 24 00 08 */	lfs f1, 8(r4)
 /* 80D30610  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80D30614  D0 01 00 0C */	stfs f0, 0xc(r1)
@@ -16,7 +16,7 @@ lbl_80D305E4:
 /* 80D3061C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80D30620  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80D30624  38 61 00 0C */	addi r3, r1, 0xc
-/* 80D30628  4B 61 6B 10 */	b PSVECSquareMag
+/* 80D30628  4B 61 6B 11 */	bl PSVECSquareMag
 /* 80D3062C  C0 1F 00 2C */	lfs f0, 0x2c(r31)
 /* 80D30630  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D30634  40 81 00 58 */	ble lbl_80D3068C
@@ -45,8 +45,8 @@ lbl_80D3068C:
 /* 80D3068C  C8 1F 00 68 */	lfd f0, 0x68(r31)
 /* 80D30690  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D30694  40 80 00 10 */	bge lbl_80D306A4
-/* 80D30698  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D3069C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 80D30698  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D3069C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D306A0  48 00 00 78 */	b lbl_80D30718
 lbl_80D306A4:
 /* 80D306A4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -80,8 +80,8 @@ lbl_80D306FC:
 lbl_80D30700:
 /* 80D30700  2C 00 00 01 */	cmpwi r0, 1
 /* 80D30704  40 82 00 10 */	bne lbl_80D30714
-/* 80D30708  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D3070C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 80D30708  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D3070C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D30710  48 00 00 08 */	b lbl_80D30718
 lbl_80D30714:
 /* 80D30714  FF E0 08 90 */	fmr f31, f1
@@ -89,7 +89,7 @@ lbl_80D30718:
 /* 80D30718  2C 1E 50 00 */	cmpwi r30, 0x5000
 /* 80D3071C  40 81 00 34 */	ble lbl_80D30750
 /* 80D30720  C0 3F 00 74 */	lfs f1, 0x74(r31)
-/* 80D30724  4B 53 72 30 */	b cM_rndF__Ff
+/* 80D30724  4B 53 72 31 */	bl cM_rndF__Ff
 /* 80D30728  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 80D3072C  EC 20 08 2A */	fadds f1, f0, f1
 /* 80D30730  FC 00 F8 50 */	fneg f0, f31
@@ -104,7 +104,7 @@ lbl_80D30750:
 /* 80D30750  2C 1E 30 00 */	cmpwi r30, 0x3000
 /* 80D30754  40 80 00 30 */	bge lbl_80D30784
 /* 80D30758  C0 3F 00 74 */	lfs f1, 0x74(r31)
-/* 80D3075C  4B 53 71 F8 */	b cM_rndF__Ff
+/* 80D3075C  4B 53 71 F9 */	bl cM_rndF__Ff
 /* 80D30760  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 80D30764  EC 00 08 2A */	fadds f0, f0, f1
 /* 80D30768  EC 3F 00 32 */	fmuls f1, f31, f0
@@ -115,12 +115,12 @@ lbl_80D30750:
 /* 80D3077C  80 61 00 1C */	lwz r3, 0x1c(r1)
 /* 80D30780  48 00 00 6C */	b lbl_80D307EC
 lbl_80D30784:
-/* 80D30784  4B 53 70 E8 */	b cM_rnd__Fv
+/* 80D30784  4B 53 70 E9 */	bl cM_rnd__Fv
 /* 80D30788  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 80D3078C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D30790  40 80 00 34 */	bge lbl_80D307C4
 /* 80D30794  FC 20 00 90 */	fmr f1, f0
-/* 80D30798  4B 53 71 BC */	b cM_rndF__Ff
+/* 80D30798  4B 53 71 BD */	bl cM_rndF__Ff
 /* 80D3079C  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 80D307A0  EC 20 08 2A */	fadds f1, f0, f1
 /* 80D307A4  FC 00 F8 50 */	fneg f0, f31
@@ -133,7 +133,7 @@ lbl_80D30784:
 /* 80D307C0  48 00 00 2C */	b lbl_80D307EC
 lbl_80D307C4:
 /* 80D307C4  FC 20 00 90 */	fmr f1, f0
-/* 80D307C8  4B 53 71 8C */	b cM_rndF__Ff
+/* 80D307C8  4B 53 71 8D */	bl cM_rndF__Ff
 /* 80D307CC  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 80D307D0  EC 00 08 2A */	fadds f0, f0, f1
 /* 80D307D4  EC 3F 00 32 */	fmuls f1, f31, f0

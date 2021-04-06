@@ -12,13 +12,13 @@ lbl_80340AA8:
 /* 80340AD0  7F C0 F3 78 */	mr r0, r30
 /* 80340AD4  48 00 00 0C */	b lbl_80340AE0
 lbl_80340AD8:
-/* 80340AD8  3C 80 80 34 */	lis r4, DefaultSwitchThreadCallback@ha
-/* 80340ADC  38 04 0A A4 */	addi r0, r4, DefaultSwitchThreadCallback@l
+/* 80340AD8  3C 80 80 34 */	lis r4, DefaultSwitchThreadCallback@ha /* 0x80340AA4@ha */
+/* 80340ADC  38 04 0A A4 */	addi r0, r4, DefaultSwitchThreadCallback@l /* 0x80340AA4@l */
 lbl_80340AE0:
 /* 80340AE0  90 0D 84 38 */	stw r0, SwitchThreadCallback(r13)
 /* 80340AE4  4B FF CC 39 */	bl OSRestoreInterrupts
-/* 80340AE8  3C 60 80 34 */	lis r3, DefaultSwitchThreadCallback@ha
-/* 80340AEC  38 03 0A A4 */	addi r0, r3, DefaultSwitchThreadCallback@l
+/* 80340AE8  3C 60 80 34 */	lis r3, DefaultSwitchThreadCallback@ha /* 0x80340AA4@ha */
+/* 80340AEC  38 03 0A A4 */	addi r0, r3, DefaultSwitchThreadCallback@l /* 0x80340AA4@l */
 /* 80340AF0  7C 1F 00 40 */	cmplw r31, r0
 /* 80340AF4  40 82 00 0C */	bne lbl_80340B00
 /* 80340AF8  38 60 00 00 */	li r3, 0

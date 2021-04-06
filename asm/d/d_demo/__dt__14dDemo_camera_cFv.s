@@ -7,8 +7,8 @@ lbl_80039FFC:
 /* 8003A010  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8003A014  7C 9F 23 78 */	mr r31, r4
 /* 8003A018  41 82 00 28 */	beq lbl_8003A040
-/* 8003A01C  3C 80 80 3A */	lis r4, __vt__14dDemo_camera_c@ha
-/* 8003A020  38 04 7A A0 */	addi r0, r4, __vt__14dDemo_camera_c@l
+/* 8003A01C  3C 80 80 3A */	lis r4, __vt__14dDemo_camera_c@ha /* 0x803A7AA0@ha */
+/* 8003A020  38 04 7A A0 */	addi r0, r4, __vt__14dDemo_camera_c@l /* 0x803A7AA0@l */
 /* 8003A024  90 1E 00 00 */	stw r0, 0(r30)
 /* 8003A028  38 80 00 00 */	li r4, 0
 /* 8003A02C  48 24 6B 75 */	bl __dt__Q26JStage7TCameraFv

@@ -6,10 +6,10 @@ lbl_80D23A0C:
 /* 80D23A1C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80D23A20  7C 7E 1B 78 */	mr r30, r3
 /* 80D23A24  38 7E 05 7C */	addi r3, r30, 0x57c
-/* 80D23A28  3C 80 80 D2 */	lis r4, l_arcName@ha
-/* 80D23A2C  38 84 3E AC */	addi r4, r4, l_arcName@l
+/* 80D23A28  3C 80 80 D2 */	lis r4, l_arcName@ha /* 0x80D23EAC@ha */
+/* 80D23A2C  38 84 3E AC */	addi r4, r4, l_arcName@l /* 0x80D23EAC@l */
 /* 80D23A30  80 84 00 00 */	lwz r4, 0(r4)
-/* 80D23A34  4B 30 95 D4 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80D23A34  4B 30 95 D5 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80D23A38  88 1E 06 00 */	lbz r0, 0x600(r30)
 /* 80D23A3C  28 00 00 00 */	cmplwi r0, 0
 /* 80D23A40  41 82 00 18 */	beq lbl_80D23A58
@@ -19,11 +19,11 @@ lbl_80D23A0C:
 /* 80D23A50  28 00 00 00 */	cmplwi r0, 0
 /* 80D23A54  41 82 00 18 */	beq lbl_80D23A6C
 lbl_80D23A58:
-/* 80D23A58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D23A5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D23A58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D23A5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D23A60  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80D23A64  38 80 00 1F */	li r4, 0x1f
-/* 80D23A68  4B 34 C3 2C */	b StopQuake__12dVibration_cFi
+/* 80D23A68  4B 34 C3 2D */	bl StopQuake__12dVibration_cFi
 lbl_80D23A6C:
 /* 80D23A6C  3B E0 00 00 */	li r31, 0
 lbl_80D23A70:

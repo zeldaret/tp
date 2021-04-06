@@ -7,8 +7,8 @@ lbl_802CF0C0:
 /* 802CF0D4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802CF0D8  7C 9F 23 78 */	mr r31, r4
 /* 802CF0DC  41 82 00 30 */	beq lbl_802CF10C
-/* 802CF0E0  3C 80 80 3D */	lis r4, __vt__10JKRExpHeap@ha
-/* 802CF0E4  38 04 BF D0 */	addi r0, r4, __vt__10JKRExpHeap@l
+/* 802CF0E0  3C 80 80 3D */	lis r4, __vt__10JKRExpHeap@ha /* 0x803CBFD0@ha */
+/* 802CF0E4  38 04 BF D0 */	addi r0, r4, __vt__10JKRExpHeap@l /* 0x803CBFD0@l */
 /* 802CF0E8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802CF0EC  4B FF F9 D5 */	bl dispose__7JKRHeapFv
 /* 802CF0F0  7F C3 F3 78 */	mr r3, r30

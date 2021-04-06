@@ -5,12 +5,12 @@ lbl_80980A18:
 /* 80980A24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80980A28  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80980A2C  41 82 00 1C */	beq lbl_80980A48
-/* 80980A30  3C A0 80 99 */	lis r5, __vt__8cM3dGAab@ha
-/* 80980A34  38 05 BA 50 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 80980A30  3C A0 80 99 */	lis r5, __vt__8cM3dGAab@ha /* 0x8098BA50@ha */
+/* 80980A34  38 05 BA 50 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x8098BA50@l */
 /* 80980A38  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80980A3C  7C 80 07 35 */	extsh. r0, r4
 /* 80980A40  40 81 00 08 */	ble lbl_80980A48
-/* 80980A44  4B 94 E2 F8 */	b __dl__FPv
+/* 80980A44  4B 94 E2 F9 */	bl __dl__FPv
 lbl_80980A48:
 /* 80980A48  7F E3 FB 78 */	mr r3, r31
 /* 80980A4C  83 E1 00 0C */	lwz r31, 0xc(r1)

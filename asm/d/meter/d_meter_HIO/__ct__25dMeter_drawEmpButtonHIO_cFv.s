@@ -4,19 +4,19 @@ lbl_801FEAF0:
 /* 801FEAF8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801FEAFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801FEB00  7C 7F 1B 78 */	mr r31, r3
-/* 801FEB04  3C 60 80 3C */	lis r3, __vt__25dMeter_drawEmpButtonHIO_c@ha
-/* 801FEB08  38 03 F1 3C */	addi r0, r3, __vt__25dMeter_drawEmpButtonHIO_c@l
+/* 801FEB04  3C 60 80 3C */	lis r3, __vt__25dMeter_drawEmpButtonHIO_c@ha /* 0x803BF13C@ha */
+/* 801FEB08  38 03 F1 3C */	addi r0, r3, __vt__25dMeter_drawEmpButtonHIO_c@l /* 0x803BF13C@l */
 /* 801FEB0C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801FEB10  38 7F 01 B8 */	addi r3, r31, 0x1b8
-/* 801FEB14  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 801FEB18  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 801FEB14  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 801FEB18  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 801FEB1C  38 A0 00 00 */	li r5, 0
 /* 801FEB20  38 C0 00 04 */	li r6, 4
 /* 801FEB24  38 E0 00 02 */	li r7, 2
 /* 801FEB28  48 16 32 39 */	bl __construct_array
 /* 801FEB2C  38 7F 01 C0 */	addi r3, r31, 0x1c0
-/* 801FEB30  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 801FEB34  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 801FEB30  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 801FEB34  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 801FEB38  38 A0 00 00 */	li r5, 0
 /* 801FEB3C  38 C0 00 04 */	li r6, 4
 /* 801FEB40  38 E0 00 02 */	li r7, 2

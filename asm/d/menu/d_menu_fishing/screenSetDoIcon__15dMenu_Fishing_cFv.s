@@ -14,8 +14,8 @@ lbl_801C5D3C:
 lbl_801C5D6C:
 /* 801C5D6C  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801C5D70  80 7F 00 1C */	lwz r3, 0x1c(r31)
-/* 801C5D74  3C 80 80 39 */	lis r4, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5D78  38 84 60 68 */	addi r4, r4, d_menu_d_menu_fishing__stringBase0@l
+/* 801C5D74  3C 80 80 39 */	lis r4, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5D78  38 84 60 68 */	addi r4, r4, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5D7C  38 84 00 3F */	addi r4, r4, 0x3f
 /* 801C5D80  3C A0 00 02 */	lis r5, 2
 /* 801C5D84  80 DF 00 08 */	lwz r6, 8(r31)
@@ -36,12 +36,12 @@ lbl_801C5DA0:
 /* 801C5DBC  3B 00 00 00 */	li r24, 0
 /* 801C5DC0  3B C0 00 00 */	li r30, 0
 /* 801C5DC4  3B A0 00 00 */	li r29, 0
-/* 801C5DC8  3C 60 80 39 */	lis r3, text_a_tag@ha
-/* 801C5DCC  3B 43 60 18 */	addi r26, r3, text_a_tag@l
-/* 801C5DD0  3C 60 80 39 */	lis r3, text_b_tag@ha
-/* 801C5DD4  3B 63 60 40 */	addi r27, r3, text_b_tag@l
-/* 801C5DD8  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5DDC  3B 83 60 68 */	addi r28, r3, d_menu_d_menu_fishing__stringBase0@l
+/* 801C5DC8  3C 60 80 39 */	lis r3, text_a_tag@ha /* 0x80396018@ha */
+/* 801C5DCC  3B 43 60 18 */	addi r26, r3, text_a_tag@l /* 0x80396018@l */
+/* 801C5DD0  3C 60 80 39 */	lis r3, text_b_tag@ha /* 0x80396040@ha */
+/* 801C5DD4  3B 63 60 40 */	addi r27, r3, text_b_tag@l /* 0x80396040@l */
+/* 801C5DD8  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5DDC  3B 83 60 68 */	addi r28, r3, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 lbl_801C5DE0:
 /* 801C5DE0  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801C5DE4  7C 9A EA 14 */	add r4, r26, r29

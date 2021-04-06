@@ -28,11 +28,11 @@ struct dDrawPath_c {
     /* 8003CCC4 */ void drawPath();
 };
 
-struct dMenu_Fmap_world_data_c {};
-
 struct dMenu_Fmap_region_data_c {
     /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
 };
+
+struct dMenu_Fmap_world_data_c {};
 
 struct renderingFmap_c {
     struct palette_e {};
@@ -123,9 +123,6 @@ struct Vec {};
 // Forward References:
 //
 
-static void twoValueLineInterpolation(u8, u8, f32);
-static void twoColorLineInterporation(_GXColor const&, _GXColor const&, f32, _GXColor&);
-
 extern "C" static void twoValueLineInterpolation__FUcUcf();
 extern "C" static void twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor();
 extern "C" void init__15renderingFmap_cFPUcUsUsUsUs();
@@ -169,24 +166,11 @@ extern "C" void __dt__15renderingFmap_cFv();
 extern "C" bool isRenderingFloor__15renderingFmap_cFi();
 extern "C" void beforeDrawPath__15renderingFmap_cFv();
 extern "C" void afterDrawPath__15renderingFmap_cFv();
-extern "C" extern u8 const data_803961D0[36];
-extern "C" extern u8 const data_803961F4[36];
-extern "C" extern u8 const data_80396218[36];
 extern "C" extern char const* const d_menu_d_menu_fmap_map__stringBase0;
-extern "C" extern void* __vt__15dMenu_FmapMap_c[26];
-extern "C" extern void* __vt__15renderingFmap_c[26];
 
 //
 // External References:
 //
-
-void mDoMtx_lookAt(f32 (*)[4], Vec const*, Vec const*, Vec const*, s16);
-void dComIfGs_isStageSwitch(int, int);
-void dComIfGp_getNowLevel();
-void* operator new(u32, int);
-void* operator new[](u32, int);
-void operator delete(void*);
-void operator delete[](void*);
 
 extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
 extern "C" void draw__12dDlst_base_cFv();
@@ -242,32 +226,26 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 80454178-80454180 0008+00 s=3 e=0 z=0  None .sdata2    @3689 */
+/* 80454178-80454180 002778 0008+00 3/3 0/0 0/0 .sdata2          @3689 */
 SECTION_SDATA2 static f64 lit_3689 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 801CE068-801CE0CC 0064+00 s=1 e=0 z=0  None .text      twoValueLineInterpolation__FUcUcf */
-//	801CE070: 80454178 (lit_3689)
+/* 801CE068-801CE0CC 1C89A8 0064+00 1/1 0/0 0/0 .text            twoValueLineInterpolation__FUcUcf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void twoValueLineInterpolation(u8 param_0, u8 param_1, f32 param_2) {
+static asm void twoValueLineInterpolation(u8 param_0, u8 param_1, f32 param_2) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap_map/twoValueLineInterpolation__FUcUcf.s"
 }
 #pragma pop
 
-/* 801CE0CC-801CE15C 0090+00 s=2 e=0 z=0  None .text
+/* 801CE0CC-801CE15C 1C8A0C 0090+00 2/2 0/0 0/0 .text
  * twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor */
-//	801CE0E0: 803621DC (_savegpr_29)
-//	801CE0FC: 801CE068 (twoValueLineInterpolation__FUcUcf)
-//	801CE110: 801CE068 (twoValueLineInterpolation__FUcUcf)
-//	801CE124: 801CE068 (twoValueLineInterpolation__FUcUcf)
-//	801CE138: 801CE068 (twoValueLineInterpolation__FUcUcf)
-//	801CE148: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void twoColorLineInterporation(_GXColor const& param_0, _GXColor const& param_1,
+static asm void twoColorLineInterporation(_GXColor const& param_0, _GXColor const& param_1,
                                           f32 param_2, _GXColor& param_3) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap_map/twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor.s"
@@ -275,7 +253,7 @@ asm static void twoColorLineInterporation(_GXColor const& param_0, _GXColor cons
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454180-80454184 0004+00 s=3 e=0 z=0  None .sdata2    @3703 */
+/* 80454180-80454184 002780 0004+00 3/3 0/0 0/0 .sdata2          @3703 */
 SECTION_SDATA2 static u8 lit_3703[4] = {
     0x00,
     0x00,
@@ -283,8 +261,8 @@ SECTION_SDATA2 static u8 lit_3703[4] = {
     0x00,
 };
 
-/* 801CE15C-801CE188 002C+00 s=1 e=0 z=0  None .text      init__15renderingFmap_cFPUcUsUsUsUs */
-//	801CE170: 80454180 (lit_3703)
+/* 801CE15C-801CE188 1C8A9C 002C+00 1/1 0/0 0/0 .text            init__15renderingFmap_cFPUcUsUsUsUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -295,16 +273,11 @@ asm void renderingFmap_c::init(u8* param_0, u16 param_1, u16 param_2, u16 param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454184-80454188 0004+00 s=3 e=0 z=0  None .sdata2    @3711 */
+/* 80454184-80454188 002784 0004+00 3/3 0/0 0/0 .sdata2          @3711 */
 SECTION_SDATA2 static f32 lit_3711 = 1.0f;
 
-/* 801CE188-801CE224 009C+00 s=1 e=0 z=0  None .text
+/* 801CE188-801CE224 1C8AC8 009C+00 1/1 0/0 0/0 .text
  * entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff      */
-//	801CE1B4: 80454178 (lit_3689)
-//	801CE1D0: 80454184 (lit_3711)
-//	801CE1FC: 804061C0 (g_dComIfG_gameInfo)
-//	801CE200: 804061C0 (g_dComIfG_gameInfo)
-//	801CE210: 80056794 (set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,49 +288,7 @@ asm void renderingFmap_c::entry(dMenu_Fmap_world_data_c* param_0, int param_1, f
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803961B0-803961D0 0020+00 s=2 e=0 z=0  None .rodata    palNo$3985 */
-SECTION_RODATA static u8 const palNo[32] = {
-    0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x14,
-    0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x18,
-};
-
-/* 803961D0-803961F4 0024+00 s=0 e=0 z=0  None .rodata    l_dungeon_onColor$4186 */
-SECTION_RODATA u8 const data_803961D0[36] = {
-    0x04, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
-    0x18, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
-};
-
-/* 803961F4-80396218 0024+00 s=0 e=0 z=0  None .rodata    l_dungeon_stayColor$4187 */
-SECTION_RODATA u8 const data_803961F4[36] = {
-    0x24, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x2C, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00,
-    0x38, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
-};
-
-/* 80396218-8039623C 0024+00 s=0 e=0 z=0  None .rodata    l_dungeon_pointColor$4188 */
-SECTION_RODATA u8 const data_80396218[36] = {
-    0x44, 0x00, 0x00, 0x00, 0x48, 0x00, 0x00, 0x00, 0x4C, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00,
-    0x58, 0x00, 0x00, 0x00, 0x5C, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
-};
-
-/* 8039623C-80396248 0008+04 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039623C = "F_SP121";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80396244 = "\0\0\0";
-#pragma pop
-
-/* 801CE224-801CE288 0064+00 s=1 e=0 z=0  None .text      isSwitchSpecialOff__15renderingFmap_cFi */
-//	801CE240: 804061C0 (g_dComIfG_gameInfo)
-//	801CE244: 804061C0 (g_dComIfG_gameInfo)
-//	801CE24C: 8039623C (d_menu_d_menu_fmap_map__stringBase0)
-//	801CE250: 8039623C (d_menu_d_menu_fmap_map__stringBase0)
-//	801CE254: 80368994 (strcmp)
+/* 801CE224-801CE288 1C8B64 0064+00 1/1 0/0 0/0 .text isSwitchSpecialOff__15renderingFmap_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -367,19 +298,8 @@ asm void renderingFmap_c::isSwitchSpecialOff(int param_0) {
 }
 #pragma pop
 
-/* 801CE288-801CE3C0 0138+00 s=2 e=0 z=0  None .text
+/* 801CE288-801CE3C0 1C8BC8 0138+00 2/0 0/0 0/0 .text
  * isSwitch__15renderingFmap_cFPCQ211dDrawPath_c11group_class   */
-//	801CE2C4: 801CE224 (isSwitchSpecialOff__15renderingFmap_cFi)
-//	801CE2D8: 801CE224 (isSwitchSpecialOff__15renderingFmap_cFi)
-//	801CE2EC: 8002EE60 (dComIfGp_getNowLevel__Fv)
-//	801CE31C: 804061C0 (g_dComIfG_gameInfo)
-//	801CE320: 804061C0 (g_dComIfG_gameInfo)
-//	801CE32C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	801CE33C: 804061C0 (g_dComIfG_gameInfo)
-//	801CE340: 804061C0 (g_dComIfG_gameInfo)
-//	801CE34C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	801CE378: 8002D740 (dComIfGs_isStageSwitch__Fii)
-//	801CE38C: 8002D740 (dComIfGs_isStageSwitch__Fii)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -389,9 +309,8 @@ asm void renderingFmap_c::isSwitch(dDrawPath_c::group_class const* param_0) {
 }
 #pragma pop
 
-/* 801CE3C0-801CE410 0050+00 s=0 e=3 z=0  None .text
+/* 801CE3C0-801CE410 1C8D00 0050+00 0/0 3/3 0/0 .text
  * getPointStagePathInnerNo__15renderingFmap_cFP24dMenu_Fmap_region_data_cffiPiPi */
-//	801CE3FC: 8003DB70 (getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,26 +323,16 @@ asm void renderingFmap_c::getPointStagePathInnerNo(dMenu_Fmap_region_data_c* par
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454188-8045418C 0004+00 s=1 e=0 z=0  None .sdata2    @3769 */
+/* 80454188-8045418C 002788 0004+00 1/1 0/0 0/0 .sdata2          @3769 */
 SECTION_SDATA2 static f32 lit_3769 = -5000.0f;
 
-/* 8045418C-80454190 0004+00 s=1 e=0 z=0  None .sdata2    @3770 */
+/* 8045418C-80454190 00278C 0004+00 1/1 0/0 0/0 .sdata2          @3770 */
 SECTION_SDATA2 static f32 lit_3770 = 5000.0f;
 
-/* 80454190-80454194 0004+00 s=1 e=0 z=0  None .sdata2    @3771 */
+/* 80454190-80454194 002790 0004+00 1/1 0/0 0/0 .sdata2          @3771 */
 SECTION_SDATA2 static f32 lit_3771 = -1.0f;
 
-/* 801CE410-801CE4D4 00C4+00 s=2 e=0 z=0  None .text      preDrawPath__15renderingFmap_cFv */
-//	801CE434: 80454188 (lit_3769)
-//	801CE44C: 8045418C (lit_3770)
-//	801CE454: 80454180 (lit_3703)
-//	801CE45C: 80454190 (lit_3771)
-//	801CE47C: 8000C710 (mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs)
-//	801CE488: 8036024C (GXLoadPosMtxImm)
-//	801CE48C: 8035B58C (GXClearVtxDesc)
-//	801CE498: 8035AEB8 (GXSetVtxDesc)
-//	801CE4B0: 8035B5C4 (GXSetVtxAttrFmt)
-//	801CE4BC: 8035BE38 (GXSetMisc)
+/* 801CE410-801CE4D4 1C8D50 00C4+00 2/0 0/0 0/0 .text            preDrawPath__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -433,15 +342,12 @@ asm void renderingFmap_c::preDrawPath() {
 }
 #pragma pop
 
-/* 801CE4D4-801CE4DC 0008+00 s=2 e=0 z=0  None .text      isDrawPath__15renderingFmap_cFv */
+/* 801CE4D4-801CE4DC 1C8E14 0008+00 2/0 0/0 0/0 .text            isDrawPath__15renderingFmap_cFv */
 bool renderingFmap_c::isDrawPath() {
     return true;
 }
 
-/* 801CE4DC-801CE560 0084+00 s=2 e=0 z=0  None .text      isDrawRoom__15renderingFmap_cFv */
-//	801CE4F8: 8002EE60 (dComIfGp_getNowLevel__Fv)
-//	801CE520: 80450D64 (struct_80450D64)
-//	801CE534: 8003D818 (isArrival__22dMenu_Fmap_room_data_cFv)
+/* 801CE4DC-801CE560 1C8E1C 0084+00 2/2 0/0 0/0 .text            isDrawRoom__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -451,10 +357,8 @@ asm void renderingFmap_c::isDrawRoom() {
 }
 #pragma pop
 
-/* 801CE560-801CE5B8 0058+00 s=2 e=0 z=0  None .text      postDrawPath__15renderingFmap_cFv */
-//	801CE57C: 8035BE38 (GXSetMisc)
-//	801CE594: 8000C710 (mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs)
-//	801CE5A0: 8036024C (GXLoadPosMtxImm)
+/* 801CE560-801CE5B8 1C8EA0 0058+00 2/0 0/0 0/0 .text            postDrawPath__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -464,8 +368,7 @@ asm void renderingFmap_c::postDrawPath() {
 }
 #pragma pop
 
-/* 801CE5B8-801CE5EC 0034+00 s=2 e=0 z=0  None .text      postRenderingMap__15renderingFmap_cFv */
-//	801CE5CC: 8003D320 (postRenderingMap__18dRenderingFDAmap_cFv)
+/* 801CE5B8-801CE5EC 1C8EF8 0034+00 2/0 0/0 0/0 .text postRenderingMap__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,9 +378,8 @@ asm void renderingFmap_c::postRenderingMap() {
 }
 #pragma pop
 
-/* 801CE5EC-801CE6A8 00BC+00 s=2 e=0 z=0  None .text      roomSetteing__15renderingFmap_cFv */
-//	801CE688: 8000C710 (mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs)
-//	801CE694: 8036024C (GXLoadPosMtxImm)
+/* 801CE5EC-801CE6A8 1C8F2C 00BC+00 2/2 0/0 0/0 .text            roomSetteing__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,11 +389,7 @@ asm void renderingFmap_c::roomSetteing() {
 }
 #pragma pop
 
-/* 801CE6A8-801CE75C 00B4+00 s=2 e=0 z=0  None .text      getFirstRoomPointer__15renderingFmap_cFv
- */
-//	801CE6C4: 801CE75C (getFirstRegion__15renderingFmap_cFv)
-//	801CE724: 801CE4DC (isDrawRoom__15renderingFmap_cFv)
-//	801CE73C: 801CE5EC (roomSetteing__15renderingFmap_cFv)
+/* 801CE6A8-801CE75C 1C8FE8 00B4+00 2/0 0/0 0/0 .text getFirstRoomPointer__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,8 +399,8 @@ asm void renderingFmap_c::getFirstRoomPointer() {
 }
 #pragma pop
 
-/* 801CE75C-801CE7A8 004C+00 s=1 e=0 z=0  None .text      getFirstRegion__15renderingFmap_cFv */
-//	801CE794: 801CE7A8 (getFirstStage__15renderingFmap_cFv)
+/* 801CE75C-801CE7A8 1C909C 004C+00 1/1 0/0 0/0 .text            getFirstRegion__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -512,8 +410,8 @@ asm void renderingFmap_c::getFirstRegion() {
 }
 #pragma pop
 
-/* 801CE7A8-801CE80C 0064+00 s=2 e=0 z=0  None .text      getFirstStage__15renderingFmap_cFv */
-//	801CE7F8: 801CE80C (getFirstRoom__15renderingFmap_cFv)
+/* 801CE7A8-801CE80C 1C90E8 0064+00 2/2 0/0 0/0 .text            getFirstStage__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -523,7 +421,8 @@ asm void renderingFmap_c::getFirstStage() {
 }
 #pragma pop
 
-/* 801CE80C-801CE84C 0040+00 s=2 e=0 z=0  None .text      getFirstRoom__15renderingFmap_cFv */
+/* 801CE80C-801CE84C 1C914C 0040+00 2/2 0/0 0/0 .text            getFirstRoom__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -533,8 +432,7 @@ asm void renderingFmap_c::getFirstRoom() {
 }
 #pragma pop
 
-/* 801CE84C-801CE8B8 006C+00 s=1 e=0 z=0  None .text      getNextRoom__15renderingFmap_cFv */
-//	801CE874: 801CE8B8 (getNextStage__15renderingFmap_cFv)
+/* 801CE84C-801CE8B8 1C918C 006C+00 1/1 0/0 0/0 .text            getNextRoom__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -544,9 +442,8 @@ asm void renderingFmap_c::getNextRoom() {
 }
 #pragma pop
 
-/* 801CE8B8-801CE93C 0084+00 s=1 e=0 z=0  None .text      getNextStage__15renderingFmap_cFv */
-//	801CE8E4: 801CE93C (getNextRegion__15renderingFmap_cFv)
-//	801CE920: 801CE80C (getFirstRoom__15renderingFmap_cFv)
+/* 801CE8B8-801CE93C 1C91F8 0084+00 1/1 0/0 0/0 .text            getNextStage__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -556,8 +453,8 @@ asm void renderingFmap_c::getNextStage() {
 }
 #pragma pop
 
-/* 801CE93C-801CE9A4 0068+00 s=1 e=0 z=0  None .text      getNextRegion__15renderingFmap_cFv */
-//	801CE988: 801CE7A8 (getFirstStage__15renderingFmap_cFv)
+/* 801CE93C-801CE9A4 1C927C 0068+00 1/1 0/0 0/0 .text            getNextRegion__15renderingFmap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -567,10 +464,7 @@ asm void renderingFmap_c::getNextRegion() {
 }
 #pragma pop
 
-/* 801CE9A4-801CEA38 0094+00 s=2 e=0 z=0  None .text      getNextRoomPointer__15renderingFmap_cFv */
-//	801CE9C4: 801CE84C (getNextRoom__15renderingFmap_cFv)
-//	801CEA00: 801CE4DC (isDrawRoom__15renderingFmap_cFv)
-//	801CEA18: 801CE5EC (roomSetteing__15renderingFmap_cFv)
+/* 801CE9A4-801CEA38 1C92E4 0094+00 2/0 0/0 0/0 .text getNextRoomPointer__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -580,9 +474,8 @@ asm void renderingFmap_c::getNextRoomPointer() {
 }
 #pragma pop
 
-/* 801CEA38-801CEAAC 0074+00 s=1 e=0 z=0  None .text
+/* 801CEA38-801CEAAC 1C9378 0074+00 1/1 0/0 0/0 .text
  * setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc */
-//	801CEA98: 8033B5DC (DCStoreRange)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -593,10 +486,8 @@ asm void dMenu_FmapMap_c::setFmapPaletteColor(renderingFmap_c::palette_e param_0
 }
 #pragma pop
 
-/* 801CEAAC-801CEAE0 0034+00 s=2 e=0 z=0  None .text
+/* 801CEAAC-801CEAE0 1C93EC 0034+00 2/2 0/0 0/0 .text
  * setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor */
-//	801CEACC: 801CEA38
-//(setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -607,8 +498,7 @@ asm void dMenu_FmapMap_c::setFmapPaletteColor(renderingFmap_c::palette_e param_0
 }
 #pragma pop
 
-/* 801CEAE0-801CEB1C 003C+00 s=1 e=0 z=0  None .text      isFlashRoomNoCheck__15dMenu_FmapMap_cCFi
- */
+/* 801CEAE0-801CEB1C 1C9420 003C+00 1/1 0/0 0/0 .text isFlashRoomNoCheck__15dMenu_FmapMap_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -618,18 +508,16 @@ asm void dMenu_FmapMap_c::isFlashRoomNoCheck(int param_0) const {
 }
 #pragma pop
 
-/* 801CEB1C-801CEC24 0108+00 s=1 e=0 z=0  None .text      setPointColor__15dMenu_FmapMap_cFf */
-//	801CEB30: 803621D8 (_savegpr_28)
-//	801CEB48: 8002EE60 (dComIfGp_getNowLevel__Fv)
-//	801CEB74: 803961B0 (palNo)
-//	801CEB78: 803961B0 (palNo)
-//	801CEB94: 801CE0CC (twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor)
-//	801CEBA4: 801CEAAC
-//(setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor) 	801CEBC4:
-// 803961B0 (palNo) 	801CEBC8: 803961B0 (palNo) 	801CEBE4: 801CE0CC
-//(twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor) 	801CEBF4: 801CEAAC
-//(setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor) 	801CEC10:
-// 80362224 (_restgpr_28)
+/* ############################################################################################## */
+/* 803961B0-803961D0 022810 0020+00 2/2 0/0 0/0 .rodata          palNo$3985 */
+SECTION_RODATA static u8 const palNo[32] = {
+    0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x14,
+    0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x18,
+};
+SECTION_DEAD void* const cg_803961B0 = (void*)(&palNo);
+
+/* 801CEB1C-801CEC24 1C945C 0108+00 1/1 0/0 0/0 .text            setPointColor__15dMenu_FmapMap_cFf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -640,8 +528,8 @@ asm void dMenu_FmapMap_c::setPointColor(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BD680-803BD6E8 0068+00 s=2 e=0 z=0  None .data      __vt__15dMenu_FmapMap_c */
-SECTION_DATA void* __vt__15dMenu_FmapMap_c[26] = {
+/* 803BD680-803BD6E8 01A7A0 0068+00 2/2 0/0 0/0 .data            __vt__15dMenu_FmapMap_c */
+SECTION_DATA extern void* __vt__15dMenu_FmapMap_c[26] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__15dMenu_FmapMap_cFv,
@@ -670,8 +558,8 @@ SECTION_DATA void* __vt__15dMenu_FmapMap_c[26] = {
     (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
 };
 
-/* 803BD6E8-803BD750 0068+00 s=3 e=0 z=0  None .data      __vt__15renderingFmap_c */
-SECTION_DATA void* __vt__15renderingFmap_c[26] = {
+/* 803BD6E8-803BD750 01A808 0068+00 3/3 0/0 0/0 .data            __vt__15renderingFmap_c */
+SECTION_DATA extern void* __vt__15renderingFmap_c[26] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,
@@ -700,22 +588,7 @@ SECTION_DATA void* __vt__15renderingFmap_c[26] = {
     (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
 };
 
-/* 801CEC24-801CED38 0114+00 s=0 e=1 z=0  None .text      __ct__15dMenu_FmapMap_cFv */
-//	801CEC24: 803A6F88 (__vt__12dDlst_base_c)
-//	801CEC28: 803A6F88 (__vt__12dDlst_base_c)
-//	801CEC30: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CEC34: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CEC3C: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CEC40: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CEC48: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CEC4C: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CEC54: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CEC58: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CEC68: 80454180 (lit_3703)
-//	801CEC90: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CEC94: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CECEC: 803BD680 (__vt__15dMenu_FmapMap_c)
-//	801CECF0: 803BD680 (__vt__15dMenu_FmapMap_c)
+/* 801CEC24-801CED38 1C9564 0114+00 0/0 1/1 0/0 .text            __ct__15dMenu_FmapMap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -725,21 +598,7 @@ asm dMenu_FmapMap_c::dMenu_FmapMap_c() {
 }
 #pragma pop
 
-/* 801CED38-801CEDE8 00B0+00 s=1 e=0 z=0  None .text      __dt__15dMenu_FmapMap_cFv */
-//	801CED58: 803BD680 (__vt__15dMenu_FmapMap_c)
-//	801CED5C: 803BD680 (__vt__15dMenu_FmapMap_c)
-//	801CED64: 801CEE3C (_delete__15dMenu_FmapMap_cFv)
-//	801CED70: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CED74: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CED80: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CED84: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CED90: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CED94: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CEDA0: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CEDA4: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CEDB0: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CEDB4: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CEDC8: 802CED3C (__dl__FPv)
+/* 801CED38-801CEDE8 1C9678 00B0+00 1/0 0/0 0/0 .text            __dt__15dMenu_FmapMap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -749,8 +608,7 @@ asm dMenu_FmapMap_c::~dMenu_FmapMap_c() {
 }
 #pragma pop
 
-/* 801CEDE8-801CEE3C 0054+00 s=0 e=1 z=0  None .text      _create__15dMenu_FmapMap_cFUsUsUsUsPv */
-//	801CEE28: 801CF394 (setTexture__15dMenu_FmapMap_cFUsUsUsUs)
+/* 801CEDE8-801CEE3C 1C9728 0054+00 0/0 1/1 0/0 .text _create__15dMenu_FmapMap_cFUsUsUsUsPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -761,9 +619,7 @@ asm void dMenu_FmapMap_c::_create(u16 param_0, u16 param_1, u16 param_2, u16 par
 }
 #pragma pop
 
-/* 801CEE3C-801CEE94 0058+00 s=1 e=1 z=0  None .text      _delete__15dMenu_FmapMap_cFv */
-//	801CEE5C: 802CED3C (__dl__FPv)
-//	801CEE74: 802CED60 (__dla__FPv)
+/* 801CEE3C-801CEE94 1C977C 0058+00 1/1 1/1 0/0 .text            _delete__15dMenu_FmapMap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -774,7 +630,8 @@ asm void dMenu_FmapMap_c::_delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454194-80454198 0001+03 s=2 e=0 z=0  None .sdata2    m_other__22dMfm_HIO_prm_res_src_s */
+/* 80454194-80454198 002794 0001+03 2/2 0/0 0/0 .sdata2          m_other__22dMfm_HIO_prm_res_src_s
+ */
 SECTION_SDATA2 static u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */] = {
     0x1E,
     /* padding */
@@ -783,47 +640,23 @@ SECTION_SDATA2 static u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */] 
     0x00,
 };
 
-/* 80454198-8045419C 0004+00 s=1 e=0 z=0  None .sdata2    @4104 */
+/* 80454198-8045419C 002798 0004+00 1/1 0/0 0/0 .sdata2          @4104 */
 SECTION_SDATA2 static f32 lit_4104 = 0.5f;
 
-/* 8045419C-804541A0 0004+00 s=1 e=0 z=0  None .sdata2    @4105 */
+/* 8045419C-804541A0 00279C 0004+00 1/1 0/0 0/0 .sdata2          @4105 */
 SECTION_SDATA2 static f32 lit_4105 = 65536.0f;
 
-/* 804541A0-804541A8 0004+04 s=1 e=0 z=0  None .sdata2    @4106 */
+/* 804541A0-804541A8 0027A0 0004+04 1/1 0/0 0/0 .sdata2          @4106 */
 SECTION_SDATA2 static f32 lit_4106[1 + 1 /* padding */] = {
     32768.0f,
     /* padding */
     0.0f,
 };
 
-/* 804541A8-804541B0 0008+00 s=2 e=0 z=0  None .sdata2    @4108 */
+/* 804541A8-804541B0 0027A8 0008+00 2/2 0/0 0/0 .sdata2          @4108 */
 SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 801CEE94-801CF0B4 0220+00 s=1 e=0 z=0  None .text      draw__15dMenu_FmapMap_cFv */
-//	801CEEAC: 80454194 (m_other__22dMfm_HIO_prm_res_src_s)
-//	801CEEC0: 804541A8 (lit_4108)
-//	801CEEFC: 804541A8 (lit_4108)
-//	801CEF34: 80454184 (lit_3711)
-//	801CEF3C: 801CEB1C (setPointColor__15dMenu_FmapMap_cFf)
-//	801CEF48: 80430CD8 (g_Counter)
-//	801CEF4C: 80430CD8 (g_Counter)
-//	801CEF60: 80454178 (lit_3689)
-//	801CEF78: 804541A8 (lit_4108)
-//	801CEF94: 80454198 (lit_4104)
-//	801CEF98: 8045419C (lit_4105)
-//	801CEFA0: 804541A0 (lit_4106)
-//	801CEFB8: 80439A20 (sincosTable___5JMath)
-//	801CEFBC: 80439A20 (sincosTable___5JMath)
-//	801CEFD8: 801CE0CC (twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor)
-//	801CEFE8: 801CEAAC
-//(setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor) 	801CEFF4:
-// 80430CD8 (g_Counter) 	801CEFF8: 80430CD8 (g_Counter) 	801CF00C: 80454178 (lit_3689) 801CF024:
-// 804541A8 (lit_4108) 	801CF048: 80454198 (lit_4104) 	801CF04C: 8045419C (lit_4105) 	801CF054:
-// 804541A0 (lit_4106) 	801CF06C: 80439A20 (sincosTable___5JMath) 	801CF070: 80439A20
-//(sincosTable___5JMath) 	801CF084: 801CE0CC
-//(twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor) 	801CF094: 801CEAAC
-//(setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor) 	801CF09C:
-// 8003CDAC (renderingMap__15dRenderingMap_cFv)
+/* 801CEE94-801CF0B4 1C97D4 0220+00 1/0 0/0 0/0 .text            draw__15dMenu_FmapMap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -833,10 +666,8 @@ asm void dMenu_FmapMap_c::draw() {
 }
 #pragma pop
 
-/* 801CF0B4-801CF12C 0078+00 s=1 e=0 z=0  None .text
+/* 801CF0B4-801CF12C 1C99F4 0078+00 1/0 0/0 0/0 .text
  * rendering__15dMenu_FmapMap_cFPCQ211dDrawPath_c10line_class   */
-//	801CF0F0: 8003D3C0 (renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class)
-//	801CF110: 8003C94C (rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -847,7 +678,7 @@ asm void dMenu_FmapMap_c::rendering(dDrawPath_c::line_class const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804541B0-804541B8 0005+03 s=1 e=0 z=0  None .sdata2    l_lineWidthPatData$4134 */
+/* 804541B0-804541B8 0027B0 0005+03 1/1 0/0 0/0 .sdata2          l_lineWidthPatData$4134 */
 SECTION_SDATA2 static u8 l_lineWidthPatData[5 + 3 /* padding */] = {
     0x00,
     0x06,
@@ -860,7 +691,7 @@ SECTION_SDATA2 static u8 l_lineWidthPatData[5 + 3 /* padding */] = {
     0x00,
 };
 
-/* 804541B8-804541C0 0005+03 s=1 e=0 z=0  None .sdata2    l_lineWidthPatData2$4135 */
+/* 804541B8-804541C0 0027B8 0005+03 1/1 0/0 0/0 .sdata2          l_lineWidthPatData2$4135 */
 SECTION_SDATA2 static u8 l_lineWidthPatData2[5 + 3 /* padding */] = {
     0x00,
     0x00,
@@ -873,15 +704,11 @@ SECTION_SDATA2 static u8 l_lineWidthPatData2[5 + 3 /* padding */] = {
     0x00,
 };
 
-/* 804541C0-804541C4 0004+00 s=1 e=0 z=0  None .sdata2    @4152 */
+/* 804541C0-804541C4 0027C0 0004+00 1/1 0/0 0/0 .sdata2          @4152 */
 SECTION_SDATA2 static f32 lit_4152 = 1.5f;
 
-/* 801CF12C-801CF1D4 00A8+00 s=1 e=0 z=0  None .text      getLineWidth__15dMenu_FmapMap_cFi */
-//	801CF160: 80454184 (lit_3711)
-//	801CF16C: 804541A8 (lit_4108)
-//	801CF1AC: 804541C0 (lit_4152)
-//	801CF1B8: 804541B0 (l_lineWidthPatData)
-//	801CF1C4: 804541B8 (l_lineWidthPatData2)
+/* 801CF12C-801CF1D4 1C9A6C 00A8+00 1/0 0/0 0/0 .text            getLineWidth__15dMenu_FmapMap_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -891,7 +718,7 @@ asm void dMenu_FmapMap_c::getLineWidth(int param_0) {
 }
 #pragma pop
 
-/* 801CF1D4-801CF1E0 000C+00 s=1 e=0 z=0  None .text      isDrawType__15dMenu_FmapMap_cFi */
+/* 801CF1D4-801CF1E0 1C9B14 000C+00 1/0 0/0 0/0 .text            isDrawType__15dMenu_FmapMap_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -901,7 +728,7 @@ asm void dMenu_FmapMap_c::isDrawType(int param_0) {
 }
 #pragma pop
 
-/* 801CF1E0-801CF208 0028+00 s=0 e=1 z=0  None .text      setFlashOn__15dMenu_FmapMap_cFiiPUci */
+/* 801CF1E0-801CF208 1C9B20 0028+00 0/0 1/1 0/0 .text setFlashOn__15dMenu_FmapMap_cFiiPUci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -912,7 +739,7 @@ asm void dMenu_FmapMap_c::setFlashOn(int param_0, int param_1, u8* param_2, int 
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450728-80450730 0004+04 s=1 e=0 z=0  None .sdata     black$4166 */
+/* 80450728-80450730 0001A8 0004+04 1/1 0/0 0/0 .sdata           black$4166 */
 SECTION_SDATA static u8 black[4 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -925,7 +752,7 @@ SECTION_SDATA static u8 black[4 + 4 /* padding */] = {
     0x00,
 };
 
-/* 804541C4-804541C8 0004+00 s=1 e=0 z=0  None .sdata2    borderColor0$4169 */
+/* 804541C4-804541C8 0027C4 0004+00 1/1 0/0 0/0 .sdata2          borderColor0$4169 */
 SECTION_SDATA2 static u8 borderColor0[4] = {
     0x64,
     0x00,
@@ -933,7 +760,7 @@ SECTION_SDATA2 static u8 borderColor0[4] = {
     0x00,
 };
 
-/* 804541C8-804541CC 0004+00 s=1 e=0 z=0  None .sdata2    borderColor1$4170 */
+/* 804541C8-804541CC 0027C8 0004+00 1/1 0/0 0/0 .sdata2          borderColor1$4170 */
 SECTION_SDATA2 static u8 borderColor1[4] = {
     0x68,
     0x00,
@@ -941,10 +768,8 @@ SECTION_SDATA2 static u8 borderColor1[4] = {
     0x00,
 };
 
-/* 801CF208-801CF298 0090+00 s=1 e=0 z=0  None .text      getLineColor__15dMenu_FmapMap_cFii */
-//	801CF218: 80450728 (black)
-//	801CF240: 804541C4 (borderColor0)
-//	801CF248: 804541C8 (borderColor1)
+/* 801CF208-801CF298 1C9B48 0090+00 1/0 0/0 0/0 .text            getLineColor__15dMenu_FmapMap_cFii
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -955,7 +780,7 @@ asm void dMenu_FmapMap_c::getLineColor(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804541CC-804541D0 0004+00 s=1 e=0 z=0  None .sdata2    l_mapBaseColor$4181 */
+/* 804541CC-804541D0 0027CC 0004+00 1/1 0/0 0/0 .sdata2          l_mapBaseColor$4181 */
 SECTION_SDATA2 static u8 l_mapBaseColor[4] = {
     0x00,
     0x00,
@@ -963,8 +788,8 @@ SECTION_SDATA2 static u8 l_mapBaseColor[4] = {
     0x00,
 };
 
-/* 801CF298-801CF2A0 0008+00 s=1 e=0 z=0  None .text      getBackColor__15dMenu_FmapMap_cCFv */
-//	801CF298: 804541CC (l_mapBaseColor)
+/* 801CF298-801CF2A0 1C9BD8 0008+00 1/0 0/0 0/0 .text            getBackColor__15dMenu_FmapMap_cCFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -974,14 +799,41 @@ asm void dMenu_FmapMap_c::getBackColor() const {
 }
 #pragma pop
 
-/* 801CF2A0-801CF394 00F4+00 s=1 e=0 z=0  None .text      getColor__15dMenu_FmapMap_cFi */
-//	801CF2B0: 803621D4 (_savegpr_27)
-//	801CF2BC: 803961B0 (palNo)
-//	801CF2C0: 803961B0 (palNo)
-//	801CF30C: 801CEAE0 (isFlashRoomNoCheck__15dMenu_FmapMap_cCFi)
-//	801CF324: 8002EE60 (dComIfGp_getNowLevel__Fv)
-//	801CF350: 8002EE60 (dComIfGp_getNowLevel__Fv)
-//	801CF380: 80362220 (_restgpr_27)
+/* ############################################################################################## */
+/* 803961D0-803961F4 022830 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_onColor$4186 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_dungeon_onColor[36] = {
+    0x04, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
+    0x18, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_803961D0 = (void*)(&l_dungeon_onColor);
+#pragma pop
+
+/* 803961F4-80396218 022854 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_stayColor$4187 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_dungeon_stayColor[36] = {
+    0x24, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x2C, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00,
+    0x38, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_803961F4 = (void*)(&l_dungeon_stayColor);
+#pragma pop
+
+/* 80396218-8039623C 022878 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_pointColor$4188 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_dungeon_pointColor[36] = {
+    0x44, 0x00, 0x00, 0x00, 0x48, 0x00, 0x00, 0x00, 0x4C, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00,
+    0x58, 0x00, 0x00, 0x00, 0x5C, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80396218 = (void*)(&l_dungeon_pointColor);
+#pragma pop
+
+/* 801CF2A0-801CF394 1C9BE0 00F4+00 1/0 0/0 0/0 .text            getColor__15dMenu_FmapMap_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -991,14 +843,7 @@ asm void dMenu_FmapMap_c::getColor(int param_0) {
 }
 #pragma pop
 
-/* 801CF394-801CF450 00BC+00 s=1 e=0 z=0  None .text      setTexture__15dMenu_FmapMap_cFUsUsUsUs */
-//	801CF3A4: 803621D4 (_savegpr_27)
-//	801CF3DC: 8035DC1C (GXGetTexBufferSize)
-//	801CF3E4: 802CECEC (__nwa__FUli)
-//	801CF404: 801CE15C (init__15renderingFmap_cFPUcUsUsUsUs)
-//	801CF410: 802CEC74 (__nw__FUli)
-//	801CF434: 8003CD38 (makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs)
-//	801CF43C: 80362220 (_restgpr_27)
+/* 801CF394-801CF450 1C9CD4 00BC+00 1/1 0/0 0/0 .text setTexture__15dMenu_FmapMap_cFUsUsUsUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1008,11 +853,8 @@ asm void dMenu_FmapMap_c::setTexture(u16 param_0, u16 param_1, u16 param_2, u16 
 }
 #pragma pop
 
-/* 801CF450-801CF4D0 0080+00 s=0 e=1 z=0  None .text
+/* 801CF450-801CF4D0 1C9D90 0080+00 0/0 1/1 0/0 .text
  * setRendering__15dMenu_FmapMap_cFP23dMenu_Fmap_world_data_ciffff */
-//	801CF480: 80454194 (m_other__22dMfm_HIO_prm_res_src_s)
-//	801CF4B4: 80454194 (m_other__22dMfm_HIO_prm_res_src_s)
-//	801CF4BC: 801CE188 (entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1023,18 +865,7 @@ asm void dMenu_FmapMap_c::setRendering(dMenu_Fmap_world_data_c* param_0, int par
 }
 #pragma pop
 
-/* 801CF4D0-801CF55C 008C+00 s=1 e=0 z=0  None .text      __dt__15renderingFmap_cFv */
-//	801CF4E8: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CF4EC: 803BD6E8 (__vt__15renderingFmap_c)
-//	801CF4F8: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CF4FC: 803A7C90 (__vt__18dRenderingFDAmap_c)
-//	801CF508: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CF50C: 803A6FD4 (__vt__15dRenderingMap_c)
-//	801CF518: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CF51C: 803A6F94 (__vt__28dDrawPathWithNormalPattern_c)
-//	801CF528: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CF52C: 803A7CF8 (__vt__11dDrawPath_c)
-//	801CF540: 802CED3C (__dl__FPv)
+/* 801CF4D0-801CF55C 1C9E10 008C+00 1/0 0/0 0/0 .text            __dt__15renderingFmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1044,17 +875,28 @@ asm renderingFmap_c::~renderingFmap_c() {
 }
 #pragma pop
 
-/* 801CF55C-801CF564 0008+00 s=2 e=0 z=0  None .text      isRenderingFloor__15renderingFmap_cFi */
+/* 801CF55C-801CF564 1C9E9C 0008+00 2/0 0/0 0/0 .text isRenderingFloor__15renderingFmap_cFi */
 bool renderingFmap_c::isRenderingFloor(int param_0) {
     return true;
 }
 
-/* 801CF564-801CF568 0004+00 s=2 e=0 z=0  None .text      beforeDrawPath__15renderingFmap_cFv */
+/* 801CF564-801CF568 1C9EA4 0004+00 2/0 0/0 0/0 .text            beforeDrawPath__15renderingFmap_cFv
+ */
 void renderingFmap_c::beforeDrawPath() {
     /* empty function */
 }
 
-/* 801CF568-801CF56C 0004+00 s=2 e=0 z=0  None .text      afterDrawPath__15renderingFmap_cFv */
+/* 801CF568-801CF56C 1C9EA8 0004+00 2/0 0/0 0/0 .text            afterDrawPath__15renderingFmap_cFv
+ */
 void renderingFmap_c::afterDrawPath() {
     /* empty function */
 }
+
+/* 8039623C-80396248 02289C 0008+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039623C = "F_SP121";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80396244 = "\0\0\0";
+#pragma pop

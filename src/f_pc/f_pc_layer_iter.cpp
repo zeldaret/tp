@@ -27,11 +27,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fpcLyIt_OnlyHere(layer_class*, int (*)(void*, void*), void*);
-void fpcLyIt_OnlyHereLY(layer_class*, int (*)(void*, void*), void*);
-void fpcLyIt_Judge(layer_class*, void* (*)(void*, void*), void*);
-void fpcLyIt_AllJudge(void* (*)(void*, void*), void*);
-
 extern "C" void fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv();
 extern "C" void fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv();
 extern "C" void fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv();
@@ -40,14 +35,6 @@ extern "C" void fpcLyIt_AllJudge__FPFPvPv_PvPv();
 //
 // External References:
 //
-
-void fpcLy_RootLayer();
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-void cTrIt_Method(node_lists_tree_class*, int (*)(node_class*, void*), void*);
-void cTrIt_Judge(node_lists_tree_class*, void* (*)(node_class*, void*), void*);
-void cTgIt_MethodCall(create_tag_class*, method_filter*);
-void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
 
 extern "C" void fpcLy_RootLayer__Fv();
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
@@ -63,11 +50,8 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 80021B88-80021BC0 0038+00 s=1 e=4 z=0  None .text fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv
+/* 80021B88-80021BC0 01C4C8 0038+00 1/1 4/4 0/0 .text fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv
  */
-//	80021B9C: 80266A7C (cTgIt_MethodCall__FP16create_tag_classP13method_filter)
-//	80021BA0: 80266A7C (cTgIt_MethodCall__FP16create_tag_classP13method_filter)
-//	80021BAC: 80266540 (cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -77,14 +61,8 @@ asm void fpcLyIt_OnlyHere(layer_class* param_0, int (*)(void*, void*), void* par
 }
 #pragma pop
 
-/* 80021BC0-80021C28 0068+00 s=0 e=1 z=0  None .text fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv
- */
-//	80021BD0: 803621D8 (_savegpr_28)
-//	80021BE0: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	80021BEC: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80021BFC: 80021B88 (fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv)
-//	80021C08: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80021C14: 80362224 (_restgpr_28)
+/* 80021BC0-80021C28 01C500 0068+00 0/0 1/1 0/0 .text
+ * fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,11 +72,7 @@ asm void fpcLyIt_OnlyHereLY(layer_class* param_0, int (*)(void*, void*), void* p
 }
 #pragma pop
 
-/* 80021C28-80021C60 0038+00 s=0 e=3 z=0  None .text      fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
- */
-//	80021C3C: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80021C40: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80021C4C: 802665B4 (cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv)
+/* 80021C28-80021C60 01C568 0038+00 0/0 3/3 0/0 .text fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,11 +82,7 @@ asm void fpcLyIt_Judge(layer_class* param_0, void* (*)(void*, void*), void* para
 }
 #pragma pop
 
-/* 80021C60-80021CD4 0074+00 s=0 e=1 z=4  None .text      fpcLyIt_AllJudge__FPFPvPv_PvPv */
-//	80021C7C: 800216DC (fpcLy_RootLayer__Fv)
-//	80021C84: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80021C88: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80021C9C: 802665B4 (cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv)
+/* 80021C60-80021CD4 01C5A0 0074+00 0/0 1/1 4/4 .text            fpcLyIt_AllJudge__FPFPvPv_PvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

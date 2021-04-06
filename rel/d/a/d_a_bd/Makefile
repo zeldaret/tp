@@ -3,19 +3,20 @@
 #
 
 M60_TARGET := $(BUILD_DIR)/rel/d/a/d_a_bd.plf
+M60_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_bd.lcf
+M60_MAP := $(BUILD_DIR)/rel/d/a/d_a_bd.map
 
 M60_CPP_FILES := \
-	rel/d/a/d_a_bd/executor.cpp \
-	rel/d/a/d_a_bd/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_bd/d_a_bd.cpp \
 
 M60_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_bd/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_bd/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_bd/d_a_bd.o \
 
 M60_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_bd/libRuntime.PPCEABI.H.a \
 
 M60_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M60_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map60.map\
+	-m _prolog \
+	-lcf $(M60_LDSCRIPT) \
+	-unused -map $(M60_MAP) \
+	-w off \
 
 $(M60_TARGET): $(M60_O_FILES) $(M60_LIBS)
+	@echo [ 60] creating $(M60_TARGET)
 	@echo $(M60_LIBS) $(M60_O_FILES) > build/M60_ofiles
-	$(LD) -opt_partial $(M60_LDFLAGS) -o $(M60_TARGET) @build/M60_ofiles
+	@python3 tools/lcf.py rel 60 --output $(M60_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M60_LDFLAGS) -o $(M60_TARGET) @build/M60_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_bd/%.o: rel/d/a/d_a_bd/%.cpp
+	@echo [ 60] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M60_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M60_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_bd/libs/Runtime.PPCEABI.H/Makefile
 

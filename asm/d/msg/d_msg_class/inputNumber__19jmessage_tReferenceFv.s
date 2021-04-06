@@ -11,8 +11,8 @@ lbl_802294A8:
 /* 802294CC  AB C3 01 74 */	lha r30, 0x174(r3)
 /* 802294D0  7F DD F3 78 */	mr r29, r30
 /* 802294D4  3B 60 00 00 */	li r27, 0
-/* 802294D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802294DC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 802294D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802294DC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802294E0  A0 1F 00 04 */	lhz r0, 4(r31)
 /* 802294E4  28 00 03 E8 */	cmplwi r0, 0x3e8
 /* 802294E8  41 80 00 0C */	blt lbl_802294F4

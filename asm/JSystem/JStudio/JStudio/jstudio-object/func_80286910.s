@@ -5,8 +5,8 @@ lbl_80286910:
 /* 8028691C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80286920  7C 7F 1B 78 */	mr r31, r3
 /* 80286924  4B FF FF 41 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor
-/* 80286928  3C 60 80 3C */	lis r3, __vt__Q27JStudio13TObject_actor@ha
-/* 8028692C  38 03 55 80 */	addi r0, r3, __vt__Q27JStudio13TObject_actor@l
+/* 80286928  3C 60 80 3C */	lis r3, __vt__Q27JStudio13TObject_actor@ha /* 0x803C5580@ha */
+/* 8028692C  38 03 55 80 */	addi r0, r3, __vt__Q27JStudio13TObject_actor@l /* 0x803C5580@l */
 /* 80286930  90 1F 00 08 */	stw r0, 8(r31)
 /* 80286934  7F E3 FB 78 */	mr r3, r31
 /* 80286938  83 E1 00 0C */	lwz r31, 0xc(r1)

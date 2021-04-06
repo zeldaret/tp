@@ -2,8 +2,8 @@ lbl_80084908:
 /* 80084908  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008490C  7C 08 02 A6 */	mflr r0
 /* 80084910  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80084914  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 80084918  C4 45 0C F4 */	lfsu f2, Zero__4cXyz@l(r5)
+/* 80084914  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80084918  C4 45 0C F4 */	lfsu f2, Zero__4cXyz@l(r5)  /* 0x80430CF4@l */
 /* 8008491C  D0 41 00 08 */	stfs f2, 8(r1)
 /* 80084920  C0 25 00 04 */	lfs f1, 4(r5)
 /* 80084924  D0 21 00 0C */	stfs f1, 0xc(r1)

@@ -16,7 +16,7 @@ lbl_80CD7828:
 /* 80CD7860  D0 03 05 54 */	stfs f0, 0x554(r3)
 /* 80CD7864  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 80CD7868  D0 03 05 58 */	stfs f0, 0x558(r3)
-/* 80CD786C  4B 36 02 08 */	b show__12daItemBase_cFv
+/* 80CD786C  4B 36 02 09 */	bl show__12daItemBase_cFv
 /* 80CD7870  38 00 00 01 */	li r0, 1
 /* 80CD7874  98 1F 09 34 */	stb r0, 0x934(r31)
 /* 80CD7878  38 60 00 01 */	li r3, 1

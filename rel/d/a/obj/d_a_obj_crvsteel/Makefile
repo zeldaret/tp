@@ -3,17 +3,15 @@
 #
 
 M431_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel.plf
+M431_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel.lcf
+M431_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel.map
 
 M431_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvsteel/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvsteel/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvsteel/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel.cpp \
 
 M431_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel.o \
 
 M431_LIBS := \
@@ -29,15 +27,21 @@ M431_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map431.map\
+	-m _prolog \
+	-lcf $(M431_LDSCRIPT) \
+	-unused -map $(M431_MAP) \
+	-w off \
 
 $(M431_TARGET): $(M431_O_FILES) $(M431_LIBS)
+	@echo [431] creating $(M431_TARGET)
 	@echo $(M431_LIBS) $(M431_O_FILES) > build/M431_ofiles
-	$(LD) -opt_partial $(M431_LDFLAGS) -o $(M431_TARGET) @build/M431_ofiles
+	@python3 tools/lcf.py rel 431 --output $(M431_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M431_LDFLAGS) -o $(M431_TARGET) @build/M431_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvsteel/%.o: rel/d/a/obj/d_a_obj_crvsteel/%.cpp
+	@echo [431] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M431_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

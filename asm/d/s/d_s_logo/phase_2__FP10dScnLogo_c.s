@@ -2,8 +2,8 @@ lbl_80257A70:
 /* 80257A70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80257A74  7C 08 02 A6 */	mflr r0
 /* 80257A78  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80257A7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80257A80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80257A7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80257A80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80257A84  3C 63 00 02 */	addis r3, r3, 2
 /* 80257A88  38 80 00 80 */	li r4, 0x80
 /* 80257A8C  38 63 C2 F8 */	addi r3, r3, -15624

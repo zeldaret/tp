@@ -5,8 +5,8 @@ lbl_801F8388:
 /* 801F8394  39 61 00 70 */	addi r11, r1, 0x70
 /* 801F8398  48 16 9E 09 */	bl __save_gpr
 /* 801F839C  7C 7F 1B 78 */	mr r31, r3
-/* 801F83A0  3C 60 80 39 */	lis r3, i_id@ha
-/* 801F83A4  3A E3 7A 18 */	addi r23, r3, i_id@l
+/* 801F83A0  3C 60 80 39 */	lis r3, i_id@ha /* 0x80397A18@ha */
+/* 801F83A4  3A E3 7A 18 */	addi r23, r3, i_id@l /* 0x80397A18@l */
 /* 801F83A8  38 60 01 18 */	li r3, 0x118
 /* 801F83AC  48 0D 68 A1 */	bl __nw__FUl
 /* 801F83B0  7C 60 1B 79 */	or. r0, r3, r3
@@ -16,8 +16,8 @@ lbl_801F8388:
 lbl_801F83C0:
 /* 801F83C0  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 801F83C4  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 801F83C8  3C 80 80 39 */	lis r4, d_menu_d_menu_skill__stringBase0@ha
-/* 801F83CC  38 84 7D B8 */	addi r4, r4, d_menu_d_menu_skill__stringBase0@l
+/* 801F83C8  3C 80 80 39 */	lis r4, d_menu_d_menu_skill__stringBase0@ha /* 0x80397DB8@ha */
+/* 801F83CC  38 84 7D B8 */	addi r4, r4, d_menu_d_menu_skill__stringBase0@l /* 0x80397DB8@l */
 /* 801F83D0  38 84 00 19 */	addi r4, r4, 0x19
 /* 801F83D4  3C A0 00 02 */	lis r5, 2
 /* 801F83D8  80 DF 00 08 */	lwz r6, 8(r31)
@@ -44,8 +44,8 @@ lbl_801F8418:
 /* 801F8428  3A 80 00 00 */	li r20, 0
 /* 801F842C  3A 40 00 00 */	li r18, 0
 /* 801F8430  3A 20 00 00 */	li r17, 0
-/* 801F8434  3C 60 80 39 */	lis r3, d_menu_d_menu_skill__stringBase0@ha
-/* 801F8438  39 C3 7D B8 */	addi r14, r3, d_menu_d_menu_skill__stringBase0@l
+/* 801F8434  3C 60 80 39 */	lis r3, d_menu_d_menu_skill__stringBase0@ha /* 0x80397DB8@ha */
+/* 801F8438  39 C3 7D B8 */	addi r14, r3, d_menu_d_menu_skill__stringBase0@l /* 0x80397DB8@l */
 /* 801F843C  3B 17 01 18 */	addi r24, r23, 0x118
 /* 801F8440  3B 37 01 50 */	addi r25, r23, 0x150
 /* 801F8444  3B 57 01 88 */	addi r26, r23, 0x188
@@ -409,8 +409,8 @@ lbl_801F8940:
 /* 801F89B4  4E 80 04 21 */	bctrl 
 /* 801F89B8  7D C3 73 78 */	mr r3, r14
 /* 801F89BC  38 80 02 00 */	li r4, 0x200
-/* 801F89C0  3C A0 80 39 */	lis r5, d_menu_d_menu_skill__stringBase0@ha
-/* 801F89C4  38 A5 7D B8 */	addi r5, r5, d_menu_d_menu_skill__stringBase0@l
+/* 801F89C0  3C A0 80 39 */	lis r5, d_menu_d_menu_skill__stringBase0@ha /* 0x80397DB8@ha */
+/* 801F89C4  38 A5 7D B8 */	addi r5, r5, d_menu_d_menu_skill__stringBase0@l /* 0x80397DB8@l */
 /* 801F89C8  38 A5 00 2F */	addi r5, r5, 0x2f
 /* 801F89CC  4C C6 31 82 */	crclr 6
 /* 801F89D0  48 10 7D 7D */	bl setString__10J2DTextBoxFsPCce

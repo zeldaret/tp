@@ -3,7 +3,7 @@ lbl_80964C4C:
 /* 80964C50  7C 08 02 A6 */	mflr r0
 /* 80964C54  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80964C58  38 63 12 50 */	addi r3, r3, 0x1250
-/* 80964C5C  4B 9F D3 EC */	b __ptmf_cmpr
+/* 80964C5C  4B 9F D3 ED */	bl __ptmf_cmpr
 /* 80964C60  7C 60 00 34 */	cntlzw r0, r3
 /* 80964C64  54 03 D9 7E */	srwi r3, r0, 5
 /* 80964C68  80 01 00 14 */	lwz r0, 0x14(r1)

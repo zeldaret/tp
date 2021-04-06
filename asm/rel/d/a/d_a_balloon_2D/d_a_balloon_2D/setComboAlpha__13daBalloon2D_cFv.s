@@ -7,13 +7,13 @@ lbl_8065464C:
 /* 80654660  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80654664  93 C1 00 08 */	stw r30, 8(r1)
 /* 80654668  7C 7E 1B 78 */	mr r30, r3
-/* 8065466C  3C 60 80 65 */	lis r3, lit_3896@ha
-/* 80654670  3B E3 55 AC */	addi r31, r3, lit_3896@l
+/* 8065466C  3C 60 80 65 */	lis r3, lit_3896@ha /* 0x806555AC@ha */
+/* 80654670  3B E3 55 AC */	addi r31, r3, lit_3896@l /* 0x806555AC@l */
 /* 80654674  80 7E 05 78 */	lwz r3, 0x578(r30)
-/* 80654678  4B C0 11 B0 */	b getAlphaRate__13CPaneMgrAlphaFv
+/* 80654678  4B C0 11 B1 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 8065467C  FF E0 08 90 */	fmr f31, f1
 /* 80654680  80 7E 05 A4 */	lwz r3, 0x5a4(r30)
-/* 80654684  4B C0 11 A4 */	b getAlphaRate__13CPaneMgrAlphaFv
+/* 80654684  4B C0 11 A5 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80654688  EC 01 07 F2 */	fmuls f0, f1, f31
 /* 8065468C  D0 1E 07 3C */	stfs f0, 0x73c(r30)
 /* 80654690  88 1E 07 44 */	lbz r0, 0x744(r30)
@@ -26,7 +26,7 @@ lbl_8065464C:
 /* 806546AC  38 7E 07 3C */	addi r3, r30, 0x73c
 /* 806546B0  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 806546B4  C0 7F 00 0C */	lfs f3, 0xc(r31)
-/* 806546B8  4B C1 B3 84 */	b cLib_addCalc2__FPffff
+/* 806546B8  4B C1 B3 85 */	bl cLib_addCalc2__FPffff
 /* 806546BC  C0 1E 07 3C */	lfs f0, 0x73c(r30)
 /* 806546C0  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 806546C4  EC 00 08 28 */	fsubs f0, f0, f1
@@ -39,7 +39,7 @@ lbl_8065464C:
 lbl_806546E0:
 /* 806546E0  80 7E 05 A4 */	lwz r3, 0x5a4(r30)
 /* 806546E4  C0 3E 07 3C */	lfs f1, 0x73c(r30)
-/* 806546E8  4B C0 10 E8 */	b setAlphaRate__13CPaneMgrAlphaFf
+/* 806546E8  4B C0 10 E9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 806546EC  48 00 00 24 */	b lbl_80654710
 lbl_806546F0:
 /* 806546F0  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -49,7 +49,7 @@ lbl_806546F0:
 /* 80654700  D0 3E 07 3C */	stfs f1, 0x73c(r30)
 /* 80654704  80 7E 05 A4 */	lwz r3, 0x5a4(r30)
 /* 80654708  C0 3E 07 3C */	lfs f1, 0x73c(r30)
-/* 8065470C  4B C0 10 C4 */	b setAlphaRate__13CPaneMgrAlphaFf
+/* 8065470C  4B C0 10 C5 */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_80654710:
 /* 80654710  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 80654714  CB E1 00 10 */	lfd f31, 0x10(r1)

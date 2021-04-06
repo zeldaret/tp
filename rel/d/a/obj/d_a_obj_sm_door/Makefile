@@ -3,17 +3,15 @@
 #
 
 M620_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door.plf
+M620_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door.lcf
+M620_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door.map
 
 M620_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sm_door/executor.cpp \
-	rel/d/a/obj/d_a_obj_sm_door/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_sm_door/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_sm_door/d_a_obj_sm_door.cpp \
 
 M620_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/d_a_obj_sm_door.o \
 
 M620_LIBS := \
@@ -29,15 +27,21 @@ M620_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map620.map\
+	-m _prolog \
+	-lcf $(M620_LDSCRIPT) \
+	-unused -map $(M620_MAP) \
+	-w off \
 
 $(M620_TARGET): $(M620_O_FILES) $(M620_LIBS)
+	@echo [620] creating $(M620_TARGET)
 	@echo $(M620_LIBS) $(M620_O_FILES) > build/M620_ofiles
-	$(LD) -opt_partial $(M620_LDFLAGS) -o $(M620_TARGET) @build/M620_ofiles
+	@python3 tools/lcf.py rel 620 --output $(M620_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M620_LDFLAGS) -o $(M620_TARGET) @build/M620_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sm_door/%.o: rel/d/a/obj/d_a_obj_sm_door/%.cpp
+	@echo [620] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M620_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M620_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

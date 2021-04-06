@@ -5,10 +5,10 @@ lbl_80D27C6C:
 /* 80D27C78  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80D27C7C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80D27C80  7C 7F 1B 78 */	mr r31, r3
-/* 80D27C84  3C 80 80 D3 */	lis r4, l_bmd_idx@ha
-/* 80D27C88  3B C4 95 B4 */	addi r30, r4, l_bmd_idx@l
-/* 80D27C8C  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha
-/* 80D27C90  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l
+/* 80D27C84  3C 80 80 D3 */	lis r4, l_bmd_idx@ha /* 0x80D295B4@ha */
+/* 80D27C88  3B C4 95 B4 */	addi r30, r4, l_bmd_idx@l /* 0x80D295B4@l */
+/* 80D27C8C  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 80D27C90  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l /* 0x80451018@l */
 /* 80D27C94  80 84 00 00 */	lwz r4, 0(r4)
 /* 80D27C98  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80D27C9C  28 00 00 01 */	cmplwi r0, 1
@@ -25,7 +25,7 @@ lbl_80D27C6C:
 /* 80D27CC8  90 04 08 90 */	stw r0, 0x890(r4)
 /* 80D27CCC  38 64 04 D0 */	addi r3, r4, 0x4d0
 /* 80D27CD0  38 9F 06 28 */	addi r4, r31, 0x628
-/* 80D27CD4  4B 61 F6 C8 */	b PSVECSquareDistance
+/* 80D27CD4  4B 61 F6 C9 */	bl PSVECSquareDistance
 /* 80D27CD8  C0 1E 00 70 */	lfs f0, 0x70(r30)
 /* 80D27CDC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D27CE0  40 81 00 58 */	ble lbl_80D27D38
@@ -54,8 +54,8 @@ lbl_80D27D38:
 /* 80D27D38  C8 1E 00 98 */	lfd f0, 0x98(r30)
 /* 80D27D3C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D27D40  40 80 00 10 */	bge lbl_80D27D50
-/* 80D27D44  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D27D48  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D27D44  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D27D48  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D27D4C  48 00 00 70 */	b lbl_80D27DBC
 lbl_80D27D50:
 /* 80D27D50  D0 21 00 08 */	stfs f1, 8(r1)
@@ -89,8 +89,8 @@ lbl_80D27DA8:
 lbl_80D27DAC:
 /* 80D27DAC  2C 00 00 01 */	cmpwi r0, 1
 /* 80D27DB0  40 82 00 0C */	bne lbl_80D27DBC
-/* 80D27DB4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D27DB8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D27DB4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D27DB8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80D27DBC:
 /* 80D27DBC  C0 1E 00 6C */	lfs f0, 0x6c(r30)
 /* 80D27DC0  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -102,7 +102,7 @@ lbl_80D27DBC:
 /* 80D27DD8  A0 BF 05 CC */	lhz r5, 0x5cc(r31)
 /* 80D27DDC  38 C0 00 00 */	li r6, 0
 /* 80D27DE0  38 E0 00 00 */	li r7, 0
-/* 80D27DE4  4B 52 21 AC */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80D27DE4  4B 52 21 AD */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80D27DE8  48 00 00 08 */	b lbl_80D27DF0
 lbl_80D27DEC:
 /* 80D27DEC  4B FF FC 4D */	bl orderZHintEvent__15daObjWarpKBrg_cFv

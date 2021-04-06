@@ -15,8 +15,8 @@ lbl_801A1F58:
 /* 801A1F8C  EC 20 08 28 */	fsubs f1, f0, f1
 /* 801A1F90  C0 02 A2 94 */	lfs f0, lit_5192(r2)
 /* 801A1F94  EC 21 00 24 */	fdivs f1, f1, f0
-/* 801A1F98  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1F9C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A1F98  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1F9C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1FA0  A8 03 12 C0 */	lha r0, 0x12c0(r3)
 /* 801A1FA4  2C 00 00 64 */	cmpwi r0, 0x64
 /* 801A1FA8  40 82 00 58 */	bne lbl_801A2000
@@ -31,8 +31,8 @@ lbl_801A1FC4:
 /* 801A1FC8  7C 60 07 75 */	extsb. r0, r3
 /* 801A1FCC  41 80 00 34 */	blt lbl_801A2000
 /* 801A1FD0  98 7F 03 7C */	stb r3, 0x37c(r31)
-/* 801A1FD4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1FD8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A1FD4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1FD8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1FDC  A8 03 12 C0 */	lha r0, 0x12c0(r3)
 /* 801A1FE0  2C 00 00 64 */	cmpwi r0, 0x64
 /* 801A1FE4  40 82 00 1C */	bne lbl_801A2000
@@ -43,8 +43,8 @@ lbl_801A1FC4:
 /* 801A1FF8  C0 82 A3 10 */	lfs f4, lit_6042(r2)
 /* 801A1FFC  48 0C D9 81 */	bl cLib_addCalc__FPfffff
 lbl_801A2000:
-/* 801A2000  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A2004  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A2000  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A2004  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A2008  88 A3 12 C7 */	lbz r5, 0x12c7(r3)
 /* 801A200C  88 9F 03 7C */	lbz r4, 0x37c(r31)
 /* 801A2010  7C 05 20 40 */	cmplw r5, r4

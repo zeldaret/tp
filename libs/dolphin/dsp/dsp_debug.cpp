@@ -21,11 +21,11 @@ extern "C" void __DSP_debug_printf();
 // Declarations:
 //
 
-/* 80352580-803525D0 0050+00 s=0 e=2 z=0  None .text      __DSP_debug_printf */
+/* 80352580-803525D0 34CEC0 0050+00 0/0 2/2 0/0 .text            __DSP_debug_printf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DSP_debug_printf() {
+asm void __DSP_debug_printf() {
     nofralloc
 #include "asm/dolphin/dsp/dsp_debug/__DSP_debug_printf.s"
 }

@@ -85,8 +85,8 @@ lbl_800C4088:
 /* 800C4090  41 82 00 38 */	beq lbl_800C40C8
 /* 800C4094  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 800C4098  C0 3F 34 FC */	lfs f1, 0x34fc(r31)
-/* 800C409C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha
-/* 800C40A0  38 A3 D8 64 */	addi r5, r3, m__22daAlinkHIO_sideStep_c0@l
+/* 800C409C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_sideStep_c0@ha /* 0x8038D864@ha */
+/* 800C40A0  38 A3 D8 64 */	addi r5, r3, m__22daAlinkHIO_sideStep_c0@l /* 0x8038D864@l */
 /* 800C40A4  C0 05 00 60 */	lfs f0, 0x60(r5)
 /* 800C40A8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800C40AC  FC 02 00 40 */	fcmpo cr0, f2, f0

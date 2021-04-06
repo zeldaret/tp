@@ -8,7 +8,7 @@ lbl_80342780:
 /* 80342798  7C 9E 23 78 */	mr r30, r4
 /* 8034279C  4B FF AF 59 */	bl OSDisableInterrupts
 /* 803427A0  3C A0 80 00 */	lis r5, 0x8000 /* 0x800030DC@ha */
-/* 803427A4  80 85 30 DC */	lwz r4, 0x30DC(r5)
+/* 803427A4  80 85 30 DC */	lwz r4, 0x30DC(r5)  /* 0x800030DC@l */
 /* 803427A8  80 05 30 D8 */	lwz r0, 0x30d8(r5)
 /* 803427AC  7F C4 F0 14 */	addc r30, r4, r30
 /* 803427B0  7F E0 F9 14 */	adde r31, r0, r31

@@ -3,19 +3,20 @@
 #
 
 M316_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo.plf
+M316_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo.lcf
+M316_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo.map
 
 M316_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_hanjo/executor.cpp \
-	rel/d/a/npc/d_a_npc_hanjo/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_hanjo/d_a_npc_hanjo.cpp \
 
 M316_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo/d_a_npc_hanjo.o \
 
 M316_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo/libRuntime.PPCEABI.H.a \
 
 M316_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M316_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map316.map\
+	-m _prolog \
+	-lcf $(M316_LDSCRIPT) \
+	-unused -map $(M316_MAP) \
+	-w off \
 
 $(M316_TARGET): $(M316_O_FILES) $(M316_LIBS)
+	@echo [316] creating $(M316_TARGET)
 	@echo $(M316_LIBS) $(M316_O_FILES) > build/M316_ofiles
-	$(LD) -opt_partial $(M316_LDFLAGS) -o $(M316_TARGET) @build/M316_ofiles
+	@python3 tools/lcf.py rel 316 --output $(M316_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M316_LDFLAGS) -o $(M316_TARGET) @build/M316_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hanjo/%.o: rel/d/a/npc/d_a_npc_hanjo/%.cpp
+	@echo [316] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M316_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M316_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_hanjo/libs/Runtime.PPCEABI.H/Makefile
 

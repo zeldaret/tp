@@ -119,20 +119,6 @@ struct J2DAnmFullLoader_v15 {
 // Forward References:
 //
 
-void JSUConvertOffsetToPtr__template30(void const*, void const*);
-void JSUConvertOffsetToPtr__template31(void const*, void const*);
-void JSUConvertOffsetToPtr__template32(void const*, void const*);
-void JSUConvertOffsetToPtr__template33(void const*, void const*);
-void JSUConvertOffsetToPtr__template34(void const*, void const*);
-void JSUConvertOffsetToPtr__template35(void const*, void const*);
-void JSUConvertOffsetToPtr__template36(void const*, void const*);
-void JSUConvertOffsetToPtr__template37(void const*, void const*);
-void JSUConvertOffsetToPtr__template38(void const*, void const*);
-void JSUConvertOffsetToPtr__template39(void const*, void const*);
-void JSUConvertOffsetToPtr__template40(void const*, void const*);
-void JSUConvertOffsetToPtr__template41(void const*, void const*);
-void JSUConvertOffsetToPtr__template42(void const*, void const*);
-
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
 extern "C" void __ct__19J2DAnmKeyLoader_v15Fv();
 extern "C" void __dt__19J2DAnmKeyLoader_v15Fv();
@@ -172,41 +158,31 @@ setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFu
 extern "C" void __dt__14J2DAnmVtxColorFv();
 extern "C" void __dt__20J2DAnmVisibilityFullFv();
 extern "C" void __dt__12J2DAnmLoaderFv();
-extern "C" void func_8030A458();
-extern "C" void func_8030A470();
-extern "C" void func_8030A488();
-extern "C" void func_8030A4A0();
-extern "C" void func_8030A4B8();
-extern "C" void func_8030A4D0();
-extern "C" void func_8030A4E8();
-extern "C" void func_8030A500();
-extern "C" void func_8030A518();
-extern "C" void func_8030A530();
-extern "C" void func_8030A548();
-extern "C" void func_8030A560();
-extern "C" void func_8030A578();
-extern "C" extern void* __vt__20J2DAnmFullLoader_v15[5];
-extern "C" extern void* __vt__19J2DAnmKeyLoader_v15[5];
-extern "C" extern void* __vt__12J2DAnmLoader[5];
-extern "C" extern void* __vt__20J2DAnmVisibilityFull[4];
-extern "C" extern void* __vt__14J2DAnmVtxColor[5];
+extern "C" void func_8030A458(void const*, void const*);
+extern "C" void func_8030A470(void const*, void const*);
+extern "C" void func_8030A488(void const*, void const*);
+extern "C" void func_8030A4A0(void const*, void const*);
+extern "C" void func_8030A4B8(void const*, void const*);
+extern "C" void func_8030A4D0(void const*, void const*);
+extern "C" void func_8030A4E8(void const*, void const*);
+extern "C" void func_8030A500(void const*, void const*);
+extern "C" void func_8030A518(void const*, void const*);
+extern "C" void func_8030A530(void const*, void const*);
+extern "C" void func_8030A548(void const*, void const*);
+extern "C" void func_8030A560(void const*, void const*);
+extern "C" void func_8030A578(void const*, void const*);
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
-void JSUConvertOffsetToPtr__template24(void const*, void const*);
-void JSUConvertOffsetToPtr__template28(void const*, void const*);
 
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFv();
 extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F4260();
-extern "C" void func_802F42C0();
+extern "C" void func_802F4260(void const*, void const*);
+extern "C" void func_802F42C0(void const*, void const*);
 extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
@@ -230,8 +206,8 @@ extern "C" extern void* __vt__19J2DAnmTransformFull[5];
 //
 
 /* ############################################################################################## */
-/* 803CD6C8-803CD6DC 0014+00 s=2 e=0 z=0  None .data      __vt__20J2DAnmFullLoader_v15 */
-SECTION_DATA void* __vt__20J2DAnmFullLoader_v15[5] = {
+/* 803CD6C8-803CD6DC 02A7E8 0014+00 2/2 0/0 0/0 .data            __vt__20J2DAnmFullLoader_v15 */
+SECTION_DATA extern void* __vt__20J2DAnmFullLoader_v15[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)load__20J2DAnmFullLoader_v15FPCv,
@@ -239,8 +215,8 @@ SECTION_DATA void* __vt__20J2DAnmFullLoader_v15[5] = {
     (void*)__dt__20J2DAnmFullLoader_v15Fv,
 };
 
-/* 803CD6DC-803CD6F0 0014+00 s=2 e=0 z=0  None .data      __vt__19J2DAnmKeyLoader_v15 */
-SECTION_DATA void* __vt__19J2DAnmKeyLoader_v15[5] = {
+/* 803CD6DC-803CD6F0 02A7FC 0014+00 2/2 0/0 0/0 .data            __vt__19J2DAnmKeyLoader_v15 */
+SECTION_DATA extern void* __vt__19J2DAnmKeyLoader_v15[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)load__19J2DAnmKeyLoader_v15FPCv,
@@ -248,21 +224,21 @@ SECTION_DATA void* __vt__19J2DAnmKeyLoader_v15[5] = {
     (void*)__dt__19J2DAnmKeyLoader_v15Fv,
 };
 
-/* 803CD6F0-803CD704 0014+00 s=5 e=0 z=0  None .data      __vt__12J2DAnmLoader */
-SECTION_DATA void* __vt__12J2DAnmLoader[5] = {
+/* 803CD6F0-803CD704 02A810 0014+00 5/5 0/0 0/0 .data            __vt__12J2DAnmLoader */
+SECTION_DATA extern void* __vt__12J2DAnmLoader[5] = {
     (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)__dt__12J2DAnmLoaderFv,
 };
 
-/* 803CD704-803CD714 0010+00 s=2 e=0 z=0  None .data      __vt__20J2DAnmVisibilityFull */
-SECTION_DATA void* __vt__20J2DAnmVisibilityFull[4] = {
+/* 803CD704-803CD714 02A824 0010+00 2/2 0/0 0/0 .data            __vt__20J2DAnmVisibilityFull */
+SECTION_DATA extern void* __vt__20J2DAnmVisibilityFull[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20J2DAnmVisibilityFullFv,
     (void*)searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen,
 };
 
-/* 803CD714-803CD728 0014+00 s=2 e=2 z=0  None .data      __vt__14J2DAnmVtxColor */
-SECTION_DATA void* __vt__14J2DAnmVtxColor[5] = {
+/* 803CD714-803CD728 02A834 0014+00 2/2 2/2 0/0 .data            __vt__14J2DAnmVtxColor */
+SECTION_DATA extern void* __vt__14J2DAnmVtxColor[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14J2DAnmVtxColorFv,
@@ -270,123 +246,15 @@ SECTION_DATA void* __vt__14J2DAnmVtxColor[5] = {
     (void*)getColor__14J2DAnmVtxColorCFUcUsP8_GXColor,
 };
 
-/* 804562F8-80456300 0004+04 s=11 e=0 z=0  None .sdata2    @1581 */
+/* 804562F8-80456300 0048F8 0004+04 11/11 0/0 0/0 .sdata2          @1581 */
 SECTION_SDATA2 static f32 lit_1581[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80308A6C-80309290 0824+00 s=0 e=26 z=2  None .text      load__20J2DAnmLoaderDataBaseFPCv */
-//	80308B84: 80309290 (__ct__19J2DAnmKeyLoader_v15Fv)
-//	80308B8C: 802CEC4C (__nw__FUl)
-//	80308B98: 803A8E04 (__vt__10J2DAnmBase)
-//	80308B9C: 803A8E04 (__vt__10J2DAnmBase)
-//	80308BA4: 804562F8 (lit_1581)
-//	80308BB4: 803BB3B8 (__vt__15J2DAnmTransform)
-//	80308BB8: 803BB3B8 (__vt__15J2DAnmTransform)
-//	80308BD0: 803CD7BC (__vt__18J2DAnmTransformKey)
-//	80308BD4: 803CD7BC (__vt__18J2DAnmTransformKey)
-//	80308BF0: 80309308 (load__19J2DAnmKeyLoader_v15FPCv)
-//	80308C00: 803092AC (__dt__19J2DAnmKeyLoader_v15Fv)
-//	80308C10: 80309290 (__ct__19J2DAnmKeyLoader_v15Fv)
-//	80308C18: 802CEC4C (__nw__FUl)
-//	80308C24: 803A8E04 (__vt__10J2DAnmBase)
-//	80308C28: 803A8E04 (__vt__10J2DAnmBase)
-//	80308C30: 804562F8 (lit_1581)
-//	80308C40: 803CD7A8 (__vt__11J2DAnmColor)
-//	80308C44: 803CD7A8 (__vt__11J2DAnmColor)
-//	80308C50: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80308C78: 803CD780 (__vt__14J2DAnmColorKey)
-//	80308C7C: 803CD780 (__vt__14J2DAnmColorKey)
-//	80308CA4: 80309308 (load__19J2DAnmKeyLoader_v15FPCv)
-//	80308CB4: 803092AC (__dt__19J2DAnmKeyLoader_v15Fv)
-//	80308CCC: 80309290 (__ct__19J2DAnmKeyLoader_v15Fv)
-//	80308CD4: 802CEC4C (__nw__FUl)
-//	80308CE0: 803A8E04 (__vt__10J2DAnmBase)
-//	80308CE4: 803A8E04 (__vt__10J2DAnmBase)
-//	80308CEC: 804562F8 (lit_1581)
-//	80308CFC: 803CD748 (__vt__19J2DAnmTextureSRTKey)
-//	80308D00: 803CD748 (__vt__19J2DAnmTextureSRTKey)
-//	80308D0C: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80308D14: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80308D78: 80309308 (load__19J2DAnmKeyLoader_v15FPCv)
-//	80308D88: 803092AC (__dt__19J2DAnmKeyLoader_v15Fv)
-//	80308D98: 80309290 (__ct__19J2DAnmKeyLoader_v15Fv)
-//	80308DA0: 802CEC4C (__nw__FUl)
-//	80308DAC: 803A8E04 (__vt__10J2DAnmBase)
-//	80308DB0: 803A8E04 (__vt__10J2DAnmBase)
-//	80308DB8: 804562F8 (lit_1581)
-//	80308DC8: 803CD728 (__vt__15J2DAnmTevRegKey)
-//	80308DCC: 803CD728 (__vt__15J2DAnmTevRegKey)
-//	80308DD8: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80308DE0: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80308E4C: 80309308 (load__19J2DAnmKeyLoader_v15FPCv)
-//	80308E5C: 803092AC (__dt__19J2DAnmKeyLoader_v15Fv)
-//	80308E6C: 80309290 (__ct__19J2DAnmKeyLoader_v15Fv)
-//	80308E74: 802CEC4C (__nw__FUl)
-//	80308E80: 803A8E04 (__vt__10J2DAnmBase)
-//	80308E84: 803A8E04 (__vt__10J2DAnmBase)
-//	80308E8C: 804562F8 (lit_1581)
-//	80308E9C: 803CD714 (__vt__14J2DAnmVtxColor)
-//	80308EA0: 803CD714 (__vt__14J2DAnmVtxColor)
-//	80308EEC: 803CD758 (__vt__17J2DAnmVtxColorKey)
-//	80308EF0: 803CD758 (__vt__17J2DAnmVtxColorKey)
-//	80308F24: 80309308 (load__19J2DAnmKeyLoader_v15FPCv)
-//	80308F34: 803092AC (__dt__19J2DAnmKeyLoader_v15Fv)
-//	80308F44: 80309CE8 (__ct__20J2DAnmFullLoader_v15Fv)
-//	80308F4C: 802CEC4C (__nw__FUl)
-//	80308F58: 803A8E04 (__vt__10J2DAnmBase)
-//	80308F5C: 803A8E04 (__vt__10J2DAnmBase)
-//	80308F64: 804562F8 (lit_1581)
-//	80308F74: 803BB3B8 (__vt__15J2DAnmTransform)
-//	80308F78: 803BB3B8 (__vt__15J2DAnmTransform)
-//	80308F90: 803CD7D4 (__vt__19J2DAnmTransformFull)
-//	80308F94: 803CD7D4 (__vt__19J2DAnmTransformFull)
-//	80308FAC: 80309A80 (load__20J2DAnmFullLoader_v15FPCv)
-//	80308FBC: 80309D04 (__dt__20J2DAnmFullLoader_v15Fv)
-//	80308FCC: 80309CE8 (__ct__20J2DAnmFullLoader_v15Fv)
-//	80308FD4: 802CEC4C (__nw__FUl)
-//	80308FE0: 803A8E04 (__vt__10J2DAnmBase)
-//	80308FE4: 803A8E04 (__vt__10J2DAnmBase)
-//	80308FEC: 804562F8 (lit_1581)
-//	80308FFC: 803CD7A8 (__vt__11J2DAnmColor)
-//	80309000: 803CD7A8 (__vt__11J2DAnmColor)
-//	8030900C: 802DE9A0 (__ct__10JUTNameTabFv)
-//	80309034: 803CD794 (__vt__15J2DAnmColorFull)
-//	80309038: 803CD794 (__vt__15J2DAnmColorFull)
-//	80309060: 80309A80 (load__20J2DAnmFullLoader_v15FPCv)
-//	80309070: 80309D04 (__dt__20J2DAnmFullLoader_v15Fv)
-//	80309080: 80309CE8 (__ct__20J2DAnmFullLoader_v15Fv)
-//	80309088: 802CEC4C (__nw__FUl)
-//	80309094: 803A8E04 (__vt__10J2DAnmBase)
-//	80309098: 803A8E04 (__vt__10J2DAnmBase)
-//	803090A0: 804562F8 (lit_1581)
-//	803090B0: 803CD738 (__vt__16J2DAnmTexPattern)
-//	803090B4: 803CD738 (__vt__16J2DAnmTexPattern)
-//	803090C0: 802DE9A0 (__ct__10JUTNameTabFv)
-//	803090F0: 80309A80 (load__20J2DAnmFullLoader_v15FPCv)
-//	80309100: 80309D04 (__dt__20J2DAnmFullLoader_v15Fv)
-//	80309110: 80309CE8 (__ct__20J2DAnmFullLoader_v15Fv)
-//	80309118: 802CEC4C (__nw__FUl)
-//	80309124: 803A8E04 (__vt__10J2DAnmBase)
-//	80309128: 803A8E04 (__vt__10J2DAnmBase)
-//	80309130: 804562F8 (lit_1581)
-//	80309140: 803CD704 (__vt__20J2DAnmVisibilityFull)
-//	80309144: 803CD704 (__vt__20J2DAnmVisibilityFull)
-//	80309170: 80309A80 (load__20J2DAnmFullLoader_v15FPCv)
-//	80309180: 80309D04 (__dt__20J2DAnmFullLoader_v15Fv)
-//	80309198: 80309CE8 (__ct__20J2DAnmFullLoader_v15Fv)
-//	803091A0: 802CEC4C (__nw__FUl)
-//	803091AC: 803A8E04 (__vt__10J2DAnmBase)
-//	803091B0: 803A8E04 (__vt__10J2DAnmBase)
-//	803091B8: 804562F8 (lit_1581)
-//	803091C8: 803CD714 (__vt__14J2DAnmVtxColor)
-//	803091CC: 803CD714 (__vt__14J2DAnmVtxColor)
-//	80309218: 803CD76C (__vt__18J2DAnmVtxColorFull)
-//	8030921C: 803CD76C (__vt__18J2DAnmVtxColorFull)
-//	80309250: 80309A80 (load__20J2DAnmFullLoader_v15FPCv)
-//	80309260: 80309D04 (__dt__20J2DAnmFullLoader_v15Fv)
+/* 80308A6C-80309290 3033AC 0824+00 0/0 26/26 2/2 .text            load__20J2DAnmLoaderDataBaseFPCv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -396,11 +264,7 @@ asm void J2DAnmLoaderDataBase::load(void const* param_0) {
 }
 #pragma pop
 
-/* 80309290-803092AC 001C+00 s=1 e=0 z=0  None .text      __ct__19J2DAnmKeyLoader_v15Fv */
-//	80309290: 803CD6F0 (__vt__12J2DAnmLoader)
-//	80309294: 803CD6F0 (__vt__12J2DAnmLoader)
-//	8030929C: 803CD6DC (__vt__19J2DAnmKeyLoader_v15)
-//	803092A0: 803CD6DC (__vt__19J2DAnmKeyLoader_v15)
+/* 80309290-803092AC 303BD0 001C+00 1/1 0/0 0/0 .text            __ct__19J2DAnmKeyLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -410,12 +274,7 @@ asm J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() {
 }
 #pragma pop
 
-/* 803092AC-80309308 005C+00 s=2 e=0 z=0  None .text      __dt__19J2DAnmKeyLoader_v15Fv */
-//	803092C4: 803CD6DC (__vt__19J2DAnmKeyLoader_v15)
-//	803092C8: 803CD6DC (__vt__19J2DAnmKeyLoader_v15)
-//	803092D4: 803CD6F0 (__vt__12J2DAnmLoader)
-//	803092D8: 803CD6F0 (__vt__12J2DAnmLoader)
-//	803092EC: 802CED3C (__dl__FPv)
+/* 803092AC-80309308 303BEC 005C+00 2/1 0/0 0/0 .text            __dt__19J2DAnmKeyLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -425,14 +284,7 @@ asm J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() {
 }
 #pragma pop
 
-/* 80309308-80309414 010C+00 s=2 e=0 z=0  None .text      load__19J2DAnmKeyLoader_v15FPCv */
-//	80309318: 803621D4 (_savegpr_27)
-//	803093A0: 80309570 (readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData)
-//	803093B0: 80309848 (readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData)
-//	803093C0: 80309634 (readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData)
-//	803093D0: 8030995C (readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData)
-//	803093E0: 80309FDC (readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData)
-//	80309400: 80362220 (_restgpr_27)
+/* 80309308-80309414 303C48 010C+00 2/1 0/0 0/0 .text            load__19J2DAnmKeyLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,18 +294,8 @@ asm void J2DAnmKeyLoader_v15::load(void const* param_0) {
 }
 #pragma pop
 
-/* 80309414-80309570 015C+00 s=1 e=0 z=0  None .text
+/* 80309414-80309570 303D54 015C+00 1/0 0/0 0/0 .text
  * setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv          */
-//	80309424: 803621D0 (_savegpr_26)
-//	803094C0: 80309598
-//(setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData) 803094E0:
-// 80309870 (setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData) 80309500:
-// 8030965C
-//(setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData)
-//	80309520: 8030A004
-//(setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData) 	80309540:
-//80309984 (setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData)
-//8030955C: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,10 +305,8 @@ asm void J2DAnmKeyLoader_v15::setResource(J2DAnmBase* param_0, void const* param
 }
 #pragma pop
 
-/* 80309570-80309598 0028+00 s=1 e=0 z=0  None .text
+/* 80309570-80309598 303EB0 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__19J2DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData */
-//	80309584: 80309598
-//(setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,13 +316,8 @@ asm void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* par
 }
 #pragma pop
 
-/* 80309598-80309634 009C+00 s=2 e=0 z=0  None .text
+/* 80309598-80309634 303ED8 009C+00 2/2 0/0 0/0 .text
  * setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData */
-//	803095D4: 804562F8 (lit_1581)
-//	803095E4: 8030A578 (func_8030A578)
-//	803095F4: 8030A560 (func_8030A560)
-//	80309604: 8030A548 (func_8030A548)
-//	80309614: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -493,10 +328,8 @@ asm void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* param_0,
 }
 #pragma pop
 
-/* 80309634-8030965C 0028+00 s=1 e=0 z=0  None .text
+/* 80309634-8030965C 303F74 0028+00 1/1 0/0 0/0 .text
  * readAnmTextureSRT__19J2DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData */
-//	80309648: 8030965C
-//(setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -506,27 +339,8 @@ asm void J2DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* p
 }
 #pragma pop
 
-/* 8030965C-80309848 01EC+00 s=2 e=0 z=0  None .text
+/* 8030965C-80309848 303F9C 01EC+00 2/2 0/0 0/0 .text
  * setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData */
-//	80309698: 804562F8 (lit_1581)
-//	803096C4: 8030A578 (func_8030A578)
-//	803096D4: 802F42C0 (func_802F42C0)
-//	803096E4: 8030A530 (func_8030A530)
-//	803096F0: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	803096FC: 802F4260 (func_802F4260)
-//	8030970C: 8030A518 (func_8030A518)
-//	8030971C: 8030A560 (func_8030A560)
-//	8030972C: 8030A548 (func_8030A548)
-//	8030973C: 8030A560 (func_8030A560)
-//	80309754: 8030A530 (func_8030A530)
-//	80309760: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	8030978C: 8030A578 (func_8030A578)
-//	8030979C: 802F42C0 (func_802F42C0)
-//	803097AC: 802F4260 (func_802F4260)
-//	803097BC: 8030A518 (func_8030A518)
-//	803097CC: 8030A560 (func_8030A560)
-//	803097DC: 8030A548 (func_8030A548)
-//	803097EC: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -537,9 +351,8 @@ asm void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* param_0,
 }
 #pragma pop
 
-/* 80309848-80309870 0028+00 s=1 e=0 z=0  None .text
+/* 80309848-80309870 304188 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__19J2DAnmKeyLoader_v15FPC18J3DAnmColorKeyData   */
-//	8030985C: 80309870 (setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -549,17 +362,8 @@ asm void J2DAnmKeyLoader_v15::readAnmColor(J3DAnmColorKeyData const* param_0) {
 }
 #pragma pop
 
-/* 80309870-8030995C 00EC+00 s=2 e=0 z=0  None .text
+/* 80309870-8030995C 3041B0 00EC+00 2/2 0/0 0/0 .text
  * setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData */
-//	8030989C: 804562F8 (lit_1581)
-//	803098D4: 8030A500 (func_8030A500)
-//	803098E4: 8030A548 (func_8030A548)
-//	803098F4: 8030A548 (func_8030A548)
-//	80309904: 8030A548 (func_8030A548)
-//	80309914: 8030A548 (func_8030A548)
-//	80309924: 802F42C0 (func_802F42C0)
-//	80309934: 8030A530 (func_8030A530)
-//	80309940: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -570,10 +374,8 @@ asm void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey* param_0,
 }
 #pragma pop
 
-/* 8030995C-80309984 0028+00 s=1 e=0 z=0  None .text
+/* 8030995C-80309984 30429C 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__19J2DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData */
-//	80309970: 80309984
-//(setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -583,19 +385,8 @@ asm void J2DAnmKeyLoader_v15::readAnmVtxColor(J3DAnmVtxColorKeyData const* param
 }
 #pragma pop
 
-/* 80309984-80309A80 00FC+00 s=2 e=0 z=0  None .text
+/* 80309984-80309A80 3042C4 00FC+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData */
-//	803099B0: 804562F8 (lit_1581)
-//	803099D0: 8030A500 (func_8030A500)
-//	803099E0: 8030A500 (func_8030A500)
-//	803099F0: 8030A4E8 (func_8030A4E8)
-//	80309A00: 8030A4E8 (func_8030A4E8)
-//	80309A10: 802F42C0 (func_802F42C0)
-//	80309A20: 802F42C0 (func_802F42C0)
-//	80309A30: 8030A548 (func_8030A548)
-//	80309A40: 8030A548 (func_8030A548)
-//	80309A50: 8030A548 (func_8030A548)
-//	80309A60: 8030A548 (func_8030A548)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -606,14 +397,7 @@ asm void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey* param_0,
 }
 #pragma pop
 
-/* 80309A80-80309B8C 010C+00 s=2 e=0 z=0  None .text      load__20J2DAnmFullLoader_v15FPCv */
-//	80309A90: 803621D4 (_savegpr_27)
-//	80309B18: 80309D60 (readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData)
-//	80309B28: 80309E1C (readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData)
-//	80309B38: 80309F10 (readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData)
-//	80309B48: 8030A190 (readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData)
-//	80309B58: 8030A234 (readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData)
-//	80309B78: 80362220 (_restgpr_27)
+/* 80309A80-80309B8C 3043C0 010C+00 2/1 0/0 0/0 .text            load__20J2DAnmFullLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -623,20 +407,8 @@ asm void J2DAnmFullLoader_v15::load(void const* param_0) {
 }
 #pragma pop
 
-/* 80309B8C-80309CE8 015C+00 s=1 e=0 z=0  None .text
+/* 80309B8C-80309CE8 3044CC 015C+00 1/0 0/0 0/0 .text
  * setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv         */
-//	80309B9C: 803621D0 (_savegpr_26)
-//	80309C38: 80309D88
-//(setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData)
-//	80309C58: 80309E44
-//(setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData) 	80309C78:
-//80309F38
-//(setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData)
-//	80309C98: 8030A1B8
-//(setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData)
-//	80309CB8: 8030A25C
-//(setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData) 80309CD4:
-// 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -646,11 +418,7 @@ asm void J2DAnmFullLoader_v15::setResource(J2DAnmBase* param_0, void const* para
 }
 #pragma pop
 
-/* 80309CE8-80309D04 001C+00 s=1 e=0 z=0  None .text      __ct__20J2DAnmFullLoader_v15Fv */
-//	80309CE8: 803CD6F0 (__vt__12J2DAnmLoader)
-//	80309CEC: 803CD6F0 (__vt__12J2DAnmLoader)
-//	80309CF4: 803CD6C8 (__vt__20J2DAnmFullLoader_v15)
-//	80309CF8: 803CD6C8 (__vt__20J2DAnmFullLoader_v15)
+/* 80309CE8-80309D04 304628 001C+00 1/1 0/0 0/0 .text            __ct__20J2DAnmFullLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -660,12 +428,7 @@ asm J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() {
 }
 #pragma pop
 
-/* 80309D04-80309D60 005C+00 s=2 e=0 z=0  None .text      __dt__20J2DAnmFullLoader_v15Fv */
-//	80309D1C: 803CD6C8 (__vt__20J2DAnmFullLoader_v15)
-//	80309D20: 803CD6C8 (__vt__20J2DAnmFullLoader_v15)
-//	80309D2C: 803CD6F0 (__vt__12J2DAnmLoader)
-//	80309D30: 803CD6F0 (__vt__12J2DAnmLoader)
-//	80309D44: 802CED3C (__dl__FPv)
+/* 80309D04-80309D60 304644 005C+00 2/1 0/0 0/0 .text            __dt__20J2DAnmFullLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -675,10 +438,8 @@ asm J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() {
 }
 #pragma pop
 
-/* 80309D60-80309D88 0028+00 s=1 e=0 z=0  None .text
+/* 80309D60-80309D88 3046A0 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData */
-//	80309D74: 80309D88
-//(setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -688,13 +449,8 @@ asm void J2DAnmFullLoader_v15::readAnmTransform(J3DAnmTransformFullData const* p
 }
 #pragma pop
 
-/* 80309D88-80309E1C 0094+00 s=2 e=0 z=0  None .text
+/* 80309D88-80309E1C 3046C8 0094+00 2/2 0/0 0/0 .text
  * setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData */
-//	80309DBC: 804562F8 (lit_1581)
-//	80309DCC: 8030A4D0 (func_8030A4D0)
-//	80309DDC: 8030A560 (func_8030A560)
-//	80309DEC: 8030A548 (func_8030A548)
-//	80309DFC: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -705,10 +461,8 @@ asm void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull* param_0,
 }
 #pragma pop
 
-/* 80309E1C-80309E44 0028+00 s=1 e=0 z=0  None .text
+/* 80309E1C-80309E44 30475C 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData */
-//	80309E30: 80309E44
-//(setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -718,17 +472,8 @@ asm void J2DAnmFullLoader_v15::readAnmColor(J3DAnmColorFullData const* param_0) 
 }
 #pragma pop
 
-/* 80309E44-80309F10 00CC+00 s=2 e=0 z=0  None .text
+/* 80309E44-80309F10 304784 00CC+00 2/2 0/0 0/0 .text
  * setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData */
-//	80309E70: 804562F8 (lit_1581)
-//	80309E88: 8030A4B8 (func_8030A4B8)
-//	80309E98: 802F4260 (func_802F4260)
-//	80309EA8: 802F4260 (func_802F4260)
-//	80309EB8: 802F4260 (func_802F4260)
-//	80309EC8: 802F4260 (func_802F4260)
-//	80309ED8: 802F42C0 (func_802F42C0)
-//	80309EE8: 8030A530 (func_8030A530)
-//	80309EF4: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -739,10 +484,8 @@ asm void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* param_0,
 }
 #pragma pop
 
-/* 80309F10-80309F38 0028+00 s=1 e=0 z=0  None .text
+/* 80309F10-80309F38 304850 0028+00 1/1 0/0 0/0 .text
  * readAnmTexPattern__20J2DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData */
-//	80309F24: 80309F38
-//(setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -752,14 +495,8 @@ asm void J2DAnmFullLoader_v15::readAnmTexPattern(J3DAnmTexPatternFullData const*
 }
 #pragma pop
 
-/* 80309F38-80309FDC 00A4+00 s=2 e=0 z=0  None .text
+/* 80309F38-80309FDC 304878 00A4+00 2/2 0/0 0/0 .text
  * setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData */
-//	80309F64: 804562F8 (lit_1581)
-//	80309F84: 8030A4A0 (func_8030A4A0)
-//	80309F94: 802F42C0 (func_802F42C0)
-//	80309FA4: 802F42C0 (func_802F42C0)
-//	80309FB4: 8030A530 (func_8030A530)
-//	80309FC0: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -770,10 +507,8 @@ asm void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern* param_0,
 }
 #pragma pop
 
-/* 80309FDC-8030A004 0028+00 s=1 e=0 z=0  None .text
+/* 80309FDC-8030A004 30491C 0028+00 1/1 0/0 0/0 .text
  * readAnmTevReg__19J2DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData */
-//	80309FF0: 8030A004
-//(setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -783,25 +518,8 @@ asm void J2DAnmKeyLoader_v15::readAnmTevReg(J3DAnmTevRegKeyData const* param_0) 
 }
 #pragma pop
 
-/* 8030A004-8030A190 018C+00 s=2 e=0 z=0  None .text
+/* 8030A004-8030A190 304944 018C+00 2/2 0/0 0/0 .text
  * setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData */
-//	8030A030: 804562F8 (lit_1581)
-//	8030A048: 8030A488 (func_8030A488)
-//	8030A058: 802F42C0 (func_802F42C0)
-//	8030A068: 8030A530 (func_8030A530)
-//	8030A074: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	8030A088: 8030A470 (func_8030A470)
-//	8030A098: 802F42C0 (func_802F42C0)
-//	8030A0A8: 8030A530 (func_8030A530)
-//	8030A0B4: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	8030A0E0: 8030A548 (func_8030A548)
-//	8030A0F0: 8030A548 (func_8030A548)
-//	8030A100: 8030A548 (func_8030A548)
-//	8030A110: 8030A548 (func_8030A548)
-//	8030A140: 8030A548 (func_8030A548)
-//	8030A150: 8030A548 (func_8030A548)
-//	8030A160: 8030A548 (func_8030A548)
-//	8030A170: 8030A548 (func_8030A548)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -812,10 +530,8 @@ asm void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey* param_0,
 }
 #pragma pop
 
-/* 8030A190-8030A1B8 0028+00 s=1 e=0 z=0  None .text
+/* 8030A190-8030A1B8 304AD0 0028+00 1/1 0/0 0/0 .text
  * readAnmVisibility__20J2DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData */
-//	8030A1A4: 8030A1B8
-//(setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -825,11 +541,8 @@ asm void J2DAnmFullLoader_v15::readAnmVisibility(J3DAnmVisibilityFullData const*
 }
 #pragma pop
 
-/* 8030A1B8-8030A234 007C+00 s=2 e=0 z=0  None .text
+/* 8030A1B8-8030A234 304AF8 007C+00 2/2 0/0 0/0 .text
  * setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData */
-//	8030A1E4: 804562F8 (lit_1581)
-//	8030A204: 8030A458 (func_8030A458)
-//	8030A214: 802F4260 (func_802F4260)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -840,10 +553,8 @@ asm void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* param_0,
 }
 #pragma pop
 
-/* 8030A234-8030A25C 0028+00 s=1 e=0 z=0  None .text
+/* 8030A234-8030A25C 304B74 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData */
-//	8030A248: 8030A25C
-//(setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -853,19 +564,8 @@ asm void J2DAnmFullLoader_v15::readAnmVtxColor(J3DAnmVtxColorFullData const* par
 }
 #pragma pop
 
-/* 8030A25C-8030A358 00FC+00 s=2 e=0 z=0  None .text
+/* 8030A25C-8030A358 304B9C 00FC+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData */
-//	8030A288: 804562F8 (lit_1581)
-//	8030A2A8: 8030A4B8 (func_8030A4B8)
-//	8030A2B8: 8030A4B8 (func_8030A4B8)
-//	8030A2C8: 8030A4E8 (func_8030A4E8)
-//	8030A2D8: 8030A4E8 (func_8030A4E8)
-//	8030A2E8: 802F42C0 (func_802F42C0)
-//	8030A2F8: 802F42C0 (func_802F42C0)
-//	8030A308: 802F4260 (func_802F4260)
-//	8030A318: 802F4260 (func_802F4260)
-//	8030A328: 802F4260 (func_802F4260)
-//	8030A338: 802F4260 (func_802F4260)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -876,12 +576,7 @@ asm void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* param_0,
 }
 #pragma pop
 
-/* 8030A358-8030A3B4 005C+00 s=1 e=0 z=0  None .text      __dt__14J2DAnmVtxColorFv */
-//	8030A370: 803CD714 (__vt__14J2DAnmVtxColor)
-//	8030A374: 803CD714 (__vt__14J2DAnmVtxColor)
-//	8030A380: 803A8E04 (__vt__10J2DAnmBase)
-//	8030A384: 803A8E04 (__vt__10J2DAnmBase)
-//	8030A398: 802CED3C (__dl__FPv)
+/* 8030A358-8030A3B4 304C98 005C+00 1/0 0/0 0/0 .text            __dt__14J2DAnmVtxColorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -891,12 +586,7 @@ asm J2DAnmVtxColor::~J2DAnmVtxColor() {
 }
 #pragma pop
 
-/* 8030A3B4-8030A410 005C+00 s=1 e=0 z=0  None .text      __dt__20J2DAnmVisibilityFullFv */
-//	8030A3CC: 803CD704 (__vt__20J2DAnmVisibilityFull)
-//	8030A3D0: 803CD704 (__vt__20J2DAnmVisibilityFull)
-//	8030A3DC: 803A8E04 (__vt__10J2DAnmBase)
-//	8030A3E0: 803A8E04 (__vt__10J2DAnmBase)
-//	8030A3F4: 802CED3C (__dl__FPv)
+/* 8030A3B4-8030A410 304CF4 005C+00 1/0 0/0 0/0 .text            __dt__20J2DAnmVisibilityFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -906,10 +596,7 @@ asm J2DAnmVisibilityFull::~J2DAnmVisibilityFull() {
 }
 #pragma pop
 
-/* 8030A410-8030A458 0048+00 s=1 e=0 z=0  None .text      __dt__12J2DAnmLoaderFv */
-//	8030A428: 803CD6F0 (__vt__12J2DAnmLoader)
-//	8030A42C: 803CD6F0 (__vt__12J2DAnmLoader)
-//	8030A43C: 802CED3C (__dl__FPv)
+/* 8030A410-8030A458 304D50 0048+00 1/0 0/0 0/0 .text            __dt__12J2DAnmLoaderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -919,141 +606,143 @@ asm J2DAnmLoader::~J2DAnmLoader() {
 }
 #pragma pop
 
-/* 8030A458-8030A470 0018+00 s=1 e=1 z=0  None .text
+/* 8030A458-8030A470 304D98 0018+00 1/1 1/1 0/0 .text
  * JSUConvertOffsetToPtr<25J3DAnmVisibilityFullTable>__FPCvPCv  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template30(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A458(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A458.s"
 }
 #pragma pop
 
-/* 8030A470-8030A488 0018+00 s=1 e=1 z=0  None .text
+/* 8030A470-8030A488 304DB0 0018+00 1/1 1/1 0/0 .text
  * JSUConvertOffsetToPtr<18J3DAnmKRegKeyTable>__FPCvPCv         */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template31(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A470(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A470.s"
 }
 #pragma pop
 
-/* 8030A488-8030A4A0 0018+00 s=1 e=1 z=0  None .text
+/* 8030A488-8030A4A0 304DC8 0018+00 1/1 1/1 0/0 .text
  * JSUConvertOffsetToPtr<18J3DAnmCRegKeyTable>__FPCvPCv         */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template32(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A488(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A488.s"
 }
 #pragma pop
 
-/* 8030A4A0-8030A4B8 0018+00 s=1 e=1 z=0  None .text
+/* 8030A4A0-8030A4B8 304DE0 0018+00 1/1 1/1 0/0 .text
  * JSUConvertOffsetToPtr<25J3DAnmTexPatternFullTable>__FPCvPCv  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template33(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4A0(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4A0.s"
 }
 #pragma pop
 
-/* 8030A4B8-8030A4D0 0018+00 s=2 e=2 z=0  None .text
+/* 8030A4B8-8030A4D0 304DF8 0018+00 2/2 2/2 0/0 .text
  * JSUConvertOffsetToPtr<20J3DAnmColorFullTable>__FPCvPCv       */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template34(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4B8(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4B8.s"
 }
 #pragma pop
 
-/* 8030A4D0-8030A4E8 0018+00 s=1 e=1 z=0  None .text
+/* 8030A4D0-8030A4E8 304E10 0018+00 1/1 1/1 0/0 .text
  * JSUConvertOffsetToPtr<24J3DAnmTransformFullTable>__FPCvPCv   */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template35(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4D0(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4D0.s"
 }
 #pragma pop
 
-/* 8030A4E8-8030A500 0018+00 s=2 e=2 z=0  None .text
+/* 8030A4E8-8030A500 304E28 0018+00 2/2 2/2 0/0 .text
  * JSUConvertOffsetToPtr<23J3DAnmVtxColorIndexData>__FPCvPCv    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template36(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A4E8(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A4E8.s"
 }
 #pragma pop
 
-/* 8030A500-8030A518 0018+00 s=2 e=2 z=0  None .text
+/* 8030A500-8030A518 304E40 0018+00 2/2 2/2 0/0 .text
  * JSUConvertOffsetToPtr<19J3DAnmColorKeyTable>__FPCvPCv        */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template37(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A500(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A500.s"
 }
 #pragma pop
 
-/* 8030A518-8030A530 0018+00 s=1 e=1 z=0  None .text      JSUConvertOffsetToPtr<3Vec>__FPCvPCv */
+/* 8030A518-8030A530 304E58 0018+00 1/1 1/1 0/0 .text JSUConvertOffsetToPtr<3Vec>__FPCvPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template38(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A518(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A518.s"
 }
 #pragma pop
 
-/* 8030A530-8030A548 0018+00 s=5 e=16 z=0  None .text      JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv
+/* 8030A530-8030A548 304E70 0018+00 5/5 16/16 0/0 .text JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template39(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A530(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A530.s"
 }
 #pragma pop
 
-/* 8030A548-8030A560 0018+00 s=6 e=6 z=0  None .text      JSUConvertOffsetToPtr<s>__FPCvPCv */
+/* 8030A548-8030A560 304E88 0018+00 6/6 6/6 0/0 .text            JSUConvertOffsetToPtr<s>__FPCvPCv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template40(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A548(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A548.s"
 }
 #pragma pop
 
-/* 8030A560-8030A578 0018+00 s=3 e=7 z=0  None .text      JSUConvertOffsetToPtr<f>__FPCvPCv */
+/* 8030A560-8030A578 304EA0 0018+00 3/3 7/7 0/0 .text            JSUConvertOffsetToPtr<f>__FPCvPCv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template41(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A560(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A560.s"
 }
 #pragma pop
 
-/* 8030A578-8030A590 0018+00 s=2 e=2 z=0  None .text
+/* 8030A578-8030A590 304EB8 0018+00 2/2 2/2 0/0 .text
  * JSUConvertOffsetToPtr<23J3DAnmTransformKeyTable>__FPCvPCv    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template42(void const* param_0, void const* param_1) {
+extern "C" asm void func_8030A578(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DAnmLoader/func_8030A578.s"
 }

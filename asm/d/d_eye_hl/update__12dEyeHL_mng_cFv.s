@@ -1,13 +1,13 @@
 lbl_8009CA48:
 /* 8009CA48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CA4C  80 AD 8A 28 */	lwz r5, m_obj__12dEyeHL_mng_c(r13)
-/* 8009CA50  3C 60 80 43 */	lis r3, g_envHIO@ha
-/* 8009CA54  38 63 07 9C */	addi r3, r3, g_envHIO@l
+/* 8009CA50  3C 60 80 43 */	lis r3, g_envHIO@ha /* 0x8043079C@ha */
+/* 8009CA54  38 63 07 9C */	addi r3, r3, g_envHIO@l /* 0x8043079C@l */
 /* 8009CA58  88 03 00 10 */	lbz r0, 0x10(r3)
 /* 8009CA5C  28 00 00 00 */	cmplwi r0, 0
 /* 8009CA60  41 82 00 2C */	beq lbl_8009CA8C
-/* 8009CA64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009CA68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009CA64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009CA68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009CA6C  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8009CA70  28 00 00 00 */	cmplwi r0, 0
 /* 8009CA74  40 82 00 24 */	bne lbl_8009CA98

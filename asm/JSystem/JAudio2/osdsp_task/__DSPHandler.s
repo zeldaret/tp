@@ -7,7 +7,7 @@ lbl_8029EB20:
 /* 8029EB34  38 61 00 08 */	addi r3, r1, 8
 /* 8029EB38  93 E1 02 DC */	stw r31, 0x2dc(r1)
 /* 8029EB3C  7C 9F 23 78 */	mr r31, r4
-/* 8029EB40  A0 A6 50 0A */	lhz r5, 0x500A(r6)
+/* 8029EB40  A0 A6 50 0A */	lhz r5, 0x500A(r6)  /* 0xCC00500A@l */
 /* 8029EB44  54 A4 04 3E */	clrlwi r4, r5, 0x10
 /* 8029EB48  7C 80 00 38 */	and r0, r4, r0
 /* 8029EB4C  60 00 00 80 */	ori r0, r0, 0x80

@@ -68,8 +68,8 @@ lbl_8024FBA8:
 /* 8024FC0C  98 1F 02 AB */	stb r0, 0x2ab(r31)
 /* 8024FC10  48 00 01 7C */	b lbl_8024FD8C
 lbl_8024FC14:
-/* 8024FC14  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8024FC18  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8024FC14  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8024FC18  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8024FC1C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8024FC20  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 8024FC24  41 82 00 D0 */	beq lbl_8024FCF4

@@ -13,8 +13,8 @@ lbl_801151E0:
 /* 8011520C  40 82 00 34 */	bne lbl_80115240
 /* 80115210  7F E3 FB 78 */	mr r3, r31
 /* 80115214  38 80 01 63 */	li r4, 0x163
-/* 80115218  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 8011521C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 80115218  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 8011521C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 80115220  C0 25 00 24 */	lfs f1, 0x24(r5)
 /* 80115224  C0 45 00 28 */	lfs f2, 0x28(r5)
 /* 80115228  4B F9 7D B9 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

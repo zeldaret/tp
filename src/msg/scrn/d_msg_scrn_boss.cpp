@@ -80,16 +80,10 @@ extern "C" void fukiScale__14dMsgScrnBoss_cFf();
 extern "C" void fukiTrans__14dMsgScrnBoss_cFff();
 extern "C" void fontAlpha__14dMsgScrnBoss_cFf();
 extern "C" extern char const* const msg_scrn_d_msg_scrn_boss__stringBase0;
-extern "C" extern void* __vt__14dMsgScrnBoss_c[22];
 
 //
 // External References:
 //
-
-void mDoExt_getRubyFont();
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
@@ -133,17 +127,7 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 803998F8-80399910 0015+03 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803998F8 = "zelda_boss_name.blo";
-SECTION_DEAD char const* const stringBase_8039990C = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039990D = "\0\0";
-#pragma pop
-
-/* 803C0DB0-803C0DE8 0038+00 s=1 e=0 z=0  None .data      t_tag$3759 */
+/* 803C0DB0-803C0DE8 01DED0 0038+00 1/1 0/0 0/0 .data            t_tag$3759 */
 SECTION_DATA static u8 t_tag[56] = {
     0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74,
     0x62, 0x31, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x32, 0x00, 0x73, 0x66, 0x6F,
@@ -151,8 +135,8 @@ SECTION_DATA static u8 t_tag[56] = {
     0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x32, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x30, 0x30,
 };
 
-/* 803C0DE8-803C0E40 0058+00 s=2 e=0 z=0  None .data      __vt__14dMsgScrnBoss_c */
-SECTION_DATA void* __vt__14dMsgScrnBoss_c[22] = {
+/* 803C0DE8-803C0E40 01DF08 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnBoss_c */
+SECTION_DATA extern void* __vt__14dMsgScrnBoss_c[22] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMsgScrnBase_cFv,
@@ -177,53 +161,10 @@ SECTION_DATA void* __vt__14dMsgScrnBoss_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 80454BB0-80454BB4 0004+00 s=3 e=0 z=0  None .sdata2    @3854 */
+/* 80454BB0-80454BB4 0031B0 0004+00 3/3 0/0 0/0 .sdata2          @3854 */
 SECTION_SDATA2 static f32 lit_3854 = 1.0f;
 
-/* 8023C5C8-8023C928 0360+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnBoss_cFv */
-//	8023C5E0: 803621D0 (_savegpr_26)
-//	8023C5E8: 8023C0DC (__ct__14dMsgScrnBase_cFv)
-//	8023C5EC: 803C0DE8 (__vt__14dMsgScrnBoss_c)
-//	8023C5F0: 803C0DE8 (__vt__14dMsgScrnBoss_c)
-//	8023C5FC: 8023C16C (init__14dMsgScrnBase_cFv)
-//	8023C604: 802CEC4C (__nw__FUl)
-//	8023C610: 802F8498 (__ct__9J2DScreenFv)
-//	8023C620: 803998F8 (msg_scrn_d_msg_scrn_boss__stringBase0)
-//	8023C624: 803998F8 (msg_scrn_d_msg_scrn_boss__stringBase0)
-//	8023C62C: 804061C0 (g_dComIfG_gameInfo)
-//	8023C630: 804061C0 (g_dComIfG_gameInfo)
-//	8023C638: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	8023C640: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	8023C648: 802CEC4C (__nw__FUl)
-//	8023C66C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023C678: 8043028C (g_MsgObject_HIO_c)
-//	8023C67C: 8043028C (g_MsgObject_HIO_c)
-//	8023C6AC: 802CEC4C (__nw__FUl)
-//	8023C6D4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023C6E0: 8043028C (g_MsgObject_HIO_c)
-//	8023C6E4: 8043028C (g_MsgObject_HIO_c)
-//	8023C714: 8043028C (g_MsgObject_HIO_c)
-//	8023C718: 8043028C (g_MsgObject_HIO_c)
-//	8023C724: 802545B0 (paneTrans__8CPaneMgrFff)
-//	8023C72C: 802CEC4C (__nw__FUl)
-//	8023C750: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023C75C: 8043028C (g_MsgObject_HIO_c)
-//	8023C760: 8043028C (g_MsgObject_HIO_c)
-//	8023C790: 8043028C (g_MsgObject_HIO_c)
-//	8023C794: 8043028C (g_MsgObject_HIO_c)
-//	8023C7A0: 802545B0 (paneTrans__8CPaneMgrFff)
-//	8023C7B0: 80454BB0 (lit_3854)
-//	8023C7B4: 803998F8 (msg_scrn_d_msg_scrn_boss__stringBase0)
-//	8023C7B8: 803998F8 (msg_scrn_d_msg_scrn_boss__stringBase0)
-//	8023C7C0: 802CEC4C (__nw__FUl)
-//	8023C7D0: 803C0DB0 (t_tag)
-//	8023C7D4: 803C0DB0 (t_tag)
-//	8023C7EC: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023C804: 80014B04 (mDoExt_getRubyFont__Fv)
-//	8023C844: 8030074C (setString__10J2DTextBoxFsPCce)
-//	8023C8F0: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	8023C8FC: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	8023C914: 8036221C (_restgpr_26)
+/* 8023C5C8-8023C928 236F08 0360+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -233,15 +174,7 @@ asm dMsgScrnBoss_c::dMsgScrnBoss_c() {
 }
 #pragma pop
 
-/* 8023C928-8023CA88 0160+00 s=1 e=0 z=0  None .text      __dt__14dMsgScrnBoss_cFv */
-//	8023C938: 803621D0 (_savegpr_26)
-//	8023C948: 803C0DE8 (__vt__14dMsgScrnBoss_c)
-//	8023C94C: 803C0DE8 (__vt__14dMsgScrnBoss_c)
-//	8023CA34: 804061C0 (g_dComIfG_gameInfo)
-//	8023CA38: 804061C0 (g_dComIfG_gameInfo)
-//	8023CA58: 8023C124 (__dt__14dMsgScrnBase_cFv)
-//	8023CA68: 802CED3C (__dl__FPv)
-//	8023CA74: 8036221C (_restgpr_26)
+/* 8023C928-8023CA88 237268 0160+00 1/0 0/0 0/0 .text            __dt__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -251,21 +184,7 @@ asm dMsgScrnBoss_c::~dMsgScrnBoss_c() {
 }
 #pragma pop
 
-/* 8023CA88-8023CB98 0110+00 s=1 e=0 z=0  None .text      exec__14dMsgScrnBoss_cFv */
-//	8023CA9C: 8043028C (g_MsgObject_HIO_c)
-//	8023CAA0: 8043028C (g_MsgObject_HIO_c)
-//	8023CACC: 8043028C (g_MsgObject_HIO_c)
-//	8023CAD0: 8043028C (g_MsgObject_HIO_c)
-//	8023CB00: 8043028C (g_MsgObject_HIO_c)
-//	8023CB04: 8043028C (g_MsgObject_HIO_c)
-//	8023CB10: 802545B0 (paneTrans__8CPaneMgrFff)
-//	8023CB14: 8043028C (g_MsgObject_HIO_c)
-//	8023CB18: 8043028C (g_MsgObject_HIO_c)
-//	8023CB48: 8043028C (g_MsgObject_HIO_c)
-//	8023CB4C: 8043028C (g_MsgObject_HIO_c)
-//	8023CB58: 802545B0 (paneTrans__8CPaneMgrFff)
-//	8023CB60: 8023C574 (isTalkNow__14dMsgScrnBase_cFv)
-//	8023CB70: 80454BB0 (lit_3854)
+/* 8023CA88-8023CB98 2373C8 0110+00 1/0 0/0 0/0 .text            exec__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -276,7 +195,7 @@ asm void dMsgScrnBoss_c::exec() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454BB4-80454BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3916 */
+/* 80454BB4-80454BB8 0031B4 0004+00 1/1 0/0 0/0 .sdata2          @3916 */
 SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
     0x00,
@@ -284,12 +203,7 @@ SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
 };
 
-/* 8023CB98-8023CBF0 0058+00 s=1 e=0 z=0  None .text      drawSelf__14dMsgScrnBoss_cFv */
-//	8023CBAC: 804061C0 (g_dComIfG_gameInfo)
-//	8023CBB0: 804061C0 (g_dComIfG_gameInfo)
-//	8023CBCC: 80454BB4 (lit_3916)
-//	8023CBD4: 80454BB0 (lit_3854)
-//	8023CBD8: 8023C32C (drawOutFont__14dMsgScrnBase_cFfff)
+/* 8023CB98-8023CBF0 2374D8 0058+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,14 +213,7 @@ asm void dMsgScrnBoss_c::drawSelf() {
 }
 #pragma pop
 
-/* 8023CBF0-8023CC7C 008C+00 s=1 e=0 z=0  None .text      fukiAlpha__14dMsgScrnBoss_cFf */
-//	8023CC08: 803621DC (_savegpr_29)
-//	8023CC18: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8023CC20: 8043028C (g_MsgObject_HIO_c)
-//	8023CC24: 8043028C (g_MsgObject_HIO_c)
-//	8023CC30: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8023CC48: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8023CC68: 80362228 (_restgpr_29)
+/* 8023CBF0-8023CC7C 237530 008C+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBoss_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,17 +223,27 @@ asm void dMsgScrnBoss_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 8023CC7C-8023CC80 0004+00 s=1 e=0 z=0  None .text      fukiScale__14dMsgScrnBoss_cFf */
+/* 8023CC7C-8023CC80 2375BC 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBoss_cFf */
 void dMsgScrnBoss_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 8023CC80-8023CC84 0004+00 s=1 e=0 z=0  None .text      fukiTrans__14dMsgScrnBoss_cFff */
+/* 8023CC80-8023CC84 2375C0 0004+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBoss_cFff */
 void dMsgScrnBoss_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 8023CC84-8023CC88 0004+00 s=1 e=0 z=0  None .text      fontAlpha__14dMsgScrnBoss_cFf */
+/* 8023CC84-8023CC88 2375C4 0004+00 1/0 0/0 0/0 .text            fontAlpha__14dMsgScrnBoss_cFf */
 void dMsgScrnBoss_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
+
+/* 803998F8-80399910 025F58 0015+03 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803998F8 = "zelda_boss_name.blo";
+SECTION_DEAD static char const* const stringBase_8039990C = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039990D = "\0\0";
+#pragma pop

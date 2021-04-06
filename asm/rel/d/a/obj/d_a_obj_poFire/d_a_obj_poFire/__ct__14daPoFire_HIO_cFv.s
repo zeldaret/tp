@@ -1,11 +1,11 @@
 lbl_80CB294C:
-/* 80CB294C  3C 80 80 CB */	lis r4, lit_3662@ha
-/* 80CB2950  38 A4 3E EC */	addi r5, r4, lit_3662@l
-/* 80CB2954  3C 80 80 CB */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80CB2958  38 04 40 F4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80CB294C  3C 80 80 CB */	lis r4, lit_3662@ha /* 0x80CB3EEC@ha */
+/* 80CB2950  38 A4 3E EC */	addi r5, r4, lit_3662@l /* 0x80CB3EEC@l */
+/* 80CB2954  3C 80 80 CB */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80CB40F4@ha */
+/* 80CB2958  38 04 40 F4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80CB40F4@l */
 /* 80CB295C  90 03 00 00 */	stw r0, 0(r3)
-/* 80CB2960  3C 80 80 CB */	lis r4, __vt__14daPoFire_HIO_c@ha
-/* 80CB2964  38 04 40 E8 */	addi r0, r4, __vt__14daPoFire_HIO_c@l
+/* 80CB2960  3C 80 80 CB */	lis r4, __vt__14daPoFire_HIO_c@ha /* 0x80CB40E8@ha */
+/* 80CB2964  38 04 40 E8 */	addi r0, r4, __vt__14daPoFire_HIO_c@l /* 0x80CB40E8@l */
 /* 80CB2968  90 03 00 00 */	stw r0, 0(r3)
 /* 80CB296C  38 00 00 3C */	li r0, 0x3c
 /* 80CB2970  98 03 00 04 */	stb r0, 4(r3)

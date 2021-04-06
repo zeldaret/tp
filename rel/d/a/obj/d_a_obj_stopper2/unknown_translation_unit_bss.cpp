@@ -22,5 +22,6 @@ extern "C" extern u8 data_80CEFFF8[4];
 //
 
 /* ############################################################################################## */
-/* 80CEFFF8-80CEFFFC 0004+00 s=0 e=1 z=0  None .bss       None */
+/* 80CEFFF8-80CEFFFC 000000 0004+00 0/0 1/1 0/0 .bss             None */
+extern u8 data_80CEFFF8[4];
 u8 data_80CEFFF8[4];

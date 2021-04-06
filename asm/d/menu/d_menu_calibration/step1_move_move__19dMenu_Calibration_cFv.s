@@ -2,8 +2,8 @@ lbl_801AF0C0:
 /* 801AF0C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AF0C4  7C 08 02 A6 */	mflr r0
 /* 801AF0C8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801AF0CC  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 801AF0D0  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 801AF0CC  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801AF0D0  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801AF0D4  80 84 00 34 */	lwz r4, 0x34(r4)
 /* 801AF0D8  54 80 05 EF */	rlwinm. r0, r4, 0, 0x17, 0x17
 /* 801AF0DC  41 82 00 50 */	beq lbl_801AF12C

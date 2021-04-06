@@ -3,17 +3,15 @@
 #
 
 M33_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg.plf
+M33_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg.lcf
+M33_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg.map
 
 M33_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_evtmsg/executor.cpp \
-	rel/d/a/tag/d_a_tag_evtmsg/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_evtmsg/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_evtmsg/d_a_tag_evtmsg.cpp \
 
 M33_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/d_a_tag_evtmsg.o \
 
 M33_LIBS := \
@@ -29,15 +27,21 @@ M33_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map33.map\
+	-m _prolog \
+	-lcf $(M33_LDSCRIPT) \
+	-unused -map $(M33_MAP) \
+	-w off \
 
 $(M33_TARGET): $(M33_O_FILES) $(M33_LIBS)
+	@echo [ 33] creating $(M33_TARGET)
 	@echo $(M33_LIBS) $(M33_O_FILES) > build/M33_ofiles
-	$(LD) -opt_partial $(M33_LDFLAGS) -o $(M33_TARGET) @build/M33_ofiles
+	@python3 tools/lcf.py rel 33 --output $(M33_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M33_LDFLAGS) -o $(M33_TARGET) @build/M33_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtmsg/%.o: rel/d/a/tag/d_a_tag_evtmsg/%.cpp
+	@echo [ 33] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M33_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M33_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

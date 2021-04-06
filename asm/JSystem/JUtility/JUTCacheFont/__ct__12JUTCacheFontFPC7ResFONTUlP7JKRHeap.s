@@ -9,8 +9,8 @@ lbl_802DD188:
 /* 802DD1A4  7C BE 2B 78 */	mr r30, r5
 /* 802DD1A8  7C DF 33 78 */	mr r31, r6
 /* 802DD1AC  48 00 1D 9D */	bl __ct__10JUTResFontFv
-/* 802DD1B0  3C 60 80 3D */	lis r3, __vt__12JUTCacheFont@ha
-/* 802DD1B4  38 03 C5 40 */	addi r0, r3, __vt__12JUTCacheFont@l
+/* 802DD1B0  3C 60 80 3D */	lis r3, __vt__12JUTCacheFont@ha /* 0x803CC540@ha */
+/* 802DD1B4  38 03 C5 40 */	addi r0, r3, __vt__12JUTCacheFont@l /* 0x803CC540@l */
 /* 802DD1B8  90 1C 00 00 */	stw r0, 0(r28)
 /* 802DD1BC  7F 83 E3 78 */	mr r3, r28
 /* 802DD1C0  48 00 01 61 */	bl initialize_state__12JUTCacheFontFv

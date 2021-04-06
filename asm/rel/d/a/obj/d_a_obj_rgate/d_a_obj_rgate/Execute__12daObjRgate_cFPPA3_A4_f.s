@@ -17,7 +17,7 @@ lbl_80CBBDB0:
 /* 80CBBDEC  7F C3 F3 78 */	mr r3, r30
 /* 80CBBDF0  4B FF E1 5D */	bl setBaseMtx__12daObjRgate_cFv
 /* 80CBBDF4  80 7E 0A E0 */	lwz r3, 0xae0(r30)
-/* 80CBBDF8  4B 3B FB C8 */	b Move__4dBgWFv
+/* 80CBBDF8  4B 3B FB C9 */	bl Move__4dBgWFv
 /* 80CBBDFC  38 60 00 01 */	li r3, 1
 /* 80CBBE00  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CBBE04  83 C1 00 08 */	lwz r30, 8(r1)

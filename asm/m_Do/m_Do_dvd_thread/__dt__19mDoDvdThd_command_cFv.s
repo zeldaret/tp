@@ -5,8 +5,8 @@ lbl_800158FC:
 /* 80015908  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8001590C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80015910  41 82 00 1C */	beq lbl_8001592C
-/* 80015914  3C A0 80 3A */	lis r5, __vt__19mDoDvdThd_command_c@ha
-/* 80015918  38 05 34 E8 */	addi r0, r5, __vt__19mDoDvdThd_command_c@l
+/* 80015914  3C A0 80 3A */	lis r5, __vt__19mDoDvdThd_command_c@ha /* 0x803A34E8@ha */
+/* 80015918  38 05 34 E8 */	addi r0, r5, __vt__19mDoDvdThd_command_c@l /* 0x803A34E8@l */
 /* 8001591C  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 80015920  7C 80 07 35 */	extsh. r0, r4
 /* 80015924  40 81 00 08 */	ble lbl_8001592C

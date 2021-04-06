@@ -7,8 +7,8 @@ lbl_802E755C:
 /* 802E7570  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802E7574  7C 9F 23 78 */	mr r31, r4
 /* 802E7578  41 82 00 38 */	beq lbl_802E75B0
-/* 802E757C  3C 60 80 3D */	lis r3, __vt__10JUTConsole@ha
-/* 802E7580  38 03 C9 A8 */	addi r0, r3, __vt__10JUTConsole@l
+/* 802E757C  3C 60 80 3D */	lis r3, __vt__10JUTConsole@ha /* 0x803CC9A8@ha */
+/* 802E7580  38 03 C9 A8 */	addi r0, r3, __vt__10JUTConsole@l /* 0x803CC9A8@l */
 /* 802E7584  90 1E 00 00 */	stw r0, 0(r30)
 /* 802E7588  80 6D 8F F0 */	lwz r3, sManager__17JUTConsoleManager(r13)
 /* 802E758C  7F C4 F3 78 */	mr r4, r30

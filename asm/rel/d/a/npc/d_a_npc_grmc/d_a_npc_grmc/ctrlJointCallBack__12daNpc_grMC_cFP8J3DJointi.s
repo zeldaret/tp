@@ -5,8 +5,8 @@ lbl_809D7B38:
 /* 809D7B44  7C 60 1B 78 */	mr r0, r3
 /* 809D7B48  2C 04 00 00 */	cmpwi r4, 0
 /* 809D7B4C  40 82 00 30 */	bne lbl_809D7B7C
-/* 809D7B50  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 809D7B54  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 809D7B50  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 809D7B54  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 809D7B58  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 809D7B5C  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 809D7B60  28 03 00 00 */	cmplwi r3, 0

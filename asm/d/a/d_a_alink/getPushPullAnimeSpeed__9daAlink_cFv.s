@@ -10,8 +10,8 @@ lbl_800E8354:
 /* 800E8374  7C 60 07 34 */	extsh r0, r3
 /* 800E8378  2C 00 00 1D */	cmpwi r0, 0x1d
 /* 800E837C  40 82 00 2C */	bne lbl_800E83A8
-/* 800E8380  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E8384  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E8380  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E8384  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E8388  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800E838C  A0 9F 1E 1E */	lhz r4, 0x1e1e(r31)
 /* 800E8390  4B F8 C2 89 */	bl GetActorPointer__4cBgSCFi
@@ -31,26 +31,26 @@ lbl_800E83C0:
 /* 800E83C0  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 800E83C4  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800E83C8  41 82 00 14 */	beq lbl_800E83DC
-/* 800E83CC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlPush_c0@ha
-/* 800E83D0  38 63 F1 24 */	addi r3, r3, m__20daAlinkHIO_wlPush_c0@l
+/* 800E83CC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlPush_c0@ha /* 0x8038F124@ha */
+/* 800E83D0  38 63 F1 24 */	addi r3, r3, m__20daAlinkHIO_wlPush_c0@l /* 0x8038F124@l */
 /* 800E83D4  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 800E83D8  48 00 00 3C */	b lbl_800E8414
 lbl_800E83DC:
-/* 800E83DC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_pushpull_c0@ha
-/* 800E83E0  38 63 E2 10 */	addi r3, r3, m__22daAlinkHIO_pushpull_c0@l
+/* 800E83DC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_pushpull_c0@ha /* 0x8038E210@ha */
+/* 800E83E0  38 63 E2 10 */	addi r3, r3, m__22daAlinkHIO_pushpull_c0@l /* 0x8038E210@l */
 /* 800E83E4  C0 23 00 38 */	lfs f1, 0x38(r3)
 /* 800E83E8  48 00 00 2C */	b lbl_800E8414
 lbl_800E83EC:
 /* 800E83EC  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 800E83F0  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800E83F4  41 82 00 14 */	beq lbl_800E8408
-/* 800E83F8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlPush_c0@ha
-/* 800E83FC  38 63 F1 24 */	addi r3, r3, m__20daAlinkHIO_wlPush_c0@l
+/* 800E83F8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlPush_c0@ha /* 0x8038F124@ha */
+/* 800E83FC  38 63 F1 24 */	addi r3, r3, m__20daAlinkHIO_wlPush_c0@l /* 0x8038F124@l */
 /* 800E8400  C0 23 00 08 */	lfs f1, 8(r3)
 /* 800E8404  48 00 00 10 */	b lbl_800E8414
 lbl_800E8408:
-/* 800E8408  3C 60 80 39 */	lis r3, m__22daAlinkHIO_pushpull_c0@ha
-/* 800E840C  38 63 E2 10 */	addi r3, r3, m__22daAlinkHIO_pushpull_c0@l
+/* 800E8408  3C 60 80 39 */	lis r3, m__22daAlinkHIO_pushpull_c0@ha /* 0x8038E210@ha */
+/* 800E840C  38 63 E2 10 */	addi r3, r3, m__22daAlinkHIO_pushpull_c0@l /* 0x8038E210@l */
 /* 800E8410  C0 23 00 18 */	lfs f1, 0x18(r3)
 lbl_800E8414:
 /* 800E8414  83 E1 00 0C */	lwz r31, 0xc(r1)

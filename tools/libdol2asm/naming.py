@@ -191,12 +191,6 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                     if symbol.special_func_name in special_func_return_types:
                         return_type = special_func_return_types[symbol.special_func_name]
                         if symbol.return_type:
-                            if return_type:
-                                context.debug(
-                                    f"overriding function '{symbol.label}' return type from: '{symbol.return_type.type()}', to: {return_type.type()}")
-                            else:
-                                context.debug(
-                                    f"discarding function '{symbol.label}' return type: '{symbol.return_type.type()}'")
                             symbol.return_type = return_type
                         else:
                             symbol.return_type = return_type
@@ -223,11 +217,11 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
 
 def nameCollision(context, label_collisions, reference_collisions, parent_name, symbol):
     if not symbol.is_static or isinstance(symbol, StringBase):
-        if label_collisions[symbol.identifier.label] > 1 or reference_collisions[symbol.identifier.reference] > 1:
-            obj_prefix = parent_name.replace(
-                "/", "_").replace(".", "_").replace("-", "_")
-
-            symbol.identifier.override_name = obj_prefix + "__" + symbol.identifier.label
+        nice_name = parent_name.replace("/", "_").replace(".", "_").replace("-", "_")
+        if isinstance(symbol, StringBase) and symbol._module != 0:
+            symbol.identifier.override_name = nice_name + "__" + symbol.identifier.label
+        elif label_collisions[symbol.identifier.label] > 1 or reference_collisions[symbol.identifier.reference] > 1:
+            symbol.identifier.override_name = nice_name + "__" + symbol.identifier.label
 
 
 def execute(context, libraries):

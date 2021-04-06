@@ -5,8 +5,8 @@ lbl_805B44D4:
 /* 805B44E0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805B44E4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805B44E8  7C 7F 1B 78 */	mr r31, r3
-/* 805B44EC  3C 80 80 5C */	lis r4, lit_3816@ha
-/* 805B44F0  3B C4 A5 88 */	addi r30, r4, lit_3816@l
+/* 805B44EC  3C 80 80 5C */	lis r4, lit_3816@ha /* 0x805BA588@ha */
+/* 805B44F0  3B C4 A5 88 */	addi r30, r4, lit_3816@l /* 0x805BA588@l */
 /* 805B44F4  A8 03 06 CC */	lha r0, 0x6cc(r3)
 /* 805B44F8  2C 00 00 01 */	cmpwi r0, 1
 /* 805B44FC  41 82 00 30 */	beq lbl_805B452C
@@ -27,7 +27,7 @@ lbl_805B452C:
 /* 805B4530  2C 00 00 00 */	cmpwi r0, 0
 /* 805B4534  40 82 00 4C */	bne lbl_805B4580
 /* 805B4538  C0 3E 00 38 */	lfs f1, 0x38(r30)
-/* 805B453C  4B CB 34 18 */	b cM_rndF__Ff
+/* 805B453C  4B CB 34 19 */	bl cM_rndF__Ff
 /* 805B4540  C0 1E 00 34 */	lfs f0, 0x34(r30)
 /* 805B4544  EC 00 08 2A */	fadds f0, f0, f1
 /* 805B4548  FC 00 00 1E */	fctiwz f0, f0

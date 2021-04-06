@@ -56,8 +56,8 @@ lbl_801767F8:
 /* 801768D0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801768D4  40 80 00 34 */	bge lbl_80176908
 /* 801768D8  80 9D 06 84 */	lwz r4, 0x684(r29)
-/* 801768DC  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 801768E0  80 03 C8 F8 */	lwz r0, data_8042C8F8@l(r3)
+/* 801768DC  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 801768E0  80 03 C8 F8 */	lwz r0, data_8042C8F8@l(r3)  /* 0x8042C8F8@l */
 /* 801768E4  1C 00 00 44 */	mulli r0, r0, 0x44
 /* 801768E8  7C 64 02 14 */	add r3, r4, r0
 /* 801768EC  80 1D 01 90 */	lwz r0, 0x190(r29)
@@ -221,8 +221,8 @@ lbl_80176B2C:
 /* 80176B40  D0 01 00 34 */	stfs f0, 0x34(r1)
 lbl_80176B44:
 /* 80176B44  38 7D 05 D8 */	addi r3, r29, 0x5d8
-/* 80176B48  3C 80 80 3C */	lis r4, Dsp@ha
-/* 80176B4C  38 84 A4 A4 */	addi r4, r4, Dsp@l
+/* 80176B48  3C 80 80 3C */	lis r4, Dsp@ha /* 0x803BA4A4@ha */
+/* 80176B4C  38 84 A4 A4 */	addi r4, r4, Dsp@l /* 0x803BA4A4@l */
 /* 80176B50  4B F2 10 19 */	bl Spot__14d2DBSplinePathFPff
 /* 80176B54  FF E0 08 90 */	fmr f31, f1
 /* 80176B58  38 61 00 78 */	addi r3, r1, 0x78

@@ -1,8 +1,8 @@
 lbl_805DE40C:
-/* 805DE40C  3C 80 80 5F */	lis r4, lit_3911@ha
-/* 805DE410  38 A4 D0 60 */	addi r5, r4, lit_3911@l
-/* 805DE414  3C 80 80 5F */	lis r4, __vt__12daB_GG_HIO_c@ha
-/* 805DE418  38 04 D6 A8 */	addi r0, r4, __vt__12daB_GG_HIO_c@l
+/* 805DE40C  3C 80 80 5F */	lis r4, lit_3911@ha /* 0x805ED060@ha */
+/* 805DE410  38 A4 D0 60 */	addi r5, r4, lit_3911@l /* 0x805ED060@l */
+/* 805DE414  3C 80 80 5F */	lis r4, __vt__12daB_GG_HIO_c@ha /* 0x805ED6A8@ha */
+/* 805DE418  38 04 D6 A8 */	addi r0, r4, __vt__12daB_GG_HIO_c@l /* 0x805ED6A8@l */
 /* 805DE41C  90 03 00 00 */	stw r0, 0(r3)
 /* 805DE420  38 00 FF FF */	li r0, -1
 /* 805DE424  98 03 00 04 */	stb r0, 4(r3)

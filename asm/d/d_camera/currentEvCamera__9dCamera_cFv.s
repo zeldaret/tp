@@ -23,8 +23,8 @@ lbl_8018050C:
 lbl_80180560:
 /* 80180560  7F C3 F3 78 */	mr r3, r30
 /* 80180564  38 81 00 08 */	addi r4, r1, 8
-/* 80180568  3C A0 80 39 */	lis r5, d_d_camera__stringBase0@ha
-/* 8018056C  38 A5 3F 68 */	addi r5, r5, d_d_camera__stringBase0@l
+/* 80180568  3C A0 80 39 */	lis r5, d_d_camera__stringBase0@ha /* 0x80393F68@ha */
+/* 8018056C  38 A5 3F 68 */	addi r5, r5, d_d_camera__stringBase0@l /* 0x80393F68@l */
 /* 80180570  38 A5 03 93 */	addi r5, r5, 0x393
 /* 80180574  38 C0 00 00 */	li r6, 0
 /* 80180578  4B F0 8B 15 */	bl getEvIntData__9dCamera_cFPiPci
@@ -41,8 +41,8 @@ lbl_80180590:
 /* 801805A0  7C A0 FA 14 */	add r5, r0, r31
 /* 801805A4  A0 05 00 04 */	lhz r0, 4(r5)
 /* 801805A8  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 801805AC  3C A0 80 3C */	lis r5, engine_tbl__9dCamera_c@ha
-/* 801805B0  38 05 A2 5C */	addi r0, r5, engine_tbl__9dCamera_c@l
+/* 801805AC  3C A0 80 3C */	lis r5, engine_tbl__9dCamera_c@ha /* 0x803BA25C@ha */
+/* 801805B0  38 05 A2 5C */	addi r0, r5, engine_tbl__9dCamera_c@l /* 0x803BA25C@l */
 /* 801805B4  7D 80 32 14 */	add r12, r0, r6
 /* 801805B8  48 1E 1A CD */	bl __ptmf_scall
 /* 801805BC  60 00 00 00 */	nop 

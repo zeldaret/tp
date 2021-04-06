@@ -49,7 +49,7 @@ lbl_80459C40:
 /* 80459C9C  39 1F 04 EC */	addi r8, r31, 0x4ec
 /* 80459CA0  39 20 FF FF */	li r9, -1
 /* 80459CA4  39 40 00 00 */	li r10, 0
-/* 80459CA8  4B BC 01 5C */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 80459CA8  4B BC 01 5D */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 80459CAC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80459CB0  41 82 00 10 */	beq lbl_80459CC0
 /* 80459CB4  7F E3 FB 78 */	mr r3, r31
@@ -65,8 +65,8 @@ lbl_80459CD0:
 lbl_80459CD4:
 /* 80459CD4  90 1F 0C FC */	stw r0, 0xcfc(r31)
 /* 80459CD8  C0 5F 05 3C */	lfs f2, 0x53c(r31)
-/* 80459CDC  3C 60 80 46 */	lis r3, lit_3823@ha
-/* 80459CE0  C0 23 C9 FC */	lfs f1, lit_3823@l(r3)
+/* 80459CDC  3C 60 80 46 */	lis r3, lit_3823@ha /* 0x8045C9FC@ha */
+/* 80459CE0  C0 23 C9 FC */	lfs f1, lit_3823@l(r3)  /* 0x8045C9FC@l */
 /* 80459CE4  C0 1F 05 18 */	lfs f0, 0x518(r31)
 /* 80459CE8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80459CEC  EC 02 00 2A */	fadds f0, f2, f0

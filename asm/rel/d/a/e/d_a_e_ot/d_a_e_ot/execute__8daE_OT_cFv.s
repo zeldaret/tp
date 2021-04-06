@@ -28,8 +28,8 @@ lbl_8073BFC0:
 /* 8073BFE4  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8073BFE8  C0 1F 04 D8 */	lfs f0, 0x4d8(r31)
 /* 8073BFEC  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8073BFF0  3C 60 80 74 */	lis r3, lit_4125@ha
-/* 8073BFF4  C0 03 CE EC */	lfs f0, lit_4125@l(r3)
+/* 8073BFF0  3C 60 80 74 */	lis r3, lit_4125@ha /* 0x8073CEEC@ha */
+/* 8073BFF4  C0 03 CE EC */	lfs f0, lit_4125@l(r3)  /* 0x8073CEEC@l */
 /* 8073BFF8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8073BFFC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8073C000  D0 01 00 10 */	stfs f0, 0x10(r1)

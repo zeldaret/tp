@@ -9,9 +9,9 @@ lbl_805793BC:
 /* 805793D8  40 82 00 28 */	bne lbl_80579400
 /* 805793DC  28 1F 00 00 */	cmplwi r31, 0
 /* 805793E0  41 82 00 14 */	beq lbl_805793F4
-/* 805793E4  4B AF F2 40 */	b __ct__16dBgS_MoveBgActorFv
-/* 805793E8  3C 60 80 58 */	lis r3, __vt__13daObjBkDoor_c@ha
-/* 805793EC  38 03 95 98 */	addi r0, r3, __vt__13daObjBkDoor_c@l
+/* 805793E4  4B AF F2 41 */	bl __ct__16dBgS_MoveBgActorFv
+/* 805793E8  3C 60 80 58 */	lis r3, __vt__13daObjBkDoor_c@ha /* 0x80579598@ha */
+/* 805793EC  38 03 95 98 */	addi r0, r3, __vt__13daObjBkDoor_c@l /* 0x80579598@l */
 /* 805793F0  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_805793F4:
 /* 805793F4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

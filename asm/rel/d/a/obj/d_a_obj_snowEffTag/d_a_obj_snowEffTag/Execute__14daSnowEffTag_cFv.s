@@ -14,30 +14,30 @@ lbl_80CDF498:
 /* 80CDF4C8  40 82 00 60 */	bne lbl_80CDF528
 /* 80CDF4CC  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80CDF4D0  7C 03 07 74 */	extsb r3, r0
-/* 80CDF4D4  4B 34 DB 98 */	b dComIfGp_getReverb__Fi
+/* 80CDF4D4  4B 34 DB 99 */	bl dComIfGp_getReverb__Fi
 /* 80CDF4D8  7C 67 1B 78 */	mr r7, r3
 /* 80CDF4DC  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080050@ha */
 /* 80CDF4E0  38 03 00 50 */	addi r0, r3, 0x0050 /* 0x00080050@l */
 /* 80CDF4E4  90 01 00 20 */	stw r0, 0x20(r1)
-/* 80CDF4E8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CDF4EC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CDF4E8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CDF4EC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CDF4F0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CDF4F4  38 81 00 20 */	addi r4, r1, 0x20
 /* 80CDF4F8  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 80CDF4FC  38 C0 00 00 */	li r6, 0
-/* 80CDF500  3D 00 80 CE */	lis r8, lit_3806@ha
-/* 80CDF504  C0 28 F7 50 */	lfs f1, lit_3806@l(r8)
+/* 80CDF500  3D 00 80 CE */	lis r8, lit_3806@ha /* 0x80CDF750@ha */
+/* 80CDF504  C0 28 F7 50 */	lfs f1, lit_3806@l(r8)  /* 0x80CDF750@l */
 /* 80CDF508  FC 40 08 90 */	fmr f2, f1
-/* 80CDF50C  3D 00 80 CE */	lis r8, lit_3807@ha
-/* 80CDF510  C0 68 F7 54 */	lfs f3, lit_3807@l(r8)
+/* 80CDF50C  3D 00 80 CE */	lis r8, lit_3807@ha /* 0x80CDF754@ha */
+/* 80CDF510  C0 68 F7 54 */	lfs f3, lit_3807@l(r8)  /* 0x80CDF754@l */
 /* 80CDF514  FC 80 18 90 */	fmr f4, f3
 /* 80CDF518  39 00 00 00 */	li r8, 0
-/* 80CDF51C  4B 5C C4 68 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CDF51C  4B 5C C4 69 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80CDF520  38 00 00 01 */	li r0, 1
 /* 80CDF524  98 1F 05 69 */	stb r0, 0x569(r31)
 lbl_80CDF528:
-/* 80CDF528  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDF52C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80CDF528  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDF52C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDF530  80 7E 5D 3C */	lwz r3, 0x5d3c(r30)
 /* 80CDF534  38 00 00 FF */	li r0, 0xff
 /* 80CDF538  90 01 00 08 */	stw r0, 8(r1)
@@ -56,18 +56,18 @@ lbl_80CDF528:
 /* 80CDF56C  39 00 00 00 */	li r8, 0
 /* 80CDF570  39 20 00 00 */	li r9, 0
 /* 80CDF574  39 40 00 00 */	li r10, 0
-/* 80CDF578  3D 60 80 CE */	lis r11, lit_3806@ha
-/* 80CDF57C  C0 2B F7 50 */	lfs f1, lit_3806@l(r11)
-/* 80CDF580  4B 36 DF 4C */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80CDF578  3D 60 80 CE */	lis r11, lit_3806@ha /* 0x80CDF750@ha */
+/* 80CDF57C  C0 2B F7 50 */	lfs f1, lit_3806@l(r11)  /* 0x80CDF750@l */
+/* 80CDF580  4B 36 DF 4D */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80CDF584  90 7F 05 78 */	stw r3, 0x578(r31)
 /* 80CDF588  80 7E 5D 3C */	lwz r3, 0x5d3c(r30)
 /* 80CDF58C  38 63 02 10 */	addi r3, r3, 0x210
 /* 80CDF590  80 9F 05 78 */	lwz r4, 0x578(r31)
-/* 80CDF594  4B 36 C3 84 */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 80CDF594  4B 36 C3 85 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80CDF598  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CDF59C  41 82 00 2C */	beq lbl_80CDF5C8
-/* 80CDF5A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDF5A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CDF5A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDF5A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDF5A8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80CDF5AC  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80CDF5B0  81 8C 00 30 */	lwz r12, 0x30(r12)
@@ -75,7 +75,7 @@ lbl_80CDF528:
 /* 80CDF5B8  4E 80 04 21 */	bctrl 
 /* 80CDF5BC  38 9F 00 68 */	addi r4, r31, 0x68
 /* 80CDF5C0  38 BF 00 A4 */	addi r5, r31, 0xa4
-/* 80CDF5C4  4B 5A 12 1C */	b func_802807E0
+/* 80CDF5C4  4B 5A 12 1D */	bl func_802807E0
 lbl_80CDF5C8:
 /* 80CDF5C8  38 60 00 01 */	li r3, 1
 /* 80CDF5CC  83 E1 00 2C */	lwz r31, 0x2c(r1)

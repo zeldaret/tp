@@ -93,17 +93,10 @@ extern "C" void fukiAlpha__16dMsgScrnKanban_cFf();
 extern "C" void fukiScale__16dMsgScrnKanban_cFf();
 extern "C" void fukiTrans__16dMsgScrnKanban_cFff();
 extern "C" extern char const* const msg_scrn_d_msg_scrn_kanban__stringBase0;
-extern "C" extern void* __vt__16dMsgScrnKanban_c[22];
 
 //
 // External References:
 //
-
-void mDoExt_getMesgFont();
-void dComIfGp_getSubHeap2D(int);
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
@@ -152,25 +145,15 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 80399AA0-80399AB8 0018+00 s=1 e=0 z=0  None .rodata    t_tag$3768 */
+/* 80399AA0-80399AB8 026100 0018+00 1/1 0/0 0/0 .rodata          t_tag$3768 */
 SECTION_RODATA static u8 const t_tag[24] = {
     0x6D, 0x67, 0x5F, 0x65, 0x34, 0x6C, 0x69, 0x6E, 0x00, 0x00, 0x00, 0x00,
     0x66, 0x34, 0x5F, 0x77, 0x00, 0x00, 0x00, 0x00, 0x74, 0x34, 0x5F, 0x73,
 };
+SECTION_DEAD void* const cg_80399AA0 = (void*)(&t_tag);
 
-/* 80399AB8-80399B08 004B+05 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
-SECTION_DEAD char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
-SECTION_DEAD char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
-#pragma pop
-
-/* 803C1240-803C1298 0058+00 s=2 e=0 z=0  None .data      __vt__16dMsgScrnKanban_c */
-SECTION_DATA void* __vt__16dMsgScrnKanban_c[22] = {
+/* 803C1240-803C1298 01E360 0058+00 2/2 0/0 0/0 .data            __vt__16dMsgScrnKanban_c */
+SECTION_DATA extern void* __vt__16dMsgScrnKanban_c[22] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__16dMsgScrnKanban_cFv,
@@ -195,7 +178,7 @@ SECTION_DATA void* __vt__16dMsgScrnKanban_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 80454CC0-80454CC4 0004+00 s=2 e=0 z=0  None .sdata2    @3944 */
+/* 80454CC0-80454CC4 0032C0 0004+00 2/2 0/0 0/0 .sdata2          @3944 */
 SECTION_SDATA2 static u8 lit_3944[4] = {
     0x00,
     0x00,
@@ -203,62 +186,17 @@ SECTION_SDATA2 static u8 lit_3944[4] = {
     0x00,
 };
 
-/* 80454CC4-80454CC8 0004+00 s=3 e=0 z=0  None .sdata2    @3945 */
+/* 80454CC4-80454CC8 0032C4 0004+00 3/3 0/0 0/0 .sdata2          @3945 */
 SECTION_SDATA2 static f32 lit_3945 = 1.0f;
 
-/* 80454CC8-80454CD0 0004+04 s=1 e=0 z=0  None .sdata2    @3946 */
+/* 80454CC8-80454CD0 0032C8 0004+04 1/1 0/0 0/0 .sdata2          @3946 */
 SECTION_SDATA2 static f32 lit_3946[1 + 1 /* padding */] = {
     6.0f / 5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80244E38-8024534C 0514+00 s=0 e=1 z=0  None .text      __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
-//	80244E50: 803621D4 (_savegpr_27)
-//	80244E5C: 8023C0DC (__ct__14dMsgScrnBase_cFv)
-//	80244E60: 803C1240 (__vt__16dMsgScrnKanban_c)
-//	80244E64: 803C1240 (__vt__16dMsgScrnKanban_c)
-//	80244E80: 8002E3D0 (dComIfGp_getSubHeap2D__Fi)
-//	80244E8C: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	80244E94: 8023C16C (init__14dMsgScrnBase_cFv)
-//	80244E9C: 802CEC4C (__nw__FUl)
-//	80244EA8: 802F8498 (__ct__9J2DScreenFv)
-//	80244EB8: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244EBC: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244EC4: 804061C0 (g_dComIfG_gameInfo)
-//	80244EC8: 804061C0 (g_dComIfG_gameInfo)
-//	80244ED0: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	80244ED8: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	80244F0C: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244F10: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244F1C: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	80244F20: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	80244F28: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244F2C: 80399AB8 (msg_scrn_d_msg_scrn_kanban__stringBase0)
-//	80244F38: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	80244F3C: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	80244F5C: 80454CC0 (lit_3944)
-//	80244F68: 802CEC4C (__nw__FUl)
-//	80244F8C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80244FB4: 80454CC4 (lit_3945)
-//	80244FC8: 802F7FCC (animationTransform__7J2DPaneFv)
-//	80244FE8: 8043028C (g_MsgObject_HIO_c)
-//	80244FEC: 8043028C (g_MsgObject_HIO_c)
-//	8024501C: 802CEC4C (__nw__FUl)
-//	80245040: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80245050: 802CEC4C (__nw__FUl)
-//	80245074: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	802450AC: 802CEC4C (__nw__FUl)
-//	802450BC: 80399AA0 (t_tag)
-//	802450C0: 80399AA0 (t_tag)
-//	802450D8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	802450F0: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80245214: 80454CC8 (lit_3946)
-//	80245274: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80245280: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	80245288: 80454CC0 (lit_3944)
-//	80245300: 80454CC8 (lit_3946)
-//	80245338: 80362220 (_restgpr_27)
+/* 80244E38-8024534C 23F778 0514+00 0/0 1/1 0/0 .text __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,15 +206,7 @@ asm dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
 }
 #pragma pop
 
-/* 8024534C-80245528 01DC+00 s=1 e=0 z=0  None .text      __dt__16dMsgScrnKanban_cFv */
-//	8024535C: 803621D4 (_savegpr_27)
-//	8024536C: 803C1240 (__vt__16dMsgScrnKanban_c)
-//	80245370: 803C1240 (__vt__16dMsgScrnKanban_c)
-//	802454D4: 804061C0 (g_dComIfG_gameInfo)
-//	802454D8: 804061C0 (g_dComIfG_gameInfo)
-//	802454F8: 8023C124 (__dt__14dMsgScrnBase_cFv)
-//	80245508: 802CED3C (__dl__FPv)
-//	80245514: 80362220 (_restgpr_27)
+/* 8024534C-80245528 23FC8C 01DC+00 1/0 0/0 0/0 .text            __dt__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,17 +217,10 @@ asm dMsgScrnKanban_c::~dMsgScrnKanban_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454CD0-80454CD8 0008+00 s=1 e=0 z=0  None .sdata2    @4033 */
+/* 80454CD0-80454CD8 0032D0 0008+00 1/1 0/0 0/0 .sdata2          @4033 */
 SECTION_SDATA2 static f64 lit_4033 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80245528-80245618 00F0+00 s=1 e=0 z=0  None .text      exec__16dMsgScrnKanban_cFv */
-//	80245540: 80454CC4 (lit_3945)
-//	80245558: 80454CD0 (lit_4033)
-//	802455A8: 802F9690 (animation__9J2DScreenFv)
-//	802455B0: 8023C574 (isTalkNow__14dMsgScrnBase_cFv)
-//	802455C0: 80454CC4 (lit_3945)
-//	802455D4: 8043028C (g_MsgObject_HIO_c)
-//	802455D8: 8043028C (g_MsgObject_HIO_c)
+/* 80245528-80245618 23FE68 00F0+00 1/0 0/0 0/0 .text            exec__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,13 +230,7 @@ asm void dMsgScrnKanban_c::exec() {
 }
 #pragma pop
 
-/* 80245618-802456A0 0088+00 s=1 e=0 z=0  None .text      draw__16dMsgScrnKanban_cFv */
-//	80245630: 804061C0 (g_dComIfG_gameInfo)
-//	80245634: 804061C0 (g_dComIfG_gameInfo)
-//	80245654: 80454CC0 (lit_3944)
-//	80245660: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	8024566C: 80454CC0 (lit_3944)
-//	80245674: 80454CC4 (lit_3945)
+/* 80245618-802456A0 23FF58 0088+00 1/0 0/0 0/0 .text            draw__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,16 +240,7 @@ asm void dMsgScrnKanban_c::draw() {
 }
 #pragma pop
 
-/* 802456A0-80245754 00B4+00 s=1 e=0 z=0  None .text      fukiAlpha__16dMsgScrnKanban_cFf */
-//	802456B8: 803621D8 (_savegpr_28)
-//	802456C8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802456D0: 8043028C (g_MsgObject_HIO_c)
-//	802456D4: 8043028C (g_MsgObject_HIO_c)
-//	802456E0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802456EC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80245708: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80245720: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80245740: 80362224 (_restgpr_28)
+/* 802456A0-80245754 23FFE0 00B4+00 1/0 0/0 0/0 .text            fukiAlpha__16dMsgScrnKanban_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,12 +250,23 @@ asm void dMsgScrnKanban_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 80245754-80245758 0004+00 s=1 e=0 z=0  None .text      fukiScale__16dMsgScrnKanban_cFf */
+/* 80245754-80245758 240094 0004+00 1/0 0/0 0/0 .text            fukiScale__16dMsgScrnKanban_cFf */
 void dMsgScrnKanban_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 80245758-8024575C 0004+00 s=1 e=0 z=0  None .text      fukiTrans__16dMsgScrnKanban_cFff */
+/* 80245758-8024575C 240098 0004+00 1/0 0/0 0/0 .text            fukiTrans__16dMsgScrnKanban_cFff */
 void dMsgScrnKanban_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
+
+/* 80399AB8-80399B08 026118 004B+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
+SECTION_DEAD static char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
+SECTION_DEAD static char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
+#pragma pop

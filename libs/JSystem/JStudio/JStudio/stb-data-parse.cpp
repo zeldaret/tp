@@ -70,7 +70,7 @@ extern "C" extern u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32]
 // Declarations:
 //
 
-/* 802899BC-80289A08 004C+00 s=0 e=1 z=0  None .text
+/* 802899BC-80289A08 2842FC 004C+00 0/0 1/1 0/0 .text
  * getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData */
 #pragma push
 #pragma optimization_level 0
@@ -82,10 +82,8 @@ asm void JStudio::stb::data::TParse_TSequence::getData(
 }
 #pragma pop
 
-/* 80289A08-80289A80 0078+00 s=0 e=1 z=0  None .text
+/* 80289A08-80289A80 284348 0078+00 0/0 1/1 0/0 .text
  * getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData */
-//	80289A2C: 802DC864
-//(parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,11 +94,9 @@ asm void JStudio::stb::data::TParse_TParagraph::getData(
 }
 #pragma pop
 
-/* 80289A80-80289B00 0080+00 s=0 e=3 z=1  None .text
+/* 80289A80-80289B00 2843C0 0080+00 0/0 3/3 1/1 .text
  * getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
  */
-//	80289AE0: 8039AB88 (gauDataSize_TEParagraph_data__Q37JStudio3stb4data)
-//	80289AE4: 8039AB88 (gauDataSize_TEParagraph_data__Q37JStudio3stb4data)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

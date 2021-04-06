@@ -2,15 +2,15 @@ lbl_80344EF8:
 /* 80344EF8  7C 08 02 A6 */	mflr r0
 /* 80344EFC  3C A0 CC 00 */	lis r5, 0xCC00 /* 0xCC006434@ha */
 /* 80344F00  90 01 00 04 */	stw r0, 4(r1)
-/* 80344F04  3C E0 80 45 */	lis r7, Packet@ha
-/* 80344F08  3C C0 80 3D */	lis r6, lit_1@ha
+/* 80344F04  3C E0 80 45 */	lis r7, Packet@ha /* 0x8044C630@ha */
+/* 80344F08  3C C0 80 3D */	lis r6, lit_1@ha /* 0x803D11B8@ha */
 /* 80344F0C  94 21 FF B8 */	stwu r1, -0x48(r1)
 /* 80344F10  BE A1 00 1C */	stmw r21, 0x1c(r1)
 /* 80344F14  3B C3 00 00 */	addi r30, r3, 0
 /* 80344F18  3B E4 00 00 */	addi r31, r4, 0
-/* 80344F1C  3B 87 C6 30 */	addi r28, r7, Packet@l
-/* 80344F20  3B A6 11 B8 */	addi r29, r6, lit_1@l
-/* 80344F24  83 05 64 34 */	lwz r24, 0x6434(r5)
+/* 80344F1C  3B 87 C6 30 */	addi r28, r7, Packet@l /* 0x8044C630@l */
+/* 80344F20  3B A6 11 B8 */	addi r29, r6, lit_1@l /* 0x803D11B8@l */
+/* 80344F24  83 05 64 34 */	lwz r24, 0x6434(r5)  /* 0xCC006434@l */
 /* 80344F28  57 05 00 02 */	rlwinm r5, r24, 0, 0, 1
 /* 80344F2C  3C 05 40 00 */	addis r0, r5, 0x4000
 /* 80344F30  28 00 00 00 */	cmplwi r0, 0
@@ -100,15 +100,15 @@ lbl_8034506C:
 /* 8034506C  2C 03 00 00 */	cmpwi r3, 0
 /* 80345070  40 82 00 48 */	bne lbl_803450B8
 /* 80345074  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 80345078  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 80345078  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 8034507C  3C 60 43 1C */	lis r3, 0x431C /* 0x431BDE83@ha */
-/* 80345080  3C 80 80 34 */	lis r4, GetTypeCallback@ha
+/* 80345080  3C 80 80 34 */	lis r4, GetTypeCallback@ha /* 0x80345CF8@ha */
 /* 80345084  54 00 F0 BE */	srwi r0, r0, 2
 /* 80345088  38 63 DE 83 */	addi r3, r3, 0xDE83 /* 0x431BDE83@l */
 /* 8034508C  7C 03 00 16 */	mulhwu r0, r3, r0
 /* 80345090  54 00 8B FE */	srwi r0, r0, 0xf
 /* 80345094  1C 00 00 41 */	mulli r0, r0, 0x41
-/* 80345098  39 04 5C F8 */	addi r8, r4, GetTypeCallback@l
+/* 80345098  39 04 5C F8 */	addi r8, r4, GetTypeCallback@l /* 0x80345CF8@l */
 /* 8034509C  54 0A E8 FE */	srwi r10, r0, 3
 /* 803450A0  38 77 00 00 */	addi r3, r23, 0
 /* 803450A4  38 8D 91 70 */	la r4, cmdTypeAndStatus_78(r13) /* 804516F0-_SDA_BASE_ */

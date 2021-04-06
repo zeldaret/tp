@@ -9,8 +9,8 @@ lbl_80108A3C:
 /* 80108A58  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 80108A5C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80108A60  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80108A64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80108A68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80108A64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80108A68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80108A6C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80108A70  38 80 00 04 */	li r4, 4
 /* 80108A74  38 A0 00 01 */	li r5, 1

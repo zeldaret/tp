@@ -16,7 +16,7 @@ lbl_80A3A504:
 /* 80A3A53C  38 80 00 00 */	li r4, 0
 /* 80A3A540  38 1F 0E 3C */	addi r0, r31, 0xe3c
 /* 80A3A544  7C A3 00 50 */	subf r5, r3, r0
-/* 80A3A548  4B 5C 8F 10 */	b memset
+/* 80A3A548  4B 5C 8F 11 */	bl memset
 /* 80A3A54C  38 00 00 00 */	li r0, 0
 /* 80A3A550  98 1F 0D 33 */	stb r0, 0xd33(r31)
 /* 80A3A554  83 E1 00 0C */	lwz r31, 0xc(r1)

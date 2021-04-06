@@ -9,13 +9,13 @@ lbl_801A6E9C:
 /* 801A6EB8  39 61 00 90 */	addi r11, r1, 0x90
 /* 801A6EBC  48 1B B2 F9 */	bl _savegpr_19
 /* 801A6EC0  7C 77 1B 78 */	mr r23, r3
-/* 801A6EC4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A6EC8  3B A3 CA 54 */	addi r29, r3, g_env_light@l
-/* 801A6ECC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801A6ED0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801A6EC4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A6EC8  3B A3 CA 54 */	addi r29, r3, g_env_light@l /* 0x8042CA54@l */
+/* 801A6ECC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801A6ED0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A6ED4  83 63 5D 74 */	lwz r27, 0x5d74(r3)
-/* 801A6ED8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 801A6EDC  38 03 4A C8 */	addi r0, r3, j3dSys@l
+/* 801A6ED8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 801A6EDC  38 03 4A C8 */	addi r0, r3, j3dSys@l /* 0x80434AC8@l */
 /* 801A6EE0  7C 1A 03 78 */	mr r26, r0
 /* 801A6EE4  88 17 03 80 */	lbz r0, 0x380(r23)
 /* 801A6EE8  98 01 00 08 */	stb r0, 8(r1)
@@ -40,8 +40,8 @@ lbl_801A6F14:
 /* 801A6F2C  40 82 00 08 */	bne lbl_801A6F34
 /* 801A6F30  48 00 06 68 */	b lbl_801A7598
 lbl_801A6F34:
-/* 801A6F34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801A6F38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801A6F34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801A6F38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A6F3C  3A 83 4E C4 */	addi r20, r3, 0x4ec4
 /* 801A6F40  7E 83 A3 78 */	mr r3, r20
 /* 801A6F44  88 81 00 08 */	lbz r4, 8(r1)
@@ -73,8 +73,8 @@ lbl_801A6F34:
 lbl_801A6FAC:
 /* 801A6FAC  38 C0 00 00 */	li r6, 0
 /* 801A6FB0  B0 CD 81 80 */	sth r6, lightMask(r13)
-/* 801A6FB4  3C 60 80 3C */	lis r3, lightMaskData@ha
-/* 801A6FB8  38 83 BE AC */	addi r4, r3, lightMaskData@l
+/* 801A6FB4  3C 60 80 3C */	lis r3, lightMaskData@ha /* 0x803BBEAC@ha */
+/* 801A6FB8  38 83 BE AC */	addi r4, r3, lightMaskData@l /* 0x803BBEAC@l */
 /* 801A6FBC  7F 29 03 A6 */	mtctr r25
 /* 801A6FC0  2C 19 00 00 */	cmpwi r25, 0
 /* 801A6FC4  40 81 00 2C */	ble lbl_801A6FF0
@@ -104,8 +104,8 @@ lbl_801A6FF0:
 /* 801A7018  3A C0 00 00 */	li r22, 0
 /* 801A701C  3A A0 00 00 */	li r21, 0
 /* 801A7020  3A 80 00 00 */	li r20, 0
-/* 801A7024  3C 60 80 3C */	lis r3, lightMaskData@ha
-/* 801A7028  3B E3 BE AC */	addi r31, r3, lightMaskData@l
+/* 801A7024  3C 60 80 3C */	lis r3, lightMaskData@ha /* 0x803BBEAC@ha */
+/* 801A7028  3B E3 BE AC */	addi r31, r3, lightMaskData@l /* 0x803BBEAC@l */
 /* 801A702C  C3 C2 A2 48 */	lfs f30, lit_4505(r2)
 lbl_801A7030:
 /* 801A7030  3B 94 00 74 */	addi r28, r20, 0x74
@@ -312,8 +312,8 @@ lbl_801A7318:
 /* 801A732C  41 80 FD 04 */	blt lbl_801A7030
 /* 801A7330  3B 00 00 00 */	li r24, 0
 /* 801A7334  3B 20 00 00 */	li r25, 0
-/* 801A7338  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A733C  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 801A7338  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A733C  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 lbl_801A7340:
 /* 801A7340  7F DD CA 14 */	add r30, r29, r25
 /* 801A7344  88 1E 0C 3E */	lbz r0, 0xc3e(r30)
@@ -324,8 +324,8 @@ lbl_801A7340:
 /* 801A7358  38 E0 00 00 */	li r7, 0
 /* 801A735C  38 60 00 00 */	li r3, 0
 /* 801A7360  A0 CD 81 80 */	lhz r6, lightMask(r13)
-/* 801A7364  3C 80 80 3C */	lis r4, lightMaskData@ha
-/* 801A7368  38 A4 BE AC */	addi r5, r4, lightMaskData@l
+/* 801A7364  3C 80 80 3C */	lis r4, lightMaskData@ha /* 0x803BBEAC@ha */
+/* 801A7368  38 A4 BE AC */	addi r5, r4, lightMaskData@l /* 0x803BBEAC@l */
 /* 801A736C  38 00 00 06 */	li r0, 6
 /* 801A7370  7C 09 03 A6 */	mtctr r0
 lbl_801A7374:

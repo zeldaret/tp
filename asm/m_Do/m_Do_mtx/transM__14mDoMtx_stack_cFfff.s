@@ -4,8 +4,8 @@ lbl_8000CD9C:
 /* 8000CDA4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8000CDA8  38 61 00 08 */	addi r3, r1, 8
 /* 8000CDAC  48 33 9B 3D */	bl PSMTXTrans
-/* 8000CDB0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8000CDB4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8000CDB0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8000CDB4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8000CDB8  38 81 00 08 */	addi r4, r1, 8
 /* 8000CDBC  7C 65 1B 78 */	mr r5, r3
 /* 8000CDC0  48 33 97 25 */	bl PSMTXConcat

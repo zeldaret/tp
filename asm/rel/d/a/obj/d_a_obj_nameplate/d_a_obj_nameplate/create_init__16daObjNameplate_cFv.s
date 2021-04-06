@@ -5,17 +5,17 @@ lbl_80594098:
 /* 805940A4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805940A8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805940AC  7C 7E 1B 78 */	mr r30, r3
-/* 805940B0  3C 80 80 59 */	lis r4, M_attr__16daObjNameplate_c@ha
-/* 805940B4  3B E4 4E 74 */	addi r31, r4, M_attr__16daObjNameplate_c@l
+/* 805940B0  3C 80 80 59 */	lis r4, M_attr__16daObjNameplate_c@ha /* 0x80594E74@ha */
+/* 805940B4  3B E4 4E 74 */	addi r31, r4, M_attr__16daObjNameplate_c@l /* 0x80594E74@l */
 /* 805940B8  C0 3F 00 20 */	lfs f1, 0x20(r31)
 /* 805940BC  C0 5F 00 24 */	lfs f2, 0x24(r31)
 /* 805940C0  C0 7F 00 28 */	lfs f3, 0x28(r31)
 /* 805940C4  C0 9F 00 2C */	lfs f4, 0x2c(r31)
 /* 805940C8  C0 BF 00 30 */	lfs f5, 0x30(r31)
 /* 805940CC  C0 DF 00 34 */	lfs f6, 0x34(r31)
-/* 805940D0  4B A8 64 78 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
-/* 805940D4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 805940D8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 805940D0  4B A8 64 79 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 805940D4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 805940D8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 805940DC  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 805940E0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 805940E4  7C 64 02 14 */	add r3, r4, r0
@@ -31,7 +31,7 @@ lbl_80594098:
 /* 8059410C  38 7E 05 50 */	addi r3, r30, 0x550
 /* 80594110  38 81 00 08 */	addi r4, r1, 8
 /* 80594114  7C 65 1B 78 */	mr r5, r3
-/* 80594118  4B DB 2F 78 */	b PSVECAdd
+/* 80594118  4B DB 2F 79 */	bl PSVECAdd
 /* 8059411C  C0 3E 05 3C */	lfs f1, 0x53c(r30)
 /* 80594120  C0 1F 00 3C */	lfs f0, 0x3c(r31)
 /* 80594124  EC 01 00 28 */	fsubs f0, f1, f0

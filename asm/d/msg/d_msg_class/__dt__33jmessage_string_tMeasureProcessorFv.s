@@ -7,8 +7,8 @@ lbl_80230A5C:
 /* 80230A70  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80230A74  7C 9F 23 78 */	mr r31, r4
 /* 80230A78  41 82 00 28 */	beq lbl_80230AA0
-/* 80230A7C  3C 80 80 3C */	lis r4, __vt__33jmessage_string_tMeasureProcessor@ha
-/* 80230A80  38 04 09 A0 */	addi r0, r4, __vt__33jmessage_string_tMeasureProcessor@l
+/* 80230A7C  3C 80 80 3C */	lis r4, __vt__33jmessage_string_tMeasureProcessor@ha /* 0x803C09A0@ha */
+/* 80230A80  38 04 09 A0 */	addi r0, r4, __vt__33jmessage_string_tMeasureProcessor@l /* 0x803C09A0@l */
 /* 80230A84  90 1E 00 00 */	stw r0, 0(r30)
 /* 80230A88  38 80 00 00 */	li r4, 0
 /* 80230A8C  48 07 80 35 */	bl __dt__Q28JMessage19TRenderingProcessorFv

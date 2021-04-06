@@ -16,8 +16,8 @@ lbl_8018FD5C:
 /* 8018FD64  54 00 10 3A */	slwi r0, r0, 2
 /* 8018FD68  7C 7F 02 14 */	add r3, r31, r0
 /* 8018FD6C  80 63 01 38 */	lwz r3, 0x138(r3)
-/* 8018FD70  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018FD74  3B A4 C9 EC */	addi r29, r4, g_fsHIO@l
+/* 8018FD70  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018FD74  3B A4 C9 EC */	addi r29, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018FD78  88 9D 00 07 */	lbz r4, 7(r29)
 /* 8018FD7C  38 A0 00 FF */	li r5, 0xff
 /* 8018FD80  38 C0 00 00 */	li r6, 0
@@ -34,8 +34,8 @@ lbl_8018FD5C:
 /* 8018FDAC  38 C0 00 FF */	li r6, 0xff
 /* 8018FDB0  38 E0 00 00 */	li r7, 0
 /* 8018FDB4  48 0C 5A C5 */	bl alphaAnime__13CPaneMgrAlphaFsUcUcUc
-/* 8018FDB8  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 8018FDBC  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 8018FDB8  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 8018FDBC  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 8018FDC0  A8 84 00 94 */	lha r4, 0x94(r4)
 /* 8018FDC4  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 8018FDC8  28 00 00 01 */	cmplwi r0, 1

@@ -3,17 +3,15 @@
 #
 
 M260_TARGET := $(BUILD_DIR)/rel/d/a/d_a_formation_mng.plf
+M260_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_formation_mng.lcf
+M260_MAP := $(BUILD_DIR)/rel/d/a/d_a_formation_mng.map
 
 M260_CPP_FILES := \
-	rel/d/a/d_a_formation_mng/executor.cpp \
-	rel/d/a/d_a_formation_mng/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_formation_mng/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_formation_mng/d_a_formation_mng.cpp \
 
 M260_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_formation_mng/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_formation_mng/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_formation_mng/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_formation_mng/d_a_formation_mng.o \
 
 M260_LIBS := \
@@ -29,15 +27,21 @@ M260_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map260.map\
+	-m _prolog \
+	-lcf $(M260_LDSCRIPT) \
+	-unused -map $(M260_MAP) \
+	-w off \
 
 $(M260_TARGET): $(M260_O_FILES) $(M260_LIBS)
+	@echo [260] creating $(M260_TARGET)
 	@echo $(M260_LIBS) $(M260_O_FILES) > build/M260_ofiles
-	$(LD) -opt_partial $(M260_LDFLAGS) -o $(M260_TARGET) @build/M260_ofiles
+	@python3 tools/lcf.py rel 260 --output $(M260_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M260_LDFLAGS) -o $(M260_TARGET) @build/M260_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_formation_mng/%.o: rel/d/a/d_a_formation_mng/%.cpp
+	@echo [260] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M260_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M260_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

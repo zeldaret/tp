@@ -16,8 +16,8 @@ lbl_8012987C:
 /* 801298B4  4B FA D6 79 */	bl checkNoLandDamageSlidePolygon__9daAlink_cFv
 /* 801298B8  2C 03 00 00 */	cmpwi r3, 0
 /* 801298BC  40 82 00 18 */	bne lbl_801298D4
-/* 801298C0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlDamFall_c0@ha
-/* 801298C4  38 83 F3 74 */	addi r4, r3, m__23daAlinkHIO_wlDamFall_c0@l
+/* 801298C0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlDamFall_c0@ha /* 0x8038F374@ha */
+/* 801298C4  38 83 F3 74 */	addi r4, r3, m__23daAlinkHIO_wlDamFall_c0@l /* 0x8038F374@l */
 /* 801298C8  C0 04 00 2C */	lfs f0, 0x2c(r4)
 /* 801298CC  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 801298D0  40 80 00 44 */	bge lbl_80129914

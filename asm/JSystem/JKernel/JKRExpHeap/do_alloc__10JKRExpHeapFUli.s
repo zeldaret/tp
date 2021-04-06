@@ -46,8 +46,8 @@ lbl_802CF1B8:
 lbl_802CF1C8:
 /* 802CF1C8  28 1F 00 00 */	cmplwi r31, 0
 /* 802CF1CC  40 82 00 44 */	bne lbl_802CF210
-/* 802CF1D0  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802CF1D4  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802CF1D0  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802CF1D4  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802CF1D8  7F A4 EB 78 */	mr r4, r29
 /* 802CF1DC  4C C6 31 82 */	crclr 6
 /* 802CF1E0  48 01 94 9D */	bl JUTWarningConsole_f

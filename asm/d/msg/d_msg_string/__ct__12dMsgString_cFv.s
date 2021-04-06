@@ -5,8 +5,8 @@ lbl_80249C20:
 /* 80249C2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80249C30  7C 7F 1B 78 */	mr r31, r3
 /* 80249C34  4B FF F7 81 */	bl __ct__16dMsgStringBase_cFv
-/* 80249C38  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha
-/* 80249C3C  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l
+/* 80249C38  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha /* 0x803C1498@ha */
+/* 80249C3C  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l /* 0x803C1498@l */
 /* 80249C40  90 1F 00 00 */	stw r0, 0(r31)
 /* 80249C44  38 00 00 00 */	li r0, 0
 /* 80249C48  98 1F 00 28 */	stb r0, 0x28(r31)

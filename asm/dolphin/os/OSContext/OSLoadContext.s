@@ -1,11 +1,11 @@
 lbl_8033BF20:
-/* 8033BF20  3C 80 80 34 */	lis r4, OSDisableInterrupts@ha
+/* 8033BF20  3C 80 80 34 */	lis r4, OSDisableInterrupts@ha /* 0x8033D6F4@ha */
 /* 8033BF24  80 C3 01 98 */	lwz r6, 0x198(r3)
-/* 8033BF28  38 A4 D6 F4 */	addi r5, r4, OSDisableInterrupts@l
+/* 8033BF28  38 A4 D6 F4 */	addi r5, r4, OSDisableInterrupts@l /* 0x8033D6F4@l */
 /* 8033BF2C  7C 06 28 40 */	cmplw r6, r5
 /* 8033BF30  40 81 00 18 */	ble lbl_8033BF48
-/* 8033BF34  3C 80 80 34 */	lis r4, __RAS_OSDisableInterrupts_end@ha
-/* 8033BF38  38 04 D7 00 */	addi r0, r4, __RAS_OSDisableInterrupts_end@l
+/* 8033BF34  3C 80 80 34 */	lis r4, __RAS_OSDisableInterrupts_end@ha /* 0x8033D700@ha */
+/* 8033BF38  38 04 D7 00 */	addi r0, r4, __RAS_OSDisableInterrupts_end@l /* 0x8033D700@l */
 /* 8033BF3C  7C 06 00 40 */	cmplw r6, r0
 /* 8033BF40  40 80 00 08 */	bge lbl_8033BF48
 /* 8033BF44  90 A3 01 98 */	stw r5, 0x198(r3)

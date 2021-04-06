@@ -4,14 +4,14 @@ lbl_802DB790:
 /* 802DB798  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802DB79C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802DB7A0  93 C1 00 18 */	stw r30, 0x18(r1)
-/* 802DB7A4  3C 60 80 3D */	lis r3, sMessageQueue__9JKRDecomp@ha
-/* 802DB7A8  38 63 C4 80 */	addi r3, r3, sMessageQueue__9JKRDecomp@l
-/* 802DB7AC  3C 80 80 3D */	lis r4, sMessageBuffer__9JKRDecomp@ha
-/* 802DB7B0  38 84 C4 60 */	addi r4, r4, sMessageBuffer__9JKRDecomp@l
+/* 802DB7A4  3C 60 80 3D */	lis r3, sMessageQueue__9JKRDecomp@ha /* 0x803CC480@ha */
+/* 802DB7A8  38 63 C4 80 */	addi r3, r3, sMessageQueue__9JKRDecomp@l /* 0x803CC480@l */
+/* 802DB7AC  3C 80 80 3D */	lis r4, sMessageBuffer__9JKRDecomp@ha /* 0x803CC460@ha */
+/* 802DB7B0  38 84 C4 60 */	addi r4, r4, sMessageBuffer__9JKRDecomp@l /* 0x803CC460@l */
 /* 802DB7B4  38 A0 00 08 */	li r5, 8
 /* 802DB7B8  48 06 31 DD */	bl OSInitMessageQueue
-/* 802DB7BC  3C 60 80 3D */	lis r3, sMessageQueue__9JKRDecomp@ha
-/* 802DB7C0  3B E3 C4 80 */	addi r31, r3, sMessageQueue__9JKRDecomp@l
+/* 802DB7BC  3C 60 80 3D */	lis r3, sMessageQueue__9JKRDecomp@ha /* 0x803CC480@ha */
+/* 802DB7C0  3B E3 C4 80 */	addi r31, r3, sMessageQueue__9JKRDecomp@l /* 0x803CC480@l */
 lbl_802DB7C4:
 /* 802DB7C4  7F E3 FB 78 */	mr r3, r31
 /* 802DB7C8  38 81 00 08 */	addi r4, r1, 8

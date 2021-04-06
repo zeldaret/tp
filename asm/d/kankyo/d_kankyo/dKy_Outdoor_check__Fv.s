@@ -5,8 +5,8 @@ lbl_801AC228:
 /* 801AC234  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AC238  3B E0 00 00 */	li r31, 0
 /* 801AC23C  38 00 00 00 */	li r0, 0
-/* 801AC240  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AC244  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AC240  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AC244  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AC248  34 63 4E 20 */	addic. r3, r3, 0x4e20
 /* 801AC24C  41 82 00 1C */	beq lbl_801AC268
 /* 801AC250  81 83 00 00 */	lwz r12, 0(r3)

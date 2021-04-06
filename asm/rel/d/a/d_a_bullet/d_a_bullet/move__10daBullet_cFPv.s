@@ -22,7 +22,7 @@ lbl_806564F8:
 /* 80656500  2C 03 00 00 */	cmpwi r3, 0
 /* 80656504  40 82 00 10 */	bne lbl_80656514
 /* 80656508  7F E3 FB 78 */	mr r3, r31
-/* 8065650C  4B 9C 37 70 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8065650C  4B 9C 37 71 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80656510  48 00 00 20 */	b lbl_80656530
 lbl_80656514:
 /* 80656514  80 7F 05 A0 */	lwz r3, 0x5a0(r31)
@@ -32,7 +32,7 @@ lbl_80656514:
 /* 80656524  41 82 00 0C */	beq lbl_80656530
 lbl_80656528:
 /* 80656528  7F E3 FB 78 */	mr r3, r31
-/* 8065652C  4B 9C 37 50 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8065652C  4B 9C 37 51 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80656530:
 /* 80656530  38 60 00 01 */	li r3, 1
 /* 80656534  83 E1 00 0C */	lwz r31, 0xc(r1)

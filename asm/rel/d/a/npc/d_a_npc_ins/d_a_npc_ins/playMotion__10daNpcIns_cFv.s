@@ -2,8 +2,8 @@ lbl_80A12A10:
 /* 80A12A10  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 80A12A14  7C 08 02 A6 */	mflr r0
 /* 80A12A18  90 01 01 54 */	stw r0, 0x154(r1)
-/* 80A12A1C  3C 80 80 A1 */	lis r4, l_insectParams@ha
-/* 80A12A20  38 84 3D AC */	addi r4, r4, l_insectParams@l
+/* 80A12A1C  3C 80 80 A1 */	lis r4, l_insectParams@ha /* 0x80A13DAC@ha */
+/* 80A12A20  38 84 3D AC */	addi r4, r4, l_insectParams@l /* 0x80A13DAC@l */
 /* 80A12A24  80 A4 02 1C */	lwz r5, 0x21c(r4)
 /* 80A12A28  80 04 02 20 */	lwz r0, 0x220(r4)
 /* 80A12A2C  90 A1 01 0C */	stw r5, 0x10c(r1)
@@ -233,7 +233,7 @@ lbl_80A12D18:
 /* 80A12DA8  2C 04 00 0D */	cmpwi r4, 0xd
 /* 80A12DAC  40 80 00 0C */	bge lbl_80A12DB8
 /* 80A12DB0  38 81 01 18 */	addi r4, r1, 0x118
-/* 80A12DB4  4B 74 04 B0 */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80A12DB4  4B 74 04 B1 */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80A12DB8:
 /* 80A12DB8  80 01 01 54 */	lwz r0, 0x154(r1)
 /* 80A12DBC  7C 08 03 A6 */	mtlr r0

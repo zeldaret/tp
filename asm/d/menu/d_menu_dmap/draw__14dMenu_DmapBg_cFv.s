@@ -13,8 +13,8 @@ lbl_801BAB10:
 /* 801BAB3C  39 61 02 90 */	addi r11, r1, 0x290
 /* 801BAB40  48 1A 76 9D */	bl _savegpr_29
 /* 801BAB44  7C 7E 1B 78 */	mr r30, r3
-/* 801BAB48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801BAB4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801BAB48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801BAB4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801BAB50  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801BAB54  7F E3 FB 78 */	mr r3, r31
 /* 801BAB58  81 9F 00 00 */	lwz r12, 0(r31)

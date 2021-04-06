@@ -7,8 +7,8 @@ lbl_800073C8:
 /* 800073DC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800073E0  7C 9F 23 78 */	mr r31, r4
 /* 800073E4  41 82 04 38 */	beq lbl_8000781C
-/* 800073E8  3C 60 80 3D */	lis r3, __vt__10Z2AudioMgr@ha
-/* 800073EC  38 03 BF 38 */	addi r0, r3, __vt__10Z2AudioMgr@l
+/* 800073E8  3C 60 80 3D */	lis r3, __vt__10Z2AudioMgr@ha /* 0x803CBF38@ha */
+/* 800073EC  38 03 BF 38 */	addi r0, r3, __vt__10Z2AudioMgr@l /* 0x803CBF38@l */
 /* 800073F0  90 1E 05 14 */	stw r0, 0x514(r30)
 /* 800073F4  34 1E 13 70 */	addic. r0, r30, 0x1370
 /* 800073F8  41 82 00 24 */	beq lbl_8000741C
@@ -25,13 +25,13 @@ lbl_8000741C:
 /* 80007420  41 82 00 98 */	beq lbl_800074B8
 /* 80007424  34 7E 0F 38 */	addic. r3, r30, 0xf38
 /* 80007428  41 82 00 54 */	beq lbl_8000747C
-/* 8000742C  3C 80 80 3D */	lis r4, __vt__15Z2SpeechStarter@ha
-/* 80007430  38 04 BF 24 */	addi r0, r4, __vt__15Z2SpeechStarter@l
+/* 8000742C  3C 80 80 3D */	lis r4, __vt__15Z2SpeechStarter@ha /* 0x803CBF24@ha */
+/* 80007430  38 04 BF 24 */	addi r0, r4, __vt__15Z2SpeechStarter@l /* 0x803CBF24@l */
 /* 80007434  90 1E 0F 38 */	stw r0, 0xf38(r30)
 /* 80007438  28 03 00 00 */	cmplwi r3, 0
 /* 8000743C  41 82 00 40 */	beq lbl_8000747C
-/* 80007440  3C 80 80 3D */	lis r4, __vt__14Z2SoundStarter@ha
-/* 80007444  38 04 9D 80 */	addi r0, r4, __vt__14Z2SoundStarter@l
+/* 80007440  3C 80 80 3D */	lis r4, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 80007444  38 04 9D 80 */	addi r0, r4, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 80007448  90 1E 0F 38 */	stw r0, 0xf38(r30)
 /* 8000744C  34 1E 0F 3C */	addic. r0, r30, 0xf3c
 /* 80007450  41 82 00 24 */	beq lbl_80007474
@@ -71,8 +71,8 @@ lbl_800074B8:
 /* 800074C0  48 2B 5D 3D */	bl __dt__10Z2AudienceFv
 /* 800074C4  34 1E 0D 40 */	addic. r0, r30, 0xd40
 /* 800074C8  41 82 00 94 */	beq lbl_8000755C
-/* 800074CC  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha
-/* 800074D0  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l
+/* 800074CC  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha /* 0x803CAC48@ha */
+/* 800074D0  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l /* 0x803CAC48@l */
 /* 800074D4  90 7E 0D 40 */	stw r3, 0xd40(r30)
 /* 800074D8  38 03 00 24 */	addi r0, r3, 0x24
 /* 800074DC  90 1E 0D 44 */	stw r0, 0xd44(r30)
@@ -95,8 +95,8 @@ lbl_80007510:
 /* 80007518  48 29 C5 C1 */	bl __dt__16JAIStreamDataMgrFv
 /* 8000751C  34 1E 0D 44 */	addic. r0, r30, 0xd44
 /* 80007520  41 82 00 30 */	beq lbl_80007550
-/* 80007524  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha
-/* 80007528  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l
+/* 80007524  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha /* 0x803A2F4C@ha */
+/* 80007528  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l /* 0x803A2F4C@l */
 /* 8000752C  90 1E 0D 44 */	stw r0, 0xd44(r30)
 /* 80007530  34 1E 0D 44 */	addic. r0, r30, 0xd44
 /* 80007534  41 82 00 1C */	beq lbl_80007550
@@ -113,8 +113,8 @@ lbl_80007550:
 lbl_8000755C:
 /* 8000755C  34 1E 05 30 */	addic. r0, r30, 0x530
 /* 80007560  41 82 01 04 */	beq lbl_80007664
-/* 80007564  3C 60 80 3D */	lis r3, __vt__10Z2SoundMgr@ha
-/* 80007568  38 03 9D 70 */	addi r0, r3, __vt__10Z2SoundMgr@l
+/* 80007564  3C 60 80 3D */	lis r3, __vt__10Z2SoundMgr@ha /* 0x803C9D70@ha */
+/* 80007568  38 03 9D 70 */	addi r0, r3, __vt__10Z2SoundMgr@l /* 0x803C9D70@l */
 /* 8000756C  90 1E 05 30 */	stw r0, 0x530(r30)
 /* 80007570  37 BE 0C CC */	addic. r29, r30, 0xccc
 /* 80007574  41 82 00 30 */	beq lbl_800075A4
@@ -133,8 +133,8 @@ lbl_80007588:
 lbl_800075A4:
 /* 800075A4  37 BE 0C 58 */	addic. r29, r30, 0xc58
 /* 800075A8  41 82 00 48 */	beq lbl_800075F0
-/* 800075AC  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha
-/* 800075B0  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l
+/* 800075AC  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha /* 0x803C9958@ha */
+/* 800075B0  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l /* 0x803C9958@l */
 /* 800075B4  90 1E 0C 58 */	stw r0, 0xc58(r30)
 /* 800075B8  34 7D 00 64 */	addic. r3, r29, 0x64
 /* 800075BC  41 82 00 0C */	beq lbl_800075C8
@@ -154,12 +154,12 @@ lbl_800075C8:
 lbl_800075F0:
 /* 800075F0  37 BE 05 34 */	addic. r29, r30, 0x534
 /* 800075F4  41 82 00 50 */	beq lbl_80007644
-/* 800075F8  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha
-/* 800075FC  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l
+/* 800075F8  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha /* 0x803C98B0@ha */
+/* 800075FC  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l /* 0x803C98B0@l */
 /* 80007600  90 1E 05 34 */	stw r0, 0x534(r30)
 /* 80007604  38 7E 05 48 */	addi r3, r30, 0x548
-/* 80007608  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha
-/* 8000760C  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l
+/* 80007608  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha /* 0x800078DC@ha */
+/* 8000760C  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l /* 0x800078DC@l */
 /* 80007610  38 A0 00 6C */	li r5, 0x6c
 /* 80007614  38 C0 00 10 */	li r6, 0x10
 /* 80007618  48 35 A6 D1 */	bl __destroy_arr
@@ -185,8 +185,8 @@ lbl_80007644:
 lbl_80007664:
 /* 80007664  34 1E 05 2C */	addic. r0, r30, 0x52c
 /* 80007668  41 82 00 44 */	beq lbl_800076AC
-/* 8000766C  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 80007670  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 8000766C  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 80007670  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 80007674  90 1E 05 2C */	stw r0, 0x52c(r30)
 /* 80007678  34 1E 05 30 */	addic. r0, r30, 0x530
 /* 8000767C  41 82 00 24 */	beq lbl_800076A0
@@ -277,20 +277,20 @@ lbl_800077A0:
 /* 800077A0  28 1E 00 00 */	cmplwi r30, 0
 /* 800077A4  41 82 00 68 */	beq lbl_8000780C
 /* 800077A8  38 7E 01 D4 */	addi r3, r30, 0x1d4
-/* 800077AC  3C 80 80 00 */	lis r4, __dt__12Z2MultiSeObjFv@ha
-/* 800077B0  38 84 78 88 */	addi r4, r4, __dt__12Z2MultiSeObjFv@l
+/* 800077AC  3C 80 80 00 */	lis r4, __dt__12Z2MultiSeObjFv@ha /* 0x80007888@ha */
+/* 800077B0  38 84 78 88 */	addi r4, r4, __dt__12Z2MultiSeObjFv@l /* 0x80007888@l */
 /* 800077B4  38 A0 00 24 */	li r5, 0x24
 /* 800077B8  38 C0 00 0A */	li r6, 0xa
 /* 800077BC  48 35 A5 2D */	bl __destroy_arr
 /* 800077C0  38 7E 00 68 */	addi r3, r30, 0x68
-/* 800077C4  3C 80 80 00 */	lis r4, __dt__12Z2MultiSeObjFv@ha
-/* 800077C8  38 84 78 88 */	addi r4, r4, __dt__12Z2MultiSeObjFv@l
+/* 800077C4  3C 80 80 00 */	lis r4, __dt__12Z2MultiSeObjFv@ha /* 0x80007888@ha */
+/* 800077C8  38 84 78 88 */	addi r4, r4, __dt__12Z2MultiSeObjFv@l /* 0x80007888@l */
 /* 800077CC  38 A0 00 24 */	li r5, 0x24
 /* 800077D0  38 C0 00 0A */	li r6, 0xa
 /* 800077D4  48 35 A5 15 */	bl __destroy_arr
 /* 800077D8  7F C3 F3 78 */	mr r3, r30
-/* 800077DC  3C 80 80 00 */	lis r4, __dt__14JAISoundHandleFv@ha
-/* 800077E0  38 84 78 38 */	addi r4, r4, __dt__14JAISoundHandleFv@l
+/* 800077DC  3C 80 80 00 */	lis r4, __dt__14JAISoundHandleFv@ha /* 0x80007838@ha */
+/* 800077E0  38 84 78 38 */	addi r4, r4, __dt__14JAISoundHandleFv@l /* 0x80007838@l */
 /* 800077E4  38 A0 00 04 */	li r5, 4
 /* 800077E8  38 C0 00 18 */	li r6, 0x18
 /* 800077EC  48 35 A4 FD */	bl __destroy_arr

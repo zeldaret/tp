@@ -5,12 +5,12 @@ lbl_800D0CDC:
 /* 800D0CE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800D0CEC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800D0CF0  41 82 00 30 */	beq lbl_800D0D20
-/* 800D0CF4  3C 60 80 3B */	lis r3, __vt__Q29daAlink_c14hsChainShape_c@ha
-/* 800D0CF8  38 03 35 EC */	addi r0, r3, __vt__Q29daAlink_c14hsChainShape_c@l
+/* 800D0CF4  3C 60 80 3B */	lis r3, __vt__Q29daAlink_c14hsChainShape_c@ha /* 0x803B35EC@ha */
+/* 800D0CF8  38 03 35 EC */	addi r0, r3, __vt__Q29daAlink_c14hsChainShape_c@l /* 0x803B35EC@l */
 /* 800D0CFC  90 1F 00 00 */	stw r0, 0(r31)
 /* 800D0D00  41 82 00 10 */	beq lbl_800D0D10
-/* 800D0D04  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 800D0D08  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 800D0D04  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 800D0D08  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 800D0D0C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_800D0D10:
 /* 800D0D10  7C 80 07 35 */	extsh. r0, r4

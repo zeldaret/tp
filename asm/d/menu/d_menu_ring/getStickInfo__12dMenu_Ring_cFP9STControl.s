@@ -66,8 +66,8 @@ lbl_801EB70C:
 /* 801EB710  55 25 06 3E */	clrlwi r5, r9, 0x18
 /* 801EB714  7C 07 28 40 */	cmplw r7, r5
 /* 801EB718  41 82 01 8C */	beq lbl_801EB8A4
-/* 801EB71C  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 801EB720  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 801EB71C  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801EB720  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801EB724  80 04 00 30 */	lwz r0, 0x30(r4)
 /* 801EB728  54 00 06 73 */	rlwinm. r0, r0, 0, 0x19, 0x19
 /* 801EB72C  41 82 00 38 */	beq lbl_801EB764

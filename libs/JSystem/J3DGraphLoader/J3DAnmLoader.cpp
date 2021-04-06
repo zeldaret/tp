@@ -79,11 +79,11 @@ struct J3DAnmLoader {
     /* 80339800 */ ~J3DAnmLoader();
 };
 
-struct J3DAnmColorKeyData {};
-
 struct J3DAnmClusterKey {};
 
 struct J3DAnmClusterKeyData {};
+
+struct J3DAnmColorKeyData {};
 
 struct J3DAnmColorKey {
     /* 8032AB00 */ J3DAnmColorKey();
@@ -141,9 +141,6 @@ struct J3DAnmFullLoader_v15 {
 // Forward References:
 //
 
-void JSUConvertOffsetToPtr__template78(void const*, void const*);
-void JSUConvertOffsetToPtr__template79(void const*, void const*);
-
 extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
 extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
 extern "C" void __ct__20J3DAnmFullLoader_v15Fv();
@@ -189,55 +186,33 @@ setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyD
 extern "C" void __dt__20J3DAnmVisibilityFullFv();
 extern "C" s32 getKind__20J3DAnmVisibilityFullCFv();
 extern "C" void __dt__12J3DAnmLoaderFv();
-extern "C" void func_80339848();
-extern "C" void func_80339860();
+extern "C" void func_80339848(void const*, void const*);
+extern "C" void func_80339860(void const*, void const*);
 extern "C" extern char const* const J3DAnmLoader__stringBase0;
-extern "C" extern void* __vt__19J3DAnmKeyLoader_v15[5];
-extern "C" extern void* __vt__20J3DAnmFullLoader_v15[5];
-extern "C" extern void* __vt__12J3DAnmLoader[5];
-extern "C" extern void* __vt__20J3DAnmVisibilityFull[4 + 1 /* padding */];
 
 //
 // External References:
 //
 
-void* operator new(u32);
-void operator delete(void*);
-void JSUConvertOffsetToPtr__template24(void const*, void const*);
-void JSUConvertOffsetToPtr__template28(void const*, void const*);
-void JSUConvertOffsetToPtr__template30(void const*, void const*);
-void JSUConvertOffsetToPtr__template31(void const*, void const*);
-void JSUConvertOffsetToPtr__template32(void const*, void const*);
-void JSUConvertOffsetToPtr__template33(void const*, void const*);
-void JSUConvertOffsetToPtr__template34(void const*, void const*);
-void JSUConvertOffsetToPtr__template35(void const*, void const*);
-void JSUConvertOffsetToPtr__template36(void const*, void const*);
-void JSUConvertOffsetToPtr__template37(void const*, void const*);
-void JSUConvertOffsetToPtr__template38(void const*, void const*);
-void JSUConvertOffsetToPtr__template39(void const*, void const*);
-void JSUConvertOffsetToPtr__template40(void const*, void const*);
-void JSUConvertOffsetToPtr__template41(void const*, void const*);
-void JSUConvertOffsetToPtr__template42(void const*, void const*);
-
 extern "C" void OSReport();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F4260();
-extern "C" void func_802F42C0();
-extern "C" void func_8030A458();
-extern "C" void func_8030A470();
-extern "C" void func_8030A488();
-extern "C" void func_8030A4A0();
-extern "C" void func_8030A4B8();
-extern "C" void func_8030A4D0();
-extern "C" void func_8030A4E8();
-extern "C" void func_8030A500();
-extern "C" void func_8030A518();
-extern "C" void func_8030A530();
-extern "C" void func_8030A548();
-extern "C" void func_8030A560();
-extern "C" void func_8030A578();
+extern "C" void func_802F4260(void const*, void const*);
+extern "C" void func_802F42C0(void const*, void const*);
+extern "C" void func_8030A458(void const*, void const*);
+extern "C" void func_8030A470(void const*, void const*);
+extern "C" void func_8030A488(void const*, void const*);
+extern "C" void func_8030A4A0(void const*, void const*);
+extern "C" void func_8030A4B8(void const*, void const*);
+extern "C" void func_8030A4D0(void const*, void const*);
+extern "C" void func_8030A4E8(void const*, void const*);
+extern "C" void func_8030A500(void const*, void const*);
+extern "C" void func_8030A518(void const*, void const*);
+extern "C" void func_8030A530(void const*, void const*);
+extern "C" void func_8030A548(void const*, void const*);
+extern "C" void func_8030A560(void const*, void const*);
+extern "C" void func_8030A578(void const*, void const*);
 extern "C" void __ct__15J3DAnmTransformFsPfPsPf();
 extern "C" void __ct__19J3DAnmTextureSRTKeyFv();
 extern "C" void __ct__18J3DAnmVtxColorFullFv();
@@ -265,18 +240,8 @@ extern "C" extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803A2130-803A2170 003D+03 s=6 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803A2130 = "J3DAnmLoader: this is not a J3D Binary.\n";
-SECTION_DEAD char const* const stringBase_803A2159 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A216D = "\0\0";
-#pragma pop
-
-/* 803CF238-803CF24C 0014+00 s=2 e=0 z=0  None .data      __vt__19J3DAnmKeyLoader_v15 */
-SECTION_DATA void* __vt__19J3DAnmKeyLoader_v15[5] = {
+/* 803CF238-803CF24C 02C358 0014+00 2/2 0/0 0/0 .data            __vt__19J3DAnmKeyLoader_v15 */
+SECTION_DATA extern void* __vt__19J3DAnmKeyLoader_v15[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)load__19J3DAnmKeyLoader_v15FPCv,
@@ -284,8 +249,8 @@ SECTION_DATA void* __vt__19J3DAnmKeyLoader_v15[5] = {
     (void*)__dt__19J3DAnmKeyLoader_v15Fv,
 };
 
-/* 803CF24C-803CF260 0014+00 s=2 e=0 z=0  None .data      __vt__20J3DAnmFullLoader_v15 */
-SECTION_DATA void* __vt__20J3DAnmFullLoader_v15[5] = {
+/* 803CF24C-803CF260 02C36C 0014+00 2/2 0/0 0/0 .data            __vt__20J3DAnmFullLoader_v15 */
+SECTION_DATA extern void* __vt__20J3DAnmFullLoader_v15[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)load__20J3DAnmFullLoader_v15FPCv,
@@ -293,13 +258,13 @@ SECTION_DATA void* __vt__20J3DAnmFullLoader_v15[5] = {
     (void*)__dt__20J3DAnmFullLoader_v15Fv,
 };
 
-/* 803CF260-803CF274 0014+00 s=5 e=0 z=0  None .data      __vt__12J3DAnmLoader */
-SECTION_DATA void* __vt__12J3DAnmLoader[5] = {
+/* 803CF260-803CF274 02C380 0014+00 5/5 0/0 0/0 .data            __vt__12J3DAnmLoader */
+SECTION_DATA extern void* __vt__12J3DAnmLoader[5] = {
     (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)__dt__12J3DAnmLoaderFv,
 };
 
-/* 803CF274-803CF288 0010+04 s=2 e=0 z=0  None .data      __vt__20J3DAnmVisibilityFull */
-SECTION_DATA void* __vt__20J3DAnmVisibilityFull[4 + 1 /* padding */] = {
+/* 803CF274-803CF288 02C394 0010+04 2/2 0/0 0/0 .data            __vt__20J3DAnmVisibilityFull */
+SECTION_DATA extern void* __vt__20J3DAnmVisibilityFull[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20J3DAnmVisibilityFullFv,
@@ -308,104 +273,15 @@ SECTION_DATA void* __vt__20J3DAnmVisibilityFull[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 804564C0-804564C8 0004+04 s=13 e=0 z=0  None .sdata2    @889 */
+/* 804564C0-804564C8 004AC0 0004+04 13/13 0/0 0/0 .sdata2          @889 */
 SECTION_SDATA2 static f32 lit_889[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80337B40-80338134 05F4+00 s=0 e=7 z=1  None .text
+/* 80337B40-80338134 332480 05F4+00 0/0 7/7 1/1 .text
  * load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag   */
-//	80337C5C: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337C64: 802CEC4C (__nw__FUl)
-//	80337C80: 80328E40 (__ct__15J3DAnmTransformFsPfPsPf)
-//	80337C84: 803A7C70 (__vt__18J3DAnmTransformKey)
-//	80337C88: 803A7C70 (__vt__18J3DAnmTransformKey)
-//	80337CA8: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337CB8: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337CC8: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337CD0: 802CEC4C (__nw__FUl)
-//	80337CDC: 8032AB00 (__ct__14J3DAnmColorKeyFv)
-//	80337CF0: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337D00: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337D10: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337D18: 802CEC4C (__nw__FUl)
-//	80337D24: 803A7C38 (__vt__10J3DAnmBase)
-//	80337D28: 803A7C38 (__vt__10J3DAnmBase)
-//	80337D40: 804564C0 (lit_889)
-//	80337D48: 803CEDFC (__vt__13J3DAnmCluster)
-//	80337D4C: 803CEDFC (__vt__13J3DAnmCluster)
-//	80337D58: 803CEDE8 (__vt__16J3DAnmClusterKey)
-//	80337D5C: 803CEDE8 (__vt__16J3DAnmClusterKey)
-//	80337D74: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337D84: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337D94: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337D9C: 802CEC4C (__nw__FUl)
-//	80337DA8: 80329E5C (__ct__19J3DAnmTextureSRTKeyFv)
-//	80337DBC: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337DCC: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337DDC: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337DE4: 802CEC4C (__nw__FUl)
-//	80337DF0: 8032AE18 (__ct__15J3DAnmTevRegKeyFv)
-//	80337E04: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337E14: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337E24: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80337E2C: 802CEC4C (__nw__FUl)
-//	80337E38: 8032A4E0 (__ct__17J3DAnmVtxColorKeyFv)
-//	80337E4C: 80338D44 (load__19J3DAnmKeyLoader_v15FPCv)
-//	80337E5C: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80337E6C: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80337E7C: 802CEC4C (__nw__FUl)
-//	80337E98: 80328E40 (__ct__15J3DAnmTransformFsPfPsPf)
-//	80337E9C: 803CEE48 (__vt__19J3DAnmTransformFull)
-//	80337EA0: 803CEE48 (__vt__19J3DAnmTransformFull)
-//	80337EB0: 803CEE34 (__vt__27J3DAnmTransformFullWithLerp)
-//	80337EB4: 803CEE34 (__vt__27J3DAnmTransformFullWithLerp)
-//	80337EC8: 802CEC4C (__nw__FUl)
-//	80337EE4: 80328E40 (__ct__15J3DAnmTransformFsPfPsPf)
-//	80337EE8: 803CEE48 (__vt__19J3DAnmTransformFull)
-//	80337EEC: 803CEE48 (__vt__19J3DAnmTransformFull)
-//	80337F08: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	80337F18: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80337F28: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80337F30: 802CEC4C (__nw__FUl)
-//	80337F3C: 8032A93C (__ct__15J3DAnmColorFullFv)
-//	80337F50: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	80337F60: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80337F70: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80337F78: 802CEC4C (__nw__FUl)
-//	80337F84: 8032AED8 (__ct__16J3DAnmTexPatternFv)
-//	80337F98: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	80337FA8: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80337FB8: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80337FC0: 802CEC4C (__nw__FUl)
-//	80337FCC: 803A7C38 (__vt__10J3DAnmBase)
-//	80337FD0: 803A7C38 (__vt__10J3DAnmBase)
-//	80337FE8: 804564C0 (lit_889)
-//	80337FF0: 803CF274 (__vt__20J3DAnmVisibilityFull)
-//	80337FF4: 803CF274 (__vt__20J3DAnmVisibilityFull)
-//	80338018: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	80338028: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80338038: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80338040: 802CEC4C (__nw__FUl)
-//	8033804C: 803A7C38 (__vt__10J3DAnmBase)
-//	80338050: 803A7C38 (__vt__10J3DAnmBase)
-//	80338068: 804564C0 (lit_889)
-//	80338070: 803CEDFC (__vt__13J3DAnmCluster)
-//	80338074: 803CEDFC (__vt__13J3DAnmCluster)
-//	80338080: 803CEE10 (__vt__17J3DAnmClusterFull)
-//	80338084: 803CEE10 (__vt__17J3DAnmClusterFull)
-//	8033809C: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	803380AC: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	803380BC: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	803380C4: 802CEC4C (__nw__FUl)
-//	803380D0: 8032A30C (__ct__18J3DAnmVtxColorFullFv)
-//	803380E4: 80338558 (load__20J3DAnmFullLoader_v15FPCv)
-//	803380F4: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80338100: 803A2130 (J3DAnmLoader__stringBase0)
-//	80338104: 803A2130 (J3DAnmLoader__stringBase0)
-//	8033810C: 80006ABC (OSReport)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -415,47 +291,8 @@ asm void J3DAnmLoaderDataBase::load(void const* param_0, J3DAnmLoaderDataBaseFla
 }
 #pragma pop
 
-/* 80338134-80338468 0334+00 s=0 e=1 z=0  None .text
+/* 80338134-80338468 332A74 0334+00 0/0 1/1 0/0 .text
  * setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv         */
-//	80338248: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80338258: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	80338264: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80338270: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80338280: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	8033828C: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80338298: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	803382A8: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	803382B4: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	803382C0: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	803382D0: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	803382DC: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	803382E8: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	80338314: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	80338320: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	8033832C: 803384E0 (__ct__19J3DAnmKeyLoader_v15Fv)
-//	8033833C: 80338E8C (setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv)
-//	80338348: 803384FC (__dt__19J3DAnmKeyLoader_v15Fv)
-//	80338354: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80338364: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	80338370: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	8033837C: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	8033838C: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	80338398: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	803383A4: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	803383B4: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	803383C0: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	803383CC: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	803383DC: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	803383E8: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	803383F4: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	80338404: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	80338410: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	8033841C: 80338468 (__ct__20J3DAnmFullLoader_v15Fv)
-//	8033842C: 803386A0 (setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv)
-//	80338438: 80338484 (__dt__20J3DAnmFullLoader_v15Fv)
-//	80338440: 803A2130 (J3DAnmLoader__stringBase0)
-//	80338444: 803A2130 (J3DAnmLoader__stringBase0)
-//	8033844C: 80006ABC (OSReport)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,11 +302,7 @@ asm void J3DAnmLoaderDataBase::setResource(J3DAnmBase* param_0, void const* para
 }
 #pragma pop
 
-/* 80338468-80338484 001C+00 s=2 e=0 z=0  None .text      __ct__20J3DAnmFullLoader_v15Fv */
-//	80338468: 803CF260 (__vt__12J3DAnmLoader)
-//	8033846C: 803CF260 (__vt__12J3DAnmLoader)
-//	80338474: 803CF24C (__vt__20J3DAnmFullLoader_v15)
-//	80338478: 803CF24C (__vt__20J3DAnmFullLoader_v15)
+/* 80338468-80338484 332DA8 001C+00 2/2 0/0 0/0 .text            __ct__20J3DAnmFullLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -479,12 +312,7 @@ asm J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() {
 }
 #pragma pop
 
-/* 80338484-803384E0 005C+00 s=3 e=0 z=0  None .text      __dt__20J3DAnmFullLoader_v15Fv */
-//	8033849C: 803CF24C (__vt__20J3DAnmFullLoader_v15)
-//	803384A0: 803CF24C (__vt__20J3DAnmFullLoader_v15)
-//	803384AC: 803CF260 (__vt__12J3DAnmLoader)
-//	803384B0: 803CF260 (__vt__12J3DAnmLoader)
-//	803384C4: 802CED3C (__dl__FPv)
+/* 80338484-803384E0 332DC4 005C+00 3/2 0/0 0/0 .text            __dt__20J3DAnmFullLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -494,11 +322,7 @@ asm J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() {
 }
 #pragma pop
 
-/* 803384E0-803384FC 001C+00 s=2 e=0 z=0  None .text      __ct__19J3DAnmKeyLoader_v15Fv */
-//	803384E0: 803CF260 (__vt__12J3DAnmLoader)
-//	803384E4: 803CF260 (__vt__12J3DAnmLoader)
-//	803384EC: 803CF238 (__vt__19J3DAnmKeyLoader_v15)
-//	803384F0: 803CF238 (__vt__19J3DAnmKeyLoader_v15)
+/* 803384E0-803384FC 332E20 001C+00 2/2 0/0 0/0 .text            __ct__19J3DAnmKeyLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -508,12 +332,7 @@ asm J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() {
 }
 #pragma pop
 
-/* 803384FC-80338558 005C+00 s=3 e=0 z=0  None .text      __dt__19J3DAnmKeyLoader_v15Fv */
-//	80338514: 803CF238 (__vt__19J3DAnmKeyLoader_v15)
-//	80338518: 803CF238 (__vt__19J3DAnmKeyLoader_v15)
-//	80338524: 803CF260 (__vt__12J3DAnmLoader)
-//	80338528: 803CF260 (__vt__12J3DAnmLoader)
-//	8033853C: 802CED3C (__dl__FPv)
+/* 803384FC-80338558 332E3C 005C+00 3/2 0/0 0/0 .text            __dt__19J3DAnmKeyLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -523,18 +342,7 @@ asm J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {
 }
 #pragma pop
 
-/* 80338558-803386A0 0148+00 s=2 e=0 z=0  None .text      load__20J3DAnmFullLoader_v15FPCv */
-//	80338568: 803621D4 (_savegpr_27)
-//	80338604: 80338800 (readAnmTransform__20J3DAnmFullLoader_v15FPC23J3DAnmTransformFullData)
-//	80338614: 803388BC (readAnmColor__20J3DAnmFullLoader_v15FPC19J3DAnmColorFullData)
-//	80338624: 803389B0 (readAnmTexPattern__20J3DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData)
-//	80338634: 80338B20 (readAnmCluster__20J3DAnmFullLoader_v15FPC21J3DAnmClusterFullData)
-//	80338644: 80338A7C (readAnmVisibility__20J3DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData)
-//	80338654: 80338BB4 (readAnmVtxColor__20J3DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData)
-//	8033865C: 803A2130 (J3DAnmLoader__stringBase0)
-//	80338660: 803A2130 (J3DAnmLoader__stringBase0)
-//	8033866C: 80006ABC (OSReport)
-//	8033868C: 80362220 (_restgpr_27)
+/* 80338558-803386A0 332E98 0148+00 2/1 0/0 0/0 .text            load__20J3DAnmFullLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -544,23 +352,8 @@ asm void J3DAnmFullLoader_v15::load(void const* param_0) {
 }
 #pragma pop
 
-/* 803386A0-80338800 0160+00 s=2 e=0 z=0  None .text
+/* 803386A0-80338800 332FE0 0160+00 2/1 0/0 0/0 .text
  * setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv         */
-//	803386B0: 803621D0 (_savegpr_26)
-//	80338754: 80338828
-//(setAnmTransform__20J3DAnmFullLoader_v15FP19J3DAnmTransformFullPC23J3DAnmTransformFullData)
-//	80338768: 803388E4
-//(setAnmColor__20J3DAnmFullLoader_v15FP15J3DAnmColorFullPC19J3DAnmColorFullData) 	8033877C:
-//803389D8
-//(setAnmTexPattern__20J3DAnmFullLoader_v15FP16J3DAnmTexPatternPC24J3DAnmTexPatternFullData)
-//	80338790: 80338B48
-//(setAnmCluster__20J3DAnmFullLoader_v15FP17J3DAnmClusterFullPC21J3DAnmClusterFullData) 803387A4:
-// 80338AA4
-//(setAnmVisibility__20J3DAnmFullLoader_v15FP20J3DAnmVisibilityFullPC24J3DAnmVisibilityFullData)
-//	803387B8: 80338BDC
-//(setAnmVtxColor__20J3DAnmFullLoader_v15FP18J3DAnmVtxColorFullPC22J3DAnmVtxColorFullData) 803387C0:
-// 803A2130 (J3DAnmLoader__stringBase0) 	803387C4: 803A2130 (J3DAnmLoader__stringBase0) 803387D0:
-// 80006ABC (OSReport) 	803387EC: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -570,10 +363,8 @@ asm void J3DAnmFullLoader_v15::setResource(J3DAnmBase* param_0, void const* para
 }
 #pragma pop
 
-/* 80338800-80338828 0028+00 s=1 e=0 z=0  None .text
+/* 80338800-80338828 333140 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__20J3DAnmFullLoader_v15FPC23J3DAnmTransformFullData */
-//	80338814: 80338828
-//(setAnmTransform__20J3DAnmFullLoader_v15FP19J3DAnmTransformFullPC23J3DAnmTransformFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -583,13 +374,8 @@ asm void J3DAnmFullLoader_v15::readAnmTransform(J3DAnmTransformFullData const* p
 }
 #pragma pop
 
-/* 80338828-803388BC 0094+00 s=2 e=0 z=0  None .text
+/* 80338828-803388BC 333168 0094+00 2/2 0/0 0/0 .text
  * setAnmTransform__20J3DAnmFullLoader_v15FP19J3DAnmTransformFullPC23J3DAnmTransformFullData */
-//	8033885C: 804564C0 (lit_889)
-//	8033886C: 8030A4D0 (func_8030A4D0)
-//	8033887C: 8030A560 (func_8030A560)
-//	8033888C: 8030A548 (func_8030A548)
-//	8033889C: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -600,10 +386,8 @@ asm void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull* param_0,
 }
 #pragma pop
 
-/* 803388BC-803388E4 0028+00 s=1 e=0 z=0  None .text
+/* 803388BC-803388E4 3331FC 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__20J3DAnmFullLoader_v15FPC19J3DAnmColorFullData */
-//	803388D0: 803388E4
-//(setAnmColor__20J3DAnmFullLoader_v15FP15J3DAnmColorFullPC19J3DAnmColorFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -613,17 +397,8 @@ asm void J3DAnmFullLoader_v15::readAnmColor(J3DAnmColorFullData const* param_0) 
 }
 #pragma pop
 
-/* 803388E4-803389B0 00CC+00 s=2 e=0 z=0  None .text
+/* 803388E4-803389B0 333224 00CC+00 2/2 0/0 0/0 .text
  * setAnmColor__20J3DAnmFullLoader_v15FP15J3DAnmColorFullPC19J3DAnmColorFullData */
-//	80338910: 804564C0 (lit_889)
-//	80338928: 8030A4B8 (func_8030A4B8)
-//	80338938: 802F4260 (func_802F4260)
-//	80338948: 802F4260 (func_802F4260)
-//	80338958: 802F4260 (func_802F4260)
-//	80338968: 802F4260 (func_802F4260)
-//	80338978: 802F42C0 (func_802F42C0)
-//	80338988: 8030A530 (func_8030A530)
-//	80338994: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -634,10 +409,8 @@ asm void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull* param_0,
 }
 #pragma pop
 
-/* 803389B0-803389D8 0028+00 s=1 e=0 z=0  None .text
+/* 803389B0-803389D8 3332F0 0028+00 1/1 0/0 0/0 .text
  * readAnmTexPattern__20J3DAnmFullLoader_v15FPC24J3DAnmTexPatternFullData */
-//	803389C4: 803389D8
-//(setAnmTexPattern__20J3DAnmFullLoader_v15FP16J3DAnmTexPatternPC24J3DAnmTexPatternFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -647,14 +420,8 @@ asm void J3DAnmFullLoader_v15::readAnmTexPattern(J3DAnmTexPatternFullData const*
 }
 #pragma pop
 
-/* 803389D8-80338A7C 00A4+00 s=2 e=0 z=0  None .text
+/* 803389D8-80338A7C 333318 00A4+00 2/2 0/0 0/0 .text
  * setAnmTexPattern__20J3DAnmFullLoader_v15FP16J3DAnmTexPatternPC24J3DAnmTexPatternFullData */
-//	80338A04: 804564C0 (lit_889)
-//	80338A24: 8030A4A0 (func_8030A4A0)
-//	80338A34: 802F42C0 (func_802F42C0)
-//	80338A44: 802F42C0 (func_802F42C0)
-//	80338A54: 8030A530 (func_8030A530)
-//	80338A60: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -665,10 +432,8 @@ asm void J3DAnmFullLoader_v15::setAnmTexPattern(J3DAnmTexPattern* param_0,
 }
 #pragma pop
 
-/* 80338A7C-80338AA4 0028+00 s=1 e=0 z=0  None .text
+/* 80338A7C-80338AA4 3333BC 0028+00 1/1 0/0 0/0 .text
  * readAnmVisibility__20J3DAnmFullLoader_v15FPC24J3DAnmVisibilityFullData */
-//	80338A90: 80338AA4
-//(setAnmVisibility__20J3DAnmFullLoader_v15FP20J3DAnmVisibilityFullPC24J3DAnmVisibilityFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -678,11 +443,8 @@ asm void J3DAnmFullLoader_v15::readAnmVisibility(J3DAnmVisibilityFullData const*
 }
 #pragma pop
 
-/* 80338AA4-80338B20 007C+00 s=2 e=0 z=0  None .text
+/* 80338AA4-80338B20 3333E4 007C+00 2/2 0/0 0/0 .text
  * setAnmVisibility__20J3DAnmFullLoader_v15FP20J3DAnmVisibilityFullPC24J3DAnmVisibilityFullData */
-//	80338AD0: 804564C0 (lit_889)
-//	80338AF0: 8030A458 (func_8030A458)
-//	80338B00: 802F4260 (func_802F4260)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -693,10 +455,8 @@ asm void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull* param_0,
 }
 #pragma pop
 
-/* 80338B20-80338B48 0028+00 s=1 e=0 z=0  None .text
+/* 80338B20-80338B48 333460 0028+00 1/1 0/0 0/0 .text
  * readAnmCluster__20J3DAnmFullLoader_v15FPC21J3DAnmClusterFullData */
-//	80338B34: 80338B48
-//(setAnmCluster__20J3DAnmFullLoader_v15FP17J3DAnmClusterFullPC21J3DAnmClusterFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -706,11 +466,8 @@ asm void J3DAnmFullLoader_v15::readAnmCluster(J3DAnmClusterFullData const* param
 }
 #pragma pop
 
-/* 80338B48-80338BB4 006C+00 s=2 e=0 z=0  None .text
+/* 80338B48-80338BB4 333488 006C+00 2/2 0/0 0/0 .text
  * setAnmCluster__20J3DAnmFullLoader_v15FP17J3DAnmClusterFullPC21J3DAnmClusterFullData */
-//	80338B74: 804564C0 (lit_889)
-//	80338B84: 80339860 (func_80339860)
-//	80338B94: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -721,10 +478,8 @@ asm void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull* param_0,
 }
 #pragma pop
 
-/* 80338BB4-80338BDC 0028+00 s=1 e=0 z=0  None .text
+/* 80338BB4-80338BDC 3334F4 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__20J3DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData */
-//	80338BC8: 80338BDC
-//(setAnmVtxColor__20J3DAnmFullLoader_v15FP18J3DAnmVtxColorFullPC22J3DAnmVtxColorFullData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -734,21 +489,8 @@ asm void J3DAnmFullLoader_v15::readAnmVtxColor(J3DAnmVtxColorFullData const* par
 }
 #pragma pop
 
-/* 80338BDC-80338D44 0168+00 s=2 e=0 z=0  None .text
+/* 80338BDC-80338D44 33351C 0168+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__20J3DAnmFullLoader_v15FP18J3DAnmVtxColorFullPC22J3DAnmVtxColorFullData */
-//	80338BEC: 803621DC (_savegpr_29)
-//	80338C08: 804564C0 (lit_889)
-//	80338C28: 8030A4B8 (func_8030A4B8)
-//	80338C38: 8030A4B8 (func_8030A4B8)
-//	80338C48: 8030A4E8 (func_8030A4E8)
-//	80338C58: 8030A4E8 (func_8030A4E8)
-//	80338C68: 802F42C0 (func_802F42C0)
-//	80338C78: 802F42C0 (func_802F42C0)
-//	80338CF4: 802F4260 (func_802F4260)
-//	80338D04: 802F4260 (func_802F4260)
-//	80338D14: 802F4260 (func_802F4260)
-//	80338D24: 802F4260 (func_802F4260)
-//	80338D30: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -759,18 +501,7 @@ asm void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* param_0,
 }
 #pragma pop
 
-/* 80338D44-80338E8C 0148+00 s=2 e=0 z=0  None .text      load__19J3DAnmKeyLoader_v15FPCv */
-//	80338D54: 803621D4 (_savegpr_27)
-//	80338DF0: 80338FEC (readAnmTransform__19J3DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData)
-//	80338E00: 803392B0 (readAnmColor__19J3DAnmKeyLoader_v15FPC18J3DAnmColorKeyData)
-//	80338E10: 803393C4 (readAnmCluster__19J3DAnmKeyLoader_v15FPC20J3DAnmClusterKeyData)
-//	80338E20: 803390B0 (readAnmTextureSRT__19J3DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData)
-//	80338E30: 80339458 (readAnmTevReg__19J3DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData)
-//	80338E40: 8033960C (readAnmVtxColor__19J3DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData)
-//	80338E48: 803A2130 (J3DAnmLoader__stringBase0)
-//	80338E4C: 803A2130 (J3DAnmLoader__stringBase0)
-//	80338E58: 80006ABC (OSReport)
-//	80338E78: 80362220 (_restgpr_27)
+/* 80338D44-80338E8C 333684 0148+00 2/1 0/0 0/0 .text            load__19J3DAnmKeyLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -780,20 +511,8 @@ asm void J3DAnmKeyLoader_v15::load(void const* param_0) {
 }
 #pragma pop
 
-/* 80338E8C-80338FEC 0160+00 s=2 e=0 z=0  None .text
+/* 80338E8C-80338FEC 3337CC 0160+00 2/1 0/0 0/0 .text
  * setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv          */
-//	80338E9C: 803621D0 (_savegpr_26)
-//	80338F40: 80339014
-//(setAnmTransform__19J3DAnmKeyLoader_v15FP18J3DAnmTransformKeyPC22J3DAnmTransformKeyData) 80338F54:
-// 803392D8 (setAnmColor__19J3DAnmKeyLoader_v15FP14J3DAnmColorKeyPC18J3DAnmColorKeyData) 80338F68:
-// 803393EC (setAnmCluster__19J3DAnmKeyLoader_v15FP16J3DAnmClusterKeyPC20J3DAnmClusterKeyData)
-//	80338F7C: 803390D8
-//(setAnmTextureSRT__19J3DAnmKeyLoader_v15FP19J3DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData)
-//	80338F90: 80339480
-//(setAnmTevReg__19J3DAnmKeyLoader_v15FP15J3DAnmTevRegKeyPC19J3DAnmTevRegKeyData) 	80338FA4:
-//80339634 (setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData)
-//80338FAC: 803A2130 (J3DAnmLoader__stringBase0) 	80338FB0: 803A2130 (J3DAnmLoader__stringBase0)
-// 80338FBC: 80006ABC (OSReport) 	80338FD8: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -803,10 +522,8 @@ asm void J3DAnmKeyLoader_v15::setResource(J3DAnmBase* param_0, void const* param
 }
 #pragma pop
 
-/* 80338FEC-80339014 0028+00 s=1 e=0 z=0  None .text
+/* 80338FEC-80339014 33392C 0028+00 1/1 0/0 0/0 .text
  * readAnmTransform__19J3DAnmKeyLoader_v15FPC22J3DAnmTransformKeyData */
-//	80339000: 80339014
-//(setAnmTransform__19J3DAnmKeyLoader_v15FP18J3DAnmTransformKeyPC22J3DAnmTransformKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -816,13 +533,8 @@ asm void J3DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* par
 }
 #pragma pop
 
-/* 80339014-803390B0 009C+00 s=2 e=0 z=0  None .text
+/* 80339014-803390B0 333954 009C+00 2/2 0/0 0/0 .text
  * setAnmTransform__19J3DAnmKeyLoader_v15FP18J3DAnmTransformKeyPC22J3DAnmTransformKeyData */
-//	80339050: 804564C0 (lit_889)
-//	80339060: 8030A578 (func_8030A578)
-//	80339070: 8030A560 (func_8030A560)
-//	80339080: 8030A548 (func_8030A548)
-//	80339090: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -833,10 +545,8 @@ asm void J3DAnmKeyLoader_v15::setAnmTransform(J3DAnmTransformKey* param_0,
 }
 #pragma pop
 
-/* 803390B0-803390D8 0028+00 s=1 e=0 z=0  None .text
+/* 803390B0-803390D8 3339F0 0028+00 1/1 0/0 0/0 .text
  * readAnmTextureSRT__19J3DAnmKeyLoader_v15FPC23J3DAnmTextureSRTKeyData */
-//	803390C4: 803390D8
-//(setAnmTextureSRT__19J3DAnmKeyLoader_v15FP19J3DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -846,27 +556,8 @@ asm void J3DAnmKeyLoader_v15::readAnmTextureSRT(J3DAnmTextureSRTKeyData const* p
 }
 #pragma pop
 
-/* 803390D8-803392B0 01D8+00 s=2 e=0 z=0  None .text
+/* 803390D8-803392B0 333A18 01D8+00 2/2 0/0 0/0 .text
  * setAnmTextureSRT__19J3DAnmKeyLoader_v15FP19J3DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData */
-//	80339114: 804564C0 (lit_889)
-//	80339140: 8030A578 (func_8030A578)
-//	80339150: 802F42C0 (func_802F42C0)
-//	80339160: 8030A530 (func_8030A530)
-//	8033916C: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	80339178: 802F4260 (func_802F4260)
-//	80339188: 8030A518 (func_8030A518)
-//	80339198: 8030A560 (func_8030A560)
-//	803391A8: 8030A548 (func_8030A548)
-//	803391B8: 8030A560 (func_8030A560)
-//	803391D0: 8030A530 (func_8030A530)
-//	803391DC: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	80339208: 8030A578 (func_8030A578)
-//	80339218: 802F42C0 (func_802F42C0)
-//	80339228: 802F4260 (func_802F4260)
-//	80339238: 8030A518 (func_8030A518)
-//	80339248: 8030A560 (func_8030A560)
-//	80339258: 8030A548 (func_8030A548)
-//	80339268: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -877,9 +568,8 @@ asm void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* param_0,
 }
 #pragma pop
 
-/* 803392B0-803392D8 0028+00 s=1 e=0 z=0  None .text
+/* 803392B0-803392D8 333BF0 0028+00 1/1 0/0 0/0 .text
  * readAnmColor__19J3DAnmKeyLoader_v15FPC18J3DAnmColorKeyData   */
-//	803392C4: 803392D8 (setAnmColor__19J3DAnmKeyLoader_v15FP14J3DAnmColorKeyPC18J3DAnmColorKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -889,17 +579,8 @@ asm void J3DAnmKeyLoader_v15::readAnmColor(J3DAnmColorKeyData const* param_0) {
 }
 #pragma pop
 
-/* 803392D8-803393C4 00EC+00 s=2 e=0 z=0  None .text
+/* 803392D8-803393C4 333C18 00EC+00 2/2 0/0 0/0 .text
  * setAnmColor__19J3DAnmKeyLoader_v15FP14J3DAnmColorKeyPC18J3DAnmColorKeyData */
-//	80339304: 804564C0 (lit_889)
-//	8033933C: 8030A500 (func_8030A500)
-//	8033934C: 8030A548 (func_8030A548)
-//	8033935C: 8030A548 (func_8030A548)
-//	8033936C: 8030A548 (func_8030A548)
-//	8033937C: 8030A548 (func_8030A548)
-//	8033938C: 802F42C0 (func_802F42C0)
-//	8033939C: 8030A530 (func_8030A530)
-//	803393A8: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -910,10 +591,8 @@ asm void J3DAnmKeyLoader_v15::setAnmColor(J3DAnmColorKey* param_0,
 }
 #pragma pop
 
-/* 803393C4-803393EC 0028+00 s=1 e=0 z=0  None .text
+/* 803393C4-803393EC 333D04 0028+00 1/1 0/0 0/0 .text
  * readAnmCluster__19J3DAnmKeyLoader_v15FPC20J3DAnmClusterKeyData */
-//	803393D8: 803393EC
-//(setAnmCluster__19J3DAnmKeyLoader_v15FP16J3DAnmClusterKeyPC20J3DAnmClusterKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -923,11 +602,8 @@ asm void J3DAnmKeyLoader_v15::readAnmCluster(J3DAnmClusterKeyData const* param_0
 }
 #pragma pop
 
-/* 803393EC-80339458 006C+00 s=2 e=0 z=0  None .text
+/* 803393EC-80339458 333D2C 006C+00 2/2 0/0 0/0 .text
  * setAnmCluster__19J3DAnmKeyLoader_v15FP16J3DAnmClusterKeyPC20J3DAnmClusterKeyData */
-//	80339418: 804564C0 (lit_889)
-//	80339428: 80339848 (func_80339848)
-//	80339438: 8030A560 (func_8030A560)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -938,10 +614,8 @@ asm void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey* param_0,
 }
 #pragma pop
 
-/* 80339458-80339480 0028+00 s=1 e=0 z=0  None .text
+/* 80339458-80339480 333D98 0028+00 1/1 0/0 0/0 .text
  * readAnmTevReg__19J3DAnmKeyLoader_v15FPC19J3DAnmTevRegKeyData */
-//	8033946C: 80339480
-//(setAnmTevReg__19J3DAnmKeyLoader_v15FP15J3DAnmTevRegKeyPC19J3DAnmTevRegKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -951,25 +625,8 @@ asm void J3DAnmKeyLoader_v15::readAnmTevReg(J3DAnmTevRegKeyData const* param_0) 
 }
 #pragma pop
 
-/* 80339480-8033960C 018C+00 s=2 e=0 z=0  None .text
+/* 80339480-8033960C 333DC0 018C+00 2/2 0/0 0/0 .text
  * setAnmTevReg__19J3DAnmKeyLoader_v15FP15J3DAnmTevRegKeyPC19J3DAnmTevRegKeyData */
-//	803394AC: 804564C0 (lit_889)
-//	803394C4: 8030A488 (func_8030A488)
-//	803394D4: 802F42C0 (func_802F42C0)
-//	803394E4: 8030A530 (func_8030A530)
-//	803394F0: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	80339504: 8030A470 (func_8030A470)
-//	80339514: 802F42C0 (func_802F42C0)
-//	80339524: 8030A530 (func_8030A530)
-//	80339530: 802DEA1C (setResource__10JUTNameTabFPC7ResNTAB)
-//	8033955C: 8030A548 (func_8030A548)
-//	8033956C: 8030A548 (func_8030A548)
-//	8033957C: 8030A548 (func_8030A548)
-//	8033958C: 8030A548 (func_8030A548)
-//	803395BC: 8030A548 (func_8030A548)
-//	803395CC: 8030A548 (func_8030A548)
-//	803395DC: 8030A548 (func_8030A548)
-//	803395EC: 8030A548 (func_8030A548)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -980,10 +637,8 @@ asm void J3DAnmKeyLoader_v15::setAnmTevReg(J3DAnmTevRegKey* param_0,
 }
 #pragma pop
 
-/* 8033960C-80339634 0028+00 s=1 e=0 z=0  None .text
+/* 8033960C-80339634 333F4C 0028+00 1/1 0/0 0/0 .text
  * readAnmVtxColor__19J3DAnmKeyLoader_v15FPC21J3DAnmVtxColorKeyData */
-//	80339620: 80339634
-//(setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -993,21 +648,8 @@ asm void J3DAnmKeyLoader_v15::readAnmVtxColor(J3DAnmVtxColorKeyData const* param
 }
 #pragma pop
 
-/* 80339634-8033979C 0168+00 s=2 e=0 z=0  None .text
+/* 80339634-8033979C 333F74 0168+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData */
-//	80339644: 803621DC (_savegpr_29)
-//	80339660: 804564C0 (lit_889)
-//	80339680: 8030A500 (func_8030A500)
-//	80339690: 8030A500 (func_8030A500)
-//	803396A0: 8030A4E8 (func_8030A4E8)
-//	803396B0: 8030A4E8 (func_8030A4E8)
-//	803396C0: 802F42C0 (func_802F42C0)
-//	803396D0: 802F42C0 (func_802F42C0)
-//	8033974C: 8030A548 (func_8030A548)
-//	8033975C: 8030A548 (func_8030A548)
-//	8033976C: 8030A548 (func_8030A548)
-//	8033977C: 8030A548 (func_8030A548)
-//	80339788: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1018,12 +660,7 @@ asm void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey* param_0,
 }
 #pragma pop
 
-/* 8033979C-803397F8 005C+00 s=1 e=0 z=0  None .text      __dt__20J3DAnmVisibilityFullFv */
-//	803397B4: 803CF274 (__vt__20J3DAnmVisibilityFull)
-//	803397B8: 803CF274 (__vt__20J3DAnmVisibilityFull)
-//	803397C4: 803A7C38 (__vt__10J3DAnmBase)
-//	803397C8: 803A7C38 (__vt__10J3DAnmBase)
-//	803397DC: 802CED3C (__dl__FPv)
+/* 8033979C-803397F8 3340DC 005C+00 1/0 0/0 0/0 .text            __dt__20J3DAnmVisibilityFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1033,15 +670,13 @@ asm J3DAnmVisibilityFull::~J3DAnmVisibilityFull() {
 }
 #pragma pop
 
-/* 803397F8-80339800 0008+00 s=1 e=0 z=0  None .text      getKind__20J3DAnmVisibilityFullCFv */
+/* 803397F8-80339800 334138 0008+00 1/0 0/0 0/0 .text            getKind__20J3DAnmVisibilityFullCFv
+ */
 s32 J3DAnmVisibilityFull::getKind() const {
     return 6;
 }
 
-/* 80339800-80339848 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DAnmLoaderFv */
-//	80339818: 803CF260 (__vt__12J3DAnmLoader)
-//	8033981C: 803CF260 (__vt__12J3DAnmLoader)
-//	8033982C: 802CED3C (__dl__FPv)
+/* 80339800-80339848 334140 0048+00 1/0 0/0 0/0 .text            __dt__12J3DAnmLoaderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1051,24 +686,35 @@ asm J3DAnmLoader::~J3DAnmLoader() {
 }
 #pragma pop
 
-/* 80339848-80339860 0018+00 s=1 e=0 z=0  None .text
+/* 80339848-80339860 334188 0018+00 1/1 0/0 0/0 .text
  * JSUConvertOffsetToPtr<21J3DAnmClusterKeyTable>__FPCvPCv      */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template78(void const* param_0, void const* param_1) {
+extern "C" asm void func_80339848(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/func_80339848.s"
 }
 #pragma pop
 
-/* 80339860-80339878 0018+00 s=1 e=0 z=0  None .text
+/* 80339860-80339878 3341A0 0018+00 1/1 0/0 0/0 .text
  * JSUConvertOffsetToPtr<22J3DAnmClusterFullTable>__FPCvPCv     */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUConvertOffsetToPtr__template79(void const* param_0, void const* param_1) {
+extern "C" asm void func_80339860(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/func_80339860.s"
 }
+#pragma pop
+
+/* 803A2130-803A2170 02E790 003D+03 6/6 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803A2130 =
+    "J3DAnmLoader: this is not a J3D Binary.\n";
+SECTION_DEAD static char const* const stringBase_803A2159 = "Unknown data block\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A216D = "\0\0";
 #pragma pop

@@ -1,7 +1,7 @@
 lbl_800ECF5C:
 /* 800ECF5C  38 A0 00 00 */	li r5, 0
-/* 800ECF60  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800ECF64  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800ECF60  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800ECF64  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800ECF68  80 04 5F 18 */	lwz r0, 0x5f18(r4)
 /* 800ECF6C  54 00 04 A5 */	rlwinm. r0, r0, 0, 0x12, 0x12
 /* 800ECF70  40 82 00 20 */	bne lbl_800ECF90

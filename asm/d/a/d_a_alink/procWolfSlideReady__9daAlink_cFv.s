@@ -15,15 +15,15 @@ lbl_8012FD2C:
 /* 8012FD60  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8012FD64  EC 02 00 28 */	fsubs f0, f2, f0
 /* 8012FD68  EC 23 00 32 */	fmuls f1, f3, f0
-/* 8012FD6C  3C 80 80 42 */	lis r4, l_wolfBaseAnime@ha
-/* 8012FD70  C4 04 56 1C */	lfsu f0, l_wolfBaseAnime@l(r4)
+/* 8012FD6C  3C 80 80 42 */	lis r4, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8012FD70  C4 04 56 1C */	lfsu f0, l_wolfBaseAnime@l(r4)  /* 0x8042561C@l */
 /* 8012FD74  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8012FD78  D0 03 35 88 */	stfs f0, 0x3588(r3)
 /* 8012FD7C  C0 04 00 08 */	lfs f0, 8(r4)
 /* 8012FD80  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8012FD84  D0 03 35 90 */	stfs f0, 0x3590(r3)
-/* 8012FD88  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 8012FD8C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 8012FD88  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8012FD8C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8012FD90  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8012FD94  38 81 00 08 */	addi r4, r1, 8
 /* 8012FD98  4B F8 22 41 */	bl getSlidePolygon__9daAlink_cFP8cM3dGPla
@@ -79,8 +79,8 @@ lbl_8012FE38:
 /* 8012FE50  54 00 04 5E */	rlwinm r0, r0, 0, 0x11, 0xf
 /* 8012FE54  90 1E 31 A0 */	stw r0, 0x31a0(r30)
 lbl_8012FE58:
-/* 8012FE58  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8012FE5C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8012FE58  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8012FE5C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8012FE60  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8012FE64  38 60 00 01 */	li r3, 1
 /* 8012FE68  83 E1 00 2C */	lwz r31, 0x2c(r1)

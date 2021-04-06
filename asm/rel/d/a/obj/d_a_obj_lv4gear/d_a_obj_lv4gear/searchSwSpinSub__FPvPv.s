@@ -7,7 +7,7 @@ lbl_80C67F38:
 /* 80C67F4C  7C 9E 23 78 */	mr r30, r4
 /* 80C67F50  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C67F54  41 82 00 44 */	beq lbl_80C67F98
-/* 80C67F58  4B 3B 0D 88 */	b fopAc_IsActor__FPv
+/* 80C67F58  4B 3B 0D 89 */	bl fopAc_IsActor__FPv
 /* 80C67F5C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C67F60  41 82 00 38 */	beq lbl_80C67F98
 /* 80C67F64  A8 1F 00 0E */	lha r0, 0xe(r31)

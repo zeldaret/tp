@@ -3,17 +3,15 @@
 #
 
 M90_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor.plf
+M90_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor.lcf
+M90_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor.map
 
 M90_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bkdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_bkdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bkdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bkdoor/d_a_obj_bkdoor.cpp \
 
 M90_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor/d_a_obj_bkdoor.o \
 
 M90_LIBS := \
@@ -29,15 +27,21 @@ M90_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map90.map\
+	-m _prolog \
+	-lcf $(M90_LDSCRIPT) \
+	-unused -map $(M90_MAP) \
+	-w off \
 
 $(M90_TARGET): $(M90_O_FILES) $(M90_LIBS)
+	@echo [ 90] creating $(M90_TARGET)
 	@echo $(M90_LIBS) $(M90_O_FILES) > build/M90_ofiles
-	$(LD) -opt_partial $(M90_LDFLAGS) -o $(M90_TARGET) @build/M90_ofiles
+	@python3 tools/lcf.py rel 90 --output $(M90_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M90_LDFLAGS) -o $(M90_TARGET) @build/M90_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bkdoor/%.o: rel/d/a/obj/d_a_obj_bkdoor/%.cpp
+	@echo [ 90] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M90_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M90_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -8,13 +8,13 @@ lbl_806A816C:
 /* 806A8184  2C 00 00 00 */	cmpwi r0, 0
 /* 806A8188  40 82 00 A8 */	bne lbl_806A8230
 /* 806A818C  38 7F 06 98 */	addi r3, r31, 0x698
-/* 806A8190  4B 9D B6 A0 */	b Move__10dCcD_GSttsFv
+/* 806A8190  4B 9D B6 A1 */	bl Move__10dCcD_GSttsFv
 /* 806A8194  38 7F 06 B8 */	addi r3, r31, 0x6b8
-/* 806A8198  4B 9D C2 C8 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 806A8198  4B 9D C2 C9 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 806A819C  28 03 00 00 */	cmplwi r3, 0
 /* 806A81A0  41 82 00 90 */	beq lbl_806A8230
 /* 806A81A4  38 7F 06 B8 */	addi r3, r31, 0x6b8
-/* 806A81A8  4B 9D C3 50 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 806A81A8  4B 9D C3 51 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 806A81AC  90 7F 07 F4 */	stw r3, 0x7f4(r31)
 /* 806A81B0  80 7F 07 F4 */	lwz r3, 0x7f4(r31)
 /* 806A81B4  80 03 00 10 */	lwz r0, 0x10(r3)
@@ -36,7 +36,7 @@ lbl_806A81E8:
 /* 806A81E8  80 7F 07 F4 */	lwz r3, 0x7f4(r31)
 /* 806A81EC  88 63 00 74 */	lbz r3, 0x74(r3)
 /* 806A81F0  38 80 00 00 */	li r4, 0
-/* 806A81F4  4B 9D C3 BC */	b getHitSeID__12dCcD_GObjInfFUci
+/* 806A81F4  4B 9D C3 BD */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 806A81F8  7C 64 1B 78 */	mr r4, r3
 /* 806A81FC  38 7F 05 D8 */	addi r3, r31, 0x5d8
 /* 806A8200  38 A0 00 2D */	li r5, 0x2d
@@ -45,7 +45,7 @@ lbl_806A81E8:
 /* 806A820C  7D 89 03 A6 */	mtctr r12
 /* 806A8210  4E 80 04 21 */	bctrl 
 /* 806A8214  38 7F 06 B8 */	addi r3, r31, 0x6b8
-/* 806A8218  4B 9D C2 E0 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 806A8218  4B 9D C2 E1 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 806A821C  38 00 00 02 */	li r0, 2
 /* 806A8220  98 1F 05 AC */	stb r0, 0x5ac(r31)
 /* 806A8224  38 00 00 00 */	li r0, 0

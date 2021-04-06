@@ -1,6 +1,6 @@
 lbl_8032423C:
-/* 8032423C  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha
-/* 80324240  38 A3 6E 60 */	addi r5, r3, j3dAlphaCmpTable@l
+/* 8032423C  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha /* 0x80436E60@ha */
+/* 80324240  38 A3 6E 60 */	addi r5, r3, j3dAlphaCmpTable@l /* 0x80436E60@l */
 /* 80324244  39 00 00 00 */	li r8, 0
 /* 80324248  38 60 00 00 */	li r3, 0
 lbl_8032424C:

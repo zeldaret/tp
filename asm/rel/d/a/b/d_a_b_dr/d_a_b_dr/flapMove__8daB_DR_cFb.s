@@ -5,13 +5,13 @@ lbl_805BCD7C:
 /* 805BCD88  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 805BCD8C  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 805BCD90  39 61 00 20 */	addi r11, r1, 0x20
-/* 805BCD94  4B DA 54 48 */	b _savegpr_29
+/* 805BCD94  4B DA 54 49 */	bl _savegpr_29
 /* 805BCD98  7C 7D 1B 78 */	mr r29, r3
 /* 805BCD9C  7C 9E 23 78 */	mr r30, r4
-/* 805BCDA0  3C 60 80 5C */	lis r3, lit_3800@ha
-/* 805BCDA4  3B E3 6C 74 */	addi r31, r3, lit_3800@l
-/* 805BCDA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805BCDAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805BCDA0  3C 60 80 5C */	lis r3, lit_3800@ha /* 0x805C6C74@ha */
+/* 805BCDA4  3B E3 6C 74 */	addi r31, r3, lit_3800@l /* 0x805C6C74@l */
+/* 805BCDA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805BCDAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805BCDB0  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 805BCDB4  C3 FF 00 0C */	lfs f31, 0xc(r31)
 /* 805BCDB8  88 1D 07 D1 */	lbz r0, 0x7d1(r29)
@@ -51,14 +51,14 @@ lbl_805BCE2C:
 /* 805BCE30  FC 20 F8 90 */	fmr f1, f31
 /* 805BCE34  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805BCE38  C0 7D 07 24 */	lfs f3, 0x724(r29)
-/* 805BCE3C  4B CB 2C 00 */	b cLib_addCalc2__FPffff
+/* 805BCE3C  4B CB 2C 01 */	bl cLib_addCalc2__FPffff
 /* 805BCE40  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 805BCE44  40 82 00 18 */	bne lbl_805BCE5C
 /* 805BCE48  38 7D 07 24 */	addi r3, r29, 0x724
 /* 805BCE4C  C0 3F 03 70 */	lfs f1, 0x370(r31)
 /* 805BCE50  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805BCE54  C0 7F 00 04 */	lfs f3, 4(r31)
-/* 805BCE58  4B CB 2B E4 */	b cLib_addCalc2__FPffff
+/* 805BCE58  4B CB 2B E5 */	bl cLib_addCalc2__FPffff
 lbl_805BCE5C:
 /* 805BCE5C  C0 1D 04 D4 */	lfs f0, 0x4d4(r29)
 /* 805BCE60  EC 00 F8 28 */	fsubs f0, f0, f31
@@ -75,7 +75,7 @@ lbl_805BCE84:
 /* 805BCE84  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 805BCE88  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 805BCE8C  39 61 00 20 */	addi r11, r1, 0x20
-/* 805BCE90  4B DA 53 98 */	b _restgpr_29
+/* 805BCE90  4B DA 53 99 */	bl _restgpr_29
 /* 805BCE94  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 805BCE98  7C 08 03 A6 */	mtlr r0
 /* 805BCE9C  38 21 00 30 */	addi r1, r1, 0x30

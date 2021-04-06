@@ -9,17 +9,17 @@ lbl_8097BD00:
 /* 8097BD1C  41 82 00 48 */	beq lbl_8097BD64
 /* 8097BD20  38 80 00 12 */	li r4, 0x12
 /* 8097BD24  80 BF 0B 58 */	lwz r5, 0xb58(r31)
-/* 8097BD28  4B 7D C3 C8 */	b getAnmP__10daNpcCd2_cFii
+/* 8097BD28  4B 7D C3 C9 */	bl getAnmP__10daNpcCd2_cFii
 /* 8097BD2C  7C 64 1B 78 */	mr r4, r3
 /* 8097BD30  7F E3 FB 78 */	mr r3, r31
-/* 8097BD34  3C A0 80 98 */	lis r5, lit_4091@ha
-/* 8097BD38  C0 25 F5 44 */	lfs f1, lit_4091@l(r5)
-/* 8097BD3C  3C A0 80 98 */	lis r5, lit_4092@ha
-/* 8097BD40  C0 45 F5 48 */	lfs f2, lit_4092@l(r5)
+/* 8097BD34  3C A0 80 98 */	lis r5, lit_4091@ha /* 0x8097F544@ha */
+/* 8097BD38  C0 25 F5 44 */	lfs f1, lit_4091@l(r5)  /* 0x8097F544@l */
+/* 8097BD3C  3C A0 80 98 */	lis r5, lit_4092@ha /* 0x8097F548@ha */
+/* 8097BD40  C0 45 F5 48 */	lfs f2, lit_4092@l(r5)  /* 0x8097F548@l */
 /* 8097BD44  38 A0 00 02 */	li r5, 2
 /* 8097BD48  38 C0 00 00 */	li r6, 0
 /* 8097BD4C  38 E0 FF FF */	li r7, -1
-/* 8097BD50  4B 7D D1 B0 */	b setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
+/* 8097BD50  4B 7D D1 B1 */	bl setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
 /* 8097BD54  38 00 00 01 */	li r0, 1
 /* 8097BD58  90 1F 0A A0 */	stw r0, 0xaa0(r31)
 /* 8097BD5C  38 00 00 00 */	li r0, 0

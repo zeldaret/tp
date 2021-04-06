@@ -6,13 +6,13 @@ lbl_8002FC98:
 /* 8002FCA8  7C 7F 1B 78 */	mr r31, r3
 /* 8002FCAC  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
 /* 8002FCB0  7C 00 07 74 */	extsb r0, r0
-/* 8002FCB4  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8002FCB8  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 8002FCB4  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8002FCB8  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8002FCBC  1C 00 04 04 */	mulli r0, r0, 0x404
 /* 8002FCC0  7C 63 02 14 */	add r3, r3, r0
 /* 8002FCC4  80 83 00 20 */	lwz r4, 0x20(r3)
-/* 8002FCC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002FCCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002FCC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002FCCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002FCD0  88 84 00 13 */	lbz r4, 0x13(r4)
 /* 8002FCD4  48 00 53 D5 */	bl getSave2__10dSv_save_cFi
 /* 8002FCD8  7F E4 FB 78 */	mr r4, r31

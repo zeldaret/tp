@@ -36,8 +36,8 @@ lbl_8012CB58:
 /* 8012CB8C  7F 83 E3 78 */	mr r3, r28
 /* 8012CB90  88 1C 2F D8 */	lbz r0, 0x2fd8(r28)
 /* 8012CB94  54 00 10 3A */	slwi r0, r0, 2
-/* 8012CB98  3C 80 80 39 */	lis r4, label@ha
-/* 8012CB9C  38 84 1E 48 */	addi r4, r4, label@l
+/* 8012CB98  3C 80 80 39 */	lis r4, label@ha /* 0x80391E48@ha */
+/* 8012CB9C  38 84 1E 48 */	addi r4, r4, label@l /* 0x80391E48@l */
 /* 8012CBA0  7C 84 00 2E */	lwzx r4, r4, r0
 /* 8012CBA4  81 9C 06 28 */	lwz r12, 0x628(r28)
 /* 8012CBA8  81 8C 01 14 */	lwz r12, 0x114(r12)

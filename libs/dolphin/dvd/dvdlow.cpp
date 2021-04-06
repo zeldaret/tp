@@ -30,11 +30,8 @@ extern "C" void DVDLowAudioBufferConfig();
 extern "C" void DVDLowReset();
 extern "C" void DVDLowBreak();
 extern "C" void DVDLowClearCallback();
-extern "C" static void __DVDLowSetWAType();
+extern "C" void __DVDLowSetWAType();
 extern "C" void __DVDLowTestAlarm();
-extern "C" extern u8 AlarmForWA[40];
-extern "C" extern u8 Prev[12];
-extern "C" extern u8 Curr[12];
 
 //
 // External References:
@@ -57,479 +54,298 @@ extern "C" void DVDGetCurrentDiskID();
 //
 
 /* ############################################################################################## */
-/* 8044C830-8044C870 003C+04 s=6 e=0 z=0  None .bss       CommandList */
+/* 8044C830-8044C870 079550 003C+04 6/6 0/0 0/0 .bss             CommandList */
 static u8 CommandList[60 + 4 /* padding */];
 
-/* 80451710-80451714 0004+00 s=12 e=0 z=0  None .sbss      StopAtNextInt */
+/* 80451710-80451714 000C10 0004+00 12/12 0/0 0/0 .sbss            StopAtNextInt */
 static u8 StopAtNextInt[4];
 
-/* 80451714-80451718 0004+00 s=1 e=0 z=0  None .sbss      LastLength */
+/* 80451714-80451718 000C14 0004+00 1/1 0/0 0/0 .sbss            LastLength */
 static u8 LastLength[4];
 
-/* 80451718-8045171C 0004+00 s=13 e=0 z=0  None .sbss      Callback */
+/* 80451718-8045171C 000C18 0004+00 13/13 0/0 0/0 .sbss            Callback */
 static u8 Callback[4];
 
-/* 8045171C-80451720 0004+00 s=1 e=0 z=0  None .sbss      ResetCoverCallback */
+/* 8045171C-80451720 000C1C 0004+00 1/1 0/0 0/0 .sbss            ResetCoverCallback */
 static u8 ResetCoverCallback[4];
 
-/* 80451720-80451724 0004+00 s=2 e=0 z=0  None .sbss      LastResetEnd */
+/* 80451720-80451724 000C20 0004+00 2/2 0/0 0/0 .sbss            LastResetEnd */
 static u8 LastResetEnd[4];
 
-/* 80451724-80451728 0004+00 s=2 e=0 z=0  None .sbss      None */
+/* 80451724-80451728 000C24 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_80451724[4];
 
-/* 80451728-8045172C 0004+00 s=2 e=0 z=0  None .sbss      ResetOccurred */
+/* 80451728-8045172C 000C28 0004+00 2/2 0/0 0/0 .sbss            ResetOccurred */
 static u8 ResetOccurred[4];
 
-/* 8045172C-80451730 0004+00 s=3 e=0 z=0  None .sbss      WaitingCoverClose */
+/* 8045172C-80451730 000C2C 0004+00 3/3 0/0 0/0 .sbss            WaitingCoverClose */
 static u8 WaitingCoverClose[4];
 
-/* 80451730-80451734 0004+00 s=2 e=0 z=0  None .sbss      Breaking */
+/* 80451730-80451734 000C30 0004+00 2/2 0/0 0/0 .sbss            Breaking */
 static u8 Breaking[4];
 
-/* 80451734-80451738 0004+00 s=2 e=0 z=0  None .sbss      WorkAroundType */
+/* 80451734-80451738 000C34 0004+00 2/2 0/0 0/0 .sbss            WorkAroundType */
 static u8 WorkAroundType[4];
 
-/* 80451738-80451740 0004+04 s=2 e=0 z=0  None .sbss      WorkAroundSeekLocation */
+/* 80451738-80451740 000C38 0004+04 2/2 0/0 0/0 .sbss            WorkAroundSeekLocation */
 static u8 WorkAroundSeekLocation[4 + 4 /* padding */];
 
-/* 80451740-80451744 0004+00 s=2 e=0 z=0  None .sbss      LastReadFinished */
+/* 80451740-80451744 000C40 0004+00 2/2 0/0 0/0 .sbss            LastReadFinished */
 static u8 LastReadFinished[4];
 
-/* 80451744-80451748 0004+00 s=2 e=0 z=0  None .sbss      None */
+/* 80451744-80451748 000C44 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_80451744[4];
 
-/* 80451748-8045174C 0004+00 s=1 e=0 z=0  None .sbss      LastReadIssued */
+/* 80451748-8045174C 000C48 0004+00 1/1 0/0 0/0 .sbss            LastReadIssued */
 static u8 LastReadIssued[4];
 
-/* 8045174C-80451750 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 8045174C-80451750 000C4C 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_8045174C[4];
 
-/* 80451750-80451754 0004+00 s=2 e=0 z=0  None .sbss      LastCommandWasRead */
+/* 80451750-80451754 000C50 0004+00 2/2 0/0 0/0 .sbss            LastCommandWasRead */
 static u8 LastCommandWasRead[4];
 
-/* 80451754-80451758 0004+00 s=5 e=0 z=0  None .sbss      NextCommandNumber */
+/* 80451754-80451758 000C54 0004+00 5/5 0/0 0/0 .sbss            NextCommandNumber */
 static u8 NextCommandNumber[4];
 
-/* 80347674-803476B4 0040+00 s=0 e=1 z=0  None .text      __DVDInitWA */
-//	80347678: 8044C830 (CommandList)
-//	8034768C: 80451754 (NextCommandNumber)
-//	80347694: 8044C830 (CommandList)
-//	8034769C: 80348474 (__DVDLowSetWAType)
-//	803476A0: 8033A8A0 (OSInitAlarm)
+/* 80347674-803476B4 341FB4 0040+00 0/0 1/1 0/0 .text            __DVDInitWA */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDInitWA() {
+asm void __DVDInitWA() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/__DVDInitWA.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804509D8-804509E0 0004+04 s=2 e=0 z=0  None .sdata     FirstRead */
+/* 8044C870-8044C898 079590 0028+00 0/1 0/0 0/0 .bss             AlarmForWA */
+#pragma push
+#pragma force_active on
+static u8 AlarmForWA[40];
+#pragma pop
+
+/* 8044C898-8044C8C0 0795B8 0028+00 9/11 0/0 0/0 .bss             AlarmForTimeout */
+static u8 AlarmForTimeout[40];
+
+/* 8044C8C0-8044C8E8 0795E0 0028+00 1/1 0/0 0/0 .bss             AlarmForBreak */
+static u8 AlarmForBreak[40];
+
+/* 8044C8E8-8044C8F4 079608 000C+00 0/1 0/0 0/0 .bss             Prev */
+#pragma push
+#pragma force_active on
+static u8 Prev[12];
+#pragma pop
+
+/* 8044C8F4-8044C900 079614 000C+00 0/2 0/0 0/0 .bss             Curr */
+#pragma push
+#pragma force_active on
+static u8 Curr[12];
+#pragma pop
+
+/* 804509D8-804509E0 000458 0004+04 2/2 0/0 0/0 .sdata           FirstRead */
 SECTION_SDATA static u32 FirstRead[1 + 1 /* padding */] = {
     0x00000001,
     /* padding */
     0x00000000,
 };
 
-/* 803476B4-80347994 02E0+00 s=0 e=1 z=0  None .text      __DVDInterruptHandler */
-//	803476B8: 8044C830 (CommandList)
-//	803476CC: 8044C830 (CommandList)
-//	803476D4: 80451750 (LastCommandWasRead)
-//	803476E0: 8034271C (__OSGetSystemTime)
-//	803476E4: 80451744 (data_80451744)
-//	803476EC: 80451740 (LastReadFinished)
-//	803476F0: 804509D8 (FirstRead)
-//	8034770C: 80451710 (StopAtNextInt)
-//	80347720: 80451750 (LastCommandWasRead)
-//	80347728: 80451710 (StopAtNextInt)
-//	80347770: 80451728 (ResetOccurred)
-//	80347778: 8033AC3C (OSCancelAlarm)
-//	80347788: 80451728 (ResetOccurred)
-//	80347794: 8034271C (__OSGetSystemTime)
-//	8034779C: 80451720 (LastResetEnd)
-//	803477AC: 80451724 (data_80451724)
-//	80347804: 8045171C (ResetCoverCallback)
-//	80347820: 8045171C (ResetCoverCallback)
-//	80347830: 8045172C (WaitingCoverClose)
-//	80347870: 8045172C (WaitingCoverClose)
-//	8034788C: 80451730 (Breaking)
-//	803478A4: 80451754 (NextCommandNumber)
-//	803478B8: 80451754 (NextCommandNumber)
-//	803478C4: 80451754 (NextCommandNumber)
-//	803478D8: 80347A88 (Read)
-//	803478EC: 80451754 (NextCommandNumber)
-//	803478F8: 80451754 (NextCommandNumber)
-//	80347904: 80347EB0 (DVDLowSeek)
-//	8034792C: 80451754 (NextCommandNumber)
-//	80347934: 8033C000 (OSClearContext)
-//	8034793C: 8033BE38 (OSSetCurrentContext)
-//	80347948: 80451718 (Callback)
-//	80347954: 80451718 (Callback)
-//	8034796C: 80451730 (Breaking)
-//	80347974: 8033C000 (OSClearContext)
-//	8034797C: 8033BE38 (OSSetCurrentContext)
+/* 803476B4-80347994 341FF4 02E0+00 0/0 1/1 0/0 .text            __DVDInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDInterruptHandler() {
+asm void __DVDInterruptHandler() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/__DVDInterruptHandler.s"
 }
 #pragma pop
 
-/* 80347994-80347A18 0084+00 s=1 e=0 z=0  None .text      AlarmHandler */
-//	80347998: 8044C830 (CommandList)
-//	803479A0: 8044C830 (CommandList)
-//	803479A8: 80451754 (NextCommandNumber)
-//	803479BC: 80451754 (NextCommandNumber)
-//	803479C8: 80451754 (NextCommandNumber)
-//	803479DC: 80347A88 (Read)
-//	803479EC: 80451754 (NextCommandNumber)
-//	803479F8: 80451754 (NextCommandNumber)
-//	80347A04: 80347EB0 (DVDLowSeek)
+/* 80347994-80347A18 3422D4 0084+00 1/1 0/0 0/0 .text            AlarmHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void AlarmHandler() {
+static asm void AlarmHandler() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/AlarmHandler.s"
 }
 #pragma pop
 
-/* 80347A18-80347A88 0070+00 s=9 e=0 z=0  None .text      AlarmHandlerForTimeout */
-//	80347A30: 8033DABC (__OSMaskInterrupts)
-//	80347A38: 8033C000 (OSClearContext)
-//	80347A40: 8033BE38 (OSSetCurrentContext)
-//	80347A44: 80451718 (Callback)
-//	80347A50: 80451718 (Callback)
-//	80347A68: 8033C000 (OSClearContext)
-//	80347A70: 8033BE38 (OSSetCurrentContext)
+/* 80347A18-80347A88 342358 0070+00 9/9 0/0 0/0 .text            AlarmHandlerForTimeout */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void AlarmHandlerForTimeout() {
+static asm void AlarmHandlerForTimeout() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/AlarmHandlerForTimeout.s"
 }
 #pragma pop
 
-/* 80347A88-80347B98 0110+00 s=3 e=0 z=0  None .text      Read */
-//	80347AB4: 80451710 (StopAtNextInt)
-//	80347ABC: 80451718 (Callback)
-//	80347AC0: 8044C830 (CommandList)
-//	80347AC4: 8044C830 (CommandList)
-//	80347AC8: 80451750 (LastCommandWasRead)
-//	80347ACC: 8034271C (__OSGetSystemTime)
-//	80347AD0: 8045174C (data_8045174C)
-//	80347ADC: 80451748 (LastReadIssued)
-//	80347B08: 80451714 (LastLength)
-//	80347B28: 8033A8F8 (OSCreateAlarm)
-//	80347B2C: 80347A18 (AlarmHandlerForTimeout)
-//	80347B30: 80347A18 (AlarmHandlerForTimeout)
-//	80347B40: 8033AB58 (OSSetAlarm)
-//	80347B5C: 8033A8F8 (OSCreateAlarm)
-//	80347B60: 80347A18 (AlarmHandlerForTimeout)
-//	80347B64: 80347A18 (AlarmHandlerForTimeout)
-//	80347B74: 8033AB58 (OSSetAlarm)
+/* 80347A88-80347B98 3423C8 0110+00 3/3 0/0 0/0 .text            Read */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void Read() {
+static asm void Read() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/Read.s"
 }
 #pragma pop
 
-/* 80347B98-80347C18 0080+00 s=1 e=0 z=0  None .text      SeekTwiceBeforeRead */
-//	80347B9C: 8044C830 (CommandList)
-//	80347BA8: 8044C830 (CommandList)
-//	80347BBC: 80451738 (WorkAroundSeekLocation)
-//	80347C00: 80451754 (NextCommandNumber)
-//	80347C04: 80347EB0 (DVDLowSeek)
+/* 80347B98-80347C18 3424D8 0080+00 1/1 0/0 0/0 .text            SeekTwiceBeforeRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SeekTwiceBeforeRead() {
+static asm void SeekTwiceBeforeRead() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/SeekTwiceBeforeRead.s"
 }
 #pragma pop
 
-/* 80347C18-80347EB0 0298+00 s=0 e=4 z=0  None .text      DVDLowRead */
-//	80347C34: 8044C830 (CommandList)
-//	80347C38: 8044C830 (CommandList)
-//	80347C5C: 80451734 (WorkAroundType)
-//	80347C78: 80451754 (NextCommandNumber)
-//	80347C88: 80347A88 (Read)
-//	80347C90: 80451734 (WorkAroundType)
-//	80347C9C: 804509D8 (FirstRead)
-//	80347CB8: 80347B98 (SeekTwiceBeforeRead)
-//	80347CE4: 8034B620 (DVDGetCurrentDiskID)
-//	80347D54: 80451754 (NextCommandNumber)
-//	80347D64: 80347A88 (Read)
-//	80347D9C: 8034271C (__OSGetSystemTime)
-//	80347DA4: 80451740 (LastReadFinished)
-//	80347DB0: 80451744 (data_80451744)
-//	80347E00: 80451754 (NextCommandNumber)
-//	80347E0C: 80347A88 (Read)
-//	80347E54: 80451754 (NextCommandNumber)
-//	80347E64: 8033A8F8 (OSCreateAlarm)
-//	80347E68: 80347994 (AlarmHandler)
-//	80347E6C: 80347994 (AlarmHandler)
-//	80347E7C: 8033AB58 (OSSetAlarm)
-//	80347E94: 80347B98 (SeekTwiceBeforeRead)
+/* 80347C18-80347EB0 342558 0298+00 0/0 4/4 0/0 .text            DVDLowRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowRead() {
+asm void DVDLowRead() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowRead.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8044C870-8044C898 0028+00 s=0 e=0 z=0  None .bss       AlarmForWA */
-u8 AlarmForWA[40];
-
-/* 8044C898-8044C8C0 0028+00 s=9 e=0 z=0  None .bss       AlarmForTimeout */
-static u8 AlarmForTimeout[40];
-
-/* 80347EB0-80347F44 0094+00 s=3 e=2 z=0  None .text      DVDLowSeek */
-//	80347EC8: 80451718 (Callback)
-//	80347ED4: 80451710 (StopAtNextInt)
-//	80347EE4: 8044C898 (AlarmForTimeout)
-//	80347EF0: 8044C898 (AlarmForTimeout)
-//	80347F0C: 8033A8F8 (OSCreateAlarm)
-//	80347F10: 80347A18 (AlarmHandlerForTimeout)
-//	80347F14: 80347A18 (AlarmHandlerForTimeout)
-//	80347F24: 8033AB58 (OSSetAlarm)
+/* 80347EB0-80347F44 3427F0 0094+00 3/3 2/2 0/0 .text            DVDLowSeek */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowSeek() {
+asm void DVDLowSeek() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowSeek.s"
 }
 #pragma pop
 
-/* 80347F44-80347F70 002C+00 s=0 e=3 z=0  None .text      DVDLowWaitCoverClose */
-//	80347F48: 80451718 (Callback)
-//	80347F50: 8045172C (WaitingCoverClose)
-//	80347F5C: 80451710 (StopAtNextInt)
+/* 80347F44-80347F70 342884 002C+00 0/0 3/3 0/0 .text            DVDLowWaitCoverClose */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowWaitCoverClose() {
+asm void DVDLowWaitCoverClose() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowWaitCoverClose.s"
 }
 #pragma pop
 
-/* 80347F70-80348014 00A4+00 s=0 e=2 z=0  None .text      DVDLowReadDiskID */
-//	80347F98: 80451718 (Callback)
-//	80347FA4: 80451710 (StopAtNextInt)
-//	80347FAC: 8044C898 (AlarmForTimeout)
-//	80347FB8: 8044C898 (AlarmForTimeout)
-//	80347FDC: 8033A8F8 (OSCreateAlarm)
-//	80347FE0: 80347A18 (AlarmHandlerForTimeout)
-//	80347FE4: 80347A18 (AlarmHandlerForTimeout)
-//	80347FF4: 8033AB58 (OSSetAlarm)
+/* 80347F70-80348014 3428B0 00A4+00 0/0 2/2 0/0 .text            DVDLowReadDiskID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowReadDiskID() {
+asm void DVDLowReadDiskID() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowReadDiskID.s"
 }
 #pragma pop
 
-/* 80348014-803480A0 008C+00 s=0 e=9 z=0  None .text      DVDLowStopMotor */
-//	8034802C: 80451718 (Callback)
-//	80348038: 80451710 (StopAtNextInt)
-//	80348048: 8044C898 (AlarmForTimeout)
-//	80348054: 8044C898 (AlarmForTimeout)
-//	80348068: 8033A8F8 (OSCreateAlarm)
-//	8034806C: 80347A18 (AlarmHandlerForTimeout)
-//	80348070: 80347A18 (AlarmHandlerForTimeout)
-//	80348080: 8033AB58 (OSSetAlarm)
+/* 80348014-803480A0 342954 008C+00 0/0 9/9 0/0 .text            DVDLowStopMotor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowStopMotor() {
+asm void DVDLowStopMotor() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowStopMotor.s"
 }
 #pragma pop
 
-/* 803480A0-8034812C 008C+00 s=0 e=7 z=0  None .text      DVDLowRequestError */
-//	803480B8: 80451718 (Callback)
-//	803480C4: 80451710 (StopAtNextInt)
-//	803480D4: 8044C898 (AlarmForTimeout)
-//	803480E0: 8044C898 (AlarmForTimeout)
-//	803480F4: 8033A8F8 (OSCreateAlarm)
-//	803480F8: 80347A18 (AlarmHandlerForTimeout)
-//	803480FC: 80347A18 (AlarmHandlerForTimeout)
-//	8034810C: 8033AB58 (OSSetAlarm)
+/* 803480A0-8034812C 3429E0 008C+00 0/0 7/7 0/0 .text            DVDLowRequestError */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowRequestError() {
+asm void DVDLowRequestError() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowRequestError.s"
 }
 #pragma pop
 
-/* 8034812C-803481C8 009C+00 s=0 e=1 z=0  None .text      DVDLowInquiry */
-//	8034814C: 80451718 (Callback)
-//	80348158: 80451710 (StopAtNextInt)
-//	80348164: 8044C898 (AlarmForTimeout)
-//	80348170: 8044C898 (AlarmForTimeout)
-//	80348190: 8033A8F8 (OSCreateAlarm)
-//	80348194: 80347A18 (AlarmHandlerForTimeout)
-//	80348198: 80347A18 (AlarmHandlerForTimeout)
-//	803481A8: 8033AB58 (OSSetAlarm)
+/* 8034812C-803481C8 342A6C 009C+00 0/0 1/1 0/0 .text            DVDLowInquiry */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowInquiry() {
+asm void DVDLowInquiry() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowInquiry.s"
 }
 #pragma pop
 
-/* 803481C8-80348260 0098+00 s=0 e=2 z=0  None .text      DVDLowAudioStream */
-//	803481E0: 80451718 (Callback)
-//	803481EC: 80451710 (StopAtNextInt)
-//	803481F4: 8044C898 (AlarmForTimeout)
-//	80348200: 8044C898 (AlarmForTimeout)
-//	80348228: 8033A8F8 (OSCreateAlarm)
-//	8034822C: 80347A18 (AlarmHandlerForTimeout)
-//	80348230: 80347A18 (AlarmHandlerForTimeout)
-//	80348240: 8033AB58 (OSSetAlarm)
+/* 803481C8-80348260 342B08 0098+00 0/0 2/2 0/0 .text            DVDLowAudioStream */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowAudioStream() {
+asm void DVDLowAudioStream() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowAudioStream.s"
 }
 #pragma pop
 
-/* 80348260-803482EC 008C+00 s=0 e=1 z=0  None .text      DVDLowRequestAudioStatus */
-//	80348278: 80451718 (Callback)
-//	80348284: 80451710 (StopAtNextInt)
-//	8034828C: 8044C898 (AlarmForTimeout)
-//	80348298: 8044C898 (AlarmForTimeout)
-//	803482B4: 8033A8F8 (OSCreateAlarm)
-//	803482B8: 80347A18 (AlarmHandlerForTimeout)
-//	803482BC: 80347A18 (AlarmHandlerForTimeout)
-//	803482CC: 8033AB58 (OSSetAlarm)
+/* 80348260-803482EC 342BA0 008C+00 0/0 1/1 0/0 .text            DVDLowRequestAudioStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowRequestAudioStatus() {
+asm void DVDLowRequestAudioStatus() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowRequestAudioStatus.s"
 }
 #pragma pop
 
-/* 803482EC-80348388 009C+00 s=0 e=3 z=0  None .text      DVDLowAudioBufferConfig */
-//	80348308: 80451718 (Callback)
-//	8034830C: 80451710 (StopAtNextInt)
-//	80348338: 8044C898 (AlarmForTimeout)
-//	8034833C: 8044C898 (AlarmForTimeout)
-//	80348350: 8033A8F8 (OSCreateAlarm)
-//	80348354: 80347A18 (AlarmHandlerForTimeout)
-//	80348358: 80347A18 (AlarmHandlerForTimeout)
-//	80348368: 8033AB58 (OSSetAlarm)
+/* 803482EC-80348388 342C2C 009C+00 0/0 3/3 0/0 .text            DVDLowAudioBufferConfig */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowAudioBufferConfig() {
+asm void DVDLowAudioBufferConfig() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowAudioBufferConfig.s"
 }
 #pragma pop
 
-/* 80348388-80348444 00BC+00 s=0 e=1 z=0  None .text      DVDLowReset */
-//	803483B8: 8034271C (__OSGetSystemTime)
-//	803483EC: 8034271C (__OSGetSystemTime)
-//	80348420: 80451728 (ResetOccurred)
-//	80348424: 8034271C (__OSGetSystemTime)
-//	80348428: 80451724 (data_80451724)
-//	8034842C: 80451720 (LastResetEnd)
+/* 80348388-80348444 342CC8 00BC+00 0/0 1/1 0/0 .text            DVDLowReset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowReset() {
+asm void DVDLowReset() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowReset.s"
 }
 #pragma pop
 
-/* 80348444-80348458 0014+00 s=0 e=1 z=0  None .text      DVDLowBreak */
-//	80348448: 80451710 (StopAtNextInt)
-//	80348450: 80451730 (Breaking)
+/* 80348444-80348458 342D84 0014+00 0/0 1/1 0/0 .text            DVDLowBreak */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowBreak() {
+asm void DVDLowBreak() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowBreak.s"
 }
 #pragma pop
 
-/* 80348458-80348474 001C+00 s=0 e=1 z=0  None .text      DVDLowClearCallback */
-//	80348464: 80451718 (Callback)
-//	80348468: 8045172C (WaitingCoverClose)
-//	8034846C: 80451718 (Callback)
+/* 80348458-80348474 342D98 001C+00 0/0 1/1 0/0 .text            DVDLowClearCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DVDLowClearCallback() {
+asm void DVDLowClearCallback() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/DVDLowClearCallback.s"
 }
 #pragma pop
 
-/* 80348474-803484B8 0044+00 s=1 e=0 z=0  None .text      __DVDLowSetWAType */
-//	80348490: 8033D6F4 (OSDisableInterrupts)
-//	80348494: 80451734 (WorkAroundType)
-//	80348498: 80451738 (WorkAroundSeekLocation)
-//	8034849C: 8033D71C (OSRestoreInterrupts)
+/* 80348474-803484B8 342DB4 0044+00 1/1 0/0 0/0 .text            __DVDLowSetWAType */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __DVDLowSetWAType() {
+asm void __DVDLowSetWAType() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/__DVDLowSetWAType.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8044C8C0-8044C8E8 0028+00 s=1 e=0 z=0  None .bss       AlarmForBreak */
-static u8 AlarmForBreak[40];
-
-/* 803484B8-803484F0 0038+00 s=0 e=1 z=0  None .text      __DVDLowTestAlarm */
-//	803484B8: 8044C8C0 (AlarmForBreak)
-//	803484BC: 8044C8C0 (AlarmForBreak)
-//	803484D0: 8044C898 (AlarmForTimeout)
-//	803484D4: 8044C898 (AlarmForTimeout)
+/* 803484B8-803484F0 342DF8 0038+00 0/0 1/1 0/0 .text            __DVDLowTestAlarm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDLowTestAlarm() {
+asm void __DVDLowTestAlarm() {
     nofralloc
 #include "asm/dolphin/dvd/dvdlow/__DVDLowTestAlarm.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 8044C8E8-8044C8F4 000C+00 s=0 e=0 z=0  None .bss       Prev */
-u8 Prev[12];
-
-/* 8044C8F4-8044C900 000C+00 s=0 e=0 z=0  None .bss       Curr */
-u8 Curr[12];

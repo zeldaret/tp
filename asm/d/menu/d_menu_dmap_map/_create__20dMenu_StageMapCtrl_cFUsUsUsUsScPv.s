@@ -100,8 +100,8 @@ lbl_801C23D0:
 /* 801C24E0  7F 43 D3 78 */	mr r3, r26
 /* 801C24E4  88 1A 00 F5 */	lbz r0, 0xf5(r26)
 /* 801C24E8  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C24EC  3C 80 80 3C */	lis r4, init_process@ha
-/* 801C24F0  38 04 CC E4 */	addi r0, r4, init_process@l
+/* 801C24EC  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BCCE4@ha */
+/* 801C24F0  38 04 CC E4 */	addi r0, r4, init_process@l /* 0x803BCCE4@l */
 /* 801C24F4  7D 80 2A 14 */	add r12, r0, r5
 /* 801C24F8  48 19 FB 8D */	bl __ptmf_scall
 /* 801C24FC  60 00 00 00 */	nop 

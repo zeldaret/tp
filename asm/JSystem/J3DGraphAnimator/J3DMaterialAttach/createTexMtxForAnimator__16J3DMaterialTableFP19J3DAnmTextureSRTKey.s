@@ -59,8 +59,8 @@ lbl_8032FA60:
 /* 8032FA90  4B F9 F1 BD */	bl __nw__FUl
 /* 8032FA94  7C 79 1B 79 */	or. r25, r3, r3
 /* 8032FA98  41 82 00 10 */	beq lbl_8032FAA8
-/* 8032FA9C  3C 80 80 3A */	lis r4, j3dDefaultTexMtxInfo@ha
-/* 8032FAA0  38 84 1F 1C */	addi r4, r4, j3dDefaultTexMtxInfo@l
+/* 8032FA9C  3C 80 80 3A */	lis r4, j3dDefaultTexMtxInfo@ha /* 0x803A1F1C@ha */
+/* 8032FAA0  38 84 1F 1C */	addi r4, r4, j3dDefaultTexMtxInfo@l /* 0x803A1F1C@l */
 /* 8032FAA4  4B FF 5C 75 */	bl __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo
 lbl_8032FAA8:
 /* 8032FAA8  3B E0 00 04 */	li r31, 4

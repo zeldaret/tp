@@ -3,19 +3,20 @@
 #
 
 M284_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash.plf
+M284_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash.lcf
+M284_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash.map
 
 M284_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ash/executor.cpp \
-	rel/d/a/npc/d_a_npc_ash/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ash/d_a_npc_ash.cpp \
 
 M284_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash/d_a_npc_ash.o \
 
 M284_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash/libRuntime.PPCEABI.H.a \
 
 M284_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M284_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map284.map\
+	-m _prolog \
+	-lcf $(M284_LDSCRIPT) \
+	-unused -map $(M284_MAP) \
+	-w off \
 
 $(M284_TARGET): $(M284_O_FILES) $(M284_LIBS)
+	@echo [284] creating $(M284_TARGET)
 	@echo $(M284_LIBS) $(M284_O_FILES) > build/M284_ofiles
-	$(LD) -opt_partial $(M284_LDFLAGS) -o $(M284_TARGET) @build/M284_ofiles
+	@python3 tools/lcf.py rel 284 --output $(M284_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M284_LDFLAGS) -o $(M284_TARGET) @build/M284_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ash/%.o: rel/d/a/npc/d_a_npc_ash/%.cpp
+	@echo [284] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M284_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M284_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ash/libs/Runtime.PPCEABI.H/Makefile
 

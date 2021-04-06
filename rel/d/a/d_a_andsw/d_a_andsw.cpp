@@ -31,10 +31,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daAndsw_Execute(daAndsw_c*);
-static void daAndsw_Delete(daAndsw_c*);
-static void daAndsw_Create(fopAc_ac_c*);
-
 extern "C" void Create__9daAndsw_cFv();
 extern "C" void create__9daAndsw_cFv();
 extern "C" void execute__9daAndsw_cFv();
@@ -48,8 +44,6 @@ extern "C" extern void* g_profile_ANDSW[12];
 // External References:
 //
 
-void fopAcM_delete(fopAc_ac_c*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
 extern "C" void offSwitch__10dSv_info_cFii();
@@ -62,7 +56,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80457978-804579B8 0040+00 s=1 e=0 z=0  None .text      Create__9daAndsw_cFv */
+/* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,9 +66,7 @@ asm void daAndsw_c::Create() {
 }
 #pragma pop
 
-/* 804579B8-80457A20 0068+00 s=1 e=0 z=0  None .text      create__9daAndsw_cFv */
-//	804579E0: 80018B64 (__ct__10fopAc_ac_cFv)
-//	804579F4: 80457978 (Create__9daAndsw_cFv)
+/* 804579B8-80457A20 0000B8 0068+00 1/1 0/0 0/0 .text            create__9daAndsw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,14 +76,7 @@ asm void daAndsw_c::create() {
 }
 #pragma pop
 
-/* 80457A20-80457ABC 009C+00 s=1 e=0 z=0  None .text      execute__9daAndsw_cFv */
-//	80457A34: 804061C0 (g_dComIfG_gameInfo)
-//	80457A38: 804061C0 (g_dComIfG_gameInfo)
-//	80457A48: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80457A74: 804061C0 (g_dComIfG_gameInfo)
-//	80457A78: 804061C0 (g_dComIfG_gameInfo)
-//	80457A88: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80457AA0: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 80457A20-80457ABC 000120 009C+00 1/1 0/0 0/0 .text            execute__9daAndsw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -101,46 +86,43 @@ asm void daAndsw_c::execute() {
 }
 #pragma pop
 
-/* 80457ABC-80457AC4 0008+00 s=1 e=0 z=0  None .text      _delete__9daAndsw_cFv */
+/* 80457ABC-80457AC4 0001BC 0008+00 1/1 0/0 0/0 .text            _delete__9daAndsw_cFv */
 bool daAndsw_c::_delete() {
     return true;
 }
 
-/* 80457AC4-80457AE4 0020+00 s=1 e=0 z=0  None .text      daAndsw_Execute__FP9daAndsw_c */
-//	80457AD0: 80457A20 (execute__9daAndsw_cFv)
+/* 80457AC4-80457AE4 0001C4 0020+00 1/0 0/0 0/0 .text            daAndsw_Execute__FP9daAndsw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw_Execute(daAndsw_c* param_0) {
+static asm void daAndsw_Execute(daAndsw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Execute__FP9daAndsw_c.s"
 }
 #pragma pop
 
-/* 80457AE4-80457B04 0020+00 s=1 e=0 z=0  None .text      daAndsw_Delete__FP9daAndsw_c */
-//	80457AF0: 80457ABC (_delete__9daAndsw_cFv)
+/* 80457AE4-80457B04 0001E4 0020+00 1/0 0/0 0/0 .text            daAndsw_Delete__FP9daAndsw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw_Delete(daAndsw_c* param_0) {
+static asm void daAndsw_Delete(daAndsw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Delete__FP9daAndsw_c.s"
 }
 #pragma pop
 
-/* 80457B04-80457B24 0020+00 s=1 e=0 z=0  None .text      daAndsw_Create__FP10fopAc_ac_c */
-//	80457B10: 804579B8 (create__9daAndsw_cFv)
+/* 80457B04-80457B24 000204 0020+00 1/0 0/0 0/0 .text            daAndsw_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw_Create(fopAc_ac_c* param_0) {
+static asm void daAndsw_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw/d_a_andsw/daAndsw_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80457B2C-80457B4C 0020+00 s=1 e=0 z=0  None .data      l_daAndsw_Method */
+/* 80457B2C-80457B4C -00001 0020+00 1/0 0/0 0/0 .data            l_daAndsw_Method */
 SECTION_DATA static void* l_daAndsw_Method[8] = {
     (void*)daAndsw_Create__FP10fopAc_ac_c,
     (void*)daAndsw_Delete__FP9daAndsw_c,
@@ -152,8 +134,8 @@ SECTION_DATA static void* l_daAndsw_Method[8] = {
     (void*)NULL,
 };
 
-/* 80457B4C-80457B7C 0030+00 s=0 e=0 z=1  None .data      g_profile_ANDSW */
-SECTION_DATA void* g_profile_ANDSW[12] = {
+/* 80457B4C-80457B7C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ANDSW */
+SECTION_DATA extern void* g_profile_ANDSW[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02300000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

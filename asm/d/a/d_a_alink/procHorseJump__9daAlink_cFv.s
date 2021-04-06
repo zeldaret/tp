@@ -5,8 +5,8 @@ lbl_800F10F8:
 /* 800F1104  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800F1108  93 C1 00 08 */	stw r30, 8(r1)
 /* 800F110C  7C 7E 1B 78 */	mr r30, r3
-/* 800F1110  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800F1114  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800F1110  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F1114  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F1118  83 E4 5D B8 */	lwz r31, 0x5db8(r4)
 /* 800F111C  4B FF C9 09 */	bl setSyncRidePos__9daAlink_cFv
 /* 800F1120  2C 03 00 00 */	cmpwi r3, 0

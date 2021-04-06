@@ -7,8 +7,8 @@ lbl_801F7348:
 /* 801F735C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801F7360  7C 9F 23 78 */	mr r31, r4
 /* 801F7364  41 82 02 BC */	beq lbl_801F7620
-/* 801F7368  3C 60 80 3C */	lis r3, __vt__13dMenu_Skill_c@ha
-/* 801F736C  38 03 E8 C0 */	addi r0, r3, __vt__13dMenu_Skill_c@l
+/* 801F7368  3C 60 80 3C */	lis r3, __vt__13dMenu_Skill_c@ha /* 0x803BE8C0@ha */
+/* 801F736C  38 03 E8 C0 */	addi r0, r3, __vt__13dMenu_Skill_c@l /* 0x803BE8C0@l */
 /* 801F7370  90 1E 00 00 */	stw r0, 0(r30)
 /* 801F7374  80 7E 01 98 */	lwz r3, 0x198(r30)
 /* 801F7378  28 03 00 00 */	cmplwi r3, 0

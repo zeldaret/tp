@@ -5,8 +5,8 @@ lbl_8005AB00:
 /* 8005AB0C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8005AB10  7C 7F 1B 78 */	mr r31, r3
 /* 8005AB14  38 61 00 08 */	addi r3, r1, 8
-/* 8005AB18  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8005AB1C  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 8005AB18  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005AB1C  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8005AB20  38 85 0E 48 */	addi r4, r5, 0xe48
 /* 8005AB24  C0 25 0E 58 */	lfs f1, 0xe58(r5)
 /* 8005AB28  48 20 C0 5D */	bl __ml__4cXyzCFf

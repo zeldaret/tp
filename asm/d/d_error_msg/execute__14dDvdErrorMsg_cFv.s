@@ -17,8 +17,8 @@ lbl_8009D38C:
 /* 8009D38C  88 0D 8A 30 */	lbz r0, struct_80450FB0+0x0(r13)
 /* 8009D390  28 00 00 00 */	cmplwi r0, 0
 /* 8009D394  41 82 00 64 */	beq lbl_8009D3F8
-/* 8009D398  3C 60 80 39 */	lis r3, d_d_error_msg__stringBase0@ha
-/* 8009D39C  38 63 D6 40 */	addi r3, r3, d_d_error_msg__stringBase0@l
+/* 8009D398  3C 60 80 39 */	lis r3, d_d_error_msg__stringBase0@ha /* 0x8038D640@ha */
+/* 8009D39C  38 63 D6 40 */	addi r3, r3, d_d_error_msg__stringBase0@l /* 0x8038D640@l */
 /* 8009D3A0  7F E4 FB 78 */	mr r4, r31
 /* 8009D3A4  4C C6 31 82 */	crclr 6
 /* 8009D3A8  4B F6 98 65 */	bl OSReport_Error

@@ -11,10 +11,6 @@
 // Forward References:
 //
 
-void cAPIGph_Painter();
-void cAPIGph_BeforeOfDraw();
-void cAPIGph_AfterOfDraw();
-
 extern "C" void cAPIGph_Painter__Fv();
 extern "C" void cAPIGph_BeforeOfDraw__Fv();
 extern "C" void cAPIGph_AfterOfDraw__Fv();
@@ -29,9 +25,7 @@ extern "C" extern void* g_cAPI_Interface[6];
 // Declarations:
 //
 
-/* 802632C8-802632F8 0030+00 s=0 e=1 z=0  None .text      cAPIGph_Painter__Fv */
-//	802632D4: 803C3528 (g_cAPI_Interface)
-//	802632D8: 803C3528 (g_cAPI_Interface)
+/* 802632C8-802632F8 25DC08 0030+00 0/0 1/1 0/0 .text            cAPIGph_Painter__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -41,9 +35,7 @@ asm void cAPIGph_Painter() {
 }
 #pragma pop
 
-/* 802632F8-80263328 0030+00 s=0 e=1 z=0  None .text      cAPIGph_BeforeOfDraw__Fv */
-//	80263304: 803C3528 (g_cAPI_Interface)
-//	80263308: 803C3528 (g_cAPI_Interface)
+/* 802632F8-80263328 25DC38 0030+00 0/0 1/1 0/0 .text            cAPIGph_BeforeOfDraw__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,9 +45,7 @@ asm void cAPIGph_BeforeOfDraw() {
 }
 #pragma pop
 
-/* 80263328-80263358 0030+00 s=0 e=1 z=0  None .text      cAPIGph_AfterOfDraw__Fv */
-//	80263334: 803C3528 (g_cAPI_Interface)
-//	80263338: 803C3528 (g_cAPI_Interface)
+/* 80263328-80263358 25DC68 0030+00 0/0 1/1 0/0 .text            cAPIGph_AfterOfDraw__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

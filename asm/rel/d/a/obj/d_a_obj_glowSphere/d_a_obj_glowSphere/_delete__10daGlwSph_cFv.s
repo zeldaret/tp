@@ -5,11 +5,11 @@ lbl_80BFA3EC:
 /* 80BFA3F8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BFA3FC  7C 7F 1B 78 */	mr r31, r3
 /* 80BFA400  38 7F 05 68 */	addi r3, r31, 0x568
-/* 80BFA404  3C 80 80 C0 */	lis r4, stringBase0@ha
-/* 80BFA408  38 84 A9 C4 */	addi r4, r4, stringBase0@l
-/* 80BFA40C  4B 43 2B FC */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
-/* 80BFA410  3C 60 80 C0 */	lis r3, mSphMng__10daGlwSph_c@ha
-/* 80BFA414  38 63 AC 0C */	addi r3, r3, mSphMng__10daGlwSph_c@l
+/* 80BFA404  3C 80 80 C0 */	lis r4, d_a_obj_glowSphere__stringBase0@ha /* 0x80BFA9C4@ha */
+/* 80BFA408  38 84 A9 C4 */	addi r4, r4, d_a_obj_glowSphere__stringBase0@l /* 0x80BFA9C4@l */
+/* 80BFA40C  4B 43 2B FD */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80BFA410  3C 60 80 C0 */	lis r3, mSphMng__10daGlwSph_c@ha /* 0x80BFAC0C@ha */
+/* 80BFA414  38 63 AC 0C */	addi r3, r3, mSphMng__10daGlwSph_c@l /* 0x80BFAC0C@l */
 /* 80BFA418  7F E4 FB 78 */	mr r4, r31
 /* 80BFA41C  48 00 01 0D */	bl remove__12_GlSph_Mng_cFP10daGlwSph_c
 /* 80BFA420  38 60 00 01 */	li r3, 1

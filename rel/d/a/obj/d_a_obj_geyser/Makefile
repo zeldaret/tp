@@ -3,18 +3,16 @@
 #
 
 M458_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser.plf
+M458_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser.lcf
+M458_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser.map
 
 M458_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_geyser/executor.cpp \
-	rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser.cpp \
 
 M458_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/d_a_obj_geyser.o \
 
@@ -31,15 +29,21 @@ M458_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map458.map\
+	-m _prolog \
+	-lcf $(M458_LDSCRIPT) \
+	-unused -map $(M458_MAP) \
+	-w off \
 
 $(M458_TARGET): $(M458_O_FILES) $(M458_LIBS)
+	@echo [458] creating $(M458_TARGET)
 	@echo $(M458_LIBS) $(M458_O_FILES) > build/M458_ofiles
-	$(LD) -opt_partial $(M458_LDFLAGS) -o $(M458_TARGET) @build/M458_ofiles
+	@python3 tools/lcf.py rel 458 --output $(M458_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M458_LDFLAGS) -o $(M458_TARGET) @build/M458_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_geyser/%.o: rel/d/a/obj/d_a_obj_geyser/%.cpp
+	@echo [458] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M458_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M458_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

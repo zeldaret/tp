@@ -3,17 +3,15 @@
 #
 
 M667_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado.plf
+M667_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado.lcf
+M667_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado.map
 
 M667_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tornado/executor.cpp \
-	rel/d/a/obj/d_a_obj_tornado/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tornado/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado.cpp \
 
 M667_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado.o \
 
 M667_LIBS := \
@@ -29,15 +27,21 @@ M667_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map667.map\
+	-m _prolog \
+	-lcf $(M667_LDSCRIPT) \
+	-unused -map $(M667_MAP) \
+	-w off \
 
 $(M667_TARGET): $(M667_O_FILES) $(M667_LIBS)
+	@echo [667] creating $(M667_TARGET)
 	@echo $(M667_LIBS) $(M667_O_FILES) > build/M667_ofiles
-	$(LD) -opt_partial $(M667_LDFLAGS) -o $(M667_TARGET) @build/M667_ofiles
+	@python3 tools/lcf.py rel 667 --output $(M667_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M667_LDFLAGS) -o $(M667_TARGET) @build/M667_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado/%.o: rel/d/a/obj/d_a_obj_tornado/%.cpp
+	@echo [667] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M667_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M667_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

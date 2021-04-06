@@ -7,7 +7,7 @@ lbl_80B46F54:
 /* 80B46F68  7C 7E 1B 78 */	mr r30, r3
 /* 80B46F6C  3B E0 FF FF */	li r31, -1
 /* 80B46F70  38 60 02 3A */	li r3, 0x23a
-/* 80B46F74  4B 60 5B 38 */	b daNpcT_chkEvtBit__FUl
+/* 80B46F74  4B 60 5B 39 */	bl daNpcT_chkEvtBit__FUl
 /* 80B46F78  2C 03 00 00 */	cmpwi r3, 0
 /* 80B46F7C  41 82 00 0C */	beq lbl_80B46F88
 /* 80B46F80  3B E0 03 26 */	li r31, 0x326

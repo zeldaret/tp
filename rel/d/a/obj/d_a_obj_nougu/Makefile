@@ -3,19 +3,20 @@
 #
 
 M583_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu.plf
+M583_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu.lcf
+M583_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu.map
 
 M583_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_nougu/executor.cpp \
-	rel/d/a/obj/d_a_obj_nougu/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_nougu/d_a_obj_nougu.cpp \
 
 M583_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/d_a_obj_nougu.o \
 
 M583_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/libRuntime.PPCEABI.H.a \
 
 M583_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M583_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map583.map\
+	-m _prolog \
+	-lcf $(M583_LDSCRIPT) \
+	-unused -map $(M583_MAP) \
+	-w off \
 
 $(M583_TARGET): $(M583_O_FILES) $(M583_LIBS)
+	@echo [583] creating $(M583_TARGET)
 	@echo $(M583_LIBS) $(M583_O_FILES) > build/M583_ofiles
-	$(LD) -opt_partial $(M583_LDFLAGS) -o $(M583_TARGET) @build/M583_ofiles
+	@python3 tools/lcf.py rel 583 --output $(M583_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M583_LDFLAGS) -o $(M583_TARGET) @build/M583_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nougu/%.o: rel/d/a/obj/d_a_obj_nougu/%.cpp
+	@echo [583] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M583_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M583_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_nougu/libs/Runtime.PPCEABI.H/Makefile
 

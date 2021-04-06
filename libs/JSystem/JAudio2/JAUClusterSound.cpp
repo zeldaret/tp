@@ -29,7 +29,7 @@ extern "C" void __ct__14JAISoundHandleFv();
 // Declarations:
 //
 
-/* 802A4AC4-802A4AD0 000C+00 s=0 e=1 z=0  None .text      __ct__14JAISoundHandleFv */
+/* 802A4AC4-802A4AD0 29F404 000C+00 0/0 1/1 0/0 .text            __ct__14JAISoundHandleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

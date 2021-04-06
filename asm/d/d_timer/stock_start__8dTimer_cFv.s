@@ -14,14 +14,14 @@ lbl_8025D708:
 /* 8025D738  90 7F 01 10 */	stw r3, 0x110(r31)
 /* 8025D73C  90 9F 01 1C */	stw r4, 0x11c(r31)
 /* 8025D740  90 7F 01 18 */	stw r3, 0x118(r31)
-/* 8025D744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D74C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8025D750  4B DC F4 4D */	bl getTimerNowTimeMs__14dComIfG_play_cFv
 /* 8025D754  80 FF 01 10 */	lwz r7, 0x110(r31)
 /* 8025D758  81 1F 01 14 */	lwz r8, 0x114(r31)
 /* 8025D75C  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000F8@ha */
-/* 8025D760  80 04 00 F8 */	lwz r0, 0x00F8(r4)
+/* 8025D760  80 04 00 F8 */	lwz r0, 0x00F8(r4)  /* 0x800000F8@l */
 /* 8025D764  54 04 F0 BE */	srwi r4, r0, 2
 /* 8025D768  38 00 03 E8 */	li r0, 0x3e8
 /* 8025D76C  7C C4 03 96 */	divwu r6, r4, r0

@@ -31,8 +31,8 @@ lbl_802A3274:
 /* 802A329C  41 82 00 30 */	beq lbl_802A32CC
 /* 802A32A0  38 7F 00 A8 */	addi r3, r31, 0xa8
 /* 802A32A4  80 A1 00 08 */	lwz r5, 8(r1)
-/* 802A32A8  3C C0 80 2A */	lis r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@ha
-/* 802A32AC  38 C6 30 D4 */	addi r6, r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@l
+/* 802A32A8  3C C0 80 2A */	lis r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@ha /* 0x802A30D4@ha */
+/* 802A32AC  38 C6 30 D4 */	addi r6, r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@l /* 0x802A30D4@l */
 /* 802A32B0  7F E7 FB 78 */	mr r7, r31
 /* 802A32B4  4B FF 31 E9 */	bl init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv
 /* 802A32B8  38 00 00 01 */	li r0, 1

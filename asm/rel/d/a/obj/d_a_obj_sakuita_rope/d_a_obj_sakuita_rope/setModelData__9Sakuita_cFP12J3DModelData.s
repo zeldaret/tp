@@ -8,7 +8,7 @@ lbl_80CC5238:
 /* 80CC5250  3C 80 00 02 */	lis r4, 2
 /* 80CC5254  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80CC5258  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80CC525C  4B 34 F9 F8 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80CC525C  4B 34 F9 F9 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80CC5260  90 7F 00 00 */	stw r3, 0(r31)
 /* 80CC5264  38 60 00 01 */	li r3, 1
 /* 80CC5268  83 E1 00 0C */	lwz r31, 0xc(r1)

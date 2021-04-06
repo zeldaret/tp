@@ -12,14 +12,14 @@ lbl_804CCC04:
 /* 804CCC2C  C0 1F 04 F4 */	lfs f0, 0x4f4(r31)
 /* 804CCC30  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 804CCC34  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 804CCC38  4B B4 01 2C */	b transS__14mDoMtx_stack_cFRC4cXyz
+/* 804CCC38  4B B4 01 2D */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 804CCC3C  38 7F 04 E4 */	addi r3, r31, 0x4e4
-/* 804CCC40  4B B4 03 04 */	b ZXYrotM__14mDoMtx_stack_cFRC5csXyz
-/* 804CCC44  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 804CCC48  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 804CCC40  4B B4 03 05 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
+/* 804CCC44  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 804CCC48  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 804CCC4C  80 9F 05 74 */	lwz r4, 0x574(r31)
 /* 804CCC50  38 84 00 24 */	addi r4, r4, 0x24
-/* 804CCC54  4B E7 98 5C */	b PSMTXCopy
+/* 804CCC54  4B E7 98 5D */	bl PSMTXCopy
 /* 804CCC58  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 804CCC5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 804CCC60  7C 08 03 A6 */	mtlr r0

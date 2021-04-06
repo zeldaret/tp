@@ -2,8 +2,8 @@ lbl_80B9723C:
 /* 80B9723C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80B97240  7C 08 02 A6 */	mflr r0
 /* 80B97244  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80B97248  3C A0 80 BA */	lis r5, m__17daNpc_zrZ_Param_c@ha
-/* 80B9724C  38 A5 AF EC */	addi r5, r5, m__17daNpc_zrZ_Param_c@l
+/* 80B97248  3C A0 80 BA */	lis r5, m__17daNpc_zrZ_Param_c@ha /* 0x80B9AFEC@ha */
+/* 80B9724C  38 A5 AF EC */	addi r5, r5, m__17daNpc_zrZ_Param_c@l /* 0x80B9AFEC@l */
 /* 80B97250  2C 04 00 1E */	cmpwi r4, 0x1e
 /* 80B97254  40 82 00 40 */	bne lbl_80B97294
 /* 80B97258  C0 45 01 88 */	lfs f2, 0x188(r5)
@@ -28,13 +28,13 @@ lbl_80B97294:
 /* 80B972A0  38 63 14 7C */	addi r3, r3, 0x147c
 /* 80B972A4  C0 25 01 90 */	lfs f1, 0x190(r5)
 /* 80B972A8  C0 45 01 94 */	lfs f2, 0x194(r5)
-/* 80B972AC  4B 6D 87 D4 */	b cLib_addCalc0__FPfff
+/* 80B972AC  4B 6D 87 D5 */	bl cLib_addCalc0__FPfff
 /* 80B972B0  48 00 00 2C */	b lbl_80B972DC
 lbl_80B972B4:
 /* 80B972B4  1C 00 0D AC */	mulli r0, r0, 0xdac
 /* 80B972B8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80B972BC  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80B972C0  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 80B972BC  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80B972C0  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80B972C4  7C 44 04 2E */	lfsx f2, r4, r0
 /* 80B972C8  C0 25 01 88 */	lfs f1, 0x188(r5)
 /* 80B972CC  C0 05 01 98 */	lfs f0, 0x198(r5)

@@ -23,8 +23,14 @@ extern "C" extern u8 data_80C4A0EC[4];
 //
 
 /* ############################################################################################## */
-/* 80C4A0E8-80C4A0EC 0004+00 s=0 e=4 z=0  None .bss       None */
+/* 80C4A0E8-80C4A0EC -00001 0004+00 0/0 4/4 0/0 .bss             None */
+/* 80C4A0E8 0001+00 data_80C4A0E8 None */
+/* 80C4A0E9 0001+00 data_80C4A0E9 None */
+/* 80C4A0EA 0001+00 data_80C4A0EA None */
+/* 80C4A0EB 0001+00 data_80C4A0EB None */
+extern u8 struct_80C4A0E8[4];
 u8 struct_80C4A0E8[4];
 
-/* 80C4A0EC-80C4A0F0 0004+00 s=0 e=1 z=0  None .bss       None */
+/* 80C4A0EC-80C4A0F0 000004 0004+00 0/0 1/1 0/0 .bss             None */
+extern u8 data_80C4A0EC[4];
 u8 data_80C4A0EC[4];

@@ -3,10 +3,10 @@ lbl_80CE622C:
 /* 80CE6230  7C 08 02 A6 */	mflr r0
 /* 80CE6234  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80CE6238  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CE623C  4B 67 BF 9C */	b _savegpr_28
+/* 80CE623C  4B 67 BF 9D */	bl _savegpr_28
 /* 80CE6240  7C 7D 1B 78 */	mr r29, r3
-/* 80CE6244  3C 80 80 CE */	lis r4, cNullVec__6Z2Calc@ha
-/* 80CE6248  3B E4 69 C4 */	addi r31, r4, cNullVec__6Z2Calc@l
+/* 80CE6244  3C 80 80 CE */	lis r4, cNullVec__6Z2Calc@ha /* 0x80CE69C4@ha */
+/* 80CE6248  3B E4 69 C4 */	addi r31, r4, cNullVec__6Z2Calc@l /* 0x80CE69C4@l */
 /* 80CE624C  3B C0 00 01 */	li r30, 1
 /* 80CE6250  80 9F 00 A8 */	lwz r4, 0xa8(r31)
 /* 80CE6254  80 1F 00 AC */	lwz r0, 0xac(r31)
@@ -21,8 +21,8 @@ lbl_80CE622C:
 /* 80CE6278  38 60 00 01 */	li r3, 1
 /* 80CE627C  48 00 01 18 */	b lbl_80CE6394
 lbl_80CE6280:
-/* 80CE6280  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CE6284  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 80CE6280  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CE6284  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CE6288  38 00 00 00 */	li r0, 0
 /* 80CE628C  88 7C 4F AD */	lbz r3, 0x4fad(r28)
 /* 80CE6290  28 03 00 00 */	cmplwi r3, 0
@@ -62,14 +62,14 @@ lbl_80CE62D0:
 /* 80CE630C  7F A3 EB 78 */	mr r3, r29
 /* 80CE6310  38 80 00 00 */	li r4, 0
 /* 80CE6314  39 9D 0A F0 */	addi r12, r29, 0xaf0
-/* 80CE6318  4B 67 BD 6C */	b __ptmf_scall
+/* 80CE6318  4B 67 BD 6D */	bl __ptmf_scall
 /* 80CE631C  60 00 00 00 */	nop 
 /* 80CE6320  7C 7E 1B 78 */	mr r30, r3
 /* 80CE6324  48 00 00 64 */	b lbl_80CE6388
 lbl_80CE6328:
 /* 80CE6328  38 00 00 00 */	li r0, 0
-/* 80CE632C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CE6330  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CE632C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CE6330  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CE6334  88 63 4F B5 */	lbz r3, 0x4fb5(r3)
 /* 80CE6338  28 03 00 01 */	cmplwi r3, 1
 /* 80CE633C  41 82 00 0C */	beq lbl_80CE6348
@@ -81,7 +81,7 @@ lbl_80CE634C:
 /* 80CE634C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80CE6350  41 82 00 14 */	beq lbl_80CE6364
 /* 80CE6354  38 7C 4F F8 */	addi r3, r28, 0x4ff8
-/* 80CE6358  4B 36 24 98 */	b ChkPresentEnd__16dEvent_manager_cFv
+/* 80CE6358  4B 36 24 99 */	bl ChkPresentEnd__16dEvent_manager_cFv
 /* 80CE635C  2C 03 00 00 */	cmpwi r3, 0
 /* 80CE6360  41 82 00 28 */	beq lbl_80CE6388
 lbl_80CE6364:
@@ -101,7 +101,7 @@ lbl_80CE6390:
 /* 80CE6390  7F C3 F3 78 */	mr r3, r30
 lbl_80CE6394:
 /* 80CE6394  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CE6398  4B 67 BE 8C */	b _restgpr_28
+/* 80CE6398  4B 67 BE 8D */	bl _restgpr_28
 /* 80CE639C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80CE63A0  7C 08 03 A6 */	mtlr r0
 /* 80CE63A4  38 21 00 40 */	addi r1, r1, 0x40

@@ -221,8 +221,8 @@ lbl_8032E920:
 /* 8032E934  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8032E938  48 03 37 75 */	bl __cvt_fp2unsigned
 /* 8032E93C  54 60 10 3A */	slwi r0, r3, 2
-/* 8032E940  3C 60 80 45 */	lis r3, asinAcosTable___5JMath@ha
-/* 8032E944  38 63 AA 40 */	addi r3, r3, asinAcosTable___5JMath@l
+/* 8032E940  3C 60 80 45 */	lis r3, asinAcosTable___5JMath@ha /* 0x8044AA40@ha */
+/* 8032E944  38 63 AA 40 */	addi r3, r3, asinAcosTable___5JMath@l /* 0x8044AA40@l */
 /* 8032E948  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8032E94C  C0 02 CA 8C */	lfs f0, lit_1023(r2)
 /* 8032E950  EC 21 00 2A */	fadds f1, f1, f0
@@ -232,8 +232,8 @@ lbl_8032E958:
 /* 8032E95C  EC 20 00 B2 */	fmuls f1, f0, f2
 /* 8032E960  48 03 37 4D */	bl __cvt_fp2unsigned
 /* 8032E964  54 60 10 3A */	slwi r0, r3, 2
-/* 8032E968  3C 60 80 45 */	lis r3, asinAcosTable___5JMath@ha
-/* 8032E96C  38 63 AA 40 */	addi r3, r3, asinAcosTable___5JMath@l
+/* 8032E968  3C 60 80 45 */	lis r3, asinAcosTable___5JMath@ha /* 0x8044AA40@ha */
+/* 8032E96C  38 63 AA 40 */	addi r3, r3, asinAcosTable___5JMath@l /* 0x8044AA40@l */
 /* 8032E970  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8032E974  C0 02 CA 8C */	lfs f0, lit_1023(r2)
 /* 8032E978  EC 20 08 28 */	fsubs f1, f0, f1

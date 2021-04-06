@@ -1,7 +1,7 @@
 lbl_80311A24:
 /* 80311A24  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 80311A28  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80311A2C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80311A28  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80311A2C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80311A30  7C 83 04 2E */	lfsx f4, r3, r0
 /* 80311A34  38 E3 00 04 */	addi r7, r3, 4
 /* 80311A38  7C A7 04 2E */	lfsx f5, r7, r0

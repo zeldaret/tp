@@ -3,19 +3,20 @@
 #
 
 M463_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2.plf
+M463_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2.lcf
+M463_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2.map
 
 M463_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_gra2/executor.cpp \
-	rel/d/a/obj/d_a_obj_gra2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_gra2/d_a_obj_gra2.cpp \
 
 M463_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/d_a_obj_gra2.o \
 
 M463_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/libRuntime.PPCEABI.H.a \
 
 M463_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M463_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map463.map\
+	-m _prolog \
+	-lcf $(M463_LDSCRIPT) \
+	-unused -map $(M463_MAP) \
+	-w off \
 
 $(M463_TARGET): $(M463_O_FILES) $(M463_LIBS)
+	@echo [463] creating $(M463_TARGET)
 	@echo $(M463_LIBS) $(M463_O_FILES) > build/M463_ofiles
-	$(LD) -opt_partial $(M463_LDFLAGS) -o $(M463_TARGET) @build/M463_ofiles
+	@python3 tools/lcf.py rel 463 --output $(M463_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M463_LDFLAGS) -o $(M463_TARGET) @build/M463_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra2/%.o: rel/d/a/obj/d_a_obj_gra2/%.cpp
+	@echo [463] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M463_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M463_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_gra2/libs/Runtime.PPCEABI.H/Makefile
 

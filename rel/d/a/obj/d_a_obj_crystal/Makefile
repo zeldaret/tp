@@ -3,17 +3,15 @@
 #
 
 M432_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal.plf
+M432_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal.lcf
+M432_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal.map
 
 M432_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crystal/executor.cpp \
-	rel/d/a/obj/d_a_obj_crystal/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crystal/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal.cpp \
 
 M432_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/d_a_obj_crystal.o \
 
 M432_LIBS := \
@@ -29,15 +27,21 @@ M432_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map432.map\
+	-m _prolog \
+	-lcf $(M432_LDSCRIPT) \
+	-unused -map $(M432_MAP) \
+	-w off \
 
 $(M432_TARGET): $(M432_O_FILES) $(M432_LIBS)
+	@echo [432] creating $(M432_TARGET)
 	@echo $(M432_LIBS) $(M432_O_FILES) > build/M432_ofiles
-	$(LD) -opt_partial $(M432_LDFLAGS) -o $(M432_TARGET) @build/M432_ofiles
+	@python3 tools/lcf.py rel 432 --output $(M432_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M432_LDFLAGS) -o $(M432_TARGET) @build/M432_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crystal/%.o: rel/d/a/obj/d_a_obj_crystal/%.cpp
+	@echo [432] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M432_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M432_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

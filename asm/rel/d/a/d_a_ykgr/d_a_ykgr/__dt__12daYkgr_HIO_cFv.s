@@ -5,18 +5,18 @@ lbl_805A8D98:
 /* 805A8DA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805A8DA8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 805A8DAC  41 82 00 30 */	beq lbl_805A8DDC
-/* 805A8DB0  3C 60 80 5B */	lis r3, __vt__12daYkgr_HIO_c@ha
-/* 805A8DB4  38 03 90 98 */	addi r0, r3, __vt__12daYkgr_HIO_c@l
+/* 805A8DB0  3C 60 80 5B */	lis r3, __vt__12daYkgr_HIO_c@ha /* 0x805A9098@ha */
+/* 805A8DB4  38 03 90 98 */	addi r0, r3, __vt__12daYkgr_HIO_c@l /* 0x805A9098@l */
 /* 805A8DB8  90 1F 00 00 */	stw r0, 0(r31)
 /* 805A8DBC  41 82 00 10 */	beq lbl_805A8DCC
-/* 805A8DC0  3C 60 80 5B */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 805A8DC4  38 03 90 A4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 805A8DC0  3C 60 80 5B */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x805A90A4@ha */
+/* 805A8DC4  38 03 90 A4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x805A90A4@l */
 /* 805A8DC8  90 1F 00 00 */	stw r0, 0(r31)
 lbl_805A8DCC:
 /* 805A8DCC  7C 80 07 35 */	extsh. r0, r4
 /* 805A8DD0  40 81 00 0C */	ble lbl_805A8DDC
 /* 805A8DD4  7F E3 FB 78 */	mr r3, r31
-/* 805A8DD8  4B D2 5F 64 */	b __dl__FPv
+/* 805A8DD8  4B D2 5F 65 */	bl __dl__FPv
 lbl_805A8DDC:
 /* 805A8DDC  7F E3 FB 78 */	mr r3, r31
 /* 805A8DE0  83 E1 00 0C */	lwz r31, 0xc(r1)

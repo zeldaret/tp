@@ -27,8 +27,8 @@ lbl_8003D320:
 /* 8003D384  48 32 32 4D */	bl GXSetClipMode
 /* 8003D388  38 60 00 01 */	li r3, 1
 /* 8003D38C  48 32 2A 4D */	bl GXSetDither
-/* 8003D390  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003D394  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003D390  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003D394  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003D398  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 8003D39C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8003D3A0  81 8C 00 18 */	lwz r12, 0x18(r12)

@@ -1,8 +1,8 @@
 lbl_8048D77C:
-/* 8048D77C  3C 60 80 49 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8048D780  38 A3 D8 18 */	addi r5, r3, cNullVec__6Z2Calc@l
-/* 8048D784  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8048D788  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8048D77C  3C 60 80 49 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8048D818@ha */
+/* 8048D780  38 A3 D8 18 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x8048D818@l */
+/* 8048D784  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8048D788  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8048D78C  80 64 00 00 */	lwz r3, 0(r4)
 /* 8048D790  80 04 00 04 */	lwz r0, 4(r4)
 /* 8048D794  90 65 00 44 */	stw r3, 0x44(r5)

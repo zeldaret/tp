@@ -5,8 +5,8 @@ lbl_802A758C:
 /* 802A7598  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A759C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A75A0  41 82 00 1C */	beq lbl_802A75BC
-/* 802A75A4  3C A0 80 3D */	lis r5, __vt__Q28JMessage8TControl@ha
-/* 802A75A8  38 05 9B 60 */	addi r0, r5, __vt__Q28JMessage8TControl@l
+/* 802A75A4  3C A0 80 3D */	lis r5, __vt__Q28JMessage8TControl@ha /* 0x803C9B60@ha */
+/* 802A75A8  38 05 9B 60 */	addi r0, r5, __vt__Q28JMessage8TControl@l /* 0x803C9B60@l */
 /* 802A75AC  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A75B0  7C 80 07 35 */	extsh. r0, r4
 /* 802A75B4  40 81 00 08 */	ble lbl_802A75BC

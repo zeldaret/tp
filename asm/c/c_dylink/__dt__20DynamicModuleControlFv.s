@@ -7,8 +7,8 @@ lbl_800188E4:
 /* 800188F8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800188FC  7C 9F 23 78 */	mr r31, r4
 /* 80018900  41 82 00 28 */	beq lbl_80018928
-/* 80018904  3C 80 80 3C */	lis r4, __vt__20DynamicModuleControl@ha
-/* 80018908  38 04 34 C0 */	addi r0, r4, __vt__20DynamicModuleControl@l
+/* 80018904  3C 80 80 3C */	lis r4, __vt__20DynamicModuleControl@ha /* 0x803C34C0@ha */
+/* 80018908  38 04 34 C0 */	addi r0, r4, __vt__20DynamicModuleControl@l /* 0x803C34C0@l */
 /* 8001890C  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 80018910  38 80 00 00 */	li r4, 0
 /* 80018914  48 24 98 B9 */	bl __dt__24DynamicModuleControlBaseFv

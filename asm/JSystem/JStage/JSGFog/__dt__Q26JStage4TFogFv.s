@@ -7,8 +7,8 @@ lbl_80280C80:
 /* 80280C94  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80280C98  7C 9F 23 78 */	mr r31, r4
 /* 80280C9C  41 82 00 28 */	beq lbl_80280CC4
-/* 80280CA0  3C 80 80 3C */	lis r4, __vt__Q26JStage4TFog@ha
-/* 80280CA4  38 04 47 18 */	addi r0, r4, __vt__Q26JStage4TFog@l
+/* 80280CA0  3C 80 80 3C */	lis r4, __vt__Q26JStage4TFog@ha /* 0x803C4718@ha */
+/* 80280CA4  38 04 47 18 */	addi r0, r4, __vt__Q26JStage4TFog@l /* 0x803C4718@l */
 /* 80280CA8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280CAC  38 80 00 00 */	li r4, 0
 /* 80280CB0  48 00 01 25 */	bl __dt__Q26JStage7TObjectFv

@@ -3,18 +3,16 @@
 #
 
 M658_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor.plf
+M658_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor.lcf
+M658_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor.map
 
 M658_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_thdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_thdoor/d_a_obj_thdoor.cpp \
 
 M658_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/d_a_obj_thdoor.o \
 
@@ -31,15 +29,21 @@ M658_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map658.map\
+	-m _prolog \
+	-lcf $(M658_LDSCRIPT) \
+	-unused -map $(M658_MAP) \
+	-w off \
 
 $(M658_TARGET): $(M658_O_FILES) $(M658_LIBS)
+	@echo [658] creating $(M658_TARGET)
 	@echo $(M658_LIBS) $(M658_O_FILES) > build/M658_ofiles
-	$(LD) -opt_partial $(M658_LDFLAGS) -o $(M658_TARGET) @build/M658_ofiles
+	@python3 tools/lcf.py rel 658 --output $(M658_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M658_LDFLAGS) -o $(M658_TARGET) @build/M658_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_thdoor/%.o: rel/d/a/obj/d_a_obj_thdoor/%.cpp
+	@echo [658] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M658_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M658_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -10,8 +10,8 @@ lbl_8036D68C:
 /* 8036D6AC  2C 03 00 03 */	cmpwi r3, 3
 /* 8036D6B0  40 80 00 2C */	bge lbl_8036D6DC
 /* 8036D6B4  1C 83 08 90 */	mulli r4, r3, 0x890
-/* 8036D6B8  3C 60 80 45 */	lis r3, gTRKMsgBufs@ha
-/* 8036D6BC  38 03 D8 C0 */	addi r0, r3, gTRKMsgBufs@l
+/* 8036D6B8  3C 60 80 45 */	lis r3, gTRKMsgBufs@ha /* 0x8044D8C0@ha */
+/* 8036D6BC  38 03 D8 C0 */	addi r0, r3, gTRKMsgBufs@l /* 0x8044D8C0@l */
 /* 8036D6C0  7F E0 22 14 */	add r31, r0, r4
 /* 8036D6C4  7F E3 FB 78 */	mr r3, r31
 /* 8036D6C8  48 00 1D D9 */	bl TRKAcquireMutex

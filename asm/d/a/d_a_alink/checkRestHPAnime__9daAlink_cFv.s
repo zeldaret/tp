@@ -28,8 +28,8 @@ lbl_800B342C:
 /* 800B3448  A0 1F 06 04 */	lhz r0, 0x604(r31)
 /* 800B344C  2C 00 00 00 */	cmpwi r0, 0
 /* 800B3450  40 82 00 18 */	bne lbl_800B3468
-/* 800B3454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B3458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B3454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B3458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B345C  A0 03 00 02 */	lhz r0, 2(r3)
 /* 800B3460  28 00 00 04 */	cmplwi r0, 4
 /* 800B3464  40 81 00 10 */	ble lbl_800B3474

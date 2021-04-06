@@ -19,7 +19,7 @@ extern "C" void GXLoadPosMtxImm();
 extern "C" void GXLoadNrmMtxImm();
 extern "C" void GXSetCurrentMtx();
 extern "C" void GXLoadTexMtxImm();
-extern "C" static void __GXSetViewport();
+extern "C" void __GXSetViewport();
 extern "C" void GXSetViewport();
 extern "C" void GXGetViewportv();
 extern "C" void GXSetScissor();
@@ -39,7 +39,7 @@ extern "C" extern void* __GXData;
 //
 
 /* ############################################################################################## */
-/* 80456650-80456654 0004+00 s=3 e=0 z=0  None .sdata2    @26 */
+/* 80456650-80456654 004C50 0004+00 3/3 0/0 0/0 .sdata2          @26 */
 SECTION_SDATA2 static u8 lit_26[4] = {
     0x00,
     0x00,
@@ -47,199 +47,171 @@ SECTION_SDATA2 static u8 lit_26[4] = {
     0x00,
 };
 
-/* 80456654-80456658 0004+00 s=2 e=0 z=0  None .sdata2    @27 */
+/* 80456654-80456658 004C54 0004+00 2/2 0/0 0/0 .sdata2          @27 */
 SECTION_SDATA2 static f32 lit_27 = 1.0f;
 
-/* 80456658-8045665C 0004+00 s=2 e=0 z=0  None .sdata2    @28 */
+/* 80456658-8045665C 004C58 0004+00 2/2 0/0 0/0 .sdata2          @28 */
 SECTION_SDATA2 static f32 lit_28 = 0.5f;
 
-/* 8035FF60-803600D4 0174+00 s=0 e=1 z=0  None .text      GXProject */
-//	8035FFA0: 80456650 (lit_26)
-//	8035FFEC: 80456654 (lit_27)
-//	8036005C: 80456654 (lit_27)
-//	8036006C: 80456658 (lit_28)
+/* 8035FF60-803600D4 35A8A0 0174+00 0/0 1/1 0/0 .text            GXProject */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXProject() {
+asm void GXProject() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXProject.s"
 }
 #pragma pop
 
-/* 803600D4-80360178 00A4+00 s=0 e=15 z=2  None .text      GXSetProjection */
-//	803600D4: 80456580 (__GXData)
-//	8036012C: 80456580 (__GXData)
+/* 803600D4-80360178 35AA14 00A4+00 0/0 15/15 2/2 .text            GXSetProjection */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetProjection() {
+asm void GXSetProjection() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetProjection.s"
 }
 #pragma pop
 
-/* 80360178-80360204 008C+00 s=0 e=1 z=1  None .text      GXSetProjectionv */
-//	80360178: 80456650 (lit_26)
-//	80360194: 80456580 (__GXData)
+/* 80360178-80360204 35AAB8 008C+00 0/0 1/1 1/1 .text            GXSetProjectionv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetProjectionv() {
+asm void GXSetProjectionv() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetProjectionv.s"
 }
 #pragma pop
 
-/* 80360204-8036024C 0048+00 s=0 e=1 z=1  None .text      GXGetProjectionv */
-//	80360204: 80456580 (__GXData)
-//	80360214: 80456654 (lit_27)
-//	8036021C: 80456650 (lit_26)
-//	80360228: 80456580 (__GXData)
+/* 80360204-8036024C 35AB44 0048+00 0/0 1/1 1/1 .text            GXGetProjectionv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXGetProjectionv() {
+asm void GXGetProjectionv() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetProjectionv.s"
 }
 #pragma pop
 
-/* 8036024C-8036029C 0050+00 s=0 e=83 z=9  None .text      GXLoadPosMtxImm */
+/* 8036024C-8036029C 35AB8C 0050+00 0/0 83/83 9/9 .text            GXLoadPosMtxImm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXLoadPosMtxImm() {
+asm void GXLoadPosMtxImm() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadPosMtxImm.s"
 }
 #pragma pop
 
-/* 8036029C-803602EC 0050+00 s=0 e=11 z=7  None .text      GXLoadNrmMtxImm */
+/* 8036029C-803602EC 35ABDC 0050+00 0/0 11/11 7/7 .text            GXLoadNrmMtxImm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXLoadNrmMtxImm() {
+asm void GXLoadNrmMtxImm() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadNrmMtxImm.s"
 }
 #pragma pop
 
-/* 803602EC-80360320 0034+00 s=0 e=51 z=2  None .text      GXSetCurrentMtx */
-//	803602F8: 80456580 (__GXData)
-//	8036030C: 803605F8 (__GXSetMatrixIndex)
+/* 803602EC-80360320 35AC2C 0034+00 0/0 51/51 2/2 .text            GXSetCurrentMtx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetCurrentMtx() {
+asm void GXSetCurrentMtx() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetCurrentMtx.s"
 }
 #pragma pop
 
-/* 80360320-803603D4 00B4+00 s=0 e=15 z=0  None .text      GXLoadTexMtxImm */
+/* 80360320-803603D4 35AC60 00B4+00 0/0 15/15 0/0 .text            GXLoadTexMtxImm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXLoadTexMtxImm() {
+asm void GXLoadTexMtxImm() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXLoadTexMtxImm.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045665C-80456660 0004+00 s=1 e=0 z=0  None .sdata2    @201 */
+/* 8045665C-80456660 004C5C 0004+00 1/1 0/0 0/0 .sdata2          @201 */
 SECTION_SDATA2 static f32 lit_201 = 342.0f;
 
-/* 803603D4-80360464 0090+00 s=1 e=0 z=0  None .text      __GXSetViewport */
-//	803603D4: 80456580 (__GXData)
-//	803603DC: 80456658 (lit_28)
-//	80360424: 8045665C (lit_201)
+/* 803603D4-80360464 35AD14 0090+00 1/1 0/0 0/0 .text            __GXSetViewport */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __GXSetViewport() {
+asm void __GXSetViewport() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/__GXSetViewport.s"
 }
 #pragma pop
 
-/* 80360464-803604AC 0048+00 s=0 e=10 z=1  None .text      GXSetViewport */
-//	80360470: 80456580 (__GXData)
-//	8036048C: 803603D4 (__GXSetViewport)
-//	80360490: 80456580 (__GXData)
+/* 80360464-803604AC 35ADA4 0048+00 0/0 10/10 1/1 .text            GXSetViewport */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetViewport() {
+asm void GXSetViewport() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetViewport.s"
 }
 #pragma pop
 
-/* 803604AC-803604D0 0024+00 s=0 e=1 z=1  None .text      GXGetViewportv */
-//	803604AC: 80456580 (__GXData)
+/* 803604AC-803604D0 35ADEC 0024+00 0/0 1/1 1/1 .text            GXGetViewportv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXGetViewportv() {
+asm void GXGetViewportv() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetViewportv.s"
 }
 #pragma pop
 
-/* 803604D0-80360548 0078+00 s=0 e=11 z=4  None .text      GXSetScissor */
-//	803604D0: 80456580 (__GXData)
+/* 803604D0-80360548 35AE10 0078+00 0/0 11/11 4/4 .text            GXSetScissor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetScissor() {
+asm void GXSetScissor() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetScissor.s"
 }
 #pragma pop
 
-/* 80360548-80360590 0048+00 s=0 e=6 z=2  None .text      GXGetScissor */
-//	80360548: 80456580 (__GXData)
+/* 80360548-80360590 35AE88 0048+00 0/0 6/6 2/2 .text            GXGetScissor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXGetScissor() {
+asm void GXGetScissor() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXGetScissor.s"
 }
 #pragma pop
 
-/* 80360590-803605D0 0040+00 s=0 e=1 z=0  None .text      GXSetScissorBoxOffset */
-//	80360594: 80456580 (__GXData)
+/* 80360590-803605D0 35AED0 0040+00 0/0 1/1 0/0 .text            GXSetScissorBoxOffset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetScissorBoxOffset() {
+asm void GXSetScissorBoxOffset() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetScissorBoxOffset.s"
 }
 #pragma pop
 
-/* 803605D0-803605F8 0028+00 s=0 e=27 z=2  None .text      GXSetClipMode */
-//	803605D4: 80456580 (__GXData)
+/* 803605D0-803605F8 35AF10 0028+00 0/0 27/27 2/2 .text            GXSetClipMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetClipMode() {
+asm void GXSetClipMode() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/GXSetClipMode.s"
 }
 #pragma pop
 
-/* 803605F8-8036067C 0084+00 s=1 e=1 z=0  None .text      __GXSetMatrixIndex */
-//	80360604: 80456580 (__GXData)
-//	8036063C: 80456580 (__GXData)
-//	8036066C: 80456580 (__GXData)
+/* 803605F8-8036067C 35AF38 0084+00 1/1 1/1 0/0 .text            __GXSetMatrixIndex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXSetMatrixIndex() {
+asm void __GXSetMatrixIndex() {
     nofralloc
 #include "asm/dolphin/gx/GXTransform/__GXSetMatrixIndex.s"
 }

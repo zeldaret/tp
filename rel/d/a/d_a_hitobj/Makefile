@@ -3,17 +3,15 @@
 #
 
 M12_TARGET := $(BUILD_DIR)/rel/d/a/d_a_hitobj.plf
+M12_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_hitobj.lcf
+M12_MAP := $(BUILD_DIR)/rel/d/a/d_a_hitobj.map
 
 M12_CPP_FILES := \
-	rel/d/a/d_a_hitobj/executor.cpp \
-	rel/d/a/d_a_hitobj/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_hitobj/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_hitobj/d_a_hitobj.cpp \
 
 M12_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_hitobj/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_hitobj/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_hitobj/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_hitobj/d_a_hitobj.o \
 
 M12_LIBS := \
@@ -29,15 +27,21 @@ M12_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map12.map\
+	-m _prolog \
+	-lcf $(M12_LDSCRIPT) \
+	-unused -map $(M12_MAP) \
+	-w off \
 
 $(M12_TARGET): $(M12_O_FILES) $(M12_LIBS)
+	@echo [ 12] creating $(M12_TARGET)
 	@echo $(M12_LIBS) $(M12_O_FILES) > build/M12_ofiles
-	$(LD) -opt_partial $(M12_LDFLAGS) -o $(M12_TARGET) @build/M12_ofiles
+	@python3 tools/lcf.py rel 12 --output $(M12_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M12_LDFLAGS) -o $(M12_TARGET) @build/M12_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_hitobj/%.o: rel/d/a/d_a_hitobj/%.cpp
+	@echo [ 12] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M12_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M12_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

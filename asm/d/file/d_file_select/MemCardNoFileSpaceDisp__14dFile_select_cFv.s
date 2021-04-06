@@ -8,8 +8,8 @@ lbl_8018E9D4:
 /* 8018E9EC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8018E9F0  28 00 00 01 */	cmplwi r0, 1
 /* 8018E9F4  40 82 00 34 */	bne lbl_8018EA28
-/* 8018E9F8  3C 60 80 3C */	lis r3, lit_7865@ha
-/* 8018E9FC  38 83 B2 E0 */	addi r4, r3, lit_7865@l
+/* 8018E9F8  3C 60 80 3C */	lis r3, lit_7865@ha /* 0x803BB2E0@ha */
+/* 8018E9FC  38 83 B2 E0 */	addi r4, r3, lit_7865@l /* 0x803BB2E0@l */
 /* 8018EA00  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018EA04  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018EA08  90 7F 02 90 */	stw r3, 0x290(r31)

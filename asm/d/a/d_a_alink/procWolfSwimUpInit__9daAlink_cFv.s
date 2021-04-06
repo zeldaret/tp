@@ -19,14 +19,14 @@ lbl_801383D8:
 /* 8013841C  98 1F 2D 73 */	stb r0, 0x2d73(r31)
 /* 80138420  7F E3 FB 78 */	mr r3, r31
 /* 80138424  38 80 00 36 */	li r4, 0x36
-/* 80138428  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha
-/* 8013842C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l
+/* 80138428  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 8013842C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 80138430  4B FF 14 19 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80138434  7F E3 FB 78 */	mr r3, r31
 /* 80138438  38 80 00 8E */	li r4, 0x8e
 /* 8013843C  4B F7 74 65 */	bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
-/* 80138440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80138444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80138440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80138444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80138448  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8013844C  64 00 00 10 */	oris r0, r0, 0x10
 /* 80138450  90 03 5F 18 */	stw r0, 0x5f18(r3)

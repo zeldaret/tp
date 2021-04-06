@@ -1,6 +1,6 @@
 lbl_806AAD68:
-/* 806AAD68  3C 60 80 6B */	lis r3, lit_3764@ha
-/* 806AAD6C  39 03 D5 38 */	addi r8, r3, lit_3764@l
+/* 806AAD68  3C 60 80 6B */	lis r3, lit_3764@ha /* 0x806AD538@ha */
+/* 806AAD6C  39 03 D5 38 */	addi r8, r3, lit_3764@l /* 0x806AD538@l */
 /* 806AAD70  C0 89 04 FC */	lfs f4, 0x4fc(r9)
 /* 806AAD74  C0 68 00 20 */	lfs f3, 0x20(r8)
 /* 806AAD78  FC 04 18 00 */	fcmpu cr0, f4, f3

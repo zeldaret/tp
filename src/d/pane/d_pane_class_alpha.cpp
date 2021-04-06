@@ -81,15 +81,10 @@ extern "C" void setBackupAlpha__17CPaneMgrAlphaMorfFv();
 extern "C" void setAlphaMorfRate__17CPaneMgrAlphaMorfFf();
 extern "C" void childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane();
 extern "C" void childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef();
-extern "C" extern void* __vt__17CPaneMgrAlphaMorf[4];
-extern "C" extern void* __vt__13CPaneMgrAlpha[4];
 
 //
 // External References:
 //
-
-void mDoExt_getCurrentHeap();
-void operator delete(void*);
 
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void alloc__7JKRHeapFUli();
@@ -107,25 +102,23 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C2E18-803C2E28 0010+00 s=2 e=0 z=0  None .data      __vt__17CPaneMgrAlphaMorf */
-SECTION_DATA void* __vt__17CPaneMgrAlphaMorf[4] = {
+/* 803C2E18-803C2E28 01FF38 0010+00 2/2 0/0 0/0 .data            __vt__17CPaneMgrAlphaMorf */
+SECTION_DATA extern void* __vt__17CPaneMgrAlphaMorf[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17CPaneMgrAlphaMorfFv,
     (void*)setAlpha__13CPaneMgrAlphaFUc,
 };
 
-/* 803C2E28-803C2E38 0010+00 s=3 e=0 z=0  None .data      __vt__13CPaneMgrAlpha */
-SECTION_DATA void* __vt__13CPaneMgrAlpha[4] = {
+/* 803C2E28-803C2E38 01FF48 0010+00 3/3 0/0 0/0 .data            __vt__13CPaneMgrAlpha */
+SECTION_DATA extern void* __vt__13CPaneMgrAlpha[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13CPaneMgrAlphaFv,
     (void*)setAlpha__13CPaneMgrAlphaFUc,
 };
 
-/* 802553EC-802553FC 0010+00 s=0 e=2 z=0  None .text      __ct__13CPaneMgrAlphaFv */
-//	802553EC: 803C2E28 (__vt__13CPaneMgrAlpha)
-//	802553F0: 803C2E28 (__vt__13CPaneMgrAlpha)
+/* 802553EC-802553FC 24FD2C 0010+00 0/0 2/2 0/0 .text            __ct__13CPaneMgrAlphaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -135,13 +128,8 @@ asm CPaneMgrAlpha::CPaneMgrAlpha() {
 }
 #pragma pop
 
-/* 802553FC-8025546C 0070+00 s=1 e=9 z=1  None .text
+/* 802553FC-8025546C 24FD3C 0070+00 1/1 9/9 1/1 .text
  * __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap           */
-//	8025540C: 803621DC (_savegpr_29)
-//	8025541C: 803C2E28 (__vt__13CPaneMgrAlpha)
-//	80255420: 803C2E28 (__vt__13CPaneMgrAlpha)
-//	8025544C: 802554E0 (initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap)
-//	80255458: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,11 +139,7 @@ asm CPaneMgrAlpha::CPaneMgrAlpha(J2DScreen* param_0, u64 param_1, u8 param_2, JK
 }
 #pragma pop
 
-/* 8025546C-802554E0 0074+00 s=2 e=1 z=0  None .text      __dt__13CPaneMgrAlphaFv */
-//	8025548C: 803C2E28 (__vt__13CPaneMgrAlpha)
-//	80255490: 803C2E28 (__vt__13CPaneMgrAlpha)
-//	802554A8: 802CE548 (free__7JKRHeapFPv)
-//	802554C0: 802CED3C (__dl__FPv)
+/* 8025546C-802554E0 24FDAC 0074+00 2/1 1/1 0/0 .text            __dt__13CPaneMgrAlphaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,14 +149,8 @@ asm CPaneMgrAlpha::~CPaneMgrAlpha() {
 }
 #pragma pop
 
-/* 802554E0-802555C8 00E8+00 s=1 e=0 z=0  None .text
+/* 802554E0-802555C8 24FE20 00E8+00 1/1 0/0 0/0 .text
  * initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap        */
-//	80255510: 8000F1EC (mDoExt_getCurrentHeap__Fv)
-//	80255538: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255544: 80255A60 (childPaneCount__13CPaneMgrAlphaFP7J2DPane)
-//	80255560: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80255574: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255580: 80255ACC (childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -182,8 +160,7 @@ asm void CPaneMgrAlpha::initiateAlpha(J2DPane* param_0, JKRExpHeap* param_1) {
 }
 #pragma pop
 
-/* 802555C8-80255608 0040+00 s=0 e=40 z=2  None .text      show__13CPaneMgrAlphaFv */
-//	802555DC: 8025564C (isVisible__13CPaneMgrAlphaFv)
+/* 802555C8-80255608 24FF08 0040+00 0/0 40/40 2/2 .text            show__13CPaneMgrAlphaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -193,8 +170,7 @@ asm void CPaneMgrAlpha::show() {
 }
 #pragma pop
 
-/* 80255608-8025564C 0044+00 s=0 e=46 z=2  None .text      hide__13CPaneMgrAlphaFv */
-//	8025561C: 8025564C (isVisible__13CPaneMgrAlphaFv)
+/* 80255608-8025564C 24FF48 0044+00 0/0 46/46 2/2 .text            hide__13CPaneMgrAlphaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -204,7 +180,7 @@ asm void CPaneMgrAlpha::hide() {
 }
 #pragma pop
 
-/* 8025564C-80255658 000C+00 s=2 e=12 z=0  None .text      isVisible__13CPaneMgrAlphaFv */
+/* 8025564C-80255658 24FF8C 000C+00 2/2 12/12 0/0 .text            isVisible__13CPaneMgrAlphaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,21 +191,17 @@ asm void CPaneMgrAlpha::isVisible() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454EB8-80454EC0 0004+04 s=1 e=0 z=0  None .sdata2    @3692 */
+/* 80454EB8-80454EC0 0034B8 0004+04 1/1 0/0 0/0 .sdata2          @3692 */
 SECTION_SDATA2 static f32 lit_3692[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454EC0-80454EC8 0008+00 s=3 e=0 z=0  None .sdata2    @3694 */
+/* 80454EC0-80454EC8 0034C0 0008+00 3/3 0/0 0/0 .sdata2          @3694 */
 SECTION_SDATA2 static f64 lit_3694 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80255658-80255758 0100+00 s=2 e=2 z=0  None .text      rateCalc__13CPaneMgrAlphaFssUc */
-//	8025566C: 80454EB8 (lit_3692)
-//	80255694: 80454EC0 (lit_3694)
-//	802556D8: 80454EC0 (lit_3694)
-//	80255718: 80454EC0 (lit_3694)
+/* 80255658-80255758 24FF98 0100+00 2/2 2/2 0/0 .text            rateCalc__13CPaneMgrAlphaFssUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,9 +211,7 @@ asm void CPaneMgrAlpha::rateCalc(s16 param_0, s16 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 80255758-802557D0 0078+00 s=2 e=0 z=0  None .text      setAlpha__13CPaneMgrAlphaFUc */
-//	8025578C: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	8025579C: 80255B5C (childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc)
+/* 80255758-802557D0 250098 0078+00 2/0 0/0 0/0 .text            setAlpha__13CPaneMgrAlphaFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -252,11 +222,11 @@ asm void CPaneMgrAlpha::setAlpha(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454EC8-80454ED0 0008+00 s=6 e=0 z=0  None .sdata2    @3708 */
+/* 80454EC8-80454ED0 0034C8 0008+00 6/6 0/0 0/0 .sdata2          @3708 */
 SECTION_SDATA2 static f64 lit_3708 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802557D0-80255828 0058+00 s=1 e=173 z=5  None .text      setAlphaRate__13CPaneMgrAlphaFf */
-//	802557E0: 80454EC8 (lit_3708)
+/* 802557D0-80255828 250110 0058+00 1/1 173/173 5/5 .text            setAlphaRate__13CPaneMgrAlphaFf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,16 +237,15 @@ asm void CPaneMgrAlpha::setAlphaRate(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454ED0-80454ED8 0004+04 s=2 e=0 z=0  None .sdata2    @3721 */
+/* 80454ED0-80454ED8 0034D0 0004+04 2/2 0/0 0/0 .sdata2          @3721 */
 SECTION_SDATA2 static f32 lit_3721[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80255828-80255878 0050+00 s=0 e=107 z=2  None .text      getAlphaRate__13CPaneMgrAlphaFv */
-//	8025582C: 80454ED0 (lit_3721)
-//	80255844: 80454EC8 (lit_3708)
+/* 80255828-80255878 250168 0050+00 0/0 107/107 2/2 .text            getAlphaRate__13CPaneMgrAlphaFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -286,12 +255,7 @@ asm void CPaneMgrAlpha::getAlphaRate() {
 }
 #pragma pop
 
-/* 80255878-80255964 00EC+00 s=0 e=31 z=1  None .text      alphaAnime__13CPaneMgrAlphaFsUcUcUc */
-//	80255888: 803621DC (_savegpr_29)
-//	802558BC: 80255658 (rateCalc__13CPaneMgrAlphaFssUc)
-//	802558C8: 80454EC8 (lit_3708)
-//	802558E8: 80454EC0 (lit_3694)
-//	80255950: 80362228 (_restgpr_29)
+/* 80255878-80255964 2501B8 00EC+00 0/0 31/31 1/1 .text alphaAnime__13CPaneMgrAlphaFsUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -301,12 +265,7 @@ asm void CPaneMgrAlpha::alphaAnime(s16 param_0, u8 param_1, u8 param_2, u8 param
 }
 #pragma pop
 
-/* 80255964-80255A60 00FC+00 s=0 e=0 z=1  None .text      alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc */
-//	80255974: 803621D8 (_savegpr_28)
-//	802559DC: 80255658 (rateCalc__13CPaneMgrAlphaFssUc)
-//	802559E8: 80454EC8 (lit_3708)
-//	80255A08: 80454EC0 (lit_3694)
-//	80255A4C: 80362224 (_restgpr_28)
+/* 80255964-80255A60 2502A4 00FC+00 0/0 0/0 1/1 .text alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,10 +275,7 @@ asm void CPaneMgrAlpha::alphaAnimeLoop(s16 param_0, u8 param_1, u8 param_2, u8 p
 }
 #pragma pop
 
-/* 80255A60-80255ACC 006C+00 s=1 e=1 z=0  None .text      childPaneCount__13CPaneMgrAlphaFP7J2DPane
- */
-//	80255A90: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255AA4: 802F7AC4 (getNextChildPane__7J2DPaneFv)
+/* 80255A60-80255ACC 2503A0 006C+00 1/1 1/1 0/0 .text childPaneCount__13CPaneMgrAlphaFP7J2DPane */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,10 +285,8 @@ asm void CPaneMgrAlpha::childPaneCount(J2DPane* param_0) {
 }
 #pragma pop
 
-/* 80255ACC-80255B5C 0090+00 s=1 e=1 z=0  None .text childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane
+/* 80255ACC-80255B5C 25040C 0090+00 1/1 1/1 0/0 .text childPaneGetAlpha__13CPaneMgrAlphaFP7J2DPane
  */
-//	80255B20: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255B34: 802F7AC4 (getNextChildPane__7J2DPaneFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,15 +296,8 @@ asm void CPaneMgrAlpha::childPaneGetAlpha(J2DPane* param_0) {
 }
 #pragma pop
 
-/* 80255B5C-80255C68 010C+00 s=1 e=1 z=0  None .text
+/* 80255B5C-80255C68 25049C 010C+00 1/1 1/1 0/0 .text
  * childPaneSetAlpha__13CPaneMgrAlphaFP7J2DPaneUc               */
-//	80255B6C: 803621DC (_savegpr_29)
-//	80255B98: 80454ED0 (lit_3721)
-//	80255BA4: 80454EC8 (lit_3708)
-//	80255BDC: 80454EC8 (lit_3708)
-//	80255C24: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255C3C: 802F7AC4 (getNextChildPane__7J2DPaneFv)
-//	80255C54: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -360,12 +307,8 @@ asm void CPaneMgrAlpha::childPaneSetAlpha(J2DPane* param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80255C68-80255CAC 0044+00 s=0 e=5 z=0  None .text
+/* 80255C68-80255CAC 2505A8 0044+00 0/0 5/5 0/0 .text
  * __ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap       */
-//	80255C7C: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	80255C80: 803C2E18 (__vt__17CPaneMgrAlphaMorf)
-//	80255C84: 803C2E18 (__vt__17CPaneMgrAlphaMorf)
-//	80255C90: 80255D48 (initiateAlphaMorf__17CPaneMgrAlphaMorfFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,13 +319,7 @@ asm CPaneMgrAlphaMorf::CPaneMgrAlphaMorf(J2DScreen* param_0, u64 param_1, u8 par
 }
 #pragma pop
 
-/* 80255CAC-80255D48 009C+00 s=1 e=0 z=0  None .text      __dt__17CPaneMgrAlphaMorfFv */
-//	80255CCC: 803C2E18 (__vt__17CPaneMgrAlphaMorf)
-//	80255CD0: 803C2E18 (__vt__17CPaneMgrAlphaMorf)
-//	80255CE8: 802CE548 (free__7JKRHeapFPv)
-//	80255D04: 802CE548 (free__7JKRHeapFPv)
-//	80255D18: 8025546C (__dt__13CPaneMgrAlphaFv)
-//	80255D28: 802CED3C (__dl__FPv)
+/* 80255CAC-80255D48 2505EC 009C+00 1/0 0/0 0/0 .text            __dt__17CPaneMgrAlphaMorfFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -392,11 +329,7 @@ asm CPaneMgrAlphaMorf::~CPaneMgrAlphaMorf() {
 }
 #pragma pop
 
-/* 80255D48-80255DD0 0088+00 s=1 e=0 z=0  None .text      initiateAlphaMorf__17CPaneMgrAlphaMorfFv
- */
-//	80255D88: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80255DA4: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80255DB8: 80255DD0 (setBackupAlpha__17CPaneMgrAlphaMorfFv)
+/* 80255D48-80255DD0 250688 0088+00 1/1 0/0 0/0 .text initiateAlphaMorf__17CPaneMgrAlphaMorfFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -406,9 +339,7 @@ asm void CPaneMgrAlphaMorf::initiateAlphaMorf() {
 }
 #pragma pop
 
-/* 80255DD0-80255E28 0058+00 s=1 e=3 z=0  None .text      setBackupAlpha__17CPaneMgrAlphaMorfFv */
-//	80255E04: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255E10: 80255E98 (childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane)
+/* 80255DD0-80255E28 250710 0058+00 1/1 3/3 0/0 .text setBackupAlpha__17CPaneMgrAlphaMorfFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -418,10 +349,7 @@ asm void CPaneMgrAlphaMorf::setBackupAlpha() {
 }
 #pragma pop
 
-/* 80255E28-80255E98 0070+00 s=0 e=3 z=0  None .text      setAlphaMorfRate__17CPaneMgrAlphaMorfFf */
-//	80255E64: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255E74: 80255F28 (childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef)
-//	80255E7C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
+/* 80255E28-80255E98 250768 0070+00 0/0 3/3 0/0 .text setAlphaMorfRate__17CPaneMgrAlphaMorfFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -431,10 +359,8 @@ asm void CPaneMgrAlphaMorf::setAlphaMorfRate(f32 param_0) {
 }
 #pragma pop
 
-/* 80255E98-80255F28 0090+00 s=1 e=0 z=0  None .text
+/* 80255E98-80255F28 2507D8 0090+00 1/1 0/0 0/0 .text
  * childPaneBackupAlpha__17CPaneMgrAlphaMorfFP7J2DPane          */
-//	80255EEC: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255F00: 802F7AC4 (getNextChildPane__7J2DPaneFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -444,11 +370,8 @@ asm void CPaneMgrAlphaMorf::childPaneBackupAlpha(J2DPane* param_0) {
 }
 #pragma pop
 
-/* 80255F28-80256018 00F0+00 s=1 e=0 z=0  None .text
+/* 80255F28-80256018 250868 00F0+00 1/1 0/0 0/0 .text
  * childPaneSetAlphaMorf__17CPaneMgrAlphaMorfFP7J2DPanef        */
-//	80255F70: 80454EC8 (lit_3708)
-//	80255FCC: 802F7A8C (getFirstChildPane__7J2DPaneFv)
-//	80255FE4: 802F7AC4 (getNextChildPane__7J2DPaneFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

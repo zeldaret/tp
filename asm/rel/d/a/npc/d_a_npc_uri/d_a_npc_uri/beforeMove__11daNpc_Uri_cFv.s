@@ -12,7 +12,7 @@ lbl_80B27F14:
 /* 80B27F3C  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B27F40  28 00 00 00 */	cmplwi r0, 0
 /* 80B27F44  40 82 00 1C */	bne lbl_80B27F60
-/* 80B27F48  4B 50 7B 0C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B27F48  4B 50 7B 0D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B27F4C  2C 03 00 00 */	cmpwi r3, 0
 /* 80B27F50  40 82 00 14 */	bne lbl_80B27F64
 /* 80B27F54  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_80B27F78:
 /* 80B27F7C  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 80B27F80  28 00 00 00 */	cmplwi r0, 0
 /* 80B27F84  40 82 00 1C */	bne lbl_80B27FA0
-/* 80B27F88  4B 50 7A CC */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B27F88  4B 50 7A CD */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B27F8C  2C 03 00 00 */	cmpwi r3, 0
 /* 80B27F90  40 82 00 14 */	bne lbl_80B27FA4
 /* 80B27F94  88 1E 0A 89 */	lbz r0, 0xa89(r30)

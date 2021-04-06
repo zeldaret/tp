@@ -3,8 +3,8 @@ lbl_80A2B7DC:
 /* 80A2B7E0  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80A2B7E4  28 00 00 07 */	cmplwi r0, 7
 /* 80A2B7E8  41 81 00 54 */	bgt lbl_80A2B83C
-/* 80A2B7EC  3C 60 80 A4 */	lis r3, lit_6623@ha
-/* 80A2B7F0  38 63 17 C8 */	addi r3, r3, lit_6623@l
+/* 80A2B7EC  3C 60 80 A4 */	lis r3, lit_6623@ha /* 0x80A417C8@ha */
+/* 80A2B7F0  38 63 17 C8 */	addi r3, r3, lit_6623@l /* 0x80A417C8@l */
 /* 80A2B7F4  54 00 10 3A */	slwi r0, r0, 2
 /* 80A2B7F8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A2B7FC  7C 09 03 A6 */	mtctr r0

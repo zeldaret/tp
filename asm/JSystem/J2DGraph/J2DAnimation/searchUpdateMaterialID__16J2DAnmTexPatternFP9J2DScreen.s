@@ -42,18 +42,18 @@ lbl_8030BD98:
 /* 8030BDA0  7C 03 00 40 */	cmplw r3, r0
 /* 8030BDA4  41 80 FF AC */	blt lbl_8030BD50
 /* 8030BDA8  80 7D 00 30 */	lwz r3, 0x30(r29)
-/* 8030BDAC  3C 80 80 31 */	lis r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
-/* 8030BDB0  38 84 CB 3C */	addi r4, r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
+/* 8030BDAC  3C 80 80 31 */	lis r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha /* 0x8030CB3C@ha */
+/* 8030BDB0  38 84 CB 3C */	addi r4, r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l /* 0x8030CB3C@l */
 /* 8030BDB4  48 05 5E B9 */	bl __destroy_new_array
 /* 8030BDB8  80 7E 01 08 */	lwz r3, 0x108(r30)
 /* 8030BDBC  A3 83 00 00 */	lhz r28, 0(r3)
 /* 8030BDC0  57 83 18 38 */	slwi r3, r28, 3
 /* 8030BDC4  38 63 00 10 */	addi r3, r3, 0x10
 /* 8030BDC8  4B FC 2E FD */	bl __nwa__FUl
-/* 8030BDCC  3C 80 80 31 */	lis r4, __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
-/* 8030BDD0  38 84 CB 2C */	addi r4, r4, __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
-/* 8030BDD4  3C A0 80 31 */	lis r5, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
-/* 8030BDD8  38 A5 CB 3C */	addi r5, r5, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
+/* 8030BDCC  3C 80 80 31 */	lis r4, __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha /* 0x8030CB2C@ha */
+/* 8030BDD0  38 84 CB 2C */	addi r4, r4, __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l /* 0x8030CB2C@l */
+/* 8030BDD4  3C A0 80 31 */	lis r5, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha /* 0x8030CB3C@ha */
+/* 8030BDD8  38 A5 CB 3C */	addi r5, r5, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l /* 0x8030CB3C@l */
 /* 8030BDDC  38 C0 00 08 */	li r6, 8
 /* 8030BDE0  7F 87 E3 78 */	mr r7, r28
 /* 8030BDE4  48 05 61 31 */	bl __construct_new_array

@@ -1,6 +1,6 @@
 lbl_8063E6C4:
-/* 8063E6C4  3C C0 80 65 */	lis r6, lit_4169@ha
-/* 8063E6C8  C0 06 EB 28 */	lfs f0, lit_4169@l(r6)
+/* 8063E6C4  3C C0 80 65 */	lis r6, lit_4169@ha /* 0x8064EB28@ha */
+/* 8063E6C8  C0 06 EB 28 */	lfs f0, lit_4169@l(r6)  /* 0x8064EB28@l */
 /* 8063E6CC  D0 03 06 D0 */	stfs f0, 0x6d0(r3)
 /* 8063E6D0  38 C0 00 00 */	li r6, 0
 /* 8063E6D4  98 C3 07 01 */	stb r6, 0x701(r3)

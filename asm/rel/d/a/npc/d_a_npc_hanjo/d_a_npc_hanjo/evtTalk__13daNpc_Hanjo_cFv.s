@@ -4,8 +4,8 @@ lbl_809FA55C:
 /* 809FA564  90 01 00 34 */	stw r0, 0x34(r1)
 /* 809FA568  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 809FA56C  7C 7F 1B 78 */	mr r31, r3
-/* 809FA570  3C 80 80 A0 */	lis r4, lit_4891@ha
-/* 809FA574  38 A4 10 60 */	addi r5, r4, lit_4891@l
+/* 809FA570  3C 80 80 A0 */	lis r4, lit_4891@ha /* 0x80A01060@ha */
+/* 809FA574  38 A4 10 60 */	addi r5, r4, lit_4891@l /* 0x80A01060@l */
 /* 809FA578  80 85 00 00 */	lwz r4, 0(r5)
 /* 809FA57C  80 05 00 04 */	lwz r0, 4(r5)
 /* 809FA580  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,12 +19,12 @@ lbl_809FA55C:
 /* 809FA5A0  7F E3 FB 78 */	mr r3, r31
 /* 809FA5A4  38 80 00 00 */	li r4, 0
 /* 809FA5A8  39 9F 16 EC */	addi r12, r31, 0x16ec
-/* 809FA5AC  4B 96 7A D8 */	b __ptmf_scall
+/* 809FA5AC  4B 96 7A D9 */	bl __ptmf_scall
 /* 809FA5B0  60 00 00 00 */	nop 
 /* 809FA5B4  48 00 00 30 */	b lbl_809FA5E4
 lbl_809FA5B8:
-/* 809FA5B8  3C 60 80 A0 */	lis r3, lit_4896@ha
-/* 809FA5BC  38 83 10 6C */	addi r4, r3, lit_4896@l
+/* 809FA5B8  3C 60 80 A0 */	lis r3, lit_4896@ha /* 0x80A0106C@ha */
+/* 809FA5BC  38 83 10 6C */	addi r4, r3, lit_4896@l /* 0x80A0106C@l */
 /* 809FA5C0  80 64 00 00 */	lwz r3, 0(r4)
 /* 809FA5C4  80 04 00 04 */	lwz r0, 4(r4)
 /* 809FA5C8  90 61 00 08 */	stw r3, 8(r1)

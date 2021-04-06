@@ -3,8 +3,8 @@ lbl_8000E14C:
 /* 8000E150  90 03 00 00 */	stw r0, 0(r3)
 /* 8000E154  80 03 00 00 */	lwz r0, 0(r3)
 /* 8000E158  54 05 00 3A */	rlwinm r5, r0, 0, 0, 0x1d
-/* 8000E15C  3C 80 80 3A */	lis r4, j3dDefaultIndTevStageInfo@ha
-/* 8000E160  8C 04 1F B0 */	lbzu r0, j3dDefaultIndTevStageInfo@l(r4)
+/* 8000E15C  3C 80 80 3A */	lis r4, j3dDefaultIndTevStageInfo@ha /* 0x803A1FB0@ha */
+/* 8000E160  8C 04 1F B0 */	lbzu r0, j3dDefaultIndTevStageInfo@l(r4)  /* 0x803A1FB0@l */
 /* 8000E164  7C A0 03 78 */	or r0, r5, r0
 /* 8000E168  90 03 00 00 */	stw r0, 0(r3)
 /* 8000E16C  80 03 00 00 */	lwz r0, 0(r3)

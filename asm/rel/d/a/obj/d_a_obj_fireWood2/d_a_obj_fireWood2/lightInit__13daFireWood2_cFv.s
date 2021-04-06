@@ -1,6 +1,6 @@
 lbl_80BE8640:
-/* 80BE8640  3C 80 80 BF */	lis r4, lit_3625@ha
-/* 80BE8644  38 84 8F 34 */	addi r4, r4, lit_3625@l
+/* 80BE8640  3C 80 80 BF */	lis r4, lit_3625@ha /* 0x80BE8F34@ha */
+/* 80BE8644  38 84 8F 34 */	addi r4, r4, lit_3625@l /* 0x80BE8F34@l */
 /* 80BE8648  C0 03 06 EC */	lfs f0, 0x6ec(r3)
 /* 80BE864C  D0 03 07 0C */	stfs f0, 0x70c(r3)
 /* 80BE8650  C0 03 06 F0 */	lfs f0, 0x6f0(r3)

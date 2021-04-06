@@ -10,8 +10,8 @@ lbl_80AC9D5C:
 /* 80AC9D7C  48 00 05 DD */	bl selectAction__12daNpc_seiD_cFv
 /* 80AC9D80  7F C3 F3 78 */	mr r3, r30
 /* 80AC9D84  48 00 01 05 */	bl srchActors__12daNpc_seiD_cFv
-/* 80AC9D88  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha
-/* 80AC9D8C  3B E3 B3 5C */	addi r31, r3, m__18daNpc_seiD_Param_c@l
+/* 80AC9D88  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha /* 0x80ACB35C@ha */
+/* 80AC9D8C  3B E3 B3 5C */	addi r31, r3, m__18daNpc_seiD_Param_c@l /* 0x80ACB35C@l */
 /* 80AC9D90  C3 FF 00 90 */	lfs f31, 0x90(r31)
 /* 80AC9D94  38 60 00 28 */	li r3, 0x28
 /* 80AC9D98  48 00 00 DD */	bl getDistTable__12dAttention_cFi
@@ -31,8 +31,8 @@ lbl_80AC9D5C:
 /* 80AC9DD0  98 1E 05 47 */	stb r0, 0x547(r30)
 /* 80AC9DD4  38 00 00 00 */	li r0, 0
 /* 80AC9DD8  90 1E 05 5C */	stw r0, 0x55c(r30)
-/* 80AC9DDC  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha
-/* 80AC9DE0  38 63 B3 5C */	addi r3, r3, m__18daNpc_seiD_Param_c@l
+/* 80AC9DDC  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha /* 0x80ACB35C@ha */
+/* 80AC9DE0  38 63 B3 5C */	addi r3, r3, m__18daNpc_seiD_Param_c@l /* 0x80ACB35C@l */
 /* 80AC9DE4  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80AC9DE8  D0 1E 04 EC */	stfs f0, 0x4ec(r30)
 /* 80AC9DEC  D0 1E 04 F0 */	stfs f0, 0x4f0(r30)
@@ -48,9 +48,9 @@ lbl_80AC9D5C:
 /* 80AC9E14  D0 1E 0D F0 */	stfs f0, 0xdf0(r30)
 /* 80AC9E18  38 7E 08 A0 */	addi r3, r30, 0x8a0
 /* 80AC9E1C  C0 3E 0D F0 */	lfs f1, 0xdf0(r30)
-/* 80AC9E20  4B 5A C1 20 */	b SetWallR__12dBgS_AcchCirFf
-/* 80AC9E24  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha
-/* 80AC9E28  38 63 B3 5C */	addi r3, r3, m__18daNpc_seiD_Param_c@l
+/* 80AC9E20  4B 5A C1 21 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80AC9E24  3C 60 80 AD */	lis r3, m__18daNpc_seiD_Param_c@ha /* 0x80ACB35C@ha */
+/* 80AC9E28  38 63 B3 5C */	addi r3, r3, m__18daNpc_seiD_Param_c@l /* 0x80ACB35C@l */
 /* 80AC9E2C  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80AC9E30  D0 1E 08 D0 */	stfs f0, 0x8d0(r30)
 /* 80AC9E34  C0 03 00 0C */	lfs f0, 0xc(r3)

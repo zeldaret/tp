@@ -14,8 +14,8 @@ lbl_80B17F18:
 /* 80B17F48  48 00 01 14 */	b lbl_80B1805C
 lbl_80B17F4C:
 /* 80B17F4C  38 80 00 09 */	li r4, 9
-/* 80B17F50  3C A0 80 B2 */	lis r5, lit_5011@ha
-/* 80B17F54  C0 25 DE 1C */	lfs f1, lit_5011@l(r5)
+/* 80B17F50  3C A0 80 B2 */	lis r5, lit_5011@ha /* 0x80B1DE1C@ha */
+/* 80B17F54  C0 25 DE 1C */	lfs f1, lit_5011@l(r5)  /* 0x80B1DE1C@l */
 /* 80B17F58  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80B17F5C  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 80B17F60  7D 89 03 A6 */	mtctr r12
@@ -42,8 +42,8 @@ lbl_80B17FA0:
 /* 80B17FA8  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 80B17FAC  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80B17FB0  40 82 00 1C */	bne lbl_80B17FCC
-/* 80B17FB4  3C 60 80 B2 */	lis r3, lit_5011@ha
-/* 80B17FB8  C0 23 DE 1C */	lfs f1, lit_5011@l(r3)
+/* 80B17FB4  3C 60 80 B2 */	lis r3, lit_5011@ha /* 0x80B1DE1C@ha */
+/* 80B17FB8  C0 23 DE 1C */	lfs f1, lit_5011@l(r3)  /* 0x80B1DE1C@l */
 /* 80B17FBC  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 80B17FC0  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80B17FC4  41 82 00 08 */	beq lbl_80B17FCC
@@ -51,8 +51,8 @@ lbl_80B17FA0:
 lbl_80B17FCC:
 /* 80B17FCC  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 80B17FD0  41 82 00 8C */	beq lbl_80B1805C
-/* 80B17FD4  3C 60 80 B2 */	lis r3, lit_5698@ha
-/* 80B17FD8  38 83 E3 CC */	addi r4, r3, lit_5698@l
+/* 80B17FD4  3C 60 80 B2 */	lis r3, lit_5698@ha /* 0x80B1E3CC@ha */
+/* 80B17FD8  38 83 E3 CC */	addi r4, r3, lit_5698@l /* 0x80B1E3CC@l */
 /* 80B17FDC  80 64 00 00 */	lwz r3, 0(r4)
 /* 80B17FE0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80B17FE4  90 61 00 08 */	stw r3, 8(r1)
@@ -62,12 +62,12 @@ lbl_80B17FCC:
 /* 80B17FF4  38 00 00 03 */	li r0, 3
 /* 80B17FF8  B0 1F 13 88 */	sth r0, 0x1388(r31)
 /* 80B17FFC  38 7F 13 4C */	addi r3, r31, 0x134c
-/* 80B18000  4B 84 A0 18 */	b __ptmf_test
+/* 80B18000  4B 84 A0 19 */	bl __ptmf_test
 /* 80B18004  2C 03 00 00 */	cmpwi r3, 0
 /* 80B18008  41 82 00 14 */	beq lbl_80B1801C
 /* 80B1800C  7F E3 FB 78 */	mr r3, r31
 /* 80B18010  39 9F 13 4C */	addi r12, r31, 0x134c
-/* 80B18014  4B 84 A0 70 */	b __ptmf_scall
+/* 80B18014  4B 84 A0 71 */	bl __ptmf_scall
 /* 80B18018  60 00 00 00 */	nop 
 lbl_80B1801C:
 /* 80B1801C  38 00 00 00 */	li r0, 0
@@ -79,12 +79,12 @@ lbl_80B1801C:
 /* 80B18034  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 80B18038  90 1F 13 54 */	stw r0, 0x1354(r31)
 /* 80B1803C  38 7F 13 4C */	addi r3, r31, 0x134c
-/* 80B18040  4B 84 9F D8 */	b __ptmf_test
+/* 80B18040  4B 84 9F D9 */	bl __ptmf_test
 /* 80B18044  2C 03 00 00 */	cmpwi r3, 0
 /* 80B18048  41 82 00 14 */	beq lbl_80B1805C
 /* 80B1804C  7F E3 FB 78 */	mr r3, r31
 /* 80B18050  39 9F 13 4C */	addi r12, r31, 0x134c
-/* 80B18054  4B 84 A0 30 */	b __ptmf_scall
+/* 80B18054  4B 84 A0 31 */	bl __ptmf_scall
 /* 80B18058  60 00 00 00 */	nop 
 lbl_80B1805C:
 /* 80B1805C  83 E1 00 1C */	lwz r31, 0x1c(r1)

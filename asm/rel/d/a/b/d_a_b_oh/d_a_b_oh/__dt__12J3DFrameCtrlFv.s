@@ -5,12 +5,12 @@ lbl_8061D39C:
 /* 8061D3A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8061D3AC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8061D3B0  41 82 00 1C */	beq lbl_8061D3CC
-/* 8061D3B4  3C A0 80 62 */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 8061D3B8  38 05 DB 54 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 8061D3B4  3C A0 80 62 */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x8061DB54@ha */
+/* 8061D3B8  38 05 DB 54 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x8061DB54@l */
 /* 8061D3BC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8061D3C0  7C 80 07 35 */	extsh. r0, r4
 /* 8061D3C4  40 81 00 08 */	ble lbl_8061D3CC
-/* 8061D3C8  4B CB 19 74 */	b __dl__FPv
+/* 8061D3C8  4B CB 19 75 */	bl __dl__FPv
 lbl_8061D3CC:
 /* 8061D3CC  7F E3 FB 78 */	mr r3, r31
 /* 8061D3D0  83 E1 00 0C */	lwz r31, 0xc(r1)

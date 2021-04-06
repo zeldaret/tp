@@ -15,7 +15,7 @@ lbl_80476764:
 /* 80476798  38 C0 00 01 */	li r6, 1
 /* 8047679C  48 00 01 A5 */	bl obj_break__12daObjCarry_cFbbb
 /* 804767A0  7F C3 F3 78 */	mr r3, r30
-/* 804767A4  4B BA 34 D8 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 804767A4  4B BA 34 D9 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_804767A8:
 /* 804767A8  7F E3 FB 78 */	mr r3, r31
 /* 804767AC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -37,8 +37,8 @@ lbl_801BF39C:
 /* 801BF3B8  38 60 00 02 */	li r3, 2
 /* 801BF3BC  48 00 00 40 */	b lbl_801BF3FC
 lbl_801BF3C0:
-/* 801BF3C0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801BF3C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801BF3C0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BF3C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801BF3C8  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801BF3CC  54 00 04 63 */	rlwinm. r0, r0, 0, 0x11, 0x11
 /* 801BF3D0  41 82 00 28 */	beq lbl_801BF3F8

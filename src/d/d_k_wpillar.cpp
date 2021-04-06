@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -107,11 +107,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void dkWpillar_Create(kankyo_class*);
-static void dkWpillar_Delete(dkWpillar_c*);
-static void dkWpillar_Execute(dkWpillar_c*);
-static void dkWpillar_Draw(dkWpillar_c*);
-
 extern "C" void create__11dkWpillar_cFv();
 extern "C" static void dkWpillar_Create__FP12kankyo_class();
 extern "C" void __dt__11dkWpillar_cFv();
@@ -125,17 +120,6 @@ extern "C" extern void* g_profile_WPILLAR[10 + 1 /* padding */];
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
-void mDoExt_adjustSolidHeap(JKRSolidHeap*);
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-void mDoExt_restoreCurrentHeap();
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_getWaterY(cXyz const*, f32*);
-void fopKyM_Delete(void*);
-void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
-void operator delete(void*);
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -186,7 +170,7 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 80454FF0-80454FF8 0007+01 s=1 e=0 z=0  None .sdata2    l_arcName */
+/* 80454FF0-80454FF8 0035F0 0007+01 1/1 0/0 0/0 .sdata2          l_arcName */
 SECTION_SDATA2 static u8 l_arcName[7 + 1 /* padding */] = {
     0x41,
     0x6C,
@@ -199,81 +183,16 @@ SECTION_SDATA2 static u8 l_arcName[7 + 1 /* padding */] = {
     0x00,
 };
 
-/* 80454FF8-80454FFC 0004+00 s=1 e=0 z=0  None .sdata2    @3838 */
+/* 80454FF8-80454FFC 0035F8 0004+00 1/1 0/0 0/0 .sdata2          @3838 */
 SECTION_SDATA2 static f32 lit_3838 = 1.0f;
 
-/* 80454FFC-80455000 0004+00 s=1 e=0 z=0  None .sdata2    @3839 */
+/* 80454FFC-80455000 0035FC 0004+00 1/1 0/0 0/0 .sdata2          @3839 */
 SECTION_SDATA2 static f32 lit_3839 = 0.5f;
 
-/* 80455000-80455004 0004+00 s=1 e=0 z=0  None .sdata2    @3840 */
+/* 80455000-80455004 003600 0004+00 1/1 0/0 0/0 .sdata2          @3840 */
 SECTION_SDATA2 static f32 lit_3840 = 0.25f;
 
-/* 80261B54-80261F04 03B0+00 s=1 e=0 z=0  None .text      create__11dkWpillar_cFv */
-//	80261B64: 803621D8 (_savegpr_28)
-//	80261B7C: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261B80: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261B90: 803283FC (init__12J3DFrameCtrlFs)
-//	80261BA0: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261BA4: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261BB4: 803283FC (init__12J3DFrameCtrlFs)
-//	80261BC4: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261BC8: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261BD8: 803283FC (init__12J3DFrameCtrlFs)
-//	80261BEC: 803A1EC8 (j3dDefaultLightInfo)
-//	80261BF0: 803A1EC8 (j3dDefaultLightInfo)
-//	80261BF4: 803256C4 (__as__12J3DLightInfoFRC12J3DLightInfo)
-//	80261BFC: 80018C0C (__ct__11J3DLightObjFv)
-//	80261C00: 80018C0C (__ct__11J3DLightObjFv)
-//	80261C10: 80361D60 (__construct_array)
-//	80261C18: 8001DCBC (gndCheck__11fopAcM_gc_cFPC4cXyz)
-//	80261C24: 804061C0 (g_dComIfG_gameInfo)
-//	80261C28: 804061C0 (g_dComIfG_gameInfo)
-//	80261C34: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	80261C38: 803F1CC4 (mGndCheck__11fopAcM_gc_c)
-//	80261C44: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
-//	80261C54: 80074BE8 (GetPolyColor__4dBgSFRC13cBgS_PolyInfo)
-//	80261C60: 80450D64 (struct_80450D64)
-//	80261C74: 801A88EC (dKy_tevstr_init__FP12dKy_tevstr_cScUc)
-//	80261C78: 8042CA54 (g_env_light)
-//	80261C7C: 8042CA54 (g_env_light)
-//	80261C8C: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80261C90: 804061C0 (g_dComIfG_gameInfo)
-//	80261C94: 804061C0 (g_dComIfG_gameInfo)
-//	80261CD4: 80454FF8 (lit_3838)
-//	80261CD8: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80261D24: 80454FF8 (lit_3838)
-//	80261D28: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80261D48: 8000F044 (mDoExt_createSolidHeapFromGameToCurrent__FUlUl)
-//	80261D5C: 80454FF0 (l_arcName)
-//	80261D64: 804061C0 (g_dComIfG_gameInfo)
-//	80261D68: 804061C0 (g_dComIfG_gameInfo)
-//	80261D7C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80261D90: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80261D98: 80454FF0 (l_arcName)
-//	80261DA8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80261DBC: 80454FF8 (lit_3838)
-//	80261DCC: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
-//	80261DD4: 80454FF0 (l_arcName)
-//	80261DE4: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80261DFC: 80454FF8 (lit_3838)
-//	80261E08: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
-//	80261E10: 80454FF0 (l_arcName)
-//	80261E20: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80261E38: 80454FF8 (lit_3838)
-//	80261E44: 8000D70C (init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss)
-//	80261E4C: 8000F1F4 (mDoExt_restoreCurrentHeap__Fv)
-//	80261E54: 8000F08C (mDoExt_adjustSolidHeap__FP12JKRSolidHeap)
-//	80261E8C: 80454FFC (lit_3839)
-//	80261E94: 80455000 (lit_3840)
-//	80261EBC: 803DD470 (now__14mDoMtx_stack_c)
-//	80261EC0: 803DD470 (now__14mDoMtx_stack_c)
-//	80261ED0: 803468E8 (PSMTXTrans)
-//	80261ED4: 803DD470 (now__14mDoMtx_stack_c)
-//	80261ED8: 803DD470 (now__14mDoMtx_stack_c)
-//	80261EE4: 803464B0 (PSMTXCopy)
-//	80261EF0: 80362224 (_restgpr_28)
+/* 80261B54-80261F04 25C494 03B0+00 1/1 0/0 0/0 .text            create__11dkWpillar_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,26 +202,18 @@ asm void dkWpillar_c::create() {
 }
 #pragma pop
 
-/* 80261F04-80261F24 0020+00 s=1 e=0 z=0  None .text      dkWpillar_Create__FP12kankyo_class */
-//	80261F10: 80261B54 (create__11dkWpillar_cFv)
+/* 80261F04-80261F24 25C844 0020+00 1/0 0/0 0/0 .text            dkWpillar_Create__FP12kankyo_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dkWpillar_Create(kankyo_class* param_0) {
+static asm void dkWpillar_Create(kankyo_class* param_0) {
     nofralloc
 #include "asm/d/d_k_wpillar/dkWpillar_Create__FP12kankyo_class.s"
 }
 #pragma pop
 
-/* 80261F24-80261FEC 00C8+00 s=1 e=0 z=0  None .text      __dt__11dkWpillar_cFv */
-//	80261F50: 8000F18C (mDoExt_destroySolidHeap__FP12JKRSolidHeap)
-//	80261F6C: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261F70: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261F90: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261F94: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261FB4: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261FB8: 803A3354 (__vt__12J3DFrameCtrl)
-//	80261FCC: 802CED3C (__dl__FPv)
+/* 80261F24-80261FEC 25C864 00C8+00 1/1 0/0 0/0 .text            __dt__11dkWpillar_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -312,19 +223,19 @@ asm dkWpillar_c::~dkWpillar_c() {
 }
 #pragma pop
 
-/* 80261FEC-80262014 0028+00 s=1 e=0 z=0  None .text      dkWpillar_Delete__FP11dkWpillar_c */
-//	80261FFC: 80261F24 (__dt__11dkWpillar_cFv)
+/* 80261FEC-80262014 25C92C 0028+00 1/0 0/0 0/0 .text            dkWpillar_Delete__FP11dkWpillar_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dkWpillar_Delete(dkWpillar_c* param_0) {
+static asm void dkWpillar_Delete(dkWpillar_c* param_0) {
     nofralloc
 #include "asm/d/d_k_wpillar/dkWpillar_Delete__FP11dkWpillar_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455004-80455008 0004+00 s=1 e=0 z=0  None .sdata2    @3946 */
+/* 80455004-80455008 003604 0004+00 1/1 0/0 0/0 .sdata2          @3946 */
 SECTION_SDATA2 static u8 lit_3946[4] = {
     0x00,
     0x00,
@@ -332,11 +243,7 @@ SECTION_SDATA2 static u8 lit_3946[4] = {
     0x00,
 };
 
-/* 80262014-802620A8 0094+00 s=1 e=0 z=0  None .text      execute__11dkWpillar_cFv */
-//	8026202C: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80262040: 80455004 (lit_3946)
-//	80262060: 8001F748 (fopKyM_Delete__FPv)
-//	80262070: 8001D890 (fopAcM_getWaterY__FPC4cXyzPf)
+/* 80262014-802620A8 25C954 0094+00 1/1 0/0 0/0 .text            execute__11dkWpillar_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -346,32 +253,18 @@ asm void dkWpillar_c::execute() {
 }
 #pragma pop
 
-/* 802620A8-802620C8 0020+00 s=1 e=0 z=0  None .text      dkWpillar_Execute__FP11dkWpillar_c */
-//	802620B4: 80262014 (execute__11dkWpillar_cFv)
+/* 802620A8-802620C8 25C9E8 0020+00 1/0 0/0 0/0 .text            dkWpillar_Execute__FP11dkWpillar_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dkWpillar_Execute(dkWpillar_c* param_0) {
+static asm void dkWpillar_Execute(dkWpillar_c* param_0) {
     nofralloc
 #include "asm/d/d_k_wpillar/dkWpillar_Execute__FP11dkWpillar_c.s"
 }
 #pragma pop
 
-/* 802620C8-802621AC 00E4+00 s=1 e=0 z=0  None .text      draw__11dkWpillar_cFv */
-//	802620E0: 8042CA54 (g_env_light)
-//	802620E4: 8042CA54 (g_env_light)
-//	802620F4: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	802620F8: 8042CA54 (g_env_light)
-//	802620FC: 8042CA54 (g_env_light)
-//	8026210C: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80262110:
-// 804061C0 (g_dComIfG_gameInfo) 	80262114: 804061C0 (g_dComIfG_gameInfo) 	8026211C: 80434AC8
-// (j3dSys) 	80262120: 80434AC8 (j3dSys) 	8026213C: 8000D9CC (entry__13mDoExt_bckAnmFP12J3DModelDataf)
-//	80262154: 8000D6D8 (entry__13mDoExt_btkAnmFP16J3DMaterialTablef)
-//	8026216C: 8000D7A8 (entry__13mDoExt_brkAnmFP16J3DMaterialTablef)
-//	80262174: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80262178: 804061C0 (g_dComIfG_gameInfo)
-//	8026217C: 804061C0 (g_dComIfG_gameInfo)
+/* 802620C8-802621AC 25CA08 00E4+00 1/1 0/0 0/0 .text            draw__11dkWpillar_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -381,27 +274,26 @@ asm void dkWpillar_c::draw() {
 }
 #pragma pop
 
-/* 802621AC-802621CC 0020+00 s=1 e=0 z=0  None .text      dkWpillar_Draw__FP11dkWpillar_c */
-//	802621B8: 802620C8 (draw__11dkWpillar_cFv)
+/* 802621AC-802621CC 25CAEC 0020+00 1/0 0/0 0/0 .text            dkWpillar_Draw__FP11dkWpillar_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dkWpillar_Draw(dkWpillar_c* param_0) {
+static asm void dkWpillar_Draw(dkWpillar_c* param_0) {
     nofralloc
 #include "asm/d/d_k_wpillar/dkWpillar_Draw__FP11dkWpillar_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C3470-803C3484 0014+00 s=1 e=0 z=0  None .data      l_dkWpillar_Method */
+/* 803C3470-803C3484 -00001 0014+00 1/0 0/0 0/0 .data            l_dkWpillar_Method */
 SECTION_DATA static void* l_dkWpillar_Method[5] = {
     (void*)dkWpillar_Create__FP12kankyo_class, (void*)dkWpillar_Delete__FP11dkWpillar_c,
     (void*)dkWpillar_Execute__FP11dkWpillar_c, (void*)NULL,
     (void*)dkWpillar_Draw__FP11dkWpillar_c,
 };
 
-/* 803C3484-803C34B0 0028+04 s=0 e=0 z=1  None .data      g_profile_WPILLAR */
-SECTION_DATA void* g_profile_WPILLAR[10 + 1 /* padding */] = {
+/* 803C3484-803C34B0 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_WPILLAR */
+SECTION_DATA extern void* g_profile_WPILLAR[10 + 1 /* padding */] = {
     (void*)0xFFFFFFFD,
     (void*)0x0009FFFD,
     (void*)0x03020000,

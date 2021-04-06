@@ -1,9 +1,9 @@
 lbl_805ADA2C:
 /* 805ADA2C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 805ADA30  3C 60 80 5B */	lis r3, lit_3850@ha
-/* 805ADA34  38 83 DF 50 */	addi r4, r3, lit_3850@l
-/* 805ADA38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805ADA3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805ADA30  3C 60 80 5B */	lis r3, lit_3850@ha /* 0x805ADF50@ha */
+/* 805ADA34  38 83 DF 50 */	addi r4, r3, lit_3850@l /* 0x805ADF50@l */
+/* 805ADA38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805ADA3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805ADA40  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 805ADA44  C0 65 04 D0 */	lfs f3, 0x4d0(r5)
 /* 805ADA48  D0 61 00 08 */	stfs f3, 8(r1)

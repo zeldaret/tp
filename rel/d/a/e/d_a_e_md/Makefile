@@ -3,17 +3,15 @@
 #
 
 M208_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_md.plf
+M208_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_md.lcf
+M208_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_md.map
 
 M208_CPP_FILES := \
-	rel/d/a/e/d_a_e_md/executor.cpp \
-	rel/d/a/e/d_a_e_md/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_md/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_md/d_a_e_md.cpp \
 
 M208_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_md/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_md/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_md/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_md/d_a_e_md.o \
 
 M208_LIBS := \
@@ -29,15 +27,21 @@ M208_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map208.map\
+	-m _prolog \
+	-lcf $(M208_LDSCRIPT) \
+	-unused -map $(M208_MAP) \
+	-w off \
 
 $(M208_TARGET): $(M208_O_FILES) $(M208_LIBS)
+	@echo [208] creating $(M208_TARGET)
 	@echo $(M208_LIBS) $(M208_O_FILES) > build/M208_ofiles
-	$(LD) -opt_partial $(M208_LDFLAGS) -o $(M208_TARGET) @build/M208_ofiles
+	@python3 tools/lcf.py rel 208 --output $(M208_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M208_LDFLAGS) -o $(M208_TARGET) @build/M208_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_md/%.o: rel/d/a/e/d_a_e_md/%.cpp
+	@echo [208] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M208_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M208_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

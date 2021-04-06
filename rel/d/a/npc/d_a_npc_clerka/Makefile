@@ -3,19 +3,20 @@
 #
 
 M293_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka.plf
+M293_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka.lcf
+M293_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka.map
 
 M293_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_clerka/executor.cpp \
-	rel/d/a/npc/d_a_npc_clerka/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_clerka/d_a_npc_clerka.cpp \
 
 M293_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/d_a_npc_clerka.o \
 
 M293_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/libRuntime.PPCEABI.H.a \
 
 M293_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M293_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map293.map\
+	-m _prolog \
+	-lcf $(M293_LDSCRIPT) \
+	-unused -map $(M293_MAP) \
+	-w off \
 
 $(M293_TARGET): $(M293_O_FILES) $(M293_LIBS)
+	@echo [293] creating $(M293_TARGET)
 	@echo $(M293_LIBS) $(M293_O_FILES) > build/M293_ofiles
-	$(LD) -opt_partial $(M293_LDFLAGS) -o $(M293_TARGET) @build/M293_ofiles
+	@python3 tools/lcf.py rel 293 --output $(M293_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M293_LDFLAGS) -o $(M293_TARGET) @build/M293_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerka/%.o: rel/d/a/npc/d_a_npc_clerka/%.cpp
+	@echo [293] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M293_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M293_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_clerka/libs/Runtime.PPCEABI.H/Makefile
 

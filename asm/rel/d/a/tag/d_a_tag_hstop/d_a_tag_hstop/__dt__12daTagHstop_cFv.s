@@ -19,8 +19,8 @@ lbl_805A462C:
 /* 805A4638  80 1E 05 6C */	lwz r0, 0x56c(r30)
 /* 805A463C  90 03 05 6C */	stw r0, 0x56c(r3)
 lbl_805A4640:
-/* 805A4640  3C 60 80 45 */	lis r3, m_top__12daTagHstop_c@ha
-/* 805A4644  84 03 0D F8 */	lwzu r0, m_top__12daTagHstop_c@l(r3)
+/* 805A4640  3C 60 80 45 */	lis r3, m_top__12daTagHstop_c@ha /* 0x80450DF8@ha */
+/* 805A4644  84 03 0D F8 */	lwzu r0, m_top__12daTagHstop_c@l(r3)  /* 0x80450DF8@l */
 /* 805A4648  7C 00 F0 40 */	cmplw r0, r30
 /* 805A464C  40 82 00 0C */	bne lbl_805A4658
 /* 805A4650  80 1E 05 68 */	lwz r0, 0x568(r30)
@@ -28,11 +28,11 @@ lbl_805A4640:
 lbl_805A4658:
 /* 805A4658  7F C3 F3 78 */	mr r3, r30
 /* 805A465C  38 80 00 00 */	li r4, 0
-/* 805A4660  4B A7 46 2C */	b __dt__10fopAc_ac_cFv
+/* 805A4660  4B A7 46 2D */	bl __dt__10fopAc_ac_cFv
 /* 805A4664  7F E0 07 35 */	extsh. r0, r31
 /* 805A4668  40 81 00 0C */	ble lbl_805A4674
 /* 805A466C  7F C3 F3 78 */	mr r3, r30
-/* 805A4670  4B D2 A6 CC */	b __dl__FPv
+/* 805A4670  4B D2 A6 CD */	bl __dl__FPv
 lbl_805A4674:
 /* 805A4674  7F C3 F3 78 */	mr r3, r30
 /* 805A4678  83 E1 00 0C */	lwz r31, 0xc(r1)

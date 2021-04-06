@@ -9,8 +9,8 @@ lbl_801C52E4:
 /* 801C5300  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 801C5304  28 00 00 00 */	cmplwi r0, 0
 /* 801C5308  40 82 00 1C */	bne lbl_801C5324
-/* 801C530C  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5310  38 63 60 68 */	addi r3, r3, d_menu_d_menu_fishing__stringBase0@l
+/* 801C530C  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5310  38 63 60 68 */	addi r3, r3, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5314  38 80 00 00 */	li r4, 0
 /* 801C5318  38 A0 00 00 */	li r5, 0
 /* 801C531C  4B E5 0A F9 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
@@ -45,8 +45,8 @@ lbl_801C5384:
 /* 801C5384  38 60 00 00 */	li r3, 0
 /* 801C5388  48 00 00 CC */	b lbl_801C5454
 lbl_801C538C:
-/* 801C538C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801C5390  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801C538C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801C5390  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801C5394  A8 83 09 A4 */	lha r4, 0x9a4(r3)
 /* 801C5398  A8 63 09 A6 */	lha r3, 0x9a6(r3)
 /* 801C539C  B0 9F 01 F8 */	sth r4, 0x1f8(r31)

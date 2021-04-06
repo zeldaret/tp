@@ -5,14 +5,14 @@ lbl_80195C9C:
 /* 80195CA8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80195CAC  7C 7F 1B 78 */	mr r31, r3
 /* 80195CB0  48 00 06 5D */	bl Save__16ShopCam_action_cFv
-/* 80195CB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80195CB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80195CB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80195CB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80195CBC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80195CC0  80 03 05 70 */	lwz r0, 0x570(r3)
 /* 80195CC4  64 00 08 00 */	oris r0, r0, 0x800
 /* 80195CC8  90 03 05 70 */	stw r0, 0x570(r3)
-/* 80195CCC  3C 60 80 3C */	lis r3, lit_3771@ha
-/* 80195CD0  38 83 B8 7C */	addi r4, r3, lit_3771@l
+/* 80195CCC  3C 60 80 3C */	lis r3, lit_3771@ha /* 0x803BB87C@ha */
+/* 80195CD0  38 83 B8 7C */	addi r4, r3, lit_3771@l /* 0x803BB87C@l */
 /* 80195CD4  80 64 00 00 */	lwz r3, 0(r4)
 /* 80195CD8  80 04 00 04 */	lwz r0, 4(r4)
 /* 80195CDC  90 7F 00 00 */	stw r3, 0(r31)
@@ -23,8 +23,8 @@ lbl_80195C9C:
 /* 80195CF0  7C 60 07 35 */	extsh. r0, r3
 /* 80195CF4  41 80 00 68 */	blt lbl_80195D5C
 /* 80195CF8  54 60 10 3A */	slwi r0, r3, 2
-/* 80195CFC  3C 60 80 3C */	lis r3, shop_cam_data_tbl@ha
-/* 80195D00  38 83 B8 70 */	addi r4, r3, shop_cam_data_tbl@l
+/* 80195CFC  3C 60 80 3C */	lis r3, shop_cam_data_tbl@ha /* 0x803BB870@ha */
+/* 80195D00  38 83 B8 70 */	addi r4, r3, shop_cam_data_tbl@l /* 0x803BB870@l */
 /* 80195D04  7C 64 00 2E */	lwzx r3, r4, r0
 /* 80195D08  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80195D0C  D0 1F 00 7C */	stfs f0, 0x7c(r31)

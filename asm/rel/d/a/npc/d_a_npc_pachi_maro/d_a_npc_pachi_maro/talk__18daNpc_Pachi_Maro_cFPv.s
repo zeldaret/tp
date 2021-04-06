@@ -17,7 +17,7 @@ lbl_80A998A0:
 /* 80A998A4  2C 00 00 00 */	cmpwi r0, 0
 /* 80A998A8  40 82 00 24 */	bne lbl_80A998CC
 /* 80A998AC  38 7F 0F A0 */	addi r3, r31, 0xfa0
-/* 80A998B0  4B 6A BE 58 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A998B0  4B 6A BE 59 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A998B4  28 03 00 00 */	cmplwi r3, 0
 /* 80A998B8  41 82 00 0C */	beq lbl_80A998C4
 /* 80A998BC  38 00 FF FF */	li r0, -1
@@ -31,7 +31,7 @@ lbl_80A998CC:
 /* 80A998D4  A0 1F 0E 30 */	lhz r0, 0xe30(r31)
 /* 80A998D8  B0 1F 0F 82 */	sth r0, 0xf82(r31)
 /* 80A998DC  7F E3 FB 78 */	mr r3, r31
-/* 80A998E0  4B 6B 09 44 */	b evtChange__8daNpcT_cFv
+/* 80A998E0  4B 6B 09 45 */	bl evtChange__8daNpcT_cFv
 lbl_80A998E4:
 /* 80A998E4  38 60 00 00 */	li r3, 0
 /* 80A998E8  83 E1 00 0C */	lwz r31, 0xc(r1)

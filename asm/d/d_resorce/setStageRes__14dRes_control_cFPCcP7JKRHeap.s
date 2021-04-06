@@ -9,11 +9,11 @@ lbl_8003C5BC:
 /* 8003C5D8  7C BF 2B 78 */	mr r31, r5
 /* 8003C5DC  38 61 00 08 */	addi r3, r1, 8
 /* 8003C5E0  38 80 00 14 */	li r4, 0x14
-/* 8003C5E4  3C A0 80 38 */	lis r5, d_d_resorce__stringBase0@ha
-/* 8003C5E8  38 A5 98 B8 */	addi r5, r5, d_d_resorce__stringBase0@l
+/* 8003C5E4  3C A0 80 38 */	lis r5, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003C5E8  38 A5 98 B8 */	addi r5, r5, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003C5EC  38 A5 03 1F */	addi r5, r5, 0x31f
-/* 8003C5F0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 8003C5F4  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l
+/* 8003C5F0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003C5F4  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003C5F8  38 C6 4E 00 */	addi r6, r6, 0x4e00
 /* 8003C5FC  4C C6 31 82 */	crclr 6
 /* 8003C600  48 32 9F BD */	bl snprintf

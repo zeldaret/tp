@@ -5,8 +5,8 @@ lbl_802D40F0:
 /* 802D40FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D4100  7C 7F 1B 78 */	mr r31, r3
 /* 802D4104  4B FF D3 79 */	bl __ct__11JKRDisposerFv
-/* 802D4108  3C 60 80 3D */	lis r3, __vt__13JKRFileLoader@ha
-/* 802D410C  38 03 C1 C8 */	addi r0, r3, __vt__13JKRFileLoader@l
+/* 802D4108  3C 60 80 3D */	lis r3, __vt__13JKRFileLoader@ha /* 0x803CC1C8@ha */
+/* 802D410C  38 03 C1 C8 */	addi r0, r3, __vt__13JKRFileLoader@l /* 0x803CC1C8@l */
 /* 802D4110  90 1F 00 00 */	stw r0, 0(r31)
 /* 802D4114  38 7F 00 18 */	addi r3, r31, 0x18
 /* 802D4118  7F E4 FB 78 */	mr r4, r31

@@ -3,19 +3,20 @@
 #
 
 M269_TARGET := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06.plf
+M269_LDSCRIPT := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06.lcf
+M269_MAP := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06.map
 
 M269_CPP_FILES := \
-	rel/d/a/kytag/d_a_kytag06/executor.cpp \
-	rel/d/a/kytag/d_a_kytag06/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/kytag/d_a_kytag06/d_a_kytag06.cpp \
 
 M269_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/executor.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/d_a_kytag06.o \
 
 M269_LIBS := \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/libRuntime.PPCEABI.H.a \
 
 M269_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M269_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map269.map\
+	-m _prolog \
+	-lcf $(M269_LDSCRIPT) \
+	-unused -map $(M269_MAP) \
+	-w off \
 
 $(M269_TARGET): $(M269_O_FILES) $(M269_LIBS)
+	@echo [269] creating $(M269_TARGET)
 	@echo $(M269_LIBS) $(M269_O_FILES) > build/M269_ofiles
-	$(LD) -opt_partial $(M269_LDFLAGS) -o $(M269_TARGET) @build/M269_ofiles
+	@python3 tools/lcf.py rel 269 --output $(M269_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M269_LDFLAGS) -o $(M269_TARGET) @build/M269_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag06/%.o: rel/d/a/kytag/d_a_kytag06/%.cpp
+	@echo [269] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M269_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M269_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/kytag/d_a_kytag06/libs/Runtime.PPCEABI.H/Makefile
 

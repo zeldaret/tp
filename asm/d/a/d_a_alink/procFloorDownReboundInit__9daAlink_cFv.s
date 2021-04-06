@@ -9,8 +9,8 @@ lbl_800C8460:
 /* 800C847C  7F E3 FB 78 */	mr r3, r31
 /* 800C8480  38 80 00 33 */	li r4, 0x33
 /* 800C8484  C0 22 93 A8 */	lfs f1, lit_9652(r2)
-/* 800C8488  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C848C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800C8488  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C848C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C8490  C0 45 00 1C */	lfs f2, 0x1c(r5)
 /* 800C8494  A8 A5 00 14 */	lha r5, 0x14(r5)
 /* 800C8498  C0 62 93 30 */	lfs f3, lit_7625(r2)

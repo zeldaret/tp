@@ -3,17 +3,15 @@
 #
 
 M690_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum.plf
+M690_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum.lcf
+M690_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum.map
 
 M690_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wood_pendulum/executor.cpp \
-	rel/d/a/obj/d_a_obj_wood_pendulum/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_wood_pendulum/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum.cpp \
 
 M690_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum.o \
 
 M690_LIBS := \
@@ -29,15 +27,21 @@ M690_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map690.map\
+	-m _prolog \
+	-lcf $(M690_LDSCRIPT) \
+	-unused -map $(M690_MAP) \
+	-w off \
 
 $(M690_TARGET): $(M690_O_FILES) $(M690_LIBS)
+	@echo [690] creating $(M690_TARGET)
 	@echo $(M690_LIBS) $(M690_O_FILES) > build/M690_ofiles
-	$(LD) -opt_partial $(M690_LDFLAGS) -o $(M690_TARGET) @build/M690_ofiles
+	@python3 tools/lcf.py rel 690 --output $(M690_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M690_LDFLAGS) -o $(M690_TARGET) @build/M690_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_pendulum/%.o: rel/d/a/obj/d_a_obj_wood_pendulum/%.cpp
+	@echo [690] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M690_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

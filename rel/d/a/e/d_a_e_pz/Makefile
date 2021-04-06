@@ -3,19 +3,20 @@
 #
 
 M222_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_pz.plf
+M222_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_pz.lcf
+M222_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_pz.map
 
 M222_CPP_FILES := \
-	rel/d/a/e/d_a_e_pz/executor.cpp \
-	rel/d/a/e/d_a_e_pz/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_pz/d_a_e_pz.cpp \
 
 M222_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_pz/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_pz/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_pz/d_a_e_pz.o \
 
 M222_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_pz/libRuntime.PPCEABI.H.a \
 
 M222_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M222_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map222.map\
+	-m _prolog \
+	-lcf $(M222_LDSCRIPT) \
+	-unused -map $(M222_MAP) \
+	-w off \
 
 $(M222_TARGET): $(M222_O_FILES) $(M222_LIBS)
+	@echo [222] creating $(M222_TARGET)
 	@echo $(M222_LIBS) $(M222_O_FILES) > build/M222_ofiles
-	$(LD) -opt_partial $(M222_LDFLAGS) -o $(M222_TARGET) @build/M222_ofiles
+	@python3 tools/lcf.py rel 222 --output $(M222_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M222_LDFLAGS) -o $(M222_TARGET) @build/M222_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_pz/%.o: rel/d/a/e/d_a_e_pz/%.cpp
+	@echo [222] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M222_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M222_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_pz/libs/Runtime.PPCEABI.H/Makefile
 

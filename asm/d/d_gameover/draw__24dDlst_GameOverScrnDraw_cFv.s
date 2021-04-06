@@ -7,16 +7,16 @@ lbl_8019BCF4:
 /* 8019BD08  39 61 00 60 */	addi r11, r1, 0x60
 /* 8019BD0C  48 1C 64 BD */	bl _savegpr_24
 /* 8019BD10  7C 7E 1B 78 */	mr r30, r3
-/* 8019BD14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019BD18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019BD14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019BD18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019BD1C  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 8019BD20  7F E3 FB 78 */	mr r3, r31
 /* 8019BD24  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8019BD28  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 8019BD2C  7D 89 03 A6 */	mtctr r12
 /* 8019BD30  4E 80 04 21 */	bctrl 
-/* 8019BD34  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8019BD38  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8019BD34  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8019BD38  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8019BD3C  88 03 00 C2 */	lbz r0, 0xc2(r3)
 /* 8019BD40  28 00 00 01 */	cmplwi r0, 1
 /* 8019BD44  41 82 00 0C */	beq lbl_8019BD50
@@ -78,8 +78,8 @@ lbl_8019BE18:
 /* 8019BE18  38 00 FF FF */	li r0, -1
 /* 8019BE1C  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8019BE20  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8019BE24  3C 60 80 43 */	lis r3, l_HIO@ha
-/* 8019BE28  38 63 CA 2C */	addi r3, r3, l_HIO@l
+/* 8019BE24  3C 60 80 43 */	lis r3, l_HIO@ha /* 0x8042CA2C@ha */
+/* 8019BE28  38 63 CA 2C */	addi r3, r3, l_HIO@l /* 0x8042CA2C@l */
 /* 8019BE2C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 8019BE30  98 01 00 28 */	stb r0, 0x28(r1)
 /* 8019BE34  88 03 00 15 */	lbz r0, 0x15(r3)
@@ -110,13 +110,13 @@ lbl_8019BE18:
 /* 8019BE98  4E 80 04 21 */	bctrl 
 /* 8019BE9C  3B 00 00 00 */	li r24, 0
 /* 8019BEA0  3B A0 00 00 */	li r29, 0
-/* 8019BEA4  3C 60 80 43 */	lis r3, l_HIO@ha
-/* 8019BEA8  3B 23 CA 2C */	addi r25, r3, l_HIO@l
+/* 8019BEA4  3C 60 80 43 */	lis r3, l_HIO@ha /* 0x8042CA2C@ha */
+/* 8019BEA8  3B 23 CA 2C */	addi r25, r3, l_HIO@l /* 0x8042CA2C@l */
 /* 8019BEAC  83 41 00 24 */	lwz r26, 0x24(r1)
 /* 8019BEB0  83 61 00 28 */	lwz r27, 0x28(r1)
 /* 8019BEB4  C3 E2 A1 B4 */	lfs f31, lit_4376(r2)
-/* 8019BEB8  3C 60 80 3C */	lis r3, offset@ha
-/* 8019BEBC  3B 83 BD 0C */	addi r28, r3, offset@l
+/* 8019BEB8  3C 60 80 3C */	lis r3, offset@ha /* 0x803BBD0C@ha */
+/* 8019BEBC  3B 83 BD 0C */	addi r28, r3, offset@l /* 0x803BBD0C@l */
 lbl_8019BEC0:
 /* 8019BEC0  93 41 00 10 */	stw r26, 0x10(r1)
 /* 8019BEC4  93 61 00 14 */	stw r27, 0x14(r1)

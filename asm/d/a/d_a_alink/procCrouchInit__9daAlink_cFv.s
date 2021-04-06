@@ -13,8 +13,8 @@ lbl_800C7690:
 lbl_800C76BC:
 /* 800C76BC  7F E3 FB 78 */	mr r3, r31
 /* 800C76C0  38 80 00 29 */	li r4, 0x29
-/* 800C76C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_crouch_c0@ha
-/* 800C76C8  38 A5 E0 1C */	addi r5, r5, m__20daAlinkHIO_crouch_c0@l
+/* 800C76C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_crouch_c0@ha /* 0x8038E01C@ha */
+/* 800C76C8  38 A5 E0 1C */	addi r5, r5, m__20daAlinkHIO_crouch_c0@l /* 0x8038E01C@l */
 /* 800C76CC  C0 25 00 30 */	lfs f1, 0x30(r5)
 /* 800C76D0  C0 45 00 34 */	lfs f2, 0x34(r5)
 /* 800C76D4  4B FE 59 0D */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

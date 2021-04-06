@@ -1,11 +1,11 @@
 lbl_80C8CEAC:
-/* 80C8CEAC  3C 80 80 C9 */	lis r4, lit_3627@ha
-/* 80C8CEB0  38 A4 D7 DC */	addi r5, r4, lit_3627@l
-/* 80C8CEB4  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C8CEB8  38 04 D8 F8 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C8CEAC  3C 80 80 C9 */	lis r4, lit_3627@ha /* 0x80C8D7DC@ha */
+/* 80C8CEB0  38 A4 D7 DC */	addi r5, r4, lit_3627@l /* 0x80C8D7DC@l */
+/* 80C8CEB4  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C8D8F8@ha */
+/* 80C8CEB8  38 04 D8 F8 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C8D8F8@l */
 /* 80C8CEBC  90 03 00 00 */	stw r0, 0(r3)
-/* 80C8CEC0  3C 80 80 C9 */	lis r4, __vt__20daLv9SwShutter_HIO_c@ha
-/* 80C8CEC4  38 04 D8 EC */	addi r0, r4, __vt__20daLv9SwShutter_HIO_c@l
+/* 80C8CEC0  3C 80 80 C9 */	lis r4, __vt__20daLv9SwShutter_HIO_c@ha /* 0x80C8D8EC@ha */
+/* 80C8CEC4  38 04 D8 EC */	addi r0, r4, __vt__20daLv9SwShutter_HIO_c@l /* 0x80C8D8EC@l */
 /* 80C8CEC8  90 03 00 00 */	stw r0, 0(r3)
 /* 80C8CECC  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80C8CED0  D0 03 00 04 */	stfs f0, 4(r3)

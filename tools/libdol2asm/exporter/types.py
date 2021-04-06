@@ -213,13 +213,13 @@ class TypeList:
         if not move_function:
             await builder.write_nonewline(f"{pad}/* {function.addr:08X} */ ")
             if function.template_index >= 0:
-                await builder.write(f"/* {function.function_name(full_qualified_name=False)} */")
+                await builder.write(f"/* {function.func_name.to_str()} */")
                 await builder.write_nonewline(f"{pad}")
 
             await function.export_function_header(self, builder,
                                                   forward=True,
-                                                  full_qualified_name=False,
-                                                  specialize_templates=specialize)
+                                                  c_export=False,
+                                                  full_qualified_name=False)
             await builder.write(f";")
 
     async def export_struct(self, builder, struct_index, struct, indent):
@@ -249,7 +249,12 @@ class TypeList:
         symbols.sort(key=lambda x: min([z.addr for z in x[1]]))
 
         # export functions
+        last_template = False
         for name, functions in symbols:
+            if last_template:
+                await builder.write(f"")
+                last_template = False
+
             if functions[0].template_index >= 0:
                 # export templated functions
                 first_function = functions[0]
@@ -262,19 +267,15 @@ class TypeList:
                     for i in range(len(first_function.func_name.last.templates))
                 ]
                 typename_args = ", ".join([f"typename {x}" for x in args])
-                await builder.write(f"{pad}\t/*          */ template <{typename_args}>")
-                await builder.write_nonewline(f"{pad}\t/*          */ ")
-                await first_function.export_function_header(self, builder,
-                                                            forward=True,
-                                                            full_qualified_name=False,
-                                                            without_template=True,
-                                                            specialize_templates=False,
-                                                            comment_arguments=True)
+                await builder.write(f"{pad}\ttemplate <{typename_args}>")
+                await builder.write_nonewline(f"{pad}\t")
+                await builder.write_nonewline(f"void {first_function.func_name.last.name}(/* ... */)")
+
                 await builder.write(f";")
 
                 for function in functions:
                     await self.export_struct_function(builder, struct, indent + 1, function, True)
-                await builder.write(f"")
+                last_template = True
             else:
                 # export normal functions
                 for function in functions:
@@ -373,8 +374,8 @@ class TypeList:
             await builder.write_nonewline(f"{pad}/* {function.addr:08X} */ ")
             await function.export_function_header(self, builder,
                                                   forward=True,
-                                                  full_qualified_name=False,
-                                                  specialize_templates=specialize)
+                                                  c_export=False,
+                                                  full_qualified_name=False)
             await builder.write(f";")
 
         await builder.write(f"{pad}}}")

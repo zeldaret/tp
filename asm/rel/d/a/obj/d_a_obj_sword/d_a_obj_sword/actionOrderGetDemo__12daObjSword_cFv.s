@@ -13,15 +13,15 @@ lbl_80CFDB04:
 /* 80CFDB30  3C 04 00 01 */	addis r0, r4, 1
 /* 80CFDB34  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80CFDB38  41 82 00 30 */	beq lbl_80CFDB68
-/* 80CFDB3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CFDB40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CFDB3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CFDB40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CFDB44  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80CFDB48  4B 34 5B A4 */	b setPtI_Id__14dEvt_control_cFUi
+/* 80CFDB48  4B 34 5B A5 */	bl setPtI_Id__14dEvt_control_cFUi
 /* 80CFDB4C  48 00 00 1C */	b lbl_80CFDB68
 lbl_80CFDB50:
 /* 80CFDB50  38 80 00 00 */	li r4, 0
 /* 80CFDB54  38 A0 00 00 */	li r5, 0
-/* 80CFDB58  4B 31 DE 78 */	b fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
+/* 80CFDB58  4B 31 DE 79 */	bl fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
 /* 80CFDB5C  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CFDB60  60 00 00 08 */	ori r0, r0, 8
 /* 80CFDB64  B0 1F 00 FA */	sth r0, 0xfa(r31)

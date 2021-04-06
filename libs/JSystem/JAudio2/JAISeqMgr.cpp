@@ -39,7 +39,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISeq> */
 struct JASMemPool__template2 {
-    /* 802A1AF4 */ ~JASMemPool__template2();
+    /* 802A1AF4 */ void func_802A1AF4();
 };
 
 struct JASGenericMemPool {
@@ -68,9 +68,9 @@ struct JAISound {
 
 struct JAISeqDataRegion {};
 
-struct JAISeqMgr;
 struct JAIAudience {};
 
+struct JAISeqMgr;
 struct JAISeq {
     /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
     /* 802A0B64 */ void JAISeqMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*,
@@ -117,14 +117,10 @@ extern "C" void mixOut__9JAISeqMgrFv();
 extern "C" void beginStartSeq___9JAISeqMgrFv();
 extern "C" void endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle();
 extern "C" void __dt__9JAISeqMgrFv();
-extern "C" extern void* __vt__9JAISeqMgr[5 + 1 /* padding */];
-extern "C" extern u8 data_804340CC[16 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
@@ -160,7 +156,7 @@ extern "C" extern u8 data_80451320[8];
 // Declarations:
 //
 
-/* 802A1804-802A1870 006C+00 s=1 e=0 z=0  None .text
+/* 802A1804-802A1870 29C144 006C+00 1/0 0/0 0/0 .text
  * isUsingSeqData__9JAISeqMgrFRC16JAISeqDataRegion              */
 #pragma push
 #pragma optimization_level 0
@@ -171,11 +167,8 @@ asm void JAISeqMgr::isUsingSeqData(JAISeqDataRegion const& param_0) {
 }
 #pragma pop
 
-/* 802A1870-802A1914 00A4+00 s=1 e=0 z=0  None .text
+/* 802A1870-802A1914 29C1B0 00A4+00 1/0 0/0 0/0 .text
  * releaseSeqData__9JAISeqMgrFRC16JAISeqDataRegion              */
-//	802A1880: 803621DC (_savegpr_29)
-//	802A18D8: 802A2598 (stop__8JAISoundFv)
-//	802A1900: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -186,8 +179,8 @@ asm void JAISeqMgr::releaseSeqData(JAISeqDataRegion const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C9958-803C9970 0014+04 s=2 e=1 z=0  None .data      __vt__9JAISeqMgr */
-SECTION_DATA void* __vt__9JAISeqMgr[5 + 1 /* padding */] = {
+/* 803C9958-803C9970 026A78 0014+04 2/2 1/1 0/0 .data            __vt__9JAISeqMgr */
+SECTION_DATA extern void* __vt__9JAISeqMgr[5 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__9JAISeqMgrFv,
@@ -197,10 +190,10 @@ SECTION_DATA void* __vt__9JAISeqMgr[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 804557A8-804557AC 0004+00 s=1 e=0 z=0  None .sdata2    @691 */
+/* 804557A8-804557AC 003DA8 0004+00 1/1 0/0 0/0 .sdata2          @691 */
 SECTION_SDATA2 static f32 lit_691 = 1.0f;
 
-/* 804557AC-804557B0 0004+00 s=1 e=0 z=0  None .sdata2    @692 */
+/* 804557AC-804557B0 003DAC 0004+00 1/1 0/0 0/0 .sdata2          @692 */
 SECTION_SDATA2 static u8 lit_692[4] = {
     0x00,
     0x00,
@@ -208,26 +201,14 @@ SECTION_SDATA2 static u8 lit_692[4] = {
     0x00,
 };
 
-/* 804557B0-804557B8 0004+04 s=1 e=0 z=0  None .sdata2    @693 */
+/* 804557B0-804557B8 003DB0 0004+04 1/1 0/0 0/0 .sdata2          @693 */
 SECTION_SDATA2 static f32 lit_693[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 802A1914-802A1A08 00F4+00 s=0 e=1 z=0  None .text      __ct__9JAISeqMgrFb */
-//	802A1930: 80450B68 (data_80450B68)
-//	802A1934: 803C9940 (__vt__14JAISeqDataUser)
-//	802A1938: 803C9940 (__vt__14JAISeqDataUser)
-//	802A1940: 803C9958 (__vt__9JAISeqMgr)
-//	802A1944: 803C9958 (__vt__9JAISeqMgr)
-//	802A1954: 804557A8 (lit_691)
-//	802A1960: 804557AC (lit_692)
-//	802A1968: 804557B0 (lit_693)
-//	802A1978: 802DBF14 (initiate__10JSUPtrListFv)
-//	802A1990: 804557A8 (lit_691)
-//	802A199C: 804557AC (lit_692)
-//	802A19A4: 804557B0 (lit_693)
+/* 802A1914-802A1A08 29C254 00F4+00 0/0 1/1 0/0 .text            __ct__9JAISeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,36 +219,15 @@ asm JAISeqMgr::JAISeqMgr(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804340C0-804340CC 000C+00 s=3 e=0 z=0  None .bss       @715 */
+/* 804340C0-804340CC 060DE0 000C+00 3/3 0/0 0/0 .bss             @715 */
 static u8 lit_715[12];
 
-/* 804340CC-804340E0 0010+04 s=3 e=1 z=0  None .bss
+/* 804340CC-804340E0 060DEC 0010+04 3/3 1/1 0/0 .bss
  * memPool_$localstatic3$getMemPool___27JASPoolAllocObject<6JAISeq>Fv */
+extern u8 data_804340CC[16 + 4 /* padding */];
 u8 data_804340CC[16 + 4 /* padding */];
 
-/* 802A1A08-802A1AF4 00EC+00 s=1 e=0 z=0  None .text      freeDeadSeq___9JAISeqMgrFv */
-//	802A1A18: 803621DC (_savegpr_29)
-//	802A1A40: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802A1A4C: 803C98F4 (__vt__6JAISeq)
-//	802A1A50: 803C98F4 (__vt__6JAISeq)
-//	802A1A68: 8029131C (__dt__8JASTrackFv)
-//	802A1A7C: 802DBE14 (__dt__10JSUPtrLinkFv)
-//	802A1A80: 80451320 (data_80451320)
-//	802A1A8C: 804340CC (data_804340CC)
-//	802A1A90: 804340CC (data_804340CC)
-//	802A1A94: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A1A98: 804340CC (data_804340CC)
-//	802A1A9C: 804340CC (data_804340CC)
-//	802A1AA0: 802A1AF4 (func_802A1AF4)
-//	802A1AA4: 802A1AF4 (func_802A1AF4)
-//	802A1AA8: 804340C0 (lit_715)
-//	802A1AAC: 804340C0 (lit_715)
-//	802A1AB0: 80361C24 (__register_global_object)
-//	802A1AB8: 80451320 (data_80451320)
-//	802A1ABC: 804340CC (data_804340CC)
-//	802A1AC0: 804340CC (data_804340CC)
-//	802A1ACC: 80290994 (free__17JASGenericMemPoolFPvUl)
-//	802A1AE0: 80362228 (_restgpr_29)
+/* 802A1A08-802A1AF4 29C348 00EC+00 1/1 0/0 0/0 .text            freeDeadSeq___9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,27 +237,18 @@ asm void JAISeqMgr::freeDeadSeq_() {
 }
 #pragma pop
 
-/* 802A1AF4-802A1B48 0054+00 s=3 e=1 z=0  None .text      __dt__19JASMemPool<6JAISeq>Fv */
-//	802A1B18: 80290860 (__dt__17JASGenericMemPoolFv)
-//	802A1B28: 802CED3C (__dl__FPv)
+/* 802A1AF4-802A1B48 29C434 0054+00 3/3 1/1 0/0 .text            __dt__19JASMemPool<6JAISeq>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASMemPool__template2::~JASMemPool__template2() {
+extern "C" asm void func_802A1AF4() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/func_802A1AF4.s"
 }
 #pragma pop
 
-/* 802A1B48-802A1C90 0148+00 s=0 e=1 z=0  None .text
+/* 802A1B48-802A1C90 29C488 0148+00 0/0 1/1 0/0 .text
  * startSound__9JAISeqMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
-//	802A1B58: 803621CC (_savegpr_25)
-//	802A1B7C: 802A2598 (stop__8JAISoundFv)
-//	802A1B80: 80450B5C (data_80450B5C)
-//	802A1BFC: 802A1F58 (beginStartSeq___9JAISeqMgrFv)
-//	802A1C24: 802A0B64 (func_802A0B64)
-//	802A1C34: 802A1FE8 (endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle)
-//	802A1C7C: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,9 +259,7 @@ asm void JAISeqMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
 }
 #pragma pop
 
-/* 802A1C90-802A1DFC 016C+00 s=0 e=4 z=0  None .text      calc__9JAISeqMgrFv */
-//	802A1DCC: 802A108C (JAISeqMgr_calc___6JAISeqFv)
-//	802A1DE0: 802A1A08 (freeDeadSeq___9JAISeqMgrFv)
+/* 802A1C90-802A1DFC 29C5D0 016C+00 0/0 4/4 0/0 .text            calc__9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -320,8 +269,7 @@ asm void JAISeqMgr::calc() {
 }
 #pragma pop
 
-/* 802A1DFC-802A1E3C 0040+00 s=0 e=1 z=0  None .text      stop__9JAISeqMgrFv */
-//	802A1E18: 802A2598 (stop__8JAISoundFv)
+/* 802A1DFC-802A1E3C 29C73C 0040+00 0/0 1/1 0/0 .text            stop__9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,8 +279,7 @@ asm void JAISeqMgr::stop() {
 }
 #pragma pop
 
-/* 802A1E3C-802A1E8C 0050+00 s=0 e=1 z=0  None .text      stop__9JAISeqMgrFUl */
-//	802A1E64: 802A24DC (stop__8JAISoundFUl)
+/* 802A1E3C-802A1E8C 29C77C 0050+00 0/0 1/1 0/0 .text            stop__9JAISeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,8 +289,7 @@ asm void JAISeqMgr::stop(u32 param_0) {
 }
 #pragma pop
 
-/* 802A1E8C-802A1EFC 0070+00 s=0 e=1 z=0  None .text      stopSoundID__9JAISeqMgrF10JAISoundID */
-//	802A1ED4: 802A2598 (stop__8JAISoundFv)
+/* 802A1E8C-802A1EFC 29C7CC 0070+00 0/0 1/1 0/0 .text stopSoundID__9JAISeqMgrF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,8 +299,7 @@ asm void JAISeqMgr::stopSoundID(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802A1EFC-802A1F58 005C+00 s=0 e=4 z=0  None .text      mixOut__9JAISeqMgrFv */
-//	802A1F30: 802A14FC (JAISeqMgr_mixOut___6JAISeqFRC14JASSoundParams16JAISoundActivity)
+/* 802A1EFC-802A1F58 29C83C 005C+00 0/0 4/4 0/0 .text            mixOut__9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,23 +309,7 @@ asm void JAISeqMgr::mixOut() {
 }
 #pragma pop
 
-/* 802A1F58-802A1FE8 0090+00 s=1 e=0 z=0  None .text      beginStartSeq___9JAISeqMgrFv */
-//	802A1F6C: 80451320 (data_80451320)
-//	802A1F78: 804340CC (data_804340CC)
-//	802A1F7C: 804340CC (data_804340CC)
-//	802A1F80: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A1F84: 804340CC (data_804340CC)
-//	802A1F88: 804340CC (data_804340CC)
-//	802A1F8C: 802A1AF4 (func_802A1AF4)
-//	802A1F90: 802A1AF4 (func_802A1AF4)
-//	802A1F94: 804340C0 (lit_715)
-//	802A1F98: 804340C0 (lit_715)
-//	802A1F9C: 80361C24 (__register_global_object)
-//	802A1FA4: 80451320 (data_80451320)
-//	802A1FA8: 804340CC (data_804340CC)
-//	802A1FAC: 804340CC (data_804340CC)
-//	802A1FB4: 80290948 (alloc__17JASGenericMemPoolFUl)
-//	802A1FC8: 802A0A8C (func_802A0A8C)
+/* 802A1F58-802A1FE8 29C898 0090+00 1/1 0/0 0/0 .text            beginStartSeq___9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,29 +319,8 @@ asm void JAISeqMgr::beginStartSeq_() {
 }
 #pragma pop
 
-/* 802A1FE8-802A20F0 0108+00 s=1 e=0 z=0  None .text
+/* 802A1FE8-802A20F0 29C928 0108+00 1/1 0/0 0/0 .text
  * endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle           */
-//	802A2028: 802DBF4C (append__10JSUPtrListFP10JSUPtrLink)
-//	802A203C: 802A21BC (attachHandle__8JAISoundFP14JAISoundHandle)
-//	802A2050: 803C98F4 (__vt__6JAISeq)
-//	802A2054: 803C98F4 (__vt__6JAISeq)
-//	802A206C: 8029131C (__dt__8JASTrackFv)
-//	802A2080: 802DBE14 (__dt__10JSUPtrLinkFv)
-//	802A2084: 80451320 (data_80451320)
-//	802A2090: 804340CC (data_804340CC)
-//	802A2094: 804340CC (data_804340CC)
-//	802A2098: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A209C: 804340CC (data_804340CC)
-//	802A20A0: 804340CC (data_804340CC)
-//	802A20A4: 802A1AF4 (func_802A1AF4)
-//	802A20A8: 802A1AF4 (func_802A1AF4)
-//	802A20AC: 804340C0 (lit_715)
-//	802A20B0: 804340C0 (lit_715)
-//	802A20B4: 80361C24 (__register_global_object)
-//	802A20BC: 80451320 (data_80451320)
-//	802A20C0: 804340CC (data_804340CC)
-//	802A20C4: 804340CC (data_804340CC)
-//	802A20D0: 80290994 (free__17JASGenericMemPoolFPvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -422,14 +330,7 @@ asm void JAISeqMgr::endStartSeq_(JAISeq* param_0, JAISoundHandle* param_1) {
 }
 #pragma pop
 
-/* 802A20F0-802A2184 0094+00 s=1 e=0 z=0  None .text      __dt__9JAISeqMgrFv */
-//	802A2110: 803C9958 (__vt__9JAISeqMgr)
-//	802A2114: 803C9958 (__vt__9JAISeqMgr)
-//	802A212C: 802DBEAC (__dt__10JSUPtrListFv)
-//	802A2138: 802A1774 (__dt__14JAISeqDataUserFv)
-//	802A2144: 80450B68 (data_80450B68)
-//	802A2154: 80450B68 (data_80450B68)
-//	802A2164: 802CED3C (__dl__FPv)
+/* 802A20F0-802A2184 29CA30 0094+00 1/0 0/0 0/0 .text            __dt__9JAISeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

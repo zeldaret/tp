@@ -12,10 +12,10 @@ lbl_8032C9B0:
 /* 8032C9D8  39 20 00 00 */	li r9, 0
 /* 8032C9DC  39 40 00 00 */	li r10, 0
 /* 8032C9E0  38 60 00 00 */	li r3, 0
-/* 8032C9E4  3C 80 80 43 */	lis r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha
-/* 8032C9E8  38 C4 72 18 */	addi r6, r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l
-/* 8032C9EC  3C 80 80 44 */	lis r4, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha
-/* 8032C9F0  38 A4 82 18 */	addi r5, r4, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l
+/* 8032C9E4  3C 80 80 43 */	lis r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha /* 0x80437218@ha */
+/* 8032C9E8  38 C4 72 18 */	addi r6, r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l /* 0x80437218@l */
+/* 8032C9EC  3C 80 80 44 */	lis r4, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha /* 0x80438218@ha */
+/* 8032C9F0  38 A4 82 18 */	addi r5, r4, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l /* 0x80438218@l */
 /* 8032C9F4  7C 09 03 A6 */	mtctr r0
 /* 8032C9F8  2C 00 00 00 */	cmpwi r0, 0
 /* 8032C9FC  40 81 00 38 */	ble lbl_8032CA34
@@ -41,8 +41,8 @@ lbl_8032CA34:
 /* 8032CA44  1C 7E 00 14 */	mulli r3, r30, 0x14
 /* 8032CA48  38 63 00 10 */	addi r3, r3, 0x10
 /* 8032CA4C  4B FA 22 79 */	bl __nwa__FUl
-/* 8032CA50  3C 80 80 33 */	lis r4, __ct__12J3DSkinNListFv@ha
-/* 8032CA54  38 84 C6 E4 */	addi r4, r4, __ct__12J3DSkinNListFv@l
+/* 8032CA50  3C 80 80 33 */	lis r4, __ct__12J3DSkinNListFv@ha /* 0x8032C6E4@ha */
+/* 8032CA54  38 84 C6 E4 */	addi r4, r4, __ct__12J3DSkinNListFv@l /* 0x8032C6E4@l */
 /* 8032CA58  38 A0 00 00 */	li r5, 0
 /* 8032CA5C  38 C0 00 14 */	li r6, 0x14
 /* 8032CA60  7F C7 F3 78 */	mr r7, r30
@@ -78,8 +78,8 @@ lbl_8032CAC0:
 /* 8032CACC  80 BD 00 30 */	lwz r5, 0x30(r29)
 /* 8032CAD0  7C C5 00 AE */	lbzx r6, r5, r0
 /* 8032CAD4  54 00 13 BA */	rlwinm r0, r0, 2, 0xe, 0x1d
-/* 8032CAD8  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha
-/* 8032CADC  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l
+/* 8032CAD8  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha /* 0x80437218@ha */
+/* 8032CADC  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l /* 0x80437218@l */
 /* 8032CAE0  7D 25 00 2E */	lwzx r9, r5, r0
 /* 8032CAE4  38 A0 00 00 */	li r5, 0
 /* 8032CAE8  7C C9 03 A6 */	mtctr r6
@@ -131,8 +131,8 @@ lbl_8032CB80:
 /* 8032CB8C  80 BD 00 30 */	lwz r5, 0x30(r29)
 /* 8032CB90  7C C5 00 AE */	lbzx r6, r5, r0
 /* 8032CB94  54 00 13 BA */	rlwinm r0, r0, 2, 0xe, 0x1d
-/* 8032CB98  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha
-/* 8032CB9C  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l
+/* 8032CB98  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha /* 0x80437218@ha */
+/* 8032CB9C  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l /* 0x80437218@l */
 /* 8032CBA0  7D 25 00 2E */	lwzx r9, r5, r0
 /* 8032CBA4  38 A0 00 00 */	li r5, 0
 /* 8032CBA8  7C C9 03 A6 */	mtctr r6
@@ -250,11 +250,11 @@ lbl_8032CD38:
 /* 8032CD44  80 BD 00 30 */	lwz r5, 0x30(r29)
 /* 8032CD48  7C E5 00 AE */	lbzx r7, r5, r0
 /* 8032CD4C  54 00 13 BA */	rlwinm r0, r0, 2, 0xe, 0x1d
-/* 8032CD50  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha
-/* 8032CD54  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l
+/* 8032CD50  3C A0 80 43 */	lis r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha /* 0x80437218@ha */
+/* 8032CD54  38 A5 72 18 */	addi r5, r5, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l /* 0x80437218@l */
 /* 8032CD58  7D 45 00 2E */	lwzx r10, r5, r0
-/* 8032CD5C  3C A0 80 44 */	lis r5, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha
-/* 8032CD60  38 A5 82 18 */	addi r5, r5, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l
+/* 8032CD5C  3C A0 80 44 */	lis r5, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha /* 0x80438218@ha */
+/* 8032CD60  38 A5 82 18 */	addi r5, r5, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l /* 0x80438218@l */
 /* 8032CD64  7D 65 00 2E */	lwzx r11, r5, r0
 /* 8032CD68  38 A0 00 00 */	li r5, 0
 /* 8032CD6C  38 C0 00 00 */	li r6, 0
@@ -333,11 +333,11 @@ lbl_8032CE70:
 /* 8032CE7C  80 9D 00 30 */	lwz r4, 0x30(r29)
 /* 8032CE80  7D 04 00 AE */	lbzx r8, r4, r0
 /* 8032CE84  54 00 13 BA */	rlwinm r0, r0, 2, 0xe, 0x1d
-/* 8032CE88  3C 80 80 43 */	lis r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha
-/* 8032CE8C  38 84 72 18 */	addi r4, r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l
+/* 8032CE88  3C 80 80 43 */	lis r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@ha /* 0x80437218@ha */
+/* 8032CE8C  38 84 72 18 */	addi r4, r4, sWorkArea_WEvlpMixMtx__13J3DSkinDeform@l /* 0x80437218@l */
 /* 8032CE90  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8032CE94  3C C0 80 44 */	lis r6, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha
-/* 8032CE98  38 C6 82 18 */	addi r6, r6, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l
+/* 8032CE94  3C C0 80 44 */	lis r6, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@ha /* 0x80438218@ha */
+/* 8032CE98  38 C6 82 18 */	addi r6, r6, sWorkArea_WEvlpMixWeight__13J3DSkinDeform@l /* 0x80438218@l */
 /* 8032CE9C  7D 66 00 2E */	lwzx r11, r6, r0
 /* 8032CEA0  38 C0 00 00 */	li r6, 0
 /* 8032CEA4  38 E0 00 00 */	li r7, 0

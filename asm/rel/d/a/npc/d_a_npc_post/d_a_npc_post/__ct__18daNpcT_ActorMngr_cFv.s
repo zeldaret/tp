@@ -4,10 +4,10 @@ lbl_80AAC394:
 /* 80AAC39C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AAC3A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AAC3A4  7C 7F 1B 78 */	mr r31, r3
-/* 80AAC3A8  3C 80 80 AB */	lis r4, __vt__18daNpcT_ActorMngr_c@ha
-/* 80AAC3AC  38 04 DA D8 */	addi r0, r4, __vt__18daNpcT_ActorMngr_c@l
+/* 80AAC3A8  3C 80 80 AB */	lis r4, __vt__18daNpcT_ActorMngr_c@ha /* 0x80AADAD8@ha */
+/* 80AAC3AC  38 04 DA D8 */	addi r0, r4, __vt__18daNpcT_ActorMngr_c@l /* 0x80AADAD8@l */
 /* 80AAC3B0  90 03 00 04 */	stw r0, 4(r3)
-/* 80AAC3B4  4B 69 93 20 */	b initialize__18daNpcT_ActorMngr_cFv
+/* 80AAC3B4  4B 69 93 21 */	bl initialize__18daNpcT_ActorMngr_cFv
 /* 80AAC3B8  7F E3 FB 78 */	mr r3, r31
 /* 80AAC3BC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80AAC3C0  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -1,8 +1,8 @@
 lbl_8079DDEC:
-/* 8079DDEC  3C 80 80 7A */	lis r4, lit_3903@ha
-/* 8079DDF0  38 A4 68 24 */	addi r5, r4, lit_3903@l
-/* 8079DDF4  3C 80 80 7A */	lis r4, __vt__12daE_ST_HIO_c@ha
-/* 8079DDF8  38 04 6D 88 */	addi r0, r4, __vt__12daE_ST_HIO_c@l
+/* 8079DDEC  3C 80 80 7A */	lis r4, lit_3903@ha /* 0x807A6824@ha */
+/* 8079DDF0  38 A4 68 24 */	addi r5, r4, lit_3903@l /* 0x807A6824@l */
+/* 8079DDF4  3C 80 80 7A */	lis r4, __vt__12daE_ST_HIO_c@ha /* 0x807A6D88@ha */
+/* 8079DDF8  38 04 6D 88 */	addi r0, r4, __vt__12daE_ST_HIO_c@l /* 0x807A6D88@l */
 /* 8079DDFC  90 03 00 00 */	stw r0, 0(r3)
 /* 8079DE00  38 00 FF FF */	li r0, -1
 /* 8079DE04  98 03 00 04 */	stb r0, 4(r3)

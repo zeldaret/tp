@@ -68,13 +68,10 @@ extern "C" void __dt__14J2DGrafContextFv();
 extern "C" void place__14J2DGrafContextFffff();
 extern "C" bool getGrafType__14J2DGrafContextCFv();
 extern "C" void setLookat__14J2DGrafContextFv();
-extern "C" extern void* __vt__14J2DGrafContext[10];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 extern "C" void PSMTXIdentity();
@@ -112,8 +109,8 @@ extern "C" void ceil();
 //
 
 /* ############################################################################################## */
-/* 803CC9B8-803CC9E0 0028+00 s=2 e=13 z=0  None .data      __vt__14J2DGrafContext */
-SECTION_DATA void* __vt__14J2DGrafContext[10] = {
+/* 803CC9B8-803CC9E0 029AD8 0028+00 2/2 13/13 0/0 .data            __vt__14J2DGrafContext */
+SECTION_DATA extern void* __vt__14J2DGrafContext[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14J2DGrafContextFv,
@@ -126,12 +123,7 @@ SECTION_DATA void* __vt__14J2DGrafContext[10] = {
     (void*)setLookat__14J2DGrafContextFv,
 };
 
-/* 802E8B08-802E8BB4 00AC+00 s=0 e=2 z=0  None .text      __ct__14J2DGrafContextFffff */
-//	802E8B1C: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E8B20: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E8B8C: 802E9118
-//(setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor)
-//	802E8B98: 802E9234 (setLineWidth__14J2DGrafContextFUc)
+/* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -142,7 +134,7 @@ asm J2DGrafContext::J2DGrafContext(f32 param_0, f32 param_1, f32 param_2, f32 pa
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456148-8045614C 0004+00 s=5 e=0 z=0  None .sdata2    @627 */
+/* 80456148-8045614C 004748 0004+00 5/5 0/0 0/0 .sdata2          @627 */
 SECTION_SDATA2 static u8 lit_627[4] = {
     0x00,
     0x00,
@@ -150,15 +142,10 @@ SECTION_SDATA2 static u8 lit_627[4] = {
     0x00,
 };
 
-/* 8045614C-80456150 0004+00 s=1 e=0 z=0  None .sdata2    @628 */
+/* 8045614C-80456150 00474C 0004+00 1/1 0/0 0/0 .sdata2          @628 */
 SECTION_SDATA2 static f32 lit_628 = 1.0f;
 
-/* 802E8BB4-802E8C44 0090+00 s=1 e=1 z=0  None .text      setPort__14J2DGrafContextFv */
-//	802E8BFC: 80456148 (lit_627)
-//	802E8C0C: 80456148 (lit_627)
-//	802E8C24: 80456148 (lit_627)
-//	802E8C28: 8045614C (lit_628)
-//	802E8C2C: 80360464 (GXSetViewport)
+/* 802E8BB4-802E8C44 2E34F4 0090+00 1/0 1/1 0/0 .text            setPort__14J2DGrafContextFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -168,34 +155,7 @@ asm void J2DGrafContext::setPort() {
 }
 #pragma pop
 
-/* 802E8C44-802E8E20 01DC+00 s=1 e=1 z=0  None .text      setup2D__14J2DGrafContextFv */
-//	802E8C60: 8035F0D4 (GXSetNumIndStages)
-//	802E8C6C: 8035F0F8 (GXSetTevDirect)
-//	802E8C80: 8035FCD0 (GXSetZCompLoc)
-//	802E8C98: 8035F624 (GXSetAlphaCompare)
-//	802E8CA8: 8035FC9C (GXSetZMode)
-//	802E8CB4: 8035F198 (GXSetTevOp)
-//	802E8CBC: 8035DB30 (GXSetNumChans)
-//	802E8CC4: 8035F890 (GXSetNumTevStages)
-//	802E8CCC: 8035BDFC (GXSetNumTexGens)
-//	802E8CE0: 8035F6F4 (GXSetTevOrder)
-//	802E8CE8: 8035C984 (GXSetCullMode)
-//	802E8CF4: 8036024C (GXLoadPosMtxImm)
-//	802E8CFC: 80346484 (PSMTXIdentity)
-//	802E8D0C: 80360320 (GXLoadTexMtxImm)
-//	802E8D2C: 8035DB6C (GXSetChanCtrl)
-//	802E8D4C: 8035DB6C (GXSetChanCtrl)
-//	802E8D54: 803602EC (GXSetCurrentMtx)
-//	802E8D70: 8035BB7C (GXSetTexCoordGen2)
-//	802E8D88: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E8DA0: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E8DB8: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E8DD0: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E8DDC: 8035C8BC (GXSetLineWidth)
-//	802E8DE0: 8035B58C (GXClearVtxDesc)
-//	802E8DEC: 8035AEB8 (GXSetVtxDesc)
-//	802E8DF8: 8035AEB8 (GXSetVtxDesc)
-//	802E8E04: 8035AEB8 (GXSetVtxDesc)
+/* 802E8C44-802E8E20 2E3584 01DC+00 1/0 1/0 0/0 .text            setup2D__14J2DGrafContextFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -206,39 +166,17 @@ asm void J2DGrafContext::setup2D() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456150-80456158 0004+04 s=1 e=0 z=0  None .sdata2    @730 */
+/* 80456150-80456158 004750 0004+04 1/1 0/0 0/0 .sdata2          @730 */
 SECTION_SDATA2 static f32 lit_730[1 + 1 /* padding */] = {
     1024.0f,
     /* padding */
     0.0f,
 };
 
-/* 80456158-80456160 0008+00 s=1 e=0 z=0  None .sdata2    @732 */
+/* 80456158-80456160 004758 0008+00 1/1 0/0 0/0 .sdata2          @732 */
 SECTION_SDATA2 static f64 lit_732 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802E8E20-802E90C0 02A0+00 s=1 e=2 z=0  None .text      setScissor__14J2DGrafContextFv */
-//	802E8E50: 803621DC (_savegpr_29)
-//	802E8E64: 80456148 (lit_627)
-//	802E8E7C: 80456148 (lit_627)
-//	802E8E94: 80456150 (lit_730)
-//	802E8EAC: 80456150 (lit_730)
-//	802E8F68: 80456148 (lit_627)
-//	802E8F7C: 80456148 (lit_627)
-//	802E8F90: 80456150 (lit_730)
-//	802E8FA4: 80456150 (lit_730)
-//	802E8FE0: 803620AC (__cvt_fp2unsigned)
-//	802E8FE4: 80456158 (lit_732)
-//	802E9000: 803620AC (__cvt_fp2unsigned)
-//	802E9004: 80456158 (lit_732)
-//	802E9020: 8036BEBC (ceil)
-//	802E902C: 8036BEBC (ceil)
-//	802E9038: 803620AC (__cvt_fp2unsigned)
-//	802E9044: 803620AC (__cvt_fp2unsigned)
-//	802E9050: 803620AC (__cvt_fp2unsigned)
-//	802E905C: 803620AC (__cvt_fp2unsigned)
-//	802E906C: 803604D0 (GXSetScissor)
-//	802E9084: 803604D0 (GXSetScissor)
-//	802E90AC: 80362228 (_restgpr_29)
+/* 802E8E20-802E90C0 2E3760 02A0+00 1/0 2/1 0/0 .text            setScissor__14J2DGrafContextFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -248,7 +186,7 @@ asm void J2DGrafContext::setScissor() {
 }
 #pragma pop
 
-/* 802E90C0-802E90E4 0024+00 s=0 e=10 z=0  None .text
+/* 802E90C0-802E90E4 2E3A00 0024+00 0/0 10/10 0/0 .text
  * scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */
 #pragma push
 #pragma optimization_level 0
@@ -259,7 +197,7 @@ asm void J2DGrafContext::scissor(JGeometry::TBox2<f32> const& param_0) {
 }
 #pragma pop
 
-/* 802E90E4-802E9118 0034+00 s=1 e=1 z=0  None .text
+/* 802E90E4-802E9118 2E3A24 0034+00 1/0 1/0 0/0 .text
  * place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>              */
 #pragma push
 #pragma optimization_level 0
@@ -270,7 +208,7 @@ asm void J2DGrafContext::place(JGeometry::TBox2<f32> const& param_0) {
 }
 #pragma pop
 
-/* 802E9118-802E9234 011C+00 s=1 e=4 z=0  None .text
+/* 802E9118-802E9234 2E3A58 011C+00 1/1 4/4 0/0 .text
  * setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
  */
 #pragma push
@@ -283,8 +221,8 @@ asm void J2DGrafContext::setColor(JUtility::TColor param_0, JUtility::TColor par
 }
 #pragma pop
 
-/* 802E9234-802E9260 002C+00 s=1 e=2 z=0  None .text      setLineWidth__14J2DGrafContextFUc */
-//	802E924C: 8035C8BC (GXSetLineWidth)
+/* 802E9234-802E9260 2E3B74 002C+00 1/1 2/2 0/0 .text            setLineWidth__14J2DGrafContextFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,17 +232,8 @@ asm void J2DGrafContext::setLineWidth(u8 param_0) {
 }
 #pragma pop
 
-/* 802E9260-802E9368 0108+00 s=0 e=2 z=0  None .text
+/* 802E9260-802E9368 2E3BA0 0108+00 0/0 2/2 0/0 .text
  * fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>            */
-//	802E928C: 8035FBF0 (GXSetBlendMode)
-//	802E9298: 8036024C (GXLoadPosMtxImm)
-//	802E92B0: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E92C0: 8035C764 (GXBegin)
-//	802E92D8: 80456148 (lit_627)
-//	802E92F4: 80456148 (lit_627)
-//	802E9310: 80456148 (lit_627)
-//	802E9328: 80456148 (lit_627)
-//	802E934C: 8035B5C4 (GXSetVtxAttrFmt)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -314,18 +243,8 @@ asm void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& param_0) {
 }
 #pragma pop
 
-/* 802E9368-802E9488 0120+00 s=0 e=1 z=0  None .text
+/* 802E9368-802E9488 2E3CA8 0120+00 0/0 1/1 0/0 .text
  * drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>          */
-//	802E9394: 8035FBF0 (GXSetBlendMode)
-//	802E93A0: 8036024C (GXLoadPosMtxImm)
-//	802E93B8: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E93C8: 8035C764 (GXBegin)
-//	802E93E0: 80456148 (lit_627)
-//	802E93FC: 80456148 (lit_627)
-//	802E9418: 80456148 (lit_627)
-//	802E9430: 80456148 (lit_627)
-//	802E9448: 80456148 (lit_627)
-//	802E946C: 8035B5C4 (GXSetVtxAttrFmt)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -335,17 +254,8 @@ asm void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& param_0) {
 }
 #pragma pop
 
-/* 802E9488-802E9564 00DC+00 s=1 e=0 z=0  None .text
+/* 802E9488-802E9564 2E3DC8 00DC+00 1/1 0/0 0/0 .text
  * line__14J2DGrafContextFQ29JGeometry8TVec2<f>Q29JGeometry8TVec2<f> */
-//	802E9498: 803621DC (_savegpr_29)
-//	802E94B8: 8035FBF0 (GXSetBlendMode)
-//	802E94C4: 8036024C (GXLoadPosMtxImm)
-//	802E94DC: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E94EC: 8035C764 (GXBegin)
-//	802E9504: 80456148 (lit_627)
-//	802E9524: 80456148 (lit_627)
-//	802E9548: 8035B5C4 (GXSetVtxAttrFmt)
-//	802E9550: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -355,9 +265,8 @@ asm void J2DGrafContext::line(JGeometry::TVec2<f32> param_0, JGeometry::TVec2<f3
 }
 #pragma pop
 
-/* 802E9564-802E95D4 0070+00 s=0 e=1 z=0  None .text
+/* 802E9564-802E95D4 2E3EA4 0070+00 0/0 1/1 0/0 .text
  * lineTo__14J2DGrafContextFQ29JGeometry8TVec2<f>               */
-//	802E95A8: 802E9488 (func_802E9488)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -367,10 +276,7 @@ asm void J2DGrafContext::lineTo(JGeometry::TVec2<f32> param_0) {
 }
 #pragma pop
 
-/* 802E95D4-802E961C 0048+00 s=1 e=0 z=0  None .text      __dt__14J2DGrafContextFv */
-//	802E95EC: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E95F0: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E9600: 802CED3C (__dl__FPv)
+/* 802E95D4-802E961C 2E3F14 0048+00 1/0 0/0 0/0 .text            __dt__14J2DGrafContextFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,7 +286,7 @@ asm J2DGrafContext::~J2DGrafContext() {
 }
 #pragma pop
 
-/* 802E961C-802E9664 0048+00 s=1 e=1 z=0  None .text      place__14J2DGrafContextFffff */
+/* 802E961C-802E9664 2E3F5C 0048+00 1/0 1/0 0/0 .text            place__14J2DGrafContextFffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,12 +296,12 @@ asm void J2DGrafContext::place(f32 param_0, f32 param_1, f32 param_2, f32 param_
 }
 #pragma pop
 
-/* 802E9664-802E966C 0008+00 s=1 e=0 z=0  None .text      getGrafType__14J2DGrafContextCFv */
+/* 802E9664-802E966C 2E3FA4 0008+00 1/0 0/0 0/0 .text            getGrafType__14J2DGrafContextCFv */
 bool J2DGrafContext::getGrafType() const {
     return false;
 }
 
-/* 802E966C-802E9670 0004+00 s=1 e=0 z=0  None .text      setLookat__14J2DGrafContextFv */
+/* 802E966C-802E9670 2E3FAC 0004+00 1/0 0/0 0/0 .text            setLookat__14J2DGrafContextFv */
 void J2DGrafContext::setLookat() {
     /* empty function */
 }

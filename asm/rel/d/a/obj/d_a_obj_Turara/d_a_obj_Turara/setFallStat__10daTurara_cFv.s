@@ -6,16 +6,16 @@ lbl_80B9D468:
 /* 80B9D478  93 C1 00 08 */	stw r30, 8(r1)
 /* 80B9D47C  7C 7E 1B 78 */	mr r30, r3
 /* 80B9D480  38 7E 07 A8 */	addi r3, r30, 0x7a8
-/* 80B9D484  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80B9D488  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80B9D484  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B9D488  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B9D48C  3B E4 0F 38 */	addi r31, r4, 0xf38
 /* 80B9D490  7F E4 FB 78 */	mr r4, r31
-/* 80B9D494  4B 4D 96 18 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80B9D494  4B 4D 96 19 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80B9D498  C0 1E 08 40 */	lfs f0, 0x840(r30)
 /* 80B9D49C  D0 1E 04 D4 */	stfs f0, 0x4d4(r30)
 /* 80B9D4A0  38 7E 07 A8 */	addi r3, r30, 0x7a8
 /* 80B9D4A4  7F E4 FB 78 */	mr r4, r31
-/* 80B9D4A8  4B 4D 96 04 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80B9D4A8  4B 4D 96 05 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80B9D4AC  38 00 00 03 */	li r0, 3
 /* 80B9D4B0  98 1E 05 C8 */	stb r0, 0x5c8(r30)
 /* 80B9D4B4  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -8,12 +8,12 @@ lbl_8065ACC8:
 /* 8065ACE0  28 03 00 00 */	cmplwi r3, 0
 /* 8065ACE4  41 82 00 30 */	beq lbl_8065AD14
 /* 8065ACE8  7F E3 FB 78 */	mr r3, r31
-/* 8065ACEC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8065ACF0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8065ACEC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8065ACF0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8065ACF4  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 8065ACF8  4B 9B FA E8 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 8065ACFC  3C 60 80 66 */	lis r3, lit_5007@ha
-/* 8065AD00  C0 03 2E 44 */	lfs f0, lit_5007@l(r3)
+/* 8065ACF8  4B 9B FA E9 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8065ACFC  3C 60 80 66 */	lis r3, lit_5007@ha /* 0x80662E44@ha */
+/* 8065AD00  C0 03 2E 44 */	lfs f0, lit_5007@l(r3)  /* 0x80662E44@l */
 /* 8065AD04  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8065AD08  40 80 00 0C */	bge lbl_8065AD14
 /* 8065AD0C  38 60 00 01 */	li r3, 1

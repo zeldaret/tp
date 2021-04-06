@@ -7,12 +7,12 @@ lbl_800503FC:
 /* 80050410  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80050414  7C 9F 23 78 */	mr r31, r4
 /* 80050418  41 82 00 4C */	beq lbl_80050464
-/* 8005041C  3C 80 80 3B */	lis r4, __vt__25dPa_gen_d_light8EcallBack@ha
-/* 80050420  38 04 84 C0 */	addi r0, r4, __vt__25dPa_gen_d_light8EcallBack@l
+/* 8005041C  3C 80 80 3B */	lis r4, __vt__25dPa_gen_d_light8EcallBack@ha /* 0x803A84C0@ha */
+/* 80050420  38 04 84 C0 */	addi r0, r4, __vt__25dPa_gen_d_light8EcallBack@l /* 0x803A84C0@l */
 /* 80050424  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050428  41 82 00 2C */	beq lbl_80050454
-/* 8005042C  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 80050430  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 8005042C  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x803A8554@ha */
+/* 80050430  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x803A8554@l */
 /* 80050434  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050438  81 83 00 00 */	lwz r12, 0(r3)
 /* 8005043C  81 8C 00 20 */	lwz r12, 0x20(r12)

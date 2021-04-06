@@ -38,11 +38,10 @@ extern "C" void moveDolby__18JAISoundParamsMoveFfUl();
 //
 
 /* ############################################################################################## */
-/* 804557E8-804557F0 0008+00 s=5 e=0 z=0  None .sdata2    @292 */
+/* 804557E8-804557F0 003DE8 0008+00 5/5 0/0 0/0 .sdata2          @292 */
 SECTION_SDATA2 static f64 lit_292 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802A2DB4-802A2E0C 0058+00 s=0 e=40 z=0  None .text      moveVolume__18JAISoundParamsMoveFfUl */
-//	802A2DE0: 804557E8 (lit_292)
+/* 802A2DB4-802A2E0C 29D6F4 0058+00 0/0 40/40 0/0 .text moveVolume__18JAISoundParamsMoveFfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -52,8 +51,7 @@ asm void JAISoundParamsMove::moveVolume(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802A2E0C-802A2E64 0058+00 s=0 e=25 z=0  None .text      movePitch__18JAISoundParamsMoveFfUl */
-//	802A2E38: 804557E8 (lit_292)
+/* 802A2E0C-802A2E64 29D74C 0058+00 0/0 25/25 0/0 .text movePitch__18JAISoundParamsMoveFfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -63,8 +61,8 @@ asm void JAISoundParamsMove::movePitch(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802A2E64-802A2EBC 0058+00 s=0 e=6 z=0  None .text      moveFxMix__18JAISoundParamsMoveFfUl */
-//	802A2E90: 804557E8 (lit_292)
+/* 802A2E64-802A2EBC 29D7A4 0058+00 0/0 6/6 0/0 .text            moveFxMix__18JAISoundParamsMoveFfUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,8 +72,8 @@ asm void JAISoundParamsMove::moveFxMix(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802A2EBC-802A2F14 0058+00 s=0 e=8 z=0  None .text      movePan__18JAISoundParamsMoveFfUl */
-//	802A2EE8: 804557E8 (lit_292)
+/* 802A2EBC-802A2F14 29D7FC 0058+00 0/0 8/8 0/0 .text            movePan__18JAISoundParamsMoveFfUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,8 +83,8 @@ asm void JAISoundParamsMove::movePan(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802A2F14-802A2F6C 0058+00 s=0 e=7 z=0  None .text      moveDolby__18JAISoundParamsMoveFfUl */
-//	802A2F40: 804557E8 (lit_292)
+/* 802A2F14-802A2F6C 29D854 0058+00 0/0 7/7 0/0 .text            moveDolby__18JAISoundParamsMoveFfUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

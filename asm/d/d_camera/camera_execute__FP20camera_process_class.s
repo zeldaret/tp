@@ -16,8 +16,8 @@ lbl_80181ECC:
 /* 80181F04  C0 82 9C FC */	lfs f4, lit_8017(r2)
 /* 80181F08  4B FE 40 AD */	bl setView__9dCamera_cFffff
 lbl_80181F0C:
-/* 80181F0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80181F10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80181F0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80181F10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80181F14  80 03 5D 7C */	lwz r0, 0x5d7c(r3)
 /* 80181F18  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
 /* 80181F1C  90 03 5D 7C */	stw r0, 0x5d7c(r3)

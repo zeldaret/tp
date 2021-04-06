@@ -8,7 +8,7 @@ lbl_80BADEF0:
 /* 80BADF08  48 00 00 18 */	b lbl_80BADF20
 lbl_80BADF0C:
 /* 80BADF0C  38 60 01 08 */	li r3, 0x108
-/* 80BADF10  4B 59 EB 9C */	b daNpcT_chkEvtBit__FUl
+/* 80BADF10  4B 59 EB 9D */	bl daNpcT_chkEvtBit__FUl
 /* 80BADF14  7C 60 00 34 */	cntlzw r0, r3
 /* 80BADF18  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80BADF1C  48 00 00 08 */	b lbl_80BADF24

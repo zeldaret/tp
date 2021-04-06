@@ -9,7 +9,7 @@ lbl_805A3478:
 /* 805A3494  40 82 00 1C */	bne lbl_805A34B0
 /* 805A3498  28 1F 00 00 */	cmplwi r31, 0
 /* 805A349C  41 82 00 08 */	beq lbl_805A34A4
-/* 805A34A0  4B A7 56 C4 */	b __ct__10fopAc_ac_cFv
+/* 805A34A0  4B A7 56 C5 */	bl __ct__10fopAc_ac_cFv
 lbl_805A34A4:
 /* 805A34A4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 805A34A8  60 00 00 08 */	ori r0, r0, 8

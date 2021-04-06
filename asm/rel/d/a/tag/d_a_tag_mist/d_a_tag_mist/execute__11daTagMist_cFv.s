@@ -7,18 +7,18 @@ lbl_8048F558:
 /* 8048F56C  7C 7F 1B 78 */	mr r31, r3
 /* 8048F570  A0 03 05 A2 */	lhz r0, 0x5a2(r3)
 /* 8048F574  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 8048F578  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048F57C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048F578  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048F57C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048F580  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8048F584  7C 05 07 74 */	extsb r5, r0
-/* 8048F588  4B BA 5D D8 */	b isSwitch__10dSv_info_cCFii
+/* 8048F588  4B BA 5D D9 */	bl isSwitch__10dSv_info_cCFii
 /* 8048F58C  2C 03 00 00 */	cmpwi r3, 0
 /* 8048F590  41 82 00 0C */	beq lbl_8048F59C
 /* 8048F594  38 60 00 01 */	li r3, 1
 /* 8048F598  48 00 00 E0 */	b lbl_8048F678
 lbl_8048F59C:
-/* 8048F59C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048F5A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048F59C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048F5A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048F5A4  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8048F5A8  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
 /* 8048F5AC  D0 01 00 08 */	stfs f0, 8(r1)
@@ -29,18 +29,18 @@ lbl_8048F59C:
 /* 8048F5C0  38 61 00 08 */	addi r3, r1, 8
 /* 8048F5C4  38 9F 04 A8 */	addi r4, r31, 0x4a8
 /* 8048F5C8  7C 65 1B 78 */	mr r5, r3
-/* 8048F5CC  4B EB 7A E8 */	b PSVECSubtract
-/* 8048F5D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8048F5D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8048F5CC  4B EB 7A E9 */	bl PSVECSubtract
+/* 8048F5D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8048F5D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8048F5D8  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 8048F5DC  7C 00 00 D0 */	neg r0, r0
 /* 8048F5E0  7C 04 07 34 */	extsh r4, r0
-/* 8048F5E4  4B B7 CD F8 */	b mDoMtx_YrotS__FPA4_fs
-/* 8048F5E8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8048F5EC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8048F5E4  4B B7 CD F9 */	bl mDoMtx_YrotS__FPA4_fs
+/* 8048F5E8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8048F5EC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8048F5F0  38 81 00 08 */	addi r4, r1, 8
 /* 8048F5F4  7C 85 23 78 */	mr r5, r4
-/* 8048F5F8  4B EB 77 74 */	b PSMTXMultVec
+/* 8048F5F8  4B EB 77 75 */	bl PSMTXMultVec
 /* 8048F5FC  38 00 00 00 */	li r0, 0
 /* 8048F600  C0 1F 05 70 */	lfs f0, 0x570(r31)
 /* 8048F604  C0 41 00 08 */	lfs f2, 8(r1)
@@ -69,8 +69,8 @@ lbl_8048F63C:
 /* 8048F65C  4B FF FC 69 */	bl onMySw__11daTagMist_cFv
 /* 8048F660  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8048F664  54 00 46 BE */	rlwinm r0, r0, 8, 0x1a, 0x1f
-/* 8048F668  3C 60 80 45 */	lis r3, struct_80450DC0+0x0@ha
-/* 8048F66C  98 03 0D C0 */	stb r0, struct_80450DC0+0x0@l(r3)
+/* 8048F668  3C 60 80 45 */	lis r3, struct_80450DC0+0x0@ha /* 0x80450DC0@ha */
+/* 8048F66C  98 03 0D C0 */	stb r0, struct_80450DC0+0x0@l(r3)  /* 0x80450DC0@l */
 lbl_8048F670:
 /* 8048F670  9B DF 05 A0 */	stb r30, 0x5a0(r31)
 /* 8048F674  38 60 00 01 */	li r3, 1

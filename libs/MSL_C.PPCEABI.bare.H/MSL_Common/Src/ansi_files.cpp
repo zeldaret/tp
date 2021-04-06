@@ -13,7 +13,6 @@
 
 extern "C" void __flush_all();
 extern "C" void __close_all();
-extern "C" extern void* __files[80];
 
 //
 // External References:
@@ -33,17 +32,17 @@ extern "C" void __read_console();
 //
 
 /* ############################################################################################## */
-/* 8044D578-8044D678 0100+00 s=1 e=0 z=0  None .bss       stderr_buff */
+/* 8044D578-8044D678 07A298 0100+00 1/0 0/0 0/0 .bss             stderr_buff */
 extern "C" u8 stderr_buff[256];
 
-/* 8044D678-8044D778 0100+00 s=1 e=0 z=0  None .bss       stdout_buff */
+/* 8044D678-8044D778 07A398 0100+00 1/0 0/0 0/0 .bss             stdout_buff */
 extern "C" u8 stdout_buff[256];
 
-/* 8044D778-8044D878 0100+00 s=1 e=0 z=0  None .bss       stdin_buff */
+/* 8044D778-8044D878 07A498 0100+00 1/0 0/0 0/0 .bss             stdin_buff */
 extern "C" u8 stdin_buff[256];
 
-/* 803D29B0-803D2AF0 0140+00 s=3 e=15 z=0  None .data      __files */
-SECTION_DATA void* __files[80] = {
+/* 803D29B0-803D2AF0 -00001 0140+00 3/2 15/15 0/0 .data            __files */
+SECTION_DATA extern void* __files[80] = {
     (void*)NULL,
     (void*)0x0A800000,
     (void*)NULL,
@@ -126,39 +125,30 @@ SECTION_DATA void* __files[80] = {
     (void*)NULL,
 };
 
-/* 8044D578-8044D678 0100+00 s=1 e=0 z=0  None .bss       stderr_buff */
+/* 8044D578-8044D678 07A298 0100+00 1/0 0/0 0/0 .bss             stderr_buff */
 static u8 stderr_buff[256];
 
-/* 8044D678-8044D778 0100+00 s=1 e=0 z=0  None .bss       stdout_buff */
+/* 8044D678-8044D778 07A398 0100+00 1/0 0/0 0/0 .bss             stdout_buff */
 static u8 stdout_buff[256];
 
-/* 8044D778-8044D878 0100+00 s=1 e=0 z=0  None .bss       stdin_buff */
+/* 8044D778-8044D878 07A498 0100+00 1/0 0/0 0/0 .bss             stdin_buff */
 static u8 stdin_buff[256];
 
-/* 8036300C-8036307C 0070+00 s=0 e=2 z=0  None .text      __flush_all */
-//	80363014: 803D29B0 (__files)
-//	8036301C: 803D29B0 (__files)
-//	80363044: 803658C0 (fflush)
+/* 8036300C-8036307C 35D94C 0070+00 0/0 2/2 0/0 .text            __flush_all */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __flush_all() {
+asm void __flush_all() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/ansi_files/__flush_all.s"
 }
 #pragma pop
 
-/* 8036307C-80363124 00A8+00 s=0 e=1 z=0  None .text      __close_all */
-//	80363084: 803D29B0 (__files)
-//	80363090: 803D29B0 (__files)
-//	8036309C: 80365468 (__begin_critical_region)
-//	803630B4: 803659F8 (fclose)
-//	803630CC: 80362B58 (free)
-//	8036310C: 80365464 (__end_critical_region)
+/* 8036307C-80363124 35D9BC 00A8+00 0/0 1/1 0/0 .text            __close_all */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __close_all() {
+asm void __close_all() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/ansi_files/__close_all.s"
 }

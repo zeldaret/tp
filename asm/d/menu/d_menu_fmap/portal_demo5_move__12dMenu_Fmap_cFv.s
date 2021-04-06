@@ -28,8 +28,8 @@ lbl_801C9FBC:
 /* 801CA024  48 02 FF D1 */	bl dMw_RIGHT_TRIGGER__Fv
 /* 801CA028  2C 03 00 00 */	cmpwi r3, 0
 /* 801CA02C  40 82 00 18 */	bne lbl_801CA044
-/* 801CA030  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801CA034  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
+/* 801CA030  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801CA034  3B C3 01 88 */	addi r30, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801CA038  A0 1E 00 B2 */	lhz r0, 0xb2(r30)
 /* 801CA03C  54 00 A7 FF */	rlwinm. r0, r0, 0x14, 0x1f, 0x1f
 /* 801CA040  41 82 00 28 */	beq lbl_801CA068

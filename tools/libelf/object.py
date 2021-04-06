@@ -5,26 +5,33 @@ import io
 import sys
 
 from dataclasses import dataclass, field
-from typing import IO, Dict, Optional, List, Set
+from typing import IO, Dict, Optional, List, Set, Tuple
 from functools import reduce
+from collections import defaultdict
 
 from . import elf
 from .section import *
 from .relocation import *
 from .symbol import *
 
+class ElfException(Exception):
+    ...
+
 @dataclass
 class Object:
+    header: elf.Header = None
     sections: Dict[str, Section] = field(default_factory=dict)
     sym_sections: Dict[int, SymbolTableSection] = field(default_factory=dict)
     str_sections: Dict[int, StringTableSection] = field(default_factory=dict)
     rel_sections: Dict[int, Section] = field(default_factory=dict)
     rela_sections: Dict[int, RelocationASection] = field(default_factory=dict)
     symbols: List[Symbol] = field(default_factory=list)
-    symbol_map: Dict[str, Symbol] = field(default_factory=dict)
+    symbol_map: Dict[str, Symbol] = field(default_factory=lambda: defaultdict(list))
+    section_relocations: List[Tuple[str, List[Relocation]]] = field(default_factory=list)
     relocations: List[Relocation] = field(default_factory=list)
     name: str = None
     path: Path = None
+    executable: bool = False
 
 def load_object_from_file(path, name, file) -> Object:
     obj = Object()
@@ -33,26 +40,30 @@ def load_object_from_file(path, name, file) -> Object:
 
     header = elf.Header()
     header.read(file)
+    obj.header = header
 
     if header.e_ident[elf.EI_MAG] != 2135247942:
-        fail("invalid elf file: 0x%08X == 0x7F454C46 '%s'" % (header.e_ident[elf.EI_MAG], name))
+        raise ElfException("invalid elf file: 0x%08X == 0x7F454C46 '%s'" % (header.e_ident[elf.EI_MAG], name))
     if header.e_ident[elf.EI_CLASS] != 1:
-        fail("only support elf 32-bit")
+        raise ElfException("only support elf 32-bit")
     if header.e_ident[elf.EI_DATA] != 2:
-        fail("only support big-endianess")
+        raise ElfException("only support big-endianess")
     if header.e_ident[elf.EI_VERSION] != 1:
-        fail("invalid elf version")
+        raise ElfException("invalid elf version")
     if header.e_type != 1 and header.e_type != 2:
-        fail("invalid object file type")
+        raise ElfException("invalid object file type")
     if header.e_machine != 20:
-        fail("invalid target")
+        raise ElfException("invalid target")
     if header.e_version != 1:
-        fail("invalid elf version")
+        raise ElfException("invalid elf version")
 
     if header.e_phnum > 0 and header.e_phentsize != 0x20:
-        fail("invalid program header size")
+        raise ElfException("invalid program header size")
     if header.e_shnum > 0 and header.e_shentsize != 0x28:
-        fail("invalid section header size")
+        raise ElfException("invalid section header size")
+
+    if header.e_type == elf.ET_EXEC:
+        obj.executable = True
 
     program_headers = []
     section_headers = []
@@ -67,7 +78,7 @@ def load_object_from_file(path, name, file) -> Object:
     file.seek(header.e_shoff, os.SEEK_SET)
     for i in range(header.e_shnum):
         section_header = elf.SectionHeader()
-        section_header.read(file)
+        section_header.read(i, file)
 
         if not (section_header.sh_type == elf.SHT_NULL
                 or section_header.sh_type == elf.SHT_PROGBITS
@@ -76,7 +87,7 @@ def load_object_from_file(path, name, file) -> Object:
                 or section_header.sh_type == elf.SHT_RELA
                 or section_header.sh_type == elf.SHT_NOBITS
                 or section_header.sh_type == elf.SHT_MW_CATS):
-            fail("unsupport section type: 0x%08X = %s (%s)" % (
+            raise ElfException("unsupport section type: 0x%08X = %s (%s)" % (
                 section_header.sh_type,
                 elf.SH_TYPES[section_header.sh_type] if section_header.sh_type in elf.SH_TYPES else "????",
                 path))
@@ -110,10 +121,10 @@ def load_object_from_file(path, name, file) -> Object:
 
     # Find .shstrtab containing section names
     if not header.e_shstrndx in idx_sections:
-        fail("header.e_shstrndx out-of-bounds")
+        raise ElfException("header.e_shstrndx out-of-bounds")
     shstrtab_section = idx_sections[header.e_shstrndx]
     if not isinstance(shstrtab_section, StringTableSection):
-        fail("header.e_shstrndx is not a string table")
+        raise ElfException("header.e_shstrndx is not a string table")
 
     # Get section names
     for i, section in idx_sections.items():
@@ -127,7 +138,7 @@ def load_object_from_file(path, name, file) -> Object:
     # Find all symbols
     for symtab in obj.sym_sections.values():
         if not symtab.header.sh_link in obj.str_sections:
-            fail("symbol table '%s' is not referenceing a valid string table section (sh_link: %i)" % (
+            raise ElfException("symbol table '%s' is not referenceing a valid string table section (sh_link: %i)" % (
                 symtab.name, symtab.header.sh_link))
 
         symtab.object_offset = len(obj.symbols)
@@ -149,7 +160,7 @@ def load_object_from_file(path, name, file) -> Object:
                 symbol = AbsoluteSymbol(sym, name, sym.st_value)
             else:
                 if not sym.st_shndx in idx_sections:
-                    fail("symbol '%s' has invalid section-id (st_shndx: %i)" % (name, sym.st_shndx))
+                    raise ElfException("symbol '%s' has invalid section-id (st_shndx: %i)" % (name, sym.st_shndx))
                 s = idx_sections[sym.st_shndx]
                 symbol = OffsetSymbol(sym, name, idx_sections[sym.st_shndx], sym.st_value)
 
@@ -157,57 +168,62 @@ def load_object_from_file(path, name, file) -> Object:
             symbol.object = obj
 
             if symbol.name:
-                if symbol.name in obj.symbol_map:
-                    fail("multiple definition of '%s'" % symbol.name)
-                obj.symbol_map[symbol] = symbol
+                obj.symbol_map[symbol.name].append(symbol)
 
             obj.symbols.append(symbol)
 
     # Find all relocations
     for rela_section in obj.rela_sections.values():
         if not rela_section.header.sh_link in obj.sym_sections:
-            fail("relocation section '%s' is not referenceing a valid symbol table section (sh_link: %i)" % (
+            raise ElfException("relocation section '%s' is not referenceing a valid symbol table section (sh_link: %i)" % (
                 symtab.name, rela_section.header.sh_link))
         if not rela_section.header.sh_info in idx_sections:
-            fail("relocation section '%s' is not referenceing a valid section (sh_info: %i)" % (
+            raise ElfException("relocation section '%s' is not referenceing a valid section (sh_info: %i)" % (
                 symtab.name, rela_section.header.sh_info))
 
         symtab = obj.sym_sections[rela_section.header.sh_link]
         modify = idx_sections[rela_section.header.sh_info]
 
+        section_relocations = []
         for rela in rela_section.relocations:
             type  = elf.R_TYPE(rela.r_info)
             sym_id = elf.R_SYM(rela.r_info)
             if not type in RELOCATION_NAMES:
-                fail("unsupported relocation type: 0x%02X (in '%s')" % (type, path))
+                raise ElfException("unsupported relocation type: 0x%02X (in '%s')" % (type, path))
 
             if sym_id < 0 or sym_id >= len(symtab.symbols):
-                fail("invalid symbol index: %i (%i symbols)" % (sym_id, len(symtab.symbols)))
+                # report warning? 
+                # main.elf will generate relocation sections with invalid symbol indices
+                # raise ElfException("invalid symbol index: %i (%i symbols)" % (sym_id, len(symtab.symbols)))
+                continue 
             symbol = obj.symbols[symtab.object_offset + sym_id]
 
             relocation = None
             if type == 1:
-                relocation = R_PPC_ADDR32(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_ADDR32(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 3:
-                relocation = R_PPC_ADDR16(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_ADDR16(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 4:
-                relocation = R_PPC_ADDR16_LO(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_ADDR16_LO(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 5:
-                relocation = R_PPC_ADDR16_HI(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_ADDR16_HI(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 6:
-                relocation = R_PPC_ADDR16_HA(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_ADDR16_HA(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 10:
-                relocation = R_PPC_REL24(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_REL24(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 11:
-                relocation = R_PPC_REL14(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_REL14(type, symbol, modify, rela.r_offset, rela.r_addend)
             elif type == 109:
-                relocation = R_PPC_EMB_SDA21(symbol, modify, rela.r_offset, rela.r_addend)
+                relocation = R_PPC_EMB_SDA21(type, symbol, modify, rela.r_offset, rela.r_addend)
 
             assert relocation
+            section_relocations.append(relocation)
             obj.relocations.append(relocation)
+
+        obj.section_relocations.append((rela_section.name, section_relocations))
 
     return obj
 
 def load_object_from_path(path) -> Object:
     with open(path, 'rb') as file:
-        return load_f(path, path.parts[-1], file)
+        return load_object_from_file(path, path.parts[-1], file)

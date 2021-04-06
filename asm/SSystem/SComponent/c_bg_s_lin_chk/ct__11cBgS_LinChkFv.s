@@ -4,8 +4,8 @@ lbl_80267E48:
 /* 80267E50  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80267E54  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80267E58  7C 7F 1B 78 */	mr r31, r3
-/* 80267E5C  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80267E60  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80267E5C  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80267E60  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80267E64  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80267E68  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80267E6C  D0 01 00 0C */	stfs f0, 0xc(r1)

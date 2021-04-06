@@ -6,7 +6,7 @@ lbl_80853880:
 /* 80853890  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80853894  7C 7E 1B 78 */	mr r30, r3
 /* 80853898  7C 9F 23 78 */	mr r31, r4
-/* 8085389C  4B 7C 54 44 */	b fopAc_IsActor__FPv
+/* 8085389C  4B 7C 54 45 */	bl fopAc_IsActor__FPv
 /* 808538A0  2C 03 00 00 */	cmpwi r3, 0
 /* 808538A4  41 82 00 6C */	beq lbl_80853910
 /* 808538A8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -19,7 +19,7 @@ lbl_80853880:
 lbl_808538C4:
 /* 808538C4  38 60 FF FF */	li r3, -1
 lbl_808538C8:
-/* 808538C8  4B 7C E8 70 */	b fpcM_IsCreating__FUi
+/* 808538C8  4B 7C E8 71 */	bl fpcM_IsCreating__FUi
 /* 808538CC  2C 03 00 00 */	cmpwi r3, 0
 /* 808538D0  40 82 00 40 */	bne lbl_80853910
 /* 808538D4  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
@@ -30,7 +30,7 @@ lbl_808538C8:
 /* 808538E8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 808538EC  7F C3 F3 78 */	mr r3, r30
 /* 808538F0  38 81 00 08 */	addi r4, r1, 8
-/* 808538F4  48 51 0E 74 */	b checkHitWaterFall__16daTagWaterFall_cF4cXyz
+/* 808538F4  48 51 0E 75 */	bl checkHitWaterFall__16daTagWaterFall_cF4cXyz
 /* 808538F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 808538FC  41 82 00 14 */	beq lbl_80853910
 /* 80853900  38 00 00 01 */	li r0, 1

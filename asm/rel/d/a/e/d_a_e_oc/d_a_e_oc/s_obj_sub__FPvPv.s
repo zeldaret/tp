@@ -6,7 +6,7 @@ lbl_8072CF00:
 /* 8072CF10  93 C1 00 08 */	stw r30, 8(r1)
 /* 8072CF14  7C 7E 1B 78 */	mr r30, r3
 /* 8072CF18  7C 9F 23 78 */	mr r31, r4
-/* 8072CF1C  4B 8E BD C4 */	b fopAc_IsActor__FPv
+/* 8072CF1C  4B 8E BD C5 */	bl fopAc_IsActor__FPv
 /* 8072CF20  2C 03 00 00 */	cmpwi r3, 0
 /* 8072CF24  41 82 00 50 */	beq lbl_8072CF74
 /* 8072CF28  28 1E 00 00 */	cmplwi r30, 0
@@ -16,7 +16,7 @@ lbl_8072CF00:
 lbl_8072CF38:
 /* 8072CF38  38 60 FF FF */	li r3, -1
 lbl_8072CF3C:
-/* 8072CF3C  4B 8F 51 FC */	b fpcM_IsCreating__FUi
+/* 8072CF3C  4B 8F 51 FD */	bl fpcM_IsCreating__FUi
 /* 8072CF40  2C 03 00 00 */	cmpwi r3, 0
 /* 8072CF44  40 82 00 30 */	bne lbl_8072CF74
 /* 8072CF48  A8 1E 00 08 */	lha r0, 8(r30)

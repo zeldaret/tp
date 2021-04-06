@@ -9,7 +9,7 @@ lbl_80AC5B44:
 /* 80AC5B60  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80AC5B64  28 00 00 00 */	cmplwi r0, 0
 /* 80AC5B68  40 82 00 1C */	bne lbl_80AC5B84
-/* 80AC5B6C  4B 56 9E E8 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80AC5B6C  4B 56 9E E9 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80AC5B70  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC5B74  40 82 00 14 */	bne lbl_80AC5B88
 /* 80AC5B78  88 1E 0A 89 */	lbz r0, 0xa89(r30)

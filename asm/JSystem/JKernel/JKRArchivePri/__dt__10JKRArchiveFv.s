@@ -7,8 +7,8 @@ lbl_802D6334:
 /* 802D6348  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D634C  7C 9F 23 78 */	mr r31, r4
 /* 802D6350  41 82 00 28 */	beq lbl_802D6378
-/* 802D6354  3C 80 80 3D */	lis r4, __vt__10JKRArchive@ha
-/* 802D6358  38 04 C2 88 */	addi r0, r4, __vt__10JKRArchive@l
+/* 802D6354  3C 80 80 3D */	lis r4, __vt__10JKRArchive@ha /* 0x803CC288@ha */
+/* 802D6358  38 04 C2 88 */	addi r0, r4, __vt__10JKRArchive@l /* 0x803CC288@l */
 /* 802D635C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D6360  38 80 00 00 */	li r4, 0
 /* 802D6364  4B FF DD E5 */	bl __dt__13JKRFileLoaderFv

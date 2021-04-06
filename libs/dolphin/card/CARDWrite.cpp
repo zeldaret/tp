@@ -40,74 +40,41 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80358914-80358A84 0170+00 s=1 e=0 z=0  None .text      WriteCallback */
-//	8035892C: 8044CBC0 (__CARDBlock)
-//	8035893C: 8044CBC0 (__CARDBlock)
-//	80358980: 8035577C (__CARDGetDirBlock)
-//	8035899C: 803426FC (OSGetTime)
-//	803589A8: 80362324 (__div2i)
-//	803589C0: 8035591C (__CARDUpdateDir)
-//	803589D0: 80355414 (__CARDGetFatBlock)
-//	80358A18: 80358A84 (EraseCallback)
-//	80358A1C: 80358A84 (EraseCallback)
-//	80358A28: 803539B8 (__CARDEraseSector)
-//	80358A4C: 80353C6C (__CARDPutControlBlock)
+/* 80358914-80358A84 353254 0170+00 1/1 0/0 0/0 .text            WriteCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void WriteCallback() {
+static asm void WriteCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/WriteCallback.s"
 }
 #pragma pop
 
-/* 80358A84-80358B34 00B0+00 s=2 e=0 z=0  None .text      EraseCallback */
-//	80358AAC: 8044CBC0 (__CARDBlock)
-//	80358AB0: 8044CBC0 (__CARDBlock)
-//	80358AC0: 80358914 (WriteCallback)
-//	80358AC4: 80358914 (WriteCallback)
-//	80358ADC: 803553AC (__CARDWrite)
-//	80358AFC: 80353C6C (__CARDPutControlBlock)
+/* 80358A84-80358B34 3533C4 00B0+00 2/2 0/0 0/0 .text            EraseCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void EraseCallback() {
+static asm void EraseCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/EraseCallback.s"
 }
 #pragma pop
 
-/* 80358B34-80358C48 0114+00 s=1 e=0 z=0  None .text      CARDWriteAsync */
-//	80358B64: 803584A0 (__CARDSeek)
-//	80358B94: 80353C6C (__CARDPutControlBlock)
-//	80358B9C: 8035577C (__CARDGetDirBlock)
-//	80358BB0: 80357D70 (__CARDIsWritable)
-//	80358BC0: 80353C6C (__CARDPutControlBlock)
-//	80358BD0: 8033B5DC (DCStoreRange)
-//	80358BE4: 80352A30 (__CARDDefaultApiCallback)
-//	80358BE8: 80352A30 (__CARDDefaultApiCallback)
-//	80358BF0: 80358A84 (EraseCallback)
-//	80358BF4: 80358A84 (EraseCallback)
-//	80358C18: 803539B8 (__CARDEraseSector)
-//	80358C2C: 80353C6C (__CARDPutControlBlock)
+/* 80358B34-80358C48 353474 0114+00 1/1 0/0 0/0 .text            CARDWriteAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDWriteAsync() {
+static asm void CARDWriteAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/CARDWriteAsync.s"
 }
 #pragma pop
 
-/* 80358C48-80358C90 0048+00 s=0 e=2 z=0  None .text      CARDWrite */
-//	80358C4C: 80352A34 (__CARDSyncCallback)
-//	80358C54: 80352A34 (__CARDSyncCallback)
-//	80358C64: 80358B34 (CARDWriteAsync)
-//	80358C78: 80353E20 (__CARDSync)
+/* 80358C48-80358C90 353588 0048+00 0/0 2/2 0/0 .text            CARDWrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDWrite() {
+asm void CARDWrite() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/CARDWrite.s"
 }

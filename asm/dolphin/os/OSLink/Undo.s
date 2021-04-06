@@ -25,9 +25,9 @@ lbl_8033E5C4:
 /* 8033E5C4  38 60 00 00 */	li r3, 0
 /* 8033E5C8  48 00 01 CC */	b lbl_8033E794
 lbl_8033E5CC:
-/* 8033E5CC  3C 60 80 3D */	lis r3, lit_189@ha
+/* 8033E5CC  3C 60 80 3D */	lis r3, lit_189@ha /* 0x803D07B0@ha */
 /* 8033E5D0  83 E5 00 04 */	lwz r31, 4(r5)
-/* 8033E5D4  3B 63 07 B0 */	addi r27, r3, lit_189@l
+/* 8033E5D4  3B 63 07 B0 */	addi r27, r3, lit_189@l /* 0x803D07B0@l */
 /* 8033E5D8  3B C0 00 00 */	li r30, 0
 /* 8033E5DC  48 00 01 80 */	b lbl_8033E75C
 lbl_8033E5E0:

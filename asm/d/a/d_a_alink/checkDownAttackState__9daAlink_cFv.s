@@ -17,8 +17,8 @@ lbl_800D29D4:
 /* 800D2A10  80 1E 05 74 */	lwz r0, 0x574(r30)
 /* 800D2A14  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800D2A18  40 82 00 44 */	bne lbl_800D2A5C
-/* 800D2A1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D2A20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D2A1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D2A20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D2A24  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800D2A28  38 80 29 04 */	li r4, 0x2904
 /* 800D2A2C  4B F6 1F 91 */	bl isEventBit__11dSv_event_cCFUs

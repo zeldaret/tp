@@ -2,8 +2,8 @@ lbl_80AB8E54:
 /* 80AB8E54  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80AB8E58  7C 08 02 A6 */	mflr r0
 /* 80AB8E5C  90 01 00 34 */	stw r0, 0x34(r1)
-/* 80AB8E60  3C A0 80 AC */	lis r5, lit_4040@ha
-/* 80AB8E64  C0 25 8F 64 */	lfs f1, lit_4040@l(r5)
+/* 80AB8E60  3C A0 80 AC */	lis r5, lit_4040@ha /* 0x80AB8F64@ha */
+/* 80AB8E64  C0 25 8F 64 */	lfs f1, lit_4040@l(r5)  /* 0x80AB8F64@l */
 /* 80AB8E68  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 80AB8E6C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80AB8E70  D0 21 00 28 */	stfs f1, 0x28(r1)
@@ -18,7 +18,7 @@ lbl_80AB8E54:
 /* 80AB8E94  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 80AB8E98  38 81 00 14 */	addi r4, r1, 0x14
 /* 80AB8E9C  38 A1 00 08 */	addi r5, r1, 8
-/* 80AB8EA0  4B 9D 3A AC */	b chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz
+/* 80AB8EA0  4B 9D 3A AD */	bl chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz
 /* 80AB8EA4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80AB8EA8  7C 08 03 A6 */	mtlr r0
 /* 80AB8EAC  38 21 00 30 */	addi r1, r1, 0x30

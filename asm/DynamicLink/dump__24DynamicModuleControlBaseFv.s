@@ -6,13 +6,13 @@ lbl_80262470:
 /* 80262480  48 0F FD 51 */	bl _savegpr_26
 /* 80262484  83 AD 8B B8 */	lwz r29, mFirst__24DynamicModuleControlBase(r13)
 /* 80262488  3B 80 00 00 */	li r28, 0
-/* 8026248C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262490  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 8026248C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262490  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262494  38 63 00 45 */	addi r3, r3, 0x45
 /* 80262498  4C C6 31 82 */	crclr 6
 /* 8026249C  48 08 61 2D */	bl JUTReportConsole_f
-/* 802624A0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 802624A4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 802624A0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 802624A4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 802624A8  38 63 00 68 */	addi r3, r3, 0x68
 /* 802624AC  4C C6 31 82 */	crclr 6
 /* 802624B0  48 08 61 19 */	bl JUTReportConsole_f
@@ -44,8 +44,8 @@ lbl_802624D0:
 /* 80262510  7C 7B 1B 78 */	mr r27, r3
 /* 80262514  48 00 00 10 */	b lbl_80262524
 lbl_80262518:
-/* 80262518  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 8026251C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262518  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 8026251C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262520  3B 63 00 80 */	addi r27, r3, 0x80
 lbl_80262524:
 /* 80262524  7F A3 EB 78 */	mr r3, r29
@@ -54,8 +54,8 @@ lbl_80262524:
 /* 80262530  7D 89 03 A6 */	mtctr r12
 /* 80262534  4E 80 04 21 */	bctrl 
 /* 80262538  7C 67 1B 78 */	mr r7, r3
-/* 8026253C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262540  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 8026253C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262540  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262544  38 63 00 87 */	addi r3, r3, 0x87
 /* 80262548  7F E4 FB 78 */	mr r4, r31
 /* 8026254C  7F C5 F3 78 */	mr r5, r30
@@ -79,8 +79,8 @@ lbl_80262588:
 /* 80262590  7C 7B 1B 78 */	mr r27, r3
 /* 80262594  48 00 00 10 */	b lbl_802625A4
 lbl_80262598:
-/* 80262598  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 8026259C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262598  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 8026259C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 802625A0  3B 63 00 80 */	addi r27, r3, 0x80
 lbl_802625A4:
 /* 802625A4  7F A3 EB 78 */	mr r3, r29
@@ -89,8 +89,8 @@ lbl_802625A4:
 /* 802625B0  7D 89 03 A6 */	mtctr r12
 /* 802625B4  4E 80 04 21 */	bctrl 
 /* 802625B8  7C 66 1B 78 */	mr r6, r3
-/* 802625BC  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 802625C0  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 802625BC  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 802625C0  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 802625C4  38 63 00 A4 */	addi r3, r3, 0xa4
 /* 802625C8  7F E4 FB 78 */	mr r4, r31
 /* 802625CC  7F C5 F3 78 */	mr r5, r30
@@ -103,8 +103,8 @@ lbl_802625DC:
 /* 802625E4  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 802625E8  7D 89 03 A6 */	mtctr r12
 /* 802625EC  4E 80 04 21 */	bctrl 
-/* 802625F0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 802625F4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 802625F0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 802625F4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 802625F8  38 63 00 C2 */	addi r3, r3, 0xc2
 /* 802625FC  4C C6 31 82 */	crclr 6
 /* 80262600  48 08 5F C9 */	bl JUTReportConsole_f
@@ -113,8 +113,8 @@ lbl_80262604:
 lbl_80262608:
 /* 80262608  28 1D 00 00 */	cmplwi r29, 0
 /* 8026260C  40 82 FE AC */	bne lbl_802624B8
-/* 80262610  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262614  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262610  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262614  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262618  38 63 00 C4 */	addi r3, r3, 0xc4
 /* 8026261C  C8 22 B6 10 */	lfd f1, lit_3774(r2)
 /* 80262620  93 81 00 0C */	stw r28, 0xc(r1)

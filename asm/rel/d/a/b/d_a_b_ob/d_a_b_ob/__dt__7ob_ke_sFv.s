@@ -8,21 +8,21 @@ lbl_8061A3A0:
 /* 8061A3B8  7C 9F 23 78 */	mr r31, r4
 /* 8061A3BC  41 82 00 44 */	beq lbl_8061A400
 /* 8061A3C0  38 7E 00 F0 */	addi r3, r30, 0xf0
-/* 8061A3C4  3C 80 80 61 */	lis r4, __dt__4cXyzFv@ha
-/* 8061A3C8  38 84 14 08 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8061A3C4  3C 80 80 61 */	lis r4, __dt__4cXyzFv@ha /* 0x80611408@ha */
+/* 8061A3C8  38 84 14 08 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80611408@l */
 /* 8061A3CC  38 A0 00 0C */	li r5, 0xc
 /* 8061A3D0  38 C0 00 14 */	li r6, 0x14
-/* 8061A3D4  4B D4 79 14 */	b __destroy_arr
+/* 8061A3D4  4B D4 79 15 */	bl __destroy_arr
 /* 8061A3D8  7F C3 F3 78 */	mr r3, r30
-/* 8061A3DC  3C 80 80 61 */	lis r4, __dt__4cXyzFv@ha
-/* 8061A3E0  38 84 14 08 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8061A3DC  3C 80 80 61 */	lis r4, __dt__4cXyzFv@ha /* 0x80611408@ha */
+/* 8061A3E0  38 84 14 08 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80611408@l */
 /* 8061A3E4  38 A0 00 0C */	li r5, 0xc
 /* 8061A3E8  38 C0 00 14 */	li r6, 0x14
-/* 8061A3EC  4B D4 78 FC */	b __destroy_arr
+/* 8061A3EC  4B D4 78 FD */	bl __destroy_arr
 /* 8061A3F0  7F E0 07 35 */	extsh. r0, r31
 /* 8061A3F4  40 81 00 0C */	ble lbl_8061A400
 /* 8061A3F8  7F C3 F3 78 */	mr r3, r30
-/* 8061A3FC  4B CB 49 40 */	b __dl__FPv
+/* 8061A3FC  4B CB 49 41 */	bl __dl__FPv
 lbl_8061A400:
 /* 8061A400  7F C3 F3 78 */	mr r3, r30
 /* 8061A404  83 E1 00 0C */	lwz r31, 0xc(r1)

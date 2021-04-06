@@ -7,7 +7,7 @@ lbl_806400C8:
 /* 806400DC  90 83 07 80 */	stw r4, 0x780(r3)
 /* 806400E0  7C 83 23 78 */	mr r3, r4
 /* 806400E4  38 80 03 E8 */	li r4, 0x3e8
-/* 806400E8  4B 9D FD 9C */	b fopMsgM_messageSet__FUlUl
+/* 806400E8  4B 9D FD 9D */	bl fopMsgM_messageSet__FUlUl
 /* 806400EC  90 7F 07 84 */	stw r3, 0x784(r31)
 /* 806400F0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 806400F4  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -52,8 +52,8 @@ lbl_8023A73C:
 /* 8023A73C  7F E3 FB 78 */	mr r3, r31
 /* 8023A740  88 1F 01 13 */	lbz r0, 0x113(r31)
 /* 8023A744  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8023A748  3C 80 80 3C */	lis r4, process@ha
-/* 8023A74C  38 04 0C 54 */	addi r0, r4, process@l
+/* 8023A748  3C 80 80 3C */	lis r4, process@ha /* 0x803C0C54@ha */
+/* 8023A74C  38 04 0C 54 */	addi r0, r4, process@l /* 0x803C0C54@l */
 /* 8023A750  7D 80 2A 14 */	add r12, r0, r5
 /* 8023A754  48 12 79 31 */	bl __ptmf_scall
 /* 8023A758  60 00 00 00 */	nop 

@@ -29,59 +29,41 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80355184-80355260 00DC+00 s=1 e=0 z=0  None .text      BlockReadCallback */
-//	80355198: 8044CBC0 (__CARDBlock)
-//	803551A8: 8044CBC0 (__CARDBlock)
-//	803551F8: 80353748 (__CARDReadSegment)
-//	80355218: 80353C6C (__CARDPutControlBlock)
+/* 80355184-80355260 34FAC4 00DC+00 1/1 0/0 0/0 .text            BlockReadCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void BlockReadCallback() {
+static asm void BlockReadCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/BlockReadCallback.s"
 }
 #pragma pop
 
-/* 80355260-803552C4 0064+00 s=0 e=3 z=0  None .text      __CARDRead */
-//	8035526C: 8044CBC0 (__CARDBlock)
-//	80355274: 8044CBC0 (__CARDBlock)
-//	80355298: 80355184 (BlockReadCallback)
-//	803552A0: 80355184 (BlockReadCallback)
-//	803552B0: 80353748 (__CARDReadSegment)
+/* 80355260-803552C4 34FBA0 0064+00 0/0 3/3 0/0 .text            __CARDRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDRead() {
+asm void __CARDRead() {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/__CARDRead.s"
 }
 #pragma pop
 
-/* 803552C4-803553AC 00E8+00 s=1 e=0 z=0  None .text      BlockWriteCallback */
-//	803552E8: 8044CBC0 (__CARDBlock)
-//	803552EC: 8044CBC0 (__CARDBlock)
-//	80355344: 8035387C (__CARDWritePage)
-//	80355364: 80353C6C (__CARDPutControlBlock)
+/* 803552C4-803553AC 34FC04 00E8+00 1/1 0/0 0/0 .text            BlockWriteCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void BlockWriteCallback() {
+static asm void BlockWriteCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/BlockWriteCallback.s"
 }
 #pragma pop
 
-/* 803553AC-80355414 0068+00 s=0 e=4 z=0  None .text      __CARDWrite */
-//	803553B8: 8044CBC0 (__CARDBlock)
-//	803553C0: 8044CBC0 (__CARDBlock)
-//	803553E0: 803552C4 (BlockWriteCallback)
-//	803553E4: 803552C4 (BlockWriteCallback)
-//	80355400: 8035387C (__CARDWritePage)
+/* 803553AC-80355414 34FCEC 0068+00 0/0 4/4 0/0 .text            __CARDWrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDWrite() {
+asm void __CARDWrite() {
     nofralloc
 #include "asm/dolphin/card/CARDRdwr/__CARDWrite.s"
 }

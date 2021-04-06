@@ -6,8 +6,8 @@ lbl_80053B64:
 /* 80053B74  38 64 00 08 */	addi r3, r4, 8
 /* 80053B78  C0 24 01 20 */	lfs f1, 0x120(r4)
 /* 80053B7C  C0 44 01 24 */	lfs f2, 0x124(r4)
-/* 80053B80  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80053B84  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80053B80  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80053B84  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80053B88  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 80053B8C  48 2A 53 49 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80053B90  80 01 00 14 */	lwz r0, 0x14(r1)

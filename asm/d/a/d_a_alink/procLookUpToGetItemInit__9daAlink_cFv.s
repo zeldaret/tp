@@ -19,8 +19,8 @@ lbl_8011CAC4:
 /* 8011CAD8  B0 1F 30 0C */	sth r0, 0x300c(r31)
 /* 8011CADC  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8011CAE0  D0 1F 33 98 */	stfs f0, 0x3398(r31)
-/* 8011CAE4  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011CAE8  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011CAE4  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011CAE8  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011CAEC  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011CAF0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011CAF4  D0 1F 35 8C */	stfs f0, 0x358c(r31)

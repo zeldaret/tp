@@ -19,8 +19,8 @@ lbl_80D63ACC:
 /* 80D63AD8  80 1E 05 70 */	lwz r0, 0x570(r30)
 /* 80D63ADC  90 03 05 70 */	stw r0, 0x570(r3)
 lbl_80D63AE0:
-/* 80D63AE0  3C 60 80 45 */	lis r3, m_top__13daTagStream_c@ha
-/* 80D63AE4  84 03 0D A4 */	lwzu r0, m_top__13daTagStream_c@l(r3)
+/* 80D63AE0  3C 60 80 45 */	lis r3, m_top__13daTagStream_c@ha /* 0x80450DA4@ha */
+/* 80D63AE4  84 03 0D A4 */	lwzu r0, m_top__13daTagStream_c@l(r3)  /* 0x80450DA4@l */
 /* 80D63AE8  7C 00 F0 40 */	cmplw r0, r30
 /* 80D63AEC  40 82 00 0C */	bne lbl_80D63AF8
 /* 80D63AF0  80 1E 05 74 */	lwz r0, 0x574(r30)
@@ -28,11 +28,11 @@ lbl_80D63AE0:
 lbl_80D63AF8:
 /* 80D63AF8  7F C3 F3 78 */	mr r3, r30
 /* 80D63AFC  38 80 00 00 */	li r4, 0
-/* 80D63B00  4B 2B 51 8C */	b __dt__10fopAc_ac_cFv
+/* 80D63B00  4B 2B 51 8D */	bl __dt__10fopAc_ac_cFv
 /* 80D63B04  7F E0 07 35 */	extsh. r0, r31
 /* 80D63B08  40 81 00 0C */	ble lbl_80D63B14
 /* 80D63B0C  7F C3 F3 78 */	mr r3, r30
-/* 80D63B10  4B 56 B2 2C */	b __dl__FPv
+/* 80D63B10  4B 56 B2 2D */	bl __dl__FPv
 lbl_80D63B14:
 /* 80D63B14  7F C3 F3 78 */	mr r3, r30
 /* 80D63B18  83 E1 00 0C */	lwz r31, 0xc(r1)

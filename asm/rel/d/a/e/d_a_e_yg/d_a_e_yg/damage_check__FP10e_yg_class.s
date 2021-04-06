@@ -5,24 +5,24 @@ lbl_807FA2E4:
 /* 807FA2F0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807FA2F4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807FA2F8  7C 7F 1B 78 */	mr r31, r3
-/* 807FA2FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807FA300  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 807FA2FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807FA300  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807FA304  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 807FA308  A8 1F 06 8E */	lha r0, 0x68e(r31)
 /* 807FA30C  2C 00 00 00 */	cmpwi r0, 0
 /* 807FA310  40 82 01 50 */	bne lbl_807FA460
 /* 807FA314  38 7F 08 D0 */	addi r3, r31, 0x8d0
-/* 807FA318  4B 88 95 18 */	b Move__10dCcD_GSttsFv
+/* 807FA318  4B 88 95 19 */	bl Move__10dCcD_GSttsFv
 /* 807FA31C  38 7F 08 F0 */	addi r3, r31, 0x8f0
-/* 807FA320  4B 88 A1 40 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 807FA320  4B 88 A1 41 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 807FA324  28 03 00 00 */	cmplwi r3, 0
 /* 807FA328  41 82 01 24 */	beq lbl_807FA44C
 /* 807FA32C  38 7F 08 F0 */	addi r3, r31, 0x8f0
-/* 807FA330  4B 88 A1 C8 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 807FA330  4B 88 A1 C9 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 807FA334  90 7F 0B 60 */	stw r3, 0xb60(r31)
 /* 807FA338  7F E3 FB 78 */	mr r3, r31
 /* 807FA33C  38 9F 0B 60 */	addi r4, r31, 0xb60
-/* 807FA340  4B 88 D8 C4 */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 807FA340  4B 88 D8 C5 */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 807FA344  80 7F 0B 60 */	lwz r3, 0xb60(r31)
 /* 807FA348  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 807FA34C  54 60 04 63 */	rlwinm. r0, r3, 0, 0x11, 0x11
@@ -65,8 +65,8 @@ lbl_807FA390:
 /* 807FA3D0  B0 9F 05 B4 */	sth r4, 0x5b4(r31)
 /* 807FA3D4  38 00 00 C8 */	li r0, 0xc8
 /* 807FA3D8  B0 1F 06 8E */	sth r0, 0x68e(r31)
-/* 807FA3DC  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha
-/* 807FA3E0  98 83 11 25 */	stb r4, struct_80451124+0x1@l(r3)
+/* 807FA3DC  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
+/* 807FA3E0  98 83 11 25 */	stb r4, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
 /* 807FA3E4  48 00 00 7C */	b lbl_807FA460
 lbl_807FA3E8:
 /* 807FA3E8  38 00 00 04 */	li r0, 4

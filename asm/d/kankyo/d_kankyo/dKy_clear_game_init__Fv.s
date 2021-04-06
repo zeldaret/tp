@@ -8,8 +8,8 @@ lbl_8019F264:
 /* 8019F27C  C0 22 A2 0C */	lfs f1, lit_4409(r2)
 /* 8019F280  48 00 8C 09 */	bl dKy_actor_addcol_set__Fsssf
 /* 8019F284  C0 02 A2 48 */	lfs f0, lit_4505(r2)
-/* 8019F288  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F28C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F288  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F28C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F290  D0 03 10 88 */	stfs f0, 0x1088(r3)
 /* 8019F294  C0 22 A2 0C */	lfs f1, lit_4409(r2)
 /* 8019F298  D0 23 10 8C */	stfs f1, 0x108c(r3)

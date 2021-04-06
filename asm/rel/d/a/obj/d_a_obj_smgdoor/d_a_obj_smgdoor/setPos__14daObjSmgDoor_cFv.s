@@ -5,10 +5,10 @@ lbl_80CDC548:
 /* 80CDC554  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CDC558  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80CDC55C  7C 7E 1B 78 */	mr r30, r3
-/* 80CDC560  3C 60 80 CE */	lis r3, lit_3705@ha
-/* 80CDC564  38 83 CB F4 */	addi r4, r3, lit_3705@l
-/* 80CDC568  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDC56C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CDC560  3C 60 80 CE */	lis r3, lit_3705@ha /* 0x80CDCBF4@ha */
+/* 80CDC564  38 83 CB F4 */	addi r4, r3, lit_3705@l /* 0x80CDCBF4@l */
+/* 80CDC568  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDC56C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDC570  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 80CDC574  C0 24 00 04 */	lfs f1, 4(r4)
 /* 80CDC578  D0 21 00 08 */	stfs f1, 8(r1)
@@ -24,16 +24,16 @@ lbl_80CDC548:
 /* 80CDC5A0  D0 01 00 10 */	stfs f0, 0x10(r1)
 lbl_80CDC5A4:
 /* 80CDC5A4  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80CDC5A8  4B 33 07 BC */	b transS__14mDoMtx_stack_cFRC4cXyz
-/* 80CDC5AC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80CDC5B0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80CDC5A8  4B 33 07 BD */	bl transS__14mDoMtx_stack_cFRC4cXyz
+/* 80CDC5AC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80CDC5B0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80CDC5B4  A8 9E 04 DE */	lha r4, 0x4de(r30)
-/* 80CDC5B8  4B 32 FE 7C */	b mDoMtx_YrotM__FPA4_fs
-/* 80CDC5BC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80CDC5C0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80CDC5B8  4B 32 FE 7D */	bl mDoMtx_YrotM__FPA4_fs
+/* 80CDC5BC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80CDC5C0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80CDC5C4  38 81 00 08 */	addi r4, r1, 8
 /* 80CDC5C8  7C 85 23 78 */	mr r5, r4
-/* 80CDC5CC  4B 66 A7 A0 */	b PSMTXMultVec
+/* 80CDC5CC  4B 66 A7 A1 */	bl PSMTXMultVec
 /* 80CDC5D0  7F E3 FB 78 */	mr r3, r31
 /* 80CDC5D4  38 81 00 08 */	addi r4, r1, 8
 /* 80CDC5D8  A8 BE 04 DE */	lha r5, 0x4de(r30)

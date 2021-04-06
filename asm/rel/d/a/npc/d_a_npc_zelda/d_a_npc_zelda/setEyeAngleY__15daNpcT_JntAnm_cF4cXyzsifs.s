@@ -5,7 +5,7 @@ lbl_80B7797C:
 /* 80B77988  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80B7798C  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 80B77990  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B77994  4B 7E A8 44 */	b _savegpr_28
+/* 80B77994  4B 7E A8 45 */	bl _savegpr_28
 /* 80B77998  7C 7F 1B 78 */	mr r31, r3
 /* 80B7799C  7C 80 23 78 */	mr r0, r4
 /* 80B779A0  7C BC 2B 78 */	mr r28, r5
@@ -18,14 +18,14 @@ lbl_80B7797C:
 /* 80B779BC  41 82 00 44 */	beq lbl_80B77A00
 /* 80B779C0  38 61 00 08 */	addi r3, r1, 8
 /* 80B779C4  7C 05 03 78 */	mr r5, r0
-/* 80B779C8  4B 6E F1 6C */	b __mi__4cXyzCFRC3Vec
+/* 80B779C8  4B 6E F1 6D */	bl __mi__4cXyzCFRC3Vec
 /* 80B779CC  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80B779D0  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80B779D4  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80B779D8  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80B779DC  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 80B779E0  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 80B779E4  4B 6E FC 90 */	b cM_atan2s__Fff
+/* 80B779E4  4B 6E FC 91 */	bl cM_atan2s__Fff
 /* 80B779E8  7C BC 18 50 */	subf r5, r28, r3
 /* 80B779EC  A8 1F 01 52 */	lha r0, 0x152(r31)
 /* 80B779F0  7C 1C 00 50 */	subf r0, r28, r0
@@ -38,12 +38,12 @@ lbl_80B77A00:
 /* 80B77A08  7C 05 00 D0 */	neg r0, r5
 /* 80B77A0C  7C 05 07 34 */	extsh r5, r0
 lbl_80B77A10:
-/* 80B77A10  3C 60 80 B8 */	lis r3, lit_4342@ha
-/* 80B77A14  C0 63 80 7C */	lfs f3, lit_4342@l(r3)
+/* 80B77A10  3C 60 80 B8 */	lis r3, lit_4342@ha /* 0x80B7807C@ha */
+/* 80B77A14  C0 63 80 7C */	lfs f3, lit_4342@l(r3)  /* 0x80B7807C@l */
 /* 80B77A18  EC 83 F8 24 */	fdivs f4, f3, f31
 /* 80B77A1C  A8 1F 01 34 */	lha r0, 0x134(r31)
-/* 80B77A20  3C 60 80 B8 */	lis r3, lit_4749@ha
-/* 80B77A24  C8 43 80 98 */	lfd f2, lit_4749@l(r3)
+/* 80B77A20  3C 60 80 B8 */	lis r3, lit_4749@ha /* 0x80B78098@ha */
+/* 80B77A24  C8 43 80 98 */	lfd f2, lit_4749@l(r3)  /* 0x80B78098@l */
 /* 80B77A28  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80B77A2C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B77A30  3C 60 43 30 */	lis r3, 0x4330
@@ -67,7 +67,7 @@ lbl_80B77A10:
 /* 80B77A78  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80B77A7C  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80B77A80  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B77A84  4B 7E A7 A0 */	b _restgpr_28
+/* 80B77A84  4B 7E A7 A1 */	bl _restgpr_28
 /* 80B77A88  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80B77A8C  7C 08 03 A6 */	mtlr r0
 /* 80B77A90  38 21 00 60 */	addi r1, r1, 0x60

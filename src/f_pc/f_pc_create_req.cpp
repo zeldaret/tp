@@ -32,17 +32,6 @@ struct base_process_class {};
 // Forward References:
 //
 
-static void fpcCtRq_isCreatingByID(create_tag*, unsigned int*);
-void fpcCtRq_IsCreatingByID(unsigned int);
-static void fpcCtRq_CreateQTo(create_request*);
-static void fpcCtRq_ToCreateQ(create_request*);
-static void fpcCtRq_Delete(create_request*);
-void fpcCtRq_Cancel(create_request*);
-void fpcCtRq_IsDoing(create_request*);
-static void fpcCtRq_Do(create_request*);
-void fpcCtRq_Handler();
-void fpcCtRq_Create(layer_class*, u32, create_request_method_class*);
-
 extern "C" static void fpcCtRq_isCreatingByID__FP10create_tagPUi();
 extern "C" void fpcCtRq_IsCreatingByID__FUi();
 extern "C" static void fpcCtRq_CreateQTo__FP14create_request();
@@ -57,21 +46,6 @@ extern "C" void fpcCtRq_Create__FP11layer_classUlP27create_request_method_class(
 //
 // External References:
 //
-
-void fpcBs_MakeOfId();
-void fpcCtIt_Method(int (*)(void*, void*), void*);
-void fpcCtIt_Judge(void* (*)(void*, void*), void*);
-void fpcCtTg_ToCreateQ(create_tag*);
-void fpcCtTg_CreateQTo(create_tag*);
-void fpcCtTg_Init(create_tag*, void*);
-void fpcDt_Delete(void*);
-void fpcEx_ToExecuteQ(base_process_class*);
-void fpcLy_CancelQTo(process_method_tag_class*);
-void fpcLy_ToCancelQ(layer_class*, process_method_tag_class*);
-void fpcLy_CreatingMesg(layer_class*);
-void fpcLy_CreatedMesg(layer_class*);
-void fpcMtd_Method(int (*)(void*), void*);
-void fpcMtdTg_Init(process_method_tag_class*, int (*)(void*), void*);
 
 extern "C" void fpcBs_MakeOfId__Fv();
 extern "C" void fpcCtIt_Method__FPFPvPv_iPv();
@@ -96,21 +70,17 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 80020ACC-80020AE8 001C+00 s=1 e=0 z=0  None .text      fpcCtRq_isCreatingByID__FP10create_tagPUi
- */
+/* 80020ACC-80020AE8 01B40C 001C+00 1/1 0/0 0/0 .text fpcCtRq_isCreatingByID__FP10create_tagPUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcCtRq_isCreatingByID(create_tag* param_0, unsigned int* param_1) {
+static asm void fpcCtRq_isCreatingByID(create_tag* param_0, unsigned int* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_create_req/fpcCtRq_isCreatingByID__FP10create_tagPUi.s"
 }
 #pragma pop
 
-/* 80020AE8-80020B20 0038+00 s=0 e=2 z=0  None .text      fpcCtRq_IsCreatingByID__FUi */
-//	80020AF8: 80020ACC (fpcCtRq_isCreatingByID__FP10create_tagPUi)
-//	80020AFC: 80020ACC (fpcCtRq_isCreatingByID__FP10create_tagPUi)
-//	80020B04: 80020A04 (fpcCtIt_Judge__FPFPvPv_PvPv)
+/* 80020AE8-80020B20 01B428 0038+00 0/0 2/2 0/0 .text            fpcCtRq_IsCreatingByID__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -120,49 +90,39 @@ asm void fpcCtRq_IsCreatingByID(unsigned int param_0) {
 }
 #pragma pop
 
-/* 80020B20-80020B5C 003C+00 s=1 e=0 z=0  None .text      fpcCtRq_CreateQTo__FP14create_request */
-//	80020B34: 80020E64 (fpcCtTg_CreateQTo__FP10create_tag)
-//	80020B3C: 800216C4 (fpcLy_CreatedMesg__FP11layer_class)
-//	80020B44: 80021588 (fpcLy_CancelQTo__FP24process_method_tag_class)
+/* 80020B20-80020B5C 01B460 003C+00 1/1 0/0 0/0 .text fpcCtRq_CreateQTo__FP14create_request */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcCtRq_CreateQTo(create_request* param_0) {
+static asm void fpcCtRq_CreateQTo(create_request* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_create_req/fpcCtRq_CreateQTo__FP14create_request.s"
 }
 #pragma pop
 
-/* 80020B5C-80020BA0 0044+00 s=1 e=0 z=0  None .text      fpcCtRq_ToCreateQ__FP14create_request */
-//	80020B74: 800216B4 (fpcLy_CreatingMesg__FP11layer_class)
-//	80020B80: 800215A8 (fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class)
-//	80020B88: 80020E38 (fpcCtTg_ToCreateQ__FP10create_tag)
+/* 80020B5C-80020BA0 01B49C 0044+00 1/1 0/0 0/0 .text fpcCtRq_ToCreateQ__FP14create_request */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcCtRq_ToCreateQ(create_request* param_0) {
+static asm void fpcCtRq_ToCreateQ(create_request* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_create_req/fpcCtRq_ToCreateQ__FP14create_request.s"
 }
 #pragma pop
 
-/* 80020BA0-80020C14 0074+00 s=2 e=0 z=0  None .text      fpcCtRq_Delete__FP14create_request */
-//	80020BB4: 80020B20 (fpcCtRq_CreateQTo__FP14create_request)
-//	80020BCC: 80022428 (fpcMtd_Method__FPFPv_iPv)
-//	80020BF8: 80263260 (free__3cMlFPv)
+/* 80020BA0-80020C14 01B4E0 0074+00 2/2 0/0 0/0 .text            fpcCtRq_Delete__FP14create_request
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcCtRq_Delete(create_request* param_0) {
+static asm void fpcCtRq_Delete(create_request* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_create_req/fpcCtRq_Delete__FP14create_request.s"
 }
 #pragma pop
 
-/* 80020C14-80020CAC 0098+00 s=2 e=2 z=0  None .text      fpcCtRq_Cancel__FP14create_request */
-//	80020C4C: 800212A4 (fpcDt_Delete__FPv)
-//	80020C74: 80022428 (fpcMtd_Method__FPFPv_iPv)
-//	80020C8C: 80020BA0 (fpcCtRq_Delete__FP14create_request)
+/* 80020C14-80020CAC 01B554 0098+00 2/2 2/2 0/0 .text            fpcCtRq_Cancel__FP14create_request
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,7 +132,8 @@ asm void fpcCtRq_Cancel(create_request* param_0) {
 }
 #pragma pop
 
-/* 80020CAC-80020CC8 001C+00 s=0 e=1 z=0  None .text      fpcCtRq_IsDoing__FP14create_request */
+/* 80020CAC-80020CC8 01B5EC 001C+00 0/0 1/1 0/0 .text            fpcCtRq_IsDoing__FP14create_request
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -182,24 +143,17 @@ asm void fpcCtRq_IsDoing(create_request* param_0) {
 }
 #pragma pop
 
-/* 80020CC8-80020D84 00BC+00 s=1 e=0 z=0  None .text      fpcCtRq_Do__FP14create_request */
-//	80020D3C: 80021510 (fpcEx_ToExecuteQ__FP18base_process_class)
-//	80020D4C: 80020C14 (fpcCtRq_Cancel__FP14create_request)
-//	80020D58: 80020BA0 (fpcCtRq_Delete__FP14create_request)
-//	80020D64: 80020C14 (fpcCtRq_Cancel__FP14create_request)
+/* 80020CC8-80020D84 01B608 00BC+00 1/1 0/0 0/0 .text            fpcCtRq_Do__FP14create_request */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcCtRq_Do(create_request* param_0) {
+static asm void fpcCtRq_Do(create_request* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_create_req/fpcCtRq_Do__FP14create_request.s"
 }
 #pragma pop
 
-/* 80020D84-80020DB0 002C+00 s=0 e=1 z=0  None .text      fpcCtRq_Handler__Fv */
-//	80020D90: 80020CC8 (fpcCtRq_Do__FP14create_request)
-//	80020D94: 80020CC8 (fpcCtRq_Do__FP14create_request)
-//	80020D9C: 800209C8 (fpcCtIt_Method__FPFPvPv_iPv)
+/* 80020D84-80020DB0 01B6C4 002C+00 0/0 1/1 0/0 .text            fpcCtRq_Handler__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,17 +163,8 @@ asm void fpcCtRq_Handler() {
 }
 #pragma pop
 
-/* 80020DB0-80020E38 0088+00 s=0 e=2 z=0  None .text
+/* 80020DB0-80020E38 01B6F0 0088+00 0/0 2/2 0/0 .text
  * fpcCtRq_Create__FP11layer_classUlP27create_request_method_class */
-//	80020DC0: 803621DC (_savegpr_29)
-//	80020DD0: 80263228 (memalignB__3cMlFiUl)
-//	80020DE0: 80020E84 (fpcCtTg_Init__FP10create_tagPv)
-//	80020DE8: 80020C14 (fpcCtRq_Cancel__FP14create_request)
-//	80020DEC: 80020C14 (fpcCtRq_Cancel__FP14create_request)
-//	80020DF4: 800237F8 (fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv)
-//	80020E00: 8002069C (fpcBs_MakeOfId__Fv)
-//	80020E18: 80020B5C (fpcCtRq_ToCreateQ__FP14create_request)
-//	80020E24: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

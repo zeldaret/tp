@@ -175,8 +175,8 @@ lbl_80131988:
 /* 8013198C  EC 20 07 F2 */	fmuls f1, f0, f31
 /* 80131990  48 13 5C 55 */	bl cM_rad2s__Ff
 /* 80131994  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 80131998  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013199C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80131998  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013199C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801319A0  7C 43 04 2E */	lfsx f2, r3, r0
 /* 801319A4  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 801319A8  C0 1E 07 2C */	lfs f0, 0x72c(r30)

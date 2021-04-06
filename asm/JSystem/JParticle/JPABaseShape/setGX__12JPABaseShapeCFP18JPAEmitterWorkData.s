@@ -5,8 +5,8 @@ lbl_8027A7E8:
 /* 8027A7F4  39 61 00 20 */	addi r11, r1, 0x20
 /* 8027A7F8  48 0E 79 E1 */	bl _savegpr_28
 /* 8027A7FC  7C 7C 1B 78 */	mr r28, r3
-/* 8027A800  3C 60 80 3C */	lis r3, jpa_dl@ha
-/* 8027A804  3B E3 42 E0 */	addi r31, r3, jpa_dl@l
+/* 8027A800  3C 60 80 3C */	lis r3, jpa_dl@ha /* 0x803C42E0@ha */
+/* 8027A804  3B E3 42 E0 */	addi r31, r3, jpa_dl@l /* 0x803C42E0@l */
 /* 8027A808  80 9C 00 00 */	lwz r4, 0(r28)
 /* 8027A80C  80 64 00 08 */	lwz r3, 8(r4)
 /* 8027A810  54 60 AE 76 */	rlwinm r0, r3, 0x15, 0x19, 0x1b

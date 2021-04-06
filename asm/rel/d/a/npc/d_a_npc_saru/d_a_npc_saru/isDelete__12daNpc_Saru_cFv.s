@@ -20,11 +20,11 @@ lbl_80AC0C90:
 lbl_80AC0C98:
 /* 80AC0C98  3B E0 00 00 */	li r31, 0
 /* 80AC0C9C  38 60 00 12 */	li r3, 0x12
-/* 80AC0CA0  4B 68 BE 0C */	b daNpcT_chkEvtBit__FUl
+/* 80AC0CA0  4B 68 BE 0D */	bl daNpcT_chkEvtBit__FUl
 /* 80AC0CA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC0CA8  41 82 00 14 */	beq lbl_80AC0CBC
 /* 80AC0CAC  38 60 02 5C */	li r3, 0x25c
-/* 80AC0CB0  4B 68 BD FC */	b daNpcT_chkEvtBit__FUl
+/* 80AC0CB0  4B 68 BD FD */	bl daNpcT_chkEvtBit__FUl
 /* 80AC0CB4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC0CB8  41 82 00 08 */	beq lbl_80AC0CC0
 lbl_80AC0CBC:

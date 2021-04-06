@@ -33,8 +33,6 @@ extern "C" void addResTIMG__10J3DTextureFUsPC7ResTIMG();
 // External References:
 //
 
-void* operator new[](u32);
-
 extern "C" void* __nwa__FUl();
 extern "C" void GXInitTexObj();
 extern "C" void GXInitTexObjCI();
@@ -50,25 +48,16 @@ extern "C" void _restgpr_28();
 //
 
 /* ############################################################################################## */
-/* 80456388-8045638C 0004+00 s=1 e=0 z=0  None .sdata2    @284 */
+/* 80456388-8045638C 004988 0004+00 1/1 0/0 0/0 .sdata2          @284 */
 SECTION_SDATA2 static f32 lit_284 = 0.125f;
 
-/* 8045638C-80456390 0004+00 s=1 e=0 z=0  None .sdata2    @285 */
+/* 8045638C-80456390 00498C 0004+00 1/1 0/0 0/0 .sdata2          @285 */
 SECTION_SDATA2 static f32 lit_285 = 1.0f / 100.0f;
 
-/* 80456390-80456398 0008+00 s=1 e=0 z=0  None .sdata2    @288 */
+/* 80456390-80456398 004990 0008+00 1/1 0/0 0/0 .sdata2          @288 */
 SECTION_SDATA2 static f64 lit_288 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8031204C-803121A4 0158+00 s=0 e=1 z=0  None .text      loadGX__10J3DTextureCFUs11_GXTexMapID */
-//	803120A0: 8035DE40 (GXInitTexObj)
-//	803120D0: 8035E08C (GXInitTexObjCI)
-//	803120E8: 8035E468 (GXInitTlutObj)
-//	803120F4: 8035E4A0 (GXLoadTlut)
-//	80312104: 80456388 (lit_284)
-//	80312110: 80456390 (lit_288)
-//	80312150: 8045638C (lit_285)
-//	8031217C: 8035E0D4 (GXInitTexObjLOD)
-//	80312188: 8035E414 (GXLoadTexObj)
+/* 8031204C-803121A4 30C98C 0158+00 0/0 1/1 0/0 .text loadGX__10J3DTextureCFUs11_GXTexMapID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,8 +67,7 @@ asm void J3DTexture::loadGX(u16 param_0, _GXTexMapID param_1) const {
 }
 #pragma pop
 
-/* 803121A4-8031221C 0078+00 s=1 e=0 z=0  None .text      entryNum__10J3DTextureFUs */
-//	803121C0: 802CECC4 (__nwa__FUl)
+/* 803121A4-8031221C 30CAE4 0078+00 1/1 0/0 0/0 .text            entryNum__10J3DTextureFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -89,10 +77,7 @@ asm void J3DTexture::entryNum(u16 param_0) {
 }
 #pragma pop
 
-/* 8031221C-80312488 026C+00 s=0 e=1 z=0  None .text      addResTIMG__10J3DTextureFUsPC7ResTIMG */
-//	8031222C: 803621D8 (_savegpr_28)
-//	80312254: 803121A4 (entryNum__10J3DTextureFUs)
-//	80312474: 80362224 (_restgpr_28)
+/* 8031221C-80312488 30CB5C 026C+00 0/0 1/1 0/0 .text addResTIMG__10J3DTextureFUsPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

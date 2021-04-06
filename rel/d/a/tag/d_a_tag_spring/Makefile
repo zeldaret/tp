@@ -3,17 +3,15 @@
 #
 
 M132_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring.plf
+M132_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring.lcf
+M132_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring.map
 
 M132_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_spring/executor.cpp \
-	rel/d/a/tag/d_a_tag_spring/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_spring/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_spring/d_a_tag_spring.cpp \
 
 M132_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/d_a_tag_spring.o \
 
 M132_LIBS := \
@@ -29,15 +27,21 @@ M132_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map132.map\
+	-m _prolog \
+	-lcf $(M132_LDSCRIPT) \
+	-unused -map $(M132_MAP) \
+	-w off \
 
 $(M132_TARGET): $(M132_O_FILES) $(M132_LIBS)
+	@echo [132] creating $(M132_TARGET)
 	@echo $(M132_LIBS) $(M132_O_FILES) > build/M132_ofiles
-	$(LD) -opt_partial $(M132_LDFLAGS) -o $(M132_TARGET) @build/M132_ofiles
+	@python3 tools/lcf.py rel 132 --output $(M132_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M132_LDFLAGS) -o $(M132_TARGET) @build/M132_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spring/%.o: rel/d/a/tag/d_a_tag_spring/%.cpp
+	@echo [132] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M132_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M132_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

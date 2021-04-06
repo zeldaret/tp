@@ -4,8 +4,8 @@ lbl_80873C44:
 /* 80873C4C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80873C50  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80873C54  93 C1 00 08 */	stw r30, 8(r1)
-/* 80873C58  3C C0 80 88 */	lis r6, __THPInfo@ha
-/* 80873C5C  38 E6 9B C4 */	addi r7, r6, __THPInfo@l
+/* 80873C58  3C C0 80 88 */	lis r6, __THPInfo@ha /* 0x80879BC4@ha */
+/* 80873C5C  38 E6 9B C4 */	addi r7, r6, __THPInfo@l /* 0x80879BC4@l */
 /* 80873C60  80 C7 00 00 */	lwz r6, 0(r7)
 /* 80873C64  90 66 06 B0 */	stw r3, 0x6b0(r6)
 /* 80873C68  80 67 00 00 */	lwz r3, 0(r7)
@@ -17,8 +17,8 @@ lbl_80873C44:
 /* 80873C80  A3 C3 06 94 */	lhz r30, 0x694(r3)
 /* 80873C84  48 00 00 C5 */	bl __THPGQRSetup
 /* 80873C88  4B FF FD 7D */	bl __THPPrepBitStream
-/* 80873C8C  3C 60 80 88 */	lis r3, __THPInfo@ha
-/* 80873C90  38 63 9B C4 */	addi r3, r3, __THPInfo@l
+/* 80873C8C  3C 60 80 88 */	lis r3, __THPInfo@ha /* 0x80879BC4@ha */
+/* 80873C90  38 63 9B C4 */	addi r3, r3, __THPInfo@l /* 0x80879BC4@l */
 /* 80873C94  80 63 00 00 */	lwz r3, 0(r3)
 /* 80873C98  A0 03 06 92 */	lhz r0, 0x692(r3)
 /* 80873C9C  28 00 02 00 */	cmplwi r0, 0x200

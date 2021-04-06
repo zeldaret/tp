@@ -7,7 +7,7 @@ lbl_80341BAC:
 /* 80341BC0  7C 7E 1B 78 */	mr r30, r3
 /* 80341BC4  4B FF BB 31 */	bl OSDisableInterrupts
 /* 80341BC8  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000E4@ha */
-/* 80341BCC  80 84 00 E4 */	lwz r4, 0x00E4(r4)
+/* 80341BCC  80 84 00 E4 */	lwz r4, 0x00E4(r4)  /* 0x800000E4@l */
 /* 80341BD0  38 00 00 04 */	li r0, 4
 /* 80341BD4  7C 7F 1B 78 */	mr r31, r3
 /* 80341BD8  B0 04 02 C8 */	sth r0, 0x2c8(r4)

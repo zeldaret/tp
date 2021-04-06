@@ -5,8 +5,8 @@ lbl_80CC4C14:
 /* 80CC4C20  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CC4C24  7C 7F 1B 78 */	mr r31, r3
 /* 80CC4C28  C0 23 04 D4 */	lfs f1, 0x4d4(r3)
-/* 80CC4C2C  3C 80 80 CC */	lis r4, M_attr__14daObjSakuita_c@ha
-/* 80CC4C30  38 84 50 B4 */	addi r4, r4, M_attr__14daObjSakuita_c@l
+/* 80CC4C2C  3C 80 80 CC */	lis r4, M_attr__14daObjSakuita_c@ha /* 0x80CC50B4@ha */
+/* 80CC4C30  38 84 50 B4 */	addi r4, r4, M_attr__14daObjSakuita_c@l /* 0x80CC50B4@l */
 /* 80CC4C34  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 80CC4C38  EC 01 00 2A */	fadds f0, f1, f0
 /* 80CC4C3C  D0 03 04 D4 */	stfs f0, 0x4d4(r3)

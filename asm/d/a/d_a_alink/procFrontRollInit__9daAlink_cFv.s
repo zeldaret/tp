@@ -5,8 +5,8 @@ lbl_800C494C:
 /* 800C4958  39 61 00 20 */	addi r11, r1, 0x20
 /* 800C495C  48 29 D8 7D */	bl _savegpr_28
 /* 800C4960  7C 7E 1B 78 */	mr r30, r3
-/* 800C4964  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800C4968  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 800C4964  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800C4968  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 800C496C  48 01 84 85 */	bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800C4970  7C 7D 1B 78 */	mr r29, r3
 /* 800C4974  A0 7E 2F E8 */	lhz r3, 0x2fe8(r30)

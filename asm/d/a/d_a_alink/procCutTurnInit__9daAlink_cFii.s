@@ -9,8 +9,8 @@ lbl_800D47DC:
 /* 800D47F8  7C 7C 1B 78 */	mr r28, r3
 /* 800D47FC  7C 9B 23 78 */	mr r27, r4
 /* 800D4800  7C BD 2B 78 */	mr r29, r5
-/* 800D4804  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D4808  3B E4 DB 84 */	addi r31, r4, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D4804  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D4808  3B E4 DB 84 */	addi r31, r4, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D480C  38 80 00 28 */	li r4, 0x28
 /* 800D4810  4B FE D7 5D */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D4814  2C 1D 00 02 */	cmpwi r29, 2
@@ -144,8 +144,8 @@ lbl_800D49CC:
 lbl_800D49DC:
 /* 800D49DC  C0 02 93 04 */	lfs f0, lit_6896(r2)
 /* 800D49E0  D0 1C 34 7C */	stfs f0, 0x347c(r28)
-/* 800D49E4  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800D49E8  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800D49E4  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800D49E8  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800D49EC  D0 1C 35 88 */	stfs f0, 0x3588(r28)
 /* 800D49F0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800D49F4  D0 1C 35 8C */	stfs f0, 0x358c(r28)
@@ -157,8 +157,8 @@ lbl_800D49DC:
 /* 800D4A0C  B0 1C 04 DE */	sth r0, 0x4de(r28)
 /* 800D4A10  38 80 00 00 */	li r4, 0
 /* 800D4A14  90 9C 31 80 */	stw r4, 0x3180(r28)
-/* 800D4A18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D4A1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D4A18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D4A1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D4A20  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800D4A24  60 00 80 00 */	ori r0, r0, 0x8000
 /* 800D4A28  90 03 5F 18 */	stw r0, 0x5f18(r3)

@@ -11,8 +11,8 @@ lbl_802FFBC4:
 /* 802FFBE8  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 802FFBEC  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 802FFBF0  4B FF 62 99 */	bl func_802F5E88
-/* 802FFBF4  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha
-/* 802FFBF8  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l
+/* 802FFBF4  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha /* 0x803CD328@ha */
+/* 802FFBF8  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l /* 0x803CD328@l */
 /* 802FFBFC  90 1A 00 00 */	stw r0, 0(r26)
 /* 802FFC00  38 60 00 00 */	li r3, 0
 /* 802FFC04  90 7A 01 00 */	stw r3, 0x100(r26)

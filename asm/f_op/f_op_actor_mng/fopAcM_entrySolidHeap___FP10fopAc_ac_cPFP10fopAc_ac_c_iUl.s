@@ -15,8 +15,8 @@ lbl_8001A1E8:
 /* 8001A21C  38 1D 00 0F */	addi r0, r29, 0xf
 /* 8001A220  54 1D 00 36 */	rlwinm r29, r0, 0, 0, 0x1b
 lbl_8001A224:
-/* 8001A224  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A228  3B 43 88 C8 */	addi r26, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A224  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A228  3B 43 88 C8 */	addi r26, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 lbl_8001A22C:
 /* 8001A22C  28 1D 00 00 */	cmplwi r29, 0
 /* 8001A230  41 82 00 8C */	beq lbl_8001A2BC
@@ -36,8 +36,8 @@ lbl_8001A22C:
 /* 8001A268  7F C3 F3 78 */	mr r3, r30
 /* 8001A26C  48 2B 44 C1 */	bl getFreeSize__7JKRHeapFv
 /* 8001A270  7C 65 1B 78 */	mr r5, r3
-/* 8001A274  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A278  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A274  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A278  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A27C  38 63 00 59 */	addi r3, r3, 0x59
 /* 8001A280  7F A4 EB 78 */	mr r4, r29
 /* 8001A284  7F E6 FB 78 */	mr r6, r31
@@ -48,8 +48,8 @@ lbl_8001A22C:
 /* 8001A298  3B C0 00 00 */	li r30, 0
 /* 8001A29C  48 00 00 20 */	b lbl_8001A2BC
 lbl_8001A2A0:
-/* 8001A2A0  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A2A4  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A2A0  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A2A4  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A2A8  38 63 00 91 */	addi r3, r3, 0x91
 /* 8001A2AC  7F A4 EB 78 */	mr r4, r29
 /* 8001A2B0  7F E5 FB 78 */	mr r5, r31
@@ -63,8 +63,8 @@ lbl_8001A2BC:
 /* 8001A2CC  4B FF 4C 0D */	bl mDoExt_createSolidHeapFromGame__FUlUl
 /* 8001A2D0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8001A2D4  40 82 00 24 */	bne lbl_8001A2F8
-/* 8001A2D8  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A2DC  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A2D8  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A2DC  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A2E0  38 63 00 C3 */	addi r3, r3, 0xc3
 /* 8001A2E4  7F E4 FB 78 */	mr r4, r31
 /* 8001A2E8  4C C6 31 82 */	crclr 6
@@ -83,8 +83,8 @@ lbl_8001A2F8:
 /* 8001A318  7F C3 F3 78 */	mr r3, r30
 /* 8001A31C  48 2B 44 11 */	bl getFreeSize__7JKRHeapFv
 /* 8001A320  7C 64 1B 78 */	mr r4, r3
-/* 8001A324  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A328  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A324  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A328  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A32C  38 63 00 E9 */	addi r3, r3, 0xe9
 /* 8001A330  7F E5 FB 78 */	mr r5, r31
 /* 8001A334  4C C6 31 82 */	crclr 6
@@ -137,8 +137,8 @@ lbl_8001A3B4:
 /* 8001A3E4  7C 00 19 10 */	subfe r0, r0, r3
 /* 8001A3E8  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8001A3EC  40 82 00 34 */	bne lbl_8001A420
-/* 8001A3F0  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A3F4  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A3F0  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A3F4  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A3F8  38 63 01 13 */	addi r3, r3, 0x113
 /* 8001A3FC  4C C6 31 82 */	crclr 6
 /* 8001A400  4B FE C8 0D */	bl OSReport_Error
@@ -177,8 +177,8 @@ lbl_8001A458:
 /* 8001A474  98 0D 87 48 */	stb r0, struct_80450CC8+0x0(r13)
 /* 8001A478  4B FF FD B4 */	b lbl_8001A22C
 lbl_8001A47C:
-/* 8001A47C  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha
-/* 8001A480  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l
+/* 8001A47C  3C 60 80 38 */	lis r3, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 8001A480  38 63 88 C8 */	addi r3, r3, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 8001A484  38 63 01 53 */	addi r3, r3, 0x153
 /* 8001A488  7F E4 FB 78 */	mr r4, r31
 /* 8001A48C  4C C6 31 82 */	crclr 6

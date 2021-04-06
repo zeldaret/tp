@@ -7,7 +7,7 @@ lbl_804DA5B8:
 /* 804DA5CC  41 82 00 10 */	beq lbl_804DA5DC
 /* 804DA5D0  7C 80 07 35 */	extsh. r0, r4
 /* 804DA5D4  40 81 00 08 */	ble lbl_804DA5DC
-/* 804DA5D8  4B DF 47 64 */	b __dl__FPv
+/* 804DA5D8  4B DF 47 65 */	bl __dl__FPv
 lbl_804DA5DC:
 /* 804DA5DC  7F E3 FB 78 */	mr r3, r31
 /* 804DA5E0  83 E1 00 0C */	lwz r31, 0xc(r1)

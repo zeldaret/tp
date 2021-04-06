@@ -5,8 +5,8 @@ lbl_80B80860:
 /* 80B8086C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80B80870  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80B80874  7C 7F 1B 78 */	mr r31, r3
-/* 80B80878  3C 80 80 B9 */	lis r4, m__17daNpc_zrA_Param_c@ha
-/* 80B8087C  3B C4 C4 58 */	addi r30, r4, m__17daNpc_zrA_Param_c@l
+/* 80B80878  3C 80 80 B9 */	lis r4, m__17daNpc_zrA_Param_c@ha /* 0x80B8C458@ha */
+/* 80B8087C  3B C4 C4 58 */	addi r30, r4, m__17daNpc_zrA_Param_c@l /* 0x80B8C458@l */
 /* 80B80880  A0 03 14 E6 */	lhz r0, 0x14e6(r3)
 /* 80B80884  2C 00 00 02 */	cmpwi r0, 2
 /* 80B80888  41 82 01 A8 */	beq lbl_80B80A30
@@ -80,7 +80,7 @@ lbl_80B80984:
 /* 80B80988  38 80 00 03 */	li r4, 3
 /* 80B8098C  4B FF ED 59 */	bl func_80B7F6E4
 /* 80B80990  98 7F 15 92 */	stb r3, 0x1592(r31)
-/* 80B80994  4B 6E 6E D8 */	b cM_rnd__Fv
+/* 80B80994  4B 6E 6E D9 */	bl cM_rnd__Fv
 /* 80B80998  C0 1E 07 70 */	lfs f0, 0x770(r30)
 /* 80B8099C  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80B809A0  FC 00 00 1E */	fctiwz f0, f0

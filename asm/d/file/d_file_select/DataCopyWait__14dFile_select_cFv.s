@@ -23,8 +23,8 @@ lbl_8018A4F8:
 /* 8018A520  FC 80 18 90 */	fmr f4, f3
 /* 8018A524  39 00 00 00 */	li r8, 0
 /* 8018A528  48 12 1F E5 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
-/* 8018A52C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018A530  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018A52C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018A530  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018A534  4B E8 C7 AD */	bl SaveSync__15mDoMemCd_Ctrl_cFv
 /* 8018A538  90 7F 03 B4 */	stw r3, 0x3b4(r31)
 /* 8018A53C  80 1F 03 B4 */	lwz r0, 0x3b4(r31)

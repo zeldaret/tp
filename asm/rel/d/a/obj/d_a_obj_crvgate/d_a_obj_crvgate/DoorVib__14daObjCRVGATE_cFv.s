@@ -14,7 +14,7 @@ lbl_80BD0F9C:
 /* 80BD0FCC  38 7F 06 10 */	addi r3, r31, 0x610
 /* 80BD0FD0  38 80 00 00 */	li r4, 0
 /* 80BD0FD4  38 A0 00 40 */	li r5, 0x40
-/* 80BD0FD8  4B 69 FB B8 */	b cLib_chaseAngleS__FPsss
+/* 80BD0FD8  4B 69 FB B9 */	bl cLib_chaseAngleS__FPsss
 /* 80BD0FDC  A8 9F 06 10 */	lha r4, 0x610(r31)
 /* 80BD0FE0  7C 80 07 35 */	extsh. r0, r4
 /* 80BD0FE4  41 82 00 C8 */	beq lbl_80BD10AC
@@ -23,11 +23,11 @@ lbl_80BD0F9C:
 /* 80BD0FF0  40 82 00 60 */	bne lbl_80BD1050
 /* 80BD0FF4  A8 1F 06 14 */	lha r0, 0x614(r31)
 /* 80BD0FF8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80BD0FFC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80BD1000  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80BD0FFC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BD1000  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BD1004  7C 43 04 2E */	lfsx f2, r3, r0
-/* 80BD1008  3C 60 80 BD */	lis r3, lit_3796@ha
-/* 80BD100C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)
+/* 80BD1008  3C 60 80 BD */	lis r3, lit_3796@ha /* 0x80BD3110@ha */
+/* 80BD100C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)  /* 0x80BD3110@l */
 /* 80BD1010  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80BD1014  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80BD1018  3C 00 43 30 */	lis r0, 0x4330
@@ -47,12 +47,12 @@ lbl_80BD0F9C:
 lbl_80BD1050:
 /* 80BD1050  A8 1F 06 14 */	lha r0, 0x614(r31)
 /* 80BD1054  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80BD1058  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80BD105C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80BD1058  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BD105C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BD1060  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80BD1064  7C 04 00 D0 */	neg r0, r4
-/* 80BD1068  3C 60 80 BD */	lis r3, lit_3796@ha
-/* 80BD106C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)
+/* 80BD1068  3C 60 80 BD */	lis r3, lit_3796@ha /* 0x80BD3110@ha */
+/* 80BD106C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)  /* 0x80BD3110@l */
 /* 80BD1070  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80BD1074  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BD1078  3C 00 43 30 */	lis r0, 0x4330

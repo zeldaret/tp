@@ -15,8 +15,8 @@ lbl_80483B90:
 /* 80483BAC  40 82 00 24 */	bne lbl_80483BD0
 /* 80483BB0  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483BB4  1C A0 00 2C */	mulli r5, r0, 0x2c
-/* 80483BB8  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha
-/* 80483BBC  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l
+/* 80483BB8  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha /* 0x80484D2C@ha */
+/* 80483BBC  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l /* 0x80484D2C@l */
 /* 80483BC0  7C 80 2A 14 */	add r4, r0, r5
 /* 80483BC4  A8 04 00 1E */	lha r0, 0x1e(r4)
 /* 80483BC8  B0 03 05 C2 */	sth r0, 0x5c2(r3)
@@ -24,8 +24,8 @@ lbl_80483B90:
 lbl_80483BD0:
 /* 80483BD0  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483BD4  1C A0 00 2C */	mulli r5, r0, 0x2c
-/* 80483BD8  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha
-/* 80483BDC  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l
+/* 80483BD8  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha /* 0x80484D2C@ha */
+/* 80483BDC  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l /* 0x80484D2C@l */
 /* 80483BE0  7C 80 2A 14 */	add r4, r0, r5
 /* 80483BE4  A8 04 00 1A */	lha r0, 0x1a(r4)
 /* 80483BE8  B0 03 05 C2 */	sth r0, 0x5c2(r3)
@@ -49,8 +49,8 @@ lbl_80483C10:
 /* 80483C28  7C 06 07 34 */	extsh r6, r0
 /* 80483C2C  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483C30  1C A0 00 2C */	mulli r5, r0, 0x2c
-/* 80483C34  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha
-/* 80483C38  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l
+/* 80483C34  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha /* 0x80484D2C@ha */
+/* 80483C38  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l /* 0x80484D2C@l */
 /* 80483C3C  7C 80 2A 14 */	add r4, r0, r5
 /* 80483C40  A8 04 00 1A */	lha r0, 0x1a(r4)
 /* 80483C44  7C 06 00 00 */	cmpw r6, r0
@@ -70,8 +70,8 @@ lbl_80483C60:
 /* 80483C74  41 82 00 24 */	beq lbl_80483C98
 /* 80483C78  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483C7C  1C A0 00 2C */	mulli r5, r0, 0x2c
-/* 80483C80  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha
-/* 80483C84  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l
+/* 80483C80  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha /* 0x80484D2C@ha */
+/* 80483C84  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l /* 0x80484D2C@l */
 /* 80483C88  7C 80 2A 14 */	add r4, r0, r5
 /* 80483C8C  A8 04 00 1C */	lha r0, 0x1c(r4)
 /* 80483C90  B0 03 05 C8 */	sth r0, 0x5c8(r3)
@@ -95,8 +95,8 @@ lbl_80483CB8:
 /* 80483CD0  7C 06 07 34 */	extsh r6, r0
 /* 80483CD4  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483CD8  1C A0 00 2C */	mulli r5, r0, 0x2c
-/* 80483CDC  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha
-/* 80483CE0  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l
+/* 80483CDC  3C 80 80 48 */	lis r4, M_attr__Q211daObjSwpush5Act_c@ha /* 0x80484D2C@ha */
+/* 80483CE0  38 04 4D 2C */	addi r0, r4, M_attr__Q211daObjSwpush5Act_c@l /* 0x80484D2C@l */
 /* 80483CE4  7C 80 2A 14 */	add r4, r0, r5
 /* 80483CE8  A8 04 00 1C */	lha r0, 0x1c(r4)
 /* 80483CEC  7C 06 00 00 */	cmpw r6, r0

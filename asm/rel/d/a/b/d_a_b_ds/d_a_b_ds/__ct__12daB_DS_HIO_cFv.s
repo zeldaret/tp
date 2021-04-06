@@ -1,8 +1,8 @@
 lbl_805CB22C:
-/* 805CB22C  3C 80 80 5E */	lis r4, lit_3932@ha
-/* 805CB230  38 A4 CA 54 */	addi r5, r4, lit_3932@l
-/* 805CB234  3C 80 80 5E */	lis r4, __vt__12daB_DS_HIO_c@ha
-/* 805CB238  38 04 DA 5C */	addi r0, r4, __vt__12daB_DS_HIO_c@l
+/* 805CB22C  3C 80 80 5E */	lis r4, lit_3932@ha /* 0x805DCA54@ha */
+/* 805CB230  38 A4 CA 54 */	addi r5, r4, lit_3932@l /* 0x805DCA54@l */
+/* 805CB234  3C 80 80 5E */	lis r4, __vt__12daB_DS_HIO_c@ha /* 0x805DDA5C@ha */
+/* 805CB238  38 04 DA 5C */	addi r0, r4, __vt__12daB_DS_HIO_c@l /* 0x805DDA5C@l */
 /* 805CB23C  90 03 00 00 */	stw r0, 0(r3)
 /* 805CB240  38 00 FF FF */	li r0, -1
 /* 805CB244  98 03 00 04 */	stb r0, 4(r3)

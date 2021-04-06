@@ -5,8 +5,8 @@ lbl_8015A6E8:
 /* 8015A6F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015A6F8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8015A6FC  41 82 00 1C */	beq lbl_8015A718
-/* 8015A700  3C A0 80 3C */	lis r5, __vt__18daNpcCd2_HIO_Jnt_c@ha
-/* 8015A704  38 05 9D 60 */	addi r0, r5, __vt__18daNpcCd2_HIO_Jnt_c@l
+/* 8015A700  3C A0 80 3C */	lis r5, __vt__18daNpcCd2_HIO_Jnt_c@ha /* 0x803B9D60@ha */
+/* 8015A704  38 05 9D 60 */	addi r0, r5, __vt__18daNpcCd2_HIO_Jnt_c@l /* 0x803B9D60@l */
 /* 8015A708  90 1F 00 00 */	stw r0, 0(r31)
 /* 8015A70C  7C 80 07 35 */	extsh. r0, r4
 /* 8015A710  40 81 00 08 */	ble lbl_8015A718

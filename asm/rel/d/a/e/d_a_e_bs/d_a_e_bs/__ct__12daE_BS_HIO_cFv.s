@@ -1,8 +1,8 @@
 lbl_8068E12C:
-/* 8068E12C  3C 80 80 69 */	lis r4, lit_3788@ha
-/* 8068E130  38 A4 0D D8 */	addi r5, r4, lit_3788@l
-/* 8068E134  3C 80 80 69 */	lis r4, __vt__12daE_BS_HIO_c@ha
-/* 8068E138  38 04 10 78 */	addi r0, r4, __vt__12daE_BS_HIO_c@l
+/* 8068E12C  3C 80 80 69 */	lis r4, lit_3788@ha /* 0x80690DD8@ha */
+/* 8068E130  38 A4 0D D8 */	addi r5, r4, lit_3788@l /* 0x80690DD8@l */
+/* 8068E134  3C 80 80 69 */	lis r4, __vt__12daE_BS_HIO_c@ha /* 0x80691078@ha */
+/* 8068E138  38 04 10 78 */	addi r0, r4, __vt__12daE_BS_HIO_c@l /* 0x80691078@l */
 /* 8068E13C  90 03 00 00 */	stw r0, 0(r3)
 /* 8068E140  38 00 FF FF */	li r0, -1
 /* 8068E144  98 03 00 04 */	stb r0, 4(r3)

@@ -4,7 +4,7 @@ lbl_807D53AC:
 /* 807D53B4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807D53B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807D53BC  7C 7F 1B 78 */	mr r31, r3
-/* 807D53C0  4B 84 39 20 */	b fopAc_IsActor__FPv
+/* 807D53C0  4B 84 39 21 */	bl fopAc_IsActor__FPv
 /* 807D53C4  2C 03 00 00 */	cmpwi r3, 0
 /* 807D53C8  41 82 00 28 */	beq lbl_807D53F0
 /* 807D53CC  A8 1F 00 08 */	lha r0, 8(r31)

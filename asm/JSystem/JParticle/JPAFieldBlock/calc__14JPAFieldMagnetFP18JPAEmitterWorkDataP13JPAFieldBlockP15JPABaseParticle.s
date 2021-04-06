@@ -17,8 +17,8 @@ lbl_8027C29C:
 /* 8027C2D8  10 C2 00 BA */	ps_madd f6, f2, f2, f0
 /* 8027C2DC  10 C6 00 14 */	ps_sum0 f6, f6, f0, f0
 /* 8027C2E0  C0 22 B9 40 */	lfs f1, lit_2459(r2)
-/* 8027C2E4  3C 80 80 45 */	lis r4, __float_epsilon@ha
-/* 8027C2E8  C0 04 0A EC */	lfs f0, __float_epsilon@l(r4)
+/* 8027C2E4  3C 80 80 45 */	lis r4, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8027C2E8  C0 04 0A EC */	lfs f0, __float_epsilon@l(r4)  /* 0x80450AEC@l */
 /* 8027C2EC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8027C2F0  FC 06 00 40 */	fcmpo cr0, f6, f0
 /* 8027C2F4  4C 40 13 82 */	cror 2, 0, 2

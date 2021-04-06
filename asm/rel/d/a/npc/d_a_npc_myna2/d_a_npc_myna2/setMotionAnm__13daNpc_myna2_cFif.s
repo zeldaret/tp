@@ -5,7 +5,7 @@ lbl_80A84EAC:
 /* 80A84EB8  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 80A84EBC  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 80A84EC0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A84EC4  4B 8D D3 14 */	b _savegpr_28
+/* 80A84EC4  4B 8D D3 15 */	bl _savegpr_28
 /* 80A84EC8  7C 7F 1B 78 */	mr r31, r3
 /* 80A84ECC  7C 9C 23 78 */	mr r28, r4
 /* 80A84ED0  FF E0 08 90 */	fmr f31, f1
@@ -15,18 +15,18 @@ lbl_80A84EAC:
 /* 80A84EE0  54 00 00 32 */	rlwinm r0, r0, 0, 0, 0x19
 /* 80A84EE4  90 03 09 9C */	stw r0, 0x99c(r3)
 /* 80A84EE8  54 80 18 38 */	slwi r0, r4, 3
-/* 80A84EEC  3C 80 80 A9 */	lis r4, l_bckGetParamList@ha
-/* 80A84EF0  38 84 86 DC */	addi r4, r4, l_bckGetParamList@l
+/* 80A84EEC  3C 80 80 A9 */	lis r4, l_bckGetParamList@ha /* 0x80A886DC@ha */
+/* 80A84EF0  38 84 86 DC */	addi r4, r4, l_bckGetParamList@l /* 0x80A886DC@l */
 /* 80A84EF4  7C A4 00 2E */	lwzx r5, r4, r0
 /* 80A84EF8  2C 05 00 00 */	cmpwi r5, 0
 /* 80A84EFC  41 80 00 24 */	blt lbl_80A84F20
 /* 80A84F00  7C 84 02 14 */	add r4, r4, r0
 /* 80A84F04  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A84F08  54 00 10 3A */	slwi r0, r0, 2
-/* 80A84F0C  3C 80 80 A9 */	lis r4, l_resNames@ha
-/* 80A84F10  38 84 87 DC */	addi r4, r4, l_resNames@l
+/* 80A84F0C  3C 80 80 A9 */	lis r4, l_resNames@ha /* 0x80A887DC@ha */
+/* 80A84F10  38 84 87 DC */	addi r4, r4, l_resNames@l /* 0x80A887DC@l */
 /* 80A84F14  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80A84F18  4B 6C DC 14 */	b getTrnsfrmKeyAnmP__8daNpcF_cFPci
+/* 80A84F18  4B 6C DC 15 */	bl getTrnsfrmKeyAnmP__8daNpcF_cFPci
 /* 80A84F1C  7C 7E 1B 78 */	mr r30, r3
 lbl_80A84F20:
 /* 80A84F20  7F E3 FB 78 */	mr r3, r31
@@ -63,13 +63,13 @@ lbl_80A84F84:
 /* 80A84F88  41 82 00 44 */	beq lbl_80A84FCC
 /* 80A84F8C  7F E3 FB 78 */	mr r3, r31
 /* 80A84F90  7F C4 F3 78 */	mr r4, r30
-/* 80A84F94  3C A0 80 A9 */	lis r5, lit_4462@ha
-/* 80A84F98  C0 25 84 CC */	lfs f1, lit_4462@l(r5)
+/* 80A84F94  3C A0 80 A9 */	lis r5, lit_4462@ha /* 0x80A884CC@ha */
+/* 80A84F98  C0 25 84 CC */	lfs f1, lit_4462@l(r5)  /* 0x80A884CC@l */
 /* 80A84F9C  FC 40 F8 90 */	fmr f2, f31
 /* 80A84FA0  7F A5 EB 78 */	mr r5, r29
 /* 80A84FA4  38 C0 00 00 */	li r6, 0
 /* 80A84FA8  38 E0 FF FF */	li r7, -1
-/* 80A84FAC  4B 6C DC 70 */	b setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
+/* 80A84FAC  4B 6C DC 71 */	bl setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
 /* 80A84FB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A84FB4  41 82 00 18 */	beq lbl_80A84FCC
 /* 80A84FB8  80 1F 09 9C */	lwz r0, 0x99c(r31)
@@ -81,7 +81,7 @@ lbl_80A84FCC:
 /* 80A84FCC  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 80A84FD0  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80A84FD4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A84FD8  4B 8D D2 4C */	b _restgpr_28
+/* 80A84FD8  4B 8D D2 4D */	bl _restgpr_28
 /* 80A84FDC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80A84FE0  7C 08 03 A6 */	mtlr r0
 /* 80A84FE4  38 21 00 30 */	addi r1, r1, 0x30

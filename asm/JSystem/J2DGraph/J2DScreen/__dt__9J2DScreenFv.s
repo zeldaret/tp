@@ -7,8 +7,8 @@ lbl_802F8540:
 /* 802F8554  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802F8558  7C 9F 23 78 */	mr r31, r4
 /* 802F855C  41 82 00 30 */	beq lbl_802F858C
-/* 802F8560  3C 80 80 3D */	lis r4, __vt__9J2DScreen@ha
-/* 802F8564  38 04 D0 68 */	addi r0, r4, __vt__9J2DScreen@l
+/* 802F8560  3C 80 80 3D */	lis r4, __vt__9J2DScreen@ha /* 0x803CD068@ha */
+/* 802F8564  38 04 D0 68 */	addi r0, r4, __vt__9J2DScreen@l /* 0x803CD068@l */
 /* 802F8568  90 1E 00 00 */	stw r0, 0(r30)
 /* 802F856C  48 00 00 3D */	bl clean__9J2DScreenFv
 /* 802F8570  7F C3 F3 78 */	mr r3, r30

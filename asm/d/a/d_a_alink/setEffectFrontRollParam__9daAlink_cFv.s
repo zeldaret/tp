@@ -10,10 +10,10 @@ lbl_801207BC:
 /* 801207DC  3B 20 00 00 */	li r25, 0
 /* 801207E0  3B E0 00 00 */	li r31, 0
 /* 801207E4  C3 E2 93 14 */	lfs f31, lit_7307(r2)
-/* 801207E8  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha
-/* 801207EC  3B A3 86 D0 */	addi r29, r3, m_typeFourData__8dPaPoF_c@l
-/* 801207F0  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha
-/* 801207F4  3B C3 87 48 */	addi r30, r3, m_emitterFourData__8dPaPoF_c@l
+/* 801207E8  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha /* 0x803A86D0@ha */
+/* 801207EC  3B A3 86 D0 */	addi r29, r3, m_typeFourData__8dPaPoF_c@l /* 0x803A86D0@l */
+/* 801207F0  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha /* 0x803A8748@ha */
+/* 801207F4  3B C3 87 48 */	addi r30, r3, m_emitterFourData__8dPaPoF_c@l /* 0x803A8748@l */
 lbl_801207F8:
 /* 801207F8  3B 40 00 00 */	li r26, 0
 /* 801207FC  7F 9D FA 14 */	add r28, r29, r31

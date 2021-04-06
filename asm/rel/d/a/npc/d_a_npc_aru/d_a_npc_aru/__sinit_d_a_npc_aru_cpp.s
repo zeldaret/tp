@@ -2,10 +2,10 @@ lbl_809573EC:
 /* 809573EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 809573F0  7C 08 02 A6 */	mflr r0
 /* 809573F4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 809573F8  3C 60 80 95 */	lis r3, cNullVec__6Z2Calc@ha
-/* 809573FC  38 A3 78 E8 */	addi r5, r3, cNullVec__6Z2Calc@l
-/* 80957400  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80957404  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 809573F8  3C 60 80 95 */	lis r3, cNullVec__6Z2Calc@ha /* 0x809578E8@ha */
+/* 809573FC  38 A3 78 E8 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x809578E8@l */
+/* 80957400  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80957404  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80957408  80 64 00 00 */	lwz r3, 0(r4)
 /* 8095740C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80957410  90 65 05 80 */	stw r3, 0x580(r5)
@@ -49,14 +49,14 @@ lbl_809573EC:
 /* 809574A8  90 04 00 4C */	stw r0, 0x4c(r4)
 /* 809574AC  80 05 05 7C */	lwz r0, 0x57c(r5)
 /* 809574B0  90 04 00 50 */	stw r0, 0x50(r4)
-/* 809574B4  3C 60 80 96 */	lis r3, __vt__17daNpc_Aru_Param_c@ha
-/* 809574B8  38 03 81 08 */	addi r0, r3, __vt__17daNpc_Aru_Param_c@l
-/* 809574BC  3C 60 80 96 */	lis r3, l_HIO@ha
-/* 809574C0  94 03 81 6C */	stwu r0, l_HIO@l(r3)
-/* 809574C4  3C 80 80 95 */	lis r4, __dt__17daNpc_Aru_Param_cFv@ha
-/* 809574C8  38 84 76 04 */	addi r4, r4, __dt__17daNpc_Aru_Param_cFv@l
-/* 809574CC  3C A0 80 96 */	lis r5, lit_3874@ha
-/* 809574D0  38 A5 81 60 */	addi r5, r5, lit_3874@l
+/* 809574B4  3C 60 80 96 */	lis r3, __vt__17daNpc_Aru_Param_c@ha /* 0x80958108@ha */
+/* 809574B8  38 03 81 08 */	addi r0, r3, __vt__17daNpc_Aru_Param_c@l /* 0x80958108@l */
+/* 809574BC  3C 60 80 96 */	lis r3, l_HIO@ha /* 0x8095816C@ha */
+/* 809574C0  94 03 81 6C */	stwu r0, l_HIO@l(r3)  /* 0x8095816C@l */
+/* 809574C4  3C 80 80 95 */	lis r4, __dt__17daNpc_Aru_Param_cFv@ha /* 0x80957604@ha */
+/* 809574C8  38 84 76 04 */	addi r4, r4, __dt__17daNpc_Aru_Param_cFv@l /* 0x80957604@l */
+/* 809574CC  3C A0 80 96 */	lis r5, lit_3874@ha /* 0x80958160@ha */
+/* 809574D0  38 A5 81 60 */	addi r5, r5, lit_3874@l /* 0x80958160@l */
 /* 809574D4  4B FF A2 45 */	bl __register_global_object
 /* 809574D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 809574DC  7C 08 03 A6 */	mtlr r0

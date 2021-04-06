@@ -9,11 +9,11 @@ lbl_800A3F00:
 /* 800A3F1C  7C DF 33 78 */	mr r31, r6
 /* 800A3F20  38 00 00 00 */	li r0, 0
 /* 800A3F24  90 04 00 00 */	stw r0, 0(r4)
-/* 800A3F28  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 800A3F2C  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l
+/* 800A3F28  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 800A3F2C  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l /* 0x80406194@l */
 /* 800A3F30  7C A4 2B 78 */	mr r4, r5
-/* 800A3F34  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 800A3F38  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 800A3F34  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A3F38  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A3F3C  3C A5 00 02 */	addis r5, r5, 2
 /* 800A3F40  38 C0 00 80 */	li r6, 0x80
 /* 800A3F44  38 A5 C2 F8 */	addi r5, r5, -15624

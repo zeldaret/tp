@@ -41,15 +41,15 @@ lbl_800B15CC:
 /* 800B15D8  41 82 01 1C */	beq lbl_800B16F4
 /* 800B15DC  C0 0D 87 58 */	lfs f0, mWaterY__11fopAcM_wt_c(r13)
 /* 800B15E0  D0 1F 33 B8 */	stfs f0, 0x33b8(r31)
-/* 800B15E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B15E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B15E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B15E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B15EC  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 800B15F0  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha
-/* 800B15F4  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l
+/* 800B15F0  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 800B15F4  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 800B15F8  4B FC 38 59 */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 800B15FC  98 7F 2F C5 */	stb r3, 0x2fc5(r31)
-/* 800B1600  3C 60 80 3F */	lis r3, mWaterCheck__11fopAcM_wt_c@ha
-/* 800B1604  38 63 1D 80 */	addi r3, r3, mWaterCheck__11fopAcM_wt_c@l
+/* 800B1600  3C 60 80 3F */	lis r3, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 800B1604  38 63 1D 80 */	addi r3, r3, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 800B1608  48 0F 9F 95 */	bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800B160C  98 7F 2F C6 */	stb r3, 0x2fc6(r31)
 /* 800B1610  88 1F 2F C5 */	lbz r0, 0x2fc5(r31)
@@ -96,12 +96,12 @@ lbl_800B16A0:
 /* 800B16AC  40 80 00 38 */	bge lbl_800B16E4
 /* 800B16B0  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 800B16B4  7C 09 07 74 */	extsb r9, r0
-/* 800B16B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B16BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B16B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B16BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B16C0  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 800B16C4  38 9F 31 A8 */	addi r4, r31, 0x31a8
-/* 800B16C8  3C A0 80 3F */	lis r5, mWaterCheck__11fopAcM_wt_c@ha
-/* 800B16CC  38 A5 1D 80 */	addi r5, r5, mWaterCheck__11fopAcM_wt_c@l
+/* 800B16C8  3C A0 80 3F */	lis r5, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 800B16CC  38 A5 1D 80 */	addi r5, r5, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 800B16D0  38 C1 00 08 */	addi r6, r1, 8
 /* 800B16D4  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 800B16D8  38 FF 01 0C */	addi r7, r31, 0x10c

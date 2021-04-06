@@ -18,16 +18,16 @@ lbl_80107218:
 /* 80107258  7F C3 F3 78 */	mr r3, r30
 /* 8010725C  38 80 00 F7 */	li r4, 0xf7
 /* 80107260  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80107264  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80107268  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l
+/* 80107264  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107268  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010726C  C0 46 00 1C */	lfs f2, 0x1c(r6)
 /* 80107270  A8 A6 00 14 */	lha r5, 0x14(r6)
 /* 80107274  C0 66 00 20 */	lfs f3, 0x20(r6)
 /* 80107278  4B FA 5D 95 */	bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 8010727C  2C 1F 00 00 */	cmpwi r31, 0
 /* 80107280  40 82 00 38 */	bne lbl_801072B8
-/* 80107284  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha
-/* 80107288  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l
+/* 80107284  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107288  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010728C  C0 03 00 5C */	lfs f0, 0x5c(r3)
 /* 80107290  C0 23 00 58 */	lfs f1, 0x58(r3)
 /* 80107294  FC 1F 08 40 */	fcmpo cr0, f31, f1

@@ -17,23 +17,23 @@ lbl_80C48084:
 /* 80C48088  98 1F 06 1E */	stb r0, 0x61e(r31)
 /* 80C4808C  38 00 FF FF */	li r0, -1
 /* 80C48090  90 1F 06 14 */	stw r0, 0x614(r31)
-/* 80C48094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C48098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C48094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C48098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C4809C  88 9F 05 EB */	lbz r4, 0x5eb(r31)
 /* 80C480A0  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C480A4  7C 05 07 74 */	extsb r5, r0
-/* 80C480A8  4B 3E D2 B8 */	b isSwitch__10dSv_info_cCFii
+/* 80C480A8  4B 3E D2 B9 */	bl isSwitch__10dSv_info_cCFii
 /* 80C480AC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C480B0  40 82 00 84 */	bne lbl_80C48134
 /* 80C480B4  88 1F 05 ED */	lbz r0, 0x5ed(r31)
 /* 80C480B8  28 00 00 00 */	cmplwi r0, 0
 /* 80C480BC  41 82 00 78 */	beq lbl_80C48134
-/* 80C480C0  3C 60 80 C5 */	lis r3, lit_3779@ha
-/* 80C480C4  C0 03 9C FC */	lfs f0, lit_3779@l(r3)
+/* 80C480C0  3C 60 80 C5 */	lis r3, lit_3779@ha /* 0x80C49CFC@ha */
+/* 80C480C4  C0 03 9C FC */	lfs f0, lit_3779@l(r3)  /* 0x80C49CFC@l */
 /* 80C480C8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80C480CC  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 80C480D0  3C 60 80 C5 */	lis r3, lit_3877@ha
-/* 80C480D4  C0 03 9D 14 */	lfs f0, lit_3877@l(r3)
+/* 80C480D0  3C 60 80 C5 */	lis r3, lit_3877@ha /* 0x80C49D14@ha */
+/* 80C480D4  C0 03 9D 14 */	lfs f0, lit_3877@l(r3)  /* 0x80C49D14@l */
 /* 80C480D8  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80C480DC  88 1F 05 EA */	lbz r0, 0x5ea(r31)
 /* 80C480E0  28 00 00 03 */	cmplwi r0, 3
@@ -58,7 +58,7 @@ lbl_80C4811C:
 /* 80C48120  39 00 00 00 */	li r8, 0
 /* 80C48124  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 80C48128  39 40 FF FF */	li r10, -1
-/* 80C4812C  4B 3D 1E 4C */	b fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80C4812C  4B 3D 1E 4D */	bl fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80C48130  90 7F 06 14 */	stw r3, 0x614(r31)
 lbl_80C48134:
 /* 80C48134  83 E1 00 2C */	lwz r31, 0x2c(r1)

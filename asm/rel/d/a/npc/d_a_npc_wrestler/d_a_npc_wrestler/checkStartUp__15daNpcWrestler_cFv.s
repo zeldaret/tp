@@ -6,8 +6,8 @@ lbl_80B301BC:
 /* 80B301CC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80B301D0  7C 7E 1B 78 */	mr r30, r3
 /* 80B301D4  3B E0 00 00 */	li r31, 0
-/* 80B301D8  3C 60 80 B4 */	lis r3, lit_4604@ha
-/* 80B301DC  38 83 26 C0 */	addi r4, r3, lit_4604@l
+/* 80B301D8  3C 60 80 B4 */	lis r3, lit_4604@ha /* 0x80B426C0@ha */
+/* 80B301DC  38 83 26 C0 */	addi r4, r3, lit_4604@l /* 0x80B426C0@l */
 /* 80B301E0  80 64 00 00 */	lwz r3, 0(r4)
 /* 80B301E4  80 04 00 04 */	lwz r0, 4(r4)
 /* 80B301E8  90 61 00 08 */	stw r3, 8(r1)
@@ -16,7 +16,7 @@ lbl_80B301BC:
 /* 80B301F4  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80B301F8  38 61 00 08 */	addi r3, r1, 8
 /* 80B301FC  38 9E 0D CC */	addi r4, r30, 0xdcc
-/* 80B30200  4B 83 1E 48 */	b __ptmf_cmpr
+/* 80B30200  4B 83 1E 49 */	bl __ptmf_cmpr
 /* 80B30204  7C 60 00 34 */	cntlzw r0, r3
 /* 80B30208  54 00 DE 3F */	rlwinm. r0, r0, 0x1b, 0x18, 0x1f
 /* 80B3020C  41 82 00 14 */	beq lbl_80B30220

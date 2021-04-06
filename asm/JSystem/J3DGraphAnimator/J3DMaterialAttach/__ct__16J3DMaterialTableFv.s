@@ -1,6 +1,6 @@
 lbl_8032F5D0:
-/* 8032F5D0  3C 80 80 3D */	lis r4, __vt__16J3DMaterialTable@ha
-/* 8032F5D4  38 04 EE 80 */	addi r0, r4, __vt__16J3DMaterialTable@l
+/* 8032F5D0  3C 80 80 3D */	lis r4, __vt__16J3DMaterialTable@ha /* 0x803CEE80@ha */
+/* 8032F5D4  38 04 EE 80 */	addi r0, r4, __vt__16J3DMaterialTable@l /* 0x803CEE80@l */
 /* 8032F5D8  90 03 00 00 */	stw r0, 0(r3)
 /* 8032F5DC  38 00 00 00 */	li r0, 0
 /* 8032F5E0  B0 03 00 04 */	sth r0, 4(r3)

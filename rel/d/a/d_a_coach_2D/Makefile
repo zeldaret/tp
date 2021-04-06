@@ -3,19 +3,20 @@
 #
 
 M161_TARGET := $(BUILD_DIR)/rel/d/a/d_a_coach_2D.plf
+M161_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_coach_2D.lcf
+M161_MAP := $(BUILD_DIR)/rel/d/a/d_a_coach_2D.map
 
 M161_CPP_FILES := \
-	rel/d/a/d_a_coach_2D/executor.cpp \
-	rel/d/a/d_a_coach_2D/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_coach_2D/d_a_coach_2D.cpp \
 
 M161_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_2D/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_2D/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_coach_2D/d_a_coach_2D.o \
 
 M161_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_2D/libRuntime.PPCEABI.H.a \
 
 M161_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M161_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map161.map\
+	-m _prolog \
+	-lcf $(M161_LDSCRIPT) \
+	-unused -map $(M161_MAP) \
+	-w off \
 
 $(M161_TARGET): $(M161_O_FILES) $(M161_LIBS)
+	@echo [161] creating $(M161_TARGET)
 	@echo $(M161_LIBS) $(M161_O_FILES) > build/M161_ofiles
-	$(LD) -opt_partial $(M161_LDFLAGS) -o $(M161_TARGET) @build/M161_ofiles
+	@python3 tools/lcf.py rel 161 --output $(M161_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M161_LDFLAGS) -o $(M161_TARGET) @build/M161_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_coach_2D/%.o: rel/d/a/d_a_coach_2D/%.cpp
+	@echo [161] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M161_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M161_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_coach_2D/libs/Runtime.PPCEABI.H/Makefile
 

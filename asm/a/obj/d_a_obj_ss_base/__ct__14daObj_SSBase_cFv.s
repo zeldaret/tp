@@ -5,8 +5,8 @@ lbl_8015E3F8:
 /* 8015E404  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015E408  7C 7F 1B 78 */	mr r31, r3
 /* 8015E40C  4B EB A7 59 */	bl __ct__10fopAc_ac_cFv
-/* 8015E410  3C 60 80 3C */	lis r3, __vt__14daObj_SSBase_c@ha
-/* 8015E414  38 03 A0 88 */	addi r0, r3, __vt__14daObj_SSBase_c@l
+/* 8015E410  3C 60 80 3C */	lis r3, __vt__14daObj_SSBase_c@ha /* 0x803BA088@ha */
+/* 8015E414  38 03 A0 88 */	addi r0, r3, __vt__14daObj_SSBase_c@l /* 0x803BA088@l */
 /* 8015E418  90 1F 05 68 */	stw r0, 0x568(r31)
 /* 8015E41C  38 80 00 00 */	li r4, 0
 /* 8015E420  90 9F 05 6C */	stw r4, 0x56c(r31)

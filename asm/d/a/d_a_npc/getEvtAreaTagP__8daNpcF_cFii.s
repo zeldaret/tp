@@ -11,14 +11,14 @@ lbl_801542A0:
 /* 801542C4  90 0D 8A 70 */	stw r0, mFindCount__8daNpcF_c(r13)
 /* 801542C8  38 00 02 E9 */	li r0, 0x2e9
 /* 801542CC  B0 0D 8A 74 */	sth r0, mSrchActorName__8daNpcF_c(r13)
-/* 801542D0  3C 60 80 15 */	lis r3, srchActor__8daNpcF_cFPvPv@ha
-/* 801542D4  38 63 26 E8 */	addi r3, r3, srchActor__8daNpcF_cFPvPv@l
+/* 801542D0  3C 60 80 15 */	lis r3, srchActor__8daNpcF_cFPvPv@ha /* 0x801526E8@ha */
+/* 801542D4  38 63 26 E8 */	addi r3, r3, srchActor__8daNpcF_cFPvPv@l /* 0x801526E8@l */
 /* 801542D8  7C C4 33 78 */	mr r4, r6
 /* 801542DC  4B EC D0 5D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 801542E0  38 80 00 00 */	li r4, 0
 /* 801542E4  80 0D 8A 70 */	lwz r0, mFindCount__8daNpcF_c(r13)
-/* 801542E8  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha
-/* 801542EC  38 C3 57 E8 */	addi r6, r3, mFindActorPList__8daNpcF_c@l
+/* 801542E8  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha /* 0x804257E8@ha */
+/* 801542EC  38 C3 57 E8 */	addi r6, r3, mFindActorPList__8daNpcF_c@l /* 0x804257E8@l */
 /* 801542F0  7C 09 03 A6 */	mtctr r0
 /* 801542F4  2C 00 00 00 */	cmpwi r0, 0
 /* 801542F8  40 81 00 58 */	ble lbl_80154350

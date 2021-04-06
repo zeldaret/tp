@@ -55,13 +55,10 @@ extern "C" void findImportantMtxIndex__12J3DJointTreeFv();
 extern "C" void calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf();
 extern "C" void setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer();
 extern "C" void __dt__12J3DJointTreeFv();
-extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 extern "C" void __ct__14J3DDrawMtxDataFv();
@@ -78,7 +75,7 @@ extern "C" extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803CECA8-803CECF4 004C+00 s=1 e=0 z=0  None .data      @871 */
+/* 803CECA8-803CECF4 -00001 004C+00 1/1 0/0 0/0 .data            @871 */
 SECTION_DATA static void* lit_871[19] = {
     (void*)(((char*)
                  makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable) +
@@ -139,8 +136,8 @@ SECTION_DATA static void* lit_871[19] = {
             0xCC),
 };
 
-/* 803CECF4-803CED08 0010+04 s=2 e=1 z=0  None .data      __vt__12J3DJointTree */
-SECTION_DATA void* __vt__12J3DJointTree[4 + 1 /* padding */] = {
+/* 803CECF4-803CED08 02BE14 0010+04 2/2 1/1 0/0 .data            __vt__12J3DJointTree */
+SECTION_DATA extern void* __vt__12J3DJointTree[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf,
@@ -149,10 +146,7 @@ SECTION_DATA void* __vt__12J3DJointTree[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80325A18-80325A9C 0084+00 s=0 e=1 z=0  None .text      __ct__12J3DJointTreeFv */
-//	80325A2C: 803CECF4 (__vt__12J3DJointTree)
-//	80325A30: 803CECF4 (__vt__12J3DJointTree)
-//	80325A74: 803115E0 (__ct__14J3DDrawMtxDataFv)
+/* 80325A18-80325A9C 320358 0084+00 0/0 1/1 0/0 .text            __ct__12J3DJointTreeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -162,14 +156,9 @@ asm J3DJointTree::J3DJointTree() {
 }
 #pragma pop
 
-/* 80325A9C-80325C00 0164+00 s=1 e=2 z=0  None .text
+/* 80325A9C-80325C00 3203DC 0164+00 1/0 2/2 0/0 .text
  * makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
  */
-//	80325AAC: 803621C4 (_savegpr_23)
-//	80325AE4: 803CECA8 (lit_871)
-//	80325AE8: 803CECA8 (lit_871)
-//	80325BA4: 8032F13C (appendChild__8J3DJointFP8J3DJoint)
-//	80325BEC: 80362210 (_restgpr_23)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -181,15 +170,14 @@ asm void J3DJointTree::makeHierarchy(J3DJoint* param_0, J3DModelHierarchy const*
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456418-80456420 0004+04 s=1 e=0 z=0  None .sdata2    @903 */
+/* 80456418-80456420 004A18 0004+04 1/1 0/0 0/0 .sdata2          @903 */
 SECTION_SDATA2 static f32 lit_903[1 + 1 /* padding */] = {
     -1.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80325C00-80325CAC 00AC+00 s=0 e=2 z=0  None .text      findImportantMtxIndex__12J3DJointTreeFv */
-//	80325C5C: 80456418 (lit_903)
+/* 80325C00-80325CAC 320540 00AC+00 0/0 2/2 0/0 .text findImportantMtxIndex__12J3DJointTreeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,11 +187,8 @@ asm void J3DJointTree::findImportantMtxIndex() {
 }
 #pragma pop
 
-/* 80325CAC-80325D1C 0070+00 s=1 e=0 z=0  None .text
+/* 80325CAC-80325D1C 3205EC 0070+00 1/0 0/0 0/0 .text
  * calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf          */
-//	80325CE8: 80325D1C (setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer)
-//	80325CFC: 804515F8 (mCurrentMtxCalc__8J3DJoint)
-//	80325D00: 8032F3F8 (recursiveCalc__8J3DJointFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,9 +198,8 @@ asm void J3DJointTree::calc(J3DMtxBuffer* param_0, Vec const& param_1, f32 const
 }
 #pragma pop
 
-/* 80325D1C-80325D24 0008+00 s=1 e=0 z=0  None .text      setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
+/* 80325D1C-80325D24 32065C 0008+00 1/1 0/0 0/0 .text setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
  */
-//	80325D1C: 804515F0 (mMtxBuffer__10J3DMtxCalc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -225,11 +209,7 @@ asm void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer* param_0) {
 }
 #pragma pop
 
-/* 80325D24-80325D88 0064+00 s=1 e=0 z=0  None .text      __dt__12J3DJointTreeFv */
-//	80325D44: 803CECF4 (__vt__12J3DJointTree)
-//	80325D48: 803CECF4 (__vt__12J3DJointTree)
-//	80325D58: 803115F4 (__dt__14J3DDrawMtxDataFv)
-//	80325D68: 802CED3C (__dl__FPv)
+/* 80325D24-80325D88 320664 0064+00 1/0 0/0 0/0 .text            __dt__12J3DJointTreeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

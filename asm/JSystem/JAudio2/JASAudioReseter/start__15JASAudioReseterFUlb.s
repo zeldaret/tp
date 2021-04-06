@@ -15,8 +15,8 @@ lbl_8029D168:
 /* 8029D168  98 BE 00 0C */	stb r5, 0xc(r30)
 /* 8029D16C  48 0A 05 89 */	bl OSDisableInterrupts
 /* 8029D170  90 61 00 08 */	stw r3, 8(r1)
-/* 8029D174  3C 60 80 2A */	lis r3, callback__15JASAudioReseterFPv@ha
-/* 8029D178  38 63 D2 D4 */	addi r3, r3, callback__15JASAudioReseterFPv@l
+/* 8029D174  3C 60 80 2A */	lis r3, callback__15JASAudioReseterFPv@ha /* 0x8029D2D4@ha */
+/* 8029D178  38 63 D2 D4 */	addi r3, r3, callback__15JASAudioReseterFPv@l /* 0x8029D2D4@l */
 /* 8029D17C  7F C4 F3 78 */	mr r4, r30
 /* 8029D180  48 00 10 C1 */	bl registerDspSyncCallback__9JASDriverFPFPv_lPv
 /* 8029D184  54 60 06 3F */	clrlwi. r0, r3, 0x18

@@ -29,14 +29,14 @@ lbl_8003BFFC:
 /* 8003C014  3B FF 00 24 */	addi r31, r31, 0x24
 /* 8003C018  41 80 FF E4 */	blt lbl_8003BFFC
 /* 8003C01C  38 7C 12 00 */	addi r3, r28, 0x1200
-/* 8003C020  3C 80 80 04 */	lis r4, __dt__11dRes_info_cFv@ha
-/* 8003C024  38 84 A2 80 */	addi r4, r4, __dt__11dRes_info_cFv@l
+/* 8003C020  3C 80 80 04 */	lis r4, __dt__11dRes_info_cFv@ha /* 0x8003A280@ha */
+/* 8003C024  38 84 A2 80 */	addi r4, r4, __dt__11dRes_info_cFv@l /* 0x8003A280@l */
 /* 8003C028  38 A0 00 24 */	li r5, 0x24
 /* 8003C02C  38 C0 00 40 */	li r6, 0x40
 /* 8003C030  48 32 5C B9 */	bl __destroy_arr
 /* 8003C034  7F 83 E3 78 */	mr r3, r28
-/* 8003C038  3C 80 80 04 */	lis r4, __dt__11dRes_info_cFv@ha
-/* 8003C03C  38 84 A2 80 */	addi r4, r4, __dt__11dRes_info_cFv@l
+/* 8003C038  3C 80 80 04 */	lis r4, __dt__11dRes_info_cFv@ha /* 0x8003A280@ha */
+/* 8003C03C  38 84 A2 80 */	addi r4, r4, __dt__11dRes_info_cFv@l /* 0x8003A280@l */
 /* 8003C040  38 A0 00 24 */	li r5, 0x24
 /* 8003C044  38 C0 00 80 */	li r6, 0x80
 /* 8003C048  48 32 5C A1 */	bl __destroy_arr

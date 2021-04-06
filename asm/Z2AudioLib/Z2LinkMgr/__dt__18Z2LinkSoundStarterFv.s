@@ -7,12 +7,12 @@ lbl_802C3464:
 /* 802C3478  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802C347C  7C 9F 23 78 */	mr r31, r4
 /* 802C3480  41 82 00 64 */	beq lbl_802C34E4
-/* 802C3484  3C 60 80 3D */	lis r3, __vt__18Z2LinkSoundStarter@ha
-/* 802C3488  38 03 B9 6C */	addi r0, r3, __vt__18Z2LinkSoundStarter@l
+/* 802C3484  3C 60 80 3D */	lis r3, __vt__18Z2LinkSoundStarter@ha /* 0x803CB96C@ha */
+/* 802C3488  38 03 B9 6C */	addi r0, r3, __vt__18Z2LinkSoundStarter@l /* 0x803CB96C@l */
 /* 802C348C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C3490  41 82 00 44 */	beq lbl_802C34D4
-/* 802C3494  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802C3498  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802C3494  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802C3498  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802C349C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C34A0  34 1E 00 04 */	addic. r0, r30, 4
 /* 802C34A4  41 82 00 24 */	beq lbl_802C34C8

@@ -44,8 +44,8 @@ lbl_803304A0:
 /* 803304DC  4B F9 E7 71 */	bl __nw__FUl
 /* 803304E0  7C 73 1B 79 */	or. r19, r3, r3
 /* 803304E4  41 82 00 2C */	beq lbl_80330510
-/* 803304E8  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha
-/* 803304EC  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l
+/* 803304E8  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha /* 0x803CDCF0@ha */
+/* 803304EC  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l /* 0x803CDCF0@l */
 /* 803304F0  90 13 00 00 */	stw r0, 0(r19)
 /* 803304F4  3C 80 3C F4 */	lis r4, 0x3CF4 /* 0x3CF3CF00@ha */
 /* 803304F8  38 04 CF 00 */	addi r0, r4, 0xCF00 /* 0x3CF3CF00@l */

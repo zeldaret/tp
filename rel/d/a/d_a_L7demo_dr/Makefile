@@ -3,17 +3,15 @@
 #
 
 M135_TARGET := $(BUILD_DIR)/rel/d/a/d_a_L7demo_dr.plf
+M135_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_L7demo_dr.lcf
+M135_MAP := $(BUILD_DIR)/rel/d/a/d_a_L7demo_dr.map
 
 M135_CPP_FILES := \
-	rel/d/a/d_a_L7demo_dr/executor.cpp \
-	rel/d/a/d_a_L7demo_dr/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_L7demo_dr/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_L7demo_dr/d_a_L7demo_dr.cpp \
 
 M135_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/d_a_L7demo_dr.o \
 
 M135_LIBS := \
@@ -29,15 +27,21 @@ M135_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map135.map\
+	-m _prolog \
+	-lcf $(M135_LDSCRIPT) \
+	-unused -map $(M135_MAP) \
+	-w off \
 
 $(M135_TARGET): $(M135_O_FILES) $(M135_LIBS)
+	@echo [135] creating $(M135_TARGET)
 	@echo $(M135_LIBS) $(M135_O_FILES) > build/M135_ofiles
-	$(LD) -opt_partial $(M135_LDFLAGS) -o $(M135_TARGET) @build/M135_ofiles
+	@python3 tools/lcf.py rel 135 --output $(M135_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M135_LDFLAGS) -o $(M135_TARGET) @build/M135_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_L7demo_dr/%.o: rel/d/a/d_a_L7demo_dr/%.cpp
+	@echo [135] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M135_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M135_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

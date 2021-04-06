@@ -3,19 +3,20 @@
 #
 
 M445_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood.plf
+M445_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood.lcf
+M445_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood.map
 
 M445_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fireWood/executor.cpp \
-	rel/d/a/obj/d_a_obj_fireWood/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_fireWood/d_a_obj_fireWood.cpp \
 
 M445_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/d_a_obj_fireWood.o \
 
 M445_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/libRuntime.PPCEABI.H.a \
 
 M445_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M445_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map445.map\
+	-m _prolog \
+	-lcf $(M445_LDSCRIPT) \
+	-unused -map $(M445_MAP) \
+	-w off \
 
 $(M445_TARGET): $(M445_O_FILES) $(M445_LIBS)
+	@echo [445] creating $(M445_TARGET)
 	@echo $(M445_LIBS) $(M445_O_FILES) > build/M445_ofiles
-	$(LD) -opt_partial $(M445_LDFLAGS) -o $(M445_TARGET) @build/M445_ofiles
+	@python3 tools/lcf.py rel 445 --output $(M445_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M445_LDFLAGS) -o $(M445_TARGET) @build/M445_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fireWood/%.o: rel/d/a/obj/d_a_obj_fireWood/%.cpp
+	@echo [445] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M445_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M445_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_fireWood/libs/Runtime.PPCEABI.H/Makefile
 

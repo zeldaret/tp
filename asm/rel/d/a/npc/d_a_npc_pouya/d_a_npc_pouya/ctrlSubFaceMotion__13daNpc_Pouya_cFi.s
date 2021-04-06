@@ -11,8 +11,8 @@ lbl_80AAEBCC:
 /* 80AAEBF0  80 BF 0B 58 */	lwz r5, 0xb58(r31)
 /* 80AAEBF4  28 05 00 06 */	cmplwi r5, 6
 /* 80AAEBF8  41 81 00 84 */	bgt lbl_80AAEC7C
-/* 80AAEBFC  3C 60 80 AB */	lis r3, lit_4598@ha
-/* 80AAEC00  38 83 2A 34 */	addi r4, r3, lit_4598@l
+/* 80AAEBFC  3C 60 80 AB */	lis r3, lit_4598@ha /* 0x80AB2A34@ha */
+/* 80AAEC00  38 83 2A 34 */	addi r4, r3, lit_4598@l /* 0x80AB2A34@l */
 /* 80AAEC04  54 A3 10 3A */	slwi r3, r5, 2
 /* 80AAEC08  7C 64 18 2E */	lwzx r3, r4, r3
 /* 80AAEC0C  7C 69 03 A6 */	mtctr r3
@@ -60,8 +60,8 @@ lbl_80AAEC84:
 /* 80AAECA0  88 7F 06 61 */	lbz r3, 0x661(r31)
 /* 80AAECA4  54 63 07 FF */	clrlwi. r3, r3, 0x1f
 /* 80AAECA8  40 82 00 1C */	bne lbl_80AAECC4
-/* 80AAECAC  3C 60 80 AB */	lis r3, lit_4204@ha
-/* 80AAECB0  C0 23 20 B8 */	lfs f1, lit_4204@l(r3)
+/* 80AAECAC  3C 60 80 AB */	lis r3, lit_4204@ha /* 0x80AB20B8@ha */
+/* 80AAECB0  C0 23 20 B8 */	lfs f1, lit_4204@l(r3)  /* 0x80AB20B8@l */
 /* 80AAECB4  C0 1F 06 68 */	lfs f0, 0x668(r31)
 /* 80AAECB8  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80AAECBC  41 82 00 08 */	beq lbl_80AAECC4
@@ -83,8 +83,8 @@ lbl_80AAECE8:
 /* 80AAECF4  88 7F 0F CC */	lbz r3, 0xfcc(r31)
 /* 80AAECF8  7C 63 07 74 */	extsb r3, r3
 /* 80AAECFC  54 64 10 3A */	slwi r4, r3, 2
-/* 80AAED00  3C 60 80 AB */	lis r3, brkSeqList@ha
-/* 80AAED04  38 63 2A 28 */	addi r3, r3, brkSeqList@l
+/* 80AAED00  3C 60 80 AB */	lis r3, brkSeqList@ha /* 0x80AB2A28@ha */
+/* 80AAED04  38 63 2A 28 */	addi r3, r3, brkSeqList@l /* 0x80AB2A28@l */
 /* 80AAED08  7C 83 20 2E */	lwzx r4, r3, r4
 /* 80AAED0C  88 7F 0F CD */	lbz r3, 0xfcd(r31)
 /* 80AAED10  7C 63 07 74 */	extsb r3, r3
@@ -95,11 +95,11 @@ lbl_80AAECE8:
 /* 80AAED24  7F E3 FB 78 */	mr r3, r31
 /* 80AAED28  80 1E 00 08 */	lwz r0, 8(r30)
 /* 80AAED2C  54 00 10 3A */	slwi r0, r0, 2
-/* 80AAED30  3C 80 80 AB */	lis r4, l_resNameList@ha
-/* 80AAED34  38 84 22 70 */	addi r4, r4, l_resNameList@l
+/* 80AAED30  3C 80 80 AB */	lis r4, l_resNameList@ha /* 0x80AB2270@ha */
+/* 80AAED34  38 84 22 70 */	addi r4, r4, l_resNameList@l /* 0x80AB2270@l */
 /* 80AAED38  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80AAED3C  80 BE 00 00 */	lwz r5, 0(r30)
-/* 80AAED40  4B 69 94 08 */	b getTevRegKeyAnmP__8daNpcT_cFPCci
+/* 80AAED40  4B 69 94 09 */	bl getTevRegKeyAnmP__8daNpcT_cFPCci
 /* 80AAED44  7C 60 1B 78 */	mr r0, r3
 lbl_80AAED48:
 /* 80AAED48  28 00 00 00 */	cmplwi r0, 0
@@ -109,10 +109,10 @@ lbl_80AAED48:
 /* 80AAED58  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80AAED5C  7F E3 FB 78 */	mr r3, r31
 /* 80AAED60  7C 04 03 78 */	mr r4, r0
-/* 80AAED64  3C C0 80 AB */	lis r6, lit_4414@ha
-/* 80AAED68  C0 26 20 C8 */	lfs f1, lit_4414@l(r6)
+/* 80AAED64  3C C0 80 AB */	lis r6, lit_4414@ha /* 0x80AB20C8@ha */
+/* 80AAED68  C0 26 20 C8 */	lfs f1, lit_4414@l(r6)  /* 0x80AB20C8@l */
 /* 80AAED6C  80 DE 00 04 */	lwz r6, 4(r30)
-/* 80AAED70  4B 69 96 08 */	b setBrkAnm__8daNpcT_cFP15J3DAnmTevRegKeyP12J3DModelDatafi
+/* 80AAED70  4B 69 96 09 */	bl setBrkAnm__8daNpcT_cFP15J3DAnmTevRegKeyP12J3DModelDatafi
 /* 80AAED74  2C 03 00 00 */	cmpwi r3, 0
 /* 80AAED78  41 82 00 10 */	beq lbl_80AAED88
 /* 80AAED7C  80 1F 0D 98 */	lwz r0, 0xd98(r31)

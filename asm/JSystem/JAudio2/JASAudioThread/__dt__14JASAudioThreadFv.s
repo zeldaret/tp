@@ -7,8 +7,8 @@ lbl_8029D028:
 /* 8029D03C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8029D040  7C 9F 23 78 */	mr r31, r4
 /* 8029D044  41 82 00 54 */	beq lbl_8029D098
-/* 8029D048  3C 60 80 3C */	lis r3, __vt__14JASAudioThread@ha
-/* 8029D04C  38 03 78 E0 */	addi r0, r3, __vt__14JASAudioThread@l
+/* 8029D048  3C 60 80 3C */	lis r3, __vt__14JASAudioThread@ha /* 0x803C78E0@ha */
+/* 8029D04C  38 03 78 E0 */	addi r0, r3, __vt__14JASAudioThread@l /* 0x803C78E0@l */
 /* 8029D050  90 1E 00 00 */	stw r0, 0(r30)
 /* 8029D054  34 1E 00 7C */	addic. r0, r30, 0x7c
 /* 8029D058  41 82 00 24 */	beq lbl_8029D07C

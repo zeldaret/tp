@@ -22,8 +22,8 @@ lbl_802460DC:
 /* 8024612C  FF 80 18 90 */	fmr f28, f3
 /* 80246130  FF A0 20 90 */	fmr f29, f4
 /* 80246134  FF C0 28 90 */	fmr f30, f5
-/* 80246138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024613C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80246138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024613C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80246140  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 80246144  7F E3 FB 78 */	mr r3, r31
 /* 80246148  81 9F 00 00 */	lwz r12, 0(r31)

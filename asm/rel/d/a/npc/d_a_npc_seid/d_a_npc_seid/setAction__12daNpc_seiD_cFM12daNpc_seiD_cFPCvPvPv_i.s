@@ -9,13 +9,13 @@ lbl_80ACA3CC:
 /* 80ACA3E8  38 00 00 03 */	li r0, 3
 /* 80ACA3EC  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80ACA3F0  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80ACA3F4  4B 89 7C 24 */	b __ptmf_test
+/* 80ACA3F4  4B 89 7C 25 */	bl __ptmf_test
 /* 80ACA3F8  2C 03 00 00 */	cmpwi r3, 0
 /* 80ACA3FC  41 82 00 18 */	beq lbl_80ACA414
 /* 80ACA400  7F C3 F3 78 */	mr r3, r30
 /* 80ACA404  38 80 00 00 */	li r4, 0
 /* 80ACA408  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80ACA40C  4B 89 7C 78 */	b __ptmf_scall
+/* 80ACA40C  4B 89 7C 79 */	bl __ptmf_scall
 /* 80ACA410  60 00 00 00 */	nop 
 lbl_80ACA414:
 /* 80ACA414  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80ACA414:
 /* 80ACA42C  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80ACA430  90 1E 0E 5C */	stw r0, 0xe5c(r30)
 /* 80ACA434  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80ACA438  4B 89 7B E0 */	b __ptmf_test
+/* 80ACA438  4B 89 7B E1 */	bl __ptmf_test
 /* 80ACA43C  2C 03 00 00 */	cmpwi r3, 0
 /* 80ACA440  41 82 00 18 */	beq lbl_80ACA458
 /* 80ACA444  7F C3 F3 78 */	mr r3, r30
 /* 80ACA448  38 80 00 00 */	li r4, 0
 /* 80ACA44C  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80ACA450  4B 89 7C 34 */	b __ptmf_scall
+/* 80ACA450  4B 89 7C 35 */	bl __ptmf_scall
 /* 80ACA454  60 00 00 00 */	nop 
 lbl_80ACA458:
 /* 80ACA458  38 60 00 01 */	li r3, 1

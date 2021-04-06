@@ -7,7 +7,7 @@ lbl_80573DAC:
 /* 80573DC0  41 82 00 10 */	beq lbl_80573DD0
 /* 80573DC4  7C 80 07 35 */	extsh. r0, r4
 /* 80573DC8  40 81 00 08 */	ble lbl_80573DD0
-/* 80573DCC  4B D5 AF 70 */	b __dl__FPv
+/* 80573DCC  4B D5 AF 71 */	bl __dl__FPv
 lbl_80573DD0:
 /* 80573DD0  7F E3 FB 78 */	mr r3, r31
 /* 80573DD4  83 E1 00 0C */	lwz r31, 0xc(r1)

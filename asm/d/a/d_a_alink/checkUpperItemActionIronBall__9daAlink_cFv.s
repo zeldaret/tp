@@ -40,8 +40,8 @@ lbl_801152CC:
 /* 801152E4  41 82 00 20 */	beq lbl_80115304
 /* 801152E8  7F E3 FB 78 */	mr r3, r31
 /* 801152EC  38 80 01 63 */	li r4, 0x163
-/* 801152F0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 801152F4  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 801152F0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 801152F4  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 801152F8  C0 25 00 24 */	lfs f1, 0x24(r5)
 /* 801152FC  C0 45 00 28 */	lfs f2, 0x28(r5)
 /* 80115300  4B F9 7C E1 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -51,8 +51,8 @@ lbl_80115304:
 /* 8011530C  4B F9 71 45 */	bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 80115310  A0 83 00 02 */	lhz r4, 2(r3)
 /* 80115314  7F E3 FB 78 */	mr r3, r31
-/* 80115318  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 8011531C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 80115318  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 8011531C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 80115320  C0 25 00 24 */	lfs f1, 0x24(r5)
 /* 80115324  C0 45 00 28 */	lfs f2, 0x28(r5)
 /* 80115328  4B F9 80 81 */	bl setUpperAnimeBaseSpeed__9daAlink_cFUsff

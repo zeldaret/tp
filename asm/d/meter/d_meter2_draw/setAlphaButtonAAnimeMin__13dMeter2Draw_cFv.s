@@ -13,8 +13,8 @@ lbl_80219174:
 /* 802191A0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 802191A4  41 82 00 38 */	beq lbl_802191DC
 /* 802191A8  80 7B 03 00 */	lwz r3, 0x300(r27)
-/* 802191AC  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 802191B0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 802191AC  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802191B0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802191B4  C0 44 00 A8 */	lfs f2, 0xa8(r4)
 /* 802191B8  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 802191BC  C0 04 00 84 */	lfs f0, 0x84(r4)
@@ -28,8 +28,8 @@ lbl_80219174:
 lbl_802191DC:
 /* 802191DC  3B 80 00 00 */	li r28, 0
 /* 802191E0  3B E0 00 00 */	li r31, 0
-/* 802191E4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802191E8  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l
+/* 802191E4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802191E8  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802191EC  C3 E2 AE 80 */	lfs f31, lit_4182(r2)
 lbl_802191F0:
 /* 802191F0  3B BF 00 C0 */	addi r29, r31, 0xc0

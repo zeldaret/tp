@@ -18,18 +18,18 @@ lbl_80037F0C:
 /* 80037F10  48 29 6D 3D */	bl __nw__FUl
 /* 80037F14  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80037F18  41 82 00 38 */	beq lbl_80037F50
-/* 80037F1C  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha
-/* 80037F20  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l
+/* 80037F1C  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha /* 0x803C5610@ha */
+/* 80037F20  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l /* 0x803C5610@l */
 /* 80037F24  90 1E 00 00 */	stw r0, 0(r30)
 /* 80037F28  38 00 00 00 */	li r0, 0
 /* 80037F2C  90 1E 00 04 */	stw r0, 4(r30)
 /* 80037F30  90 1E 00 08 */	stw r0, 8(r30)
 /* 80037F34  90 1E 00 0C */	stw r0, 0xc(r30)
-/* 80037F38  3C 60 80 3A */	lis r3, __vt__Q27JStudio16TAdaptor_message@ha
-/* 80037F3C  38 03 7B C0 */	addi r0, r3, __vt__Q27JStudio16TAdaptor_message@l
+/* 80037F38  3C 60 80 3A */	lis r3, __vt__Q27JStudio16TAdaptor_message@ha /* 0x803A7BC0@ha */
+/* 80037F3C  38 03 7B C0 */	addi r0, r3, __vt__Q27JStudio16TAdaptor_message@l /* 0x803A7BC0@l */
 /* 80037F40  90 1E 00 00 */	stw r0, 0(r30)
-/* 80037F44  3C 60 80 3A */	lis r3, data_803A7BF4@ha
-/* 80037F48  38 03 7B F4 */	addi r0, r3, data_803A7BF4@l
+/* 80037F44  3C 60 80 3A */	lis r3, data_803A7BF4@ha /* 0x803A7BF4@ha */
+/* 80037F48  38 03 7B F4 */	addi r0, r3, data_803A7BF4@l /* 0x803A7BF4@l */
 /* 80037F4C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80037F50:
 /* 80037F50  28 1E 00 00 */	cmplwi r30, 0

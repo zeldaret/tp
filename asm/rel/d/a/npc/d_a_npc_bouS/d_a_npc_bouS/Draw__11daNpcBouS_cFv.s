@@ -17,12 +17,12 @@ lbl_80974040:
 /* 80974058  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 8097405C  38 80 00 00 */	li r4, 0
 /* 80974060  38 A0 00 00 */	li r5, 0
-/* 80974064  3C C0 80 98 */	lis r6, m__17daNpcBouS_Param_c@ha
-/* 80974068  38 C6 84 10 */	addi r6, r6, m__17daNpcBouS_Param_c@l
+/* 80974064  3C C0 80 98 */	lis r6, m__17daNpcBouS_Param_c@ha /* 0x80978410@ha */
+/* 80974068  38 C6 84 10 */	addi r6, r6, m__17daNpcBouS_Param_c@l /* 0x80978410@l */
 /* 8097406C  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 80974070  38 C0 00 00 */	li r6, 0
 /* 80974074  38 E0 00 00 */	li r7, 0
-/* 80974078  4B 7D E2 34 */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 80974078  4B 7D E2 35 */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 8097407C  38 60 00 01 */	li r3, 1
 lbl_80974080:
 /* 80974080  80 01 00 14 */	lwz r0, 0x14(r1)

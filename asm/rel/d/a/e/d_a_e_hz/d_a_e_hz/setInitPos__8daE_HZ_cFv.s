@@ -5,27 +5,27 @@ lbl_806EFB54:
 /* 806EFB60  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 806EFB64  7C 7F 1B 78 */	mr r31, r3
 /* 806EFB68  38 61 00 14 */	addi r3, r1, 0x14
-/* 806EFB6C  4B 98 7A 10 */	b __ct__11dBgS_GndChkFv
+/* 806EFB6C  4B 98 7A 11 */	bl __ct__11dBgS_GndChkFv
 /* 806EFB70  C0 1F 04 A8 */	lfs f0, 0x4a8(r31)
 /* 806EFB74  D0 01 00 08 */	stfs f0, 8(r1)
 /* 806EFB78  C0 3F 04 AC */	lfs f1, 0x4ac(r31)
 /* 806EFB7C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 806EFB80  C0 1F 04 B0 */	lfs f0, 0x4b0(r31)
 /* 806EFB84  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 806EFB88  3C 60 80 6F */	lis r3, lit_3966@ha
-/* 806EFB8C  C0 03 08 60 */	lfs f0, lit_3966@l(r3)
+/* 806EFB88  3C 60 80 6F */	lis r3, lit_3966@ha /* 0x806F0860@ha */
+/* 806EFB8C  C0 03 08 60 */	lfs f0, lit_3966@l(r3)  /* 0x806F0860@l */
 /* 806EFB90  EC 01 00 2A */	fadds f0, f1, f0
 /* 806EFB94  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 806EFB98  38 61 00 14 */	addi r3, r1, 0x14
 /* 806EFB9C  38 81 00 08 */	addi r4, r1, 8
-/* 806EFBA0  4B B7 81 88 */	b SetPos__11cBgS_GndChkFPC4cXyz
-/* 806EFBA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806EFBA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806EFBA0  4B B7 81 89 */	bl SetPos__11cBgS_GndChkFPC4cXyz
+/* 806EFBA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806EFBA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806EFBAC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 806EFBB0  38 81 00 14 */	addi r4, r1, 0x14
-/* 806EFBB4  4B 98 48 EC */	b GroundCross__4cBgSFP11cBgS_GndChk
-/* 806EFBB8  3C 60 80 6F */	lis r3, lit_4378@ha
-/* 806EFBBC  C0 03 08 D0 */	lfs f0, lit_4378@l(r3)
+/* 806EFBB4  4B 98 48 ED */	bl GroundCross__4cBgSFP11cBgS_GndChk
+/* 806EFBB8  3C 60 80 6F */	lis r3, lit_4378@ha /* 0x806F08D0@ha */
+/* 806EFBBC  C0 03 08 D0 */	lfs f0, lit_4378@l(r3)  /* 0x806F08D0@l */
 /* 806EFBC0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 806EFBC4  41 82 00 10 */	beq lbl_806EFBD4
 /* 806EFBC8  D0 3F 04 AC */	stfs f1, 0x4ac(r31)
@@ -43,7 +43,7 @@ lbl_806EFBD4:
 /* 806EFBF4  4B FF AE E9 */	bl setActionMode__8daE_HZ_cFi
 /* 806EFBF8  38 61 00 14 */	addi r3, r1, 0x14
 /* 806EFBFC  38 80 FF FF */	li r4, -1
-/* 806EFC00  4B 98 79 F0 */	b __dt__11dBgS_GndChkFv
+/* 806EFC00  4B 98 79 F1 */	bl __dt__11dBgS_GndChkFv
 /* 806EFC04  83 E1 00 6C */	lwz r31, 0x6c(r1)
 /* 806EFC08  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 806EFC0C  7C 08 03 A6 */	mtlr r0

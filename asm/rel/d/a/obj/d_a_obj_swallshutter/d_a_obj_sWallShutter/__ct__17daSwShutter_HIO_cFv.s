@@ -1,11 +1,11 @@
 lbl_805981EC:
-/* 805981EC  3C 80 80 5A */	lis r4, lit_3630@ha
-/* 805981F0  38 A4 8F 78 */	addi r5, r4, lit_3630@l
-/* 805981F4  3C 80 80 5A */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 805981F8  38 04 90 D4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 805981EC  3C 80 80 5A */	lis r4, lit_3630@ha /* 0x80598F78@ha */
+/* 805981F0  38 A4 8F 78 */	addi r5, r4, lit_3630@l /* 0x80598F78@l */
+/* 805981F4  3C 80 80 5A */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x805990D4@ha */
+/* 805981F8  38 04 90 D4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x805990D4@l */
 /* 805981FC  90 03 00 00 */	stw r0, 0(r3)
-/* 80598200  3C 80 80 5A */	lis r4, __vt__17daSwShutter_HIO_c@ha
-/* 80598204  38 04 90 C8 */	addi r0, r4, __vt__17daSwShutter_HIO_c@l
+/* 80598200  3C 80 80 5A */	lis r4, __vt__17daSwShutter_HIO_c@ha /* 0x805990C8@ha */
+/* 80598204  38 04 90 C8 */	addi r0, r4, __vt__17daSwShutter_HIO_c@l /* 0x805990C8@l */
 /* 80598208  90 03 00 00 */	stw r0, 0(r3)
 /* 8059820C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80598210  D0 03 00 04 */	stfs f0, 4(r3)

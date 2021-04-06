@@ -9,8 +9,8 @@ lbl_8023DDB4:
 /* 8023DDD0  B0 03 00 5E */	sth r0, 0x5e(r3)
 /* 8023DDD4  48 00 00 A8 */	b lbl_8023DE7C
 lbl_8023DDD8:
-/* 8023DDD8  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 8023DDDC  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 8023DDD8  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8023DDDC  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8023DDE0  80 84 00 34 */	lwz r4, 0x34(r4)
 /* 8023DDE4  54 80 05 EF */	rlwinm. r0, r4, 0, 0x17, 0x17
 /* 8023DDE8  40 82 00 54 */	bne lbl_8023DE3C

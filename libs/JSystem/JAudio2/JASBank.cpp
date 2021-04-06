@@ -19,7 +19,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ ~JASMemPool_MultiThreaded__template2();
+    /* 802978DC */ void func_802978DC();
 };
 
 struct JASGenericMemPool {
@@ -81,13 +81,13 @@ extern "C" extern u8 struct_80451260[8];
 //
 
 /* ############################################################################################## */
-/* 80431B48-80431B58 000C+04 s=2 e=0 z=0  None .bss       @156 */
+/* 80431B48-80431B58 05E868 000C+04 2/2 0/0 0/0 .bss             @156 */
 static u8 lit_156[12 + 4 /* padding */];
 
-/* 80455630-80455634 0004+00 s=1 e=0 z=0  None .sdata2    @248 */
+/* 80455630-80455634 003C30 0004+00 1/1 0/0 0/0 .sdata2          @248 */
 SECTION_SDATA2 static f32 lit_248 = 1.0f;
 
-/* 80455634-80455638 0004+00 s=1 e=0 z=0  None .sdata2    @249 */
+/* 80455634-80455638 003C34 0004+00 1/1 0/0 0/0 .sdata2          @249 */
 SECTION_SDATA2 static u8 lit_249[4] = {
     0x00,
     0x00,
@@ -95,38 +95,11 @@ SECTION_SDATA2 static u8 lit_249[4] = {
     0x00,
 };
 
-/* 80455638-8045563C 0004+00 s=1 e=0 z=0  None .sdata2    @250 */
+/* 80455638-8045563C 003C38 0004+00 1/1 0/0 0/0 .sdata2          @250 */
 SECTION_SDATA2 static f32 lit_250 = 0.5f;
 
-/* 80297930-80297C40 0310+00 s=0 e=1 z=0  None .text
+/* 80297930-80297C40 292270 0310+00 0/0 1/1 0/0 .text
  * noteOn__7JASBankFPC7JASBankiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
-//	80297940: 803621C4 (_savegpr_23)
-//	80297978: 80297C40 (noteOnOsc__7JASBankFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv)
-//	80297990: 80455630 (lit_248)
-//	8029799C: 80455634 (lit_249)
-//	802979A4: 80455638 (lit_250)
-//	80297A78: 80451262 (struct_80451260)
-//	80297A84: 80431B34 (data_80431B34)
-//	80297A88: 80431B34 (data_80431B34)
-//	80297A8C: 80290848 (__ct__17JASGenericMemPoolFv)
-//	80297A90: 80431B34 (data_80431B34)
-//	80297A94: 80431B34 (data_80431B34)
-//	80297A98: 802978DC (func_802978DC)
-//	80297A9C: 802978DC (func_802978DC)
-//	80297AA0: 80431B48 (lit_156)
-//	80297AA4: 80431B48 (lit_156)
-//	80297AA8: 80361C24 (__register_global_object)
-//	80297AB0: 80451262 (struct_80451260)
-//	80297AB4: 8033D6F4 (OSDisableInterrupts)
-//	80297ABC: 80431B34 (data_80431B34)
-//	80297AC0: 80431B34 (data_80431B34)
-//	80297AC8: 80290948 (alloc__17JASGenericMemPoolFUl)
-//	80297AD4: 8033D71C (OSRestoreInterrupts)
-//	80297AEC: 8029A800 (__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv)
-//	80297B78: 8029C9E8 (getDacRate__9JASDriverFv)
-//	80297BEC: 8029AB64 (setOscInit__10JASChannelFUlPCQ213JASOscillator4Data)
-//	80297C10: 8029A9F0 (play__10JASChannelFv)
-//	80297C2C: 80362210 (_restgpr_23)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,12 +111,13 @@ asm void JASBank::noteOn(JASBank const* param_0, int param_1, u8 param_2, u8 par
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B190-8039B19C 000C+00 s=1 e=0 z=0  None .rodata    OSC_RELEASE_TABLE$260 */
+/* 8039B190-8039B19C 0277F0 000C+00 1/0 0/0 0/0 .rodata          OSC_RELEASE_TABLE$260 */
 SECTION_RODATA static u8 const OSC_RELEASE_TABLE[12] = {
     0x00, 0x01, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_8039B190 = (void*)(&OSC_RELEASE_TABLE);
 
-/* 8039B19C-8039B1B8 0018+04 s=1 e=0 z=0  None .rodata    OSC_ENV$261 */
+/* 8039B19C-8039B1B8 -00001 0018+04 1/1 0/0 0/0 .rodata          OSC_ENV$261 */
 SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
     (void*)NULL,
     (void*)0x3F800000,
@@ -154,38 +128,13 @@ SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
+SECTION_DEAD void* const cg_8039B19C = (void*)(&OSC_ENV);
 
-/* 8045563C-80455640 0004+00 s=1 e=0 z=0  None .sdata2    @290 */
+/* 8045563C-80455640 003C3C 0004+00 1/1 0/0 0/0 .sdata2          @290 */
 SECTION_SDATA2 static f32 lit_290 = 16736.015625f;
 
-/* 80297C40-80297D78 0138+00 s=1 e=0 z=0  None .text
+/* 80297C40-80297D78 292580 0138+00 1/1 0/0 0/0 .text
  * noteOnOsc__7JASBankFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
-//	80297C50: 803621CC (_savegpr_25)
-//	80297C6C: 80451262 (struct_80451260)
-//	80297C78: 80431B34 (data_80431B34)
-//	80297C7C: 80431B34 (data_80431B34)
-//	80297C80: 80290848 (__ct__17JASGenericMemPoolFv)
-//	80297C84: 80431B34 (data_80431B34)
-//	80297C88: 80431B34 (data_80431B34)
-//	80297C8C: 802978DC (func_802978DC)
-//	80297C90: 802978DC (func_802978DC)
-//	80297C94: 80431B48 (lit_156)
-//	80297C98: 80431B48 (lit_156)
-//	80297C9C: 80361C24 (__register_global_object)
-//	80297CA4: 80451262 (struct_80451260)
-//	80297CA8: 8033D6F4 (OSDisableInterrupts)
-//	80297CB0: 80431B34 (data_80431B34)
-//	80297CB4: 80431B34 (data_80431B34)
-//	80297CBC: 80290948 (alloc__17JASGenericMemPoolFUl)
-//	80297CC8: 8033D71C (OSRestoreInterrupts)
-//	80297CE0: 8029A800 (__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv)
-//	80297D08: 8029C9E8 (getDacRate__9JASDriverFv)
-//	80297D0C: 8045563C (lit_290)
-//	80297D38: 8039B19C (OSC_ENV)
-//	80297D3C: 8039B19C (OSC_ENV)
-//	80297D40: 8029AB64 (setOscInit__10JASChannelFUlPCQ213JASOscillator4Data)
-//	80297D48: 8029A9F0 (play__10JASChannelFv)
-//	80297D64: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

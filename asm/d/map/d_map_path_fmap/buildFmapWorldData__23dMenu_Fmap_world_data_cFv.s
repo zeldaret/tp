@@ -1,6 +1,6 @@
 lbl_8003E04C:
-/* 8003E04C  3C 80 80 45 */	lis r4, __float_max@ha
-/* 8003E050  C0 04 0A E8 */	lfs f0, __float_max@l(r4)
+/* 8003E04C  3C 80 80 45 */	lis r4, __float_max@ha /* 0x80450AE8@ha */
+/* 8003E050  C0 04 0A E8 */	lfs f0, __float_max@l(r4)  /* 0x80450AE8@l */
 /* 8003E054  FC 60 00 90 */	fmr f3, f0
 /* 8003E058  FC 80 00 90 */	fmr f4, f0
 /* 8003E05C  FC 00 00 50 */	fneg f0, f0

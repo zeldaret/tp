@@ -13,12 +13,12 @@ lbl_80490AF8:
 /* 80490B24  48 00 00 24 */	b lbl_80490B48
 lbl_80490B28:
 /* 80490B28  A0 7F 05 68 */	lhz r3, 0x568(r31)
-/* 80490B2C  4B B8 F4 98 */	b fopMsgM_messageSetDemo__FUl
+/* 80490B2C  4B B8 F4 99 */	bl fopMsgM_messageSetDemo__FUl
 /* 80490B30  38 00 00 63 */	li r0, 0x63
 /* 80490B34  90 1F 05 6C */	stw r0, 0x56c(r31)
 /* 80490B38  48 00 00 10 */	b lbl_80490B48
 lbl_80490B3C:
-/* 80490B3C  4B B8 91 40 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80490B3C  4B B8 91 41 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80490B40  38 00 FF FF */	li r0, -1
 /* 80490B44  90 1F 05 6C */	stw r0, 0x56c(r31)
 lbl_80490B48:

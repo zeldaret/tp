@@ -7,15 +7,15 @@ lbl_80353414:
 /* 80353428  3B E3 00 00 */	addi r31, r3, 0
 /* 8035342C  1C BF 01 10 */	mulli r5, r31, 0x110
 /* 80353430  93 C1 00 10 */	stw r30, 0x10(r1)
-/* 80353434  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80353438  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80353434  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80353438  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 8035343C  7F C0 2A 14 */	add r30, r0, r5
 /* 80353440  41 80 00 48 */	blt lbl_80353488
-/* 80353444  3C 60 80 35 */	lis r3, UnlockedCallback@ha
-/* 80353448  38 03 34 14 */	addi r0, r3, UnlockedCallback@l
-/* 8035344C  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha
+/* 80353444  3C 60 80 35 */	lis r3, UnlockedCallback@ha /* 0x80353414@ha */
+/* 80353448  38 03 34 14 */	addi r0, r3, UnlockedCallback@l /* 0x80353414@l */
+/* 8035344C  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha /* 0x80352D00@ha */
 /* 80353450  90 1E 00 DC */	stw r0, 0xdc(r30)
-/* 80353454  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l
+/* 80353454  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l /* 0x80352D00@l */
 /* 80353458  38 7F 00 00 */	addi r3, r31, 0
 /* 8035345C  38 80 00 00 */	li r4, 0
 /* 80353460  4B FF 0B C9 */	bl EXILock

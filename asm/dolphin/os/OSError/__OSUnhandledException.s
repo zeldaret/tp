@@ -1,16 +1,16 @@
 lbl_8033C798:
 /* 8033C798  7C 08 02 A6 */	mflr r0
-/* 8033C79C  3D 00 80 45 */	lis r8, __OSErrorTable@ha
+/* 8033C79C  3D 00 80 45 */	lis r8, __OSErrorTable@ha /* 0x8044BAD0@ha */
 /* 8033C7A0  90 01 00 04 */	stw r0, 4(r1)
-/* 8033C7A4  3C E0 80 3D */	lis r7, lit_13@ha
+/* 8033C7A4  3C E0 80 3D */	lis r7, lit_13@ha /* 0x803CF918@ha */
 /* 8033C7A8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8033C7AC  BE C1 00 18 */	stmw r22, 0x18(r1)
 /* 8033C7B0  3B 03 00 00 */	addi r24, r3, 0
 /* 8033C7B4  3B 24 00 00 */	addi r25, r4, 0
 /* 8033C7B8  3B 45 00 00 */	addi r26, r5, 0
 /* 8033C7BC  3B 66 00 00 */	addi r27, r6, 0
-/* 8033C7C0  3B C8 BA D0 */	addi r30, r8, __OSErrorTable@l
-/* 8033C7C4  3B E7 F9 18 */	addi r31, r7, lit_13@l
+/* 8033C7C0  3B C8 BA D0 */	addi r30, r8, __OSErrorTable@l /* 0x8044BAD0@l */
+/* 8033C7C4  3B E7 F9 18 */	addi r31, r7, lit_13@l /* 0x803CF918@l */
 /* 8033C7C8  48 00 5F 35 */	bl OSGetTime
 /* 8033C7CC  80 B9 01 9C */	lwz r5, 0x19c(r25)
 /* 8033C7D0  3B 84 00 00 */	addi r28, r4, 0
@@ -37,7 +37,7 @@ lbl_8033C7F4:
 /* 8033C820  62 E3 20 00 */	ori r3, r23, 0x2000
 /* 8033C824  4B FF D4 A5 */	bl PPCMtmsr
 /* 8033C828  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000D8@ha */
-/* 8033C82C  80 63 00 D8 */	lwz r3, 0x00D8(r3)
+/* 8033C82C  80 63 00 D8 */	lwz r3, 0x00D8(r3)  /* 0x800000D8@l */
 /* 8033C830  28 03 00 00 */	cmplwi r3, 0
 /* 8033C834  41 82 00 08 */	beq lbl_8033C83C
 /* 8033C838  4B FF F5 F9 */	bl OSSaveFPUContext
@@ -50,7 +50,7 @@ lbl_8033C83C:
 /* 8033C850  7E E3 BB 78 */	mr r3, r23
 /* 8033C854  4B FF D4 75 */	bl PPCMtmsr
 /* 8033C858  3E E0 80 00 */	lis r23, 0x8000 /* 0x800000D8@ha */
-/* 8033C85C  80 17 00 D8 */	lwz r0, 0x00D8(r23)
+/* 8033C85C  80 17 00 D8 */	lwz r0, 0x00D8(r23)  /* 0x800000D8@l */
 /* 8033C860  7C 00 C8 40 */	cmplw r0, r25
 /* 8033C864  40 82 00 54 */	bne lbl_8033C8B8
 /* 8033C868  48 00 44 5D */	bl OSDisableScheduler
@@ -132,8 +132,8 @@ lbl_8033C944:
 /* 8033C980  57 00 06 3E */	clrlwi r0, r24, 0x18
 /* 8033C984  28 00 00 0F */	cmplwi r0, 0xf
 /* 8033C988  41 81 00 C4 */	bgt lbl_8033CA4C
-/* 8033C98C  3C 60 80 3D */	lis r3, lit_87@ha
-/* 8033C990  38 63 FB F4 */	addi r3, r3, lit_87@l
+/* 8033C98C  3C 60 80 3D */	lis r3, lit_87@ha /* 0x803CFBF4@ha */
+/* 8033C990  38 63 FB F4 */	addi r3, r3, lit_87@l /* 0x803CFBF4@l */
 /* 8033C994  54 00 10 3A */	slwi r0, r0, 2
 /* 8033C998  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8033C99C  7C 09 03 A6 */	mtctr r0

@@ -3,17 +3,15 @@
 #
 
 M574_TARGET := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand.plf
+M574_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand.lcf
+M574_MAP := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand.map
 
 M574_CPP_FILES := \
-	rel/d/a/obj/mirror/d_a_obj_mirror_sand/executor.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_sand/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_sand/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand.cpp \
 
 M574_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand.o \
 
 M574_LIBS := \
@@ -29,15 +27,21 @@ M574_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map574.map\
+	-m _prolog \
+	-lcf $(M574_LDSCRIPT) \
+	-unused -map $(M574_MAP) \
+	-w off \
 
 $(M574_TARGET): $(M574_O_FILES) $(M574_LIBS)
+	@echo [574] creating $(M574_TARGET)
 	@echo $(M574_LIBS) $(M574_O_FILES) > build/M574_ofiles
-	$(LD) -opt_partial $(M574_LDFLAGS) -o $(M574_TARGET) @build/M574_ofiles
+	@python3 tools/lcf.py rel 574 --output $(M574_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M574_LDFLAGS) -o $(M574_TARGET) @build/M574_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_sand/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_sand/%.cpp
+	@echo [574] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M574_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M574_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

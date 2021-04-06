@@ -11,8 +11,8 @@ lbl_800F85C0:
 /* 800F85E4  7C DE 33 78 */	mr r30, r6
 /* 800F85E8  80 63 06 50 */	lwz r3, 0x650(r3)
 /* 800F85EC  38 63 00 24 */	addi r3, r3, 0x24
-/* 800F85F0  3C 80 80 39 */	lis r4, l_crawlTopOffset@ha
-/* 800F85F4  38 84 FA 6C */	addi r4, r4, l_crawlTopOffset@l
+/* 800F85F0  3C 80 80 39 */	lis r4, l_crawlTopOffset@ha /* 0x8038FA6C@ha */
+/* 800F85F4  38 84 FA 6C */	addi r4, r4, l_crawlTopOffset@l /* 0x8038FA6C@l */
 /* 800F85F8  38 A1 00 20 */	addi r5, r1, 0x20
 /* 800F85FC  48 24 E7 71 */	bl PSMTXMultVec
 /* 800F8600  7F 83 E3 78 */	mr r3, r28
@@ -26,8 +26,8 @@ lbl_800F85C0:
 /* 800F8620  7C 7F 1B 78 */	mr r31, r3
 /* 800F8624  80 7C 06 50 */	lwz r3, 0x650(r28)
 /* 800F8628  38 63 00 24 */	addi r3, r3, 0x24
-/* 800F862C  3C 80 80 39 */	lis r4, l_crawlTopUpOffset@ha
-/* 800F8630  38 84 FA C0 */	addi r4, r4, l_crawlTopUpOffset@l
+/* 800F862C  3C 80 80 39 */	lis r4, l_crawlTopUpOffset@ha /* 0x8038FAC0@ha */
+/* 800F8630  38 84 FA C0 */	addi r4, r4, l_crawlTopUpOffset@l /* 0x8038FAC0@l */
 /* 800F8634  38 A1 00 20 */	addi r5, r1, 0x20
 /* 800F8638  48 24 E7 35 */	bl PSMTXMultVec
 /* 800F863C  7F 83 E3 78 */	mr r3, r28

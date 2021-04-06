@@ -10,8 +10,8 @@ lbl_80197338:
 /* 80197358  38 E0 00 00 */	li r7, 0
 /* 8019735C  98 ED 8A E0 */	stb r7, data_80451060(r13)
 /* 80197360  7C E4 3B 78 */	mr r4, r7
-/* 80197364  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 80197368  38 C3 B8 A4 */	addi r6, r3, dShopSystem_itemActor@l
+/* 80197364  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 80197368  38 C3 B8 A4 */	addi r6, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019736C  38 A0 00 FF */	li r5, 0xff
 /* 80197370  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 80197374  38 00 00 07 */	li r0, 7
@@ -41,8 +41,8 @@ lbl_801973A8:
 /* 801973CC  48 13 78 81 */	bl __nw__FUl
 /* 801973D0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801973D4  41 82 00 3C */	beq lbl_80197410
-/* 801973D8  3C 80 80 3A */	lis r4, __vt__9STControl@ha
-/* 801973DC  38 04 72 60 */	addi r0, r4, __vt__9STControl@l
+/* 801973D8  3C 80 80 3A */	lis r4, __vt__9STControl@ha /* 0x803A7260@ha */
+/* 801973DC  38 04 72 60 */	addi r0, r4, __vt__9STControl@l /* 0x803A7260@l */
 /* 801973E0  90 1E 00 00 */	stw r0, 0(r30)
 /* 801973E4  38 80 00 0F */	li r4, 0xf
 /* 801973E8  38 A0 00 0F */	li r5, 0xf

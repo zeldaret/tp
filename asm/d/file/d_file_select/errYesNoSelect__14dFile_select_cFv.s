@@ -8,8 +8,8 @@ lbl_8018FA2C:
 /* 8018FA44  3B E0 00 00 */	li r31, 0
 /* 8018FA48  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 8018FA4C  4B EA 27 51 */	bl checkTrigger__9STControlFv
-/* 8018FA50  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8018FA54  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8018FA50  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8018FA54  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8018FA58  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8018FA5C  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8018FA60  41 82 00 90 */	beq lbl_8018FAF0

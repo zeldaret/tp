@@ -37,8 +37,8 @@ lbl_80251094:
 /* 80251120  38 84 00 50 */	addi r4, r4, 0x50
 /* 80251124  48 0F 53 8D */	bl PSMTXCopy
 lbl_80251128:
-/* 80251128  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025112C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80251128  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025112C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80251130  80 83 5F 50 */	lwz r4, 0x5f50(r3)
 /* 80251134  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80251138  C0 22 B3 D0 */	lfs f1, lit_4009(r2)

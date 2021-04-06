@@ -5,7 +5,7 @@ lbl_8084FAA8:
 /* 8084FAB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8084FAB8  93 C1 00 08 */	stw r30, 8(r1)
 /* 8084FABC  7C 7E 1B 78 */	mr r30, r3
-/* 8084FAC0  4B 93 1B 80 */	b dCam_getBody__Fv
+/* 8084FAC0  4B 93 1B 81 */	bl dCam_getBody__Fv
 /* 8084FAC4  7C 7F 1B 78 */	mr r31, r3
 /* 8084FAC8  A0 1E 00 F8 */	lhz r0, 0xf8(r30)
 /* 8084FACC  28 00 00 02 */	cmplwi r0, 2
@@ -15,16 +15,16 @@ lbl_8084FAA8:
 /* 8084FADC  3C A0 00 01 */	lis r5, 0x0001 /* 0x0000FFFF@ha */
 /* 8084FAE0  38 A5 FF FF */	addi r5, r5, 0xFFFF /* 0x0000FFFF@l */
 /* 8084FAE4  38 C0 00 03 */	li r6, 3
-/* 8084FAE8  4B 7C BE 20 */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 8084FAE8  4B 7C BE 21 */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 8084FAEC  A0 1E 00 FA */	lhz r0, 0xfa(r30)
 /* 8084FAF0  60 00 00 02 */	ori r0, r0, 2
 /* 8084FAF4  B0 1E 00 FA */	sth r0, 0xfa(r30)
 /* 8084FAF8  48 00 00 40 */	b lbl_8084FB38
 lbl_8084FAFC:
-/* 8084FAFC  4B 91 19 D4 */	b Stop__9dCamera_cFv
+/* 8084FAFC  4B 91 19 D5 */	bl Stop__9dCamera_cFv
 /* 8084FB00  7F E3 FB 78 */	mr r3, r31
 /* 8084FB04  38 80 00 03 */	li r4, 3
-/* 8084FB08  4B 91 35 04 */	b SetTrimSize__9dCamera_cFl
+/* 8084FB08  4B 91 35 05 */	bl SetTrimSize__9dCamera_cFl
 /* 8084FB0C  38 00 00 00 */	li r0, 0
 /* 8084FB10  90 1E 07 48 */	stw r0, 0x748(r30)
 /* 8084FB14  90 1E 07 4C */	stw r0, 0x74c(r30)

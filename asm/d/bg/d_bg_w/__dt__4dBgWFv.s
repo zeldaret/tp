@@ -7,8 +7,8 @@ lbl_8007E548:
 /* 8007E55C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8007E560  7C 9F 23 78 */	mr r31, r4
 /* 8007E564  41 82 00 28 */	beq lbl_8007E58C
-/* 8007E568  3C 80 80 3B */	lis r4, __vt__4dBgW@ha
-/* 8007E56C  38 04 BA 80 */	addi r0, r4, __vt__4dBgW@l
+/* 8007E568  3C 80 80 3B */	lis r4, __vt__4dBgW@ha /* 0x803ABA80@ha */
+/* 8007E56C  38 04 BA 80 */	addi r0, r4, __vt__4dBgW@l /* 0x803ABA80@l */
 /* 8007E570  90 1E 00 04 */	stw r0, 4(r30)
 /* 8007E574  38 80 00 00 */	li r4, 0
 /* 8007E578  4B FF AD C5 */	bl __dt__4cBgWFv

@@ -11,12 +11,12 @@ lbl_8076E00C:
 /* 8076E030  48 00 00 28 */	b lbl_8076E058
 lbl_8076E034:
 /* 8076E034  38 7F 11 D0 */	addi r3, r31, 0x11d0
-/* 8076E038  4B 91 62 88 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 8076E038  4B 91 62 89 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 8076E03C  28 03 00 00 */	cmplwi r3, 0
 /* 8076E040  41 82 00 14 */	beq lbl_8076E054
 /* 8076E044  38 7F 11 D0 */	addi r3, r31, 0x11d0
-/* 8076E048  4B 91 63 10 */	b GetAtHitObj__12dCcD_GObjInfFv
-/* 8076E04C  4B AF 59 FC */	b GetAc__8cCcD_ObjFv
+/* 8076E048  4B 91 63 11 */	bl GetAtHitObj__12dCcD_GObjInfFv
+/* 8076E04C  4B AF 59 FD */	bl GetAc__8cCcD_ObjFv
 /* 8076E050  48 00 00 08 */	b lbl_8076E058
 lbl_8076E054:
 /* 8076E054  38 60 00 00 */	li r3, 0

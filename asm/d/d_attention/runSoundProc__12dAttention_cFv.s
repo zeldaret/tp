@@ -11,14 +11,14 @@ lbl_80071DEC:
 /* 80071E10  80 03 03 34 */	lwz r0, 0x334(r3)
 /* 80071E14  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
 /* 80071E18  40 82 00 58 */	bne lbl_80071E70
-/* 80071E1C  3C 60 80 07 */	lis r3, sound_attention__FP10fopAc_ac_cPv@ha
-/* 80071E20  38 63 1D 6C */	addi r3, r3, sound_attention__FP10fopAc_ac_cPv@l
+/* 80071E1C  3C 60 80 07 */	lis r3, sound_attention__FP10fopAc_ac_cPv@ha /* 0x80071D6C@ha */
+/* 80071E20  38 63 1D 6C */	addi r3, r3, sound_attention__FP10fopAc_ac_cPv@l /* 0x80071D6C@l */
 /* 80071E24  7F E4 FB 78 */	mr r4, r31
 /* 80071E28  4B FA 79 95 */	bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80071E2C  80 1F 05 14 */	lwz r0, 0x514(r31)
 /* 80071E30  90 01 00 08 */	stw r0, 8(r1)
-/* 80071E34  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80071E38  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80071E34  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80071E38  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80071E3C  38 81 00 08 */	addi r4, r1, 8
 /* 80071E40  4B FA 79 B9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80071E44  28 03 00 00 */	cmplwi r3, 0

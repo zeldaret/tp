@@ -12,8 +12,8 @@ lbl_80368C00:
 /* 80368C28  38 C1 00 14 */	addi r6, r1, 0x14
 /* 80368C2C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80368C30  7C 7E 1B 78 */	mr r30, r3
-/* 80368C34  3C 60 80 37 */	lis r3, __StringRead@ha
-/* 80368C38  38 03 87 8C */	addi r0, r3, __StringRead@l
+/* 80368C34  3C 60 80 37 */	lis r3, __StringRead@ha /* 0x8036878C@ha */
+/* 80368C38  38 03 87 8C */	addi r0, r3, __StringRead@l /* 0x8036878C@l */
 /* 80368C3C  90 E1 00 18 */	stw r7, 0x18(r1)
 /* 80368C40  7C A3 2B 78 */	mr r3, r5
 /* 80368C44  38 E1 00 10 */	addi r7, r1, 0x10

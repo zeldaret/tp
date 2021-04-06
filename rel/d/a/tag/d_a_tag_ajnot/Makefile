@@ -3,17 +3,15 @@
 #
 
 M122_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot.plf
+M122_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot.lcf
+M122_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot.map
 
 M122_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_ajnot/executor.cpp \
-	rel/d/a/tag/d_a_tag_ajnot/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_ajnot/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot.cpp \
 
 M122_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot.o \
 
 M122_LIBS := \
@@ -29,15 +27,21 @@ M122_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map122.map\
+	-m _prolog \
+	-lcf $(M122_LDSCRIPT) \
+	-unused -map $(M122_MAP) \
+	-w off \
 
 $(M122_TARGET): $(M122_O_FILES) $(M122_LIBS)
+	@echo [122] creating $(M122_TARGET)
 	@echo $(M122_LIBS) $(M122_O_FILES) > build/M122_ofiles
-	$(LD) -opt_partial $(M122_LDFLAGS) -o $(M122_TARGET) @build/M122_ofiles
+	@python3 tools/lcf.py rel 122 --output $(M122_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M122_LDFLAGS) -o $(M122_TARGET) @build/M122_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ajnot/%.o: rel/d/a/tag/d_a_tag_ajnot/%.cpp
+	@echo [122] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M122_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M122_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -47,8 +47,8 @@ lbl_8036CBAC:
 lbl_8036CBB8:
 /* 8036CBB8  2C 1E 00 00 */	cmpwi r30, 0
 /* 8036CBBC  41 82 00 1C */	beq lbl_8036CBD8
-/* 8036CBC0  3C 60 80 45 */	lis r3, gTRKInputPendingPtr@ha
-/* 8036CBC4  38 63 19 B8 */	addi r3, r3, gTRKInputPendingPtr@l
+/* 8036CBC0  3C 60 80 45 */	lis r3, gTRKInputPendingPtr@ha /* 0x804519B8@ha */
+/* 8036CBC4  38 63 19 B8 */	addi r3, r3, gTRKInputPendingPtr@l /* 0x804519B8@l */
 /* 8036CBC8  80 63 00 00 */	lwz r3, 0(r3)
 /* 8036CBCC  88 03 00 00 */	lbz r0, 0(r3)
 /* 8036CBD0  28 00 00 00 */	cmplwi r0, 0

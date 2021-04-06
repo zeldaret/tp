@@ -3,17 +3,15 @@
 #
 
 M3_TARGET := $(BUILD_DIR)/rel/d/a/d_a_bg.plf
+M3_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_bg.lcf
+M3_MAP := $(BUILD_DIR)/rel/d/a/d_a_bg.map
 
 M3_CPP_FILES := \
-	rel/d/a/d_a_bg/executor.cpp \
-	rel/d/a/d_a_bg/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_bg/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_bg/d_a_bg.cpp \
 
 M3_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_bg/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_bg/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_bg/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_bg/d_a_bg.o \
 
 M3_LIBS := \
@@ -29,15 +27,21 @@ M3_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map3.map\
+	-m _prolog \
+	-lcf $(M3_LDSCRIPT) \
+	-unused -map $(M3_MAP) \
+	-w off \
 
 $(M3_TARGET): $(M3_O_FILES) $(M3_LIBS)
+	@echo [  3] creating $(M3_TARGET)
 	@echo $(M3_LIBS) $(M3_O_FILES) > build/M3_ofiles
-	$(LD) -opt_partial $(M3_LDFLAGS) -o $(M3_TARGET) @build/M3_ofiles
+	@python3 tools/lcf.py rel 3 --output $(M3_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M3_LDFLAGS) -o $(M3_TARGET) @build/M3_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_bg/%.o: rel/d/a/d_a_bg/%.cpp
+	@echo [  3] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M3_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M3_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

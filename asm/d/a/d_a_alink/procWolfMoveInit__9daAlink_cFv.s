@@ -12,8 +12,8 @@ lbl_8012D380:
 /* 8012D3A8  48 00 00 28 */	b lbl_8012D3D0
 lbl_8012D3AC:
 /* 8012D3AC  7F E3 FB 78 */	mr r3, r31
-/* 8012D3B0  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012D3B4  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 8012D3B0  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012D3B4  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012D3B8  C0 24 00 94 */	lfs f1, 0x94(r4)
 /* 8012D3BC  4B FF B4 89 */	bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8012D3C0  7F E3 FB 78 */	mr r3, r31

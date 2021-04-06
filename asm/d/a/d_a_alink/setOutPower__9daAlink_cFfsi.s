@@ -34,8 +34,8 @@ lbl_800BB5AC:
 lbl_800BB5D8:
 /* 800BB5D8  C0 3D 34 00 */	lfs f1, 0x3400(r29)
 /* 800BB5DC  57 C0 04 38 */	rlwinm r0, r30, 0, 0x10, 0x1c
-/* 800BB5E0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800BB5E4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800BB5E0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800BB5E4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800BB5E8  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800BB5EC  EC 1F 00 32 */	fmuls f0, f31, f0
 /* 800BB5F0  EC 01 00 2A */	fadds f0, f1, f0

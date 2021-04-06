@@ -20,9 +20,9 @@ lbl_8060B460:
 /* 8060B474  28 00 00 03 */	cmplwi r0, 3
 /* 8060B478  40 82 00 38 */	bne lbl_8060B4B0
 lbl_8060B47C:
-/* 8060B47C  4B C5 C3 F0 */	b cM_rnd__Fv
-/* 8060B480  3C 60 80 61 */	lis r3, lit_4927@ha
-/* 8060B484  C0 03 FE 60 */	lfs f0, lit_4927@l(r3)
+/* 8060B47C  4B C5 C3 F1 */	bl cM_rnd__Fv
+/* 8060B480  3C 60 80 61 */	lis r3, lit_4927@ha /* 0x8060FE60@ha */
+/* 8060B484  C0 03 FE 60 */	lfs f0, lit_4927@l(r3)  /* 0x8060FE60@l */
 /* 8060B488  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8060B48C  4C 40 13 82 */	cror 2, 0, 2
 /* 8060B490  41 82 00 10 */	beq lbl_8060B4A0

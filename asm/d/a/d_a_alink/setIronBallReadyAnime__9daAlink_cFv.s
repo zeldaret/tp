@@ -10,8 +10,8 @@ lbl_8011510C:
 /* 8011512C  4B F9 85 F9 */	bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 80115130  7F C3 F3 78 */	mr r3, r30
 /* 80115134  38 80 01 62 */	li r4, 0x162
-/* 80115138  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 8011513C  3B E5 EA 70 */	addi r31, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 80115138  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 8011513C  3B E5 EA 70 */	addi r31, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 80115140  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 80115144  C0 42 92 C0 */	lfs f2, lit_6108(r2)
 /* 80115148  38 A0 00 15 */	li r5, 0x15

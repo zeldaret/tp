@@ -38,24 +38,17 @@ struct cXyz {};
 // Forward References:
 //
 
-static void daSetBgObj_Delete(daSetBgObj_c*);
-static void daSetBgObj_Create(fopAc_ac_c*);
-
 extern "C" void CreateInit__12daSetBgObj_cFv();
 extern "C" void create__12daSetBgObj_cFv();
 extern "C" void Delete__12daSetBgObj_cFv();
 extern "C" static void daSetBgObj_Delete__FP12daSetBgObj_c();
 extern "C" static void daSetBgObj_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_set_bgobj__stringBase0;
 extern "C" extern void* g_profile_SET_BG_OBJ[12];
 
 //
 // External References:
 //
-
-void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
@@ -73,7 +66,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80485F00-80485F0C 0009+03 s=1 e=0 z=0  None .rodata    l_specName */
+/* 80485F00-80485F0C 000000 0009+03 1/1 0/0 0/0 .rodata          l_specName */
 SECTION_RODATA static u8 const l_specName[9 + 3 /* padding */] = {
     0x73,
     0x70,
@@ -89,8 +82,9 @@ SECTION_RODATA static u8 const l_specName[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80485F00 = (void*)(&l_specName);
 
-/* 80485F10-80485F1C 000A+02 s=1 e=0 z=0  None .data      l_bg_profName$3618 */
+/* 80485F10-80485F1C 000000 000A+02 1/1 0/0 0/0 .data            l_bg_profName$3618 */
 SECTION_DATA static u8 l_bg_profName[10 + 2 /* padding */] = {
     0x02,
     0xDE,
@@ -107,15 +101,7 @@ SECTION_DATA static u8 l_bg_profName[10 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80485D78-80485DFC 0084+00 s=1 e=0 z=0  None .text      CreateInit__12daSetBgObj_cFv */
-//	80485D90: 80485F00 (l_specName)
-//	80485D94: 80485F00 (l_specName)
-//	80485D98: 804061C0 (g_dComIfG_gameInfo)
-//	80485D9C: 804061C0 (g_dComIfG_gameInfo)
-//	80485DAC: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80485DB8: 80485F10 (l_bg_profName)
-//	80485DBC: 80485F10 (l_bg_profName)
-//	80485DE0: 80019D98 (fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc)
+/* 80485D78-80485DFC 000078 0084+00 1/1 0/0 0/0 .text            CreateInit__12daSetBgObj_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,22 +111,7 @@ asm void daSetBgObj_c::CreateInit() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80485F0C-80485F0F 0003+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80485F0C = "%s";
-#pragma pop
-
-/* 80485DFC-80485E88 008C+00 s=1 e=0 z=0  None .text      create__12daSetBgObj_cFv */
-//	80485E24: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80485E38: 80031870 (getArcName__12daSetBgObj_cFP10fopAc_ac_c)
-//	80485E44: 80485F0C (stringBase0)
-//	80485E48: 80485F0C (stringBase0)
-//	80485E50: 803664DC (sprintf)
-//	80485E5C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80485E6C: 80485D78 (CreateInit__12daSetBgObj_cFv)
+/* 80485DFC-80485E88 0000FC 008C+00 1/1 0/0 0/0 .text            create__12daSetBgObj_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -150,8 +121,7 @@ asm void daSetBgObj_c::create() {
 }
 #pragma pop
 
-/* 80485E88-80485EB8 0030+00 s=1 e=0 z=0  None .text      Delete__12daSetBgObj_cFv */
-//	80485EA0: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80485E88-80485EB8 000188 0030+00 1/1 0/0 0/0 .text            Delete__12daSetBgObj_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -161,30 +131,30 @@ asm void daSetBgObj_c::Delete() {
 }
 #pragma pop
 
-/* 80485EB8-80485ED8 0020+00 s=1 e=0 z=0  None .text      daSetBgObj_Delete__FP12daSetBgObj_c */
-//	80485EC4: 80485E88 (Delete__12daSetBgObj_cFv)
+/* 80485EB8-80485ED8 0001B8 0020+00 1/0 0/0 0/0 .text            daSetBgObj_Delete__FP12daSetBgObj_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSetBgObj_Delete(daSetBgObj_c* param_0) {
+static asm void daSetBgObj_Delete(daSetBgObj_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_set_bgobj/d_a_set_bgobj/daSetBgObj_Delete__FP12daSetBgObj_c.s"
 }
 #pragma pop
 
-/* 80485ED8-80485EF8 0020+00 s=1 e=0 z=0  None .text      daSetBgObj_Create__FP10fopAc_ac_c */
-//	80485EE4: 80485DFC (create__12daSetBgObj_cFv)
+/* 80485ED8-80485EF8 0001D8 0020+00 1/0 0/0 0/0 .text            daSetBgObj_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSetBgObj_Create(fopAc_ac_c* param_0) {
+static asm void daSetBgObj_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_set_bgobj/d_a_set_bgobj/daSetBgObj_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485F1C-80485F3C 0020+00 s=1 e=0 z=0  None .data      l_daSetBgObj_Method */
+/* 80485F1C-80485F3C -00001 0020+00 1/0 0/0 0/0 .data            l_daSetBgObj_Method */
 SECTION_DATA static void* l_daSetBgObj_Method[8] = {
     (void*)daSetBgObj_Create__FP10fopAc_ac_c,
     (void*)daSetBgObj_Delete__FP12daSetBgObj_c,
@@ -196,8 +166,8 @@ SECTION_DATA static void* l_daSetBgObj_Method[8] = {
     (void*)NULL,
 };
 
-/* 80485F3C-80485F6C 0030+00 s=0 e=0 z=1  None .data      g_profile_SET_BG_OBJ */
-SECTION_DATA void* g_profile_SET_BG_OBJ[12] = {
+/* 80485F3C-80485F6C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SET_BG_OBJ */
+SECTION_DATA extern void* g_profile_SET_BG_OBJ[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02DD0000, (void*)&g_fpcLf_Method,
     (void*)0x00000580, (void*)NULL,
@@ -205,3 +175,10 @@ SECTION_DATA void* g_profile_SET_BG_OBJ[12] = {
     (void*)0x02F20000, (void*)&l_daSetBgObj_Method,
     (void*)0x00040100, (void*)0x000E0000,
 };
+
+/* 80485F0C-80485F0F 00000C 0003+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80485F0C = "%s";
+#pragma pop

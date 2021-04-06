@@ -7,8 +7,8 @@ lbl_801BAA4C:
 /* 801BAA60  38 80 00 00 */	li r4, 0
 /* 801BAA64  4B FF FC 9D */	bl setGoldAnimation__14dMenu_DmapBg_cFb
 /* 801BAA68  88 1F 0D D7 */	lbz r0, 0xdd7(r31)
-/* 801BAA6C  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801BAA70  38 83 FC 60 */	addi r4, r3, g_fmapHIO@l
+/* 801BAA6C  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BAA70  38 83 FC 60 */	addi r4, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BAA74  A8 64 00 96 */	lha r3, 0x96(r4)
 /* 801BAA78  7C 00 18 00 */	cmpw r0, r3
 /* 801BAA7C  41 80 00 10 */	blt lbl_801BAA8C

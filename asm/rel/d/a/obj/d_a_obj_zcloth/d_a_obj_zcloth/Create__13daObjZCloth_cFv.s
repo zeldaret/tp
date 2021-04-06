@@ -11,7 +11,7 @@ lbl_80D3EEC0:
 /* 80D3EEE4  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80D3EEE8  80 83 00 04 */	lwz r4, 4(r3)
 /* 80D3EEEC  7F E3 FB 78 */	mr r3, r31
-/* 80D3EEF0  4B 2D B6 88 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80D3EEF0  4B 2D B6 89 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80D3EEF4  38 60 00 01 */	li r3, 1
 /* 80D3EEF8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80D3EEFC  80 01 00 14 */	lwz r0, 0x14(r1)

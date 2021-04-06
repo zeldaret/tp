@@ -15,7 +15,7 @@ lbl_80840FE0:
 /* 80841014  A0 BF 16 C0 */	lhz r5, 0x16c0(r31)
 /* 80841018  38 C0 00 00 */	li r6, 0
 /* 8084101C  38 E0 00 00 */	li r7, 0
-/* 80841020  4B A0 8F 70 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80841020  4B A0 8F 71 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80841024  80 1F 17 44 */	lwz r0, 0x1744(r31)
 /* 80841028  64 00 00 02 */	oris r0, r0, 2
 /* 8084102C  90 1F 17 44 */	stw r0, 0x1744(r31)
@@ -25,13 +25,13 @@ lbl_80841034:
 /* 80841038  7F E4 FB 78 */	mr r4, r31
 /* 8084103C  38 A0 00 00 */	li r5, 0
 /* 80841040  38 C0 00 00 */	li r6, 0
-/* 80841044  4B A0 92 94 */	b doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
+/* 80841044  4B A0 92 95 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80841048  2C 03 00 00 */	cmpwi r3, 0
 /* 8084104C  41 82 00 24 */	beq lbl_80841070
-/* 80841050  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80841054  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80841050  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80841054  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80841058  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 8084105C  4B 80 14 0C */	b reset__14dEvt_control_cFv
+/* 8084105C  4B 80 14 0D */	bl reset__14dEvt_control_cFv
 /* 80841060  48 00 00 10 */	b lbl_80841070
 lbl_80841064:
 /* 80841064  80 1F 17 44 */	lwz r0, 0x1744(r31)

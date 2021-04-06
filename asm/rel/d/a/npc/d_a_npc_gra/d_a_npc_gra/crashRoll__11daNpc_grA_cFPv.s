@@ -5,8 +5,8 @@ lbl_809C8514:
 /* 809C8520  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 809C8524  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 809C8528  7C 7E 1B 78 */	mr r30, r3
-/* 809C852C  3C 80 80 9D */	lis r4, m__17daNpc_grA_Param_c@ha
-/* 809C8530  3B E4 9D 98 */	addi r31, r4, m__17daNpc_grA_Param_c@l
+/* 809C852C  3C 80 80 9D */	lis r4, m__17daNpc_grA_Param_c@ha /* 0x809C9D98@ha */
+/* 809C8530  3B E4 9D 98 */	addi r31, r4, m__17daNpc_grA_Param_c@l /* 0x809C9D98@l */
 /* 809C8534  A0 03 14 72 */	lhz r0, 0x1472(r3)
 /* 809C8538  2C 00 00 02 */	cmpwi r0, 2
 /* 809C853C  41 82 00 74 */	beq lbl_809C85B0
@@ -86,7 +86,7 @@ lbl_809C8648:
 /* 809C8648  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006004A@ha */
 /* 809C864C  38 03 00 4A */	addi r0, r3, 0x004A /* 0x0006004A@l */
 /* 809C8650  90 01 00 08 */	stw r0, 8(r1)
-/* 809C8654  4B 99 9A 58 */	b __cvt_fp2unsigned
+/* 809C8654  4B 99 9A 59 */	bl __cvt_fp2unsigned
 /* 809C8658  7C 65 1B 78 */	mr r5, r3
 /* 809C865C  38 7E 0B 48 */	addi r3, r30, 0xb48
 /* 809C8660  38 81 00 08 */	addi r4, r1, 8

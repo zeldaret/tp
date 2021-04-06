@@ -16,8 +16,8 @@ lbl_801D9504:
 /* 801D953C  88 9F 00 F4 */	lbz r4, 0xf4(r31)
 /* 801D9540  88 BF 00 F5 */	lbz r5, 0xf5(r31)
 /* 801D9544  48 00 08 89 */	bl getInsectItemID__14dMenu_Insect_cFii
-/* 801D9548  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801D954C  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801D9548  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801D954C  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801D9550  98 64 00 C3 */	stb r3, 0xc3(r4)
 lbl_801D9554:
 /* 801D9554  38 00 00 52 */	li r0, 0x52

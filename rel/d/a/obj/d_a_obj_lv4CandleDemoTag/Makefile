@@ -3,19 +3,20 @@
 #
 
 M523_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag.plf
+M523_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag.lcf
+M523_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag.map
 
 M523_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4CandleDemoTag/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4CandleDemoTag/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag.cpp \
 
 M523_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag.o \
 
 M523_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/libRuntime.PPCEABI.H.a \
 
 M523_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M523_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map523.map\
+	-m _prolog \
+	-lcf $(M523_LDSCRIPT) \
+	-unused -map $(M523_MAP) \
+	-w off \
 
 $(M523_TARGET): $(M523_O_FILES) $(M523_LIBS)
+	@echo [523] creating $(M523_TARGET)
 	@echo $(M523_LIBS) $(M523_O_FILES) > build/M523_ofiles
-	$(LD) -opt_partial $(M523_LDFLAGS) -o $(M523_TARGET) @build/M523_ofiles
+	@python3 tools/lcf.py rel 523 --output $(M523_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M523_LDFLAGS) -o $(M523_TARGET) @build/M523_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleDemoTag/%.cpp
+	@echo [523] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M523_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M523_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4CandleDemoTag/libs/Runtime.PPCEABI.H/Makefile
 

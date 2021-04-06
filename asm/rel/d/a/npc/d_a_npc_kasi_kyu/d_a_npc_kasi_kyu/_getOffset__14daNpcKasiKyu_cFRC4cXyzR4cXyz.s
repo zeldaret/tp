@@ -15,12 +15,12 @@ lbl_80A24E44:
 /* 80A24E78  A0 03 04 E8 */	lhz r0, 0x4e8(r3)
 /* 80A24E7C  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 80A24E80  38 61 00 08 */	addi r3, r1, 8
-/* 80A24E84  4B 5E 80 88 */	b ZXYrotS__14mDoMtx_stack_cFRC5csXyz
-/* 80A24E88  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80A24E8C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80A24E84  4B 5E 80 89 */	bl ZXYrotS__14mDoMtx_stack_cFRC5csXyz
+/* 80A24E88  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80A24E8C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80A24E90  7F E4 FB 78 */	mr r4, r31
 /* 80A24E94  7F E5 FB 78 */	mr r5, r31
-/* 80A24E98  4B 92 1E D4 */	b PSMTXMultVec
+/* 80A24E98  4B 92 1E D5 */	bl PSMTXMultVec
 /* 80A24E9C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80A24EA0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A24EA4  7C 08 03 A6 */	mtlr r0

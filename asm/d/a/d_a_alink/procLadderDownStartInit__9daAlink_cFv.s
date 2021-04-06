@@ -34,22 +34,22 @@ lbl_800FDA08:
 /* 800FDA48  B0 1F 04 DE */	sth r0, 0x4de(r31)
 /* 800FDA4C  7F E3 FB 78 */	mr r3, r31
 /* 800FDA50  38 80 00 9C */	li r4, 0x9c
-/* 800FDA54  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha
-/* 800FDA58  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l
+/* 800FDA54  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FDA58  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FDA5C  C0 25 00 38 */	lfs f1, 0x38(r5)
 /* 800FDA60  C0 45 00 3C */	lfs f2, 0x3c(r5)
 /* 800FDA64  4B FA F5 7D */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800FDA68  38 00 00 10 */	li r0, 0x10
 /* 800FDA6C  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 800FDA70  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800FDA74  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800FDA70  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800FDA74  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800FDA78  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800FDA7C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800FDA80  D0 1F 35 8C */	stfs f0, 0x358c(r31)
 /* 800FDA84  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800FDA88  D0 1F 35 90 */	stfs f0, 0x3590(r31)
-/* 800FDA8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FDA90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FDA8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FDA90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FDA94  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800FDA98  64 00 02 00 */	oris r0, r0, 0x200
 /* 800FDA9C  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -66,8 +66,8 @@ lbl_800FDA08:
 /* 800FDAC8  B0 1F 04 DE */	sth r0, 0x4de(r31)
 /* 800FDACC  A8 1F 30 6E */	lha r0, 0x306e(r31)
 /* 800FDAD0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FDAD4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FDAD8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800FDAD4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FDAD8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FDADC  7C 83 04 2E */	lfsx f4, r3, r0
 /* 800FDAE0  7C 63 02 14 */	add r3, r3, r0
 /* 800FDAE4  C0 A3 00 04 */	lfs f5, 4(r3)

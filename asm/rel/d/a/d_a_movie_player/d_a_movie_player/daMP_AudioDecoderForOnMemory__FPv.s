@@ -5,8 +5,8 @@ lbl_80876344:
 /* 80876350  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80876354  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80876358  93 A1 00 24 */	stw r29, 0x24(r1)
-/* 8087635C  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 80876360  3B C4 9B D0 */	addi r30, r4, daMP_ActivePlayer@l
+/* 8087635C  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80876360  3B C4 9B D0 */	addi r30, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80876364  83 BE 00 BC */	lwz r29, 0xbc(r30)
 /* 80876368  90 61 00 08 */	stw r3, 8(r1)
 /* 8087636C  3B E0 00 00 */	li r31, 0
@@ -32,9 +32,9 @@ lbl_80876370:
 /* 808763B8  90 01 00 08 */	stw r0, 8(r1)
 /* 808763BC  48 00 00 28 */	b lbl_808763E4
 lbl_808763C0:
-/* 808763C0  3C 60 80 8E */	lis r3, daMP_AudioDecodeThread@ha
-/* 808763C4  38 63 05 18 */	addi r3, r3, daMP_AudioDecodeThread@l
-/* 808763C8  4B AC B6 74 */	b OSSuspendThread
+/* 808763C0  3C 60 80 8E */	lis r3, daMP_AudioDecodeThread@ha /* 0x808E0518@ha */
+/* 808763C4  38 63 05 18 */	addi r3, r3, daMP_AudioDecodeThread@l /* 0x808E0518@l */
+/* 808763C8  4B AC B6 75 */	bl OSSuspendThread
 /* 808763CC  48 00 00 18 */	b lbl_808763E4
 lbl_808763D0:
 /* 808763D0  80 61 00 08 */	lwz r3, 8(r1)

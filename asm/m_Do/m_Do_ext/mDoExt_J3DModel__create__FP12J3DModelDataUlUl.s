@@ -12,8 +12,8 @@ lbl_80014C54:
 /* 80014C7C  48 2B 9F D1 */	bl __nw__FUl
 /* 80014C80  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80014C84  41 82 00 20 */	beq lbl_80014CA4
-/* 80014C88  3C 60 80 3D */	lis r3, __vt__8J3DModel@ha
-/* 80014C8C  38 03 ED 20 */	addi r0, r3, __vt__8J3DModel@l
+/* 80014C88  3C 60 80 3D */	lis r3, __vt__8J3DModel@ha /* 0x803CED20@ha */
+/* 80014C8C  38 03 ED 20 */	addi r0, r3, __vt__8J3DModel@l /* 0x803CED20@l */
 /* 80014C90  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014C94  38 7F 00 88 */	addi r3, r31, 0x88
 /* 80014C98  48 2F C3 41 */	bl init__15J3DVertexBufferFv

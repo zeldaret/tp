@@ -2,9 +2,9 @@ lbl_808782A0:
 /* 808782A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 808782A4  7C 08 02 A6 */	mflr r0
 /* 808782A8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 808782AC  4B AE 40 48 */	b GXDrawDone
-/* 808782B0  3C 60 80 94 */	lis r3, daMP_Initialized@ha
-/* 808782B4  80 03 48 88 */	lwz r0, daMP_Initialized@l(r3)
+/* 808782AC  4B AE 40 49 */	bl GXDrawDone
+/* 808782B0  3C 60 80 94 */	lis r3, daMP_Initialized@ha /* 0x80944888@ha */
+/* 808782B4  80 03 48 88 */	lwz r0, daMP_Initialized@l(r3)  /* 0x80944888@l */
 /* 808782B8  2C 00 00 00 */	cmpwi r0, 0
 /* 808782BC  41 82 00 18 */	beq lbl_808782D4
 lbl_808782C0:

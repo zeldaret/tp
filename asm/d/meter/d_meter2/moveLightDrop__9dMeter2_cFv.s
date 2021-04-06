@@ -15,26 +15,26 @@ lbl_80220888:
 /* 802208BC  7C 7B 1B 78 */	mr r27, r3
 /* 802208C0  3B A0 00 00 */	li r29, 0
 /* 802208C4  3B 80 00 00 */	li r28, 0
-/* 802208C8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802208CC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802208C8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802208CC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802208D0  88 03 0F 24 */	lbz r0, 0xf24(r3)
 /* 802208D4  28 00 00 00 */	cmplwi r0, 0
 /* 802208D8  41 82 00 34 */	beq lbl_8022090C
-/* 802208DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802208E0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 802208DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802208E0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802208E4  38 64 01 14 */	addi r3, r4, 0x114
 /* 802208E8  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
 /* 802208EC  4B E1 3A 55 */	bl getLightDropNum__16dSv_light_drop_cCFUc
-/* 802208F0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 802208F4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 802208F0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802208F4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802208F8  88 84 5E A1 */	lbz r4, 0x5ea1(r4)
 /* 802208FC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80220900  7C 04 00 40 */	cmplw r4, r0
 /* 80220904  40 82 00 08 */	bne lbl_8022090C
 /* 80220908  3B 80 00 02 */	li r28, 2
 lbl_8022090C:
-/* 8022090C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220910  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8022090C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220910  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220914  3B DF 01 14 */	addi r30, r31, 0x114
 /* 80220918  7F C3 F3 78 */	mr r3, r30
 /* 8022091C  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
@@ -46,8 +46,8 @@ lbl_8022090C:
 /* 80220934  7F C3 F3 78 */	mr r3, r30
 /* 80220938  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
 /* 8022093C  4B E1 3A 05 */	bl getLightDropNum__16dSv_light_drop_cCFUc
-/* 80220940  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80220944  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80220940  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220944  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220948  88 84 5E A1 */	lbz r4, 0x5ea1(r4)
 /* 8022094C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80220950  7C 04 00 40 */	cmplw r4, r0
@@ -97,8 +97,8 @@ lbl_802209E8:
 /* 802209F8  3B A0 00 01 */	li r29, 1
 lbl_802209FC:
 /* 802209FC  88 1B 01 C3 */	lbz r0, 0x1c3(r27)
-/* 80220A00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220A04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80220A00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220A04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220A08  88 63 5E A1 */	lbz r3, 0x5ea1(r3)
 /* 80220A0C  7C 00 18 40 */	cmplw r0, r3
 /* 80220A10  41 82 00 0C */	beq lbl_80220A1C
@@ -108,8 +108,8 @@ lbl_80220A1C:
 /* 80220A1C  80 1B 01 24 */	lwz r0, 0x124(r27)
 /* 80220A20  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80220A24  40 82 00 58 */	bne lbl_80220A7C
-/* 80220A28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220A2C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80220A28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220A2C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220A30  80 7E 5D AC */	lwz r3, 0x5dac(r30)
 /* 80220A34  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80220A38  81 8C 00 78 */	lwz r12, 0x78(r12)
@@ -124,22 +124,22 @@ lbl_80220A1C:
 /* 80220A5C  4E 80 04 21 */	bctrl 
 /* 80220A60  2C 03 00 00 */	cmpwi r3, 0
 /* 80220A64  40 82 00 18 */	bne lbl_80220A7C
-/* 80220A68  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80220A6C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80220A68  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80220A6C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80220A70  88 03 00 E8 */	lbz r0, 0xe8(r3)
 /* 80220A74  28 00 00 00 */	cmplwi r0, 0
 /* 80220A78  41 82 00 20 */	beq lbl_80220A98
 lbl_80220A7C:
-/* 80220A7C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220A80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220A7C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220A80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220A84  C3 A3 0E 90 */	lfs f29, 0xe90(r3)
 /* 80220A88  C3 83 0E 98 */	lfs f28, 0xe98(r3)
 /* 80220A8C  C3 E3 0E 88 */	lfs f31, 0xe88(r3)
 /* 80220A90  C3 C3 0E A8 */	lfs f30, 0xea8(r3)
 /* 80220A94  48 00 00 1C */	b lbl_80220AB0
 lbl_80220A98:
-/* 80220A98  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220A9C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220A98  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220A9C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220AA0  C3 A3 0E 8C */	lfs f29, 0xe8c(r3)
 /* 80220AA4  C3 83 0E 94 */	lfs f28, 0xe94(r3)
 /* 80220AA8  C3 E3 0E 84 */	lfs f31, 0xe84(r3)

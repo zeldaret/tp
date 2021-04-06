@@ -3,18 +3,16 @@
 #
 
 M559_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge.plf
+M559_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge.lcf
+M559_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge.map
 
 M559_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv7bridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge.cpp \
 
 M559_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/d_a_obj_lv7bridge.o \
 
@@ -31,15 +29,21 @@ M559_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map559.map\
+	-m _prolog \
+	-lcf $(M559_LDSCRIPT) \
+	-unused -map $(M559_MAP) \
+	-w off \
 
 $(M559_TARGET): $(M559_O_FILES) $(M559_LIBS)
+	@echo [559] creating $(M559_TARGET)
 	@echo $(M559_LIBS) $(M559_O_FILES) > build/M559_ofiles
-	$(LD) -opt_partial $(M559_LDFLAGS) -o $(M559_TARGET) @build/M559_ofiles
+	@python3 tools/lcf.py rel 559 --output $(M559_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M559_LDFLAGS) -o $(M559_TARGET) @build/M559_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7bridge/%.o: rel/d/a/obj/d_a_obj_lv7bridge/%.cpp
+	@echo [559] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M559_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M559_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,12 +1,12 @@
 lbl_80345A3C:
 /* 80345A3C  7C 08 02 A6 */	mflr r0
-/* 80345A40  3C A0 80 45 */	lis r5, Packet@ha
+/* 80345A40  3C A0 80 45 */	lis r5, Packet@ha /* 0x8044C630@ha */
 /* 80345A44  90 01 00 04 */	stw r0, 4(r1)
 /* 80345A48  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 80345A4C  BF 61 00 14 */	stmw r27, 0x14(r1)
 /* 80345A50  3B A3 00 00 */	addi r29, r3, 0
 /* 80345A54  3B C4 00 00 */	addi r30, r4, 0
-/* 80345A58  3B 85 C6 30 */	addi r28, r5, Packet@l
+/* 80345A58  3B 85 C6 30 */	addi r28, r5, Packet@l /* 0x8044C630@l */
 /* 80345A5C  4B FF 7C 99 */	bl OSDisableInterrupts
 /* 80345A60  3B E3 00 00 */	addi r31, r3, 0
 /* 80345A64  38 7D 00 00 */	addi r3, r29, 0

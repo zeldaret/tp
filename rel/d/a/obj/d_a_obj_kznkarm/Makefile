@@ -3,17 +3,15 @@
 #
 
 M510_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm.plf
+M510_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm.lcf
+M510_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm.map
 
 M510_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kznkarm/executor.cpp \
-	rel/d/a/obj/d_a_obj_kznkarm/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kznkarm/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kznkarm/d_a_obj_kznkarm.cpp \
 
 M510_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/d_a_obj_kznkarm.o \
 
 M510_LIBS := \
@@ -29,15 +27,21 @@ M510_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map510.map\
+	-m _prolog \
+	-lcf $(M510_LDSCRIPT) \
+	-unused -map $(M510_MAP) \
+	-w off \
 
 $(M510_TARGET): $(M510_O_FILES) $(M510_LIBS)
+	@echo [510] creating $(M510_TARGET)
 	@echo $(M510_LIBS) $(M510_O_FILES) > build/M510_ofiles
-	$(LD) -opt_partial $(M510_LDFLAGS) -o $(M510_TARGET) @build/M510_ofiles
+	@python3 tools/lcf.py rel 510 --output $(M510_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M510_LDFLAGS) -o $(M510_TARGET) @build/M510_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kznkarm/%.o: rel/d/a/obj/d_a_obj_kznkarm/%.cpp
+	@echo [510] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M510_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M510_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

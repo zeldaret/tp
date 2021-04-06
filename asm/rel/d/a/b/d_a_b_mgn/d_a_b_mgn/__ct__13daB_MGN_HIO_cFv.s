@@ -1,8 +1,8 @@
 lbl_8060572C:
-/* 8060572C  3C 80 80 61 */	lis r4, lit_3928@ha
-/* 80605730  38 A4 FD E0 */	addi r5, r4, lit_3928@l
-/* 80605734  3C 80 80 61 */	lis r4, __vt__13daB_MGN_HIO_c@ha
-/* 80605738  38 04 04 2C */	addi r0, r4, __vt__13daB_MGN_HIO_c@l
+/* 8060572C  3C 80 80 61 */	lis r4, lit_3928@ha /* 0x8060FDE0@ha */
+/* 80605730  38 A4 FD E0 */	addi r5, r4, lit_3928@l /* 0x8060FDE0@l */
+/* 80605734  3C 80 80 61 */	lis r4, __vt__13daB_MGN_HIO_c@ha /* 0x8061042C@ha */
+/* 80605738  38 04 04 2C */	addi r0, r4, __vt__13daB_MGN_HIO_c@l /* 0x8061042C@l */
 /* 8060573C  90 03 00 00 */	stw r0, 0(r3)
 /* 80605740  38 00 FF FF */	li r0, -1
 /* 80605744  98 03 00 04 */	stb r0, 4(r3)

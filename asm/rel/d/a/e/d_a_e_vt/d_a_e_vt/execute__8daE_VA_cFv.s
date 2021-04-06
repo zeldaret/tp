@@ -88,8 +88,8 @@ lbl_807CCE18:
 /* 807CCE50  80 1F 13 70 */	lwz r0, 0x1370(r31)
 /* 807CCE54  2C 00 00 02 */	cmpwi r0, 2
 /* 807CCE58  40 80 00 54 */	bge lbl_807CCEAC
-/* 807CCE5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807CCE60  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 807CCE5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807CCE60  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807CCE64  80 7E 5D AC */	lwz r3, 0x5dac(r30)
 /* 807CCE68  7F E4 FB 78 */	mr r4, r31
 /* 807CCE6C  81 83 06 28 */	lwz r12, 0x628(r3)
@@ -119,19 +119,19 @@ lbl_807CCEB8:
 /* 807CCEC0  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 807CCEC4  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 807CCEC8  38 63 06 60 */	addi r3, r3, 0x660
-/* 807CCECC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 807CCED0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 807CCED4  4B B7 95 DC */	b PSMTXCopy
-/* 807CCED8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 807CCEDC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 807CCECC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 807CCED0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 807CCED4  4B B7 95 DD */	bl PSMTXCopy
+/* 807CCED8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 807CCEDC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 807CCEE0  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 807CCEE4  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 807CCEE8  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 807CCEEC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 807CCEF0  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 807CCEF4  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 807CCEF8  3C 60 80 7D */	lis r3, lit_3909@ha
-/* 807CCEFC  C0 03 EC B0 */	lfs f0, lit_3909@l(r3)
+/* 807CCEF8  3C 60 80 7D */	lis r3, lit_3909@ha /* 0x807CECB0@ha */
+/* 807CCEFC  C0 03 EC B0 */	lfs f0, lit_3909@l(r3)  /* 0x807CECB0@l */
 /* 807CCF00  D0 01 00 08 */	stfs f0, 8(r1)
 /* 807CCF04  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 807CCF08  D0 01 00 10 */	stfs f0, 0x10(r1)

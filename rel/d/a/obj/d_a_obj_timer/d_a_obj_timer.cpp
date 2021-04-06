@@ -30,12 +30,10 @@ struct daObjTimer {
 };
 
 struct daObj {
-    /*          */ template <typename A1>
-    /*          */ void
-        PrmAbstract(/* fopAc_ac_c const*, daObjTimer::Act_c::Prm_e, daObjTimer::Act_c::Prm_e */);
-    /* 8048561C */ /* PrmAbstract<daObjTimer::Act_c::Prm_e> */
-    void PrmAbstract__template0(fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
-                                daObjTimer::Act_c::Prm_e);
+    template <typename A1>
+    void PrmAbstract(/* ... */);
+    /* 8048561C */ /* daObj::PrmAbstract<daObjTimer::Act_c::Prm_e> */
+    void func_8048561C(fopAc_ac_c const*, daObjTimer::Act_c::Prm_e, daObjTimer::Act_c::Prm_e);
 };
 
 struct dSv_info_c {
@@ -45,9 +43,9 @@ struct dSv_info_c {
 
 struct create_tag_class {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -69,19 +67,13 @@ extern "C" static void func_804855C4();
 extern "C" static void func_804855E8();
 extern "C" static bool func_8048560C();
 extern "C" static bool func_80485614();
-extern "C" void func_8048561C();
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3726[3];
-extern "C" extern void* lit_3727[3];
-extern "C" extern u8 data_80485680[24];
+extern "C" void func_8048561C(fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
+                              daObjTimer::Act_c::Prm_e);
 extern "C" extern void* g_profile_Obj_Timer[12];
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopDwTg_DrawQTo(create_tag_class*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
@@ -100,19 +92,7 @@ extern "C" extern u8 data_804856E8[4];
 // Declarations:
 //
 
-/* 80485198-8048526C 00D4+00 s=1 e=0 z=0  None .text      _create__Q210daObjTimer5Act_cFv */
-//	804851C0: 80018B64 (__ct__10fopAc_ac_cFv)
-//	804851D4: 800204D4 (fopDwTg_DrawQTo__FP16create_tag_class)
-//	804851E4: 8048561C (func_8048561C)
-//	804851EC: 804061C0 (g_dComIfG_gameInfo)
-//	804851F0: 804061C0 (g_dComIfG_gameInfo)
-//	804851FC: 80035360 (isSwitch__10dSv_info_cCFii)
-//	8048521C: 8048561C (func_8048561C)
-//	80485224: 804061C0 (g_dComIfG_gameInfo)
-//	80485228: 804061C0 (g_dComIfG_gameInfo)
-//	80485234: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80485244: 804852E0 (mode_count_init__Q210daObjTimer5Act_cFv)
-//	80485250: 80485274 (mode_wait_init__Q210daObjTimer5Act_cFv)
+/* 80485198-8048526C 000078 00D4+00 1/1 0/0 0/0 .text            _create__Q210daObjTimer5Act_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,12 +102,12 @@ asm void daObjTimer::Act_c::_create() {
 }
 #pragma pop
 
-/* 8048526C-80485274 0008+00 s=1 e=0 z=0  None .text      _delete__Q210daObjTimer5Act_cFv */
+/* 8048526C-80485274 00014C 0008+00 1/1 0/0 0/0 .text            _delete__Q210daObjTimer5Act_cFv */
 bool daObjTimer::Act_c::_delete() {
     return true;
 }
 
-/* 80485274-80485284 0010+00 s=2 e=0 z=0  None .text      mode_wait_init__Q210daObjTimer5Act_cFv */
+/* 80485274-80485284 000154 0010+00 2/2 0/0 0/0 .text mode_wait_init__Q210daObjTimer5Act_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,12 +117,8 @@ asm void daObjTimer::Act_c::mode_wait_init() {
 }
 #pragma pop
 
-/* 80485284-804852E0 005C+00 s=1 e=0 z=0  None .text      mode_wait__Q210daObjTimer5Act_cFv */
-//	804852A0: 8048561C (func_8048561C)
-//	804852A8: 804061C0 (g_dComIfG_gameInfo)
-//	804852AC: 804061C0 (g_dComIfG_gameInfo)
-//	804852B8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804852C8: 804852E0 (mode_count_init__Q210daObjTimer5Act_cFv)
+/* 80485284-804852E0 000164 005C+00 1/0 0/0 0/0 .text            mode_wait__Q210daObjTimer5Act_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -152,8 +128,7 @@ asm void daObjTimer::Act_c::mode_wait() {
 }
 #pragma pop
 
-/* 804852E0-80485324 0044+00 s=2 e=0 z=0  None .text      mode_count_init__Q210daObjTimer5Act_cFv */
-//	804852FC: 8048561C (func_8048561C)
+/* 804852E0-80485324 0001C0 0044+00 2/2 0/0 0/0 .text mode_count_init__Q210daObjTimer5Act_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,33 +139,16 @@ asm void daObjTimer::Act_c::mode_count_init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485640-80485644 0004+00 s=1 e=0 z=0  None .rodata    @3720 */
+/* 80485640-80485644 000000 0004+00 1/1 0/0 0/0 .rodata          @3720 */
 SECTION_RODATA static u32 const lit_3720 = 0x3F800000;
+SECTION_DEAD void* const cg_80485640 = (void*)(&lit_3720);
 
-/* 80485644-80485648 0004+00 s=1 e=0 z=0  None .rodata    @3721 */
+/* 80485644-80485648 000004 0004+00 1/1 0/0 0/0 .rodata          @3721 */
 SECTION_RODATA static u32 const lit_3721 = 0xBF800000;
+SECTION_DEAD void* const cg_80485644 = (void*)(&lit_3721);
 
-/* 80485324-804854BC 0198+00 s=1 e=0 z=0  None .text      mode_count__Q210daObjTimer5Act_cFv */
-//	80485358: 8048561C (func_8048561C)
-//	8048537C: 804061C0 (g_dComIfG_gameInfo)
-//	80485380: 804061C0 (g_dComIfG_gameInfo)
-//	8048539C: 8048561C (func_8048561C)
-//	80485400: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80485404: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8048541C: 80485640 (lit_3720)
-//	80485420: 80485640 (lit_3720)
-//	80485428: 80485644 (lit_3721)
-//	8048542C: 80485644 (lit_3721)
-//	80485438: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80485454: 8048561C (func_8048561C)
-//	8048545C: 804061C0 (g_dComIfG_gameInfo)
-//	80485460: 804061C0 (g_dComIfG_gameInfo)
-//	8048546C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80485484: 8048561C (func_8048561C)
-//	8048548C: 804061C0 (g_dComIfG_gameInfo)
-//	80485490: 804061C0 (g_dComIfG_gameInfo)
-//	8048549C: 800352B0 (offSwitch__10dSv_info_cFii)
-//	804854A4: 80485274 (mode_wait_init__Q210daObjTimer5Act_cFv)
+/* 80485324-804854BC 000204 0198+00 1/0 0/0 0/0 .text            mode_count__Q210daObjTimer5Act_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,22 +159,54 @@ asm void daObjTimer::Act_c::mode_count() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485648-80485654 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80485648-80485654 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 804854BC-804855A4 00E8+00 s=1 e=0 z=0  None .text      _execute__Q210daObjTimer5Act_cFv */
-//	804854D4: 80485648 (cNullVec__6Z2Calc)
-//	804854D8: 80485648 (cNullVec__6Z2Calc)
-//	804854DC: 804856E8 (data_804856E8)
-//	804854E0: 804856E8 (data_804856E8)
-//	80485538: 8048561C (func_8048561C)
-//	80485540: 804061C0 (g_dComIfG_gameInfo)
-//	80485544: 804061C0 (g_dComIfG_gameInfo)
-//	80485550: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80485560: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80485580: 80362084 (__ptmf_scall)
+/* 80485654-80485668 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+    0x02000201,
+    /* padding */
+    0x40080000,
+    0x00000000,
+    0x3FE00000,
+    0x00000000,
+};
+#pragma pop
+
+/* 80485668-80485674 -00001 000C+00 0/1 0/0 0/0 .data            @3726 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3726[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)mode_wait__Q210daObjTimer5Act_cFv,
+};
+#pragma pop
+
+/* 80485674-80485680 -00001 000C+00 0/1 0/0 0/0 .data            @3727 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3727[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)mode_count__Q210daObjTimer5Act_cFv,
+};
+#pragma pop
+
+/* 80485680-80485698 000038 0018+00 0/1 0/0 0/0 .data            mode_proc$3725 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 mode_proc[24] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+#pragma pop
+
+/* 804854BC-804855A4 00039C 00E8+00 1/1 0/0 0/0 .text            _execute__Q210daObjTimer5Act_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,107 +216,74 @@ asm void daObjTimer::Act_c::_execute() {
 }
 #pragma pop
 
-/* 804855A4-804855C4 0020+00 s=1 e=0 z=0  None .text
+/* 804855A4-804855C4 000484 0020+00 1/0 0/0 0/0 .text
  * Mthd_Create__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@FPv  */
-//	804855B0: 80485198 (_create__Q210daObjTimer5Act_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_804855A4() {
+static asm void func_804855A4() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer/func_804855A4.s"
 }
 #pragma pop
 
-/* 804855C4-804855E8 0024+00 s=1 e=0 z=0  None .text
+/* 804855C4-804855E8 0004A4 0024+00 1/0 0/0 0/0 .text
  * Mthd_Delete__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@FPv  */
-//	804855D0: 8048526C (_delete__Q210daObjTimer5Act_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_804855C4() {
+static asm void func_804855C4() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer/func_804855C4.s"
 }
 #pragma pop
 
-/* 804855E8-8048560C 0024+00 s=1 e=0 z=0  None .text
+/* 804855E8-8048560C 0004C8 0024+00 1/0 0/0 0/0 .text
  * Mthd_Execute__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@FPv */
-//	804855F4: 804854BC (_execute__Q210daObjTimer5Act_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_804855E8() {
+static asm void func_804855E8() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer/func_804855E8.s"
 }
 #pragma pop
 
-/* 8048560C-80485614 0008+00 s=1 e=0 z=0  None .text
+/* 8048560C-80485614 0004EC 0008+00 1/0 0/0 0/0 .text
  * Mthd_Draw__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@FPv    */
-extern "C" static bool func_8048560C() {
+static bool func_8048560C() {
     return true;
 }
 
-/* 80485614-8048561C 0008+00 s=1 e=0 z=0  None .text
+/* 80485614-8048561C 0004F4 0008+00 1/0 0/0 0/0 .text
  * Mthd_IsDelete__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@FPv */
-extern "C" static bool func_80485614() {
+static bool func_80485614() {
     return true;
 }
 
-/* 8048561C-80485638 001C+00 s=5 e=0 z=0  None .text
+/* 8048561C-80485638 0004FC 001C+00 5/5 0/0 0/0 .text
  * PrmAbstract<Q310daObjTimer5Act_c5Prm_e>__5daObjFPC10fopAc_ac_cQ310daObjTimer5Act_c5Prm_eQ310daObjTimer5Act_c5Prm_e
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObj::PrmAbstract__template0(fopAc_ac_c const* param_0, daObjTimer::Act_c::Prm_e param_1,
-                                       daObjTimer::Act_c::Prm_e param_2) {
+extern "C" asm void func_8048561C(fopAc_ac_c const* param_0, daObjTimer::Act_c::Prm_e param_1,
+                                  daObjTimer::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer/func_8048561C.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485654-80485668 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-
-/* 80485668-80485674 000C+00 s=0 e=0 z=0  None .data      @3726 */
-SECTION_DATA void* lit_3726[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_wait__Q210daObjTimer5Act_cFv,
-};
-
-/* 80485674-80485680 000C+00 s=0 e=0 z=0  None .data      @3727 */
-SECTION_DATA void* lit_3727[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_count__Q210daObjTimer5Act_cFv,
-};
-
-/* 80485680-80485698 0018+00 s=0 e=0 z=0  None .data      mode_proc$3725 */
-SECTION_DATA u8 data_80485680[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80485698-804856B8 0020+00 s=1 e=0 z=0  None .data
+/* 80485698-804856B8 -00001 0020+00 1/0 0/0 0/0 .data
  * Mthd_Table__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@      */
 SECTION_DATA static void* data_80485698[8] = {
     (void*)func_804855A4, (void*)func_804855C4, (void*)func_804855E8, (void*)func_80485614,
     (void*)func_8048560C, (void*)NULL,          (void*)NULL,          (void*)NULL,
 };
 
-/* 804856B8-804856E8 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Timer */
-SECTION_DATA void* g_profile_Obj_Timer[12] = {
+/* 804856B8-804856E8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Timer */
+SECTION_DATA extern void* g_profile_Obj_Timer[12] = {
     (void*)0xFFFFFFFD, (void*)0x000AFFFD,     (void*)0x030B0000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,           (void*)NULL,       (void*)&g_fopAc_Method,
     (void*)0x00160000, (void*)&data_80485698, (void*)0x00040000, (void*)NULL,

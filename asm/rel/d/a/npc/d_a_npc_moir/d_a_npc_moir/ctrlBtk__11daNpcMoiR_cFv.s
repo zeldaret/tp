@@ -7,27 +7,27 @@ lbl_80A8210C:
 /* 80A82120  80 03 0B DC */	lwz r0, 0xbdc(r3)
 /* 80A82124  28 00 00 00 */	cmplwi r0, 0
 /* 80A82128  41 82 00 A0 */	beq lbl_80A821C8
-/* 80A8212C  3C 80 80 A8 */	lis r4, l_btkGetParamList@ha
-/* 80A82130  38 A4 3A BC */	addi r5, r4, l_btkGetParamList@l
+/* 80A8212C  3C 80 80 A8 */	lis r4, l_btkGetParamList@ha /* 0x80A83ABC@ha */
+/* 80A82130  38 A4 3A BC */	addi r5, r4, l_btkGetParamList@l /* 0x80A83ABC@l */
 /* 80A82134  80 05 00 08 */	lwz r0, 8(r5)
 /* 80A82138  54 00 10 3A */	slwi r0, r0, 2
-/* 80A8213C  3C 80 80 A8 */	lis r4, l_arcNames@ha
-/* 80A82140  38 84 3A F8 */	addi r4, r4, l_arcNames@l
+/* 80A8213C  3C 80 80 A8 */	lis r4, l_arcNames@ha /* 0x80A83AF8@ha */
+/* 80A82140  38 84 3A F8 */	addi r4, r4, l_arcNames@l /* 0x80A83AF8@l */
 /* 80A82144  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80A82148  80 A5 00 00 */	lwz r5, 0(r5)
-/* 80A8214C  4B 6D 0A 58 */	b getTexSRTKeyAnmP__8daNpcF_cFPci
+/* 80A8214C  4B 6D 0A 59 */	bl getTexSRTKeyAnmP__8daNpcF_cFPci
 /* 80A82150  80 1F 05 B4 */	lwz r0, 0x5b4(r31)
 /* 80A82154  7C 03 00 40 */	cmplw r3, r0
 /* 80A82158  40 82 00 64 */	bne lbl_80A821BC
 /* 80A8215C  A8 1F 08 FE */	lha r0, 0x8fe(r31)
 /* 80A82160  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80A82164  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80A82168  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80A82164  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80A82168  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80A8216C  7C 04 04 2E */	lfsx f0, r4, r0
-/* 80A82170  3C 60 80 A8 */	lis r3, lit_4960@ha
-/* 80A82174  C0 43 37 90 */	lfs f2, lit_4960@l(r3)
-/* 80A82178  3C 60 80 A8 */	lis r3, lit_6069@ha
-/* 80A8217C  C0 23 38 1C */	lfs f1, lit_6069@l(r3)
+/* 80A82170  3C 60 80 A8 */	lis r3, lit_4960@ha /* 0x80A83790@ha */
+/* 80A82174  C0 43 37 90 */	lfs f2, lit_4960@l(r3)  /* 0x80A83790@l */
+/* 80A82178  3C 60 80 A8 */	lis r3, lit_6069@ha /* 0x80A8381C@ha */
+/* 80A8217C  C0 23 38 1C */	lfs f1, lit_6069@l(r3)  /* 0x80A8381C@l */
 /* 80A82180  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80A82184  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80A82188  80 7F 0B DC */	lwz r3, 0xbdc(r31)

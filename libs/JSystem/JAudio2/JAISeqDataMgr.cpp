@@ -25,14 +25,10 @@ struct JAISeqDataMgr {
 
 extern "C" void __dt__14JAISeqDataUserFv();
 extern "C" void __dt__13JAISeqDataMgrFv();
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
-extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -41,8 +37,8 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C9928-803C9940 0018+00 s=1 e=2 z=0  None .data      __vt__13JAISeqDataMgr */
-SECTION_DATA void* __vt__13JAISeqDataMgr[6] = {
+/* 803C9928-803C9940 026A48 0018+00 1/1 2/2 0/0 .data            __vt__13JAISeqDataMgr */
+SECTION_DATA extern void* __vt__13JAISeqDataMgr[6] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JAISeqDataMgrFv,
@@ -51,8 +47,8 @@ SECTION_DATA void* __vt__13JAISeqDataMgr[6] = {
     (void*)NULL,
 };
 
-/* 803C9940-803C9958 0014+04 s=1 e=3 z=0  None .data      __vt__14JAISeqDataUser */
-SECTION_DATA void* __vt__14JAISeqDataUser[5 + 1 /* padding */] = {
+/* 803C9940-803C9958 026A60 0014+04 1/1 3/3 0/0 .data            __vt__14JAISeqDataUser */
+SECTION_DATA extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JAISeqDataUserFv,
@@ -62,10 +58,7 @@ SECTION_DATA void* __vt__14JAISeqDataUser[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802A1774-802A17BC 0048+00 s=1 e=4 z=0  None .text      __dt__14JAISeqDataUserFv */
-//	802A178C: 803C9940 (__vt__14JAISeqDataUser)
-//	802A1790: 803C9940 (__vt__14JAISeqDataUser)
-//	802A17A0: 802CED3C (__dl__FPv)
+/* 802A1774-802A17BC 29C0B4 0048+00 1/0 4/4 0/0 .text            __dt__14JAISeqDataUserFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,10 +68,7 @@ asm JAISeqDataUser::~JAISeqDataUser() {
 }
 #pragma pop
 
-/* 802A17BC-802A1804 0048+00 s=1 e=2 z=0  None .text      __dt__13JAISeqDataMgrFv */
-//	802A17D4: 803C9928 (__vt__13JAISeqDataMgr)
-//	802A17D8: 803C9928 (__vt__13JAISeqDataMgr)
-//	802A17E8: 802CED3C (__dl__FPv)
+/* 802A17BC-802A1804 29C0FC 0048+00 1/0 2/2 0/0 .text            __dt__13JAISeqDataMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

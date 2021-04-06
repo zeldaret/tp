@@ -3,19 +3,20 @@
 #
 
 M55_TARGET := $(BUILD_DIR)/rel/d/a/d_a_spinner.plf
+M55_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_spinner.lcf
+M55_MAP := $(BUILD_DIR)/rel/d/a/d_a_spinner.map
 
 M55_CPP_FILES := \
-	rel/d/a/d_a_spinner/executor.cpp \
-	rel/d/a/d_a_spinner/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_spinner/d_a_spinner.cpp \
 
 M55_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_spinner/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_spinner/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_spinner/d_a_spinner.o \
 
 M55_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_spinner/libRuntime.PPCEABI.H.a \
 
 M55_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M55_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map55.map\
+	-m _prolog \
+	-lcf $(M55_LDSCRIPT) \
+	-unused -map $(M55_MAP) \
+	-w off \
 
 $(M55_TARGET): $(M55_O_FILES) $(M55_LIBS)
+	@echo [ 55] creating $(M55_TARGET)
 	@echo $(M55_LIBS) $(M55_O_FILES) > build/M55_ofiles
-	$(LD) -opt_partial $(M55_LDFLAGS) -o $(M55_TARGET) @build/M55_ofiles
+	@python3 tools/lcf.py rel 55 --output $(M55_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M55_LDFLAGS) -o $(M55_TARGET) @build/M55_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_spinner/%.o: rel/d/a/d_a_spinner/%.cpp
+	@echo [ 55] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M55_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M55_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_spinner/libs/Runtime.PPCEABI.H/Makefile
 

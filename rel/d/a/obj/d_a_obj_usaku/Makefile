@@ -3,17 +3,15 @@
 #
 
 M673_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku.plf
+M673_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku.lcf
+M673_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku.map
 
 M673_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_usaku/executor.cpp \
-	rel/d/a/obj/d_a_obj_usaku/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_usaku/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku.cpp \
 
 M673_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku.o \
 
 M673_LIBS := \
@@ -29,15 +27,21 @@ M673_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map673.map\
+	-m _prolog \
+	-lcf $(M673_LDSCRIPT) \
+	-unused -map $(M673_MAP) \
+	-w off \
 
 $(M673_TARGET): $(M673_O_FILES) $(M673_LIBS)
+	@echo [673] creating $(M673_TARGET)
 	@echo $(M673_LIBS) $(M673_O_FILES) > build/M673_ofiles
-	$(LD) -opt_partial $(M673_LDFLAGS) -o $(M673_TARGET) @build/M673_ofiles
+	@python3 tools/lcf.py rel 673 --output $(M673_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M673_LDFLAGS) -o $(M673_TARGET) @build/M673_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_usaku/%.o: rel/d/a/obj/d_a_obj_usaku/%.cpp
+	@echo [673] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M673_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M673_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

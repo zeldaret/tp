@@ -3,10 +3,10 @@ lbl_806BCDDC:
 /* 806BCDE0  7C 08 02 A6 */	mflr r0
 /* 806BCDE4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 806BCDE8  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 806BCDEC  3C 80 80 6C */	lis r4, lit_3917@ha
-/* 806BCDF0  3B E4 E4 8C */	addi r31, r4, lit_3917@l
+/* 806BCDEC  3C 80 80 6C */	lis r4, lit_3917@ha /* 0x806BE48C@ha */
+/* 806BCDF0  3B E4 E4 8C */	addi r31, r4, lit_3917@l /* 0x806BE48C@l */
 /* 806BCDF4  38 81 00 08 */	addi r4, r1, 8
-/* 806BCDF8  4B 95 85 18 */	b mDoLib_project__FP3VecP3Vec
+/* 806BCDF8  4B 95 85 19 */	bl mDoLib_project__FP3VecP3Vec
 /* 806BCDFC  38 60 00 00 */	li r3, 0
 /* 806BCE00  C0 41 00 08 */	lfs f2, 8(r1)
 /* 806BCE04  C0 3F 00 04 */	lfs f1, 4(r31)

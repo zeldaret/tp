@@ -5,8 +5,8 @@ lbl_8032E1B0:
 /* 8032E1BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032E1C0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8032E1C4  41 82 00 1C */	beq lbl_8032E1E0
-/* 8032E1C8  3C A0 80 3D */	lis r5, __vt__13J3DSkinDeform@ha
-/* 8032E1CC  38 05 EE 70 */	addi r0, r5, __vt__13J3DSkinDeform@l
+/* 8032E1C8  3C A0 80 3D */	lis r5, __vt__13J3DSkinDeform@ha /* 0x803CEE70@ha */
+/* 8032E1CC  38 05 EE 70 */	addi r0, r5, __vt__13J3DSkinDeform@l /* 0x803CEE70@l */
 /* 8032E1D0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032E1D4  7C 80 07 35 */	extsh. r0, r4
 /* 8032E1D8  40 81 00 08 */	ble lbl_8032E1E0

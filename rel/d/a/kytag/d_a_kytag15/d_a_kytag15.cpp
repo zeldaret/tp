@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -51,13 +51,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daKytag15_Draw(kytag15_class*);
-static void daKytag15_Execute(kytag15_class*);
-static bool daKytag15_IsDelete(kytag15_class*);
-static void daKytag15_Delete(kytag15_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daKytag15_Create(fopAc_ac_c*);
-
 extern "C" static void daKytag15_Draw__FP13kytag15_class();
 extern "C" static void daKytag15_Execute__FP13kytag15_class();
 extern "C" static bool daKytag15_IsDelete__FP13kytag15_class();
@@ -65,29 +58,11 @@ extern "C" static void daKytag15_Delete__FP13kytag15_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daKytag15_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" extern u32 const lit_3824;
-extern "C" extern u32 const lit_3825;
-extern "C" extern u32 const lit_3826;
-extern "C" extern u8 const lit_3828[8];
-extern "C" extern u32 const lit_3846;
-extern "C" extern u32 const lit_3847;
-extern "C" extern u32 const lit_3848;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_KYTAG15[12];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
+extern "C" extern char const* const d_a_kytag15__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKy_daynight_check();
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void operator delete(void*);
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -120,141 +95,110 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80860B40-80860B44 0004+00 s=3 e=0 z=0  None .rodata    @3823 */
+/* 80860B40-80860B44 000000 0004+00 3/3 0/0 0/0 .rodata          @3823 */
 SECTION_RODATA static u8 const lit_3823[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80860B40 = (void*)(&lit_3823);
 
-/* 80860638-808607F8 01C0+00 s=1 e=0 z=0  None .text      daKytag15_Draw__FP13kytag15_class */
-//	80860650: 80860B40 (lit_3823)
-//	80860654: 80860B40 (lit_3823)
-//	80860658: 803DD470 (now__14mDoMtx_stack_c)
-//	8086065C: 803DD470 (now__14mDoMtx_stack_c)
-//	8086066C: 803468E8 (PSMTXTrans)
-//	80860754: 803DD470 (now__14mDoMtx_stack_c)
-//	80860758: 803DD470 (now__14mDoMtx_stack_c)
-//	80860764: 803464B0 (PSMTXCopy)
-//	8086077C: 8000D6D8 (entry__13mDoExt_btkAnmFP16J3DMaterialTablef)
-//	80860784: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80860798: 8000D428 (play__14mDoExt_baseAnmFv)
-//	8086079C: 804061C0 (g_dComIfG_gameInfo)
-//	808607A0: 804061C0 (g_dComIfG_gameInfo)
-//	808607A8: 80434AC8 (j3dSys)
-//	808607AC: 80434AC8 (j3dSys)
-//	808607B8: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	808607BC: 804061C0 (g_dComIfG_gameInfo)
-//	808607C0: 804061C0 (g_dComIfG_gameInfo)
-//	808607C8: 80434AC8 (j3dSys)
-//	808607CC: 80434AC8 (j3dSys)
+/* 80860B44-80860B48 000004 0004+00 0/1 0/0 0/0 .rodata          @3824 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3824 = 0x3BABB44E;
+SECTION_DEAD void* const cg_80860B44 = (void*)(&lit_3824);
+#pragma pop
+
+/* 80860B48-80860B4C 000008 0004+00 0/1 0/0 0/0 .rodata          @3825 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3825 = 0xC37F0000;
+SECTION_DEAD void* const cg_80860B48 = (void*)(&lit_3825);
+#pragma pop
+
+/* 80860B4C-80860B50 00000C 0004+00 0/1 0/0 0/0 .rodata          @3826 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3826 = 0x437F0000;
+SECTION_DEAD void* const cg_80860B4C = (void*)(&lit_3826);
+#pragma pop
+
+/* 80860B50-80860B58 000010 0008+00 0/1 0/0 0/0 .rodata          @3828 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3828[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80860B50 = (void*)(&lit_3828);
+#pragma pop
+
+/* 80860638-808607F8 000078 01C0+00 1/0 0/0 0/0 .text            daKytag15_Draw__FP13kytag15_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKytag15_Draw(kytag15_class* param_0) {
+static asm void daKytag15_Draw(kytag15_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/daKytag15_Draw__FP13kytag15_class.s"
 }
 #pragma pop
 
-/* 808607F8-808608B0 00B8+00 s=1 e=0 z=0  None .text      daKytag15_Execute__FP13kytag15_class */
-//	80860810: 80860B40 (lit_3823)
-//	80860814: 80860B40 (lit_3823)
-//	80860824: 8019FAB8 (dKy_daynight_check__Fv)
-//	80860844: 8026F97C (cLib_addCalc__FPfffff)
-//	80860860: 8026F97C (cLib_addCalc__FPfffff)
-//	80860868: 8042CA54 (g_env_light)
-//	8086086C: 8042CA54 (g_env_light)
-//	80860890: 8026F97C (cLib_addCalc__FPfffff)
+/* ############################################################################################## */
+/* 80860B58-80860B5C 000018 0004+00 2/3 0/0 0/0 .rodata          @3845 */
+SECTION_RODATA static u32 const lit_3845 = 0x3F800000;
+SECTION_DEAD void* const cg_80860B58 = (void*)(&lit_3845);
+
+/* 80860B5C-80860B60 00001C 0004+00 0/1 0/0 0/0 .rodata          @3846 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3846 = 0x3D4CCCCD;
+SECTION_DEAD void* const cg_80860B5C = (void*)(&lit_3846);
+#pragma pop
+
+/* 80860B60-80860B64 000020 0004+00 0/1 0/0 0/0 .rodata          @3847 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3847 = 0x3C23D70A;
+SECTION_DEAD void* const cg_80860B60 = (void*)(&lit_3847);
+#pragma pop
+
+/* 80860B64-80860B68 000024 0004+00 0/1 0/0 0/0 .rodata          @3848 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3848 = 0x322BCC77;
+SECTION_DEAD void* const cg_80860B64 = (void*)(&lit_3848);
+#pragma pop
+
+/* 808607F8-808608B0 000238 00B8+00 1/0 0/0 0/0 .text daKytag15_Execute__FP13kytag15_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKytag15_Execute(kytag15_class* param_0) {
+static asm void daKytag15_Execute(kytag15_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/daKytag15_Execute__FP13kytag15_class.s"
 }
 #pragma pop
 
-/* 808608B0-808608B8 0008+00 s=1 e=0 z=0  None .text      daKytag15_IsDelete__FP13kytag15_class */
+/* 808608B0-808608B8 0002F0 0008+00 1/0 0/0 0/0 .text daKytag15_IsDelete__FP13kytag15_class */
 static bool daKytag15_IsDelete(kytag15_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80860B44-80860B48 0004+00 s=0 e=0 z=0  None .rodata    @3824 */
-SECTION_RODATA u32 const lit_3824 = 0x3BABB44E;
-
-/* 80860B48-80860B4C 0004+00 s=0 e=0 z=0  None .rodata    @3825 */
-SECTION_RODATA u32 const lit_3825 = 0xC37F0000;
-
-/* 80860B4C-80860B50 0004+00 s=0 e=0 z=0  None .rodata    @3826 */
-SECTION_RODATA u32 const lit_3826 = 0x437F0000;
-
-/* 80860B50-80860B58 0008+00 s=0 e=0 z=0  None .rodata    @3828 */
-SECTION_RODATA u8 const lit_3828[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80860B58-80860B5C 0004+00 s=2 e=0 z=0  None .rodata    @3845 */
-SECTION_RODATA static u32 const lit_3845 = 0x3F800000;
-
-/* 80860B5C-80860B60 0004+00 s=0 e=0 z=0  None .rodata    @3846 */
-SECTION_RODATA u32 const lit_3846 = 0x3D4CCCCD;
-
-/* 80860B60-80860B64 0004+00 s=0 e=0 z=0  None .rodata    @3847 */
-SECTION_RODATA u32 const lit_3847 = 0x3C23D70A;
-
-/* 80860B64-80860B68 0004+00 s=0 e=0 z=0  None .rodata    @3848 */
-SECTION_RODATA u32 const lit_3848 = 0x322BCC77;
-
-/* 80860B68-80860B78 0010+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80860B68 = "Kytag15";
-SECTION_DEAD char const* const stringBase_80860B70 = "F_SP118";
-#pragma pop
-
-/* 808608B8-808608E8 0030+00 s=1 e=0 z=0  None .text      daKytag15_Delete__FP13kytag15_class */
-//	808608C4: 80860B68 (stringBase0)
-//	808608C8: 80860B68 (stringBase0)
-//	808608D0: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 808608B8-808608E8 0002F8 0030+00 1/0 0/0 0/0 .text            daKytag15_Delete__FP13kytag15_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKytag15_Delete(kytag15_class* param_0) {
+static asm void daKytag15_Delete(kytag15_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/daKytag15_Delete__FP13kytag15_class.s"
 }
 #pragma pop
 
-/* 808608E8-808609B4 00CC+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
-//	808608F8: 803621DC (_savegpr_29)
-//	80860900: 80860B68 (stringBase0)
-//	80860904: 80860B68 (stringBase0)
-//	8086090C: 804061C0 (g_dComIfG_gameInfo)
-//	80860910: 804061C0 (g_dComIfG_gameInfo)
-//	80860924: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80860938: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80860954: 80860B68 (stringBase0)
-//	80860958: 80860B68 (stringBase0)
-//	80860968: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80860980: 80860B58 (lit_3845)
-//	80860984: 80860B58 (lit_3845)
-//	80860990: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
-//	808609A0: 80362228 (_restgpr_29)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/useHeapInit__FP10fopAc_ac_c.s"
-}
-#pragma pop
-
 /* ############################################################################################## */
-/* 80860B78-80860B98 0020+00 s=1 e=0 z=0  None .data      l_daKytag15_Method */
+/* 80860B78-80860B98 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag15_Method */
 SECTION_DATA static void* l_daKytag15_Method[8] = {
     (void*)daKytag15_Create__FP10fopAc_ac_c,
     (void*)daKytag15_Delete__FP13kytag15_class,
@@ -266,8 +210,8 @@ SECTION_DATA static void* l_daKytag15_Method[8] = {
     (void*)NULL,
 };
 
-/* 80860B98-80860BC8 0030+00 s=0 e=0 z=1  None .data      g_profile_KYTAG15 */
-SECTION_DATA void* g_profile_KYTAG15[12] = {
+/* 80860B98-80860BC8 -00001 0030+00 0/1 0/0 1/0 .data            g_profile_KYTAG15 */
+SECTION_DATA extern void* g_profile_KYTAG15[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02B90000, (void*)&g_fpcLf_Method,
     (void*)0x00000594, (void*)NULL,
@@ -276,49 +220,35 @@ SECTION_DATA void* g_profile_KYTAG15[12] = {
     (void*)0x00044000, (void*)NULL,
 };
 
-/* 80860BC8-80860BD4 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
+/* 808608E8-808609B4 000328 00CC+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void useHeapInit(fopAc_ac_c* param_0) {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/useHeapInit__FP10fopAc_ac_c.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80860BC8-80860BD4 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 808609B4-80860AF0 013C+00 s=1 e=0 z=0  None .text      daKytag15_Create__FP10fopAc_ac_c */
-//	808609CC: 804061C0 (g_dComIfG_gameInfo)
-//	808609D0: 804061C0 (g_dComIfG_gameInfo)
-//	808609D8: 80860B68 (stringBase0)
-//	808609DC: 80860B68 (stringBase0)
-//	808609E4: 80368994 (strcmp)
-//	80860A1C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80860A24: 80860BC8 (__vt__12J3DFrameCtrl)
-//	80860A28: 80860BC8 (__vt__12J3DFrameCtrl)
-//	80860A38: 803283FC (init__12J3DFrameCtrlFs)
-//	80860A5C: 8019FAB8 (dKy_daynight_check__Fv)
-//	80860A68: 80860B58 (lit_3845)
-//	80860A6C: 80860B58 (lit_3845)
-//	80860A78: 80860B40 (lit_3823)
-//	80860A7C: 80860B40 (lit_3823)
-//	80860A88: 80860B40 (lit_3823)
-//	80860A8C: 80860B40 (lit_3823)
-//	80860A98: 80860B68 (stringBase0)
-//	80860A9C: 80860B68 (stringBase0)
-//	80860AA0: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80860AB4: 808608E8 (useHeapInit__FP10fopAc_ac_c)
-//	80860AB8: 808608E8 (useHeapInit__FP10fopAc_ac_c)
-//	80860AC0: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
+/* 808609B4-80860AF0 0003F4 013C+00 1/0 0/0 0/0 .text            daKytag15_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKytag15_Create(fopAc_ac_c* param_0) {
+static asm void daKytag15_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/daKytag15_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80860AF0-80860B38 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-//	80860B08: 80860BC8 (__vt__12J3DFrameCtrl)
-//	80860B0C: 80860BC8 (__vt__12J3DFrameCtrl)
-//	80860B1C: 802CED3C (__dl__FPv)
+/* 80860AF0-80860B38 000530 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,4 +256,12 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
     nofralloc
 #include "asm/rel/d/a/kytag/d_a_kytag15/d_a_kytag15/__dt__12J3DFrameCtrlFv.s"
 }
+#pragma pop
+
+/* 80860B68-80860B78 000028 0010+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80860B68 = "Kytag15";
+SECTION_DEAD static char const* const stringBase_80860B70 = "F_SP118";
 #pragma pop

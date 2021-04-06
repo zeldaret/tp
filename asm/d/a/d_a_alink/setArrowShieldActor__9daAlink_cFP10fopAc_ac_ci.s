@@ -38,8 +38,8 @@ lbl_800DC93C:
 /* 800DC940  40 82 00 A8 */	bne lbl_800DC9E8
 /* 800DC944  80 1D 28 B0 */	lwz r0, 0x28b0(r29)
 /* 800DC948  90 01 00 08 */	stw r0, 8(r1)
-/* 800DC94C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800DC950  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800DC94C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800DC950  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800DC954  38 81 00 08 */	addi r4, r1, 8
 /* 800DC958  4B F3 CE A1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800DC95C  28 03 00 00 */	cmplwi r3, 0
@@ -66,8 +66,8 @@ lbl_800DC978:
 /* 800DC9A8  38 00 00 0A */	li r0, 0xa
 /* 800DC9AC  7C 7D 2A 14 */	add r3, r29, r5
 /* 800DC9B0  98 03 2F 7C */	stb r0, 0x2f7c(r3)
-/* 800DC9B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DC9B8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800DC9B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DC9B8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DC9BC  A8 64 5D F4 */	lha r3, 0x5df4(r4)
 /* 800DC9C0  38 03 00 01 */	addi r0, r3, 1
 /* 800DC9C4  B0 04 5D F4 */	sth r0, 0x5df4(r4)

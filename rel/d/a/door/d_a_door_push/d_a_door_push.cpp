@@ -46,9 +46,9 @@ struct daDoorPush_c {
     /* 80678D2C */ void Delete();
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -80,9 +80,9 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -115,9 +115,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -129,14 +129,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
-static void PPCallBack2(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
-static void daDoorPush_create1st(daDoorPush_c*);
-static void daDoorPush_MoveBGDelete(daDoorPush_c*);
-static void daDoorPush_MoveBGExecute(daDoorPush_c*);
-static void daDoorPush_MoveBGDraw(daDoorPush_c*);
-void cLib_calcTimer__template0(u8*);
 
 extern "C" static void PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
 extern "C" static void PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel();
@@ -165,42 +157,12 @@ extern "C" void __ct__4cXyzFv();
 extern "C" static void daDoorPush_MoveBGDelete__FP12daDoorPush_c();
 extern "C" static void daDoorPush_MoveBGExecute__FP12daDoorPush_c();
 extern "C" static void daDoorPush_MoveBGDraw__FP12daDoorPush_c();
-extern "C" void func_80678EA8();
-extern "C" extern u8 const lit_3689[4];
-extern "C" extern u32 const lit_3690;
-extern "C" extern u32 const lit_3716;
-extern "C" extern u32 const lit_3717;
-extern "C" extern u32 const lit_3985;
-extern "C" extern u32 const lit_3986;
-extern "C" extern u32 const lit_4031;
-extern "C" extern u32 const lit_4032;
-extern "C" extern u32 const lit_4033;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3878[3];
-extern "C" extern void* lit_3879[3];
-extern "C" extern void* lit_3880[3];
-extern "C" extern u8 data_80678FC8[36];
-extern "C" extern void* g_profile_PushDoor[12];
-extern "C" extern void* __vt__12daDoorPush_c[10];
+extern "C" void func_80678EA8(u8*);
+extern "C" extern char const* const d_a_door_push__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void dStage_changeScene(int, f32, u32, s8, s16, int);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -268,24 +230,24 @@ extern "C" extern u8 struct_80679070[4];
 // Declarations:
 //
 
-/* 80677DB8-80677DE0 0028+00 s=1 e=0 z=0  None .text
+/* 80677DB8-80677DE0 000078 0028+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
+static asm void PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
                            dBgW_Base::PushPullLabel param_3) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel.s"
 }
 #pragma pop
 
-/* 80677DE0-80677E08 0028+00 s=1 e=0 z=0  None .text
+/* 80677DE0-80677E08 0000A0 0028+00 1/1 0/0 0/0 .text
  * PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void PPCallBack2(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
+static asm void PPCallBack2(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_2,
                             dBgW_Base::PushPullLabel param_3) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel.s"
@@ -293,34 +255,30 @@ asm static void PPCallBack2(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s16 param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 80678ECC-80678ED0 0004+00 s=4 e=0 z=0  None .rodata    @3688 */
+/* 80678ECC-80678ED0 000000 0004+00 4/4 0/0 0/0 .rodata          @3688 */
 SECTION_RODATA static u32 const lit_3688 = 0xC4098000;
+SECTION_DEAD void* const cg_80678ECC = (void*)(&lit_3688);
 
-/* 80677E08-80677F38 0130+00 s=1 e=0 z=0  None .text      initBaseMtx__12daDoorPush_cFv */
-//	80677E20: 80678ECC (lit_3688)
-//	80677E24: 80678ECC (lit_3688)
-//	80677E74: 803DD470 (now__14mDoMtx_stack_c)
-//	80677E78: 803DD470 (now__14mDoMtx_stack_c)
-//	80677E80: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80677E84: 803DD470 (now__14mDoMtx_stack_c)
-//	80677E88: 803DD470 (now__14mDoMtx_stack_c)
-//	80677E94: 80346D6C (PSMTXMultVec)
-//	80677EA4: 80347090 (PSVECAdd)
-//	80677EBC: 803DD470 (now__14mDoMtx_stack_c)
-//	80677EC0: 803DD470 (now__14mDoMtx_stack_c)
-//	80677EC8: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80677ECC: 803DD470 (now__14mDoMtx_stack_c)
-//	80677ED0: 803DD470 (now__14mDoMtx_stack_c)
-//	80677EDC: 80346D6C (PSMTXMultVec)
-//	80677EEC: 80347090 (PSVECAdd)
-//	80677EF4: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80677EF8: 803DD470 (now__14mDoMtx_stack_c)
-//	80677EFC: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F04: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80677F08: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F0C: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F14: 803464B0 (PSMTXCopy)
-//	80677F1C: 80677F38 (setBaseMtx__12daDoorPush_cFv)
+/* 80678ED0-80678ED4 000004 0004+00 0/3 0/0 0/0 .rodata          @3689 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3689[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80678ED0 = (void*)(&lit_3689);
+#pragma pop
+
+/* 80678ED4-80678ED8 000008 0004+00 0/1 0/0 0/0 .rodata          @3690 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3690 = 0x44098000;
+SECTION_DEAD void* const cg_80678ED4 = (void*)(&lit_3690);
+#pragma pop
+
+/* 80677E08-80677F38 0000C8 0130+00 1/1 0/0 0/0 .text            initBaseMtx__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -330,36 +288,22 @@ asm void daDoorPush_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80677F38-80678060 0128+00 s=2 e=0 z=0  None .text      setBaseMtx__12daDoorPush_cFv */
-//	80677F50: 80678ECC (lit_3688)
-//	80677F54: 80678ECC (lit_3688)
-//	80677F5C: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80677F60: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F64: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F6C: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80677F70: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F74: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F80: 803464B0 (PSMTXCopy)
-//	80677F84: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F88: 803DD470 (now__14mDoMtx_stack_c)
-//	80677F90: 803464B0 (PSMTXCopy)
-//	80677F98: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80677F9C: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FA0: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FA8: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80677FAC: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FB0: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FBC: 803464B0 (PSMTXCopy)
-//	80677FC0: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FC4: 803DD470 (now__14mDoMtx_stack_c)
-//	80677FCC: 803464B0 (PSMTXCopy)
-//	80678014: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80678018: 803DD470 (now__14mDoMtx_stack_c)
-//	8067801C: 803DD470 (now__14mDoMtx_stack_c)
-//	80678030: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80678034: 803DD470 (now__14mDoMtx_stack_c)
-//	80678038: 803DD470 (now__14mDoMtx_stack_c)
-//	80678044: 80346D6C (PSMTXMultVec)
+/* ############################################################################################## */
+/* 80678ED8-80678EDC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3716 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3716 = 0x43E10000;
+SECTION_DEAD void* const cg_80678ED8 = (void*)(&lit_3716);
+#pragma pop
+
+/* 80678EDC-80678EE0 000010 0004+00 0/1 0/0 0/0 .rodata          @3717 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3717 = 0x42960000;
+SECTION_DEAD void* const cg_80678EDC = (void*)(&lit_3717);
+#pragma pop
+
+/* 80677F38-80678060 0001F8 0128+00 2/2 0/0 0/0 .text            setBaseMtx__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -369,8 +313,7 @@ asm void daDoorPush_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80678060-8067809C 003C+00 s=1 e=0 z=0  None .text      __dt__4cXyzFv */
-//	80678080: 802CED3C (__dl__FPv)
+/* 80678060-8067809C 000320 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -381,110 +324,19 @@ asm cXyz::~cXyz() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80678ED0-80678ED4 0004+00 s=0 e=0 z=0  None .rodata    @3689 */
-SECTION_RODATA u8 const lit_3689[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80678ED4-80678ED8 0004+00 s=0 e=0 z=0  None .rodata    @3690 */
-SECTION_RODATA u32 const lit_3690 = 0x44098000;
-
-/* 80678ED8-80678EDC 0004+00 s=0 e=0 z=0  None .rodata    @3716 */
-SECTION_RODATA u32 const lit_3716 = 0x43E10000;
-
-/* 80678EDC-80678EE0 0004+00 s=0 e=0 z=0  None .rodata    @3717 */
-SECTION_RODATA u32 const lit_3717 = 0x42960000;
-
-/* 80678EE0-80678EE4 0004+00 s=1 e=0 z=0  None .rodata    @3744 */
+/* 80678EE0-80678EE4 000014 0004+00 1/1 0/0 0/0 .rodata          @3744 */
 SECTION_RODATA static u32 const lit_3744 = 0x40A00000;
+SECTION_DEAD void* const cg_80678EE0 = (void*)(&lit_3744);
 
-/* 80678EE4-80678EEC 0004+04 s=1 e=0 z=0  None .rodata    @3870 */
-SECTION_RODATA static u32 const lit_3870[1 + 1 /* padding */] = {
-    0x41200000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80678EEC-80678EF4 0008+00 s=1 e=0 z=0  None .rodata    @3872 */
-SECTION_RODATA static u8 const lit_3872[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80678EF4-80678EF8 0004+00 s=0 e=0 z=0  None .rodata    @3985 */
-SECTION_RODATA u32 const lit_3985 = 0x3F800000;
-
-/* 80678EF8-80678EFC 0004+00 s=0 e=0 z=0  None .rodata    @3986 */
-SECTION_RODATA u32 const lit_3986 = 0xBF800000;
-
-/* 80678EFC-80678F00 0004+00 s=1 e=0 z=0  None .rodata    @4009 */
-SECTION_RODATA static u32 const lit_4009 = 0x45AAA800;
-
-/* 80678F00-80678F04 0004+00 s=1 e=0 z=0  None .rodata    @4010 */
-SECTION_RODATA static u32 const lit_4010 = 0x42700000;
-
-/* 80678F04-80678F0C 0008+00 s=1 e=0 z=0  None .rodata    @4012 */
-SECTION_RODATA static u8 const lit_4012[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80678F0C-80678F10 0004+00 s=0 e=0 z=0  None .rodata    @4031 */
-SECTION_RODATA u32 const lit_4031 = 0x43960000;
-
-/* 80678F10-80678F14 0004+00 s=0 e=0 z=0  None .rodata    @4032 */
-SECTION_RODATA u32 const lit_4032 = 0xC3C80000;
-
-/* 80678F14-80678F18 0004+00 s=0 e=0 z=0  None .rodata    @4033 */
-SECTION_RODATA u32 const lit_4033 = 0xC3960000;
-
-/* 80678F18-80678F38 0020+00 s=4 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80678F18[32] = {
-    /* 80678F18 0016 stringBase_80678F18 @stringBase0 */
-    0x56,
-    0x5F,
-    0x4F,
-    0x73,
-    0x75,
-    0x44,
-    0x6F,
-    0x6F,
-    0x72,
-    0x00,
-    0x50,
-    0x55,
-    0x53,
-    0x48,
-    0x5F,
-    0x44,
-    0x4F,
-    0x4F,
-    0x52,
-    0x5F,
-    0x4C,
-    0x00,
-    /* 80678F2E 0005 data_80678F2E None */
-    0x57,
-    0x41,
-    0x49,
-    0x54,
-    0x00,
-    /* 80678F33 0005 data_80678F33 None */
-    0x4F,
-    0x50,
-    0x45,
-    0x4E,
-    0x00,
-};
-
-/* 80678F50-80678F5C 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80678F50-80678F5C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80678F5C-80678F70 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80678F5C-80678F70 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -492,41 +344,18 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80678F70-80678F74 0004+00 s=4 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)(((char*)&struct_80678F18) + 0x0) /* @stringBase0 */;
+/* 80678F70-80678F74 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_door_push__stringBase0;
 
-/* 80678F74-80678F8C 0018+00 s=1 e=0 z=0  None .data      l_cull_box */
+/* 80678F74-80678F8C 000024 0018+00 1/1 0/0 0/0 .data            l_cull_box */
 SECTION_DATA static u8 l_cull_box[24] = {
     0xC4, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC4, 0x16, 0x00, 0x00,
     0x44, 0x16, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
 };
 
-/* 8067809C-806781FC 0160+00 s=1 e=0 z=0  None .text      Create__12daDoorPush_cFv */
-//	806780AC: 803621D0 (_savegpr_26)
-//	806780C0: 804061C0 (g_dComIfG_gameInfo)
-//	806780C4: 804061C0 (g_dComIfG_gameInfo)
-//	806780D0: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80678114: 80677E08 (initBaseMtx__12daDoorPush_cFv)
-//	80678124: 80678F74 (l_cull_box)
-//	80678128: 80678F74 (l_cull_box)
-//	80678140: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//	80678144: 80677DB8 (PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80678148: 80677DB8 (PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80678154: 80677DE0 (PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80678158: 80677DE0 (PPCallBack2__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel)
-//	80678164: 80678F70 (l_arcName)
-//	80678168: 80678F70 (l_arcName)
-//	80678178: 804061C0 (g_dComIfG_gameInfo)
-//	8067817C: 804061C0 (g_dComIfG_gameInfo)
-//	80678184: 80678F18 (struct_80678F18)
-//	80678188: 80678F18 (struct_80678F18)
-//	806781A0: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	806781C4: 80678EE0 (lit_3744)
-//	806781C8: 80678EE0 (lit_3744)
-//	806781D4: 80678488 (init_modeWait__12daDoorPush_cFv)
-//	806781DC: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
-//	806781E8: 8036221C (_restgpr_26)
+/* 8067809C-806781FC 00035C 0160+00 1/0 0/0 0/0 .text            Create__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -536,21 +365,7 @@ asm void daDoorPush_c::Create() {
 }
 #pragma pop
 
-/* 806781FC-80678318 011C+00 s=1 e=0 z=0  None .text      CreateHeap__12daDoorPush_cFv */
-//	8067820C: 803621D0 (_savegpr_26)
-//	80678214: 80678F70 (l_arcName)
-//	80678218: 80678F70 (l_arcName)
-//	80678224: 804061C0 (g_dComIfG_gameInfo)
-//	80678228: 804061C0 (g_dComIfG_gameInfo)
-//	8067823C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8067825C: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80678290: 802CEC4C (__nw__FUl)
-//	8067829C: 8007B970 (__ct__4dBgWFv)
-//	806782B4: 80678F70 (l_arcName)
-//	806782B8: 80678F70 (l_arcName)
-//	806782CC: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	806782E0: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	80678304: 8036221C (_restgpr_26)
+/* 806781FC-80678318 0004BC 011C+00 1/0 0/0 0/0 .text            CreateHeap__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -560,14 +375,7 @@ asm void daDoorPush_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80678318-8067839C 0084+00 s=1 e=0 z=0  None .text      create1st__12daDoorPush_cFv */
-//	80678330: 80678F70 (l_arcName)
-//	80678334: 80678F70 (l_arcName)
-//	8067833C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80678350: 80678F70 (l_arcName)
-//	80678354: 80678F70 (l_arcName)
-//	80678370: 800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
+/* 80678318-8067839C 0005D8 0084+00 1/1 0/0 0/0 .text            create1st__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -577,11 +385,8 @@ asm void daDoorPush_c::create1st() {
 }
 #pragma pop
 
-/* 8067839C-8067840C 0070+00 s=1 e=0 z=0  None .text      Execute__12daDoorPush_cFPPA3_A4_f */
-//	806783B8: 8067840C (action__12daDoorPush_cFv)
-//	806783C0: 80678664 (event_proc_call__12daDoorPush_cFv)
-//	806783C8: 80677F38 (setBaseMtx__12daDoorPush_cFv)
-//	806783D0: 8007B9C0 (Move__4dBgWFv)
+/* 8067839C-8067840C 00065C 0070+00 1/0 0/0 0/0 .text            Execute__12daDoorPush_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -592,28 +397,19 @@ asm void daDoorPush_c::Execute(f32 (**param_0)[3][4]) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80678F8C-80678F98 000C+00 s=1 e=0 z=0  None .data      @3792 */
+/* 80678F8C-80678F98 -00001 000C+00 1/1 0/0 0/0 .data            @3792 */
 SECTION_DATA static void* lit_3792[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWait__12daDoorPush_cFv,
 };
 
-/* 80678F98-80678FA4 000C+00 s=1 e=0 z=0  None .data      l_func$3791 */
+/* 80678F98-80678FA4 000048 000C+00 1/1 0/0 0/0 .data            l_func$3791 */
 SECTION_DATA static u8 l_func_3791[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8067840C-80678488 007C+00 s=1 e=0 z=0  None .text      action__12daDoorPush_cFv */
-//	80678418: 80679070 (struct_80679070)
-//	8067841C: 80679070 (struct_80679070)
-//	8067842C: 80678F98 (l_func_3791)
-//	80678430: 80678F98 (l_func_3791)
-//	80678434: 80678F8C (lit_3792)
-//	80678438: 80678F8C (lit_3792)
-//	80678464: 80678F98 (l_func_3791)
-//	80678468: 80678F98 (l_func_3791)
-//	80678470: 80362084 (__ptmf_scall)
+/* 8067840C-80678488 0006CC 007C+00 1/1 0/0 0/0 .text            action__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -623,7 +419,7 @@ asm void daDoorPush_c::action() {
 }
 #pragma pop
 
-/* 80678488-806784B4 002C+00 s=1 e=0 z=0  None .text      init_modeWait__12daDoorPush_cFv */
+/* 80678488-806784B4 000748 002C+00 1/1 0/0 0/0 .text            init_modeWait__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -633,17 +429,22 @@ asm void daDoorPush_c::init_modeWait() {
 }
 #pragma pop
 
-/* 806784B4-80678664 01B0+00 s=1 e=0 z=0  None .text      modeWait__12daDoorPush_cFv */
-//	806784C4: 803621D8 (_savegpr_28)
-//	80678534: 80270608 (cLib_addCalcAngleS2__FPssss)
-//	80678544: 80439A20 (sincosTable___5JMath)
-//	80678548: 80439A20 (sincosTable___5JMath)
-//	80678558: 80678EE4 (lit_3870)
-//	8067855C: 80678EE4 (lit_3870)
-//	80678564: 80678EEC (lit_3872)
-//	80678568: 80678EEC (lit_3872)
-//	806785E0: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80678650: 80362224 (_restgpr_28)
+/* ############################################################################################## */
+/* 80678EE4-80678EEC 000018 0004+04 1/1 0/0 0/0 .rodata          @3870 */
+SECTION_RODATA static u32 const lit_3870[1 + 1 /* padding */] = {
+    0x41200000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_80678EE4 = (void*)(&lit_3870);
+
+/* 80678EEC-80678EF4 000020 0008+00 1/1 0/0 0/0 .rodata          @3872 */
+SECTION_RODATA static u8 const lit_3872[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80678EEC = (void*)(&lit_3872);
+
+/* 806784B4-80678664 000774 01B0+00 1/0 0/0 0/0 .text            modeWait__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,12 +454,49 @@ asm void daDoorPush_c::modeWait() {
 }
 #pragma pop
 
-/* 80678664-80678708 00A4+00 s=1 e=0 z=0  None .text      event_proc_call__12daDoorPush_cFv */
-//	80678670: 80678F50 (cNullVec__6Z2Calc)
-//	80678674: 80678F50 (cNullVec__6Z2Calc)
-//	80678678: 80679071 (struct_80679070)
-//	8067867C: 80679071 (struct_80679070)
-//	806786F0: 80362084 (__ptmf_scall)
+/* ############################################################################################## */
+/* 80678FA4-80678FB0 -00001 000C+00 0/1 0/0 0/0 .data            @3878 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3878[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)actionOpenWait__12daDoorPush_cFv,
+};
+#pragma pop
+
+/* 80678FB0-80678FBC -00001 000C+00 0/1 0/0 0/0 .data            @3879 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3879[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)actionOrderEvent__12daDoorPush_cFv,
+};
+#pragma pop
+
+/* 80678FBC-80678FC8 -00001 000C+00 0/1 0/0 0/0 .data            @3880 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3880[3] = {
+    (void*)NULL,
+    (void*)0xFFFFFFFF,
+    (void*)actionEvent__12daDoorPush_cFv,
+};
+#pragma pop
+
+/* 80678FC8-80678FEC 000078 0024+00 0/1 0/0 0/0 .data            l_func$3877 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_func_3877[36] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+#pragma pop
+
+/* 80678664-80678708 000924 00A4+00 1/1 0/0 0/0 .text            event_proc_call__12daDoorPush_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -668,8 +506,7 @@ asm void daDoorPush_c::event_proc_call() {
 }
 #pragma pop
 
-/* 80678708-8067877C 0074+00 s=1 e=0 z=0  None .text      actionOpenWait__12daDoorPush_cFv */
-//	80678758: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
+/* 80678708-8067877C 0009C8 0074+00 1/0 0/0 0/0 .text            actionOpenWait__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -679,9 +516,8 @@ asm void daDoorPush_c::actionOpenWait() {
 }
 #pragma pop
 
-/* 8067877C-806787F8 007C+00 s=1 e=0 z=0  None .text      actionOrderEvent__12daDoorPush_cFv */
-//	806787A4: 80678818 (demoProc__12daDoorPush_cFv)
-//	806787D4: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
+/* 8067877C-806787F8 000A3C 007C+00 1/0 0/0 0/0 .text            actionOrderEvent__12daDoorPush_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -691,8 +527,7 @@ asm void daDoorPush_c::actionOrderEvent() {
 }
 #pragma pop
 
-/* 806787F8-80678818 0020+00 s=1 e=0 z=0  None .text      actionEvent__12daDoorPush_cFv */
-//	80678804: 80678818 (demoProc__12daDoorPush_cFv)
+/* 806787F8-80678818 000AB8 0020+00 1/0 0/0 0/0 .text            actionEvent__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,80 +538,14 @@ asm void daDoorPush_c::actionEvent() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80678F38-80678F50 0018+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80678F38[24] = {
-    0x53, 0x43, 0x45, 0x4E, 0x45, 0x5F, 0x43, 0x48, 0x47, 0x00, 0x70, 0x64,
-    0x6F, 0x6F, 0x72, 0x00, 0x54, 0x69, 0x6D, 0x65, 0x72, 0x00, 0x00, 0x00,
-};
-
-/* 80678FA4-80678FB0 000C+00 s=0 e=0 z=0  None .data      @3878 */
-SECTION_DATA void* lit_3878[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOpenWait__12daDoorPush_cFv,
-};
-
-/* 80678FB0-80678FBC 000C+00 s=0 e=0 z=0  None .data      @3879 */
-SECTION_DATA void* lit_3879[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent__12daDoorPush_cFv,
-};
-
-/* 80678FBC-80678FC8 000C+00 s=0 e=0 z=0  None .data      @3880 */
-SECTION_DATA void* lit_3880[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent__12daDoorPush_cFv,
-};
-
-/* 80678FC8-80678FEC 0024+00 s=0 e=0 z=0  None .data      l_func$3877 */
-SECTION_DATA u8 data_80678FC8[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80678FEC-80678FF8 000C+00 s=1 e=0 z=0  None .data      action_table$3910 */
+/* 80678FEC-80678FF8 -00001 000C+00 1/1 0/0 0/0 .data            action_table$3910 */
 SECTION_DATA static void* action_table[3] = {
-    (void*)(((char*)&struct_80678F18) + 0x16) /* None */,
-    (void*)(((char*)&struct_80678F18) + 0x1B) /* None */,
-    (void*)&data_80678F38,
+    (void*)(((char*)&d_a_door_push__stringBase0) + 0x16),
+    (void*)(((char*)&d_a_door_push__stringBase0) + 0x1B),
+    (void*)(((char*)&d_a_door_push__stringBase0) + 0x20),
 };
 
-/* 80678818-80678AEC 02D4+00 s=2 e=0 z=0  None .text      demoProc__12daDoorPush_cFv */
-//	80678828: 803621D0 (_savegpr_26)
-//	80678830: 80678ECC (lit_3688)
-//	80678834: 80678ECC (lit_3688)
-//	80678838: 804061C0 (g_dComIfG_gameInfo)
-//	8067883C: 804061C0 (g_dComIfG_gameInfo)
-//	8067884C: 80678F18 (struct_80678F18)
-//	80678850: 80678F18 (struct_80678F18)
-//	80678860: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80678870: 80678FEC (action_table)
-//	80678874: 80678FEC (action_table)
-//	80678884: 80047E10 (getMyActIdx__16dEvent_manager_cFiPCPCciii)
-//	80678894: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	806788C4: 80678F18 (struct_80678F18)
-//	806788C8: 80678F18 (struct_80678F18)
-//	806788D4: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	806788FC: 80678AEC (rotateInit__12daDoorPush_cFv)
-//	80678930: 80678EA8 (func_80678EA8)
-//	80678944: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80678950: 80678B10 (rotate__12daDoorPush_cFv)
-//	80678970: 80678BC0 (setGoal__12daDoorPush_cFv)
-//	8067897C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80678990: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80678994: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	806789BC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	806789D0: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	806789EC: 8002D06C (dComIfGp_getReverb__Fi)
-//	80678A00: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80678A04: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80678A2C: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80678ABC: 80027170 (dStage_changeScene__FifUlScsi)
-//	80678ACC: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80678AD8: 8036221C (_restgpr_26)
+/* 80678818-80678AEC 000AD8 02D4+00 2/2 0/0 0/0 .text            demoProc__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -786,9 +555,7 @@ asm void daDoorPush_c::demoProc() {
 }
 #pragma pop
 
-/* 80678AEC-80678B10 0024+00 s=1 e=0 z=0  None .text      rotateInit__12daDoorPush_cFv */
-//	80678AEC: 804061C0 (g_dComIfG_gameInfo)
-//	80678AF0: 804061C0 (g_dComIfG_gameInfo)
+/* 80678AEC-80678B10 000DAC 0024+00 1/1 0/0 0/0 .text            rotateInit__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -798,13 +565,36 @@ asm void daDoorPush_c::rotateInit() {
 }
 #pragma pop
 
-/* 80678B10-80678BC0 00B0+00 s=1 e=0 z=0  None .text      rotate__12daDoorPush_cFv */
-//	80678B34: 80678EFC (lit_4009)
-//	80678B38: 80678EFC (lit_4009)
-//	80678B40: 80678F04 (lit_4012)
-//	80678B44: 80678F04 (lit_4012)
-//	80678B5C: 80678F00 (lit_4010)
-//	80678B60: 80678F00 (lit_4010)
+/* ############################################################################################## */
+/* 80678EF4-80678EF8 000028 0004+00 0/0 0/0 0/0 .rodata          @3985 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3985 = 0x3F800000;
+SECTION_DEAD void* const cg_80678EF4 = (void*)(&lit_3985);
+#pragma pop
+
+/* 80678EF8-80678EFC 00002C 0004+00 0/0 0/0 0/0 .rodata          @3986 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3986 = 0xBF800000;
+SECTION_DEAD void* const cg_80678EF8 = (void*)(&lit_3986);
+#pragma pop
+
+/* 80678EFC-80678F00 000030 0004+00 1/1 0/0 0/0 .rodata          @4009 */
+SECTION_RODATA static u32 const lit_4009 = 0x45AAA800;
+SECTION_DEAD void* const cg_80678EFC = (void*)(&lit_4009);
+
+/* 80678F00-80678F04 000034 0004+00 1/1 0/0 0/0 .rodata          @4010 */
+SECTION_RODATA static u32 const lit_4010 = 0x42700000;
+SECTION_DEAD void* const cg_80678F00 = (void*)(&lit_4010);
+
+/* 80678F04-80678F0C 000038 0008+00 1/1 0/0 0/0 .rodata          @4012 */
+SECTION_RODATA static u8 const lit_4012[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80678F04 = (void*)(&lit_4012);
+
+/* 80678B10-80678BC0 000DD0 00B0+00 1/1 0/0 0/0 .text            rotate__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -814,19 +604,29 @@ asm void daDoorPush_c::rotate() {
 }
 #pragma pop
 
-/* 80678BC0-80678C70 00B0+00 s=1 e=0 z=0  None .text      setGoal__12daDoorPush_cFv */
-//	80678BD4: 80678ECC (lit_3688)
-//	80678BD8: 80678ECC (lit_3688)
-//	80678C20: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80678C24: 803DD470 (now__14mDoMtx_stack_c)
-//	80678C28: 803DD470 (now__14mDoMtx_stack_c)
-//	80678C30: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80678C34: 803DD470 (now__14mDoMtx_stack_c)
-//	80678C38: 803DD470 (now__14mDoMtx_stack_c)
-//	80678C44: 80346D6C (PSMTXMultVec)
-//	80678C48: 804061C0 (g_dComIfG_gameInfo)
-//	80678C4C: 804061C0 (g_dComIfG_gameInfo)
-//	80678C58: 800483C4 (setGoal__16dEvent_manager_cFP4cXyz)
+/* ############################################################################################## */
+/* 80678F0C-80678F10 000040 0004+00 0/1 0/0 0/0 .rodata          @4031 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4031 = 0x43960000;
+SECTION_DEAD void* const cg_80678F0C = (void*)(&lit_4031);
+#pragma pop
+
+/* 80678F10-80678F14 000044 0004+00 0/1 0/0 0/0 .rodata          @4032 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4032 = 0xC3C80000;
+SECTION_DEAD void* const cg_80678F10 = (void*)(&lit_4032);
+#pragma pop
+
+/* 80678F14-80678F18 000048 0004+00 0/1 0/0 0/0 .rodata          @4033 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4033 = 0xC3960000;
+SECTION_DEAD void* const cg_80678F14 = (void*)(&lit_4033);
+#pragma pop
+
+/* 80678BC0-80678C70 000E80 00B0+00 1/1 0/0 0/0 .text            setGoal__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -836,20 +636,7 @@ asm void daDoorPush_c::setGoal() {
 }
 #pragma pop
 
-/* 80678C70-80678D2C 00BC+00 s=1 e=0 z=0  None .text      Draw__12daDoorPush_cFv */
-//	80678C80: 803621CC (_savegpr_25)
-//	80678C88: 8042CA54 (g_env_light)
-//	80678C8C: 8042CA54 (g_env_light)
-//	80678C9C: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80678CA8: 804061C0 (g_dComIfG_gameInfo)
-//	80678CAC: 804061C0 (g_dComIfG_gameInfo)
-//	80678CB0: 80434AC8 (j3dSys)
-//	80678CB4: 80434AC8 (j3dSys)
-//	80678CB8: 8042CA54 (g_env_light)
-//	80678CBC: 8042CA54 (g_env_light)
-//	80678CD4: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80678CEC:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel) 	80678D18: 80362218 (_restgpr_25)
+/* 80678C70-80678D2C 000F30 00BC+00 1/0 0/0 0/0 .text            Draw__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -859,14 +646,7 @@ asm void daDoorPush_c::Draw() {
 }
 #pragma pop
 
-/* 80678D2C-80678DAC 0080+00 s=1 e=0 z=0  None .text      Delete__12daDoorPush_cFv */
-//	80678D4C: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80678D58: 804061C0 (g_dComIfG_gameInfo)
-//	80678D5C: 804061C0 (g_dComIfG_gameInfo)
-//	80678D68: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80678D84: 80678F70 (l_arcName)
-//	80678D88: 80678F70 (l_arcName)
-//	80678D90: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80678D2C-80678DAC 000FEC 0080+00 1/0 0/0 0/0 .text            Delete__12daDoorPush_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -877,7 +657,7 @@ asm void daDoorPush_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80678FF8-80679018 0020+00 s=1 e=0 z=0  None .data      daDoorPush_METHODS */
+/* 80678FF8-80679018 -00001 0020+00 1/0 0/0 0/0 .data            daDoorPush_METHODS */
 SECTION_DATA static void* daDoorPush_METHODS[8] = {
     (void*)daDoorPush_create1st__FP12daDoorPush_c,
     (void*)daDoorPush_MoveBGDelete__FP12daDoorPush_c,
@@ -889,8 +669,8 @@ SECTION_DATA static void* daDoorPush_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80679018-80679048 0030+00 s=0 e=0 z=1  None .data      g_profile_PushDoor */
-SECTION_DATA void* g_profile_PushDoor[12] = {
+/* 80679018-80679048 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_PushDoor */
+SECTION_DATA extern void* g_profile_PushDoor[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00BF0000, (void*)&g_fpcLf_Method,
     (void*)0x00000660, (void*)NULL,
@@ -899,8 +679,8 @@ SECTION_DATA void* g_profile_PushDoor[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80679048-80679070 0028+00 s=1 e=0 z=0  None .data      __vt__12daDoorPush_c */
-SECTION_DATA void* __vt__12daDoorPush_c[10] = {
+/* 80679048-80679070 0000F8 0028+00 1/1 0/0 0/0 .data            __vt__12daDoorPush_c */
+SECTION_DATA extern void* __vt__12daDoorPush_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__12daDoorPush_cFv,
@@ -913,70 +693,71 @@ SECTION_DATA void* __vt__12daDoorPush_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80678DAC-80678E38 008C+00 s=1 e=0 z=0  None .text      daDoorPush_create1st__FP12daDoorPush_c */
-//	80678DDC: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80678DE0: 80679048 (__vt__12daDoorPush_c)
-//	80678DE4: 80679048 (__vt__12daDoorPush_c)
-//	80678DF0: 80678E38 (__ct__4cXyzFv)
-//	80678DF4: 80678E38 (__ct__4cXyzFv)
-//	80678DF8: 80678060 (__dt__4cXyzFv)
-//	80678DFC: 80678060 (__dt__4cXyzFv)
-//	80678E08: 80361D60 (__construct_array)
-//	80678E1C: 80678318 (create1st__12daDoorPush_cFv)
+/* 80678DAC-80678E38 00106C 008C+00 1/0 0/0 0/0 .text daDoorPush_create1st__FP12daDoorPush_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDoorPush_create1st(daDoorPush_c* param_0) {
+static asm void daDoorPush_create1st(daDoorPush_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_create1st__FP12daDoorPush_c.s"
 }
 #pragma pop
 
-/* 80678E38-80678E3C 0004+00 s=1 e=0 z=0  None .text      __ct__4cXyzFv */
+/* 80678E38-80678E3C 0010F8 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80678E3C-80678E5C 0020+00 s=1 e=0 z=0  None .text      daDoorPush_MoveBGDelete__FP12daDoorPush_c
- */
-//	80678E48: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
+/* 80678E3C-80678E5C 0010FC 0020+00 1/0 0/0 0/0 .text daDoorPush_MoveBGDelete__FP12daDoorPush_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDoorPush_MoveBGDelete(daDoorPush_c* param_0) {
+static asm void daDoorPush_MoveBGDelete(daDoorPush_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGDelete__FP12daDoorPush_c.s"
 }
 #pragma pop
 
-/* 80678E5C-80678E7C 0020+00 s=1 e=0 z=0  None .text      daDoorPush_MoveBGExecute__FP12daDoorPush_c
+/* 80678E5C-80678E7C 00111C 0020+00 1/0 0/0 0/0 .text daDoorPush_MoveBGExecute__FP12daDoorPush_c
  */
-//	80678E68: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDoorPush_MoveBGExecute(daDoorPush_c* param_0) {
+static asm void daDoorPush_MoveBGExecute(daDoorPush_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGExecute__FP12daDoorPush_c.s"
 }
 #pragma pop
 
-/* 80678E7C-80678EA8 002C+00 s=1 e=0 z=0  None .text      daDoorPush_MoveBGDraw__FP12daDoorPush_c */
+/* 80678E7C-80678EA8 00113C 002C+00 1/0 0/0 0/0 .text daDoorPush_MoveBGDraw__FP12daDoorPush_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDoorPush_MoveBGDraw(daDoorPush_c* param_0) {
+static asm void daDoorPush_MoveBGDraw(daDoorPush_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/daDoorPush_MoveBGDraw__FP12daDoorPush_c.s"
 }
 #pragma pop
 
-/* 80678EA8-80678EC4 001C+00 s=1 e=0 z=0  None .text      cLib_calcTimer<Uc>__FPUc */
+/* 80678EA8-80678EC4 001168 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_calcTimer__template0(u8* param_0) {
+extern "C" asm void func_80678EA8(u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_push/d_a_door_push/func_80678EA8.s"
 }
+#pragma pop
+
+/* 80678F18-80678F4E 00004C 0036+00 4/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80678F18 = "V_OsuDoor";
+SECTION_DEAD static char const* const stringBase_80678F22 = "PUSH_DOOR_L";
+SECTION_DEAD static char const* const stringBase_80678F2E = "WAIT";
+SECTION_DEAD static char const* const stringBase_80678F33 = "OPEN";
+SECTION_DEAD static char const* const stringBase_80678F38 = "SCENE_CHG";
+SECTION_DEAD static char const* const stringBase_80678F42 = "pdoor";
+SECTION_DEAD static char const* const stringBase_80678F48 = "Timer";
 #pragma pop

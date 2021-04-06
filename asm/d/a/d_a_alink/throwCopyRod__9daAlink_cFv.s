@@ -27,8 +27,8 @@ lbl_800E191C:
 /* 800E1980  38 7F 28 24 */	addi r3, r31, 0x2824
 /* 800E1984  48 07 D3 79 */	bl clearData__16daPy_actorKeep_cFv
 lbl_800E1988:
-/* 800E1988  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E198C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E1988  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E198C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E1990  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800E1994  54 00 06 6E */	rlwinm r0, r0, 0, 0x19, 0x17
 /* 800E1998  90 03 5F 18 */	stw r0, 0x5f18(r3)

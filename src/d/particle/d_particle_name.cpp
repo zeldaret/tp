@@ -23,8 +23,8 @@ extern "C" extern u8 s_o_id__8dPa_name[28];
 //
 
 /* ############################################################################################## */
-/* 803A85D0-803A85DC 000A+02 s=0 e=1 z=0  None .data      j_o_id__8dPa_name */
-SECTION_DATA u8 j_o_id__8dPa_name[10 + 2 /* padding */] = {
+/* 803A85D0-803A85DC 0056F0 000A+02 0/0 1/1 0/0 .data            j_o_id__8dPa_name */
+SECTION_DATA extern u8 j_o_id__8dPa_name[10 + 2 /* padding */] = {
     0x07,
     0x0F,
     0x07,
@@ -40,8 +40,8 @@ SECTION_DATA u8 j_o_id__8dPa_name[10 + 2 /* padding */] = {
     0x00,
 };
 
-/* 803A85DC-803A85F8 001C+00 s=0 e=1 z=0  None .data      s_o_id__8dPa_name */
-SECTION_DATA u8 s_o_id__8dPa_name[28] = {
+/* 803A85DC-803A85F8 0056FC 001C+00 0/0 1/1 0/0 .data            s_o_id__8dPa_name */
+SECTION_DATA extern u8 s_o_id__8dPa_name[28] = {
     0x81, 0x10, 0x81, 0x11, 0x81, 0x12, 0x89, 0xD6, 0x89, 0xD7, 0x89, 0xD8, 0x83, 0xA6,
     0x83, 0xA7, 0x81, 0x04, 0x81, 0x05, 0x81, 0x06, 0x81, 0x74, 0x81, 0x75, 0x81, 0x76,
 };

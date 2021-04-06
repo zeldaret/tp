@@ -3,17 +3,17 @@ lbl_80B5A128:
 /* 80B5A12C  7C 08 02 A6 */	mflr r0
 /* 80B5A130  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B5A134  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B5A138  4B 80 80 A0 */	b _savegpr_28
+/* 80B5A138  4B 80 80 A1 */	bl _savegpr_28
 /* 80B5A13C  7C 7C 1B 78 */	mr r28, r3
-/* 80B5A140  3C 60 80 B6 */	lis r3, m__17daNpc_ykM_Param_c@ha
-/* 80B5A144  3B E3 D7 94 */	addi r31, r3, m__17daNpc_ykM_Param_c@l
+/* 80B5A140  3C 60 80 B6 */	lis r3, m__17daNpc_ykM_Param_c@ha /* 0x80B5D794@ha */
+/* 80B5A144  3B E3 D7 94 */	addi r31, r3, m__17daNpc_ykM_Param_c@l /* 0x80B5D794@l */
 /* 80B5A148  83 BC 15 4C */	lwz r29, 0x154c(r28)
 /* 80B5A14C  7F BD 0E 70 */	srawi r29, r29, 1
-/* 80B5A150  4B 70 D7 1C */	b cM_rnd__Fv
+/* 80B5A150  4B 70 D7 1D */	bl cM_rnd__Fv
 /* 80B5A154  C0 1F 02 84 */	lfs f0, 0x284(r31)
 /* 80B5A158  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 80B5A15C  40 80 00 28 */	bge lbl_80B5A184
-/* 80B5A160  4B 70 D7 0C */	b cM_rnd__Fv
+/* 80B5A160  4B 70 D7 0D */	bl cM_rnd__Fv
 /* 80B5A164  C0 1F 02 84 */	lfs f0, 0x284(r31)
 /* 80B5A168  EC 21 00 28 */	fsubs f1, f1, f0
 /* 80B5A16C  C0 1F 01 04 */	lfs f0, 0x104(r31)
@@ -37,7 +37,7 @@ lbl_80B5A184:
 /* 80B5A1AC  41 82 00 60 */	beq lbl_80B5A20C
 /* 80B5A1B0  83 DC 0B 80 */	lwz r30, 0xb80(r28)
 /* 80B5A1B4  38 7C 0B 74 */	addi r3, r28, 0xb74
-/* 80B5A1B8  4B 5E B6 E0 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80B5A1B8  4B 5E B6 E1 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80B5A1BC  93 DC 0B 80 */	stw r30, 0xb80(r28)
 /* 80B5A1C0  93 BC 0B 7C */	stw r29, 0xb7c(r28)
 /* 80B5A1C4  C0 1F 01 3C */	lfs f0, 0x13c(r31)
@@ -54,14 +54,14 @@ lbl_80B5A1D0:
 /* 80B5A1EC  41 82 00 20 */	beq lbl_80B5A20C
 /* 80B5A1F0  83 BC 0B 80 */	lwz r29, 0xb80(r28)
 /* 80B5A1F4  38 7C 0B 74 */	addi r3, r28, 0xb74
-/* 80B5A1F8  4B 5E B6 A0 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80B5A1F8  4B 5E B6 A1 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80B5A1FC  93 BC 0B 80 */	stw r29, 0xb80(r28)
 /* 80B5A200  93 DC 0B 7C */	stw r30, 0xb7c(r28)
 /* 80B5A204  C0 1F 01 3C */	lfs f0, 0x13c(r31)
 /* 80B5A208  D0 1C 0B 8C */	stfs f0, 0xb8c(r28)
 lbl_80B5A20C:
 /* 80B5A20C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B5A210  4B 80 80 14 */	b _restgpr_28
+/* 80B5A210  4B 80 80 15 */	bl _restgpr_28
 /* 80B5A214  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B5A218  7C 08 03 A6 */	mtlr r0
 /* 80B5A21C  38 21 00 20 */	addi r1, r1, 0x20

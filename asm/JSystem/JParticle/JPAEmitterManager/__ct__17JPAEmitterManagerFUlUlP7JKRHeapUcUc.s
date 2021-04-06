@@ -26,10 +26,10 @@ lbl_8027DCA0:
 /* 8027DD00  7F E4 FB 78 */	mr r4, r31
 /* 8027DD04  38 A0 00 00 */	li r5, 0
 /* 8027DD08  48 05 10 09 */	bl __nwa__FUlP7JKRHeapi
-/* 8027DD0C  3C 80 80 28 */	lis r4, __ct__14JPABaseEmitterFv@ha
-/* 8027DD10  38 84 E6 4C */	addi r4, r4, __ct__14JPABaseEmitterFv@l
-/* 8027DD14  3C A0 80 28 */	lis r5, __dt__14JPABaseEmitterFv@ha
-/* 8027DD18  38 A5 E5 EC */	addi r5, r5, __dt__14JPABaseEmitterFv@l
+/* 8027DD0C  3C 80 80 28 */	lis r4, __ct__14JPABaseEmitterFv@ha /* 0x8027E64C@ha */
+/* 8027DD10  38 84 E6 4C */	addi r4, r4, __ct__14JPABaseEmitterFv@l /* 0x8027E64C@l */
+/* 8027DD14  3C A0 80 28 */	lis r5, __dt__14JPABaseEmitterFv@ha /* 0x8027E5EC@ha */
+/* 8027DD18  38 A5 E5 EC */	addi r5, r5, __dt__14JPABaseEmitterFv@l /* 0x8027E5EC@l */
 /* 8027DD1C  38 C0 01 14 */	li r6, 0x114
 /* 8027DD20  7F 87 E3 78 */	mr r7, r28
 /* 8027DD24  48 0E 41 F1 */	bl __construct_new_array
@@ -54,10 +54,10 @@ lbl_8027DD50:
 /* 8027DD68  7F E4 FB 78 */	mr r4, r31
 /* 8027DD6C  38 A0 00 00 */	li r5, 0
 /* 8027DD70  48 05 0F A1 */	bl __nwa__FUlP7JKRHeapi
-/* 8027DD74  3C 80 80 28 */	lis r4, func_8027E588@ha
-/* 8027DD78  38 84 E5 88 */	addi r4, r4, func_8027E588@l
-/* 8027DD7C  3C A0 80 28 */	lis r5, func_8027E54C@ha
-/* 8027DD80  38 A5 E5 4C */	addi r5, r5, func_8027E54C@l
+/* 8027DD74  3C 80 80 28 */	lis r4, func_8027E588@ha /* 0x8027E588@ha */
+/* 8027DD78  38 84 E5 88 */	addi r4, r4, func_8027E588@l /* 0x8027E588@l */
+/* 8027DD7C  3C A0 80 28 */	lis r5, func_8027E54C@ha /* 0x8027E54C@ha */
+/* 8027DD80  38 A5 E5 4C */	addi r5, r5, func_8027E54C@l /* 0x8027E54C@l */
 /* 8027DD84  38 C0 00 A0 */	li r6, 0xa0
 /* 8027DD88  7F 87 E3 78 */	mr r7, r28
 /* 8027DD8C  48 0E 41 89 */	bl __construct_new_array
@@ -99,10 +99,10 @@ lbl_8027DDF4:
 /* 8027DE0C  7F E4 FB 78 */	mr r4, r31
 /* 8027DE10  38 A0 00 00 */	li r5, 0
 /* 8027DE14  48 05 0E FD */	bl __nwa__FUlP7JKRHeapi
-/* 8027DE18  3C 80 80 28 */	lis r4, func_8027E51C@ha
-/* 8027DE1C  38 84 E5 1C */	addi r4, r4, func_8027E51C@l
-/* 8027DE20  3C A0 80 28 */	lis r5, func_8027E598@ha
-/* 8027DE24  38 A5 E5 98 */	addi r5, r5, func_8027E598@l
+/* 8027DE18  3C 80 80 28 */	lis r4, func_8027E51C@ha /* 0x8027E51C@ha */
+/* 8027DE1C  38 84 E5 1C */	addi r4, r4, func_8027E51C@l /* 0x8027E51C@l */
+/* 8027DE20  3C A0 80 28 */	lis r5, func_8027E598@ha /* 0x8027E598@ha */
+/* 8027DE24  38 A5 E5 98 */	addi r5, r5, func_8027E598@l /* 0x8027E598@l */
 /* 8027DE28  38 C0 00 0C */	li r6, 0xc
 /* 8027DE2C  7F 87 E3 78 */	mr r7, r28
 /* 8027DE30  48 0E 40 E5 */	bl __construct_new_array

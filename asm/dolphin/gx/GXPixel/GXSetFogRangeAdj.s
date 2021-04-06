@@ -10,7 +10,7 @@ lbl_8035FACC:
 /* 8035FAEC  38 00 00 61 */	li r0, 0x61
 /* 8035FAF0  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
 /* 8035FAF4  39 60 00 00 */	li r11, 0
-/* 8035FAF8  98 05 80 00 */	stb r0, 0x8000(r5)
+/* 8035FAF8  98 05 80 00 */	stb r0, 0x8000(r5)  /* 0xCC008000@l */
 /* 8035FAFC  51 0B 05 3E */	rlwimi r11, r8, 0, 0x14, 0x1f
 /* 8035FB00  39 0B 00 00 */	addi r8, r11, 0
 /* 8035FB04  38 CA 00 E9 */	addi r6, r10, 0xe9
@@ -66,7 +66,7 @@ lbl_8035FBB4:
 /* 8035FBC8  50 65 55 6A */	rlwimi r5, r3, 0xa, 0x15, 0x15
 /* 8035FBCC  38 00 00 61 */	li r0, 0x61
 /* 8035FBD0  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 8035FBD4  98 03 80 00 */	stb r0, 0x8000(r3)
+/* 8035FBD4  98 03 80 00 */	stb r0, 0x8000(r3)  /* 0xCC008000@l */
 /* 8035FBD8  38 00 00 E8 */	li r0, 0xe8
 /* 8035FBDC  50 05 C0 0E */	rlwimi r5, r0, 0x18, 0, 7
 /* 8035FBE0  90 A3 80 00 */	stw r5, -0x8000(r3)

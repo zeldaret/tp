@@ -15,19 +15,19 @@ lbl_80AD6A60:
 /* 80AD6A68  48 00 00 2C */	b lbl_80AD6A94
 lbl_80AD6A6C:
 /* 80AD6A6C  38 60 00 99 */	li r3, 0x99
-/* 80AD6A70  4B 67 60 3C */	b daNpcT_chkEvtBit__FUl
+/* 80AD6A70  4B 67 60 3D */	bl daNpcT_chkEvtBit__FUl
 /* 80AD6A74  7C 60 00 34 */	cntlzw r0, r3
 /* 80AD6A78  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80AD6A7C  48 00 00 30 */	b lbl_80AD6AAC
 lbl_80AD6A80:
 /* 80AD6A80  38 60 00 DD */	li r3, 0xdd
-/* 80AD6A84  4B 67 60 28 */	b daNpcT_chkEvtBit__FUl
+/* 80AD6A84  4B 67 60 29 */	bl daNpcT_chkEvtBit__FUl
 /* 80AD6A88  7C 60 00 34 */	cntlzw r0, r3
 /* 80AD6A8C  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80AD6A90  48 00 00 1C */	b lbl_80AD6AAC
 lbl_80AD6A94:
 /* 80AD6A94  38 60 00 43 */	li r3, 0x43
-/* 80AD6A98  4B 67 60 14 */	b daNpcT_chkEvtBit__FUl
+/* 80AD6A98  4B 67 60 15 */	bl daNpcT_chkEvtBit__FUl
 /* 80AD6A9C  7C 60 00 34 */	cntlzw r0, r3
 /* 80AD6AA0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80AD6AA4  48 00 00 08 */	b lbl_80AD6AAC

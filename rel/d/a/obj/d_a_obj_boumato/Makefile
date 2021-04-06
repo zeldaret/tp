@@ -3,19 +3,20 @@
 #
 
 M413_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato.plf
+M413_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato.lcf
+M413_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato.map
 
 M413_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_boumato/executor.cpp \
-	rel/d/a/obj/d_a_obj_boumato/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_boumato/d_a_obj_boumato.cpp \
 
 M413_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/d_a_obj_boumato.o \
 
 M413_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/libRuntime.PPCEABI.H.a \
 
 M413_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M413_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map413.map\
+	-m _prolog \
+	-lcf $(M413_LDSCRIPT) \
+	-unused -map $(M413_MAP) \
+	-w off \
 
 $(M413_TARGET): $(M413_O_FILES) $(M413_LIBS)
+	@echo [413] creating $(M413_TARGET)
 	@echo $(M413_LIBS) $(M413_O_FILES) > build/M413_ofiles
-	$(LD) -opt_partial $(M413_LDFLAGS) -o $(M413_TARGET) @build/M413_ofiles
+	@python3 tools/lcf.py rel 413 --output $(M413_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M413_LDFLAGS) -o $(M413_TARGET) @build/M413_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_boumato/%.o: rel/d/a/obj/d_a_obj_boumato/%.cpp
+	@echo [413] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M413_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M413_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_boumato/libs/Runtime.PPCEABI.H/Makefile
 

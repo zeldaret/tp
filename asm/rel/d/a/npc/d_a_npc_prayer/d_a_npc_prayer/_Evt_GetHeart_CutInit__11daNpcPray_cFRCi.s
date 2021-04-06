@@ -3,8 +3,8 @@ lbl_80AB4CA4:
 /* 80AB4CA8  7C 08 02 A6 */	mflr r0
 /* 80AB4CAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AB4CB0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80AB4CB4  3C A0 80 AB */	lis r5, m__17daNpcPray_Param_c@ha
-/* 80AB4CB8  3B E5 58 08 */	addi r31, r5, m__17daNpcPray_Param_c@l
+/* 80AB4CB4  3C A0 80 AB */	lis r5, m__17daNpcPray_Param_c@ha /* 0x80AB5808@ha */
+/* 80AB4CB8  3B E5 58 08 */	addi r31, r5, m__17daNpcPray_Param_c@l /* 0x80AB5808@l */
 /* 80AB4CBC  80 04 00 00 */	lwz r0, 0(r4)
 /* 80AB4CC0  2C 00 00 14 */	cmpwi r0, 0x14
 /* 80AB4CC4  41 82 00 14 */	beq lbl_80AB4CD8
@@ -14,7 +14,7 @@ lbl_80AB4CA4:
 /* 80AB4CD4  48 00 00 48 */	b lbl_80AB4D1C
 lbl_80AB4CD8:
 /* 80AB4CD8  38 63 0C 94 */	addi r3, r3, 0xc94
-/* 80AB4CDC  4B 69 BA 10 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80AB4CDC  4B 69 BA 11 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80AB4CE0  28 03 00 00 */	cmplwi r3, 0
 /* 80AB4CE4  41 82 00 38 */	beq lbl_80AB4D1C
 /* 80AB4CE8  C0 1F 00 9C */	lfs f0, 0x9c(r31)

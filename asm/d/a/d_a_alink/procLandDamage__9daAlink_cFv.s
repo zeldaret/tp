@@ -19,8 +19,8 @@ lbl_800DB060:
 /* 800DB0A4  48 00 00 80 */	b lbl_800DB124
 lbl_800DB0A8:
 /* 800DB0A8  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800DB0AC  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha
-/* 800DB0B0  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l
+/* 800DB0AC  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha /* 0x8038E454@ha */
+/* 800DB0B0  38 63 E4 54 */	addi r3, r3, m__21daAlinkHIO_damFall_c0@l /* 0x8038E454@l */
 /* 800DB0B4  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800DB0B8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DB0BC  40 81 00 68 */	ble lbl_800DB124
@@ -45,8 +45,8 @@ lbl_800DB0DC:
 lbl_800DB104:
 /* 800DB104  7F C3 F3 78 */	mr r3, r30
 /* 800DB108  38 80 00 8D */	li r4, 0x8d
-/* 800DB10C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_damFall_c0@ha
-/* 800DB110  38 A5 E4 54 */	addi r5, r5, m__21daAlinkHIO_damFall_c0@l
+/* 800DB10C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_damFall_c0@ha /* 0x8038E454@ha */
+/* 800DB110  38 A5 E4 54 */	addi r5, r5, m__21daAlinkHIO_damFall_c0@l /* 0x8038E454@l */
 /* 800DB114  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800DB118  4B FD 1F DD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DB11C  38 00 00 01 */	li r0, 1

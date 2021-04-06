@@ -18,8 +18,8 @@ lbl_801356F0:
 /* 80135730  80 1E 31 A0 */	lwz r0, 0x31a0(r30)
 /* 80135734  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80135738  41 82 00 54 */	beq lbl_8013578C
-/* 8013573C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80135740  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l
+/* 8013573C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80135740  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80135744  A8 1E 30 6E */	lha r0, 0x306e(r30)
 /* 80135748  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8013574C  7C 85 02 14 */	add r4, r5, r0
@@ -81,8 +81,8 @@ lbl_80135824:
 /* 80135824  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80135828  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013582C  40 80 00 10 */	bge lbl_8013583C
-/* 80135830  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80135834  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80135830  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80135834  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80135838  48 00 00 70 */	b lbl_801358A8
 lbl_8013583C:
 /* 8013583C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -116,8 +116,8 @@ lbl_80135894:
 lbl_80135898:
 /* 80135898  2C 00 00 01 */	cmpwi r0, 1
 /* 8013589C  40 82 00 0C */	bne lbl_801358A8
-/* 801358A0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801358A4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801358A0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801358A4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_801358A8:
 /* 801358A8  C0 02 95 50 */	lfs f0, lit_23595(r2)
 /* 801358AC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -144,8 +144,8 @@ lbl_801358D4:
 /* 801358FC  D0 41 00 38 */	stfs f2, 0x38(r1)
 /* 80135900  48 00 00 54 */	b lbl_80135954
 lbl_80135904:
-/* 80135904  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80135908  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80135904  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80135908  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8013590C  A8 1E 30 6E */	lha r0, 0x306e(r30)
 /* 80135910  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80135914  7C 64 02 14 */	add r3, r4, r0
@@ -168,8 +168,8 @@ lbl_80135954:
 /* 80135954  38 7E 1D 08 */	addi r3, r30, 0x1d08
 /* 80135958  38 81 00 30 */	addi r4, r1, 0x30
 /* 8013595C  48 13 23 CD */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 80135960  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80135964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80135960  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80135964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80135968  3B A3 0F 38 */	addi r29, r3, 0xf38
 /* 8013596C  7F A3 EB 78 */	mr r3, r29
 /* 80135970  38 9E 1D 08 */	addi r4, r30, 0x1d08
@@ -223,8 +223,8 @@ lbl_80135A04:
 /* 80135A1C  41 82 00 28 */	beq lbl_80135A44
 /* 80135A20  7F C3 F3 78 */	mr r3, r30
 /* 80135A24  38 80 00 13 */	li r4, 0x13
-/* 80135A28  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 80135A2C  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l
+/* 80135A28  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 80135A2C  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 80135A30  38 A5 00 14 */	addi r5, r5, 0x14
 /* 80135A34  4B FF 3E 15 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80135A38  38 00 00 01 */	li r0, 1
@@ -233,8 +233,8 @@ lbl_80135A04:
 lbl_80135A44:
 /* 80135A44  7F C3 F3 78 */	mr r3, r30
 /* 80135A48  38 80 00 14 */	li r4, 0x14
-/* 80135A4C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 80135A50  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l
+/* 80135A4C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 80135A50  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 80135A54  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 80135A58  4B FF 3D F1 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80135A5C  38 00 00 00 */	li r0, 0
@@ -255,8 +255,8 @@ lbl_80135A64:
 /* 80135A94  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 80135A98  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 80135A9C  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
-/* 80135AA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80135AA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80135AA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80135AA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80135AA8  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80135AAC  60 00 02 00 */	ori r0, r0, 0x200
 /* 80135AB0  90 03 5F 18 */	stw r0, 0x5f18(r3)

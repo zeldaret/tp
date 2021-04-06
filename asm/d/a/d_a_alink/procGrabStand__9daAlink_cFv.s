@@ -13,8 +13,8 @@ lbl_800E6FE0:
 /* 800E700C  80 1E 06 14 */	lwz r0, 0x614(r30)
 /* 800E7010  28 00 00 0D */	cmplwi r0, 0xd
 /* 800E7014  40 82 00 1C */	bne lbl_800E7030
-/* 800E7018  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E701C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E7018  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E701C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E7020  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800E7024  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 800E7028  4B F6 11 55 */	bl cutEnd__16dEvent_manager_cFi
@@ -43,8 +43,8 @@ lbl_800E7040:
 /* 800E707C  7F C3 F3 78 */	mr r3, r30
 /* 800E7080  C0 5E 34 7C */	lfs f2, 0x347c(r30)
 /* 800E7084  C0 3E 1F E0 */	lfs f1, 0x1fe0(r30)
-/* 800E7088  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha
-/* 800E708C  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l
+/* 800E7088  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E708C  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E7090  C0 04 00 A8 */	lfs f0, 0xa8(r4)
 /* 800E7094  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800E7098  EC 22 00 32 */	fmuls f1, f2, f0

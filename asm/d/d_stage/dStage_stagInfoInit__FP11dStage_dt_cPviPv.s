@@ -14,17 +14,17 @@ lbl_80025744:
 /* 80025774  4B FF E7 8D */	bl dStage_isBossStage__FP11dStage_dt_c
 /* 80025778  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8002577C  40 82 00 40 */	bne lbl_800257BC
-/* 80025780  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha
-/* 80025784  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l
+/* 80025780  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80025784  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80025788  38 63 00 E3 */	addi r3, r3, 0xe3
-/* 8002578C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80025790  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8002578C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80025790  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80025794  3C 84 00 02 */	addis r4, r4, 2
 /* 80025798  38 84 D4 F8 */	addi r4, r4, -11016
 /* 8002579C  38 A0 00 40 */	li r5, 0x40
 /* 800257A0  48 01 69 F5 */	bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
-/* 800257A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800257A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800257A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800257A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800257AC  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 800257B0  81 8C 01 34 */	lwz r12, 0x134(r12)
 /* 800257B4  7D 89 03 A6 */	mtctr r12
@@ -37,15 +37,15 @@ lbl_800257BC:
 /* 800257CC  4E 80 04 21 */	bctrl 
 /* 800257D0  88 03 00 09 */	lbz r0, 9(r3)
 /* 800257D4  54 1F FE FE */	rlwinm r31, r0, 0x1f, 0x1b, 0x1f
-/* 800257D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800257DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800257D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800257DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800257E0  7F E4 FB 78 */	mr r4, r31
 /* 800257E4  48 00 F8 D9 */	bl getSave__10dSv_info_cFi
-/* 800257E8  3C 60 80 43 */	lis r3, g_save_bit_HIO@ha
-/* 800257EC  38 63 07 EC */	addi r3, r3, g_save_bit_HIO@l
+/* 800257E8  3C 60 80 43 */	lis r3, g_save_bit_HIO@ha /* 0x804307EC@ha */
+/* 800257EC  38 63 07 EC */	addi r3, r3, g_save_bit_HIO@l /* 0x804307EC@l */
 /* 800257F0  48 23 6A 09 */	bl init__12dSvBit_HIO_cFv
-/* 800257F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800257F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800257F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800257F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800257FC  38 63 09 78 */	addi r3, r3, 0x978
 /* 80025800  7F E4 07 74 */	extsb r4, r31
 /* 80025804  48 00 F3 11 */	bl init__12dSv_danBit_cFSc

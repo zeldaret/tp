@@ -4,8 +4,8 @@ lbl_80352C58:
 /* 80352C60  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 80352C64  BF 61 00 14 */	stmw r27, 0x14(r1)
 /* 80352C68  3B 63 00 00 */	addi r27, r3, 0
-/* 80352C6C  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80352C70  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80352C6C  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80352C70  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80352C74  1C 9B 01 10 */	mulli r4, r27, 0x110
 /* 80352C78  38 7B 00 00 */	addi r3, r27, 0
 /* 80352C7C  7F A0 22 14 */	add r29, r0, r4

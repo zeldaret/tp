@@ -7,8 +7,8 @@ lbl_801BE670:
 /* 801BE684  7C 7E 1B 78 */	mr r30, r3
 /* 801BE688  3B E0 00 01 */	li r31, 1
 /* 801BE68C  38 80 00 00 */	li r4, 0
-/* 801BE690  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801BE694  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801BE690  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BE694  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BE698  A8 A3 00 96 */	lha r5, 0x96(r3)
 /* 801BE69C  A8 1E 01 64 */	lha r0, 0x164(r30)
 /* 801BE6A0  7C 00 28 00 */	cmpw r0, r5

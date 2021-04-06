@@ -14,9 +14,9 @@ lbl_803723A4:
 /* 803723AC  48 00 09 61 */	bl EXI2_ReadN
 /* 803723B0  2C 03 00 00 */	cmpwi r3, 0
 /* 803723B4  40 82 00 1C */	bne lbl_803723D0
-/* 803723B8  3C 60 80 45 */	lis r3, gRecvCB@ha
+/* 803723B8  3C 60 80 45 */	lis r3, gRecvCB@ha /* 0x80450030@ha */
 /* 803723BC  7F E5 FB 78 */	mr r5, r31
-/* 803723C0  38 63 00 30 */	addi r3, r3, gRecvCB@l
+/* 803723C0  38 63 00 30 */	addi r3, r3, gRecvCB@l /* 0x80450030@l */
 /* 803723C4  38 81 00 08 */	addi r4, r1, 8
 /* 803723C8  48 00 03 E1 */	bl CircleBufferWriteBytes
 /* 803723CC  48 00 00 0C */	b lbl_803723D8

@@ -5,19 +5,19 @@ lbl_80232D6C:
 /* 80232D78  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80232D7C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80232D80  7C 7F 1B 78 */	mr r31, r3
-/* 80232D84  3C 60 80 3C */	lis r3, __vt__16dMsgObject_HIO_c@ha
-/* 80232D88  38 03 0B D8 */	addi r0, r3, __vt__16dMsgObject_HIO_c@l
+/* 80232D84  3C 60 80 3C */	lis r3, __vt__16dMsgObject_HIO_c@ha /* 0x803C0BD8@ha */
+/* 80232D88  38 03 0B D8 */	addi r0, r3, __vt__16dMsgObject_HIO_c@l /* 0x803C0BD8@l */
 /* 80232D8C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80232D90  38 7F 00 E8 */	addi r3, r31, 0xe8
-/* 80232D94  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 80232D98  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 80232D94  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 80232D98  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 80232D9C  38 A0 00 00 */	li r5, 0
 /* 80232DA0  38 C0 00 04 */	li r6, 4
 /* 80232DA4  38 E0 00 14 */	li r7, 0x14
 /* 80232DA8  48 12 EF B9 */	bl __construct_array
 /* 80232DAC  38 7F 01 38 */	addi r3, r31, 0x138
-/* 80232DB0  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 80232DB4  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 80232DB0  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 80232DB4  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 80232DB8  38 A0 00 00 */	li r5, 0
 /* 80232DBC  38 C0 00 04 */	li r6, 4
 /* 80232DC0  38 E0 00 14 */	li r7, 0x14

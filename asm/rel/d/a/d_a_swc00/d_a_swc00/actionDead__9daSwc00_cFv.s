@@ -5,7 +5,7 @@ lbl_805A1AF0:
 /* 805A1AFC  88 03 05 83 */	lbz r0, 0x583(r3)
 /* 805A1B00  28 00 00 00 */	cmplwi r0, 0
 /* 805A1B04  41 82 00 08 */	beq lbl_805A1B0C
-/* 805A1B08  4B A7 81 74 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 805A1B08  4B A7 81 75 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_805A1B0C:
 /* 805A1B0C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 805A1B10  7C 08 03 A6 */	mtlr r0

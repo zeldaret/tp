@@ -1,8 +1,8 @@
 lbl_806CD48C:
-/* 806CD48C  3C 80 80 6D */	lis r4, lit_3907@ha
-/* 806CD490  38 A4 0E 60 */	addi r5, r4, lit_3907@l
-/* 806CD494  3C 80 80 6D */	lis r4, __vt__12daE_GI_HIO_c@ha
-/* 806CD498  38 04 11 14 */	addi r0, r4, __vt__12daE_GI_HIO_c@l
+/* 806CD48C  3C 80 80 6D */	lis r4, lit_3907@ha /* 0x806D0E60@ha */
+/* 806CD490  38 A4 0E 60 */	addi r5, r4, lit_3907@l /* 0x806D0E60@l */
+/* 806CD494  3C 80 80 6D */	lis r4, __vt__12daE_GI_HIO_c@ha /* 0x806D1114@ha */
+/* 806CD498  38 04 11 14 */	addi r0, r4, __vt__12daE_GI_HIO_c@l /* 0x806D1114@l */
 /* 806CD49C  90 03 00 00 */	stw r0, 0(r3)
 /* 806CD4A0  38 00 FF FF */	li r0, -1
 /* 806CD4A4  98 03 00 04 */	stb r0, 4(r3)

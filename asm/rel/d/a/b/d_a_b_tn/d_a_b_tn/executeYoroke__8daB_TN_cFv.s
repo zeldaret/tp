@@ -3,12 +3,12 @@ lbl_8062A71C:
 /* 8062A720  7C 08 02 A6 */	mflr r0
 /* 8062A724  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8062A728  39 61 00 20 */	addi r11, r1, 0x20
-/* 8062A72C  4B D3 7A AC */	b _savegpr_28
+/* 8062A72C  4B D3 7A AD */	bl _savegpr_28
 /* 8062A730  7C 7F 1B 78 */	mr r31, r3
-/* 8062A734  3C 80 80 63 */	lis r4, lit_3920@ha
-/* 8062A738  3B A4 E6 34 */	addi r29, r4, lit_3920@l
-/* 8062A73C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8062A740  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l
+/* 8062A734  3C 80 80 63 */	lis r4, lit_3920@ha /* 0x8062E634@ha */
+/* 8062A738  3B A4 E6 34 */	addi r29, r4, lit_3920@l /* 0x8062E634@l */
+/* 8062A73C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8062A740  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8062A744  83 9E 5D AC */	lwz r28, 0x5dac(r30)
 /* 8062A748  80 03 06 F4 */	lwz r0, 0x6f4(r3)
 /* 8062A74C  2C 00 00 0A */	cmpwi r0, 0xa
@@ -88,7 +88,7 @@ lbl_8062A824:
 /* 8062A860  40 82 00 90 */	bne lbl_8062A8F0
 /* 8062A864  7F E3 FB 78 */	mr r3, r31
 /* 8062A868  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 8062A86C  4B 9E FF 74 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8062A86C  4B 9E FF 75 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8062A870  C0 1D 00 40 */	lfs f0, 0x40(r29)
 /* 8062A874  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8062A878  40 80 00 78 */	bge lbl_8062A8F0
@@ -107,7 +107,7 @@ lbl_8062A824:
 lbl_8062A8AC:
 /* 8062A8AC  7F E3 FB 78 */	mr r3, r31
 /* 8062A8B0  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 8062A8B4  4B 9E FE 5C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8062A8B4  4B 9E FE 5D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8062A8B8  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8062A8BC  7C 00 18 50 */	subf r0, r0, r3
 /* 8062A8C0  7C 00 07 35 */	extsh. r0, r0
@@ -146,7 +146,7 @@ lbl_8062A918:
 /* 8062A934  98 1F 0A 91 */	stb r0, 0xa91(r31)
 lbl_8062A938:
 /* 8062A938  39 61 00 20 */	addi r11, r1, 0x20
-/* 8062A93C  4B D3 78 E8 */	b _restgpr_28
+/* 8062A93C  4B D3 78 E9 */	bl _restgpr_28
 /* 8062A940  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8062A944  7C 08 03 A6 */	mtlr r0
 /* 8062A948  38 21 00 20 */	addi r1, r1, 0x20

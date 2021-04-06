@@ -21,8 +21,8 @@ lbl_8011B46C:
 /* 8011B4B8  48 00 D3 8D */	bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8011B4BC  48 00 00 30 */	b lbl_8011B4EC
 lbl_8011B4C0:
-/* 8011B4C0  3C 60 80 39 */	lis r3, m__26daAlinkHIO_noActAtnMove_c0@ha
-/* 8011B4C4  38 63 D7 68 */	addi r3, r3, m__26daAlinkHIO_noActAtnMove_c0@l
+/* 8011B4C0  3C 60 80 39 */	lis r3, m__26daAlinkHIO_noActAtnMove_c0@ha /* 0x8038D768@ha */
+/* 8011B4C4  38 63 D7 68 */	addi r3, r3, m__26daAlinkHIO_noActAtnMove_c0@l /* 0x8038D768@l */
 /* 8011B4C8  C0 43 00 08 */	lfs f2, 8(r3)
 /* 8011B4CC  7F C3 F3 78 */	mr r3, r30
 /* 8011B4D0  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -36,8 +36,8 @@ lbl_8011B4EC:
 /* 8011B4EC  38 00 00 01 */	li r0, 1
 /* 8011B4F0  B0 1E 30 0C */	sth r0, 0x300c(r30)
 lbl_8011B4F4:
-/* 8011B4F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011B4F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011B4F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011B4F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011B4FC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011B500  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8011B504  4B F2 CC 79 */	bl cutEnd__16dEvent_manager_cFi
@@ -46,8 +46,8 @@ lbl_8011B50C:
 /* 8011B50C  A8 1E 30 0C */	lha r0, 0x300c(r30)
 /* 8011B510  2C 00 00 00 */	cmpwi r0, 0
 /* 8011B514  41 82 00 1C */	beq lbl_8011B530
-/* 8011B518  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011B51C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011B518  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011B51C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011B520  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011B524  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8011B528  4B F2 CC 55 */	bl cutEnd__16dEvent_manager_cFi

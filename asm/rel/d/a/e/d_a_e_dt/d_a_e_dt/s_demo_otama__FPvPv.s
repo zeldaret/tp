@@ -4,7 +4,7 @@ lbl_806AFF1C:
 /* 806AFF24  90 01 00 14 */	stw r0, 0x14(r1)
 /* 806AFF28  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806AFF2C  7C 7F 1B 78 */	mr r31, r3
-/* 806AFF30  4B 96 8D B0 */	b fopAc_IsActor__FPv
+/* 806AFF30  4B 96 8D B1 */	bl fopAc_IsActor__FPv
 /* 806AFF34  2C 03 00 00 */	cmpwi r3, 0
 /* 806AFF38  41 82 00 3C */	beq lbl_806AFF74
 /* 806AFF3C  28 1F 00 00 */	cmplwi r31, 0
@@ -14,7 +14,7 @@ lbl_806AFF1C:
 lbl_806AFF4C:
 /* 806AFF4C  38 60 FF FF */	li r3, -1
 lbl_806AFF50:
-/* 806AFF50  4B 97 21 E8 */	b fpcM_IsCreating__FUi
+/* 806AFF50  4B 97 21 E9 */	bl fpcM_IsCreating__FUi
 /* 806AFF54  2C 03 00 00 */	cmpwi r3, 0
 /* 806AFF58  40 82 00 1C */	bne lbl_806AFF74
 /* 806AFF5C  A8 1F 00 08 */	lha r0, 8(r31)

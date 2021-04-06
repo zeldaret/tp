@@ -5,12 +5,12 @@ lbl_805DC89C:
 /* 805DC8A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805DC8AC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 805DC8B0  41 82 00 1C */	beq lbl_805DC8CC
-/* 805DC8B4  3C A0 80 5E */	lis r5, __vt__12daB_DS_HIO_c@ha
-/* 805DC8B8  38 05 DA 5C */	addi r0, r5, __vt__12daB_DS_HIO_c@l
+/* 805DC8B4  3C A0 80 5E */	lis r5, __vt__12daB_DS_HIO_c@ha /* 0x805DDA5C@ha */
+/* 805DC8B8  38 05 DA 5C */	addi r0, r5, __vt__12daB_DS_HIO_c@l /* 0x805DDA5C@l */
 /* 805DC8BC  90 1F 00 00 */	stw r0, 0(r31)
 /* 805DC8C0  7C 80 07 35 */	extsh. r0, r4
 /* 805DC8C4  40 81 00 08 */	ble lbl_805DC8CC
-/* 805DC8C8  4B CF 24 74 */	b __dl__FPv
+/* 805DC8C8  4B CF 24 75 */	bl __dl__FPv
 lbl_805DC8CC:
 /* 805DC8CC  7F E3 FB 78 */	mr r3, r31
 /* 805DC8D0  83 E1 00 0C */	lwz r31, 0xc(r1)

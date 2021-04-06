@@ -32,8 +32,8 @@ lbl_801AC73C:
 /* 801AC780  88 1D 00 04 */	lbz r0, 4(r29)
 /* 801AC784  98 01 00 08 */	stb r0, 8(r1)
 lbl_801AC788:
-/* 801AC788  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AC78C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AC788  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AC78C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AC790  38 63 00 28 */	addi r3, r3, 0x28
 /* 801AC794  88 81 00 08 */	lbz r4, 8(r1)
 /* 801AC798  4B E8 64 19 */	bl isDarkClearLV__21dSv_player_status_b_cCFi

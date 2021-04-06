@@ -30,14 +30,14 @@ lbl_800DB6F4:
 /* 800DB70C  93 DF 28 F8 */	stw r30, 0x28f8(r31)
 /* 800DB710  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800DB714  D0 1F 33 98 */	stfs f0, 0x3398(r31)
-/* 800DB718  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha
-/* 800DB71C  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l
+/* 800DB718  3C 60 80 39 */	lis r3, m__23daAlinkHIO_damCaught_c0@ha /* 0x8038E49C@ha */
+/* 800DB71C  38 63 E4 9C */	addi r3, r3, m__23daAlinkHIO_damCaught_c0@l /* 0x8038E49C@l */
 /* 800DB720  A8 03 00 14 */	lha r0, 0x14(r3)
 /* 800DB724  B0 1F 30 08 */	sth r0, 0x3008(r31)
 /* 800DB728  80 1F 28 F8 */	lwz r0, 0x28f8(r31)
 /* 800DB72C  90 01 00 0C */	stw r0, 0xc(r1)
-/* 800DB730  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800DB734  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800DB730  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800DB734  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800DB738  38 81 00 0C */	addi r4, r1, 0xc
 /* 800DB73C  4B F3 E0 BD */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800DB740  28 03 00 00 */	cmplwi r3, 0
@@ -73,8 +73,8 @@ lbl_800DB7B4:
 /* 800DB7B4  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800DB7B8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DB7BC  40 80 00 10 */	bge lbl_800DB7CC
-/* 800DB7C0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DB7C4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800DB7C0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DB7C4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800DB7C8  48 00 00 70 */	b lbl_800DB838
 lbl_800DB7CC:
 /* 800DB7CC  D0 21 00 08 */	stfs f1, 8(r1)
@@ -108,8 +108,8 @@ lbl_800DB824:
 lbl_800DB828:
 /* 800DB828  2C 00 00 01 */	cmpwi r0, 1
 /* 800DB82C  40 82 00 0C */	bne lbl_800DB838
-/* 800DB830  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DB834  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800DB830  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DB834  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800DB838:
 /* 800DB838  D0 3F 34 78 */	stfs f1, 0x3478(r31)
 lbl_800DB83C:

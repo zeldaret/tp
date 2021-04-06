@@ -7,8 +7,8 @@ lbl_80255CAC:
 /* 80255CC0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80255CC4  7C 9F 23 78 */	mr r31, r4
 /* 80255CC8  41 82 00 64 */	beq lbl_80255D2C
-/* 80255CCC  3C 60 80 3C */	lis r3, __vt__17CPaneMgrAlphaMorf@ha
-/* 80255CD0  38 03 2E 18 */	addi r0, r3, __vt__17CPaneMgrAlphaMorf@l
+/* 80255CCC  3C 60 80 3C */	lis r3, __vt__17CPaneMgrAlphaMorf@ha /* 0x803C2E18@ha */
+/* 80255CD0  38 03 2E 18 */	addi r0, r3, __vt__17CPaneMgrAlphaMorf@l /* 0x803C2E18@l */
 /* 80255CD4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80255CD8  80 9E 00 1C */	lwz r4, 0x1c(r30)
 /* 80255CDC  28 04 00 00 */	cmplwi r4, 0

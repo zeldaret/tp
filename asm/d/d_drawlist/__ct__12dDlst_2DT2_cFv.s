@@ -1,10 +1,10 @@
 lbl_80052B00:
 /* 80052B00  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80052B04  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha
-/* 80052B08  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l
+/* 80052B04  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 80052B08  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 80052B0C  90 03 00 00 */	stw r0, 0(r3)
-/* 80052B10  3C 80 80 3B */	lis r4, __vt__12dDlst_2DT2_c@ha
-/* 80052B14  38 04 8E 5C */	addi r0, r4, __vt__12dDlst_2DT2_c@l
+/* 80052B10  3C 80 80 3B */	lis r4, __vt__12dDlst_2DT2_c@ha /* 0x803A8E5C@ha */
+/* 80052B14  38 04 8E 5C */	addi r0, r4, __vt__12dDlst_2DT2_c@l /* 0x803A8E5C@l */
 /* 80052B18  90 03 00 00 */	stw r0, 0(r3)
 /* 80052B1C  80 02 D1 68 */	lwz r0, lit_4275(r2)
 /* 80052B20  90 01 00 08 */	stw r0, 8(r1)

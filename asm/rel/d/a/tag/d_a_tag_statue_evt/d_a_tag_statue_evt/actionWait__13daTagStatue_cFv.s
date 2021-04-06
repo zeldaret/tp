@@ -16,7 +16,7 @@ lbl_805A76AC:
 /* 805A76E4  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 805A76E8  38 E0 00 00 */	li r7, 0
 /* 805A76EC  39 00 00 01 */	li r8, 1
-/* 805A76F0  4B A7 3F 8C */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 805A76F0  4B A7 3F 8D */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 805A76F4  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 805A76F8  60 00 00 02 */	ori r0, r0, 2
 /* 805A76FC  B0 1F 00 FA */	sth r0, 0xfa(r31)

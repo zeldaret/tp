@@ -6,12 +6,12 @@ lbl_80727834:
 /* 80727844  7C 7F 1B 78 */	mr r31, r3
 /* 80727848  38 00 00 06 */	li r0, 6
 /* 8072784C  B0 03 06 8E */	sth r0, 0x68e(r3)
-/* 80727850  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80727854  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80727850  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80727854  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80727858  80 9F 05 B8 */	lwz r4, 0x5b8(r31)
 /* 8072785C  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80727860  7C 05 07 74 */	extsb r5, r0
-/* 80727864  4B 90 DA FC */	b isSwitch__10dSv_info_cCFii
+/* 80727864  4B 90 DA FD */	bl isSwitch__10dSv_info_cCFii
 /* 80727868  2C 03 00 00 */	cmpwi r3, 0
 /* 8072786C  41 82 00 14 */	beq lbl_80727880
 /* 80727870  38 00 00 00 */	li r0, 0

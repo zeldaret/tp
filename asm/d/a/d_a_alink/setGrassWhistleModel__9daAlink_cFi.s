@@ -14,8 +14,8 @@ lbl_80111784:
 /* 801117B4  57 C0 08 3C */	slwi r0, r30, 1
 /* 801117B8  38 82 96 20 */	la r4, grassWhistleIdx(r2) /* 80453020-_SDA2_BASE_ */
 /* 801117BC  7C 84 02 2E */	lhzx r4, r4, r0
-/* 801117C0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 801117C4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 801117C0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801117C4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801117C8  3C A5 00 02 */	addis r5, r5, 2
 /* 801117CC  38 C0 00 80 */	li r6, 0x80
 /* 801117D0  38 A5 C2 F8 */	addi r5, r5, -15624

@@ -1,7 +1,7 @@
 lbl_8005A57C:
 /* 8005A57C  C0 02 86 F0 */	lfs f0, lit_4668(r2)
-/* 8005A580  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8005A584  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8005A580  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005A584  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8005A588  D0 03 0E 48 */	stfs f0, 0xe48(r3)
 /* 8005A58C  C0 02 86 E0 */	lfs f0, lit_4378(r2)
 /* 8005A590  D0 03 0E 4C */	stfs f0, 0xe4c(r3)

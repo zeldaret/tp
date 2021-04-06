@@ -2,8 +2,8 @@ lbl_80263328:
 /* 80263328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026332C  7C 08 02 A6 */	mflr r0
 /* 80263330  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80263334  3C 60 80 3C */	lis r3, g_cAPI_Interface@ha
-/* 80263338  38 63 35 28 */	addi r3, r3, g_cAPI_Interface@l
+/* 80263334  3C 60 80 3C */	lis r3, g_cAPI_Interface@ha /* 0x803C3528@ha */
+/* 80263338  38 63 35 28 */	addi r3, r3, g_cAPI_Interface@l /* 0x803C3528@l */
 /* 8026333C  81 83 00 08 */	lwz r12, 8(r3)
 /* 80263340  7D 89 03 A6 */	mtctr r12
 /* 80263344  4E 80 04 21 */	bctrl 

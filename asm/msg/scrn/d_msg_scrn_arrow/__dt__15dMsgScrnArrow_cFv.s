@@ -7,8 +7,8 @@ lbl_8023BC78:
 /* 8023BC8C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8023BC90  7C 9F 23 78 */	mr r31, r4
 /* 8023BC94  41 82 01 10 */	beq lbl_8023BDA4
-/* 8023BC98  3C 60 80 3C */	lis r3, __vt__15dMsgScrnArrow_c@ha
-/* 8023BC9C  38 03 0C F8 */	addi r0, r3, __vt__15dMsgScrnArrow_c@l
+/* 8023BC98  3C 60 80 3C */	lis r3, __vt__15dMsgScrnArrow_c@ha /* 0x803C0CF8@ha */
+/* 8023BC9C  38 03 0C F8 */	addi r0, r3, __vt__15dMsgScrnArrow_c@l /* 0x803C0CF8@l */
 /* 8023BCA0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8023BCA4  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8023BCA8  28 03 00 00 */	cmplwi r3, 0

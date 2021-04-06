@@ -7,8 +7,8 @@ lbl_800C76F8:
 /* 800C770C  7C 7D 1B 78 */	mr r29, r3
 /* 800C7710  38 7D 33 98 */	addi r3, r29, 0x3398
 /* 800C7714  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800C7718  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 800C771C  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 800C7718  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C771C  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C7720  C0 44 00 38 */	lfs f2, 0x38(r4)
 /* 800C7724  48 1A 90 1D */	bl cLib_chaseF__FPfff
 /* 800C7728  7F A3 EB 78 */	mr r3, r29

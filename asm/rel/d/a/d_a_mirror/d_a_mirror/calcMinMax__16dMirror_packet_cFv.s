@@ -1,6 +1,6 @@
 lbl_80870CA0:
-/* 80870CA0  3C 80 80 45 */	lis r4, __float_max@ha
-/* 80870CA4  C4 04 0A E8 */	lfsu f0, __float_max@l(r4)
+/* 80870CA0  3C 80 80 45 */	lis r4, __float_max@ha /* 0x80450AE8@ha */
+/* 80870CA4  C4 04 0A E8 */	lfsu f0, __float_max@l(r4)  /* 0x80450AE8@l */
 /* 80870CA8  D0 03 01 64 */	stfs f0, 0x164(r3)
 /* 80870CAC  D0 03 01 68 */	stfs f0, 0x168(r3)
 /* 80870CB0  D0 03 01 6C */	stfs f0, 0x16c(r3)

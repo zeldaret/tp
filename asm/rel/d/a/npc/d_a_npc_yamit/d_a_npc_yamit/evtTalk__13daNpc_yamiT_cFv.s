@@ -4,8 +4,8 @@ lbl_80B4ABA0:
 /* 80B4ABA8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80B4ABAC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80B4ABB0  7C 7F 1B 78 */	mr r31, r3
-/* 80B4ABB4  3C 80 80 B5 */	lis r4, lit_4595@ha
-/* 80B4ABB8  38 A4 D0 00 */	addi r5, r4, lit_4595@l
+/* 80B4ABB4  3C 80 80 B5 */	lis r4, lit_4595@ha /* 0x80B4D000@ha */
+/* 80B4ABB8  38 A4 D0 00 */	addi r5, r4, lit_4595@l /* 0x80B4D000@l */
 /* 80B4ABBC  80 85 00 00 */	lwz r4, 0(r5)
 /* 80B4ABC0  80 05 00 04 */	lwz r0, 4(r5)
 /* 80B4ABC4  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,13 +19,13 @@ lbl_80B4ABA0:
 /* 80B4ABE4  7F E3 FB 78 */	mr r3, r31
 /* 80B4ABE8  38 80 00 00 */	li r4, 0
 /* 80B4ABEC  39 9F 0F 94 */	addi r12, r31, 0xf94
-/* 80B4ABF0  4B 81 74 94 */	b __ptmf_scall
+/* 80B4ABF0  4B 81 74 95 */	bl __ptmf_scall
 /* 80B4ABF4  60 00 00 00 */	nop 
 /* 80B4ABF8  48 00 00 74 */	b lbl_80B4AC6C
 lbl_80B4ABFC:
 /* 80B4ABFC  38 00 00 00 */	li r0, 0
-/* 80B4AC00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80B4AC04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80B4AC00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B4AC04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B4AC08  88 63 4F B5 */	lbz r3, 0x4fb5(r3)
 /* 80B4AC0C  28 03 00 01 */	cmplwi r3, 1
 /* 80B4AC10  41 82 00 0C */	beq lbl_80B4AC1C
@@ -36,15 +36,15 @@ lbl_80B4AC1C:
 lbl_80B4AC20:
 /* 80B4AC20  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80B4AC24  41 82 00 1C */	beq lbl_80B4AC40
-/* 80B4AC28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80B4AC2C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80B4AC28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B4AC2C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B4AC30  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80B4AC34  4B 4F DB BC */	b ChkPresentEnd__16dEvent_manager_cFv
+/* 80B4AC34  4B 4F DB BD */	bl ChkPresentEnd__16dEvent_manager_cFv
 /* 80B4AC38  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4AC3C  41 82 00 30 */	beq lbl_80B4AC6C
 lbl_80B4AC40:
-/* 80B4AC40  3C 60 80 B5 */	lis r3, lit_4603@ha
-/* 80B4AC44  38 83 D0 0C */	addi r4, r3, lit_4603@l
+/* 80B4AC40  3C 60 80 B5 */	lis r3, lit_4603@ha /* 0x80B4D00C@ha */
+/* 80B4AC44  38 83 D0 0C */	addi r4, r3, lit_4603@l /* 0x80B4D00C@l */
 /* 80B4AC48  80 64 00 00 */	lwz r3, 0(r4)
 /* 80B4AC4C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80B4AC50  90 61 00 08 */	stw r3, 8(r1)

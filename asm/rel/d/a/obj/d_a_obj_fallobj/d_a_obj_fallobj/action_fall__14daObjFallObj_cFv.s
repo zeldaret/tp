@@ -21,11 +21,11 @@ lbl_80BE4624:
 /* 80BE463C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80BE4640  FC 00 02 10 */	fabs f0, f0
 /* 80BE4644  FC 20 00 18 */	frsp f1, f0
-/* 80BE4648  3C 80 80 BE */	lis r4, lit_3949@ha
-/* 80BE464C  C0 04 4B 08 */	lfs f0, lit_3949@l(r4)
+/* 80BE4648  3C 80 80 BE */	lis r4, lit_3949@ha /* 0x80BE4B08@ha */
+/* 80BE464C  C0 04 4B 08 */	lfs f0, lit_3949@l(r4)  /* 0x80BE4B08@l */
 /* 80BE4650  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BE4654  40 81 00 08 */	ble lbl_80BE465C
-/* 80BE4658  4B 43 56 24 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80BE4658  4B 43 56 25 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80BE465C:
 /* 80BE465C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80BE4660  7C 08 03 A6 */	mtlr r0

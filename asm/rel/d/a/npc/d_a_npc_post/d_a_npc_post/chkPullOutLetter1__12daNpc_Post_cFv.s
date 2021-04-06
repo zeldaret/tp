@@ -7,15 +7,15 @@ lbl_80AAAAB8:
 /* 80AAAACC  88 03 0F 8C */	lbz r0, 0xf8c(r3)
 /* 80AAAAD0  28 00 00 01 */	cmplwi r0, 1
 /* 80AAAAD4  40 82 00 40 */	bne lbl_80AAAB14
-/* 80AAAAD8  3C 80 80 AB */	lis r4, l_motionAnmData@ha
-/* 80AAAADC  38 A4 D5 E4 */	addi r5, r4, l_motionAnmData@l
+/* 80AAAAD8  3C 80 80 AB */	lis r4, l_motionAnmData@ha /* 0x80AAD5E4@ha */
+/* 80AAAADC  38 A4 D5 E4 */	addi r5, r4, l_motionAnmData@l /* 0x80AAD5E4@l */
 /* 80AAAAE0  80 05 00 5C */	lwz r0, 0x5c(r5)
 /* 80AAAAE4  54 00 10 3A */	slwi r0, r0, 2
-/* 80AAAAE8  3C 80 80 AB */	lis r4, l_resNameList@ha
-/* 80AAAAEC  38 84 D4 14 */	addi r4, r4, l_resNameList@l
+/* 80AAAAE8  3C 80 80 AB */	lis r4, l_resNameList@ha /* 0x80AAD414@ha */
+/* 80AAAAEC  38 84 D4 14 */	addi r4, r4, l_resNameList@l /* 0x80AAD414@l */
 /* 80AAAAF0  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80AAAAF4  80 A5 00 54 */	lwz r5, 0x54(r5)
-/* 80AAAAF8  4B 69 D5 60 */	b getTrnsfrmAnmP__8daNpcT_cFPCci
+/* 80AAAAF8  4B 69 D5 61 */	bl getTrnsfrmAnmP__8daNpcT_cFPCci
 /* 80AAAAFC  80 9F 05 78 */	lwz r4, 0x578(r31)
 /* 80AAAB00  80 04 00 08 */	lwz r0, 8(r4)
 /* 80AAAB04  7C 03 00 50 */	subf r0, r3, r0

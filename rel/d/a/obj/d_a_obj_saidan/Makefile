@@ -3,19 +3,20 @@
 #
 
 M610_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan.plf
+M610_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan.lcf
+M610_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan.map
 
 M610_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_saidan/executor.cpp \
-	rel/d/a/obj/d_a_obj_saidan/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan.cpp \
 
 M610_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan.o \
 
 M610_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/libRuntime.PPCEABI.H.a \
 
 M610_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M610_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map610.map\
+	-m _prolog \
+	-lcf $(M610_LDSCRIPT) \
+	-unused -map $(M610_MAP) \
+	-w off \
 
 $(M610_TARGET): $(M610_O_FILES) $(M610_LIBS)
+	@echo [610] creating $(M610_TARGET)
 	@echo $(M610_LIBS) $(M610_O_FILES) > build/M610_ofiles
-	$(LD) -opt_partial $(M610_LDFLAGS) -o $(M610_TARGET) @build/M610_ofiles
+	@python3 tools/lcf.py rel 610 --output $(M610_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M610_LDFLAGS) -o $(M610_TARGET) @build/M610_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_saidan/%.o: rel/d/a/obj/d_a_obj_saidan/%.cpp
+	@echo [610] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M610_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M610_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_saidan/libs/Runtime.PPCEABI.H/Makefile
 

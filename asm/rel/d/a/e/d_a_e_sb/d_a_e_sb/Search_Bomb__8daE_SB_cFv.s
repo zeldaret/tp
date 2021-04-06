@@ -5,14 +5,14 @@ lbl_80783854:
 /* 80783860  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80783864  93 C1 00 08 */	stw r30, 8(r1)
 /* 80783868  7C 7E 1B 78 */	mr r30, r3
-/* 8078386C  3C 60 80 78 */	lis r3, lit_3658@ha
-/* 80783870  3B E3 4D 68 */	addi r31, r3, lit_3658@l
-/* 80783874  3C 60 80 78 */	lis r3, s_obj_sub__FPvPv@ha
-/* 80783878  38 63 1C 2C */	addi r3, r3, s_obj_sub__FPvPv@l
+/* 8078386C  3C 60 80 78 */	lis r3, lit_3658@ha /* 0x80784D68@ha */
+/* 80783870  3B E3 4D 68 */	addi r31, r3, lit_3658@l /* 0x80784D68@l */
+/* 80783874  3C 60 80 78 */	lis r3, s_obj_sub__FPvPv@ha /* 0x80781C2C@ha */
+/* 80783878  38 63 1C 2C */	addi r3, r3, s_obj_sub__FPvPv@l /* 0x80781C2C@l */
 /* 8078387C  7F C4 F3 78 */	mr r4, r30
-/* 80783880  4B 89 DA B8 */	b fpcEx_Search__FPFPvPv_PvPv
-/* 80783884  3C 80 80 78 */	lis r4, data_80784FC4@ha
-/* 80783888  90 64 4F C4 */	stw r3, data_80784FC4@l(r4)
+/* 80783880  4B 89 DA B9 */	bl fpcEx_Search__FPFPvPv_PvPv
+/* 80783884  3C 80 80 78 */	lis r4, data_80784FC4@ha /* 0x80784FC4@ha */
+/* 80783888  90 64 4F C4 */	stw r3, data_80784FC4@l(r4)  /* 0x80784FC4@l */
 /* 8078388C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80783890  41 82 00 64 */	beq lbl_807838F4
 /* 80783894  7F C3 F3 78 */	mr r3, r30

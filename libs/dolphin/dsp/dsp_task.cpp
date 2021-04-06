@@ -15,16 +15,6 @@ extern "C" void __DSP_exec_task();
 extern "C" void __DSP_boot_task();
 extern "C" void __DSP_insert_task();
 extern "C" void __DSP_remove_task();
-extern "C" extern u8 lit_267[45 + 3 /* padding */];
-extern "C" extern u8 lit_268[45 + 3 /* padding */];
-extern "C" extern u8 lit_269[45 + 3 /* padding */];
-extern "C" extern u8 lit_270[45 + 3 /* padding */];
-extern "C" extern u8 lit_271[45 + 3 /* padding */];
-extern "C" extern u8 lit_294[43 + 5 /* padding */];
-extern "C" extern u8 __DSP_tmp_task[4];
-extern "C" extern u8 __DSP_last_task[4];
-extern "C" extern u8 __DSP_first_task[4];
-extern "C" extern u8 __DSP_curr_task[4];
 
 //
 // External References:
@@ -40,52 +30,18 @@ extern "C" void __DSP_debug_printf();
 // Declarations:
 //
 
-/* 803525D0-80352770 01A0+00 s=0 e=1 z=0  None .text      __DSP_exec_task */
-//	803525F4: 80352468 (DSPSendMailToDSP)
-//	803525F8: 80352430 (DSPCheckMailToDSP)
-//	80352608: 80352468 (DSPSendMailToDSP)
-//	8035260C: 80352430 (DSPCheckMailToDSP)
-//	8035261C: 80352468 (DSPSendMailToDSP)
-//	80352620: 80352430 (DSPCheckMailToDSP)
-//	80352634: 80352468 (DSPSendMailToDSP)
-//	80352638: 80352430 (DSPCheckMailToDSP)
-//	80352648: 80352468 (DSPSendMailToDSP)
-//	8035264C: 80352430 (DSPCheckMailToDSP)
-//	8035265C: 80352468 (DSPSendMailToDSP)
-//	80352660: 80352430 (DSPCheckMailToDSP)
-//	80352670: 80352468 (DSPSendMailToDSP)
-//	80352674: 80352430 (DSPCheckMailToDSP)
-//	80352684: 80352468 (DSPSendMailToDSP)
-//	80352688: 80352430 (DSPCheckMailToDSP)
-//	80352698: 80352468 (DSPSendMailToDSP)
-//	8035269C: 80352430 (DSPCheckMailToDSP)
-//	803526B8: 80352468 (DSPSendMailToDSP)
-//	803526BC: 80352430 (DSPCheckMailToDSP)
-//	803526CC: 80352468 (DSPSendMailToDSP)
-//	803526D0: 80352430 (DSPCheckMailToDSP)
-//	803526E0: 80352468 (DSPSendMailToDSP)
-//	803526E4: 80352430 (DSPCheckMailToDSP)
-//	803526F4: 80352468 (DSPSendMailToDSP)
-//	803526F8: 80352430 (DSPCheckMailToDSP)
-//	8035270C: 80352468 (DSPSendMailToDSP)
-//	80352710: 80352430 (DSPCheckMailToDSP)
-//	80352720: 80352468 (DSPSendMailToDSP)
-//	80352724: 80352430 (DSPCheckMailToDSP)
-//	80352734: 80352468 (DSPSendMailToDSP)
-//	80352738: 80352430 (DSPCheckMailToDSP)
-//	80352748: 80352468 (DSPSendMailToDSP)
-//	8035274C: 80352430 (DSPCheckMailToDSP)
+/* 803525D0-80352770 34CF10 01A0+00 0/0 1/1 0/0 .text            __DSP_exec_task */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DSP_exec_task() {
+asm void __DSP_exec_task() {
     nofralloc
 #include "asm/dolphin/dsp/dsp_task/__DSP_exec_task.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1CF8-803D1D18 001D+03 s=1 e=0 z=0  None .data      @266 */
+/* 803D1CF8-803D1D18 02EE18 001D+03 1/1 0/0 0/0 .data            @266 */
 SECTION_DATA static u8 lit_266[29 + 3 /* padding */] = {
     0x44,
     0x53,
@@ -122,100 +78,10 @@ SECTION_DATA static u8 lit_266[29 + 3 /* padding */] = {
     0x00,
 };
 
-/* 80352770-803528FC 018C+00 s=0 e=1 z=0  None .text      __DSP_boot_task */
-//	80352774: 803D1CF8 (lit_266)
-//	80352784: 803D1CF8 (lit_266)
-//	80352790: 80352440 (DSPCheckMailFromDSP)
-//	8035279C: 80352450 (DSPReadMailFromDSP)
-//	803527AC: 80352468 (DSPSendMailToDSP)
-//	803527B0: 80352430 (DSPCheckMailToDSP)
-//	803527C0: 80352468 (DSPSendMailToDSP)
-//	803527C4: 80352430 (DSPCheckMailToDSP)
-//	803527D8: 80352468 (DSPSendMailToDSP)
-//	803527DC: 80352430 (DSPCheckMailToDSP)
-//	803527F0: 80352468 (DSPSendMailToDSP)
-//	803527F4: 80352430 (DSPCheckMailToDSP)
-//	80352808: 80352468 (DSPSendMailToDSP)
-//	8035280C: 80352430 (DSPCheckMailToDSP)
-//	8035281C: 80352468 (DSPSendMailToDSP)
-//	80352820: 80352430 (DSPCheckMailToDSP)
-//	80352834: 80352468 (DSPSendMailToDSP)
-//	80352838: 80352430 (DSPCheckMailToDSP)
-//	80352848: 80352468 (DSPSendMailToDSP)
-//	8035284C: 80352430 (DSPCheckMailToDSP)
-//	80352860: 80352468 (DSPSendMailToDSP)
-//	80352864: 80352430 (DSPCheckMailToDSP)
-//	80352874: 80352468 (DSPSendMailToDSP)
-//	80352878: 80352430 (DSPCheckMailToDSP)
-//	80352890: 80352580 (__DSP_debug_printf)
-//	803528A0: 80352580 (__DSP_debug_printf)
-//	803528B0: 80352580 (__DSP_debug_printf)
-//	803528C0: 80352580 (__DSP_debug_printf)
-//	803528D0: 80352580 (__DSP_debug_printf)
-//	803528E0: 80352580 (__DSP_debug_printf)
+/* 803D1D18-803D1D48 02EE38 002D+03 0/1 0/0 0/0 .data            @267 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __DSP_boot_task() {
-    nofralloc
-#include "asm/dolphin/dsp/dsp_task/__DSP_boot_task.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451908-8045190C 0004+00 s=0 e=1 z=0  None .sbss      __DSP_tmp_task */
-u8 __DSP_tmp_task[4];
-
-/* 8045190C-80451910 0004+00 s=2 e=1 z=0  None .sbss      __DSP_last_task */
-u8 __DSP_last_task[4];
-
-/* 80451910-80451914 0004+00 s=2 e=2 z=0  None .sbss      __DSP_first_task */
-u8 __DSP_first_task[4];
-
-/* 80451914-80451918 0004+00 s=2 e=2 z=0  None .sbss      __DSP_curr_task */
-u8 __DSP_curr_task[4];
-
-/* 803528FC-8035299C 00A0+00 s=0 e=1 z=0  None .text      __DSP_insert_task */
-//	803528FC: 80451910 (__DSP_first_task)
-//	80352908: 80451914 (__DSP_curr_task)
-//	80352910: 8045190C (__DSP_last_task)
-//	80352914: 80451910 (__DSP_first_task)
-//	80352958: 80451910 (__DSP_first_task)
-//	8035297C: 8045190C (__DSP_last_task)
-//	8035298C: 8045190C (__DSP_last_task)
-//	80352994: 8045190C (__DSP_last_task)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __DSP_insert_task() {
-    nofralloc
-#include "asm/dolphin/dsp/dsp_task/__DSP_insert_task.s"
-}
-#pragma pop
-
-/* 8035299C-80352A30 0094+00 s=0 e=1 z=0  None .text      __DSP_remove_task */
-//	803529AC: 80451910 (__DSP_first_task)
-//	803529C4: 80451910 (__DSP_first_task)
-//	803529D4: 80451914 (__DSP_curr_task)
-//	803529D8: 8045190C (__DSP_last_task)
-//	803529DC: 80451910 (__DSP_first_task)
-//	803529E4: 8045190C (__DSP_last_task)
-//	803529F4: 8045190C (__DSP_last_task)
-//	80352A00: 80451910 (__DSP_first_task)
-//	80352A04: 80451914 (__DSP_curr_task)
-//	80352A10: 80451914 (__DSP_curr_task)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __DSP_remove_task() {
-    nofralloc
-#include "asm/dolphin/dsp/dsp_task/__DSP_remove_task.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803D1D18-803D1D48 002D+03 s=0 e=0 z=0  None .data      @267 */
-SECTION_DATA u8 lit_267[45 + 3 /* padding */] = {
+#pragma force_active on
+SECTION_DATA static u8 lit_267[45 + 3 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -266,9 +132,12 @@ SECTION_DATA u8 lit_267[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1D48-803D1D78 002D+03 s=0 e=0 z=0  None .data      @268 */
-SECTION_DATA u8 lit_268[45 + 3 /* padding */] = {
+/* 803D1D48-803D1D78 02EE68 002D+03 0/1 0/0 0/0 .data            @268 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_268[45 + 3 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -319,9 +188,12 @@ SECTION_DATA u8 lit_268[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1D78-803D1DA8 002D+03 s=0 e=0 z=0  None .data      @269 */
-SECTION_DATA u8 lit_269[45 + 3 /* padding */] = {
+/* 803D1D78-803D1DA8 02EE98 002D+03 0/1 0/0 0/0 .data            @269 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_269[45 + 3 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -372,9 +244,12 @@ SECTION_DATA u8 lit_269[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1DA8-803D1DD8 002D+03 s=0 e=0 z=0  None .data      @270 */
-SECTION_DATA u8 lit_270[45 + 3 /* padding */] = {
+/* 803D1DA8-803D1DD8 02EEC8 002D+03 0/1 0/0 0/0 .data            @270 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_270[45 + 3 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -425,9 +300,12 @@ SECTION_DATA u8 lit_270[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1DD8-803D1E08 002D+03 s=0 e=0 z=0  None .data      @271 */
-SECTION_DATA u8 lit_271[45 + 3 /* padding */] = {
+/* 803D1DD8-803D1E08 02EEF8 002D+03 0/1 0/0 0/0 .data            @271 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_271[45 + 3 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -478,9 +356,60 @@ SECTION_DATA u8 lit_271[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1E08-803D1E38 002B+05 s=0 e=0 z=0  None .data      @294 */
-SECTION_DATA u8 lit_294[43 + 5 /* padding */] = {
+/* 80352770-803528FC 34D0B0 018C+00 0/0 1/1 0/0 .text            __DSP_boot_task */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void __DSP_boot_task() {
+    nofralloc
+#include "asm/dolphin/dsp/dsp_task/__DSP_boot_task.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451908-8045190C 000E08 0004+00 0/0 1/1 0/0 .sbss            __DSP_tmp_task */
+extern u8 __DSP_tmp_task[4];
+u8 __DSP_tmp_task[4];
+
+/* 8045190C-80451910 000E0C 0004+00 2/2 1/1 0/0 .sbss            __DSP_last_task */
+extern u8 __DSP_last_task[4];
+u8 __DSP_last_task[4];
+
+/* 80451910-80451914 000E10 0004+00 2/2 2/2 0/0 .sbss            __DSP_first_task */
+extern u8 __DSP_first_task[4];
+u8 __DSP_first_task[4];
+
+/* 80451914-80451918 000E14 0004+00 2/2 2/2 0/0 .sbss            __DSP_curr_task */
+extern u8 __DSP_curr_task[4];
+u8 __DSP_curr_task[4];
+
+/* 803528FC-8035299C 34D23C 00A0+00 0/0 1/1 0/0 .text            __DSP_insert_task */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void __DSP_insert_task() {
+    nofralloc
+#include "asm/dolphin/dsp/dsp_task/__DSP_insert_task.s"
+}
+#pragma pop
+
+/* 8035299C-80352A30 34D2DC 0094+00 0/0 1/1 0/0 .text            __DSP_remove_task */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void __DSP_remove_task() {
+    nofralloc
+#include "asm/dolphin/dsp/dsp_task/__DSP_remove_task.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 803D1E08-803D1E38 02EF28 002B+05 0/0 0/0 0/0 .data            @294 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_294[43 + 5 /* padding */] = {
     0x5F,
     0x5F,
     0x44,
@@ -531,3 +460,4 @@ SECTION_DATA u8 lit_294[43 + 5 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop

@@ -5,8 +5,8 @@ lbl_80073FC4:
 /* 80073FD0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80073FD4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80073FD8  41 82 00 1C */	beq lbl_80073FF4
-/* 80073FDC  3C A0 80 3B */	lis r5, __vt__15dAttDrawParam_c@ha
-/* 80073FE0  38 05 9C 54 */	addi r0, r5, __vt__15dAttDrawParam_c@l
+/* 80073FDC  3C A0 80 3B */	lis r5, __vt__15dAttDrawParam_c@ha /* 0x803A9C54@ha */
+/* 80073FE0  38 05 9C 54 */	addi r0, r5, __vt__15dAttDrawParam_c@l /* 0x803A9C54@l */
 /* 80073FE4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80073FE8  7C 80 07 35 */	extsh. r0, r4
 /* 80073FEC  40 81 00 08 */	ble lbl_80073FF4

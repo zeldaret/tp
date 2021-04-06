@@ -6,7 +6,7 @@ lbl_8077C938:
 /* 8077C948  93 C1 00 08 */	stw r30, 8(r1)
 /* 8077C94C  7C 7E 1B 78 */	mr r30, r3
 /* 8077C950  7C 9F 23 78 */	mr r31, r4
-/* 8077C954  4B 89 C3 8C */	b fopAc_IsActor__FPv
+/* 8077C954  4B 89 C3 8D */	bl fopAc_IsActor__FPv
 /* 8077C958  2C 03 00 00 */	cmpwi r3, 0
 /* 8077C95C  41 82 00 60 */	beq lbl_8077C9BC
 /* 8077C960  A8 1E 00 08 */	lha r0, 8(r30)

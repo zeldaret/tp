@@ -8,11 +8,11 @@ lbl_80464AE4:
 /* 80464AFC  3C 03 00 01 */	addis r0, r3, 1
 /* 80464B00  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80464B04  41 82 00 20 */	beq lbl_80464B24
-/* 80464B08  4B BB D6 30 */	b fpcM_IsCreating__FUi
+/* 80464B08  4B BB D6 31 */	bl fpcM_IsCreating__FUi
 /* 80464B0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80464B10  40 82 00 14 */	bne lbl_80464B24
 /* 80464B14  80 7F 05 EC */	lwz r3, 0x5ec(r31)
-/* 80464B18  4B BB 51 A0 */	b fopAcM_delete__FUi
+/* 80464B18  4B BB 51 A1 */	bl fopAcM_delete__FUi
 /* 80464B1C  38 00 FF FF */	li r0, -1
 /* 80464B20  90 1F 05 EC */	stw r0, 0x5ec(r31)
 lbl_80464B24:

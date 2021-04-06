@@ -198,14 +198,12 @@ struct TFunctionValue_hermite {
 };  // namespace JStudio
 
 namespace std {
-/*          */ template <typename A1, typename B1>
-	/*          */ void find_if(/* JGadget::TLinkList::iterator, JGadget::TLinkList::iterator, JStudio::object::TPRObject_ID_equal */);
-/* 80285018 */ /* find_if<JGadget::TLinkList<JStudio::fvb::TObject, 12>::iterator,
+template <typename A1, typename B1>
+void find_if(/* ... */);
+/* 80285018 */ /* std::find_if<JGadget::TLinkList<JStudio::fvb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
-void find_if__template1(JGadget::TLinkList__template1::iterator,
-                        JGadget::TLinkList__template1::iterator,
-                        JStudio::object::TPRObject_ID_equal);
-
+void func_80285018(JGadget::TLinkList__template1::iterator, JGadget::TLinkList__template1::iterator,
+                   JStudio::object::TPRObject_ID_equal);
 };  // namespace std
 
 //
@@ -262,24 +260,13 @@ extern "C" void __dt__Q37JStudio3fvb12TObject_listFv();
 extern "C" void __dt__Q37JStudio3fvb18TObject_transitionFv();
 extern "C" void __dt__Q37JStudio3fvb16TObject_constantFv();
 extern "C" void __dt__Q37JStudio3fvb17TObject_compositeFv();
-extern "C" void func_80285018();
-extern "C" extern void* __vt__Q37JStudio3fvb6TParse[5];
-extern "C" extern void* __vt__Q37JStudio3fvb8TFactory[5];
-extern "C" extern void* __vt__Q37JStudio3fvb8TControl[3];
-extern "C" extern void* __vt__Q37JStudio3fvb15TObject_hermite[4];
-extern "C" extern void* __vt__Q37JStudio3fvb22TObject_list_parameter[4];
-extern "C" extern void* __vt__Q37JStudio3fvb12TObject_list[4];
-extern "C" extern void* __vt__Q37JStudio3fvb18TObject_transition[4];
-extern "C" extern void* __vt__Q37JStudio3fvb16TObject_constant[4];
-extern "C" extern void* __vt__Q37JStudio3fvb17TObject_composite[4];
-extern "C" extern void* __vt__Q37JStudio3fvb7TObject[4];
+extern "C" void func_80285018(JGadget::TLinkList__template1::iterator,
+                              JGadget::TLinkList__template1::iterator,
+                              JStudio::object::TPRObject_ID_equal);
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __dt__Q27JStudio14TFunctionValueFv();
 extern "C" void range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd();
@@ -332,7 +319,7 @@ extern "C" extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803C49C0-803C4A1C 005C+00 s=1 e=0 z=0  None .data      @838 */
+/* 803C49C0-803C4A1C -00001 005C+00 1/1 0/0 0/0 .data            @838 */
 SECTION_DATA static void* lit_838[23] = {
     (void*)(((char*)
                  prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl) +
@@ -405,8 +392,8 @@ SECTION_DATA static void* lit_838[23] = {
             0x1DC),
 };
 
-/* 803C4A1C-803C4A30 0014+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb6TParse */
-SECTION_DATA void* __vt__Q37JStudio3fvb6TParse[5] = {
+/* 803C4A1C-803C4A30 021B3C 0014+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3fvb6TParse */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb6TParse[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb6TParseFv,
@@ -414,8 +401,8 @@ SECTION_DATA void* __vt__Q37JStudio3fvb6TParse[5] = {
     (void*)parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl,
 };
 
-/* 803C4A30-803C4A44 0014+00 s=1 e=1 z=0  None .data      __vt__Q37JStudio3fvb8TFactory */
-SECTION_DATA void* __vt__Q37JStudio3fvb8TFactory[5] = {
+/* 803C4A30-803C4A44 021B50 0014+00 1/1 1/1 0/0 .data            __vt__Q37JStudio3fvb8TFactory */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb8TFactory[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb8TFactoryFv,
@@ -423,15 +410,15 @@ SECTION_DATA void* __vt__Q37JStudio3fvb8TFactory[5] = {
     (void*)destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject,
 };
 
-/* 803C4A44-803C4A50 000C+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb8TControl */
-SECTION_DATA void* __vt__Q37JStudio3fvb8TControl[3] = {
+/* 803C4A44-803C4A50 021B64 000C+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3fvb8TControl */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb8TControl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb8TControlFv,
 };
 
-/* 803C4A50-803C4A60 0010+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb15TObject_hermite */
-SECTION_DATA void* __vt__Q37JStudio3fvb15TObject_hermite[4] = {
+/* 803C4A50-803C4A60 021B70 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3fvb15TObject_hermite */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb15TObject_hermite[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb15TObject_hermiteFv,
@@ -439,9 +426,9 @@ SECTION_DATA void* __vt__Q37JStudio3fvb15TObject_hermite[4] = {
         prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4A60-803C4A70 0010+00 s=2 e=0 z=0  None .data __vt__Q37JStudio3fvb22TObject_list_parameter
+/* 803C4A60-803C4A70 021B80 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3fvb22TObject_list_parameter
  */
-SECTION_DATA void* __vt__Q37JStudio3fvb22TObject_list_parameter[4] = {
+SECTION_DATA extern void* __vt__Q37JStudio3fvb22TObject_list_parameter[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb22TObject_list_parameterFv,
@@ -449,8 +436,9 @@ SECTION_DATA void* __vt__Q37JStudio3fvb22TObject_list_parameter[4] = {
         prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4A70-803C4A80 0010+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb12TObject_list */
-SECTION_DATA void* __vt__Q37JStudio3fvb12TObject_list[4] = {
+/* 803C4A70-803C4A80 021B90 0010+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3fvb12TObject_list
+ */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb12TObject_list[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb12TObject_listFv,
@@ -458,9 +446,8 @@ SECTION_DATA void* __vt__Q37JStudio3fvb12TObject_list[4] = {
         prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4A80-803C4A90 0010+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb18TObject_transition
- */
-SECTION_DATA void* __vt__Q37JStudio3fvb18TObject_transition[4] = {
+/* 803C4A80-803C4A90 021BA0 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3fvb18TObject_transition */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb18TObject_transition[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb18TObject_transitionFv,
@@ -468,8 +455,8 @@ SECTION_DATA void* __vt__Q37JStudio3fvb18TObject_transition[4] = {
         prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4A90-803C4AA0 0010+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb16TObject_constant */
-SECTION_DATA void* __vt__Q37JStudio3fvb16TObject_constant[4] = {
+/* 803C4A90-803C4AA0 021BB0 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3fvb16TObject_constant */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb16TObject_constant[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb16TObject_constantFv,
@@ -477,8 +464,8 @@ SECTION_DATA void* __vt__Q37JStudio3fvb16TObject_constant[4] = {
         prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4AA0-803C4AB0 0010+00 s=2 e=0 z=0  None .data      __vt__Q37JStudio3fvb17TObject_composite */
-SECTION_DATA void* __vt__Q37JStudio3fvb17TObject_composite[4] = {
+/* 803C4AA0-803C4AB0 021BC0 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3fvb17TObject_composite */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb17TObject_composite[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q37JStudio3fvb17TObject_compositeFv,
@@ -486,18 +473,15 @@ SECTION_DATA void* __vt__Q37JStudio3fvb17TObject_composite[4] = {
         prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl,
 };
 
-/* 803C4AB0-803C4AC0 0010+00 s=7 e=0 z=0  None .data      __vt__Q37JStudio3fvb7TObject */
-SECTION_DATA void* __vt__Q37JStudio3fvb7TObject[4] = {
+/* 803C4AB0-803C4AC0 021BD0 0010+00 7/7 0/0 0/0 .data            __vt__Q37JStudio3fvb7TObject */
+SECTION_DATA extern void* __vt__Q37JStudio3fvb7TObject[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,
 };
 
-/* 80283F80-80283FC8 0048+00 s=6 e=0 z=0  None .text      __dt__Q37JStudio3fvb7TObjectFv */
-//	80283F98: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80283F9C: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80283FAC: 802CED3C (__dl__FPv)
+/* 80283F80-80283FC8 27E8C0 0048+00 6/6 0/0 0/0 .text            __dt__Q37JStudio3fvb7TObjectFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -507,19 +491,8 @@ asm JStudio::fvb::TObject::~TObject() {
 }
 #pragma pop
 
-/* 80283FC8-802841EC 0224+00 s=2 e=0 z=0  None .text
+/* 80283FC8-802841EC 27E908 0224+00 2/1 0/0 0/0 .text
  * prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl */
-//	80283FD8: 803621C4 (_savegpr_23)
-//	8028403C: 802850AC
-//(getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData)
-//	80284050: 803C49C0 (lit_838)
-//	80284054: 803C49C0 (lit_838)
-//	802840AC: 80284834 (getObject__Q37JStudio3fvb8TControlFPCvUl)
-//	802840CC: 802DCDA4 (insert__Q27JGadget20TVector_pointer_voidFPPvRCPv)
-//	8028410C: 802848D4 (getObject_index__Q37JStudio3fvb8TControlFUl)
-//	8028412C: 802DCDA4 (insert__Q27JGadget20TVector_pointer_voidFPPvRCPv)
-//	80284158: 802819F4 (range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd)
-//	802841D8: 80362210 (_restgpr_23)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,85 +503,85 @@ asm void JStudio::fvb::TObject::prepare(JStudio::fvb::data::TParse_TBlock const&
 }
 #pragma pop
 
-/* 802841EC-802841F8 000C+00 s=1 e=0 z=0  None .text
+/* 802841EC-802841F8 27EB2C 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802841EC() {
+static asm void func_802841EC() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_802841EC.s"
 }
 #pragma pop
 
-/* 802841F8-80284204 000C+00 s=1 e=0 z=0  None .text
+/* 802841F8-80284204 27EB38 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802841F8() {
+static asm void func_802841F8() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_802841F8.s"
 }
 #pragma pop
 
-/* 80284204-80284210 000C+00 s=1 e=0 z=0  None .text
+/* 80284204-80284210 27EB44 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80284204() {
+static asm void func_80284204() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284204.s"
 }
 #pragma pop
 
-/* 80284210-8028421C 000C+00 s=1 e=0 z=0  None .text
+/* 80284210-8028421C 27EB50 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80284210() {
+static asm void func_80284210() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284210.s"
 }
 #pragma pop
 
-/* 8028421C-80284228 000C+00 s=1 e=0 z=0  None .text
+/* 8028421C-80284228 27EB5C 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8028421C() {
+static asm void func_8028421C() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_8028421C.s"
 }
 #pragma pop
 
-/* 80284228-80284234 000C+00 s=1 e=0 z=0  None .text
+/* 80284228-80284234 27EB68 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80284228() {
+static asm void func_80284228() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284228.s"
 }
 #pragma pop
 
-/* 80284234-80284240 000C+00 s=1 e=0 z=0  None .text
+/* 80284234-80284240 27EB74 000C+00 1/0 0/0 0/0 .text
  * getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80284234() {
+static asm void func_80284234() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284234.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039AA00-8039AA40 0040+00 s=1 e=0 z=0  None .rodata
+/* 8039AA00-8039AA40 -00001 0040+00 1/1 0/0 0/0 .rodata
  * saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@     */
 SECTION_RODATA static void* const data_8039AA00[16] = {
     (void*)NULL,          (void*)NULL,          (void*)func_80281E5C, (void*)func_802841EC,
@@ -616,27 +589,21 @@ SECTION_RODATA static void* const data_8039AA00[16] = {
     (void*)func_80282094, (void*)func_80284210, (void*)func_80282118, (void*)func_8028421C,
     (void*)func_80282200, (void*)func_80284228, (void*)func_80282284, (void*)func_80284234,
 };
+SECTION_DEAD void* const cg_8039AA00 = (void*)(&data_8039AA00);
 
-/* 80284240-80284254 0014+00 s=1 e=0 z=0  None .text
+/* 80284240-80284254 27EB80 0014+00 1/1 0/0 0/0 .text
  * getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4data11TEComposite */
-//	80284244: 8039AA00 (data_8039AA00)
-//	80284248: 8039AA00 (data_8039AA00)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80284240() {
+static asm void func_80284240() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80284240.s"
 }
 #pragma pop
 
-/* 80284254-802842D4 0080+00 s=1 e=0 z=0  None .text
+/* 80284254-802842D4 27EB94 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	8028428C: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284290: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	802842AC: 803C4AA0 (__vt__Q37JStudio3fvb17TObject_composite)
-//	802842B0: 803C4AA0 (__vt__Q37JStudio3fvb17TObject_composite)
-//	802842B8: 80281D5C (__ct__Q27JStudio24TFunctionValue_compositeFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -647,12 +614,9 @@ asm JStudio::fvb::TObject_composite::TObject_composite(
 }
 #pragma pop
 
-/* 802842D4-80284338 0064+00 s=1 e=0 z=0  None .text
+/* 802842D4-80284338 27EC14 0064+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
-//	802842E4: 803621DC (_savegpr_29)
-//	802842F4: 80284240 (func_80284240)
-//	80284324: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -663,13 +627,8 @@ asm void JStudio::fvb::TObject_composite::prepare_data_(
 }
 #pragma pop
 
-/* 80284338-802843B8 0080+00 s=1 e=0 z=0  None .text
+/* 80284338-802843B8 27EC78 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	80284370: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284374: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284390: 803C4A90 (__vt__Q37JStudio3fvb16TObject_constant)
-//	80284394: 803C4A90 (__vt__Q37JStudio3fvb16TObject_constant)
-//	8028439C: 8028236C (__ct__Q27JStudio23TFunctionValue_constantFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -680,7 +639,7 @@ asm JStudio::fvb::TObject_constant::TObject_constant(
 }
 #pragma pop
 
-/* 802843B8-802843C8 0010+00 s=1 e=0 z=0  None .text
+/* 802843B8-802843C8 27ECF8 0010+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
 #pragma push
@@ -693,13 +652,8 @@ asm void JStudio::fvb::TObject_constant::prepare_data_(
 }
 #pragma pop
 
-/* 802843C8-80284448 0080+00 s=1 e=0 z=0  None .text
+/* 802843C8-80284448 27ED08 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	80284400: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284404: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284420: 803C4A80 (__vt__Q37JStudio3fvb18TObject_transition)
-//	80284424: 803C4A80 (__vt__Q37JStudio3fvb18TObject_transition)
-//	8028442C: 802823EC (__ct__Q27JStudio25TFunctionValue_transitionFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -710,7 +664,7 @@ asm JStudio::fvb::TObject_transition::TObject_transition(
 }
 #pragma pop
 
-/* 80284448-80284460 0018+00 s=1 e=0 z=0  None .text
+/* 80284448-80284460 27ED88 0018+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
 #pragma push
@@ -723,13 +677,8 @@ asm void JStudio::fvb::TObject_transition::prepare_data_(
 }
 #pragma pop
 
-/* 80284460-802844E0 0080+00 s=1 e=0 z=0  None .text
+/* 80284460-802844E0 27EDA0 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	80284498: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	8028449C: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	802844B8: 803C4A70 (__vt__Q37JStudio3fvb12TObject_list)
-//	802844BC: 803C4A70 (__vt__Q37JStudio3fvb12TObject_list)
-//	802844C4: 802826BC (__ct__Q27JStudio19TFunctionValue_listFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -739,7 +688,7 @@ asm JStudio::fvb::TObject_list::TObject_list(JStudio::fvb::data::TParse_TBlock c
 }
 #pragma pop
 
-/* 802844E0-80284500 0020+00 s=1 e=0 z=0  None .text
+/* 802844E0-80284500 27EE20 0020+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
 #pragma push
@@ -752,13 +701,8 @@ asm void JStudio::fvb::TObject_list::prepare_data_(
 }
 #pragma pop
 
-/* 80284500-80284580 0080+00 s=1 e=0 z=0  None .text
+/* 80284500-80284580 27EE40 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	80284538: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	8028453C: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284558: 803C4A60 (__vt__Q37JStudio3fvb22TObject_list_parameter)
-//	8028455C: 803C4A60 (__vt__Q37JStudio3fvb22TObject_list_parameter)
-//	80284564: 80282D34 (__ct__Q27JStudio29TFunctionValue_list_parameterFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -769,10 +713,9 @@ asm JStudio::fvb::TObject_list_parameter::TObject_list_parameter(
 }
 #pragma pop
 
-/* 80284580-802845B0 0030+00 s=1 e=0 z=0  None .text
+/* 80284580-802845B0 27EEC0 0030+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
-//	8028459C: 80282DD8 (data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -783,13 +726,8 @@ asm void JStudio::fvb::TObject_list_parameter::prepare_data_(
 }
 #pragma pop
 
-/* 802845B0-80284630 0080+00 s=1 e=0 z=0  None .text
+/* 802845B0-80284630 27EEF0 0080+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	802845E8: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	802845EC: 803C4AB0 (__vt__Q37JStudio3fvb7TObject)
-//	80284608: 803C4A50 (__vt__Q37JStudio3fvb15TObject_hermite)
-//	8028460C: 803C4A50 (__vt__Q37JStudio3fvb15TObject_hermite)
-//	80284614: 802832C4 (__ct__Q27JStudio22TFunctionValue_hermiteFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -800,10 +738,9 @@ asm JStudio::fvb::TObject_hermite::TObject_hermite(
 }
 #pragma pop
 
-/* 80284630-80284668 0038+00 s=1 e=0 z=0  None .text
+/* 80284630-80284668 27EF70 0038+00 1/0 0/0 0/0 .text
  * prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  */
-//	80284654: 8028336C (data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -814,9 +751,7 @@ asm void JStudio::fvb::TObject_hermite::prepare_data_(
 }
 #pragma pop
 
-/* 80284668-80284698 0030+00 s=0 e=1 z=0  None .text      __ct__Q37JStudio3fvb8TControlFv */
-//	80284668: 803C4A44 (__vt__Q37JStudio3fvb8TControl)
-//	8028466C: 803C4A44 (__vt__Q37JStudio3fvb8TControl)
+/* 80284668-80284698 27EFA8 0030+00 0/0 1/1 0/0 .text            __ct__Q37JStudio3fvb8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -826,11 +761,7 @@ asm JStudio::fvb::TControl::TControl() {
 }
 #pragma pop
 
-/* 80284698-80284704 006C+00 s=1 e=1 z=0  None .text      __dt__Q37JStudio3fvb8TControlFv */
-//	802846B8: 803C4A44 (__vt__Q37JStudio3fvb8TControl)
-//	802846BC: 803C4A44 (__vt__Q37JStudio3fvb8TControl)
-//	802846D4: 802DCA1C (__dt__Q27JGadget13TNodeLinkListFv)
-//	802846E4: 802CED3C (__dl__FPv)
+/* 80284698-80284704 27EFD8 006C+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb8TControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -840,10 +771,8 @@ asm JStudio::fvb::TControl::~TControl() {
 }
 #pragma pop
 
-/* 80284704-80284750 004C+00 s=1 e=0 z=0  None .text
+/* 80284704-80284750 27F044 004C+00 1/1 0/0 0/0 .text
  * appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject */
-//	8028473C: 802DCBA8
-//(Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -853,9 +782,8 @@ asm void JStudio::fvb::TControl::appendObject(JStudio::fvb::TObject* param_0) {
 }
 #pragma pop
 
-/* 80284750-80284780 0030+00 s=1 e=0 z=0  None .text
+/* 80284750-80284780 27F090 0030+00 1/1 0/0 0/0 .text
  * removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject */
-//	8028476C: 802DCBD4 (Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -865,9 +793,8 @@ asm void JStudio::fvb::TControl::removeObject(JStudio::fvb::TObject* param_0) {
 }
 #pragma pop
 
-/* 80284780-802847D0 0050+00 s=1 e=0 z=0  None .text
+/* 80284780-802847D0 27F0C0 0050+00 1/1 0/0 0/0 .text
  * destroyObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject */
-//	8028479C: 80284750 (removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -877,9 +804,8 @@ asm void JStudio::fvb::TControl::destroyObject(JStudio::fvb::TObject* param_0) {
 }
 #pragma pop
 
-/* 802847D0-80284834 0064+00 s=0 e=2 z=0  None .text destroyObject_all__Q37JStudio3fvb8TControlFv
+/* 802847D0-80284834 27F110 0064+00 0/0 2/2 0/0 .text destroyObject_all__Q37JStudio3fvb8TControlFv
  */
-//	8028480C: 80284780 (destroyObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -889,9 +815,7 @@ asm void JStudio::fvb::TControl::destroyObject_all() {
 }
 #pragma pop
 
-/* 80284834-802848D4 00A0+00 s=2 e=1 z=0  None .text      getObject__Q37JStudio3fvb8TControlFPCvUl
- */
-//	80284880: 80285018 (func_80285018)
+/* 80284834-802848D4 27F174 00A0+00 2/2 1/1 0/0 .text getObject__Q37JStudio3fvb8TControlFPCvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -901,7 +825,7 @@ asm void JStudio::fvb::TControl::getObject(void const* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802848D4-80284918 0044+00 s=1 e=1 z=0  None .text getObject_index__Q37JStudio3fvb8TControlFUl
+/* 802848D4-80284918 27F214 0044+00 1/1 1/1 0/0 .text getObject_index__Q37JStudio3fvb8TControlFUl
  */
 #pragma push
 #pragma optimization_level 0
@@ -912,10 +836,7 @@ asm void JStudio::fvb::TControl::getObject_index(u32 param_0) {
 }
 #pragma pop
 
-/* 80284918-80284960 0048+00 s=1 e=1 z=0  None .text      __dt__Q37JStudio3fvb8TFactoryFv */
-//	80284930: 803C4A30 (__vt__Q37JStudio3fvb8TFactory)
-//	80284934: 803C4A30 (__vt__Q37JStudio3fvb8TFactory)
-//	80284944: 802CED3C (__dl__FPv)
+/* 80284918-80284960 27F258 0048+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb8TFactoryFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -925,24 +846,8 @@ asm JStudio::fvb::TFactory::~TFactory() {
 }
 #pragma pop
 
-/* 80284960-80284AA0 0140+00 s=1 e=0 z=0  None .text
+/* 80284960-80284AA0 27F2A0 0140+00 1/0 0/0 0/0 .text
  * create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock */
-//	802849B4: 802CEC4C (__nw__FUl)
-//	802849C4: 80284254
-//(__ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock) 	802849D8:
-//802CEC4C
-//(__nw__FUl) 	802849E8: 80284338
-//(__ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock) 	802849FC:
-//802CEC4C
-//(__nw__FUl) 	80284A0C: 802843C8
-//(__ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlock) 	80284A20:
-//802CEC4C
-//(__nw__FUl) 	80284A30: 80284460
-//(__ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock) 	80284A44: 802CEC4C
-//(__nw__FUl) 	80284A54: 80284500
-//(__ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_TBlock) 	80284A68:
-// 802CEC4C (__nw__FUl) 	80284A78: 802845B0
-//(__ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -952,7 +857,7 @@ asm void JStudio::fvb::TFactory::create(JStudio::fvb::data::TParse_TBlock const&
 }
 #pragma pop
 
-/* 80284AA0-80284ADC 003C+00 s=1 e=0 z=0  None .text
+/* 80284AA0-80284ADC 27F3E0 003C+00 1/0 0/0 0/0 .text
  * destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject     */
 #pragma push
 #pragma optimization_level 0
@@ -963,12 +868,8 @@ asm void JStudio::fvb::TFactory::destroy(JStudio::fvb::TObject* param_0) {
 }
 #pragma pop
 
-/* 80284ADC-80284AFC 0020+00 s=0 e=1 z=0  None .text
+/* 80284ADC-80284AFC 27F41C 0020+00 0/0 1/1 0/0 .text
  * __ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl         */
-//	80284ADC: 803C488C (__vt__Q37JGadget6binary19TParse_header_block)
-//	80284AE0: 803C488C (__vt__Q37JGadget6binary19TParse_header_block)
-//	80284AE8: 803C4A1C (__vt__Q37JStudio3fvb6TParse)
-//	80284AEC: 803C4A1C (__vt__Q37JStudio3fvb6TParse)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -978,11 +879,7 @@ asm JStudio::fvb::TParse::TParse(JStudio::fvb::TControl* param_0) {
 }
 #pragma pop
 
-/* 80284AFC-80284B5C 0060+00 s=1 e=1 z=0  None .text      __dt__Q37JStudio3fvb6TParseFv */
-//	80284B1C: 803C4A1C (__vt__Q37JStudio3fvb6TParse)
-//	80284B20: 803C4A1C (__vt__Q37JStudio3fvb6TParse)
-//	80284B2C: 802DC8C8 (__dt__Q37JGadget6binary19TParse_header_blockFv)
-//	80284B3C: 802CED3C (__dl__FPv)
+/* 80284AFC-80284B5C 27F43C 0060+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3fvb6TParseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -992,10 +889,8 @@ asm JStudio::fvb::TParse::~TParse() {
 }
 #pragma pop
 
-/* 80284B5C-80284BF0 0094+00 s=1 e=0 z=0  None .text
+/* 80284B5C-80284BF0 27F49C 0094+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl            */
-//	80284B84: 80455450 (ga4cSignature__Q37JStudio3fvb4data)
-//	80284B8C: 8036608C (memcmp)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1005,14 +900,8 @@ asm void JStudio::fvb::TParse::parseHeader_next(void const** param_0, u32* param
 }
 #pragma pop
 
-/* 80284BF0-80284CE4 00F4+00 s=1 e=0 z=0  None .text
+/* 80284BF0-80284CE4 27F530 00F4+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl             */
-//	80284C00: 803621DC (_savegpr_29)
-//	80284C54: 80284834 (getObject__Q37JStudio3fvb8TControlFPCvUl)
-//	80284CB8: 80283FC8
-//(prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl)
-//	80284CC4: 80284704 (appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject)
-//	80284CD0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1022,14 +911,7 @@ asm void JStudio::fvb::TParse::parseBlock_next(void const** param_0, u32* param_
 }
 #pragma pop
 
-/* 80284CE4-80284D68 0084+00 s=1 e=0 z=0  None .text      __dt__Q37JStudio3fvb15TObject_hermiteFv */
-//	80284D04: 803C4A50 (__vt__Q37JStudio3fvb15TObject_hermite)
-//	80284D08: 803C4A50 (__vt__Q37JStudio3fvb15TObject_hermite)
-//	80284D18: 803C48E0 (__vt__Q27JStudio22TFunctionValue_hermite)
-//	80284D1C: 803C48E0 (__vt__Q27JStudio22TFunctionValue_hermite)
-//	80284D2C: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284D38: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284D48: 802CED3C (__dl__FPv)
+/* 80284CE4-80284D68 27F624 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb15TObject_hermiteFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1039,15 +921,8 @@ asm JStudio::fvb::TObject_hermite::~TObject_hermite() {
 }
 #pragma pop
 
-/* 80284D68-80284DEC 0084+00 s=1 e=0 z=0  None .text
+/* 80284D68-80284DEC 27F6A8 0084+00 1/0 0/0 0/0 .text
  * __dt__Q37JStudio3fvb22TObject_list_parameterFv               */
-//	80284D88: 803C4A60 (__vt__Q37JStudio3fvb22TObject_list_parameter)
-//	80284D8C: 803C4A60 (__vt__Q37JStudio3fvb22TObject_list_parameter)
-//	80284D9C: 803C4900 (__vt__Q27JStudio29TFunctionValue_list_parameter)
-//	80284DA0: 803C4900 (__vt__Q27JStudio29TFunctionValue_list_parameter)
-//	80284DB0: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284DBC: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284DCC: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1057,14 +932,7 @@ asm JStudio::fvb::TObject_list_parameter::~TObject_list_parameter() {
 }
 #pragma pop
 
-/* 80284DEC-80284E70 0084+00 s=1 e=0 z=0  None .text      __dt__Q37JStudio3fvb12TObject_listFv */
-//	80284E0C: 803C4A70 (__vt__Q37JStudio3fvb12TObject_list)
-//	80284E10: 803C4A70 (__vt__Q37JStudio3fvb12TObject_list)
-//	80284E20: 803C4920 (__vt__Q27JStudio19TFunctionValue_list)
-//	80284E24: 803C4920 (__vt__Q27JStudio19TFunctionValue_list)
-//	80284E34: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284E40: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284E50: 802CED3C (__dl__FPv)
+/* 80284DEC-80284E70 27F72C 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb12TObject_listFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1074,15 +942,8 @@ asm JStudio::fvb::TObject_list::~TObject_list() {
 }
 #pragma pop
 
-/* 80284E70-80284EF4 0084+00 s=1 e=0 z=0  None .text      __dt__Q37JStudio3fvb18TObject_transitionFv
+/* 80284E70-80284EF4 27F7B0 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb18TObject_transitionFv
  */
-//	80284E90: 803C4A80 (__vt__Q37JStudio3fvb18TObject_transition)
-//	80284E94: 803C4A80 (__vt__Q37JStudio3fvb18TObject_transition)
-//	80284EA4: 803C4940 (__vt__Q27JStudio25TFunctionValue_transition)
-//	80284EA8: 803C4940 (__vt__Q27JStudio25TFunctionValue_transition)
-//	80284EB8: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284EC4: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284ED4: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1092,15 +953,7 @@ asm JStudio::fvb::TObject_transition::~TObject_transition() {
 }
 #pragma pop
 
-/* 80284EF4-80284F78 0084+00 s=1 e=0 z=0  None .text      __dt__Q37JStudio3fvb16TObject_constantFv
- */
-//	80284F14: 803C4A90 (__vt__Q37JStudio3fvb16TObject_constant)
-//	80284F18: 803C4A90 (__vt__Q37JStudio3fvb16TObject_constant)
-//	80284F28: 803C4960 (__vt__Q27JStudio23TFunctionValue_constant)
-//	80284F2C: 803C4960 (__vt__Q27JStudio23TFunctionValue_constant)
-//	80284F3C: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284F48: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284F58: 802CED3C (__dl__FPv)
+/* 80284EF4-80284F78 27F834 0084+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb16TObject_constantFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1110,16 +963,7 @@ asm JStudio::fvb::TObject_constant::~TObject_constant() {
 }
 #pragma pop
 
-/* 80284F78-80285018 00A0+00 s=1 e=0 z=0  None .text      __dt__Q37JStudio3fvb17TObject_compositeFv
- */
-//	80284F98: 803C4AA0 (__vt__Q37JStudio3fvb17TObject_composite)
-//	80284F9C: 803C4AA0 (__vt__Q37JStudio3fvb17TObject_composite)
-//	80284FAC: 803C4980 (__vt__Q27JStudio24TFunctionValue_composite)
-//	80284FB0: 803C4980 (__vt__Q27JStudio24TFunctionValue_composite)
-//	80284FD0: 802DCCFC (__dt__Q27JGadget20TVector_pointer_voidFv)
-//	80284FDC: 802816A0 (__dt__Q27JStudio14TFunctionValueFv)
-//	80284FE8: 80283F80 (__dt__Q37JStudio3fvb7TObjectFv)
-//	80284FF8: 802CED3C (__dl__FPv)
+/* 80284F78-80285018 27F8B8 00A0+00 1/0 0/0 0/0 .text __dt__Q37JStudio3fvb17TObject_compositeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1129,19 +973,15 @@ asm JStudio::fvb::TObject_composite::~TObject_composite() {
 }
 #pragma pop
 
-/* 80285018-802850AC 0094+00 s=1 e=0 z=0  None .text
+/* 80285018-802850AC 27F958 0094+00 1/1 0/0 0/0 .text
  * find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal
  */
-//	80285028: 803621D8 (_savegpr_28)
-//	80285080: 80288988
-//(isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData)
-//	80285098: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::find_if__template1(JGadget::TLinkList__template1::iterator param_0,
-                                 JGadget::TLinkList__template1::iterator param_1,
-                                 JStudio::object::TPRObject_ID_equal param_2) {
+extern "C" asm void func_80285018(JGadget::TLinkList__template1::iterator param_0,
+                                  JGadget::TLinkList__template1::iterator param_1,
+                                  JStudio::object::TPRObject_ID_equal param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/fvb/func_80285018.s"
 }

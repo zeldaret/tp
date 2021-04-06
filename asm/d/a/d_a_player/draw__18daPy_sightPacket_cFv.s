@@ -4,8 +4,8 @@ lbl_8015F1A0:
 /* 8015F1A8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8015F1AC  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8015F1B0  7C 7F 1B 78 */	mr r31, r3
-/* 8015F1B4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8015F1B8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8015F1B4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8015F1B8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8015F1BC  48 1B 15 81 */	bl reinitGX__6J3DSysFv
 /* 8015F1C0  38 60 00 00 */	li r3, 0
 /* 8015F1C4  48 1F FF 11 */	bl GXSetNumIndStages
@@ -75,8 +75,8 @@ lbl_8015F1A0:
 /* 8015F2C4  38 A0 00 00 */	li r5, 0
 /* 8015F2C8  38 C0 00 FF */	li r6, 0xff
 /* 8015F2CC  48 20 04 29 */	bl GXSetTevOrder
-/* 8015F2D0  3C 60 80 3C */	lis r3, l_sightDL@ha
-/* 8015F2D4  38 63 A0 C0 */	addi r3, r3, l_sightDL@l
+/* 8015F2D0  3C 60 80 3C */	lis r3, l_sightDL@ha /* 0x803BA0C0@ha */
+/* 8015F2D4  38 63 A0 C0 */	addi r3, r3, l_sightDL@l /* 0x803BA0C0@l */
 /* 8015F2D8  38 80 00 80 */	li r4, 0x80
 /* 8015F2DC  48 20 0C 15 */	bl GXCallDisplayList
 /* 8015F2E0  38 00 00 00 */	li r0, 0

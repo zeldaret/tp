@@ -3,17 +3,15 @@
 #
 
 M158_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima.plf
+M158_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima.lcf
+M158_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima.map
 
 M158_CPP_FILES := \
-	rel/d/a/b/d_a_b_zant_sima/executor.cpp \
-	rel/d/a/b/d_a_b_zant_sima/unknown_translation_unit_ctors.cpp \
-	rel/d/a/b/d_a_b_zant_sima/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima.cpp \
 
 M158_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/d_a_b_zant_sima.o \
 
 M158_LIBS := \
@@ -29,15 +27,21 @@ M158_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map158.map\
+	-m _prolog \
+	-lcf $(M158_LDSCRIPT) \
+	-unused -map $(M158_MAP) \
+	-w off \
 
 $(M158_TARGET): $(M158_O_FILES) $(M158_LIBS)
+	@echo [158] creating $(M158_TARGET)
 	@echo $(M158_LIBS) $(M158_O_FILES) > build/M158_ofiles
-	$(LD) -opt_partial $(M158_LDFLAGS) -o $(M158_TARGET) @build/M158_ofiles
+	@python3 tools/lcf.py rel 158 --output $(M158_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M158_LDFLAGS) -o $(M158_TARGET) @build/M158_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_sima/%.o: rel/d/a/b/d_a_b_zant_sima/%.cpp
+	@echo [158] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M158_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M158_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,12 +5,12 @@ lbl_8051B920:
 /* 8051B92C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8051B930  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8051B934  41 82 00 1C */	beq lbl_8051B950
-/* 8051B938  3C A0 80 52 */	lis r5, __vt__10daFr_HIO_c@ha
-/* 8051B93C  38 05 BB F8 */	addi r0, r5, __vt__10daFr_HIO_c@l
+/* 8051B938  3C A0 80 52 */	lis r5, __vt__10daFr_HIO_c@ha /* 0x8051BBF8@ha */
+/* 8051B93C  38 05 BB F8 */	addi r0, r5, __vt__10daFr_HIO_c@l /* 0x8051BBF8@l */
 /* 8051B940  90 1F 00 00 */	stw r0, 0(r31)
 /* 8051B944  7C 80 07 35 */	extsh. r0, r4
 /* 8051B948  40 81 00 08 */	ble lbl_8051B950
-/* 8051B94C  4B DB 33 F0 */	b __dl__FPv
+/* 8051B94C  4B DB 33 F1 */	bl __dl__FPv
 lbl_8051B950:
 /* 8051B950  7F E3 FB 78 */	mr r3, r31
 /* 8051B954  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -4,7 +4,7 @@ lbl_80512C70:
 /* 80512C78  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80512C7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80512C80  7C 7F 1B 78 */	mr r31, r3
-/* 80512C84  4B B0 60 5C */	b fopAc_IsActor__FPv
+/* 80512C84  4B B0 60 5D */	bl fopAc_IsActor__FPv
 /* 80512C88  2C 03 00 00 */	cmpwi r3, 0
 /* 80512C8C  41 82 00 18 */	beq lbl_80512CA4
 /* 80512C90  A8 1F 00 08 */	lha r0, 8(r31)

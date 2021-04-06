@@ -3,10 +3,10 @@ lbl_80B81A18:
 /* 80B81A1C  7C 08 02 A6 */	mflr r0
 /* 80B81A20  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80B81A24  39 61 00 60 */	addi r11, r1, 0x60
-/* 80B81A28  4B 7E 07 B0 */	b _savegpr_28
+/* 80B81A28  4B 7E 07 B1 */	bl _savegpr_28
 /* 80B81A2C  7C 7E 1B 78 */	mr r30, r3
-/* 80B81A30  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha
-/* 80B81A34  3B E3 C4 58 */	addi r31, r3, m__17daNpc_zrA_Param_c@l
+/* 80B81A30  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha /* 0x80B8C458@ha */
+/* 80B81A34  3B E3 C4 58 */	addi r31, r3, m__17daNpc_zrA_Param_c@l /* 0x80B8C458@l */
 /* 80B81A38  38 7F 00 00 */	addi r3, r31, 0
 /* 80B81A3C  AB 83 00 74 */	lha r28, 0x74(r3)
 /* 80B81A40  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
@@ -21,11 +21,11 @@ lbl_80B81A18:
 /* 80B81A64  4B FF 6A A9 */	bl getDstPosDst2__16daNpc_zrA_Path_cF4cXyzR4cXyz
 /* 80B81A68  38 61 00 40 */	addi r3, r1, 0x40
 /* 80B81A6C  38 9E 04 D0 */	addi r4, r30, 0x4d0
-/* 80B81A70  4B 6E F2 04 */	b cLib_targetAngleX__FPC4cXyzPC4cXyz
+/* 80B81A70  4B 6E F2 05 */	bl cLib_targetAngleX__FPC4cXyzPC4cXyz
 /* 80B81A74  B0 61 00 08 */	sth r3, 8(r1)
 /* 80B81A78  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80B81A7C  38 81 00 40 */	addi r4, r1, 0x40
-/* 80B81A80  4B 6E F1 84 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80B81A80  4B 6E F1 85 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80B81A84  B0 61 00 0A */	sth r3, 0xa(r1)
 /* 80B81A88  A8 1E 04 E0 */	lha r0, 0x4e0(r30)
 /* 80B81A8C  3B A1 00 0C */	addi r29, r1, 0xc
@@ -71,11 +71,11 @@ lbl_80B81A18:
 /* 80B81B2C  38 7E 15 44 */	addi r3, r30, 0x1544
 /* 80B81B30  38 81 00 34 */	addi r4, r1, 0x34
 /* 80B81B34  C0 3F 07 80 */	lfs f1, 0x780(r31)
-/* 80B81B38  4B 6E EC 74 */	b cLib_chasePos__FP4cXyzRC4cXyzf
+/* 80B81B38  4B 6E EC 75 */	bl cLib_chasePos__FP4cXyzRC4cXyzf
 /* 80B81B3C  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80B81B40  38 9E 15 44 */	addi r4, r30, 0x1544
 /* 80B81B44  7C 65 1B 78 */	mr r5, r3
-/* 80B81B48  4B 7C 55 48 */	b PSVECAdd
+/* 80B81B48  4B 7C 55 49 */	bl PSVECAdd
 /* 80B81B4C  C0 1F 07 A8 */	lfs f0, 0x7a8(r31)
 /* 80B81B50  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 80B81B54  D0 03 00 18 */	stfs f0, 0x18(r3)
@@ -173,7 +173,7 @@ lbl_80B81C80:
 lbl_80B81CAC:
 /* 80B81CAC  38 60 00 01 */	li r3, 1
 /* 80B81CB0  39 61 00 60 */	addi r11, r1, 0x60
-/* 80B81CB4  4B 7E 05 70 */	b _restgpr_28
+/* 80B81CB4  4B 7E 05 71 */	bl _restgpr_28
 /* 80B81CB8  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80B81CBC  7C 08 03 A6 */	mtlr r0
 /* 80B81CC0  38 21 00 60 */	addi r1, r1, 0x60

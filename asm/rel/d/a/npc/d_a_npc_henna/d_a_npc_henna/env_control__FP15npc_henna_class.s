@@ -5,15 +5,15 @@ lbl_8054868C:
 /* 80548698  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 8054869C  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 805486A0  39 61 00 30 */	addi r11, r1, 0x30
-/* 805486A4  4B E1 9B 38 */	b _savegpr_29
+/* 805486A4  4B E1 9B 39 */	bl _savegpr_29
 /* 805486A8  7C 7D 1B 78 */	mr r29, r3
-/* 805486AC  3C 60 80 55 */	lis r3, lit_3905@ha
-/* 805486B0  3B C3 A9 64 */	addi r30, r3, lit_3905@l
-/* 805486B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805486B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805486AC  3C 60 80 55 */	lis r3, lit_3905@ha /* 0x8054A964@ha */
+/* 805486B0  3B C3 A9 64 */	addi r30, r3, lit_3905@l /* 0x8054A964@l */
+/* 805486B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805486B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805486BC  80 83 5D AC */	lwz r4, 0x5dac(r3)
-/* 805486C0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805486C4  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 805486C0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805486C4  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805486C8  C0 3E 01 F4 */	lfs f1, 0x1f4(r30)
 /* 805486CC  C0 04 04 D0 */	lfs f0, 0x4d0(r4)
 /* 805486D0  EC 41 00 28 */	fsubs f2, f1, f0
@@ -68,8 +68,8 @@ lbl_8054877C:
 /* 80548784  40 81 00 08 */	ble lbl_8054878C
 /* 80548788  FC 20 00 90 */	fmr f1, f0
 lbl_8054878C:
-/* 8054878C  3C 60 80 55 */	lis r3, struct_8054B1FC+0x5@ha
-/* 80548790  88 03 B2 01 */	lbz r0, struct_8054B1FC+0x5@l(r3)
+/* 8054878C  3C 60 80 55 */	lis r3, struct_8054B1FC+0x5@ha /* 0x8054B201@ha */
+/* 80548790  88 03 B2 01 */	lbz r0, struct_8054B1FC+0x5@l(r3)  /* 0x8054B201@l */
 /* 80548794  28 00 00 00 */	cmplwi r0, 0
 /* 80548798  41 82 00 0C */	beq lbl_805487A4
 /* 8054879C  D0 3D 07 38 */	stfs f1, 0x738(r29)
@@ -78,15 +78,15 @@ lbl_805487A4:
 /* 805487A4  38 7D 07 38 */	addi r3, r29, 0x738
 /* 805487A8  C0 5E 00 00 */	lfs f2, 0(r30)
 /* 805487AC  C0 7E 01 58 */	lfs f3, 0x158(r30)
-/* 805487B0  4B D2 72 8C */	b cLib_addCalc2__FPffff
+/* 805487B0  4B D2 72 8D */	bl cLib_addCalc2__FPffff
 lbl_805487B4:
 /* 805487B4  C0 1D 07 38 */	lfs f0, 0x738(r29)
 /* 805487B8  FC 00 00 1E */	fctiwz f0, f0
 /* 805487BC  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 805487C0  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 805487C4  B0 1F 13 00 */	sth r0, 0x1300(r31)
-/* 805487C8  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 805487CC  80 03 0C D8 */	lwz r0, g_Counter@l(r3)
+/* 805487C8  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 805487CC  80 03 0C D8 */	lwz r0, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 805487D0  54 03 04 3E */	clrlwi r3, r0, 0x10
 /* 805487D4  38 80 1F FF */	li r4, 0x1fff
 /* 805487D8  C3 FE 01 9C */	lfs f31, 0x19c(r30)
@@ -100,11 +100,11 @@ lbl_805487F0:
 /* 805487F4  7C 60 00 39 */	and. r0, r3, r0
 /* 805487F8  40 82 00 A0 */	bne lbl_80548898
 /* 805487FC  C0 3E 00 00 */	lfs f1, 0(r30)
-/* 80548800  4B D1 F1 54 */	b cM_rndF__Ff
+/* 80548800  4B D1 F1 55 */	bl cM_rndF__Ff
 /* 80548804  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 80548808  40 80 00 90 */	bge lbl_80548898
-/* 8054880C  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha
-/* 80548810  38 63 0C 9F */	addi r3, r3, struct_80450C9C+0x3@l
+/* 8054880C  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha /* 0x80450C9F@ha */
+/* 80548810  38 63 0C 9F */	addi r3, r3, struct_80450C9C+0x3@l /* 0x80450C9F@l */
 /* 80548814  88 63 00 00 */	lbz r3, 0(r3)
 /* 80548818  28 03 00 00 */	cmplwi r3, 0
 /* 8054881C  40 82 00 10 */	bne lbl_8054882C
@@ -142,13 +142,13 @@ lbl_80548884:
 /* 80548888  98 1F 12 CC */	stb r0, 0x12cc(r31)
 lbl_8054888C:
 /* 8054888C  88 1F 12 CC */	lbz r0, 0x12cc(r31)
-/* 80548890  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha
-/* 80548894  98 03 0C 9F */	stb r0, struct_80450C9C+0x3@l(r3)
+/* 80548890  3C 60 80 45 */	lis r3, struct_80450C9C+0x3@ha /* 0x80450C9F@ha */
+/* 80548894  98 03 0C 9F */	stb r0, struct_80450C9C+0x3@l(r3)  /* 0x80450C9F@l */
 lbl_80548898:
 /* 80548898  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 8054889C  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 805488A0  39 61 00 30 */	addi r11, r1, 0x30
-/* 805488A4  4B E1 99 84 */	b _restgpr_29
+/* 805488A4  4B E1 99 85 */	bl _restgpr_29
 /* 805488A8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 805488AC  7C 08 03 A6 */	mtlr r0
 /* 805488B0  38 21 00 40 */	addi r1, r1, 0x40

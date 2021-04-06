@@ -3,7 +3,7 @@ lbl_80475450:
 /* 80475454  7C 08 02 A6 */	mflr r0
 /* 80475458  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8047545C  38 80 00 00 */	li r4, 0
-/* 80475460  4B BA 52 6C */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 80475460  4B BA 52 6D */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80475464  38 60 00 01 */	li r3, 1
 /* 80475468  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8047546C  7C 08 03 A6 */	mtlr r0

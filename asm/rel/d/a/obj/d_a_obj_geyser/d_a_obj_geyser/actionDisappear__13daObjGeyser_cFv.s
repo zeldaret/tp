@@ -41,7 +41,7 @@ lbl_80BF8204:
 /* 80BF8204  38 7F 07 85 */	addi r3, r31, 0x785
 /* 80BF8208  88 9F 07 84 */	lbz r4, 0x784(r31)
 /* 80BF820C  38 A0 00 33 */	li r5, 0x33
-/* 80BF8210  4B 67 84 4C */	b cLib_chaseUC__FPUcUcUc
+/* 80BF8210  4B 67 84 4D */	bl cLib_chaseUC__FPUcUcUc
 /* 80BF8214  80 7F 07 6C */	lwz r3, 0x76c(r31)
 /* 80BF8218  28 03 00 00 */	cmplwi r3, 0
 /* 80BF821C  41 82 00 0C */	beq lbl_80BF8228

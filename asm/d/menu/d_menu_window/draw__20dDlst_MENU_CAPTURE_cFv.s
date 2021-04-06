@@ -10,8 +10,8 @@ lbl_801FDFCC:
 /* 801FDFEC  38 00 00 03 */	li r0, 3
 /* 801FDFF0  98 1F 00 04 */	stb r0, 4(r31)
 /* 801FDFF4  38 00 00 01 */	li r0, 1
-/* 801FDFF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801FDFFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801FDFF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801FDFFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801FE000  98 03 5E B5 */	stb r0, 0x5eb5(r3)
 /* 801FE004  38 60 00 00 */	li r3, 0
 /* 801FE008  38 80 00 00 */	li r4, 0
@@ -140,8 +140,8 @@ lbl_801FE044:
 /* 801FE1F0  48 15 E7 95 */	bl GXSetCullMode
 /* 801FE1F4  38 60 00 01 */	li r3, 1
 /* 801FE1F8  48 16 1B E1 */	bl GXSetDither
-/* 801FE1FC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 801FE200  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 801FE1FC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 801FE200  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 801FE204  38 80 00 00 */	li r4, 0
 /* 801FE208  48 16 20 45 */	bl GXLoadPosMtxImm
 /* 801FE20C  38 60 00 00 */	li r3, 0
@@ -171,7 +171,7 @@ lbl_801FE044:
 /* 801FE26C  48 15 E4 F9 */	bl GXBegin
 /* 801FE270  38 A0 00 00 */	li r5, 0
 /* 801FE274  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 801FE278  B0 A4 80 00 */	sth r5, 0x8000(r4)
+/* 801FE278  B0 A4 80 00 */	sth r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 801FE27C  B0 A4 80 00 */	sth r5, -0x8000(r4)
 /* 801FE280  B0 A4 80 00 */	sth r5, -0x8000(r4)
 /* 801FE284  98 A4 80 00 */	stb r5, -0x8000(r4)

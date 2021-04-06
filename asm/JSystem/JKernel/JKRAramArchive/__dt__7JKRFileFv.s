@@ -7,8 +7,8 @@ lbl_802D7B90:
 /* 802D7BA4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D7BA8  7C 9F 23 78 */	mr r31, r4
 /* 802D7BAC  41 82 00 28 */	beq lbl_802D7BD4
-/* 802D7BB0  3C 80 80 3D */	lis r4, __vt__7JKRFile@ha
-/* 802D7BB4  38 04 C3 28 */	addi r0, r4, __vt__7JKRFile@l
+/* 802D7BB0  3C 80 80 3D */	lis r4, __vt__7JKRFile@ha /* 0x803CC328@ha */
+/* 802D7BB4  38 04 C3 28 */	addi r0, r4, __vt__7JKRFile@l /* 0x803CC328@l */
 /* 802D7BB8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D7BBC  38 80 00 00 */	li r4, 0
 /* 802D7BC0  4B FF 99 25 */	bl __dt__11JKRDisposerFv

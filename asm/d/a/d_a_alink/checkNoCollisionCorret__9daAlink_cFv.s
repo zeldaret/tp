@@ -19,12 +19,12 @@ lbl_800AA5E8:
 /* 800AA62C  48 06 B5 F5 */	bl checkEventRun__9daAlink_cCFv
 /* 800AA630  2C 03 00 00 */	cmpwi r3, 0
 /* 800AA634  41 82 00 50 */	beq lbl_800AA684
-/* 800AA638  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800AA63C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800AA638  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800AA63C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800AA640  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800AA644  4B F9 DD A5 */	bl getRunEventName__16dEvent_manager_cFv
-/* 800AA648  3C 80 80 39 */	lis r4, d_a_d_a_alink__stringBase0@ha
-/* 800AA64C  38 84 20 94 */	addi r4, r4, d_a_d_a_alink__stringBase0@l
+/* 800AA648  3C 80 80 39 */	lis r4, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800AA64C  38 84 20 94 */	addi r4, r4, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800AA650  38 84 04 65 */	addi r4, r4, 0x465
 /* 800AA654  48 2B E3 41 */	bl strcmp
 /* 800AA658  2C 03 00 00 */	cmpwi r3, 0

@@ -6,7 +6,7 @@ lbl_8052B1F8:
 /* 8052B208  93 C1 00 08 */	stw r30, 8(r1)
 /* 8052B20C  7C 7E 1B 78 */	mr r30, r3
 /* 8052B210  7C 9F 23 78 */	mr r31, r4
-/* 8052B214  4B AE DA CC */	b fopAc_IsActor__FPv
+/* 8052B214  4B AE DA CD */	bl fopAc_IsActor__FPv
 /* 8052B218  2C 03 00 00 */	cmpwi r3, 0
 /* 8052B21C  41 82 00 2C */	beq lbl_8052B248
 /* 8052B220  A8 1E 00 08 */	lha r0, 8(r30)

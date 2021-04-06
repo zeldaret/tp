@@ -55,8 +55,8 @@ lbl_801F43F8:
 /* 801F44CC  40 82 00 2C */	bne lbl_801F44F8
 /* 801F44D0  28 04 00 01 */	cmplwi r4, 1
 /* 801F44D4  40 82 00 24 */	bne lbl_801F44F8
-/* 801F44D8  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F44DC  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F44D8  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F44DC  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F44E0  88 03 00 06 */	lbz r0, 6(r3)
 /* 801F44E4  98 1F 01 BD */	stb r0, 0x1bd(r31)
 /* 801F44E8  7F E3 FB 78 */	mr r3, r31

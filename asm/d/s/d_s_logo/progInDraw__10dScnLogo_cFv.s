@@ -5,8 +5,8 @@ lbl_80256264:
 /* 80256270  39 61 00 20 */	addi r11, r1, 0x20
 /* 80256274  48 10 BF 65 */	bl _savegpr_28
 /* 80256278  7C 7C 1B 78 */	mr r28, r3
-/* 8025627C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80256280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025627C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80256280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80256284  3B E3 5F 64 */	addi r31, r3, 0x5f64
 /* 80256288  7F E3 FB 78 */	mr r3, r31
 /* 8025628C  3B BF 01 B4 */	addi r29, r31, 0x1b4

@@ -4,15 +4,15 @@ lbl_806A03C4:
 /* 806A03CC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 806A03D0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806A03D4  7C 7F 1B 78 */	mr r31, r3
-/* 806A03D8  3C 60 80 6A */	lis r3, lit_3902@ha
-/* 806A03DC  38 83 19 0C */	addi r4, r3, lit_3902@l
+/* 806A03D8  3C 60 80 6A */	lis r3, lit_3902@ha /* 0x806A190C@ha */
+/* 806A03DC  38 83 19 0C */	addi r4, r3, lit_3902@l /* 0x806A190C@l */
 /* 806A03E0  80 1F 06 60 */	lwz r0, 0x660(r31)
 /* 806A03E4  2C 00 00 05 */	cmpwi r0, 5
 /* 806A03E8  40 82 00 4C */	bne lbl_806A0434
 /* 806A03EC  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 806A03F0  38 63 00 0C */	addi r3, r3, 0xc
 /* 806A03F4  C0 24 01 34 */	lfs f1, 0x134(r4)
-/* 806A03F8  4B C8 80 34 */	b checkPass__12J3DFrameCtrlFf
+/* 806A03F8  4B C8 80 35 */	bl checkPass__12J3DFrameCtrlFf
 /* 806A03FC  2C 03 00 00 */	cmpwi r3, 0
 /* 806A0400  41 82 01 18 */	beq lbl_806A0518
 /* 806A0404  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007008B@ha */
@@ -33,7 +33,7 @@ lbl_806A0434:
 /* 806A043C  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 806A0440  38 63 00 0C */	addi r3, r3, 0xc
 /* 806A0444  C0 24 01 38 */	lfs f1, 0x138(r4)
-/* 806A0448  4B C8 7F E4 */	b checkPass__12J3DFrameCtrlFf
+/* 806A0448  4B C8 7F E5 */	bl checkPass__12J3DFrameCtrlFf
 /* 806A044C  2C 03 00 00 */	cmpwi r3, 0
 /* 806A0450  41 82 00 C8 */	beq lbl_806A0518
 /* 806A0454  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070082@ha */
@@ -54,7 +54,7 @@ lbl_806A0484:
 /* 806A048C  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 806A0490  38 63 00 0C */	addi r3, r3, 0xc
 /* 806A0494  C0 24 00 7C */	lfs f1, 0x7c(r4)
-/* 806A0498  4B C8 7F 94 */	b checkPass__12J3DFrameCtrlFf
+/* 806A0498  4B C8 7F 95 */	bl checkPass__12J3DFrameCtrlFf
 /* 806A049C  2C 03 00 00 */	cmpwi r3, 0
 /* 806A04A0  41 82 00 78 */	beq lbl_806A0518
 /* 806A04A4  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070089@ha */
@@ -74,7 +74,7 @@ lbl_806A04D0:
 /* 806A04D8  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 806A04DC  38 63 00 0C */	addi r3, r3, 0xc
 /* 806A04E0  C0 24 00 D0 */	lfs f1, 0xd0(r4)
-/* 806A04E4  4B C8 7F 48 */	b checkPass__12J3DFrameCtrlFf
+/* 806A04E4  4B C8 7F 49 */	bl checkPass__12J3DFrameCtrlFf
 /* 806A04E8  2C 03 00 00 */	cmpwi r3, 0
 /* 806A04EC  41 82 00 2C */	beq lbl_806A0518
 /* 806A04F0  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070081@ha */

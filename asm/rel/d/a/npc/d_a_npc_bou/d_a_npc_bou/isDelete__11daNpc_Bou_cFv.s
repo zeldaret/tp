@@ -22,15 +22,15 @@ lbl_8096DB1C:
 lbl_8096DB24:
 /* 8096DB24  3B E0 00 01 */	li r31, 1
 /* 8096DB28  38 60 00 D3 */	li r3, 0xd3
-/* 8096DB2C  4B 7D EF 80 */	b daNpcT_chkEvtBit__FUl
+/* 8096DB2C  4B 7D EF 81 */	bl daNpcT_chkEvtBit__FUl
 /* 8096DB30  2C 03 00 00 */	cmpwi r3, 0
 /* 8096DB34  40 82 00 28 */	bne lbl_8096DB5C
-/* 8096DB38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8096DB3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8096DB38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8096DB3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8096DB40  38 63 01 00 */	addi r3, r3, 0x100
 /* 8096DB44  38 80 00 02 */	li r4, 2
 /* 8096DB48  38 A0 00 00 */	li r5, 0
-/* 8096DB4C  4B 6C 66 BC */	b isCollect__20dSv_player_collect_cCFiUc
+/* 8096DB4C  4B 6C 66 BD */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 8096DB50  2C 03 00 00 */	cmpwi r3, 0
 /* 8096DB54  40 82 00 08 */	bne lbl_8096DB5C
 /* 8096DB58  3B E0 00 00 */	li r31, 0
@@ -40,11 +40,11 @@ lbl_8096DB5C:
 lbl_8096DB64:
 /* 8096DB64  3B E0 00 00 */	li r31, 0
 /* 8096DB68  38 60 00 A4 */	li r3, 0xa4
-/* 8096DB6C  4B 7D EF 40 */	b daNpcT_chkEvtBit__FUl
+/* 8096DB6C  4B 7D EF 41 */	bl daNpcT_chkEvtBit__FUl
 /* 8096DB70  2C 03 00 00 */	cmpwi r3, 0
 /* 8096DB74  41 82 00 14 */	beq lbl_8096DB88
 /* 8096DB78  38 60 00 3B */	li r3, 0x3b
-/* 8096DB7C  4B 7D EF 30 */	b daNpcT_chkEvtBit__FUl
+/* 8096DB7C  4B 7D EF 31 */	bl daNpcT_chkEvtBit__FUl
 /* 8096DB80  2C 03 00 00 */	cmpwi r3, 0
 /* 8096DB84  41 82 00 08 */	beq lbl_8096DB8C
 lbl_8096DB88:

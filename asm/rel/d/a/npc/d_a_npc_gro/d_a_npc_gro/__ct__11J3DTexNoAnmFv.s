@@ -1,6 +1,6 @@
 lbl_809DB064:
-/* 809DB064  3C 80 80 9E */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 809DB068  38 04 F6 14 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 809DB064  3C 80 80 9E */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x809DF614@ha */
+/* 809DB068  38 04 F6 14 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x809DF614@l */
 /* 809DB06C  90 03 00 00 */	stw r0, 0(r3)
 /* 809DB070  38 80 00 00 */	li r4, 0
 /* 809DB074  B0 83 00 04 */	sth r4, 4(r3)

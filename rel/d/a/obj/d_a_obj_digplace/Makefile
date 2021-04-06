@@ -3,17 +3,15 @@
 #
 
 M93_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace.plf
+M93_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace.lcf
+M93_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace.map
 
 M93_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_digplace/executor.cpp \
-	rel/d/a/obj/d_a_obj_digplace/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_digplace/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_digplace/d_a_obj_digplace.cpp \
 
 M93_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/d_a_obj_digplace.o \
 
 M93_LIBS := \
@@ -29,15 +27,21 @@ M93_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map93.map\
+	-m _prolog \
+	-lcf $(M93_LDSCRIPT) \
+	-unused -map $(M93_MAP) \
+	-w off \
 
 $(M93_TARGET): $(M93_O_FILES) $(M93_LIBS)
+	@echo [ 93] creating $(M93_TARGET)
 	@echo $(M93_LIBS) $(M93_O_FILES) > build/M93_ofiles
-	$(LD) -opt_partial $(M93_LDFLAGS) -o $(M93_TARGET) @build/M93_ofiles
+	@python3 tools/lcf.py rel 93 --output $(M93_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M93_LDFLAGS) -o $(M93_TARGET) @build/M93_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digplace/%.o: rel/d/a/obj/d_a_obj_digplace/%.cpp
+	@echo [ 93] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M93_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M93_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

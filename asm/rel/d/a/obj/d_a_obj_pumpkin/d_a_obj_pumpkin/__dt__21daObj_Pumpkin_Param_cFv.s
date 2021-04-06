@@ -5,12 +5,12 @@ lbl_80CB8304:
 /* 80CB8310  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CB8314  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CB8318  41 82 00 1C */	beq lbl_80CB8334
-/* 80CB831C  3C A0 80 CC */	lis r5, __vt__21daObj_Pumpkin_Param_c@ha
-/* 80CB8320  38 05 85 BC */	addi r0, r5, __vt__21daObj_Pumpkin_Param_c@l
+/* 80CB831C  3C A0 80 CC */	lis r5, __vt__21daObj_Pumpkin_Param_c@ha /* 0x80CB85BC@ha */
+/* 80CB8320  38 05 85 BC */	addi r0, r5, __vt__21daObj_Pumpkin_Param_c@l /* 0x80CB85BC@l */
 /* 80CB8324  90 1F 00 00 */	stw r0, 0(r31)
 /* 80CB8328  7C 80 07 35 */	extsh. r0, r4
 /* 80CB832C  40 81 00 08 */	ble lbl_80CB8334
-/* 80CB8330  4B 61 6A 0C */	b __dl__FPv
+/* 80CB8330  4B 61 6A 0D */	bl __dl__FPv
 lbl_80CB8334:
 /* 80CB8334  7F E3 FB 78 */	mr r3, r31
 /* 80CB8338  83 E1 00 0C */	lwz r31, 0xc(r1)

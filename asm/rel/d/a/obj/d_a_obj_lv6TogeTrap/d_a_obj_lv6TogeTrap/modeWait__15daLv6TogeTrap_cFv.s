@@ -7,28 +7,28 @@ lbl_80C7B60C:
 /* 80C7B620  7C 7E 1B 78 */	mr r30, r3
 /* 80C7B624  88 03 04 E2 */	lbz r0, 0x4e2(r3)
 /* 80C7B628  7C 03 07 74 */	extsb r3, r0
-/* 80C7B62C  4B 3B 1A 40 */	b dComIfGp_getReverb__Fi
+/* 80C7B62C  4B 3B 1A 41 */	bl dComIfGp_getReverb__Fi
 /* 80C7B630  7C 7F 1B 78 */	mr r31, r3
 /* 80C7B634  C0 3E 05 2C */	lfs f1, 0x52c(r30)
-/* 80C7B638  4B 6E 6A 74 */	b __cvt_fp2unsigned
+/* 80C7B638  4B 6E 6A 75 */	bl __cvt_fp2unsigned
 /* 80C7B63C  7C 66 1B 78 */	mr r6, r3
 /* 80C7B640  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801A9@ha */
 /* 80C7B644  38 03 01 A9 */	addi r0, r3, 0x01A9 /* 0x000801A9@l */
 /* 80C7B648  90 01 00 08 */	stw r0, 8(r1)
-/* 80C7B64C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C7B650  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C7B64C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C7B650  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C7B654  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C7B658  38 81 00 08 */	addi r4, r1, 8
 /* 80C7B65C  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 80C7B660  7F E7 FB 78 */	mr r7, r31
-/* 80C7B664  3D 00 80 C8 */	lis r8, lit_3632@ha
-/* 80C7B668  C0 28 C6 1C */	lfs f1, lit_3632@l(r8)
+/* 80C7B664  3D 00 80 C8 */	lis r8, lit_3632@ha /* 0x80C7C61C@ha */
+/* 80C7B668  C0 28 C6 1C */	lfs f1, lit_3632@l(r8)  /* 0x80C7C61C@l */
 /* 80C7B66C  FC 40 08 90 */	fmr f2, f1
-/* 80C7B670  3D 00 80 C8 */	lis r8, lit_4150@ha
-/* 80C7B674  C0 68 C7 28 */	lfs f3, lit_4150@l(r8)
+/* 80C7B670  3D 00 80 C8 */	lis r8, lit_4150@ha /* 0x80C7C728@ha */
+/* 80C7B674  C0 68 C7 28 */	lfs f3, lit_4150@l(r8)  /* 0x80C7C728@l */
 /* 80C7B678  FC 80 18 90 */	fmr f4, f3
 /* 80C7B67C  39 00 00 00 */	li r8, 0
-/* 80C7B680  4B 63 0E 8C */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C7B680  4B 63 0E 8D */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80C7B684  88 1E 05 DA */	lbz r0, 0x5da(r30)
 /* 80C7B688  28 00 00 05 */	cmplwi r0, 5
 /* 80C7B68C  40 82 00 10 */	bne lbl_80C7B69C

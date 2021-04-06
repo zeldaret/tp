@@ -31,8 +31,6 @@ extern "C" static void OnReset();
 extern "C" static void SamplingHandler();
 extern "C" static void PADSetSamplingCallback();
 extern "C" void __PADDisableRecalibration();
-extern "C" extern u8 CmdProbeDevice[16];
-extern "C" extern u8 __PADSpec[4 + 4 /* padding */];
 
 //
 // External References:
@@ -69,7 +67,7 @@ extern "C" extern u8 __PADFixBits[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803D1B48-803D1B90 0045+03 s=1 e=0 z=0  None .data      @1 */
+/* 803D1B48-803D1B90 02EC68 0045+03 1/0 0/0 0/0 .data            @1 */
 SECTION_DATA static u8 lit_1[69 + 3 /* padding */] = {
     0x3C,
     0x3C,
@@ -146,349 +144,145 @@ SECTION_DATA static u8 lit_1[69 + 3 /* padding */] = {
     0x00,
 };
 
-/* 8044CB70-8044CB80 0010+00 s=3 e=0 z=0  None .bss       Type */
+/* 8044CB70-8044CB80 079890 0010+00 3/3 0/0 0/0 .bss             Type */
 static u8 Type[16];
 
-/* 8044CB80-8044CBB0 0030+00 s=8 e=0 z=0  None .bss       Origin */
+/* 8044CB80-8044CBB0 0798A0 0030+00 8/8 0/0 0/0 .bss             Origin */
 static u8 Origin[48];
 
-/* 80450A20-80450A24 0004+00 s=1 e=0 z=0  None .sdata     __PADVersion */
+/* 80450A20-80450A24 -00001 0004+00 1/1 0/0 0/0 .sdata           __PADVersion */
 SECTION_SDATA static void* __PADVersion = (void*)&lit_1;
 
-/* 80450A24-80450A28 0004+00 s=7 e=0 z=0  None .sdata     ResettingChan */
+/* 80450A24-80450A28 0004A4 0004+00 7/7 0/0 0/0 .sdata           ResettingChan */
 SECTION_SDATA static u32 ResettingChan = 0x00000020;
 
-/* 80450A28-80450A2C 0004+00 s=1 e=0 z=0  None .sdata     XPatchBits */
+/* 80450A28-80450A2C 0004A8 0004+00 1/1 0/0 0/0 .sdata           XPatchBits */
 SECTION_SDATA static u32 XPatchBits = 0xF0000000;
 
-/* 80450A2C-80450A30 0004+00 s=7 e=0 z=0  None .sdata     AnalogMode */
+/* 80450A2C-80450A30 0004AC 0004+00 7/7 0/0 0/0 .sdata           AnalogMode */
 SECTION_SDATA static u32 AnalogMode = 0x00000300;
 
-/* 8034E2B4-8034E458 01A4+00 s=2 e=0 z=0  None .text      UpdateOrigin */
-//	8034E2B8: 8044CB80 (Origin)
-//	8034E2C8: 8044CB80 (Origin)
-//	8034E2D4: 80450A2C (AnalogMode)
-//	8034E40C: 80450A28 (XPatchBits)
-//	8034E428: 80345F90 (SIGetType)
+/* 8034E2B4-8034E458 348BF4 01A4+00 2/2 0/0 0/0 .text            UpdateOrigin */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void UpdateOrigin() {
+static asm void UpdateOrigin() {
     nofralloc
 #include "asm/dolphin/pad/Pad/UpdateOrigin.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451848-8045184C 0004+00 s=1 e=0 z=0  None .sbss      Initialized */
+/* 80451848-8045184C 000D48 0004+00 1/1 0/0 0/0 .sbss            Initialized */
 static u8 Initialized[4];
 
-/* 8045184C-80451850 0004+00 s=10 e=0 z=0  None .sbss      EnabledBits */
+/* 8045184C-80451850 000D4C 0004+00 10/10 0/0 0/0 .sbss            EnabledBits */
 static u8 EnabledBits[4];
 
-/* 80451850-80451854 0004+00 s=7 e=0 z=0  None .sbss      ResettingBits */
+/* 80451850-80451854 000D50 0004+00 7/7 0/0 0/0 .sbss            ResettingBits */
 static u8 ResettingBits[4];
 
-/* 8034E458-8034E51C 00C4+00 s=1 e=0 z=0  None .text      PADOriginCallback */
-//	8034E470: 80450A24 (ResettingChan)
-//	8034E474: 8034E2B4 (UpdateOrigin)
-//	8034E478: 80450A24 (ResettingChan)
-//	8034E480: 8045184C (EnabledBits)
-//	8034E490: 8045184C (EnabledBits)
-//	8034E498: 80345A3C (SIGetResponse)
-//	8034E49C: 80450A2C (AnalogMode)
-//	8034E4A8: 803457D0 (SISetCommand)
-//	8034E4AC: 8045184C (EnabledBits)
-//	8034E4B0: 80345860 (SIEnablePolling)
-//	8034E4B4: 80451850 (ResettingBits)
-//	8034E4BC: 80450A24 (ResettingChan)
-//	8034E4C0: 80450A24 (ResettingChan)
-//	8034E4DC: 80451850 (ResettingBits)
-//	8034E4E0: 8044CB80 (Origin)
-//	8034E4E4: 8044CB80 (Origin)
-//	8034E4F4: 80003458 (memset)
-//	8034E4F8: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034E4FC: 80450A24 (ResettingChan)
-//	8034E500: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034E504: 80346154 (SIGetTypeAsync)
+/* 8034E458-8034E51C 348D98 00C4+00 1/1 0/0 0/0 .text            PADOriginCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADOriginCallback() {
+static asm void PADOriginCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADOriginCallback.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451854-80451858 0004+00 s=4 e=0 z=0  None .sbss      RecalibrateBits */
+/* 80451854-80451858 000D54 0004+00 4/4 0/0 0/0 .sbss            RecalibrateBits */
 static u8 RecalibrateBits[4];
 
-/* 80451858-8045185C 0004+00 s=7 e=0 z=0  None .sbss      WaitingBits */
+/* 80451858-8045185C 000D58 0004+00 7/7 0/0 0/0 .sbss            WaitingBits */
 static u8 WaitingBits[4];
 
-/* 8045185C-80451860 0004+00 s=6 e=0 z=0  None .sbss      CheckingBits */
+/* 8045185C-80451860 000D5C 0004+00 6/6 0/0 0/0 .sbss            CheckingBits */
 static u8 CheckingBits[4];
 
-/* 80451860-80451864 0004+00 s=6 e=0 z=0  None .sbss      PendingBits */
+/* 80451860-80451864 000D60 0004+00 6/6 0/0 0/0 .sbss            PendingBits */
 static u8 PendingBits[4];
 
-/* 80451864-80451868 0004+00 s=6 e=0 z=0  None .sbss      BarrelBits */
+/* 80451864-80451868 000D64 0004+00 6/6 0/0 0/0 .sbss            BarrelBits */
 static u8 BarrelBits[4];
 
-/* 8034E51C-8034E5E8 00CC+00 s=2 e=0 z=0  None .text      PADOriginUpdateCallback */
-//	8034E544: 8045184C (EnabledBits)
-//	8034E55C: 8034E2B4 (UpdateOrigin)
-//	8034E568: 8033D6F4 (OSDisableInterrupts)
-//	8034E574: 803458FC (SIDisablePolling)
-//	8034E578: 8045184C (EnabledBits)
-//	8034E580: 80451858 (WaitingBits)
-//	8034E588: 8045185C (CheckingBits)
-//	8034E58C: 80451860 (PendingBits)
-//	8034E594: 80451864 (BarrelBits)
-//	8034E5A4: 8045184C (EnabledBits)
-//	8034E5AC: 80451858 (WaitingBits)
-//	8034E5B4: 8045185C (CheckingBits)
-//	8034E5B8: 80451860 (PendingBits)
-//	8034E5BC: 80451864 (BarrelBits)
-//	8034E5C0: 8034084C (OSSetWirelessID)
-//	8034E5C8: 8033D71C (OSRestoreInterrupts)
+/* 8034E51C-8034E5E8 348E5C 00CC+00 2/2 0/0 0/0 .text            PADOriginUpdateCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADOriginUpdateCallback() {
+static asm void PADOriginUpdateCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADOriginUpdateCallback.s"
 }
 #pragma pop
 
-/* 8034E5E8-8034E6C0 00D8+00 s=1 e=0 z=0  None .text      PADProbeCallback */
-//	8034E604: 80450A24 (ResettingChan)
-//	8034E60C: 8045184C (EnabledBits)
-//	8034E61C: 8045184C (EnabledBits)
-//	8034E624: 80345A3C (SIGetResponse)
-//	8034E628: 80450A2C (AnalogMode)
-//	8034E634: 803457D0 (SISetCommand)
-//	8034E638: 8045184C (EnabledBits)
-//	8034E63C: 80345860 (SIEnablePolling)
-//	8034E640: 80450A24 (ResettingChan)
-//	8034E644: 80451858 (WaitingBits)
-//	8034E650: 80451858 (WaitingBits)
-//	8034E654: 80451850 (ResettingBits)
-//	8034E65C: 80450A24 (ResettingChan)
-//	8034E660: 80450A24 (ResettingChan)
-//	8034E67C: 80451850 (ResettingBits)
-//	8034E680: 8044CB80 (Origin)
-//	8034E684: 8044CB80 (Origin)
-//	8034E694: 80003458 (memset)
-//	8034E698: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034E69C: 80450A24 (ResettingChan)
-//	8034E6A0: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034E6A4: 80346154 (SIGetTypeAsync)
+/* 8034E5E8-8034E6C0 348F28 00D8+00 1/1 0/0 0/0 .text            PADProbeCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADProbeCallback() {
+static asm void PADProbeCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADProbeCallback.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450A30-80450A34 0004+00 s=4 e=0 z=0  None .sdata     Spec */
+/* 80450A30-80450A34 0004B0 0004+00 4/4 0/0 0/0 .sdata           Spec */
 SECTION_SDATA static u32 Spec = 0x00000005;
 
-/* 80450A34-80450A38 0004+00 s=2 e=0 z=0  None .sdata     MakeStatus */
+/* 80450A34-80450A38 -00001 0004+00 2/2 0/0 0/0 .sdata           MakeStatus */
 SECTION_SDATA static void* MakeStatus = (void*)SPEC2_MakeStatus;
 
-/* 80450A38-80450A3C 0004+00 s=3 e=0 z=0  None .sdata     CmdReadOrigin */
+/* 80450A38-80450A3C 0004B8 0004+00 3/3 0/0 0/0 .sdata           CmdReadOrigin */
 SECTION_SDATA static u32 CmdReadOrigin = 0x41000000;
 
-/* 80450A3C-80450A40 0004+00 s=1 e=0 z=0  None .sdata     CmdCalibrate */
+/* 80450A3C-80450A40 0004BC 0004+00 1/1 0/0 0/0 .sdata           CmdCalibrate */
 SECTION_SDATA static u32 CmdCalibrate = 0x42000000;
 
-/* 8034E6C0-8034E9EC 032C+00 s=4 e=0 z=0  None .text      PADTypeAndStatusCallback */
-//	8034E6C4: 8044CB70 (Type)
-//	8034E6E0: 8044CB70 (Type)
-//	8034E6EC: 80450A24 (ResettingChan)
-//	8034E6F0: 80451854 (RecalibrateBits)
-//	8034E6FC: 80451854 (RecalibrateBits)
-//	8034E70C: 80451850 (ResettingBits)
-//	8034E714: 80450A24 (ResettingChan)
-//	8034E718: 80450A24 (ResettingChan)
-//	8034E734: 80451850 (ResettingBits)
-//	8034E744: 80003458 (memset)
-//	8034E74C: 80450A24 (ResettingChan)
-//	8034E754: 80346154 (SIGetTypeAsync)
-//	8034E780: 80451850 (ResettingBits)
-//	8034E788: 80450A24 (ResettingChan)
-//	8034E78C: 80450A24 (ResettingChan)
-//	8034E7AC: 80451850 (ResettingBits)
-//	8034E7BC: 80003458 (memset)
-//	8034E7C4: 80450A24 (ResettingChan)
-//	8034E7CC: 80346154 (SIGetTypeAsync)
-//	8034E7D4: 80450A30 (Spec)
-//	8034E7E0: 8045184C (EnabledBits)
-//	8034E7F0: 8045184C (EnabledBits)
-//	8034E7F4: 80345A3C (SIGetResponse)
-//	8034E7F8: 80450A2C (AnalogMode)
-//	8034E804: 803457D0 (SISetCommand)
-//	8034E808: 8045184C (EnabledBits)
-//	8034E80C: 80345860 (SIEnablePolling)
-//	8034E810: 80451850 (ResettingBits)
-//	8034E818: 80450A24 (ResettingChan)
-//	8034E81C: 80450A24 (ResettingChan)
-//	8034E838: 80451850 (ResettingBits)
-//	8034E848: 80003458 (memset)
-//	8034E850: 80450A24 (ResettingChan)
-//	8034E858: 80346154 (SIGetTypeAsync)
-//	8034E87C: 8034E458 (PADOriginCallback)
-//	8034E884: 8034E458 (PADOriginCallback)
-//	8034E88C: 80450A3C (CmdCalibrate)
-//	8034E8A4: 80345B8C (SITransfer)
-//	8034E8B0: 8034E458 (PADOriginCallback)
-//	8034E8B8: 8034E458 (PADOriginCallback)
-//	8034E8C0: 80450A38 (CmdReadOrigin)
-//	8034E8D8: 80345B8C (SITransfer)
-//	8034E904: 8034E458 (PADOriginCallback)
-//	8034E90C: 8034E458 (PADOriginCallback)
-//	8034E914: 80450A38 (CmdReadOrigin)
-//	8034E92C: 80345B8C (SITransfer)
-//	8034E938: 8034E5E8 (PADProbeCallback)
-//	8034E944: 8034E5E8 (PADProbeCallback)
-//	8034E964: 80345B8C (SITransfer)
-//	8034E970: 80451850 (ResettingBits)
-//	8034E974: 80451860 (PendingBits)
-//	8034E97C: 80450A24 (ResettingChan)
-//	8034E984: 80450A24 (ResettingChan)
-//	8034E988: 80451860 (PendingBits)
-//	8034E9A8: 80451850 (ResettingBits)
-//	8034E9B8: 80003458 (memset)
-//	8034E9C0: 80450A24 (ResettingChan)
-//	8034E9C8: 80346154 (SIGetTypeAsync)
+/* 8034E6C0-8034E9EC 349000 032C+00 4/4 0/0 0/0 .text            PADTypeAndStatusCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADTypeAndStatusCallback() {
+static asm void PADTypeAndStatusCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADTypeAndStatusCallback.s"
 }
 #pragma pop
 
-/* 8034E9EC-8034EB2C 0140+00 s=1 e=0 z=0  None .text      PADReceiveCheckCallback */
-//	8034EA10: 8045184C (EnabledBits)
-//	8034EA1C: 80451858 (WaitingBits)
-//	8034EA24: 8045185C (CheckingBits)
-//	8034EA34: 80451858 (WaitingBits)
-//	8034EA38: 8045185C (CheckingBits)
-//	8034EA78: 8044CB80 (Origin)
-//	8034EA7C: 8044CB80 (Origin)
-//	8034EA80: 8034E51C (PADOriginUpdateCallback)
-//	8034EA88: 8034E51C (PADOriginUpdateCallback)
-//	8034EA90: 80450A38 (CmdReadOrigin)
-//	8034EAA4: 80345B8C (SITransfer)
-//	8034EAAC: 8033D6F4 (OSDisableInterrupts)
-//	8034EAB8: 803458FC (SIDisablePolling)
-//	8034EABC: 8045184C (EnabledBits)
-//	8034EAC4: 80451858 (WaitingBits)
-//	8034EACC: 8045185C (CheckingBits)
-//	8034EAD0: 80451860 (PendingBits)
-//	8034EAD8: 80451864 (BarrelBits)
-//	8034EAE8: 8045184C (EnabledBits)
-//	8034EAF0: 80451858 (WaitingBits)
-//	8034EAF8: 8045185C (CheckingBits)
-//	8034EAFC: 80451860 (PendingBits)
-//	8034EB00: 80451864 (BarrelBits)
-//	8034EB04: 8034084C (OSSetWirelessID)
-//	8034EB0C: 8033D71C (OSRestoreInterrupts)
+/* 8034E9EC-8034EB2C 34932C 0140+00 1/1 0/0 0/0 .text            PADReceiveCheckCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADReceiveCheckCallback() {
+static asm void PADReceiveCheckCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADReceiveCheckCallback.s"
 }
 #pragma pop
 
-/* 8034EB2C-8034EC3C 0110+00 s=2 e=1 z=0  None .text      PADReset */
-//	8034EB44: 8033D6F4 (OSDisableInterrupts)
-//	8034EB48: 80451860 (PendingBits)
-//	8034EB50: 80451858 (WaitingBits)
-//	8034EB58: 8045185C (CheckingBits)
-//	8034EB60: 80451850 (ResettingBits)
-//	8034EB68: 80450A30 (Spec)
-//	8034EB70: 8045184C (EnabledBits)
-//	8034EB78: 80451864 (BarrelBits)
-//	8034EB80: 80451850 (ResettingBits)
-//	8034EB8C: 80451850 (ResettingBits)
-//	8034EB94: 80451860 (PendingBits)
-//	8034EB9C: 8045184C (EnabledBits)
-//	8034EBA0: 80451864 (BarrelBits)
-//	8034EBA8: 80451854 (RecalibrateBits)
-//	8034EBB0: 80451854 (RecalibrateBits)
-//	8034EBB4: 803458FC (SIDisablePolling)
-//	8034EBB8: 80450A24 (ResettingChan)
-//	8034EBC4: 80451850 (ResettingBits)
-//	8034EBCC: 80450A24 (ResettingChan)
-//	8034EBD0: 80450A24 (ResettingChan)
-//	8034EBEC: 80451850 (ResettingBits)
-//	8034EBF0: 8044CB80 (Origin)
-//	8034EBF4: 8044CB80 (Origin)
-//	8034EC04: 80003458 (memset)
-//	8034EC08: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034EC0C: 80450A24 (ResettingChan)
-//	8034EC10: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034EC14: 80346154 (SIGetTypeAsync)
-//	8034EC1C: 8033D71C (OSRestoreInterrupts)
+/* 8034EB2C-8034EC3C 34946C 0110+00 2/2 1/1 0/0 .text            PADReset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADReset() {
+asm void PADReset() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADReset.s"
 }
 #pragma pop
 
-/* 8034EC3C-8034ED50 0114+00 s=1 e=1 z=0  None .text      PADRecalibrate */
-//	8034EC54: 8033D6F4 (OSDisableInterrupts)
-//	8034EC58: 80451860 (PendingBits)
-//	8034EC60: 80451858 (WaitingBits)
-//	8034EC68: 8045185C (CheckingBits)
-//	8034EC70: 80451850 (ResettingBits)
-//	8034EC80: 8045184C (EnabledBits)
-//	8034EC88: 80451864 (BarrelBits)
-//	8034EC8C: 80451850 (ResettingBits)
-//	8034EC9C: 80451850 (ResettingBits)
-//	8034ECA4: 80451860 (PendingBits)
-//	8034ECAC: 8045184C (EnabledBits)
-//	8034ECB4: 80451864 (BarrelBits)
-//	8034ECBC: 80451854 (RecalibrateBits)
-//	8034ECC4: 80451854 (RecalibrateBits)
-//	8034ECC8: 803458FC (SIDisablePolling)
-//	8034ECCC: 80450A24 (ResettingChan)
-//	8034ECD8: 80451850 (ResettingBits)
-//	8034ECE0: 80450A24 (ResettingChan)
-//	8034ECE4: 80450A24 (ResettingChan)
-//	8034ED00: 80451850 (ResettingBits)
-//	8034ED04: 8044CB80 (Origin)
-//	8034ED08: 8044CB80 (Origin)
-//	8034ED18: 80003458 (memset)
-//	8034ED1C: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034ED20: 80450A24 (ResettingChan)
-//	8034ED24: 8034E6C0 (PADTypeAndStatusCallback)
-//	8034ED28: 80346154 (SIGetTypeAsync)
-//	8034ED30: 8033D71C (OSRestoreInterrupts)
+/* 8034EC3C-8034ED50 34957C 0114+00 1/1 1/1 0/0 .text            PADRecalibrate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADRecalibrate() {
+asm void PADRecalibrate() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRecalibrate.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1B90-803D1BA0 0010+00 s=1 e=0 z=0  None .data      ResetFunctionInfo */
+/* 803D1B90-803D1BA0 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
 SECTION_DATA static void* ResetFunctionInfo[4] = {
     (void*)OnReset,
     (void*)0x0000007F,
@@ -496,265 +290,138 @@ SECTION_DATA static void* ResetFunctionInfo[4] = {
     (void*)NULL,
 };
 
-/* 80451868-8045186C 0004+00 s=3 e=0 z=0  None .sbss      SamplingCallback */
+/* 8044CBB0-8044CBC0 0798D0 0010+00 0/1 0/0 0/0 .bss             CmdProbeDevice */
+#pragma push
+#pragma force_active on
+static u8 CmdProbeDevice[16];
+#pragma pop
+
+/* 80451868-8045186C 000D68 0004+00 3/3 0/0 0/0 .sbss            SamplingCallback */
 static u8 SamplingCallback[4];
 
-/* 8045186C-80451870 0004+00 s=1 e=0 z=0  None .sbss      recalibrated$388 */
+/* 8045186C-80451870 000D6C 0004+00 1/1 0/0 0/0 .sbss            recalibrated$388 */
 static u8 recalibrated[4];
 
-/* 80451870-80451878 0004+04 s=2 e=1 z=0  None .sbss      __PADSpec */
+/* 80451870-80451878 000D70 0004+04 2/2 1/1 0/0 .sbss            __PADSpec */
+extern u8 __PADSpec[4 + 4 /* padding */];
 u8 __PADSpec[4 + 4 /* padding */];
 
-/* 8034ED50-8034EEA0 0150+00 s=0 e=1 z=0  None .text      PADInit */
-//	8034ED54: 8044CB70 (Type)
-//	8034ED64: 8044CB70 (Type)
-//	8034ED68: 80451848 (Initialized)
-//	8034ED7C: 80450A20 (__PADVersion)
-//	8034ED80: 8033A874 (OSRegisterVersion)
-//	8034ED84: 80451870 (__PADSpec)
-//	8034ED90: 8034F258 (PADSetSpec)
-//	8034ED94: 804516F8 (__PADFixBits)
-//	8034ED9C: 80451848 (Initialized)
-//	8034EDA8: 803426FC (OSGetTime)
-//	8034EDB8: 80362694 (__shr2i)
-//	8034EDEC: 80362694 (__shr2i)
-//	8034EE0C: 80362694 (__shr2i)
-//	8034EE20: 80451854 (RecalibrateBits)
-//	8034EE74: 80346374 (SIRefreshSamplingRate)
-//	8034EE78: 803D1B90 (ResetFunctionInfo)
-//	8034EE7C: 803D1B90 (ResetFunctionInfo)
-//	8034EE80: 8033F660 (OSRegisterResetFunction)
-//	8034EE88: 8034EB2C (PADReset)
+/* 8034ED50-8034EEA0 349690 0150+00 0/0 1/1 0/0 .text            PADInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADInit() {
+asm void PADInit() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADInit.s"
 }
 #pragma pop
 
-/* 8034EEA0-8034F1A0 0300+00 s=0 e=1 z=0  None .text      PADRead */
-//	8034EEB4: 8033D6F4 (OSDisableInterrupts)
-//	8034EEC0: 8044CB80 (Origin)
-//	8034EEC4: 8044CB80 (Origin)
-//	8034EECC: 8034E51C (PADOriginUpdateCallback)
-//	8034EED0: 8034E9EC (PADReceiveCheckCallback)
-//	8034EED8: 8034E51C (PADOriginUpdateCallback)
-//	8034EEDC: 8034E9EC (PADReceiveCheckCallback)
-//	8034EEE8: 80451860 (PendingBits)
-//	8034EEFC: 8034EB2C (PADReset)
-//	8034EF14: 80003458 (memset)
-//	8034EF1C: 80451850 (ResettingBits)
-//	8034EF28: 80450A24 (ResettingChan)
-//	8034EF48: 80003458 (memset)
-//	8034EF50: 8045184C (EnabledBits)
-//	8034EF70: 80003458 (memset)
-//	8034EF7C: 80344BC0 (SIIsChanBusy)
-//	8034EF9C: 80003458 (memset)
-//	8034EFA8: 80345754 (SIGetStatus)
-//	8034EFBC: 80345A3C (SIGetResponse)
-//	8034EFC0: 80451858 (WaitingBits)
-//	8034EFE0: 80003458 (memset)
-//	8034EFE4: 8045185C (CheckingBits)
-//	8034EFF4: 8045185C (CheckingBits)
-//	8034F000: 80346154 (SIGetTypeAsync)
-//	8034F008: 8033D6F4 (OSDisableInterrupts)
-//	8034F014: 803458FC (SIDisablePolling)
-//	8034F018: 8045184C (EnabledBits)
-//	8034F020: 80451858 (WaitingBits)
-//	8034F028: 8045185C (CheckingBits)
-//	8034F02C: 80451860 (PendingBits)
-//	8034F034: 80451864 (BarrelBits)
-//	8034F044: 8045184C (EnabledBits)
-//	8034F04C: 80451858 (WaitingBits)
-//	8034F054: 8045185C (CheckingBits)
-//	8034F058: 80451860 (PendingBits)
-//	8034F05C: 80451864 (BarrelBits)
-//	8034F060: 8034084C (OSSetWirelessID)
-//	8034F068: 8033D71C (OSRestoreInterrupts)
-//	8034F080: 80003458 (memset)
-//	8034F08C: 80345F90 (SIGetType)
-//	8034F0A4: 80345A3C (SIGetResponse)
-//	8034F0C4: 80003458 (memset)
-//	8034F0EC: 80003458 (memset)
-//	8034F0F4: 80450A34 (MakeStatus)
-//	8034F12C: 80003458 (memset)
-//	8034F13C: 80450A38 (CmdReadOrigin)
-//	8034F150: 80345B8C (SITransfer)
-//	8034F184: 8033D71C (OSRestoreInterrupts)
+/* 8034EEA0-8034F1A0 3497E0 0300+00 0/0 1/1 0/0 .text            PADRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADRead() {
+asm void PADRead() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADRead.s"
 }
 #pragma pop
 
-/* 8034F1A0-8034F258 00B8+00 s=0 e=2 z=0  None .text      PADControlMotor */
-//	8034F1C0: 8033D6F4 (OSDisableInterrupts)
-//	8034F1C8: 8045184C (EnabledBits)
-//	8034F1E0: 80345F90 (SIGetType)
-//	8034F1EC: 80450A30 (Spec)
-//	8034F218: 80450A2C (AnalogMode)
-//	8034F22C: 803457D0 (SISetCommand)
-//	8034F230: 803457E4 (SITransferCommands)
-//	8034F238: 8033D71C (OSRestoreInterrupts)
+/* 8034F1A0-8034F258 349AE0 00B8+00 0/0 2/2 0/0 .text            PADControlMotor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADControlMotor() {
+asm void PADControlMotor() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADControlMotor.s"
 }
 #pragma pop
 
-/* 8034F258-8034F2B8 0060+00 s=1 e=1 z=0  None .text      PADSetSpec */
-//	8034F260: 80451870 (__PADSpec)
-//	8034F284: 8034F2B8 (SPEC0_MakeStatus)
-//	8034F288: 8034F2B8 (SPEC0_MakeStatus)
-//	8034F28C: 80450A34 (MakeStatus)
-//	8034F294: 8034F42C (SPEC1_MakeStatus)
-//	8034F298: 8034F42C (SPEC1_MakeStatus)
-//	8034F29C: 80450A34 (MakeStatus)
-//	8034F2A4: 8034F5A0 (SPEC2_MakeStatus)
-//	8034F2A8: 8034F5A0 (SPEC2_MakeStatus)
-//	8034F2AC: 80450A34 (MakeStatus)
-//	8034F2B0: 80450A30 (Spec)
+/* 8034F258-8034F2B8 349B98 0060+00 1/1 1/1 0/0 .text            PADSetSpec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADSetSpec() {
+asm void PADSetSpec() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetSpec.s"
 }
 #pragma pop
 
-/* 8034F2B8-8034F42C 0174+00 s=1 e=0 z=0  None .text      SPEC0_MakeStatus */
+/* 8034F2B8-8034F42C 349BF8 0174+00 1/1 0/0 0/0 .text            SPEC0_MakeStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SPEC0_MakeStatus() {
+static asm void SPEC0_MakeStatus() {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC0_MakeStatus.s"
 }
 #pragma pop
 
-/* 8034F42C-8034F5A0 0174+00 s=1 e=0 z=0  None .text      SPEC1_MakeStatus */
+/* 8034F42C-8034F5A0 349D6C 0174+00 1/1 0/0 0/0 .text            SPEC1_MakeStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SPEC1_MakeStatus() {
+static asm void SPEC1_MakeStatus() {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC1_MakeStatus.s"
 }
 #pragma pop
 
-/* 8034F5A0-8034FA10 0470+00 s=2 e=0 z=0  None .text      SPEC2_MakeStatus */
-//	8034F5C8: 80450A2C (AnalogMode)
-//	8034F7B0: 8044CB70 (Type)
-//	8034F7C0: 8044CB70 (Type)
-//	8034F818: 80451864 (BarrelBits)
-//	8034F824: 80451864 (BarrelBits)
-//	8034F844: 80451864 (BarrelBits)
-//	8034F850: 80451864 (BarrelBits)
-//	8034F854: 8044CB80 (Origin)
-//	8034F860: 8044CB80 (Origin)
+/* 8034F5A0-8034FA10 349EE0 0470+00 2/1 0/0 0/0 .text            SPEC2_MakeStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SPEC2_MakeStatus() {
+static asm void SPEC2_MakeStatus() {
     nofralloc
 #include "asm/dolphin/pad/Pad/SPEC2_MakeStatus.s"
 }
 #pragma pop
 
-/* 8034FA10-8034FA84 0074+00 s=0 e=2 z=0  None .text      PADSetAnalogMode */
-//	8034FA24: 8033D6F4 (OSDisableInterrupts)
-//	8034FA28: 8045184C (EnabledBits)
-//	8034FA30: 80451858 (WaitingBits)
-//	8034FA40: 8045185C (CheckingBits)
-//	8034FA48: 80450A2C (AnalogMode)
-//	8034FA54: 8045184C (EnabledBits)
-//	8034FA5C: 80451858 (WaitingBits)
-//	8034FA60: 8045185C (CheckingBits)
-//	8034FA64: 803458FC (SIDisablePolling)
-//	8034FA6C: 8033D71C (OSRestoreInterrupts)
+/* 8034FA10-8034FA84 34A350 0074+00 0/0 2/2 0/0 .text            PADSetAnalogMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADSetAnalogMode() {
+asm void PADSetAnalogMode() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetAnalogMode.s"
 }
 #pragma pop
 
-/* 8034FA84-8034FB40 00BC+00 s=1 e=0 z=0  None .text      OnReset */
-//	8034FA98: 80451868 (SamplingCallback)
-//	8034FAA8: 8034FBA0 (PADSetSamplingCallback)
-//	8034FAB4: 80451850 (ResettingBits)
-//	8034FAC8: 80450A24 (ResettingChan)
-//	8034FAE0: 80344BA0 (SIBusy)
-//	8034FAF0: 8045186C (recalibrated)
-//	8034FB08: 8034EC3C (PADRecalibrate)
-//	8034FB0C: 8045186C (recalibrated)
-//	8034FB24: 8045186C (recalibrated)
+/* 8034FA84-8034FB40 34A3C4 00BC+00 1/0 0/0 0/0 .text            OnReset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OnReset() {
+static asm void OnReset() {
     nofralloc
 #include "asm/dolphin/pad/Pad/OnReset.s"
 }
 #pragma pop
 
-/* 8034FB40-8034FBA0 0060+00 s=1 e=0 z=0  None .text      SamplingHandler */
-//	8034FB54: 80451868 (SamplingCallback)
-//	8034FB64: 8033C000 (OSClearContext)
-//	8034FB6C: 8033BE38 (OSSetCurrentContext)
-//	8034FB70: 80451868 (SamplingCallback)
-//	8034FB80: 8033C000 (OSClearContext)
-//	8034FB88: 8033BE38 (OSSetCurrentContext)
+/* 8034FB40-8034FBA0 34A480 0060+00 1/1 0/0 0/0 .text            SamplingHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SamplingHandler() {
+static asm void SamplingHandler() {
     nofralloc
 #include "asm/dolphin/pad/Pad/SamplingHandler.s"
 }
 #pragma pop
 
-/* 8034FBA0-8034FBF4 0054+00 s=1 e=0 z=0  None .text      PADSetSamplingCallback */
-//	8034FBB4: 80451868 (SamplingCallback)
-//	8034FBB8: 80451868 (SamplingCallback)
-//	8034FBC0: 8034FB40 (SamplingHandler)
-//	8034FBC4: 8034FB40 (SamplingHandler)
-//	8034FBC8: 803452D4 (SIRegisterPollingHandler)
-//	8034FBD0: 8034FB40 (SamplingHandler)
-//	8034FBD4: 8034FB40 (SamplingHandler)
-//	8034FBD8: 803453A0 (SIUnregisterPollingHandler)
+/* 8034FBA0-8034FBF4 34A4E0 0054+00 1/1 0/0 0/0 .text            PADSetSamplingCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PADSetSamplingCallback() {
+static asm void PADSetSamplingCallback() {
     nofralloc
 #include "asm/dolphin/pad/Pad/PADSetSamplingCallback.s"
 }
 #pragma pop
 
-/* 8034FBF4-8034FC70 007C+00 s=0 e=1 z=0  None .text      __PADDisableRecalibration */
-//	8034FC0C: 8033D6F4 (OSDisableInterrupts)
-//	8034FC50: 8033D71C (OSRestoreInterrupts)
+/* 8034FBF4-8034FC70 34A534 007C+00 0/0 1/1 0/0 .text            __PADDisableRecalibration */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __PADDisableRecalibration() {
+asm void __PADDisableRecalibration() {
     nofralloc
 #include "asm/dolphin/pad/Pad/__PADDisableRecalibration.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 8044CBB0-8044CBC0 0010+00 s=0 e=0 z=0  None .bss       CmdProbeDevice */
-u8 CmdProbeDevice[16];

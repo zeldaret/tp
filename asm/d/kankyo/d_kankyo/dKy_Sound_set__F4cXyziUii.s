@@ -10,8 +10,8 @@ lbl_801A81C0:
 /* 801A81E0  7C 9A 23 78 */	mr r26, r4
 /* 801A81E4  7C BB 2B 78 */	mr r27, r5
 /* 801A81E8  7C DC 33 78 */	mr r28, r6
-/* 801A81EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801A81F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801A81EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801A81F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A81F4  83 C4 5D 74 */	lwz r30, 0x5d74(r4)
 /* 801A81F8  3B A0 00 00 */	li r29, 0
 /* 801A81FC  38 9E 00 D8 */	addi r4, r30, 0xd8
@@ -44,8 +44,8 @@ lbl_801A8264:
 /* 801A8264  C8 02 A2 20 */	lfd f0, lit_4412(r2)
 /* 801A8268  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801A826C  40 80 00 10 */	bge lbl_801A827C
-/* 801A8270  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801A8274  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 801A8270  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801A8274  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801A8278  48 00 00 78 */	b lbl_801A82F0
 lbl_801A827C:
 /* 801A827C  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -79,14 +79,14 @@ lbl_801A82D4:
 lbl_801A82D8:
 /* 801A82D8  2C 00 00 01 */	cmpwi r0, 1
 /* 801A82DC  40 82 00 10 */	bne lbl_801A82EC
-/* 801A82E0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801A82E4  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 801A82E0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801A82E4  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801A82E8  48 00 00 08 */	b lbl_801A82F0
 lbl_801A82EC:
 /* 801A82EC  FF E0 08 90 */	fmr f31, f1
 lbl_801A82F0:
-/* 801A82F0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A82F4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A82F0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A82F4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A82F8  3B E3 09 74 */	addi r31, r3, 0x974
 /* 801A82FC  7F E3 FB 78 */	mr r3, r31
 /* 801A8300  38 9E 00 D8 */	addi r4, r30, 0xd8
@@ -119,8 +119,8 @@ lbl_801A8368:
 /* 801A8368  C8 02 A2 20 */	lfd f0, lit_4412(r2)
 /* 801A836C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801A8370  40 80 00 10 */	bge lbl_801A8380
-/* 801A8374  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801A8378  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801A8374  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801A8378  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801A837C  48 00 00 70 */	b lbl_801A83EC
 lbl_801A8380:
 /* 801A8380  D0 21 00 08 */	stfs f1, 8(r1)
@@ -154,8 +154,8 @@ lbl_801A83D8:
 lbl_801A83DC:
 /* 801A83DC  2C 00 00 01 */	cmpwi r0, 1
 /* 801A83E0  40 82 00 0C */	bne lbl_801A83EC
-/* 801A83E4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801A83E8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801A83E4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801A83E8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_801A83EC:
 /* 801A83EC  FC 1F 08 40 */	fcmpo cr0, f31, f1
 /* 801A83F0  40 80 00 30 */	bge lbl_801A8420
@@ -165,8 +165,8 @@ lbl_801A83EC:
 /* 801A8400  3B A0 00 01 */	li r29, 1
 /* 801A8404  48 00 00 1C */	b lbl_801A8420
 lbl_801A8408:
-/* 801A8408  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A840C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A8408  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A840C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A8410  80 03 09 80 */	lwz r0, 0x980(r3)
 /* 801A8414  7C 00 D0 00 */	cmpw r0, r26
 /* 801A8418  40 80 00 08 */	bge lbl_801A8420
@@ -177,8 +177,8 @@ lbl_801A8420:
 /* 801A8428  C0 19 00 00 */	lfs f0, 0(r25)
 /* 801A842C  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 801A8430  C0 19 00 04 */	lfs f0, 4(r25)
-/* 801A8434  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A8438  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A8434  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A8438  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A843C  D0 03 09 78 */	stfs f0, 0x978(r3)
 /* 801A8440  C0 19 00 08 */	lfs f0, 8(r25)
 /* 801A8444  D0 03 09 7C */	stfs f0, 0x97c(r3)

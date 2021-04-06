@@ -4,8 +4,8 @@ lbl_80032044:
 /* 8003204C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80032050  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80032054  7C 7F 1B 78 */	mr r31, r3
-/* 80032058  3D 40 80 3A */	lis r10, __vt__9STControl@ha
-/* 8003205C  38 0A 72 60 */	addi r0, r10, __vt__9STControl@l
+/* 80032058  3D 40 80 3A */	lis r10, __vt__9STControl@ha /* 0x803A7260@ha */
+/* 8003205C  38 0A 72 60 */	addi r0, r10, __vt__9STControl@l /* 0x803A7260@l */
 /* 80032060  90 03 00 00 */	stw r0, 0(r3)
 /* 80032064  48 00 00 25 */	bl setWaitParm__9STControlFssssffss
 /* 80032068  7F E3 FB 78 */	mr r3, r31

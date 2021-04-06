@@ -3,17 +3,15 @@
 #
 
 M113_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark.plf
+M113_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark.lcf
+M113_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark.map
 
 M113_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stonemark/executor.cpp \
-	rel/d/a/obj/d_a_obj_stonemark/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_stonemark/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark.cpp \
 
 M113_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/d_a_obj_stoneMark.o \
 
 M113_LIBS := \
@@ -29,15 +27,21 @@ M113_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map113.map\
+	-m _prolog \
+	-lcf $(M113_LDSCRIPT) \
+	-unused -map $(M113_MAP) \
+	-w off \
 
 $(M113_TARGET): $(M113_O_FILES) $(M113_LIBS)
+	@echo [113] creating $(M113_TARGET)
 	@echo $(M113_LIBS) $(M113_O_FILES) > build/M113_ofiles
-	$(LD) -opt_partial $(M113_LDFLAGS) -o $(M113_TARGET) @build/M113_ofiles
+	@python3 tools/lcf.py rel 113 --output $(M113_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M113_LDFLAGS) -o $(M113_TARGET) @build/M113_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stonemark/%.o: rel/d/a/obj/d_a_obj_stonemark/%.cpp
+	@echo [113] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M113_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M113_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

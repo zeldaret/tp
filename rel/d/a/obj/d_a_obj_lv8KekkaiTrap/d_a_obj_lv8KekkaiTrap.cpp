@@ -44,11 +44,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -65,9 +65,9 @@ struct dBgW_Base {};
 
 struct dBgW {};
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -97,11 +97,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daKekaiTrap_Draw(daKekaiTrap_c*);
-static void daKekaiTrap_Execute(daKekaiTrap_c*);
-static void daKekaiTrap_Delete(daKekaiTrap_c*);
-static void daKekaiTrap_Create(fopAc_ac_c*);
-
 extern "C" void __ct__17daKekaiTrap_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__13daKekaiTrap_cFv();
@@ -123,34 +118,11 @@ extern "C" static void daKekaiTrap_Delete__FP13daKekaiTrap_c();
 extern "C" static void daKekaiTrap_Create__FP10fopAc_ac_c();
 extern "C" void __dt__17daKekaiTrap_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv8KekkaiTrap_cpp();
-extern "C" extern u32 const lit_3802;
-extern "C" extern u32 const lit_3803;
-extern "C" extern u32 const lit_3804;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3756[3];
-extern "C" extern void* lit_3757[3];
-extern "C" extern void* lit_3758[3];
-extern "C" extern u8 data_80C88554[36];
-extern "C" extern void* g_profile_Obj_Lv8KekkaiTrap[12];
-extern "C" extern void* __vt__13daKekaiTrap_c[10];
-extern "C" extern void* __vt__17daKekaiTrap_HIO_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
+extern "C" extern char const* const d_a_obj_lv8KekkaiTrap__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void cLib_chaseF(f32*, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -195,40 +167,28 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80C884E4-80C884E8 0004+00 s=4 e=0 z=0  None .rodata    @3651 */
+/* 80C884E4-80C884E8 000000 0004+00 4/4 0/0 0/0 .rodata          @3651 */
 SECTION_RODATA static u8 const lit_3651[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80C884E4 = (void*)(&lit_3651);
 
-/* 80C884E8-80C884EC 0004+00 s=1 e=0 z=0  None .rodata    @3652 */
+/* 80C884E8-80C884EC 000004 0004+00 1/1 0/0 0/0 .rodata          @3652 */
 SECTION_RODATA static u32 const lit_3652 = 0x3F333333;
+SECTION_DEAD void* const cg_80C884E8 = (void*)(&lit_3652);
 
-/* 80C884EC-80C884F0 0004+00 s=0 e=0 z=0  None .rodata    @3802 */
-SECTION_RODATA u32 const lit_3802 = 0x41F00000;
-
-/* 80C884F0-80C884F4 0004+00 s=0 e=0 z=0  None .rodata    @3803 */
-SECTION_RODATA u32 const lit_3803 = 0x3F800000;
-
-/* 80C884F4-80C884F8 0004+00 s=0 e=0 z=0  None .rodata    @3804 */
-SECTION_RODATA u32 const lit_3804 = 0x3CF5C28F;
-
-/* 80C884F8-80C88502 000A+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C884F8 = "Lv8Kekkai";
-#pragma pop
-
-/* 80C88504-80C88510 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C88504-80C88510 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C88510-80C88524 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C88510-80C88524 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -236,45 +196,58 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C88524-80C88528 0004+00 s=3 e=0 z=0  None .data      l_type */
-SECTION_DATA static void* l_type = (void*)&stringBase0;
+/* 80C88524-80C88528 -00001 0004+00 3/3 0/0 0/0 .data            l_type */
+SECTION_DATA static void* l_type = (void*)&d_a_obj_lv8KekkaiTrap__stringBase0;
 
-/* 80C88528-80C8852C 0004+00 s=1 e=0 z=0  None .data      l_bmdIdx */
+/* 80C88528-80C8852C 000024 0004+00 1/1 0/0 0/0 .data            l_bmdIdx */
 SECTION_DATA static u32 l_bmdIdx = 0x00000004;
 
-/* 80C8852C-80C88530 0004+00 s=1 e=0 z=0  None .data      l_dzbIdx */
+/* 80C8852C-80C88530 000028 0004+00 1/1 0/0 0/0 .data            l_dzbIdx */
 SECTION_DATA static u32 l_dzbIdx = 0x00000007;
 
-/* 80C88530-80C8853C 000C+00 s=0 e=0 z=0  None .data      @3756 */
-SECTION_DATA void* lit_3756[3] = {
+/* 80C88530-80C8853C -00001 000C+00 0/1 0/0 0/0 .data            @3756 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3756[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWait__13daKekaiTrap_cFv,
 };
+#pragma pop
 
-/* 80C8853C-80C88548 000C+00 s=0 e=0 z=0  None .data      @3757 */
-SECTION_DATA void* lit_3757[3] = {
+/* 80C8853C-80C88548 -00001 000C+00 0/1 0/0 0/0 .data            @3757 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3757[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeMoveUp__13daKekaiTrap_cFv,
 };
+#pragma pop
 
-/* 80C88548-80C88554 000C+00 s=0 e=0 z=0  None .data      @3758 */
-SECTION_DATA void* lit_3758[3] = {
+/* 80C88548-80C88554 -00001 000C+00 0/1 0/0 0/0 .data            @3758 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3758[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeMoveDown__13daKekaiTrap_cFv,
 };
+#pragma pop
 
-/* 80C88554-80C88578 0024+00 s=0 e=0 z=0  None .data      mode_proc$3755 */
-SECTION_DATA u8 data_80C88554[36] = {
+/* 80C88554-80C88578 000050 0024+00 0/1 0/0 0/0 .data            mode_proc$3755 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 mode_proc[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 80C88578-80C88598 0020+00 s=1 e=0 z=0  None .data      l_daKekaiTrap_Method */
+/* 80C88578-80C88598 -00001 0020+00 1/0 0/0 0/0 .data            l_daKekaiTrap_Method */
 SECTION_DATA static void* l_daKekaiTrap_Method[8] = {
     (void*)daKekaiTrap_Create__FP10fopAc_ac_c,
     (void*)daKekaiTrap_Delete__FP13daKekaiTrap_c,
@@ -286,8 +259,8 @@ SECTION_DATA static void* l_daKekaiTrap_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C88598-80C885C8 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Lv8KekkaiTrap */
-SECTION_DATA void* g_profile_Obj_Lv8KekkaiTrap[12] = {
+/* 80C88598-80C885C8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv8KekkaiTrap */
+SECTION_DATA extern void* g_profile_Obj_Lv8KekkaiTrap[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00A30000, (void*)&g_fpcLf_Method,
     (void*)0x000005B4, (void*)NULL,
@@ -296,8 +269,8 @@ SECTION_DATA void* g_profile_Obj_Lv8KekkaiTrap[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C885C8-80C885F0 0028+00 s=1 e=0 z=0  None .data      __vt__13daKekaiTrap_c */
-SECTION_DATA void* __vt__13daKekaiTrap_c[10] = {
+/* 80C885C8-80C885F0 0000C4 0028+00 1/1 0/0 0/0 .data            __vt__13daKekaiTrap_c */
+SECTION_DATA extern void* __vt__13daKekaiTrap_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__13daKekaiTrap_cFv,
@@ -310,29 +283,21 @@ SECTION_DATA void* __vt__13daKekaiTrap_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C885F0-80C885FC 000C+00 s=2 e=0 z=0  None .data      __vt__17daKekaiTrap_HIO_c */
-SECTION_DATA void* __vt__17daKekaiTrap_HIO_c[3] = {
+/* 80C885F0-80C885FC 0000EC 000C+00 2/2 0/0 0/0 .data            __vt__17daKekaiTrap_HIO_c */
+SECTION_DATA extern void* __vt__17daKekaiTrap_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17daKekaiTrap_HIO_cFv,
 };
 
-/* 80C885FC-80C88608 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA void* __vt__14mDoHIO_entry_c[3] = {
+/* 80C885FC-80C88608 0000F8 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80C87CAC-80C87CF8 004C+00 s=1 e=0 z=0  None .text      __ct__17daKekaiTrap_HIO_cFv */
-//	80C87CAC: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C87CB0: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C87CB8: 80C885F0 (__vt__17daKekaiTrap_HIO_c)
-//	80C87CBC: 80C885F0 (__vt__17daKekaiTrap_HIO_c)
-//	80C87CC4: 80C884E4 (lit_3651)
-//	80C87CC8: 80C884E4 (lit_3651)
-//	80C87CD0: 80C884E8 (lit_3652)
-//	80C87CD4: 80C884E8 (lit_3652)
+/* 80C87CAC-80C87CF8 0000EC 004C+00 1/1 0/0 0/0 .text            __ct__17daKekaiTrap_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,10 +307,7 @@ asm daKekaiTrap_HIO_c::daKekaiTrap_HIO_c() {
 }
 #pragma pop
 
-/* 80C87CF8-80C87D40 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
-//	80C87D10: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C87D14: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C87D24: 802CED3C (__dl__FPv)
+/* 80C87CF8-80C87D40 000138 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -355,16 +317,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80C87D40-80C87DC8 0088+00 s=2 e=0 z=0  None .text      setBaseMtx__13daKekaiTrap_cFv */
-//	80C87D54: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87D58: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87D68: 803468E8 (PSMTXTrans)
-//	80C87D6C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87D70: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87D80: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
-//	80C87DA0: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87DA4: 803DD470 (now__14mDoMtx_stack_c)
-//	80C87DB0: 803464B0 (PSMTXCopy)
+/* 80C87D40-80C87DC8 000180 0088+00 2/2 0/0 0/0 .text            setBaseMtx__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -374,15 +327,7 @@ asm void daKekaiTrap_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C87DC8-80C87E48 0080+00 s=1 e=0 z=0  None .text      CreateHeap__13daKekaiTrap_cFv */
-//	80C87DE4: 80C88524 (l_type)
-//	80C87DE8: 80C88524 (l_type)
-//	80C87DF0: 80C88528 (l_bmdIdx)
-//	80C87DF4: 80C88528 (l_bmdIdx)
-//	80C87DFC: 804061C0 (g_dComIfG_gameInfo)
-//	80C87E00: 804061C0 (g_dComIfG_gameInfo)
-//	80C87E10: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C87E20: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80C87DC8-80C87E48 000208 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -392,34 +337,7 @@ asm void daKekaiTrap_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C87E48-80C87FB0 0168+00 s=1 e=0 z=0  None .text      create__13daKekaiTrap_cFv */
-//	80C87E74: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80C87E78: 80C885C8 (__vt__13daKekaiTrap_c)
-//	80C87E7C: 80C885C8 (__vt__13daKekaiTrap_c)
-//	80C87EA8: 80C88524 (l_type)
-//	80C87EAC: 80C88524 (l_type)
-//	80C87EB4: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C87ED0: 80C88524 (l_type)
-//	80C87ED4: 80C88524 (l_type)
-//	80C87EDC: 80C8852C (l_dzbIdx)
-//	80C87EE0: 80C8852C (l_dzbIdx)
-//	80C87EE8: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C87EEC:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C87EF8:
-//800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
-//	80C87F24: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80C87F34: 804061C0 (g_dComIfG_gameInfo)
-//	80C87F38: 804061C0 (g_dComIfG_gameInfo)
-//	80C87F48: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C87F68: 804061C0 (g_dComIfG_gameInfo)
-//	80C87F6C: 804061C0 (g_dComIfG_gameInfo)
-//	80C87F74: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C87F78: 80C884E4 (lit_3651)
-//	80C87F7C: 80C884E4 (lit_3651)
-//	80C87F88: 80C88104 (init_modeWait__13daKekaiTrap_cFv)
-//	80C87F90: 80C87D40 (setBaseMtx__13daKekaiTrap_cFv)
+/* 80C87E48-80C87FB0 000288 0168+00 1/1 0/0 0/0 .text            create__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -429,9 +347,8 @@ asm void daKekaiTrap_c::create() {
 }
 #pragma pop
 
-/* 80C87FB0-80C88000 0050+00 s=1 e=0 z=0  None .text      Execute__13daKekaiTrap_cFPPA3_A4_f */
-//	80C87FCC: 80C88000 (moveMain__13daKekaiTrap_cFv)
-//	80C87FE0: 80C87D40 (setBaseMtx__13daKekaiTrap_cFv)
+/* 80C87FB0-80C88000 0003F0 0050+00 1/0 0/0 0/0 .text            Execute__13daKekaiTrap_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,28 +359,16 @@ asm void daKekaiTrap_c::Execute(f32 (**param_0)[3][4]) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C88610-80C8861C 000C+00 s=1 e=0 z=0  None .bss       @3645 */
+/* 80C88610-80C8861C 000008 000C+00 1/1 0/0 0/0 .bss             @3645 */
 static u8 lit_3645[12];
 
-/* 80C8861C-80C88638 001C+00 s=5 e=0 z=0  None .bss       l_HIO */
+/* 80C8861C-80C88638 000014 001C+00 5/5 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[28];
 
-/* 80C88638-80C8863C 0004+00 s=1 e=0 z=0  None .bss       None */
+/* 80C88638-80C8863C 000030 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C88638[4];
 
-/* 80C88000-80C88104 0104+00 s=1 e=0 z=0  None .text      moveMain__13daKekaiTrap_cFv */
-//	80C88010: 803621DC (_savegpr_29)
-//	80C88018: 80C88504 (cNullVec__6Z2Calc)
-//	80C8801C: 80C88504 (cNullVec__6Z2Calc)
-//	80C88020: 80C88638 (data_80C88638)
-//	80C88024: 80C88638 (data_80C88638)
-//	80C8808C: 804061C0 (g_dComIfG_gameInfo)
-//	80C88090: 804061C0 (g_dComIfG_gameInfo)
-//	80C880A0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C880C0: 80C88114 (init_modeMoveUp__13daKekaiTrap_cFv)
-//	80C880CC: 80C881F0 (init_modeMoveDown__13daKekaiTrap_cFv)
-//	80C880E4: 80362084 (__ptmf_scall)
-//	80C880F0: 80362228 (_restgpr_29)
+/* 80C88000-80C88104 000440 0104+00 1/1 0/0 0/0 .text            moveMain__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -473,7 +378,7 @@ asm void daKekaiTrap_c::moveMain() {
 }
 #pragma pop
 
-/* 80C88104-80C88110 000C+00 s=3 e=0 z=0  None .text      init_modeWait__13daKekaiTrap_cFv */
+/* 80C88104-80C88110 000544 000C+00 3/3 0/0 0/0 .text            init_modeWait__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -483,14 +388,13 @@ asm void daKekaiTrap_c::init_modeWait() {
 }
 #pragma pop
 
-/* 80C88110-80C88114 0004+00 s=1 e=0 z=0  None .text      modeWait__13daKekaiTrap_cFv */
+/* 80C88110-80C88114 000550 0004+00 1/0 0/0 0/0 .text            modeWait__13daKekaiTrap_cFv */
 void daKekaiTrap_c::modeWait() {
     /* empty function */
 }
 
-/* 80C88114-80C88138 0024+00 s=1 e=0 z=0  None .text      init_modeMoveUp__13daKekaiTrap_cFv */
-//	80C88114: 80C8861C (l_HIO)
-//	80C88118: 80C8861C (l_HIO)
+/* 80C88114-80C88138 000554 0024+00 1/1 0/0 0/0 .text            init_modeMoveUp__13daKekaiTrap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -500,17 +404,29 @@ asm void daKekaiTrap_c::init_modeMoveUp() {
 }
 #pragma pop
 
-/* 80C88138-80C881F0 00B8+00 s=1 e=0 z=0  None .text      modeMoveUp__13daKekaiTrap_cFv */
-//	80C88150: 80C884E4 (lit_3651)
-//	80C88154: 80C884E4 (lit_3651)
-//	80C88170: 80C8861C (l_HIO)
-//	80C88174: 80C8861C (l_HIO)
-//	80C88188: 80270740 (cLib_chaseF__FPfff)
-//	80C881A0: 8026F97C (cLib_addCalc__FPfffff)
-//	80C881BC: 804061C0 (g_dComIfG_gameInfo)
-//	80C881C0: 804061C0 (g_dComIfG_gameInfo)
-//	80C881CC: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80C881D4: 80C88104 (init_modeWait__13daKekaiTrap_cFv)
+/* ############################################################################################## */
+/* 80C884EC-80C884F0 000008 0004+00 0/2 0/0 0/0 .rodata          @3802 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3802 = 0x41F00000;
+SECTION_DEAD void* const cg_80C884EC = (void*)(&lit_3802);
+#pragma pop
+
+/* 80C884F0-80C884F4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3803 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3803 = 0x3F800000;
+SECTION_DEAD void* const cg_80C884F0 = (void*)(&lit_3803);
+#pragma pop
+
+/* 80C884F4-80C884F8 000010 0004+00 0/2 0/0 0/0 .rodata          @3804 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3804 = 0x3CF5C28F;
+SECTION_DEAD void* const cg_80C884F4 = (void*)(&lit_3804);
+#pragma pop
+
+/* 80C88138-80C881F0 000578 00B8+00 1/0 0/0 0/0 .text            modeMoveUp__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -520,9 +436,7 @@ asm void daKekaiTrap_c::modeMoveUp() {
 }
 #pragma pop
 
-/* 80C881F0-80C88214 0024+00 s=1 e=0 z=0  None .text      init_modeMoveDown__13daKekaiTrap_cFv */
-//	80C881F0: 80C8861C (l_HIO)
-//	80C881F4: 80C8861C (l_HIO)
+/* 80C881F0-80C88214 000630 0024+00 1/1 0/0 0/0 .text init_modeMoveDown__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -532,17 +446,7 @@ asm void daKekaiTrap_c::init_modeMoveDown() {
 }
 #pragma pop
 
-/* 80C88214-80C882C8 00B4+00 s=1 e=0 z=0  None .text      modeMoveDown__13daKekaiTrap_cFv */
-//	80C8822C: 80C884E4 (lit_3651)
-//	80C88230: 80C884E4 (lit_3651)
-//	80C8824C: 80C8861C (l_HIO)
-//	80C88250: 80C8861C (l_HIO)
-//	80C88264: 80270740 (cLib_chaseF__FPfff)
-//	80C8827C: 8026F97C (cLib_addCalc__FPfffff)
-//	80C88298: 804061C0 (g_dComIfG_gameInfo)
-//	80C8829C: 804061C0 (g_dComIfG_gameInfo)
-//	80C882A4: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C882AC: 80C88104 (init_modeWait__13daKekaiTrap_cFv)
+/* 80C88214-80C882C8 000654 00B4+00 1/0 0/0 0/0 .text            modeMoveDown__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -552,18 +456,7 @@ asm void daKekaiTrap_c::modeMoveDown() {
 }
 #pragma pop
 
-/* 80C882C8-80C8836C 00A4+00 s=1 e=0 z=0  None .text      Draw__13daKekaiTrap_cFv */
-//	80C882E0: 8042CA54 (g_env_light)
-//	80C882E4: 8042CA54 (g_env_light)
-//	80C882F4: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80C882F8: 8042CA54 (g_env_light)
-//	80C882FC: 8042CA54 (g_env_light)
-//	80C8830C: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C88310:
-// 804061C0 (g_dComIfG_gameInfo) 	80C88314: 804061C0 (g_dComIfG_gameInfo) 	80C8831C: 80434AC8
-// (j3dSys) 	80C88320: 80434AC8 (j3dSys) 	80C88334: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80C88338: 804061C0 (g_dComIfG_gameInfo)
-//	80C8833C: 804061C0 (g_dComIfG_gameInfo)
+/* 80C882C8-80C8836C 000708 00A4+00 1/0 0/0 0/0 .text            Draw__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -573,10 +466,7 @@ asm void daKekaiTrap_c::Draw() {
 }
 #pragma pop
 
-/* 80C8836C-80C883AC 0040+00 s=1 e=0 z=0  None .text      Delete__13daKekaiTrap_cFv */
-//	80C88388: 80C88524 (l_type)
-//	80C8838C: 80C88524 (l_type)
-//	80C88394: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80C8836C-80C883AC 0007AC 0040+00 1/0 0/0 0/0 .text            Delete__13daKekaiTrap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -586,55 +476,49 @@ asm void daKekaiTrap_c::Delete() {
 }
 #pragma pop
 
-/* 80C883AC-80C883D8 002C+00 s=1 e=0 z=0  None .text      daKekaiTrap_Draw__FP13daKekaiTrap_c */
+/* 80C883AC-80C883D8 0007EC 002C+00 1/0 0/0 0/0 .text            daKekaiTrap_Draw__FP13daKekaiTrap_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKekaiTrap_Draw(daKekaiTrap_c* param_0) {
+static asm void daKekaiTrap_Draw(daKekaiTrap_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/d_a_obj_lv8KekkaiTrap/daKekaiTrap_Draw__FP13daKekaiTrap_c.s"
 }
 #pragma pop
 
-/* 80C883D8-80C883F8 0020+00 s=1 e=0 z=0  None .text      daKekaiTrap_Execute__FP13daKekaiTrap_c */
-//	80C883E4: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
+/* 80C883D8-80C883F8 000818 0020+00 1/0 0/0 0/0 .text daKekaiTrap_Execute__FP13daKekaiTrap_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKekaiTrap_Execute(daKekaiTrap_c* param_0) {
+static asm void daKekaiTrap_Execute(daKekaiTrap_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/d_a_obj_lv8KekkaiTrap/daKekaiTrap_Execute__FP13daKekaiTrap_c.s"
 }
 #pragma pop
 
-/* 80C883F8-80C88418 0020+00 s=1 e=0 z=0  None .text      daKekaiTrap_Delete__FP13daKekaiTrap_c */
-//	80C88404: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
+/* 80C883F8-80C88418 000838 0020+00 1/0 0/0 0/0 .text daKekaiTrap_Delete__FP13daKekaiTrap_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKekaiTrap_Delete(daKekaiTrap_c* param_0) {
+static asm void daKekaiTrap_Delete(daKekaiTrap_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/d_a_obj_lv8KekkaiTrap/daKekaiTrap_Delete__FP13daKekaiTrap_c.s"
 }
 #pragma pop
 
-/* 80C88418-80C88438 0020+00 s=1 e=0 z=0  None .text      daKekaiTrap_Create__FP10fopAc_ac_c */
-//	80C88424: 80C87E48 (create__13daKekaiTrap_cFv)
+/* 80C88418-80C88438 000858 0020+00 1/0 0/0 0/0 .text            daKekaiTrap_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKekaiTrap_Create(fopAc_ac_c* param_0) {
+static asm void daKekaiTrap_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/d_a_obj_lv8KekkaiTrap/daKekaiTrap_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C88438-80C88494 005C+00 s=2 e=0 z=0  None .text      __dt__17daKekaiTrap_HIO_cFv */
-//	80C88450: 80C885F0 (__vt__17daKekaiTrap_HIO_c)
-//	80C88454: 80C885F0 (__vt__17daKekaiTrap_HIO_c)
-//	80C88460: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C88464: 80C885FC (__vt__14mDoHIO_entry_c)
-//	80C88478: 802CED3C (__dl__FPv)
+/* 80C88438-80C88494 000878 005C+00 2/1 0/0 0/0 .text            __dt__17daKekaiTrap_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,19 +528,12 @@ asm daKekaiTrap_HIO_c::~daKekaiTrap_HIO_c() {
 }
 #pragma pop
 
-/* 80C88494-80C884D0 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_lv8KekkaiTrap_cpp */
-//	80C884A0: 80C8861C (l_HIO)
-//	80C884A4: 80C8861C (l_HIO)
-//	80C884A8: 80C87CAC (__ct__17daKekaiTrap_HIO_cFv)
-//	80C884AC: 80C88438 (__dt__17daKekaiTrap_HIO_cFv)
-//	80C884B0: 80C88438 (__dt__17daKekaiTrap_HIO_cFv)
-//	80C884B4: 80C88610 (lit_3645)
-//	80C884B8: 80C88610 (lit_3645)
-//	80C884BC: 80C87C38 (__register_global_object)
+/* 80C88494-80C884D0 0008D4 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv8KekkaiTrap_cpp
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_lv8KekkaiTrap_cpp() {
+asm void __sinit_d_a_obj_lv8KekkaiTrap_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv8KekkaiTrap/d_a_obj_lv8KekkaiTrap/__sinit_d_a_obj_lv8KekkaiTrap_cpp.s"
 }
@@ -665,4 +542,11 @@ extern "C" asm void __sinit_d_a_obj_lv8KekkaiTrap_cpp() {
 #pragma push
 #pragma force_active on
 SECTION_CTORS void* const _ctors_80C88494 = (void*)__sinit_d_a_obj_lv8KekkaiTrap_cpp;
+#pragma pop
+
+/* 80C884F8-80C88502 000014 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C884F8 = "Lv8Kekkai";
 #pragma pop

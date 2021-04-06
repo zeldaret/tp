@@ -13,11 +13,11 @@ lbl_8011F360:
 /* 8011F38C  4B F9 C3 E5 */	bl setSpecialGravity__9daAlink_cFffi
 /* 8011F390  7F E3 FB 78 */	mr r3, r31
 /* 8011F394  38 80 00 19 */	li r4, 0x19
-/* 8011F398  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 8011F39C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 8011F398  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 8011F39C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 8011F3A0  C0 25 00 1C */	lfs f1, 0x1c(r5)
-/* 8011F3A4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha
-/* 8011F3A8  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l
+/* 8011F3A4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 8011F3A8  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 8011F3AC  C0 45 00 18 */	lfs f2, 0x18(r5)
 /* 8011F3B0  4B F8 DC 31 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8011F3B4  4B FA 0F 5D */	bl checkDungeon__9daAlink_cFv

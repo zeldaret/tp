@@ -24,17 +24,6 @@ struct JPABaseParticle {};
 // Forward References:
 //
 
-void JPACalcScaleX(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleY(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleCopy(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleAnmNormal(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleAnmRepeatX(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleAnmRepeatY(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleAnmReverseX(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcScaleAnmReverseY(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcAlphaAnm(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcAlphaFlickAnm(JPAEmitterWorkData*, JPABaseParticle*);
-
 extern "C" void JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPACalcScaleY__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPACalcScaleCopy__FP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -59,16 +48,15 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 //
 
 /* ############################################################################################## */
-/* 804552E0-804552E8 0004+04 s=6 e=0 z=0  None .sdata2    @2270 */
+/* 804552E0-804552E8 0038E0 0004+04 6/6 0/0 0/0 .sdata2          @2270 */
 SECTION_SDATA2 static f32 lit_2270[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8027A918-8027A990 0078+00 s=0 e=1 z=0  None .text
+/* 8027A918-8027A990 275258 0078+00 0/0 1/1 0/0 .text
  * JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle      */
-//	8027A964: 804552E0 (lit_2270)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,9 +66,8 @@ asm void JPACalcScaleX(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 8027A990-8027AA08 0078+00 s=0 e=1 z=0  None .text
+/* 8027A990-8027AA08 2752D0 0078+00 0/0 1/1 0/0 .text
  * JPACalcScaleY__FP18JPAEmitterWorkDataP15JPABaseParticle      */
-//	8027A9DC: 804552E0 (lit_2270)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -90,7 +77,7 @@ asm void JPACalcScaleY(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 8027AA08-8027AA14 000C+00 s=0 e=1 z=0  None .text
+/* 8027AA08-8027AA14 275348 000C+00 0/0 1/1 0/0 .text
  * JPACalcScaleCopy__FP18JPAEmitterWorkDataP15JPABaseParticle   */
 #pragma push
 #pragma optimization_level 0
@@ -101,7 +88,7 @@ asm void JPACalcScaleCopy(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 }
 #pragma pop
 
-/* 8027AA14-8027AA20 000C+00 s=0 e=1 z=0  None .text
+/* 8027AA14-8027AA20 275354 000C+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -113,12 +100,11 @@ asm void JPACalcScaleAnmNormal(JPAEmitterWorkData* param_0, JPABaseParticle* par
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552E8-804552F0 0008+00 s=5 e=0 z=0  None .sdata2    @2312 */
+/* 804552E8-804552F0 0038E8 0008+00 5/5 0/0 0/0 .sdata2          @2312 */
 SECTION_SDATA2 static f64 lit_2312 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8027AA20-8027AA84 0064+00 s=0 e=1 z=0  None .text
+/* 8027AA20-8027AA84 275360 0064+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmRepeatX__FP18JPAEmitterWorkDataP15JPABaseParticle */
-//	8027AA44: 804552E8 (lit_2312)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -128,9 +114,8 @@ asm void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* param_0, JPABaseParticle* pa
 }
 #pragma pop
 
-/* 8027AA84-8027AAE8 0064+00 s=0 e=1 z=0  None .text
+/* 8027AA84-8027AAE8 2753C4 0064+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmRepeatY__FP18JPAEmitterWorkDataP15JPABaseParticle */
-//	8027AAA8: 804552E8 (lit_2312)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -141,14 +126,11 @@ asm void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* param_0, JPABaseParticle* pa
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552F0-804552F4 0004+00 s=2 e=0 z=0  None .sdata2    @2339 */
+/* 804552F0-804552F4 0038F0 0004+00 2/2 0/0 0/0 .sdata2          @2339 */
 SECTION_SDATA2 static f32 lit_2339 = 2.0f;
 
-/* 8027AAE8-8027AB7C 0094+00 s=0 e=1 z=0  None .text
+/* 8027AAE8-8027AB7C 275428 0094+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmReverseX__FP18JPAEmitterWorkDataP15JPABaseParticle */
-//	8027AB0C: 804552E8 (lit_2312)
-//	8027AB58: 804552E0 (lit_2270)
-//	8027AB5C: 804552F0 (lit_2339)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,11 +140,8 @@ asm void JPACalcScaleAnmReverseX(JPAEmitterWorkData* param_0, JPABaseParticle* p
 }
 #pragma pop
 
-/* 8027AB7C-8027AC10 0094+00 s=0 e=1 z=0  None .text
+/* 8027AB7C-8027AC10 2754BC 0094+00 0/0 1/1 0/0 .text
  * JPACalcScaleAnmReverseY__FP18JPAEmitterWorkDataP15JPABaseParticle */
-//	8027ABA0: 804552E8 (lit_2312)
-//	8027ABEC: 804552E0 (lit_2270)
-//	8027ABF0: 804552F0 (lit_2339)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -173,14 +152,11 @@ asm void JPACalcScaleAnmReverseY(JPAEmitterWorkData* param_0, JPABaseParticle* p
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552F4-804552F8 0004+00 s=2 e=0 z=0  None .sdata2    @2390 */
+/* 804552F4-804552F8 0038F4 0004+00 2/2 0/0 0/0 .sdata2          @2390 */
 SECTION_SDATA2 static f32 lit_2390 = 255.0f;
 
-/* 8027AC10-8027AC98 0088+00 s=0 e=1 z=0  None .text
+/* 8027AC10-8027AC98 275550 0088+00 0/0 1/1 0/0 .text
  * JPACalcAlphaAnm__FP18JPAEmitterWorkDataP15JPABaseParticle    */
-//	8027AC30: 804552F4 (lit_2390)
-//	8027AC58: 804552F4 (lit_2390)
-//	8027AC78: 804552F4 (lit_2390)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -191,21 +167,14 @@ asm void JPACalcAlphaAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552F8-804552FC 0004+00 s=1 e=0 z=0  None .sdata2    @2433 */
+/* 804552F8-804552FC 0038F8 0004+00 1/1 0/0 0/0 .sdata2          @2433 */
 SECTION_SDATA2 static f32 lit_2433 = 16384.0f;
 
-/* 804552FC-80455300 0004+00 s=1 e=0 z=0  None .sdata2    @2434 */
+/* 804552FC-80455300 0038FC 0004+00 1/1 0/0 0/0 .sdata2          @2434 */
 SECTION_SDATA2 static f32 lit_2434 = 0.5f;
 
-/* 8027AC98-8027AD88 00F0+00 s=0 e=1 z=0  None .text
+/* 8027AC98-8027AD88 2755D8 00F0+00 0/0 1/1 0/0 .text
  * JPACalcAlphaFlickAnm__FP18JPAEmitterWorkDataP15JPABaseParticle */
-//	8027ACF4: 804552F8 (lit_2433)
-//	8027AD00: 804552E8 (lit_2312)
-//	8027AD24: 804552E0 (lit_2270)
-//	8027AD44: 80439A20 (sincosTable___5JMath)
-//	8027AD48: 80439A20 (sincosTable___5JMath)
-//	8027AD50: 804552F4 (lit_2390)
-//	8027AD54: 804552FC (lit_2434)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,8 +184,7 @@ asm void JPACalcAlphaFlickAnm(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 8027AD88-8027ADBC 0034+00 s=0 e=1 z=0  None .text      __ct__13JPAExtraShapeFPCUc */
-//	8027ADA0: 8027ADBC (init__13JPAExtraShapeFv)
+/* 8027AD88-8027ADBC 2756C8 0034+00 0/0 1/1 0/0 .text            __ct__13JPAExtraShapeFPCUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,21 +195,14 @@ asm JPAExtraShape::JPAExtraShape(u8 const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455300-80455308 0004+04 s=1 e=0 z=0  None .sdata2    @2503 */
+/* 80455300-80455308 003900 0004+04 1/1 0/0 0/0 .sdata2          @2503 */
 SECTION_SDATA2 static f32 lit_2503[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 8027ADBC-8027AEBC 0100+00 s=1 e=0 z=0  None .text      init__13JPAExtraShapeFv */
-//	8027ADBC: 80455300 (lit_2503)
-//	8027ADE4: 804552E0 (lit_2270)
-//	8027ADEC: 804552E0 (lit_2270)
-//	8027AE18: 80455300 (lit_2503)
-//	8027AE2C: 804552E0 (lit_2270)
-//	8027AE5C: 804552E0 (lit_2270)
-//	8027AE68: 804552E0 (lit_2270)
+/* 8027ADBC-8027AEBC 2756FC 0100+00 1/1 0/0 0/0 .text            init__13JPAExtraShapeFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

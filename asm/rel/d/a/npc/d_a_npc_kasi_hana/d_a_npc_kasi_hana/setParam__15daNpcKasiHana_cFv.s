@@ -14,20 +14,20 @@ lbl_80A1C9D0:
 /* 80A1CA00  4B FF EA 11 */	bl initPath__15daNpcKasi_Mng_cFUcUs
 lbl_80A1CA04:
 /* 80A1CA04  7F E3 FB 78 */	mr r3, r31
-/* 80A1CA08  3C 80 80 A2 */	lis r4, m__21daNpcKasiHana_Param_c@ha
-/* 80A1CA0C  38 A4 10 C8 */	addi r5, r4, m__21daNpcKasiHana_Param_c@l
+/* 80A1CA08  3C 80 80 A2 */	lis r4, m__21daNpcKasiHana_Param_c@ha /* 0x80A210C8@ha */
+/* 80A1CA0C  38 A4 10 C8 */	addi r5, r4, m__21daNpcKasiHana_Param_c@l /* 0x80A210C8@l */
 /* 80A1CA10  A8 85 00 4C */	lha r4, 0x4c(r5)
 /* 80A1CA14  A8 A5 00 4E */	lha r5, 0x4e(r5)
-/* 80A1CA18  4B 73 78 60 */	b getDistTableIdx__8daNpcF_cFii
+/* 80A1CA18  4B 73 78 61 */	bl getDistTableIdx__8daNpcF_cFii
 /* 80A1CA1C  98 7F 05 44 */	stb r3, 0x544(r31)
 /* 80A1CA20  88 1F 05 44 */	lbz r0, 0x544(r31)
 /* 80A1CA24  98 1F 05 45 */	stb r0, 0x545(r31)
 /* 80A1CA28  7F E3 FB 78 */	mr r3, r31
-/* 80A1CA2C  3C 80 80 A2 */	lis r4, m__21daNpcKasiHana_Param_c@ha
-/* 80A1CA30  38 A4 10 C8 */	addi r5, r4, m__21daNpcKasiHana_Param_c@l
+/* 80A1CA2C  3C 80 80 A2 */	lis r4, m__21daNpcKasiHana_Param_c@ha /* 0x80A210C8@ha */
+/* 80A1CA30  38 A4 10 C8 */	addi r5, r4, m__21daNpcKasiHana_Param_c@l /* 0x80A210C8@l */
 /* 80A1CA34  A8 85 00 48 */	lha r4, 0x48(r5)
 /* 80A1CA38  A8 A5 00 4A */	lha r5, 0x4a(r5)
-/* 80A1CA3C  4B 73 78 3C */	b getDistTableIdx__8daNpcF_cFii
+/* 80A1CA3C  4B 73 78 3D */	bl getDistTableIdx__8daNpcF_cFii
 /* 80A1CA40  98 7F 05 47 */	stb r3, 0x547(r31)
 /* 80A1CA44  38 00 00 0A */	li r0, 0xa
 /* 80A1CA48  90 1F 05 5C */	stw r0, 0x55c(r31)

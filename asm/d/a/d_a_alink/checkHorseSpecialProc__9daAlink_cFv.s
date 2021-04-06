@@ -5,8 +5,8 @@ lbl_800EDD6C:
 /* 800EDD78  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800EDD7C  93 C1 00 08 */	stw r30, 8(r1)
 /* 800EDD80  7C 7E 1B 78 */	mr r30, r3
-/* 800EDD84  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800EDD88  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800EDD84  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EDD88  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EDD8C  83 E4 5D B8 */	lwz r31, 0x5db8(r4)
 /* 800EDD90  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 800EDD94  81 8C 01 88 */	lwz r12, 0x188(r12)

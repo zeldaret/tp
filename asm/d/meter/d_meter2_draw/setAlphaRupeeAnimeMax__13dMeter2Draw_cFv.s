@@ -5,8 +5,8 @@ lbl_80216990:
 /* 8021699C  39 61 00 30 */	addi r11, r1, 0x30
 /* 802169A0  48 14 B8 35 */	bl _savegpr_27
 /* 802169A4  7C 7B 1B 78 */	mr r27, r3
-/* 802169A8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802169AC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802169A8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802169AC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802169B0  C0 43 03 58 */	lfs f2, 0x358(r3)
 /* 802169B4  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 802169B8  C0 03 03 48 */	lfs f0, 0x348(r3)

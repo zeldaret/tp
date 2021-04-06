@@ -9,9 +9,9 @@ lbl_80D0C068:
 /* 80D0C084  40 82 00 28 */	bne lbl_80D0C0AC
 /* 80D0C088  28 1F 00 00 */	cmplwi r31, 0
 /* 80D0C08C  41 82 00 14 */	beq lbl_80D0C0A0
-/* 80D0C090  4B 36 C5 94 */	b __ct__16dBgS_MoveBgActorFv
-/* 80D0C094  3C 60 80 D1 */	lis r3, __vt__11daObjGake_c@ha
-/* 80D0C098  38 03 C1 98 */	addi r0, r3, __vt__11daObjGake_c@l
+/* 80D0C090  4B 36 C5 95 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80D0C094  3C 60 80 D1 */	lis r3, __vt__11daObjGake_c@ha /* 0x80D0C198@ha */
+/* 80D0C098  38 03 C1 98 */	addi r0, r3, __vt__11daObjGake_c@l /* 0x80D0C198@l */
 /* 80D0C09C  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_80D0C0A0:
 /* 80D0C0A0  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

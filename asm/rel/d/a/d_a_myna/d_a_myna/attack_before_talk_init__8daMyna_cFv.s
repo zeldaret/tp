@@ -9,11 +9,11 @@ lbl_80946AEC:
 /* 80946B08  A0 BF 09 1C */	lhz r5, 0x91c(r31)
 /* 80946B0C  38 C0 00 00 */	li r6, 0
 /* 80946B10  38 E0 00 00 */	li r7, 0
-/* 80946B14  4B 90 34 7C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80946B14  4B 90 34 7D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80946B18  7F E3 FB 78 */	mr r3, r31
 /* 80946B1C  38 80 00 0A */	li r4, 0xa
-/* 80946B20  3C A0 80 95 */	lis r5, lit_3926@ha
-/* 80946B24  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)
+/* 80946B20  3C A0 80 95 */	lis r5, lit_3926@ha /* 0x8094B1F0@ha */
+/* 80946B24  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)  /* 0x8094B1F0@l */
 /* 80946B28  48 00 35 2D */	bl setAnimeType__8daMyna_cFUcf
 /* 80946B2C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80946B30  80 01 00 14 */	lwz r0, 0x14(r1)

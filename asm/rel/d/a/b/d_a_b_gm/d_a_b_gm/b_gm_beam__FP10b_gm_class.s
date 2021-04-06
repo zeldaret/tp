@@ -5,8 +5,8 @@ lbl_805EEE50:
 /* 805EEE5C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805EEE60  93 C1 00 08 */	stw r30, 8(r1)
 /* 805EEE64  7C 7E 1B 78 */	mr r30, r3
-/* 805EEE68  3C 80 80 5F */	lis r4, lit_3774@ha
-/* 805EEE6C  3B E4 41 88 */	addi r31, r4, lit_3774@l
+/* 805EEE68  3C 80 80 5F */	lis r4, lit_3774@ha /* 0x805F4188@ha */
+/* 805EEE6C  3B E4 41 88 */	addi r31, r4, lit_3774@l /* 0x805F4188@l */
 /* 805EEE70  A8 03 07 20 */	lha r0, 0x720(r3)
 /* 805EEE74  2C 00 00 02 */	cmpwi r0, 2
 /* 805EEE78  41 82 00 4C */	beq lbl_805EEEC4
@@ -63,7 +63,7 @@ lbl_805EEF24:
 /* 805EEF30  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805EEF34  FC 40 08 90 */	fmr f2, f1
 /* 805EEF38  C0 7F 00 28 */	lfs f3, 0x28(r31)
-/* 805EEF3C  4B C8 0B 00 */	b cLib_addCalc2__FPffff
+/* 805EEF3C  4B C8 0B 01 */	bl cLib_addCalc2__FPffff
 /* 805EEF40  A8 1E 07 22 */	lha r0, 0x722(r30)
 /* 805EEF44  2C 00 00 00 */	cmpwi r0, 0
 /* 805EEF48  40 82 00 88 */	bne lbl_805EEFD0
@@ -80,7 +80,7 @@ lbl_805EEF70:
 /* 805EEF70  38 7E 06 C0 */	addi r3, r30, 0x6c0
 /* 805EEF74  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805EEF78  C0 5F 00 28 */	lfs f2, 0x28(r31)
-/* 805EEF7C  4B C8 0B 04 */	b cLib_addCalc0__FPfff
+/* 805EEF7C  4B C8 0B 05 */	bl cLib_addCalc0__FPfff
 /* 805EEF80  80 7E 05 DC */	lwz r3, 0x5dc(r30)
 /* 805EEF84  38 80 00 01 */	li r4, 1
 /* 805EEF88  88 03 00 11 */	lbz r0, 0x11(r3)
@@ -107,12 +107,12 @@ lbl_805EEFD0:
 /* 805EEFD4  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 805EEFD8  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805EEFDC  C0 7F 00 7C */	lfs f3, 0x7c(r31)
-/* 805EEFE0  3C 80 80 5F */	lis r4, l_HIO@ha
-/* 805EEFE4  38 84 47 DC */	addi r4, r4, l_HIO@l
+/* 805EEFE0  3C 80 80 5F */	lis r4, l_HIO@ha /* 0x805F47DC@ha */
+/* 805EEFE4  38 84 47 DC */	addi r4, r4, l_HIO@l /* 0x805F47DC@l */
 /* 805EEFE8  C0 04 00 10 */	lfs f0, 0x10(r4)
 /* 805EEFEC  EC 03 00 32 */	fmuls f0, f3, f0
 /* 805EEFF0  EC 62 00 2A */	fadds f3, f2, f0
-/* 805EEFF4  4B C8 0A 48 */	b cLib_addCalc2__FPffff
+/* 805EEFF4  4B C8 0A 49 */	bl cLib_addCalc2__FPffff
 /* 805EEFF8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 805EEFFC  83 C1 00 08 */	lwz r30, 8(r1)
 /* 805EF000  80 01 00 14 */	lwz r0, 0x14(r1)

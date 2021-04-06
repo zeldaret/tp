@@ -1,6 +1,6 @@
 lbl_8083779C:
-/* 8083779C  3C 60 80 83 */	lis r3, cNullVec__6Z2Calc@ha
-/* 808377A0  38 83 79 2C */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 8083779C  3C 60 80 83 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8083792C@ha */
+/* 808377A0  38 83 79 2C */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x8083792C@l */
 /* 808377A4  80 64 00 20 */	lwz r3, 0x20(r4)
 /* 808377A8  80 04 00 24 */	lwz r0, 0x24(r4)
 /* 808377AC  90 64 00 98 */	stw r3, 0x98(r4)

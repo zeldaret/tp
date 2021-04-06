@@ -5,12 +5,12 @@ lbl_802FC050:
 /* 802FC05C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802FC060  7C 7F 1B 78 */	mr r31, r3
 /* 802FC064  4B FF 9B 95 */	bl __ct__7J2DPaneFv
-/* 802FC068  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha
-/* 802FC06C  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l
+/* 802FC068  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha /* 0x803CD1D8@ha */
+/* 802FC06C  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l /* 0x803CD1D8@l */
 /* 802FC070  90 1F 00 00 */	stw r0, 0(r31)
 /* 802FC074  38 7F 01 0A */	addi r3, r31, 0x10a
-/* 802FC078  3C 80 80 30 */	lis r4, func_802FF204@ha
-/* 802FC07C  38 84 F2 04 */	addi r4, r4, func_802FF204@l
+/* 802FC078  3C 80 80 30 */	lis r4, func_802FF204@ha /* 0x802FF204@ha */
+/* 802FC07C  38 84 F2 04 */	addi r4, r4, func_802FF204@l /* 0x802FF204@l */
 /* 802FC080  38 A0 00 00 */	li r5, 0
 /* 802FC084  38 C0 00 04 */	li r6, 4
 /* 802FC088  38 E0 00 04 */	li r7, 4
@@ -21,8 +21,8 @@ lbl_802FC050:
 /* 802FC09C  90 1F 01 30 */	stw r0, 0x130(r31)
 /* 802FC0A0  90 1F 01 34 */	stw r0, 0x134(r31)
 /* 802FC0A4  38 7F 01 38 */	addi r3, r31, 0x138
-/* 802FC0A8  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 802FC0AC  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 802FC0A8  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 802FC0AC  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 802FC0B0  38 A0 00 00 */	li r5, 0
 /* 802FC0B4  38 C0 00 04 */	li r6, 4
 /* 802FC0B8  38 E0 00 04 */	li r7, 4

@@ -14,10 +14,10 @@ lbl_806B1B60:
 lbl_806B1B90:
 /* 806B1B90  38 80 00 17 */	li r4, 0x17
 /* 806B1B94  38 A0 00 02 */	li r5, 2
-/* 806B1B98  3C C0 80 6B */	lis r6, lit_3797@ha
-/* 806B1B9C  C0 26 5C E8 */	lfs f1, lit_3797@l(r6)
-/* 806B1BA0  3C C0 80 6B */	lis r6, lit_3868@ha
-/* 806B1BA4  C0 46 5C FC */	lfs f2, lit_3868@l(r6)
+/* 806B1B98  3C C0 80 6B */	lis r6, lit_3797@ha /* 0x806B5CE8@ha */
+/* 806B1B9C  C0 26 5C E8 */	lfs f1, lit_3797@l(r6)  /* 0x806B5CE8@l */
+/* 806B1BA0  3C C0 80 6B */	lis r6, lit_3868@ha /* 0x806B5CFC@ha */
+/* 806B1BA4  C0 46 5C FC */	lfs f2, lit_3868@l(r6)  /* 0x806B5CFC@l */
 /* 806B1BA8  4B FF CA A5 */	bl setBck__8daE_DT_cFiUcff
 /* 806B1BAC  38 00 00 1E */	li r0, 0x1e
 /* 806B1BB0  90 1F 07 58 */	stw r0, 0x758(r31)

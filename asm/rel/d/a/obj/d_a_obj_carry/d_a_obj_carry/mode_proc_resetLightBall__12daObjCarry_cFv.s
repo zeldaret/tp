@@ -5,11 +5,11 @@ lbl_80475598:
 /* 804755A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804755A8  7C 7F 1B 78 */	mr r31, r3
 /* 804755AC  38 7F 04 EC */	addi r3, r31, 0x4ec
-/* 804755B0  3C 80 80 48 */	lis r4, lit_4685@ha
-/* 804755B4  C0 24 A3 CC */	lfs f1, lit_4685@l(r4)
-/* 804755B8  3C 80 80 48 */	lis r4, lit_5551@ha
-/* 804755BC  C0 44 A4 10 */	lfs f2, lit_5551@l(r4)
-/* 804755C0  4B DF B1 80 */	b cLib_chaseF__FPfff
+/* 804755B0  3C 80 80 48 */	lis r4, lit_4685@ha /* 0x8047A3CC@ha */
+/* 804755B4  C0 24 A3 CC */	lfs f1, lit_4685@l(r4)  /* 0x8047A3CC@l */
+/* 804755B8  3C 80 80 48 */	lis r4, lit_5551@ha /* 0x8047A410@ha */
+/* 804755BC  C0 44 A4 10 */	lfs f2, lit_5551@l(r4)  /* 0x8047A410@l */
+/* 804755C0  4B DF B1 81 */	bl cLib_chaseF__FPfff
 /* 804755C4  2C 03 00 00 */	cmpwi r3, 0
 /* 804755C8  41 82 00 1C */	beq lbl_804755E4
 /* 804755CC  38 00 00 0A */	li r0, 0xa
@@ -25,7 +25,7 @@ lbl_804755E4:
 /* 804755F0  D0 1F 04 F4 */	stfs f0, 0x4f4(r31)
 /* 804755F4  7F E3 FB 78 */	mr r3, r31
 /* 804755F8  38 80 00 00 */	li r4, 0
-/* 804755FC  4B BA 50 D0 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 804755FC  4B BA 50 D1 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80475600  38 60 00 01 */	li r3, 1
 /* 80475604  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80475608  80 01 00 14 */	lwz r0, 0x14(r1)

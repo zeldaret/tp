@@ -5,14 +5,14 @@ lbl_801ED490:
 /* 801ED49C  A8 A3 06 80 */	lha r5, 0x680(r3)
 /* 801ED4A0  7C A0 07 35 */	extsh. r0, r5
 /* 801ED4A4  40 82 00 18 */	bne lbl_801ED4BC
-/* 801ED4A8  3C 80 80 43 */	lis r4, g_ringHIO@ha
-/* 801ED4AC  38 84 FA FC */	addi r4, r4, g_ringHIO@l
+/* 801ED4A8  3C 80 80 43 */	lis r4, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801ED4AC  38 84 FA FC */	addi r4, r4, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801ED4B0  A8 04 01 46 */	lha r0, 0x146(r4)
 /* 801ED4B4  B0 03 06 80 */	sth r0, 0x680(r3)
 /* 801ED4B8  48 00 00 38 */	b lbl_801ED4F0
 lbl_801ED4BC:
-/* 801ED4BC  3C 80 80 43 */	lis r4, g_ringHIO@ha
-/* 801ED4C0  38 84 FA FC */	addi r4, r4, g_ringHIO@l
+/* 801ED4BC  3C 80 80 43 */	lis r4, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801ED4C0  38 84 FA FC */	addi r4, r4, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801ED4C4  A8 04 01 44 */	lha r0, 0x144(r4)
 /* 801ED4C8  7C 05 00 00 */	cmpw r5, r0
 /* 801ED4CC  40 80 00 24 */	bge lbl_801ED4F0

@@ -8,8 +8,8 @@ lbl_801395B4:
 /* 801395CC  7C 80 01 10 */	subfe r4, r0, r0
 /* 801395D0  38 84 02 BE */	addi r4, r4, 0x2be
 /* 801395D4  38 A0 00 02 */	li r5, 2
-/* 801395D8  3C C0 80 39 */	lis r6, m__22daAlinkHIO_wlAtBite_c0@ha
-/* 801395DC  38 C6 F7 48 */	addi r6, r6, m__22daAlinkHIO_wlAtBite_c0@l
+/* 801395D8  3C C0 80 39 */	lis r6, m__22daAlinkHIO_wlAtBite_c0@ha /* 0x8038F748@ha */
+/* 801395DC  38 C6 F7 48 */	addi r6, r6, m__22daAlinkHIO_wlAtBite_c0@l /* 0x8038F748@l */
 /* 801395E0  C0 26 00 2C */	lfs f1, 0x2c(r6)
 /* 801395E4  38 C0 FF FF */	li r6, -1
 /* 801395E8  C0 62 92 BC */	lfs f3, lit_6041(r2)

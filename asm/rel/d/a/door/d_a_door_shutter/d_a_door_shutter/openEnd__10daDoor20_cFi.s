@@ -7,11 +7,11 @@ lbl_80462328:
 /* 8046233C  A0 03 06 8E */	lhz r0, 0x68e(r3)
 /* 80462340  54 00 04 3C */	rlwinm r0, r0, 0, 0x10, 0x1e
 /* 80462344  B0 03 06 8E */	sth r0, 0x68e(r3)
-/* 80462348  4B BD 7E 40 */	b getKind__13door_param2_cFP10fopAc_ac_c
+/* 80462348  4B BD 7E 41 */	bl getKind__13door_param2_cFP10fopAc_ac_c
 /* 8046234C  28 03 00 0C */	cmplwi r3, 0xc
 /* 80462350  41 81 00 1C */	bgt lbl_8046236C
-/* 80462354  3C 80 80 46 */	lis r4, lit_4638@ha
-/* 80462358  38 84 6F 6C */	addi r4, r4, lit_4638@l
+/* 80462354  3C 80 80 46 */	lis r4, lit_4638@ha /* 0x80466F6C@ha */
+/* 80462358  38 84 6F 6C */	addi r4, r4, lit_4638@l /* 0x80466F6C@l */
 /* 8046235C  54 60 10 3A */	slwi r0, r3, 2
 /* 80462360  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80462364  7C 09 03 A6 */	mtctr r0

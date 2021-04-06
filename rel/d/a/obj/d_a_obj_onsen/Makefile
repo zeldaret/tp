@@ -3,17 +3,15 @@
 #
 
 M586_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen.plf
+M586_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen.lcf
+M586_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen.map
 
 M586_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_onsen/executor.cpp \
-	rel/d/a/obj/d_a_obj_onsen/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_onsen/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen.cpp \
 
 M586_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen.o \
 
 M586_LIBS := \
@@ -29,15 +27,21 @@ M586_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map586.map\
+	-m _prolog \
+	-lcf $(M586_LDSCRIPT) \
+	-unused -map $(M586_MAP) \
+	-w off \
 
 $(M586_TARGET): $(M586_O_FILES) $(M586_LIBS)
+	@echo [586] creating $(M586_TARGET)
 	@echo $(M586_LIBS) $(M586_O_FILES) > build/M586_ofiles
-	$(LD) -opt_partial $(M586_LDFLAGS) -o $(M586_TARGET) @build/M586_ofiles
+	@python3 tools/lcf.py rel 586 --output $(M586_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M586_LDFLAGS) -o $(M586_TARGET) @build/M586_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsen/%.o: rel/d/a/obj/d_a_obj_onsen/%.cpp
+	@echo [586] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M586_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M586_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -11,9 +11,6 @@
 // Forward References:
 //
 
-void fpcSch_JudgeForPName(void*, void*);
-void fpcSch_JudgeByID(void*, void*);
-
 extern "C" void fpcSch_JudgeForPName__FPvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();
 
@@ -25,7 +22,7 @@ extern "C" void fpcSch_JudgeByID__FPvPv();
 // Declarations:
 //
 
-/* 80023578-80023590 0018+00 s=0 e=3 z=77  None .text      fpcSch_JudgeForPName__FPvPv */
+/* 80023578-80023590 01DEB8 0018+00 0/0 3/3 77/77 .text            fpcSch_JudgeForPName__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -35,7 +32,7 @@ asm void fpcSch_JudgeForPName(void* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 80023590-800235A8 0018+00 s=0 e=44 z=270  None .text      fpcSch_JudgeByID__FPvPv */
+/* 80023590-800235A8 01DED0 0018+00 0/0 44/44 270/270 .text            fpcSch_JudgeByID__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

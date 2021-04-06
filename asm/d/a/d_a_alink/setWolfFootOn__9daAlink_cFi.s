@@ -8,8 +8,8 @@ lbl_80121214:
 /* 8012122C  3B BF 1F E8 */	addi r29, r31, 0x1fe8
 /* 80121230  7F A3 EB 78 */	mr r3, r29
 /* 80121234  54 9E 20 36 */	slwi r30, r4, 4
-/* 80121238  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha
-/* 8012123C  38 84 FB 5C */	addi r4, r4, l_wolfFootOnFrame@l
+/* 80121238  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha /* 0x8038FB5C@ha */
+/* 8012123C  38 84 FB 5C */	addi r4, r4, l_wolfFootOnFrame@l /* 0x8038FB5C@l */
 /* 80121240  7C 24 F4 2E */	lfsx f1, r4, r30
 /* 80121244  48 20 71 E9 */	bl checkPass__12J3DFrameCtrlFf
 /* 80121248  2C 03 00 00 */	cmpwi r3, 0
@@ -20,8 +20,8 @@ lbl_80121214:
 /* 8012125C  48 00 00 90 */	b lbl_801212EC
 lbl_80121260:
 /* 80121260  7F A3 EB 78 */	mr r3, r29
-/* 80121264  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha
-/* 80121268  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l
+/* 80121264  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha /* 0x8038FB5C@ha */
+/* 80121268  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l /* 0x8038FB5C@l */
 /* 8012126C  7C 80 F2 14 */	add r4, r0, r30
 /* 80121270  C0 24 00 04 */	lfs f1, 4(r4)
 /* 80121274  48 20 71 B9 */	bl checkPass__12J3DFrameCtrlFf
@@ -33,8 +33,8 @@ lbl_80121260:
 /* 8012128C  48 00 00 60 */	b lbl_801212EC
 lbl_80121290:
 /* 80121290  7F A3 EB 78 */	mr r3, r29
-/* 80121294  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha
-/* 80121298  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l
+/* 80121294  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha /* 0x8038FB5C@ha */
+/* 80121298  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l /* 0x8038FB5C@l */
 /* 8012129C  7C 80 F2 14 */	add r4, r0, r30
 /* 801212A0  C0 24 00 08 */	lfs f1, 8(r4)
 /* 801212A4  48 20 71 89 */	bl checkPass__12J3DFrameCtrlFf
@@ -46,8 +46,8 @@ lbl_80121290:
 /* 801212BC  48 00 00 30 */	b lbl_801212EC
 lbl_801212C0:
 /* 801212C0  7F A3 EB 78 */	mr r3, r29
-/* 801212C4  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha
-/* 801212C8  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l
+/* 801212C4  3C 80 80 39 */	lis r4, l_wolfFootOnFrame@ha /* 0x8038FB5C@ha */
+/* 801212C8  38 04 FB 5C */	addi r0, r4, l_wolfFootOnFrame@l /* 0x8038FB5C@l */
 /* 801212CC  7C 80 F2 14 */	add r4, r0, r30
 /* 801212D0  C0 24 00 0C */	lfs f1, 0xc(r4)
 /* 801212D4  48 20 71 59 */	bl checkPass__12J3DFrameCtrlFf

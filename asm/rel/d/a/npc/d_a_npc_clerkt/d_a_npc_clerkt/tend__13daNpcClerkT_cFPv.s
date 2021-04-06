@@ -22,12 +22,12 @@ lbl_8099B514:
 /* 8099B528  41 82 00 28 */	beq lbl_8099B550
 /* 8099B52C  83 DF 0B 5C */	lwz r30, 0xb5c(r31)
 /* 8099B530  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 8099B534  4B 7A A3 64 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 8099B534  4B 7A A3 65 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 8099B538  93 DF 0B 5C */	stw r30, 0xb5c(r31)
 /* 8099B53C  38 00 00 01 */	li r0, 1
 /* 8099B540  90 1F 0B 58 */	stw r0, 0xb58(r31)
-/* 8099B544  3C 60 80 9A */	lis r3, lit_4829@ha
-/* 8099B548  C0 03 D3 08 */	lfs f0, lit_4829@l(r3)
+/* 8099B544  3C 60 80 9A */	lis r3, lit_4829@ha /* 0x8099D308@ha */
+/* 8099B548  C0 03 D3 08 */	lfs f0, lit_4829@l(r3)  /* 0x8099D308@l */
 /* 8099B54C  D0 1F 0B 68 */	stfs f0, 0xb68(r31)
 lbl_8099B550:
 /* 8099B550  80 1F 0B 7C */	lwz r0, 0xb7c(r31)
@@ -35,12 +35,12 @@ lbl_8099B550:
 /* 8099B558  41 82 00 28 */	beq lbl_8099B580
 /* 8099B55C  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 8099B560  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 8099B564  4B 7A A3 34 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 8099B564  4B 7A A3 35 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 8099B568  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 8099B56C  38 00 00 00 */	li r0, 0
 /* 8099B570  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 8099B574  3C 60 80 9A */	lis r3, lit_4829@ha
-/* 8099B578  C0 03 D3 08 */	lfs f0, lit_4829@l(r3)
+/* 8099B574  3C 60 80 9A */	lis r3, lit_4829@ha /* 0x8099D308@ha */
+/* 8099B578  C0 03 D3 08 */	lfs f0, lit_4829@l(r3)  /* 0x8099D308@l */
 /* 8099B57C  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_8099B580:
 /* 8099B580  38 00 00 02 */	li r0, 2
@@ -63,11 +63,11 @@ lbl_8099B5AC:
 /* 8099B5BC  2C 00 00 00 */	cmpwi r0, 0
 /* 8099B5C0  41 82 00 28 */	beq lbl_8099B5E8
 /* 8099B5C4  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 8099B5C8  4B 7A A1 34 */	b remove__18daNpcT_ActorMngr_cFv
+/* 8099B5C8  4B 7A A1 35 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 8099B5CC  38 00 00 00 */	li r0, 0
 /* 8099B5D0  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 8099B5D4  3C 60 80 9A */	lis r3, lit_4123@ha
-/* 8099B5D8  C0 03 D2 F0 */	lfs f0, lit_4123@l(r3)
+/* 8099B5D4  3C 60 80 9A */	lis r3, lit_4123@ha /* 0x8099D2F0@ha */
+/* 8099B5D8  C0 03 D2 F0 */	lfs f0, lit_4123@l(r3)  /* 0x8099D2F0@l */
 /* 8099B5DC  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 8099B5E0  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 8099B5E4  90 1F 0C E0 */	stw r0, 0xce0(r31)

@@ -1,6 +1,6 @@
 lbl_800433F0:
-/* 800433F0  3C 80 80 3A */	lis r4, __vt__11dEvt_info_c@ha
-/* 800433F4  38 04 35 D0 */	addi r0, r4, __vt__11dEvt_info_c@l
+/* 800433F0  3C 80 80 3A */	lis r4, __vt__11dEvt_info_c@ha /* 0x803A35D0@ha */
+/* 800433F4  38 04 35 D0 */	addi r0, r4, __vt__11dEvt_info_c@l /* 0x803A35D0@l */
 /* 800433F8  90 03 00 00 */	stw r0, 0(r3)
 /* 800433FC  38 80 00 00 */	li r4, 0
 /* 80043400  B0 83 00 04 */	sth r4, 4(r3)

@@ -16,15 +16,15 @@ lbl_800C6958:
 /* 800C6960  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C6964  40 80 00 1C */	bge lbl_800C6980
 /* 800C6968  38 80 00 03 */	li r4, 3
-/* 800C696C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6970  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800C696C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6970  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C6974  C0 25 00 84 */	lfs f1, 0x84(r5)
 /* 800C6978  48 00 00 D1 */	bl procFallInit__9daAlink_cFif
 /* 800C697C  48 00 00 B4 */	b lbl_800C6A30
 lbl_800C6980:
 /* 800C6980  A8 BF 04 E4 */	lha r5, 0x4e4(r31)
-/* 800C6984  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6988  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l
+/* 800C6984  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6988  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C698C  A8 04 00 54 */	lha r0, 0x54(r4)
 /* 800C6990  7C 05 02 14 */	add r0, r5, r0
 /* 800C6994  B0 1F 04 E4 */	sth r0, 0x4e4(r31)
@@ -47,8 +47,8 @@ lbl_800C69D4:
 /* 800C69D4  38 00 00 01 */	li r0, 1
 /* 800C69D8  B0 1F 30 0C */	sth r0, 0x300c(r31)
 lbl_800C69DC:
-/* 800C69DC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C69E0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800C69DC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C69E0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C69E4  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 800C69E8  A8 1F 2F E2 */	lha r0, 0x2fe2(r31)
 /* 800C69EC  7C 03 00 50 */	subf r0, r3, r0
@@ -56,8 +56,8 @@ lbl_800C69DC:
 /* 800C69F4  7C 64 02 14 */	add r3, r4, r0
 /* 800C69F8  C0 43 00 04 */	lfs f2, 4(r3)
 /* 800C69FC  38 7F 34 7C */	addi r3, r31, 0x347c
-/* 800C6A00  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6A04  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l
+/* 800C6A00  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6A04  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C6A08  C0 24 00 88 */	lfs f1, 0x88(r4)
 /* 800C6A0C  C0 1F 33 A8 */	lfs f0, 0x33a8(r31)
 /* 800C6A10  EC 00 00 B2 */	fmuls f0, f0, f2

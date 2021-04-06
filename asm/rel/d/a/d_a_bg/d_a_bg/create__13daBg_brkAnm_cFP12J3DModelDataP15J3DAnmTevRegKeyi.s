@@ -3,20 +3,20 @@ lbl_804580F0:
 /* 804580F4  7C 08 02 A6 */	mflr r0
 /* 804580F8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804580FC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80458100  4B F0 A0 D4 */	b _savegpr_27
+/* 80458100  4B F0 A0 D5 */	bl _savegpr_27
 /* 80458104  7C 7B 1B 78 */	mr r27, r3
 /* 80458108  7C 9F 23 78 */	mr r31, r4
 /* 8045810C  7C BC 2B 78 */	mr r28, r5
 /* 80458110  7C DD 33 78 */	mr r29, r6
 /* 80458114  38 60 00 18 */	li r3, 0x18
-/* 80458118  4B E7 6B 34 */	b __nw__FUl
+/* 80458118  4B E7 6B 35 */	bl __nw__FUl
 /* 8045811C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80458120  41 82 00 20 */	beq lbl_80458140
-/* 80458124  3C 80 80 46 */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80458128  38 04 95 A0 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80458124  3C 80 80 46 */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x804595A0@ha */
+/* 80458128  38 04 95 A0 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x804595A0@l */
 /* 8045812C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80458130  38 80 00 00 */	li r4, 0
-/* 80458134  4B ED 02 C8 */	b init__12J3DFrameCtrlFs
+/* 80458134  4B ED 02 C9 */	bl init__12J3DFrameCtrlFs
 /* 80458138  38 00 00 00 */	li r0, 0
 /* 8045813C  90 1E 00 14 */	stw r0, 0x14(r30)
 lbl_80458140:
@@ -31,11 +31,11 @@ lbl_80458158:
 /* 8045815C  7F 85 E3 78 */	mr r5, r28
 /* 80458160  7F A6 EB 78 */	mr r6, r29
 /* 80458164  38 E0 FF FF */	li r7, -1
-/* 80458168  3D 00 80 46 */	lis r8, lit_3900@ha
-/* 8045816C  C0 28 93 80 */	lfs f1, lit_3900@l(r8)
+/* 80458168  3D 00 80 46 */	lis r8, lit_3900@ha /* 0x80459380@ha */
+/* 8045816C  C0 28 93 80 */	lfs f1, lit_3900@l(r8)  /* 0x80459380@l */
 /* 80458170  39 00 00 00 */	li r8, 0
 /* 80458174  39 20 FF FF */	li r9, -1
-/* 80458178  4B BB 55 94 */	b init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
+/* 80458178  4B BB 55 95 */	bl init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
 /* 8045817C  2C 03 00 00 */	cmpwi r3, 0
 /* 80458180  40 82 00 0C */	bne lbl_8045818C
 /* 80458184  38 60 00 00 */	li r3, 0
@@ -84,7 +84,7 @@ lbl_80458204:
 /* 80458214  38 60 00 01 */	li r3, 1
 lbl_80458218:
 /* 80458218  39 61 00 20 */	addi r11, r1, 0x20
-/* 8045821C  4B F0 A0 04 */	b _restgpr_27
+/* 8045821C  4B F0 A0 05 */	bl _restgpr_27
 /* 80458220  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80458224  7C 08 03 A6 */	mtlr r0
 /* 80458228  38 21 00 20 */	addi r1, r1, 0x20

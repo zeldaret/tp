@@ -3,17 +3,15 @@
 #
 
 M290_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3.plf
+M290_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3.lcf
+M290_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3.map
 
 M290_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_cdn3/executor.cpp \
-	rel/d/a/npc/d_a_npc_cdn3/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_cdn3/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_cdn3/d_a_npc_cdn3.cpp \
 
 M290_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/d_a_npc_cdn3.o \
 
 M290_LIBS := \
@@ -29,15 +27,21 @@ M290_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map290.map\
+	-m _prolog \
+	-lcf $(M290_LDSCRIPT) \
+	-unused -map $(M290_MAP) \
+	-w off \
 
 $(M290_TARGET): $(M290_O_FILES) $(M290_LIBS)
+	@echo [290] creating $(M290_TARGET)
 	@echo $(M290_LIBS) $(M290_O_FILES) > build/M290_ofiles
-	$(LD) -opt_partial $(M290_LDFLAGS) -o $(M290_TARGET) @build/M290_ofiles
+	@python3 tools/lcf.py rel 290 --output $(M290_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M290_LDFLAGS) -o $(M290_TARGET) @build/M290_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_cdn3/%.o: rel/d/a/npc/d_a_npc_cdn3/%.cpp
+	@echo [290] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M290_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M290_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

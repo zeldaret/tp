@@ -9,8 +9,8 @@ lbl_80192C08:
 /* 80192C24  38 A1 00 08 */	addi r5, r1, 8
 /* 80192C28  48 1A FD 4D */	bl OSTicksToCalendarTime
 /* 80192C2C  80 7F 00 30 */	lwz r3, 0x30(r31)
-/* 80192C30  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha
-/* 80192C34  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l
+/* 80192C30  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha /* 0x803948B8@ha */
+/* 80192C34  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l /* 0x803948B8@l */
 /* 80192C38  38 84 00 31 */	addi r4, r4, 0x31
 /* 80192C3C  80 A1 00 18 */	lwz r5, 0x18(r1)
 /* 80192C40  38 A5 00 01 */	addi r5, r5, 1

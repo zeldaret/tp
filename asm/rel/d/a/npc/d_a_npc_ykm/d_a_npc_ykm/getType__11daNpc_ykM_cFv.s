@@ -3,8 +3,8 @@ lbl_80B547A0:
 /* 80B547A4  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80B547A8  28 00 00 06 */	cmplwi r0, 6
 /* 80B547AC  41 81 00 54 */	bgt lbl_80B54800
-/* 80B547B0  3C 60 80 B6 */	lis r3, lit_4838@ha
-/* 80B547B4  38 63 E8 24 */	addi r3, r3, lit_4838@l
+/* 80B547B0  3C 60 80 B6 */	lis r3, lit_4838@ha /* 0x80B5E824@ha */
+/* 80B547B4  38 63 E8 24 */	addi r3, r3, lit_4838@l /* 0x80B5E824@l */
 /* 80B547B8  54 00 10 3A */	slwi r0, r0, 2
 /* 80B547BC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80B547C0  7C 09 03 A6 */	mtctr r0

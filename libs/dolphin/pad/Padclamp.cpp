@@ -24,49 +24,45 @@ extern "C" void PADClampCircle();
 // Declarations:
 //
 
-/* 8034DDBC-8034DEEC 0130+00 s=1 e=0 z=0  None .text      ClampStick */
+/* 8034DDBC-8034DEEC 3486FC 0130+00 1/1 0/0 0/0 .text            ClampStick */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ClampStick() {
+static asm void ClampStick() {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/ClampStick.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456560-80456568 0004+04 s=1 e=0 z=0  None .sdata2    @160 */
+/* 80456560-80456568 004B60 0004+04 1/1 0/0 0/0 .sdata2          @160 */
 SECTION_SDATA2 static f32 lit_160[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80456568-80456570 0008+00 s=1 e=0 z=0  None .sdata2    @161 */
+/* 80456568-80456570 004B68 0008+00 1/1 0/0 0/0 .sdata2          @161 */
 SECTION_SDATA2 static f64 lit_161 = 0.5;
 
-/* 80456570-80456578 0008+00 s=1 e=0 z=0  None .sdata2    @162 */
+/* 80456570-80456578 004B70 0008+00 1/1 0/0 0/0 .sdata2          @162 */
 SECTION_SDATA2 static f64 lit_162 = 3.0;
 
-/* 80456578-80456580 0008+00 s=1 e=0 z=0  None .sdata2    @164 */
+/* 80456578-80456580 004B78 0008+00 1/1 0/0 0/0 .sdata2          @164 */
 SECTION_SDATA2 static f64 lit_164 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8034DEEC-8034E094 01A8+00 s=1 e=0 z=0  None .text      ClampCircle */
-//	8034DF80: 80456578 (lit_164)
-//	8034DF8C: 80456560 (lit_160)
-//	8034DFA8: 80456568 (lit_161)
-//	8034DFB0: 80456570 (lit_162)
+/* 8034DEEC-8034E094 34882C 01A8+00 1/1 0/0 0/0 .text            ClampCircle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ClampCircle() {
+static asm void ClampCircle() {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/ClampCircle.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2170-803A2180 000A+06 s=2 e=0 z=0  None .rodata    ClampRegion */
+/* 803A2170-803A2180 02E7D0 000A+06 2/2 0/0 0/0 .rodata          ClampRegion */
 SECTION_RODATA static u8 const ClampRegion[10 + 6 /* padding */] = {
     0x1E,
     0xB4,
@@ -86,30 +82,23 @@ SECTION_RODATA static u8 const ClampRegion[10 + 6 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2170 = (void*)(&ClampRegion);
 
-/* 8034E094-8034E1A8 0114+00 s=0 e=1 z=0  None .text      PADClamp */
-//	8034E098: 803A2170 (ClampRegion)
-//	8034E0BC: 803A2170 (ClampRegion)
-//	8034E0E4: 8034DDBC (ClampStick)
-//	8034E0FC: 8034DDBC (ClampStick)
+/* 8034E094-8034E1A8 3489D4 0114+00 0/0 1/1 0/0 .text            PADClamp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADClamp() {
+asm void PADClamp() {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/PADClamp.s"
 }
 #pragma pop
 
-/* 8034E1A8-8034E2B4 010C+00 s=0 e=1 z=0  None .text      PADClampCircle */
-//	8034E1AC: 803A2170 (ClampRegion)
-//	8034E1D0: 803A2170 (ClampRegion)
-//	8034E1F4: 8034DEEC (ClampCircle)
-//	8034E208: 8034DEEC (ClampCircle)
+/* 8034E1A8-8034E2B4 348AE8 010C+00 0/0 1/1 0/0 .text            PADClampCircle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PADClampCircle() {
+asm void PADClampCircle() {
     nofralloc
 #include "asm/dolphin/pad/Padclamp/PADClampCircle.s"
 }

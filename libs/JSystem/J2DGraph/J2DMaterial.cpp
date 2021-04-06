@@ -82,10 +82,8 @@ struct J2DPEBlock {
     /* 802F1840 */ void setGX();
 };
 
-struct J2DAnmTexPattern {
-    /* 8030BEE8 */ void getTexNo(u16, u16*) const;
-    /* 8030BF9C */ void getResTIMG(u16) const;
-    /* 8030BFF0 */ void getPalette(u16) const;
+struct J2DAnmColor {
+    /* 802EB390 */ void getColor(u16, _GXColor*) const;
 };
 
 struct J2DAnmTextureSRTKey {
@@ -97,8 +95,10 @@ struct J2DAnmTevRegKey {
     /* 8030C3B4 */ void getTevKonstReg(u16, _GXColor*) const;
 };
 
-struct J2DAnmColor {
-    /* 802EB390 */ void getColor(u16, _GXColor*) const;
+struct J2DAnmTexPattern {
+    /* 8030BEE8 */ void getTexNo(u16, u16*) const;
+    /* 8030BF9C */ void getResTIMG(u16) const;
+    /* 8030BFF0 */ void getPalette(u16) const;
 };
 
 struct J2DMaterial {
@@ -203,18 +203,10 @@ extern "C" void __dt__12J2DIndTexMtxFv();
 extern "C" void __ct__12J2DIndTexMtxFv();
 extern "C" void __ct__14J2DIndTexOrderFv();
 extern "C" void getColor__11J2DAnmColorCFUsP8_GXColor();
-extern "C" extern void* __vt__15J2DIndBlockNull[14];
-extern "C" extern void* __vt__11J2DIndBlock[14];
-extern "C" extern void* __vt__11J2DMaterial[3];
-extern "C" extern void* __vt__13J2DColorBlock[3];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void* operator new(u32, int);
-void operator delete(void*);
 
 extern "C" void __ct__Q28JUtility6TColorFv();
 extern "C" void* __nw__FUl();
@@ -265,8 +257,8 @@ extern "C" extern u8 struct_804561AC[4];
 //
 
 /* ############################################################################################## */
-/* 803CCA08-803CCA40 0038+00 s=2 e=0 z=0  None .data      __vt__15J2DIndBlockNull */
-SECTION_DATA void* __vt__15J2DIndBlockNull[14] = {
+/* 803CCA08-803CCA40 029B28 0038+00 2/2 0/0 0/0 .data            __vt__15J2DIndBlockNull */
+SECTION_DATA extern void* __vt__15J2DIndBlockNull[14] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__11J2DIndBlockFv,
@@ -283,8 +275,8 @@ SECTION_DATA void* __vt__15J2DIndBlockNull[14] = {
     (void*)__dt__15J2DIndBlockNullFv,
 };
 
-/* 803CCA40-803CCA78 0038+00 s=3 e=1 z=0  None .data      __vt__11J2DIndBlock */
-SECTION_DATA void* __vt__11J2DIndBlock[14] = {
+/* 803CCA40-803CCA78 029B60 0038+00 3/3 1/1 0/0 .data            __vt__11J2DIndBlock */
+SECTION_DATA extern void* __vt__11J2DIndBlock[14] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__11J2DIndBlockFv,
@@ -301,42 +293,21 @@ SECTION_DATA void* __vt__11J2DIndBlock[14] = {
     (void*)__dt__11J2DIndBlockFv,
 };
 
-/* 803CCA78-803CCA84 000C+00 s=2 e=0 z=0  None .data      __vt__11J2DMaterial */
-SECTION_DATA void* __vt__11J2DMaterial[3] = {
+/* 803CCA78-803CCA84 029B98 000C+00 2/2 0/0 0/0 .data            __vt__11J2DMaterial */
+SECTION_DATA extern void* __vt__11J2DMaterial[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11J2DMaterialFv,
 };
 
-/* 803CCA84-803CCA90 000C+00 s=3 e=0 z=0  None .data      __vt__13J2DColorBlock */
-SECTION_DATA void* __vt__13J2DColorBlock[3] = {
+/* 803CCA84-803CCA90 029BA4 000C+00 3/3 0/0 0/0 .data            __vt__13J2DColorBlock */
+SECTION_DATA extern void* __vt__13J2DColorBlock[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13J2DColorBlockFv,
 };
 
-/* 802EA1AC-802EA2CC 0120+00 s=0 e=1 z=0  None .text      __ct__11J2DMaterialFv */
-//	802EA1C0: 803CCA78 (__vt__11J2DMaterial)
-//	802EA1C4: 803CCA78 (__vt__11J2DMaterial)
-//	802EA1CC: 803CCA84 (__vt__13J2DColorBlock)
-//	802EA1D0: 803CCA84 (__vt__13J2DColorBlock)
-//	802EA1DC: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EA1E0: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EA1F0: 80361D60 (__construct_array)
-//	802EA1F8: 802EB280 (__ct__12J2DColorChanFv)
-//	802EA1FC: 802EB280 (__ct__12J2DColorChanFv)
-//	802EA20C: 80361D60 (__construct_array)
-//	802EA214: 802EB394 (initialize__13J2DColorBlockFv)
-//	802EA218: 803CCF30 (__vt__14J2DTexGenBlock)
-//	802EA21C: 803CCF30 (__vt__14J2DTexGenBlock)
-//	802EA228: 802EB260 (__ct__11J2DTexCoordFv)
-//	802EA22C: 802EB260 (__ct__11J2DTexCoordFv)
-//	802EA23C: 80361D60 (__construct_array)
-//	802EA244: 802EB510 (initialize__14J2DTexGenBlockFv)
-//	802EA248: 804561AE (struct_804561AC)
-//	802EA25C: 804561A0 (j2dDefaultBlendInfo)
-//	802EA264: 804561A0 (j2dDefaultBlendInfo)
-//	802EA284: 802F17FC (initialize__10J2DPEBlockFv)
+/* 802EA1AC-802EA2CC 2E4AEC 0120+00 0/0 1/1 0/0 .text            __ct__11J2DMaterialFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -346,14 +317,7 @@ asm J2DMaterial::J2DMaterial() {
 }
 #pragma pop
 
-/* 802EA2CC-802EA38C 00C0+00 s=1 e=2 z=0  None .text      __dt__11J2DMaterialFv */
-//	802EA2EC: 803CCA78 (__vt__11J2DMaterial)
-//	802EA2F0: 803CCA78 (__vt__11J2DMaterial)
-//	802EA33C: 802CED3C (__dl__FPv)
-//	802EA348: 802EB620 (__dt__14J2DTexGenBlockFv)
-//	802EA354: 803CCA84 (__vt__13J2DColorBlock)
-//	802EA358: 803CCA84 (__vt__13J2DColorBlock)
-//	802EA36C: 802CED3C (__dl__FPv)
+/* 802EA2CC-802EA38C 2E4C0C 00C0+00 1/0 2/2 0/0 .text            __dt__11J2DMaterialFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,10 +327,7 @@ asm J2DMaterial::~J2DMaterial() {
 }
 #pragma pop
 
-/* 802EA38C-802EA410 0084+00 s=0 e=8 z=0  None .text      setGX__11J2DMaterialFv */
-//	802EA3B0: 802EB424 (setGX__13J2DColorBlockFv)
-//	802EA3B8: 802EB570 (setGX__14J2DTexGenBlockFv)
-//	802EA3F8: 802F1840 (setGX__10J2DPEBlockFv)
+/* 802EA38C-802EA410 2E4CCC 0084+00 0/0 8/8 0/0 .text            setGX__11J2DMaterialFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,27 +337,7 @@ asm void J2DMaterial::setGX() {
 }
 #pragma pop
 
-/* 802EA410-802EA5C4 01B4+00 s=0 e=1 z=0  None .text      createTevBlock__11J2DMaterialFib */
-//	802EA430: 802CEC4C (__nw__FUl)
-//	802EA43C: 802EB88C (__ct__12J2DTevBlock1Fv)
-//	802EA458: 802CEC4C (__nw__FUl)
-//	802EA464: 802EC5B8 (__ct__12J2DTevBlock2Fv)
-//	802EA480: 802CEC4C (__nw__FUl)
-//	802EA48C: 802ED8BC (__ct__12J2DTevBlock4Fv)
-//	802EA4A8: 802CEC4C (__nw__FUl)
-//	802EA4B4: 802EED64 (__ct__12J2DTevBlock8Fv)
-//	802EA4C8: 802CEC4C (__nw__FUl)
-//	802EA4D4: 802F01E4 (__ct__13J2DTevBlock16Fv)
-//	802EA4F4: 802CEC74 (__nw__FUli)
-//	802EA500: 802EB88C (__ct__12J2DTevBlock1Fv)
-//	802EA520: 802CEC74 (__nw__FUli)
-//	802EA52C: 802EC5B8 (__ct__12J2DTevBlock2Fv)
-//	802EA54C: 802CEC74 (__nw__FUli)
-//	802EA558: 802ED8BC (__ct__12J2DTevBlock4Fv)
-//	802EA578: 802CEC74 (__nw__FUli)
-//	802EA584: 802EED64 (__ct__12J2DTevBlock8Fv)
-//	802EA59C: 802CEC74 (__nw__FUli)
-//	802EA5A8: 802F01E4 (__ct__13J2DTevBlock16Fv)
+/* 802EA410-802EA5C4 2E4D50 01B4+00 0/0 1/1 0/0 .text            createTevBlock__11J2DMaterialFib */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -406,53 +347,7 @@ asm void J2DMaterial::createTevBlock(int param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802EA5C4-802EA79C 01D8+00 s=0 e=1 z=0  None .text      createIndBlock__11J2DMaterialFib */
-//	802EA5E8: 802CEC4C (__nw__FUl)
-//	802EA5F4: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA5F8: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA600: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802EA604: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802EA610: 802EB378 (__ct__14J2DIndTexOrderFv)
-//	802EA614: 802EB378 (__ct__14J2DIndTexOrderFv)
-//	802EA624: 80361D60 (__construct_array)
-//	802EA62C: 802EB320 (__ct__12J2DIndTexMtxFv)
-//	802EA630: 802EB320 (__ct__12J2DIndTexMtxFv)
-//	802EA634: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802EA638: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802EA644: 80361D60 (__construct_array)
-//	802EA64C: 802EB2CC (__ct__19J2DIndTexCoordScaleFv)
-//	802EA650: 802EB2CC (__ct__19J2DIndTexCoordScaleFv)
-//	802EA654: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802EA658: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802EA664: 80361D60 (__construct_array)
-//	802EA688: 802CEC4C (__nw__FUl)
-//	802EA694: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA698: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA6A0: 803CCA08 (__vt__15J2DIndBlockNull)
-//	802EA6A4: 803CCA08 (__vt__15J2DIndBlockNull)
-//	802EA6C0: 802CEC74 (__nw__FUli)
-//	802EA6CC: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA6D0: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA6D8: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802EA6DC: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802EA6E8: 802EB378 (__ct__14J2DIndTexOrderFv)
-//	802EA6EC: 802EB378 (__ct__14J2DIndTexOrderFv)
-//	802EA6FC: 80361D60 (__construct_array)
-//	802EA704: 802EB320 (__ct__12J2DIndTexMtxFv)
-//	802EA708: 802EB320 (__ct__12J2DIndTexMtxFv)
-//	802EA70C: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802EA710: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802EA71C: 80361D60 (__construct_array)
-//	802EA724: 802EB2CC (__ct__19J2DIndTexCoordScaleFv)
-//	802EA728: 802EB2CC (__ct__19J2DIndTexCoordScaleFv)
-//	802EA72C: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802EA730: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802EA73C: 80361D60 (__construct_array)
-//	802EA764: 802CEC74 (__nw__FUli)
-//	802EA770: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA774: 803CCA40 (__vt__11J2DIndBlock)
-//	802EA77C: 803CCA08 (__vt__15J2DIndBlockNull)
-//	802EA780: 803CCA08 (__vt__15J2DIndBlockNull)
+/* 802EA5C4-802EA79C 2E4F04 01D8+00 0/0 1/1 0/0 .text            createIndBlock__11J2DMaterialFib */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,7 +357,7 @@ asm void J2DMaterial::createIndBlock(int param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802EA79C-802EA84C 00B0+00 s=1 e=0 z=0  None .text
+/* 802EA79C-802EA84C 2E50DC 00B0+00 1/1 0/0 0/0 .text
  * __ct__Q211J2DMaterial21J2DMaterialAnmPointerFv               */
 #pragma push
 #pragma optimization_level 0
@@ -473,9 +368,7 @@ asm J2DMaterial::J2DMaterialAnmPointer::J2DMaterialAnmPointer() {
 }
 #pragma pop
 
-/* 802EA84C-802EA89C 0050+00 s=4 e=0 z=0  None .text      makeAnmPointer__11J2DMaterialFv */
-//	802EA870: 802CEC4C (__nw__FUl)
-//	802EA87C: 802EA79C (__ct__Q211J2DMaterial21J2DMaterialAnmPointerFv)
+/* 802EA84C-802EA89C 2E518C 0050+00 4/4 0/0 0/0 .text            makeAnmPointer__11J2DMaterialFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -485,9 +378,8 @@ asm void J2DMaterial::makeAnmPointer() {
 }
 #pragma pop
 
-/* 802EA89C-802EA94C 00B0+00 s=0 e=4 z=0  None .text      setAnimation__11J2DMaterialFP11J2DAnmColor
+/* 802EA89C-802EA94C 2E51DC 00B0+00 0/0 4/4 0/0 .text setAnimation__11J2DMaterialFP11J2DAnmColor
  */
-//	802EA8CC: 802EA84C (makeAnmPointer__11J2DMaterialFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -497,9 +389,8 @@ asm void J2DMaterial::setAnimation(J2DAnmColor* param_0) {
 }
 #pragma pop
 
-/* 802EA94C-802EAA2C 00E0+00 s=0 e=4 z=0  None .text
+/* 802EA94C-802EAA2C 2E528C 00E0+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey           */
-//	802EA97C: 802EA84C (makeAnmPointer__11J2DMaterialFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -509,9 +400,8 @@ asm void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* param_0) {
 }
 #pragma pop
 
-/* 802EAA2C-802EAB0C 00E0+00 s=0 e=4 z=0  None .text
+/* 802EAA2C-802EAB0C 2E536C 00E0+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP16J2DAnmTexPattern              */
-//	802EAA5C: 802EA84C (makeAnmPointer__11J2DMaterialFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,9 +411,8 @@ asm void J2DMaterial::setAnimation(J2DAnmTexPattern* param_0) {
 }
 #pragma pop
 
-/* 802EAB0C-802EAC78 016C+00 s=0 e=4 z=0  None .text
+/* 802EAB0C-802EAC78 2E544C 016C+00 0/0 4/4 0/0 .text
  * setAnimation__11J2DMaterialFP15J2DAnmTevRegKey               */
-//	802EAB3C: 802EA84C (makeAnmPointer__11J2DMaterialFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -534,34 +423,16 @@ asm void J2DMaterial::setAnimation(J2DAnmTevRegKey* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804561B0-804561B4 0004+00 s=1 e=0 z=0  None .sdata2    @1943 */
+/* 804561B0-804561B4 0047B0 0004+00 1/1 0/0 0/0 .sdata2          @1943 */
 SECTION_SDATA2 static f32 lit_1943 = 360.0f;
 
-/* 804561B4-804561B8 0004+00 s=1 e=0 z=0  None .sdata2    @1944 */
+/* 804561B4-804561B8 0047B4 0004+00 1/1 0/0 0/0 .sdata2          @1944 */
 SECTION_SDATA2 static f32 lit_1944 = 65535.0f;
 
-/* 804561B8-804561C0 0008+00 s=1 e=0 z=0  None .sdata2    @1946 */
+/* 804561B8-804561C0 0047B8 0008+00 1/1 0/0 0/0 .sdata2          @1946 */
 SECTION_SDATA2 static f64 lit_1946 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802EAC78-802EB0F4 047C+00 s=0 e=1 z=0  None .text      animation__11J2DMaterialFv */
-//	802EACB0: 803621D0 (_savegpr_26)
-//	802EAD58: 803A1BA0 (j2dDefaultTexMtxInfo)
-//	802EAD5C: 803A1BA0 (j2dDefaultTexMtxInfo)
-//	802EAD8C: 8030B9F0 (calcTransform__19J2DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo)
-//	802EAD98: 804561B0 (lit_1943)
-//	802EADA4: 804561B8 (lit_1946)
-//	802EADC0: 804561B4 (lit_1944)
-//	802EADE8: 803A1BA0 (j2dDefaultTexMtxInfo)
-//	802EADEC: 803A1BA0 (j2dDefaultTexMtxInfo)
-//	802EAE30: 802EB7E0 (getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx)
-//	802EAE54: 802EB6A4 (setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx)
-//	802EAEFC: 8030BEE8 (getTexNo__16J2DAnmTexPatternCFUsPUs)
-//	802EAF28: 8030BF9C (getResTIMG__16J2DAnmTexPatternCFUs)
-//	802EAF5C: 8030BFF0 (getPalette__16J2DAnmTexPatternCFUs)
-//	802EAF98: 802DE480 (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut)
-//	802EAFF4: 8030C0F0 (getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10)
-//	802EB07C: 8030C3B4 (getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor)
-//	802EB0E0: 8036221C (_restgpr_26)
+/* 802EAC78-802EB0F4 2E55B8 047C+00 0/0 1/1 0/0 .text            animation__11J2DMaterialFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -571,10 +442,7 @@ asm void J2DMaterial::animation() {
 }
 #pragma pop
 
-/* 802EB0F4-802EB13C 0048+00 s=1 e=0 z=0  None .text      __dt__13J2DColorBlockFv */
-//	802EB10C: 803CCA84 (__vt__13J2DColorBlock)
-//	802EB110: 803CCA84 (__vt__13J2DColorBlock)
-//	802EB120: 802CED3C (__dl__FPv)
+/* 802EB0F4-802EB13C 2E5A34 0048+00 1/0 0/0 0/0 .text            __dt__13J2DColorBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -584,10 +452,7 @@ asm J2DColorBlock::~J2DColorBlock() {
 }
 #pragma pop
 
-/* 802EB13C-802EB184 0048+00 s=1 e=0 z=0  None .text      __dt__11J2DIndBlockFv */
-//	802EB154: 803CCA40 (__vt__11J2DIndBlock)
-//	802EB158: 803CCA40 (__vt__11J2DIndBlock)
-//	802EB168: 802CED3C (__dl__FPv)
+/* 802EB13C-802EB184 2E5A7C 0048+00 1/0 0/0 0/0 .text            __dt__11J2DIndBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -597,10 +462,7 @@ asm J2DIndBlock::~J2DIndBlock() {
 }
 #pragma pop
 
-/* 802EB184-802EB1CC 0048+00 s=0 e=1 z=0  None .text      __dt__11J2DTevBlockFv */
-//	802EB19C: 803CCE74 (__vt__11J2DTevBlock)
-//	802EB1A0: 803CCE74 (__vt__11J2DTevBlock)
-//	802EB1B0: 802CED3C (__dl__FPv)
+/* 802EB184-802EB1CC 2E5AC4 0048+00 0/0 1/0 0/0 .text            __dt__11J2DTevBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -610,39 +472,39 @@ asm J2DTevBlock::~J2DTevBlock() {
 }
 #pragma pop
 
-/* 802EB1CC-802EB1D0 0004+00 s=1 e=0 z=0  None .text      setGX__11J2DIndBlockFv */
+/* 802EB1CC-802EB1D0 2E5B0C 0004+00 1/0 0/0 0/0 .text            setGX__11J2DIndBlockFv */
 void J2DIndBlock::setGX() {
     /* empty function */
 }
 
-/* 802EB1D0-802EB1D4 0004+00 s=0 e=1 z=0  None .text      setGX__11J2DTevBlockFv */
+/* 802EB1D0-802EB1D4 2E5B10 0004+00 0/0 1/0 0/0 .text            setGX__11J2DTevBlockFv */
 void J2DTevBlock::setGX() {
     /* empty function */
 }
 
-/* 802EB1D4-802EB1D8 0004+00 s=0 e=1 z=0  None .text
+/* 802EB1D4-802EB1D8 2E5B14 0004+00 0/0 1/0 0/0 .text
  * setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor             */
 void J2DTevBlock::setTevKColor(u32 param_0, JUtility::TColor param_1) {
     /* empty function */
 }
 
-/* 802EB1D8-802EB1DC 0004+00 s=0 e=1 z=0  None .text setTevColor__11J2DTevBlockFUl13J2DGXColorS10
+/* 802EB1D8-802EB1DC 2E5B18 0004+00 0/0 1/0 0/0 .text setTevColor__11J2DTevBlockFUl13J2DGXColorS10
  */
 void J2DTevBlock::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
     /* empty function */
 }
 
-/* 802EB1DC-802EB1E0 0004+00 s=0 e=1 z=0  None .text      setTexNo__11J2DTevBlockFUlUs */
+/* 802EB1DC-802EB1E0 2E5B1C 0004+00 0/0 1/0 0/0 .text            setTexNo__11J2DTevBlockFUlUs */
 void J2DTevBlock::setTexNo(u32 param_0, u16 param_1) {
     /* empty function */
 }
 
-/* 802EB1E0-802EB1E4 0004+00 s=1 e=0 z=0  None .text      setGX__15J2DIndBlockNullFv */
+/* 802EB1E0-802EB1E4 2E5B20 0004+00 1/0 0/0 0/0 .text            setGX__15J2DIndBlockNullFv */
 void J2DIndBlockNull::setGX() {
     /* empty function */
 }
 
-/* 802EB1E4-802EB1F0 000C+00 s=1 e=0 z=0  None .text      getType__15J2DIndBlockNullFv */
+/* 802EB1E4-802EB1F0 2E5B24 000C+00 1/0 0/0 0/0 .text            getType__15J2DIndBlockNullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -652,12 +514,7 @@ asm void J2DIndBlockNull::getType() {
 }
 #pragma pop
 
-/* 802EB1F0-802EB24C 005C+00 s=1 e=0 z=0  None .text      __dt__15J2DIndBlockNullFv */
-//	802EB208: 803CCA08 (__vt__15J2DIndBlockNull)
-//	802EB20C: 803CCA08 (__vt__15J2DIndBlockNull)
-//	802EB218: 803CCA40 (__vt__11J2DIndBlock)
-//	802EB21C: 803CCA40 (__vt__11J2DIndBlock)
-//	802EB230: 802CED3C (__dl__FPv)
+/* 802EB1F0-802EB24C 2E5B30 005C+00 1/0 0/0 0/0 .text            __dt__15J2DIndBlockNullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -667,37 +524,36 @@ asm J2DIndBlockNull::~J2DIndBlockNull() {
 }
 #pragma pop
 
-/* 802EB24C-802EB250 0004+00 s=2 e=0 z=0  None .text      initialize__11J2DIndBlockFv */
+/* 802EB24C-802EB250 2E5B8C 0004+00 2/0 0/0 0/0 .text            initialize__11J2DIndBlockFv */
 void J2DIndBlock::initialize() {
     /* empty function */
 }
 
-/* 802EB250-802EB254 0004+00 s=2 e=0 z=0  None .text      setIndTexStageNum__11J2DIndBlockFUc */
+/* 802EB250-802EB254 2E5B90 0004+00 2/0 0/0 0/0 .text            setIndTexStageNum__11J2DIndBlockFUc
+ */
 void J2DIndBlock::setIndTexStageNum(u8 param_0) {
     /* empty function */
 }
 
-/* 802EB254-802EB258 0004+00 s=2 e=0 z=0  None .text
+/* 802EB254-802EB258 2E5B94 0004+00 2/0 0/0 0/0 .text
  * setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder             */
 void J2DIndBlock::setIndTexOrder(u32 param_0, J2DIndTexOrder param_1) {
     /* empty function */
 }
 
-/* 802EB258-802EB25C 0004+00 s=2 e=0 z=0  None .text setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
+/* 802EB258-802EB25C 2E5B98 0004+00 2/0 0/0 0/0 .text setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
  */
 void J2DIndBlock::setIndTexMtx(u32 param_0, J2DIndTexMtx param_1) {
     /* empty function */
 }
 
-/* 802EB25C-802EB260 0004+00 s=2 e=0 z=0  None .text
+/* 802EB25C-802EB260 2E5B9C 0004+00 2/0 0/0 0/0 .text
  * setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale   */
 void J2DIndBlock::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale param_1) {
     /* empty function */
 }
 
-/* 802EB260-802EB280 0020+00 s=1 e=0 z=0  None .text      __ct__11J2DTexCoordFv */
-//	802EB260: 803A1B80 (j2dDefaultTexCoordInfo)
-//	802EB264: 803A1B80 (j2dDefaultTexCoordInfo)
+/* 802EB260-802EB280 2E5BA0 0020+00 1/1 0/0 0/0 .text            __ct__11J2DTexCoordFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -707,8 +563,7 @@ asm J2DTexCoord::J2DTexCoord() {
 }
 #pragma pop
 
-/* 802EB280-802EB290 0010+00 s=1 e=0 z=0  None .text      __ct__12J2DColorChanFv */
-//	802EB280: 804561A8 (j2dDefaultColorChanInfo)
+/* 802EB280-802EB290 2E5BC0 0010+00 1/1 0/0 0/0 .text            __ct__12J2DColorChanFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -718,8 +573,7 @@ asm J2DColorChan::J2DColorChan() {
 }
 #pragma pop
 
-/* 802EB290-802EB2CC 003C+00 s=1 e=1 z=0  None .text      __dt__19J2DIndTexCoordScaleFv */
-//	802EB2B0: 802CED3C (__dl__FPv)
+/* 802EB290-802EB2CC 2E5BD0 003C+00 1/1 1/1 0/0 .text            __dt__19J2DIndTexCoordScaleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -729,9 +583,7 @@ asm J2DIndTexCoordScale::~J2DIndTexCoordScale() {
 }
 #pragma pop
 
-/* 802EB2CC-802EB2E4 0018+00 s=1 e=0 z=0  None .text      __ct__19J2DIndTexCoordScaleFv */
-//	802EB2CC: 80456190 (j2dDefaultIndTexCoordScaleInfo)
-//	802EB2D4: 80456190 (j2dDefaultIndTexCoordScaleInfo)
+/* 802EB2CC-802EB2E4 2E5C0C 0018+00 1/1 0/0 0/0 .text            __ct__19J2DIndTexCoordScaleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -741,8 +593,7 @@ asm J2DIndTexCoordScale::J2DIndTexCoordScale() {
 }
 #pragma pop
 
-/* 802EB2E4-802EB320 003C+00 s=1 e=1 z=0  None .text      __dt__12J2DIndTexMtxFv */
-//	802EB304: 802CED3C (__dl__FPv)
+/* 802EB2E4-802EB320 2E5C24 003C+00 1/1 1/1 0/0 .text            __dt__12J2DIndTexMtxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -752,11 +603,7 @@ asm J2DIndTexMtx::~J2DIndTexMtx() {
 }
 #pragma pop
 
-/* 802EB320-802EB378 0058+00 s=1 e=0 z=0  None .text      __ct__12J2DIndTexMtxFv */
-//	802EB328: 803A1BC4 (j2dDefaultIndTexMtxInfo)
-//	802EB32C: 803A1BC4 (j2dDefaultIndTexMtxInfo)
-//	802EB364: 803A1BC4 (j2dDefaultIndTexMtxInfo)
-//	802EB368: 803A1BC4 (j2dDefaultIndTexMtxInfo)
+/* 802EB320-802EB378 2E5C60 0058+00 1/1 0/0 0/0 .text            __ct__12J2DIndTexMtxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -766,9 +613,7 @@ asm J2DIndTexMtx::J2DIndTexMtx() {
 }
 #pragma pop
 
-/* 802EB378-802EB390 0018+00 s=1 e=0 z=0  None .text      __ct__14J2DIndTexOrderFv */
-//	802EB378: 80456184 (j2dDefaultIndTexOrderNull)
-//	802EB380: 80456184 (j2dDefaultIndTexOrderNull)
+/* 802EB378-802EB390 2E5CB8 0018+00 1/1 0/0 0/0 .text            __ct__14J2DIndTexOrderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -778,7 +623,7 @@ asm J2DIndTexOrder::J2DIndTexOrder() {
 }
 #pragma pop
 
-/* 802EB390-802EB394 0004+00 s=0 e=1 z=0  None .text      getColor__11J2DAnmColorCFUsP8_GXColor */
+/* 802EB390-802EB394 2E5CD0 0004+00 0/0 1/0 0/0 .text getColor__11J2DAnmColorCFUsP8_GXColor */
 void J2DAnmColor::getColor(u16 param_0, _GXColor* param_1) const {
     /* empty function */
 }

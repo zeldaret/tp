@@ -8,11 +8,11 @@ lbl_8080C1FC:
 /* 8080C214  90 03 06 98 */	stw r0, 0x698(r3)
 /* 8080C218  38 80 00 10 */	li r4, 0x10
 /* 8080C21C  38 A0 00 02 */	li r5, 2
-/* 8080C220  3C C0 80 81 */	lis r6, lit_3949@ha
-/* 8080C224  C0 26 59 CC */	lfs f1, lit_3949@l(r6)
+/* 8080C220  3C C0 80 81 */	lis r6, lit_3949@ha /* 0x808159CC@ha */
+/* 8080C224  C0 26 59 CC */	lfs f1, lit_3949@l(r6)  /* 0x808159CC@l */
 /* 8080C228  C0 43 05 2C */	lfs f2, 0x52c(r3)
-/* 8080C22C  3C C0 80 81 */	lis r6, lit_5774@ha
-/* 8080C230  C0 06 5A 64 */	lfs f0, lit_5774@l(r6)
+/* 8080C22C  3C C0 80 81 */	lis r6, lit_5774@ha /* 0x80815A64@ha */
+/* 8080C230  C0 06 5A 64 */	lfs f0, lit_5774@l(r6)  /* 0x80815A64@l */
 /* 8080C234  EC 42 00 24 */	fdivs f2, f2, f0
 /* 8080C238  4B FF BF A9 */	bl bckSet__8daE_YM_cFiUcff
 /* 8080C23C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -7,8 +7,8 @@ lbl_801949EC:
 /* 80194A00  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80194A04  7C 9F 23 78 */	mr r31, r4
 /* 80194A08  41 82 02 0C */	beq lbl_80194C14
-/* 80194A0C  3C 60 80 3C */	lis r3, __vt__16dSelect_cursor_c@ha
-/* 80194A10  38 03 B7 8C */	addi r0, r3, __vt__16dSelect_cursor_c@l
+/* 80194A0C  3C 60 80 3C */	lis r3, __vt__16dSelect_cursor_c@ha /* 0x803BB78C@ha */
+/* 80194A10  38 03 B7 8C */	addi r0, r3, __vt__16dSelect_cursor_c@l /* 0x803BB78C@l */
 /* 80194A14  90 1E 00 00 */	stw r0, 0(r30)
 /* 80194A18  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80194A1C  28 03 00 00 */	cmplwi r3, 0

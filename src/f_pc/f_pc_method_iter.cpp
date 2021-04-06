@@ -19,15 +19,11 @@ struct node_class {};
 // Forward References:
 //
 
-void fpcMtdIt_Method(node_list_class*, int (*)(void*));
-
 extern "C" void fpcMtdIt_Method__FP15node_list_classPFPv_i();
 
 //
 // External References:
 //
-
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
 
 extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 
@@ -35,9 +31,8 @@ extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 // Declarations:
 //
 
-/* 80023764-80023788 0024+00 s=0 e=1 z=0  None .text      fpcMtdIt_Method__FP15node_list_classPFPv_i
+/* 80023764-80023788 01E0A4 0024+00 0/0 1/1 0/0 .text fpcMtdIt_Method__FP15node_list_classPFPv_i
  */
-//	80023774: 80266060 (cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

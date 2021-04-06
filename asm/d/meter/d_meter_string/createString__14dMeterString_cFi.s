@@ -6,8 +6,8 @@ lbl_8020F5A4:
 /* 8020F5B4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8020F5B8  7C 7E 1B 78 */	mr r30, r3
 /* 8020F5BC  7C 9F 23 78 */	mr r31, r4
-/* 8020F5C0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020F5C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020F5C0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020F5C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020F5C8  38 A1 00 08 */	addi r5, r1, 8
 /* 8020F5CC  38 C0 00 00 */	li r6, 0
 /* 8020F5D0  48 00 CC 81 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

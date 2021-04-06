@@ -2,8 +2,8 @@ lbl_800126C0:
 /* 800126C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800126C4  7C 08 02 A6 */	mflr r0
 /* 800126C8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800126CC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 800126D0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 800126CC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 800126D0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 800126D4  48 2F E0 69 */	bl reinitGX__6J3DSysFv
 /* 800126D8  38 60 00 00 */	li r3, 0
 /* 800126DC  48 34 C9 F9 */	bl GXSetNumIndStages
@@ -28,16 +28,16 @@ lbl_800126C0:
 /* 80012728  38 E0 00 06 */	li r7, 6
 /* 8001272C  48 34 8E 99 */	bl GXSetVtxAttrFmt
 /* 80012730  48 19 5E FD */	bl dKy_GxFog_set__Fv
-/* 80012734  3C 60 80 3A */	lis r3, l_matDL@ha
-/* 80012738  38 63 30 C0 */	addi r3, r3, l_matDL@l
+/* 80012734  3C 60 80 3A */	lis r3, l_matDL@ha /* 0x803A30C0@ha */
+/* 80012738  38 63 30 C0 */	addi r3, r3, l_matDL@l /* 0x803A30C0@l */
 /* 8001273C  38 80 00 80 */	li r4, 0x80
 /* 80012740  48 34 D7 B1 */	bl GXCallDisplayList
-/* 80012744  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80012748  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80012744  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80012748  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8001274C  38 80 00 00 */	li r4, 0
 /* 80012750  48 34 DA FD */	bl GXLoadPosMtxImm
-/* 80012754  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80012758  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80012754  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80012758  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8001275C  38 80 00 00 */	li r4, 0
 /* 80012760  48 34 DB 3D */	bl GXLoadNrmMtxImm
 /* 80012764  80 01 00 14 */	lwz r0, 0x14(r1)

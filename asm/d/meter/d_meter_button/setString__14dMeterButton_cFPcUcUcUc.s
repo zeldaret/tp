@@ -431,8 +431,8 @@ lbl_80209B7C:
 /* 80209BB0  D0 03 02 F4 */	stfs f0, 0x2f4(r3)
 /* 80209BB4  48 00 00 68 */	b lbl_80209C1C
 lbl_80209BB8:
-/* 80209BB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80209BBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80209BB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80209BBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80209BC0  88 03 5E 4B */	lbz r0, 0x5e4b(r3)
 /* 80209BC4  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80209BC8  41 82 00 14 */	beq lbl_80209BDC
@@ -441,8 +441,8 @@ lbl_80209BB8:
 /* 80209BD4  D0 19 02 F4 */	stfs f0, 0x2f4(r25)
 /* 80209BD8  48 00 00 44 */	b lbl_80209C1C
 lbl_80209BDC:
-/* 80209BDC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80209BE0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80209BDC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80209BE0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80209BE4  C0 23 0E 64 */	lfs f1, 0xe64(r3)
 /* 80209BE8  C0 59 01 E4 */	lfs f2, 0x1e4(r25)
 /* 80209BEC  C0 19 01 E8 */	lfs f0, 0x1e8(r25)

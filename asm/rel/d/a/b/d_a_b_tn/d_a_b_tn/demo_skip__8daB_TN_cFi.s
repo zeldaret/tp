@@ -3,12 +3,12 @@ lbl_80622F64:
 /* 80622F68  7C 08 02 A6 */	mflr r0
 /* 80622F6C  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80622F70  39 61 00 60 */	addi r11, r1, 0x60
-/* 80622F74  4B D3 F2 68 */	b _savegpr_29
+/* 80622F74  4B D3 F2 69 */	bl _savegpr_29
 /* 80622F78  7C 7E 1B 78 */	mr r30, r3
-/* 80622F7C  3C 60 80 63 */	lis r3, lit_3920@ha
-/* 80622F80  3B E3 E6 34 */	addi r31, r3, lit_3920@l
-/* 80622F84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80622F88  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 80622F7C  3C 60 80 63 */	lis r3, lit_3920@ha /* 0x8062E634@ha */
+/* 80622F80  3B E3 E6 34 */	addi r31, r3, lit_3920@l /* 0x8062E634@l */
+/* 80622F84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80622F88  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80622F8C  88 05 5D B0 */	lbz r0, 0x5db0(r5)
 /* 80622F90  7C 00 07 74 */	extsb r0, r0
 /* 80622F94  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -43,29 +43,29 @@ lbl_80622F64:
 /* 80623008  38 7D 02 48 */	addi r3, r29, 0x248
 /* 8062300C  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80623010  38 A1 00 20 */	addi r5, r1, 0x20
-/* 80623014  4B B5 DC 04 */	b Reset__9dCamera_cF4cXyz4cXyz
+/* 80623014  4B B5 DC 05 */	bl Reset__9dCamera_cF4cXyz4cXyz
 /* 80623018  38 7D 02 48 */	addi r3, r29, 0x248
-/* 8062301C  4B B3 E4 90 */	b Start__9dCamera_cFv
+/* 8062301C  4B B3 E4 91 */	bl Start__9dCamera_cFv
 /* 80623020  38 7D 02 48 */	addi r3, r29, 0x248
 /* 80623024  38 80 00 00 */	li r4, 0
-/* 80623028  4B B3 FF E4 */	b SetTrimSize__9dCamera_cFl
-/* 8062302C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80623030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80623028  4B B3 FF E5 */	bl SetTrimSize__9dCamera_cFl
+/* 8062302C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80623030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80623034  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80623038  4B A1 F4 30 */	b reset__14dEvt_control_cFv
-/* 8062303C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80623040  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80623038  4B A1 F4 31 */	bl reset__14dEvt_control_cFv
+/* 8062303C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80623040  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80623044  80 63 00 00 */	lwz r3, 0(r3)
 /* 80623048  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 8062304C  38 80 00 1E */	li r4, 0x1e
-/* 80623050  4B C8 CE 8C */	b bgmStreamStop__8Z2SeqMgrFUl
-/* 80623054  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80623058  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80623050  4B C8 CE 8D */	bl bgmStreamStop__8Z2SeqMgrFUl
+/* 80623054  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80623058  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8062305C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80623060  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 80623064  3C 80 01 00 */	lis r4, 0x0100 /* 0x0100006C@ha */
 /* 80623068  38 84 00 6C */	addi r4, r4, 0x006C /* 0x0100006C@l */
-/* 8062306C  4B C8 C4 30 */	b subBgmStart__8Z2SeqMgrFUl
+/* 8062306C  4B C8 C4 31 */	bl subBgmStart__8Z2SeqMgrFUl
 /* 80623070  7F C3 F3 78 */	mr r3, r30
 /* 80623074  38 80 00 02 */	li r4, 2
 /* 80623078  38 A0 00 00 */	li r5, 0
@@ -118,23 +118,23 @@ lbl_8062309C:
 /* 80623130  38 7D 02 48 */	addi r3, r29, 0x248
 /* 80623134  38 81 00 14 */	addi r4, r1, 0x14
 /* 80623138  38 A1 00 08 */	addi r5, r1, 8
-/* 8062313C  4B B5 DA DC */	b Reset__9dCamera_cF4cXyz4cXyz
+/* 8062313C  4B B5 DA DD */	bl Reset__9dCamera_cF4cXyz4cXyz
 /* 80623140  38 7D 02 48 */	addi r3, r29, 0x248
-/* 80623144  4B B3 E3 68 */	b Start__9dCamera_cFv
+/* 80623144  4B B3 E3 69 */	bl Start__9dCamera_cFv
 /* 80623148  38 7D 02 48 */	addi r3, r29, 0x248
 /* 8062314C  38 80 00 00 */	li r4, 0
-/* 80623150  4B B3 FE BC */	b SetTrimSize__9dCamera_cFl
-/* 80623154  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80623158  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80623150  4B B3 FE BD */	bl SetTrimSize__9dCamera_cFl
+/* 80623154  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80623158  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8062315C  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80623160  4B A1 F3 08 */	b reset__14dEvt_control_cFv
+/* 80623160  4B A1 F3 09 */	bl reset__14dEvt_control_cFv
 /* 80623164  7F C3 F3 78 */	mr r3, r30
 /* 80623168  38 80 00 01 */	li r4, 1
 /* 8062316C  38 A0 00 00 */	li r5, 0
 /* 80623170  4B FF D8 59 */	bl setActionMode__8daB_TN_cFii
 lbl_80623174:
 /* 80623174  39 61 00 60 */	addi r11, r1, 0x60
-/* 80623178  4B D3 F0 B0 */	b _restgpr_29
+/* 80623178  4B D3 F0 B1 */	bl _restgpr_29
 /* 8062317C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80623180  7C 08 03 A6 */	mtlr r0
 /* 80623184  38 21 00 60 */	addi r1, r1, 0x60

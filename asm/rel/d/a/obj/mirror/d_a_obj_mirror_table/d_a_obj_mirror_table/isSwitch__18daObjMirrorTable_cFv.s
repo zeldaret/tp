@@ -7,35 +7,35 @@ lbl_80C99F7C:
 /* 80C99F90  7C 65 1B 78 */	mr r5, r3
 /* 80C99F94  3B E0 00 01 */	li r31, 1
 /* 80C99F98  7F FE FB 78 */	mr r30, r31
-/* 80C99F9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C99FA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C99F9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C99FA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C99FA4  80 05 00 B0 */	lwz r0, 0xb0(r5)
 /* 80C99FA8  54 04 C6 3E */	rlwinm r4, r0, 0x18, 0x18, 0x1f
 /* 80C99FAC  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80C99FB0  7C 05 07 74 */	extsb r5, r0
-/* 80C99FB4  4B 39 B3 AC */	b isSwitch__10dSv_info_cCFii
+/* 80C99FB4  4B 39 B3 AD */	bl isSwitch__10dSv_info_cCFii
 /* 80C99FB8  2C 03 00 00 */	cmpwi r3, 0
 /* 80C99FBC  40 82 00 2C */	bne lbl_80C99FE8
-/* 80C99FC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C99FC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C99FC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C99FC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C99FC8  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 80C99FCC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 80C99FD0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 80C99FCC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 80C99FD0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 80C99FD4  A0 84 02 D2 */	lhz r4, 0x2d2(r4)
-/* 80C99FD8  4B 39 A9 E4 */	b isEventBit__11dSv_event_cCFUs
+/* 80C99FD8  4B 39 A9 E5 */	bl isEventBit__11dSv_event_cCFUs
 /* 80C99FDC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C99FE0  40 82 00 08 */	bne lbl_80C99FE8
 /* 80C99FE4  3B C0 00 00 */	li r30, 0
 lbl_80C99FE8:
 /* 80C99FE8  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 80C99FEC  40 82 00 2C */	bne lbl_80C9A018
-/* 80C99FF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C99FF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C99FF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C99FF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C99FF8  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 80C99FFC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 80C9A000  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 80C99FFC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 80C9A000  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 80C9A004  A0 84 02 C4 */	lhz r4, 0x2c4(r4)
-/* 80C9A008  4B 39 A9 B4 */	b isEventBit__11dSv_event_cCFUs
+/* 80C9A008  4B 39 A9 B5 */	bl isEventBit__11dSv_event_cCFUs
 /* 80C9A00C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C9A010  40 82 00 08 */	bne lbl_80C9A018
 /* 80C9A014  3B E0 00 00 */	li r31, 0

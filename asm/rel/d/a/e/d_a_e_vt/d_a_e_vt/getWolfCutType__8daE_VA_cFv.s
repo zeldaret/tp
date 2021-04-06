@@ -1,6 +1,6 @@
 lbl_807C39C4:
-/* 807C39C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807C39C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 807C39C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807C39C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807C39CC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 807C39D0  88 03 05 68 */	lbz r0, 0x568(r3)
 /* 807C39D4  2C 00 00 37 */	cmpwi r0, 0x37

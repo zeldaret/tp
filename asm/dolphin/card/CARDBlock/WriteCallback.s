@@ -8,8 +8,8 @@ lbl_8035541C:
 /* 80355434  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80355438  3B A3 00 00 */	addi r29, r3, 0
 /* 8035543C  1C BD 01 10 */	mulli r5, r29, 0x110
-/* 80355440  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80355444  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80355440  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80355444  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80355448  7F E0 2A 14 */	add r31, r0, r5
 /* 8035544C  41 80 00 48 */	blt lbl_80355494
 /* 80355450  80 7F 00 80 */	lwz r3, 0x80(r31)

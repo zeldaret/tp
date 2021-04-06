@@ -7,19 +7,19 @@ lbl_80037038:
 /* 8003704C  7C 7D 1B 78 */	mr r29, r3
 /* 80037050  7C 9E 23 78 */	mr r30, r4
 /* 80037054  7C BF 2B 78 */	mr r31, r5
-/* 80037058  3C 60 80 38 */	lis r3, d_a_d_a_obj__stringBase0@ha
-/* 8003705C  38 63 92 A8 */	addi r3, r3, d_a_d_a_obj__stringBase0@l
+/* 80037058  3C 60 80 38 */	lis r3, d_a_d_a_obj__stringBase0@ha /* 0x803792A8@ha */
+/* 8003705C  38 63 92 A8 */	addi r3, r3, d_a_d_a_obj__stringBase0@l /* 0x803792A8@l */
 /* 80037060  38 80 00 20 */	li r4, 0x20
-/* 80037064  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80037068  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80037064  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80037068  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003706C  3F 45 00 02 */	addis r26, r5, 2
 /* 80037070  3B 5A C2 F8 */	addi r26, r26, -15624
 /* 80037074  7F 45 D3 78 */	mr r5, r26
 /* 80037078  38 C0 00 80 */	li r6, 0x80
 /* 8003707C  48 00 52 71 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80037080  7C 7B 1B 78 */	mr r27, r3
-/* 80037084  3C 60 80 38 */	lis r3, d_a_d_a_obj__stringBase0@ha
-/* 80037088  38 63 92 A8 */	addi r3, r3, d_a_d_a_obj__stringBase0@l
+/* 80037084  3C 60 80 38 */	lis r3, d_a_d_a_obj__stringBase0@ha /* 0x803792A8@ha */
+/* 80037088  38 63 92 A8 */	addi r3, r3, d_a_d_a_obj__stringBase0@l /* 0x803792A8@l */
 /* 8003708C  38 80 00 42 */	li r4, 0x42
 /* 80037090  7F 45 D3 78 */	mr r5, r26
 /* 80037094  38 C0 00 80 */	li r6, 0x80
@@ -27,8 +27,8 @@ lbl_80037038:
 /* 8003709C  7C 7A 1B 78 */	mr r26, r3
 /* 800370A0  88 1D 04 E2 */	lbz r0, 0x4e2(r29)
 /* 800370A4  7C 04 07 74 */	extsb r4, r0
-/* 800370A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800370AC  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 800370A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800370AC  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800370B0  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 800370B4  38 0D 89 10 */	la r0, mEcallback__18dPa_modelEcallBack(r13) /* 80450E90-_SDA_BASE_ */
 /* 800370B8  90 01 00 08 */	stw r0, 8(r1)
@@ -57,8 +57,8 @@ lbl_80037038:
 /* 80037114  7C 06 07 74 */	extsb r6, r0
 /* 80037118  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 8003711C  57 E5 18 38 */	slwi r5, r31, 3
-/* 80037120  3C 80 80 42 */	lis r4, mTsubo__13dPa_control_c@ha
-/* 80037124  38 04 47 94 */	addi r0, r4, mTsubo__13dPa_control_c@l
+/* 80037120  3C 80 80 42 */	lis r4, mTsubo__13dPa_control_c@ha /* 0x80424794@ha */
+/* 80037124  38 04 47 94 */	addi r0, r4, mTsubo__13dPa_control_c@l /* 0x80424794@l */
 /* 80037128  7C 00 2A 14 */	add r0, r0, r5
 /* 8003712C  90 01 00 08 */	stw r0, 8(r1)
 /* 80037130  90 C1 00 0C */	stw r6, 0xc(r1)

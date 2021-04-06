@@ -5,7 +5,7 @@ lbl_807E2824:
 /* 807E2830  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807E2834  7C 7F 1B 78 */	mr r31, r3
 /* 807E2838  7F E5 FB 78 */	mr r5, r31
-/* 807E283C  4B B6 48 54 */	b PSVECAdd
+/* 807E283C  4B B6 48 55 */	bl PSVECAdd
 /* 807E2840  7F E3 FB 78 */	mr r3, r31
 /* 807E2844  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 807E2848  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -1,6 +1,6 @@
 lbl_8019ABB0:
-/* 8019ABB0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8019ABB4  38 83 B8 98 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 8019ABB0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BB898@ha */
+/* 8019ABB4  38 83 B8 98 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x803BB898@l */
 /* 8019ABB8  80 64 00 4C */	lwz r3, 0x4c(r4)
 /* 8019ABBC  80 04 00 50 */	lwz r0, 0x50(r4)
 /* 8019ABC0  90 64 00 DC */	stw r3, 0xdc(r4)

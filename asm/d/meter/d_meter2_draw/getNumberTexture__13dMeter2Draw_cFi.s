@@ -3,8 +3,8 @@ lbl_8021A29C:
 /* 8021A2A0  7C 08 02 A6 */	mflr r0
 /* 8021A2A4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8021A2A8  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8021A2AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021A2B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021A2AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021A2B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021A2B4  83 E3 5D 30 */	lwz r31, 0x5d30(r3)
 /* 8021A2B8  7C 83 23 78 */	mr r3, r4
 /* 8021A2BC  48 00 40 0D */	bl dMeter2Info_getNumberTextureName__Fi

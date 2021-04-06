@@ -1,8 +1,8 @@
 lbl_80D033D0:
-/* 80D033D0  3C 80 80 D0 */	lis r4, lit_3662@ha
-/* 80D033D4  38 A4 3F 90 */	addi r5, r4, lit_3662@l
-/* 80D033D8  3C 80 80 D0 */	lis r4, l_HIO@ha
-/* 80D033DC  38 84 42 6C */	addi r4, r4, l_HIO@l
+/* 80D033D0  3C 80 80 D0 */	lis r4, lit_3662@ha /* 0x80D03F90@ha */
+/* 80D033D4  38 A4 3F 90 */	addi r5, r4, lit_3662@l /* 0x80D03F90@l */
+/* 80D033D8  3C 80 80 D0 */	lis r4, l_HIO@ha /* 0x80D0426C@ha */
+/* 80D033DC  38 84 42 6C */	addi r4, r4, l_HIO@l /* 0x80D0426C@l */
 /* 80D033E0  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 80D033E4  FC 20 00 50 */	fneg f1, f0
 /* 80D033E8  C0 04 00 2C */	lfs f0, 0x2c(r4)

@@ -1,9 +1,9 @@
 lbl_80311F70:
 /* 80311F70  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80311F74  D9 C1 00 08 */	stfd f14, 8(r1)
-/* 80311F78  3C E0 80 45 */	lis r7, Unit01@ha
+/* 80311F78  3C E0 80 45 */	lis r7, Unit01@ha /* 0x80450958@ha */
 /* 80311F7C  D9 E1 00 10 */	stfd f15, 0x10(r1)
-/* 80311F80  38 E7 09 58 */	addi r7, r7, Unit01@l
+/* 80311F80  38 E7 09 58 */	addi r7, r7, Unit01@l /* 0x80450958@l */
 /* 80311F84  DB E1 00 28 */	stfd f31, 0x28(r1)
 /* 80311F88  38 84 FF F8 */	addi r4, r4, -8
 /* 80311F8C  38 A5 FF F8 */	addi r5, r5, -8

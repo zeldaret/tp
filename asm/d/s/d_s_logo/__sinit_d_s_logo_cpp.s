@@ -3,14 +3,14 @@ lbl_802585C0:
 /* 802585C4  7C 08 02 A6 */	mflr r0
 /* 802585C8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802585CC  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802585D0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 802585D4  3B E3 2E 38 */	addi r31, r3, cNullVec__6Z2Calc@l
+/* 802585D0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C2E38@ha */
+/* 802585D4  3B E3 2E 38 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803C2E38@l */
 /* 802585D8  38 6D 8B 68 */	la r3, g_LogHIO(r13) /* 804510E8-_SDA_BASE_ */
 /* 802585DC  4B FF DA C9 */	bl __ct__10dLog_HIO_cFv
-/* 802585E0  3C 80 80 26 */	lis r4, __dt__10dLog_HIO_cFv@ha
-/* 802585E4  38 84 85 5C */	addi r4, r4, __dt__10dLog_HIO_cFv@l
-/* 802585E8  3C A0 80 43 */	lis r5, lit_3702@ha
-/* 802585EC  38 A5 07 58 */	addi r5, r5, lit_3702@l
+/* 802585E0  3C 80 80 26 */	lis r4, __dt__10dLog_HIO_cFv@ha /* 0x8025855C@ha */
+/* 802585E4  38 84 85 5C */	addi r4, r4, __dt__10dLog_HIO_cFv@l /* 0x8025855C@l */
+/* 802585E8  3C A0 80 43 */	lis r5, lit_3702@ha /* 0x80430758@ha */
+/* 802585EC  38 A5 07 58 */	addi r5, r5, lit_3702@l /* 0x80430758@l */
 /* 802585F0  48 10 96 35 */	bl __register_global_object
 /* 802585F4  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 802585F8  80 1F 00 10 */	lwz r0, 0x10(r31)

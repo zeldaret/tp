@@ -7,8 +7,8 @@ lbl_802A74E8:
 /* 802A74FC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A7500  7C 9F 23 78 */	mr r31, r4
 /* 802A7504  41 82 00 28 */	beq lbl_802A752C
-/* 802A7508  3C 80 80 3D */	lis r4, __vt__32JAUStreamDataMgr_StreamFileTable@ha
-/* 802A750C  38 04 9B 50 */	addi r0, r4, __vt__32JAUStreamDataMgr_StreamFileTable@l
+/* 802A7508  3C 80 80 3D */	lis r4, __vt__32JAUStreamDataMgr_StreamFileTable@ha /* 0x803C9B50@ha */
+/* 802A750C  38 04 9B 50 */	addi r0, r4, __vt__32JAUStreamDataMgr_StreamFileTable@l /* 0x803C9B50@l */
 /* 802A7510  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A7514  38 80 00 00 */	li r4, 0
 /* 802A7518  4B FF C5 C1 */	bl __dt__16JAIStreamDataMgrFv

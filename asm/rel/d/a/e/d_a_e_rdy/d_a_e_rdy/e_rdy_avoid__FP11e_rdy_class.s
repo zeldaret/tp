@@ -5,8 +5,8 @@ lbl_8076F438:
 /* 8076F444  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8076F448  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8076F44C  7C 7F 1B 78 */	mr r31, r3
-/* 8076F450  3C 80 80 78 */	lis r4, lit_4018@ha
-/* 8076F454  3B C4 9D FC */	addi r30, r4, lit_4018@l
+/* 8076F450  3C 80 80 78 */	lis r4, lit_4018@ha /* 0x80779DFC@ha */
+/* 8076F454  3B C4 9D FC */	addi r30, r4, lit_4018@l /* 0x80779DFC@l */
 /* 8076F458  80 83 05 CC */	lwz r4, 0x5cc(r3)
 /* 8076F45C  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 8076F460  FC 00 00 1E */	fctiwz f0, f0
@@ -68,7 +68,7 @@ lbl_8076F52C:
 /* 8076F52C  38 7F 05 2C */	addi r3, r31, 0x52c
 /* 8076F530  C0 3E 00 08 */	lfs f1, 8(r30)
 /* 8076F534  C0 5E 00 58 */	lfs f2, 0x58(r30)
-/* 8076F538  4B B0 05 48 */	b cLib_addCalc0__FPfff
+/* 8076F538  4B B0 05 49 */	bl cLib_addCalc0__FPfff
 /* 8076F53C  80 7F 05 CC */	lwz r3, 0x5cc(r31)
 /* 8076F540  38 80 00 01 */	li r4, 1
 /* 8076F544  88 03 00 11 */	lbz r0, 0x11(r3)

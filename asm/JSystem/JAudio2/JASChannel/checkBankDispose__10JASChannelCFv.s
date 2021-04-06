@@ -7,8 +7,8 @@ lbl_8029BCC0:
 lbl_8029BCD4:
 /* 8029BCD4  38 60 00 00 */	li r3, 0
 /* 8029BCD8  80 0D 8D 18 */	lwz r0, sBankDisposeListSize__10JASChannel(r13)
-/* 8029BCDC  3C 80 80 43 */	lis r4, sBankDisposeList__10JASChannel@ha
-/* 8029BCE0  38 84 1B F0 */	addi r4, r4, sBankDisposeList__10JASChannel@l
+/* 8029BCDC  3C 80 80 43 */	lis r4, sBankDisposeList__10JASChannel@ha /* 0x80431BF0@ha */
+/* 8029BCE0  38 84 1B F0 */	addi r4, r4, sBankDisposeList__10JASChannel@l /* 0x80431BF0@l */
 /* 8029BCE4  7C 09 03 A6 */	mtctr r0
 /* 8029BCE8  2C 00 00 00 */	cmpwi r0, 0
 /* 8029BCEC  40 81 00 20 */	ble lbl_8029BD0C

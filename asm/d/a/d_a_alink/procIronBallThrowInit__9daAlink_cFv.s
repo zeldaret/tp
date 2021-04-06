@@ -8,8 +8,8 @@ lbl_8011577C:
 /* 80115794  4B FA C7 D9 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80115798  7F E3 FB 78 */	mr r3, r31
 /* 8011579C  38 80 01 62 */	li r4, 0x162
-/* 801157A0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 801157A4  38 C5 EA 70 */	addi r6, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 801157A0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 801157A4  38 C5 EA 70 */	addi r6, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 801157A8  C0 26 00 2C */	lfs f1, 0x2c(r6)
 /* 801157AC  C0 42 96 50 */	lfs f2, lit_34957(r2)
 /* 801157B0  38 A0 00 1E */	li r5, 0x1e
@@ -17,8 +17,8 @@ lbl_8011577C:
 /* 801157B8  4B F9 78 55 */	bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 801157BC  38 00 00 0C */	li r0, 0xc
 /* 801157C0  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 801157C4  3C 60 80 42 */	lis r3, l_ironBallBaseAnime@ha
-/* 801157C8  C4 03 55 2C */	lfsu f0, l_ironBallBaseAnime@l(r3)
+/* 801157C4  3C 60 80 42 */	lis r3, l_ironBallBaseAnime@ha /* 0x8042552C@ha */
+/* 801157C8  C4 03 55 2C */	lfsu f0, l_ironBallBaseAnime@l(r3)  /* 0x8042552C@l */
 /* 801157CC  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 801157D0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 801157D4  D0 1F 35 8C */	stfs f0, 0x358c(r31)

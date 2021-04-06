@@ -3,17 +3,15 @@
 #
 
 M443_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan.plf
+M443_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan.lcf
+M443_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan.map
 
 M443_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fan/executor.cpp \
-	rel/d/a/obj/d_a_obj_fan/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_fan/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_fan/d_a_obj_fan.cpp \
 
 M443_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/d_a_obj_fan.o \
 
 M443_LIBS := \
@@ -29,15 +27,21 @@ M443_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map443.map\
+	-m _prolog \
+	-lcf $(M443_LDSCRIPT) \
+	-unused -map $(M443_MAP) \
+	-w off \
 
 $(M443_TARGET): $(M443_O_FILES) $(M443_LIBS)
+	@echo [443] creating $(M443_TARGET)
 	@echo $(M443_LIBS) $(M443_O_FILES) > build/M443_ofiles
-	$(LD) -opt_partial $(M443_LDFLAGS) -o $(M443_TARGET) @build/M443_ofiles
+	@python3 tools/lcf.py rel 443 --output $(M443_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M443_LDFLAGS) -o $(M443_TARGET) @build/M443_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fan/%.o: rel/d/a/obj/d_a_obj_fan/%.cpp
+	@echo [443] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M443_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M443_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

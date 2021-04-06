@@ -7,7 +7,7 @@ lbl_80AF1F74:
 /* 80AF1F88  41 82 00 10 */	beq lbl_80AF1F98
 /* 80AF1F8C  7C 80 07 35 */	extsh. r0, r4
 /* 80AF1F90  40 81 00 08 */	ble lbl_80AF1F98
-/* 80AF1F94  4B 7D CD A8 */	b __dl__FPv
+/* 80AF1F94  4B 7D CD A9 */	bl __dl__FPv
 lbl_80AF1F98:
 /* 80AF1F98  7F E3 FB 78 */	mr r3, r31
 /* 80AF1F9C  83 E1 00 0C */	lwz r31, 0xc(r1)

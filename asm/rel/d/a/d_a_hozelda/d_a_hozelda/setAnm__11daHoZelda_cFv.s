@@ -3,12 +3,12 @@ lbl_808476B0:
 /* 808476B4  7C 08 02 A6 */	mflr r0
 /* 808476B8  90 01 00 64 */	stw r0, 0x64(r1)
 /* 808476BC  39 61 00 60 */	addi r11, r1, 0x60
-/* 808476C0  4B B1 AB 0C */	b _savegpr_25
+/* 808476C0  4B B1 AB 0D */	bl _savegpr_25
 /* 808476C4  7C 79 1B 78 */	mr r25, r3
-/* 808476C8  3C 60 80 85 */	lis r3, l_arcName@ha
-/* 808476CC  3B E3 8E 3C */	addi r31, r3, l_arcName@l
-/* 808476D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808476D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 808476C8  3C 60 80 85 */	lis r3, l_arcName@ha /* 0x80848E3C@ha */
+/* 808476CC  3B E3 8E 3C */	addi r31, r3, l_arcName@l /* 0x80848E3C@l */
+/* 808476D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808476D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808476D8  83 83 5D B8 */	lwz r28, 0x5db8(r3)
 /* 808476DC  83 C3 5D B4 */	lwz r30, 0x5db4(r3)
 /* 808476E0  28 1C 00 00 */	cmplwi r28, 0
@@ -101,28 +101,28 @@ lbl_808477CC:
 /* 8084780C  D0 41 00 3C */	stfs f2, 0x3c(r1)
 /* 80847810  38 61 00 28 */	addi r3, r1, 0x28
 /* 80847814  38 81 00 34 */	addi r4, r1, 0x34
-/* 80847818  4B AF FB 84 */	b PSVECSquareDistance
+/* 80847818  4B AF FB 85 */	bl PSVECSquareDistance
 /* 8084781C  7F 23 CB 78 */	mr r3, r25
 /* 80847820  7F A4 EB 78 */	mr r4, r29
-/* 80847824  4B 7D 2F 78 */	b fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80847824  4B 7D 2F 79 */	bl fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80847828  7C 7B 1B 78 */	mr r27, r3
 lbl_8084782C:
-/* 8084782C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80847830  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8084782C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80847830  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80847834  3B 43 56 B8 */	addi r26, r3, 0x56b8
 /* 80847838  7F 43 D3 78 */	mr r3, r26
 /* 8084783C  38 80 00 00 */	li r4, 0
-/* 80847840  4B 82 90 04 */	b GetLockonList__12dAttention_cFl
+/* 80847840  4B 82 90 05 */	bl GetLockonList__12dAttention_cFl
 /* 80847844  28 03 00 00 */	cmplwi r3, 0
 /* 80847848  41 82 00 34 */	beq lbl_8084787C
 /* 8084784C  7F 43 D3 78 */	mr r3, r26
-/* 80847850  4B 82 BF 94 */	b LockonTruth__12dAttention_cFv
+/* 80847850  4B 82 BF 95 */	bl LockonTruth__12dAttention_cFv
 /* 80847854  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80847858  41 82 00 24 */	beq lbl_8084787C
 /* 8084785C  7F 43 D3 78 */	mr r3, r26
 /* 80847860  38 80 00 00 */	li r4, 0
-/* 80847864  4B 82 8F E0 */	b GetLockonList__12dAttention_cFl
-/* 80847868  4B 82 BF FC */	b getActor__10dAttList_cFv
+/* 80847864  4B 82 8F E1 */	bl GetLockonList__12dAttention_cFl
+/* 80847868  4B 82 BF FD */	bl getActor__10dAttList_cFv
 /* 8084786C  7C 03 E8 40 */	cmplw r3, r29
 /* 80847870  40 82 00 0C */	bne lbl_8084787C
 /* 80847874  3B 40 00 01 */	li r26, 1
@@ -213,8 +213,8 @@ lbl_808479A0:
 /* 808479A4  98 19 06 DF */	stb r0, 0x6df(r25)
 /* 808479A8  48 00 00 54 */	b lbl_808479FC
 lbl_808479AC:
-/* 808479AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808479B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 808479AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808479B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808479B4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 808479B8  54 00 00 85 */	rlwinm. r0, r0, 0, 2, 2
 /* 808479BC  41 82 00 20 */	beq lbl_808479DC
@@ -291,7 +291,7 @@ lbl_80847AB8:
 /* 80847ABC  28 00 00 00 */	cmplwi r0, 0
 /* 80847AC0  41 82 02 08 */	beq lbl_80847CC8
 /* 80847AC4  38 79 05 F8 */	addi r3, r25, 0x5f8
-/* 80847AC8  4B 91 6A 04 */	b checkAnmEnd__16daPy_frameCtrl_cFv
+/* 80847AC8  4B 91 6A 05 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80847ACC  54 7A 06 3E */	clrlwi r26, r3, 0x18
 /* 80847AD0  38 80 00 1A */	li r4, 0x1a
 /* 80847AD4  B0 81 00 20 */	sth r4, 0x20(r1)
@@ -383,10 +383,10 @@ lbl_80847BE8:
 /* 80847C1C  39 00 00 00 */	li r8, 0
 /* 80847C20  39 20 FF FF */	li r9, -1
 /* 80847C24  39 40 00 00 */	li r10, 0
-/* 80847C28  4B 7D 21 DC */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 80847C28  4B 7D 21 DD */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 80847C2C  7C 64 1B 78 */	mr r4, r3
 /* 80847C30  38 79 06 C4 */	addi r3, r25, 0x6c4
-/* 80847C34  4B 91 70 84 */	b setData__16daPy_actorKeep_cFP10fopAc_ac_c
+/* 80847C34  4B 91 70 85 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80847C38  80 19 06 C8 */	lwz r0, 0x6c8(r25)
 /* 80847C3C  28 00 00 00 */	cmplwi r0, 0
 /* 80847C40  41 82 00 54 */	beq lbl_80847C94
@@ -463,7 +463,7 @@ lbl_80847D38:
 /* 80847D48  28 00 00 00 */	cmplwi r0, 0
 /* 80847D4C  41 82 00 1C */	beq lbl_80847D68
 /* 80847D50  38 79 05 F8 */	addi r3, r25, 0x5f8
-/* 80847D54  4B 91 67 78 */	b checkAnmEnd__16daPy_frameCtrl_cFv
+/* 80847D54  4B 91 67 79 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80847D58  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80847D5C  41 82 00 0C */	beq lbl_80847D68
 lbl_80847D60:
@@ -527,7 +527,7 @@ lbl_80847DF0:
 /* 80847E28  D0 03 00 08 */	stfs f0, 8(r3)
 lbl_80847E2C:
 /* 80847E2C  39 61 00 60 */	addi r11, r1, 0x60
-/* 80847E30  4B B1 A3 E8 */	b _restgpr_25
+/* 80847E30  4B B1 A3 E9 */	bl _restgpr_25
 /* 80847E34  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80847E38  7C 08 03 A6 */	mtlr r0
 /* 80847E3C  38 21 00 60 */	addi r1, r1, 0x60

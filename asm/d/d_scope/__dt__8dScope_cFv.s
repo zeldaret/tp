@@ -7,8 +7,8 @@ lbl_8019396C:
 /* 80193980  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80193984  7C 9F 23 78 */	mr r31, r4
 /* 80193988  41 82 01 EC */	beq lbl_80193B74
-/* 8019398C  3C 60 80 3C */	lis r3, __vt__8dScope_c@ha
-/* 80193990  38 03 B6 B4 */	addi r0, r3, __vt__8dScope_c@l
+/* 8019398C  3C 60 80 3C */	lis r3, __vt__8dScope_c@ha /* 0x803BB6B4@ha */
+/* 80193990  38 03 B6 B4 */	addi r0, r3, __vt__8dScope_c@l /* 0x803BB6B4@l */
 /* 80193994  90 1E 00 00 */	stw r0, 0(r30)
 /* 80193998  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8019399C  28 03 00 00 */	cmplwi r3, 0
@@ -134,13 +134,13 @@ lbl_80193B14:
 lbl_80193B3C:
 /* 80193B3C  38 00 00 00 */	li r0, 0
 /* 80193B40  90 1E 00 3C */	stw r0, 0x3c(r30)
-/* 80193B44  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80193B48  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80193B44  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80193B48  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80193B4C  98 03 00 E7 */	stb r0, 0xe7(r3)
 /* 80193B50  28 1E 00 00 */	cmplwi r30, 0
 /* 80193B54  41 82 00 10 */	beq lbl_80193B64
-/* 80193B58  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha
-/* 80193B5C  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l
+/* 80193B58  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha /* 0x803BB6D4@ha */
+/* 80193B5C  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l /* 0x803BB6D4@l */
 /* 80193B60  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80193B64:
 /* 80193B64  7F E0 07 35 */	extsh. r0, r31

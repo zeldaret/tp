@@ -5,10 +5,10 @@ lbl_80733E48:
 /* 80733E54  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 80733E58  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80733E5C  7C 7E 1B 78 */	mr r30, r3
-/* 80733E60  3C 60 80 73 */	lis r3, lit_3911@ha
-/* 80733E64  3B E3 5B 28 */	addi r31, r3, lit_3911@l
+/* 80733E60  3C 60 80 73 */	lis r3, lit_3911@ha /* 0x80735B28@ha */
+/* 80733E64  3B E3 5B 28 */	addi r31, r3, lit_3911@l /* 0x80735B28@l */
 /* 80733E68  38 61 00 14 */	addi r3, r1, 0x14
-/* 80733E6C  4B 94 39 44 */	b __ct__18dBgS_ObjGndChk_SplFv
+/* 80733E6C  4B 94 39 45 */	bl __ct__18dBgS_ObjGndChk_SplFv
 /* 80733E70  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 80733E74  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80733E78  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)
@@ -20,12 +20,12 @@ lbl_80733E48:
 /* 80733E90  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80733E94  38 61 00 14 */	addi r3, r1, 0x14
 /* 80733E98  38 81 00 08 */	addi r4, r1, 8
-/* 80733E9C  4B B3 3E 70 */	b SetPos__11cBgS_GndChkFPC3Vec
-/* 80733EA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80733EA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80733E9C  4B B3 3E 71 */	bl SetPos__11cBgS_GndChkFPC3Vec
+/* 80733EA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80733EA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80733EA8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80733EAC  38 81 00 14 */	addi r4, r1, 0x14
-/* 80733EB0  4B 94 05 F0 */	b GroundCross__4cBgSFP11cBgS_GndChk
+/* 80733EB0  4B 94 05 F1 */	bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 80733EB4  D0 3E 06 98 */	stfs f1, 0x698(r30)
 /* 80733EB8  80 1E 07 74 */	lwz r0, 0x774(r30)
 /* 80733EBC  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
@@ -41,13 +41,13 @@ lbl_80733ECC:
 /* 80733EE0  40 81 00 18 */	ble lbl_80733EF8
 /* 80733EE4  38 61 00 14 */	addi r3, r1, 0x14
 /* 80733EE8  38 80 FF FF */	li r4, -1
-/* 80733EEC  4B 94 39 5C */	b __dt__18dBgS_ObjGndChk_SplFv
+/* 80733EEC  4B 94 39 5D */	bl __dt__18dBgS_ObjGndChk_SplFv
 /* 80733EF0  38 60 00 01 */	li r3, 1
 /* 80733EF4  48 00 00 14 */	b lbl_80733F08
 lbl_80733EF8:
 /* 80733EF8  38 61 00 14 */	addi r3, r1, 0x14
 /* 80733EFC  38 80 FF FF */	li r4, -1
-/* 80733F00  4B 94 39 48 */	b __dt__18dBgS_ObjGndChk_SplFv
+/* 80733F00  4B 94 39 49 */	bl __dt__18dBgS_ObjGndChk_SplFv
 /* 80733F04  38 60 00 00 */	li r3, 0
 lbl_80733F08:
 /* 80733F08  83 E1 00 6C */	lwz r31, 0x6c(r1)

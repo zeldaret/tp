@@ -6,8 +6,8 @@ lbl_8014997C:
 /* 8014998C  48 21 88 4D */	bl _savegpr_28
 /* 80149990  7C 7E 1B 78 */	mr r30, r3
 /* 80149994  3B E0 00 00 */	li r31, 0
-/* 80149998  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8014999C  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l
+/* 80149998  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014999C  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801499A0  88 1D 4F AD */	lbz r0, 0x4fad(r29)
 /* 801499A4  28 00 00 00 */	cmplwi r0, 0
 /* 801499A8  41 82 01 C4 */	beq lbl_80149B6C
@@ -51,8 +51,8 @@ lbl_801499EC:
 lbl_80149A38:
 /* 80149A38  38 7D 4F F8 */	addi r3, r29, 0x4ff8
 /* 80149A3C  4B EF E9 AD */	bl getRunEventName__16dEvent_manager_cFv
-/* 80149A40  3C 80 80 39 */	lis r4, d_a_d_a_npc__stringBase0@ha
-/* 80149A44  38 84 27 10 */	addi r4, r4, d_a_d_a_npc__stringBase0@l
+/* 80149A40  3C 80 80 39 */	lis r4, d_a_d_a_npc__stringBase0@ha /* 0x80392710@ha */
+/* 80149A44  38 84 27 10 */	addi r4, r4, d_a_d_a_npc__stringBase0@l /* 0x80392710@l */
 /* 80149A48  48 21 EF 4D */	bl strcmp
 /* 80149A4C  2C 03 00 00 */	cmpwi r3, 0
 /* 80149A50  40 82 00 38 */	bne lbl_80149A88

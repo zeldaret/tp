@@ -3,8 +3,8 @@ lbl_8024B180:
 /* 8024B184  7C 08 02 A6 */	mflr r0
 /* 8024B188  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8024B18C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8024B190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B194  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8024B190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B194  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B198  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 8024B19C  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 8024B1A0  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

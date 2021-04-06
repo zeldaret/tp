@@ -215,11 +215,11 @@ lbl_802C4160:
 /* 802C4198  FF C0 08 90 */	fmr f30, f1
 /* 802C419C  48 00 01 30 */	b lbl_802C42CC
 lbl_802C41A0:
-/* 802C41A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802C41A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802C41A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802C41A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802C41A8  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 802C41AC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 802C41B0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 802C41AC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 802C41B0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 802C41B4  A0 84 02 14 */	lhz r4, 0x214(r4)
 /* 802C41B8  4B D7 08 05 */	bl isEventBit__11dSv_event_cCFUs
 /* 802C41BC  2C 03 00 00 */	cmpwi r3, 0

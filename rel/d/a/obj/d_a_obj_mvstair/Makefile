@@ -3,18 +3,16 @@
 #
 
 M578_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair.plf
+M578_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair.lcf
+M578_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair.map
 
 M578_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_mvstair/executor.cpp \
-	rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_mvstair/d_a_obj_mvstair.cpp \
 
 M578_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/d_a_obj_mvstair.o \
 
@@ -31,15 +29,21 @@ M578_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map578.map\
+	-m _prolog \
+	-lcf $(M578_LDSCRIPT) \
+	-unused -map $(M578_MAP) \
+	-w off \
 
 $(M578_TARGET): $(M578_O_FILES) $(M578_LIBS)
+	@echo [578] creating $(M578_TARGET)
 	@echo $(M578_LIBS) $(M578_O_FILES) > build/M578_ofiles
-	$(LD) -opt_partial $(M578_LDFLAGS) -o $(M578_TARGET) @build/M578_ofiles
+	@python3 tools/lcf.py rel 578 --output $(M578_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M578_LDFLAGS) -o $(M578_TARGET) @build/M578_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mvstair/%.o: rel/d/a/obj/d_a_obj_mvstair/%.cpp
+	@echo [578] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M578_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,10 +3,10 @@ lbl_806B0368:
 /* 806B036C  7C 08 02 A6 */	mflr r0
 /* 806B0370  90 01 00 34 */	stw r0, 0x34(r1)
 /* 806B0374  39 61 00 30 */	addi r11, r1, 0x30
-/* 806B0378  4B CB 1E 5C */	b _savegpr_27
+/* 806B0378  4B CB 1E 5D */	bl _savegpr_27
 /* 806B037C  7C 7E 1B 78 */	mr r30, r3
-/* 806B0380  3C 80 80 6B */	lis r4, lit_3792@ha
-/* 806B0384  3B E4 5C D4 */	addi r31, r4, lit_3792@l
+/* 806B0380  3C 80 80 6B */	lis r4, lit_3792@ha /* 0x806B5CD4@ha */
+/* 806B0384  3B E4 5C D4 */	addi r31, r4, lit_3792@l /* 0x806B5CD4@l */
 /* 806B0388  80 03 07 0C */	lwz r0, 0x70c(r3)
 /* 806B038C  2C 00 00 01 */	cmpwi r0, 1
 /* 806B0390  41 82 00 C0 */	beq lbl_806B0450
@@ -34,10 +34,10 @@ lbl_806B03B0:
 /* 806B03E0  C0 5F 00 28 */	lfs f2, 0x28(r31)
 /* 806B03E4  4B FF E2 69 */	bl setBck__8daE_DT_cFiUcff
 /* 806B03E8  7F C3 F3 78 */	mr r3, r30
-/* 806B03EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806B03F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 806B03EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806B03F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806B03F4  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 806B03F8  4B 96 A3 18 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806B03F8  4B 96 A3 19 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806B03FC  A8 9E 04 E6 */	lha r4, 0x4e6(r30)
 /* 806B0400  7C 03 20 50 */	subf r0, r3, r4
 /* 806B0404  7C 00 07 35 */	extsh. r0, r0
@@ -65,7 +65,7 @@ lbl_806B0450:
 /* 806B0450  38 7E 04 E6 */	addi r3, r30, 0x4e6
 /* 806B0454  A8 9E 07 38 */	lha r4, 0x738(r30)
 /* 806B0458  38 A0 02 00 */	li r5, 0x200
-/* 806B045C  4B BC 07 34 */	b cLib_chaseAngleS__FPsss
+/* 806B045C  4B BC 07 35 */	bl cLib_chaseAngleS__FPsss
 /* 806B0460  80 1E 07 58 */	lwz r0, 0x758(r30)
 /* 806B0464  2C 00 00 00 */	cmpwi r0, 0
 /* 806B0468  40 82 01 BC */	bne lbl_806B0624
@@ -93,7 +93,7 @@ lbl_806B04B8:
 /* 806B04B8  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 806B04BC  38 63 00 0C */	addi r3, r3, 0xc
 /* 806B04C0  C0 3F 00 BC */	lfs f1, 0xbc(r31)
-/* 806B04C4  4B C7 7F 68 */	b checkPass__12J3DFrameCtrlFf
+/* 806B04C4  4B C7 7F 69 */	bl checkPass__12J3DFrameCtrlFf
 /* 806B04C8  2C 03 00 00 */	cmpwi r3, 0
 /* 806B04CC  41 82 00 2C */	beq lbl_806B04F8
 /* 806B04D0  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070316@ha */
@@ -131,7 +131,7 @@ lbl_806B0548:
 /* 806B0548  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 806B054C  38 63 00 0C */	addi r3, r3, 0xc
 /* 806B0550  C0 3F 00 B4 */	lfs f1, 0xb4(r31)
-/* 806B0554  4B C7 7E D8 */	b checkPass__12J3DFrameCtrlFf
+/* 806B0554  4B C7 7E D9 */	bl checkPass__12J3DFrameCtrlFf
 /* 806B0558  2C 03 00 00 */	cmpwi r3, 0
 /* 806B055C  41 82 00 88 */	beq lbl_806B05E4
 /* 806B0560  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070317@ha */
@@ -149,8 +149,8 @@ lbl_806B0548:
 /* 806B0590  4B FF F7 A1 */	bl getNumberOfOtama__8daE_DT_cFv
 /* 806B0594  3B 60 00 00 */	li r27, 0
 /* 806B0598  3B A0 00 00 */	li r29, 0
-/* 806B059C  3C 60 80 6B */	lis r3, mDt_OtamaNo__6E_DT_n@ha
-/* 806B05A0  3B 83 62 E0 */	addi r28, r3, mDt_OtamaNo__6E_DT_n@l
+/* 806B059C  3C 60 80 6B */	lis r3, mDt_OtamaNo__6E_DT_n@ha /* 0x806B62E0@ha */
+/* 806B05A0  3B 83 62 E0 */	addi r28, r3, mDt_OtamaNo__6E_DT_n@l /* 0x806B62E0@l */
 lbl_806B05A4:
 /* 806B05A4  7C 1C E8 2E */	lwzx r0, r28, r29
 /* 806B05A8  2C 00 00 00 */	cmpwi r0, 0
@@ -163,7 +163,7 @@ lbl_806B05A4:
 /* 806B05C4  38 FE 04 E4 */	addi r7, r30, 0x4e4
 /* 806B05C8  39 00 00 00 */	li r8, 0
 /* 806B05CC  39 20 FF FF */	li r9, -1
-/* 806B05D0  4B 96 97 C8 */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 806B05D0  4B 96 97 C9 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 lbl_806B05D4:
 /* 806B05D4  3B 7B 00 01 */	addi r27, r27, 1
 /* 806B05D8  2C 1B 00 14 */	cmpwi r27, 0x14
@@ -189,7 +189,7 @@ lbl_806B060C:
 /* 806B0620  4B FF E1 2D */	bl setActionMode__8daE_DT_cFii
 lbl_806B0624:
 /* 806B0624  39 61 00 30 */	addi r11, r1, 0x30
-/* 806B0628  4B CB 1B F8 */	b _restgpr_27
+/* 806B0628  4B CB 1B F9 */	bl _restgpr_27
 /* 806B062C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 806B0630  7C 08 03 A6 */	mtlr r0
 /* 806B0634  38 21 00 30 */	addi r1, r1, 0x30

@@ -4,14 +4,14 @@ lbl_802D21DC:
 /* 802D21E4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802D21E8  39 61 00 20 */	addi r11, r1, 0x20
 /* 802D21EC  48 08 FF F1 */	bl _savegpr_29
-/* 802D21F0  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha
-/* 802D21F4  38 63 C1 38 */	addi r3, r3, sMessageQueue__7JKRAram@l
-/* 802D21F8  3C 80 80 3D */	lis r4, sMessageBuffer__7JKRAram@ha
-/* 802D21FC  38 84 C1 28 */	addi r4, r4, sMessageBuffer__7JKRAram@l
+/* 802D21F0  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha /* 0x803CC138@ha */
+/* 802D21F4  38 63 C1 38 */	addi r3, r3, sMessageQueue__7JKRAram@l /* 0x803CC138@l */
+/* 802D21F8  3C 80 80 3D */	lis r4, sMessageBuffer__7JKRAram@ha /* 0x803CC128@ha */
+/* 802D21FC  38 84 C1 28 */	addi r4, r4, sMessageBuffer__7JKRAram@l /* 0x803CC128@l */
 /* 802D2200  38 A0 00 04 */	li r5, 4
 /* 802D2204  48 06 C7 91 */	bl OSInitMessageQueue
-/* 802D2208  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha
-/* 802D220C  3B E3 C1 38 */	addi r31, r3, sMessageQueue__7JKRAram@l
+/* 802D2208  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha /* 0x803CC138@ha */
+/* 802D220C  3B E3 C1 38 */	addi r31, r3, sMessageQueue__7JKRAram@l /* 0x803CC138@l */
 lbl_802D2210:
 /* 802D2210  7F E3 FB 78 */	mr r3, r31
 /* 802D2214  38 81 00 08 */	addi r4, r1, 8

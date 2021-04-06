@@ -12,8 +12,8 @@ lbl_80357CDC:
 /* 80357D04  38 60 FF FC */	li r3, -4
 /* 80357D08  48 00 00 50 */	b lbl_80357D58
 lbl_80357D0C:
-/* 80357D0C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357D10  38 03 CD E0 */	addi r0, r3, __CARDDiskNone@l
+/* 80357D0C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357D10  38 03 CD E0 */	addi r0, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357D14  7C 1F 00 40 */	cmplw r31, r0
 /* 80357D18  41 82 00 34 */	beq lbl_80357D4C
 /* 80357D1C  38 7E 00 00 */	addi r3, r30, 0

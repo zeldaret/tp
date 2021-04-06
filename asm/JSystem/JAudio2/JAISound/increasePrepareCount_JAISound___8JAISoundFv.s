@@ -8,8 +8,8 @@ lbl_802A266C:
 /* 802A2684  90 06 00 14 */	stw r0, 0x14(r6)
 /* 802A2688  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 802A268C  40 82 00 1C */	bne lbl_802A26A8
-/* 802A2690  3C 60 80 3A */	lis r3, JAISound__stringBase0@ha
-/* 802A2694  38 63 B9 10 */	addi r3, r3, JAISound__stringBase0@l
+/* 802A2690  3C 60 80 3A */	lis r3, JAISound__stringBase0@ha /* 0x8039B910@ha */
+/* 802A2694  38 63 B9 10 */	addi r3, r3, JAISound__stringBase0@l /* 0x8039B910@l */
 /* 802A2698  80 86 00 14 */	lwz r4, 0x14(r6)
 /* 802A269C  80 A6 00 18 */	lwz r5, 0x18(r6)
 /* 802A26A0  4C C6 31 82 */	crclr 6

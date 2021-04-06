@@ -20,8 +20,8 @@ lbl_80182FD8:
 lbl_80183020:
 /* 80183020  83 44 00 00 */	lwz r26, 0(r4)
 /* 80183024  83 E4 00 04 */	lwz r31, 4(r4)
-/* 80183028  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018302C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80183028  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018302C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80183030  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 80183034  7C 00 07 74 */	extsb r0, r0
 /* 80183038  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -40,8 +40,8 @@ lbl_80183020:
 /* 8018306C  40 82 00 08 */	bne lbl_80183074
 /* 80183070  3B 80 FF FF */	li r28, -1
 lbl_80183074:
-/* 80183074  3C 60 80 39 */	lis r3, d_d_envse__stringBase0@ha
-/* 80183078  3B 03 43 08 */	addi r24, r3, d_d_envse__stringBase0@l
+/* 80183074  3C 60 80 39 */	lis r3, d_d_envse__stringBase0@ha /* 0x80394308@ha */
+/* 80183078  3B 03 43 08 */	addi r24, r3, d_d_envse__stringBase0@l /* 0x80394308@l */
 /* 8018307C  48 00 03 D8 */	b lbl_80183454
 lbl_80183080:
 /* 80183080  7F E3 FB 78 */	mr r3, r31
@@ -56,8 +56,8 @@ lbl_80183080:
 /* 801830A4  88 9F 00 17 */	lbz r4, 0x17(r31)
 /* 801830A8  28 04 00 00 */	cmplwi r4, 0
 /* 801830AC  41 82 00 20 */	beq lbl_801830CC
-/* 801830B0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801830B4  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 801830B0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801830B4  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801830B8  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801830BC  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801830C0  88 FF 00 1A */	lbz r7, 0x1a(r31)
@@ -73,8 +73,8 @@ lbl_801830D8:
 /* 801830E0  7F 63 DB 78 */	mr r3, r27
 /* 801830E4  4B EA 9F 89 */	bl dComIfGp_getReverb__Fi
 /* 801830E8  7C 64 1B 78 */	mr r4, r3
-/* 801830EC  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801830F0  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 801830EC  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801830F0  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801830F4  48 14 3F D5 */	bl startStaticEnvSe__10Z2EnvSeMgrFSc
 lbl_801830F8:
 /* 801830F8  3B 20 00 01 */	li r25, 1
@@ -86,8 +86,8 @@ lbl_80183100:
 /* 8018310C  88 1D 00 00 */	lbz r0, 0(r29)
 /* 80183110  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80183114  40 82 00 28 */	bne lbl_8018313C
-/* 80183118  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 8018311C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 80183118  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 8018311C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183120  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 80183124  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 80183128  88 FF 00 1A */	lbz r7, 0x1a(r31)
@@ -100,8 +100,8 @@ lbl_8018313C:
 /* 80183140  7F 84 E3 78 */	mr r4, r28
 /* 80183144  4B EC E6 A9 */	bl dPath_GetRoomPath__Fii
 /* 80183148  7C 76 1B 78 */	mr r22, r3
-/* 8018314C  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 80183150  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l
+/* 8018314C  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 80183150  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183154  48 00 00 30 */	b lbl_80183184
 lbl_80183158:
 /* 80183158  38 7E 00 DC */	addi r3, r30, 0xdc
@@ -121,20 +121,20 @@ lbl_80183184:
 /* 8018318C  7F 63 DB 78 */	mr r3, r27
 /* 80183190  4B EA 9E DD */	bl dComIfGp_getReverb__Fi
 /* 80183194  7C 64 1B 78 */	mr r4, r3
-/* 80183198  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 8018319C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 80183198  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 8018319C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801831A0  48 14 51 61 */	bl startRiverSe__10Z2EnvSeMgrFSc
 /* 801831A4  48 00 02 A8 */	b lbl_8018344C
 lbl_801831A8:
 /* 801831A8  28 04 00 10 */	cmplwi r4, 0x10
 /* 801831AC  40 80 00 F0 */	bge lbl_8018329C
-/* 801831B0  3C 60 80 45 */	lis r3, __float_max@ha
-/* 801831B4  C3 E3 0A E8 */	lfs f31, __float_max@l(r3)
+/* 801831B0  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 801831B4  C3 E3 0A E8 */	lfs f31, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 801831B8  88 1D 00 00 */	lbz r0, 0(r29)
 /* 801831BC  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 801831C0  40 82 00 28 */	bne lbl_801831E8
-/* 801831C4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801831C8  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 801831C4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801831C8  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801831CC  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801831D0  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801831D4  88 FF 00 1A */	lbz r7, 0x1a(r31)
@@ -153,8 +153,8 @@ lbl_801831E8:
 /* 80183204  7F 84 E3 78 */	mr r4, r28
 /* 80183208  4B EC E5 E5 */	bl dPath_GetRoomPath__Fii
 /* 8018320C  7C 76 1B 78 */	mr r22, r3
-/* 80183210  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 80183214  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l
+/* 80183210  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 80183214  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183218  48 00 00 60 */	b lbl_80183278
 lbl_8018321C:
 /* 8018321C  38 61 00 14 */	addi r3, r1, 0x14
@@ -187,8 +187,8 @@ lbl_80183278:
 /* 80183280  7F 63 DB 78 */	mr r3, r27
 /* 80183284  4B EA 9D E9 */	bl dComIfGp_getReverb__Fi
 /* 80183288  7C 64 1B 78 */	mr r4, r3
-/* 8018328C  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 80183290  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 8018328C  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 80183290  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183294  48 14 55 FD */	bl startFallSe__10Z2EnvSeMgrFSc
 /* 80183298  48 00 01 B4 */	b lbl_8018344C
 lbl_8018329C:
@@ -197,8 +197,8 @@ lbl_8018329C:
 /* 801832A4  88 1D 00 00 */	lbz r0, 0(r29)
 /* 801832A8  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 801832AC  40 82 00 28 */	bne lbl_801832D4
-/* 801832B0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801832B4  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 801832B0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801832B4  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801832B8  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801832BC  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801832C0  88 FF 00 1A */	lbz r7, 0x1a(r31)
@@ -211,8 +211,8 @@ lbl_801832D4:
 /* 801832D8  7F 84 E3 78 */	mr r4, r28
 /* 801832DC  4B EC E5 11 */	bl dPath_GetRoomPath__Fii
 /* 801832E0  7C 76 1B 78 */	mr r22, r3
-/* 801832E4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801832E8  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l
+/* 801832E4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801832E8  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801832EC  48 00 00 30 */	b lbl_8018331C
 lbl_801832F0:
 /* 801832F0  38 7E 00 DC */	addi r3, r30, 0xdc
@@ -232,8 +232,8 @@ lbl_8018331C:
 /* 80183324  7F 63 DB 78 */	mr r3, r27
 /* 80183328  4B EA 9D 45 */	bl dComIfGp_getReverb__Fi
 /* 8018332C  7C 64 1B 78 */	mr r4, r3
-/* 80183330  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 80183334  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 80183330  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 80183334  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183338  48 14 59 11 */	bl startEtcSe__10Z2EnvSeMgrFSc
 /* 8018333C  48 00 01 10 */	b lbl_8018344C
 lbl_80183340:
@@ -243,8 +243,8 @@ lbl_80183340:
 /* 8018334C  7F 84 E3 78 */	mr r4, r28
 /* 80183350  4B EC E4 9D */	bl dPath_GetRoomPath__Fii
 /* 80183354  7C 76 1B 78 */	mr r22, r3
-/* 80183358  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 8018335C  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l
+/* 80183358  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 8018335C  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183360  48 00 00 30 */	b lbl_80183390
 lbl_80183364:
 /* 80183364  38 7E 00 DC */	addi r3, r30, 0xdc
@@ -269,8 +269,8 @@ lbl_8018339C:
 /* 801833A8  7C 00 D6 30 */	sraw r0, r0, r26
 /* 801833AC  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 801833B0  40 82 00 30 */	bne lbl_801833E0
-/* 801833B4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801833B8  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 801833B4  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801833B8  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801833BC  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801833C0  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801833C4  88 FF 00 1A */	lbz r7, 0x1a(r31)
@@ -285,8 +285,8 @@ lbl_801833E0:
 /* 801833E4  7F 84 E3 78 */	mr r4, r28
 /* 801833E8  4B EC E4 05 */	bl dPath_GetRoomPath__Fii
 /* 801833EC  7C 76 1B 78 */	mr r22, r3
-/* 801833F0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 801833F4  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l
+/* 801833F0  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 801833F4  3A E3 DD 70 */	addi r23, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 801833F8  48 00 00 34 */	b lbl_8018342C
 lbl_801833FC:
 /* 801833FC  38 7E 00 DC */	addi r3, r30, 0xdc
@@ -307,8 +307,8 @@ lbl_8018342C:
 /* 80183434  7F 63 DB 78 */	mr r3, r27
 /* 80183438  4B EA 9C 35 */	bl dComIfGp_getReverb__Fi
 /* 8018343C  7C 64 1B 78 */	mr r4, r3
-/* 80183440  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 80183444  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 80183440  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 80183444  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 80183448  48 14 73 4D */	bl startLv3WaterSe__10Z2EnvSeMgrFSc
 lbl_8018344C:
 /* 8018344C  3B FF 00 1C */	addi r31, r31, 0x1c

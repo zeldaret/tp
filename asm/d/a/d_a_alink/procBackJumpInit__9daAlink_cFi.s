@@ -25,12 +25,12 @@ lbl_800C57A4:
 /* 800C5800  41 82 00 54 */	beq lbl_800C5854
 /* 800C5804  7F C3 F3 78 */	mr r3, r30
 /* 800C5808  38 80 00 26 */	li r4, 0x26
-/* 800C580C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha
-/* 800C5810  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l
+/* 800C580C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha /* 0x8038DD44@ha */
+/* 800C5810  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l /* 0x8038DD44@l */
 /* 800C5814  38 A5 00 50 */	addi r5, r5, 0x50
 /* 800C5818  4B FE 78 DD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C581C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutDown_c0@ha
-/* 800C5820  38 63 DD 44 */	addi r3, r3, m__21daAlinkHIO_cutDown_c0@l
+/* 800C581C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutDown_c0@ha /* 0x8038DD44@ha */
+/* 800C5820  38 63 DD 44 */	addi r3, r3, m__21daAlinkHIO_cutDown_c0@l /* 0x8038DD44@l */
 /* 800C5824  C0 03 00 6C */	lfs f0, 0x6c(r3)
 /* 800C5828  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 800C582C  C0 03 00 70 */	lfs f0, 0x70(r3)
@@ -46,11 +46,11 @@ lbl_800C57A4:
 lbl_800C5854:
 /* 800C5854  7F C3 F3 78 */	mr r3, r30
 /* 800C5858  38 80 00 26 */	li r4, 0x26
-/* 800C585C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_backJump_c0@ha
-/* 800C5860  38 A5 D8 2C */	addi r5, r5, m__22daAlinkHIO_backJump_c0@l
+/* 800C585C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_backJump_c0@ha /* 0x8038D82C@ha */
+/* 800C5860  38 A5 D8 2C */	addi r5, r5, m__22daAlinkHIO_backJump_c0@l /* 0x8038D82C@l */
 /* 800C5864  4B FE 78 91 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C5868  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha
-/* 800C586C  38 63 D8 2C */	addi r3, r3, m__22daAlinkHIO_backJump_c0@l
+/* 800C5868  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha /* 0x8038D82C@ha */
+/* 800C586C  38 63 D8 2C */	addi r3, r3, m__22daAlinkHIO_backJump_c0@l /* 0x8038D82C@l */
 /* 800C5870  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 800C5874  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 800C5878  C0 03 00 2C */	lfs f0, 0x2c(r3)

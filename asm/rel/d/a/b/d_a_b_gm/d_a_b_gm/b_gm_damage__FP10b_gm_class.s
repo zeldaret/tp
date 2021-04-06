@@ -5,8 +5,8 @@ lbl_805EF504:
 /* 805EF510  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805EF514  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805EF518  7C 7E 1B 78 */	mr r30, r3
-/* 805EF51C  3C 80 80 5F */	lis r4, lit_3774@ha
-/* 805EF520  3B E4 41 88 */	addi r31, r4, lit_3774@l
+/* 805EF51C  3C 80 80 5F */	lis r4, lit_3774@ha /* 0x805F4188@ha */
+/* 805EF520  3B E4 41 88 */	addi r31, r4, lit_3774@l /* 0x805F4188@l */
 /* 805EF524  80 83 05 DC */	lwz r4, 0x5dc(r3)
 /* 805EF528  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 805EF52C  FC 00 00 1E */	fctiwz f0, f0
@@ -73,7 +73,7 @@ lbl_805EF600:
 /* 805EF608  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 805EF60C  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805EF610  C0 5F 00 88 */	lfs f2, 0x88(r31)
-/* 805EF614  4B C8 04 6C */	b cLib_addCalc0__FPfff
+/* 805EF614  4B C8 04 6D */	bl cLib_addCalc0__FPfff
 /* 805EF618  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 805EF61C  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 805EF620  80 01 00 24 */	lwz r0, 0x24(r1)

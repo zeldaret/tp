@@ -8,7 +8,7 @@ lbl_8033DB44:
 /* 8033DB5C  7C 7F 1B 78 */	mr r31, r3
 /* 8033DB60  4B FF FB 95 */	bl OSDisableInterrupts
 /* 8033DB64  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000C4@ha */
-/* 8033DB68  83 A4 00 C4 */	lwz r29, 0x00C4(r4)
+/* 8033DB68  83 A4 00 C4 */	lwz r29, 0x00C4(r4)  /* 0x800000C4@l */
 /* 8033DB6C  7C 7E 1B 78 */	mr r30, r3
 /* 8033DB70  80 A4 00 C8 */	lwz r5, 0xc8(r4)
 /* 8033DB74  7F A0 2B 78 */	or r0, r29, r5

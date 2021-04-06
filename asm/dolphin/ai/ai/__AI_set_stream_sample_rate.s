@@ -8,7 +8,7 @@ lbl_8034FF48:
 /* 8034FF60  7C 19 18 40 */	cmplw r25, r3
 /* 8034FF64  41 82 00 A4 */	beq lbl_80350008
 /* 8034FF68  3F E0 CC 00 */	lis r31, 0xCC00 /* 0xCC006C00@ha */
-/* 8034FF6C  80 1F 6C 00 */	lwz r0, 0x6C00(r31)
+/* 8034FF6C  80 1F 6C 00 */	lwz r0, 0x6C00(r31)  /* 0xCC006C00@l */
 /* 8034FF70  54 00 07 FE */	clrlwi r0, r0, 0x1f
 /* 8034FF74  7C 1D 03 78 */	mr r29, r0
 /* 8034FF78  48 00 00 D1 */	bl AIGetStreamVolLeft

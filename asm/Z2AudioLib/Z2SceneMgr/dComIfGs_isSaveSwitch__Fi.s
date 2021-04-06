@@ -3,8 +3,8 @@ lbl_802B9A94:
 /* 802B9A98  7C 08 02 A6 */	mflr r0
 /* 802B9A9C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802B9AA0  7C 64 1B 78 */	mr r4, r3
-/* 802B9AA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802B9AA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802B9AA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802B9AA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802B9AAC  38 63 09 58 */	addi r3, r3, 0x958
 /* 802B9AB0  4B D7 AD B1 */	bl isSwitch__12dSv_memBit_cCFi
 /* 802B9AB4  80 01 00 14 */	lwz r0, 0x14(r1)

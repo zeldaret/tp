@@ -17,8 +17,8 @@ lbl_801F4E48:
 lbl_801F4E84:
 /* 801F4E84  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 801F4E88  4B E3 D3 15 */	bl checkTrigger__9STControlFv
-/* 801F4E8C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801F4E90  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801F4E8C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801F4E90  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801F4E94  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801F4E98  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 801F4E9C  41 82 00 A0 */	beq lbl_801F4F3C

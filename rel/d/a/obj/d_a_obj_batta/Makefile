@@ -3,19 +3,20 @@
 #
 
 M403_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta.plf
+M403_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta.lcf
+M403_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta.map
 
 M403_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_batta/executor.cpp \
-	rel/d/a/obj/d_a_obj_batta/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_batta/d_a_obj_batta.cpp \
 
 M403_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/d_a_obj_batta.o \
 
 M403_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/libRuntime.PPCEABI.H.a \
 
 M403_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M403_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map403.map\
+	-m _prolog \
+	-lcf $(M403_LDSCRIPT) \
+	-unused -map $(M403_MAP) \
+	-w off \
 
 $(M403_TARGET): $(M403_O_FILES) $(M403_LIBS)
+	@echo [403] creating $(M403_TARGET)
 	@echo $(M403_LIBS) $(M403_O_FILES) > build/M403_ofiles
-	$(LD) -opt_partial $(M403_LDFLAGS) -o $(M403_TARGET) @build/M403_ofiles
+	@python3 tools/lcf.py rel 403 --output $(M403_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M403_LDFLAGS) -o $(M403_TARGET) @build/M403_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_batta/%.o: rel/d/a/obj/d_a_obj_batta/%.cpp
+	@echo [403] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M403_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M403_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_batta/libs/Runtime.PPCEABI.H/Makefile
 

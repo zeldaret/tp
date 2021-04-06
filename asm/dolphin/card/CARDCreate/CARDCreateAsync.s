@@ -108,8 +108,8 @@ lbl_803583B0:
 /* 803583B8  7F A0 EB 78 */	mr r0, r29
 /* 803583BC  48 00 00 0C */	b lbl_803583C8
 lbl_803583C0:
-/* 803583C0  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha
-/* 803583C4  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l
+/* 803583C0  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha /* 0x80352A30@ha */
+/* 803583C4  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l /* 0x80352A30@l */
 lbl_803583C8:
 /* 803583C8  90 04 00 D0 */	stw r0, 0xd0(r4)
 /* 803583CC  57 C0 32 B2 */	rlwinm r0, r30, 6, 0xa, 0x19
@@ -126,8 +126,8 @@ lbl_803583C8:
 /* 803583F8  B0 07 00 38 */	sth r0, 0x38(r7)
 /* 803583FC  48 01 06 ED */	bl strncpy
 /* 80358400  80 81 00 1C */	lwz r4, 0x1c(r1)
-/* 80358404  3C 60 80 36 */	lis r3, CreateCallbackFat@ha
-/* 80358408  38 A3 81 08 */	addi r5, r3, CreateCallbackFat@l
+/* 80358404  3C 60 80 36 */	lis r3, CreateCallbackFat@ha /* 0x80358108@ha */
+/* 80358408  38 A3 81 08 */	addi r5, r3, CreateCallbackFat@l /* 0x80358108@l */
 /* 8035840C  93 84 00 C0 */	stw r28, 0xc0(r4)
 /* 80358410  7F 23 CB 78 */	mr r3, r25
 /* 80358414  93 3C 00 00 */	stw r25, 0(r28)

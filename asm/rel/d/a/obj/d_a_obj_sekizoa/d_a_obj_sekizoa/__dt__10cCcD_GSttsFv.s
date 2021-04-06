@@ -5,12 +5,12 @@ lbl_80CD4800:
 /* 80CD480C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CD4810  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CD4814  41 82 00 1C */	beq lbl_80CD4830
-/* 80CD4818  3C A0 80 CD */	lis r5, __vt__10cCcD_GStts@ha
-/* 80CD481C  38 05 67 A8 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 80CD4818  3C A0 80 CD */	lis r5, __vt__10cCcD_GStts@ha /* 0x80CD67A8@ha */
+/* 80CD481C  38 05 67 A8 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x80CD67A8@l */
 /* 80CD4820  90 1F 00 00 */	stw r0, 0(r31)
 /* 80CD4824  7C 80 07 35 */	extsh. r0, r4
 /* 80CD4828  40 81 00 08 */	ble lbl_80CD4830
-/* 80CD482C  4B 5F A5 10 */	b __dl__FPv
+/* 80CD482C  4B 5F A5 11 */	bl __dl__FPv
 lbl_80CD4830:
 /* 80CD4830  7F E3 FB 78 */	mr r3, r31
 /* 80CD4834  83 E1 00 0C */	lwz r31, 0xc(r1)

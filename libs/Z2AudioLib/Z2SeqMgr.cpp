@@ -230,10 +230,10 @@ extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80455998-8045599C 0004+00 s=23 e=0 z=0  None .sdata2    @3372 */
+/* 80455998-8045599C 003F98 0004+00 23/23 0/0 0/0 .sdata2          @3372 */
 SECTION_SDATA2 static f32 lit_3372 = 1.0f;
 
-/* 8045599C-804559A0 0004+00 s=23 e=0 z=0  None .sdata2    @3373 */
+/* 8045599C-804559A0 003F9C 0004+00 23/23 0/0 0/0 .sdata2          @3373 */
 SECTION_SDATA2 static u8 lit_3373[4] = {
     0x00,
     0x00,
@@ -241,12 +241,7 @@ SECTION_SDATA2 static u8 lit_3373[4] = {
     0x00,
 };
 
-/* 802AEEA0-802AF010 0170+00 s=0 e=1 z=0  None .text      __ct__8Z2SeqMgrFv */
-//	802AEEB4: 80450B84 (data_80450B84)
-//	802AEECC: 80455998 (lit_3372)
-//	802AEED4: 8045599C (lit_3373)
-//	802AEF80: 802B4128 (resetBattleBgmParams__8Z2SeqMgrFv)
-//	802AEFB4: 80455998 (lit_3372)
+/* 802AEEA0-802AF010 2A97E0 0170+00 0/0 1/1 0/0 .text            __ct__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,59 +252,17 @@ asm Z2SeqMgr::Z2SeqMgr() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804559A0-804559A8 0004+04 s=1 e=0 z=0  None .sdata2    @3559 */
+/* 804559A0-804559A8 003FA0 0004+04 1/1 0/0 0/0 .sdata2          @3559 */
 SECTION_SDATA2 static f32 lit_3559[1 + 1 /* padding */] = {
     -10000.0f,
     /* padding */
     0.0f,
 };
 
-/* 804559A8-804559B0 0008+00 s=22 e=0 z=0  None .sdata2    @3561 */
+/* 804559A8-804559B0 003FA8 0008+00 22/22 0/0 0/0 .sdata2          @3561 */
 SECTION_SDATA2 static f64 lit_3561 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802AF010-802AF408 03F8+00 s=3 e=5 z=38  None .text      bgmStart__8Z2SeqMgrFUlUll */
-//	802AF020: 803621D8 (_savegpr_28)
-//	802AF0C8: 80455998 (lit_3372)
-//	802AF0D4: 804559A8 (lit_3561)
-//	802AF0F8: 802AFB94 (bgmStreamPrepare__8Z2SeqMgrFUl)
-//	802AF100: 802AFE18 (bgmStreamPlay__8Z2SeqMgrFv)
-//	802AF10C: 80455998 (lit_3372)
-//	802AF114: 8045599C (lit_3373)
-//	802AF154: 80450B80 (data_80450B80)
-//	802AF15C: 80450B80 (data_80450B80)
-//	802AF164: 802B68E0 (setSceneExist__10Z2SceneMgrFb)
-//	802AF170: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
-//	802AF174: 80450B60 (data_80450B60)
-//	802AF180: 802A1E3C (stop__9JAISeqMgrFUl)
-//	802AF184: 80450B60 (data_80450B60)
-//	802AF190: 802A4068 (stop__12JAIStreamMgrFUl)
-//	802AF198: 80450B60 (data_80450B60)
-//	802AF1C4: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802AF1E0: 804559A0 (lit_3559)
-//	802AF1F4: 80455998 (lit_3372)
-//	802AF1FC: 8045599C (lit_3373)
-//	802AF220: 802A24DC (stop__8JAISoundFUl)
-//	802AF224: 80455998 (lit_3372)
-//	802AF22C: 8045599C (lit_3373)
-//	802AF240: 80450B7C (data_80450B7C)
-//	802AF260: 802A24DC (stop__8JAISoundFUl)
-//	802AF27C: 802A24DC (stop__8JAISoundFUl)
-//	802AF280: 80455998 (lit_3372)
-//	802AF288: 8045599C (lit_3373)
-//	802AF2AC: 802AF408 (bgmStop__8Z2SeqMgrFUll)
-//	802AF2C8: 802B545C (fieldBgmStart__8Z2SeqMgrFv)
-//	802AF2D4: 80450B60 (data_80450B60)
-//	802AF30C: 8045599C (lit_3373)
-//	802AF320: 80455998 (lit_3372)
-//	802AF32C: 804559A8 (lit_3561)
-//	802AF354: 80455998 (lit_3372)
-//	802AF398: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802AF3A8: 80450B7C (data_80450B7C)
-//	802AF3AC: 802B6734 (checkDayTime__11Z2StatusMgrFv)
-//	802AF3B8: 8045599C (lit_3373)
-//	802AF3D4: 80455998 (lit_3372)
-//	802AF3DC: 8045599C (lit_3373)
-//	802AF3F4: 80362224 (_restgpr_28)
+/* 802AF010-802AF408 2A9950 03F8+00 3/3 5/5 38/38 .text            bgmStart__8Z2SeqMgrFUlUll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,14 +272,7 @@ asm void Z2SeqMgr::bgmStart(u32 param_0, u32 param_1, s32 param_2) {
 }
 #pragma pop
 
-/* 802AF408-802AF49C 0094+00 s=3 e=5 z=30  None .text      bgmStop__8Z2SeqMgrFUll */
-//	802AF418: 803621DC (_savegpr_29)
-//	802AF434: 802A24DC (stop__8JAISoundFUl)
-//	802AF448: 802A24DC (stop__8JAISoundFUl)
-//	802AF464: 802A24DC (stop__8JAISoundFUl)
-//	802AF468: 80455998 (lit_3372)
-//	802AF470: 8045599C (lit_3373)
-//	802AF488: 80362228 (_restgpr_29)
+/* 802AF408-802AF49C 2A9D48 0094+00 3/3 5/5 30/30 .text            bgmStop__8Z2SeqMgrFUll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,96 +283,7 @@ asm void Z2SeqMgr::bgmStop(u32 param_0, s32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039BA08-8039BC88 0280+00 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039BA08 = "F_SP00";
-SECTION_DEAD char const* const stringBase_8039BA0F = "F_SP103";
-SECTION_DEAD char const* const stringBase_8039BA17 = "R_SP01";
-SECTION_DEAD char const* const stringBase_8039BA1E = "F_SP104";
-SECTION_DEAD char const* const stringBase_8039BA26 = "R_SP107";
-SECTION_DEAD char const* const stringBase_8039BA2E = "F_SP108";
-SECTION_DEAD char const* const stringBase_8039BA36 = "R_SP108";
-SECTION_DEAD char const* const stringBase_8039BA3E = "F_SP117";
-SECTION_DEAD char const* const stringBase_8039BA46 = "F_SP109";
-SECTION_DEAD char const* const stringBase_8039BA4E = "R_SP109";
-SECTION_DEAD char const* const stringBase_8039BA56 = "R_SP209";
-SECTION_DEAD char const* const stringBase_8039BA5E = "F_SP110";
-SECTION_DEAD char const* const stringBase_8039BA66 = "R_SP110";
-SECTION_DEAD char const* const stringBase_8039BA6E = "F_SP111";
-SECTION_DEAD char const* const stringBase_8039BA76 = "F_SP128";
-SECTION_DEAD char const* const stringBase_8039BA7E = "R_SP128";
-SECTION_DEAD char const* const stringBase_8039BA86 = "F_SP115";
-SECTION_DEAD char const* const stringBase_8039BA8E = "F_SP112";
-SECTION_DEAD char const* const stringBase_8039BA96 = "F_SP126";
-SECTION_DEAD char const* const stringBase_8039BA9E = "F_SP127";
-SECTION_DEAD char const* const stringBase_8039BAA6 = "R_SP127";
-SECTION_DEAD char const* const stringBase_8039BAAE = "F_SP113";
-SECTION_DEAD char const* const stringBase_8039BAB6 = "F_SP116";
-SECTION_DEAD char const* const stringBase_8039BABE = "R_SP116";
-SECTION_DEAD char const* const stringBase_8039BAC6 = "R_SP160";
-SECTION_DEAD char const* const stringBase_8039BACE = "R_SP161";
-SECTION_DEAD char const* const stringBase_8039BAD6 = "F_SP114";
-SECTION_DEAD char const* const stringBase_8039BADE = "F_SP118";
-SECTION_DEAD char const* const stringBase_8039BAE6 = "F_SP124";
-SECTION_DEAD char const* const stringBase_8039BAEE = "F_SP125";
-SECTION_DEAD char const* const stringBase_8039BAF6 = "F_SP121";
-SECTION_DEAD char const* const stringBase_8039BAFE = "F_SP122";
-SECTION_DEAD char const* const stringBase_8039BB06 = "F_SP123";
-SECTION_DEAD char const* const stringBase_8039BB0E = "F_SP200";
-SECTION_DEAD char const* const stringBase_8039BB16 = "F_SP102";
-SECTION_DEAD char const* const stringBase_8039BB1E = "";
-SECTION_DEAD char const* const stringBase_8039BB1F = "R_SP300";
-SECTION_DEAD char const* const stringBase_8039BB27 = "R_SP301";
-SECTION_DEAD char const* const stringBase_8039BB2F = "T_ENEMY";
-SECTION_DEAD char const* const stringBase_8039BB37 = "D_MN54";
-SECTION_DEAD char const* const stringBase_8039BB3E = "D_MN05";
-SECTION_DEAD char const* const stringBase_8039BB45 = "D_MN05B";
-SECTION_DEAD char const* const stringBase_8039BB4D = "D_MN05A";
-SECTION_DEAD char const* const stringBase_8039BB55 = "D_MN04";
-SECTION_DEAD char const* const stringBase_8039BB5C = "D_MN04B";
-SECTION_DEAD char const* const stringBase_8039BB64 = "D_MN04A";
-SECTION_DEAD char const* const stringBase_8039BB6C = "D_MN01";
-SECTION_DEAD char const* const stringBase_8039BB73 = "D_MN01B";
-SECTION_DEAD char const* const stringBase_8039BB7B = "D_MN01A";
-SECTION_DEAD char const* const stringBase_8039BB83 = "D_MN10";
-SECTION_DEAD char const* const stringBase_8039BB8A = "D_MN10B";
-SECTION_DEAD char const* const stringBase_8039BB92 = "D_MN10A";
-SECTION_DEAD char const* const stringBase_8039BB9A = "D_MN11";
-SECTION_DEAD char const* const stringBase_8039BBA1 = "D_MN11B";
-SECTION_DEAD char const* const stringBase_8039BBA9 = "D_MN11A";
-SECTION_DEAD char const* const stringBase_8039BBB1 = "D_MN06";
-SECTION_DEAD char const* const stringBase_8039BBB8 = "D_MN06B";
-SECTION_DEAD char const* const stringBase_8039BBC0 = "D_MN06A";
-SECTION_DEAD char const* const stringBase_8039BBC8 = "D_MN07";
-SECTION_DEAD char const* const stringBase_8039BBCF = "D_MN07B";
-SECTION_DEAD char const* const stringBase_8039BBD7 = "D_MN07A";
-SECTION_DEAD char const* const stringBase_8039BBDF = "D_MN08";
-SECTION_DEAD char const* const stringBase_8039BBE6 = "D_MN08B";
-SECTION_DEAD char const* const stringBase_8039BBEE = "D_MN08C";
-SECTION_DEAD char const* const stringBase_8039BBF6 = "D_MN08A";
-SECTION_DEAD char const* const stringBase_8039BBFE = "D_MN08D";
-SECTION_DEAD char const* const stringBase_8039BC06 = "D_MN09";
-SECTION_DEAD char const* const stringBase_8039BC0D = "D_MN09A";
-SECTION_DEAD char const* const stringBase_8039BC15 = "D_MN09B";
-SECTION_DEAD char const* const stringBase_8039BC1D = "D_MN09C";
-SECTION_DEAD char const* const stringBase_8039BC25 = "D_SB00";
-SECTION_DEAD char const* const stringBase_8039BC2C = "D_SB01";
-SECTION_DEAD char const* const stringBase_8039BC33 = "D_SB02";
-SECTION_DEAD char const* const stringBase_8039BC3A = "D_SB03";
-SECTION_DEAD char const* const stringBase_8039BC41 = "D_SB04";
-SECTION_DEAD char const* const stringBase_8039BC48 = "D_SB05";
-SECTION_DEAD char const* const stringBase_8039BC4F = "D_SB06";
-SECTION_DEAD char const* const stringBase_8039BC56 = "D_SB07";
-SECTION_DEAD char const* const stringBase_8039BC5D = "D_SB08";
-SECTION_DEAD char const* const stringBase_8039BC64 = "D_SB09";
-SECTION_DEAD char const* const stringBase_8039BC6B = "D_SB10";
-SECTION_DEAD char const* const stringBase_8039BC72 = "force_start";
-SECTION_DEAD char const* const stringBase_8039BC7E = "force_end";
-#pragma pop
-
-/* 803C9DF8-803CA08C 0294+00 s=1 e=0 z=0  None .data      @3900 */
+/* 803C9DF8-803CA08C -00001 0294+00 1/1 0/0 0/0 .data            @3900 */
 SECTION_DATA static void* lit_3900[165] = {
     (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x14C),
     (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
@@ -595,48 +452,7 @@ SECTION_DATA static void* lit_3900[165] = {
     (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x14C),
 };
 
-/* 802AF49C-802AF884 03E8+00 s=3 e=6 z=65  None .text      subBgmStart__8Z2SeqMgrFUl */
-//	802AF4AC: 803621D8 (_savegpr_28)
-//	802AF4D4: 803C9DF8 (lit_3900)
-//	802AF4D8: 803C9DF8 (lit_3900)
-//	802AF518: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802AF534: 80450B7C (data_80450B7C)
-//	802AF538: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AF53C: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AF544: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	802AF54C: 80450862 (struct_80450860)
-//	802AF564: 802AF408 (bgmStop__8Z2SeqMgrFUll)
-//	802AF57C: 802A24DC (stop__8JAISoundFUl)
-//	802AF588: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
-//	802AF598: 80455998 (lit_3372)
-//	802AF5A0: 8045599C (lit_3373)
-//	802AF5D0: 802A24DC (stop__8JAISoundFUl)
-//	802AF5E4: 802A24DC (stop__8JAISoundFUl)
-//	802AF5E8: 80455998 (lit_3372)
-//	802AF5F0: 8045599C (lit_3373)
-//	802AF620: 80450862 (struct_80450860)
-//	802AF628: 80450861 (struct_80450860)
-//	802AF62C: 80450862 (struct_80450860)
-//	802AF66C: 802A24DC (stop__8JAISoundFUl)
-//	802AF674: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	802AF694: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802AF69C: 802AF9D0 (subBgmStopInner__8Z2SeqMgrFv)
-//	802AF6A4: 80450B60 (data_80450B60)
-//	802AF738: 802B1DF4 (changeSubBgmStatus__8Z2SeqMgrFl)
-//	802AF748: 802AFEDC (bgmStreamStop__8Z2SeqMgrFUl)
-//	802AF74C: 80455998 (lit_3372)
-//	802AF754: 8045599C (lit_3373)
-//	802AF770: 802B1DF4 (changeSubBgmStatus__8Z2SeqMgrFl)
-//	802AF77C: 8045599C (lit_3373)
-//	802AF794: 80455998 (lit_3372)
-//	802AF7A0: 804559A8 (lit_3561)
-//	802AF7C8: 80455998 (lit_3372)
-//	802AF7E4: 80455998 (lit_3372)
-//	802AF7EC: 8045599C (lit_3373)
-//	802AF818: 8045599C (lit_3373)
-//	802AF824: 804559A8 (lit_3561)
-//	802AF84C: 8045599C (lit_3373)
-//	802AF870: 80362224 (_restgpr_28)
+/* 802AF49C-802AF884 2A9DDC 03E8+00 3/2 6/6 65/65 .text            subBgmStart__8Z2SeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -647,7 +463,7 @@ asm void Z2SeqMgr::subBgmStart(u32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CA08C-803CA308 027C+00 s=1 e=0 z=0  None .data      @3988 */
+/* 803CA08C-803CA308 -00001 027C+00 1/1 0/0 0/0 .data            @3988 */
 SECTION_DATA static void* lit_3988[159] = {
     (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
     (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
@@ -810,21 +626,7 @@ SECTION_DATA static void* lit_3988[159] = {
     (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0xF4),
 };
 
-/* 802AF884-802AF9D0 014C+00 s=4 e=4 z=42  None .text      subBgmStop__8Z2SeqMgrFv */
-//	802AF8C4: 803CA08C (lit_3988)
-//	802AF8C8: 803CA08C (lit_3988)
-//	802AF8E0: 80450B7C (data_80450B7C)
-//	802AF8E4: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AF8E8: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AF8F0: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	802AF914: 802AF010 (bgmStart__8Z2SeqMgrFUlUll)
-//	802AF92C: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
-//	802AF938: 802A24DC (stop__8JAISoundFUl)
-//	802AF958: 802A24DC (stop__8JAISoundFUl)
-//	802AF970: 802A24DC (stop__8JAISoundFUl)
-//	802AF988: 802A24DC (stop__8JAISoundFUl)
-//	802AF9A0: 802A24DC (stop__8JAISoundFUl)
-//	802AF9B0: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
+/* 802AF884-802AF9D0 2AA1C4 014C+00 4/3 4/4 42/42 .text            subBgmStop__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -834,17 +636,7 @@ asm void Z2SeqMgr::subBgmStop() {
 }
 #pragma pop
 
-/* 802AF9D0-802AFB94 01C4+00 s=2 e=0 z=0  None .text      subBgmStopInner__8Z2SeqMgrFv */
-//	802AFA00: 80450862 (struct_80450860)
-//	802AFAE4: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
-//	802AFAF8: 802B4164 (setBattleBgmOff__8Z2SeqMgrFb)
-//	802AFB04: 802A24DC (stop__8JAISoundFUl)
-//	802AFB0C: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	802AFB10: 80450862 (struct_80450860)
-//	802AFB24: 80455998 (lit_3372)
-//	802AFB30: 804559A8 (lit_3561)
-//	802AFB58: 80455998 (lit_3372)
-//	802AFB60: 8045599C (lit_3373)
+/* 802AF9D0-802AFB94 2AA310 01C4+00 2/2 0/0 0/0 .text            subBgmStopInner__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -854,28 +646,7 @@ asm void Z2SeqMgr::subBgmStopInner() {
 }
 #pragma pop
 
-/* 802AFB94-802AFDEC 0258+00 s=1 e=3 z=46  None .text      bgmStreamPrepare__8Z2SeqMgrFUl */
-//	802AFBC0: 802AFEDC (bgmStreamStop__8Z2SeqMgrFUl)
-//	802AFBC8: 80450B60 (data_80450B60)
-//	802AFBF0: 802A2220 (lockWhenPrepared__15JAISoundStatus_Fv)
-//	802AFCA8: 80455998 (lit_3372)
-//	802AFCB0: 8045599C (lit_3373)
-//	802AFCC8: 80450B80 (data_80450B80)
-//	802AFCD0: 802B68E0 (setSceneExist__10Z2SceneMgrFb)
-//	802AFCE4: 80450862 (struct_80450860)
-//	802AFCE8: 802A24DC (stop__8JAISoundFUl)
-//	802AFD00: 802A24DC (stop__8JAISoundFUl)
-//	802AFD04: 8045599C (lit_3373)
-//	802AFD2C: 8045599C (lit_3373)
-//	802AFD38: 804559A8 (lit_3561)
-//	802AFD60: 80450B7C (data_80450B7C)
-//	802AFD64: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AFD68: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AFD70: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	802AFD74: 80450862 (struct_80450860)
-//	802AFD88: 8045599C (lit_3373)
-//	802AFD94: 804559A8 (lit_3561)
-//	802AFDBC: 8045599C (lit_3373)
+/* 802AFB94-802AFDEC 2AA4D4 0258+00 1/1 3/3 46/46 .text            bgmStreamPrepare__8Z2SeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -885,7 +656,7 @@ asm void Z2SeqMgr::bgmStreamPrepare(u32 param_0) {
 }
 #pragma pop
 
-/* 802AFDEC-802AFE18 002C+00 s=0 e=1 z=0  None .text      bgmStreamCheckReady__8Z2SeqMgrFv */
+/* 802AFDEC-802AFE18 2AA72C 002C+00 0/0 1/1 0/0 .text            bgmStreamCheckReady__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -895,11 +666,7 @@ asm void Z2SeqMgr::bgmStreamCheckReady() {
 }
 #pragma pop
 
-/* 802AFE18-802AFEDC 00C4+00 s=1 e=4 z=46  None .text      bgmStreamPlay__8Z2SeqMgrFv */
-//	802AFE3C: 802A2244 (unlockIfLocked__15JAISoundStatus_Fv)
-//	802AFE78: 802A24DC (stop__8JAISoundFUl)
-//	802AFEAC: 802A2598 (stop__8JAISoundFv)
-//	802AFEC4: 802AF010 (bgmStart__8Z2SeqMgrFUlUll)
+/* 802AFE18-802AFEDC 2AA758 00C4+00 1/1 4/4 46/46 .text            bgmStreamPlay__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -909,13 +676,7 @@ asm void Z2SeqMgr::bgmStreamPlay() {
 }
 #pragma pop
 
-/* 802AFEDC-802AFF8C 00B0+00 s=2 e=1 z=27  None .text      bgmStreamStop__8Z2SeqMgrFUl */
-//	802AFF44: 80450B7C (data_80450B7C)
-//	802AFF48: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AFF4C: 8039BA08 (Z2SeqMgr__stringBase0)
-//	802AFF54: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	802AFF68: 802A24DC (stop__8JAISoundFUl)
-//	802AFF70: 802A2184 (releaseSound__14JAISoundHandleFv)
+/* 802AFEDC-802AFF8C 2AA81C 00B0+00 2/2 1/1 27/27 .text            bgmStreamStop__8Z2SeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -926,7 +687,7 @@ asm void Z2SeqMgr::bgmStreamStop(u32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CA308-803CA33C 0034+00 s=1 e=0 z=0  None .data      @4739 */
+/* 803CA308-803CA33C -00001 0034+00 1/1 0/0 0/0 .data            @4739 */
 SECTION_DATA static void* lit_4739[13] = {
     (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
     (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
@@ -943,556 +704,53 @@ SECTION_DATA static void* lit_4739[13] = {
     (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x3C0),
 };
 
-/* 804559B0-804559B4 0004+00 s=1 e=0 z=0  None .sdata2    @4726 */
+/* 804559B0-804559B4 003FB0 0004+00 1/1 0/0 0/0 .sdata2          @4726 */
 SECTION_SDATA2 static f32 lit_4726 = 13.0f / 20.0f;
 
-/* 804559B4-804559B8 0004+00 s=10 e=0 z=0  None .sdata2    @4727 */
+/* 804559B4-804559B8 003FB4 0004+00 10/10 0/0 0/0 .sdata2          @4727 */
 SECTION_SDATA2 static f32 lit_4727 = -1.0f;
 
-/* 804559B8-804559BC 0004+00 s=1 e=0 z=0  None .sdata2    @4728 */
+/* 804559B8-804559BC 003FB8 0004+00 1/1 0/0 0/0 .sdata2          @4728 */
 SECTION_SDATA2 static f32 lit_4728 = 29.0f / 100.0f;
 
-/* 804559BC-804559C0 0004+00 s=1 e=0 z=0  None .sdata2    @4729 */
+/* 804559BC-804559C0 003FBC 0004+00 1/1 0/0 0/0 .sdata2          @4729 */
 SECTION_SDATA2 static f32 lit_4729 = 7.0f / 20.0f;
 
-/* 804559C0-804559C4 0004+00 s=1 e=0 z=0  None .sdata2    @4730 */
+/* 804559C0-804559C4 003FC0 0004+00 1/1 0/0 0/0 .sdata2          @4730 */
 SECTION_SDATA2 static f32 lit_4730 = 3.0f / 5.0f;
 
-/* 804559C4-804559C8 0004+00 s=2 e=0 z=0  None .sdata2    @4731 */
+/* 804559C4-804559C8 003FC4 0004+00 2/2 0/0 0/0 .sdata2          @4731 */
 SECTION_SDATA2 static f32 lit_4731 = 0.5f;
 
-/* 804559C8-804559CC 0004+00 s=3 e=0 z=0  None .sdata2    @4732 */
+/* 804559C8-804559CC 003FC8 0004+00 3/3 0/0 0/0 .sdata2          @4732 */
 SECTION_SDATA2 static f32 lit_4732 = 3.0f / 10.0f;
 
-/* 804559CC-804559D0 0004+00 s=1 e=0 z=0  None .sdata2    @4733 */
+/* 804559CC-804559D0 003FCC 0004+00 1/1 0/0 0/0 .sdata2          @4733 */
 SECTION_SDATA2 static f32 lit_4733 = 3100.0f;
 
-/* 804559D0-804559D4 0004+00 s=1 e=0 z=0  None .sdata2    @4734 */
+/* 804559D0-804559D4 003FD0 0004+00 1/1 0/0 0/0 .sdata2          @4734 */
 SECTION_SDATA2 static f32 lit_4734 = 200.0f;
 
-/* 804559D4-804559D8 0004+00 s=1 e=0 z=0  None .sdata2    @4735 */
+/* 804559D4-804559D8 003FD4 0004+00 1/1 0/0 0/0 .sdata2          @4735 */
 SECTION_SDATA2 static f32 lit_4735 = 1600.0f;
 
-/* 804559D8-804559DC 0004+00 s=1 e=0 z=0  None .sdata2    @4736 */
+/* 804559D8-804559DC 003FD8 0004+00 1/1 0/0 0/0 .sdata2          @4736 */
 SECTION_SDATA2 static f32 lit_4736 = 4.0f / 5.0f;
 
-/* 804559DC-804559E0 0004+00 s=1 e=0 z=0  None .sdata2    @4737 */
+/* 804559DC-804559E0 003FDC 0004+00 1/1 0/0 0/0 .sdata2          @4737 */
 SECTION_SDATA2 static f32 lit_4737 = 3150.0f;
 
-/* 804559E0-804559E8 0004+04 s=1 e=0 z=0  None .sdata2    @4738 */
+/* 804559E0-804559E8 003FE0 0004+04 1/1 0/0 0/0 .sdata2          @4738 */
 SECTION_SDATA2 static f32 lit_4738[1 + 1 /* padding */] = {
     6150.0f,
     /* padding */
     0.0f,
 };
 
-/* 804559E8-804559F0 0008+00 s=1 e=0 z=0  None .sdata2    @4741 */
+/* 804559E8-804559F0 003FE8 0008+00 1/1 0/0 0/0 .sdata2          @4741 */
 SECTION_SDATA2 static f64 lit_4741 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802AFF8C-802B1DF4 1E68+00 s=5 e=8 z=26  None .text      changeBgmStatus__8Z2SeqMgrFl */
-//	802AFFBC: 803621DC (_savegpr_29)
-//	802B0140: 804559B0 (lit_4726)
-//	802B0144: 8045599C (lit_3373)
-//	802B0148: 80455998 (lit_3372)
-//	802B0154: 80455998 (lit_3372)
-//	802B015C: 8045599C (lit_3373)
-//	802B0174: 804559B4 (lit_4727)
-//	802B017C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0194: 804559B4 (lit_4727)
-//	802B019C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B01B4: 804559B4 (lit_4727)
-//	802B01BC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B01D4: 804559B4 (lit_4727)
-//	802B01DC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B01F4: 804559B4 (lit_4727)
-//	802B01FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0214: 804559B4 (lit_4727)
-//	802B021C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0234: 804559B4 (lit_4727)
-//	802B023C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0254: 804559B4 (lit_4727)
-//	802B025C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0274: 804559B4 (lit_4727)
-//	802B027C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0294: 804559B4 (lit_4727)
-//	802B029C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B02B4: 804559B4 (lit_4727)
-//	802B02BC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B02D0: 8045599C (lit_3373)
-//	802B02D8: 804559B4 (lit_4727)
-//	802B02E0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B02F0: 8045599C (lit_3373)
-//	802B02F8: 804559B4 (lit_4727)
-//	802B0300: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0310: 8045599C (lit_3373)
-//	802B0318: 804559B4 (lit_4727)
-//	802B0320: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0334: 803CA308 (lit_4739)
-//	802B0338: 803CA308 (lit_4739)
-//	802B034C: 80450860 (struct_80450860)
-//	802B0360: 8045599C (lit_3373)
-//	802B036C: 804559A8 (lit_3561)
-//	802B0394: 8045599C (lit_3373)
-//	802B03B4: 80450B48 (data_80450B48)
-//	802B03C8: 802BF980 (setForceBattleArea__13Z2SoundObjMgrFbUsUsUs)
-//	802B03D4: 80450860 (struct_80450860)
-//	802B03D8: 80455998 (lit_3372)
-//	802B03E0: 8045599C (lit_3373)
-//	802B040C: 804559A8 (lit_3561)
-//	802B0474: 802AF49C (subBgmStart__8Z2SeqMgrFUl)
-//	802B04A8: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802B04D0: 8045599C (lit_3373)
-//	802B04D4: 80455998 (lit_3372)
-//	802B04DC: 80455998 (lit_3372)
-//	802B04E0: 8045599C (lit_3373)
-//	802B04F8: 804559B4 (lit_4727)
-//	802B0500: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0518: 804559B4 (lit_4727)
-//	802B0520: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0538: 804559B4 (lit_4727)
-//	802B0540: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0558: 804559B4 (lit_4727)
-//	802B0560: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0578: 804559B4 (lit_4727)
-//	802B0580: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0598: 804559B4 (lit_4727)
-//	802B05A0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B05B8: 804559B4 (lit_4727)
-//	802B05C0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B05D8: 804559B4 (lit_4727)
-//	802B05E0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B05F8: 804559B4 (lit_4727)
-//	802B0600: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0618: 804559B4 (lit_4727)
-//	802B0620: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0638: 804559B4 (lit_4727)
-//	802B0640: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0658: 804559B8 (lit_4728)
-//	802B0664: 804559A8 (lit_3561)
-//	802B068C: 80455998 (lit_3372)
-//	802B0694: 8045599C (lit_3373)
-//	802B06BC: 804559A8 (lit_3561)
-//	802B0730: 80455998 (lit_3372)
-//	802B0738: 804559B4 (lit_4727)
-//	802B0740: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0750: 80455998 (lit_3372)
-//	802B0758: 804559B4 (lit_4727)
-//	802B0760: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0770: 80455998 (lit_3372)
-//	802B0778: 804559B4 (lit_4727)
-//	802B0780: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0790: 80455998 (lit_3372)
-//	802B0798: 804559B4 (lit_4727)
-//	802B07A0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B07B0: 80455998 (lit_3372)
-//	802B07B8: 804559B4 (lit_4727)
-//	802B07C0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B07D0: 8045599C (lit_3373)
-//	802B07D8: 804559B4 (lit_4727)
-//	802B07E0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B07F0: 8045599C (lit_3373)
-//	802B07F8: 804559B4 (lit_4727)
-//	802B0800: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0810: 8045599C (lit_3373)
-//	802B0818: 804559B4 (lit_4727)
-//	802B0820: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0830: 8045599C (lit_3373)
-//	802B0838: 804559B4 (lit_4727)
-//	802B0840: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0850: 8045599C (lit_3373)
-//	802B0858: 804559B4 (lit_4727)
-//	802B0860: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0870: 8045599C (lit_3373)
-//	802B0878: 804559B4 (lit_4727)
-//	802B0880: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0890: 8045599C (lit_3373)
-//	802B0898: 804559B4 (lit_4727)
-//	802B08A0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B08B0: 8045599C (lit_3373)
-//	802B08B8: 804559B4 (lit_4727)
-//	802B08C0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B08D4: 8045599C (lit_3373)
-//	802B08DC: 804559B4 (lit_4727)
-//	802B08E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B08F4: 8045599C (lit_3373)
-//	802B08FC: 804559B4 (lit_4727)
-//	802B0904: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0914: 80455998 (lit_3372)
-//	802B091C: 804559B4 (lit_4727)
-//	802B0924: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0934: 80455998 (lit_3372)
-//	802B093C: 804559B4 (lit_4727)
-//	802B0944: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0954: 80455998 (lit_3372)
-//	802B095C: 804559B4 (lit_4727)
-//	802B0964: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0974: 80455998 (lit_3372)
-//	802B097C: 804559B4 (lit_4727)
-//	802B0984: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0994: 80455998 (lit_3372)
-//	802B099C: 804559B4 (lit_4727)
-//	802B09A4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B09B4: 8045599C (lit_3373)
-//	802B09BC: 804559B4 (lit_4727)
-//	802B09C4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B09D4: 8045599C (lit_3373)
-//	802B09DC: 804559B4 (lit_4727)
-//	802B09E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B09F4: 8045599C (lit_3373)
-//	802B09FC: 804559B4 (lit_4727)
-//	802B0A04: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0A14: 8045599C (lit_3373)
-//	802B0A1C: 804559B4 (lit_4727)
-//	802B0A24: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0A34: 8045599C (lit_3373)
-//	802B0A3C: 804559B4 (lit_4727)
-//	802B0A44: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0A54: 8045599C (lit_3373)
-//	802B0A5C: 804559B4 (lit_4727)
-//	802B0A64: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0A78: 80455998 (lit_3372)
-//	802B0A80: 804559B4 (lit_4727)
-//	802B0A88: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0A98: 80455998 (lit_3372)
-//	802B0AA0: 804559B4 (lit_4727)
-//	802B0AA8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0AB8: 8045599C (lit_3373)
-//	802B0AC0: 804559B4 (lit_4727)
-//	802B0AC8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0AD8: 8045599C (lit_3373)
-//	802B0AE0: 804559B4 (lit_4727)
-//	802B0AE8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0AF8: 80455998 (lit_3372)
-//	802B0B00: 804559B4 (lit_4727)
-//	802B0B08: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0B18: 8045599C (lit_3373)
-//	802B0B20: 804559B4 (lit_4727)
-//	802B0B28: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0B38: 8045599C (lit_3373)
-//	802B0B40: 804559B4 (lit_4727)
-//	802B0B48: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0B58: 8045599C (lit_3373)
-//	802B0B60: 804559B4 (lit_4727)
-//	802B0B68: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0B78: 8045599C (lit_3373)
-//	802B0B80: 804559B4 (lit_4727)
-//	802B0B88: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0B98: 8045599C (lit_3373)
-//	802B0BA0: 804559B4 (lit_4727)
-//	802B0BA8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0BB8: 80455998 (lit_3372)
-//	802B0BC0: 804559B4 (lit_4727)
-//	802B0BC8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0BD8: 80455998 (lit_3372)
-//	802B0BE0: 804559B4 (lit_4727)
-//	802B0BE8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0BF8: 80455998 (lit_3372)
-//	802B0C00: 804559B4 (lit_4727)
-//	802B0C08: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0C1C: 8045599C (lit_3373)
-//	802B0C24: 804559B4 (lit_4727)
-//	802B0C2C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0C3C: 8045599C (lit_3373)
-//	802B0C44: 804559B4 (lit_4727)
-//	802B0C4C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0C5C: 8045599C (lit_3373)
-//	802B0C64: 804559B4 (lit_4727)
-//	802B0C6C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0C7C: 80455998 (lit_3372)
-//	802B0C84: 804559B4 (lit_4727)
-//	802B0C8C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0C9C: 8045599C (lit_3373)
-//	802B0CA4: 804559B4 (lit_4727)
-//	802B0CAC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0CBC: 8045599C (lit_3373)
-//	802B0CC4: 804559B4 (lit_4727)
-//	802B0CCC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0CDC: 8045599C (lit_3373)
-//	802B0CE4: 804559B4 (lit_4727)
-//	802B0CEC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0CFC: 80455998 (lit_3372)
-//	802B0D04: 804559B4 (lit_4727)
-//	802B0D0C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0D1C: 80455998 (lit_3372)
-//	802B0D24: 804559B4 (lit_4727)
-//	802B0D2C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0D3C: 80455998 (lit_3372)
-//	802B0D44: 804559B4 (lit_4727)
-//	802B0D4C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0D5C: 8045599C (lit_3373)
-//	802B0D64: 804559B4 (lit_4727)
-//	802B0D6C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0D7C: 8045599C (lit_3373)
-//	802B0D84: 804559B4 (lit_4727)
-//	802B0D8C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0D9C: 8045599C (lit_3373)
-//	802B0DA4: 804559B4 (lit_4727)
-//	802B0DAC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0DC8: 804559BC (lit_4729)
-//	802B0DD4: 804559A8 (lit_3561)
-//	802B0DFC: 804559BC (lit_4729)
-//	802B0E04: 8045599C (lit_3373)
-//	802B0E2C: 80455998 (lit_3372)
-//	802B0E34: 8045599C (lit_3373)
-//	802B0E60: 804559A8 (lit_3561)
-//	802B0EE4: 8045599C (lit_3373)
-//	802B0EEC: 804559B4 (lit_4727)
-//	802B0EF4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0F08: 8045599C (lit_3373)
-//	802B0F10: 804559B4 (lit_4727)
-//	802B0F18: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0F24: 804559C0 (lit_4730)
-//	802B0F28: 80455998 (lit_3372)
-//	802B0F30: 80455998 (lit_3372)
-//	802B0F34: 8045599C (lit_3373)
-//	802B0F4C: 804559B4 (lit_4727)
-//	802B0F54: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0F6C: 804559B4 (lit_4727)
-//	802B0F74: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0F8C: 804559B4 (lit_4727)
-//	802B0F94: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0FAC: 804559B4 (lit_4727)
-//	802B0FB4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0FCC: 804559B4 (lit_4727)
-//	802B0FD4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B0FEC: 804559B4 (lit_4727)
-//	802B0FF4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B100C: 804559B4 (lit_4727)
-//	802B1014: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1024: 804559C4 (lit_4731)
-//	802B102C: 8045599C (lit_3373)
-//	802B104C: 80455998 (lit_3372)
-//	802B1054: 8045599C (lit_3373)
-//	802B107C: 804559A8 (lit_3561)
-//	802B10B8: 80455998 (lit_3372)
-//	802B10C0: 804559B4 (lit_4727)
-//	802B10C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B10E4: 802AF408 (bgmStop__8Z2SeqMgrFUll)
-//	802B10F8: 8045599C (lit_3373)
-//	802B1100: 804559B4 (lit_4727)
-//	802B1108: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1118: 8045599C (lit_3373)
-//	802B1120: 804559B4 (lit_4727)
-//	802B1128: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1138: 8045599C (lit_3373)
-//	802B1140: 804559B4 (lit_4727)
-//	802B1148: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1158: 8045599C (lit_3373)
-//	802B1160: 804559B4 (lit_4727)
-//	802B1168: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1184: 804559C8 (lit_4732)
-//	802B118C: 804559B4 (lit_4727)
-//	802B1194: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B11A4: 804559C8 (lit_4732)
-//	802B11AC: 804559B4 (lit_4727)
-//	802B11B4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B11C4: 804559C0 (lit_4730)
-//	802B11CC: 804559B4 (lit_4727)
-//	802B11D4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B11E4: 804559C0 (lit_4730)
-//	802B11EC: 804559B4 (lit_4727)
-//	802B11F4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1204: 8045599C (lit_3373)
-//	802B120C: 804559B4 (lit_4727)
-//	802B1214: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1224: 80455998 (lit_3372)
-//	802B122C: 804559B4 (lit_4727)
-//	802B1234: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1244: 80455998 (lit_3372)
-//	802B124C: 804559B4 (lit_4727)
-//	802B1254: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1264: 80455998 (lit_3372)
-//	802B126C: 804559B4 (lit_4727)
-//	802B1274: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1288: 8045599C (lit_3373)
-//	802B1290: 804559B4 (lit_4727)
-//	802B1298: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B12A8: 8045599C (lit_3373)
-//	802B12B0: 804559B4 (lit_4727)
-//	802B12B8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B12C8: 8045599C (lit_3373)
-//	802B12D0: 804559B4 (lit_4727)
-//	802B12D8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B12F4: 8045599C (lit_3373)
-//	802B12FC: 804559B4 (lit_4727)
-//	802B1304: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1314: 80455998 (lit_3372)
-//	802B131C: 804559B4 (lit_4727)
-//	802B1324: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1334: 80455998 (lit_3372)
-//	802B133C: 804559B4 (lit_4727)
-//	802B1344: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1354: 80455998 (lit_3372)
-//	802B135C: 804559B4 (lit_4727)
-//	802B1364: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1378: 8045599C (lit_3373)
-//	802B1380: 804559B4 (lit_4727)
-//	802B1388: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1398: 8045599C (lit_3373)
-//	802B13A0: 804559B4 (lit_4727)
-//	802B13A8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B13B8: 8045599C (lit_3373)
-//	802B13C0: 804559B4 (lit_4727)
-//	802B13C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B13F8: 80455998 (lit_3372)
-//	802B13FC: 8045599C (lit_3373)
-//	802B1414: 8045599C (lit_3373)
-//	802B1418: 80455998 (lit_3372)
-//	802B143C: 804559E8 (lit_4741)
-//	802B1458: 804559CC (lit_4733)
-//	802B145C: 804559D0 (lit_4734)
-//	802B1460: 804559C8 (lit_4732)
-//	802B1470: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B1480: 80455998 (lit_3372)
-//	802B1490: 8045599C (lit_3373)
-//	802B1498: 804559E8 (lit_4741)
-//	802B14B4: 804559D4 (lit_4735)
-//	802B14B8: 804559D0 (lit_4734)
-//	802B14BC: 804559C8 (lit_4732)
-//	802B14C0: 8045599C (lit_3373)
-//	802B14C4: 80455998 (lit_3372)
-//	802B14CC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B14D8: 8045599C (lit_3373)
-//	802B14DC: 80455998 (lit_3372)
-//	802B14FC: 804559B4 (lit_4727)
-//	802B1504: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B151C: 804559B4 (lit_4727)
-//	802B1524: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B153C: 804559B4 (lit_4727)
-//	802B1544: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B155C: 804559B4 (lit_4727)
-//	802B1564: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B157C: 804559B4 (lit_4727)
-//	802B1584: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B159C: 804559B4 (lit_4727)
-//	802B15A4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B15BC: 804559B4 (lit_4727)
-//	802B15C4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B15DC: 804559B4 (lit_4727)
-//	802B15E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B15FC: 804559B4 (lit_4727)
-//	802B1604: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B161C: 804559B4 (lit_4727)
-//	802B1624: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B163C: 804559B4 (lit_4727)
-//	802B1644: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B165C: 804559B4 (lit_4727)
-//	802B1664: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B167C: 804559B4 (lit_4727)
-//	802B1684: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B16A0: 804559C8 (lit_4732)
-//	802B16AC: 804559A8 (lit_3561)
-//	802B16D4: 80455998 (lit_3372)
-//	802B16DC: 8045599C (lit_3373)
-//	802B1724: 804559C4 (lit_4731)
-//	802B1730: 804559A8 (lit_3561)
-//	802B1758: 80455998 (lit_3372)
-//	802B1760: 8045599C (lit_3373)
-//	802B1788: 804559A8 (lit_3561)
-//	802B17C8: 80455998 (lit_3372)
-//	802B17CC: 8045599C (lit_3373)
-//	802B17D0: 804559C4 (lit_4731)
-//	802B17E4: 8045599C (lit_3373)
-//	802B17E8: 804559C4 (lit_4731)
-//	802B17EC: 80455998 (lit_3372)
-//	802B17F0: 804559D8 (lit_4736)
-//	802B1800: 804559E8 (lit_4741)
-//	802B181C: 804559DC (lit_4737)
-//	802B1820: 804559E0 (lit_4738)
-//	802B1824: 80455998 (lit_3372)
-//	802B1828: 8045599C (lit_3373)
-//	802B1830: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802B1838: 804559E8 (lit_4741)
-//	802B1854: 804559DC (lit_4737)
-//	802B1858: 804559E0 (lit_4738)
-//	802B185C: 8045599C (lit_3373)
-//	802B1860: 80455998 (lit_3372)
-//	802B1868: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802B1870: 804559E8 (lit_4741)
-//	802B188C: 804559DC (lit_4737)
-//	802B1890: 804559E0 (lit_4738)
-//	802B1894: 804559C4 (lit_4731)
-//	802B1898: 80455998 (lit_3372)
-//	802B18A0: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802B18A8: 804559E8 (lit_4741)
-//	802B18C4: 804559DC (lit_4737)
-//	802B18C8: 804559E0 (lit_4738)
-//	802B18CC: 8045599C (lit_3373)
-//	802B18D0: 80455998 (lit_3372)
-//	802B18D8: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802B18F4: 804559B4 (lit_4727)
-//	802B18FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1914: 804559B4 (lit_4727)
-//	802B191C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1934: 804559B4 (lit_4727)
-//	802B193C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1954: 804559B4 (lit_4727)
-//	802B195C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1974: 804559B4 (lit_4727)
-//	802B197C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1994: 804559B4 (lit_4727)
-//	802B199C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B19B4: 804559B4 (lit_4727)
-//	802B19BC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B19D4: 804559B4 (lit_4727)
-//	802B19DC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B19F4: 804559B4 (lit_4727)
-//	802B19FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1A14: 804559B4 (lit_4727)
-//	802B1A1C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1A44: 8045599C (lit_3373)
-//	802B1A48: 80455998 (lit_3372)
-//	802B1A50: 80455998 (lit_3372)
-//	802B1A54: 8045599C (lit_3373)
-//	802B1A6C: 804559B4 (lit_4727)
-//	802B1A74: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1A8C: 804559B4 (lit_4727)
-//	802B1A94: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1AAC: 804559B4 (lit_4727)
-//	802B1AB4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1ACC: 804559B4 (lit_4727)
-//	802B1AD4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1AEC: 804559B4 (lit_4727)
-//	802B1AF4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1B0C: 804559B4 (lit_4727)
-//	802B1B14: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1B2C: 804559B4 (lit_4727)
-//	802B1B34: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1B4C: 804559B4 (lit_4727)
-//	802B1B54: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1B6C: 804559B4 (lit_4727)
-//	802B1B74: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1B8C: 804559B4 (lit_4727)
-//	802B1B94: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1BAC: 804559B4 (lit_4727)
-//	802B1BB4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1BCC: 804559B4 (lit_4727)
-//	802B1BD4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1BF0: 804559C4 (lit_4731)
-//	802B1BFC: 804559A8 (lit_3561)
-//	802B1C2C: 804559C4 (lit_4731)
-//	802B1C34: 8045599C (lit_3373)
-//	802B1C4C: 80455998 (lit_3372)
-//	802B1C54: 8045599C (lit_3373)
-//	802B1C7C: 804559A8 (lit_3561)
-//	802B1CC0: 80455998 (lit_3372)
-//	802B1CC4: 8045599C (lit_3373)
-//	802B1CD4: 8045599C (lit_3373)
-//	802B1CD8: 80455998 (lit_3372)
-//	802B1CE8: 8045599C (lit_3373)
-//	802B1CFC: 8045599C (lit_3373)
-//	802B1D14: 80455998 (lit_3372)
-//	802B1D34: 804559B4 (lit_4727)
-//	802B1D3C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1D54: 804559B4 (lit_4727)
-//	802B1D5C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1D74: 804559B4 (lit_4727)
-//	802B1D7C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1D94: 804559B4 (lit_4727)
-//	802B1D9C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1DA0: 80450B74 (data_80450B74)
-//	802B1DB4: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802B1DE0: 80362228 (_restgpr_29)
+/* 802AFF8C-802B1DF4 2AA8CC 1E68+00 5/4 8/7 26/26 .text            changeBgmStatus__8Z2SeqMgrFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1502,234 +760,8 @@ asm void Z2SeqMgr::changeBgmStatus(s32 param_0) {
 }
 #pragma pop
 
-/* 802B1DF4-802B299C 0BA8+00 s=2 e=3 z=31  None .text      changeSubBgmStatus__8Z2SeqMgrFl */
-//	802B1E04: 803621D8 (_savegpr_28)
-//	802B1EC0: 8045599C (lit_3373)
-//	802B1EEC: 8045599C (lit_3373)
-//	802B1F48: 8045599C (lit_3373)
-//	802B1F50: 804559B4 (lit_4727)
-//	802B1F58: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1F68: 8045599C (lit_3373)
-//	802B1F70: 804559B4 (lit_4727)
-//	802B1F78: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1F88: 80455998 (lit_3372)
-//	802B1F90: 804559B4 (lit_4727)
-//	802B1F98: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1FA8: 80455998 (lit_3372)
-//	802B1FB0: 804559B4 (lit_4727)
-//	802B1FB8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1FC8: 80455998 (lit_3372)
-//	802B1FD0: 804559B4 (lit_4727)
-//	802B1FD8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B1FEC: 80455998 (lit_3372)
-//	802B1FF4: 804559B4 (lit_4727)
-//	802B1FFC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B200C: 80455998 (lit_3372)
-//	802B2014: 804559B4 (lit_4727)
-//	802B201C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B202C: 8045599C (lit_3373)
-//	802B2034: 804559B4 (lit_4727)
-//	802B203C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B204C: 8045599C (lit_3373)
-//	802B2054: 804559B4 (lit_4727)
-//	802B205C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B206C: 8045599C (lit_3373)
-//	802B2074: 804559B4 (lit_4727)
-//	802B207C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B20B4: 8045599C (lit_3373)
-//	802B20BC: 804559B4 (lit_4727)
-//	802B20C4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B20D4: 8045599C (lit_3373)
-//	802B20DC: 804559B4 (lit_4727)
-//	802B20E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B20F4: 80455998 (lit_3372)
-//	802B20FC: 804559B4 (lit_4727)
-//	802B2104: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2114: 80455998 (lit_3372)
-//	802B211C: 804559B4 (lit_4727)
-//	802B2124: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2134: 80455998 (lit_3372)
-//	802B213C: 804559B4 (lit_4727)
-//	802B2144: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2158: 80455998 (lit_3372)
-//	802B2160: 804559B4 (lit_4727)
-//	802B2168: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2178: 80455998 (lit_3372)
-//	802B2180: 804559B4 (lit_4727)
-//	802B2188: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2198: 8045599C (lit_3373)
-//	802B21A0: 804559B4 (lit_4727)
-//	802B21A8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B21B8: 8045599C (lit_3373)
-//	802B21C0: 804559B4 (lit_4727)
-//	802B21C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B21D8: 8045599C (lit_3373)
-//	802B21E0: 804559B4 (lit_4727)
-//	802B21E8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B221C: 80455998 (lit_3372)
-//	802B2224: 804559B4 (lit_4727)
-//	802B222C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B223C: 8045599C (lit_3373)
-//	802B2244: 804559B4 (lit_4727)
-//	802B224C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B225C: 8045599C (lit_3373)
-//	802B2264: 804559B4 (lit_4727)
-//	802B226C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B227C: 8045599C (lit_3373)
-//	802B2284: 804559B4 (lit_4727)
-//	802B228C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B229C: 8045599C (lit_3373)
-//	802B22A4: 804559B4 (lit_4727)
-//	802B22AC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B22BC: 8045599C (lit_3373)
-//	802B22C4: 804559B4 (lit_4727)
-//	802B22CC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B22F4: 8045599C (lit_3373)
-//	802B22FC: 804559B4 (lit_4727)
-//	802B2304: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2314: 80455998 (lit_3372)
-//	802B231C: 804559B4 (lit_4727)
-//	802B2324: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2334: 80455998 (lit_3372)
-//	802B233C: 804559B4 (lit_4727)
-//	802B2344: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2354: 80455998 (lit_3372)
-//	802B235C: 804559B4 (lit_4727)
-//	802B2364: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2374: 80455998 (lit_3372)
-//	802B237C: 804559B4 (lit_4727)
-//	802B2384: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2394: 80455998 (lit_3372)
-//	802B239C: 804559B4 (lit_4727)
-//	802B23A4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B23EC: 80455998 (lit_3372)
-//	802B23F4: 804559B4 (lit_4727)
-//	802B23FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B240C: 8045599C (lit_3373)
-//	802B2414: 804559B4 (lit_4727)
-//	802B241C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B242C: 8045599C (lit_3373)
-//	802B2434: 804559B4 (lit_4727)
-//	802B243C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B244C: 8045599C (lit_3373)
-//	802B2454: 804559B4 (lit_4727)
-//	802B245C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2464: 80450B74 (data_80450B74)
-//	802B2478: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802B248C: 8045599C (lit_3373)
-//	802B2494: 804559B4 (lit_4727)
-//	802B249C: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B24AC: 80455998 (lit_3372)
-//	802B24B4: 804559B4 (lit_4727)
-//	802B24BC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B24CC: 80455998 (lit_3372)
-//	802B24D4: 804559B4 (lit_4727)
-//	802B24DC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B24EC: 80455998 (lit_3372)
-//	802B24F4: 804559B4 (lit_4727)
-//	802B24FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2534: 80455998 (lit_3372)
-//	802B253C: 804559B4 (lit_4727)
-//	802B2544: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2554: 80455998 (lit_3372)
-//	802B255C: 804559B4 (lit_4727)
-//	802B2564: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2574: 80455998 (lit_3372)
-//	802B257C: 804559B4 (lit_4727)
-//	802B2584: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2594: 80455998 (lit_3372)
-//	802B259C: 804559B4 (lit_4727)
-//	802B25A4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B25B4: 8045599C (lit_3373)
-//	802B25BC: 804559B4 (lit_4727)
-//	802B25C4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B25D4: 8045599C (lit_3373)
-//	802B25DC: 804559B4 (lit_4727)
-//	802B25E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B25F4: 8045599C (lit_3373)
-//	802B25FC: 804559B4 (lit_4727)
-//	802B2604: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2614: 8045599C (lit_3373)
-//	802B261C: 804559B4 (lit_4727)
-//	802B2624: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2634: 8045599C (lit_3373)
-//	802B263C: 804559B4 (lit_4727)
-//	802B2644: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2654: 8045599C (lit_3373)
-//	802B265C: 804559B4 (lit_4727)
-//	802B2664: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2674: 8045599C (lit_3373)
-//	802B267C: 804559B4 (lit_4727)
-//	802B2684: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B26A0: 8045599C (lit_3373)
-//	802B26A8: 804559B4 (lit_4727)
-//	802B26B0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B26C0: 8045599C (lit_3373)
-//	802B26C8: 804559B4 (lit_4727)
-//	802B26D0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B26E0: 8045599C (lit_3373)
-//	802B26E8: 804559B4 (lit_4727)
-//	802B26F0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2700: 80455998 (lit_3372)
-//	802B2708: 804559B4 (lit_4727)
-//	802B2710: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2720: 80455998 (lit_3372)
-//	802B2728: 804559B4 (lit_4727)
-//	802B2730: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2740: 80455998 (lit_3372)
-//	802B2748: 804559B4 (lit_4727)
-//	802B2750: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2760: 80455998 (lit_3372)
-//	802B2768: 804559B4 (lit_4727)
-//	802B2770: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2780: 80455998 (lit_3372)
-//	802B2788: 804559B4 (lit_4727)
-//	802B2790: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B27A0: 80455998 (lit_3372)
-//	802B27A8: 804559B4 (lit_4727)
-//	802B27B0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B27C0: 80455998 (lit_3372)
-//	802B27C8: 804559B4 (lit_4727)
-//	802B27D0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B27E0: 80455998 (lit_3372)
-//	802B27E8: 804559B4 (lit_4727)
-//	802B27F0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2804: 8045599C (lit_3373)
-//	802B280C: 804559B4 (lit_4727)
-//	802B2814: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2824: 8045599C (lit_3373)
-//	802B282C: 804559B4 (lit_4727)
-//	802B2834: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2844: 80455998 (lit_3372)
-//	802B284C: 804559B4 (lit_4727)
-//	802B2854: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2864: 8045599C (lit_3373)
-//	802B286C: 804559B4 (lit_4727)
-//	802B2874: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2884: 8045599C (lit_3373)
-//	802B288C: 804559B4 (lit_4727)
-//	802B2894: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B28A4: 8045599C (lit_3373)
-//	802B28AC: 804559B4 (lit_4727)
-//	802B28B4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B28C4: 8045599C (lit_3373)
-//	802B28CC: 804559B4 (lit_4727)
-//	802B28D4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B28E4: 8045599C (lit_3373)
-//	802B28EC: 804559B4 (lit_4727)
-//	802B28F4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2904: 8045599C (lit_3373)
-//	802B290C: 804559B4 (lit_4727)
-//	802B2914: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2924: 8045599C (lit_3373)
-//	802B292C: 804559B4 (lit_4727)
-//	802B2934: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2944: 8045599C (lit_3373)
-//	802B294C: 804559B4 (lit_4727)
-//	802B2954: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2968: 80450B74 (data_80450B74)
-//	802B297C: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802B2988: 80362224 (_restgpr_28)
+/* 802B1DF4-802B299C 2AC734 0BA8+00 2/2 3/3 31/31 .text            changeSubBgmStatus__8Z2SeqMgrFl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1739,23 +771,7 @@ asm void Z2SeqMgr::changeSubBgmStatus(s32 param_0) {
 }
 #pragma pop
 
-/* 802B299C-802B2A88 00EC+00 s=0 e=1 z=0  None .text      onVariantBgmJumpEnd__8Z2SeqMgrFb */
-//	802B29E4: 8045599C (lit_3373)
-//	802B29EC: 804559B4 (lit_4727)
-//	802B29F4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2A04: 8045599C (lit_3373)
-//	802B2A0C: 804559B4 (lit_4727)
-//	802B2A14: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2A24: 8045599C (lit_3373)
-//	802B2A2C: 804559B4 (lit_4727)
-//	802B2A34: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2A44: 80455998 (lit_3372)
-//	802B2A4C: 804559B4 (lit_4727)
-//	802B2A54: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B2A58: 80450B60 (data_80450B60)
-//	802B2A60: 802A1C90 (calc__9JAISeqMgrFv)
-//	802B2A64: 80450B60 (data_80450B60)
-//	802B2A6C: 802A1EFC (mixOut__9JAISeqMgrFv)
+/* 802B299C-802B2A88 2AD2DC 00EC+00 0/0 1/1 0/0 .text            onVariantBgmJumpEnd__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1765,21 +781,7 @@ asm void Z2SeqMgr::onVariantBgmJumpEnd(bool param_0) {
 }
 #pragma pop
 
-/* 802B2A88-802B2CA4 021C+00 s=1 e=0 z=9  None .text      changeFishingBgm__8Z2SeqMgrFl */
-//	802B2AF0: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802B2AF4: 80450862 (struct_80450860)
-//	802B2AF8: 80455998 (lit_3372)
-//	802B2B00: 8045599C (lit_3373)
-//	802B2B2C: 804559A8 (lit_3561)
-//	802B2B94: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802B2BA4: 804559C4 (lit_4731)
-//	802B2BB0: 804559A8 (lit_3561)
-//	802B2BE0: 802AF49C (subBgmStart__8Z2SeqMgrFUl)
-//	802B2BF0: 8045599C (lit_3373)
-//	802B2BFC: 804559A8 (lit_3561)
-//	802B2C50: 802AF884 (subBgmStop__8Z2SeqMgrFv)
-//	802B2C60: 8045599C (lit_3373)
-//	802B2C6C: 804559A8 (lit_3561)
+/* 802B2A88-802B2CA4 2AD3C8 021C+00 1/1 0/0 9/9 .text            changeFishingBgm__8Z2SeqMgrFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1789,9 +791,7 @@ asm void Z2SeqMgr::changeFishingBgm(s32 param_0) {
 }
 #pragma pop
 
-/* 802B2CA4-802B2D64 00C0+00 s=0 e=1 z=0  None .text      talkInBgm__8Z2SeqMgrFv */
-//	802B2D20: 80450818 (VOL_BGM_TALKING__7Z2Param)
-//	802B2D38: 804559A8 (lit_3561)
+/* 802B2CA4-802B2D64 2AD5E4 00C0+00 0/0 1/1 0/0 .text            talkInBgm__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1801,9 +801,7 @@ asm void Z2SeqMgr::talkInBgm() {
 }
 #pragma pop
 
-/* 802B2D64-802B2DAC 0048+00 s=0 e=1 z=0  None .text      talkOutBgm__8Z2SeqMgrFv */
-//	802B2D68: 804507F4 (VOL_BGM_DEFAULT__7Z2Param)
-//	802B2D80: 804559A8 (lit_3561)
+/* 802B2D64-802B2DAC 2AD6A4 0048+00 0/0 1/1 0/0 .text            talkOutBgm__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1813,9 +811,7 @@ asm void Z2SeqMgr::talkOutBgm() {
 }
 #pragma pop
 
-/* 802B2DAC-802B2DF4 0048+00 s=0 e=1 z=0  None .text      menuInBgm__8Z2SeqMgrFv */
-//	802B2DB0: 8045083C (VOL_BGM_PAUSING__7Z2Param)
-//	802B2DC8: 804559A8 (lit_3561)
+/* 802B2DAC-802B2DF4 2AD6EC 0048+00 0/0 1/1 0/0 .text            menuInBgm__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1825,9 +821,7 @@ asm void Z2SeqMgr::menuInBgm() {
 }
 #pragma pop
 
-/* 802B2DF4-802B2E3C 0048+00 s=0 e=1 z=0  None .text      menuOutBgm__8Z2SeqMgrFv */
-//	802B2DF8: 804507F4 (VOL_BGM_DEFAULT__7Z2Param)
-//	802B2E10: 804559A8 (lit_3561)
+/* 802B2DF4-802B2E3C 2AD734 0048+00 0/0 1/1 0/0 .text            menuOutBgm__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1837,26 +831,7 @@ asm void Z2SeqMgr::menuOutBgm() {
 }
 #pragma pop
 
-/* 802B2E3C-802B327C 0440+00 s=1 e=0 z=0  None .text      fanfareFramework__8Z2SeqMgrFv */
-//	802B2F9C: 80450B60 (data_80450B60)
-//	802B2FC8: 8045599C (lit_3373)
-//	802B2FD4: 804559A8 (lit_3561)
-//	802B3014: 80450B60 (data_80450B60)
-//	802B3054: 8045599C (lit_3373)
-//	802B3060: 804559A8 (lit_3561)
-//	802B309C: 802B2A88 (changeFishingBgm__8Z2SeqMgrFl)
-//	802B30B4: 80450B60 (data_80450B60)
-//	802B30E0: 8045599C (lit_3373)
-//	802B30EC: 804559A8 (lit_3561)
-//	802B313C: 8045599C (lit_3373)
-//	802B3148: 804559A8 (lit_3561)
-//	802B317C: 80450B60 (data_80450B60)
-//	802B31CC: 80455998 (lit_3372)
-//	802B31F0: 80450861 (struct_80450860)
-//	802B3204: 80455998 (lit_3372)
-//	802B3210: 804559A8 (lit_3561)
-//	802B3238: 80455998 (lit_3372)
-//	802B3240: 8045599C (lit_3373)
+/* 802B2E3C-802B327C 2AD77C 0440+00 1/1 0/0 0/0 .text            fanfareFramework__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1867,7 +842,7 @@ asm void Z2SeqMgr::fanfareFramework() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CA33C-803CA3F8 00BC+00 s=1 e=0 z=0  None .data      @5219 */
+/* 803CA33C-803CA3F8 -00001 00BC+00 1/1 0/0 0/0 .data            @5219 */
 SECTION_DATA static void* lit_5219[47] = {
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
@@ -1918,7 +893,7 @@ SECTION_DATA static void* lit_5219[47] = {
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
 };
 
-/* 803CA3F8-803CA4B4 00BC+00 s=1 e=0 z=0  None .data      @5218 */
+/* 803CA3F8-803CA4B4 -00001 00BC+00 1/1 0/0 0/0 .data            @5218 */
 SECTION_DATA static void* lit_5218[47] = {
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
@@ -1969,12 +944,7 @@ SECTION_DATA static void* lit_5218[47] = {
     (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
 };
 
-/* 802B327C-802B3318 009C+00 s=2 e=1 z=0  None .text      stopWolfHowlSong__8Z2SeqMgrFv */
-//	802B329C: 803CA3F8 (lit_5218)
-//	802B32A0: 803CA3F8 (lit_5218)
-//	802B32E8: 803CA33C (lit_5219)
-//	802B32EC: 803CA33C (lit_5219)
-//	802B3304: 802A24DC (stop__8JAISoundFUl)
+/* 802B327C-802B3318 2ADBBC 009C+00 2/0 1/1 0/0 .text            stopWolfHowlSong__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1984,11 +954,7 @@ asm void Z2SeqMgr::stopWolfHowlSong() {
 }
 #pragma pop
 
-/* 802B3318-802B3398 0080+00 s=0 e=1 z=0  None .text      setHeightVolMod__8Z2SeqMgrFbUl */
-//	802B3340: 80455998 (lit_3372)
-//	802B334C: 804559A8 (lit_3561)
-//	802B3374: 80455998 (lit_3372)
-//	802B337C: 8045599C (lit_3373)
+/* 802B3318-802B3398 2ADC58 0080+00 0/0 1/1 0/0 .text            setHeightVolMod__8Z2SeqMgrFbUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1998,7 +964,7 @@ asm void Z2SeqMgr::setHeightVolMod(bool param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802B3398-802B33A8 0010+00 s=0 e=1 z=0  None .text      setTimeProcVolMod__8Z2SeqMgrFbUl */
+/* 802B3398-802B33A8 2ADCD8 0010+00 0/0 1/1 0/0 .text            setTimeProcVolMod__8Z2SeqMgrFbUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2009,147 +975,47 @@ asm void Z2SeqMgr::setTimeProcVolMod(bool param_0, u32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450870-80450874 0004+00 s=1 e=0 z=0  None .sdata     sDeathMtBottom */
+/* 80450870-80450874 0002F0 0004+00 1/1 0/0 0/0 .sdata           sDeathMtBottom */
 SECTION_SDATA static f32 sDeathMtBottom = -1000.0f;
 
-/* 80450874-80450878 0004+00 s=1 e=0 z=0  None .sdata     sDeathMtTop */
+/* 80450874-80450878 0002F4 0004+00 1/1 0/0 0/0 .sdata           sDeathMtTop */
 SECTION_SDATA static f32 sDeathMtTop = 3650.0f;
 
-/* 80450878-80450880 0004+04 s=1 e=0 z=0  None .sdata     sUnderWaterDepthMax */
+/* 80450878-80450880 0002F8 0004+04 1/1 0/0 0/0 .sdata           sUnderWaterDepthMax */
 SECTION_SDATA static f32 sUnderWaterDepthMax[1 + 1 /* padding */] = {
     3500.0f,
     /* padding */
     0.0f,
 };
 
-/* 804559F0-804559F4 0004+00 s=1 e=0 z=0  None .sdata2    @5673 */
+/* 804559F0-804559F4 003FF0 0004+00 1/1 0/0 0/0 .sdata2          @5673 */
 SECTION_SDATA2 static f32 lit_5673 = -10500.0f;
 
-/* 804559F4-804559F8 0004+00 s=1 e=0 z=0  None .sdata2    @5674 */
+/* 804559F4-804559F8 003FF4 0004+00 1/1 0/0 0/0 .sdata2          @5674 */
 SECTION_SDATA2 static f32 lit_5674 = -7500.0f;
 
-/* 804559F8-804559FC 0004+00 s=1 e=0 z=0  None .sdata2    @5675 */
+/* 804559F8-804559FC 003FF8 0004+00 1/1 0/0 0/0 .sdata2          @5675 */
 SECTION_SDATA2 static f32 lit_5675 = 1.0f / 10.0f;
 
-/* 804559FC-80455A00 0004+00 s=1 e=0 z=0  None .sdata2    @5676 */
+/* 804559FC-80455A00 003FFC 0004+00 1/1 0/0 0/0 .sdata2          @5676 */
 SECTION_SDATA2 static f32 lit_5676 = -1500.0f;
 
-/* 80455A00-80455A04 0004+00 s=1 e=0 z=0  None .sdata2    @5677 */
+/* 80455A00-80455A04 004000 0004+00 1/1 0/0 0/0 .sdata2          @5677 */
 SECTION_SDATA2 static f32 lit_5677 = -13000.0f;
 
-/* 80455A04-80455A08 0004+00 s=1 e=0 z=0  None .sdata2    @5678 */
+/* 80455A04-80455A08 004004 0004+00 1/1 0/0 0/0 .sdata2          @5678 */
 SECTION_SDATA2 static f32 lit_5678 = -4500.0f;
 
-/* 80455A08-80455A0C 0004+00 s=1 e=0 z=0  None .sdata2    @5679 */
+/* 80455A08-80455A0C 004008 0004+00 1/1 0/0 0/0 .sdata2          @5679 */
 SECTION_SDATA2 static f32 lit_5679 = -45000.0f;
 
-/* 80455A0C-80455A10 0004+00 s=1 e=0 z=0  None .sdata2    @5680 */
+/* 80455A0C-80455A10 00400C 0004+00 1/1 0/0 0/0 .sdata2          @5680 */
 SECTION_SDATA2 static f32 lit_5680 = -3000.0f;
 
-/* 80455A10-80455A14 0004+00 s=1 e=0 z=0  None .sdata2    @5681 */
+/* 80455A10-80455A14 004010 0004+00 1/1 0/0 0/0 .sdata2          @5681 */
 SECTION_SDATA2 static f32 lit_5681 = 900.0f;
 
-/* 802B33A8-802B3EAC 0B04+00 s=0 e=1 z=0  None .text      processBgmFramework__8Z2SeqMgrFv */
-//	802B33C4: 802B2E3C (fanfareFramework__8Z2SeqMgrFv)
-//	802B33CC: 802B4BD0 (battleBgmFramework__8Z2SeqMgrFv)
-//	802B33D4: 802B5E80 (mbossBgmMuteProcess__8Z2SeqMgrFv)
-//	802B33DC: 802B594C (fieldBgmFramework__8Z2SeqMgrFv)
-//	802B33EC: 80455998 (lit_3372)
-//	802B3410: 80450861 (struct_80450860)
-//	802B3424: 80455998 (lit_3372)
-//	802B3430: 804559A8 (lit_3561)
-//	802B3458: 80455998 (lit_3372)
-//	802B3460: 8045599C (lit_3373)
-//	802B3498: 802AF9D0 (subBgmStopInner__8Z2SeqMgrFv)
-//	802B34B4: 80455998 (lit_3372)
-//	802B34D8: 80450861 (struct_80450860)
-//	802B34EC: 80455998 (lit_3372)
-//	802B34F8: 804559A8 (lit_3561)
-//	802B3520: 80455998 (lit_3372)
-//	802B3528: 8045599C (lit_3373)
-//	802B3548: 80450B7C (data_80450B7C)
-//	802B354C: 802B6734 (checkDayTime__11Z2StatusMgrFv)
-//	802B3558: 80455998 (lit_3372)
-//	802B3588: 80455998 (lit_3372)
-//	802B3594: 804559A8 (lit_3561)
-//	802B35BC: 80450B7C (data_80450B7C)
-//	802B35C0: 802B6734 (checkDayTime__11Z2StatusMgrFv)
-//	802B35CC: 8045599C (lit_3373)
-//	802B35FC: 8045599C (lit_3373)
-//	802B3608: 804559A8 (lit_3561)
-//	802B3638: 80450B80 (data_80450B80)
-//	802B3648: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B370C: 80450874 (sDeathMtTop)
-//	802B3710: 80450870 (sDeathMtBottom)
-//	802B3714: 804559C8 (lit_4732)
-//	802B3718: 8045599C (lit_3373)
-//	802B371C: 80455998 (lit_3372)
-//	802B3724: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B372C: 8045599C (lit_3373)
-//	802B3744: 804559F0 (lit_5673)
-//	802B375C: 802AF010 (bgmStart__8Z2SeqMgrFUlUll)
-//	802B3760: 80455998 (lit_3372)
-//	802B3768: 8045599C (lit_3373)
-//	802B3780: 804559F4 (lit_5674)
-//	802B378C: 804559C8 (lit_4732)
-//	802B3790: 8045599C (lit_3373)
-//	802B3794: 80455998 (lit_3372)
-//	802B379C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B37A4: 8045599C (lit_3373)
-//	802B37BC: 80450B7C (data_80450B7C)
-//	802B37C4: 80450878 (sUnderWaterDepthMax)
-//	802B37D0: 8045599C (lit_3373)
-//	802B37EC: 8045599C (lit_3373)
-//	802B37F8: 804559C8 (lit_4732)
-//	802B37FC: 804559F8 (lit_5675)
-//	802B3800: 80455998 (lit_3372)
-//	802B3808: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B3810: 8045599C (lit_3373)
-//	802B3828: 80455998 (lit_3372)
-//	802B3858: 80455998 (lit_3372)
-//	802B3864: 804559A8 (lit_3561)
-//	802B3898: 804559FC (lit_5676)
-//	802B38A4: 804559C8 (lit_4732)
-//	802B38AC: 8045599C (lit_3373)
-//	802B38C4: 80455A00 (lit_5677)
-//	802B38D0: 804559C8 (lit_4732)
-//	802B38D8: 80455998 (lit_3372)
-//	802B38E0: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B38E8: 8045599C (lit_3373)
-//	802B3900: 80455998 (lit_3372)
-//	802B3908: 8045599C (lit_3373)
-//	802B392C: 80455A04 (lit_5678)
-//	802B3944: 8045599C (lit_3373)
-//	802B3950: 804559A8 (lit_3561)
-//	802B3978: 80455A08 (lit_5679)
-//	802B3984: 80455A0C (lit_5680)
-//	802B3988: 804559C8 (lit_4732)
-//	802B398C: 8045599C (lit_3373)
-//	802B3990: 80455998 (lit_3372)
-//	802B3998: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B39A0: 8045599C (lit_3373)
-//	802B39B8: 80455998 (lit_3372)
-//	802B39C0: 8045599C (lit_3373)
-//	802B39E0: 80455A10 (lit_5681)
-//	802B39EC: 8045599C (lit_3373)
-//	802B3A08: 804559FC (lit_5676)
-//	802B3A14: 804559C8 (lit_4732)
-//	802B3A18: 8045599C (lit_3373)
-//	802B3A24: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802B3A2C: 8045599C (lit_3373)
-//	802B3A44: 804559C8 (lit_4732)
-//	802B3A4C: 8045599C (lit_3373)
-//	802B3A74: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B3ACC: 80455998 (lit_3372)
-//	802B3AD8: 804559A8 (lit_3561)
-//	802B3B1C: 80455998 (lit_3372)
-//	802B3B28: 804559A8 (lit_3561)
-//	802B3DAC: 80455998 (lit_3372)
-//	802B3E00: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802B3E28: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802B3E50: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802B3E60: 80455998 (lit_3372)
-//	802B3E6C: 804559A8 (lit_3561)
+/* 802B33A8-802B3EAC 2ADCE8 0B04+00 0/0 1/1 0/0 .text            processBgmFramework__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2159,7 +1025,7 @@ asm void Z2SeqMgr::processBgmFramework() {
 }
 #pragma pop
 
-/* 802B3EAC-802B3F40 0094+00 s=0 e=2 z=0  None .text      checkBgmIDPlaying__8Z2SeqMgrFUl */
+/* 802B3EAC-802B3F40 2AE7EC 0094+00 0/0 2/2 0/0 .text            checkBgmIDPlaying__8Z2SeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2169,9 +1035,8 @@ asm void Z2SeqMgr::checkBgmIDPlaying(u32 param_0) {
 }
 #pragma pop
 
-/* 802B3F40-802B3FEC 00AC+00 s=1 e=0 z=0  None .text
+/* 802B3F40-802B3FEC 2AE880 00AC+00 1/1 0/0 0/0 .text
  * getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei            */
-//	802B3F60: 8045599C (lit_3373)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2181,17 +1046,8 @@ asm void Z2SeqMgr::getChildTrackVolume(JAISoundHandle* param_0, int param_1) {
 }
 #pragma pop
 
-/* 802B3FEC-802B4128 013C+00 s=9 e=2 z=0  None .text
+/* 802B3FEC-802B4128 2AE92C 013C+00 9/9 2/2 0/0 .text
  * setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff       */
-//	802B4014: 803621DC (_savegpr_29)
-//	802B408C: 80455998 (lit_3372)
-//	802B40A0: 8045599C (lit_3373)
-//	802B40BC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802B40C0: 804559B4 (lit_4727)
-//	802B40D8: 802A2EBC (movePan__18JAISoundParamsMoveFfUl)
-//	802B40DC: 804559B4 (lit_4727)
-//	802B40F4: 802A2F14 (moveDolby__18JAISoundParamsMoveFfUl)
-//	802B4114: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2202,9 +1058,8 @@ asm void Z2SeqMgr::setChildTrackVolume(JAISoundHandle* param_0, int param_1, f32
 }
 #pragma pop
 
-/* 802B4128-802B4164 003C+00 s=1 e=1 z=0  None .text      resetBattleBgmParams__8Z2SeqMgrFv */
-//	802B4134: 80450B48 (data_80450B48)
-//	802B4150: 802BF980 (setForceBattleArea__13Z2SoundObjMgrFbUsUsUs)
+/* 802B4128-802B4164 2AEA68 003C+00 1/1 1/1 0/0 .text            resetBattleBgmParams__8Z2SeqMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2214,10 +1069,7 @@ asm void Z2SeqMgr::resetBattleBgmParams() {
 }
 #pragma pop
 
-/* 802B4164-802B421C 00B8+00 s=4 e=3 z=10  None .text      setBattleBgmOff__8Z2SeqMgrFb */
-//	802B41EC: 80450862 (struct_80450860)
-//	802B41F0: 80450861 (struct_80450860)
-//	802B41F4: 802B5204 (stopBattleBgm__8Z2SeqMgrFUcUc)
+/* 802B4164-802B421C 2AEAA4 00B8+00 4/4 3/3 10/10 .text            setBattleBgmOff__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2227,40 +1079,7 @@ asm void Z2SeqMgr::setBattleBgmOff(bool param_0) {
 }
 #pragma pop
 
-/* 802B421C-802B43D0 01B4+00 s=0 e=1 z=0  None .text      setBattleSearched__8Z2SeqMgrFb */
-//	802B4244: 80450B80 (data_80450B80)
-//	802B42B4: 80455998 (lit_3372)
-//	802B42B8: 80450864 (struct_80450864)
-//	802B42BC: 804559B4 (lit_4727)
-//	802B42C4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B42D4: 80455998 (lit_3372)
-//	802B42D8: 80450864 (struct_80450864)
-//	802B42DC: 804559B4 (lit_4727)
-//	802B42E4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B42F4: 80455998 (lit_3372)
-//	802B42F8: 80450864 (struct_80450864)
-//	802B42FC: 804559B4 (lit_4727)
-//	802B4304: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4314: 80455998 (lit_3372)
-//	802B4318: 80450864 (struct_80450864)
-//	802B431C: 804559B4 (lit_4727)
-//	802B4324: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4338: 8045599C (lit_3373)
-//	802B433C: 80450865 (struct_80450864)
-//	802B4340: 804559B4 (lit_4727)
-//	802B4348: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4358: 8045599C (lit_3373)
-//	802B435C: 80450865 (struct_80450864)
-//	802B4360: 804559B4 (lit_4727)
-//	802B4368: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4378: 8045599C (lit_3373)
-//	802B437C: 80450865 (struct_80450864)
-//	802B4380: 804559B4 (lit_4727)
-//	802B4388: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4398: 8045599C (lit_3373)
-//	802B439C: 80450865 (struct_80450864)
-//	802B43A0: 804559B4 (lit_4727)
-//	802B43A8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
+/* 802B421C-802B43D0 2AEB5C 01B4+00 0/0 1/1 0/0 .text            setBattleSearched__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2270,7 +1089,7 @@ asm void Z2SeqMgr::setBattleSearched(bool param_0) {
 }
 #pragma pop
 
-/* 802B43D0-802B43E0 0010+00 s=3 e=0 z=0  None .text      setBattleDistIgnore__8Z2SeqMgrFb */
+/* 802B43D0-802B43E0 2AED10 0010+00 3/3 0/0 0/0 .text            setBattleDistIgnore__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2281,14 +1100,10 @@ asm void Z2SeqMgr::setBattleDistIgnore(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A14-80455A18 0004+00 s=1 e=0 z=0  None .sdata2    @5913 */
+/* 80455A14-80455A18 004014 0004+00 1/1 0/0 0/0 .sdata2          @5913 */
 SECTION_SDATA2 static f32 lit_5913 = 2.0f / 5.0f;
 
-/* 802B43E0-802B4498 00B8+00 s=0 e=2 z=0  None .text      setBattleGhostMute__8Z2SeqMgrFb */
-//	802B4420: 80455998 (lit_3372)
-//	802B442C: 804559A8 (lit_3561)
-//	802B4460: 80455A14 (lit_5913)
-//	802B446C: 804559A8 (lit_3561)
+/* 802B43E0-802B4498 2AED20 00B8+00 0/0 2/2 0/0 .text            setBattleGhostMute__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2298,42 +1113,7 @@ asm void Z2SeqMgr::setBattleGhostMute(bool param_0) {
 }
 #pragma pop
 
-/* 802B4498-802B4844 03AC+00 s=0 e=1 z=0  None .text      setBattleDistState__8Z2SeqMgrFUc */
-//	802B44C0: 80450B80 (data_80450B80)
-//	802B4550: 80455998 (lit_3372)
-//	802B455C: 804559A8 (lit_3561)
-//	802B4588: 8045599C (lit_3373)
-//	802B45B0: 80450B48 (data_80450B48)
-//	802B45B4: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B45E8: 80450B48 (data_80450B48)
-//	802B45EC: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B4628: 802A24DC (stop__8JAISoundFUl)
-//	802B4630: 802A21A0 (releaseHandle__8JAISoundFv)
-//	802B4634: 80450B48 (data_80450B48)
-//	802B4638: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B46AC: 802B4EB0 (startBattleBgm__8Z2SeqMgrFb)
-//	802B46C8: 802B4EB0 (startBattleBgm__8Z2SeqMgrFb)
-//	802B46E8: 802B5204 (stopBattleBgm__8Z2SeqMgrFUcUc)
-//	802B4758: 802B4EB0 (startBattleBgm__8Z2SeqMgrFb)
-//	802B4770: 8045086C (data_8045086C)
-//	802B4774: 80455998 (lit_3372)
-//	802B4778: 80450866 (struct_80450864)
-//	802B477C: 804559B4 (lit_4727)
-//	802B4784: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B47A0: 802B4EB0 (startBattleBgm__8Z2SeqMgrFb)
-//	802B47B8: 8045086C (data_8045086C)
-//	802B47BC: 8045599C (lit_3373)
-//	802B47C0: 80450867 (struct_80450864)
-//	802B47C4: 804559B4 (lit_4727)
-//	802B47CC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B47E8: 8045086C (data_8045086C)
-//	802B47EC: 8045599C (lit_3373)
-//	802B47F0: 80450867 (struct_80450864)
-//	802B47F4: 804559B4 (lit_4727)
-//	802B47FC: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B481C: 80450862 (struct_80450860)
-//	802B4820: 80450861 (struct_80450860)
-//	802B4824: 802B5204 (stopBattleBgm__8Z2SeqMgrFUcUc)
+/* 802B4498-802B4844 2AEDD8 03AC+00 0/0 1/1 0/0 .text            setBattleDistState__8Z2SeqMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2343,40 +1123,7 @@ asm void Z2SeqMgr::setBattleDistState(u8 param_0) {
 }
 #pragma pop
 
-/* 802B4844-802B4AFC 02B8+00 s=1 e=3 z=1  None .text      setBattleSeqState__8Z2SeqMgrFUc */
-//	802B486C: 80450B80 (data_80450B80)
-//	802B4894: 80450862 (struct_80450860)
-//	802B4898: 80450861 (struct_80450860)
-//	802B489C: 802B5204 (stopBattleBgm__8Z2SeqMgrFUcUc)
-//	802B48F4: 80450B48 (data_80450B48)
-//	802B48F8: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B492C: 80450B74 (data_80450B74)
-//	802B4940: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802B494C: 8045086C (data_8045086C)
-//	802B4950: 80455998 (lit_3372)
-//	802B4958: 804559B4 (lit_4727)
-//	802B4960: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4970: 80455998 (lit_3372)
-//	802B4978: 804559B4 (lit_4727)
-//	802B4980: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4990: 80455998 (lit_3372)
-//	802B4998: 804559B4 (lit_4727)
-//	802B49A0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B49B0: 80455998 (lit_3372)
-//	802B49B8: 804559B4 (lit_4727)
-//	802B49C0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B49D0: 80455998 (lit_3372)
-//	802B49D8: 804559B4 (lit_4727)
-//	802B49E0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B4A08: 80455998 (lit_3372)
-//	802B4A14: 804559A8 (lit_3561)
-//	802B4A40: 8045599C (lit_3373)
-//	802B4A6C: 8045599C (lit_3373)
-//	802B4A84: 80455998 (lit_3372)
-//	802B4AA4: 80450B74 (data_80450B74)
-//	802B4AB8: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802B4AC8: 80450B74 (data_80450B74)
-//	802B4ADC: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
+/* 802B4844-802B4AFC 2AF184 02B8+00 1/1 3/3 1/1 .text            setBattleSeqState__8Z2SeqMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2386,13 +1133,7 @@ asm void Z2SeqMgr::setBattleSeqState(u8 param_0) {
 }
 #pragma pop
 
-/* 802B4AFC-802B4BD0 00D4+00 s=0 e=4 z=0  None .text      setBattleLastHit__8Z2SeqMgrFUc */
-//	802B4B48: 802B43D0 (setBattleDistIgnore__8Z2SeqMgrFb)
-//	802B4B4C: 80450868 (struct_80450868)
-//	802B4B50: 8045133C (ENEMY_LASTHIT_MUTE_VOLUME__7Z2Param)
-//	802B4B6C: 804559A8 (lit_3561)
-//	802B4B98: 8045599C (lit_3373)
-//	802B4BAC: 8045086B (struct_80450868)
+/* 802B4AFC-802B4BD0 2AF43C 00D4+00 0/0 4/4 0/0 .text            setBattleLastHit__8Z2SeqMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2402,31 +1143,7 @@ asm void Z2SeqMgr::setBattleLastHit(u8 param_0) {
 }
 #pragma pop
 
-/* 802B4BD0-802B4EB0 02E0+00 s=1 e=0 z=0  None .text      battleBgmFramework__8Z2SeqMgrFv */
-//	802B4C54: 802A2598 (stop__8JAISoundFv)
-//	802B4C6C: 80450B80 (data_80450B80)
-//	802B4C7C: 80450B48 (data_80450B48)
-//	802B4C80: 802BF994 (searchEnemy__13Z2SoundObjMgrFv)
-//	802B4CEC: 80450B48 (data_80450B48)
-//	802B4CF0: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B4D20: 80455998 (lit_3372)
-//	802B4D44: 8045086A (struct_80450868)
-//	802B4D58: 80455998 (lit_3372)
-//	802B4D64: 804559A8 (lit_3561)
-//	802B4D8C: 80455998 (lit_3372)
-//	802B4D94: 8045599C (lit_3373)
-//	802B4DBC: 802B43D0 (setBattleDistIgnore__8Z2SeqMgrFb)
-//	802B4DC0: 80450B48 (data_80450B48)
-//	802B4DC4: 802C0120 (checkBattleFinish__13Z2SoundObjMgrFv)
-//	802B4DD8: 802B4844 (setBattleSeqState__8Z2SeqMgrFUc)
-//	802B4DE0: 80455998 (lit_3372)
-//	802B4E04: 8045086A (struct_80450868)
-//	802B4E18: 80455998 (lit_3372)
-//	802B4E24: 804559A8 (lit_3561)
-//	802B4E4C: 80455998 (lit_3372)
-//	802B4E54: 8045599C (lit_3373)
-//	802B4E7C: 802B43D0 (setBattleDistIgnore__8Z2SeqMgrFb)
-//	802B4E94: 80450869 (struct_80450868)
+/* 802B4BD0-802B4EB0 2AF510 02E0+00 1/1 0/0 0/0 .text            battleBgmFramework__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2436,46 +1153,7 @@ asm void Z2SeqMgr::battleBgmFramework() {
 }
 #pragma pop
 
-/* 802B4EB0-802B5204 0354+00 s=1 e=0 z=0  None .text      startBattleBgm__8Z2SeqMgrFb */
-//	802B4EC0: 803621D0 (_savegpr_26)
-//	802B4ED8: 80450B80 (data_80450B80)
-//	802B4F20: 80450B48 (data_80450B48)
-//	802B4F24: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B4F74: 80450B60 (data_80450B60)
-//	802B4F9C: 80450B48 (data_80450B48)
-//	802B4FA0: 802C0100 (setBattleInit__13Z2SoundObjMgrFv)
-//	802B4FAC: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B4FC8: 80450861 (struct_80450860)
-//	802B5010: 80450862 (struct_80450860)
-//	802B5034: 8045599C (lit_3373)
-//	802B503C: 804559B4 (lit_4727)
-//	802B5044: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5054: 8045599C (lit_3373)
-//	802B505C: 804559B4 (lit_4727)
-//	802B5064: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5074: 8045599C (lit_3373)
-//	802B507C: 804559B4 (lit_4727)
-//	802B5084: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5094: 8045599C (lit_3373)
-//	802B509C: 804559B4 (lit_4727)
-//	802B50A4: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B50BC: 8045086C (data_8045086C)
-//	802B50C0: 8045599C (lit_3373)
-//	802B50C8: 804559B4 (lit_4727)
-//	802B50D0: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B50D8: 80450B48 (data_80450B48)
-//	802B50DC: 802C01E4 (isTwilightBattle__13Z2SoundObjMgrFv)
-//	802B50E8: 802B1DF4 (changeSubBgmStatus__8Z2SeqMgrFl)
-//	802B510C: 8045599C (lit_3373)
-//	802B5124: 80455998 (lit_3372)
-//	802B5130: 804559A8 (lit_3561)
-//	802B5158: 80455998 (lit_3372)
-//	802B5174: 80455998 (lit_3372)
-//	802B517C: 8045599C (lit_3373)
-//	802B51A0: 8045599C (lit_3373)
-//	802B51AC: 804559A8 (lit_3561)
-//	802B51D4: 8045599C (lit_3373)
-//	802B51F0: 8036221C (_restgpr_26)
+/* 802B4EB0-802B5204 2AF7F0 0354+00 1/1 0/0 0/0 .text            startBattleBgm__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2485,21 +1163,7 @@ asm void Z2SeqMgr::startBattleBgm(bool param_0) {
 }
 #pragma pop
 
-/* 802B5204-802B545C 0258+00 s=3 e=1 z=0  None .text      stopBattleBgm__8Z2SeqMgrFUcUc */
-//	802B5228: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B5250: 80450861 (struct_80450860)
-//	802B5294: 80450862 (struct_80450860)
-//	802B52B4: 8045599C (lit_3373)
-//	802B52C0: 804559A8 (lit_3561)
-//	802B52E8: 8045599C (lit_3373)
-//	802B5374: 8045599C (lit_3373)
-//	802B5380: 804559A8 (lit_3561)
-//	802B53A8: 8045599C (lit_3373)
-//	802B53D4: 80455998 (lit_3372)
-//	802B53E0: 804559A8 (lit_3561)
-//	802B5408: 80455998 (lit_3372)
-//	802B5410: 8045599C (lit_3373)
-//	802B5434: 802B43D0 (setBattleDistIgnore__8Z2SeqMgrFb)
+/* 802B5204-802B545C 2AFB44 0258+00 3/3 1/1 0/0 .text            stopBattleBgm__8Z2SeqMgrFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2509,16 +1173,7 @@ asm void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802B545C-802B556C 0110+00 s=1 e=0 z=0  None .text      fieldBgmStart__8Z2SeqMgrFv */
-//	802B5470: 80450B80 (data_80450B80)
-//	802B548C: 80450B7C (data_80450B7C)
-//	802B5490: 802B6734 (checkDayTime__11Z2StatusMgrFv)
-//	802B54A4: 80450B60 (data_80450B60)
-//	802B54CC: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B54D8: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B5500: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
-//	802B551C: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
-//	802B5530: 80450B60 (data_80450B60)
+/* 802B545C-802B556C 2AFD9C 0110+00 1/1 0/0 0/0 .text            fieldBgmStart__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2528,34 +1183,7 @@ asm void Z2SeqMgr::fieldBgmStart() {
 }
 #pragma pop
 
-/* 802B556C-802B5750 01E4+00 s=3 e=0 z=0  None .text      fieldRidingMute__8Z2SeqMgrFv */
-//	802B5590: 80450B80 (data_80450B80)
-//	802B55B8: 80455998 (lit_3372)
-//	802B55BC: 8045599C (lit_3373)
-//	802B55C4: 8045599C (lit_3373)
-//	802B55C8: 80455998 (lit_3372)
-//	802B55E0: 804559B4 (lit_4727)
-//	802B55E8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5600: 804559B4 (lit_4727)
-//	802B5608: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5620: 804559B4 (lit_4727)
-//	802B5628: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5640: 804559B4 (lit_4727)
-//	802B5648: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5660: 804559B4 (lit_4727)
-//	802B5668: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5680: 804559B4 (lit_4727)
-//	802B5688: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B56A0: 804559B4 (lit_4727)
-//	802B56A8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B56C0: 804559B4 (lit_4727)
-//	802B56C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B56E0: 804559B4 (lit_4727)
-//	802B56E8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5700: 804559B4 (lit_4727)
-//	802B5708: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5720: 804559B4 (lit_4727)
-//	802B5728: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
+/* 802B556C-802B5750 2AFEAC 01E4+00 3/3 0/0 0/0 .text            fieldRidingMute__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2565,9 +1193,7 @@ asm void Z2SeqMgr::fieldRidingMute() {
 }
 #pragma pop
 
-/* 802B5750-802B579C 004C+00 s=0 e=1 z=0  None .text      onFieldBgmJumpStart__8Z2SeqMgrFv */
-//	802B576C: 802B3F40 (getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei)
-//	802B5780: 802B3F40 (getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei)
+/* 802B5750-802B579C 2B0090 004C+00 0/0 1/1 0/0 .text            onFieldBgmJumpStart__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2577,34 +1203,7 @@ asm void Z2SeqMgr::onFieldBgmJumpStart() {
 }
 #pragma pop
 
-/* 802B579C-802B594C 01B0+00 s=0 e=1 z=0  None .text      onFieldBgmJumpEnd__8Z2SeqMgrFv */
-//	802B57C0: 804559B4 (lit_4727)
-//	802B57C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B57E0: 804559B4 (lit_4727)
-//	802B57E8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5800: 804559B4 (lit_4727)
-//	802B5808: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5820: 804559B4 (lit_4727)
-//	802B5828: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5840: 804559B4 (lit_4727)
-//	802B5848: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5860: 804559B4 (lit_4727)
-//	802B5868: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5880: 804559B4 (lit_4727)
-//	802B5888: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B58A0: 804559B4 (lit_4727)
-//	802B58A8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B58C0: 804559B4 (lit_4727)
-//	802B58C8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B58E0: 804559B4 (lit_4727)
-//	802B58E8: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B5900: 804559B4 (lit_4727)
-//	802B5908: 802B3FEC (setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff)
-//	802B590C: 80450B60 (data_80450B60)
-//	802B5914: 802A1C90 (calc__9JAISeqMgrFv)
-//	802B5918: 80450B60 (data_80450B60)
-//	802B5920: 802A1EFC (mixOut__9JAISeqMgrFv)
-//	802B5934: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
+/* 802B579C-802B594C 2B00DC 01B0+00 0/0 1/1 0/0 .text            onFieldBgmJumpEnd__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2615,7 +1214,7 @@ asm void Z2SeqMgr::onFieldBgmJumpEnd() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CA4B4-803CA508 0054+00 s=1 e=0 z=0  None .data      @6877 */
+/* 803CA4B4-803CA508 -00001 0054+00 1/1 0/0 0/0 .data            @6877 */
 SECTION_DATA static void* lit_6877[21] = {
     (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
     (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
@@ -2640,48 +1239,7 @@ SECTION_DATA static void* lit_6877[21] = {
     (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
 };
 
-/* 802B594C-802B5E80 0534+00 s=2 e=0 z=0  None .text      fieldBgmFramework__8Z2SeqMgrFv */
-//	802B5960: 80450B80 (data_80450B80)
-//	802B59D8: 80450B74 (data_80450B74)
-//	802B59E8: 802AAF74 (getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc)
-//	802B59F0: 80450B7C (data_80450B7C)
-//	802B5A08: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5A1C: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B5A4C: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
-//	802B5A80: 80450B7C (data_80450B7C)
-//	802B5AB8: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5AC8: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5AFC: 803CA4B4 (lit_6877)
-//	802B5B00: 803CA4B4 (lit_6877)
-//	802B5B1C: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5B2C: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5B3C: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5B4C: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5B54: 802B6734 (checkDayTime__11Z2StatusMgrFv)
-//	802B5B60: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B5BB0: 80450B48 (data_80450B48)
-//	802B5BC8: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5BD8: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5BE8: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5C10: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5C20: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5C3C: 80450B7C (data_80450B7C)
-//	802B5C54: 802A24DC (stop__8JAISoundFUl)
-//	802B5C5C: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	802B5C90: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5CA0: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5CCC: 80450B7C (data_80450B7C)
-//	802B5CF4: 802A24DC (stop__8JAISoundFUl)
-//	802B5CFC: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	802B5D28: 80450B7C (data_80450B7C)
-//	802B5D68: 80450B60 (data_80450B60)
-//	802B5D90: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5DA8: 80450B60 (data_80450B60)
-//	802B5DD0: 802AFF8C (changeBgmStatus__8Z2SeqMgrFl)
-//	802B5DDC: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802B5E08: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
-//	802B5E28: 802B556C (fieldRidingMute__8Z2SeqMgrFv)
-//	802B5E4C: 80450B60 (data_80450B60)
+/* 802B594C-802B5E80 2B028C 0534+00 2/1 0/0 0/0 .text            fieldBgmFramework__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2691,24 +1249,22 @@ asm void Z2SeqMgr::fieldBgmFramework() {
 }
 #pragma pop
 
-/* 802B5E80-802B5E84 0004+00 s=1 e=0 z=0  None .text      mbossBgmMuteProcess__8Z2SeqMgrFv */
+/* 802B5E80-802B5E84 2B07C0 0004+00 1/1 0/0 0/0 .text            mbossBgmMuteProcess__8Z2SeqMgrFv */
 void Z2SeqMgr::mbossBgmMuteProcess() {
     /* empty function */
 }
 
-/* 802B5E84-802B5E88 0004+00 s=0 e=2 z=0  None .text      bgmSetSwordUsing__8Z2SeqMgrFl */
+/* 802B5E84-802B5E88 2B07C4 0004+00 0/0 2/2 0/0 .text            bgmSetSwordUsing__8Z2SeqMgrFl */
 void Z2SeqMgr::bgmSetSwordUsing(s32 param_0) {
     /* empty function */
 }
 
-/* 802B5E88-802B5E8C 0004+00 s=0 e=1 z=0  None .text      bgmNowBattle__8Z2SeqMgrFf */
+/* 802B5E88-802B5E8C 2B07C8 0004+00 0/0 1/1 0/0 .text            bgmNowBattle__8Z2SeqMgrFf */
 void Z2SeqMgr::bgmNowBattle(f32 param_0) {
     /* empty function */
 }
 
-/* 802B5E8C-802B5ED4 0048+00 s=0 e=1 z=0  None .text      taktModeMute__8Z2SeqMgrFv */
-//	802B5E9C: 804559C8 (lit_4732)
-//	802B5EA8: 804559A8 (lit_3561)
+/* 802B5E8C-802B5ED4 2B07CC 0048+00 0/0 1/1 0/0 .text            taktModeMute__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2718,9 +1274,7 @@ asm void Z2SeqMgr::taktModeMute() {
 }
 #pragma pop
 
-/* 802B5ED4-802B5F1C 0048+00 s=0 e=1 z=0  None .text      taktModeMuteOff__8Z2SeqMgrFv */
-//	802B5EE4: 80455998 (lit_3372)
-//	802B5EF0: 804559A8 (lit_3561)
+/* 802B5ED4-802B5F1C 2B0814 0048+00 0/0 1/1 0/0 .text            taktModeMuteOff__8Z2SeqMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2728,4 +1282,93 @@ asm void Z2SeqMgr::taktModeMuteOff() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SeqMgr/taktModeMuteOff__8Z2SeqMgrFv.s"
 }
+#pragma pop
+
+/* 8039BA08-8039BC88 028068 0280+00 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039BA08 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039BA0F = "F_SP103";
+SECTION_DEAD static char const* const stringBase_8039BA17 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_8039BA1E = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8039BA26 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8039BA2E = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039BA36 = "R_SP108";
+SECTION_DEAD static char const* const stringBase_8039BA3E = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8039BA46 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8039BA4E = "R_SP109";
+SECTION_DEAD static char const* const stringBase_8039BA56 = "R_SP209";
+SECTION_DEAD static char const* const stringBase_8039BA5E = "F_SP110";
+SECTION_DEAD static char const* const stringBase_8039BA66 = "R_SP110";
+SECTION_DEAD static char const* const stringBase_8039BA6E = "F_SP111";
+SECTION_DEAD static char const* const stringBase_8039BA76 = "F_SP128";
+SECTION_DEAD static char const* const stringBase_8039BA7E = "R_SP128";
+SECTION_DEAD static char const* const stringBase_8039BA86 = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8039BA8E = "F_SP112";
+SECTION_DEAD static char const* const stringBase_8039BA96 = "F_SP126";
+SECTION_DEAD static char const* const stringBase_8039BA9E = "F_SP127";
+SECTION_DEAD static char const* const stringBase_8039BAA6 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8039BAAE = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8039BAB6 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8039BABE = "R_SP116";
+SECTION_DEAD static char const* const stringBase_8039BAC6 = "R_SP160";
+SECTION_DEAD static char const* const stringBase_8039BACE = "R_SP161";
+SECTION_DEAD static char const* const stringBase_8039BAD6 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_8039BADE = "F_SP118";
+SECTION_DEAD static char const* const stringBase_8039BAE6 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_8039BAEE = "F_SP125";
+SECTION_DEAD static char const* const stringBase_8039BAF6 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8039BAFE = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8039BB06 = "F_SP123";
+SECTION_DEAD static char const* const stringBase_8039BB0E = "F_SP200";
+SECTION_DEAD static char const* const stringBase_8039BB16 = "F_SP102";
+SECTION_DEAD static char const* const stringBase_8039BB1E = "";
+SECTION_DEAD static char const* const stringBase_8039BB1F = "R_SP300";
+SECTION_DEAD static char const* const stringBase_8039BB27 = "R_SP301";
+SECTION_DEAD static char const* const stringBase_8039BB2F = "T_ENEMY";
+SECTION_DEAD static char const* const stringBase_8039BB37 = "D_MN54";
+SECTION_DEAD static char const* const stringBase_8039BB3E = "D_MN05";
+SECTION_DEAD static char const* const stringBase_8039BB45 = "D_MN05B";
+SECTION_DEAD static char const* const stringBase_8039BB4D = "D_MN05A";
+SECTION_DEAD static char const* const stringBase_8039BB55 = "D_MN04";
+SECTION_DEAD static char const* const stringBase_8039BB5C = "D_MN04B";
+SECTION_DEAD static char const* const stringBase_8039BB64 = "D_MN04A";
+SECTION_DEAD static char const* const stringBase_8039BB6C = "D_MN01";
+SECTION_DEAD static char const* const stringBase_8039BB73 = "D_MN01B";
+SECTION_DEAD static char const* const stringBase_8039BB7B = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_8039BB83 = "D_MN10";
+SECTION_DEAD static char const* const stringBase_8039BB8A = "D_MN10B";
+SECTION_DEAD static char const* const stringBase_8039BB92 = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_8039BB9A = "D_MN11";
+SECTION_DEAD static char const* const stringBase_8039BBA1 = "D_MN11B";
+SECTION_DEAD static char const* const stringBase_8039BBA9 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_8039BBB1 = "D_MN06";
+SECTION_DEAD static char const* const stringBase_8039BBB8 = "D_MN06B";
+SECTION_DEAD static char const* const stringBase_8039BBC0 = "D_MN06A";
+SECTION_DEAD static char const* const stringBase_8039BBC8 = "D_MN07";
+SECTION_DEAD static char const* const stringBase_8039BBCF = "D_MN07B";
+SECTION_DEAD static char const* const stringBase_8039BBD7 = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_8039BBDF = "D_MN08";
+SECTION_DEAD static char const* const stringBase_8039BBE6 = "D_MN08B";
+SECTION_DEAD static char const* const stringBase_8039BBEE = "D_MN08C";
+SECTION_DEAD static char const* const stringBase_8039BBF6 = "D_MN08A";
+SECTION_DEAD static char const* const stringBase_8039BBFE = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8039BC06 = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8039BC0D = "D_MN09A";
+SECTION_DEAD static char const* const stringBase_8039BC15 = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_8039BC1D = "D_MN09C";
+SECTION_DEAD static char const* const stringBase_8039BC25 = "D_SB00";
+SECTION_DEAD static char const* const stringBase_8039BC2C = "D_SB01";
+SECTION_DEAD static char const* const stringBase_8039BC33 = "D_SB02";
+SECTION_DEAD static char const* const stringBase_8039BC3A = "D_SB03";
+SECTION_DEAD static char const* const stringBase_8039BC41 = "D_SB04";
+SECTION_DEAD static char const* const stringBase_8039BC48 = "D_SB05";
+SECTION_DEAD static char const* const stringBase_8039BC4F = "D_SB06";
+SECTION_DEAD static char const* const stringBase_8039BC56 = "D_SB07";
+SECTION_DEAD static char const* const stringBase_8039BC5D = "D_SB08";
+SECTION_DEAD static char const* const stringBase_8039BC64 = "D_SB09";
+SECTION_DEAD static char const* const stringBase_8039BC6B = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8039BC72 = "force_start";
+SECTION_DEAD static char const* const stringBase_8039BC7E = "force_end";
 #pragma pop

@@ -18,7 +18,7 @@ lbl_80C9D918:
 /* 80C9D928  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80C9D92C  38 E0 00 00 */	li r7, 0
 /* 80C9D930  39 00 00 01 */	li r8, 1
-/* 80C9D934  4B 37 DD 48 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80C9D934  4B 37 DD 49 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80C9D938  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80C9D93C  60 00 00 02 */	ori r0, r0, 2
 /* 80C9D940  B0 1F 00 FA */	sth r0, 0xfa(r31)

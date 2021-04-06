@@ -3,12 +3,12 @@ lbl_806591BC:
 /* 806591C0  7C 08 02 A6 */	mflr r0
 /* 806591C4  90 01 00 74 */	stw r0, 0x74(r1)
 /* 806591C8  39 61 00 70 */	addi r11, r1, 0x70
-/* 806591CC  4B D0 90 04 */	b _savegpr_26
+/* 806591CC  4B D0 90 05 */	bl _savegpr_26
 /* 806591D0  7C 7E 1B 78 */	mr r30, r3
-/* 806591D4  3C 60 80 66 */	lis r3, cNullVec__6Z2Calc@ha
-/* 806591D8  3B E3 2F 58 */	addi r31, r3, cNullVec__6Z2Calc@l
+/* 806591D4  3C 60 80 66 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80662F58@ha */
+/* 806591D8  3B E3 2F 58 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80662F58@l */
 /* 806591DC  38 7E 08 00 */	addi r3, r30, 0x800
-/* 806591E0  4B A2 A6 50 */	b Move__10dCcD_GSttsFv
+/* 806591E0  4B A2 A6 51 */	bl Move__10dCcD_GSttsFv
 /* 806591E4  88 1E 0C A5 */	lbz r0, 0xca5(r30)
 /* 806591E8  28 00 00 00 */	cmplwi r0, 0
 /* 806591EC  40 82 02 58 */	bne lbl_80659444
@@ -26,11 +26,11 @@ lbl_80659214:
 /* 80659214  3B 9D 08 60 */	addi r28, r29, 0x860
 /* 80659218  7F 9E E2 14 */	add r28, r30, r28
 /* 8065921C  7F 83 E3 78 */	mr r3, r28
-/* 80659220  4B A2 B2 40 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80659220  4B A2 B2 41 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80659224  28 03 00 00 */	cmplwi r3, 0
 /* 80659228  41 82 00 14 */	beq lbl_8065923C
 /* 8065922C  7F 83 E3 78 */	mr r3, r28
-/* 80659230  4B A2 B2 C8 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80659230  4B A2 B2 C9 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80659234  7C 7B 1B 78 */	mr r27, r3
 /* 80659238  48 00 00 14 */	b lbl_8065924C
 lbl_8065923C:
@@ -143,8 +143,8 @@ lbl_806593A0:
 /* 806593C8  4B FF FD 21 */	bl checkProcess__7daCow_cFM7daCow_cFPCvPv_v
 /* 806593CC  2C 03 00 00 */	cmpwi r3, 0
 /* 806593D0  40 82 00 38 */	bne lbl_80659408
-/* 806593D4  3C 60 80 66 */	lis r3, lit_3998@ha
-/* 806593D8  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)
+/* 806593D4  3C 60 80 66 */	lis r3, lit_3998@ha /* 0x80662DC8@ha */
+/* 806593D8  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)  /* 0x80662DC8@l */
 /* 806593DC  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 806593E0  80 7F 01 20 */	lwz r3, 0x120(r31)
 /* 806593E4  80 1F 01 24 */	lwz r0, 0x124(r31)
@@ -174,7 +174,7 @@ lbl_80659408:
 /* 80659440  4E 80 04 21 */	bctrl 
 lbl_80659444:
 /* 80659444  39 61 00 70 */	addi r11, r1, 0x70
-/* 80659448  4B D0 8D D4 */	b _restgpr_26
+/* 80659448  4B D0 8D D5 */	bl _restgpr_26
 /* 8065944C  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80659450  7C 08 03 A6 */	mtlr r0
 /* 80659454  38 21 00 70 */	addi r1, r1, 0x70

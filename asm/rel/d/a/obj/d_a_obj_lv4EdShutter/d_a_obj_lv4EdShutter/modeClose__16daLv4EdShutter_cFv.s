@@ -5,14 +5,14 @@ lbl_80C5E518:
 /* 80C5E524  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C5E528  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C5E52C  7C 7E 1B 78 */	mr r30, r3
-/* 80C5E530  3C 60 80 C6 */	lis r3, lit_3634@ha
-/* 80C5E534  3B E3 E8 DC */	addi r31, r3, lit_3634@l
+/* 80C5E530  3C 60 80 C6 */	lis r3, lit_3634@ha /* 0x80C5E8DC@ha */
+/* 80C5E534  3B E3 E8 DC */	addi r31, r3, lit_3634@l /* 0x80C5E8DC@l */
 /* 80C5E538  38 7E 05 D0 */	addi r3, r30, 0x5d0
 /* 80C5E53C  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 80C5E540  C0 5F 00 14 */	lfs f2, 0x14(r31)
 /* 80C5E544  C0 7E 05 D8 */	lfs f3, 0x5d8(r30)
 /* 80C5E548  C0 9F 00 18 */	lfs f4, 0x18(r31)
-/* 80C5E54C  4B 61 14 30 */	b cLib_addCalc__FPfffff
+/* 80C5E54C  4B 61 14 31 */	bl cLib_addCalc__FPfffff
 /* 80C5E550  C0 1F 00 1C */	lfs f0, 0x1c(r31)
 /* 80C5E554  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80C5E558  40 82 00 14 */	bne lbl_80C5E56C

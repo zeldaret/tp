@@ -23,8 +23,8 @@ lbl_800AF8EC:
 /* 800AF8EC  A0 1D 06 04 */	lhz r0, 0x604(r29)
 /* 800AF8F0  2C 00 00 00 */	cmpwi r0, 0
 /* 800AF8F4  40 82 00 18 */	bne lbl_800AF90C
-/* 800AF8F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800AF8FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800AF8F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800AF8FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800AF900  A0 03 00 02 */	lhz r0, 2(r3)
 /* 800AF904  28 00 00 04 */	cmplwi r0, 4
 /* 800AF908  40 81 00 10 */	ble lbl_800AF918
@@ -51,8 +51,8 @@ lbl_800AF934:
 lbl_800AF94C:
 /* 800AF94C  7F A3 EB 78 */	mr r3, r29
 /* 800AF950  57 C5 10 3A */	slwi r5, r30, 2
-/* 800AF954  3C 80 80 39 */	lis r4, m_faceTexDataTable__9daAlink_c@ha
-/* 800AF958  38 04 14 A8 */	addi r0, r4, m_faceTexDataTable__9daAlink_c@l
+/* 800AF954  3C 80 80 39 */	lis r4, m_faceTexDataTable__9daAlink_c@ha /* 0x803914A8@ha */
+/* 800AF958  38 04 14 A8 */	addi r0, r4, m_faceTexDataTable__9daAlink_c@l /* 0x803914A8@l */
 /* 800AF95C  7F E0 2A 14 */	add r31, r0, r5
 /* 800AF960  A0 9F 00 00 */	lhz r4, 0(r31)
 /* 800AF964  38 A0 00 00 */	li r5, 0

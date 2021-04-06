@@ -5,8 +5,8 @@ lbl_802989C0:
 /* 802989CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802989D0  7C 7F 1B 78 */	mr r31, r3
 /* 802989D4  48 00 17 69 */	bl __ct__10JASWaveArcFv
-/* 802989D8  3C 60 80 3C */	lis r3, __vt__Q216JASBasicWaveBank10TWaveGroup@ha
-/* 802989DC  38 03 77 3C */	addi r0, r3, __vt__Q216JASBasicWaveBank10TWaveGroup@l
+/* 802989D8  3C 60 80 3C */	lis r3, __vt__Q216JASBasicWaveBank10TWaveGroup@ha /* 0x803C773C@ha */
+/* 802989DC  38 03 77 3C */	addi r0, r3, __vt__Q216JASBasicWaveBank10TWaveGroup@l /* 0x803C773C@l */
 /* 802989E0  90 1F 00 00 */	stw r0, 0(r31)
 /* 802989E4  38 00 00 00 */	li r0, 0
 /* 802989E8  90 1F 00 74 */	stw r0, 0x74(r31)

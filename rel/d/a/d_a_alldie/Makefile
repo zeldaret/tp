@@ -3,17 +3,15 @@
 #
 
 M58_TARGET := $(BUILD_DIR)/rel/d/a/d_a_alldie.plf
+M58_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_alldie.lcf
+M58_MAP := $(BUILD_DIR)/rel/d/a/d_a_alldie.map
 
 M58_CPP_FILES := \
-	rel/d/a/d_a_alldie/executor.cpp \
-	rel/d/a/d_a_alldie/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_alldie/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_alldie/d_a_alldie.cpp \
 
 M58_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_alldie/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_alldie/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_alldie/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_alldie/d_a_alldie.o \
 
 M58_LIBS := \
@@ -29,15 +27,21 @@ M58_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map58.map\
+	-m _prolog \
+	-lcf $(M58_LDSCRIPT) \
+	-unused -map $(M58_MAP) \
+	-w off \
 
 $(M58_TARGET): $(M58_O_FILES) $(M58_LIBS)
+	@echo [ 58] creating $(M58_TARGET)
 	@echo $(M58_LIBS) $(M58_O_FILES) > build/M58_ofiles
-	$(LD) -opt_partial $(M58_LDFLAGS) -o $(M58_TARGET) @build/M58_ofiles
+	@python3 tools/lcf.py rel 58 --output $(M58_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M58_LDFLAGS) -o $(M58_TARGET) @build/M58_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_alldie/%.o: rel/d/a/d_a_alldie/%.cpp
+	@echo [ 58] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M58_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M58_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

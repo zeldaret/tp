@@ -1,6 +1,6 @@
 lbl_801FE8DC:
-/* 801FE8DC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawInsectHIO_c@ha
-/* 801FE8E0  38 04 F1 60 */	addi r0, r4, __vt__22dMeter_drawInsectHIO_c@l
+/* 801FE8DC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawInsectHIO_c@ha /* 0x803BF160@ha */
+/* 801FE8E0  38 04 F1 60 */	addi r0, r4, __vt__22dMeter_drawInsectHIO_c@l /* 0x803BF160@l */
 /* 801FE8E4  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE8E8  38 00 00 0A */	li r0, 0xa
 /* 801FE8EC  B0 03 00 38 */	sth r0, 0x38(r3)

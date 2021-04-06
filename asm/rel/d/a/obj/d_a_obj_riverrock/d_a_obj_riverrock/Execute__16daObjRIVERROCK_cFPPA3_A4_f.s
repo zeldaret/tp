@@ -13,11 +13,11 @@ lbl_80CBD814:
 /* 80CBD840  88 9E 05 A9 */	lbz r4, 0x5a9(r30)
 /* 80CBD844  28 04 00 FF */	cmplwi r4, 0xff
 /* 80CBD848  41 82 00 3C */	beq lbl_80CBD884
-/* 80CBD84C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CBD850  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CBD84C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CBD850  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CBD854  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CBD858  7C 05 07 74 */	extsb r5, r0
-/* 80CBD85C  4B 37 7B 04 */	b isSwitch__10dSv_info_cCFii
+/* 80CBD85C  4B 37 7B 05 */	bl isSwitch__10dSv_info_cCFii
 /* 80CBD860  2C 03 00 00 */	cmpwi r3, 0
 /* 80CBD864  41 82 00 20 */	beq lbl_80CBD884
 /* 80CBD868  88 1E 05 EE */	lbz r0, 0x5ee(r30)
@@ -36,7 +36,7 @@ lbl_80CBD884:
 /* 80CBD898  4B FF F9 6D */	bl setBaseMtx__16daObjRIVERROCK_cFv
 /* 80CBD89C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CBD8A0  7C 03 07 74 */	extsb r3, r0
-/* 80CBD8A4  4B 36 F7 C8 */	b dComIfGp_getReverb__Fi
+/* 80CBD8A4  4B 36 F7 C9 */	bl dComIfGp_getReverb__Fi
 /* 80CBD8A8  7C 65 1B 78 */	mr r5, r3
 /* 80CBD8AC  38 7E 05 F0 */	addi r3, r30, 0x5f0
 /* 80CBD8B0  38 80 00 00 */	li r4, 0

@@ -1,7 +1,7 @@
 lbl_80C45008:
 /* 80C45008  38 A0 00 01 */	li r5, 1
-/* 80C4500C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80C45010  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80C4500C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C45010  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C45014  38 00 00 00 */	li r0, 0
 /* 80C45018  88 84 4F AD */	lbz r4, 0x4fad(r4)
 /* 80C4501C  28 04 00 00 */	cmplwi r4, 0

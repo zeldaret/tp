@@ -38,8 +38,8 @@ lbl_800096B4:
 /* 800096D8  38 A0 02 60 */	li r5, 0x260
 /* 800096DC  38 C0 01 C0 */	li r6, 0x1c0
 /* 800096E0  48 35 6D F1 */	bl GXSetScissor
-/* 800096E4  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 800096E8  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 800096E4  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 800096E8  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 800096EC  38 80 00 00 */	li r4, 0
 /* 800096F0  48 35 4D 25 */	bl GXLoadTexObj
 /* 800096F4  38 60 00 00 */	li r3, 0
@@ -102,8 +102,8 @@ lbl_800096B4:
 /* 800097D8  FC A0 08 90 */	fmr f5, f1
 /* 800097DC  C0 C2 80 40 */	lfs f6, lit_4105(r2)
 /* 800097E0  48 33 D8 19 */	bl C_MTXOrtho
-/* 800097E4  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 800097E8  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 800097E4  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 800097E8  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 800097EC  38 80 00 00 */	li r4, 0
 /* 800097F0  48 35 6A 5D */	bl GXLoadPosMtxImm
 /* 800097F4  38 61 00 6C */	addi r3, r1, 0x6c
@@ -404,10 +404,10 @@ lbl_80009928:
 /* 80009C8C  C3 A2 80 C0 */	lfs f29, lit_4593(r2)
 /* 80009C90  CB C2 80 C8 */	lfd f30, lit_4595(r2)
 /* 80009C94  3F 80 43 30 */	lis r28, 0x4330
-/* 80009C98  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80009C9C  3B A3 9A 20 */	addi r29, r3, sincosTable___5JMath@l
-/* 80009CA0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80009CA4  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l
+/* 80009C98  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80009C9C  3B A3 9A 20 */	addi r29, r3, sincosTable___5JMath@l /* 0x80439A20@l */
+/* 80009CA0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80009CA4  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80009CA8  C3 E2 80 3C */	lfs f31, lit_4063(r2)
 lbl_80009CAC:
 /* 80009CAC  7F 03 C3 78 */	mr r3, r24

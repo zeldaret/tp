@@ -1,8 +1,8 @@
 lbl_8072C5CC:
-/* 8072C5CC  3C 80 80 73 */	lis r4, lit_3911@ha
-/* 8072C5D0  38 A4 5B 28 */	addi r5, r4, lit_3911@l
-/* 8072C5D4  3C 80 80 73 */	lis r4, __vt__12daE_OC_HIO_c@ha
-/* 8072C5D8  38 04 5F EC */	addi r0, r4, __vt__12daE_OC_HIO_c@l
+/* 8072C5CC  3C 80 80 73 */	lis r4, lit_3911@ha /* 0x80735B28@ha */
+/* 8072C5D0  38 A4 5B 28 */	addi r5, r4, lit_3911@l /* 0x80735B28@l */
+/* 8072C5D4  3C 80 80 73 */	lis r4, __vt__12daE_OC_HIO_c@ha /* 0x80735FEC@ha */
+/* 8072C5D8  38 04 5F EC */	addi r0, r4, __vt__12daE_OC_HIO_c@l /* 0x80735FEC@l */
 /* 8072C5DC  90 03 00 00 */	stw r0, 0(r3)
 /* 8072C5E0  38 00 FF FF */	li r0, -1
 /* 8072C5E4  98 03 00 04 */	stb r0, 4(r3)

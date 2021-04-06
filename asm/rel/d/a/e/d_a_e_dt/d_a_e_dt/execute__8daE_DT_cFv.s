@@ -36,11 +36,11 @@ lbl_806B503C:
 /* 806B5050  88 1F 07 6F */	lbz r0, 0x76f(r31)
 /* 806B5054  28 00 00 00 */	cmplwi r0, 0
 /* 806B5058  40 82 00 18 */	bne lbl_806B5070
-/* 806B505C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806B5060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806B505C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806B5060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806B5064  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 806B5068  38 80 00 1F */	li r4, 0x1f
-/* 806B506C  4B 9B AD 28 */	b StopQuake__12dVibration_cFi
+/* 806B506C  4B 9B AD 29 */	bl StopQuake__12dVibration_cFi
 lbl_806B5070:
 /* 806B5070  88 7F 07 6C */	lbz r3, 0x76c(r31)
 /* 806B5074  28 03 00 00 */	cmplwi r3, 0
@@ -76,13 +76,13 @@ lbl_806B50D8:
 /* 806B50D8  38 60 00 02 */	li r3, 2
 /* 806B50DC  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 806B50E0  7C 04 07 74 */	extsb r4, r0
-/* 806B50E4  4B 97 8A 80 */	b dComIfGs_isOneZoneSwitch__Fii
+/* 806B50E4  4B 97 8A 81 */	bl dComIfGs_isOneZoneSwitch__Fii
 /* 806B50E8  2C 03 00 00 */	cmpwi r3, 0
 /* 806B50EC  40 82 00 14 */	bne lbl_806B5100
 /* 806B50F0  38 60 00 02 */	li r3, 2
 /* 806B50F4  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 806B50F8  7C 04 07 74 */	extsb r4, r0
-/* 806B50FC  4B 97 89 A0 */	b dComIfGs_onOneZoneSwitch__Fii
+/* 806B50FC  4B 97 89 A1 */	bl dComIfGs_onOneZoneSwitch__Fii
 lbl_806B5100:
 /* 806B5100  7F E3 FB 78 */	mr r3, r31
 /* 806B5104  4B FF F6 21 */	bl action__8daE_DT_cFv

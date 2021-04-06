@@ -7,7 +7,7 @@ lbl_809480E4:
 /* 809480F8  38 A0 00 C9 */	li r5, 0xc9
 /* 809480FC  38 C0 00 00 */	li r6, 0
 /* 80948100  38 E0 00 00 */	li r7, 0
-/* 80948104  4B 90 1E 8C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80948104  4B 90 1E 8D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80948108  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8094810C  7C 08 03 A6 */	mtlr r0
 /* 80948110  38 21 00 10 */	addi r1, r1, 0x10

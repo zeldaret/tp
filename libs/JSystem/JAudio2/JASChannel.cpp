@@ -30,7 +30,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ ~JASMemPool_MultiThreaded__template2();
+    /* 802978DC */ void func_802978DC();
 };
 
 struct JASLfo {
@@ -190,10 +190,10 @@ extern "C" extern u8 struct_80451260[8];
 //
 
 /* ############################################################################################## */
-/* 80455680-80455684 0004+00 s=6 e=0 z=0  None .sdata2    @544 */
+/* 80455680-80455684 003C80 0004+00 6/6 0/0 0/0 .sdata2          @544 */
 SECTION_SDATA2 static f32 lit_544 = 1.0f;
 
-/* 80455684-80455688 0004+00 s=7 e=0 z=0  None .sdata2    @545 */
+/* 80455684-80455688 003C84 0004+00 7/7 0/0 0/0 .sdata2          @545 */
 SECTION_SDATA2 static u8 lit_545[4] = {
     0x00,
     0x00,
@@ -201,24 +201,15 @@ SECTION_SDATA2 static u8 lit_545[4] = {
     0x00,
 };
 
-/* 80455688-80455690 0004+04 s=6 e=0 z=0  None .sdata2    @546 */
+/* 80455688-80455690 003C88 0004+04 6/6 0/0 0/0 .sdata2          @546 */
 SECTION_SDATA2 static f32 lit_546[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 8029A800-8029A918 0118+00 s=0 e=3 z=0  None .text
+/* 8029A800-8029A918 295140 0118+00 0/0 3/3 0/0 .text
  * __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
-//	8029A834: 8029BE94 (__ct__13JASOscillatorFv)
-//	8029A838: 8029BE94 (__ct__13JASOscillatorFv)
-//	8029A848: 80361D60 (__construct_array)
-//	8029A850: 8029BD14 (__ct__6JASLfoFv)
-//	8029A858: 8029BD14 (__ct__6JASLfoFv)
-//	8029A85C: 80455680 (lit_544)
-//	8029A868: 80455684 (lit_545)
-//	8029A870: 80455688 (lit_546)
-//	8029A8BC: 804507B8 (one__11JASWaveInfo)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,37 +220,19 @@ asm JASChannel::JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*),
 #pragma pop
 
 /* ############################################################################################## */
-/* 80431B90-80431BB0 0020+00 s=2 e=0 z=0  None .bss       sBankDisposeMsgQ__10JASChannel */
+/* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
 static u8 sBankDisposeMsgQ__10JASChannel[32];
 
-/* 80431BB0-80431BF0 0040+00 s=1 e=0 z=0  None .bss       sBankDisposeMsg__10JASChannel */
+/* 80431BB0-80431BF0 05E8D0 0040+00 1/1 0/0 0/0 .bss             sBankDisposeMsg__10JASChannel */
 static u8 sBankDisposeMsg__10JASChannel[64];
 
-/* 80431BF0-80431C30 0040+00 s=2 e=0 z=0  None .bss       sBankDisposeList__10JASChannel */
+/* 80431BF0-80431C30 05E910 0040+00 2/2 0/3 0/0 .bss             sBankDisposeList__10JASChannel */
 static u8 sBankDisposeList__10JASChannel[64];
 
-/* 80431C30-80431C40 000C+04 s=1 e=0 z=0  None .bss       @556 */
+/* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
 static u8 lit_556[12 + 4 /* padding */];
 
-/* 8029A918-8029A9F0 00D8+00 s=5 e=0 z=0  None .text      __dt__10JASChannelFv */
-//	8029A944: 8029D340 (drop__13JASDSPChannelFv)
-//	8029A974: 80451262 (struct_80451260)
-//	8029A980: 80431B34 (data_80431B34)
-//	8029A984: 80431B34 (data_80431B34)
-//	8029A988: 80290848 (__ct__17JASGenericMemPoolFv)
-//	8029A98C: 80431B34 (data_80431B34)
-//	8029A990: 80431B34 (data_80431B34)
-//	8029A994: 802978DC (func_802978DC)
-//	8029A998: 802978DC (func_802978DC)
-//	8029A99C: 80431C30 (lit_556)
-//	8029A9A0: 80431C30 (lit_556)
-//	8029A9A4: 80361C24 (__register_global_object)
-//	8029A9AC: 80451262 (struct_80451260)
-//	8029A9B0: 8033D6F4 (OSDisableInterrupts)
-//	8029A9B8: 80431B34 (data_80431B34)
-//	8029A9BC: 80431B34 (data_80431B34)
-//	8029A9C8: 80290994 (free__17JASGenericMemPoolFPvUl)
-//	8029A9D0: 8033D71C (OSRestoreInterrupts)
+/* 8029A918-8029A9F0 295258 00D8+00 5/5 0/0 0/0 .text            __dt__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -269,12 +242,7 @@ asm JASChannel::~JASChannel() {
 }
 #pragma pop
 
-/* 8029A9F0-8029AA60 0070+00 s=0 e=2 z=0  None .text      play__10JASChannelFv */
-//	8029AA0C: 8029AF78 (dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv)
-//	8029AA10: 8029AF78 (dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv)
-//	8029AA18: 8029D44C (alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv)
-//	8029AA2C: 8029A918 (__dt__10JASChannelFv)
-//	8029AA3C: 8029D330 (start__13JASDSPChannelFv)
+/* 8029A9F0-8029AA60 295330 0070+00 0/0 2/2 0/0 .text            play__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,12 +252,7 @@ asm void JASChannel::play() {
 }
 #pragma pop
 
-/* 8029AA60-8029AAD0 0070+00 s=0 e=1 z=0  None .text      playForce__10JASChannelFv */
-//	8029AA7C: 8029AF78 (dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv)
-//	8029AA80: 8029AF78 (dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv)
-//	8029AA88: 8029D4BC (allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv)
-//	8029AA9C: 8029A918 (__dt__10JASChannelFv)
-//	8029AAAC: 8029D330 (start__13JASDSPChannelFv)
+/* 8029AA60-8029AAD0 2953A0 0070+00 0/0 1/1 0/0 .text            playForce__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,11 +262,7 @@ asm void JASChannel::playForce() {
 }
 #pragma pop
 
-/* 8029AAD0-8029AB64 0094+00 s=0 e=4 z=0  None .text      release__10JASChannelFUs */
-//	8029AAE0: 803621DC (_savegpr_29)
-//	8029AB1C: 8029BFE4 (release__13JASOscillatorFv)
-//	8029AB40: 8029D534 (setPriority__13JASDSPChannelFUc)
-//	8029AB50: 80362228 (_restgpr_29)
+/* 8029AAD0-8029AB64 295410 0094+00 0/0 4/4 0/0 .text            release__10JASChannelFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,9 +272,8 @@ asm void JASChannel::release(u16 param_0) {
 }
 #pragma pop
 
-/* 8029AB64-8029AB98 0034+00 s=0 e=4 z=0  None .text
+/* 8029AB64-8029AB98 2954A4 0034+00 0/0 4/4 0/0 .text
  * setOscInit__10JASChannelFUlPCQ213JASOscillator4Data          */
-//	8029AB84: 8029BEC4 (initStart__13JASOscillatorFPCQ213JASOscillator4Data)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -325,7 +283,7 @@ asm void JASChannel::setOscInit(u32 param_0, JASOscillator::Data const* param_1)
 }
 #pragma pop
 
-/* 8029AB98-8029ABA8 0010+00 s=0 e=2 z=0  None .text      setMixConfig__10JASChannelFUlUs */
+/* 8029AB98-8029ABA8 2954D8 0010+00 0/0 2/2 0/0 .text            setMixConfig__10JASChannelFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -335,7 +293,7 @@ asm void JASChannel::setMixConfig(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 8029ABA8-8029ABC0 0018+00 s=1 e=0 z=0  None .text
+/* 8029ABA8-8029ABC0 2954E8 0018+00 1/1 0/0 0/0 .text
  * calcEffect__10JASChannelFPCQ210JASChannel9PanVector          */
 #pragma push
 #pragma optimization_level 0
@@ -346,9 +304,8 @@ asm void JASChannel::calcEffect(JASChannel::PanVector const* param_0) {
 }
 #pragma pop
 
-/* 8029ABC0-8029ABEC 002C+00 s=1 e=0 z=0  None .text
+/* 8029ABC0-8029ABEC 295500 002C+00 1/1 0/0 0/0 .text
  * calcPan__10JASChannelFPCQ210JASChannel9PanVector             */
-//	8029ABC4: 80455688 (lit_546)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -359,7 +316,7 @@ asm void JASChannel::calcPan(JASChannel::PanVector const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C7848-803C7864 001C+00 s=1 e=0 z=0  None .data      @662 */
+/* 803C7848-803C7864 -00001 001C+00 1/1 0/0 0/0 .data            @662 */
 SECTION_DATA static void* lit_662[7] = {
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x68),
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x58),
@@ -370,17 +327,11 @@ SECTION_DATA static void* lit_662[7] = {
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0xC4),
 };
 
-/* 80455690-80455698 0008+00 s=1 e=0 z=0  None .sdata2    @661 */
+/* 80455690-80455698 003C90 0008+00 1/1 0/0 0/0 .sdata2          @661 */
 SECTION_SDATA2 static f64 lit_661 = 0.5;
 
-/* 8029ABEC-8029ACD4 00E8+00 s=3 e=0 z=0  None .text
+/* 8029ABEC-8029ACD4 29552C 00E8+00 3/2 0/0 0/0 .text
  * effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams   */
-//	8029ABFC: 803621DC (_savegpr_29)
-//	8029AC14: 8029BFC8 (getValue__13JASOscillatorCFv)
-//	8029AC2C: 803C7848 (lit_662)
-//	8029AC30: 803C7848 (lit_662)
-//	8029AC64: 80455690 (lit_661)
-//	8029ACC0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -391,13 +342,11 @@ asm void JASChannel::effectOsc(u32 param_0, JASOscillator::EffectParams* param_1
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455698-804556A0 0008+00 s=3 e=0 z=0  None .sdata2    @685 */
+/* 80455698-804556A0 003C98 0008+00 3/3 0/0 0/0 .sdata2          @685 */
 SECTION_SDATA2 static f64 lit_685 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8029ACD4-8029AD38 0064+00 s=0 e=1 z=0  None .text      setKeySweepTarget__10JASChannelFlUl */
-//	8029ACE0: 80455698 (lit_685)
-//	8029AD04: 80455684 (lit_545)
-//	8029AD0C: 80455698 (lit_685)
+/* 8029ACD4-8029AD38 295614 0064+00 0/0 1/1 0/0 .text            setKeySweepTarget__10JASChannelFlUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -408,40 +357,18 @@ asm void JASChannel::setKeySweepTarget(s32 param_0, u32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556A0-804556A8 0004+04 s=1 e=0 z=0  None .sdata2    @711 */
+/* 804556A0-804556A8 003CA0 0004+04 1/1 0/0 0/0 .sdata2          @711 */
 SECTION_SDATA2 static f32 lit_711[1 + 1 /* padding */] = {
     127.0f,
     /* padding */
     0.0f,
 };
 
-/* 804556A8-804556B0 0008+00 s=4 e=0 z=0  None .sdata2    @714 */
+/* 804556A8-804556B0 003CA8 0008+00 4/4 0/0 0/0 .sdata2          @714 */
 SECTION_SDATA2 static f64 lit_714 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8029AD38-8029AF78 0240+00 s=2 e=0 z=0  None .text
+/* 8029AD38-8029AF78 295678 0240+00 2/2 0/0 0/0 .text
  * updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams */
-//	8029AD68: 803621D8 (_savegpr_28)
-//	8029ADC4: 80455688 (lit_546)
-//	8029ADC8: 80455684 (lit_545)
-//	8029ADCC: 8029E180 (getOutputMode__9JASDriverFv)
-//	8029ADF0: 8029ABC0 (calcPan__10JASChannelFPCQ210JASChannel9PanVector)
-//	8029AE00: 8029ABC0 (calcPan__10JASChannelFPCQ210JASChannel9PanVector)
-//	8029AE0C: 8029ABA8 (calcEffect__10JASChannelFPCQ210JASChannel9PanVector)
-//	8029AE18: 8029ABA8 (calcEffect__10JASChannelFPCQ210JASChannel9PanVector)
-//	8029AE24: 804556A8 (lit_714)
-//	8029AE3C: 804556A0 (lit_711)
-//	8029AE4C: 8029BD44 (getValue__6JASLfoCFv)
-//	8029AE58: 80455680 (lit_544)
-//	8029AE7C: 80455684 (lit_545)
-//	8029AE8C: 80455684 (lit_545)
-//	8029AEA0: 80455680 (lit_544)
-//	8029AEB8: 80455684 (lit_545)
-//	8029AECC: 80455680 (lit_544)
-//	8029AEE4: 80455684 (lit_545)
-//	8029AEF8: 80455680 (lit_544)
-//	8029AF28: 8029B6A0 (updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff)
-//	8029AF3C: 8029B7D8 (updateMixer__10JASChannelFffffPUs)
-//	8029AF64: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -452,12 +379,8 @@ asm void JASChannel::updateEffectorParam(JASDsp::TChannel* param_0, u16* param_1
 }
 #pragma pop
 
-/* 8029AF78-8029B004 008C+00 s=2 e=0 z=0  None .text
+/* 8029AF78-8029B004 2958B8 008C+00 2/2 0/0 0/0 .text
  * dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv      */
-//	8029AFB4: 8029B324 (updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel)
-//	8029AFC0: 8029B004 (initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel)
-//	8029AFCC: 8029D320 (free__13JASDSPChannelFv)
-//	8029AFE0: 8029A918 (__dt__10JASChannelFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,44 +391,14 @@ asm void JASChannel::dspUpdateCallback(u32 param_0, JASDsp::TChannel* param_1, v
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556B0-804556B4 0004+00 s=2 e=0 z=0  None .sdata2    @775 */
+/* 804556B0-804556B4 003CB0 0004+00 2/2 0/0 0/0 .sdata2          @775 */
 SECTION_SDATA2 static f32 lit_775 = 12.0f;
 
-/* 804556B4-804556B8 0004+00 s=2 e=0 z=0  None .sdata2    @776 */
+/* 804556B4-804556B8 003CB4 0004+00 2/2 0/0 0/0 .sdata2          @776 */
 SECTION_SDATA2 static f32 lit_776 = 4096.0f;
 
-/* 8029B004-8029B324 0320+00 s=1 e=0 z=0  None .text
+/* 8029B004-8029B324 295944 0320+00 1/1 0/0 0/0 .text
  * initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel    */
-//	8029B014: 803621D8 (_savegpr_28)
-//	8029B030: 8029DEC4 (initAutoMixer__Q26JASDsp8TChannelFv)
-//	8029B06C: 8029D320 (free__13JASDSPChannelFv)
-//	8029B080: 8029A918 (__dt__10JASChannelFv)
-//	8029B090: 8029BCC0 (checkBankDispose__10JASChannelCFv)
-//	8029B0A0: 8029D320 (free__13JASDSPChannelFv)
-//	8029B0B4: 8029A918 (__dt__10JASChannelFv)
-//	8029B0F8: 8029DD8C (setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl)
-//	8029B108: 8029DEAC (setOscInfo__Q26JASDsp8TChannelFUl)
-//	8029B124: 8029E180 (getOutputMode__9JASDriverFv)
-//	8029B18C: 8029E09C (setBusConnect__Q26JASDsp8TChannelFUcUc)
-//	8029B1A0: 80455680 (lit_544)
-//	8029B1AC: 80455688 (lit_546)
-//	8029B1B4: 80455684 (lit_545)
-//	8029B1E4: 8029C0E0 (update__13JASOscillatorFv)
-//	8029B1F4: 8029ABEC (effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams)
-//	8029B20C: 8029BE2C (resetCounter__6JASLfoFv)
-//	8029B214: 8029BE2C (resetCounter__6JASLfoFv)
-//	8029B228: 8029AD38
-//(updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams)
-//	8029B24C: 8029DF34 (setMixerInitVolume__Q26JASDsp8TChannelFUcs)
-//	8029B264: 8029BD44 (getValue__6JASLfoCFv)
-//	8029B278: 80455698 (lit_685)
-//	8029B29C: 804556B0 (lit_775)
-//	8029B2AC: 8028F578 (pow2__7JASCalcFf)
-//	8029B2B0: 804556B4 (lit_776)
-//	8029B2D0: 80455684 (lit_545)
-//	8029B2F0: 8029DF1C (setPitch__Q26JASDsp8TChannelFUs)
-//	8029B2FC: 8029DF80 (setPauseFlag__Q26JASDsp8TChannelFUc)
-//	8029B310: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,48 +409,14 @@ asm void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556B8-804556BC 0004+00 s=1 e=0 z=0  None .sdata2    @832 */
+/* 804556B8-804556BC 003CB8 0004+00 1/1 0/0 0/0 .sdata2          @832 */
 SECTION_SDATA2 static f32 lit_832 = 32028.5f;
 
-/* 804556BC-804556C0 0004+00 s=1 e=0 z=0  None .sdata2    @833 */
+/* 804556BC-804556C0 003CBC 0004+00 1/1 0/0 0/0 .sdata2          @833 */
 SECTION_SDATA2 static f32 lit_833 = 48000.0f;
 
-/* 8029B324-8029B6A0 037C+00 s=1 e=0 z=0  None .text
+/* 8029B324-8029B6A0 295C64 037C+00 1/1 0/0 0/0 .text
  * updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel           */
-//	8029B33C: 803621D4 (_savegpr_27)
-//	8029B380: 8029D320 (free__13JASDSPChannelFv)
-//	8029B394: 8029A918 (__dt__10JASChannelFv)
-//	8029B3A4: 8029BCC0 (checkBankDispose__10JASChannelCFv)
-//	8029B3B4: 8029D320 (free__13JASDSPChannelFv)
-//	8029B3C8: 8029A918 (__dt__10JASChannelFv)
-//	8029B3DC: 8029DF80 (setPauseFlag__Q26JASDsp8TChannelFUc)
-//	8029B3E0: 80455680 (lit_544)
-//	8029B3EC: 80455688 (lit_546)
-//	8029B3F4: 80455684 (lit_545)
-//	8029B43C: 8029D320 (free__13JASDSPChannelFv)
-//	8029B450: 8029A918 (__dt__10JASChannelFv)
-//	8029B45C: 8029C9E8 (getDacRate__9JASDriverFv)
-//	8029B460: 804556B8 (lit_832)
-//	8029B470: 8029BDD8 (incCounter__6JASLfoFf)
-//	8029B47C: 8029BDD8 (incCounter__6JASLfoFf)
-//	8029B4C4: 8029C9E8 (getDacRate__9JASDriverFv)
-//	8029B4C8: 804556BC (lit_833)
-//	8029B4F0: 8029BF68 (incCounter__13JASOscillatorFf)
-//	8029B500: 8029ABEC (effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams)
-//	8029B51C: 8029D320 (free__13JASDSPChannelFv)
-//	8029B530: 8029A918 (__dt__10JASChannelFv)
-//	8029B55C: 8029AD38
-//(updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams)
-//	8029B580: 8029DF54 (setMixerVolume__Q26JASDsp8TChannelFUcs)
-//	8029B598: 8029BD44 (getValue__6JASLfoCFv)
-//	8029B5AC: 80455698 (lit_685)
-//	8029B5D0: 804556B0 (lit_775)
-//	8029B5E0: 8028F578 (pow2__7JASCalcFf)
-//	8029B5E4: 804556B4 (lit_776)
-//	8029B604: 80455684 (lit_545)
-//	8029B624: 8029DF1C (setPitch__Q26JASDsp8TChannelFUs)
-//	8029B64C: 804556A8 (lit_714)
-//	8029B68C: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -568,22 +427,14 @@ asm void JASChannel::updateDSPChannel(JASDsp::TChannel* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556C0-804556C4 0004+00 s=1 e=0 z=0  None .sdata2    @846 */
+/* 804556C0-804556C4 003CC0 0004+00 1/1 0/0 0/0 .sdata2          @846 */
 SECTION_SDATA2 static f32 lit_846 = 0.7070000171661377f;
 
-/* 804556C4-804556C8 0004+00 s=1 e=0 z=0  None .sdata2    @847 */
+/* 804556C4-804556C8 003CC4 0004+00 1/1 0/0 0/0 .sdata2          @847 */
 SECTION_SDATA2 static f32 lit_847 = 127.5f;
 
-/* 8029B6A0-8029B7D8 0138+00 s=1 e=0 z=0  None .text
+/* 8029B6A0-8029B7D8 295FE0 0138+00 1/1 0/0 0/0 .text
  * updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff        */
-//	8029B6EC: 8029E180 (getOutputMode__9JASDriverFv)
-//	8029B6F8: 804556C0 (lit_846)
-//	8029B700: 80455684 (lit_545)
-//	8029B714: 80455680 (lit_544)
-//	8029B72C: 8029E150 (getChannelLevel_dsp__9JASDriverFv)
-//	8029B734: 804556A8 (lit_714)
-//	8029B760: 804556C4 (lit_847)
-//	8029B798: 8029DEF0 (setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -595,7 +446,7 @@ asm void JASChannel::updateAutoMixer(JASDsp::TChannel* param_0, f32 param_1, f32
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C7864-803C7884 0020+00 s=1 e=0 z=0  None .data      @977 */
+/* 803C7864-803C7884 -00001 0020+00 1/1 0/0 0/0 .data            @977 */
 SECTION_DATA static void* lit_977[8] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x210),
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1E4),
@@ -607,7 +458,7 @@ SECTION_DATA static void* lit_977[8] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x20C),
 };
 
-/* 803C7884-803C78A8 0020+04 s=1 e=0 z=0  None .data      @974 */
+/* 803C7884-803C78A8 -00001 0020+04 1/1 0/0 0/0 .data            @974 */
 SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x114),
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0xE8),
@@ -621,68 +472,27 @@ SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
     NULL,
 };
 
-/* 804556C8-804556CC 0004+00 s=1 e=0 z=0  None .sdata2    @969 */
+/* 804556C8-804556CC 003CC8 0004+00 1/1 0/0 0/0 .sdata2          @969 */
 SECTION_SDATA2 static f32 lit_969 = -1303.7972412109375f;
 
-/* 804556CC-804556D0 0004+00 s=1 e=0 z=0  None .sdata2    @970 */
+/* 804556CC-804556D0 003CCC 0004+00 1/1 0/0 0/0 .sdata2          @970 */
 SECTION_SDATA2 static f32 lit_970 = 1303.7972412109375f;
 
-/* 804556D0-804556D4 0004+00 s=1 e=0 z=0  None .sdata2    @971 */
+/* 804556D0-804556D4 003CD0 0004+00 1/1 0/0 0/0 .sdata2          @971 */
 SECTION_SDATA2 static f32 lit_971 = 3.1415927410125732f;
 
-/* 804556D4-804556D8 0004+00 s=1 e=0 z=0  None .sdata2    @972 */
+/* 804556D4-804556D8 003CD4 0004+00 1/1 0/0 0/0 .sdata2          @972 */
 SECTION_SDATA2 static f32 lit_972 = 0.326119989156723f;
 
-/* 804556D8-804556E0 0004+04 s=1 e=0 z=0  None .sdata2    @973 */
+/* 804556D8-804556E0 003CD8 0004+04 1/1 0/0 0/0 .sdata2          @973 */
 SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {
     0.34775999188423157f,
     /* padding */
     0.0f,
 };
 
-/* 8029B7D8-8029BBFC 0424+00 s=3 e=0 z=0  None .text      updateMixer__10JASChannelFffffPUs */
-//	8029B838: 803621D8 (_savegpr_28)
-//	8029B85C: 80455680 (lit_544)
-//	8029B8A8: 803C7884 (lit_974)
-//	8029B8AC: 803C7884 (lit_974)
-//	8029B90C: 8029E180 (getOutputMode__9JASDriverFv)
-//	8029B920: 80455688 (lit_546)
-//	8029B924: 804556D0 (lit_971)
-//	8029B930: 80455684 (lit_545)
-//	8029B93C: 804556C8 (lit_969)
-//	8029B954: 80439A20 (sincosTable___5JMath)
-//	8029B958: 80439A20 (sincosTable___5JMath)
-//	8029B968: 804556CC (lit_970)
-//	8029B980: 80439A20 (sincosTable___5JMath)
-//	8029B984: 80439A20 (sincosTable___5JMath)
-//	8029B9A4: 803C7864 (lit_977)
-//	8029B9A8: 803C7864 (lit_977)
-//	8029BA14: 80455688 (lit_546)
-//	8029BA18: 804556D4 (lit_972)
-//	8029BA1C: 804556D8 (lit_973)
-//	8029BA28: 804556D0 (lit_971)
-//	8029BA34: 80455684 (lit_545)
-//	8029BA40: 804556C8 (lit_969)
-//	8029BA58: 80439A20 (sincosTable___5JMath)
-//	8029BA5C: 80439A20 (sincosTable___5JMath)
-//	8029BA6C: 804556CC (lit_970)
-//	8029BA84: 80439A20 (sincosTable___5JMath)
-//	8029BA88: 80439A20 (sincosTable___5JMath)
-//	8029BAA0: 8029E180 (getOutputMode__9JASDriverFv)
-//	8029BAB4: 80455688 (lit_546)
-//	8029BAB8: 804556D0 (lit_971)
-//	8029BAC4: 80455684 (lit_545)
-//	8029BAD0: 804556C8 (lit_969)
-//	8029BAE8: 80439A20 (sincosTable___5JMath)
-//	8029BAEC: 80439A20 (sincosTable___5JMath)
-//	8029BAFC: 804556CC (lit_970)
-//	8029BB14: 80439A20 (sincosTable___5JMath)
-//	8029BB18: 80439A20 (sincosTable___5JMath)
-//	8029BB24: 80455684 (lit_545)
-//	8029BB38: 80455680 (lit_544)
-//	8029BB50: 8029E150 (getChannelLevel_dsp__9JASDriverFv)
-//	8029BB58: 804556A8 (lit_714)
-//	8029BBE8: 80362224 (_restgpr_28)
+/* 8029B7D8-8029BBFC 296118 0424+00 3/1 0/0 0/0 .text            updateMixer__10JASChannelFffffPUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -692,7 +502,7 @@ asm void JASChannel::updateMixer(f32 param_0, f32 param_1, f32 param_2, f32 para
 }
 #pragma pop
 
-/* 8029BBFC-8029BC0C 0010+00 s=0 e=3 z=0  None .text      free__10JASChannelFv */
+/* 8029BBFC-8029BC0C 29653C 0010+00 0/0 3/3 0/0 .text            free__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,16 +513,11 @@ asm void JASChannel::free() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451298-804512A0 0004+04 s=3 e=0 z=0  None .sbss      sBankDisposeListSize__10JASChannel */
+/* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
+ */
 static u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
 
-/* 8029BC0C-8029BC48 003C+00 s=0 e=1 z=0  None .text      initBankDisposeMsgQueue__10JASChannelFv */
-//	8029BC18: 80431B90 (sBankDisposeMsgQ__10JASChannel)
-//	8029BC1C: 80431B90 (sBankDisposeMsgQ__10JASChannel)
-//	8029BC20: 80431BB0 (sBankDisposeMsg__10JASChannel)
-//	8029BC24: 80431BB0 (sBankDisposeMsg__10JASChannel)
-//	8029BC2C: 8033E994 (OSInitMessageQueue)
-//	8029BC34: 80451298 (sBankDisposeListSize__10JASChannel)
+/* 8029BC0C-8029BC48 29654C 003C+00 0/0 1/1 0/0 .text initBankDisposeMsgQueue__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -722,15 +527,7 @@ asm void JASChannel::initBankDisposeMsgQueue() {
 }
 #pragma pop
 
-/* 8029BC48-8029BCC0 0078+00 s=0 e=1 z=0  None .text      receiveBankDisposeMsg__10JASChannelFv */
-//	8029BC60: 80451298 (sBankDisposeListSize__10JASChannel)
-//	8029BC64: 80431BF0 (sBankDisposeList__10JASChannel)
-//	8029BC68: 80431BF0 (sBankDisposeList__10JASChannel)
-//	8029BC6C: 80431B90 (sBankDisposeMsgQ__10JASChannel)
-//	8029BC70: 80431B90 (sBankDisposeMsgQ__10JASChannel)
-//	8029BC7C: 80451298 (sBankDisposeListSize__10JASChannel)
-//	8029BC8C: 80451298 (sBankDisposeListSize__10JASChannel)
-//	8029BC9C: 8033EABC (OSReceiveMessage)
+/* 8029BC48-8029BCC0 296588 0078+00 0/0 1/1 0/0 .text receiveBankDisposeMsg__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -740,10 +537,8 @@ asm void JASChannel::receiveBankDisposeMsg() {
 }
 #pragma pop
 
-/* 8029BCC0-8029BD14 0054+00 s=2 e=0 z=0  None .text      checkBankDispose__10JASChannelCFv */
-//	8029BCD8: 80451298 (sBankDisposeListSize__10JASChannel)
-//	8029BCDC: 80431BF0 (sBankDisposeList__10JASChannel)
-//	8029BCE0: 80431BF0 (sBankDisposeList__10JASChannel)
+/* 8029BCC0-8029BD14 296600 0054+00 2/2 0/0 0/0 .text            checkBankDispose__10JASChannelCFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

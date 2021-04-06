@@ -5,8 +5,8 @@ lbl_800F13D8:
 /* 800F13E4  39 61 00 20 */	addi r11, r1, 0x20
 /* 800F13E8  48 27 0D F1 */	bl _savegpr_28
 /* 800F13EC  7C 7E 1B 78 */	mr r30, r3
-/* 800F13F0  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800F13F4  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 800F13F0  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800F13F4  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 800F13F8  38 80 00 41 */	li r4, 0x41
 /* 800F13FC  4B FD 0B 71 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F1400  3B A0 00 00 */	li r29, 0

@@ -3,17 +3,15 @@
 #
 
 M254_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag.plf
+M254_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag.lcf
+M254_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag.map
 
 M254_CPP_FILES := \
-	rel/d/a/e/d_a_e_ym_tag/executor.cpp \
-	rel/d/a/e/d_a_e_ym_tag/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_ym_tag/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag.cpp \
 
 M254_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag.o \
 
 M254_LIBS := \
@@ -29,15 +27,21 @@ M254_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map254.map\
+	-m _prolog \
+	-lcf $(M254_LDSCRIPT) \
+	-unused -map $(M254_MAP) \
+	-w off \
 
 $(M254_TARGET): $(M254_O_FILES) $(M254_LIBS)
+	@echo [254] creating $(M254_TARGET)
 	@echo $(M254_LIBS) $(M254_O_FILES) > build/M254_ofiles
-	$(LD) -opt_partial $(M254_LDFLAGS) -o $(M254_TARGET) @build/M254_ofiles
+	@python3 tools/lcf.py rel 254 --output $(M254_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M254_LDFLAGS) -o $(M254_TARGET) @build/M254_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ym_tag/%.o: rel/d/a/e/d_a_e_ym_tag/%.cpp
+	@echo [254] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M254_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M254_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

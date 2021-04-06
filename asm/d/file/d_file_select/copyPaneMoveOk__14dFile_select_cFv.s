@@ -9,8 +9,8 @@ lbl_8018A6F8:
 /* 8018A714  54 00 10 3A */	slwi r0, r0, 2
 /* 8018A718  7C 7F 02 14 */	add r3, r31, r0
 /* 8018A71C  80 63 01 58 */	lwz r3, 0x158(r3)
-/* 8018A720  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018A724  3B 84 C9 EC */	addi r28, r4, g_fsHIO@l
+/* 8018A720  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018A724  3B 84 C9 EC */	addi r28, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018A728  88 9C 00 09 */	lbz r4, 9(r28)
 /* 8018A72C  38 A0 00 FF */	li r5, 0xff
 /* 8018A730  38 C0 00 00 */	li r6, 0

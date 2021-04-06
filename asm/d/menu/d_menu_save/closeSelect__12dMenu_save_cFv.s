@@ -27,8 +27,8 @@ lbl_801F1B38:
 /* 801F1B9C  41 82 00 30 */	beq lbl_801F1BCC
 /* 801F1BA0  38 00 00 03 */	li r0, 3
 /* 801F1BA4  98 1F 01 BA */	stb r0, 0x1ba(r31)
-/* 801F1BA8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801F1BAC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801F1BA8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801F1BAC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801F1BB0  88 83 00 DD */	lbz r4, 0xdd(r3)
 /* 801F1BB4  28 04 00 00 */	cmplwi r4, 0
 /* 801F1BB8  41 82 00 08 */	beq lbl_801F1BC0

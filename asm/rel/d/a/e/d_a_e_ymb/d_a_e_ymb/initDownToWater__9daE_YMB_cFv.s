@@ -5,18 +5,18 @@ lbl_8081CC14:
 /* 8081CC20  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8081CC24  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8081CC28  7C 7E 1B 78 */	mr r30, r3
-/* 8081CC2C  3C 60 80 82 */	lis r3, lit_3791@ha
-/* 8081CC30  3B E3 18 AC */	addi r31, r3, lit_3791@l
+/* 8081CC2C  3C 60 80 82 */	lis r3, lit_3791@ha /* 0x808218AC@ha */
+/* 8081CC30  3B E3 18 AC */	addi r31, r3, lit_3791@l /* 0x808218AC@l */
 /* 8081CC34  C0 1F 00 0C */	lfs f0, 0xc(r31)
 /* 8081CC38  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
 /* 8081CC3C  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 8081CC40  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 8081CC44  88 1E 07 11 */	lbz r0, 0x711(r30)
 /* 8081CC48  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8081CC4C  3C 80 80 82 */	lis r4, data_80821F38@ha
-/* 8081CC50  38 04 1F 38 */	addi r0, r4, data_80821F38@l
+/* 8081CC4C  3C 80 80 82 */	lis r4, data_80821F38@ha /* 0x80821F38@ha */
+/* 8081CC50  38 04 1F 38 */	addi r0, r4, data_80821F38@l /* 0x80821F38@l */
 /* 8081CC54  7C 80 2A 14 */	add r4, r0, r5
-/* 8081CC58  4B A5 3F AC */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 8081CC58  4B A5 3F AD */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8081CC5C  3C 63 00 01 */	addis r3, r3, 1
 /* 8081CC60  38 03 80 00 */	addi r0, r3, -32768
 /* 8081CC64  B0 1E 04 E6 */	sth r0, 0x4e6(r30)

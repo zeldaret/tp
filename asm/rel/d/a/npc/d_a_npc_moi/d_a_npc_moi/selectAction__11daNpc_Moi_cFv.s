@@ -5,10 +5,10 @@ lbl_80A764B0:
 /* 80A764BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A764C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A764C4  7C 7F 1B 78 */	mr r31, r3
-/* 80A764C8  3C 60 80 A8 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80A764CC  3B C3 B1 5C */	addi r30, r3, cNullVec__6Z2Calc@l
-/* 80A764D0  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80A764D4  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80A764C8  3C 60 80 A8 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A7B15C@ha */
+/* 80A764CC  3B C3 B1 5C */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x80A7B15C@l */
+/* 80A764D0  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A764D4  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80A764D8  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A764DC  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A764E0  90 7F 16 10 */	stw r3, 0x1610(r31)
@@ -28,7 +28,7 @@ lbl_80A7650C:
 /* 80A76514  48 00 00 68 */	b lbl_80A7657C
 lbl_80A76518:
 /* 80A76518  38 60 00 CD */	li r3, 0xcd
-/* 80A7651C  4B 6D 65 90 */	b daNpcT_chkEvtBit__FUl
+/* 80A7651C  4B 6D 65 91 */	bl daNpcT_chkEvtBit__FUl
 /* 80A76520  2C 03 00 00 */	cmpwi r3, 0
 /* 80A76524  41 82 00 20 */	beq lbl_80A76544
 /* 80A76528  80 7E 0C 18 */	lwz r3, 0xc18(r30)

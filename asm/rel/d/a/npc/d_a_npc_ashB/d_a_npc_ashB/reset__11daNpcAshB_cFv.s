@@ -4,18 +4,18 @@ lbl_8095F0A4:
 /* 8095F0AC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8095F0B0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8095F0B4  7C 7F 1B 78 */	mr r31, r3
-/* 8095F0B8  4B 7F 38 10 */	b initialize__8daNpcF_cFv
+/* 8095F0B8  4B 7F 38 11 */	bl initialize__8daNpcF_cFv
 /* 8095F0BC  80 7F 0B D8 */	lwz r3, 0xbd8(r31)
-/* 8095F0C0  4B 7F 16 78 */	b initialize__15daNpcF_MatAnm_cFv
+/* 8095F0C0  4B 7F 16 79 */	bl initialize__15daNpcF_MatAnm_cFv
 /* 8095F0C4  38 7F 0B E0 */	addi r3, r31, 0xbe0
-/* 8095F0C8  4B 7F 1F 70 */	b initialize__15daNpcF_Lookat_cFv
+/* 8095F0C8  4B 7F 1F 71 */	bl initialize__15daNpcF_Lookat_cFv
 /* 8095F0CC  38 7F 0C 7C */	addi r3, r31, 0xc7c
-/* 8095F0D0  4B 7F 15 E0 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 8095F0D0  4B 7F 15 E1 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 8095F0D4  38 A0 00 00 */	li r5, 0
 /* 8095F0D8  90 BF 0D DC */	stw r5, 0xddc(r31)
 /* 8095F0DC  90 BF 0D E0 */	stw r5, 0xde0(r31)
-/* 8095F0E0  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8095F0E4  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8095F0E0  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8095F0E4  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8095F0E8  80 64 00 00 */	lwz r3, 0(r4)
 /* 8095F0EC  80 04 00 04 */	lwz r0, 4(r4)
 /* 8095F0F0  90 7F 0D C4 */	stw r3, 0xdc4(r31)
@@ -65,8 +65,8 @@ lbl_8095F0A4:
 /* 8095F1A0  B0 1F 08 F8 */	sth r0, 0x8f8(r31)
 /* 8095F1A4  A8 1F 08 F4 */	lha r0, 0x8f4(r31)
 /* 8095F1A8  B0 1F 08 FA */	sth r0, 0x8fa(r31)
-/* 8095F1AC  3C 60 80 96 */	lis r3, lit_4238@ha
-/* 8095F1B0  C0 03 21 68 */	lfs f0, lit_4238@l(r3)
+/* 8095F1AC  3C 60 80 96 */	lis r3, lit_4238@ha /* 0x80962168@ha */
+/* 8095F1B0  C0 03 21 68 */	lfs f0, lit_4238@l(r3)  /* 0x80962168@l */
 /* 8095F1B4  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 8095F1B8  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 8095F1BC  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -77,8 +77,8 @@ lbl_8095F0A4:
 /* 8095F1D0  D0 1F 09 7C */	stfs f0, 0x97c(r31)
 /* 8095F1D4  98 BF 0D ED */	stb r5, 0xded(r31)
 /* 8095F1D8  98 BF 0D EE */	stb r5, 0xdee(r31)
-/* 8095F1DC  3C 60 80 96 */	lis r3, lit_4500@ha
-/* 8095F1E0  38 83 25 E4 */	addi r4, r3, lit_4500@l
+/* 8095F1DC  3C 60 80 96 */	lis r3, lit_4500@ha /* 0x809625E4@ha */
+/* 8095F1E0  38 83 25 E4 */	addi r4, r3, lit_4500@l /* 0x809625E4@l */
 /* 8095F1E4  80 64 00 00 */	lwz r3, 0(r4)
 /* 8095F1E8  80 04 00 04 */	lwz r0, 4(r4)
 /* 8095F1EC  90 61 00 08 */	stw r3, 8(r1)

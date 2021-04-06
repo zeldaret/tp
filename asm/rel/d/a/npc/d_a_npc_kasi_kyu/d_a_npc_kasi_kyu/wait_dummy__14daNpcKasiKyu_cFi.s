@@ -12,15 +12,15 @@ lbl_80A24A54:
 /* 80A24A7C  48 00 00 44 */	b lbl_80A24AC0
 lbl_80A24A80:
 /* 80A24A80  38 80 00 04 */	li r4, 4
-/* 80A24A84  3C A0 80 A2 */	lis r5, lit_4249@ha
-/* 80A24A88  C0 25 59 44 */	lfs f1, lit_4249@l(r5)
+/* 80A24A84  3C A0 80 A2 */	lis r5, lit_4249@ha /* 0x80A25944@ha */
+/* 80A24A88  C0 25 59 44 */	lfs f1, lit_4249@l(r5)  /* 0x80A25944@l */
 /* 80A24A8C  38 A0 00 00 */	li r5, 0
 /* 80A24A90  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80A24A94  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80A24A98  7D 89 03 A6 */	mtctr r12
 /* 80A24A9C  4E 80 04 21 */	bctrl 
-/* 80A24AA0  3C 60 80 A2 */	lis r3, lit_4449@ha
-/* 80A24AA4  C0 03 59 5C */	lfs f0, lit_4449@l(r3)
+/* 80A24AA0  3C 60 80 A2 */	lis r3, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A24AA4  C0 03 59 5C */	lfs f0, lit_4449@l(r3)  /* 0x80A2595C@l */
 /* 80A24AA8  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 80A24AAC  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80A24AB0  D0 1F 05 00 */	stfs f0, 0x500(r31)

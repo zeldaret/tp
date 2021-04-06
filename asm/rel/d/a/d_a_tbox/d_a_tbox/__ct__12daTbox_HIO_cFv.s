@@ -1,11 +1,11 @@
 lbl_80490D2C:
-/* 80490D2C  3C 80 80 49 */	lis r4, l_cull_size_box@ha
-/* 80490D30  38 C4 61 D4 */	addi r6, r4, l_cull_size_box@l
-/* 80490D34  3C 80 80 49 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80490D38  38 04 68 80 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80490D2C  3C 80 80 49 */	lis r4, l_cull_size_box@ha /* 0x804961D4@ha */
+/* 80490D30  38 C4 61 D4 */	addi r6, r4, l_cull_size_box@l /* 0x804961D4@l */
+/* 80490D34  3C 80 80 49 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80496880@ha */
+/* 80490D38  38 04 68 80 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80496880@l */
 /* 80490D3C  90 03 00 00 */	stw r0, 0(r3)
-/* 80490D40  3C 80 80 49 */	lis r4, __vt__12daTbox_HIO_c@ha
-/* 80490D44  38 04 68 74 */	addi r0, r4, __vt__12daTbox_HIO_c@l
+/* 80490D40  3C 80 80 49 */	lis r4, __vt__12daTbox_HIO_c@ha /* 0x80496874@ha */
+/* 80490D44  38 04 68 74 */	addi r0, r4, __vt__12daTbox_HIO_c@l /* 0x80496874@l */
 /* 80490D48  90 03 00 00 */	stw r0, 0(r3)
 /* 80490D4C  38 00 00 01 */	li r0, 1
 /* 80490D50  98 03 00 04 */	stb r0, 4(r3)
@@ -22,8 +22,8 @@ lbl_80490D2C:
 /* 80490D7C  B0 A3 00 1C */	sth r5, 0x1c(r3)
 /* 80490D80  B0 A3 00 1E */	sth r5, 0x1e(r3)
 /* 80490D84  B0 A3 00 20 */	sth r5, 0x20(r3)
-/* 80490D88  3C 80 80 49 */	lis r4, l_light_offset@ha
-/* 80490D8C  C4 04 68 E4 */	lfsu f0, l_light_offset@l(r4)
+/* 80490D88  3C 80 80 49 */	lis r4, l_light_offset@ha /* 0x804968E4@ha */
+/* 80490D8C  C4 04 68 E4 */	lfsu f0, l_light_offset@l(r4)  /* 0x804968E4@l */
 /* 80490D90  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80490D94  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80490D98  D0 03 00 14 */	stfs f0, 0x14(r3)

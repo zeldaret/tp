@@ -30,31 +30,17 @@ struct dSv_event_c {
 // Forward References:
 //
 
-static bool daKytag11_Draw(kytag11_class*);
-static void daKytag11_Execute(kytag11_class*);
-static bool daKytag11_IsDelete(kytag11_class*);
-static bool daKytag11_Delete(kytag11_class*);
-static void daKytag11_Create(fopAc_ac_c*);
-static void dKankyo_DayProc();
-
 extern "C" static bool daKytag11_Draw__FP13kytag11_class();
 extern "C" static void daKytag11_Execute__FP13kytag11_class();
 extern "C" static bool daKytag11_IsDelete__FP13kytag11_class();
 extern "C" static bool daKytag11_Delete__FP13kytag11_class();
 extern "C" static void daKytag11_Create__FP10fopAc_ac_c();
 extern "C" static void dKankyo_DayProc__Fv();
-extern "C" extern u32 const lit_3875;
-extern "C" extern u32 const lit_3876;
-extern "C" extern u32 const lit_3877;
-extern "C" extern u8 const lit_3878[4 + 4 /* padding */];
-extern "C" extern u8 const lit_3880[8];
 extern "C" extern void* g_profile_KYTAG11[12];
 
 //
 // External References:
 //
-
-void dKy_getdaytime_hour();
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void offEventBit__11dSv_event_cFUs();
@@ -76,106 +62,42 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
-/* 80529518-80529520 0008+00 s=1 e=0 z=0  None .text      daKytag11_Draw__FP13kytag11_class */
+/* 80529518-80529520 000078 0008+00 1/0 0/0 0/0 .text            daKytag11_Draw__FP13kytag11_class
+ */
 static bool daKytag11_Draw(kytag11_class* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80529894-80529898 0004+00 s=1 e=0 z=0  None .rodata    @3874 */
+/* 80529894-80529898 000000 0004+00 1/1 0/0 0/0 .rodata          @3874 */
 SECTION_RODATA static u32 const lit_3874 = 0x41700000;
+SECTION_DEAD void* const cg_80529894 = (void*)(&lit_3874);
 
-/* 80529520-80529798 0278+00 s=1 e=0 z=0  None .text      daKytag11_Execute__FP13kytag11_class */
-//	80529530: 803621DC (_savegpr_29)
-//	80529538: 80529894 (lit_3874)
-//	8052953C: 80529894 (lit_3874)
-//	80529540: 8042CA54 (g_env_light)
-//	80529544: 8042CA54 (g_env_light)
-//	80529564: 804061C0 (g_dComIfG_gameInfo)
-//	80529568: 804061C0 (g_dComIfG_gameInfo)
-//	80529574: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80529578: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80529580: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	805295A4: 80450D64 (struct_80450D64)
-//	805295A8: 80450D64 (struct_80450D64)
-//	805295B0: 804061C0 (g_dComIfG_gameInfo)
-//	805295B4: 804061C0 (g_dComIfG_gameInfo)
-//	805295B8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805295D8: 804061C0 (g_dComIfG_gameInfo)
-//	805295DC: 804061C0 (g_dComIfG_gameInfo)
-//	805295E8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805295EC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805295F4: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80529618: 80450D64 (struct_80450D64)
-//	8052961C: 80450D64 (struct_80450D64)
-//	80529624: 804061C0 (g_dComIfG_gameInfo)
-//	80529628: 804061C0 (g_dComIfG_gameInfo)
-//	8052962C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	8052966C: 804061C0 (g_dComIfG_gameInfo)
-//	80529670: 804061C0 (g_dComIfG_gameInfo)
-//	805296C0: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80529708: 804061C0 (g_dComIfG_gameInfo)
-//	8052970C: 804061C0 (g_dComIfG_gameInfo)
-//	80529728: 803620AC (__cvt_fp2unsigned)
-//	80529768: 80529854 (dKankyo_DayProc__Fv)
-//	80529784: 80362228 (_restgpr_29)
+/* 80529898-8052989C 000004 0004+00 0/1 0/0 0/0 .rodata          @3875 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daKytag11_Execute(kytag11_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/daKytag11_Execute__FP13kytag11_class.s"
-}
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3875 = 0x3F000000;
+SECTION_DEAD void* const cg_80529898 = (void*)(&lit_3875);
 #pragma pop
 
-/* 80529798-805297A0 0008+00 s=1 e=0 z=0  None .text      daKytag11_IsDelete__FP13kytag11_class */
-static bool daKytag11_IsDelete(kytag11_class* param_0) {
-    return true;
-}
-
-/* 805297A0-805297A8 0008+00 s=1 e=0 z=0  None .text      daKytag11_Delete__FP13kytag11_class */
-static bool daKytag11_Delete(kytag11_class* param_0) {
-    return true;
-}
-
-/* 805297A8-80529854 00AC+00 s=1 e=0 z=0  None .text      daKytag11_Create__FP10fopAc_ac_c */
-//	805297D0: 80018B64 (__ct__10fopAc_ac_cFv)
+/* 8052989C-805298A0 000008 0004+00 0/1 0/0 0/0 .rodata          @3876 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daKytag11_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/daKytag11_Create__FP10fopAc_ac_c.s"
-}
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3876 = 0x437F0000;
+SECTION_DEAD void* const cg_8052989C = (void*)(&lit_3876);
 #pragma pop
 
-/* 80529854-8052988C 0038+00 s=1 e=0 z=0  None .text      dKankyo_DayProc__Fv */
-//	80529860: 804061C0 (g_dComIfG_gameInfo)
-//	80529864: 804061C0 (g_dComIfG_gameInfo)
-//	8052986C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80529870: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80529878: 800349A4 (offEventBit__11dSv_event_cFUs)
+/* 805298A0-805298A4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3877 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void dKankyo_DayProc() {
-    nofralloc
-#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/dKankyo_DayProc__Fv.s"
-}
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3877 = 0x43B40000;
+SECTION_DEAD void* const cg_805298A0 = (void*)(&lit_3877);
 #pragma pop
 
-/* ############################################################################################## */
-/* 80529898-8052989C 0004+00 s=0 e=0 z=0  None .rodata    @3875 */
-SECTION_RODATA u32 const lit_3875 = 0x3F000000;
-
-/* 8052989C-805298A0 0004+00 s=0 e=0 z=0  None .rodata    @3876 */
-SECTION_RODATA u32 const lit_3876 = 0x437F0000;
-
-/* 805298A0-805298A4 0004+00 s=0 e=0 z=0  None .rodata    @3877 */
-SECTION_RODATA u32 const lit_3877 = 0x43B40000;
-
-/* 805298A4-805298AC 0004+04 s=0 e=0 z=0  None .rodata    @3878 */
-SECTION_RODATA u8 const lit_3878[4 + 4 /* padding */] = {
+/* 805298A4-805298AC 000010 0004+04 0/1 0/0 0/0 .rodata          @3878 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3878[4 + 4 /* padding */] = {
     0x00,
     0x00,
     0x00,
@@ -186,13 +108,61 @@ SECTION_RODATA u8 const lit_3878[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_805298A4 = (void*)(&lit_3878);
+#pragma pop
 
-/* 805298AC-805298B4 0008+00 s=0 e=0 z=0  None .rodata    @3880 */
-SECTION_RODATA u8 const lit_3880[8] = {
+/* 805298AC-805298B4 000018 0008+00 0/1 0/0 0/0 .rodata          @3880 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3880[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_805298AC = (void*)(&lit_3880);
+#pragma pop
 
-/* 805298B4-805298D4 0020+00 s=1 e=0 z=0  None .data      l_daKytag11_Method */
+/* 80529520-80529798 000080 0278+00 1/0 0/0 0/0 .text daKytag11_Execute__FP13kytag11_class */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daKytag11_Execute(kytag11_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/daKytag11_Execute__FP13kytag11_class.s"
+}
+#pragma pop
+
+/* 80529798-805297A0 0002F8 0008+00 1/0 0/0 0/0 .text daKytag11_IsDelete__FP13kytag11_class */
+static bool daKytag11_IsDelete(kytag11_class* param_0) {
+    return true;
+}
+
+/* 805297A0-805297A8 000300 0008+00 1/0 0/0 0/0 .text            daKytag11_Delete__FP13kytag11_class
+ */
+static bool daKytag11_Delete(kytag11_class* param_0) {
+    return true;
+}
+
+/* 805297A8-80529854 000308 00AC+00 1/0 0/0 0/0 .text            daKytag11_Create__FP10fopAc_ac_c */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daKytag11_Create(fopAc_ac_c* param_0) {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/daKytag11_Create__FP10fopAc_ac_c.s"
+}
+#pragma pop
+
+/* 80529854-8052988C 0003B4 0038+00 1/1 0/0 0/0 .text            dKankyo_DayProc__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void dKankyo_DayProc() {
+    nofralloc
+#include "asm/rel/d/a/kytag/d_a_kytag11/d_a_kytag11/dKankyo_DayProc__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 805298B4-805298D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag11_Method */
 SECTION_DATA static void* l_daKytag11_Method[8] = {
     (void*)daKytag11_Create__FP10fopAc_ac_c,
     (void*)daKytag11_Delete__FP13kytag11_class,
@@ -204,8 +174,8 @@ SECTION_DATA static void* l_daKytag11_Method[8] = {
     (void*)NULL,
 };
 
-/* 805298D4-80529904 0030+00 s=0 e=0 z=1  None .data      g_profile_KYTAG11 */
-SECTION_DATA void* g_profile_KYTAG11[12] = {
+/* 805298D4-80529904 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG11 */
+SECTION_DATA extern void* g_profile_KYTAG11[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02B50000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,

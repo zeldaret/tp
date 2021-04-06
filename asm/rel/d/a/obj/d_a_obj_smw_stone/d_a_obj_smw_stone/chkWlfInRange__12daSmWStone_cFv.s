@@ -3,8 +3,8 @@ lbl_80CDED9C:
 /* 80CDEDA0  7C 08 02 A6 */	mflr r0
 /* 80CDEDA4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80CDEDA8  7C 65 1B 78 */	mr r5, r3
-/* 80CDEDAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDEDB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CDEDAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDEDB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDEDB4  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 80CDEDB8  28 04 00 00 */	cmplwi r4, 0
 /* 80CDEDBC  40 82 00 0C */	bne lbl_80CDEDC8
@@ -23,9 +23,9 @@ lbl_80CDEDC8:
 /* 80CDEDEC  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80CDEDF0  38 61 00 08 */	addi r3, r1, 8
 /* 80CDEDF4  38 85 04 D0 */	addi r4, r5, 0x4d0
-/* 80CDEDF8  4B 66 85 A4 */	b PSVECSquareDistance
-/* 80CDEDFC  3C 60 80 CE */	lis r3, lit_4350@ha
-/* 80CDEE00  C0 03 EF 10 */	lfs f0, lit_4350@l(r3)
+/* 80CDEDF8  4B 66 85 A5 */	bl PSVECSquareDistance
+/* 80CDEDFC  3C 60 80 CE */	lis r3, lit_4350@ha /* 0x80CDEF10@ha */
+/* 80CDEE00  C0 03 EF 10 */	lfs f0, lit_4350@l(r3)  /* 0x80CDEF10@l */
 /* 80CDEE04  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80CDEE08  40 80 00 0C */	bge lbl_80CDEE14
 /* 80CDEE0C  38 60 00 01 */	li r3, 1

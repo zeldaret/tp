@@ -5,8 +5,8 @@ lbl_800889B0:
 /* 800889BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800889C0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800889C4  41 82 00 1C */	beq lbl_800889E0
-/* 800889C8  3C A0 80 3B */	lis r5, __vt__9dCstick_c@ha
-/* 800889CC  38 05 C5 18 */	addi r0, r5, __vt__9dCstick_c@l
+/* 800889C8  3C A0 80 3B */	lis r5, __vt__9dCstick_c@ha /* 0x803AC518@ha */
+/* 800889CC  38 05 C5 18 */	addi r0, r5, __vt__9dCstick_c@l /* 0x803AC518@l */
 /* 800889D0  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 800889D4  7C 80 07 35 */	extsh. r0, r4
 /* 800889D8  40 81 00 08 */	ble lbl_800889E0

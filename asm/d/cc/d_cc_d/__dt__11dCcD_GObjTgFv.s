@@ -5,12 +5,12 @@ lbl_80083BE8:
 /* 80083BF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80083BF8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80083BFC  41 82 00 30 */	beq lbl_80083C2C
-/* 80083C00  3C 60 80 3B */	lis r3, __vt__11dCcD_GObjTg@ha
-/* 80083C04  38 03 C2 38 */	addi r0, r3, __vt__11dCcD_GObjTg@l
+/* 80083C00  3C 60 80 3B */	lis r3, __vt__11dCcD_GObjTg@ha /* 0x803AC238@ha */
+/* 80083C04  38 03 C2 38 */	addi r0, r3, __vt__11dCcD_GObjTg@l /* 0x803AC238@l */
 /* 80083C08  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80083C0C  41 82 00 10 */	beq lbl_80083C1C
-/* 80083C10  3C 60 80 3B */	lis r3, __vt__22dCcD_GAtTgCoCommonBase@ha
-/* 80083C14  38 03 C2 50 */	addi r0, r3, __vt__22dCcD_GAtTgCoCommonBase@l
+/* 80083C10  3C 60 80 3B */	lis r3, __vt__22dCcD_GAtTgCoCommonBase@ha /* 0x803AC250@ha */
+/* 80083C14  38 03 C2 50 */	addi r0, r3, __vt__22dCcD_GAtTgCoCommonBase@l /* 0x803AC250@l */
 /* 80083C18  90 1F 00 18 */	stw r0, 0x18(r31)
 lbl_80083C1C:
 /* 80083C1C  7C 80 07 35 */	extsh. r0, r4

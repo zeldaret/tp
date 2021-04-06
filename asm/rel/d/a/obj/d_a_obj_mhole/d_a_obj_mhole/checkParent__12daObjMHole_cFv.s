@@ -4,10 +4,10 @@ lbl_80C93198:
 /* 80C931A0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C931A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C931A8  7C 7F 1B 78 */	mr r31, r3
-/* 80C931AC  3C 60 80 C9 */	lis r3, searchParentSub__FPvPv@ha
-/* 80C931B0  38 63 2E 58 */	addi r3, r3, searchParentSub__FPvPv@l
+/* 80C931AC  3C 60 80 C9 */	lis r3, searchParentSub__FPvPv@ha /* 0x80C92E58@ha */
+/* 80C931B0  38 63 2E 58 */	addi r3, r3, searchParentSub__FPvPv@l /* 0x80C92E58@l */
 /* 80C931B4  7F E4 FB 78 */	mr r4, r31
-/* 80C931B8  4B 38 E1 80 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80C931B8  4B 38 E1 81 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80C931BC  28 03 00 00 */	cmplwi r3, 0
 /* 80C931C0  41 82 00 0C */	beq lbl_80C931CC
 /* 80C931C4  80 03 00 04 */	lwz r0, 4(r3)

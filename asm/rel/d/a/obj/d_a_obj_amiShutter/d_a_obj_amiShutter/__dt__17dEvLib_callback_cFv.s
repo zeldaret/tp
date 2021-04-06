@@ -5,12 +5,12 @@ lbl_80BA2288:
 /* 80BA2294  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BA2298  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80BA229C  41 82 00 1C */	beq lbl_80BA22B8
-/* 80BA22A0  3C A0 80 BA */	lis r5, __vt__17dEvLib_callback_c@ha
-/* 80BA22A4  38 05 24 DC */	addi r0, r5, __vt__17dEvLib_callback_c@l
+/* 80BA22A0  3C A0 80 BA */	lis r5, __vt__17dEvLib_callback_c@ha /* 0x80BA24DC@ha */
+/* 80BA22A4  38 05 24 DC */	addi r0, r5, __vt__17dEvLib_callback_c@l /* 0x80BA24DC@l */
 /* 80BA22A8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80BA22AC  7C 80 07 35 */	extsh. r0, r4
 /* 80BA22B0  40 81 00 08 */	ble lbl_80BA22B8
-/* 80BA22B4  4B 72 CA 88 */	b __dl__FPv
+/* 80BA22B4  4B 72 CA 89 */	bl __dl__FPv
 lbl_80BA22B8:
 /* 80BA22B8  7F E3 FB 78 */	mr r3, r31
 /* 80BA22BC  83 E1 00 0C */	lwz r31, 0xc(r1)

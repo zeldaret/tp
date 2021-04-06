@@ -7,7 +7,7 @@ lbl_809E9258:
 /* 809E926C  41 82 00 10 */	beq lbl_809E927C
 /* 809E9270  7C 80 07 35 */	extsh. r0, r4
 /* 809E9274  40 81 00 08 */	ble lbl_809E927C
-/* 809E9278  4B 8E 5A C4 */	b __dl__FPv
+/* 809E9278  4B 8E 5A C5 */	bl __dl__FPv
 lbl_809E927C:
 /* 809E927C  7F E3 FB 78 */	mr r3, r31
 /* 809E9280  83 E1 00 0C */	lwz r31, 0xc(r1)

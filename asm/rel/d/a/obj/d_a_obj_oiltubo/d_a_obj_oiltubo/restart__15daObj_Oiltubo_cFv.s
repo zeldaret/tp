@@ -13,8 +13,8 @@ lbl_80CA6FF8:
 /* 80CA7024  B0 03 04 E6 */	sth r0, 0x4e6(r3)
 /* 80CA7028  A8 03 04 E0 */	lha r0, 0x4e0(r3)
 /* 80CA702C  B0 03 04 E8 */	sth r0, 0x4e8(r3)
-/* 80CA7030  3C 80 80 CA */	lis r4, lit_3897@ha
-/* 80CA7034  38 A4 79 FC */	addi r5, r4, lit_3897@l
+/* 80CA7030  3C 80 80 CA */	lis r4, lit_3897@ha /* 0x80CA79FC@ha */
+/* 80CA7034  38 A4 79 FC */	addi r5, r4, lit_3897@l /* 0x80CA79FC@l */
 /* 80CA7038  80 85 00 00 */	lwz r4, 0(r5)
 /* 80CA703C  80 05 00 04 */	lwz r0, 4(r5)
 /* 80CA7040  90 81 00 08 */	stw r4, 8(r1)

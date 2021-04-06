@@ -5,8 +5,8 @@ lbl_802D4910:
 /* 802D491C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D4920  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D4924  41 82 00 1C */	beq lbl_802D4940
-/* 802D4928  3C A0 80 3D */	lis r5, __vt__13JKRFileFinder@ha
-/* 802D492C  38 05 C2 28 */	addi r0, r5, __vt__13JKRFileFinder@l
+/* 802D4928  3C A0 80 3D */	lis r5, __vt__13JKRFileFinder@ha /* 0x803CC228@ha */
+/* 802D492C  38 05 C2 28 */	addi r0, r5, __vt__13JKRFileFinder@l /* 0x803CC228@l */
 /* 802D4930  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 802D4934  7C 80 07 35 */	extsh. r0, r4
 /* 802D4938  40 81 00 08 */	ble lbl_802D4940

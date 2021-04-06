@@ -7,7 +7,7 @@ lbl_80ACBF40:
 /* 80ACBF54  41 82 00 10 */	beq lbl_80ACBF64
 /* 80ACBF58  7C 80 07 35 */	extsh. r0, r4
 /* 80ACBF5C  40 81 00 08 */	ble lbl_80ACBF64
-/* 80ACBF60  4B 80 2D DC */	b __dl__FPv
+/* 80ACBF60  4B 80 2D DD */	bl __dl__FPv
 lbl_80ACBF64:
 /* 80ACBF64  7F E3 FB 78 */	mr r3, r31
 /* 80ACBF68  83 E1 00 0C */	lwz r31, 0xc(r1)

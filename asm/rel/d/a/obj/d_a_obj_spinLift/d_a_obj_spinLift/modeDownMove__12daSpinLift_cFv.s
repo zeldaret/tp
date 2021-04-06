@@ -7,14 +7,14 @@ lbl_80CE4698:
 /* 80CE46AC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CE46B0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80CE46B4  7C 7E 1B 78 */	mr r30, r3
-/* 80CE46B8  3C 60 80 CE */	lis r3, lit_3637@ha
-/* 80CE46BC  3B E3 4C BC */	addi r31, r3, lit_3637@l
+/* 80CE46B8  3C 60 80 CE */	lis r3, lit_3637@ha /* 0x80CE4CBC@ha */
+/* 80CE46BC  3B E3 4C BC */	addi r31, r3, lit_3637@l /* 0x80CE4CBC@l */
 /* 80CE46C0  38 7E 04 D4 */	addi r3, r30, 0x4d4
 /* 80CE46C4  C0 3E 04 AC */	lfs f1, 0x4ac(r30)
 /* 80CE46C8  C0 5F 00 70 */	lfs f2, 0x70(r31)
 /* 80CE46CC  C0 7E 05 B4 */	lfs f3, 0x5b4(r30)
 /* 80CE46D0  C0 9F 00 68 */	lfs f4, 0x68(r31)
-/* 80CE46D4  4B 58 B2 A8 */	b cLib_addCalc__FPfffff
+/* 80CE46D4  4B 58 B2 A9 */	bl cLib_addCalc__FPfffff
 /* 80CE46D8  FF E0 08 90 */	fmr f31, f1
 /* 80CE46DC  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)
 /* 80CE46E0  C0 1E 04 AC */	lfs f0, 0x4ac(r30)
@@ -31,13 +31,13 @@ lbl_80CE4698:
 /* 80CE470C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80CE4710  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CE4714  7C 03 07 74 */	extsb r3, r0
-/* 80CE4718  4B 34 89 54 */	b dComIfGp_getReverb__Fi
+/* 80CE4718  4B 34 89 55 */	bl dComIfGp_getReverb__Fi
 /* 80CE471C  7C 67 1B 78 */	mr r7, r3
 /* 80CE4720  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801A4@ha */
 /* 80CE4724  38 03 01 A4 */	addi r0, r3, 0x01A4 /* 0x000801A4@l */
 /* 80CE4728  90 01 00 08 */	stw r0, 8(r1)
-/* 80CE472C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CE4730  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CE472C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CE4730  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CE4734  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CE4738  38 81 00 08 */	addi r4, r1, 8
 /* 80CE473C  38 A1 00 0C */	addi r5, r1, 0xc
@@ -47,7 +47,7 @@ lbl_80CE4698:
 /* 80CE474C  C0 7F 00 6C */	lfs f3, 0x6c(r31)
 /* 80CE4750  FC 80 18 90 */	fmr f4, f3
 /* 80CE4754  39 00 00 00 */	li r8, 0
-/* 80CE4758  4B 5C 7D B4 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CE4758  4B 5C 7D B5 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80CE475C:
 /* 80CE475C  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80CE4760  FC 00 F8 00 */	fcmpu cr0, f0, f31

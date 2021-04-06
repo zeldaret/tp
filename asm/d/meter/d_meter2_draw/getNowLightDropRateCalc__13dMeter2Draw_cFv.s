@@ -2,8 +2,8 @@ lbl_80215DA8:
 /* 80215DA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80215DAC  7C 08 02 A6 */	mflr r0
 /* 80215DB0  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80215DB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80215DB8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80215DB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80215DB8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80215DBC  38 64 01 14 */	addi r3, r4, 0x114
 /* 80215DC0  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
 /* 80215DC4  4B E1 E5 7D */	bl getLightDropNum__16dSv_light_drop_cCFUc
@@ -14,8 +14,8 @@ lbl_80215DA8:
 /* 80215DD8  90 81 00 08 */	stw r4, 8(r1)
 /* 80215DDC  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80215DE0  EC 40 08 28 */	fsubs f2, f0, f1
-/* 80215DE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80215DE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80215DE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80215DE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80215DEC  88 03 5E A1 */	lbz r0, 0x5ea1(r3)
 /* 80215DF0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80215DF4  90 81 00 10 */	stw r4, 0x10(r1)

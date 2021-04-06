@@ -3,19 +3,20 @@
 #
 
 M325_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich.plf
+M325_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich.lcf
+M325_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich.map
 
 M325_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kasi_mich/executor.cpp \
-	rel/d/a/npc/d_a_npc_kasi_mich/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kasi_mich/d_a_npc_kasi_mich.cpp \
 
 M325_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/d_a_npc_kasi_mich.o \
 
 M325_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/libRuntime.PPCEABI.H.a \
 
 M325_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M325_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map325.map\
+	-m _prolog \
+	-lcf $(M325_LDSCRIPT) \
+	-unused -map $(M325_MAP) \
+	-w off \
 
 $(M325_TARGET): $(M325_O_FILES) $(M325_LIBS)
+	@echo [325] creating $(M325_TARGET)
 	@echo $(M325_LIBS) $(M325_O_FILES) > build/M325_ofiles
-	$(LD) -opt_partial $(M325_LDFLAGS) -o $(M325_TARGET) @build/M325_ofiles
+	@python3 tools/lcf.py rel 325 --output $(M325_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M325_LDFLAGS) -o $(M325_TARGET) @build/M325_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_mich/%.o: rel/d/a/npc/d_a_npc_kasi_mich/%.cpp
+	@echo [325] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M325_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M325_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kasi_mich/libs/Runtime.PPCEABI.H/Makefile
 

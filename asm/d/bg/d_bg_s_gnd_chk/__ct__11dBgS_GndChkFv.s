@@ -7,8 +7,8 @@ lbl_8007757C:
 /* 80077590  48 1F 06 8D */	bl __ct__11cBgS_GndChkFv
 /* 80077594  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 80077598  4B FF FF 05 */	bl __ct__8dBgS_ChkFv
-/* 8007759C  3C 60 80 3B */	lis r3, __vt__11dBgS_GndChk@ha
-/* 800775A0  38 63 B7 78 */	addi r3, r3, __vt__11dBgS_GndChk@l
+/* 8007759C  3C 60 80 3B */	lis r3, __vt__11dBgS_GndChk@ha /* 0x803AB778@ha */
+/* 800775A0  38 63 B7 78 */	addi r3, r3, __vt__11dBgS_GndChk@l /* 0x803AB778@l */
 /* 800775A4  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 800775A8  38 03 00 0C */	addi r0, r3, 0xc
 /* 800775AC  90 1F 00 20 */	stw r0, 0x20(r31)

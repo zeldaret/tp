@@ -11,8 +11,8 @@ lbl_801647B0:
 /* 801647D4  60 00 10 00 */	ori r0, r0, 0x1000
 /* 801647D8  90 03 06 0C */	stw r0, 0x60c(r3)
 /* 801647DC  3B E0 00 FF */	li r31, 0xff
-/* 801647E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801647E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801647E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801647E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801647E8  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 801647EC  4B EB FB 99 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801647F0  28 03 00 00 */	cmplwi r3, 0

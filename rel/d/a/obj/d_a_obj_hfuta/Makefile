@@ -3,19 +3,20 @@
 #
 
 M477_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta.plf
+M477_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta.lcf
+M477_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta.map
 
 M477_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hfuta/executor.cpp \
-	rel/d/a/obj/d_a_obj_hfuta/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_hfuta/d_a_obj_hfuta.cpp \
 
 M477_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/d_a_obj_hfuta.o \
 
 M477_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/libRuntime.PPCEABI.H.a \
 
 M477_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M477_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map477.map\
+	-m _prolog \
+	-lcf $(M477_LDSCRIPT) \
+	-unused -map $(M477_MAP) \
+	-w off \
 
 $(M477_TARGET): $(M477_O_FILES) $(M477_LIBS)
+	@echo [477] creating $(M477_TARGET)
 	@echo $(M477_LIBS) $(M477_O_FILES) > build/M477_ofiles
-	$(LD) -opt_partial $(M477_LDFLAGS) -o $(M477_TARGET) @build/M477_ofiles
+	@python3 tools/lcf.py rel 477 --output $(M477_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M477_LDFLAGS) -o $(M477_TARGET) @build/M477_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hfuta/%.o: rel/d/a/obj/d_a_obj_hfuta/%.cpp
+	@echo [477] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M477_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M477_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_hfuta/libs/Runtime.PPCEABI.H/Makefile
 

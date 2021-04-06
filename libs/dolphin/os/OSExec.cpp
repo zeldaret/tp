@@ -17,7 +17,7 @@ extern "C" static void ReadDisc();
 extern "C" static void Callback();
 extern "C" void __OSGetExecParams();
 extern "C" static void GetApploaderPosition();
-extern "C" static void __OSBootDolSimple();
+extern "C" void __OSBootDolSimple();
 extern "C" void __OSBootDol();
 
 //
@@ -59,95 +59,76 @@ extern "C" extern u8 __OSIsGcam[4];
 // Declarations:
 //
 
-/* 8033CA80-8033CC08 0188+00 s=1 e=0 z=0  None .text      PackArgs */
-//	8033CAA4: 80003458 (memset)
-//	8033CAD4: 80368BE4 (strlen)
-//	8033CAE8: 80368B2C (strcpy)
+/* 8033CA80-8033CC08 3373C0 0188+00 1/1 0/0 0/0 .text            PackArgs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PackArgs() {
+static asm void PackArgs() {
     nofralloc
 #include "asm/dolphin/os/OSExec/PackArgs.s"
 }
 #pragma pop
 
-/* 8033CC08-8033CC44 003C+00 s=1 e=0 z=0  None .text      Run */
-//	8033CC1C: 8033B6C4 (ICFlashInvalidate)
+/* 8033CC08-8033CC44 337548 003C+00 1/1 0/0 0/0 .text            Run */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void Run() {
+static asm void Run() {
     nofralloc
 #include "asm/dolphin/os/OSExec/Run.s"
 }
 #pragma pop
 
-/* 8033CC44-8033CCB0 006C+00 s=1 e=0 z=0  None .text      ReadDisc */
-//	8033CC6C: 8034AD2C (DVDReadAbsAsyncPrio)
-//	8033CC7C: 8034B628 (DVDCheckDisk)
-//	8033CC8C: 8033F864 (__OSDoHotReset)
-//	8033CC94: 8034B17C (DVDGetCommandBlockStatus)
+/* 8033CC44-8033CCB0 337584 006C+00 1/1 0/0 0/0 .text            ReadDisc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ReadDisc() {
+static asm void ReadDisc() {
     nofralloc
 #include "asm/dolphin/os/OSExec/ReadDisc.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451658-8045165C 0004+00 s=2 e=0 z=0  None .sbss      Prepared */
+/* 80451658-8045165C 000B58 0004+00 2/2 0/0 0/0 .sbss            Prepared */
 static u8 Prepared[4];
 
-/* 8033CCB0-8033CCBC 000C+00 s=1 e=0 z=0  None .text      Callback */
-//	8033CCB4: 80451658 (Prepared)
+/* 8033CCB0-8033CCBC 3375F0 000C+00 1/1 0/0 0/0 .text            Callback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void Callback() {
+static asm void Callback() {
     nofralloc
 #include "asm/dolphin/os/OSExec/Callback.s"
 }
 #pragma pop
 
-/* 8033CCBC-8033CCFC 0040+00 s=0 e=1 z=0  None .text      __OSGetExecParams */
-//	8033CCDC: 80003540 (memcpy)
+/* 8033CCBC-8033CCFC 3375FC 0040+00 0/0 1/1 0/0 .text            __OSGetExecParams */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSGetExecParams() {
+asm void __OSGetExecParams() {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSGetExecParams.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045165C-80451660 0004+00 s=2 e=0 z=0  None .sbss      apploaderPosition$69 */
+/* 8045165C-80451660 000B5C 0004+00 2/2 0/0 0/0 .sbss            apploaderPosition$69 */
 static u8 apploaderPosition[4];
 
-/* 8033CCFC-8033CDC0 00C4+00 s=1 e=0 z=0  None .text      GetApploaderPosition */
-//	8033CD0C: 8045165C (apploaderPosition)
-//	8033CD34: 8033B2AC (OSAllocFromArenaLo)
-//	8033CD54: 8034AD2C (DVDReadAbsAsyncPrio)
-//	8033CD64: 8034B628 (DVDCheckDisk)
-//	8033CD74: 8033F864 (__OSDoHotReset)
-//	8033CD7C: 8034B17C (DVDGetCommandBlockStatus)
-//	8033CD98: 8045165C (apploaderPosition)
-//	8033CDA4: 8045165C (apploaderPosition)
-//	8033CDA8: 8045165C (apploaderPosition)
+/* 8033CCFC-8033CDC0 33763C 00C4+00 1/1 0/0 0/0 .text            GetApploaderPosition */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void GetApploaderPosition() {
+static asm void GetApploaderPosition() {
     nofralloc
 #include "asm/dolphin/os/OSExec/GetApploaderPosition.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CFC38-803CFC48 000B+05 s=1 e=0 z=0  None .data      @115 */
+/* 803CFC38-803CFC48 02CD58 000B+05 1/1 0/0 0/0 .data            @115 */
 SECTION_DATA static u8 lit_115[11 + 5 /* padding */] = {
     0x32,
     0x30,
@@ -168,84 +149,18 @@ SECTION_DATA static u8 lit_115[11 + 5 /* padding */] = {
     0x00,
 };
 
-/* 8033CDC0-8033D244 0484+00 s=1 e=0 z=0  None .text      __OSBootDolSimple */
-//	8033CDEC: 8033D6F4 (OSDisableInterrupts)
-//	8033CDF8: 8033B2AC (OSAllocFromArenaLo)
-//	8033CE28: 8033B2AC (OSAllocFromArenaLo)
-//	8033CE3C: 8033CA80 (PackArgs)
-//	8033CE40: 803490F0 (DVDInit)
-//	8033CE48: 8034B274 (DVDSetAutoInvalidation)
-//	8033CE4C: 8034B284 (DVDResume)
-//	8033CE54: 8033CCB0 (Callback)
-//	8033CE58: 80451658 (Prepared)
-//	8033CE5C: 8033CCB0 (Callback)
-//	8033CE60: 8034B720 (__DVDPrepareResetAsync)
-//	8033CE68: 8033DABC (__OSMaskInterrupts)
-//	8033CE70: 8033DB44 (__OSUnmaskInterrupts)
-//	8033CE74: 8033D708 (OSEnableInterrupts)
-//	8033CE84: 8034B628 (DVDCheckDisk)
-//	8033CE94: 8033F864 (__OSDoHotReset)
-//	8033CE98: 80451658 (Prepared)
-//	8033CEA4: 8045160C (__OSIsGcam)
-//	8033CEB0: 8034B620 (DVDGetCurrentDiskID)
-//	8033CED8: 8035002C (AISetStreamVolLeft)
-//	8033CEE0: 80350058 (AISetStreamVolRight)
-//	8033CEEC: 8034AFAC (DVDCancelStreamAsync)
-//	8033CEFC: 8034B628 (DVDCheckDisk)
-//	8033CF0C: 8033F864 (__OSDoHotReset)
-//	8033CF14: 8034B17C (DVDGetCommandBlockStatus)
-//	8033CF24: 8034FD6C (AISetStreamPlayState)
-//	8033CF30: 8033B2AC (OSAllocFromArenaLo)
-//	8033CF38: 8033CCFC (GetApploaderPosition)
-//	8033CF48: 8033CC44 (ReadDisc)
-//	8033CF4C: 8033CCFC (GetApploaderPosition)
-//	8033CF64: 8033CC44 (ReadDisc)
-//	8033CF78: 8033B690 (ICInvalidateRange)
-//	8033CF7C: 803CFC38 (lit_115)
-//	8033CF80: 803CFC38 (lit_115)
-//	8033CF8C: 80368954 (strncmp)
-//	8033CFB8: 8045165C (apploaderPosition)
-//	8033CFE0: 8033B2AC (OSAllocFromArenaLo)
-//	8033D000: 8034AD2C (DVDReadAbsAsyncPrio)
-//	8033D010: 8034B628 (DVDCheckDisk)
-//	8033D020: 8033F864 (__OSDoHotReset)
-//	8033D028: 8034B17C (DVDGetCommandBlockStatus)
-//	8033D044: 8045165C (apploaderPosition)
-//	8033D050: 8045165C (apploaderPosition)
-//	8033D054: 8045165C (apploaderPosition)
-//	8033D088: 8033B2AC (OSAllocFromArenaLo)
-//	8033D09C: 80003540 (memcpy)
-//	8033D0A8: 80006ABC (OSReport)
-//	8033D0B0: 80006ABC (OSReport)
-//	8033D0C0: 8033B2A4 (OSSetArenaLo)
-//	8033D0E8: 8034AD2C (DVDReadAbsAsyncPrio)
-//	8033D0F8: 8034B628 (DVDCheckDisk)
-//	8033D108: 8033F864 (__OSDoHotReset)
-//	8033D110: 8034B17C (DVDGetCommandBlockStatus)
-//	8033D154: 8033B2AC (OSAllocFromArenaLo)
-//	8033D168: 80003540 (memcpy)
-//	8033D184: 8033D6F4 (OSDisableInterrupts)
-//	8033D18C: 8033CC08 (Run)
-//	8033D1AC: 8033CCFC (GetApploaderPosition)
-//	8033D1D8: 8034AD2C (DVDReadAbsAsyncPrio)
-//	8033D1E8: 8034B628 (DVDCheckDisk)
-//	8033D1F8: 8033F864 (__OSDoHotReset)
-//	8033D200: 8034B17C (DVDGetCommandBlockStatus)
-//	8033D21C: 8033B690 (ICInvalidateRange)
-//	8033D220: 8033D6F4 (OSDisableInterrupts)
-//	8033D224: 8033B6C4 (ICFlashInvalidate)
-//	8033D22C: 8033CC08 (Run)
+/* 8033CDC0-8033D244 337700 0484+00 1/1 0/0 0/0 .text            __OSBootDolSimple */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __OSBootDolSimple() {
+asm void __OSBootDolSimple() {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSBootDolSimple.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804509A8-804509B0 0003+05 s=1 e=0 z=0  None .sdata     @213 */
+/* 804509A8-804509B0 000428 0003+05 1/1 0/0 0/0 .sdata           @213 */
 SECTION_SDATA static u8 lit_213[3 + 5 /* padding */] = {
     0x25,
     0x64,
@@ -258,16 +173,11 @@ SECTION_SDATA static u8 lit_213[3 + 5 /* padding */] = {
     0x00,
 };
 
-/* 8033D244-8033D3E0 019C+00 s=0 e=1 z=0  None .text      __OSBootDol */
-//	8033D270: 8033F64C (OSGetSaveRegion)
-//	8033D280: 804509A8 (lit_213)
-//	8033D284: 803664DC (sprintf)
-//	8033D2C4: 8033B2AC (OSAllocFromArenaLo)
-//	8033D3C0: 8033CDC0 (__OSBootDolSimple)
+/* 8033D244-8033D3E0 337B84 019C+00 0/0 1/1 0/0 .text            __OSBootDol */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSBootDol() {
+asm void __OSBootDol() {
     nofralloc
 #include "asm/dolphin/os/OSExec/__OSBootDol.s"
 }

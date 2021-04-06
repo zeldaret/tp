@@ -256,9 +256,9 @@ struct Z2SeqMgr {
     /* 802B3EAC */ void checkBgmIDPlaying(u32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -441,103 +441,10 @@ extern "C" void __dt__23dDlst_MenuSaveExplain_cFv();
 extern "C" void __dt__9dMs_HIO_cFv();
 extern "C" void __sinit_d_menu_save_cpp();
 extern "C" extern char const* const d_menu_d_menu_save__stringBase0;
-extern "C" extern u8 data_803BDFD8[24];
-extern "C" extern u8 data_803BDFF0[16];
-extern "C" extern u8 data_803BE000[16];
-extern "C" extern u8 data_803BE010[16];
-extern "C" extern u8 data_803BE020[16];
-extern "C" extern u8 data_803BE030[24];
-extern "C" extern u8 data_803BE048[24];
-extern "C" extern u8 data_803BE060[24];
-extern "C" extern u8 data_803BE078[16];
-extern "C" extern u8 data_803BE088[16];
-extern "C" extern u8 data_803BE098[16];
-extern "C" extern u8 data_803BE0A8[24];
-extern "C" extern u8 data_803BE0C0[16];
-extern "C" extern u8 data_803BE0D0[80];
-extern "C" extern u8 data_803BE120[16];
-extern "C" extern u8 data_803BE130[24];
-extern "C" extern void* d_menu_d_menu_save__lit_4479[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4480[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4481[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4482[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4483[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4484[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4485[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4486[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4487[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4488[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4489[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4490[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4491[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4492[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4493[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4494[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4495[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4496[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4497[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4498[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4499[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4500[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4501[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4502[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4503[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4504[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4505[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4506[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4507[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4508[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4509[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4510[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4511[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4512[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4513[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4514[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4515[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4516[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4517[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4518[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4519[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4520[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4521[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4522[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4523[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4524[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4525[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4526[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4527[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4528[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4529[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4530[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4531[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4532[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4533[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4534[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4535[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4536[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4537[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4538[3];
-extern "C" extern void* d_menu_d_menu_save__lit_4539[3];
-extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
-extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
-extern "C" extern void* __vt__9dMs_HIO_c[3];
 
 //
 // External References:
 //
-
-void mDoExt_getJ2dHeap();
-void mDoExt_getMesgFont();
-void mDoExt_removeMesgFont();
-void mDoExt_getSubFont();
-void mDoExt_removeSubFont();
-void mDoMemCdRWm_TestCheckSumGameData(void*);
-void mDoMemCdRWm_SetCheckSumGameData(u8*, u8);
-void fopMsgM_messageGet(char*, u32);
-void dPaneClass_showNullPane(J2DScreen*);
-void cAPICPad_ANY_BUTTON(u32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_getJ2dHeap__Fv();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -650,37 +557,37 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803BDF78-803BDF84 000C+00 s=2 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BDF84-803BDF90 000C+00 s=3 e=0 z=0  None .data      SelStartFrameTbl */
+/* 803BDF84-803BDF90 01B0A4 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
 SECTION_DATA static u8 SelStartFrameTbl[12] = {
     0x00, 0x00, 0x00, 0x3B, 0x00, 0x00, 0x00, 0x63, 0x00, 0x00, 0x00, 0x8B,
 };
 
-/* 803BDF90-803BDF9C 000C+00 s=3 e=0 z=0  None .data      SelEndFrameTbl */
+/* 803BDF90-803BDF9C 01B0B0 000C+00 3/3 0/0 0/0 .data            SelEndFrameTbl */
 SECTION_DATA static u8 SelEndFrameTbl[12] = {
     0x00, 0x00, 0x00, 0x45, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x00, 0x00, 0x95,
 };
 
-/* 803BDF9C-803BDFA8 000C+00 s=2 e=0 z=0  None .data      SelOpenStartFrameTbl */
+/* 803BDF9C-803BDFA8 01B0BC 000C+00 2/2 0/0 0/0 .data            SelOpenStartFrameTbl */
 SECTION_DATA static u8 SelOpenStartFrameTbl[12] = {
     0x00, 0x00, 0x00, 0xF9, 0x00, 0x00, 0x01, 0xC0, 0x00, 0x00, 0x02, 0x88,
 };
 
-/* 803BDFA8-803BDFB4 000C+00 s=2 e=0 z=0  None .data      SelOpenEndFrameTbl */
+/* 803BDFA8-803BDFB4 01B0C8 000C+00 2/2 0/0 0/0 .data            SelOpenEndFrameTbl */
 SECTION_DATA static u8 SelOpenEndFrameTbl[12] = {
     0x00, 0x00, 0x01, 0x03, 0x00, 0x00, 0x01, 0xCC, 0x00, 0x00, 0x02, 0x93,
 };
 
-/* 803BDFB4-803BDFC4 0010+00 s=2 e=0 z=0  None .data      YnSelStartFrameTbl */
+/* 803BDFB4-803BDFC4 01B0D4 0010+00 2/2 0/0 0/0 .data            YnSelStartFrameTbl */
 SECTION_DATA static u8 YnSelStartFrameTbl[16] = {
     0x00, 0x00, 0x08, 0x66, 0x00, 0x00, 0x0C, 0x6D, 0x00, 0x00, 0x08, 0x5B, 0x00, 0x00, 0x0C, 0x63,
 };
 
-/* 803BDFC4-803BDFD8 0010+04 s=2 e=0 z=0  None .data      YnSelEndFrameTbl */
+/* 803BDFC4-803BDFD8 01B0E4 0010+04 2/2 0/0 0/0 .data            YnSelEndFrameTbl */
 SECTION_DATA static u8 YnSelEndFrameTbl[16 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -705,524 +612,755 @@ SECTION_DATA static u8 YnSelEndFrameTbl[16 + 4 /* padding */] = {
     0x00,
 };
 
-/* 803BDFD8-803BDFF0 0018+00 s=0 e=0 z=0  None .data      l_tagName0$3857 */
-SECTION_DATA u8 data_803BDFD8[24] = {
+/* 803BDFD8-803BDFF0 01B0F8 0018+00 0/1 0/0 0/0 .data            l_tagName0$3857 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName0[24] = {
     0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x73, 0x65,
     0x6C, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x32,
 };
+#pragma pop
 
-/* 803BDFF0-803BE000 0010+00 s=0 e=0 z=0  None .data      l_tagName000$3866 */
-SECTION_DATA u8 data_803BDFF0[16] = {
+/* 803BDFF0-803BE000 01B110 0010+00 0/1 0/0 0/0 .data            l_tagName000$3866 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName000[16] = {
     0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
 };
+#pragma pop
 
-/* 803BE000-803BE010 0010+00 s=0 e=0 z=0  None .data      l_tagName000U$3867 */
-SECTION_DATA u8 data_803BE000[16] = {
+/* 803BE000-803BE010 01B120 0010+00 0/1 0/0 0/0 .data            l_tagName000U$3867 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName000U[16] = {
     0x00, 0x00, 0x66, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x66, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
 };
+#pragma pop
 
-/* 803BE010-803BE020 0010+00 s=0 e=0 z=0  None .data      l_tagName00$3879 */
-SECTION_DATA u8 data_803BE010[16] = {
+/* 803BE010-803BE020 01B130 0010+00 0/1 0/0 0/0 .data            l_tagName00$3879 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName00[16] = {
     0x00, 0x00, 0x77, 0x5F, 0x6D, 0x6F, 0x64, 0x6F, 0x00, 0x00, 0x77, 0x5F, 0x6B, 0x65, 0x74, 0x65,
 };
+#pragma pop
 
-/* 803BE020-803BE030 0010+00 s=0 e=0 z=0  None .data      l_tagName00U$3880 */
-SECTION_DATA u8 data_803BE020[16] = {
+/* 803BE020-803BE030 01B140 0010+00 0/1 0/0 0/0 .data            l_tagName00U$3880 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName00U[16] = {
     0x00, 0x00, 0x66, 0x5F, 0x6D, 0x6F, 0x64, 0x6F, 0x00, 0x00, 0x66, 0x5F, 0x6B, 0x65, 0x74, 0x65,
 };
+#pragma pop
 
-/* 803BE030-803BE048 0018+00 s=0 e=0 z=0  None .data      l_tagName3$3887 */
-SECTION_DATA u8 data_803BE030[24] = {
+/* 803BE030-803BE048 01B150 0018+00 0/1 0/0 0/0 .data            l_tagName3$3887 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName3[24] = {
     0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x30, 0x77, 0x5F, 0x6D, 0x6F,
     0x79, 0x6F, 0x30, 0x31, 0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x32,
 };
+#pragma pop
 
-/* 803BE048-803BE060 0018+00 s=0 e=0 z=0  None .data      l_tagName4$3888 */
-SECTION_DATA u8 data_803BE048[24] = {
+/* 803BE048-803BE060 01B168 0018+00 0/1 0/0 0/0 .data            l_tagName4$3888 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName4[24] = {
     0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
     0x6C, 0x64, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
 };
+#pragma pop
 
-/* 803BE060-803BE078 0018+00 s=0 e=0 z=0  None .data      l_tagName5$3889 */
-SECTION_DATA u8 data_803BE060[24] = {
+/* 803BE060-803BE078 01B180 0018+00 0/1 0/0 0/0 .data            l_tagName5$3889 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName5[24] = {
     0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
     0x32, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x32,
 };
+#pragma pop
 
-/* 803BE078-803BE088 0010+00 s=0 e=0 z=0  None .data      l_tagName9$3898 */
-SECTION_DATA u8 data_803BE078[16] = {
+/* 803BE078-803BE088 01B198 0010+00 0/1 0/0 0/0 .data            l_tagName9$3898 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName9[16] = {
     0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x6D, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x6D,
 };
+#pragma pop
 
-/* 803BE088-803BE098 0010+00 s=0 e=0 z=0  None .data      l_tagName10$3899 */
-SECTION_DATA u8 data_803BE088[16] = {
+/* 803BE088-803BE098 01B1A8 0010+00 0/1 0/0 0/0 .data            l_tagName10$3899 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName10[16] = {
     0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67,
 };
+#pragma pop
 
-/* 803BE098-803BE0A8 0010+00 s=0 e=0 z=0  None .data      l_tagName11$3900 */
-SECTION_DATA u8 data_803BE098[16] = {
+/* 803BE098-803BE0A8 01B1B8 0010+00 0/1 0/0 0/0 .data            l_tagName11$3900 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName11[16] = {
     0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x72, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67, 0x72,
 };
+#pragma pop
 
-/* 803BE0A8-803BE0C0 0018+00 s=0 e=0 z=0  None .data      l_tagName12$3909 */
-SECTION_DATA u8 data_803BE0A8[24] = {
+/* 803BE0A8-803BE0C0 01B1C8 0018+00 0/1 0/0 0/0 .data            l_tagName12$3909 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName12[24] = {
     0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x30, 0x77, 0x5F, 0x62, 0x6B,
     0x5F, 0x6C, 0x30, 0x31, 0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x32,
 };
+#pragma pop
 
-/* 803BE0C0-803BE0D0 0010+00 s=0 e=0 z=0  None .data      l_tagName21$3916 */
-SECTION_DATA u8 data_803BE0C0[16] = {
+/* 803BE0C0-803BE0D0 01B1E0 0010+00 0/1 0/0 0/0 .data            l_tagName21$3916 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName21[16] = {
     0x00, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x31,
 };
+#pragma pop
 
-/* 803BE0D0-803BE120 0050+00 s=0 e=0 z=0  None .data      l_tagName211$3917 */
-SECTION_DATA u8 data_803BE0D0[80] = {
+/* 803BE0D0-803BE120 01B1F0 0050+00 0/1 0/0 0/0 .data            l_tagName211$3917 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName211[80] = {
     0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x30, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x31,
     0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x32, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x33,
     0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x34, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x35,
     0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x36, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x37,
     0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x38, 0x74, 0x6D, 0x6F, 0x79, 0x6F, 0x75, 0x30, 0x39,
 };
+#pragma pop
 
-/* 803BE120-803BE130 0010+00 s=0 e=0 z=0  None .data      l_tagName20$3929 */
-SECTION_DATA u8 data_803BE120[16] = {
+/* 803BE120-803BE130 01B240 0010+00 0/1 0/0 0/0 .data            l_tagName20$3929 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName20[16] = {
     0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x30, 0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x31,
 };
+#pragma pop
 
-/* 803BE130-803BE148 0018+00 s=0 e=0 z=0  None .data      l_tagName13$3937 */
-SECTION_DATA u8 data_803BE130[24] = {
+/* 803BE130-803BE148 01B250 0018+00 0/1 0/0 0/0 .data            l_tagName13$3937 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_tagName13[24] = {
     0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x30, 0x77, 0x5F, 0x64, 0x61,
     0x74, 0x5F, 0x69, 0x31, 0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x32,
 };
+#pragma pop
 
-/* 803BE148-803BE154 000C+00 s=0 e=0 z=0  None .data      @4479 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4479[3] = {
+/* 803BE148-803BE154 -00001 000C+00 0/1 0/0 0/0 .data            @4479 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4479[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveQuestion__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE154-803BE160 000C+00 s=0 e=0 z=0  None .data      @4480 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4480[3] = {
+/* 803BE154-803BE160 -00001 000C+00 0/1 0/0 0/0 .data            @4480 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4480[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveQuestion2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE160-803BE16C 000C+00 s=0 e=0 z=0  None .data      @4481 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4481[3] = {
+/* 803BE160-803BE16C -00001 000C+00 0/1 0/0 0/0 .data            @4481 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4481[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveQuestion21__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE16C-803BE178 000C+00 s=0 e=0 z=0  None .data      @4482 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4482[3] = {
+/* 803BE16C-803BE178 -00001 000C+00 0/1 0/0 0/0 .data            @4482 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4482[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveQuestion3__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE178-803BE184 000C+00 s=0 e=0 z=0  None .data      @4483 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4483[3] = {
+/* 803BE178-803BE184 -00001 000C+00 0/1 0/0 0/0 .data            @4483 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4483[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveQuestion4__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE184-803BE190 000C+00 s=0 e=0 z=0  None .data      @4484 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4484[3] = {
+/* 803BE184-803BE190 -00001 000C+00 0/1 0/0 0/0 .data            @4484 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4484[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveGuide__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE190-803BE19C 000C+00 s=0 e=0 z=0  None .data      @4485 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4485[3] = {
+/* 803BE190-803BE19C -00001 000C+00 0/1 0/0 0/0 .data            @4485 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4485[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardCheck__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE19C-803BE1A8 000C+00 s=0 e=0 z=0  None .data      @4486 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4486[3] = {
+/* 803BE19C-803BE1A8 -00001 000C+00 0/1 0/0 0/0 .data            @4486 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4486[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)backSaveQuestion__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1A8-803BE1B4 000C+00 s=0 e=0 z=0  None .data      @4487 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4487[3] = {
+/* 803BE1A8-803BE1B4 -00001 000C+00 0/1 0/0 0/0 .data            @4487 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4487[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)backSaveQuestion2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1B4-803BE1C0 000C+00 s=0 e=0 z=0  None .data      @4488 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4488[3] = {
+/* 803BE1B4-803BE1C0 -00001 000C+00 0/1 0/0 0/0 .data            @4488 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4488[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrMsgWaitKey__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1C0-803BE1CC 000C+00 s=0 e=0 z=0  None .data      @4489 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4489[3] = {
+/* 803BE1C0-803BE1CC -00001 000C+00 0/1 0/0 0/0 .data            @4489 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4489[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)IPLSelectDisp1__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1CC-803BE1D8 000C+00 s=0 e=0 z=0  None .data      @4490 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4490[3] = {
+/* 803BE1CC-803BE1D8 -00001 000C+00 0/1 0/0 0/0 .data            @4490 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4490[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)IPLSelectDisp2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1D8-803BE1E4 000C+00 s=0 e=0 z=0  None .data      @4491 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4491[3] = {
+/* 803BE1D8-803BE1E4 -00001 000C+00 0/1 0/0 0/0 .data            @4491 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4491[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrGoIPLSel__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1E4-803BE1F0 000C+00 s=0 e=0 z=0  None .data      @4492 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4492[3] = {
+/* 803BE1E4-803BE1F0 -00001 000C+00 0/1 0/0 0/0 .data            @4492 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4492[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)IPLSelect2Disp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1F0-803BE1FC 000C+00 s=0 e=0 z=0  None .data      @4493 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4493[3] = {
+/* 803BE1F0-803BE1FC -00001 000C+00 0/1 0/0 0/0 .data            @4493 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4493[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrGoIPLSel2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE1FC-803BE208 000C+00 s=0 e=0 z=0  None .data      @4494 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4494[3] = {
+/* 803BE1FC-803BE208 -00001 000C+00 0/1 0/0 0/0 .data            @4494 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4494[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrGotoIPL__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE208-803BE214 000C+00 s=0 e=0 z=0  None .data      @4495 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4495[3] = {
+/* 803BE208-803BE214 -00001 000C+00 0/1 0/0 0/0 .data            @4495 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4495[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrMsgWaitFormatSel__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE214-803BE220 000C+00 s=0 e=0 z=0  None .data      @4496 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4496[3] = {
+/* 803BE214-803BE220 -00001 000C+00 0/1 0/0 0/0 .data            @4496 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4496[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)cardFormatYesSelDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE220-803BE22C 000C+00 s=0 e=0 z=0  None .data      @4497 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4497[3] = {
+/* 803BE220-803BE22C -00001 000C+00 0/1 0/0 0/0 .data            @4497 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4497[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)cardFormatNoSelDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE22C-803BE238 000C+00 s=0 e=0 z=0  None .data      @4498 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4498[3] = {
+/* 803BE22C-803BE238 -00001 000C+00 0/1 0/0 0/0 .data            @4498 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4498[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardErrMsgWaitFormatSel2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE238-803BE244 000C+00 s=0 e=0 z=0  None .data      @4499 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4499[3] = {
+/* 803BE238-803BE244 -00001 000C+00 0/1 0/0 0/0 .data            @4499 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4499[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)cardFormatYesSel2Disp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE244-803BE250 000C+00 s=0 e=0 z=0  None .data      @4500 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4500[3] = {
+/* 803BE244-803BE250 -00001 000C+00 0/1 0/0 0/0 .data            @4500 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4500[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardFormat__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE250-803BE25C 000C+00 s=0 e=0 z=0  None .data      @4501 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4501[3] = {
+/* 803BE250-803BE25C -00001 000C+00 0/1 0/0 0/0 .data            @4501 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4501[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardFormatWait__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE25C-803BE268 000C+00 s=0 e=0 z=0  None .data      @4502 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4502[3] = {
+/* 803BE25C-803BE268 -00001 000C+00 0/1 0/0 0/0 .data            @4502 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4502[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)makeGameFileSelDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE268-803BE274 000C+00 s=0 e=0 z=0  None .data      @4503 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4503[3] = {
+/* 803BE268-803BE274 -00001 000C+00 0/1 0/0 0/0 .data            @4503 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4503[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardMakeGameFileSel__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE274-803BE280 000C+00 s=0 e=0 z=0  None .data      @4504 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4504[3] = {
+/* 803BE274-803BE280 -00001 000C+00 0/1 0/0 0/0 .data            @4504 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4504[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)makeGameFileDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE280-803BE28C 000C+00 s=0 e=0 z=0  None .data      @4505 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4505[3] = {
+/* 803BE280-803BE28C -00001 000C+00 0/1 0/0 0/0 .data            @4505 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4505[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardMakeGameFile__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE28C-803BE298 000C+00 s=0 e=0 z=0  None .data      @4506 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4506[3] = {
+/* 803BE28C-803BE298 -00001 000C+00 0/1 0/0 0/0 .data            @4506 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4506[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardMakeGameFileWait__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE298-803BE2A4 000C+00 s=0 e=0 z=0  None .data      @4507 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4507[3] = {
+/* 803BE298-803BE2A4 -00001 000C+00 0/1 0/0 0/0 .data            @4507 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4507[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardCommandEnd__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2A4-803BE2B0 000C+00 s=0 e=0 z=0  None .data      @4508 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4508[3] = {
+/* 803BE2A4-803BE2B0 -00001 000C+00 0/1 0/0 0/0 .data            @4508 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4508[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardCommandEnd2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2B0-803BE2BC 000C+00 s=0 e=0 z=0  None .data      @4509 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4509[3] = {
+/* 803BE2B0-803BE2BC -00001 000C+00 0/1 0/0 0/0 .data            @4509 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4509[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardDataLoadWait__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2BC-803BE2C8 000C+00 s=0 e=0 z=0  None .data      @4510 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4510[3] = {
+/* 803BE2BC-803BE2C8 -00001 000C+00 0/1 0/0 0/0 .data            @4510 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4510[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardDataSaveWait__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2C8-803BE2D4 000C+00 s=0 e=0 z=0  None .data      @4511 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4511[3] = {
+/* 803BE2C8-803BE2D4 -00001 000C+00 0/1 0/0 0/0 .data            @4511 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4511[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)memCardDataSaveWait2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2D4-803BE2E0 000C+00 s=0 e=0 z=0  None .data      @4512 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4512[3] = {
+/* 803BE2D4-803BE2E0 -00001 000C+00 0/1 0/0 0/0 .data            @4512 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4512[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)gameContinueDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2E0-803BE2EC 000C+00 s=0 e=0 z=0  None .data      @4513 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4513[3] = {
+/* 803BE2E0-803BE2EC -00001 000C+00 0/1 0/0 0/0 .data            @4513 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4513[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)gameContinue__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2EC-803BE2F8 000C+00 s=0 e=0 z=0  None .data      @4514 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4514[3] = {
+/* 803BE2EC-803BE2F8 -00001 000C+00 0/1 0/0 0/0 .data            @4514 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4514[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)gameContinue2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE2F8-803BE304 000C+00 s=0 e=0 z=0  None .data      @4515 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4515[3] = {
+/* 803BE2F8-803BE304 -00001 000C+00 0/1 0/0 0/0 .data            @4515 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4515[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)gameContinue3__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE304-803BE310 000C+00 s=0 e=0 z=0  None .data      @4516 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4516[3] = {
+/* 803BE304-803BE310 -00001 000C+00 0/1 0/0 0/0 .data            @4516 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4516[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveEnd__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE310-803BE31C 000C+00 s=0 e=0 z=0  None .data      @4517 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4517[3] = {
+/* 803BE310-803BE31C -00001 000C+00 0/1 0/0 0/0 .data            @4517 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4517[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)endingNoSave__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE31C-803BE328 000C+00 s=0 e=0 z=0  None .data      @4518 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4518[3] = {
+/* 803BE31C-803BE328 -00001 000C+00 0/1 0/0 0/0 .data            @4518 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4518[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)endingNoSave2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE328-803BE334 000C+00 s=0 e=0 z=0  None .data      @4519 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4519[3] = {
+/* 803BE328-803BE334 -00001 000C+00 0/1 0/0 0/0 .data            @4519 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4519[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)endingDataCheck__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE334-803BE340 000C+00 s=0 e=0 z=0  None .data      @4520 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4520[3] = {
+/* 803BE334-803BE340 -00001 000C+00 0/1 0/0 0/0 .data            @4520 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4520[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveWait__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE340-803BE34C 000C+00 s=0 e=0 z=0  None .data      @4521 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4521[3] = {
+/* 803BE340-803BE34C -00001 000C+00 0/1 0/0 0/0 .data            @4521 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4521[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)messageChange__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE34C-803BE358 000C+00 s=0 e=0 z=0  None .data      @4522 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4522[3] = {
+/* 803BE34C-803BE358 -00001 000C+00 0/1 0/0 0/0 .data            @4522 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4522[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)retryQuestion0__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE358-803BE364 000C+00 s=0 e=0 z=0  None .data      @4523 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4523[3] = {
+/* 803BE358-803BE364 -00001 000C+00 0/1 0/0 0/0 .data            @4523 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4523[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)retryQuestion1__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE364-803BE370 000C+00 s=0 e=0 z=0  None .data      @4524 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4524[3] = {
+/* 803BE364-803BE370 -00001 000C+00 0/1 0/0 0/0 .data            @4524 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4524[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)retryQuestion2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE370-803BE37C 000C+00 s=0 e=0 z=0  None .data      @4525 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4525[3] = {
+/* 803BE370-803BE37C -00001 000C+00 0/1 0/0 0/0 .data            @4525 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4525[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)openSaveSelect__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE37C-803BE388 000C+00 s=0 e=0 z=0  None .data      @4526 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4526[3] = {
+/* 803BE37C-803BE388 -00001 000C+00 0/1 0/0 0/0 .data            @4526 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4526[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)openSaveSelect2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE388-803BE394 000C+00 s=0 e=0 z=0  None .data      @4527 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4527[3] = {
+/* 803BE388-803BE394 -00001 000C+00 0/1 0/0 0/0 .data            @4527 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4527[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)openSaveSelect3__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE394-803BE3A0 000C+00 s=0 e=0 z=0  None .data      @4528 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4528[3] = {
+/* 803BE394-803BE3A0 -00001 000C+00 0/1 0/0 0/0 .data            @4528 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4528[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveSelect__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3A0-803BE3AC 000C+00 s=0 e=0 z=0  None .data      @4529 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4529[3] = {
+/* 803BE3A0-803BE3AC -00001 000C+00 0/1 0/0 0/0 .data            @4529 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4529[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveSelectMoveAnime__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3AC-803BE3B8 000C+00 s=0 e=0 z=0  None .data      @4530 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4530[3] = {
+/* 803BE3AC-803BE3B8 -00001 000C+00 0/1 0/0 0/0 .data            @4530 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4530[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)selectDataOpenMove__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3B8-803BE3C4 000C+00 s=0 e=0 z=0  None .data      @4531 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4531[3] = {
+/* 803BE3B8-803BE3C4 -00001 000C+00 0/1 0/0 0/0 .data            @4531 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4531[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveYesNoSelect__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3C4-803BE3D0 000C+00 s=0 e=0 z=0  None .data      @4532 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4532[3] = {
+/* 803BE3C4-803BE3D0 -00001 000C+00 0/1 0/0 0/0 .data            @4532 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4532[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)yesNoCursorMoveAnm__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3D0-803BE3DC 000C+00 s=0 e=0 z=0  None .data      @4533 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4533[3] = {
+/* 803BE3D0-803BE3DC -00001 000C+00 0/1 0/0 0/0 .data            @4533 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4533[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveYesNoCancelMove__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3DC-803BE3E8 000C+00 s=0 e=0 z=0  None .data      @4534 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4534[3] = {
+/* 803BE3DC-803BE3E8 -00001 000C+00 0/1 0/0 0/0 .data            @4534 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4534[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveMoveDisp__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3E8-803BE3F4 000C+00 s=0 e=0 z=0  None .data      @4535 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4535[3] = {
+/* 803BE3E8-803BE3F4 -00001 000C+00 0/1 0/0 0/0 .data            @4535 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4535[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)saveMoveDisp2__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE3F4-803BE400 000C+00 s=0 e=0 z=0  None .data      @4536 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4536[3] = {
+/* 803BE3F4-803BE400 -00001 000C+00 0/1 0/0 0/0 .data            @4536 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4536[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)msgWindowInitOpen__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE400-803BE40C 000C+00 s=0 e=0 z=0  None .data      @4537 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4537[3] = {
+/* 803BE400-803BE40C -00001 000C+00 0/1 0/0 0/0 .data            @4537 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4537[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)msgWindowOpen__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE40C-803BE418 000C+00 s=0 e=0 z=0  None .data      @4538 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4538[3] = {
+/* 803BE40C-803BE418 -00001 000C+00 0/1 0/0 0/0 .data            @4538 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4538[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)msgWindowClose__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE418-803BE424 000C+00 s=0 e=0 z=0  None .data      @4539 */
-SECTION_DATA void* d_menu_d_menu_save__lit_4539[3] = {
+/* 803BE418-803BE424 -00001 000C+00 0/1 0/0 0/0 .data            @4539 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4539[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)errYesNoCursorMoveAnm__12dMenu_save_cFv,
 };
+#pragma pop
 
-/* 803BE424-803BE70C 02E8+00 s=1 e=0 z=0  None .data      MenuSaveProc */
+/* 803BE424-803BE70C 01B544 02E8+00 1/2 0/0 0/0 .data            MenuSaveProc */
 SECTION_DATA static u8 MenuSaveProc[744] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1273,21 +1411,21 @@ SECTION_DATA static u8 MenuSaveProc[744] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BE70C-803BE718 000C+00 s=1 e=0 z=0  None .data      @4794 */
+/* 803BE70C-803BE718 -00001 000C+00 1/1 0/0 0/0 .data            @4794 */
 SECTION_DATA static void* lit_4794[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)iplSelMsgInitSet__12dMenu_save_cFv,
 };
 
-/* 803BE718-803BE724 000C+00 s=1 e=0 z=0  None .data      @4797 */
+/* 803BE718-803BE724 -00001 000C+00 1/1 0/0 0/0 .data            @4797 */
 SECTION_DATA static void* lit_4797[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)gameFileMakeSelInitSet__12dMenu_save_cFv,
 };
 
-/* 803BE724-803BE758 0034+00 s=1 e=0 z=0  None .data      @4802 */
+/* 803BE724-803BE758 -00001 0034+00 1/1 0/0 0/0 .data            @4802 */
 SECTION_DATA static void* lit_4802[13] = {
     (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x4C),
     (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x19C),
@@ -1304,23 +1442,23 @@ SECTION_DATA static void* lit_4802[13] = {
     (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x134),
 };
 
-/* 803BE758-803BE764 000C+00 s=1 e=0 z=0  None .data      @4901 */
+/* 803BE758-803BE764 -00001 000C+00 1/1 0/0 0/0 .data            @4901 */
 SECTION_DATA static void* lit_4901[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)iplSelInitSet__12dMenu_save_cFv,
 };
 
-/* 803BE764-803BE774 0010+00 s=2 e=1 z=0  None .data      __vt__16dDlst_MenuSave_c */
-SECTION_DATA void* __vt__16dDlst_MenuSave_c[4] = {
+/* 803BE764-803BE774 01B884 0010+00 2/2 1/1 0/0 .data            __vt__16dDlst_MenuSave_c */
+SECTION_DATA extern void* __vt__16dDlst_MenuSave_c[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__16dDlst_MenuSave_cFv,
     (void*)__dt__16dDlst_MenuSave_cFv,
 };
 
-/* 803BE774-803BE7CC 0010+48 s=2 e=1 z=0  None .data      __vt__23dDlst_MenuSaveExplain_c */
-SECTION_DATA void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */] = {
+/* 803BE774-803BE7CC 01B894 0010+48 2/2 1/1 0/0 .data            __vt__23dDlst_MenuSaveExplain_c */
+SECTION_DATA extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__23dDlst_MenuSaveExplain_cFv,
@@ -1346,16 +1484,14 @@ SECTION_DATA void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */] = {
     NULL,
 };
 
-/* 803BE7CC-803BE7D8 000C+00 s=2 e=0 z=0  None .data      __vt__9dMs_HIO_c */
-SECTION_DATA void* __vt__9dMs_HIO_c[3] = {
+/* 803BE7CC-803BE7D8 01B8EC 000C+00 2/2 0/0 0/0 .data            __vt__9dMs_HIO_c */
+SECTION_DATA extern void* __vt__9dMs_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__9dMs_HIO_cFv,
 };
 
-/* 801EF654-801EF6A0 004C+00 s=1 e=0 z=0  None .text      __ct__9dMs_HIO_cFv */
-//	801EF654: 803BE7CC (__vt__9dMs_HIO_c)
-//	801EF658: 803BE7CC (__vt__9dMs_HIO_c)
+/* 801EF654-801EF6A0 1E9F94 004C+00 1/1 0/0 0/0 .text            __ct__9dMs_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1365,15 +1501,7 @@ asm dMs_HIO_c::dMs_HIO_c() {
 }
 #pragma pop
 
-/* 801EF6A0-801EF7AC 010C+00 s=0 e=3 z=0  None .text      __ct__12dMenu_save_cFv */
-//	801EF6A0: 803BBD78 (__vt__12dMenu_save_c)
-//	801EF6A4: 803BBD78 (__vt__12dMenu_save_c)
-//	801EF6AC: 803A6F88 (__vt__12dDlst_base_c)
-//	801EF6B0: 803A6F88 (__vt__12dDlst_base_c)
-//	801EF6B8: 803BE774 (__vt__23dDlst_MenuSaveExplain_c)
-//	801EF6BC: 803BE774 (__vt__23dDlst_MenuSaveExplain_c)
-//	801EF6D0: 803BE764 (__vt__16dDlst_MenuSave_c)
-//	801EF6D4: 803BE764 (__vt__16dDlst_MenuSave_c)
+/* 801EF6A0-801EF7AC 1E9FE0 010C+00 0/0 3/3 0/0 .text            __ct__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1384,47 +1512,19 @@ asm dMenu_save_c::dMenu_save_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80397960-80397A18 00B8+00 s=6 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80397960 = "/res/Layout/saveres.arc";
-SECTION_DEAD char const* const stringBase_80397978 = "zelda_file_select2.blo";
-SECTION_DEAD char const* const stringBase_8039798F = "zelda_file_select2.bck";
-SECTION_DEAD char const* const stringBase_803979A6 = "zelda_file_select2.bpk";
-SECTION_DEAD char const* const stringBase_803979BD = "zelda_file_select2_02.btk";
-SECTION_DEAD char const* const stringBase_803979D7 = "zelda_file_select2.btk";
-SECTION_DEAD char const* const stringBase_803979EE = "zelda_file_select2.brk";
-SECTION_DEAD char const* const stringBase_80397A05 = "";
-SECTION_DEAD char const* const stringBase_80397A06 = "save cmdState %d\n";
-#pragma pop
-
-/* 8042E840-8042E84C 000C+00 s=1 e=0 z=0  None .bss       @3785 */
+/* 8042E840-8042E84C 05B560 000C+00 1/1 0/0 0/0 .bss             @3785 */
 static u8 lit_3785[12];
 
-/* 8042E84C-8042E860 0010+04 s=21 e=0 z=0  None .bss       g_msHIO */
+/* 8042E84C-8042E860 05B56C 0010+04 21/21 0/0 0/0 .bss             g_msHIO */
 static u8 g_msHIO[16 + 4 /* padding */];
 
-/* 80454438-8045443C 0004+00 s=1 e=0 z=0  None .sdata2    @3849 */
+/* 80454438-8045443C 002A38 0004+00 1/1 0/0 0/0 .sdata2          @3849 */
 SECTION_SDATA2 static f32 lit_3849 = 9.0f / 10.0f;
 
-/* 8045443C-80454440 0004+00 s=2 e=0 z=0  None .sdata2    @3850 */
+/* 8045443C-80454440 002A3C 0004+00 2/2 0/0 0/0 .sdata2          @3850 */
 SECTION_SDATA2 static f32 lit_3850 = 0.5f;
 
-/* 801EF7AC-801EF904 0158+00 s=0 e=3 z=0  None .text      _create__12dMenu_save_cFv */
-//	801EF7C8: 802CEC4C (__nw__FUl)
-//	801EF7E4: 80454438 (lit_3849)
-//	801EF7E8: 8045443C (lit_3850)
-//	801EF7F4: 80032044 (__ct__9STControlFssssffss)
-//	801EF81C: 8000EE30 (mDoExt_getJ2dHeap__Fv)
-//	801EF824: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF828: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF830: 80015E14 (create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap)
-//	801EF890: 802CEC4C (__nw__FUl)
-//	801EF8AC: 8023CC88 (__ct__17dMsgScrnExplain_cFP9STControlUcbUc)
-//	801EF8D8: 801F0958 (displayInit__12dMenu_save_cFv)
-//	801EF8E0: 8042E84C (g_msHIO)
-//	801EF8E4: 8042E84C (g_msHIO)
+/* 801EF7AC-801EF904 1EA0EC 0158+00 0/0 3/3 0/0 .text            _create__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1435,7 +1535,7 @@ asm void dMenu_save_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450740-80450744 0002+02 s=1 e=0 z=0  None .sdata     l_msgNum0$3868 */
+/* 80450740-80450744 0001C0 0002+02 1/1 0/0 0/0 .sdata           l_msgNum0$3868 */
 SECTION_SDATA static u8 l_msgNum0[2 + 2 /* padding */] = {
     0x08,
     0x07,
@@ -1444,7 +1544,7 @@ SECTION_SDATA static u8 l_msgNum0[2 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80450744-80450748 0002+02 s=1 e=0 z=0  None .sdata     l_msgNum$3881 */
+/* 80450744-80450748 0001C4 0002+02 1/1 0/0 0/0 .sdata           l_msgNum$3881 */
 SECTION_SDATA static u8 l_msgNum[2 + 2 /* padding */] = {
     0x54,
     0x55,
@@ -1453,13 +1553,13 @@ SECTION_SDATA static u8 l_msgNum[2 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80454440-80454444 0004+00 s=1 e=0 z=0  None .sdata2    @4173 */
+/* 80454440-80454444 002A40 0004+00 1/1 0/0 0/0 .sdata2          @4173 */
 SECTION_SDATA2 static f32 lit_4173 = 19.0f;
 
-/* 80454444-80454448 0004+00 s=1 e=0 z=0  None .sdata2    @4174 */
+/* 80454444-80454448 002A44 0004+00 1/1 0/0 0/0 .sdata2          @4174 */
 SECTION_SDATA2 static f32 lit_4174 = 20.0f;
 
-/* 80454448-8045444C 0004+00 s=13 e=0 z=0  None .sdata2    @4175 */
+/* 80454448-8045444C 002A48 0004+00 13/13 0/0 0/0 .sdata2          @4175 */
 SECTION_SDATA2 static u8 lit_4175[4] = {
     0x00,
     0x00,
@@ -1467,156 +1567,38 @@ SECTION_SDATA2 static u8 lit_4175[4] = {
     0x00,
 };
 
-/* 8045444C-80454450 0004+00 s=1 e=0 z=0  None .sdata2    @4176 */
+/* 8045444C-80454450 002A4C 0004+00 1/1 0/0 0/0 .sdata2          @4176 */
 SECTION_SDATA2 static f32 lit_4176 = 440.0f;
 
-/* 80454450-80454454 0004+00 s=1 e=0 z=0  None .sdata2    @4177 */
+/* 80454450-80454454 002A50 0004+00 1/1 0/0 0/0 .sdata2          @4177 */
 SECTION_SDATA2 static f32 lit_4177 = 198.0f;
 
-/* 80454454-80454458 0004+00 s=1 e=0 z=0  None .sdata2    @4178 */
+/* 80454454-80454458 002A54 0004+00 1/1 0/0 0/0 .sdata2          @4178 */
 SECTION_SDATA2 static f32 lit_4178 = 21.0f;
 
-/* 80454458-8045445C 0004+00 s=20 e=0 z=0  None .sdata2    @4179 */
+/* 80454458-8045445C 002A58 0004+00 20/20 0/0 0/0 .sdata2          @4179 */
 SECTION_SDATA2 static f32 lit_4179 = 1.0f;
 
-/* 8045445C-80454460 0004+00 s=3 e=0 z=0  None .sdata2    @4180 */
+/* 8045445C-80454460 002A5C 0004+00 3/3 0/0 0/0 .sdata2          @4180 */
 SECTION_SDATA2 static f32 lit_4180 = 24.0f / 25.0f;
 
-/* 80454460-80454464 0004+00 s=2 e=0 z=0  None .sdata2    @4181 */
+/* 80454460-80454464 002A60 0004+00 2/2 0/0 0/0 .sdata2          @4181 */
 SECTION_SDATA2 static f32 lit_4181 = 47.0f / 50.0f;
 
-/* 80454464-80454468 0004+00 s=2 e=0 z=0  None .sdata2    @4182 */
+/* 80454464-80454468 002A64 0004+00 2/2 0/0 0/0 .sdata2          @4182 */
 SECTION_SDATA2 static f32 lit_4182 = 3.0f / 100.0f;
 
-/* 80454468-80454470 0004+04 s=2 e=0 z=0  None .sdata2    @4183 */
+/* 80454468-80454470 002A68 0004+04 2/2 0/0 0/0 .sdata2          @4183 */
 SECTION_SDATA2 static f32 lit_4183[1 + 1 /* padding */] = {
     7.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454470-80454478 0008+00 s=17 e=0 z=0  None .sdata2    @4185 */
+/* 80454470-80454478 002A70 0008+00 17/17 0/0 0/0 .sdata2          @4185 */
 SECTION_SDATA2 static f64 lit_4185 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 801EF904-801F0938 1034+00 s=1 e=0 z=0  None .text      screenSet__12dMenu_save_cFv */
-//	801EF92C: 803621C4 (_savegpr_23)
-//	801EF934: 803BDF78 (cNullVec__6Z2Calc)
-//	801EF938: 803BDF78 (cNullVec__6Z2Calc)
-//	801EF940: 802CEC4C (__nw__FUl)
-//	801EF94C: 802F8498 (__ct__9J2DScreenFv)
-//	801EF95C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF960: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF970: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	801EF978: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	801EF97C: 800149F0 (mDoExt_getMesgFont__Fv)
-//	801EF984: 80014BA0 (mDoExt_getSubFont__Fv)
-//	801EF990: 802CEC4C (__nw__FUl)
-//	801EF99C: 80249C20 (__ct__12dMsgString_cFv)
-//	801EF9A8: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF9AC: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EF9B8: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	801EF9C0: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EF9CC: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EF9D8: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EF9E4: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EFA50: 802CEC4C (__nw__FUl)
-//	801EFA78: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFAC0: 802CEC4C (__nw__FUl)
-//	801EFAE4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFB0C: 802CEC4C (__nw__FUl)
-//	801EFB30: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFB40: 802CEC4C (__nw__FUl)
-//	801EFB68: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFB88: 802CEC4C (__nw__FUl)
-//	801EFBB0: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFC08: 80450740 (l_msgNum0)
-//	801EFC10: 800200C0 (fopMsgM_messageGet__FPcUl)
-//	801EFC24: 80300660 (setString__10J2DTextBoxFPCce)
-//	801EFC98: 802CEC4C (__nw__FUl)
-//	801EFCC0: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFCD0: 802CEC4C (__nw__FUl)
-//	801EFCF8: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFD08: 802CEC4C (__nw__FUl)
-//	801EFD2C: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFD3C: 802CEC4C (__nw__FUl)
-//	801EFD60: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFE50: 80450744 (l_msgNum)
-//	801EFE58: 800200C0 (fopMsgM_messageGet__FPcUl)
-//	801EFE68: 80300660 (setString__10J2DTextBoxFPCce)
-//	801EFE80: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EFE84: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EFE90: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	801EFE98: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EFEC0: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EFEC4: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801EFED0: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	801EFED4: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801EFF0C: 802CEC4C (__nw__FUl)
-//	801EFF34: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFF48: 802CEC4C (__nw__FUl)
-//	801EFF70: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801EFF80: 802CEC4C (__nw__FUl)
-//	801EFFA8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F0064: 802CEC4C (__nw__FUl)
-//	801F008C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F00A0: 802CEC4C (__nw__FUl)
-//	801F00C8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F00D8: 802CEC4C (__nw__FUl)
-//	801F0100: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F01F8: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801F0218: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F021C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0228: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	801F022C: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801F024C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0250: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F025C: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	801F0260: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	801F02A0: 802CEC4C (__nw__FUl)
-//	801F02C8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F03FC: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0400: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0404: 80454440 (lit_4173)
-//	801F0408: 80454444 (lit_4174)
-//	801F040C: 80454448 (lit_4175)
-//	801F0414: 802CEC4C (__nw__FUl)
-//	801F043C: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F047C: 8030074C (setString__10J2DTextBoxFsPCce)
-//	801F04B0: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	801F058C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0590: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F0594: 80454454 (lit_4178)
-//	801F0598: 80454458 (lit_4179)
-//	801F05A0: 802CEC4C (__nw__FUl)
-//	801F05C8: 802553FC (__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap)
-//	801F0608: 8030074C (setString__10J2DTextBoxFsPCce)
-//	801F0614: 8045444C (lit_4176)
-//	801F0618: 80454450 (lit_4177)
-//	801F065C: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	801F0668: 802555C8 (show__13CPaneMgrAlphaFv)
-//	801F06D4: 804061C0 (g_dComIfG_gameInfo)
-//	801F06D8: 804061C0 (g_dComIfG_gameInfo)
-//	801F06E8: 802CEC4C (__nw__FUl)
-//	801F06F8: 80454458 (lit_4179)
-//	801F0700: 80194220 (__ct__16dSelect_cursor_cFUcfP10JKRArchive)
-//	801F0710: 8045445C (lit_4180)
-//	801F0714: 80454460 (lit_4181)
-//	801F0718: 80454464 (lit_4182)
-//	801F071C: 80454468 (lit_4183)
-//	801F0724: 801951B0 (setParam__16dSelect_cursor_cFfffff)
-//	801F0748: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	801F0770: 801950F4 (setPos__16dSelect_cursor_cFffP7J2DPaneb)
-//	801F0778: 80454448 (lit_4175)
-//	801F077C: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F07CC: 80454470 (lit_4185)
-//	801F07F4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F0818: 80454458 (lit_4179)
-//	801F083C: 80454458 (lit_4179)
-//	801F086C: 802CEC4C (__nw__FUl)
-//	801F0880: 80192434 (__ct__12dFile_info_cFP10JKRArchiveUc)
-//	801F08E8: 802CEC4C (__nw__FUl)
-//	801F08FC: 80191BAC (__ct__15dFile_warning_cFP10JKRArchiveUc)
-//	801F0924: 80362210 (_restgpr_23)
+/* 801EF904-801F0938 1EA244 1034+00 1/1 0/0 0/0 .text            screenSet__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1626,8 +1608,7 @@ asm void dMenu_save_c::screenSet() {
 }
 #pragma pop
 
-/* 801F0938-801F0958 0020+00 s=0 e=2 z=0  None .text      initialize__12dMenu_save_cFv */
-//	801F0944: 801F0958 (displayInit__12dMenu_save_cFv)
+/* 801F0938-801F0958 1EB278 0020+00 0/0 2/2 0/0 .text            initialize__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1637,7 +1618,7 @@ asm void dMenu_save_c::initialize() {
 }
 #pragma pop
 
-/* 801F0958-801F09AC 0054+00 s=2 e=0 z=0  None .text      displayInit__12dMenu_save_cFv */
+/* 801F0958-801F09AC 1EB298 0054+00 2/2 0/0 0/0 .text            displayInit__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1647,15 +1628,7 @@ asm void dMenu_save_c::displayInit() {
 }
 #pragma pop
 
-/* 801F09AC-801F0B10 0164+00 s=0 e=3 z=0  None .text      _open__12dMenu_save_cFv */
-//	801F0A14: 801EF904 (screenSet__12dMenu_save_cFv)
-//	801F0A34: 803EAF40 (g_mDoMemCd_control)
-//	801F0A38: 803EAF40 (g_mDoMemCd_control)
-//	801F0A3C: 800170B8 (command_attach__15mDoMemCd_Ctrl_cFv)
-//	801F0ABC: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
-//	801F0ADC: 80430188 (g_meter2_info)
-//	801F0AE0: 80430188 (g_meter2_info)
-//	801F0AF4: 8021E0C4 (resetMiniGameItem__13dMeter2Info_cFb)
+/* 801F09AC-801F0B10 1EB2EC 0164+00 0/0 3/3 0/0 .text            _open__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1665,7 +1638,7 @@ asm void dMenu_save_c::_open() {
 }
 #pragma pop
 
-/* 801F0B10-801F0B28 0018+00 s=0 e=1 z=0  None .text      _close__12dMenu_save_cFv */
+/* 801F0B10-801F0B28 1EB450 0018+00 0/0 1/1 0/0 .text            _close__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1675,13 +1648,7 @@ asm void dMenu_save_c::_close() {
 }
 #pragma pop
 
-/* 801F0B28-801F1048 0520+00 s=0 e=4 z=0  None .text      _delete__12dMenu_save_cFv */
-//	801F0B38: 803621D8 (_savegpr_28)
-//	801F0B44: 802CED3C (__dl__FPv)
-//	801F0B84: 80249D28 (__dt__12dMsgString_cFv)
-//	801F0FF8: 80014A2C (mDoExt_removeMesgFont__Fv)
-//	801F0FFC: 80014BDC (mDoExt_removeSubFont__Fv)
-//	801F1034: 80362224 (_restgpr_28)
+/* 801F0B28-801F1048 1EB468 0520+00 0/0 4/4 0/0 .text            _delete__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1691,15 +1658,7 @@ asm void dMenu_save_c::_delete() {
 }
 #pragma pop
 
-/* 801F1048-801F1100 00B8+00 s=0 e=4 z=0  None .text      _move__12dMenu_save_cFv */
-//	801F105C: 80450C78 (mResetData__6mDoRst)
-//	801F107C: 801F12F0 (memCardWatch__12dMenu_save_cFv)
-//	801F10B0: 8023D7D8 (move__17dMsgScrnExplain_cFv)
-//	801F10C0: 803BE424 (MenuSaveProc)
-//	801F10C4: 803BE424 (MenuSaveProc)
-//	801F10CC: 80362084 (__ptmf_scall)
-//	801F10D8: 801F1100 (saveSelAnm__12dMenu_save_cFv)
-//	801F10E8: 80191F18 (_move__15dFile_warning_cFv)
+/* 801F1048-801F1100 1EB988 00B8+00 0/0 4/4 0/0 .text            _move__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1709,10 +1668,7 @@ asm void dMenu_save_c::_move() {
 }
 #pragma pop
 
-/* 801F1100-801F1148 0048+00 s=1 e=0 z=0  None .text      saveSelAnm__12dMenu_save_cFv */
-//	801F1120: 801F1148 (selFileWakuAnm__12dMenu_save_cFv)
-//	801F1128: 801F11F4 (bookIconAnm__12dMenu_save_cFv)
-//	801F1130: 802F9690 (animation__9J2DScreenFv)
+/* 801F1100-801F1148 1EBA40 0048+00 1/1 0/0 0/0 .text            saveSelAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1722,9 +1678,7 @@ asm void dMenu_save_c::saveSelAnm() {
 }
 #pragma pop
 
-/* 801F1148-801F11F4 00AC+00 s=1 e=0 z=0  None .text      selFileWakuAnm__12dMenu_save_cFv */
-//	801F1178: 80454470 (lit_4185)
-//	801F11C8: 80454470 (lit_4185)
+/* 801F1148-801F11F4 1EBA88 00AC+00 1/1 0/0 0/0 .text            selFileWakuAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1734,10 +1688,7 @@ asm void dMenu_save_c::selFileWakuAnm() {
 }
 #pragma pop
 
-/* 801F11F4-801F12F0 00FC+00 s=1 e=0 z=0  None .text      bookIconAnm__12dMenu_save_cFv */
-//	801F1224: 80454470 (lit_4185)
-//	801F1274: 80454470 (lit_4185)
-//	801F12C4: 80454470 (lit_4185)
+/* 801F11F4-801F12F0 1EBB34 00FC+00 1/1 0/0 0/0 .text            bookIconAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1747,10 +1698,7 @@ asm void dMenu_save_c::bookIconAnm() {
 }
 #pragma pop
 
-/* 801F12F0-801F1378 0088+00 s=1 e=0 z=0  None .text      memCardWatch__12dMenu_save_cFv */
-//	801F12FC: 803EAF40 (g_mDoMemCd_control)
-//	801F1300: 803EAF40 (g_mDoMemCd_control)
-//	801F1318: 80450C78 (mResetData__6mDoRst)
+/* 801F12F0-801F1378 1EBC30 0088+00 1/1 0/0 0/0 .text            memCardWatch__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1760,19 +1708,7 @@ asm void dMenu_save_c::memCardWatch() {
 }
 #pragma pop
 
-/* 801F1378-801F1558 01E0+00 s=1 e=0 z=0  None .text      saveQuestion__12dMenu_save_cFv */
-//	801F1390: 801F328C (YesNoSelect__12dMenu_save_cFv)
-//	801F1408: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F140C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F1414: 80368B2C (strcpy)
-//	801F142C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F1430: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F1438: 80368B2C (strcpy)
-//	801F1450: 80454470 (lit_4185)
-//	801F1478: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F149C: 80454458 (lit_4179)
-//	801F14C0: 80454458 (lit_4179)
-//	801F1534: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F1378-801F1558 1EBCB8 01E0+00 1/0 0/0 0/0 .text            saveQuestion__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1782,11 +1718,7 @@ asm void dMenu_save_c::saveQuestion() {
 }
 #pragma pop
 
-/* 801F1558-801F1620 00C8+00 s=1 e=0 z=0  None .text      saveQuestion2__12dMenu_save_cFv */
-//	801F1590: 8042E84C (g_msHIO)
-//	801F1594: 8042E84C (g_msHIO)
-//	801F15A4: 804511C0 (sManager__10JFWDisplay)
-//	801F15D8: 804511C0 (sManager__10JFWDisplay)
+/* 801F1558-801F1620 1EBE98 00C8+00 1/0 0/0 0/0 .text            saveQuestion2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1796,7 +1728,7 @@ asm void dMenu_save_c::saveQuestion2() {
 }
 #pragma pop
 
-/* 801F1620-801F1644 0024+00 s=1 e=0 z=0  None .text      saveQuestion21__12dMenu_save_cFv */
+/* 801F1620-801F1644 1EBF60 0024+00 1/0 0/0 0/0 .text            saveQuestion21__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1806,10 +1738,7 @@ asm void dMenu_save_c::saveQuestion21() {
 }
 #pragma pop
 
-/* 801F1644-801F16B8 0074+00 s=1 e=0 z=0  None .text      saveQuestion3__12dMenu_save_cFv */
-//	801F1660: 8042E84C (g_msHIO)
-//	801F1664: 8042E84C (g_msHIO)
-//	801F1674: 804511C0 (sManager__10JFWDisplay)
+/* 801F1644-801F16B8 1EBF84 0074+00 1/0 0/0 0/0 .text            saveQuestion3__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1819,8 +1748,7 @@ asm void dMenu_save_c::saveQuestion3() {
 }
 #pragma pop
 
-/* 801F16B8-801F16F4 003C+00 s=1 e=0 z=0  None .text      saveQuestion4__12dMenu_save_cFv */
-//	801F16B8: 80450C78 (mResetData__6mDoRst)
+/* 801F16B8-801F16F4 1EBFF8 003C+00 1/0 0/0 0/0 .text            saveQuestion4__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1830,7 +1758,7 @@ asm void dMenu_save_c::saveQuestion4() {
 }
 #pragma pop
 
-/* 801F16F4-801F1720 002C+00 s=1 e=0 z=0  None .text      saveGuide__12dMenu_save_cFv */
+/* 801F16F4-801F1720 1EC034 002C+00 1/0 0/0 0/0 .text            saveGuide__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1840,26 +1768,7 @@ asm void dMenu_save_c::saveGuide() {
 }
 #pragma pop
 
-/* 801F1720-801F191C 01FC+00 s=2 e=0 z=0  None .text      memCardCheck__12dMenu_save_cFv */
-//	801F1734: 803EAF40 (g_mDoMemCd_control)
-//	801F1738: 803EAF40 (g_mDoMemCd_control)
-//	801F1740: 80016D74 (getStatus__15mDoMemCd_Ctrl_cFUl)
-//	801F1754: 803BE724 (lit_4802)
-//	801F1758: 803BE724 (lit_4802)
-//	801F177C: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F17AC: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F17DC: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F180C: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F183C: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F1864: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F1870: 803BE70C (lit_4794)
-//	801F1874: 803BE70C (lit_4794)
-//	801F18A4: 803EAF40 (g_mDoMemCd_control)
-//	801F18A8: 803EAF40 (g_mDoMemCd_control)
-//	801F18AC: 800169B4 (load__15mDoMemCd_Ctrl_cFv)
-//	801F18CC: 801F4A10 (errDispInitSet__12dMenu_save_cFi)
-//	801F18D8: 803BE718 (lit_4797)
-//	801F18DC: 803BE718 (lit_4797)
+/* 801F1720-801F191C 1EC060 01FC+00 2/0 0/0 0/0 .text            memCardCheck__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1869,13 +1778,7 @@ asm void dMenu_save_c::memCardCheck() {
 }
 #pragma pop
 
-/* 801F191C-801F19A8 008C+00 s=1 e=0 z=0  None .text      memCardErrMsgWaitKey__12dMenu_save_cFv */
-//	801F1934: 802632AC (cAPICPad_ANY_BUTTON__FUl)
-//	801F1940: 80430188 (g_meter2_info)
-//	801F1944: 80430188 (g_meter2_info)
-//	801F1964: 801F1B38 (closeSelect__12dMenu_save_cFv)
-//	801F1970: 80362018 (__ptmf_test)
-//	801F1984: 80362084 (__ptmf_scall)
+/* 801F191C-801F19A8 1EC25C 008C+00 1/0 0/0 0/0 .text memCardErrMsgWaitKey__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1885,9 +1788,7 @@ asm void dMenu_save_c::memCardErrMsgWaitKey() {
 }
 #pragma pop
 
-/* 801F19A8-801F19DC 0034+00 s=1 e=0 z=0  None .text      backSaveQuestionInitSet__12dMenu_save_cFv
- */
-//	801F19C8: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F19A8-801F19DC 1EC2E8 0034+00 1/1 0/0 0/0 .text backSaveQuestionInitSet__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1897,10 +1798,8 @@ asm void dMenu_save_c::backSaveQuestionInitSet() {
 }
 #pragma pop
 
-/* 801F19DC-801F1A48 006C+00 s=1 e=0 z=0  None .text      backSaveQuestion__12dMenu_save_cFv */
-//	801F19F0: 8042E84C (g_msHIO)
-//	801F19F4: 8042E84C (g_msHIO)
-//	801F1A04: 804511C0 (sManager__10JFWDisplay)
+/* 801F19DC-801F1A48 1EC31C 006C+00 1/0 0/0 0/0 .text            backSaveQuestion__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1910,11 +1809,8 @@ asm void dMenu_save_c::backSaveQuestion() {
 }
 #pragma pop
 
-/* 801F1A48-801F1B38 00F0+00 s=1 e=0 z=0  None .text      backSaveQuestion2__12dMenu_save_cFv */
-//	801F1AA4: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
-//	801F1AAC: 801F19A8 (backSaveQuestionInitSet__12dMenu_save_cFv)
-//	801F1AB4: 801F19A8 (backSaveQuestionInitSet__12dMenu_save_cFv)
-//	801F1AB8: 804511C0 (sManager__10JFWDisplay)
+/* 801F1A48-801F1B38 1EC388 00F0+00 1/0 0/0 0/0 .text            backSaveQuestion2__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1925,19 +1821,10 @@ asm void dMenu_save_c::backSaveQuestion2() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454478-8045447C 0004+00 s=16 e=0 z=0  None .sdata2    @4879 */
+/* 80454478-8045447C 002A78 0004+00 16/16 0/0 0/0 .sdata2          @4879 */
 SECTION_SDATA2 static f32 lit_4879 = -1.0f;
 
-/* 801F1B38-801F1BF8 00C0+00 s=5 e=0 z=0  None .text      closeSelect__12dMenu_save_cFv */
-//	801F1B54: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F1B68: 80454458 (lit_4179)
-//	801F1B70: 80454478 (lit_4879)
-//	801F1B7C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F1B84: 80454448 (lit_4175)
-//	801F1B88: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F1BA8: 80430188 (g_meter2_info)
-//	801F1BAC: 80430188 (g_meter2_info)
-//	801F1BBC: 8021DE18 (setMiniGameItem__13dMeter2Info_cFUc)
+/* 801F1B38-801F1BF8 1EC478 00C0+00 5/5 0/0 0/0 .text            closeSelect__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1947,13 +1834,7 @@ asm void dMenu_save_c::closeSelect() {
 }
 #pragma pop
 
-/* 801F1BF8-801F1C70 0078+00 s=2 e=0 z=0  None .text      closeSelect2__12dMenu_save_cFv */
-//	801F1C14: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F1C28: 80454458 (lit_4179)
-//	801F1C30: 80454478 (lit_4879)
-//	801F1C3C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F1C44: 80454448 (lit_4175)
-//	801F1C48: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
+/* 801F1BF8-801F1C70 1EC538 0078+00 2/2 0/0 0/0 .text            closeSelect2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1963,8 +1844,8 @@ asm void dMenu_save_c::closeSelect2() {
 }
 #pragma pop
 
-/* 801F1C70-801F1C94 0024+00 s=1 e=0 z=0  None .text      iplSelMsgInitSet__12dMenu_save_cFv */
-//	801F1C80: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
+/* 801F1C70-801F1C94 1EC5B0 0024+00 1/0 0/0 0/0 .text            iplSelMsgInitSet__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1974,10 +1855,7 @@ asm void dMenu_save_c::iplSelMsgInitSet() {
 }
 #pragma pop
 
-/* 801F1C94-801F1CEC 0058+00 s=1 e=0 z=0  None .text      iplSelInitSet__12dMenu_save_cFv */
-//	801F1CAC: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F1CC0: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F1CD4: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
+/* 801F1C94-801F1CEC 1EC5D4 0058+00 1/0 0/0 0/0 .text            iplSelInitSet__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1987,10 +1865,7 @@ asm void dMenu_save_c::iplSelInitSet() {
 }
 #pragma pop
 
-/* 801F1CEC-801F1D54 0068+00 s=1 e=0 z=0  None .text      IPLSelectDisp1__12dMenu_save_cFv */
-//	801F1D00: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F1D10: 803BE758 (lit_4901)
-//	801F1D14: 803BE758 (lit_4901)
+/* 801F1CEC-801F1D54 1EC62C 0068+00 1/0 0/0 0/0 .text            IPLSelectDisp1__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2000,13 +1875,7 @@ asm void dMenu_save_c::IPLSelectDisp1() {
 }
 #pragma pop
 
-/* 801F1D54-801F1DD4 0080+00 s=1 e=0 z=0  None .text      IPLSelectDisp2__12dMenu_save_cFv */
-//	801F1D64: 803621DC (_savegpr_29)
-//	801F1D6C: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F1D78: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F1D84: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F1DB0: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F1DC0: 80362228 (_restgpr_29)
+/* 801F1D54-801F1DD4 1EC694 0080+00 1/0 0/0 0/0 .text            IPLSelectDisp2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2016,11 +1885,7 @@ asm void dMenu_save_c::IPLSelectDisp2() {
 }
 #pragma pop
 
-/* 801F1DD4-801F1E58 0084+00 s=1 e=0 z=0  None .text      memCardErrGoIPLSel__12dMenu_save_cFv */
-//	801F1DF0: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F1E10: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F1E2C: 801F4510 (yesnoSelectAnmSet__12dMenu_save_cFUc)
-//	801F1E40: 801F1B38 (closeSelect__12dMenu_save_cFv)
+/* 801F1DD4-801F1E58 1EC714 0084+00 1/0 0/0 0/0 .text memCardErrGoIPLSel__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2030,13 +1895,7 @@ asm void dMenu_save_c::memCardErrGoIPLSel() {
 }
 #pragma pop
 
-/* 801F1E58-801F1EE0 0088+00 s=1 e=0 z=0  None .text      IPLSelect2Disp__12dMenu_save_cFv */
-//	801F1E68: 803621DC (_savegpr_29)
-//	801F1E70: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F1E80: 801F5AE4 (yesnoSelectMoveAnm__12dMenu_save_cFUc)
-//	801F1E90: 801F6654 (yesnoWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F1EBC: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F1ECC: 80362228 (_restgpr_29)
+/* 801F1E58-801F1EE0 1EC798 0088+00 1/0 0/0 0/0 .text            IPLSelect2Disp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2046,12 +1905,7 @@ asm void dMenu_save_c::IPLSelect2Disp() {
 }
 #pragma pop
 
-/* 801F1EE0-801F1F80 00A0+00 s=1 e=0 z=0  None .text      memCardErrGoIPLSel2__12dMenu_save_cFv */
-//	801F1EFC: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F1F1C: 8042E84C (g_msHIO)
-//	801F1F20: 8042E84C (g_msHIO)
-//	801F1F30: 804511C0 (sManager__10JFWDisplay)
-//	801F1F68: 801F1B38 (closeSelect__12dMenu_save_cFv)
+/* 801F1EE0-801F1F80 1EC820 00A0+00 1/0 0/0 0/0 .text memCardErrGoIPLSel2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2061,9 +1915,8 @@ asm void dMenu_save_c::memCardErrGoIPLSel2() {
 }
 #pragma pop
 
-/* 801F1F80-801F2000 0080+00 s=1 e=0 z=0  None .text      memCardErrGotoIPL__12dMenu_save_cFv */
-//	801F1FB4: 804511C0 (sManager__10JFWDisplay)
-//	801F1FE4: 80450C78 (mResetData__6mDoRst)
+/* 801F1F80-801F2000 1EC8C0 0080+00 1/0 0/0 0/0 .text            memCardErrGotoIPL__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2073,13 +1926,8 @@ asm void dMenu_save_c::memCardErrGotoIPL() {
 }
 #pragma pop
 
-/* 801F2000-801F20AC 00AC+00 s=1 e=0 z=0  None .text memCardErrMsgWaitFormatSel__12dMenu_save_cFv
+/* 801F2000-801F20AC 1EC940 00AC+00 1/0 0/0 0/0 .text memCardErrMsgWaitFormatSel__12dMenu_save_cFv
  */
-//	801F201C: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F203C: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F2058: 801F4510 (yesnoSelectAnmSet__12dMenu_save_cFUc)
-//	801F2070: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F208C: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2089,13 +1937,7 @@ asm void dMenu_save_c::memCardErrMsgWaitFormatSel() {
 }
 #pragma pop
 
-/* 801F20AC-801F2134 0088+00 s=1 e=0 z=0  None .text      cardFormatYesSelDisp__12dMenu_save_cFv */
-//	801F20BC: 803621DC (_savegpr_29)
-//	801F20C4: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F20D4: 801F5AE4 (yesnoSelectMoveAnm__12dMenu_save_cFUc)
-//	801F20E4: 801F6654 (yesnoWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F2110: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F2120: 80362228 (_restgpr_29)
+/* 801F20AC-801F2134 1EC9EC 0088+00 1/0 0/0 0/0 .text cardFormatYesSelDisp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2105,9 +1947,7 @@ asm void dMenu_save_c::cardFormatYesSelDisp() {
 }
 #pragma pop
 
-/* 801F2134-801F219C 0068+00 s=1 e=0 z=0  None .text      cardFormatNoSelDisp__12dMenu_save_cFv */
-//	801F214C: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F2158: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
+/* 801F2134-801F219C 1ECA74 0068+00 1/0 0/0 0/0 .text cardFormatNoSelDisp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2117,13 +1957,8 @@ asm void dMenu_save_c::cardFormatNoSelDisp() {
 }
 #pragma pop
 
-/* 801F219C-801F2250 00B4+00 s=1 e=0 z=0  None .text memCardErrMsgWaitFormatSel2__12dMenu_save_cFv
- */
-//	801F21B8: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F21E0: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F21FC: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F2214: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F2230: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
+/* 801F219C-801F2250 1ECADC 00B4+00 1/0 0/0 0/0 .text
+ * memCardErrMsgWaitFormatSel2__12dMenu_save_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2133,14 +1968,7 @@ asm void dMenu_save_c::memCardErrMsgWaitFormatSel2() {
 }
 #pragma pop
 
-/* 801F2250-801F22CC 007C+00 s=1 e=0 z=0  None .text      cardFormatYesSel2Disp__12dMenu_save_cFv */
-//	801F2268: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F2274: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F2290: 8042E84C (g_msHIO)
-//	801F2294: 8042E84C (g_msHIO)
-//	801F22A0: 803EAF40 (g_mDoMemCd_control)
-//	801F22A4: 803EAF40 (g_mDoMemCd_control)
-//	801F22A8: 80016E58 (command_format__15mDoMemCd_Ctrl_cFv)
+/* 801F2250-801F22CC 1ECB90 007C+00 1/0 0/0 0/0 .text cardFormatYesSel2Disp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2150,10 +1978,7 @@ asm void dMenu_save_c::cardFormatYesSel2Disp() {
 }
 #pragma pop
 
-/* 801F22CC-801F232C 0060+00 s=1 e=0 z=0  None .text      memCardFormat__12dMenu_save_cFv */
-//	801F22F4: 803EAF40 (g_mDoMemCd_control)
-//	801F22F8: 803EAF40 (g_mDoMemCd_control)
-//	801F22FC: 80016F2C (FormatSync__15mDoMemCd_Ctrl_cFv)
+/* 801F22CC-801F232C 1ECC0C 0060+00 1/0 0/0 0/0 .text            memCardFormat__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2163,9 +1988,8 @@ asm void dMenu_save_c::memCardFormat() {
 }
 #pragma pop
 
-/* 801F232C-801F23A4 0078+00 s=1 e=0 z=0  None .text      memCardFormatWait__12dMenu_save_cFv */
-//	801F2368: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F2384: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
+/* 801F232C-801F23A4 1ECC6C 0078+00 1/0 0/0 0/0 .text            memCardFormatWait__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2175,11 +1999,7 @@ asm void dMenu_save_c::memCardFormatWait() {
 }
 #pragma pop
 
-/* 801F23A4-801F23FC 0058+00 s=1 e=0 z=0  None .text      gameFileMakeSelInitSet__12dMenu_save_cFv
- */
-//	801F23BC: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F23C8: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F23E4: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
+/* 801F23A4-801F23FC 1ECCE4 0058+00 1/0 0/0 0/0 .text gameFileMakeSelInitSet__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2189,13 +2009,7 @@ asm void dMenu_save_c::gameFileMakeSelInitSet() {
 }
 #pragma pop
 
-/* 801F23FC-801F247C 0080+00 s=1 e=0 z=0  None .text      makeGameFileSelDisp__12dMenu_save_cFv */
-//	801F240C: 803621DC (_savegpr_29)
-//	801F2414: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F2420: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F242C: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F2458: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F2468: 80362228 (_restgpr_29)
+/* 801F23FC-801F247C 1ECD3C 0080+00 1/0 0/0 0/0 .text makeGameFileSelDisp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2205,13 +2019,7 @@ asm void dMenu_save_c::makeGameFileSelDisp() {
 }
 #pragma pop
 
-/* 801F247C-801F2514 0098+00 s=1 e=0 z=0  None .text      memCardMakeGameFileSel__12dMenu_save_cFv
- */
-//	801F2498: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F24C0: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F24CC: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F24E8: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F24FC: 801F1B38 (closeSelect__12dMenu_save_cFv)
+/* 801F247C-801F2514 1ECDBC 0098+00 1/0 0/0 0/0 .text memCardMakeGameFileSel__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2221,16 +2029,8 @@ asm void dMenu_save_c::memCardMakeGameFileSel() {
 }
 #pragma pop
 
-/* 801F2514-801F25AC 0098+00 s=1 e=0 z=0  None .text      makeGameFileDisp__12dMenu_save_cFv */
-//	801F2524: 803621DC (_savegpr_29)
-//	801F252C: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F2538: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F2544: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F256C: 8042E84C (g_msHIO)
-//	801F2570: 8042E84C (g_msHIO)
-//	801F2580: 801F6954 (setInitSaveData__12dMenu_save_cFv)
-//	801F2588: 801F67B8 (dataSave__12dMenu_save_cFv)
-//	801F2598: 80362228 (_restgpr_29)
+/* 801F2514-801F25AC 1ECE54 0098+00 1/0 0/0 0/0 .text            makeGameFileDisp__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2240,10 +2040,7 @@ asm void dMenu_save_c::makeGameFileDisp() {
 }
 #pragma pop
 
-/* 801F25AC-801F260C 0060+00 s=1 e=0 z=0  None .text      memCardMakeGameFile__12dMenu_save_cFv */
-//	801F25D4: 803EAF40 (g_mDoMemCd_control)
-//	801F25D8: 803EAF40 (g_mDoMemCd_control)
-//	801F25DC: 80016CE0 (SaveSync__15mDoMemCd_Ctrl_cFv)
+/* 801F25AC-801F260C 1ECEEC 0060+00 1/0 0/0 0/0 .text memCardMakeGameFile__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2253,12 +2050,7 @@ asm void dMenu_save_c::memCardMakeGameFile() {
 }
 #pragma pop
 
-/* 801F260C-801F2698 008C+00 s=1 e=0 z=0  None .text      memCardMakeGameFileWait__12dMenu_save_cFv
- */
-//	801F2648: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
-//	801F2660: 804061C0 (g_dComIfG_gameInfo)
-//	801F2664: 804061C0 (g_dComIfG_gameInfo)
-//	801F2678: 801F50C4 (errorTxtSet__12dMenu_save_cFUs)
+/* 801F260C-801F2698 1ECF4C 008C+00 1/0 0/0 0/0 .text memCardMakeGameFileWait__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2268,10 +2060,8 @@ asm void dMenu_save_c::memCardMakeGameFileWait() {
 }
 #pragma pop
 
-/* 801F2698-801F2708 0070+00 s=1 e=0 z=0  None .text      memCardCommandEnd__12dMenu_save_cFv */
-//	801F26AC: 801F5190 (errorTxtChangeAnm__12dMenu_save_cFv)
-//	801F26BC: 803A2180 (__ptmf_null)
-//	801F26C0: 803A2180 (__ptmf_null)
+/* 801F2698-801F2708 1ECFD8 0070+00 1/0 0/0 0/0 .text            memCardCommandEnd__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2281,14 +2071,7 @@ asm void dMenu_save_c::memCardCommandEnd() {
 }
 #pragma pop
 
-/* 801F2708-801F27CC 00C4+00 s=1 e=0 z=0  None .text      memCardCommandEnd2__12dMenu_save_cFv */
-//	801F2718: 803621DC (_savegpr_29)
-//	801F2720: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F272C: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F2738: 801F6120 (modoruTxtDispAnm__12dMenu_save_cFv)
-//	801F277C: 803A2180 (__ptmf_null)
-//	801F2780: 803A2180 (__ptmf_null)
-//	801F27B8: 80362228 (_restgpr_29)
+/* 801F2708-801F27CC 1ED048 00C4+00 1/0 0/0 0/0 .text memCardCommandEnd2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2298,11 +2081,7 @@ asm void dMenu_save_c::memCardCommandEnd2() {
 }
 #pragma pop
 
-/* 801F27CC-801F2840 0074+00 s=1 e=0 z=0  None .text      memCardDataLoadWait__12dMenu_save_cFv */
-//	801F27E0: 803EAF40 (g_mDoMemCd_control)
-//	801F27E4: 803EAF40 (g_mDoMemCd_control)
-//	801F27F4: 80016AB0 (LoadSync__15mDoMemCd_Ctrl_cFPvUlUl)
-//	801F2828: 801F5278 (saveSelectOpenInit__12dMenu_save_cFv)
+/* 801F27CC-801F2840 1ED10C 0074+00 1/0 0/0 0/0 .text memCardDataLoadWait__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2312,20 +2091,7 @@ asm void dMenu_save_c::memCardDataLoadWait() {
 }
 #pragma pop
 
-/* 801F2840-801F28E4 00A4+00 s=2 e=0 z=0  None .text      dataWrite__12dMenu_save_cFv */
-//	801F2850: 803621DC (_savegpr_29)
-//	801F2858: 804061C0 (g_dComIfG_gameInfo)
-//	801F285C: 804061C0 (g_dComIfG_gameInfo)
-//	801F2878: 804061C0 (g_dComIfG_gameInfo)
-//	801F287C: 804061C0 (g_dComIfG_gameInfo)
-//	801F2880: 800350F0 (putSave__10dSv_info_cFi)
-//	801F2884: 804061C0 (g_dComIfG_gameInfo)
-//	801F2888: 804061C0 (g_dComIfG_gameInfo)
-//	801F2894: 80035798 (memory_to_card__10dSv_info_cFPci)
-//	801F28A0: 80017D38 (mDoMemCdRWm_SetCheckSumGameData__FPUcUc)
-//	801F28B0: 80017CEC (mDoMemCdRWm_TestCheckSumGameData__FPv)
-//	801F28C8: 801F67B8 (dataSave__12dMenu_save_cFv)
-//	801F28D0: 80362228 (_restgpr_29)
+/* 801F2840-801F28E4 1ED180 00A4+00 2/2 0/0 0/0 .text            dataWrite__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2335,17 +2101,7 @@ asm void dMenu_save_c::dataWrite() {
 }
 #pragma pop
 
-/* 801F28E4-801F298C 00A8+00 s=1 e=0 z=0  None .text      memCardDataSaveWait__12dMenu_save_cFv */
-//	801F2900: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2914: 80454458 (lit_4179)
-//	801F291C: 80454478 (lit_4879)
-//	801F2928: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2940: 803EAF40 (g_mDoMemCd_control)
-//	801F2944: 803EAF40 (g_mDoMemCd_control)
-//	801F2948: 80016CE0 (SaveSync__15mDoMemCd_Ctrl_cFv)
-//	801F295C: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F2960: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F296C: 8036687C (printf)
+/* 801F28E4-801F298C 1ED224 00A8+00 1/0 0/0 0/0 .text memCardDataSaveWait__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2355,33 +2111,7 @@ asm void dMenu_save_c::memCardDataSaveWait() {
 }
 #pragma pop
 
-/* 801F298C-801F2B5C 01D0+00 s=1 e=0 z=0  None .text      memCardDataSaveWait2__12dMenu_save_cFv */
-//	801F29B4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F29C8: 80454458 (lit_4179)
-//	801F29D0: 80454478 (lit_4879)
-//	801F29DC: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2A04: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2A18: 80454458 (lit_4179)
-//	801F2A20: 80454478 (lit_4879)
-//	801F2A2C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2A34: 804061C0 (g_dComIfG_gameInfo)
-//	801F2A38: 804061C0 (g_dComIfG_gameInfo)
-//	801F2A64: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F2A6C: 8019210C (closeInit__15dFile_warning_cFv)
-//	801F2A78: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F2A90: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F2A98: 8019210C (closeInit__15dFile_warning_cFv)
-//	801F2AB4: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F2AC0: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F2AD0: 801F67F0 (setSaveData__12dMenu_save_cFv)
-//	801F2AE8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2AFC: 80454458 (lit_4179)
-//	801F2B04: 80454478 (lit_4879)
-//	801F2B10: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2B1C: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F2B24: 8019210C (closeInit__15dFile_warning_cFv)
-//	801F2B30: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F2B3C: 801F60A4 (modoruTxtDispAnmInit__12dMenu_save_cFUc)
+/* 801F298C-801F2B5C 1ED2CC 01D0+00 1/0 0/0 0/0 .text memCardDataSaveWait2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2391,13 +2121,8 @@ asm void dMenu_save_c::memCardDataSaveWait2() {
 }
 #pragma pop
 
-/* 801F2B5C-801F2BF8 009C+00 s=1 e=0 z=0  None .text      gameContinueDisp__12dMenu_save_cFv */
-//	801F2B6C: 803621DC (_savegpr_29)
-//	801F2B74: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F2B80: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F2B8C: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F2BD4: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F2BE4: 80362228 (_restgpr_29)
+/* 801F2B5C-801F2BF8 1ED49C 009C+00 1/0 0/0 0/0 .text            gameContinueDisp__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2407,23 +2132,7 @@ asm void dMenu_save_c::gameContinueDisp() {
 }
 #pragma pop
 
-/* 801F2BF8-801F2D78 0180+00 s=1 e=0 z=0  None .text      gameContinue__12dMenu_save_cFv */
-//	801F2C14: 801F4E48 (errYesNoSelect__12dMenu_save_cFUcUc)
-//	801F2C34: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2C48: 80454458 (lit_4179)
-//	801F2C50: 80454478 (lit_4879)
-//	801F2C5C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2C8C: 80430188 (g_meter2_info)
-//	801F2C90: 80430188 (g_meter2_info)
-//	801F2CA0: 8021DE18 (setMiniGameItem__13dMeter2Info_cFUc)
-//	801F2CA8: 80454448 (lit_4175)
-//	801F2CAC: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F2CC8: 801F1BF8 (closeSelect2__12dMenu_save_cFv)
-//	801F2CE4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2CF8: 80454458 (lit_4179)
-//	801F2D00: 80454478 (lit_4879)
-//	801F2D0C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F2D4C: 801F1BF8 (closeSelect2__12dMenu_save_cFv)
+/* 801F2BF8-801F2D78 1ED538 0180+00 1/0 0/0 0/0 .text            gameContinue__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2433,8 +2142,7 @@ asm void dMenu_save_c::gameContinue() {
 }
 #pragma pop
 
-/* 801F2D78-801F2DA0 0028+00 s=1 e=0 z=0  None .text      gameContinue2__12dMenu_save_cFv */
-//	801F2D94: 80450C78 (mResetData__6mDoRst)
+/* 801F2D78-801F2DA0 1ED6B8 0028+00 1/0 0/0 0/0 .text            gameContinue2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2444,7 +2152,7 @@ asm void dMenu_save_c::gameContinue2() {
 }
 #pragma pop
 
-/* 801F2DA0-801F2DD4 0034+00 s=1 e=0 z=0  None .text      gameContinue3__12dMenu_save_cFv */
+/* 801F2DA0-801F2DD4 1ED6E0 0034+00 1/0 0/0 0/0 .text            gameContinue3__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2454,11 +2162,7 @@ asm void dMenu_save_c::gameContinue3() {
 }
 #pragma pop
 
-/* 801F2DD4-801F2E88 00B4+00 s=1 e=0 z=0  None .text      saveEnd__12dMenu_save_cFv */
-//	801F2DEC: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F2DF8: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F2E48: 801F1BF8 (closeSelect2__12dMenu_save_cFv)
-//	801F2E5C: 801F30B8 (restartInit__12dMenu_save_cFv)
+/* 801F2DD4-801F2E88 1ED714 00B4+00 1/0 0/0 0/0 .text            saveEnd__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2468,9 +2172,7 @@ asm void dMenu_save_c::saveEnd() {
 }
 #pragma pop
 
-/* 801F2E88-801F2F08 0080+00 s=1 e=0 z=0  None .text      endingNoSave__12dMenu_save_cFv */
-//	801F2E9C: 801F328C (YesNoSelect__12dMenu_save_cFv)
-//	801F2EE8: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F2E88-801F2F08 1ED7C8 0080+00 1/0 0/0 0/0 .text            endingNoSave__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2480,7 +2182,7 @@ asm void dMenu_save_c::endingNoSave() {
 }
 #pragma pop
 
-/* 801F2F08-801F2F38 0030+00 s=1 e=0 z=0  None .text      endingNoSave2__12dMenu_save_cFv */
+/* 801F2F08-801F2F38 1ED848 0030+00 1/0 0/0 0/0 .text            endingNoSave2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2490,7 +2192,8 @@ asm void dMenu_save_c::endingNoSave2() {
 }
 #pragma pop
 
-/* 801F2F38-801F2F4C 0014+00 s=1 e=0 z=0  None .text      endingDataCheck__12dMenu_save_cFv */
+/* 801F2F38-801F2F4C 1ED878 0014+00 1/0 0/0 0/0 .text            endingDataCheck__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2500,10 +2203,7 @@ asm void dMenu_save_c::endingDataCheck() {
 }
 #pragma pop
 
-/* 801F2F4C-801F2FB4 0068+00 s=1 e=0 z=0  None .text      retryQuestion0__12dMenu_save_cFv */
-//	801F2F60: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F2F70: 802B3EAC (checkBgmIDPlaying__8Z2SeqMgrFUl)
-//	801F2F94: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F2F4C-801F2FB4 1ED88C 0068+00 1/0 0/0 0/0 .text            retryQuestion0__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2513,10 +2213,7 @@ asm void dMenu_save_c::retryQuestion0() {
 }
 #pragma pop
 
-/* 801F2FB4-801F3040 008C+00 s=1 e=0 z=0  None .text      retryQuestion1__12dMenu_save_cFv */
-//	801F2FC8: 801F328C (YesNoSelect__12dMenu_save_cFv)
-//	801F2FEC: 801F30B8 (restartInit__12dMenu_save_cFv)
-//	801F3020: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F2FB4-801F3040 1ED8F4 008C+00 1/0 0/0 0/0 .text            retryQuestion1__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2526,9 +2223,7 @@ asm void dMenu_save_c::retryQuestion1() {
 }
 #pragma pop
 
-/* 801F3040-801F30B8 0078+00 s=1 e=0 z=0  None .text      retryQuestion2__12dMenu_save_cFv */
-//	801F3054: 801F328C (YesNoSelect__12dMenu_save_cFv)
-//	801F3098: 801F34BC (msgTxtSet__12dMenu_save_cFUsb)
+/* 801F3040-801F30B8 1ED980 0078+00 1/0 0/0 0/0 .text            retryQuestion2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2538,32 +2233,7 @@ asm void dMenu_save_c::retryQuestion2() {
 }
 #pragma pop
 
-/* 801F30B8-801F31B0 00F8+00 s=2 e=0 z=0  None .text      restartInit__12dMenu_save_cFv */
-//	801F30C8: 804061C0 (g_dComIfG_gameInfo)
-//	801F30CC: 804061C0 (g_dComIfG_gameInfo)
-//	801F30D8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F30DC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F30E4: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	801F30F4: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F30F8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F3100: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	801F3108: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F310C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801F3114: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	801F3118: 804061C0 (g_dComIfG_gameInfo)
-//	801F311C: 804061C0 (g_dComIfG_gameInfo)
-//	801F3128: 80033EC8 (isFirstBit__21dSv_player_get_item_cCFUc)
-//	801F3134: 804061C0 (g_dComIfG_gameInfo)
-//	801F3138: 804061C0 (g_dComIfG_gameInfo)
-//	801F314C: 80033030 (getItem__17dSv_player_item_cCFib)
-//	801F3168: 80032FB8 (setItem__17dSv_player_item_cFiUc)
-//	801F316C: 80430188 (g_meter2_info)
-//	801F3170: 80430188 (g_meter2_info)
-//	801F3178: 804061C0 (g_dComIfG_gameInfo)
-//	801F317C: 804061C0 (g_dComIfG_gameInfo)
-//	801F3184: 80430188 (g_meter2_info)
-//	801F3188: 80430188 (g_meter2_info)
-//	801F3198: 8021DE18 (setMiniGameItem__13dMeter2Info_cFUc)
+/* 801F30B8-801F31B0 1ED9F8 00F8+00 2/2 0/0 0/0 .text            restartInit__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2573,15 +2243,12 @@ asm void dMenu_save_c::restartInit() {
 }
 #pragma pop
 
-/* 801F31B0-801F31B4 0004+00 s=1 e=0 z=0  None .text      saveWait__12dMenu_save_cFv */
+/* 801F31B0-801F31B4 1EDAF0 0004+00 1/0 0/0 0/0 .text            saveWait__12dMenu_save_cFv */
 void dMenu_save_c::saveWait() {
     /* empty function */
 }
 
-/* 801F31B4-801F328C 00D8+00 s=1 e=0 z=0  None .text      messageChange__12dMenu_save_cFv */
-//	801F3208: 8023D7D8 (move__17dMsgScrnExplain_cFv)
-//	801F3238: 8023E558 (openExplain__17dMsgScrnExplain_cFUlUcUcUcb)
-//	801F3260: 8023E558 (openExplain__17dMsgScrnExplain_cFUlUcUcUcb)
+/* 801F31B4-801F328C 1EDAF4 00D8+00 1/0 0/0 0/0 .text            messageChange__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2591,28 +2258,7 @@ asm void dMenu_save_c::messageChange() {
 }
 #pragma pop
 
-/* 801F328C-801F34BC 0230+00 s=4 e=0 z=0  None .text      YesNoSelect__12dMenu_save_cFv */
-//	801F32A8: 80450C78 (mResetData__6mDoRst)
-//	801F3328: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F333C: 80454458 (lit_4179)
-//	801F3344: 80454478 (lit_4879)
-//	801F3350: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F3368: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F337C: 80454458 (lit_4179)
-//	801F3384: 80454478 (lit_4879)
-//	801F3390: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F33A0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F33B4: 80454458 (lit_4179)
-//	801F33BC: 80454478 (lit_4879)
-//	801F33C8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F33D8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F33EC: 80454458 (lit_4179)
-//	801F33F4: 80454478 (lit_4879)
-//	801F3400: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F3410: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F3424: 80454458 (lit_4179)
-//	801F342C: 80454478 (lit_4879)
-//	801F3438: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 801F328C-801F34BC 1EDBCC 0230+00 4/4 0/0 0/0 .text            YesNoSelect__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2622,11 +2268,7 @@ asm void dMenu_save_c::YesNoSelect() {
 }
 #pragma pop
 
-/* 801F34BC-801F3588 00CC+00 s=8 e=0 z=0  None .text      msgTxtSet__12dMenu_save_cFUsb */
-//	801F34CC: 803621DC (_savegpr_29)
-//	801F3520: 8023E558 (openExplain__17dMsgScrnExplain_cFUlUcUcUcb)
-//	801F3544: 8023E558 (openExplain__17dMsgScrnExplain_cFUlUcUcUcb)
-//	801F3574: 80362228 (_restgpr_29)
+/* 801F34BC-801F3588 1EDDFC 00CC+00 8/8 0/0 0/0 .text            msgTxtSet__12dMenu_save_cFUsb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2636,19 +2278,7 @@ asm void dMenu_save_c::msgTxtSet(u16 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 801F3588-801F36B4 012C+00 s=1 e=0 z=0  None .text      openSaveSelect__12dMenu_save_cFv */
-//	801F3598: 803621D8 (_savegpr_28)
-//	801F35A0: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F35C8: 801F53D4 (selectDataBaseMoveAnm__12dMenu_save_cFv)
-//	801F35F0: 801F5F84 (errorMoveAnm__12dMenu_save_cFv)
-//	801F3618: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F3654: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F365C: 801F54C0 (saveSelectOpenAnmSet__12dMenu_save_cFv)
-//	801F3668: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F367C: 80454458 (lit_4179)
-//	801F3684: 80454478 (lit_4879)
-//	801F3690: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F36A0: 80362224 (_restgpr_28)
+/* 801F3588-801F36B4 1EDEC8 012C+00 1/0 0/0 0/0 .text            openSaveSelect__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2658,15 +2288,8 @@ asm void dMenu_save_c::openSaveSelect() {
 }
 #pragma pop
 
-/* 801F36B4-801F37A0 00EC+00 s=1 e=0 z=0  None .text      openSaveSelect2__12dMenu_save_cFv */
-//	801F36CC: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F36D8: 801F53D4 (selectDataBaseMoveAnm__12dMenu_save_cFv)
-//	801F36FC: 801F60A4 (modoruTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F3700: 804061C0 (g_dComIfG_gameInfo)
-//	801F3704: 804061C0 (g_dComIfG_gameInfo)
-//	801F3760: 803BDF84 (SelStartFrameTbl)
-//	801F3764: 803BDF84 (SelStartFrameTbl)
-//	801F377C: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
+/* 801F36B4-801F37A0 1EDFF4 00EC+00 1/0 0/0 0/0 .text            openSaveSelect2__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2676,19 +2299,8 @@ asm void dMenu_save_c::openSaveSelect2() {
 }
 #pragma pop
 
-/* 801F37A0-801F3934 0194+00 s=1 e=0 z=0  None .text      openSaveSelect3__12dMenu_save_cFv */
-//	801F37B0: 803621D4 (_savegpr_27)
-//	801F37B8: 801F6120 (modoruTxtDispAnm__12dMenu_save_cFv)
-//	801F37E4: 8042E84C (g_msHIO)
-//	801F37E8: 8042E84C (g_msHIO)
-//	801F37FC: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F3808: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F3820: 803BDF90 (SelEndFrameTbl)
-//	801F3824: 803BDF90 (SelEndFrameTbl)
-//	801F386C: 80454470 (lit_4185)
-//	801F38A4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F3910: 801F6458 (selFileCursorShow__12dMenu_save_cFv)
-//	801F3920: 80362220 (_restgpr_27)
+/* 801F37A0-801F3934 1EE0E0 0194+00 1/0 0/0 0/0 .text            openSaveSelect3__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2698,25 +2310,7 @@ asm void dMenu_save_c::openSaveSelect3() {
 }
 #pragma pop
 
-/* 801F3934-801F3A94 0160+00 s=1 e=0 z=0  None .text      saveSelect__12dMenu_save_cFv */
-//	801F3948: 80450C78 (mResetData__6mDoRst)
-//	801F395C: 8003219C (checkTrigger__9STControlFv)
-//	801F3960: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F3964: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F3978: 801F3A94 (saveSelectStart__12dMenu_save_cFv)
-//	801F398C: 801F1B38 (closeSelect__12dMenu_save_cFv)
-//	801F3998: 80032524 (checkUpTrigger__9STControlFv)
-//	801F39B8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F39CC: 80454458 (lit_4179)
-//	801F39D4: 80454478 (lit_4879)
-//	801F39E0: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F39FC: 801F3C7C (dataSelectAnmSet__12dMenu_save_cFv)
-//	801F3A10: 800325A0 (checkDownTrigger__9STControlFv)
-//	801F3A30: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F3A44: 80454458 (lit_4179)
-//	801F3A4C: 80454478 (lit_4879)
-//	801F3A58: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F3A74: 801F3C7C (dataSelectAnmSet__12dMenu_save_cFv)
+/* 801F3934-801F3A94 1EE274 0160+00 1/0 0/0 0/0 .text            saveSelect__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2726,30 +2320,8 @@ asm void dMenu_save_c::saveSelect() {
 }
 #pragma pop
 
-/* 801F3A94-801F3BE0 014C+00 s=1 e=0 z=0  None .text      saveSelectStart__12dMenu_save_cFv */
-//	801F3AA4: 803621DC (_savegpr_29)
-//	801F3AB4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F3AC8: 80454458 (lit_4179)
-//	801F3AD0: 80454478 (lit_4879)
-//	801F3ADC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F3AEC: 803BDF9C (SelOpenStartFrameTbl)
-//	801F3AF0: 803BDF9C (SelOpenStartFrameTbl)
-//	801F3AF8: 803BDFA8 (SelOpenEndFrameTbl)
-//	801F3AFC: 803BDFA8 (SelOpenEndFrameTbl)
-//	801F3B04: 801F5508 (selectDataMoveAnmInitSet__12dMenu_save_cFii)
-//	801F3B0C: 80454448 (lit_4175)
-//	801F3B10: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F3B24: 8042E84C (g_msHIO)
-//	801F3B28: 8042E84C (g_msHIO)
-//	801F3B30: 801F6354 (selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc)
-//	801F3B54: 80017CEC (mDoMemCdRWm_TestCheckSumGameData__FPv)
-//	801F3B70: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F3B78: 801920B8 (openInit__15dFile_warning_cFv)
-//	801F3B84: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F3B90: 801F60A4 (modoruTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F3BB0: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F3BBC: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F3BCC: 80362228 (_restgpr_29)
+/* 801F3A94-801F3BE0 1EE3D4 014C+00 1/1 0/0 0/0 .text            saveSelectStart__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2759,14 +2331,7 @@ asm void dMenu_save_c::saveSelectStart() {
 }
 #pragma pop
 
-/* 801F3BE0-801F3C7C 009C+00 s=1 e=0 z=0  None .text      selectDataOpenMove__12dMenu_save_cFv */
-//	801F3BF0: 803621D8 (_savegpr_28)
-//	801F3BF8: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F3C04: 801F5600 (selectDataMoveAnm__12dMenu_save_cFv)
-//	801F3C10: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F3C20: 801F6390 (selectWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F3C58: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F3C68: 80362224 (_restgpr_28)
+/* 801F3BE0-801F3C7C 1EE520 009C+00 1/0 0/0 0/0 .text selectDataOpenMove__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2776,20 +2341,8 @@ asm void dMenu_save_c::selectDataOpenMove() {
 }
 #pragma pop
 
-/* 801F3C7C-801F3E30 01B4+00 s=1 e=0 z=0  None .text      dataSelectAnmSet__12dMenu_save_cFv */
-//	801F3CC8: 803BDF84 (SelStartFrameTbl)
-//	801F3CCC: 803BDF84 (SelStartFrameTbl)
-//	801F3CEC: 80454470 (lit_4185)
-//	801F3D24: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F3D58: 8042E84C (g_msHIO)
-//	801F3D5C: 8042E84C (g_msHIO)
-//	801F3D64: 801F6354 (selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc)
-//	801F3D98: 803BDF90 (SelEndFrameTbl)
-//	801F3D9C: 803BDF90 (SelEndFrameTbl)
-//	801F3DBC: 80454470 (lit_4185)
-//	801F3DF4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F3E14: 80454448 (lit_4175)
-//	801F3E18: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
+/* 801F3C7C-801F3E30 1EE5BC 01B4+00 1/1 0/0 0/0 .text            dataSelectAnmSet__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2799,25 +2352,7 @@ asm void dMenu_save_c::dataSelectAnmSet() {
 }
 #pragma pop
 
-/* 801F3E30-801F40D8 02A8+00 s=1 e=0 z=0  None .text      saveSelectMoveAnime__12dMenu_save_cFv */
-//	801F3E40: 803621D0 (_savegpr_26)
-//	801F3E6C: 8042E84C (g_msHIO)
-//	801F3E70: 8042E84C (g_msHIO)
-//	801F3E84: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F3E94: 801F6390 (selectWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F3EAC: 803BDF84 (SelStartFrameTbl)
-//	801F3EB0: 803BDF84 (SelStartFrameTbl)
-//	801F3EF8: 80454470 (lit_4185)
-//	801F3F30: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F3F58: 8042E84C (g_msHIO)
-//	801F3F5C: 8042E84C (g_msHIO)
-//	801F3F70: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F3F88: 803BDF90 (SelEndFrameTbl)
-//	801F3F8C: 803BDF90 (SelEndFrameTbl)
-//	801F3FD4: 80454470 (lit_4185)
-//	801F400C: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F4084: 801F6458 (selFileCursorShow__12dMenu_save_cFv)
-//	801F40C4: 8036221C (_restgpr_26)
+/* 801F3E30-801F40D8 1EE770 02A8+00 1/0 0/0 0/0 .text saveSelectMoveAnime__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2827,25 +2362,8 @@ asm void dMenu_save_c::saveSelectMoveAnime() {
 }
 #pragma pop
 
-/* 801F40D8-801F4238 0160+00 s=1 e=0 z=0  None .text      saveYesNoSelect__12dMenu_save_cFv */
-//	801F40EC: 80450C78 (mResetData__6mDoRst)
-//	801F4100: 8003219C (checkTrigger__9STControlFv)
-//	801F4104: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F4108: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F411C: 801F4238 (yesnoSelectStart__12dMenu_save_cFv)
-//	801F4130: 801F4724 (yesnoCancelAnmSet__12dMenu_save_cFv)
-//	801F413C: 800324A8 (checkRightTrigger__9STControlFv)
-//	801F415C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4170: 80454458 (lit_4179)
-//	801F4178: 80454478 (lit_4879)
-//	801F4184: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F41A0: 801F4510 (yesnoSelectAnmSet__12dMenu_save_cFUc)
-//	801F41B4: 8003242C (checkLeftTrigger__9STControlFv)
-//	801F41D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F41E8: 80454458 (lit_4179)
-//	801F41F0: 80454478 (lit_4879)
-//	801F41FC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4218: 801F4510 (yesnoSelectAnmSet__12dMenu_save_cFUc)
+/* 801F40D8-801F4238 1EEA18 0160+00 1/0 0/0 0/0 .text            saveYesNoSelect__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2855,19 +2373,8 @@ asm void dMenu_save_c::saveYesNoSelect() {
 }
 #pragma pop
 
-/* 801F4238-801F42FC 00C4+00 s=1 e=0 z=0  None .text      yesnoSelectStart__12dMenu_save_cFv */
-//	801F4260: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4274: 80454458 (lit_4179)
-//	801F427C: 80454478 (lit_4879)
-//	801F4288: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4290: 80454448 (lit_4175)
-//	801F4294: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F42A8: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F42B4: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F42BC: 801920B8 (openInit__15dFile_warning_cFv)
-//	801F42C8: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F42D4: 801F60A4 (modoruTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F42E4: 801F4724 (yesnoCancelAnmSet__12dMenu_save_cFv)
+/* 801F4238-801F42FC 1EEB78 00C4+00 1/1 0/0 0/0 .text            yesnoSelectStart__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2877,20 +2384,7 @@ asm void dMenu_save_c::yesnoSelectStart() {
 }
 #pragma pop
 
-/* 801F42FC-801F43F8 00FC+00 s=1 e=0 z=0  None .text      saveMoveDisp__12dMenu_save_cFv */
-//	801F430C: 803621D8 (_savegpr_28)
-//	801F431C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4330: 80454458 (lit_4179)
-//	801F4338: 80454478 (lit_4879)
-//	801F4344: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F434C: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F4358: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F4364: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F4370: 801F6120 (modoruTxtDispAnm__12dMenu_save_cFv)
-//	801F43C0: 8042E84C (g_msHIO)
-//	801F43C4: 8042E84C (g_msHIO)
-//	801F43D4: 801F2840 (dataWrite__12dMenu_save_cFv)
-//	801F43E4: 80362224 (_restgpr_28)
+/* 801F42FC-801F43F8 1EEC3C 00FC+00 1/0 0/0 0/0 .text            saveMoveDisp__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2900,21 +2394,7 @@ asm void dMenu_save_c::saveMoveDisp() {
 }
 #pragma pop
 
-/* 801F43F8-801F4510 0118+00 s=1 e=0 z=0  None .text      saveMoveDisp2__12dMenu_save_cFv */
-//	801F4408: 803621D4 (_savegpr_27)
-//	801F4418: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F442C: 80454458 (lit_4179)
-//	801F4434: 80454478 (lit_4879)
-//	801F4440: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4448: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F4454: 801F5600 (selectDataMoveAnm__12dMenu_save_cFv)
-//	801F4464: 801F6390 (selectWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F4470: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F447C: 801F6120 (modoruTxtDispAnm__12dMenu_save_cFv)
-//	801F44D8: 8042E84C (g_msHIO)
-//	801F44DC: 8042E84C (g_msHIO)
-//	801F44EC: 801F2840 (dataWrite__12dMenu_save_cFv)
-//	801F44FC: 80362220 (_restgpr_27)
+/* 801F43F8-801F4510 1EED38 0118+00 1/0 0/0 0/0 .text            saveMoveDisp2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2924,20 +2404,7 @@ asm void dMenu_save_c::saveMoveDisp2() {
 }
 #pragma pop
 
-/* 801F4510-801F46B4 01A4+00 s=4 e=0 z=0  None .text      yesnoSelectAnmSet__12dMenu_save_cFUc */
-//	801F4540: 8042E84C (g_msHIO)
-//	801F4544: 8042E84C (g_msHIO)
-//	801F454C: 801F6608 (yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc)
-//	801F4580: 803BDFC4 (YnSelEndFrameTbl)
-//	801F4584: 803BDFC4 (YnSelEndFrameTbl)
-//	801F45B0: 80454470 (lit_4185)
-//	801F45E8: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F45F0: 80454448 (lit_4175)
-//	801F45F4: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F4630: 803BDFB4 (YnSelStartFrameTbl)
-//	801F4634: 803BDFB4 (YnSelStartFrameTbl)
-//	801F4660: 80454470 (lit_4185)
-//	801F4698: 802F7FCC (animationTransform__7J2DPaneFv)
+/* 801F4510-801F46B4 1EEE50 01A4+00 4/4 0/0 0/0 .text yesnoSelectAnmSet__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2947,10 +2414,7 @@ asm void dMenu_save_c::yesnoSelectAnmSet(u8 param_0) {
 }
 #pragma pop
 
-/* 801F46B4-801F4724 0070+00 s=1 e=0 z=0  None .text      yesNoCursorMoveAnm__12dMenu_save_cFv */
-//	801F46D0: 801F5AE4 (yesnoSelectMoveAnm__12dMenu_save_cFUc)
-//	801F46E0: 801F6654 (yesnoWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F4700: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
+/* 801F46B4-801F4724 1EEFF4 0070+00 1/0 0/0 0/0 .text yesNoCursorMoveAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2960,20 +2424,8 @@ asm void dMenu_save_c::yesNoCursorMoveAnm() {
 }
 #pragma pop
 
-/* 801F4724-801F47DC 00B8+00 s=2 e=0 z=0  None .text      yesnoCancelAnmSet__12dMenu_save_cFv */
-//	801F4740: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4754: 80454458 (lit_4179)
-//	801F475C: 80454478 (lit_4879)
-//	801F4768: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4770: 80454448 (lit_4175)
-//	801F4774: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F4780: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F4790: 803BDFA8 (SelOpenEndFrameTbl)
-//	801F4794: 803BDFA8 (SelOpenEndFrameTbl)
-//	801F479C: 803BDF9C (SelOpenStartFrameTbl)
-//	801F47A0: 803BDF9C (SelOpenStartFrameTbl)
-//	801F47A8: 801F5508 (selectDataMoveAnmInitSet__12dMenu_save_cFii)
-//	801F47BC: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
+/* 801F4724-801F47DC 1EF064 00B8+00 2/2 0/0 0/0 .text            yesnoCancelAnmSet__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2983,13 +2435,7 @@ asm void dMenu_save_c::yesnoCancelAnmSet() {
 }
 #pragma pop
 
-/* 801F47DC-801F485C 0080+00 s=1 e=0 z=0  None .text      saveYesNoCancelMove__12dMenu_save_cFv */
-//	801F47EC: 803621DC (_savegpr_29)
-//	801F47F4: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F4800: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F480C: 801F5600 (selectDataMoveAnm__12dMenu_save_cFv)
-//	801F4838: 801F6458 (selFileCursorShow__12dMenu_save_cFv)
-//	801F4848: 80362228 (_restgpr_29)
+/* 801F47DC-801F485C 1EF11C 0080+00 1/0 0/0 0/0 .text saveYesNoCancelMove__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2999,10 +2445,7 @@ asm void dMenu_save_c::saveYesNoCancelMove() {
 }
 #pragma pop
 
-/* 801F485C-801F4928 00CC+00 s=7 e=0 z=0  None .text      headerTxtSet__12dMenu_save_cFUs */
-//	801F4890: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F4894: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F489C: 80368B2C (strcpy)
+/* 801F485C-801F4928 1EF19C 00CC+00 7/7 0/0 0/0 .text            headerTxtSet__12dMenu_save_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3012,15 +2455,7 @@ asm void dMenu_save_c::headerTxtSet(u16 param_0) {
 }
 #pragma pop
 
-/* 801F4928-801F4A10 00E8+00 s=10 e=0 z=0  None .text      headerTxtChangeAnm__12dMenu_save_cFv */
-//	801F4938: 803621D8 (_savegpr_28)
-//	801F4968: 8042E84C (g_msHIO)
-//	801F496C: 8042E84C (g_msHIO)
-//	801F4980: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F49AC: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F49B0: 80430188 (g_meter2_info)
-//	801F49B4: 80430188 (g_meter2_info)
-//	801F49FC: 80362224 (_restgpr_28)
+/* 801F4928-801F4A10 1EF268 00E8+00 10/10 0/0 0/0 .text headerTxtChangeAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3030,16 +2465,7 @@ asm void dMenu_save_c::headerTxtChangeAnm() {
 }
 #pragma pop
 
-/* 801F4A10-801F4B84 0174+00 s=1 e=0 z=0  None .text      errDispInitSet__12dMenu_save_cFi */
-//	801F4A30: 801F485C (headerTxtSet__12dMenu_save_cFUs)
-//	801F4AE0: 801F5EF4 (errorMoveAnmInitSet__12dMenu_save_cFii)
-//	801F4B08: 801F533C (selectDataBaseMoveAnmInitSet__12dMenu_save_cFii)
-//	801F4B34: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F4B40: 801F60A4 (modoruTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F4B4C: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F4B54: 80192160 (init__15dFile_warning_cFv)
-//	801F4B5C: 80454448 (lit_4175)
-//	801F4B60: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
+/* 801F4A10-801F4B84 1EF350 0174+00 1/1 0/0 0/0 .text            errDispInitSet__12dMenu_save_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3049,19 +2475,8 @@ asm void dMenu_save_c::errDispInitSet(int param_0) {
 }
 #pragma pop
 
-/* 801F4B84-801F4D10 018C+00 s=1 e=0 z=0  None .text      msgWindowInitOpen__12dMenu_save_cFv */
-//	801F4B94: 803621D0 (_savegpr_26)
-//	801F4BAC: 801F4928 (headerTxtChangeAnm__12dMenu_save_cFv)
-//	801F4BDC: 801F53D4 (selectDataBaseMoveAnm__12dMenu_save_cFv)
-//	801F4C00: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F4C24: 801F5F84 (errorMoveAnm__12dMenu_save_cFv)
-//	801F4C30: 801F6120 (modoruTxtDispAnm__12dMenu_save_cFv)
-//	801F4C3C: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F4CA8: 801F5EF4 (errorMoveAnmInitSet__12dMenu_save_cFii)
-//	801F4CC8: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F4CD4: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F4CE4: 801F61FC (ketteiTxtDispAnmInit__12dMenu_save_cFUc)
-//	801F4CFC: 8036221C (_restgpr_26)
+/* 801F4B84-801F4D10 1EF4C4 018C+00 1/0 0/0 0/0 .text            msgWindowInitOpen__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3071,13 +2486,7 @@ asm void dMenu_save_c::msgWindowInitOpen() {
 }
 #pragma pop
 
-/* 801F4D10-801F4DAC 009C+00 s=1 e=0 z=0  None .text      msgWindowOpen__12dMenu_save_cFv */
-//	801F4D20: 803621DC (_savegpr_29)
-//	801F4D28: 801F5F84 (errorMoveAnm__12dMenu_save_cFv)
-//	801F4D44: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F4D50: 801F6278 (ketteiTxtDispAnm__12dMenu_save_cFv)
-//	801F4D88: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
-//	801F4D98: 80362228 (_restgpr_29)
+/* 801F4D10-801F4DAC 1EF650 009C+00 1/0 0/0 0/0 .text            msgWindowOpen__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3087,11 +2496,7 @@ asm void dMenu_save_c::msgWindowOpen() {
 }
 #pragma pop
 
-/* 801F4DAC-801F4E48 009C+00 s=1 e=0 z=0  None .text      msgWindowClose__12dMenu_save_cFv */
-//	801F4DC4: 801F5F84 (errorMoveAnm__12dMenu_save_cFv)
-//	801F4DE0: 801F58C8 (yesnoMenuMoveAnm__12dMenu_save_cFv)
-//	801F4E08: 80362018 (__ptmf_test)
-//	801F4E1C: 80362084 (__ptmf_scall)
+/* 801F4DAC-801F4E48 1EF6EC 009C+00 1/0 0/0 0/0 .text            msgWindowClose__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3101,27 +2506,8 @@ asm void dMenu_save_c::msgWindowClose() {
 }
 #pragma pop
 
-/* 801F4E48-801F4FB4 016C+00 s=6 e=0 z=0  None .text      errYesNoSelect__12dMenu_save_cFUcUc */
-//	801F4E58: 803621D8 (_savegpr_28)
-//	801F4E6C: 80450C78 (mResetData__6mDoRst)
-//	801F4E88: 8003219C (checkTrigger__9STControlFv)
-//	801F4E8C: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F4E90: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	801F4EBC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4ED0: 80454458 (lit_4179)
-//	801F4ED8: 80454478 (lit_4879)
-//	801F4EE4: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4EFC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F4F10: 80454458 (lit_4179)
-//	801F4F18: 80454478 (lit_4879)
-//	801F4F24: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F4F2C: 80454448 (lit_4175)
-//	801F4F30: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F4F40: 800324A8 (checkRightTrigger__9STControlFv)
-//	801F4F64: 801F4FB4 (errCurMove__12dMenu_save_cFUcUc)
-//	801F4F70: 8003242C (checkLeftTrigger__9STControlFv)
-//	801F4F94: 801F4FB4 (errCurMove__12dMenu_save_cFUcUc)
-//	801F4FA0: 80362224 (_restgpr_28)
+/* 801F4E48-801F4FB4 1EF788 016C+00 6/6 0/0 0/0 .text            errYesNoSelect__12dMenu_save_cFUcUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3131,12 +2517,7 @@ asm void dMenu_save_c::errYesNoSelect(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 801F4FB4-801F5054 00A0+00 s=1 e=0 z=0  None .text      errCurMove__12dMenu_save_cFUcUc */
-//	801F4FF4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	801F5008: 80454458 (lit_4179)
-//	801F5010: 80454478 (lit_4879)
-//	801F501C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	801F5028: 801F4510 (yesnoSelectAnmSet__12dMenu_save_cFUc)
+/* 801F4FB4-801F5054 1EF8F4 00A0+00 1/1 0/0 0/0 .text            errCurMove__12dMenu_save_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3146,10 +2527,7 @@ asm void dMenu_save_c::errCurMove(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 801F5054-801F50C4 0070+00 s=1 e=0 z=0  None .text      errYesNoCursorMoveAnm__12dMenu_save_cFv */
-//	801F5070: 801F5AE4 (yesnoSelectMoveAnm__12dMenu_save_cFUc)
-//	801F5080: 801F6654 (yesnoWakuAlpahAnm__12dMenu_save_cFUc)
-//	801F50A0: 801F5D84 (yesnoCursorShow__12dMenu_save_cFv)
+/* 801F5054-801F50C4 1EF994 0070+00 1/0 0/0 0/0 .text errYesNoCursorMoveAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3159,10 +2537,7 @@ asm void dMenu_save_c::errYesNoCursorMoveAnm() {
 }
 #pragma pop
 
-/* 801F50C4-801F5190 00CC+00 s=9 e=0 z=0  None .text      errorTxtSet__12dMenu_save_cFUs */
-//	801F50F8: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F50FC: 80397960 (d_menu_d_menu_save__stringBase0)
-//	801F5104: 80368B2C (strcpy)
+/* 801F50C4-801F5190 1EFA04 00CC+00 9/9 0/0 0/0 .text            errorTxtSet__12dMenu_save_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3172,15 +2547,8 @@ asm void dMenu_save_c::errorTxtSet(u16 param_0) {
 }
 #pragma pop
 
-/* 801F5190-801F5278 00E8+00 s=9 e=0 z=0  None .text      errorTxtChangeAnm__12dMenu_save_cFv */
-//	801F51A0: 803621D8 (_savegpr_28)
-//	801F51D0: 8042E84C (g_msHIO)
-//	801F51D4: 8042E84C (g_msHIO)
-//	801F51E8: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F5214: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F5218: 80430188 (g_meter2_info)
-//	801F521C: 80430188 (g_meter2_info)
-//	801F5264: 80362224 (_restgpr_28)
+/* 801F5190-801F5278 1EFAD0 00E8+00 9/9 0/0 0/0 .text            errorTxtChangeAnm__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3190,12 +2558,7 @@ asm void dMenu_save_c::errorTxtChangeAnm() {
 }
 #pragma pop
 
-/* 801F5278-801F533C 00C4+00 s=1 e=0 z=0  None .text      saveSelectOpenInit__12dMenu_save_cFv */
-//	801F52B0: 801F533C (selectDataBaseMoveAnmInitSet__12dMenu_save_cFii)
-//	801F52D8: 801F5EF4 (errorMoveAnmInitSet__12dMenu_save_cFii)
-//	801F52FC: 801F5744 (yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc)
-//	801F5304: 80192160 (init__15dFile_warning_cFv)
-//	801F5314: 801F485C (headerTxtSet__12dMenu_save_cFUs)
+/* 801F5278-801F533C 1EFBB8 00C4+00 1/1 0/0 0/0 .text saveSelectOpenInit__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3205,12 +2568,8 @@ asm void dMenu_save_c::saveSelectOpenInit() {
 }
 #pragma pop
 
-/* 801F533C-801F53D4 0098+00 s=3 e=0 z=0  None .text
+/* 801F533C-801F53D4 1EFC7C 0098+00 3/3 0/0 0/0 .text
  * selectDataBaseMoveAnmInitSet__12dMenu_save_cFii              */
-//	801F534C: 803621DC (_savegpr_29)
-//	801F5384: 80454470 (lit_4185)
-//	801F53B0: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F53C0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3220,9 +2579,7 @@ asm void dMenu_save_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 801F53D4-801F54C0 00EC+00 s=3 e=0 z=0  None .text      selectDataBaseMoveAnm__12dMenu_save_cFv */
-//	801F5434: 80454470 (lit_4185)
-//	801F5460: 802F7FCC (animationTransform__7J2DPaneFv)
+/* 801F53D4-801F54C0 1EFD14 00EC+00 3/3 0/0 0/0 .text selectDataBaseMoveAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3232,9 +2589,7 @@ asm void dMenu_save_c::selectDataBaseMoveAnm() {
 }
 #pragma pop
 
-/* 801F54C0-801F5508 0048+00 s=1 e=0 z=0  None .text      saveSelectOpenAnmSet__12dMenu_save_cFv */
-//	801F54D4: 801F67F0 (setSaveData__12dMenu_save_cFv)
-//	801F54F0: 801F533C (selectDataBaseMoveAnmInitSet__12dMenu_save_cFii)
+/* 801F54C0-801F5508 1EFE00 0048+00 1/1 0/0 0/0 .text saveSelectOpenAnmSet__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3244,14 +2599,8 @@ asm void dMenu_save_c::saveSelectOpenAnmSet() {
 }
 #pragma pop
 
-/* 801F5508-801F5600 00F8+00 s=2 e=0 z=0  None .text selectDataMoveAnmInitSet__12dMenu_save_cFii
+/* 801F5508-801F5600 1EFE48 00F8+00 2/2 0/0 0/0 .text selectDataMoveAnmInitSet__12dMenu_save_cFii
  */
-//	801F5518: 803621DC (_savegpr_29)
-//	801F55A0: 80454470 (lit_4185)
-//	801F55CC: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F55D8: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F55E4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F55EC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3261,11 +2610,8 @@ asm void dMenu_save_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 801F5600-801F5744 0144+00 s=3 e=0 z=0  None .text      selectDataMoveAnm__12dMenu_save_cFv */
-//	801F5610: 803621DC (_savegpr_29)
-//	801F569C: 80454470 (lit_4185)
-//	801F56D4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F5730: 80362228 (_restgpr_29)
+/* 801F5600-801F5744 1EFF40 0144+00 3/3 0/0 0/0 .text            selectDataMoveAnm__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3275,15 +2621,8 @@ asm void dMenu_save_c::selectDataMoveAnm() {
 }
 #pragma pop
 
-/* 801F5744-801F58C8 0184+00 s=12 e=0 z=0  None .text yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc
- */
-//	801F5754: 803621DC (_savegpr_29)
-//	801F5820: 80454448 (lit_4175)
-//	801F5824: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F586C: 80454470 (lit_4185)
-//	801F5898: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F58A4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F58B4: 80362228 (_restgpr_29)
+/* 801F5744-801F58C8 1F0084 0184+00 12/12 0/0 0/0 .text
+ * yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3293,10 +2632,7 @@ asm void dMenu_save_c::yesnoMenuMoveAnmInitSet(int param_0, int param_1, u8 para
 }
 #pragma pop
 
-/* 801F58C8-801F5AE4 021C+00 s=13 e=0 z=0  None .text      yesnoMenuMoveAnm__12dMenu_save_cFv */
-//	801F5930: 80454470 (lit_4185)
-//	801F595C: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F5968: 802F7FCC (animationTransform__7J2DPaneFv)
+/* 801F58C8-801F5AE4 1F0208 021C+00 13/13 0/0 0/0 .text yesnoMenuMoveAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3306,17 +2642,7 @@ asm void dMenu_save_c::yesnoMenuMoveAnm() {
 }
 #pragma pop
 
-/* 801F5AE4-801F5D84 02A0+00 s=4 e=0 z=0  None .text      yesnoSelectMoveAnm__12dMenu_save_cFUc */
-//	801F5AF4: 803621D8 (_savegpr_28)
-//	801F5B24: 803BDFB4 (YnSelStartFrameTbl)
-//	801F5B28: 803BDFB4 (YnSelStartFrameTbl)
-//	801F5BB8: 80454470 (lit_4185)
-//	801F5BF0: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F5C18: 803BDFC4 (YnSelEndFrameTbl)
-//	801F5C1C: 803BDFC4 (YnSelEndFrameTbl)
-//	801F5CAC: 80454470 (lit_4185)
-//	801F5CE4: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F5D70: 80362224 (_restgpr_28)
+/* 801F5AE4-801F5D84 1F0424 02A0+00 4/4 0/0 0/0 .text yesnoSelectMoveAnm__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3327,26 +2653,18 @@ asm void dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045447C-80454480 0004+00 s=1 e=0 z=0  None .sdata2    @6327 */
+/* 8045447C-80454480 002A7C 0004+00 1/1 0/0 0/0 .sdata2          @6327 */
 SECTION_SDATA2 static f32 lit_6327 = 21.0f / 25.0f;
 
-/* 80454480-80454488 0004+04 s=1 e=0 z=0  None .sdata2    @6328 */
+/* 80454480-80454488 002A80 0004+04 1/1 0/0 0/0 .sdata2          @6328 */
 SECTION_SDATA2 static f32 lit_6328[1 + 1 /* padding */] = {
     3.0f / 50.0f,
     /* padding */
     0.0f,
 };
 
-/* 801F5D84-801F5EF4 0170+00 s=9 e=0 z=0  None .text      yesnoCursorShow__12dMenu_save_cFv */
-//	801F5E74: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	801F5EB4: 801950F4 (setPos__16dSelect_cursor_cFffP7J2DPaneb)
-//	801F5EBC: 80454458 (lit_4179)
-//	801F5EC0: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F5EC8: 8045445C (lit_4180)
-//	801F5ECC: 8045447C (lit_6327)
-//	801F5ED0: 80454480 (lit_6328)
-//	801F5ED4: 8045443C (lit_3850)
-//	801F5EDC: 801951B0 (setParam__16dSelect_cursor_cFfffff)
+/* 801F5D84-801F5EF4 1F06C4 0170+00 9/9 0/0 0/0 .text            yesnoCursorShow__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3356,11 +2674,7 @@ asm void dMenu_save_c::yesnoCursorShow() {
 }
 #pragma pop
 
-/* 801F5EF4-801F5F84 0090+00 s=3 e=0 z=0  None .text      errorMoveAnmInitSet__12dMenu_save_cFii */
-//	801F5F04: 803621DC (_savegpr_29)
-//	801F5F38: 80454470 (lit_4185)
-//	801F5F60: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F5F70: 80362228 (_restgpr_29)
+/* 801F5EF4-801F5F84 1F0834 0090+00 3/3 0/0 0/0 .text errorMoveAnmInitSet__12dMenu_save_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3370,11 +2684,7 @@ asm void dMenu_save_c::errorMoveAnmInitSet(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 801F5F84-801F60A4 0120+00 s=4 e=0 z=0  None .text      errorMoveAnm__12dMenu_save_cFv */
-//	801F5FEC: 80454470 (lit_4185)
-//	801F6014: 802F7FCC (animationTransform__7J2DPaneFv)
-//	801F6020: 80454470 (lit_4185)
-//	801F6048: 802F7FCC (animationTransform__7J2DPaneFv)
+/* 801F5F84-801F60A4 1F08C4 0120+00 4/4 0/0 0/0 .text            errorMoveAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3384,9 +2694,7 @@ asm void dMenu_save_c::errorMoveAnm() {
 }
 #pragma pop
 
-/* 801F60A4-801F6120 007C+00 s=5 e=0 z=0  None .text      modoruTxtDispAnmInit__12dMenu_save_cFUc */
-//	801F60FC: 8042E84C (g_msHIO)
-//	801F6100: 8042E84C (g_msHIO)
+/* 801F60A4-801F6120 1F09E4 007C+00 5/5 0/0 0/0 .text modoruTxtDispAnmInit__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3396,17 +2704,8 @@ asm void dMenu_save_c::modoruTxtDispAnmInit(u8 param_0) {
 }
 #pragma pop
 
-/* 801F6120-801F61FC 00DC+00 s=5 e=0 z=0  None .text      modoruTxtDispAnm__12dMenu_save_cFv */
-//	801F6130: 803621DC (_savegpr_29)
-//	801F6148: 8042E84C (g_msHIO)
-//	801F614C: 8042E84C (g_msHIO)
-//	801F6160: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F617C: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6188: 8042E84C (g_msHIO)
-//	801F618C: 8042E84C (g_msHIO)
-//	801F61A0: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F61BC: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F61E8: 80362228 (_restgpr_29)
+/* 801F6120-801F61FC 1F0A60 00DC+00 5/5 0/0 0/0 .text            modoruTxtDispAnm__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3416,9 +2715,7 @@ asm void dMenu_save_c::modoruTxtDispAnm() {
 }
 #pragma pop
 
-/* 801F61FC-801F6278 007C+00 s=9 e=0 z=0  None .text      ketteiTxtDispAnmInit__12dMenu_save_cFUc */
-//	801F6254: 8042E84C (g_msHIO)
-//	801F6258: 8042E84C (g_msHIO)
+/* 801F61FC-801F6278 1F0B3C 007C+00 9/9 0/0 0/0 .text ketteiTxtDispAnmInit__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3428,17 +2725,7 @@ asm void dMenu_save_c::ketteiTxtDispAnmInit(u8 param_0) {
 }
 #pragma pop
 
-/* 801F6278-801F6354 00DC+00 s=11 e=0 z=0  None .text      ketteiTxtDispAnm__12dMenu_save_cFv */
-//	801F6288: 803621DC (_savegpr_29)
-//	801F62A0: 8042E84C (g_msHIO)
-//	801F62A4: 8042E84C (g_msHIO)
-//	801F62B8: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F62D4: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F62E0: 8042E84C (g_msHIO)
-//	801F62E4: 8042E84C (g_msHIO)
-//	801F62F8: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6314: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6340: 80362228 (_restgpr_29)
+/* 801F6278-801F6354 1F0BB8 00DC+00 11/11 0/0 0/0 .text ketteiTxtDispAnm__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3448,7 +2735,7 @@ asm void dMenu_save_c::ketteiTxtDispAnm() {
 }
 #pragma pop
 
-/* 801F6354-801F6390 003C+00 s=2 e=0 z=0  None .text
+/* 801F6354-801F6390 1F0C94 003C+00 2/2 0/0 0/0 .text
  * selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc              */
 #pragma push
 #pragma optimization_level 0
@@ -3459,12 +2746,7 @@ asm void dMenu_save_c::selectWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2
 }
 #pragma pop
 
-/* 801F6390-801F6458 00C8+00 s=3 e=0 z=0  None .text      selectWakuAlpahAnm__12dMenu_save_cFUc */
-//	801F63A0: 803621D0 (_savegpr_26)
-//	801F63D0: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F63F0: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6410: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6444: 8036221C (_restgpr_26)
+/* 801F6390-801F6458 1F0CD0 00C8+00 3/3 0/0 0/0 .text selectWakuAlpahAnm__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3474,19 +2756,8 @@ asm void dMenu_save_c::selectWakuAlpahAnm(u8 param_0) {
 }
 #pragma pop
 
-/* 801F6458-801F6608 01B0+00 s=3 e=0 z=0  None .text      selFileCursorShow__12dMenu_save_cFv */
-//	801F6480: 80454458 (lit_4179)
-//	801F64B0: 80454458 (lit_4179)
-//	801F64E0: 80454458 (lit_4179)
-//	801F6588: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	801F65C8: 801950F4 (setPos__16dSelect_cursor_cFffP7J2DPaneb)
-//	801F65D0: 80454458 (lit_4179)
-//	801F65D4: 801952A0 (setAlphaRate__16dSelect_cursor_cFf)
-//	801F65DC: 8045445C (lit_4180)
-//	801F65E0: 80454460 (lit_4181)
-//	801F65E4: 80454464 (lit_4182)
-//	801F65E8: 80454468 (lit_4183)
-//	801F65F0: 801951B0 (setParam__16dSelect_cursor_cFfffff)
+/* 801F6458-801F6608 1F0D98 01B0+00 3/3 0/0 0/0 .text            selFileCursorShow__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3496,7 +2767,7 @@ asm void dMenu_save_c::selFileCursorShow() {
 }
 #pragma pop
 
-/* 801F6608-801F6654 004C+00 s=1 e=0 z=0  None .text
+/* 801F6608-801F6654 1F0F48 004C+00 1/1 0/0 0/0 .text
  * yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc               */
 #pragma push
 #pragma optimization_level 0
@@ -3507,14 +2778,7 @@ asm void dMenu_save_c::yesnoWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2,
 }
 #pragma pop
 
-/* 801F6654-801F67B8 0164+00 s=4 e=0 z=0  None .text      yesnoWakuAlpahAnm__12dMenu_save_cFUc */
-//	801F6664: 803621CC (_savegpr_25)
-//	801F66A4: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F66C4: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F66E4: 80255878 (alphaAnime__13CPaneMgrAlphaFsUcUcUc)
-//	801F6764: 802548BC
-//(colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc)
-//	801F67A4: 80362218 (_restgpr_25)
+/* 801F6654-801F67B8 1F0F94 0164+00 4/4 0/0 0/0 .text yesnoWakuAlpahAnm__12dMenu_save_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3524,10 +2788,7 @@ asm void dMenu_save_c::yesnoWakuAlpahAnm(u8 param_0) {
 }
 #pragma pop
 
-/* 801F67B8-801F67F0 0038+00 s=2 e=0 z=0  None .text      dataSave__12dMenu_save_cFv */
-//	801F67C8: 803EAF40 (g_mDoMemCd_control)
-//	801F67CC: 803EAF40 (g_mDoMemCd_control)
-//	801F67DC: 80016B58 (save__15mDoMemCd_Ctrl_cFPvUlUl)
+/* 801F67B8-801F67F0 1F10F8 0038+00 2/2 0/0 0/0 .text            dataSave__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3537,13 +2798,7 @@ asm void dMenu_save_c::dataSave() {
 }
 #pragma pop
 
-/* 801F67F0-801F6954 0164+00 s=2 e=0 z=0  None .text      setSaveData__12dMenu_save_cFv */
-//	801F6800: 803621CC (_savegpr_25)
-//	801F6814: 804061C0 (g_dComIfG_gameInfo)
-//	801F6818: 804061C0 (g_dComIfG_gameInfo)
-//	801F6820: 80017CEC (mDoMemCdRWm_TestCheckSumGameData__FPv)
-//	801F6838: 80192954 (setSaveData__12dFile_info_cFP10dSv_save_ciUc)
-//	801F6940: 80362218 (_restgpr_25)
+/* 801F67F0-801F6954 1F1130 0164+00 2/2 0/0 0/0 .text            setSaveData__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3553,13 +2808,8 @@ asm void dMenu_save_c::setSaveData() {
 }
 #pragma pop
 
-/* 801F6954-801F69B8 0064+00 s=1 e=0 z=0  None .text      setInitSaveData__12dMenu_save_cFv */
-//	801F6964: 803621DC (_savegpr_29)
-//	801F6970: 804061C0 (g_dComIfG_gameInfo)
-//	801F6974: 804061C0 (g_dComIfG_gameInfo)
-//	801F6984: 80035BD0 (initdata_to_card__10dSv_info_cFPci)
-//	801F6990: 80017D38 (mDoMemCdRWm_SetCheckSumGameData__FPUcUc)
-//	801F69A4: 80362228 (_restgpr_29)
+/* 801F6954-801F69B8 1F1294 0064+00 1/1 0/0 0/0 .text            setInitSaveData__12dMenu_save_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3569,10 +2819,7 @@ asm void dMenu_save_c::setInitSaveData() {
 }
 #pragma pop
 
-/* 801F69B8-801F69FC 0044+00 s=0 e=1 z=0  None .text      _draw__12dMenu_save_cFv */
-//	801F69DC: 804061C0 (g_dComIfG_gameInfo)
-//	801F69E0: 804061C0 (g_dComIfG_gameInfo)
-//	801F69E8: 8023D918 (draw__17dMsgScrnExplain_cFP13J2DOrthoGraph)
+/* 801F69B8-801F69FC 1F12F8 0044+00 0/0 1/1 0/0 .text            _draw__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3582,18 +2829,7 @@ asm void dMenu_save_c::_draw() {
 }
 #pragma pop
 
-/* 801F69FC-801F6ADC 00E0+00 s=0 e=2 z=0  None .text      _draw2__12dMenu_save_cFv */
-//	801F6A0C: 803621D0 (_savegpr_26)
-//	801F6A2C: 804061C0 (g_dComIfG_gameInfo)
-//	801F6A30: 804061C0 (g_dComIfG_gameInfo)
-//	801F6A44: 80056794 (set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c)
-//	801F6A54: 804061C0 (g_dComIfG_gameInfo)
-//	801F6A58: 804061C0 (g_dComIfG_gameInfo)
-//	801F6A78: 80056794 (set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c)
-//	801F6A8C: 80192D60 (_draw__12dFile_info_cFv)
-//	801F6AB0: 80056794 (set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c)
-//	801F6AC0: 80192190 (_draw__15dFile_warning_cFv)
-//	801F6AC8: 8036221C (_restgpr_26)
+/* 801F69FC-801F6ADC 1F133C 00E0+00 0/0 2/2 0/0 .text            _draw2__12dMenu_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3603,10 +2839,8 @@ asm void dMenu_save_c::_draw2() {
 }
 #pragma pop
 
-/* 801F6ADC-801F6B0C 0030+00 s=1 e=0 z=0  None .text      draw__23dDlst_MenuSaveExplain_cFv */
-//	801F6AEC: 804061C0 (g_dComIfG_gameInfo)
-//	801F6AF0: 804061C0 (g_dComIfG_gameInfo)
-//	801F6AF8: 8023D918 (draw__17dMsgScrnExplain_cFP13J2DOrthoGraph)
+/* 801F6ADC-801F6B0C 1F141C 0030+00 1/0 0/0 0/0 .text            draw__23dDlst_MenuSaveExplain_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3616,11 +2850,7 @@ asm void dDlst_MenuSaveExplain_c::draw() {
 }
 #pragma pop
 
-/* 801F6B0C-801F6B44 0038+00 s=1 e=0 z=0  None .text      draw__16dDlst_MenuSave_cFv */
-//	801F6B1C: 80454448 (lit_4175)
-//	801F6B24: 804061C0 (g_dComIfG_gameInfo)
-//	801F6B28: 804061C0 (g_dComIfG_gameInfo)
-//	801F6B30: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
+/* 801F6B0C-801F6B44 1F144C 0038+00 1/0 0/0 0/0 .text            draw__16dDlst_MenuSave_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3630,10 +2860,7 @@ asm void dDlst_MenuSave_c::draw() {
 }
 #pragma pop
 
-/* 801F6B44-801F6B8C 0048+00 s=1 e=0 z=0  None .text      __dt__16dDlst_MenuSave_cFv */
-//	801F6B5C: 803BE764 (__vt__16dDlst_MenuSave_c)
-//	801F6B60: 803BE764 (__vt__16dDlst_MenuSave_c)
-//	801F6B70: 802CED3C (__dl__FPv)
+/* 801F6B44-801F6B8C 1F1484 0048+00 1/0 0/0 0/0 .text            __dt__16dDlst_MenuSave_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3643,10 +2870,8 @@ asm dDlst_MenuSave_c::~dDlst_MenuSave_c() {
 }
 #pragma pop
 
-/* 801F6B8C-801F6BD4 0048+00 s=1 e=0 z=0  None .text      __dt__23dDlst_MenuSaveExplain_cFv */
-//	801F6BA4: 803BE774 (__vt__23dDlst_MenuSaveExplain_c)
-//	801F6BA8: 803BE774 (__vt__23dDlst_MenuSaveExplain_c)
-//	801F6BB8: 802CED3C (__dl__FPv)
+/* 801F6B8C-801F6BD4 1F14CC 0048+00 1/0 0/0 0/0 .text            __dt__23dDlst_MenuSaveExplain_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3656,10 +2881,7 @@ asm dDlst_MenuSaveExplain_c::~dDlst_MenuSaveExplain_c() {
 }
 #pragma pop
 
-/* 801F6BD4-801F6C1C 0048+00 s=2 e=0 z=0  None .text      __dt__9dMs_HIO_cFv */
-//	801F6BEC: 803BE7CC (__vt__9dMs_HIO_c)
-//	801F6BF0: 803BE7CC (__vt__9dMs_HIO_c)
-//	801F6C00: 802CED3C (__dl__FPv)
+/* 801F6BD4-801F6C1C 1F1514 0048+00 2/1 0/0 0/0 .text            __dt__9dMs_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3669,21 +2891,11 @@ asm dMs_HIO_c::~dMs_HIO_c() {
 }
 #pragma pop
 
-/* 801F6C1C-801F7224 0608+00 s=0 e=0 z=0  None .text      __sinit_d_menu_save_cpp */
-//	801F6C2C: 803BDF78 (cNullVec__6Z2Calc)
-//	801F6C30: 803BDF78 (cNullVec__6Z2Calc)
-//	801F6C34: 8042E84C (g_msHIO)
-//	801F6C38: 8042E84C (g_msHIO)
-//	801F6C3C: 801EF654 (__ct__9dMs_HIO_cFv)
-//	801F6C40: 801F6BD4 (__dt__9dMs_HIO_cFv)
-//	801F6C44: 801F6BD4 (__dt__9dMs_HIO_cFv)
-//	801F6C48: 8042E840 (lit_3785)
-//	801F6C4C: 8042E840 (lit_3785)
-//	801F6C50: 80361C24 (__register_global_object)
+/* 801F6C1C-801F7224 1F155C 0608+00 0/0 1/0 0/0 .text            __sinit_d_menu_save_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_menu_save_cpp() {
+asm void __sinit_d_menu_save_cpp() {
     nofralloc
 #include "asm/d/menu/d_menu_save/__sinit_d_menu_save_cpp.s"
 }
@@ -3692,4 +2904,19 @@ extern "C" asm void __sinit_d_menu_save_cpp() {
 #pragma push
 #pragma force_active on
 SECTION_CTORS void* const _ctors_801F6C1C = (void*)__sinit_d_menu_save_cpp;
+#pragma pop
+
+/* 80397960-80397A18 023FC0 00B8+00 6/6 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80397960 = "/res/Layout/saveres.arc";
+SECTION_DEAD static char const* const stringBase_80397978 = "zelda_file_select2.blo";
+SECTION_DEAD static char const* const stringBase_8039798F = "zelda_file_select2.bck";
+SECTION_DEAD static char const* const stringBase_803979A6 = "zelda_file_select2.bpk";
+SECTION_DEAD static char const* const stringBase_803979BD = "zelda_file_select2_02.btk";
+SECTION_DEAD static char const* const stringBase_803979D7 = "zelda_file_select2.btk";
+SECTION_DEAD static char const* const stringBase_803979EE = "zelda_file_select2.brk";
+SECTION_DEAD static char const* const stringBase_80397A05 = "";
+SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n";
 #pragma pop

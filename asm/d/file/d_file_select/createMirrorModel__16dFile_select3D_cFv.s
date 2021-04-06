@@ -4,8 +4,8 @@ lbl_80190D68:
 /* 80190D70  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80190D74  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80190D78  7C 7F 1B 78 */	mr r31, r3
-/* 80190D7C  3C 80 80 39 */	lis r4, m_kamen_offset_x@ha
-/* 80190D80  38 A4 43 10 */	addi r5, r4, m_kamen_offset_x@l
+/* 80190D7C  3C 80 80 39 */	lis r4, m_kamen_offset_x@ha /* 0x80394310@ha */
+/* 80190D80  38 A4 43 10 */	addi r5, r4, m_kamen_offset_x@l /* 0x80394310@l */
 /* 80190D84  88 03 03 CE */	lbz r0, 0x3ce(r3)
 /* 80190D88  54 00 10 3A */	slwi r0, r0, 2
 /* 80190D8C  38 85 00 3C */	addi r4, r5, 0x3c
@@ -36,15 +36,15 @@ lbl_80190D68:
 /* 80190DF0  28 00 00 00 */	cmplwi r0, 0
 /* 80190DF4  41 82 01 E0 */	beq lbl_80190FD4
 /* 80190DF8  54 07 15 BA */	rlwinm r7, r0, 2, 0x16, 0x1d
-/* 80190DFC  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha
-/* 80190E00  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l
+/* 80190DFC  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 80190E00  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 80190E04  38 84 04 8A */	addi r4, r4, 0x48a
-/* 80190E08  3C A0 80 3C */	lis r5, bck_name_8786@ha
-/* 80190E0C  38 05 B3 24 */	addi r0, r5, bck_name_8786@l
+/* 80190E08  3C A0 80 3C */	lis r5, bck_name_8786@ha /* 0x803BB324@ha */
+/* 80190E0C  38 05 B3 24 */	addi r0, r5, bck_name_8786@l /* 0x803BB324@l */
 /* 80190E10  7C A0 3A 14 */	add r5, r0, r7
 /* 80190E14  80 A5 FF FC */	lwz r5, -4(r5)
-/* 80190E18  3C C0 80 3C */	lis r6, brk_name_8787@ha
-/* 80190E1C  38 06 B3 34 */	addi r0, r6, brk_name_8787@l
+/* 80190E18  3C C0 80 3C */	lis r6, brk_name_8787@ha /* 0x803BB334@ha */
+/* 80190E1C  38 06 B3 34 */	addi r0, r6, brk_name_8787@l /* 0x803BB334@l */
 /* 80190E20  7C C0 3A 14 */	add r6, r0, r7
 /* 80190E24  80 C6 FF FC */	lwz r6, -4(r6)
 /* 80190E28  4B FF F8 35 */	bl setJ3D__16dFile_select3D_cFPCcPCcPCc

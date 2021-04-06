@@ -8,8 +8,8 @@ lbl_8028A5F0:
 /* 8028A608  7C 9E 23 78 */	mr r30, r4
 /* 8028A60C  7C BF 2B 78 */	mr r31, r5
 /* 8028A610  7F A5 EB 78 */	mr r5, r29
-/* 8028A614  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha
-/* 8028A618  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l
+/* 8028A614  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha /* 0x803C5610@ha */
+/* 8028A618  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l /* 0x803C5610@l */
 /* 8028A61C  90 1D 00 00 */	stw r0, 0(r29)
 /* 8028A620  38 00 00 00 */	li r0, 0
 /* 8028A624  90 1D 00 04 */	stw r0, 4(r29)
@@ -17,19 +17,19 @@ lbl_8028A5F0:
 /* 8028A62C  90 7D 00 08 */	stw r3, 8(r29)
 /* 8028A630  38 00 00 0E */	li r0, 0xe
 /* 8028A634  90 1D 00 0C */	stw r0, 0xc(r29)
-/* 8028A638  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_actor@ha
-/* 8028A63C  38 04 55 A0 */	addi r0, r4, __vt__Q27JStudio14TAdaptor_actor@l
+/* 8028A638  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_actor@ha /* 0x803C55A0@ha */
+/* 8028A63C  38 04 55 A0 */	addi r0, r4, __vt__Q27JStudio14TAdaptor_actor@l /* 0x803C55A0@l */
 /* 8028A640  90 1D 00 00 */	stw r0, 0(r29)
-/* 8028A644  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha
-/* 8028A648  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l
+/* 8028A644  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha /* 0x8028B568@ha */
+/* 8028A648  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l /* 0x8028B568@l */
 /* 8028A64C  38 A0 00 00 */	li r5, 0
 /* 8028A650  38 C0 00 14 */	li r6, 0x14
 /* 8028A654  38 E0 00 0E */	li r7, 0xe
 /* 8028A658  48 0D 77 09 */	bl __construct_array
 /* 8028A65C  93 DD 01 28 */	stw r30, 0x128(r29)
 /* 8028A660  93 FD 01 2C */	stw r31, 0x12c(r29)
-/* 8028A664  3C 60 80 3C */	lis r3, __vt__Q214JStudio_JStage14TAdaptor_actor@ha
-/* 8028A668  38 03 57 C4 */	addi r0, r3, __vt__Q214JStudio_JStage14TAdaptor_actor@l
+/* 8028A664  3C 60 80 3C */	lis r3, __vt__Q214JStudio_JStage14TAdaptor_actor@ha /* 0x803C57C4@ha */
+/* 8028A668  38 03 57 C4 */	addi r0, r3, __vt__Q214JStudio_JStage14TAdaptor_actor@l /* 0x803C57C4@l */
 /* 8028A66C  90 1D 00 00 */	stw r0, 0(r29)
 /* 8028A670  38 60 00 00 */	li r3, 0
 /* 8028A674  90 7D 01 30 */	stw r3, 0x130(r29)

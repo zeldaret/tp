@@ -44,15 +44,10 @@ extern "C" void __dt__12JKRDvdFinderFv();
 extern "C" void findNextFile__12JKRDvdFinderFv();
 extern "C" void __dt__13JKRFileFinderFv();
 extern "C" void __dt__12JKRArcFinderFv();
-extern "C" extern void* __vt__12JKRDvdFinder[4];
-extern "C" extern void* __vt__12JKRArcFinder[4];
-extern "C" extern void* __vt__13JKRFileFinder[4];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 extern "C" void getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl();
@@ -65,35 +60,31 @@ extern "C" bool DVDCloseDir();
 //
 
 /* ############################################################################################## */
-/* 803CC208-803CC218 0010+00 s=2 e=0 z=0  None .data      __vt__12JKRDvdFinder */
-SECTION_DATA void* __vt__12JKRDvdFinder[4] = {
+/* 803CC208-803CC218 029328 0010+00 2/2 0/0 0/0 .data            __vt__12JKRDvdFinder */
+SECTION_DATA extern void* __vt__12JKRDvdFinder[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JKRDvdFinderFv,
     (void*)findNextFile__12JKRDvdFinderFv,
 };
 
-/* 803CC218-803CC228 0010+00 s=2 e=0 z=0  None .data      __vt__12JKRArcFinder */
-SECTION_DATA void* __vt__12JKRArcFinder[4] = {
+/* 803CC218-803CC228 029338 0010+00 2/2 0/0 0/0 .data            __vt__12JKRArcFinder */
+SECTION_DATA extern void* __vt__12JKRArcFinder[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JKRArcFinderFv,
     (void*)findNextFile__12JKRArcFinderFv,
 };
 
-/* 803CC228-803CC238 0010+00 s=5 e=0 z=0  None .data      __vt__13JKRFileFinder */
-SECTION_DATA void* __vt__13JKRFileFinder[4] = {
+/* 803CC228-803CC238 029348 0010+00 5/5 0/0 0/0 .data            __vt__13JKRFileFinder */
+SECTION_DATA extern void* __vt__13JKRFileFinder[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JKRFileFinderFv,
     (void*)NULL,
 };
 
-/* 802D4638-802D46C4 008C+00 s=0 e=1 z=0  None .text      __ct__12JKRArcFinderFP10JKRArchivell */
-//	802D464C: 803CC228 (__vt__13JKRFileFinder)
-//	802D4650: 803CC228 (__vt__13JKRFileFinder)
-//	802D4664: 803CC218 (__vt__12JKRArcFinder)
-//	802D4668: 803CC218 (__vt__12JKRArcFinder)
+/* 802D4638-802D46C4 2CEF78 008C+00 0/0 1/1 0/0 .text __ct__12JKRArcFinderFP10JKRArchivell */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,8 +94,7 @@ asm JKRArcFinder::JKRArcFinder(JKRArchive* param_0, s32 param_1, s32 param_2) {
 }
 #pragma pop
 
-/* 802D46C4-802D4770 00AC+00 s=1 e=0 z=0  None .text      findNextFile__12JKRArcFinderFv */
-//	802D4718: 802D5AC0 (getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl)
+/* 802D46C4-802D4770 2CF004 00AC+00 1/0 0/0 0/0 .text            findNextFile__12JKRArcFinderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,12 +104,7 @@ asm void JKRArcFinder::findNextFile() {
 }
 #pragma pop
 
-/* 802D4770-802D47F4 0084+00 s=0 e=1 z=0  None .text      __ct__12JKRDvdFinderFPCc */
-//	802D4784: 803CC228 (__vt__13JKRFileFinder)
-//	802D4788: 803CC228 (__vt__13JKRFileFinder)
-//	802D479C: 803CC208 (__vt__12JKRDvdFinder)
-//	802D47A0: 803CC208 (__vt__12JKRDvdFinder)
-//	802D47B0: 80348F80 (DVDOpenDir)
+/* 802D4770-802D47F4 2CF0B0 0084+00 0/0 1/1 0/0 .text            __ct__12JKRDvdFinderFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -129,13 +114,7 @@ asm JKRDvdFinder::JKRDvdFinder(char const* param_0) {
 }
 #pragma pop
 
-/* 802D47F4-802D4874 0080+00 s=1 e=0 z=0  None .text      __dt__12JKRDvdFinderFv */
-//	802D4814: 803CC208 (__vt__12JKRDvdFinder)
-//	802D4818: 803CC208 (__vt__12JKRDvdFinder)
-//	802D4830: 803490E4 (DVDCloseDir)
-//	802D483C: 803CC228 (__vt__13JKRFileFinder)
-//	802D4840: 803CC228 (__vt__13JKRFileFinder)
-//	802D4854: 802CED3C (__dl__FPv)
+/* 802D47F4-802D4874 2CF134 0080+00 1/0 0/0 0/0 .text            __dt__12JKRDvdFinderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -145,8 +124,7 @@ asm JKRDvdFinder::~JKRDvdFinder() {
 }
 #pragma pop
 
-/* 802D4874-802D4910 009C+00 s=1 e=0 z=0  None .text      findNextFile__12JKRDvdFinderFv */
-//	802D489C: 80349040 (DVDReadDir)
+/* 802D4874-802D4910 2CF1B4 009C+00 1/0 0/0 0/0 .text            findNextFile__12JKRDvdFinderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -156,10 +134,7 @@ asm void JKRDvdFinder::findNextFile() {
 }
 #pragma pop
 
-/* 802D4910-802D4958 0048+00 s=1 e=0 z=0  None .text      __dt__13JKRFileFinderFv */
-//	802D4928: 803CC228 (__vt__13JKRFileFinder)
-//	802D492C: 803CC228 (__vt__13JKRFileFinder)
-//	802D493C: 802CED3C (__dl__FPv)
+/* 802D4910-802D4958 2CF250 0048+00 1/0 0/0 0/0 .text            __dt__13JKRFileFinderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,12 +144,7 @@ asm JKRFileFinder::~JKRFileFinder() {
 }
 #pragma pop
 
-/* 802D4958-802D49B4 005C+00 s=1 e=0 z=0  None .text      __dt__12JKRArcFinderFv */
-//	802D4970: 803CC218 (__vt__12JKRArcFinder)
-//	802D4974: 803CC218 (__vt__12JKRArcFinder)
-//	802D4980: 803CC228 (__vt__13JKRFileFinder)
-//	802D4984: 803CC228 (__vt__13JKRFileFinder)
-//	802D4998: 802CED3C (__dl__FPv)
+/* 802D4958-802D49B4 2CF298 005C+00 1/0 0/0 0/0 .text            __dt__12JKRArcFinderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

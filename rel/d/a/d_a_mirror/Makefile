@@ -3,17 +3,15 @@
 #
 
 M279_TARGET := $(BUILD_DIR)/rel/d/a/d_a_mirror.plf
+M279_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_mirror.lcf
+M279_MAP := $(BUILD_DIR)/rel/d/a/d_a_mirror.map
 
 M279_CPP_FILES := \
-	rel/d/a/d_a_mirror/executor.cpp \
-	rel/d/a/d_a_mirror/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_mirror/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_mirror/d_a_mirror.cpp \
 
 M279_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_mirror/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mirror/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mirror/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_mirror/d_a_mirror.o \
 
 M279_LIBS := \
@@ -29,15 +27,21 @@ M279_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map279.map\
+	-m _prolog \
+	-lcf $(M279_LDSCRIPT) \
+	-unused -map $(M279_MAP) \
+	-w off \
 
 $(M279_TARGET): $(M279_O_FILES) $(M279_LIBS)
+	@echo [279] creating $(M279_TARGET)
 	@echo $(M279_LIBS) $(M279_O_FILES) > build/M279_ofiles
-	$(LD) -opt_partial $(M279_LDFLAGS) -o $(M279_TARGET) @build/M279_ofiles
+	@python3 tools/lcf.py rel 279 --output $(M279_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M279_LDFLAGS) -o $(M279_TARGET) @build/M279_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mirror/%.o: rel/d/a/d_a_mirror/%.cpp
+	@echo [279] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M279_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M279_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

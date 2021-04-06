@@ -3,10 +3,10 @@ lbl_807348DC:
 /* 807348E0  7C 08 02 A6 */	mflr r0
 /* 807348E4  90 01 00 54 */	stw r0, 0x54(r1)
 /* 807348E8  39 61 00 50 */	addi r11, r1, 0x50
-/* 807348EC  4B C2 D8 F0 */	b _savegpr_29
+/* 807348EC  4B C2 D8 F1 */	bl _savegpr_29
 /* 807348F0  7C 7E 1B 78 */	mr r30, r3
-/* 807348F4  3C 60 80 73 */	lis r3, lit_3911@ha
-/* 807348F8  3B E3 5B 28 */	addi r31, r3, lit_3911@l
+/* 807348F4  3C 60 80 73 */	lis r3, lit_3911@ha /* 0x80735B28@ha */
+/* 807348F8  3B E3 5B 28 */	addi r31, r3, lit_3911@l /* 0x80735B28@l */
 /* 807348FC  A8 7E 06 C0 */	lha r3, 0x6c0(r30)
 /* 80734900  2C 03 00 00 */	cmpwi r3, 0
 /* 80734904  41 82 00 0C */	beq lbl_80734910
@@ -63,8 +63,8 @@ lbl_8073499C:
 /* 807349B0  A8 1E 06 C8 */	lha r0, 0x6c8(r30)
 /* 807349B4  2C 00 00 00 */	cmpwi r0, 0
 /* 807349B8  40 82 00 F0 */	bne lbl_80734AA8
-/* 807349BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807349C0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 807349BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807349C0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807349C4  88 04 5D B0 */	lbz r0, 0x5db0(r4)
 /* 807349C8  7C 00 07 74 */	extsb r0, r0
 /* 807349CC  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -100,23 +100,23 @@ lbl_8073499C:
 /* 80734A44  38 A1 00 08 */	addi r5, r1, 8
 /* 80734A48  C0 3E 07 04 */	lfs f1, 0x704(r30)
 /* 80734A4C  38 C0 00 00 */	li r6, 0
-/* 80734A50  4B A4 C1 50 */	b Reset__9dCamera_cF4cXyz4cXyzfs
+/* 80734A50  4B A4 C1 51 */	bl Reset__9dCamera_cF4cXyz4cXyzfs
 /* 80734A54  38 7D 02 48 */	addi r3, r29, 0x248
-/* 80734A58  4B A2 CA 54 */	b Start__9dCamera_cFv
+/* 80734A58  4B A2 CA 55 */	bl Start__9dCamera_cFv
 /* 80734A5C  38 7D 02 48 */	addi r3, r29, 0x248
 /* 80734A60  38 80 00 00 */	li r4, 0
-/* 80734A64  4B A2 E5 A8 */	b SetTrimSize__9dCamera_cFl
-/* 80734A68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80734A6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80734A64  4B A2 E5 A9 */	bl SetTrimSize__9dCamera_cFl
+/* 80734A68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80734A6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80734A70  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80734A74  4B 90 D9 F4 */	b reset__14dEvt_control_cFv
+/* 80734A74  4B 90 D9 F5 */	bl reset__14dEvt_control_cFv
 /* 80734A78  80 1E 04 9C */	lwz r0, 0x49c(r30)
 /* 80734A7C  54 00 04 A0 */	rlwinm r0, r0, 0, 0x12, 0x10
 /* 80734A80  90 1E 04 9C */	stw r0, 0x49c(r30)
-/* 80734A84  3C 60 80 73 */	lis r3, s_demo_oc__FPvPv@ha
-/* 80734A88  38 63 D2 E8 */	addi r3, r3, s_demo_oc__FPvPv@l
+/* 80734A84  3C 60 80 73 */	lis r3, s_demo_oc__FPvPv@ha /* 0x8072D2E8@ha */
+/* 80734A88  38 63 D2 E8 */	addi r3, r3, s_demo_oc__FPvPv@l /* 0x8072D2E8@l */
 /* 80734A8C  7F C4 F3 78 */	mr r4, r30
-/* 80734A90  4B 8E C8 A8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80734A90  4B 8E C8 A9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80734A94  28 03 00 00 */	cmplwi r3, 0
 /* 80734A98  41 82 00 10 */	beq lbl_80734AA8
 /* 80734A9C  80 03 04 9C */	lwz r0, 0x49c(r3)
@@ -134,11 +134,11 @@ lbl_80734AA8:
 /* 80734AC8  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 80734ACC  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80734AD0  38 63 00 30 */	addi r3, r3, 0x30
-/* 80734AD4  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80734AD8  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 80734ADC  4B C1 19 D4 */	b PSMTXCopy
-/* 80734AE0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80734AE4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80734AD4  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80734AD8  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80734ADC  4B C1 19 D5 */	bl PSMTXCopy
+/* 80734AE0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80734AE4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80734AE8  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80734AEC  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 80734AF0  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -157,7 +157,7 @@ lbl_80734AA8:
 /* 80734B24  48 00 0B A1 */	bl setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz
 /* 80734B28  38 60 00 01 */	li r3, 1
 /* 80734B2C  39 61 00 50 */	addi r11, r1, 0x50
-/* 80734B30  4B C2 D6 F8 */	b _restgpr_29
+/* 80734B30  4B C2 D6 F9 */	bl _restgpr_29
 /* 80734B34  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80734B38  7C 08 03 A6 */	mtlr r0
 /* 80734B3C  38 21 00 50 */	addi r1, r1, 0x50

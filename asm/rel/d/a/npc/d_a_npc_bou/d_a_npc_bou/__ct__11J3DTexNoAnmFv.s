@@ -1,6 +1,6 @@
 lbl_8096D6EC:
-/* 8096D6EC  3C 80 80 97 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 8096D6F0  38 04 32 C4 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 8096D6EC  3C 80 80 97 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x809732C4@ha */
+/* 8096D6F0  38 04 32 C4 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x809732C4@l */
 /* 8096D6F4  90 03 00 00 */	stw r0, 0(r3)
 /* 8096D6F8  38 80 00 00 */	li r4, 0
 /* 8096D6FC  B0 83 00 04 */	sth r4, 4(r3)

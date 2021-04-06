@@ -128,8 +128,8 @@ lbl_800DA038:
 /* 800DA050  4E 80 04 21 */	bctrl 
 /* 800DA054  7F E3 FB 78 */	mr r3, r31
 /* 800DA058  38 80 01 25 */	li r4, 0x125
-/* 800DA05C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha
-/* 800DA060  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l
+/* 800DA05C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800DA060  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800DA064  C0 25 00 54 */	lfs f1, 0x54(r5)
 /* 800DA068  4B FD 2F 49 */	bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800DA06C  7F E3 FB 78 */	mr r3, r31
@@ -164,8 +164,8 @@ lbl_800DA0B0:
 /* 800DA0D8  D0 81 00 1C */	stfs f4, 0x1c(r1)
 /* 800DA0DC  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800DA0E0  54 04 04 38 */	rlwinm r4, r0, 0, 0x10, 0x1c
-/* 800DA0E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800DA0E8  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l
+/* 800DA0E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800DA0E8  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800DA0EC  7C 60 22 14 */	add r3, r0, r4
 /* 800DA0F0  C0 A3 00 04 */	lfs f5, 4(r3)
 /* 800DA0F4  C0 22 92 9C */	lfs f1, lit_5944(r2)

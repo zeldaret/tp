@@ -7,8 +7,8 @@ lbl_80B7EBA0:
 /* 80B7EBB4  7C 7E 1B 78 */	mr r30, r3
 /* 80B7EBB8  3C 60 00 04 */	lis r3, 0x0004 /* 0x00040002@ha */
 /* 80B7EBBC  3B E3 00 02 */	addi r31, r3, 0x0002 /* 0x00040002@l */
-/* 80B7EBC0  3C 60 80 B9 */	lis r3, lit_6920@ha
-/* 80B7EBC4  C0 03 CB BC */	lfs f0, lit_6920@l(r3)
+/* 80B7EBC0  3C 60 80 B9 */	lis r3, lit_6920@ha /* 0x80B8CBBC@ha */
+/* 80B7EBC4  C0 03 CB BC */	lfs f0, lit_6920@l(r3)  /* 0x80B8CBBC@l */
 /* 80B7EBC8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80B7EBCC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80B7EBD0  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -36,10 +36,10 @@ lbl_80B7EC00:
 /* 80B7EC20  39 00 00 00 */	li r8, 0
 /* 80B7EC24  39 20 00 00 */	li r9, 0
 /* 80B7EC28  39 41 00 10 */	addi r10, r1, 0x10
-/* 80B7EC2C  3D 60 80 B9 */	lis r11, lit_5070@ha
-/* 80B7EC30  C0 2B C5 48 */	lfs f1, lit_5070@l(r11)
+/* 80B7EC2C  3D 60 80 B9 */	lis r11, lit_5070@ha /* 0x80B8C548@ha */
+/* 80B7EC30  C0 2B C5 48 */	lfs f1, lit_5070@l(r11)  /* 0x80B8C548@l */
 /* 80B7EC34  C0 5E 05 2C */	lfs f2, 0x52c(r30)
-/* 80B7EC38  4B 4D 23 D0 */	b setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
+/* 80B7EC38  4B 4D 23 D1 */	bl setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
 /* 80B7EC3C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80B7EC40  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 80B7EC44  80 01 00 34 */	lwz r0, 0x34(r1)

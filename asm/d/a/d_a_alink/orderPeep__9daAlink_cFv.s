@@ -10,8 +10,8 @@ lbl_800B7B7C:
 /* 800B7B9C  38 00 00 14 */	li r0, 0x14
 /* 800B7BA0  B0 03 2F F2 */	sth r0, 0x2ff2(r3)
 /* 800B7BA4  80 83 27 F4 */	lwz r4, 0x27f4(r3)
-/* 800B7BA8  3C A0 80 3B */	lis r5, l_peepEventName@ha
-/* 800B7BAC  38 A5 F9 9C */	addi r5, r5, l_peepEventName@l
+/* 800B7BA8  3C A0 80 3B */	lis r5, l_peepEventName@ha /* 0x803AF99C@ha */
+/* 800B7BAC  38 A5 F9 9C */	addi r5, r5, l_peepEventName@l /* 0x803AF99C@l */
 /* 800B7BB0  3C C0 00 01 */	lis r6, 0x0001 /* 0x0000FFFF@ha */
 /* 800B7BB4  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 800B7BB8  38 E0 00 01 */	li r7, 1

@@ -4,8 +4,8 @@ lbl_80AAF1F4:
 /* 80AAF1FC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80AAF200  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80AAF204  7C 7F 1B 78 */	mr r31, r3
-/* 80AAF208  3C 80 80 AB */	lis r4, lit_4758@ha
-/* 80AAF20C  38 A4 2A 90 */	addi r5, r4, lit_4758@l
+/* 80AAF208  3C 80 80 AB */	lis r4, lit_4758@ha /* 0x80AB2A90@ha */
+/* 80AAF20C  38 A4 2A 90 */	addi r5, r4, lit_4758@l /* 0x80AB2A90@l */
 /* 80AAF210  80 85 00 00 */	lwz r4, 0(r5)
 /* 80AAF214  80 05 00 04 */	lwz r0, 4(r5)
 /* 80AAF218  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,12 +19,12 @@ lbl_80AAF1F4:
 /* 80AAF238  7F E3 FB 78 */	mr r3, r31
 /* 80AAF23C  38 80 00 00 */	li r4, 0
 /* 80AAF240  39 9F 0F BC */	addi r12, r31, 0xfbc
-/* 80AAF244  4B 8B 2E 40 */	b __ptmf_scall
+/* 80AAF244  4B 8B 2E 41 */	bl __ptmf_scall
 /* 80AAF248  60 00 00 00 */	nop 
 /* 80AAF24C  48 00 00 30 */	b lbl_80AAF27C
 lbl_80AAF250:
-/* 80AAF250  3C 60 80 AB */	lis r3, lit_4763@ha
-/* 80AAF254  38 83 2A 9C */	addi r4, r3, lit_4763@l
+/* 80AAF250  3C 60 80 AB */	lis r3, lit_4763@ha /* 0x80AB2A9C@ha */
+/* 80AAF254  38 83 2A 9C */	addi r4, r3, lit_4763@l /* 0x80AB2A9C@l */
 /* 80AAF258  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AAF25C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AAF260  90 61 00 08 */	stw r3, 8(r1)

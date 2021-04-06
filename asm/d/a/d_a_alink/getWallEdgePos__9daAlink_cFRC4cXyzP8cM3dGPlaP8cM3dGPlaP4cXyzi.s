@@ -38,8 +38,8 @@ lbl_800B01FC:
 /* 800B028C  38 A1 00 20 */	addi r5, r1, 0x20
 /* 800B0290  7F E6 FB 78 */	mr r6, r31
 /* 800B0294  48 1B E6 0D */	bl cM3d_3PlaneCrossPos__FRC8cM3dGPlaRC8cM3dGPlaRC8cM3dGPlaP3Vec
-/* 800B0298  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800B029C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800B0298  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B029C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B02A0  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B02A4  39 61 00 50 */	addi r11, r1, 0x50
 /* 800B02A8  48 2B 1F 7D */	bl _restgpr_28

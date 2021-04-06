@@ -7,8 +7,8 @@ lbl_80155B54:
 /* 80155B68  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80155B6C  7C 9F 23 78 */	mr r31, r4
 /* 80155B70  41 82 00 28 */	beq lbl_80155B98
-/* 80155B74  3C 80 80 3B */	lis r4, __vt__20daNpcF_MoveBgActor_c@ha
-/* 80155B78  38 04 38 70 */	addi r0, r4, __vt__20daNpcF_MoveBgActor_c@l
+/* 80155B74  3C 80 80 3B */	lis r4, __vt__20daNpcF_MoveBgActor_c@ha /* 0x803B3870@ha */
+/* 80155B78  38 04 38 70 */	addi r0, r4, __vt__20daNpcF_MoveBgActor_c@l /* 0x803B3870@l */
 /* 80155B7C  90 1E 0B 44 */	stw r0, 0xb44(r30)
 /* 80155B80  38 80 00 00 */	li r4, 0
 /* 80155B84  48 00 00 71 */	bl __dt__8daNpcF_cFv

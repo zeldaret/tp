@@ -35,23 +35,23 @@ lbl_80006EC0:
 /* 80006EFC  90 01 00 70 */	stw r0, 0x70(r1)
 /* 80006F00  7F A3 EB 78 */	mr r3, r29
 /* 80006F04  4B FF FA 81 */	bl mDoPrintf_vprintf__FPCcP16__va_list_struct
-/* 80006F08  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha
-/* 80006F0C  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l
+/* 80006F08  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha /* 0x80373CB0@ha */
+/* 80006F0C  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l /* 0x80373CB0@l */
 /* 80006F10  38 63 00 60 */	addi r3, r3, 0x60
 /* 80006F14  7F E4 FB 78 */	mr r4, r31
 /* 80006F18  7F C5 F3 78 */	mr r5, r30
 /* 80006F1C  4C C6 31 82 */	crclr 6
 /* 80006F20  4B FF F8 F5 */	bl OSAttention
-/* 80006F24  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha
-/* 80006F28  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l
+/* 80006F24  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha /* 0x80373CB0@ha */
+/* 80006F28  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l /* 0x80373CB0@l */
 /* 80006F2C  38 63 00 76 */	addi r3, r3, 0x76
 /* 80006F30  4C C6 31 82 */	crclr 6
 /* 80006F34  4B FF F8 E1 */	bl OSAttention
 /* 80006F38  3B C0 00 00 */	li r30, 0
 /* 80006F3C  48 33 50 BD */	bl OSGetStackPointer
 /* 80006F40  7C 7D 1B 78 */	mr r29, r3
-/* 80006F44  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha
-/* 80006F48  3B E3 3C B0 */	addi r31, r3, m_Do_m_Do_printf__stringBase0@l
+/* 80006F44  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha /* 0x80373CB0@ha */
+/* 80006F48  3B E3 3C B0 */	addi r31, r3, m_Do_m_Do_printf__stringBase0@l /* 0x80373CB0@l */
 /* 80006F4C  48 00 00 20 */	b lbl_80006F6C
 lbl_80006F50:
 /* 80006F50  38 7F 00 9C */	addi r3, r31, 0x9c

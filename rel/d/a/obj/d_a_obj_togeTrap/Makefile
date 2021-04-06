@@ -3,19 +3,20 @@
 #
 
 M665_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap.plf
+M665_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap.lcf
+M665_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap.map
 
 M665_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_togeTrap/executor.cpp \
-	rel/d/a/obj/d_a_obj_togeTrap/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_togeTrap/d_a_obj_togeTrap.cpp \
 
 M665_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/d_a_obj_togeTrap.o \
 
 M665_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/libRuntime.PPCEABI.H.a \
 
 M665_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M665_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map665.map\
+	-m _prolog \
+	-lcf $(M665_LDSCRIPT) \
+	-unused -map $(M665_MAP) \
+	-w off \
 
 $(M665_TARGET): $(M665_O_FILES) $(M665_LIBS)
+	@echo [665] creating $(M665_TARGET)
 	@echo $(M665_LIBS) $(M665_O_FILES) > build/M665_ofiles
-	$(LD) -opt_partial $(M665_LDFLAGS) -o $(M665_TARGET) @build/M665_ofiles
+	@python3 tools/lcf.py rel 665 --output $(M665_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M665_LDFLAGS) -o $(M665_TARGET) @build/M665_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_togeTrap/%.o: rel/d/a/obj/d_a_obj_togeTrap/%.cpp
+	@echo [665] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M665_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M665_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_togeTrap/libs/Runtime.PPCEABI.H/Makefile
 

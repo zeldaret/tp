@@ -20,26 +20,26 @@ lbl_80286108:
 /* 80286110  48 00 00 98 */	b lbl_802861A8
 lbl_80286114:
 /* 80286114  3B 80 00 00 */	li r28, 0
-/* 80286118  3C 60 80 28 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha
-/* 8028611C  38 03 65 6C */	addi r0, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l
+/* 80286118  3C 60 80 28 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha /* 0x8028656C@ha */
+/* 8028611C  38 03 65 6C */	addi r0, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l /* 0x8028656C@l */
 /* 80286120  7C 1D 03 78 */	mr r29, r0
 /* 80286124  48 00 00 44 */	b lbl_80286168
 lbl_80286128:
 /* 80286128  3B 80 00 04 */	li r28, 4
-/* 8028612C  3C 60 80 28 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha
-/* 80286130  38 03 65 84 */	addi r0, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l
+/* 8028612C  3C 60 80 28 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha /* 0x80286584@ha */
+/* 80286130  38 03 65 84 */	addi r0, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l /* 0x80286584@l */
 /* 80286134  7C 1D 03 78 */	mr r29, r0
 /* 80286138  48 00 00 30 */	b lbl_80286168
 lbl_8028613C:
 /* 8028613C  3B 80 00 04 */	li r28, 4
-/* 80286140  3C 60 80 28 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha
-/* 80286144  38 03 65 B0 */	addi r0, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l
+/* 80286140  3C 60 80 28 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha /* 0x802865B0@ha */
+/* 80286144  38 03 65 B0 */	addi r0, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l /* 0x802865B0@l */
 /* 80286148  7C 1D 03 78 */	mr r29, r0
 /* 8028614C  48 00 00 1C */	b lbl_80286168
 lbl_80286150:
 /* 80286150  3B 80 00 04 */	li r28, 4
-/* 80286154  3C 60 80 28 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha
-/* 80286158  38 03 66 48 */	addi r0, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l
+/* 80286154  3C 60 80 28 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@ha /* 0x80286648@ha */
+/* 80286158  38 03 66 48 */	addi r0, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl@l /* 0x80286648@l */
 /* 8028615C  7C 1D 03 78 */	mr r29, r0
 /* 80286160  48 00 00 08 */	b lbl_80286168
 /* 80286164  48 00 00 44 */	b lbl_802861A8

@@ -13,7 +13,7 @@ lbl_80C7C1D8:
 /* 80C7C204  88 7F 05 AC */	lbz r3, 0x5ac(r31)
 /* 80C7C208  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80C7C20C  7C 04 07 74 */	extsb r4, r0
-/* 80C7C210  4B 3D 55 DC */	b dPath_GetRoomPath__Fii
+/* 80C7C210  4B 3D 55 DD */	bl dPath_GetRoomPath__Fii
 /* 80C7C214  88 1F 05 F8 */	lbz r0, 0x5f8(r31)
 /* 80C7C218  28 00 00 00 */	cmplwi r0, 0
 /* 80C7C21C  41 82 00 40 */	beq lbl_80C7C25C

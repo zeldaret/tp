@@ -5,12 +5,12 @@ lbl_80BAC874:
 /* 80BAC880  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BAC884  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80BAC888  41 82 00 1C */	beq lbl_80BAC8A4
-/* 80BAC88C  3C A0 80 BB */	lis r5, __vt__16daObj_BattaHIO_c@ha
-/* 80BAC890  38 05 CC 70 */	addi r0, r5, __vt__16daObj_BattaHIO_c@l
+/* 80BAC88C  3C A0 80 BB */	lis r5, __vt__16daObj_BattaHIO_c@ha /* 0x80BACC70@ha */
+/* 80BAC890  38 05 CC 70 */	addi r0, r5, __vt__16daObj_BattaHIO_c@l /* 0x80BACC70@l */
 /* 80BAC894  90 1F 00 00 */	stw r0, 0(r31)
 /* 80BAC898  7C 80 07 35 */	extsh. r0, r4
 /* 80BAC89C  40 81 00 08 */	ble lbl_80BAC8A4
-/* 80BAC8A0  4B 72 24 9C */	b __dl__FPv
+/* 80BAC8A0  4B 72 24 9D */	bl __dl__FPv
 lbl_80BAC8A4:
 /* 80BAC8A4  7F E3 FB 78 */	mr r3, r31
 /* 80BAC8A8  83 E1 00 0C */	lwz r31, 0xc(r1)

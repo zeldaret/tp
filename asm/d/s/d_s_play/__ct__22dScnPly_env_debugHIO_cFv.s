@@ -1,6 +1,6 @@
 lbl_80259468:
-/* 80259468  3C 80 80 3C */	lis r4, __vt__22dScnPly_env_debugHIO_c@ha
-/* 8025946C  38 04 32 24 */	addi r0, r4, __vt__22dScnPly_env_debugHIO_c@l
+/* 80259468  3C 80 80 3C */	lis r4, __vt__22dScnPly_env_debugHIO_c@ha /* 0x803C3224@ha */
+/* 8025946C  38 04 32 24 */	addi r0, r4, __vt__22dScnPly_env_debugHIO_c@l /* 0x803C3224@l */
 /* 80259470  90 03 00 00 */	stw r0, 0(r3)
 /* 80259474  C0 02 B5 20 */	lfs f0, lit_4066(r2)
 /* 80259478  D0 03 00 08 */	stfs f0, 8(r3)

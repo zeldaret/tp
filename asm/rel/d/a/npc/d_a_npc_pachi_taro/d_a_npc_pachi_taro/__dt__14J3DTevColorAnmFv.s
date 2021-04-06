@@ -7,7 +7,7 @@ lbl_80A9CA70:
 /* 80A9CA84  41 82 00 10 */	beq lbl_80A9CA94
 /* 80A9CA88  7C 80 07 35 */	extsh. r0, r4
 /* 80A9CA8C  40 81 00 08 */	ble lbl_80A9CA94
-/* 80A9CA90  4B 83 22 AC */	b __dl__FPv
+/* 80A9CA90  4B 83 22 AD */	bl __dl__FPv
 lbl_80A9CA94:
 /* 80A9CA94  7F E3 FB 78 */	mr r3, r31
 /* 80A9CA98  83 E1 00 0C */	lwz r31, 0xc(r1)

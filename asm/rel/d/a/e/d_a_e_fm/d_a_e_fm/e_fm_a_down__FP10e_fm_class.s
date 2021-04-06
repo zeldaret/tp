@@ -5,8 +5,8 @@ lbl_804F448C:
 /* 804F4498  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 804F449C  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 804F44A0  7C 7E 1B 78 */	mr r30, r3
-/* 804F44A4  3C 80 80 50 */	lis r4, lit_3777@ha
-/* 804F44A8  3B E4 A6 BC */	addi r31, r4, lit_3777@l
+/* 804F44A4  3C 80 80 50 */	lis r4, lit_3777@ha /* 0x804FA6BC@ha */
+/* 804F44A8  3B E4 A6 BC */	addi r31, r4, lit_3777@l /* 0x804FA6BC@l */
 /* 804F44AC  80 83 05 D0 */	lwz r4, 0x5d0(r3)
 /* 804F44B0  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 804F44B4  FC 00 00 1E */	fctiwz f0, f0
@@ -50,15 +50,15 @@ lbl_804F452C:
 /* 804F4544  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 804F4548  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 804F454C  D0 21 00 34 */	stfs f1, 0x34(r1)
-/* 804F4550  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F4554  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F4550  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F4554  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F4558  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 804F455C  38 80 00 05 */	li r4, 5
 /* 804F4560  38 A0 00 0F */	li r5, 0xf
 /* 804F4564  38 C1 00 2C */	addi r6, r1, 0x2c
-/* 804F4568  4B B7 B4 BC */	b StartShock__12dVibration_cFii4cXyz
-/* 804F456C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F4570  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F4568  4B B7 B4 BD */	bl StartShock__12dVibration_cFii4cXyz
+/* 804F456C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F4570  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F4574  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 804F4578  38 80 00 00 */	li r4, 0
 /* 804F457C  90 81 00 08 */	stw r4, 8(r1)
@@ -76,12 +76,12 @@ lbl_804F452C:
 /* 804F45AC  39 20 00 00 */	li r9, 0
 /* 804F45B0  39 40 00 FF */	li r10, 0xff
 /* 804F45B4  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 804F45B8  4B B5 84 D8 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 804F45B8  4B B5 84 D9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 804F45BC  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080163@ha */
 /* 804F45C0  38 03 01 63 */	addi r0, r3, 0x0163 /* 0x00080163@l */
 /* 804F45C4  90 01 00 20 */	stw r0, 0x20(r1)
-/* 804F45C8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 804F45CC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 804F45C8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 804F45CC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 804F45D0  80 63 00 00 */	lwz r3, 0(r3)
 /* 804F45D4  38 81 00 20 */	addi r4, r1, 0x20
 /* 804F45D8  38 A0 00 00 */	li r5, 0
@@ -92,7 +92,7 @@ lbl_804F452C:
 /* 804F45EC  C0 7F 00 88 */	lfs f3, 0x88(r31)
 /* 804F45F0  FC 80 18 90 */	fmr f4, f3
 /* 804F45F4  39 00 00 00 */	li r8, 0
-/* 804F45F8  4B DB 73 8C */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 804F45F8  4B DB 73 8D */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 804F45FC  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007028A@ha */
 /* 804F4600  38 03 02 8A */	addi r0, r3, 0x028A /* 0x0007028A@l */
 /* 804F4604  90 01 00 24 */	stw r0, 0x24(r1)
@@ -133,12 +133,12 @@ lbl_804F4678:
 /* 804F468C  60 00 00 01 */	ori r0, r0, 1
 /* 804F4690  B0 1E 05 8E */	sth r0, 0x58e(r30)
 lbl_804F4694:
-/* 804F4694  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 804F4698  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 804F4694  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 804F4698  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 804F469C  80 63 00 00 */	lwz r3, 0(r3)
 /* 804F46A0  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 804F46A4  38 80 00 01 */	li r4, 1
-/* 804F46A8  4B DB B8 E4 */	b changeBgmStatus__8Z2SeqMgrFl
+/* 804F46A8  4B DB B8 E5 */	bl changeBgmStatus__8Z2SeqMgrFl
 lbl_804F46AC:
 /* 804F46AC  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 804F46B0  38 80 00 01 */	li r4, 1
@@ -165,8 +165,8 @@ lbl_804F46D4:
 /* 804F4700  B0 1E 07 A4 */	sth r0, 0x7a4(r30)
 /* 804F4704  38 00 00 21 */	li r0, 0x21
 /* 804F4708  B0 1E 07 AC */	sth r0, 0x7ac(r30)
-/* 804F470C  3C 60 80 50 */	lis r3, l_HIO@ha
-/* 804F4710  38 63 AE A4 */	addi r3, r3, l_HIO@l
+/* 804F470C  3C 60 80 50 */	lis r3, l_HIO@ha /* 0x804FAEA4@ha */
+/* 804F4710  38 63 AE A4 */	addi r3, r3, l_HIO@l /* 0x804FAEA4@l */
 /* 804F4714  A8 03 00 9C */	lha r0, 0x9c(r3)
 /* 804F4718  B0 1E 07 AE */	sth r0, 0x7ae(r30)
 lbl_804F471C:

@@ -5,9 +5,9 @@ lbl_8082E3E8:
 /* 8082E3F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8082E3F8  7C 7F 1B 78 */	mr r31, r3
 /* 8082E3FC  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 8082E400  3C 80 80 83 */	lis r4, stringBase0@ha
-/* 8082E404  38 84 F4 10 */	addi r4, r4, stringBase0@l
-/* 8082E408  4B 7F EC 00 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 8082E400  3C 80 80 83 */	lis r4, d_a_e_zh__stringBase0@ha /* 0x8082F410@ha */
+/* 8082E404  38 84 F4 10 */	addi r4, r4, d_a_e_zh__stringBase0@l /* 0x8082F410@l */
+/* 8082E408  4B 7F EC 01 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8082E40C  88 1F 07 AB */	lbz r0, 0x7ab(r31)
 /* 8082E410  28 00 00 02 */	cmplwi r0, 2
 /* 8082E414  40 82 00 0C */	bne lbl_8082E420
@@ -20,17 +20,17 @@ lbl_8082E420:
 /* 8082E42C  88 9F 07 A9 */	lbz r4, 0x7a9(r31)
 /* 8082E430  28 04 00 FF */	cmplwi r4, 0xff
 /* 8082E434  41 82 00 40 */	beq lbl_8082E474
-/* 8082E438  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8082E43C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8082E438  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8082E43C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8082E440  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8082E444  7C 05 07 74 */	extsb r5, r0
-/* 8082E448  4B 80 6F 18 */	b isSwitch__10dSv_info_cCFii
+/* 8082E448  4B 80 6F 19 */	bl isSwitch__10dSv_info_cCFii
 /* 8082E44C  2C 03 00 00 */	cmpwi r3, 0
 /* 8082E450  40 82 00 24 */	bne lbl_8082E474
-/* 8082E454  3C 60 80 83 */	lis r3, s_BallSearch__FPvPv@ha
-/* 8082E458  38 63 94 60 */	addi r3, r3, s_BallSearch__FPvPv@l
+/* 8082E454  3C 60 80 83 */	lis r3, s_BallSearch__FPvPv@ha /* 0x80829460@ha */
+/* 8082E458  38 63 94 60 */	addi r3, r3, s_BallSearch__FPvPv@l /* 0x80829460@l */
 /* 8082E45C  7F E4 FB 78 */	mr r4, r31
-/* 8082E460  4B 7F 2E D8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 8082E460  4B 7F 2E D9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8082E464  28 03 00 00 */	cmplwi r3, 0
 /* 8082E468  41 82 00 0C */	beq lbl_8082E474
 /* 8082E46C  38 00 00 01 */	li r0, 1
@@ -40,8 +40,8 @@ lbl_8082E474:
 /* 8082E478  28 00 00 00 */	cmplwi r0, 0
 /* 8082E47C  41 82 00 10 */	beq lbl_8082E48C
 /* 8082E480  38 00 00 00 */	li r0, 0
-/* 8082E484  3C 60 80 83 */	lis r3, struct_8082F724+0x1@ha
-/* 8082E488  98 03 F7 25 */	stb r0, struct_8082F724+0x1@l(r3)
+/* 8082E484  3C 60 80 83 */	lis r3, struct_8082F724+0x1@ha /* 0x8082F725@ha */
+/* 8082E488  98 03 F7 25 */	stb r0, struct_8082F724+0x1@l(r3)  /* 0x8082F725@l */
 lbl_8082E48C:
 /* 8082E48C  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 8082E490  28 00 00 00 */	cmplwi r0, 0

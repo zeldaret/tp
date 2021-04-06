@@ -71,9 +71,6 @@ extern "C" void load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager();
 // External References:
 //
 
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32, JKRHeap*, int);
-
 extern "C" void registRes__18JPAResourceManagerFP11JPAResource();
 extern "C" void registTex__18JPAResourceManagerFP10JPATexture();
 extern "C" void __ct__11JPAResourceFv();
@@ -95,9 +92,8 @@ extern "C" void _restgpr_18();
 // Declarations:
 //
 
-/* 8027D8A0-8027D8E0 0040+00 s=0 e=1 z=0  None .text
+/* 8027D8A0-8027D8E0 2781E0 0040+00 0/0 1/1 0/0 .text
  * __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager          */
-//	8027D8C4: 8027D8E0 (load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,35 +103,8 @@ asm JPAResourceLoader::JPAResourceLoader(u8 const* param_0, JPAResourceManager* 
 }
 #pragma pop
 
-/* 8027D8E0-8027DCA0 03C0+00 s=1 e=0 z=0  None .text
+/* 8027D8E0-8027DCA0 278220 03C0+00 1/1 0/0 0/0 .text
  * load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager      */
-//	8027D8F0: 803621B0 (_savegpr_18)
-//	8027D920: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	8027D938: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	8027D968: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027D974: 80274010 (__ct__11JPAResourceFv)
-//	8027D99C: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	8027D9CC: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	8027DAB4: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DAC8: 8027D088 (__ct__13JPAFieldBlockFPCUcP7JKRHeap)
-//	8027DAEC: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DAFC: 8027D730 (__ct__11JPAKeyBlockFPCUc)
-//	8027DB20: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DB30: 8027BB18 (__ct__16JPADynamicsBlockFPCUc)
-//	8027DB4C: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DB60: 8027A6DC (__ct__12JPABaseShapeFPCUcP7JKRHeap)
-//	8027DB7C: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DB8C: 8027AD88 (__ct__13JPAExtraShapeFPCUc)
-//	8027DBA8: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DBB8: 8027B038 (__ct__13JPAChildShapeFPCUc)
-//	8027DBD4: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DBE4: 8027B13C (__ct__13JPAExTexShapeFPCUc)
-//	8027DC18: 80274080 (init__11JPAResourceFP7JKRHeap)
-//	8027DC24: 80273F8C (registRes__18JPAResourceManagerFP11JPAResource)
-//	8027DC58: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8027DC68: 8027D7D4 (__ct__10JPATextureFPCUc)
-//	8027DC74: 80273FAC (registTex__18JPAResourceManagerFP10JPATexture)
-//	8027DC8C: 803621FC (_restgpr_18)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

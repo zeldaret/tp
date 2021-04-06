@@ -3,17 +3,15 @@
 #
 
 M89_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi.plf
+M89_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi.lcf
+M89_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi.map
 
 M89_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bhashi/executor.cpp \
-	rel/d/a/obj/d_a_obj_bhashi/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bhashi/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bhashi/d_a_obj_bhashi.cpp \
 
 M89_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/d_a_obj_bhashi.o \
 
 M89_LIBS := \
@@ -29,15 +27,21 @@ M89_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map89.map\
+	-m _prolog \
+	-lcf $(M89_LDSCRIPT) \
+	-unused -map $(M89_MAP) \
+	-w off \
 
 $(M89_TARGET): $(M89_O_FILES) $(M89_LIBS)
+	@echo [ 89] creating $(M89_TARGET)
 	@echo $(M89_LIBS) $(M89_O_FILES) > build/M89_ofiles
-	$(LD) -opt_partial $(M89_LDFLAGS) -o $(M89_TARGET) @build/M89_ofiles
+	@python3 tools/lcf.py rel 89 --output $(M89_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M89_LDFLAGS) -o $(M89_TARGET) @build/M89_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhashi/%.o: rel/d/a/obj/d_a_obj_bhashi/%.cpp
+	@echo [ 89] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M89_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M89_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

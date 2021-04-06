@@ -3,19 +3,20 @@
 #
 
 M379_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid.plf
+M379_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid.lcf
+M379_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid.map
 
 M379_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_yamid/executor.cpp \
-	rel/d/a/npc/d_a_npc_yamid/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_yamid/d_a_npc_yamid.cpp \
 
 M379_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/d_a_npc_yamid.o \
 
 M379_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/libRuntime.PPCEABI.H.a \
 
 M379_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M379_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map379.map\
+	-m _prolog \
+	-lcf $(M379_LDSCRIPT) \
+	-unused -map $(M379_MAP) \
+	-w off \
 
 $(M379_TARGET): $(M379_O_FILES) $(M379_LIBS)
+	@echo [379] creating $(M379_TARGET)
 	@echo $(M379_LIBS) $(M379_O_FILES) > build/M379_ofiles
-	$(LD) -opt_partial $(M379_LDFLAGS) -o $(M379_TARGET) @build/M379_ofiles
+	@python3 tools/lcf.py rel 379 --output $(M379_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M379_LDFLAGS) -o $(M379_TARGET) @build/M379_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamid/%.o: rel/d/a/npc/d_a_npc_yamid/%.cpp
+	@echo [379] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M379_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M379_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_yamid/libs/Runtime.PPCEABI.H/Makefile
 

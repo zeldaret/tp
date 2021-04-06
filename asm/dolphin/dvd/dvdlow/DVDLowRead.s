@@ -6,8 +6,8 @@ lbl_80347C18:
 /* 80347C28  BE C1 00 18 */	stmw r22, 0x18(r1)
 /* 80347C2C  3B 24 00 00 */	addi r25, r4, 0
 /* 80347C30  38 87 60 00 */	addi r4, r7, 0x6000 /* 0xCC006000@l */
-/* 80347C34  3C E0 80 45 */	lis r7, CommandList@ha
-/* 80347C38  3B E7 C8 30 */	addi r31, r7, CommandList@l
+/* 80347C34  3C E0 80 45 */	lis r7, CommandList@ha /* 0x8044C830@ha */
+/* 80347C38  3B E7 C8 30 */	addi r31, r7, CommandList@l /* 0x8044C830@l */
 /* 80347C3C  3B 03 00 00 */	addi r24, r3, 0
 /* 80347C40  3B 45 00 00 */	addi r26, r5, 0
 /* 80347C44  3B DF 00 CC */	addi r30, r31, 0xcc
@@ -110,7 +110,7 @@ lbl_80347D9C:
 /* 80347D9C  4B FF A9 81 */	bl __OSGetSystemTime
 /* 80347DA0  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
 /* 80347DA4  81 0D 91 C0 */	lwz r8, LastReadFinished(r13)
-/* 80347DA8  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 80347DA8  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 80347DAC  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
 /* 80347DB0  81 2D 91 C4 */	lwz r9, data_80451744(r13)
 /* 80347DB4  38 C0 00 00 */	li r6, 0
@@ -159,8 +159,8 @@ lbl_80347E14:
 /* 80347E5C  7E C4 31 14 */	adde r22, r4, r6
 /* 80347E60  38 7F 00 40 */	addi r3, r31, 0x40
 /* 80347E64  4B FF 2A 95 */	bl OSCreateAlarm
-/* 80347E68  3C 60 80 34 */	lis r3, AlarmHandler@ha
-/* 80347E6C  38 E3 79 94 */	addi r7, r3, AlarmHandler@l
+/* 80347E68  3C 60 80 34 */	lis r3, AlarmHandler@ha /* 0x80347994@ha */
+/* 80347E6C  38 E3 79 94 */	addi r7, r3, AlarmHandler@l /* 0x80347994@l */
 /* 80347E70  38 D7 00 00 */	addi r6, r23, 0
 /* 80347E74  38 B6 00 00 */	addi r5, r22, 0
 /* 80347E78  38 7F 00 40 */	addi r3, r31, 0x40

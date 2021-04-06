@@ -1,9 +1,9 @@
 lbl_80078D64:
-/* 80078D64  3C 80 80 3B */	lis r4, __vt__16cBgS_PolyPassChk@ha
-/* 80078D68  38 04 BA 44 */	addi r0, r4, __vt__16cBgS_PolyPassChk@l
+/* 80078D64  3C 80 80 3B */	lis r4, __vt__16cBgS_PolyPassChk@ha /* 0x803ABA44@ha */
+/* 80078D68  38 04 BA 44 */	addi r0, r4, __vt__16cBgS_PolyPassChk@l /* 0x803ABA44@l */
 /* 80078D6C  90 03 00 00 */	stw r0, 0(r3)
-/* 80078D70  3C 80 80 3B */	lis r4, __vt__16dBgS_PolyPassChk@ha
-/* 80078D74  38 04 BA 38 */	addi r0, r4, __vt__16dBgS_PolyPassChk@l
+/* 80078D70  3C 80 80 3B */	lis r4, __vt__16dBgS_PolyPassChk@ha /* 0x803ABA38@ha */
+/* 80078D74  38 04 BA 38 */	addi r0, r4, __vt__16dBgS_PolyPassChk@l /* 0x803ABA38@l */
 /* 80078D78  90 03 00 00 */	stw r0, 0(r3)
 /* 80078D7C  38 00 00 00 */	li r0, 0
 /* 80078D80  98 03 00 04 */	stb r0, 4(r3)

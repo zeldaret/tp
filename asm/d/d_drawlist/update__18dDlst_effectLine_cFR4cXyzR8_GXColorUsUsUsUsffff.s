@@ -25,8 +25,8 @@ lbl_800541F4:
 /* 80054250  D0 43 00 2C */	stfs f2, 0x2c(r3)
 /* 80054254  D0 63 00 30 */	stfs f3, 0x30(r3)
 /* 80054258  D0 83 00 34 */	stfs f4, 0x34(r3)
-/* 8005425C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80054260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8005425C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80054260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80054264  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80054268  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8005426C  38 A3 01 B8 */	addi r5, r3, 0x1b8

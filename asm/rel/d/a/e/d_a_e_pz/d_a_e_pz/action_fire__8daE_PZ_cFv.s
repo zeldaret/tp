@@ -16,12 +16,12 @@ lbl_8075F53C:
 /* 8075F540  B0 1F 04 E6 */	sth r0, 0x4e6(r31)
 /* 8075F544  7F E3 FB 78 */	mr r3, r31
 /* 8075F548  38 9F 0A D4 */	addi r4, r31, 0xad4
-/* 8075F54C  4B 8B B1 80 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 8075F54C  4B 8B B1 81 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 8075F550  38 7F 08 90 */	addi r3, r31, 0x890
-/* 8075F554  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8075F558  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8075F554  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8075F558  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8075F55C  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 8075F560  4B 91 75 4C */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 8075F560  4B 91 75 4D */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 8075F564  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8075F568  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8075F56C  7C 08 03 A6 */	mtlr r0

@@ -8,8 +8,8 @@ lbl_80A2CC24:
 /* 80A2CC3C  4C 80 00 20 */	bgelr 
 /* 80A2CC40  48 00 00 80 */	b lbl_80A2CCC0
 lbl_80A2CC44:
-/* 80A2CC44  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80A2CC48  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80A2CC44  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A2CC48  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A2CC4C  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80A2CC50  28 00 00 00 */	cmplwi r0, 0
 /* 80A2CC54  41 82 00 2C */	beq lbl_80A2CC80

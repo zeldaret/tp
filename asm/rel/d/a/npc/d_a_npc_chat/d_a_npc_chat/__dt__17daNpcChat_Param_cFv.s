@@ -5,12 +5,12 @@ lbl_80986930:
 /* 8098693C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80986940  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80986944  41 82 00 1C */	beq lbl_80986960
-/* 80986948  3C A0 80 99 */	lis r5, __vt__17daNpcChat_Param_c@ha
-/* 8098694C  38 05 BA 68 */	addi r0, r5, __vt__17daNpcChat_Param_c@l
+/* 80986948  3C A0 80 99 */	lis r5, __vt__17daNpcChat_Param_c@ha /* 0x8098BA68@ha */
+/* 8098694C  38 05 BA 68 */	addi r0, r5, __vt__17daNpcChat_Param_c@l /* 0x8098BA68@l */
 /* 80986950  90 1F 00 00 */	stw r0, 0(r31)
 /* 80986954  7C 80 07 35 */	extsh. r0, r4
 /* 80986958  40 81 00 08 */	ble lbl_80986960
-/* 8098695C  4B 94 83 E0 */	b __dl__FPv
+/* 8098695C  4B 94 83 E1 */	bl __dl__FPv
 lbl_80986960:
 /* 80986960  7F E3 FB 78 */	mr r3, r31
 /* 80986964  83 E1 00 0C */	lwz r31, 0xc(r1)

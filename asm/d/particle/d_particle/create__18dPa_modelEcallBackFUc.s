@@ -9,10 +9,10 @@ lbl_8004AB1C:
 /* 8004AB38  1C 7F 03 94 */	mulli r3, r31, 0x394
 /* 8004AB3C  38 63 00 10 */	addi r3, r3, 0x10
 /* 8004AB40  48 28 41 85 */	bl __nwa__FUl
-/* 8004AB44  3C 80 80 05 */	lis r4, __ct__Q218dPa_modelEcallBack7model_cFv@ha
-/* 8004AB48  38 84 FB 90 */	addi r4, r4, __ct__Q218dPa_modelEcallBack7model_cFv@l
-/* 8004AB4C  3C A0 80 05 */	lis r5, __dt__Q218dPa_modelEcallBack7model_cFv@ha
-/* 8004AB50  38 A5 AB 88 */	addi r5, r5, __dt__Q218dPa_modelEcallBack7model_cFv@l
+/* 8004AB44  3C 80 80 05 */	lis r4, __ct__Q218dPa_modelEcallBack7model_cFv@ha /* 0x8004FB90@ha */
+/* 8004AB48  38 84 FB 90 */	addi r4, r4, __ct__Q218dPa_modelEcallBack7model_cFv@l /* 0x8004FB90@l */
+/* 8004AB4C  3C A0 80 05 */	lis r5, __dt__Q218dPa_modelEcallBack7model_cFv@ha /* 0x8004AB88@ha */
+/* 8004AB50  38 A5 AB 88 */	addi r5, r5, __dt__Q218dPa_modelEcallBack7model_cFv@l /* 0x8004AB88@l */
 /* 8004AB54  38 C0 03 94 */	li r6, 0x394
 /* 8004AB58  7F E7 FB 78 */	mr r7, r31
 /* 8004AB5C  48 31 73 B9 */	bl __construct_new_array

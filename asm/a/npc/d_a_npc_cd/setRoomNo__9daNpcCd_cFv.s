@@ -4,8 +4,8 @@ lbl_80156D78:
 /* 80156D80  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80156D84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80156D88  7C 7F 1B 78 */	mr r31, r3
-/* 80156D8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80156D90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80156D8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80156D90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80156D94  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80156D98  38 9F 07 24 */	addi r4, r31, 0x724
 /* 80156D9C  4B F1 E3 65 */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo

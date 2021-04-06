@@ -4,8 +4,8 @@ lbl_8015C134:
 /* 8015C13C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8015C140  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8015C144  7C 7F 1B 78 */	mr r31, r3
-/* 8015C148  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015C14C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015C148  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015C14C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015C150  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 8015C154  38 61 00 08 */	addi r3, r1, 8
 /* 8015C158  48 00 1E 81 */	bl getItemPos__9daPy_py_cCFv
@@ -29,8 +29,8 @@ lbl_8015C134:
 /* 8015C1A0  40 80 00 08 */	bge lbl_8015C1A8
 /* 8015C1A4  D0 3F 04 D4 */	stfs f1, 0x4d4(r31)
 lbl_8015C1A8:
-/* 8015C1A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015C1AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015C1A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015C1AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015C1B0  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8015C1B4  A8 03 02 30 */	lha r0, 0x230(r3)
 /* 8015C1B8  B0 1F 04 E4 */	sth r0, 0x4e4(r31)

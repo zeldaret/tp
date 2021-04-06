@@ -8,8 +8,8 @@ lbl_802D6294:
 /* 802D62AC  7C 9E 23 78 */	mr r30, r4
 /* 802D62B0  7C BF 2B 78 */	mr r31, r5
 /* 802D62B4  4B FF DE 3D */	bl __ct__13JKRFileLoaderFv
-/* 802D62B8  3C 60 80 3D */	lis r3, __vt__10JKRArchive@ha
-/* 802D62BC  38 03 C2 88 */	addi r0, r3, __vt__10JKRArchive@l
+/* 802D62B8  3C 60 80 3D */	lis r3, __vt__10JKRArchive@ha /* 0x803CC288@ha */
+/* 802D62BC  38 03 C2 88 */	addi r0, r3, __vt__10JKRArchive@l /* 0x803CC288@l */
 /* 802D62C0  90 1D 00 00 */	stw r0, 0(r29)
 /* 802D62C4  38 00 00 00 */	li r0, 0
 /* 802D62C8  98 1D 00 30 */	stb r0, 0x30(r29)

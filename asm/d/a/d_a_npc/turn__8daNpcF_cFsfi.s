@@ -66,8 +66,8 @@ lbl_80153FC0:
 lbl_80153FE8:
 /* 80153FE8  80 C3 09 68 */	lwz r6, 0x968(r3)
 /* 80153FEC  54 C0 04 38 */	rlwinm r0, r6, 0, 0x10, 0x1c
-/* 80153FF0  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80153FF4  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 80153FF0  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80153FF4  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80153FF8  7C 45 04 2E */	lfsx f2, r5, r0
 /* 80153FFC  C8 22 99 E0 */	lfd f1, lit_4142(r2)
 /* 80154000  6C E0 80 00 */	xoris r0, r7, 0x8000

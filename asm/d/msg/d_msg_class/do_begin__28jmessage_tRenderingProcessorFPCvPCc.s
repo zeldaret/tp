@@ -63,25 +63,25 @@ lbl_8022CEA8:
 /* 8022CEB8  38 00 00 00 */	li r0, 0
 /* 8022CEBC  90 1E 01 1C */	stw r0, 0x11c(r30)
 /* 8022CEC0  38 7F 0A 1C */	addi r3, r31, 0xa1c
-/* 8022CEC4  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022CEC8  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022CEC4  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022CEC8  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022CECC  38 84 00 07 */	addi r4, r4, 7
 /* 8022CED0  48 13 BC 5D */	bl strcpy
 /* 8022CED4  38 7F 0C 1C */	addi r3, r31, 0xc1c
-/* 8022CED8  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022CEDC  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022CED8  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022CEDC  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022CEE0  38 84 00 07 */	addi r4, r4, 7
 /* 8022CEE4  48 13 BC 49 */	bl strcpy
 /* 8022CEE8  38 7F 0E 1C */	addi r3, r31, 0xe1c
-/* 8022CEEC  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022CEF0  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022CEEC  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022CEF0  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022CEF4  38 84 00 07 */	addi r4, r4, 7
 /* 8022CEF8  48 13 BC 35 */	bl strcpy
 /* 8022CEFC  3B 40 00 00 */	li r26, 0
 /* 8022CF00  3B A0 00 00 */	li r29, 0
 /* 8022CF04  3B 80 00 00 */	li r28, 0
-/* 8022CF08  3C 60 80 3A */	lis r3, d_msg_d_msg_class__stringBase0@ha
-/* 8022CF0C  3B 63 96 10 */	addi r27, r3, d_msg_d_msg_class__stringBase0@l
+/* 8022CF08  3C 60 80 3A */	lis r3, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022CF0C  3B 63 96 10 */	addi r27, r3, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 lbl_8022CF10:
 /* 8022CF10  38 7C 10 1C */	addi r3, r28, 0x101c
 /* 8022CF14  7C 7F 1A 14 */	add r3, r31, r3

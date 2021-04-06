@@ -5,12 +5,12 @@ lbl_8095D52C:
 /* 8095D538  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8095D53C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8095D540  41 82 00 1C */	beq lbl_8095D55C
-/* 8095D544  3C A0 80 96 */	lis r5, __vt__10cCcD_GStts@ha
-/* 8095D548  38 05 DC D8 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 8095D544  3C A0 80 96 */	lis r5, __vt__10cCcD_GStts@ha /* 0x8095DCD8@ha */
+/* 8095D548  38 05 DC D8 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x8095DCD8@l */
 /* 8095D54C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8095D550  7C 80 07 35 */	extsh. r0, r4
 /* 8095D554  40 81 00 08 */	ble lbl_8095D55C
-/* 8095D558  4B 97 17 E4 */	b __dl__FPv
+/* 8095D558  4B 97 17 E5 */	bl __dl__FPv
 lbl_8095D55C:
 /* 8095D55C  7F E3 FB 78 */	mr r3, r31
 /* 8095D560  83 E1 00 0C */	lwz r31, 0xc(r1)

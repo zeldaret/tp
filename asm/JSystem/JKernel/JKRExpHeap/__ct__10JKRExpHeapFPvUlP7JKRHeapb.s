@@ -8,8 +8,8 @@ lbl_802CF030:
 /* 802CF048  7C 9E 23 78 */	mr r30, r4
 /* 802CF04C  7C BF 2B 78 */	mr r31, r5
 /* 802CF050  4B FF F0 E9 */	bl __ct__7JKRHeapFPvUlP7JKRHeapb
-/* 802CF054  3C 60 80 3D */	lis r3, __vt__10JKRExpHeap@ha
-/* 802CF058  38 03 BF D0 */	addi r0, r3, __vt__10JKRExpHeap@l
+/* 802CF054  3C 60 80 3D */	lis r3, __vt__10JKRExpHeap@ha /* 0x803CBFD0@ha */
+/* 802CF058  38 03 BF D0 */	addi r0, r3, __vt__10JKRExpHeap@l /* 0x803CBFD0@l */
 /* 802CF05C  90 1D 00 00 */	stw r0, 0(r29)
 /* 802CF060  38 00 00 00 */	li r0, 0
 /* 802CF064  98 1D 00 6C */	stb r0, 0x6c(r29)

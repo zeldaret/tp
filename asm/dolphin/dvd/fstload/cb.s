@@ -16,9 +16,9 @@ lbl_8034BD2C:
 lbl_8034BD64:
 /* 8034BD64  38 00 00 01 */	li r0, 1
 /* 8034BD68  80 8D 92 54 */	lwz r4, bb2(r13)
-/* 8034BD6C  3C 60 80 35 */	lis r3, cb@ha
+/* 8034BD6C  3C 60 80 35 */	lis r3, cb@ha /* 0x8034BD2C@ha */
 /* 8034BD70  90 0D 92 50 */	stw r0, status(r13)
-/* 8034BD74  38 E3 BD 2C */	addi r7, r3, cb@l
+/* 8034BD74  38 E3 BD 2C */	addi r7, r3, cb@l /* 0x8034BD2C@l */
 /* 8034BD78  38 7F 00 00 */	addi r3, r31, 0
 /* 8034BD7C  38 A0 00 20 */	li r5, 0x20
 /* 8034BD80  38 C0 04 20 */	li r6, 0x420
@@ -28,8 +28,8 @@ lbl_8034BD8C:
 /* 8034BD8C  38 00 00 02 */	li r0, 2
 /* 8034BD90  80 CD 92 54 */	lwz r6, bb2(r13)
 /* 8034BD94  90 0D 92 50 */	stw r0, status(r13)
-/* 8034BD98  3C 60 80 35 */	lis r3, cb@ha
-/* 8034BD9C  38 E3 BD 2C */	addi r7, r3, cb@l
+/* 8034BD98  3C 60 80 35 */	lis r3, cb@ha /* 0x8034BD2C@ha */
+/* 8034BD9C  38 E3 BD 2C */	addi r7, r3, cb@l /* 0x8034BD2C@l */
 /* 8034BDA0  80 A6 00 08 */	lwz r5, 8(r6)
 /* 8034BDA4  7F E3 FB 78 */	mr r3, r31
 /* 8034BDA8  80 86 00 10 */	lwz r4, 0x10(r6)
@@ -46,9 +46,9 @@ lbl_8034BDC0:
 /* 8034BDD0  38 00 00 00 */	li r0, 0
 /* 8034BDD4  90 0D 92 50 */	stw r0, status(r13)
 /* 8034BDD8  4B FF F3 61 */	bl DVDReset
-/* 8034BDDC  3C 60 80 35 */	lis r3, cb@ha
+/* 8034BDDC  3C 60 80 35 */	lis r3, cb@ha /* 0x8034BD2C@ha */
 /* 8034BDE0  80 8D 92 58 */	lwz r4, idTmp(r13)
-/* 8034BDE4  38 A3 BD 2C */	addi r5, r3, cb@l
+/* 8034BDE4  38 A3 BD 2C */	addi r5, r3, cb@l /* 0x8034BD2C@l */
 /* 8034BDE8  38 7F 00 00 */	addi r3, r31, 0
 /* 8034BDEC  4B FF F0 ED */	bl DVDReadDiskID
 lbl_8034BDF0:

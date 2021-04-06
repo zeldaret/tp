@@ -13,8 +13,8 @@ lbl_8013B964:
 /* 8013B990  48 02 33 29 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013B994  7F C3 F3 78 */	mr r3, r30
 /* 8013B998  38 80 00 64 */	li r4, 0x64
-/* 8013B99C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtDown_c0@ha
-/* 8013B9A0  38 A5 F6 58 */	addi r5, r5, m__22daAlinkHIO_wlAtDown_c0@l
+/* 8013B99C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtDown_c0@ha /* 0x8038F658@ha */
+/* 8013B9A0  38 A5 F6 58 */	addi r5, r5, m__22daAlinkHIO_wlAtDown_c0@l /* 0x8038F658@l */
 /* 8013B9A4  38 A5 00 28 */	addi r5, r5, 0x28
 /* 8013B9A8  4B FE DE A1 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013B9AC  38 00 00 04 */	li r0, 4
@@ -41,8 +41,8 @@ lbl_8013B964:
 /* 8013BA00  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 8013BA04  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8013BA08  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 8013BA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013BA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013BA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013BA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013BA14  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8013BA18  38 80 00 02 */	li r4, 2
 /* 8013BA1C  38 A0 00 0F */	li r5, 0xf

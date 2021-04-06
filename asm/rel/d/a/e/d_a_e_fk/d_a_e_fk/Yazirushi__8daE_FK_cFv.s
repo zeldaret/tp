@@ -6,8 +6,8 @@ lbl_806B9AD8:
 /* 806B9AE8  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 806B9AEC  D0 03 05 40 */	stfs f0, 0x540(r3)
 /* 806B9AF0  C0 03 05 3C */	lfs f0, 0x53c(r3)
-/* 806B9AF4  3C 80 80 6C */	lis r4, lit_4129@ha
-/* 806B9AF8  C0 24 B7 AC */	lfs f1, lit_4129@l(r4)
+/* 806B9AF4  3C 80 80 6C */	lis r4, lit_4129@ha /* 0x806BB7AC@ha */
+/* 806B9AF8  C0 24 B7 AC */	lfs f1, lit_4129@l(r4)  /* 0x806BB7AC@l */
 /* 806B9AFC  EC 00 08 2A */	fadds f0, f0, f1
 /* 806B9B00  D0 03 05 3C */	stfs f0, 0x53c(r3)
 /* 806B9B04  C0 03 05 38 */	lfs f0, 0x538(r3)

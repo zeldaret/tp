@@ -4,8 +4,8 @@ lbl_802001AC:
 /* 802001B4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802001B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802001BC  7C 7F 1B 78 */	mr r31, r3
-/* 802001C0  3C 60 80 3C */	lis r3, __vt__16dMeter_ringHIO_c@ha
-/* 802001C4  38 03 F1 0C */	addi r0, r3, __vt__16dMeter_ringHIO_c@l
+/* 802001C0  3C 60 80 3C */	lis r3, __vt__16dMeter_ringHIO_c@ha /* 0x803BF10C@ha */
+/* 802001C4  38 03 F1 0C */	addi r0, r3, __vt__16dMeter_ringHIO_c@l /* 0x803BF10C@l */
 /* 802001C8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802001CC  38 00 FF FF */	li r0, -1
 /* 802001D0  90 1F 00 D0 */	stw r0, 0xd0(r31)
@@ -13,8 +13,8 @@ lbl_802001AC:
 /* 802001D8  90 1F 00 D8 */	stw r0, 0xd8(r31)
 /* 802001DC  90 1F 00 DC */	stw r0, 0xdc(r31)
 /* 802001E0  38 7F 01 30 */	addi r3, r31, 0x130
-/* 802001E4  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 802001E8  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 802001E4  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 802001E8  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 802001EC  38 A0 00 00 */	li r5, 0
 /* 802001F0  38 C0 00 04 */	li r6, 4
 /* 802001F4  38 E0 00 02 */	li r7, 2

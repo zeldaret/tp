@@ -1,6 +1,6 @@
 lbl_8006B8E4:
-/* 8006B8E4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B8E8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B8E4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B8E8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B8EC  80 C3 0F 28 */	lwz r6, 0xf28(r3)
 /* 8006B8F0  38 60 00 00 */	li r3, 0
 /* 8006B8F4  7C 64 1B 78 */	mr r4, r3

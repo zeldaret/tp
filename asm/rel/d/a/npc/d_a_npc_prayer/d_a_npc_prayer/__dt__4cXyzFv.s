@@ -7,7 +7,7 @@ lbl_80AB50A4:
 /* 80AB50B8  41 82 00 10 */	beq lbl_80AB50C8
 /* 80AB50BC  7C 80 07 35 */	extsh. r0, r4
 /* 80AB50C0  40 81 00 08 */	ble lbl_80AB50C8
-/* 80AB50C4  4B 81 9C 78 */	b __dl__FPv
+/* 80AB50C4  4B 81 9C 79 */	bl __dl__FPv
 lbl_80AB50C8:
 /* 80AB50C8  7F E3 FB 78 */	mr r3, r31
 /* 80AB50CC  83 E1 00 0C */	lwz r31, 0xc(r1)

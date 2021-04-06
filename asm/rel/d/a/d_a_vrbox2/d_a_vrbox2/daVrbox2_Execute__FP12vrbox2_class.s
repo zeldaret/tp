@@ -2,15 +2,15 @@ lbl_804997E8:
 /* 804997E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804997EC  7C 08 02 A6 */	mflr r0
 /* 804997F0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 804997F4  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 804997F8  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 804997F4  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 804997F8  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 804997FC  C0 24 12 44 */	lfs f1, 0x1244(r4)
-/* 80499800  3C 80 80 4A */	lis r4, lit_3837@ha
-/* 80499804  C0 04 9A 7C */	lfs f0, lit_3837@l(r4)
+/* 80499800  3C 80 80 4A */	lis r4, lit_3837@ha /* 0x80499A7C@ha */
+/* 80499804  C0 04 9A 7C */	lfs f0, lit_3837@l(r4)  /* 0x80499A7C@l */
 /* 80499808  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8049980C  40 81 00 0C */	ble lbl_80499818
 /* 80499810  38 63 05 80 */	addi r3, r3, 0x580
-/* 80499814  4B B7 3C 14 */	b play__14mDoExt_baseAnmFv
+/* 80499814  4B B7 3C 15 */	bl play__14mDoExt_baseAnmFv
 lbl_80499818:
 /* 80499818  38 60 00 01 */	li r3, 1
 /* 8049981C  80 01 00 14 */	lwz r0, 0x14(r1)

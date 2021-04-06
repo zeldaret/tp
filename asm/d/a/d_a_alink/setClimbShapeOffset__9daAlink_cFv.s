@@ -11,8 +11,8 @@ lbl_800FE174:
 /* 800FE198  7C 7F 1B 78 */	mr r31, r3
 /* 800FE19C  A8 03 04 E6 */	lha r0, 0x4e6(r3)
 /* 800FE1A0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FE1A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FE1A8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800FE1A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FE1A8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FE1AC  7C A3 04 2E */	lfsx f5, r3, r0
 /* 800FE1B0  7C 63 02 14 */	add r3, r3, r0
 /* 800FE1B4  C0 C3 00 04 */	lfs f6, 4(r3)

@@ -7,12 +7,12 @@ lbl_80C5E1C8:
 /* 80C5E1DC  88 03 05 CA */	lbz r0, 0x5ca(r3)
 /* 80C5E1E0  28 00 00 00 */	cmplwi r0, 0
 /* 80C5E1E4  40 82 00 78 */	bne lbl_80C5E25C
-/* 80C5E1E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C5E1EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C5E1E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C5E1EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C5E1F0  88 9F 05 C9 */	lbz r4, 0x5c9(r31)
 /* 80C5E1F4  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C5E1F8  7C 05 07 74 */	extsb r5, r0
-/* 80C5E1FC  4B 3D 71 64 */	b isSwitch__10dSv_info_cCFii
+/* 80C5E1FC  4B 3D 71 65 */	bl isSwitch__10dSv_info_cCFii
 /* 80C5E200  2C 03 00 00 */	cmpwi r3, 0
 /* 80C5E204  41 82 00 C8 */	beq lbl_80C5E2CC
 /* 80C5E208  A0 7F 05 C6 */	lhz r3, 0x5c6(r31)
@@ -25,7 +25,7 @@ lbl_80C5E1C8:
 /* 80C5E224  38 7F 05 A8 */	addi r3, r31, 0x5a8
 /* 80C5E228  38 A0 00 FF */	li r5, 0xff
 /* 80C5E22C  38 C0 00 01 */	li r6, 1
-/* 80C5E230  4B 3E A7 10 */	b orderEvent__17dEvLib_callback_cFiii
+/* 80C5E230  4B 3E A7 11 */	bl orderEvent__17dEvLib_callback_cFiii
 /* 80C5E234  48 00 00 98 */	b lbl_80C5E2CC
 lbl_80C5E238:
 /* 80C5E238  7F E3 FB 78 */	mr r3, r31
@@ -39,12 +39,12 @@ lbl_80C5E250:
 /* 80C5E254  B0 1F 05 C6 */	sth r0, 0x5c6(r31)
 /* 80C5E258  48 00 00 74 */	b lbl_80C5E2CC
 lbl_80C5E25C:
-/* 80C5E25C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C5E260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C5E25C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C5E260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C5E264  88 9F 05 C8 */	lbz r4, 0x5c8(r31)
 /* 80C5E268  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C5E26C  7C 05 07 74 */	extsb r5, r0
-/* 80C5E270  4B 3D 70 F0 */	b isSwitch__10dSv_info_cCFii
+/* 80C5E270  4B 3D 70 F1 */	bl isSwitch__10dSv_info_cCFii
 /* 80C5E274  2C 03 00 00 */	cmpwi r3, 0
 /* 80C5E278  41 82 00 54 */	beq lbl_80C5E2CC
 /* 80C5E27C  A0 7F 05 C6 */	lhz r3, 0x5c6(r31)
@@ -57,7 +57,7 @@ lbl_80C5E25C:
 /* 80C5E298  38 7F 05 A8 */	addi r3, r31, 0x5a8
 /* 80C5E29C  38 A0 00 FF */	li r5, 0xff
 /* 80C5E2A0  38 C0 00 01 */	li r6, 1
-/* 80C5E2A4  4B 3E A6 9C */	b orderEvent__17dEvLib_callback_cFiii
+/* 80C5E2A4  4B 3E A6 9D */	bl orderEvent__17dEvLib_callback_cFiii
 /* 80C5E2A8  48 00 00 24 */	b lbl_80C5E2CC
 lbl_80C5E2AC:
 /* 80C5E2AC  7F E3 FB 78 */	mr r3, r31

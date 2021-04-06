@@ -20,8 +20,8 @@ lbl_8010B720:
 lbl_8010B768:
 /* 8010B768  2C 03 00 04 */	cmpwi r3, 4
 /* 8010B76C  40 82 00 B8 */	bne lbl_8010B824
-/* 8010B770  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010B774  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010B770  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010B774  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010B778  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8010B77C  38 9F 1E 2C */	addi r4, r31, 0x1e2c
 /* 8010B780  4B F6 8E E1 */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
@@ -44,8 +44,8 @@ lbl_8010B7B4:
 /* 8010B7C0  48 00 05 D1 */	bl procHookshotFlyInit__9daAlink_cFv
 /* 8010B7C4  48 00 00 70 */	b lbl_8010B834
 lbl_8010B7C8:
-/* 8010B7C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8010B7CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8010B7C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010B7CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010B7D0  80 04 5F 1C */	lwz r0, 0x5f1c(r4)
 /* 8010B7D4  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 8010B7D8  41 82 00 4C */	beq lbl_8010B824

@@ -8,7 +8,7 @@ lbl_80024394:
 /* 80024398  4E 80 00 20 */	blr 
 lbl_8002439C:
 /* 8002439C  1C 84 04 04 */	mulli r4, r4, 0x404
-/* 800243A0  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 800243A4  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 800243A0  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 800243A4  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 800243A8  7C 60 22 14 */	add r3, r0, r4
 /* 800243AC  4E 80 00 20 */	blr 

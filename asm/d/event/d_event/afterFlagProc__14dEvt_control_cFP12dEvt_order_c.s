@@ -5,11 +5,11 @@ lbl_80041964:
 /* 80041970  A0 04 00 02 */	lhz r0, 2(r4)
 /* 80041974  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80041978  41 82 00 20 */	beq lbl_80041998
-/* 8004197C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80041980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8004197C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80041980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80041984  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80041988  3C 80 80 38 */	lis r4, d_event_d_event__stringBase0@ha
-/* 8004198C  38 84 9D 80 */	addi r4, r4, d_event_d_event__stringBase0@l
+/* 80041988  3C 80 80 38 */	lis r4, d_event_d_event__stringBase0@ha /* 0x80379D80@ha */
+/* 8004198C  38 84 9D 80 */	addi r4, r4, d_event_d_event__stringBase0@l /* 0x80379D80@l */
 /* 80041990  38 84 00 07 */	addi r4, r4, 7
 /* 80041994  48 00 69 39 */	bl issueStaff__16dEvent_manager_cFPCc
 lbl_80041998:

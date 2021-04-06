@@ -21,8 +21,8 @@ lbl_802E5888:
 /* 802E58D4  90 03 00 58 */	stw r0, 0x58(r3)
 /* 802E58D8  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 802E58DC  38 7F 00 64 */	addi r3, r31, 0x64
-/* 802E58E0  3C 80 80 2E */	lis r4, __ct__Q210JUTProcBar5CTimeFv@ha
-/* 802E58E4  38 84 73 40 */	addi r4, r4, __ct__Q210JUTProcBar5CTimeFv@l
+/* 802E58E0  3C 80 80 2E */	lis r4, __ct__Q210JUTProcBar5CTimeFv@ha /* 0x802E7340@ha */
+/* 802E58E4  38 84 73 40 */	addi r4, r4, __ct__Q210JUTProcBar5CTimeFv@l /* 0x802E7340@l */
 /* 802E58E8  38 A0 00 00 */	li r5, 0
 /* 802E58EC  38 C0 00 14 */	li r6, 0x14
 /* 802E58F0  38 E0 00 08 */	li r7, 8

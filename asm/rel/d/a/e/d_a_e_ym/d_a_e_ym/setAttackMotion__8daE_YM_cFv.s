@@ -5,8 +5,8 @@ lbl_8080DB58:
 /* 8080DB64  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8080DB68  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8080DB6C  7C 7E 1B 78 */	mr r30, r3
-/* 8080DB70  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 8080DB74  3B E3 59 94 */	addi r31, r3, lit_3925@l
+/* 8080DB70  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 8080DB74  3B E3 59 94 */	addi r31, r3, lit_3925@l /* 0x80815994@l */
 /* 8080DB78  88 1E 06 A0 */	lbz r0, 0x6a0(r30)
 /* 8080DB7C  28 00 00 01 */	cmplwi r0, 1
 /* 8080DB80  41 82 00 0C */	beq lbl_8080DB8C
@@ -14,12 +14,12 @@ lbl_8080DB58:
 /* 8080DB88  48 00 00 BC */	b lbl_8080DC44
 lbl_8080DB8C:
 /* 8080DB8C  38 7E 09 74 */	addi r3, r30, 0x974
-/* 8080DB90  4B 87 67 30 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 8080DB90  4B 87 67 31 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 8080DB94  28 03 00 00 */	cmplwi r3, 0
 /* 8080DB98  41 82 00 A8 */	beq lbl_8080DC40
 /* 8080DB9C  38 7E 09 74 */	addi r3, r30, 0x974
-/* 8080DBA0  4B 87 67 B8 */	b GetAtHitObj__12dCcD_GObjInfFv
-/* 8080DBA4  4B A5 5E A4 */	b GetAc__8cCcD_ObjFv
+/* 8080DBA0  4B 87 67 B9 */	bl GetAtHitObj__12dCcD_GObjInfFv
+/* 8080DBA4  4B A5 5E A5 */	bl GetAc__8cCcD_ObjFv
 /* 8080DBA8  A8 03 00 08 */	lha r0, 8(r3)
 /* 8080DBAC  2C 00 00 FD */	cmpwi r0, 0xfd
 /* 8080DBB0  40 82 00 90 */	bne lbl_8080DC40

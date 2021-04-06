@@ -1,6 +1,6 @@
 lbl_8036F978:
-/* 8036F978  3C 40 80 44 */	lis r2, gTRKState@h
-/* 8036F97C  60 42 F2 94 */	ori r2, r2, gTRKState@l
+/* 8036F978  3C 40 80 44 */	lis r2, gTRKState@h /* 0x8044F294@h */
+/* 8036F97C  60 42 F2 94 */	ori r2, r2, gTRKState@l /* 0x8044F294@l */
 /* 8036F980  80 02 00 8C */	lwz r0, 0x8c(r2)
 /* 8036F984  7C 00 04 AC */	sync
 /* 8036F988  7C 00 01 24 */	mtmsr r0

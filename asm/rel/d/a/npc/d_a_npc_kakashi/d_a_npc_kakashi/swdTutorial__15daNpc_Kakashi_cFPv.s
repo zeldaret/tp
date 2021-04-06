@@ -17,7 +17,7 @@ lbl_8054D6CC:
 /* 8054D6CC  38 00 00 02 */	li r0, 2
 /* 8054D6D0  B0 1F 0E 22 */	sth r0, 0xe22(r31)
 lbl_8054D6D4:
-/* 8054D6D4  4B AE 40 0C */	b daNpcKakashi_getSwdTutorialStep__Fv
+/* 8054D6D4  4B AE 40 0D */	bl daNpcKakashi_getSwdTutorialStep__Fv
 /* 8054D6D8  7C 7E 1B 78 */	mr r30, r3
 /* 8054D6DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8054D6E0  40 82 00 18 */	bne lbl_8054D6F8
@@ -38,8 +38,8 @@ lbl_8054D6F8:
 /* 8054D718  2C 03 00 00 */	cmpwi r3, 0
 /* 8054D71C  41 82 00 40 */	beq lbl_8054D75C
 /* 8054D720  38 60 00 01 */	li r3, 1
-/* 8054D724  4B AE 40 30 */	b daNpcKakashi_setSwdTutorialResult__Fb
-/* 8054D728  4B AE 41 10 */	b daNpcKakashi_clrSuccessCount__Fv
+/* 8054D724  4B AE 40 31 */	bl daNpcKakashi_setSwdTutorialResult__Fb
+/* 8054D728  4B AE 41 11 */	bl daNpcKakashi_clrSuccessCount__Fv
 /* 8054D72C  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 8054D730  28 00 00 02 */	cmplwi r0, 2
 /* 8054D734  41 82 00 0C */	beq lbl_8054D740
@@ -49,20 +49,20 @@ lbl_8054D740:
 /* 8054D740  80 1F 0D B0 */	lwz r0, 0xdb0(r31)
 /* 8054D744  2C 00 00 01 */	cmpwi r0, 1
 /* 8054D748  41 82 00 08 */	beq lbl_8054D750
-/* 8054D74C  4B AE 40 90 */	b daNpcKakashi_incSuccessCount__Fv
+/* 8054D74C  4B AE 40 91 */	bl daNpcKakashi_incSuccessCount__Fv
 lbl_8054D750:
 /* 8054D750  38 00 00 01 */	li r0, 1
 /* 8054D754  98 1F 13 8E */	stb r0, 0x138e(r31)
 /* 8054D758  48 00 00 14 */	b lbl_8054D76C
 lbl_8054D75C:
 /* 8054D75C  38 60 00 00 */	li r3, 0
-/* 8054D760  4B AE 3F F4 */	b daNpcKakashi_setSwdTutorialResult__Fb
+/* 8054D760  4B AE 3F F5 */	bl daNpcKakashi_setSwdTutorialResult__Fb
 /* 8054D764  38 00 00 01 */	li r0, 1
 /* 8054D768  98 1F 13 8F */	stb r0, 0x138f(r31)
 lbl_8054D76C:
-/* 8054D76C  4B AE 3F 74 */	b daNpcKakashi_getSwdTutorialStep__Fv
+/* 8054D76C  4B AE 3F 75 */	bl daNpcKakashi_getSwdTutorialStep__Fv
 /* 8054D770  7C 7E 1B 78 */	mr r30, r3
-/* 8054D774  4B AE 40 30 */	b daNpcKakashi_getSuccessCount__Fv
+/* 8054D774  4B AE 40 31 */	bl daNpcKakashi_getSuccessCount__Fv
 /* 8054D778  88 1F 13 8E */	lbz r0, 0x138e(r31)
 /* 8054D77C  28 00 00 00 */	cmplwi r0, 0
 /* 8054D780  41 82 00 9C */	beq lbl_8054D81C

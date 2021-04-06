@@ -8,8 +8,8 @@ lbl_801B3CF4:
 /* 801B3D0C  7C 9E 23 78 */	mr r30, r4
 /* 801B3D10  2C 1E FF FF */	cmpwi r30, -1
 /* 801B3D14  40 82 01 80 */	bne lbl_801B3E94
-/* 801B3D18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B3D1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B3D18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3D1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3D20  88 83 00 15 */	lbz r4, 0x15(r3)
 /* 801B3D24  88 7D 02 5C */	lbz r3, 0x25c(r29)
 /* 801B3D28  54 80 06 3E */	clrlwi r0, r4, 0x18
@@ -54,8 +54,8 @@ lbl_801B3D6C:
 /* 801B3DB4  80 01 00 40 */	lwz r0, 0x40(r1)
 /* 801B3DB8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801B3DBC  80 7D 00 18 */	lwz r3, 0x18(r29)
-/* 801B3DC0  3C 80 80 39 */	lis r4, tag_6100@ha
-/* 801B3DC4  38 04 50 A8 */	addi r0, r4, tag_6100@l
+/* 801B3DC0  3C 80 80 39 */	lis r4, tag_6100@ha /* 0x803950A8@ha */
+/* 801B3DC4  38 04 50 A8 */	addi r0, r4, tag_6100@l /* 0x803950A8@l */
 /* 801B3DC8  7C 80 DA 14 */	add r4, r0, r27
 /* 801B3DCC  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B3DD0  80 C4 00 04 */	lwz r6, 4(r4)
@@ -87,8 +87,8 @@ lbl_801B3E00:
 /* 801B3E34  80 01 00 30 */	lwz r0, 0x30(r1)
 /* 801B3E38  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801B3E3C  80 7D 00 18 */	lwz r3, 0x18(r29)
-/* 801B3E40  3C 80 80 39 */	lis r4, tag_6100@ha
-/* 801B3E44  38 04 50 A8 */	addi r0, r4, tag_6100@l
+/* 801B3E40  3C 80 80 39 */	lis r4, tag_6100@ha /* 0x803950A8@ha */
+/* 801B3E44  38 04 50 A8 */	addi r0, r4, tag_6100@l /* 0x803950A8@l */
 /* 801B3E48  7C 80 DA 14 */	add r4, r0, r27
 /* 801B3E4C  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B3E50  80 C4 00 04 */	lwz r6, 4(r4)
@@ -135,8 +135,8 @@ lbl_801B3EA0:
 /* 801B3EE8  80 01 00 20 */	lwz r0, 0x20(r1)
 /* 801B3EEC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801B3EF0  80 7D 00 18 */	lwz r3, 0x18(r29)
-/* 801B3EF4  3C 80 80 39 */	lis r4, tag_6100@ha
-/* 801B3EF8  38 04 50 A8 */	addi r0, r4, tag_6100@l
+/* 801B3EF4  3C 80 80 39 */	lis r4, tag_6100@ha /* 0x803950A8@ha */
+/* 801B3EF8  38 04 50 A8 */	addi r0, r4, tag_6100@l /* 0x803950A8@l */
 /* 801B3EFC  7C 80 E2 14 */	add r4, r0, r28
 /* 801B3F00  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B3F04  80 C4 00 04 */	lwz r6, 4(r4)
@@ -168,8 +168,8 @@ lbl_801B3F34:
 /* 801B3F68  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 801B3F6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801B3F70  80 7D 00 18 */	lwz r3, 0x18(r29)
-/* 801B3F74  3C 80 80 39 */	lis r4, tag_6100@ha
-/* 801B3F78  38 04 50 A8 */	addi r0, r4, tag_6100@l
+/* 801B3F74  3C 80 80 39 */	lis r4, tag_6100@ha /* 0x803950A8@ha */
+/* 801B3F78  38 04 50 A8 */	addi r0, r4, tag_6100@l /* 0x803950A8@l */
 /* 801B3F7C  7C 80 E2 14 */	add r4, r0, r28
 /* 801B3F80  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B3F84  80 C4 00 04 */	lwz r6, 4(r4)

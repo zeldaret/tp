@@ -6,8 +6,8 @@ lbl_8025B2EC:
 /* 8025B2FC  48 10 6E E1 */	bl _savegpr_29
 /* 8025B300  7C 7D 1B 78 */	mr r29, r3
 /* 8025B304  83 C3 00 B0 */	lwz r30, 0xb0(r3)
-/* 8025B308  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8025B30C  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 8025B308  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8025B30C  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8025B310  1C 1E 04 04 */	mulli r0, r30, 0x404
 /* 8025B314  7F E3 02 14 */	add r31, r3, r0
 /* 8025B318  8C 1F 03 F4 */	lbzu r0, 0x3f4(r31)
@@ -55,12 +55,12 @@ lbl_8025B3A0:
 /* 8025B3AC  7F C3 F3 78 */	mr r3, r30
 /* 8025B3B0  4B FF FE 21 */	bl loadDemoArchive__Fi
 lbl_8025B3B4:
-/* 8025B3B4  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 8025B3B8  8C 03 61 94 */	lbzu r0, mDemoArcName__20dStage_roomControl_c@l(r3)
+/* 8025B3B4  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 8025B3B8  8C 03 61 94 */	lbzu r0, mDemoArcName__20dStage_roomControl_c@l(r3)  /* 0x80406194@l */
 /* 8025B3BC  7C 00 07 75 */	extsb. r0, r0
 /* 8025B3C0  41 82 00 30 */	beq lbl_8025B3F0
-/* 8025B3C4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8025B3C8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8025B3C4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B3C8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B3CC  3C 84 00 02 */	addis r4, r4, 2
 /* 8025B3D0  38 A0 00 80 */	li r5, 0x80
 /* 8025B3D4  38 84 C2 F8 */	addi r4, r4, -15624
@@ -79,8 +79,8 @@ lbl_8025B3F0:
 /* 8025B404  39 00 00 00 */	li r8, 0
 /* 8025B408  39 20 FF FF */	li r9, -1
 /* 8025B40C  4B DB E9 8D */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
-/* 8025B410  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B414  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025B410  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B414  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B418  3B E3 4F F8 */	addi r31, r3, 0x4ff8
 /* 8025B41C  7F E3 FB 78 */	mr r3, r31
 /* 8025B420  4B DE B4 69 */	bl demoInit__16dEvent_manager_cFv
@@ -118,28 +118,28 @@ lbl_8025B484:
 /* 8025B494  48 00 00 B8 */	b lbl_8025B54C
 lbl_8025B498:
 /* 8025B498  38 7D 00 BC */	addi r3, r29, 0xbc
-/* 8025B49C  3C 80 80 26 */	lis r4, deleteJugge__FPvPv@ha
-/* 8025B4A0  38 84 B1 50 */	addi r4, r4, deleteJugge__FPvPv@l
+/* 8025B49C  3C 80 80 26 */	lis r4, deleteJugge__FPvPv@ha /* 0x8025B150@ha */
+/* 8025B4A0  38 84 B1 50 */	addi r4, r4, deleteJugge__FPvPv@l /* 0x8025B150@l */
 /* 8025B4A4  38 A0 00 00 */	li r5, 0
 /* 8025B4A8  4B DC 67 81 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
-/* 8025B4AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B4B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025B4AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B4B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B4B4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8025B4B8  38 63 02 10 */	addi r3, r3, 0x210
 /* 8025B4BC  4B DF 04 2D */	bl allForceOnEventMove__Q213dPa_control_c7level_cFv
 /* 8025B4C0  7F C3 F3 78 */	mr r3, r30
 /* 8025B4C4  4B DD 24 ED */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B4C8  54 64 28 34 */	slwi r4, r3, 5
-/* 8025B4CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B4D0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 8025B4CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B4D0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B4D4  7C 60 22 14 */	add r3, r0, r4
 /* 8025B4D8  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8025B4DC  4B DD 98 11 */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 8025B4E0  7F C3 F3 78 */	mr r3, r30
 /* 8025B4E4  4B DD 24 CD */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B4E8  54 64 28 34 */	slwi r4, r3, 5
-/* 8025B4EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B4F0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 8025B4EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B4F0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B4F4  7C 60 22 14 */	add r3, r0, r4
 /* 8025B4F8  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8025B4FC  4B DD 97 FD */	bl clearRoomItem__13dSv_zoneBit_cFv
@@ -153,12 +153,12 @@ lbl_8025B518:
 /* 8025B518  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B51C  41 82 00 2C */	beq lbl_8025B548
 /* 8025B520  38 7D 00 BC */	addi r3, r29, 0xbc
-/* 8025B524  3C 80 80 26 */	lis r4, objectDeleteJugge__FPvPv@ha
-/* 8025B528  38 84 B0 F0 */	addi r4, r4, objectDeleteJugge__FPvPv@l
+/* 8025B524  3C 80 80 26 */	lis r4, objectDeleteJugge__FPvPv@ha /* 0x8025B0F0@ha */
+/* 8025B528  38 84 B0 F0 */	addi r4, r4, objectDeleteJugge__FPvPv@l /* 0x8025B0F0@l */
 /* 8025B52C  38 A0 00 00 */	li r5, 0
 /* 8025B530  4B DC 66 F9 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
-/* 8025B534  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B538  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025B534  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B538  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B53C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8025B540  38 63 02 10 */	addi r3, r3, 0x210
 /* 8025B544  4B DF 03 A5 */	bl allForceOnEventMove__Q213dPa_control_c7level_cFv

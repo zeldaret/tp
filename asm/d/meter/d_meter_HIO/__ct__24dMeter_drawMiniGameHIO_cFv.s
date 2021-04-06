@@ -1,8 +1,8 @@
 lbl_801FEFF0:
 /* 801FEFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FEFF4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 801FEFF8  3C 80 80 3C */	lis r4, __vt__24dMeter_drawMiniGameHIO_c@ha
-/* 801FEFFC  38 04 F1 30 */	addi r0, r4, __vt__24dMeter_drawMiniGameHIO_c@l
+/* 801FEFF8  3C 80 80 3C */	lis r4, __vt__24dMeter_drawMiniGameHIO_c@ha /* 0x803BF130@ha */
+/* 801FEFFC  38 04 F1 30 */	addi r0, r4, __vt__24dMeter_drawMiniGameHIO_c@l /* 0x803BF130@l */
 /* 801FF000  90 03 00 00 */	stw r0, 0(r3)
 /* 801FF004  38 00 FF FF */	li r0, -1
 /* 801FF008  90 03 01 24 */	stw r0, 0x124(r3)

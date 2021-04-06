@@ -19,22 +19,12 @@ struct base_process_class {};
 // Forward References:
 //
 
-void fpcDw_Execute(base_process_class*);
-void fpcDw_Handler(int (*)(int (*)(void*, void*)), int (*)(void*, void*));
-
 extern "C" void fpcDw_Execute__FP18base_process_class();
 extern "C" void fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i();
 
 //
 // External References:
 //
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-void fpcPause_IsEnable(void*, u8);
-void cAPIGph_BeforeOfDraw();
-void cAPIGph_AfterOfDraw();
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
@@ -50,15 +40,7 @@ extern "C" extern u8 g_fpcLf_type[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80023954-800239F4 00A0+00 s=0 e=1 z=0  None .text      fpcDw_Execute__FP18base_process_class */
-//	80023964: 803621DC (_savegpr_29)
-//	80023970: 80023844 (fpcPause_IsEnable__FPvUc)
-//	8002397C: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	80023984: 80450D30 (g_fpcLf_type)
-//	8002398C: 8002064C (fpcBs_Is_JustOfType__Fii)
-//	800239B0: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	800239CC: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	800239E0: 80362228 (_restgpr_29)
+/* 80023954-800239F4 01E294 00A0+00 0/0 1/1 0/0 .text fpcDw_Execute__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,9 +50,7 @@ asm void fpcDw_Execute(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 800239F4-80023A48 0054+00 s=0 e=1 z=0  None .text      fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i */
-//	80023A10: 802632F8 (cAPIGph_BeforeOfDraw__Fv)
-//	80023A28: 80263328 (cAPIGph_AfterOfDraw__Fv)
+/* 800239F4-80023A48 01E334 0054+00 0/0 1/2 0/10 .text fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

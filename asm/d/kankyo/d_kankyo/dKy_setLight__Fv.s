@@ -1,6 +1,6 @@
 lbl_801A60BC:
-/* 801A60BC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A60C0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A60BC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A60C0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A60C4  C0 03 10 88 */	lfs f0, 0x1088(r3)
 /* 801A60C8  D0 03 10 70 */	stfs f0, 0x1070(r3)
 /* 801A60CC  C0 03 10 8C */	lfs f0, 0x108c(r3)

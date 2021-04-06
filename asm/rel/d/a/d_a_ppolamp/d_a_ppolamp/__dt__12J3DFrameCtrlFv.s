@@ -5,12 +5,12 @@ lbl_80D4D1CC:
 /* 80D4D1D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D4D1DC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80D4D1E0  41 82 00 1C */	beq lbl_80D4D1FC
-/* 80D4D1E4  3C A0 80 D5 */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 80D4D1E8  38 05 D3 24 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 80D4D1E4  3C A0 80 D5 */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x80D4D324@ha */
+/* 80D4D1E8  38 05 D3 24 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x80D4D324@l */
 /* 80D4D1EC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80D4D1F0  7C 80 07 35 */	extsh. r0, r4
 /* 80D4D1F4  40 81 00 08 */	ble lbl_80D4D1FC
-/* 80D4D1F8  4B 58 1B 44 */	b __dl__FPv
+/* 80D4D1F8  4B 58 1B 45 */	bl __dl__FPv
 lbl_80D4D1FC:
 /* 80D4D1FC  7F E3 FB 78 */	mr r3, r31
 /* 80D4D200  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -15,8 +15,8 @@ lbl_8023417C:
 /* 80234180  48 00 2F B9 */	bl isMidonaNormalTalkWait__12dMsgObject_cFv
 /* 80234184  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234188  41 82 01 7C */	beq lbl_80234304
-/* 8023418C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80234190  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023418C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80234190  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80234194  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 80234198  7C 00 07 74 */	extsb r0, r0
 /* 8023419C  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -27,8 +27,8 @@ lbl_8023417C:
 /* 802341B0  48 00 37 85 */	bl isCameraCancelFlag__12dMsgObject_cFv
 /* 802341B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802341B8  40 82 00 18 */	bne lbl_802341D0
-/* 802341BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802341C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802341BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802341C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802341C4  88 03 5E B5 */	lbz r0, 0x5eb5(r3)
 /* 802341C8  28 00 00 00 */	cmplwi r0, 0
 /* 802341CC  41 82 01 38 */	beq lbl_80234304
@@ -38,8 +38,8 @@ lbl_802341D0:
 /* 802341D8  41 82 00 70 */	beq lbl_80234248
 /* 802341DC  38 00 00 00 */	li r0, 0
 /* 802341E0  98 1F 01 9D */	stb r0, 0x19d(r31)
-/* 802341E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802341E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802341E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802341E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802341EC  98 03 5E 86 */	stb r0, 0x5e86(r3)
 /* 802341F0  98 1F 01 9F */	stb r0, 0x19f(r31)
 /* 802341F4  7F E3 FB 78 */	mr r3, r31
@@ -91,8 +91,8 @@ lbl_80234280:
 /* 802342A0  48 00 00 64 */	b lbl_80234304
 lbl_802342A4:
 /* 802342A4  38 00 00 00 */	li r0, 0
-/* 802342A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 802342AC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 802342A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802342AC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802342B0  98 04 5E 86 */	stb r0, 0x5e86(r4)
 /* 802342B4  98 1F 01 9F */	stb r0, 0x19f(r31)
 /* 802342B8  38 80 00 02 */	li r4, 2

@@ -3,19 +3,20 @@
 #
 
 M460_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm.plf
+M460_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm.lcf
+M460_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm.map
 
 M460_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_gm/executor.cpp \
-	rel/d/a/obj/d_a_obj_gm/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_gm/d_a_obj_gm.cpp \
 
 M460_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/d_a_obj_gm.o \
 
 M460_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/libRuntime.PPCEABI.H.a \
 
 M460_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M460_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map460.map\
+	-m _prolog \
+	-lcf $(M460_LDSCRIPT) \
+	-unused -map $(M460_MAP) \
+	-w off \
 
 $(M460_TARGET): $(M460_O_FILES) $(M460_LIBS)
+	@echo [460] creating $(M460_TARGET)
 	@echo $(M460_LIBS) $(M460_O_FILES) > build/M460_ofiles
-	$(LD) -opt_partial $(M460_LDFLAGS) -o $(M460_TARGET) @build/M460_ofiles
+	@python3 tools/lcf.py rel 460 --output $(M460_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M460_LDFLAGS) -o $(M460_TARGET) @build/M460_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gm/%.o: rel/d/a/obj/d_a_obj_gm/%.cpp
+	@echo [460] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M460_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M460_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_gm/libs/Runtime.PPCEABI.H/Makefile
 

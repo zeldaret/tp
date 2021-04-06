@@ -3,17 +3,15 @@
 #
 
 M280_TARGET := $(BUILD_DIR)/rel/d/a/d_a_movie_player.plf
+M280_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_movie_player.lcf
+M280_MAP := $(BUILD_DIR)/rel/d/a/d_a_movie_player.map
 
 M280_CPP_FILES := \
-	rel/d/a/d_a_movie_player/executor.cpp \
-	rel/d/a/d_a_movie_player/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_movie_player/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_movie_player/d_a_movie_player.cpp \
 
 M280_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_movie_player/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_movie_player/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_movie_player/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_movie_player/d_a_movie_player.o \
 
 M280_LIBS := \
@@ -29,15 +27,21 @@ M280_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map280.map\
+	-m _prolog \
+	-lcf $(M280_LDSCRIPT) \
+	-unused -map $(M280_MAP) \
+	-w off \
 
 $(M280_TARGET): $(M280_O_FILES) $(M280_LIBS)
+	@echo [280] creating $(M280_TARGET)
 	@echo $(M280_LIBS) $(M280_O_FILES) > build/M280_ofiles
-	$(LD) -opt_partial $(M280_LDFLAGS) -o $(M280_TARGET) @build/M280_ofiles
+	@python3 tools/lcf.py rel 280 --output $(M280_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M280_LDFLAGS) -o $(M280_TARGET) @build/M280_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_movie_player/%.o: rel/d/a/d_a_movie_player/%.cpp
+	@echo [280] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M280_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M280_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -9,12 +9,12 @@ lbl_8084396C:
 /* 80843988  38 A0 00 05 */	li r5, 5
 /* 8084398C  38 C0 20 00 */	li r6, 0x2000
 /* 80843990  38 E0 10 00 */	li r7, 0x1000
-/* 80843994  4B A2 CB AC */	b cLib_addCalcAngleS__FPsssss
+/* 80843994  4B A2 CB AD */	bl cLib_addCalcAngleS__FPsssss
 /* 80843998  80 1F 06 E8 */	lwz r0, 0x6e8(r31)
 /* 8084399C  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 808439A0  41 82 00 10 */	beq lbl_808439B0
-/* 808439A4  3C 60 80 84 */	lis r3, lit_4306@ha
-/* 808439A8  C0 03 55 FC */	lfs f0, lit_4306@l(r3)
+/* 808439A4  3C 60 80 84 */	lis r3, lit_4306@ha /* 0x808455FC@ha */
+/* 808439A8  C0 03 55 FC */	lfs f0, lit_4306@l(r3)  /* 0x808455FC@l */
 /* 808439AC  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 lbl_808439B0:
 /* 808439B0  38 60 00 01 */	li r3, 1

@@ -17,7 +17,7 @@ lbl_80CE59FC:
 lbl_80CE5A38:
 /* 80CE5A38  38 80 FF FF */	li r4, -1
 lbl_80CE5A3C:
-/* 80CE5A3C  4B C6 2D B0 */	b soldoutItem__8daMyna_cFUi
+/* 80CE5A3C  4B C6 2D B1 */	bl soldoutItem__8daMyna_cFUi
 lbl_80CE5A40:
 /* 80CE5A40  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80CE5A44  7C 08 03 A6 */	mtlr r0

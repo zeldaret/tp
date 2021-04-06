@@ -5,8 +5,8 @@ lbl_80140CDC:
 /* 80140CE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80140CEC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80140CF0  41 82 00 1C */	beq lbl_80140D0C
-/* 80140CF4  3C A0 80 3C */	lis r5, __vt__18daPy_sightPacket_c@ha
-/* 80140CF8  38 05 A1 4C */	addi r0, r5, __vt__18daPy_sightPacket_c@l
+/* 80140CF4  3C A0 80 3C */	lis r5, __vt__18daPy_sightPacket_c@ha /* 0x803BA14C@ha */
+/* 80140CF8  38 05 A1 4C */	addi r0, r5, __vt__18daPy_sightPacket_c@l /* 0x803BA14C@l */
 /* 80140CFC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80140D00  7C 80 07 35 */	extsh. r0, r4
 /* 80140D04  40 81 00 08 */	ble lbl_80140D0C

@@ -26,11 +26,11 @@ lbl_802A5CAC:
 /* 802A5D0C  38 84 00 10 */	addi r4, r4, 0x10
 lbl_802A5D10:
 /* 802A5D10  48 03 60 ED */	bl __ct__10JSUPtrLinkFPv
-/* 802A5D14  3C 60 80 3C */	lis r3, __vt__11JASBankList@ha
-/* 802A5D18  38 03 5B 80 */	addi r0, r3, __vt__11JASBankList@l
+/* 802A5D14  3C 60 80 3C */	lis r3, __vt__11JASBankList@ha /* 0x803C5B80@ha */
+/* 802A5D18  38 03 5B 80 */	addi r0, r3, __vt__11JASBankList@l /* 0x803C5B80@l */
 /* 802A5D1C  90 1E 00 10 */	stw r0, 0x10(r30)
-/* 802A5D20  3C 60 80 3D */	lis r3, __vt__12JAUBankTable@ha
-/* 802A5D24  38 03 9B 08 */	addi r0, r3, __vt__12JAUBankTable@l
+/* 802A5D20  3C 60 80 3D */	lis r3, __vt__12JAUBankTable@ha /* 0x803C9B08@ha */
+/* 802A5D24  38 03 9B 08 */	addi r0, r3, __vt__12JAUBankTable@l /* 0x803C9B08@l */
 /* 802A5D28  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 802A5D2C  93 FE 00 14 */	stw r31, 0x14(r30)
 /* 802A5D30  93 BE 00 18 */	stw r29, 0x18(r30)
@@ -39,8 +39,8 @@ lbl_802A5D10:
 /* 802A5D3C  57 A5 10 3A */	slwi r5, r29, 2
 /* 802A5D40  4B D5 D7 19 */	bl memset
 /* 802A5D44  93 9E 00 1C */	stw r28, 0x1c(r30)
-/* 802A5D48  3C 60 80 3D */	lis r3, __vt__16JAUBankTableLink@ha
-/* 802A5D4C  38 63 9A F4 */	addi r3, r3, __vt__16JAUBankTableLink@l
+/* 802A5D48  3C 60 80 3D */	lis r3, __vt__16JAUBankTableLink@ha /* 0x803C9AF4@ha */
+/* 802A5D4C  38 63 9A F4 */	addi r3, r3, __vt__16JAUBankTableLink@l /* 0x803C9AF4@l */
 /* 802A5D50  90 7E 00 20 */	stw r3, 0x20(r30)
 /* 802A5D54  38 03 00 08 */	addi r0, r3, 8
 /* 802A5D58  90 1E 00 10 */	stw r0, 0x10(r30)

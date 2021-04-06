@@ -29,8 +29,8 @@ lbl_8028F5BC:
 /* 8028F5DC  EC 21 00 28 */	fsubs f1, f1, f0
 /* 8028F5E0  2C 03 00 80 */	cmpwi r3, 0x80
 /* 8028F5E4  40 81 00 10 */	ble lbl_8028F5F4
-/* 8028F5E8  3C 60 80 45 */	lis r3, __float_huge@ha
-/* 8028F5EC  C0 23 0A E4 */	lfs f1, __float_huge@l(r3)
+/* 8028F5E8  3C 60 80 45 */	lis r3, __float_huge@ha /* 0x80450AE4@ha */
+/* 8028F5EC  C0 23 0A E4 */	lfs f1, __float_huge@l(r3)  /* 0x80450AE4@l */
 /* 8028F5F0  48 00 00 A4 */	b lbl_8028F694
 lbl_8028F5F4:
 /* 8028F5F4  38 03 00 7F */	addi r0, r3, 0x7f
@@ -46,8 +46,8 @@ lbl_8028F614:
 /* 8028F618  38 62 BB 6C */	la r3, scale_frac(r2) /* 8045556C-_SDA2_BASE_ */
 /* 8028F61C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8028F620  EC C1 00 2A */	fadds f6, f1, f0
-/* 8028F624  3C 60 80 3A */	lis r3, __two_to_x@ha
-/* 8028F628  C4 A3 AF B8 */	lfsu f5, __two_to_x@l(r3)
+/* 8028F624  3C 60 80 3A */	lis r3, __two_to_x@ha /* 0x8039AFB8@ha */
+/* 8028F628  C4 A3 AF B8 */	lfsu f5, __two_to_x@l(r3)  /* 0x8039AFB8@l */
 /* 8028F62C  C0 83 00 04 */	lfs f4, 4(r3)
 /* 8028F630  C0 63 00 08 */	lfs f3, 8(r3)
 /* 8028F634  C0 43 00 0C */	lfs f2, 0xc(r3)

@@ -1,7 +1,7 @@
 lbl_8035F198:
 /* 8035F198  2C 03 00 00 */	cmpwi r3, 0
-/* 8035F19C  3C A0 80 3D */	lis r5, TEVCOpTableST0@ha
-/* 8035F1A0  38 05 27 C0 */	addi r0, r5, TEVCOpTableST0@l
+/* 8035F19C  3C A0 80 3D */	lis r5, TEVCOpTableST0@ha /* 0x803D27C0@ha */
+/* 8035F1A0  38 05 27 C0 */	addi r0, r5, TEVCOpTableST0@l /* 0x803D27C0@l */
 /* 8035F1A4  40 82 00 14 */	bne lbl_8035F1B8
 /* 8035F1A8  54 84 10 3A */	slwi r4, r4, 2
 /* 8035F1AC  7C A0 22 14 */	add r5, r0, r4
@@ -21,7 +21,7 @@ lbl_8035F1CC:
 /* 8035F1DC  7C C7 1A 14 */	add r6, r7, r3
 /* 8035F1E0  80 66 01 30 */	lwz r3, 0x130(r6)
 /* 8035F1E4  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 8035F1E8  98 A4 80 00 */	stb r5, 0x8000(r4)
+/* 8035F1E8  98 A4 80 00 */	stb r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 8035F1EC  54 63 00 0E */	rlwinm r3, r3, 0, 0, 7
 /* 8035F1F0  50 03 02 3E */	rlwimi r3, r0, 0, 8, 0x1f
 /* 8035F1F4  90 64 80 00 */	stw r3, -0x8000(r4)

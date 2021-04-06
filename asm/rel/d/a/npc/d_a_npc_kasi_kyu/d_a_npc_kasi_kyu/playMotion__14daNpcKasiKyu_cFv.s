@@ -2,8 +2,8 @@ lbl_80A22CD8:
 /* 80A22CD8  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 80A22CDC  7C 08 02 A6 */	mflr r0
 /* 80A22CE0  90 01 01 74 */	stw r0, 0x174(r1)
-/* 80A22CE4  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha
-/* 80A22CE8  38 84 58 B8 */	addi r4, r4, m__20daNpcKasiKyu_Param_c@l
+/* 80A22CE4  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A22CE8  38 84 58 B8 */	addi r4, r4, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A22CEC  80 A4 00 A8 */	lwz r5, 0xa8(r4)
 /* 80A22CF0  80 04 00 AC */	lwz r0, 0xac(r4)
 /* 80A22CF4  90 A1 01 14 */	stw r5, 0x114(r1)
@@ -266,7 +266,7 @@ lbl_80A2303C:
 /* 80A230F0  48 00 00 0C */	b lbl_80A230FC
 lbl_80A230F4:
 /* 80A230F4  38 81 01 38 */	addi r4, r1, 0x138
-/* 80A230F8  4B 73 01 6C */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80A230F8  4B 73 01 6D */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80A230FC:
 /* 80A230FC  80 01 01 74 */	lwz r0, 0x174(r1)
 /* 80A23100  7C 08 03 A6 */	mtlr r0

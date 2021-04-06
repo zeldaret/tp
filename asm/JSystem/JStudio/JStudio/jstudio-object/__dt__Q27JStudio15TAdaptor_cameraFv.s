@@ -7,8 +7,8 @@ lbl_80286E1C:
 /* 80286E30  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80286E34  7C 9F 23 78 */	mr r31, r4
 /* 80286E38  41 82 00 28 */	beq lbl_80286E60
-/* 80286E3C  3C 80 80 3C */	lis r4, __vt__Q27JStudio15TAdaptor_camera@ha
-/* 80286E40  38 04 55 04 */	addi r0, r4, __vt__Q27JStudio15TAdaptor_camera@l
+/* 80286E3C  3C 80 80 3C */	lis r4, __vt__Q27JStudio15TAdaptor_camera@ha /* 0x803C5504@ha */
+/* 80286E40  38 04 55 04 */	addi r0, r4, __vt__Q27JStudio15TAdaptor_camera@l /* 0x803C5504@l */
 /* 80286E44  90 1E 00 00 */	stw r0, 0(r30)
 /* 80286E48  38 80 00 00 */	li r4, 0
 /* 80286E4C  4B FF F1 85 */	bl __dt__Q27JStudio8TAdaptorFv

@@ -5,18 +5,18 @@ lbl_805F3CE0:
 /* 805F3CEC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805F3CF0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 805F3CF4  41 82 00 30 */	beq lbl_805F3D24
-/* 805F3CF8  3C 60 80 5F */	lis r3, __vt__10dCcD_GStts@ha
-/* 805F3CFC  38 03 47 1C */	addi r0, r3, __vt__10dCcD_GStts@l
+/* 805F3CF8  3C 60 80 5F */	lis r3, __vt__10dCcD_GStts@ha /* 0x805F471C@ha */
+/* 805F3CFC  38 03 47 1C */	addi r0, r3, __vt__10dCcD_GStts@l /* 0x805F471C@l */
 /* 805F3D00  90 1F 00 00 */	stw r0, 0(r31)
 /* 805F3D04  41 82 00 10 */	beq lbl_805F3D14
-/* 805F3D08  3C 60 80 5F */	lis r3, __vt__10cCcD_GStts@ha
-/* 805F3D0C  38 03 47 10 */	addi r0, r3, __vt__10cCcD_GStts@l
+/* 805F3D08  3C 60 80 5F */	lis r3, __vt__10cCcD_GStts@ha /* 0x805F4710@ha */
+/* 805F3D0C  38 03 47 10 */	addi r0, r3, __vt__10cCcD_GStts@l /* 0x805F4710@l */
 /* 805F3D10  90 1F 00 00 */	stw r0, 0(r31)
 lbl_805F3D14:
 /* 805F3D14  7C 80 07 35 */	extsh. r0, r4
 /* 805F3D18  40 81 00 0C */	ble lbl_805F3D24
 /* 805F3D1C  7F E3 FB 78 */	mr r3, r31
-/* 805F3D20  4B CD B0 1C */	b __dl__FPv
+/* 805F3D20  4B CD B0 1D */	bl __dl__FPv
 lbl_805F3D24:
 /* 805F3D24  7F E3 FB 78 */	mr r3, r31
 /* 805F3D28  83 E1 00 0C */	lwz r31, 0xc(r1)

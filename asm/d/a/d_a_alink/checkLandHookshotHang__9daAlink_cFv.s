@@ -9,8 +9,8 @@ lbl_8010B84C:
 /* 8010B868  38 7F 1D 08 */	addi r3, r31, 0x1d08
 /* 8010B86C  38 9F 38 34 */	addi r4, r31, 0x3834
 /* 8010B870  48 15 C4 B9 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 8010B874  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010B878  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010B874  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010B878  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010B87C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8010B880  38 9F 1D 08 */	addi r4, r31, 0x1d08
 /* 8010B884  4B F6 8C 1D */	bl GroundCross__4cBgSFP11cBgS_GndChk
@@ -56,8 +56,8 @@ lbl_8010B908:
 /* 8010B910  4B FB 48 55 */	bl checkSetItemTrigger__9daAlink_cFi
 /* 8010B914  2C 03 00 00 */	cmpwi r3, 0
 /* 8010B918  41 82 00 34 */	beq lbl_8010B94C
-/* 8010B91C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010B920  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010B91C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010B920  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010B924  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8010B928  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 8010B92C  41 82 00 14 */	beq lbl_8010B940

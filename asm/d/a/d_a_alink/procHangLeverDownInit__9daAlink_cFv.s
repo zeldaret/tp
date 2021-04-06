@@ -19,8 +19,8 @@ lbl_800FC324:
 /* 800FC334  48 06 29 85 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800FC338  7F E3 FB 78 */	mr r3, r31
 /* 800FC33C  38 80 00 91 */	li r4, 0x91
-/* 800FC340  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FC344  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FC340  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FC344  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FC348  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800FC34C  4B FB 0D A9 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FC350  80 7F 27 F4 */	lwz r3, 0x27f4(r31)

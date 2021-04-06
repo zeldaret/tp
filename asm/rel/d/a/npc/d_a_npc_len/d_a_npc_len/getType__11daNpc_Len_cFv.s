@@ -3,8 +3,8 @@ lbl_80A64D40:
 /* 80A64D44  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80A64D48  28 00 00 08 */	cmplwi r0, 8
 /* 80A64D4C  41 81 00 64 */	bgt lbl_80A64DB0
-/* 80A64D50  3C 60 80 A7 */	lis r3, lit_4469@ha
-/* 80A64D54  38 63 97 D8 */	addi r3, r3, lit_4469@l
+/* 80A64D50  3C 60 80 A7 */	lis r3, lit_4469@ha /* 0x80A697D8@ha */
+/* 80A64D54  38 63 97 D8 */	addi r3, r3, lit_4469@l /* 0x80A697D8@l */
 /* 80A64D58  54 00 10 3A */	slwi r0, r0, 2
 /* 80A64D5C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A64D60  7C 09 03 A6 */	mtctr r0

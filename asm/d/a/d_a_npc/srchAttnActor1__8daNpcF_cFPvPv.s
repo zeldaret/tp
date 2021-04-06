@@ -26,8 +26,8 @@ lbl_80152654:
 lbl_801526B4:
 /* 801526B4  80 8D 8A 70 */	lwz r4, mFindCount__8daNpcF_c(r13)
 /* 801526B8  54 80 10 3A */	slwi r0, r4, 2
-/* 801526BC  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha
-/* 801526C0  38 63 57 E8 */	addi r3, r3, mFindActorPList__8daNpcF_c@l
+/* 801526BC  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha /* 0x804257E8@ha */
+/* 801526C0  38 63 57 E8 */	addi r3, r3, mFindActorPList__8daNpcF_c@l /* 0x804257E8@l */
 /* 801526C4  7F E3 01 2E */	stwx r31, r3, r0
 /* 801526C8  38 04 00 01 */	addi r0, r4, 1
 /* 801526CC  90 0D 8A 70 */	stw r0, mFindCount__8daNpcF_c(r13)

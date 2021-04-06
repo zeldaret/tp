@@ -20,8 +20,8 @@ lbl_800D9514:
 /* 800D955C  EC 23 00 32 */	fmuls f1, f3, f0
 /* 800D9560  48 18 E0 85 */	bl cM_rad2s__Ff
 /* 800D9564  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 800D9568  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800D956C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800D9568  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800D956C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800D9570  7C 43 04 2E */	lfsx f2, r3, r0
 /* 800D9574  A8 1E 30 0C */	lha r0, 0x300c(r30)
 /* 800D9578  C8 22 92 B0 */	lfd f1, lit_6025(r2)
@@ -52,8 +52,8 @@ lbl_800D9514:
 /* 800D95DC  B0 1E 05 9E */	sth r0, 0x59e(r30)
 /* 800D95E0  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 800D95E4  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800D95E8  3C 80 80 39 */	lis r4, m__23daAlinkHIO_damNormal_c0@ha
-/* 800D95EC  38 84 E2 4C */	addi r4, r4, m__23daAlinkHIO_damNormal_c0@l
+/* 800D95E8  3C 80 80 39 */	lis r4, m__23daAlinkHIO_damNormal_c0@ha /* 0x8038E24C@ha */
+/* 800D95EC  38 84 E2 4C */	addi r4, r4, m__23daAlinkHIO_damNormal_c0@l /* 0x8038E24C@l */
 /* 800D95F0  C0 44 00 5C */	lfs f2, 0x5c(r4)
 /* 800D95F4  48 19 71 4D */	bl cLib_chaseF__FPfff
 /* 800D95F8  80 1E 05 74 */	lwz r0, 0x574(r30)

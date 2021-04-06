@@ -59,11 +59,11 @@ lbl_800C86A4:
 /* 800C86A4  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800C86A8  EC 20 08 28 */	fsubs f1, f0, f1
 /* 800C86AC  7F C3 F3 78 */	mr r3, r30
-/* 800C86B0  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C86B4  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C86B0  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C86B4  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C86B8  C0 44 00 1C */	lfs f2, 0x1c(r4)
-/* 800C86BC  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 800C86C0  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 800C86BC  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C86C0  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C86C4  C0 64 00 1C */	lfs f3, 0x1c(r4)
 /* 800C86C8  7F E4 FB 78 */	mr r4, r31
 /* 800C86CC  38 A0 00 19 */	li r5, 0x19

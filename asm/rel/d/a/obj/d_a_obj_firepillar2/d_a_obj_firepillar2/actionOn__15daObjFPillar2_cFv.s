@@ -5,10 +5,10 @@ lbl_80BEADD0:
 /* 80BEADDC  DB E1 00 40 */	stfd f31, 0x40(r1)
 /* 80BEADE0  F3 E1 00 48 */	psq_st f31, 72(r1), 0, 0 /* qr0 */
 /* 80BEADE4  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BEADE8  4B 77 73 F0 */	b _savegpr_28
+/* 80BEADE8  4B 77 73 F1 */	bl _savegpr_28
 /* 80BEADEC  7C 7E 1B 78 */	mr r30, r3
-/* 80BEADF0  3C 60 80 BF */	lis r3, lit_3656@ha
-/* 80BEADF4  3B E3 B4 C4 */	addi r31, r3, lit_3656@l
+/* 80BEADF0  3C 60 80 BF */	lis r3, lit_3656@ha /* 0x80BEB4C4@ha */
+/* 80BEADF4  3B E3 B4 C4 */	addi r31, r3, lit_3656@l /* 0x80BEB4C4@l */
 /* 80BEADF8  C3 FE 04 F0 */	lfs f31, 0x4f0(r30)
 /* 80BEADFC  A0 7E 09 78 */	lhz r3, 0x978(r30)
 /* 80BEAE00  28 03 00 00 */	cmplwi r3, 0
@@ -20,11 +20,11 @@ lbl_80BEAE10:
 /* 80BEAE14  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80BEAE18  28 04 00 FF */	cmplwi r4, 0xff
 /* 80BEAE1C  41 82 00 30 */	beq lbl_80BEAE4C
-/* 80BEAE20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BEAE24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BEAE20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BEAE24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BEAE28  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BEAE2C  7C 05 07 74 */	extsb r5, r0
-/* 80BEAE30  4B 44 A5 30 */	b isSwitch__10dSv_info_cCFii
+/* 80BEAE30  4B 44 A5 31 */	bl isSwitch__10dSv_info_cCFii
 /* 80BEAE34  2C 03 00 00 */	cmpwi r3, 0
 /* 80BEAE38  41 82 00 1C */	beq lbl_80BEAE54
 /* 80BEAE3C  38 00 00 00 */	li r0, 0
@@ -49,7 +49,7 @@ lbl_80BEAE54:
 /* 80BEAE80  EC 40 00 72 */	fmuls f2, f0, f1
 /* 80BEAE84  38 7E 09 48 */	addi r3, r30, 0x948
 /* 80BEAE88  FC 20 F8 90 */	fmr f1, f31
-/* 80BEAE8C  4B 68 58 B4 */	b cLib_chaseF__FPfff
+/* 80BEAE8C  4B 68 58 B5 */	bl cLib_chaseF__FPfff
 /* 80BEAE90  2C 03 00 00 */	cmpwi r3, 0
 /* 80BEAE94  41 82 01 30 */	beq lbl_80BEAFC4
 /* 80BEAE98  38 60 00 00 */	li r3, 0
@@ -80,23 +80,23 @@ lbl_80BEAEE0:
 lbl_80BEAEF4:
 /* 80BEAEF4  38 7E 09 48 */	addi r3, r30, 0x948
 /* 80BEAEF8  FC 20 F8 90 */	fmr f1, f31
-/* 80BEAEFC  4B 68 58 44 */	b cLib_chaseF__FPfff
+/* 80BEAEFC  4B 68 58 45 */	bl cLib_chaseF__FPfff
 /* 80BEAF00  38 7E 09 94 */	addi r3, r30, 0x994
 /* 80BEAF04  C0 3F 00 3C */	lfs f1, 0x3c(r31)
 /* 80BEAF08  C0 5F 00 40 */	lfs f2, 0x40(r31)
-/* 80BEAF0C  4B 68 58 34 */	b cLib_chaseF__FPfff
+/* 80BEAF0C  4B 68 58 35 */	bl cLib_chaseF__FPfff
 /* 80BEAF10  38 7E 09 A0 */	addi r3, r30, 0x9a0
 /* 80BEAF14  C0 3F 00 44 */	lfs f1, 0x44(r31)
 /* 80BEAF18  C0 5F 00 48 */	lfs f2, 0x48(r31)
-/* 80BEAF1C  4B 68 58 24 */	b cLib_chaseF__FPfff
+/* 80BEAF1C  4B 68 58 25 */	bl cLib_chaseF__FPfff
 /* 80BEAF20  38 7E 09 98 */	addi r3, r30, 0x998
 /* 80BEAF24  C0 3F 00 24 */	lfs f1, 0x24(r31)
 /* 80BEAF28  C0 5F 00 4C */	lfs f2, 0x4c(r31)
-/* 80BEAF2C  4B 68 58 14 */	b cLib_chaseF__FPfff
+/* 80BEAF2C  4B 68 58 15 */	bl cLib_chaseF__FPfff
 /* 80BEAF30  38 7E 09 9C */	addi r3, r30, 0x99c
 /* 80BEAF34  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 80BEAF38  C0 5F 00 50 */	lfs f2, 0x50(r31)
-/* 80BEAF3C  4B 68 58 04 */	b cLib_chaseF__FPfff
+/* 80BEAF3C  4B 68 58 05 */	bl cLib_chaseF__FPfff
 /* 80BEAF40  38 7E 09 E9 */	addi r3, r30, 0x9e9
 /* 80BEAF44  48 00 05 4D */	bl func_80BEB490
 /* 80BEAF48  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -132,7 +132,7 @@ lbl_80BEAFAC:
 /* 80BEAFB4  C0 5F 00 20 */	lfs f2, 0x20(r31)
 /* 80BEAFB8  C0 1E 04 F0 */	lfs f0, 0x4f0(r30)
 /* 80BEAFBC  EC 42 00 32 */	fmuls f2, f2, f0
-/* 80BEAFC0  4B 68 57 80 */	b cLib_chaseF__FPfff
+/* 80BEAFC0  4B 68 57 81 */	bl cLib_chaseF__FPfff
 lbl_80BEAFC4:
 /* 80BEAFC4  80 1E 05 70 */	lwz r0, 0x570(r30)
 /* 80BEAFC8  28 00 00 00 */	cmplwi r0, 0
@@ -149,7 +149,7 @@ lbl_80BEAFD8:
 /* 80BEAFF0  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80BEAFF4  38 85 00 68 */	addi r4, r5, 0x68
 /* 80BEAFF8  38 A5 00 A4 */	addi r5, r5, 0xa4
-/* 80BEAFFC  4B 69 57 E4 */	b func_802807E0
+/* 80BEAFFC  4B 69 57 E5 */	bl func_802807E0
 lbl_80BEB000:
 /* 80BEB000  3B 9C 00 01 */	addi r28, r28, 1
 /* 80BEB004  2C 1C 00 03 */	cmpwi r28, 3
@@ -203,7 +203,7 @@ lbl_80BEB090:
 /* 80BEB0B4  38 7E 09 DC */	addi r3, r30, 0x9dc
 /* 80BEB0B8  38 81 00 1C */	addi r4, r1, 0x1c
 /* 80BEB0BC  C0 3F 00 54 */	lfs f1, 0x54(r31)
-/* 80BEB0C0  4B 68 56 EC */	b cLib_chasePos__FP4cXyzRC4cXyzf
+/* 80BEB0C0  4B 68 56 ED */	bl cLib_chasePos__FP4cXyzRC4cXyzf
 /* 80BEB0C4  2C 03 00 00 */	cmpwi r3, 0
 /* 80BEB0C8  41 82 00 50 */	beq lbl_80BEB118
 /* 80BEB0CC  38 00 FF FF */	li r0, -1
@@ -221,7 +221,7 @@ lbl_80BEB0D8:
 /* 80BEB0F8  38 7E 09 DC */	addi r3, r30, 0x9dc
 /* 80BEB0FC  38 81 00 10 */	addi r4, r1, 0x10
 /* 80BEB100  C0 3F 00 54 */	lfs f1, 0x54(r31)
-/* 80BEB104  4B 68 56 A8 */	b cLib_chasePos__FP4cXyzRC4cXyzf
+/* 80BEB104  4B 68 56 A9 */	bl cLib_chasePos__FP4cXyzRC4cXyzf
 /* 80BEB108  2C 03 00 00 */	cmpwi r3, 0
 /* 80BEB10C  41 82 00 0C */	beq lbl_80BEB118
 /* 80BEB110  38 00 00 01 */	li r0, 1
@@ -242,13 +242,13 @@ lbl_80BEB118:
 lbl_80BEB148:
 /* 80BEB148  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80BEB14C  7C 03 07 74 */	extsb r3, r0
-/* 80BEB150  4B 44 1F 1C */	b dComIfGp_getReverb__Fi
+/* 80BEB150  4B 44 1F 1D */	bl dComIfGp_getReverb__Fi
 /* 80BEB154  7C 67 1B 78 */	mr r7, r3
 /* 80BEB158  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080126@ha */
 /* 80BEB15C  38 03 01 26 */	addi r0, r3, 0x0126 /* 0x00080126@l */
 /* 80BEB160  90 01 00 08 */	stw r0, 8(r1)
-/* 80BEB164  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80BEB168  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80BEB164  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80BEB168  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80BEB16C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BEB170  38 81 00 08 */	addi r4, r1, 8
 /* 80BEB174  38 BE 05 38 */	addi r5, r30, 0x538
@@ -258,12 +258,12 @@ lbl_80BEB148:
 /* 80BEB184  C0 7F 00 28 */	lfs f3, 0x28(r31)
 /* 80BEB188  FC 80 18 90 */	fmr f4, f3
 /* 80BEB18C  39 00 00 00 */	li r8, 0
-/* 80BEB190  4B 6C 13 7C */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80BEB190  4B 6C 13 7D */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80BEB194:
 /* 80BEB194  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 80BEB198  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 80BEB19C  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BEB1A0  4B 77 70 84 */	b _restgpr_28
+/* 80BEB1A0  4B 77 70 85 */	bl _restgpr_28
 /* 80BEB1A4  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80BEB1A8  7C 08 03 A6 */	mtlr r0
 /* 80BEB1AC  38 21 00 50 */	addi r1, r1, 0x50

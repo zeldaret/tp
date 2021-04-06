@@ -5,7 +5,7 @@ lbl_80C5CBA4:
 /* 80C5CBB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C5CBB4  7C 7F 1B 78 */	mr r31, r3
 /* 80C5CBB8  38 7F 05 70 */	addi r3, r31, 0x570
-/* 80C5CBBC  4B 3E BC B0 */	b eventUpdate__17dEvLib_callback_cFv
+/* 80C5CBBC  4B 3E BC B1 */	bl eventUpdate__17dEvLib_callback_cFv
 /* 80C5CBC0  7F E3 FB 78 */	mr r3, r31
 /* 80C5CBC4  48 00 00 25 */	bl procMain__20dalv4CandleDemoTag_cFv
 /* 80C5CBC8  7F E3 FB 78 */	mr r3, r31

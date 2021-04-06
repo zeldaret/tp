@@ -168,8 +168,8 @@ lbl_8010E814:
 lbl_8010E858:
 /* 8010E858  80 7E 00 28 */	lwz r3, 0x28(r30)
 /* 8010E85C  80 83 00 04 */	lwz r4, 4(r3)
-/* 8010E860  3C 60 80 11 */	lis r3, daAlink_bottleModelCallBack__FP8J3DJointi@ha
-/* 8010E864  38 03 E5 2C */	addi r0, r3, daAlink_bottleModelCallBack__FP8J3DJointi@l
+/* 8010E860  3C 60 80 11 */	lis r3, daAlink_bottleModelCallBack__FP8J3DJointi@ha /* 0x8010E52C@ha */
+/* 8010E864  38 03 E5 2C */	addi r0, r3, daAlink_bottleModelCallBack__FP8J3DJointi@l /* 0x8010E52C@l */
 /* 8010E868  90 04 00 04 */	stw r0, 4(r4)
 /* 8010E86C  80 7C 07 08 */	lwz r3, 0x708(r28)
 /* 8010E870  93 83 00 14 */	stw r28, 0x14(r3)

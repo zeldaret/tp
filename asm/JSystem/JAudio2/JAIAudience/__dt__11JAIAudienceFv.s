@@ -5,8 +5,8 @@ lbl_8029EFF4:
 /* 8029F000  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029F004  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8029F008  41 82 00 1C */	beq lbl_8029F024
-/* 8029F00C  3C A0 80 3D */	lis r5, __vt__11JAIAudience@ha
-/* 8029F010  38 05 98 38 */	addi r0, r5, __vt__11JAIAudience@l
+/* 8029F00C  3C A0 80 3D */	lis r5, __vt__11JAIAudience@ha /* 0x803C9838@ha */
+/* 8029F010  38 05 98 38 */	addi r0, r5, __vt__11JAIAudience@l /* 0x803C9838@l */
 /* 8029F014  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029F018  7C 80 07 35 */	extsh. r0, r4
 /* 8029F01C  40 81 00 08 */	ble lbl_8029F024

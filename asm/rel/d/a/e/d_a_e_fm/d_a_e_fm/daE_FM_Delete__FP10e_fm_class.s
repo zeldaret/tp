@@ -5,19 +5,19 @@ lbl_804F8C68:
 /* 804F8C74  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804F8C78  7C 7F 1B 78 */	mr r31, r3
 /* 804F8C7C  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 804F8C80  3C 80 80 50 */	lis r4, stringBase0@ha
-/* 804F8C84  38 84 A9 48 */	addi r4, r4, stringBase0@l
-/* 804F8C88  4B B3 43 80 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 804F8C80  3C 80 80 50 */	lis r4, d_a_e_fm__stringBase0@ha /* 0x804FA948@ha */
+/* 804F8C84  38 84 A9 48 */	addi r4, r4, d_a_e_fm__stringBase0@l /* 0x804FA948@l */
+/* 804F8C88  4B B3 43 81 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 804F8C8C  3C 7F 00 02 */	addis r3, r31, 2
 /* 804F8C90  88 03 B0 81 */	lbz r0, -0x4f7f(r3)
 /* 804F8C94  28 00 00 00 */	cmplwi r0, 0
 /* 804F8C98  41 82 00 10 */	beq lbl_804F8CA8
 /* 804F8C9C  38 00 00 00 */	li r0, 0
-/* 804F8CA0  3C 60 80 50 */	lis r3, struct_804FAE94+0x1@ha
-/* 804F8CA4  98 03 AE 95 */	stb r0, struct_804FAE94+0x1@l(r3)
+/* 804F8CA0  3C 60 80 50 */	lis r3, struct_804FAE94+0x1@ha /* 0x804FAE95@ha */
+/* 804F8CA4  98 03 AE 95 */	stb r0, struct_804FAE94+0x1@l(r3)  /* 0x804FAE95@l */
 lbl_804F8CA8:
 /* 804F8CA8  38 7F 23 9C */	addi r3, r31, 0x239c
-/* 804F8CAC  4B CA EC 80 */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 804F8CAC  4B CA EC 81 */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 /* 804F8CB0  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 804F8CB4  28 00 00 00 */	cmplwi r0, 0
 /* 804F8CB8  41 82 00 18 */	beq lbl_804F8CD0

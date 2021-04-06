@@ -6,8 +6,8 @@ lbl_80A1F740:
 /* 80A1F750  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80A1F754  7C 7E 1B 78 */	mr r30, r3
 /* 80A1F758  7C 9F 23 78 */	mr r31, r4
-/* 80A1F75C  3C 60 80 A2 */	lis r3, lit_6026@ha
-/* 80A1F760  38 83 12 EC */	addi r4, r3, lit_6026@l
+/* 80A1F75C  3C 60 80 A2 */	lis r3, lit_6026@ha /* 0x80A212EC@ha */
+/* 80A1F760  38 83 12 EC */	addi r4, r3, lit_6026@l /* 0x80A212EC@l */
 /* 80A1F764  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A1F768  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A1F76C  90 61 00 08 */	stw r3, 8(r1)
@@ -15,13 +15,13 @@ lbl_80A1F740:
 /* 80A1F774  80 04 00 08 */	lwz r0, 8(r4)
 /* 80A1F778  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80A1F77C  38 7E 14 48 */	addi r3, r30, 0x1448
-/* 80A1F780  4B 73 0F 6C */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1F780  4B 73 0F 6D */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1F784  90 61 00 08 */	stw r3, 8(r1)
 /* 80A1F788  38 7E 14 50 */	addi r3, r30, 0x1450
-/* 80A1F78C  4B 73 0F 60 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1F78C  4B 73 0F 61 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1F790  90 61 00 0C */	stw r3, 0xc(r1)
 /* 80A1F794  38 7E 14 58 */	addi r3, r30, 0x1458
-/* 80A1F798  4B 73 0F 54 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1F798  4B 73 0F 55 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1F79C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 80A1F7A0  80 1F 00 00 */	lwz r0, 0(r31)
 /* 80A1F7A4  2C 00 00 14 */	cmpwi r0, 0x14
@@ -43,8 +43,8 @@ lbl_80A1F7D4:
 /* 80A1F7DC  4B FF E0 49 */	bl setLookMode__15daNpcKasiHana_cFi
 /* 80A1F7E0  7F C3 F3 78 */	mr r3, r30
 /* 80A1F7E4  38 80 00 00 */	li r4, 0
-/* 80A1F7E8  3C A0 80 A2 */	lis r5, lit_3998@ha
-/* 80A1F7EC  C0 25 10 90 */	lfs f1, lit_3998@l(r5)
+/* 80A1F7E8  3C A0 80 A2 */	lis r5, lit_3998@ha /* 0x80A21090@ha */
+/* 80A1F7EC  C0 25 10 90 */	lfs f1, lit_3998@l(r5)  /* 0x80A21090@l */
 /* 80A1F7F0  38 A0 00 00 */	li r5, 0
 /* 80A1F7F4  81 9E 0B 44 */	lwz r12, 0xb44(r30)
 /* 80A1F7F8  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -53,7 +53,7 @@ lbl_80A1F7D4:
 /* 80A1F804  7F C3 F3 78 */	mr r3, r30
 /* 80A1F808  80 9E 14 38 */	lwz r4, 0x1438(r30)
 /* 80A1F80C  38 A1 00 08 */	addi r5, r1, 8
-/* 80A1F810  4B 73 45 0C */	b initTalk__8daNpcF_cFiPP10fopAc_ac_c
+/* 80A1F810  4B 73 45 0D */	bl initTalk__8daNpcF_cFiPP10fopAc_ac_c
 /* 80A1F814  48 00 00 30 */	b lbl_80A1F844
 lbl_80A1F818:
 /* 80A1F818  80 1E 14 68 */	lwz r0, 0x1468(r30)

@@ -8,8 +8,8 @@ lbl_80854058:
 /* 80854070  2C 03 00 00 */	cmpwi r3, 0
 /* 80854074  41 82 00 24 */	beq lbl_80854098
 /* 80854078  38 00 00 27 */	li r0, 0x27
-/* 8085407C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80854080  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8085407C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80854080  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80854084  98 03 5E 35 */	stb r0, 0x5e35(r3)
 /* 80854088  38 00 00 00 */	li r0, 0
 /* 8085408C  98 03 5E 50 */	stb r0, 0x5e50(r3)
@@ -58,10 +58,10 @@ lbl_80854110:
 /* 8085411C  4B FF FD D5 */	bl mtx_set__8daKago_cFv
 /* 80854120  7F E3 FB 78 */	mr r3, r31
 /* 80854124  4B FF FE 8D */	bl cc_set__8daKago_cFv
-/* 80854128  4B 92 D5 18 */	b dCam_getBody__Fv
+/* 80854128  4B 92 D5 19 */	bl dCam_getBody__Fv
 /* 8085412C  7C 64 1B 78 */	mr r4, r3
 /* 80854130  38 61 00 08 */	addi r3, r1, 8
-/* 80854134  4B 92 DD 30 */	b Eye__9dCamera_cFv
+/* 80854134  4B 92 DD 31 */	bl Eye__9dCamera_cFv
 /* 80854138  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8085413C  D0 1F 06 B0 */	stfs f0, 0x6b0(r31)
 /* 80854140  C0 01 00 0C */	lfs f0, 0xc(r1)

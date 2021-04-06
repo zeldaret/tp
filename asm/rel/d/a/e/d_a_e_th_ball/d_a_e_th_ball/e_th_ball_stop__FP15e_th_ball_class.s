@@ -12,8 +12,8 @@ lbl_807B60CC:
 /* 807B60F4  40 80 00 08 */	bge lbl_807B60FC
 /* 807B60F8  48 00 00 30 */	b lbl_807B6128
 lbl_807B60FC:
-/* 807B60FC  3C 60 80 7C */	lis r3, master@ha
-/* 807B6100  80 83 80 E0 */	lwz r4, master@l(r3)
+/* 807B60FC  3C 60 80 7C */	lis r3, master@ha /* 0x807B80E0@ha */
+/* 807B6100  80 83 80 E0 */	lwz r4, master@l(r3)  /* 0x807B80E0@l */
 /* 807B6104  88 64 06 8A */	lbz r3, 0x68a(r4)
 /* 807B6108  54 60 07 FF */	clrlwi. r0, r3, 0x1f
 /* 807B610C  41 82 00 1C */	beq lbl_807B6128
@@ -25,10 +25,10 @@ lbl_807B60FC:
 /* 807B6124  B0 1F 06 50 */	sth r0, 0x650(r31)
 lbl_807B6128:
 /* 807B6128  38 7F 05 2C */	addi r3, r31, 0x52c
-/* 807B612C  3C 80 80 7B */	lis r4, lit_3746@ha
-/* 807B6130  C0 24 7E B8 */	lfs f1, lit_3746@l(r4)
+/* 807B612C  3C 80 80 7B */	lis r4, lit_3746@ha /* 0x807B7EB8@ha */
+/* 807B6130  C0 24 7E B8 */	lfs f1, lit_3746@l(r4)  /* 0x807B7EB8@l */
 /* 807B6134  FC 40 08 90 */	fmr f2, f1
-/* 807B6138  4B AB 99 48 */	b cLib_addCalc0__FPfff
+/* 807B6138  4B AB 99 49 */	bl cLib_addCalc0__FPfff
 /* 807B613C  7F E3 FB 78 */	mr r3, r31
 /* 807B6140  38 80 00 01 */	li r4, 1
 /* 807B6144  4B FF FD E9 */	bl normal_move__FP15e_th_ball_classSc

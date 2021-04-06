@@ -1,6 +1,6 @@
 lbl_802E199C:
-/* 802E199C  3C 80 80 43 */	lis r4, mPadList__10JUTGamePad@ha
-/* 802E19A0  38 84 43 E4 */	addi r4, r4, mPadList__10JUTGamePad@l
+/* 802E199C  3C 80 80 43 */	lis r4, mPadList__10JUTGamePad@ha /* 0x804343E4@ha */
+/* 802E19A0  38 84 43 E4 */	addi r4, r4, mPadList__10JUTGamePad@l /* 0x804343E4@l */
 /* 802E19A4  80 84 00 00 */	lwz r4, 0(r4)
 /* 802E19A8  48 00 00 20 */	b lbl_802E19C8
 lbl_802E19AC:

@@ -10,8 +10,8 @@ lbl_8021C984:
 /* 8021C98C  38 60 00 00 */	li r3, 0
 /* 8021C990  4E 80 00 20 */	blr 
 lbl_8021C994:
-/* 8021C994  3C A0 80 43 */	lis r5, g_meter2_info@ha
-/* 8021C998  38 A5 01 88 */	addi r5, r5, g_meter2_info@l
+/* 8021C994  3C A0 80 43 */	lis r5, g_meter2_info@ha /* 0x80430188@ha */
+/* 8021C998  38 A5 01 88 */	addi r5, r5, g_meter2_info@l /* 0x80430188@l */
 /* 8021C99C  80 A5 00 1C */	lwz r5, 0x1c(r5)
 /* 8021C9A0  28 05 00 00 */	cmplwi r5, 0
 /* 8021C9A4  41 82 00 30 */	beq lbl_8021C9D4

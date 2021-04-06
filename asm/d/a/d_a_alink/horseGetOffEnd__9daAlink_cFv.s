@@ -14,8 +14,8 @@ lbl_800EF394:
 /* 800EF3C4  38 A0 40 00 */	li r5, 0x4000
 /* 800EF3C8  38 C0 00 00 */	li r6, 0
 /* 800EF3CC  4B FB E7 AD */	bl setOldRootQuaternion__9daAlink_cFsss
-/* 800EF3D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800EF3D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800EF3D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800EF3D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800EF3D8  38 80 C0 00 */	li r4, -16384
 /* 800EF3DC  4B F1 D0 01 */	bl mDoMtx_YrotS__FPA4_fs
 /* 800EF3E0  48 00 00 30 */	b lbl_800EF410
@@ -27,15 +27,15 @@ lbl_800EF3E4:
 /* 800EF3F4  38 A0 C0 00 */	li r5, -16384
 /* 800EF3F8  38 C0 00 00 */	li r6, 0
 /* 800EF3FC  4B FB E7 7D */	bl setOldRootQuaternion__9daAlink_cFsss
-/* 800EF400  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800EF404  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800EF400  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800EF404  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800EF408  38 80 40 00 */	li r4, 0x4000
 /* 800EF40C  4B F1 CF D1 */	bl mDoMtx_YrotS__FPA4_fs
 lbl_800EF410:
 /* 800EF410  80 7F 20 60 */	lwz r3, 0x2060(r31)
 /* 800EF414  80 83 00 1C */	lwz r4, 0x1c(r3)
-/* 800EF418  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800EF41C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800EF418  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800EF41C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800EF420  D0 04 00 14 */	stfs f0, 0x14(r4)
 /* 800EF424  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800EF428  D0 04 00 1C */	stfs f0, 0x1c(r4)

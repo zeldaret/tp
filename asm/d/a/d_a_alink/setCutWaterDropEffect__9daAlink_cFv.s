@@ -15,8 +15,8 @@ lbl_80124144:
 /* 80124178  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8012417C  C0 03 00 5C */	lfs f0, 0x5c(r3)
 /* 80124180  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80124184  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80124188  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80124184  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80124188  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012418C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80124190  38 80 00 00 */	li r4, 0
 /* 80124194  90 81 00 08 */	stw r4, 8(r1)

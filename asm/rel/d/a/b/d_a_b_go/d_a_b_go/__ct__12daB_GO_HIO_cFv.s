@@ -1,8 +1,8 @@
 lbl_806031AC:
-/* 806031AC  3C 80 80 60 */	lis r4, lit_3646@ha
-/* 806031B0  38 A4 40 44 */	addi r5, r4, lit_3646@l
-/* 806031B4  3C 80 80 60 */	lis r4, __vt__12daB_GO_HIO_c@ha
-/* 806031B8  38 04 41 2C */	addi r0, r4, __vt__12daB_GO_HIO_c@l
+/* 806031AC  3C 80 80 60 */	lis r4, lit_3646@ha /* 0x80604044@ha */
+/* 806031B0  38 A4 40 44 */	addi r5, r4, lit_3646@l /* 0x80604044@l */
+/* 806031B4  3C 80 80 60 */	lis r4, __vt__12daB_GO_HIO_c@ha /* 0x8060412C@ha */
+/* 806031B8  38 04 41 2C */	addi r0, r4, __vt__12daB_GO_HIO_c@l /* 0x8060412C@l */
 /* 806031BC  90 03 00 00 */	stw r0, 0(r3)
 /* 806031C0  38 00 FF FF */	li r0, -1
 /* 806031C4  98 03 00 04 */	stb r0, 4(r3)

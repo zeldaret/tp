@@ -1,7 +1,7 @@
 lbl_8024BAA0:
 /* 8024BAA0  38 A0 00 01 */	li r5, 1
-/* 8024BAA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024BAA8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8024BAA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024BAA8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024BAAC  A0 04 00 08 */	lhz r0, 8(r4)
 /* 8024BAB0  54 03 04 3F */	clrlwi. r3, r0, 0x10
 /* 8024BAB4  41 82 00 10 */	beq lbl_8024BAC4

@@ -7,8 +7,8 @@ lbl_8020D990:
 /* 8020D9A4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8020D9A8  7C 9F 23 78 */	mr r31, r4
 /* 8020D9AC  41 82 00 24 */	beq lbl_8020D9D0
-/* 8020D9B0  3C 80 80 3C */	lis r4, __vt__11dMeterMap_c@ha
-/* 8020D9B4  38 04 F2 F8 */	addi r0, r4, __vt__11dMeterMap_c@l
+/* 8020D9B0  3C 80 80 3C */	lis r4, __vt__11dMeterMap_c@ha /* 0x803BF2F8@ha */
+/* 8020D9B4  38 04 F2 F8 */	addi r0, r4, __vt__11dMeterMap_c@l /* 0x803BF2F8@l */
 /* 8020D9B8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8020D9BC  48 00 02 95 */	bl _delete__11dMeterMap_cFv
 /* 8020D9C0  7F E0 07 35 */	extsh. r0, r31

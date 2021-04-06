@@ -1,6 +1,6 @@
 lbl_80877740:
-/* 80877740  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80877744  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l
+/* 80877740  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80877744  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80877748  80 03 00 A0 */	lwz r0, 0xa0(r3)
 /* 8087774C  2C 00 00 00 */	cmpwi r0, 0
 /* 80877750  41 82 00 98 */	beq lbl_808777E8
@@ -17,8 +17,8 @@ lbl_80877770:
 /* 80877778  54 00 00 34 */	rlwinm r0, r0, 0, 0, 0x1a
 /* 8087777C  1C A0 00 0A */	mulli r5, r0, 0xa
 lbl_80877780:
-/* 80877780  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80877784  38 83 9B D0 */	addi r4, r3, daMP_ActivePlayer@l
+/* 80877780  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80877784  38 83 9B D0 */	addi r4, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80877788  80 64 00 80 */	lwz r3, 0x80(r4)
 /* 8087778C  80 04 00 84 */	lwz r0, 0x84(r4)
 /* 80877790  7C 63 01 D6 */	mullw r3, r3, r0

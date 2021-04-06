@@ -20,8 +20,8 @@ lbl_802F8498:
 /* 802F84E0  38 E0 00 00 */	li r7, 0
 /* 802F84E4  39 21 00 10 */	addi r9, r1, 0x10
 /* 802F84E8  4B FF D8 59 */	bl func_802F5D40
-/* 802F84EC  3C 60 80 3D */	lis r3, __vt__9J2DScreen@ha
-/* 802F84F0  38 03 D0 68 */	addi r0, r3, __vt__9J2DScreen@l
+/* 802F84EC  3C 60 80 3D */	lis r3, __vt__9J2DScreen@ha /* 0x803CD068@ha */
+/* 802F84F0  38 03 D0 68 */	addi r0, r3, __vt__9J2DScreen@l /* 0x803CD068@l */
 /* 802F84F4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802F84F8  38 00 FF FF */	li r0, -1
 /* 802F84FC  90 1F 01 14 */	stw r0, 0x114(r31)

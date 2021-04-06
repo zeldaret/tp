@@ -3,17 +3,15 @@
 #
 
 M37_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist.plf
+M37_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist.lcf
+M37_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist.map
 
 M37_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_mist/executor.cpp \
-	rel/d/a/tag/d_a_tag_mist/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_mist/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.cpp \
 
 M37_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.o \
 
 M37_LIBS := \
@@ -29,15 +27,21 @@ M37_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map37.map\
+	-m _prolog \
+	-lcf $(M37_LDSCRIPT) \
+	-unused -map $(M37_MAP) \
+	-w off \
 
 $(M37_TARGET): $(M37_O_FILES) $(M37_LIBS)
+	@echo [ 37] creating $(M37_TARGET)
 	@echo $(M37_LIBS) $(M37_O_FILES) > build/M37_ofiles
-	$(LD) -opt_partial $(M37_LDFLAGS) -o $(M37_TARGET) @build/M37_ofiles
+	@python3 tools/lcf.py rel 37 --output $(M37_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M37_LDFLAGS) -o $(M37_TARGET) @build/M37_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mist/%.o: rel/d/a/tag/d_a_tag_mist/%.cpp
+	@echo [ 37] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M37_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M37_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

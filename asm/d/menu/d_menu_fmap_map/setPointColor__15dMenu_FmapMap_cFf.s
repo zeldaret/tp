@@ -21,8 +21,8 @@ lbl_801CEB1C:
 /* 801CEB68  40 82 00 54 */	bne lbl_801CEBBC
 /* 801CEB6C  3B 80 00 00 */	li r28, 0
 /* 801CEB70  3B C0 00 00 */	li r30, 0
-/* 801CEB74  3C 60 80 39 */	lis r3, palNo@ha
-/* 801CEB78  3B A3 61 B0 */	addi r29, r3, palNo@l
+/* 801CEB74  3C 60 80 39 */	lis r3, palNo@ha /* 0x803961B0@ha */
+/* 801CEB78  3B A3 61 B0 */	addi r29, r3, palNo@l /* 0x803961B0@l */
 lbl_801CEB7C:
 /* 801CEB7C  80 1F 00 C4 */	lwz r0, 0xc4(r31)
 /* 801CEB80  7C 80 F2 14 */	add r4, r0, r30
@@ -43,8 +43,8 @@ lbl_801CEB7C:
 lbl_801CEBBC:
 /* 801CEBBC  3B 80 00 00 */	li r28, 0
 /* 801CEBC0  3B C0 00 00 */	li r30, 0
-/* 801CEBC4  3C 60 80 39 */	lis r3, palNo@ha
-/* 801CEBC8  3B A3 61 B0 */	addi r29, r3, palNo@l
+/* 801CEBC4  3C 60 80 39 */	lis r3, palNo@ha /* 0x803961B0@ha */
+/* 801CEBC8  3B A3 61 B0 */	addi r29, r3, palNo@l /* 0x803961B0@l */
 lbl_801CEBCC:
 /* 801CEBCC  80 1F 00 C4 */	lwz r0, 0xc4(r31)
 /* 801CEBD0  7C 80 F2 14 */	add r4, r0, r30

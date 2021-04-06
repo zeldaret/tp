@@ -3,17 +3,15 @@
 #
 
 M430_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up.plf
+M430_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up.lcf
+M430_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up.map
 
 M430_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvlh_up/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvlh_up/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvlh_up/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvlh_up/d_a_obj_crvlh_up.cpp \
 
 M430_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up/d_a_obj_crvlh_up.o \
 
 M430_LIBS := \
@@ -29,15 +27,21 @@ M430_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map430.map\
+	-m _prolog \
+	-lcf $(M430_LDSCRIPT) \
+	-unused -map $(M430_MAP) \
+	-w off \
 
 $(M430_TARGET): $(M430_O_FILES) $(M430_LIBS)
+	@echo [430] creating $(M430_TARGET)
 	@echo $(M430_LIBS) $(M430_O_FILES) > build/M430_ofiles
-	$(LD) -opt_partial $(M430_LDFLAGS) -o $(M430_TARGET) @build/M430_ofiles
+	@python3 tools/lcf.py rel 430 --output $(M430_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M430_LDFLAGS) -o $(M430_TARGET) @build/M430_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_up/%.o: rel/d/a/obj/d_a_obj_crvlh_up/%.cpp
+	@echo [430] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M430_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M430_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

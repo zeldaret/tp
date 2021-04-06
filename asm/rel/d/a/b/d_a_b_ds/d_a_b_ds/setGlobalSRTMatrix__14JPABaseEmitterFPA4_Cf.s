@@ -8,7 +8,7 @@ lbl_805CFA08:
 /* 805CFA20  38 9F 00 68 */	addi r4, r31, 0x68
 /* 805CFA24  38 BF 00 98 */	addi r5, r31, 0x98
 /* 805CFA28  38 DF 00 A4 */	addi r6, r31, 0xa4
-/* 805CFA2C  4B CB 0D DC */	b func_80280808
+/* 805CFA2C  4B CB 0D DD */	bl func_80280808
 /* 805CFA30  C0 3F 00 9C */	lfs f1, 0x9c(r31)
 /* 805CFA34  C0 1F 00 98 */	lfs f0, 0x98(r31)
 /* 805CFA38  D0 1F 00 B0 */	stfs f0, 0xb0(r31)

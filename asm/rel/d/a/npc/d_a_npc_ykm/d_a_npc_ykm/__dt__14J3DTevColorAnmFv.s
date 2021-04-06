@@ -7,7 +7,7 @@ lbl_80B53F54:
 /* 80B53F68  41 82 00 10 */	beq lbl_80B53F78
 /* 80B53F6C  7C 80 07 35 */	extsh. r0, r4
 /* 80B53F70  40 81 00 08 */	ble lbl_80B53F78
-/* 80B53F74  4B 77 AD C8 */	b __dl__FPv
+/* 80B53F74  4B 77 AD C9 */	bl __dl__FPv
 lbl_80B53F78:
 /* 80B53F78  7F E3 FB 78 */	mr r3, r31
 /* 80B53F7C  83 E1 00 0C */	lwz r31, 0xc(r1)

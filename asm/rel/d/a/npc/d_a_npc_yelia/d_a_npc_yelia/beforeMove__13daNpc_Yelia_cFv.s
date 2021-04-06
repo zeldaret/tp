@@ -12,7 +12,7 @@ lbl_80B4EA28:
 /* 80B4EA50  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B4EA54  28 00 00 00 */	cmplwi r0, 0
 /* 80B4EA58  40 82 00 1C */	bne lbl_80B4EA74
-/* 80B4EA5C  4B 4E 0F F8 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B4EA5C  4B 4E 0F F9 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B4EA60  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4EA64  40 82 00 14 */	bne lbl_80B4EA78
 /* 80B4EA68  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_80B4EA8C:
 /* 80B4EA90  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 80B4EA94  28 00 00 00 */	cmplwi r0, 0
 /* 80B4EA98  40 82 00 1C */	bne lbl_80B4EAB4
-/* 80B4EA9C  4B 4E 0F B8 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B4EA9C  4B 4E 0F B9 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B4EAA0  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4EAA4  40 82 00 14 */	bne lbl_80B4EAB8
 /* 80B4EAA8  88 1E 0A 89 */	lbz r0, 0xa89(r30)

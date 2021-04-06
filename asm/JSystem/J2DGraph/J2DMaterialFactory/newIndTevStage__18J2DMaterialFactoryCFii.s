@@ -2,8 +2,8 @@ lbl_802F3E24:
 /* 802F3E24  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F3E28  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802F3E2C  93 C1 00 28 */	stw r30, 0x28(r1)
-/* 802F3E30  3C E0 80 3A */	lis r7, j2dDefaultIndTevStageInfo@ha
-/* 802F3E34  39 07 1B F4 */	addi r8, r7, j2dDefaultIndTevStageInfo@l
+/* 802F3E30  3C E0 80 3A */	lis r7, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802F3E34  39 07 1B F4 */	addi r8, r7, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802F3E38  80 E8 00 00 */	lwz r7, 0(r8)
 /* 802F3E3C  80 08 00 04 */	lwz r0, 4(r8)
 /* 802F3E40  90 E1 00 14 */	stw r7, 0x14(r1)

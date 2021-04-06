@@ -9,13 +9,13 @@ lbl_80AC5E34:
 /* 80AC5E50  38 00 00 03 */	li r0, 3
 /* 80AC5E54  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80AC5E58  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80AC5E5C  4B 89 C1 BC */	b __ptmf_test
+/* 80AC5E5C  4B 89 C1 BD */	bl __ptmf_test
 /* 80AC5E60  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC5E64  41 82 00 18 */	beq lbl_80AC5E7C
 /* 80AC5E68  7F C3 F3 78 */	mr r3, r30
 /* 80AC5E6C  38 80 00 00 */	li r4, 0
 /* 80AC5E70  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80AC5E74  4B 89 C2 10 */	b __ptmf_scall
+/* 80AC5E74  4B 89 C2 11 */	bl __ptmf_scall
 /* 80AC5E78  60 00 00 00 */	nop 
 lbl_80AC5E7C:
 /* 80AC5E7C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80AC5E7C:
 /* 80AC5E94  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80AC5E98  90 1E 0E 5C */	stw r0, 0xe5c(r30)
 /* 80AC5E9C  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80AC5EA0  4B 89 C1 78 */	b __ptmf_test
+/* 80AC5EA0  4B 89 C1 79 */	bl __ptmf_test
 /* 80AC5EA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC5EA8  41 82 00 18 */	beq lbl_80AC5EC0
 /* 80AC5EAC  7F C3 F3 78 */	mr r3, r30
 /* 80AC5EB0  38 80 00 00 */	li r4, 0
 /* 80AC5EB4  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80AC5EB8  4B 89 C1 CC */	b __ptmf_scall
+/* 80AC5EB8  4B 89 C1 CD */	bl __ptmf_scall
 /* 80AC5EBC  60 00 00 00 */	nop 
 lbl_80AC5EC0:
 /* 80AC5EC0  38 60 00 01 */	li r3, 1

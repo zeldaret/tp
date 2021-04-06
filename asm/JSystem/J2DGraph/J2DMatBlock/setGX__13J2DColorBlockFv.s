@@ -19,8 +19,8 @@ lbl_802EB444:
 /* 802EB464  41 80 FF E0 */	blt lbl_802EB444
 /* 802EB468  88 7F 00 08 */	lbz r3, 8(r31)
 /* 802EB46C  48 07 26 C5 */	bl GXSetNumChans
-/* 802EB470  3C 60 80 3A */	lis r3, lit_1463@ha
-/* 802EB474  38 83 1C 00 */	addi r4, r3, lit_1463@l
+/* 802EB470  3C 60 80 3A */	lis r3, lit_1463@ha /* 0x803A1C00@ha */
+/* 802EB474  38 83 1C 00 */	addi r4, r3, lit_1463@l /* 0x803A1C00@l */
 /* 802EB478  80 64 00 00 */	lwz r3, 0(r4)
 /* 802EB47C  80 04 00 04 */	lwz r0, 4(r4)
 /* 802EB480  90 61 00 0C */	stw r3, 0xc(r1)

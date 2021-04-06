@@ -35,8 +35,8 @@ lbl_80242198:
 /* 8024221C  39 61 00 70 */	addi r11, r1, 0x70
 /* 80242220  48 11 FF 9D */	bl _savegpr_21
 /* 80242224  7C 79 1B 78 */	mr r25, r3
-/* 80242228  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024222C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80242228  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024222C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80242230  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 80242234  80 79 00 C4 */	lwz r3, 0xc4(r25)
 /* 80242238  48 01 20 B1 */	bl getGlobalPosX__8CPaneMgrFv
@@ -49,14 +49,14 @@ lbl_80242198:
 /* 80242254  57 C0 10 3A */	slwi r0, r30, 2
 /* 80242258  7C 79 02 14 */	add r3, r25, r0
 /* 8024225C  C3 23 01 80 */	lfs f25, 0x180(r3)
-/* 80242260  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 80242264  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 80242260  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80242264  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80242268  AB A3 04 0C */	lha r29, 0x40c(r3)
 /* 8024226C  A8 79 21 28 */	lha r3, 0x2128(r25)
 /* 80242270  38 03 FF FF */	addi r0, r3, -1
 /* 80242274  7F 9D 00 50 */	subf r28, r29, r0
-/* 80242278  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024227C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80242278  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024227C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80242280  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80242284  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80242288  81 8C 02 98 */	lwz r12, 0x298(r12)
@@ -141,8 +141,8 @@ lbl_802423B8:
 /* 802423B8  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802423BC  41 82 03 5C */	beq lbl_80242718
 /* 802423C0  3B 40 00 00 */	li r26, 0
-/* 802423C4  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 802423C8  3B E3 02 8C */	addi r31, r3, g_MsgObject_HIO_c@l
+/* 802423C4  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802423C8  3B E3 02 8C */	addi r31, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802423CC  C3 E2 B2 58 */	lfs f31, lit_4429(r2)
 /* 802423D0  48 00 01 CC */	b lbl_8024259C
 lbl_802423D4:

@@ -3,19 +3,20 @@
 #
 
 M86_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro.plf
+M86_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro.lcf
+M86_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro.map
 
 M86_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_maro/executor.cpp \
-	rel/d/a/npc/d_a_npc_maro/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_maro/d_a_npc_maro.cpp \
 
 M86_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/d_a_npc_maro.o \
 
 M86_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/libRuntime.PPCEABI.H.a \
 
 M86_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M86_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map86.map\
+	-m _prolog \
+	-lcf $(M86_LDSCRIPT) \
+	-unused -map $(M86_MAP) \
+	-w off \
 
 $(M86_TARGET): $(M86_O_FILES) $(M86_LIBS)
+	@echo [ 86] creating $(M86_TARGET)
 	@echo $(M86_LIBS) $(M86_O_FILES) > build/M86_ofiles
-	$(LD) -opt_partial $(M86_LDFLAGS) -o $(M86_TARGET) @build/M86_ofiles
+	@python3 tools/lcf.py rel 86 --output $(M86_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M86_LDFLAGS) -o $(M86_TARGET) @build/M86_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_maro/%.o: rel/d/a/npc/d_a_npc_maro/%.cpp
+	@echo [ 86] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M86_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M86_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_maro/libs/Runtime.PPCEABI.H/Makefile
 

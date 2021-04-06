@@ -12,7 +12,7 @@ lbl_80D597F8:
 lbl_80D59820:
 /* 80D59820  A0 83 00 00 */	lhz r4, 0(r3)
 /* 80D59824  38 84 FF FF */	addi r4, r4, -1
-/* 80D59828  4B 2F 7F 88 */	b dPath_GetPnt__FPC5dPathi
+/* 80D59828  4B 2F 7F 89 */	bl dPath_GetPnt__FPC5dPathi
 /* 80D5982C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80D59830  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80D59834  C0 03 00 08 */	lfs f0, 8(r3)

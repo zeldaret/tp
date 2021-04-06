@@ -1,8 +1,8 @@
 lbl_8059F66C:
-/* 8059F66C  3C 80 80 5A */	lis r4, lit_3769@ha
-/* 8059F670  38 A4 11 58 */	addi r5, r4, lit_3769@l
-/* 8059F674  3C 80 80 5A */	lis r4, __vt__10daSq_HIO_c@ha
-/* 8059F678  38 04 13 1C */	addi r0, r4, __vt__10daSq_HIO_c@l
+/* 8059F66C  3C 80 80 5A */	lis r4, lit_3769@ha /* 0x805A1158@ha */
+/* 8059F670  38 A4 11 58 */	addi r5, r4, lit_3769@l /* 0x805A1158@l */
+/* 8059F674  3C 80 80 5A */	lis r4, __vt__10daSq_HIO_c@ha /* 0x805A131C@ha */
+/* 8059F678  38 04 13 1C */	addi r0, r4, __vt__10daSq_HIO_c@l /* 0x805A131C@l */
 /* 8059F67C  90 03 00 00 */	stw r0, 0(r3)
 /* 8059F680  38 00 FF FF */	li r0, -1
 /* 8059F684  98 03 00 04 */	stb r0, 4(r3)

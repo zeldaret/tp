@@ -1,6 +1,6 @@
 lbl_80D603F8:
-/* 80D603F8  3C 80 80 D6 */	lis r4, lit_3650@ha
-/* 80D603FC  38 84 07 B4 */	addi r4, r4, lit_3650@l
+/* 80D603F8  3C 80 80 D6 */	lis r4, lit_3650@ha /* 0x80D607B4@ha */
+/* 80D603FC  38 84 07 B4 */	addi r4, r4, lit_3650@l /* 0x80D607B4@l */
 /* 80D60400  C0 44 00 00 */	lfs f2, 0(r4)
 /* 80D60404  C0 03 04 EC */	lfs f0, 0x4ec(r3)
 /* 80D60408  EC 02 00 32 */	fmuls f0, f2, f0

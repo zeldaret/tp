@@ -3,19 +3,20 @@
 #
 
 M562_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift.plf
+M562_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift.lcf
+M562_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift.map
 
 M562_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv8OptiLift/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv8OptiLift/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv8OptiLift/d_a_obj_lv8OptiLift.cpp \
 
 M562_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/d_a_obj_lv8OptiLift.o \
 
 M562_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/libRuntime.PPCEABI.H.a \
 
 M562_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M562_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map562.map\
+	-m _prolog \
+	-lcf $(M562_LDSCRIPT) \
+	-unused -map $(M562_MAP) \
+	-w off \
 
 $(M562_TARGET): $(M562_O_FILES) $(M562_LIBS)
+	@echo [562] creating $(M562_TARGET)
 	@echo $(M562_LIBS) $(M562_O_FILES) > build/M562_ofiles
-	$(LD) -opt_partial $(M562_LDFLAGS) -o $(M562_TARGET) @build/M562_ofiles
+	@python3 tools/lcf.py rel 562 --output $(M562_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M562_LDFLAGS) -o $(M562_TARGET) @build/M562_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8OptiLift/%.o: rel/d/a/obj/d_a_obj_lv8OptiLift/%.cpp
+	@echo [562] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M562_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M562_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv8OptiLift/libs/Runtime.PPCEABI.H/Makefile
 

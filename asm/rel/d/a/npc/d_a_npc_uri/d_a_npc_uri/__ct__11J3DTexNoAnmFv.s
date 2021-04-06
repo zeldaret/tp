@@ -1,6 +1,6 @@
 lbl_80B26FC0:
-/* 80B26FC0  3C 80 80 B3 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80B26FC4  38 04 DB 94 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80B26FC0  3C 80 80 B3 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80B2DB94@ha */
+/* 80B26FC4  38 04 DB 94 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80B2DB94@l */
 /* 80B26FC8  90 03 00 00 */	stw r0, 0(r3)
 /* 80B26FCC  38 80 00 00 */	li r4, 0
 /* 80B26FD0  B0 83 00 04 */	sth r4, 4(r3)

@@ -52,11 +52,6 @@ struct dEvt_control_c {
 // Forward References:
 //
 
-static void daTagHstop_Create(fopAc_ac_c*);
-static void daTagHstop_Delete(daTagHstop_c*);
-static void daTagHstop_Execute(daTagHstop_c*);
-static bool daTagHstop_Draw(daTagHstop_c*);
-
 extern "C" void create__12daTagHstop_cFv();
 extern "C" static void daTagHstop_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagHstop_cFv();
@@ -71,9 +66,6 @@ extern "C" extern void* g_profile_Tag_Hstop[12];
 //
 // External References:
 //
-
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -101,38 +93,11 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 805A4B20-805A4B24 0004+00 s=1 e=0 z=0  None .rodata    @3782 */
+/* 805A4B20-805A4B24 000000 0004+00 1/1 0/0 0/0 .rodata          @3782 */
 SECTION_RODATA static u32 const lit_3782 = 0x42C80000;
+SECTION_DEAD void* const cg_805A4B20 = (void*)(&lit_3782);
 
-/* 805A43EC-805A45D8 01EC+00 s=1 e=0 z=0  None .text      create__12daTagHstop_cFv */
-//	805A4414: 80018B64 (__ct__10fopAc_ac_cFv)
-//	805A4428: 805A4B20 (lit_3782)
-//	805A442C: 805A4B20 (lit_3782)
-//	805A4450: 80450DF8 (m_top__12daTagHstop_c)
-//	805A4454: 80450DF8 (m_top__12daTagHstop_c)
-//	805A44B4: 805A46B8 (setActive__12daTagHstop_cFv)
-//	805A44C4: 8015F660 (checkRoomRestartStart__9daPy_py_cFv)
-//	805A44D0: 804061C0 (g_dComIfG_gameInfo)
-//	805A44D4: 804061C0 (g_dComIfG_gameInfo)
-//	805A44E4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A44F0: 804061C0 (g_dComIfG_gameInfo)
-//	805A44F4: 804061C0 (g_dComIfG_gameInfo)
-//	805A4504: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A450C: 804061C0 (g_dComIfG_gameInfo)
-//	805A4510: 804061C0 (g_dComIfG_gameInfo)
-//	805A4520: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A452C: 804061C0 (g_dComIfG_gameInfo)
-//	805A4530: 804061C0 (g_dComIfG_gameInfo)
-//	805A4540: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A4548: 804061C0 (g_dComIfG_gameInfo)
-//	805A454C: 804061C0 (g_dComIfG_gameInfo)
-//	805A455C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A4568: 804061C0 (g_dComIfG_gameInfo)
-//	805A456C: 804061C0 (g_dComIfG_gameInfo)
-//	805A457C: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A4580: 804061C0 (g_dComIfG_gameInfo)
-//	805A4584: 804061C0 (g_dComIfG_gameInfo)
-//	805A4594: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -142,22 +107,18 @@ asm void daTagHstop_c::create() {
 }
 #pragma pop
 
-/* 805A45D8-805A45F8 0020+00 s=1 e=0 z=0  None .text      daTagHstop_Create__FP10fopAc_ac_c */
-//	805A45E4: 805A43EC (create__12daTagHstop_cFv)
+/* 805A45D8-805A45F8 0002D8 0020+00 1/0 0/0 0/0 .text            daTagHstop_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Create(fopAc_ac_c* param_0) {
+static asm void daTagHstop_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A45F8-805A4690 0098+00 s=1 e=0 z=0  None .text      __dt__12daTagHstop_cFv */
-//	805A4640: 80450DF8 (m_top__12daTagHstop_c)
-//	805A4644: 80450DF8 (m_top__12daTagHstop_c)
-//	805A4660: 80018C8C (__dt__10fopAc_ac_cFv)
-//	805A4670: 802CED3C (__dl__FPv)
+/* 805A45F8-805A4690 0002F8 0098+00 1/1 0/0 0/0 .text            __dt__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -167,24 +128,18 @@ asm daTagHstop_c::~daTagHstop_c() {
 }
 #pragma pop
 
-/* 805A4690-805A46B8 0028+00 s=1 e=0 z=0  None .text      daTagHstop_Delete__FP12daTagHstop_c */
-//	805A46A0: 805A45F8 (__dt__12daTagHstop_cFv)
+/* 805A4690-805A46B8 000390 0028+00 1/0 0/0 0/0 .text            daTagHstop_Delete__FP12daTagHstop_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Delete(daTagHstop_c* param_0) {
+static asm void daTagHstop_Delete(daTagHstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Delete__FP12daTagHstop_c.s"
 }
 #pragma pop
 
-/* 805A46B8-805A475C 00A4+00 s=2 e=0 z=0  None .text      setActive__12daTagHstop_cFv */
-//	805A46EC: 804061C0 (g_dComIfG_gameInfo)
-//	805A46F0: 804061C0 (g_dComIfG_gameInfo)
-//	805A46FC: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A4714: 804061C0 (g_dComIfG_gameInfo)
-//	805A4718: 804061C0 (g_dComIfG_gameInfo)
-//	805A4728: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 805A46B8-805A475C 0003B8 00A4+00 2/2 0/0 0/0 .text            setActive__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,67 +150,13 @@ asm void daTagHstop_c::setActive() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A4B80-805A4B8C 000C+00 s=1 e=0 z=0  None .bss       @3686 */
+/* 805A4B80-805A4B8C 000008 000C+00 1/1 0/0 0/0 .bss             @3686 */
 static u8 lit_3686[12];
 
-/* 805A4B8C-805A4BD8 004C+00 s=2 e=0 z=0  None .bss       m_msgFlow__12daTagHstop_c */
+/* 805A4B8C-805A4BD8 000014 004C+00 2/2 0/0 0/0 .bss             m_msgFlow__12daTagHstop_c */
 static u8 m_msgFlow__12daTagHstop_c[76];
 
-/* 805A475C-805A4AA8 034C+00 s=1 e=0 z=0  None .text      execute__12daTagHstop_cFv */
-//	805A4788: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A478C: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A47A4: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	805A47B4: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A47B8: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A47C8: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	805A47D4: 804061C0 (g_dComIfG_gameInfo)
-//	805A47D8: 804061C0 (g_dComIfG_gameInfo)
-//	805A47E0: 80042468 (reset__14dEvt_control_cFv)
-//	805A47EC: 804061C0 (g_dComIfG_gameInfo)
-//	805A47F0: 804061C0 (g_dComIfG_gameInfo)
-//	805A4810: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A4824: 804061C0 (g_dComIfG_gameInfo)
-//	805A4828: 804061C0 (g_dComIfG_gameInfo)
-//	805A4838: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A4850: 804061C0 (g_dComIfG_gameInfo)
-//	805A4854: 804061C0 (g_dComIfG_gameInfo)
-//	805A4874: 804061C0 (g_dComIfG_gameInfo)
-//	805A4878: 804061C0 (g_dComIfG_gameInfo)
-//	805A4888: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A48A8: 805A46B8 (setActive__12daTagHstop_cFv)
-//	805A48B8: 804061C0 (g_dComIfG_gameInfo)
-//	805A48BC: 804061C0 (g_dComIfG_gameInfo)
-//	805A4938: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
-//	805A4958: 804061C0 (g_dComIfG_gameInfo)
-//	805A495C: 804061C0 (g_dComIfG_gameInfo)
-//	805A4984: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A4990: 804061C0 (g_dComIfG_gameInfo)
-//	805A4994: 804061C0 (g_dComIfG_gameInfo)
-//	805A49A4: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A49A8: 80430188 (g_meter2_info)
-//	805A49AC: 80430188 (g_meter2_info)
-//	805A49BC: 8021C11C (setFloatingFlow__13dMeter2Info_cFUssb)
-//	805A49C0: 804061C0 (g_dComIfG_gameInfo)
-//	805A49C4: 804061C0 (g_dComIfG_gameInfo)
-//	805A49D4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A49E8: 804061C0 (g_dComIfG_gameInfo)
-//	805A49EC: 804061C0 (g_dComIfG_gameInfo)
-//	805A49FC: 800352B0 (offSwitch__10dSv_info_cFii)
-//	805A4A00: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A04: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A14: 800352B0 (offSwitch__10dSv_info_cFii)
-//	805A4A18: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A1C: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A2C: 800352B0 (offSwitch__10dSv_info_cFii)
-//	805A4A40: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A44: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A54: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A4A60: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A64: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A74: 80035200 (onSwitch__10dSv_info_cFii)
-//	805A4A78: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A7C: 804061C0 (g_dComIfG_gameInfo)
-//	805A4A8C: 80035200 (onSwitch__10dSv_info_cFii)
+/* 805A475C-805A4AA8 00045C 034C+00 1/1 0/0 0/0 .text            execute__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -265,35 +166,27 @@ asm void daTagHstop_c::execute() {
 }
 #pragma pop
 
-/* 805A4AA8-805A4AC8 0020+00 s=1 e=0 z=0  None .text      daTagHstop_Execute__FP12daTagHstop_c */
-//	805A4AB4: 805A475C (execute__12daTagHstop_cFv)
+/* 805A4AA8-805A4AC8 0007A8 0020+00 1/0 0/0 0/0 .text daTagHstop_Execute__FP12daTagHstop_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Execute(daTagHstop_c* param_0) {
+static asm void daTagHstop_Execute(daTagHstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Execute__FP12daTagHstop_c.s"
 }
 #pragma pop
 
-/* 805A4AC8-805A4AD0 0008+00 s=1 e=0 z=0  None .text      daTagHstop_Draw__FP12daTagHstop_c */
+/* 805A4AC8-805A4AD0 0007C8 0008+00 1/0 0/0 0/0 .text            daTagHstop_Draw__FP12daTagHstop_c
+ */
 static bool daTagHstop_Draw(daTagHstop_c* param_0) {
     return true;
 }
 
-/* 805A4AD0-805A4B0C 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_tag_hstop_cpp */
-//	805A4ADC: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A4AE0: 805A4B8C (m_msgFlow__12daTagHstop_c)
-//	805A4AE4: 80249F00 (__ct__10dMsgFlow_cFv)
-//	805A4AE8: 80249F48 (__dt__10dMsgFlow_cFv)
-//	805A4AEC: 80249F48 (__dt__10dMsgFlow_cFv)
-//	805A4AF0: 805A4B80 (lit_3686)
-//	805A4AF4: 805A4B80 (lit_3686)
-//	805A4AF8: 805A4378 (__register_global_object)
+/* 805A4AD0-805A4B0C 0007D0 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_tag_hstop_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_tag_hstop_cpp() {
+asm void __sinit_d_a_tag_hstop_cpp() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/__sinit_d_a_tag_hstop_cpp.s"
 }
@@ -305,7 +198,7 @@ SECTION_CTORS void* const _ctors_805A4AD0 = (void*)__sinit_d_a_tag_hstop_cpp;
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A4B24-805A4B44 0020+00 s=1 e=0 z=0  None .data      l_daTagHstop_Method */
+/* 805A4B24-805A4B44 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHstop_Method */
 SECTION_DATA static void* l_daTagHstop_Method[8] = {
     (void*)daTagHstop_Create__FP10fopAc_ac_c,
     (void*)daTagHstop_Delete__FP12daTagHstop_c,
@@ -317,8 +210,8 @@ SECTION_DATA static void* l_daTagHstop_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A4B44-805A4B74 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Hstop */
-SECTION_DATA void* g_profile_Tag_Hstop[12] = {
+/* 805A4B44-805A4B74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hstop */
+SECTION_DATA extern void* g_profile_Tag_Hstop[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00EC0000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,

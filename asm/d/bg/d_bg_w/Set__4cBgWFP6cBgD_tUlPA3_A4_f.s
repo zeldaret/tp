@@ -68,10 +68,10 @@ lbl_8007A024:
 /* 8007A02C  57 C3 18 38 */	slwi r3, r30, 3
 /* 8007A030  38 63 00 10 */	addi r3, r3, 0x10
 /* 8007A034  48 25 4C 91 */	bl __nwa__FUl
-/* 8007A038  3C 80 80 08 */	lis r4, __ct__11cBgW_RwgElmFv@ha
-/* 8007A03C  38 84 91 C4 */	addi r4, r4, __ct__11cBgW_RwgElmFv@l
-/* 8007A040  3C A0 80 08 */	lis r5, __dt__11cBgW_RwgElmFv@ha
-/* 8007A044  38 A5 91 D4 */	addi r5, r5, __dt__11cBgW_RwgElmFv@l
+/* 8007A038  3C 80 80 08 */	lis r4, __ct__11cBgW_RwgElmFv@ha /* 0x800791C4@ha */
+/* 8007A03C  38 84 91 C4 */	addi r4, r4, __ct__11cBgW_RwgElmFv@l /* 0x800791C4@l */
+/* 8007A040  3C A0 80 08 */	lis r5, __dt__11cBgW_RwgElmFv@ha /* 0x800791D4@ha */
+/* 8007A044  38 A5 91 D4 */	addi r5, r5, __dt__11cBgW_RwgElmFv@l /* 0x800791D4@l */
 /* 8007A048  38 C0 00 08 */	li r6, 8
 /* 8007A04C  7F C7 F3 78 */	mr r7, r30
 /* 8007A050  48 2E 7E C5 */	bl __construct_new_array
@@ -102,10 +102,10 @@ lbl_8007A0A4:
 /* 8007A0AC  1C 7E 00 1C */	mulli r3, r30, 0x1c
 /* 8007A0B0  38 63 00 10 */	addi r3, r3, 0x10
 /* 8007A0B4  48 25 4C 11 */	bl __nwa__FUl
-/* 8007A0B8  3C 80 80 08 */	lis r4, __ct__13cBgW_NodeTreeFv@ha
-/* 8007A0BC  38 84 92 1C */	addi r4, r4, __ct__13cBgW_NodeTreeFv@l
-/* 8007A0C0  3C A0 80 08 */	lis r5, __dt__13cBgW_NodeTreeFv@ha
-/* 8007A0C4  38 A5 92 38 */	addi r5, r5, __dt__13cBgW_NodeTreeFv@l
+/* 8007A0B8  3C 80 80 08 */	lis r4, __ct__13cBgW_NodeTreeFv@ha /* 0x8007921C@ha */
+/* 8007A0BC  38 84 92 1C */	addi r4, r4, __ct__13cBgW_NodeTreeFv@l /* 0x8007921C@l */
+/* 8007A0C0  3C A0 80 08 */	lis r5, __dt__13cBgW_NodeTreeFv@ha /* 0x80079238@ha */
+/* 8007A0C4  38 A5 92 38 */	addi r5, r5, __dt__13cBgW_NodeTreeFv@l /* 0x80079238@l */
 /* 8007A0C8  38 C0 00 1C */	li r6, 0x1c
 /* 8007A0CC  7F C7 F3 78 */	mr r7, r30
 /* 8007A0D0  48 2E 7E 45 */	bl __construct_new_array
@@ -123,10 +123,10 @@ lbl_8007A0F4:
 /* 8007A0FC  57 C3 28 34 */	slwi r3, r30, 5
 /* 8007A100  38 63 00 10 */	addi r3, r3, 0x10
 /* 8007A104  48 25 4B C1 */	bl __nwa__FUl
-/* 8007A108  3C 80 80 08 */	lis r4, __ct__11cBgW_GrpElmFv@ha
-/* 8007A10C  38 84 A1 E4 */	addi r4, r4, __ct__11cBgW_GrpElmFv@l
-/* 8007A110  3C A0 80 08 */	lis r5, __dt__11cBgW_GrpElmFv@ha
-/* 8007A114  38 A5 A1 84 */	addi r5, r5, __dt__11cBgW_GrpElmFv@l
+/* 8007A108  3C 80 80 08 */	lis r4, __ct__11cBgW_GrpElmFv@ha /* 0x8007A1E4@ha */
+/* 8007A10C  38 84 A1 E4 */	addi r4, r4, __ct__11cBgW_GrpElmFv@l /* 0x8007A1E4@l */
+/* 8007A110  3C A0 80 08 */	lis r5, __dt__11cBgW_GrpElmFv@ha /* 0x8007A184@ha */
+/* 8007A114  38 A5 A1 84 */	addi r5, r5, __dt__11cBgW_GrpElmFv@l /* 0x8007A184@l */
 /* 8007A118  38 C0 00 20 */	li r6, 0x20
 /* 8007A11C  7F C7 F3 78 */	mr r7, r30
 /* 8007A120  48 2E 7D F5 */	bl __construct_new_array

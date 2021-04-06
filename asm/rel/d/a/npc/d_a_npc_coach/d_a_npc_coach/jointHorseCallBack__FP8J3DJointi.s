@@ -8,8 +8,8 @@ lbl_8099D6D8:
 /* 8099D6F0  38 60 00 01 */	li r3, 1
 /* 8099D6F4  48 00 00 28 */	b lbl_8099D71C
 lbl_8099D6F8:
-/* 8099D6F8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8099D6FC  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8099D6F8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8099D6FC  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8099D700  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 8099D704  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 8099D708  28 03 00 00 */	cmplwi r3, 0

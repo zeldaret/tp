@@ -7,13 +7,13 @@ lbl_80284E70:
 /* 80284E84  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80284E88  7C 9F 23 78 */	mr r31, r4
 /* 80284E8C  41 82 00 4C */	beq lbl_80284ED8
-/* 80284E90  3C 60 80 3C */	lis r3, __vt__Q37JStudio3fvb18TObject_transition@ha
-/* 80284E94  38 03 4A 80 */	addi r0, r3, __vt__Q37JStudio3fvb18TObject_transition@l
+/* 80284E90  3C 60 80 3C */	lis r3, __vt__Q37JStudio3fvb18TObject_transition@ha /* 0x803C4A80@ha */
+/* 80284E94  38 03 4A 80 */	addi r0, r3, __vt__Q37JStudio3fvb18TObject_transition@l /* 0x803C4A80@l */
 /* 80284E98  90 1E 00 08 */	stw r0, 8(r30)
 /* 80284E9C  34 1E 00 18 */	addic. r0, r30, 0x18
 /* 80284EA0  41 82 00 1C */	beq lbl_80284EBC
-/* 80284EA4  3C 60 80 3C */	lis r3, __vt__Q27JStudio25TFunctionValue_transition@ha
-/* 80284EA8  38 03 49 40 */	addi r0, r3, __vt__Q27JStudio25TFunctionValue_transition@l
+/* 80284EA4  3C 60 80 3C */	lis r3, __vt__Q27JStudio25TFunctionValue_transition@ha /* 0x803C4940@ha */
+/* 80284EA8  38 03 49 40 */	addi r0, r3, __vt__Q27JStudio25TFunctionValue_transition@l /* 0x803C4940@l */
 /* 80284EAC  90 1E 00 18 */	stw r0, 0x18(r30)
 /* 80284EB0  38 7E 00 18 */	addi r3, r30, 0x18
 /* 80284EB4  38 80 00 00 */	li r4, 0

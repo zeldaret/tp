@@ -3,17 +3,15 @@
 #
 
 M708_TARGET := $(BUILD_DIR)/rel/d/a/d_a_swLBall.plf
+M708_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_swLBall.lcf
+M708_MAP := $(BUILD_DIR)/rel/d/a/d_a_swLBall.map
 
 M708_CPP_FILES := \
-	rel/d/a/d_a_swLBall/executor.cpp \
-	rel/d/a/d_a_swLBall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_swLBall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_swLBall/d_a_swLBall.cpp \
 
 M708_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_swLBall/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swLBall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swLBall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_swLBall/d_a_swLBall.o \
 
 M708_LIBS := \
@@ -29,15 +27,21 @@ M708_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map708.map\
+	-m _prolog \
+	-lcf $(M708_LDSCRIPT) \
+	-unused -map $(M708_MAP) \
+	-w off \
 
 $(M708_TARGET): $(M708_O_FILES) $(M708_LIBS)
+	@echo [708] creating $(M708_TARGET)
 	@echo $(M708_LIBS) $(M708_O_FILES) > build/M708_ofiles
-	$(LD) -opt_partial $(M708_LDFLAGS) -o $(M708_TARGET) @build/M708_ofiles
+	@python3 tools/lcf.py rel 708 --output $(M708_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M708_LDFLAGS) -o $(M708_TARGET) @build/M708_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swLBall/%.o: rel/d/a/d_a_swLBall/%.cpp
+	@echo [708] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M708_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M708_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -6,10 +6,10 @@ lbl_8065D29C:
 /* 8065D2AC  7C 7F 1B 78 */	mr r31, r3
 /* 8065D2B0  38 80 00 0E */	li r4, 0xe
 /* 8065D2B4  38 A0 00 00 */	li r5, 0
-/* 8065D2B8  3C C0 80 66 */	lis r6, lit_3998@ha
-/* 8065D2BC  C0 26 2D C8 */	lfs f1, lit_3998@l(r6)
-/* 8065D2C0  3C C0 80 66 */	lis r6, lit_3989@ha
-/* 8065D2C4  C0 46 2D B8 */	lfs f2, lit_3989@l(r6)
+/* 8065D2B8  3C C0 80 66 */	lis r6, lit_3998@ha /* 0x80662DC8@ha */
+/* 8065D2BC  C0 26 2D C8 */	lfs f1, lit_3998@l(r6)  /* 0x80662DC8@l */
+/* 8065D2C0  3C C0 80 66 */	lis r6, lit_3989@ha /* 0x80662DB8@ha */
+/* 8065D2C4  C0 46 2D B8 */	lfs f2, lit_3989@l(r6)  /* 0x80662DB8@l */
 /* 8065D2C8  4B FF B4 69 */	bl setBck__7daCow_cFiUcff
 /* 8065D2CC  C0 1F 0C 7C */	lfs f0, 0xc7c(r31)
 /* 8065D2D0  D0 1F 05 2C */	stfs f0, 0x52c(r31)

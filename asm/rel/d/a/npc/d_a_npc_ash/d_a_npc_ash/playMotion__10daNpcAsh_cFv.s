@@ -2,8 +2,8 @@ lbl_8095C200:
 /* 8095C200  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8095C204  7C 08 02 A6 */	mflr r0
 /* 8095C208  90 01 01 14 */	stw r0, 0x114(r1)
-/* 8095C20C  3C 80 80 96 */	lis r4, m__16daNpcAsh_Param_c@ha
-/* 8095C210  38 84 D6 40 */	addi r4, r4, m__16daNpcAsh_Param_c@l
+/* 8095C20C  3C 80 80 96 */	lis r4, m__16daNpcAsh_Param_c@ha /* 0x8095D640@ha */
+/* 8095C210  38 84 D6 40 */	addi r4, r4, m__16daNpcAsh_Param_c@l /* 0x8095D640@l */
 /* 8095C214  80 A4 01 30 */	lwz r5, 0x130(r4)
 /* 8095C218  80 04 01 34 */	lwz r0, 0x134(r4)
 /* 8095C21C  90 A1 00 DC */	stw r5, 0xdc(r1)
@@ -195,7 +195,7 @@ lbl_8095C490:
 /* 8095C500  2C 04 00 0A */	cmpwi r4, 0xa
 /* 8095C504  40 80 00 0C */	bge lbl_8095C510
 /* 8095C508  38 81 00 E8 */	addi r4, r1, 0xe8
-/* 8095C50C  4B 7F 6D 58 */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 8095C50C  4B 7F 6D 59 */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_8095C510:
 /* 8095C510  80 01 01 14 */	lwz r0, 0x114(r1)
 /* 8095C514  7C 08 03 A6 */	mtlr r0

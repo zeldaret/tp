@@ -60,8 +60,8 @@ lbl_8003F638:
 /* 8003F648  41 80 00 60 */	blt lbl_8003F6A8
 /* 8003F64C  2C 00 00 40 */	cmpwi r0, 0x40
 /* 8003F650  40 80 00 58 */	bge lbl_8003F6A8
-/* 8003F654  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8003F658  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 8003F654  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8003F658  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8003F65C  1C 00 04 04 */	mulli r0, r0, 0x404
 /* 8003F660  7C 63 02 14 */	add r3, r3, r0
 /* 8003F664  80 63 00 20 */	lwz r3, 0x20(r3)

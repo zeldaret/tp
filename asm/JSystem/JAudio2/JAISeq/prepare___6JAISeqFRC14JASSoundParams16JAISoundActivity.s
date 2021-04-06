@@ -10,8 +10,8 @@ lbl_802A0F90:
 /* 802A0FB0  88 03 00 1E */	lbz r0, 0x1e(r3)
 /* 802A0FB4  28 00 00 06 */	cmplwi r0, 6
 /* 802A0FB8  41 81 00 B8 */	bgt lbl_802A1070
-/* 802A0FBC  3C A0 80 3D */	lis r5, lit_852@ha
-/* 802A0FC0  38 A5 98 D8 */	addi r5, r5, lit_852@l
+/* 802A0FBC  3C A0 80 3D */	lis r5, lit_852@ha /* 0x803C98D8@ha */
+/* 802A0FC0  38 A5 98 D8 */	addi r5, r5, lit_852@l /* 0x803C98D8@l */
 /* 802A0FC4  54 00 10 3A */	slwi r0, r0, 2
 /* 802A0FC8  7C 05 00 2E */	lwzx r0, r5, r0
 /* 802A0FCC  7C 09 03 A6 */	mtctr r0

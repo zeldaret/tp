@@ -7,8 +7,8 @@ lbl_801C4600:
 /* 801C4614  40 81 00 08 */	ble lbl_801C461C
 /* 801C4618  38 C0 00 01 */	li r6, 1
 lbl_801C461C:
-/* 801C461C  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801C4620  38 A4 FC 60 */	addi r5, r4, g_fmapHIO@l
+/* 801C461C  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801C4620  38 A4 FC 60 */	addi r5, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801C4624  A8 E5 04 84 */	lha r7, 0x484(r5)
 /* 801C4628  54 C0 10 3A */	slwi r0, r6, 2
 /* 801C462C  7C 85 02 14 */	add r4, r5, r0

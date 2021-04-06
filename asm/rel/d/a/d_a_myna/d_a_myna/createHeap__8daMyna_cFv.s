@@ -5,19 +5,19 @@ lbl_809466D8:
 /* 809466E4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 809466E8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 809466EC  7C 7E 1B 78 */	mr r30, r3
-/* 809466F0  3C 60 80 95 */	lis r3, struct_8094B24C+0x0@ha
-/* 809466F4  38 83 B2 4C */	addi r4, r3, struct_8094B24C+0x0@l
+/* 809466F0  3C 60 80 95 */	lis r3, d_a_myna__stringBase0@ha /* 0x8094B24C@ha */
+/* 809466F4  38 83 B2 4C */	addi r4, r3, d_a_myna__stringBase0@l /* 0x8094B24C@l */
 /* 809466F8  38 64 01 00 */	addi r3, r4, 0x100
 /* 809466FC  38 84 01 09 */	addi r4, r4, 0x109
-/* 80946700  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80946704  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80946700  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80946704  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80946708  3C A5 00 02 */	addis r5, r5, 2
 /* 8094670C  38 C0 00 80 */	li r6, 0x80
 /* 80946710  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80946714  4B 6F 5C 68 */	b getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
+/* 80946714  4B 6F 5C 69 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80946718  7C 7F 1B 78 */	mr r31, r3
 /* 8094671C  38 60 00 58 */	li r3, 0x58
-/* 80946720  4B 98 85 2C */	b __nw__FUl
+/* 80946720  4B 98 85 2D */	bl __nw__FUl
 /* 80946724  7C 60 1B 79 */	or. r0, r3, r3
 /* 80946728  41 82 00 4C */	beq lbl_80946774
 /* 8094672C  38 1E 05 90 */	addi r0, r30, 0x590
@@ -32,11 +32,11 @@ lbl_809466D8:
 /* 80946750  38 C0 00 00 */	li r6, 0
 /* 80946754  38 E0 00 00 */	li r7, 0
 /* 80946758  39 00 FF FF */	li r8, -1
-/* 8094675C  3D 20 80 95 */	lis r9, lit_4270@ha
-/* 80946760  C0 29 B1 FC */	lfs f1, lit_4270@l(r9)
+/* 8094675C  3D 20 80 95 */	lis r9, lit_4270@ha /* 0x8094B1FC@ha */
+/* 80946760  C0 29 B1 FC */	lfs f1, lit_4270@l(r9)  /* 0x8094B1FC@l */
 /* 80946764  39 20 00 00 */	li r9, 0
 /* 80946768  39 40 FF FF */	li r10, -1
-/* 8094676C  4B 6C A0 64 */	b __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
+/* 8094676C  4B 6C A0 65 */	bl __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 /* 80946770  7C 60 1B 78 */	mr r0, r3
 lbl_80946774:
 /* 80946774  90 1E 05 74 */	stw r0, 0x574(r30)
@@ -46,7 +46,7 @@ lbl_80946774:
 /* 80946784  80 03 00 04 */	lwz r0, 4(r3)
 /* 80946788  28 00 00 00 */	cmplwi r0, 0
 /* 8094678C  40 82 00 10 */	bne lbl_8094679C
-/* 80946790  4B 6C AB 80 */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 80946790  4B 6C AB 81 */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 80946794  38 00 00 00 */	li r0, 0
 /* 80946798  90 1E 05 74 */	stw r0, 0x574(r30)
 lbl_8094679C:
@@ -57,8 +57,8 @@ lbl_8094679C:
 /* 809467AC  48 00 00 A8 */	b lbl_80946854
 lbl_809467B0:
 /* 809467B0  38 A0 00 00 */	li r5, 0
-/* 809467B4  3C 60 80 94 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha
-/* 809467B8  38 83 5C 8C */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l
+/* 809467B4  3C 60 80 94 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha /* 0x80945C8C@ha */
+/* 809467B8  38 83 5C 8C */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l /* 0x80945C8C@l */
 /* 809467BC  48 00 00 18 */	b lbl_809467D4
 lbl_809467C0:
 /* 809467C0  80 7F 00 28 */	lwz r3, 0x28(r31)
@@ -81,8 +81,8 @@ lbl_809467D4:
 /* 80946800  7F C3 F3 78 */	mr r3, r30
 /* 80946804  88 1E 09 36 */	lbz r0, 0x936(r30)
 /* 80946808  54 00 10 3A */	slwi r0, r0, 2
-/* 8094680C  3C 80 80 95 */	lis r4, l_btpFileNameTBL@ha
-/* 80946810  38 84 B7 DC */	addi r4, r4, l_btpFileNameTBL@l
+/* 8094680C  3C 80 80 95 */	lis r4, l_btpFileNameTBL@ha /* 0x8094B7DC@ha */
+/* 80946810  38 84 B7 DC */	addi r4, r4, l_btpFileNameTBL@l /* 0x8094B7DC@l */
 /* 80946814  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80946818  48 00 31 31 */	bl getTexPtrnAnm__8daMyna_cFPc
 /* 8094681C  7C 64 1B 79 */	or. r4, r3, r3
@@ -91,8 +91,8 @@ lbl_809467D4:
 /* 80946828  80 63 00 04 */	lwz r3, 4(r3)
 /* 8094682C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80946830  7F C3 F3 78 */	mr r3, r30
-/* 80946834  3C C0 80 95 */	lis r6, lit_4270@ha
-/* 80946838  C0 26 B1 FC */	lfs f1, lit_4270@l(r6)
+/* 80946834  3C C0 80 95 */	lis r6, lit_4270@ha /* 0x8094B1FC@ha */
+/* 80946838  C0 26 B1 FC */	lfs f1, lit_4270@l(r6)  /* 0x8094B1FC@l */
 /* 8094683C  38 C0 00 02 */	li r6, 2
 /* 80946840  48 00 30 79 */	bl setBtpAnm__8daMyna_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80946844  A0 1E 09 14 */	lhz r0, 0x914(r30)

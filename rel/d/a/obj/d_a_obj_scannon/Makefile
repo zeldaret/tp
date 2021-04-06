@@ -3,17 +3,15 @@
 #
 
 M613_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon.plf
+M613_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon.lcf
+M613_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon.map
 
 M613_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_scannon/executor.cpp \
-	rel/d/a/obj/d_a_obj_scannon/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_scannon/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_scannon/d_a_obj_scannon.cpp \
 
 M613_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon/d_a_obj_scannon.o \
 
 M613_LIBS := \
@@ -29,15 +27,21 @@ M613_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map613.map\
+	-m _prolog \
+	-lcf $(M613_LDSCRIPT) \
+	-unused -map $(M613_MAP) \
+	-w off \
 
 $(M613_TARGET): $(M613_O_FILES) $(M613_LIBS)
+	@echo [613] creating $(M613_TARGET)
 	@echo $(M613_LIBS) $(M613_O_FILES) > build/M613_ofiles
-	$(LD) -opt_partial $(M613_LDFLAGS) -o $(M613_TARGET) @build/M613_ofiles
+	@python3 tools/lcf.py rel 613 --output $(M613_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M613_LDFLAGS) -o $(M613_TARGET) @build/M613_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon/%.o: rel/d/a/obj/d_a_obj_scannon/%.cpp
+	@echo [613] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M613_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M613_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

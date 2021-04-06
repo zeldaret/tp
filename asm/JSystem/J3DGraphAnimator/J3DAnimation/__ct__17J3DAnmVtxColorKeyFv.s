@@ -5,8 +5,8 @@ lbl_8032A4E0:
 /* 8032A4EC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032A4F0  7C 7F 1B 78 */	mr r31, r3
 /* 8032A4F4  4B FF FD A9 */	bl __ct__14J3DAnmVtxColorFv
-/* 8032A4F8  3C 60 80 3D */	lis r3, __vt__17J3DAnmVtxColorKey@ha
-/* 8032A4FC  38 03 ED AC */	addi r0, r3, __vt__17J3DAnmVtxColorKey@l
+/* 8032A4F8  3C 60 80 3D */	lis r3, __vt__17J3DAnmVtxColorKey@ha /* 0x803CEDAC@ha */
+/* 8032A4FC  38 03 ED AC */	addi r0, r3, __vt__17J3DAnmVtxColorKey@l /* 0x803CEDAC@l */
 /* 8032A500  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032A504  38 60 00 00 */	li r3, 0
 /* 8032A508  7C 64 1B 78 */	mr r4, r3

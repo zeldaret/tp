@@ -6,15 +6,15 @@ lbl_80018688:
 /* 80018698  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 8001869C  4B FF 67 51 */	bl mDoExt_getArchiveHeap__Fv
 /* 800186A0  7C 64 1B 78 */	mr r4, r3
-/* 800186A4  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha
-/* 800186A8  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l
+/* 800186A4  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha /* 0x80375DE8@ha */
+/* 800186A8  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l /* 0x80375DE8@l */
 /* 800186AC  38 63 2A 56 */	addi r3, r3, 0x2a56
 /* 800186B0  38 A0 00 00 */	li r5, 0
 /* 800186B4  48 2B C3 01 */	bl mount__12JKRFileCacheFPCcP7JKRHeapPCc
 /* 800186B8  7C 7F 1B 78 */	mr r31, r3
 /* 800186BC  48 24 A0 A1 */	bl initialize__20DynamicModuleControlFv
-/* 800186C0  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha
-/* 800186C4  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l
+/* 800186C0  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha /* 0x80375DE8@ha */
+/* 800186C4  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l /* 0x80375DE8@l */
 /* 800186C8  38 63 2A 58 */	addi r3, r3, 0x2a58
 /* 800186CC  48 2B BB 59 */	bl getGlbResource__13JKRFileLoaderFPCc
 /* 800186D0  7C 7E 1B 78 */	mr r30, r3
@@ -28,8 +28,8 @@ lbl_80018688:
 /* 800186F0  7F C3 F3 78 */	mr r3, r30
 /* 800186F4  48 32 58 75 */	bl OSSetStringTable
 /* 800186F8  38 61 00 08 */	addi r3, r1, 8
-/* 800186FC  3C 80 80 37 */	lis r4, c_c_dylink__stringBase0@ha
-/* 80018700  38 84 5D E8 */	addi r4, r4, c_c_dylink__stringBase0@l
+/* 800186FC  3C 80 80 37 */	lis r4, c_c_dylink__stringBase0@ha /* 0x80375DE8@ha */
+/* 80018700  38 84 5D E8 */	addi r4, r4, c_c_dylink__stringBase0@l /* 0x80375DE8@l */
 /* 80018704  38 84 2A 7E */	addi r4, r4, 0x2a7e
 /* 80018708  48 24 9F 59 */	bl __ct__20DynamicModuleControlFPCc
 /* 8001870C  38 61 00 08 */	addi r3, r1, 8
@@ -41,8 +41,8 @@ lbl_80018688:
 /* 80018724  38 A0 00 00 */	li r5, 0
 /* 80018728  38 C0 00 00 */	li r6, 0
 /* 8001872C  48 00 66 59 */	bl fopScnM_CreateReq__FssUsUl
-/* 80018730  3C 60 80 3C */	lis r3, __vt__20DynamicModuleControl@ha
-/* 80018734  38 03 34 C0 */	addi r0, r3, __vt__20DynamicModuleControl@l
+/* 80018730  3C 60 80 3C */	lis r3, __vt__20DynamicModuleControl@ha /* 0x803C34C0@ha */
+/* 80018734  38 03 34 C0 */	addi r0, r3, __vt__20DynamicModuleControl@l /* 0x803C34C0@l */
 /* 80018738  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001873C  38 61 00 08 */	addi r3, r1, 8
 /* 80018740  38 80 00 00 */	li r4, 0

@@ -3,25 +3,25 @@ lbl_809DC4F4:
 /* 809DC4F8  7C 08 02 A6 */	mflr r0
 /* 809DC4FC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 809DC500  39 61 00 20 */	addi r11, r1, 0x20
-/* 809DC504  4B 98 5C D8 */	b _savegpr_29
+/* 809DC504  4B 98 5C D9 */	bl _savegpr_29
 /* 809DC508  7C 7F 1B 78 */	mr r31, r3
-/* 809DC50C  4B 77 63 BC */	b initialize__8daNpcF_cFv
+/* 809DC50C  4B 77 63 BD */	bl initialize__8daNpcF_cFv
 /* 809DC510  80 7F 0B DC */	lwz r3, 0xbdc(r31)
-/* 809DC514  4B 77 42 24 */	b initialize__15daNpcF_MatAnm_cFv
+/* 809DC514  4B 77 42 25 */	bl initialize__15daNpcF_MatAnm_cFv
 /* 809DC518  38 7F 0B E0 */	addi r3, r31, 0xbe0
-/* 809DC51C  4B 77 4B 1C */	b initialize__15daNpcF_Lookat_cFv
+/* 809DC51C  4B 77 4B 1D */	bl initialize__15daNpcF_Lookat_cFv
 /* 809DC520  3B A0 00 00 */	li r29, 0
 /* 809DC524  3B C0 00 00 */	li r30, 0
 lbl_809DC528:
 /* 809DC528  38 7E 0C 7C */	addi r3, r30, 0xc7c
 /* 809DC52C  7C 7F 1A 14 */	add r3, r31, r3
-/* 809DC530  4B 77 41 80 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 809DC530  4B 77 41 81 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 809DC534  3B BD 00 01 */	addi r29, r29, 1
 /* 809DC538  2C 1D 00 03 */	cmpwi r29, 3
 /* 809DC53C  3B DE 00 08 */	addi r30, r30, 8
 /* 809DC540  41 80 FF E8 */	blt lbl_809DC528
-/* 809DC544  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 809DC548  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 809DC544  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809DC548  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 809DC54C  80 64 00 00 */	lwz r3, 0(r4)
 /* 809DC550  80 04 00 04 */	lwz r0, 4(r4)
 /* 809DC554  90 7F 0D D4 */	stw r3, 0xdd4(r31)
@@ -83,8 +83,8 @@ lbl_809DC528:
 /* 809DC634  B0 1F 08 F8 */	sth r0, 0x8f8(r31)
 /* 809DC638  A8 1F 08 F4 */	lha r0, 0x8f4(r31)
 /* 809DC63C  B0 1F 08 FA */	sth r0, 0x8fa(r31)
-/* 809DC640  3C 60 80 9E */	lis r3, lit_4553@ha
-/* 809DC644  C0 03 F0 0C */	lfs f0, lit_4553@l(r3)
+/* 809DC640  3C 60 80 9E */	lis r3, lit_4553@ha /* 0x809DF00C@ha */
+/* 809DC644  C0 03 F0 0C */	lfs f0, lit_4553@l(r3)  /* 0x809DF00C@l */
 /* 809DC648  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 809DC64C  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 809DC650  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -93,7 +93,7 @@ lbl_809DC528:
 /* 809DC65C  38 00 00 01 */	li r0, 1
 /* 809DC660  98 1F 09 EE */	stb r0, 0x9ee(r31)
 /* 809DC664  39 61 00 20 */	addi r11, r1, 0x20
-/* 809DC668  4B 98 5B C0 */	b _restgpr_29
+/* 809DC668  4B 98 5B C1 */	bl _restgpr_29
 /* 809DC66C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 809DC670  7C 08 03 A6 */	mtlr r0
 /* 809DC674  38 21 00 20 */	addi r1, r1, 0x20

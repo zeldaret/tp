@@ -6,8 +6,8 @@ lbl_80216CA8:
 /* 80216CB8  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 80216CBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80216CC0  7C 7F 1B 78 */	mr r31, r3
-/* 80216CC4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80216CC8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80216CC4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80216CC8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80216CCC  C0 43 03 68 */	lfs f2, 0x368(r3)
 /* 80216CD0  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 80216CD4  C0 03 03 48 */	lfs f0, 0x348(r3)

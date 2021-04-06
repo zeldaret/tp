@@ -26,7 +26,7 @@ lbl_80A32000:
 /* 80A32014  28 00 00 02 */	cmplwi r0, 2
 /* 80A32018  40 82 00 0C */	bne lbl_80A32024
 /* 80A3201C  7F E3 FB 78 */	mr r3, r31
-/* 80A32020  4B 5E 7C 5C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80A32020  4B 5E 7C 5D */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80A32024:
 /* 80A32024  38 60 00 01 */	li r3, 1
 /* 80A32028  83 E1 00 0C */	lwz r31, 0xc(r1)

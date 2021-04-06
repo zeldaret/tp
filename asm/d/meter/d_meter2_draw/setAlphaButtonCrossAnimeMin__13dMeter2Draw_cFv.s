@@ -10,8 +10,8 @@ lbl_80218338:
 /* 80218358  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 8021835C  41 82 00 28 */	beq lbl_80218384
 /* 80218360  80 7F 03 68 */	lwz r3, 0x368(r31)
-/* 80218364  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 80218368  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 80218364  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80218368  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021836C  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 80218370  48 03 D4 61 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80218374  7F E3 FB 78 */	mr r3, r31

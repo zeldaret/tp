@@ -3,8 +3,8 @@ lbl_8047ED10:
 /* 8047ED14  4D 82 00 20 */	beqlr 
 /* 8047ED18  80 03 08 AC */	lwz r0, 0x8ac(r3)
 /* 8047ED1C  1C E0 00 A0 */	mulli r7, r0, 0xa0
-/* 8047ED20  3C 80 80 48 */	lis r4, M_attr__Q212daObjMovebox5Act_c@ha
-/* 8047ED24  38 04 11 68 */	addi r0, r4, M_attr__Q212daObjMovebox5Act_c@l
+/* 8047ED20  3C 80 80 48 */	lis r4, M_attr__Q212daObjMovebox5Act_c@ha /* 0x80481168@ha */
+/* 8047ED24  38 04 11 68 */	addi r0, r4, M_attr__Q212daObjMovebox5Act_c@l /* 0x80481168@l */
 /* 8047ED28  7C 80 3A 14 */	add r4, r0, r7
 /* 8047ED2C  88 04 00 9E */	lbz r0, 0x9e(r4)
 /* 8047ED30  28 00 00 00 */	cmplwi r0, 0

@@ -4,11 +4,11 @@ lbl_80043FD8:
 /* 80043FE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80043FE4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80043FE8  7C 7F 1B 78 */	mr r31, r3
-/* 80043FEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80043FF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80043FEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80043FF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80043FF4  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80043FF8  3C A0 80 38 */	lis r5, d_event_d_event_data__stringBase0@ha
-/* 80043FFC  38 A5 9D D0 */	addi r5, r5, d_event_d_event_data__stringBase0@l
+/* 80043FF8  3C A0 80 38 */	lis r5, d_event_d_event_data__stringBase0@ha /* 0x80379DD0@ha */
+/* 80043FFC  38 A5 9D D0 */	addi r5, r5, d_event_d_event_data__stringBase0@l /* 0x80379DD0@l */
 /* 80044000  38 A5 00 3D */	addi r5, r5, 0x3d
 /* 80044004  38 C0 00 03 */	li r6, 3
 /* 80044008  48 00 40 E5 */	bl getMySubstanceP__16dEvent_manager_cFiPCci

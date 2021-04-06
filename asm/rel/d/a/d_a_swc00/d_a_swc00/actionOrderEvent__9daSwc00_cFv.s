@@ -18,7 +18,7 @@ lbl_805A1A54:
 /* 805A1A64  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 805A1A68  38 E0 00 00 */	li r7, 0
 /* 805A1A6C  39 00 00 01 */	li r8, 1
-/* 805A1A70  4B A7 9C 0C */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 805A1A70  4B A7 9C 0D */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 805A1A74  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 805A1A78  60 00 00 02 */	ori r0, r0, 2
 /* 805A1A7C  B0 1F 00 FA */	sth r0, 0xfa(r31)

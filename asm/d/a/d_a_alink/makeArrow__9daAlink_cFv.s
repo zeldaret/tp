@@ -4,8 +4,8 @@ lbl_800DEA3C:
 /* 800DEA44  90 01 00 24 */	stw r0, 0x24(r1)
 /* 800DEA48  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800DEA4C  7C 7F 1B 78 */	mr r31, r3
-/* 800DEA50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DEA54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DEA50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DEA54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DEA58  88 03 00 EC */	lbz r0, 0xec(r3)
 /* 800DEA5C  28 00 00 00 */	cmplwi r0, 0
 /* 800DEA60  41 82 00 68 */	beq lbl_800DEAC8

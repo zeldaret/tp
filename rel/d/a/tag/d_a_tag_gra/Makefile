@@ -3,17 +3,15 @@
 #
 
 M721_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra.plf
+M721_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra.lcf
+M721_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra.map
 
 M721_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_gra/executor.cpp \
-	rel/d/a/tag/d_a_tag_gra/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_gra/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_gra/d_a_tag_gra.cpp \
 
 M721_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra/d_a_tag_gra.o \
 
 M721_LIBS := \
@@ -29,15 +27,21 @@ M721_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map721.map\
+	-m _prolog \
+	-lcf $(M721_LDSCRIPT) \
+	-unused -map $(M721_MAP) \
+	-w off \
 
 $(M721_TARGET): $(M721_O_FILES) $(M721_LIBS)
+	@echo [721] creating $(M721_TARGET)
 	@echo $(M721_LIBS) $(M721_O_FILES) > build/M721_ofiles
-	$(LD) -opt_partial $(M721_LDFLAGS) -o $(M721_TARGET) @build/M721_ofiles
+	@python3 tools/lcf.py rel 721 --output $(M721_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M721_LDFLAGS) -o $(M721_TARGET) @build/M721_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gra/%.o: rel/d/a/tag/d_a_tag_gra/%.cpp
+	@echo [721] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M721_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M721_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

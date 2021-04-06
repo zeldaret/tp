@@ -4,8 +4,8 @@ lbl_805A9914:
 /* 805A991C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805A9920  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805A9924  7C 7F 1B 78 */	mr r31, r3
-/* 805A9928  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805A992C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 805A9928  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A992C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A9930  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 805A9934  80 A3 06 54 */	lwz r5, 0x654(r3)
 /* 805A9938  2C 05 00 00 */	cmpwi r5, 0
@@ -18,7 +18,7 @@ lbl_805A994C:
 /* 805A9950  41 82 00 D0 */	beq lbl_805A9A20
 /* 805A9954  2C 05 00 01 */	cmpwi r5, 1
 /* 805A9958  40 82 00 50 */	bne lbl_805A99A8
-/* 805A995C  4B A7 4B FC */	b fopOvlpM_IsPeek__Fv
+/* 805A995C  4B A7 4B FD */	bl fopOvlpM_IsPeek__Fv
 /* 805A9960  2C 03 00 00 */	cmpwi r3, 0
 /* 805A9964  40 82 00 BC */	bne lbl_805A9A20
 /* 805A9968  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007048A@ha */
@@ -59,8 +59,8 @@ lbl_805A99EC:
 /* 805A99EC  88 1F 06 59 */	lbz r0, 0x659(r31)
 /* 805A99F0  28 00 00 00 */	cmplwi r0, 0
 /* 805A99F4  40 82 00 2C */	bne lbl_805A9A20
-/* 805A99F8  3C 80 80 5B */	lis r4, lit_3978@ha
-/* 805A99FC  38 A4 A4 F4 */	addi r5, r4, lit_3978@l
+/* 805A99F8  3C 80 80 5B */	lis r4, lit_3978@ha /* 0x805AA4F4@ha */
+/* 805A99FC  38 A4 A4 F4 */	addi r5, r4, lit_3978@l /* 0x805AA4F4@l */
 /* 805A9A00  80 85 00 00 */	lwz r4, 0(r5)
 /* 805A9A04  80 05 00 04 */	lwz r0, 4(r5)
 /* 805A9A08  90 81 00 0C */	stw r4, 0xc(r1)

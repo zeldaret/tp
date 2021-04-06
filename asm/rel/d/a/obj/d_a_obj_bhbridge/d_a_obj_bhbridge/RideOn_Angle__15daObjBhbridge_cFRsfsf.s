@@ -4,8 +4,8 @@ lbl_80BB5318:
 /* 80BB5320  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BB5324  7C 83 23 78 */	mr r3, r4
 /* 80BB5328  7C A0 07 34 */	extsh r0, r5
-/* 80BB532C  3C 80 80 BB */	lis r4, lit_3655@ha
-/* 80BB5330  C8 64 5F 00 */	lfd f3, lit_3655@l(r4)
+/* 80BB532C  3C 80 80 BB */	lis r4, lit_3655@ha /* 0x80BB5F00@ha */
+/* 80BB5330  C8 64 5F 00 */	lfd f3, lit_3655@l(r4)  /* 0x80BB5F00@l */
 /* 80BB5334  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80BB5338  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80BB533C  3C 00 43 30 */	lis r0, 0x4330
@@ -20,7 +20,7 @@ lbl_80BB5318:
 /* 80BB5360  38 A0 00 01 */	li r5, 1
 /* 80BB5364  38 C0 01 00 */	li r6, 0x100
 /* 80BB5368  38 E0 00 01 */	li r7, 1
-/* 80BB536C  4B 6B B1 D4 */	b cLib_addCalcAngleS__FPsssss
+/* 80BB536C  4B 6B B1 D5 */	bl cLib_addCalcAngleS__FPsssss
 /* 80BB5370  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80BB5374  7C 08 03 A6 */	mtlr r0
 /* 80BB5378  38 21 00 20 */	addi r1, r1, 0x20

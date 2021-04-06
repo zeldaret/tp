@@ -9,8 +9,8 @@ lbl_802E9670:
 /* 802E968C  FC 60 08 90 */	fmr f3, f1
 /* 802E9690  FC 80 08 90 */	fmr f4, f1
 /* 802E9694  4B FF F4 75 */	bl __ct__14J2DGrafContextFffff
-/* 802E9698  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E969C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E9698  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E969C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E96A0  90 1F 00 00 */	stw r0, 0(r31)
 /* 802E96A4  7F E3 FB 78 */	mr r3, r31
 /* 802E96A8  81 9F 00 00 */	lwz r12, 0(r31)

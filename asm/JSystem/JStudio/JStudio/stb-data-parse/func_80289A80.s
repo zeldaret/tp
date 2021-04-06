@@ -24,8 +24,8 @@ lbl_80289ACC:
 /* 80289AD4  54 C0 07 7F */	clrlwi. r0, r6, 0x1d
 /* 80289AD8  4D 82 00 20 */	beqlr 
 /* 80289ADC  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
-/* 80289AE0  3C 60 80 3A */	lis r3, gauDataSize_TEParagraph_data__Q37JStudio3stb4data@ha
-/* 80289AE4  38 63 AB 88 */	addi r3, r3, gauDataSize_TEParagraph_data__Q37JStudio3stb4data@l
+/* 80289AE0  3C 60 80 3A */	lis r3, gauDataSize_TEParagraph_data__Q37JStudio3stb4data@ha /* 0x8039AB88@ha */
+/* 80289AE4  38 63 AB 88 */	addi r3, r3, gauDataSize_TEParagraph_data__Q37JStudio3stb4data@l /* 0x8039AB88@l */
 /* 80289AE8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80289AEC  90 04 00 04 */	stw r0, 4(r4)
 /* 80289AF0  7C 00 39 D6 */	mullw r0, r0, r7

@@ -9,8 +9,8 @@ lbl_80B0B004:
 /* 80B0B020  41 82 02 50 */	beq lbl_80B0B270
 /* 80B0B024  54 80 07 FF */	clrlwi. r0, r4, 0x1f
 /* 80B0B028  41 82 00 34 */	beq lbl_80B0B05C
-/* 80B0B02C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80B0B030  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80B0B02C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B0B030  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B0B034  80 84 5D 74 */	lwz r4, 0x5d74(r4)
 /* 80B0B038  A8 04 02 30 */	lha r0, 0x230(r4)
 /* 80B0B03C  7C 00 00 D0 */	neg r0, r0
@@ -157,8 +157,8 @@ lbl_80B0B200:
 /* 80B0B23C  80 1F 09 C4 */	lwz r0, 0x9c4(r31)
 /* 80B0B240  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80B0B244  90 1F 09 C4 */	stw r0, 0x9c4(r31)
-/* 80B0B248  3C 60 80 B1 */	lis r3, lit_4024@ha
-/* 80B0B24C  C0 03 C1 F4 */	lfs f0, lit_4024@l(r3)
+/* 80B0B248  3C 60 80 B1 */	lis r3, lit_4024@ha /* 0x80B0C1F4@ha */
+/* 80B0B24C  C0 03 C1 F4 */	lfs f0, lit_4024@l(r3)  /* 0x80B0C1F4@l */
 /* 80B0B250  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80B0B254  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80B0B258  7F E3 FB 78 */	mr r3, r31

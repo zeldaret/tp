@@ -16,15 +16,15 @@ lbl_80272E10:
 /* 80272E48  90 61 00 30 */	stw r3, 0x30(r1)
 /* 80272E4C  48 0C A8 A9 */	bl OSDisableInterrupts
 /* 80272E50  7C 7E 1B 78 */	mr r30, r3
-/* 80272E54  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha
-/* 80272E58  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l
+/* 80272E54  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha /* 0x80430FE4@ha */
+/* 80272E58  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l /* 0x80430FE4@l */
 /* 80272E5C  7F E4 FB 78 */	mr r4, r31
 /* 80272E60  48 06 90 ED */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 80272E64  38 61 00 08 */	addi r3, r1, 8
 /* 80272E68  7F 86 E3 78 */	mr r6, r28
 /* 80272E6C  7F A5 EB 78 */	mr r5, r29
-/* 80272E70  3C 80 80 27 */	lis r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@ha
-/* 80272E74  38 E4 2D D0 */	addi r7, r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@l
+/* 80272E70  3C 80 80 27 */	lis r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@ha /* 0x80272DD0@ha */
+/* 80272E74  38 E4 2D D0 */	addi r7, r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@l /* 0x80272DD0@l */
 /* 80272E78  48 0C 7C E1 */	bl OSSetAlarm
 /* 80272E7C  80 61 00 30 */	lwz r3, 0x30(r1)
 /* 80272E80  48 0C EB BD */	bl OSSuspendThread

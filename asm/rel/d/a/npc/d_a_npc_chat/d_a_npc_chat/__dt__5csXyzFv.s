@@ -7,7 +7,7 @@ lbl_80985DA8:
 /* 80985DBC  41 82 00 10 */	beq lbl_80985DCC
 /* 80985DC0  7C 80 07 35 */	extsh. r0, r4
 /* 80985DC4  40 81 00 08 */	ble lbl_80985DCC
-/* 80985DC8  4B 94 8F 74 */	b __dl__FPv
+/* 80985DC8  4B 94 8F 75 */	bl __dl__FPv
 lbl_80985DCC:
 /* 80985DCC  7F E3 FB 78 */	mr r3, r31
 /* 80985DD0  83 E1 00 0C */	lwz r31, 0xc(r1)

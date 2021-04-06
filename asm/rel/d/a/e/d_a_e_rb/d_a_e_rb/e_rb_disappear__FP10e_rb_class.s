@@ -3,10 +3,10 @@ lbl_80762E90:
 /* 80762E94  7C 08 02 A6 */	mflr r0
 /* 80762E98  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80762E9C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80762EA0  4B BF F3 3C */	b _savegpr_29
+/* 80762EA0  4B BF F3 3D */	bl _savegpr_29
 /* 80762EA4  7C 7D 1B 78 */	mr r29, r3
-/* 80762EA8  3C 60 80 76 */	lis r3, lit_3788@ha
-/* 80762EAC  3B E3 4D 0C */	addi r31, r3, lit_3788@l
+/* 80762EA8  3C 60 80 76 */	lis r3, lit_3788@ha /* 0x80764D0C@ha */
+/* 80762EAC  3B E3 4D 0C */	addi r31, r3, lit_3788@l /* 0x80764D0C@l */
 /* 80762EB0  3B C0 00 00 */	li r30, 0
 /* 80762EB4  A8 1D 0A 44 */	lha r0, 0xa44(r29)
 /* 80762EB8  2C 00 00 01 */	cmpwi r0, 1
@@ -46,7 +46,7 @@ lbl_80762F2C:
 /* 80762F30  C0 3F 00 38 */	lfs f1, 0x38(r31)
 /* 80762F34  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 80762F38  C0 7F 00 78 */	lfs f3, 0x78(r31)
-/* 80762F3C  4B B0 CB 00 */	b cLib_addCalc2__FPffff
+/* 80762F3C  4B B0 CB 01 */	bl cLib_addCalc2__FPffff
 /* 80762F40  C0 3D 0A 20 */	lfs f1, 0xa20(r29)
 /* 80762F44  C0 1F 00 38 */	lfs f0, 0x38(r31)
 /* 80762F48  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -56,7 +56,7 @@ lbl_80762F2C:
 /* 80762F58  B0 1D 0A 42 */	sth r0, 0xa42(r29)
 /* 80762F5C  B0 1D 0A 44 */	sth r0, 0xa44(r29)
 /* 80762F60  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 80762F64  4B B0 49 F0 */	b cM_rndF__Ff
+/* 80762F64  4B B0 49 F1 */	bl cM_rndF__Ff
 /* 80762F68  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80762F6C  EC 00 08 2A */	fadds f0, f0, f1
 /* 80762F70  FC 00 00 1E */	fctiwz f0, f0
@@ -67,7 +67,7 @@ lbl_80762F80:
 /* 80762F80  38 7D 05 2C */	addi r3, r29, 0x52c
 /* 80762F84  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 80762F88  C0 5F 00 80 */	lfs f2, 0x80(r31)
-/* 80762F8C  4B B0 CA F4 */	b cLib_addCalc0__FPfff
+/* 80762F8C  4B B0 CA F5 */	bl cLib_addCalc0__FPfff
 /* 80762F90  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 80762F94  C0 3D 0A 20 */	lfs f1, 0xa20(r29)
 /* 80762F98  C0 1F 00 38 */	lfs f0, 0x38(r31)
@@ -80,7 +80,7 @@ lbl_80762F80:
 /* 80762FB4  B0 1D 04 E6 */	sth r0, 0x4e6(r29)
 /* 80762FB8  7F C3 F3 78 */	mr r3, r30
 /* 80762FBC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80762FC0  4B BF F2 68 */	b _restgpr_29
+/* 80762FC0  4B BF F2 69 */	bl _restgpr_29
 /* 80762FC4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80762FC8  7C 08 03 A6 */	mtlr r0
 /* 80762FCC  38 21 00 30 */	addi r1, r1, 0x30

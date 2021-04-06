@@ -4,7 +4,7 @@ lbl_80D3A21C:
 /* 80D3A224  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D3A228  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D3A22C  7C 7F 1B 78 */	mr r31, r3
-/* 80D3A230  4B 2D EA B0 */	b fopAc_IsActor__FPv
+/* 80D3A230  4B 2D EA B1 */	bl fopAc_IsActor__FPv
 /* 80D3A234  2C 03 00 00 */	cmpwi r3, 0
 /* 80D3A238  41 82 00 18 */	beq lbl_80D3A250
 /* 80D3A23C  A8 1F 00 08 */	lha r0, 8(r31)

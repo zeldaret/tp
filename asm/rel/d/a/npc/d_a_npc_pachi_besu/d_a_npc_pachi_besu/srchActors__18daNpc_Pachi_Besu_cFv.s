@@ -10,26 +10,26 @@ lbl_80A93E24:
 /* 80A93E44  48 00 00 54 */	b lbl_80A93E98
 lbl_80A93E48:
 /* 80A93E48  38 7F 0F A0 */	addi r3, r31, 0xfa0
-/* 80A93E4C  4B 6B 18 BC */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A93E4C  4B 6B 18 BD */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A93E50  28 03 00 00 */	cmplwi r3, 0
 /* 80A93E54  40 82 00 1C */	bne lbl_80A93E70
 /* 80A93E58  7F E3 FB 78 */	mr r3, r31
 /* 80A93E5C  38 80 02 70 */	li r4, 0x270
-/* 80A93E60  4B 6B 7F CC */	b getNearestActorP__8daNpcT_cFs
+/* 80A93E60  4B 6B 7F CD */	bl getNearestActorP__8daNpcT_cFs
 /* 80A93E64  7C 64 1B 78 */	mr r4, r3
 /* 80A93E68  38 7F 0F A0 */	addi r3, r31, 0xfa0
-/* 80A93E6C  4B 6B 18 74 */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 80A93E6C  4B 6B 18 75 */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_80A93E70:
 /* 80A93E70  38 7F 0F A8 */	addi r3, r31, 0xfa8
-/* 80A93E74  4B 6B 18 94 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A93E74  4B 6B 18 95 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A93E78  28 03 00 00 */	cmplwi r3, 0
 /* 80A93E7C  40 82 00 1C */	bne lbl_80A93E98
 /* 80A93E80  7F E3 FB 78 */	mr r3, r31
 /* 80A93E84  38 80 02 71 */	li r4, 0x271
-/* 80A93E88  4B 6B 7F A4 */	b getNearestActorP__8daNpcT_cFs
+/* 80A93E88  4B 6B 7F A5 */	bl getNearestActorP__8daNpcT_cFs
 /* 80A93E8C  7C 64 1B 78 */	mr r4, r3
 /* 80A93E90  38 7F 0F A8 */	addi r3, r31, 0xfa8
-/* 80A93E94  4B 6B 18 4C */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 80A93E94  4B 6B 18 4D */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_80A93E98:
 /* 80A93E98  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80A93E9C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -5,10 +5,10 @@ lbl_80122F78:
 /* 80122F84  39 61 00 80 */	addi r11, r1, 0x80
 /* 80122F88  48 23 F2 39 */	bl _savegpr_22
 /* 80122F8C  7C 76 1B 78 */	mr r22, r3
-/* 80122F90  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 80122F94  3B E3 F9 90 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80122F98  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 80122F9C  3B C3 D6 58 */	addi r30, r3, lit_3757@l
+/* 80122F90  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803AF990@ha */
+/* 80122F94  3B E3 F9 90 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803AF990@l */
+/* 80122F98  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 80122F9C  3B C3 D6 58 */	addi r30, r3, lit_3757@l /* 0x8038D658@l */
 /* 80122FA0  C0 56 1F E0 */	lfs f2, 0x1fe0(r22)
 /* 80122FA4  A8 16 30 0A */	lha r0, 0x300a(r22)
 /* 80122FA8  C8 22 92 B0 */	lfd f1, lit_6025(r2)
@@ -171,8 +171,8 @@ lbl_801231C8:
 /* 801231F4  41 82 00 28 */	beq lbl_8012321C
 /* 801231F8  38 61 00 14 */	addi r3, r1, 0x14
 /* 801231FC  4B EE 9B 69 */	bl transS__14mDoMtx_stack_cFRC4cXyz
-/* 80123200  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80123204  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80123200  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80123204  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80123208  38 96 2C 48 */	addi r4, r22, 0x2c48
 /* 8012320C  7C 65 1B 78 */	mr r5, r3
 /* 80123210  48 22 32 D5 */	bl PSMTXConcat
@@ -193,8 +193,8 @@ lbl_80123224:
 /* 80123244  80 16 05 70 */	lwz r0, 0x570(r22)
 /* 80123248  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 8012324C  41 82 00 18 */	beq lbl_80123264
-/* 80123250  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80123254  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80123250  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80123254  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80123258  38 9F 00 68 */	addi r4, r31, 0x68
 /* 8012325C  38 BF 00 A4 */	addi r5, r31, 0xa4
 /* 80123260  48 15 D5 81 */	bl func_802807E0

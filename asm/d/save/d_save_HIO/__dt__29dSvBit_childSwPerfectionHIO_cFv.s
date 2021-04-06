@@ -5,8 +5,8 @@ lbl_8025C5B4:
 /* 8025C5C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025C5C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025C5C8  41 82 00 1C */	beq lbl_8025C5E4
-/* 8025C5CC  3C A0 80 3C */	lis r5, __vt__29dSvBit_childSwPerfectionHIO_c@ha
-/* 8025C5D0  38 05 33 84 */	addi r0, r5, __vt__29dSvBit_childSwPerfectionHIO_c@l
+/* 8025C5CC  3C A0 80 3C */	lis r5, __vt__29dSvBit_childSwPerfectionHIO_c@ha /* 0x803C3384@ha */
+/* 8025C5D0  38 05 33 84 */	addi r0, r5, __vt__29dSvBit_childSwPerfectionHIO_c@l /* 0x803C3384@l */
 /* 8025C5D4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025C5D8  7C 80 07 35 */	extsh. r0, r4
 /* 8025C5DC  40 81 00 08 */	ble lbl_8025C5E4

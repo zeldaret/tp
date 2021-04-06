@@ -7,7 +7,7 @@ lbl_80B92A78:
 /* 80B92A8C  41 82 00 10 */	beq lbl_80B92A9C
 /* 80B92A90  7C 80 07 35 */	extsh. r0, r4
 /* 80B92A94  40 81 00 08 */	ble lbl_80B92A9C
-/* 80B92A98  4B 73 C2 A4 */	b __dl__FPv
+/* 80B92A98  4B 73 C2 A5 */	bl __dl__FPv
 lbl_80B92A9C:
 /* 80B92A9C  7F E3 FB 78 */	mr r3, r31
 /* 80B92AA0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -106,8 +106,8 @@ lbl_800A71E4:
 /* 800A71E4  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A71E8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A71EC  40 80 00 10 */	bge lbl_800A71FC
-/* 800A71F0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A71F4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A71F0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A71F4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A71F8  48 00 00 70 */	b lbl_800A7268
 lbl_800A71FC:
 /* 800A71FC  D0 21 00 08 */	stfs f1, 8(r1)
@@ -141,8 +141,8 @@ lbl_800A7254:
 lbl_800A7258:
 /* 800A7258  2C 00 00 01 */	cmpwi r0, 1
 /* 800A725C  40 82 00 0C */	bne lbl_800A7268
-/* 800A7260  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A7264  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A7260  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A7264  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800A7268:
 /* 800A7268  C0 02 92 E0 */	lfs f0, lit_6845(r2)
 /* 800A726C  FC 01 00 40 */	fcmpo cr0, f1, f0

@@ -1,7 +1,7 @@
 lbl_8021F780:
 /* 8021F780  38 00 00 01 */	li r0, 1
-/* 8021F784  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8021F788  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8021F784  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021F788  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021F78C  B0 04 00 02 */	sth r0, 2(r4)
 /* 8021F790  B0 03 01 92 */	sth r0, 0x192(r3)
 /* 8021F794  C0 24 5D C0 */	lfs f1, 0x5dc0(r4)

@@ -1,7 +1,7 @@
 lbl_802CDDC8:
 /* 802CDDC8  39 40 00 61 */	li r10, 0x61
 /* 802CDDCC  3D 20 CC 01 */	lis r9, 0xCC01 /* 0xCC008000@ha */
-/* 802CDDD0  99 49 80 00 */	stb r10, 0x8000(r9)
+/* 802CDDD0  99 49 80 00 */	stb r10, 0x8000(r9)  /* 0xCC008000@l */
 /* 802CDDD4  3D 00 FE 08 */	lis r8, 0xFE08 /* 0xFE07FC3F@ha */
 /* 802CDDD8  38 08 FC 3F */	addi r0, r8, 0xFC3F /* 0xFE07FC3F@l */
 /* 802CDDDC  90 09 80 00 */	stw r0, -0x8000(r9)

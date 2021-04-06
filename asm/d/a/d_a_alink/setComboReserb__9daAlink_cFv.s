@@ -7,14 +7,14 @@ lbl_800D20FC:
 /* 800D2110  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 800D2114  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800D2118  41 82 00 18 */	beq lbl_800D2130
-/* 800D211C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAttack_c0@ha
-/* 800D2120  38 63 F7 A4 */	addi r3, r3, m__22daAlinkHIO_wlAttack_c0@l
+/* 800D211C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAttack_c0@ha /* 0x8038F7A4@ha */
+/* 800D2120  38 63 F7 A4 */	addi r3, r3, m__22daAlinkHIO_wlAttack_c0@l /* 0x8038F7A4@l */
 /* 800D2124  A8 03 00 16 */	lha r0, 0x16(r3)
 /* 800D2128  B0 1F 30 7E */	sth r0, 0x307e(r31)
 /* 800D212C  48 00 00 14 */	b lbl_800D2140
 lbl_800D2130:
-/* 800D2130  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800D2134  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800D2130  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800D2134  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800D2138  A8 03 00 52 */	lha r0, 0x52(r3)
 /* 800D213C  B0 1F 30 7E */	sth r0, 0x307e(r31)
 lbl_800D2140:

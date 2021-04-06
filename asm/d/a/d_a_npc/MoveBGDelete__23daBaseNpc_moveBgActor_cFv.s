@@ -16,8 +16,8 @@ lbl_8014F6FC:
 /* 8014F734  48 11 8A A1 */	bl ChkUsed__9cBgW_BgIdCFv
 /* 8014F738  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8014F73C  41 82 00 18 */	beq lbl_8014F754
-/* 8014F740  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8014F744  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014F740  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014F744  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014F748  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8014F74C  80 9E 0A 14 */	lwz r4, 0xa14(r30)
 /* 8014F750  4B F2 4B 01 */	bl Release__4cBgSFP9dBgW_Base

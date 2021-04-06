@@ -3,17 +3,15 @@
 #
 
 M655_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube.plf
+M655_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube.lcf
+M655_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube.map
 
 M655_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_testcube/executor.cpp \
-	rel/d/a/obj/d_a_obj_testcube/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_testcube/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_testcube/d_a_obj_testcube.cpp \
 
 M655_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/d_a_obj_testcube.o \
 
 M655_LIBS := \
@@ -29,15 +27,21 @@ M655_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map655.map\
+	-m _prolog \
+	-lcf $(M655_LDSCRIPT) \
+	-unused -map $(M655_MAP) \
+	-w off \
 
 $(M655_TARGET): $(M655_O_FILES) $(M655_LIBS)
+	@echo [655] creating $(M655_TARGET)
 	@echo $(M655_LIBS) $(M655_O_FILES) > build/M655_ofiles
-	$(LD) -opt_partial $(M655_LDFLAGS) -o $(M655_TARGET) @build/M655_ofiles
+	@python3 tools/lcf.py rel 655 --output $(M655_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M655_LDFLAGS) -o $(M655_TARGET) @build/M655_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_testcube/%.o: rel/d/a/obj/d_a_obj_testcube/%.cpp
+	@echo [655] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M655_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M655_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

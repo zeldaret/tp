@@ -88,18 +88,18 @@ lbl_8028B004:
 /* 8028B00C  3B E1 00 38 */	addi r31, r1, 0x38
 lbl_8028B010:
 /* 8028B010  7F A3 EB 78 */	mr r3, r29
-/* 8028B014  3C 80 80 3A */	lis r4, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028B018  38 84 AA 68 */	addi r4, r4, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028B014  3C 80 80 3A */	lis r4, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA68@ha */
+/* 8028B018  38 84 AA 68 */	addi r4, r4, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA68@l */
 /* 8028B01C  7F E5 FB 78 */	mr r5, r31
 /* 8028B020  4B FF B1 E5 */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 /* 8028B024  7F A3 EB 78 */	mr r3, r29
-/* 8028B028  3C 80 80 3A */	lis r4, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028B02C  38 84 AA 74 */	addi r4, r4, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028B028  3C 80 80 3A */	lis r4, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA74@ha */
+/* 8028B02C  38 84 AA 74 */	addi r4, r4, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA74@l */
 /* 8028B030  38 BF 00 0C */	addi r5, r31, 0xc
 /* 8028B034  4B FF B1 D1 */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 /* 8028B038  7F A3 EB 78 */	mr r3, r29
-/* 8028B03C  3C 80 80 3A */	lis r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028B040  38 84 AA 80 */	addi r4, r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028B03C  3C 80 80 3A */	lis r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA80@ha */
+/* 8028B040  38 84 AA 80 */	addi r4, r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA80@l */
 /* 8028B044  38 BF 00 18 */	addi r5, r31, 0x18
 /* 8028B048  4B FF B1 BD */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 lbl_8028B04C:

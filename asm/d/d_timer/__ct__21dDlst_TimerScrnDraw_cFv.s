@@ -1,9 +1,9 @@
 lbl_8025DB38:
-/* 8025DB38  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha
-/* 8025DB3C  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l
+/* 8025DB38  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 8025DB3C  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 8025DB40  90 03 00 00 */	stw r0, 0(r3)
-/* 8025DB44  3C 80 80 3C */	lis r4, __vt__21dDlst_TimerScrnDraw_c@ha
-/* 8025DB48  38 04 34 20 */	addi r0, r4, __vt__21dDlst_TimerScrnDraw_c@l
+/* 8025DB44  3C 80 80 3C */	lis r4, __vt__21dDlst_TimerScrnDraw_c@ha /* 0x803C3420@ha */
+/* 8025DB48  38 04 34 20 */	addi r0, r4, __vt__21dDlst_TimerScrnDraw_c@l /* 0x803C3420@l */
 /* 8025DB4C  90 03 00 00 */	stw r0, 0(r3)
 /* 8025DB50  38 C0 00 00 */	li r6, 0
 /* 8025DB54  98 C3 03 E2 */	stb r6, 0x3e2(r3)
@@ -13,8 +13,8 @@ lbl_8025DB38:
 /* 8025DB64  90 03 03 CC */	stw r0, 0x3cc(r3)
 /* 8025DB68  90 03 03 D0 */	stw r0, 0x3d0(r3)
 /* 8025DB6C  90 C3 03 D4 */	stw r6, 0x3d4(r3)
-/* 8025DB70  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DB74  38 A4 EB C8 */	addi r5, r4, g_drawHIO@l
+/* 8025DB70  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DB74  38 A4 EB C8 */	addi r5, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DB78  88 03 03 DD */	lbz r0, 0x3dd(r3)
 /* 8025DB7C  54 00 10 3A */	slwi r0, r0, 2
 /* 8025DB80  7C 85 02 14 */	add r4, r5, r0

@@ -123,8 +123,8 @@ lbl_80139544:
 /* 80139548  40 82 00 20 */	bne lbl_80139568
 /* 8013954C  7F E3 FB 78 */	mr r3, r31
 /* 80139550  54 80 10 3A */	slwi r0, r4, 2
-/* 80139554  3C 80 80 39 */	lis r4, normalType0@ha
-/* 80139558  38 84 1E 78 */	addi r4, r4, normalType0@l
+/* 80139554  3C 80 80 39 */	lis r4, normalType0@ha /* 0x80391E78@ha */
+/* 80139558  38 84 1E 78 */	addi r4, r4, normalType0@l /* 0x80391E78@l */
 /* 8013955C  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80139560  48 00 18 91 */	bl procWolfWaitAttackInit__9daAlink_cFi
 /* 80139564  48 00 00 3C */	b lbl_801395A0
@@ -140,8 +140,8 @@ lbl_80139568:
 lbl_80139588:
 /* 80139588  7F E3 FB 78 */	mr r3, r31
 /* 8013958C  54 80 10 3A */	slwi r0, r4, 2
-/* 80139590  3C 80 80 39 */	lis r4, normalType1_50860@ha
-/* 80139594  38 84 1E 8C */	addi r4, r4, normalType1_50860@l
+/* 80139590  3C 80 80 39 */	lis r4, normalType1_50860@ha /* 0x80391E8C@ha */
+/* 80139594  38 84 1E 8C */	addi r4, r4, normalType1_50860@l /* 0x80391E8C@l */
 /* 80139598  7C 84 00 2E */	lwzx r4, r4, r0
 /* 8013959C  48 00 18 55 */	bl procWolfWaitAttackInit__9daAlink_cFi
 lbl_801395A0:

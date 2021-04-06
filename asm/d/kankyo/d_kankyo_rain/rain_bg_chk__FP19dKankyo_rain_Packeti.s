@@ -1,7 +1,7 @@
 lbl_8005CDA8:
 /* 8005CDA8  C0 22 88 78 */	lfs f1, lit_4430(r2)
-/* 8005CDAC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8005CDB0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8005CDAC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8005CDB0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8005CDB4  80 A5 5D 74 */	lwz r5, 0x5d74(r5)
 /* 8005CDB8  C0 05 00 E8 */	lfs f0, 0xe8(r5)
 /* 8005CDBC  EC 01 00 2A */	fadds f0, f1, f0

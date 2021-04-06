@@ -3,11 +3,11 @@ lbl_805BC57C:
 /* 805BC580  7C 08 02 A6 */	mflr r0
 /* 805BC584  90 01 00 34 */	stw r0, 0x34(r1)
 /* 805BC588  39 61 00 30 */	addi r11, r1, 0x30
-/* 805BC58C  4B DA 5C 50 */	b _savegpr_29
+/* 805BC58C  4B DA 5C 51 */	bl _savegpr_29
 /* 805BC590  7C 7E 1B 78 */	mr r30, r3
 /* 805BC594  7C 9D 23 78 */	mr r29, r4
-/* 805BC598  3C 60 80 5C */	lis r3, lit_3800@ha
-/* 805BC59C  3B E3 6C 74 */	addi r31, r3, lit_3800@l
+/* 805BC598  3C 60 80 5C */	lis r3, lit_3800@ha /* 0x805C6C74@ha */
+/* 805BC59C  3B E3 6C 74 */	addi r31, r3, lit_3800@l /* 0x805C6C74@l */
 /* 805BC5A0  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 805BC5A4  41 82 00 24 */	beq lbl_805BC5C8
 /* 805BC5A8  80 1E 07 C0 */	lwz r0, 0x7c0(r30)
@@ -27,8 +27,8 @@ lbl_805BC5C8:
 /* 805BC5DC  38 04 FF D2 */	addi r0, r4, -46
 /* 805BC5E0  28 00 00 18 */	cmplwi r0, 0x18
 /* 805BC5E4  41 81 02 B8 */	bgt lbl_805BC89C
-/* 805BC5E8  3C 60 80 5C */	lis r3, lit_4618@ha
-/* 805BC5EC  38 63 75 E4 */	addi r3, r3, lit_4618@l
+/* 805BC5E8  3C 60 80 5C */	lis r3, lit_4618@ha /* 0x805C75E4@ha */
+/* 805BC5EC  38 63 75 E4 */	addi r3, r3, lit_4618@l /* 0x805C75E4@l */
 /* 805BC5F0  54 00 10 3A */	slwi r0, r0, 2
 /* 805BC5F4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 805BC5F8  7C 09 03 A6 */	mtctr r0
@@ -144,7 +144,7 @@ lbl_805BC780:
 /* 805BC798  C0 5F 00 34 */	lfs f2, 0x34(r31)
 /* 805BC79C  4B FF EC 6D */	bl setBck__8daB_DR_cFiUcff
 /* 805BC7A0  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 805BC7A4  4B CA B1 B0 */	b cM_rndF__Ff
+/* 805BC7A4  4B CA B1 B1 */	bl cM_rndF__Ff
 /* 805BC7A8  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 805BC7AC  EC 00 08 2A */	fadds f0, f0, f1
 /* 805BC7B0  FC 00 00 1E */	fctiwz f0, f0
@@ -202,7 +202,7 @@ lbl_805BC85C:
 /* 805BC874  C0 5F 00 34 */	lfs f2, 0x34(r31)
 /* 805BC878  4B FF EB 91 */	bl setBck__8daB_DR_cFiUcff
 /* 805BC87C  C0 3F 03 60 */	lfs f1, 0x360(r31)
-/* 805BC880  4B CA B0 D4 */	b cM_rndF__Ff
+/* 805BC880  4B CA B0 D5 */	bl cM_rndF__Ff
 /* 805BC884  C0 1F 03 60 */	lfs f0, 0x360(r31)
 /* 805BC888  EC 00 08 2A */	fadds f0, f0, f1
 /* 805BC88C  FC 00 00 1E */	fctiwz f0, f0
@@ -211,7 +211,7 @@ lbl_805BC85C:
 /* 805BC898  90 1E 07 C0 */	stw r0, 0x7c0(r30)
 lbl_805BC89C:
 /* 805BC89C  39 61 00 30 */	addi r11, r1, 0x30
-/* 805BC8A0  4B DA 59 88 */	b _restgpr_29
+/* 805BC8A0  4B DA 59 89 */	bl _restgpr_29
 /* 805BC8A4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 805BC8A8  7C 08 03 A6 */	mtlr r0
 /* 805BC8AC  38 21 00 30 */	addi r1, r1, 0x30

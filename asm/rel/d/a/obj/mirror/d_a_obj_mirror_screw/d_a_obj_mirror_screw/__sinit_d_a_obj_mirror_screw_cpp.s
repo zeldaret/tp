@@ -1,6 +1,6 @@
 lbl_80C996E0:
-/* 80C996E0  3C 60 80 CA */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C996E4  38 A3 97 A0 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80C996E0  3C 60 80 CA */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C997A0@ha */
+/* 80C996E4  38 A3 97 A0 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80C997A0@l */
 /* 80C996E8  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 80C996EC  80 05 00 28 */	lwz r0, 0x28(r5)
 /* 80C996F0  90 65 00 54 */	stw r3, 0x54(r5)

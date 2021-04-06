@@ -6,8 +6,8 @@ lbl_8010F6F4:
 /* 8010F704  48 25 2A D9 */	bl _savegpr_29
 /* 8010F708  7C 7E 1B 78 */	mr r30, r3
 /* 8010F70C  7C 9F 23 78 */	mr r31, r4
-/* 8010F710  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010F714  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010F710  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010F714  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010F718  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8010F71C  7F C4 F3 78 */	mr r4, r30
 /* 8010F720  38 A0 00 00 */	li r5, 0
@@ -32,8 +32,8 @@ lbl_8010F740:
 /* 8010F768  98 1E 2F 98 */	stb r0, 0x2f98(r30)
 /* 8010F76C  7F C3 F3 78 */	mr r3, r30
 /* 8010F770  38 80 01 04 */	li r4, 0x104
-/* 8010F774  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 8010F778  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 8010F774  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 8010F778  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 8010F77C  38 A5 00 28 */	addi r5, r5, 0x28
 /* 8010F780  4B F9 D9 75 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010F784  7F C3 F3 78 */	mr r3, r30
@@ -41,8 +41,8 @@ lbl_8010F740:
 /* 8010F78C  7F C3 F3 78 */	mr r3, r30
 /* 8010F790  7F E4 FB 78 */	mr r4, r31
 /* 8010F794  4B FF EE 45 */	bl setBottleModel__9daAlink_cFUs
-/* 8010F798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010F79C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010F798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010F79C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010F7A0  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8010F7A4  60 00 40 00 */	ori r0, r0, 0x4000
 /* 8010F7A8  90 03 5F 1C */	stw r0, 0x5f1c(r3)
@@ -91,8 +91,8 @@ lbl_8010F844:
 /* 8010F844  48 07 1D FD */	bl dCam_getBody__Fv
 /* 8010F848  38 80 00 12 */	li r4, 0x12
 /* 8010F84C  7F A5 EB 78 */	mr r5, r29
-/* 8010F850  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha
-/* 8010F854  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l
+/* 8010F850  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 8010F854  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 8010F858  38 C6 00 43 */	addi r6, r6, 0x43
 /* 8010F85C  38 E0 00 01 */	li r7, 1
 /* 8010F860  39 1E 31 94 */	addi r8, r30, 0x3194

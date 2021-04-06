@@ -14,15 +14,15 @@ lbl_800FC6DC:
 /* 800FC6E0  80 63 00 04 */	lwz r3, 4(r3)
 /* 800FC6E4  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800FC6E8  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 800FC6EC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 800FC6F0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
+/* 800FC6EC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800FC6F0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800FC6F4  48 24 9D BD */	bl PSMTXCopy
 /* 800FC6F8  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 800FC6FC  C0 42 95 5C */	lfs f2, lit_24400(r2)
 /* 800FC700  C0 62 95 60 */	lfs f3, lit_24401(r2)
 /* 800FC704  4B F1 06 99 */	bl transM__14mDoMtx_stack_cFfff
-/* 800FC708  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800FC70C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800FC708  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800FC70C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800FC710  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 800FC714  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)
 /* 800FC718  C0 03 00 1C */	lfs f0, 0x1c(r3)

@@ -5,12 +5,12 @@ lbl_806A460C:
 /* 806A4618  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806A461C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806A4620  7C 7E 1B 78 */	mr r30, r3
-/* 806A4624  3C 60 80 6A */	lis r3, lit_3903@ha
-/* 806A4628  3B E3 71 C4 */	addi r31, r3, lit_3903@l
+/* 806A4624  3C 60 80 6A */	lis r3, lit_3903@ha /* 0x806A71C4@ha */
+/* 806A4628  3B E3 71 C4 */	addi r31, r3, lit_3903@l /* 0x806A71C4@l */
 /* 806A462C  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 806A4630  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 806A4634  C0 5F 00 64 */	lfs f2, 0x64(r31)
-/* 806A4638  4B BC B4 48 */	b cLib_addCalc0__FPfff
+/* 806A4638  4B BC B4 49 */	bl cLib_addCalc0__FPfff
 /* 806A463C  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 806A4640  A8 1E 06 A0 */	lha r0, 0x6a0(r30)
 /* 806A4644  7C 03 00 50 */	subf r0, r3, r0
@@ -155,16 +155,16 @@ lbl_806A4808:
 /* 806A4838  88 1E 06 D4 */	lbz r0, 0x6d4(r30)
 /* 806A483C  2C 00 00 05 */	cmpwi r0, 5
 /* 806A4840  41 82 00 4C */	beq lbl_806A488C
-/* 806A4844  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 806A4848  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 806A4844  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 806A4848  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 806A484C  80 63 00 00 */	lwz r3, 0(r3)
 /* 806A4850  A8 9E 06 D8 */	lha r4, 0x6d8(r30)
-/* 806A4854  4B 96 7B 88 */	b mDoMtx_YrotS__FPA4_fs
-/* 806A4858  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 806A485C  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 806A4854  4B 96 7B 89 */	bl mDoMtx_YrotS__FPA4_fs
+/* 806A4858  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 806A485C  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 806A4860  80 63 00 00 */	lwz r3, 0(r3)
 /* 806A4864  A8 9E 06 D6 */	lha r4, 0x6d6(r30)
-/* 806A4868  4B 96 7B 34 */	b mDoMtx_XrotM__FPA4_fs
+/* 806A4868  4B 96 7B 35 */	bl mDoMtx_XrotM__FPA4_fs
 /* 806A486C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 806A4870  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 806A4874  C0 1F 00 30 */	lfs f0, 0x30(r31)
@@ -172,7 +172,7 @@ lbl_806A4808:
 /* 806A487C  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 806A4880  38 61 00 0C */	addi r3, r1, 0xc
 /* 806A4884  38 9E 06 DC */	addi r4, r30, 0x6dc
-/* 806A4888  4B BC C6 64 */	b MtxPosition__FP4cXyzP4cXyz
+/* 806A4888  4B BC C6 65 */	bl MtxPosition__FP4cXyzP4cXyz
 lbl_806A488C:
 /* 806A488C  38 00 00 00 */	li r0, 0
 /* 806A4890  98 1E 06 D4 */	stb r0, 0x6d4(r30)

@@ -44,13 +44,10 @@ extern "C" void JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl();
 extern "C" void JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl();
 extern "C" s32 JSGFindNodeID__Q26JStage7TObjectCFPCc();
 extern "C" void JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f();
-extern "C" extern void* __vt__Q26JStage7TObject[15 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -59,8 +56,8 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C47E8-803C4828 003C+04 s=1 e=6 z=0  None .data      __vt__Q26JStage7TObject */
-SECTION_DATA void* __vt__Q26JStage7TObject[15 + 1 /* padding */] = {
+/* 803C47E8-803C4828 021908 003C+04 1/1 6/6 0/0 .data            __vt__Q26JStage7TObject */
+SECTION_DATA extern void* __vt__Q26JStage7TObject[15 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
@@ -80,10 +77,7 @@ SECTION_DATA void* __vt__Q26JStage7TObject[15 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80280DD4-80280E1C 0048+00 s=0 e=6 z=0  None .text      __dt__Q26JStage7TObjectFv */
-//	80280DEC: 803C47E8 (__vt__Q26JStage7TObject)
-//	80280DF0: 803C47E8 (__vt__Q26JStage7TObject)
-//	80280E00: 802CED3C (__dl__FPv)
+/* 80280DD4-80280E1C 27B714 0048+00 0/0 6/6 0/0 .text            __dt__Q26JStage7TObjectFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -93,70 +87,72 @@ asm JStage::TObject::~TObject() {
 }
 #pragma pop
 
-/* 80280E1C-80280E24 0008+00 s=1 e=12 z=0  None .text      JSGGetName__Q26JStage7TObjectCFv */
+/* 80280E1C-80280E24 27B75C 0008+00 1/0 12/0 0/0 .text            JSGGetName__Q26JStage7TObjectCFv
+ */
 bool JStage::TObject::JSGGetName() const {
     return false;
 }
 
-/* 80280E24-80280E28 0004+00 s=1 e=12 z=0  None .text      JSGUpdate__Q26JStage7TObjectFv */
+/* 80280E24-80280E28 27B764 0004+00 1/0 12/0 0/0 .text            JSGUpdate__Q26JStage7TObjectFv */
 void JStage::TObject::JSGUpdate() {
     /* empty function */
 }
 
-/* 80280E28-80280E30 0008+00 s=1 e=12 z=0  None .text      JSGGetFlag__Q26JStage7TObjectCFv */
+/* 80280E28-80280E30 27B768 0008+00 1/0 12/0 0/0 .text            JSGGetFlag__Q26JStage7TObjectCFv
+ */
 bool JStage::TObject::JSGGetFlag() const {
     return false;
 }
 
-/* 80280E30-80280E34 0004+00 s=1 e=12 z=0  None .text      JSGSetFlag__Q26JStage7TObjectFUl */
+/* 80280E30-80280E34 27B770 0004+00 1/0 12/0 0/0 .text            JSGSetFlag__Q26JStage7TObjectFUl
+ */
 void JStage::TObject::JSGSetFlag(u32 param_0) {
     /* empty function */
 }
 
-/* 80280E34-80280E3C 0008+00 s=1 e=12 z=0  None .text      JSGGetData__Q26JStage7TObjectCFUlPvUl */
+/* 80280E34-80280E3C 27B774 0008+00 1/0 12/0 0/0 .text JSGGetData__Q26JStage7TObjectCFUlPvUl */
 bool JStage::TObject::JSGGetData(u32 param_0, void* param_1, u32 param_2) const {
     return false;
 }
 
-/* 80280E3C-80280E40 0004+00 s=1 e=11 z=0  None .text      JSGSetData__Q26JStage7TObjectFUlPCvUl */
+/* 80280E3C-80280E40 27B77C 0004+00 1/0 11/0 0/0 .text JSGSetData__Q26JStage7TObjectFUlPCvUl */
 void JStage::TObject::JSGSetData(u32 param_0, void const* param_1, u32 param_2) {
     /* empty function */
 }
 
-/* 80280E40-80280E44 0004+00 s=1 e=12 z=0  None .text
+/* 80280E40-80280E44 27B780 0004+00 1/0 12/0 0/0 .text
  * JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl      */
 void JStage::TObject::JSGGetParent(JStage::TObject** param_0, u32* param_1) const {
     /* empty function */
 }
 
-/* 80280E44-80280E48 0004+00 s=1 e=12 z=0  None .text
+/* 80280E44-80280E48 27B784 0004+00 1/0 12/0 0/0 .text
  * JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl         */
 void JStage::TObject::JSGSetParent(JStage::TObject* param_0, u32 param_1) {
     /* empty function */
 }
 
-/* 80280E48-80280E4C 0004+00 s=1 e=12 z=0  None .text
+/* 80280E48-80280E4C 27B788 0004+00 1/0 12/0 0/0 .text
  * JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl      */
 void JStage::TObject::JSGSetRelation(bool param_0, JStage::TObject* param_1, u32 param_2) {
     /* empty function */
 }
 
-/* 80280E4C-80280E54 0008+00 s=1 e=11 z=0  None .text      JSGFindNodeID__Q26JStage7TObjectCFPCc */
+/* 80280E4C-80280E54 27B78C 0008+00 1/0 11/0 0/0 .text JSGFindNodeID__Q26JStage7TObjectCFPCc */
 s32 JStage::TObject::JSGFindNodeID(char const* param_0) const {
     return -1;
 }
 
 /* ############################################################################################## */
-/* 804553F0-804553F8 0004+04 s=1 e=0 z=0  None .sdata2    @338 */
+/* 804553F0-804553F8 0039F0 0004+04 1/1 0/0 0/0 .sdata2          @338 */
 SECTION_SDATA2 static f32 lit_338[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80280E54-80280E90 003C+00 s=1 e=11 z=0  None .text
+/* 80280E54-80280E90 27B794 003C+00 1/0 11/0 0/0 .text
  * JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f         */
-//	80280E54: 804553F0 (lit_338)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

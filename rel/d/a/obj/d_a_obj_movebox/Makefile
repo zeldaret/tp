@@ -3,19 +3,20 @@
 #
 
 M20_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox.plf
+M20_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox.lcf
+M20_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox.map
 
 M20_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_movebox/executor.cpp \
-	rel/d/a/obj/d_a_obj_movebox/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.cpp \
 
 M20_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.o \
 
 M20_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/libRuntime.PPCEABI.H.a \
 
 M20_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M20_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map20.map\
+	-m _prolog \
+	-lcf $(M20_LDSCRIPT) \
+	-unused -map $(M20_MAP) \
+	-w off \
 
 $(M20_TARGET): $(M20_O_FILES) $(M20_LIBS)
+	@echo [ 20] creating $(M20_TARGET)
 	@echo $(M20_LIBS) $(M20_O_FILES) > build/M20_ofiles
-	$(LD) -opt_partial $(M20_LDFLAGS) -o $(M20_TARGET) @build/M20_ofiles
+	@python3 tools/lcf.py rel 20 --output $(M20_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M20_LDFLAGS) -o $(M20_TARGET) @build/M20_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_movebox/%.o: rel/d/a/obj/d_a_obj_movebox/%.cpp
+	@echo [ 20] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M20_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M20_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_movebox/libs/Runtime.PPCEABI.H/Makefile
 

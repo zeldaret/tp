@@ -2,8 +2,8 @@ lbl_80109070:
 /* 80109070  80 03 05 78 */	lwz r0, 0x578(r3)
 /* 80109074  54 00 03 19 */	rlwinm. r0, r0, 0, 0xc, 0xc
 /* 80109078  40 82 00 18 */	bne lbl_80109090
-/* 8010907C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80109080  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8010907C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80109080  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80109084  88 04 00 13 */	lbz r0, 0x13(r4)
 /* 80109088  28 00 00 2E */	cmplwi r0, 0x2e
 /* 8010908C  40 82 00 10 */	bne lbl_8010909C

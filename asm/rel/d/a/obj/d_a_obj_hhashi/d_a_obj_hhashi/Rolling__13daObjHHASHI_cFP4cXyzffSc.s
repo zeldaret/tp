@@ -9,13 +9,13 @@ lbl_80580854:
 /* 80580870  DB A1 00 40 */	stfd f29, 0x40(r1)
 /* 80580874  F3 A1 00 48 */	psq_st f29, 72(r1), 0, 0 /* qr0 */
 /* 80580878  39 61 00 40 */	addi r11, r1, 0x40
-/* 8058087C  4B DE 19 58 */	b _savegpr_27
+/* 8058087C  4B DE 19 59 */	bl _savegpr_27
 /* 80580880  7C 7D 1B 78 */	mr r29, r3
 /* 80580884  7C 9E 23 78 */	mr r30, r4
 /* 80580888  FF A0 08 90 */	fmr f29, f1
 /* 8058088C  FF C0 10 90 */	fmr f30, f2
-/* 80580890  3C 60 80 58 */	lis r3, ccCylSrc@ha
-/* 80580894  3B 83 14 AC */	addi r28, r3, ccCylSrc@l
+/* 80580890  3C 60 80 58 */	lis r3, ccCylSrc@ha /* 0x805814AC@ha */
+/* 80580894  3B 83 14 AC */	addi r28, r3, ccCylSrc@l /* 0x805814AC@l */
 /* 80580898  98 BD 05 A8 */	stb r5, 0x5a8(r29)
 /* 8058089C  80 1D 05 A4 */	lwz r0, 0x5a4(r29)
 /* 805808A0  2C 00 00 02 */	cmpwi r0, 2
@@ -39,7 +39,7 @@ lbl_805808B4:
 /* 805808E4  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 805808E8  38 61 00 0C */	addi r3, r1, 0xc
 /* 805808EC  38 81 00 18 */	addi r4, r1, 0x18
-/* 805808F0  4B DC 6A AC */	b PSVECSquareDistance
+/* 805808F0  4B DC 6A AD */	bl PSVECSquareDistance
 /* 805808F4  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 805808F8  40 81 00 58 */	ble lbl_80580950
 /* 805808FC  FC 00 08 34 */	frsqrte f0, f1
@@ -67,8 +67,8 @@ lbl_80580950:
 /* 80580950  C8 1C 00 D0 */	lfd f0, 0xd0(r28)
 /* 80580954  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80580958  40 80 00 10 */	bge lbl_80580968
-/* 8058095C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80580960  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8058095C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80580960  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80580964  48 00 00 70 */	b lbl_805809D4
 lbl_80580968:
 /* 80580968  D0 21 00 08 */	stfs f1, 8(r1)
@@ -102,8 +102,8 @@ lbl_805809C0:
 lbl_805809C4:
 /* 805809C4  2C 00 00 01 */	cmpwi r0, 1
 /* 805809C8  40 82 00 0C */	bne lbl_805809D4
-/* 805809CC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 805809D0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 805809CC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 805809D0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_805809D4:
 /* 805809D4  FC 01 E8 40 */	fcmpo cr0, f1, f29
 /* 805809D8  40 80 00 30 */	bge lbl_80580A08
@@ -132,7 +132,7 @@ lbl_80580A18:
 /* 80580A28  E3 A1 00 48 */	psq_l f29, 72(r1), 0, 0 /* qr0 */
 /* 80580A2C  CB A1 00 40 */	lfd f29, 0x40(r1)
 /* 80580A30  39 61 00 40 */	addi r11, r1, 0x40
-/* 80580A34  4B DE 17 EC */	b _restgpr_27
+/* 80580A34  4B DE 17 ED */	bl _restgpr_27
 /* 80580A38  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80580A3C  7C 08 03 A6 */	mtlr r0
 /* 80580A40  38 21 00 70 */	addi r1, r1, 0x70

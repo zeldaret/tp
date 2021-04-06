@@ -3,17 +3,15 @@
 #
 
 M543_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray.plf
+M543_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray.lcf
+M543_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray.map
 
 M543_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv5yiblltray/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv5yiblltray/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv5yiblltray/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray.cpp \
 
 M543_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray.o \
 
 M543_LIBS := \
@@ -29,15 +27,21 @@ M543_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map543.map\
+	-m _prolog \
+	-lcf $(M543_LDSCRIPT) \
+	-unused -map $(M543_MAP) \
+	-w off \
 
 $(M543_TARGET): $(M543_O_FILES) $(M543_LIBS)
+	@echo [543] creating $(M543_TARGET)
 	@echo $(M543_LIBS) $(M543_O_FILES) > build/M543_ofiles
-	$(LD) -opt_partial $(M543_LDFLAGS) -o $(M543_TARGET) @build/M543_ofiles
+	@python3 tools/lcf.py rel 543 --output $(M543_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M543_LDFLAGS) -o $(M543_TARGET) @build/M543_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5yiblltray/%.o: rel/d/a/obj/d_a_obj_lv5yiblltray/%.cpp
+	@echo [543] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M543_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

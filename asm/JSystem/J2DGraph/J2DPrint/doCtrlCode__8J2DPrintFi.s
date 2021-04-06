@@ -3,8 +3,8 @@ lbl_802F52E8:
 /* 802F52EC  38 04 FF F8 */	addi r0, r4, -8
 /* 802F52F0  28 00 00 17 */	cmplwi r0, 0x17
 /* 802F52F4  41 81 01 14 */	bgt lbl_802F5408
-/* 802F52F8  3C 80 80 3D */	lis r4, lit_938@ha
-/* 802F52FC  38 84 CF 40 */	addi r4, r4, lit_938@l
+/* 802F52F8  3C 80 80 3D */	lis r4, lit_938@ha /* 0x803CCF40@ha */
+/* 802F52FC  38 84 CF 40 */	addi r4, r4, lit_938@l /* 0x803CCF40@l */
 /* 802F5300  54 00 10 3A */	slwi r0, r0, 2
 /* 802F5304  7C 04 00 2E */	lwzx r0, r4, r0
 /* 802F5308  7C 09 03 A6 */	mtctr r0

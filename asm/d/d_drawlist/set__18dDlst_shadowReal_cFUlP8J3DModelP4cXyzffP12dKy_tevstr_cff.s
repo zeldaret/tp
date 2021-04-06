@@ -21,8 +21,8 @@ lbl_80055028:
 /* 80055074  7C FC 3B 78 */	mr r28, r7
 /* 80055078  FF C0 18 90 */	fmr f30, f3
 /* 8005507C  FF E0 20 90 */	fmr f31, f4
-/* 80055080  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80055084  3B A3 CA 54 */	addi r29, r3, g_env_light@l
+/* 80055080  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80055084  3B A3 CA 54 */	addi r29, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80055088  88 1E 00 02 */	lbz r0, 2(r30)
 /* 8005508C  28 00 00 00 */	cmplwi r0, 0
 /* 80055090  40 82 00 F0 */	bne lbl_80055180
@@ -52,8 +52,8 @@ lbl_800550B8:
 /* 800550EC  54 60 07 BD */	rlwinm. r0, r3, 0, 0x1e, 0x1e
 /* 800550F0  41 82 00 38 */	beq lbl_80055128
 lbl_800550F4:
-/* 800550F4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800550F8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 800550F4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800550F8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800550FC  C0 23 10 A0 */	lfs f1, 0x10a0(r3)
 /* 80055100  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80055104  C0 03 10 A4 */	lfs f0, 0x10a4(r3)

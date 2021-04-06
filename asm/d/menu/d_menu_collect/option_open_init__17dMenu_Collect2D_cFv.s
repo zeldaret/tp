@@ -15,8 +15,8 @@ lbl_801B5094:
 /* 801B50C8  48 11 9B 85 */	bl __nw__FUl
 /* 801B50CC  7C 60 1B 79 */	or. r0, r3, r3
 /* 801B50D0  41 82 00 1C */	beq lbl_801B50EC
-/* 801B50D4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B50D8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801B50D4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B50D8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B50DC  80 84 5C B8 */	lwz r4, 0x5cb8(r4)
 /* 801B50E0  80 BE 00 10 */	lwz r5, 0x10(r30)
 /* 801B50E4  48 02 CE 2D */	bl __ct__14dMenu_Option_cFP10JKRArchiveP9STControl

@@ -1,11 +1,11 @@
 lbl_80CAF32C:
-/* 80CAF32C  3C 80 80 CB */	lis r4, l_bmd@ha
-/* 80CAF330  38 A4 09 D4 */	addi r5, r4, l_bmd@l
-/* 80CAF334  3C 80 80 CB */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80CAF338  38 04 0C 0C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80CAF32C  3C 80 80 CB */	lis r4, l_bmd@ha /* 0x80CB09D4@ha */
+/* 80CAF330  38 A4 09 D4 */	addi r5, r4, l_bmd@l /* 0x80CB09D4@l */
+/* 80CAF334  3C 80 80 CB */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80CB0C0C@ha */
+/* 80CAF338  38 04 0C 0C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80CB0C0C@l */
 /* 80CAF33C  90 03 00 00 */	stw r0, 0(r3)
-/* 80CAF340  3C 80 80 CB */	lis r4, __vt__14daPillar_HIO_c@ha
-/* 80CAF344  38 04 0C 00 */	addi r0, r4, __vt__14daPillar_HIO_c@l
+/* 80CAF340  3C 80 80 CB */	lis r4, __vt__14daPillar_HIO_c@ha /* 0x80CB0C00@ha */
+/* 80CAF344  38 04 0C 00 */	addi r0, r4, __vt__14daPillar_HIO_c@l /* 0x80CB0C00@l */
 /* 80CAF348  90 03 00 00 */	stw r0, 0(r3)
 /* 80CAF34C  88 05 00 64 */	lbz r0, 0x64(r5)
 /* 80CAF350  98 03 00 04 */	stb r0, 4(r3)

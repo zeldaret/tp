@@ -33,8 +33,8 @@ extern "C" void __dt__26__partial_array_destructorFv();
 //
 
 /* ############################################################################################## */
-/* 80005600-80005648 0048+00 s=0 e=5 z=0  None .extab     _section_symbol_extab */
-SECTION_EXTAB void* const _section_symbol_extab[18] = {
+/* 80005600-80005648 -00001 0048+00 0/0 5/0 0/0 .extab           _section_symbol_extab */
+SECTION_EXTAB extern void* const _section_symbol_extab[18] = {
     (void*)0x30080000, (void*)NULL,
     (void*)0x20080000, (void*)NULL,
     (void*)0x20080000, (void*)0x00000060,

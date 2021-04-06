@@ -15,8 +15,8 @@ lbl_8029ABEC:
 /* 8029AC20  80 03 00 00 */	lwz r0, 0(r3)
 /* 8029AC24  28 00 00 06 */	cmplwi r0, 6
 /* 8029AC28  41 81 00 94 */	bgt lbl_8029ACBC
-/* 8029AC2C  3C 60 80 3C */	lis r3, lit_662@ha
-/* 8029AC30  38 63 78 48 */	addi r3, r3, lit_662@l
+/* 8029AC2C  3C 60 80 3C */	lis r3, lit_662@ha /* 0x803C7848@ha */
+/* 8029AC30  38 63 78 48 */	addi r3, r3, lit_662@l /* 0x803C7848@l */
 /* 8029AC34  54 00 10 3A */	slwi r0, r0, 2
 /* 8029AC38  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8029AC3C  7C 09 03 A6 */	mtctr r0

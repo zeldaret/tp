@@ -12,9 +12,9 @@ lbl_8065C680:
 /* 8065C6A8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8065C6AC  38 60 00 02 */	li r3, 2
 /* 8065C6B0  38 81 00 08 */	addi r4, r1, 8
-/* 8065C6B4  4B C0 4A 4C */	b dTimer_createGetIn2D__Fl4cXyz
-/* 8065C6B8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8065C6BC  38 A3 01 88 */	addi r5, r3, g_meter2_info@l
+/* 8065C6B4  4B C0 4A 4D */	bl dTimer_createGetIn2D__Fl4cXyz
+/* 8065C6B8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8065C6BC  38 A3 01 88 */	addi r5, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8065C6C0  88 65 00 BC */	lbz r3, 0xbc(r5)
 /* 8065C6C4  38 03 00 01 */	addi r0, r3, 1
 /* 8065C6C8  98 05 00 BC */	stb r0, 0xbc(r5)

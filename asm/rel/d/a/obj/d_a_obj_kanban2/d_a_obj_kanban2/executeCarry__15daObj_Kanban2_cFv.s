@@ -18,8 +18,8 @@ lbl_80584884:
 /* 805848C4  D0 03 05 58 */	stfs f0, 0x558(r3)
 /* 805848C8  38 00 00 02 */	li r0, 2
 /* 805848CC  98 03 05 67 */	stb r0, 0x567(r3)
-/* 805848D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805848D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805848D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805848D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805848D8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 805848DC  80 03 05 80 */	lwz r0, 0x580(r3)
 /* 805848E0  54 00 04 21 */	rlwinm. r0, r0, 0, 0x10, 0x10
@@ -43,8 +43,8 @@ lbl_80584900:
 /* 80584924  80 1F 08 9C */	lwz r0, 0x89c(r31)
 /* 80584928  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 8058492C  90 1F 08 9C */	stw r0, 0x89c(r31)
-/* 80584930  3C 60 80 58 */	lis r3, lit_4015@ha
-/* 80584934  C0 03 56 2C */	lfs f0, lit_4015@l(r3)
+/* 80584930  3C 60 80 58 */	lis r3, lit_4015@ha /* 0x8058562C@ha */
+/* 80584934  C0 03 56 2C */	lfs f0, lit_4015@l(r3)  /* 0x8058562C@l */
 /* 80584938  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 8058493C  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80584940  D0 1F 05 2C */	stfs f0, 0x52c(r31)
@@ -70,13 +70,13 @@ lbl_80584960:
 /* 80584988  38 A0 00 05 */	li r5, 5
 /* 8058498C  4B FF E5 65 */	bl setActionMode__15daObj_Kanban2_cFii
 /* 80584990  C0 3F 05 2C */	lfs f1, 0x52c(r31)
-/* 80584994  3C 60 80 58 */	lis r3, lit_3970@ha
-/* 80584998  C0 03 56 20 */	lfs f0, lit_3970@l(r3)
+/* 80584994  3C 60 80 58 */	lis r3, lit_3970@ha /* 0x80585620@ha */
+/* 80584998  C0 03 56 20 */	lfs f0, lit_3970@l(r3)  /* 0x80585620@l */
 /* 8058499C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805849A0  4C 41 13 82 */	cror 2, 1, 2
 /* 805849A4  40 82 00 0C */	bne lbl_805849B0
 /* 805849A8  7F E3 FB 78 */	mr r3, r31
-/* 805849AC  4B A9 88 50 */	b fopAcM_carryOffRevise__FP10fopAc_ac_c
+/* 805849AC  4B A9 88 51 */	bl fopAcM_carryOffRevise__FP10fopAc_ac_c
 lbl_805849B0:
 /* 805849B0  38 00 00 00 */	li r0, 0
 /* 805849B4  98 1F 06 2E */	stb r0, 0x62e(r31)

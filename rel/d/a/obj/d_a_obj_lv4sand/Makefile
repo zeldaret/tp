@@ -3,18 +3,16 @@
 #
 
 M538_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand.plf
+M538_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand.lcf
+M538_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand.map
 
 M538_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4sand/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4sand/d_a_obj_lv4sand.cpp \
 
 M538_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/d_a_obj_lv4sand.o \
 
@@ -31,15 +29,21 @@ M538_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map538.map\
+	-m _prolog \
+	-lcf $(M538_LDSCRIPT) \
+	-unused -map $(M538_MAP) \
+	-w off \
 
 $(M538_TARGET): $(M538_O_FILES) $(M538_LIBS)
+	@echo [538] creating $(M538_TARGET)
 	@echo $(M538_LIBS) $(M538_O_FILES) > build/M538_ofiles
-	$(LD) -opt_partial $(M538_LDFLAGS) -o $(M538_TARGET) @build/M538_ofiles
+	@python3 tools/lcf.py rel 538 --output $(M538_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M538_LDFLAGS) -o $(M538_TARGET) @build/M538_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4sand/%.o: rel/d/a/obj/d_a_obj_lv4sand/%.cpp
+	@echo [538] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M538_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M538_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

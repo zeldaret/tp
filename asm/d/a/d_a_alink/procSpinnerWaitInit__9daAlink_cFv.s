@@ -17,8 +17,8 @@ lbl_8010DEA4:
 /* 8010DEB0  4B FA 38 C1 */	bl setBgCheckParam__9daAlink_cFv
 /* 8010DEB4  7F E3 FB 78 */	mr r3, r31
 /* 8010DEB8  38 80 00 F4 */	li r4, 0xf4
-/* 8010DEBC  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010DEC0  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010DEBC  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010DEC0  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010DEC4  C0 25 00 68 */	lfs f1, 0x68(r5)
 /* 8010DEC8  C0 42 93 24 */	lfs f2, lit_7450(r2)
 /* 8010DECC  4B F9 F1 15 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

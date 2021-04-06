@@ -34,8 +34,8 @@ lbl_800211F8:
 /* 800211FC  7F E3 FB 78 */	mr r3, r31
 /* 80021200  48 00 06 9D */	bl fpcLy_Cancel__FP11layer_class
 /* 80021204  7F E3 FB 78 */	mr r3, r31
-/* 80021208  3C 80 80 02 */	lis r4, fpcDt_ToDeleteQ__FP18base_process_class@ha
-/* 8002120C  38 84 11 88 */	addi r4, r4, fpcDt_ToDeleteQ__FP18base_process_class@l
+/* 80021208  3C 80 80 02 */	lis r4, fpcDt_ToDeleteQ__FP18base_process_class@ha /* 0x80021188@ha */
+/* 8002120C  38 84 11 88 */	addi r4, r4, fpcDt_ToDeleteQ__FP18base_process_class@l /* 0x80021188@l */
 /* 80021210  38 A0 00 00 */	li r5, 0
 /* 80021214  48 00 09 AD */	bl fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv
 /* 80021218  2C 03 00 00 */	cmpwi r3, 0

@@ -7,7 +7,7 @@ lbl_80ABF320:
 /* 80ABF334  41 82 00 10 */	beq lbl_80ABF344
 /* 80ABF338  7C 80 07 35 */	extsh. r0, r4
 /* 80ABF33C  40 81 00 08 */	ble lbl_80ABF344
-/* 80ABF340  4B 80 F9 FC */	b __dl__FPv
+/* 80ABF340  4B 80 F9 FD */	bl __dl__FPv
 lbl_80ABF344:
 /* 80ABF344  7F E3 FB 78 */	mr r3, r31
 /* 80ABF348  83 E1 00 0C */	lwz r31, 0xc(r1)

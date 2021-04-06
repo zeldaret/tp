@@ -4,8 +4,8 @@ lbl_80021F64:
 /* 80021F6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80021F70  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80021F74  93 C1 00 08 */	stw r30, 8(r1)
-/* 80021F78  3C 60 80 3F */	lis r3, l_fpcLn_Line@ha
-/* 80021F7C  38 03 4C F0 */	addi r0, r3, l_fpcLn_Line@l
+/* 80021F78  3C 60 80 3F */	lis r3, l_fpcLn_Line@ha /* 0x803F4CF0@ha */
+/* 80021F7C  38 03 4C F0 */	addi r0, r3, l_fpcLn_Line@l /* 0x803F4CF0@l */
 /* 80021F80  7C 1E 03 78 */	mr r30, r0
 /* 80021F84  3B E0 00 0F */	li r31, 0xf
 lbl_80021F88:

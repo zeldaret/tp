@@ -19,8 +19,8 @@ lbl_8000FC4C:
 /* 8000FC90  83 C1 00 60 */	lwz r30, 0x60(r1)
 /* 8000FC94  83 E1 00 64 */	lwz r31, 0x64(r1)
 /* 8000FC98  4B FF FC B9 */	bl __ct__13mDoExt_morf_cFv
-/* 8000FC9C  3C 60 80 3A */	lis r3, __vt__14mDoExt_McaMorf@ha
-/* 8000FCA0  38 03 32 FC */	addi r0, r3, __vt__14mDoExt_McaMorf@l
+/* 8000FC9C  3C 60 80 3A */	lis r3, __vt__14mDoExt_McaMorf@ha /* 0x803A32FC@ha */
+/* 8000FCA0  38 03 32 FC */	addi r0, r3, __vt__14mDoExt_McaMorf@l /* 0x803A32FC@l */
 /* 8000FCA4  90 14 00 00 */	stw r0, 0(r20)
 /* 8000FCA8  38 00 00 00 */	li r0, 0
 /* 8000FCAC  98 14 00 50 */	stb r0, 0x50(r20)

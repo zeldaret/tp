@@ -6,8 +6,8 @@ lbl_8021E6E4:
 /* 8021E6F4  48 14 3A E9 */	bl _savegpr_29
 /* 8021E6F8  3B C0 00 00 */	li r30, 0
 /* 8021E6FC  3B A0 00 00 */	li r29, 0
-/* 8021E700  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021E704  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021E700  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021E704  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021E708  3B E3 01 1C */	addi r31, r3, 0x11c
 lbl_8021E70C:
 /* 8021E70C  7F E3 FB 78 */	mr r3, r31

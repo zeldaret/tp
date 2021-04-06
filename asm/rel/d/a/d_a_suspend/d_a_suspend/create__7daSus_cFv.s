@@ -3,8 +3,8 @@ lbl_804D5118:
 /* 804D511C  7C 08 02 A6 */	mflr r0
 /* 804D5120  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804D5124  7C 65 1B 78 */	mr r5, r3
-/* 804D5128  3C 60 80 4D */	lis r3, lit_3640@ha
-/* 804D512C  38 83 52 3C */	addi r4, r3, lit_3640@l
+/* 804D5128  3C 60 80 4D */	lis r3, lit_3640@ha /* 0x804D523C@ha */
+/* 804D512C  38 83 52 3C */	addi r4, r3, lit_3640@l /* 0x804D523C@l */
 /* 804D5130  88 05 04 E2 */	lbz r0, 0x4e2(r5)
 /* 804D5134  7C 00 07 75 */	extsb. r0, r0
 /* 804D5138  7C 03 03 78 */	mr r3, r0
@@ -46,7 +46,7 @@ lbl_804D5194:
 lbl_804D51C0:
 /* 804D51C0  38 85 04 D0 */	addi r4, r5, 0x4d0
 /* 804D51C4  38 A5 04 EC */	addi r5, r5, 0x4ec
-/* 804D51C8  4B B5 C0 80 */	b newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc
+/* 804D51C8  4B B5 C0 81 */	bl newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc
 /* 804D51CC  38 60 00 04 */	li r3, 4
 /* 804D51D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 804D51D4  7C 08 03 A6 */	mtlr r0

@@ -7,11 +7,11 @@ lbl_8074A644:
 /* 8074A658  88 63 06 88 */	lbz r3, 0x688(r3)
 /* 8074A65C  28 03 00 00 */	cmplwi r3, 0
 /* 8074A660  40 82 00 30 */	bne lbl_8074A690
-/* 8074A664  3C 60 80 75 */	lis r3, lit_3910@ha
-/* 8074A668  C0 23 BF 3C */	lfs f1, lit_3910@l(r3)
-/* 8074A66C  4B B1 D2 E8 */	b cM_rndF__Ff
-/* 8074A670  3C 60 80 75 */	lis r3, lit_4153@ha
-/* 8074A674  C0 03 BF D4 */	lfs f0, lit_4153@l(r3)
+/* 8074A664  3C 60 80 75 */	lis r3, lit_3910@ha /* 0x8074BF3C@ha */
+/* 8074A668  C0 23 BF 3C */	lfs f1, lit_3910@l(r3)  /* 0x8074BF3C@l */
+/* 8074A66C  4B B1 D2 E9 */	bl cM_rndF__Ff
+/* 8074A670  3C 60 80 75 */	lis r3, lit_4153@ha /* 0x8074BFD4@ha */
+/* 8074A674  C0 03 BF D4 */	lfs f0, lit_4153@l(r3)  /* 0x8074BFD4@l */
 /* 8074A678  EC 00 08 2A */	fadds f0, f0, f1
 /* 8074A67C  FC 00 00 1E */	fctiwz f0, f0
 /* 8074A680  D8 01 00 08 */	stfd f0, 8(r1)

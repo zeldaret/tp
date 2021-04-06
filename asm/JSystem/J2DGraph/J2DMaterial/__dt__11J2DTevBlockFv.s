@@ -5,8 +5,8 @@ lbl_802EB184:
 /* 802EB190  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802EB194  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802EB198  41 82 00 1C */	beq lbl_802EB1B4
-/* 802EB19C  3C A0 80 3D */	lis r5, __vt__11J2DTevBlock@ha
-/* 802EB1A0  38 05 CE 74 */	addi r0, r5, __vt__11J2DTevBlock@l
+/* 802EB19C  3C A0 80 3D */	lis r5, __vt__11J2DTevBlock@ha /* 0x803CCE74@ha */
+/* 802EB1A0  38 05 CE 74 */	addi r0, r5, __vt__11J2DTevBlock@l /* 0x803CCE74@l */
 /* 802EB1A4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802EB1A8  7C 80 07 35 */	extsh. r0, r4
 /* 802EB1AC  40 81 00 08 */	ble lbl_802EB1B4

@@ -13,8 +13,8 @@ lbl_80250380:
 /* 802503AC  48 00 0C 9D */	bl getMenuPosIdx__7dName_cFUc
 /* 802503B0  7C 1E 18 00 */	cmpw r30, r3
 /* 802503B4  41 82 00 74 */	beq lbl_80250428
-/* 802503B8  3C 60 80 43 */	lis r3, g_nmHIO@ha
-/* 802503BC  38 63 07 34 */	addi r3, r3, g_nmHIO@l
+/* 802503B8  3C 60 80 43 */	lis r3, g_nmHIO@ha /* 0x80430734@ha */
+/* 802503BC  38 63 07 34 */	addi r3, r3, g_nmHIO@l /* 0x80430734@l */
 /* 802503C0  C0 03 00 08 */	lfs f0, 8(r3)
 /* 802503C4  57 DD 10 3A */	slwi r29, r30, 2
 /* 802503C8  7C 7F EA 14 */	add r3, r31, r29

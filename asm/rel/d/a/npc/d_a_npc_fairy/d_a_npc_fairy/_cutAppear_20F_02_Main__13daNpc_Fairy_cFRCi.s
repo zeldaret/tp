@@ -30,7 +30,7 @@ lbl_809B5250:
 /* 809B525C  7C 00 07 35 */	extsh. r0, r0
 /* 809B5260  41 81 00 C4 */	bgt lbl_809B5324
 /* 809B5264  38 60 00 0B */	li r3, 0xb
-/* 809B5268  4B 7F 35 7C */	b dKy_change_colpat__FUc
+/* 809B5268  4B 7F 35 7D */	bl dKy_change_colpat__FUc
 /* 809B526C  3B C0 00 01 */	li r30, 1
 /* 809B5270  48 00 00 B4 */	b lbl_809B5324
 lbl_809B5274:
@@ -47,8 +47,8 @@ lbl_809B5290:
 /* 809B5298  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 809B529C  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 809B52A0  40 82 00 1C */	bne lbl_809B52BC
-/* 809B52A4  3C 60 80 9C */	lis r3, lit_3943@ha
-/* 809B52A8  C0 23 93 C4 */	lfs f1, lit_3943@l(r3)
+/* 809B52A4  3C 60 80 9C */	lis r3, lit_3943@ha /* 0x809B93C4@ha */
+/* 809B52A8  C0 23 93 C4 */	lfs f1, lit_3943@l(r3)  /* 0x809B93C4@l */
 /* 809B52AC  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 809B52B0  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 809B52B4  41 82 00 08 */	beq lbl_809B52BC
@@ -61,12 +61,12 @@ lbl_809B52BC:
 /* 809B52CC  41 82 00 28 */	beq lbl_809B52F4
 /* 809B52D0  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 809B52D4  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 809B52D8  4B 79 05 C0 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 809B52D8  4B 79 05 C1 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 809B52DC  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 809B52E0  38 00 00 03 */	li r0, 3
 /* 809B52E4  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 809B52E8  3C 60 80 9C */	lis r3, lit_3945@ha
-/* 809B52EC  C0 03 93 CC */	lfs f0, lit_3945@l(r3)
+/* 809B52E8  3C 60 80 9C */	lis r3, lit_3945@ha /* 0x809B93CC@ha */
+/* 809B52EC  C0 03 93 CC */	lfs f0, lit_3945@l(r3)  /* 0x809B93CC@l */
 /* 809B52F0  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_809B52F4:
 /* 809B52F4  3B C0 00 01 */	li r30, 1
@@ -76,7 +76,7 @@ lbl_809B52FC:
 /* 809B5300  38 A0 00 00 */	li r5, 0
 /* 809B5304  38 C0 00 00 */	li r6, 0
 /* 809B5308  38 E0 00 00 */	li r7, 0
-/* 809B530C  4B 79 69 6C */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 809B530C  4B 79 69 6D */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 809B5310  2C 03 00 00 */	cmpwi r3, 0
 /* 809B5314  41 82 00 10 */	beq lbl_809B5324
 /* 809B5318  3B C0 00 01 */	li r30, 1

@@ -4,8 +4,8 @@ lbl_8032F254:
 /* 8032F25C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8032F260  39 61 00 20 */	addi r11, r1, 0x20
 /* 8032F264  48 03 2F 71 */	bl _savegpr_27
-/* 8032F268  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8032F26C  3B E4 4A C8 */	addi r31, r4, j3dSys@l
+/* 8032F268  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8032F26C  3B E4 4A C8 */	addi r31, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8032F270  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8032F274  80 84 00 84 */	lwz r4, 0x84(r4)
 /* 8032F278  80 84 00 0C */	lwz r4, 0xc(r4)
@@ -85,8 +85,8 @@ lbl_8032F36C:
 /* 8032F378  54 00 07 BE */	clrlwi r0, r0, 0x1e
 /* 8032F37C  7C 00 00 34 */	cntlzw r0, r0
 /* 8032F380  54 04 ED BA */	rlwinm r4, r0, 0x1d, 0x16, 0x1d
-/* 8032F384  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8032F388  38 03 4A C8 */	addi r0, r3, j3dSys@l
+/* 8032F384  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8032F388  38 03 4A C8 */	addi r0, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8032F38C  7C 60 22 14 */	add r3, r0, r4
 /* 8032F390  80 83 00 48 */	lwz r4, 0x48(r3)
 /* 8032F394  7F A3 EB 78 */	mr r3, r29

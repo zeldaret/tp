@@ -9,8 +9,8 @@ lbl_80B9DA00:
 /* 80B9DA1C  98 03 07 44 */	stb r0, 0x744(r3)
 /* 80B9DA20  48 00 00 14 */	b lbl_80B9DA34
 lbl_80B9DA24:
-/* 80B9DA24  3C 80 80 BA */	lis r4, lit_3825@ha
-/* 80B9DA28  C0 04 E9 48 */	lfs f0, lit_3825@l(r4)
+/* 80B9DA24  3C 80 80 BA */	lis r4, lit_3825@ha /* 0x80B9E948@ha */
+/* 80B9DA28  C0 04 E9 48 */	lfs f0, lit_3825@l(r4)  /* 0x80B9E948@l */
 /* 80B9DA2C  D0 03 07 4C */	stfs f0, 0x74c(r3)
 /* 80B9DA30  48 00 00 15 */	bl init_modeDrop__10daTurara_cFv
 lbl_80B9DA34:

@@ -10,8 +10,8 @@ lbl_80007954:
 /* 80007974  48 2D 8D 69 */	bl __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 /* 80007978  7C 60 1B 78 */	mr r0, r3
 lbl_8000797C:
-/* 8000797C  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 80007980  94 03 D2 D8 */	stwu r0, m_gamePad__8mDoCPd_c@l(r3)
+/* 8000797C  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 80007980  94 03 D2 D8 */	stwu r0, m_gamePad__8mDoCPd_c@l(r3)  /* 0x803DD2D8@l */
 /* 80007984  88 0D 80 00 */	lbz r0, data_80450580(r13)
 /* 80007988  7C 00 07 75 */	extsb. r0, r0
 /* 8000798C  41 82 00 80 */	beq lbl_80007A0C
@@ -23,8 +23,8 @@ lbl_8000797C:
 /* 800079A4  48 2D 8D 39 */	bl __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 /* 800079A8  7C 60 1B 78 */	mr r0, r3
 lbl_800079AC:
-/* 800079AC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 800079B0  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 800079AC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 800079B0  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 800079B4  90 03 00 04 */	stw r0, 4(r3)
 /* 800079B8  38 60 00 B0 */	li r3, 0xb0
 /* 800079BC  48 2C 72 91 */	bl __nw__FUl
@@ -34,8 +34,8 @@ lbl_800079AC:
 /* 800079CC  48 2D 8D 11 */	bl __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 /* 800079D0  7C 60 1B 78 */	mr r0, r3
 lbl_800079D4:
-/* 800079D4  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 800079D8  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 800079D4  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 800079D8  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 800079DC  90 03 00 08 */	stw r0, 8(r3)
 /* 800079E0  38 60 00 B0 */	li r3, 0xb0
 /* 800079E4  48 2C 72 69 */	bl __nw__FUl
@@ -45,8 +45,8 @@ lbl_800079D4:
 /* 800079F4  48 2D 8C E9 */	bl __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 /* 800079F8  7C 60 1B 78 */	mr r0, r3
 lbl_800079FC:
-/* 800079FC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 80007A00  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 800079FC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 80007A00  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 80007A04  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80007A08  48 00 00 14 */	b lbl_80007A1C
 lbl_80007A0C:
@@ -61,8 +61,8 @@ lbl_80007A1C:
 /* 80007A28  40 82 00 1C */	bne lbl_80007A44
 /* 80007A2C  38 80 00 00 */	li r4, 0
 /* 80007A30  98 8D 8F 81 */	stb r4, struct_80451500+0x1(r13)
-/* 80007A34  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
-/* 80007A38  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
+/* 80007A34  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha /* 0x8001574C@ha */
+/* 80007A38  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l /* 0x8001574C@l */
 /* 80007A3C  90 0D 8F 6C */	stw r0, sCallback__Q210JUTGamePad13C3ButtonReset(r13)
 /* 80007A40  90 8D 8F 70 */	stw r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset(r13)
 lbl_80007A44:
@@ -70,8 +70,8 @@ lbl_80007A44:
 /* 80007A48  90 0D 8F 5C */	stw r0, sAnalogMode__10JUTGamePad(r13)
 /* 80007A4C  38 60 00 03 */	li r3, 3
 /* 80007A50  48 34 7F C1 */	bl PADSetAnalogMode
-/* 80007A54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80007A58  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80007A54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80007A58  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80007A5C  7C 04 03 78 */	mr r4, r0
 /* 80007A60  38 60 00 00 */	li r3, 0
 /* 80007A64  38 00 00 04 */	li r0, 4

@@ -7,8 +7,8 @@ lbl_804BA098:
 /* 804BA0AC  A8 03 13 B4 */	lha r0, 0x13b4(r3)
 /* 804BA0B0  2C 00 00 00 */	cmpwi r0, 0
 /* 804BA0B4  41 82 00 80 */	beq lbl_804BA134
-/* 804BA0B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804BA0BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804BA0B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804BA0BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804BA0C0  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 804BA0C4  7C 00 07 74 */	extsb r0, r0
 /* 804BA0C8  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -31,13 +31,13 @@ lbl_804BA098:
 /* 804BA10C  38 A1 00 08 */	addi r5, r1, 8
 /* 804BA110  C0 26 14 08 */	lfs f1, 0x1408(r6)
 /* 804BA114  38 C0 00 00 */	li r6, 0
-/* 804BA118  4B CC 6A 88 */	b Reset__9dCamera_cF4cXyz4cXyzfs
+/* 804BA118  4B CC 6A 89 */	bl Reset__9dCamera_cF4cXyz4cXyzfs
 /* 804BA11C  38 7F 02 48 */	addi r3, r31, 0x248
-/* 804BA120  4B CA 73 8C */	b Start__9dCamera_cFv
+/* 804BA120  4B CA 73 8D */	bl Start__9dCamera_cFv
 /* 804BA124  38 7F 02 48 */	addi r3, r31, 0x248
 /* 804BA128  38 80 00 00 */	li r4, 0
-/* 804BA12C  4B CA 8E E0 */	b SetTrimSize__9dCamera_cFl
-/* 804BA130  4B D3 FF 9C */	b dMw_onMenuRing__Fv
+/* 804BA12C  4B CA 8E E1 */	bl SetTrimSize__9dCamera_cFl
+/* 804BA130  4B D3 FF 9D */	bl dMw_onMenuRing__Fv
 lbl_804BA134:
 /* 804BA134  38 60 00 01 */	li r3, 1
 /* 804BA138  83 E1 00 2C */	lwz r31, 0x2c(r1)

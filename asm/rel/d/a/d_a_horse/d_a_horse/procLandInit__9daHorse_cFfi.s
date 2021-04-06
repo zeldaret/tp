@@ -5,14 +5,14 @@ lbl_80843604:
 /* 80843610  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80843614  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80843618  39 61 00 30 */	addi r11, r1, 0x30
-/* 8084361C  4B B1 EB C0 */	b _savegpr_29
+/* 8084361C  4B B1 EB C1 */	bl _savegpr_29
 /* 80843620  7C 7F 1B 78 */	mr r31, r3
 /* 80843624  FF E0 08 90 */	fmr f31, f1
 /* 80843628  7C 9D 23 78 */	mr r29, r4
-/* 8084362C  3C 80 80 84 */	lis r4, lit_3894@ha
-/* 80843630  3B C4 54 AC */	addi r30, r4, lit_3894@l
-/* 80843634  3C 80 80 84 */	lis r4, lit_10113@ha
-/* 80843638  38 A4 5A 0C */	addi r5, r4, lit_10113@l
+/* 8084362C  3C 80 80 84 */	lis r4, lit_3894@ha /* 0x808454AC@ha */
+/* 80843630  3B C4 54 AC */	addi r30, r4, lit_3894@l /* 0x808454AC@l */
+/* 80843634  3C 80 80 84 */	lis r4, lit_10113@ha /* 0x80845A0C@ha */
+/* 80843638  38 A4 5A 0C */	addi r5, r4, lit_10113@l /* 0x80845A0C@l */
 /* 8084363C  80 85 00 00 */	lwz r4, 0(r5)
 /* 80843640  80 05 00 04 */	lwz r0, 4(r5)
 /* 80843644  90 83 18 A4 */	stw r4, 0x18a4(r3)
@@ -27,13 +27,13 @@ lbl_80843604:
 /* 80843668  C0 1E 01 48 */	lfs f0, 0x148(r30)
 /* 8084366C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80843670  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80843674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80843678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80843674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80843678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8084367C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80843680  38 80 00 02 */	li r4, 2
 /* 80843684  38 A0 00 01 */	li r5, 1
 /* 80843688  38 C1 00 08 */	addi r6, r1, 8
-/* 8084368C  4B 82 C3 98 */	b StartShock__12dVibration_cFii4cXyz
+/* 8084368C  4B 82 C3 99 */	bl StartShock__12dVibration_cFii4cXyz
 /* 80843690  2C 1D 00 00 */	cmpwi r29, 0
 /* 80843694  41 82 00 38 */	beq lbl_808436CC
 /* 80843698  7F E3 FB 78 */	mr r3, r31
@@ -88,7 +88,7 @@ lbl_80843718:
 /* 80843750  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80843754  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80843758  39 61 00 30 */	addi r11, r1, 0x30
-/* 8084375C  4B B1 EA CC */	b _restgpr_29
+/* 8084375C  4B B1 EA CD */	bl _restgpr_29
 /* 80843760  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80843764  7C 08 03 A6 */	mtlr r0
 /* 80843768  38 21 00 40 */	addi r1, r1, 0x40

@@ -5,12 +5,12 @@ lbl_803384FC:
 /* 80338508  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8033850C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80338510  41 82 00 30 */	beq lbl_80338540
-/* 80338514  3C 60 80 3D */	lis r3, __vt__19J3DAnmKeyLoader_v15@ha
-/* 80338518  38 03 F2 38 */	addi r0, r3, __vt__19J3DAnmKeyLoader_v15@l
+/* 80338514  3C 60 80 3D */	lis r3, __vt__19J3DAnmKeyLoader_v15@ha /* 0x803CF238@ha */
+/* 80338518  38 03 F2 38 */	addi r0, r3, __vt__19J3DAnmKeyLoader_v15@l /* 0x803CF238@l */
 /* 8033851C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80338520  41 82 00 10 */	beq lbl_80338530
-/* 80338524  3C 60 80 3D */	lis r3, __vt__12J3DAnmLoader@ha
-/* 80338528  38 03 F2 60 */	addi r0, r3, __vt__12J3DAnmLoader@l
+/* 80338524  3C 60 80 3D */	lis r3, __vt__12J3DAnmLoader@ha /* 0x803CF260@ha */
+/* 80338528  38 03 F2 60 */	addi r0, r3, __vt__12J3DAnmLoader@l /* 0x803CF260@l */
 /* 8033852C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80338530:
 /* 80338530  7C 80 07 35 */	extsh. r0, r4

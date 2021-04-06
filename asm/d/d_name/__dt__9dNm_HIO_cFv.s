@@ -5,8 +5,8 @@ lbl_802511A4:
 /* 802511B0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802511B4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802511B8  41 82 00 1C */	beq lbl_802511D4
-/* 802511BC  3C A0 80 3C */	lis r5, __vt__9dNm_HIO_c@ha
-/* 802511C0  38 05 2B 7C */	addi r0, r5, __vt__9dNm_HIO_c@l
+/* 802511BC  3C A0 80 3C */	lis r5, __vt__9dNm_HIO_c@ha /* 0x803C2B7C@ha */
+/* 802511C0  38 05 2B 7C */	addi r0, r5, __vt__9dNm_HIO_c@l /* 0x803C2B7C@l */
 /* 802511C4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802511C8  7C 80 07 35 */	extsh. r0, r4
 /* 802511CC  40 81 00 08 */	ble lbl_802511D4

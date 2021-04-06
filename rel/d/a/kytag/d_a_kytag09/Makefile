@@ -3,17 +3,15 @@
 #
 
 M272_TARGET := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09.plf
+M272_LDSCRIPT := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09.lcf
+M272_MAP := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09.map
 
 M272_CPP_FILES := \
-	rel/d/a/kytag/d_a_kytag09/executor.cpp \
-	rel/d/a/kytag/d_a_kytag09/unknown_translation_unit_ctors.cpp \
-	rel/d/a/kytag/d_a_kytag09/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/kytag/d_a_kytag09/d_a_kytag09.cpp \
 
 M272_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/executor.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/d_a_kytag09.o \
 
 M272_LIBS := \
@@ -29,15 +27,21 @@ M272_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map272.map\
+	-m _prolog \
+	-lcf $(M272_LDSCRIPT) \
+	-unused -map $(M272_MAP) \
+	-w off \
 
 $(M272_TARGET): $(M272_O_FILES) $(M272_LIBS)
+	@echo [272] creating $(M272_TARGET)
 	@echo $(M272_LIBS) $(M272_O_FILES) > build/M272_ofiles
-	$(LD) -opt_partial $(M272_LDFLAGS) -o $(M272_TARGET) @build/M272_ofiles
+	@python3 tools/lcf.py rel 272 --output $(M272_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M272_LDFLAGS) -o $(M272_TARGET) @build/M272_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag09/%.o: rel/d/a/kytag/d_a_kytag09/%.cpp
+	@echo [272] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M272_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M272_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

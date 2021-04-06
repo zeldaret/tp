@@ -38,14 +38,14 @@ lbl_802BA7FC:
 /* 802BA88C  90 77 00 00 */	stw r3, 0(r23)
 /* 802BA890  3B 40 00 00 */	li r26, 0
 /* 802BA894  3A C1 00 08 */	addi r22, r1, 8
-/* 802BA898  3C 60 80 3C */	lis r3, __vt__10JSUIosBase@ha
-/* 802BA89C  3B 83 2D F8 */	addi r28, r3, __vt__10JSUIosBase@l
-/* 802BA8A0  3C 60 80 3D */	lis r3, __vt__14JSUInputStream@ha
-/* 802BA8A4  3B A3 C4 D4 */	addi r29, r3, __vt__14JSUInputStream@l
-/* 802BA8A8  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha
-/* 802BA8AC  3B C3 C4 B0 */	addi r30, r3, __vt__20JSURandomInputStream@l
-/* 802BA8B0  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha
-/* 802BA8B4  3B E3 C4 F0 */	addi r31, r3, __vt__20JSUMemoryInputStream@l
+/* 802BA898  3C 60 80 3C */	lis r3, __vt__10JSUIosBase@ha /* 0x803C2DF8@ha */
+/* 802BA89C  3B 83 2D F8 */	addi r28, r3, __vt__10JSUIosBase@l /* 0x803C2DF8@l */
+/* 802BA8A0  3C 60 80 3D */	lis r3, __vt__14JSUInputStream@ha /* 0x803CC4D4@ha */
+/* 802BA8A4  3B A3 C4 D4 */	addi r29, r3, __vt__14JSUInputStream@l /* 0x803CC4D4@l */
+/* 802BA8A8  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 802BA8AC  3B C3 C4 B0 */	addi r30, r3, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
+/* 802BA8B0  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 802BA8B4  3B E3 C4 F0 */	addi r31, r3, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 802BA8B8  48 00 03 20 */	b lbl_802BABD8
 lbl_802BA8BC:
 /* 802BA8BC  7F 03 C3 78 */	mr r3, r24

@@ -3,19 +3,20 @@
 #
 
 M693_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag.plf
+M693_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag.lcf
+M693_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag.map
 
 M693_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_yel_bag/executor.cpp \
-	rel/d/a/obj/d_a_obj_yel_bag/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_yel_bag/d_a_obj_yel_bag.cpp \
 
 M693_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/d_a_obj_yel_bag.o \
 
 M693_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/libRuntime.PPCEABI.H.a \
 
 M693_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M693_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map693.map\
+	-m _prolog \
+	-lcf $(M693_LDSCRIPT) \
+	-unused -map $(M693_MAP) \
+	-w off \
 
 $(M693_TARGET): $(M693_O_FILES) $(M693_LIBS)
+	@echo [693] creating $(M693_TARGET)
 	@echo $(M693_LIBS) $(M693_O_FILES) > build/M693_ofiles
-	$(LD) -opt_partial $(M693_LDFLAGS) -o $(M693_TARGET) @build/M693_ofiles
+	@python3 tools/lcf.py rel 693 --output $(M693_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M693_LDFLAGS) -o $(M693_TARGET) @build/M693_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_yel_bag/%.o: rel/d/a/obj/d_a_obj_yel_bag/%.cpp
+	@echo [693] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M693_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M693_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_yel_bag/libs/Runtime.PPCEABI.H/Makefile
 

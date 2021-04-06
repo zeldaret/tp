@@ -5,8 +5,8 @@ lbl_80290F24:
 /* 80290F30  2C 03 00 10 */	cmpwi r3, 0x10
 /* 80290F34  40 80 00 20 */	bge lbl_80290F54
 /* 80290F38  54 60 10 3A */	slwi r0, r3, 2
-/* 80290F3C  3C 60 80 43 */	lis r3, sProbeTable__8JASProbe@ha
-/* 80290F40  38 63 16 20 */	addi r3, r3, sProbeTable__8JASProbe@l
+/* 80290F3C  3C 60 80 43 */	lis r3, sProbeTable__8JASProbe@ha /* 0x80431620@ha */
+/* 80290F40  38 63 16 20 */	addi r3, r3, sProbeTable__8JASProbe@l /* 0x80431620@l */
 /* 80290F44  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80290F48  28 03 00 00 */	cmplwi r3, 0
 /* 80290F4C  41 82 00 08 */	beq lbl_80290F54

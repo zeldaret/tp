@@ -8,8 +8,8 @@ lbl_802C4FFC:
 /* 802C5014  38 7F 00 90 */	addi r3, r31, 0x90
 /* 802C5018  7F E4 FB 78 */	mr r4, r31
 /* 802C501C  48 00 02 19 */	bl __ct__18Z2RideSoundStarterFP14Z2CreatureRide
-/* 802C5020  3C 60 80 3D */	lis r3, __vt__14Z2CreatureRide@ha
-/* 802C5024  38 63 B9 24 */	addi r3, r3, __vt__14Z2CreatureRide@l
+/* 802C5020  3C 60 80 3D */	lis r3, __vt__14Z2CreatureRide@ha /* 0x803CB924@ha */
+/* 802C5024  38 63 B9 24 */	addi r3, r3, __vt__14Z2CreatureRide@l /* 0x803CB924@l */
 /* 802C5028  90 7F 00 00 */	stw r3, 0(r31)
 /* 802C502C  38 03 00 30 */	addi r0, r3, 0x30
 /* 802C5030  90 1F 00 90 */	stw r0, 0x90(r31)

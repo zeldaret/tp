@@ -9,10 +9,10 @@ lbl_8045AAF0:
 /* 8045AB0C  40 82 00 20 */	bne lbl_8045AB2C
 /* 8045AB10  88 1F 0C D2 */	lbz r0, 0xcd2(r31)
 /* 8045AB14  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8045AB18  3C 80 80 46 */	lis r4, mTgSetFunc__9daBgObj_c@ha
-/* 8045AB1C  38 04 CC 98 */	addi r0, r4, mTgSetFunc__9daBgObj_c@l
+/* 8045AB18  3C 80 80 46 */	lis r4, mTgSetFunc__9daBgObj_c@ha /* 0x8045CC98@ha */
+/* 8045AB1C  38 04 CC 98 */	addi r0, r4, mTgSetFunc__9daBgObj_c@l /* 0x8045CC98@l */
 /* 8045AB20  7D 80 2A 14 */	add r12, r0, r5
-/* 8045AB24  4B F0 75 60 */	b __ptmf_scall
+/* 8045AB24  4B F0 75 61 */	bl __ptmf_scall
 /* 8045AB28  60 00 00 00 */	nop 
 lbl_8045AB2C:
 /* 8045AB2C  88 1F 0C E6 */	lbz r0, 0xce6(r31)

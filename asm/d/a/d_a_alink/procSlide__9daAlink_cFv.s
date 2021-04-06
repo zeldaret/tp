@@ -7,8 +7,8 @@ lbl_800C4514:
 /* 800C4528  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 800C452C  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 800C4530  7C 7E 1B 78 */	mr r30, r3
-/* 800C4534  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800C4538  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800C4534  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800C4538  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800C453C  90 01 00 18 */	stw r0, 0x18(r1)
 /* 800C4540  38 81 00 08 */	addi r4, r1, 8
 /* 800C4544  4B FE DA 95 */	bl getSlidePolygon__9daAlink_cFP8cM3dGPla
@@ -24,8 +24,8 @@ lbl_800C4514:
 /* 800C456C  A8 1E 2F E2 */	lha r0, 0x2fe2(r30)
 /* 800C4570  7C 03 00 50 */	subf r0, r3, r0
 /* 800C4574  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800C4578  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C457C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800C4578  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C457C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C4580  7C 23 04 2E */	lfsx f1, r3, r0
 /* 800C4584  C0 1E 33 A8 */	lfs f0, 0x33a8(r30)
 /* 800C4588  EF E0 00 72 */	fmuls f31, f0, f1
@@ -113,8 +113,8 @@ lbl_800C468C:
 /* 800C46B4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C46B8  40 81 00 C4 */	ble lbl_800C477C
 lbl_800C46BC:
-/* 800C46BC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_slide_c0@ha
-/* 800C46C0  38 63 D8 CC */	addi r3, r3, m__19daAlinkHIO_slide_c0@l
+/* 800C46BC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_slide_c0@ha /* 0x8038D8CC@ha */
+/* 800C46C0  38 63 D8 CC */	addi r3, r3, m__19daAlinkHIO_slide_c0@l /* 0x8038D8CC@l */
 /* 800C46C4  C0 A3 00 54 */	lfs f5, 0x54(r3)
 /* 800C46C8  C0 DE 05 94 */	lfs f6, 0x594(r30)
 /* 800C46CC  80 1E 05 70 */	lwz r0, 0x570(r30)
@@ -124,8 +124,8 @@ lbl_800C46BC:
 /* 800C46DC  EC A5 00 32 */	fmuls f5, f5, f0
 /* 800C46E0  EC C6 00 32 */	fmuls f6, f6, f0
 lbl_800C46E4:
-/* 800C46E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C46E8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800C46E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C46E8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C46EC  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 800C46F0  7C 1F 00 50 */	subf r0, r31, r0
 /* 800C46F4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
@@ -166,8 +166,8 @@ lbl_800C4770:
 /* 800C4774  80 9E 31 98 */	lwz r4, 0x3198(r30)
 /* 800C4778  48 00 00 35 */	bl procSlideLandInit__9daAlink_cFi
 lbl_800C477C:
-/* 800C477C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800C4780  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800C477C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800C4780  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800C4784  90 01 00 18 */	stw r0, 0x18(r1)
 /* 800C4788  38 60 00 01 */	li r3, 1
 /* 800C478C  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */

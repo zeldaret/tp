@@ -2,8 +2,8 @@ lbl_8018DEBC:
 /* 8018DEBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DEC0  7C 08 02 A6 */	mflr r0
 /* 8018DEC4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8018DEC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8018DECC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8018DEC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018DECC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018DED0  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 8018DED4  80 63 00 04 */	lwz r3, 4(r3)
 /* 8018DED8  C0 22 9F 48 */	lfs f1, lit_4778(r2)

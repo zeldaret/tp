@@ -41,8 +41,8 @@ lbl_8032F050:
 /* 8032F050  88 1C 00 17 */	lbz r0, 0x17(r28)
 /* 8032F054  28 00 00 01 */	cmplwi r0, 1
 /* 8032F058  40 82 00 8C */	bne lbl_8032F0E4
-/* 8032F05C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha
-/* 8032F060  C4 03 4C 20 */	lfsu f0, mParentS__6J3DSys@l(r3)
+/* 8032F05C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha /* 0x80434C20@ha */
+/* 8032F060  C4 03 4C 20 */	lfsu f0, mParentS__6J3DSys@l(r3)  /* 0x80434C20@l */
 /* 8032F064  EC 20 00 30 */	fres f1, f0
 /* 8032F068  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8032F06C  EC 40 00 30 */	fres f2, f0
@@ -76,18 +76,18 @@ lbl_8032F050:
 /* 8032F0DC  EC 00 00 F2 */	fmuls f0, f0, f3
 /* 8032F0E0  D0 1D 00 28 */	stfs f0, 0x28(r29)
 lbl_8032F0E4:
-/* 8032F0E4  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032F0E8  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032F0E4  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032F0E8  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032F0EC  7F A4 EB 78 */	mr r4, r29
 /* 8032F0F0  7C 65 1B 78 */	mr r5, r3
 /* 8032F0F4  48 01 73 F1 */	bl PSMTXConcat
-/* 8032F0F8  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032F0FC  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032F0F8  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032F0FC  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032F100  7F A4 EB 78 */	mr r4, r29
 /* 8032F104  48 01 73 AD */	bl PSMTXCopy
 /* 8032F108  C0 1F 00 00 */	lfs f0, 0(r31)
-/* 8032F10C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha
-/* 8032F110  D4 03 4C 20 */	stfsu f0, mParentS__6J3DSys@l(r3)
+/* 8032F10C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha /* 0x80434C20@ha */
+/* 8032F110  D4 03 4C 20 */	stfsu f0, mParentS__6J3DSys@l(r3)  /* 0x80434C20@l */
 /* 8032F114  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 8032F118  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8032F11C  C0 1F 00 08 */	lfs f0, 8(r31)

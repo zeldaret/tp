@@ -23,8 +23,8 @@ lbl_802325A0:
 /* 802325BC  7C 66 1B 78 */	mr r6, r3
 lbl_802325C0:
 /* 802325C0  38 61 00 08 */	addi r3, r1, 8
-/* 802325C4  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 802325C8  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 802325C4  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 802325C8  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 802325CC  38 84 00 18 */	addi r4, r4, 0x18
 /* 802325D0  7F E5 FB 78 */	mr r5, r31
 /* 802325D4  4C C6 31 82 */	crclr 6

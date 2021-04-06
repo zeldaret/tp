@@ -3,19 +3,20 @@
 #
 
 M172_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_ba.plf
+M172_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_ba.lcf
+M172_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_ba.map
 
 M172_CPP_FILES := \
-	rel/d/a/e/d_a_e_ba/executor.cpp \
-	rel/d/a/e/d_a_e_ba/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_ba/d_a_e_ba.cpp \
 
 M172_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ba/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ba/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_ba/d_a_e_ba.o \
 
 M172_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ba/libRuntime.PPCEABI.H.a \
 
 M172_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M172_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map172.map\
+	-m _prolog \
+	-lcf $(M172_LDSCRIPT) \
+	-unused -map $(M172_MAP) \
+	-w off \
 
 $(M172_TARGET): $(M172_O_FILES) $(M172_LIBS)
+	@echo [172] creating $(M172_TARGET)
 	@echo $(M172_LIBS) $(M172_O_FILES) > build/M172_ofiles
-	$(LD) -opt_partial $(M172_LDFLAGS) -o $(M172_TARGET) @build/M172_ofiles
+	@python3 tools/lcf.py rel 172 --output $(M172_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M172_LDFLAGS) -o $(M172_TARGET) @build/M172_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ba/%.o: rel/d/a/e/d_a_e_ba/%.cpp
+	@echo [172] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M172_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M172_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_ba/libs/Runtime.PPCEABI.H/Makefile
 

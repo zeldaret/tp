@@ -6,13 +6,13 @@ lbl_8053496C:
 /* 8053497C  7C 7F 1B 78 */	mr r31, r3
 /* 80534980  38 7F 05 AC */	addi r3, r31, 0x5ac
 /* 80534984  80 9F 05 FC */	lwz r4, 0x5fc(r31)
-/* 80534988  4B AF 86 80 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80534988  4B AF 86 81 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8053498C  88 1F 0C 3F */	lbz r0, 0xc3f(r31)
 /* 80534990  28 00 00 00 */	cmplwi r0, 0
 /* 80534994  41 82 00 10 */	beq lbl_805349A4
 /* 80534998  38 00 00 00 */	li r0, 0
-/* 8053499C  3C 60 80 53 */	lis r3, struct_80536BBC+0x2@ha
-/* 805349A0  98 03 6B BE */	stb r0, struct_80536BBC+0x2@l(r3)
+/* 8053499C  3C 60 80 53 */	lis r3, struct_80536BBC+0x2@ha /* 0x80536BBE@ha */
+/* 805349A0  98 03 6B BE */	stb r0, struct_80536BBC+0x2@l(r3)  /* 0x80536BBE@l */
 lbl_805349A4:
 /* 805349A4  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 805349A8  28 00 00 00 */	cmplwi r0, 0

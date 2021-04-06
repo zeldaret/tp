@@ -9,7 +9,7 @@ lbl_8054080C:
 /* 80540828  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8054082C  28 00 00 00 */	cmplwi r0, 0
 /* 80540830  40 82 00 1C */	bne lbl_8054084C
-/* 80540834  4B AE F2 20 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80540834  4B AE F2 21 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80540838  2C 03 00 00 */	cmpwi r3, 0
 /* 8054083C  40 82 00 14 */	bne lbl_80540850
 /* 80540840  88 1E 0A 89 */	lbz r0, 0xa89(r30)

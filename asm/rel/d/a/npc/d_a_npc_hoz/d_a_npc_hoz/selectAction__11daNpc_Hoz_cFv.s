@@ -1,8 +1,8 @@
 lbl_80A02F80:
-/* 80A02F80  3C 80 80 A0 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80A02F84  38 C4 68 04 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80A02F88  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80A02F8C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80A02F80  3C 80 80 A0 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80A06804@ha */
+/* 80A02F84  38 C4 68 04 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80A06804@l */
+/* 80A02F88  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A02F8C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80A02F90  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A02F94  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A02F98  90 83 0F AC */	stw r4, 0xfac(r3)

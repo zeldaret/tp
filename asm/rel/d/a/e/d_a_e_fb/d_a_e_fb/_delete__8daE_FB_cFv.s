@@ -5,9 +5,9 @@ lbl_806B85C8:
 /* 806B85D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806B85D8  7C 7F 1B 78 */	mr r31, r3
 /* 806B85DC  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 806B85E0  3C 80 80 6C */	lis r4, stringBase0@ha
-/* 806B85E4  38 84 90 28 */	addi r4, r4, stringBase0@l
-/* 806B85E8  4B 97 4A 20 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 806B85E0  3C 80 80 6C */	lis r4, d_a_e_fb__stringBase0@ha /* 0x806B9028@ha */
+/* 806B85E4  38 84 90 28 */	addi r4, r4, d_a_e_fb__stringBase0@l /* 0x806B9028@l */
+/* 806B85E8  4B 97 4A 21 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 806B85EC  88 1F 06 A0 */	lbz r0, 0x6a0(r31)
 /* 806B85F0  28 00 00 0A */	cmplwi r0, 0xa
 /* 806B85F4  41 82 00 0C */	beq lbl_806B8600
@@ -21,8 +21,8 @@ lbl_806B8608:
 /* 806B860C  28 00 00 00 */	cmplwi r0, 0
 /* 806B8610  41 82 00 10 */	beq lbl_806B8620
 /* 806B8614  38 00 00 00 */	li r0, 0
-/* 806B8618  3C 60 80 6C */	lis r3, struct_806B91EC+0x1@ha
-/* 806B861C  98 03 91 ED */	stb r0, struct_806B91EC+0x1@l(r3)
+/* 806B8618  3C 60 80 6C */	lis r3, struct_806B91EC+0x1@ha /* 0x806B91ED@ha */
+/* 806B861C  98 03 91 ED */	stb r0, struct_806B91EC+0x1@l(r3)  /* 0x806B91ED@l */
 lbl_806B8620:
 /* 806B8620  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 806B8624  28 00 00 00 */	cmplwi r0, 0

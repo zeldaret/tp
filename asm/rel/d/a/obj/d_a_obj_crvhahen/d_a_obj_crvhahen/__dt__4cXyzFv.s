@@ -7,7 +7,7 @@ lbl_80BD36E4:
 /* 80BD36F8  41 82 00 10 */	beq lbl_80BD3708
 /* 80BD36FC  7C 80 07 35 */	extsh. r0, r4
 /* 80BD3700  40 81 00 08 */	ble lbl_80BD3708
-/* 80BD3704  4B 6F B6 38 */	b __dl__FPv
+/* 80BD3704  4B 6F B6 39 */	bl __dl__FPv
 lbl_80BD3708:
 /* 80BD3708  7F E3 FB 78 */	mr r3, r31
 /* 80BD370C  83 E1 00 0C */	lwz r31, 0xc(r1)

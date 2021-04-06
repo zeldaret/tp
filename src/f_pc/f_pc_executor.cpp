@@ -25,15 +25,6 @@ struct base_process_class {};
 // Forward References:
 //
 
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void fpcEx_SearchByID(unsigned int);
-void fpcEx_IsExist(unsigned int);
-void fpcEx_Execute(base_process_class*);
-static void fpcEx_ToLineQ(base_process_class*);
-void fpcEx_ExecuteQTo(base_process_class*);
-void fpcEx_ToExecuteQ(base_process_class*);
-void fpcEx_Handler(int (*)(void*, void*));
-
 extern "C" void fpcEx_Search__FPFPvPv_PvPv();
 extern "C" void fpcEx_SearchByID__FUi();
 extern "C" void fpcEx_IsExist__FUi();
@@ -46,18 +37,6 @@ extern "C" void fpcEx_Handler__FPFPvPv_i();
 //
 // External References:
 //
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_Execute(base_process_class*);
-void fpcLyIt_OnlyHere(layer_class*, int (*)(void*, void*), void*);
-void fpcLyIt_AllJudge(void* (*)(void*, void*), void*);
-void fpcLyTg_ToQueue(layer_management_tag_class*, unsigned int, u16, u16);
-void fpcLyTg_QueueTo(layer_management_tag_class*);
-void fpcSch_JudgeByID(void*, void*);
-void fpcLnTg_ToQueue(line_tag*, int);
-void fpcLnIt_Queue(int (*)(void*, void*));
-void fpcPause_IsEnable(void*, u8);
-void cTg_IsUse(create_tag_class*);
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_Execute__FP18base_process_class();
@@ -76,8 +55,7 @@ extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80021338-80021358 0020+00 s=1 e=9 z=291  None .text      fpcEx_Search__FPFPvPv_PvPv */
-//	80021344: 80021C60 (fpcLyIt_AllJudge__FPFPvPv_PvPv)
+/* 80021338-80021358 01BC78 0020+00 1/1 9/9 291/291 .text            fpcEx_Search__FPFPvPv_PvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,10 +65,7 @@ asm void fpcEx_Search(void* (*)(void*, void*), void* param_1) {
 }
 #pragma pop
 
-/* 80021358-8002139C 0044+00 s=1 e=5 z=30  None .text      fpcEx_SearchByID__FUi */
-//	8002137C: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80021380: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80021388: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
+/* 80021358-8002139C 01BC98 0044+00 1/1 5/5 30/30 .text            fpcEx_SearchByID__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -100,8 +75,7 @@ asm void fpcEx_SearchByID(unsigned int param_0) {
 }
 #pragma pop
 
-/* 8002139C-800213C4 0028+00 s=0 e=7 z=42  None .text      fpcEx_IsExist__FUi */
-//	800213A8: 80021358 (fpcEx_SearchByID__FUi)
+/* 8002139C-800213C4 01BCDC 0028+00 0/0 7/7 42/42 .text            fpcEx_IsExist__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -111,9 +85,7 @@ asm void fpcEx_IsExist(unsigned int param_0) {
 }
 #pragma pop
 
-/* 800213C4-80021418 0054+00 s=0 e=1 z=0  None .text      fpcEx_Execute__FP18base_process_class */
-//	800213E8: 80023844 (fpcPause_IsEnable__FPvUc)
-//	80021400: 800206C4 (fpcBs_Execute__FP18base_process_class)
+/* 800213C4-80021418 01BD04 0054+00 0/0 1/1 0/0 .text fpcEx_Execute__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,25 +95,17 @@ asm void fpcEx_Execute(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 80021418-800214C4 00AC+00 s=1 e=0 z=0  None .text      fpcEx_ToLineQ__FP18base_process_class */
-//	80021444: 80266880 (cTg_IsUse__FP16create_tag_class)
-//	80021458: 80023634 (fpcLnTg_ToQueue__FP8line_tagi)
-//	80021468: 80021DCC (fpcLyTg_QueueTo__FP26layer_management_tag_class)
-//	8002147C: 80450D40 (g_fpcNd_type)
-//	80021484: 8002064C (fpcBs_Is_JustOfType__Fii)
-//	800214A0: 80021B88 (fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv)
+/* 80021418-800214C4 01BD58 00AC+00 1/1 0/0 0/0 .text fpcEx_ToLineQ__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcEx_ToLineQ(base_process_class* param_0) {
+static asm void fpcEx_ToLineQ(base_process_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_executor/fpcEx_ToLineQ__FP18base_process_class.s"
 }
 #pragma pop
 
-/* 800214C4-80021510 004C+00 s=0 e=1 z=0  None .text      fpcEx_ExecuteQTo__FP18base_process_class
- */
-//	800214DC: 80021DCC (fpcLyTg_QueueTo__FP26layer_management_tag_class)
+/* 800214C4-80021510 01BE04 004C+00 0/0 1/1 0/0 .text fpcEx_ExecuteQTo__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,10 +115,7 @@ asm void fpcEx_ExecuteQTo(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 80021510-80021568 0058+00 s=0 e=1 z=0  None .text      fpcEx_ToExecuteQ__FP18base_process_class
- */
-//	80021534: 80021CD4 (fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs)
-//	80021544: 80021418 (fpcEx_ToLineQ__FP18base_process_class)
+/* 80021510-80021568 01BE50 0058+00 0/0 1/1 0/0 .text fpcEx_ToExecuteQ__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,8 +125,7 @@ asm void fpcEx_ToExecuteQ(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 80021568-80021588 0020+00 s=0 e=1 z=0  None .text      fpcEx_Handler__FPFPvPv_i */
-//	80021574: 80023728 (fpcLnIt_Queue__FPFPvPv_i)
+/* 80021568-80021588 01BEA8 0020+00 0/0 1/1 0/0 .text            fpcEx_Handler__FPFPvPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -48,8 +48,8 @@ lbl_80188A28:
 /* 80188A48  88 1D 02 67 */	lbz r0, 0x267(r29)
 /* 80188A4C  7C 1E 00 00 */	cmpw r30, r0
 /* 80188A50  40 82 00 38 */	bne lbl_80188A88
-/* 80188A54  3C 60 80 3C */	lis r3, MenuSelStartFrameTbl@ha
-/* 80188A58  38 63 A8 84 */	addi r3, r3, MenuSelStartFrameTbl@l
+/* 80188A54  3C 60 80 3C */	lis r3, MenuSelStartFrameTbl@ha /* 0x803BA884@ha */
+/* 80188A58  38 63 A8 84 */	addi r3, r3, MenuSelStartFrameTbl@l /* 0x803BA884@l */
 /* 80188A5C  7C 03 E0 2E */	lwzx r0, r3, r28
 /* 80188A60  C8 22 9F 38 */	lfd f1, lit_4342(r2)
 /* 80188A64  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -62,8 +62,8 @@ lbl_80188A28:
 /* 80188A80  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80188A84  48 00 00 34 */	b lbl_80188AB8
 lbl_80188A88:
-/* 80188A88  3C 60 80 3C */	lis r3, MenuSelEndFrameTbl@ha
-/* 80188A8C  38 63 A8 90 */	addi r3, r3, MenuSelEndFrameTbl@l
+/* 80188A88  3C 60 80 3C */	lis r3, MenuSelEndFrameTbl@ha /* 0x803BA890@ha */
+/* 80188A8C  38 63 A8 90 */	addi r3, r3, MenuSelEndFrameTbl@l /* 0x803BA890@l */
 /* 80188A90  7C 03 E0 2E */	lwzx r0, r3, r28
 /* 80188A94  C8 22 9F 38 */	lfd f1, lit_4342(r2)
 /* 80188A98  6C 00 80 00 */	xoris r0, r0, 0x8000

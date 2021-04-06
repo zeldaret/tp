@@ -13,14 +13,14 @@ lbl_80101CF4:
 /* 80101D20  4B FB E0 91 */	bl checkZoraWearAbility__9daAlink_cCFv
 /* 80101D24  2C 03 00 00 */	cmpwi r3, 0
 /* 80101D28  41 82 00 18 */	beq lbl_80101D40
-/* 80101D2C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 80101D30  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 80101D2C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 80101D30  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 80101D34  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 80101D38  EF FF 00 32 */	fmuls f31, f31, f0
 /* 80101D3C  48 00 00 14 */	b lbl_80101D50
 lbl_80101D40:
-/* 80101D40  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 80101D44  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 80101D40  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 80101D44  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 80101D48  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 80101D4C  EF FF 00 32 */	fmuls f31, f31, f0
 lbl_80101D50:

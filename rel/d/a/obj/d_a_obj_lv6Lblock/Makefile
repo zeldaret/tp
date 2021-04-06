@@ -3,19 +3,20 @@
 #
 
 M546_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock.plf
+M546_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock.lcf
+M546_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock.map
 
 M546_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6Lblock/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6Lblock/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6Lblock/d_a_obj_lv6Lblock.cpp \
 
 M546_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/d_a_obj_lv6Lblock.o \
 
 M546_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/libRuntime.PPCEABI.H.a \
 
 M546_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M546_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map546.map\
+	-m _prolog \
+	-lcf $(M546_LDSCRIPT) \
+	-unused -map $(M546_MAP) \
+	-w off \
 
 $(M546_TARGET): $(M546_O_FILES) $(M546_LIBS)
+	@echo [546] creating $(M546_TARGET)
 	@echo $(M546_LIBS) $(M546_O_FILES) > build/M546_ofiles
-	$(LD) -opt_partial $(M546_LDFLAGS) -o $(M546_TARGET) @build/M546_ofiles
+	@python3 tools/lcf.py rel 546 --output $(M546_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M546_LDFLAGS) -o $(M546_TARGET) @build/M546_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6Lblock/%.o: rel/d/a/obj/d_a_obj_lv6Lblock/%.cpp
+	@echo [546] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M546_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6Lblock/libs/Runtime.PPCEABI.H/Makefile
 

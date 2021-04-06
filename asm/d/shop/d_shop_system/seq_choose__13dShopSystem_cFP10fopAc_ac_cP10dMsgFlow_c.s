@@ -7,8 +7,8 @@ lbl_80199D14:
 /* 80199D28  7C 7E 1B 78 */	mr r30, r3
 /* 80199D2C  7C BF 2B 78 */	mr r31, r5
 /* 80199D30  38 00 00 22 */	li r0, 0x22
-/* 80199D34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80199D38  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 80199D34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80199D38  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80199D3C  98 05 5E 3C */	stb r0, 0x5e3c(r5)
 /* 80199D40  38 60 00 00 */	li r3, 0
 /* 80199D44  98 65 5E 57 */	stb r3, 0x5e57(r5)

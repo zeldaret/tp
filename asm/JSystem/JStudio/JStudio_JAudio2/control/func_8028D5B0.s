@@ -13,8 +13,8 @@ lbl_8028D5B0:
 /* 8028D5DC  41 82 00 08 */	beq lbl_8028D5E4
 /* 8028D5E0  48 00 00 10 */	b lbl_8028D5F0
 lbl_8028D5E4:
-/* 8028D5E4  3C 60 80 29 */	lis r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@ha
-/* 8028D5E8  39 83 D6 24 */	addi r12, r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@l
+/* 8028D5E4  3C 60 80 29 */	lis r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@ha /* 0x8028D624@ha */
+/* 8028D5E8  39 83 D6 24 */	addi r12, r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@l /* 0x8028D624@l */
 /* 8028D5EC  48 00 00 0C */	b lbl_8028D5F8
 lbl_8028D5F0:
 /* 8028D5F0  38 60 00 00 */	li r3, 0

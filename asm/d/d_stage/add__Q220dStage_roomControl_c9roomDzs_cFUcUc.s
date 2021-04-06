@@ -17,17 +17,17 @@ lbl_80024B70:
 /* 80024B7C  28 00 00 00 */	cmplwi r0, 0
 /* 80024B80  40 82 00 80 */	bne lbl_80024C00
 /* 80024B84  38 61 00 08 */	addi r3, r1, 8
-/* 80024B88  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha
-/* 80024B8C  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l
+/* 80024B88  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80024B8C  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80024B90  38 84 00 C6 */	addi r4, r4, 0xc6
-/* 80024B94  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80024B98  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80024B94  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80024B98  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80024B9C  38 A5 4E 00 */	addi r5, r5, 0x4e00
 /* 80024BA0  54 C6 06 3E */	clrlwi r6, r6, 0x18
 /* 80024BA4  4C C6 31 82 */	crclr 6
 /* 80024BA8  48 34 19 35 */	bl sprintf
-/* 80024BAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80024BB0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80024BAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80024BB0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80024BB4  80 7F 5C 68 */	lwz r3, 0x5c68(r31)
 /* 80024BB8  38 81 00 08 */	addi r4, r1, 8
 /* 80024BBC  48 00 DB 7D */	bl dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc

@@ -16,8 +16,8 @@ lbl_8013AD20:
 /* 8013AD28  98 1E 2F 99 */	stb r0, 0x2f99(r30)
 /* 8013AD2C  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 8013AD30  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 8013AD34  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8013AD38  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 8013AD34  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8013AD38  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8013AD3C  C0 44 00 10 */	lfs f2, 0x10(r4)
 /* 8013AD40  48 13 5A 01 */	bl cLib_chaseF__FPfff
 /* 8013AD44  7F C3 F3 78 */	mr r3, r30
@@ -34,8 +34,8 @@ lbl_8013AD20:
 /* 8013AD70  48 00 00 64 */	b lbl_8013ADD4
 lbl_8013AD74:
 /* 8013AD74  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8013AD78  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtLand_c0@ha
-/* 8013AD7C  38 63 F6 18 */	addi r3, r3, m__22daAlinkHIO_wlAtLand_c0@l
+/* 8013AD78  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtLand_c0@ha /* 0x8038F618@ha */
+/* 8013AD7C  38 63 F6 18 */	addi r3, r3, m__22daAlinkHIO_wlAtLand_c0@l /* 0x8038F618@l */
 /* 8013AD80  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 8013AD84  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013AD88  40 81 00 4C */	ble lbl_8013ADD4

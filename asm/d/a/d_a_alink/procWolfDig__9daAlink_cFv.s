@@ -32,8 +32,8 @@ lbl_8013F23C:
 /* 8013F25C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8013F260  C0 1F 37 D0 */	lfs f0, 0x37d0(r31)
 /* 8013F264  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8013F268  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013F26C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013F268  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013F26C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013F270  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8013F274  38 9F 1A 60 */	addi r4, r31, 0x1a60
 /* 8013F278  80 1F 19 9C */	lwz r0, 0x199c(r31)
@@ -89,8 +89,8 @@ lbl_8013F320:
 /* 8013F338  40 82 00 30 */	bne lbl_8013F368
 /* 8013F33C  7F E3 FB 78 */	mr r3, r31
 /* 8013F340  38 80 00 69 */	li r4, 0x69
-/* 8013F344  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha
-/* 8013F348  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l
+/* 8013F344  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8013F348  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8013F34C  38 A5 00 28 */	addi r5, r5, 0x28
 /* 8013F350  4B FE A4 F9 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013F354  38 00 00 01 */	li r0, 1

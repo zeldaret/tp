@@ -33,8 +33,8 @@ lbl_800E9894:
 lbl_800E9910:
 /* 800E9910  C0 21 00 14 */	lfs f1, 0x14(r1)
 /* 800E9914  57 A0 04 38 */	rlwinm r0, r29, 0, 0x10, 0x1c
-/* 800E9918  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800E991C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800E9918  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800E991C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800E9920  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800E9924  EC 02 00 32 */	fmuls f0, f2, f0
 /* 800E9928  EC 01 00 28 */	fsubs f0, f1, f0
@@ -63,8 +63,8 @@ lbl_800E997C:
 /* 800E9980  38 80 00 01 */	li r4, 1
 /* 800E9984  38 A0 00 00 */	li r5, 0
 /* 800E9988  4B FD 79 55 */	bl deleteEquipItem__9daAlink_cFii
-/* 800E998C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E9990  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E998C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E9990  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E9994  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800E9998  7F C4 F3 78 */	mr r4, r30
 /* 800E999C  38 A0 00 00 */	li r5, 0
@@ -186,8 +186,8 @@ lbl_800E9B08:
 /* 800E9B44  48 03 76 7D */	bl setFootEffectProcType__9daAlink_cFi
 /* 800E9B48  38 00 00 60 */	li r0, 0x60
 /* 800E9B4C  98 1E 2F 9D */	stb r0, 0x2f9d(r30)
-/* 800E9B50  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800E9B54  38 63 55 44 */	addi r3, r3, l_halfAtnWaitBaseAnime@l
+/* 800E9B50  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800E9B54  38 63 55 44 */	addi r3, r3, l_halfAtnWaitBaseAnime@l /* 0x80425544@l */
 /* 800E9B58  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800E9B5C  FC 40 00 50 */	fneg f2, f0
 /* 800E9B60  C0 23 00 04 */	lfs f1, 4(r3)

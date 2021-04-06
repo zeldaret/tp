@@ -13,12 +13,12 @@
 
 struct Vec {};
 
-struct cM3dGCyl {};
-
 struct cM3dGPla {
     /* 8026F52C */ void SetupNP(Vec const&, Vec const&);
     /* 8026F624 */ void Set(cM3dGPla const*);
 };
+
+struct cM3dGCyl {};
 
 struct cM3dGTri {
     /* 8026F7B0 */ void cross(cM3dGCyl const*, Vec*) const;
@@ -40,9 +40,6 @@ extern "C" void set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec();
 // External References:
 //
 
-void cM3d_CalcPla(Vec const*, Vec const*, Vec const*, Vec*, f32*);
-void cM3d_Cross_CylTri(cM3dGCyl const*, cM3dGTri const*, Vec*);
-
 extern "C" void cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf();
 extern "C" void cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec();
 extern "C" void SetupNP__8cM3dGPlaFRC3VecRC3Vec();
@@ -52,8 +49,8 @@ extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
 // Declarations:
 //
 
-/* 8026F7B0-8026F7DC 002C+00 s=0 e=1 z=0  None .text      cross__8cM3dGTriCFPC8cM3dGCylP3Vec */
-//	8026F7C8: 8026C5D0 (cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec)
+/* 8026F7B0-8026F7DC 26A0F0 002C+00 0/0 1/1 0/0 .text            cross__8cM3dGTriCFPC8cM3dGCylP3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -63,8 +60,7 @@ asm void cM3dGTri::cross(cM3dGCyl const* param_0, Vec* param_1) const {
 }
 #pragma pop
 
-/* 8026F7DC-8026F85C 0080+00 s=0 e=0 z=6  None .text      setPos__8cM3dGTriFPC3VecPC3VecPC3Vec */
-//	8026F848: 8026891C (cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf)
+/* 8026F7DC-8026F85C 26A11C 0080+00 0/0 0/0 6/6 .text setPos__8cM3dGTriFPC3VecPC3VecPC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,9 +70,8 @@ asm void cM3dGTri::setPos(Vec const* param_0, Vec const* param_1, Vec const* par
 }
 #pragma pop
 
-/* 8026F85C-8026F8C8 006C+00 s=0 e=2 z=0  None .text
+/* 8026F85C-8026F8C8 26A19C 006C+00 0/0 2/2 0/0 .text
  * setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla               */
-//	8026F8B4: 8026F624 (Set__8cM3dGPlaFPC8cM3dGPla)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,8 +82,7 @@ asm void cM3dGTri::setBg(Vec const* param_0, Vec const* param_1, Vec const* para
 }
 #pragma pop
 
-/* 8026F8C8-8026F93C 0074+00 s=0 e=1 z=0  None .text      set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec */
-//	8026F928: 8026F52C (SetupNP__8cM3dGPlaFRC3VecRC3Vec)
+/* 8026F8C8-8026F93C 26A208 0074+00 0/0 1/1 0/0 .text set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

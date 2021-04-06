@@ -817,7 +817,7 @@ extern "C" extern void* g_profile_WarpBug[12];
 //
 
 /* ############################################################################################## */
-/* 80456C84-804578E8 0C64+00 s=1 e=0 z=0  None .data      g_fpcPfLst_ProfileList */
+/* 80456C84-804578E8 -00001 0C64+00 1/1 0/0 0/0 .data            g_fpcPfLst_ProfileList */
 SECTION_DATA static void* g_fpcPfLst_ProfileList[793] = {
     (void*)&g_profile_OVERLAP0,
     (void*)&g_profile_OVERLAP1,
@@ -1614,27 +1614,21 @@ SECTION_DATA static void* g_fpcPfLst_ProfileList[793] = {
     (void*)NULL,
 };
 
-/* 80456C58-80456C6C 0014+00 s=0 e=1 z=0  None .text      ModuleProlog */
-//	80456C58: 80456C84 (g_fpcPfLst_ProfileList)
-//	80456C5C: 80456C84 (g_fpcPfLst_ProfileList)
-//	80456C60: 80450D50 (g_fpcPf_ProfileList_p)
-//	80456C64: 80450D50 (g_fpcPf_ProfileList_p)
+/* 80456C58-80456C6C 000078 0014+00 0/0 1/1 0/0 .text            ModuleProlog */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ModuleProlog() {
+asm void ModuleProlog() {
     nofralloc
 #include "asm/rel/f_pc/f_pc_profile_lst/f_pc_profile_lst/ModuleProlog.s"
 }
 #pragma pop
 
-/* 80456C6C-80456C7C 0010+00 s=0 e=1 z=0  None .text      ModuleEpilog */
-//	80456C70: 80450D50 (g_fpcPf_ProfileList_p)
-//	80456C74: 80450D50 (g_fpcPf_ProfileList_p)
+/* 80456C6C-80456C7C 00008C 0010+00 0/0 1/1 0/0 .text            ModuleEpilog */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ModuleEpilog() {
+asm void ModuleEpilog() {
     nofralloc
 #include "asm/rel/f_pc/f_pc_profile_lst/f_pc_profile_lst/ModuleEpilog.s"
 }

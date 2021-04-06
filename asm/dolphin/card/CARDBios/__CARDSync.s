@@ -8,8 +8,8 @@ lbl_80353E20:
 /* 80353E38  93 81 00 10 */	stw r28, 0x10(r1)
 /* 80353E3C  3B 83 00 00 */	addi r28, r3, 0
 /* 80353E40  1C 9C 01 10 */	mulli r4, r28, 0x110
-/* 80353E44  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80353E48  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80353E44  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80353E48  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80353E4C  7F E0 22 14 */	add r31, r0, r4
 /* 80353E50  4B FE 98 A5 */	bl OSDisableInterrupts
 /* 80353E54  7C 7D 1B 78 */	mr r29, r3

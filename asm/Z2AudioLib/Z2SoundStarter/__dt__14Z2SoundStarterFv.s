@@ -7,8 +7,8 @@ lbl_802AAFF0:
 /* 802AB004  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802AB008  7C 9F 23 78 */	mr r31, r4
 /* 802AB00C  41 82 00 54 */	beq lbl_802AB060
-/* 802AB010  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802AB014  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802AB010  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802AB014  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802AB018  90 1E 00 00 */	stw r0, 0(r30)
 /* 802AB01C  34 1E 00 04 */	addic. r0, r30, 4
 /* 802AB020  41 82 00 24 */	beq lbl_802AB044

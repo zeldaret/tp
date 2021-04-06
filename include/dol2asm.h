@@ -4,13 +4,13 @@
 // this helps remove useless error from the linter when using vscode.
 #ifndef IN_VSCODE_EDITOR
 #define SECTION_INIT extern "C" __declspec(section ".init")
-#define SECTION_RODATA extern "C" __declspec(section ".rodata")
-#define SECTION_DATA extern "C" __declspec(section ".data")
-#define SECTION_SDATA extern "C" __declspec(section ".sdata")
-#define SECTION_SDATA2 extern "C" __declspec(section ".sdata2")
-#define SECTION_BSS extern "C" __declspec(section ".data")
-#define SECTION_SBSS extern "C" __declspec(section ".sdata")
-#define SECTION_SBSS2 extern "C" __declspec(section ".sdata2")
+#define SECTION_RODATA __declspec(section ".rodata")
+#define SECTION_DATA __declspec(section ".data")
+#define SECTION_SDATA __declspec(section ".sdata")
+#define SECTION_SDATA2 __declspec(section ".sdata2")
+#define SECTION_BSS __declspec(section ".data")
+#define SECTION_SBSS __declspec(section ".sdata")
+#define SECTION_SBSS2 __declspec(section ".sdata2")
 #define SECTION_CTORS extern "C" __declspec(section ".ctors")
 #define SECTION_DTORS extern "C" __declspec(section ".dtors")
 #define SECTION_EXTAB extern "C" __declspec(section "extab_")
@@ -55,6 +55,7 @@
 #define FLOAT_INF HUGE_VALF
 #define DOUBLE_INF HUGE_VAL
 
+#pragma section ".dead"
 #pragma section ".ctors$10"
 #pragma section ".ctors$15"
 #pragma section ".dtors$10"

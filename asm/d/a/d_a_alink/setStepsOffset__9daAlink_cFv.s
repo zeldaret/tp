@@ -24,8 +24,8 @@ lbl_800A6B0C:
 /* 800A6B64  A8 BF 04 DE */	lha r5, 0x4de(r31)
 /* 800A6B68  48 00 95 31 */	bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800A6B6C  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 800A6B70  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800A6B74  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800A6B70  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800A6B74  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800A6B78  7C 23 04 2E */	lfsx f1, r3, r0
 /* 800A6B7C  38 83 00 04 */	addi r4, r3, 4
 /* 800A6B80  7C 04 04 2E */	lfsx f0, r4, r0
@@ -50,8 +50,8 @@ lbl_800A6B0C:
 /* 800A6BCC  38 7F 1D 08 */	addi r3, r31, 0x1d08
 /* 800A6BD0  38 81 00 24 */	addi r4, r1, 0x24
 /* 800A6BD4  48 1C 11 55 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 800A6BD8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A6BDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A6BD8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A6BDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A6BE0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800A6BE4  38 9F 1D 08 */	addi r4, r31, 0x1d08
 /* 800A6BE8  4B FC D8 B9 */	bl GroundCross__4cBgSFP11cBgS_GndChk
@@ -116,8 +116,8 @@ lbl_800A6CCC:
 /* 800A6CCC  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A6CD0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A6CD4  40 80 00 10 */	bge lbl_800A6CE4
-/* 800A6CD8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A6CDC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A6CD8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A6CDC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A6CE0  48 00 00 70 */	b lbl_800A6D50
 lbl_800A6CE4:
 /* 800A6CE4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -151,8 +151,8 @@ lbl_800A6D3C:
 lbl_800A6D40:
 /* 800A6D40  2C 00 00 01 */	cmpwi r0, 1
 /* 800A6D44  40 82 00 0C */	bne lbl_800A6D50
-/* 800A6D48  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A6D4C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A6D48  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A6D4C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800A6D50:
 /* 800A6D50  C0 41 00 28 */	lfs f2, 0x28(r1)
 /* 800A6D54  EC 1F 00 72 */	fmuls f0, f31, f1

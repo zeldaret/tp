@@ -7,8 +7,8 @@ lbl_801B6538:
 /* 801B654C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801B6550  7C 9F 23 78 */	mr r31, r4
 /* 801B6554  41 82 00 38 */	beq lbl_801B658C
-/* 801B6558  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect3D_c@ha
-/* 801B655C  38 03 C7 90 */	addi r0, r3, __vt__17dMenu_Collect3D_c@l
+/* 801B6558  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect3D_c@ha /* 0x803BC790@ha */
+/* 801B655C  38 03 C7 90 */	addi r0, r3, __vt__17dMenu_Collect3D_c@l /* 0x803BC790@l */
 /* 801B6560  90 1E 00 00 */	stw r0, 0(r30)
 /* 801B6564  80 7E 00 08 */	lwz r3, 8(r30)
 /* 801B6568  28 03 00 00 */	cmplwi r3, 0

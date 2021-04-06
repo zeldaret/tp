@@ -8,8 +8,8 @@ lbl_8029CA10:
 /* 8029CA28  7C 9C 23 78 */	mr r28, r4
 /* 8029CA2C  7C BD 2B 78 */	mr r29, r5
 /* 8029CA30  38 60 00 05 */	li r3, 5
-/* 8029CA34  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha
-/* 8029CA38  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l
+/* 8029CA34  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha /* 0x8039B2F0@ha */
+/* 8029CA38  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l /* 0x8039B2F0@l */
 /* 8029CA3C  38 84 00 25 */	addi r4, r4, 0x25
 /* 8029CA40  4B FF 44 A5 */	bl start__8JASProbeFlPCc
 /* 8029CA44  7F 83 E3 78 */	mr r3, r28

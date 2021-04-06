@@ -6,8 +6,8 @@ lbl_8012E398:
 /* 8012E3A8  48 23 3E 35 */	bl _savegpr_29
 /* 8012E3AC  7C 7D 1B 78 */	mr r29, r3
 /* 8012E3B0  7C 9E 23 78 */	mr r30, r4
-/* 8012E3B4  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 8012E3B8  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 8012E3B4  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 8012E3B8  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 8012E3BC  38 80 00 F9 */	li r4, 0xf9
 /* 8012E3C0  4B F9 3B AD */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012E3C4  2C 1E 00 01 */	cmpwi r30, 1

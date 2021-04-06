@@ -3,12 +3,12 @@ lbl_80C84C1C:
 /* 80C84C20  7C 08 02 A6 */	mflr r0
 /* 80C84C24  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C84C28  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C84C2C  4B 6D D5 B0 */	b _savegpr_29
+/* 80C84C2C  4B 6D D5 B1 */	bl _savegpr_29
 /* 80C84C30  7C 7E 1B 78 */	mr r30, r3
-/* 80C84C34  3C 60 80 C8 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C84C38  3B E3 52 44 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80C84C3C  3C 60 80 C8 */	lis r3, data_80C8537C@ha
-/* 80C84C40  38 A3 53 7C */	addi r5, r3, data_80C8537C@l
+/* 80C84C34  3C 60 80 C8 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C85244@ha */
+/* 80C84C38  3B E3 52 44 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80C85244@l */
+/* 80C84C3C  3C 60 80 C8 */	lis r3, data_80C8537C@ha /* 0x80C8537C@ha */
+/* 80C84C40  38 A3 53 7C */	addi r5, r3, data_80C8537C@l /* 0x80C8537C@l */
 /* 80C84C44  88 05 00 00 */	lbz r0, 0(r5)
 /* 80C84C48  7C 00 07 75 */	extsb. r0, r0
 /* 80C84C4C  40 82 00 58 */	bne lbl_80C84CA4
@@ -37,11 +37,11 @@ lbl_80C84CA4:
 /* 80C84CA4  8B BE 05 AF */	lbz r29, 0x5af(r30)
 /* 80C84CA8  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80C84CAC  54 04 E6 3E */	rlwinm r4, r0, 0x1c, 0x18, 0x1f
-/* 80C84CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C84CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C84CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C84CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C84CB8  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80C84CBC  7C 05 07 74 */	extsb r5, r0
-/* 80C84CC0  4B 3B 06 A0 */	b isSwitch__10dSv_info_cCFii
+/* 80C84CC0  4B 3B 06 A1 */	bl isSwitch__10dSv_info_cCFii
 /* 80C84CC4  98 7E 05 AF */	stb r3, 0x5af(r30)
 /* 80C84CC8  88 1E 05 AF */	lbz r0, 0x5af(r30)
 /* 80C84CCC  7C 00 E8 40 */	cmplw r0, r29
@@ -60,10 +60,10 @@ lbl_80C84CF0:
 /* 80C84CF8  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80C84CFC  39 9F 00 5C */	addi r12, r31, 0x5c
 /* 80C84D00  7D 8C 02 14 */	add r12, r12, r0
-/* 80C84D04  4B 6D D3 80 */	b __ptmf_scall
+/* 80C84D04  4B 6D D3 81 */	bl __ptmf_scall
 /* 80C84D08  60 00 00 00 */	nop 
 /* 80C84D0C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C84D10  4B 6D D5 18 */	b _restgpr_29
+/* 80C84D10  4B 6D D5 19 */	bl _restgpr_29
 /* 80C84D14  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C84D18  7C 08 03 A6 */	mtlr r0
 /* 80C84D1C  38 21 00 20 */	addi r1, r1, 0x20

@@ -5,14 +5,14 @@ lbl_80AA51B4:
 /* 80AA51C0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80AA51C4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80AA51C8  7C 7E 1B 78 */	mr r30, r3
-/* 80AA51CC  3C 80 80 AA */	lis r4, lit_4109@ha
-/* 80AA51D0  3B E4 69 8C */	addi r31, r4, lit_4109@l
+/* 80AA51CC  3C 80 80 AA */	lis r4, lit_4109@ha /* 0x80AA698C@ha */
+/* 80AA51D0  3B E4 69 8C */	addi r31, r4, lit_4109@l /* 0x80AA698C@l */
 /* 80AA51D4  88 03 0B 22 */	lbz r0, 0xb22(r3)
 /* 80AA51D8  28 00 00 00 */	cmplwi r0, 0
 /* 80AA51DC  41 82 00 5C */	beq lbl_80AA5238
 /* 80AA51E0  38 80 00 13 */	li r4, 0x13
 /* 80AA51E4  80 BE 0B 00 */	lwz r5, 0xb00(r30)
-/* 80AA51E8  4B 6B 2F 08 */	b getAnmP__10daNpcCd2_cFii
+/* 80AA51E8  4B 6B 2F 09 */	bl getAnmP__10daNpcCd2_cFii
 /* 80AA51EC  7C 64 1B 78 */	mr r4, r3
 /* 80AA51F0  7F C3 F3 78 */	mr r3, r30
 /* 80AA51F4  C0 3F 00 0C */	lfs f1, 0xc(r31)
@@ -20,7 +20,7 @@ lbl_80AA51B4:
 /* 80AA51FC  38 A0 00 02 */	li r5, 2
 /* 80AA5200  38 C0 00 00 */	li r6, 0
 /* 80AA5204  38 E0 FF FF */	li r7, -1
-/* 80AA5208  4B 6B 3C F8 */	b setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
+/* 80AA5208  4B 6B 3C F9 */	bl setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
 /* 80AA520C  C0 3F 00 30 */	lfs f1, 0x30(r31)
 /* 80AA5210  FC 40 08 90 */	fmr f2, f1
 /* 80AA5214  48 00 07 A9 */	bl func_80AA59BC

@@ -2,8 +2,8 @@ lbl_8067EFF8:
 /* 8067EFF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8067EFFC  7C 08 02 A6 */	mflr r0
 /* 8067F000  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8067F004  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8067F008  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8067F004  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067F008  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067F00C  80 C5 5D AC */	lwz r6, 0x5dac(r5)
 /* 8067F010  80 06 05 70 */	lwz r0, 0x570(r6)
 /* 8067F014  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17

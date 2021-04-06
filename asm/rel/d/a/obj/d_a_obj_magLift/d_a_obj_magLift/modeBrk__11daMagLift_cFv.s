@@ -5,14 +5,14 @@ lbl_80C8E1F8:
 /* 80C8E204  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C8E208  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C8E20C  7C 7E 1B 78 */	mr r30, r3
-/* 80C8E210  3C 60 80 C9 */	lis r3, mSpeed__11daMagLift_c@ha
-/* 80C8E214  3B E3 E6 5C */	addi r31, r3, mSpeed__11daMagLift_c@l
+/* 80C8E210  3C 60 80 C9 */	lis r3, mSpeed__11daMagLift_c@ha /* 0x80C8E65C@ha */
+/* 80C8E214  3B E3 E6 5C */	addi r31, r3, mSpeed__11daMagLift_c@l /* 0x80C8E65C@l */
 /* 80C8E218  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80C8E21C  38 9E 05 B4 */	addi r4, r30, 0x5b4
 /* 80C8E220  C0 3F 00 4C */	lfs f1, 0x4c(r31)
 /* 80C8E224  C0 5E 05 2C */	lfs f2, 0x52c(r30)
 /* 80C8E228  C0 7F 00 70 */	lfs f3, 0x70(r31)
-/* 80C8E22C  4B 5E 18 8C */	b cLib_addCalcPos__FP4cXyzRC4cXyzfff
+/* 80C8E22C  4B 5E 18 8D */	bl cLib_addCalcPos__FP4cXyzRC4cXyzfff
 /* 80C8E230  C0 1F 00 40 */	lfs f0, 0x40(r31)
 /* 80C8E234  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80C8E238  40 82 00 10 */	bne lbl_80C8E248

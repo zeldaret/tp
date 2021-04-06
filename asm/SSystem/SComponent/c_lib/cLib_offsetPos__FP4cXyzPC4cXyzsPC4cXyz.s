@@ -1,6 +1,6 @@
 lbl_80270DC0:
-/* 80270DC0  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha
-/* 80270DC4  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l
+/* 80270DC0  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80270DC4  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80270DC8  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
 /* 80270DCC  7C A7 02 14 */	add r5, r7, r0
 /* 80270DD0  C0 A5 00 04 */	lfs f5, 4(r5)

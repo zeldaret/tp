@@ -2,10 +2,10 @@ lbl_80BF744C:
 /* 80BF744C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80BF7450  7C 08 02 A6 */	mflr r0
 /* 80BF7454  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80BF7458  3C 80 80 C0 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80BF745C  38 84 90 68 */	addi r4, r4, cNullVec__6Z2Calc@l
-/* 80BF7460  3C A0 80 C0 */	lis r5, struct_80BF9240+0x0@ha
-/* 80BF7464  38 E5 92 40 */	addi r7, r5, struct_80BF9240+0x0@l
+/* 80BF7458  3C 80 80 C0 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80BF9068@ha */
+/* 80BF745C  38 84 90 68 */	addi r4, r4, cNullVec__6Z2Calc@l /* 0x80BF9068@l */
+/* 80BF7460  3C A0 80 C0 */	lis r5, struct_80BF9240+0x0@ha /* 0x80BF9240@ha */
+/* 80BF7464  38 E5 92 40 */	addi r7, r5, struct_80BF9240+0x0@l /* 0x80BF9240@l */
 /* 80BF7468  88 07 00 00 */	lbz r0, 0(r7)
 /* 80BF746C  7C 00 07 75 */	extsb. r0, r0
 /* 80BF7470  40 82 00 58 */	bne lbl_80BF74C8
@@ -31,8 +31,8 @@ lbl_80BF744C:
 /* 80BF74C0  38 00 00 01 */	li r0, 1
 /* 80BF74C4  98 07 00 00 */	stb r0, 0(r7)
 lbl_80BF74C8:
-/* 80BF74C8  3C A0 80 C0 */	lis r5, struct_80BF9240+0x1@ha
-/* 80BF74CC  38 E5 92 41 */	addi r7, r5, struct_80BF9240+0x1@l
+/* 80BF74C8  3C A0 80 C0 */	lis r5, struct_80BF9240+0x1@ha /* 0x80BF9241@ha */
+/* 80BF74CC  38 E5 92 41 */	addi r7, r5, struct_80BF9240+0x1@l /* 0x80BF9241@l */
 /* 80BF74D0  88 07 00 00 */	lbz r0, 0(r7)
 /* 80BF74D4  7C 00 07 75 */	extsb. r0, r0
 /* 80BF74D8  40 82 00 70 */	bne lbl_80BF7548
@@ -81,7 +81,7 @@ lbl_80BF7574:
 /* 80BF7578  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80BF757C  39 84 00 AC */	addi r12, r4, 0xac
 /* 80BF7580  7D 8C 02 14 */	add r12, r12, r0
-/* 80BF7584  4B 76 AB 00 */	b __ptmf_scall
+/* 80BF7584  4B 76 AB 01 */	bl __ptmf_scall
 /* 80BF7588  60 00 00 00 */	nop 
 /* 80BF758C  48 00 00 1C */	b lbl_80BF75A8
 lbl_80BF7590:
@@ -89,7 +89,7 @@ lbl_80BF7590:
 /* 80BF7594  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80BF7598  39 84 01 00 */	addi r12, r4, 0x100
 /* 80BF759C  7D 8C 02 14 */	add r12, r12, r0
-/* 80BF75A0  4B 76 AA E4 */	b __ptmf_scall
+/* 80BF75A0  4B 76 AA E5 */	bl __ptmf_scall
 /* 80BF75A4  60 00 00 00 */	nop 
 lbl_80BF75A8:
 /* 80BF75A8  80 01 00 14 */	lwz r0, 0x14(r1)

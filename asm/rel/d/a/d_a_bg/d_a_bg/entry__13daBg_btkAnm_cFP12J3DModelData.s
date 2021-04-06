@@ -5,10 +5,10 @@ lbl_80458088:
 /* 80458094  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80458098  7C 7F 1B 78 */	mr r31, r3
 /* 8045809C  80 63 00 00 */	lwz r3, 0(r3)
-/* 804580A0  3C A0 80 46 */	lis r5, lit_3914@ha
-/* 804580A4  C0 25 93 84 */	lfs f1, lit_3914@l(r5)
+/* 804580A0  3C A0 80 46 */	lis r5, lit_3914@ha /* 0x80459384@ha */
+/* 804580A4  C0 25 93 84 */	lfs f1, lit_3914@l(r5)  /* 0x80459384@l */
 /* 804580A8  38 84 00 58 */	addi r4, r4, 0x58
-/* 804580AC  4B BB 56 2C */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 804580AC  4B BB 56 2D */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 804580B0  38 00 00 00 */	li r0, 0
 /* 804580B4  98 1F 00 04 */	stb r0, 4(r31)
 /* 804580B8  83 E1 00 0C */	lwz r31, 0xc(r1)

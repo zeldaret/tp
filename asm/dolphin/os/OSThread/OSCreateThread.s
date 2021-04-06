@@ -36,8 +36,8 @@ lbl_803412C4:
 /* 8034130C  93 C7 FF F8 */	stw r30, -8(r7)
 /* 80341310  93 C7 FF FC */	stw r30, -4(r7)
 /* 80341314  4B FF AD 11 */	bl OSInitContext
-/* 80341318  3C 60 80 34 */	lis r3, OSExitThread@ha
-/* 8034131C  38 03 14 74 */	addi r0, r3, OSExitThread@l
+/* 80341318  3C 60 80 34 */	lis r3, OSExitThread@ha /* 0x80341474@ha */
+/* 8034131C  38 03 14 74 */	addi r0, r3, OSExitThread@l /* 0x80341474@l */
 /* 80341320  90 1F 00 84 */	stw r0, 0x84(r31)
 /* 80341324  3C 60 DE AE */	lis r3, 0xDEAE /* 0xDEADBABE@ha */
 /* 80341328  7C 9D E0 50 */	subf r4, r29, r28
@@ -51,8 +51,8 @@ lbl_803412C4:
 /* 80341348  93 DF 03 10 */	stw r30, 0x310(r31)
 /* 8034134C  93 DF 03 14 */	stw r30, 0x314(r31)
 /* 80341350  4B FF C3 A5 */	bl OSDisableInterrupts
-/* 80341354  3C 80 80 45 */	lis r4, __OSErrorTable@ha
-/* 80341358  38 84 BA D0 */	addi r4, r4, __OSErrorTable@l
+/* 80341354  3C 80 80 45 */	lis r4, __OSErrorTable@ha /* 0x8044BAD0@ha */
+/* 80341358  38 84 BA D0 */	addi r4, r4, __OSErrorTable@l /* 0x8044BAD0@l */
 /* 8034135C  80 04 00 40 */	lwz r0, 0x40(r4)
 /* 80341360  28 00 00 00 */	cmplwi r0, 0
 /* 80341364  41 82 00 C4 */	beq lbl_80341428

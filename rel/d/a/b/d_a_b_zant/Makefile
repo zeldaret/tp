@@ -3,19 +3,20 @@
 #
 
 M155_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant.plf
+M155_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant.lcf
+M155_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant.map
 
 M155_CPP_FILES := \
-	rel/d/a/b/d_a_b_zant/executor.cpp \
-	rel/d/a/b/d_a_b_zant/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/b/d_a_b_zant/d_a_b_zant.cpp \
 
 M155_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant/d_a_b_zant.o \
 
 M155_LIBS := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant/libRuntime.PPCEABI.H.a \
 
 M155_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M155_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map155.map\
+	-m _prolog \
+	-lcf $(M155_LDSCRIPT) \
+	-unused -map $(M155_MAP) \
+	-w off \
 
 $(M155_TARGET): $(M155_O_FILES) $(M155_LIBS)
+	@echo [155] creating $(M155_TARGET)
 	@echo $(M155_LIBS) $(M155_O_FILES) > build/M155_ofiles
-	$(LD) -opt_partial $(M155_LDFLAGS) -o $(M155_TARGET) @build/M155_ofiles
+	@python3 tools/lcf.py rel 155 --output $(M155_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M155_LDFLAGS) -o $(M155_TARGET) @build/M155_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant/%.o: rel/d/a/b/d_a_b_zant/%.cpp
+	@echo [155] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M155_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M155_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/b/d_a_b_zant/libs/Runtime.PPCEABI.H/Makefile
 

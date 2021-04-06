@@ -3,7 +3,7 @@ lbl_8099DBA4:
 /* 8099DBA8  7C 08 02 A6 */	mflr r0
 /* 8099DBAC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8099DBB0  39 61 00 30 */	addi r11, r1, 0x30
-/* 8099DBB4  4B 9C 46 20 */	b _savegpr_27
+/* 8099DBB4  4B 9C 46 21 */	bl _savegpr_27
 /* 8099DBB8  7C 7F 1B 78 */	mr r31, r3
 /* 8099DBBC  38 60 00 00 */	li r3, 0
 /* 8099DBC0  38 00 00 05 */	li r0, 5
@@ -26,8 +26,8 @@ lbl_8099DBC8:
 /* 8099DC00  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 8099DC04  7D 89 03 A6 */	mtctr r12
 /* 8099DC08  4E 80 04 21 */	bctrl 
-/* 8099DC0C  3C 60 80 9A */	lis r3, M_attr__12daNpcCoach_c@ha
-/* 8099DC10  38 63 4E D0 */	addi r3, r3, M_attr__12daNpcCoach_c@l
+/* 8099DC0C  3C 60 80 9A */	lis r3, M_attr__12daNpcCoach_c@ha /* 0x809A4ED0@ha */
+/* 8099DC10  38 63 4E D0 */	addi r3, r3, M_attr__12daNpcCoach_c@l /* 0x809A4ED0@l */
 /* 8099DC14  80 03 00 74 */	lwz r0, 0x74(r3)
 /* 8099DC18  3B A0 00 14 */	li r29, 0x14
 /* 8099DC1C  7C 80 EB D6 */	divw r4, r0, r29
@@ -51,7 +51,7 @@ lbl_8099DC58:
 /* 8099DC60  3C 03 00 01 */	addis r0, r3, 1
 /* 8099DC64  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8099DC68  41 82 00 0C */	beq lbl_8099DC74
-/* 8099DC6C  4B 67 C0 4C */	b fopAcM_delete__FUi
+/* 8099DC6C  4B 67 C0 4D */	bl fopAcM_delete__FUi
 /* 8099DC70  7F DF E1 2E */	stwx r30, r31, r28
 lbl_8099DC74:
 /* 8099DC74  3B 7B 00 01 */	addi r27, r27, 1
@@ -68,7 +68,7 @@ lbl_8099DC90:
 /* 8099DC98  3C 03 00 01 */	addis r0, r3, 1
 /* 8099DC9C  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8099DCA0  41 82 00 0C */	beq lbl_8099DCAC
-/* 8099DCA4  4B 68 36 B4 */	b fpcEx_SearchByID__FUi
+/* 8099DCA4  4B 68 36 B5 */	bl fpcEx_SearchByID__FUi
 /* 8099DCA8  93 A3 07 10 */	stw r29, 0x710(r3)
 lbl_8099DCAC:
 /* 8099DCAC  3B 7B 00 01 */	addi r27, r27, 1
@@ -83,7 +83,7 @@ lbl_8099DCC8:
 /* 8099DCCC  42 00 FE FC */	bdnz lbl_8099DBC8
 lbl_8099DCD0:
 /* 8099DCD0  39 61 00 30 */	addi r11, r1, 0x30
-/* 8099DCD4  4B 9C 45 4C */	b _restgpr_27
+/* 8099DCD4  4B 9C 45 4D */	bl _restgpr_27
 /* 8099DCD8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8099DCDC  7C 08 03 A6 */	mtlr r0
 /* 8099DCE0  38 21 00 30 */	addi r1, r1, 0x30

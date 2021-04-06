@@ -4,8 +4,8 @@ lbl_800313BC:
 /* 800313C4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800313C8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800313CC  93 C1 00 08 */	stw r30, 8(r1)
-/* 800313D0  3C 60 80 42 */	lis r3, mData__7daSus_c@ha
-/* 800313D4  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l
+/* 800313D0  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 800313D4  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 800313D8  7C 1F 03 78 */	mr r31, r0
 /* 800313DC  3B C0 00 00 */	li r30, 0
 lbl_800313E0:
@@ -15,8 +15,8 @@ lbl_800313E0:
 /* 800313EC  2C 1E 00 20 */	cmpwi r30, 0x20
 /* 800313F0  3B FF 00 24 */	addi r31, r31, 0x24
 /* 800313F4  41 80 FF EC */	blt lbl_800313E0
-/* 800313F8  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha
-/* 800313FC  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l
+/* 800313F8  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha /* 0x8042447C@ha */
+/* 800313FC  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l /* 0x8042447C@l */
 /* 80031400  7C 04 03 78 */	mr r4, r0
 /* 80031404  38 60 00 00 */	li r3, 0
 /* 80031408  38 00 00 40 */	li r0, 0x40

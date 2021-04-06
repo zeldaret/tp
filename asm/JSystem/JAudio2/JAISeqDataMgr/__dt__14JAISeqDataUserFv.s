@@ -5,8 +5,8 @@ lbl_802A1774:
 /* 802A1780  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A1784  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A1788  41 82 00 1C */	beq lbl_802A17A4
-/* 802A178C  3C A0 80 3D */	lis r5, __vt__14JAISeqDataUser@ha
-/* 802A1790  38 05 99 40 */	addi r0, r5, __vt__14JAISeqDataUser@l
+/* 802A178C  3C A0 80 3D */	lis r5, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
+/* 802A1790  38 05 99 40 */	addi r0, r5, __vt__14JAISeqDataUser@l /* 0x803C9940@l */
 /* 802A1794  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A1798  7C 80 07 35 */	extsh. r0, r4
 /* 802A179C  40 81 00 08 */	ble lbl_802A17A4

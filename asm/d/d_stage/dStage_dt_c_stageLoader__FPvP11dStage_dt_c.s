@@ -6,8 +6,8 @@ lbl_80026B58:
 /* 80026B68  93 C1 00 08 */	stw r30, 8(r1)
 /* 80026B6C  7C 7E 1B 78 */	mr r30, r3
 /* 80026B70  7C 9F 23 78 */	mr r31, r4
-/* 80026B74  3C A0 80 3A */	lis r5, l_funcTable_5163@ha
-/* 80026B78  38 A5 66 BC */	addi r5, r5, l_funcTable_5163@l
+/* 80026B74  3C A0 80 3A */	lis r5, l_funcTable_5163@ha /* 0x803A66BC@ha */
+/* 80026B78  38 A5 66 BC */	addi r5, r5, l_funcTable_5163@l /* 0x803A66BC@l */
 /* 80026B7C  38 C0 00 1A */	li r6, 0x1a
 /* 80026B80  4B FF F5 35 */	bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026B84  7F C3 F3 78 */	mr r3, r30

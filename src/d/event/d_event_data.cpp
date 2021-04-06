@@ -125,9 +125,9 @@ struct Z2SeqMgr {
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -136,11 +136,6 @@ struct Z2SeMgr {
 //
 // Forward References:
 //
-
-static void getTelopNo(char const*);
-static void getTelopNo();
-static void getStartTelopNo();
-static void dEvDt_Next_Stage(int, int);
 
 extern "C" static void getTelopNo__FPCc();
 extern "C" static void getTelopNo__Fv();
@@ -176,24 +171,6 @@ extern "C" extern char const* const d_event_d_event_data__stringBase0;
 //
 // External References:
 //
-
-void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
-void fopAcM_searchFromName4Event(char const*, s16);
-void fopMsgM_SearchByID(unsigned int);
-void fopMsgM_messageSet(u32, u32);
-void fopMsgM_messageSetDemo(u32);
-void dStage_searchName(char const*);
-void dComIfGp_setNextStage(char const*, s16, s8, s8, f32, u32, int, s8, s16, int, int);
-void dComIfGs_onStageSwitch(int, int);
-void dComIfGs_offStageSwitch(int, int);
-void dComIfGs_isStageSwitch(int, int);
-void dEv_defaultSkipProc(void*, int);
-void dCam_getBody();
-void d_GameOver_Create(u8);
-void d_GameOver_Delete(unsigned int&);
-void dKy_set_nexttime(f32);
-void dKy_instant_timechg(f32);
-void dKy_instant_rainchg();
 
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
@@ -276,7 +253,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803A7FB0-803A8238 0288+00 s=2 e=0 z=0  None .data      TelopData */
+/* 803A7FB0-803A8238 0050D0 0288+00 2/2 0/0 0/0 .data            TelopData */
 SECTION_DATA static u8 TelopData[648] = {
     0x44, 0x30, 0x35, 0x00, 0x04, 0x4D, 0x10, 0x69, 0x00, 0x03, 0x00, 0x00, 0x44, 0x30, 0x35, 0x41,
     0x04, 0x4D, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x44, 0x30, 0x35, 0x42, 0x04, 0x4D, 0xFF, 0xFF,
@@ -321,129 +298,45 @@ SECTION_DATA static u8 TelopData[648] = {
     0x04, 0x75, 0xFF, 0xFF, 0x00, 0x01, 0x00, 0x00,
 };
 
-/* 80450640-80450648 0004+04 s=2 e=0 z=0  None .sdata     numTelopData */
+/* 80450640-80450648 0000C0 0004+04 2/2 0/0 0/0 .sdata           numTelopData */
 SECTION_SDATA static u32 numTelopData[1 + 1 /* padding */] = {
     0x00000036,
     /* padding */
     0x00000000,
 };
 
-/* 8004372C-800437C4 0098+00 s=2 e=0 z=0  None .text      getTelopNo__FPCc */
-//	80043778: 80450640 (numTelopData)
-//	8004377C: 803A7FB0 (TelopData)
-//	80043780: 803A7FB0 (TelopData)
-//	8004379C: 803A7FB0 (TelopData)
-//	800437A0: 803A7FB0 (TelopData)
+/* 8004372C-800437C4 03E06C 0098+00 2/2 0/0 0/0 .text            getTelopNo__FPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getTelopNo(char const* param_0) {
+static asm void getTelopNo(char const* param_0) {
     nofralloc
 #include "asm/d/event/d_event_data/getTelopNo__FPCc.s"
 }
 #pragma pop
 
-/* 800437C4-800437F0 002C+00 s=1 e=0 z=0  None .text      getTelopNo__Fv */
-//	800437D0: 804061C0 (g_dComIfG_gameInfo)
-//	800437D4: 804061C0 (g_dComIfG_gameInfo)
-//	800437DC: 8004372C (getTelopNo__FPCc)
+/* 800437C4-800437F0 03E104 002C+00 1/1 0/0 0/0 .text            getTelopNo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getTelopNo() {
+static asm void getTelopNo() {
     nofralloc
 #include "asm/d/event/d_event_data/getTelopNo__Fv.s"
 }
 #pragma pop
 
-/* 800437F0-80043A14 0224+00 s=1 e=0 z=0  None .text      getStartTelopNo__Fv */
-//	80043800: 803621DC (_savegpr_29)
-//	80043804: 804061C0 (g_dComIfG_gameInfo)
-//	80043808: 804061C0 (g_dComIfG_gameInfo)
-//	8004381C: 80368994 (strcmp)
-//	80043884: 80450640 (numTelopData)
-//	80043888: 803A7FB0 (TelopData)
-//	8004388C: 803A7FB0 (TelopData)
-//	800438F0: 804061C0 (g_dComIfG_gameInfo)
-//	800438F4: 804061C0 (g_dComIfG_gameInfo)
-//	800438FC: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80043934: 8002D740 (dComIfGs_isStageSwitch__Fii)
-//	8004399C: 80450640 (numTelopData)
-//	800439A0: 803A7FB0 (TelopData)
-//	800439A4: 803A7FB0 (TelopData)
-//	80043A00: 80362228 (_restgpr_29)
+/* 800437F0-80043A14 03E130 0224+00 1/1 0/0 0/0 .text            getStartTelopNo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getStartTelopNo() {
+static asm void getStartTelopNo() {
     nofralloc
 #include "asm/d/event/d_event_data/getStartTelopNo__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80379DD0-80379F50 017E+02 s=10 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379DD0 = "ID";
-SECTION_DEAD char const* const stringBase_80379DD3 = "Stage";
-SECTION_DEAD char const* const stringBase_80379DD9 = "StartCode";
-SECTION_DEAD char const* const stringBase_80379DE3 = "RoomNo";
-SECTION_DEAD char const* const stringBase_80379DEA = "Layer";
-SECTION_DEAD char const* const stringBase_80379DF0 = "Wipe";
-SECTION_DEAD char const* const stringBase_80379DF5 = "Mode";
-SECTION_DEAD char const* const stringBase_80379DFA = "Speed";
-SECTION_DEAD char const* const stringBase_80379E00 = "Hour";
-SECTION_DEAD char const* const stringBase_80379E05 = "NoVisit";
-SECTION_DEAD char const* const stringBase_80379E0D = "Timer";
-SECTION_DEAD char const* const stringBase_80379E13 = "LIGHT";
-SECTION_DEAD char const* const stringBase_80379E19 = "Weather";
-SECTION_DEAD char const* const stringBase_80379E21 = "MESSAGE";
-SECTION_DEAD char const* const stringBase_80379E29 = "msgNo";
-SECTION_DEAD char const* const stringBase_80379E2F = "No";
-SECTION_DEAD char const* const stringBase_80379E32 = "Type";
-SECTION_DEAD char const* const stringBase_80379E37 = "ForStart";
-SECTION_DEAD char const* const stringBase_80379E40 = "SOUND";
-SECTION_DEAD char const* const stringBase_80379E46 = "CREATER";
-SECTION_DEAD char const* const stringBase_80379E4E = "MAKECAST";
-SECTION_DEAD char const* const stringBase_80379E57 = "ARG";
-SECTION_DEAD char const* const stringBase_80379E5B = "POS";
-SECTION_DEAD char const* const stringBase_80379E5F = "ANGLE";
-SECTION_DEAD char const* const stringBase_80379E65 = "SCALE";
-SECTION_DEAD char const* const stringBase_80379E6B = "DIRECTOR";
-SECTION_DEAD char const* const stringBase_80379E74 = "EventFlag";
-SECTION_DEAD char const* const stringBase_80379E7E = "EventFlagOff";
-SECTION_DEAD char const* const stringBase_80379E8B = "SwitchTable";
-SECTION_DEAD char const* const stringBase_80379E97 = "SwitchBit";
-SECTION_DEAD char const* const stringBase_80379EA1 = "SwitchOff";
-SECTION_DEAD char const* const stringBase_80379EAB = "TmpBit";
-SECTION_DEAD char const* const stringBase_80379EB2 = "TmpBitOff";
-SECTION_DEAD char const* const stringBase_80379EBC = "PLAYER_NODRAW";
-SECTION_DEAD char const* const stringBase_80379ECA = "PLAYER_DRAW";
-SECTION_DEAD char const* const stringBase_80379ED6 = "Zev";
-SECTION_DEAD char const* const stringBase_80379EDA = "Rate";
-SECTION_DEAD char const* const stringBase_80379EDF = "Color";
-SECTION_DEAD char const* const stringBase_80379EE5 = "Pattern";
-SECTION_DEAD char const* const stringBase_80379EED = "Pt2";
-SECTION_DEAD char const* const stringBase_80379EF1 = "PtT";
-SECTION_DEAD char const* const stringBase_80379EF5 = "PtI";
-SECTION_DEAD char const* const stringBase_80379EF9 = "PtD";
-SECTION_DEAD char const* const stringBase_80379EFD = "PACKAGE";
-SECTION_DEAD char const* const stringBase_80379F05 = "FileName";
-SECTION_DEAD char const* const stringBase_80379F0E = "OffsetPos";
-SECTION_DEAD char const* const stringBase_80379F18 = "OffsetAngY";
-SECTION_DEAD char const* const stringBase_80379F23 = "TIMEKEEPER";
-SECTION_DEAD char const* const stringBase_80379F2E = "EFFECT";
-SECTION_DEAD char const* const stringBase_80379F35 = "Power";
-SECTION_DEAD char const* const stringBase_80379F3B = "Random";
-SECTION_DEAD char const* const stringBase_80379F42 = "Alpha";
-SECTION_DEAD char const* const stringBase_80379F48 = "Scale";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379F4E = "\0";
-#pragma pop
-
-/* 80451ED0-80451ED4 0004+00 s=4 e=0 z=0  None .sdata2    @4264 */
+/* 80451ED0-80451ED4 0004D0 0004+00 4/4 0/0 0/0 .sdata2          @4264 */
 SECTION_SDATA2 static u8 lit_4264[4] = {
     0x00,
     0x00,
@@ -451,65 +344,23 @@ SECTION_SDATA2 static u8 lit_4264[4] = {
     0x00,
 };
 
-/* 80451ED4-80451ED8 0004+00 s=2 e=0 z=0  None .sdata2    @4265 */
+/* 80451ED4-80451ED8 0004D4 0004+00 2/2 0/0 0/0 .sdata2          @4265 */
 SECTION_SDATA2 static f32 lit_4265 = 15.0f;
 
-/* 80451ED8-80451EE0 0008+00 s=1 e=0 z=0  None .sdata2    @4267 */
+/* 80451ED8-80451EE0 0004D8 0008+00 1/1 0/0 0/0 .sdata2          @4267 */
 SECTION_SDATA2 static f64 lit_4267 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80043A14-80043D60 034C+00 s=1 e=0 z=0  None .text      dEvDt_Next_Stage__Fii */
-//	80043A34: 803621B4 (_savegpr_19)
-//	80043A4C: 80451ED0 (lit_4264)
-//	80043A58: 804061C0 (g_dComIfG_gameInfo)
-//	80043A5C: 804061C0 (g_dComIfG_gameInfo)
-//	80043A6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043A70: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043A78: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043A88: 80450D64 (struct_80450D64)
-//	80043AB4: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	80043B44: 80451ED8 (lit_4267)
-//	80043B68: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043B6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043B78: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043B90: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043B94: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043BA0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043BBC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043BC0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043BCC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043BE8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043BEC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043BF8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043C14: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C18: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C24: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043C40: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C44: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C50: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043C68: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C78: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043C90: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043C94: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043CA0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043CBC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043CC0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043CCC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80043CF8: 80451ED4 (lit_4265)
-//	80043D00: 801A8B58 (dKy_set_nexttime__Ff)
-//	80043D30: 8002D2FC (dComIfGp_setNextStage__FPCcsScScfUliScsii)
-//	80043D4C: 80362200 (_restgpr_19)
+/* 80043A14-80043D60 03E354 034C+00 1/1 0/0 0/0 .text            dEvDt_Next_Stage__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEvDt_Next_Stage(int param_0, int param_1) {
+static asm void dEvDt_Next_Stage(int param_0, int param_1) {
     nofralloc
 #include "asm/d/event/d_event_data/dEvDt_Next_Stage__Fii.s"
 }
 #pragma pop
 
-/* 80043D60-80043DC8 0068+00 s=3 e=0 z=0  None .text      flagCheck__11dEvDtFlag_cFi */
-//	80043D7C: 80043E30 (flagMaxCheck__11dEvDtFlag_cFi)
+/* 80043D60-80043DC8 03E6A0 0068+00 3/3 0/0 0/0 .text            flagCheck__11dEvDtFlag_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -519,8 +370,7 @@ asm void dEvDtFlag_c::flagCheck(int param_0) {
 }
 #pragma pop
 
-/* 80043DC8-80043E30 0068+00 s=2 e=1 z=0  None .text      flagSet__11dEvDtFlag_cFi */
-//	80043DE4: 80043E30 (flagMaxCheck__11dEvDtFlag_cFi)
+/* 80043DC8-80043E30 03E708 0068+00 2/2 1/1 0/0 .text            flagSet__11dEvDtFlag_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,7 +380,7 @@ asm void dEvDtFlag_c::flagSet(int param_0) {
 }
 #pragma pop
 
-/* 80043E30-80043E58 0028+00 s=2 e=0 z=0  None .text      flagMaxCheck__11dEvDtFlag_cFi */
+/* 80043E30-80043E58 03E770 0028+00 2/2 0/0 0/0 .text            flagMaxCheck__11dEvDtFlag_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -540,7 +390,7 @@ asm void dEvDtFlag_c::flagMaxCheck(int param_0) {
 }
 #pragma pop
 
-/* 80043E58-80043E78 0020+00 s=0 e=3 z=0  None .text      init__11dEvDtFlag_cFv */
+/* 80043E58-80043E78 03E798 0020+00 0/0 3/3 0/0 .text            init__11dEvDtFlag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -550,12 +400,7 @@ asm void dEvDtFlag_c::init() {
 }
 #pragma pop
 
-/* 80043E78-80043EFC 0084+00 s=0 e=1 z=0  None .text      finishCheck__12dEvDtEvent_cFv */
-//	80043E88: 803621D8 (_savegpr_28)
-//	80043E98: 804061C0 (g_dComIfG_gameInfo)
-//	80043E9C: 804061C0 (g_dComIfG_gameInfo)
-//	80043EBC: 80043D60 (flagCheck__11dEvDtFlag_cFi)
-//	80043EE8: 80362224 (_restgpr_28)
+/* 80043E78-80043EFC 03E7B8 0084+00 0/0 1/1 0/0 .text            finishCheck__12dEvDtEvent_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -565,12 +410,7 @@ asm void dEvDtEvent_c::finishCheck() {
 }
 #pragma pop
 
-/* 80043EFC-80043F70 0074+00 s=0 e=1 z=0  None .text      forceFinish__12dEvDtEvent_cFv */
-//	80043F0C: 803621D8 (_savegpr_28)
-//	80043F1C: 804061C0 (g_dComIfG_gameInfo)
-//	80043F20: 804061C0 (g_dComIfG_gameInfo)
-//	80043F40: 80043DC8 (flagSet__11dEvDtFlag_cFi)
-//	80043F5C: 80362224 (_restgpr_28)
+/* 80043EFC-80043F70 03E83C 0074+00 0/0 1/1 0/0 .text            forceFinish__12dEvDtEvent_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -580,11 +420,8 @@ asm void dEvDtEvent_c::forceFinish() {
 }
 #pragma pop
 
-/* 80043F70-80043FD8 0068+00 s=0 e=1 z=0  None .text
+/* 80043F70-80043FD8 03E8B0 0068+00 0/0 1/1 0/0 .text
  * specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c             */
-//	80043F80: 803621D8 (_savegpr_28)
-//	80043FA8: 80044080 (specialProc__12dEvDtStaff_cFv)
-//	80043FC4: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,12 +431,7 @@ asm void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* param_0) {
 }
 #pragma pop
 
-/* 80043FD8-8004403C 0064+00 s=4 e=0 z=0  None .text      specialProc_WaitStart__12dEvDtStaff_cFi */
-//	80043FEC: 804061C0 (g_dComIfG_gameInfo)
-//	80043FF0: 804061C0 (g_dComIfG_gameInfo)
-//	80043FF8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80043FFC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044008: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
+/* 80043FD8-8004403C 03E918 0064+00 4/4 0/0 0/0 .text specialProc_WaitStart__12dEvDtStaff_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -609,10 +441,7 @@ asm void dEvDtStaff_c::specialProc_WaitStart(int param_0) {
 }
 #pragma pop
 
-/* 8004403C-80044080 0044+00 s=4 e=0 z=0  None .text      specialProc_WaitProc__12dEvDtStaff_cFi */
-//	80044060: 804061C0 (g_dComIfG_gameInfo)
-//	80044064: 804061C0 (g_dComIfG_gameInfo)
-//	8004406C: 8004817C (cutEnd__16dEvent_manager_cFi)
+/* 8004403C-80044080 03E97C 0044+00 4/4 0/0 0/0 .text specialProc_WaitProc__12dEvDtStaff_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -623,7 +452,7 @@ asm void dEvDtStaff_c::specialProc_WaitProc(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A8238-803A8270 0034+04 s=1 e=0 z=0  None .data      @4398 */
+/* 803A8238-803A8270 -00001 0034+04 1/1 0/0 0/0 .data            @4398 */
 SECTION_DATA static void* lit_4398[13 + 1 /* padding */] = {
     (void*)(((char*)specialProc__12dEvDtStaff_cFv) + 0xA0),
     (void*)(((char*)specialProc__12dEvDtStaff_cFv) + 0x50),
@@ -642,23 +471,7 @@ SECTION_DATA static void* lit_4398[13 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80044080-80044134 00B4+00 s=2 e=0 z=0  None .text      specialProc__12dEvDtStaff_cFv */
-//	800440A0: 803A8238 (lit_4398)
-//	800440A4: 803A8238 (lit_4398)
-//	800440B8: 80045878 (specialProcPackage__12dEvDtStaff_cFv)
-//	800440C0: 80044EE4 (specialProcDirector__12dEvDtStaff_cFv)
-//	800440C8: 80045AFC (specialProcTimekeeper__12dEvDtStaff_cFv)
-//	800440D0: 804061C0 (g_dComIfG_gameInfo)
-//	800440D4: 804061C0 (g_dComIfG_gameInfo)
-//	800440E0: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800440E8: 80045C34 (specialProcEffect__12dEvDtStaff_cFv)
-//	800440F0: 80044CB8 (specialProcCreate__12dEvDtStaff_cFv)
-//	800440F4: 804061C0 (g_dComIfG_gameInfo)
-//	800440F8: 804061C0 (g_dComIfG_gameInfo)
-//	80044104: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004410C: 80044A58 (specialProcSound__12dEvDtStaff_cFv)
-//	80044114: 80044324 (specialProcMessage__12dEvDtStaff_cFv)
-//	8004411C: 80044190 (specialProcLight__12dEvDtStaff_cFv)
+/* 80044080-80044134 03E9C0 00B4+00 2/1 0/0 0/0 .text            specialProc__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -668,9 +481,7 @@ asm void dEvDtStaff_c::specialProc() {
 }
 #pragma pop
 
-/* 80044134-80044170 003C+00 s=0 e=1 z=0  None .text      init__12dEvDtStaff_cFv */
-//	80044160: 804061C0 (g_dComIfG_gameInfo)
-//	80044164: 804061C0 (g_dComIfG_gameInfo)
+/* 80044134-80044170 03EA74 003C+00 0/0 1/1 0/0 .text            init__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -680,7 +491,7 @@ asm void dEvDtStaff_c::init() {
 }
 #pragma pop
 
-/* 80044170-80044190 0020+00 s=1 e=0 z=0  None .text      advanceCut__12dEvDtStaff_cFi */
+/* 80044170-80044190 03EAB0 0020+00 1/1 0/0 0/0 .text            advanceCut__12dEvDtStaff_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -691,45 +502,18 @@ asm void dEvDtStaff_c::advanceCut(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EE0-80451EE8 0004+04 s=1 e=0 z=0  None .sdata2    @4460 */
+/* 80451EE0-80451EE8 0004E0 0004+04 1/1 0/0 0/0 .sdata2          @4460 */
 SECTION_SDATA2 static f32 lit_4460[1 + 1 /* padding */] = {
     1.0f / 15.0f,
     /* padding */
     0.0f,
 };
 
-/* 80451EE8-80451EF0 0008+00 s=1 e=0 z=0  None .sdata2    @4461 */
+/* 80451EE8-80451EF0 0004E8 0008+00 1/1 0/0 0/0 .sdata2          @4461 */
 SECTION_SDATA2 static f64 lit_4461 = 24.0;
 
-/* 80044190-80044324 0194+00 s=1 e=0 z=0  None .text      specialProcLight__12dEvDtStaff_cFv */
-//	800441A0: 803621DC (_savegpr_29)
-//	800441A4: 804061C0 (g_dComIfG_gameInfo)
-//	800441A8: 804061C0 (g_dComIfG_gameInfo)
-//	800441B4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800441B8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800441C8: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	800441E0: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	800441F0: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80044230: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044234: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044240: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004424C: 80451ED4 (lit_4265)
-//	80044258: 801A8B68 (dKy_instant_timechg__Ff)
-//	80044264: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044268: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044274: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044290: 801A8BC8 (dKy_instant_rainchg__Fv)
-//	800442A0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800442A4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800442B0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800442BC: 804061C0 (g_dComIfG_gameInfo)
-//	800442C0: 804061C0 (g_dComIfG_gameInfo)
-//	800442C8: 80451EE0 (lit_4460)
-//	800442D8: 80451EE8 (lit_4461)
-//	800442F4: 80451ED4 (lit_4265)
-//	800442FC: 801A8B68 (dKy_instant_timechg__Ff)
-//	80044308: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044310: 80362228 (_restgpr_29)
+/* 80044190-80044324 03EAD0 0194+00 1/1 0/0 0/0 .text            specialProcLight__12dEvDtStaff_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -739,73 +523,7 @@ asm void dEvDtStaff_c::specialProcLight() {
 }
 #pragma pop
 
-/* 80044324-80044A58 0734+00 s=1 e=0 z=0  None .text      specialProcMessage__12dEvDtStaff_cFv */
-//	80044334: 803621D0 (_savegpr_26)
-//	80044340: 804061C0 (g_dComIfG_gameInfo)
-//	80044344: 804061C0 (g_dComIfG_gameInfo)
-//	80044350: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044354: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044364: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	8004437C: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	8004438C: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80044444: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	80044464: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044468: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044470: 80048144 (getMySubstanceNum__16dEvent_manager_cFiPCc)
-//	80044480: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044484: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044490: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800444AC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800444B0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800444B8: 80048144 (getMySubstanceNum__16dEvent_manager_cFiPCc)
-//	800444C8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800444CC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800444D8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004451C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044520: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004452C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044540: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044544: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044550: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044564: 8001FE84 (fopMsgM_messageSet__FUlUl)
-//	8004457C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044580: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004458C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800445B4: 8019BFC4 (d_GameOver_Create__FUc)
-//	800445C8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800445CC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800445D8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800445F0: 800437F0 (getStartTelopNo__Fv)
-//	80044608: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004460C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044618: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044628: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004462C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044638: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004465C: 8004372C (getTelopNo__FPCc)
-//	8004466C: 800437C4 (getTelopNo__Fv)
-//	8004468C: 8001FFC4 (fopMsgM_messageSetDemo__FUl)
-//	80044768: 8004403C (specialProc_WaitProc__12dEvDtStaff_cFi)
-//	800447A0: 8001FE84 (fopMsgM_messageSet__FUlUl)
-//	800447CC: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	800447F8: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044818: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044828: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044854: 8001FE84 (fopMsgM_messageSet__FUlUl)
-//	80044878: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	80044918: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044930: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004494C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044980: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044990: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800449BC: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800449D4: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	80044A08: 804061C0 (g_dComIfG_gameInfo)
-//	80044A0C: 804061C0 (g_dComIfG_gameInfo)
-//	80044A24: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044A2C: 8019C008 (d_GameOver_Delete__FRUi)
-//	80044A3C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044A44: 8036221C (_restgpr_26)
+/* 80044324-80044A58 03EC64 0734+00 1/1 0/0 0/0 .text specialProcMessage__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -816,46 +534,14 @@ asm void dEvDtStaff_c::specialProcMessage() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EF0-80451EF4 0004+00 s=4 e=0 z=0  None .sdata2    @4668 */
+/* 80451EF0-80451EF4 0004F0 0004+00 4/4 0/0 0/0 .sdata2          @4668 */
 SECTION_SDATA2 static f32 lit_4668 = 1.0f;
 
-/* 80451EF4-80451EF8 0004+00 s=2 e=0 z=0  None .sdata2    @4669 */
+/* 80451EF4-80451EF8 0004F4 0004+00 2/2 0/0 0/0 .sdata2          @4669 */
 SECTION_SDATA2 static f32 lit_4669 = -1.0f;
 
-/* 80044A58-80044CB8 0260+00 s=1 e=0 z=0  None .text      specialProcSound__12dEvDtStaff_cFv */
-//	80044A68: 803621D8 (_savegpr_28)
-//	80044A70: 804061C0 (g_dComIfG_gameInfo)
-//	80044A74: 804061C0 (g_dComIfG_gameInfo)
-//	80044A80: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044A84: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044A94: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80044AAC: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80044ABC: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80044B38: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	80044B40: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80044B48: 802AFE18 (bgmStreamPlay__8Z2SeqMgrFv)
-//	80044B58: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	80044B68: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044B6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044B78: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044B98: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80044BAC: 80451EF0 (lit_4668)
-//	80044BB4: 80451EF4 (lit_4669)
-//	80044BC0: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80044BD0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80044BE4: 80451EF0 (lit_4668)
-//	80044BEC: 80451EF4 (lit_4669)
-//	80044BF8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80044C08: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044C0C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044C18: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044C24: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80044C34: 802AF408 (bgmStop__8Z2SeqMgrFUll)
-//	80044C6C: 8004403C (specialProc_WaitProc__12dEvDtStaff_cFi)
-//	80044C78: 80450E34 (m_frameNoMsg__7dDemo_c)
-//	80044C8C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044C9C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80044CA4: 80362224 (_restgpr_28)
+/* 80044A58-80044CB8 03F398 0260+00 1/1 0/0 0/0 .text            specialProcSound__12dEvDtStaff_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -865,37 +551,8 @@ asm void dEvDtStaff_c::specialProcSound() {
 }
 #pragma pop
 
-/* 80044CB8-80044EE4 022C+00 s=1 e=0 z=0  None .text      specialProcCreate__12dEvDtStaff_cFv */
-//	80044CC8: 803621D8 (_savegpr_28)
-//	80044CCC: 804061C0 (g_dComIfG_gameInfo)
-//	80044CD0: 804061C0 (g_dComIfG_gameInfo)
-//	80044CDC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044CE0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044CF0: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80044D08: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80044D18: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80044D58: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044D5C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044D68: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044D6C: 80024DC0 (dStage_searchName__FPCc)
-//	80044D7C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044D80: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044D8C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044DAC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044DB0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044DBC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044DC8: 804061C0 (g_dComIfG_gameInfo)
-//	80044DCC: 804061C0 (g_dComIfG_gameInfo)
-//	80044E10: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044E14: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044E20: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044E60: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044E64: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044E70: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044E7C: 80451EF0 (lit_4668)
-//	80044EB4: 80450D64 (struct_80450D64)
-//	80044EC8: 80019D98 (fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc)
-//	80044ED0: 80362224 (_restgpr_28)
+/* 80044CB8-80044EE4 03F5F8 022C+00 1/1 0/0 0/0 .text            specialProcCreate__12dEvDtStaff_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -905,169 +562,7 @@ asm void dEvDtStaff_c::specialProcCreate() {
 }
 #pragma pop
 
-/* 80044EE4-80045878 0994+00 s=1 e=0 z=0  None .text      specialProcDirector__12dEvDtStaff_cFv */
-//	80044EF4: 803621C8 (_savegpr_24)
-//	80044EFC: 804061C0 (g_dComIfG_gameInfo)
-//	80044F00: 804061C0 (g_dComIfG_gameInfo)
-//	80044F14: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044F18: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044F28: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80044F40: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80044F50: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80044F64: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044F68: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044F74: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044F80: 804061C0 (g_dComIfG_gameInfo)
-//	80044F84: 804061C0 (g_dComIfG_gameInfo)
-//	80044F94: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80044F98: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80044FA0: 8003498C (onEventBit__11dSv_event_cFUs)
-//	80044FAC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044FB0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044FBC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80044FC8: 804061C0 (g_dComIfG_gameInfo)
-//	80044FCC: 804061C0 (g_dComIfG_gameInfo)
-//	80044FDC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80044FE0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80044FE8: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	80044FF4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80044FF8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045004: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045040: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045044: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045050: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045064: 8002D628 (dComIfGs_onStageSwitch__Fii)
-//	80045070: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045074: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045080: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045094: 8002D6B4 (dComIfGs_offStageSwitch__Fii)
-//	800450A0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800450A4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800450B0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800450BC: 804061C0 (g_dComIfG_gameInfo)
-//	800450C0: 804061C0 (g_dComIfG_gameInfo)
-//	800450D0: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800450D4: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800450DC: 8003498C (onEventBit__11dSv_event_cFUs)
-//	800450E8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800450EC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800450F8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045104: 804061C0 (g_dComIfG_gameInfo)
-//	80045108: 804061C0 (g_dComIfG_gameInfo)
-//	80045118: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8004511C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80045124: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	800451FC: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	80045208: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004520C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045214: 80368994 (strcmp)
-//	80045234: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045238: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045240: 80368994 (strcmp)
-//	80045264: 80043A14 (dEvDt_Next_Stage__Fii)
-//	80045274: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045278: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045284: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045294: 800432EC (convPId__14dEvt_control_cFUi)
-//	800452A8: 800432EC (convPId__14dEvt_control_cFUi)
-//	800452C0: 80042958 (setSkipZev__14dEvt_control_cFPvPc)
-//	800452CC: 800425E8 (dEv_defaultSkipProc__FPvi)
-//	800452D0: 800425E8 (dEv_defaultSkipProc__FPvi)
-//	800452D8: 80042914 (setSkipProc__14dEvt_control_cFPvPFPvi_ii)
-//	800452E8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800452EC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800452F8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045308: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004530C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045318: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045320: 80451ED0 (lit_4264)
-//	8004532C: 80450BDC (mFadeRate__13mDoGph_gInf_c)
-//	80045360: 80007FD8 (fadeOut__13mDoGph_gInf_cFfR8_GXColor)
-//	8004536C: 800080D0 (fadeOut__13mDoGph_gInf_cFf)
-//	8004537C: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	80045388: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004538C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045398: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800453A8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800453AC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800453B8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800453C0: 80451ED0 (lit_4264)
-//	800453C8: 80451EF0 (lit_4668)
-//	800453E8: 8006FC0C (StartQuake__12dVibration_cFPCUcii4cXyz)
-//	800453F8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800453FC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045408: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045418: 800568D8 (wipeIn__12dDlst_list_cFf)
-//	80045420: 80451ED0 (lit_4264)
-//	80045448: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004544C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045458: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004547C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80045490: 80451EF0 (lit_4668)
-//	80045498: 80451EF4 (lit_4669)
-//	800454A4: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	800454B4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800454B8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800454C0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800454D4: 800434D8 (searchMapEventData__14dEvt_control_cFUc)
-//	80045518: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004551C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045528: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045538: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
-//	80045548: 8004365C (setPt2__14dEvt_control_cFPv)
-//	80045554: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045558: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045564: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045574: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
-//	80045584: 8004368C (setPtT__14dEvt_control_cFPv)
-//	80045590: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045594: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800455A0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800455B0: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
-//	800455C0: 800436BC (setPtI__14dEvt_control_cFPv)
-//	800455CC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800455D0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800455DC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800455EC: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
-//	800455FC: 800436F4 (setPtD__14dEvt_control_cFPv)
-//	8004560C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045610: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004561C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045638: 804061C0 (g_dComIfG_gameInfo)
-//	8004563C: 804061C0 (g_dComIfG_gameInfo)
-//	80045648: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8004564C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045654: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80045664: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045668: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045670: 8003498C (onEventBit__11dSv_event_cFUs)
-//	80045678: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8004567C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045684: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80045694: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045698: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	800456A0: 8003498C (onEventBit__11dSv_event_cFUs)
-//	80045728: 8004403C (specialProc_WaitProc__12dEvDtStaff_cFi)
-//	80045730: 80450BE6 (struct_80450BE4)
-//	80045744: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004574C: 80450BDC (mFadeRate__13mDoGph_gInf_c)
-//	80045750: 80451EF0 (lit_4668)
-//	80045768: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004576C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045778: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045780: 80451ED0 (lit_4264)
-//	80045794: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800457C4: 8006FD94 (StopQuake__12dVibration_cFi)
-//	800457D4: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800457E8: 80451ED0 (lit_4264)
-//	800457EC: 80450ED4 (mWipeRate__12dDlst_list_c)
-//	80045800: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045808: 80450ED4 (mWipeRate__12dDlst_list_c)
-//	8004580C: 80451EF0 (lit_4668)
-//	80045824: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004584C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004585C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045864: 80362214 (_restgpr_24)
+/* 80044EE4-80045878 03F824 0994+00 1/1 0/0 0/0 .text specialProcDirector__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1078,53 +573,10 @@ asm void dEvDtStaff_c::specialProcDirector() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EF8-80451EFC 0004+00 s=1 e=0 z=0  None .sdata2    @5057 */
+/* 80451EF8-80451EFC 0004F8 0004+00 1/1 0/0 0/0 .sdata2          @5057 */
 SECTION_SDATA2 static f32 lit_5057 = 10.0f;
 
-/* 80045878-80045AFC 0284+00 s=1 e=0 z=0  None .text      specialProcPackage__12dEvDtStaff_cFv */
-//	80045890: 803621CC (_savegpr_25)
-//	80045898: 804061C0 (g_dComIfG_gameInfo)
-//	8004589C: 804061C0 (g_dComIfG_gameInfo)
-//	800458AC: 8023806C (demoMessageGroup__12dMsgObject_cFv)
-//	800458B0: 804061C0 (g_dComIfG_gameInfo)
-//	800458B4: 804061C0 (g_dComIfG_gameInfo)
-//	800458C0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800458C4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800458D4: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	800458EC: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	800458FC: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	8004593C: 80043FD8 (specialProc_WaitStart__12dEvDtStaff_cFi)
-//	8004594C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045950: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004595C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004596C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045970: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004597C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	8004598C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045990: 80379DD0 (d_event_d_event_data__stringBase0)
-//	8004599C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800459B0: 80451ED0 (lit_4264)
-//	800459BC: 8004331C (getStbDemoData__14dEvt_control_cFPc)
-//	800459C8: 80039B6C (start__7dDemo_cFPCUcP4cXyzf)
-//	800459CC: 80451EF8 (lit_5057)
-//	800459DC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800459E0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	800459EC: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	800459F8: 804061C0 (g_dComIfG_gameInfo)
-//	800459FC: 804061C0 (g_dComIfG_gameInfo)
-//	80045A0C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045A10: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80045A18: 8003498C (onEventBit__11dSv_event_cFUs)
-//	80045A50: 8004403C (specialProc_WaitProc__12dEvDtStaff_cFi)
-//	80045A5C: 80450E38 (m_mode__7dDemo_c)
-//	80045A6C: 80043278 (getStageEventDt__14dEvt_control_cFv)
-//	80045A90: 80450E04 (m_control__7dDemo_c)
-//	80045AA8: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045AB0: 80039CF8 (end__7dDemo_cFv)
-//	80045AB4: 80450E38 (m_mode__7dDemo_c)
-//	80045AC8: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045AD8: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045AE8: 80362218 (_restgpr_25)
+/* 80045878-80045AFC 0401B8 0284+00 1/1 0/0 0/0 .text specialProcPackage__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1134,21 +586,7 @@ asm void dEvDtStaff_c::specialProcPackage() {
 }
 #pragma pop
 
-/* 80045AFC-80045C34 0138+00 s=1 e=0 z=0  None .text      specialProcTimekeeper__12dEvDtStaff_cFv */
-//	80045B0C: 803621D8 (_savegpr_28)
-//	80045B14: 804061C0 (g_dComIfG_gameInfo)
-//	80045B18: 804061C0 (g_dComIfG_gameInfo)
-//	80045B24: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045B28: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045B38: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80045B50: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80045B60: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80045BA0: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045BA4: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045BB0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045C08: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045C18: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80045C20: 80362224 (_restgpr_28)
+/* 80045AFC-80045C34 04043C 0138+00 1/1 0/0 0/0 .text specialProcTimekeeper__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1159,70 +597,11 @@ asm void dEvDtStaff_c::specialProcTimekeeper() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EFC-80451F00 0004+00 s=1 e=0 z=0  None .sdata2    @5200 */
+/* 80451EFC-80451F00 0004FC 0004+00 1/1 0/0 0/0 .sdata2          @5200 */
 SECTION_SDATA2 static f32 lit_5200 = 4.0f / 5.0f;
 
-/* 80045C34-800460A8 0474+00 s=1 e=0 z=0  None .text      specialProcEffect__12dEvDtStaff_cFv */
-//	80045C54: 803621C8 (_savegpr_24)
-//	80045C5C: 804061C0 (g_dComIfG_gameInfo)
-//	80045C60: 804061C0 (g_dComIfG_gameInfo)
-//	80045C6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045C70: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045C80: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80045C98: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80045CA8: 80047D4C (getIsAddvance__16dEvent_manager_cFi)
-//	80045D18: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D1C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D28: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045D50: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D54: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D60: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045D80: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D84: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045D90: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045DA8: 80451ED0 (lit_4264)
-//	80045DB0: 80451EF0 (lit_4668)
-//	80045DC8: 8006FA24 (StartShock__12dVibration_cFii4cXyz)
-//	80045DD8: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045DDC: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045DE8: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045E0C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E10: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E1C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045E3C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E40: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E4C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045E6C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E70: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E7C: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045E90: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045E94: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045EA0: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045EB8: 80451ED0 (lit_4264)
-//	80045EC0: 80451EF0 (lit_4668)
-//	80045EDC: 8006FC0C (StartQuake__12dVibration_cFPCUcii4cXyz)
-//	80045EE4: 80451ED0 (lit_4264)
-//	80045EEC: 80451EF0 (lit_4668)
-//	80045F08: 8006FB10 (StartQuake__12dVibration_cFii4cXyz)
-//	80045F18: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F1C: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F28: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045F50: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F54: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F60: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045F74: 80451EFC (lit_5200)
-//	80045F80: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F84: 80379DD0 (d_event_d_event_data__stringBase0)
-//	80045F90: 800480EC (getMySubstanceP__16dEvent_manager_cFiPCci)
-//	80045FA4: 80451EF0 (lit_4668)
-//	80045FA8: 80181640 (dCam_getBody__Fv)
-//	80045FBC: 80181170 (StartBlure__9dCamera_cFiP10fopAc_ac_cff)
-//	80046028: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80046044: 8006FD94 (StopQuake__12dVibration_cFi)
-//	80046050: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004606C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8004607C: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	80046094: 80362214 (_restgpr_24)
+/* 80045C34-800460A8 040574 0474+00 1/1 0/0 0/0 .text            specialProcEffect__12dEvDtStaff_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1232,12 +611,7 @@ asm void dEvDtStaff_c::specialProcEffect() {
 }
 #pragma pop
 
-/* 800460A8-80046138 0090+00 s=1 e=0 z=0  None .text      startCheck__10dEvDtCut_cFv */
-//	800460B8: 803621D8 (_savegpr_28)
-//	800460C8: 804061C0 (g_dComIfG_gameInfo)
-//	800460CC: 804061C0 (g_dComIfG_gameInfo)
-//	800460F8: 80043D60 (flagCheck__11dEvDtFlag_cFi)
-//	80046124: 80362224 (_restgpr_28)
+/* 800460A8-80046138 0409E8 0090+00 1/1 0/0 0/0 .text            startCheck__10dEvDtCut_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1247,7 +621,7 @@ asm void dEvDtCut_c::startCheck() {
 }
 #pragma pop
 
-/* 80046138-8004616C 0034+00 s=1 e=7 z=0  None .text      init__11dEvDtBase_cFv */
+/* 80046138-8004616C 040A78 0034+00 1/1 7/7 0/0 .text            init__11dEvDtBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1257,10 +631,7 @@ asm void dEvDtBase_c::init() {
 }
 #pragma pop
 
-/* 8004616C-8004628C 0120+00 s=0 e=6 z=0  None .text      init__11dEvDtBase_cFPci */
-//	8004617C: 803621DC (_savegpr_29)
-//	8004618C: 80046138 (init__11dEvDtBase_cFv)
-//	80046278: 80362228 (_restgpr_29)
+/* 8004616C-8004628C 040AAC 0120+00 0/0 6/6 0/0 .text            init__11dEvDtBase_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1270,11 +641,7 @@ asm void dEvDtBase_c::init(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8004628C-800462FC 0070+00 s=0 e=1 z=0  None .text      advanceCut__11dEvDtBase_cFP12dEvDtEvent_c
- */
-//	8004629C: 803621D8 (_savegpr_28)
-//	800462CC: 800462FC (advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c)
-//	800462E8: 80362224 (_restgpr_28)
+/* 8004628C-800462FC 040BCC 0070+00 0/0 1/1 0/0 .text advanceCut__11dEvDtBase_cFP12dEvDtEvent_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1284,17 +651,8 @@ asm void dEvDtBase_c::advanceCut(dEvDtEvent_c* param_0) {
 }
 #pragma pop
 
-/* 800462FC-800463DC 00E0+00 s=1 e=0 z=0  None .text
+/* 800462FC-800463DC 040C3C 00E0+00 1/1 0/0 0/0 .text
  * advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c               */
-//	8004630C: 803621D8 (_savegpr_28)
-//	8004632C: 804061C0 (g_dComIfG_gameInfo)
-//	80046330: 804061C0 (g_dComIfG_gameInfo)
-//	80046338: 80043D60 (flagCheck__11dEvDtFlag_cFi)
-//	8004635C: 800460A8 (startCheck__10dEvDtCut_cFv)
-//	8004638C: 80044170 (advanceCut__12dEvDtStaff_cFi)
-//	800463A0: 80043DC8 (flagSet__11dEvDtFlag_cFi)
-//	800463AC: 80044170 (advanceCut__12dEvDtStaff_cFi)
-//	800463C8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1302,4 +660,65 @@ asm void dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event_data/advanceCutLocal__11dEvDtBase_cFP12dEvDtStaff_c.s"
 }
+#pragma pop
+
+/* 80379DD0-80379F50 006430 017E+02 10/10 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379DD0 = "ID";
+SECTION_DEAD static char const* const stringBase_80379DD3 = "Stage";
+SECTION_DEAD static char const* const stringBase_80379DD9 = "StartCode";
+SECTION_DEAD static char const* const stringBase_80379DE3 = "RoomNo";
+SECTION_DEAD static char const* const stringBase_80379DEA = "Layer";
+SECTION_DEAD static char const* const stringBase_80379DF0 = "Wipe";
+SECTION_DEAD static char const* const stringBase_80379DF5 = "Mode";
+SECTION_DEAD static char const* const stringBase_80379DFA = "Speed";
+SECTION_DEAD static char const* const stringBase_80379E00 = "Hour";
+SECTION_DEAD static char const* const stringBase_80379E05 = "NoVisit";
+SECTION_DEAD static char const* const stringBase_80379E0D = "Timer";
+SECTION_DEAD static char const* const stringBase_80379E13 = "LIGHT";
+SECTION_DEAD static char const* const stringBase_80379E19 = "Weather";
+SECTION_DEAD static char const* const stringBase_80379E21 = "MESSAGE";
+SECTION_DEAD static char const* const stringBase_80379E29 = "msgNo";
+SECTION_DEAD static char const* const stringBase_80379E2F = "No";
+SECTION_DEAD static char const* const stringBase_80379E32 = "Type";
+SECTION_DEAD static char const* const stringBase_80379E37 = "ForStart";
+SECTION_DEAD static char const* const stringBase_80379E40 = "SOUND";
+SECTION_DEAD static char const* const stringBase_80379E46 = "CREATER";
+SECTION_DEAD static char const* const stringBase_80379E4E = "MAKECAST";
+SECTION_DEAD static char const* const stringBase_80379E57 = "ARG";
+SECTION_DEAD static char const* const stringBase_80379E5B = "POS";
+SECTION_DEAD static char const* const stringBase_80379E5F = "ANGLE";
+SECTION_DEAD static char const* const stringBase_80379E65 = "SCALE";
+SECTION_DEAD static char const* const stringBase_80379E6B = "DIRECTOR";
+SECTION_DEAD static char const* const stringBase_80379E74 = "EventFlag";
+SECTION_DEAD static char const* const stringBase_80379E7E = "EventFlagOff";
+SECTION_DEAD static char const* const stringBase_80379E8B = "SwitchTable";
+SECTION_DEAD static char const* const stringBase_80379E97 = "SwitchBit";
+SECTION_DEAD static char const* const stringBase_80379EA1 = "SwitchOff";
+SECTION_DEAD static char const* const stringBase_80379EAB = "TmpBit";
+SECTION_DEAD static char const* const stringBase_80379EB2 = "TmpBitOff";
+SECTION_DEAD static char const* const stringBase_80379EBC = "PLAYER_NODRAW";
+SECTION_DEAD static char const* const stringBase_80379ECA = "PLAYER_DRAW";
+SECTION_DEAD static char const* const stringBase_80379ED6 = "Zev";
+SECTION_DEAD static char const* const stringBase_80379EDA = "Rate";
+SECTION_DEAD static char const* const stringBase_80379EDF = "Color";
+SECTION_DEAD static char const* const stringBase_80379EE5 = "Pattern";
+SECTION_DEAD static char const* const stringBase_80379EED = "Pt2";
+SECTION_DEAD static char const* const stringBase_80379EF1 = "PtT";
+SECTION_DEAD static char const* const stringBase_80379EF5 = "PtI";
+SECTION_DEAD static char const* const stringBase_80379EF9 = "PtD";
+SECTION_DEAD static char const* const stringBase_80379EFD = "PACKAGE";
+SECTION_DEAD static char const* const stringBase_80379F05 = "FileName";
+SECTION_DEAD static char const* const stringBase_80379F0E = "OffsetPos";
+SECTION_DEAD static char const* const stringBase_80379F18 = "OffsetAngY";
+SECTION_DEAD static char const* const stringBase_80379F23 = "TIMEKEEPER";
+SECTION_DEAD static char const* const stringBase_80379F2E = "EFFECT";
+SECTION_DEAD static char const* const stringBase_80379F35 = "Power";
+SECTION_DEAD static char const* const stringBase_80379F3B = "Random";
+SECTION_DEAD static char const* const stringBase_80379F42 = "Alpha";
+SECTION_DEAD static char const* const stringBase_80379F48 = "Scale";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379F4E = "\0";
 #pragma pop

@@ -4,14 +4,14 @@ lbl_8083AC7C:
 /* 8083AC84  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8083AC88  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8083AC8C  7C 7F 1B 78 */	mr r31, r3
-/* 8083AC90  3C 80 80 84 */	lis r4, lit_4304@ha
-/* 8083AC94  C0 04 55 F4 */	lfs f0, lit_4304@l(r4)
+/* 8083AC90  3C 80 80 84 */	lis r4, lit_4304@ha /* 0x808455F4@ha */
+/* 8083AC94  C0 04 55 F4 */	lfs f0, lit_4304@l(r4)  /* 0x808455F4@l */
 /* 8083AC98  D0 03 17 58 */	stfs f0, 0x1758(r3)
 /* 8083AC9C  38 00 00 03 */	li r0, 3
 /* 8083ACA0  90 01 00 08 */	stw r0, 8(r1)
 /* 8083ACA4  38 81 00 08 */	addi r4, r1, 8
-/* 8083ACA8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8083ACAC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8083ACA8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8083ACAC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8083ACB0  80 A5 5D B4 */	lwz r5, 0x5db4(r5)
 /* 8083ACB4  38 A5 04 D0 */	addi r5, r5, 0x4d0
 /* 8083ACB8  48 00 00 35 */	bl setDemoMoveData__9daHorse_cFPUlPC4cXyz

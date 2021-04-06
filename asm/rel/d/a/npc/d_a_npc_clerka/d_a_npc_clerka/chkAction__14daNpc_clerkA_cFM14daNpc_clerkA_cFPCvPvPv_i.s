@@ -3,7 +3,7 @@ lbl_80993C58:
 /* 80993C5C  7C 08 02 A6 */	mflr r0
 /* 80993C60  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80993C64  38 63 10 D4 */	addi r3, r3, 0x10d4
-/* 80993C68  4B 9C E3 E0 */	b __ptmf_cmpr
+/* 80993C68  4B 9C E3 E1 */	bl __ptmf_cmpr
 /* 80993C6C  7C 60 00 34 */	cntlzw r0, r3
 /* 80993C70  54 03 D9 7E */	srwi r3, r0, 5
 /* 80993C74  80 01 00 14 */	lwz r0, 0x14(r1)

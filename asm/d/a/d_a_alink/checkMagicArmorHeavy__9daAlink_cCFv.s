@@ -7,8 +7,8 @@ lbl_800BB408:
 /* 800BB41C  48 00 49 E1 */	bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800BB420  2C 03 00 00 */	cmpwi r3, 0
 /* 800BB424  41 82 00 1C */	beq lbl_800BB440
-/* 800BB428  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BB42C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BB428  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BB42C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BB430  A0 03 00 04 */	lhz r0, 4(r3)
 /* 800BB434  28 00 00 00 */	cmplwi r0, 0
 /* 800BB438  40 82 00 08 */	bne lbl_800BB440

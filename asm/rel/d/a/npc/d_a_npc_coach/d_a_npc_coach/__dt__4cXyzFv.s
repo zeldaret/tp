@@ -7,7 +7,7 @@ lbl_8099DA24:
 /* 8099DA38  41 82 00 10 */	beq lbl_8099DA48
 /* 8099DA3C  7C 80 07 35 */	extsh. r0, r4
 /* 8099DA40  40 81 00 08 */	ble lbl_8099DA48
-/* 8099DA44  4B 93 12 F8 */	b __dl__FPv
+/* 8099DA44  4B 93 12 F9 */	bl __dl__FPv
 lbl_8099DA48:
 /* 8099DA48  7F E3 FB 78 */	mr r3, r31
 /* 8099DA4C  83 E1 00 0C */	lwz r31, 0xc(r1)

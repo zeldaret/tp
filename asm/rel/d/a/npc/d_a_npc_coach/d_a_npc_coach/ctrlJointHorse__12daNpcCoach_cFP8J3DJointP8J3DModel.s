@@ -20,7 +20,7 @@ lbl_8099DDB0:
 /* 8099DDC0  83 E3 00 14 */	lwz r31, 0x14(r3)
 /* 8099DDC4  80 9E 05 68 */	lwz r4, 0x568(r30)
 /* 8099DDC8  80 84 00 08 */	lwz r4, 8(r4)
-/* 8099DDCC  4B 66 FB C4 */	b changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
+/* 8099DDCC  4B 66 FB C5 */	bl changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
 /* 8099DDD0  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 8099DDD4  93 E3 00 08 */	stw r31, 8(r3)
 /* 8099DDD8  38 00 00 00 */	li r0, 0
@@ -28,7 +28,7 @@ lbl_8099DDB0:
 /* 8099DDE0  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 8099DDE4  C3 E3 00 44 */	lfs f31, 0x44(r3)
 /* 8099DDE8  C0 3E 0C E4 */	lfs f1, 0xce4(r30)
-/* 8099DDEC  4B 67 41 E0 */	b setAnmRate__15mDoExt_McaMorf2Ff
+/* 8099DDEC  4B 67 41 E1 */	bl setAnmRate__15mDoExt_McaMorf2Ff
 /* 8099DDF0  D3 FE 0C E4 */	stfs f31, 0xce4(r30)
 lbl_8099DDF4:
 /* 8099DDF4  38 60 00 01 */	li r3, 1

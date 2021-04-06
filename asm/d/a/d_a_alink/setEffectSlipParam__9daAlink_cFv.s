@@ -9,10 +9,10 @@ lbl_80120880:
 /* 8012089C  7C 78 1B 78 */	mr r24, r3
 /* 801208A0  3B 20 00 00 */	li r25, 0
 /* 801208A4  3A E0 00 00 */	li r23, 0
-/* 801208A8  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha
-/* 801208AC  3B C3 86 D0 */	addi r30, r3, m_typeFourData__8dPaPoF_c@l
-/* 801208B0  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha
-/* 801208B4  3B E3 87 48 */	addi r31, r3, m_emitterFourData__8dPaPoF_c@l
+/* 801208A8  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha /* 0x803A86D0@ha */
+/* 801208AC  3B C3 86 D0 */	addi r30, r3, m_typeFourData__8dPaPoF_c@l /* 0x803A86D0@l */
+/* 801208B0  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha /* 0x803A8748@ha */
+/* 801208B4  3B E3 87 48 */	addi r31, r3, m_emitterFourData__8dPaPoF_c@l /* 0x803A8748@l */
 lbl_801208B8:
 /* 801208B8  3B 40 00 00 */	li r26, 0
 /* 801208BC  7F BE BA 14 */	add r29, r30, r23
@@ -44,8 +44,8 @@ lbl_80120914:
 /* 8012091C  D0 03 00 44 */	stfs f0, 0x44(r3)
 /* 80120920  C0 02 93 A0 */	lfs f0, lit_9054(r2)
 /* 80120924  D0 03 00 40 */	stfs f0, 0x40(r3)
-/* 80120928  3C 80 80 39 */	lis r4, smokeParticleScale_39643@ha
-/* 8012092C  38 84 1B AC */	addi r4, r4, smokeParticleScale_39643@l
+/* 80120928  3C 80 80 39 */	lis r4, smokeParticleScale_39643@ha /* 0x80391BAC@ha */
+/* 8012092C  38 84 1B AC */	addi r4, r4, smokeParticleScale_39643@l /* 0x80391BAC@l */
 /* 80120930  E0 24 00 00 */	psq_l f1, 0(r4), 0, 0 /* qr0 */
 /* 80120934  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80120938  F0 21 00 14 */	psq_st f1, 20(r1), 0, 0 /* qr0 */
@@ -87,8 +87,8 @@ lbl_8012099C:
 /* 801209BC  80 18 05 74 */	lwz r0, 0x574(r24)
 /* 801209C0  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 801209C4  41 82 00 3C */	beq lbl_80120A00
-/* 801209C8  3C 80 80 39 */	lis r4, wolfWaterCenterScale@ha
-/* 801209CC  38 84 1B B8 */	addi r4, r4, wolfWaterCenterScale@l
+/* 801209C8  3C 80 80 39 */	lis r4, wolfWaterCenterScale@ha /* 0x80391BB8@ha */
+/* 801209CC  38 84 1B B8 */	addi r4, r4, wolfWaterCenterScale@l /* 0x80391BB8@l */
 /* 801209D0  E0 04 00 00 */	psq_l f0, 0(r4), 0, 0 /* qr0 */
 /* 801209D4  C0 44 00 08 */	lfs f2, 8(r4)
 /* 801209D8  F0 01 00 08 */	psq_st f0, 8(r1), 0, 0 /* qr0 */
@@ -106,8 +106,8 @@ lbl_80120A00:
 /* 80120A04  C0 83 00 AC */	lfs f4, 0xac(r3)
 /* 80120A08  A8 18 04 DE */	lha r0, 0x4de(r24)
 /* 80120A0C  54 05 04 38 */	rlwinm r5, r0, 0, 0x10, 0x1c
-/* 80120A10  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80120A14  38 04 9A 20 */	addi r0, r4, sincosTable___5JMath@l
+/* 80120A10  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80120A14  38 04 9A 20 */	addi r0, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80120A18  7C 80 2A 14 */	add r4, r0, r5
 /* 80120A1C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80120A20  C0 22 93 BC */	lfs f1, lit_10042(r2)

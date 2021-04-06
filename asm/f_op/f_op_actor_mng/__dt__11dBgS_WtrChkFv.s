@@ -7,8 +7,8 @@ lbl_8001DF30:
 /* 8001DF44  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8001DF48  7C 9F 23 78 */	mr r31, r4
 /* 8001DF4C  41 82 00 40 */	beq lbl_8001DF8C
-/* 8001DF50  3C 80 80 3A */	lis r4, __vt__11dBgS_WtrChk@ha
-/* 8001DF54  38 84 37 FC */	addi r4, r4, __vt__11dBgS_WtrChk@l
+/* 8001DF50  3C 80 80 3A */	lis r4, __vt__11dBgS_WtrChk@ha /* 0x803A37FC@ha */
+/* 8001DF54  38 84 37 FC */	addi r4, r4, __vt__11dBgS_WtrChk@l /* 0x803A37FC@l */
 /* 8001DF58  90 9E 00 0C */	stw r4, 0xc(r30)
 /* 8001DF5C  38 04 00 0C */	addi r0, r4, 0xc
 /* 8001DF60  90 1E 00 20 */	stw r0, 0x20(r30)

@@ -18,8 +18,8 @@ lbl_80131C74:
 /* 80131CB4  7F 83 E3 78 */	mr r3, r28
 /* 80131CB8  38 80 00 21 */	li r4, 0x21
 /* 80131CBC  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80131CC0  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha
-/* 80131CC4  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l
+/* 80131CC0  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha /* 0x8038F46C@ha */
+/* 80131CC4  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l /* 0x8038F46C@l */
 /* 80131CC8  C0 45 00 20 */	lfs f2, 0x20(r5)
 /* 80131CCC  4B FF 7A 0D */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80131CD0  2C 1D 00 00 */	cmpwi r29, 0

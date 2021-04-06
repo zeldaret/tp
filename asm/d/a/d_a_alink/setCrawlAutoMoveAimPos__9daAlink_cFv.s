@@ -11,8 +11,8 @@ lbl_800F8F84:
 /* 800F8FA8  4B FB A4 ED */	bl getDirectionFromAngle__9daAlink_cFs
 /* 800F8FAC  A8 BF 04 E6 */	lha r5, 0x4e6(r31)
 /* 800F8FB0  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
-/* 800F8FB4  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 800F8FB8  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 800F8FB4  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F8FB8  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F8FBC  7C 84 04 2E */	lfsx f4, r4, r0
 /* 800F8FC0  38 84 00 04 */	addi r4, r4, 4
 /* 800F8FC4  7C 04 04 2E */	lfsx f0, r4, r0
@@ -101,8 +101,8 @@ lbl_800F90E8:
 /* 800F90F4  40 82 00 6C */	bne lbl_800F9160
 lbl_800F90F8:
 /* 800F90F8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800F90FC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800F9100  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800F90FC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F9100  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F9104  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800F9108  C0 3F 37 C8 */	lfs f1, 0x37c8(r31)
 /* 800F910C  C0 62 93 2C */	lfs f3, lit_7624(r2)
@@ -144,8 +144,8 @@ lbl_800F9184:
 /* 800F9190  B0 1F 04 DE */	sth r0, 0x4de(r31)
 /* 800F9194  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800F9198  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800F919C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800F91A0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800F919C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F91A0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F91A4  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800F91A8  C0 3F 37 C8 */	lfs f1, 0x37c8(r31)
 /* 800F91AC  C0 62 93 2C */	lfs f3, lit_7624(r2)

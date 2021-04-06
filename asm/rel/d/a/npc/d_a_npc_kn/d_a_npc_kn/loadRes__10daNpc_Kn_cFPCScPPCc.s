@@ -3,7 +3,7 @@ lbl_80A387FC:
 /* 80A38800  7C 08 02 A6 */	mflr r0
 /* 80A38804  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A38808  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A3880C  4B 92 99 C4 */	b _savegpr_26
+/* 80A3880C  4B 92 99 C5 */	bl _savegpr_26
 /* 80A38810  7C 7A 1B 78 */	mr r26, r3
 /* 80A38814  7C BB 2B 78 */	mr r27, r5
 /* 80A38818  3B A0 00 00 */	li r29, 0
@@ -24,7 +24,7 @@ lbl_80A38848:
 /* 80A3884C  7C 7A 1A 14 */	add r3, r26, r3
 /* 80A38850  54 00 10 3A */	slwi r0, r0, 2
 /* 80A38854  7C 9B 00 2E */	lwzx r4, r27, r0
-/* 80A38858  4B 5F 46 64 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80A38858  4B 5F 46 65 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80A3885C  2C 03 00 04 */	cmpwi r3, 4
 /* 80A38860  40 82 00 08 */	bne lbl_80A38868
 /* 80A38864  3B BD 00 01 */	addi r29, r29, 1
@@ -46,7 +46,7 @@ lbl_80A38894:
 /* 80A38894  38 60 00 00 */	li r3, 0
 lbl_80A38898:
 /* 80A38898  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A3889C  4B 92 99 80 */	b _restgpr_26
+/* 80A3889C  4B 92 99 81 */	bl _restgpr_26
 /* 80A388A0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A388A4  7C 08 03 A6 */	mtlr r0
 /* 80A388A8  38 21 00 20 */	addi r1, r1, 0x20

@@ -7,9 +7,9 @@ lbl_80876E0C:
 /* 80876E20  DB C1 00 60 */	stfd f30, 0x60(r1)
 /* 80876E24  F3 C1 00 68 */	psq_st f30, 104(r1), 0, 0 /* qr0 */
 /* 80876E28  39 61 00 60 */	addi r11, r1, 0x60
-/* 80876E2C  4B AE B3 94 */	b _savegpr_22
-/* 80876E30  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 80876E34  3B C4 9B D0 */	addi r30, r4, daMP_ActivePlayer@l
+/* 80876E2C  4B AE B3 95 */	bl _savegpr_22
+/* 80876E30  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80876E34  3B C4 9B D0 */	addi r30, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80876E38  80 1E 00 A0 */	lwz r0, 0xa0(r30)
 /* 80876E3C  2C 00 00 00 */	cmpwi r0, 0
 /* 80876E40  41 82 02 00 */	beq lbl_80877040
@@ -33,7 +33,7 @@ lbl_80876E64:
 /* 80876E84  7F 43 D3 78 */	mr r3, r26
 /* 80876E88  38 80 00 00 */	li r4, 0
 /* 80876E8C  57 85 10 3A */	slwi r5, r28, 2
-/* 80876E90  4B 78 C5 C8 */	b memset
+/* 80876E90  4B 78 C5 C9 */	bl memset
 /* 80876E94  48 00 01 B8 */	b lbl_8087704C
 lbl_80876E98:
 /* 80876E98  80 7E 00 F4 */	lwz r3, 0xf4(r30)
@@ -50,12 +50,12 @@ lbl_80876EA4:
 lbl_80876EC0:
 /* 80876EC0  83 23 00 04 */	lwz r25, 4(r3)
 /* 80876EC4  3B 60 00 00 */	li r27, 0
-/* 80876EC8  3C 60 80 88 */	lis r3, daMP_VolumeTable@ha
-/* 80876ECC  3B E3 94 34 */	addi r31, r3, daMP_VolumeTable@l
-/* 80876ED0  3C 60 80 88 */	lis r3, lit_4894@ha
-/* 80876ED4  C3 C3 91 14 */	lfs f30, lit_4894@l(r3)
-/* 80876ED8  3C 60 80 88 */	lis r3, lit_4814@ha
-/* 80876EDC  CB E3 91 0C */	lfd f31, lit_4814@l(r3)
+/* 80876EC8  3C 60 80 88 */	lis r3, daMP_VolumeTable@ha /* 0x80879434@ha */
+/* 80876ECC  3B E3 94 34 */	addi r31, r3, daMP_VolumeTable@l /* 0x80879434@l */
+/* 80876ED0  3C 60 80 88 */	lis r3, lit_4894@ha /* 0x80879114@ha */
+/* 80876ED4  C3 C3 91 14 */	lfs f30, lit_4894@l(r3)  /* 0x80879114@l */
+/* 80876ED8  3C 60 80 88 */	lis r3, lit_4814@ha /* 0x8087910C@ha */
+/* 80876EDC  CB E3 91 0C */	lfd f31, lit_4814@l(r3)  /* 0x8087910C@l */
 /* 80876EE0  3F 00 43 30 */	lis r24, 0x4330
 /* 80876EE4  48 00 01 10 */	b lbl_80876FF4
 lbl_80876EE8:
@@ -119,7 +119,7 @@ lbl_80876FB4:
 /* 80876FB8  40 81 00 08 */	ble lbl_80876FC0
 /* 80876FBC  3A C0 7F FF */	li r22, 0x7fff
 lbl_80876FC0:
-/* 80876FC0  4B A2 71 C0 */	b getOutputMode__9JASDriverFv
+/* 80876FC0  4B A2 71 C1 */	bl getOutputMode__9JASDriverFv
 /* 80876FC4  28 03 00 00 */	cmplwi r3, 0
 /* 80876FC8  40 82 00 18 */	bne lbl_80876FE0
 /* 80876FCC  7E C3 0E 70 */	srawi r3, r22, 1
@@ -157,14 +157,14 @@ lbl_80877034:
 lbl_80877040:
 /* 80877040  38 80 00 00 */	li r4, 0
 /* 80877044  54 A5 10 3A */	slwi r5, r5, 2
-/* 80877048  4B 78 C4 10 */	b memset
+/* 80877048  4B 78 C4 11 */	bl memset
 lbl_8087704C:
 /* 8087704C  E3 E1 00 78 */	psq_l f31, 120(r1), 0, 0 /* qr0 */
 /* 80877050  CB E1 00 70 */	lfd f31, 0x70(r1)
 /* 80877054  E3 C1 00 68 */	psq_l f30, 104(r1), 0, 0 /* qr0 */
 /* 80877058  CB C1 00 60 */	lfd f30, 0x60(r1)
 /* 8087705C  39 61 00 60 */	addi r11, r1, 0x60
-/* 80877060  4B AE B1 AC */	b _restgpr_22
+/* 80877060  4B AE B1 AD */	bl _restgpr_22
 /* 80877064  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 80877068  7C 08 03 A6 */	mtlr r0
 /* 8087706C  38 21 00 80 */	addi r1, r1, 0x80

@@ -10,17 +10,17 @@ lbl_80D5F360:
 /* 80D5F380  40 82 00 1C */	bne lbl_80D5F39C
 /* 80D5F384  28 1E 00 00 */	cmplwi r30, 0
 /* 80D5F388  41 82 00 08 */	beq lbl_80D5F390
-/* 80D5F38C  4B 2B 97 D8 */	b __ct__10fopAc_ac_cFv
+/* 80D5F38C  4B 2B 97 D9 */	bl __ct__10fopAc_ac_cFv
 lbl_80D5F390:
 /* 80D5F390  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80D5F394  60 00 00 08 */	ori r0, r0, 8
 /* 80D5F398  90 1E 04 A0 */	stw r0, 0x4a0(r30)
 lbl_80D5F39C:
 /* 80D5F39C  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80D5F3A0  3C 80 80 D6 */	lis r4, l_arcName@ha
-/* 80D5F3A4  38 84 F9 A0 */	addi r4, r4, l_arcName@l
+/* 80D5F3A0  3C 80 80 D6 */	lis r4, l_arcName@ha /* 0x80D5F9A0@ha */
+/* 80D5F3A4  38 84 F9 A0 */	addi r4, r4, l_arcName@l /* 0x80D5F9A0@l */
 /* 80D5F3A8  80 84 00 00 */	lwz r4, 0(r4)
-/* 80D5F3AC  4B 2C DB 10 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80D5F3AC  4B 2C DB 11 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80D5F3B0  7C 7F 1B 78 */	mr r31, r3
 /* 80D5F3B4  2C 1F 00 04 */	cmpwi r31, 4
 /* 80D5F3B8  40 82 00 1C */	bne lbl_80D5F3D4

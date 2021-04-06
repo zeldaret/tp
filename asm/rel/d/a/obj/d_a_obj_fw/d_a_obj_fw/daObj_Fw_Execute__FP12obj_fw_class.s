@@ -30,7 +30,7 @@ lbl_80BF26D0:
 /* 80BF26D4  4B FF FD F1 */	bl action__FP12obj_fw_class
 /* 80BF26D8  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BF26DC  7C 03 07 74 */	extsb r3, r0
-/* 80BF26E0  4B 43 A9 8C */	b dComIfGp_getReverb__Fi
+/* 80BF26E0  4B 43 A9 8D */	bl dComIfGp_getReverb__Fi
 /* 80BF26E4  7C 65 1B 78 */	mr r5, r3
 /* 80BF26E8  38 7F 05 EC */	addi r3, r31, 0x5ec
 /* 80BF26EC  38 80 00 00 */	li r4, 0

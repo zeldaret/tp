@@ -50,270 +50,174 @@ extern "C" void EXIUnlock();
 //
 
 /* ############################################################################################## */
-/* 8044BB20-8044BB78 0054+04 s=14 e=0 z=0  None .bss       Scb */
+/* 8044BB20-8044BB78 078840 0054+04 14/14 0/0 0/0 .bss             Scb */
 static u8 Scb[84 + 4 /* padding */];
 
-/* 8033FE90-8033FEF0 0060+00 s=2 e=0 z=0  None .text      WriteSramCallback */
-//	8033FE94: 8044BB20 (Scb)
-//	8033FEA4: 8044BB20 (Scb)
-//	8033FEBC: 8033FEF0 (WriteSram)
+/* 8033FE90-8033FEF0 33A7D0 0060+00 2/2 0/0 0/0 .text            WriteSramCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void WriteSramCallback() {
+static asm void WriteSramCallback() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/WriteSramCallback.s"
 }
 #pragma pop
 
-/* 8033FEF0-80340008 0118+00 s=1 e=0 z=0  None .text      WriteSram */
-//	8033FEF4: 8033FE90 (WriteSramCallback)
-//	8033FEFC: 8033FE90 (WriteSramCallback)
-//	8033FF28: 80344028 (EXILock)
-//	8033FF48: 80343868 (EXISelect)
-//	8033FF58: 8034411C (EXIUnlock)
-//	8033FF88: 80342D00 (EXIImm)
-//	8033FF98: 803430E8 (EXISync)
-//	8033FFB8: 80342F5C (EXIImmEx)
-//	8033FFCC: 80343994 (EXIDeselect)
-//	8033FFE0: 8034411C (EXIUnlock)
+/* 8033FEF0-80340008 33A830 0118+00 1/1 0/0 0/0 .text            WriteSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void WriteSram() {
+static asm void WriteSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/WriteSram.s"
 }
 #pragma pop
 
-/* 80340008-80340144 013C+00 s=0 e=1 z=0  None .text      __OSInitSram */
-//	8034000C: 8044BB20 (Scb)
-//	80340028: 8044BB20 (Scb)
-//	80340038: 8033B580 (DCInvalidateRange)
-//	80340048: 80344028 (EXILock)
-//	80340064: 80343868 (EXISelect)
-//	80340074: 8034411C (EXIUnlock)
-//	8034009C: 80342D00 (EXIImm)
-//	803400AC: 803430E8 (EXISync)
-//	803400D0: 80342FFC (EXIDma)
-//	803400E4: 803430E8 (EXISync)
-//	803400F8: 80343994 (EXIDeselect)
-//	8034010C: 8034411C (EXIUnlock)
-//	80340124: 803408F8 (OSGetGbsMode)
-//	80340128: 80340968 (OSSetGbsMode)
+/* 80340008-80340144 33A948 013C+00 0/0 1/1 0/0 .text            __OSInitSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSInitSram() {
+asm void __OSInitSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSInitSram.s"
 }
 #pragma pop
 
-/* 80340144-803401A0 005C+00 s=0 e=3 z=0  None .text      __OSLockSram */
-//	80340148: 8044BB20 (Scb)
-//	80340158: 8044BB20 (Scb)
-//	8034015C: 8033D6F4 (OSDisableInterrupts)
-//	80340170: 8033D71C (OSRestoreInterrupts)
+/* 80340144-803401A0 33AA84 005C+00 0/0 3/3 0/0 .text            __OSLockSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSLockSram() {
+asm void __OSLockSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSram.s"
 }
 #pragma pop
 
-/* 803401A0-803401FC 005C+00 s=0 e=4 z=0  None .text      __OSLockSramEx */
-//	803401A4: 8044BB20 (Scb)
-//	803401B4: 8044BB20 (Scb)
-//	803401B8: 8033D6F4 (OSDisableInterrupts)
-//	803401CC: 8033D71C (OSRestoreInterrupts)
+/* 803401A0-803401FC 33AAE0 005C+00 0/0 4/4 0/0 .text            __OSLockSramEx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSLockSramEx() {
+asm void __OSLockSramEx() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSLockSramEx.s"
 }
 #pragma pop
 
-/* 803401FC-80340538 033C+00 s=10 e=0 z=0  None .text      UnlockSram */
-//	80340208: 8044BB20 (Scb)
-//	80340214: 8044BB20 (Scb)
-//	8034041C: 8033FE90 (WriteSramCallback)
-//	80340420: 8033FE90 (WriteSramCallback)
-//	80340434: 80344028 (EXILock)
-//	80340454: 80343868 (EXISelect)
-//	80340464: 8034411C (EXIUnlock)
-//	80340494: 80342D00 (EXIImm)
-//	803404A4: 803430E8 (EXISync)
-//	803404C4: 80342F5C (EXIImmEx)
-//	803404D8: 80343994 (EXIDeselect)
-//	803404EC: 8034411C (EXIUnlock)
-//	8034051C: 8033D71C (OSRestoreInterrupts)
+/* 803401FC-80340538 33AB3C 033C+00 10/10 0/0 0/0 .text            UnlockSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void UnlockSram() {
+static asm void UnlockSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/UnlockSram.s"
 }
 #pragma pop
 
-/* 80340538-8034055C 0024+00 s=0 e=3 z=0  None .text      __OSUnlockSram */
-//	80340548: 803401FC (UnlockSram)
+/* 80340538-8034055C 33AE78 0024+00 0/0 3/3 0/0 .text            __OSUnlockSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSUnlockSram() {
+asm void __OSUnlockSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSram.s"
 }
 #pragma pop
 
-/* 8034055C-80340580 0024+00 s=0 e=4 z=0  None .text      __OSUnlockSramEx */
-//	8034056C: 803401FC (UnlockSram)
+/* 8034055C-80340580 33AE9C 0024+00 0/0 4/4 0/0 .text            __OSUnlockSramEx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSUnlockSramEx() {
+asm void __OSUnlockSramEx() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSUnlockSramEx.s"
 }
 #pragma pop
 
-/* 80340580-80340590 0010+00 s=0 e=2 z=0  None .text      __OSSyncSram */
-//	80340580: 8044BB20 (Scb)
-//	80340584: 8044BB20 (Scb)
+/* 80340580-80340590 33AEC0 0010+00 0/0 2/2 0/0 .text            __OSSyncSram */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSSyncSram() {
+asm void __OSSyncSram() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/__OSSyncSram.s"
 }
 #pragma pop
 
-/* 80340590-80340610 0080+00 s=0 e=4 z=0  None .text      OSGetSoundMode */
-//	80340594: 8044BB20 (Scb)
-//	803405A4: 8044BB20 (Scb)
-//	803405A8: 8033D6F4 (OSDisableInterrupts)
-//	803405BC: 8033D71C (OSRestoreInterrupts)
-//	803405F4: 803401FC (UnlockSram)
+/* 80340590-80340610 33AED0 0080+00 0/0 4/4 0/0 .text            OSGetSoundMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSGetSoundMode() {
+asm void OSGetSoundMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetSoundMode.s"
 }
 #pragma pop
 
-/* 80340610-803406B4 00A4+00 s=0 e=1 z=0  None .text      OSSetSoundMode */
-//	80340614: 8044BB20 (Scb)
-//	80340624: 8044BB20 (Scb)
-//	80340630: 8033D6F4 (OSDisableInterrupts)
-//	80340644: 8033D71C (OSRestoreInterrupts)
-//	80340674: 803401FC (UnlockSram)
-//	80340698: 803401FC (UnlockSram)
+/* 80340610-803406B4 33AF50 00A4+00 0/0 1/1 0/0 .text            OSSetSoundMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSSetSoundMode() {
+asm void OSSetSoundMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetSoundMode.s"
 }
 #pragma pop
 
-/* 803406B4-80340724 0070+00 s=0 e=3 z=0  None .text      OSGetProgressiveMode */
-//	803406B8: 8044BB20 (Scb)
-//	803406C8: 8044BB20 (Scb)
-//	803406CC: 8033D6F4 (OSDisableInterrupts)
-//	803406E0: 8033D71C (OSRestoreInterrupts)
-//	80340708: 803401FC (UnlockSram)
+/* 803406B4-80340724 33AFF4 0070+00 0/0 3/3 0/0 .text            OSGetProgressiveMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSGetProgressiveMode() {
+asm void OSGetProgressiveMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetProgressiveMode.s"
 }
 #pragma pop
 
-/* 80340724-803407C8 00A4+00 s=0 e=2 z=0  None .text      OSSetProgressiveMode */
-//	80340728: 8044BB20 (Scb)
-//	80340738: 8044BB20 (Scb)
-//	80340744: 8033D6F4 (OSDisableInterrupts)
-//	80340758: 8033D71C (OSRestoreInterrupts)
-//	80340788: 803401FC (UnlockSram)
-//	803407AC: 803401FC (UnlockSram)
+/* 80340724-803407C8 33B064 00A4+00 0/0 2/2 0/0 .text            OSSetProgressiveMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSSetProgressiveMode() {
+asm void OSSetProgressiveMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetProgressiveMode.s"
 }
 #pragma pop
 
-/* 803407C8-8034084C 0084+00 s=0 e=1 z=0  None .text      OSGetWirelessID */
-//	803407CC: 8044BB20 (Scb)
-//	803407DC: 8044BB20 (Scb)
-//	803407E8: 8033D6F4 (OSDisableInterrupts)
-//	803407FC: 8033D71C (OSRestoreInterrupts)
-//	8034082C: 803401FC (UnlockSram)
+/* 803407C8-8034084C 33B108 0084+00 0/0 1/1 0/0 .text            OSGetWirelessID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSGetWirelessID() {
+asm void OSGetWirelessID() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetWirelessID.s"
 }
 #pragma pop
 
-/* 8034084C-803408F8 00AC+00 s=0 e=4 z=0  None .text      OSSetWirelessID */
-//	80340850: 8044BB20 (Scb)
-//	80340860: 8044BB20 (Scb)
-//	80340874: 8033D6F4 (OSDisableInterrupts)
-//	80340888: 8033D71C (OSRestoreInterrupts)
-//	803408C8: 803401FC (UnlockSram)
-//	803408D8: 803401FC (UnlockSram)
+/* 8034084C-803408F8 33B18C 00AC+00 0/0 4/4 0/0 .text            OSSetWirelessID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSSetWirelessID() {
+asm void OSSetWirelessID() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetWirelessID.s"
 }
 #pragma pop
 
-/* 803408F8-80340968 0070+00 s=1 e=0 z=0  None .text      OSGetGbsMode */
-//	803408FC: 8044BB20 (Scb)
-//	8034090C: 8044BB20 (Scb)
-//	80340910: 8033D6F4 (OSDisableInterrupts)
-//	80340924: 8033D71C (OSRestoreInterrupts)
-//	8034094C: 803401FC (UnlockSram)
+/* 803408F8-80340968 33B238 0070+00 1/1 0/0 0/0 .text            OSGetGbsMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OSGetGbsMode() {
+static asm void OSGetGbsMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSGetGbsMode.s"
 }
 #pragma pop
 
-/* 80340968-80340A20 00B8+00 s=1 e=0 z=0  None .text      OSSetGbsMode */
-//	8034098C: 8044BB20 (Scb)
-//	80340990: 8044BB20 (Scb)
-//	803409A8: 8033D6F4 (OSDisableInterrupts)
-//	803409BC: 8033D71C (OSRestoreInterrupts)
-//	803409F0: 803401FC (UnlockSram)
-//	80340A04: 803401FC (UnlockSram)
+/* 80340968-80340A20 33B2A8 00B8+00 1/1 0/0 0/0 .text            OSSetGbsMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OSSetGbsMode() {
+static asm void OSSetGbsMode() {
     nofralloc
 #include "asm/dolphin/os/OSRtc/OSSetGbsMode.s"
 }

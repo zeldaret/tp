@@ -4,8 +4,8 @@ lbl_8019D8CC:
 /* 8019D8D4  90 01 00 64 */	stw r0, 0x64(r1)
 /* 8019D8D8  39 61 00 60 */	addi r11, r1, 0x60
 /* 8019D8DC  48 1C 49 01 */	bl _savegpr_29
-/* 8019D8E0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019D8E4  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8019D8E0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019D8E4  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019D8E8  3B C0 00 00 */	li r30, 0
 /* 8019D8EC  C0 02 A2 0C */	lfs f0, lit_4409(r2)
 /* 8019D8F0  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -26,8 +26,8 @@ lbl_8019D8CC:
 /* 8019D92C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8019D930  4C 40 13 82 */	cror 2, 0, 2
 /* 8019D934  40 82 00 50 */	bne lbl_8019D984
-/* 8019D938  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019D93C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019D938  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019D93C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019D940  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8019D944  38 80 00 00 */	li r4, 0
 /* 8019D948  90 81 00 08 */	stw r4, 8(r1)
@@ -62,8 +62,8 @@ lbl_8019D9A0:
 /* 8019D9B4  FC 02 08 40 */	fcmpo cr0, f2, f1
 /* 8019D9B8  4C 41 13 82 */	cror 2, 1, 2
 /* 8019D9BC  40 82 00 4C */	bne lbl_8019DA08
-/* 8019D9C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019D9C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019D9C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019D9C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019D9C8  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8019D9CC  38 80 00 00 */	li r4, 0
 /* 8019D9D0  90 81 00 08 */	stw r4, 8(r1)
@@ -107,8 +107,8 @@ lbl_8019DA4C:
 /* 8019DA58  90 9F 0F 44 */	stw r4, 0xf44(r31)
 /* 8019DA5C  90 9F 0F 48 */	stw r4, 0xf48(r31)
 /* 8019DA60  90 9F 0F 4C */	stw r4, 0xf4c(r31)
-/* 8019DA64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019DA68  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 8019DA64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019DA68  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019DA6C  80 7D 5D 3C */	lwz r3, 0x5d3c(r29)
 /* 8019DA70  90 81 00 08 */	stw r4, 8(r1)
 /* 8019DA74  38 00 FF FF */	li r0, -1

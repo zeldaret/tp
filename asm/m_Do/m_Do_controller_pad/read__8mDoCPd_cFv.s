@@ -29,11 +29,11 @@ lbl_80007AF0:
 /* 80007AFC  80 6D 86 F8 */	lwz r3, mResetData__6mDoRst(r13)
 /* 80007B00  90 03 00 08 */	stw r0, 8(r3)
 lbl_80007B04:
-/* 80007B04  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 80007B08  38 03 D2 D8 */	addi r0, r3, m_gamePad__8mDoCPd_c@l
+/* 80007B04  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 80007B08  38 03 D2 D8 */	addi r0, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 80007B0C  7C 1F 03 78 */	mr r31, r0
-/* 80007B10  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80007B14  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80007B10  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80007B14  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80007B18  7C 1E 03 78 */	mr r30, r0
 /* 80007B1C  3B A0 00 00 */	li r29, 0
 lbl_80007B20:

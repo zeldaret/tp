@@ -9,7 +9,7 @@ lbl_80CCFD08:
 /* 80CCFD24  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80CCFD28  28 00 00 00 */	cmplwi r0, 0
 /* 80CCFD2C  40 82 00 1C */	bne lbl_80CCFD48
-/* 80CCFD30  4B 35 FD 24 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80CCFD30  4B 35 FD 25 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80CCFD34  2C 03 00 00 */	cmpwi r3, 0
 /* 80CCFD38  40 82 00 14 */	bne lbl_80CCFD4C
 /* 80CCFD3C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

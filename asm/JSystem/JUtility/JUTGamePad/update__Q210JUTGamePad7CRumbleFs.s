@@ -9,8 +9,8 @@ lbl_802E1720:
 /* 802E173C  80 8D 8F 68 */	lwz r4, mEnabled__Q210JUTGamePad7CRumble(r13)
 /* 802E1740  7F BF 07 34 */	extsh r31, r29
 /* 802E1744  57 E0 10 3A */	slwi r0, r31, 2
-/* 802E1748  3C 60 80 3D */	lis r3, sChannelMask__Q210JUTGamePad7CRumble@ha
-/* 802E174C  38 63 C5 F0 */	addi r3, r3, sChannelMask__Q210JUTGamePad7CRumble@l
+/* 802E1748  3C 60 80 3D */	lis r3, sChannelMask__Q210JUTGamePad7CRumble@ha /* 0x803CC5F0@ha */
+/* 802E174C  38 63 C5 F0 */	addi r3, r3, sChannelMask__Q210JUTGamePad7CRumble@l /* 0x803CC5F0@l */
 /* 802E1750  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802E1754  7C 83 00 38 */	and r3, r4, r0
 /* 802E1758  30 03 FF FF */	addic r0, r3, -1

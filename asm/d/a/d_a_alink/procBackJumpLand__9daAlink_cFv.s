@@ -22,8 +22,8 @@ lbl_800C5B20:
 /* 800C5B3C  80 1F 06 14 */	lwz r0, 0x614(r31)
 /* 800C5B40  28 00 00 10 */	cmplwi r0, 0x10
 /* 800C5B44  40 82 00 1C */	bne lbl_800C5B60
-/* 800C5B48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C5B4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C5B48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C5B4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C5B50  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800C5B54  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 800C5B58  4B F8 26 25 */	bl cutEnd__16dEvent_manager_cFi
@@ -52,8 +52,8 @@ lbl_800C5B9C:
 /* 800C5BA8  48 00 00 64 */	b lbl_800C5C0C
 lbl_800C5BAC:
 /* 800C5BAC  C0 3D 00 10 */	lfs f1, 0x10(r29)
-/* 800C5BB0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha
-/* 800C5BB4  38 63 D8 2C */	addi r3, r3, m__22daAlinkHIO_backJump_c0@l
+/* 800C5BB0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha /* 0x8038D82C@ha */
+/* 800C5BB4  38 63 D8 2C */	addi r3, r3, m__22daAlinkHIO_backJump_c0@l /* 0x8038D82C@l */
 /* 800C5BB8  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800C5BBC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C5BC0  40 81 00 4C */	ble lbl_800C5C0C

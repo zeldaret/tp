@@ -2,8 +2,8 @@ lbl_801CCFB0:
 /* 801CCFB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CCFB4  7C 08 02 A6 */	mflr r0
 /* 801CCFB8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801CCFBC  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801CCFC0  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801CCFBC  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801CCFC0  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801CCFC4  88 03 02 FC */	lbz r0, 0x2fc(r3)
 /* 801CCFC8  28 00 00 00 */	cmplwi r0, 0
 /* 801CCFCC  41 82 00 0C */	beq lbl_801CCFD8

@@ -3,19 +3,20 @@
 #
 
 M660_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks.plf
+M660_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks.lcf
+M660_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks.map
 
 M660_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tks/executor.cpp \
-	rel/d/a/obj/d_a_obj_tks/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_tks/d_a_obj_tks.cpp \
 
 M660_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/d_a_obj_tks.o \
 
 M660_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/libRuntime.PPCEABI.H.a \
 
 M660_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M660_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map660.map\
+	-m _prolog \
+	-lcf $(M660_LDSCRIPT) \
+	-unused -map $(M660_MAP) \
+	-w off \
 
 $(M660_TARGET): $(M660_O_FILES) $(M660_LIBS)
+	@echo [660] creating $(M660_TARGET)
 	@echo $(M660_LIBS) $(M660_O_FILES) > build/M660_ofiles
-	$(LD) -opt_partial $(M660_LDFLAGS) -o $(M660_TARGET) @build/M660_ofiles
+	@python3 tools/lcf.py rel 660 --output $(M660_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M660_LDFLAGS) -o $(M660_TARGET) @build/M660_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tks/%.o: rel/d/a/obj/d_a_obj_tks/%.cpp
+	@echo [660] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M660_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M660_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_tks/libs/Runtime.PPCEABI.H/Makefile
 

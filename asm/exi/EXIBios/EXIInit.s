@@ -26,24 +26,24 @@ lbl_80343E78:
 /* 80343EB0  4B FF 9C 0D */	bl __OSMaskInterrupts
 /* 80343EB4  3B E0 00 00 */	li r31, 0
 /* 80343EB8  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC006800@ha */
-/* 80343EBC  93 E4 68 00 */	stw r31, 0x6800(r4)
+/* 80343EBC  93 E4 68 00 */	stw r31, 0x6800(r4)  /* 0xCC006800@l */
 /* 80343EC0  93 E4 68 14 */	stw r31, 0x6814(r4)
 /* 80343EC4  93 E4 68 28 */	stw r31, 0x6828(r4)
 /* 80343EC8  38 00 20 00 */	li r0, 0x2000
 /* 80343ECC  90 04 68 00 */	stw r0, 0x6800(r4)
 /* 80343ED0  38 60 00 09 */	li r3, 9
-/* 80343ED4  3C 80 80 34 */	lis r4, EXIIntrruptHandler@ha
-/* 80343ED8  3B 84 3A A4 */	addi r28, r4, EXIIntrruptHandler@l
+/* 80343ED4  3C 80 80 34 */	lis r4, EXIIntrruptHandler@ha /* 0x80343AA4@ha */
+/* 80343ED8  3B 84 3A A4 */	addi r28, r4, EXIIntrruptHandler@l /* 0x80343AA4@l */
 /* 80343EDC  38 9C 00 00 */	addi r4, r28, 0
 /* 80343EE0  4B FF 98 61 */	bl __OSSetInterruptHandler
 /* 80343EE4  38 60 00 0A */	li r3, 0xa
-/* 80343EE8  3C 80 80 34 */	lis r4, TCIntrruptHandler@ha
-/* 80343EEC  3B A4 3B 6C */	addi r29, r4, TCIntrruptHandler@l
+/* 80343EE8  3C 80 80 34 */	lis r4, TCIntrruptHandler@ha /* 0x80343B6C@ha */
+/* 80343EEC  3B A4 3B 6C */	addi r29, r4, TCIntrruptHandler@l /* 0x80343B6C@l */
 /* 80343EF0  38 9D 00 00 */	addi r4, r29, 0
 /* 80343EF4  4B FF 98 4D */	bl __OSSetInterruptHandler
 /* 80343EF8  38 60 00 0B */	li r3, 0xb
-/* 80343EFC  3C 80 80 34 */	lis r4, EXTIntrruptHandler@ha
-/* 80343F00  3B C4 3D 84 */	addi r30, r4, EXTIntrruptHandler@l
+/* 80343EFC  3C 80 80 34 */	lis r4, EXTIntrruptHandler@ha /* 0x80343D84@ha */
+/* 80343F00  3B C4 3D 84 */	addi r30, r4, EXTIntrruptHandler@l /* 0x80343D84@l */
 /* 80343F04  38 9E 00 00 */	addi r4, r30, 0
 /* 80343F08  4B FF 98 39 */	bl __OSSetInterruptHandler
 /* 80343F0C  38 60 00 0C */	li r3, 0xc
@@ -69,10 +69,10 @@ lbl_80343E78:
 /* 80343F5C  2C 00 00 00 */	cmpwi r0, 0
 /* 80343F60  41 82 00 34 */	beq lbl_80343F94
 /* 80343F64  3C 80 80 00 */	lis r4, 0x8000 /* 0x800030C4@ha */
-/* 80343F68  93 E4 30 C4 */	stw r31, 0x30C4(r4)
+/* 80343F68  93 E4 30 C4 */	stw r31, 0x30C4(r4)  /* 0x800030C4@l */
 /* 80343F6C  93 E4 30 C0 */	stw r31, 0x30c0(r4)
-/* 80343F70  3C 60 80 45 */	lis r3, Ecb@ha
-/* 80343F74  38 63 C5 70 */	addi r3, r3, Ecb@l
+/* 80343F70  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 80343F74  38 63 C5 70 */	addi r3, r3, Ecb@l /* 0x8044C570@l */
 /* 80343F78  93 E3 00 60 */	stw r31, 0x60(r3)
 /* 80343F7C  93 E3 00 20 */	stw r31, 0x20(r3)
 /* 80343F80  38 60 00 00 */	li r3, 0

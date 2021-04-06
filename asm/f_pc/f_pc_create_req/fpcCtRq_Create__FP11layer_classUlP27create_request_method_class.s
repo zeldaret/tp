@@ -13,8 +13,8 @@ lbl_80020DB0:
 /* 80020DDC  7F E4 FB 78 */	mr r4, r31
 /* 80020DE0  48 00 00 A5 */	bl fpcCtTg_Init__FP10create_tagPv
 /* 80020DE4  38 7F 00 18 */	addi r3, r31, 0x18
-/* 80020DE8  3C 80 80 02 */	lis r4, fpcCtRq_Cancel__FP14create_request@ha
-/* 80020DEC  38 84 0C 14 */	addi r4, r4, fpcCtRq_Cancel__FP14create_request@l
+/* 80020DE8  3C 80 80 02 */	lis r4, fpcCtRq_Cancel__FP14create_request@ha /* 0x80020C14@ha */
+/* 80020DEC  38 84 0C 14 */	addi r4, r4, fpcCtRq_Cancel__FP14create_request@l /* 0x80020C14@l */
 /* 80020DF0  7F E5 FB 78 */	mr r5, r31
 /* 80020DF4  48 00 2A 05 */	bl fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv
 /* 80020DF8  93 BF 00 44 */	stw r29, 0x44(r31)

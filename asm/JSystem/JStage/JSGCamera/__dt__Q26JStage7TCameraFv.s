@@ -7,8 +7,8 @@ lbl_80280BA0:
 /* 80280BB4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80280BB8  7C 9F 23 78 */	mr r31, r4
 /* 80280BBC  41 82 00 28 */	beq lbl_80280BE4
-/* 80280BC0  3C 80 80 3C */	lis r4, __vt__Q26JStage7TCamera@ha
-/* 80280BC4  38 04 46 80 */	addi r0, r4, __vt__Q26JStage7TCamera@l
+/* 80280BC0  3C 80 80 3C */	lis r4, __vt__Q26JStage7TCamera@ha /* 0x803C4680@ha */
+/* 80280BC4  38 04 46 80 */	addi r0, r4, __vt__Q26JStage7TCamera@l /* 0x803C4680@l */
 /* 80280BC8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280BCC  38 80 00 00 */	li r4, 0
 /* 80280BD0  48 00 02 05 */	bl __dt__Q26JStage7TObjectFv

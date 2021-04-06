@@ -8,15 +8,15 @@ lbl_802BBD94:
 /* 802BBDAC  7C 9D 23 78 */	mr r29, r4
 /* 802BBDB0  7C BE 2B 78 */	mr r30, r5
 /* 802BBDB4  7C DF 33 78 */	mr r31, r6
-/* 802BBDB8  3C 60 80 3D */	lis r3, __vt__10JAIAudible@ha
-/* 802BBDBC  38 03 98 20 */	addi r0, r3, __vt__10JAIAudible@l
+/* 802BBDB8  3C 60 80 3D */	lis r3, __vt__10JAIAudible@ha /* 0x803C9820@ha */
+/* 802BBDBC  38 03 98 20 */	addi r0, r3, __vt__10JAIAudible@l /* 0x803C9820@l */
 /* 802BBDC0  90 1C 00 00 */	stw r0, 0(r28)
-/* 802BBDC4  3C 60 80 3D */	lis r3, __vt__9Z2Audible@ha
-/* 802BBDC8  38 03 AC B8 */	addi r0, r3, __vt__9Z2Audible@l
+/* 802BBDC4  3C 60 80 3D */	lis r3, __vt__9Z2Audible@ha /* 0x803CACB8@ha */
+/* 802BBDC8  38 03 AC B8 */	addi r0, r3, __vt__9Z2Audible@l /* 0x803CACB8@l */
 /* 802BBDCC  90 1C 00 00 */	stw r0, 0(r28)
 /* 802BBDD0  38 7C 00 2C */	addi r3, r28, 0x2c
-/* 802BBDD4  3C 80 80 2C */	lis r4, __ct__16Z2AudibleChannelFv@ha
-/* 802BBDD8  38 84 BE 74 */	addi r4, r4, __ct__16Z2AudibleChannelFv@l
+/* 802BBDD4  3C 80 80 2C */	lis r4, __ct__16Z2AudibleChannelFv@ha /* 0x802BBE74@ha */
+/* 802BBDD8  38 84 BE 74 */	addi r4, r4, __ct__16Z2AudibleChannelFv@l /* 0x802BBE74@l */
 /* 802BBDDC  38 A0 00 00 */	li r5, 0
 /* 802BBDE0  38 C0 00 38 */	li r6, 0x38
 /* 802BBDE4  38 E0 00 01 */	li r7, 1

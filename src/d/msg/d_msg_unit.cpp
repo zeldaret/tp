@@ -30,15 +30,11 @@ extern "C" void __dt__10dMsgUnit_cFv();
 extern "C" void setTag__10dMsgUnit_cFiiPcb();
 extern "C" void __sinit_d_msg_unit_cpp();
 extern "C" extern char const* const d_msg_d_msg_unit__stringBase0;
-extern "C" extern void* __vt__10dMsgUnit_c[3 + 1 /* padding */];
-extern "C" extern u8 g_msg_unit[4 + 4 /* padding */];
 extern "C" extern u8 data_804510D8[8];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void getDaytime__18dScnKy_env_light_cFv();
 extern "C" void __dl__FPv();
@@ -56,8 +52,8 @@ extern "C" extern u8 g_meter2_info[248];
 //
 
 /* ############################################################################################## */
-/* 803C0BF0-803C0C00 000C+04 s=2 e=0 z=0  None .data      __vt__10dMsgUnit_c */
-SECTION_DATA void* __vt__10dMsgUnit_c[3 + 1 /* padding */] = {
+/* 803C0BF0-803C0C00 01DD10 000C+04 2/2 0/0 0/0 .data            __vt__10dMsgUnit_c */
+SECTION_DATA extern void* __vt__10dMsgUnit_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dMsgUnit_cFv,
@@ -65,9 +61,7 @@ SECTION_DATA void* __vt__10dMsgUnit_c[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80238C94-80238CA4 0010+00 s=1 e=0 z=0  None .text      __ct__10dMsgUnit_cFv */
-//	80238C94: 803C0BF0 (__vt__10dMsgUnit_c)
-//	80238C98: 803C0BF0 (__vt__10dMsgUnit_c)
+/* 80238C94-80238CA4 2335D4 0010+00 1/1 0/0 0/0 .text            __ct__10dMsgUnit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -77,10 +71,7 @@ asm dMsgUnit_c::dMsgUnit_c() {
 }
 #pragma pop
 
-/* 80238CA4-80238CEC 0048+00 s=2 e=0 z=0  None .text      __dt__10dMsgUnit_cFv */
-//	80238CBC: 803C0BF0 (__vt__10dMsgUnit_c)
-//	80238CC0: 803C0BF0 (__vt__10dMsgUnit_c)
-//	80238CD0: 802CED3C (__dl__FPv)
+/* 80238CA4-80238CEC 2335E4 0048+00 2/1 0/0 0/0 .text            __dt__10dMsgUnit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -91,74 +82,23 @@ asm dMsgUnit_c::~dMsgUnit_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803996E8-80399708 001D+03 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803996E8 = "%d";
-SECTION_DEAD char const* const stringBase_803996EB = "%d-%d";
-SECTION_DEAD char const* const stringBase_803996F1 = "%d:%02d";
-SECTION_DEAD char const* const stringBase_803996F9 = "";
-SECTION_DEAD char const* const stringBase_803996FA = "%d%s";
-SECTION_DEAD char const* const stringBase_803996FF = "%d %s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399705 = "\0\0";
-#pragma pop
-
-/* 80454B40-80454B44 0004+00 s=1 e=0 z=0  None .sdata2    @3702 */
+/* 80454B40-80454B44 003140 0004+00 1/1 0/0 0/0 .sdata2          @3702 */
 SECTION_SDATA2 static f32 lit_3702 = 1000000.0f;
 
-/* 80454B44-80454B48 0004+00 s=1 e=0 z=0  None .sdata2    @3703 */
+/* 80454B44-80454B48 003144 0004+00 1/1 0/0 0/0 .sdata2          @3703 */
 SECTION_SDATA2 static f32 lit_3703 = 60.0f;
 
-/* 80454B48-80454B50 0004+04 s=1 e=0 z=0  None .sdata2    @3704 */
+/* 80454B48-80454B50 003148 0004+04 1/1 0/0 0/0 .sdata2          @3704 */
 SECTION_SDATA2 static f32 lit_3704[1 + 1 /* padding */] = {
     15.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454B50-80454B58 0008+00 s=1 e=0 z=0  None .sdata2    @3707 */
+/* 80454B50-80454B58 003150 0008+00 1/1 0/0 0/0 .sdata2          @3707 */
 SECTION_SDATA2 static f64 lit_3707 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80238CEC-8023907C 0390+00 s=0 e=5 z=0  None .text      setTag__10dMsgUnit_cFiiPcb */
-//	80238CFC: 803621D0 (_savegpr_26)
-//	80238D2C: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238D30: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238D38: 803664DC (sprintf)
-//	80238D4C: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238D50: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238D6C: 803664DC (sprintf)
-//	80238DC4: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238DC8: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238DD4: 803664DC (sprintf)
-//	80238DF0: 8042CA54 (g_env_light)
-//	80238DF4: 8042CA54 (g_env_light)
-//	80238DF8: 8019FA08 (getDaytime__18dScnKy_env_light_cFv)
-//	80238DFC: 80454B40 (lit_3702)
-//	80238E24: 80454B50 (lit_3707)
-//	80238E44: 80454B44 (lit_3703)
-//	80238E48: 80454B48 (lit_3704)
-//	80238E58: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238E5C: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238E84: 803664DC (sprintf)
-//	80238EA4: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238EA8: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238EB4: 803664DC (sprintf)
-//	80238EB8: 80430188 (g_meter2_info)
-//	80238EBC: 80430188 (g_meter2_info)
-//	80238F98: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238F9C: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238FA4: 80368994 (strcmp)
-//	80238FB4: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238FB8: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238FCC: 803664DC (sprintf)
-//	80238FD8: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238FDC: 803996E8 (d_msg_d_msg_unit__stringBase0)
-//	80238FF0: 803664DC (sprintf)
-//	80239028: 80368ABC (strcat)
-//	80239060: 80368ABC (strcat)
-//	80239068: 8036221C (_restgpr_26)
+/* 80238CEC-8023907C 23362C 0390+00 0/0 5/5 0/0 .text            setTag__10dMsgUnit_cFiiPcb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,24 +109,18 @@ asm void dMsgUnit_c::setTag(int param_0, int param_1, char* param_2, bool param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 804306B8-804306C8 000C+04 s=1 e=0 z=0  None .bss       @3640 */
+/* 804306B8-804306C8 05D3D8 000C+04 1/1 0/0 0/0 .bss             @3640 */
 static u8 lit_3640[12 + 4 /* padding */];
 
-/* 804510D0-804510D8 0004+04 s=1 e=5 z=0  None .sbss      g_msg_unit */
+/* 804510D0-804510D8 0005D0 0004+04 1/1 5/5 0/0 .sbss            g_msg_unit */
+extern u8 g_msg_unit[4 + 4 /* padding */];
 u8 g_msg_unit[4 + 4 /* padding */];
 
-/* 8023907C-802390B4 0038+00 s=0 e=0 z=0  None .text      __sinit_d_msg_unit_cpp */
-//	80239088: 804510D0 (g_msg_unit)
-//	8023908C: 80238C94 (__ct__10dMsgUnit_cFv)
-//	80239090: 80238CA4 (__dt__10dMsgUnit_cFv)
-//	80239094: 80238CA4 (__dt__10dMsgUnit_cFv)
-//	80239098: 804306B8 (lit_3640)
-//	8023909C: 804306B8 (lit_3640)
-//	802390A0: 80361C24 (__register_global_object)
+/* 8023907C-802390B4 2339BC 0038+00 0/0 1/0 0/0 .text            __sinit_d_msg_unit_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_msg_unit_cpp() {
+asm void __sinit_d_msg_unit_cpp() {
     nofralloc
 #include "asm/d/msg/d_msg_unit/__sinit_d_msg_unit_cpp.s"
 }
@@ -198,5 +132,20 @@ SECTION_CTORS void* const _ctors_8023907C = (void*)__sinit_d_msg_unit_cpp;
 #pragma pop
 
 /* ############################################################################################## */
-/* 804510D8-804510E0 0008+00 s=0 e=2 z=0  None .sbss      None */
+/* 804510D8-804510E0 0005D8 0008+00 0/0 2/2 0/0 .sbss            None */
+extern u8 data_804510D8[8];
 u8 data_804510D8[8];
+
+/* 803996E8-80399708 025D48 001D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803996E8 = "%d";
+SECTION_DEAD static char const* const stringBase_803996EB = "%d-%d";
+SECTION_DEAD static char const* const stringBase_803996F1 = "%d:%02d";
+SECTION_DEAD static char const* const stringBase_803996F9 = "";
+SECTION_DEAD static char const* const stringBase_803996FA = "%d%s";
+SECTION_DEAD static char const* const stringBase_803996FF = "%d %s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399705 = "\0\0";
+#pragma pop

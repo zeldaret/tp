@@ -10,39 +10,39 @@ lbl_802D3614:
 /* 802D3634  7C DD 33 78 */	mr r29, r6
 /* 802D3638  7C FE 3B 78 */	mr r30, r7
 /* 802D363C  7D 1F 43 78 */	mr r31, r8
-/* 802D3640  3C 60 80 43 */	lis r3, mMutex__12JKRAramPiece@ha
-/* 802D3644  38 63 43 30 */	addi r3, r3, mMutex__12JKRAramPiece@l
+/* 802D3640  3C 60 80 43 */	lis r3, mMutex__12JKRAramPiece@ha /* 0x80434330@ha */
+/* 802D3644  38 63 43 30 */	addi r3, r3, mMutex__12JKRAramPiece@l /* 0x80434330@l */
 /* 802D3648  48 06 B9 F9 */	bl OSLockMutex
 /* 802D364C  57 60 06 FF */	clrlwi. r0, r27, 0x1b
 /* 802D3650  40 82 00 0C */	bne lbl_802D365C
 /* 802D3654  57 80 06 FF */	clrlwi. r0, r28, 0x1b
 /* 802D3658  41 82 00 80 */	beq lbl_802D36D8
 lbl_802D365C:
-/* 802D365C  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha
-/* 802D3660  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l
+/* 802D365C  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha /* 0x8039D0B8@ha */
+/* 802D3660  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l /* 0x8039D0B8@l */
 /* 802D3664  7F 44 D3 78 */	mr r4, r26
 /* 802D3668  4C C6 31 82 */	crclr 6
 /* 802D366C  4B D3 34 51 */	bl OSReport
-/* 802D3670  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha
-/* 802D3674  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l
+/* 802D3670  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha /* 0x8039D0B8@ha */
+/* 802D3674  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l /* 0x8039D0B8@l */
 /* 802D3678  38 63 00 10 */	addi r3, r3, 0x10
 /* 802D367C  7F 64 DB 78 */	mr r4, r27
 /* 802D3680  4C C6 31 82 */	crclr 6
 /* 802D3684  4B D3 34 39 */	bl OSReport
-/* 802D3688  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha
-/* 802D368C  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l
+/* 802D3688  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha /* 0x8039D0B8@ha */
+/* 802D368C  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l /* 0x8039D0B8@l */
 /* 802D3690  38 63 00 1D */	addi r3, r3, 0x1d
 /* 802D3694  7F 84 E3 78 */	mr r4, r28
 /* 802D3698  4C C6 31 82 */	crclr 6
 /* 802D369C  4B D3 34 21 */	bl OSReport
-/* 802D36A0  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha
-/* 802D36A4  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l
+/* 802D36A0  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha /* 0x8039D0B8@ha */
+/* 802D36A4  38 63 D0 B8 */	addi r3, r3, JKRAramPiece__stringBase0@l /* 0x8039D0B8@l */
 /* 802D36A8  38 63 00 2F */	addi r3, r3, 0x2f
 /* 802D36AC  7F A4 EB 78 */	mr r4, r29
 /* 802D36B0  4C C6 31 82 */	crclr 6
 /* 802D36B4  4B D3 34 09 */	bl OSReport
-/* 802D36B8  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha
-/* 802D36BC  38 C3 D0 B8 */	addi r6, r3, JKRAramPiece__stringBase0@l
+/* 802D36B8  3C 60 80 3A */	lis r3, JKRAramPiece__stringBase0@ha /* 0x8039D0B8@ha */
+/* 802D36BC  38 C3 D0 B8 */	addi r6, r3, JKRAramPiece__stringBase0@l /* 0x8039D0B8@l */
 /* 802D36C0  38 66 00 3C */	addi r3, r6, 0x3c
 /* 802D36C4  38 80 00 6C */	li r4, 0x6c
 /* 802D36C8  38 A6 00 4D */	addi r5, r6, 0x4d
@@ -66,21 +66,21 @@ lbl_802D36D8:
 /* 802D370C  38 00 00 01 */	li r0, 1
 /* 802D3710  90 19 00 00 */	stw r0, 0(r25)
 /* 802D3714  93 59 00 04 */	stw r26, 4(r25)
-/* 802D3718  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha
-/* 802D371C  38 63 C1 38 */	addi r3, r3, sMessageQueue__7JKRAram@l
+/* 802D3718  3C 60 80 3D */	lis r3, sMessageQueue__7JKRAram@ha /* 0x803CC138@ha */
+/* 802D371C  38 63 C1 38 */	addi r3, r3, sMessageQueue__7JKRAram@l /* 0x803CC138@l */
 /* 802D3720  7F 24 CB 78 */	mr r4, r25
 /* 802D3724  38 A0 00 01 */	li r5, 1
 /* 802D3728  48 06 B2 CD */	bl OSSendMessage
 /* 802D372C  80 1A 00 58 */	lwz r0, 0x58(r26)
 /* 802D3730  28 00 00 00 */	cmplwi r0, 0
 /* 802D3734  41 82 00 14 */	beq lbl_802D3748
-/* 802D3738  3C 60 80 43 */	lis r3, sAramPieceCommandList__12JKRAramPiece@ha
-/* 802D373C  38 63 43 24 */	addi r3, r3, sAramPieceCommandList__12JKRAramPiece@l
+/* 802D3738  3C 60 80 43 */	lis r3, sAramPieceCommandList__12JKRAramPiece@ha /* 0x80434324@ha */
+/* 802D373C  38 63 43 24 */	addi r3, r3, sAramPieceCommandList__12JKRAramPiece@l /* 0x80434324@l */
 /* 802D3740  38 9A 00 20 */	addi r4, r26, 0x20
 /* 802D3744  48 00 88 09 */	bl append__10JSUPtrListFP10JSUPtrLink
 lbl_802D3748:
-/* 802D3748  3C 60 80 43 */	lis r3, mMutex__12JKRAramPiece@ha
-/* 802D374C  38 63 43 30 */	addi r3, r3, mMutex__12JKRAramPiece@l
+/* 802D3748  3C 60 80 43 */	lis r3, mMutex__12JKRAramPiece@ha /* 0x80434330@ha */
+/* 802D374C  38 63 43 30 */	addi r3, r3, mMutex__12JKRAramPiece@l /* 0x80434330@l */
 /* 802D3750  48 06 B9 CD */	bl OSUnlockMutex
 /* 802D3754  7F 43 D3 78 */	mr r3, r26
 /* 802D3758  39 61 00 30 */	addi r11, r1, 0x30

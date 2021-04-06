@@ -1,6 +1,6 @@
 lbl_80244454:
-/* 80244454  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80244458  38 63 0F D0 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 80244454  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C0FD0@ha */
+/* 80244458  38 63 0F D0 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803C0FD0@l */
 /* 8024445C  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 80244460  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80244464  90 83 00 48 */	stw r4, 0x48(r3)

@@ -19,12 +19,12 @@ lbl_80AD364C:
 /* 80AD3654  41 82 00 28 */	beq lbl_80AD367C
 /* 80AD3658  83 DF 0B 5C */	lwz r30, 0xb5c(r31)
 /* 80AD365C  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 80AD3660  4B 67 22 38 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD3660  4B 67 22 39 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD3664  93 DF 0B 5C */	stw r30, 0xb5c(r31)
 /* 80AD3668  38 00 00 06 */	li r0, 6
 /* 80AD366C  90 1F 0B 58 */	stw r0, 0xb58(r31)
-/* 80AD3670  3C 60 80 AD */	lis r3, lit_4661@ha
-/* 80AD3674  C0 03 4B 20 */	lfs f0, lit_4661@l(r3)
+/* 80AD3670  3C 60 80 AD */	lis r3, lit_4661@ha /* 0x80AD4B20@ha */
+/* 80AD3674  C0 03 4B 20 */	lfs f0, lit_4661@l(r3)  /* 0x80AD4B20@l */
 /* 80AD3678  D0 1F 0B 68 */	stfs f0, 0xb68(r31)
 lbl_80AD367C:
 /* 80AD367C  80 1F 0B 7C */	lwz r0, 0xb7c(r31)
@@ -32,23 +32,23 @@ lbl_80AD367C:
 /* 80AD3684  41 82 00 28 */	beq lbl_80AD36AC
 /* 80AD3688  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 80AD368C  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80AD3690  4B 67 22 08 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD3690  4B 67 22 09 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD3694  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 80AD3698  38 00 00 05 */	li r0, 5
 /* 80AD369C  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 80AD36A0  3C 60 80 AD */	lis r3, lit_4661@ha
-/* 80AD36A4  C0 03 4B 20 */	lfs f0, lit_4661@l(r3)
+/* 80AD36A0  3C 60 80 AD */	lis r3, lit_4661@ha /* 0x80AD4B20@ha */
+/* 80AD36A4  C0 03 4B 20 */	lfs f0, lit_4661@l(r3)  /* 0x80AD4B20@l */
 /* 80AD36A8  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_80AD36AC:
 /* 80AD36AC  80 1F 0C E0 */	lwz r0, 0xce0(r31)
 /* 80AD36B0  2C 00 00 00 */	cmpwi r0, 0
 /* 80AD36B4  41 82 00 28 */	beq lbl_80AD36DC
 /* 80AD36B8  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80AD36BC  4B 67 20 40 */	b remove__18daNpcT_ActorMngr_cFv
+/* 80AD36BC  4B 67 20 41 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80AD36C0  38 00 00 00 */	li r0, 0
 /* 80AD36C4  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 80AD36C8  3C 60 80 AD */	lis r3, lit_4055@ha
-/* 80AD36CC  C0 03 4B 08 */	lfs f0, lit_4055@l(r3)
+/* 80AD36C8  3C 60 80 AD */	lis r3, lit_4055@ha /* 0x80AD4B08@ha */
+/* 80AD36CC  C0 03 4B 08 */	lfs f0, lit_4055@l(r3)  /* 0x80AD4B08@l */
 /* 80AD36D0  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 80AD36D4  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 80AD36D8  90 1F 0C E0 */	stw r0, 0xce0(r31)

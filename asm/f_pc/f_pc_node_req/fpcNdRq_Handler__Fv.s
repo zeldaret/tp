@@ -4,8 +4,8 @@ lbl_80022AFC:
 /* 80022B04  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80022B08  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80022B0C  93 C1 00 08 */	stw r30, 8(r1)
-/* 80022B10  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha
-/* 80022B14  83 E3 3A 38 */	lwz r31, l_fpcNdRq_Queue@l(r3)
+/* 80022B10  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha /* 0x803A3A38@ha */
+/* 80022B14  83 E3 3A 38 */	lwz r31, l_fpcNdRq_Queue@l(r3)  /* 0x803A3A38@l */
 /* 80022B18  48 00 00 A8 */	b lbl_80022BC0
 lbl_80022B1C:
 /* 80022B1C  83 DF 00 0C */	lwz r30, 0xc(r31)

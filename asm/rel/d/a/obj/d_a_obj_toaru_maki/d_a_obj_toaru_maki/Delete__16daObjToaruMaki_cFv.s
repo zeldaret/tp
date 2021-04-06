@@ -10,14 +10,14 @@ lbl_80D133C0:
 /* 80D133E0  80 7F 05 78 */	lwz r3, 0x578(r31)
 /* 80D133E4  28 03 00 00 */	cmplwi r3, 0
 /* 80D133E8  41 82 00 24 */	beq lbl_80D1340C
-/* 80D133EC  4B 55 4D E8 */	b ChkUsed__9cBgW_BgIdCFv
+/* 80D133EC  4B 55 4D E9 */	bl ChkUsed__9cBgW_BgIdCFv
 /* 80D133F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D133F4  41 82 00 18 */	beq lbl_80D1340C
-/* 80D133F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D133FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D133F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D133FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D13400  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80D13404  80 9F 05 78 */	lwz r4, 0x578(r31)
-/* 80D13408  4B 36 0E 48 */	b Release__4cBgSFP9dBgW_Base
+/* 80D13408  4B 36 0E 49 */	bl Release__4cBgSFP9dBgW_Base
 lbl_80D1340C:
 /* 80D1340C  7F E3 FB 78 */	mr r3, r31
 /* 80D13410  38 80 FF FF */	li r4, -1

@@ -3,18 +3,16 @@
 #
 
 M411_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter.plf
+M411_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter.lcf
+M411_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter.map
 
 M411_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bmshutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_bmshutter/d_a_obj_bmshutter.cpp \
 
 M411_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/d_a_obj_bmshutter.o \
 
@@ -31,15 +29,21 @@ M411_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map411.map\
+	-m _prolog \
+	-lcf $(M411_LDSCRIPT) \
+	-unused -map $(M411_MAP) \
+	-w off \
 
 $(M411_TARGET): $(M411_O_FILES) $(M411_LIBS)
+	@echo [411] creating $(M411_TARGET)
 	@echo $(M411_LIBS) $(M411_O_FILES) > build/M411_ofiles
-	$(LD) -opt_partial $(M411_LDFLAGS) -o $(M411_TARGET) @build/M411_ofiles
+	@python3 tools/lcf.py rel 411 --output $(M411_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M411_LDFLAGS) -o $(M411_TARGET) @build/M411_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bmshutter/%.o: rel/d/a/obj/d_a_obj_bmshutter/%.cpp
+	@echo [411] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M411_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M411_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,17 +3,15 @@
 #
 
 M752_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump.plf
+M752_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump.lcf
+M752_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump.map
 
 M752_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_wljump/executor.cpp \
-	rel/d/a/tag/d_a_tag_wljump/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_wljump/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.cpp \
 
 M752_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.o \
 
 M752_LIBS := \
@@ -29,15 +27,21 @@ M752_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map752.map\
+	-m _prolog \
+	-lcf $(M752_LDSCRIPT) \
+	-unused -map $(M752_MAP) \
+	-w off \
 
 $(M752_TARGET): $(M752_O_FILES) $(M752_LIBS)
+	@echo [752] creating $(M752_TARGET)
 	@echo $(M752_LIBS) $(M752_O_FILES) > build/M752_ofiles
-	$(LD) -opt_partial $(M752_LDFLAGS) -o $(M752_TARGET) @build/M752_ofiles
+	@python3 tools/lcf.py rel 752 --output $(M752_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M752_LDFLAGS) -o $(M752_TARGET) @build/M752_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wljump/%.o: rel/d/a/tag/d_a_tag_wljump/%.cpp
+	@echo [752] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M752_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M752_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,17 +3,15 @@
 #
 
 M363_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro.plf
+M363_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro.lcf
+M363_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro.map
 
 M363_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_shop_maro/executor.cpp \
-	rel/d/a/npc/d_a_npc_shop_maro/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_shop_maro/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_shop_maro/d_a_npc_shop_maro.cpp \
 
 M363_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/d_a_npc_shop_maro.o \
 
 M363_LIBS := \
@@ -29,15 +27,21 @@ M363_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map363.map\
+	-m _prolog \
+	-lcf $(M363_LDSCRIPT) \
+	-unused -map $(M363_MAP) \
+	-w off \
 
 $(M363_TARGET): $(M363_O_FILES) $(M363_LIBS)
+	@echo [363] creating $(M363_TARGET)
 	@echo $(M363_LIBS) $(M363_O_FILES) > build/M363_ofiles
-	$(LD) -opt_partial $(M363_LDFLAGS) -o $(M363_TARGET) @build/M363_ofiles
+	@python3 tools/lcf.py rel 363 --output $(M363_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M363_LDFLAGS) -o $(M363_TARGET) @build/M363_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop_maro/%.o: rel/d/a/npc/d_a_npc_shop_maro/%.cpp
+	@echo [363] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M363_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

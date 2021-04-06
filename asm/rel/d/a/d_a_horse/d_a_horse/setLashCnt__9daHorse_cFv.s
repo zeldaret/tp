@@ -5,8 +5,8 @@ lbl_80840CE4:
 /* 80840CF0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80840CF4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80840CF8  7C 7E 1B 78 */	mr r30, r3
-/* 80840CFC  3C 60 80 84 */	lis r3, lit_3894@ha
-/* 80840D00  3B E3 54 AC */	addi r31, r3, lit_3894@l
+/* 80840CFC  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
+/* 80840D00  3B E3 54 AC */	addi r31, r3, lit_3894@l /* 0x808454AC@l */
 /* 80840D04  80 1E 17 4C */	lwz r0, 0x174c(r30)
 /* 80840D08  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80840D0C  41 82 01 94 */	beq lbl_80840EA0
@@ -18,13 +18,13 @@ lbl_80840CE4:
 /* 80840D24  C0 1F 01 48 */	lfs f0, 0x148(r31)
 /* 80840D28  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80840D2C  D0 21 00 24 */	stfs f1, 0x24(r1)
-/* 80840D30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80840D34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80840D30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80840D34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80840D38  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80840D3C  38 80 00 04 */	li r4, 4
 /* 80840D40  38 A0 00 01 */	li r5, 1
 /* 80840D44  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 80840D48  4B 82 EC DC */	b StartShock__12dVibration_cFii4cXyz
+/* 80840D48  4B 82 EC DD */	bl StartShock__12dVibration_cFii4cXyz
 /* 80840D4C  80 1E 17 44 */	lwz r0, 0x1744(r30)
 /* 80840D50  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 80840D54  40 82 00 10 */	bne lbl_80840D64
@@ -34,8 +34,8 @@ lbl_80840CE4:
 lbl_80840D64:
 /* 80840D64  38 00 00 3F */	li r0, 0x3f
 /* 80840D68  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80840D6C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80840D70  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80840D6C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80840D70  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80840D74  80 63 00 00 */	lwz r3, 0(r3)
 /* 80840D78  38 81 00 10 */	addi r4, r1, 0x10
 /* 80840D7C  38 A0 00 00 */	li r5, 0
@@ -46,7 +46,7 @@ lbl_80840D64:
 /* 80840D90  C0 7F 01 B8 */	lfs f3, 0x1b8(r31)
 /* 80840D94  FC 80 18 90 */	fmr f4, f3
 /* 80840D98  39 00 00 00 */	li r8, 0
-/* 80840D9C  4B A6 AB E8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80840D9C  4B A6 AB E9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80840DA0  80 1E 17 44 */	lwz r0, 0x1744(r30)
 /* 80840DA4  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 80840DA8  40 82 00 3C */	bne lbl_80840DE4
@@ -140,15 +140,15 @@ lbl_80840EC0:
 /* 80840EE8  40 82 00 60 */	bne lbl_80840F48
 /* 80840EEC  38 00 00 06 */	li r0, 6
 /* 80840EF0  B0 1E 17 00 */	sth r0, 0x1700(r30)
-/* 80840EF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80840EF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80840EF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80840EF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80840EFC  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80840F00  28 00 00 00 */	cmplwi r0, 0
 /* 80840F04  40 82 00 C4 */	bne lbl_80840FC8
 /* 80840F08  38 00 00 41 */	li r0, 0x41
 /* 80840F0C  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80840F10  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80840F14  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80840F10  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80840F14  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80840F18  80 63 00 00 */	lwz r3, 0(r3)
 /* 80840F1C  38 81 00 0C */	addi r4, r1, 0xc
 /* 80840F20  38 A0 00 00 */	li r5, 0
@@ -159,7 +159,7 @@ lbl_80840EC0:
 /* 80840F34  C0 7F 01 B8 */	lfs f3, 0x1b8(r31)
 /* 80840F38  FC 80 18 90 */	fmr f4, f3
 /* 80840F3C  39 00 00 00 */	li r8, 0
-/* 80840F40  4B A6 AA 44 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80840F40  4B A6 AA 45 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80840F44  48 00 00 84 */	b lbl_80840FC8
 lbl_80840F48:
 /* 80840F48  38 03 00 01 */	addi r0, r3, 1
@@ -171,15 +171,15 @@ lbl_80840F48:
 /* 80840F60  A8 03 00 10 */	lha r0, 0x10(r3)
 /* 80840F64  B0 1E 16 FE */	sth r0, 0x16fe(r30)
 lbl_80840F68:
-/* 80840F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80840F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80840F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80840F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80840F70  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80840F74  28 00 00 00 */	cmplwi r0, 0
 /* 80840F78  40 82 00 50 */	bne lbl_80840FC8
 /* 80840F7C  38 00 00 40 */	li r0, 0x40
 /* 80840F80  90 01 00 08 */	stw r0, 8(r1)
-/* 80840F84  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80840F88  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80840F84  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80840F88  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80840F8C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80840F90  38 81 00 08 */	addi r4, r1, 8
 /* 80840F94  38 A0 00 00 */	li r5, 0
@@ -190,7 +190,7 @@ lbl_80840F68:
 /* 80840FA8  C0 7F 01 B8 */	lfs f3, 0x1b8(r31)
 /* 80840FAC  FC 80 18 90 */	fmr f4, f3
 /* 80840FB0  39 00 00 00 */	li r8, 0
-/* 80840FB4  4B A6 A9 D0 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80840FB4  4B A6 A9 D1 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80840FB8  48 00 00 10 */	b lbl_80840FC8
 lbl_80840FBC:
 /* 80840FBC  38 00 00 00 */	li r0, 0

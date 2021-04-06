@@ -6,15 +6,15 @@ lbl_809D6030:
 /* 809D6040  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 809D6044  7C 7E 1B 78 */	mr r30, r3
 /* 809D6048  80 01 00 28 */	lwz r0, 0x28(r1)
-/* 809D604C  3D 60 80 9D */	lis r11, m__17daNpc_grM_Param_c@ha
-/* 809D6050  3B EB 6D 70 */	addi r31, r11, m__17daNpc_grM_Param_c@l
+/* 809D604C  3D 60 80 9D */	lis r11, m__17daNpc_grM_Param_c@ha /* 0x809D6D70@ha */
+/* 809D6050  3B EB 6D 70 */	addi r31, r11, m__17daNpc_grM_Param_c@l /* 0x809D6D70@l */
 /* 809D6054  90 01 00 08 */	stw r0, 8(r1)
 /* 809D6058  48 00 01 45 */	bl __ct__8daNpcT_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
-/* 809D605C  3C 60 80 3C */	lis r3, __vt__13dShopSystem_c@ha
-/* 809D6060  38 03 BA 7C */	addi r0, r3, __vt__13dShopSystem_c@l
+/* 809D605C  3C 60 80 3C */	lis r3, __vt__13dShopSystem_c@ha /* 0x803BBA7C@ha */
+/* 809D6060  38 03 BA 7C */	addi r0, r3, __vt__13dShopSystem_c@l /* 0x803BBA7C@l */
 /* 809D6064  90 1E 0E 3C */	stw r0, 0xe3c(r30)
 /* 809D6068  38 7E 0E 48 */	addi r3, r30, 0xe48
-/* 809D606C  4B 7C 08 A8 */	b __ct__15dShopItemCtrl_cFv
+/* 809D606C  4B 7C 08 A9 */	bl __ct__15dShopItemCtrl_cFv
 /* 809D6070  C0 3F 00 9C */	lfs f1, 0x9c(r31)
 /* 809D6074  D0 3E 0F 38 */	stfs f1, 0xf38(r30)
 /* 809D6078  C0 1F 00 A0 */	lfs f0, 0xa0(r31)
@@ -52,8 +52,8 @@ lbl_809D6030:
 /* 809D60F8  90 7E 0E A4 */	stw r3, 0xea4(r30)
 /* 809D60FC  90 7E 0E A0 */	stw r3, 0xea0(r30)
 /* 809D6100  90 7E 0E AC */	stw r3, 0xeac(r30)
-/* 809D6104  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 809D6108  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 809D6104  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809D6108  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 809D610C  80 64 00 00 */	lwz r3, 0(r4)
 /* 809D6110  80 04 00 04 */	lwz r0, 4(r4)
 /* 809D6114  90 7E 0E 78 */	stw r3, 0xe78(r30)
@@ -61,7 +61,7 @@ lbl_809D6030:
 /* 809D611C  80 04 00 08 */	lwz r0, 8(r4)
 /* 809D6120  90 1E 0E 80 */	stw r0, 0xe80(r30)
 /* 809D6124  7F C3 F3 78 */	mr r3, r30
-/* 809D6128  4B 7C 12 10 */	b initShopSystem__13dShopSystem_cFv
+/* 809D6128  4B 7C 12 11 */	bl initShopSystem__13dShopSystem_cFv
 /* 809D612C  7F C3 F3 78 */	mr r3, r30
 /* 809D6130  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 809D6134  83 C1 00 18 */	lwz r30, 0x18(r1)

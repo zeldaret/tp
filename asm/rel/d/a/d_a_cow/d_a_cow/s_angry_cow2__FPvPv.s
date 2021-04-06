@@ -6,7 +6,7 @@ lbl_806598D4:
 /* 806598E4  93 C1 00 08 */	stw r30, 8(r1)
 /* 806598E8  7C 7E 1B 78 */	mr r30, r3
 /* 806598EC  7C 9F 23 78 */	mr r31, r4
-/* 806598F0  4B 9B F3 F0 */	b fopAc_IsActor__FPv
+/* 806598F0  4B 9B F3 F1 */	bl fopAc_IsActor__FPv
 /* 806598F4  2C 03 00 00 */	cmpwi r3, 0
 /* 806598F8  41 82 00 5C */	beq lbl_80659954
 /* 806598FC  28 1E 00 00 */	cmplwi r30, 0
@@ -16,7 +16,7 @@ lbl_806598D4:
 lbl_8065990C:
 /* 8065990C  38 60 FF FF */	li r3, -1
 lbl_80659910:
-/* 80659910  4B 9C 88 28 */	b fpcM_IsCreating__FUi
+/* 80659910  4B 9C 88 29 */	bl fpcM_IsCreating__FUi
 /* 80659914  2C 03 00 00 */	cmpwi r3, 0
 /* 80659918  40 82 00 3C */	bne lbl_80659954
 /* 8065991C  A8 1E 00 08 */	lha r0, 8(r30)
@@ -29,8 +29,8 @@ lbl_80659910:
 /* 80659938  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8065993C  41 82 00 18 */	beq lbl_80659954
 /* 80659940  38 00 00 01 */	li r0, 1
-/* 80659944  3C 60 80 66 */	lis r3, m_angry_cow@ha
-/* 80659948  B0 03 34 FC */	sth r0, m_angry_cow@l(r3)
+/* 80659944  3C 60 80 66 */	lis r3, m_angry_cow@ha /* 0x806634FC@ha */
+/* 80659948  B0 03 34 FC */	sth r0, m_angry_cow@l(r3)  /* 0x806634FC@l */
 /* 8065994C  7F C3 F3 78 */	mr r3, r30
 /* 80659950  48 00 00 08 */	b lbl_80659958
 lbl_80659954:

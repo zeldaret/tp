@@ -33,8 +33,8 @@ lbl_80199604:
 /* 80199610  4B FF E0 61 */	bl checkController__13dShopSystem_cFUcP10dMsgFlow_c
 /* 80199614  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80199618  38 00 00 22 */	li r0, 0x22
-/* 8019961C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80199620  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8019961C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80199620  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80199624  98 04 5E 3C */	stb r0, 0x5e3c(r4)
 /* 80199628  38 60 00 00 */	li r3, 0
 /* 8019962C  98 64 5E 57 */	stb r3, 0x5e57(r4)
@@ -156,8 +156,8 @@ lbl_80199794:
 /* 801997E8  D0 1C 0F 44 */	stfs f0, 0xf44(r28)
 lbl_801997EC:
 /* 801997EC  38 00 00 01 */	li r0, 1
-/* 801997F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801997F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801997F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801997F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801997F8  98 03 5E 86 */	stb r0, 0x5e86(r3)
 /* 801997FC  2C 1F 00 01 */	cmpwi r31, 1
 /* 80199800  40 82 00 54 */	bne lbl_80199854
@@ -278,8 +278,8 @@ lbl_8019995C:
 /* 8019999C  28 00 00 07 */	cmplwi r0, 7
 /* 801999A0  40 82 00 30 */	bne lbl_801999D0
 /* 801999A4  C0 21 00 1C */	lfs f1, 0x1c(r1)
-/* 801999A8  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 801999AC  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 801999A8  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 801999AC  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 801999B0  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 801999B4  EC 01 00 2A */	fadds f0, f1, f0
 /* 801999B8  D0 01 00 1C */	stfs f0, 0x1c(r1)
@@ -290,8 +290,8 @@ lbl_8019995C:
 /* 801999CC  48 00 00 1C */	b lbl_801999E8
 lbl_801999D0:
 /* 801999D0  C0 21 00 20 */	lfs f1, 0x20(r1)
-/* 801999D4  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 801999D8  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 801999D4  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 801999D8  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 801999DC  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 801999E0  EC 01 00 2A */	fadds f0, f1, f0
 /* 801999E4  D0 01 00 20 */	stfs f0, 0x20(r1)

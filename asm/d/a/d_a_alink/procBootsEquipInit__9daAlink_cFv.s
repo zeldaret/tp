@@ -8,8 +8,8 @@ lbl_800E3048:
 /* 800E3060  4B FD EF 0D */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E3064  7F E3 FB 78 */	mr r3, r31
 /* 800E3068  38 80 01 3E */	li r4, 0x13e
-/* 800E306C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800E3070  38 A5 E7 F4 */	addi r5, r5, m__24daAlinkHIO_magneBoots_c0@l
+/* 800E306C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800E3070  38 A5 E7 F4 */	addi r5, r5, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800E3074  4B FC A0 81 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E3078  7F E3 FB 78 */	mr r3, r31
 /* 800E307C  4B FD 7F 05 */	bl checkUpperReadyThrowAnime__9daAlink_cCFv
@@ -19,8 +19,8 @@ lbl_800E3048:
 /* 800E308C  38 80 00 02 */	li r4, 2
 /* 800E3090  C0 22 92 BC */	lfs f1, lit_6041(r2)
 /* 800E3094  4B FC A6 91 */	bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
-/* 800E3098  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E309C  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 800E3098  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E309C  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E30A0  80 85 5F 18 */	lwz r4, 0x5f18(r5)
 /* 800E30A4  3C 60 00 40 */	lis r3, 0x0040 /* 0x00400030@ha */
 /* 800E30A8  38 03 00 30 */	addi r0, r3, 0x0030 /* 0x00400030@l */

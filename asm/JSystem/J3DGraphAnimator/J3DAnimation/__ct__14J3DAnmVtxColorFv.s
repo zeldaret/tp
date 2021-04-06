@@ -1,6 +1,6 @@
 lbl_8032A29C:
-/* 8032A29C  3C 80 80 3A */	lis r4, __vt__10J3DAnmBase@ha
-/* 8032A2A0  38 04 7C 38 */	addi r0, r4, __vt__10J3DAnmBase@l
+/* 8032A29C  3C 80 80 3A */	lis r4, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8032A2A0  38 04 7C 38 */	addi r0, r4, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8032A2A4  90 03 00 00 */	stw r0, 0(r3)
 /* 8032A2A8  38 A0 00 00 */	li r5, 0
 /* 8032A2AC  98 A3 00 04 */	stb r5, 4(r3)
@@ -8,8 +8,8 @@ lbl_8032A29C:
 /* 8032A2B4  B0 A3 00 06 */	sth r5, 6(r3)
 /* 8032A2B8  C0 02 CA 34 */	lfs f0, lit_853(r2)
 /* 8032A2BC  D0 03 00 08 */	stfs f0, 8(r3)
-/* 8032A2C0  3C 80 80 3D */	lis r4, __vt__14J3DAnmVtxColor@ha
-/* 8032A2C4  38 04 ED D4 */	addi r0, r4, __vt__14J3DAnmVtxColor@l
+/* 8032A2C0  3C 80 80 3D */	lis r4, __vt__14J3DAnmVtxColor@ha /* 0x803CEDD4@ha */
+/* 8032A2C4  38 04 ED D4 */	addi r0, r4, __vt__14J3DAnmVtxColor@l /* 0x803CEDD4@l */
 /* 8032A2C8  90 03 00 00 */	stw r0, 0(r3)
 /* 8032A2CC  7C A4 2B 78 */	mr r4, r5
 /* 8032A2D0  38 00 00 02 */	li r0, 2

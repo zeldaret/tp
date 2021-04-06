@@ -3,10 +3,10 @@ lbl_807E470C:
 /* 807E4710  7C 08 02 A6 */	mflr r0
 /* 807E4714  90 01 00 74 */	stw r0, 0x74(r1)
 /* 807E4718  39 61 00 70 */	addi r11, r1, 0x70
-/* 807E471C  4B B7 DA C0 */	b _savegpr_29
+/* 807E471C  4B B7 DA C1 */	bl _savegpr_29
 /* 807E4720  7C 7E 1B 78 */	mr r30, r3
-/* 807E4724  3C 80 80 7E */	lis r4, lit_3802@ha
-/* 807E4728  3B E4 73 00 */	addi r31, r4, lit_3802@l
+/* 807E4724  3C 80 80 7E */	lis r4, lit_3802@ha /* 0x807E7300@ha */
+/* 807E4728  3B E4 73 00 */	addi r31, r4, lit_3802@l /* 0x807E7300@l */
 /* 807E472C  4B FF FA F9 */	bl checkPlayerPos__8daE_WS_cFv
 /* 807E4730  7C 7D 1B 78 */	mr r29, r3
 /* 807E4734  2C 1D 00 01 */	cmpwi r29, 1
@@ -29,15 +29,15 @@ lbl_807E4770:
 /* 807E4770  80 1E 06 80 */	lwz r0, 0x680(r30)
 /* 807E4774  28 00 00 06 */	cmplwi r0, 6
 /* 807E4778  41 81 03 20 */	bgt lbl_807E4A98
-/* 807E477C  3C 60 80 7E */	lis r3, lit_4268@ha
-/* 807E4780  38 63 74 C8 */	addi r3, r3, lit_4268@l
+/* 807E477C  3C 60 80 7E */	lis r3, lit_4268@ha /* 0x807E74C8@ha */
+/* 807E4780  38 63 74 C8 */	addi r3, r3, lit_4268@l /* 0x807E74C8@l */
 /* 807E4784  54 00 10 3A */	slwi r0, r0, 2
 /* 807E4788  7C 03 00 2E */	lwzx r0, r3, r0
 /* 807E478C  7C 09 03 A6 */	mtctr r0
 /* 807E4790  4E 80 04 20 */	bctr 
 lbl_807E4794:
 /* 807E4794  C0 3F 00 30 */	lfs f1, 0x30(r31)
-/* 807E4798  4B A8 31 BC */	b cM_rndF__Ff
+/* 807E4798  4B A8 31 BD */	bl cM_rndF__Ff
 /* 807E479C  C0 1F 00 30 */	lfs f0, 0x30(r31)
 /* 807E47A0  EC 00 08 2A */	fadds f0, f0, f1
 /* 807E47A4  FC 00 00 1E */	fctiwz f0, f0
@@ -65,7 +65,7 @@ lbl_807E47EC:
 /* 807E47F4  38 00 00 00 */	li r0, 0
 /* 807E47F8  98 1E 06 90 */	stb r0, 0x690(r30)
 /* 807E47FC  C0 3F 00 AC */	lfs f1, 0xac(r31)
-/* 807E4800  4B A8 31 8C */	b cM_rndFX__Ff
+/* 807E4800  4B A8 31 8D */	bl cM_rndFX__Ff
 /* 807E4804  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 807E4808  C8 5F 00 A0 */	lfd f2, 0xa0(r31)
 /* 807E480C  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -107,8 +107,8 @@ lbl_807E4864:
 /* 807E4898  38 81 00 44 */	addi r4, r1, 0x44
 /* 807E489C  38 A1 00 38 */	addi r5, r1, 0x38
 /* 807E48A0  4B FF F7 0D */	bl calcTargetDist__8daE_WS_cF4cXyz4cXyz
-/* 807E48A4  3C 60 80 7E */	lis r3, l_HIO@ha
-/* 807E48A8  38 63 75 C8 */	addi r3, r3, l_HIO@l
+/* 807E48A4  3C 60 80 7E */	lis r3, l_HIO@ha /* 0x807E75C8@ha */
+/* 807E48A8  38 63 75 C8 */	addi r3, r3, l_HIO@l /* 0x807E75C8@l */
 /* 807E48AC  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 807E48B0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807E48B4  4C 41 13 82 */	cror 2, 1, 2
@@ -152,7 +152,7 @@ lbl_807E4938:
 /* 807E4940  38 7E 04 E6 */	addi r3, r30, 0x4e6
 /* 807E4944  A8 9E 06 88 */	lha r4, 0x688(r30)
 /* 807E4948  A8 BE 06 8A */	lha r5, 0x68a(r30)
-/* 807E494C  4B A8 C2 44 */	b cLib_chaseAngleS__FPsss
+/* 807E494C  4B A8 C2 45 */	bl cLib_chaseAngleS__FPsss
 /* 807E4950  2C 03 00 00 */	cmpwi r3, 0
 /* 807E4954  41 82 01 44 */	beq lbl_807E4A98
 /* 807E4958  38 00 00 04 */	li r0, 4
@@ -179,7 +179,7 @@ lbl_807E499C:
 /* 807E49A4  C0 1F 00 A8 */	lfs f0, 0xa8(r31)
 /* 807E49A8  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 807E49AC  C0 3F 00 44 */	lfs f1, 0x44(r31)
-/* 807E49B0  4B A8 2F A4 */	b cM_rndF__Ff
+/* 807E49B0  4B A8 2F A5 */	bl cM_rndF__Ff
 /* 807E49B4  C0 1F 00 B8 */	lfs f0, 0xb8(r31)
 /* 807E49B8  EC 00 08 2A */	fadds f0, f0, f1
 /* 807E49BC  FC 00 00 1E */	fctiwz f0, f0
@@ -214,8 +214,8 @@ lbl_807E49E4:
 /* 807E4A2C  38 81 00 14 */	addi r4, r1, 0x14
 /* 807E4A30  38 A1 00 08 */	addi r5, r1, 8
 /* 807E4A34  4B FF F5 79 */	bl calcTargetDist__8daE_WS_cF4cXyz4cXyz
-/* 807E4A38  3C 60 80 7E */	lis r3, l_HIO@ha
-/* 807E4A3C  38 63 75 C8 */	addi r3, r3, l_HIO@l
+/* 807E4A38  3C 60 80 7E */	lis r3, l_HIO@ha /* 0x807E75C8@ha */
+/* 807E4A3C  38 63 75 C8 */	addi r3, r3, l_HIO@l /* 0x807E75C8@l */
 /* 807E4A40  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 807E4A44  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807E4A48  4C 41 13 82 */	cror 2, 1, 2
@@ -245,7 +245,7 @@ lbl_807E4A98:
 /* 807E4A9C  B0 1E 04 DE */	sth r0, 0x4de(r30)
 lbl_807E4AA0:
 /* 807E4AA0  39 61 00 70 */	addi r11, r1, 0x70
-/* 807E4AA4  4B B7 D7 84 */	b _restgpr_29
+/* 807E4AA4  4B B7 D7 85 */	bl _restgpr_29
 /* 807E4AA8  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 807E4AAC  7C 08 03 A6 */	mtlr r0
 /* 807E4AB0  38 21 00 70 */	addi r1, r1, 0x70

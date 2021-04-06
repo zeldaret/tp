@@ -19,8 +19,8 @@ lbl_8001D900:
 /* 8001D944  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 8001D948  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 8001D94C  57 E0 04 38 */	rlwinm r0, r31, 0, 0x10, 0x1c
-/* 8001D950  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8001D954  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8001D950  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8001D954  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8001D958  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8001D95C  EC 22 00 32 */	fmuls f1, f2, f0
 /* 8001D960  7C 83 02 14 */	add r4, r3, r0

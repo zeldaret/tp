@@ -7,8 +7,8 @@ lbl_800DFCD8:
 /* 800DFCEC  A0 03 1F BC */	lhz r0, 0x1fbc(r3)
 /* 800DFCF0  28 00 00 0A */	cmplwi r0, 0xa
 /* 800DFCF4  40 82 00 5C */	bne lbl_800DFD50
-/* 800DFCF8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800DFCFC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800DFCF8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DFCFC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DFD00  80 04 5F 18 */	lwz r0, 0x5f18(r4)
 /* 800DFD04  54 00 02 95 */	rlwinm. r0, r0, 0, 0xa, 0xa
 /* 800DFD08  40 82 00 48 */	bne lbl_800DFD50

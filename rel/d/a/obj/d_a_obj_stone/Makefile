@@ -3,18 +3,16 @@
 #
 
 M633_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone.plf
+M633_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone.lcf
+M633_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone.map
 
 M633_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stone/executor.cpp \
-	rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.cpp \
 
 M633_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.o \
 
@@ -31,15 +29,21 @@ M633_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map633.map\
+	-m _prolog \
+	-lcf $(M633_LDSCRIPT) \
+	-unused -map $(M633_MAP) \
+	-w off \
 
 $(M633_TARGET): $(M633_O_FILES) $(M633_LIBS)
+	@echo [633] creating $(M633_TARGET)
 	@echo $(M633_LIBS) $(M633_O_FILES) > build/M633_ofiles
-	$(LD) -opt_partial $(M633_LDFLAGS) -o $(M633_TARGET) @build/M633_ofiles
+	@python3 tools/lcf.py rel 633 --output $(M633_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M633_LDFLAGS) -o $(M633_TARGET) @build/M633_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stone/%.o: rel/d/a/obj/d_a_obj_stone/%.cpp
+	@echo [633] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M633_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M633_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

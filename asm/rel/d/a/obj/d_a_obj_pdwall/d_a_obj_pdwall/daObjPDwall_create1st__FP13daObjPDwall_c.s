@@ -9,9 +9,9 @@ lbl_80CAD074:
 /* 80CAD090  40 82 00 28 */	bne lbl_80CAD0B8
 /* 80CAD094  28 1F 00 00 */	cmplwi r31, 0
 /* 80CAD098  41 82 00 14 */	beq lbl_80CAD0AC
-/* 80CAD09C  4B 3C B5 88 */	b __ct__16dBgS_MoveBgActorFv
-/* 80CAD0A0  3C 60 80 CB */	lis r3, __vt__13daObjPDwall_c@ha
-/* 80CAD0A4  38 03 D2 50 */	addi r0, r3, __vt__13daObjPDwall_c@l
+/* 80CAD09C  4B 3C B5 89 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80CAD0A0  3C 60 80 CB */	lis r3, __vt__13daObjPDwall_c@ha /* 0x80CAD250@ha */
+/* 80CAD0A4  38 03 D2 50 */	addi r0, r3, __vt__13daObjPDwall_c@l /* 0x80CAD250@l */
 /* 80CAD0A8  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_80CAD0AC:
 /* 80CAD0AC  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

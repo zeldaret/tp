@@ -3,19 +3,20 @@
 #
 
 M386_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant.plf
+M386_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant.lcf
+M386_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant.map
 
 M386_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_zant/executor.cpp \
-	rel/d/a/npc/d_a_npc_zant/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_zant/d_a_npc_zant.cpp \
 
 M386_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/d_a_npc_zant.o \
 
 M386_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/libRuntime.PPCEABI.H.a \
 
 M386_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M386_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map386.map\
+	-m _prolog \
+	-lcf $(M386_LDSCRIPT) \
+	-unused -map $(M386_MAP) \
+	-w off \
 
 $(M386_TARGET): $(M386_O_FILES) $(M386_LIBS)
+	@echo [386] creating $(M386_TARGET)
 	@echo $(M386_LIBS) $(M386_O_FILES) > build/M386_ofiles
-	$(LD) -opt_partial $(M386_LDFLAGS) -o $(M386_TARGET) @build/M386_ofiles
+	@python3 tools/lcf.py rel 386 --output $(M386_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M386_LDFLAGS) -o $(M386_TARGET) @build/M386_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zant/%.o: rel/d/a/npc/d_a_npc_zant/%.cpp
+	@echo [386] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M386_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M386_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_zant/libs/Runtime.PPCEABI.H/Makefile
 

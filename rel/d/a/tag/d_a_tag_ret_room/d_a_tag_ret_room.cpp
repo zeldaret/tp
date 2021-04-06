@@ -41,11 +41,6 @@ struct cXyz {
 // Forward References:
 //
 
-static void daTagRetRm_create(daTagRetRm_c*);
-static void daTagRetRm_Delete(daTagRetRm_c*);
-static void daTagRetRm_execute(daTagRetRm_c*);
-static void daTagRetRm_draw(daTagRetRm_c*);
-
 extern "C" void __ct__12daTagRetRm_cFv();
 extern "C" void __dt__12daTagRetRm_cFv();
 extern "C" void create__12daTagRetRm_cFv();
@@ -58,15 +53,10 @@ extern "C" static void daTagRetRm_create__FP12daTagRetRm_c();
 extern "C" static void daTagRetRm_Delete__FP12daTagRetRm_c();
 extern "C" static void daTagRetRm_execute__FP12daTagRetRm_c();
 extern "C" static void daTagRetRm_draw__FP12daTagRetRm_c();
-extern "C" extern void* g_profile_Tag_RetRoom[12];
-extern "C" extern void* __vt__12daTagRetRm_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -85,7 +75,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D5F214-80D5F234 0020+00 s=1 e=0 z=0  None .data      daTagRetRm_METHODS */
+/* 80D5F214-80D5F234 -00001 0020+00 1/0 0/0 0/0 .data            daTagRetRm_METHODS */
 SECTION_DATA static void* daTagRetRm_METHODS[8] = {
     (void*)daTagRetRm_create__FP12daTagRetRm_c,
     (void*)daTagRetRm_Delete__FP12daTagRetRm_c,
@@ -97,8 +87,8 @@ SECTION_DATA static void* daTagRetRm_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D5F234-80D5F264 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_RetRoom */
-SECTION_DATA void* g_profile_Tag_RetRoom[12] = {
+/* 80D5F234-80D5F264 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_RetRoom */
+SECTION_DATA extern void* g_profile_Tag_RetRoom[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01890000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,
@@ -107,17 +97,14 @@ SECTION_DATA void* g_profile_Tag_RetRoom[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D5F264-80D5F270 000C+00 s=2 e=0 z=0  None .data      __vt__12daTagRetRm_c */
-SECTION_DATA void* __vt__12daTagRetRm_c[3] = {
+/* 80D5F264-80D5F270 000050 000C+00 2/2 0/0 0/0 .data            __vt__12daTagRetRm_c */
+SECTION_DATA extern void* __vt__12daTagRetRm_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12daTagRetRm_cFv,
 };
 
-/* 80D5EE98-80D5EED4 003C+00 s=2 e=0 z=0  None .text      __ct__12daTagRetRm_cFv */
-//	80D5EEAC: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D5EEB0: 80D5F264 (__vt__12daTagRetRm_c)
-//	80D5EEB4: 80D5F264 (__vt__12daTagRetRm_c)
+/* 80D5EE98-80D5EED4 000078 003C+00 2/2 0/0 0/0 .text            __ct__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,11 +114,7 @@ asm daTagRetRm_c::daTagRetRm_c() {
 }
 #pragma pop
 
-/* 80D5EED4-80D5EF34 0060+00 s=1 e=0 z=0  None .text      __dt__12daTagRetRm_cFv */
-//	80D5EEF4: 80D5F264 (__vt__12daTagRetRm_c)
-//	80D5EEF8: 80D5F264 (__vt__12daTagRetRm_c)
-//	80D5EF04: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80D5EF14: 802CED3C (__dl__FPv)
+/* 80D5EED4-80D5EF34 0000B4 0060+00 1/0 0/0 0/0 .text            __dt__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -141,9 +124,7 @@ asm daTagRetRm_c::~daTagRetRm_c() {
 }
 #pragma pop
 
-/* 80D5EF34-80D5EF8C 0058+00 s=1 e=0 z=0  None .text      create__12daTagRetRm_cFv */
-//	80D5EF5C: 80D5EE98 (__ct__12daTagRetRm_cFv)
-//	80D5EF70: 80D5F010 (init__12daTagRetRm_cFv)
+/* 80D5EF34-80D5EF8C 000114 0058+00 1/1 0/0 0/0 .text            create__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -153,19 +134,17 @@ asm void daTagRetRm_c::create() {
 }
 #pragma pop
 
-/* 80D5EF8C-80D5EF94 0008+00 s=1 e=0 z=0  None .text      Delete__12daTagRetRm_cFv */
+/* 80D5EF8C-80D5EF94 00016C 0008+00 1/1 0/0 0/0 .text            Delete__12daTagRetRm_cFv */
 bool daTagRetRm_c::Delete() {
     return true;
 }
 
-/* 80D5EF94-80D5EF9C 0008+00 s=1 e=0 z=0  None .text      draw__12daTagRetRm_cFv */
+/* 80D5EF94-80D5EF9C 000174 0008+00 1/1 0/0 0/0 .text            draw__12daTagRetRm_cFv */
 bool daTagRetRm_c::draw() {
     return true;
 }
 
-/* 80D5EF9C-80D5F010 0074+00 s=1 e=0 z=0  None .text      execute__12daTagRetRm_cFv */
-//	80D5EFDC: 8015F438 (forceRestartRoom__9daPy_py_cFiUli)
-//	80D5EFE4: 80D5F050 (chkPlyrInTag__12daTagRetRm_cFv)
+/* 80D5EF9C-80D5F010 00017C 0074+00 1/1 0/0 0/0 .text            execute__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -176,17 +155,15 @@ asm void daTagRetRm_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5F208-80D5F20C 0004+00 s=1 e=0 z=0  None .rodata    @3682 */
+/* 80D5F208-80D5F20C 000000 0004+00 1/1 0/0 0/0 .rodata          @3682 */
 SECTION_RODATA static u32 const lit_3682 = 0x42480000;
+SECTION_DEAD void* const cg_80D5F208 = (void*)(&lit_3682);
 
-/* 80D5F20C-80D5F210 0004+00 s=1 e=0 z=0  None .rodata    @3683 */
+/* 80D5F20C-80D5F210 000004 0004+00 1/1 0/0 0/0 .rodata          @3683 */
 SECTION_RODATA static u32 const lit_3683 = 0x42C80000;
+SECTION_DEAD void* const cg_80D5F20C = (void*)(&lit_3683);
 
-/* 80D5F010-80D5F050 0040+00 s=1 e=0 z=0  None .text      init__12daTagRetRm_cFv */
-//	80D5F010: 80D5F208 (lit_3682)
-//	80D5F014: 80D5F208 (lit_3682)
-//	80D5F024: 80D5F20C (lit_3683)
-//	80D5F028: 80D5F20C (lit_3683)
+/* 80D5F010-80D5F050 0001F0 0040+00 1/1 0/0 0/0 .text            init__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,26 +174,16 @@ asm void daTagRetRm_c::init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5F210-80D5F214 0004+00 s=1 e=0 z=0  None .rodata    @3718 */
+/* 80D5F210-80D5F214 000008 0004+00 1/1 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static u8 const lit_3718[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80D5F210 = (void*)(&lit_3718);
 
-/* 80D5F050-80D5F14C 00FC+00 s=1 e=0 z=0  None .text      chkPlyrInTag__12daTagRetRm_cFv */
-//	80D5F064: 804061C0 (g_dComIfG_gameInfo)
-//	80D5F068: 804061C0 (g_dComIfG_gameInfo)
-//	80D5F08C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80D5F0A8: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5F0AC: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5F0BC: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80D5F0C0: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5F0C4: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5F0D0: 80346D6C (PSMTXMultVec)
-//	80D5F0D4: 80D5F210 (lit_3718)
-//	80D5F0D8: 80D5F210 (lit_3718)
+/* 80D5F050-80D5F14C 000230 00FC+00 1/1 0/0 0/0 .text            chkPlyrInTag__12daTagRetRm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,46 +193,44 @@ asm void daTagRetRm_c::chkPlyrInTag() {
 }
 #pragma pop
 
-/* 80D5F14C-80D5F1A0 0054+00 s=1 e=0 z=0  None .text      daTagRetRm_create__FP12daTagRetRm_c */
-//	80D5F174: 80D5EE98 (__ct__12daTagRetRm_cFv)
-//	80D5F188: 80D5EF34 (create__12daTagRetRm_cFv)
+/* 80D5F14C-80D5F1A0 00032C 0054+00 1/0 0/0 0/0 .text            daTagRetRm_create__FP12daTagRetRm_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRetRm_create(daTagRetRm_c* param_0) {
+static asm void daTagRetRm_create(daTagRetRm_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room/daTagRetRm_create__FP12daTagRetRm_c.s"
 }
 #pragma pop
 
-/* 80D5F1A0-80D5F1C0 0020+00 s=1 e=0 z=0  None .text      daTagRetRm_Delete__FP12daTagRetRm_c */
-//	80D5F1AC: 80D5EF8C (Delete__12daTagRetRm_cFv)
+/* 80D5F1A0-80D5F1C0 000380 0020+00 1/0 0/0 0/0 .text            daTagRetRm_Delete__FP12daTagRetRm_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRetRm_Delete(daTagRetRm_c* param_0) {
+static asm void daTagRetRm_Delete(daTagRetRm_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room/daTagRetRm_Delete__FP12daTagRetRm_c.s"
 }
 #pragma pop
 
-/* 80D5F1C0-80D5F1E0 0020+00 s=1 e=0 z=0  None .text      daTagRetRm_execute__FP12daTagRetRm_c */
-//	80D5F1CC: 80D5EF9C (execute__12daTagRetRm_cFv)
+/* 80D5F1C0-80D5F1E0 0003A0 0020+00 1/0 0/0 0/0 .text daTagRetRm_execute__FP12daTagRetRm_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRetRm_execute(daTagRetRm_c* param_0) {
+static asm void daTagRetRm_execute(daTagRetRm_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room/daTagRetRm_execute__FP12daTagRetRm_c.s"
 }
 #pragma pop
 
-/* 80D5F1E0-80D5F200 0020+00 s=1 e=0 z=0  None .text      daTagRetRm_draw__FP12daTagRetRm_c */
-//	80D5F1EC: 80D5EF94 (draw__12daTagRetRm_cFv)
+/* 80D5F1E0-80D5F200 0003C0 0020+00 1/0 0/0 0/0 .text            daTagRetRm_draw__FP12daTagRetRm_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRetRm_draw(daTagRetRm_c* param_0) {
+static asm void daTagRetRm_draw(daTagRetRm_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room/daTagRetRm_draw__FP12daTagRetRm_c.s"
 }

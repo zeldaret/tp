@@ -22,8 +22,8 @@ lbl_800ADDC8:
 /* 800ADDD0  48 00 22 C9 */	bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 lbl_800ADDD4:
 /* 800ADDD4  C0 3F 33 98 */	lfs f1, 0x3398(r31)
-/* 800ADDD8  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 800ADDDC  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 800ADDD8  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800ADDDC  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800ADDE0  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 800ADDE4  7C 64 02 14 */	add r3, r4, r0
 /* 800ADDE8  C0 03 00 04 */	lfs f0, 4(r3)

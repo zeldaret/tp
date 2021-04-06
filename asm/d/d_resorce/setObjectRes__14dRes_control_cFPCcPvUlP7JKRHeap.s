@@ -12,8 +12,8 @@ lbl_8003C4E4:
 /* 8003C50C  7F 63 DB 78 */	mr r3, r27
 /* 8003C510  7F 44 D3 78 */	mr r4, r26
 /* 8003C514  38 A0 00 80 */	li r5, 0x80
-/* 8003C518  3C C0 80 38 */	lis r6, d_d_resorce__stringBase0@ha
-/* 8003C51C  38 C6 98 B8 */	addi r6, r6, d_d_resorce__stringBase0@l
+/* 8003C518  3C C0 80 38 */	lis r6, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003C51C  38 C6 98 B8 */	addi r6, r6, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003C520  38 C6 03 1E */	addi r6, r6, 0x31e
 /* 8003C524  38 E0 00 00 */	li r7, 0
 /* 8003C528  39 00 00 00 */	li r8, 0

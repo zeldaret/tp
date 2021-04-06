@@ -69,8 +69,8 @@ lbl_801D5388:
 /* 801D5494  28 00 00 00 */	cmplwi r0, 0
 /* 801D5498  41 82 01 54 */	beq lbl_801D55EC
 /* 801D549C  3B A0 00 00 */	li r29, 0
-/* 801D54A0  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D54A4  3B C3 FC 60 */	addi r30, r3, g_fmapHIO@l
+/* 801D54A0  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D54A4  3B C3 FC 60 */	addi r30, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D54A8  CB 22 A8 08 */	lfd f25, lit_4496(r2)
 /* 801D54AC  3F E0 43 30 */	lis r31, 0x4330
 /* 801D54B0  C3 42 A8 28 */	lfs f26, lit_5633(r2)

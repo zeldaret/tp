@@ -7,8 +7,8 @@ lbl_80283CE4:
 /* 80283CF8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80283CFC  7C 9F 23 78 */	mr r31, r4
 /* 80283D00  41 82 00 28 */	beq lbl_80283D28
-/* 80283D04  3C 80 80 3C */	lis r4, __vt__Q27JStudio25TFunctionValue_transition@ha
-/* 80283D08  38 04 49 40 */	addi r0, r4, __vt__Q27JStudio25TFunctionValue_transition@l
+/* 80283D04  3C 80 80 3C */	lis r4, __vt__Q27JStudio25TFunctionValue_transition@ha /* 0x803C4940@ha */
+/* 80283D08  38 04 49 40 */	addi r0, r4, __vt__Q27JStudio25TFunctionValue_transition@l /* 0x803C4940@l */
 /* 80283D0C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80283D10  38 80 00 00 */	li r4, 0
 /* 80283D14  4B FF D9 8D */	bl __dt__Q27JStudio14TFunctionValueFv

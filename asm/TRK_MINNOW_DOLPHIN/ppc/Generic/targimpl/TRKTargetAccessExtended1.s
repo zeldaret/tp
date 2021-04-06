@@ -10,9 +10,9 @@ lbl_80370618:
 /* 80370638  38 60 07 01 */	li r3, 0x701
 /* 8037063C  48 00 01 34 */	b lbl_80370770
 lbl_80370640:
-/* 80370640  3C C0 80 3D */	lis r6, gTRKExceptionStatus@ha
+/* 80370640  3C C0 80 3D */	lis r6, gTRKExceptionStatus@ha /* 0x803D3244@ha */
 /* 80370644  38 00 00 00 */	li r0, 0
-/* 80370648  3B E6 32 44 */	addi r31, r6, gTRKExceptionStatus@l
+/* 80370648  3B E6 32 44 */	addi r31, r6, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 8037064C  7C 03 20 40 */	cmplw r3, r4
 /* 80370650  80 DF 00 0C */	lwz r6, 0xc(r31)
 /* 80370654  81 5F 00 00 */	lwz r10, 0(r31)
@@ -26,13 +26,13 @@ lbl_80370640:
 /* 80370674  90 1E 00 00 */	stw r0, 0(r30)
 /* 80370678  41 81 00 B8 */	bgt lbl_80370730
 /* 8037067C  7C 83 20 50 */	subf r4, r3, r4
-/* 80370680  3D 00 80 45 */	lis r8, gTRKCPUState@ha
+/* 80370680  3D 00 80 45 */	lis r8, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 80370684  38 04 00 01 */	addi r0, r4, 1
 /* 80370688  80 9E 00 00 */	lwz r4, 0(r30)
 /* 8037068C  54 06 10 3A */	slwi r6, r0, 2
 /* 80370690  2C 07 00 00 */	cmpwi r7, 0
 /* 80370694  7C 84 32 14 */	add r4, r4, r6
-/* 80370698  38 E8 F3 38 */	addi r7, r8, gTRKCPUState@l
+/* 80370698  38 E8 F3 38 */	addi r7, r8, gTRKCPUState@l /* 0x8044F338@l */
 /* 8037069C  54 63 10 3A */	slwi r3, r3, 2
 /* 803706A0  90 9E 00 00 */	stw r4, 0(r30)
 /* 803706A4  7C 87 1A 14 */	add r4, r7, r3
@@ -51,12 +51,12 @@ lbl_803706C0:
 /* 803706D4  7C C4 32 14 */	add r6, r4, r6
 /* 803706D8  7C 06 18 40 */	cmplw r6, r3
 /* 803706DC  41 80 00 10 */	blt lbl_803706EC
-/* 803706E0  3C 60 80 3D */	lis r3, gTRKRestoreFlags@ha
+/* 803706E0  3C 60 80 3D */	lis r3, gTRKRestoreFlags@ha /* 0x803D3238@ha */
 /* 803706E4  38 C0 00 01 */	li r6, 1
-/* 803706E8  98 C3 32 38 */	stb r6, gTRKRestoreFlags@l(r3)
+/* 803706E8  98 C3 32 38 */	stb r6, gTRKRestoreFlags@l(r3)  /* 0x803D3238@l */
 lbl_803706EC:
-/* 803706EC  3C 60 80 45 */	lis r3, gTRKCPUState@ha
-/* 803706F0  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l
+/* 803706EC  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
+/* 803706F0  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 803706F4  38 C3 02 78 */	addi r6, r3, 0x278
 /* 803706F8  7C 04 30 40 */	cmplw r4, r6
 /* 803706FC  41 81 00 28 */	bgt lbl_80370724
@@ -65,9 +65,9 @@ lbl_803706EC:
 /* 80370708  7C 64 1A 14 */	add r3, r4, r3
 /* 8037070C  7C 03 30 40 */	cmplw r3, r6
 /* 80370710  41 80 00 14 */	blt lbl_80370724
-/* 80370714  3C 60 80 3D */	lis r3, gTRKRestoreFlags@ha
+/* 80370714  3C 60 80 3D */	lis r3, gTRKRestoreFlags@ha /* 0x803D3238@ha */
 /* 80370718  38 C0 00 01 */	li r6, 1
-/* 8037071C  38 63 32 38 */	addi r3, r3, gTRKRestoreFlags@l
+/* 8037071C  38 63 32 38 */	addi r3, r3, gTRKRestoreFlags@l /* 0x803D3238@l */
 /* 80370720  98 C3 00 01 */	stb r6, 1(r3)
 lbl_80370724:
 /* 80370724  7C A3 2B 78 */	mr r3, r5
@@ -81,9 +81,9 @@ lbl_80370730:
 /* 80370740  38 60 07 02 */	li r3, 0x702
 /* 80370744  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80370748:
-/* 80370748  3C 80 80 3D */	lis r4, gTRKExceptionStatus@ha
+/* 80370748  3C 80 80 3D */	lis r4, gTRKExceptionStatus@ha /* 0x803D3244@ha */
 /* 8037074C  80 C1 00 08 */	lwz r6, 8(r1)
-/* 80370750  38 E4 32 44 */	addi r7, r4, gTRKExceptionStatus@l
+/* 80370750  38 E4 32 44 */	addi r7, r4, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 80370754  80 A1 00 0C */	lwz r5, 0xc(r1)
 /* 80370758  80 81 00 10 */	lwz r4, 0x10(r1)
 /* 8037075C  80 01 00 14 */	lwz r0, 0x14(r1)

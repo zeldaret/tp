@@ -9,8 +9,8 @@ lbl_8002645C:
 /* 80026478  7C BD 2B 78 */	mr r29, r5
 /* 8002647C  41 82 01 48 */	beq lbl_800265C4
 /* 80026480  83 FC 00 04 */	lwz r31, 4(r28)
-/* 80026484  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80026488  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80026484  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80026488  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002648C  3B C3 4E 20 */	addi r30, r3, 0x4e20
 /* 80026490  7F C3 F3 78 */	mr r3, r30
 /* 80026494  81 9E 00 00 */	lwz r12, 0(r30)
@@ -46,8 +46,8 @@ lbl_800264EC:
 /* 80026500  28 03 00 00 */	cmplwi r3, 0
 /* 80026504  40 82 00 44 */	bne lbl_80026548
 /* 80026508  38 61 00 08 */	addi r3, r1, 8
-/* 8002650C  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha
-/* 80026510  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l
+/* 8002650C  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80026510  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80026514  38 84 01 0E */	addi r4, r4, 0x10e
 /* 80026518  88 BF 00 0A */	lbz r5, 0xa(r31)
 /* 8002651C  4C C6 31 82 */	crclr 6
@@ -71,21 +71,21 @@ lbl_80026548:
 /* 8002655C  98 1B 00 04 */	stb r0, 4(r27)
 /* 80026560  7F 43 D3 78 */	mr r3, r26
 /* 80026564  7F 64 DB 78 */	mr r4, r27
-/* 80026568  3C A0 80 3A */	lis r5, l_roomFuncTable@ha
-/* 8002656C  38 A5 65 CC */	addi r5, r5, l_roomFuncTable@l
+/* 80026568  3C A0 80 3A */	lis r5, l_roomFuncTable@ha /* 0x803A65CC@ha */
+/* 8002656C  38 A5 65 CC */	addi r5, r5, l_roomFuncTable@l /* 0x803A65CC@l */
 /* 80026570  38 C0 00 04 */	li r6, 4
 /* 80026574  4B FF FB 41 */	bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026578  38 60 00 00 */	li r3, 0
 /* 8002657C  48 00 64 01 */	bl getLayerNo__14dComIfG_play_cFi
 /* 80026580  7C 65 1B 78 */	mr r5, r3
-/* 80026584  3C 60 80 3A */	lis r3, l_layerFuncTable_5053@ha
-/* 80026588  38 63 65 FC */	addi r3, r3, l_layerFuncTable_5053@l
+/* 80026584  3C 60 80 3A */	lis r3, l_layerFuncTable_5053@ha /* 0x803A65FC@ha */
+/* 80026588  38 63 65 FC */	addi r3, r3, l_layerFuncTable_5053@l /* 0x803A65FC@l */
 /* 8002658C  38 80 00 03 */	li r4, 3
 /* 80026590  4B FF FA F1 */	bl dStage_setLayerTagName__FP9FuncTableii
 /* 80026594  7F 43 D3 78 */	mr r3, r26
 /* 80026598  7F 64 DB 78 */	mr r4, r27
-/* 8002659C  3C A0 80 3A */	lis r5, l_layerFuncTable_5053@ha
-/* 800265A0  38 A5 65 FC */	addi r5, r5, l_layerFuncTable_5053@l
+/* 8002659C  3C A0 80 3A */	lis r5, l_layerFuncTable_5053@ha /* 0x803A65FC@ha */
+/* 800265A0  38 A5 65 FC */	addi r5, r5, l_layerFuncTable_5053@l /* 0x803A65FC@l */
 /* 800265A4  38 C0 00 03 */	li r6, 3
 /* 800265A8  4B FF FB 0D */	bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 lbl_800265AC:

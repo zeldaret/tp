@@ -5,16 +5,16 @@ lbl_80BC82C0:
 /* 80BC82CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BC82D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80BC82D4  7C 7E 1B 78 */	mr r30, r3
-/* 80BC82D8  3C 80 80 BD */	lis r4, lit_3731@ha
-/* 80BC82DC  3B E4 8C DC */	addi r31, r4, lit_3731@l
+/* 80BC82D8  3C 80 80 BD */	lis r4, lit_3731@ha /* 0x80BC8CDC@ha */
+/* 80BC82DC  3B E4 8C DC */	addi r31, r4, lit_3731@l /* 0x80BC8CDC@l */
 /* 80BC82E0  48 00 02 3D */	bl exeModeHookSwg__17daObjChandelier_cFv
 /* 80BC82E4  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80BC82E8  54 04 E6 3E */	rlwinm r4, r0, 0x1c, 0x18, 0x1f
-/* 80BC82EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BC82F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BC82EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BC82F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BC82F4  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BC82F8  7C 05 07 74 */	extsb r5, r0
-/* 80BC82FC  4B 46 D0 64 */	b isSwitch__10dSv_info_cCFii
+/* 80BC82FC  4B 46 D0 65 */	bl isSwitch__10dSv_info_cCFii
 /* 80BC8300  2C 03 00 00 */	cmpwi r3, 0
 /* 80BC8304  41 82 00 30 */	beq lbl_80BC8334
 /* 80BC8308  38 00 00 01 */	li r0, 1

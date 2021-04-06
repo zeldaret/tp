@@ -5,8 +5,8 @@ lbl_8096A358:
 /* 8096A364  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8096A368  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8096A36C  7C 7E 1B 78 */	mr r30, r3
-/* 8096A370  3C 60 80 97 */	lis r3, l_cyl_src@ha
-/* 8096A374  3B E3 C9 20 */	addi r31, r3, l_cyl_src@l
+/* 8096A370  3C 60 80 97 */	lis r3, l_cyl_src@ha /* 0x8096C920@ha */
+/* 8096A374  3B E3 C9 20 */	addi r31, r3, l_cyl_src@l /* 0x8096C920@l */
 /* 8096A378  88 9E 0E 11 */	lbz r4, 0xe11(r30)
 /* 8096A37C  38 60 00 03 */	li r3, 3
 /* 8096A380  7C 04 1B D6 */	divw r0, r4, r3
@@ -27,16 +27,16 @@ lbl_8096A398:
 /* 8096A3B8  7C 03 20 2E */	lwzx r0, r3, r4
 /* 8096A3BC  90 1E 0E 0C */	stw r0, 0xe0c(r30)
 /* 8096A3C0  7F C3 F3 78 */	mr r3, r30
-/* 8096A3C4  4B 7E 85 04 */	b initialize__8daNpcF_cFv
+/* 8096A3C4  4B 7E 85 05 */	bl initialize__8daNpcF_cFv
 /* 8096A3C8  38 7E 0B DC */	addi r3, r30, 0xbdc
-/* 8096A3CC  4B 7E 6C 6C */	b initialize__15daNpcF_Lookat_cFv
+/* 8096A3CC  4B 7E 6C 6D */	bl initialize__15daNpcF_Lookat_cFv
 /* 8096A3D0  38 7E 0C 78 */	addi r3, r30, 0xc78
-/* 8096A3D4  4B 7E 62 DC */	b initialize__18daNpcF_ActorMngr_cFv
+/* 8096A3D4  4B 7E 62 DD */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 8096A3D8  38 A0 00 00 */	li r5, 0
 /* 8096A3DC  90 BE 0D DC */	stw r5, 0xddc(r30)
 /* 8096A3E0  90 BE 0D E0 */	stw r5, 0xde0(r30)
-/* 8096A3E4  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8096A3E8  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8096A3E4  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8096A3E8  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8096A3EC  80 64 00 00 */	lwz r3, 0(r4)
 /* 8096A3F0  80 04 00 04 */	lwz r0, 4(r4)
 /* 8096A3F4  90 7E 0D C4 */	stw r3, 0xdc4(r30)
@@ -93,8 +93,8 @@ lbl_8096A398:
 /* 8096A4C0  D0 1E 05 00 */	stfs f0, 0x500(r30)
 /* 8096A4C4  90 7E 0D D8 */	stw r3, 0xdd8(r30)
 /* 8096A4C8  B0 BE 09 E6 */	sth r5, 0x9e6(r30)
-/* 8096A4CC  3C 60 80 97 */	lis r3, lit_4884@ha
-/* 8096A4D0  38 83 CD 04 */	addi r4, r3, lit_4884@l
+/* 8096A4CC  3C 60 80 97 */	lis r3, lit_4884@ha /* 0x8096CD04@ha */
+/* 8096A4D0  38 83 CD 04 */	addi r4, r3, lit_4884@l /* 0x8096CD04@l */
 /* 8096A4D4  80 64 00 00 */	lwz r3, 0(r4)
 /* 8096A4D8  80 04 00 04 */	lwz r0, 4(r4)
 /* 8096A4DC  90 61 00 08 */	stw r3, 8(r1)

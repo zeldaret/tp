@@ -9,11 +9,11 @@ lbl_802823EC:
 /* 80282408  4B FF F9 11 */	bl __ct__Q27JStudio29TFunctionValueAttribute_rangeFv
 /* 8028240C  38 00 00 00 */	li r0, 0
 /* 80282410  90 1F 00 40 */	stw r0, 0x40(r31)
-/* 80282414  3C 60 80 3C */	lis r3, __vt__Q27JStudio25TFunctionValue_transition@ha
-/* 80282418  38 03 49 40 */	addi r0, r3, __vt__Q27JStudio25TFunctionValue_transition@l
+/* 80282414  3C 60 80 3C */	lis r3, __vt__Q27JStudio25TFunctionValue_transition@ha /* 0x803C4940@ha */
+/* 80282418  38 03 49 40 */	addi r0, r3, __vt__Q27JStudio25TFunctionValue_transition@l /* 0x803C4940@l */
 /* 8028241C  90 1F 00 00 */	stw r0, 0(r31)
-/* 80282420  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80282424  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)
+/* 80282420  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80282424  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80282428  D8 1F 00 48 */	stfd f0, 0x48(r31)
 /* 8028242C  C8 1F 00 48 */	lfd f0, 0x48(r31)
 /* 80282430  D8 1F 00 50 */	stfd f0, 0x50(r31)

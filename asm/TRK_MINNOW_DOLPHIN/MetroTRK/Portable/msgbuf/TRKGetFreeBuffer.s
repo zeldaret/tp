@@ -17,8 +17,8 @@ lbl_8036D748:
 /* 8036D754  2C 1D 00 03 */	cmpwi r29, 3
 /* 8036D758  40 80 00 14 */	bge lbl_8036D76C
 /* 8036D75C  1C 9D 08 90 */	mulli r4, r29, 0x890
-/* 8036D760  3C 60 80 45 */	lis r3, gTRKMsgBufs@ha
-/* 8036D764  38 03 D8 C0 */	addi r0, r3, gTRKMsgBufs@l
+/* 8036D760  3C 60 80 45 */	lis r3, gTRKMsgBufs@ha /* 0x8044D8C0@ha */
+/* 8036D764  38 03 D8 C0 */	addi r0, r3, gTRKMsgBufs@l /* 0x8044D8C0@l */
 /* 8036D768  7F E0 22 14 */	add r31, r0, r4
 lbl_8036D76C:
 /* 8036D76C  7F E3 FB 78 */	mr r3, r31
@@ -44,8 +44,8 @@ lbl_8036D7B0:
 /* 8036D7B4  41 80 FF 94 */	blt lbl_8036D748
 /* 8036D7B8  2C 1E 03 00 */	cmpwi r30, 0x300
 /* 8036D7BC  40 82 00 10 */	bne lbl_8036D7CC
-/* 8036D7C0  3C 60 80 3A */	lis r3, lit_618@ha
-/* 8036D7C4  38 63 26 E0 */	addi r3, r3, lit_618@l
+/* 8036D7C0  3C 60 80 3A */	lis r3, lit_618@ha /* 0x803A26E0@ha */
+/* 8036D7C4  38 63 26 E0 */	addi r3, r3, lit_618@l /* 0x803A26E0@l */
 /* 8036D7C8  48 00 03 4D */	bl usr_puts_serial
 lbl_8036D7CC:
 /* 8036D7CC  7F C3 F3 78 */	mr r3, r30

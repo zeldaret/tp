@@ -9,8 +9,8 @@ lbl_802D1568:
 /* 802D1584  7C BE 2B 78 */	mr r30, r5
 /* 802D1588  7C DF 33 78 */	mr r31, r6
 /* 802D158C  4B FF FE F1 */	bl __ct__11JKRDisposerFv
-/* 802D1590  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha
-/* 802D1594  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l
+/* 802D1590  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha /* 0x803CC114@ha */
+/* 802D1594  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l /* 0x803CC114@l */
 /* 802D1598  90 1C 00 00 */	stw r0, 0(r28)
 /* 802D159C  38 7C 00 18 */	addi r3, r28, 0x18
 /* 802D15A0  7F 84 E3 78 */	mr r4, r28

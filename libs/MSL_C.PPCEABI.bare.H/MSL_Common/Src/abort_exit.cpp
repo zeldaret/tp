@@ -13,7 +13,6 @@
 
 extern "C" void exit();
 extern "C" void abort();
-extern "C" extern u8 __stdio_exit[4];
 extern "C" extern u8 data_804519A0[8];
 
 //
@@ -33,73 +32,43 @@ SECTION_DTORS10 extern void* const __destroy_global_chain_reference;
 //
 
 /* ############################################################################################## */
-/* 8044D440-8044D540 0100+00 s=2 e=0 z=0  None .bss       __atexit_funcs */
+/* 8044D440-8044D540 07A160 0100+00 2/2 0/0 0/0 .bss             __atexit_funcs */
 static u8 __atexit_funcs[256];
 
-/* 80451990-80451994 0004+00 s=2 e=0 z=0  None .sbss      __aborting */
+/* 80451990-80451994 000E90 0004+00 2/2 0/0 0/0 .sbss            __aborting */
 static u8 __aborting[4];
 
-/* 80451994-80451998 0004+00 s=2 e=0 z=0  None .sbss      __atexit_curr_func */
+/* 80451994-80451998 000E94 0004+00 2/2 0/0 0/0 .sbss            __atexit_curr_func */
 static u8 __atexit_curr_func[4];
 
-/* 80451998-8045199C 0004+00 s=1 e=1 z=0  None .sbss      __stdio_exit */
+/* 80451998-8045199C 000E98 0004+00 1/1 1/1 0/0 .sbss            __stdio_exit */
+extern u8 __stdio_exit[4];
 u8 __stdio_exit[4];
 
-/* 8045199C-804519A0 0004+00 s=2 e=0 z=0  None .sbss      __console_exit */
+/* 8045199C-804519A0 000E9C 0004+00 2/2 0/0 0/0 .sbss            __console_exit */
 static u8 __console_exit[4];
 
-/* 803629CC-80362ABC 00F0+00 s=0 e=2 z=0  None .text      exit */
-//	803629DC: 80451990 (__aborting)
-//	803629EC: 80365468 (__begin_critical_region)
-//	803629F4: 80365464 (__end_critical_region)
-//	803629F8: 80361BDC (__destroy_global_chain)
-//	803629FC: 80373980 (__destroy_global_chain_reference)
-//	80362A00: 80373980 (__destroy_global_chain_reference)
-//	80362A24: 80451998 (__stdio_exit)
-//	80362A3C: 80451998 (__stdio_exit)
-//	80362A44: 80365468 (__begin_critical_region)
-//	80362A48: 8044D440 (__atexit_funcs)
-//	80362A4C: 8044D440 (__atexit_funcs)
-//	80362A54: 80451994 (__atexit_curr_func)
-//	80362A60: 80451994 (__atexit_curr_func)
-//	80362A70: 80451994 (__atexit_curr_func)
-//	80362A80: 80365464 (__end_critical_region)
-//	80362A84: 8036546C (__kill_critical_regions)
-//	80362A88: 8045199C (__console_exit)
-//	80362AA0: 8045199C (__console_exit)
-//	80362AA4: 80342BEC (_ExitProcess)
+/* 803629CC-80362ABC 35D30C 00F0+00 0/0 2/2 0/0 .text            exit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void exit() {
+asm void exit() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/abort_exit/exit.s"
 }
 #pragma pop
 
-/* 80362ABC-80362B58 009C+00 s=0 e=9 z=0  None .text      abort */
-//	80362AD0: 8036881C (raise)
-//	80362ADC: 80451990 (__aborting)
-//	80362AE0: 80365468 (__begin_critical_region)
-//	80362AE4: 8044D440 (__atexit_funcs)
-//	80362AE8: 8044D440 (__atexit_funcs)
-//	80362AF0: 80451994 (__atexit_curr_func)
-//	80362AFC: 80451994 (__atexit_curr_func)
-//	80362B0C: 80451994 (__atexit_curr_func)
-//	80362B1C: 80365464 (__end_critical_region)
-//	80362B20: 8036546C (__kill_critical_regions)
-//	80362B24: 8045199C (__console_exit)
-//	80362B3C: 8045199C (__console_exit)
-//	80362B40: 80342BEC (_ExitProcess)
+/* 80362ABC-80362B58 35D3FC 009C+00 0/0 9/9 0/0 .text            abort */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void abort() {
+asm void abort() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/abort_exit/abort.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804519A0-804519A8 0008+00 s=0 e=1 z=0  None .sbss      None */
+/* 804519A0-804519A8 000EA0 0008+00 0/0 1/1 0/0 .sbss            None */
+extern u8 data_804519A0[8];
 u8 data_804519A0[8];

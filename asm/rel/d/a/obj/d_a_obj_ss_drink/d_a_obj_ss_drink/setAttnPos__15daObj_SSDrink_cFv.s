@@ -4,8 +4,8 @@ lbl_80CE60E8:
 /* 80CE60F0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80CE60F4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CE60F8  7C 7F 1B 78 */	mr r31, r3
-/* 80CE60FC  3C 80 80 CE */	lis r4, lit_4284@ha
-/* 80CE6100  38 A4 6A 60 */	addi r5, r4, lit_4284@l
+/* 80CE60FC  3C 80 80 CE */	lis r4, lit_4284@ha /* 0x80CE6A60@ha */
+/* 80CE6100  38 A4 6A 60 */	addi r5, r4, lit_4284@l /* 0x80CE6A60@l */
 /* 80CE6104  80 85 00 00 */	lwz r4, 0(r5)
 /* 80CE6108  80 05 00 04 */	lwz r0, 4(r5)
 /* 80CE610C  90 81 00 08 */	stw r4, 8(r1)

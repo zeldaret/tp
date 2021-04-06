@@ -10,24 +10,24 @@ lbl_8024C76C:
 /* 8024C78C  A0 01 00 08 */	lhz r0, 8(r1)
 /* 8024C790  28 00 00 00 */	cmplwi r0, 0
 /* 8024C794  41 82 00 24 */	beq lbl_8024C7B8
-/* 8024C798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024C79C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024C798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C79C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C7A0  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 8024C7A4  54 00 0B FC */	rlwinm r0, r0, 1, 0xf, 0x1e
-/* 8024C7A8  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha
-/* 8024C7AC  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l
+/* 8024C7A8  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha /* 0x803790C0@ha */
+/* 8024C7AC  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l /* 0x803790C0@l */
 /* 8024C7B0  7C 84 02 2E */	lhzx r4, r4, r0
 /* 8024C7B4  4B DE 81 D9 */	bl onEventBit__11dSv_event_cFUs
 lbl_8024C7B8:
 /* 8024C7B8  A0 01 00 0A */	lhz r0, 0xa(r1)
 /* 8024C7BC  28 00 00 00 */	cmplwi r0, 0
 /* 8024C7C0  41 82 00 24 */	beq lbl_8024C7E4
-/* 8024C7C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024C7C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024C7C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C7C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C7CC  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 8024C7D0  54 00 0B FC */	rlwinm r0, r0, 1, 0xf, 0x1e
-/* 8024C7D4  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha
-/* 8024C7D8  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l
+/* 8024C7D4  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha /* 0x803790C0@ha */
+/* 8024C7D8  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l /* 0x803790C0@l */
 /* 8024C7DC  7C 84 02 2E */	lhzx r4, r4, r0
 /* 8024C7E0  4B DE 81 AD */	bl onEventBit__11dSv_event_cFUs
 lbl_8024C7E4:

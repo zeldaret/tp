@@ -9,18 +9,18 @@ lbl_808299F8:
 /* 80829A14  7C 7E 1B 78 */	mr r30, r3
 /* 80829A18  FC 60 08 90 */	fmr f3, f1
 /* 80829A1C  FF E0 10 90 */	fmr f31, f2
-/* 80829A20  3C 60 80 83 */	lis r3, lit_3778@ha
-/* 80829A24  3B E3 F2 08 */	addi r31, r3, lit_3778@l
+/* 80829A20  3C 60 80 83 */	lis r3, lit_3778@ha /* 0x8082F208@ha */
+/* 80829A24  3B E3 F2 08 */	addi r31, r3, lit_3778@l /* 0x8082F208@l */
 /* 80829A28  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80829A2C  40 82 00 3C */	bne lbl_80829A68
 /* 80829A30  38 7E 07 64 */	addi r3, r30, 0x764
 /* 80829A34  C0 3F 00 40 */	lfs f1, 0x40(r31)
 /* 80829A38  FC 40 18 90 */	fmr f2, f3
-/* 80829A3C  4B A4 60 44 */	b cLib_addCalc0__FPfff
+/* 80829A3C  4B A4 60 45 */	bl cLib_addCalc0__FPfff
 /* 80829A40  38 7E 07 6C */	addi r3, r30, 0x76c
 /* 80829A44  C0 3F 00 40 */	lfs f1, 0x40(r31)
 /* 80829A48  FC 40 F8 90 */	fmr f2, f31
-/* 80829A4C  4B A4 60 34 */	b cLib_addCalc0__FPfff
+/* 80829A4C  4B A4 60 35 */	bl cLib_addCalc0__FPfff
 /* 80829A50  C0 3E 07 64 */	lfs f1, 0x764(r30)
 /* 80829A54  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80829A58  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -31,12 +31,12 @@ lbl_80829A68:
 /* 80829A68  38 7E 07 64 */	addi r3, r30, 0x764
 /* 80829A6C  C0 3F 00 24 */	lfs f1, 0x24(r31)
 /* 80829A70  C0 5F 00 40 */	lfs f2, 0x40(r31)
-/* 80829A74  4B A4 5F C8 */	b cLib_addCalc2__FPffff
+/* 80829A74  4B A4 5F C9 */	bl cLib_addCalc2__FPffff
 /* 80829A78  38 7E 07 6C */	addi r3, r30, 0x76c
 /* 80829A7C  C0 3F 00 18 */	lfs f1, 0x18(r31)
 /* 80829A80  C0 5F 00 40 */	lfs f2, 0x40(r31)
 /* 80829A84  FC 60 F8 90 */	fmr f3, f31
-/* 80829A88  4B A4 5F B4 */	b cLib_addCalc2__FPffff
+/* 80829A88  4B A4 5F B5 */	bl cLib_addCalc2__FPffff
 /* 80829A8C  C0 3E 07 64 */	lfs f1, 0x764(r30)
 /* 80829A90  C0 1F 00 44 */	lfs f0, 0x44(r31)
 /* 80829A94  FC 01 00 40 */	fcmpo cr0, f1, f0

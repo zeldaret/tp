@@ -12,16 +12,16 @@ lbl_80C03E74:
 lbl_80C03E9C:
 /* 80C03E9C  80 7F 07 54 */	lwz r3, 0x754(r31)
 /* 80C03EA0  38 63 00 0C */	addi r3, r3, 0xc
-/* 80C03EA4  3C 80 80 C1 */	lis r4, lit_6874@ha
-/* 80C03EA8  C0 24 FD 0C */	lfs f1, lit_6874@l(r4)
-/* 80C03EAC  4B 72 45 80 */	b checkPass__12J3DFrameCtrlFf
+/* 80C03EA4  3C 80 80 C1 */	lis r4, lit_6874@ha /* 0x80C0FD0C@ha */
+/* 80C03EA8  C0 24 FD 0C */	lfs f1, lit_6874@l(r4)  /* 0x80C0FD0C@l */
+/* 80C03EAC  4B 72 45 81 */	bl checkPass__12J3DFrameCtrlFf
 /* 80C03EB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80C03EB4  40 82 00 20 */	bne lbl_80C03ED4
 /* 80C03EB8  80 7F 07 54 */	lwz r3, 0x754(r31)
 /* 80C03EBC  38 63 00 0C */	addi r3, r3, 0xc
-/* 80C03EC0  3C 80 80 C1 */	lis r4, lit_7999@ha
-/* 80C03EC4  C0 24 FD 44 */	lfs f1, lit_7999@l(r4)
-/* 80C03EC8  4B 72 45 64 */	b checkPass__12J3DFrameCtrlFf
+/* 80C03EC0  3C 80 80 C1 */	lis r4, lit_7999@ha /* 0x80C0FD44@ha */
+/* 80C03EC4  C0 24 FD 44 */	lfs f1, lit_7999@l(r4)  /* 0x80C0FD44@l */
+/* 80C03EC8  4B 72 45 65 */	bl checkPass__12J3DFrameCtrlFf
 /* 80C03ECC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C03ED0  41 82 00 2C */	beq lbl_80C03EFC
 lbl_80C03ED4:

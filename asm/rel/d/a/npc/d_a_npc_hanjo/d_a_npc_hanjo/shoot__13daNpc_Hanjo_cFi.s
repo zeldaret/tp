@@ -7,11 +7,11 @@ lbl_809FB90C:
 /* 809FB920  DB C1 00 30 */	stfd f30, 0x30(r1)
 /* 809FB924  F3 C1 00 38 */	psq_st f30, 56(r1), 0, 0 /* qr0 */
 /* 809FB928  39 61 00 30 */	addi r11, r1, 0x30
-/* 809FB92C  4B 96 68 AC */	b _savegpr_28
+/* 809FB92C  4B 96 68 AD */	bl _savegpr_28
 /* 809FB930  7C 7D 1B 78 */	mr r29, r3
 /* 809FB934  7C 9C 23 78 */	mr r28, r4
-/* 809FB938  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha
-/* 809FB93C  3B E3 06 00 */	addi r31, r3, m__19daNpc_Hanjo_Param_c@l
+/* 809FB938  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha /* 0x80A00600@ha */
+/* 809FB93C  3B E3 06 00 */	addi r31, r3, m__19daNpc_Hanjo_Param_c@l /* 0x80A00600@l */
 /* 809FB940  38 7F 00 00 */	addi r3, r31, 0
 /* 809FB944  C3 E3 00 98 */	lfs f31, 0x98(r3)
 /* 809FB948  C0 3F 01 8C */	lfs f1, 0x18c(r31)
@@ -115,7 +115,7 @@ lbl_809FBAB4:
 /* 809FBAB4  80 7D 05 78 */	lwz r3, 0x578(r29)
 /* 809FBAB8  38 63 00 0C */	addi r3, r3, 0xc
 /* 809FBABC  C0 3F 01 94 */	lfs f1, 0x194(r31)
-/* 809FBAC0  4B 92 C9 6C */	b checkPass__12J3DFrameCtrlFf
+/* 809FBAC0  4B 92 C9 6D */	bl checkPass__12J3DFrameCtrlFf
 /* 809FBAC4  2C 03 00 00 */	cmpwi r3, 0
 /* 809FBAC8  41 82 00 A0 */	beq lbl_809FBB68
 /* 809FBACC  80 1D 17 0C */	lwz r0, 0x170c(r29)
@@ -127,14 +127,14 @@ lbl_809FBAB4:
 /* 809FBAE4  3B C0 37 77 */	li r30, 0x3777
 lbl_809FBAE8:
 /* 809FBAE8  57 C0 04 38 */	rlwinm r0, r30, 0, 0x10, 0x1c
-/* 809FBAEC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 809FBAF0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 809FBAEC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 809FBAF0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 809FBAF4  7C 03 04 2E */	lfsx f0, r3, r0
 /* 809FBAF8  EF DF 00 32 */	fmuls f30, f31, f0
 /* 809FBAFC  7C 63 02 14 */	add r3, r3, r0
 /* 809FBB00  C0 03 00 04 */	lfs f0, 4(r3)
 /* 809FBB04  EF FF 00 32 */	fmuls f31, f31, f0
-/* 809FBB08  4B 86 BD 64 */	b cM_rnd__Fv
+/* 809FBB08  4B 86 BD 65 */	bl cM_rnd__Fv
 /* 809FBB0C  C0 5F 01 A0 */	lfs f2, 0x1a0(r31)
 /* 809FBB10  EC 01 10 28 */	fsubs f0, f1, f2
 /* 809FBB14  EC 20 10 24 */	fdivs f1, f0, f2
@@ -168,7 +168,7 @@ lbl_809FBB6C:
 /* 809FBB74  E3 C1 00 38 */	psq_l f30, 56(r1), 0, 0 /* qr0 */
 /* 809FBB78  CB C1 00 30 */	lfd f30, 0x30(r1)
 /* 809FBB7C  39 61 00 30 */	addi r11, r1, 0x30
-/* 809FBB80  4B 96 66 A4 */	b _restgpr_28
+/* 809FBB80  4B 96 66 A5 */	bl _restgpr_28
 /* 809FBB84  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 809FBB88  7C 08 03 A6 */	mtlr r0
 /* 809FBB8C  38 21 00 50 */	addi r1, r1, 0x50

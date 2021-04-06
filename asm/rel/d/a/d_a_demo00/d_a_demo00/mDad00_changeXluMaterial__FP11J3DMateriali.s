@@ -3,11 +3,11 @@ lbl_804A60B0:
 /* 804A60B4  7C 08 02 A6 */	mflr r0
 /* 804A60B8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804A60BC  39 61 00 20 */	addi r11, r1, 0x20
-/* 804A60C0  4B EB C1 1C */	b _savegpr_29
+/* 804A60C0  4B EB C1 1D */	bl _savegpr_29
 /* 804A60C4  7C 7D 1B 78 */	mr r29, r3
 /* 804A60C8  7C 9E 23 78 */	mr r30, r4
-/* 804A60CC  3C 80 80 4B */	lis r4, cNullVec__6Z2Calc@ha
-/* 804A60D0  3B E4 89 C0 */	addi r31, r4, cNullVec__6Z2Calc@l
+/* 804A60CC  3C 80 80 4B */	lis r4, cNullVec__6Z2Calc@ha /* 0x804A89C0@ha */
+/* 804A60D0  3B E4 89 C0 */	addi r31, r4, cNullVec__6Z2Calc@l /* 0x804A89C0@l */
 /* 804A60D4  81 83 00 00 */	lwz r12, 0(r3)
 /* 804A60D8  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 804A60DC  7D 89 03 A6 */	mtctr r12
@@ -76,7 +76,7 @@ lbl_804A6164:
 /* 804A61D4  B0 03 00 00 */	sth r0, 0(r3)
 lbl_804A61D8:
 /* 804A61D8  39 61 00 20 */	addi r11, r1, 0x20
-/* 804A61DC  4B EB C0 4C */	b _restgpr_29
+/* 804A61DC  4B EB C0 4D */	bl _restgpr_29
 /* 804A61E0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 804A61E4  7C 08 03 A6 */	mtlr r0
 /* 804A61E8  38 21 00 20 */	addi r1, r1, 0x20

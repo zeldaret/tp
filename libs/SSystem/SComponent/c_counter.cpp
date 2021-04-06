@@ -11,10 +11,7 @@
 // Forward References:
 //
 
-void cCt_Counter(int);
-
 extern "C" void cCt_Counter__Fi();
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 
 //
 // External References:
@@ -25,16 +22,11 @@ extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80430CD8-80430CE8 000C+04 s=1 e=12 z=22  None .bss       g_Counter */
+/* 80430CD8-80430CE8 05D9F8 000C+04 1/1 12/12 22/22 .bss             g_Counter */
+extern u8 g_Counter[12 + 4 /* padding */];
 u8 g_Counter[12 + 4 /* padding */];
 
-/* 80265E1C-80265E64 0048+00 s=0 e=1 z=0  None .text      cCt_Counter__Fi */
-//	80265E28: 80430CD8 (g_Counter)
-//	80265E2C: 80430CD8 (g_Counter)
-//	80265E38: 80430CD8 (g_Counter)
-//	80265E3C: 80430CD8 (g_Counter)
-//	80265E4C: 80430CD8 (g_Counter)
-//	80265E50: 80430CD8 (g_Counter)
+/* 80265E1C-80265E64 26075C 0048+00 0/0 1/1 0/0 .text            cCt_Counter__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

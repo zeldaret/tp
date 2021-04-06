@@ -3,7 +3,7 @@ lbl_80AB6B0C:
 /* 80AB6B10  7C 08 02 A6 */	mflr r0
 /* 80AB6B14  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80AB6B18  39 61 00 20 */	addi r11, r1, 0x20
-/* 80AB6B1C  4B 8A B6 C0 */	b _savegpr_29
+/* 80AB6B1C  4B 8A B6 C1 */	bl _savegpr_29
 /* 80AB6B20  7C 7D 1B 78 */	mr r29, r3
 /* 80AB6B24  80 03 0B 58 */	lwz r0, 0xb58(r3)
 /* 80AB6B28  2C 00 00 02 */	cmpwi r0, 2
@@ -34,15 +34,15 @@ lbl_80AB6B68:
 /* 80AB6B74  41 82 00 24 */	beq lbl_80AB6B98
 /* 80AB6B78  83 FD 0B 5C */	lwz r31, 0xb5c(r29)
 /* 80AB6B7C  38 7D 0B 50 */	addi r3, r29, 0xb50
-/* 80AB6B80  4B 68 ED 18 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AB6B80  4B 68 ED 19 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AB6B84  93 FD 0B 5C */	stw r31, 0xb5c(r29)
 /* 80AB6B88  93 DD 0B 58 */	stw r30, 0xb58(r29)
-/* 80AB6B8C  3C 60 80 AC */	lis r3, lit_4579@ha
-/* 80AB6B90  C0 03 8F 7C */	lfs f0, lit_4579@l(r3)
+/* 80AB6B8C  3C 60 80 AC */	lis r3, lit_4579@ha /* 0x80AB8F7C@ha */
+/* 80AB6B90  C0 03 8F 7C */	lfs f0, lit_4579@l(r3)  /* 0x80AB8F7C@l */
 /* 80AB6B94  D0 1D 0B 68 */	stfs f0, 0xb68(r29)
 lbl_80AB6B98:
 /* 80AB6B98  39 61 00 20 */	addi r11, r1, 0x20
-/* 80AB6B9C  4B 8A B6 8C */	b _restgpr_29
+/* 80AB6B9C  4B 8A B6 8D */	bl _restgpr_29
 /* 80AB6BA0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80AB6BA4  7C 08 03 A6 */	mtlr r0
 /* 80AB6BA8  38 21 00 20 */	addi r1, r1, 0x20

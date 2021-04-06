@@ -3,17 +3,15 @@
 #
 
 M409_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock.plf
+M409_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock.lcf
+M409_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock.map
 
 M409_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bky_rock/executor.cpp \
-	rel/d/a/obj/d_a_obj_bky_rock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bky_rock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bky_rock/d_a_obj_bky_rock.cpp \
 
 M409_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/d_a_obj_bky_rock.o \
 
 M409_LIBS := \
@@ -29,15 +27,21 @@ M409_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map409.map\
+	-m _prolog \
+	-lcf $(M409_LDSCRIPT) \
+	-unused -map $(M409_MAP) \
+	-w off \
 
 $(M409_TARGET): $(M409_O_FILES) $(M409_LIBS)
+	@echo [409] creating $(M409_TARGET)
 	@echo $(M409_LIBS) $(M409_O_FILES) > build/M409_ofiles
-	$(LD) -opt_partial $(M409_LDFLAGS) -o $(M409_TARGET) @build/M409_ofiles
+	@python3 tools/lcf.py rel 409 --output $(M409_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M409_LDFLAGS) -o $(M409_TARGET) @build/M409_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bky_rock/%.o: rel/d/a/obj/d_a_obj_bky_rock/%.cpp
+	@echo [409] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M409_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

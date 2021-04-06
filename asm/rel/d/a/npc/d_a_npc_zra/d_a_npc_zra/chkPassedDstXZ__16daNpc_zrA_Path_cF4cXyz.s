@@ -6,11 +6,11 @@ lbl_80B788F8:
 /* 80B78908  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80B7890C  7C 7E 1B 78 */	mr r30, r3
 /* 80B78910  7C 85 23 78 */	mr r5, r4
-/* 80B78914  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha
-/* 80B78918  3B E3 C4 58 */	addi r31, r3, m__17daNpc_zrA_Param_c@l
+/* 80B78914  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha /* 0x80B8C458@ha */
+/* 80B78918  3B E3 C4 58 */	addi r31, r3, m__17daNpc_zrA_Param_c@l /* 0x80B8C458@l */
 /* 80B7891C  38 61 00 18 */	addi r3, r1, 0x18
 /* 80B78920  38 9E 00 14 */	addi r4, r30, 0x14
-/* 80B78924  4B 6E E2 10 */	b __mi__4cXyzCFRC3Vec
+/* 80B78924  4B 6E E2 11 */	bl __mi__4cXyzCFRC3Vec
 /* 80B78928  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 80B7892C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80B78930  C0 1F 00 B0 */	lfs f0, 0xb0(r31)
@@ -18,7 +18,7 @@ lbl_80B788F8:
 /* 80B78938  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 80B7893C  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80B78940  38 61 00 0C */	addi r3, r1, 0xc
-/* 80B78944  4B 7C E7 F4 */	b PSVECSquareMag
+/* 80B78944  4B 7C E7 F5 */	bl PSVECSquareMag
 /* 80B78948  C0 1F 00 B0 */	lfs f0, 0xb0(r31)
 /* 80B7894C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80B78950  40 81 00 58 */	ble lbl_80B789A8
@@ -47,8 +47,8 @@ lbl_80B789A8:
 /* 80B789A8  C8 1F 00 C8 */	lfd f0, 0xc8(r31)
 /* 80B789AC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80B789B0  40 80 00 10 */	bge lbl_80B789C0
-/* 80B789B4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80B789B8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80B789B4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80B789B8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80B789BC  48 00 00 70 */	b lbl_80B78A2C
 lbl_80B789C0:
 /* 80B789C0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -82,8 +82,8 @@ lbl_80B78A18:
 lbl_80B78A1C:
 /* 80B78A1C  2C 00 00 01 */	cmpwi r0, 1
 /* 80B78A20  40 82 00 0C */	bne lbl_80B78A2C
-/* 80B78A24  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80B78A28  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80B78A24  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80B78A28  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80B78A2C:
 /* 80B78A2C  C0 5E 00 0C */	lfs f2, 0xc(r30)
 /* 80B78A30  C0 1E 00 10 */	lfs f0, 0x10(r30)

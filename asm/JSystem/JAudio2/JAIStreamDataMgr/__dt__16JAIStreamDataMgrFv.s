@@ -5,8 +5,8 @@ lbl_802A3AD8:
 /* 802A3AE4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A3AE8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A3AEC  41 82 00 1C */	beq lbl_802A3B08
-/* 802A3AF0  3C A0 80 3D */	lis r5, __vt__16JAIStreamDataMgr@ha
-/* 802A3AF4  38 05 9A 1C */	addi r0, r5, __vt__16JAIStreamDataMgr@l
+/* 802A3AF0  3C A0 80 3D */	lis r5, __vt__16JAIStreamDataMgr@ha /* 0x803C9A1C@ha */
+/* 802A3AF4  38 05 9A 1C */	addi r0, r5, __vt__16JAIStreamDataMgr@l /* 0x803C9A1C@l */
 /* 802A3AF8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A3AFC  7C 80 07 35 */	extsh. r0, r4
 /* 802A3B00  40 81 00 08 */	ble lbl_802A3B08

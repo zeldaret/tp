@@ -40,9 +40,9 @@ lbl_803569C8:
 /* 803569C8  38 60 00 00 */	li r3, 0
 /* 803569CC  4E 80 00 20 */	blr 
 lbl_803569D0:
-/* 803569D0  3C 80 80 3D */	lis r4, SectorSizeTable@ha
+/* 803569D0  3C 80 80 3D */	lis r4, SectorSizeTable@ha /* 0x803D2000@ha */
 /* 803569D4  54 63 BE FA */	rlwinm r3, r3, 0x17, 0x1b, 0x1d
-/* 803569D8  38 04 20 00 */	addi r0, r4, SectorSizeTable@l
+/* 803569D8  38 04 20 00 */	addi r0, r4, SectorSizeTable@l /* 0x803D2000@l */
 /* 803569DC  7C 60 1A 14 */	add r3, r0, r3
 /* 803569E0  80 63 00 00 */	lwz r3, 0(r3)
 /* 803569E4  2C 03 00 00 */	cmpwi r3, 0

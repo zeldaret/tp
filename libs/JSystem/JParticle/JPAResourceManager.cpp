@@ -19,9 +19,9 @@ struct JUTTexture {
 
 struct JPATexture {};
 
-struct JPAResource {};
-
 struct JKRHeap {};
+
+struct JPAResource {};
 
 struct JPAResourceManager {
     /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);
@@ -63,8 +63,7 @@ extern "C" void strcmp();
 // Declarations:
 //
 
-/* 80273E10-80273E68 0058+00 s=0 e=2 z=0  None .text      __ct__18JPAResourceManagerFPCvP7JKRHeap */
-//	80273E4C: 8027D8A0 (__ct__17JPAResourceLoaderFPCUcP18JPAResourceManager)
+/* 80273E10-80273E68 26E750 0058+00 0/0 2/2 0/0 .text __ct__18JPAResourceManagerFPCvP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,7 +73,7 @@ asm JPAResourceManager::JPAResourceManager(void const* param_0, JKRHeap* param_1
 }
 #pragma pop
 
-/* 80273E68-80273EA8 0040+00 s=1 e=1 z=0  None .text      getResource__18JPAResourceManagerCFUs */
+/* 80273E68-80273EA8 26E7A8 0040+00 1/1 1/1 0/0 .text getResource__18JPAResourceManagerCFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,7 +83,7 @@ asm void JPAResourceManager::getResource(u16 param_0) const {
 }
 #pragma pop
 
-/* 80273EA8-80273EEC 0044+00 s=0 e=2 z=0  None .text
+/* 80273EA8-80273EEC 26E7E8 0044+00 0/0 2/2 0/0 .text
  * checkUserIndexDuplication__18JPAResourceManagerCFUs          */
 #pragma push
 #pragma optimization_level 0
@@ -95,12 +94,8 @@ asm void JPAResourceManager::checkUserIndexDuplication(u16 param_0) const {
 }
 #pragma pop
 
-/* 80273EEC-80273F8C 00A0+00 s=0 e=2 z=0  None .text
+/* 80273EEC-80273F8C 26E82C 00A0+00 0/0 2/2 0/0 .text
  * swapTexture__18JPAResourceManagerFPC7ResTIMGPCc              */
-//	80273EFC: 803621D0 (_savegpr_26)
-//	80273F30: 80368994 (strcmp)
-//	80273F54: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	80273F78: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -110,7 +105,7 @@ asm void JPAResourceManager::swapTexture(ResTIMG const* param_0, char const* par
 }
 #pragma pop
 
-/* 80273F8C-80273FAC 0020+00 s=0 e=1 z=0  None .text
+/* 80273F8C-80273FAC 26E8CC 0020+00 0/0 1/1 0/0 .text
  * registRes__18JPAResourceManagerFP11JPAResource               */
 #pragma push
 #pragma optimization_level 0
@@ -121,8 +116,8 @@ asm void JPAResourceManager::registRes(JPAResource* param_0) {
 }
 #pragma pop
 
-/* 80273FAC-80273FCC 0020+00 s=0 e=1 z=0  None .text registTex__18JPAResourceManagerFP10JPATexture
- */
+/* 80273FAC-80273FCC 26E8EC 0020+00 0/0 1/1 0/0 .text
+ * registTex__18JPAResourceManagerFP10JPATexture                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,9 +127,7 @@ asm void JPAResourceManager::registTex(JPATexture* param_0) {
 }
 #pragma pop
 
-/* 80273FCC-80274010 0044+00 s=0 e=6 z=0  None .text      getResUserWork__18JPAResourceManagerCFUs
- */
-//	80273FE0: 80273E68 (getResource__18JPAResourceManagerCFUs)
+/* 80273FCC-80274010 26E90C 0044+00 0/0 6/6 0/0 .text getResUserWork__18JPAResourceManagerCFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

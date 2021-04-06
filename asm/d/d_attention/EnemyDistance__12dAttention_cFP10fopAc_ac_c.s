@@ -31,8 +31,8 @@ lbl_80071D20:
 /* 80071D24  4B FA 8A BD */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80071D28  88 1F 05 46 */	lbz r0, 0x546(r31)
 /* 80071D2C  1C 00 00 1C */	mulli r0, r0, 0x1c
-/* 80071D30  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha
-/* 80071D34  38 63 9C 70 */	addi r3, r3, dist_table__12dAttention_c@l
+/* 80071D30  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha /* 0x803A9C70@ha */
+/* 80071D34  38 63 9C 70 */	addi r3, r3, dist_table__12dAttention_c@l /* 0x803A9C70@l */
 /* 80071D38  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80071D3C  7C 63 02 14 */	add r3, r3, r0
 /* 80071D40  C0 03 00 08 */	lfs f0, 8(r3)

@@ -7,18 +7,18 @@ lbl_8002CC54:
 /* 8002CC68  7C 7E 1B 78 */	mr r30, r3
 /* 8002CC6C  7C 9F 23 78 */	mr r31, r4
 /* 8002CC70  38 00 00 00 */	li r0, 0
-/* 8002CC74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002CC78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002CC74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002CC78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002CC7C  98 03 4E 1C */	stb r0, 0x4e1c(r3)
-/* 8002CC80  3C 60 80 38 */	lis r3, d_com_d_com_inf_game__stringBase0@ha
-/* 8002CC84  38 63 8F 38 */	addi r3, r3, d_com_d_com_inf_game__stringBase0@l
+/* 8002CC80  3C 60 80 38 */	lis r3, d_com_d_com_inf_game__stringBase0@ha /* 0x80378F38@ha */
+/* 8002CC84  38 63 8F 38 */	addi r3, r3, d_com_d_com_inf_game__stringBase0@l /* 0x80378F38@l */
 /* 8002CC88  38 63 01 0B */	addi r3, r3, 0x10b
 /* 8002CC8C  38 80 00 64 */	li r4, 0x64
 /* 8002CC90  38 A0 00 00 */	li r5, 0
 /* 8002CC94  38 C0 00 0A */	li r6, 0xa
 /* 8002CC98  48 00 08 BD */	bl dComIfGp_setNextStage__FPCcsScSc
-/* 8002CC9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002CCA0  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 8002CC9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002CCA0  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002CCA4  38 65 4E 0E */	addi r3, r5, 0x4e0e
 /* 8002CCA8  88 05 4E 18 */	lbz r0, 0x4e18(r5)
 /* 8002CCAC  7C 04 07 74 */	extsb r4, r0
@@ -26,8 +26,8 @@ lbl_8002CC54:
 /* 8002CCB4  7C 05 07 74 */	extsb r5, r0
 /* 8002CCB8  4B FD A5 05 */	bl mDoAud_setSceneName__FPCcll
 /* 8002CCBC  38 00 00 00 */	li r0, 0
-/* 8002CCC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002CCC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002CCC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002CCC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002CCC8  90 03 0D C8 */	stw r0, 0xdc8(r3)
 /* 8002CCCC  80 6D 86 48 */	lwz r3, mFader__13mDoGph_gInf_c(r13)
 /* 8002CCD0  80 03 00 04 */	lwz r0, 4(r3)

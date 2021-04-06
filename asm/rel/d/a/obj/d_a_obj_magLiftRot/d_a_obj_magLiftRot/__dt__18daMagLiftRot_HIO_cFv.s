@@ -5,18 +5,18 @@ lbl_80C8FA3C:
 /* 80C8FA48  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C8FA4C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C8FA50  41 82 00 30 */	beq lbl_80C8FA80
-/* 80C8FA54  3C 60 80 C9 */	lis r3, __vt__18daMagLiftRot_HIO_c@ha
-/* 80C8FA58  38 03 FC A0 */	addi r0, r3, __vt__18daMagLiftRot_HIO_c@l
+/* 80C8FA54  3C 60 80 C9 */	lis r3, __vt__18daMagLiftRot_HIO_c@ha /* 0x80C8FCA0@ha */
+/* 80C8FA58  38 03 FC A0 */	addi r0, r3, __vt__18daMagLiftRot_HIO_c@l /* 0x80C8FCA0@l */
 /* 80C8FA5C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80C8FA60  41 82 00 10 */	beq lbl_80C8FA70
-/* 80C8FA64  3C 60 80 C9 */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 80C8FA68  38 03 FC AC */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 80C8FA64  3C 60 80 C9 */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x80C8FCAC@ha */
+/* 80C8FA68  38 03 FC AC */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x80C8FCAC@l */
 /* 80C8FA6C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80C8FA70:
 /* 80C8FA70  7C 80 07 35 */	extsh. r0, r4
 /* 80C8FA74  40 81 00 0C */	ble lbl_80C8FA80
 /* 80C8FA78  7F E3 FB 78 */	mr r3, r31
-/* 80C8FA7C  4B 63 F2 C0 */	b __dl__FPv
+/* 80C8FA7C  4B 63 F2 C1 */	bl __dl__FPv
 lbl_80C8FA80:
 /* 80C8FA80  7F E3 FB 78 */	mr r3, r31
 /* 80C8FA84  83 E1 00 0C */	lwz r31, 0xc(r1)

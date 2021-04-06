@@ -5,8 +5,8 @@ lbl_800EF6B0:
 /* 800EF6BC  39 61 00 20 */	addi r11, r1, 0x20
 /* 800EF6C0  48 27 2B 19 */	bl _savegpr_28
 /* 800EF6C4  7C 7E 1B 78 */	mr r30, r3
-/* 800EF6C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800EF6CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800EF6C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EF6CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EF6D0  83 84 5D B8 */	lwz r28, 0x5db8(r4)
 /* 800EF6D4  3B E0 00 00 */	li r31, 0
 /* 800EF6D8  4B FF FE C1 */	bl checkHorseGetOff__9daAlink_cFv

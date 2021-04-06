@@ -14,8 +14,8 @@ lbl_8015A370:
 /* 8015A3A0  38 60 00 00 */	li r3, 0
 /* 8015A3A4  48 00 00 2C */	b lbl_8015A3D0
 lbl_8015A3A8:
-/* 8015A3A8  3C 60 80 16 */	lis r3, s_sub__FPvPv@ha
-/* 8015A3AC  38 63 A2 C4 */	addi r3, r3, s_sub__FPvPv@l
+/* 8015A3A8  3C 60 80 16 */	lis r3, s_sub__FPvPv@ha /* 0x8015A2C4@ha */
+/* 8015A3AC  38 63 A2 C4 */	addi r3, r3, s_sub__FPvPv@l /* 0x8015A2C4@l */
 /* 8015A3B0  7F E4 FB 78 */	mr r4, r31
 /* 8015A3B4  4B EC 6F 85 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8015A3B8  80 1F 00 04 */	lwz r0, 4(r31)

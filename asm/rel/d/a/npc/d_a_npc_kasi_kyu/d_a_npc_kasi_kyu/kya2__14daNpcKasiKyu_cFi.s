@@ -5,8 +5,8 @@ lbl_80A24590:
 /* 80A2459C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A245A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A245A4  7C 7E 1B 78 */	mr r30, r3
-/* 80A245A8  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha
-/* 80A245AC  3B E4 58 B8 */	addi r31, r4, m__20daNpcKasiKyu_Param_c@l
+/* 80A245A8  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A245AC  3B E4 58 B8 */	addi r31, r4, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A245B0  A8 03 14 04 */	lha r0, 0x1404(r3)
 /* 80A245B4  2C 00 00 00 */	cmpwi r0, 0
 /* 80A245B8  41 82 00 10 */	beq lbl_80A245C8

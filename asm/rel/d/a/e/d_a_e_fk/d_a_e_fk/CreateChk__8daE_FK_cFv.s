@@ -1,6 +1,6 @@
 lbl_806BAF74:
-/* 806BAF74  3C 80 80 6C */	lis r4, lit_3826@ha
-/* 806BAF78  38 84 B6 D0 */	addi r4, r4, lit_3826@l
+/* 806BAF74  3C 80 80 6C */	lis r4, lit_3826@ha /* 0x806BB6D0@ha */
+/* 806BAF78  38 84 B6 D0 */	addi r4, r4, lit_3826@l /* 0x806BB6D0@l */
 /* 806BAF7C  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 806BAF80  54 00 07 3F */	clrlwi. r0, r0, 0x1c
 /* 806BAF84  40 82 00 18 */	bne lbl_806BAF9C

@@ -1,6 +1,6 @@
 lbl_80B758AC:
-/* 80B758AC  3C 80 80 B8 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80B758B0  38 04 82 90 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80B758AC  3C 80 80 B8 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80B78290@ha */
+/* 80B758B0  38 04 82 90 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80B78290@l */
 /* 80B758B4  90 03 00 00 */	stw r0, 0(r3)
 /* 80B758B8  38 80 00 00 */	li r4, 0
 /* 80B758BC  B0 83 00 04 */	sth r4, 4(r3)

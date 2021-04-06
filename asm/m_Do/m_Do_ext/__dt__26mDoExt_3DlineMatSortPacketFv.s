@@ -5,12 +5,12 @@ lbl_80014E20:
 /* 80014E2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80014E30  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80014E34  41 82 00 30 */	beq lbl_80014E64
-/* 80014E38  3C 60 80 3A */	lis r3, __vt__26mDoExt_3DlineMatSortPacket@ha
-/* 80014E3C  38 03 32 34 */	addi r0, r3, __vt__26mDoExt_3DlineMatSortPacket@l
+/* 80014E38  3C 60 80 3A */	lis r3, __vt__26mDoExt_3DlineMatSortPacket@ha /* 0x803A3234@ha */
+/* 80014E3C  38 03 32 34 */	addi r0, r3, __vt__26mDoExt_3DlineMatSortPacket@l /* 0x803A3234@l */
 /* 80014E40  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014E44  41 82 00 10 */	beq lbl_80014E54
-/* 80014E48  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 80014E4C  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 80014E48  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 80014E4C  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 80014E50  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80014E54:
 /* 80014E54  7C 80 07 35 */	extsh. r0, r4

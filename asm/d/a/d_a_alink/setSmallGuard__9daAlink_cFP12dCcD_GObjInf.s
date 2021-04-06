@@ -26,8 +26,8 @@ lbl_800DD1D4:
 /* 800DD234  B0 1D 05 9E */	sth r0, 0x59e(r29)
 /* 800DD238  48 00 00 44 */	b lbl_800DD27C
 lbl_800DD23C:
-/* 800DD23C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha
-/* 800DD240  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l
+/* 800DD23C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha /* 0x8038DF9C@ha */
+/* 800DD240  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l /* 0x8038DF9C@l */
 /* 800DD244  A8 A3 00 56 */	lha r5, 0x56(r3)
 /* 800DD248  7C 05 00 D0 */	neg r0, r5
 /* 800DD24C  7C 00 07 34 */	extsh r0, r0
@@ -46,8 +46,8 @@ lbl_800DD274:
 lbl_800DD278:
 /* 800DD278  B0 1D 05 9E */	sth r0, 0x59e(r29)
 lbl_800DD27C:
-/* 800DD27C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha
-/* 800DD280  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l
+/* 800DD27C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha /* 0x8038DF9C@ha */
+/* 800DD280  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l /* 0x8038DF9C@l */
 /* 800DD284  AB C3 00 58 */	lha r30, 0x58(r3)
 /* 800DD288  7C 1E 00 D0 */	neg r0, r30
 /* 800DD28C  7C 1C 07 34 */	extsh r28, r0
@@ -87,8 +87,8 @@ lbl_800DD310:
 /* 800DD310  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800DD314  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DD318  40 80 00 10 */	bge lbl_800DD328
-/* 800DD31C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DD320  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)
+/* 800DD31C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DD320  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800DD324  48 00 00 78 */	b lbl_800DD39C
 lbl_800DD328:
 /* 800DD328  D0 21 00 08 */	stfs f1, 8(r1)
@@ -122,8 +122,8 @@ lbl_800DD380:
 lbl_800DD384:
 /* 800DD384  2C 00 00 01 */	cmpwi r0, 1
 /* 800DD388  40 82 00 10 */	bne lbl_800DD398
-/* 800DD38C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DD390  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)
+/* 800DD38C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DD390  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800DD394  48 00 00 08 */	b lbl_800DD39C
 lbl_800DD398:
 /* 800DD398  FC 40 08 90 */	fmr f2, f1

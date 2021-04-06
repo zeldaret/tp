@@ -11,7 +11,7 @@ lbl_80BDCD08:
 /* 80BDCD2C  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80BDCD30  80 83 00 04 */	lwz r4, 4(r3)
 /* 80BDCD34  7F E3 FB 78 */	mr r3, r31
-/* 80BDCD38  4B 43 D8 40 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80BDCD38  4B 43 D8 41 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80BDCD3C  38 00 00 1F */	li r0, 0x1f
 /* 80BDCD40  98 1F 05 4B */	stb r0, 0x54b(r31)
 /* 80BDCD44  7F E3 FB 78 */	mr r3, r31

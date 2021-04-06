@@ -4,8 +4,8 @@ lbl_802890B4:
 /* 802890BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802890C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802890C4  7C 7F 1B 78 */	mr r31, r3
-/* 802890C8  3C 60 80 3C */	lis r3, __vt__Q37JStudio3stb8TControl@ha
-/* 802890CC  38 03 56 D4 */	addi r0, r3, __vt__Q37JStudio3stb8TControl@l
+/* 802890C8  3C 60 80 3C */	lis r3, __vt__Q37JStudio3stb8TControl@ha /* 0x803C56D4@ha */
+/* 802890CC  38 03 56 D4 */	addi r0, r3, __vt__Q37JStudio3stb8TControl@l /* 0x803C56D4@l */
 /* 802890D0  90 1F 00 00 */	stw r0, 0(r31)
 /* 802890D4  38 00 00 00 */	li r0, 0
 /* 802890D8  90 1F 00 04 */	stw r0, 4(r31)

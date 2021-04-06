@@ -3,10 +3,10 @@ lbl_8020AA84:
 /* 8020AA88  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8020AA8C  39 00 00 00 */	li r8, 0
 /* 8020AA90  39 20 00 00 */	li r9, 0
-/* 8020AA94  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8020AA98  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
-/* 8020AA9C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020AAA0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020AA94  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020AA98  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 8020AA9C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020AAA0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020AAA4  38 00 00 02 */	li r0, 2
 /* 8020AAA8  7C 09 03 A6 */	mtctr r0
 lbl_8020AAAC:

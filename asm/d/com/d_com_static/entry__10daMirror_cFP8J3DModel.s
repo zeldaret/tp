@@ -9,8 +9,8 @@ lbl_8003194C:
 /* 80031968  38 60 00 00 */	li r3, 0
 /* 8003196C  48 00 00 14 */	b lbl_80031980
 lbl_80031970:
-/* 80031970  3C A0 80 42 */	lis r5, m_entryModel__10daMirror_c@ha
-/* 80031974  39 85 45 7C */	addi r12, r5, m_entryModel__10daMirror_c@l
+/* 80031970  3C A0 80 42 */	lis r5, m_entryModel__10daMirror_c@ha /* 0x8042457C@ha */
+/* 80031974  39 85 45 7C */	addi r12, r5, m_entryModel__10daMirror_c@l /* 0x8042457C@l */
 /* 80031978  48 33 07 0D */	bl __ptmf_scall
 /* 8003197C  60 00 00 00 */	nop 
 lbl_80031980:

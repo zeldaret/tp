@@ -5,12 +5,12 @@ lbl_804DE290:
 /* 804DE29C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804DE2A0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 804DE2A4  41 82 00 1C */	beq lbl_804DE2C0
-/* 804DE2A8  3C A0 80 4E */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 804DE2AC  38 05 FA A0 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 804DE2A8  3C A0 80 4E */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x804DFAA0@ha */
+/* 804DE2AC  38 05 FA A0 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x804DFAA0@l */
 /* 804DE2B0  90 1F 00 00 */	stw r0, 0(r31)
 /* 804DE2B4  7C 80 07 35 */	extsh. r0, r4
 /* 804DE2B8  40 81 00 08 */	ble lbl_804DE2C0
-/* 804DE2BC  4B DF 0A 80 */	b __dl__FPv
+/* 804DE2BC  4B DF 0A 81 */	bl __dl__FPv
 lbl_804DE2C0:
 /* 804DE2C0  7F E3 FB 78 */	mr r3, r31
 /* 804DE2C4  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -22,8 +22,8 @@ lbl_8000F0B0:
 /* 8000F0D8  28 00 50 48 */	cmplwi r0, 0x5048
 /* 8000F0DC  41 82 00 28 */	beq lbl_8000F104
 lbl_8000F0E0:
-/* 8000F0E0  3C 60 80 37 */	lis r3, m_Do_m_Do_ext__stringBase0@ha
-/* 8000F0E4  38 63 40 FC */	addi r3, r3, m_Do_m_Do_ext__stringBase0@l
+/* 8000F0E0  3C 60 80 37 */	lis r3, m_Do_m_Do_ext__stringBase0@ha /* 0x803740FC@ha */
+/* 8000F0E4  38 63 40 FC */	addi r3, r3, m_Do_m_Do_ext__stringBase0@l /* 0x803740FC@l */
 /* 8000F0E8  38 63 00 23 */	addi r3, r3, 0x23
 /* 8000F0EC  7F C4 F3 78 */	mr r4, r30
 /* 8000F0F0  7F E5 FB 78 */	mr r5, r31
@@ -36,8 +36,8 @@ lbl_8000F104:
 /* 8000F108  48 2C 1A ED */	bl adjustSize__12JKRSolidHeapFv
 /* 8000F10C  2C 03 00 00 */	cmpwi r3, 0
 /* 8000F110  40 80 00 24 */	bge lbl_8000F134
-/* 8000F114  3C 60 80 37 */	lis r3, m_Do_m_Do_ext__stringBase0@ha
-/* 8000F118  38 63 40 FC */	addi r3, r3, m_Do_m_Do_ext__stringBase0@l
+/* 8000F114  3C 60 80 37 */	lis r3, m_Do_m_Do_ext__stringBase0@ha /* 0x803740FC@ha */
+/* 8000F118  38 63 40 FC */	addi r3, r3, m_Do_m_Do_ext__stringBase0@l /* 0x803740FC@l */
 /* 8000F11C  38 63 00 5A */	addi r3, r3, 0x5a
 /* 8000F120  7F C4 F3 78 */	mr r4, r30
 /* 8000F124  4C C6 31 82 */	crclr 6

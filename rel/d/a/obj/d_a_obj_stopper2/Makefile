@@ -3,18 +3,16 @@
 #
 
 M635_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2.plf
+M635_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2.lcf
+M635_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2.map
 
 M635_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stopper2/executor.cpp \
-	rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_stopper2/d_a_obj_stopper2.cpp \
 
 M635_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/d_a_obj_stopper2.o \
 
@@ -31,15 +29,21 @@ M635_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map635.map\
+	-m _prolog \
+	-lcf $(M635_LDSCRIPT) \
+	-unused -map $(M635_MAP) \
+	-w off \
 
 $(M635_TARGET): $(M635_O_FILES) $(M635_LIBS)
+	@echo [635] creating $(M635_TARGET)
 	@echo $(M635_LIBS) $(M635_O_FILES) > build/M635_ofiles
-	$(LD) -opt_partial $(M635_LDFLAGS) -o $(M635_TARGET) @build/M635_ofiles
+	@python3 tools/lcf.py rel 635 --output $(M635_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M635_LDFLAGS) -o $(M635_TARGET) @build/M635_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper2/%.o: rel/d/a/obj/d_a_obj_stopper2/%.cpp
+	@echo [635] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M635_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M635_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

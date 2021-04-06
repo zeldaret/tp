@@ -6,18 +6,18 @@ lbl_80287BD8:
 /* 80287BE8  48 0D A5 F5 */	bl _savegpr_29
 /* 80287BEC  7C A8 2B 78 */	mr r8, r5
 /* 80287BF0  7C C9 33 78 */	mr r9, r6
-/* 80287BF4  3C A0 80 43 */	lis r5, lit_744@ha
-/* 80287BF8  38 C5 10 10 */	addi r6, r5, lit_744@l
-/* 80287BFC  3C A0 80 3C */	lis r5, lit_742@ha
-/* 80287C00  38 A5 4B 00 */	addi r5, r5, lit_742@l
+/* 80287BF4  3C A0 80 43 */	lis r5, lit_744@ha /* 0x80431010@ha */
+/* 80287BF8  38 C5 10 10 */	addi r6, r5, lit_744@l /* 0x80431010@l */
+/* 80287BFC  3C A0 80 3C */	lis r5, lit_742@ha /* 0x803C4B00@ha */
+/* 80287C00  38 A5 4B 00 */	addi r5, r5, lit_742@l /* 0x803C4B00@l */
 /* 80287C04  83 E3 00 34 */	lwz r31, 0x34(r3)
 /* 80287C08  28 1F 00 00 */	cmplwi r31, 0
 /* 80287C0C  41 82 02 E0 */	beq lbl_80287EEC
 /* 80287C10  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 80287C14  54 8B D9 7E */	srwi r11, r4, 5
 /* 80287C18  54 87 06 FE */	clrlwi r7, r4, 0x1b
-/* 80287C1C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80287C20  39 43 21 80 */	addi r10, r3, __ptmf_null@l
+/* 80287C1C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80287C20  39 43 21 80 */	addi r10, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80287C24  80 8A 00 00 */	lwz r4, 0(r10)
 /* 80287C28  80 6A 00 04 */	lwz r3, 4(r10)
 /* 80287C2C  90 81 00 08 */	stw r4, 8(r1)
@@ -27,8 +27,8 @@ lbl_80287BD8:
 /* 80287C3C  38 8B FF EB */	addi r4, r11, -21
 /* 80287C40  28 04 00 42 */	cmplwi r4, 0x42
 /* 80287C44  41 81 02 A8 */	bgt lbl_80287EEC
-/* 80287C48  3C 60 80 3C */	lis r3, lit_1831@ha
-/* 80287C4C  38 63 52 30 */	addi r3, r3, lit_1831@l
+/* 80287C48  3C 60 80 3C */	lis r3, lit_1831@ha /* 0x803C5230@ha */
+/* 80287C4C  38 63 52 30 */	addi r3, r3, lit_1831@l /* 0x803C5230@l */
 /* 80287C50  54 84 10 3A */	slwi r4, r4, 2
 /* 80287C54  7C 63 20 2E */	lwzx r3, r3, r4
 /* 80287C58  7C 69 03 A6 */	mtctr r3
@@ -143,8 +143,8 @@ lbl_80287BD8:
 /* 80287E0C  48 00 00 94 */	b lbl_80287EA0
 /* 80287E10  38 A0 00 0B */	li r5, 0xb
 /* 80287E14  48 00 00 8C */	b lbl_80287EA0
-/* 80287E18  3C 60 80 3A */	lis r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha
-/* 80287E1C  38 A3 AB 6C */	addi r5, r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l
+/* 80287E18  3C 60 80 3A */	lis r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha /* 0x8039AB6C@ha */
+/* 80287E1C  38 A3 AB 6C */	addi r5, r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l /* 0x8039AB6C@l */
 /* 80287E20  48 00 00 9C */	b lbl_80287EBC
 /* 80287E24  48 00 00 C8 */	b lbl_80287EEC
 lbl_80287E28:

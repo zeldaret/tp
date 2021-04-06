@@ -7,10 +7,10 @@ lbl_80857F8C:
 /* 80857FA0  DB C1 00 30 */	stfd f30, 0x30(r1)
 /* 80857FA4  F3 C1 00 38 */	psq_st f30, 56(r1), 0, 0 /* qr0 */
 /* 80857FA8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80857FAC  4B B0 A2 24 */	b _savegpr_26
+/* 80857FAC  4B B0 A2 25 */	bl _savegpr_26
 /* 80857FB0  7C 9C 23 78 */	mr r28, r4
-/* 80857FB4  3C 80 80 86 */	lis r4, lit_3740@ha
-/* 80857FB8  3B 44 9E 78 */	addi r26, r4, lit_3740@l
+/* 80857FB4  3C 80 80 86 */	lis r4, lit_3740@ha /* 0x80859E78@ha */
+/* 80857FB8  3B 44 9E 78 */	addi r26, r4, lit_3740@l /* 0x80859E78@l */
 /* 80857FBC  C3 DA 00 18 */	lfs f30, 0x18(r26)
 /* 80857FC0  83 E3 05 68 */	lwz r31, 0x568(r3)
 /* 80857FC4  3B A0 00 00 */	li r29, 0
@@ -22,7 +22,7 @@ lbl_80857FD4:
 /* 80857FD8  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80857FDC  38 9B 00 04 */	addi r4, r27, 4
 /* 80857FE0  7C 80 22 14 */	add r4, r0, r4
-/* 80857FE4  4B AE F3 B8 */	b PSVECSquareDistance
+/* 80857FE4  4B AE F3 B9 */	bl PSVECSquareDistance
 /* 80857FE8  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 80857FEC  40 81 00 58 */	ble lbl_80858044
 /* 80857FF0  FC 00 08 34 */	frsqrte f0, f1
@@ -50,8 +50,8 @@ lbl_80858044:
 /* 80858044  C8 1A 00 30 */	lfd f0, 0x30(r26)
 /* 80858048  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8085804C  40 80 00 10 */	bge lbl_8085805C
-/* 80858050  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80858054  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80858050  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80858054  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80858058  48 00 00 70 */	b lbl_808580C8
 lbl_8085805C:
 /* 8085805C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -85,8 +85,8 @@ lbl_808580B4:
 lbl_808580B8:
 /* 808580B8  2C 00 00 01 */	cmpwi r0, 1
 /* 808580BC  40 82 00 0C */	bne lbl_808580C8
-/* 808580C0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 808580C4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 808580C0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 808580C4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_808580C8:
 /* 808580C8  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 808580CC  40 80 00 10 */	bge lbl_808580DC
@@ -106,7 +106,7 @@ lbl_808580E4:
 /* 808580FC  E3 C1 00 38 */	psq_l f30, 56(r1), 0, 0 /* qr0 */
 /* 80858100  CB C1 00 30 */	lfd f30, 0x30(r1)
 /* 80858104  39 61 00 30 */	addi r11, r1, 0x30
-/* 80858108  4B B0 A1 14 */	b _restgpr_26
+/* 80858108  4B B0 A1 15 */	bl _restgpr_26
 /* 8085810C  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80858110  7C 08 03 A6 */	mtlr r0
 /* 80858114  38 21 00 50 */	addi r1, r1, 0x50

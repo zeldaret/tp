@@ -16,8 +16,8 @@ lbl_800F7234:
 /* 800F723C  7F E3 FB 78 */	mr r3, r31
 /* 800F7240  38 80 00 01 */	li r4, 1
 /* 800F7244  48 01 1E A9 */	bl initHookshotUpperAnimeSpeed__9daAlink_cFi
-/* 800F7248  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F724C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F7248  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F724C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F7250  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800F7254  60 00 40 00 */	ori r0, r0, 0x4000
 /* 800F7258  90 03 5F 18 */	stw r0, 0x5f18(r3)

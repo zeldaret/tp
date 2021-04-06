@@ -6,7 +6,7 @@ lbl_80969D60:
 /* 80969D70  93 C1 00 08 */	stw r30, 8(r1)
 /* 80969D74  7C 7E 1B 78 */	mr r30, r3
 /* 80969D78  7C 9F 23 78 */	mr r31, r4
-/* 80969D7C  4B 6A EF 64 */	b fopAc_IsActor__FPv
+/* 80969D7C  4B 6A EF 65 */	bl fopAc_IsActor__FPv
 /* 80969D80  2C 03 00 00 */	cmpwi r3, 0
 /* 80969D84  40 82 00 0C */	bne lbl_80969D90
 /* 80969D88  38 60 00 00 */	li r3, 0

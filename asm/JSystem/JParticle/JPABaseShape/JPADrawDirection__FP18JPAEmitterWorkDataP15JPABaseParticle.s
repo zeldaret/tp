@@ -18,8 +18,8 @@ lbl_802785F8:
 /* 80278638  48 0E 9B A5 */	bl _savegpr_29
 /* 8027863C  7C 7E 1B 78 */	mr r30, r3
 /* 80278640  7C 9D 23 78 */	mr r29, r4
-/* 80278644  3C A0 80 3C */	lis r5, jpa_dl@ha
-/* 80278648  3B E5 42 E0 */	addi r31, r5, jpa_dl@l
+/* 80278644  3C A0 80 3C */	lis r5, jpa_dl@ha /* 0x803C42E0@ha */
+/* 80278648  3B E5 42 E0 */	addi r31, r5, jpa_dl@l /* 0x803C42E0@l */
 /* 8027864C  80 04 00 7C */	lwz r0, 0x7c(r4)
 /* 80278650  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80278654  40 82 02 F8 */	bne lbl_8027894C
@@ -36,8 +36,8 @@ lbl_802785F8:
 /* 80278680  10 5A 06 BA */	ps_madd f2, f26, f26, f0
 /* 80278684  10 42 00 14 */	ps_sum0 f2, f2, f0, f0
 /* 80278688  C0 22 B8 D8 */	lfs f1, lit_3281(r2)
-/* 8027868C  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 80278690  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8027868C  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 80278690  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 80278694  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80278698  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 8027869C  4C 40 13 82 */	cror 2, 0, 2
@@ -84,8 +84,8 @@ lbl_80278718:
 /* 80278734  10 5D 07 7A */	ps_madd f2, f29, f29, f0
 /* 80278738  10 42 00 14 */	ps_sum0 f2, f2, f0, f0
 /* 8027873C  C0 22 B8 D8 */	lfs f1, lit_3281(r2)
-/* 80278740  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 80278744  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 80278740  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 80278744  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 80278748  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8027874C  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 80278750  4C 40 13 82 */	cror 2, 0, 2
@@ -132,8 +132,8 @@ lbl_802787CC:
 /* 802787E8  10 9C 07 3A */	ps_madd f4, f28, f28, f0
 /* 802787EC  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 802787F0  C0 22 B8 D8 */	lfs f1, lit_3281(r2)
-/* 802787F4  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 802787F8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 802787F4  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 802787F8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 802787FC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80278800  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 80278804  4C 40 13 82 */	cror 2, 0, 2

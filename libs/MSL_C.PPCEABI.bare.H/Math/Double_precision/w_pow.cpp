@@ -23,12 +23,11 @@ extern "C" void __ieee754_pow();
 // Declarations:
 //
 
-/* 8036C780-8036C7A0 0020+00 s=0 e=3 z=24  None .text      pow */
-//	8036C78C: 80369ED8 (__ieee754_pow)
+/* 8036C780-8036C7A0 3670C0 0020+00 0/0 3/3 24/24 .text            pow */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void pow() {
+asm void pow() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/w_pow/pow.s"
 }

@@ -7,7 +7,7 @@ lbl_80C687D0:
 /* 80C687E4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C687E8  7C 9F 23 78 */	mr r31, r4
 /* 80C687EC  41 82 00 3C */	beq lbl_80C68828
-/* 80C687F0  4B 3B 04 F0 */	b fopAc_IsActor__FPv
+/* 80C687F0  4B 3B 04 F1 */	bl fopAc_IsActor__FPv
 /* 80C687F4  2C 03 00 00 */	cmpwi r3, 0
 /* 80C687F8  41 82 00 30 */	beq lbl_80C68828
 /* 80C687FC  A8 1E 00 0E */	lha r0, 0xe(r30)

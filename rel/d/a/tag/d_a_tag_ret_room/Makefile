@@ -3,17 +3,15 @@
 #
 
 M735_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room.plf
+M735_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room.lcf
+M735_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room.map
 
 M735_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_ret_room/executor.cpp \
-	rel/d/a/tag/d_a_tag_ret_room/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_ret_room/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room.cpp \
 
 M735_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/d_a_tag_ret_room.o \
 
 M735_LIBS := \
@@ -29,15 +27,21 @@ M735_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map735.map\
+	-m _prolog \
+	-lcf $(M735_LDSCRIPT) \
+	-unused -map $(M735_MAP) \
+	-w off \
 
 $(M735_TARGET): $(M735_O_FILES) $(M735_LIBS)
+	@echo [735] creating $(M735_TARGET)
 	@echo $(M735_LIBS) $(M735_O_FILES) > build/M735_ofiles
-	$(LD) -opt_partial $(M735_LDFLAGS) -o $(M735_TARGET) @build/M735_ofiles
+	@python3 tools/lcf.py rel 735 --output $(M735_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M735_LDFLAGS) -o $(M735_TARGET) @build/M735_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ret_room/%.o: rel/d/a/tag/d_a_tag_ret_room/%.cpp
+	@echo [735] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M735_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M735_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

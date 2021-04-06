@@ -3,19 +3,20 @@
 #
 
 M119_TARGET := $(BUILD_DIR)/rel/d/a/d_a_sq.plf
+M119_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_sq.lcf
+M119_MAP := $(BUILD_DIR)/rel/d/a/d_a_sq.map
 
 M119_CPP_FILES := \
-	rel/d/a/d_a_sq/executor.cpp \
-	rel/d/a/d_a_sq/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_sq/d_a_sq.cpp \
 
 M119_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_sq/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_sq/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_sq/d_a_sq.o \
 
 M119_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_sq/libRuntime.PPCEABI.H.a \
 
 M119_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M119_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map119.map\
+	-m _prolog \
+	-lcf $(M119_LDSCRIPT) \
+	-unused -map $(M119_MAP) \
+	-w off \
 
 $(M119_TARGET): $(M119_O_FILES) $(M119_LIBS)
+	@echo [119] creating $(M119_TARGET)
 	@echo $(M119_LIBS) $(M119_O_FILES) > build/M119_ofiles
-	$(LD) -opt_partial $(M119_LDFLAGS) -o $(M119_TARGET) @build/M119_ofiles
+	@python3 tools/lcf.py rel 119 --output $(M119_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M119_LDFLAGS) -o $(M119_TARGET) @build/M119_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_sq/%.o: rel/d/a/d_a_sq/%.cpp
+	@echo [119] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M119_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M119_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_sq/libs/Runtime.PPCEABI.H/Makefile
 

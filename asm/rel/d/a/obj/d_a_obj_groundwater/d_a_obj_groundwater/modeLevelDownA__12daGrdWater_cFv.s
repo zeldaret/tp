@@ -6,10 +6,10 @@ lbl_80C14320:
 /* 80C14330  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C14334  7C 7E 1B 78 */	mr r30, r3
 /* 80C14338  38 7E 06 2C */	addi r3, r30, 0x62c
-/* 80C1433C  4B 3F 90 EC */	b play__14mDoExt_baseAnmFv
+/* 80C1433C  4B 3F 90 ED */	bl play__14mDoExt_baseAnmFv
 /* 80C14340  7C 7F 1B 78 */	mr r31, r3
 /* 80C14344  38 7E 06 9C */	addi r3, r30, 0x69c
-/* 80C14348  4B 3F 90 E0 */	b play__14mDoExt_baseAnmFv
+/* 80C14348  4B 3F 90 E1 */	bl play__14mDoExt_baseAnmFv
 /* 80C1434C  2C 1F 00 01 */	cmpwi r31, 1
 /* 80C14350  40 82 00 14 */	bne lbl_80C14364
 /* 80C14354  2C 03 00 01 */	cmpwi r3, 1

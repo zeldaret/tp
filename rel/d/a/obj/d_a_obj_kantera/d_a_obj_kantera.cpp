@@ -98,13 +98,13 @@ struct dBgS_AcchCir {
     /* 80C38E98 */ ~dBgS_AcchCir();
 };
 
+struct csXyz {};
+
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
 
 struct dBgS {};
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -147,12 +147,6 @@ struct cBgS {
 // Forward References:
 //
 
-static void Reflect(cXyz*, cBgS_PolyInfo const&, f32);
-static void daItemKantera_Draw(daItemKantera_c*);
-static void daItemKantera_Execute(daItemKantera_c*);
-static void daItemKantera_Delete(daItemKantera_c*);
-static void daItemKantera_Create(fopAc_ac_c*);
-
 extern "C" static void Reflect__FP4cXyzRC13cBgS_PolyInfof();
 extern "C" void __dt__8cM3dGPlaFv();
 extern "C" void initBaseMtx__15daItemKantera_cFv();
@@ -182,51 +176,11 @@ extern "C" static void daItemKantera_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" static void func_80C39630();
 extern "C" static void func_80C39638();
-extern "C" extern u8 const lit_3855[4];
-extern "C" extern u8 const lit_3856[8];
-extern "C" extern u8 const lit_3857[8];
-extern "C" extern u8 const lit_3858[8];
-extern "C" extern u32 const lit_3910;
-extern "C" extern u32 const lit_3911;
-extern "C" extern u8 const lit_3913[8];
-extern "C" extern u32 const lit_4076;
-extern "C" extern u32 const lit_4077;
-extern "C" extern u32 const lit_4078;
-extern "C" extern u32 const lit_4079;
-extern "C" extern u32 const lit_4145;
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_4184[3];
-extern "C" extern void* lit_4185[3];
-extern "C" extern void* lit_4186[3];
-extern "C" extern void* lit_4187[3];
-extern "C" extern u8 data_80C3972C[48];
-extern "C" extern void* g_profile_Obj_Kantera[12];
-extern "C" extern void* __vt__12dBgS_AcchCir[3];
-extern "C" extern void* __vt__10cCcD_GStts[3];
-extern "C" extern void* __vt__10dCcD_GStts[3];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
-extern "C" extern void* __vt__15daItemKantera_c[17];
-extern "C" extern void* __vt__8cM3dGPla[3];
+extern "C" extern char const* const d_a_obj_kantera__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_posMoveF(fopAc_ac_c*, cXyz const*);
-void fopAcM_orderItemEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_createItemForTrBoxDemo(cXyz const*, int, int, int, csXyz const*, cXyz const*);
-void fopAcM_cancelCarryNow(fopAc_ac_c*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void CheckFieldItemCreateHeap(fopAc_ac_c*);
-void checkItemGet(u8, int);
-void cM_atan2s(f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -306,7 +260,7 @@ extern "C" extern u8 data_80C39860[4];
 //
 
 /* ############################################################################################## */
-/* 80C39648-80C3968C 0044+00 s=4 e=0 z=0  None .rodata    l_cyl_src */
+/* 80C39648-80C3968C 000000 0044+00 4/4 0/0 0/0 .rodata          l_cyl_src */
 SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x59,
@@ -314,14 +268,56 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80C39648 = (void*)(&l_cyl_src);
 
-/* 80C396DC-80C396E8 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C3968C-80C39690 000044 0004+00 0/3 0/0 0/0 .rodata          @3855 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3855[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80C3968C = (void*)(&lit_3855);
+#pragma pop
+
+/* 80C39690-80C39698 000048 0008+00 0/1 0/0 0/0 .rodata          @3856 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3856[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80C39690 = (void*)(&lit_3856);
+#pragma pop
+
+/* 80C39698-80C396A0 000050 0008+00 0/1 0/0 0/0 .rodata          @3857 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3857[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80C39698 = (void*)(&lit_3857);
+#pragma pop
+
+/* 80C396A0-80C396A8 000058 0008+00 0/1 0/0 0/0 .rodata          @3858 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3858[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80C396A0 = (void*)(&lit_3858);
+#pragma pop
+
+/* 80C396DC-80C396E8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C396E8-80C396FC 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C396E8-80C396FC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -329,43 +325,59 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C396FC-80C39708 000C+00 s=0 e=0 z=0  None .data      @4184 */
-SECTION_DATA void* lit_4184[3] = {
+/* 80C396FC-80C39708 -00001 000C+00 0/1 0/0 0/0 .data            @4184 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4184[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)actionInit__15daItemKantera_cFv,
 };
+#pragma pop
 
-/* 80C39708-80C39714 000C+00 s=0 e=0 z=0  None .data      @4185 */
-SECTION_DATA void* lit_4185[3] = {
+/* 80C39708-80C39714 -00001 000C+00 0/1 0/0 0/0 .data            @4185 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4185[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)actionWait__15daItemKantera_cFv,
 };
+#pragma pop
 
-/* 80C39714-80C39720 000C+00 s=0 e=0 z=0  None .data      @4186 */
-SECTION_DATA void* lit_4186[3] = {
+/* 80C39714-80C39720 -00001 000C+00 0/1 0/0 0/0 .data            @4186 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4186[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)actionOrderGetDemo__15daItemKantera_cFv,
 };
+#pragma pop
 
-/* 80C39720-80C3972C 000C+00 s=0 e=0 z=0  None .data      @4187 */
-SECTION_DATA void* lit_4187[3] = {
+/* 80C39720-80C3972C -00001 000C+00 0/1 0/0 0/0 .data            @4187 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_4187[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)actionGetDemo__15daItemKantera_cFv,
 };
+#pragma pop
 
-/* 80C3972C-80C3975C 0030+00 s=0 e=0 z=0  None .data      l_demoFunc$4183 */
-SECTION_DATA u8 data_80C3972C[48] = {
+/* 80C3972C-80C3975C 000050 0030+00 0/1 0/0 0/0 .data            l_demoFunc$4183 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 l_demoFunc[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 80C3975C-80C3977C 0020+00 s=1 e=0 z=0  None .data      l_daItemKantera_Method */
+/* 80C3975C-80C3977C -00001 0020+00 1/0 0/0 0/0 .data            l_daItemKantera_Method */
 SECTION_DATA static void* l_daItemKantera_Method[8] = {
     (void*)daItemKantera_Create__FP10fopAc_ac_c,
     (void*)daItemKantera_Delete__FP15daItemKantera_c,
@@ -377,8 +389,8 @@ SECTION_DATA static void* l_daItemKantera_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C3977C-80C397AC 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Kantera */
-SECTION_DATA void* g_profile_Obj_Kantera[12] = {
+/* 80C3977C-80C397AC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Kantera */
+SECTION_DATA extern void* g_profile_Obj_Kantera[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x021A0000, (void*)&g_fpcLf_Method,
     (void*)0x00000948, (void*)NULL,
@@ -387,43 +399,43 @@ SECTION_DATA void* g_profile_Obj_Kantera[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80C397AC-80C397B8 000C+00 s=1 e=0 z=0  None .data      __vt__12dBgS_AcchCir */
-SECTION_DATA void* __vt__12dBgS_AcchCir[3] = {
+/* 80C397AC-80C397B8 0000D0 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
+SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_AcchCirFv,
 };
 
-/* 80C397B8-80C397C4 000C+00 s=2 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA void* __vt__10cCcD_GStts[3] = {
+/* 80C397B8-80C397C4 0000DC 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 80C397C4-80C397D0 000C+00 s=1 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA void* __vt__10dCcD_GStts[3] = {
+/* 80C397C4-80C397D0 0000E8 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 80C397D0-80C397DC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA void* __vt__8cM3dGCyl[3] = {
+/* 80C397D0-80C397DC 0000F4 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80C397DC-80C397E8 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA void* __vt__8cM3dGAab[3] = {
+/* 80C397DC-80C397E8 000100 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C397E8-80C3980C 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
+/* 80C397E8-80C3980C 00010C 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_ObjAcchFv,
@@ -435,8 +447,8 @@ SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_80C39630,
 };
 
-/* 80C3980C-80C39850 0044+00 s=1 e=0 z=0  None .data      __vt__15daItemKantera_c */
-SECTION_DATA void* __vt__15daItemKantera_c[17] = {
+/* 80C3980C-80C39850 000130 0044+00 1/1 0/0 0/0 .data            __vt__15daItemKantera_c */
+SECTION_DATA extern void* __vt__15daItemKantera_c[17] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)DrawBase__12daItemBase_cFv,
@@ -456,51 +468,25 @@ SECTION_DATA void* __vt__15daItemKantera_c[17] = {
     (void*)getCollisionR__12daItemBase_cFv,
 };
 
-/* 80C39850-80C3985C 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGPla */
-SECTION_DATA void* __vt__8cM3dGPla[3] = {
+/* 80C39850-80C3985C 000174 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGPla */
+SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGPlaFv,
 };
 
-/* 80C38678-80C38974 02FC+00 s=1 e=0 z=0  None .text      Reflect__FP4cXyzRC13cBgS_PolyInfof */
-//	80C386A4: 80C39648 (l_cyl_src)
-//	80C386A8: 80C39648 (l_cyl_src)
-//	80C386AC: 80C39850 (__vt__8cM3dGPla)
-//	80C386B0: 80C39850 (__vt__8cM3dGPla)
-//	80C386B8: 804061C0 (g_dComIfG_gameInfo)
-//	80C386BC: 804061C0 (g_dComIfG_gameInfo)
-//	80C386C8: 80074744 (GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla)
-//	80C386F0: 80347138 (PSVECSquareMag)
-//	80C38760: 80450AE0 (__float_nan)
-//	80C38764: 80450AE0 (__float_nan)
-//	80C387D0: 80450AE0 (__float_nan)
-//	80C387D4: 80450AE0 (__float_nan)
-//	80C387EC: 803472C8 (C_VECReflect)
-//	80C387FC: 80266B84 (__ml__4cXyzCFf)
-//	80C3880C: 80266B84 (__ml__4cXyzCFf)
-//	80C38844: 80347138 (PSVECSquareMag)
-//	80C388B4: 80450AE0 (__float_nan)
-//	80C388B8: 80450AE0 (__float_nan)
-//	80C38924: 80450AE0 (__float_nan)
-//	80C38928: 80450AE0 (__float_nan)
-//	80C3892C: 80C39850 (__vt__8cM3dGPla)
-//	80C38930: 80C39850 (__vt__8cM3dGPla)
-//	80C3893C: 80C39850 (__vt__8cM3dGPla)
-//	80C38940: 80C39850 (__vt__8cM3dGPla)
+/* 80C38678-80C38974 000078 02FC+00 1/1 0/0 0/0 .text            Reflect__FP4cXyzRC13cBgS_PolyInfof
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void Reflect(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
+static asm void Reflect(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/Reflect__FP4cXyzRC13cBgS_PolyInfof.s"
 }
 #pragma pop
 
-/* 80C38974-80C389BC 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGPlaFv */
-//	80C3898C: 80C39850 (__vt__8cM3dGPla)
-//	80C38990: 80C39850 (__vt__8cM3dGPla)
-//	80C389A0: 802CED3C (__dl__FPv)
+/* 80C38974-80C389BC 000374 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -510,8 +496,7 @@ asm cM3dGPla::~cM3dGPla() {
 }
 #pragma pop
 
-/* 80C389BC-80C389F8 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__15daItemKantera_cFv */
-//	80C389E4: 80C389F8 (setBaseMtx__15daItemKantera_cFv)
+/* 80C389BC-80C389F8 0003BC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,16 +506,7 @@ asm void daItemKantera_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80C389F8-80C38A64 006C+00 s=2 e=0 z=0  None .text      setBaseMtx__15daItemKantera_cFv */
-//	80C38A0C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A10: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A20: 803468E8 (PSMTXTrans)
-//	80C38A24: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A28: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A38: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
-//	80C38A3C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A40: 803DD470 (now__14mDoMtx_stack_c)
-//	80C38A4C: 803464B0 (PSMTXCopy)
+/* 80C389F8-80C38A64 0003F8 006C+00 2/2 0/0 0/0 .text            setBaseMtx__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -540,18 +516,31 @@ asm void daItemKantera_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C38A64-80C38BA8 0144+00 s=1 e=0 z=0  None .text      Create__15daItemKantera_cFv */
-//	80C38A7C: 80C39648 (l_cyl_src)
-//	80C38A80: 80C39648 (l_cyl_src)
-//	80C38A84: 80C389BC (initBaseMtx__15daItemKantera_cFv)
-//	80C38AA0: 80075F58 (SetWall__12dBgS_AcchCirFff)
-//	80C38ACC: 80076248
-//(Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz) 	80C38AE0:
-//80083860 (Init__9dCcD_SttsFiiP10fopAc_ac_c) 	80C38AEC: 800848B4 (Set__8dCcD_CylFRC11dCcD_SrcCyl)
-//80C38AF8: 803AED78 (item_info__10dItem_data) 	80C38AFC: 803AED78 (item_info__10dItem_data)
-// 80C38B2C: 8026F200 (SetR__8cM3dGCylFf) 	80C38B30: 803AED78 (item_info__10dItem_data) 80C38B34:
-//803AED78 (item_info__10dItem_data) 	80C38B64: 8026F1F8 (SetH__8cM3dGCylFf) 	80C38B74: 80C390A0
-//(actionWaitInit__15daItemKantera_cFv)
+/* ############################################################################################## */
+/* 80C396A8-80C396AC 000060 0004+00 0/1 0/0 0/0 .rodata          @3910 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3910 = 0x41F00000;
+SECTION_DEAD void* const cg_80C396A8 = (void*)(&lit_3910);
+#pragma pop
+
+/* 80C396AC-80C396B0 000064 0004+00 0/1 0/0 0/0 .rodata          @3911 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3911 = 0xC0C00000;
+SECTION_DEAD void* const cg_80C396AC = (void*)(&lit_3911);
+#pragma pop
+
+/* 80C396B0-80C396B8 000068 0008+00 0/1 0/0 0/0 .rodata          @3913 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3913[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80C396B0 = (void*)(&lit_3913);
+#pragma pop
+
+/* 80C38A64-80C38BA8 000464 0144+00 1/1 0/0 0/0 .text            Create__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -561,48 +550,13 @@ asm void daItemKantera_c::Create() {
 }
 #pragma pop
 
-/* 80C38BA8-80C38BB0 0008+00 s=1 e=0 z=0  None .text      __CreateHeap__15daItemKantera_cFv */
+/* 80C38BA8-80C38BB0 0005A8 0008+00 1/0 0/0 0/0 .text            __CreateHeap__15daItemKantera_cFv
+ */
 bool daItemKantera_c::__CreateHeap() {
     return true;
 }
 
-/* 80C38BB0-80C38DAC 01FC+00 s=1 e=0 z=0  None .text      create__15daItemKantera_cFv */
-//	80C38BC0: 803621DC (_savegpr_29)
-//	80C38BE0: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C38BE4: 803B3610 (__vt__12daItemBase_c)
-//	80C38BE8: 803B3610 (__vt__12daItemBase_c)
-//	80C38BF8: 800760A0 (__ct__9dBgS_AcchFv)
-//	80C38BFC: 80C397E8 (__vt__12dBgS_ObjAcch)
-//	80C38C00: 80C397E8 (__vt__12dBgS_ObjAcch)
-//	80C38C1C: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	80C38C24: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	80C38C28: 803C3728 (__vt__9cCcD_Stts)
-//	80C38C2C: 803C3728 (__vt__9cCcD_Stts)
-//	80C38C38: 80083760 (__ct__10dCcD_GSttsFv)
-//	80C38C3C: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C38C40: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C38C58: 80083A28 (__ct__12dCcD_GObjInfFv)
-//	80C38C5C: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C38C60: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C38C68: 80C397DC (__vt__8cM3dGAab)
-//	80C38C6C: 80C397DC (__vt__8cM3dGAab)
-//	80C38C74: 80C397D0 (__vt__8cM3dGCyl)
-//	80C38C78: 80C397D0 (__vt__8cM3dGCyl)
-//	80C38C80: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C38C84: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C38C94: 803AC050 (__vt__8dCcD_Cyl)
-//	80C38C98: 803AC050 (__vt__8dCcD_Cyl)
-//	80C38CB0: 80C3980C (__vt__15daItemKantera_c)
-//	80C38CB4: 80C3980C (__vt__15daItemKantera_c)
-//	80C38D18: 80097EE0 (checkItemGet__FUci)
-//	80C38D34: 803ADD88 (field_item_res__10dItem_data)
-//	80C38D38: 803ADD88 (field_item_res__10dItem_data)
-//	80C38D44: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C38D58: 80037B78 (CheckFieldItemCreateHeap__FP10fopAc_ac_c)
-//	80C38D5C: 80037B78 (CheckFieldItemCreateHeap__FP10fopAc_ac_c)
-//	80C38D64: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80C38D7C: 80C38A64 (Create__15daItemKantera_cFv)
-//	80C38D98: 80362228 (_restgpr_29)
+/* 80C38BB0-80C38DAC 0005B0 01FC+00 1/1 0/0 0/0 .text            create__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -612,10 +566,7 @@ asm void daItemKantera_c::create() {
 }
 #pragma pop
 
-/* 80C38DAC-80C38DF4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-//	80C38DC4: 80C397D0 (__vt__8cM3dGCyl)
-//	80C38DC8: 80C397D0 (__vt__8cM3dGCyl)
-//	80C38DD8: 802CED3C (__dl__FPv)
+/* 80C38DAC-80C38DF4 0007AC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -625,10 +576,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80C38DF4-80C38E3C 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-//	80C38E0C: 80C397DC (__vt__8cM3dGAab)
-//	80C38E10: 80C397DC (__vt__8cM3dGAab)
-//	80C38E20: 802CED3C (__dl__FPv)
+/* 80C38DF4-80C38E3C 0007F4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -638,12 +586,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C38E3C-80C38E98 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
-//	80C38E54: 80C397C4 (__vt__10dCcD_GStts)
-//	80C38E58: 80C397C4 (__vt__10dCcD_GStts)
-//	80C38E64: 80C397B8 (__vt__10cCcD_GStts)
-//	80C38E68: 80C397B8 (__vt__10cCcD_GStts)
-//	80C38E7C: 802CED3C (__dl__FPv)
+/* 80C38E3C-80C38E98 00083C 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,12 +596,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80C38E98-80C38F08 0070+00 s=1 e=0 z=0  None .text      __dt__12dBgS_AcchCirFv */
-//	80C38EB8: 80C397AC (__vt__12dBgS_AcchCir)
-//	80C38EBC: 80C397AC (__vt__12dBgS_AcchCir)
-//	80C38ECC: 8026EF18 (__dt__8cM3dGCirFv)
-//	80C38ED8: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	80C38EE8: 802CED3C (__dl__FPv)
+/* 80C38E98-80C38F08 000898 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -668,11 +606,7 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 }
 #pragma pop
 
-/* 80C38F08-80C38F78 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
-//	80C38F28: 80C397E8 (__vt__12dBgS_ObjAcch)
-//	80C38F2C: 80C397E8 (__vt__12dBgS_ObjAcch)
-//	80C38F48: 80075F94 (__dt__9dBgS_AcchFv)
-//	80C38F58: 802CED3C (__dl__FPv)
+/* 80C38F08-80C38F78 000908 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -682,12 +616,36 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80C38F78-80C39068 00F0+00 s=1 e=0 z=0  None .text      bg_check__15daItemKantera_cFv */
-//	80C38F90: 80C39648 (l_cyl_src)
-//	80C38F94: 80C39648 (l_cyl_src)
-//	80C38FC0: 80C38678 (Reflect__FP4cXyzRC13cBgS_PolyInfof)
-//	80C38FCC: 80267674 (cM_atan2s__Fff)
-//	80C39014: 80C38678 (Reflect__FP4cXyzRC13cBgS_PolyInfof)
+/* ############################################################################################## */
+/* 80C396B8-80C396BC 000070 0004+00 0/1 0/0 0/0 .rodata          @4076 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4076 = 0x40A00000;
+SECTION_DEAD void* const cg_80C396B8 = (void*)(&lit_4076);
+#pragma pop
+
+/* 80C396BC-80C396C0 000074 0004+00 0/2 0/0 0/0 .rodata          @4077 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4077 = 0x3F800000;
+SECTION_DEAD void* const cg_80C396BC = (void*)(&lit_4077);
+#pragma pop
+
+/* 80C396C0-80C396C4 000078 0004+00 0/1 0/0 0/0 .rodata          @4078 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4078 = 0x3F333333;
+SECTION_DEAD void* const cg_80C396C0 = (void*)(&lit_4078);
+#pragma pop
+
+/* 80C396C4-80C396C8 00007C 0004+00 0/1 0/0 0/0 .rodata          @4079 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4079 = 0x40400000;
+SECTION_DEAD void* const cg_80C396C4 = (void*)(&lit_4079);
+#pragma pop
+
+/* 80C38F78-80C39068 000978 00F0+00 1/1 0/0 0/0 .text            bg_check__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -697,9 +655,7 @@ asm void daItemKantera_c::bg_check() {
 }
 #pragma pop
 
-/* 80C39068-80C390A0 0038+00 s=1 e=0 z=0  None .text      actionInit__15daItemKantera_cFv */
-//	80C3907C: 80037A74 (show__12daItemBase_cFv)
-//	80C39084: 80C390A0 (actionWaitInit__15daItemKantera_cFv)
+/* 80C39068-80C390A0 000A68 0038+00 1/0 0/0 0/0 .text            actionInit__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -709,8 +665,8 @@ asm void daItemKantera_c::actionInit() {
 }
 #pragma pop
 
-/* 80C390A0-80C3911C 007C+00 s=2 e=0 z=0  None .text      actionWaitInit__15daItemKantera_cFv */
-//	80C390F8: 80037A74 (show__12daItemBase_cFv)
+/* 80C390A0-80C3911C 000AA0 007C+00 2/2 0/0 0/0 .text            actionWaitInit__15daItemKantera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -720,18 +676,15 @@ asm void daItemKantera_c::actionWaitInit() {
 }
 #pragma pop
 
-/* 80C3911C-80C39234 0118+00 s=1 e=0 z=0  None .text      actionWait__15daItemKantera_cFv */
-//	80C39134: 80C39648 (l_cyl_src)
-//	80C39138: 80C39648 (l_cyl_src)
-//	80C39140: 8001A6CC (fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz)
-//	80C39148: 804061C0 (g_dComIfG_gameInfo)
-//	80C3914C: 804061C0 (g_dComIfG_gameInfo)
-//	80C39154: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS)
-//	80C3915C: 80C38F78 (bg_check__15daItemKantera_cFv)
-//	80C391B0: 804061C0 (g_dComIfG_gameInfo)
-//	80C391B4: 804061C0 (g_dComIfG_gameInfo)
-//	80C391E4: 8001CBA0 (fopAcM_cancelCarryNow__FP10fopAc_ac_c)
-//	80C391EC: 80C39234 (initActionOrderGetDemo__15daItemKantera_cFv)
+/* ############################################################################################## */
+/* 80C396C8-80C396CC 000080 0004+00 0/1 0/0 0/0 .rodata          @4145 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4145 = 0x3F666666;
+SECTION_DEAD void* const cg_80C396C8 = (void*)(&lit_4145);
+#pragma pop
+
+/* 80C3911C-80C39234 000B1C 0118+00 1/0 0/0 0/0 .text            actionWait__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -741,11 +694,8 @@ asm void daItemKantera_c::actionWait() {
 }
 #pragma pop
 
-/* 80C39234-80C392D0 009C+00 s=1 e=0 z=0  None .text initActionOrderGetDemo__15daItemKantera_cFv
+/* 80C39234-80C392D0 000C34 009C+00 1/1 0/0 0/0 .text initActionOrderGetDemo__15daItemKantera_cFv
  */
-//	80C3926C: 80037A64 (hide__12daItemBase_cFv)
-//	80C3927C: 8001B9D0 (fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs)
-//	80C392A8: 8001BC74 (fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -755,11 +705,7 @@ asm void daItemKantera_c::initActionOrderGetDemo() {
 }
 #pragma pop
 
-/* 80C392D0-80C3934C 007C+00 s=1 e=0 z=0  None .text      actionOrderGetDemo__15daItemKantera_cFv */
-//	80C39308: 804061C0 (g_dComIfG_gameInfo)
-//	80C3930C: 804061C0 (g_dComIfG_gameInfo)
-//	80C39314: 800436EC (setPtI_Id__14dEvt_control_cFUi)
-//	80C39324: 8001B9D0 (fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs)
+/* 80C392D0-80C3934C 000CD0 007C+00 1/0 0/0 0/0 .text actionOrderGetDemo__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -769,71 +715,8 @@ asm void daItemKantera_c::actionOrderGetDemo() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80C3968C-80C39690 0004+00 s=0 e=0 z=0  None .rodata    @3855 */
-SECTION_RODATA u8 const lit_3855[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80C39690-80C39698 0008+00 s=0 e=0 z=0  None .rodata    @3856 */
-SECTION_RODATA u8 const lit_3856[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C39698-80C396A0 0008+00 s=0 e=0 z=0  None .rodata    @3857 */
-SECTION_RODATA u8 const lit_3857[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C396A0-80C396A8 0008+00 s=0 e=0 z=0  None .rodata    @3858 */
-SECTION_RODATA u8 const lit_3858[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C396A8-80C396AC 0004+00 s=0 e=0 z=0  None .rodata    @3910 */
-SECTION_RODATA u32 const lit_3910 = 0x41F00000;
-
-/* 80C396AC-80C396B0 0004+00 s=0 e=0 z=0  None .rodata    @3911 */
-SECTION_RODATA u32 const lit_3911 = 0xC0C00000;
-
-/* 80C396B0-80C396B8 0008+00 s=0 e=0 z=0  None .rodata    @3913 */
-SECTION_RODATA u8 const lit_3913[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C396B8-80C396BC 0004+00 s=0 e=0 z=0  None .rodata    @4076 */
-SECTION_RODATA u32 const lit_4076 = 0x40A00000;
-
-/* 80C396BC-80C396C0 0004+00 s=0 e=0 z=0  None .rodata    @4077 */
-SECTION_RODATA u32 const lit_4077 = 0x3F800000;
-
-/* 80C396C0-80C396C4 0004+00 s=0 e=0 z=0  None .rodata    @4078 */
-SECTION_RODATA u32 const lit_4078 = 0x3F333333;
-
-/* 80C396C4-80C396C8 0004+00 s=0 e=0 z=0  None .rodata    @4079 */
-SECTION_RODATA u32 const lit_4079 = 0x40400000;
-
-/* 80C396C8-80C396CC 0004+00 s=0 e=0 z=0  None .rodata    @4145 */
-SECTION_RODATA u32 const lit_4145 = 0x3F666666;
-
-/* 80C396CC-80C396DC 0010+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C396CC = "DEFAULT_GETITEM";
-#pragma pop
-
-/* 80C3934C-80C393B0 0064+00 s=1 e=0 z=0  None .text      actionGetDemo__15daItemKantera_cFv */
-//	80C39364: 804061C0 (g_dComIfG_gameInfo)
-//	80C39368: 804061C0 (g_dComIfG_gameInfo)
-//	80C39370: 80C396CC (stringBase0)
-//	80C39374: 80C396CC (stringBase0)
-//	80C39378: 80047ADC (endCheckOld__16dEvent_manager_cFPCc)
-//	80C39388: 80042468 (reset__14dEvt_control_cFv)
-//	80C39390: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 80C3934C-80C393B0 000D4C 0064+00 1/0 0/0 0/0 .text            actionGetDemo__15daItemKantera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -843,13 +726,7 @@ asm void daItemKantera_c::actionGetDemo() {
 }
 #pragma pop
 
-/* 80C393B0-80C394DC 012C+00 s=1 e=0 z=0  None .text      execute__15daItemKantera_cFv */
-//	80C393C4: 80C396DC (cNullVec__6Z2Calc)
-//	80C393C8: 80C396DC (cNullVec__6Z2Calc)
-//	80C393CC: 80C39860 (data_80C39860)
-//	80C393D0: 80C39860 (data_80C39860)
-//	80C39484: 80362084 (__ptmf_scall)
-//	80C394C0: 80C389F8 (setBaseMtx__15daItemKantera_cFv)
+/* 80C393B0-80C394DC 000DB0 012C+00 1/1 0/0 0/0 .text            execute__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -859,8 +736,7 @@ asm void daItemKantera_c::execute() {
 }
 #pragma pop
 
-/* 80C394DC-80C39530 0054+00 s=1 e=0 z=0  None .text      draw__15daItemKantera_cFv */
-//	80C394F0: 80037ACC (chkDraw__12daItemBase_cFv)
+/* 80C394DC-80C39530 000EDC 0054+00 1/1 0/0 0/0 .text            draw__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -870,10 +746,7 @@ asm void daItemKantera_c::draw() {
 }
 #pragma pop
 
-/* 80C39530-80C39568 0038+00 s=1 e=0 z=0  None .text      _delete__15daItemKantera_cFv */
-//	80C39544: 803ADD88 (field_item_res__10dItem_data)
-//	80C39548: 803ADD88 (field_item_res__10dItem_data)
-//	80C39550: 80144724 (DeleteBase__12daItemBase_cFPCc)
+/* 80C39530-80C39568 000F30 0038+00 1/1 0/0 0/0 .text            _delete__15daItemKantera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -883,56 +756,48 @@ asm void daItemKantera_c::_delete() {
 }
 #pragma pop
 
-/* 80C39568-80C39588 0020+00 s=1 e=0 z=0  None .text      daItemKantera_Draw__FP15daItemKantera_c */
-//	80C39574: 80C394DC (draw__15daItemKantera_cFv)
+/* 80C39568-80C39588 000F68 0020+00 1/0 0/0 0/0 .text daItemKantera_Draw__FP15daItemKantera_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daItemKantera_Draw(daItemKantera_c* param_0) {
+static asm void daItemKantera_Draw(daItemKantera_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/daItemKantera_Draw__FP15daItemKantera_c.s"
 }
 #pragma pop
 
-/* 80C39588-80C395A8 0020+00 s=1 e=0 z=0  None .text      daItemKantera_Execute__FP15daItemKantera_c
+/* 80C39588-80C395A8 000F88 0020+00 1/0 0/0 0/0 .text daItemKantera_Execute__FP15daItemKantera_c
  */
-//	80C39594: 80C393B0 (execute__15daItemKantera_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daItemKantera_Execute(daItemKantera_c* param_0) {
+static asm void daItemKantera_Execute(daItemKantera_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/daItemKantera_Execute__FP15daItemKantera_c.s"
 }
 #pragma pop
 
-/* 80C395A8-80C395C8 0020+00 s=1 e=0 z=0  None .text      daItemKantera_Delete__FP15daItemKantera_c
- */
-//	80C395B4: 80C39530 (_delete__15daItemKantera_cFv)
+/* 80C395A8-80C395C8 000FA8 0020+00 1/0 0/0 0/0 .text daItemKantera_Delete__FP15daItemKantera_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daItemKantera_Delete(daItemKantera_c* param_0) {
+static asm void daItemKantera_Delete(daItemKantera_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/daItemKantera_Delete__FP15daItemKantera_c.s"
 }
 #pragma pop
 
-/* 80C395C8-80C395E8 0020+00 s=1 e=0 z=0  None .text      daItemKantera_Create__FP10fopAc_ac_c */
-//	80C395D4: 80C38BB0 (create__15daItemKantera_cFv)
+/* 80C395C8-80C395E8 000FC8 0020+00 1/0 0/0 0/0 .text daItemKantera_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daItemKantera_Create(fopAc_ac_c* param_0) {
+static asm void daItemKantera_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/daItemKantera_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C395E8-80C39630 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
-//	80C39600: 80C397B8 (__vt__10cCcD_GStts)
-//	80C39604: 80C397B8 (__vt__10cCcD_GStts)
-//	80C39614: 802CED3C (__dl__FPv)
+/* 80C395E8-80C39630 000FE8 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -942,24 +807,29 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80C39630-80C39638 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
-//	80C39634: 80C38F08 (__dt__12dBgS_ObjAcchFv)
+/* 80C39630-80C39638 001030 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C39630() {
+static asm void func_80C39630() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/func_80C39630.s"
 }
 #pragma pop
 
-/* 80C39638-80C39640 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
-//	80C3963C: 80C38F08 (__dt__12dBgS_ObjAcchFv)
+/* 80C39638-80C39640 001038 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C39638() {
+static asm void func_80C39638() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera/func_80C39638.s"
 }
+#pragma pop
+
+/* 80C396CC-80C396DC 000084 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C396CC = "DEFAULT_GETITEM";
 #pragma pop

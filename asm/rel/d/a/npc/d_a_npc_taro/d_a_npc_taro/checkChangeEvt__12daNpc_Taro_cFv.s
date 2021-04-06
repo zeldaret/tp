@@ -4,8 +4,8 @@ lbl_8056747C:
 /* 80567484  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80567488  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8056748C  7C 7F 1B 78 */	mr r31, r3
-/* 80567490  3C 80 80 57 */	lis r4, lit_5164@ha
-/* 80567494  38 A4 2C D4 */	addi r5, r4, lit_5164@l
+/* 80567490  3C 80 80 57 */	lis r4, lit_5164@ha /* 0x80572CD4@ha */
+/* 80567494  38 A4 2C D4 */	addi r5, r4, lit_5164@l /* 0x80572CD4@l */
 /* 80567498  80 85 00 00 */	lwz r4, 0(r5)
 /* 8056749C  80 05 00 04 */	lwz r0, 4(r5)
 /* 805674A0  90 81 00 08 */	stw r4, 8(r1)
@@ -18,8 +18,8 @@ lbl_8056747C:
 /* 805674BC  40 82 00 A8 */	bne lbl_80567564
 /* 805674C0  38 00 00 00 */	li r0, 0
 /* 805674C4  98 1F 0E 2E */	stb r0, 0xe2e(r31)
-/* 805674C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805674CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805674C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805674CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805674D0  88 83 4F B5 */	lbz r4, 0x4fb5(r3)
 /* 805674D4  28 04 00 01 */	cmplwi r4, 1
 /* 805674D8  41 82 00 0C */	beq lbl_805674E4
@@ -31,13 +31,13 @@ lbl_805674E8:
 /* 805674E8  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 805674EC  41 82 00 2C */	beq lbl_80567518
 /* 805674F0  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 805674F4  4B AE 12 FC */	b ChkPresentEnd__16dEvent_manager_cFv
+/* 805674F4  4B AE 12 FD */	bl ChkPresentEnd__16dEvent_manager_cFv
 /* 805674F8  2C 03 00 00 */	cmpwi r3, 0
 /* 805674FC  41 82 00 14 */	beq lbl_80567510
 /* 80567500  38 00 00 01 */	li r0, 1
 /* 80567504  B0 1F 0E 30 */	sth r0, 0xe30(r31)
 /* 80567508  7F E3 FB 78 */	mr r3, r31
-/* 8056750C  4B BE 2D 18 */	b evtChange__8daNpcT_cFv
+/* 8056750C  4B BE 2D 19 */	bl evtChange__8daNpcT_cFv
 lbl_80567510:
 /* 80567510  38 60 00 01 */	li r3, 1
 /* 80567514  48 00 00 54 */	b lbl_80567568
@@ -50,7 +50,7 @@ lbl_80567518:
 /* 8056752C  48 00 00 38 */	b lbl_80567564
 lbl_80567530:
 /* 80567530  38 60 02 69 */	li r3, 0x269
-/* 80567534  4B BE 55 78 */	b daNpcT_chkEvtBit__FUl
+/* 80567534  4B BE 55 79 */	bl daNpcT_chkEvtBit__FUl
 /* 80567538  2C 03 00 00 */	cmpwi r3, 0
 /* 8056753C  41 82 00 10 */	beq lbl_8056754C
 /* 80567540  38 00 00 0B */	li r0, 0xb
@@ -61,7 +61,7 @@ lbl_8056754C:
 /* 80567550  B0 1F 0E 30 */	sth r0, 0xe30(r31)
 lbl_80567554:
 /* 80567554  7F E3 FB 78 */	mr r3, r31
-/* 80567558  4B BE 2C CC */	b evtChange__8daNpcT_cFv
+/* 80567558  4B BE 2C CD */	bl evtChange__8daNpcT_cFv
 /* 8056755C  38 60 00 01 */	li r3, 1
 /* 80567560  48 00 00 08 */	b lbl_80567568
 lbl_80567564:

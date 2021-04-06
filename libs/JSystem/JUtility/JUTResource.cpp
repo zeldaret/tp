@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct JSUInputStream {
-    /* 802DC298 */ void read(void*, s32);
-};
-
 struct JKRArchive {
     /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
+};
+
+struct JSUInputStream {
+    /* 802DC298 */ void read(void*, s32);
 };
 
 struct JUTResReference {
@@ -56,14 +56,8 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 802DE078-802DE120 00A8+00 s=0 e=1 z=0  None .text
+/* 802DE078-802DE120 2D89B8 00A8+00 0/0 1/1 0/0 .text
  * getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive */
-//	802DE088: 803621D8 (_savegpr_28)
-//	802DE0A8: 802DC298 (read__14JSUInputStreamFPvl)
-//	802DE0B8: 802DC298 (read__14JSUInputStreamFPvl)
-//	802DE0C8: 802DC298 (read__14JSUInputStreamFPvl)
-//	802DE104: 802DE1BC (getResource__15JUTResReferenceFUlP10JKRArchive)
-//	802DE10C: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -73,12 +67,8 @@ asm void JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKRA
 }
 #pragma pop
 
-/* 802DE120-802DE1BC 009C+00 s=0 e=2 z=0  None .text
+/* 802DE120-802DE1BC 2D8A60 009C+00 0/0 2/2 0/0 .text
  * getResource__15JUTResReferenceFPCvUlP10JKRArchive            */
-//	802DE130: 803621DC (_savegpr_29)
-//	802DE164: 80003540 (memcpy)
-//	802DE1A0: 802DE1BC (getResource__15JUTResReferenceFUlP10JKRArchive)
-//	802DE1A8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,11 +78,8 @@ asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchi
 }
 #pragma pop
 
-/* 802DE1BC-802DE234 0078+00 s=2 e=0 z=0  None .text
+/* 802DE1BC-802DE234 2D8AFC 0078+00 2/2 0/0 0/0 .text
  * getResource__15JUTResReferenceFUlP10JKRArchive               */
-//	802DE204: 802D5B38 (getGlbResource__10JKRArchiveFUlPCcP10JKRArchive)
-//	802DE214: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	802DE220: 802D4224 (getGlbResource__13JKRFileLoaderFPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

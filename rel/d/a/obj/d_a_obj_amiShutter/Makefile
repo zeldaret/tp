@@ -3,19 +3,20 @@
 #
 
 M397_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter.plf
+M397_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter.lcf
+M397_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter.map
 
 M397_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_amiShutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_amiShutter/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_amiShutter/d_a_obj_amiShutter.cpp \
 
 M397_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/d_a_obj_amiShutter.o \
 
 M397_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/libRuntime.PPCEABI.H.a \
 
 M397_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M397_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map397.map\
+	-m _prolog \
+	-lcf $(M397_LDSCRIPT) \
+	-unused -map $(M397_MAP) \
+	-w off \
 
 $(M397_TARGET): $(M397_O_FILES) $(M397_LIBS)
+	@echo [397] creating $(M397_TARGET)
 	@echo $(M397_LIBS) $(M397_O_FILES) > build/M397_ofiles
-	$(LD) -opt_partial $(M397_LDFLAGS) -o $(M397_TARGET) @build/M397_ofiles
+	@python3 tools/lcf.py rel 397 --output $(M397_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M397_LDFLAGS) -o $(M397_TARGET) @build/M397_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_amiShutter/%.o: rel/d/a/obj/d_a_obj_amiShutter/%.cpp
+	@echo [397] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M397_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M397_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_amiShutter/libs/Runtime.PPCEABI.H/Makefile
 

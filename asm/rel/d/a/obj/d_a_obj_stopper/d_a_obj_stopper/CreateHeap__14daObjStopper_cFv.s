@@ -8,7 +8,7 @@ lbl_80CED20C:
 /* 80CED224  3C 80 00 08 */	lis r4, 8
 /* 80CED228  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80CED22C  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80CED230  4B 32 7A 24 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80CED230  4B 32 7A 25 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80CED234  90 7F 05 A8 */	stw r3, 0x5a8(r31)
 /* 80CED238  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80CED23C  30 03 FF FF */	addic r0, r3, -1

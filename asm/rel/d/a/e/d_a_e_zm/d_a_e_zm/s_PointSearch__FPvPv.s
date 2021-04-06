@@ -6,7 +6,7 @@ lbl_80830288:
 /* 80830298  93 C1 00 08 */	stw r30, 8(r1)
 /* 8083029C  7C 7E 1B 78 */	mr r30, r3
 /* 808302A0  7C 9F 23 78 */	mr r31, r4
-/* 808302A4  4B 7E 8A 3C */	b fopAc_IsActor__FPv
+/* 808302A4  4B 7E 8A 3D */	bl fopAc_IsActor__FPv
 /* 808302A8  2C 03 00 00 */	cmpwi r3, 0
 /* 808302AC  41 82 00 74 */	beq lbl_80830320
 /* 808302B0  A8 1E 00 08 */	lha r0, 8(r30)

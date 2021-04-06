@@ -25,7 +25,7 @@ lbl_809B57B8:
 /* 809B57C4  7C 00 07 35 */	extsh. r0, r0
 /* 809B57C8  41 81 00 58 */	bgt lbl_809B5820
 /* 809B57CC  38 60 00 0B */	li r3, 0xb
-/* 809B57D0  4B 7F 30 14 */	b dKy_change_colpat__FUc
+/* 809B57D0  4B 7F 30 15 */	bl dKy_change_colpat__FUc
 /* 809B57D4  3B E0 00 01 */	li r31, 1
 /* 809B57D8  48 00 00 48 */	b lbl_809B5820
 lbl_809B57DC:
@@ -41,7 +41,7 @@ lbl_809B57F8:
 /* 809B57FC  38 A0 00 00 */	li r5, 0
 /* 809B5800  38 C0 00 00 */	li r6, 0
 /* 809B5804  38 E0 00 00 */	li r7, 0
-/* 809B5808  4B 79 64 70 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 809B5808  4B 79 64 71 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 809B580C  2C 03 00 00 */	cmpwi r3, 0
 /* 809B5810  41 82 00 10 */	beq lbl_809B5820
 /* 809B5814  3B E0 00 01 */	li r31, 1

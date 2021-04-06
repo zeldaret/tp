@@ -45,11 +45,11 @@ lbl_80740BAC:
 lbl_80740BD8:
 /* 80740BD8  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80740BDC  7C 03 07 74 */	extsb r3, r0
-/* 80740BE0  4B 8E C4 8C */	b dComIfGp_getReverb__Fi
+/* 80740BE0  4B 8E C4 8D */	bl dComIfGp_getReverb__Fi
 /* 80740BE4  7C 65 1B 78 */	mr r5, r3
 /* 80740BE8  80 7F 07 1C */	lwz r3, 0x71c(r31)
 /* 80740BEC  38 80 00 00 */	li r4, 0
-/* 80740BF0  4B 8D 04 C0 */	b play__16mDoExt_McaMorfSOFUlSc
+/* 80740BF0  4B 8D 04 C1 */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 80740BF4  48 00 00 14 */	b lbl_80740C08
 lbl_80740BF8:
 /* 80740BF8  7F E3 FB 78 */	mr r3, r31

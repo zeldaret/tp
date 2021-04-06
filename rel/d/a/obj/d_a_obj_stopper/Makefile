@@ -3,19 +3,20 @@
 #
 
 M634_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper.plf
+M634_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper.lcf
+M634_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper.map
 
 M634_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stopper/executor.cpp \
-	rel/d/a/obj/d_a_obj_stopper/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_stopper/d_a_obj_stopper.cpp \
 
 M634_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/d_a_obj_stopper.o \
 
 M634_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/libRuntime.PPCEABI.H.a \
 
 M634_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M634_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map634.map\
+	-m _prolog \
+	-lcf $(M634_LDSCRIPT) \
+	-unused -map $(M634_MAP) \
+	-w off \
 
 $(M634_TARGET): $(M634_O_FILES) $(M634_LIBS)
+	@echo [634] creating $(M634_TARGET)
 	@echo $(M634_LIBS) $(M634_O_FILES) > build/M634_ofiles
-	$(LD) -opt_partial $(M634_LDFLAGS) -o $(M634_TARGET) @build/M634_ofiles
+	@python3 tools/lcf.py rel 634 --output $(M634_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M634_LDFLAGS) -o $(M634_TARGET) @build/M634_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stopper/%.o: rel/d/a/obj/d_a_obj_stopper/%.cpp
+	@echo [634] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M634_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M634_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_stopper/libs/Runtime.PPCEABI.H/Makefile
 

@@ -25,8 +25,8 @@ lbl_8019D300:
 /* 8019D318  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8019D31C  28 00 00 06 */	cmplwi r0, 6
 /* 8019D320  41 81 00 FC */	bgt lbl_8019D41C
-/* 8019D324  3C 60 80 3C */	lis r3, lit_4511@ha
-/* 8019D328  38 63 BF 3C */	addi r3, r3, lit_4511@l
+/* 8019D324  3C 60 80 3C */	lis r3, lit_4511@ha /* 0x803BBF3C@ha */
+/* 8019D328  38 63 BF 3C */	addi r3, r3, lit_4511@l /* 0x803BBF3C@l */
 /* 8019D32C  54 00 10 3A */	slwi r0, r0, 2
 /* 8019D330  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8019D334  7C 09 03 A6 */	mtctr r0

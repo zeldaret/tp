@@ -8,11 +8,11 @@ lbl_80BDC75C:
 /* 80BDC774  7C 9F 23 78 */	mr r31, r4
 /* 80BDC778  41 82 00 1C */	beq lbl_80BDC794
 /* 80BDC77C  38 80 00 00 */	li r4, 0
-/* 80BDC780  4B 43 C5 0C */	b __dt__10fopAc_ac_cFv
+/* 80BDC780  4B 43 C5 0D */	bl __dt__10fopAc_ac_cFv
 /* 80BDC784  7F E0 07 35 */	extsh. r0, r31
 /* 80BDC788  40 81 00 0C */	ble lbl_80BDC794
 /* 80BDC78C  7F C3 F3 78 */	mr r3, r30
-/* 80BDC790  4B 6F 25 AC */	b __dl__FPv
+/* 80BDC790  4B 6F 25 AD */	bl __dl__FPv
 lbl_80BDC794:
 /* 80BDC794  7F C3 F3 78 */	mr r3, r30
 /* 80BDC798  83 E1 00 0C */	lwz r31, 0xc(r1)

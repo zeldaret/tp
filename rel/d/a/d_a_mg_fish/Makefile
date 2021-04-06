@@ -3,19 +3,20 @@
 #
 
 M78_TARGET := $(BUILD_DIR)/rel/d/a/d_a_mg_fish.plf
+M78_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_mg_fish.lcf
+M78_MAP := $(BUILD_DIR)/rel/d/a/d_a_mg_fish.map
 
 M78_CPP_FILES := \
-	rel/d/a/d_a_mg_fish/executor.cpp \
-	rel/d/a/d_a_mg_fish/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_mg_fish/d_a_mg_fish.cpp \
 
 M78_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fish/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fish/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_mg_fish/d_a_mg_fish.o \
 
 M78_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fish/libRuntime.PPCEABI.H.a \
 
 M78_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M78_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map78.map\
+	-m _prolog \
+	-lcf $(M78_LDSCRIPT) \
+	-unused -map $(M78_MAP) \
+	-w off \
 
 $(M78_TARGET): $(M78_O_FILES) $(M78_LIBS)
+	@echo [ 78] creating $(M78_TARGET)
 	@echo $(M78_LIBS) $(M78_O_FILES) > build/M78_ofiles
-	$(LD) -opt_partial $(M78_LDFLAGS) -o $(M78_TARGET) @build/M78_ofiles
+	@python3 tools/lcf.py rel 78 --output $(M78_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M78_LDFLAGS) -o $(M78_TARGET) @build/M78_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_fish/%.o: rel/d/a/d_a_mg_fish/%.cpp
+	@echo [ 78] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M78_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M78_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_mg_fish/libs/Runtime.PPCEABI.H/Makefile
 

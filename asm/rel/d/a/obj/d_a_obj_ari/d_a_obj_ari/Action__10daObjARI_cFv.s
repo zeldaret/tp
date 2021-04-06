@@ -14,19 +14,19 @@ lbl_80BA337C:
 /* 80BA33AC  B0 1F 05 EA */	sth r0, 0x5ea(r31)
 lbl_80BA33B0:
 /* 80BA33B0  7F E3 FB 78 */	mr r3, r31
-/* 80BA33B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80BA33B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80BA33B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BA33B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BA33BC  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80BA33C0  4B 47 74 20 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 80BA33C4  3C 60 80 BA */	lis r3, lit_4152@ha
-/* 80BA33C8  C0 03 54 B4 */	lfs f0, lit_4152@l(r3)
+/* 80BA33C0  4B 47 74 21 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80BA33C4  3C 60 80 BA */	lis r3, lit_4152@ha /* 0x80BA54B4@ha */
+/* 80BA33C8  C0 03 54 B4 */	lfs f0, lit_4152@l(r3)  /* 0x80BA54B4@l */
 /* 80BA33CC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BA33D0  40 80 00 0C */	bge lbl_80BA33DC
 /* 80BA33D4  7F E3 FB 78 */	mr r3, r31
 /* 80BA33D8  4B FF FE 99 */	bl MoveAction__10daObjARI_cFv
 lbl_80BA33DC:
 /* 80BA33DC  7F E3 FB 78 */	mr r3, r31
-/* 80BA33E0  4B 5B AC 98 */	b Insect_GetDemoMain__9dInsect_cFv
+/* 80BA33E0  4B 5B AC 99 */	bl Insect_GetDemoMain__9dInsect_cFv
 /* 80BA33E4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80BA33E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80BA33EC  7C 08 03 A6 */	mtlr r0

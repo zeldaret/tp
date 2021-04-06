@@ -1,6 +1,6 @@
 lbl_8024575C:
-/* 8024575C  3C 80 80 3C */	lis r4, __vt__19dMsgScrnLight_HIO_c@ha
-/* 80245760  38 04 12 A4 */	addi r0, r4, __vt__19dMsgScrnLight_HIO_c@l
+/* 8024575C  3C 80 80 3C */	lis r4, __vt__19dMsgScrnLight_HIO_c@ha /* 0x803C12A4@ha */
+/* 80245760  38 04 12 A4 */	addi r0, r4, __vt__19dMsgScrnLight_HIO_c@l /* 0x803C12A4@l */
 /* 80245764  90 03 00 00 */	stw r0, 0(r3)
 /* 80245768  39 40 00 00 */	li r10, 0
 /* 8024576C  99 43 00 05 */	stb r10, 5(r3)

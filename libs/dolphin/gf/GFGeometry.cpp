@@ -17,8 +17,6 @@ struct _GXCullMode {};
 // Forward References:
 //
 
-void GFSetGenMode2(u8, u8, u8, u8, _GXCullMode);
-
 extern "C" void GFSetGenMode2__FUcUcUcUc11_GXCullMode();
 extern "C" extern u8 data_804508B0[8];
 
@@ -31,7 +29,7 @@ extern "C" extern u8 data_804508B0[8];
 //
 
 /* ############################################################################################## */
-/* 804508A8-804508B0 0004+04 s=1 e=0 z=0  None .sdata     cm2hw$539 */
+/* 804508A8-804508B0 000328 0004+04 1/1 0/0 0/0 .sdata           cm2hw$539 */
 SECTION_SDATA static u8 cm2hw[4 + 4 /* padding */] = {
     0x00,
     0x02,
@@ -44,8 +42,7 @@ SECTION_SDATA static u8 cm2hw[4 + 4 /* padding */] = {
     0x00,
 };
 
-/* 802CDDC8-802CDE54 008C+00 s=0 e=0 z=1  None .text      GFSetGenMode2__FUcUcUcUc11_GXCullMode */
-//	802CDDE8: 804508A8 (cm2hw)
+/* 802CDDC8-802CDE54 2C8708 008C+00 0/0 0/0 1/1 .text GFSetGenMode2__FUcUcUcUc11_GXCullMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -56,7 +53,7 @@ asm void GFSetGenMode2(u8 param_0, u8 param_1, u8 param_2, u8 param_3, _GXCullMo
 #pragma pop
 
 /* ############################################################################################## */
-/* 804508B0-804508B8 0008+00 s=0 e=2 z=0  None .sdata     None */
-SECTION_SDATA u8 data_804508B0[8] = {
+/* 804508B0-804508B8 000330 0008+00 0/0 2/2 0/0 .sdata           None */
+SECTION_SDATA extern u8 data_804508B0[8] = {
     0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };

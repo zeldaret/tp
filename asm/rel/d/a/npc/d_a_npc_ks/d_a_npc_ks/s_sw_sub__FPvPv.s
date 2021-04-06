@@ -6,7 +6,7 @@ lbl_80A4BA14:
 /* 80A4BA24  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A4BA28  7C 7E 1B 78 */	mr r30, r3
 /* 80A4BA2C  7C 9F 23 78 */	mr r31, r4
-/* 80A4BA30  4B 5C D2 B0 */	b fopAc_IsActor__FPv
+/* 80A4BA30  4B 5C D2 B1 */	bl fopAc_IsActor__FPv
 /* 80A4BA34  2C 03 00 00 */	cmpwi r3, 0
 /* 80A4BA38  41 82 00 3C */	beq lbl_80A4BA74
 /* 80A4BA3C  A8 1E 00 08 */	lha r0, 8(r30)

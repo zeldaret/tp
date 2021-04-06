@@ -10,12 +10,12 @@ lbl_80AC1110:
 /* 80AC1130  41 82 00 28 */	beq lbl_80AC1158
 /* 80AC1134  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80AC1138  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80AC113C  4B 68 47 5C */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AC113C  4B 68 47 5D */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AC1140  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 80AC1144  38 00 00 00 */	li r0, 0
 /* 80AC1148  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 80AC114C  3C 60 80 AC */	lis r3, lit_4608@ha
-/* 80AC1150  C0 03 45 CC */	lfs f0, lit_4608@l(r3)
+/* 80AC114C  3C 60 80 AC */	lis r3, lit_4608@ha /* 0x80AC45CC@ha */
+/* 80AC1150  C0 03 45 CC */	lfs f0, lit_4608@l(r3)  /* 0x80AC45CC@l */
 /* 80AC1154  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_80AC1158:
 /* 80AC1158  83 E1 00 0C */	lwz r31, 0xc(r1)

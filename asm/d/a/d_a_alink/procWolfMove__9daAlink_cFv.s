@@ -17,8 +17,8 @@ lbl_8012D3E4:
 /* 8012D420  40 82 00 28 */	bne lbl_8012D448
 /* 8012D424  C0 5F 33 98 */	lfs f2, 0x3398(r31)
 /* 8012D428  C0 3F 05 94 */	lfs f1, 0x594(r31)
-/* 8012D42C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8012D430  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 8012D42C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8012D430  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8012D434  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 8012D438  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8012D43C  FC 02 00 40 */	fcmpo cr0, f2, f0

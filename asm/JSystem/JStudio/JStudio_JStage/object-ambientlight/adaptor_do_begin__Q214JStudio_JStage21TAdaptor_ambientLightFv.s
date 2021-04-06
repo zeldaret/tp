@@ -24,8 +24,8 @@ lbl_8028B724:
 /* 8028B77C  4E 80 04 21 */	bctrl 
 /* 8028B780  90 61 00 08 */	stw r3, 8(r1)
 /* 8028B784  7F C3 F3 78 */	mr r3, r30
-/* 8028B788  3C 80 80 3A */	lis r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@ha
-/* 8028B78C  38 84 AA 98 */	addi r4, r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@l
+/* 8028B788  3C 80 80 3A */	lis r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@ha /* 0x8039AA98@ha */
+/* 8028B78C  38 84 AA 98 */	addi r4, r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@l /* 0x8039AA98@l */
 /* 8028B790  38 A1 00 08 */	addi r5, r1, 8
 /* 8028B794  4B FF AB 19 */	bl adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
 /* 8028B798  83 E1 00 1C */	lwz r31, 0x1c(r1)

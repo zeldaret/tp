@@ -5,7 +5,7 @@ lbl_80522CBC:
 /* 80522CC8  DB E1 00 40 */	stfd f31, 0x40(r1)
 /* 80522CCC  F3 E1 00 48 */	psq_st f31, 72(r1), 0, 0 /* qr0 */
 /* 80522CD0  39 61 00 40 */	addi r11, r1, 0x40
-/* 80522CD4  4B E3 F4 F0 */	b _savegpr_23
+/* 80522CD4  4B E3 F4 F1 */	bl _savegpr_23
 /* 80522CD8  7C 7B 1B 78 */	mr r27, r3
 /* 80522CDC  7C 9C 23 78 */	mr r28, r4
 /* 80522CE0  7C BD 2B 78 */	mr r29, r5
@@ -14,9 +14,9 @@ lbl_80522CBC:
 /* 80522CEC  7D 1E 43 78 */	mr r30, r8
 /* 80522CF0  7D 39 4B 78 */	mr r25, r9
 /* 80522CF4  7D 5A 53 78 */	mr r26, r10
-/* 80522CF8  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80522CFC  3B E3 31 D8 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80522D00  4B AF B8 58 */	b fopOvlpM_IsPeek__Fv
+/* 80522CF8  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha /* 0x805231D8@ha */
+/* 80522CFC  3B E3 31 D8 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x805231D8@l */
+/* 80522D00  4B AF B8 59 */	bl fopOvlpM_IsPeek__Fv
 /* 80522D04  2C 03 00 00 */	cmpwi r3, 0
 /* 80522D08  41 82 00 1C */	beq lbl_80522D24
 /* 80522D0C  7F 03 C3 78 */	mr r3, r24
@@ -37,9 +37,9 @@ lbl_80522D30:
 /* 80522D40  60 00 00 40 */	ori r0, r0, 0x40
 /* 80522D44  98 1C 00 00 */	stb r0, 0(r28)
 lbl_80522D48:
-/* 80522D48  3C 60 80 52 */	lis r3, lit_6262@ha
-/* 80522D4C  C0 23 31 A8 */	lfs f1, lit_6262@l(r3)
-/* 80522D50  4B D4 4C 04 */	b cM_rndF__Ff
+/* 80522D48  3C 60 80 52 */	lis r3, lit_6262@ha /* 0x805231A8@ha */
+/* 80522D4C  C0 23 31 A8 */	lfs f1, lit_6262@l(r3)  /* 0x805231A8@l */
+/* 80522D50  4B D4 4C 05 */	bl cM_rndF__Ff
 /* 80522D54  FC 00 08 1E */	fctiwz f0, f1
 /* 80522D58  D8 01 00 08 */	stfd f0, 8(r1)
 /* 80522D5C  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -89,7 +89,7 @@ lbl_80522DF0:
 /* 80522E08  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 80522E0C  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 80522E10  39 61 00 40 */	addi r11, r1, 0x40
-/* 80522E14  4B E3 F3 FC */	b _restgpr_23
+/* 80522E14  4B E3 F3 FD */	bl _restgpr_23
 /* 80522E18  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80522E1C  7C 08 03 A6 */	mtlr r0
 /* 80522E20  38 21 00 50 */	addi r1, r1, 0x50

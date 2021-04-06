@@ -77,7 +77,7 @@ extern "C" void _restgpr_27();
 // Declarations:
 //
 
-/* 8032C320-8032C3C4 00A4+00 s=0 e=5 z=72  None .text      initialize__14J3DMaterialAnmFv */
+/* 8032C320-8032C3C4 326C60 00A4+00 0/0 5/5 72/72 .text            initialize__14J3DMaterialAnmFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,12 +87,7 @@ asm void J3DMaterialAnm::initialize() {
 }
 #pragma pop
 
-/* 8032C3C4-8032C5A4 01E0+00 s=1 e=4 z=2  None .text      calc__14J3DMaterialAnmCFP11J3DMaterial */
-//	8032C3D4: 803621D4 (_savegpr_27)
-//	8032C4D0: 8032B1F8 (getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10)
-//	8032C520: 8032B4BC (getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor)
-//	8032C578: 80329F14 (calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo)
-//	8032C590: 80362220 (_restgpr_27)
+/* 8032C3C4-8032C5A4 326D04 01E0+00 1/0 4/4 2/2 .text calc__14J3DMaterialAnmCFP11J3DMaterial */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,7 +97,7 @@ asm void J3DMaterialAnm::calc(J3DMaterial* param_0) const {
 }
 #pragma pop
 
-/* 8032C5A4-8032C5E4 0040+00 s=0 e=2 z=0  None .text
+/* 8032C5A4-8032C5E4 326EE4 0040+00 0/0 2/2 0/0 .text
  * setMatColorAnm__14J3DMaterialAnmFiP14J3DMatColorAnm          */
 #pragma push
 #pragma optimization_level 0
@@ -113,7 +108,7 @@ asm void J3DMaterialAnm::setMatColorAnm(int param_0, J3DMatColorAnm* param_1) {
 }
 #pragma pop
 
-/* 8032C5E4-8032C624 0040+00 s=0 e=3 z=0  None .text
+/* 8032C5E4-8032C624 326F24 0040+00 0/0 3/3 0/0 .text
  * setTexMtxAnm__14J3DMaterialAnmFiP12J3DTexMtxAnm              */
 #pragma push
 #pragma optimization_level 0
@@ -124,8 +119,8 @@ asm void J3DMaterialAnm::setTexMtxAnm(int param_0, J3DTexMtxAnm* param_1) {
 }
 #pragma pop
 
-/* 8032C624-8032C664 0040+00 s=0 e=2 z=0  None .text setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm
- */
+/* 8032C624-8032C664 326F64 0040+00 0/0 2/2 0/0 .text
+ * setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -135,7 +130,7 @@ asm void J3DMaterialAnm::setTexNoAnm(int param_0, J3DTexNoAnm* param_1) {
 }
 #pragma pop
 
-/* 8032C664-8032C6A4 0040+00 s=0 e=3 z=0  None .text
+/* 8032C664-8032C6A4 326FA4 0040+00 0/0 3/3 0/0 .text
  * setTevColorAnm__14J3DMaterialAnmFiP14J3DTevColorAnm          */
 #pragma push
 #pragma optimization_level 0
@@ -146,7 +141,7 @@ asm void J3DMaterialAnm::setTevColorAnm(int param_0, J3DTevColorAnm* param_1) {
 }
 #pragma pop
 
-/* 8032C6A4-8032C6E4 0040+00 s=0 e=3 z=0  None .text
+/* 8032C6A4-8032C6E4 326FE4 0040+00 0/0 3/3 0/0 .text
  * setTevKColorAnm__14J3DMaterialAnmFiP15J3DTevKColorAnm        */
 #pragma push
 #pragma optimization_level 0
@@ -158,8 +153,8 @@ asm void J3DMaterialAnm::setTevKColorAnm(int param_0, J3DTevKColorAnm* param_1) 
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CEE60-803CEE70 0010+00 s=0 e=10 z=74  None .data      __vt__14J3DMaterialAnm */
-SECTION_DATA void* __vt__14J3DMaterialAnm[4] = {
+/* 803CEE60-803CEE70 02BF80 0010+00 0/0 10/10 74/74 .data            __vt__14J3DMaterialAnm */
+SECTION_DATA extern void* __vt__14J3DMaterialAnm[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14J3DMaterialAnmFv,

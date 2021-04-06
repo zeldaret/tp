@@ -1,6 +1,6 @@
 lbl_807C3A50:
-/* 807C3A50  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 807C3A54  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 807C3A50  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807C3A54  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807C3A58  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 807C3A5C  88 04 05 68 */	lbz r0, 0x568(r4)
 /* 807C3A60  28 00 00 39 */	cmplwi r0, 0x39

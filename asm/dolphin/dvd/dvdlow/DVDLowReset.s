@@ -13,7 +13,7 @@ lbl_80348388:
 /* 803483B4  94 1F 00 24 */	stwu r0, 0x24(r31)
 /* 803483B8  4B FF A3 65 */	bl __OSGetSystemTime
 /* 803483BC  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
-/* 803483C0  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 803483C0  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 803483C4  3C A0 43 1C */	lis r5, 0x431C /* 0x431BDE83@ha */
 /* 803483C8  38 A5 DE 83 */	addi r5, r5, 0xDE83 /* 0x431BDE83@l */
 /* 803483CC  54 00 F0 BE */	srwi r0, r0, 2

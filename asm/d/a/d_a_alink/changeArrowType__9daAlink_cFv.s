@@ -53,8 +53,8 @@ lbl_800DEC68:
 /* 800DEC84  A0 1F 2F DC */	lhz r0, 0x2fdc(r31)
 /* 800DEC88  28 00 00 5A */	cmplwi r0, 0x5a
 /* 800DEC8C  40 82 00 A0 */	bne lbl_800DED2C
-/* 800DEC90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DEC94  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800DEC90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DEC94  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DEC98  80 64 5F 18 */	lwz r3, 0x5f18(r4)
 /* 800DEC9C  54 60 02 95 */	rlwinm. r0, r3, 0, 0xa, 0xa
 /* 800DECA0  41 82 00 48 */	beq lbl_800DECE8

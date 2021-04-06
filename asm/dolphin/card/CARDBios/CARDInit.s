@@ -1,11 +1,11 @@
 lbl_80353AC8:
 /* 80353AC8  7C 08 02 A6 */	mflr r0
-/* 80353ACC  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 80353ACC  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80353AD0  90 01 00 04 */	stw r0, 4(r1)
 /* 80353AD4  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 80353AD8  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80353ADC  93 C1 00 10 */	stw r30, 0x10(r1)
-/* 80353AE0  3B C3 CB C0 */	addi r30, r3, __CARDBlock@l
+/* 80353AE0  3B C3 CB C0 */	addi r30, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80353AE4  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 80353AE8  80 1E 01 0C */	lwz r0, 0x10c(r30)
 /* 80353AEC  28 00 00 00 */	cmplwi r0, 0
@@ -34,8 +34,8 @@ lbl_80353B20:
 /* 80353B40  41 80 FF E0 */	blt lbl_80353B20
 /* 80353B44  3C 60 80 00 */	lis r3, 0x8000
 /* 80353B48  48 00 00 35 */	bl __CARDSetDiskID
-/* 80353B4C  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha
-/* 80353B50  38 63 1E 80 */	addi r3, r3, ResetFunctionInfo@l
+/* 80353B4C  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha /* 0x803D1E80@ha */
+/* 80353B50  38 63 1E 80 */	addi r3, r3, ResetFunctionInfo@l /* 0x803D1E80@l */
 /* 80353B54  4B FE BB 0D */	bl OSRegisterResetFunction
 lbl_80353B58:
 /* 80353B58  80 01 00 1C */	lwz r0, 0x1c(r1)

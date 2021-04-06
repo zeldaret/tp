@@ -3,19 +3,20 @@
 #
 
 M579_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan.plf
+M579_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan.lcf
+M579_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan.map
 
 M579_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_myogan/executor.cpp \
-	rel/d/a/obj/d_a_obj_myogan/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan.cpp \
 
 M579_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan.o \
 
 M579_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/libRuntime.PPCEABI.H.a \
 
 M579_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M579_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map579.map\
+	-m _prolog \
+	-lcf $(M579_LDSCRIPT) \
+	-unused -map $(M579_MAP) \
+	-w off \
 
 $(M579_TARGET): $(M579_O_FILES) $(M579_LIBS)
+	@echo [579] creating $(M579_TARGET)
 	@echo $(M579_LIBS) $(M579_O_FILES) > build/M579_ofiles
-	$(LD) -opt_partial $(M579_LDFLAGS) -o $(M579_TARGET) @build/M579_ofiles
+	@python3 tools/lcf.py rel 579 --output $(M579_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M579_LDFLAGS) -o $(M579_TARGET) @build/M579_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_myogan/%.o: rel/d/a/obj/d_a_obj_myogan/%.cpp
+	@echo [579] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M579_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M579_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_myogan/libs/Runtime.PPCEABI.H/Makefile
 

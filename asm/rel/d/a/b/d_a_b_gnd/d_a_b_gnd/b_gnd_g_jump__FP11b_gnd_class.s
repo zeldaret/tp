@@ -3,17 +3,17 @@ lbl_805F8C20:
 /* 805F8C24  7C 08 02 A6 */	mflr r0
 /* 805F8C28  90 01 00 34 */	stw r0, 0x34(r1)
 /* 805F8C2C  39 61 00 30 */	addi r11, r1, 0x30
-/* 805F8C30  4B D6 95 A8 */	b _savegpr_28
+/* 805F8C30  4B D6 95 A9 */	bl _savegpr_28
 /* 805F8C34  7C 7D 1B 78 */	mr r29, r3
-/* 805F8C38  3C 60 80 60 */	lis r3, lit_3815@ha
-/* 805F8C3C  3B E3 26 64 */	addi r31, r3, lit_3815@l
+/* 805F8C38  3C 60 80 60 */	lis r3, lit_3815@ha /* 0x80602664@ha */
+/* 805F8C3C  3B E3 26 64 */	addi r31, r3, lit_3815@l /* 0x80602664@l */
 /* 805F8C40  3B C0 00 01 */	li r30, 1
 /* 805F8C44  80 1D 1F B4 */	lwz r0, 0x1fb4(r29)
 /* 805F8C48  90 01 00 08 */	stw r0, 8(r1)
-/* 805F8C4C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 805F8C50  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 805F8C4C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 805F8C50  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 805F8C54  38 81 00 08 */	addi r4, r1, 8
-/* 805F8C58  4B A2 0B A0 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 805F8C58  4B A2 0B A1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 805F8C5C  7C 7C 1B 78 */	mr r28, r3
 /* 805F8C60  A8 1D 05 BC */	lha r0, 0x5bc(r29)
 /* 805F8C64  2C 00 00 03 */	cmpwi r0, 3
@@ -69,12 +69,12 @@ lbl_805F8CEC:
 /* 805F8D1C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805F8D20  40 81 00 3C */	ble lbl_805F8D5C
 /* 805F8D24  C0 3F 00 74 */	lfs f1, 0x74(r31)
-/* 805F8D28  4B C6 EC 2C */	b cM_rndF__Ff
+/* 805F8D28  4B C6 EC 2D */	bl cM_rndF__Ff
 /* 805F8D2C  C0 1F 00 98 */	lfs f0, 0x98(r31)
 /* 805F8D30  EC 00 08 2A */	fadds f0, f0, f1
 /* 805F8D34  D0 1D 05 2C */	stfs f0, 0x52c(r29)
 /* 805F8D38  C0 3F 00 2C */	lfs f1, 0x2c(r31)
-/* 805F8D3C  4B C6 EC 50 */	b cM_rndFX__Ff
+/* 805F8D3C  4B C6 EC 51 */	bl cM_rndFX__Ff
 /* 805F8D40  FC 00 08 1E */	fctiwz f0, f1
 /* 805F8D44  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 805F8D48  80 61 00 14 */	lwz r3, 0x14(r1)
@@ -84,12 +84,12 @@ lbl_805F8CEC:
 /* 805F8D58  48 00 00 38 */	b lbl_805F8D90
 lbl_805F8D5C:
 /* 805F8D5C  C0 3F 00 74 */	lfs f1, 0x74(r31)
-/* 805F8D60  4B C6 EB F4 */	b cM_rndF__Ff
+/* 805F8D60  4B C6 EB F5 */	bl cM_rndF__Ff
 /* 805F8D64  C0 1F 00 74 */	lfs f0, 0x74(r31)
 /* 805F8D68  EC 00 08 2A */	fadds f0, f0, f1
 /* 805F8D6C  D0 1D 05 2C */	stfs f0, 0x52c(r29)
 /* 805F8D70  C0 3F 00 50 */	lfs f1, 0x50(r31)
-/* 805F8D74  4B C6 EC 18 */	b cM_rndFX__Ff
+/* 805F8D74  4B C6 EC 19 */	bl cM_rndFX__Ff
 /* 805F8D78  FC 00 08 1E */	fctiwz f0, f1
 /* 805F8D7C  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 805F8D80  80 61 00 14 */	lwz r3, 0x14(r1)
@@ -108,7 +108,7 @@ lbl_805F8DA4:
 /* 805F8DAC  A8 9D 0C 3C */	lha r4, 0xc3c(r29)
 /* 805F8DB0  38 A0 00 02 */	li r5, 2
 /* 805F8DB4  38 C0 06 00 */	li r6, 0x600
-/* 805F8DB8  4B C7 78 50 */	b cLib_addCalcAngleS2__FPssss
+/* 805F8DB8  4B C7 78 51 */	bl cLib_addCalcAngleS2__FPssss
 /* 805F8DBC  38 00 00 01 */	li r0, 1
 /* 805F8DC0  98 1C 39 64 */	stb r0, 0x3964(r28)
 /* 805F8DC4  80 1D 0D 00 */	lwz r0, 0xd00(r29)
@@ -165,7 +165,7 @@ lbl_805F8E80:
 /* 805F8E84  A8 9D 0C 3C */	lha r4, 0xc3c(r29)
 /* 805F8E88  38 A0 00 02 */	li r5, 2
 /* 805F8E8C  38 C0 06 00 */	li r6, 0x600
-/* 805F8E90  4B C7 77 78 */	b cLib_addCalcAngleS2__FPssss
+/* 805F8E90  4B C7 77 79 */	bl cLib_addCalcAngleS2__FPssss
 /* 805F8E94  A8 1D 04 E6 */	lha r0, 0x4e6(r29)
 /* 805F8E98  B0 1D 04 DE */	sth r0, 0x4de(r29)
 /* 805F8E9C  A8 1D 0C 44 */	lha r0, 0xc44(r29)
@@ -189,7 +189,7 @@ lbl_805F8ECC:
 /* 805F8EE0  48 00 00 8C */	b lbl_805F8F6C
 lbl_805F8EE4:
 /* 805F8EE4  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 805F8EE8  4B C6 EA 6C */	b cM_rndF__Ff
+/* 805F8EE8  4B C6 EA 6D */	bl cM_rndF__Ff
 /* 805F8EEC  C0 1F 00 88 */	lfs f0, 0x88(r31)
 /* 805F8EF0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805F8EF4  40 80 00 10 */	bge lbl_805F8F04
@@ -229,7 +229,7 @@ lbl_805F8F58:
 lbl_805F8F6C:
 /* 805F8F6C  7F C3 F3 78 */	mr r3, r30
 /* 805F8F70  39 61 00 30 */	addi r11, r1, 0x30
-/* 805F8F74  4B D6 92 B0 */	b _restgpr_28
+/* 805F8F74  4B D6 92 B1 */	bl _restgpr_28
 /* 805F8F78  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 805F8F7C  7C 08 03 A6 */	mtlr r0
 /* 805F8F80  38 21 00 30 */	addi r1, r1, 0x30

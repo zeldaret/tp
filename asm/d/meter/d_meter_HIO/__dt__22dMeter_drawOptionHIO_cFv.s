@@ -5,8 +5,8 @@ lbl_80200F98:
 /* 80200FA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200FA8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200FAC  41 82 00 1C */	beq lbl_80200FC8
-/* 80200FB0  3C A0 80 3C */	lis r5, __vt__22dMeter_drawOptionHIO_c@ha
-/* 80200FB4  38 05 F1 84 */	addi r0, r5, __vt__22dMeter_drawOptionHIO_c@l
+/* 80200FB0  3C A0 80 3C */	lis r5, __vt__22dMeter_drawOptionHIO_c@ha /* 0x803BF184@ha */
+/* 80200FB4  38 05 F1 84 */	addi r0, r5, __vt__22dMeter_drawOptionHIO_c@l /* 0x803BF184@l */
 /* 80200FB8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200FBC  7C 80 07 35 */	extsh. r0, r4
 /* 80200FC0  40 81 00 08 */	ble lbl_80200FC8

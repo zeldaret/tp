@@ -5,12 +5,12 @@ lbl_803092AC:
 /* 803092B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803092BC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803092C0  41 82 00 30 */	beq lbl_803092F0
-/* 803092C4  3C 60 80 3D */	lis r3, __vt__19J2DAnmKeyLoader_v15@ha
-/* 803092C8  38 03 D6 DC */	addi r0, r3, __vt__19J2DAnmKeyLoader_v15@l
+/* 803092C4  3C 60 80 3D */	lis r3, __vt__19J2DAnmKeyLoader_v15@ha /* 0x803CD6DC@ha */
+/* 803092C8  38 03 D6 DC */	addi r0, r3, __vt__19J2DAnmKeyLoader_v15@l /* 0x803CD6DC@l */
 /* 803092CC  90 1F 00 00 */	stw r0, 0(r31)
 /* 803092D0  41 82 00 10 */	beq lbl_803092E0
-/* 803092D4  3C 60 80 3D */	lis r3, __vt__12J2DAnmLoader@ha
-/* 803092D8  38 03 D6 F0 */	addi r0, r3, __vt__12J2DAnmLoader@l
+/* 803092D4  3C 60 80 3D */	lis r3, __vt__12J2DAnmLoader@ha /* 0x803CD6F0@ha */
+/* 803092D8  38 03 D6 F0 */	addi r0, r3, __vt__12J2DAnmLoader@l /* 0x803CD6F0@l */
 /* 803092DC  90 1F 00 00 */	stw r0, 0(r31)
 lbl_803092E0:
 /* 803092E0  7C 80 07 35 */	extsh. r0, r4

@@ -5,8 +5,8 @@ lbl_8004ABC4:
 /* 8004ABD0  80 6D 89 18 */	lwz r3, mModel__18dPa_modelEcallBack(r13)
 /* 8004ABD4  28 03 00 00 */	cmplwi r3, 0
 /* 8004ABD8  41 82 00 18 */	beq lbl_8004ABF0
-/* 8004ABDC  3C 80 80 05 */	lis r4, __dt__Q218dPa_modelEcallBack7model_cFv@ha
-/* 8004ABE0  38 84 AB 88 */	addi r4, r4, __dt__Q218dPa_modelEcallBack7model_cFv@l
+/* 8004ABDC  3C 80 80 05 */	lis r4, __dt__Q218dPa_modelEcallBack7model_cFv@ha /* 0x8004AB88@ha */
+/* 8004ABE0  38 84 AB 88 */	addi r4, r4, __dt__Q218dPa_modelEcallBack7model_cFv@l /* 0x8004AB88@l */
 /* 8004ABE4  48 31 70 89 */	bl __destroy_new_array
 /* 8004ABE8  38 00 00 00 */	li r0, 0
 /* 8004ABEC  90 0D 89 18 */	stw r0, mModel__18dPa_modelEcallBack(r13)

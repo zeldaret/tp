@@ -3,17 +3,15 @@
 #
 
 M2_TARGET := $(BUILD_DIR)/rel/d/a/d_a_andsw.plf
+M2_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_andsw.lcf
+M2_MAP := $(BUILD_DIR)/rel/d/a/d_a_andsw.map
 
 M2_CPP_FILES := \
-	rel/d/a/d_a_andsw/executor.cpp \
-	rel/d/a/d_a_andsw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_andsw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_andsw/d_a_andsw.cpp \
 
 M2_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_andsw/d_a_andsw.o \
 
 M2_LIBS := \
@@ -29,15 +27,21 @@ M2_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map2.map\
+	-m _prolog \
+	-lcf $(M2_LDSCRIPT) \
+	-unused -map $(M2_MAP) \
+	-w off \
 
 $(M2_TARGET): $(M2_O_FILES) $(M2_LIBS)
+	@echo [  2] creating $(M2_TARGET)
 	@echo $(M2_LIBS) $(M2_O_FILES) > build/M2_ofiles
-	$(LD) -opt_partial $(M2_LDFLAGS) -o $(M2_TARGET) @build/M2_ofiles
+	@python3 tools/lcf.py rel 2 --output $(M2_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M2_LDFLAGS) -o $(M2_TARGET) @build/M2_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_andsw/%.o: rel/d/a/d_a_andsw/%.cpp
+	@echo [  2] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M2_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M2_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

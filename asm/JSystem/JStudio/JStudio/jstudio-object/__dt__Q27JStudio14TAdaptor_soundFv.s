@@ -7,8 +7,8 @@ lbl_80287B3C:
 /* 80287B50  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80287B54  7C 9F 23 78 */	mr r31, r4
 /* 80287B58  41 82 00 28 */	beq lbl_80287B80
-/* 80287B5C  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_sound@ha
-/* 80287B60  38 04 53 5C */	addi r0, r4, __vt__Q27JStudio14TAdaptor_sound@l
+/* 80287B5C  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_sound@ha /* 0x803C535C@ha */
+/* 80287B60  38 04 53 5C */	addi r0, r4, __vt__Q27JStudio14TAdaptor_sound@l /* 0x803C535C@l */
 /* 80287B64  90 1E 00 00 */	stw r0, 0(r30)
 /* 80287B68  38 80 00 00 */	li r4, 0
 /* 80287B6C  4B FF E4 65 */	bl __dt__Q27JStudio8TAdaptorFv

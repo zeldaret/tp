@@ -12,8 +12,8 @@ lbl_80C44E7C:
 /* 80C44EA4  C0 1F 04 D8 */	lfs f0, 0x4d8(r31)
 /* 80C44EA8  D0 1F 05 58 */	stfs f0, 0x558(r31)
 /* 80C44EAC  C0 3F 05 54 */	lfs f1, 0x554(r31)
-/* 80C44EB0  3C 60 80 C4 */	lis r3, lit_3683@ha
-/* 80C44EB4  C0 03 51 94 */	lfs f0, lit_3683@l(r3)
+/* 80C44EB0  3C 60 80 C4 */	lis r3, lit_3683@ha /* 0x80C45194@ha */
+/* 80C44EB4  C0 03 51 94 */	lfs f0, lit_3683@l(r3)  /* 0x80C45194@l */
 /* 80C44EB8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80C44EBC  D0 1F 05 54 */	stfs f0, 0x554(r31)
 /* 80C44EC0  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)

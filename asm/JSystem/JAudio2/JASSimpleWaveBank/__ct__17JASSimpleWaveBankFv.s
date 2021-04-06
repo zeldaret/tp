@@ -4,13 +4,13 @@ lbl_80298C94:
 /* 80298C9C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80298CA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80298CA4  7C 7F 1B 78 */	mr r31, r3
-/* 80298CA8  3C 60 80 3C */	lis r3, __vt__11JASWaveBank@ha
-/* 80298CAC  38 03 77 80 */	addi r0, r3, __vt__11JASWaveBank@l
+/* 80298CA8  3C 60 80 3C */	lis r3, __vt__11JASWaveBank@ha /* 0x803C7780@ha */
+/* 80298CAC  38 03 77 80 */	addi r0, r3, __vt__11JASWaveBank@l /* 0x803C7780@l */
 /* 80298CB0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298CB4  38 7F 00 04 */	addi r3, r31, 4
 /* 80298CB8  48 00 14 85 */	bl __ct__10JASWaveArcFv
-/* 80298CBC  3C 60 80 3C */	lis r3, __vt__17JASSimpleWaveBank@ha
-/* 80298CC0  38 63 77 AC */	addi r3, r3, __vt__17JASSimpleWaveBank@l
+/* 80298CBC  3C 60 80 3C */	lis r3, __vt__17JASSimpleWaveBank@ha /* 0x803C77AC@ha */
+/* 80298CC0  38 63 77 AC */	addi r3, r3, __vt__17JASSimpleWaveBank@l /* 0x803C77AC@l */
 /* 80298CC4  90 7F 00 00 */	stw r3, 0(r31)
 /* 80298CC8  38 03 00 18 */	addi r0, r3, 0x18
 /* 80298CCC  90 1F 00 04 */	stw r0, 4(r31)

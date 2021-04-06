@@ -1,7 +1,7 @@
 lbl_80A4F170:
 /* 80A4F170  38 A0 00 00 */	li r5, 0
-/* 80A4F174  3C C0 80 A6 */	lis r6, saru_p@ha
-/* 80A4F178  38 C6 E4 78 */	addi r6, r6, saru_p@l
+/* 80A4F174  3C C0 80 A6 */	lis r6, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4F178  38 C6 E4 78 */	addi r6, r6, saru_p@l /* 0x80A5E478@l */
 /* 80A4F17C  7C 89 03 A6 */	mtctr r4
 /* 80A4F180  2C 04 00 00 */	cmpwi r4, 0
 /* 80A4F184  40 81 00 4C */	ble lbl_80A4F1D0

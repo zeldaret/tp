@@ -6,8 +6,8 @@ lbl_80024D10:
 /* 80024D20  48 33 D4 BD */	bl _savegpr_29
 /* 80024D24  7C 7D 1B 78 */	mr r29, r3
 /* 80024D28  4B FF F6 C1 */	bl setStayNo__20dStage_roomControl_cFi
-/* 80024D2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80024D30  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80024D2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80024D30  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80024D34  38 7E 4E 20 */	addi r3, r30, 0x4e20
 /* 80024D38  81 9E 4E 20 */	lwz r12, 0x4e20(r30)
 /* 80024D3C  81 8C 00 30 */	lwz r12, 0x30(r12)

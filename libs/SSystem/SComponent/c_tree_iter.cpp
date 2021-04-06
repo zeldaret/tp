@@ -21,18 +21,12 @@ struct node_class {};
 // Forward References:
 //
 
-void cTrIt_Method(node_lists_tree_class*, int (*)(node_class*, void*), void*);
-void cTrIt_Judge(node_lists_tree_class*, void* (*)(node_class*, void*), void*);
-
 extern "C" void cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv();
 extern "C" void cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv();
 
 //
 // External References:
 //
-
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
-void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
 
 extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
@@ -45,11 +39,8 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 80266540-802665B4 0074+00 s=0 e=2 z=0  None .text
+/* 80266540-802665B4 260E80 0074+00 0/0 2/2 0/0 .text
  * cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv */
-//	80266550: 803621D4 (_savegpr_27)
-//	8026657C: 80266060 (cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv)
-//	802665A0: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -59,11 +50,8 @@ asm void cTrIt_Method(node_lists_tree_class* param_0, int (*)(node_class*, void*
 }
 #pragma pop
 
-/* 802665B4-80266624 0070+00 s=0 e=2 z=0  None .text
+/* 802665B4-80266624 260EF4 0070+00 0/0 2/2 0/0 .text
  * cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv */
-//	802665C4: 803621D8 (_savegpr_28)
-//	802665EC: 80266098 (cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv)
-//	80266610: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

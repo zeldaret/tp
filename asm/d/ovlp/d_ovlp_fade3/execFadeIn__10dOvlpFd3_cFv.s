@@ -22,8 +22,8 @@ lbl_8025377C:
 /* 8025377C  7F E3 FB 78 */	mr r3, r31
 /* 80253780  4B DC AD 9D */	bl fopOvlpM_Done__FP18overlap_task_class
 /* 80253784  38 00 00 01 */	li r0, 1
-/* 80253788  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025378C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80253788  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025378C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80253790  98 03 5D 44 */	stb r0, 0x5d44(r3)
 /* 80253794  98 03 5E B8 */	stb r0, 0x5eb8(r3)
 lbl_80253798:

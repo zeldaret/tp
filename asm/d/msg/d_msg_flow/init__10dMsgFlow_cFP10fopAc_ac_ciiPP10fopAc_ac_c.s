@@ -19,8 +19,8 @@ lbl_80249F90:
 /* 80249FD4  28 1E 00 00 */	cmplwi r30, 0
 /* 80249FD8  40 82 00 38 */	bne lbl_8024A010
 /* 80249FDC  38 00 00 00 */	li r0, 0
-/* 80249FE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80249FE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80249FE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80249FE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80249FE8  90 03 5E F0 */	stw r0, 0x5ef0(r3)
 /* 80249FEC  90 03 5E F4 */	stw r0, 0x5ef4(r3)
 /* 80249FF0  90 03 5E F8 */	stw r0, 0x5ef8(r3)
@@ -34,8 +34,8 @@ lbl_80249F90:
 lbl_8024A010:
 /* 8024A010  2C 1B 00 00 */	cmpwi r27, 0
 /* 8024A014  40 82 00 1C */	bne lbl_8024A030
-/* 8024A018  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8024A01C  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 8024A018  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8024A01C  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8024A020  88 03 03 1F */	lbz r0, 0x31f(r3)
 /* 8024A024  28 00 00 02 */	cmplwi r0, 2
 /* 8024A028  40 82 00 08 */	bne lbl_8024A030
@@ -50,13 +50,13 @@ lbl_8024A030:
 /* 8024A048  38 80 00 01 */	li r4, 1
 /* 8024A04C  48 00 05 35 */	bl setInitValue__10dMsgFlow_cFi
 /* 8024A050  7F 83 E3 78 */	mr r3, r28
-/* 8024A054  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha
-/* 8024A058  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l
+/* 8024A054  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024A058  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024A05C  48 00 06 91 */	bl getMsgDataBlock__10dMsgFlow_cFPCc
 /* 8024A060  90 7C 00 04 */	stw r3, 4(r28)
 /* 8024A064  7F 83 E3 78 */	mr r3, r28
-/* 8024A068  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha
-/* 8024A06C  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l
+/* 8024A068  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024A06C  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024A070  38 84 00 05 */	addi r4, r4, 5
 /* 8024A074  48 00 06 79 */	bl getMsgDataBlock__10dMsgFlow_cFPCc
 /* 8024A078  90 7C 00 08 */	stw r3, 8(r28)

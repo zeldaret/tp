@@ -5,8 +5,8 @@ lbl_8060D880:
 /* 8060D88C  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8060D890  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 8060D894  7C 7E 1B 78 */	mr r30, r3
-/* 8060D898  3C 80 80 61 */	lis r4, lit_3928@ha
-/* 8060D89C  3B E4 FD E0 */	addi r31, r4, lit_3928@l
+/* 8060D898  3C 80 80 61 */	lis r4, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060D89C  3B E4 FD E0 */	addi r31, r4, lit_3928@l /* 0x8060FDE0@l */
 /* 8060D8A0  88 03 0A FA */	lbz r0, 0xafa(r3)
 /* 8060D8A4  2C 00 00 01 */	cmpwi r0, 1
 /* 8060D8A8  41 82 00 BC */	beq lbl_8060D964
@@ -30,16 +30,16 @@ lbl_8060D8BC:
 /* 8060D8EC  C0 3F 01 2C */	lfs f1, 0x12c(r31)
 /* 8060D8F0  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8060D8F4  4B FF A0 31 */	bl setBck__9daB_MGN_cFiUcff
-/* 8060D8F8  3C 60 80 61 */	lis r3, stringBase0@ha
-/* 8060D8FC  38 63 00 84 */	addi r3, r3, stringBase0@l
+/* 8060D8F8  3C 60 80 61 */	lis r3, d_a_b_mgn__stringBase0@ha /* 0x80610084@ha */
+/* 8060D8FC  38 63 00 84 */	addi r3, r3, d_a_b_mgn__stringBase0@l /* 0x80610084@l */
 /* 8060D900  38 63 00 07 */	addi r3, r3, 7
 /* 8060D904  38 80 00 39 */	li r4, 0x39
-/* 8060D908  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8060D90C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8060D908  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060D90C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060D910  3C A5 00 02 */	addis r5, r5, 2
 /* 8060D914  38 C0 00 80 */	li r6, 0x80
 /* 8060D918  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8060D91C  4B A2 E9 D0 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8060D91C  4B A2 E9 D1 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8060D920  7C 65 1B 78 */	mr r5, r3
 /* 8060D924  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060D928  80 63 00 04 */	lwz r3, 4(r3)
@@ -51,7 +51,7 @@ lbl_8060D8BC:
 /* 8060D940  C0 3F 00 94 */	lfs f1, 0x94(r31)
 /* 8060D944  39 00 00 00 */	li r8, 0
 /* 8060D948  39 20 FF FF */	li r9, -1
-/* 8060D94C  4B 9F FC F0 */	b init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss
+/* 8060D94C  4B 9F FC F1 */	bl init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss
 /* 8060D950  C0 1F 01 2C */	lfs f0, 0x12c(r31)
 /* 8060D954  80 7E 05 C4 */	lwz r3, 0x5c4(r30)
 /* 8060D958  D0 03 00 10 */	stfs f0, 0x10(r3)
@@ -61,7 +61,7 @@ lbl_8060D964:
 /* 8060D964  38 7E 0A E8 */	addi r3, r30, 0xae8
 /* 8060D968  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060D96C  C0 5F 00 F4 */	lfs f2, 0xf4(r31)
-/* 8060D970  4B C6 2D D0 */	b cLib_chaseF__FPfff
+/* 8060D970  4B C6 2D D1 */	bl cLib_chaseF__FPfff
 /* 8060D974  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060D978  38 80 00 01 */	li r4, 1
 /* 8060D97C  88 03 00 11 */	lbz r0, 0x11(r3)
@@ -82,7 +82,7 @@ lbl_8060D99C:
 lbl_8060D9B4:
 /* 8060D9B4  80 7E 05 C4 */	lwz r3, 0x5c4(r30)
 /* 8060D9B8  C0 3F 00 60 */	lfs f1, 0x60(r31)
-/* 8060D9BC  4B D1 AA 70 */	b checkPass__12J3DFrameCtrlFf
+/* 8060D9BC  4B D1 AA 71 */	bl checkPass__12J3DFrameCtrlFf
 /* 8060D9C0  2C 03 00 00 */	cmpwi r3, 0
 /* 8060D9C4  41 82 00 A4 */	beq lbl_8060DA68
 /* 8060D9C8  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
@@ -94,8 +94,8 @@ lbl_8060D9B4:
 /* 8060D9E0  C0 1F 00 E8 */	lfs f0, 0xe8(r31)
 /* 8060D9E4  EC 01 00 2A */	fadds f0, f1, f0
 /* 8060D9E8  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8060D9EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060D9F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060D9EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060D9F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060D9F4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8060D9F8  38 80 00 00 */	li r4, 0
 /* 8060D9FC  90 81 00 08 */	stw r4, 8(r1)
@@ -113,7 +113,7 @@ lbl_8060D9B4:
 /* 8060DA2C  39 20 00 00 */	li r9, 0
 /* 8060DA30  39 40 00 FF */	li r10, 0xff
 /* 8060DA34  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 8060DA38  4B A3 F0 58 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 8060DA38  4B A3 F0 59 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8060DA3C  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704F7@ha */
 /* 8060DA40  38 03 04 F7 */	addi r0, r3, 0x04F7 /* 0x000704F7@l */
 /* 8060DA44  90 01 00 20 */	stw r0, 0x20(r1)

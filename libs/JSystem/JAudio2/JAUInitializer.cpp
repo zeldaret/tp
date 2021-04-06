@@ -41,34 +41,34 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
 struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ ~JASMemPool_MultiThreaded__template0();
+    /* 802932E0 */ void func_802932E0();
 };
 
 /* JASMemPool_MultiThreaded<JASTrack::TChannelMgr> */
 struct JASMemPool_MultiThreaded__template1 {
-    /* 80293334 */ ~JASMemPool_MultiThreaded__template1();
+    /* 80293334 */ void func_80293334();
 };
 
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISe> */
 struct JASMemPool__template0 {
-    /* 8029FC34 */ ~JASMemPool__template0();
+    /* 8029FC34 */ void func_8029FC34();
 };
 
 /* JASMemPool<JAISoundChild> */
 struct JASMemPool__template1 {
-    /* 802A1268 */ ~JASMemPool__template1();
+    /* 802A1268 */ void func_802A1268();
 };
 
 /* JASMemPool<JAISeq> */
 struct JASMemPool__template2 {
-    /* 802A1AF4 */ ~JASMemPool__template2();
+    /* 802A1AF4 */ void func_802A1AF4();
 };
 
 /* JASMemPool<JAIStream> */
 struct JASMemPool__template3 {
-    /* 802A3E68 */ ~JASMemPool__template3();
+    /* 802A3E68 */ void func_802A3E68();
 };
 
 struct JASKernel {
@@ -107,10 +107,6 @@ extern "C" void __ct__18JAU_JASInitializerFv();
 extern "C" void initJASystem__18JAU_JASInitializerFP12JKRSolidHeap();
 extern "C" void __ct__18JAU_JAIInitializerFv();
 extern "C" void initJAInterface__18JAU_JAIInitializerFv();
-extern "C" extern u8 JAUInitializer__lit_855[12];
-extern "C" extern u8 lit_859[12];
-extern "C" extern u8 lit_863[12];
-extern "C" extern u8 lit_867[12 + 96 /* padding */];
 
 //
 // External References:
@@ -162,15 +158,14 @@ extern "C" extern u8 sAramObject__7JKRAram[4];
 //
 
 /* ############################################################################################## */
-/* 80455810-80455818 0004+04 s=1 e=0 z=0  None .sdata2    @730 */
+/* 80455810-80455818 003E10 0004+04 1/1 0/0 0/0 .sdata2          @730 */
 SECTION_SDATA2 static f32 lit_730[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 802A4AD0-802A4B28 0058+00 s=0 e=1 z=0  None .text      __ct__18JAU_JASInitializerFv */
-//	802A4B08: 80455810 (lit_730)
+/* 802A4AD0-802A4B28 29F410 0058+00 0/0 1/1 0/0 .text            __ct__18JAU_JASInitializerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -181,69 +176,14 @@ asm JAU_JASInitializer::JAU_JASInitializer() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80434110-8043411C 000C+00 s=2 e=0 z=0  None .bss       @757 */
+/* 80434110-8043411C 060E30 000C+00 2/2 0/0 0/0 .bss             @757 */
 static u8 lit_757[12];
 
-/* 8043411C-80434128 000C+00 s=1 e=0 z=0  None .bss       @763 */
+/* 8043411C-80434128 060E3C 000C+00 1/1 0/0 0/0 .bss             @763 */
 static u8 lit_763[12];
 
-/* 802A4B28-802A4D3C 0214+00 s=0 e=1 z=0  None .text
+/* 802A4B28-802A4D3C 29F468 0214+00 0/0 1/1 0/0 .text
  * initJASystem__18JAU_JASInitializerFP12JKRSolidHeap           */
-//	802A4B38: 803621DC (_savegpr_29)
-//	802A4B44: 80450B8C (data_80450B8C)
-//	802A4B50: 8028FEFC (getThreadPointer__6JASDvdFv)
-//	802A4B64: 802909B8 (setupRootHeap__9JASKernelFP12JKRSolidHeapUl)
-//	802A4B74: 804513C8 (sAramObject__7JKRAram)
-//	802A4B8C: 804513C8 (sAramObject__7JKRAram)
-//	802A4BA0: 80290AD0 (setupAramHeap__9JASKernelFUlUl)
-//	802A4BA8: 80451231 (struct_80451230)
-//	802A4BB4: 80431B04 (data_80431B04)
-//	802A4BB8: 80431B04 (data_80431B04)
-//	802A4BBC: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4BC0: 80431B04 (data_80431B04)
-//	802A4BC4: 80431B04 (data_80431B04)
-//	802A4BC8: 802932E0 (func_802932E0)
-//	802A4BCC: 802932E0 (func_802932E0)
-//	802A4BD0: 80434110 (lit_757)
-//	802A4BD4: 80434110 (lit_757)
-//	802A4BD8: 80361C24 (__register_global_object)
-//	802A4BE0: 80451231 (struct_80451230)
-//	802A4BE4: 8033D6F4 (OSDisableInterrupts)
-//	802A4BEC: 80431B04 (data_80431B04)
-//	802A4BF0: 80431B04 (data_80431B04)
-//	802A4BFC: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4C04: 8033D71C (OSRestoreInterrupts)
-//	802A4C14: 80451230 (struct_80451230)
-//	802A4C20: 80431AF4 (data_80431AF4)
-//	802A4C24: 80431AF4 (data_80431AF4)
-//	802A4C28: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4C2C: 80431AF4 (data_80431AF4)
-//	802A4C30: 80431AF4 (data_80431AF4)
-//	802A4C34: 80293334 (func_80293334)
-//	802A4C38: 80293334 (func_80293334)
-//	802A4C3C: 8043411C (lit_763)
-//	802A4C40: 8043411C (lit_763)
-//	802A4C44: 80361C24 (__register_global_object)
-//	802A4C4C: 80451230 (struct_80451230)
-//	802A4C50: 8033D6F4 (OSDisableInterrupts)
-//	802A4C58: 80431AF4 (data_80431AF4)
-//	802A4C5C: 80431AF4 (data_80431AF4)
-//	802A4C68: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4C70: 8033D71C (OSRestoreInterrupts)
-//	802A4C80: 8028FF04 (createThread__6JASDvdFliUl)
-//	802A4C88: 8029CD4C (create__14JASAudioThreadFl)
-//	802A4C8C: 804513B0 (sManager__15JKRThreadSwitch)
-//	802A4CA4: 8028FEFC (getThreadPointer__6JASDvdFv)
-//	802A4CB4: 802D1A70 (enter__15JKRThreadSwitchFP9JKRThreadi)
-//	802A4CC8: 80450B8C (data_80450B8C)
-//	802A4CCC: 802D1A70 (enter__15JKRThreadSwitchFP9JKRThreadi)
-//	802A4CD4: 8029E130 (setDSPLevel__9JASDriverFf)
-//	802A4CE0: 8029631C (initSystem__13JASAramStreamFUlUl)
-//	802A4CF0: 8029A0D0 (setCurrentDir__16JASWaveArcLoaderFPCc)
-//	802A4CF4: 80340590 (OSGetSoundMode)
-//	802A4D14: 8029E178 (setOutputMode__9JASDriverFUl)
-//	802A4D20: 8029E178 (setOutputMode__9JASDriverFUl)
-//	802A4D28: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,7 +193,7 @@ asm void JAU_JASInitializer::initJASystem(JKRSolidHeap* param_0) {
 }
 #pragma pop
 
-/* 802A4D3C-802A4D60 0024+00 s=0 e=1 z=0  None .text      __ct__18JAU_JAIInitializerFv */
+/* 802A4D3C-802A4D60 29F67C 0024+00 0/0 1/1 0/0 .text            __ct__18JAU_JAIInitializerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,67 +203,32 @@ asm JAU_JAIInitializer::JAU_JAIInitializer() {
 }
 #pragma pop
 
-/* 802A4D60-802A4EE8 0188+00 s=0 e=1 z=0  None .text      initJAInterface__18JAU_JAIInitializerFv */
-//	802A4D70: 803621DC (_savegpr_29)
-//	802A4D78: 80434110 (lit_757)
-//	802A4D7C: 80434110 (lit_757)
-//	802A4D80: 80451210 (JASDram)
-//	802A4D84: 802CE72C (getFreeSize__7JKRHeapFv)
-//	802A4D8C: 80451328 (data_80451328)
-//	802A4D98: 804340FC (data_804340FC)
-//	802A4D9C: 804340FC (data_804340FC)
-//	802A4DA0: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4DA4: 804340FC (data_804340FC)
-//	802A4DA8: 804340FC (data_804340FC)
-//	802A4DAC: 802A3E68 (func_802A3E68)
-//	802A4DB0: 802A3E68 (func_802A3E68)
-//	802A4DB8: 80361C24 (__register_global_object)
-//	802A4DC0: 80451328 (data_80451328)
-//	802A4DC4: 804340FC (data_804340FC)
-//	802A4DC8: 804340FC (data_804340FC)
-//	802A4DD4: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4DDC: 80451320 (data_80451320)
-//	802A4DE8: 804340CC (data_804340CC)
-//	802A4DEC: 804340CC (data_804340CC)
-//	802A4DF0: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4DF4: 804340CC (data_804340CC)
-//	802A4DF8: 804340CC (data_804340CC)
-//	802A4DFC: 802A1AF4 (func_802A1AF4)
-//	802A4E00: 802A1AF4 (func_802A1AF4)
-//	802A4E08: 80361C24 (__register_global_object)
-//	802A4E10: 80451320 (data_80451320)
-//	802A4E14: 804340CC (data_804340CC)
-//	802A4E18: 804340CC (data_804340CC)
-//	802A4E24: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4E2C: 80451310 (data_80451310)
-//	802A4E38: 80434084 (data_80434084)
-//	802A4E3C: 80434084 (data_80434084)
-//	802A4E40: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4E44: 80434084 (data_80434084)
-//	802A4E48: 80434084 (data_80434084)
-//	802A4E4C: 8029FC34 (func_8029FC34)
-//	802A4E50: 8029FC34 (func_8029FC34)
-//	802A4E58: 80361C24 (__register_global_object)
-//	802A4E60: 80451310 (data_80451310)
-//	802A4E64: 80434084 (data_80434084)
-//	802A4E68: 80434084 (data_80434084)
-//	802A4E74: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4E7C: 80451318 (data_80451318)
-//	802A4E88: 804340B0 (data_804340B0)
-//	802A4E8C: 804340B0 (data_804340B0)
-//	802A4E90: 80290848 (__ct__17JASGenericMemPoolFv)
-//	802A4E94: 804340B0 (data_804340B0)
-//	802A4E98: 804340B0 (data_804340B0)
-//	802A4E9C: 802A1268 (func_802A1268)
-//	802A4EA0: 802A1268 (func_802A1268)
-//	802A4EA8: 80361C24 (__register_global_object)
-//	802A4EB0: 80451318 (data_80451318)
-//	802A4EB4: 804340B0 (data_804340B0)
-//	802A4EB8: 804340B0 (data_804340B0)
-//	802A4EC4: 802908C8 (newMemPool__17JASGenericMemPoolFUli)
-//	802A4EC8: 80451210 (JASDram)
-//	802A4ECC: 802CE72C (getFreeSize__7JKRHeapFv)
-//	802A4ED4: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80434128-80434134 060E48 000C+00 0/1 0/0 0/0 .bss             @855 */
+#pragma push
+#pragma force_active on
+static u8 lit_855[12];
+#pragma pop
+
+/* 80434134-80434140 060E54 000C+00 0/1 0/0 0/0 .bss             @859 */
+#pragma push
+#pragma force_active on
+static u8 lit_859[12];
+#pragma pop
+
+/* 80434140-8043414C 060E60 000C+00 0/1 0/0 0/0 .bss             @863 */
+#pragma push
+#pragma force_active on
+static u8 lit_863[12];
+#pragma pop
+
+/* 8043414C-804341B8 060E6C 000C+60 0/1 0/0 0/0 .bss             @867 */
+#pragma push
+#pragma force_active on
+static u8 lit_867[12 + 96 /* padding */];
+#pragma pop
+
+/* 802A4D60-802A4EE8 29F6A0 0188+00 0/0 1/1 0/0 .text initJAInterface__18JAU_JAIInitializerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,16 +237,3 @@ asm void JAU_JAIInitializer::initJAInterface() {
 #include "asm/JSystem/JAudio2/JAUInitializer/initJAInterface__18JAU_JAIInitializerFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80434128-80434134 000C+00 s=0 e=0 z=0  None .bss       @855 */
-u8 JAUInitializer__lit_855[12];
-
-/* 80434134-80434140 000C+00 s=0 e=0 z=0  None .bss       @859 */
-u8 lit_859[12];
-
-/* 80434140-8043414C 000C+00 s=0 e=0 z=0  None .bss       @863 */
-u8 lit_863[12];
-
-/* 8043414C-804341B8 000C+60 s=0 e=0 z=0  None .bss       @867 */
-u8 lit_867[12 + 96 /* padding */];

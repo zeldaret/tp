@@ -13,7 +13,7 @@
 
 extern "C" void strtol();
 extern "C" void strtoul();
-extern "C" static void __strtoul();
+extern "C" void __strtoul();
 
 //
 // External References:
@@ -28,36 +28,28 @@ extern "C" extern u8 errno[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80368C00-80368CF0 00F0+00 s=0 e=3 z=0  None .text      strtol */
-//	80368C34: 8036878C (__StringRead)
-//	80368C38: 8036878C (__StringRead)
-//	80368C50: 80368D9C (__strtoul)
-//	80368CBC: 804519A8 (errno)
+/* 80368C00-80368CF0 363540 00F0+00 0/0 3/3 0/0 .text            strtol */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strtol() {
+asm void strtol() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/strtoul/strtol.s"
 }
 #pragma pop
 
-/* 80368CF0-80368D9C 00AC+00 s=0 e=2 z=0  None .text      strtoul */
-//	80368D24: 8036878C (__StringRead)
-//	80368D28: 8036878C (__StringRead)
-//	80368D40: 80368D9C (__strtoul)
-//	80368D6C: 804519A8 (errno)
+/* 80368CF0-80368D9C 363630 00AC+00 0/0 2/2 0/0 .text            strtoul */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strtoul() {
+asm void strtoul() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/strtoul/strtoul.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D3148-803D3190 0044+04 s=1 e=0 z=0  None .data      @431 */
+/* 803D3148-803D3190 -00001 0044+04 1/1 0/0 0/0 .data            @431 */
 SECTION_DATA static void* lit_431[17 + 1 /* padding */] = {
     (void*)(((char*)__strtoul) + 0x310),
     (void*)(((char*)__strtoul) + 0xC4),
@@ -80,21 +72,11 @@ SECTION_DATA static void* lit_431[17 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80368D9C-80369114 0378+00 s=3 e=0 z=0  None .text      __strtoul */
-//	80368E48: 803D3148 (lit_431)
-//	80368E50: 803D3148 (lit_431)
-//	80368E60: 803D2C18 (__ctype_map)
-//	80368E68: 803D2C18 (__ctype_map)
-//	80368FB4: 803D2C18 (__ctype_map)
-//	80368FBC: 803D2C18 (__ctype_map)
-//	8036900C: 803D2E18 (__upper_map)
-//	80369010: 803D2E18 (__upper_map)
-//	8036904C: 803D2E18 (__upper_map)
-//	80369050: 803D2E18 (__upper_map)
+/* 80368D9C-80369114 3636DC 0378+00 3/2 0/0 0/0 .text            __strtoul */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __strtoul() {
+asm void __strtoul() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/strtoul/__strtoul.s"
 }

@@ -3,19 +3,20 @@
 #
 
 M262_TARGET := $(BUILD_DIR)/rel/d/a/d_a_horse.plf
+M262_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_horse.lcf
+M262_MAP := $(BUILD_DIR)/rel/d/a/d_a_horse.map
 
 M262_CPP_FILES := \
-	rel/d/a/d_a_horse/executor.cpp \
-	rel/d/a/d_a_horse/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_horse/d_a_horse.cpp \
 
 M262_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_horse/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_horse/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_horse/d_a_horse.o \
 
 M262_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_horse/libRuntime.PPCEABI.H.a \
 
 M262_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M262_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map262.map\
+	-m _prolog \
+	-lcf $(M262_LDSCRIPT) \
+	-unused -map $(M262_MAP) \
+	-w off \
 
 $(M262_TARGET): $(M262_O_FILES) $(M262_LIBS)
+	@echo [262] creating $(M262_TARGET)
 	@echo $(M262_LIBS) $(M262_O_FILES) > build/M262_ofiles
-	$(LD) -opt_partial $(M262_LDFLAGS) -o $(M262_TARGET) @build/M262_ofiles
+	@python3 tools/lcf.py rel 262 --output $(M262_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M262_LDFLAGS) -o $(M262_TARGET) @build/M262_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_horse/%.o: rel/d/a/d_a_horse/%.cpp
+	@echo [262] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M262_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M262_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_horse/libs/Runtime.PPCEABI.H/Makefile
 

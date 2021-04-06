@@ -13,10 +13,6 @@
 
 extern "C" static void cb();
 extern "C" void __fstLoad();
-extern "C" extern u8 lit_39[22 + 2 /* padding */];
-extern "C" extern u8 lit_40[20];
-extern "C" extern u8 lit_41[20];
-extern "C" extern u8 lit_44[20];
 
 //
 // External References:
@@ -36,38 +32,27 @@ extern "C" void DVDGetDriveStatus();
 //
 
 /* ############################################################################################## */
-/* 804517D0-804517D4 0004+00 s=1 e=0 z=0  None .sbss      status */
+/* 804517D0-804517D4 000CD0 0004+00 1/1 0/0 0/0 .sbss            status */
 static u8 status[4];
 
-/* 804517D4-804517D8 0004+00 s=2 e=0 z=0  None .sbss      bb2 */
+/* 804517D4-804517D8 000CD4 0004+00 2/2 0/0 0/0 .sbss            bb2 */
 static u8 bb2[4];
 
-/* 804517D8-804517E0 0004+04 s=2 e=0 z=0  None .sbss      idTmp */
+/* 804517D8-804517E0 000CD8 0004+04 2/2 0/0 0/0 .sbss            idTmp */
 static u8 idTmp[4 + 4 /* padding */];
 
-/* 8034BD2C-8034BE04 00D8+00 s=1 e=0 z=0  None .text      cb */
-//	8034BD48: 804517D0 (status)
-//	8034BD68: 804517D4 (bb2)
-//	8034BD70: 804517D0 (status)
-//	8034BD84: 8034AE08 (DVDReadAbsAsyncForBS)
-//	8034BD90: 804517D4 (bb2)
-//	8034BD94: 804517D0 (status)
-//	8034BDB8: 8034AE08 (DVDReadAbsAsyncForBS)
-//	8034BDD4: 804517D0 (status)
-//	8034BDD8: 8034B138 (DVDReset)
-//	8034BDE0: 804517D8 (idTmp)
-//	8034BDEC: 8034AED8 (DVDReadDiskID)
+/* 8034BD2C-8034BE04 34666C 00D8+00 1/1 0/0 0/0 .text            cb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void cb() {
+static asm void cb() {
     nofralloc
 #include "asm/dolphin/dvd/fstload/cb.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D16F0-803D170C 001A+02 s=1 e=0 z=0  None .data      @38 */
+/* 803D16F0-803D170C 02E810 001A+02 1/1 0/0 0/0 .data            @38 */
 SECTION_DATA static u8 lit_38[26 + 2 /* padding */] = {
     0x20,
     0x20,
@@ -100,80 +85,10 @@ SECTION_DATA static u8 lit_38[26 + 2 /* padding */] = {
     0x00,
 };
 
-/* 8044C9B8-8044C9F8 003F+01 s=1 e=0 z=0  None .bss       bb2Buf */
-static u8 bb2Buf[63 + 1 /* padding */];
-
-/* 8044C9F8-8044CA28 0030+00 s=1 e=0 z=0  None .bss       block$18 */
-static u8 block[48];
-
-/* 80450A00-80450A04 0002+02 s=1 e=0 z=0  None .sdata     @37 */
-SECTION_SDATA static u16 lit_37[1 + 1 /* padding */] = {
-    0x0A00,
-    /* padding */
-    0x0000,
-};
-
-/* 80450A04-80450A08 0004+00 s=1 e=0 z=0  None .sdata     @42 */
-SECTION_SDATA static u32 lit_42 = 0x4F464600;
-
-/* 80450A08-80450A10 0003+05 s=1 e=0 z=0  None .sdata     @43 */
-SECTION_SDATA static u8 lit_43[3 + 5 /* padding */] = {
-    0x4F,
-    0x4E,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8034BE04-8034BF6C 0168+00 s=0 e=1 z=0  None .text      __fstLoad */
-//	8034BE08: 803D16F0 (lit_38)
-//	8034BE18: 803D16F0 (lit_38)
-//	8034BE24: 8033B28C (OSGetArenaHi)
-//	8034BE28: 8044C9B8 (bb2Buf)
-//	8034BE2C: 8044C9B8 (bb2Buf)
-//	8034BE40: 804517D8 (idTmp)
-//	8034BE44: 804517D4 (bb2)
-//	8034BE48: 8034B138 (DVDReset)
-//	8034BE4C: 8044C9F8 (block)
-//	8034BE50: 804517D8 (idTmp)
-//	8034BE54: 8034BD2C (cb)
-//	8034BE58: 8044C9F8 (block)
-//	8034BE5C: 8034BD2C (cb)
-//	8034BE60: 8034AED8 (DVDReadDiskID)
-//	8034BE64: 8034B1C8 (DVDGetDriveStatus)
-//	8034BE70: 804517D4 (bb2)
-//	8034BE8C: 804517D4 (bb2)
-//	8034BE98: 804517D8 (idTmp)
-//	8034BE9C: 80003540 (memcpy)
-//	8034BEA0: 80450A00 (lit_37)
-//	8034BEA8: 80006ABC (OSReport)
-//	8034BED4: 80006ABC (OSReport)
-//	8034BEF0: 80006ABC (OSReport)
-//	8034BF00: 80006ABC (OSReport)
-//	8034BF10: 80006ABC (OSReport)
-//	8034BF20: 80450A04 (lit_42)
-//	8034BF28: 80450A08 (lit_43)
-//	8034BF34: 80006ABC (OSReport)
-//	8034BF38: 80450A00 (lit_37)
-//	8034BF40: 80006ABC (OSReport)
-//	8034BF44: 804517D4 (bb2)
-//	8034BF4C: 8033B29C (OSSetArenaHi)
+/* 803D170C-803D1724 02E82C 0016+02 0/1 0/0 0/0 .data            @39 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __fstLoad() {
-    nofralloc
-#include "asm/dolphin/dvd/fstload/__fstLoad.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803D170C-803D1724 0016+02 s=0 e=0 z=0  None .data      @39 */
-SECTION_DATA u8 lit_39[22 + 2 /* padding */] = {
+#pragma force_active on
+SECTION_DATA static u8 lit_39[22 + 2 /* padding */] = {
     0x20,
     0x20,
     0x43,
@@ -200,21 +115,70 @@ SECTION_DATA u8 lit_39[22 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1724-803D1738 0014+00 s=0 e=0 z=0  None .data      @40 */
-SECTION_DATA u8 lit_40[20] = {
+/* 803D1724-803D1738 02E844 0014+00 0/1 0/0 0/0 .data            @40 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_40[20] = {
     0x20, 0x20, 0x44, 0x69, 0x73, 0x6B, 0x20, 0x23, 0x20, 0x2E,
     0x2E, 0x2E, 0x2E, 0x2E, 0x2E, 0x20, 0x25, 0x64, 0x0A, 0x00,
 };
+#pragma pop
 
-/* 803D1738-803D174C 0014+00 s=0 e=0 z=0  None .data      @41 */
-SECTION_DATA u8 lit_41[20] = {
+/* 803D1738-803D174C 02E858 0014+00 0/1 0/0 0/0 .data            @41 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_41[20] = {
     0x20, 0x20, 0x47, 0x61, 0x6D, 0x65, 0x20, 0x76, 0x65, 0x72,
     0x20, 0x2E, 0x2E, 0x2E, 0x2E, 0x20, 0x25, 0x64, 0x0A, 0x00,
 };
+#pragma pop
 
-/* 803D174C-803D1760 0014+00 s=0 e=0 z=0  None .data      @44 */
-SECTION_DATA u8 lit_44[20] = {
+/* 803D174C-803D1760 02E86C 0014+00 0/1 0/0 0/0 .data            @44 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_44[20] = {
     0x20, 0x20, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6D, 0x69, 0x6E,
     0x67, 0x20, 0x2E, 0x2E, 0x2E, 0x20, 0x25, 0x73, 0x0A, 0x00,
 };
+#pragma pop
+
+/* 8044C9B8-8044C9F8 0796D8 003F+01 1/1 0/0 0/0 .bss             bb2Buf */
+static u8 bb2Buf[63 + 1 /* padding */];
+
+/* 8044C9F8-8044CA28 079718 0030+00 1/1 0/0 0/0 .bss             block$18 */
+static u8 block[48];
+
+/* 80450A00-80450A04 000480 0002+02 1/1 0/0 0/0 .sdata           @37 */
+SECTION_SDATA static u16 lit_37[1 + 1 /* padding */] = {
+    0x0A00,
+    /* padding */
+    0x0000,
+};
+
+/* 80450A04-80450A08 000484 0004+00 1/1 0/0 0/0 .sdata           @42 */
+SECTION_SDATA static u32 lit_42 = 0x4F464600;
+
+/* 80450A08-80450A10 000488 0003+05 1/1 0/0 0/0 .sdata           @43 */
+SECTION_SDATA static u8 lit_43[3 + 5 /* padding */] = {
+    0x4F,
+    0x4E,
+    0x00,
+    /* padding */
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+
+/* 8034BE04-8034BF6C 346744 0168+00 0/0 1/1 0/0 .text            __fstLoad */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void __fstLoad() {
+    nofralloc
+#include "asm/dolphin/dvd/fstload/__fstLoad.s"
+}
+#pragma pop

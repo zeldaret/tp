@@ -42,12 +42,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTag_EvtArea_Create(void*);
-static void daTag_EvtArea_Delete(void*);
-static void daTag_EvtArea_Execute(void*);
-static void daTag_EvtArea_Draw(void*);
-static bool daTag_EvtArea_IsDelete(void*);
-
 extern "C" void create__15daTag_EvtArea_cFv();
 extern "C" bool Delete__15daTag_EvtArea_cFv();
 extern "C" void Execute__15daTag_EvtArea_cFv();
@@ -61,21 +55,10 @@ extern "C" static void daTag_EvtArea_Draw__FPv();
 extern "C" static bool daTag_EvtArea_IsDelete__FPv();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
 extern "C" void __dt__15daTag_EvtArea_cFv();
-extern "C" extern u32 const lit_3854;
-extern "C" extern u32 const lit_3855;
-extern "C" extern u32 const lit_3856;
-extern "C" extern void* g_profile_TAG_EVTAREA[12];
-extern "C" extern void* __vt__15daTag_EvtArea_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void fopAcM_delete(fopAc_ac_c*);
-void daNpcT_chkPointInArea(cXyz, cXyz, cXyz, s16, int);
-void daNpcT_chkEvtBit(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -102,10 +85,11 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 8048CDD0-8048CDD4 0004+00 s=2 e=0 z=0  None .rodata    @3853 */
+/* 8048CDD0-8048CDD4 000000 0004+00 2/2 0/0 0/0 .rodata          @3853 */
 SECTION_RODATA static u32 const lit_3853 = 0x42C80000;
+SECTION_DEAD void* const cg_8048CDD0 = (void*)(&lit_3853);
 
-/* 8048CDE8-8048CE48 0060+00 s=1 e=0 z=0  None .data      @3857 */
+/* 8048CDE8-8048CE48 -00001 0060+00 1/1 0/0 0/0 .data            @3857 */
 SECTION_DATA static void* lit_3857[24] = {
     (void*)(((char*)create__15daTag_EvtArea_cFv) + 0x88),
     (void*)(((char*)create__15daTag_EvtArea_cFv) + 0x88),
@@ -133,7 +117,7 @@ SECTION_DATA static void* lit_3857[24] = {
     (void*)(((char*)create__15daTag_EvtArea_cFv) + 0x1A0),
 };
 
-/* 8048CE48-8048CE68 0020+00 s=1 e=0 z=0  None .data      daTag_EvtArea_MethodTable */
+/* 8048CE48-8048CE68 -00001 0020+00 1/0 0/0 0/0 .data            daTag_EvtArea_MethodTable */
 SECTION_DATA static void* daTag_EvtArea_MethodTable[8] = {
     (void*)daTag_EvtArea_Create__FPv,
     (void*)daTag_EvtArea_Delete__FPv,
@@ -145,8 +129,8 @@ SECTION_DATA static void* daTag_EvtArea_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 8048CE68-8048CE98 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_EVTAREA */
-SECTION_DATA void* g_profile_TAG_EVTAREA[12] = {
+/* 8048CE68-8048CE98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_EVTAREA */
+SECTION_DATA extern void* g_profile_TAG_EVTAREA[12] = {
     (void*)0xFFFFFFFD, (void*)0x0008FFFD,
     (void*)0x02E90000, (void*)&g_fpcLf_Method,
     (void*)0x00000570, (void*)NULL,
@@ -155,22 +139,14 @@ SECTION_DATA void* g_profile_TAG_EVTAREA[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 8048CE98-8048CEA4 000C+00 s=2 e=0 z=0  None .data      __vt__15daTag_EvtArea_c */
-SECTION_DATA void* __vt__15daTag_EvtArea_c[3] = {
+/* 8048CE98-8048CEA4 0000B0 000C+00 2/2 0/0 0/0 .data            __vt__15daTag_EvtArea_c */
+SECTION_DATA extern void* __vt__15daTag_EvtArea_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daTag_EvtArea_cFv,
 };
 
-/* 8048C4F8-8048C728 0230+00 s=2 e=0 z=0  None .text      create__15daTag_EvtArea_cFv */
-//	8048C510: 8048CDD0 (lit_3853)
-//	8048C514: 8048CDD0 (lit_3853)
-//	8048C52C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8048C530: 8048CE98 (__vt__15daTag_EvtArea_c)
-//	8048C534: 8048CE98 (__vt__15daTag_EvtArea_c)
-//	8048C568: 8048CDE8 (lit_3857)
-//	8048C56C: 8048CDE8 (lit_3857)
-//	8048C6F0: 8048C89C (isDelete__15daTag_EvtArea_cFv)
+/* 8048C4F8-8048C728 000078 0230+00 2/1 0/0 0/0 .text            create__15daTag_EvtArea_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,21 +156,12 @@ asm void daTag_EvtArea_c::create() {
 }
 #pragma pop
 
-/* 8048C728-8048C730 0008+00 s=1 e=0 z=0  None .text      Delete__15daTag_EvtArea_cFv */
+/* 8048C728-8048C730 0002A8 0008+00 1/1 0/0 0/0 .text            Delete__15daTag_EvtArea_cFv */
 bool daTag_EvtArea_c::Delete() {
     return true;
 }
 
-/* 8048C730-8048C894 0164+00 s=1 e=0 z=0  None .text      Execute__15daTag_EvtArea_cFv */
-//	8048C750: 80450D64 (struct_80450D64)
-//	8048C754: 80450D64 (struct_80450D64)
-//	8048C764: 8048C89C (isDelete__15daTag_EvtArea_cFv)
-//	8048C774: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	8048C7BC: 8048CDD0 (lit_3853)
-//	8048C7C0: 8048CDD0 (lit_3853)
-//	8048C80C: 804061C0 (g_dComIfG_gameInfo)
-//	8048C810: 804061C0 (g_dComIfG_gameInfo)
-//	8048C838: 8048CD08 (chkPointInArea__15daTag_EvtArea_cF4cXyz)
+/* 8048C730-8048C894 0002B0 0164+00 1/1 0/0 0/0 .text            Execute__15daTag_EvtArea_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -204,16 +171,12 @@ asm void daTag_EvtArea_c::Execute() {
 }
 #pragma pop
 
-/* 8048C894-8048C89C 0008+00 s=1 e=0 z=0  None .text      Draw__15daTag_EvtArea_cFv */
+/* 8048C894-8048C89C 000414 0008+00 1/1 0/0 0/0 .text            Draw__15daTag_EvtArea_cFv */
 bool daTag_EvtArea_c::Draw() {
     return true;
 }
 
-/* 8048C89C-8048C94C 00B0+00 s=2 e=0 z=0  None .text      isDelete__15daTag_EvtArea_cFv */
-//	8048C8E8: 8014CAAC (daNpcT_chkEvtBit__FUl)
-//	8048C910: 804061C0 (g_dComIfG_gameInfo)
-//	8048C914: 804061C0 (g_dComIfG_gameInfo)
-//	8048C920: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 8048C89C-8048C94C 00041C 00B0+00 2/2 0/0 0/0 .text            isDelete__15daTag_EvtArea_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -224,49 +187,42 @@ asm void daTag_EvtArea_c::isDelete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8048CDD4-8048CDD8 0004+00 s=0 e=0 z=0  None .rodata    @3854 */
-SECTION_RODATA u32 const lit_3854 = 0x43480000;
+/* 8048CDD4-8048CDD8 000004 0004+00 0/0 0/0 0/0 .rodata          @3854 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3854 = 0x43480000;
+SECTION_DEAD void* const cg_8048CDD4 = (void*)(&lit_3854);
+#pragma pop
 
-/* 8048CDD8-8048CDDC 0004+00 s=0 e=0 z=0  None .rodata    @3855 */
-SECTION_RODATA u32 const lit_3855 = 0x3F000000;
+/* 8048CDD8-8048CDDC 000008 0004+00 0/0 0/0 0/0 .rodata          @3855 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3855 = 0x3F000000;
+SECTION_DEAD void* const cg_8048CDD8 = (void*)(&lit_3855);
+#pragma pop
 
-/* 8048CDDC-8048CDE0 0004+00 s=0 e=0 z=0  None .rodata    @3856 */
-SECTION_RODATA u32 const lit_3856 = 0x447A0000;
+/* 8048CDDC-8048CDE0 00000C 0004+00 0/0 0/0 0/0 .rodata          @3856 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3856 = 0x447A0000;
+SECTION_DEAD void* const cg_8048CDDC = (void*)(&lit_3856);
+#pragma pop
 
-/* 8048CDE0-8048CDE4 0004+00 s=1 e=0 z=0  None .rodata    @3922 */
+/* 8048CDE0-8048CDE4 000010 0004+00 1/1 0/0 0/0 .rodata          @3922 */
 SECTION_RODATA static u8 const lit_3922[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_8048CDE0 = (void*)(&lit_3922);
 
-/* 8048CDE4-8048CDE8 0004+00 s=1 e=0 z=0  None .rodata    @4146 */
+/* 8048CDE4-8048CDE8 000014 0004+00 1/1 0/0 0/0 .rodata          @4146 */
 SECTION_RODATA static u32 const lit_4146 = 0x41200000;
+SECTION_DEAD void* const cg_8048CDE4 = (void*)(&lit_4146);
 
-/* 8048C94C-8048CC80 0334+00 s=1 e=0 z=16  None .text chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz
- */
-//	8048C95C: 803621DC (_savegpr_29)
-//	8048C9AC: 8014CAAC (daNpcT_chkEvtBit__FUl)
-//	8048C9C8: 804061C0 (g_dComIfG_gameInfo)
-//	8048C9CC: 804061C0 (g_dComIfG_gameInfo)
-//	8048C9D8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	8048CA24: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	8048CA74: 804061C0 (g_dComIfG_gameInfo)
-//	8048CA78: 804061C0 (g_dComIfG_gameInfo)
-//	8048CAA4: 803470B4 (PSVECSubtract)
-//	8048CAA8: 803DD470 (now__14mDoMtx_stack_c)
-//	8048CAAC: 803DD470 (now__14mDoMtx_stack_c)
-//	8048CABC: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	8048CAC0: 803DD470 (now__14mDoMtx_stack_c)
-//	8048CAC4: 803DD470 (now__14mDoMtx_stack_c)
-//	8048CAD0: 80346D6C (PSMTXMultVec)
-//	8048CB40: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8048CBA8: 8048CDE4 (lit_4146)
-//	8048CBAC: 8048CDE4 (lit_4146)
-//	8048CC10: 8014C384 (daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi)
-//	8048CC5C: 8014C384 (daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi)
-//	8048CC6C: 80362228 (_restgpr_29)
+/* 8048C94C-8048CC80 0004CC 0334+00 1/1 0/0 16/16 .text
+ * chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -276,59 +232,52 @@ asm void daTag_EvtArea_c::chkPointInArea(cXyz param_0, cXyz param_1) {
 }
 #pragma pop
 
-/* 8048CC80-8048CCA0 0020+00 s=1 e=0 z=0  None .text      daTag_EvtArea_Create__FPv */
-//	8048CC8C: 8048C4F8 (create__15daTag_EvtArea_cFv)
+/* 8048CC80-8048CCA0 000800 0020+00 1/0 0/0 0/0 .text            daTag_EvtArea_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_EvtArea_Create(void* param_0) {
+static asm void daTag_EvtArea_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea/daTag_EvtArea_Create__FPv.s"
 }
 #pragma pop
 
-/* 8048CCA0-8048CCC0 0020+00 s=1 e=0 z=0  None .text      daTag_EvtArea_Delete__FPv */
-//	8048CCAC: 8048C728 (Delete__15daTag_EvtArea_cFv)
+/* 8048CCA0-8048CCC0 000820 0020+00 1/0 0/0 0/0 .text            daTag_EvtArea_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_EvtArea_Delete(void* param_0) {
+static asm void daTag_EvtArea_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea/daTag_EvtArea_Delete__FPv.s"
 }
 #pragma pop
 
-/* 8048CCC0-8048CCE0 0020+00 s=1 e=0 z=0  None .text      daTag_EvtArea_Execute__FPv */
-//	8048CCCC: 8048C730 (Execute__15daTag_EvtArea_cFv)
+/* 8048CCC0-8048CCE0 000840 0020+00 1/0 0/0 0/0 .text            daTag_EvtArea_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_EvtArea_Execute(void* param_0) {
+static asm void daTag_EvtArea_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea/daTag_EvtArea_Execute__FPv.s"
 }
 #pragma pop
 
-/* 8048CCE0-8048CD00 0020+00 s=1 e=0 z=0  None .text      daTag_EvtArea_Draw__FPv */
-//	8048CCEC: 8048C894 (Draw__15daTag_EvtArea_cFv)
+/* 8048CCE0-8048CD00 000860 0020+00 1/0 0/0 0/0 .text            daTag_EvtArea_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_EvtArea_Draw(void* param_0) {
+static asm void daTag_EvtArea_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea/daTag_EvtArea_Draw__FPv.s"
 }
 #pragma pop
 
-/* 8048CD00-8048CD08 0008+00 s=1 e=0 z=0  None .text      daTag_EvtArea_IsDelete__FPv */
+/* 8048CD00-8048CD08 000880 0008+00 1/0 0/0 0/0 .text            daTag_EvtArea_IsDelete__FPv */
 static bool daTag_EvtArea_IsDelete(void* param_0) {
     return true;
 }
 
-/* 8048CD08-8048CD68 0060+00 s=1 e=0 z=0  None .text      chkPointInArea__15daTag_EvtArea_cF4cXyz */
-//	8048CD14: 8048CDE0 (lit_3922)
-//	8048CD18: 8048CDE0 (lit_3922)
-//	8048CD54: 8048C94C (chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz)
+/* 8048CD08-8048CD68 000888 0060+00 1/1 0/0 0/0 .text chkPointInArea__15daTag_EvtArea_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -338,11 +287,7 @@ asm void daTag_EvtArea_c::chkPointInArea(cXyz param_0) {
 }
 #pragma pop
 
-/* 8048CD68-8048CDC8 0060+00 s=1 e=0 z=0  None .text      __dt__15daTag_EvtArea_cFv */
-//	8048CD88: 8048CE98 (__vt__15daTag_EvtArea_c)
-//	8048CD8C: 8048CE98 (__vt__15daTag_EvtArea_c)
-//	8048CD98: 80018C8C (__dt__10fopAc_ac_cFv)
-//	8048CDA8: 802CED3C (__dl__FPv)
+/* 8048CD68-8048CDC8 0008E8 0060+00 1/0 0/0 0/0 .text            __dt__15daTag_EvtArea_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

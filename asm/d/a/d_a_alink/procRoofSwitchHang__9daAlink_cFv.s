@@ -8,8 +8,8 @@ lbl_801017AC:
 /* 801017C4  28 00 00 00 */	cmplwi r0, 0
 /* 801017C8  40 82 00 1C */	bne lbl_801017E4
 /* 801017CC  38 80 00 01 */	li r4, 1
-/* 801017D0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 801017D4  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 801017D0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 801017D4  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 801017D8  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 801017DC  4B FC 52 6D */	bl procFallInit__9daAlink_cFif
 /* 801017E0  48 00 00 80 */	b lbl_80101860
@@ -21,8 +21,8 @@ lbl_801017E4:
 /* 801017F4  41 82 00 2C */	beq lbl_80101820
 /* 801017F8  7F E3 FB 78 */	mr r3, r31
 /* 801017FC  38 80 00 A9 */	li r4, 0xa9
-/* 80101800  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha
-/* 80101804  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l
+/* 80101800  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 80101804  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 80101808  C0 25 00 1C */	lfs f1, 0x1c(r5)
 /* 8010180C  C0 45 00 20 */	lfs f2, 0x20(r5)
 /* 80101810  4B FA B7 D1 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -41,8 +41,8 @@ lbl_80101820:
 /* 80101840  41 82 00 1C */	beq lbl_8010185C
 /* 80101844  7F E3 FB 78 */	mr r3, r31
 /* 80101848  38 80 00 01 */	li r4, 1
-/* 8010184C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 80101850  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 8010184C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 80101850  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 80101854  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 80101858  4B FC 51 F1 */	bl procFallInit__9daAlink_cFif
 lbl_8010185C:

@@ -1,10 +1,10 @@
 lbl_8034D694:
 /* 8034D694  7C 08 02 A6 */	mflr r0
-/* 8034D698  3C 60 80 45 */	lis r3, regs@ha
+/* 8034D698  3C 60 80 45 */	lis r3, regs@ha /* 0x8044CA28@ha */
 /* 8034D69C  90 01 00 04 */	stw r0, 4(r1)
 /* 8034D6A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034D6A4  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 8034D6A8  3B E3 CA 28 */	addi r31, r3, regs@l
+/* 8034D6A8  3B E3 CA 28 */	addi r31, r3, regs@l /* 0x8044CA28@l */
 /* 8034D6AC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8034D6B0  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8034D6B4  93 81 00 10 */	stw r28, 0x10(r1)

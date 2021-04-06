@@ -3,8 +3,8 @@ lbl_8058D710:
 /* 8058D714  7C 08 02 A6 */	mflr r0
 /* 8058D718  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8058D71C  A8 C3 06 10 */	lha r6, 0x610(r3)
-/* 8058D720  3C 80 80 59 */	lis r4, data_8058DD50@ha
-/* 8058D724  38 A4 DD 50 */	addi r5, r4, data_8058DD50@l
+/* 8058D720  3C 80 80 59 */	lis r4, data_8058DD50@ha /* 0x8058DD50@ha */
+/* 8058D724  38 A4 DD 50 */	addi r5, r4, data_8058DD50@l /* 0x8058DD50@l */
 /* 8058D728  A8 05 00 16 */	lha r0, 0x16(r5)
 /* 8058D72C  7C 06 02 14 */	add r0, r6, r0
 /* 8058D730  B0 03 06 10 */	sth r0, 0x610(r3)
@@ -12,8 +12,8 @@ lbl_8058D710:
 /* 8058D738  A8 05 00 18 */	lha r0, 0x18(r5)
 /* 8058D73C  7C 04 02 14 */	add r0, r4, r0
 /* 8058D740  B0 03 06 12 */	sth r0, 0x612(r3)
-/* 8058D744  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8058D748  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 8058D744  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8058D748  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8058D74C  38 84 00 04 */	addi r4, r4, 4
 /* 8058D750  A8 03 06 10 */	lha r0, 0x610(r3)
 /* 8058D754  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c

@@ -13,12 +13,12 @@ lbl_8083E6E8:
 /* 8083E714  80 03 06 E8 */	lwz r0, 0x6e8(r3)
 /* 8083E718  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 8083E71C  4C 82 00 20 */	bnelr 
-/* 8083E720  3C 80 80 84 */	lis r4, lit_4306@ha
-/* 8083E724  C0 24 55 FC */	lfs f1, lit_4306@l(r4)
+/* 8083E720  3C 80 80 84 */	lis r4, lit_4306@ha /* 0x808455FC@ha */
+/* 8083E724  C0 24 55 FC */	lfs f1, lit_4306@l(r4)  /* 0x808455FC@l */
 /* 8083E728  FC 03 08 40 */	fcmpo cr0, f3, f1
 /* 8083E72C  4C 80 00 20 */	bgelr 
-/* 8083E730  3C 80 80 84 */	lis r4, l_autoUpHeight@ha
-/* 8083E734  C0 04 58 F4 */	lfs f0, l_autoUpHeight@l(r4)
+/* 8083E730  3C 80 80 84 */	lis r4, l_autoUpHeight@ha /* 0x808458F4@ha */
+/* 8083E734  C0 04 58 F4 */	lfs f0, l_autoUpHeight@l(r4)  /* 0x808458F4@l */
 /* 8083E738  FC 00 00 50 */	fneg f0, f0
 /* 8083E73C  FC 03 00 40 */	fcmpo cr0, f3, f0
 /* 8083E740  4C 41 13 82 */	cror 2, 1, 2

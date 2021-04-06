@@ -5,12 +5,12 @@ lbl_802E3A08:
 /* 802E3A14  39 61 00 20 */	addi r11, r1, 0x20
 /* 802E3A18  48 07 E7 C1 */	bl _savegpr_28
 /* 802E3A1C  7C 7C 1B 78 */	mr r28, r3
-/* 802E3A20  3C 60 80 3D */	lis r3, GXNtsc480Int@ha
-/* 802E3A24  38 03 24 84 */	addi r0, r3, GXNtsc480Int@l
+/* 802E3A20  3C 60 80 3D */	lis r3, GXNtsc480Int@ha /* 0x803D2484@ha */
+/* 802E3A24  38 03 24 84 */	addi r0, r3, GXNtsc480Int@l /* 0x803D2484@l */
 /* 802E3A28  7C 1F 03 78 */	mr r31, r0
 /* 802E3A2C  48 05 78 61 */	bl OSGetArenaHi
-/* 802E3A30  3C 80 80 3D */	lis r4, GXNtsc480Int@ha
-/* 802E3A34  38 A4 24 84 */	addi r5, r4, GXNtsc480Int@l
+/* 802E3A30  3C 80 80 3D */	lis r4, GXNtsc480Int@ha /* 0x803D2484@ha */
+/* 802E3A34  38 A4 24 84 */	addi r5, r4, GXNtsc480Int@l /* 0x803D2484@l */
 /* 802E3A38  A0 85 00 04 */	lhz r4, 4(r5)
 /* 802E3A3C  38 04 00 0F */	addi r0, r4, 0xf
 /* 802E3A40  54 04 04 36 */	rlwinm r4, r0, 0, 0x10, 0x1b

@@ -14,7 +14,7 @@ lbl_809CCF38:
 /* 809CCF68  28 00 00 02 */	cmplwi r0, 2
 /* 809CCF6C  40 82 00 14 */	bne lbl_809CCF80
 /* 809CCF70  38 60 00 40 */	li r3, 0x40
-/* 809CCF74  4B 78 86 C0 */	b daNpcF_chkEvtBit__FUl
+/* 809CCF74  4B 78 86 C1 */	bl daNpcF_chkEvtBit__FUl
 /* 809CCF78  2C 03 00 00 */	cmpwi r3, 0
 /* 809CCF7C  40 82 00 20 */	bne lbl_809CCF9C
 lbl_809CCF80:

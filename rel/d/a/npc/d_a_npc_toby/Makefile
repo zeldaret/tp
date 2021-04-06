@@ -3,19 +3,20 @@
 #
 
 M374_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby.plf
+M374_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby.lcf
+M374_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby.map
 
 M374_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_toby/executor.cpp \
-	rel/d/a/npc/d_a_npc_toby/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_toby/d_a_npc_toby.cpp \
 
 M374_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/d_a_npc_toby.o \
 
 M374_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/libRuntime.PPCEABI.H.a \
 
 M374_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M374_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map374.map\
+	-m _prolog \
+	-lcf $(M374_LDSCRIPT) \
+	-unused -map $(M374_MAP) \
+	-w off \
 
 $(M374_TARGET): $(M374_O_FILES) $(M374_LIBS)
+	@echo [374] creating $(M374_TARGET)
 	@echo $(M374_LIBS) $(M374_O_FILES) > build/M374_ofiles
-	$(LD) -opt_partial $(M374_LDFLAGS) -o $(M374_TARGET) @build/M374_ofiles
+	@python3 tools/lcf.py rel 374 --output $(M374_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M374_LDFLAGS) -o $(M374_TARGET) @build/M374_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_toby/%.o: rel/d/a/npc/d_a_npc_toby/%.cpp
+	@echo [374] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M374_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M374_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_toby/libs/Runtime.PPCEABI.H/Makefile
 

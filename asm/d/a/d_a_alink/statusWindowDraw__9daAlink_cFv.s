@@ -8,8 +8,8 @@ lbl_80140984:
 /* 8014099C  88 03 2F BF */	lbz r0, 0x2fbf(r3)
 /* 801409A0  28 00 00 00 */	cmplwi r0, 0
 /* 801409A4  40 82 01 0C */	bne lbl_80140AB0
-/* 801409A8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801409AC  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801409A8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801409AC  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801409B0  38 80 00 0C */	li r4, 0xc
 /* 801409B4  38 BD 04 D0 */	addi r5, r29, 0x4d0
 /* 801409B8  38 DD 01 0C */	addi r6, r29, 0x10c
@@ -62,8 +62,8 @@ lbl_80140A58:
 /* 80140A68  7F A3 EB 78 */	mr r3, r29
 /* 80140A6C  80 9D 06 B8 */	lwz r4, 0x6b8(r29)
 /* 80140A70  4B F8 B8 29 */	bl basicModelDraw__9daAlink_cFP8J3DModel
-/* 80140A74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80140A78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80140A74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80140A78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80140A7C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 80140A80  28 00 00 3F */	cmplwi r0, 0x3f
 /* 80140A84  41 82 00 10 */	beq lbl_80140A94

@@ -6,8 +6,8 @@ lbl_800EDB48:
 /* 800EDB58  48 27 46 81 */	bl _savegpr_28
 /* 800EDB5C  7C 7C 1B 78 */	mr r28, r3
 /* 800EDB60  7C 9D 23 78 */	mr r29, r4
-/* 800EDB64  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800EDB68  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800EDB64  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EDB68  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EDB6C  83 E4 5D B8 */	lwz r31, 0x5db8(r4)
 /* 800EDB70  4B FF F5 05 */	bl checkHorseNoUpperAnime__9daAlink_cCFv
 /* 800EDB74  2C 03 00 00 */	cmpwi r3, 0
@@ -16,8 +16,8 @@ lbl_800EDB48:
 /* 800EDB80  28 00 02 65 */	cmplwi r0, 0x265
 /* 800EDB84  40 82 00 70 */	bne lbl_800EDBF4
 lbl_800EDB88:
-/* 800EDB88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EDB8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EDB88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EDB8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EDB90  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800EDB94  54 00 04 A5 */	rlwinm. r0, r0, 0, 0x12, 0x12
 /* 800EDB98  40 82 00 5C */	bne lbl_800EDBF4

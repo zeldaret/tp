@@ -10,9 +10,9 @@ lbl_8072E528:
 /* 8072E548  41 82 00 48 */	beq lbl_8072E590
 /* 8072E54C  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 8072E550  38 63 00 0C */	addi r3, r3, 0xc
-/* 8072E554  3C 80 80 73 */	lis r4, lit_3912@ha
-/* 8072E558  C0 24 5B 2C */	lfs f1, lit_3912@l(r4)
-/* 8072E55C  4B BF 9E D0 */	b checkPass__12J3DFrameCtrlFf
+/* 8072E554  3C 80 80 73 */	lis r4, lit_3912@ha /* 0x80735B2C@ha */
+/* 8072E558  C0 24 5B 2C */	lfs f1, lit_3912@l(r4)  /* 0x80735B2C@l */
+/* 8072E55C  4B BF 9E D1 */	bl checkPass__12J3DFrameCtrlFf
 /* 8072E560  2C 03 00 00 */	cmpwi r3, 0
 /* 8072E564  41 82 00 2C */	beq lbl_8072E590
 /* 8072E568  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070180@ha */

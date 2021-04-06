@@ -4,7 +4,7 @@ lbl_80CFDD18:
 /* 80CFDD20  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CFDD24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CFDD28  7C 7F 1B 78 */	mr r31, r3
-/* 80CFDD2C  4B 33 9D A0 */	b chkDraw__12daItemBase_cFv
+/* 80CFDD2C  4B 33 9D A1 */	bl chkDraw__12daItemBase_cFv
 /* 80CFDD30  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CFDD34  40 82 00 0C */	bne lbl_80CFDD40
 /* 80CFDD38  38 60 00 01 */	li r3, 1

@@ -7,7 +7,7 @@ lbl_8099A8C4:
 /* 8099A8D8  41 82 00 10 */	beq lbl_8099A8E8
 /* 8099A8DC  7C 80 07 35 */	extsh. r0, r4
 /* 8099A8E0  40 81 00 08 */	ble lbl_8099A8E8
-/* 8099A8E4  4B 93 44 58 */	b __dl__FPv
+/* 8099A8E4  4B 93 44 59 */	bl __dl__FPv
 lbl_8099A8E8:
 /* 8099A8E8  7F E3 FB 78 */	mr r3, r31
 /* 8099A8EC  83 E1 00 0C */	lwz r31, 0xc(r1)

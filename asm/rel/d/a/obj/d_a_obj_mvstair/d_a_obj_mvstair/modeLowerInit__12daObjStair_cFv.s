@@ -1,6 +1,6 @@
 lbl_80C9E004:
-/* 80C9E004  3C 80 80 CA */	lis r4, lit_3802@ha
-/* 80C9E008  C0 04 E8 E0 */	lfs f0, lit_3802@l(r4)
+/* 80C9E004  3C 80 80 CA */	lis r4, lit_3802@ha /* 0x80C9E8E0@ha */
+/* 80C9E008  C0 04 E8 E0 */	lfs f0, lit_3802@l(r4)  /* 0x80C9E8E0@l */
 /* 80C9E00C  D0 03 06 44 */	stfs f0, 0x644(r3)
 /* 80C9E010  D0 03 06 48 */	stfs f0, 0x648(r3)
 /* 80C9E014  38 00 00 00 */	li r0, 0

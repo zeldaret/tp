@@ -3,7 +3,7 @@ lbl_80A3A568:
 /* 80A3A56C  7C 08 02 A6 */	mflr r0
 /* 80A3A570  90 01 00 84 */	stw r0, 0x84(r1)
 /* 80A3A574  39 61 00 80 */	addi r11, r1, 0x80
-/* 80A3A578  4B 92 7C 5C */	b _savegpr_27
+/* 80A3A578  4B 92 7C 5D */	bl _savegpr_27
 /* 80A3A57C  7C 7B 1B 78 */	mr r27, r3
 /* 80A3A580  7C 9C 23 78 */	mr r28, r4
 /* 80A3A584  7C BD 2B 78 */	mr r29, r5
@@ -62,8 +62,8 @@ lbl_80A3A648:
 /* 80A3A64C  41 82 00 4C */	beq lbl_80A3A698
 /* 80A3A650  7F 63 DB 78 */	mr r3, r27
 /* 80A3A654  7F E4 FB 78 */	mr r4, r31
-/* 80A3A658  3C A0 80 A4 */	lis r5, lit_4327@ha
-/* 80A3A65C  C0 25 09 0C */	lfs f1, lit_4327@l(r5)
+/* 80A3A658  3C A0 80 A4 */	lis r5, lit_4327@ha /* 0x80A4090C@ha */
+/* 80A3A65C  C0 25 09 0C */	lfs f1, lit_4327@l(r5)  /* 0x80A4090C@l */
 /* 80A3A660  80 A1 00 44 */	lwz r5, 0x44(r1)
 /* 80A3A664  38 C0 00 00 */	li r6, 0
 /* 80A3A668  38 E0 FF FF */	li r7, -1
@@ -118,8 +118,8 @@ lbl_80A3A710:
 /* 80A3A718  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80A3A71C  7F 63 DB 78 */	mr r3, r27
 /* 80A3A720  7F C4 F3 78 */	mr r4, r30
-/* 80A3A724  3C C0 80 A4 */	lis r6, lit_4327@ha
-/* 80A3A728  C0 26 09 0C */	lfs f1, lit_4327@l(r6)
+/* 80A3A724  3C C0 80 A4 */	lis r6, lit_4327@ha /* 0x80A4090C@ha */
+/* 80A3A728  C0 26 09 0C */	lfs f1, lit_4327@l(r6)  /* 0x80A4090C@l */
 /* 80A3A72C  80 C1 00 50 */	lwz r6, 0x50(r1)
 /* 80A3A730  4B FF E0 4D */	bl setBtpAnm__10daNpc_Kn_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80A3A734  2C 03 00 00 */	cmpwi r3, 0
@@ -147,8 +147,8 @@ lbl_80A3A780:
 /* 80A3A780  7F 63 DB 78 */	mr r3, r27
 /* 80A3A784  7F 84 E3 78 */	mr r4, r28
 /* 80A3A788  80 A1 00 44 */	lwz r5, 0x44(r1)
-/* 80A3A78C  3C C0 80 A4 */	lis r6, lit_4204@ha
-/* 80A3A790  C0 26 09 00 */	lfs f1, lit_4204@l(r6)
+/* 80A3A78C  3C C0 80 A4 */	lis r6, lit_4204@ha /* 0x80A40900@ha */
+/* 80A3A790  C0 26 09 00 */	lfs f1, lit_4204@l(r6)  /* 0x80A40900@l */
 /* 80A3A794  80 C1 00 50 */	lwz r6, 0x50(r1)
 /* 80A3A798  81 9B 0E 40 */	lwz r12, 0xe40(r27)
 /* 80A3A79C  81 8C 00 54 */	lwz r12, 0x54(r12)
@@ -156,7 +156,7 @@ lbl_80A3A780:
 /* 80A3A7A4  4E 80 04 21 */	bctrl 
 lbl_80A3A7A8:
 /* 80A3A7A8  39 61 00 80 */	addi r11, r1, 0x80
-/* 80A3A7AC  4B 92 7A 74 */	b _restgpr_27
+/* 80A3A7AC  4B 92 7A 75 */	bl _restgpr_27
 /* 80A3A7B0  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 80A3A7B4  7C 08 03 A6 */	mtlr r0
 /* 80A3A7B8  38 21 00 80 */	addi r1, r1, 0x80

@@ -7,8 +7,8 @@ lbl_802DF000:
 /* 802DF014  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802DF018  7C 9F 23 78 */	mr r31, r4
 /* 802DF01C  41 82 00 54 */	beq lbl_802DF070
-/* 802DF020  3C 80 80 3D */	lis r4, __vt__10JUTResFont@ha
-/* 802DF024  38 04 C5 A0 */	addi r0, r4, __vt__10JUTResFont@l
+/* 802DF020  3C 80 80 3D */	lis r4, __vt__10JUTResFont@ha /* 0x803CC5A0@ha */
+/* 802DF024  38 04 C5 A0 */	addi r0, r4, __vt__10JUTResFont@l /* 0x803CC5A0@l */
 /* 802DF028  90 1E 00 00 */	stw r0, 0(r30)
 /* 802DF02C  88 1E 00 04 */	lbz r0, 4(r30)
 /* 802DF030  28 00 00 00 */	cmplwi r0, 0
@@ -21,8 +21,8 @@ lbl_802DF000:
 lbl_802DF04C:
 /* 802DF04C  28 1E 00 00 */	cmplwi r30, 0
 /* 802DF050  41 82 00 10 */	beq lbl_802DF060
-/* 802DF054  3C 60 80 3A */	lis r3, __vt__7JUTFont@ha
-/* 802DF058  38 03 31 F0 */	addi r0, r3, __vt__7JUTFont@l
+/* 802DF054  3C 60 80 3A */	lis r3, __vt__7JUTFont@ha /* 0x803A31F0@ha */
+/* 802DF058  38 03 31 F0 */	addi r0, r3, __vt__7JUTFont@l /* 0x803A31F0@l */
 /* 802DF05C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_802DF060:
 /* 802DF060  7F E0 07 35 */	extsh. r0, r31

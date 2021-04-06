@@ -16,8 +16,8 @@ lbl_800F711C:
 /* 800F7124  7F E3 FB 78 */	mr r3, r31
 /* 800F7128  38 80 00 00 */	li r4, 0
 /* 800F712C  4B FE 92 A5 */	bl initBoomerangUpperAnimeSpeed__9daAlink_cFi
-/* 800F7130  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F7134  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F7130  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F7134  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F7138  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800F713C  64 00 00 08 */	oris r0, r0, 8
 /* 800F7140  90 03 5F 18 */	stw r0, 0x5f18(r3)

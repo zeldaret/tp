@@ -72,11 +72,6 @@ struct cCcS {
 // Forward References:
 //
 
-static void daObjGraWall_Execute(daObjGraWall_c*);
-static bool daObjGraWall_IsDelete(daObjGraWall_c*);
-static void daObjGraWall_Delete(daObjGraWall_c*);
-static void daObjGraWall_create(fopAc_ac_c*);
-
 extern "C" void Create__14daObjGraWall_cFv();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
@@ -88,16 +83,10 @@ extern "C" static void daObjGraWall_Execute__FP14daObjGraWall_c();
 extern "C" static bool daObjGraWall_IsDelete__FP14daObjGraWall_c();
 extern "C" static void daObjGraWall_Delete__FP14daObjGraWall_c();
 extern "C" static void daObjGraWall_create__FP10fopAc_ac_c();
-extern "C" extern void* g_profile_GRA_WALL[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
@@ -127,7 +116,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80C10FFC-80C1101C 0020+00 s=1 e=0 z=0  None .data      l_daObjGraWall_Method */
+/* 80C10FFC-80C1101C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGraWall_Method */
 SECTION_DATA static void* l_daObjGraWall_Method[8] = {
     (void*)daObjGraWall_create__FP10fopAc_ac_c,
     (void*)daObjGraWall_Delete__FP14daObjGraWall_c,
@@ -139,8 +128,8 @@ SECTION_DATA static void* l_daObjGraWall_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C1101C-80C1104C 0030+00 s=0 e=0 z=1  None .data      g_profile_GRA_WALL */
-SECTION_DATA void* g_profile_GRA_WALL[12] = {
+/* 80C1101C-80C1104C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_GRA_WALL */
+SECTION_DATA extern void* g_profile_GRA_WALL[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x008B0000, (void*)&g_fpcLf_Method,
     (void*)0x000006E4, (void*)NULL,
@@ -149,47 +138,21 @@ SECTION_DATA void* g_profile_GRA_WALL[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80C1104C-80C11058 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA void* __vt__8cM3dGCyl[3] = {
+/* 80C1104C-80C11058 000050 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80C11058-80C11064 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA void* __vt__8cM3dGAab[3] = {
+/* 80C11058-80C11064 00005C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C10BF8-80C10D48 0150+00 s=1 e=0 z=0  None .text      Create__14daObjGraWall_cFv */
-//	80C10C28: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C10C2C: 803C3728 (__vt__9cCcD_Stts)
-//	80C10C30: 803C3728 (__vt__9cCcD_Stts)
-//	80C10C3C: 80083760 (__ct__10dCcD_GSttsFv)
-//	80C10C40: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C10C44: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C10C5C: 80083A28 (__ct__12dCcD_GObjInfFv)
-//	80C10C60: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C10C64: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C10C6C: 80C11058 (__vt__8cM3dGAab)
-//	80C10C70: 80C11058 (__vt__8cM3dGAab)
-//	80C10C78: 80C1104C (__vt__8cM3dGCyl)
-//	80C10C7C: 80C1104C (__vt__8cM3dGCyl)
-//	80C10C84: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C10C88: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C10C98: 803AC050 (__vt__8dCcD_Cyl)
-//	80C10C9C: 803AC050 (__vt__8dCcD_Cyl)
-//	80C10CD4: 804061C0 (g_dComIfG_gameInfo)
-//	80C10CD8: 804061C0 (g_dComIfG_gameInfo)
-//	80C10CE4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C10CF8: 804061C0 (g_dComIfG_gameInfo)
-//	80C10CFC: 804061C0 (g_dComIfG_gameInfo)
-//	80C10D04: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C10D08: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C10D10: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C10D28: 80C10E80 (col_init__14daObjGraWall_cFv)
+/* 80C10BF8-80C10D48 000078 0150+00 1/1 0/0 0/0 .text            Create__14daObjGraWall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,10 +162,7 @@ asm void daObjGraWall_c::Create() {
 }
 #pragma pop
 
-/* 80C10D48-80C10D90 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-//	80C10D60: 80C1104C (__vt__8cM3dGCyl)
-//	80C10D64: 80C1104C (__vt__8cM3dGCyl)
-//	80C10D74: 802CED3C (__dl__FPv)
+/* 80C10D48-80C10D90 0001C8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,10 +172,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80C10D90-80C10DD8 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-//	80C10DA8: 80C11058 (__vt__8cM3dGAab)
-//	80C10DAC: 80C11058 (__vt__8cM3dGAab)
-//	80C10DBC: 802CED3C (__dl__FPv)
+/* 80C10D90-80C10DD8 000210 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -225,18 +182,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C10DD8-80C10E78 00A0+00 s=1 e=0 z=0  None .text      Execute__14daObjGraWall_cFv */
-//	80C10DF8: 804061C0 (g_dComIfG_gameInfo)
-//	80C10DFC: 804061C0 (g_dComIfG_gameInfo)
-//	80C10E08: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C10E18: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80C10E24: 804061C0 (g_dComIfG_gameInfo)
-//	80C10E28: 804061C0 (g_dComIfG_gameInfo)
-//	80C10E30: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C10E34: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C10E3C: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C10E4C: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80C10E5C: 80C10ED4 (col_set__14daObjGraWall_cFv)
+/* 80C10DD8-80C10E78 000258 00A0+00 1/1 0/0 0/0 .text            Execute__14daObjGraWall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,18 +192,19 @@ asm void daObjGraWall_c::Execute() {
 }
 #pragma pop
 
-/* 80C10E78-80C10E80 0008+00 s=1 e=0 z=0  None .text      Delete__14daObjGraWall_cFv */
+/* 80C10E78-80C10E80 0002F8 0008+00 1/1 0/0 0/0 .text            Delete__14daObjGraWall_cFv */
 bool daObjGraWall_c::Delete() {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80C10FB0-80C10FB8 0008+00 s=1 e=0 z=0  None .rodata    l_DATA */
+/* 80C10FB0-80C10FB8 000000 0008+00 1/1 0/0 0/0 .rodata          l_DATA */
 SECTION_RODATA static u8 const l_DATA[8] = {
     0x43, 0x34, 0x00, 0x00, 0x43, 0x8C, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80C10FB0 = (void*)(&l_DATA);
 
-/* 80C10FB8-80C10FFC 0044+00 s=1 e=0 z=0  None .rodata    l_cyl_src */
+/* 80C10FB8-80C10FFC 000008 0044+00 1/1 0/0 0/0 .rodata          l_cyl_src */
 SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
@@ -265,12 +212,9 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80C10FB8 = (void*)(&l_cyl_src);
 
-/* 80C10E80-80C10ED4 0054+00 s=1 e=0 z=0  None .text      col_init__14daObjGraWall_cFv */
-//	80C10EA4: 80083860 (Init__9dCcD_SttsFiiP10fopAc_ac_c)
-//	80C10EAC: 80C10FB8 (l_cyl_src)
-//	80C10EB0: 80C10FB8 (l_cyl_src)
-//	80C10EB4: 800848B4 (Set__8dCcD_CylFRC11dCcD_SrcCyl)
+/* 80C10E80-80C10ED4 000300 0054+00 1/1 0/0 0/0 .text            col_init__14daObjGraWall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,17 +224,7 @@ asm void daObjGraWall_c::col_init() {
 }
 #pragma pop
 
-/* 80C10ED4-80C10F40 006C+00 s=1 e=0 z=0  None .text      col_set__14daObjGraWall_cFv */
-//	80C10EF0: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	80C10EF8: 80C10FB0 (l_DATA)
-//	80C10EFC: 80C10FB0 (l_DATA)
-//	80C10F04: 8026F1F8 (SetH__8cM3dGCylFf)
-//	80C10F0C: 80C10FB0 (l_DATA)
-//	80C10F10: 80C10FB0 (l_DATA)
-//	80C10F14: 8026F200 (SetR__8cM3dGCylFf)
-//	80C10F18: 804061C0 (g_dComIfG_gameInfo)
-//	80C10F1C: 804061C0 (g_dComIfG_gameInfo)
-//	80C10F28: 80264BA8 (Set__4cCcSFP8cCcD_Obj)
+/* 80C10ED4-80C10F40 000354 006C+00 1/1 0/0 0/0 .text            col_set__14daObjGraWall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -300,41 +234,37 @@ asm void daObjGraWall_c::col_set() {
 }
 #pragma pop
 
-/* 80C10F40-80C10F60 0020+00 s=1 e=0 z=0  None .text      daObjGraWall_Execute__FP14daObjGraWall_c
- */
-//	80C10F4C: 80C10DD8 (Execute__14daObjGraWall_cFv)
+/* 80C10F40-80C10F60 0003C0 0020+00 1/0 0/0 0/0 .text daObjGraWall_Execute__FP14daObjGraWall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraWall_Execute(daObjGraWall_c* param_0) {
+static asm void daObjGraWall_Execute(daObjGraWall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall/daObjGraWall_Execute__FP14daObjGraWall_c.s"
 }
 #pragma pop
 
-/* 80C10F60-80C10F68 0008+00 s=1 e=0 z=0  None .text      daObjGraWall_IsDelete__FP14daObjGraWall_c
- */
+/* 80C10F60-80C10F68 0003E0 0008+00 1/0 0/0 0/0 .text daObjGraWall_IsDelete__FP14daObjGraWall_c */
 static bool daObjGraWall_IsDelete(daObjGraWall_c* param_0) {
     return true;
 }
 
-/* 80C10F68-80C10F88 0020+00 s=1 e=0 z=0  None .text      daObjGraWall_Delete__FP14daObjGraWall_c */
-//	80C10F74: 80C10E78 (Delete__14daObjGraWall_cFv)
+/* 80C10F68-80C10F88 0003E8 0020+00 1/0 0/0 0/0 .text daObjGraWall_Delete__FP14daObjGraWall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraWall_Delete(daObjGraWall_c* param_0) {
+static asm void daObjGraWall_Delete(daObjGraWall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall/daObjGraWall_Delete__FP14daObjGraWall_c.s"
 }
 #pragma pop
 
-/* 80C10F88-80C10FA8 0020+00 s=1 e=0 z=0  None .text      daObjGraWall_create__FP10fopAc_ac_c */
-//	80C10F94: 80C10BF8 (Create__14daObjGraWall_cFv)
+/* 80C10F88-80C10FA8 000408 0020+00 1/0 0/0 0/0 .text            daObjGraWall_create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraWall_create(fopAc_ac_c* param_0) {
+static asm void daObjGraWall_create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall/daObjGraWall_create__FP10fopAc_ac_c.s"
 }

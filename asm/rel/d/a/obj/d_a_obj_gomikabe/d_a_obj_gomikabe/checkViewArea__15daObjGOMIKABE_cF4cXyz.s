@@ -3,11 +3,11 @@ lbl_80BFEE24:
 /* 80BFEE28  7C 08 02 A6 */	mflr r0
 /* 80BFEE2C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BFEE30  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80BFEE34  3C 60 80 C0 */	lis r3, ccSphSrc@ha
-/* 80BFEE38  3B E3 FC 1C */	addi r31, r3, ccSphSrc@l
+/* 80BFEE34  3C 60 80 C0 */	lis r3, ccSphSrc@ha /* 0x80BFFC1C@ha */
+/* 80BFEE38  3B E3 FC 1C */	addi r31, r3, ccSphSrc@l /* 0x80BFFC1C@l */
 /* 80BFEE3C  7C 83 23 78 */	mr r3, r4
 /* 80BFEE40  38 81 00 08 */	addi r4, r1, 8
-/* 80BFEE44  4B 41 64 CC */	b mDoLib_project__FP3VecP3Vec
+/* 80BFEE44  4B 41 64 CD */	bl mDoLib_project__FP3VecP3Vec
 /* 80BFEE48  38 60 00 00 */	li r3, 0
 /* 80BFEE4C  C0 41 00 08 */	lfs f2, 8(r1)
 /* 80BFEE50  C0 3F 00 44 */	lfs f1, 0x44(r31)

@@ -10,8 +10,8 @@ lbl_800F89E0:
 /* 800F8A00  D0 03 1D 9C */	stfs f0, 0x1d9c(r3)
 /* 800F8A04  C0 04 00 08 */	lfs f0, 8(r4)
 /* 800F8A08  D0 03 1D A0 */	stfs f0, 0x1da0(r3)
-/* 800F8A0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F8A10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F8A0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F8A10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F8A14  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800F8A18  38 9F 1D 5C */	addi r4, r31, 0x1d5c
 /* 800F8A1C  4B F7 CA 81 */	bl RoofChk__4dBgSFP12dBgS_RoofChk

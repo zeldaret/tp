@@ -1,8 +1,8 @@
 lbl_8063E10C:
-/* 8063E10C  3C 80 80 65 */	lis r4, lit_3757@ha
-/* 8063E110  38 A4 EB 1C */	addi r5, r4, lit_3757@l
-/* 8063E114  3C 80 80 65 */	lis r4, __vt__14daB_ZANT_HIO_c@ha
-/* 8063E118  38 04 F5 A4 */	addi r0, r4, __vt__14daB_ZANT_HIO_c@l
+/* 8063E10C  3C 80 80 65 */	lis r4, lit_3757@ha /* 0x8064EB1C@ha */
+/* 8063E110  38 A4 EB 1C */	addi r5, r4, lit_3757@l /* 0x8064EB1C@l */
+/* 8063E114  3C 80 80 65 */	lis r4, __vt__14daB_ZANT_HIO_c@ha /* 0x8064F5A4@ha */
+/* 8063E118  38 04 F5 A4 */	addi r0, r4, __vt__14daB_ZANT_HIO_c@l /* 0x8064F5A4@l */
 /* 8063E11C  90 03 00 00 */	stw r0, 0(r3)
 /* 8063E120  38 00 FF FF */	li r0, -1
 /* 8063E124  98 03 00 04 */	stb r0, 4(r3)

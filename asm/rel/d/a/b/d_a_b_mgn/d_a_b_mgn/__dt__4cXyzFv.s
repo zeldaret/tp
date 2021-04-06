@@ -7,7 +7,7 @@ lbl_8060FD78:
 /* 8060FD8C  41 82 00 10 */	beq lbl_8060FD9C
 /* 8060FD90  7C 80 07 35 */	extsh. r0, r4
 /* 8060FD94  40 81 00 08 */	ble lbl_8060FD9C
-/* 8060FD98  4B CB EF A4 */	b __dl__FPv
+/* 8060FD98  4B CB EF A5 */	bl __dl__FPv
 lbl_8060FD9C:
 /* 8060FD9C  7F E3 FB 78 */	mr r3, r31
 /* 8060FDA0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -4,8 +4,8 @@ lbl_801BEB0C:
 /* 801BEB14  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801BEB18  88 03 01 7C */	lbz r0, 0x17c(r3)
 /* 801BEB1C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BEB20  3C 80 80 3C */	lis r4, itemInfo_subProcess@ha
-/* 801BEB24  38 04 C9 18 */	addi r0, r4, itemInfo_subProcess@l
+/* 801BEB20  3C 80 80 3C */	lis r4, itemInfo_subProcess@ha /* 0x803BC918@ha */
+/* 801BEB24  38 04 C9 18 */	addi r0, r4, itemInfo_subProcess@l /* 0x803BC918@l */
 /* 801BEB28  7D 80 2A 14 */	add r12, r0, r5
 /* 801BEB2C  48 1A 35 59 */	bl __ptmf_scall
 /* 801BEB30  60 00 00 00 */	nop 

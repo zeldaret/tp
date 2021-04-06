@@ -4,14 +4,14 @@ lbl_805ECA0C:
 /* 805ECA14  90 01 00 64 */	stw r0, 0x64(r1)
 /* 805ECA18  93 E1 00 5C */	stw r31, 0x5c(r1)
 /* 805ECA1C  93 C1 00 58 */	stw r30, 0x58(r1)
-/* 805ECA20  3C 60 80 5F */	lis r3, lit_1109@ha
-/* 805ECA24  3B C3 D6 C0 */	addi r30, r3, lit_1109@l
-/* 805ECA28  3C 60 80 5F */	lis r3, lit_3911@ha
-/* 805ECA2C  3B E3 D0 60 */	addi r31, r3, lit_3911@l
+/* 805ECA20  3C 60 80 5F */	lis r3, lit_1109@ha /* 0x805ED6C0@ha */
+/* 805ECA24  3B C3 D6 C0 */	addi r30, r3, lit_1109@l /* 0x805ED6C0@l */
+/* 805ECA28  3C 60 80 5F */	lis r3, lit_3911@ha /* 0x805ED060@ha */
+/* 805ECA2C  3B E3 D0 60 */	addi r31, r3, lit_3911@l /* 0x805ED060@l */
 /* 805ECA30  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 805ECA34  4B FF 19 D9 */	bl __ct__12daB_GG_HIO_cFv
-/* 805ECA38  3C 80 80 5F */	lis r4, __dt__12daB_GG_HIO_cFv@ha
-/* 805ECA3C  38 84 C9 C4 */	addi r4, r4, __dt__12daB_GG_HIO_cFv@l
+/* 805ECA38  3C 80 80 5F */	lis r4, __dt__12daB_GG_HIO_cFv@ha /* 0x805EC9C4@ha */
+/* 805ECA3C  38 84 C9 C4 */	addi r4, r4, __dt__12daB_GG_HIO_cFv@l /* 0x805EC9C4@l */
 /* 805ECA40  38 BE 00 40 */	addi r5, r30, 0x40
 /* 805ECA44  4B FF 19 55 */	bl __register_global_object
 /* 805ECA48  C0 1F 02 28 */	lfs f0, 0x228(r31)
@@ -21,8 +21,8 @@ lbl_805ECA0C:
 /* 805ECA58  D0 03 00 04 */	stfs f0, 4(r3)
 /* 805ECA5C  C0 1F 02 2C */	lfs f0, 0x22c(r31)
 /* 805ECA60  D0 03 00 08 */	stfs f0, 8(r3)
-/* 805ECA64  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECA68  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECA64  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECA68  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECA6C  38 BE 00 74 */	addi r5, r30, 0x74
 /* 805ECA70  4B FF 19 29 */	bl __register_global_object
 /* 805ECA74  C0 5F 03 48 */	lfs f2, 0x348(r31)
@@ -35,8 +35,8 @@ lbl_805ECA0C:
 /* 805ECA90  38 7E 00 B4 */	addi r3, r30, 0xb4
 /* 805ECA94  D0 23 00 04 */	stfs f1, 4(r3)
 /* 805ECA98  D0 03 00 08 */	stfs f0, 8(r3)
-/* 805ECA9C  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECAA0  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECA9C  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECAA0  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECAA4  38 BE 00 90 */	addi r5, r30, 0x90
 /* 805ECAA8  4B FF 18 F1 */	bl __register_global_object
 /* 805ECAAC  C0 5F 02 94 */	lfs f2, 0x294(r31)
@@ -50,8 +50,8 @@ lbl_805ECA0C:
 /* 805ECACC  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 805ECAD0  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 805ECAD4  38 63 00 0C */	addi r3, r3, 0xc
-/* 805ECAD8  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECADC  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECAD8  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECADC  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECAE0  38 BE 00 9C */	addi r5, r30, 0x9c
 /* 805ECAE4  4B FF 18 B5 */	bl __register_global_object
 /* 805ECAE8  C0 5F 03 58 */	lfs f2, 0x358(r31)
@@ -65,8 +65,8 @@ lbl_805ECA0C:
 /* 805ECB08  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 805ECB0C  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 805ECB10  38 63 00 18 */	addi r3, r3, 0x18
-/* 805ECB14  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECB18  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECB14  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECB18  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECB1C  38 BE 00 A8 */	addi r5, r30, 0xa8
 /* 805ECB20  4B FF 18 79 */	bl __register_global_object
 /* 805ECB24  C0 5F 03 60 */	lfs f2, 0x360(r31)
@@ -79,8 +79,8 @@ lbl_805ECA0C:
 /* 805ECB40  38 7E 00 FC */	addi r3, r30, 0xfc
 /* 805ECB44  D0 23 00 04 */	stfs f1, 4(r3)
 /* 805ECB48  D0 03 00 08 */	stfs f0, 8(r3)
-/* 805ECB4C  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECB50  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECB4C  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECB50  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECB54  38 BE 00 D8 */	addi r5, r30, 0xd8
 /* 805ECB58  4B FF 18 41 */	bl __register_global_object
 /* 805ECB5C  C0 5F 03 68 */	lfs f2, 0x368(r31)
@@ -94,8 +94,8 @@ lbl_805ECA0C:
 /* 805ECB7C  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 805ECB80  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 805ECB84  38 63 00 0C */	addi r3, r3, 0xc
-/* 805ECB88  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECB8C  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECB88  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECB8C  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECB90  38 BE 00 E4 */	addi r5, r30, 0xe4
 /* 805ECB94  4B FF 18 05 */	bl __register_global_object
 /* 805ECB98  C0 5F 03 70 */	lfs f2, 0x370(r31)
@@ -109,8 +109,8 @@ lbl_805ECA0C:
 /* 805ECBB8  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 805ECBBC  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 805ECBC0  38 63 00 18 */	addi r3, r3, 0x18
-/* 805ECBC4  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha
-/* 805ECBC8  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l
+/* 805ECBC4  3C 80 80 5F */	lis r4, __dt__4cXyzFv@ha /* 0x805ED010@ha */
+/* 805ECBC8  38 84 D0 10 */	addi r4, r4, __dt__4cXyzFv@l /* 0x805ED010@l */
 /* 805ECBCC  38 BE 00 F0 */	addi r5, r30, 0xf0
 /* 805ECBD0  4B FF 17 C9 */	bl __register_global_object
 /* 805ECBD4  83 E1 00 5C */	lwz r31, 0x5c(r1)

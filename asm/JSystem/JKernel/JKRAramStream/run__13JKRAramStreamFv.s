@@ -3,14 +3,14 @@ lbl_802D3C68:
 /* 802D3C6C  7C 08 02 A6 */	mflr r0
 /* 802D3C70  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802D3C74  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 802D3C78  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha
-/* 802D3C7C  38 63 C1 98 */	addi r3, r3, sMessageQueue__13JKRAramStream@l
-/* 802D3C80  3C 80 80 3D */	lis r4, sMessageBuffer__13JKRAramStream@ha
-/* 802D3C84  38 84 C1 88 */	addi r4, r4, sMessageBuffer__13JKRAramStream@l
+/* 802D3C78  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha /* 0x803CC198@ha */
+/* 802D3C7C  38 63 C1 98 */	addi r3, r3, sMessageQueue__13JKRAramStream@l /* 0x803CC198@l */
+/* 802D3C80  3C 80 80 3D */	lis r4, sMessageBuffer__13JKRAramStream@ha /* 0x803CC188@ha */
+/* 802D3C84  38 84 C1 88 */	addi r4, r4, sMessageBuffer__13JKRAramStream@l /* 0x803CC188@l */
 /* 802D3C88  38 A0 00 04 */	li r5, 4
 /* 802D3C8C  48 06 AD 09 */	bl OSInitMessageQueue
-/* 802D3C90  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha
-/* 802D3C94  3B E3 C1 98 */	addi r31, r3, sMessageQueue__13JKRAramStream@l
+/* 802D3C90  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha /* 0x803CC198@ha */
+/* 802D3C94  3B E3 C1 98 */	addi r31, r3, sMessageQueue__13JKRAramStream@l /* 0x803CC198@l */
 lbl_802D3C98:
 /* 802D3C98  7F E3 FB 78 */	mr r3, r31
 /* 802D3C9C  38 81 00 08 */	addi r4, r1, 8

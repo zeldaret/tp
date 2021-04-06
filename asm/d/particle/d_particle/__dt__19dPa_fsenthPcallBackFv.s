@@ -7,8 +7,8 @@ lbl_8004FE6C:
 /* 8004FE80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FE84  7C 9F 23 78 */	mr r31, r4
 /* 8004FE88  41 82 00 28 */	beq lbl_8004FEB0
-/* 8004FE8C  3C 80 80 3B */	lis r4, __vt__19dPa_fsenthPcallBack@ha
-/* 8004FE90  38 04 84 00 */	addi r0, r4, __vt__19dPa_fsenthPcallBack@l
+/* 8004FE8C  3C 80 80 3B */	lis r4, __vt__19dPa_fsenthPcallBack@ha /* 0x803A8400@ha */
+/* 8004FE90  38 04 84 00 */	addi r0, r4, __vt__19dPa_fsenthPcallBack@l /* 0x803A8400@l */
 /* 8004FE94  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FE98  38 80 00 00 */	li r4, 0
 /* 8004FE9C  48 22 F1 09 */	bl __dt__19JPAParticleCallBackFv

@@ -1,6 +1,6 @@
 lbl_80D56758:
-/* 80D56758  3C 80 80 D5 */	lis r4, lit_3650@ha
-/* 80D5675C  38 84 6A F4 */	addi r4, r4, lit_3650@l
+/* 80D56758  3C 80 80 D5 */	lis r4, lit_3650@ha /* 0x80D56AF4@ha */
+/* 80D5675C  38 84 6A F4 */	addi r4, r4, lit_3650@l /* 0x80D56AF4@l */
 /* 80D56760  C0 44 00 00 */	lfs f2, 0(r4)
 /* 80D56764  C0 03 04 EC */	lfs f0, 0x4ec(r3)
 /* 80D56768  EC 02 00 32 */	fmuls f0, f2, f0

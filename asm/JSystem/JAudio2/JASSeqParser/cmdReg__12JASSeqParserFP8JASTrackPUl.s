@@ -11,8 +11,8 @@ lbl_80294DA8:
 /* 80294DCC  80 05 00 00 */	lwz r0, 0(r5)
 /* 80294DD0  28 00 00 0A */	cmplwi r0, 0xa
 /* 80294DD4  41 81 01 04 */	bgt lbl_80294ED8
-/* 80294DD8  3C A0 80 3C */	lis r5, lit_1124@ha
-/* 80294DDC  38 A5 76 24 */	addi r5, r5, lit_1124@l
+/* 80294DD8  3C A0 80 3C */	lis r5, lit_1124@ha /* 0x803C7624@ha */
+/* 80294DDC  38 A5 76 24 */	addi r5, r5, lit_1124@l /* 0x803C7624@l */
 /* 80294DE0  54 00 10 3A */	slwi r0, r0, 2
 /* 80294DE4  7C 05 00 2E */	lwzx r0, r5, r0
 /* 80294DE8  7C 09 03 A6 */	mtctr r0

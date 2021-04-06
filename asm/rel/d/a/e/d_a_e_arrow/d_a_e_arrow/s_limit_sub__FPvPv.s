@@ -6,7 +6,7 @@ lbl_8067D5FC:
 /* 8067D60C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8067D610  7C 7E 1B 78 */	mr r30, r3
 /* 8067D614  7C 9F 23 78 */	mr r31, r4
-/* 8067D618  4B 99 B6 C8 */	b fopAc_IsActor__FPv
+/* 8067D618  4B 99 B6 C9 */	bl fopAc_IsActor__FPv
 /* 8067D61C  2C 03 00 00 */	cmpwi r3, 0
 /* 8067D620  41 82 00 50 */	beq lbl_8067D670
 /* 8067D624  7C 1E F8 40 */	cmplw r30, r31
@@ -22,8 +22,8 @@ lbl_8067D5FC:
 /* 8067D64C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8067D650  FC 00 02 10 */	fabs f0, f0
 /* 8067D654  FC 20 00 18 */	frsp f1, f0
-/* 8067D658  3C 60 80 68 */	lis r3, lit_4659@ha
-/* 8067D65C  C0 03 E9 04 */	lfs f0, lit_4659@l(r3)
+/* 8067D658  3C 60 80 68 */	lis r3, lit_4659@ha /* 0x8067E904@ha */
+/* 8067D65C  C0 03 E9 04 */	lfs f0, lit_4659@l(r3)  /* 0x8067E904@l */
 /* 8067D660  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8067D664  40 80 00 0C */	bge lbl_8067D670
 /* 8067D668  7F C3 F3 78 */	mr r3, r30

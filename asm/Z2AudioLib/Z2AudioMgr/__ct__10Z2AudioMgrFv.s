@@ -14,8 +14,8 @@ lbl_802CD248:
 /* 802CD278  4B FE 8C A5 */	bl __ct__11Z2StatusMgrFv
 /* 802CD27C  38 7F 04 F4 */	addi r3, r31, 0x4f4
 /* 802CD280  4B FF 26 A1 */	bl __ct__13Z2SoundObjMgrFv
-/* 802CD284  3C 60 80 3D */	lis r3, __vt__10Z2AudioMgr@ha
-/* 802CD288  38 03 BF 38 */	addi r0, r3, __vt__10Z2AudioMgr@l
+/* 802CD284  3C 60 80 3D */	lis r3, __vt__10Z2AudioMgr@ha /* 0x803CBF38@ha */
+/* 802CD288  38 03 BF 38 */	addi r0, r3, __vt__10Z2AudioMgr@l /* 0x803CBF38@l */
 /* 802CD28C  90 1F 05 14 */	stw r0, 0x514(r31)
 /* 802CD290  38 7F 05 1C */	addi r3, r31, 0x51c
 /* 802CD294  4B FC FE 21 */	bl __ct__15JASAudioReseterFv
@@ -30,19 +30,19 @@ lbl_802CD248:
 /* 802CD2B8  4B FD 5A 7D */	bl __ct__12JAISoundInfoFb
 /* 802CD2BC  38 9E 00 04 */	addi r4, r30, 4
 /* 802CD2C0  90 8D 85 D0 */	stw r4, data_80450B50(r13)
-/* 802CD2C4  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha
-/* 802CD2C8  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l
+/* 802CD2C4  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha /* 0x803A2F4C@ha */
+/* 802CD2C8  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l /* 0x803A2F4C@l */
 /* 802CD2CC  90 1E 00 04 */	stw r0, 4(r30)
-/* 802CD2D0  3C 60 80 3D */	lis r3, __vt__16JAIStreamDataMgr@ha
-/* 802CD2D4  38 03 9A 1C */	addi r0, r3, __vt__16JAIStreamDataMgr@l
+/* 802CD2D0  3C 60 80 3D */	lis r3, __vt__16JAIStreamDataMgr@ha /* 0x803C9A1C@ha */
+/* 802CD2D4  38 03 9A 1C */	addi r0, r3, __vt__16JAIStreamDataMgr@l /* 0x803C9A1C@l */
 /* 802CD2D8  90 1E 00 08 */	stw r0, 8(r30)
 /* 802CD2DC  34 7E 00 0C */	addic. r3, r30, 0xc
 /* 802CD2E0  41 82 00 08 */	beq lbl_802CD2E8
 /* 802CD2E4  38 63 FF F4 */	addi r3, r3, -12
 lbl_802CD2E8:
 /* 802CD2E8  90 6D 85 CC */	stw r3, data_80450B4C(r13)
-/* 802CD2EC  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha
-/* 802CD2F0  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l
+/* 802CD2EC  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha /* 0x803CAC48@ha */
+/* 802CD2F0  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l /* 0x803CAC48@l */
 /* 802CD2F4  90 7E 00 00 */	stw r3, 0(r30)
 /* 802CD2F8  38 03 00 24 */	addi r0, r3, 0x24
 /* 802CD2FC  90 1E 00 04 */	stw r0, 4(r30)

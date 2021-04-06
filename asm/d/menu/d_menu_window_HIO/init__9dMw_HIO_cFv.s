@@ -82,8 +82,8 @@ lbl_801F9C44:
 /* 801F9C6C  98 1F 00 F4 */	stb r0, 0xf4(r31)
 /* 801F9C70  98 1F 00 EA */	stb r0, 0xea(r31)
 /* 801F9C74  3B 60 00 00 */	li r27, 0
-/* 801F9C78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F9C7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F9C78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F9C7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F9C80  3B 83 00 CC */	addi r28, r3, 0xcc
 /* 801F9C84  3B AD 81 CC */	la r29, m_sword_item(r13) /* 8045074C-_SDA_BASE_ */
 lbl_801F9C88:

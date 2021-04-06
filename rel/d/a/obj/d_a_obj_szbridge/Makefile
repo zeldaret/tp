@@ -3,17 +3,15 @@
 #
 
 M649_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge.plf
+M649_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge.lcf
+M649_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge.map
 
 M649_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_szbridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_szbridge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_szbridge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_szbridge/d_a_obj_szbridge.cpp \
 
 M649_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/d_a_obj_szbridge.o \
 
 M649_LIBS := \
@@ -29,15 +27,21 @@ M649_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map649.map\
+	-m _prolog \
+	-lcf $(M649_LDSCRIPT) \
+	-unused -map $(M649_MAP) \
+	-w off \
 
 $(M649_TARGET): $(M649_O_FILES) $(M649_LIBS)
+	@echo [649] creating $(M649_TARGET)
 	@echo $(M649_LIBS) $(M649_O_FILES) > build/M649_ofiles
-	$(LD) -opt_partial $(M649_LDFLAGS) -o $(M649_TARGET) @build/M649_ofiles
+	@python3 tools/lcf.py rel 649 --output $(M649_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M649_LDFLAGS) -o $(M649_TARGET) @build/M649_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_szbridge/%.o: rel/d/a/obj/d_a_obj_szbridge/%.cpp
+	@echo [649] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M649_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M649_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

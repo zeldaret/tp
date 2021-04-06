@@ -5,8 +5,8 @@ lbl_80255388:
 /* 80255394  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80255398  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025539C  41 82 00 1C */	beq lbl_802553B8
-/* 802553A0  3C A0 80 3C */	lis r5, __vt__10JSUIosBase@ha
-/* 802553A4  38 05 2D F8 */	addi r0, r5, __vt__10JSUIosBase@l
+/* 802553A0  3C A0 80 3C */	lis r5, __vt__10JSUIosBase@ha /* 0x803C2DF8@ha */
+/* 802553A4  38 05 2D F8 */	addi r0, r5, __vt__10JSUIosBase@l /* 0x803C2DF8@l */
 /* 802553A8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802553AC  7C 80 07 35 */	extsh. r0, r4
 /* 802553B0  40 81 00 08 */	ble lbl_802553B8

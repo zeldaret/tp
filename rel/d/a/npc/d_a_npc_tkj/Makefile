@@ -3,19 +3,20 @@
 #
 
 M88_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj.plf
+M88_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj.lcf
+M88_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj.map
 
 M88_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_tkj/executor.cpp \
-	rel/d/a/npc/d_a_npc_tkj/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_tkj/d_a_npc_tkj.cpp \
 
 M88_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/d_a_npc_tkj.o \
 
 M88_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/libRuntime.PPCEABI.H.a \
 
 M88_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M88_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map88.map\
+	-m _prolog \
+	-lcf $(M88_LDSCRIPT) \
+	-unused -map $(M88_MAP) \
+	-w off \
 
 $(M88_TARGET): $(M88_O_FILES) $(M88_LIBS)
+	@echo [ 88] creating $(M88_TARGET)
 	@echo $(M88_LIBS) $(M88_O_FILES) > build/M88_ofiles
-	$(LD) -opt_partial $(M88_LDFLAGS) -o $(M88_TARGET) @build/M88_ofiles
+	@python3 tools/lcf.py rel 88 --output $(M88_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M88_LDFLAGS) -o $(M88_TARGET) @build/M88_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj/%.o: rel/d/a/npc/d_a_npc_tkj/%.cpp
+	@echo [ 88] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M88_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M88_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_tkj/libs/Runtime.PPCEABI.H/Makefile
 

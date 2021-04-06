@@ -27,8 +27,8 @@ lbl_800E7728:
 /* 800E7740  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 800E7744  D0 41 00 18 */	stfs f2, 0x18(r1)
 /* 800E7748  7F E3 FB 78 */	mr r3, r31
-/* 800E774C  3C 80 80 3F */	lis r4, mLineCheck__11fopAcM_lc_c@ha
-/* 800E7750  38 84 1C 48 */	addi r4, r4, mLineCheck__11fopAcM_lc_c@l
+/* 800E774C  3C 80 80 3F */	lis r4, mLineCheck__11fopAcM_lc_c@ha /* 0x803F1C48@ha */
+/* 800E7750  38 84 1C 48 */	addi r4, r4, mLineCheck__11fopAcM_lc_c@l /* 0x803F1C48@l */
 /* 800E7754  38 A1 00 10 */	addi r5, r1, 0x10
 /* 800E7758  7F C6 F3 78 */	mr r6, r30
 /* 800E775C  4B FF E0 D5 */	bl putObjLineCheck__9daAlink_cFR11dBgS_LinChkP4cXyzP10fopAc_ac_c
@@ -50,8 +50,8 @@ lbl_800E7778:
 /* 800E7798  48 00 00 E0 */	b lbl_800E7878
 lbl_800E779C:
 /* 800E779C  C0 3D 00 10 */	lfs f1, 0x10(r29)
-/* 800E77A0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha
-/* 800E77A4  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l
+/* 800E77A0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha /* 0x8038E840@ha */
+/* 800E77A4  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l /* 0x8038E840@l */
 /* 800E77A8  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800E77AC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E77B0  40 80 00 20 */	bge lbl_800E77D0

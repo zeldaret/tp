@@ -23,16 +23,11 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fopScnIt_Judge(void* (*)(void*, void*), void*);
-
 extern "C" void fopScnIt_Judge__FPFPvPv_PvPv();
 
 //
 // External References:
 //
-
-void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
-void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
 
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
 extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
@@ -42,12 +37,7 @@ extern "C" extern u8 g_fopScnTg_SceneList[12 + 4 /* padding */];
 // Declarations:
 //
 
-/* 8001EC74-8001ECB0 003C+00 s=0 e=1 z=0  None .text      fopScnIt_Judge__FPFPvPv_PvPv */
-//	8001EC88: 803A3918 (g_fopScnTg_SceneList)
-//	8001EC8C: 803A3918 (g_fopScnTg_SceneList)
-//	8001EC90: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	8001EC94: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	8001EC9C: 80266098 (cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv)
+/* 8001EC74-8001ECB0 0195B4 003C+00 0/0 1/1 0/0 .text            fopScnIt_Judge__FPFPvPv_PvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

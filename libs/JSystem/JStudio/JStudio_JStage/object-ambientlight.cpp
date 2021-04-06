@@ -63,13 +63,10 @@ extern "C" void adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFv();
 extern "C" void adaptor_do_end__Q214JStudio_JStage21TAdaptor_ambientLightFv();
 extern "C" void adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFUl();
 extern "C" void adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCvUlPCvUl();
-extern "C" extern void* __vt__Q214JStudio_JStage21TAdaptor_ambientLight[8];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor();
 extern "C" void adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl();
@@ -89,9 +86,9 @@ extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 //
 
 /* ############################################################################################## */
-/* 803C5888-803C58A8 0020+00 s=2 e=0 z=0  None .data
+/* 803C5888-803C58A8 0229A8 0020+00 2/2 0/0 0/0 .data
  * __vt__Q214JStudio_JStage21TAdaptor_ambientLight              */
-SECTION_DATA void* __vt__Q214JStudio_JStage21TAdaptor_ambientLight[8] = {
+SECTION_DATA extern void* __vt__Q214JStudio_JStage21TAdaptor_ambientLight[8] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q214JStudio_JStage21TAdaptor_ambientLightFv,
@@ -102,19 +99,8 @@ SECTION_DATA void* __vt__Q214JStudio_JStage21TAdaptor_ambientLight[8] = {
     (void*)adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCvUlPCvUl,
 };
 
-/* 8028B610-8028B6AC 009C+00 s=0 e=1 z=0  None .text
+/* 8028B610-8028B6AC 285F50 009C+00 0/0 1/1 0/0 .text
  * __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight */
-//	8028B620: 803621DC (_savegpr_29)
-//	8028B634: 803C5610 (__vt__Q27JStudio8TAdaptor)
-//	8028B638: 803C5610 (__vt__Q27JStudio8TAdaptor)
-//	8028B658: 803C5560 (__vt__Q27JStudio21TAdaptor_ambientLight)
-//	8028B65C: 803C5560 (__vt__Q27JStudio21TAdaptor_ambientLight)
-//	8028B664: 8028B568 (__ct__Q27JStudio14TVariableValueFv)
-//	8028B668: 8028B568 (__ct__Q27JStudio14TVariableValueFv)
-//	8028B678: 80361D60 (__construct_array)
-//	8028B684: 803C5888 (__vt__Q214JStudio_JStage21TAdaptor_ambientLight)
-//	8028B688: 803C5888 (__vt__Q214JStudio_JStage21TAdaptor_ambientLight)
-//	8028B698: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,12 +111,8 @@ asm JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(JStage::TSystem
 }
 #pragma pop
 
-/* 8028B6AC-8028B720 0074+00 s=1 e=0 z=0  None .text
+/* 8028B6AC-8028B720 285FEC 0074+00 1/0 0/0 0/0 .text
  * __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv            */
-//	8028B6CC: 803C5888 (__vt__Q214JStudio_JStage21TAdaptor_ambientLight)
-//	8028B6D0: 803C5888 (__vt__Q214JStudio_JStage21TAdaptor_ambientLight)
-//	8028B6F0: 80286C9C (__dt__Q27JStudio21TAdaptor_ambientLightFv)
-//	8028B700: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -140,17 +122,14 @@ asm JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight() {
 }
 #pragma pop
 
-/* 8028B720-8028B724 0004+00 s=1 e=0 z=0  None .text
+/* 8028B720-8028B724 286060 0004+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage21TAdaptor_ambientLightFv */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare() {
     /* empty function */
 }
 
-/* 8028B724-8028B7B0 008C+00 s=1 e=0 z=0  None .text
+/* 8028B724-8028B7B0 286064 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFv */
-//	8028B788: 8039AA98 (sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight)
-//	8028B78C: 8039AA98 (sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight)
-//	8028B794: 802862AC (adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -160,7 +139,7 @@ asm void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin() {
 }
 #pragma pop
 
-/* 8028B7B0-8028B804 0054+00 s=1 e=0 z=0  None .text
+/* 8028B7B0-8028B804 2860F0 0054+00 1/0 0/0 0/0 .text
  * adaptor_do_end__Q214JStudio_JStage21TAdaptor_ambientLightFv  */
 #pragma push
 #pragma optimization_level 0
@@ -171,11 +150,8 @@ asm void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end() {
 }
 #pragma pop
 
-/* 8028B804-8028B87C 0078+00 s=1 e=0 z=0  None .text
+/* 8028B804-8028B87C 286144 0078+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFUl */
-//	8028B824: 8039AA98 (sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight)
-//	8028B828: 8039AA98 (sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight)
-//	8028B82C: 8028638C (adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -185,9 +161,8 @@ asm void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(u32 param_0) {
 }
 #pragma pop
 
-/* 8028B87C-8028B8A0 0024+00 s=1 e=0 z=0  None .text
+/* 8028B87C-8028B8A0 2861BC 0024+00 1/0 0/0 0/0 .text
  * adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCvUlPCvUl */
-//	8028B88C: 8028A470 (adaptor_object_data___Q214JStudio_JStage16TAdaptor_object_FPCvUlPCvUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

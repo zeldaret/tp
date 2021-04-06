@@ -27,11 +27,11 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -75,37 +75,18 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObj_Fmobj_Draw(obj_fmobj_class*);
-static void daObj_Fmobj_Execute(obj_fmobj_class*);
-static bool daObj_Fmobj_IsDelete(obj_fmobj_class*);
-static void daObj_Fmobj_Delete(obj_fmobj_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Fmobj_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Fmobj_Draw__FP15obj_fmobj_class();
 extern "C" static void daObj_Fmobj_Execute__FP15obj_fmobj_class();
 extern "C" static bool daObj_Fmobj_IsDelete__FP15obj_fmobj_class();
 extern "C" static void daObj_Fmobj_Delete__FP15obj_fmobj_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daObj_Fmobj_Create__FP10fopAc_ac_c();
-extern "C" extern u8 const lit_3744[4];
-extern "C" extern u32 const lit_3745;
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_fmobj__stringBase0;
 extern "C" extern void* g_profile_OBJ_FMOBJ[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cM_rndF(f32);
-void* operator new(u32);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transM__14mDoMtx_stack_cFfff();
@@ -141,147 +122,88 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 8057CBD8-8057CC44 006C+00 s=1 e=0 z=0  None .text      daObj_Fmobj_Draw__FP15obj_fmobj_class */
-//	8057CBF4: 8042CA54 (g_env_light)
-//	8057CBF8: 8042CA54 (g_env_light)
-//	8057CC08: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	8057CC0C: 8042CA54 (g_env_light)
-//	8057CC10: 8042CA54 (g_env_light)
-//	8057CC1C: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	8057CC24:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
+/* 8057CBD8-8057CC44 000078 006C+00 1/0 0/0 0/0 .text daObj_Fmobj_Draw__FP15obj_fmobj_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Fmobj_Draw(obj_fmobj_class* param_0) {
+static asm void daObj_Fmobj_Draw(obj_fmobj_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Draw__FP15obj_fmobj_class.s"
 }
 #pragma pop
 
-/* 8057CC44-8057CC84 0040+00 s=1 e=0 z=0  None .text      daObj_Fmobj_Execute__FP15obj_fmobj_class
- */
+/* 8057CC44-8057CC84 0000E4 0040+00 1/0 0/0 0/0 .text daObj_Fmobj_Execute__FP15obj_fmobj_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Fmobj_Execute(obj_fmobj_class* param_0) {
+static asm void daObj_Fmobj_Execute(obj_fmobj_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Execute__FP15obj_fmobj_class.s"
 }
 #pragma pop
 
-/* 8057CC84-8057CC8C 0008+00 s=1 e=0 z=0  None .text      daObj_Fmobj_IsDelete__FP15obj_fmobj_class
- */
+/* 8057CC84-8057CC8C 000124 0008+00 1/0 0/0 0/0 .text daObj_Fmobj_IsDelete__FP15obj_fmobj_class */
 static bool daObj_Fmobj_IsDelete(obj_fmobj_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8057CF68-8057CF6C 0004+00 s=1 e=0 z=0  None .rodata    @3743 */
-SECTION_RODATA static u32 const lit_3743 = 0x47800000;
-
-/* 8057CF6C-8057CF70 0004+00 s=0 e=0 z=0  None .rodata    @3744 */
-SECTION_RODATA u8 const lit_3744[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8057CF70-8057CF74 0004+00 s=0 e=0 z=0  None .rodata    @3745 */
-SECTION_RODATA u32 const lit_3745 = 0xC1F00000;
-
-/* 8057CF74-8057CF7E 000A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8057CF74 = "Obj_Fmobj";
-#pragma pop
-
-/* 8057CC8C-8057CCDC 0050+00 s=1 e=0 z=0  None .text      daObj_Fmobj_Delete__FP15obj_fmobj_class */
-//	8057CCA4: 8057CF74 (stringBase0)
-//	8057CCA8: 8057CF74 (stringBase0)
-//	8057CCAC: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	8057CCB0: 804061C0 (g_dComIfG_gameInfo)
-//	8057CCB4: 804061C0 (g_dComIfG_gameInfo)
-//	8057CCC0: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 8057CC8C-8057CCDC 00012C 0050+00 1/0 0/0 0/0 .text daObj_Fmobj_Delete__FP15obj_fmobj_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Fmobj_Delete(obj_fmobj_class* param_0) {
+static asm void daObj_Fmobj_Delete(obj_fmobj_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Delete__FP15obj_fmobj_class.s"
 }
 #pragma pop
 
-/* 8057CCDC-8057CDE0 0104+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
-//	8057CCF4: 8057CF74 (stringBase0)
-//	8057CCF8: 8057CF74 (stringBase0)
-//	8057CD00: 804061C0 (g_dComIfG_gameInfo)
-//	8057CD04: 804061C0 (g_dComIfG_gameInfo)
-//	8057CD18: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8057CD28: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	8057CD48: 802CEC4C (__nw__FUl)
-//	8057CD54: 8007B970 (__ct__4dBgWFv)
-//	8057CD74: 8057CF74 (stringBase0)
-//	8057CD78: 8057CF74 (stringBase0)
-//	8057CD88: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8057CD9C: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	8057CDB4: 80075A24 (dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz)
-//	8057CDB8: 80075A24 (dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz)
+/* 8057CCDC-8057CDE0 00017C 0104+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8057CDE0-8057CF60 0180+00 s=1 e=0 z=0  None .text      daObj_Fmobj_Create__FP10fopAc_ac_c */
-//	8057CDF0: 803621DC (_savegpr_29)
-//	8057CDF8: 8057CF68 (lit_3743)
-//	8057CDFC: 8057CF68 (lit_3743)
-//	8057CE14: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8057CE28: 8057CF74 (stringBase0)
-//	8057CE2C: 8057CF74 (stringBase0)
-//	8057CE30: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	8057CE48: 804061C0 (g_dComIfG_gameInfo)
-//	8057CE4C: 804061C0 (g_dComIfG_gameInfo)
-//	8057CE58: 80034934 (isDungeonItem__12dSv_memBit_cCFi)
-//	8057CE70: 8057CCDC (useHeapInit__FP10fopAc_ac_c)
-//	8057CE74: 8057CCDC (useHeapInit__FP10fopAc_ac_c)
-//	8057CE80: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	8057CE94: 804061C0 (g_dComIfG_gameInfo)
-//	8057CE98: 804061C0 (g_dComIfG_gameInfo)
-//	8057CEA8: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	8057CECC: 80267954 (cM_rndF__Ff)
-//	8057CEE0: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CEE4: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CEF4: 803468E8 (PSMTXTrans)
-//	8057CEF8: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CEFC: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CF04: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	8057CF08: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CF0C: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CF18: 803464B0 (PSMTXCopy)
-//	8057CF28: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	8057CF2C: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CF30: 803DD470 (now__14mDoMtx_stack_c)
-//	8057CF38: 803464B0 (PSMTXCopy)
-//	8057CF40: 8007B9C0 (Move__4dBgWFv)
-//	8057CF4C: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 8057CF68-8057CF6C 000000 0004+00 1/1 0/0 0/0 .rodata          @3743 */
+SECTION_RODATA static u32 const lit_3743 = 0x47800000;
+SECTION_DEAD void* const cg_8057CF68 = (void*)(&lit_3743);
+
+/* 8057CF6C-8057CF70 000004 0004+00 0/1 0/0 0/0 .rodata          @3744 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3744[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_8057CF6C = (void*)(&lit_3744);
+#pragma pop
+
+/* 8057CF70-8057CF74 000008 0004+00 0/1 0/0 0/0 .rodata          @3745 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3745 = 0xC1F00000;
+SECTION_DEAD void* const cg_8057CF70 = (void*)(&lit_3745);
+#pragma pop
+
+/* 8057CDE0-8057CF60 000280 0180+00 1/0 0/0 0/0 .text            daObj_Fmobj_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Fmobj_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Fmobj_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj/daObj_Fmobj_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8057CF80-8057CFA0 0020+00 s=1 e=0 z=0  None .data      l_daObj_Fmobj_Method */
+/* 8057CF80-8057CFA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Fmobj_Method */
 SECTION_DATA static void* l_daObj_Fmobj_Method[8] = {
     (void*)daObj_Fmobj_Create__FP10fopAc_ac_c,
     (void*)daObj_Fmobj_Delete__FP15obj_fmobj_class,
@@ -293,8 +215,8 @@ SECTION_DATA static void* l_daObj_Fmobj_Method[8] = {
     (void*)NULL,
 };
 
-/* 8057CFA0-8057CFD0 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_FMOBJ */
-SECTION_DATA void* g_profile_OBJ_FMOBJ[12] = {
+/* 8057CFA0-8057CFD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_FMOBJ */
+SECTION_DATA extern void* g_profile_OBJ_FMOBJ[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00260000, (void*)&g_fpcLf_Method,
     (void*)0x000005BC, (void*)NULL,
@@ -302,3 +224,10 @@ SECTION_DATA void* g_profile_OBJ_FMOBJ[12] = {
     (void*)0x00280000, (void*)&l_daObj_Fmobj_Method,
     (void*)0x00040100, (void*)0x00070000,
 };
+
+/* 8057CF74-8057CF7E 00000C 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8057CF74 = "Obj_Fmobj";
+#pragma pop

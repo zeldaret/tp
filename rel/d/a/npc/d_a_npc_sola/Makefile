@@ -3,19 +3,20 @@
 #
 
 M364_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola.plf
+M364_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola.lcf
+M364_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola.map
 
 M364_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_sola/executor.cpp \
-	rel/d/a/npc/d_a_npc_sola/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_sola/d_a_npc_sola.cpp \
 
 M364_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/d_a_npc_sola.o \
 
 M364_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/libRuntime.PPCEABI.H.a \
 
 M364_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M364_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map364.map\
+	-m _prolog \
+	-lcf $(M364_LDSCRIPT) \
+	-unused -map $(M364_MAP) \
+	-w off \
 
 $(M364_TARGET): $(M364_O_FILES) $(M364_LIBS)
+	@echo [364] creating $(M364_TARGET)
 	@echo $(M364_LIBS) $(M364_O_FILES) > build/M364_ofiles
-	$(LD) -opt_partial $(M364_LDFLAGS) -o $(M364_TARGET) @build/M364_ofiles
+	@python3 tools/lcf.py rel 364 --output $(M364_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M364_LDFLAGS) -o $(M364_TARGET) @build/M364_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_sola/%.o: rel/d/a/npc/d_a_npc_sola/%.cpp
+	@echo [364] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M364_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M364_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_sola/libs/Runtime.PPCEABI.H/Makefile
 

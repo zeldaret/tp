@@ -48,15 +48,15 @@ lbl_802E8000:
 /* 802E8024  88 1D 00 69 */	lbz r0, 0x69(r29)
 /* 802E8028  28 00 00 00 */	cmplwi r0, 0
 /* 802E802C  41 82 00 1C */	beq lbl_802E8048
-/* 802E8030  3C 60 80 3A */	lis r3, JUTConsole__stringBase0@ha
-/* 802E8034  38 63 D9 A8 */	addi r3, r3, JUTConsole__stringBase0@l
+/* 802E8030  3C 60 80 3A */	lis r3, JUTConsole__stringBase0@ha /* 0x8039D9A8@ha */
+/* 802E8034  38 63 D9 A8 */	addi r3, r3, JUTConsole__stringBase0@l /* 0x8039D9A8@l */
 /* 802E8038  7F C4 F3 78 */	mr r4, r30
 /* 802E803C  4C C6 31 82 */	crclr 6
 /* 802E8040  4B D1 EA 7D */	bl OSReport
 /* 802E8044  48 00 00 1C */	b lbl_802E8060
 lbl_802E8048:
-/* 802E8048  3C 60 80 3A */	lis r3, JUTConsole__stringBase0@ha
-/* 802E804C  38 63 D9 A8 */	addi r3, r3, JUTConsole__stringBase0@l
+/* 802E8048  3C 60 80 3A */	lis r3, JUTConsole__stringBase0@ha /* 0x8039D9A8@ha */
+/* 802E804C  38 63 D9 A8 */	addi r3, r3, JUTConsole__stringBase0@l /* 0x8039D9A8@l */
 /* 802E8050  38 63 00 0B */	addi r3, r3, 0xb
 /* 802E8054  7C A4 2B 78 */	mr r4, r5
 /* 802E8058  4C C6 31 82 */	crclr 6

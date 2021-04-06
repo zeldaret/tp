@@ -7,12 +7,12 @@ lbl_8024B9E8:
 /* 8024B9FC  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8024BA00  7C 1F 03 78 */	mr r31, r0
 /* 8024BA04  40 82 00 10 */	bne lbl_8024BA14
-/* 8024BA08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024BA0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024BA08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024BA0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024BA10  8B E3 5E A1 */	lbz r31, 0x5ea1(r3)
 lbl_8024BA14:
-/* 8024BA14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024BA18  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8024BA14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024BA18  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024BA1C  38 64 01 14 */	addi r3, r4, 0x114
 /* 8024BA20  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
 /* 8024BA24  4B DE 89 1D */	bl getLightDropNum__16dSv_light_drop_cCFUc

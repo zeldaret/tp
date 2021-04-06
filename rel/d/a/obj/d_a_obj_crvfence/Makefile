@@ -3,17 +3,15 @@
 #
 
 M426_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence.plf
+M426_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence.lcf
+M426_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence.map
 
 M426_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvfence/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvfence/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvfence/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvfence/d_a_obj_crvfence.cpp \
 
 M426_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/d_a_obj_crvfence.o \
 
 M426_LIBS := \
@@ -29,15 +27,21 @@ M426_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map426.map\
+	-m _prolog \
+	-lcf $(M426_LDSCRIPT) \
+	-unused -map $(M426_MAP) \
+	-w off \
 
 $(M426_TARGET): $(M426_O_FILES) $(M426_LIBS)
+	@echo [426] creating $(M426_TARGET)
 	@echo $(M426_LIBS) $(M426_O_FILES) > build/M426_ofiles
-	$(LD) -opt_partial $(M426_LDFLAGS) -o $(M426_TARGET) @build/M426_ofiles
+	@python3 tools/lcf.py rel 426 --output $(M426_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M426_LDFLAGS) -o $(M426_TARGET) @build/M426_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvfence/%.o: rel/d/a/obj/d_a_obj_crvfence/%.cpp
+	@echo [426] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M426_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

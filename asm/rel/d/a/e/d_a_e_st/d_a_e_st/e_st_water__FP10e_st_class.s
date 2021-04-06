@@ -5,12 +5,12 @@ lbl_807A266C:
 /* 807A2678  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 807A267C  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 807A2680  7C 7E 1B 78 */	mr r30, r3
-/* 807A2684  3C 60 80 7A */	lis r3, lit_3903@ha
-/* 807A2688  3B E3 68 24 */	addi r31, r3, lit_3903@l
+/* 807A2684  3C 60 80 7A */	lis r3, lit_3903@ha /* 0x807A6824@ha */
+/* 807A2688  3B E3 68 24 */	addi r31, r3, lit_3903@l /* 0x807A6824@l */
 /* 807A268C  38 61 00 0C */	addi r3, r1, 0xc
 /* 807A2690  38 9E 04 A8 */	addi r4, r30, 0x4a8
 /* 807A2694  38 BE 04 D0 */	addi r5, r30, 0x4d0
-/* 807A2698  4B AC 44 9C */	b __mi__4cXyzCFRC3Vec
+/* 807A2698  4B AC 44 9D */	bl __mi__4cXyzCFRC3Vec
 /* 807A269C  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 807A26A0  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 807A26A4  C0 01 00 10 */	lfs f0, 0x10(r1)
@@ -72,8 +72,8 @@ lbl_807A276C:
 /* 807A2778  7F C3 F3 78 */	mr r3, r30
 /* 807A277C  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 807A2780  C0 3F 00 5C */	lfs f1, 0x5c(r31)
-/* 807A2784  3C A0 80 7A */	lis r5, l_HIO@ha
-/* 807A2788  38 A5 6D F4 */	addi r5, r5, l_HIO@l
+/* 807A2784  3C A0 80 7A */	lis r5, l_HIO@ha /* 0x807A6DF4@ha */
+/* 807A2788  38 A5 6D F4 */	addi r5, r5, l_HIO@l /* 0x807A6DF4@l */
 /* 807A278C  C0 05 00 08 */	lfs f0, 8(r5)
 /* 807A2790  EC 01 00 32 */	fmuls f0, f1, f0
 /* 807A2794  FC 00 00 1E */	fctiwz f0, f0
@@ -81,17 +81,17 @@ lbl_807A276C:
 /* 807A279C  80 A1 00 34 */	lwz r5, 0x34(r1)
 /* 807A27A0  38 C0 00 00 */	li r6, 0
 /* 807A27A4  38 E0 00 06 */	li r7, 6
-/* 807A27A8  4B 87 A3 30 */	b fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
+/* 807A27A8  4B 87 A3 31 */	bl fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
 /* 807A27AC  7F C3 F3 78 */	mr r3, r30
-/* 807A27B0  4B 87 74 CC */	b fopAcM_delete__FP10fopAc_ac_c
+/* 807A27B0  4B 87 74 CD */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 807A27B4  88 9E 05 B8 */	lbz r4, 0x5b8(r30)
 /* 807A27B8  28 04 00 FF */	cmplwi r4, 0xff
 /* 807A27BC  41 82 00 18 */	beq lbl_807A27D4
-/* 807A27C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807A27C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 807A27C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807A27C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807A27C8  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 807A27CC  7C 05 07 74 */	extsb r5, r0
-/* 807A27D0  4B 89 2A 30 */	b onSwitch__10dSv_info_cFii
+/* 807A27D0  4B 89 2A 31 */	bl onSwitch__10dSv_info_cFii
 lbl_807A27D4:
 /* 807A27D4  C0 3E 04 D0 */	lfs f1, 0x4d0(r30)
 /* 807A27D8  C0 1E 04 F8 */	lfs f0, 0x4f8(r30)
@@ -102,10 +102,10 @@ lbl_807A27D4:
 /* 807A27EC  EC 01 00 2A */	fadds f0, f1, f0
 /* 807A27F0  D0 1E 04 D8 */	stfs f0, 0x4d8(r30)
 /* 807A27F4  38 7E 08 40 */	addi r3, r30, 0x840
-/* 807A27F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 807A27FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 807A27F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807A27FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807A2800  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 807A2804  4B 8D 42 A8 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 807A2804  4B 8D 42 A9 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 807A2808  C0 1E 04 F8 */	lfs f0, 0x4f8(r30)
 /* 807A280C  C0 3F 01 18 */	lfs f1, 0x118(r31)
 /* 807A2810  EC 00 00 72 */	fmuls f0, f0, f1
@@ -129,8 +129,8 @@ lbl_807A27D4:
 /* 807A2858  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807A285C  40 80 00 2C */	bge lbl_807A2888
 /* 807A2860  C0 3F 00 60 */	lfs f1, 0x60(r31)
-/* 807A2864  3C 60 80 7A */	lis r3, small@ha
-/* 807A2868  80 03 6D E0 */	lwz r0, small@l(r3)
+/* 807A2864  3C 60 80 7A */	lis r3, small@ha /* 0x807A6DE0@ha */
+/* 807A2868  80 03 6D E0 */	lwz r0, small@l(r3)  /* 0x807A6DE0@l */
 /* 807A286C  2C 00 00 00 */	cmpwi r0, 0
 /* 807A2870  41 82 00 08 */	beq lbl_807A2878
 /* 807A2874  C0 3F 00 08 */	lfs f1, 8(r31)
@@ -138,7 +138,7 @@ lbl_807A2878:
 /* 807A2878  38 7E 0F 7C */	addi r3, r30, 0xf7c
 /* 807A287C  38 81 00 18 */	addi r4, r1, 0x18
 /* 807A2880  C0 5F 00 F4 */	lfs f2, 0xf4(r31)
-/* 807A2884  4B 87 A8 88 */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 807A2884  4B 87 A8 89 */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 lbl_807A2888:
 /* 807A2888  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 807A288C  83 C1 00 38 */	lwz r30, 0x38(r1)

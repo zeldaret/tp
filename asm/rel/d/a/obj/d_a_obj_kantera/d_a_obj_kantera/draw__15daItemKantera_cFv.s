@@ -4,7 +4,7 @@ lbl_80C394DC:
 /* 80C394E4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C394E8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C394EC  7C 7F 1B 78 */	mr r31, r3
-/* 80C394F0  4B 3F E5 DC */	b chkDraw__12daItemBase_cFv
+/* 80C394F0  4B 3F E5 DD */	bl chkDraw__12daItemBase_cFv
 /* 80C394F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80C394F8  40 82 00 0C */	bne lbl_80C39504
 /* 80C394FC  38 60 00 01 */	li r3, 1

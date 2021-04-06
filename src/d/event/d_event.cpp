@@ -149,11 +149,6 @@ struct Z2StatusMgr {
 // Forward References:
 //
 
-void dEv_defaultSkipProc(void*, int);
-void dEv_defaultSkipZev(void*, int);
-void dEv_defaultSkipStb(void*, int);
-void dEv_noFinishSkipProc(void*, int);
-
 extern "C" static bool func_80041480();
 extern "C" static void func_80041488();
 extern "C" void __ct__14dEvt_control_cFv();
@@ -217,17 +212,6 @@ extern "C" extern char const* const d_event_d_event__stringBase0;
 //
 // External References:
 //
-
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void fopAcM_getItemEventPartner(fopAc_ac_c const*);
-void fpcSch_JudgeByID(void*, void*);
-void dStage_changeScene4Event(int, s8, int, bool, f32, u32, s16, int);
-void dComIfGp_getSelectItem(int);
-void dComIfG_getStageRes(char const*);
-void dComIfG_getRoomArcName(int);
-void dComIfGs_onVisitedRoom(int);
-void dCam_getBody();
 
 extern "C" void fadeOut__13mDoGph_gInf_cFf();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
@@ -296,62 +280,24 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80041480-80041488 0008+00 s=1 e=0 z=0  None .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
+/* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
  */
-extern "C" static bool func_80041480() {
+static bool func_80041480() {
     return false;
 }
 
-/* 80041488-80041580 00F8+00 s=1 e=0 z=0  None .text
+/* 80041488-80041580 03BDC8 00F8+00 1/1 0/0 0/0 .text
  * clear_tmpflag_for_message__21@unnamed@d_event_cpp@Fv         */
-//	80041498: 804061C0 (g_dComIfG_gameInfo)
-//	8004149C: 804061C0 (g_dComIfG_gameInfo)
-//	800414A8: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414AC: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414B4: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	800414BC: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414C0: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414C8: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	800414D0: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414D4: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414DC: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	800414E4: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414E8: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414F0: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	800414F8: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	800414FC: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041504: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	8004150C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041510: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041518: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	80041520: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041524: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8004152C: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	80041534: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041538: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041540: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	80041548: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8004154C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041554: 800349A4 (offEventBit__11dSv_event_cFUs)
-//	8004155C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041560: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80041568: 800349A4 (offEventBit__11dSv_event_cFUs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80041488() {
+static asm void func_80041488() {
     nofralloc
 #include "asm/d/event/d_event/func_80041488.s"
 }
 #pragma pop
 
-/* 80041580-800415D4 0054+00 s=0 e=1 z=0  None .text      __ct__14dEvt_control_cFv */
-//	80041598: 800415D4 (__ct__12dEvt_order_cFv)
-//	8004159C: 800415D4 (__ct__12dEvt_order_cFv)
-//	800415A0: 80030154 (__dt__12dEvt_order_cFv)
-//	800415A4: 80030154 (__dt__12dEvt_order_cFv)
-//	800415B0: 80361D60 (__construct_array)
-//	800415B8: 800431E8 (remove__14dEvt_control_cFv)
+/* 80041580-800415D4 03BEC0 0054+00 0/0 1/1 0/0 .text            __ct__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -361,19 +307,13 @@ asm dEvt_control_c::dEvt_control_c() {
 }
 #pragma pop
 
-/* 800415D4-800415D8 0004+00 s=1 e=0 z=0  None .text      __ct__12dEvt_order_cFv */
+/* 800415D4-800415D8 03BF14 0004+00 1/1 0/0 0/0 .text            __ct__12dEvt_order_cFv */
 dEvt_order_c::dEvt_order_c() {
     /* empty function */
 }
 
-/* 800415D8-80041668 0090+00 s=1 e=0 z=0  None .text      orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
+/* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
  */
-//	800415E8: 803621CC (_savegpr_25)
-//	80041608: 804061C0 (g_dComIfG_gameInfo)
-//	8004160C: 804061C0 (g_dComIfG_gameInfo)
-//	80041620: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	8004164C: 80041668 (order__14dEvt_control_cFUsUsUsUsPvPvsUc)
-//	80041654: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,15 +324,7 @@ asm void dEvt_control_c::orderOld(u16 param_0, u16 param_1, u16 param_2, u16 par
 }
 #pragma pop
 
-/* 80041668-80041804 019C+00 s=3 e=13 z=0  None .text      order__14dEvt_control_cFUsUsUsUsPvPvsUc
- */
-//	80041678: 803621C0 (_savegpr_22)
-//	800416B0: 80450D64 (struct_80450D64)
-//	800416C0: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	800416D8: 804061C0 (g_dComIfG_gameInfo)
-//	800416DC: 804061C0 (g_dComIfG_gameInfo)
-//	800416E4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	800417F0: 8036220C (_restgpr_22)
+/* 80041668-80041804 03BFA8 019C+00 3/3 13/13 0/0 .text order__14dEvt_control_cFUsUsUsUsPvPvsUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,27 +336,11 @@ asm void dEvt_control_c::order(u16 param_0, u16 param_1, u16 param_2, u16 param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EC0-80451EC4 0004+00 s=1 e=0 z=0  None .sdata2    @4361 */
+/* 80451EC0-80451EC4 0004C0 0004+00 1/1 0/0 0/0 .sdata2          @4361 */
 SECTION_SDATA2 static f32 lit_4361 = 1.0f;
 
-/* 80041804-80041934 0130+00 s=5 e=0 z=0  None .text      setParam__14dEvt_control_cFP12dEvt_order_c
+/* 80041804-80041934 03C144 0130+00 5/5 0/0 0/0 .text setParam__14dEvt_control_cFP12dEvt_order_c
  */
-//	80041814: 803621D8 (_savegpr_28)
-//	80041824: 8004362C (setPt1__14dEvt_control_cFPv)
-//	80041830: 8004365C (setPt2__14dEvt_control_cFPv)
-//	80041844: 804061C0 (g_dComIfG_gameInfo)
-//	80041848: 804061C0 (g_dComIfG_gameInfo)
-//	80041860: 8004368C (setPtT__14dEvt_control_cFPv)
-//	8004186C: 800436BC (setPtI__14dEvt_control_cFPv)
-//	8004187C: 8004368C (setPtT__14dEvt_control_cFPv)
-//	80041888: 800436BC (setPtI__14dEvt_control_cFPv)
-//	800418A0: 80450D64 (struct_80450D64)
-//	800418B0: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	800418D4: 804061C0 (g_dComIfG_gameInfo)
-//	800418D8: 804061C0 (g_dComIfG_gameInfo)
-//	800418E0: 80035200 (onSwitch__10dSv_info_cFii)
-//	8004190C: 80451EC0 (lit_4361)
-//	80041920: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -434,7 +350,7 @@ asm void dEvt_control_c::setParam(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80041934-80041964 0030+00 s=2 e=0 z=0  None .text
+/* 80041934-80041964 03C274 0030+00 2/2 0/0 0/0 .text
  * beforeFlagProc__14dEvt_control_cFP12dEvt_order_c             */
 #pragma push
 #pragma optimization_level 0
@@ -445,30 +361,8 @@ asm void dEvt_control_c::beforeFlagProc(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80379D80-80379DD0 004E+02 s=7 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379D80 = "？？？";
-SECTION_DEAD char const* const stringBase_80379D87 = "ALL";
-SECTION_DEAD char const* const stringBase_80379D8B = "DEFAULT_TALK";
-SECTION_DEAD char const* const stringBase_80379D98 = "MHINT_TALK";
-SECTION_DEAD char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
-SECTION_DEAD char const* const stringBase_80379DB3 = "DEFAULT_GETITEM";
-SECTION_DEAD char const* const stringBase_80379DC3 = "$0";
-SECTION_DEAD char const* const stringBase_80379DC6 = "GIVEMAN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379DCE = "\0";
-#pragma pop
-
-/* 80041964-800419A8 0044+00 s=2 e=0 z=0  None .text
+/* 80041964-800419A8 03C2A4 0044+00 2/2 0/0 0/0 .text
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
-//	8004197C: 804061C0 (g_dComIfG_gameInfo)
-//	80041980: 804061C0 (g_dComIfG_gameInfo)
-//	80041988: 80379D80 (d_event_d_event__stringBase0)
-//	8004198C: 80379D80 (d_event_d_event__stringBase0)
-//	80041994: 800482CC (issueStaff__16dEvent_manager_cFPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -478,9 +372,8 @@ asm void dEvt_control_c::afterFlagProc(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 800419A8-80041A20 0078+00 s=4 e=0 z=0  None .text
+/* 800419A8-80041A20 03C2E8 0078+00 4/4 0/0 0/0 .text
  * commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs            */
-//	80041A00: 80041804 (setParam__14dEvt_control_cFP12dEvt_order_c)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -490,25 +383,8 @@ asm void dEvt_control_c::commonCheck(dEvt_order_c* param_0, u16 param_1, u16 par
 }
 #pragma pop
 
-/* 80041A20-80041B58 0138+00 s=1 e=0 z=0  None .text talkCheck__14dEvt_control_cFP12dEvt_order_c
+/* 80041A20-80041B58 03C360 0138+00 1/1 0/0 0/0 .text talkCheck__14dEvt_control_cFP12dEvt_order_c
  */
-//	80041A30: 803621DC (_savegpr_29)
-//	80041A38: 80379D80 (d_event_d_event__stringBase0)
-//	80041A3C: 80379D80 (d_event_d_event__stringBase0)
-//	80041A7C: 80451018 (m_midnaActor__9daPy_py_c)
-//	80041A80: 804061C0 (g_dComIfG_gameInfo)
-//	80041A84: 804061C0 (g_dComIfG_gameInfo)
-//	80041AA4: 80379D80 (d_event_d_event__stringBase0)
-//	80041AA8: 80379D80 (d_event_d_event__stringBase0)
-//	80041ABC: 800419A8 (commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs)
-//	80041AE8: 80043480 (getEventName__11dEvt_info_cFv)
-//	80041B00: 804061C0 (g_dComIfG_gameInfo)
-//	80041B04: 804061C0 (g_dComIfG_gameInfo)
-//	80041B18: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80041B20: 804061C0 (g_dComIfG_gameInfo)
-//	80041B24: 804061C0 (g_dComIfG_gameInfo)
-//	80041B30: 80047984 (order__16dEvent_manager_cFs)
-//	80041B44: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -518,19 +394,8 @@ asm void dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80041B58-80041C90 0138+00 s=1 e=0 z=0  None .text talkXyCheck__14dEvt_control_cFP12dEvt_order_c
- */
-//	80041B68: 803621D4 (_savegpr_27)
-//	80041B74: 80379D80 (d_event_d_event__stringBase0)
-//	80041B78: 80379D80 (d_event_d_event__stringBase0)
-//	80041BD4: 8002DF1C (dComIfGp_getSelectItem__Fi)
-//	80041C1C: 800419A8 (commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs)
-//	80041C34: 8002DF1C (dComIfGp_getSelectItem__Fi)
-//	80041C3C: 804061C0 (g_dComIfG_gameInfo)
-//	80041C40: 804061C0 (g_dComIfG_gameInfo)
-//	80041C58: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80041C68: 80047984 (order__16dEvent_manager_cFs)
-//	80041C7C: 80362220 (_restgpr_27)
+/* 80041B58-80041C90 03C498 0138+00 1/1 0/0 0/0 .text
+ * talkXyCheck__14dEvt_control_cFP12dEvt_order_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -540,12 +405,8 @@ asm void dEvt_control_c::talkXyCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80041C90-80041D34 00A4+00 s=1 e=0 z=0  None .text catchCheck__14dEvt_control_cFP12dEvt_order_c
+/* 80041C90-80041D34 03C5D0 00A4+00 1/1 0/0 0/0 .text catchCheck__14dEvt_control_cFP12dEvt_order_c
  */
-//	80041CEC: 80041804 (setParam__14dEvt_control_cFP12dEvt_order_c)
-//	80041CF0: 804061C0 (g_dComIfG_gameInfo)
-//	80041CF4: 804061C0 (g_dComIfG_gameInfo)
-//	80041D18: 80047984 (order__16dEvent_manager_cFs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,14 +416,7 @@ asm void dEvt_control_c::catchCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80041D34-80041DDC 00A8+00 s=1 e=0 z=0  None .text      talkEnd__14dEvt_control_cFv */
-//	80041D4C: 800432EC (convPId__14dEvt_control_cFUi)
-//	80041D68: 800432EC (convPId__14dEvt_control_cFUi)
-//	80041D88: 804061C0 (g_dComIfG_gameInfo)
-//	80041D8C: 804061C0 (g_dComIfG_gameInfo)
-//	80041D98: 80046DAC (endProc__16dEvent_manager_cFsi)
-//	80041DA8: 8001BB44 (fopAcM_getItemEventPartner__FPC10fopAc_ac_c)
-//	80041DC0: 80037AE4 (dead__12daItemBase_cFv)
+/* 80041D34-80041DDC 03C674 00A8+00 1/1 0/0 0/0 .text            talkEnd__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -572,19 +426,8 @@ asm void dEvt_control_c::talkEnd() {
 }
 #pragma pop
 
-/* 80041DDC-80041F18 013C+00 s=1 e=0 z=0  None .text demoCheck__14dEvt_control_cFP12dEvt_order_c
+/* 80041DDC-80041F18 03C71C 013C+00 1/1 0/0 0/0 .text demoCheck__14dEvt_control_cFP12dEvt_order_c
  */
-//	80041DEC: 803621D4 (_savegpr_27)
-//	80041E68: 80041934 (beforeFlagProc__14dEvt_control_cFP12dEvt_order_c)
-//	80041E84: 804061C0 (g_dComIfG_gameInfo)
-//	80041E88: 804061C0 (g_dComIfG_gameInfo)
-//	80041E94: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	80041E98: 804061C0 (g_dComIfG_gameInfo)
-//	80041E9C: 804061C0 (g_dComIfG_gameInfo)
-//	80041EA8: 80047984 (order__16dEvent_manager_cFs)
-//	80041EEC: 80041804 (setParam__14dEvt_control_cFP12dEvt_order_c)
-//	80041EF8: 80041964 (afterFlagProc__14dEvt_control_cFP12dEvt_order_c)
-//	80041F04: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,12 +437,7 @@ asm void dEvt_control_c::demoCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80041F18-80041FA0 0088+00 s=1 e=0 z=0  None .text      demoEnd__14dEvt_control_cFv */
-//	80041F30: 800432EC (convPId__14dEvt_control_cFUi)
-//	80041F4C: 800432EC (convPId__14dEvt_control_cFUi)
-//	80041F6C: 804061C0 (g_dComIfG_gameInfo)
-//	80041F70: 804061C0 (g_dComIfG_gameInfo)
-//	80041F7C: 80046DAC (endProc__16dEvent_manager_cFsi)
+/* 80041F18-80041FA0 03C858 0088+00 1/1 0/0 0/0 .text            demoEnd__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -609,13 +447,8 @@ asm void dEvt_control_c::demoEnd() {
 }
 #pragma pop
 
-/* 80041FA0-80042014 0074+00 s=1 e=0 z=0  None .text
+/* 80041FA0-80042014 03C8E0 0074+00 1/1 0/0 0/0 .text
  * potentialCheck__14dEvt_control_cFP12dEvt_order_c             */
-//	80041FB0: 803621DC (_savegpr_29)
-//	80041FC0: 80041934 (beforeFlagProc__14dEvt_control_cFP12dEvt_order_c)
-//	80041FE8: 80041804 (setParam__14dEvt_control_cFP12dEvt_order_c)
-//	80041FF4: 80041964 (afterFlagProc__14dEvt_control_cFP12dEvt_order_c)
-//	80042000: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -625,20 +458,8 @@ asm void dEvt_control_c::potentialCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 80042014-8004212C 0118+00 s=1 e=0 z=0  None .text doorCheck__14dEvt_control_cFP12dEvt_order_c
+/* 80042014-8004212C 03C954 0118+00 1/1 0/0 0/0 .text doorCheck__14dEvt_control_cFP12dEvt_order_c
  */
-//	80042024: 803621DC (_savegpr_29)
-//	80042038: 800419A8 (commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs)
-//	80042054: 800432EC (convPId__14dEvt_control_cFUi)
-//	80042060: 804061C0 (g_dComIfG_gameInfo)
-//	80042064: 804061C0 (g_dComIfG_gameInfo)
-//	80042070: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	800420A4: 804061C0 (g_dComIfG_gameInfo)
-//	800420A8: 804061C0 (g_dComIfG_gameInfo)
-//	800420B4: 800474BC (getEventData__16dEvent_manager_cFs)
-//	800420C8: 80047984 (order__16dEvent_manager_cFs)
-//	800420DC: 80042468 (reset__14dEvt_control_cFv)
-//	80042118: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -648,17 +469,8 @@ asm void dEvt_control_c::doorCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 8004212C-800421C0 0094+00 s=1 e=0 z=0  None .text itemCheck__14dEvt_control_cFP12dEvt_order_c
+/* 8004212C-800421C0 03CA6C 0094+00 1/1 0/0 0/0 .text itemCheck__14dEvt_control_cFP12dEvt_order_c
  */
-//	8004213C: 803621DC (_savegpr_29)
-//	80042144: 80379D80 (d_event_d_event__stringBase0)
-//	80042148: 80379D80 (d_event_d_event__stringBase0)
-//	80042158: 800419A8 (commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs)
-//	8004216C: 804061C0 (g_dComIfG_gameInfo)
-//	80042170: 804061C0 (g_dComIfG_gameInfo)
-//	80042188: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80042198: 80047984 (order__16dEvent_manager_cFs)
-//	800421AC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -668,12 +480,7 @@ asm void dEvt_control_c::itemCheck(dEvt_order_c* param_0) {
 }
 #pragma pop
 
-/* 800421C0-80042254 0094+00 s=1 e=0 z=0  None .text      endProc__14dEvt_control_cFv */
-//	800421F4: 80041D34 (talkEnd__14dEvt_control_cFv)
-//	800421FC: 80041F18 (demoEnd__14dEvt_control_cFv)
-//	80042228: 804061C0 (g_dComIfG_gameInfo)
-//	8004222C: 804061C0 (g_dComIfG_gameInfo)
-//	80042238: 800463F0 (setStartDemo__18dEvent_exception_cFi)
+/* 800421C0-80042254 03CB00 0094+00 1/1 0/0 0/0 .text            endProc__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -683,7 +490,7 @@ asm void dEvt_control_c::endProc() {
 }
 #pragma pop
 
-/* 80042254-800422C0 006C+00 s=1 e=0 z=0  None .text      change__14dEvt_control_cFv */
+/* 80042254-800422C0 03CB94 006C+00 1/1 0/0 0/0 .text            change__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -694,7 +501,7 @@ asm void dEvt_control_c::change() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A7F78-803A7FB0 0038+00 s=1 e=0 z=0  None .data      @4719 */
+/* 803A7F78-803A7FB0 -00001 0038+00 1/1 0/0 0/0 .data            @4719 */
 SECTION_DATA static void* lit_4719[14] = {
     (void*)(((char*)entry__14dEvt_control_cFv) + 0x70),
     (void*)(((char*)entry__14dEvt_control_cFv) + 0xB8),
@@ -712,21 +519,7 @@ SECTION_DATA static void* lit_4719[14] = {
     (void*)(((char*)entry__14dEvt_control_cFv) + 0x184),
 };
 
-/* 800422C0-80042468 01A8+00 s=2 e=0 z=0  None .text      entry__14dEvt_control_cFv */
-//	800422D0: 803621DC (_savegpr_29)
-//	800422F0: 804061C0 (g_dComIfG_gameInfo)
-//	800422F4: 804061C0 (g_dComIfG_gameInfo)
-//	80042318: 803A7F78 (lit_4719)
-//	8004231C: 803A7F78 (lit_4719)
-//	80042340: 80041A20 (talkCheck__14dEvt_control_cFP12dEvt_order_c)
-//	80042364: 80041DDC (demoCheck__14dEvt_control_cFP12dEvt_order_c)
-//	80042388: 80042014 (doorCheck__14dEvt_control_cFP12dEvt_order_c)
-//	800423A8: 80041804 (setParam__14dEvt_control_cFP12dEvt_order_c)
-//	800423C4: 80041FA0 (potentialCheck__14dEvt_control_cFP12dEvt_order_c)
-//	800423E8: 8004212C (itemCheck__14dEvt_control_cFP12dEvt_order_c)
-//	8004240C: 80041B58 (talkXyCheck__14dEvt_control_cFP12dEvt_order_c)
-//	80042430: 80041C90 (catchCheck__14dEvt_control_cFP12dEvt_order_c)
-//	80042454: 80362228 (_restgpr_29)
+/* 800422C0-80042468 03CC00 01A8+00 2/1 0/0 0/0 .text            entry__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -736,15 +529,7 @@ asm void dEvt_control_c::entry() {
 }
 #pragma pop
 
-/* 80042468-80042518 00B0+00 s=1 e=8 z=388  None .text      reset__14dEvt_control_cFv */
-//	80042478: 803621DC (_savegpr_29)
-//	80042490: 800432EC (convPId__14dEvt_control_cFUi)
-//	80042498: 804061C0 (g_dComIfG_gameInfo)
-//	8004249C: 804061C0 (g_dComIfG_gameInfo)
-//	800424B0: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	800424C0: 800432EC (convPId__14dEvt_control_cFUi)
-//	800424EC: 80041668 (order__14dEvt_control_cFUsUsUsUsPvPvsUc)
-//	80042504: 80362228 (_restgpr_29)
+/* 80042468-80042518 03CDA8 00B0+00 1/1 8/8 388/388 .text            reset__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -754,14 +539,7 @@ asm void dEvt_control_c::reset() {
 }
 #pragma pop
 
-/* 80042518-800425B4 009C+00 s=3 e=3 z=46  None .text      reset__14dEvt_control_cFPv */
-//	80042528: 803621DC (_savegpr_29)
-//	80042540: 804061C0 (g_dComIfG_gameInfo)
-//	80042544: 804061C0 (g_dComIfG_gameInfo)
-//	8004254C: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
-//	8004255C: 800432EC (convPId__14dEvt_control_cFUi)
-//	80042588: 80041668 (order__14dEvt_control_cFUsUsUsUsPvPvsUc)
-//	800425A0: 80362228 (_restgpr_29)
+/* 80042518-800425B4 03CE58 009C+00 3/3 3/3 46/46 .text            reset__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -771,7 +549,8 @@ asm void dEvt_control_c::reset(void* param_0) {
 }
 #pragma pop
 
-/* 800425B4-800425E8 0034+00 s=2 e=0 z=0  None .text      clearSkipSystem__14dEvt_control_cFv */
+/* 800425B4-800425E8 03CEF4 0034+00 2/2 0/0 0/0 .text            clearSkipSystem__14dEvt_control_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -781,10 +560,7 @@ asm void dEvt_control_c::clearSkipSystem() {
 }
 #pragma pop
 
-/* 800425E8-8004261C 0034+00 s=0 e=2 z=5  None .text      dEv_defaultSkipProc__FPvi */
-//	800425F8: 804061C0 (g_dComIfG_gameInfo)
-//	800425FC: 804061C0 (g_dComIfG_gameInfo)
-//	80042604: 80042518 (reset__14dEvt_control_cFPv)
+/* 800425E8-8004261C 03CF28 0034+00 0/0 2/2 5/5 .text            dEv_defaultSkipProc__FPvi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -794,23 +570,7 @@ asm void dEv_defaultSkipProc(void* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8004261C-80042778 015C+00 s=1 e=1 z=0  None .text      dEv_defaultSkipZev__FPvi */
-//	8004262C: 803621D0 (_savegpr_26)
-//	80042638: 804061C0 (g_dComIfG_gameInfo)
-//	8004263C: 804061C0 (g_dComIfG_gameInfo)
-//	8004264C: 80043278 (getStageEventDt__14dEvt_control_cFv)
-//	800426A0: 80368B2C (strcpy)
-//	800426A8: 80379D80 (d_event_d_event__stringBase0)
-//	800426AC: 80379D80 (d_event_d_event__stringBase0)
-//	800426B4: 80368ABC (strcat)
-//	800426C8: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	800426D8: 8004290C (getSkipEventName__14dEvt_control_cFv)
-//	800426EC: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80042708: 80042518 (reset__14dEvt_control_cFPv)
-//	80042728: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	80042744: 80042518 (reset__14dEvt_control_cFPv)
-//	80042758: 80042518 (reset__14dEvt_control_cFPv)
-//	80042764: 8036221C (_restgpr_26)
+/* 8004261C-80042778 03CF5C 015C+00 1/1 1/1 0/0 .text            dEv_defaultSkipZev__FPvi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -820,25 +580,7 @@ asm void dEv_defaultSkipZev(void* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80042778-800428DC 0164+00 s=0 e=1 z=0  None .text      dEv_defaultSkipStb__FPvi */
-//	80042788: 803621D0 (_savegpr_26)
-//	80042794: 804061C0 (g_dComIfG_gameInfo)
-//	80042798: 804061C0 (g_dComIfG_gameInfo)
-//	800427A8: 80043278 (getStageEventDt__14dEvt_control_cFv)
-//	800427FC: 80368B2C (strcpy)
-//	80042804: 80379D80 (d_event_d_event__stringBase0)
-//	80042808: 80379D80 (d_event_d_event__stringBase0)
-//	80042810: 80368ABC (strcat)
-//	80042824: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80042834: 8004290C (getSkipEventName__14dEvt_control_cFv)
-//	80042848: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80042864: 80042518 (reset__14dEvt_control_cFPv)
-//	80042868: 80039CF8 (end__7dDemo_cFv)
-//	80042888: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	800428A4: 80042518 (reset__14dEvt_control_cFPv)
-//	800428A8: 80039CF8 (end__7dDemo_cFv)
-//	800428BC: 80042518 (reset__14dEvt_control_cFPv)
-//	800428C8: 8036221C (_restgpr_26)
+/* 80042778-800428DC 03D0B8 0164+00 0/0 1/1 0/0 .text            dEv_defaultSkipStb__FPvi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -848,10 +590,7 @@ asm void dEv_defaultSkipStb(void* param_0, int param_1) {
 }
 #pragma pop
 
-/* 800428DC-8004290C 0030+00 s=0 e=1 z=33  None .text      dEv_noFinishSkipProc__FPvi */
-//	800428E8: 804061C0 (g_dComIfG_gameInfo)
-//	800428EC: 804061C0 (g_dComIfG_gameInfo)
-//	800428F4: 800429B4 (offSkipFade__14dEvt_control_cFv)
+/* 800428DC-8004290C 03D21C 0030+00 0/0 1/1 33/33 .text            dEv_noFinishSkipProc__FPvi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -861,7 +600,7 @@ asm void dEv_noFinishSkipProc(void* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8004290C-80042914 0008+00 s=2 e=0 z=0  None .text      getSkipEventName__14dEvt_control_cFv */
+/* 8004290C-80042914 03D24C 0008+00 2/2 0/0 0/0 .text getSkipEventName__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -871,9 +610,8 @@ asm void dEvt_control_c::getSkipEventName() {
 }
 #pragma pop
 
-/* 80042914-80042958 0044+00 s=1 e=3 z=64  None .text      setSkipProc__14dEvt_control_cFPvPFPvi_ii
+/* 80042914-80042958 03D254 0044+00 1/1 3/3 64/64 .text setSkipProc__14dEvt_control_cFPvPFPvi_ii
  */
-//	80042934: 800432C8 (getPId__14dEvt_control_cFPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -883,11 +621,8 @@ asm void dEvt_control_c::setSkipProc(void* param_0, int (*)(void*, int), int par
 }
 #pragma pop
 
-/* 80042958-800429A8 0050+00 s=0 e=1 z=14  None .text      setSkipZev__14dEvt_control_cFPvPc */
-//	80042974: 8004261C (dEv_defaultSkipZev__FPvi)
-//	80042978: 8004261C (dEv_defaultSkipZev__FPvi)
-//	80042980: 80042914 (setSkipProc__14dEvt_control_cFPvPFPvi_ii)
-//	8004298C: 80368B2C (strcpy)
+/* 80042958-800429A8 03D298 0050+00 0/0 1/1 14/14 .text            setSkipZev__14dEvt_control_cFPvPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -897,7 +632,7 @@ asm void dEvt_control_c::setSkipZev(void* param_0, char* param_1) {
 }
 #pragma pop
 
-/* 800429A8-800429B4 000C+00 s=0 e=1 z=30  None .text      onSkipFade__14dEvt_control_cFv */
+/* 800429A8-800429B4 03D2E8 000C+00 0/0 1/1 30/30 .text            onSkipFade__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -907,7 +642,7 @@ asm void dEvt_control_c::onSkipFade() {
 }
 #pragma pop
 
-/* 800429B4-800429D4 0020+00 s=1 e=0 z=0  None .text      offSkipFade__14dEvt_control_cFv */
+/* 800429B4-800429D4 03D2F4 0020+00 1/1 0/0 0/0 .text            offSkipFade__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -918,24 +653,10 @@ asm void dEvt_control_c::offSkipFade() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EC4-80451EC8 0004+00 s=1 e=0 z=0  None .sdata2    @4904 */
+/* 80451EC4-80451EC8 0004C4 0004+00 1/1 0/0 0/0 .sdata2          @4904 */
 SECTION_SDATA2 static f32 lit_4904 = 1.0f / 10.0f;
 
-/* 800429D4-80042BBC 01E8+00 s=1 e=0 z=0  None .text      skipper__14dEvt_control_cFv */
-//	800429E4: 803621DC (_savegpr_29)
-//	80042A1C: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	80042A20: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	80042A58: 80451EC4 (lit_4904)
-//	80042A5C: 800080D0 (fadeOut__13mDoGph_gInf_cFf)
-//	80042A88: 804061C0 (g_dComIfG_gameInfo)
-//	80042A8C: 804061C0 (g_dComIfG_gameInfo)
-//	80042AA4: 804061C0 (g_dComIfG_gameInfo)
-//	80042AA8: 804061C0 (g_dComIfG_gameInfo)
-//	80042B2C: 80237994 (onKillMessageFlag__12dMsgObject_cFv)
-//	80042B38: 800432EC (convPId__14dEvt_control_cFUi)
-//	80042B44: 804061C0 (g_dComIfG_gameInfo)
-//	80042B48: 804061C0 (g_dComIfG_gameInfo)
-//	80042BA8: 80362228 (_restgpr_29)
+/* 800429D4-80042BBC 03D314 01E8+00 1/1 0/0 0/0 .text            skipper__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -946,56 +667,10 @@ asm void dEvt_control_c::skipper() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451EC8-80451ECC 0004+00 s=1 e=0 z=0  None .sdata2    @5013 */
+/* 80451EC8-80451ECC 0004C8 0004+00 1/1 0/0 0/0 .sdata2          @5013 */
 SECTION_SDATA2 static f32 lit_5013 = -1.0f / 20.0f;
 
-/* 80042BBC-80042FA8 03EC+00 s=0 e=1 z=0  None .text      Step__14dEvt_control_cFv */
-//	80042BCC: 803621D8 (_savegpr_28)
-//	80042BD4: 804061C0 (g_dComIfG_gameInfo)
-//	80042BD8: 804061C0 (g_dComIfG_gameInfo)
-//	80042BF0: 800429D4 (skipper__14dEvt_control_cFv)
-//	80042C14: 804061C0 (g_dComIfG_gameInfo)
-//	80042C18: 804061C0 (g_dComIfG_gameInfo)
-//	80042C28: 80238098 (endFlowGroup__12dMsgObject_cFv)
-//	80042C34: 800474BC (getEventData__16dEvent_manager_cFs)
-//	80042C40: 80043EFC (forceFinish__12dEvDtEvent_cFv)
-//	80042C60: 80046E64 (Sequencer__16dEvent_manager_cFv)
-//	80042C80: 80379D80 (d_event_d_event__stringBase0)
-//	80042C84: 80379D80 (d_event_d_event__stringBase0)
-//	80042C8C: 80048348 (cancelStaff__16dEvent_manager_cFPCc)
-//	80042CCC: 804061C0 (g_dComIfG_gameInfo)
-//	80042CD0: 804061C0 (g_dComIfG_gameInfo)
-//	80042D04: 80451EC8 (lit_5013)
-//	80042D08: 800080D0 (fadeOut__13mDoGph_gInf_cFf)
-//	80042D18: 80041488 (func_80041488)
-//	80042D20: 800421C0 (endProc__14dEvt_control_cFv)
-//	80042D40: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	80042D70: 80041488 (func_80041488)
-//	80042D78: 80042254 (change__14dEvt_control_cFv)
-//	80042D88: 80379D80 (d_event_d_event__stringBase0)
-//	80042D8C: 80379D80 (d_event_d_event__stringBase0)
-//	80042D94: 80048348 (cancelStaff__16dEvent_manager_cFPCc)
-//	80042DD8: 80450D64 (struct_80450D64)
-//	80042E04: 800422C0 (entry__14dEvt_control_cFv)
-//	80042E10: 804061C0 (g_dComIfG_gameInfo)
-//	80042E14: 804061C0 (g_dComIfG_gameInfo)
-//	80042E24: 802379AC (setKillMessageFlag__12dMsgObject_cFv)
-//	80042E3C: 8006FD94 (StopQuake__12dVibration_cFi)
-//	80042E40: 804061C0 (g_dComIfG_gameInfo)
-//	80042E44: 804061C0 (g_dComIfG_gameInfo)
-//	80042E4C: 80181640 (dCam_getBody__Fv)
-//	80042EDC: 80181640 (dCam_getBody__Fv)
-//	80042EE0: 801614C4 (QuickStart__9dCamera_cFv)
-//	80042EF0: 800425B4 (clearSkipSystem__14dEvt_control_cFv)
-//	80042F0C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80042F18: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	80042F2C: 800473FC (Experts__16dEvent_manager_cFv)
-//	80042F50: 80368AE8 (strncpy)
-//	80042F68: 80368AE8 (strncpy)
-//	80042F70: 804061C0 (g_dComIfG_gameInfo)
-//	80042F74: 804061C0 (g_dComIfG_gameInfo)
-//	80042F80: 8002FB80 (dComIfGs_onVisitedRoom__Fi)
-//	80042F94: 80362224 (_restgpr_28)
+/* 80042BBC-80042FA8 03D4FC 03EC+00 0/0 1/1 0/0 .text            Step__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1005,15 +680,8 @@ asm void dEvt_control_c::Step() {
 }
 #pragma pop
 
-/* 80042FA8-8004316C 01C4+00 s=0 e=2 z=0  None .text      moveApproval__14dEvt_control_cFPv */
-//	80043018: 800432EC (convPId__14dEvt_control_cFUi)
-//	8004302C: 800432EC (convPId__14dEvt_control_cFUi)
-//	80043044: 800432EC (convPId__14dEvt_control_cFUi)
-//	80043058: 800432EC (convPId__14dEvt_control_cFUi)
-//	80043084: 800432EC (convPId__14dEvt_control_cFUi)
-//	800430BC: 804061C0 (g_dComIfG_gameInfo)
-//	800430C0: 804061C0 (g_dComIfG_gameInfo)
-//	80043108: 80450E38 (m_mode__7dDemo_c)
+/* 80042FA8-8004316C 03D8E8 01C4+00 0/0 2/2 0/0 .text            moveApproval__14dEvt_control_cFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1023,8 +691,7 @@ asm void dEvt_control_c::moveApproval(void* param_0) {
 }
 #pragma pop
 
-/* 8004316C-800431E8 007C+00 s=0 e=28 z=0  None .text      compulsory__14dEvt_control_cFPvPCcUs */
-//	800431D4: 800415D8 (orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv)
+/* 8004316C-800431E8 03DAAC 007C+00 0/0 28/28 0/0 .text compulsory__14dEvt_control_cFPvPCcUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1035,7 +702,7 @@ asm void dEvt_control_c::compulsory(void* param_0, char const* param_1, u16 para
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451ECC-80451ED0 0004+00 s=2 e=0 z=0  None .sdata2    @5095 */
+/* 80451ECC-80451ED0 0004CC 0004+00 2/2 0/0 0/0 .sdata2          @5095 */
 SECTION_SDATA2 static u8 lit_5095[4] = {
     0x00,
     0x00,
@@ -1043,9 +710,7 @@ SECTION_SDATA2 static u8 lit_5095[4] = {
     0x00,
 };
 
-/* 800431E8-80043278 0090+00 s=1 e=1 z=0  None .text      remove__14dEvt_control_cFv */
-//	80043218: 80451ECC (lit_5095)
-//	8004324C: 800425B4 (clearSkipSystem__14dEvt_control_cFv)
+/* 800431E8-80043278 03DB28 0090+00 1/1 1/1 0/0 .text            remove__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1055,7 +720,8 @@ asm void dEvt_control_c::remove() {
 }
 #pragma pop
 
-/* 80043278-80043280 0008+00 s=2 e=2 z=0  None .text      getStageEventDt__14dEvt_control_cFv */
+/* 80043278-80043280 03DBB8 0008+00 2/2 2/2 0/0 .text            getStageEventDt__14dEvt_control_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1065,9 +731,7 @@ asm void dEvt_control_c::getStageEventDt() {
 }
 #pragma pop
 
-/* 80043280-800432C8 0048+00 s=0 e=1 z=0  None .text      sceneChange__14dEvt_control_cFi */
-//	800432A4: 80451ECC (lit_5095)
-//	800432B4: 800272F0 (dStage_changeScene4Event__FiScibfUlsi)
+/* 80043280-800432C8 03DBC0 0048+00 0/0 1/1 0/0 .text            sceneChange__14dEvt_control_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1077,7 +741,7 @@ asm void dEvt_control_c::sceneChange(int param_0) {
 }
 #pragma pop
 
-/* 800432C8-800432EC 0024+00 s=6 e=0 z=0  None .text      getPId__14dEvt_control_cFPv */
+/* 800432C8-800432EC 03DC08 0024+00 6/6 0/0 0/0 .text            getPId__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1087,10 +751,7 @@ asm void dEvt_control_c::getPId(void* param_0) {
 }
 #pragma pop
 
-/* 800432EC-8004331C 0030+00 s=7 e=13 z=16  None .text      convPId__14dEvt_control_cFUi */
-//	800432FC: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80043300: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80043308: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
+/* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1100,23 +761,8 @@ asm void dEvt_control_c::convPId(unsigned int param_0) {
 }
 #pragma pop
 
-/* 8004331C-800433F0 00D4+00 s=0 e=1 z=0  None .text      getStbDemoData__14dEvt_control_cFPc */
-//	80043334: 80406194 (mDemoArcName__20dStage_roomControl_c)
-//	80043338: 80406194 (mDemoArcName__20dStage_roomControl_c)
-//	80043344: 804061C0 (g_dComIfG_gameInfo)
-//	80043348: 804061C0 (g_dComIfG_gameInfo)
-//	80043358: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80043364: 80041480 (func_80041480)
-//	80043370: 80041480 (func_80041480)
-//	80043378: 80041480 (func_80041480)
-//	8004337C: 80450D64 (struct_80450D64)
-//	80043384: 8002F4BC (dComIfG_getRoomArcName__Fi)
-//	8004338C: 804061C0 (g_dComIfG_gameInfo)
-//	80043390: 804061C0 (g_dComIfG_gameInfo)
-//	800433A0: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	800433AC: 80041480 (func_80041480)
-//	800433BC: 8002F434 (dComIfG_getStageRes__FPCc)
-//	800433C8: 80041480 (func_80041480)
+/* 8004331C-800433F0 03DC5C 00D4+00 0/0 1/1 0/0 .text            getStbDemoData__14dEvt_control_cFPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1126,9 +772,7 @@ asm void dEvt_control_c::getStbDemoData(char* param_0) {
 }
 #pragma pop
 
-/* 800433F0-80043428 0038+00 s=0 e=1 z=0  None .text      __ct__11dEvt_info_cFv */
-//	800433F0: 803A35D0 (__vt__11dEvt_info_c)
-//	800433F4: 803A35D0 (__vt__11dEvt_info_c)
+/* 800433F0-80043428 03DD30 0038+00 0/0 1/1 0/0 .text            __ct__11dEvt_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1138,10 +782,7 @@ asm dEvt_info_c::dEvt_info_c() {
 }
 #pragma pop
 
-/* 80043428-80043480 0058+00 s=0 e=0 z=4  None .text      setEventName__11dEvt_info_cFPc */
-//	80043450: 804061C0 (g_dComIfG_gameInfo)
-//	80043454: 804061C0 (g_dComIfG_gameInfo)
-//	80043464: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
+/* 80043428-80043480 03DD68 0058+00 0/0 0/0 4/4 .text            setEventName__11dEvt_info_cFPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1151,10 +792,7 @@ asm void dEvt_info_c::setEventName(char* param_0) {
 }
 #pragma pop
 
-/* 80043480-800434CC 004C+00 s=1 e=0 z=0  None .text      getEventName__11dEvt_info_cFv */
-//	800434A0: 804061C0 (g_dComIfG_gameInfo)
-//	800434A4: 804061C0 (g_dComIfG_gameInfo)
-//	800434AC: 800474BC (getEventData__16dEvent_manager_cFs)
+/* 80043480-800434CC 03DDC0 004C+00 1/1 0/0 0/0 .text            getEventName__11dEvt_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1164,7 +802,7 @@ asm void dEvt_info_c::getEventName() {
 }
 #pragma pop
 
-/* 800434CC-800434D8 000C+00 s=0 e=1 z=0  None .text      beforeProc__11dEvt_info_cFv */
+/* 800434CC-800434D8 03DE0C 000C+00 0/0 1/1 0/0 .text            beforeProc__11dEvt_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1174,9 +812,7 @@ asm void dEvt_info_c::beforeProc() {
 }
 #pragma pop
 
-/* 800434D8-80043500 0028+00 s=0 e=4 z=1  None .text      searchMapEventData__14dEvt_control_cFUc */
-//	800434E4: 80450D64 (struct_80450D64)
-//	800434EC: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
+/* 800434D8-80043500 03DE18 0028+00 0/0 4/4 1/1 .text searchMapEventData__14dEvt_control_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1186,11 +822,7 @@ asm void dEvt_control_c::searchMapEventData(u8 param_0) {
 }
 #pragma pop
 
-/* 80043500-8004360C 010C+00 s=3 e=7 z=5  None .text      searchMapEventData__14dEvt_control_cFUcl
- */
-//	8004352C: 804061C0 (g_dComIfG_gameInfo)
-//	80043530: 804061C0 (g_dComIfG_gameInfo)
-//	80043538: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
+/* 80043500-8004360C 03DE40 010C+00 3/3 7/7 5/5 .text searchMapEventData__14dEvt_control_cFUcl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1200,7 +832,8 @@ asm void dEvt_control_c::searchMapEventData(u8 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 8004360C-8004362C 0020+00 s=0 e=1 z=0  None .text      runningEventID__14dEvt_control_cFs */
+/* 8004360C-8004362C 03DF4C 0020+00 0/0 1/1 0/0 .text            runningEventID__14dEvt_control_cFs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1210,8 +843,7 @@ asm void dEvt_control_c::runningEventID(s16 param_0) {
 }
 #pragma pop
 
-/* 8004362C-8004365C 0030+00 s=1 e=0 z=0  None .text      setPt1__14dEvt_control_cFPv */
-//	80043640: 800432C8 (getPId__14dEvt_control_cFPv)
+/* 8004362C-8004365C 03DF6C 0030+00 1/1 0/0 0/0 .text            setPt1__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1221,8 +853,7 @@ asm void dEvt_control_c::setPt1(void* param_0) {
 }
 #pragma pop
 
-/* 8004365C-8004368C 0030+00 s=1 e=2 z=28  None .text      setPt2__14dEvt_control_cFPv */
-//	80043670: 800432C8 (getPId__14dEvt_control_cFPv)
+/* 8004365C-8004368C 03DF9C 0030+00 1/1 2/2 28/28 .text            setPt2__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1232,8 +863,7 @@ asm void dEvt_control_c::setPt2(void* param_0) {
 }
 #pragma pop
 
-/* 8004368C-800436BC 0030+00 s=1 e=4 z=21  None .text      setPtT__14dEvt_control_cFPv */
-//	800436A0: 800432C8 (getPId__14dEvt_control_cFPv)
+/* 8004368C-800436BC 03DFCC 0030+00 1/1 4/4 21/21 .text            setPtT__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1243,8 +873,7 @@ asm void dEvt_control_c::setPtT(void* param_0) {
 }
 #pragma pop
 
-/* 800436BC-800436EC 0030+00 s=1 e=2 z=3  None .text      setPtI__14dEvt_control_cFPv */
-//	800436D0: 800432C8 (getPId__14dEvt_control_cFPv)
+/* 800436BC-800436EC 03DFFC 0030+00 1/1 2/2 3/3 .text            setPtI__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1254,7 +883,7 @@ asm void dEvt_control_c::setPtI(void* param_0) {
 }
 #pragma pop
 
-/* 800436EC-800436F4 0008+00 s=0 e=6 z=43  None .text      setPtI_Id__14dEvt_control_cFUi */
+/* 800436EC-800436F4 03E02C 0008+00 0/0 6/6 43/43 .text            setPtI_Id__14dEvt_control_cFUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1264,8 +893,7 @@ asm void dEvt_control_c::setPtI_Id(unsigned int param_0) {
 }
 #pragma pop
 
-/* 800436F4-80043724 0030+00 s=0 e=4 z=0  None .text      setPtD__14dEvt_control_cFPv */
-//	80043708: 800432C8 (getPId__14dEvt_control_cFPv)
+/* 800436F4-80043724 03E034 0030+00 0/0 4/4 0/0 .text            setPtD__14dEvt_control_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1275,7 +903,7 @@ asm void dEvt_control_c::setPtD(void* param_0) {
 }
 #pragma pop
 
-/* 80043724-8004372C 0008+00 s=0 e=2 z=0  None .text      setGtItm__14dEvt_control_cFUc */
+/* 80043724-8004372C 03E064 0008+00 0/0 2/2 0/0 .text            setGtItm__14dEvt_control_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1283,4 +911,20 @@ asm void dEvt_control_c::setGtItm(u8 param_0) {
     nofralloc
 #include "asm/d/event/d_event/setGtItm__14dEvt_control_cFUc.s"
 }
+#pragma pop
+
+/* 80379D80-80379DD0 0063E0 004E+02 7/7 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
+SECTION_DEAD static char const* const stringBase_80379D87 = "ALL";
+SECTION_DEAD static char const* const stringBase_80379D8B = "DEFAULT_TALK";
+SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
+SECTION_DEAD static char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
+SECTION_DEAD static char const* const stringBase_80379DB3 = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80379DC3 = "$0";
+SECTION_DEAD static char const* const stringBase_80379DC6 = "GIVEMAN";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379DCE = "\0";
 #pragma pop

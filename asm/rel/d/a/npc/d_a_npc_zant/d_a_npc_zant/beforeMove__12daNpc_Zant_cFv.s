@@ -9,7 +9,7 @@ lbl_80B6CE08:
 /* 80B6CE24  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B6CE28  28 00 00 00 */	cmplwi r0, 0
 /* 80B6CE2C  40 82 00 1C */	bne lbl_80B6CE48
-/* 80B6CE30  4B 4C 2C 24 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B6CE30  4B 4C 2C 25 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B6CE34  2C 03 00 00 */	cmpwi r3, 0
 /* 80B6CE38  40 82 00 14 */	bne lbl_80B6CE4C
 /* 80B6CE3C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

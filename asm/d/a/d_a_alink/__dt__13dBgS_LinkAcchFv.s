@@ -7,8 +7,8 @@ lbl_80140F30:
 /* 80140F44  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80140F48  7C 9F 23 78 */	mr r31, r4
 /* 80140F4C  41 82 00 38 */	beq lbl_80140F84
-/* 80140F50  3C 80 80 3B */	lis r4, __vt__13dBgS_LinkAcch@ha
-/* 80140F54  38 84 2F 28 */	addi r4, r4, __vt__13dBgS_LinkAcch@l
+/* 80140F50  3C 80 80 3B */	lis r4, __vt__13dBgS_LinkAcch@ha /* 0x803B2F28@ha */
+/* 80140F54  38 84 2F 28 */	addi r4, r4, __vt__13dBgS_LinkAcch@l /* 0x803B2F28@l */
 /* 80140F58  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80140F5C  38 04 00 0C */	addi r0, r4, 0xc
 /* 80140F60  90 1E 00 14 */	stw r0, 0x14(r30)

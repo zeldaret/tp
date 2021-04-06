@@ -2,8 +2,8 @@ lbl_80B904DC:
 /* 80B904DC  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80B904E0  7C 08 02 A6 */	mflr r0
 /* 80B904E4  90 01 01 94 */	stw r0, 0x194(r1)
-/* 80B904E8  3C 80 80 B9 */	lis r4, m__17daNpc_zrC_Param_c@ha
-/* 80B904EC  38 84 31 FC */	addi r4, r4, m__17daNpc_zrC_Param_c@l
+/* 80B904E8  3C 80 80 B9 */	lis r4, m__17daNpc_zrC_Param_c@ha /* 0x80B931FC@ha */
+/* 80B904EC  38 84 31 FC */	addi r4, r4, m__17daNpc_zrC_Param_c@l /* 0x80B931FC@l */
 /* 80B904F0  80 A4 02 E8 */	lwz r5, 0x2e8(r4)
 /* 80B904F4  80 04 02 EC */	lwz r0, 0x2ec(r4)
 /* 80B904F8  90 A1 01 4C */	stw r5, 0x14c(r1)

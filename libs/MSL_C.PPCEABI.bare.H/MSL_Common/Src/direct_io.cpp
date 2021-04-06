@@ -11,7 +11,7 @@
 // Forward References:
 //
 
-extern "C" static void __fwrite();
+extern "C" void __fwrite();
 extern "C" void fwrite();
 
 //
@@ -32,34 +32,21 @@ extern "C" void fwide();
 // Declarations:
 //
 
-/* 80365494-803657A0 030C+00 s=1 e=0 z=0  None .text      __fwrite */
-//	803654BC: 80369114 (fwide)
-//	803654D0: 80369114 (fwide)
-//	80365504: 803664CC (__stdio_atexit)
-//	8036557C: 80365BB4 (fseek)
-//	803655A4: 803651A4 (__prep_buffer)
-//	80365644: 803660D8 (__memrchr)
-//	80365670: 80003540 (memcpy)
-//	803656C8: 803650E0 (__flush_buffer)
-//	8036572C: 803650E0 (__flush_buffer)
-//	8036575C: 803651A4 (__prep_buffer)
+/* 80365494-803657A0 35FDD4 030C+00 1/1 0/0 0/0 .text            __fwrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __fwrite() {
+asm void __fwrite() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/direct_io/__fwrite.s"
 }
 #pragma pop
 
-/* 803657A0-8036581C 007C+00 s=0 e=1 z=0  None .text      fwrite */
-//	803657D0: 80365468 (__begin_critical_region)
-//	803657E4: 80365494 (__fwrite)
-//	803657F4: 80365464 (__end_critical_region)
+/* 803657A0-8036581C 3600E0 007C+00 0/0 1/1 0/0 .text            fwrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fwrite() {
+asm void fwrite() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/direct_io/fwrite.s"
 }

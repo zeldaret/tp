@@ -9,12 +9,12 @@ lbl_80D3DA70:
 /* 80D3DA8C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80D3DA90  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80D3DA94  38 81 00 08 */	addi r4, r1, 8
-/* 80D3DA98  3C A0 80 D4 */	lis r5, lit_4550@ha
-/* 80D3DA9C  C0 25 DD 68 */	lfs f1, lit_4550@l(r5)
-/* 80D3DAA0  3C A0 80 D4 */	lis r5, lit_4329@ha
-/* 80D3DAA4  C0 45 DD 3C */	lfs f2, lit_4329@l(r5)
+/* 80D3DA98  3C A0 80 D4 */	lis r5, lit_4550@ha /* 0x80D3DD68@ha */
+/* 80D3DA9C  C0 25 DD 68 */	lfs f1, lit_4550@l(r5)  /* 0x80D3DD68@l */
+/* 80D3DAA0  3C A0 80 D4 */	lis r5, lit_4329@ha /* 0x80D3DD3C@ha */
+/* 80D3DAA4  C0 45 DD 3C */	lfs f2, lit_4329@l(r5)  /* 0x80D3DD3C@l */
 /* 80D3DAA8  38 63 0A 28 */	addi r3, r3, 0xa28
-/* 80D3DAAC  4B 2D F6 60 */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 80D3DAAC  4B 2D F6 61 */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 /* 80D3DAB0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D3DAB4  7C 08 03 A6 */	mtlr r0
 /* 80D3DAB8  38 21 00 20 */	addi r1, r1, 0x20

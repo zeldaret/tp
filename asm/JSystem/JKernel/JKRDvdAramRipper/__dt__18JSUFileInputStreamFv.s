@@ -7,12 +7,12 @@ lbl_802DADD8:
 /* 802DADEC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802DADF0  7C 9F 23 78 */	mr r31, r4
 /* 802DADF4  41 82 00 38 */	beq lbl_802DAE2C
-/* 802DADF8  3C 80 80 3D */	lis r4, __vt__18JSUFileInputStream@ha
-/* 802DADFC  38 04 C5 18 */	addi r0, r4, __vt__18JSUFileInputStream@l
+/* 802DADF8  3C 80 80 3D */	lis r4, __vt__18JSUFileInputStream@ha /* 0x803CC518@ha */
+/* 802DADFC  38 04 C5 18 */	addi r0, r4, __vt__18JSUFileInputStream@l /* 0x803CC518@l */
 /* 802DAE00  90 1E 00 00 */	stw r0, 0(r30)
 /* 802DAE04  41 82 00 18 */	beq lbl_802DAE1C
-/* 802DAE08  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha
-/* 802DAE0C  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l
+/* 802DAE08  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 802DAE0C  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 802DAE10  90 1E 00 00 */	stw r0, 0(r30)
 /* 802DAE14  38 80 00 00 */	li r4, 0
 /* 802DAE18  48 00 14 25 */	bl __dt__14JSUInputStreamFv

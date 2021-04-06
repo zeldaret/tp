@@ -2,10 +2,10 @@ lbl_803401FC:
 /* 803401FC  7C 08 02 A6 */	mflr r0
 /* 80340200  2C 03 00 00 */	cmpwi r3, 0
 /* 80340204  90 01 00 04 */	stw r0, 4(r1)
-/* 80340208  3C 60 80 45 */	lis r3, Scb@ha
+/* 80340208  3C 60 80 45 */	lis r3, Scb@ha /* 0x8044BB20@ha */
 /* 8034020C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80340210  BF 61 00 1C */	stmw r27, 0x1c(r1)
-/* 80340214  3B E3 BB 20 */	addi r31, r3, Scb@l
+/* 80340214  3B E3 BB 20 */	addi r31, r3, Scb@l /* 0x8044BB20@l */
 /* 80340218  41 82 02 F8 */	beq lbl_80340510
 /* 8034021C  28 04 00 00 */	cmplwi r4, 0
 /* 80340220  40 82 01 B0 */	bne lbl_803403D0
@@ -143,8 +143,8 @@ lbl_80340410:
 /* 80340414  B0 04 00 28 */	sth r0, 0x28(r4)
 lbl_80340418:
 /* 80340418  83 BE 00 00 */	lwz r29, 0(r30)
-/* 8034041C  3C 60 80 34 */	lis r3, WriteSramCallback@ha
-/* 80340420  38 A3 FE 90 */	addi r5, r3, WriteSramCallback@l
+/* 8034041C  3C 60 80 34 */	lis r3, WriteSramCallback@ha /* 0x8033FE90@ha */
+/* 80340420  38 A3 FE 90 */	addi r5, r3, WriteSramCallback@l /* 0x8033FE90@l */
 /* 80340424  23 7D 00 40 */	subfic r27, r29, 0x40
 /* 80340428  7F 9F EA 14 */	add r28, r31, r29
 /* 8034042C  38 60 00 00 */	li r3, 0

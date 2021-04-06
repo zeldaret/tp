@@ -14,8 +14,8 @@ lbl_80A23F24:
 /* 80A23F28  40 80 00 60 */	bge lbl_80A23F88
 /* 80A23F2C  48 00 00 20 */	b lbl_80A23F4C
 lbl_80A23F30:
-/* 80A23F30  3C 60 80 A2 */	lis r3, lit_4449@ha
-/* 80A23F34  C0 03 59 5C */	lfs f0, lit_4449@l(r3)
+/* 80A23F30  3C 60 80 A2 */	lis r3, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A23F34  C0 03 59 5C */	lfs f0, lit_4449@l(r3)  /* 0x80A2595C@l */
 /* 80A23F38  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A23F3C  38 00 00 01 */	li r0, 1
 /* 80A23F40  98 1F 14 65 */	stb r0, 0x1465(r31)
@@ -26,8 +26,8 @@ lbl_80A23F4C:
 /* 80A23F50  48 00 0D 75 */	bl _turn_to_link__14daNpcKasiKyu_cFs
 /* 80A23F54  2C 03 00 00 */	cmpwi r3, 0
 /* 80A23F58  41 82 00 30 */	beq lbl_80A23F88
-/* 80A23F5C  3C 60 80 A2 */	lis r3, lit_5026@ha
-/* 80A23F60  38 83 5E 4C */	addi r4, r3, lit_5026@l
+/* 80A23F5C  3C 60 80 A2 */	lis r3, lit_5026@ha /* 0x80A25E4C@ha */
+/* 80A23F60  38 83 5E 4C */	addi r4, r3, lit_5026@l /* 0x80A25E4C@l */
 /* 80A23F64  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A23F68  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A23F6C  90 61 00 08 */	stw r3, 8(r1)

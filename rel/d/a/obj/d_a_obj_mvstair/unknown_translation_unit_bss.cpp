@@ -22,5 +22,8 @@ extern "C" extern u8 struct_80C9EAA8[4];
 //
 
 /* ############################################################################################## */
-/* 80C9EAA8-80C9EAAC 0004+00 s=0 e=2 z=0  None .bss       None */
+/* 80C9EAA8-80C9EAAC -00001 0004+00 0/0 2/2 0/0 .bss             None */
+/* 80C9EAA8 0001+00 data_80C9EAA8 None */
+/* 80C9EAA9 0003+00 data_80C9EAA9 None */
+extern u8 struct_80C9EAA8[4];
 u8 struct_80C9EAA8[4];

@@ -3,17 +3,15 @@
 #
 
 M1_TARGET := $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst.plf
+M1_LDSCRIPT := $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst.lcf
+M1_MAP := $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst.map
 
 M1_CPP_FILES := \
-	rel/f_pc/f_pc_profile_lst/executor.cpp \
-	rel/f_pc/f_pc_profile_lst/unknown_translation_unit_ctors.cpp \
-	rel/f_pc/f_pc_profile_lst/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/f_pc/f_pc_profile_lst/f_pc_profile_lst.cpp \
 
 M1_O_FILES := \
-	$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/executor.o \
-	$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/f_pc_profile_lst.o \
 
 M1_LIBS := \
@@ -29,15 +27,21 @@ M1_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map1.map\
+	-m _prolog \
+	-lcf $(M1_LDSCRIPT) \
+	-unused -map $(M1_MAP) \
+	-w off \
 
 $(M1_TARGET): $(M1_O_FILES) $(M1_LIBS)
+	@echo [  1] creating $(M1_TARGET)
 	@echo $(M1_LIBS) $(M1_O_FILES) > build/M1_ofiles
-	$(LD) -opt_partial $(M1_LDFLAGS) -o $(M1_TARGET) @build/M1_ofiles
+	@python3 tools/lcf.py rel 1 --output $(M1_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M1_LDFLAGS) -o $(M1_TARGET) @build/M1_ofiles
 
 $(BUILD_DIR)/rel/f_pc/f_pc_profile_lst/%.o: rel/f_pc/f_pc_profile_lst/%.cpp
+	@echo [  1] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M1_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M1_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,17 +3,15 @@
 #
 
 M468_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock.plf
+M468_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock.lcf
+M468_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock.map
 
 M468_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_grz_rock/executor.cpp \
-	rel/d/a/obj/d_a_obj_grz_rock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_grz_rock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock.cpp \
 
 M468_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock.o \
 
 M468_LIBS := \
@@ -29,15 +27,21 @@ M468_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map468.map\
+	-m _prolog \
+	-lcf $(M468_LDSCRIPT) \
+	-unused -map $(M468_MAP) \
+	-w off \
 
 $(M468_TARGET): $(M468_O_FILES) $(M468_LIBS)
+	@echo [468] creating $(M468_TARGET)
 	@echo $(M468_LIBS) $(M468_O_FILES) > build/M468_ofiles
-	$(LD) -opt_partial $(M468_LDFLAGS) -o $(M468_TARGET) @build/M468_ofiles
+	@python3 tools/lcf.py rel 468 --output $(M468_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M468_LDFLAGS) -o $(M468_TARGET) @build/M468_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grz_rock/%.o: rel/d/a/obj/d_a_obj_grz_rock/%.cpp
+	@echo [468] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M468_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M468_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

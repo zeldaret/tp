@@ -13,15 +13,15 @@ lbl_8045FDF8:
 /* 8045FE24  38 03 7F FF */	addi r0, r3, 0x7fff
 /* 8045FE28  B0 1F 04 E6 */	sth r0, 0x4e6(r31)
 lbl_8045FE2C:
-/* 8045FE2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8045FE30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8045FE2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8045FE30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8045FE34  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 8045FE38  3C 80 80 46 */	lis r4, struct_804606C4+0x0@ha
-/* 8045FE3C  38 84 06 C4 */	addi r4, r4, struct_804606C4+0x0@l
+/* 8045FE38  3C 80 80 46 */	lis r4, d_a_door_knob00__stringBase0@ha /* 0x804606C4@ha */
+/* 8045FE3C  38 84 06 C4 */	addi r4, r4, d_a_door_knob00__stringBase0@l /* 0x804606C4@l */
 /* 8045FE40  38 84 01 9D */	addi r4, r4, 0x19d
 /* 8045FE44  38 A0 00 00 */	li r5, 0
 /* 8045FE48  38 C0 00 00 */	li r6, 0
-/* 8045FE4C  4B BE 7C D0 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 8045FE4C  4B BE 7C D1 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 8045FE50  90 7F 05 BC */	stw r3, 0x5bc(r31)
 /* 8045FE54  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8045FE58  80 01 00 14 */	lwz r0, 0x14(r1)

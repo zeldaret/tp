@@ -12,14 +12,14 @@ lbl_80124EA8:
 /* 80124ED0  3B 40 00 00 */	li r26, 0
 /* 80124ED4  3B 20 00 00 */	li r25, 0
 /* 80124ED8  54 04 57 38 */	rlwinm r4, r0, 0xa, 0x1c, 0x1c
-/* 80124EDC  3C 60 80 39 */	lis r3, effJoint@ha
-/* 80124EE0  38 03 1D 84 */	addi r0, r3, effJoint@l
+/* 80124EDC  3C 60 80 39 */	lis r3, effJoint@ha /* 0x80391D84@ha */
+/* 80124EE0  38 03 1D 84 */	addi r0, r3, effJoint@l /* 0x80391D84@l */
 /* 80124EE4  7F C0 22 14 */	add r30, r0, r4
-/* 80124EE8  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80124EEC  3B E3 0C F4 */	addi r31, r3, Zero__4cXyz@l
+/* 80124EE8  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80124EEC  3B E3 0C F4 */	addi r31, r3, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 80124EF0  1C 85 00 30 */	mulli r4, r5, 0x30
-/* 80124EF4  3C 60 80 39 */	lis r3, effOffset@ha
-/* 80124EF8  38 03 1D 94 */	addi r0, r3, effOffset@l
+/* 80124EF4  3C 60 80 39 */	lis r3, effOffset@ha /* 0x80391D94@ha */
+/* 80124EF8  38 03 1D 94 */	addi r0, r3, effOffset@l /* 0x80391D94@l */
 /* 80124EFC  7F 00 22 14 */	add r24, r0, r4
 lbl_80124F00:
 /* 80124F00  38 00 00 01 */	li r0, 1

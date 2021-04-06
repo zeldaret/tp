@@ -50,8 +50,8 @@ lbl_8001DA4C:
 /* 8001DA54  38 60 00 00 */	li r3, 0
 /* 8001DA58  48 00 00 74 */	b lbl_8001DACC
 lbl_8001DA5C:
-/* 8001DA5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001DA60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001DA5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001DA60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001DA64  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8001DA68  7F 64 DB 78 */	mr r4, r27
 /* 8001DA6C  48 05 6B F5 */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
@@ -69,8 +69,8 @@ lbl_8001DA5C:
 /* 8001DA9C  38 60 00 01 */	li r3, 1
 /* 8001DAA0  48 00 00 2C */	b lbl_8001DACC
 lbl_8001DAA4:
-/* 8001DAA4  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 8001DAA8  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 8001DAA4  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8001DAA8  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 8001DAAC  D0 1C 00 00 */	stfs f0, 0(r28)
 /* 8001DAB0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8001DAB4  D0 1C 00 04 */	stfs f0, 4(r28)

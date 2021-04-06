@@ -35,8 +35,6 @@ extern "C" void fgets__13JUTDirectFileFPvi();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dl__FPv();
 extern "C" void OSEnableInterrupts();
 extern "C" void OSRestoreInterrupts();
@@ -53,15 +51,7 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 802E8730-802E87F8 00C8+00 s=1 e=0 z=0  None .text      fetch32byte__13JUTDirectFileFv */
-//	802E8740: 803621DC (_savegpr_29)
-//	802E8770: 8033D708 (OSEnableInterrupts)
-//	802E879C: 80348D54 (DVDReadAsyncPrio)
-//	802E87A8: 8033D71C (OSRestoreInterrupts)
-//	802E87BC: 8033D708 (OSEnableInterrupts)
-//	802E87C8: 8034B17C (DVDGetCommandBlockStatus)
-//	802E87D8: 8033D71C (OSRestoreInterrupts)
-//	802E87E4: 80362228 (_restgpr_29)
+/* 802E8730-802E87F8 2E3070 00C8+00 1/1 0/0 0/0 .text            fetch32byte__13JUTDirectFileFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -71,7 +61,7 @@ asm void JUTDirectFile::fetch32byte() {
 }
 #pragma pop
 
-/* 802E87F8-802E881C 0024+00 s=0 e=1 z=0  None .text      __ct__13JUTDirectFileFv */
+/* 802E87F8-802E881C 2E3138 0024+00 0/0 1/1 0/0 .text            __ct__13JUTDirectFileFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -81,8 +71,7 @@ asm JUTDirectFile::JUTDirectFile() {
 }
 #pragma pop
 
-/* 802E881C-802E8860 0044+00 s=0 e=1 z=0  None .text      __dt__13JUTDirectFileFv */
-//	802E8844: 802CED3C (__dl__FPv)
+/* 802E881C-802E8860 2E315C 0044+00 0/0 1/1 0/0 .text            __dt__13JUTDirectFileFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -92,14 +81,7 @@ asm JUTDirectFile::~JUTDirectFile() {
 }
 #pragma pop
 
-/* 802E8860-802E88FC 009C+00 s=0 e=1 z=0  None .text      fopen__13JUTDirectFileFPCc */
-//	802E8870: 803621DC (_savegpr_29)
-//	802E8888: 8033D708 (OSEnableInterrupts)
-//	802E8898: 80348890 (DVDOpen)
-//	802E88A4: 8033D71C (OSRestoreInterrupts)
-//	802E88C0: 8033D708 (OSEnableInterrupts)
-//	802E88CC: 8033D71C (OSRestoreInterrupts)
-//	802E88E8: 80362228 (_restgpr_29)
+/* 802E8860-802E88FC 2E31A0 009C+00 0/0 1/1 0/0 .text            fopen__13JUTDirectFileFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -109,10 +91,7 @@ asm void JUTDirectFile::fopen(char const* param_0) {
 }
 #pragma pop
 
-/* 802E88FC-802E8958 005C+00 s=0 e=1 z=0  None .text      fclose__13JUTDirectFileFv */
-//	802E8920: 8033D708 (OSEnableInterrupts)
-//	802E892C: 80348958 (DVDClose)
-//	802E8934: 8033D71C (OSRestoreInterrupts)
+/* 802E88FC-802E8958 2E323C 005C+00 0/0 1/1 0/0 .text            fclose__13JUTDirectFileFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,10 +101,7 @@ asm void JUTDirectFile::fclose() {
 }
 #pragma pop
 
-/* 802E8958-802E8B08 01B0+00 s=0 e=1 z=0  None .text      fgets__13JUTDirectFileFPvi */
-//	802E8968: 803621D4 (_savegpr_27)
-//	802E89F0: 802E8730 (fetch32byte__13JUTDirectFileFv)
-//	802E8AF4: 80362220 (_restgpr_27)
+/* 802E8958-802E8B08 2E3298 01B0+00 0/0 1/1 0/0 .text            fgets__13JUTDirectFileFPvi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

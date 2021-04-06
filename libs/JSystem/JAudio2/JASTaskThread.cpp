@@ -50,14 +50,10 @@ extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl();
 extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPv();
 extern "C" void run__13JASTaskThreadFv();
 extern "C" void pause__13JASTaskThreadFb();
-extern "C" extern void* __vt__13JASTaskThread[4];
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
 
 extern "C" void bcopy__7JASCalcFPCvPvUl();
 extern "C" void getSystemHeap__9JASKernelFv();
@@ -89,20 +85,15 @@ extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 //
 
 /* ############################################################################################## */
-/* 803C5B58-803C5B68 0010+00 s=2 e=0 z=0  None .data      __vt__13JASTaskThread */
-SECTION_DATA void* __vt__13JASTaskThread[4] = {
+/* 803C5B58-803C5B68 022C78 0010+00 2/2 0/0 0/0 .data            __vt__13JASTaskThread */
+SECTION_DATA extern void* __vt__13JASTaskThread[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JASTaskThreadFv,
     (void*)run__13JASTaskThreadFv,
 };
 
-/* 8028F6C4-8028F724 0060+00 s=0 e=1 z=0  None .text      __ct__13JASTaskThreadFiiUl */
-//	8028F6E0: 80451210 (JASDram)
-//	8028F6EC: 802D1610 (__ct__9JKRThreadFP7JKRHeapUlii)
-//	8028F6F0: 803C5B58 (__vt__13JASTaskThread)
-//	8028F6F4: 803C5B58 (__vt__13JASTaskThread)
-//	8028F708: 80340C74 (OSInitThreadQueue)
+/* 8028F6C4-8028F724 28A004 0060+00 0/0 1/1 0/0 .text            __ct__13JASTaskThreadFiiUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,19 +103,7 @@ asm JASTaskThread::JASTaskThread(int param_0, int param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 8028F724-8028F850 012C+00 s=1 e=0 z=0  None .text      __dt__13JASTaskThreadFv */
-//	8028F734: 803621D4 (_savegpr_27)
-//	8028F744: 803C5B58 (__vt__13JASTaskThread)
-//	8028F748: 803C5B58 (__vt__13JASTaskThread)
-//	8028F75C: 8033EABC (OSReceiveMessage)
-//	8028F77C: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028F788: 8033F040 (OSLockMutex)
-//	8028F7E8: 802CED3C (__dl__FPv)
-//	8028F7F4: 8033F11C (OSUnlockMutex)
-//	8028F810: 8033F11C (OSUnlockMutex)
-//	8028F820: 802D1758 (__dt__9JKRThreadFv)
-//	8028F830: 802CED3C (__dl__FPv)
-//	8028F83C: 80362220 (_restgpr_27)
+/* 8028F724-8028F850 28A064 012C+00 1/0 0/0 0/0 .text            __dt__13JASTaskThreadFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -134,20 +113,8 @@ asm JASTaskThread::~JASTaskThread() {
 }
 #pragma pop
 
-/* 8028F850-8028F9EC 019C+00 s=1 e=0 z=0  None .text allocCallStack__13JASTaskThreadFPFPv_vPCvUl
+/* 8028F850-8028F9EC 28A190 019C+00 1/1 0/0 0/0 .text allocCallStack__13JASTaskThreadFPFPv_vPCvUl
  */
-//	8028F860: 803621D0 (_savegpr_26)
-//	8028F874: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028F880: 8033F040 (OSLockMutex)
-//	8028F8A4: 8033F11C (OSUnlockMutex)
-//	8028F8D4: 80290AC0 (getSystemHeap__9JASKernelFv)
-//	8028F8E4: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8028F91C: 80451370 (sSystemHeap__7JKRHeap)
-//	8028F924: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8028F96C: 8033F11C (OSUnlockMutex)
-//	8028F9A0: 8033F11C (OSUnlockMutex)
-//	8028F9C8: 8028F354 (bcopy__7JASCalcFPCvPvUl)
-//	8028F9D8: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -157,18 +124,7 @@ asm void JASTaskThread::allocCallStack(void (*)(void*), void const* param_1, u32
 }
 #pragma pop
 
-/* 8028F9EC-8028FB5C 0170+00 s=1 e=0 z=0  None .text      allocCallStack__13JASTaskThreadFPFPv_vPv
- */
-//	8028F9FC: 803621D8 (_savegpr_28)
-//	8028FA08: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028FA14: 8033F040 (OSLockMutex)
-//	8028FA50: 80290AC0 (getSystemHeap__9JASKernelFv)
-//	8028FA60: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8028FA98: 80451370 (sSystemHeap__7JKRHeap)
-//	8028FAA0: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	8028FAE8: 8033F11C (OSUnlockMutex)
-//	8028FB1C: 8033F11C (OSUnlockMutex)
-//	8028FB48: 80362224 (_restgpr_28)
+/* 8028F9EC-8028FB5C 28A32C 0170+00 1/1 0/0 0/0 .text allocCallStack__13JASTaskThreadFPFPv_vPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,16 +134,7 @@ asm void JASTaskThread::allocCallStack(void (*)(void*), void* param_1) {
 }
 #pragma pop
 
-/* 8028FB5C-8028FC54 00F8+00 s=0 e=6 z=0  None .text      sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl */
-//	8028FB6C: 803621D8 (_savegpr_28)
-//	8028FB74: 8028F850 (allocCallStack__13JASTaskThreadFPFPv_vPCvUl)
-//	8028FB94: 8033E9F4 (OSSendMessage)
-//	8028FBA0: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028FBAC: 8033F040 (OSLockMutex)
-//	8028FC0C: 802CED3C (__dl__FPv)
-//	8028FC18: 8033F11C (OSUnlockMutex)
-//	8028FC34: 8033F11C (OSUnlockMutex)
-//	8028FC40: 80362224 (_restgpr_28)
+/* 8028FB5C-8028FC54 28A49C 00F8+00 0/0 6/6 0/0 .text sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,16 +144,7 @@ asm void JASTaskThread::sendCmdMsg(void (*)(void*), void const* param_1, u32 par
 }
 #pragma pop
 
-/* 8028FC54-8028FD4C 00F8+00 s=0 e=3 z=0  None .text      sendCmdMsg__13JASTaskThreadFPFPv_vPv */
-//	8028FC64: 803621D8 (_savegpr_28)
-//	8028FC6C: 8028F9EC (allocCallStack__13JASTaskThreadFPFPv_vPv)
-//	8028FC8C: 8033E9F4 (OSSendMessage)
-//	8028FC98: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028FCA4: 8033F040 (OSLockMutex)
-//	8028FD04: 802CED3C (__dl__FPv)
-//	8028FD10: 8033F11C (OSUnlockMutex)
-//	8028FD2C: 8033F11C (OSUnlockMutex)
-//	8028FD38: 80362224 (_restgpr_28)
+/* 8028FC54-8028FD4C 28A594 00F8+00 0/0 3/3 0/0 .text sendCmdMsg__13JASTaskThreadFPFPv_vPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,15 +154,7 @@ asm void JASTaskThread::sendCmdMsg(void (*)(void*), void* param_1) {
 }
 #pragma pop
 
-/* 8028FD4C-8028FE88 013C+00 s=1 e=0 z=0  None .text      run__13JASTaskThreadFv */
-//	8028FD5C: 803621D8 (_savegpr_28)
-//	8028FDA0: 8033EABC (OSReceiveMessage)
-//	8028FDB8: 80341BAC (OSSleepThread)
-//	8028FDEC: 80290AC8 (getCommandHeap__9JASKernelFv)
-//	8028FDF8: 8033F040 (OSLockMutex)
-//	8028FE58: 802CED3C (__dl__FPv)
-//	8028FE64: 8033F11C (OSUnlockMutex)
-//	8028FE80: 8033F11C (OSUnlockMutex)
+/* 8028FD4C-8028FE88 28A68C 013C+00 1/0 0/0 0/0 .text            run__13JASTaskThreadFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -234,10 +164,7 @@ asm void JASTaskThread::run() {
 }
 #pragma pop
 
-/* 8028FE88-8028FEFC 0074+00 s=0 e=1 z=0  None .text      pause__13JASTaskThreadFb */
-//	8028FEA4: 8033D6F4 (OSDisableInterrupts)
-//	8028FED0: 80341C98 (OSWakeupThread)
-//	8028FEE0: 8033D71C (OSRestoreInterrupts)
+/* 8028FE88-8028FEFC 28A7C8 0074+00 0/0 1/1 0/0 .text            pause__13JASTaskThreadFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -14,8 +14,8 @@ lbl_801122A4:
 /* 801122A4  7F E3 FB 78 */	mr r3, r31
 /* 801122A8  38 80 01 12 */	li r4, 0x112
 /* 801122AC  4B F9 AC D5 */	bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
-/* 801122B0  3C 60 80 11 */	lis r3, daAlink_searchHawk__FP10fopAc_ac_cPv@ha
-/* 801122B4  38 63 17 70 */	addi r3, r3, daAlink_searchHawk__FP10fopAc_ac_cPv@l
+/* 801122B0  3C 60 80 11 */	lis r3, daAlink_searchHawk__FP10fopAc_ac_cPv@ha /* 0x80111770@ha */
+/* 801122B4  38 63 17 70 */	addi r3, r3, daAlink_searchHawk__FP10fopAc_ac_cPv@l /* 0x80111770@l */
 /* 801122B8  38 80 00 00 */	li r4, 0
 /* 801122BC  4B F0 75 3D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801122C0  7C 64 1B 79 */	or. r4, r3, r3

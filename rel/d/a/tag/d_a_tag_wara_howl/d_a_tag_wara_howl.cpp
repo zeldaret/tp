@@ -31,11 +31,6 @@ struct daTagWrHowl_c {
 // Forward References:
 //
 
-static void daTagWrHowl_create(daTagWrHowl_c*);
-static void daTagWrHowl_Delete(daTagWrHowl_c*);
-static void daTagWrHowl_execute(daTagWrHowl_c*);
-static void daTagWrHowl_draw(daTagWrHowl_c*);
-
 extern "C" void __ct__13daTagWrHowl_cFv();
 extern "C" void __dt__13daTagWrHowl_cFv();
 extern "C" void create__13daTagWrHowl_cFv();
@@ -48,14 +43,10 @@ extern "C" static void daTagWrHowl_create__FP13daTagWrHowl_c();
 extern "C" static void daTagWrHowl_Delete__FP13daTagWrHowl_c();
 extern "C" static void daTagWrHowl_execute__FP13daTagWrHowl_c();
 extern "C" static void daTagWrHowl_draw__FP13daTagWrHowl_c();
-extern "C" extern void* g_profile_Tag_WaraHowl[12];
-extern "C" extern void* __vt__13daTagWrHowl_c[3];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -70,7 +61,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D64204-80D64224 0020+00 s=1 e=0 z=0  None .data      daTagWrHowl_METHODS */
+/* 80D64204-80D64224 -00001 0020+00 1/0 0/0 0/0 .data            daTagWrHowl_METHODS */
 SECTION_DATA static void* daTagWrHowl_METHODS[8] = {
     (void*)daTagWrHowl_create__FP13daTagWrHowl_c,
     (void*)daTagWrHowl_Delete__FP13daTagWrHowl_c,
@@ -82,8 +73,8 @@ SECTION_DATA static void* daTagWrHowl_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D64224-80D64254 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_WaraHowl */
-SECTION_DATA void* g_profile_Tag_WaraHowl[12] = {
+/* 80D64224-80D64254 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WaraHowl */
+SECTION_DATA extern void* g_profile_Tag_WaraHowl[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x018B0000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,
@@ -92,17 +83,14 @@ SECTION_DATA void* g_profile_Tag_WaraHowl[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D64254-80D64260 000C+00 s=2 e=0 z=0  None .data      __vt__13daTagWrHowl_c */
-SECTION_DATA void* __vt__13daTagWrHowl_c[3] = {
+/* 80D64254-80D64260 000050 000C+00 2/2 0/0 0/0 .data            __vt__13daTagWrHowl_c */
+SECTION_DATA extern void* __vt__13daTagWrHowl_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13daTagWrHowl_cFv,
 };
 
-/* 80D63F38-80D63F74 003C+00 s=2 e=0 z=0  None .text      __ct__13daTagWrHowl_cFv */
-//	80D63F4C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D63F50: 80D64254 (__vt__13daTagWrHowl_c)
-//	80D63F54: 80D64254 (__vt__13daTagWrHowl_c)
+/* 80D63F38-80D63F74 000078 003C+00 2/2 0/0 0/0 .text            __ct__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,11 +100,7 @@ asm daTagWrHowl_c::daTagWrHowl_c() {
 }
 #pragma pop
 
-/* 80D63F74-80D63FD4 0060+00 s=1 e=0 z=0  None .text      __dt__13daTagWrHowl_cFv */
-//	80D63F94: 80D64254 (__vt__13daTagWrHowl_c)
-//	80D63F98: 80D64254 (__vt__13daTagWrHowl_c)
-//	80D63FA4: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80D63FB4: 802CED3C (__dl__FPv)
+/* 80D63F74-80D63FD4 0000B4 0060+00 1/0 0/0 0/0 .text            __dt__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,9 +110,7 @@ asm daTagWrHowl_c::~daTagWrHowl_c() {
 }
 #pragma pop
 
-/* 80D63FD4-80D6402C 0058+00 s=1 e=0 z=0  None .text      create__13daTagWrHowl_cFv */
-//	80D63FFC: 80D63F38 (__ct__13daTagWrHowl_cFv)
-//	80D64010: 80D64090 (init__13daTagWrHowl_cFv)
+/* 80D63FD4-80D6402C 000114 0058+00 1/1 0/0 0/0 .text            create__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,18 +120,17 @@ asm void daTagWrHowl_c::create() {
 }
 #pragma pop
 
-/* 80D6402C-80D64034 0008+00 s=1 e=0 z=0  None .text      Delete__13daTagWrHowl_cFv */
+/* 80D6402C-80D64034 00016C 0008+00 1/1 0/0 0/0 .text            Delete__13daTagWrHowl_cFv */
 bool daTagWrHowl_c::Delete() {
     return true;
 }
 
-/* 80D64034-80D6403C 0008+00 s=1 e=0 z=0  None .text      draw__13daTagWrHowl_cFv */
+/* 80D64034-80D6403C 000174 0008+00 1/1 0/0 0/0 .text            draw__13daTagWrHowl_cFv */
 bool daTagWrHowl_c::draw() {
     return true;
 }
 
-/* 80D6403C-80D64090 0054+00 s=1 e=0 z=0  None .text      execute__13daTagWrHowl_cFv */
-//	80D64058: 80D640B4 (chkWlfInTag__13daTagWrHowl_cFv)
+/* 80D6403C-80D64090 00017C 0054+00 1/1 0/0 0/0 .text            execute__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -160,12 +141,11 @@ asm void daTagWrHowl_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D64200-80D64204 0004+00 s=1 e=0 z=0  None .rodata    @3680 */
+/* 80D64200-80D64204 000000 0004+00 1/1 0/0 0/0 .rodata          @3680 */
 SECTION_RODATA static u32 const lit_3680 = 0x42480000;
+SECTION_DEAD void* const cg_80D64200 = (void*)(&lit_3680);
 
-/* 80D64090-80D640B4 0024+00 s=1 e=0 z=0  None .text      init__13daTagWrHowl_cFv */
-//	80D64090: 80D64200 (lit_3680)
-//	80D64094: 80D64200 (lit_3680)
+/* 80D64090-80D640B4 0001D0 0024+00 1/1 0/0 0/0 .text            init__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -175,10 +155,7 @@ asm void daTagWrHowl_c::init() {
 }
 #pragma pop
 
-/* 80D640B4-80D64144 0090+00 s=1 e=0 z=0  None .text      chkWlfInTag__13daTagWrHowl_cFv */
-//	80D640C8: 804061C0 (g_dComIfG_gameInfo)
-//	80D640CC: 804061C0 (g_dComIfG_gameInfo)
-//	80D64114: 8034739C (PSVECSquareDistance)
+/* 80D640B4-80D64144 0001F4 0090+00 1/1 0/0 0/0 .text            chkWlfInTag__13daTagWrHowl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -188,46 +165,42 @@ asm void daTagWrHowl_c::chkWlfInTag() {
 }
 #pragma pop
 
-/* 80D64144-80D64198 0054+00 s=1 e=0 z=0  None .text      daTagWrHowl_create__FP13daTagWrHowl_c */
-//	80D6416C: 80D63F38 (__ct__13daTagWrHowl_cFv)
-//	80D64180: 80D63FD4 (create__13daTagWrHowl_cFv)
+/* 80D64144-80D64198 000284 0054+00 1/0 0/0 0/0 .text daTagWrHowl_create__FP13daTagWrHowl_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWrHowl_create(daTagWrHowl_c* param_0) {
+static asm void daTagWrHowl_create(daTagWrHowl_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl/daTagWrHowl_create__FP13daTagWrHowl_c.s"
 }
 #pragma pop
 
-/* 80D64198-80D641B8 0020+00 s=1 e=0 z=0  None .text      daTagWrHowl_Delete__FP13daTagWrHowl_c */
-//	80D641A4: 80D6402C (Delete__13daTagWrHowl_cFv)
+/* 80D64198-80D641B8 0002D8 0020+00 1/0 0/0 0/0 .text daTagWrHowl_Delete__FP13daTagWrHowl_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWrHowl_Delete(daTagWrHowl_c* param_0) {
+static asm void daTagWrHowl_Delete(daTagWrHowl_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl/daTagWrHowl_Delete__FP13daTagWrHowl_c.s"
 }
 #pragma pop
 
-/* 80D641B8-80D641D8 0020+00 s=1 e=0 z=0  None .text      daTagWrHowl_execute__FP13daTagWrHowl_c */
-//	80D641C4: 80D6403C (execute__13daTagWrHowl_cFv)
+/* 80D641B8-80D641D8 0002F8 0020+00 1/0 0/0 0/0 .text daTagWrHowl_execute__FP13daTagWrHowl_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWrHowl_execute(daTagWrHowl_c* param_0) {
+static asm void daTagWrHowl_execute(daTagWrHowl_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl/daTagWrHowl_execute__FP13daTagWrHowl_c.s"
 }
 #pragma pop
 
-/* 80D641D8-80D641F8 0020+00 s=1 e=0 z=0  None .text      daTagWrHowl_draw__FP13daTagWrHowl_c */
-//	80D641E4: 80D64034 (draw__13daTagWrHowl_cFv)
+/* 80D641D8-80D641F8 000318 0020+00 1/0 0/0 0/0 .text            daTagWrHowl_draw__FP13daTagWrHowl_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWrHowl_draw(daTagWrHowl_c* param_0) {
+static asm void daTagWrHowl_draw(daTagWrHowl_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl/daTagWrHowl_draw__FP13daTagWrHowl_c.s"
 }

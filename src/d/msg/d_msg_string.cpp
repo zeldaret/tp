@@ -52,14 +52,10 @@ extern "C" void __dt__12dMsgString_cFv();
 extern "C" void resetStringLocal__12dMsgString_cFP10J2DTextBox();
 extern "C" void drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf();
 extern "C" void drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc();
-extern "C" extern void* __vt__12dMsgString_c[8];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void getString__12dMsgString_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc();
 extern "C" void
@@ -78,8 +74,8 @@ extern "C" void getGlbVtx__7J2DPaneCFUc();
 //
 
 /* ############################################################################################## */
-/* 803C1498-803C14B8 0020+00 s=3 e=0 z=0  None .data      __vt__12dMsgString_c */
-SECTION_DATA void* __vt__12dMsgString_c[8] = {
+/* 803C1498-803C14B8 01E5B8 0020+00 3/3 0/0 0/0 .data            __vt__12dMsgString_c */
+SECTION_DATA extern void* __vt__12dMsgString_c[8] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)getString__12dMsgString_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc,
@@ -90,13 +86,7 @@ SECTION_DATA void* __vt__12dMsgString_c[8] = {
     (void*)drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc,
 };
 
-/* 80249C20-80249CA0 0080+00 s=0 e=15 z=0  None .text      __ct__12dMsgString_cFv */
-//	80249C34: 802493B4 (__ct__16dMsgStringBase_cFv)
-//	80249C38: 803C1498 (__vt__12dMsgString_c)
-//	80249C3C: 803C1498 (__vt__12dMsgString_c)
-//	80249C50: 802CEC4C (__nw__FUl)
-//	80249C60: 80225C94 (__ct__10COutFont_cFUc)
-//	80249C84: 80249700 (getResource__16dMsgStringBase_cFv)
+/* 80249C20-80249CA0 244560 0080+00 0/0 15/15 0/0 .text            __ct__12dMsgString_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -106,13 +96,7 @@ asm dMsgString_c::dMsgString_c() {
 }
 #pragma pop
 
-/* 80249CA0-80249D28 0088+00 s=0 e=1 z=0  None .text      __ct__12dMsgString_cFUc */
-//	80249CBC: 802493B4 (__ct__16dMsgStringBase_cFv)
-//	80249CC0: 803C1498 (__vt__12dMsgString_c)
-//	80249CC4: 803C1498 (__vt__12dMsgString_c)
-//	80249CD4: 802CEC4C (__nw__FUl)
-//	80249CE4: 80225C94 (__ct__10COutFont_cFUc)
-//	80249D08: 80249700 (getResource__16dMsgStringBase_cFv)
+/* 80249CA0-80249D28 2445E0 0088+00 0/0 1/1 0/0 .text            __ct__12dMsgString_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,11 +106,7 @@ asm dMsgString_c::dMsgString_c(u8 param_0) {
 }
 #pragma pop
 
-/* 80249D28-80249DB4 008C+00 s=0 e=17 z=0  None .text      __dt__12dMsgString_cFv */
-//	80249D48: 803C1498 (__vt__12dMsgString_c)
-//	80249D4C: 803C1498 (__vt__12dMsgString_c)
-//	80249D84: 80249528 (__dt__16dMsgStringBase_cFv)
-//	80249D94: 802CED3C (__dl__FPv)
+/* 80249D28-80249DB4 244668 008C+00 0/0 17/17 0/0 .text            __dt__12dMsgString_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,7 +116,7 @@ asm dMsgString_c::~dMsgString_c() {
 }
 #pragma pop
 
-/* 80249DB4-80249DE4 0030+00 s=1 e=0 z=0  None .text
+/* 80249DB4-80249DE4 2446F4 0030+00 1/0 0/0 0/0 .text
  * resetStringLocal__12dMsgString_cFP10J2DTextBox               */
 #pragma push
 #pragma optimization_level 0
@@ -148,29 +128,24 @@ asm void dMsgString_c::resetStringLocal(J2DTextBox* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454D78-80454D7C 0004+00 s=1 e=0 z=0  None .sdata2    @3777 */
+/* 80454D78-80454D7C 003378 0004+00 1/1 0/0 0/0 .sdata2          @3777 */
 SECTION_SDATA2 static f32 lit_3777 = 255.0f;
 
-/* 80454D7C-80454D80 0004+00 s=1 e=0 z=0  None .sdata2    @3778 */
+/* 80454D7C-80454D80 00337C 0004+00 1/1 0/0 0/0 .sdata2          @3778 */
 SECTION_SDATA2 static f32 lit_3778 = -1.0f;
 
-/* 80454D80-80454D88 0004+04 s=1 e=0 z=0  None .sdata2    @3779 */
+/* 80454D80-80454D88 003380 0004+04 1/1 0/0 0/0 .sdata2          @3779 */
 SECTION_SDATA2 static f32 lit_3779[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454D88-80454D90 0008+00 s=1 e=0 z=0  None .sdata2    @3781 */
+/* 80454D88-80454D90 003388 0008+00 1/1 0/0 0/0 .sdata2          @3781 */
 SECTION_SDATA2 static f64 lit_3781 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80249DE4-80249ED0 00EC+00 s=1 e=0 z=0  None .text
+/* 80249DE4-80249ED0 244724 00EC+00 1/0 0/0 0/0 .text
  * drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf              */
-//	80249E1C: 802F79A8 (getGlbVtx__7J2DPaneCFUc)
-//	80249E3C: 80454D7C (lit_3778)
-//	80249E4C: 80454D88 (lit_3781)
-//	80249E64: 80454D78 (lit_3777)
-//	80249E94: 80454D80 (lit_3779)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,7 +155,7 @@ asm void dMsgString_c::drawOutFontLocal(J2DTextBox* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80249ED0-80249F00 0030+00 s=1 e=0 z=0  None .text
+/* 80249ED0-80249F00 244810 0030+00 1/0 0/0 0/0 .text
  * drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc        */
 #pragma push
 #pragma optimization_level 0

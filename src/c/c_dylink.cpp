@@ -61,14 +61,6 @@ struct DynamicModuleControl {
 // Forward References:
 //
 
-static void cCc_Init();
-void cDyl_IsLinked(s16);
-void cDyl_Unlink(s16);
-void cDyl_LinkASync(s16);
-static void cDyl_InitCallback(void*);
-void cDyl_InitAsync();
-void cDyl_InitAsyncIsDone();
-
 extern "C" static void cCc_Init__Fv();
 extern "C" void cDyl_IsLinked__Fs();
 extern "C" void cDyl_Unlink__Fs();
@@ -88,12 +80,6 @@ extern "C" extern char const* const c_c_dylink__stringBase0;
 //
 // External References:
 //
-
-void mDoExt_getArchiveHeap();
-void fopScnM_CreateReq(s16, s16, u16, u32);
-void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**)(void*), void*);
-void* operator new(u32);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void OSReport_Error();
@@ -126,7 +112,7 @@ extern "C" extern void* __vt__20DynamicModuleControl[13];
 //
 
 /* ############################################################################################## */
-/* 80374640-80375DE8 17A8+00 s=1 e=0 z=0  None .rodata    DynamicNameTable */
+/* 80374640-80375DE8 -00001 17A8+00 1/1 0/0 0/0 .rodata          DynamicNameTable */
 SECTION_RODATA static void* const DynamicNameTable[1514] = {
     (void*)0x00140000, (void*)&c_c_dylink__stringBase0,
     (void*)0x00160000, (void*)(((char*)&c_c_dylink__stringBase0) + 0xB),
@@ -886,820 +872,25 @@ SECTION_RODATA static void* const DynamicNameTable[1514] = {
     (void*)0x03100000, (void*)(((char*)&c_c_dylink__stringBase0) + 0x2A03),
     (void*)0xFFFF0000, (void*)NULL,
 };
+SECTION_DEAD void* const cg_80374640 = (void*)(&DynamicNameTable);
 
-/* 80375DE8-80378878 2A8F+01 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80375DE8 = "d_a_alldie";
-SECTION_DEAD char const* const stringBase_80375DF3 = "d_a_obj_swpush";
-SECTION_DEAD char const* const stringBase_80375E02 = "d_a_obj_swpush2";
-SECTION_DEAD char const* const stringBase_80375E12 = "d_a_obj_swpush5";
-SECTION_DEAD char const* const stringBase_80375E22 = "d_a_tag_gstart";
-SECTION_DEAD char const* const stringBase_80375E31 = "d_a_obj_lv6elevta";
-SECTION_DEAD char const* const stringBase_80375E43 = "d_a_obj_so";
-SECTION_DEAD char const* const stringBase_80375E4E = "d_a_obj_movebox";
-SECTION_DEAD char const* const stringBase_80375E5E = "d_a_obj_swturn";
-SECTION_DEAD char const* const stringBase_80375E6D = "d_a_obj_lv6swturn";
-SECTION_DEAD char const* const stringBase_80375E7F = "d_a_obj_sekizoa";
-SECTION_DEAD char const* const stringBase_80375E8F = "d_a_obj_gra2";
-SECTION_DEAD char const* const stringBase_80375E9C = "d_a_tag_gra";
-SECTION_DEAD char const* const stringBase_80375EA8 = "d_a_tag_yami";
-SECTION_DEAD char const* const stringBase_80375EB5 = "d_a_obj_ladder";
-SECTION_DEAD char const* const stringBase_80375EC4 = "d_a_obj_brakeeff";
-SECTION_DEAD char const* const stringBase_80375ED5 = "d_a_obj_fmobj";
-SECTION_DEAD char const* const stringBase_80375EE3 = "d_a_obj_lbox";
-SECTION_DEAD char const* const stringBase_80375EF0 = "d_a_obj_web0";
-SECTION_DEAD char const* const stringBase_80375EFD = "d_a_obj_web1";
-SECTION_DEAD char const* const stringBase_80375F0A = "d_a_obj_cb";
-SECTION_DEAD char const* const stringBase_80375F15 = "d_a_obj_maki";
-SECTION_DEAD char const* const stringBase_80375F22 = "d_a_obj_brg";
-SECTION_DEAD char const* const stringBase_80375F2E = "d_a_obj_gb";
-SECTION_DEAD char const* const stringBase_80375F39 = "d_a_obj_gm";
-SECTION_DEAD char const* const stringBase_80375F44 = "d_a_obj_toby";
-SECTION_DEAD char const* const stringBase_80375F51 = "d_a_obj_tp";
-SECTION_DEAD char const* const stringBase_80375F5C = "d_a_obj_treesh";
-SECTION_DEAD char const* const stringBase_80375F6B = "d_a_obj_zdoor";
-SECTION_DEAD char const* const stringBase_80375F79 = "d_a_obj_pillar";
-SECTION_DEAD char const* const stringBase_80375F88 = "d_a_obj_cdoor";
-SECTION_DEAD char const* const stringBase_80375F96 = "d_a_obj_groundwater";
-SECTION_DEAD char const* const stringBase_80375FAA = "d_a_obj_rotBridge";
-SECTION_DEAD char const* const stringBase_80375FBC = "d_a_obj_magLift";
-SECTION_DEAD char const* const stringBase_80375FCC = "d_a_obj_magLiftRot";
-SECTION_DEAD char const* const stringBase_80375FDF = "d_a_obj_lv1Candle00";
-SECTION_DEAD char const* const stringBase_80375FF3 = "d_a_obj_lv1Candle01";
-SECTION_DEAD char const* const stringBase_80376007 = "d_a_obj_TvCdlst";
-SECTION_DEAD char const* const stringBase_80376017 = "d_a_obj_hsTarget";
-SECTION_DEAD char const* const stringBase_80376028 = "d_a_obj_heavySw";
-SECTION_DEAD char const* const stringBase_80376038 = "d_a_obj_goGate";
-SECTION_DEAD char const* const stringBase_80376047 = "d_a_obj_taFence";
-SECTION_DEAD char const* const stringBase_80376057 = "d_a_obj_saidan";
-SECTION_DEAD char const* const stringBase_80376066 = "d_a_obj_spinLift";
-SECTION_DEAD char const* const stringBase_80376077 = "d_a_obj_bmWindow";
-SECTION_DEAD char const* const stringBase_80376088 = "d_a_obj_rfHole";
-SECTION_DEAD char const* const stringBase_80376097 = "d_a_obj_waterPillar";
-SECTION_DEAD char const* const stringBase_803760AB = "d_a_obj_syRock";
-SECTION_DEAD char const* const stringBase_803760BA = "d_a_obj_bsGate";
-SECTION_DEAD char const* const stringBase_803760C9 = "d_a_obj_amiShutter";
-SECTION_DEAD char const* const stringBase_803760DC = "d_a_obj_waterGate";
-SECTION_DEAD char const* const stringBase_803760EE = "d_a_obj_lv2Candle";
-SECTION_DEAD char const* const stringBase_80376100 = "d_a_obj_togeTrap";
-SECTION_DEAD char const* const stringBase_80376111 = "d_a_obj_rotTrap";
-SECTION_DEAD char const* const stringBase_80376121 = "d_a_obj_sWallShutter";
-SECTION_DEAD char const* const stringBase_80376136 = "d_a_obj_lv5IceWall";
-SECTION_DEAD char const* const stringBase_80376149 = "d_a_obj_lv5SwIce";
-SECTION_DEAD char const* const stringBase_8037615A = "d_a_obj_lv5FloorBoard";
-SECTION_DEAD char const* const stringBase_80376170 = "d_a_obj_Turara";
-SECTION_DEAD char const* const stringBase_8037617F = "d_a_obj_twGate";
-SECTION_DEAD char const* const stringBase_8037618E = "d_a_obj_digholl";
-SECTION_DEAD char const* const stringBase_8037619E = "d_a_obj_digplace";
-SECTION_DEAD char const* const stringBase_803761AF = "d_a_obj_testcube";
-SECTION_DEAD char const* const stringBase_803761C0 = "d_a_obj_kshutter";
-SECTION_DEAD char const* const stringBase_803761D1 = "d_a_npc_coach";
-SECTION_DEAD char const* const stringBase_803761DF = "d_a_npc_theB";
-SECTION_DEAD char const* const stringBase_803761EC = "d_a_coach_fire";
-SECTION_DEAD char const* const stringBase_803761FB = "d_a_coach_2D";
-SECTION_DEAD char const* const stringBase_80376208 = "d_a_balloon_2D";
-SECTION_DEAD char const* const stringBase_80376217 = "d_a_skip_2D";
-SECTION_DEAD char const* const stringBase_80376223 = "d_a_obj_mvstair";
-SECTION_DEAD char const* const stringBase_80376233 = "d_a_obj_cowdoor";
-SECTION_DEAD char const* const stringBase_80376243 = "d_a_obj_swpropeller";
-SECTION_DEAD char const* const stringBase_80376257 = "d_a_obj_bmshutter";
-SECTION_DEAD char const* const stringBase_80376269 = "d_a_npc_ks";
-SECTION_DEAD char const* const stringBase_80376274 = "d_a_obj_hfuta";
-SECTION_DEAD char const* const stringBase_80376282 = "d_a_obj_bkdoor";
-SECTION_DEAD char const* const stringBase_80376291 = "d_a_obj_cboard";
-SECTION_DEAD char const* const stringBase_803762A0 = "d_a_obj_mgate";
-SECTION_DEAD char const* const stringBase_803762AE = "d_a_obj_ikada";
-SECTION_DEAD char const* const stringBase_803762BC = "d_a_obj_ice_l";
-SECTION_DEAD char const* const stringBase_803762CA = "d_a_obj_ice_s";
-SECTION_DEAD char const* const stringBase_803762D8 = "d_a_obj_enemy_create";
-SECTION_DEAD char const* const stringBase_803762ED = "d_a_obj_bhbridge";
-SECTION_DEAD char const* const stringBase_803762FE = "d_a_obj_kaisou";
-SECTION_DEAD char const* const stringBase_8037630D = "d_a_obj_hhashi";
-SECTION_DEAD char const* const stringBase_8037631C = "d_a_obj_bhashi";
-SECTION_DEAD char const* const stringBase_8037632B = "d_a_obj_octhashi";
-SECTION_DEAD char const* const stringBase_8037633C = "d_a_obj_thashi";
-SECTION_DEAD char const* const stringBase_8037634B = "d_a_obj_crvgate";
-SECTION_DEAD char const* const stringBase_8037635B = "d_a_obj_crvfence";
-SECTION_DEAD char const* const stringBase_8037636C = "d_a_obj_crvhahen";
-SECTION_DEAD char const* const stringBase_8037637D = "d_a_obj_crvsteel";
-SECTION_DEAD char const* const stringBase_8037638E = "d_a_obj_crvlh_up";
-SECTION_DEAD char const* const stringBase_8037639F = "d_a_obj_crvlh_down";
-SECTION_DEAD char const* const stringBase_803763B2 = "d_a_obj_riverrock";
-SECTION_DEAD char const* const stringBase_803763C4 = "d_a_obj_dust";
-SECTION_DEAD char const* const stringBase_803763D1 = "d_a_obj_ita";
-SECTION_DEAD char const* const stringBase_803763DD = "d_a_obj_window";
-SECTION_DEAD char const* const stringBase_803763EC = "d_a_obj_metalbox";
-SECTION_DEAD char const* const stringBase_803763FD = "d_a_obj_bbox";
-SECTION_DEAD char const* const stringBase_8037640A = "d_a_obj_msima";
-SECTION_DEAD char const* const stringBase_80376418 = "d_a_obj_myogan";
-SECTION_DEAD char const* const stringBase_80376427 = "d_a_b_zant_sima";
-SECTION_DEAD char const* const stringBase_80376437 = "d_a_obj_cblock";
-SECTION_DEAD char const* const stringBase_80376446 = "d_a_obj_cwall";
-SECTION_DEAD char const* const stringBase_80376454 = "d_a_obj_kgate";
-SECTION_DEAD char const* const stringBase_80376462 = "d_a_obj_rgate";
-SECTION_DEAD char const* const stringBase_80376470 = "d_a_obj_onsen";
-SECTION_DEAD char const* const stringBase_8037647E = "d_a_obj_chest";
-SECTION_DEAD char const* const stringBase_8037648C = "d_a_obj_bemos";
-SECTION_DEAD char const* const stringBase_8037649A = "d_a_obj_rope_bridge";
-SECTION_DEAD char const* const stringBase_803764AE = "d_a_obj_well_cover";
-SECTION_DEAD char const* const stringBase_803764C1 = "d_a_obj_grave_stone";
-SECTION_DEAD char const* const stringBase_803764D5 = "d_a_obj_zra_rock";
-SECTION_DEAD char const* const stringBase_803764E6 = "d_a_obj_gra_rock";
-SECTION_DEAD char const* const stringBase_803764F7 = "d_a_obj_grz_rock";
-SECTION_DEAD char const* const stringBase_80376508 = "d_a_obj_graWall";
-SECTION_DEAD char const* const stringBase_80376518 = "d_a_obj_onsenFire";
-SECTION_DEAD char const* const stringBase_8037652A = "d_a_obj_lv6bemos";
-SECTION_DEAD char const* const stringBase_8037653B = "d_a_obj_lv6bemos2";
-SECTION_DEAD char const* const stringBase_8037654D = "d_a_obj_barDesk";
-SECTION_DEAD char const* const stringBase_8037655D = "d_a_obj_digsnow";
-SECTION_DEAD char const* const stringBase_8037656D = "d_a_obj_Y_taihou";
-SECTION_DEAD char const* const stringBase_8037657E = "d_a_obj_dmelevator";
-SECTION_DEAD char const* const stringBase_80376591 = "d_a_obj_lv6TogeRoll";
-SECTION_DEAD char const* const stringBase_803765A5 = "d_a_obj_lv6TogeTrap";
-SECTION_DEAD char const* const stringBase_803765B9 = "d_a_obj_lv6Tenbin";
-SECTION_DEAD char const* const stringBase_803765CB = "d_a_obj_lv6SwGate";
-SECTION_DEAD char const* const stringBase_803765DD = "d_a_obj_lv6Lblock";
-SECTION_DEAD char const* const stringBase_803765EF = "d_a_obj_lv6ChangeGate";
-SECTION_DEAD char const* const stringBase_80376605 = "d_a_obj_lv6FurikoTrap";
-SECTION_DEAD char const* const stringBase_8037661B = "d_a_obj_lv6SzGate";
-SECTION_DEAD char const* const stringBase_8037662D = "d_a_obj_lv4EdShutter";
-SECTION_DEAD char const* const stringBase_80376642 = "d_a_obj_lv4Gate";
-SECTION_DEAD char const* const stringBase_80376652 = "d_a_obj_lv4PoGate";
-SECTION_DEAD char const* const stringBase_80376664 = "d_a_obj_lv4SlideWall";
-SECTION_DEAD char const* const stringBase_80376679 = "d_a_obj_lv4HsTarget";
-SECTION_DEAD char const* const stringBase_8037668D = "d_a_obj_lv7PropellerY";
-SECTION_DEAD char const* const stringBase_803766A3 = "d_a_obj_lv7BsGate";
-SECTION_DEAD char const* const stringBase_803766B5 = "d_a_obj_lv8OptiLift";
-SECTION_DEAD char const* const stringBase_803766C9 = "d_a_obj_lv8KekkaiTrap";
-SECTION_DEAD char const* const stringBase_803766DF = "d_a_obj_lv8Lift";
-SECTION_DEAD char const* const stringBase_803766EF = "d_a_obj_lv8UdFloor";
-SECTION_DEAD char const* const stringBase_80376702 = "d_a_obj_lv9SwShutter";
-SECTION_DEAD char const* const stringBase_80376717 = "d_a_obj_tobyhouse";
-SECTION_DEAD char const* const stringBase_80376729 = "d_a_obj_poCandle";
-SECTION_DEAD char const* const stringBase_8037673A = "d_a_obj_lv4digsand";
-SECTION_DEAD char const* const stringBase_8037674D = "d_a_obj_fallobj";
-SECTION_DEAD char const* const stringBase_8037675D = "d_a_obj_smgdoor";
-SECTION_DEAD char const* const stringBase_8037676D = "d_a_obj_swLight";
-SECTION_DEAD char const* const stringBase_8037677D = "d_a_obj_avalanche";
-SECTION_DEAD char const* const stringBase_8037678F = "d_a_obj_mirror_screw";
-SECTION_DEAD char const* const stringBase_803767A4 = "d_a_obj_mirror_sand";
-SECTION_DEAD char const* const stringBase_803767B8 = "d_a_obj_mirror_table";
-SECTION_DEAD char const* const stringBase_803767CD = "d_a_obj_mirror_chain";
-SECTION_DEAD char const* const stringBase_803767E2 = "d_a_obj_mirror_6pole";
-SECTION_DEAD char const* const stringBase_803767F7 = "d_a_obj_swspinner";
-SECTION_DEAD char const* const stringBase_80376809 = "d_a_obj_thdoor";
-SECTION_DEAD char const* const stringBase_80376818 = "d_a_obj_lv7bridge";
-SECTION_DEAD char const* const stringBase_8037682A = "d_a_obj_zrTurara";
-SECTION_DEAD char const* const stringBase_8037683B = "d_a_obj_takaraDai";
-SECTION_DEAD char const* const stringBase_8037684D = "d_a_obj_table";
-SECTION_DEAD char const* const stringBase_8037685B = "d_a_obj_catdoor";
-SECTION_DEAD char const* const stringBase_8037686B = "d_a_obj_tgake";
-SECTION_DEAD char const* const stringBase_80376879 = "d_a_cstaF";
-SECTION_DEAD char const* const stringBase_80376883 = "d_a_obj_lv4RailWall";
-SECTION_DEAD char const* const stringBase_80376897 = "d_a_obj_lv4sand";
-SECTION_DEAD char const* const stringBase_803768A7 = "d_a_obj_pdoor";
-SECTION_DEAD char const* const stringBase_803768B5 = "d_a_door_push";
-SECTION_DEAD char const* const stringBase_803768C3 = "d_a_obj_ganonwall2";
-SECTION_DEAD char const* const stringBase_803768D6 = "d_a_obj_lv4bridge";
-SECTION_DEAD char const* const stringBase_803768E8 = "d_a_obj_lv4floor";
-SECTION_DEAD char const* const stringBase_803768F9 = "d_a_tag_spinner";
-SECTION_DEAD char const* const stringBase_80376909 = "d_a_obj_swhang";
-SECTION_DEAD char const* const stringBase_80376918 = "d_a_obj_rstair";
-SECTION_DEAD char const* const stringBase_80376927 = "d_a_obj_magne_arm";
-SECTION_DEAD char const* const stringBase_80376939 = "d_a_obj_kwheel00";
-SECTION_DEAD char const* const stringBase_8037694A = "d_a_obj_kwheel01";
-SECTION_DEAD char const* const stringBase_8037695B = "d_a_obj_lv5ychndlr";
-SECTION_DEAD char const* const stringBase_8037696E = "d_a_obj_lv4prelvtr";
-SECTION_DEAD char const* const stringBase_80376981 = "d_a_obj_hasu2";
-SECTION_DEAD char const* const stringBase_8037698F = "d_a_obj_lv5yiblltray";
-SECTION_DEAD char const* const stringBase_803769A4 = "d_a_obj_lv6egate";
-SECTION_DEAD char const* const stringBase_803769B5 = "d_a_obj_pdtile";
-SECTION_DEAD char const* const stringBase_803769C4 = "d_a_obj_pdwall";
-SECTION_DEAD char const* const stringBase_803769D3 = "d_a_obj_lv4prwall";
-SECTION_DEAD char const* const stringBase_803769E5 = "d_a_obj_klift00";
-SECTION_DEAD char const* const stringBase_803769F5 = "d_a_b_oh";
-SECTION_DEAD char const* const stringBase_803769FE = "d_a_obj_lv4chandelier";
-SECTION_DEAD char const* const stringBase_80376A14 = "d_a_obj_lv3saka00";
-SECTION_DEAD char const* const stringBase_80376A26 = "d_a_obj_lv3Water";
-SECTION_DEAD char const* const stringBase_80376A37 = "d_a_obj_lv3Water2";
-SECTION_DEAD char const* const stringBase_80376A49 = "d_a_obj_lv3WaterB";
-SECTION_DEAD char const* const stringBase_80376A5B = "d_a_obj_hbombkoya";
-SECTION_DEAD char const* const stringBase_80376A6D = "d_a_obj_szbridge";
-SECTION_DEAD char const* const stringBase_80376A7E = "d_a_obj_warp_kbrg";
-SECTION_DEAD char const* const stringBase_80376A90 = "d_a_obj_warp_obrg";
-SECTION_DEAD char const* const stringBase_80376AA2 = "d_a_obj_burnbox";
-SECTION_DEAD char const* const stringBase_80376AB2 = "d_a_obj_kjgjs";
-SECTION_DEAD char const* const stringBase_80376AC0 = "d_a_obj_ihasi";
-SECTION_DEAD char const* const stringBase_80376ACE = "d_a_obj_iceblock";
-SECTION_DEAD char const* const stringBase_80376ADF = "d_a_obj_volcball";
-SECTION_DEAD char const* const stringBase_80376AF0 = "d_a_obj_volcbom";
-SECTION_DEAD char const* const stringBase_80376B00 = "d_a_obj_vground";
-SECTION_DEAD char const* const stringBase_80376B10 = "d_a_obj_kkanban";
-SECTION_DEAD char const* const stringBase_80376B20 = "d_a_e_ph";
-SECTION_DEAD char const* const stringBase_80376B29 = "d_a_npc_zra";
-SECTION_DEAD char const* const stringBase_80376B35 = "d_a_obj_chandelier";
-SECTION_DEAD char const* const stringBase_80376B48 = "d_a_obj_stopper2";
-SECTION_DEAD char const* const stringBase_80376B59 = "d_a_door_shutter";
-SECTION_DEAD char const* const stringBase_80376B6A = "d_a_tag_hinit";
-SECTION_DEAD char const* const stringBase_80376B78 = "d_a_tag_hjump";
-SECTION_DEAD char const* const stringBase_80376B86 = "d_a_tag_ajnot";
-SECTION_DEAD char const* const stringBase_80376B94 = "d_a_tag_hstop";
-SECTION_DEAD char const* const stringBase_80376BA2 = "d_a_canoe";
-SECTION_DEAD char const* const stringBase_80376BAC = "d_a_horse";
-SECTION_DEAD char const* const stringBase_80376BB6 = "d_a_e_wb";
-SECTION_DEAD char const* const stringBase_80376BBF = "d_a_obj_ito";
-SECTION_DEAD char const* const stringBase_80376BCB = "d_a_obj_sw";
-SECTION_DEAD char const* const stringBase_80376BD6 = "d_a_spinner";
-SECTION_DEAD char const* const stringBase_80376BE2 = "d_a_b_ob";
-SECTION_DEAD char const* const stringBase_80376BEB = "d_a_kago";
-SECTION_DEAD char const* const stringBase_80376BF4 = "d_a_e_yc";
-SECTION_DEAD char const* const stringBase_80376BFD = "d_a_b_ds";
-SECTION_DEAD char const* const stringBase_80376C06 = "d_a_b_dr";
-SECTION_DEAD char const* const stringBase_80376C0F = "d_a_b_zant_mobile";
-SECTION_DEAD char const* const stringBase_80376C21 = "d_a_b_zant";
-SECTION_DEAD char const* const stringBase_80376C2C = "d_a_b_zant_magic";
-SECTION_DEAD char const* const stringBase_80376C3D = "d_a_tbox";
-SECTION_DEAD char const* const stringBase_80376C46 = "d_a_tbox2";
-SECTION_DEAD char const* const stringBase_80376C50 = "d_a_boomerang";
-SECTION_DEAD char const* const stringBase_80376C5E = "d_a_midna";
-SECTION_DEAD char const* const stringBase_80376C68 = "d_a_npc_tk";
-SECTION_DEAD char const* const stringBase_80376C73 = "d_a_npc_worm";
-SECTION_DEAD char const* const stringBase_80376C80 = "d_a_ppolamp";
-SECTION_DEAD char const* const stringBase_80376C8C = "d_a_obj_bky_rock";
-SECTION_DEAD char const* const stringBase_80376C9D = "d_a_hitobj";
-SECTION_DEAD char const* const stringBase_80376CA8 = "d_a_ep";
-SECTION_DEAD char const* const stringBase_80376CAF = "d_a_cow";
-SECTION_DEAD char const* const stringBase_80376CB7 = "d_a_peru";
-SECTION_DEAD char const* const stringBase_80376CC0 = "d_a_ni";
-SECTION_DEAD char const* const stringBase_80376CC7 = "d_a_npc_tkj2";
-SECTION_DEAD char const* const stringBase_80376CD4 = "d_a_sq";
-SECTION_DEAD char const* const stringBase_80376CDB = "d_a_npc_sq";
-SECTION_DEAD char const* const stringBase_80376CE6 = "d_a_do";
-SECTION_DEAD char const* const stringBase_80376CED = "d_a_npc_ne";
-SECTION_DEAD char const* const stringBase_80376CF8 = "d_a_npc_tr";
-SECTION_DEAD char const* const stringBase_80376D03 = "d_a_npc_lf";
-SECTION_DEAD char const* const stringBase_80376D0E = "d_a_obj_food";
-SECTION_DEAD char const* const stringBase_80376D1B = "d_a_obj_ki";
-SECTION_DEAD char const* const stringBase_80376D26 = "d_a_obj_kita";
-SECTION_DEAD char const* const stringBase_80376D33 = "d_a_obj_key";
-SECTION_DEAD char const* const stringBase_80376D3F = "d_a_obj_keyhole";
-SECTION_DEAD char const* const stringBase_80376D4F = "d_a_obj_Lv5Key";
-SECTION_DEAD char const* const stringBase_80376D5E = "d_a_obj_lp";
-SECTION_DEAD char const* const stringBase_80376D69 = "d_a_obj_tatigi";
-SECTION_DEAD char const* const stringBase_80376D78 = "d_a_obj_rock";
-SECTION_DEAD char const* const stringBase_80376D85 = "d_a_obj_wflag";
-SECTION_DEAD char const* const stringBase_80376D93 = "d_a_obj_kage";
-SECTION_DEAD char const* const stringBase_80376DA0 = "d_a_obj_kanban2";
-SECTION_DEAD char const* const stringBase_80376DB0 = "d_a_obj_balloon";
-SECTION_DEAD char const* const stringBase_80376DC0 = "d_a_obj_suisya";
-SECTION_DEAD char const* const stringBase_80376DCF = "d_a_obj_oiltubo";
-SECTION_DEAD char const* const stringBase_80376DDF = "d_a_obj_roten";
-SECTION_DEAD char const* const stringBase_80376DED = "d_a_obj_ss_drink";
-SECTION_DEAD char const* const stringBase_80376DFE = "d_a_obj_ss_item";
-SECTION_DEAD char const* const stringBase_80376E0E = "d_a_tag_ss_drink";
-SECTION_DEAD char const* const stringBase_80376E1F = "d_a_tag_bottle_item";
-SECTION_DEAD char const* const stringBase_80376E33 = "d_a_tag_lv5soup";
-SECTION_DEAD char const* const stringBase_80376E43 = "d_a_tag_myna_light";
-SECTION_DEAD char const* const stringBase_80376E56 = "d_a_tag_shop_camera";
-SECTION_DEAD char const* const stringBase_80376E6A = "d_a_tag_shop_item";
-SECTION_DEAD char const* const stringBase_80376E7C = "d_a_obj_ndoor";
-SECTION_DEAD char const* const stringBase_80376E8A = "d_a_obj_udoor";
-SECTION_DEAD char const* const stringBase_80376E98 = "d_a_obj_usaku";
-SECTION_DEAD char const* const stringBase_80376EA6 = "d_a_obj_sm_door";
-SECTION_DEAD char const* const stringBase_80376EB6 = "d_a_obj_bed";
-SECTION_DEAD char const* const stringBase_80376EC2 = "d_a_obj_boumato";
-SECTION_DEAD char const* const stringBase_80376ED2 = "d_a_obj_itamato";
-SECTION_DEAD char const* const stringBase_80376EE2 = "d_a_obj_nougu";
-SECTION_DEAD char const* const stringBase_80376EF0 = "d_a_obj_stick";
-SECTION_DEAD char const* const stringBase_80376EFE = "d_a_obj_mie";
-SECTION_DEAD char const* const stringBase_80376F0A = "d_a_obj_sekidoor";
-SECTION_DEAD char const* const stringBase_80376F1B = "d_a_obj_sekizo";
-SECTION_DEAD char const* const stringBase_80376F2A = "d_a_obj_smtile";
-SECTION_DEAD char const* const stringBase_80376F39 = "d_a_npc_fish";
-SECTION_DEAD char const* const stringBase_80376F46 = "d_a_mg_fish";
-SECTION_DEAD char const* const stringBase_80376F52 = "d_a_mg_fshop";
-SECTION_DEAD char const* const stringBase_80376F5F = "d_a_npc_du";
-SECTION_DEAD char const* const stringBase_80376F6A = "d_a_disappear";
-SECTION_DEAD char const* const stringBase_80376F78 = "d_a_obj_mato";
-SECTION_DEAD char const* const stringBase_80376F85 = "d_a_obj_flag";
-SECTION_DEAD char const* const stringBase_80376F92 = "d_a_obj_flag2";
-SECTION_DEAD char const* const stringBase_80376FA0 = "d_a_obj_flag3";
-SECTION_DEAD char const* const stringBase_80376FAE = "d_a_obj_gomikabe";
-SECTION_DEAD char const* const stringBase_80376FBF = "d_a_obj_yousei";
-SECTION_DEAD char const* const stringBase_80376FCE = "d_a_obj_kabuto";
-SECTION_DEAD char const* const stringBase_80376FDD = "d_a_obj_cho";
-SECTION_DEAD char const* const stringBase_80376FE9 = "d_a_obj_kuwagata";
-SECTION_DEAD char const* const stringBase_80376FFA = "d_a_obj_nan";
-SECTION_DEAD char const* const stringBase_80377006 = "d_a_obj_dan";
-SECTION_DEAD char const* const stringBase_80377012 = "d_a_obj_kamakiri";
-SECTION_DEAD char const* const stringBase_80377023 = "d_a_obj_ten";
-SECTION_DEAD char const* const stringBase_8037702F = "d_a_obj_ari";
-SECTION_DEAD char const* const stringBase_8037703B = "d_a_obj_kag";
-SECTION_DEAD char const* const stringBase_80377047 = "d_a_obj_batta";
-SECTION_DEAD char const* const stringBase_80377055 = "d_a_obj_tombo";
-SECTION_DEAD char const* const stringBase_80377063 = "d_a_obj_katatsumuri";
-SECTION_DEAD char const* const stringBase_80377077 = "d_a_obj_h_saku";
-SECTION_DEAD char const* const stringBase_80377086 = "d_a_obj_yobikusa";
-SECTION_DEAD char const* const stringBase_80377097 = "d_a_obj_kazeneko";
-SECTION_DEAD char const* const stringBase_803770A8 = "d_a_obj_kznkarm";
-SECTION_DEAD char const* const stringBase_803770B8 = "d_a_obj_nameplate";
-SECTION_DEAD char const* const stringBase_803770CA = "d_a_obj_ornament_cloth";
-SECTION_DEAD char const* const stringBase_803770E1 = "d_a_obj_laundry_rope";
-SECTION_DEAD char const* const stringBase_803770F6 = "d_a_obj_sakuita_rope";
-SECTION_DEAD char const* const stringBase_8037710B = "d_a_obj_sakuita";
-SECTION_DEAD char const* const stringBase_8037711B = "d_a_obj_laundry";
-SECTION_DEAD char const* const stringBase_8037712B = "d_a_warp_bug";
-SECTION_DEAD char const* const stringBase_80377138 = "d_a_izumi_gate";
-SECTION_DEAD char const* const stringBase_80377147 = "d_a_obj_fchain";
-SECTION_DEAD char const* const stringBase_80377156 = "d_a_obj_wchain";
-SECTION_DEAD char const* const stringBase_80377165 = "d_a_tag_attention";
-SECTION_DEAD char const* const stringBase_80377177 = "d_a_obj_tornado";
-SECTION_DEAD char const* const stringBase_80377187 = "d_a_obj_tornado2";
-SECTION_DEAD char const* const stringBase_80377198 = "d_a_obj_firepillar";
-SECTION_DEAD char const* const stringBase_803771AB = "d_a_obj_firepillar2";
-SECTION_DEAD char const* const stringBase_803771BF = "d_a_obj_inobone";
-SECTION_DEAD char const* const stringBase_803771CF = "d_a_obj_stopper";
-SECTION_DEAD char const* const stringBase_803771DF = "d_a_obj_mhole";
-SECTION_DEAD char const* const stringBase_803771ED = "d_a_tag_magne";
-SECTION_DEAD char const* const stringBase_803771FB = "d_a_obj_bosswarp";
-SECTION_DEAD char const* const stringBase_8037720C = "d_a_obj_wood_pendulum";
-SECTION_DEAD char const* const stringBase_80377222 = "d_a_obj_wdStick";
-SECTION_DEAD char const* const stringBase_80377232 = "d_a_obj_stairBlock";
-SECTION_DEAD char const* const stringBase_80377245 = "d_a_obj_geyser";
-SECTION_DEAD char const* const stringBase_80377254 = "d_a_obj_ktOnFire";
-SECTION_DEAD char const* const stringBase_80377265 = "d_a_obj_fireWood";
-SECTION_DEAD char const* const stringBase_80377276 = "d_a_obj_fireWood2";
-SECTION_DEAD char const* const stringBase_80377288 = "d_a_obj_gpTaru";
-SECTION_DEAD char const* const stringBase_80377297 = "d_a_obj_onsenTaru";
-SECTION_DEAD char const* const stringBase_803772A9 = "d_a_obj_kiPot";
-SECTION_DEAD char const* const stringBase_803772B7 = "d_a_tboxSw";
-SECTION_DEAD char const* const stringBase_803772C2 = "d_a_obj_swchain";
-SECTION_DEAD char const* const stringBase_803772D2 = "d_a_obj_wsword";
-SECTION_DEAD char const* const stringBase_803772E1 = "d_a_obj_stoneMark";
-SECTION_DEAD char const* const stringBase_803772F3 = "d_a_obj_lv3Candle";
-SECTION_DEAD char const* const stringBase_80377305 = "d_a_obj_lv4CandleTag";
-SECTION_DEAD char const* const stringBase_8037731A = "d_a_obj_lv4CandleDemoTag";
-SECTION_DEAD char const* const stringBase_80377333 = "d_a_obj_damCps";
-SECTION_DEAD char const* const stringBase_80377342 = "d_a_obj_smoke";
-SECTION_DEAD char const* const stringBase_80377350 = "d_a_obj_waterfall";
-SECTION_DEAD char const* const stringBase_80377362 = "d_a_obj_zcloth";
-SECTION_DEAD char const* const stringBase_80377371 = "d_a_obj_poFire";
-SECTION_DEAD char const* const stringBase_80377380 = "d_a_tag_poFire";
-SECTION_DEAD char const* const stringBase_8037738F = "d_a_obj_glowSphere";
-SECTION_DEAD char const* const stringBase_803773A2 = "d_a_tag_lightball";
-SECTION_DEAD char const* const stringBase_803773B4 = "d_a_swLBall";
-SECTION_DEAD char const* const stringBase_803773C0 = "d_a_swBall";
-SECTION_DEAD char const* const stringBase_803773CB = "d_a_obj_lv3waterEff";
-SECTION_DEAD char const* const stringBase_803773DF = "d_a_tag_river_back";
-SECTION_DEAD char const* const stringBase_803773F2 = "d_a_tag_kago_fall";
-SECTION_DEAD char const* const stringBase_80377404 = "d_a_tag_lv2prchk";
-SECTION_DEAD char const* const stringBase_80377415 = "d_a_obj_lv4gear";
-SECTION_DEAD char const* const stringBase_80377425 = "d_a_obj_master_sword";
-SECTION_DEAD char const* const stringBase_8037743A = "d_a_obj_wood_statue";
-SECTION_DEAD char const* const stringBase_8037744E = "d_a_obj_fan";
-SECTION_DEAD char const* const stringBase_8037745A = "d_a_obj_iceleaf";
-SECTION_DEAD char const* const stringBase_8037746A = "d_a_obj_zrTuraraRock";
-SECTION_DEAD char const* const stringBase_8037747F = "d_a_tag_ret_room";
-SECTION_DEAD char const* const stringBase_80377490 = "d_a_obj_wind_stone";
-SECTION_DEAD char const* const stringBase_803774A3 = "d_a_tag_wara_howl";
-SECTION_DEAD char const* const stringBase_803774B5 = "d_a_obj_scannon";
-SECTION_DEAD char const* const stringBase_803774C5 = "d_a_obj_smw_stone";
-SECTION_DEAD char const* const stringBase_803774D7 = "d_a_obj_scannon_crs";
-SECTION_DEAD char const* const stringBase_803774EB = "d_a_obj_snowEffTag";
-SECTION_DEAD char const* const stringBase_803774FE = "d_a_tag_CstaSw";
-SECTION_DEAD char const* const stringBase_8037750D = "d_a_tag_lv6CstaSw";
-SECTION_DEAD char const* const stringBase_8037751F = "d_a_obj_bubblePilar";
-SECTION_DEAD char const* const stringBase_80377533 = "d_a_obj_poTbox";
-SECTION_DEAD char const* const stringBase_80377542 = "d_a_obj_timeFire";
-SECTION_DEAD char const* const stringBase_80377553 = "d_a_obj_tmoon";
-SECTION_DEAD char const* const stringBase_80377561 = "d_a_obj_ganonwall";
-SECTION_DEAD char const* const stringBase_80377573 = "d_a_obj_prop";
-SECTION_DEAD char const* const stringBase_80377580 = "d_a_cstatue";
-SECTION_DEAD char const* const stringBase_8037758C = "d_a_obj_swBallA";
-SECTION_DEAD char const* const stringBase_8037759C = "d_a_obj_swBallB";
-SECTION_DEAD char const* const stringBase_803775AC = "d_a_obj_snow_soup";
-SECTION_DEAD char const* const stringBase_803775BE = "d_a_obj_nagaisu";
-SECTION_DEAD char const* const stringBase_803775CE = "d_a_obj_rcircle";
-SECTION_DEAD char const* const stringBase_803775DE = "d_a_obj_picture";
-SECTION_DEAD char const* const stringBase_803775EE = "d_a_tag_setBall";
-SECTION_DEAD char const* const stringBase_803775FE = "d_a_tag_smk_emt";
-SECTION_DEAD char const* const stringBase_8037760E = "d_a_swTime";
-SECTION_DEAD char const* const stringBase_80377619 = "d_a_obj_hakai_ftr";
-SECTION_DEAD char const* const stringBase_8037762B = "d_a_obj_hakai_brl";
-SECTION_DEAD char const* const stringBase_8037763D = "d_a_obj_crystal";
-SECTION_DEAD char const* const stringBase_8037764D = "d_a_obj_scannon_ten";
-SECTION_DEAD char const* const stringBase_80377661 = "d_a_obj_swBallC";
-SECTION_DEAD char const* const stringBase_80377671 = "d_a_scene_exit2";
-SECTION_DEAD char const* const stringBase_80377681 = "d_a_obj_hata";
-SECTION_DEAD char const* const stringBase_8037768E = "d_a_obj_toaru_maki";
-SECTION_DEAD char const* const stringBase_803776A1 = "d_a_tag_attack_item";
-SECTION_DEAD char const* const stringBase_803776B5 = "d_a_tag_rmbit_sw";
-SECTION_DEAD char const* const stringBase_803776C6 = "d_a_obj_sword";
-SECTION_DEAD char const* const stringBase_803776D4 = "d_a_tag_spring";
-SECTION_DEAD char const* const stringBase_803776E3 = "d_a_tag_statue_evt";
-SECTION_DEAD char const* const stringBase_803776F6 = "d_a_e_ai";
-SECTION_DEAD char const* const stringBase_803776FF = "d_a_e_gs";
-SECTION_DEAD char const* const stringBase_80377708 = "d_a_e_gob";
-SECTION_DEAD char const* const stringBase_80377712 = "d_a_e_dd";
-SECTION_DEAD char const* const stringBase_8037771B = "d_a_e_dn";
-SECTION_DEAD char const* const stringBase_80377724 = "d_a_e_s1";
-SECTION_DEAD char const* const stringBase_8037772D = "d_a_e_mf";
-SECTION_DEAD char const* const stringBase_80377736 = "d_a_e_sg";
-SECTION_DEAD char const* const stringBase_8037773F = "d_a_e_bs";
-SECTION_DEAD char const* const stringBase_80377748 = "d_a_e_sf";
-SECTION_DEAD char const* const stringBase_80377751 = "d_a_e_sh";
-SECTION_DEAD char const* const stringBase_8037775A = "d_a_e_df";
-SECTION_DEAD char const* const stringBase_80377763 = "d_a_e_gm";
-SECTION_DEAD char const* const stringBase_8037776C = "d_a_e_md";
-SECTION_DEAD char const* const stringBase_80377775 = "d_a_e_sm";
-SECTION_DEAD char const* const stringBase_8037777E = "d_a_e_sm2";
-SECTION_DEAD char const* const stringBase_80377788 = "d_a_e_st";
-SECTION_DEAD char const* const stringBase_80377791 = "d_a_e_st_line";
-SECTION_DEAD char const* const stringBase_8037779F = "d_a_e_sb";
-SECTION_DEAD char const* const stringBase_803777A8 = "d_a_e_th";
-SECTION_DEAD char const* const stringBase_803777B1 = "d_a_e_cr";
-SECTION_DEAD char const* const stringBase_803777BA = "d_a_e_cr_egg";
-SECTION_DEAD char const* const stringBase_803777C7 = "d_a_e_db";
-SECTION_DEAD char const* const stringBase_803777D0 = "d_a_e_db_leaf";
-SECTION_DEAD char const* const stringBase_803777DE = "d_a_e_ga";
-SECTION_DEAD char const* const stringBase_803777E7 = "d_a_e_gb";
-SECTION_DEAD char const* const stringBase_803777F0 = "d_a_e_hb";
-SECTION_DEAD char const* const stringBase_803777F9 = "d_a_e_hb_leaf";
-SECTION_DEAD char const* const stringBase_80377807 = "d_a_e_hzelda";
-SECTION_DEAD char const* const stringBase_80377814 = "d_a_e_yd";
-SECTION_DEAD char const* const stringBase_8037781D = "d_a_e_yh";
-SECTION_DEAD char const* const stringBase_80377826 = "d_a_e_yd_leaf";
-SECTION_DEAD char const* const stringBase_80377834 = "d_a_e_hm";
-SECTION_DEAD char const* const stringBase_8037783D = "d_a_e_tk";
-SECTION_DEAD char const* const stringBase_80377846 = "d_a_e_tk2";
-SECTION_DEAD char const* const stringBase_80377850 = "d_a_e_tk_ball";
-SECTION_DEAD char const* const stringBase_8037785E = "d_a_e_rb";
-SECTION_DEAD char const* const stringBase_80377867 = "d_a_e_rd";
-SECTION_DEAD char const* const stringBase_80377870 = "d_a_e_rdb";
-SECTION_DEAD char const* const stringBase_8037787A = "d_a_e_rdy";
-SECTION_DEAD char const* const stringBase_80377884 = "d_a_e_fm";
-SECTION_DEAD char const* const stringBase_8037788D = "d_a_e_fs";
-SECTION_DEAD char const* const stringBase_80377896 = "d_a_e_pm";
-SECTION_DEAD char const* const stringBase_8037789F = "d_a_e_po";
-SECTION_DEAD char const* const stringBase_803778A8 = "d_a_e_mb";
-SECTION_DEAD char const* const stringBase_803778B1 = "d_a_e_mk";
-SECTION_DEAD char const* const stringBase_803778BA = "d_a_e_mm";
-SECTION_DEAD char const* const stringBase_803778C3 = "d_a_e_fz";
-SECTION_DEAD char const* const stringBase_803778CC = "d_a_e_zs";
-SECTION_DEAD char const* const stringBase_803778D5 = "d_a_e_kk";
-SECTION_DEAD char const* const stringBase_803778DE = "d_a_e_hp";
-SECTION_DEAD char const* const stringBase_803778E7 = "d_a_e_zh";
-SECTION_DEAD char const* const stringBase_803778F0 = "d_a_e_zm";
-SECTION_DEAD char const* const stringBase_803778F9 = "d_a_e_pz";
-SECTION_DEAD char const* const stringBase_80377902 = "d_a_e_fb";
-SECTION_DEAD char const* const stringBase_8037790B = "d_a_e_fk";
-SECTION_DEAD char const* const stringBase_80377914 = "d_a_e_ms";
-SECTION_DEAD char const* const stringBase_8037791D = "d_a_e_nest";
-SECTION_DEAD char const* const stringBase_80377928 = "d_a_e_nz";
-SECTION_DEAD char const* const stringBase_80377931 = "d_a_e_ba";
-SECTION_DEAD char const* const stringBase_8037793A = "d_a_e_bu";
-SECTION_DEAD char const* const stringBase_80377943 = "d_a_e_bug";
-SECTION_DEAD char const* const stringBase_8037794D = "d_a_e_bee";
-SECTION_DEAD char const* const stringBase_80377957 = "d_a_e_is";
-SECTION_DEAD char const* const stringBase_80377960 = "d_a_e_kg";
-SECTION_DEAD char const* const stringBase_80377969 = "d_a_e_kr";
-SECTION_DEAD char const* const stringBase_80377972 = "d_a_e_sw";
-SECTION_DEAD char const* const stringBase_8037797B = "d_a_e_ge";
-SECTION_DEAD char const* const stringBase_80377984 = "d_a_tag_watchge";
-SECTION_DEAD char const* const stringBase_80377994 = "d_a_e_ym";
-SECTION_DEAD char const* const stringBase_8037799D = "d_a_e_ym_tag";
-SECTION_DEAD char const* const stringBase_803779AA = "d_a_e_ymb";
-SECTION_DEAD char const* const stringBase_803779B4 = "d_a_tag_firewall";
-SECTION_DEAD char const* const stringBase_803779C5 = "d_a_tag_waterfall";
-SECTION_DEAD char const* const stringBase_803779D7 = "d_a_e_yk";
-SECTION_DEAD char const* const stringBase_803779E0 = "d_a_e_yr";
-SECTION_DEAD char const* const stringBase_803779E9 = "d_a_e_yg";
-SECTION_DEAD char const* const stringBase_803779F2 = "d_a_e_hz";
-SECTION_DEAD char const* const stringBase_803779FB = "d_a_e_ws";
-SECTION_DEAD char const* const stringBase_80377A04 = "d_a_e_oc";
-SECTION_DEAD char const* const stringBase_80377A0D = "d_a_e_ot";
-SECTION_DEAD char const* const stringBase_80377A16 = "d_a_e_dt";
-SECTION_DEAD char const* const stringBase_80377A1F = "d_a_e_bg";
-SECTION_DEAD char const* const stringBase_80377A28 = "d_a_e_oct_bg";
-SECTION_DEAD char const* const stringBase_80377A35 = "d_a_L7demo_dr";
-SECTION_DEAD char const* const stringBase_80377A43 = "d_a_L7low_dr";
-SECTION_DEAD char const* const stringBase_80377A50 = "d_a_L7op_demo_dr";
-SECTION_DEAD char const* const stringBase_80377A61 = "d_a_e_tt";
-SECTION_DEAD char const* const stringBase_80377A6A = "d_a_e_dk";
-SECTION_DEAD char const* const stringBase_80377A73 = "d_a_e_vt";
-SECTION_DEAD char const* const stringBase_80377A7C = "d_a_e_ww";
-SECTION_DEAD char const* const stringBase_80377A85 = "d_a_e_gi";
-SECTION_DEAD char const* const stringBase_80377A8E = "d_a_b_bh";
-SECTION_DEAD char const* const stringBase_80377A97 = "d_a_b_bq";
-SECTION_DEAD char const* const stringBase_80377AA0 = "d_a_b_gm";
-SECTION_DEAD char const* const stringBase_80377AA9 = "d_a_b_gnd";
-SECTION_DEAD char const* const stringBase_80377AB3 = "d_a_b_go";
-SECTION_DEAD char const* const stringBase_80377ABC = "d_a_b_oh2";
-SECTION_DEAD char const* const stringBase_80377AC6 = "d_a_b_yo";
-SECTION_DEAD char const* const stringBase_80377ACF = "d_a_b_yo_ice";
-SECTION_DEAD char const* const stringBase_80377ADC = "d_a_b_tn";
-SECTION_DEAD char const* const stringBase_80377AE5 = "d_a_b_gg";
-SECTION_DEAD char const* const stringBase_80377AEE = "d_a_b_dre";
-SECTION_DEAD char const* const stringBase_80377AF8 = "d_a_b_mgn";
-SECTION_DEAD char const* const stringBase_80377B02 = "d_a_e_warpappear";
-SECTION_DEAD char const* const stringBase_80377B13 = "d_a_obj_smallkey";
-SECTION_DEAD char const* const stringBase_80377B24 = "d_a_obj_kantera";
-SECTION_DEAD char const* const stringBase_80377B34 = "d_a_obj_life_container";
-SECTION_DEAD char const* const stringBase_80377B4B = "d_a_obj_shield";
-SECTION_DEAD char const* const stringBase_80377B5A = "d_a_demo_item";
-SECTION_DEAD char const* const stringBase_80377B68 = "d_a_shop_item";
-SECTION_DEAD char const* const stringBase_80377B76 = "d_a_obj_drop";
-SECTION_DEAD char const* const stringBase_80377B83 = "d_a_obj_rw";
-SECTION_DEAD char const* const stringBase_80377B8E = "d_a_nbomb";
-SECTION_DEAD char const* const stringBase_80377B98 = "d_a_tag_csw";
-SECTION_DEAD char const* const stringBase_80377BA4 = "d_a_tag_qs";
-SECTION_DEAD char const* const stringBase_80377BAF = "d_a_hozelda";
-SECTION_DEAD char const* const stringBase_80377BBB = "d_a_swc00";
-SECTION_DEAD char const* const stringBase_80377BC5 = "d_a_door_knob00";
-SECTION_DEAD char const* const stringBase_80377BD5 = "d_a_door_dbdoor00";
-SECTION_DEAD char const* const stringBase_80377BE7 = "d_a_door_boss";
-SECTION_DEAD char const* const stringBase_80377BF5 = "d_a_door_bossL1";
-SECTION_DEAD char const* const stringBase_80377C05 = "d_a_door_mbossL1";
-SECTION_DEAD char const* const stringBase_80377C16 = "d_a_door_bossL5";
-SECTION_DEAD char const* const stringBase_80377C26 = "d_a_dshutter";
-SECTION_DEAD char const* const stringBase_80377C33 = "d_a_door_spiral";
-SECTION_DEAD char const* const stringBase_80377C43 = "d_a_tag_chgrestart";
-SECTION_DEAD char const* const stringBase_80377C56 = "d_a_tag_setrestart";
-SECTION_DEAD char const* const stringBase_80377C69 = "d_a_andsw";
-SECTION_DEAD char const* const stringBase_80377C73 = "d_a_andsw2";
-SECTION_DEAD char const* const stringBase_80377C7E = "d_a_myna";
-SECTION_DEAD char const* const stringBase_80377C87 = "d_a_npc_gnd";
-SECTION_DEAD char const* const stringBase_80377C93 = "d_a_npc_gra";
-SECTION_DEAD char const* const stringBase_80377C9F = "d_a_npc_grc";
-SECTION_DEAD char const* const stringBase_80377CAB = "d_a_npc_grd";
-SECTION_DEAD char const* const stringBase_80377CB7 = "d_a_npc_grm";
-SECTION_DEAD char const* const stringBase_80377CC3 = "d_a_npc_grmc";
-SECTION_DEAD char const* const stringBase_80377CD0 = "d_a_npc_gro";
-SECTION_DEAD char const* const stringBase_80377CDC = "d_a_npc_grr";
-SECTION_DEAD char const* const stringBase_80377CE8 = "d_a_npc_grs";
-SECTION_DEAD char const* const stringBase_80377CF4 = "d_a_npc_grz";
-SECTION_DEAD char const* const stringBase_80377D00 = "d_a_npc_yamid";
-SECTION_DEAD char const* const stringBase_80377D0E = "d_a_npc_yamit";
-SECTION_DEAD char const* const stringBase_80377D1C = "d_a_npc_yamis";
-SECTION_DEAD char const* const stringBase_80377D2A = "d_a_npc_blue_ns";
-SECTION_DEAD char const* const stringBase_80377D3A = "d_a_npc_kakashi";
-SECTION_DEAD char const* const stringBase_80377D4A = "d_a_npc_kdk";
-SECTION_DEAD char const* const stringBase_80377D56 = "d_a_npc_aru";
-SECTION_DEAD char const* const stringBase_80377D62 = "d_a_npc_bans";
-SECTION_DEAD char const* const stringBase_80377D6F = "d_a_npc_besu";
-SECTION_DEAD char const* const stringBase_80377D7C = "d_a_npc_bou";
-SECTION_DEAD char const* const stringBase_80377D88 = "d_a_npc_bouS";
-SECTION_DEAD char const* const stringBase_80377D95 = "d_a_npc_clerka";
-SECTION_DEAD char const* const stringBase_80377DA4 = "d_a_npc_clerkb";
-SECTION_DEAD char const* const stringBase_80377DB3 = "d_a_npc_clerkt";
-SECTION_DEAD char const* const stringBase_80377DC2 = "d_a_npc_wrestler";
-SECTION_DEAD char const* const stringBase_80377DD3 = "d_a_tag_arena";
-SECTION_DEAD char const* const stringBase_80377DE1 = "d_a_tag_instruction";
-SECTION_DEAD char const* const stringBase_80377DF5 = "d_a_npc_doc";
-SECTION_DEAD char const* const stringBase_80377E01 = "d_a_npc_gwolf";
-SECTION_DEAD char const* const stringBase_80377E0F = "d_a_npc_len";
-SECTION_DEAD char const* const stringBase_80377E1B = "d_a_npc_lud";
-SECTION_DEAD char const* const stringBase_80377E27 = "d_a_npc_fairy_seirei";
-SECTION_DEAD char const* const stringBase_80377E3C = "d_a_npc_fairy";
-SECTION_DEAD char const* const stringBase_80377E4A = "d_a_npc_hanjo";
-SECTION_DEAD char const* const stringBase_80377E58 = "d_a_npc_henna";
-SECTION_DEAD char const* const stringBase_80377E66 = "d_a_npc_henna0";
-SECTION_DEAD char const* const stringBase_80377E75 = "d_a_npc_hoz";
-SECTION_DEAD char const* const stringBase_80377E81 = "d_a_npc_jagar";
-SECTION_DEAD char const* const stringBase_80377E8F = "d_a_npc_kkri";
-SECTION_DEAD char const* const stringBase_80377E9C = "d_a_npc_kn";
-SECTION_DEAD char const* const stringBase_80377EA7 = "d_a_obj_knBullet";
-SECTION_DEAD char const* const stringBase_80377EB8 = "d_a_npc_knj";
-SECTION_DEAD char const* const stringBase_80377EC4 = "d_a_npc_kolin";
-SECTION_DEAD char const* const stringBase_80377ED2 = "d_a_npc_kolinb";
-SECTION_DEAD char const* const stringBase_80377EE1 = "d_a_npc_kyury";
-SECTION_DEAD char const* const stringBase_80377EEF = "d_a_npc_maro";
-SECTION_DEAD char const* const stringBase_80377EFC = "d_a_npc_midp";
-SECTION_DEAD char const* const stringBase_80377F09 = "d_a_npc_moi";
-SECTION_DEAD char const* const stringBase_80377F15 = "d_a_npc_raca";
-SECTION_DEAD char const* const stringBase_80377F22 = "d_a_npc_saru";
-SECTION_DEAD char const* const stringBase_80377F2F = "d_a_npc_seib";
-SECTION_DEAD char const* const stringBase_80377F3C = "d_a_npc_seic";
-SECTION_DEAD char const* const stringBase_80377F49 = "d_a_npc_seid";
-SECTION_DEAD char const* const stringBase_80377F56 = "d_a_npc_seira";
-SECTION_DEAD char const* const stringBase_80377F64 = "d_a_npc_seira2";
-SECTION_DEAD char const* const stringBase_80377F73 = "d_a_npc_seirei";
-SECTION_DEAD char const* const stringBase_80377F82 = "d_a_npc_shaman";
-SECTION_DEAD char const* const stringBase_80377F91 = "d_a_npc_shop_maro";
-SECTION_DEAD char const* const stringBase_80377FA3 = "d_a_npc_sola";
-SECTION_DEAD char const* const stringBase_80377FB0 = "d_a_npc_taro";
-SECTION_DEAD char const* const stringBase_80377FBD = "d_a_npc_pachi_besu";
-SECTION_DEAD char const* const stringBase_80377FD0 = "d_a_npc_pachi_taro";
-SECTION_DEAD char const* const stringBase_80377FE3 = "d_a_npc_pachi_maro";
-SECTION_DEAD char const* const stringBase_80377FF6 = "d_a_tag_pachi";
-SECTION_DEAD char const* const stringBase_80378004 = "d_a_npc_the";
-SECTION_DEAD char const* const stringBase_80378010 = "d_a_npc_tkj";
-SECTION_DEAD char const* const stringBase_8037801C = "d_a_npc_tks";
-SECTION_DEAD char const* const stringBase_80378028 = "d_a_npc_tkc";
-SECTION_DEAD char const* const stringBase_80378034 = "d_a_obj_tks";
-SECTION_DEAD char const* const stringBase_80378040 = "d_a_npc_toby";
-SECTION_DEAD char const* const stringBase_8037804D = "d_a_npc_uri";
-SECTION_DEAD char const* const stringBase_80378059 = "d_a_npc_yelia";
-SECTION_DEAD char const* const stringBase_80378067 = "d_a_npc_ykm";
-SECTION_DEAD char const* const stringBase_80378073 = "d_a_npc_ykw";
-SECTION_DEAD char const* const stringBase_8037807F = "d_a_npc_zanb";
-SECTION_DEAD char const* const stringBase_8037808C = "d_a_npc_zant";
-SECTION_DEAD char const* const stringBase_80378099 = "d_a_npc_zelda";
-SECTION_DEAD char const* const stringBase_803780A7 = "d_a_npc_zelR";
-SECTION_DEAD char const* const stringBase_803780B4 = "d_a_npc_zelRo";
-SECTION_DEAD char const* const stringBase_803780C2 = "d_a_obj_zra_freeze";
-SECTION_DEAD char const* const stringBase_803780D5 = "d_a_npc_zrc";
-SECTION_DEAD char const* const stringBase_803780E1 = "d_a_npc_zrz";
-SECTION_DEAD char const* const stringBase_803780ED = "d_a_obj_zraMark";
-SECTION_DEAD char const* const stringBase_803780FD = "d_a_npc_myna2";
-SECTION_DEAD char const* const stringBase_8037810B = "d_a_tag_myna2";
-SECTION_DEAD char const* const stringBase_80378119 = "d_a_npc_cdn3";
-SECTION_DEAD char const* const stringBase_80378126 = "d_a_tag_schedule";
-SECTION_DEAD char const* const stringBase_80378137 = "d_a_tag_escape";
-SECTION_DEAD char const* const stringBase_80378146 = "d_a_npc_chat";
-SECTION_DEAD char const* const stringBase_80378153 = "d_a_npc_soldierA";
-SECTION_DEAD char const* const stringBase_80378164 = "d_a_npc_soldierB";
-SECTION_DEAD char const* const stringBase_80378175 = "d_a_passer_mng";
-SECTION_DEAD char const* const stringBase_80378184 = "d_a_npc_passer";
-SECTION_DEAD char const* const stringBase_80378193 = "d_a_npc_passer2";
-SECTION_DEAD char const* const stringBase_803781A3 = "d_a_npc_post";
-SECTION_DEAD char const* const stringBase_803781B0 = "d_a_npc_pouya";
-SECTION_DEAD char const* const stringBase_803781BE = "d_a_formation_mng";
-SECTION_DEAD char const* const stringBase_803781D0 = "d_a_npc_fguard";
-SECTION_DEAD char const* const stringBase_803781DF = "d_a_guard_mng";
-SECTION_DEAD char const* const stringBase_803781ED = "d_a_tag_guard";
-SECTION_DEAD char const* const stringBase_803781FB = "d_a_npc_guard";
-SECTION_DEAD char const* const stringBase_80378209 = "d_a_npc_ash";
-SECTION_DEAD char const* const stringBase_80378215 = "d_a_npc_ashB";
-SECTION_DEAD char const* const stringBase_80378222 = "d_a_npc_shad";
-SECTION_DEAD char const* const stringBase_8037822F = "d_a_npc_rafrel";
-SECTION_DEAD char const* const stringBase_8037823E = "d_a_npc_moir";
-SECTION_DEAD char const* const stringBase_8037824B = "d_a_npc_impal";
-SECTION_DEAD char const* const stringBase_80378259 = "d_a_npc_shoe";
-SECTION_DEAD char const* const stringBase_80378266 = "d_a_npc_doorboy";
-SECTION_DEAD char const* const stringBase_80378276 = "d_a_npc_prayer";
-SECTION_DEAD char const* const stringBase_80378285 = "d_a_npc_kasi_hana";
-SECTION_DEAD char const* const stringBase_80378297 = "d_a_npc_kasi_kyu";
-SECTION_DEAD char const* const stringBase_803782A8 = "d_a_npc_kasi_mich";
-SECTION_DEAD char const* const stringBase_803782BA = "d_a_npc_drainSol";
-SECTION_DEAD char const* const stringBase_803782CB = "d_a_npc_chin";
-SECTION_DEAD char const* const stringBase_803782D8 = "d_a_npc_ins";
-SECTION_DEAD char const* const stringBase_803782E4 = "d_a_npc_shop0";
-SECTION_DEAD char const* const stringBase_803782F2 = "d_a_npc_mk";
-SECTION_DEAD char const* const stringBase_803782FD = "d_a_npc_p2";
-SECTION_DEAD char const* const stringBase_80378308 = "d_a_kytag00";
-SECTION_DEAD char const* const stringBase_80378314 = "d_a_kytag01";
-SECTION_DEAD char const* const stringBase_80378320 = "d_a_kytag02";
-SECTION_DEAD char const* const stringBase_8037832C = "d_a_kytag03";
-SECTION_DEAD char const* const stringBase_80378338 = "d_a_kytag04";
-SECTION_DEAD char const* const stringBase_80378344 = "d_a_kytag05";
-SECTION_DEAD char const* const stringBase_80378350 = "d_a_kytag06";
-SECTION_DEAD char const* const stringBase_8037835C = "d_a_kytag07";
-SECTION_DEAD char const* const stringBase_80378368 = "d_a_kytag08";
-SECTION_DEAD char const* const stringBase_80378374 = "d_a_kytag09";
-SECTION_DEAD char const* const stringBase_80378380 = "d_a_kytag10";
-SECTION_DEAD char const* const stringBase_8037838C = "d_a_kytag11";
-SECTION_DEAD char const* const stringBase_80378398 = "d_a_kytag12";
-SECTION_DEAD char const* const stringBase_803783A4 = "d_a_kytag13";
-SECTION_DEAD char const* const stringBase_803783B0 = "d_a_kytag14";
-SECTION_DEAD char const* const stringBase_803783BC = "d_a_kytag15";
-SECTION_DEAD char const* const stringBase_803783C8 = "d_a_kytag16";
-SECTION_DEAD char const* const stringBase_803783D4 = "d_a_kytag17";
-SECTION_DEAD char const* const stringBase_803783E0 = "d_a_ykgr";
-SECTION_DEAD char const* const stringBase_803783E9 = "d_a_talk";
-SECTION_DEAD char const* const stringBase_803783F2 = "d_a_obj_crope";
-SECTION_DEAD char const* const stringBase_80378400 = "d_a_obj_bombf";
-SECTION_DEAD char const* const stringBase_8037840E = "d_a_obj_bk_leaf";
-SECTION_DEAD char const* const stringBase_8037841E = "d_a_tag_mhint";
-SECTION_DEAD char const* const stringBase_8037842C = "d_a_tag_mmsg";
-SECTION_DEAD char const* const stringBase_80378439 = "d_a_tag_mwait";
-SECTION_DEAD char const* const stringBase_80378447 = "d_a_tag_mstop";
-SECTION_DEAD char const* const stringBase_80378455 = "d_a_tag_stream";
-SECTION_DEAD char const* const stringBase_80378464 = "d_a_tag_sppath";
-SECTION_DEAD char const* const stringBase_80378473 = "d_a_tag_wljump";
-SECTION_DEAD char const* const stringBase_80378482 = "d_a_tag_TWgate";
-SECTION_DEAD char const* const stringBase_80378491 = "d_a_tag_Lv6Gate";
-SECTION_DEAD char const* const stringBase_803784A1 = "d_a_tag_Lv7Gate";
-SECTION_DEAD char const* const stringBase_803784B1 = "d_a_tag_Lv8Gate";
-SECTION_DEAD char const* const stringBase_803784C1 = "d_a_tag_theB_hint";
-SECTION_DEAD char const* const stringBase_803784D3 = "d_a_tag_assistance";
-SECTION_DEAD char const* const stringBase_803784E6 = "d_a_demo00";
-SECTION_DEAD char const* const stringBase_803784F1 = "d_a_tag_camera";
-SECTION_DEAD char const* const stringBase_80378500 = "d_a_tag_chkpoint";
-SECTION_DEAD char const* const stringBase_80378511 = "d_a_tag_event";
-SECTION_DEAD char const* const stringBase_8037851F = "d_a_tag_evt";
-SECTION_DEAD char const* const stringBase_8037852B = "d_a_tag_telop";
-SECTION_DEAD char const* const stringBase_80378539 = "d_a_tag_howl";
-SECTION_DEAD char const* const stringBase_80378546 = "d_a_tag_msg";
-SECTION_DEAD char const* const stringBase_80378552 = "d_a_tag_lantern";
-SECTION_DEAD char const* const stringBase_80378562 = "d_a_tag_mist";
-SECTION_DEAD char const* const stringBase_8037856F = "d_a_dmidna";
-SECTION_DEAD char const* const stringBase_8037857A = "d_a_vrbox";
-SECTION_DEAD char const* const stringBase_80378584 = "d_a_vrbox2";
-SECTION_DEAD char const* const stringBase_8037858F = "d_a_bg";
-SECTION_DEAD char const* const stringBase_80378596 = "d_a_set_bgobj";
-SECTION_DEAD char const* const stringBase_803785A4 = "d_a_bg_obj";
-SECTION_DEAD char const* const stringBase_803785AF = "d_a_mirror";
-SECTION_DEAD char const* const stringBase_803785BA = "d_a_movie_player";
-SECTION_DEAD char const* const stringBase_803785CB = "d_a_title";
-SECTION_DEAD char const* const stringBase_803785D5 = "d_a_fr";
-SECTION_DEAD char const* const stringBase_803785DC = "d_a_econt";
-SECTION_DEAD char const* const stringBase_803785E6 = "d_a_mg_rod";
-SECTION_DEAD char const* const stringBase_803785F1 = "d_a_e_arrow";
-SECTION_DEAD char const* const stringBase_803785FD = "d_a_bullet";
-SECTION_DEAD char const* const stringBase_80378608 = "d_a_swhit0";
-SECTION_DEAD char const* const stringBase_80378613 = "d_a_e_th_ball";
-SECTION_DEAD char const* const stringBase_80378621 = "d_a_tag_evtarea";
-SECTION_DEAD char const* const stringBase_80378631 = "d_a_tag_evtmsg";
-SECTION_DEAD char const* const stringBase_80378640 = "d_a_tag_kmsg";
-SECTION_DEAD char const* const stringBase_8037864D = "d_a_tag_push";
-SECTION_DEAD char const* const stringBase_8037865A = "d_a_e_mk_bo";
-SECTION_DEAD char const* const stringBase_80378666 = "d_a_e_mm_mt";
-SECTION_DEAD char const* const stringBase_80378672 = "d_a_obj_kbox";
-SECTION_DEAD char const* const stringBase_8037867F = "d_a_obj_fw";
-SECTION_DEAD char const* const stringBase_8037868A = "d_a_b_gos";
-SECTION_DEAD char const* const stringBase_80378694 = "d_a_obj_ystone";
-SECTION_DEAD char const* const stringBase_803786A3 = "d_a_mant";
-SECTION_DEAD char const* const stringBase_803786AC = "d_a_crod";
-SECTION_DEAD char const* const stringBase_803786B5 = "d_a_obj_pleaf";
-SECTION_DEAD char const* const stringBase_803786C3 = "d_a_obj_kbacket";
-SECTION_DEAD char const* const stringBase_803786D3 = "d_a_obj_yel_bag";
-SECTION_DEAD char const* const stringBase_803786E3 = "d_a_obj_pumpkin";
-SECTION_DEAD char const* const stringBase_803786F3 = "d_a_obj_automata";
-SECTION_DEAD char const* const stringBase_80378704 = "d_a_obj_gadget";
-SECTION_DEAD char const* const stringBase_80378713 = "d_a_obj_kago";
-SECTION_DEAD char const* const stringBase_80378720 = "d_a_obj_carry";
-SECTION_DEAD char const* const stringBase_8037872E = "d_a_obj_stone";
-SECTION_DEAD char const* const stringBase_8037873C = "d_a_obj_hb";
-SECTION_DEAD char const* const stringBase_80378747 = "d_a_npc_inko";
-SECTION_DEAD char const* const stringBase_80378754 = "d_a_bd";
-SECTION_DEAD char const* const stringBase_8037875B = "d_a_obj_eff";
-SECTION_DEAD char const* const stringBase_80378767 = "d_a_e_bi";
-SECTION_DEAD char const* const stringBase_80378770 = "d_a_e_bi_leaf";
-SECTION_DEAD char const* const stringBase_8037877E = "d_a_startAndGoal";
-SECTION_DEAD char const* const stringBase_8037878F = "d_a_npc_df";
-SECTION_DEAD char const* const stringBase_8037879A = "d_a_arrow";
-SECTION_DEAD char const* const stringBase_803787A4 = "d_a_path_line";
-SECTION_DEAD char const* const stringBase_803787B2 = "d_a_tag_allmato";
-SECTION_DEAD char const* const stringBase_803787C2 = "d_a_obj_timer";
-SECTION_DEAD char const* const stringBase_803787D0 = "d_a_scene_exit";
-SECTION_DEAD char const* const stringBase_803787DF = "d_a_suspend";
-SECTION_DEAD char const* const stringBase_803787EB = "d_a_grass";
-SECTION_DEAD char const* const stringBase_803787F5 = "cDyl_Link i_ProfName=%d\n";
-SECTION_DEAD char const* const stringBase_8037880E =
-    "cDyl_LinkASync: リンクに失敗しました。諦めます\n";
-SECTION_DEAD char const* const stringBase_8037883E = "/";
-SECTION_DEAD char const* const stringBase_80378840 = "/dvd/str/Final/Release/frameworkF.str";
-SECTION_DEAD char const* const stringBase_80378866 = "f_pc_profile_lst";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80378877 = "";
-#pragma pop
-
-/* 803F0F50-803F1BB0 0C60+00 s=4 e=0 z=0  None .bss       DMC */
+/* 803F0F50-803F1BB0 01DC70 0C60+00 4/4 0/0 0/0 .bss             DMC */
 static u8 DMC[3168];
 
-/* 80450CA8-80450CAC 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 80450CA8-80450CAC 0001A8 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450CA8[4];
 
-/* 800183DC-80018544 0168+00 s=1 e=0 z=0  None .text      cCc_Init__Fv */
-//	800183EC: 803621C4 (_savegpr_23)
-//	800183F0: 8000EDEC (mDoExt_getArchiveHeap__Fv)
-//	80018404: 802D0A24 (create__12JKRSolidHeapFUlP7JKRHeapb)
-//	8001840C: 802CE438 (becomeCurrentHeap__7JKRHeapFv)
-//	80018414: 803F0F50 (DMC)
-//	80018418: 803F0F50 (DMC)
-//	80018424: 80003458 (memset)
-//	80018430: 80374640 (DynamicNameTable)
-//	80018434: 80374640 (DynamicNameTable)
-//	80018450: 803F0F50 (DMC)
-//	80018454: 803F0F50 (DMC)
-//	8001847C: 80368994 (strcmp)
-//	80018494: 803F0F50 (DMC)
-//	80018498: 803F0F50 (DMC)
-//	800184BC: 803F0F50 (DMC)
-//	800184C0: 803F0F50 (DMC)
-//	800184D4: 802CEC4C (__nw__FUl)
-//	800184E4: 80262660 (__ct__20DynamicModuleControlFPCc)
-//	800184F4: 803F0F50 (DMC)
-//	800184F8: 803F0F50 (DMC)
-//	80018514: 802D0BF4 (adjustSize__12JKRSolidHeapFv)
-//	8001851C: 802CE438 (becomeCurrentHeap__7JKRHeapFv)
-//	80018524: 80450CA8 (data_80450CA8)
-//	80018530: 80362210 (_restgpr_23)
+/* 800183DC-80018544 012D1C 0168+00 1/1 0/0 0/0 .text            cCc_Init__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cCc_Init() {
+static asm void cCc_Init() {
     nofralloc
 #include "asm/c/c_dylink/cCc_Init__Fv.s"
 }
 #pragma pop
 
-/* 80018544-8001857C 0038+00 s=0 e=1 z=0  None .text      cDyl_IsLinked__Fs */
-//	8001854C: 803F0F50 (DMC)
-//	80018550: 803F0F50 (DMC)
+/* 80018544-8001857C 012E84 0038+00 0/0 1/1 0/0 .text            cDyl_IsLinked__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1709,10 +900,7 @@ asm void cDyl_IsLinked(s16 param_0) {
 }
 #pragma pop
 
-/* 8001857C-800185C0 0044+00 s=1 e=1 z=0  None .text      cDyl_Unlink__Fs */
-//	80018590: 803F0F50 (DMC)
-//	80018594: 803F0F50 (DMC)
-//	800185A4: 80262364 (unlink__24DynamicModuleControlBaseFv)
+/* 8001857C-800185C0 012EBC 0044+00 1/1 1/1 0/0 .text            cDyl_Unlink__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1723,21 +911,10 @@ asm void cDyl_Unlink(s16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CAC-80450CB0 0004+00 s=2 e=0 z=0  None .sbss      cDyl_Initialized */
+/* 80450CAC-80450CB0 0001AC 0004+00 2/2 0/0 0/0 .sbss            cDyl_Initialized */
 static u8 cDyl_Initialized[4];
 
-/* 800185C0-80018688 00C8+00 s=1 e=1 z=0  None .text      cDyl_LinkASync__Fs */
-//	800185D0: 80450CAC (cDyl_Initialized)
-//	800185F0: 80375DE8 (c_c_dylink__stringBase0)
-//	800185F4: 80375DE8 (c_c_dylink__stringBase0)
-//	80018600: 80006C0C (OSReport_Error)
-//	80018610: 803F0F50 (DMC)
-//	80018614: 803F0F50 (DMC)
-//	80018628: 802623EC (load_async__24DynamicModuleControlBaseFv)
-//	80018638: 802622D0 (link__24DynamicModuleControlBaseFv)
-//	8001864C: 80375DE8 (c_c_dylink__stringBase0)
-//	80018650: 80375DE8 (c_c_dylink__stringBase0)
-//	8001865C: 80006C0C (OSReport_Error)
+/* 800185C0-80018688 012F00 00C8+00 1/1 1/1 0/0 .text            cDyl_LinkASync__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1747,45 +924,21 @@ asm void cDyl_LinkASync(s16 param_0) {
 }
 #pragma pop
 
-/* 80018688-80018764 00DC+00 s=1 e=0 z=0  None .text      cDyl_InitCallback__FPv */
-//	8001869C: 8000EDEC (mDoExt_getArchiveHeap__Fv)
-//	800186A4: 80375DE8 (c_c_dylink__stringBase0)
-//	800186A8: 80375DE8 (c_c_dylink__stringBase0)
-//	800186B4: 802D49B4 (mount__12JKRFileCacheFPCcP7JKRHeapPCc)
-//	800186BC: 8026275C (initialize__20DynamicModuleControlFv)
-//	800186C0: 80375DE8 (c_c_dylink__stringBase0)
-//	800186C4: 80375DE8 (c_c_dylink__stringBase0)
-//	800186CC: 802D4224 (getGlbResource__13JKRFileLoaderFPCc)
-//	800186D8: 802D43A0 (detachResource__13JKRFileLoaderFPvP13JKRFileLoader)
-//	800186F4: 8033DF68 (OSSetStringTable)
-//	800186FC: 80375DE8 (c_c_dylink__stringBase0)
-//	80018700: 80375DE8 (c_c_dylink__stringBase0)
-//	80018708: 80262660 (__ct__20DynamicModuleControlFPCc)
-//	80018710: 802622D0 (link__24DynamicModuleControlBaseFv)
-//	80018718: 80450CAC (cDyl_Initialized)
-//	8001872C: 8001ED84 (fopScnM_CreateReq__FssUsUl)
-//	80018730: 803C34C0 (__vt__20DynamicModuleControl)
-//	80018734: 803C34C0 (__vt__20DynamicModuleControl)
-//	80018744: 802621CC (__dt__24DynamicModuleControlBaseFv)
+/* 80018688-80018764 012FC8 00DC+00 1/1 0/0 0/0 .text            cDyl_InitCallback__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cDyl_InitCallback(void* param_0) {
+static asm void cDyl_InitCallback(void* param_0) {
     nofralloc
 #include "asm/c/c_dylink/cDyl_InitCallback__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CB0-80450CB8 0004+04 s=2 e=0 z=0  None .sbss      cDyl_DVD */
+/* 80450CB0-80450CB8 0001B0 0004+04 2/2 0/0 0/0 .sbss            cDyl_DVD */
 static u8 cDyl_DVD[4 + 4 /* padding */];
 
-/* 80018764-80018798 0034+00 s=0 e=1 z=0  None .text      cDyl_InitAsync__Fv */
-//	80018770: 800183DC (cCc_Init__Fv)
-//	80018774: 80018688 (cDyl_InitCallback__FPv)
-//	80018778: 80018688 (cDyl_InitCallback__FPv)
-//	80018780: 80015C74 (create__20mDoDvdThd_callback_cFPFPv_PvPv)
-//	80018784: 80450CB0 (cDyl_DVD)
+/* 80018764-80018798 0130A4 0034+00 0/0 1/1 0/0 .text            cDyl_InitAsync__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1795,9 +948,7 @@ asm void cDyl_InitAsync() {
 }
 #pragma pop
 
-/* 80018798-80018804 006C+00 s=0 e=2 z=0  None .text      cDyl_InitAsyncIsDone__Fv */
-//	800187A4: 80450CB0 (cDyl_DVD)
-//	800187E4: 80450CB0 (cDyl_DVD)
+/* 80018798-80018804 0130D8 006C+00 0/0 2/1 0/0 .text            cDyl_InitAsyncIsDone__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1807,13 +958,12 @@ asm void cDyl_InitAsyncIsDone() {
 }
 #pragma pop
 
-/* 80018804-8001880C 0008+00 s=1 e=0 z=0  None .text      phase_01__7cDylPhsFPv */
+/* 80018804-8001880C 013144 0008+00 1/0 0/0 0/0 .text            phase_01__7cDylPhsFPv */
 s32 cDylPhs::phase_01(void* param_0) {
     return 2;
 }
 
-/* 8001880C-80018844 0038+00 s=1 e=0 z=0  None .text      phase_02__7cDylPhsFPs */
-//	8001881C: 800185C0 (cDyl_LinkASync__Fs)
+/* 8001880C-80018844 01314C 0038+00 1/0 0/0 0/0 .text            phase_02__7cDylPhsFPs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1823,13 +973,13 @@ asm void cDylPhs::phase_02(s16* param_0) {
 }
 #pragma pop
 
-/* 80018844-8001884C 0008+00 s=1 e=0 z=0  None .text      phase_03__7cDylPhsFPv */
+/* 80018844-8001884C 013184 0008+00 1/0 0/0 0/0 .text            phase_03__7cDylPhsFPv */
 bool cDylPhs::phase_03(void* param_0) {
     return false;
 }
 
 /* ############################################################################################## */
-/* 803A3590-803A35A0 000C+04 s=1 e=0 z=0  None .data      l_method$3807 */
+/* 803A3590-803A35A0 -00001 000C+04 1/1 0/0 0/0 .data            l_method$3807 */
 SECTION_DATA static void* l_method[3 + 1 /* padding */] = {
     (void*)phase_01__7cDylPhsFPv,
     (void*)phase_02__7cDylPhsFPs,
@@ -1838,11 +988,8 @@ SECTION_DATA static void* l_method[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8001884C-80018890 0044+00 s=0 e=2 z=0  None .text
+/* 8001884C-80018890 01318C 0044+00 0/0 2/2 0/0 .text
  * Link__7cDylPhsFP30request_of_phase_process_classs            */
-//	80018870: 803A3590 (l_method)
-//	80018874: 803A3590 (l_method)
-//	8001887C: 8002FB20 (dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1852,9 +999,8 @@ asm void cDylPhs::Link(request_of_phase_process_class* param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 80018890-800188DC 004C+00 s=0 e=1 z=0  None .text
+/* 80018890-800188DC 0131D0 004C+00 0/0 1/1 0/0 .text
  * Unlink__7cDylPhsFP30request_of_phase_process_classs          */
-//	800188B4: 8001857C (cDyl_Unlink__Fs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1864,17 +1010,13 @@ asm void cDylPhs::Unlink(request_of_phase_process_class* param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 800188DC-800188E4 0008+00 s=0 e=1 z=0  None .text getModuleName__24DynamicModuleControlBaseCFv
+/* 800188DC-800188E4 01321C 0008+00 0/0 1/0 0/0 .text getModuleName__24DynamicModuleControlBaseCFv
  */
 bool DynamicModuleControlBase::getModuleName() const {
     return false;
 }
 
-/* 800188E4-80018944 0060+00 s=0 e=1 z=0  None .text      __dt__20DynamicModuleControlFv */
-//	80018904: 803C34C0 (__vt__20DynamicModuleControl)
-//	80018908: 803C34C0 (__vt__20DynamicModuleControl)
-//	80018914: 802621CC (__dt__24DynamicModuleControlBaseFv)
-//	80018924: 802CED3C (__dl__FPv)
+/* 800188E4-80018944 013224 0060+00 0/0 1/0 0/0 .text            __dt__20DynamicModuleControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1882,4 +1024,774 @@ asm DynamicModuleControl::~DynamicModuleControl() {
     nofralloc
 #include "asm/c/c_dylink/__dt__20DynamicModuleControlFv.s"
 }
+#pragma pop
+
+/* 80375DE8-80378878 002448 2A8F+01 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80375DE8 = "d_a_alldie";
+SECTION_DEAD static char const* const stringBase_80375DF3 = "d_a_obj_swpush";
+SECTION_DEAD static char const* const stringBase_80375E02 = "d_a_obj_swpush2";
+SECTION_DEAD static char const* const stringBase_80375E12 = "d_a_obj_swpush5";
+SECTION_DEAD static char const* const stringBase_80375E22 = "d_a_tag_gstart";
+SECTION_DEAD static char const* const stringBase_80375E31 = "d_a_obj_lv6elevta";
+SECTION_DEAD static char const* const stringBase_80375E43 = "d_a_obj_so";
+SECTION_DEAD static char const* const stringBase_80375E4E = "d_a_obj_movebox";
+SECTION_DEAD static char const* const stringBase_80375E5E = "d_a_obj_swturn";
+SECTION_DEAD static char const* const stringBase_80375E6D = "d_a_obj_lv6swturn";
+SECTION_DEAD static char const* const stringBase_80375E7F = "d_a_obj_sekizoa";
+SECTION_DEAD static char const* const stringBase_80375E8F = "d_a_obj_gra2";
+SECTION_DEAD static char const* const stringBase_80375E9C = "d_a_tag_gra";
+SECTION_DEAD static char const* const stringBase_80375EA8 = "d_a_tag_yami";
+SECTION_DEAD static char const* const stringBase_80375EB5 = "d_a_obj_ladder";
+SECTION_DEAD static char const* const stringBase_80375EC4 = "d_a_obj_brakeeff";
+SECTION_DEAD static char const* const stringBase_80375ED5 = "d_a_obj_fmobj";
+SECTION_DEAD static char const* const stringBase_80375EE3 = "d_a_obj_lbox";
+SECTION_DEAD static char const* const stringBase_80375EF0 = "d_a_obj_web0";
+SECTION_DEAD static char const* const stringBase_80375EFD = "d_a_obj_web1";
+SECTION_DEAD static char const* const stringBase_80375F0A = "d_a_obj_cb";
+SECTION_DEAD static char const* const stringBase_80375F15 = "d_a_obj_maki";
+SECTION_DEAD static char const* const stringBase_80375F22 = "d_a_obj_brg";
+SECTION_DEAD static char const* const stringBase_80375F2E = "d_a_obj_gb";
+SECTION_DEAD static char const* const stringBase_80375F39 = "d_a_obj_gm";
+SECTION_DEAD static char const* const stringBase_80375F44 = "d_a_obj_toby";
+SECTION_DEAD static char const* const stringBase_80375F51 = "d_a_obj_tp";
+SECTION_DEAD static char const* const stringBase_80375F5C = "d_a_obj_treesh";
+SECTION_DEAD static char const* const stringBase_80375F6B = "d_a_obj_zdoor";
+SECTION_DEAD static char const* const stringBase_80375F79 = "d_a_obj_pillar";
+SECTION_DEAD static char const* const stringBase_80375F88 = "d_a_obj_cdoor";
+SECTION_DEAD static char const* const stringBase_80375F96 = "d_a_obj_groundwater";
+SECTION_DEAD static char const* const stringBase_80375FAA = "d_a_obj_rotBridge";
+SECTION_DEAD static char const* const stringBase_80375FBC = "d_a_obj_magLift";
+SECTION_DEAD static char const* const stringBase_80375FCC = "d_a_obj_magLiftRot";
+SECTION_DEAD static char const* const stringBase_80375FDF = "d_a_obj_lv1Candle00";
+SECTION_DEAD static char const* const stringBase_80375FF3 = "d_a_obj_lv1Candle01";
+SECTION_DEAD static char const* const stringBase_80376007 = "d_a_obj_TvCdlst";
+SECTION_DEAD static char const* const stringBase_80376017 = "d_a_obj_hsTarget";
+SECTION_DEAD static char const* const stringBase_80376028 = "d_a_obj_heavySw";
+SECTION_DEAD static char const* const stringBase_80376038 = "d_a_obj_goGate";
+SECTION_DEAD static char const* const stringBase_80376047 = "d_a_obj_taFence";
+SECTION_DEAD static char const* const stringBase_80376057 = "d_a_obj_saidan";
+SECTION_DEAD static char const* const stringBase_80376066 = "d_a_obj_spinLift";
+SECTION_DEAD static char const* const stringBase_80376077 = "d_a_obj_bmWindow";
+SECTION_DEAD static char const* const stringBase_80376088 = "d_a_obj_rfHole";
+SECTION_DEAD static char const* const stringBase_80376097 = "d_a_obj_waterPillar";
+SECTION_DEAD static char const* const stringBase_803760AB = "d_a_obj_syRock";
+SECTION_DEAD static char const* const stringBase_803760BA = "d_a_obj_bsGate";
+SECTION_DEAD static char const* const stringBase_803760C9 = "d_a_obj_amiShutter";
+SECTION_DEAD static char const* const stringBase_803760DC = "d_a_obj_waterGate";
+SECTION_DEAD static char const* const stringBase_803760EE = "d_a_obj_lv2Candle";
+SECTION_DEAD static char const* const stringBase_80376100 = "d_a_obj_togeTrap";
+SECTION_DEAD static char const* const stringBase_80376111 = "d_a_obj_rotTrap";
+SECTION_DEAD static char const* const stringBase_80376121 = "d_a_obj_sWallShutter";
+SECTION_DEAD static char const* const stringBase_80376136 = "d_a_obj_lv5IceWall";
+SECTION_DEAD static char const* const stringBase_80376149 = "d_a_obj_lv5SwIce";
+SECTION_DEAD static char const* const stringBase_8037615A = "d_a_obj_lv5FloorBoard";
+SECTION_DEAD static char const* const stringBase_80376170 = "d_a_obj_Turara";
+SECTION_DEAD static char const* const stringBase_8037617F = "d_a_obj_twGate";
+SECTION_DEAD static char const* const stringBase_8037618E = "d_a_obj_digholl";
+SECTION_DEAD static char const* const stringBase_8037619E = "d_a_obj_digplace";
+SECTION_DEAD static char const* const stringBase_803761AF = "d_a_obj_testcube";
+SECTION_DEAD static char const* const stringBase_803761C0 = "d_a_obj_kshutter";
+SECTION_DEAD static char const* const stringBase_803761D1 = "d_a_npc_coach";
+SECTION_DEAD static char const* const stringBase_803761DF = "d_a_npc_theB";
+SECTION_DEAD static char const* const stringBase_803761EC = "d_a_coach_fire";
+SECTION_DEAD static char const* const stringBase_803761FB = "d_a_coach_2D";
+SECTION_DEAD static char const* const stringBase_80376208 = "d_a_balloon_2D";
+SECTION_DEAD static char const* const stringBase_80376217 = "d_a_skip_2D";
+SECTION_DEAD static char const* const stringBase_80376223 = "d_a_obj_mvstair";
+SECTION_DEAD static char const* const stringBase_80376233 = "d_a_obj_cowdoor";
+SECTION_DEAD static char const* const stringBase_80376243 = "d_a_obj_swpropeller";
+SECTION_DEAD static char const* const stringBase_80376257 = "d_a_obj_bmshutter";
+SECTION_DEAD static char const* const stringBase_80376269 = "d_a_npc_ks";
+SECTION_DEAD static char const* const stringBase_80376274 = "d_a_obj_hfuta";
+SECTION_DEAD static char const* const stringBase_80376282 = "d_a_obj_bkdoor";
+SECTION_DEAD static char const* const stringBase_80376291 = "d_a_obj_cboard";
+SECTION_DEAD static char const* const stringBase_803762A0 = "d_a_obj_mgate";
+SECTION_DEAD static char const* const stringBase_803762AE = "d_a_obj_ikada";
+SECTION_DEAD static char const* const stringBase_803762BC = "d_a_obj_ice_l";
+SECTION_DEAD static char const* const stringBase_803762CA = "d_a_obj_ice_s";
+SECTION_DEAD static char const* const stringBase_803762D8 = "d_a_obj_enemy_create";
+SECTION_DEAD static char const* const stringBase_803762ED = "d_a_obj_bhbridge";
+SECTION_DEAD static char const* const stringBase_803762FE = "d_a_obj_kaisou";
+SECTION_DEAD static char const* const stringBase_8037630D = "d_a_obj_hhashi";
+SECTION_DEAD static char const* const stringBase_8037631C = "d_a_obj_bhashi";
+SECTION_DEAD static char const* const stringBase_8037632B = "d_a_obj_octhashi";
+SECTION_DEAD static char const* const stringBase_8037633C = "d_a_obj_thashi";
+SECTION_DEAD static char const* const stringBase_8037634B = "d_a_obj_crvgate";
+SECTION_DEAD static char const* const stringBase_8037635B = "d_a_obj_crvfence";
+SECTION_DEAD static char const* const stringBase_8037636C = "d_a_obj_crvhahen";
+SECTION_DEAD static char const* const stringBase_8037637D = "d_a_obj_crvsteel";
+SECTION_DEAD static char const* const stringBase_8037638E = "d_a_obj_crvlh_up";
+SECTION_DEAD static char const* const stringBase_8037639F = "d_a_obj_crvlh_down";
+SECTION_DEAD static char const* const stringBase_803763B2 = "d_a_obj_riverrock";
+SECTION_DEAD static char const* const stringBase_803763C4 = "d_a_obj_dust";
+SECTION_DEAD static char const* const stringBase_803763D1 = "d_a_obj_ita";
+SECTION_DEAD static char const* const stringBase_803763DD = "d_a_obj_window";
+SECTION_DEAD static char const* const stringBase_803763EC = "d_a_obj_metalbox";
+SECTION_DEAD static char const* const stringBase_803763FD = "d_a_obj_bbox";
+SECTION_DEAD static char const* const stringBase_8037640A = "d_a_obj_msima";
+SECTION_DEAD static char const* const stringBase_80376418 = "d_a_obj_myogan";
+SECTION_DEAD static char const* const stringBase_80376427 = "d_a_b_zant_sima";
+SECTION_DEAD static char const* const stringBase_80376437 = "d_a_obj_cblock";
+SECTION_DEAD static char const* const stringBase_80376446 = "d_a_obj_cwall";
+SECTION_DEAD static char const* const stringBase_80376454 = "d_a_obj_kgate";
+SECTION_DEAD static char const* const stringBase_80376462 = "d_a_obj_rgate";
+SECTION_DEAD static char const* const stringBase_80376470 = "d_a_obj_onsen";
+SECTION_DEAD static char const* const stringBase_8037647E = "d_a_obj_chest";
+SECTION_DEAD static char const* const stringBase_8037648C = "d_a_obj_bemos";
+SECTION_DEAD static char const* const stringBase_8037649A = "d_a_obj_rope_bridge";
+SECTION_DEAD static char const* const stringBase_803764AE = "d_a_obj_well_cover";
+SECTION_DEAD static char const* const stringBase_803764C1 = "d_a_obj_grave_stone";
+SECTION_DEAD static char const* const stringBase_803764D5 = "d_a_obj_zra_rock";
+SECTION_DEAD static char const* const stringBase_803764E6 = "d_a_obj_gra_rock";
+SECTION_DEAD static char const* const stringBase_803764F7 = "d_a_obj_grz_rock";
+SECTION_DEAD static char const* const stringBase_80376508 = "d_a_obj_graWall";
+SECTION_DEAD static char const* const stringBase_80376518 = "d_a_obj_onsenFire";
+SECTION_DEAD static char const* const stringBase_8037652A = "d_a_obj_lv6bemos";
+SECTION_DEAD static char const* const stringBase_8037653B = "d_a_obj_lv6bemos2";
+SECTION_DEAD static char const* const stringBase_8037654D = "d_a_obj_barDesk";
+SECTION_DEAD static char const* const stringBase_8037655D = "d_a_obj_digsnow";
+SECTION_DEAD static char const* const stringBase_8037656D = "d_a_obj_Y_taihou";
+SECTION_DEAD static char const* const stringBase_8037657E = "d_a_obj_dmelevator";
+SECTION_DEAD static char const* const stringBase_80376591 = "d_a_obj_lv6TogeRoll";
+SECTION_DEAD static char const* const stringBase_803765A5 = "d_a_obj_lv6TogeTrap";
+SECTION_DEAD static char const* const stringBase_803765B9 = "d_a_obj_lv6Tenbin";
+SECTION_DEAD static char const* const stringBase_803765CB = "d_a_obj_lv6SwGate";
+SECTION_DEAD static char const* const stringBase_803765DD = "d_a_obj_lv6Lblock";
+SECTION_DEAD static char const* const stringBase_803765EF = "d_a_obj_lv6ChangeGate";
+SECTION_DEAD static char const* const stringBase_80376605 = "d_a_obj_lv6FurikoTrap";
+SECTION_DEAD static char const* const stringBase_8037661B = "d_a_obj_lv6SzGate";
+SECTION_DEAD static char const* const stringBase_8037662D = "d_a_obj_lv4EdShutter";
+SECTION_DEAD static char const* const stringBase_80376642 = "d_a_obj_lv4Gate";
+SECTION_DEAD static char const* const stringBase_80376652 = "d_a_obj_lv4PoGate";
+SECTION_DEAD static char const* const stringBase_80376664 = "d_a_obj_lv4SlideWall";
+SECTION_DEAD static char const* const stringBase_80376679 = "d_a_obj_lv4HsTarget";
+SECTION_DEAD static char const* const stringBase_8037668D = "d_a_obj_lv7PropellerY";
+SECTION_DEAD static char const* const stringBase_803766A3 = "d_a_obj_lv7BsGate";
+SECTION_DEAD static char const* const stringBase_803766B5 = "d_a_obj_lv8OptiLift";
+SECTION_DEAD static char const* const stringBase_803766C9 = "d_a_obj_lv8KekkaiTrap";
+SECTION_DEAD static char const* const stringBase_803766DF = "d_a_obj_lv8Lift";
+SECTION_DEAD static char const* const stringBase_803766EF = "d_a_obj_lv8UdFloor";
+SECTION_DEAD static char const* const stringBase_80376702 = "d_a_obj_lv9SwShutter";
+SECTION_DEAD static char const* const stringBase_80376717 = "d_a_obj_tobyhouse";
+SECTION_DEAD static char const* const stringBase_80376729 = "d_a_obj_poCandle";
+SECTION_DEAD static char const* const stringBase_8037673A = "d_a_obj_lv4digsand";
+SECTION_DEAD static char const* const stringBase_8037674D = "d_a_obj_fallobj";
+SECTION_DEAD static char const* const stringBase_8037675D = "d_a_obj_smgdoor";
+SECTION_DEAD static char const* const stringBase_8037676D = "d_a_obj_swLight";
+SECTION_DEAD static char const* const stringBase_8037677D = "d_a_obj_avalanche";
+SECTION_DEAD static char const* const stringBase_8037678F = "d_a_obj_mirror_screw";
+SECTION_DEAD static char const* const stringBase_803767A4 = "d_a_obj_mirror_sand";
+SECTION_DEAD static char const* const stringBase_803767B8 = "d_a_obj_mirror_table";
+SECTION_DEAD static char const* const stringBase_803767CD = "d_a_obj_mirror_chain";
+SECTION_DEAD static char const* const stringBase_803767E2 = "d_a_obj_mirror_6pole";
+SECTION_DEAD static char const* const stringBase_803767F7 = "d_a_obj_swspinner";
+SECTION_DEAD static char const* const stringBase_80376809 = "d_a_obj_thdoor";
+SECTION_DEAD static char const* const stringBase_80376818 = "d_a_obj_lv7bridge";
+SECTION_DEAD static char const* const stringBase_8037682A = "d_a_obj_zrTurara";
+SECTION_DEAD static char const* const stringBase_8037683B = "d_a_obj_takaraDai";
+SECTION_DEAD static char const* const stringBase_8037684D = "d_a_obj_table";
+SECTION_DEAD static char const* const stringBase_8037685B = "d_a_obj_catdoor";
+SECTION_DEAD static char const* const stringBase_8037686B = "d_a_obj_tgake";
+SECTION_DEAD static char const* const stringBase_80376879 = "d_a_cstaF";
+SECTION_DEAD static char const* const stringBase_80376883 = "d_a_obj_lv4RailWall";
+SECTION_DEAD static char const* const stringBase_80376897 = "d_a_obj_lv4sand";
+SECTION_DEAD static char const* const stringBase_803768A7 = "d_a_obj_pdoor";
+SECTION_DEAD static char const* const stringBase_803768B5 = "d_a_door_push";
+SECTION_DEAD static char const* const stringBase_803768C3 = "d_a_obj_ganonwall2";
+SECTION_DEAD static char const* const stringBase_803768D6 = "d_a_obj_lv4bridge";
+SECTION_DEAD static char const* const stringBase_803768E8 = "d_a_obj_lv4floor";
+SECTION_DEAD static char const* const stringBase_803768F9 = "d_a_tag_spinner";
+SECTION_DEAD static char const* const stringBase_80376909 = "d_a_obj_swhang";
+SECTION_DEAD static char const* const stringBase_80376918 = "d_a_obj_rstair";
+SECTION_DEAD static char const* const stringBase_80376927 = "d_a_obj_magne_arm";
+SECTION_DEAD static char const* const stringBase_80376939 = "d_a_obj_kwheel00";
+SECTION_DEAD static char const* const stringBase_8037694A = "d_a_obj_kwheel01";
+SECTION_DEAD static char const* const stringBase_8037695B = "d_a_obj_lv5ychndlr";
+SECTION_DEAD static char const* const stringBase_8037696E = "d_a_obj_lv4prelvtr";
+SECTION_DEAD static char const* const stringBase_80376981 = "d_a_obj_hasu2";
+SECTION_DEAD static char const* const stringBase_8037698F = "d_a_obj_lv5yiblltray";
+SECTION_DEAD static char const* const stringBase_803769A4 = "d_a_obj_lv6egate";
+SECTION_DEAD static char const* const stringBase_803769B5 = "d_a_obj_pdtile";
+SECTION_DEAD static char const* const stringBase_803769C4 = "d_a_obj_pdwall";
+SECTION_DEAD static char const* const stringBase_803769D3 = "d_a_obj_lv4prwall";
+SECTION_DEAD static char const* const stringBase_803769E5 = "d_a_obj_klift00";
+SECTION_DEAD static char const* const stringBase_803769F5 = "d_a_b_oh";
+SECTION_DEAD static char const* const stringBase_803769FE = "d_a_obj_lv4chandelier";
+SECTION_DEAD static char const* const stringBase_80376A14 = "d_a_obj_lv3saka00";
+SECTION_DEAD static char const* const stringBase_80376A26 = "d_a_obj_lv3Water";
+SECTION_DEAD static char const* const stringBase_80376A37 = "d_a_obj_lv3Water2";
+SECTION_DEAD static char const* const stringBase_80376A49 = "d_a_obj_lv3WaterB";
+SECTION_DEAD static char const* const stringBase_80376A5B = "d_a_obj_hbombkoya";
+SECTION_DEAD static char const* const stringBase_80376A6D = "d_a_obj_szbridge";
+SECTION_DEAD static char const* const stringBase_80376A7E = "d_a_obj_warp_kbrg";
+SECTION_DEAD static char const* const stringBase_80376A90 = "d_a_obj_warp_obrg";
+SECTION_DEAD static char const* const stringBase_80376AA2 = "d_a_obj_burnbox";
+SECTION_DEAD static char const* const stringBase_80376AB2 = "d_a_obj_kjgjs";
+SECTION_DEAD static char const* const stringBase_80376AC0 = "d_a_obj_ihasi";
+SECTION_DEAD static char const* const stringBase_80376ACE = "d_a_obj_iceblock";
+SECTION_DEAD static char const* const stringBase_80376ADF = "d_a_obj_volcball";
+SECTION_DEAD static char const* const stringBase_80376AF0 = "d_a_obj_volcbom";
+SECTION_DEAD static char const* const stringBase_80376B00 = "d_a_obj_vground";
+SECTION_DEAD static char const* const stringBase_80376B10 = "d_a_obj_kkanban";
+SECTION_DEAD static char const* const stringBase_80376B20 = "d_a_e_ph";
+SECTION_DEAD static char const* const stringBase_80376B29 = "d_a_npc_zra";
+SECTION_DEAD static char const* const stringBase_80376B35 = "d_a_obj_chandelier";
+SECTION_DEAD static char const* const stringBase_80376B48 = "d_a_obj_stopper2";
+SECTION_DEAD static char const* const stringBase_80376B59 = "d_a_door_shutter";
+SECTION_DEAD static char const* const stringBase_80376B6A = "d_a_tag_hinit";
+SECTION_DEAD static char const* const stringBase_80376B78 = "d_a_tag_hjump";
+SECTION_DEAD static char const* const stringBase_80376B86 = "d_a_tag_ajnot";
+SECTION_DEAD static char const* const stringBase_80376B94 = "d_a_tag_hstop";
+SECTION_DEAD static char const* const stringBase_80376BA2 = "d_a_canoe";
+SECTION_DEAD static char const* const stringBase_80376BAC = "d_a_horse";
+SECTION_DEAD static char const* const stringBase_80376BB6 = "d_a_e_wb";
+SECTION_DEAD static char const* const stringBase_80376BBF = "d_a_obj_ito";
+SECTION_DEAD static char const* const stringBase_80376BCB = "d_a_obj_sw";
+SECTION_DEAD static char const* const stringBase_80376BD6 = "d_a_spinner";
+SECTION_DEAD static char const* const stringBase_80376BE2 = "d_a_b_ob";
+SECTION_DEAD static char const* const stringBase_80376BEB = "d_a_kago";
+SECTION_DEAD static char const* const stringBase_80376BF4 = "d_a_e_yc";
+SECTION_DEAD static char const* const stringBase_80376BFD = "d_a_b_ds";
+SECTION_DEAD static char const* const stringBase_80376C06 = "d_a_b_dr";
+SECTION_DEAD static char const* const stringBase_80376C0F = "d_a_b_zant_mobile";
+SECTION_DEAD static char const* const stringBase_80376C21 = "d_a_b_zant";
+SECTION_DEAD static char const* const stringBase_80376C2C = "d_a_b_zant_magic";
+SECTION_DEAD static char const* const stringBase_80376C3D = "d_a_tbox";
+SECTION_DEAD static char const* const stringBase_80376C46 = "d_a_tbox2";
+SECTION_DEAD static char const* const stringBase_80376C50 = "d_a_boomerang";
+SECTION_DEAD static char const* const stringBase_80376C5E = "d_a_midna";
+SECTION_DEAD static char const* const stringBase_80376C68 = "d_a_npc_tk";
+SECTION_DEAD static char const* const stringBase_80376C73 = "d_a_npc_worm";
+SECTION_DEAD static char const* const stringBase_80376C80 = "d_a_ppolamp";
+SECTION_DEAD static char const* const stringBase_80376C8C = "d_a_obj_bky_rock";
+SECTION_DEAD static char const* const stringBase_80376C9D = "d_a_hitobj";
+SECTION_DEAD static char const* const stringBase_80376CA8 = "d_a_ep";
+SECTION_DEAD static char const* const stringBase_80376CAF = "d_a_cow";
+SECTION_DEAD static char const* const stringBase_80376CB7 = "d_a_peru";
+SECTION_DEAD static char const* const stringBase_80376CC0 = "d_a_ni";
+SECTION_DEAD static char const* const stringBase_80376CC7 = "d_a_npc_tkj2";
+SECTION_DEAD static char const* const stringBase_80376CD4 = "d_a_sq";
+SECTION_DEAD static char const* const stringBase_80376CDB = "d_a_npc_sq";
+SECTION_DEAD static char const* const stringBase_80376CE6 = "d_a_do";
+SECTION_DEAD static char const* const stringBase_80376CED = "d_a_npc_ne";
+SECTION_DEAD static char const* const stringBase_80376CF8 = "d_a_npc_tr";
+SECTION_DEAD static char const* const stringBase_80376D03 = "d_a_npc_lf";
+SECTION_DEAD static char const* const stringBase_80376D0E = "d_a_obj_food";
+SECTION_DEAD static char const* const stringBase_80376D1B = "d_a_obj_ki";
+SECTION_DEAD static char const* const stringBase_80376D26 = "d_a_obj_kita";
+SECTION_DEAD static char const* const stringBase_80376D33 = "d_a_obj_key";
+SECTION_DEAD static char const* const stringBase_80376D3F = "d_a_obj_keyhole";
+SECTION_DEAD static char const* const stringBase_80376D4F = "d_a_obj_Lv5Key";
+SECTION_DEAD static char const* const stringBase_80376D5E = "d_a_obj_lp";
+SECTION_DEAD static char const* const stringBase_80376D69 = "d_a_obj_tatigi";
+SECTION_DEAD static char const* const stringBase_80376D78 = "d_a_obj_rock";
+SECTION_DEAD static char const* const stringBase_80376D85 = "d_a_obj_wflag";
+SECTION_DEAD static char const* const stringBase_80376D93 = "d_a_obj_kage";
+SECTION_DEAD static char const* const stringBase_80376DA0 = "d_a_obj_kanban2";
+SECTION_DEAD static char const* const stringBase_80376DB0 = "d_a_obj_balloon";
+SECTION_DEAD static char const* const stringBase_80376DC0 = "d_a_obj_suisya";
+SECTION_DEAD static char const* const stringBase_80376DCF = "d_a_obj_oiltubo";
+SECTION_DEAD static char const* const stringBase_80376DDF = "d_a_obj_roten";
+SECTION_DEAD static char const* const stringBase_80376DED = "d_a_obj_ss_drink";
+SECTION_DEAD static char const* const stringBase_80376DFE = "d_a_obj_ss_item";
+SECTION_DEAD static char const* const stringBase_80376E0E = "d_a_tag_ss_drink";
+SECTION_DEAD static char const* const stringBase_80376E1F = "d_a_tag_bottle_item";
+SECTION_DEAD static char const* const stringBase_80376E33 = "d_a_tag_lv5soup";
+SECTION_DEAD static char const* const stringBase_80376E43 = "d_a_tag_myna_light";
+SECTION_DEAD static char const* const stringBase_80376E56 = "d_a_tag_shop_camera";
+SECTION_DEAD static char const* const stringBase_80376E6A = "d_a_tag_shop_item";
+SECTION_DEAD static char const* const stringBase_80376E7C = "d_a_obj_ndoor";
+SECTION_DEAD static char const* const stringBase_80376E8A = "d_a_obj_udoor";
+SECTION_DEAD static char const* const stringBase_80376E98 = "d_a_obj_usaku";
+SECTION_DEAD static char const* const stringBase_80376EA6 = "d_a_obj_sm_door";
+SECTION_DEAD static char const* const stringBase_80376EB6 = "d_a_obj_bed";
+SECTION_DEAD static char const* const stringBase_80376EC2 = "d_a_obj_boumato";
+SECTION_DEAD static char const* const stringBase_80376ED2 = "d_a_obj_itamato";
+SECTION_DEAD static char const* const stringBase_80376EE2 = "d_a_obj_nougu";
+SECTION_DEAD static char const* const stringBase_80376EF0 = "d_a_obj_stick";
+SECTION_DEAD static char const* const stringBase_80376EFE = "d_a_obj_mie";
+SECTION_DEAD static char const* const stringBase_80376F0A = "d_a_obj_sekidoor";
+SECTION_DEAD static char const* const stringBase_80376F1B = "d_a_obj_sekizo";
+SECTION_DEAD static char const* const stringBase_80376F2A = "d_a_obj_smtile";
+SECTION_DEAD static char const* const stringBase_80376F39 = "d_a_npc_fish";
+SECTION_DEAD static char const* const stringBase_80376F46 = "d_a_mg_fish";
+SECTION_DEAD static char const* const stringBase_80376F52 = "d_a_mg_fshop";
+SECTION_DEAD static char const* const stringBase_80376F5F = "d_a_npc_du";
+SECTION_DEAD static char const* const stringBase_80376F6A = "d_a_disappear";
+SECTION_DEAD static char const* const stringBase_80376F78 = "d_a_obj_mato";
+SECTION_DEAD static char const* const stringBase_80376F85 = "d_a_obj_flag";
+SECTION_DEAD static char const* const stringBase_80376F92 = "d_a_obj_flag2";
+SECTION_DEAD static char const* const stringBase_80376FA0 = "d_a_obj_flag3";
+SECTION_DEAD static char const* const stringBase_80376FAE = "d_a_obj_gomikabe";
+SECTION_DEAD static char const* const stringBase_80376FBF = "d_a_obj_yousei";
+SECTION_DEAD static char const* const stringBase_80376FCE = "d_a_obj_kabuto";
+SECTION_DEAD static char const* const stringBase_80376FDD = "d_a_obj_cho";
+SECTION_DEAD static char const* const stringBase_80376FE9 = "d_a_obj_kuwagata";
+SECTION_DEAD static char const* const stringBase_80376FFA = "d_a_obj_nan";
+SECTION_DEAD static char const* const stringBase_80377006 = "d_a_obj_dan";
+SECTION_DEAD static char const* const stringBase_80377012 = "d_a_obj_kamakiri";
+SECTION_DEAD static char const* const stringBase_80377023 = "d_a_obj_ten";
+SECTION_DEAD static char const* const stringBase_8037702F = "d_a_obj_ari";
+SECTION_DEAD static char const* const stringBase_8037703B = "d_a_obj_kag";
+SECTION_DEAD static char const* const stringBase_80377047 = "d_a_obj_batta";
+SECTION_DEAD static char const* const stringBase_80377055 = "d_a_obj_tombo";
+SECTION_DEAD static char const* const stringBase_80377063 = "d_a_obj_katatsumuri";
+SECTION_DEAD static char const* const stringBase_80377077 = "d_a_obj_h_saku";
+SECTION_DEAD static char const* const stringBase_80377086 = "d_a_obj_yobikusa";
+SECTION_DEAD static char const* const stringBase_80377097 = "d_a_obj_kazeneko";
+SECTION_DEAD static char const* const stringBase_803770A8 = "d_a_obj_kznkarm";
+SECTION_DEAD static char const* const stringBase_803770B8 = "d_a_obj_nameplate";
+SECTION_DEAD static char const* const stringBase_803770CA = "d_a_obj_ornament_cloth";
+SECTION_DEAD static char const* const stringBase_803770E1 = "d_a_obj_laundry_rope";
+SECTION_DEAD static char const* const stringBase_803770F6 = "d_a_obj_sakuita_rope";
+SECTION_DEAD static char const* const stringBase_8037710B = "d_a_obj_sakuita";
+SECTION_DEAD static char const* const stringBase_8037711B = "d_a_obj_laundry";
+SECTION_DEAD static char const* const stringBase_8037712B = "d_a_warp_bug";
+SECTION_DEAD static char const* const stringBase_80377138 = "d_a_izumi_gate";
+SECTION_DEAD static char const* const stringBase_80377147 = "d_a_obj_fchain";
+SECTION_DEAD static char const* const stringBase_80377156 = "d_a_obj_wchain";
+SECTION_DEAD static char const* const stringBase_80377165 = "d_a_tag_attention";
+SECTION_DEAD static char const* const stringBase_80377177 = "d_a_obj_tornado";
+SECTION_DEAD static char const* const stringBase_80377187 = "d_a_obj_tornado2";
+SECTION_DEAD static char const* const stringBase_80377198 = "d_a_obj_firepillar";
+SECTION_DEAD static char const* const stringBase_803771AB = "d_a_obj_firepillar2";
+SECTION_DEAD static char const* const stringBase_803771BF = "d_a_obj_inobone";
+SECTION_DEAD static char const* const stringBase_803771CF = "d_a_obj_stopper";
+SECTION_DEAD static char const* const stringBase_803771DF = "d_a_obj_mhole";
+SECTION_DEAD static char const* const stringBase_803771ED = "d_a_tag_magne";
+SECTION_DEAD static char const* const stringBase_803771FB = "d_a_obj_bosswarp";
+SECTION_DEAD static char const* const stringBase_8037720C = "d_a_obj_wood_pendulum";
+SECTION_DEAD static char const* const stringBase_80377222 = "d_a_obj_wdStick";
+SECTION_DEAD static char const* const stringBase_80377232 = "d_a_obj_stairBlock";
+SECTION_DEAD static char const* const stringBase_80377245 = "d_a_obj_geyser";
+SECTION_DEAD static char const* const stringBase_80377254 = "d_a_obj_ktOnFire";
+SECTION_DEAD static char const* const stringBase_80377265 = "d_a_obj_fireWood";
+SECTION_DEAD static char const* const stringBase_80377276 = "d_a_obj_fireWood2";
+SECTION_DEAD static char const* const stringBase_80377288 = "d_a_obj_gpTaru";
+SECTION_DEAD static char const* const stringBase_80377297 = "d_a_obj_onsenTaru";
+SECTION_DEAD static char const* const stringBase_803772A9 = "d_a_obj_kiPot";
+SECTION_DEAD static char const* const stringBase_803772B7 = "d_a_tboxSw";
+SECTION_DEAD static char const* const stringBase_803772C2 = "d_a_obj_swchain";
+SECTION_DEAD static char const* const stringBase_803772D2 = "d_a_obj_wsword";
+SECTION_DEAD static char const* const stringBase_803772E1 = "d_a_obj_stoneMark";
+SECTION_DEAD static char const* const stringBase_803772F3 = "d_a_obj_lv3Candle";
+SECTION_DEAD static char const* const stringBase_80377305 = "d_a_obj_lv4CandleTag";
+SECTION_DEAD static char const* const stringBase_8037731A = "d_a_obj_lv4CandleDemoTag";
+SECTION_DEAD static char const* const stringBase_80377333 = "d_a_obj_damCps";
+SECTION_DEAD static char const* const stringBase_80377342 = "d_a_obj_smoke";
+SECTION_DEAD static char const* const stringBase_80377350 = "d_a_obj_waterfall";
+SECTION_DEAD static char const* const stringBase_80377362 = "d_a_obj_zcloth";
+SECTION_DEAD static char const* const stringBase_80377371 = "d_a_obj_poFire";
+SECTION_DEAD static char const* const stringBase_80377380 = "d_a_tag_poFire";
+SECTION_DEAD static char const* const stringBase_8037738F = "d_a_obj_glowSphere";
+SECTION_DEAD static char const* const stringBase_803773A2 = "d_a_tag_lightball";
+SECTION_DEAD static char const* const stringBase_803773B4 = "d_a_swLBall";
+SECTION_DEAD static char const* const stringBase_803773C0 = "d_a_swBall";
+SECTION_DEAD static char const* const stringBase_803773CB = "d_a_obj_lv3waterEff";
+SECTION_DEAD static char const* const stringBase_803773DF = "d_a_tag_river_back";
+SECTION_DEAD static char const* const stringBase_803773F2 = "d_a_tag_kago_fall";
+SECTION_DEAD static char const* const stringBase_80377404 = "d_a_tag_lv2prchk";
+SECTION_DEAD static char const* const stringBase_80377415 = "d_a_obj_lv4gear";
+SECTION_DEAD static char const* const stringBase_80377425 = "d_a_obj_master_sword";
+SECTION_DEAD static char const* const stringBase_8037743A = "d_a_obj_wood_statue";
+SECTION_DEAD static char const* const stringBase_8037744E = "d_a_obj_fan";
+SECTION_DEAD static char const* const stringBase_8037745A = "d_a_obj_iceleaf";
+SECTION_DEAD static char const* const stringBase_8037746A = "d_a_obj_zrTuraraRock";
+SECTION_DEAD static char const* const stringBase_8037747F = "d_a_tag_ret_room";
+SECTION_DEAD static char const* const stringBase_80377490 = "d_a_obj_wind_stone";
+SECTION_DEAD static char const* const stringBase_803774A3 = "d_a_tag_wara_howl";
+SECTION_DEAD static char const* const stringBase_803774B5 = "d_a_obj_scannon";
+SECTION_DEAD static char const* const stringBase_803774C5 = "d_a_obj_smw_stone";
+SECTION_DEAD static char const* const stringBase_803774D7 = "d_a_obj_scannon_crs";
+SECTION_DEAD static char const* const stringBase_803774EB = "d_a_obj_snowEffTag";
+SECTION_DEAD static char const* const stringBase_803774FE = "d_a_tag_CstaSw";
+SECTION_DEAD static char const* const stringBase_8037750D = "d_a_tag_lv6CstaSw";
+SECTION_DEAD static char const* const stringBase_8037751F = "d_a_obj_bubblePilar";
+SECTION_DEAD static char const* const stringBase_80377533 = "d_a_obj_poTbox";
+SECTION_DEAD static char const* const stringBase_80377542 = "d_a_obj_timeFire";
+SECTION_DEAD static char const* const stringBase_80377553 = "d_a_obj_tmoon";
+SECTION_DEAD static char const* const stringBase_80377561 = "d_a_obj_ganonwall";
+SECTION_DEAD static char const* const stringBase_80377573 = "d_a_obj_prop";
+SECTION_DEAD static char const* const stringBase_80377580 = "d_a_cstatue";
+SECTION_DEAD static char const* const stringBase_8037758C = "d_a_obj_swBallA";
+SECTION_DEAD static char const* const stringBase_8037759C = "d_a_obj_swBallB";
+SECTION_DEAD static char const* const stringBase_803775AC = "d_a_obj_snow_soup";
+SECTION_DEAD static char const* const stringBase_803775BE = "d_a_obj_nagaisu";
+SECTION_DEAD static char const* const stringBase_803775CE = "d_a_obj_rcircle";
+SECTION_DEAD static char const* const stringBase_803775DE = "d_a_obj_picture";
+SECTION_DEAD static char const* const stringBase_803775EE = "d_a_tag_setBall";
+SECTION_DEAD static char const* const stringBase_803775FE = "d_a_tag_smk_emt";
+SECTION_DEAD static char const* const stringBase_8037760E = "d_a_swTime";
+SECTION_DEAD static char const* const stringBase_80377619 = "d_a_obj_hakai_ftr";
+SECTION_DEAD static char const* const stringBase_8037762B = "d_a_obj_hakai_brl";
+SECTION_DEAD static char const* const stringBase_8037763D = "d_a_obj_crystal";
+SECTION_DEAD static char const* const stringBase_8037764D = "d_a_obj_scannon_ten";
+SECTION_DEAD static char const* const stringBase_80377661 = "d_a_obj_swBallC";
+SECTION_DEAD static char const* const stringBase_80377671 = "d_a_scene_exit2";
+SECTION_DEAD static char const* const stringBase_80377681 = "d_a_obj_hata";
+SECTION_DEAD static char const* const stringBase_8037768E = "d_a_obj_toaru_maki";
+SECTION_DEAD static char const* const stringBase_803776A1 = "d_a_tag_attack_item";
+SECTION_DEAD static char const* const stringBase_803776B5 = "d_a_tag_rmbit_sw";
+SECTION_DEAD static char const* const stringBase_803776C6 = "d_a_obj_sword";
+SECTION_DEAD static char const* const stringBase_803776D4 = "d_a_tag_spring";
+SECTION_DEAD static char const* const stringBase_803776E3 = "d_a_tag_statue_evt";
+SECTION_DEAD static char const* const stringBase_803776F6 = "d_a_e_ai";
+SECTION_DEAD static char const* const stringBase_803776FF = "d_a_e_gs";
+SECTION_DEAD static char const* const stringBase_80377708 = "d_a_e_gob";
+SECTION_DEAD static char const* const stringBase_80377712 = "d_a_e_dd";
+SECTION_DEAD static char const* const stringBase_8037771B = "d_a_e_dn";
+SECTION_DEAD static char const* const stringBase_80377724 = "d_a_e_s1";
+SECTION_DEAD static char const* const stringBase_8037772D = "d_a_e_mf";
+SECTION_DEAD static char const* const stringBase_80377736 = "d_a_e_sg";
+SECTION_DEAD static char const* const stringBase_8037773F = "d_a_e_bs";
+SECTION_DEAD static char const* const stringBase_80377748 = "d_a_e_sf";
+SECTION_DEAD static char const* const stringBase_80377751 = "d_a_e_sh";
+SECTION_DEAD static char const* const stringBase_8037775A = "d_a_e_df";
+SECTION_DEAD static char const* const stringBase_80377763 = "d_a_e_gm";
+SECTION_DEAD static char const* const stringBase_8037776C = "d_a_e_md";
+SECTION_DEAD static char const* const stringBase_80377775 = "d_a_e_sm";
+SECTION_DEAD static char const* const stringBase_8037777E = "d_a_e_sm2";
+SECTION_DEAD static char const* const stringBase_80377788 = "d_a_e_st";
+SECTION_DEAD static char const* const stringBase_80377791 = "d_a_e_st_line";
+SECTION_DEAD static char const* const stringBase_8037779F = "d_a_e_sb";
+SECTION_DEAD static char const* const stringBase_803777A8 = "d_a_e_th";
+SECTION_DEAD static char const* const stringBase_803777B1 = "d_a_e_cr";
+SECTION_DEAD static char const* const stringBase_803777BA = "d_a_e_cr_egg";
+SECTION_DEAD static char const* const stringBase_803777C7 = "d_a_e_db";
+SECTION_DEAD static char const* const stringBase_803777D0 = "d_a_e_db_leaf";
+SECTION_DEAD static char const* const stringBase_803777DE = "d_a_e_ga";
+SECTION_DEAD static char const* const stringBase_803777E7 = "d_a_e_gb";
+SECTION_DEAD static char const* const stringBase_803777F0 = "d_a_e_hb";
+SECTION_DEAD static char const* const stringBase_803777F9 = "d_a_e_hb_leaf";
+SECTION_DEAD static char const* const stringBase_80377807 = "d_a_e_hzelda";
+SECTION_DEAD static char const* const stringBase_80377814 = "d_a_e_yd";
+SECTION_DEAD static char const* const stringBase_8037781D = "d_a_e_yh";
+SECTION_DEAD static char const* const stringBase_80377826 = "d_a_e_yd_leaf";
+SECTION_DEAD static char const* const stringBase_80377834 = "d_a_e_hm";
+SECTION_DEAD static char const* const stringBase_8037783D = "d_a_e_tk";
+SECTION_DEAD static char const* const stringBase_80377846 = "d_a_e_tk2";
+SECTION_DEAD static char const* const stringBase_80377850 = "d_a_e_tk_ball";
+SECTION_DEAD static char const* const stringBase_8037785E = "d_a_e_rb";
+SECTION_DEAD static char const* const stringBase_80377867 = "d_a_e_rd";
+SECTION_DEAD static char const* const stringBase_80377870 = "d_a_e_rdb";
+SECTION_DEAD static char const* const stringBase_8037787A = "d_a_e_rdy";
+SECTION_DEAD static char const* const stringBase_80377884 = "d_a_e_fm";
+SECTION_DEAD static char const* const stringBase_8037788D = "d_a_e_fs";
+SECTION_DEAD static char const* const stringBase_80377896 = "d_a_e_pm";
+SECTION_DEAD static char const* const stringBase_8037789F = "d_a_e_po";
+SECTION_DEAD static char const* const stringBase_803778A8 = "d_a_e_mb";
+SECTION_DEAD static char const* const stringBase_803778B1 = "d_a_e_mk";
+SECTION_DEAD static char const* const stringBase_803778BA = "d_a_e_mm";
+SECTION_DEAD static char const* const stringBase_803778C3 = "d_a_e_fz";
+SECTION_DEAD static char const* const stringBase_803778CC = "d_a_e_zs";
+SECTION_DEAD static char const* const stringBase_803778D5 = "d_a_e_kk";
+SECTION_DEAD static char const* const stringBase_803778DE = "d_a_e_hp";
+SECTION_DEAD static char const* const stringBase_803778E7 = "d_a_e_zh";
+SECTION_DEAD static char const* const stringBase_803778F0 = "d_a_e_zm";
+SECTION_DEAD static char const* const stringBase_803778F9 = "d_a_e_pz";
+SECTION_DEAD static char const* const stringBase_80377902 = "d_a_e_fb";
+SECTION_DEAD static char const* const stringBase_8037790B = "d_a_e_fk";
+SECTION_DEAD static char const* const stringBase_80377914 = "d_a_e_ms";
+SECTION_DEAD static char const* const stringBase_8037791D = "d_a_e_nest";
+SECTION_DEAD static char const* const stringBase_80377928 = "d_a_e_nz";
+SECTION_DEAD static char const* const stringBase_80377931 = "d_a_e_ba";
+SECTION_DEAD static char const* const stringBase_8037793A = "d_a_e_bu";
+SECTION_DEAD static char const* const stringBase_80377943 = "d_a_e_bug";
+SECTION_DEAD static char const* const stringBase_8037794D = "d_a_e_bee";
+SECTION_DEAD static char const* const stringBase_80377957 = "d_a_e_is";
+SECTION_DEAD static char const* const stringBase_80377960 = "d_a_e_kg";
+SECTION_DEAD static char const* const stringBase_80377969 = "d_a_e_kr";
+SECTION_DEAD static char const* const stringBase_80377972 = "d_a_e_sw";
+SECTION_DEAD static char const* const stringBase_8037797B = "d_a_e_ge";
+SECTION_DEAD static char const* const stringBase_80377984 = "d_a_tag_watchge";
+SECTION_DEAD static char const* const stringBase_80377994 = "d_a_e_ym";
+SECTION_DEAD static char const* const stringBase_8037799D = "d_a_e_ym_tag";
+SECTION_DEAD static char const* const stringBase_803779AA = "d_a_e_ymb";
+SECTION_DEAD static char const* const stringBase_803779B4 = "d_a_tag_firewall";
+SECTION_DEAD static char const* const stringBase_803779C5 = "d_a_tag_waterfall";
+SECTION_DEAD static char const* const stringBase_803779D7 = "d_a_e_yk";
+SECTION_DEAD static char const* const stringBase_803779E0 = "d_a_e_yr";
+SECTION_DEAD static char const* const stringBase_803779E9 = "d_a_e_yg";
+SECTION_DEAD static char const* const stringBase_803779F2 = "d_a_e_hz";
+SECTION_DEAD static char const* const stringBase_803779FB = "d_a_e_ws";
+SECTION_DEAD static char const* const stringBase_80377A04 = "d_a_e_oc";
+SECTION_DEAD static char const* const stringBase_80377A0D = "d_a_e_ot";
+SECTION_DEAD static char const* const stringBase_80377A16 = "d_a_e_dt";
+SECTION_DEAD static char const* const stringBase_80377A1F = "d_a_e_bg";
+SECTION_DEAD static char const* const stringBase_80377A28 = "d_a_e_oct_bg";
+SECTION_DEAD static char const* const stringBase_80377A35 = "d_a_L7demo_dr";
+SECTION_DEAD static char const* const stringBase_80377A43 = "d_a_L7low_dr";
+SECTION_DEAD static char const* const stringBase_80377A50 = "d_a_L7op_demo_dr";
+SECTION_DEAD static char const* const stringBase_80377A61 = "d_a_e_tt";
+SECTION_DEAD static char const* const stringBase_80377A6A = "d_a_e_dk";
+SECTION_DEAD static char const* const stringBase_80377A73 = "d_a_e_vt";
+SECTION_DEAD static char const* const stringBase_80377A7C = "d_a_e_ww";
+SECTION_DEAD static char const* const stringBase_80377A85 = "d_a_e_gi";
+SECTION_DEAD static char const* const stringBase_80377A8E = "d_a_b_bh";
+SECTION_DEAD static char const* const stringBase_80377A97 = "d_a_b_bq";
+SECTION_DEAD static char const* const stringBase_80377AA0 = "d_a_b_gm";
+SECTION_DEAD static char const* const stringBase_80377AA9 = "d_a_b_gnd";
+SECTION_DEAD static char const* const stringBase_80377AB3 = "d_a_b_go";
+SECTION_DEAD static char const* const stringBase_80377ABC = "d_a_b_oh2";
+SECTION_DEAD static char const* const stringBase_80377AC6 = "d_a_b_yo";
+SECTION_DEAD static char const* const stringBase_80377ACF = "d_a_b_yo_ice";
+SECTION_DEAD static char const* const stringBase_80377ADC = "d_a_b_tn";
+SECTION_DEAD static char const* const stringBase_80377AE5 = "d_a_b_gg";
+SECTION_DEAD static char const* const stringBase_80377AEE = "d_a_b_dre";
+SECTION_DEAD static char const* const stringBase_80377AF8 = "d_a_b_mgn";
+SECTION_DEAD static char const* const stringBase_80377B02 = "d_a_e_warpappear";
+SECTION_DEAD static char const* const stringBase_80377B13 = "d_a_obj_smallkey";
+SECTION_DEAD static char const* const stringBase_80377B24 = "d_a_obj_kantera";
+SECTION_DEAD static char const* const stringBase_80377B34 = "d_a_obj_life_container";
+SECTION_DEAD static char const* const stringBase_80377B4B = "d_a_obj_shield";
+SECTION_DEAD static char const* const stringBase_80377B5A = "d_a_demo_item";
+SECTION_DEAD static char const* const stringBase_80377B68 = "d_a_shop_item";
+SECTION_DEAD static char const* const stringBase_80377B76 = "d_a_obj_drop";
+SECTION_DEAD static char const* const stringBase_80377B83 = "d_a_obj_rw";
+SECTION_DEAD static char const* const stringBase_80377B8E = "d_a_nbomb";
+SECTION_DEAD static char const* const stringBase_80377B98 = "d_a_tag_csw";
+SECTION_DEAD static char const* const stringBase_80377BA4 = "d_a_tag_qs";
+SECTION_DEAD static char const* const stringBase_80377BAF = "d_a_hozelda";
+SECTION_DEAD static char const* const stringBase_80377BBB = "d_a_swc00";
+SECTION_DEAD static char const* const stringBase_80377BC5 = "d_a_door_knob00";
+SECTION_DEAD static char const* const stringBase_80377BD5 = "d_a_door_dbdoor00";
+SECTION_DEAD static char const* const stringBase_80377BE7 = "d_a_door_boss";
+SECTION_DEAD static char const* const stringBase_80377BF5 = "d_a_door_bossL1";
+SECTION_DEAD static char const* const stringBase_80377C05 = "d_a_door_mbossL1";
+SECTION_DEAD static char const* const stringBase_80377C16 = "d_a_door_bossL5";
+SECTION_DEAD static char const* const stringBase_80377C26 = "d_a_dshutter";
+SECTION_DEAD static char const* const stringBase_80377C33 = "d_a_door_spiral";
+SECTION_DEAD static char const* const stringBase_80377C43 = "d_a_tag_chgrestart";
+SECTION_DEAD static char const* const stringBase_80377C56 = "d_a_tag_setrestart";
+SECTION_DEAD static char const* const stringBase_80377C69 = "d_a_andsw";
+SECTION_DEAD static char const* const stringBase_80377C73 = "d_a_andsw2";
+SECTION_DEAD static char const* const stringBase_80377C7E = "d_a_myna";
+SECTION_DEAD static char const* const stringBase_80377C87 = "d_a_npc_gnd";
+SECTION_DEAD static char const* const stringBase_80377C93 = "d_a_npc_gra";
+SECTION_DEAD static char const* const stringBase_80377C9F = "d_a_npc_grc";
+SECTION_DEAD static char const* const stringBase_80377CAB = "d_a_npc_grd";
+SECTION_DEAD static char const* const stringBase_80377CB7 = "d_a_npc_grm";
+SECTION_DEAD static char const* const stringBase_80377CC3 = "d_a_npc_grmc";
+SECTION_DEAD static char const* const stringBase_80377CD0 = "d_a_npc_gro";
+SECTION_DEAD static char const* const stringBase_80377CDC = "d_a_npc_grr";
+SECTION_DEAD static char const* const stringBase_80377CE8 = "d_a_npc_grs";
+SECTION_DEAD static char const* const stringBase_80377CF4 = "d_a_npc_grz";
+SECTION_DEAD static char const* const stringBase_80377D00 = "d_a_npc_yamid";
+SECTION_DEAD static char const* const stringBase_80377D0E = "d_a_npc_yamit";
+SECTION_DEAD static char const* const stringBase_80377D1C = "d_a_npc_yamis";
+SECTION_DEAD static char const* const stringBase_80377D2A = "d_a_npc_blue_ns";
+SECTION_DEAD static char const* const stringBase_80377D3A = "d_a_npc_kakashi";
+SECTION_DEAD static char const* const stringBase_80377D4A = "d_a_npc_kdk";
+SECTION_DEAD static char const* const stringBase_80377D56 = "d_a_npc_aru";
+SECTION_DEAD static char const* const stringBase_80377D62 = "d_a_npc_bans";
+SECTION_DEAD static char const* const stringBase_80377D6F = "d_a_npc_besu";
+SECTION_DEAD static char const* const stringBase_80377D7C = "d_a_npc_bou";
+SECTION_DEAD static char const* const stringBase_80377D88 = "d_a_npc_bouS";
+SECTION_DEAD static char const* const stringBase_80377D95 = "d_a_npc_clerka";
+SECTION_DEAD static char const* const stringBase_80377DA4 = "d_a_npc_clerkb";
+SECTION_DEAD static char const* const stringBase_80377DB3 = "d_a_npc_clerkt";
+SECTION_DEAD static char const* const stringBase_80377DC2 = "d_a_npc_wrestler";
+SECTION_DEAD static char const* const stringBase_80377DD3 = "d_a_tag_arena";
+SECTION_DEAD static char const* const stringBase_80377DE1 = "d_a_tag_instruction";
+SECTION_DEAD static char const* const stringBase_80377DF5 = "d_a_npc_doc";
+SECTION_DEAD static char const* const stringBase_80377E01 = "d_a_npc_gwolf";
+SECTION_DEAD static char const* const stringBase_80377E0F = "d_a_npc_len";
+SECTION_DEAD static char const* const stringBase_80377E1B = "d_a_npc_lud";
+SECTION_DEAD static char const* const stringBase_80377E27 = "d_a_npc_fairy_seirei";
+SECTION_DEAD static char const* const stringBase_80377E3C = "d_a_npc_fairy";
+SECTION_DEAD static char const* const stringBase_80377E4A = "d_a_npc_hanjo";
+SECTION_DEAD static char const* const stringBase_80377E58 = "d_a_npc_henna";
+SECTION_DEAD static char const* const stringBase_80377E66 = "d_a_npc_henna0";
+SECTION_DEAD static char const* const stringBase_80377E75 = "d_a_npc_hoz";
+SECTION_DEAD static char const* const stringBase_80377E81 = "d_a_npc_jagar";
+SECTION_DEAD static char const* const stringBase_80377E8F = "d_a_npc_kkri";
+SECTION_DEAD static char const* const stringBase_80377E9C = "d_a_npc_kn";
+SECTION_DEAD static char const* const stringBase_80377EA7 = "d_a_obj_knBullet";
+SECTION_DEAD static char const* const stringBase_80377EB8 = "d_a_npc_knj";
+SECTION_DEAD static char const* const stringBase_80377EC4 = "d_a_npc_kolin";
+SECTION_DEAD static char const* const stringBase_80377ED2 = "d_a_npc_kolinb";
+SECTION_DEAD static char const* const stringBase_80377EE1 = "d_a_npc_kyury";
+SECTION_DEAD static char const* const stringBase_80377EEF = "d_a_npc_maro";
+SECTION_DEAD static char const* const stringBase_80377EFC = "d_a_npc_midp";
+SECTION_DEAD static char const* const stringBase_80377F09 = "d_a_npc_moi";
+SECTION_DEAD static char const* const stringBase_80377F15 = "d_a_npc_raca";
+SECTION_DEAD static char const* const stringBase_80377F22 = "d_a_npc_saru";
+SECTION_DEAD static char const* const stringBase_80377F2F = "d_a_npc_seib";
+SECTION_DEAD static char const* const stringBase_80377F3C = "d_a_npc_seic";
+SECTION_DEAD static char const* const stringBase_80377F49 = "d_a_npc_seid";
+SECTION_DEAD static char const* const stringBase_80377F56 = "d_a_npc_seira";
+SECTION_DEAD static char const* const stringBase_80377F64 = "d_a_npc_seira2";
+SECTION_DEAD static char const* const stringBase_80377F73 = "d_a_npc_seirei";
+SECTION_DEAD static char const* const stringBase_80377F82 = "d_a_npc_shaman";
+SECTION_DEAD static char const* const stringBase_80377F91 = "d_a_npc_shop_maro";
+SECTION_DEAD static char const* const stringBase_80377FA3 = "d_a_npc_sola";
+SECTION_DEAD static char const* const stringBase_80377FB0 = "d_a_npc_taro";
+SECTION_DEAD static char const* const stringBase_80377FBD = "d_a_npc_pachi_besu";
+SECTION_DEAD static char const* const stringBase_80377FD0 = "d_a_npc_pachi_taro";
+SECTION_DEAD static char const* const stringBase_80377FE3 = "d_a_npc_pachi_maro";
+SECTION_DEAD static char const* const stringBase_80377FF6 = "d_a_tag_pachi";
+SECTION_DEAD static char const* const stringBase_80378004 = "d_a_npc_the";
+SECTION_DEAD static char const* const stringBase_80378010 = "d_a_npc_tkj";
+SECTION_DEAD static char const* const stringBase_8037801C = "d_a_npc_tks";
+SECTION_DEAD static char const* const stringBase_80378028 = "d_a_npc_tkc";
+SECTION_DEAD static char const* const stringBase_80378034 = "d_a_obj_tks";
+SECTION_DEAD static char const* const stringBase_80378040 = "d_a_npc_toby";
+SECTION_DEAD static char const* const stringBase_8037804D = "d_a_npc_uri";
+SECTION_DEAD static char const* const stringBase_80378059 = "d_a_npc_yelia";
+SECTION_DEAD static char const* const stringBase_80378067 = "d_a_npc_ykm";
+SECTION_DEAD static char const* const stringBase_80378073 = "d_a_npc_ykw";
+SECTION_DEAD static char const* const stringBase_8037807F = "d_a_npc_zanb";
+SECTION_DEAD static char const* const stringBase_8037808C = "d_a_npc_zant";
+SECTION_DEAD static char const* const stringBase_80378099 = "d_a_npc_zelda";
+SECTION_DEAD static char const* const stringBase_803780A7 = "d_a_npc_zelR";
+SECTION_DEAD static char const* const stringBase_803780B4 = "d_a_npc_zelRo";
+SECTION_DEAD static char const* const stringBase_803780C2 = "d_a_obj_zra_freeze";
+SECTION_DEAD static char const* const stringBase_803780D5 = "d_a_npc_zrc";
+SECTION_DEAD static char const* const stringBase_803780E1 = "d_a_npc_zrz";
+SECTION_DEAD static char const* const stringBase_803780ED = "d_a_obj_zraMark";
+SECTION_DEAD static char const* const stringBase_803780FD = "d_a_npc_myna2";
+SECTION_DEAD static char const* const stringBase_8037810B = "d_a_tag_myna2";
+SECTION_DEAD static char const* const stringBase_80378119 = "d_a_npc_cdn3";
+SECTION_DEAD static char const* const stringBase_80378126 = "d_a_tag_schedule";
+SECTION_DEAD static char const* const stringBase_80378137 = "d_a_tag_escape";
+SECTION_DEAD static char const* const stringBase_80378146 = "d_a_npc_chat";
+SECTION_DEAD static char const* const stringBase_80378153 = "d_a_npc_soldierA";
+SECTION_DEAD static char const* const stringBase_80378164 = "d_a_npc_soldierB";
+SECTION_DEAD static char const* const stringBase_80378175 = "d_a_passer_mng";
+SECTION_DEAD static char const* const stringBase_80378184 = "d_a_npc_passer";
+SECTION_DEAD static char const* const stringBase_80378193 = "d_a_npc_passer2";
+SECTION_DEAD static char const* const stringBase_803781A3 = "d_a_npc_post";
+SECTION_DEAD static char const* const stringBase_803781B0 = "d_a_npc_pouya";
+SECTION_DEAD static char const* const stringBase_803781BE = "d_a_formation_mng";
+SECTION_DEAD static char const* const stringBase_803781D0 = "d_a_npc_fguard";
+SECTION_DEAD static char const* const stringBase_803781DF = "d_a_guard_mng";
+SECTION_DEAD static char const* const stringBase_803781ED = "d_a_tag_guard";
+SECTION_DEAD static char const* const stringBase_803781FB = "d_a_npc_guard";
+SECTION_DEAD static char const* const stringBase_80378209 = "d_a_npc_ash";
+SECTION_DEAD static char const* const stringBase_80378215 = "d_a_npc_ashB";
+SECTION_DEAD static char const* const stringBase_80378222 = "d_a_npc_shad";
+SECTION_DEAD static char const* const stringBase_8037822F = "d_a_npc_rafrel";
+SECTION_DEAD static char const* const stringBase_8037823E = "d_a_npc_moir";
+SECTION_DEAD static char const* const stringBase_8037824B = "d_a_npc_impal";
+SECTION_DEAD static char const* const stringBase_80378259 = "d_a_npc_shoe";
+SECTION_DEAD static char const* const stringBase_80378266 = "d_a_npc_doorboy";
+SECTION_DEAD static char const* const stringBase_80378276 = "d_a_npc_prayer";
+SECTION_DEAD static char const* const stringBase_80378285 = "d_a_npc_kasi_hana";
+SECTION_DEAD static char const* const stringBase_80378297 = "d_a_npc_kasi_kyu";
+SECTION_DEAD static char const* const stringBase_803782A8 = "d_a_npc_kasi_mich";
+SECTION_DEAD static char const* const stringBase_803782BA = "d_a_npc_drainSol";
+SECTION_DEAD static char const* const stringBase_803782CB = "d_a_npc_chin";
+SECTION_DEAD static char const* const stringBase_803782D8 = "d_a_npc_ins";
+SECTION_DEAD static char const* const stringBase_803782E4 = "d_a_npc_shop0";
+SECTION_DEAD static char const* const stringBase_803782F2 = "d_a_npc_mk";
+SECTION_DEAD static char const* const stringBase_803782FD = "d_a_npc_p2";
+SECTION_DEAD static char const* const stringBase_80378308 = "d_a_kytag00";
+SECTION_DEAD static char const* const stringBase_80378314 = "d_a_kytag01";
+SECTION_DEAD static char const* const stringBase_80378320 = "d_a_kytag02";
+SECTION_DEAD static char const* const stringBase_8037832C = "d_a_kytag03";
+SECTION_DEAD static char const* const stringBase_80378338 = "d_a_kytag04";
+SECTION_DEAD static char const* const stringBase_80378344 = "d_a_kytag05";
+SECTION_DEAD static char const* const stringBase_80378350 = "d_a_kytag06";
+SECTION_DEAD static char const* const stringBase_8037835C = "d_a_kytag07";
+SECTION_DEAD static char const* const stringBase_80378368 = "d_a_kytag08";
+SECTION_DEAD static char const* const stringBase_80378374 = "d_a_kytag09";
+SECTION_DEAD static char const* const stringBase_80378380 = "d_a_kytag10";
+SECTION_DEAD static char const* const stringBase_8037838C = "d_a_kytag11";
+SECTION_DEAD static char const* const stringBase_80378398 = "d_a_kytag12";
+SECTION_DEAD static char const* const stringBase_803783A4 = "d_a_kytag13";
+SECTION_DEAD static char const* const stringBase_803783B0 = "d_a_kytag14";
+SECTION_DEAD static char const* const stringBase_803783BC = "d_a_kytag15";
+SECTION_DEAD static char const* const stringBase_803783C8 = "d_a_kytag16";
+SECTION_DEAD static char const* const stringBase_803783D4 = "d_a_kytag17";
+SECTION_DEAD static char const* const stringBase_803783E0 = "d_a_ykgr";
+SECTION_DEAD static char const* const stringBase_803783E9 = "d_a_talk";
+SECTION_DEAD static char const* const stringBase_803783F2 = "d_a_obj_crope";
+SECTION_DEAD static char const* const stringBase_80378400 = "d_a_obj_bombf";
+SECTION_DEAD static char const* const stringBase_8037840E = "d_a_obj_bk_leaf";
+SECTION_DEAD static char const* const stringBase_8037841E = "d_a_tag_mhint";
+SECTION_DEAD static char const* const stringBase_8037842C = "d_a_tag_mmsg";
+SECTION_DEAD static char const* const stringBase_80378439 = "d_a_tag_mwait";
+SECTION_DEAD static char const* const stringBase_80378447 = "d_a_tag_mstop";
+SECTION_DEAD static char const* const stringBase_80378455 = "d_a_tag_stream";
+SECTION_DEAD static char const* const stringBase_80378464 = "d_a_tag_sppath";
+SECTION_DEAD static char const* const stringBase_80378473 = "d_a_tag_wljump";
+SECTION_DEAD static char const* const stringBase_80378482 = "d_a_tag_TWgate";
+SECTION_DEAD static char const* const stringBase_80378491 = "d_a_tag_Lv6Gate";
+SECTION_DEAD static char const* const stringBase_803784A1 = "d_a_tag_Lv7Gate";
+SECTION_DEAD static char const* const stringBase_803784B1 = "d_a_tag_Lv8Gate";
+SECTION_DEAD static char const* const stringBase_803784C1 = "d_a_tag_theB_hint";
+SECTION_DEAD static char const* const stringBase_803784D3 = "d_a_tag_assistance";
+SECTION_DEAD static char const* const stringBase_803784E6 = "d_a_demo00";
+SECTION_DEAD static char const* const stringBase_803784F1 = "d_a_tag_camera";
+SECTION_DEAD static char const* const stringBase_80378500 = "d_a_tag_chkpoint";
+SECTION_DEAD static char const* const stringBase_80378511 = "d_a_tag_event";
+SECTION_DEAD static char const* const stringBase_8037851F = "d_a_tag_evt";
+SECTION_DEAD static char const* const stringBase_8037852B = "d_a_tag_telop";
+SECTION_DEAD static char const* const stringBase_80378539 = "d_a_tag_howl";
+SECTION_DEAD static char const* const stringBase_80378546 = "d_a_tag_msg";
+SECTION_DEAD static char const* const stringBase_80378552 = "d_a_tag_lantern";
+SECTION_DEAD static char const* const stringBase_80378562 = "d_a_tag_mist";
+SECTION_DEAD static char const* const stringBase_8037856F = "d_a_dmidna";
+SECTION_DEAD static char const* const stringBase_8037857A = "d_a_vrbox";
+SECTION_DEAD static char const* const stringBase_80378584 = "d_a_vrbox2";
+SECTION_DEAD static char const* const stringBase_8037858F = "d_a_bg";
+SECTION_DEAD static char const* const stringBase_80378596 = "d_a_set_bgobj";
+SECTION_DEAD static char const* const stringBase_803785A4 = "d_a_bg_obj";
+SECTION_DEAD static char const* const stringBase_803785AF = "d_a_mirror";
+SECTION_DEAD static char const* const stringBase_803785BA = "d_a_movie_player";
+SECTION_DEAD static char const* const stringBase_803785CB = "d_a_title";
+SECTION_DEAD static char const* const stringBase_803785D5 = "d_a_fr";
+SECTION_DEAD static char const* const stringBase_803785DC = "d_a_econt";
+SECTION_DEAD static char const* const stringBase_803785E6 = "d_a_mg_rod";
+SECTION_DEAD static char const* const stringBase_803785F1 = "d_a_e_arrow";
+SECTION_DEAD static char const* const stringBase_803785FD = "d_a_bullet";
+SECTION_DEAD static char const* const stringBase_80378608 = "d_a_swhit0";
+SECTION_DEAD static char const* const stringBase_80378613 = "d_a_e_th_ball";
+SECTION_DEAD static char const* const stringBase_80378621 = "d_a_tag_evtarea";
+SECTION_DEAD static char const* const stringBase_80378631 = "d_a_tag_evtmsg";
+SECTION_DEAD static char const* const stringBase_80378640 = "d_a_tag_kmsg";
+SECTION_DEAD static char const* const stringBase_8037864D = "d_a_tag_push";
+SECTION_DEAD static char const* const stringBase_8037865A = "d_a_e_mk_bo";
+SECTION_DEAD static char const* const stringBase_80378666 = "d_a_e_mm_mt";
+SECTION_DEAD static char const* const stringBase_80378672 = "d_a_obj_kbox";
+SECTION_DEAD static char const* const stringBase_8037867F = "d_a_obj_fw";
+SECTION_DEAD static char const* const stringBase_8037868A = "d_a_b_gos";
+SECTION_DEAD static char const* const stringBase_80378694 = "d_a_obj_ystone";
+SECTION_DEAD static char const* const stringBase_803786A3 = "d_a_mant";
+SECTION_DEAD static char const* const stringBase_803786AC = "d_a_crod";
+SECTION_DEAD static char const* const stringBase_803786B5 = "d_a_obj_pleaf";
+SECTION_DEAD static char const* const stringBase_803786C3 = "d_a_obj_kbacket";
+SECTION_DEAD static char const* const stringBase_803786D3 = "d_a_obj_yel_bag";
+SECTION_DEAD static char const* const stringBase_803786E3 = "d_a_obj_pumpkin";
+SECTION_DEAD static char const* const stringBase_803786F3 = "d_a_obj_automata";
+SECTION_DEAD static char const* const stringBase_80378704 = "d_a_obj_gadget";
+SECTION_DEAD static char const* const stringBase_80378713 = "d_a_obj_kago";
+SECTION_DEAD static char const* const stringBase_80378720 = "d_a_obj_carry";
+SECTION_DEAD static char const* const stringBase_8037872E = "d_a_obj_stone";
+SECTION_DEAD static char const* const stringBase_8037873C = "d_a_obj_hb";
+SECTION_DEAD static char const* const stringBase_80378747 = "d_a_npc_inko";
+SECTION_DEAD static char const* const stringBase_80378754 = "d_a_bd";
+SECTION_DEAD static char const* const stringBase_8037875B = "d_a_obj_eff";
+SECTION_DEAD static char const* const stringBase_80378767 = "d_a_e_bi";
+SECTION_DEAD static char const* const stringBase_80378770 = "d_a_e_bi_leaf";
+SECTION_DEAD static char const* const stringBase_8037877E = "d_a_startAndGoal";
+SECTION_DEAD static char const* const stringBase_8037878F = "d_a_npc_df";
+SECTION_DEAD static char const* const stringBase_8037879A = "d_a_arrow";
+SECTION_DEAD static char const* const stringBase_803787A4 = "d_a_path_line";
+SECTION_DEAD static char const* const stringBase_803787B2 = "d_a_tag_allmato";
+SECTION_DEAD static char const* const stringBase_803787C2 = "d_a_obj_timer";
+SECTION_DEAD static char const* const stringBase_803787D0 = "d_a_scene_exit";
+SECTION_DEAD static char const* const stringBase_803787DF = "d_a_suspend";
+SECTION_DEAD static char const* const stringBase_803787EB = "d_a_grass";
+SECTION_DEAD static char const* const stringBase_803787F5 = "cDyl_Link i_ProfName=%d\n";
+SECTION_DEAD static char const* const stringBase_8037880E =
+    "cDyl_LinkASync: リンクに失敗しました。諦めます\n";
+SECTION_DEAD static char const* const stringBase_8037883E = "/";
+SECTION_DEAD static char const* const stringBase_80378840 = "/dvd/str/Final/Release/frameworkF.str";
+SECTION_DEAD static char const* const stringBase_80378866 = "f_pc_profile_lst";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80378877 = "";
 #pragma pop

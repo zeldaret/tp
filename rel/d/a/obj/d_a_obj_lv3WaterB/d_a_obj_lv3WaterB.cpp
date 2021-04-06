@@ -15,9 +15,9 @@ struct request_of_phase_process_class {};
 
 struct obj_lv3WaterB_class {};
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -36,13 +36,13 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct cXyz {};
-
-struct dKy_tevstr_c {};
-
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
+
+struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -91,14 +91,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObj_Lv3waterB_Draw(obj_lv3WaterB_class*);
-static void action(obj_lv3WaterB_class*);
-static void daObj_Lv3waterB_Execute(obj_lv3WaterB_class*);
-static bool daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class*);
-static void daObj_Lv3waterB_Delete(obj_lv3WaterB_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Lv3waterB_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class();
 extern "C" static void action__FP19obj_lv3WaterB_class();
 extern "C" static void daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class();
@@ -107,28 +99,11 @@ extern "C" static void daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" static void daObj_Lv3waterB_Create__FP10fopAc_ac_c();
-extern "C" extern u32 const lit_3725;
-extern "C" extern u8 const lit_3726[4];
-extern "C" extern u32 const lit_3751;
-extern "C" extern u32 const lit_3754;
-extern "C" extern u32 const lit_3755;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_LV3WATERB[12];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
+extern "C" extern char const* const d_a_obj_lv3WaterB__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKy_custom_colset(u8, u8, f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -175,163 +150,110 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80C5BD50-80C5BD54 0004+00 s=3 e=0 z=0  None .rodata    @3724 */
+/* 80C5BD50-80C5BD54 000000 0004+00 3/3 0/0 0/0 .rodata          @3724 */
 SECTION_RODATA static u32 const lit_3724 = 0x3F800000;
+SECTION_DEAD void* const cg_80C5BD50 = (void*)(&lit_3724);
 
-/* 80C5B578-80C5B71C 01A4+00 s=1 e=0 z=0  None .text daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class
- */
-//	80C5B588: 803621D8 (_savegpr_28)
-//	80C5B590: 80C5BD50 (lit_3724)
-//	80C5B594: 80C5BD50 (lit_3724)
-//	80C5B598: 8042CA54 (g_env_light)
-//	80C5B59C: 8042CA54 (g_env_light)
-//	80C5B5AC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80C5B5B0: 8042CA54 (g_env_light)
-//	80C5B5B4: 8042CA54 (g_env_light)
-//	80C5B5C4: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C5B5DC:
-// 8000D6D8 (entry__13mDoExt_btkAnmFP16J3DMaterialTablef) 	80C5B5E0: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B5E4: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B5EC: 80434AC8 (j3dSys)
-//	80C5B5F0: 80434AC8 (j3dSys)
-//	80C5B650: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B654: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B678: 80346C18 (C_MTXLightPerspective)
-//	80C5B684: 80325794 (setEffectMtx__13J3DTexMtxInfoFPA4_f)
-//	80C5B694: 803A1E5C (j3dDefaultMtx)
-//	80C5B698: 803A1E5C (j3dDefaultMtx)
-//	80C5B69C: 8032600C (simpleCalcMaterial__12J3DModelDataFUsPA4_f)
-//	80C5B6A4: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80C5B6B4: 8042CA54 (g_env_light)
-//	80C5B6B8: 8042CA54 (g_env_light)
-//	80C5B6C4: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C5B6C8:
-// 804061C0 (g_dComIfG_gameInfo) 	80C5B6CC: 804061C0 (g_dComIfG_gameInfo) 	80C5B6E4: 8000DCC4
-//(mDoExt_modelUpdateDL__FP8J3DModel) 	80C5B6E8: 804061C0 (g_dComIfG_gameInfo) 	80C5B6EC:
-//804061C0 (g_dComIfG_gameInfo) 	80C5B708: 80362224 (_restgpr_28)
+/* 80C5BD54-80C5BD58 000004 0004+00 0/1 0/0 0/0 .rodata          @3725 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Draw(obj_lv3WaterB_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class.s"
-}
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3725 = 0xBC75C28F;
+SECTION_DEAD void* const cg_80C5BD54 = (void*)(&lit_3725);
 #pragma pop
 
-/* 80C5B71C-80C5B89C 0180+00 s=1 e=0 z=0  None .text      action__FP19obj_lv3WaterB_class */
-//	80C5B734: 80C5BD50 (lit_3724)
-//	80C5B738: 80C5BD50 (lit_3724)
-//	80C5B75C: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B760: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B76C: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C5B78C: 801A880C (dKy_custom_colset__FUcUcf)
-//	80C5B7E4: 8026FA3C (cLib_addCalc2__FPffff)
-//	80C5B7E8: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B7EC: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B7FC: 803468E8 (PSMTXTrans)
-//	80C5B800: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B804: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B810: 803464B0 (PSMTXCopy)
-//	80C5B814: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B818: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B820: 803464B0 (PSMTXCopy)
-//	80C5B828: 8007B9C0 (Move__4dBgWFv)
-//	80C5B830: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80C5B840: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B844: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B854: 803468E8 (PSMTXTrans)
-//	80C5B858: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B85C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B868: 803464B0 (PSMTXCopy)
-//	80C5B86C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B870: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5B878: 803464B0 (PSMTXCopy)
-//	80C5B880: 8007B9C0 (Move__4dBgWFv)
+/* 80C5BD58-80C5BD5C 000008 0004+00 0/2 0/0 0/0 .rodata          @3726 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void action(obj_lv3WaterB_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/action__FP19obj_lv3WaterB_class.s"
-}
-#pragma pop
-
-/* 80C5B89C-80C5B8C0 0024+00 s=2 e=0 z=0  None .text
- * daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class             */
-//	80C5B8A8: 80C5B71C (action__FP19obj_lv3WaterB_class)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Execute(obj_lv3WaterB_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class.s"
-}
-#pragma pop
-
-/* 80C5B8C0-80C5B8C8 0008+00 s=1 e=0 z=0  None .text
- * daObj_Lv3waterB_IsDelete__FP19obj_lv3WaterB_class            */
-static bool daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class* param_0) {
-    return true;
-}
-
-/* ############################################################################################## */
-/* 80C5BD54-80C5BD58 0004+00 s=0 e=0 z=0  None .rodata    @3725 */
-SECTION_RODATA u32 const lit_3725 = 0xBC75C28F;
-
-/* 80C5BD58-80C5BD5C 0004+00 s=0 e=0 z=0  None .rodata    @3726 */
-SECTION_RODATA u8 const lit_3726[4] = {
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3726[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
-
-/* 80C5BD5C-80C5BD60 0004+00 s=0 e=0 z=0  None .rodata    @3751 */
-SECTION_RODATA u32 const lit_3751 = 0x457A0000;
-
-/* 80C5BD60-80C5BD64 0004+00 s=1 e=0 z=0  None .rodata    @3752 */
-SECTION_RODATA static u32 const lit_3752 = 0x43200000;
-
-/* 80C5BD64-80C5BD68 0004+00 s=1 e=0 z=0  None .rodata    @3753 */
-SECTION_RODATA static u32 const lit_3753 = 0x4661C800;
-
-/* 80C5BD68-80C5BD6C 0004+00 s=0 e=0 z=0  None .rodata    @3754 */
-SECTION_RODATA u32 const lit_3754 = 0x3D4CCCCD;
-
-/* 80C5BD6C-80C5BD70 0004+00 s=0 e=0 z=0  None .rodata    @3755 */
-SECTION_RODATA u32 const lit_3755 = 0x41200000;
-
-/* 80C5BD70-80C5BD84 0014+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C5BD70 = "L3_bwater";
-SECTION_DEAD char const* const stringBase_80C5BD7A = "S_octhibi";
+SECTION_DEAD void* const cg_80C5BD58 = (void*)(&lit_3726);
 #pragma pop
 
-/* 80C5B8C8-80C5B94C 0084+00 s=1 e=0 z=0  None .text
- * daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class              */
-//	80C5B8E4: 80C5BD70 (stringBase0)
-//	80C5B8E8: 80C5BD70 (stringBase0)
-//	80C5B8EC: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80C5B8F4: 80C5BD70 (stringBase0)
-//	80C5B8F8: 80C5BD70 (stringBase0)
-//	80C5B900: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80C5B904: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B908: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B918: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C5B92C: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 80C5B578-80C5B71C 000078 01A4+00 1/0 0/0 0/0 .text
+ * daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Delete(obj_lv3WaterB_class* param_0) {
+static asm void daObj_Lv3waterB_Draw(obj_lv3WaterB_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80C5BD5C-80C5BD60 00000C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3751 = 0x457A0000;
+SECTION_DEAD void* const cg_80C5BD5C = (void*)(&lit_3751);
+#pragma pop
+
+/* 80C5BD60-80C5BD64 000010 0004+00 1/2 0/0 0/0 .rodata          @3752 */
+SECTION_RODATA static u32 const lit_3752 = 0x43200000;
+SECTION_DEAD void* const cg_80C5BD60 = (void*)(&lit_3752);
+
+/* 80C5BD64-80C5BD68 000014 0004+00 1/2 0/0 0/0 .rodata          @3753 */
+SECTION_RODATA static u32 const lit_3753 = 0x4661C800;
+SECTION_DEAD void* const cg_80C5BD64 = (void*)(&lit_3753);
+
+/* 80C5BD68-80C5BD6C 000018 0004+00 0/1 0/0 0/0 .rodata          @3754 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3754 = 0x3D4CCCCD;
+SECTION_DEAD void* const cg_80C5BD68 = (void*)(&lit_3754);
+#pragma pop
+
+/* 80C5BD6C-80C5BD70 00001C 0004+00 0/1 0/0 0/0 .rodata          @3755 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3755 = 0x41200000;
+SECTION_DEAD void* const cg_80C5BD6C = (void*)(&lit_3755);
+#pragma pop
+
+/* 80C5B71C-80C5B89C 00021C 0180+00 1/1 0/0 0/0 .text            action__FP19obj_lv3WaterB_class */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void action(obj_lv3WaterB_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/action__FP19obj_lv3WaterB_class.s"
+}
+#pragma pop
+
+/* 80C5B89C-80C5B8C0 00039C 0024+00 2/1 0/0 0/0 .text
+ * daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daObj_Lv3waterB_Execute(obj_lv3WaterB_class* param_0) {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class.s"
+}
+#pragma pop
+
+/* 80C5B8C0-80C5B8C8 0003C0 0008+00 1/0 0/0 0/0 .text
+ * daObj_Lv3waterB_IsDelete__FP19obj_lv3WaterB_class            */
+static bool daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class* param_0) {
+    return true;
+}
+
+/* 80C5B8C8-80C5B94C 0003C8 0084+00 1/0 0/0 0/0 .text
+ * daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void daObj_Lv3waterB_Delete(obj_lv3WaterB_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C5BD84-80C5BDA4 0020+00 s=1 e=0 z=0  None .data      l_daObj_Lv3waterB_Method */
+/* 80C5BD84-80C5BDA4 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Lv3waterB_Method */
 SECTION_DATA static void* l_daObj_Lv3waterB_Method[8] = {
     (void*)daObj_Lv3waterB_Create__FP10fopAc_ac_c,
     (void*)daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class,
@@ -343,8 +265,8 @@ SECTION_DATA static void* l_daObj_Lv3waterB_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C5BDA4-80C5BDD4 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_LV3WATERB */
-SECTION_DATA void* g_profile_OBJ_LV3WATERB[12] = {
+/* 80C5BDA4-80C5BDD4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_LV3WATERB */
+SECTION_DATA extern void* g_profile_OBJ_LV3WATERB[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00D70000, (void*)&g_fpcLf_Method,
     (void*)0x000005F8, (void*)NULL,
@@ -353,61 +275,24 @@ SECTION_DATA void* g_profile_OBJ_LV3WATERB[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C5BDD4-80C5BDE0 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
+/* 80C5BDD4-80C5BDE0 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C5B94C-80C5BB8C 0240+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
-//	80C5B95C: 803621DC (_savegpr_29)
-//	80C5B964: 80C5BD70 (stringBase0)
-//	80C5B968: 80C5BD70 (stringBase0)
-//	80C5B970: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B974: 804061C0 (g_dComIfG_gameInfo)
-//	80C5B988: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C5B998: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80C5B9B8: 802CEC4C (__nw__FUl)
-//	80C5B9C4: 80C5BDD4 (__vt__12J3DFrameCtrl)
-//	80C5B9C8: 80C5BDD4 (__vt__12J3DFrameCtrl)
-//	80C5B9D4: 803283FC (init__12J3DFrameCtrlFs)
-//	80C5B9F8: 80C5BD70 (stringBase0)
-//	80C5B9FC: 80C5BD70 (stringBase0)
-//	80C5BA0C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C5BA2C: 80C5BD50 (lit_3724)
-//	80C5BA30: 80C5BD50 (lit_3724)
-//	80C5BA3C: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
-//	80C5BA54: 802CEC4C (__nw__FUl)
-//	80C5BA60: 8007B970 (__ct__4dBgWFv)
-//	80C5BA80: 80C5BD70 (stringBase0)
-//	80C5BA84: 80C5BD70 (stringBase0)
-//	80C5BA94: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C5BAA8: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	80C5BAC0: 80C5BD70 (stringBase0)
-//	80C5BAC4: 80C5BD70 (stringBase0)
-//	80C5BAD8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C5BAE8: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80C5BB08: 802CEC4C (__nw__FUl)
-//	80C5BB14: 8007B970 (__ct__4dBgWFv)
-//	80C5BB34: 80C5BD70 (stringBase0)
-//	80C5BB38: 80C5BD70 (stringBase0)
-//	80C5BB4C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C5BB60: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	80C5BB78: 80362228 (_restgpr_29)
+/* 80C5B94C-80C5BB8C 00044C 0240+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C5BB8C-80C5BBD4 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-//	80C5BBA4: 80C5BDD4 (__vt__12J3DFrameCtrl)
-//	80C5BBA8: 80C5BDD4 (__vt__12J3DFrameCtrl)
-//	80C5BBB8: 802CED3C (__dl__FPv)
+/* 80C5BB8C-80C5BBD4 00068C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,36 +302,20 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C5BBD4-80C5BD48 0174+00 s=1 e=0 z=0  None .text      daObj_Lv3waterB_Create__FP10fopAc_ac_c */
-//	80C5BBE4: 803621DC (_savegpr_29)
-//	80C5BC00: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C5BC14: 80C5BD70 (stringBase0)
-//	80C5BC18: 80C5BD70 (stringBase0)
-//	80C5BC1C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C5BC28: 80C5BD70 (stringBase0)
-//	80C5BC2C: 80C5BD70 (stringBase0)
-//	80C5BC34: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C5BC4C: 80C5B94C (useHeapInit__FP10fopAc_ac_c)
-//	80C5BC50: 80C5B94C (useHeapInit__FP10fopAc_ac_c)
-//	80C5BC5C: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80C5BC70: 804061C0 (g_dComIfG_gameInfo)
-//	80C5BC74: 804061C0 (g_dComIfG_gameInfo)
-//	80C5BC88: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80C5BCA8: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80C5BCBC: 804061C0 (g_dComIfG_gameInfo)
-//	80C5BCC0: 804061C0 (g_dComIfG_gameInfo)
-//	80C5BCCC: 80034934 (isDungeonItem__12dSv_memBit_cCFi)
-//	80C5BCD8: 80C5BD60 (lit_3752)
-//	80C5BCDC: 80C5BD60 (lit_3752)
-//	80C5BCE4: 80C5BD64 (lit_3753)
-//	80C5BCE8: 80C5BD64 (lit_3753)
-//	80C5BD14: 80C5B89C (daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class)
-//	80C5BD34: 80362228 (_restgpr_29)
+/* 80C5BBD4-80C5BD48 0006D4 0174+00 1/0 0/0 0/0 .text daObj_Lv3waterB_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Lv3waterB_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80C5BD70-80C5BD84 000020 0014+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C5BD70 = "L3_bwater";
+SECTION_DEAD static char const* const stringBase_80C5BD7A = "S_octhibi";
 #pragma pop

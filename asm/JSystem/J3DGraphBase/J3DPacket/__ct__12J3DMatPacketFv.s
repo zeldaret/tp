@@ -5,8 +5,8 @@ lbl_80312948:
 /* 80312954  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80312958  7C 7F 1B 78 */	mr r31, r3
 /* 8031295C  4B FF FE 1D */	bl __ct__13J3DDrawPacketFv
-/* 80312960  3C 60 80 3D */	lis r3, __vt__12J3DMatPacket@ha
-/* 80312964  38 03 D9 54 */	addi r0, r3, __vt__12J3DMatPacket@l
+/* 80312960  3C 60 80 3D */	lis r3, __vt__12J3DMatPacket@ha /* 0x803CD954@ha */
+/* 80312964  38 03 D9 54 */	addi r0, r3, __vt__12J3DMatPacket@l /* 0x803CD954@l */
 /* 80312968  90 1F 00 00 */	stw r0, 0(r31)
 /* 8031296C  38 60 00 00 */	li r3, 0
 /* 80312970  90 7F 00 28 */	stw r3, 0x28(r31)

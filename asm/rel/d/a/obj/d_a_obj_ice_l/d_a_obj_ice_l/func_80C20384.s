@@ -5,8 +5,8 @@ lbl_80C20384:
 /* 80C20390  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C20394  7C 7F 1B 78 */	mr r31, r3
 /* 80C20398  4B FF F9 35 */	bl initBaseMtx__12daObjIce_l_cFv
-/* 80C2039C  3C 60 80 C2 */	lis r3, rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c@ha
-/* 80C203A0  38 03 FD 5C */	addi r0, r3, rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c@l
+/* 80C2039C  3C 60 80 C2 */	lis r3, rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c@ha /* 0x80C1FD5C@ha */
+/* 80C203A0  38 03 FD 5C */	addi r0, r3, rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c@l /* 0x80C1FD5C@l */
 /* 80C203A4  80 7F 05 68 */	lwz r3, 0x568(r31)
 /* 80C203A8  90 03 00 B4 */	stw r0, 0xb4(r3)
 /* 80C203AC  38 60 00 04 */	li r3, 4

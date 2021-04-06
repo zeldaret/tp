@@ -27,11 +27,11 @@ lbl_804A5798:
 /* 804A57FC  90 1E 05 C8 */	stw r0, 0x5c8(r30)
 /* 804A5800  80 1E 05 A8 */	lwz r0, 0x5a8(r30)
 /* 804A5804  90 1E 05 CC */	stw r0, 0x5cc(r30)
-/* 804A5808  3C 80 80 4A */	lis r4, createHeapCallBack__FP10fopAc_ac_c@ha
-/* 804A580C  38 84 4F 54 */	addi r4, r4, createHeapCallBack__FP10fopAc_ac_c@l
+/* 804A5808  3C 80 80 4A */	lis r4, createHeapCallBack__FP10fopAc_ac_c@ha /* 0x804A4F54@ha */
+/* 804A580C  38 84 4F 54 */	addi r4, r4, createHeapCallBack__FP10fopAc_ac_c@l /* 0x804A4F54@l */
 /* 804A5810  3C A0 90 05 */	lis r5, 0x9005 /* 0x9004C5E0@ha */
 /* 804A5814  38 A5 C5 E0 */	addi r5, r5, 0xC5E0 /* 0x9004C5E0@l */
-/* 804A5818  4B B7 4C 98 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 804A5818  4B B7 4C 99 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 804A581C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804A5820  41 82 01 10 */	beq lbl_804A5930
 /* 804A5824  80 1E 05 D4 */	lwz r0, 0x5d4(r30)
@@ -45,7 +45,7 @@ lbl_804A5798:
 /* 804A5844  39 00 00 00 */	li r8, 0
 /* 804A5848  39 20 00 00 */	li r9, 0
 /* 804A584C  39 40 00 00 */	li r10, 0
-/* 804A5850  4B B9 2C C8 */	b dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc
+/* 804A5850  4B B9 2C C9 */	bl dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc
 /* 804A5854  7F C3 F3 78 */	mr r3, r30
 /* 804A5858  4B FF ED 49 */	bl setBaseMtx__10daDemo00_cFv
 /* 804A585C  80 7E 05 D4 */	lwz r3, 0x5d4(r30)
@@ -57,8 +57,8 @@ lbl_804A5798:
 /* 804A5874  28 03 00 00 */	cmplwi r3, 0
 /* 804A5878  41 82 00 2C */	beq lbl_804A58A4
 /* 804A587C  A8 03 00 14 */	lha r0, 0x14(r3)
-/* 804A5880  3C 60 80 4B */	lis r3, lit_4719@ha
-/* 804A5884  C8 23 88 B8 */	lfd f1, lit_4719@l(r3)
+/* 804A5880  3C 60 80 4B */	lis r3, lit_4719@ha /* 0x804A88B8@ha */
+/* 804A5884  C8 23 88 B8 */	lfd f1, lit_4719@l(r3)  /* 0x804A88B8@l */
 /* 804A5888  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 804A588C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 804A5890  3C 00 43 30 */	lis r0, 0x4330
@@ -67,8 +67,8 @@ lbl_804A5798:
 /* 804A589C  EC 00 08 28 */	fsubs f0, f0, f1
 /* 804A58A0  D0 1F 00 38 */	stfs f0, 0x38(r31)
 lbl_804A58A4:
-/* 804A58A4  3C 60 80 4B */	lis r3, lit_4676@ha
-/* 804A58A8  38 83 8A 04 */	addi r4, r3, lit_4676@l
+/* 804A58A4  3C 60 80 4B */	lis r3, lit_4676@ha /* 0x804A8A04@ha */
+/* 804A58A8  38 83 8A 04 */	addi r4, r3, lit_4676@l /* 0x804A8A04@l */
 /* 804A58AC  80 64 00 00 */	lwz r3, 0(r4)
 /* 804A58B0  80 04 00 04 */	lwz r0, 4(r4)
 /* 804A58B4  90 7E 05 7C */	stw r3, 0x57c(r30)
@@ -78,7 +78,7 @@ lbl_804A58A4:
 /* 804A58C4  7F C3 F3 78 */	mr r3, r30
 /* 804A58C8  7F E4 FB 78 */	mr r4, r31
 /* 804A58CC  39 9E 05 7C */	addi r12, r30, 0x57c
-/* 804A58D0  4B EB C7 B4 */	b __ptmf_scall
+/* 804A58D0  4B EB C7 B5 */	bl __ptmf_scall
 /* 804A58D4  60 00 00 00 */	nop 
 /* 804A58D8  48 00 00 58 */	b lbl_804A5930
 lbl_804A58DC:
@@ -103,7 +103,7 @@ lbl_804A590C:
 /* 804A5920  39 00 00 00 */	li r8, 0
 /* 804A5924  39 20 00 00 */	li r9, 0
 /* 804A5928  39 40 00 00 */	li r10, 0
-/* 804A592C  4B B9 2B EC */	b dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc
+/* 804A592C  4B B9 2B ED */	bl dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc
 lbl_804A5930:
 /* 804A5930  38 60 00 01 */	li r3, 1
 /* 804A5934  83 E1 00 1C */	lwz r31, 0x1c(r1)

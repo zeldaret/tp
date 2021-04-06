@@ -3,7 +3,7 @@ lbl_807C5CF0:
 /* 807C5CF4  7C 08 02 A6 */	mflr r0
 /* 807C5CF8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 807C5CFC  39 61 00 30 */	addi r11, r1, 0x30
-/* 807C5D00  4B B9 C4 C8 */	b _savegpr_24
+/* 807C5D00  4B B9 C4 C9 */	bl _savegpr_24
 /* 807C5D04  7C 7B 1B 78 */	mr r27, r3
 /* 807C5D08  7C BC 2B 78 */	mr r28, r5
 /* 807C5D0C  7C DD 33 78 */	mr r29, r6
@@ -35,13 +35,13 @@ lbl_807C5D34:
 /* 807C5D6C  3B 44 09 94 */	addi r26, r4, 0x994
 /* 807C5D70  7F 5B D2 14 */	add r26, r27, r26
 /* 807C5D74  7F 44 D3 78 */	mr r4, r26
-/* 807C5D78  4B AA AE FC */	b cLib_targetAngleX__FPC4cXyzPC4cXyz
+/* 807C5D78  4B AA AE FD */	bl cLib_targetAngleX__FPC4cXyzPC4cXyz
 /* 807C5D7C  1C 18 00 06 */	mulli r0, r24, 6
 /* 807C5D80  7F 1B 02 14 */	add r24, r27, r0
 /* 807C5D84  B0 78 0E 44 */	sth r3, 0xe44(r24)
 /* 807C5D88  7F 23 CB 78 */	mr r3, r25
 /* 807C5D8C  7F 44 D3 78 */	mr r4, r26
-/* 807C5D90  4B AA AE 74 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 807C5D90  4B AA AE 75 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 807C5D94  B0 78 0E 46 */	sth r3, 0xe46(r24)
 /* 807C5D98  38 00 00 00 */	li r0, 0
 /* 807C5D9C  B0 18 0E 48 */	sth r0, 0xe48(r24)
@@ -64,7 +64,7 @@ lbl_807C5DD0:
 /* 807C5DD4  2C 1E 00 0A */	cmpwi r30, 0xa
 /* 807C5DD8  41 80 FF 40 */	blt lbl_807C5D18
 /* 807C5DDC  39 61 00 30 */	addi r11, r1, 0x30
-/* 807C5DE0  4B B9 C4 34 */	b _restgpr_24
+/* 807C5DE0  4B B9 C4 35 */	bl _restgpr_24
 /* 807C5DE4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 807C5DE8  7C 08 03 A6 */	mtlr r0
 /* 807C5DEC  38 21 00 30 */	addi r1, r1, 0x30

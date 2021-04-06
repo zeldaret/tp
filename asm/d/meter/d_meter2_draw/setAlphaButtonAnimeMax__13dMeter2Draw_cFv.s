@@ -6,8 +6,8 @@ lbl_802190A8:
 /* 802190B8  7C 7F 1B 78 */	mr r31, r3
 /* 802190BC  80 63 02 F8 */	lwz r3, 0x2f8(r3)
 /* 802190C0  48 03 C7 69 */	bl getAlphaRate__13CPaneMgrAlphaFv
-/* 802190C4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802190C8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802190C4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802190C8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802190CC  C0 43 00 18 */	lfs f2, 0x18(r3)
 /* 802190D0  C0 03 00 84 */	lfs f0, 0x84(r3)
 /* 802190D4  EC 02 00 32 */	fmuls f0, f2, f0
@@ -34,10 +34,10 @@ lbl_80219120:
 /* 80219124  A8 03 00 16 */	lha r0, 0x16(r3)
 /* 80219128  2C 00 00 05 */	cmpwi r0, 5
 /* 8021912C  40 82 00 34 */	bne lbl_80219160
-/* 80219130  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80219134  38 83 01 88 */	addi r4, r3, g_meter2_info@l
-/* 80219138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021913C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80219130  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80219134  38 83 01 88 */	addi r4, r3, g_meter2_info@l /* 0x80430188@l */
+/* 80219138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021913C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80219140  88 03 4E 0C */	lbz r0, 0x4e0c(r3)
 /* 80219144  7C 00 07 74 */	extsb r0, r0
 /* 80219148  7C 64 02 14 */	add r3, r4, r0

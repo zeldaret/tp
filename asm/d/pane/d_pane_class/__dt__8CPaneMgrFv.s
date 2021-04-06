@@ -7,8 +7,8 @@ lbl_80253A18:
 /* 80253A2C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80253A30  7C 9F 23 78 */	mr r31, r4
 /* 80253A34  41 82 00 64 */	beq lbl_80253A98
-/* 80253A38  3C 60 80 3C */	lis r3, __vt__8CPaneMgr@ha
-/* 80253A3C  38 03 2E 04 */	addi r0, r3, __vt__8CPaneMgr@l
+/* 80253A38  3C 60 80 3C */	lis r3, __vt__8CPaneMgr@ha /* 0x803C2E04@ha */
+/* 80253A3C  38 03 2E 04 */	addi r0, r3, __vt__8CPaneMgr@l /* 0x803C2E04@l */
 /* 80253A40  90 1E 00 00 */	stw r0, 0(r30)
 /* 80253A44  80 9E 00 1C */	lwz r4, 0x1c(r30)
 /* 80253A48  28 04 00 00 */	cmplwi r4, 0

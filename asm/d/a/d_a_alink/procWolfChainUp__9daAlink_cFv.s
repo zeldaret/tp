@@ -18,8 +18,8 @@ lbl_8013DE70:
 /* 8013DEB0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013DEB4  40 81 00 60 */	ble lbl_8013DF14
 /* 8013DEB8  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8013DEBC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha
-/* 8013DEC0  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l
+/* 8013DEBC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha /* 0x8038F95C@ha */
+/* 8013DEC0  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l /* 0x8038F95C@l */
 /* 8013DEC4  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 8013DEC8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013DECC  40 81 00 48 */	ble lbl_8013DF14
@@ -29,8 +29,8 @@ lbl_8013DED0:
 /* 8013DED8  7F A3 EB 78 */	mr r3, r29
 /* 8013DEDC  4B FE F2 CD */	bl procWolfWaitInit__9daAlink_cFv
 /* 8013DEE0  7F A3 EB 78 */	mr r3, r29
-/* 8013DEE4  3C 80 80 39 */	lis r4, m_wlAnmDataTable__9daAlink_c@ha
-/* 8013DEE8  38 84 10 10 */	addi r4, r4, m_wlAnmDataTable__9daAlink_c@l
+/* 8013DEE4  3C 80 80 39 */	lis r4, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 8013DEE8  38 84 10 10 */	addi r4, r4, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 8013DEEC  A0 84 04 50 */	lhz r4, 0x450(r4)
 /* 8013DEF0  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 8013DEF4  C0 42 92 C4 */	lfs f2, lit_6109(r2)

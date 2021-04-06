@@ -25,35 +25,6 @@ struct cXyz {
 // Forward References:
 //
 
-void cLib_memCpy(void*, void const*, u32);
-void cLib_memSet(void*, int, u32);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void cLib_addCalc0(f32*, f32, f32);
-void cLib_addCalcPos(cXyz*, cXyz const&, f32, f32, f32);
-void cLib_addCalcPosXZ(cXyz*, cXyz const&, f32, f32, f32);
-void cLib_addCalcPos2(cXyz*, cXyz const&, f32, f32);
-void cLib_addCalcPosXZ2(cXyz*, cXyz const&, f32, f32);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
-void cLib_chaseUC(u8*, u8, u8);
-void cLib_chaseS(s16*, s16, s16);
-void cLib_chaseF(f32*, f32, f32);
-void cLib_chasePos(cXyz*, cXyz const&, f32);
-void cLib_chasePosXZ(cXyz*, cXyz const&, f32);
-void cLib_chaseAngleS(s16*, s16, s16);
-void cLib_targetAngleY(Vec const*, Vec const*);
-void cLib_targetAngleY(Vec const&, Vec const&);
-void cLib_targetAngleX(cXyz const*, cXyz const*);
-void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
-void cLib_distanceAngleS(s16, s16);
-void MtxInit();
-void MtxTrans(f32, f32, f32, u8);
-void MtxScale(f32, f32, f32, u8);
-void MtxPosition(cXyz*, cXyz*);
-void MtxPush();
-void MtxPull();
-
 extern "C" void cLib_memCpy__FPvPCvUl();
 extern "C" void cLib_memSet__FPviUl();
 extern "C" void cLib_addCalc__FPfffff();
@@ -82,13 +53,10 @@ extern "C" void MtxScale__FfffUc();
 extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void MtxPush__Fv();
 extern "C" void MtxPull__Fv();
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void cM_atan2s(f32, f32);
 
 SECTION_INIT void memset();
 SECTION_INIT void memcpy();
@@ -115,8 +83,7 @@ extern "C" extern u32 __float_nan;
 // Declarations:
 //
 
-/* 8026F93C-8026F95C 0020+00 s=0 e=3 z=0  None .text      cLib_memCpy__FPvPCvUl */
-//	8026F948: 80003540 (memcpy)
+/* 8026F93C-8026F95C 26A27C 0020+00 0/0 3/3 0/0 .text            cLib_memCpy__FPvPCvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,8 +93,7 @@ asm void cLib_memCpy(void* param_0, void const* param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 8026F95C-8026F97C 0020+00 s=0 e=4 z=0  None .text      cLib_memSet__FPviUl */
-//	8026F968: 80003458 (memset)
+/* 8026F95C-8026F97C 26A29C 0020+00 0/0 4/4 0/0 .text            cLib_memSet__FPviUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,15 +104,14 @@ asm void cLib_memSet(void* param_0, int param_1, u32 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804551E0-804551E8 0004+04 s=9 e=0 z=0  None .sdata2    @2262 */
+/* 804551E0-804551E8 0037E0 0004+04 9/9 0/0 0/0 .sdata2          @2262 */
 SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 8026F97C-8026FA3C 00C0+00 s=0 e=50 z=178  None .text      cLib_addCalc__FPfffff */
-//	8026F9D8: 804551E0 (lit_2262)
+/* 8026F97C-8026FA3C 26A2BC 00C0+00 0/0 50/50 178/178 .text            cLib_addCalc__FPfffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -156,7 +121,7 @@ asm void cLib_addCalc(f32* param_0, f32 param_1, f32 param_2, f32 param_3, f32 p
 }
 #pragma pop
 
-/* 8026FA3C-8026FA80 0044+00 s=0 e=20 z=701  None .text      cLib_addCalc2__FPffff */
+/* 8026FA3C-8026FA80 26A37C 0044+00 0/0 20/20 701/701 .text            cLib_addCalc2__FPffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -166,7 +131,7 @@ asm void cLib_addCalc2(f32* param_0, f32 param_1, f32 param_2, f32 param_3) {
 }
 #pragma pop
 
-/* 8026FA80-8026FAB8 0038+00 s=0 e=2 z=322  None .text      cLib_addCalc0__FPfff */
+/* 8026FA80-8026FAB8 26A3C0 0038+00 0/0 2/2 322/322 .text            cLib_addCalc0__FPfff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -177,50 +142,25 @@ asm void cLib_addCalc0(f32* param_0, f32 param_1, f32 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804551E8-804551F0 0008+00 s=7 e=0 z=0  None .sdata2    @2379 */
+/* 804551E8-804551F0 0037E8 0008+00 7/7 0/0 0/0 .sdata2          @2379 */
 SECTION_SDATA2 static f64 lit_2379 = 0.5;
 
-/* 804551F0-804551F8 0008+00 s=7 e=0 z=0  None .sdata2    @2380 */
+/* 804551F0-804551F8 0037F0 0008+00 7/7 0/0 0/0 .sdata2          @2380 */
 SECTION_SDATA2 static f64 lit_2380 = 3.0;
 
-/* 804551F8-80455200 0008+00 s=7 e=0 z=0  None .sdata2    @2381 */
+/* 804551F8-80455200 0037F8 0008+00 7/7 0/0 0/0 .sdata2          @2381 */
 SECTION_SDATA2 static u8 lit_2381[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80455200-80455208 0004+04 s=5 e=0 z=0  None .sdata2    @2382 */
+/* 80455200-80455208 003800 0004+04 5/5 0/0 0/0 .sdata2          @2382 */
 SECTION_SDATA2 static f32 lit_2382[1 + 1 /* padding */] = {
     7.999999968033578e-11f,
     /* padding */
     0.0f,
 };
 
-/* 8026FAB8-8026FDF4 033C+00 s=0 e=3 z=78  None .text      cLib_addCalcPos__FP4cXyzRC4cXyzfff */
-//	8026FB00: 8026706C (__ne__4cXyzCFRC3Vec)
-//	8026FB18: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8026FB38: 80347138 (PSVECSquareMag)
-//	8026FB3C: 804551E0 (lit_2262)
-//	8026FB4C: 804551E8 (lit_2379)
-//	8026FB54: 804551F0 (lit_2380)
-//	8026FB9C: 804551F8 (lit_2381)
-//	8026FBA8: 80450AE0 (__float_nan)
-//	8026FBAC: 80450AE0 (__float_nan)
-//	8026FC18: 80450AE0 (__float_nan)
-//	8026FC1C: 80450AE0 (__float_nan)
-//	8026FC54: 803470D8 (PSVECScale)
-//	8026FC60: 80455200 (lit_2382)
-//	8026FC80: 803470D8 (PSVECScale)
-//	8026FC9C: 803470D8 (PSVECScale)
-//	8026FCAC: 803470B4 (PSVECSubtract)
-//	8026FCD4: 8034739C (PSVECSquareDistance)
-//	8026FCD8: 804551E0 (lit_2262)
-//	8026FCE8: 804551E8 (lit_2379)
-//	8026FCF0: 804551F0 (lit_2380)
-//	8026FD38: 804551F8 (lit_2381)
-//	8026FD44: 80450AE0 (__float_nan)
-//	8026FD48: 80450AE0 (__float_nan)
-//	8026FDB4: 80450AE0 (__float_nan)
-//	8026FDB8: 80450AE0 (__float_nan)
+/* 8026FAB8-8026FDF4 26A3F8 033C+00 0/0 3/3 78/78 .text cLib_addCalcPos__FP4cXyzRC4cXyzfff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,33 +171,7 @@ asm void cLib_addCalcPos(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 pa
 }
 #pragma pop
 
-/* 8026FDF4-80270178 0384+00 s=0 e=1 z=4  None .text      cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff */
-//	8026FE68: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8026FE88: 804551E0 (lit_2262)
-//	8026FE98: 80347138 (PSVECSquareMag)
-//	8026FE9C: 804551E0 (lit_2262)
-//	8026FEAC: 804551E8 (lit_2379)
-//	8026FEB4: 804551F0 (lit_2380)
-//	8026FEFC: 804551F8 (lit_2381)
-//	8026FF08: 80450AE0 (__float_nan)
-//	8026FF0C: 80450AE0 (__float_nan)
-//	8026FF78: 80450AE0 (__float_nan)
-//	8026FF7C: 80450AE0 (__float_nan)
-//	8026FFAC: 803470D8 (PSVECScale)
-//	8026FFB8: 80455200 (lit_2382)
-//	8026FFD8: 803470D8 (PSVECScale)
-//	8026FFF4: 803470D8 (PSVECScale)
-//	80270038: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80270044: 804551E0 (lit_2262)
-//	80270058: 80347138 (PSVECSquareMag)
-//	8027005C: 804551E0 (lit_2262)
-//	8027006C: 804551E8 (lit_2379)
-//	80270074: 804551F0 (lit_2380)
-//	802700BC: 804551F8 (lit_2381)
-//	802700C8: 80450AE0 (__float_nan)
-//	802700CC: 80450AE0 (__float_nan)
-//	80270138: 80450AE0 (__float_nan)
-//	8027013C: 80450AE0 (__float_nan)
+/* 8026FDF4-80270178 26A734 0384+00 0/0 1/1 4/4 .text cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,22 +182,7 @@ asm void cLib_addCalcPosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 
 }
 #pragma pop
 
-/* 80270178-80270350 01D8+00 s=0 e=2 z=33  None .text      cLib_addCalcPos2__FP4cXyzRC4cXyzff */
-//	802701AC: 8026706C (__ne__4cXyzCFRC3Vec)
-//	802701C4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	802701D4: 80266B84 (__ml__4cXyzCFf)
-//	802701F4: 80347138 (PSVECSquareMag)
-//	802701F8: 804551E0 (lit_2262)
-//	80270208: 804551E8 (lit_2379)
-//	80270210: 804551F0 (lit_2380)
-//	80270258: 804551F8 (lit_2381)
-//	80270264: 80450AE0 (__float_nan)
-//	80270268: 80450AE0 (__float_nan)
-//	802702D4: 80450AE0 (__float_nan)
-//	802702D8: 80450AE0 (__float_nan)
-//	802702EC: 80266D30 (normZP__4cXyzCFv)
-//	80270314: 803470D8 (PSVECScale)
-//	80270324: 803470B4 (PSVECSubtract)
+/* 80270178-80270350 26AAB8 01D8+00 0/0 2/2 33/33 .text cLib_addCalcPos2__FP4cXyzRC4cXyzff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -293,21 +192,7 @@ asm void cLib_addCalcPos2(cXyz* param_0, cXyz const& param_1, f32 param_2, f32 p
 }
 #pragma pop
 
-/* 80270350-80270540 01F0+00 s=0 e=0 z=4  None .text      cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff */
-//	802703A8: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	802703B8: 80266B84 (__ml__4cXyzCFf)
-//	802703D8: 804551E0 (lit_2262)
-//	802703E8: 80347138 (PSVECSquareMag)
-//	802703EC: 804551E0 (lit_2262)
-//	802703FC: 804551E8 (lit_2379)
-//	80270404: 804551F0 (lit_2380)
-//	8027044C: 804551F8 (lit_2381)
-//	80270458: 80450AE0 (__float_nan)
-//	8027045C: 80450AE0 (__float_nan)
-//	802704C8: 80450AE0 (__float_nan)
-//	802704CC: 80450AE0 (__float_nan)
-//	802704D8: 80455200 (lit_2382)
-//	802704F8: 803470D8 (PSVECScale)
+/* 80270350-80270540 26AC90 01F0+00 0/0 0/0 4/4 .text cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -317,7 +202,8 @@ asm void cLib_addCalcPosXZ2(cXyz* param_0, cXyz const& param_1, f32 param_2, f32
 }
 #pragma pop
 
-/* 80270540-80270608 00C8+00 s=0 e=81 z=244  None .text      cLib_addCalcAngleS__FPsssss */
+/* 80270540-80270608 26AE80 00C8+00 0/0 81/81 244/244 .text            cLib_addCalcAngleS__FPsssss
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -327,7 +213,7 @@ asm void cLib_addCalcAngleS(s16* param_0, s16 param_1, s16 param_2, s16 param_3,
 }
 #pragma pop
 
-/* 80270608-8027065C 0054+00 s=0 e=2 z=849  None .text      cLib_addCalcAngleS2__FPssss */
+/* 80270608-8027065C 26AF48 0054+00 0/0 2/2 849/849 .text            cLib_addCalcAngleS2__FPssss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,7 +223,7 @@ asm void cLib_addCalcAngleS2(s16* param_0, s16 param_1, s16 param_2, s16 param_3
 }
 #pragma pop
 
-/* 8027065C-802706D0 0074+00 s=0 e=3 z=14  None .text      cLib_chaseUC__FPUcUcUc */
+/* 8027065C-802706D0 26AF9C 0074+00 0/0 3/3 14/14 .text            cLib_chaseUC__FPUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,7 +233,7 @@ asm void cLib_chaseUC(u8* param_0, u8 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 802706D0-80270740 0070+00 s=0 e=4 z=49  None .text      cLib_chaseS__FPsss */
+/* 802706D0-80270740 26B010 0070+00 0/0 4/4 49/49 .text            cLib_chaseS__FPsss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -357,9 +243,7 @@ asm void cLib_chaseS(s16* param_0, s16 param_1, s16 param_2) {
 }
 #pragma pop
 
-/* 80270740-802707AC 006C+00 s=0 e=70 z=448  None .text      cLib_chaseF__FPfff */
-//	80270740: 804551E0 (lit_2262)
-//	80270774: 804551E0 (lit_2262)
+/* 80270740-802707AC 26B080 006C+00 0/0 70/70 448/448 .text            cLib_chaseF__FPfff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -369,22 +253,7 @@ asm void cLib_chaseF(f32* param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 802707AC-80270990 01E4+00 s=0 e=3 z=60  None .text      cLib_chasePos__FP4cXyzRC4cXyzf */
-//	802707D4: 804551E0 (lit_2262)
-//	802707EC: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8027080C: 80347138 (PSVECSquareMag)
-//	80270810: 804551E0 (lit_2262)
-//	80270820: 804551E8 (lit_2379)
-//	80270828: 804551F0 (lit_2380)
-//	80270870: 804551F8 (lit_2381)
-//	8027087C: 80450AE0 (__float_nan)
-//	80270880: 80450AE0 (__float_nan)
-//	802708EC: 80450AE0 (__float_nan)
-//	802708F0: 80450AE0 (__float_nan)
-//	802708FC: 80455200 (lit_2382)
-//	80270940: 80266B84 (__ml__4cXyzCFf)
-//	80270950: 803470B4 (PSVECSubtract)
-//	80270958: 8026702C (__eq__4cXyzCFRC3Vec)
+/* 802707AC-80270990 26B0EC 01E4+00 0/0 3/3 60/60 .text            cLib_chasePos__FP4cXyzRC4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -394,23 +263,8 @@ asm void cLib_chasePos(cXyz* param_0, cXyz const& param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 80270990-80270B90 0200+00 s=0 e=1 z=19  None .text      cLib_chasePosXZ__FP4cXyzRC4cXyzf */
-//	802709C4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	802709E0: 804551E0 (lit_2262)
-//	802709F8: 80347138 (PSVECSquareMag)
-//	802709FC: 804551E0 (lit_2262)
-//	80270A0C: 804551E8 (lit_2379)
-//	80270A14: 804551F0 (lit_2380)
-//	80270A5C: 804551F8 (lit_2381)
-//	80270A68: 80450AE0 (__float_nan)
-//	80270A6C: 80450AE0 (__float_nan)
-//	80270AD8: 80450AE0 (__float_nan)
-//	80270ADC: 80450AE0 (__float_nan)
-//	80270AE0: 804551E0 (lit_2262)
-//	80270AF4: 80455200 (lit_2382)
-//	80270B38: 80266B84 (__ml__4cXyzCFf)
-//	80270B48: 803470B4 (PSVECSubtract)
-//	80270B58: 80455200 (lit_2382)
+/* 80270990-80270B90 26B2D0 0200+00 0/0 1/0 19/19 .text            cLib_chasePosXZ__FP4cXyzRC4cXyzf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -420,7 +274,7 @@ asm void cLib_chasePosXZ(cXyz* param_0, cXyz const& param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 80270B90-80270C04 0074+00 s=0 e=4 z=213  None .text      cLib_chaseAngleS__FPsss */
+/* 80270B90-80270C04 26B4D0 0074+00 0/0 4/4 213/213 .text            cLib_chaseAngleS__FPsss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -430,8 +284,7 @@ asm void cLib_chaseAngleS(s16* param_0, s16 param_1, s16 param_2) {
 }
 #pragma pop
 
-/* 80270C04-80270C3C 0038+00 s=0 e=39 z=454  None .text      cLib_targetAngleY__FPC3VecPC3Vec */
-//	80270C28: 80267674 (cM_atan2s__Fff)
+/* 80270C04-80270C3C 26B544 0038+00 0/0 39/39 454/454 .text cLib_targetAngleY__FPC3VecPC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -441,8 +294,7 @@ asm void cLib_targetAngleY(Vec const* param_0, Vec const* param_1) {
 }
 #pragma pop
 
-/* 80270C3C-80270C74 0038+00 s=0 e=0 z=7  None .text      cLib_targetAngleY__FRC3VecRC3Vec */
-//	80270C60: 80267674 (cM_atan2s__Fff)
+/* 80270C3C-80270C74 26B57C 0038+00 0/0 0/0 7/7 .text            cLib_targetAngleY__FRC3VecRC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -452,19 +304,7 @@ asm void cLib_targetAngleY(Vec const& param_0, Vec const& param_1) {
 }
 #pragma pop
 
-/* 80270C74-80270DC0 014C+00 s=0 e=2 z=109  None .text      cLib_targetAngleX__FPC4cXyzPC4cXyz */
-//	80270C88: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80270CA8: 804551E0 (lit_2262)
-//	80270CB8: 80347138 (PSVECSquareMag)
-//	80270CBC: 804551E0 (lit_2262)
-//	80270CCC: 804551E8 (lit_2379)
-//	80270CD4: 804551F0 (lit_2380)
-//	80270D1C: 804551F8 (lit_2381)
-//	80270D28: 80450AE0 (__float_nan)
-//	80270D2C: 80450AE0 (__float_nan)
-//	80270D98: 80450AE0 (__float_nan)
-//	80270D9C: 80450AE0 (__float_nan)
-//	80270DAC: 80267674 (cM_atan2s__Fff)
+/* 80270C74-80270DC0 26B5B4 014C+00 0/0 2/2 109/109 .text cLib_targetAngleX__FPC4cXyzPC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -474,10 +314,8 @@ asm void cLib_targetAngleX(cXyz const* param_0, cXyz const* param_1) {
 }
 #pragma pop
 
-/* 80270DC0-80270E24 0064+00 s=0 e=2 z=118  None .text      cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
+/* 80270DC0-80270E24 26B700 0064+00 0/0 2/2 118/118 .text cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
  */
-//	80270DC0: 80439A20 (sincosTable___5JMath)
-//	80270DC4: 80439A20 (sincosTable___5JMath)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,8 +325,7 @@ asm void cLib_offsetPos(cXyz* param_0, cXyz const* param_1, s16 param_2, cXyz co
 }
 #pragma pop
 
-/* 80270E24-80270E4C 0028+00 s=0 e=48 z=71  None .text      cLib_distanceAngleS__Fss */
-//	80270E38: 803650D0 (abs)
+/* 80270E24-80270E4C 26B764 0028+00 0/0 48/48 71/71 .text            cLib_distanceAngleS__Fss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -499,20 +336,17 @@ asm void cLib_distanceAngleS(s16 param_0, s16 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430DB8-80430F98 01E0+00 s=2 e=0 z=0  None .bss       mtx */
+/* 80430DB8-80430F98 05DAD8 01E0+00 2/1 0/0 0/0 .bss             mtx */
 static u8 mtx[480];
 
-/* 80450768-80450770 0004+04 s=6 e=2 z=695  None .sdata     calc_mtx */
-SECTION_SDATA void* calc_mtx[1 + 1 /* padding */] = {
+/* 80450768-80450770 -00001 0004+04 6/6 2/2 695/695 .sdata           calc_mtx */
+SECTION_SDATA extern void* calc_mtx[1 + 1 /* padding */] = {
     (void*)&mtx,
     /* padding */
     NULL,
 };
 
-/* 80270E4C-80270E5C 0010+00 s=0 e=1 z=0  None .text      MtxInit__Fv */
-//	80270E4C: 80430DB8 (mtx)
-//	80270E50: 80430DB8 (mtx)
-//	80270E54: 80450768 (calc_mtx)
+/* 80270E4C-80270E5C 26B78C 0010+00 0/0 1/1 0/0 .text            MtxInit__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -522,12 +356,7 @@ asm void MtxInit() {
 }
 #pragma pop
 
-/* 80270E5C-80270EA4 0048+00 s=0 e=0 z=43  None .text      MtxTrans__FfffUc */
-//	80270E70: 80450768 (calc_mtx)
-//	80270E74: 803468E8 (PSMTXTrans)
-//	80270E80: 803468E8 (PSMTXTrans)
-//	80270E84: 80450768 (calc_mtx)
-//	80270E90: 803464E4 (PSMTXConcat)
+/* 80270E5C-80270EA4 26B79C 0048+00 0/0 0/0 43/43 .text            MtxTrans__FfffUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -537,12 +366,7 @@ asm void MtxTrans(f32 param_0, f32 param_1, f32 param_2, u8 param_3) {
 }
 #pragma pop
 
-/* 80270EA4-80270EEC 0048+00 s=0 e=0 z=46  None .text      MtxScale__FfffUc */
-//	80270EB8: 80450768 (calc_mtx)
-//	80270EBC: 80346968 (PSMTXScale)
-//	80270EC8: 80346968 (PSMTXScale)
-//	80270ECC: 80450768 (calc_mtx)
-//	80270ED8: 803464E4 (PSMTXConcat)
+/* 80270EA4-80270EEC 26B7E4 0048+00 0/0 0/0 46/46 .text            MtxScale__FfffUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -552,9 +376,7 @@ asm void MtxScale(f32 param_0, f32 param_1, f32 param_2, u8 param_3) {
 }
 #pragma pop
 
-/* 80270EEC-80270F1C 0030+00 s=0 e=2 z=615  None .text      MtxPosition__FP4cXyzP4cXyz */
-//	80270F00: 80450768 (calc_mtx)
-//	80270F08: 80346D6C (PSMTXMultVec)
+/* 80270EEC-80270F1C 26B82C 0030+00 0/0 2/2 615/615 .text            MtxPosition__FP4cXyzP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -564,12 +386,7 @@ asm void MtxPosition(cXyz* param_0, cXyz* param_1) {
 }
 #pragma pop
 
-/* 80270F1C-80270F58 003C+00 s=0 e=0 z=20  None .text      MtxPush__Fv */
-//	80270F28: 80450768 (calc_mtx)
-//	80270F30: 803464B0 (PSMTXCopy)
-//	80270F34: 80450768 (calc_mtx)
-//	80270F3C: 80450768 (calc_mtx)
-//	80270F44: 803464B0 (PSMTXCopy)
+/* 80270F1C-80270F58 26B85C 003C+00 0/0 0/0 20/20 .text            MtxPush__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -579,9 +396,7 @@ asm void MtxPush() {
 }
 #pragma pop
 
-/* 80270F58-80270F68 0010+00 s=0 e=0 z=20  None .text      MtxPull__Fv */
-//	80270F58: 80450768 (calc_mtx)
-//	80270F60: 80450768 (calc_mtx)
+/* 80270F58-80270F68 26B898 0010+00 0/0 0/0 20/20 .text            MtxPull__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

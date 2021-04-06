@@ -7,8 +7,8 @@ lbl_80313AC8:
 /* 80313ADC  7C 7D 1B 78 */	mr r29, r3
 /* 80313AE0  7C 9E 23 78 */	mr r30, r4
 /* 80313AE4  7C BF 2B 78 */	mr r31, r5
-/* 80313AE8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313AEC  38 83 4A C8 */	addi r4, r3, j3dSys@l
+/* 80313AE8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313AEC  38 83 4A C8 */	addi r4, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313AF0  80 64 00 40 */	lwz r3, 0x40(r4)
 /* 80313AF4  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 80313AF8  80 84 01 04 */	lwz r4, 0x104(r4)
@@ -17,8 +17,8 @@ lbl_80313AC8:
 /* 80313B04  7C 84 02 14 */	add r4, r4, r0
 /* 80313B08  38 A1 00 08 */	addi r5, r1, 8
 /* 80313B0C  48 03 29 D9 */	bl PSMTXConcat
-/* 80313B10  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313B14  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313B10  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313B14  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313B18  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 80313B1C  80 63 00 04 */	lwz r3, 4(r3)
 /* 80313B20  80 63 00 3C */	lwz r3, 0x3c(r3)

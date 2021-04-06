@@ -3,19 +3,20 @@
 #
 
 M258_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_zm.plf
+M258_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_zm.lcf
+M258_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_zm.map
 
 M258_CPP_FILES := \
-	rel/d/a/e/d_a_e_zm/executor.cpp \
-	rel/d/a/e/d_a_e_zm/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_zm/d_a_e_zm.cpp \
 
 M258_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_zm/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_zm/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_zm/d_a_e_zm.o \
 
 M258_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_zm/libRuntime.PPCEABI.H.a \
 
 M258_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M258_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map258.map\
+	-m _prolog \
+	-lcf $(M258_LDSCRIPT) \
+	-unused -map $(M258_MAP) \
+	-w off \
 
 $(M258_TARGET): $(M258_O_FILES) $(M258_LIBS)
+	@echo [258] creating $(M258_TARGET)
 	@echo $(M258_LIBS) $(M258_O_FILES) > build/M258_ofiles
-	$(LD) -opt_partial $(M258_LDFLAGS) -o $(M258_TARGET) @build/M258_ofiles
+	@python3 tools/lcf.py rel 258 --output $(M258_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M258_LDFLAGS) -o $(M258_TARGET) @build/M258_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_zm/%.o: rel/d/a/e/d_a_e_zm/%.cpp
+	@echo [258] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M258_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M258_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_zm/libs/Runtime.PPCEABI.H/Makefile
 

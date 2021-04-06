@@ -3,12 +3,12 @@ lbl_8061BB54:
 /* 8061BB58  7C 08 02 A6 */	mflr r0
 /* 8061BB5C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8061BB60  39 61 00 20 */	addi r11, r1, 0x20
-/* 8061BB64  4B D4 66 78 */	b _savegpr_29
+/* 8061BB64  4B D4 66 79 */	bl _savegpr_29
 /* 8061BB68  7C 7F 1B 78 */	mr r31, r3
-/* 8061BB6C  3C 60 80 62 */	lis r3, lit_3650@ha
-/* 8061BB70  3B C3 D9 D4 */	addi r30, r3, lit_3650@l
-/* 8061BB74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8061BB78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8061BB6C  3C 60 80 62 */	lis r3, lit_3650@ha /* 0x8061D9D4@ha */
+/* 8061BB70  3B C3 D9 D4 */	addi r30, r3, lit_3650@l /* 0x8061D9D4@l */
+/* 8061BB74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8061BB78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8061BB7C  83 A3 5D AC */	lwz r29, 0x5dac(r3)
 /* 8061BB80  A8 1F 05 D0 */	lha r0, 0x5d0(r31)
 /* 8061BB84  2C 00 00 01 */	cmpwi r0, 1
@@ -21,7 +21,7 @@ lbl_8061BB9C:
 /* 8061BB9C  38 00 00 01 */	li r0, 1
 /* 8061BBA0  B0 1F 05 D0 */	sth r0, 0x5d0(r31)
 /* 8061BBA4  C0 3E 00 18 */	lfs f1, 0x18(r30)
-/* 8061BBA8  4B C4 BD AC */	b cM_rndF__Ff
+/* 8061BBA8  4B C4 BD AD */	bl cM_rndF__Ff
 /* 8061BBAC  C0 1E 00 24 */	lfs f0, 0x24(r30)
 /* 8061BBB0  EC 00 08 2A */	fadds f0, f0, f1
 /* 8061BBB4  FC 00 00 1E */	fctiwz f0, f0
@@ -34,7 +34,7 @@ lbl_8061BBC8:
 /* 8061BBCC  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 8061BBD0  C0 5E 00 14 */	lfs f2, 0x14(r30)
 /* 8061BBD4  C0 7E 00 1C */	lfs f3, 0x1c(r30)
-/* 8061BBD8  4B C5 3E 64 */	b cLib_addCalc2__FPffff
+/* 8061BBD8  4B C5 3E 65 */	bl cLib_addCalc2__FPffff
 /* 8061BBDC  80 1F 0C A8 */	lwz r0, 0xca8(r31)
 /* 8061BBE0  2C 00 00 00 */	cmpwi r0, 0
 /* 8061BBE4  40 82 00 70 */	bne lbl_8061BC54
@@ -49,8 +49,8 @@ lbl_8061BBC8:
 /* 8061BC08  A8 1F 05 EC */	lha r0, 0x5ec(r31)
 /* 8061BC0C  2C 00 00 00 */	cmpwi r0, 0
 /* 8061BC10  40 82 00 44 */	bne lbl_8061BC54
-/* 8061BC14  3C 60 80 62 */	lis r3, boss@ha
-/* 8061BC18  84 83 DB D4 */	lwzu r4, boss@l(r3)
+/* 8061BC14  3C 60 80 62 */	lis r3, boss@ha /* 0x8061DBD4@ha */
+/* 8061BC18  84 83 DB D4 */	lwzu r4, boss@l(r3)  /* 0x8061DBD4@l */
 /* 8061BC1C  88 04 47 44 */	lbz r0, 0x4744(r4)
 /* 8061BC20  7C 00 07 75 */	extsb. r0, r0
 /* 8061BC24  40 82 00 30 */	bne lbl_8061BC54
@@ -67,7 +67,7 @@ lbl_8061BBC8:
 /* 8061BC50  B0 03 47 94 */	sth r0, 0x4794(r3)
 lbl_8061BC54:
 /* 8061BC54  39 61 00 20 */	addi r11, r1, 0x20
-/* 8061BC58  4B D4 65 D0 */	b _restgpr_29
+/* 8061BC58  4B D4 65 D1 */	bl _restgpr_29
 /* 8061BC5C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8061BC60  7C 08 03 A6 */	mtlr r0
 /* 8061BC64  38 21 00 20 */	addi r1, r1, 0x20

@@ -12,7 +12,7 @@
 //
 
 extern "C" void __init_user();
-extern "C" static void __init_cpp();
+extern "C" void __init_cpp();
 extern "C" void _ExitProcess();
 
 //
@@ -26,35 +26,31 @@ SECTION_CTORS10 extern void* const __init_cpp_exceptions_reference;
 // Declarations:
 //
 
-/* 80342B78-80342B98 0020+00 s=0 e=1 z=0  None .text      __init_user */
-//	80342B84: 80342B98 (__init_cpp)
+/* 80342B78-80342B98 33D4B8 0020+00 0/0 1/1 0/0 .text            __init_user */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __init_user() {
+asm void __init_user() {
     nofralloc
 #include "asm/dolphin/os/__ppc_eabi_init/__init_user.s"
 }
 #pragma pop
 
-/* 80342B98-80342BEC 0054+00 s=1 e=0 z=0  None .text      __init_cpp */
-//	80342BA8: 803737C0 (__init_cpp_exceptions_reference)
-//	80342BAC: 803737C0 (__init_cpp_exceptions_reference)
+/* 80342B98-80342BEC 33D4D8 0054+00 1/1 0/0 0/0 .text            __init_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __init_cpp() {
+asm void __init_cpp() {
     nofralloc
 #include "asm/dolphin/os/__ppc_eabi_init/__init_cpp.s"
 }
 #pragma pop
 
-/* 80342BEC-80342C0C 0020+00 s=0 e=2 z=0  None .text      _ExitProcess */
-//	80342BF8: 80339D00 (PPCHalt)
+/* 80342BEC-80342C0C 33D52C 0020+00 0/0 2/2 0/0 .text            _ExitProcess */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _ExitProcess() {
+asm void _ExitProcess() {
     nofralloc
 #include "asm/dolphin/os/__ppc_eabi_init/_ExitProcess.s"
 }

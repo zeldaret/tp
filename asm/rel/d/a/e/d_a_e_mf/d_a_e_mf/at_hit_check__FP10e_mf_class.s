@@ -11,12 +11,12 @@ lbl_8070E30C:
 /* 8070E330  48 00 00 28 */	b lbl_8070E358
 lbl_8070E334:
 /* 8070E334  38 7F 0E 24 */	addi r3, r31, 0xe24
-/* 8070E338  4B 97 5F 88 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 8070E338  4B 97 5F 89 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 8070E33C  28 03 00 00 */	cmplwi r3, 0
 /* 8070E340  41 82 00 14 */	beq lbl_8070E354
 /* 8070E344  38 7F 0E 24 */	addi r3, r31, 0xe24
-/* 8070E348  4B 97 60 10 */	b GetAtHitObj__12dCcD_GObjInfFv
-/* 8070E34C  4B B5 56 FC */	b GetAc__8cCcD_ObjFv
+/* 8070E348  4B 97 60 11 */	bl GetAtHitObj__12dCcD_GObjInfFv
+/* 8070E34C  4B B5 56 FD */	bl GetAc__8cCcD_ObjFv
 /* 8070E350  48 00 00 08 */	b lbl_8070E358
 lbl_8070E354:
 /* 8070E354  38 60 00 00 */	li r3, 0

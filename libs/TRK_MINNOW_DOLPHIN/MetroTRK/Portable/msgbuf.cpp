@@ -42,156 +42,132 @@ SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 8036D01C-8036D10C 00F0+00 s=0 e=2 z=0  None .text      TRKReadBuffer_ui32 */
-//	8036D024: 8044D8B8 (gTRKBigEndian)
-//	8036D03C: 8044D8B8 (gTRKBigEndian)
-//	8036D098: 800035C0 (TRK_memcpy)
+/* 8036D01C-8036D10C 36795C 00F0+00 0/0 2/2 0/0 .text            TRKReadBuffer_ui32 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReadBuffer_ui32() {
+asm void TRKReadBuffer_ui32() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKReadBuffer_ui32.s"
 }
 #pragma pop
 
-/* 8036D10C-8036D1A4 0098+00 s=0 e=1 z=0  None .text      TRKReadBuffer_ui8 */
-//	8036D168: 800035C0 (TRK_memcpy)
+/* 8036D10C-8036D1A4 367A4C 0098+00 0/0 1/1 0/0 .text            TRKReadBuffer_ui8 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReadBuffer_ui8() {
+asm void TRKReadBuffer_ui8() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKReadBuffer_ui8.s"
 }
 #pragma pop
 
-/* 8036D1A4-8036D28C 00E8+00 s=0 e=2 z=0  None .text      TRKReadBuffer1_ui64 */
-//	8036D1AC: 8044D8B8 (gTRKBigEndian)
-//	8036D1C0: 8044D8B8 (gTRKBigEndian)
-//	8036D20C: 800035C0 (TRK_memcpy)
-//	8036D214: 8044D8B8 (gTRKBigEndian)
-//	8036D220: 8044D8B8 (gTRKBigEndian)
+/* 8036D1A4-8036D28C 367AE4 00E8+00 0/0 2/2 0/0 .text            TRKReadBuffer1_ui64 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReadBuffer1_ui64() {
+asm void TRKReadBuffer1_ui64() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKReadBuffer1_ui64.s"
 }
 #pragma pop
 
-/* 8036D28C-8036D388 00FC+00 s=0 e=2 z=0  None .text      TRKAppendBuffer_ui32 */
-//	8036D294: 8044D8B8 (gTRKBigEndian)
-//	8036D2AC: 8044D8B8 (gTRKBigEndian)
-//	8036D340: 800035C0 (TRK_memcpy)
+/* 8036D28C-8036D388 367BCC 00FC+00 0/0 2/2 0/0 .text            TRKAppendBuffer_ui32 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKAppendBuffer_ui32() {
+asm void TRKAppendBuffer_ui32() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKAppendBuffer_ui32.s"
 }
 #pragma pop
 
-/* 8036D388-8036D3F0 0068+00 s=0 e=8 z=0  None .text      TRKAppendBuffer_ui8 */
+/* 8036D388-8036D3F0 367CC8 0068+00 0/0 8/8 0/0 .text            TRKAppendBuffer_ui8 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKAppendBuffer_ui8() {
+asm void TRKAppendBuffer_ui8() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKAppendBuffer_ui8.s"
 }
 #pragma pop
 
-/* 8036D3F0-8036D4EC 00FC+00 s=0 e=2 z=0  None .text      TRKAppendBuffer1_ui64 */
-//	8036D3F8: 8044D8B8 (gTRKBigEndian)
-//	8036D410: 8044D8B8 (gTRKBigEndian)
-//	8036D4B4: 800035C0 (TRK_memcpy)
+/* 8036D3F0-8036D4EC 367D30 00FC+00 0/0 2/2 0/0 .text            TRKAppendBuffer1_ui64 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKAppendBuffer1_ui64() {
+asm void TRKAppendBuffer1_ui64() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKAppendBuffer1_ui64.s"
 }
 #pragma pop
 
-/* 8036D4EC-8036D578 008C+00 s=0 e=1 z=0  None .text      TRKReadBuffer */
-//	8036D548: 800035C0 (TRK_memcpy)
+/* 8036D4EC-8036D578 367E2C 008C+00 0/0 1/1 0/0 .text            TRKReadBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReadBuffer() {
+asm void TRKReadBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKReadBuffer.s"
 }
 #pragma pop
 
-/* 8036D578-8036D61C 00A4+00 s=0 e=3 z=0  None .text      TRKAppendBuffer */
-//	8036D5E4: 800035C0 (TRK_memcpy)
+/* 8036D578-8036D61C 367EB8 00A4+00 0/0 3/3 0/0 .text            TRKAppendBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKAppendBuffer() {
+asm void TRKAppendBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKAppendBuffer.s"
 }
 #pragma pop
 
-/* 8036D61C-8036D64C 0030+00 s=0 e=7 z=0  None .text      TRKSetBufferPosition */
+/* 8036D61C-8036D64C 367F5C 0030+00 0/0 7/7 0/0 .text            TRKSetBufferPosition */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKSetBufferPosition() {
+asm void TRKSetBufferPosition() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKSetBufferPosition.s"
 }
 #pragma pop
 
-/* 8036D64C-8036D68C 0040+00 s=0 e=4 z=0  None .text      TRKResetBuffer */
-//	8036D678: 80003590 (TRK_memset)
+/* 8036D64C-8036D68C 367F8C 0040+00 0/0 4/4 0/0 .text            TRKResetBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKResetBuffer() {
+asm void TRKResetBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKResetBuffer.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044D8C0-8044F270 19B0+00 s=4 e=0 z=0  None .bss       gTRKMsgBufs */
+/* 8044D8C0-8044F270 07A5E0 19B0+00 4/4 0/0 0/0 .bss             gTRKMsgBufs */
 static u8 gTRKMsgBufs[6576];
 
-/* 8036D68C-8036D6F0 0064+00 s=0 e=8 z=0  None .text      TRKReleaseBuffer */
-//	8036D6B8: 8044D8C0 (gTRKMsgBufs)
-//	8036D6BC: 8044D8C0 (gTRKMsgBufs)
-//	8036D6C8: 8036F4A0 (TRKAcquireMutex)
-//	8036D6D8: 8036F498 (TRKReleaseMutex)
+/* 8036D68C-8036D6F0 367FCC 0064+00 0/0 8/8 0/0 .text            TRKReleaseBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReleaseBuffer() {
+asm void TRKReleaseBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKReleaseBuffer.s"
 }
 #pragma pop
 
-/* 8036D6F0-8036D71C 002C+00 s=0 e=7 z=0  None .text      TRKGetBuffer */
-//	8036D708: 8044D8C0 (gTRKMsgBufs)
-//	8036D70C: 8044D8C0 (gTRKMsgBufs)
+/* 8036D6F0-8036D71C 368030 002C+00 0/0 7/7 0/0 .text            TRKGetBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKGetBuffer() {
+asm void TRKGetBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKGetBuffer.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A26E0-803A2700 001D+03 s=1 e=0 z=0  None .rodata    @618 */
+/* 803A26E0-803A2700 02ED40 001D+03 1/1 0/0 0/0 .rodata          @618 */
 SECTION_RODATA static u8 const lit_618[29 + 3 /* padding */] = {
     0x45,
     0x52,
@@ -227,34 +203,23 @@ SECTION_RODATA static u8 const lit_618[29 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A26E0 = (void*)(&lit_618);
 
-/* 8036D71C-8036D7E4 00C8+00 s=0 e=6 z=0  None .text      TRKGetFreeBuffer */
-//	8036D760: 8044D8C0 (gTRKMsgBufs)
-//	8036D764: 8044D8C0 (gTRKMsgBufs)
-//	8036D770: 8036F4A0 (TRKAcquireMutex)
-//	8036D7A8: 8036F498 (TRKReleaseMutex)
-//	8036D7C0: 803A26E0 (lit_618)
-//	8036D7C4: 803A26E0 (lit_618)
-//	8036D7C8: 8036DB14 (usr_puts_serial)
+/* 8036D71C-8036D7E4 36805C 00C8+00 0/0 6/6 0/0 .text            TRKGetFreeBuffer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKGetFreeBuffer() {
+asm void TRKGetFreeBuffer() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKGetFreeBuffer.s"
 }
 #pragma pop
 
-/* 8036D7E4-8036D858 0074+00 s=0 e=1 z=0  None .text      TRKInitializeMessageBuffers */
-//	8036D7EC: 8044D8C0 (gTRKMsgBufs)
-//	8036D800: 8044D8C0 (gTRKMsgBufs)
-//	8036D810: 8036F4A8 (TRKInitializeMutex)
-//	8036D818: 8036F4A0 (TRKAcquireMutex)
-//	8036D824: 8036F498 (TRKReleaseMutex)
+/* 8036D7E4-8036D858 368124 0074+00 0/0 1/1 0/0 .text            TRKInitializeMessageBuffers */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKInitializeMessageBuffers() {
+asm void TRKInitializeMessageBuffers() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKInitializeMessageBuffers.s"
 }

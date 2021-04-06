@@ -38,11 +38,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -69,9 +69,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -82,12 +82,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjSnowSoup_c_createHeap(fopAc_ac_c*);
-static void daObjSnowSoup_create(daObjSnowSoup_c*);
-static void daObjSnowSoup_Delete(daObjSnowSoup_c*);
-static void daObjSnowSoup_execute(daObjSnowSoup_c*);
-static void daObjSnowSoup_draw(daObjSnowSoup_c*);
 
 extern "C" static void daObjSnowSoup_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__15daObjSnowSoup_cFv();
@@ -107,25 +101,11 @@ extern "C" static void daObjSnowSoup_create__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_Delete__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_execute__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_draw__FP15daObjSnowSoup_c();
-extern "C" extern u8 const data_80CE0260[8];
-extern "C" extern u8 const data_80CE0268[12];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_SnowSoup[12];
-extern "C" extern void* __vt__15daObjSnowSoup_c[3];
+extern "C" extern char const* const d_a_obj_snow_soup__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdate(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -165,64 +145,22 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80CDF858-80CDF878 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_c_createHeap__FP10fopAc_ac_c
+/* 80CDF858-80CDF878 000078 0020+00 1/1 0/0 0/0 .text daObjSnowSoup_c_createHeap__FP10fopAc_ac_c
  */
-//	80CDF864: 80CDF990 (createHeap__15daObjSnowSoup_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjSnowSoup_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CE023C-80CE0248 000C+00 s=3 e=0 z=0  None .rodata    SOUP_MODEL_OFFSET */
-SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
-    0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
-};
+/* 80CE0280-80CE0284 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_snow_soup__stringBase0;
 
-/* 80CE0248-80CE0254 000C+00 s=1 e=0 z=0  None .rodata    BMD_IDX$3657 */
-SECTION_RODATA static u8 const BMD_IDX[12] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
-};
-
-/* 80CE0254-80CE0258 0004+00 s=1 e=0 z=0  None .rodata    @3706 */
-SECTION_RODATA static u8 const lit_3706[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80CE0258-80CE025C 0004+00 s=1 e=0 z=0  None .rodata    @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x3F800000;
-
-/* 80CE025C-80CE0260 0004+00 s=1 e=0 z=0  None .rodata    @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0xBF800000;
-
-/* 80CE0260-80CE0268 0008+00 s=0 e=0 z=0  None .rodata    PARTICLE_NAME$3789 */
-SECTION_RODATA u8 const data_80CE0260[8] = {
-    0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
-};
-
-/* 80CE0268-80CE0274 000C+00 s=0 e=0 z=0  None .rodata    PARTICLE_NAME$3834 */
-SECTION_RODATA u8 const data_80CE0268[12] = {
-    0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
-};
-
-/* 80CE0274-80CE027D 0009+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CE0274 = "SnowSoup";
-#pragma pop
-
-/* 80CE0280-80CE0284 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80CE0284-80CE02A4 0020+00 s=1 e=0 z=0  None .data      daObjSnowSoup_METHODS */
+/* 80CE0284-80CE02A4 -00001 0020+00 1/0 0/0 0/0 .data            daObjSnowSoup_METHODS */
 SECTION_DATA static void* daObjSnowSoup_METHODS[8] = {
     (void*)daObjSnowSoup_create__FP15daObjSnowSoup_c,
     (void*)daObjSnowSoup_Delete__FP15daObjSnowSoup_c,
@@ -234,8 +172,8 @@ SECTION_DATA static void* daObjSnowSoup_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80CE02A4-80CE02D4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_SnowSoup */
-SECTION_DATA void* g_profile_Obj_SnowSoup[12] = {
+/* 80CE02A4-80CE02D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SnowSoup */
+SECTION_DATA extern void* g_profile_Obj_SnowSoup[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x019B0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C4, (void*)NULL,
@@ -244,19 +182,14 @@ SECTION_DATA void* g_profile_Obj_SnowSoup[12] = {
     (void*)0x00044100, (void*)0x030E0000,
 };
 
-/* 80CE02D4-80CE02E0 000C+00 s=2 e=0 z=0  None .data      __vt__15daObjSnowSoup_c */
-SECTION_DATA void* __vt__15daObjSnowSoup_c[3] = {
+/* 80CE02D4-80CE02E0 000054 000C+00 2/2 0/0 0/0 .data            __vt__15daObjSnowSoup_c */
+SECTION_DATA extern void* __vt__15daObjSnowSoup_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daObjSnowSoup_cFv,
 };
 
-/* 80CDF878-80CDF910 0098+00 s=2 e=0 z=0  None .text      __ct__15daObjSnowSoup_cFv */
-//	80CDF88C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80CDF890: 80CE02D4 (__vt__15daObjSnowSoup_c)
-//	80CDF894: 80CE02D4 (__vt__15daObjSnowSoup_c)
-//	80CDF8E4: 80003458 (memset)
-//	80CDF8F4: 80003458 (memset)
+/* 80CDF878-80CDF910 000098 0098+00 2/2 0/0 0/0 .text            __ct__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -266,14 +199,7 @@ asm daObjSnowSoup_c::daObjSnowSoup_c() {
 }
 #pragma pop
 
-/* 80CDF910-80CDF990 0080+00 s=1 e=0 z=0  None .text      __dt__15daObjSnowSoup_cFv */
-//	80CDF930: 80CE02D4 (__vt__15daObjSnowSoup_c)
-//	80CDF934: 80CE02D4 (__vt__15daObjSnowSoup_c)
-//	80CDF948: 80CE0280 (l_arcName)
-//	80CDF94C: 80CE0280 (l_arcName)
-//	80CDF954: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80CDF960: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80CDF970: 802CED3C (__dl__FPv)
+/* 80CDF910-80CDF990 000130 0080+00 1/0 0/0 0/0 .text            __dt__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,17 +209,20 @@ asm daObjSnowSoup_c::~daObjSnowSoup_c() {
 }
 #pragma pop
 
-/* 80CDF990-80CDFA3C 00AC+00 s=1 e=0 z=0  None .text      createHeap__15daObjSnowSoup_cFv */
-//	80CDF9A0: 803621CC (_savegpr_25)
-//	80CDF9B0: 804061C0 (g_dComIfG_gameInfo)
-//	80CDF9B4: 804061C0 (g_dComIfG_gameInfo)
-//	80CDF9BC: 80CE0280 (l_arcName)
-//	80CDF9C0: 80CE0280 (l_arcName)
-//	80CDF9C4: 80CE0248 (BMD_IDX)
-//	80CDF9C8: 80CE0248 (BMD_IDX)
-//	80CDF9E4: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80CDF9F0: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80CDFA28: 80362218 (_restgpr_25)
+/* ############################################################################################## */
+/* 80CE023C-80CE0248 000000 000C+00 3/3 0/0 0/0 .rodata          SOUP_MODEL_OFFSET */
+SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
+    0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
+};
+SECTION_DEAD void* const cg_80CE023C = (void*)(&SOUP_MODEL_OFFSET);
+
+/* 80CE0248-80CE0254 00000C 000C+00 1/1 0/0 0/0 .rodata          BMD_IDX$3657 */
+SECTION_RODATA static u8 const BMD_IDX[12] = {
+    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
+};
+SECTION_DEAD void* const cg_80CE0248 = (void*)(&BMD_IDX);
+
+/* 80CDF990-80CDFA3C 0001B0 00AC+00 1/1 0/0 0/0 .text            createHeap__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -303,23 +232,17 @@ asm void daObjSnowSoup_c::createHeap() {
 }
 #pragma pop
 
-/* 80CDFA3C-80CDFB70 0134+00 s=1 e=0 z=0  None .text      create__15daObjSnowSoup_cFv */
-//	80CDFA68: 80CDF878 (__ct__15daObjSnowSoup_cFv)
-//	80CDFA88: 80CE0280 (l_arcName)
-//	80CDFA8C: 80CE0280 (l_arcName)
-//	80CDFA94: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80CDFAA8: 80CDF858 (daObjSnowSoup_c_createHeap__FP10fopAc_ac_c)
-//	80CDFAAC: 80CDF858 (daObjSnowSoup_c_createHeap__FP10fopAc_ac_c)
-//	80CDFAB4: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80CDFACC: 80CDFE14 (init__15daObjSnowSoup_cFv)
-//	80CDFAD4: 80CDFEA4 (setModelMtx__15daObjSnowSoup_cFv)
-//	80CDFB08: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80CDFB10: 80CDFF14 (createSmkEmtCommon__15daObjSnowSoup_cFv)
-//	80CDFB1C: 80CE003C (createSmkEmtChange__15daObjSnowSoup_cFi)
-//	80CDFB20: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CDFB24: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CDFB44: 80CE0254 (lit_3706)
-//	80CDFB48: 80CE0254 (lit_3706)
+/* ############################################################################################## */
+/* 80CE0254-80CE0258 000018 0004+00 1/3 0/0 0/0 .rodata          @3706 */
+SECTION_RODATA static u8 const lit_3706[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80CE0254 = (void*)(&lit_3706);
+
+/* 80CDFA3C-80CDFB70 00025C 0134+00 1/1 0/0 0/0 .text            create__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,9 +252,7 @@ asm void daObjSnowSoup_c::create() {
 }
 #pragma pop
 
-/* 80CDFB70-80CDFBC4 0054+00 s=1 e=0 z=0  None .text      Delete__15daObjSnowSoup_cFv */
-//	80CDFB84: 80CDFFF8 (deleteSmkEmtCommon__15daObjSnowSoup_cFv)
-//	80CDFB90: 80CE0134 (deleteSmkEmtChange__15daObjSnowSoup_cFi)
+/* 80CDFB70-80CDFBC4 000390 0054+00 1/1 0/0 0/0 .text            Delete__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -341,15 +262,7 @@ asm void daObjSnowSoup_c::Delete() {
 }
 #pragma pop
 
-/* 80CDFBC4-80CDFC40 007C+00 s=1 e=0 z=0  None .text      draw__15daObjSnowSoup_cFv */
-//	80CDFBD8: 8042CA54 (g_env_light)
-//	80CDFBDC: 8042CA54 (g_env_light)
-//	80CDFBEC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80CDFBF0: 8042CA54 (g_env_light)
-//	80CDFBF4: 8042CA54 (g_env_light)
-//	80CDFC10: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80CDFC24:
-// 8000DC2C (mDoExt_modelUpdate__FP8J3DModel)
+/* 80CDFBC4-80CDFC40 0003E4 007C+00 1/1 0/0 0/0 .text            draw__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -359,40 +272,16 @@ asm void daObjSnowSoup_c::draw() {
 }
 #pragma pop
 
-/* 80CDFC40-80CDFE14 01D4+00 s=1 e=0 z=0  None .text      execute__15daObjSnowSoup_cFv */
-//	80CDFC5C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80CDFC70: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CDFC74: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CDFC88: 80CE0258 (lit_3757)
-//	80CDFC8C: 80CE0258 (lit_3757)
-//	80CDFC94: 80CE025C (lit_3758)
-//	80CDFC98: 80CE025C (lit_3758)
-//	80CDFCA4: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CDFCB0: 8002D06C (dComIfGp_getReverb__Fi)
-//	80CDFCC4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CDFCC8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CDFCDC: 80CE0258 (lit_3757)
-//	80CDFCE0: 80CE0258 (lit_3757)
-//	80CDFCE8: 80CE025C (lit_3758)
-//	80CDFCEC: 80CE025C (lit_3758)
-//	80CDFCF8: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CDFD1C: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFD20: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFD28: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFD2C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFD34: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80CDFD48: 80CE0134 (deleteSmkEmtChange__15daObjSnowSoup_cFi)
-//	80CDFD5C: 80CE003C (createSmkEmtChange__15daObjSnowSoup_cFi)
-//	80CDFD64: 80CDFEA4 (setModelMtx__15daObjSnowSoup_cFv)
-//	80CDFD88: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFD8C: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFD94: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFD98: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFDA0: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80CDFDB4: 80CE0134 (deleteSmkEmtChange__15daObjSnowSoup_cFi)
-//	80CDFDC8: 80CE003C (createSmkEmtChange__15daObjSnowSoup_cFi)
-//	80CDFDD0: 80CDFEA4 (setModelMtx__15daObjSnowSoup_cFv)
-//	80CDFDF8: 80CDFEA4 (setModelMtx__15daObjSnowSoup_cFv)
+/* ############################################################################################## */
+/* 80CE0258-80CE025C 00001C 0004+00 1/3 0/0 0/0 .rodata          @3757 */
+SECTION_RODATA static u32 const lit_3757 = 0x3F800000;
+SECTION_DEAD void* const cg_80CE0258 = (void*)(&lit_3757);
+
+/* 80CE025C-80CE0260 000020 0004+00 1/1 0/0 0/0 .rodata          @3758 */
+SECTION_RODATA static u32 const lit_3758 = 0xBF800000;
+SECTION_DEAD void* const cg_80CE025C = (void*)(&lit_3758);
+
+/* 80CDFC40-80CDFE14 000460 01D4+00 1/1 0/0 0/0 .text            execute__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -402,15 +291,7 @@ asm void daObjSnowSoup_c::execute() {
 }
 #pragma pop
 
-/* 80CDFE14-80CDFEA4 0090+00 s=1 e=0 z=0  None .text      init__15daObjSnowSoup_cFv */
-//	80CDFE34: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFE38: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFE44: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFE48: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFE50: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80CDFE6C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFE70: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80CDFE78: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 80CDFE14-80CDFEA4 000634 0090+00 1/1 0/0 0/0 .text            init__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -420,16 +301,7 @@ asm void daObjSnowSoup_c::init() {
 }
 #pragma pop
 
-/* 80CDFEA4-80CDFF14 0070+00 s=2 e=0 z=0  None .text      setModelMtx__15daObjSnowSoup_cFv */
-//	80CDFEB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFEBC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFECC: 803468E8 (PSMTXTrans)
-//	80CDFED0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFED4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFEDC: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80CDFEE0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFEE4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDFEFC: 803464B0 (PSMTXCopy)
+/* 80CDFEA4-80CDFF14 0006C4 0070+00 2/2 0/0 0/0 .text            setModelMtx__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -439,16 +311,17 @@ asm void daObjSnowSoup_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80CDFF14-80CDFFF8 00E4+00 s=1 e=0 z=0  None .text      createSmkEmtCommon__15daObjSnowSoup_cFv */
-//	80CDFF24: 803621CC (_savegpr_25)
-//	80CDFF2C: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CDFF30: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CDFF54: 802673F4 (__ct__5csXyzFsss)
-//	80CDFF74: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFF78: 804061C0 (g_dComIfG_gameInfo)
-//	80CDFFC0: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CDFFE4: 80362218 (_restgpr_25)
+/* ############################################################################################## */
+/* 80CE0260-80CE0268 000024 0008+00 0/1 0/0 0/0 .rodata          PARTICLE_NAME$3789 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const PARTICLE_NAME_3789[8] = {
+    0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
+};
+SECTION_DEAD void* const cg_80CE0260 = (void*)(&PARTICLE_NAME_3789);
+#pragma pop
+
+/* 80CDFF14-80CDFFF8 000734 00E4+00 1/1 0/0 0/0 .text createSmkEmtCommon__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -458,7 +331,7 @@ asm void daObjSnowSoup_c::createSmkEmtCommon() {
 }
 #pragma pop
 
-/* 80CDFFF8-80CE003C 0044+00 s=1 e=0 z=0  None .text      deleteSmkEmtCommon__15daObjSnowSoup_cFv */
+/* 80CDFFF8-80CE003C 000818 0044+00 1/1 0/0 0/0 .text deleteSmkEmtCommon__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,16 +341,17 @@ asm void daObjSnowSoup_c::deleteSmkEmtCommon() {
 }
 #pragma pop
 
-/* 80CE003C-80CE0134 00F8+00 s=2 e=0 z=0  None .text      createSmkEmtChange__15daObjSnowSoup_cFi */
-//	80CE004C: 803621C8 (_savegpr_24)
-//	80CE0058: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CE005C: 80CE023C (SOUP_MODEL_OFFSET)
-//	80CE0080: 802673F4 (__ct__5csXyzFsss)
-//	80CE00A0: 804061C0 (g_dComIfG_gameInfo)
-//	80CE00A4: 804061C0 (g_dComIfG_gameInfo)
-//	80CE00FC: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80CE0120: 80362214 (_restgpr_24)
+/* ############################################################################################## */
+/* 80CE0268-80CE0274 00002C 000C+00 0/1 0/0 0/0 .rodata          PARTICLE_NAME$3834 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const PARTICLE_NAME_3834[12] = {
+    0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
+};
+SECTION_DEAD void* const cg_80CE0268 = (void*)(&PARTICLE_NAME_3834);
+#pragma pop
+
+/* 80CE003C-80CE0134 00085C 00F8+00 2/2 0/0 0/0 .text createSmkEmtChange__15daObjSnowSoup_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,7 +361,7 @@ asm void daObjSnowSoup_c::createSmkEmtChange(int param_0) {
 }
 #pragma pop
 
-/* 80CE0134-80CE0180 004C+00 s=2 e=0 z=0  None .text      deleteSmkEmtChange__15daObjSnowSoup_cFi */
+/* 80CE0134-80CE0180 000954 004C+00 2/2 0/0 0/0 .text deleteSmkEmtChange__15daObjSnowSoup_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -497,50 +371,50 @@ asm void daObjSnowSoup_c::deleteSmkEmtChange(int param_0) {
 }
 #pragma pop
 
-/* 80CE0180-80CE01D4 0054+00 s=1 e=0 z=0  None .text      daObjSnowSoup_create__FP15daObjSnowSoup_c
- */
-//	80CE01A8: 80CDF878 (__ct__15daObjSnowSoup_cFv)
-//	80CE01BC: 80CDFA3C (create__15daObjSnowSoup_cFv)
+/* 80CE0180-80CE01D4 0009A0 0054+00 1/0 0/0 0/0 .text daObjSnowSoup_create__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_create(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_create(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_create__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE01D4-80CE01F4 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_Delete__FP15daObjSnowSoup_c
- */
-//	80CE01E0: 80CDFB70 (Delete__15daObjSnowSoup_cFv)
+/* 80CE01D4-80CE01F4 0009F4 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_Delete__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_Delete(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_Delete(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_Delete__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE01F4-80CE0214 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_execute__FP15daObjSnowSoup_c
+/* 80CE01F4-80CE0214 000A14 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_execute__FP15daObjSnowSoup_c
  */
-//	80CE0200: 80CDFC40 (execute__15daObjSnowSoup_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_execute(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_execute(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_execute__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE0214-80CE0234 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_draw__FP15daObjSnowSoup_c */
-//	80CE0220: 80CDFBC4 (draw__15daObjSnowSoup_cFv)
+/* 80CE0214-80CE0234 000A34 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_draw__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_draw(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_draw(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_draw__FP15daObjSnowSoup_c.s"
 }
+#pragma pop
+
+/* 80CE0274-80CE027D 000038 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CE0274 = "SnowSoup";
 #pragma pop

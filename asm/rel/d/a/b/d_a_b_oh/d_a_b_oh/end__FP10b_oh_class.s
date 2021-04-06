@@ -5,8 +5,8 @@ lbl_8061C1F8:
 /* 8061C204  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8061C208  93 C1 00 08 */	stw r30, 8(r1)
 /* 8061C20C  7C 7E 1B 78 */	mr r30, r3
-/* 8061C210  3C 60 80 62 */	lis r3, lit_3650@ha
-/* 8061C214  3B E3 D9 D4 */	addi r31, r3, lit_3650@l
+/* 8061C210  3C 60 80 62 */	lis r3, lit_3650@ha /* 0x8061D9D4@ha */
+/* 8061C214  3B E3 D9 D4 */	addi r31, r3, lit_3650@l /* 0x8061D9D4@l */
 /* 8061C218  38 00 00 06 */	li r0, 6
 /* 8061C21C  B0 1E 05 F4 */	sth r0, 0x5f4(r30)
 /* 8061C220  A8 1E 05 D0 */	lha r0, 0x5d0(r30)
@@ -27,14 +27,14 @@ lbl_8061C250:
 /* 8061C254  C0 3F 00 50 */	lfs f1, 0x50(r31)
 /* 8061C258  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 8061C25C  C0 7F 00 6C */	lfs f3, 0x6c(r31)
-/* 8061C260  4B C5 37 DC */	b cLib_addCalc2__FPffff
+/* 8061C260  4B C5 37 DD */	bl cLib_addCalc2__FPffff
 /* 8061C264  A8 1E 05 EC */	lha r0, 0x5ec(r30)
 /* 8061C268  2C 00 00 00 */	cmpwi r0, 0
 /* 8061C26C  40 82 00 14 */	bne lbl_8061C280
 /* 8061C270  38 7E 06 18 */	addi r3, r30, 0x618
 /* 8061C274  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 8061C278  FC 40 08 90 */	fmr f2, f1
-/* 8061C27C  4B C5 38 04 */	b cLib_addCalc0__FPfff
+/* 8061C27C  4B C5 38 05 */	bl cLib_addCalc0__FPfff
 lbl_8061C280:
 /* 8061C280  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8061C284  83 C1 00 08 */	lwz r30, 8(r1)

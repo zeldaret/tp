@@ -3,19 +3,20 @@
 #
 
 M632_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock.plf
+M632_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock.lcf
+M632_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock.map
 
 M632_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stairBlock/executor.cpp \
-	rel/d/a/obj/d_a_obj_stairBlock/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_stairBlock/d_a_obj_stairBlock.cpp \
 
 M632_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/d_a_obj_stairBlock.o \
 
 M632_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/libRuntime.PPCEABI.H.a \
 
 M632_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M632_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map632.map\
+	-m _prolog \
+	-lcf $(M632_LDSCRIPT) \
+	-unused -map $(M632_MAP) \
+	-w off \
 
 $(M632_TARGET): $(M632_O_FILES) $(M632_LIBS)
+	@echo [632] creating $(M632_TARGET)
 	@echo $(M632_LIBS) $(M632_O_FILES) > build/M632_ofiles
-	$(LD) -opt_partial $(M632_LDFLAGS) -o $(M632_TARGET) @build/M632_ofiles
+	@python3 tools/lcf.py rel 632 --output $(M632_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M632_LDFLAGS) -o $(M632_TARGET) @build/M632_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stairBlock/%.o: rel/d/a/obj/d_a_obj_stairBlock/%.cpp
+	@echo [632] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M632_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M632_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_stairBlock/libs/Runtime.PPCEABI.H/Makefile
 

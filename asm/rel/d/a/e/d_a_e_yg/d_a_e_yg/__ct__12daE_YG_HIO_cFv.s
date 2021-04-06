@@ -1,8 +1,8 @@
 lbl_807F834C:
-/* 807F834C  3C 80 80 80 */	lis r4, lit_3801@ha
-/* 807F8350  38 A4 CC B4 */	addi r5, r4, lit_3801@l
-/* 807F8354  3C 80 80 80 */	lis r4, __vt__12daE_YG_HIO_c@ha
-/* 807F8358  38 04 D0 0C */	addi r0, r4, __vt__12daE_YG_HIO_c@l
+/* 807F834C  3C 80 80 80 */	lis r4, lit_3801@ha /* 0x807FCCB4@ha */
+/* 807F8350  38 A4 CC B4 */	addi r5, r4, lit_3801@l /* 0x807FCCB4@l */
+/* 807F8354  3C 80 80 80 */	lis r4, __vt__12daE_YG_HIO_c@ha /* 0x807FD00C@ha */
+/* 807F8358  38 04 D0 0C */	addi r0, r4, __vt__12daE_YG_HIO_c@l /* 0x807FD00C@l */
 /* 807F835C  90 03 00 00 */	stw r0, 0(r3)
 /* 807F8360  38 00 FF FF */	li r0, -1
 /* 807F8364  98 03 00 04 */	stb r0, 4(r3)

@@ -3,17 +3,15 @@
 #
 
 M554_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate.plf
+M554_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate.lcf
+M554_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate.map
 
 M554_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6egate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6egate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv6egate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv6egate/d_a_obj_lv6egate.cpp \
 
 M554_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/d_a_obj_lv6egate.o \
 
 M554_LIBS := \
@@ -29,15 +27,21 @@ M554_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map554.map\
+	-m _prolog \
+	-lcf $(M554_LDSCRIPT) \
+	-unused -map $(M554_MAP) \
+	-w off \
 
 $(M554_TARGET): $(M554_O_FILES) $(M554_LIBS)
+	@echo [554] creating $(M554_TARGET)
 	@echo $(M554_LIBS) $(M554_O_FILES) > build/M554_ofiles
-	$(LD) -opt_partial $(M554_LDFLAGS) -o $(M554_TARGET) @build/M554_ofiles
+	@python3 tools/lcf.py rel 554 --output $(M554_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M554_LDFLAGS) -o $(M554_TARGET) @build/M554_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6egate/%.o: rel/d/a/obj/d_a_obj_lv6egate/%.cpp
+	@echo [554] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M554_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M554_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

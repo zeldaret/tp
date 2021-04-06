@@ -5,8 +5,8 @@ lbl_80946BB4:
 /* 80946BC0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80946BC4  7C 7F 1B 78 */	mr r31, r3
 /* 80946BC8  38 80 00 00 */	li r4, 0
-/* 80946BCC  3C A0 80 95 */	lis r5, lit_3926@ha
-/* 80946BD0  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)
+/* 80946BCC  3C A0 80 95 */	lis r5, lit_3926@ha /* 0x8094B1F0@ha */
+/* 80946BD0  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)  /* 0x8094B1F0@l */
 /* 80946BD4  48 00 34 81 */	bl setAnimeType__8daMyna_cFUcf
 /* 80946BD8  38 00 00 00 */	li r0, 0
 /* 80946BDC  B0 1F 09 1A */	sth r0, 0x91a(r31)

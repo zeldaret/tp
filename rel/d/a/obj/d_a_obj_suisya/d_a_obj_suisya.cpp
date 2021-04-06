@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -34,9 +34,9 @@ struct daObj_Suisya_c {
     /* 80CF0310 */ void create();
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -72,9 +72,9 @@ struct cBgS_PolyInfo {};
 
 struct _GXTexObj {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -85,13 +85,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObj_Suisya_Draw(daObj_Suisya_c*);
-static void daObj_Suisya_Execute(daObj_Suisya_c*);
-static bool daObj_Suisya_IsDelete(daObj_Suisya_c*);
-static void daObj_Suisya_Delete(daObj_Suisya_c*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Suisya_Create(daObj_Suisya_c*);
 
 extern "C" void draw__14daObj_Suisya_cFv();
 extern "C" static void daObj_Suisya_Draw__FP14daObj_Suisya_c();
@@ -107,30 +100,11 @@ extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" static void daObj_Suisya_Create__FP14daObj_Suisya_c();
 extern "C" static void func_80CF0508();
 extern "C" static void func_80CF0510();
-extern "C" extern u32 const lit_3663;
-extern "C" extern u8 const lit_3664[4];
-extern "C" extern u32 const lit_3749;
-extern "C" extern u32 const lit_3750;
-extern "C" extern u32 const lit_3751;
-extern "C" extern u32 const lit_3752;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_SUISYA[12];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
+extern "C" extern char const* const d_a_obj_suisya__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGd_setShadow(u32, s8, J3DModel*, cXyz*, f32, f32, f32, f32, cBgS_PolyInfo&,
-                        dKy_tevstr_c*, s16, f32, _GXTexObj*);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -171,23 +145,34 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80CF0520-80CF0524 0004+00 s=2 e=0 z=0  None .rodata    @3662 */
+/* 80CF0520-80CF0524 000000 0004+00 2/2 0/0 0/0 .rodata          @3662 */
 SECTION_RODATA static u32 const lit_3662 = 0x42C80000;
+SECTION_DEAD void* const cg_80CF0520 = (void*)(&lit_3662);
 
-/* 80CF0078-80CF0148 00D0+00 s=1 e=0 z=0  None .text      draw__14daObj_Suisya_cFv */
-//	80CF0090: 80CF0520 (lit_3662)
-//	80CF0094: 80CF0520 (lit_3662)
-//	80CF0098: 8042CA54 (g_env_light)
-//	80CF009C: 8042CA54 (g_env_light)
-//	80CF00AC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80CF00B0: 8042CA54 (g_env_light)
-//	80CF00B4: 8042CA54 (g_env_light)
-//	80CF00C4: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80CF00CC:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel) 	80CF011C: 804248D0
-//(mSimpleTexObj__21dDlst_shadowControl_c) 	80CF0120: 804248D0
-//(mSimpleTexObj__21dDlst_shadowControl_c) 	80CF0124: 8002E910
-//(dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj)
+/* 80CF0524-80CF0528 000004 0004+00 0/1 0/0 0/0 .rodata          @3663 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3663 = 0x43C80000;
+SECTION_DEAD void* const cg_80CF0524 = (void*)(&lit_3663);
+#pragma pop
+
+/* 80CF0528-80CF052C 000008 0004+00 0/2 0/0 0/0 .rodata          @3664 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3664[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80CF0528 = (void*)(&lit_3664);
+#pragma pop
+
+/* 80CF052C-80CF0530 00000C 0004+00 1/2 0/0 0/0 .rodata          @3665 */
+SECTION_RODATA static u32 const lit_3665 = 0x3F800000;
+SECTION_DEAD void* const cg_80CF052C = (void*)(&lit_3665);
+
+/* 80CF0078-80CF0148 000078 00D0+00 1/1 0/0 0/0 .text            draw__14daObj_Suisya_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,48 +182,22 @@ asm void daObj_Suisya_c::draw() {
 }
 #pragma pop
 
-/* 80CF0148-80CF0168 0020+00 s=1 e=0 z=0  None .text      daObj_Suisya_Draw__FP14daObj_Suisya_c */
-//	80CF0154: 80CF0078 (draw__14daObj_Suisya_cFv)
+/* 80CF0148-80CF0168 000148 0020+00 1/0 0/0 0/0 .text daObj_Suisya_Draw__FP14daObj_Suisya_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Suisya_Draw(daObj_Suisya_c* param_0) {
+static asm void daObj_Suisya_Draw(daObj_Suisya_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/daObj_Suisya_Draw__FP14daObj_Suisya_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CF0524-80CF0528 0004+00 s=0 e=0 z=0  None .rodata    @3663 */
-SECTION_RODATA u32 const lit_3663 = 0x43C80000;
-
-/* 80CF0528-80CF052C 0004+00 s=0 e=0 z=0  None .rodata    @3664 */
-SECTION_RODATA u8 const lit_3664[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80CF052C-80CF0530 0004+00 s=1 e=0 z=0  None .rodata    @3665 */
-SECTION_RODATA static u32 const lit_3665 = 0x3F800000;
-
-/* 80CF0530-80CF0534 0004+00 s=1 e=0 z=0  None .rodata    @3682 */
+/* 80CF0530-80CF0534 000010 0004+00 1/1 0/0 0/0 .rodata          @3682 */
 SECTION_RODATA static u32 const lit_3682 = 0xBF800000;
+SECTION_DEAD void* const cg_80CF0530 = (void*)(&lit_3682);
 
-/* 80CF0168-80CF020C 00A4+00 s=1 e=0 z=0  None .text      execute__14daObj_Suisya_cFv */
-//	80CF0188: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CF018C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80CF01A4: 80CF052C (lit_3665)
-//	80CF01A8: 80CF052C (lit_3665)
-//	80CF01B0: 80CF0530 (lit_3682)
-//	80CF01B4: 80CF0530 (lit_3682)
-//	80CF01C0: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80CF01D4: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80CF01DC: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80CF01E0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CF01E4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CF01F0: 803464B0 (PSMTXCopy)
+/* 80CF0168-80CF020C 000168 00A4+00 1/1 0/0 0/0 .text            execute__14daObj_Suisya_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -248,48 +207,22 @@ asm void daObj_Suisya_c::execute() {
 }
 #pragma pop
 
-/* 80CF020C-80CF022C 0020+00 s=2 e=0 z=0  None .text      daObj_Suisya_Execute__FP14daObj_Suisya_c
- */
-//	80CF0218: 80CF0168 (execute__14daObj_Suisya_cFv)
+/* 80CF020C-80CF022C 00020C 0020+00 2/1 0/0 0/0 .text daObj_Suisya_Execute__FP14daObj_Suisya_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Suisya_Execute(daObj_Suisya_c* param_0) {
+static asm void daObj_Suisya_Execute(daObj_Suisya_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/daObj_Suisya_Execute__FP14daObj_Suisya_c.s"
 }
 #pragma pop
 
-/* 80CF022C-80CF0234 0008+00 s=1 e=0 z=0  None .text      daObj_Suisya_IsDelete__FP14daObj_Suisya_c
- */
+/* 80CF022C-80CF0234 00022C 0008+00 1/0 0/0 0/0 .text daObj_Suisya_IsDelete__FP14daObj_Suisya_c */
 static bool daObj_Suisya_IsDelete(daObj_Suisya_c* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80CF0534-80CF0538 0004+00 s=0 e=0 z=0  None .rodata    @3749 */
-SECTION_RODATA u32 const lit_3749 = 0xC3480000;
-
-/* 80CF0538-80CF053C 0004+00 s=0 e=0 z=0  None .rodata    @3750 */
-SECTION_RODATA u32 const lit_3750 = 0xC3FA0000;
-
-/* 80CF053C-80CF0540 0004+00 s=0 e=0 z=0  None .rodata    @3751 */
-SECTION_RODATA u32 const lit_3751 = 0x43480000;
-
-/* 80CF0540-80CF0544 0004+00 s=0 e=0 z=0  None .rodata    @3752 */
-SECTION_RODATA u32 const lit_3752 = 0x43FA0000;
-
-/* 80CF0544-80CF054C 0008+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CF0544 = "Obj_sui";
-#pragma pop
-
-/* 80CF0234-80CF0264 0030+00 s=1 e=0 z=0  None .text      _delete__14daObj_Suisya_cFv */
-//	80CF0240: 80CF0544 (stringBase0)
-//	80CF0244: 80CF0544 (stringBase0)
-//	80CF024C: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80CF0234-80CF0264 000234 0030+00 1/1 0/0 0/0 .text            _delete__14daObj_Suisya_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,24 +232,17 @@ asm void daObj_Suisya_c::_delete() {
 }
 #pragma pop
 
-/* 80CF0264-80CF0284 0020+00 s=1 e=0 z=0  None .text      daObj_Suisya_Delete__FP14daObj_Suisya_c */
-//	80CF0270: 80CF0234 (_delete__14daObj_Suisya_cFv)
+/* 80CF0264-80CF0284 000264 0020+00 1/0 0/0 0/0 .text daObj_Suisya_Delete__FP14daObj_Suisya_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Suisya_Delete(daObj_Suisya_c* param_0) {
+static asm void daObj_Suisya_Delete(daObj_Suisya_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/daObj_Suisya_Delete__FP14daObj_Suisya_c.s"
 }
 #pragma pop
 
-/* 80CF0284-80CF02F0 006C+00 s=1 e=0 z=0  None .text      CreateHeap__14daObj_Suisya_cFv */
-//	80CF0298: 80CF0544 (stringBase0)
-//	80CF029C: 80CF0544 (stringBase0)
-//	80CF02A4: 804061C0 (g_dComIfG_gameInfo)
-//	80CF02A8: 804061C0 (g_dComIfG_gameInfo)
-//	80CF02B8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80CF02C8: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80CF0284-80CF02F0 000284 006C+00 1/1 0/0 0/0 .text            CreateHeap__14daObj_Suisya_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,19 +252,46 @@ asm void daObj_Suisya_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80CF02F0-80CF0310 0020+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
-//	80CF02FC: 80CF0284 (CreateHeap__14daObj_Suisya_cFv)
+/* 80CF02F0-80CF0310 0002F0 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CF054C-80CF056C 0020+00 s=1 e=0 z=0  None .data      l_daObj_Suisya_Method */
+/* 80CF0534-80CF0538 000014 0004+00 0/1 0/0 0/0 .rodata          @3749 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3749 = 0xC3480000;
+SECTION_DEAD void* const cg_80CF0534 = (void*)(&lit_3749);
+#pragma pop
+
+/* 80CF0538-80CF053C 000018 0004+00 0/1 0/0 0/0 .rodata          @3750 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3750 = 0xC3FA0000;
+SECTION_DEAD void* const cg_80CF0538 = (void*)(&lit_3750);
+#pragma pop
+
+/* 80CF053C-80CF0540 00001C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3751 = 0x43480000;
+SECTION_DEAD void* const cg_80CF053C = (void*)(&lit_3751);
+#pragma pop
+
+/* 80CF0540-80CF0544 000020 0004+00 0/1 0/0 0/0 .rodata          @3752 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3752 = 0x43FA0000;
+SECTION_DEAD void* const cg_80CF0540 = (void*)(&lit_3752);
+#pragma pop
+
+/* 80CF054C-80CF056C -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Suisya_Method */
 SECTION_DATA static void* l_daObj_Suisya_Method[8] = {
     (void*)daObj_Suisya_Create__FP14daObj_Suisya_c,
     (void*)daObj_Suisya_Delete__FP14daObj_Suisya_c,
@@ -350,8 +303,8 @@ SECTION_DATA static void* l_daObj_Suisya_Method[8] = {
     (void*)NULL,
 };
 
-/* 80CF056C-80CF059C 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_SUISYA */
-SECTION_DATA void* g_profile_OBJ_SUISYA[12] = {
+/* 80CF056C-80CF059C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SUISYA */
+SECTION_DATA extern void* g_profile_OBJ_SUISYA[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x011D0000, (void*)&g_fpcLf_Method,
     (void*)0x00000790, (void*)NULL,
@@ -360,8 +313,8 @@ SECTION_DATA void* g_profile_OBJ_SUISYA[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80CF059C-80CF05C0 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
+/* 80CF059C-80CF05C0 000050 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_ObjAcchFv,
@@ -373,28 +326,7 @@ SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_80CF0508,
 };
 
-/* 80CF0310-80CF0478 0168+00 s=1 e=0 z=0  None .text      create__14daObj_Suisya_cFv */
-//	80CF0320: 803621DC (_savegpr_29)
-//	80CF0328: 80CF0520 (lit_3662)
-//	80CF032C: 80CF0520 (lit_3662)
-//	80CF0348: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80CF0350: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	80CF035C: 800760A0 (__ct__9dBgS_AcchFv)
-//	80CF0360: 80CF059C (__vt__12dBgS_ObjAcch)
-//	80CF0364: 80CF059C (__vt__12dBgS_ObjAcch)
-//	80CF0380: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	80CF0394: 80CF0544 (stringBase0)
-//	80CF0398: 80CF0544 (stringBase0)
-//	80CF039C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80CF03B0: 80CF02F0 (useHeapInit__FP10fopAc_ac_c)
-//	80CF03B4: 80CF02F0 (useHeapInit__FP10fopAc_ac_c)
-//	80CF03BC: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80CF03F4: 8001A528 (fopAcM_SetMin__FP10fopAc_ac_cfff)
-//	80CF0408: 8001A538 (fopAcM_SetMax__FP10fopAc_ac_cfff)
-//	80CF0434: 80076248
-//(Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz) 	80CF0444:
-//80075F58 (SetWall__12dBgS_AcchCirFff) 	80CF0458: 80CF020C
-//(daObj_Suisya_Execute__FP14daObj_Suisya_c) 	80CF0464: 80362228 (_restgpr_29)
+/* 80CF0310-80CF0478 000310 0168+00 1/1 0/0 0/0 .text            create__14daObj_Suisya_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,11 +336,7 @@ asm void daObj_Suisya_c::create() {
 }
 #pragma pop
 
-/* 80CF0478-80CF04E8 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
-//	80CF0498: 80CF059C (__vt__12dBgS_ObjAcch)
-//	80CF049C: 80CF059C (__vt__12dBgS_ObjAcch)
-//	80CF04B8: 80075F94 (__dt__9dBgS_AcchFv)
-//	80CF04C8: 802CED3C (__dl__FPv)
+/* 80CF0478-80CF04E8 000478 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -418,35 +346,39 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80CF04E8-80CF0508 0020+00 s=1 e=0 z=0  None .text      daObj_Suisya_Create__FP14daObj_Suisya_c */
-//	80CF04F4: 80CF0310 (create__14daObj_Suisya_cFv)
+/* 80CF04E8-80CF0508 0004E8 0020+00 1/0 0/0 0/0 .text daObj_Suisya_Create__FP14daObj_Suisya_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Suisya_Create(daObj_Suisya_c* param_0) {
+static asm void daObj_Suisya_Create(daObj_Suisya_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/daObj_Suisya_Create__FP14daObj_Suisya_c.s"
 }
 #pragma pop
 
-/* 80CF0508-80CF0510 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
-//	80CF050C: 80CF0478 (__dt__12dBgS_ObjAcchFv)
+/* 80CF0508-80CF0510 000508 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80CF0508() {
+static asm void func_80CF0508() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/func_80CF0508.s"
 }
 #pragma pop
 
-/* 80CF0510-80CF0518 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
-//	80CF0514: 80CF0478 (__dt__12dBgS_ObjAcchFv)
+/* 80CF0510-80CF0518 000510 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80CF0510() {
+static asm void func_80CF0510() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya/func_80CF0510.s"
 }
+#pragma pop
+
+/* 80CF0544-80CF054C 000024 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CF0544 = "Obj_sui";
 #pragma pop

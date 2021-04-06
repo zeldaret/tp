@@ -13,23 +13,23 @@ lbl_80297C40:
 /* 80297C6C  88 0D 8C E2 */	lbz r0, struct_80451260+0x2(r13)
 /* 80297C70  7C 00 07 75 */	extsb. r0, r0
 /* 80297C74  40 82 00 34 */	bne lbl_80297CA8
-/* 80297C78  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297C7C  38 63 1B 34 */	addi r3, r3, data_80431B34@l
+/* 80297C78  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297C7C  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
 /* 80297C80  4B FF 8B C9 */	bl __ct__17JASGenericMemPoolFv
-/* 80297C84  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297C88  38 63 1B 34 */	addi r3, r3, data_80431B34@l
-/* 80297C8C  3C 80 80 29 */	lis r4, func_802978DC@ha
-/* 80297C90  38 84 78 DC */	addi r4, r4, func_802978DC@l
-/* 80297C94  3C A0 80 43 */	lis r5, lit_156@ha
-/* 80297C98  38 A5 1B 48 */	addi r5, r5, lit_156@l
+/* 80297C84  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297C88  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
+/* 80297C8C  3C 80 80 29 */	lis r4, func_802978DC@ha /* 0x802978DC@ha */
+/* 80297C90  38 84 78 DC */	addi r4, r4, func_802978DC@l /* 0x802978DC@l */
+/* 80297C94  3C A0 80 43 */	lis r5, lit_156@ha /* 0x80431B48@ha */
+/* 80297C98  38 A5 1B 48 */	addi r5, r5, lit_156@l /* 0x80431B48@l */
 /* 80297C9C  48 0C 9F 89 */	bl __register_global_object
 /* 80297CA0  38 00 00 01 */	li r0, 1
 /* 80297CA4  98 0D 8C E2 */	stb r0, struct_80451260+0x2(r13)
 lbl_80297CA8:
 /* 80297CA8  48 0A 5A 4D */	bl OSDisableInterrupts
 /* 80297CAC  90 61 00 08 */	stw r3, 8(r1)
-/* 80297CB0  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297CB4  38 63 1B 34 */	addi r3, r3, data_80431B34@l
+/* 80297CB0  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297CB4  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
 /* 80297CB8  38 80 01 08 */	li r4, 0x108
 /* 80297CBC  4B FF 8C 8D */	bl alloc__17JASGenericMemPoolFUl
 /* 80297CC0  7C 79 1B 78 */	mr r25, r3
@@ -64,8 +64,8 @@ lbl_80297CF8:
 /* 80297D2C  B0 19 00 CA */	sth r0, 0xca(r25)
 /* 80297D30  7F 23 CB 78 */	mr r3, r25
 /* 80297D34  38 80 00 00 */	li r4, 0
-/* 80297D38  3C A0 80 3A */	lis r5, OSC_ENV@ha
-/* 80297D3C  38 A5 B1 9C */	addi r5, r5, OSC_ENV@l
+/* 80297D38  3C A0 80 3A */	lis r5, OSC_ENV@ha /* 0x8039B19C@ha */
+/* 80297D3C  38 A5 B1 9C */	addi r5, r5, OSC_ENV@l /* 0x8039B19C@l */
 /* 80297D40  48 00 2E 25 */	bl setOscInit__10JASChannelFUlPCQ213JASOscillator4Data
 /* 80297D44  7F 23 CB 78 */	mr r3, r25
 /* 80297D48  48 00 2C A9 */	bl play__10JASChannelFv

@@ -12,7 +12,7 @@
 //
 
 extern "C" void __CARDCompareFileName();
-extern "C" static void __CARDAccess();
+extern "C" void __CARDAccess();
 extern "C" void __CARDIsWritable();
 extern "C" void __CARDIsReadable();
 extern "C" void CARDOpen();
@@ -33,96 +33,61 @@ extern "C" extern u8 struct_80450A70[8];
 // Declarations:
 //
 
-/* 80357C74-80357CDC 0068+00 s=1 e=1 z=0  None .text      __CARDCompareFileName */
+/* 80357C74-80357CDC 3525B4 0068+00 1/1 1/1 0/0 .text            __CARDCompareFileName */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDCompareFileName() {
+asm void __CARDCompareFileName() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/__CARDCompareFileName.s"
 }
 #pragma pop
 
-/* 80357CDC-80357D70 0094+00 s=2 e=0 z=0  None .text      __CARDAccess */
-//	80357D0C: 8044CDE0 (__CARDDiskNone)
-//	80357D10: 8044CDE0 (__CARDDiskNone)
-//	80357D28: 8036608C (memcmp)
-//	80357D40: 8036608C (memcmp)
+/* 80357CDC-80357D70 35261C 0094+00 2/2 0/0 0/0 .text            __CARDAccess */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDAccess() {
+asm void __CARDAccess() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/__CARDAccess.s"
 }
 #pragma pop
 
-/* 80357D70-80357EA4 0134+00 s=0 e=2 z=0  None .text      __CARDIsWritable */
-//	80357D9C: 8044CDE0 (__CARDDiskNone)
-//	80357DA0: 8044CDE0 (__CARDDiskNone)
-//	80357DB8: 8036608C (memcmp)
-//	80357DD0: 8036608C (memcmp)
-//	80357DF4: 80450A72 (struct_80450A70)
-//	80357E08: 8044CDE0 (__CARDDiskNone)
-//	80357E0C: 8044CDE0 (__CARDDiskNone)
-//	80357E1C: 8036608C (memcmp)
-//	80357E34: 8036608C (memcmp)
-//	80357E50: 8044CDE0 (__CARDDiskNone)
-//	80357E54: 8044CDE0 (__CARDDiskNone)
-//	80357E60: 8036608C (memcmp)
-//	80357E78: 8036608C (memcmp)
+/* 80357D70-80357EA4 3526B0 0134+00 0/0 2/2 0/0 .text            __CARDIsWritable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDIsWritable() {
+asm void __CARDIsWritable() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/__CARDIsWritable.s"
 }
 #pragma pop
 
-/* 80357EA4-80357F98 00F4+00 s=0 e=2 z=0  None .text      __CARDIsReadable */
-//	80357EBC: 80357CDC (__CARDAccess)
-//	80357ED0: 80450A72 (struct_80450A70)
-//	80357EE4: 8044CDE0 (__CARDDiskNone)
-//	80357EE8: 8044CDE0 (__CARDDiskNone)
-//	80357EF8: 8036608C (memcmp)
-//	80357F10: 8036608C (memcmp)
-//	80357F2C: 8044CDE0 (__CARDDiskNone)
-//	80357F30: 8044CDE0 (__CARDDiskNone)
-//	80357F3C: 8036608C (memcmp)
-//	80357F54: 8036608C (memcmp)
+/* 80357EA4-80357F98 3527E4 00F4+00 0/0 2/2 0/0 .text            __CARDIsReadable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDIsReadable() {
+asm void __CARDIsReadable() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/__CARDIsReadable.s"
 }
 #pragma pop
 
-/* 80357F98-803580B4 011C+00 s=0 e=3 z=0  None .text      CARDOpen */
-//	80357FC0: 80353BB4 (__CARDGetControlBlock)
-//	80357FEC: 8035577C (__CARDGetDirBlock)
-//	80358000: 80357CDC (__CARDAccess)
-//	80358014: 80357C74 (__CARDCompareFileName)
-//	8035804C: 8035577C (__CARDGetDirBlock)
-//	8035809C: 80353C6C (__CARDPutControlBlock)
+/* 80357F98-803580B4 3528D8 011C+00 0/0 3/3 0/0 .text            CARDOpen */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDOpen() {
+asm void CARDOpen() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/CARDOpen.s"
 }
 #pragma pop
 
-/* 803580B4-80358108 0054+00 s=0 e=3 z=0  None .text      CARDClose */
-//	803580D0: 80353BB4 (__CARDGetControlBlock)
-//	803580F0: 80353C6C (__CARDPutControlBlock)
+/* 803580B4-80358108 3529F4 0054+00 0/0 3/3 0/0 .text            CARDClose */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDClose() {
+asm void CARDClose() {
     nofralloc
 #include "asm/dolphin/card/CARDOpen/CARDClose.s"
 }

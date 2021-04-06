@@ -5,12 +5,12 @@ lbl_80140D24:
 /* 80140D30  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80140D34  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80140D38  41 82 00 30 */	beq lbl_80140D68
-/* 80140D3C  3C 60 80 3B */	lis r3, __vt__16daPy_frameCtrl_c@ha
-/* 80140D40  38 03 2E 20 */	addi r0, r3, __vt__16daPy_frameCtrl_c@l
+/* 80140D3C  3C 60 80 3B */	lis r3, __vt__16daPy_frameCtrl_c@ha /* 0x803B2E20@ha */
+/* 80140D40  38 03 2E 20 */	addi r0, r3, __vt__16daPy_frameCtrl_c@l /* 0x803B2E20@l */
 /* 80140D44  90 1F 00 00 */	stw r0, 0(r31)
 /* 80140D48  41 82 00 10 */	beq lbl_80140D58
-/* 80140D4C  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 80140D50  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 80140D4C  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80140D50  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80140D54  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80140D58:
 /* 80140D58  7C 80 07 35 */	extsh. r0, r4

@@ -4,12 +4,12 @@ lbl_804CDBC8:
 /* 804CDBD0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804CDBD4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804CDBD8  7C 7F 1B 78 */	mr r31, r3
-/* 804CDBDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804CDBE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804CDBDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804CDBE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804CDBE4  38 80 00 FF */	li r4, 0xff
 /* 804CDBE8  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 804CDBEC  7C 05 07 74 */	extsb r5, r0
-/* 804CDBF0  4B B6 77 70 */	b isSwitch__10dSv_info_cCFii
+/* 804CDBF0  4B B6 77 71 */	bl isSwitch__10dSv_info_cCFii
 /* 804CDBF4  2C 03 00 00 */	cmpwi r3, 0
 /* 804CDBF8  41 82 00 1C */	beq lbl_804CDC14
 /* 804CDBFC  38 7F 09 35 */	addi r3, r31, 0x935

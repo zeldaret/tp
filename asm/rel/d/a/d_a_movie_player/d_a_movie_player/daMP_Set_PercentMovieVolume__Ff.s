@@ -2,10 +2,10 @@ lbl_80878B38:
 /* 80878B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80878B3C  7C 08 02 A6 */	mflr r0
 /* 80878B40  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80878B44  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha
-/* 80878B48  38 83 90 34 */	addi r4, r3, __THPJpegNaturalOrder@l
-/* 80878B4C  3C 60 80 94 */	lis r3, daMP_Fail_alloc@ha
-/* 80878B50  80 03 5B 08 */	lwz r0, daMP_Fail_alloc@l(r3)
+/* 80878B44  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha /* 0x80879034@ha */
+/* 80878B48  38 83 90 34 */	addi r4, r3, __THPJpegNaturalOrder@l /* 0x80879034@l */
+/* 80878B4C  3C 60 80 94 */	lis r3, daMP_Fail_alloc@ha /* 0x80945B08@ha */
+/* 80878B50  80 03 5B 08 */	lwz r0, daMP_Fail_alloc@l(r3)  /* 0x80945B08@l */
 /* 80878B54  2C 00 00 00 */	cmpwi r0, 0
 /* 80878B58  40 82 00 50 */	bne lbl_80878BA8
 /* 80878B5C  C0 04 00 D0 */	lfs f0, 0xd0(r4)

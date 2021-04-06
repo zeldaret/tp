@@ -21,38 +21,38 @@ lbl_80127F50:
 /* 80127F9C  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80127FA0  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 80127FA4  41 82 00 6C */	beq lbl_80128010
-/* 80127FA8  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 80127FAC  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 80127FA8  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80127FAC  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80127FB0  AB C4 00 54 */	lha r30, 0x54(r4)
 /* 80127FB4  AB A4 00 50 */	lha r29, 0x50(r4)
 /* 80127FB8  AB 84 00 52 */	lha r28, 0x52(r4)
 /* 80127FBC  4B FF FF 65 */	bl checkWolfSlowDash__9daAlink_cFv
 /* 80127FC0  2C 03 00 00 */	cmpwi r3, 0
 /* 80127FC4  41 82 00 14 */	beq lbl_80127FD8
-/* 80127FC8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 80127FCC  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80127FC8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80127FCC  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80127FD0  C3 C3 00 EC */	lfs f30, 0xec(r3)
 /* 80127FD4  48 00 00 2C */	b lbl_80128000
 lbl_80127FD8:
 /* 80127FD8  88 19 2F C7 */	lbz r0, 0x2fc7(r25)
 /* 80127FDC  28 00 00 02 */	cmplwi r0, 2
 /* 80127FE0  40 82 00 14 */	bne lbl_80127FF4
-/* 80127FE4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 80127FE8  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80127FE4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80127FE8  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80127FEC  C3 C3 00 FC */	lfs f30, 0xfc(r3)
 /* 80127FF0  48 00 00 10 */	b lbl_80128000
 lbl_80127FF4:
-/* 80127FF4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 80127FF8  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80127FF4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80127FF8  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80127FFC  C3 C3 00 D0 */	lfs f30, 0xd0(r3)
 lbl_80128000:
-/* 80128000  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 80128004  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80128000  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80128004  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80128008  C3 A3 00 6C */	lfs f29, 0x6c(r3)
 /* 8012800C  48 00 00 20 */	b lbl_8012802C
 lbl_80128010:
-/* 80128010  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 80128014  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 80128010  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 80128014  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 80128018  AB C3 00 04 */	lha r30, 4(r3)
 /* 8012801C  AB A3 00 00 */	lha r29, 0(r3)
 /* 80128020  AB 83 00 02 */	lha r28, 2(r3)
@@ -131,16 +131,16 @@ lbl_80128120:
 /* 8012812C  80 19 05 74 */	lwz r0, 0x574(r25)
 /* 80128130  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 80128134  41 82 00 18 */	beq lbl_8012814C
-/* 80128138  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012813C  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80128138  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012813C  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80128140  C0 03 00 A0 */	lfs f0, 0xa0(r3)
 /* 80128144  FC 1B 00 40 */	fcmpo cr0, f27, f0
 /* 80128148  41 81 02 E8 */	bgt lbl_80128430
 lbl_8012814C:
 /* 8012814C  28 00 00 00 */	cmplwi r0, 0
 /* 80128150  40 82 00 1C */	bne lbl_8012816C
-/* 80128154  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 80128158  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 80128154  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 80128158  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8012815C  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 80128160  FC 1B 00 40 */	fcmpo cr0, f27, f0
 /* 80128164  40 81 00 08 */	ble lbl_8012816C

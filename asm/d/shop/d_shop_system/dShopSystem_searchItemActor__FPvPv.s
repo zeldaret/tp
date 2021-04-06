@@ -23,8 +23,8 @@ lbl_80197098:
 /* 801970EC  7C 03 00 00 */	cmpw r3, r0
 /* 801970F0  40 80 01 64 */	bge lbl_80197254
 /* 801970F4  54 9F 47 3E */	rlwinm r31, r4, 8, 0x1c, 0x1f
-/* 801970F8  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 801970FC  84 03 B8 A4 */	lwzu r0, dShopSystem_itemActor@l(r3)
+/* 801970F8  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 801970FC  84 03 B8 A4 */	lwzu r0, dShopSystem_itemActor@l(r3)  /* 0x803BB8A4@l */
 /* 80197100  7C 00 E8 40 */	cmplw r0, r29
 /* 80197104  41 82 01 50 */	beq lbl_80197254
 /* 80197108  80 03 00 04 */	lwz r0, 4(r3)
@@ -52,8 +52,8 @@ lbl_80197098:
 /* 80197160  7C 1E 03 78 */	mr r30, r0
 /* 80197164  28 1B 00 FF */	cmplwi r27, 0xff
 /* 80197168  41 82 00 20 */	beq lbl_80197188
-/* 8019716C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80197170  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019716C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80197170  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80197174  38 63 09 58 */	addi r3, r3, 0x958
 /* 80197178  7F 64 DB 78 */	mr r4, r27
 /* 8019717C  4B E9 D6 E5 */	bl isSwitch__12dSv_memBit_cCFi
@@ -62,8 +62,8 @@ lbl_80197098:
 lbl_80197188:
 /* 80197188  28 1C 00 FF */	cmplwi r28, 0xff
 /* 8019718C  41 82 00 20 */	beq lbl_801971AC
-/* 80197190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80197194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80197190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80197194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80197198  38 63 09 58 */	addi r3, r3, 0x958
 /* 8019719C  7F 84 E3 78 */	mr r4, r28
 /* 801971A0  4B E9 D6 C1 */	bl isSwitch__12dSv_memBit_cCFi
@@ -80,8 +80,8 @@ lbl_801971AC:
 /* 801971C8  4B F0 0D 19 */	bl checkItemGet__FUci
 /* 801971CC  2C 03 00 00 */	cmpwi r3, 0
 /* 801971D0  41 82 00 1C */	beq lbl_801971EC
-/* 801971D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801971D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801971D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801971D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801971DC  38 63 09 58 */	addi r3, r3, 0x958
 /* 801971E0  7F 64 DB 78 */	mr r4, r27
 /* 801971E4  4B E9 D6 2D */	bl onSwitch__12dSv_memBit_cFi
@@ -93,15 +93,15 @@ lbl_801971EC:
 /* 801971F8  98 0D 8A E0 */	stb r0, data_80451060(r13)
 /* 801971FC  80 8D 8A DC */	lwz r4, dShopSystem_item_count(r13)
 /* 80197200  54 80 10 3A */	slwi r0, r4, 2
-/* 80197204  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 80197208  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 80197204  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 80197208  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019720C  7F A3 01 2E */	stwx r29, r3, r0
 /* 80197210  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 80197214  7F C3 21 AE */	stbx r30, r3, r4
 /* 80197218  48 00 00 30 */	b lbl_80197248
 lbl_8019721C:
-/* 8019721C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 80197220  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 8019721C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 80197220  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 80197224  57 E0 15 BA */	rlwinm r0, r31, 2, 0x16, 0x1d
 /* 80197228  7C 63 02 14 */	add r3, r3, r0
 /* 8019722C  84 03 FF FC */	lwzu r0, -4(r3)

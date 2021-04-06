@@ -31,15 +31,15 @@ lbl_8023610C:
 /* 80236110  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 80236114  98 1F 01 9A */	stb r0, 0x19a(r31)
 lbl_80236118:
-/* 80236118  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8023611C  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 80236118  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8023611C  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80236120  88 1C 5E 8F */	lbz r0, 0x5e8f(r28)
 /* 80236124  28 00 00 08 */	cmplwi r0, 8
 /* 80236128  41 82 00 2C */	beq lbl_80236154
 /* 8023612C  28 00 00 05 */	cmplwi r0, 5
 /* 80236130  40 82 00 34 */	bne lbl_80236164
-/* 80236134  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80236138  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80236134  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80236138  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8023613C  4B FE 60 A1 */	bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80236140  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236144  41 82 00 20 */	beq lbl_80236164
@@ -47,8 +47,8 @@ lbl_80236118:
 /* 8023614C  28 00 00 00 */	cmplwi r0, 0
 /* 80236150  40 82 00 14 */	bne lbl_80236164
 lbl_80236154:
-/* 80236154  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80236158  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80236154  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80236158  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8023615C  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80236160  4B FE 95 8D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_80236164:
@@ -78,8 +78,8 @@ lbl_802361B4:
 /* 802361B4  80 1F 01 04 */	lwz r0, 0x104(r31)
 /* 802361B8  28 00 00 00 */	cmplwi r0, 0
 /* 802361BC  40 82 05 30 */	bne lbl_802366EC
-/* 802361C0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 802361C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 802361C0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 802361C4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 802361C8  A0 03 00 A6 */	lhz r0, 0xa6(r3)
 /* 802361CC  28 00 13 EB */	cmplwi r0, 0x13eb
 /* 802361D0  41 82 05 1C */	beq lbl_802366EC
@@ -127,8 +127,8 @@ lbl_80236264:
 /* 80236264  88 9F 01 9A */	lbz r4, 0x19a(r31)
 /* 80236268  28 04 00 13 */	cmplwi r4, 0x13
 /* 8023626C  41 81 01 74 */	bgt lbl_802363E0
-/* 80236270  3C 60 80 3C */	lis r3, lit_5875@ha
-/* 80236274  38 63 0B 4C */	addi r3, r3, lit_5875@l
+/* 80236270  3C 60 80 3C */	lis r3, lit_5875@ha /* 0x803C0B4C@ha */
+/* 80236274  38 63 0B 4C */	addi r3, r3, lit_5875@l /* 0x803C0B4C@l */
 /* 80236278  54 80 10 3A */	slwi r0, r4, 2
 /* 8023627C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80236280  7C 09 03 A6 */	mtctr r0
@@ -401,19 +401,19 @@ lbl_802364BC:
 /* 80236668  7D 89 03 A6 */	mtctr r12
 /* 8023666C  4E 80 04 21 */	bctrl 
 /* 80236670  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 80236674  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 80236678  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 80236674  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 80236678  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 8023667C  38 84 00 6E */	addi r4, r4, 0x6e
 /* 80236680  7C 85 23 78 */	mr r5, r4
 /* 80236684  48 00 5C DD */	bl setString__14dMsgScrnBase_cFPcPc
 /* 80236688  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 8023668C  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 80236690  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 8023668C  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 80236690  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 80236694  38 84 00 6E */	addi r4, r4, 0x6e
 /* 80236698  48 00 5D 55 */	bl setRubyString__14dMsgScrnBase_cFPc
 /* 8023669C  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 802366A0  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 802366A4  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 802366A0  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802366A4  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 802366A8  38 84 00 6E */	addi r4, r4, 0x6e
 /* 802366AC  7C 85 23 78 */	mr r5, r4
 /* 802366B0  7C 86 23 78 */	mr r6, r4
@@ -422,8 +422,8 @@ lbl_802364BC:
 /* 802366BC  7D 89 03 A6 */	mtctr r12
 /* 802366C0  4E 80 04 21 */	bctrl 
 /* 802366C4  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 802366C8  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 802366CC  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 802366C8  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802366CC  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 802366D0  38 84 00 6E */	addi r4, r4, 0x6e
 /* 802366D4  7C 85 23 78 */	mr r5, r4
 /* 802366D8  7C 86 23 78 */	mr r6, r4

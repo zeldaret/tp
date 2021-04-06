@@ -11,15 +11,15 @@ lbl_8046B360:
 /* 8046B384  B0 1F 05 72 */	sth r0, 0x572(r31)
 /* 8046B388  38 7F 06 D4 */	addi r3, r31, 0x6d4
 /* 8046B38C  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 8046B390  4B E0 42 B8 */	b SetC__8cM3dGSphFRC4cXyz
-/* 8046B394  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8046B398  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8046B390  4B E0 42 B9 */	bl SetC__8cM3dGSphFRC4cXyz
+/* 8046B394  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8046B398  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8046B39C  38 63 23 3C */	addi r3, r3, 0x233c
 /* 8046B3A0  38 9F 05 B0 */	addi r4, r31, 0x5b0
-/* 8046B3A4  4B DF 98 04 */	b Set__4cCcSFP8cCcD_Obj
+/* 8046B3A4  4B DF 98 05 */	bl Set__4cCcSFP8cCcD_Obj
 /* 8046B3A8  48 00 00 08 */	b lbl_8046B3B0
 lbl_8046B3AC:
-/* 8046B3AC  4B BB 43 9C */	b fopKyM_Delete__FPv
+/* 8046B3AC  4B BB 43 9D */	bl fopKyM_Delete__FPv
 lbl_8046B3B0:
 /* 8046B3B0  38 60 00 01 */	li r3, 1
 /* 8046B3B4  83 E1 00 0C */	lwz r31, 0xc(r1)

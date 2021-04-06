@@ -5,18 +5,18 @@ lbl_8018E504:
 /* 8018E510  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8018E514  93 C1 00 08 */	stw r30, 8(r1)
 /* 8018E518  7C 7E 1B 78 */	mr r30, r3
-/* 8018E51C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8018E520  3B E3 A8 48 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 8018E524  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018E528  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018E51C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BA848@ha */
+/* 8018E520  3B E3 A8 48 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803BA848@l */
+/* 8018E524  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018E528  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018E52C  38 80 00 00 */	li r4, 0
 /* 8018E530  4B E8 88 45 */	bl getStatus__15mDoMemCd_Ctrl_cFUl
 /* 8018E534  28 03 00 0E */	cmplwi r3, 0xe
 /* 8018E538  41 82 02 74 */	beq lbl_8018E7AC
 /* 8018E53C  28 03 00 0C */	cmplwi r3, 0xc
 /* 8018E540  41 81 02 6C */	bgt lbl_8018E7AC
-/* 8018E544  3C 80 80 3C */	lis r4, lit_7815@ha
-/* 8018E548  38 84 B2 AC */	addi r4, r4, lit_7815@l
+/* 8018E544  3C 80 80 3C */	lis r4, lit_7815@ha /* 0x803BB2AC@ha */
+/* 8018E548  38 84 B2 AC */	addi r4, r4, lit_7815@l /* 0x803BB2AC@l */
 /* 8018E54C  54 60 10 3A */	slwi r0, r3, 2
 /* 8018E550  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8018E554  7C 09 03 A6 */	mtctr r0
@@ -27,8 +27,8 @@ lbl_8018E504:
 /* 8018E568  4B FF FD 4D */	bl errDispInitSet__14dFile_select_cFii
 /* 8018E56C  38 00 00 00 */	li r0, 0
 /* 8018E570  98 1E 02 80 */	stb r0, 0x280(r30)
-/* 8018E574  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018E578  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018E574  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018E578  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018E57C  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018E580  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018E584  90 7E 02 84 */	stw r3, 0x284(r30)
@@ -52,8 +52,8 @@ lbl_8018E504:
 /* 8018E5CC  4B FF FC E9 */	bl errDispInitSet__14dFile_select_cFii
 /* 8018E5D0  38 00 00 00 */	li r0, 0
 /* 8018E5D4  98 1E 02 80 */	stb r0, 0x280(r30)
-/* 8018E5D8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018E5DC  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018E5D8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018E5DC  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018E5E0  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018E5E4  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018E5E8  90 7E 02 84 */	stw r3, 0x284(r30)
@@ -77,8 +77,8 @@ lbl_8018E504:
 /* 8018E630  4B FF FC 85 */	bl errDispInitSet__14dFile_select_cFii
 /* 8018E634  38 00 00 00 */	li r0, 0
 /* 8018E638  98 1E 02 80 */	stb r0, 0x280(r30)
-/* 8018E63C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018E640  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018E63C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018E640  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018E644  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018E648  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018E64C  90 7E 02 84 */	stw r3, 0x284(r30)
@@ -102,8 +102,8 @@ lbl_8018E504:
 /* 8018E694  4B FF FC 21 */	bl errDispInitSet__14dFile_select_cFii
 /* 8018E698  38 00 00 00 */	li r0, 0
 /* 8018E69C  98 1E 02 80 */	stb r0, 0x280(r30)
-/* 8018E6A0  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018E6A4  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018E6A0  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018E6A4  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018E6A8  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018E6AC  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018E6B0  90 7E 02 84 */	stw r3, 0x284(r30)
@@ -136,8 +136,8 @@ lbl_8018E504:
 /* 8018E71C  4B FF FB 99 */	bl errDispInitSet__14dFile_select_cFii
 /* 8018E720  38 00 00 00 */	li r0, 0
 /* 8018E724  98 1E 02 80 */	stb r0, 0x280(r30)
-/* 8018E728  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018E72C  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018E728  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018E72C  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018E730  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018E734  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018E738  90 7E 02 84 */	stw r3, 0x284(r30)
@@ -155,8 +155,8 @@ lbl_8018E504:
 /* 8018E768  38 00 00 12 */	li r0, 0x12
 /* 8018E76C  98 1E 02 74 */	stb r0, 0x274(r30)
 /* 8018E770  48 00 00 3C */	b lbl_8018E7AC
-/* 8018E774  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018E778  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018E774  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018E778  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018E77C  4B E8 82 39 */	bl load__15mDoMemCd_Ctrl_cFv
 /* 8018E780  38 00 00 01 */	li r0, 1
 /* 8018E784  98 1E 02 71 */	stb r0, 0x271(r30)

@@ -19,8 +19,8 @@ lbl_80124E28:
 lbl_80124E6C:
 /* 80124E6C  38 00 00 00 */	li r0, 0
 /* 80124E70  98 1F 00 00 */	stb r0, 0(r31)
-/* 80124E74  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80124E78  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80124E74  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80124E78  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80124E7C  D0 1F 00 24 */	stfs f0, 0x24(r31)
 /* 80124E80  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80124E84  D0 1F 00 28 */	stfs f0, 0x28(r31)

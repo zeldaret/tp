@@ -14,10 +14,10 @@ lbl_803273CC:
 /* 803273FC  54 03 32 B2 */	rlwinm r3, r0, 6, 0xa, 0x19
 /* 80327400  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327404  4B FA 78 C1 */	bl __nwa__FUl
-/* 80327408  3C 80 80 31 */	lis r4, __ct__12J3DMatPacketFv@ha
-/* 8032740C  38 84 29 48 */	addi r4, r4, __ct__12J3DMatPacketFv@l
-/* 80327410  3C A0 80 31 */	lis r5, __dt__12J3DMatPacketFv@ha
-/* 80327414  38 A5 29 A4 */	addi r5, r5, __dt__12J3DMatPacketFv@l
+/* 80327408  3C 80 80 31 */	lis r4, __ct__12J3DMatPacketFv@ha /* 0x80312948@ha */
+/* 8032740C  38 84 29 48 */	addi r4, r4, __ct__12J3DMatPacketFv@l /* 0x80312948@l */
+/* 80327410  3C A0 80 31 */	lis r5, __dt__12J3DMatPacketFv@ha /* 0x803129A4@ha */
+/* 80327414  38 A5 29 A4 */	addi r5, r5, __dt__12J3DMatPacketFv@l /* 0x803129A4@l */
 /* 80327418  38 C0 00 40 */	li r6, 0x40
 /* 8032741C  7E E7 BB 78 */	mr r7, r23
 /* 80327420  48 03 AA F5 */	bl __construct_new_array

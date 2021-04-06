@@ -5,8 +5,8 @@ lbl_805D272C:
 /* 805D2738  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805D273C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805D2740  7C 7E 1B 78 */	mr r30, r3
-/* 805D2744  3C 80 80 5E */	lis r4, lit_3932@ha
-/* 805D2748  3B E4 CA 54 */	addi r31, r4, lit_3932@l
+/* 805D2744  3C 80 80 5E */	lis r4, lit_3932@ha /* 0x805DCA54@ha */
+/* 805D2748  3B E4 CA 54 */	addi r31, r4, lit_3932@l /* 0x805DCA54@l */
 /* 805D274C  4B FF 95 B5 */	bl mHeadAngle_Clear__8daB_DS_cFv
 /* 805D2750  80 1E 06 84 */	lwz r0, 0x684(r30)
 /* 805D2754  2C 00 00 01 */	cmpwi r0, 1
@@ -19,8 +19,8 @@ lbl_805D276C:
 /* 805D276C  7F C3 F3 78 */	mr r3, r30
 /* 805D2770  88 1E 08 4F */	lbz r0, 0x84f(r30)
 /* 805D2774  54 00 10 3A */	slwi r0, r0, 2
-/* 805D2778  3C 80 80 5E */	lis r4, Ds_BS_id@ha
-/* 805D277C  38 84 D6 2C */	addi r4, r4, Ds_BS_id@l
+/* 805D2778  3C 80 80 5E */	lis r4, Ds_BS_id@ha /* 0x805DD62C@ha */
+/* 805D277C  38 84 D6 2C */	addi r4, r4, Ds_BS_id@l /* 0x805DD62C@l */
 /* 805D2780  7C 84 00 2E */	lwzx r4, r4, r0
 /* 805D2784  38 A0 00 00 */	li r5, 0
 /* 805D2788  C0 3F 01 90 */	lfs f1, 0x190(r31)
@@ -93,15 +93,15 @@ lbl_805D285C:
 /* 805D2880  2C 00 00 96 */	cmpwi r0, 0x96
 /* 805D2884  40 80 00 34 */	bge lbl_805D28B8
 /* 805D2888  7F C3 F3 78 */	mr r3, r30
-/* 805D288C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805D2890  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 805D288C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805D2890  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805D2894  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 805D2898  4B A4 7E 78 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 805D2898  4B A4 7E 79 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 805D289C  7C 64 1B 78 */	mr r4, r3
 /* 805D28A0  38 7E 04 DE */	addi r3, r30, 0x4de
 /* 805D28A4  38 A0 00 28 */	li r5, 0x28
 /* 805D28A8  38 C0 02 00 */	li r6, 0x200
-/* 805D28AC  4B C9 DD 5C */	b cLib_addCalcAngleS2__FPssss
+/* 805D28AC  4B C9 DD 5D */	bl cLib_addCalcAngleS2__FPssss
 /* 805D28B0  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 805D28B4  B0 1E 04 E6 */	sth r0, 0x4e6(r30)
 lbl_805D28B8:

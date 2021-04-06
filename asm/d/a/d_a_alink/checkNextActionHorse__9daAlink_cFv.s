@@ -67,8 +67,8 @@ lbl_800EF51C:
 lbl_800EF534:
 /* 800EF534  28 04 00 3E */	cmplwi r4, 0x3e
 /* 800EF538  40 82 00 2C */	bne lbl_800EF564
-/* 800EF53C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EF540  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EF53C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EF540  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EF544  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800EF548  28 03 00 00 */	cmplwi r3, 0
 /* 800EF54C  41 82 00 18 */	beq lbl_800EF564

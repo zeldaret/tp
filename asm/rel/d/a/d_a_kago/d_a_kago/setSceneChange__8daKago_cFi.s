@@ -42,14 +42,14 @@ lbl_8084AF00:
 /* 8084AF00  3B E0 00 03 */	li r31, 3
 lbl_8084AF04:
 /* 8084AF04  7F E3 FB 78 */	mr r3, r31
-/* 8084AF08  3C 80 80 85 */	lis r4, lit_3942@ha
-/* 8084AF0C  C0 24 4B 38 */	lfs f1, lit_3942@l(r4)
+/* 8084AF08  3C 80 80 85 */	lis r4, lit_3942@ha /* 0x80854B38@ha */
+/* 8084AF0C  C0 24 4B 38 */	lfs f1, lit_3942@l(r4)  /* 0x80854B38@l */
 /* 8084AF10  38 80 00 0A */	li r4, 0xa
 /* 8084AF14  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8084AF18  7C 05 07 74 */	extsb r5, r0
 /* 8084AF1C  38 C0 00 00 */	li r6, 0
 /* 8084AF20  38 E0 FF FF */	li r7, -1
-/* 8084AF24  4B 7D C2 4C */	b dStage_changeScene__FifUlScsi
+/* 8084AF24  4B 7D C2 4D */	bl dStage_changeScene__FifUlScsi
 /* 8084AF28  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8084AF2C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8084AF30  80 01 00 14 */	lwz r0, 0x14(r1)

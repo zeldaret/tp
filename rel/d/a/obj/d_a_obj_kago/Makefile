@@ -3,19 +3,20 @@
 #
 
 M491_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago.plf
+M491_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago.lcf
+M491_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago.map
 
 M491_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kago/executor.cpp \
-	rel/d/a/obj/d_a_obj_kago/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kago/d_a_obj_kago.cpp \
 
 M491_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/d_a_obj_kago.o \
 
 M491_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/libRuntime.PPCEABI.H.a \
 
 M491_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M491_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map491.map\
+	-m _prolog \
+	-lcf $(M491_LDSCRIPT) \
+	-unused -map $(M491_MAP) \
+	-w off \
 
 $(M491_TARGET): $(M491_O_FILES) $(M491_LIBS)
+	@echo [491] creating $(M491_TARGET)
 	@echo $(M491_LIBS) $(M491_O_FILES) > build/M491_ofiles
-	$(LD) -opt_partial $(M491_LDFLAGS) -o $(M491_TARGET) @build/M491_ofiles
+	@python3 tools/lcf.py rel 491 --output $(M491_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M491_LDFLAGS) -o $(M491_TARGET) @build/M491_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kago/%.o: rel/d/a/obj/d_a_obj_kago/%.cpp
+	@echo [491] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M491_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M491_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kago/libs/Runtime.PPCEABI.H/Makefile
 

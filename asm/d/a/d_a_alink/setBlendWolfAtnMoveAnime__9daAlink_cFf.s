@@ -10,8 +10,8 @@ lbl_80129114:
 /* 80129134  48 23 90 A9 */	bl _savegpr_29
 /* 80129138  7C 7E 1B 78 */	mr r30, r3
 /* 8012913C  FF C0 08 90 */	fmr f30, f1
-/* 80129140  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 80129144  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 80129140  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 80129144  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 80129148  A8 83 2F E4 */	lha r4, 0x2fe4(r3)
 /* 8012914C  4B FB E7 49 */	bl checkSetChainPullAnime__9daAlink_cFs
 /* 80129150  2C 03 00 00 */	cmpwi r3, 0
@@ -71,8 +71,8 @@ lbl_80129200:
 /* 8012920C  4B F8 6E 8D */	bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 lbl_80129210:
 /* 80129210  C0 3E 33 98 */	lfs f1, 0x3398(r30)
-/* 80129214  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80129218  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 80129214  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80129218  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8012921C  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 80129220  7C 64 02 14 */	add r3, r4, r0
 /* 80129224  C0 03 00 04 */	lfs f0, 4(r3)

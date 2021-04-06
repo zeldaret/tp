@@ -38,13 +38,10 @@ extern "C" void execCommandOnce__Q210JASPortCmd9TPortHeadFv();
 extern "C" void execCommandStay__Q210JASPortCmd9TPortHeadFv();
 extern "C" void __sinit_JASCmdStack_cpp();
 extern "C" void __dt__Q210JASPortCmd9TPortHeadFv();
-extern "C" extern u8 JASCmdStack__lit_82[12];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 extern "C" void __dt__10JSUPtrListFv();
@@ -61,25 +58,22 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 80431678-80431684 000C+00 s=1 e=0 z=0  None .bss       @80 */
+/* 80431678-80431684 05E398 000C+00 1/1 0/0 0/0 .bss             @80 */
 static u8 lit_80[12];
 
-/* 80431684-80431690 000C+00 s=1 e=0 z=0  None .bss       sCommandListOnce__10JASPortCmd */
+/* 80431684-80431690 05E3A4 000C+00 1/2 0/0 0/0 .bss             sCommandListOnce__10JASPortCmd */
 static u8 sCommandListOnce__10JASPortCmd[12];
 
-/* 80431690-8043169C 000C+00 s=0 e=0 z=0  None .bss       @82 */
-u8 JASCmdStack__lit_82[12];
+/* 80431690-8043169C 05E3B0 000C+00 0/1 0/0 0/0 .bss             @82 */
+#pragma push
+#pragma force_active on
+static u8 lit_82[12];
+#pragma pop
 
-/* 8043169C-804316A8 000C+00 s=1 e=0 z=0  None .bss       sCommandListStay__10JASPortCmd */
+/* 8043169C-804316A8 05E3BC 000C+00 1/2 0/0 0/0 .bss             sCommandListStay__10JASPortCmd */
 static u8 sCommandListStay__10JASPortCmd[12];
 
-/* 80291060-80291094 0034+00 s=0 e=1 z=0  None .text      execAllCommand__10JASPortCmdFv */
-//	8029106C: 80431684 (sCommandListOnce__10JASPortCmd)
-//	80291070: 80431684 (sCommandListOnce__10JASPortCmd)
-//	80291074: 80291094 (execCommandOnce__Q210JASPortCmd9TPortHeadFv)
-//	80291078: 8043169C (sCommandListStay__10JASPortCmd)
-//	8029107C: 8043169C (sCommandListStay__10JASPortCmd)
-//	80291080: 8029110C (execCommandStay__Q210JASPortCmd9TPortHeadFv)
+/* 80291060-80291094 28B9A0 0034+00 0/0 1/1 0/0 .text            execAllCommand__10JASPortCmdFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -89,13 +83,8 @@ asm void JASPortCmd::execAllCommand() {
 }
 #pragma pop
 
-/* 80291094-8029110C 0078+00 s=1 e=0 z=0  None .text execCommandOnce__Q210JASPortCmd9TPortHeadFv
+/* 80291094-8029110C 28B9D4 0078+00 1/1 0/0 0/0 .text execCommandOnce__Q210JASPortCmd9TPortHeadFv
  */
-//	802910A4: 803621DC (_savegpr_29)
-//	802910AC: 8033D6F4 (OSDisableInterrupts)
-//	802910DC: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802910F0: 8033D71C (OSRestoreInterrupts)
-//	802910F8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,10 +94,8 @@ asm void JASPortCmd::TPortHead::execCommandOnce() {
 }
 #pragma pop
 
-/* 8029110C-8029116C 0060+00 s=1 e=0 z=0  None .text execCommandStay__Q210JASPortCmd9TPortHeadFv
+/* 8029110C-8029116C 28BA4C 0060+00 1/1 0/0 0/0 .text execCommandStay__Q210JASPortCmd9TPortHeadFv
  */
-//	80291120: 8033D6F4 (OSDisableInterrupts)
-//	80291154: 8033D71C (OSRestoreInterrupts)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -118,21 +105,11 @@ asm void JASPortCmd::TPortHead::execCommandStay() {
 }
 #pragma pop
 
-/* 8029116C-802911D0 0064+00 s=0 e=0 z=0  None .text      __sinit_JASCmdStack_cpp */
-//	8029117C: 80431678 (lit_80)
-//	80291180: 80431678 (lit_80)
-//	80291188: 802DBF14 (initiate__10JSUPtrListFv)
-//	80291190: 802911D0 (__dt__Q210JASPortCmd9TPortHeadFv)
-//	80291194: 802911D0 (__dt__Q210JASPortCmd9TPortHeadFv)
-//	8029119C: 80361C24 (__register_global_object)
-//	802911A4: 802DBF14 (initiate__10JSUPtrListFv)
-//	802911AC: 802911D0 (__dt__Q210JASPortCmd9TPortHeadFv)
-//	802911B0: 802911D0 (__dt__Q210JASPortCmd9TPortHeadFv)
-//	802911B8: 80361C24 (__register_global_object)
+/* 8029116C-802911D0 28BAAC 0064+00 0/0 1/0 0/0 .text            __sinit_JASCmdStack_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_JASCmdStack_cpp() {
+asm void __sinit_JASCmdStack_cpp() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASCmdStack/__sinit_JASCmdStack_cpp.s"
 }
@@ -143,9 +120,7 @@ extern "C" asm void __sinit_JASCmdStack_cpp() {
 SECTION_CTORS void* const _ctors_8029116C = (void*)__sinit_JASCmdStack_cpp;
 #pragma pop
 
-/* 802911D0-80291228 0058+00 s=1 e=0 z=0  None .text      __dt__Q210JASPortCmd9TPortHeadFv */
-//	802911F8: 802DBEAC (__dt__10JSUPtrListFv)
-//	80291208: 802CED3C (__dl__FPv)
+/* 802911D0-80291228 28BB10 0058+00 1/1 0/0 0/0 .text            __dt__Q210JASPortCmd9TPortHeadFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

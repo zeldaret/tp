@@ -3,19 +3,20 @@
 #
 
 M289_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS.plf
+M289_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS.lcf
+M289_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS.map
 
 M289_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_bouS/executor.cpp \
-	rel/d/a/npc/d_a_npc_bouS/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_bouS/d_a_npc_bouS.cpp \
 
 M289_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/d_a_npc_bouS.o \
 
 M289_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/libRuntime.PPCEABI.H.a \
 
 M289_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M289_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map289.map\
+	-m _prolog \
+	-lcf $(M289_LDSCRIPT) \
+	-unused -map $(M289_MAP) \
+	-w off \
 
 $(M289_TARGET): $(M289_O_FILES) $(M289_LIBS)
+	@echo [289] creating $(M289_TARGET)
 	@echo $(M289_LIBS) $(M289_O_FILES) > build/M289_ofiles
-	$(LD) -opt_partial $(M289_LDFLAGS) -o $(M289_TARGET) @build/M289_ofiles
+	@python3 tools/lcf.py rel 289 --output $(M289_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M289_LDFLAGS) -o $(M289_TARGET) @build/M289_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bouS/%.o: rel/d/a/npc/d_a_npc_bouS/%.cpp
+	@echo [289] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M289_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M289_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_bouS/libs/Runtime.PPCEABI.H/Makefile
 

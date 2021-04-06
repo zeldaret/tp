@@ -1,7 +1,7 @@
 lbl_80459D0C:
 /* 80459D0C  C0 44 05 3C */	lfs f2, 0x53c(r4)
-/* 80459D10  3C A0 80 46 */	lis r5, lit_3823@ha
-/* 80459D14  C0 25 C9 FC */	lfs f1, lit_3823@l(r5)
+/* 80459D10  3C A0 80 46 */	lis r5, lit_3823@ha /* 0x8045C9FC@ha */
+/* 80459D14  C0 25 C9 FC */	lfs f1, lit_3823@l(r5)  /* 0x8045C9FC@l */
 /* 80459D18  C0 03 05 18 */	lfs f0, 0x518(r3)
 /* 80459D1C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80459D20  EC 02 00 2A */	fadds f0, f2, f0

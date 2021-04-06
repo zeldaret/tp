@@ -1,7 +1,7 @@
 lbl_80D12EB4:
 /* 80D12EB4  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
-/* 80D12EB8  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 80D12EBC  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 80D12EB8  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 80D12EBC  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 80D12EC0  D0 04 10 94 */	stfs f0, 0x1094(r4)
 /* 80D12EC4  C0 03 04 D4 */	lfs f0, 0x4d4(r3)
 /* 80D12EC8  D0 04 10 98 */	stfs f0, 0x1098(r4)

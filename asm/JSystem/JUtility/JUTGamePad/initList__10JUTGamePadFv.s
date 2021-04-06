@@ -5,8 +5,8 @@ lbl_802E085C:
 /* 802E0868  88 0D 8F 50 */	lbz r0, data_804514D0(r13)
 /* 802E086C  28 00 00 00 */	cmplwi r0, 0
 /* 802E0870  40 82 00 18 */	bne lbl_802E0888
-/* 802E0874  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad@ha
-/* 802E0878  38 63 43 E4 */	addi r3, r3, mPadList__10JUTGamePad@l
+/* 802E0874  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad@ha /* 0x804343E4@ha */
+/* 802E0878  38 63 43 E4 */	addi r3, r3, mPadList__10JUTGamePad@l /* 0x804343E4@l */
 /* 802E087C  4B FF B6 99 */	bl initiate__10JSUPtrListFv
 /* 802E0880  38 00 00 01 */	li r0, 1
 /* 802E0884  98 0D 8F 50 */	stb r0, data_804514D0(r13)

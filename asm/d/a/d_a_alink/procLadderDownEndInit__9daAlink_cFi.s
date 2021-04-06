@@ -14,8 +14,8 @@ lbl_800FDC18:
 /* 800FDC48  41 82 00 08 */	beq lbl_800FDC50
 /* 800FDC4C  38 80 00 9D */	li r4, 0x9d
 lbl_800FDC50:
-/* 800FDC50  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha
-/* 800FDC54  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l
+/* 800FDC50  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FDC54  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FDC58  C0 25 00 40 */	lfs f1, 0x40(r5)
 /* 800FDC5C  C0 45 00 44 */	lfs f2, 0x44(r5)
 /* 800FDC60  4B FA F3 81 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -33,8 +33,8 @@ lbl_800FDC50:
 /* 800FDC90  38 00 00 00 */	li r0, 0
 /* 800FDC94  B0 1E 30 0C */	sth r0, 0x300c(r30)
 /* 800FDC98  B0 1E 30 10 */	sth r0, 0x3010(r30)
-/* 800FDC9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FDCA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FDC9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FDCA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FDCA4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800FDCA8  64 00 02 00 */	oris r0, r0, 0x200
 /* 800FDCAC  90 03 5F 18 */	stw r0, 0x5f18(r3)

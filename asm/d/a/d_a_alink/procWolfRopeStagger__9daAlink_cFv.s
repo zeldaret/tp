@@ -57,8 +57,8 @@ lbl_8013323C:
 /* 8013323C  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80133240  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80133244  40 80 00 10 */	bge lbl_80133254
-/* 80133248  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8013324C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 80133248  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8013324C  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80133250  48 00 00 78 */	b lbl_801332C8
 lbl_80133254:
 /* 80133254  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -92,8 +92,8 @@ lbl_801332AC:
 lbl_801332B0:
 /* 801332B0  2C 00 00 01 */	cmpwi r0, 1
 /* 801332B4  40 82 00 10 */	bne lbl_801332C4
-/* 801332B8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801332BC  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 801332B8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801332BC  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801332C0  48 00 00 08 */	b lbl_801332C8
 lbl_801332C4:
 /* 801332C4  FF E0 08 90 */	fmr f31, f1
@@ -142,8 +142,8 @@ lbl_80133368:
 /* 80133368  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 8013336C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80133370  40 80 00 10 */	bge lbl_80133380
-/* 80133374  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80133378  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)
+/* 80133374  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80133378  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8013337C  48 00 00 78 */	b lbl_801333F4
 lbl_80133380:
 /* 80133380  D0 21 00 08 */	stfs f1, 8(r1)
@@ -177,8 +177,8 @@ lbl_801333D8:
 lbl_801333DC:
 /* 801333DC  2C 00 00 01 */	cmpwi r0, 1
 /* 801333E0  40 82 00 10 */	bne lbl_801333F0
-/* 801333E4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801333E8  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)
+/* 801333E4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801333E8  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801333EC  48 00 00 08 */	b lbl_801333F4
 lbl_801333F0:
 /* 801333F0  FF A0 08 90 */	fmr f29, f1
@@ -399,8 +399,8 @@ lbl_801336E8:
 /* 801336FC  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80133700  7C 00 1E 70 */	srawi r0, r0, 3
 /* 80133704  54 00 18 38 */	slwi r0, r0, 3
-/* 80133708  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013370C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80133708  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013370C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80133710  7C 03 04 2E */	lfsx f0, r3, r0
 /* 80133714  FC 00 02 10 */	fabs f0, f0
 /* 80133718  FC 80 00 18 */	frsp f4, f0

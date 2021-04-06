@@ -7,8 +7,8 @@ lbl_800394C8:
 /* 800394DC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800394E0  7C 9F 23 78 */	mr r31, r4
 /* 800394E4  41 82 00 28 */	beq lbl_8003950C
-/* 800394E8  3C 80 80 3A */	lis r4, __vt__15dDemo_ambient_c@ha
-/* 800394EC  38 04 7A 5C */	addi r0, r4, __vt__15dDemo_ambient_c@l
+/* 800394E8  3C 80 80 3A */	lis r4, __vt__15dDemo_ambient_c@ha /* 0x803A7A5C@ha */
+/* 800394EC  38 04 7A 5C */	addi r0, r4, __vt__15dDemo_ambient_c@l /* 0x803A7A5C@l */
 /* 800394F0  90 1E 00 00 */	stw r0, 0(r30)
 /* 800394F4  38 80 00 00 */	li r4, 0
 /* 800394F8  48 24 76 29 */	bl __dt__Q26JStage13TAmbientLightFv

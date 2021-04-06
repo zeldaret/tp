@@ -704,21 +704,10 @@ extern "C" bool getFont__11J2DTevBlockFv();
 extern "C" void shiftDeleteFlag__11J2DTevBlockFUcb();
 extern "C" void setUndeleteFlag__11J2DTevBlockFUc();
 extern "C" void setFontUndeleteFlag__11J2DTevBlockFv();
-extern "C" extern void* __vt__15J2DIndBlockFull[14];
-extern "C" extern void* __vt__13J2DTevBlock16[47];
-extern "C" extern void* __vt__12J2DTevBlock8[47];
-extern "C" extern void* __vt__12J2DTevBlock4[47];
-extern "C" extern void* __vt__12J2DTevBlock2[47];
-extern "C" extern void* __vt__12J2DTevBlock1[47];
-extern "C" extern void* __vt__11J2DTevBlock[47];
-extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __ct__Q28JUtility6TColorFv();
 extern "C" void* __nw__FUl();
@@ -810,9 +799,7 @@ extern "C" extern u8 struct_804561AC[4];
 // Declarations:
 //
 
-/* 802EB394-802EB424 0090+00 s=0 e=1 z=0  None .text      initialize__13J2DColorBlockFv */
-//	802EB39C: 8045617C (j2dDefaultColInfo)
-//	802EB3F4: 804561A8 (j2dDefaultColorChanInfo)
+/* 802EB394-802EB424 2E5CD4 0090+00 0/0 1/1 0/0 .text            initialize__13J2DColorBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -823,20 +810,13 @@ asm void J2DColorBlock::initialize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A1C00-803A1C10 0010+00 s=1 e=0 z=0  None .rodata    @1463 */
+/* 803A1C00-803A1C10 02E260 0010+00 1/1 0/0 0/0 .rodata          @1463 */
 SECTION_RODATA static u8 const lit_1463[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03,
 };
+SECTION_DEAD void* const cg_803A1C00 = (void*)(&lit_1463);
 
-/* 802EB424-802EB510 00EC+00 s=0 e=1 z=0  None .text      setGX__13J2DColorBlockFv */
-//	802EB434: 803621D4 (_savegpr_27)
-//	802EB454: 8035DA48 (GXSetChanMatColor)
-//	802EB46C: 8035DB30 (GXSetNumChans)
-//	802EB470: 803A1C00 (lit_1463)
-//	802EB474: 803A1C00 (lit_1463)
-//	802EB4D0: 8035DB6C (GXSetChanCtrl)
-//	802EB4F4: 8035C984 (GXSetCullMode)
-//	802EB4FC: 80362220 (_restgpr_27)
+/* 802EB424-802EB510 2E5D64 00EC+00 0/0 1/1 0/0 .text            setGX__13J2DColorBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -846,9 +826,7 @@ asm void J2DColorBlock::setGX() {
 }
 #pragma pop
 
-/* 802EB510-802EB570 0060+00 s=0 e=1 z=0  None .text      initialize__14J2DTexGenBlockFv */
-//	802EB518: 803A1B80 (j2dDefaultTexCoordInfo)
-//	802EB51C: 803A1B80 (j2dDefaultTexCoordInfo)
+/* 802EB510-802EB570 2E5E50 0060+00 0/0 1/1 0/0 .text            initialize__14J2DTexGenBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -858,12 +836,7 @@ asm void J2DTexGenBlock::initialize() {
 }
 #pragma pop
 
-/* 802EB570-802EB620 00B0+00 s=0 e=1 z=0  None .text      setGX__14J2DTexGenBlockFv */
-//	802EB580: 803621DC (_savegpr_29)
-//	802EB590: 8035BDFC (GXSetNumTexGens)
-//	802EB5BC: 8035BB7C (GXSetTexCoordGen2)
-//	802EB5F4: 802E9C90 (load__9J2DTexMtxFUl)
-//	802EB60C: 80362228 (_restgpr_29)
+/* 802EB570-802EB620 2E5EB0 00B0+00 0/0 1/1 0/0 .text            setGX__14J2DTexGenBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -874,8 +847,8 @@ asm void J2DTexGenBlock::setGX() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CCA90-803CCAC8 0038+00 s=1 e=1 z=0  None .data      __vt__15J2DIndBlockFull */
-SECTION_DATA void* __vt__15J2DIndBlockFull[14] = {
+/* 803CCA90-803CCAC8 029BB0 0038+00 1/1 1/1 0/0 .data            __vt__15J2DIndBlockFull */
+SECTION_DATA extern void* __vt__15J2DIndBlockFull[14] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__15J2DIndBlockFullFv,
@@ -892,8 +865,8 @@ SECTION_DATA void* __vt__15J2DIndBlockFull[14] = {
     (void*)__dt__15J2DIndBlockFullFv,
 };
 
-/* 803CCAC8-803CCB84 00BC+00 s=2 e=0 z=0  None .data      __vt__13J2DTevBlock16 */
-SECTION_DATA void* __vt__13J2DTevBlock16[47] = {
+/* 803CCAC8-803CCB84 029BE8 00BC+00 2/2 0/0 0/0 .data            __vt__13J2DTevBlock16 */
+SECTION_DATA extern void* __vt__13J2DTevBlock16[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__13J2DTevBlock16Fv,
@@ -943,8 +916,8 @@ SECTION_DATA void* __vt__13J2DTevBlock16[47] = {
     (void*)__dt__13J2DTevBlock16Fv,
 };
 
-/* 803CCB84-803CCC40 00BC+00 s=2 e=0 z=0  None .data      __vt__12J2DTevBlock8 */
-SECTION_DATA void* __vt__12J2DTevBlock8[47] = {
+/* 803CCB84-803CCC40 029CA4 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock8 */
+SECTION_DATA extern void* __vt__12J2DTevBlock8[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__12J2DTevBlock8Fv,
@@ -994,8 +967,8 @@ SECTION_DATA void* __vt__12J2DTevBlock8[47] = {
     (void*)__dt__12J2DTevBlock8Fv,
 };
 
-/* 803CCC40-803CCCFC 00BC+00 s=2 e=0 z=0  None .data      __vt__12J2DTevBlock4 */
-SECTION_DATA void* __vt__12J2DTevBlock4[47] = {
+/* 803CCC40-803CCCFC 029D60 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock4 */
+SECTION_DATA extern void* __vt__12J2DTevBlock4[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__12J2DTevBlock4Fv,
@@ -1045,8 +1018,8 @@ SECTION_DATA void* __vt__12J2DTevBlock4[47] = {
     (void*)__dt__12J2DTevBlock4Fv,
 };
 
-/* 803CCCFC-803CCDB8 00BC+00 s=2 e=0 z=0  None .data      __vt__12J2DTevBlock2 */
-SECTION_DATA void* __vt__12J2DTevBlock2[47] = {
+/* 803CCCFC-803CCDB8 029E1C 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock2 */
+SECTION_DATA extern void* __vt__12J2DTevBlock2[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__12J2DTevBlock2Fv,
@@ -1096,8 +1069,8 @@ SECTION_DATA void* __vt__12J2DTevBlock2[47] = {
     (void*)__dt__12J2DTevBlock2Fv,
 };
 
-/* 803CCDB8-803CCE74 00BC+00 s=2 e=0 z=0  None .data      __vt__12J2DTevBlock1 */
-SECTION_DATA void* __vt__12J2DTevBlock1[47] = {
+/* 803CCDB8-803CCE74 029ED8 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock1 */
+SECTION_DATA extern void* __vt__12J2DTevBlock1[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__12J2DTevBlock1Fv,
@@ -1147,8 +1120,8 @@ SECTION_DATA void* __vt__12J2DTevBlock1[47] = {
     (void*)__dt__12J2DTevBlock1Fv,
 };
 
-/* 803CCE74-803CCF30 00BC+00 s=10 e=1 z=0  None .data      __vt__11J2DTevBlock */
-SECTION_DATA void* __vt__11J2DTevBlock[47] = {
+/* 803CCE74-803CCF30 029F94 00BC+00 10/10 1/1 0/0 .data            __vt__11J2DTevBlock */
+SECTION_DATA extern void* __vt__11J2DTevBlock[47] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)initialize__11J2DTevBlockFv,
@@ -1198,8 +1171,8 @@ SECTION_DATA void* __vt__11J2DTevBlock[47] = {
     (void*)__dt__11J2DTevBlockFv,
 };
 
-/* 803CCF30-803CCF40 000C+04 s=1 e=1 z=0  None .data      __vt__14J2DTexGenBlock */
-SECTION_DATA void* __vt__14J2DTexGenBlock[3 + 1 /* padding */] = {
+/* 803CCF30-803CCF40 02A050 000C+04 1/1 1/1 0/0 .data            __vt__14J2DTexGenBlock */
+SECTION_DATA extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14J2DTexGenBlockFv,
@@ -1207,13 +1180,7 @@ SECTION_DATA void* __vt__14J2DTexGenBlock[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802EB620-802EB6A4 0084+00 s=1 e=1 z=0  None .text      __dt__14J2DTexGenBlockFv */
-//	802EB630: 803621D8 (_savegpr_28)
-//	802EB640: 803CCF30 (__vt__14J2DTexGenBlock)
-//	802EB644: 803CCF30 (__vt__14J2DTexGenBlock)
-//	802EB664: 802CED3C (__dl__FPv)
-//	802EB684: 802CED3C (__dl__FPv)
-//	802EB690: 80362224 (_restgpr_28)
+/* 802EB620-802EB6A4 2E5F60 0084+00 1/0 1/1 0/0 .text            __dt__14J2DTexGenBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1223,10 +1190,7 @@ asm J2DTexGenBlock::~J2DTexGenBlock() {
 }
 #pragma pop
 
-/* 802EB6A4-802EB7E0 013C+00 s=0 e=3 z=0  None .text      setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
- */
-//	802EB6D4: 802CEC4C (__nw__FUl)
-//	802EB7C4: 802E9CC4 (calc__9J2DTexMtxFv)
+/* 802EB6A4-802EB7E0 2E5FE4 013C+00 0/0 3/3 0/0 .text setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1236,8 +1200,7 @@ asm void J2DTexGenBlock::setTexMtx(u32 param_0, J2DTexMtx& param_1) {
 }
 #pragma pop
 
-/* 802EB7E0-802EB87C 009C+00 s=0 e=1 z=0  None .text      getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
- */
+/* 802EB7E0-802EB87C 2E6120 009C+00 0/0 1/1 0/0 .text getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1247,39 +1210,17 @@ asm void J2DTexGenBlock::getTexMtx(u32 param_0, J2DTexMtx& param_1) {
 }
 #pragma pop
 
-/* 802EB87C-802EB884 0008+00 s=1 e=0 z=0  None .text      getTexture__11J2DTevBlockFUl */
+/* 802EB87C-802EB884 2E61BC 0008+00 1/0 0/0 0/0 .text            getTexture__11J2DTevBlockFUl */
 bool J2DTevBlock::getTexture(u32 param_0) {
     return false;
 }
 
-/* 802EB884-802EB88C 0008+00 s=1 e=0 z=0  None .text      getPalette__11J2DTevBlockFUl */
+/* 802EB884-802EB88C 2E61C4 0008+00 1/0 0/0 0/0 .text            getPalette__11J2DTevBlockFUl */
 bool J2DTevBlock::getPalette(u32 param_0) {
     return false;
 }
 
-/* 802EB88C-802EB998 010C+00 s=0 e=1 z=0  None .text      __ct__12J2DTevBlock1Fv */
-//	802EB8A0: 803CCE74 (__vt__11J2DTevBlock)
-//	802EB8A4: 803CCE74 (__vt__11J2DTevBlock)
-//	802EB8AC: 803CCDB8 (__vt__12J2DTevBlock1)
-//	802EB8B0: 803CCDB8 (__vt__12J2DTevBlock1)
-//	802EB8BC: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EB8C0: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EB8D0: 80361D60 (__construct_array)
-//	802EB8D8: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EB8DC: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EB8EC: 80361D60 (__construct_array)
-//	802EB8F4: 802F1940 (__ct__11J2DTevStageFv)
-//	802EB8F8: 802F1940 (__ct__11J2DTevStageFv)
-//	802EB908: 80361D60 (__construct_array)
-//	802EB910: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EB914: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EB924: 80361D60 (__construct_array)
-//	802EB92C: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EB930: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EB940: 80361D60 (__construct_array)
-//	802EB948: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EB94C: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EB95C: 80361D60 (__construct_array)
+/* 802EB88C-802EB998 2E61CC 010C+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1289,14 +1230,7 @@ asm J2DTevBlock1::J2DTevBlock1() {
 }
 #pragma pop
 
-/* 802EB998-802EBA50 00B8+00 s=1 e=0 z=0  None .text      __dt__12J2DTevBlock1Fv */
-//	802EB9B8: 803CCDB8 (__vt__12J2DTevBlock1)
-//	802EB9BC: 803CCDB8 (__vt__12J2DTevBlock1)
-//	802EB9D8: 802DE234 (__dt__10JUTTextureFv)
-//	802EB9E0: 802CED3C (__dl__FPv)
-//	802EBA18: 803CCE74 (__vt__11J2DTevBlock)
-//	802EBA1C: 803CCE74 (__vt__11J2DTevBlock)
-//	802EBA30: 802CED3C (__dl__FPv)
+/* 802EB998-802EBA50 2E62D8 00B8+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1306,16 +1240,7 @@ asm J2DTevBlock1::~J2DTevBlock1() {
 }
 #pragma pop
 
-/* 802EBA50-802EBC0C 01BC+00 s=1 e=0 z=0  None .text      initialize__12J2DTevBlock1Fv */
-//	802EBA64: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EBA6C: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EBA84: 80456188 (j2dDefaultTevColor)
-//	802EBA88: 80456188 (j2dDefaultTevColor)
-//	802EBAD0: 80456194 (j2dDefaultTevKColor)
-//	802EBB2C: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EBB48: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EBB70: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802EBB74: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802EBA50-802EBC0C 2E6390 01BC+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1325,8 +1250,8 @@ asm void J2DTevBlock1::initialize() {
 }
 #pragma pop
 
-/* 802EBC0C-802EBCC0 00B4+00 s=1 e=0 z=0  None .text      prepareTexture__12J2DTevBlock1FUc */
-//	802EBC48: 802CEC4C (__nw__FUl)
+/* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1336,15 +1261,8 @@ asm void J2DTevBlock1::prepareTexture(u8 param_0) {
 }
 #pragma pop
 
-/* 802EBCC0-802EBDE4 0124+00 s=1 e=0 z=0  None .text
+/* 802EBCC0-802EBDE4 2E6600 0124+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette      */
-//	802EBCD0: 803621D8 (_savegpr_28)
-//	802EBD24: 802CEC4C (__nw__FUl)
-//	802EBD40: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EBD78: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EBD90: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EBDA0: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EBDD0: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1354,9 +1272,8 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 }
 #pragma pop
 
-/* 802EBDE4-802EBE8C 00A8+00 s=1 e=0 z=0  None .text insertTexture__12J2DTevBlock1FUlP10JUTTexture
- */
-//	802EBE48: 802DE234 (__dt__10JUTTextureFv)
+/* 802EBDE4-802EBE8C 2E6724 00A8+00 1/0 0/0 0/0 .text
+ * insertTexture__12J2DTevBlock1FUlP10JUTTexture                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1366,16 +1283,7 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EBE8C-802EC01C 0190+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock1FUlPC7ResTIMG */
-//	802EBE9C: 803621DC (_savegpr_29)
-//	802EBED0: 802CEC4C (__nw__FUl)
-//	802EBEEC: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EBF54: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EBF60: 802DE234 (__dt__10JUTTextureFv)
-//	802EBF90: 802CEC4C (__nw__FUl)
-//	802EBFAC: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EBFE8: 802CED3C (__dl__FPv)
-//	802EC008: 80362228 (_restgpr_29)
+/* 802EBE8C-802EC01C 2E67CC 0190+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1385,10 +1293,8 @@ asm void J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802EC01C-802EC0A8 008C+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock1FUlP10JUTTexture
+/* 802EC01C-802EC0A8 2E695C 008C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlP10JUTTexture
  */
-//	802EC05C: 802DE234 (__dt__10JUTTextureFv)
-//	802EC074: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1398,9 +1304,7 @@ asm void J2DTevBlock1::setTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EC0A8-802EC124 007C+00 s=1 e=0 z=0  None .text      removeTexture__12J2DTevBlock1FUl */
-//	802EC0E0: 802DE234 (__dt__10JUTTextureFv)
-//	802EC0FC: 802CED3C (__dl__FPv)
+/* 802EC0A8-802EC124 2E69E8 007C+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1410,11 +1314,8 @@ asm void J2DTevBlock1::removeTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802EC124-802EC1D8 00B4+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock1FP7ResFONT */
-//	802EC134: 803621DC (_savegpr_29)
-//	802EC150: 802CEC4C (__nw__FUl)
-//	802EC164: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	802EC1C4: 80362228 (_restgpr_29)
+/* 802EC124-802EC1D8 2E6A64 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7ResFONT
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1424,7 +1325,8 @@ asm void J2DTevBlock1::setFont(ResFONT* param_0) {
 }
 #pragma pop
 
-/* 802EC1D8-802EC258 0080+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock1FP7JUTFont */
+/* 802EC1D8-802EC258 2E6B18 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1434,14 +1336,7 @@ asm void J2DTevBlock1::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802EC258-802EC318 00C0+00 s=1 e=0 z=0  None .text      setPalette__12J2DTevBlock1FUlPC7ResTLUT */
-//	802EC268: 803621DC (_savegpr_29)
-//	802EC29C: 802CEC4C (__nw__FUl)
-//	802EC2B0: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EC2D0: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EC2E4: 802DE5B0 (attachPalette__10JUTTextureFP10JUTPalette)
-//	802EC2F0: 802CED3C (__dl__FPv)
-//	802EC304: 80362228 (_restgpr_29)
+/* 802EC258-802EC318 2E6B98 00C0+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock1FUlPC7ResTLUT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1451,7 +1346,8 @@ asm void J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* param_1) {
 }
 #pragma pop
 
-/* 802EC318-802EC328 0010+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__12J2DTevBlock1FUcb */
+/* 802EC318-802EC328 2E6C58 0010+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock1FUcb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1461,22 +1357,7 @@ asm void J2DTevBlock1::shiftDeleteFlag(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802EC328-802EC570 0248+00 s=1 e=0 z=0  None .text      setGX__12J2DTevBlock1Fv */
-//	802EC338: 803621D8 (_savegpr_28)
-//	802EC368: 8035F6F4 (GXSetTevOrder)
-//	802EC3A4: 8035F3DC (GXSetTevColorS10)
-//	802EC3BC: 8035F890 (GXSetNumTevStages)
-//	802EC3DC: 8035F224 (GXSetTevColorIn)
-//	802EC40C: 8035F268 (GXSetTevAlphaIn)
-//	802EC454: 8035F2AC (GXSetTevColorOp)
-//	802EC49C: 8035F314 (GXSetTevAlphaOp)
-//	802EC4B8: 8035F4A4 (GXSetTevKColorSel)
-//	802EC4D4: 8035F500 (GXSetTevKAlphaSel)
-//	802EC4F4: 8035F440 (GXSetTevKColor)
-//	802EC518: 8035F55C (GXSetTevSwapMode)
-//	802EC53C: 8035F5A4 (GXSetTevSwapModeTable)
-//	802EC554: 802EA044 (load__14J2DIndTevStageFUc)
-//	802EC55C: 80362224 (_restgpr_28)
+/* 802EC328-802EC570 2E6C68 0248+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1486,9 +1367,8 @@ asm void J2DTevBlock1::setGX() {
 }
 #pragma pop
 
-/* 802EC570-802EC5B8 0048+00 s=1 e=0 z=0  None .text loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
+/* 802EC570-802EC5B8 2E6EB0 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
  */
-//	802EC5A4: 802DE840 (load__10JUTTextureF11_GXTexMapID)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1498,29 +1378,7 @@ asm void J2DTevBlock1::loadTexture(_GXTexMapID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802EC5B8-802EC6C8 0110+00 s=0 e=1 z=0  None .text      __ct__12J2DTevBlock2Fv */
-//	802EC5CC: 803CCE74 (__vt__11J2DTevBlock)
-//	802EC5D0: 803CCE74 (__vt__11J2DTevBlock)
-//	802EC5D8: 803CCCFC (__vt__12J2DTevBlock2)
-//	802EC5DC: 803CCCFC (__vt__12J2DTevBlock2)
-//	802EC5E8: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EC5EC: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EC5FC: 80361D60 (__construct_array)
-//	802EC604: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EC608: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EC618: 80361D60 (__construct_array)
-//	802EC620: 802F1940 (__ct__11J2DTevStageFv)
-//	802EC624: 802F1940 (__ct__11J2DTevStageFv)
-//	802EC634: 80361D60 (__construct_array)
-//	802EC63C: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EC640: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EC650: 80361D60 (__construct_array)
-//	802EC658: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EC65C: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EC66C: 80361D60 (__construct_array)
-//	802EC674: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EC678: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EC688: 80361D60 (__construct_array)
+/* 802EC5B8-802EC6C8 2E6EF8 0110+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1530,16 +1388,7 @@ asm J2DTevBlock2::J2DTevBlock2() {
 }
 #pragma pop
 
-/* 802EC6C8-802EC7A0 00D8+00 s=1 e=0 z=0  None .text      __dt__12J2DTevBlock2Fv */
-//	802EC6E8: 803CCCFC (__vt__12J2DTevBlock2)
-//	802EC6EC: 803CCCFC (__vt__12J2DTevBlock2)
-//	802EC708: 802DE234 (__dt__10JUTTextureFv)
-//	802EC720: 802DE234 (__dt__10JUTTextureFv)
-//	802EC728: 802CED3C (__dl__FPv)
-//	802EC730: 802CED3C (__dl__FPv)
-//	802EC768: 803CCE74 (__vt__11J2DTevBlock)
-//	802EC76C: 803CCE74 (__vt__11J2DTevBlock)
-//	802EC780: 802CED3C (__dl__FPv)
+/* 802EC6C8-802EC7A0 2E7008 00D8+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1549,17 +1398,7 @@ asm J2DTevBlock2::~J2DTevBlock2() {
 }
 #pragma pop
 
-/* 802EC7A0-802ECA18 0278+00 s=1 e=0 z=0  None .text      initialize__12J2DTevBlock2Fv */
-//	802EC7B8: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EC7C0: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EC7D4: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EC7F0: 80456188 (j2dDefaultTevColor)
-//	802EC7F4: 80456188 (j2dDefaultTevColor)
-//	802EC854: 80456194 (j2dDefaultTevKColor)
-//	802EC8B8: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EC8D4: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EC8FC: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802EC900: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802EC7A0-802ECA18 2E70E0 0278+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1569,10 +1408,8 @@ asm void J2DTevBlock2::initialize() {
 }
 #pragma pop
 
-/* 802ECA18-802ECAE8 00D0+00 s=1 e=0 z=0  None .text      prepareTexture__12J2DTevBlock2FUc */
-//	802ECA28: 803621D8 (_savegpr_28)
-//	802ECA68: 802CEC4C (__nw__FUl)
-//	802ECAD4: 80362224 (_restgpr_28)
+/* 802ECA18-802ECAE8 2E7358 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock2FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1582,15 +1419,8 @@ asm void J2DTevBlock2::prepareTexture(u8 param_0) {
 }
 #pragma pop
 
-/* 802ECAE8-802ECDE8 0300+00 s=1 e=0 z=0  None .text
+/* 802ECAE8-802ECDE8 2E7428 0300+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette      */
-//	802ECAF8: 803621CC (_savegpr_25)
-//	802ECBEC: 802CEC4C (__nw__FUl)
-//	802ECC08: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802ECC3C: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802ECCB4: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802ECCC8: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802ECDD4: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1600,11 +1430,8 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 }
 #pragma pop
 
-/* 802ECDE8-802ECF48 0160+00 s=1 e=0 z=0  None .text insertTexture__12J2DTevBlock2FUlP10JUTTexture
- */
-//	802ECDF8: 803621DC (_savegpr_29)
-//	802ECEA4: 802DE234 (__dt__10JUTTextureFv)
-//	802ECF34: 80362228 (_restgpr_29)
+/* 802ECDE8-802ECF48 2E7728 0160+00 1/0 0/0 0/0 .text
+ * insertTexture__12J2DTevBlock2FUlP10JUTTexture                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1614,16 +1441,7 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802ECF48-802ED16C 0224+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock2FUlPC7ResTIMG */
-//	802ECF58: 803621CC (_savegpr_25)
-//	802ED004: 802CEC4C (__nw__FUl)
-//	802ED020: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802ED09C: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802ED0A8: 802DE234 (__dt__10JUTTextureFv)
-//	802ED0D8: 802CEC4C (__nw__FUl)
-//	802ED0F4: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802ED130: 802CED3C (__dl__FPv)
-//	802ED158: 80362218 (_restgpr_25)
+/* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1633,12 +1451,8 @@ asm void J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802ED16C-802ED21C 00B0+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock2FUlP10JUTTexture
+/* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
-//	802ED17C: 803621D4 (_savegpr_27)
-//	802ED1C0: 802DE234 (__dt__10JUTTextureFv)
-//	802ED1E0: 802CED3C (__dl__FPv)
-//	802ED208: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1648,9 +1462,7 @@ asm void J2DTevBlock2::setTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802ED21C-802ED2F0 00D4+00 s=1 e=0 z=0  None .text      removeTexture__12J2DTevBlock2FUl */
-//	802ED26C: 802DE234 (__dt__10JUTTextureFv)
-//	802ED27C: 802CED3C (__dl__FPv)
+/* 802ED21C-802ED2F0 2E7B5C 00D4+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1660,11 +1472,8 @@ asm void J2DTevBlock2::removeTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802ED2F0-802ED3A4 00B4+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock2FP7ResFONT */
-//	802ED300: 803621DC (_savegpr_29)
-//	802ED31C: 802CEC4C (__nw__FUl)
-//	802ED330: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	802ED390: 80362228 (_restgpr_29)
+/* 802ED2F0-802ED3A4 2E7C30 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7ResFONT
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1674,7 +1483,8 @@ asm void J2DTevBlock2::setFont(ResFONT* param_0) {
 }
 #pragma pop
 
-/* 802ED3A4-802ED424 0080+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock2FP7JUTFont */
+/* 802ED3A4-802ED424 2E7CE4 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1684,14 +1494,7 @@ asm void J2DTevBlock2::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802ED424-802ED4FC 00D8+00 s=1 e=0 z=0  None .text      setPalette__12J2DTevBlock2FUlPC7ResTLUT */
-//	802ED434: 803621D0 (_savegpr_26)
-//	802ED474: 802CEC4C (__nw__FUl)
-//	802ED488: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802ED4A8: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802ED4C0: 802DE5B0 (attachPalette__10JUTTextureFP10JUTPalette)
-//	802ED4D4: 802CED3C (__dl__FPv)
-//	802ED4E8: 8036221C (_restgpr_26)
+/* 802ED424-802ED4FC 2E7D64 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock2FUlPC7ResTLUT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1701,7 +1504,8 @@ asm void J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* param_1) {
 }
 #pragma pop
 
-/* 802ED4FC-802ED584 0088+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__12J2DTevBlock2FUcb */
+/* 802ED4FC-802ED584 2E7E3C 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock2FUcb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1711,22 +1515,7 @@ asm void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802ED584-802ED874 02F0+00 s=1 e=0 z=0  None .text      setGX__12J2DTevBlock2Fv */
-//	802ED594: 803621D8 (_savegpr_28)
-//	802ED5E8: 8035F6F4 (GXSetTevOrder)
-//	802ED638: 8035F3DC (GXSetTevColorS10)
-//	802ED650: 8035F890 (GXSetNumTevStages)
-//	802ED680: 8035F224 (GXSetTevColorIn)
-//	802ED6B0: 8035F268 (GXSetTevAlphaIn)
-//	802ED6F8: 8035F2AC (GXSetTevColorOp)
-//	802ED740: 8035F314 (GXSetTevAlphaOp)
-//	802ED760: 8035F4A4 (GXSetTevKColorSel)
-//	802ED77C: 8035F500 (GXSetTevKAlphaSel)
-//	802ED7B0: 8035F440 (GXSetTevKColor)
-//	802ED7E4: 8035F55C (GXSetTevSwapMode)
-//	802ED81C: 8035F5A4 (GXSetTevSwapModeTable)
-//	802ED844: 802EA044 (load__14J2DIndTevStageFUc)
-//	802ED860: 80362224 (_restgpr_28)
+/* 802ED584-802ED874 2E7EC4 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1736,9 +1525,8 @@ asm void J2DTevBlock2::setGX() {
 }
 #pragma pop
 
-/* 802ED874-802ED8BC 0048+00 s=1 e=0 z=0  None .text loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
+/* 802ED874-802ED8BC 2E81B4 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
  */
-//	802ED8A8: 802DE840 (load__10JUTTextureF11_GXTexMapID)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1748,29 +1536,7 @@ asm void J2DTevBlock2::loadTexture(_GXTexMapID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802ED8BC-802ED9E4 0128+00 s=0 e=1 z=0  None .text      __ct__12J2DTevBlock4Fv */
-//	802ED8D0: 803CCE74 (__vt__11J2DTevBlock)
-//	802ED8D4: 803CCE74 (__vt__11J2DTevBlock)
-//	802ED8DC: 803CCC40 (__vt__12J2DTevBlock4)
-//	802ED8E0: 803CCC40 (__vt__12J2DTevBlock4)
-//	802ED8EC: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802ED8F0: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802ED900: 80361D60 (__construct_array)
-//	802ED908: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802ED90C: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802ED91C: 80361D60 (__construct_array)
-//	802ED924: 802F1940 (__ct__11J2DTevStageFv)
-//	802ED928: 802F1940 (__ct__11J2DTevStageFv)
-//	802ED938: 80361D60 (__construct_array)
-//	802ED940: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802ED944: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802ED954: 80361D60 (__construct_array)
-//	802ED95C: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802ED960: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802ED970: 80361D60 (__construct_array)
-//	802ED978: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802ED97C: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802ED98C: 80361D60 (__construct_array)
+/* 802ED8BC-802ED9E4 2E81FC 0128+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1780,16 +1546,7 @@ asm J2DTevBlock4::J2DTevBlock4() {
 }
 #pragma pop
 
-/* 802ED9E4-802EDAC4 00E0+00 s=1 e=0 z=0  None .text      __dt__12J2DTevBlock4Fv */
-//	802ED9F4: 803621D4 (_savegpr_27)
-//	802EDA04: 803CCC40 (__vt__12J2DTevBlock4)
-//	802EDA08: 803CCC40 (__vt__12J2DTevBlock4)
-//	802EDA38: 802DE234 (__dt__10JUTTextureFv)
-//	802EDA44: 802CED3C (__dl__FPv)
-//	802EDA8C: 803CCE74 (__vt__11J2DTevBlock)
-//	802EDA90: 803CCE74 (__vt__11J2DTevBlock)
-//	802EDAA4: 802CED3C (__dl__FPv)
-//	802EDAB0: 80362220 (_restgpr_27)
+/* 802ED9E4-802EDAC4 2E8324 00E0+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1799,16 +1556,7 @@ asm J2DTevBlock4::~J2DTevBlock4() {
 }
 #pragma pop
 
-/* 802EDAC4-802EDD34 0270+00 s=1 e=0 z=0  None .text      initialize__12J2DTevBlock4Fv */
-//	802EDB00: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EDB0C: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EDB34: 80456188 (j2dDefaultTevColor)
-//	802EDB38: 80456188 (j2dDefaultTevColor)
-//	802EDBA8: 80456194 (j2dDefaultTevKColor)
-//	802EDC1C: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EDC38: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EDC64: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802EDC68: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802EDAC4-802EDD34 2E8404 0270+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1818,10 +1566,8 @@ asm void J2DTevBlock4::initialize() {
 }
 #pragma pop
 
-/* 802EDD34-802EDE04 00D0+00 s=1 e=0 z=0  None .text      prepareTexture__12J2DTevBlock4FUc */
-//	802EDD44: 803621D8 (_savegpr_28)
-//	802EDD84: 802CEC4C (__nw__FUl)
-//	802EDDF0: 80362224 (_restgpr_28)
+/* 802EDD34-802EDE04 2E8674 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock4FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1831,15 +1577,8 @@ asm void J2DTevBlock4::prepareTexture(u8 param_0) {
 }
 #pragma pop
 
-/* 802EDE04-802EE1D4 03D0+00 s=1 e=0 z=0  None .text
+/* 802EDE04-802EE1D4 2E8744 03D0+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette      */
-//	802EDE14: 803621CC (_savegpr_25)
-//	802EDF78: 802CEC4C (__nw__FUl)
-//	802EDF94: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EDFC8: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EE070: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EE084: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EE1C0: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1849,11 +1588,8 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 }
 #pragma pop
 
-/* 802EE1D4-802EE364 0190+00 s=1 e=0 z=0  None .text insertTexture__12J2DTevBlock4FUlP10JUTTexture
- */
-//	802EE1E4: 803621DC (_savegpr_29)
-//	802EE290: 802DE234 (__dt__10JUTTextureFv)
-//	802EE350: 80362228 (_restgpr_29)
+/* 802EE1D4-802EE364 2E8B14 0190+00 1/0 0/0 0/0 .text
+ * insertTexture__12J2DTevBlock4FUlP10JUTTexture                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1863,16 +1599,7 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EE364-802EE5F0 028C+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock4FUlPC7ResTIMG */
-//	802EE374: 803621CC (_savegpr_25)
-//	802EE488: 802CEC4C (__nw__FUl)
-//	802EE4A4: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EE520: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EE52C: 802DE234 (__dt__10JUTTextureFv)
-//	802EE55C: 802CEC4C (__nw__FUl)
-//	802EE578: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EE5B4: 802CED3C (__dl__FPv)
-//	802EE5DC: 80362218 (_restgpr_25)
+/* 802EE364-802EE5F0 2E8CA4 028C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock4FUlPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1882,12 +1609,8 @@ asm void J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802EE5F0-802EE6A0 00B0+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock4FUlP10JUTTexture
+/* 802EE5F0-802EE6A0 2E8F30 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock4FUlP10JUTTexture
  */
-//	802EE600: 803621D4 (_savegpr_27)
-//	802EE644: 802DE234 (__dt__10JUTTextureFv)
-//	802EE664: 802CED3C (__dl__FPv)
-//	802EE68C: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1897,9 +1620,7 @@ asm void J2DTevBlock4::setTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EE6A0-802EE798 00F8+00 s=1 e=0 z=0  None .text      removeTexture__12J2DTevBlock4FUl */
-//	802EE6F0: 802DE234 (__dt__10JUTTextureFv)
-//	802EE700: 802CED3C (__dl__FPv)
+/* 802EE6A0-802EE798 2E8FE0 00F8+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1909,11 +1630,8 @@ asm void J2DTevBlock4::removeTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802EE798-802EE84C 00B4+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock4FP7ResFONT */
-//	802EE7A8: 803621DC (_savegpr_29)
-//	802EE7C4: 802CEC4C (__nw__FUl)
-//	802EE7D8: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	802EE838: 80362228 (_restgpr_29)
+/* 802EE798-802EE84C 2E90D8 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock4FP7ResFONT
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1923,7 +1641,8 @@ asm void J2DTevBlock4::setFont(ResFONT* param_0) {
 }
 #pragma pop
 
-/* 802EE84C-802EE8CC 0080+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock4FP7JUTFont */
+/* 802EE84C-802EE8CC 2E918C 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock4FP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1933,14 +1652,7 @@ asm void J2DTevBlock4::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802EE8CC-802EE9A4 00D8+00 s=1 e=0 z=0  None .text      setPalette__12J2DTevBlock4FUlPC7ResTLUT */
-//	802EE8DC: 803621D0 (_savegpr_26)
-//	802EE91C: 802CEC4C (__nw__FUl)
-//	802EE930: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EE950: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EE968: 802DE5B0 (attachPalette__10JUTTextureFP10JUTPalette)
-//	802EE97C: 802CED3C (__dl__FPv)
-//	802EE990: 8036221C (_restgpr_26)
+/* 802EE8CC-802EE9A4 2E920C 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock4FUlPC7ResTLUT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1950,7 +1662,8 @@ asm void J2DTevBlock4::setPalette(u32 param_0, ResTLUT const* param_1) {
 }
 #pragma pop
 
-/* 802EE9A4-802EEA2C 0088+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__12J2DTevBlock4FUcb */
+/* 802EE9A4-802EEA2C 2E92E4 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock4FUcb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1960,22 +1673,7 @@ asm void J2DTevBlock4::shiftDeleteFlag(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802EEA2C-802EED1C 02F0+00 s=1 e=0 z=0  None .text      setGX__12J2DTevBlock4Fv */
-//	802EEA3C: 803621D8 (_savegpr_28)
-//	802EEA90: 8035F6F4 (GXSetTevOrder)
-//	802EEAE0: 8035F3DC (GXSetTevColorS10)
-//	802EEAF8: 8035F890 (GXSetNumTevStages)
-//	802EEB28: 8035F224 (GXSetTevColorIn)
-//	802EEB58: 8035F268 (GXSetTevAlphaIn)
-//	802EEBA0: 8035F2AC (GXSetTevColorOp)
-//	802EEBE8: 8035F314 (GXSetTevAlphaOp)
-//	802EEC08: 8035F4A4 (GXSetTevKColorSel)
-//	802EEC24: 8035F500 (GXSetTevKAlphaSel)
-//	802EEC58: 8035F440 (GXSetTevKColor)
-//	802EEC8C: 8035F55C (GXSetTevSwapMode)
-//	802EECC4: 8035F5A4 (GXSetTevSwapModeTable)
-//	802EECEC: 802EA044 (load__14J2DIndTevStageFUc)
-//	802EED08: 80362224 (_restgpr_28)
+/* 802EEA2C-802EED1C 2E936C 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1985,9 +1683,8 @@ asm void J2DTevBlock4::setGX() {
 }
 #pragma pop
 
-/* 802EED1C-802EED64 0048+00 s=1 e=0 z=0  None .text loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
+/* 802EED1C-802EED64 2E965C 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
  */
-//	802EED50: 802DE840 (load__10JUTTextureF11_GXTexMapID)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1997,29 +1694,7 @@ asm void J2DTevBlock4::loadTexture(_GXTexMapID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802EED64-802EEE8C 0128+00 s=0 e=1 z=0  None .text      __ct__12J2DTevBlock8Fv */
-//	802EED78: 803CCE74 (__vt__11J2DTevBlock)
-//	802EED7C: 803CCE74 (__vt__11J2DTevBlock)
-//	802EED84: 803CCB84 (__vt__12J2DTevBlock8)
-//	802EED88: 803CCB84 (__vt__12J2DTevBlock8)
-//	802EED94: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EED98: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802EEDA8: 80361D60 (__construct_array)
-//	802EEDB0: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EEDB4: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802EEDC4: 80361D60 (__construct_array)
-//	802EEDCC: 802F1940 (__ct__11J2DTevStageFv)
-//	802EEDD0: 802F1940 (__ct__11J2DTevStageFv)
-//	802EEDE0: 80361D60 (__construct_array)
-//	802EEDE8: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EEDEC: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802EEDFC: 80361D60 (__construct_array)
-//	802EEE04: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EEE08: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802EEE18: 80361D60 (__construct_array)
-//	802EEE20: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EEE24: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802EEE34: 80361D60 (__construct_array)
+/* 802EED64-802EEE8C 2E96A4 0128+00 0/0 1/1 0/0 .text            __ct__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2029,16 +1704,7 @@ asm J2DTevBlock8::J2DTevBlock8() {
 }
 #pragma pop
 
-/* 802EEE8C-802EEF6C 00E0+00 s=1 e=0 z=0  None .text      __dt__12J2DTevBlock8Fv */
-//	802EEE9C: 803621D4 (_savegpr_27)
-//	802EEEAC: 803CCB84 (__vt__12J2DTevBlock8)
-//	802EEEB0: 803CCB84 (__vt__12J2DTevBlock8)
-//	802EEEE0: 802DE234 (__dt__10JUTTextureFv)
-//	802EEEEC: 802CED3C (__dl__FPv)
-//	802EEF34: 803CCE74 (__vt__11J2DTevBlock)
-//	802EEF38: 803CCE74 (__vt__11J2DTevBlock)
-//	802EEF4C: 802CED3C (__dl__FPv)
-//	802EEF58: 80362220 (_restgpr_27)
+/* 802EEE8C-802EEF6C 2E97CC 00E0+00 1/0 0/0 0/0 .text            __dt__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2048,16 +1714,7 @@ asm J2DTevBlock8::~J2DTevBlock8() {
 }
 #pragma pop
 
-/* 802EEF6C-802EF1E0 0274+00 s=1 e=0 z=0  None .text      initialize__12J2DTevBlock8Fv */
-//	802EEFA8: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EEFB4: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802EEFDC: 80456188 (j2dDefaultTevColor)
-//	802EEFE0: 80456188 (j2dDefaultTevColor)
-//	802EF050: 80456194 (j2dDefaultTevKColor)
-//	802EF0C4: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EF0E0: 8045619C (j2dDefaultTevSwapModeTable)
-//	802EF10C: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802EF110: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802EEF6C-802EF1E0 2E98AC 0274+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2067,10 +1724,8 @@ asm void J2DTevBlock8::initialize() {
 }
 #pragma pop
 
-/* 802EF1E0-802EF2B0 00D0+00 s=1 e=0 z=0  None .text      prepareTexture__12J2DTevBlock8FUc */
-//	802EF1F0: 803621D8 (_savegpr_28)
-//	802EF230: 802CEC4C (__nw__FUl)
-//	802EF29C: 80362224 (_restgpr_28)
+/* 802EF1E0-802EF2B0 2E9B20 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock8FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2080,15 +1735,8 @@ asm void J2DTevBlock8::prepareTexture(u8 param_0) {
 }
 #pragma pop
 
-/* 802EF2B0-802EF67C 03CC+00 s=1 e=0 z=0  None .text
+/* 802EF2B0-802EF67C 2E9BF0 03CC+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette      */
-//	802EF2C0: 803621CC (_savegpr_25)
-//	802EF424: 802CEC4C (__nw__FUl)
-//	802EF440: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EF474: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EF51C: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EF530: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802EF668: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2098,11 +1746,8 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPal
 }
 #pragma pop
 
-/* 802EF67C-802EF80C 0190+00 s=1 e=0 z=0  None .text insertTexture__12J2DTevBlock8FUlP10JUTTexture
- */
-//	802EF68C: 803621DC (_savegpr_29)
-//	802EF738: 802DE234 (__dt__10JUTTextureFv)
-//	802EF7F8: 80362228 (_restgpr_29)
+/* 802EF67C-802EF80C 2E9FBC 0190+00 1/0 0/0 0/0 .text
+ * insertTexture__12J2DTevBlock8FUlP10JUTTexture                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2112,16 +1757,7 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EF80C-802EFA98 028C+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock8FUlPC7ResTIMG */
-//	802EF81C: 803621CC (_savegpr_25)
-//	802EF930: 802CEC4C (__nw__FUl)
-//	802EF94C: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EF9C8: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EF9D4: 802DE234 (__dt__10JUTTextureFv)
-//	802EFA04: 802CEC4C (__nw__FUl)
-//	802EFA20: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802EFA5C: 802CED3C (__dl__FPv)
-//	802EFA84: 80362218 (_restgpr_25)
+/* 802EF80C-802EFA98 2EA14C 028C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock8FUlPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2131,12 +1767,8 @@ asm void J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802EFA98-802EFB48 00B0+00 s=1 e=0 z=0  None .text      setTexture__12J2DTevBlock8FUlP10JUTTexture
+/* 802EFA98-802EFB48 2EA3D8 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock8FUlP10JUTTexture
  */
-//	802EFAA8: 803621D4 (_savegpr_27)
-//	802EFAEC: 802DE234 (__dt__10JUTTextureFv)
-//	802EFB0C: 802CED3C (__dl__FPv)
-//	802EFB34: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2146,9 +1778,7 @@ asm void J2DTevBlock8::setTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802EFB48-802EFC40 00F8+00 s=1 e=0 z=0  None .text      removeTexture__12J2DTevBlock8FUl */
-//	802EFB98: 802DE234 (__dt__10JUTTextureFv)
-//	802EFBA8: 802CED3C (__dl__FPv)
+/* 802EFB48-802EFC40 2EA488 00F8+00 1/0 0/0 0/0 .text            removeTexture__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2158,11 +1788,8 @@ asm void J2DTevBlock8::removeTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802EFC40-802EFCEC 00AC+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock8FP7ResFONT */
-//	802EFC50: 803621DC (_savegpr_29)
-//	802EFC6C: 802CEC4C (__nw__FUl)
-//	802EFC80: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	802EFCD8: 80362228 (_restgpr_29)
+/* 802EFC40-802EFCEC 2EA580 00AC+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock8FP7ResFONT
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2172,7 +1799,8 @@ asm void J2DTevBlock8::setFont(ResFONT* param_0) {
 }
 #pragma pop
 
-/* 802EFCEC-802EFD68 007C+00 s=1 e=0 z=0  None .text      setFont__12J2DTevBlock8FP7JUTFont */
+/* 802EFCEC-802EFD68 2EA62C 007C+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock8FP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2182,14 +1810,7 @@ asm void J2DTevBlock8::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802EFD68-802EFE40 00D8+00 s=1 e=0 z=0  None .text      setPalette__12J2DTevBlock8FUlPC7ResTLUT */
-//	802EFD78: 803621D0 (_savegpr_26)
-//	802EFDB8: 802CEC4C (__nw__FUl)
-//	802EFDCC: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EFDEC: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802EFE04: 802DE5B0 (attachPalette__10JUTTextureFP10JUTPalette)
-//	802EFE18: 802CED3C (__dl__FPv)
-//	802EFE2C: 8036221C (_restgpr_26)
+/* 802EFD68-802EFE40 2EA6A8 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock8FUlPC7ResTLUT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2199,7 +1820,8 @@ asm void J2DTevBlock8::setPalette(u32 param_0, ResTLUT const* param_1) {
 }
 #pragma pop
 
-/* 802EFE40-802EFEAC 006C+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__12J2DTevBlock8FUcb */
+/* 802EFE40-802EFEAC 2EA780 006C+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock8FUcb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2209,22 +1831,7 @@ asm void J2DTevBlock8::shiftDeleteFlag(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802EFEAC-802F019C 02F0+00 s=1 e=0 z=0  None .text      setGX__12J2DTevBlock8Fv */
-//	802EFEBC: 803621D8 (_savegpr_28)
-//	802EFF10: 8035F6F4 (GXSetTevOrder)
-//	802EFF60: 8035F3DC (GXSetTevColorS10)
-//	802EFF78: 8035F890 (GXSetNumTevStages)
-//	802EFFA8: 8035F224 (GXSetTevColorIn)
-//	802EFFD8: 8035F268 (GXSetTevAlphaIn)
-//	802F0020: 8035F2AC (GXSetTevColorOp)
-//	802F0068: 8035F314 (GXSetTevAlphaOp)
-//	802F0088: 8035F4A4 (GXSetTevKColorSel)
-//	802F00A4: 8035F500 (GXSetTevKAlphaSel)
-//	802F00D8: 8035F440 (GXSetTevKColor)
-//	802F010C: 8035F55C (GXSetTevSwapMode)
-//	802F0144: 8035F5A4 (GXSetTevSwapModeTable)
-//	802F016C: 802EA044 (load__14J2DIndTevStageFUc)
-//	802F0188: 80362224 (_restgpr_28)
+/* 802EFEAC-802F019C 2EA7EC 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2234,9 +1841,8 @@ asm void J2DTevBlock8::setGX() {
 }
 #pragma pop
 
-/* 802F019C-802F01E4 0048+00 s=1 e=0 z=0  None .text loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
+/* 802F019C-802F01E4 2EAADC 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
  */
-//	802F01D0: 802DE840 (load__10JUTTextureF11_GXTexMapID)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2246,29 +1852,7 @@ asm void J2DTevBlock8::loadTexture(_GXTexMapID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802F01E4-802F030C 0128+00 s=0 e=1 z=0  None .text      __ct__13J2DTevBlock16Fv */
-//	802F01F8: 803CCE74 (__vt__11J2DTevBlock)
-//	802F01FC: 803CCE74 (__vt__11J2DTevBlock)
-//	802F0204: 803CCAC8 (__vt__13J2DTevBlock16)
-//	802F0208: 803CCAC8 (__vt__13J2DTevBlock16)
-//	802F0214: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802F0218: 802F1B70 (__ct__11J2DTevOrderFv)
-//	802F0228: 80361D60 (__construct_array)
-//	802F0230: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802F0234: 802F1B90 (__ct__13J2DGXColorS10Fv)
-//	802F0244: 80361D60 (__construct_array)
-//	802F024C: 802F1940 (__ct__11J2DTevStageFv)
-//	802F0250: 802F1940 (__ct__11J2DTevStageFv)
-//	802F0260: 80361D60 (__construct_array)
-//	802F0268: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802F026C: 80193960 (__ct__Q28JUtility6TColorFv)
-//	802F027C: 80361D60 (__construct_array)
-//	802F0284: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802F0288: 802F1934 (__ct__19J2DTevSwapModeTableFv)
-//	802F0298: 80361D60 (__construct_array)
-//	802F02A0: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802F02A4: 802F18A0 (__ct__14J2DIndTevStageFv)
-//	802F02B4: 80361D60 (__construct_array)
+/* 802F01E4-802F030C 2EAB24 0128+00 0/0 1/1 0/0 .text            __ct__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2278,16 +1862,7 @@ asm J2DTevBlock16::J2DTevBlock16() {
 }
 #pragma pop
 
-/* 802F030C-802F03EC 00E0+00 s=1 e=0 z=0  None .text      __dt__13J2DTevBlock16Fv */
-//	802F031C: 803621D4 (_savegpr_27)
-//	802F032C: 803CCAC8 (__vt__13J2DTevBlock16)
-//	802F0330: 803CCAC8 (__vt__13J2DTevBlock16)
-//	802F0360: 802DE234 (__dt__10JUTTextureFv)
-//	802F036C: 802CED3C (__dl__FPv)
-//	802F03B4: 803CCE74 (__vt__11J2DTevBlock)
-//	802F03B8: 803CCE74 (__vt__11J2DTevBlock)
-//	802F03CC: 802CED3C (__dl__FPv)
-//	802F03D8: 80362220 (_restgpr_27)
+/* 802F030C-802F03EC 2EAC4C 00E0+00 1/0 0/0 0/0 .text            __dt__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2297,16 +1872,7 @@ asm J2DTevBlock16::~J2DTevBlock16() {
 }
 #pragma pop
 
-/* 802F03EC-802F0660 0274+00 s=1 e=0 z=0  None .text      initialize__13J2DTevBlock16Fv */
-//	802F0428: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802F0434: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802F045C: 80456188 (j2dDefaultTevColor)
-//	802F0460: 80456188 (j2dDefaultTevColor)
-//	802F04D0: 80456194 (j2dDefaultTevKColor)
-//	802F0544: 8045619C (j2dDefaultTevSwapModeTable)
-//	802F0560: 8045619C (j2dDefaultTevSwapModeTable)
-//	802F058C: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802F0590: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802F03EC-802F0660 2EAD2C 0274+00 1/0 0/0 0/0 .text            initialize__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2316,10 +1882,8 @@ asm void J2DTevBlock16::initialize() {
 }
 #pragma pop
 
-/* 802F0660-802F0730 00D0+00 s=1 e=0 z=0  None .text      prepareTexture__13J2DTevBlock16FUc */
-//	802F0670: 803621D8 (_savegpr_28)
-//	802F06B0: 802CEC4C (__nw__FUl)
-//	802F071C: 80362224 (_restgpr_28)
+/* 802F0660-802F0730 2EAFA0 00D0+00 1/0 0/0 0/0 .text            prepareTexture__13J2DTevBlock16FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2329,15 +1893,8 @@ asm void J2DTevBlock16::prepareTexture(u8 param_0) {
 }
 #pragma pop
 
-/* 802F0730-802F0AFC 03CC+00 s=1 e=0 z=0  None .text
+/* 802F0730-802F0AFC 2EB070 03CC+00 1/0 0/0 0/0 .text
  * insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette     */
-//	802F0740: 803621CC (_savegpr_25)
-//	802F08A4: 802CEC4C (__nw__FUl)
-//	802F08C0: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802F08F4: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802F099C: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802F09B0: 802DE44C (storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette)
-//	802F0AE8: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2347,11 +1904,8 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPa
 }
 #pragma pop
 
-/* 802F0AFC-802F0C8C 0190+00 s=1 e=0 z=0  None .text
+/* 802F0AFC-802F0C8C 2EB43C 0190+00 1/0 0/0 0/0 .text
  * insertTexture__13J2DTevBlock16FUlP10JUTTexture               */
-//	802F0B0C: 803621DC (_savegpr_29)
-//	802F0BB8: 802DE234 (__dt__10JUTTextureFv)
-//	802F0C78: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2361,17 +1915,7 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802F0C8C-802F0F18 028C+00 s=1 e=0 z=0  None .text      setTexture__13J2DTevBlock16FUlPC7ResTIMG
- */
-//	802F0C9C: 803621CC (_savegpr_25)
-//	802F0DB0: 802CEC4C (__nw__FUl)
-//	802F0DCC: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802F0E48: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802F0E54: 802DE234 (__dt__10JUTTextureFv)
-//	802F0E84: 802CEC4C (__nw__FUl)
-//	802F0EA0: 802DE2A8 (storeTIMG__10JUTTextureFPC7ResTIMGUc)
-//	802F0EDC: 802CED3C (__dl__FPv)
-//	802F0F04: 80362218 (_restgpr_25)
+/* 802F0C8C-802F0F18 2EB5CC 028C+00 1/0 0/0 0/0 .text setTexture__13J2DTevBlock16FUlPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2381,12 +1925,8 @@ asm void J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F0F18-802F0FC8 00B0+00 s=1 e=0 z=0  None .text setTexture__13J2DTevBlock16FUlP10JUTTexture
+/* 802F0F18-802F0FC8 2EB858 00B0+00 1/0 0/0 0/0 .text setTexture__13J2DTevBlock16FUlP10JUTTexture
  */
-//	802F0F28: 803621D4 (_savegpr_27)
-//	802F0F6C: 802DE234 (__dt__10JUTTextureFv)
-//	802F0F8C: 802CED3C (__dl__FPv)
-//	802F0FB4: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2396,9 +1936,8 @@ asm void J2DTevBlock16::setTexture(u32 param_0, JUTTexture* param_1) {
 }
 #pragma pop
 
-/* 802F0FC8-802F10C0 00F8+00 s=1 e=0 z=0  None .text      removeTexture__13J2DTevBlock16FUl */
-//	802F1018: 802DE234 (__dt__10JUTTextureFv)
-//	802F1028: 802CED3C (__dl__FPv)
+/* 802F0FC8-802F10C0 2EB908 00F8+00 1/0 0/0 0/0 .text            removeTexture__13J2DTevBlock16FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2408,11 +1947,8 @@ asm void J2DTevBlock16::removeTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F10C0-802F116C 00AC+00 s=1 e=0 z=0  None .text      setFont__13J2DTevBlock16FP7ResFONT */
-//	802F10D0: 803621DC (_savegpr_29)
-//	802F10EC: 802CEC4C (__nw__FUl)
-//	802F1100: 802DEF94 (__ct__10JUTResFontFPC7ResFONTP7JKRHeap)
-//	802F1158: 80362228 (_restgpr_29)
+/* 802F10C0-802F116C 2EBA00 00AC+00 1/0 0/0 0/0 .text            setFont__13J2DTevBlock16FP7ResFONT
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2422,7 +1958,8 @@ asm void J2DTevBlock16::setFont(ResFONT* param_0) {
 }
 #pragma pop
 
-/* 802F116C-802F11E8 007C+00 s=1 e=0 z=0  None .text      setFont__13J2DTevBlock16FP7JUTFont */
+/* 802F116C-802F11E8 2EBAAC 007C+00 1/0 0/0 0/0 .text            setFont__13J2DTevBlock16FP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2432,15 +1969,7 @@ asm void J2DTevBlock16::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802F11E8-802F12C0 00D8+00 s=1 e=0 z=0  None .text      setPalette__13J2DTevBlock16FUlPC7ResTLUT
- */
-//	802F11F8: 803621D0 (_savegpr_26)
-//	802F1238: 802CEC4C (__nw__FUl)
-//	802F124C: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802F126C: 802DE890 (storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT)
-//	802F1284: 802DE5B0 (attachPalette__10JUTTextureFP10JUTPalette)
-//	802F1298: 802CED3C (__dl__FPv)
-//	802F12AC: 8036221C (_restgpr_26)
+/* 802F11E8-802F12C0 2EBB28 00D8+00 1/0 0/0 0/0 .text setPalette__13J2DTevBlock16FUlPC7ResTLUT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2450,7 +1979,7 @@ asm void J2DTevBlock16::setPalette(u32 param_0, ResTLUT const* param_1) {
 }
 #pragma pop
 
-/* 802F12C0-802F132C 006C+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__13J2DTevBlock16FUcb */
+/* 802F12C0-802F132C 2EBC00 006C+00 1/0 0/0 0/0 .text shiftDeleteFlag__13J2DTevBlock16FUcb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2460,22 +1989,7 @@ asm void J2DTevBlock16::shiftDeleteFlag(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802F132C-802F161C 02F0+00 s=1 e=0 z=0  None .text      setGX__13J2DTevBlock16Fv */
-//	802F133C: 803621D8 (_savegpr_28)
-//	802F1390: 8035F6F4 (GXSetTevOrder)
-//	802F13E0: 8035F3DC (GXSetTevColorS10)
-//	802F13F8: 8035F890 (GXSetNumTevStages)
-//	802F1428: 8035F224 (GXSetTevColorIn)
-//	802F1458: 8035F268 (GXSetTevAlphaIn)
-//	802F14A0: 8035F2AC (GXSetTevColorOp)
-//	802F14E8: 8035F314 (GXSetTevAlphaOp)
-//	802F1508: 8035F4A4 (GXSetTevKColorSel)
-//	802F1524: 8035F500 (GXSetTevKAlphaSel)
-//	802F1558: 8035F440 (GXSetTevKColor)
-//	802F158C: 8035F55C (GXSetTevSwapMode)
-//	802F15C4: 8035F5A4 (GXSetTevSwapModeTable)
-//	802F15EC: 802EA044 (load__14J2DIndTevStageFUc)
-//	802F1608: 80362224 (_restgpr_28)
+/* 802F132C-802F161C 2EBC6C 02F0+00 1/0 0/0 0/0 .text            setGX__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2485,9 +1999,8 @@ asm void J2DTevBlock16::setGX() {
 }
 #pragma pop
 
-/* 802F161C-802F1664 0048+00 s=1 e=0 z=0  None .text loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
+/* 802F161C-802F1664 2EBF5C 0048+00 1/0 0/0 0/0 .text loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
  */
-//	802F1650: 802DE840 (load__10JUTTextureF11_GXTexMapID)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2497,13 +2010,7 @@ asm void J2DTevBlock16::loadTexture(_GXTexMapID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802F1664-802F1730 00CC+00 s=1 e=0 z=0  None .text      initialize__15J2DIndBlockFullFv */
-//	802F166C: 80456184 (j2dDefaultIndTexOrderNull)
-//	802F1678: 80456184 (j2dDefaultIndTexOrderNull)
-//	802F169C: 803A1BC4 (j2dDefaultIndTexMtxInfo)
-//	802F16A0: 803A1BC4 (j2dDefaultIndTexMtxInfo)
-//	802F1704: 80456190 (j2dDefaultIndTexCoordScaleInfo)
-//	802F1710: 80456190 (j2dDefaultIndTexCoordScaleInfo)
+/* 802F1664-802F1730 2EBFA4 00CC+00 1/0 0/0 0/0 .text            initialize__15J2DIndBlockFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2513,11 +2020,7 @@ asm void J2DIndBlockFull::initialize() {
 }
 #pragma pop
 
-/* 802F1730-802F17FC 00CC+00 s=1 e=0 z=0  None .text      setGX__15J2DIndBlockFullFv */
-//	802F174C: 8035F0D4 (GXSetNumIndStages)
-//	802F176C: 802EA098 (load__12J2DIndTexMtxFUc)
-//	802F179C: 802EA0CC (load__19J2DIndTexCoordScaleFUc)
-//	802F17CC: 802EA0FC (load__14J2DIndTexOrderFUc)
+/* 802F1730-802F17FC 2EC070 00CC+00 1/0 0/0 0/0 .text            setGX__15J2DIndBlockFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2527,11 +2030,7 @@ asm void J2DIndBlockFull::setGX() {
 }
 #pragma pop
 
-/* 802F17FC-802F1840 0044+00 s=0 e=1 z=0  None .text      initialize__10J2DPEBlockFv */
-//	802F17FC: 804561AE (struct_804561AC)
-//	802F1810: 804561A0 (j2dDefaultBlendInfo)
-//	802F1818: 804561A0 (j2dDefaultBlendInfo)
-//	802F1834: 804561A4 (data_804561A4)
+/* 802F17FC-802F1840 2EC13C 0044+00 0/0 1/1 0/0 .text            initialize__10J2DPEBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2541,10 +2040,7 @@ asm void J2DPEBlock::initialize() {
 }
 #pragma pop
 
-/* 802F1840-802F18A0 0060+00 s=0 e=1 z=0  None .text      setGX__10J2DPEBlockFv */
-//	802F186C: 8035F624 (GXSetAlphaCompare)
-//	802F1880: 8035FBF0 (GXSetBlendMode)
-//	802F1888: 8035FDD8 (GXSetDither)
+/* 802F1840-802F18A0 2EC180 0060+00 0/0 1/1 0/0 .text            setGX__10J2DPEBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2554,9 +2050,7 @@ asm void J2DPEBlock::setGX() {
 }
 #pragma pop
 
-/* 802F18A0-802F1934 0094+00 s=5 e=0 z=0  None .text      __ct__14J2DIndTevStageFv */
-//	802F18A4: 803A1BF4 (j2dDefaultIndTevStageInfo)
-//	802F18A8: 803A1BF4 (j2dDefaultIndTevStageInfo)
+/* 802F18A0-802F1934 2EC1E0 0094+00 5/5 0/0 0/0 .text            __ct__14J2DIndTevStageFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2566,8 +2060,7 @@ asm J2DIndTevStage::J2DIndTevStage() {
 }
 #pragma pop
 
-/* 802F1934-802F1940 000C+00 s=5 e=0 z=0  None .text      __ct__19J2DTevSwapModeTableFv */
-//	802F1934: 804561AC (struct_804561AC)
+/* 802F1934-802F1940 2EC274 000C+00 5/5 0/0 0/0 .text            __ct__19J2DTevSwapModeTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2577,12 +2070,7 @@ asm J2DTevSwapModeTable::J2DTevSwapModeTable() {
 }
 #pragma pop
 
-/* 802F1940-802F19A8 0068+00 s=5 e=1 z=0  None .text      __ct__11J2DTevStageFv */
-//	802F1954: 803A1BE0 (j2dDefaultTevStageInfo)
-//	802F1958: 803A1BE0 (j2dDefaultTevStageInfo)
-//	802F195C: 802F19A8 (setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo)
-//	802F1968: 80456198 (j2dDefaultTevSwapMode)
-//	802F1984: 80456198 (j2dDefaultTevSwapMode)
+/* 802F1940-802F19A8 2EC280 0068+00 5/5 1/1 0/0 .text            __ct__11J2DTevStageFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2592,7 +2080,7 @@ asm J2DTevStage::J2DTevStage() {
 }
 #pragma pop
 
-/* 802F19A8-802F1B70 01C8+00 s=1 e=1 z=0  None .text
+/* 802F19A8-802F1B70 2EC2E8 01C8+00 1/1 1/1 0/0 .text
  * setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo           */
 #pragma push
 #pragma optimization_level 0
@@ -2603,9 +2091,7 @@ asm void J2DTevStage::setTevStageInfo(J2DTevStageInfo const& param_0) {
 }
 #pragma pop
 
-/* 802F1B70-802F1B90 0020+00 s=5 e=0 z=0  None .text      __ct__11J2DTevOrderFv */
-//	802F1B70: 80456180 (j2dDefaultTevOrderInfoNull)
-//	802F1B78: 80456180 (j2dDefaultTevOrderInfoNull)
+/* 802F1B70-802F1B90 2EC4B0 0020+00 5/5 0/0 0/0 .text            __ct__11J2DTevOrderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2615,12 +2101,12 @@ asm J2DTevOrder::J2DTevOrder() {
 }
 #pragma pop
 
-/* 802F1B90-802F1B94 0004+00 s=5 e=0 z=0  None .text      __ct__13J2DGXColorS10Fv */
+/* 802F1B90-802F1B94 2EC4D0 0004+00 5/5 0/0 0/0 .text            __ct__13J2DGXColorS10Fv */
 J2DGXColorS10::J2DGXColorS10() {
     /* empty function */
 }
 
-/* 802F1B94-802F1BA0 000C+00 s=1 e=0 z=0  None .text      getType__15J2DIndBlockFullFv */
+/* 802F1B94-802F1BA0 2EC4D4 000C+00 1/0 0/0 0/0 .text            getType__15J2DIndBlockFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2630,7 +2116,7 @@ asm void J2DIndBlockFull::getType() {
 }
 #pragma pop
 
-/* 802F1BA0-802F1BA8 0008+00 s=1 e=0 z=0  None .text      setIndTexStageNum__15J2DIndBlockFullFUc */
+/* 802F1BA0-802F1BA8 2EC4E0 0008+00 1/0 0/0 0/0 .text setIndTexStageNum__15J2DIndBlockFullFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2640,7 +2126,7 @@ asm void J2DIndBlockFull::setIndTexStageNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802F1BA8-802F1BB0 0008+00 s=1 e=0 z=0  None .text      getIndTexStageNum__15J2DIndBlockFullCFv */
+/* 802F1BA8-802F1BB0 2EC4E8 0008+00 1/0 0/0 0/0 .text getIndTexStageNum__15J2DIndBlockFullCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2650,7 +2136,7 @@ asm void J2DIndBlockFull::getIndTexStageNum() const {
 }
 #pragma pop
 
-/* 802F1BB0-802F1BCC 001C+00 s=1 e=0 z=0  None .text
+/* 802F1BB0-802F1BCC 2EC4F0 001C+00 1/0 0/0 0/0 .text
  * setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder         */
 #pragma push
 #pragma optimization_level 0
@@ -2661,7 +2147,7 @@ asm void J2DIndBlockFull::setIndTexOrder(u32 param_0, J2DIndTexOrder param_1) {
 }
 #pragma pop
 
-/* 802F1BCC-802F1BE0 0014+00 s=1 e=0 z=0  None .text      getIndTexOrder__15J2DIndBlockFullFUl */
+/* 802F1BCC-802F1BE0 2EC50C 0014+00 1/0 0/0 0/0 .text getIndTexOrder__15J2DIndBlockFullFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2671,7 +2157,7 @@ asm void J2DIndBlockFull::getIndTexOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1BE0-802F1C38 0058+00 s=1 e=0 z=0  None .text
+/* 802F1BE0-802F1C38 2EC520 0058+00 1/0 0/0 0/0 .text
  * setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx             */
 #pragma push
 #pragma optimization_level 0
@@ -2682,7 +2168,8 @@ asm void J2DIndBlockFull::setIndTexMtx(u32 param_0, J2DIndTexMtx param_1) {
 }
 #pragma pop
 
-/* 802F1C38-802F1C4C 0014+00 s=1 e=0 z=0  None .text      getIndTexMtx__15J2DIndBlockFullFUl */
+/* 802F1C38-802F1C4C 2EC578 0014+00 1/0 0/0 0/0 .text            getIndTexMtx__15J2DIndBlockFullFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2692,7 +2179,7 @@ asm void J2DIndBlockFull::getIndTexMtx(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1C4C-802F1C68 001C+00 s=1 e=0 z=0  None .text
+/* 802F1C4C-802F1C68 2EC58C 001C+00 1/0 0/0 0/0 .text
  * setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale */
 #pragma push
 #pragma optimization_level 0
@@ -2703,8 +2190,7 @@ asm void J2DIndBlockFull::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale p
 }
 #pragma pop
 
-/* 802F1C68-802F1C7C 0014+00 s=1 e=0 z=0  None .text      getIndTexCoordScale__15J2DIndBlockFullFUl
- */
+/* 802F1C68-802F1C7C 2EC5A8 0014+00 1/0 0/0 0/0 .text getIndTexCoordScale__15J2DIndBlockFullFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2714,18 +2200,7 @@ asm void J2DIndBlockFull::getIndTexCoordScale(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1C7C-802F1D18 009C+00 s=1 e=0 z=0  None .text      __dt__15J2DIndBlockFullFv */
-//	802F1C9C: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802F1CA0: 803CCA90 (__vt__15J2DIndBlockFull)
-//	802F1CAC: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802F1CB0: 802EB290 (__dt__19J2DIndTexCoordScaleFv)
-//	802F1CBC: 80361CE8 (__destroy_arr)
-//	802F1CC4: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802F1CC8: 802EB2E4 (__dt__12J2DIndTexMtxFv)
-//	802F1CD4: 80361CE8 (__destroy_arr)
-//	802F1CE0: 803CCA40 (__vt__11J2DIndBlock)
-//	802F1CE4: 803CCA40 (__vt__11J2DIndBlock)
-//	802F1CF8: 802CED3C (__dl__FPv)
+/* 802F1C7C-802F1D18 2EC5BC 009C+00 1/0 0/0 0/0 .text            __dt__15J2DIndBlockFullFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2735,7 +2210,7 @@ asm J2DIndBlockFull::~J2DIndBlockFull() {
 }
 #pragma pop
 
-/* 802F1D18-802F1D24 000C+00 s=1 e=0 z=0  None .text      getType__13J2DTevBlock16Fv */
+/* 802F1D18-802F1D24 2EC658 000C+00 1/0 0/0 0/0 .text            getType__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2745,12 +2220,12 @@ asm void J2DTevBlock16::getType() {
 }
 #pragma pop
 
-/* 802F1D24-802F1D2C 0008+00 s=1 e=0 z=0  None .text      getMaxStage__13J2DTevBlock16Fv */
+/* 802F1D24-802F1D2C 2EC664 0008+00 1/0 0/0 0/0 .text            getMaxStage__13J2DTevBlock16Fv */
 s32 J2DTevBlock16::getMaxStage() {
     return 16;
 }
 
-/* 802F1D2C-802F1D3C 0010+00 s=1 e=0 z=0  None .text      setTexNo__13J2DTevBlock16FUlUs */
+/* 802F1D2C-802F1D3C 2EC66C 0010+00 1/0 0/0 0/0 .text            setTexNo__13J2DTevBlock16FUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2760,7 +2235,7 @@ asm void J2DTevBlock16::setTexNo(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802F1D3C-802F1D4C 0010+00 s=1 e=0 z=0  None .text      getTexNo__13J2DTevBlock16CFUl */
+/* 802F1D3C-802F1D4C 2EC67C 0010+00 1/0 0/0 0/0 .text            getTexNo__13J2DTevBlock16CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2770,7 +2245,7 @@ asm void J2DTevBlock16::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F1D4C-802F1D54 0008+00 s=1 e=0 z=0  None .text      setFontNo__13J2DTevBlock16FUs */
+/* 802F1D4C-802F1D54 2EC68C 0008+00 1/0 0/0 0/0 .text            setFontNo__13J2DTevBlock16FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2780,7 +2255,7 @@ asm void J2DTevBlock16::setFontNo(u16 param_0) {
 }
 #pragma pop
 
-/* 802F1D54-802F1D5C 0008+00 s=1 e=0 z=0  None .text      getFontNo__13J2DTevBlock16CFv */
+/* 802F1D54-802F1D5C 2EC694 0008+00 1/0 0/0 0/0 .text            getFontNo__13J2DTevBlock16CFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2790,7 +2265,7 @@ asm void J2DTevBlock16::getFontNo() const {
 }
 #pragma pop
 
-/* 802F1D5C-802F1D80 0024+00 s=1 e=0 z=0  None .text setTevOrder__13J2DTevBlock16FUl11J2DTevOrder
+/* 802F1D5C-802F1D80 2EC69C 0024+00 1/0 0/0 0/0 .text setTevOrder__13J2DTevBlock16FUl11J2DTevOrder
  */
 #pragma push
 #pragma optimization_level 0
@@ -2801,7 +2276,7 @@ asm void J2DTevBlock16::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 }
 #pragma pop
 
-/* 802F1D80-802F1D94 0014+00 s=1 e=0 z=0  None .text      getTevOrder__13J2DTevBlock16FUl */
+/* 802F1D80-802F1D94 2EC6C0 0014+00 1/0 0/0 0/0 .text            getTevOrder__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2811,7 +2286,7 @@ asm void J2DTevBlock16::getTevOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1D94-802F1DC0 002C+00 s=1 e=0 z=0  None .text
+/* 802F1D94-802F1DC0 2EC6D4 002C+00 1/0 0/0 0/0 .text
  * setTevColor__13J2DTevBlock16FUl13J2DGXColorS10               */
 #pragma push
 #pragma optimization_level 0
@@ -2822,7 +2297,7 @@ asm void J2DTevBlock16::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 }
 #pragma pop
 
-/* 802F1DC0-802F1DD4 0014+00 s=1 e=0 z=0  None .text      getTevColor__13J2DTevBlock16FUl */
+/* 802F1DC0-802F1DD4 2EC700 0014+00 1/0 0/0 0/0 .text            getTevColor__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2832,7 +2307,7 @@ asm void J2DTevBlock16::getTevColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1DD4-802F1E00 002C+00 s=1 e=0 z=0  None .text
+/* 802F1DD4-802F1E00 2EC714 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor           */
 #pragma push
 #pragma optimization_level 0
@@ -2843,7 +2318,7 @@ asm void J2DTevBlock16::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 802F1E00-802F1E14 0014+00 s=1 e=0 z=0  None .text      getTevKColor__13J2DTevBlock16FUl */
+/* 802F1E00-802F1E14 2EC740 0014+00 1/0 0/0 0/0 .text            getTevKColor__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2853,7 +2328,7 @@ asm void J2DTevBlock16::getTevKColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1E14-802F1E20 000C+00 s=1 e=0 z=0  None .text      setTevKColorSel__13J2DTevBlock16FUlUc */
+/* 802F1E14-802F1E20 2EC754 000C+00 1/0 0/0 0/0 .text setTevKColorSel__13J2DTevBlock16FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2863,7 +2338,8 @@ asm void J2DTevBlock16::setTevKColorSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F1E20-802F1E2C 000C+00 s=1 e=0 z=0  None .text      getTevKColorSel__13J2DTevBlock16FUl */
+/* 802F1E20-802F1E2C 2EC760 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__13J2DTevBlock16FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2873,7 +2349,7 @@ asm void J2DTevBlock16::getTevKColorSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1E2C-802F1E38 000C+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__13J2DTevBlock16FUlUc */
+/* 802F1E2C-802F1E38 2EC76C 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__13J2DTevBlock16FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2883,7 +2359,8 @@ asm void J2DTevBlock16::setTevKAlphaSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F1E38-802F1E44 000C+00 s=1 e=0 z=0  None .text      getTevKAlphaSel__13J2DTevBlock16FUl */
+/* 802F1E38-802F1E44 2EC778 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__13J2DTevBlock16FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2893,7 +2370,8 @@ asm void J2DTevBlock16::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1E44-802F1E4C 0008+00 s=1 e=0 z=0  None .text      setTevStageNum__13J2DTevBlock16FUc */
+/* 802F1E44-802F1E4C 2EC784 0008+00 1/0 0/0 0/0 .text            setTevStageNum__13J2DTevBlock16FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2903,7 +2381,8 @@ asm void J2DTevBlock16::setTevStageNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802F1E4C-802F1E54 0008+00 s=1 e=0 z=0  None .text      getTevStageNum__13J2DTevBlock16CFv */
+/* 802F1E4C-802F1E54 2EC78C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__13J2DTevBlock16CFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2913,7 +2392,7 @@ asm void J2DTevBlock16::getTevStageNum() const {
 }
 #pragma pop
 
-/* 802F1E54-802F1E90 003C+00 s=1 e=0 z=0  None .text setTevStage__13J2DTevBlock16FUl11J2DTevStage
+/* 802F1E54-802F1E90 2EC794 003C+00 1/0 0/0 0/0 .text setTevStage__13J2DTevBlock16FUl11J2DTevStage
  */
 #pragma push
 #pragma optimization_level 0
@@ -2924,7 +2403,7 @@ asm void J2DTevBlock16::setTevStage(u32 param_0, J2DTevStage param_1) {
 }
 #pragma pop
 
-/* 802F1E90-802F1EA4 0014+00 s=1 e=0 z=0  None .text      getTevStage__13J2DTevBlock16FUl */
+/* 802F1E90-802F1EA4 2EC7D0 0014+00 1/0 0/0 0/0 .text            getTevStage__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2934,7 +2413,7 @@ asm void J2DTevBlock16::getTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1EA4-802F1EDC 0038+00 s=1 e=0 z=0  None .text
+/* 802F1EA4-802F1EDC 2EC7E4 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo   */
 #pragma push
 #pragma optimization_level 0
@@ -2945,7 +2424,7 @@ asm void J2DTevBlock16::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param
 }
 #pragma pop
 
-/* 802F1EDC-802F1EEC 0010+00 s=1 e=0 z=0  None .text
+/* 802F1EDC-802F1EEC 2EC81C 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable */
 #pragma push
 #pragma optimization_level 0
@@ -2956,7 +2435,7 @@ asm void J2DTevBlock16::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable par
 }
 #pragma pop
 
-/* 802F1EEC-802F1EFC 0010+00 s=1 e=0 z=0  None .text      getTevSwapModeTable__13J2DTevBlock16FUl */
+/* 802F1EEC-802F1EFC 2EC82C 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2966,7 +2445,7 @@ asm void J2DTevBlock16::getTevSwapModeTable(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1EFC-802F1F10 0014+00 s=1 e=0 z=0  None .text
+/* 802F1EFC-802F1F10 2EC83C 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage           */
 #pragma push
 #pragma optimization_level 0
@@ -2977,7 +2456,8 @@ asm void J2DTevBlock16::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 }
 #pragma pop
 
-/* 802F1F10-802F1F24 0014+00 s=1 e=0 z=0  None .text      getIndTevStage__13J2DTevBlock16FUl */
+/* 802F1F10-802F1F24 2EC850 0014+00 1/0 0/0 0/0 .text            getIndTevStage__13J2DTevBlock16FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2987,7 +2467,7 @@ asm void J2DTevBlock16::getIndTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1F24-802F1F54 0030+00 s=1 e=0 z=0  None .text insertTexture__13J2DTevBlock16FUlPC7ResTIMG
+/* 802F1F24-802F1F54 2EC864 0030+00 1/0 0/0 0/0 .text insertTexture__13J2DTevBlock16FUlPC7ResTIMG
  */
 #pragma push
 #pragma optimization_level 0
@@ -2998,7 +2478,7 @@ asm void J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F1F54-802F1F74 0020+00 s=1 e=0 z=0  None .text      getTexture__13J2DTevBlock16FUl */
+/* 802F1F54-802F1F74 2EC894 0020+00 1/0 0/0 0/0 .text            getTexture__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3008,7 +2488,7 @@ asm void J2DTevBlock16::getTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1F74-802F1F94 0020+00 s=1 e=0 z=0  None .text      getPalette__13J2DTevBlock16FUl */
+/* 802F1F74-802F1F94 2EC8B4 0020+00 1/0 0/0 0/0 .text            getPalette__13J2DTevBlock16FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3018,7 +2498,7 @@ asm void J2DTevBlock16::getPalette(u32 param_0) {
 }
 #pragma pop
 
-/* 802F1F94-802F1F9C 0008+00 s=1 e=0 z=0  None .text      getFont__13J2DTevBlock16Fv */
+/* 802F1F94-802F1F9C 2EC8D4 0008+00 1/0 0/0 0/0 .text            getFont__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3028,7 +2508,8 @@ asm void J2DTevBlock16::getFont() {
 }
 #pragma pop
 
-/* 802F1F9C-802F1FAC 0010+00 s=1 e=0 z=0  None .text      setUndeleteFlag__13J2DTevBlock16FUc */
+/* 802F1F9C-802F1FAC 2EC8DC 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__13J2DTevBlock16FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3038,7 +2519,7 @@ asm void J2DTevBlock16::setUndeleteFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 802F1FAC-802F1FB8 000C+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__13J2DTevBlock16Fv */
+/* 802F1FAC-802F1FB8 2EC8EC 000C+00 1/0 0/0 0/0 .text setFontUndeleteFlag__13J2DTevBlock16Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3048,7 +2529,7 @@ asm void J2DTevBlock16::setFontUndeleteFlag() {
 }
 #pragma pop
 
-/* 802F1FB8-802F1FC4 000C+00 s=1 e=0 z=0  None .text      getType__12J2DTevBlock8Fv */
+/* 802F1FB8-802F1FC4 2EC8F8 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3058,12 +2539,12 @@ asm void J2DTevBlock8::getType() {
 }
 #pragma pop
 
-/* 802F1FC4-802F1FCC 0008+00 s=1 e=0 z=0  None .text      getMaxStage__12J2DTevBlock8Fv */
+/* 802F1FC4-802F1FCC 2EC904 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock8Fv */
 s32 J2DTevBlock8::getMaxStage() {
     return 8;
 }
 
-/* 802F1FCC-802F1FDC 0010+00 s=1 e=0 z=0  None .text      setTexNo__12J2DTevBlock8FUlUs */
+/* 802F1FCC-802F1FDC 2EC90C 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock8FUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3073,7 +2554,7 @@ asm void J2DTevBlock8::setTexNo(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802F1FDC-802F1FEC 0010+00 s=1 e=0 z=0  None .text      getTexNo__12J2DTevBlock8CFUl */
+/* 802F1FDC-802F1FEC 2EC91C 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock8CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3083,7 +2564,7 @@ asm void J2DTevBlock8::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F1FEC-802F1FF4 0008+00 s=1 e=0 z=0  None .text      setFontNo__12J2DTevBlock8FUs */
+/* 802F1FEC-802F1FF4 2EC92C 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock8FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3093,7 +2574,7 @@ asm void J2DTevBlock8::setFontNo(u16 param_0) {
 }
 #pragma pop
 
-/* 802F1FF4-802F1FFC 0008+00 s=1 e=0 z=0  None .text      getFontNo__12J2DTevBlock8CFv */
+/* 802F1FF4-802F1FFC 2EC934 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock8CFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3103,7 +2584,7 @@ asm void J2DTevBlock8::getFontNo() const {
 }
 #pragma pop
 
-/* 802F1FFC-802F2020 0024+00 s=1 e=0 z=0  None .text setTevOrder__12J2DTevBlock8FUl11J2DTevOrder
+/* 802F1FFC-802F2020 2EC93C 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock8FUl11J2DTevOrder
  */
 #pragma push
 #pragma optimization_level 0
@@ -3114,7 +2595,7 @@ asm void J2DTevBlock8::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 }
 #pragma pop
 
-/* 802F2020-802F2034 0014+00 s=1 e=0 z=0  None .text      getTevOrder__12J2DTevBlock8FUl */
+/* 802F2020-802F2034 2EC960 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3124,8 +2605,8 @@ asm void J2DTevBlock8::getTevOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2034-802F2060 002C+00 s=1 e=0 z=0  None .text setTevColor__12J2DTevBlock8FUl13J2DGXColorS10
- */
+/* 802F2034-802F2060 2EC974 002C+00 1/0 0/0 0/0 .text
+ * setTevColor__12J2DTevBlock8FUl13J2DGXColorS10                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3135,7 +2616,7 @@ asm void J2DTevBlock8::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 }
 #pragma pop
 
-/* 802F2060-802F2074 0014+00 s=1 e=0 z=0  None .text      getTevColor__12J2DTevBlock8FUl */
+/* 802F2060-802F2074 2EC9A0 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3145,7 +2626,7 @@ asm void J2DTevBlock8::getTevColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2074-802F20A0 002C+00 s=1 e=0 z=0  None .text
+/* 802F2074-802F20A0 2EC9B4 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor            */
 #pragma push
 #pragma optimization_level 0
@@ -3156,7 +2637,7 @@ asm void J2DTevBlock8::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 802F20A0-802F20B4 0014+00 s=1 e=0 z=0  None .text      getTevKColor__12J2DTevBlock8FUl */
+/* 802F20A0-802F20B4 2EC9E0 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3166,7 +2647,7 @@ asm void J2DTevBlock8::getTevKColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F20B4-802F20C0 000C+00 s=1 e=0 z=0  None .text      setTevKColorSel__12J2DTevBlock8FUlUc */
+/* 802F20B4-802F20C0 2EC9F4 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock8FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3176,7 +2657,8 @@ asm void J2DTevBlock8::setTevKColorSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F20C0-802F20CC 000C+00 s=1 e=0 z=0  None .text      getTevKColorSel__12J2DTevBlock8FUl */
+/* 802F20C0-802F20CC 2ECA00 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock8FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3186,7 +2668,7 @@ asm void J2DTevBlock8::getTevKColorSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F20CC-802F20D8 000C+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__12J2DTevBlock8FUlUc */
+/* 802F20CC-802F20D8 2ECA0C 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock8FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3196,7 +2678,8 @@ asm void J2DTevBlock8::setTevKAlphaSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F20D8-802F20E4 000C+00 s=1 e=0 z=0  None .text      getTevKAlphaSel__12J2DTevBlock8FUl */
+/* 802F20D8-802F20E4 2ECA18 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock8FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3206,7 +2689,8 @@ asm void J2DTevBlock8::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F20E4-802F20EC 0008+00 s=1 e=0 z=0  None .text      setTevStageNum__12J2DTevBlock8FUc */
+/* 802F20E4-802F20EC 2ECA24 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock8FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3216,7 +2700,8 @@ asm void J2DTevBlock8::setTevStageNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802F20EC-802F20F4 0008+00 s=1 e=0 z=0  None .text      getTevStageNum__12J2DTevBlock8CFv */
+/* 802F20EC-802F20F4 2ECA2C 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock8CFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3226,7 +2711,7 @@ asm void J2DTevBlock8::getTevStageNum() const {
 }
 #pragma pop
 
-/* 802F20F4-802F2130 003C+00 s=1 e=0 z=0  None .text setTevStage__12J2DTevBlock8FUl11J2DTevStage
+/* 802F20F4-802F2130 2ECA34 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock8FUl11J2DTevStage
  */
 #pragma push
 #pragma optimization_level 0
@@ -3237,7 +2722,7 @@ asm void J2DTevBlock8::setTevStage(u32 param_0, J2DTevStage param_1) {
 }
 #pragma pop
 
-/* 802F2130-802F2144 0014+00 s=1 e=0 z=0  None .text      getTevStage__12J2DTevBlock8FUl */
+/* 802F2130-802F2144 2ECA70 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3247,7 +2732,7 @@ asm void J2DTevBlock8::getTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2144-802F217C 0038+00 s=1 e=0 z=0  None .text
+/* 802F2144-802F217C 2ECA84 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo    */
 #pragma push
 #pragma optimization_level 0
@@ -3258,7 +2743,7 @@ asm void J2DTevBlock8::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_
 }
 #pragma pop
 
-/* 802F217C-802F218C 0010+00 s=1 e=0 z=0  None .text
+/* 802F217C-802F218C 2ECABC 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable  */
 #pragma push
 #pragma optimization_level 0
@@ -3269,7 +2754,7 @@ asm void J2DTevBlock8::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 }
 #pragma pop
 
-/* 802F218C-802F219C 0010+00 s=1 e=0 z=0  None .text      getTevSwapModeTable__12J2DTevBlock8FUl */
+/* 802F218C-802F219C 2ECACC 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3279,7 +2764,7 @@ asm void J2DTevBlock8::getTevSwapModeTable(u32 param_0) {
 }
 #pragma pop
 
-/* 802F219C-802F21B0 0014+00 s=1 e=0 z=0  None .text
+/* 802F219C-802F21B0 2ECADC 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage            */
 #pragma push
 #pragma optimization_level 0
@@ -3290,7 +2775,8 @@ asm void J2DTevBlock8::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 }
 #pragma pop
 
-/* 802F21B0-802F21C4 0014+00 s=1 e=0 z=0  None .text      getIndTevStage__12J2DTevBlock8FUl */
+/* 802F21B0-802F21C4 2ECAF0 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock8FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3300,7 +2786,7 @@ asm void J2DTevBlock8::getIndTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F21C4-802F21F4 0030+00 s=1 e=0 z=0  None .text      insertTexture__12J2DTevBlock8FUlPC7ResTIMG
+/* 802F21C4-802F21F4 2ECB04 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock8FUlPC7ResTIMG
  */
 #pragma push
 #pragma optimization_level 0
@@ -3311,7 +2797,7 @@ asm void J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F21F4-802F2214 0020+00 s=1 e=0 z=0  None .text      getTexture__12J2DTevBlock8FUl */
+/* 802F21F4-802F2214 2ECB34 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3321,7 +2807,7 @@ asm void J2DTevBlock8::getTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2214-802F2234 0020+00 s=1 e=0 z=0  None .text      getPalette__12J2DTevBlock8FUl */
+/* 802F2214-802F2234 2ECB54 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock8FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3331,7 +2817,7 @@ asm void J2DTevBlock8::getPalette(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2234-802F223C 0008+00 s=1 e=0 z=0  None .text      getFont__12J2DTevBlock8Fv */
+/* 802F2234-802F223C 2ECB74 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3341,7 +2827,8 @@ asm void J2DTevBlock8::getFont() {
 }
 #pragma pop
 
-/* 802F223C-802F224C 0010+00 s=1 e=0 z=0  None .text      setUndeleteFlag__12J2DTevBlock8FUc */
+/* 802F223C-802F224C 2ECB7C 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock8FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3351,7 +2838,7 @@ asm void J2DTevBlock8::setUndeleteFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 802F224C-802F2258 000C+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__12J2DTevBlock8Fv */
+/* 802F224C-802F2258 2ECB8C 000C+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock8Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3361,7 +2848,7 @@ asm void J2DTevBlock8::setFontUndeleteFlag() {
 }
 #pragma pop
 
-/* 802F2258-802F2264 000C+00 s=1 e=0 z=0  None .text      getType__12J2DTevBlock4Fv */
+/* 802F2258-802F2264 2ECB98 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3371,12 +2858,12 @@ asm void J2DTevBlock4::getType() {
 }
 #pragma pop
 
-/* 802F2264-802F226C 0008+00 s=1 e=0 z=0  None .text      getMaxStage__12J2DTevBlock4Fv */
+/* 802F2264-802F226C 2ECBA4 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock4Fv */
 s32 J2DTevBlock4::getMaxStage() {
     return 4;
 }
 
-/* 802F226C-802F227C 0010+00 s=1 e=0 z=0  None .text      setTexNo__12J2DTevBlock4FUlUs */
+/* 802F226C-802F227C 2ECBAC 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock4FUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3386,7 +2873,7 @@ asm void J2DTevBlock4::setTexNo(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802F227C-802F228C 0010+00 s=1 e=0 z=0  None .text      getTexNo__12J2DTevBlock4CFUl */
+/* 802F227C-802F228C 2ECBBC 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock4CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3396,7 +2883,7 @@ asm void J2DTevBlock4::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F228C-802F2294 0008+00 s=1 e=0 z=0  None .text      setFontNo__12J2DTevBlock4FUs */
+/* 802F228C-802F2294 2ECBCC 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock4FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3406,7 +2893,7 @@ asm void J2DTevBlock4::setFontNo(u16 param_0) {
 }
 #pragma pop
 
-/* 802F2294-802F229C 0008+00 s=1 e=0 z=0  None .text      getFontNo__12J2DTevBlock4CFv */
+/* 802F2294-802F229C 2ECBD4 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock4CFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3416,7 +2903,7 @@ asm void J2DTevBlock4::getFontNo() const {
 }
 #pragma pop
 
-/* 802F229C-802F22C0 0024+00 s=1 e=0 z=0  None .text setTevOrder__12J2DTevBlock4FUl11J2DTevOrder
+/* 802F229C-802F22C0 2ECBDC 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock4FUl11J2DTevOrder
  */
 #pragma push
 #pragma optimization_level 0
@@ -3427,7 +2914,7 @@ asm void J2DTevBlock4::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 }
 #pragma pop
 
-/* 802F22C0-802F22D4 0014+00 s=1 e=0 z=0  None .text      getTevOrder__12J2DTevBlock4FUl */
+/* 802F22C0-802F22D4 2ECC00 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3437,8 +2924,8 @@ asm void J2DTevBlock4::getTevOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F22D4-802F2300 002C+00 s=1 e=0 z=0  None .text setTevColor__12J2DTevBlock4FUl13J2DGXColorS10
- */
+/* 802F22D4-802F2300 2ECC14 002C+00 1/0 0/0 0/0 .text
+ * setTevColor__12J2DTevBlock4FUl13J2DGXColorS10                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3448,7 +2935,7 @@ asm void J2DTevBlock4::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 }
 #pragma pop
 
-/* 802F2300-802F2314 0014+00 s=1 e=0 z=0  None .text      getTevColor__12J2DTevBlock4FUl */
+/* 802F2300-802F2314 2ECC40 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3458,7 +2945,7 @@ asm void J2DTevBlock4::getTevColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2314-802F2340 002C+00 s=1 e=0 z=0  None .text
+/* 802F2314-802F2340 2ECC54 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor            */
 #pragma push
 #pragma optimization_level 0
@@ -3469,7 +2956,7 @@ asm void J2DTevBlock4::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 802F2340-802F2354 0014+00 s=1 e=0 z=0  None .text      getTevKColor__12J2DTevBlock4FUl */
+/* 802F2340-802F2354 2ECC80 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3479,7 +2966,7 @@ asm void J2DTevBlock4::getTevKColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2354-802F2360 000C+00 s=1 e=0 z=0  None .text      setTevKColorSel__12J2DTevBlock4FUlUc */
+/* 802F2354-802F2360 2ECC94 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock4FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3489,7 +2976,8 @@ asm void J2DTevBlock4::setTevKColorSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F2360-802F236C 000C+00 s=1 e=0 z=0  None .text      getTevKColorSel__12J2DTevBlock4FUl */
+/* 802F2360-802F236C 2ECCA0 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock4FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3499,7 +2987,7 @@ asm void J2DTevBlock4::getTevKColorSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F236C-802F2378 000C+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__12J2DTevBlock4FUlUc */
+/* 802F236C-802F2378 2ECCAC 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock4FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3509,7 +2997,8 @@ asm void J2DTevBlock4::setTevKAlphaSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F2378-802F2384 000C+00 s=1 e=0 z=0  None .text      getTevKAlphaSel__12J2DTevBlock4FUl */
+/* 802F2378-802F2384 2ECCB8 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock4FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3519,7 +3008,8 @@ asm void J2DTevBlock4::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2384-802F238C 0008+00 s=1 e=0 z=0  None .text      setTevStageNum__12J2DTevBlock4FUc */
+/* 802F2384-802F238C 2ECCC4 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock4FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3529,7 +3019,8 @@ asm void J2DTevBlock4::setTevStageNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802F238C-802F2394 0008+00 s=1 e=0 z=0  None .text      getTevStageNum__12J2DTevBlock4CFv */
+/* 802F238C-802F2394 2ECCCC 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock4CFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3539,7 +3030,7 @@ asm void J2DTevBlock4::getTevStageNum() const {
 }
 #pragma pop
 
-/* 802F2394-802F23D0 003C+00 s=1 e=0 z=0  None .text setTevStage__12J2DTevBlock4FUl11J2DTevStage
+/* 802F2394-802F23D0 2ECCD4 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock4FUl11J2DTevStage
  */
 #pragma push
 #pragma optimization_level 0
@@ -3550,7 +3041,7 @@ asm void J2DTevBlock4::setTevStage(u32 param_0, J2DTevStage param_1) {
 }
 #pragma pop
 
-/* 802F23D0-802F23E4 0014+00 s=1 e=0 z=0  None .text      getTevStage__12J2DTevBlock4FUl */
+/* 802F23D0-802F23E4 2ECD10 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3560,7 +3051,7 @@ asm void J2DTevBlock4::getTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F23E4-802F241C 0038+00 s=1 e=0 z=0  None .text
+/* 802F23E4-802F241C 2ECD24 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo    */
 #pragma push
 #pragma optimization_level 0
@@ -3571,7 +3062,7 @@ asm void J2DTevBlock4::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_
 }
 #pragma pop
 
-/* 802F241C-802F242C 0010+00 s=1 e=0 z=0  None .text
+/* 802F241C-802F242C 2ECD5C 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable  */
 #pragma push
 #pragma optimization_level 0
@@ -3582,7 +3073,7 @@ asm void J2DTevBlock4::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 }
 #pragma pop
 
-/* 802F242C-802F243C 0010+00 s=1 e=0 z=0  None .text      getTevSwapModeTable__12J2DTevBlock4FUl */
+/* 802F242C-802F243C 2ECD6C 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3592,7 +3083,7 @@ asm void J2DTevBlock4::getTevSwapModeTable(u32 param_0) {
 }
 #pragma pop
 
-/* 802F243C-802F2450 0014+00 s=1 e=0 z=0  None .text
+/* 802F243C-802F2450 2ECD7C 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage            */
 #pragma push
 #pragma optimization_level 0
@@ -3603,7 +3094,8 @@ asm void J2DTevBlock4::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 }
 #pragma pop
 
-/* 802F2450-802F2464 0014+00 s=1 e=0 z=0  None .text      getIndTevStage__12J2DTevBlock4FUl */
+/* 802F2450-802F2464 2ECD90 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock4FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3613,7 +3105,7 @@ asm void J2DTevBlock4::getIndTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2464-802F2494 0030+00 s=1 e=0 z=0  None .text      insertTexture__12J2DTevBlock4FUlPC7ResTIMG
+/* 802F2464-802F2494 2ECDA4 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock4FUlPC7ResTIMG
  */
 #pragma push
 #pragma optimization_level 0
@@ -3624,7 +3116,7 @@ asm void J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F2494-802F24B4 0020+00 s=1 e=0 z=0  None .text      getTexture__12J2DTevBlock4FUl */
+/* 802F2494-802F24B4 2ECDD4 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3634,7 +3126,7 @@ asm void J2DTevBlock4::getTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F24B4-802F24D4 0020+00 s=1 e=0 z=0  None .text      getPalette__12J2DTevBlock4FUl */
+/* 802F24B4-802F24D4 2ECDF4 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock4FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3644,7 +3136,7 @@ asm void J2DTevBlock4::getPalette(u32 param_0) {
 }
 #pragma pop
 
-/* 802F24D4-802F24DC 0008+00 s=1 e=0 z=0  None .text      getFont__12J2DTevBlock4Fv */
+/* 802F24D4-802F24DC 2ECE14 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3654,7 +3146,8 @@ asm void J2DTevBlock4::getFont() {
 }
 #pragma pop
 
-/* 802F24DC-802F24EC 0010+00 s=1 e=0 z=0  None .text      setUndeleteFlag__12J2DTevBlock4FUc */
+/* 802F24DC-802F24EC 2ECE1C 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock4FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3664,7 +3157,7 @@ asm void J2DTevBlock4::setUndeleteFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 802F24EC-802F24FC 0010+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__12J2DTevBlock4Fv */
+/* 802F24EC-802F24FC 2ECE2C 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock4Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3674,7 +3167,7 @@ asm void J2DTevBlock4::setFontUndeleteFlag() {
 }
 #pragma pop
 
-/* 802F24FC-802F2508 000C+00 s=1 e=0 z=0  None .text      getType__12J2DTevBlock2Fv */
+/* 802F24FC-802F2508 2ECE3C 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3684,12 +3177,12 @@ asm void J2DTevBlock2::getType() {
 }
 #pragma pop
 
-/* 802F2508-802F2510 0008+00 s=1 e=0 z=0  None .text      getMaxStage__12J2DTevBlock2Fv */
+/* 802F2508-802F2510 2ECE48 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock2Fv */
 s32 J2DTevBlock2::getMaxStage() {
     return 2;
 }
 
-/* 802F2510-802F2520 0010+00 s=1 e=0 z=0  None .text      setTexNo__12J2DTevBlock2FUlUs */
+/* 802F2510-802F2520 2ECE50 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock2FUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3699,7 +3192,7 @@ asm void J2DTevBlock2::setTexNo(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802F2520-802F2530 0010+00 s=1 e=0 z=0  None .text      getTexNo__12J2DTevBlock2CFUl */
+/* 802F2520-802F2530 2ECE60 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock2CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3709,7 +3202,7 @@ asm void J2DTevBlock2::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F2530-802F2538 0008+00 s=1 e=0 z=0  None .text      setFontNo__12J2DTevBlock2FUs */
+/* 802F2530-802F2538 2ECE70 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock2FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3719,7 +3212,7 @@ asm void J2DTevBlock2::setFontNo(u16 param_0) {
 }
 #pragma pop
 
-/* 802F2538-802F2540 0008+00 s=1 e=0 z=0  None .text      getFontNo__12J2DTevBlock2CFv */
+/* 802F2538-802F2540 2ECE78 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock2CFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3729,7 +3222,7 @@ asm void J2DTevBlock2::getFontNo() const {
 }
 #pragma pop
 
-/* 802F2540-802F2564 0024+00 s=1 e=0 z=0  None .text setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
+/* 802F2540-802F2564 2ECE80 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
  */
 #pragma push
 #pragma optimization_level 0
@@ -3740,7 +3233,7 @@ asm void J2DTevBlock2::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 }
 #pragma pop
 
-/* 802F2564-802F2578 0014+00 s=1 e=0 z=0  None .text      getTevOrder__12J2DTevBlock2FUl */
+/* 802F2564-802F2578 2ECEA4 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3750,8 +3243,8 @@ asm void J2DTevBlock2::getTevOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2578-802F25A4 002C+00 s=1 e=0 z=0  None .text setTevColor__12J2DTevBlock2FUl13J2DGXColorS10
- */
+/* 802F2578-802F25A4 2ECEB8 002C+00 1/0 0/0 0/0 .text
+ * setTevColor__12J2DTevBlock2FUl13J2DGXColorS10                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3761,7 +3254,7 @@ asm void J2DTevBlock2::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 }
 #pragma pop
 
-/* 802F25A4-802F25B8 0014+00 s=1 e=0 z=0  None .text      getTevColor__12J2DTevBlock2FUl */
+/* 802F25A4-802F25B8 2ECEE4 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3771,7 +3264,7 @@ asm void J2DTevBlock2::getTevColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F25B8-802F25E4 002C+00 s=1 e=0 z=0  None .text
+/* 802F25B8-802F25E4 2ECEF8 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor            */
 #pragma push
 #pragma optimization_level 0
@@ -3782,7 +3275,7 @@ asm void J2DTevBlock2::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 802F25E4-802F25F8 0014+00 s=1 e=0 z=0  None .text      getTevKColor__12J2DTevBlock2FUl */
+/* 802F25E4-802F25F8 2ECF24 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3792,7 +3285,7 @@ asm void J2DTevBlock2::getTevKColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F25F8-802F2604 000C+00 s=1 e=0 z=0  None .text      setTevKColorSel__12J2DTevBlock2FUlUc */
+/* 802F25F8-802F2604 2ECF38 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock2FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3802,7 +3295,8 @@ asm void J2DTevBlock2::setTevKColorSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F2604-802F2610 000C+00 s=1 e=0 z=0  None .text      getTevKColorSel__12J2DTevBlock2FUl */
+/* 802F2604-802F2610 2ECF44 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock2FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3812,7 +3306,7 @@ asm void J2DTevBlock2::getTevKColorSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2610-802F261C 000C+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__12J2DTevBlock2FUlUc */
+/* 802F2610-802F261C 2ECF50 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock2FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3822,7 +3316,8 @@ asm void J2DTevBlock2::setTevKAlphaSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F261C-802F2628 000C+00 s=1 e=0 z=0  None .text      getTevKAlphaSel__12J2DTevBlock2FUl */
+/* 802F261C-802F2628 2ECF5C 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock2FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3832,7 +3327,8 @@ asm void J2DTevBlock2::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2628-802F2630 0008+00 s=1 e=0 z=0  None .text      setTevStageNum__12J2DTevBlock2FUc */
+/* 802F2628-802F2630 2ECF68 0008+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock2FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3842,7 +3338,8 @@ asm void J2DTevBlock2::setTevStageNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802F2630-802F2638 0008+00 s=1 e=0 z=0  None .text      getTevStageNum__12J2DTevBlock2CFv */
+/* 802F2630-802F2638 2ECF70 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock2CFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3852,7 +3349,7 @@ asm void J2DTevBlock2::getTevStageNum() const {
 }
 #pragma pop
 
-/* 802F2638-802F2674 003C+00 s=1 e=0 z=0  None .text setTevStage__12J2DTevBlock2FUl11J2DTevStage
+/* 802F2638-802F2674 2ECF78 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock2FUl11J2DTevStage
  */
 #pragma push
 #pragma optimization_level 0
@@ -3863,7 +3360,7 @@ asm void J2DTevBlock2::setTevStage(u32 param_0, J2DTevStage param_1) {
 }
 #pragma pop
 
-/* 802F2674-802F2688 0014+00 s=1 e=0 z=0  None .text      getTevStage__12J2DTevBlock2FUl */
+/* 802F2674-802F2688 2ECFB4 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3873,7 +3370,7 @@ asm void J2DTevBlock2::getTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2688-802F26C0 0038+00 s=1 e=0 z=0  None .text
+/* 802F2688-802F26C0 2ECFC8 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo    */
 #pragma push
 #pragma optimization_level 0
@@ -3884,7 +3381,7 @@ asm void J2DTevBlock2::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_
 }
 #pragma pop
 
-/* 802F26C0-802F26D0 0010+00 s=1 e=0 z=0  None .text
+/* 802F26C0-802F26D0 2ED000 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable  */
 #pragma push
 #pragma optimization_level 0
@@ -3895,7 +3392,7 @@ asm void J2DTevBlock2::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 }
 #pragma pop
 
-/* 802F26D0-802F26E0 0010+00 s=1 e=0 z=0  None .text      getTevSwapModeTable__12J2DTevBlock2FUl */
+/* 802F26D0-802F26E0 2ED010 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3905,7 +3402,7 @@ asm void J2DTevBlock2::getTevSwapModeTable(u32 param_0) {
 }
 #pragma pop
 
-/* 802F26E0-802F26F4 0014+00 s=1 e=0 z=0  None .text
+/* 802F26E0-802F26F4 2ED020 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage            */
 #pragma push
 #pragma optimization_level 0
@@ -3916,7 +3413,8 @@ asm void J2DTevBlock2::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 }
 #pragma pop
 
-/* 802F26F4-802F2708 0014+00 s=1 e=0 z=0  None .text      getIndTevStage__12J2DTevBlock2FUl */
+/* 802F26F4-802F2708 2ED034 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock2FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3926,7 +3424,7 @@ asm void J2DTevBlock2::getIndTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2708-802F2738 0030+00 s=1 e=0 z=0  None .text      insertTexture__12J2DTevBlock2FUlPC7ResTIMG
+/* 802F2708-802F2738 2ED048 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock2FUlPC7ResTIMG
  */
 #pragma push
 #pragma optimization_level 0
@@ -3937,7 +3435,7 @@ asm void J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F2738-802F2758 0020+00 s=1 e=0 z=0  None .text      getTexture__12J2DTevBlock2FUl */
+/* 802F2738-802F2758 2ED078 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3947,7 +3445,7 @@ asm void J2DTevBlock2::getTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2758-802F2778 0020+00 s=1 e=0 z=0  None .text      getPalette__12J2DTevBlock2FUl */
+/* 802F2758-802F2778 2ED098 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock2FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3957,7 +3455,7 @@ asm void J2DTevBlock2::getPalette(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2778-802F2780 0008+00 s=1 e=0 z=0  None .text      getFont__12J2DTevBlock2Fv */
+/* 802F2778-802F2780 2ED0B8 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3967,7 +3465,8 @@ asm void J2DTevBlock2::getFont() {
 }
 #pragma pop
 
-/* 802F2780-802F2790 0010+00 s=1 e=0 z=0  None .text      setUndeleteFlag__12J2DTevBlock2FUc */
+/* 802F2780-802F2790 2ED0C0 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock2FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3977,7 +3476,7 @@ asm void J2DTevBlock2::setUndeleteFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 802F2790-802F27A0 0010+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__12J2DTevBlock2Fv */
+/* 802F2790-802F27A0 2ED0D0 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3987,7 +3486,7 @@ asm void J2DTevBlock2::setFontUndeleteFlag() {
 }
 #pragma pop
 
-/* 802F27A0-802F27AC 000C+00 s=1 e=0 z=0  None .text      getType__12J2DTevBlock1Fv */
+/* 802F27A0-802F27AC 2ED0E0 000C+00 1/0 0/0 0/0 .text            getType__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3997,12 +3496,12 @@ asm void J2DTevBlock1::getType() {
 }
 #pragma pop
 
-/* 802F27AC-802F27B4 0008+00 s=1 e=0 z=0  None .text      getMaxStage__12J2DTevBlock1Fv */
+/* 802F27AC-802F27B4 2ED0EC 0008+00 1/0 0/0 0/0 .text            getMaxStage__12J2DTevBlock1Fv */
 bool J2DTevBlock1::getMaxStage() {
     return true;
 }
 
-/* 802F27B4-802F27C4 0010+00 s=1 e=0 z=0  None .text      setTexNo__12J2DTevBlock1FUlUs */
+/* 802F27B4-802F27C4 2ED0F4 0010+00 1/0 0/0 0/0 .text            setTexNo__12J2DTevBlock1FUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4012,7 +3511,7 @@ asm void J2DTevBlock1::setTexNo(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802F27C4-802F27D4 0010+00 s=1 e=0 z=0  None .text      getTexNo__12J2DTevBlock1CFUl */
+/* 802F27C4-802F27D4 2ED104 0010+00 1/0 0/0 0/0 .text            getTexNo__12J2DTevBlock1CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4022,7 +3521,7 @@ asm void J2DTevBlock1::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802F27D4-802F27DC 0008+00 s=1 e=0 z=0  None .text      setFontNo__12J2DTevBlock1FUs */
+/* 802F27D4-802F27DC 2ED114 0008+00 1/0 0/0 0/0 .text            setFontNo__12J2DTevBlock1FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4032,7 +3531,7 @@ asm void J2DTevBlock1::setFontNo(u16 param_0) {
 }
 #pragma pop
 
-/* 802F27DC-802F27E4 0008+00 s=1 e=0 z=0  None .text      getFontNo__12J2DTevBlock1CFv */
+/* 802F27DC-802F27E4 2ED11C 0008+00 1/0 0/0 0/0 .text            getFontNo__12J2DTevBlock1CFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4042,7 +3541,7 @@ asm void J2DTevBlock1::getFontNo() const {
 }
 #pragma pop
 
-/* 802F27E4-802F2808 0024+00 s=1 e=0 z=0  None .text setTevOrder__12J2DTevBlock1FUl11J2DTevOrder
+/* 802F27E4-802F2808 2ED124 0024+00 1/0 0/0 0/0 .text setTevOrder__12J2DTevBlock1FUl11J2DTevOrder
  */
 #pragma push
 #pragma optimization_level 0
@@ -4053,7 +3552,7 @@ asm void J2DTevBlock1::setTevOrder(u32 param_0, J2DTevOrder param_1) {
 }
 #pragma pop
 
-/* 802F2808-802F281C 0014+00 s=1 e=0 z=0  None .text      getTevOrder__12J2DTevBlock1FUl */
+/* 802F2808-802F281C 2ED148 0014+00 1/0 0/0 0/0 .text            getTevOrder__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4063,8 +3562,8 @@ asm void J2DTevBlock1::getTevOrder(u32 param_0) {
 }
 #pragma pop
 
-/* 802F281C-802F2848 002C+00 s=1 e=0 z=0  None .text setTevColor__12J2DTevBlock1FUl13J2DGXColorS10
- */
+/* 802F281C-802F2848 2ED15C 002C+00 1/0 0/0 0/0 .text
+ * setTevColor__12J2DTevBlock1FUl13J2DGXColorS10                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4074,7 +3573,7 @@ asm void J2DTevBlock1::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
 }
 #pragma pop
 
-/* 802F2848-802F285C 0014+00 s=1 e=0 z=0  None .text      getTevColor__12J2DTevBlock1FUl */
+/* 802F2848-802F285C 2ED188 0014+00 1/0 0/0 0/0 .text            getTevColor__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4084,7 +3583,7 @@ asm void J2DTevBlock1::getTevColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F285C-802F2888 002C+00 s=1 e=0 z=0  None .text
+/* 802F285C-802F2888 2ED19C 002C+00 1/0 0/0 0/0 .text
  * setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor            */
 #pragma push
 #pragma optimization_level 0
@@ -4095,7 +3594,7 @@ asm void J2DTevBlock1::setTevKColor(u32 param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 802F2888-802F289C 0014+00 s=1 e=0 z=0  None .text      getTevKColor__12J2DTevBlock1FUl */
+/* 802F2888-802F289C 2ED1C8 0014+00 1/0 0/0 0/0 .text            getTevKColor__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4105,7 +3604,7 @@ asm void J2DTevBlock1::getTevKColor(u32 param_0) {
 }
 #pragma pop
 
-/* 802F289C-802F28A8 000C+00 s=1 e=0 z=0  None .text      setTevKColorSel__12J2DTevBlock1FUlUc */
+/* 802F289C-802F28A8 2ED1DC 000C+00 1/0 0/0 0/0 .text setTevKColorSel__12J2DTevBlock1FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4115,7 +3614,8 @@ asm void J2DTevBlock1::setTevKColorSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F28A8-802F28B4 000C+00 s=1 e=0 z=0  None .text      getTevKColorSel__12J2DTevBlock1FUl */
+/* 802F28A8-802F28B4 2ED1E8 000C+00 1/0 0/0 0/0 .text            getTevKColorSel__12J2DTevBlock1FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4125,7 +3625,7 @@ asm void J2DTevBlock1::getTevKColorSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F28B4-802F28C0 000C+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__12J2DTevBlock1FUlUc */
+/* 802F28B4-802F28C0 2ED1F4 000C+00 1/0 0/0 0/0 .text setTevKAlphaSel__12J2DTevBlock1FUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4135,7 +3635,8 @@ asm void J2DTevBlock1::setTevKAlphaSel(u32 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 802F28C0-802F28CC 000C+00 s=1 e=0 z=0  None .text      getTevKAlphaSel__12J2DTevBlock1FUl */
+/* 802F28C0-802F28CC 2ED200 000C+00 1/0 0/0 0/0 .text            getTevKAlphaSel__12J2DTevBlock1FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4145,17 +3646,19 @@ asm void J2DTevBlock1::getTevKAlphaSel(u32 param_0) {
 }
 #pragma pop
 
-/* 802F28CC-802F28D0 0004+00 s=1 e=0 z=0  None .text      setTevStageNum__12J2DTevBlock1FUc */
+/* 802F28CC-802F28D0 2ED20C 0004+00 1/0 0/0 0/0 .text            setTevStageNum__12J2DTevBlock1FUc
+ */
 void J2DTevBlock1::setTevStageNum(u8 param_0) {
     /* empty function */
 }
 
-/* 802F28D0-802F28D8 0008+00 s=1 e=0 z=0  None .text      getTevStageNum__12J2DTevBlock1CFv */
+/* 802F28D0-802F28D8 2ED210 0008+00 1/0 0/0 0/0 .text            getTevStageNum__12J2DTevBlock1CFv
+ */
 bool J2DTevBlock1::getTevStageNum() const {
     return true;
 }
 
-/* 802F28D8-802F2914 003C+00 s=1 e=0 z=0  None .text setTevStage__12J2DTevBlock1FUl11J2DTevStage
+/* 802F28D8-802F2914 2ED218 003C+00 1/0 0/0 0/0 .text setTevStage__12J2DTevBlock1FUl11J2DTevStage
  */
 #pragma push
 #pragma optimization_level 0
@@ -4166,7 +3669,7 @@ asm void J2DTevBlock1::setTevStage(u32 param_0, J2DTevStage param_1) {
 }
 #pragma pop
 
-/* 802F2914-802F2928 0014+00 s=1 e=0 z=0  None .text      getTevStage__12J2DTevBlock1FUl */
+/* 802F2914-802F2928 2ED254 0014+00 1/0 0/0 0/0 .text            getTevStage__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4176,7 +3679,7 @@ asm void J2DTevBlock1::getTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2928-802F2960 0038+00 s=1 e=0 z=0  None .text
+/* 802F2928-802F2960 2ED268 0038+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo    */
 #pragma push
 #pragma optimization_level 0
@@ -4187,7 +3690,7 @@ asm void J2DTevBlock1::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_
 }
 #pragma pop
 
-/* 802F2960-802F2970 0010+00 s=1 e=0 z=0  None .text
+/* 802F2960-802F2970 2ED2A0 0010+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable  */
 #pragma push
 #pragma optimization_level 0
@@ -4198,7 +3701,7 @@ asm void J2DTevBlock1::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable para
 }
 #pragma pop
 
-/* 802F2970-802F2980 0010+00 s=1 e=0 z=0  None .text      getTevSwapModeTable__12J2DTevBlock1FUl */
+/* 802F2970-802F2980 2ED2B0 0010+00 1/0 0/0 0/0 .text getTevSwapModeTable__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4208,7 +3711,7 @@ asm void J2DTevBlock1::getTevSwapModeTable(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2980-802F2994 0014+00 s=1 e=0 z=0  None .text
+/* 802F2980-802F2994 2ED2C0 0014+00 1/0 0/0 0/0 .text
  * setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage            */
 #pragma push
 #pragma optimization_level 0
@@ -4219,7 +3722,8 @@ asm void J2DTevBlock1::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
 }
 #pragma pop
 
-/* 802F2994-802F29A8 0014+00 s=1 e=0 z=0  None .text      getIndTevStage__12J2DTevBlock1FUl */
+/* 802F2994-802F29A8 2ED2D4 0014+00 1/0 0/0 0/0 .text            getIndTevStage__12J2DTevBlock1FUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4229,7 +3733,7 @@ asm void J2DTevBlock1::getIndTevStage(u32 param_0) {
 }
 #pragma pop
 
-/* 802F29A8-802F29D8 0030+00 s=1 e=0 z=0  None .text      insertTexture__12J2DTevBlock1FUlPC7ResTIMG
+/* 802F29A8-802F29D8 2ED2E8 0030+00 1/0 0/0 0/0 .text insertTexture__12J2DTevBlock1FUlPC7ResTIMG
  */
 #pragma push
 #pragma optimization_level 0
@@ -4240,7 +3744,7 @@ asm void J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* param_1) {
 }
 #pragma pop
 
-/* 802F29D8-802F29F8 0020+00 s=1 e=0 z=0  None .text      getTexture__12J2DTevBlock1FUl */
+/* 802F29D8-802F29F8 2ED318 0020+00 1/0 0/0 0/0 .text            getTexture__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4250,7 +3754,7 @@ asm void J2DTevBlock1::getTexture(u32 param_0) {
 }
 #pragma pop
 
-/* 802F29F8-802F2A18 0020+00 s=1 e=0 z=0  None .text      getPalette__12J2DTevBlock1FUl */
+/* 802F29F8-802F2A18 2ED338 0020+00 1/0 0/0 0/0 .text            getPalette__12J2DTevBlock1FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4260,7 +3764,7 @@ asm void J2DTevBlock1::getPalette(u32 param_0) {
 }
 #pragma pop
 
-/* 802F2A18-802F2A20 0008+00 s=1 e=0 z=0  None .text      getFont__12J2DTevBlock1Fv */
+/* 802F2A18-802F2A20 2ED358 0008+00 1/0 0/0 0/0 .text            getFont__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4270,7 +3774,8 @@ asm void J2DTevBlock1::getFont() {
 }
 #pragma pop
 
-/* 802F2A20-802F2A30 0010+00 s=1 e=0 z=0  None .text      setUndeleteFlag__12J2DTevBlock1FUc */
+/* 802F2A20-802F2A30 2ED360 0010+00 1/0 0/0 0/0 .text            setUndeleteFlag__12J2DTevBlock1FUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4280,7 +3785,7 @@ asm void J2DTevBlock1::setUndeleteFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 802F2A30-802F2A40 0010+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__12J2DTevBlock1Fv */
+/* 802F2A30-802F2A40 2ED370 0010+00 1/0 0/0 0/0 .text setFontUndeleteFlag__12J2DTevBlock1Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4290,137 +3795,139 @@ asm void J2DTevBlock1::setFontUndeleteFlag() {
 }
 #pragma pop
 
-/* 802F2A40-802F2A44 0004+00 s=1 e=0 z=0  None .text      initialize__11J2DTevBlockFv */
+/* 802F2A40-802F2A44 2ED380 0004+00 1/0 0/0 0/0 .text            initialize__11J2DTevBlockFv */
 void J2DTevBlock::initialize() {
     /* empty function */
 }
 
-/* 802F2A44-802F2A48 0004+00 s=1 e=0 z=0  None .text      loadTexture__11J2DTevBlockF11_GXTexMapIDUl
+/* 802F2A44-802F2A48 2ED384 0004+00 1/0 0/0 0/0 .text loadTexture__11J2DTevBlockF11_GXTexMapIDUl
  */
 void J2DTevBlock::loadTexture(_GXTexMapID param_0, u32 param_1) {
     /* empty function */
 }
 
-/* 802F2A48-802F2A4C 0004+00 s=1 e=0 z=0  None .text      setFontNo__11J2DTevBlockFUs */
+/* 802F2A48-802F2A4C 2ED388 0004+00 1/0 0/0 0/0 .text            setFontNo__11J2DTevBlockFUs */
 void J2DTevBlock::setFontNo(u16 param_0) {
     /* empty function */
 }
 
-/* 802F2A4C-802F2A50 0004+00 s=1 e=0 z=0  None .text      setTevOrder__11J2DTevBlockFUl11J2DTevOrder
+/* 802F2A4C-802F2A50 2ED38C 0004+00 1/0 0/0 0/0 .text setTevOrder__11J2DTevBlockFUl11J2DTevOrder
  */
 void J2DTevBlock::setTevOrder(u32 param_0, J2DTevOrder param_1) {
     /* empty function */
 }
 
-/* 802F2A50-802F2A54 0004+00 s=1 e=0 z=0  None .text      setTevKColorSel__11J2DTevBlockFUlUc */
+/* 802F2A50-802F2A54 2ED390 0004+00 1/0 0/0 0/0 .text            setTevKColorSel__11J2DTevBlockFUlUc
+ */
 void J2DTevBlock::setTevKColorSel(u32 param_0, u8 param_1) {
     /* empty function */
 }
 
-/* 802F2A54-802F2A58 0004+00 s=1 e=0 z=0  None .text      setTevKAlphaSel__11J2DTevBlockFUlUc */
+/* 802F2A54-802F2A58 2ED394 0004+00 1/0 0/0 0/0 .text            setTevKAlphaSel__11J2DTevBlockFUlUc
+ */
 void J2DTevBlock::setTevKAlphaSel(u32 param_0, u8 param_1) {
     /* empty function */
 }
 
-/* 802F2A58-802F2A5C 0004+00 s=1 e=0 z=0  None .text      setTevStageNum__11J2DTevBlockFUc */
+/* 802F2A58-802F2A5C 2ED398 0004+00 1/0 0/0 0/0 .text            setTevStageNum__11J2DTevBlockFUc */
 void J2DTevBlock::setTevStageNum(u8 param_0) {
     /* empty function */
 }
 
-/* 802F2A5C-802F2A60 0004+00 s=1 e=0 z=0  None .text      setTevStage__11J2DTevBlockFUl11J2DTevStage
+/* 802F2A5C-802F2A60 2ED39C 0004+00 1/0 0/0 0/0 .text setTevStage__11J2DTevBlockFUl11J2DTevStage
  */
 void J2DTevBlock::setTevStage(u32 param_0, J2DTevStage param_1) {
     /* empty function */
 }
 
-/* 802F2A60-802F2A64 0004+00 s=1 e=0 z=0  None .text
+/* 802F2A60-802F2A64 2ED3A0 0004+00 1/0 0/0 0/0 .text
  * setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo     */
 void J2DTevBlock::setTevSwapModeInfo(u32 param_0, J2DTevSwapModeInfo param_1) {
     /* empty function */
 }
 
-/* 802F2A64-802F2A68 0004+00 s=1 e=0 z=0  None .text
+/* 802F2A64-802F2A68 2ED3A4 0004+00 1/0 0/0 0/0 .text
  * setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable   */
 void J2DTevBlock::setTevSwapModeTable(u32 param_0, J2DTevSwapModeTable param_1) {
     /* empty function */
 }
 
-/* 802F2A68-802F2A6C 0004+00 s=1 e=0 z=0  None .text
+/* 802F2A68-802F2A6C 2ED3A8 0004+00 1/0 0/0 0/0 .text
  * setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage             */
 void J2DTevBlock::setIndTevStage(u32 param_0, J2DIndTevStage param_1) {
     /* empty function */
 }
 
-/* 802F2A6C-802F2A74 0008+00 s=1 e=0 z=0  None .text insertTexture__11J2DTevBlockFUlP10JUTTexture
+/* 802F2A6C-802F2A74 2ED3AC 0008+00 1/0 0/0 0/0 .text insertTexture__11J2DTevBlockFUlP10JUTTexture
  */
 bool J2DTevBlock::insertTexture(u32 param_0, JUTTexture* param_1) {
     return false;
 }
 
-/* 802F2A74-802F2A7C 0008+00 s=1 e=0 z=0  None .text
+/* 802F2A74-802F2A7C 2ED3B4 0008+00 1/0 0/0 0/0 .text
  * insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette       */
 bool J2DTevBlock::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
     return false;
 }
 
-/* 802F2A7C-802F2A84 0008+00 s=1 e=0 z=0  None .text      insertTexture__11J2DTevBlockFUlPC7ResTIMG
- */
+/* 802F2A7C-802F2A84 2ED3BC 0008+00 1/0 0/0 0/0 .text insertTexture__11J2DTevBlockFUlPC7ResTIMG */
 bool J2DTevBlock::insertTexture(u32 param_0, ResTIMG const* param_1) {
     return false;
 }
 
-/* 802F2A84-802F2A8C 0008+00 s=1 e=0 z=0  None .text      setTexture__11J2DTevBlockFUlP10JUTTexture
- */
+/* 802F2A84-802F2A8C 2ED3C4 0008+00 1/0 0/0 0/0 .text setTexture__11J2DTevBlockFUlP10JUTTexture */
 bool J2DTevBlock::setTexture(u32 param_0, JUTTexture* param_1) {
     return false;
 }
 
-/* 802F2A8C-802F2A94 0008+00 s=1 e=0 z=0  None .text      setTexture__11J2DTevBlockFUlPC7ResTIMG */
+/* 802F2A8C-802F2A94 2ED3CC 0008+00 1/0 0/0 0/0 .text setTexture__11J2DTevBlockFUlPC7ResTIMG */
 bool J2DTevBlock::setTexture(u32 param_0, ResTIMG const* param_1) {
     return false;
 }
 
-/* 802F2A94-802F2A9C 0008+00 s=1 e=0 z=0  None .text      removeTexture__11J2DTevBlockFUl */
+/* 802F2A94-802F2A9C 2ED3D4 0008+00 1/0 0/0 0/0 .text            removeTexture__11J2DTevBlockFUl */
 bool J2DTevBlock::removeTexture(u32 param_0) {
     return false;
 }
 
-/* 802F2A9C-802F2AA4 0008+00 s=1 e=0 z=0  None .text      setFont__11J2DTevBlockFP7JUTFont */
+/* 802F2A9C-802F2AA4 2ED3DC 0008+00 1/0 0/0 0/0 .text            setFont__11J2DTevBlockFP7JUTFont */
 bool J2DTevBlock::setFont(JUTFont* param_0) {
     return false;
 }
 
-/* 802F2AA4-802F2AAC 0008+00 s=1 e=0 z=0  None .text      setFont__11J2DTevBlockFP7ResFONT */
+/* 802F2AA4-802F2AAC 2ED3E4 0008+00 1/0 0/0 0/0 .text            setFont__11J2DTevBlockFP7ResFONT */
 bool J2DTevBlock::setFont(ResFONT* param_0) {
     return false;
 }
 
-/* 802F2AAC-802F2AB4 0008+00 s=1 e=0 z=0  None .text      setPalette__11J2DTevBlockFUlPC7ResTLUT */
+/* 802F2AAC-802F2AB4 2ED3EC 0008+00 1/0 0/0 0/0 .text setPalette__11J2DTevBlockFUlPC7ResTLUT */
 bool J2DTevBlock::setPalette(u32 param_0, ResTLUT const* param_1) {
     return false;
 }
 
-/* 802F2AB4-802F2ABC 0008+00 s=1 e=0 z=0  None .text      prepareTexture__11J2DTevBlockFUc */
+/* 802F2AB4-802F2ABC 2ED3F4 0008+00 1/0 0/0 0/0 .text            prepareTexture__11J2DTevBlockFUc */
 bool J2DTevBlock::prepareTexture(u8 param_0) {
     return false;
 }
 
-/* 802F2ABC-802F2AC4 0008+00 s=1 e=0 z=0  None .text      getFont__11J2DTevBlockFv */
+/* 802F2ABC-802F2AC4 2ED3FC 0008+00 1/0 0/0 0/0 .text            getFont__11J2DTevBlockFv */
 bool J2DTevBlock::getFont() {
     return false;
 }
 
-/* 802F2AC4-802F2AC8 0004+00 s=1 e=0 z=0  None .text      shiftDeleteFlag__11J2DTevBlockFUcb */
+/* 802F2AC4-802F2AC8 2ED404 0004+00 1/0 0/0 0/0 .text            shiftDeleteFlag__11J2DTevBlockFUcb
+ */
 void J2DTevBlock::shiftDeleteFlag(u8 param_0, bool param_1) {
     /* empty function */
 }
 
-/* 802F2AC8-802F2ACC 0004+00 s=1 e=0 z=0  None .text      setUndeleteFlag__11J2DTevBlockFUc */
+/* 802F2AC8-802F2ACC 2ED408 0004+00 1/0 0/0 0/0 .text            setUndeleteFlag__11J2DTevBlockFUc
+ */
 void J2DTevBlock::setUndeleteFlag(u8 param_0) {
     /* empty function */
 }
 
-/* 802F2ACC-802F2AD0 0004+00 s=1 e=0 z=0  None .text      setFontUndeleteFlag__11J2DTevBlockFv */
+/* 802F2ACC-802F2AD0 2ED40C 0004+00 1/0 0/0 0/0 .text setFontUndeleteFlag__11J2DTevBlockFv */
 void J2DTevBlock::setFontUndeleteFlag() {
     /* empty function */
 }

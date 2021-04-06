@@ -5,27 +5,27 @@ lbl_8000FAE8:
 /* 8000FAF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FAF8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FAFC  41 82 00 68 */	beq lbl_8000FB64
-/* 8000FB00  3C 60 80 3A */	lis r3, __vt__13mDoExt_morf_c@ha
-/* 8000FB04  38 03 33 28 */	addi r0, r3, __vt__13mDoExt_morf_c@l
+/* 8000FB00  3C 60 80 3A */	lis r3, __vt__13mDoExt_morf_c@ha /* 0x803A3328@ha */
+/* 8000FB04  38 03 33 28 */	addi r0, r3, __vt__13mDoExt_morf_c@l /* 0x803A3328@l */
 /* 8000FB08  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FB0C  34 1F 00 0C */	addic. r0, r31, 0xc
 /* 8000FB10  41 82 00 10 */	beq lbl_8000FB20
-/* 8000FB14  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 8000FB18  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 8000FB14  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8000FB18  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 8000FB1C  90 1F 00 0C */	stw r0, 0xc(r31)
 lbl_8000FB20:
 /* 8000FB20  28 1F 00 00 */	cmplwi r31, 0
 /* 8000FB24  41 82 00 30 */	beq lbl_8000FB54
-/* 8000FB28  3C 60 80 3A */	lis r3, data_803A3360@ha
-/* 8000FB2C  38 03 33 60 */	addi r0, r3, data_803A3360@l
+/* 8000FB28  3C 60 80 3A */	lis r3, data_803A3360@ha /* 0x803A3360@ha */
+/* 8000FB2C  38 03 33 60 */	addi r0, r3, data_803A3360@l /* 0x803A3360@l */
 /* 8000FB30  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FB34  41 82 00 20 */	beq lbl_8000FB54
-/* 8000FB38  3C 60 80 3A */	lis r3, __vt__19J3DMtxCalcNoAnmBase@ha
-/* 8000FB3C  38 03 33 8C */	addi r0, r3, __vt__19J3DMtxCalcNoAnmBase@l
+/* 8000FB38  3C 60 80 3A */	lis r3, __vt__19J3DMtxCalcNoAnmBase@ha /* 0x803A338C@ha */
+/* 8000FB3C  38 03 33 8C */	addi r0, r3, __vt__19J3DMtxCalcNoAnmBase@l /* 0x803A338C@l */
 /* 8000FB40  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FB44  41 82 00 10 */	beq lbl_8000FB54
-/* 8000FB48  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha
-/* 8000FB4C  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l
+/* 8000FB48  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha /* 0x803A3468@ha */
+/* 8000FB4C  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l /* 0x803A3468@l */
 /* 8000FB50  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8000FB54:
 /* 8000FB54  7C 80 07 35 */	extsh. r0, r4

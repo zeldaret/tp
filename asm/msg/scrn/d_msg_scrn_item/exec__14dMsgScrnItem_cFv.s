@@ -21,8 +21,8 @@ lbl_8023F888:
 /* 8023F8D4  38 00 00 01 */	li r0, 1
 /* 8023F8D8  98 1F 01 9D */	stb r0, 0x19d(r31)
 lbl_8023F8DC:
-/* 8023F8DC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023F8E0  38 C3 02 8C */	addi r6, r3, g_MsgObject_HIO_c@l
+/* 8023F8DC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023F8E0  38 C3 02 8C */	addi r6, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023F8E4  C8 22 B2 18 */	lfd f1, lit_4388(r2)
 /* 8023F8E8  3C 00 43 30 */	lis r0, 0x4330
 /* 8023F8EC  C0 5F 01 40 */	lfs f2, 0x140(r31)
@@ -128,8 +128,8 @@ lbl_8023FA58:
 /* 8023FA5C  C0 1F 01 84 */	lfs f0, 0x184(r31)
 /* 8023FA60  EF E1 00 28 */	fsubs f31, f1, f0
 lbl_8023FA64:
-/* 8023FA64  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023FA68  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 8023FA64  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FA68  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023FA6C  C0 24 00 A8 */	lfs f1, 0xa8(r4)
 /* 8023FA70  80 7F 00 08 */	lwz r3, 8(r31)
 /* 8023FA74  80 63 00 04 */	lwz r3, 4(r3)
@@ -141,8 +141,8 @@ lbl_8023FA64:
 /* 8023FA8C  7D 89 03 A6 */	mtctr r12
 /* 8023FA90  4E 80 04 21 */	bctrl 
 /* 8023FA94  C0 3F 01 6C */	lfs f1, 0x16c(r31)
-/* 8023FA98  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023FA9C  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 8023FA98  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FA9C  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023FAA0  C0 04 00 E4 */	lfs f0, 0xe4(r4)
 /* 8023FAA4  EC 01 00 2A */	fadds f0, f1, f0
 /* 8023FAA8  EC 5F 00 2A */	fadds f2, f31, f0
@@ -157,8 +157,8 @@ lbl_8023FA64:
 /* 8023FACC  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 8023FAD0  7D 89 03 A6 */	mtctr r12
 /* 8023FAD4  4E 80 04 21 */	bctrl 
-/* 8023FAD8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8023FADC  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 8023FAD8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023FADC  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023FAE0  C0 24 00 DC */	lfs f1, 0xdc(r4)
 /* 8023FAE4  80 7F 01 10 */	lwz r3, 0x110(r31)
 /* 8023FAE8  80 63 00 04 */	lwz r3, 4(r3)

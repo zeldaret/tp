@@ -15,8 +15,8 @@ lbl_80007164:
 /* 80007198  4B FF FE 29 */	bl mDoAud_Create__Fv
 /* 8000719C  48 00 00 10 */	b lbl_800071AC
 lbl_800071A0:
-/* 800071A0  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha
-/* 800071A4  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l
+/* 800071A0  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha /* 0x803DBF4C@ha */
+/* 800071A4  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l /* 0x803DBF4C@l */
 /* 800071A8  48 2C 67 5D */	bl gframeProcess__10Z2AudioMgrFv
 lbl_800071AC:
 /* 800071AC  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -28,8 +28,8 @@ lbl_801EDCF0:
 /* 801EDCFC  41 82 01 D0 */	beq lbl_801EDECC
 /* 801EDD00  2C 03 00 0A */	cmpwi r3, 0xa
 /* 801EDD04  40 80 01 BC */	bge lbl_801EDEC0
-/* 801EDD08  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801EDD0C  38 03 01 88 */	addi r0, r3, g_meter2_info@l
+/* 801EDD08  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801EDD0C  38 03 01 88 */	addi r0, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801EDD10  7C 60 DA 14 */	add r3, r0, r27
 /* 801EDD14  80 83 00 28 */	lwz r4, 0x28(r3)
 /* 801EDD18  C0 24 00 34 */	lfs f1, 0x34(r4)

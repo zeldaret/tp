@@ -5,12 +5,12 @@ lbl_80321A70:
 /* 80321A7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80321A80  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80321A84  41 82 00 30 */	beq lbl_80321AB4
-/* 80321A88  3C 60 80 3D */	lis r3, __vt__14J3DPEBlockFull@ha
-/* 80321A8C  38 03 DF F0 */	addi r0, r3, __vt__14J3DPEBlockFull@l
+/* 80321A88  3C 60 80 3D */	lis r3, __vt__14J3DPEBlockFull@ha /* 0x803CDFF0@ha */
+/* 80321A8C  38 03 DF F0 */	addi r0, r3, __vt__14J3DPEBlockFull@l /* 0x803CDFF0@l */
 /* 80321A90  90 1F 00 00 */	stw r0, 0(r31)
 /* 80321A94  41 82 00 10 */	beq lbl_80321AA4
-/* 80321A98  3C 60 80 3D */	lis r3, __vt__10J3DPEBlock@ha
-/* 80321A9C  38 03 DD 20 */	addi r0, r3, __vt__10J3DPEBlock@l
+/* 80321A98  3C 60 80 3D */	lis r3, __vt__10J3DPEBlock@ha /* 0x803CDD20@ha */
+/* 80321A9C  38 03 DD 20 */	addi r0, r3, __vt__10J3DPEBlock@l /* 0x803CDD20@l */
 /* 80321AA0  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80321AA4:
 /* 80321AA4  7C 80 07 35 */	extsh. r0, r4

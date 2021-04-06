@@ -14,8 +14,8 @@ lbl_80230AC0:
 /* 80230AF0  93 E3 00 58 */	stw r31, 0x58(r3)
 /* 80230AF4  38 00 00 00 */	li r0, 0
 /* 80230AF8  90 03 00 5C */	stw r0, 0x5c(r3)
-/* 80230AFC  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 80230B00  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 80230AFC  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 80230B00  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 80230B04  90 1D 00 70 */	stw r0, 0x70(r29)
 /* 80230B08  38 7D 00 4C */	addi r3, r29, 0x4c
 /* 80230B0C  7F E4 FB 78 */	mr r4, r31

@@ -3,10 +3,10 @@ lbl_805CB4F0:
 /* 805CB4F4  7C 08 02 A6 */	mflr r0
 /* 805CB4F8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 805CB4FC  39 61 00 40 */	addi r11, r1, 0x40
-/* 805CB500  4B D9 6C D8 */	b _savegpr_28
+/* 805CB500  4B D9 6C D9 */	bl _savegpr_28
 /* 805CB504  7C 7F 1B 78 */	mr r31, r3
-/* 805CB508  3C 60 80 5E */	lis r3, lit_3932@ha
-/* 805CB50C  3B C3 CA 54 */	addi r30, r3, lit_3932@l
+/* 805CB508  3C 60 80 5E */	lis r3, lit_3932@ha /* 0x805DCA54@ha */
+/* 805CB50C  3B C3 CA 54 */	addi r30, r3, lit_3932@l /* 0x805DCA54@l */
 /* 805CB510  88 1F 08 56 */	lbz r0, 0x856(r31)
 /* 805CB514  28 00 00 01 */	cmplwi r0, 1
 /* 805CB518  41 82 00 20 */	beq lbl_805CB538
@@ -23,17 +23,17 @@ lbl_805CB538:
 lbl_805CB540:
 /* 805CB540  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
 /* 805CB544  83 A3 00 04 */	lwz r29, 4(r3)
-/* 805CB548  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB54C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB548  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB54C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB550  38 80 00 00 */	li r4, 0
 /* 805CB554  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 805CB558  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 805CB55C  4B BD 82 68 */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 805CB560  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB564  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB55C  4B BD 82 69 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 805CB560  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB564  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB568  80 9D 00 04 */	lwz r4, 4(r29)
 /* 805CB56C  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 805CB570  4B BD 98 30 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 805CB570  4B BD 98 31 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 805CB574  83 9D 00 04 */	lwz r28, 4(r29)
 /* 805CB578  88 1F 08 56 */	lbz r0, 0x856(r31)
 /* 805CB57C  28 00 00 02 */	cmplwi r0, 2
@@ -72,7 +72,7 @@ lbl_805CB540:
 /* 805CB600  98 03 00 03 */	stb r0, 3(r3)
 lbl_805CB604:
 /* 805CB604  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
-/* 805CB608  4B A4 5B B8 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 805CB608  4B A4 5B B9 */	bl entryDL__16mDoExt_McaMorfSOFv
 /* 805CB60C  C0 5F 04 D8 */	lfs f2, 0x4d8(r31)
 /* 805CB610  C0 3E 00 44 */	lfs f1, 0x44(r30)
 /* 805CB614  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
@@ -95,9 +95,9 @@ lbl_805CB604:
 /* 805CB658  39 1F 01 0C */	addi r8, r31, 0x10c
 /* 805CB65C  39 20 00 00 */	li r9, 0
 /* 805CB660  C0 BE 00 08 */	lfs f5, 8(r30)
-/* 805CB664  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 805CB668  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
-/* 805CB66C  4B A6 32 A4 */	b dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
+/* 805CB664  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 805CB668  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
+/* 805CB66C  4B A6 32 A5 */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 805CB670  90 7F 08 48 */	stw r3, 0x848(r31)
 lbl_805CB674:
 /* 805CB674  88 1F 08 5B */	lbz r0, 0x85b(r31)
@@ -105,24 +105,24 @@ lbl_805CB674:
 /* 805CB67C  40 82 00 54 */	bne lbl_805CB6D0
 /* 805CB680  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 805CB684  83 83 00 04 */	lwz r28, 4(r3)
-/* 805CB688  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB68C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB688  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB68C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB690  38 80 00 00 */	li r4, 0
 /* 805CB694  38 BF 06 E8 */	addi r5, r31, 0x6e8
 /* 805CB698  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 805CB69C  4B BD 81 28 */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 805CB6A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB6A4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB69C  4B BD 81 29 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 805CB6A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB6A4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB6A8  80 9C 00 04 */	lwz r4, 4(r28)
 /* 805CB6AC  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 805CB6B0  4B BD 96 F0 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 805CB6B0  4B BD 96 F1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 805CB6B4  80 9C 00 04 */	lwz r4, 4(r28)
 /* 805CB6B8  80 7F 05 C8 */	lwz r3, 0x5c8(r31)
 /* 805CB6BC  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB6C0  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB6C4  4B A4 20 E4 */	b entry__13mDoExt_brkAnmFP16J3DMaterialTablef
+/* 805CB6C4  4B A4 20 E5 */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 805CB6C8  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
-/* 805CB6CC  4B A4 5A F4 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 805CB6CC  4B A4 5A F5 */	bl entryDL__16mDoExt_McaMorfSOFv
 lbl_805CB6D0:
 /* 805CB6D0  88 1F 08 5F */	lbz r0, 0x85f(r31)
 /* 805CB6D4  28 00 00 00 */	cmplwi r0, 0
@@ -132,15 +132,15 @@ lbl_805CB6D0:
 /* 805CB6E4  80 7F 05 D4 */	lwz r3, 0x5d4(r31)
 /* 805CB6E8  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB6EC  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB6F0  4B A4 20 B8 */	b entry__13mDoExt_brkAnmFP16J3DMaterialTablef
+/* 805CB6F0  4B A4 20 B9 */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 805CB6F4  80 7F 05 C4 */	lwz r3, 0x5c4(r31)
 /* 805CB6F8  80 83 00 04 */	lwz r4, 4(r3)
 /* 805CB6FC  80 7F 05 D8 */	lwz r3, 0x5d8(r31)
 /* 805CB700  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB704  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB708  4B A4 1F D0 */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 805CB708  4B A4 1F D1 */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 805CB70C  80 7F 05 C4 */	lwz r3, 0x5c4(r31)
-/* 805CB710  4B A4 25 B4 */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 805CB710  4B A4 25 B5 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 lbl_805CB714:
 /* 805CB714  38 60 00 01 */	li r3, 1
 /* 805CB718  48 00 03 78 */	b lbl_805CBA90
@@ -272,30 +272,30 @@ lbl_805CB8E0:
 /* 805CB8E4  42 00 FF CC */	bdnz lbl_805CB8B0
 lbl_805CB8E8:
 /* 805CB8E8  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
-/* 805CB8EC  4B A4 58 D4 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 805CB8EC  4B A4 58 D5 */	bl entryDL__16mDoExt_McaMorfSOFv
 /* 805CB8F0  88 1F 08 5B */	lbz r0, 0x85b(r31)
 /* 805CB8F4  28 00 00 00 */	cmplwi r0, 0
 /* 805CB8F8  40 82 00 54 */	bne lbl_805CB94C
 /* 805CB8FC  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 805CB900  83 83 00 04 */	lwz r28, 4(r3)
-/* 805CB904  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB908  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB904  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB908  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB90C  38 80 00 00 */	li r4, 0
 /* 805CB910  38 BF 06 E8 */	addi r5, r31, 0x6e8
 /* 805CB914  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 805CB918  4B BD 7E AC */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 805CB91C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB920  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB918  4B BD 7E AD */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 805CB91C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB920  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB924  80 9C 00 04 */	lwz r4, 4(r28)
 /* 805CB928  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 805CB92C  4B BD 94 74 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 805CB92C  4B BD 94 75 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 805CB930  80 9C 00 04 */	lwz r4, 4(r28)
 /* 805CB934  80 7F 05 C8 */	lwz r3, 0x5c8(r31)
 /* 805CB938  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB93C  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB940  4B A4 1E 68 */	b entry__13mDoExt_brkAnmFP16J3DMaterialTablef
+/* 805CB940  4B A4 1E 69 */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 805CB944  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
-/* 805CB948  4B A4 58 78 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 805CB948  4B A4 58 79 */	bl entryDL__16mDoExt_McaMorfSOFv
 lbl_805CB94C:
 /* 805CB94C  88 1F 08 5F */	lbz r0, 0x85f(r31)
 /* 805CB950  28 00 00 00 */	cmplwi r0, 0
@@ -305,32 +305,32 @@ lbl_805CB94C:
 /* 805CB960  80 7F 05 CC */	lwz r3, 0x5cc(r31)
 /* 805CB964  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB968  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB96C  4B A4 1E 3C */	b entry__13mDoExt_brkAnmFP16J3DMaterialTablef
+/* 805CB96C  4B A4 1E 3D */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 805CB970  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
 /* 805CB974  80 83 00 04 */	lwz r4, 4(r3)
 /* 805CB978  80 7F 05 D0 */	lwz r3, 0x5d0(r31)
 /* 805CB97C  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 805CB980  38 84 00 58 */	addi r4, r4, 0x58
-/* 805CB984  4B A4 1D 54 */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 805CB984  4B A4 1D 55 */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 805CB988  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 805CB98C  4B A4 23 38 */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 805CB98C  4B A4 23 39 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 lbl_805CB990:
 /* 805CB990  88 1F 08 5C */	lbz r0, 0x85c(r31)
 /* 805CB994  28 00 00 00 */	cmplwi r0, 0
 /* 805CB998  41 82 00 88 */	beq lbl_805CBA20
 /* 805CB99C  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 805CB9A0  83 83 00 04 */	lwz r28, 4(r3)
-/* 805CB9A4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB9A8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB9A4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB9A8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB9AC  38 80 00 03 */	li r4, 3
 /* 805CB9B0  38 BF 06 E8 */	addi r5, r31, 0x6e8
 /* 805CB9B4  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 805CB9B8  4B BD 7E 0C */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 805CB9BC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805CB9C0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805CB9B8  4B BD 7E 0D */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 805CB9BC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805CB9C0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805CB9C4  80 9C 00 04 */	lwz r4, 4(r28)
 /* 805CB9C8  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 805CB9CC  4B BD 93 D4 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 805CB9CC  4B BD 93 D5 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 805CB9D0  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 805CB9D4  80 63 00 04 */	lwz r3, 4(r3)
 /* 805CB9D8  80 63 00 04 */	lwz r3, 4(r3)
@@ -352,7 +352,7 @@ lbl_805CBA0C:
 /* 805CBA14  90 03 00 0C */	stw r0, 0xc(r3)
 lbl_805CBA18:
 /* 805CBA18  80 7F 05 BC */	lwz r3, 0x5bc(r31)
-/* 805CBA1C  4B A4 57 A4 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 805CBA1C  4B A4 57 A5 */	bl entryDL__16mDoExt_McaMorfSOFv
 lbl_805CBA20:
 /* 805CBA20  C0 5F 04 D8 */	lfs f2, 0x4d8(r31)
 /* 805CBA24  C0 3E 00 50 */	lfs f1, 0x50(r30)
@@ -377,14 +377,14 @@ lbl_805CBA20:
 /* 805CBA70  39 1F 01 0C */	addi r8, r31, 0x10c
 /* 805CBA74  39 20 00 00 */	li r9, 0
 /* 805CBA78  C0 BE 00 08 */	lfs f5, 8(r30)
-/* 805CBA7C  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 805CBA80  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
-/* 805CBA84  4B A6 2E 8C */	b dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
+/* 805CBA7C  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 805CBA80  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
+/* 805CBA84  4B A6 2E 8D */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 805CBA88  90 7F 08 48 */	stw r3, 0x848(r31)
 /* 805CBA8C  38 60 00 01 */	li r3, 1
 lbl_805CBA90:
 /* 805CBA90  39 61 00 40 */	addi r11, r1, 0x40
-/* 805CBA94  4B D9 67 90 */	b _restgpr_28
+/* 805CBA94  4B D9 67 91 */	bl _restgpr_28
 /* 805CBA98  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 805CBA9C  7C 08 03 A6 */	mtlr r0
 /* 805CBAA0  38 21 00 40 */	addi r1, r1, 0x40

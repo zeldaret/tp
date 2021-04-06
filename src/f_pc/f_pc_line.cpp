@@ -17,16 +17,12 @@ struct node_list_class {};
 // Forward References:
 //
 
-void fpcLn_Create();
-
 extern "C" void fpcLn_Create__Fv();
 extern "C" extern void* g_fpcLn_Queue[2];
 
 //
 // External References:
 //
-
-void cLs_Create(node_list_class*);
 
 extern "C" void cLs_Create__FP15node_list_class();
 
@@ -35,13 +31,10 @@ extern "C" void cLs_Create__FP15node_list_class();
 //
 
 /* ############################################################################################## */
-/* 803F4CF0-803F4DB0 00C0+00 s=2 e=0 z=0  None .bss       l_fpcLn_Line */
+/* 803F4CF0-803F4DB0 021A10 00C0+00 2/1 0/0 0/0 .bss             l_fpcLn_Line */
 static u8 l_fpcLn_Line[192];
 
-/* 80021F64-80021FB8 0054+00 s=0 e=1 z=0  None .text      fpcLn_Create__Fv */
-//	80021F78: 803F4CF0 (l_fpcLn_Line)
-//	80021F7C: 803F4CF0 (l_fpcLn_Line)
-//	80021F90: 80266040 (cLs_Create__FP15node_list_class)
+/* 80021F64-80021FB8 01C8A4 0054+00 0/0 1/1 0/0 .text            fpcLn_Create__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -52,8 +45,8 @@ asm void fpcLn_Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505D8-804505E0 0008+00 s=0 e=2 z=0  None .sdata     g_fpcLn_Queue */
-SECTION_SDATA void* g_fpcLn_Queue[2] = {
+/* 804505D8-804505E0 -00001 0008+00 0/0 2/2 0/0 .sdata           g_fpcLn_Queue */
+SECTION_SDATA extern void* g_fpcLn_Queue[2] = {
     (void*)&l_fpcLn_Line,
     (void*)0x00000010,
 };

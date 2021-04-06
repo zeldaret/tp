@@ -3,19 +3,20 @@
 #
 
 M225_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_rdy.plf
+M225_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_rdy.lcf
+M225_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_rdy.map
 
 M225_CPP_FILES := \
-	rel/d/a/e/d_a_e_rdy/executor.cpp \
-	rel/d/a/e/d_a_e_rdy/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_rdy/d_a_e_rdy.cpp \
 
 M225_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_rdy/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_rdy/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_rdy/d_a_e_rdy.o \
 
 M225_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_rdy/libRuntime.PPCEABI.H.a \
 
 M225_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M225_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map225.map\
+	-m _prolog \
+	-lcf $(M225_LDSCRIPT) \
+	-unused -map $(M225_MAP) \
+	-w off \
 
 $(M225_TARGET): $(M225_O_FILES) $(M225_LIBS)
+	@echo [225] creating $(M225_TARGET)
 	@echo $(M225_LIBS) $(M225_O_FILES) > build/M225_ofiles
-	$(LD) -opt_partial $(M225_LDFLAGS) -o $(M225_TARGET) @build/M225_ofiles
+	@python3 tools/lcf.py rel 225 --output $(M225_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M225_LDFLAGS) -o $(M225_TARGET) @build/M225_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_rdy/%.o: rel/d/a/e/d_a_e_rdy/%.cpp
+	@echo [225] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M225_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M225_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_rdy/libs/Runtime.PPCEABI.H/Makefile
 

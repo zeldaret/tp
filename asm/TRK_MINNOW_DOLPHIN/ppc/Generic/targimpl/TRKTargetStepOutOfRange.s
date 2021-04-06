@@ -8,12 +8,12 @@ lbl_8036FD30:
 /* 8036FD48  38 60 07 03 */	li r3, 0x703
 /* 8036FD4C  48 00 00 88 */	b lbl_8036FDD4
 lbl_8036FD50:
-/* 8036FD50  3C C0 80 3D */	lis r6, gTRKStepStatus@ha
-/* 8036FD54  3C A0 80 3A */	lis r5, lit_422@ha
-/* 8036FD58  3B E6 32 54 */	addi r31, r6, gTRKStepStatus@l
+/* 8036FD50  3C C0 80 3D */	lis r6, gTRKStepStatus@ha /* 0x803D3254@ha */
+/* 8036FD54  3C A0 80 3A */	lis r5, lit_422@ha /* 0x803A2BE8@ha */
+/* 8036FD58  3B E6 32 54 */	addi r31, r6, gTRKStepStatus@l /* 0x803D3254@l */
 /* 8036FD5C  38 C0 00 01 */	li r6, 1
 /* 8036FD60  90 7F 00 0C */	stw r3, 0xc(r31)
-/* 8036FD64  38 05 2B E8 */	addi r0, r5, lit_422@l
+/* 8036FD64  38 05 2B E8 */	addi r0, r5, lit_422@l /* 0x803A2BE8@l */
 /* 8036FD68  38 60 00 01 */	li r3, 1
 /* 8036FD6C  90 9F 00 10 */	stw r4, 0x10(r31)
 /* 8036FD70  7C 04 03 78 */	mr r4, r0
@@ -21,9 +21,9 @@ lbl_8036FD50:
 /* 8036FD78  90 DF 00 00 */	stw r6, 0(r31)
 /* 8036FD7C  4C C6 31 82 */	crclr 6
 /* 8036FD80  48 00 2E D5 */	bl MWTRACE
-/* 8036FD84  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FD84  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FD88  80 9F 00 04 */	lwz r4, 4(r31)
-/* 8036FD8C  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l
+/* 8036FD8C  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FD90  80 03 01 F8 */	lwz r0, 0x1f8(r3)
 /* 8036FD94  2C 04 00 00 */	cmpwi r4, 0
 /* 8036FD98  60 00 04 00 */	ori r0, r0, 0x400
@@ -32,15 +32,15 @@ lbl_8036FD50:
 /* 8036FDA4  2C 04 00 10 */	cmpwi r4, 0x10
 /* 8036FDA8  40 82 00 18 */	bne lbl_8036FDC0
 lbl_8036FDAC:
-/* 8036FDAC  3C 60 80 3D */	lis r3, gTRKStepStatus@ha
-/* 8036FDB0  38 83 32 54 */	addi r4, r3, gTRKStepStatus@l
+/* 8036FDAC  3C 60 80 3D */	lis r3, gTRKStepStatus@ha /* 0x803D3254@ha */
+/* 8036FDB0  38 83 32 54 */	addi r4, r3, gTRKStepStatus@l /* 0x803D3254@l */
 /* 8036FDB4  80 64 00 08 */	lwz r3, 8(r4)
 /* 8036FDB8  38 03 FF FF */	addi r0, r3, -1
 /* 8036FDBC  90 04 00 08 */	stw r0, 8(r4)
 lbl_8036FDC0:
-/* 8036FDC0  3C 60 80 45 */	lis r3, gTRKState@ha
+/* 8036FDC0  3C 60 80 45 */	lis r3, gTRKState@ha /* 0x8044F294@ha */
 /* 8036FDC4  38 00 00 00 */	li r0, 0
-/* 8036FDC8  38 83 F2 94 */	addi r4, r3, gTRKState@l
+/* 8036FDC8  38 83 F2 94 */	addi r4, r3, gTRKState@l /* 0x8044F294@l */
 /* 8036FDCC  38 60 00 00 */	li r3, 0
 /* 8036FDD0  90 04 00 98 */	stw r0, 0x98(r4)
 lbl_8036FDD4:

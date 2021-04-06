@@ -5,8 +5,8 @@ lbl_80261394:
 /* 802613A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802613A4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802613A8  41 82 00 1C */	beq lbl_802613C4
-/* 802613AC  3C A0 80 3C */	lis r5, __vt__21dDlst_TimerScrnDraw_c@ha
-/* 802613B0  38 05 34 20 */	addi r0, r5, __vt__21dDlst_TimerScrnDraw_c@l
+/* 802613AC  3C A0 80 3C */	lis r5, __vt__21dDlst_TimerScrnDraw_c@ha /* 0x803C3420@ha */
+/* 802613B0  38 05 34 20 */	addi r0, r5, __vt__21dDlst_TimerScrnDraw_c@l /* 0x803C3420@l */
 /* 802613B4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802613B8  7C 80 07 35 */	extsh. r0, r4
 /* 802613BC  40 81 00 08 */	ble lbl_802613C4

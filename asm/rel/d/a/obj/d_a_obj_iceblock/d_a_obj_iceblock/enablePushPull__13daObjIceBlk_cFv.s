@@ -7,7 +7,7 @@ lbl_80C22200:
 /* 80C22214  80 63 05 68 */	lwz r3, 0x568(r3)
 /* 80C22218  28 03 00 00 */	cmplwi r3, 0
 /* 80C2221C  41 82 00 1C */	beq lbl_80C22238
-/* 80C22220  4B 64 5F B4 */	b ChkUsed__9cBgW_BgIdCFv
+/* 80C22220  4B 64 5F B5 */	bl ChkUsed__9cBgW_BgIdCFv
 /* 80C22224  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80C22228  41 82 00 10 */	beq lbl_80C22238
 /* 80C2222C  38 00 00 01 */	li r0, 1

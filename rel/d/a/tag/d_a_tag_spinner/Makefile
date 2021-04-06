@@ -3,17 +3,15 @@
 #
 
 M744_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner.plf
+M744_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner.lcf
+M744_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner.map
 
 M744_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_spinner/executor.cpp \
-	rel/d/a/tag/d_a_tag_spinner/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_spinner/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner.cpp \
 
 M744_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/d_a_tag_spinner.o \
 
 M744_LIBS := \
@@ -29,15 +27,21 @@ M744_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map744.map\
+	-m _prolog \
+	-lcf $(M744_LDSCRIPT) \
+	-unused -map $(M744_MAP) \
+	-w off \
 
 $(M744_TARGET): $(M744_O_FILES) $(M744_LIBS)
+	@echo [744] creating $(M744_TARGET)
 	@echo $(M744_LIBS) $(M744_O_FILES) > build/M744_ofiles
-	$(LD) -opt_partial $(M744_LDFLAGS) -o $(M744_TARGET) @build/M744_ofiles
+	@python3 tools/lcf.py rel 744 --output $(M744_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M744_LDFLAGS) -o $(M744_TARGET) @build/M744_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_spinner/%.o: rel/d/a/tag/d_a_tag_spinner/%.cpp
+	@echo [744] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M744_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,8 +1,8 @@
 lbl_8074C54C:
-/* 8074C54C  3C 80 80 75 */	lis r4, lit_3917@ha
-/* 8074C550  38 A4 76 FC */	addi r5, r4, lit_3917@l
-/* 8074C554  3C 80 80 75 */	lis r4, __vt__12daE_PO_HIO_c@ha
-/* 8074C558  38 04 7D FC */	addi r0, r4, __vt__12daE_PO_HIO_c@l
+/* 8074C54C  3C 80 80 75 */	lis r4, lit_3917@ha /* 0x807576FC@ha */
+/* 8074C550  38 A4 76 FC */	addi r5, r4, lit_3917@l /* 0x807576FC@l */
+/* 8074C554  3C 80 80 75 */	lis r4, __vt__12daE_PO_HIO_c@ha /* 0x80757DFC@ha */
+/* 8074C558  38 04 7D FC */	addi r0, r4, __vt__12daE_PO_HIO_c@l /* 0x80757DFC@l */
 /* 8074C55C  90 03 00 00 */	stw r0, 0(r3)
 /* 8074C560  38 00 FF FF */	li r0, -1
 /* 8074C564  98 03 00 04 */	stb r0, 4(r3)

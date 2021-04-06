@@ -1,10 +1,10 @@
 lbl_803407C8:
 /* 803407C8  7C 08 02 A6 */	mflr r0
-/* 803407CC  3C 80 80 45 */	lis r4, Scb@ha
+/* 803407CC  3C 80 80 45 */	lis r4, Scb@ha /* 0x8044BB20@ha */
 /* 803407D0  90 01 00 04 */	stw r0, 4(r1)
 /* 803407D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803407D8  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 803407DC  3B E4 BB 20 */	addi r31, r4, Scb@l
+/* 803407DC  3B E4 BB 20 */	addi r31, r4, Scb@l /* 0x8044BB20@l */
 /* 803407E0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 803407E4  3B C3 00 00 */	addi r30, r3, 0
 /* 803407E8  4B FF CF 0D */	bl OSDisableInterrupts

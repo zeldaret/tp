@@ -3,19 +3,20 @@
 #
 
 M525_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter.plf
+M525_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter.lcf
+M525_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter.map
 
 M525_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4EdShutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4EdShutter/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4EdShutter/d_a_obj_lv4EdShutter.cpp \
 
 M525_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/d_a_obj_lv4EdShutter.o \
 
 M525_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/libRuntime.PPCEABI.H.a \
 
 M525_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M525_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map525.map\
+	-m _prolog \
+	-lcf $(M525_LDSCRIPT) \
+	-unused -map $(M525_MAP) \
+	-w off \
 
 $(M525_TARGET): $(M525_O_FILES) $(M525_LIBS)
+	@echo [525] creating $(M525_TARGET)
 	@echo $(M525_LIBS) $(M525_O_FILES) > build/M525_ofiles
-	$(LD) -opt_partial $(M525_LDFLAGS) -o $(M525_TARGET) @build/M525_ofiles
+	@python3 tools/lcf.py rel 525 --output $(M525_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M525_LDFLAGS) -o $(M525_TARGET) @build/M525_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4EdShutter/%.o: rel/d/a/obj/d_a_obj_lv4EdShutter/%.cpp
+	@echo [525] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M525_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M525_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4EdShutter/libs/Runtime.PPCEABI.H/Makefile
 

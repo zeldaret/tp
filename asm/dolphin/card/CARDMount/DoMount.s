@@ -8,8 +8,8 @@ lbl_80356BC8:
 /* 80356BE0  3B A3 00 00 */	addi r29, r3, 0
 /* 80356BE4  1C 9D 01 10 */	mulli r4, r29, 0x110
 /* 80356BE8  93 81 00 20 */	stw r28, 0x20(r1)
-/* 80356BEC  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80356BF0  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80356BEC  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80356BF0  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80356BF4  7C 60 22 14 */	add r3, r0, r4
 /* 80356BF8  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80356BFC  3B E3 00 00 */	addi r31, r3, 0
@@ -36,11 +36,11 @@ lbl_80356C44:
 /* 80356C44  2C 1E 00 00 */	cmpwi r30, 0
 /* 80356C48  41 80 03 88 */	blt lbl_80356FD0
 /* 80356C4C  80 01 00 18 */	lwz r0, 0x18(r1)
-/* 80356C50  3C 80 80 3D */	lis r4, SectorSizeTable@ha
-/* 80356C54  38 A4 20 00 */	addi r5, r4, SectorSizeTable@l
+/* 80356C50  3C 80 80 3D */	lis r4, SectorSizeTable@ha /* 0x803D2000@ha */
+/* 80356C54  38 A4 20 00 */	addi r5, r4, SectorSizeTable@l /* 0x803D2000@l */
 /* 80356C58  90 1F 01 08 */	stw r0, 0x108(r31)
-/* 80356C5C  3C 60 80 3D */	lis r3, LatencyTable@ha
-/* 80356C60  38 03 20 20 */	addi r0, r3, LatencyTable@l
+/* 80356C5C  3C 60 80 3D */	lis r3, LatencyTable@ha /* 0x803D2020@ha */
+/* 80356C60  38 03 20 20 */	addi r0, r3, LatencyTable@l /* 0x803D2020@l */
 /* 80356C64  80 C1 00 18 */	lwz r6, 0x18(r1)
 /* 80356C68  38 7D 00 00 */	addi r3, r29, 0
 /* 80356C6C  38 9F 00 12 */	addi r4, r31, 0x12
@@ -244,8 +244,8 @@ lbl_80356F40:
 /* 80356F50  4B FF BE 35 */	bl __CARDEnableInterrupt
 /* 80356F54  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80356F58  41 80 00 78 */	blt lbl_80356FD0
-/* 80356F5C  3C 60 80 35 */	lis r3, __CARDExiHandler@ha
-/* 80356F60  38 83 2B 40 */	addi r4, r3, __CARDExiHandler@l
+/* 80356F5C  3C 60 80 35 */	lis r3, __CARDExiHandler@ha /* 0x80352B40@ha */
+/* 80356F60  38 83 2B 40 */	addi r4, r3, __CARDExiHandler@l /* 0x80352B40@l */
 /* 80356F64  38 7D 00 00 */	addi r3, r29, 0
 /* 80356F68  4B FE C4 15 */	bl EXISetExiCallback
 /* 80356F6C  7F A3 EB 78 */	mr r3, r29
@@ -256,9 +256,9 @@ lbl_80356F40:
 /* 80356F80  4B FE 46 01 */	bl DCInvalidateRange
 lbl_80356F84:
 /* 80356F84  80 9F 00 24 */	lwz r4, 0x24(r31)
-/* 80356F88  3C 60 80 35 */	lis r3, __CARDMountCallback@ha
+/* 80356F88  3C 60 80 35 */	lis r3, __CARDMountCallback@ha /* 0x8035701C@ha */
 /* 80356F8C  80 1F 00 0C */	lwz r0, 0xc(r31)
-/* 80356F90  38 E3 70 1C */	addi r7, r3, __CARDMountCallback@l
+/* 80356F90  38 E3 70 1C */	addi r7, r3, __CARDMountCallback@l /* 0x8035701C@l */
 /* 80356F94  38 64 FF FE */	addi r3, r4, -2
 /* 80356F98  7C 80 19 D6 */	mullw r4, r0, r3
 /* 80356F9C  80 BF 00 80 */	lwz r5, 0x80(r31)

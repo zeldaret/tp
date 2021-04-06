@@ -1,6 +1,6 @@
 lbl_802806C0:
-/* 802806C0  3C C0 80 44 */	lis r6, sincosTable___5JMath@ha
-/* 802806C4  38 C6 9A 20 */	addi r6, r6, sincosTable___5JMath@l
+/* 802806C0  3C C0 80 44 */	lis r6, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 802806C4  38 C6 9A 20 */	addi r6, r6, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 802806C8  38 E6 00 04 */	addi r7, r6, 4
 /* 802806CC  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 802806D0  7C 27 04 2E */	lfsx f1, r7, r0

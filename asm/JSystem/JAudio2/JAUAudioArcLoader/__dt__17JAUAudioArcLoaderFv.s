@@ -7,8 +7,8 @@ lbl_802A49FC:
 /* 802A4A10  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A4A14  7C 9F 23 78 */	mr r31, r4
 /* 802A4A18  41 82 00 28 */	beq lbl_802A4A40
-/* 802A4A1C  3C 80 80 3D */	lis r4, __vt__17JAUAudioArcLoader@ha
-/* 802A4A20  38 04 9A 78 */	addi r0, r4, __vt__17JAUAudioArcLoader@l
+/* 802A4A1C  3C 80 80 3D */	lis r4, __vt__17JAUAudioArcLoader@ha /* 0x803C9A78@ha */
+/* 802A4A20  38 04 9A 78 */	addi r0, r4, __vt__17JAUAudioArcLoader@l /* 0x803C9A78@l */
 /* 802A4A24  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A4A28  38 80 00 00 */	li r4, 0
 /* 802A4A2C  4B FF F8 35 */	bl __dt__22JAUAudioArcInterpreterFv

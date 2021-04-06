@@ -14,8 +14,8 @@ lbl_80709BB4:
 lbl_80709BE4:
 /* 80709BE4  4B FF FD 49 */	bl WaitAction__8daE_MD_cFv
 /* 80709BE8  7F E3 FB 78 */	mr r3, r31
-/* 80709BEC  3C 80 80 71 */	lis r4, lit_4064@ha
-/* 80709BF0  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)
+/* 80709BEC  3C 80 80 71 */	lis r4, lit_4064@ha /* 0x8070A54C@ha */
+/* 80709BF0  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)  /* 0x8070A54C@l */
 /* 80709BF4  4B FF F2 7D */	bl setCcCylinder__8daE_MD_cFf
 /* 80709BF8  48 00 00 30 */	b lbl_80709C28
 lbl_80709BFC:
@@ -28,8 +28,8 @@ lbl_80709BFC:
 /* 80709C14  90 1F 05 AC */	stw r0, 0x5ac(r31)
 lbl_80709C18:
 /* 80709C18  7F E3 FB 78 */	mr r3, r31
-/* 80709C1C  3C 80 80 71 */	lis r4, lit_4064@ha
-/* 80709C20  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)
+/* 80709C1C  3C 80 80 71 */	lis r4, lit_4064@ha /* 0x8070A54C@ha */
+/* 80709C20  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)  /* 0x8070A54C@l */
 /* 80709C24  4B FF F2 4D */	bl setCcCylinder__8daE_MD_cFf
 lbl_80709C28:
 /* 80709C28  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -2,8 +2,8 @@ lbl_8024B5BC:
 /* 8024B5BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024B5C0  7C 08 02 A6 */	mflr r0
 /* 8024B5C4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8024B5C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B5CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024B5C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B5CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B5D0  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024B5D4  A0 84 00 04 */	lhz r4, 4(r4)
 /* 8024B5D8  4B DE 93 15 */	bl isItem__12dSv_memBit_cCFi

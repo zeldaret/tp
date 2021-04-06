@@ -4,13 +4,13 @@ lbl_80A11BE8:
 /* 80A11BF0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A11BF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A11BF8  93 C1 00 08 */	stw r30, 8(r1)
-/* 80A11BFC  3C 60 80 A1 */	lis r3, l_insectParams@ha
-/* 80A11C00  38 03 3D AC */	addi r0, r3, l_insectParams@l
+/* 80A11BFC  3C 60 80 A1 */	lis r3, l_insectParams@ha /* 0x80A13DAC@ha */
+/* 80A11C00  38 03 3D AC */	addi r0, r3, l_insectParams@l /* 0x80A13DAC@l */
 /* 80A11C04  7C 1F 03 78 */	mr r31, r0
 /* 80A11C08  3B C0 00 00 */	li r30, 0
 lbl_80A11C0C:
 /* 80A11C0C  80 7F 00 00 */	lwz r3, 0(r31)
-/* 80A11C10  4B 74 3A 24 */	b daNpcF_chkEvtBit__FUl
+/* 80A11C10  4B 74 3A 25 */	bl daNpcF_chkEvtBit__FUl
 /* 80A11C14  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11C18  40 82 00 0C */	bne lbl_80A11C24
 /* 80A11C1C  38 60 00 00 */	li r3, 0

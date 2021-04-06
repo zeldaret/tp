@@ -3,17 +3,15 @@
 #
 
 M118_TARGET := $(BUILD_DIR)/rel/d/a/d_a_shop_item.plf
+M118_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_shop_item.lcf
+M118_MAP := $(BUILD_DIR)/rel/d/a/d_a_shop_item.map
 
 M118_CPP_FILES := \
-	rel/d/a/d_a_shop_item/executor.cpp \
-	rel/d/a/d_a_shop_item/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_shop_item/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_shop_item/d_a_shop_item.cpp \
 
 M118_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_shop_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_shop_item/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_shop_item/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_shop_item/d_a_shop_item.o \
 
 M118_LIBS := \
@@ -29,15 +27,21 @@ M118_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map118.map\
+	-m _prolog \
+	-lcf $(M118_LDSCRIPT) \
+	-unused -map $(M118_MAP) \
+	-w off \
 
 $(M118_TARGET): $(M118_O_FILES) $(M118_LIBS)
+	@echo [118] creating $(M118_TARGET)
 	@echo $(M118_LIBS) $(M118_O_FILES) > build/M118_ofiles
-	$(LD) -opt_partial $(M118_LDFLAGS) -o $(M118_TARGET) @build/M118_ofiles
+	@python3 tools/lcf.py rel 118 --output $(M118_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M118_LDFLAGS) -o $(M118_TARGET) @build/M118_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_shop_item/%.o: rel/d/a/d_a_shop_item/%.cpp
+	@echo [118] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M118_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M118_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

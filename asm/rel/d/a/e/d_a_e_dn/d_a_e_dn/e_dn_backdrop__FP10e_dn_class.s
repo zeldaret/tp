@@ -5,8 +5,8 @@ lbl_804EA700:
 /* 804EA70C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 804EA710  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804EA714  7C 7E 1B 78 */	mr r30, r3
-/* 804EA718  3C 80 80 4F */	lis r4, lit_3789@ha
-/* 804EA71C  3B E4 E8 AC */	addi r31, r4, lit_3789@l
+/* 804EA718  3C 80 80 4F */	lis r4, lit_3789@ha /* 0x804EE8AC@ha */
+/* 804EA71C  3B E4 E8 AC */	addi r31, r4, lit_3789@l /* 0x804EE8AC@l */
 /* 804EA720  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 804EA724  2C 00 00 01 */	cmpwi r0, 1
 /* 804EA728  41 82 00 7C */	beq lbl_804EA7A4
@@ -62,7 +62,7 @@ lbl_804EA7D8:
 /* 804EA7DC  38 80 90 00 */	li r4, -28672
 /* 804EA7E0  38 A0 00 02 */	li r5, 2
 /* 804EA7E4  38 C0 08 00 */	li r6, 0x800
-/* 804EA7E8  4B D8 5E 20 */	b cLib_addCalcAngleS2__FPssss
+/* 804EA7E8  4B D8 5E 21 */	bl cLib_addCalcAngleS2__FPssss
 /* 804EA7EC  A8 1E 05 B4 */	lha r0, 0x5b4(r30)
 /* 804EA7F0  2C 00 00 02 */	cmpwi r0, 2
 /* 804EA7F4  40 82 00 48 */	bne lbl_804EA83C

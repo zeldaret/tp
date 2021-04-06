@@ -7,7 +7,7 @@ lbl_80C18CCC:
 /* 80C18CE0  41 82 00 10 */	beq lbl_80C18CF0
 /* 80C18CE4  7C 80 07 35 */	extsh. r0, r4
 /* 80C18CE8  40 81 00 08 */	ble lbl_80C18CF0
-/* 80C18CEC  4B 6B 60 50 */	b __dl__FPv
+/* 80C18CEC  4B 6B 60 51 */	bl __dl__FPv
 lbl_80C18CF0:
 /* 80C18CF0  7F E3 FB 78 */	mr r3, r31
 /* 80C18CF4  83 E1 00 0C */	lwz r31, 0xc(r1)

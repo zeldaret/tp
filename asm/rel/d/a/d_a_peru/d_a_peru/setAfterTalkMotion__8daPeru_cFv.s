@@ -10,12 +10,12 @@ lbl_80D47C4C:
 /* 80D47C6C  41 82 00 28 */	beq lbl_80D47C94
 /* 80D47C70  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80D47C74  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80D47C78  4B 3F DC 20 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80D47C78  4B 3F DC 21 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80D47C7C  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 80D47C80  38 00 00 02 */	li r0, 2
 /* 80D47C84  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 80D47C88  3C 60 80 D5 */	lis r3, lit_4548@ha
-/* 80D47C8C  C0 03 C1 28 */	lfs f0, lit_4548@l(r3)
+/* 80D47C88  3C 60 80 D5 */	lis r3, lit_4548@ha /* 0x80D4C128@ha */
+/* 80D47C8C  C0 03 C1 28 */	lfs f0, lit_4548@l(r3)  /* 0x80D4C128@l */
 /* 80D47C90  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_80D47C94:
 /* 80D47C94  83 E1 00 0C */	lwz r31, 0xc(r1)

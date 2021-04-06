@@ -1,8 +1,8 @@
 lbl_803568F4:
 /* 803568F4  7C 08 02 A6 */	mflr r0
-/* 803568F8  3C 80 80 35 */	lis r4, __CARDSyncCallback@ha
+/* 803568F8  3C 80 80 35 */	lis r4, __CARDSyncCallback@ha /* 0x80352A34@ha */
 /* 803568FC  90 01 00 04 */	stw r0, 4(r1)
-/* 80356900  38 A4 2A 34 */	addi r5, r4, __CARDSyncCallback@l
+/* 80356900  38 A4 2A 34 */	addi r5, r4, __CARDSyncCallback@l /* 0x80352A34@l */
 /* 80356904  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 80356908  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 8035690C  3B E3 00 00 */	addi r31, r3, 0

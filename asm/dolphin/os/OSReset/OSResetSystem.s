@@ -99,9 +99,9 @@ lbl_8033F9F8:
 /* 8033F9FC  40 82 00 2C */	bne lbl_8033FA28
 /* 8033FA00  2C 1E 00 01 */	cmpwi r30, 1
 /* 8033FA04  40 82 00 14 */	bne lbl_8033FA18
-/* 8033FA08  3C 60 80 3D */	lis r3, lit_153@ha
+/* 8033FA08  3C 60 80 3D */	lis r3, lit_153@ha /* 0x803D07E8@ha */
 /* 8033FA0C  4C C6 31 82 */	crclr 6
-/* 8033FA10  38 63 07 E8 */	addi r3, r3, lit_153@l
+/* 8033FA10  38 63 07 E8 */	addi r3, r3, lit_153@l /* 0x803D07E8@l */
 /* 8033FA14  4B CC 70 A9 */	bl OSReport
 lbl_8033FA18:
 /* 8033FA18  48 00 12 ED */	bl OSEnableScheduler

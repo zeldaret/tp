@@ -32,93 +32,52 @@ extern "C" extern u8 data_80451634[4];
 //
 
 /* ############################################################################################## */
-/* 804516A0-804516A4 0004+00 s=1 e=0 z=0  None .sbss      ResetCallback */
+/* 804516A0-804516A4 000BA0 0004+00 1/1 0/0 0/0 .sbss            ResetCallback */
 static u8 ResetCallback[4];
 
-/* 804516A4-804516A8 0004+00 s=2 e=0 z=0  None .sbss      Down */
+/* 804516A4-804516A8 000BA4 0004+00 2/2 0/0 0/0 .sbss            Down */
 static u8 Down[4];
 
-/* 804516A8-804516B0 0004+04 s=2 e=0 z=0  None .sbss      LastState */
+/* 804516A8-804516B0 000BA8 0004+04 2/2 0/0 0/0 .sbss            LastState */
 static u8 LastState[4 + 4 /* padding */];
 
-/* 804516B0-804516B4 0004+00 s=1 e=0 z=0  None .sbss      HoldUp */
+/* 804516B0-804516B4 000BB0 0004+00 1/1 0/0 0/0 .sbss            HoldUp */
 static u8 HoldUp[4];
 
-/* 804516B4-804516B8 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 804516B4-804516B8 000BB4 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804516B4[4];
 
-/* 804516B8-804516BC 0004+00 s=2 e=0 z=0  None .sbss      HoldDown */
+/* 804516B8-804516BC 000BB8 0004+00 2/2 0/0 0/0 .sbss            HoldDown */
 static u8 HoldDown[4];
 
-/* 804516BC-804516C0 0004+00 s=2 e=0 z=0  None .sbss      None */
+/* 804516BC-804516C0 000BBC 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_804516BC[4];
 
-/* 8033FAE4-8033FBD8 00F4+00 s=0 e=1 z=0  None .text      __OSResetSWInterruptHandler */
-//	8033FAFC: 8034271C (__OSGetSystemTime)
-//	8033FB04: 804516BC (data_804516BC)
-//	8033FB14: 804516B8 (HoldDown)
-//	8033FB34: 8034271C (__OSGetSystemTime)
-//	8033FB38: 804516BC (data_804516BC)
-//	8033FB40: 804516B8 (HoldDown)
-//	8033FB84: 804516A4 (Down)
-//	8033FB8C: 804516A8 (LastState)
-//	8033FB90: 8033DABC (__OSMaskInterrupts)
-//	8033FB94: 804516A0 (ResetCallback)
-//	8033FBA8: 804516A0 (ResetCallback)
+/* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSResetSWInterruptHandler() {
+asm void __OSResetSWInterruptHandler() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/__OSResetSWInterruptHandler.s"
 }
 #pragma pop
 
-/* 8033FBD8-8033FE70 0298+00 s=1 e=0 z=0  None .text      OSGetResetButtonState */
-//	8033FBF0: 8033D6F4 (OSDisableInterrupts)
-//	8033FBF8: 8034271C (__OSGetSystemTime)
-//	8033FC0C: 804516A4 (Down)
-//	8033FC18: 804516B0 (HoldUp)
-//	8033FC20: 804516B4 (data_804516B4)
-//	8033FC30: 804516A4 (Down)
-//	8033FC44: 804516BC (data_804516BC)
-//	8033FC4C: 804516B8 (HoldDown)
-//	8033FC54: 804516B0 (HoldUp)
-//	8033FC5C: 804516B4 (data_804516B4)
-//	8033FC78: 804516BC (data_804516BC)
-//	8033FC88: 804516B8 (HoldDown)
-//	8033FCE4: 804516A4 (Down)
-//	8033FCF0: 804516A8 (LastState)
-//	8033FCF8: 804516A4 (Down)
-//	8033FD08: 804516B4 (data_804516B4)
-//	8033FD0C: 804516B0 (HoldUp)
-//	8033FD14: 804516B4 (data_804516B4)
-//	8033FD18: 804516B0 (HoldUp)
-//	8033FD20: 804516B0 (HoldUp)
-//	8033FD28: 804516B4 (data_804516B4)
-//	8033FD8C: 804516B4 (data_804516B4)
-//	8033FD94: 804516B0 (HoldUp)
-//	8033FD9C: 804516A8 (LastState)
-//	8033FDB4: 80451634 (data_80451634)
-//	8033FDB8: 80451630 (__OSStartTime)
-//	8033FE10: 80362324 (__div2i)
-//	8033FE1C: 80362324 (__div2i)
-//	8033FE4C: 8033D71C (OSRestoreInterrupts)
+/* 8033FBD8-8033FE70 33A518 0298+00 1/1 0/0 0/0 .text            OSGetResetButtonState */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OSGetResetButtonState() {
+static asm void OSGetResetButtonState() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetButtonState.s"
 }
 #pragma pop
 
-/* 8033FE70-8033FE90 0020+00 s=0 e=1 z=0  None .text      OSGetResetSwitchState */
-//	8033FE7C: 8033FBD8 (OSGetResetButtonState)
+/* 8033FE70-8033FE90 33A7B0 0020+00 0/0 1/1 0/0 .text            OSGetResetSwitchState */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSGetResetSwitchState() {
+asm void OSGetResetSwitchState() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetSwitchState.s"
 }

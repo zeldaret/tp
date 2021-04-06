@@ -14,7 +14,7 @@ lbl_8049AC84:
 /* 8049ACB4  39 00 00 00 */	li r8, 0
 /* 8049ACB8  39 20 FF FF */	li r9, -1
 /* 8049ACBC  39 40 00 00 */	li r10, 0
-/* 8049ACC0  4B B7 F1 44 */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 8049ACC0  4B B7 F1 45 */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 8049ACC4  38 00 00 01 */	li r0, 1
 /* 8049ACC8  98 1F 09 3F */	stb r0, 0x93f(r31)
 /* 8049ACCC  83 E1 00 1C */	lwz r31, 0x1c(r1)

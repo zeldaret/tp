@@ -29,9 +29,9 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -52,9 +52,9 @@ struct daObjOnCloth_c {
     /* 80595638 */ void checkPlayerMove();
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -85,14 +85,6 @@ struct ClothJoint_c {
 // Forward References:
 //
 
-static void nodeCallBack(J3DJoint*, int);
-static void createSolidHeap(fopAc_ac_c*);
-static void daObjOnCloth_Draw(daObjOnCloth_c*);
-static void daObjOnCloth_Execute(daObjOnCloth_c*);
-static bool daObjOnCloth_IsDelete(daObjOnCloth_c*);
-static void daObjOnCloth_Delete(daObjOnCloth_c*);
-static void daObjOnCloth_Create(fopAc_ac_c*);
-
 extern "C" void create_init__14daObjOnCloth_cFv();
 extern "C" void initBaseMtx__14daObjOnCloth_cFv();
 extern "C" void setBaseMtx__14daObjOnCloth_cFv();
@@ -109,40 +101,11 @@ extern "C" static void daObjOnCloth_Delete__FP14daObjOnCloth_c();
 extern "C" void __dt__12ClothJoint_cFv();
 extern "C" static void daObjOnCloth_Create__FP10fopAc_ac_c();
 extern "C" void __ct__12ClothJoint_cFv();
-extern "C" extern u32 const lit_3671;
-extern "C" extern u32 const lit_3672;
-extern "C" extern u32 const lit_3673;
-extern "C" extern u32 const lit_3674;
-extern "C" extern u32 const lit_3675;
-extern "C" extern u8 const lit_3678[8];
-extern "C" extern u8 const lit_3785[8];
-extern "C" extern u8 const lit_3786[8];
-extern "C" extern u8 const lit_3787[8];
-extern "C" extern u32 const lit_3788;
-extern "C" extern u32 const lit_3789;
-extern "C" extern u32 const lit_3832[1 + 1 /* padding */];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_OnCloth[12];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
+extern "C" extern char const* const d_a_obj_ornament_cloth__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKyw_get_AllWind_vecpow(cXyz*);
-void cM_atan2s(f32, f32);
-void cM_rnd();
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -205,20 +168,68 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 80595CB4-80595CE4 0030+00 s=4 e=0 z=0  None .rodata    M_attr__14daObjOnCloth_c */
+/* 80595CB4-80595CE4 000000 0030+00 4/4 0/0 0/0 .rodata          M_attr__14daObjOnCloth_c */
 SECTION_RODATA static u8 const M_attr__14daObjOnCloth_c[48] = {
     0x41, 0x00, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x3E, 0xF0, 0xA3, 0xD7,
     0x3E, 0x99, 0x99, 0x9A, 0x43, 0x16, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A,
     0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x40, 0x04, 0x31, 0x04, 0x31, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80595CB4 = (void*)(&M_attr__14daObjOnCloth_c);
 
-/* 80595038-80595158 0120+00 s=1 e=0 z=0  None .text      create_init__14daObjOnCloth_cFv */
-//	80595050: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595054: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595070: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//	8059508C: 80439A20 (sincosTable___5JMath)
-//	80595090: 80439A20 (sincosTable___5JMath)
-//	8059513C: 80595158 (initBaseMtx__14daObjOnCloth_cFv)
+/* 80595CE4-80595CE8 000030 0004+00 0/1 0/0 0/0 .rodata          @3671 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3671 = 0xC2480000;
+SECTION_DEAD void* const cg_80595CE4 = (void*)(&lit_3671);
+#pragma pop
+
+/* 80595CE8-80595CEC 000034 0004+00 0/1 0/0 0/0 .rodata          @3672 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3672 = 0xC32A0000;
+SECTION_DEAD void* const cg_80595CE8 = (void*)(&lit_3672);
+#pragma pop
+
+/* 80595CEC-80595CF0 000038 0004+00 0/1 0/0 0/0 .rodata          @3673 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3673 = 0x42480000;
+SECTION_DEAD void* const cg_80595CEC = (void*)(&lit_3673);
+#pragma pop
+
+/* 80595CF0-80595CF4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3674 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3674 = 0x41A00000;
+SECTION_DEAD void* const cg_80595CF0 = (void*)(&lit_3674);
+#pragma pop
+
+/* 80595CF4-80595CF8 000040 0004+00 0/2 0/0 0/0 .rodata          @3675 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3675 = 0xBF800000;
+SECTION_DEAD void* const cg_80595CF4 = (void*)(&lit_3675);
+#pragma pop
+
+/* 80595CF8-80595CFC 000044 0004+00 1/4 0/0 0/0 .rodata          @3676 */
+SECTION_RODATA static u8 const lit_3676[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80595CF8 = (void*)(&lit_3676);
+
+/* 80595CFC-80595D04 000048 0008+00 0/1 0/0 0/0 .rodata          @3678 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3678[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80595CFC = (void*)(&lit_3678);
+#pragma pop
+
+/* 80595038-80595158 000078 0120+00 1/1 0/0 0/0 .text            create_init__14daObjOnCloth_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,8 +239,7 @@ asm void daObjOnCloth_c::create_init() {
 }
 #pragma pop
 
-/* 80595158-80595178 0020+00 s=1 e=0 z=0  None .text      initBaseMtx__14daObjOnCloth_cFv */
-//	80595164: 80595178 (setBaseMtx__14daObjOnCloth_cFv)
+/* 80595158-80595178 000198 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjOnCloth_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,17 +249,7 @@ asm void daObjOnCloth_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80595178-805951DC 0064+00 s=1 e=0 z=0  None .text      setBaseMtx__14daObjOnCloth_cFv */
-//	80595190: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80595194: 803DD470 (now__14mDoMtx_stack_c)
-//	80595198: 803DD470 (now__14mDoMtx_stack_c)
-//	805951A0: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	805951A4: 803DD470 (now__14mDoMtx_stack_c)
-//	805951A8: 803DD470 (now__14mDoMtx_stack_c)
-//	805951B4: 803464B0 (PSMTXCopy)
-//	805951B8: 803DD470 (now__14mDoMtx_stack_c)
-//	805951BC: 803DD470 (now__14mDoMtx_stack_c)
-//	805951C4: 803464B0 (PSMTXCopy)
+/* 80595178-805951DC 0001B8 0064+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjOnCloth_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -259,30 +259,49 @@ asm void daObjOnCloth_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 805951DC-805954B0 02D4+00 s=1 e=0 z=0  None .text      setNormalClothPos__14daObjOnCloth_cFv */
-//	805951FC: 803621CC (_savegpr_25)
-//	80595204: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595208: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595214: 8005B530 (dKyw_get_AllWind_vecpow__FP4cXyz)
-//	80595248: 803470D8 (PSVECScale)
-//	80595250: 80347138 (PSVECSquareMag)
-//	805952C0: 80450AE0 (__float_nan)
-//	805952C4: 80450AE0 (__float_nan)
-//	80595330: 80450AE0 (__float_nan)
-//	80595334: 80450AE0 (__float_nan)
-//	8059535C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80595384: 8026786C (cM_rnd__Fv)
-//	80595390: 8026786C (cM_rnd__Fv)
-//	805953AC: 80266B84 (__ml__4cXyzCFf)
-//	805953BC: 80347090 (PSVECAdd)
-//	805953CC: 80347090 (PSVECAdd)
-//	805953D8: 80266F48 (normalizeZP__4cXyzFv)
-//	805953E8: 80266B84 (__ml__4cXyzCFf)
-//	805953F8: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80595420: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80595430: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80595440: 80266B84 (__ml__4cXyzCFf)
-//	8059549C: 80362218 (_restgpr_25)
+/* ############################################################################################## */
+/* 80595D04-80595D0C 000050 0008+00 0/1 0/0 0/0 .rodata          @3785 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3785[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80595D04 = (void*)(&lit_3785);
+#pragma pop
+
+/* 80595D0C-80595D14 000058 0008+00 0/1 0/0 0/0 .rodata          @3786 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3786[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80595D0C = (void*)(&lit_3786);
+#pragma pop
+
+/* 80595D14-80595D1C 000060 0008+00 0/1 0/0 0/0 .rodata          @3787 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3787[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80595D14 = (void*)(&lit_3787);
+#pragma pop
+
+/* 80595D1C-80595D20 000068 0004+00 0/1 0/0 0/0 .rodata          @3788 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3788 = 0x3F19999A;
+SECTION_DEAD void* const cg_80595D1C = (void*)(&lit_3788);
+#pragma pop
+
+/* 80595D20-80595D24 00006C 0004+00 0/1 0/0 0/0 .rodata          @3789 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3789 = 0x3DCCCCCD;
+SECTION_DEAD void* const cg_80595D20 = (void*)(&lit_3789);
+#pragma pop
+
+/* 805951DC-805954B0 00021C 02D4+00 1/1 0/0 0/0 .text setNormalClothPos__14daObjOnCloth_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,24 +311,26 @@ asm void daObjOnCloth_c::setNormalClothPos() {
 }
 #pragma pop
 
-/* 805954B0-80595638 0188+00 s=1 e=0 z=0  None .text      calcJointAngle__14daObjOnCloth_cFv */
-//	805954D0: 803621C0 (_savegpr_22)
-//	805954D8: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	805954DC: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	805954E8: 803DD470 (now__14mDoMtx_stack_c)
-//	805954EC: 803DD470 (now__14mDoMtx_stack_c)
-//	805954F0: 803464B0 (PSMTXCopy)
-//	80595500: 803DD470 (now__14mDoMtx_stack_c)
-//	80595504: 803DD470 (now__14mDoMtx_stack_c)
-//	8059551C: 8000CCC8 (push__14mDoMtx_stack_cFv)
-//	80595528: 803465B0 (PSMTXInverse)
-//	80595538: 80346D6C (PSMTXMultVec)
-//	8059553C: 8000CD14 (pop__14mDoMtx_stack_cFv)
-//	8059554C: 803470D8 (PSVECScale)
-//	80595558: 80267674 (cM_atan2s__Fff)
-//	805955E8: 8000C39C (mDoMtx_XrotM__FPA4_fs)
-//	805955F8: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80595624: 8036220C (_restgpr_22)
+/* ############################################################################################## */
+/* 80595D24-80595D2C 000070 0004+04 0/1 0/0 0/0 .rodata          @3832 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3832[1 + 1 /* padding */] = {
+    0x40800000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_80595D24 = (void*)(&lit_3832);
+#pragma pop
+
+/* 80595D2C-80595D34 000078 0008+00 1/2 0/0 0/0 .rodata          @3834 */
+SECTION_RODATA static u8 const lit_3834[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80595D2C = (void*)(&lit_3834);
+
+/* 805954B0-80595638 0004F0 0188+00 1/1 0/0 0/0 .text            calcJointAngle__14daObjOnCloth_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,46 +340,8 @@ asm void daObjOnCloth_c::calcJointAngle() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80595CE4-80595CE8 0004+00 s=0 e=0 z=0  None .rodata    @3671 */
-SECTION_RODATA u32 const lit_3671 = 0xC2480000;
-
-/* 80595CE8-80595CEC 0004+00 s=0 e=0 z=0  None .rodata    @3672 */
-SECTION_RODATA u32 const lit_3672 = 0xC32A0000;
-
-/* 80595CEC-80595CF0 0004+00 s=0 e=0 z=0  None .rodata    @3673 */
-SECTION_RODATA u32 const lit_3673 = 0x42480000;
-
-/* 80595CF0-80595CF4 0004+00 s=0 e=0 z=0  None .rodata    @3674 */
-SECTION_RODATA u32 const lit_3674 = 0x41A00000;
-
-/* 80595CF4-80595CF8 0004+00 s=0 e=0 z=0  None .rodata    @3675 */
-SECTION_RODATA u32 const lit_3675 = 0xBF800000;
-
-/* 80595CF8-80595CFC 0004+00 s=1 e=0 z=0  None .rodata    @3676 */
-SECTION_RODATA static u8 const lit_3676[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80595638-80595784 014C+00 s=1 e=0 z=0  None .text      checkPlayerMove__14daObjOnCloth_cFv */
-//	80595660: 803621DC (_savegpr_29)
-//	80595674: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595678: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595694: 80266B84 (__ml__4cXyzCFf)
-//	805956A4: 80347090 (PSVECAdd)
-//	805956C0: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	805956C4: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	805956EC: 80595CF8 (lit_3676)
-//	805956F0: 80595CF8 (lit_3676)
-//	80595708: 804061C0 (g_dComIfG_gameInfo)
-//	8059570C: 804061C0 (g_dComIfG_gameInfo)
-//	80595714: 8001AA94 (fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	80595718: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	8059571C: 80595CB4 (M_attr__14daObjOnCloth_c)
-//	80595770: 80362228 (_restgpr_29)
+/* 80595638-80595784 000678 014C+00 1/1 0/0 0/0 .text            checkPlayerMove__14daObjOnCloth_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,87 +351,25 @@ asm void daObjOnCloth_c::checkPlayerMove() {
 }
 #pragma pop
 
-/* 80595784-80595850 00CC+00 s=1 e=0 z=0  None .text      nodeCallBack__FP8J3DJointi */
-//	805957AC: 80434AC8 (j3dSys)
-//	805957B0: 80434AC8 (j3dSys)
-//	805957EC: 803DD470 (now__14mDoMtx_stack_c)
-//	805957F0: 803DD470 (now__14mDoMtx_stack_c)
-//	805957F4: 803464B0 (PSMTXCopy)
-//	805957F8: 803DD470 (now__14mDoMtx_stack_c)
-//	805957FC: 803DD470 (now__14mDoMtx_stack_c)
-//	80595804: 8000C39C (mDoMtx_XrotM__FPA4_fs)
-//	80595808: 803DD470 (now__14mDoMtx_stack_c)
-//	8059580C: 803DD470 (now__14mDoMtx_stack_c)
-//	8059581C: 803464B0 (PSMTXCopy)
-//	80595820: 803DD470 (now__14mDoMtx_stack_c)
-//	80595824: 803DD470 (now__14mDoMtx_stack_c)
-//	80595828: 80434BE4 (mCurrentMtx__6J3DSys)
-//	8059582C: 80434BE4 (mCurrentMtx__6J3DSys)
-//	80595830: 803464B0 (PSMTXCopy)
+/* 80595784-80595850 0007C4 00CC+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80595CFC-80595D04 0008+00 s=0 e=0 z=0  None .rodata    @3678 */
-SECTION_RODATA u8 const lit_3678[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80595D04-80595D0C 0008+00 s=0 e=0 z=0  None .rodata    @3785 */
-SECTION_RODATA u8 const lit_3785[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80595D0C-80595D14 0008+00 s=0 e=0 z=0  None .rodata    @3786 */
-SECTION_RODATA u8 const lit_3786[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80595D14-80595D1C 0008+00 s=0 e=0 z=0  None .rodata    @3787 */
-SECTION_RODATA u8 const lit_3787[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80595D1C-80595D20 0004+00 s=0 e=0 z=0  None .rodata    @3788 */
-SECTION_RODATA u32 const lit_3788 = 0x3F19999A;
-
-/* 80595D20-80595D24 0004+00 s=0 e=0 z=0  None .rodata    @3789 */
-SECTION_RODATA u32 const lit_3789 = 0x3DCCCCCD;
-
-/* 80595D24-80595D2C 0004+04 s=0 e=0 z=0  None .rodata    @3832 */
-SECTION_RODATA u32 const lit_3832[1 + 1 /* padding */] = {
-    0x40800000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80595D2C-80595D34 0008+00 s=1 e=0 z=0  None .rodata    @3834 */
-SECTION_RODATA static u8 const lit_3834[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80595D34-80595D38 0004+00 s=1 e=0 z=0  None .rodata    @3973 */
+/* 80595D34-80595D38 000080 0004+00 1/1 0/0 0/0 .rodata          @3973 */
 SECTION_RODATA static u32 const lit_3973 = 0x3F800000;
+SECTION_DEAD void* const cg_80595D34 = (void*)(&lit_3973);
 
-/* 80595D38-80595D5E 0026+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80595D38 = "J_Necktie";
-SECTION_DEAD char const* const stringBase_80595D42 = "J_Necktie.bmd";
-SECTION_DEAD char const* const stringBase_80595D50 = "J_Necktie.btk";
-#pragma pop
+/* 80595D60-80595D64 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_ornament_cloth__stringBase0;
 
-/* 80595D60-80595D64 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80595D64-80595D84 0020+00 s=1 e=0 z=0  None .data      l_daObjOnCloth_Method */
+/* 80595D64-80595D84 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjOnCloth_Method */
 SECTION_DATA static void* l_daObjOnCloth_Method[8] = {
     (void*)daObjOnCloth_Create__FP10fopAc_ac_c,
     (void*)daObjOnCloth_Delete__FP14daObjOnCloth_c,
@@ -460,8 +381,8 @@ SECTION_DATA static void* l_daObjOnCloth_Method[8] = {
     (void*)NULL,
 };
 
-/* 80595D84-80595DB4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_OnCloth */
-SECTION_DATA void* g_profile_Obj_OnCloth[12] = {
+/* 80595D84-80595DB4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_OnCloth */
+SECTION_DATA extern void* g_profile_Obj_OnCloth[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01510000, (void*)&g_fpcLf_Method,
     (void*)0x000006C8, (void*)NULL,
@@ -470,53 +391,24 @@ SECTION_DATA void* g_profile_Obj_OnCloth[12] = {
     (void*)0x00040180, (void*)0x000E0000,
 };
 
-/* 80595DB4-80595DC0 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
+/* 80595DB4-80595DC0 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80595850-805959E8 0198+00 s=1 e=0 z=0  None .text      createSolidHeap__FP10fopAc_ac_c */
-//	80595860: 803621D8 (_savegpr_28)
-//	80595868: 80595D60 (l_arcName)
-//	8059586C: 80595D60 (l_arcName)
-//	80595874: 80595D38 (stringBase0)
-//	80595878: 80595D38 (stringBase0)
-//	80595880: 804061C0 (g_dComIfG_gameInfo)
-//	80595884: 804061C0 (g_dComIfG_gameInfo)
-//	80595898: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	805958AC: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	805958B4: 80595D60 (l_arcName)
-//	805958B8: 80595D60 (l_arcName)
-//	805958C0: 80595D38 (stringBase0)
-//	805958C4: 80595D38 (stringBase0)
-//	805958D4: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	805958E0: 802CEC4C (__nw__FUl)
-//	805958EC: 80595DB4 (__vt__12J3DFrameCtrl)
-//	805958F0: 80595DB4 (__vt__12J3DFrameCtrl)
-//	805958FC: 803283FC (init__12J3DFrameCtrlFs)
-//	80595920: 80595D34 (lit_3973)
-//	80595924: 80595D34 (lit_3973)
-//	80595930: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
-//	8059594C: 80595D2C (lit_3834)
-//	80595950: 80595D2C (lit_3834)
-//	80595974: 80595784 (nodeCallBack__FP8J3DJointi)
-//	80595978: 80595784 (nodeCallBack__FP8J3DJointi)
-//	805959D4: 80362224 (_restgpr_28)
+/* 80595850-805959E8 000890 0198+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createSolidHeap(fopAc_ac_c* param_0) {
+static asm void createSolidHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805959E8-80595A30 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-//	80595A00: 80595DB4 (__vt__12J3DFrameCtrl)
-//	80595A04: 80595DB4 (__vt__12J3DFrameCtrl)
-//	80595A14: 802CED3C (__dl__FPv)
+/* 805959E8-80595A30 000A28 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,67 +418,42 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80595A30-80595AEC 00BC+00 s=1 e=0 z=0  None .text      daObjOnCloth_Draw__FP14daObjOnCloth_c */
-//	80595A48: 8042CA54 (g_env_light)
-//	80595A4C: 8042CA54 (g_env_light)
-//	80595A5C: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80595A60: 8042CA54 (g_env_light)
-//	80595A64: 8042CA54 (g_env_light)
-//	80595A74: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80595A78:
-// 804061C0 (g_dComIfG_gameInfo) 	80595A7C: 804061C0 (g_dComIfG_gameInfo) 	80595A84: 80434AC8
-// (j3dSys) 	80595A88: 80434AC8 (j3dSys) 	80595AAC: 8000D6D8
-//(entry__13mDoExt_btkAnmFP16J3DMaterialTablef) 	80595AB4: 8000DCC4
-//(mDoExt_modelUpdateDL__FP8J3DModel) 	80595AB8: 804061C0 (g_dComIfG_gameInfo) 	80595ABC: 804061C0
-//(g_dComIfG_gameInfo)
+/* 80595A30-80595AEC 000A70 00BC+00 1/0 0/0 0/0 .text daObjOnCloth_Draw__FP14daObjOnCloth_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnCloth_Draw(daObjOnCloth_c* param_0) {
+static asm void daObjOnCloth_Draw(daObjOnCloth_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/daObjOnCloth_Draw__FP14daObjOnCloth_c.s"
 }
 #pragma pop
 
-/* 80595AEC-80595B2C 0040+00 s=1 e=0 z=0  None .text      daObjOnCloth_Execute__FP14daObjOnCloth_c
- */
-//	80595B00: 80595638 (checkPlayerMove__14daObjOnCloth_cFv)
-//	80595B08: 805951DC (setNormalClothPos__14daObjOnCloth_cFv)
-//	80595B10: 805954B0 (calcJointAngle__14daObjOnCloth_cFv)
+/* 80595AEC-80595B2C 000B2C 0040+00 1/0 0/0 0/0 .text daObjOnCloth_Execute__FP14daObjOnCloth_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnCloth_Execute(daObjOnCloth_c* param_0) {
+static asm void daObjOnCloth_Execute(daObjOnCloth_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/daObjOnCloth_Execute__FP14daObjOnCloth_c.s"
 }
 #pragma pop
 
-/* 80595B2C-80595B34 0008+00 s=1 e=0 z=0  None .text      daObjOnCloth_IsDelete__FP14daObjOnCloth_c
- */
+/* 80595B2C-80595B34 000B6C 0008+00 1/0 0/0 0/0 .text daObjOnCloth_IsDelete__FP14daObjOnCloth_c */
 static bool daObjOnCloth_IsDelete(daObjOnCloth_c* param_0) {
     return true;
 }
 
-/* 80595B34-80595B9C 0068+00 s=1 e=0 z=0  None .text      daObjOnCloth_Delete__FP14daObjOnCloth_c */
-//	80595B50: 80595D60 (l_arcName)
-//	80595B54: 80595D60 (l_arcName)
-//	80595B5C: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80595B64: 80595B9C (__dt__12ClothJoint_cFv)
-//	80595B68: 80595B9C (__dt__12ClothJoint_cFv)
-//	80595B74: 80361CE8 (__destroy_arr)
-//	80595B80: 80018C8C (__dt__10fopAc_ac_cFv)
+/* 80595B34-80595B9C 000B74 0068+00 1/0 0/0 0/0 .text daObjOnCloth_Delete__FP14daObjOnCloth_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnCloth_Delete(daObjOnCloth_c* param_0) {
+static asm void daObjOnCloth_Delete(daObjOnCloth_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/daObjOnCloth_Delete__FP14daObjOnCloth_c.s"
 }
 #pragma pop
 
-/* 80595B9C-80595BD8 003C+00 s=2 e=0 z=0  None .text      __dt__12ClothJoint_cFv */
-//	80595BBC: 802CED3C (__dl__FPv)
+/* 80595B9C-80595BD8 000BDC 003C+00 2/2 0/0 0/0 .text            __dt__12ClothJoint_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -596,30 +463,27 @@ asm ClothJoint_c::~ClothJoint_c() {
 }
 #pragma pop
 
-/* 80595BD8-80595CA8 00D0+00 s=1 e=0 z=0  None .text      daObjOnCloth_Create__FP10fopAc_ac_c */
-//	80595C08: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80595C10: 80595CA8 (__ct__12ClothJoint_cFv)
-//	80595C14: 80595CA8 (__ct__12ClothJoint_cFv)
-//	80595C18: 80595B9C (__dt__12ClothJoint_cFv)
-//	80595C1C: 80595B9C (__dt__12ClothJoint_cFv)
-//	80595C28: 80361D60 (__construct_array)
-//	80595C3C: 80595D60 (l_arcName)
-//	80595C40: 80595D60 (l_arcName)
-//	80595C48: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80595C5C: 80595850 (createSolidHeap__FP10fopAc_ac_c)
-//	80595C60: 80595850 (createSolidHeap__FP10fopAc_ac_c)
-//	80595C68: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80595C80: 80595038 (create_init__14daObjOnCloth_cFv)
+/* 80595BD8-80595CA8 000C18 00D0+00 1/0 0/0 0/0 .text            daObjOnCloth_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnCloth_Create(fopAc_ac_c* param_0) {
+static asm void daObjOnCloth_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth/daObjOnCloth_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80595CA8-80595CAC 0004+00 s=1 e=0 z=0  None .text      __ct__12ClothJoint_cFv */
+/* 80595CA8-80595CAC 000CE8 0004+00 1/1 0/0 0/0 .text            __ct__12ClothJoint_cFv */
 ClothJoint_c::ClothJoint_c() {
     /* empty function */
 }
+
+/* 80595D38-80595D5E 000084 0026+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80595D38 = "J_Necktie";
+SECTION_DEAD static char const* const stringBase_80595D42 = "J_Necktie.bmd";
+SECTION_DEAD static char const* const stringBase_80595D50 = "J_Necktie.btk";
+#pragma pop

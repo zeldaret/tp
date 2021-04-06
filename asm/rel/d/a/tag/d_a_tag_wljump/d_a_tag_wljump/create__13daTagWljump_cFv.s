@@ -11,9 +11,9 @@ lbl_80D64EB8:
 /* 80D64EDC  7F E0 FB 79 */	or. r0, r31, r31
 /* 80D64EE0  41 82 00 14 */	beq lbl_80D64EF4
 /* 80D64EE4  7C 1E 03 78 */	mr r30, r0
-/* 80D64EE8  4B 2B 3C 7C */	b __ct__10fopAc_ac_cFv
+/* 80D64EE8  4B 2B 3C 7D */	bl __ct__10fopAc_ac_cFv
 /* 80D64EEC  38 7E 05 78 */	addi r3, r30, 0x578
-/* 80D64EF0  4B 4E 50 10 */	b __ct__10dMsgFlow_cFv
+/* 80D64EF0  4B 4E 50 11 */	bl __ct__10dMsgFlow_cFv
 lbl_80D64EF4:
 /* 80D64EF4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D64EF8  60 00 00 08 */	ori r0, r0, 8
@@ -31,7 +31,7 @@ lbl_80D64F00:
 lbl_80D64F24:
 /* 80D64F24  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80D64F28  7C 04 07 74 */	extsb r4, r0
-/* 80D64F2C  4B 2E C8 C0 */	b dPath_GetRoomPath__Fii
+/* 80D64F2C  4B 2E C8 C1 */	bl dPath_GetRoomPath__Fii
 /* 80D64F30  90 7F 05 C4 */	stw r3, 0x5c4(r31)
 /* 80D64F34  80 7F 05 C4 */	lwz r3, 0x5c4(r31)
 /* 80D64F38  28 03 00 00 */	cmplwi r3, 0
@@ -64,11 +64,11 @@ lbl_80D64F8C:
 /* 80D64F98  88 9F 05 71 */	lbz r4, 0x571(r31)
 /* 80D64F9C  28 04 00 FF */	cmplwi r4, 0xff
 /* 80D64FA0  41 82 00 28 */	beq lbl_80D64FC8
-/* 80D64FA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D64FA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D64FA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D64FA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D64FAC  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80D64FB0  7C 05 07 74 */	extsb r5, r0
-/* 80D64FB4  4B 2D 03 AC */	b isSwitch__10dSv_info_cCFii
+/* 80D64FB4  4B 2D 03 AD */	bl isSwitch__10dSv_info_cCFii
 /* 80D64FB8  2C 03 00 00 */	cmpwi r3, 0
 /* 80D64FBC  40 82 00 0C */	bne lbl_80D64FC8
 /* 80D64FC0  38 00 00 01 */	li r0, 1

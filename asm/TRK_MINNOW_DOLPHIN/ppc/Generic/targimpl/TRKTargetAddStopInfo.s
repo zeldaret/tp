@@ -8,9 +8,9 @@ lbl_8036FF18:
 /* 8036FF30  7C 7F 1B 78 */	mr r31, r3
 /* 8036FF34  38 61 00 0C */	addi r3, r1, 0xc
 /* 8036FF38  4B C9 35 21 */	bl memset
-/* 8036FF3C  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FF3C  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FF40  38 A0 00 40 */	li r5, 0x40
-/* 8036FF44  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l
+/* 8036FF44  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FF48  38 00 00 90 */	li r0, 0x90
 /* 8036FF4C  80 83 00 80 */	lwz r4, 0x80(r3)
 /* 8036FF50  38 61 00 08 */	addi r3, r1, 8
@@ -18,9 +18,9 @@ lbl_8036FF18:
 /* 8036FF58  98 01 00 10 */	stb r0, 0x10(r1)
 /* 8036FF5C  90 81 00 14 */	stw r4, 0x14(r1)
 /* 8036FF60  48 00 0E 29 */	bl TRKTargetReadInstruction
-/* 8036FF64  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FF64  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FF68  80 A1 00 08 */	lwz r5, 8(r1)
-/* 8036FF6C  38 83 F3 38 */	addi r4, r3, gTRKCPUState@l
+/* 8036FF6C  38 83 F3 38 */	addi r4, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FF70  7F E3 FB 78 */	mr r3, r31
 /* 8036FF74  80 04 02 F8 */	lwz r0, 0x2f8(r4)
 /* 8036FF78  38 81 00 0C */	addi r4, r1, 0xc

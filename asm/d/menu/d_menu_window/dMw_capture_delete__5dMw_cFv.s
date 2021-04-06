@@ -5,8 +5,8 @@ lbl_801FBE14:
 /* 801FBE20  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801FBE24  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FBE28  7C 7E 1B 78 */	mr r30, r3
-/* 801FBE2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801FBE30  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 801FBE2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801FBE30  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801FBE34  88 1F 5E B5 */	lbz r0, 0x5eb5(r31)
 /* 801FBE38  28 00 00 00 */	cmplwi r0, 0
 /* 801FBE3C  41 82 00 40 */	beq lbl_801FBE7C

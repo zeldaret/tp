@@ -27,8 +27,6 @@ struct JPAEmitterWorkData {};
 // Forward References:
 //
 
-void JPALoadExTex(JPAEmitterWorkData*);
-
 extern "C" void JPALoadExTex__FP18JPAEmitterWorkData();
 extern "C" void __ct__13JPAExTexShapeFPCUc();
 
@@ -43,11 +41,7 @@ extern "C" void GXSetTexCoordGen2();
 // Declarations:
 //
 
-/* 8027B040-8027B13C 00FC+00 s=0 e=1 z=0  None .text      JPALoadExTex__FP18JPAEmitterWorkData */
-//	8027B08C: 8035BB7C (GXSetTexCoordGen2)
-//	8027B0C0: 802DE840 (load__10JUTTextureF11_GXTexMapID)
-//	8027B0EC: 8035BB7C (GXSetTexCoordGen2)
-//	8027B120: 802DE840 (load__10JUTTextureF11_GXTexMapID)
+/* 8027B040-8027B13C 275980 00FC+00 0/0 1/1 0/0 .text JPALoadExTex__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -57,7 +51,7 @@ asm void JPALoadExTex(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027B13C-8027B144 0008+00 s=0 e=1 z=0  None .text      __ct__13JPAExTexShapeFPCUc */
+/* 8027B13C-8027B144 275A7C 0008+00 0/0 1/1 0/0 .text            __ct__13JPAExTexShapeFPCUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

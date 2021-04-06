@@ -2,8 +2,8 @@ lbl_80074B40:
 /* 80074B40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80074B44  7C 08 02 A6 */	mflr r0
 /* 80074B48  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80074B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80074B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80074B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80074B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80074B54  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80074B58  4B FF FA D1 */	bl GetBgWBasePointer__4cBgSCFRC13cBgS_PolyInfo
 /* 80074B5C  28 03 00 00 */	cmplwi r3, 0

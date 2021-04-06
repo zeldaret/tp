@@ -4,8 +4,8 @@ lbl_801F19DC:
 /* 801F19E4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F19E8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F19EC  7C 7F 1B 78 */	mr r31, r3
-/* 801F19F0  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F19F4  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F19F0  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F19F4  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F19F8  88 03 00 0B */	lbz r0, 0xb(r3)
 /* 801F19FC  98 1F 01 BD */	stb r0, 0x1bd(r31)
 /* 801F1A00  88 9F 01 BD */	lbz r4, 0x1bd(r31)

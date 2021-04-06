@@ -3,17 +3,15 @@
 #
 
 M572_TARGET := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole.plf
+M572_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole.lcf
+M572_MAP := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole.map
 
 M572_CPP_FILES := \
-	rel/d/a/obj/mirror/d_a_obj_mirror_6pole/executor.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_6pole/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_6pole/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole.cpp \
 
 M572_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole.o \
 
 M572_LIBS := \
@@ -29,15 +27,21 @@ M572_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map572.map\
+	-m _prolog \
+	-lcf $(M572_LDSCRIPT) \
+	-unused -map $(M572_MAP) \
+	-w off \
 
 $(M572_TARGET): $(M572_O_FILES) $(M572_LIBS)
+	@echo [572] creating $(M572_TARGET)
 	@echo $(M572_LIBS) $(M572_O_FILES) > build/M572_ofiles
-	$(LD) -opt_partial $(M572_LDFLAGS) -o $(M572_TARGET) @build/M572_ofiles
+	@python3 tools/lcf.py rel 572 --output $(M572_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M572_LDFLAGS) -o $(M572_TARGET) @build/M572_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_6pole/%.cpp
+	@echo [572] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M572_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M572_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

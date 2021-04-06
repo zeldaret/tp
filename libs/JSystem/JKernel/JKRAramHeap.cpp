@@ -23,7 +23,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRAramBlock> */
 struct JSUList__template6 {
-    /* 802D32B0 */ ~JSUList__template6();
+    /* 802D32B0 */ void func_802D32B0();
 };
 
 struct JKRHeap {
@@ -68,14 +68,10 @@ extern "C" void getTotalFreeSize__11JKRAramHeapFv();
 extern "C" void dump__11JKRAramHeapFv();
 extern "C" void __sinit_JKRAramHeap_cpp();
 extern "C" void func_802D32B0();
-extern "C" extern void* __vt__11JKRAramHeap[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
 
 extern "C" void findFromRoot__7JKRHeapFPv();
 extern "C" void* __nw__FUlP7JKRHeapi();
@@ -100,8 +96,8 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803CC168-803CC178 000C+04 s=2 e=0 z=0  None .data      __vt__11JKRAramHeap */
-SECTION_DATA void* __vt__11JKRAramHeap[3 + 1 /* padding */] = {
+/* 803CC168-803CC178 029288 000C+04 2/2 0/0 0/0 .data            __vt__11JKRAramHeap */
+SECTION_DATA extern void* __vt__11JKRAramHeap[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11JKRAramHeapFv,
@@ -109,25 +105,13 @@ SECTION_DATA void* __vt__11JKRAramHeap[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80434300-8043430C 000C+00 s=1 e=0 z=0  None .bss       @297 */
+/* 80434300-8043430C 061020 000C+00 1/1 0/0 0/0 .bss             @297 */
 static u8 lit_297[12];
 
-/* 8043430C-80434318 000C+00 s=8 e=0 z=0  None .bss       sAramList__11JKRAramHeap */
+/* 8043430C-80434318 06102C 000C+00 8/8 0/0 0/0 .bss             sAramList__11JKRAramHeap */
 static u8 sAramList__11JKRAramHeap[12];
 
-/* 802D2E44-802D2F14 00D0+00 s=0 e=1 z=0  None .text      __ct__11JKRAramHeapFUlUl */
-//	802D2E54: 803621DC (_savegpr_29)
-//	802D2E64: 802D147C (__ct__11JKRDisposerFv)
-//	802D2E68: 803CC168 (__vt__11JKRAramHeap)
-//	802D2E6C: 803CC168 (__vt__11JKRAramHeap)
-//	802D2E78: 8033F008 (OSInitMutex)
-//	802D2E80: 802CE83C (findFromRoot__7JKRHeapFPv)
-//	802D2EC0: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D2EE0: 802D3304 (__ct__12JKRAramBlockFUlUlUlUcb)
-//	802D2EE8: 8043430C (sAramList__11JKRAramHeap)
-//	802D2EEC: 8043430C (sAramList__11JKRAramHeap)
-//	802D2EF4: 802DBF4C (append__10JSUPtrListFP10JSUPtrLink)
-//	802D2F00: 80362228 (_restgpr_29)
+/* 802D2E44-802D2F14 2CD784 00D0+00 0/0 1/1 0/0 .text            __ct__11JKRAramHeapFUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,15 +121,7 @@ asm JKRAramHeap::JKRAramHeap(u32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802D2F14-802D2FBC 00A8+00 s=1 e=0 z=0  None .text      __dt__11JKRAramHeapFv */
-//	802D2F24: 803621DC (_savegpr_29)
-//	802D2F34: 803CC168 (__vt__11JKRAramHeap)
-//	802D2F38: 803CC168 (__vt__11JKRAramHeap)
-//	802D2F40: 8043430C (sAramList__11JKRAramHeap)
-//	802D2F44: 8043430C (sAramList__11JKRAramHeap)
-//	802D2F8C: 802D14E4 (__dt__11JKRDisposerFv)
-//	802D2F9C: 802CED3C (__dl__FPv)
-//	802D2FA8: 80362228 (_restgpr_29)
+/* 802D2F14-802D2FBC 2CD854 00A8+00 1/0 0/0 0/0 .text            __dt__11JKRAramHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -155,14 +131,8 @@ asm JKRAramHeap::~JKRAramHeap() {
 }
 #pragma pop
 
-/* 802D2FBC-802D3034 0078+00 s=0 e=5 z=0  None .text
+/* 802D2FBC-802D3034 2CD8FC 0078+00 0/0 5/5 0/0 .text
  * alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode           */
-//	802D2FCC: 803621DC (_savegpr_29)
-//	802D2FE0: 8033F040 (OSLockMutex)
-//	802D2FF4: 802D3034 (allocFromHead__11JKRAramHeapFUl)
-//	802D3008: 802D30BC (allocFromTail__11JKRAramHeapFUl)
-//	802D3014: 8033F11C (OSUnlockMutex)
-//	802D3020: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,10 +142,7 @@ asm void JKRAramHeap::alloc(u32 param_0, JKRAramHeap::EAllocMode param_1) {
 }
 #pragma pop
 
-/* 802D3034-802D30BC 0088+00 s=1 e=0 z=0  None .text      allocFromHead__11JKRAramHeapFUl */
-//	802D3054: 8043430C (sAramList__11JKRAramHeap)
-//	802D3058: 8043430C (sAramList__11JKRAramHeap)
-//	802D30A0: 802D3434 (allocHead__12JKRAramBlockFUlUcP11JKRAramHeap)
+/* 802D3034-802D30BC 2CD974 0088+00 1/1 0/0 0/0 .text            allocFromHead__11JKRAramHeapFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -185,10 +152,7 @@ asm void JKRAramHeap::allocFromHead(u32 param_0) {
 }
 #pragma pop
 
-/* 802D30BC-802D3134 0078+00 s=1 e=0 z=0  None .text      allocFromTail__11JKRAramHeapFUl */
-//	802D30D8: 8043430C (sAramList__11JKRAramHeap)
-//	802D30DC: 8043430C (sAramList__11JKRAramHeap)
-//	802D3118: 802D34D0 (allocTail__12JKRAramBlockFUlUcP11JKRAramHeap)
+/* 802D30BC-802D3134 2CD9FC 0078+00 1/1 0/0 0/0 .text            allocFromTail__11JKRAramHeapFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,11 +162,7 @@ asm void JKRAramHeap::allocFromTail(u32 param_0) {
 }
 #pragma pop
 
-/* 802D3134-802D31AC 0078+00 s=0 e=1 z=0  None .text      getFreeSize__11JKRAramHeapFv */
-//	802D3154: 8033F040 (OSLockMutex)
-//	802D3158: 8043430C (sAramList__11JKRAramHeap)
-//	802D315C: 8043430C (sAramList__11JKRAramHeap)
-//	802D318C: 8033F11C (OSUnlockMutex)
+/* 802D3134-802D31AC 2CDA74 0078+00 0/0 1/1 0/0 .text            getFreeSize__11JKRAramHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,11 +172,8 @@ asm void JKRAramHeap::getFreeSize() {
 }
 #pragma pop
 
-/* 802D31AC-802D3218 006C+00 s=0 e=2 z=0  None .text      getTotalFreeSize__11JKRAramHeapFv */
-//	802D31CC: 8033F040 (OSLockMutex)
-//	802D31D0: 8043430C (sAramList__11JKRAramHeap)
-//	802D31D4: 8043430C (sAramList__11JKRAramHeap)
-//	802D31F8: 8033F11C (OSUnlockMutex)
+/* 802D31AC-802D3218 2CDAEC 006C+00 0/0 2/2 0/0 .text            getTotalFreeSize__11JKRAramHeapFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,11 +183,7 @@ asm void JKRAramHeap::getTotalFreeSize() {
 }
 #pragma pop
 
-/* 802D3218-802D326C 0054+00 s=0 e=2 z=0  None .text      dump__11JKRAramHeapFv */
-//	802D3230: 8033F040 (OSLockMutex)
-//	802D3234: 8043430C (sAramList__11JKRAramHeap)
-//	802D3238: 8043430C (sAramList__11JKRAramHeap)
-//	802D3254: 8033F11C (OSUnlockMutex)
+/* 802D3218-802D326C 2CDB58 0054+00 0/0 2/2 0/0 .text            dump__11JKRAramHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -240,21 +193,11 @@ asm void JKRAramHeap::dump() {
 }
 #pragma pop
 
-/* 802D326C-802D32B0 0044+00 s=0 e=0 z=0  None .text      __sinit_JKRAramHeap_cpp */
-//	802D3278: 8043430C (sAramList__11JKRAramHeap)
-//	802D327C: 8043430C (sAramList__11JKRAramHeap)
-//	802D3280: 802DBF14 (initiate__10JSUPtrListFv)
-//	802D3284: 8043430C (sAramList__11JKRAramHeap)
-//	802D3288: 8043430C (sAramList__11JKRAramHeap)
-//	802D328C: 802D32B0 (func_802D32B0)
-//	802D3290: 802D32B0 (func_802D32B0)
-//	802D3294: 80434300 (lit_297)
-//	802D3298: 80434300 (lit_297)
-//	802D329C: 80361C24 (__register_global_object)
+/* 802D326C-802D32B0 2CDBAC 0044+00 0/0 1/0 0/0 .text            __sinit_JKRAramHeap_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_JKRAramHeap_cpp() {
+asm void __sinit_JKRAramHeap_cpp() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAramHeap/__sinit_JKRAramHeap_cpp.s"
 }
@@ -265,13 +208,12 @@ extern "C" asm void __sinit_JKRAramHeap_cpp() {
 SECTION_CTORS void* const _ctors_802D326C = (void*)__sinit_JKRAramHeap_cpp;
 #pragma pop
 
-/* 802D32B0-802D3304 0054+00 s=1 e=0 z=0  None .text      __dt__23JSUList<12JKRAramBlock>Fv */
-//	802D32D4: 802DBEAC (__dt__10JSUPtrListFv)
-//	802D32E4: 802CED3C (__dl__FPv)
+/* 802D32B0-802D3304 2CDBF0 0054+00 1/1 0/0 0/0 .text            __dt__23JSUList<12JKRAramBlock>Fv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSUList__template6::~JSUList__template6() {
+extern "C" asm void func_802D32B0() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAramHeap/func_802D32B0.s"
 }

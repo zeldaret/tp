@@ -24,8 +24,8 @@ lbl_800FC3C0:
 /* 800FC3E4  B0 1F 04 E6 */	sth r0, 0x4e6(r31)
 /* 800FC3E8  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800FC3EC  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800FC3F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FC3F4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800FC3F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FC3F4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FC3F8  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800FC3FC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800FC400  7C 64 02 14 */	add r3, r4, r0
@@ -51,8 +51,8 @@ lbl_800FC3C0:
 /* 800FC450  90 1F 31 A0 */	stw r0, 0x31a0(r31)
 /* 800FC454  7F E3 FB 78 */	mr r3, r31
 /* 800FC458  38 80 00 92 */	li r4, 0x92
-/* 800FC45C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FC460  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FC45C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FC460  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FC464  4B FB 0C 91 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FC468  7F E3 FB 78 */	mr r3, r31
 /* 800FC46C  3C 80 00 01 */	lis r4, 0x0001 /* 0x00010057@ha */

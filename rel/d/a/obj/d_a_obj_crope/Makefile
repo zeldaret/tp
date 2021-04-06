@@ -3,17 +3,15 @@
 #
 
 M425_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope.plf
+M425_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope.lcf
+M425_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope.map
 
 M425_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crope/executor.cpp \
-	rel/d/a/obj/d_a_obj_crope/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crope/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crope/d_a_obj_crope.cpp \
 
 M425_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope.o \
 
 M425_LIBS := \
@@ -29,15 +27,21 @@ M425_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map425.map\
+	-m _prolog \
+	-lcf $(M425_LDSCRIPT) \
+	-unused -map $(M425_MAP) \
+	-w off \
 
 $(M425_TARGET): $(M425_O_FILES) $(M425_LIBS)
+	@echo [425] creating $(M425_TARGET)
 	@echo $(M425_LIBS) $(M425_O_FILES) > build/M425_ofiles
-	$(LD) -opt_partial $(M425_LDFLAGS) -o $(M425_TARGET) @build/M425_ofiles
+	@python3 tools/lcf.py rel 425 --output $(M425_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M425_LDFLAGS) -o $(M425_TARGET) @build/M425_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crope/%.o: rel/d/a/obj/d_a_obj_crope/%.cpp
+	@echo [425] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M425_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M425_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

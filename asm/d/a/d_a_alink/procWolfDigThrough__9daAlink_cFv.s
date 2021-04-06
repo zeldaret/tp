@@ -28,8 +28,8 @@ lbl_8013F818:
 /* 8013F828  A8 1E 30 12 */	lha r0, 0x3012(r30)
 /* 8013F82C  2C 00 00 00 */	cmpwi r0, 0
 /* 8013F830  41 82 00 24 */	beq lbl_8013F854
-/* 8013F834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013F838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013F834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013F838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013F83C  38 63 0D B4 */	addi r3, r3, 0xdb4
 /* 8013F840  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 8013F844  A8 BE 04 E6 */	lha r5, 0x4e6(r30)

@@ -5,14 +5,14 @@ lbl_804716D4:
 /* 804716E0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 804716E4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804716E8  7C 7E 1B 78 */	mr r30, r3
-/* 804716EC  3C 60 80 48 */	lis r3, l_cyl_info@ha
-/* 804716F0  3B E3 99 0C */	addi r31, r3, l_cyl_info@l
-/* 804716F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804716F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804716EC  3C 60 80 48 */	lis r3, l_cyl_info@ha /* 0x8047990C@ha */
+/* 804716F0  3B E3 99 0C */	addi r31, r3, l_cyl_info@l /* 0x8047990C@l */
+/* 804716F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804716F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804716FC  38 80 00 3D */	li r4, 0x3d
 /* 80471700  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80471704  7C 05 07 74 */	extsb r5, r0
-/* 80471708  4B BC 3C 58 */	b isSwitch__10dSv_info_cCFii
+/* 80471708  4B BC 3C 59 */	bl isSwitch__10dSv_info_cCFii
 /* 8047170C  2C 03 00 00 */	cmpwi r3, 0
 /* 80471710  41 82 00 20 */	beq lbl_80471730
 /* 80471714  C0 1F 0A 48 */	lfs f0, 0xa48(r31)
@@ -23,12 +23,12 @@ lbl_804716D4:
 /* 80471728  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8047172C  48 00 00 58 */	b lbl_80471784
 lbl_80471730:
-/* 80471730  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80471734  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80471730  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80471734  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80471738  38 80 00 3E */	li r4, 0x3e
 /* 8047173C  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80471740  7C 05 07 74 */	extsb r5, r0
-/* 80471744  4B BC 3C 1C */	b isSwitch__10dSv_info_cCFii
+/* 80471744  4B BC 3C 1D */	bl isSwitch__10dSv_info_cCFii
 /* 80471748  2C 03 00 00 */	cmpwi r3, 0
 /* 8047174C  41 82 00 20 */	beq lbl_8047176C
 /* 80471750  C0 1F 0A 84 */	lfs f0, 0xa84(r31)
@@ -51,7 +51,7 @@ lbl_80471784:
 /* 8047178C  38 80 00 0C */	li r4, 0xc
 /* 80471790  38 A1 00 08 */	addi r5, r1, 8
 /* 80471794  38 C0 00 00 */	li r6, 0
-/* 80471798  4B C2 AC 34 */	b setPosition__7dTres_cFiUcPC3Veci
+/* 80471798  4B C2 AC 35 */	bl setPosition__7dTres_cFiUcPC3Veci
 /* 8047179C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 804717A0  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 804717A4  80 01 00 24 */	lwz r0, 0x24(r1)

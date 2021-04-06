@@ -5,10 +5,10 @@ lbl_807B774C:
 /* 807B7758  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807B775C  7C 7F 1B 78 */	mr r31, r3
 /* 807B7760  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 807B7764  3C 80 80 7B */	lis r4, stringBase0@ha
-/* 807B7768  38 84 7F C0 */	addi r4, r4, stringBase0@l
+/* 807B7764  3C 80 80 7B */	lis r4, d_a_e_th_ball__stringBase0@ha /* 0x807B7FC0@ha */
+/* 807B7768  38 84 7F C0 */	addi r4, r4, d_a_e_th_ball__stringBase0@l /* 0x807B7FC0@l */
 /* 807B776C  38 84 00 05 */	addi r4, r4, 5
-/* 807B7770  4B 87 58 98 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 807B7770  4B 87 58 99 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 807B7774  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 807B7778  28 00 00 00 */	cmplwi r0, 0
 /* 807B777C  41 82 00 18 */	beq lbl_807B7794

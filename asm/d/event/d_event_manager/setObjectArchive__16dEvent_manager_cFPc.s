@@ -9,10 +9,10 @@ lbl_80046800:
 /* 8004681C  28 04 00 00 */	cmplwi r4, 0
 /* 80046820  41 82 00 40 */	beq lbl_80046860
 /* 80046824  7C 83 23 78 */	mr r3, r4
-/* 80046828  3C 80 80 38 */	lis r4, data_80379F50@ha
-/* 8004682C  38 84 9F 50 */	addi r4, r4, data_80379F50@l
-/* 80046830  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80046834  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80046828  3C 80 80 38 */	lis r4, data_80379F50@ha /* 0x80379F50@ha */
+/* 8004682C  38 84 9F 50 */	addi r4, r4, data_80379F50@l /* 0x80379F50@l */
+/* 80046830  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80046834  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80046838  3C A5 00 02 */	addis r5, r5, 2
 /* 8004683C  38 C0 00 80 */	li r6, 0x80
 /* 80046840  38 A5 C2 F8 */	addi r5, r5, -15624

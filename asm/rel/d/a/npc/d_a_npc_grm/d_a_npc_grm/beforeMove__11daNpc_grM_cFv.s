@@ -9,7 +9,7 @@ lbl_809D51F4:
 /* 809D5210  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 809D5214  28 00 00 00 */	cmplwi r0, 0
 /* 809D5218  40 82 00 1C */	bne lbl_809D5234
-/* 809D521C  4B 65 A8 38 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 809D521C  4B 65 A8 39 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 809D5220  2C 03 00 00 */	cmpwi r3, 0
 /* 809D5224  40 82 00 14 */	bne lbl_809D5238
 /* 809D5228  88 1E 0A 89 */	lbz r0, 0xa89(r30)

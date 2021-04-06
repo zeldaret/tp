@@ -19,8 +19,8 @@ lbl_8020B814:
 /* 8020B858  28 00 00 01 */	cmplwi r0, 1
 /* 8020B85C  40 82 00 30 */	bne lbl_8020B88C
 /* 8020B860  C0 62 AD D8 */	lfs f3, lit_3940(r2)
-/* 8020B864  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B868  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B864  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B868  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B86C  C0 03 05 1C */	lfs f0, 0x51c(r3)
 /* 8020B870  EC 03 00 2A */	fadds f0, f3, f0
 /* 8020B874  EF 81 00 2A */	fadds f28, f1, f0
@@ -30,8 +30,8 @@ lbl_8020B814:
 /* 8020B884  EF A2 00 2A */	fadds f29, f2, f0
 /* 8020B888  48 00 00 1C */	b lbl_8020B8A4
 lbl_8020B88C:
-/* 8020B88C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B890  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B88C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B890  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B894  C0 03 05 1C */	lfs f0, 0x51c(r3)
 /* 8020B898  EF 81 00 2A */	fadds f28, f1, f0
 /* 8020B89C  C0 03 05 20 */	lfs f0, 0x520(r3)
@@ -40,8 +40,8 @@ lbl_8020B8A4:
 /* 8020B8A4  54 9E 06 3E */	clrlwi r30, r4, 0x18
 /* 8020B8A8  54 80 07 BD */	rlwinm. r0, r4, 0, 0x1e, 0x1e
 /* 8020B8AC  40 82 00 18 */	bne lbl_8020B8C4
-/* 8020B8B0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B8B4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B8B0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B8B4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B8B8  88 03 05 24 */	lbz r0, 0x524(r3)
 /* 8020B8BC  28 00 00 00 */	cmplwi r0, 0
 /* 8020B8C0  41 82 00 1C */	beq lbl_8020B8DC
@@ -55,8 +55,8 @@ lbl_8020B8C4:
 lbl_8020B8DC:
 /* 8020B8DC  57 C0 07 7B */	rlwinm. r0, r30, 0, 0x1d, 0x1d
 /* 8020B8E0  40 82 00 18 */	bne lbl_8020B8F8
-/* 8020B8E4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B8E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B8E4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B8E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B8EC  88 03 05 24 */	lbz r0, 0x524(r3)
 /* 8020B8F0  28 00 00 00 */	cmplwi r0, 0
 /* 8020B8F4  41 82 00 1C */	beq lbl_8020B910
@@ -70,8 +70,8 @@ lbl_8020B8F8:
 lbl_8020B910:
 /* 8020B910  57 C0 07 39 */	rlwinm. r0, r30, 0, 0x1c, 0x1c
 /* 8020B914  40 82 00 18 */	bne lbl_8020B92C
-/* 8020B918  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B91C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B918  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B91C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B920  88 03 05 24 */	lbz r0, 0x524(r3)
 /* 8020B924  28 00 00 00 */	cmplwi r0, 0
 /* 8020B928  41 82 00 1C */	beq lbl_8020B944
@@ -85,8 +85,8 @@ lbl_8020B92C:
 lbl_8020B944:
 /* 8020B944  57 C0 07 FF */	clrlwi. r0, r30, 0x1f
 /* 8020B948  40 82 00 18 */	bne lbl_8020B960
-/* 8020B94C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020B950  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8020B94C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020B950  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020B954  88 03 05 24 */	lbz r0, 0x524(r3)
 /* 8020B958  28 00 00 00 */	cmplwi r0, 0
 /* 8020B95C  41 82 00 1C */	beq lbl_8020B978

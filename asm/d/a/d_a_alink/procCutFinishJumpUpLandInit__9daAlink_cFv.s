@@ -10,8 +10,8 @@ lbl_800D3DD8:
 /* 800D3DF8  48 00 31 E9 */	bl checkCutLandDamage__9daAlink_cFv
 /* 800D3DFC  7F E3 FB 78 */	mr r3, r31
 /* 800D3E00  38 80 00 6E */	li r4, 0x6e
-/* 800D3E04  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutFnJU_c0@ha
-/* 800D3E08  38 A5 DA EC */	addi r5, r5, m__21daAlinkHIO_cutFnJU_c0@l
+/* 800D3E04  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutFnJU_c0@ha /* 0x8038DAEC@ha */
+/* 800D3E08  38 A5 DA EC */	addi r5, r5, m__21daAlinkHIO_cutFnJU_c0@l /* 0x8038DAEC@l */
 /* 800D3E0C  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800D3E10  4B FD 92 E5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D3E14  C0 02 92 C0 */	lfs f0, lit_6108(r2)
@@ -30,16 +30,16 @@ lbl_800D3DD8:
 /* 800D3E48  88 1F 05 69 */	lbz r0, 0x569(r31)
 /* 800D3E4C  28 00 00 03 */	cmplwi r0, 3
 /* 800D3E50  40 82 00 20 */	bne lbl_800D3E70
-/* 800D3E54  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutFnJU_c0@ha
-/* 800D3E58  38 63 DA EC */	addi r3, r3, m__21daAlinkHIO_cutFnJU_c0@l
+/* 800D3E54  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutFnJU_c0@ha /* 0x8038DAEC@ha */
+/* 800D3E58  38 63 DA EC */	addi r3, r3, m__21daAlinkHIO_cutFnJU_c0@l /* 0x8038DAEC@l */
 /* 800D3E5C  C0 03 00 3C */	lfs f0, 0x3c(r3)
 /* 800D3E60  D0 1F 34 84 */	stfs f0, 0x3484(r31)
 /* 800D3E64  A8 03 00 2A */	lha r0, 0x2a(r3)
 /* 800D3E68  B0 1F 30 08 */	sth r0, 0x3008(r31)
 /* 800D3E6C  48 00 00 1C */	b lbl_800D3E88
 lbl_800D3E70:
-/* 800D3E70  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutFnJU_c0@ha
-/* 800D3E74  38 63 DA EC */	addi r3, r3, m__21daAlinkHIO_cutFnJU_c0@l
+/* 800D3E70  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutFnJU_c0@ha /* 0x8038DAEC@ha */
+/* 800D3E74  38 63 DA EC */	addi r3, r3, m__21daAlinkHIO_cutFnJU_c0@l /* 0x8038DAEC@l */
 /* 800D3E78  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800D3E7C  D0 1F 34 84 */	stfs f0, 0x3484(r31)
 /* 800D3E80  A8 03 00 28 */	lha r0, 0x28(r3)
@@ -47,8 +47,8 @@ lbl_800D3E70:
 lbl_800D3E88:
 /* 800D3E88  38 00 00 00 */	li r0, 0
 /* 800D3E8C  B0 1F 30 12 */	sth r0, 0x3012(r31)
-/* 800D3E90  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800D3E94  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800D3E90  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800D3E94  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800D3E98  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800D3E9C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800D3EA0  D0 1F 35 8C */	stfs f0, 0x358c(r31)

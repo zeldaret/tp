@@ -5,18 +5,18 @@ lbl_80657738:
 /* 80657744  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80657748  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8065774C  41 82 00 30 */	beq lbl_8065777C
-/* 80657750  3C 60 80 65 */	lis r3, __vt__15daCoach2D_HIO_c@ha
-/* 80657754  38 03 7A 70 */	addi r0, r3, __vt__15daCoach2D_HIO_c@l
+/* 80657750  3C 60 80 65 */	lis r3, __vt__15daCoach2D_HIO_c@ha /* 0x80657A70@ha */
+/* 80657754  38 03 7A 70 */	addi r0, r3, __vt__15daCoach2D_HIO_c@l /* 0x80657A70@l */
 /* 80657758  90 1F 00 00 */	stw r0, 0(r31)
 /* 8065775C  41 82 00 10 */	beq lbl_8065776C
-/* 80657760  3C 60 80 65 */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 80657764  38 03 7A 7C */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 80657760  3C 60 80 65 */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x80657A7C@ha */
+/* 80657764  38 03 7A 7C */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x80657A7C@l */
 /* 80657768  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8065776C:
 /* 8065776C  7C 80 07 35 */	extsh. r0, r4
 /* 80657770  40 81 00 0C */	ble lbl_8065777C
 /* 80657774  7F E3 FB 78 */	mr r3, r31
-/* 80657778  4B C7 75 C4 */	b __dl__FPv
+/* 80657778  4B C7 75 C5 */	bl __dl__FPv
 lbl_8065777C:
 /* 8065777C  7F E3 FB 78 */	mr r3, r31
 /* 80657780  83 E1 00 0C */	lwz r31, 0xc(r1)

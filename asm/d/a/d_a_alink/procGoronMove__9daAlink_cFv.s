@@ -163,8 +163,8 @@ lbl_800EA6F8:
 /* 800EA71C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 800EA720  FC 03 00 40 */	fcmpo cr0, f3, f0
 /* 800EA724  40 81 00 18 */	ble lbl_800EA73C
-/* 800EA728  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha
-/* 800EA72C  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l
+/* 800EA728  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800EA72C  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800EA730  C0 03 00 20 */	lfs f0, 0x20(r3)
 /* 800EA734  EC 20 00 F2 */	fmuls f1, f0, f3
 /* 800EA738  48 00 00 10 */	b lbl_800EA748
@@ -175,8 +175,8 @@ lbl_800EA744:
 /* 800EA744  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 lbl_800EA748:
 /* 800EA748  7F E3 FB 78 */	mr r3, r31
-/* 800EA74C  3C 80 80 39 */	lis r4, m__21daAlinkHIO_atnMove_c0@ha
-/* 800EA750  38 84 D7 14 */	addi r4, r4, m__21daAlinkHIO_atnMove_c0@l
+/* 800EA74C  3C 80 80 39 */	lis r4, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800EA750  38 84 D7 14 */	addi r4, r4, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800EA754  C0 44 00 24 */	lfs f2, 0x24(r4)
 /* 800EA758  4B FC 91 CD */	bl setNormalSpeedF__9daAlink_cFff
 /* 800EA75C  7F E3 FB 78 */	mr r3, r31

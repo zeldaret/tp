@@ -7,8 +7,8 @@ lbl_8028E094:
 /* 8028E0A8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028E0AC  7C 9F 23 78 */	mr r31, r4
 /* 8028E0B0  41 82 00 28 */	beq lbl_8028E0D8
-/* 8028E0B4  3C 80 80 3C */	lis r4, __vt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_@ha
-/* 8028E0B8  38 04 5A 78 */	addi r0, r4, __vt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_@l
+/* 8028E0B4  3C 80 80 3C */	lis r4, __vt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_@ha /* 0x803C5A78@ha */
+/* 8028E0B8  38 04 5A 78 */	addi r0, r4, __vt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_@l /* 0x803C5A78@l */
 /* 8028E0BC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E0C0  38 80 00 00 */	li r4, 0
 /* 8028E0C4  4B FF 7D 49 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv

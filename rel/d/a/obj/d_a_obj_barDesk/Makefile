@@ -3,19 +3,20 @@
 #
 
 M402_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk.plf
+M402_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk.lcf
+M402_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk.map
 
 M402_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_barDesk/executor.cpp \
-	rel/d/a/obj/d_a_obj_barDesk/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk.cpp \
 
 M402_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk.o \
 
 M402_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/libRuntime.PPCEABI.H.a \
 
 M402_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M402_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map402.map\
+	-m _prolog \
+	-lcf $(M402_LDSCRIPT) \
+	-unused -map $(M402_MAP) \
+	-w off \
 
 $(M402_TARGET): $(M402_O_FILES) $(M402_LIBS)
+	@echo [402] creating $(M402_TARGET)
 	@echo $(M402_LIBS) $(M402_O_FILES) > build/M402_ofiles
-	$(LD) -opt_partial $(M402_LDFLAGS) -o $(M402_TARGET) @build/M402_ofiles
+	@python3 tools/lcf.py rel 402 --output $(M402_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M402_LDFLAGS) -o $(M402_TARGET) @build/M402_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_barDesk/%.o: rel/d/a/obj/d_a_obj_barDesk/%.cpp
+	@echo [402] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M402_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M402_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_barDesk/libs/Runtime.PPCEABI.H/Makefile
 

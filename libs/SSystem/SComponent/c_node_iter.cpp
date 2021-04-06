@@ -17,9 +17,6 @@ struct node_class {};
 // Forward References:
 //
 
-void cNdIt_Method(node_class*, int (*)(node_class*, void*), void*);
-void cNdIt_Judge(node_class*, void* (*)(node_class*, void*), void*);
-
 extern "C" void cNdIt_Method__FP10node_classPFP10node_classPv_iPv();
 extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
 
@@ -36,10 +33,8 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 80266324-802663B4 0090+00 s=0 e=1 z=0  None .text
+/* 80266324-802663B4 260C64 0090+00 0/0 1/1 0/0 .text
  * cNdIt_Method__FP10node_classPFP10node_classPv_iPv            */
-//	80266334: 803621D8 (_savegpr_28)
-//	802663A0: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -49,10 +44,8 @@ asm void cNdIt_Method(node_class* param_0, int (*)(node_class*, void*), void* pa
 }
 #pragma pop
 
-/* 802663B4-80266440 008C+00 s=0 e=1 z=0  None .text
+/* 802663B4-80266440 260CF4 008C+00 0/0 1/1 0/0 .text
  * cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv            */
-//	802663C4: 803621DC (_savegpr_29)
-//	8026642C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

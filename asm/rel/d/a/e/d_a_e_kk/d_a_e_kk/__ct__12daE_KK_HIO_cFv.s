@@ -1,8 +1,8 @@
 lbl_806FA70C:
-/* 806FA70C  3C 80 80 70 */	lis r4, lit_3792@ha
-/* 806FA710  38 A4 F5 E8 */	addi r5, r4, lit_3792@l
-/* 806FA714  3C 80 80 70 */	lis r4, __vt__12daE_KK_HIO_c@ha
-/* 806FA718  38 04 F8 68 */	addi r0, r4, __vt__12daE_KK_HIO_c@l
+/* 806FA70C  3C 80 80 70 */	lis r4, lit_3792@ha /* 0x806FF5E8@ha */
+/* 806FA710  38 A4 F5 E8 */	addi r5, r4, lit_3792@l /* 0x806FF5E8@l */
+/* 806FA714  3C 80 80 70 */	lis r4, __vt__12daE_KK_HIO_c@ha /* 0x806FF868@ha */
+/* 806FA718  38 04 F8 68 */	addi r0, r4, __vt__12daE_KK_HIO_c@l /* 0x806FF868@l */
 /* 806FA71C  90 03 00 00 */	stw r0, 0(r3)
 /* 806FA720  38 00 FF FF */	li r0, -1
 /* 806FA724  98 03 00 04 */	stb r0, 4(r3)

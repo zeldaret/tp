@@ -4,28 +4,28 @@ lbl_8033A440:
 /* 8033A448  94 21 FF C8 */	stwu r1, -0x38(r1)
 /* 8033A44C  BE 81 00 08 */	stmw r20, 8(r1)
 /* 8033A450  3C 60 80 00 */	lis r3, 0x8000 /* 0x80000060@ha */
-/* 8033A454  80 03 00 60 */	lwz r0, 0x0060(r3)
-/* 8033A458  3C 80 80 34 */	lis r4, __OSEVSetNumber@ha
-/* 8033A45C  3B C4 A7 80 */	addi r30, r4, __OSEVSetNumber@l
-/* 8033A460  3C A0 80 34 */	lis r5, OSExceptionVector@ha
+/* 8033A454  80 03 00 60 */	lwz r0, 0x0060(r3)  /* 0x80000060@l */
+/* 8033A458  3C 80 80 34 */	lis r4, __OSEVSetNumber@ha /* 0x8033A780@ha */
+/* 8033A45C  3B C4 A7 80 */	addi r30, r4, __OSEVSetNumber@l /* 0x8033A780@l */
+/* 8033A460  3C A0 80 34 */	lis r5, OSExceptionVector@ha /* 0x8033A718@ha */
 /* 8033A464  83 3E 00 00 */	lwz r25, 0(r30)
-/* 8033A468  3C 80 80 34 */	lis r4, __OSEVEnd@ha
-/* 8033A46C  38 A5 A7 18 */	addi r5, r5, OSExceptionVector@l
-/* 8033A470  38 84 A7 B0 */	addi r4, r4, __OSEVEnd@l
-/* 8033A474  3C C0 80 3D */	lis r6, lit_1@ha
+/* 8033A468  3C 80 80 34 */	lis r4, __OSEVEnd@ha /* 0x8033A7B0@ha */
+/* 8033A46C  38 A5 A7 18 */	addi r5, r5, OSExceptionVector@l /* 0x8033A718@l */
+/* 8033A470  38 84 A7 B0 */	addi r4, r4, __OSEVEnd@l /* 0x8033A7B0@l */
+/* 8033A474  3C C0 80 3D */	lis r6, lit_1@ha /* 0x803CF288@ha */
 /* 8033A478  28 00 00 00 */	cmplwi r0, 0
 /* 8033A47C  7C B8 2B 78 */	mr r24, r5
-/* 8033A480  3B A6 F2 88 */	addi r29, r6, lit_1@l
+/* 8033A480  3B A6 F2 88 */	addi r29, r6, lit_1@l /* 0x803CF288@l */
 /* 8033A484  7E E5 20 50 */	subf r23, r5, r4
 /* 8033A488  3A 83 00 60 */	addi r20, r3, 0x60
 /* 8033A48C  40 82 00 4C */	bne lbl_8033A4D8
 /* 8033A490  38 7D 01 60 */	addi r3, r29, 0x160
 /* 8033A494  4C C6 31 82 */	crclr 6
 /* 8033A498  48 00 BF 9D */	bl DBPrintf
-/* 8033A49C  3C 80 80 34 */	lis r4, __OSDBIntegrator@ha
-/* 8033A4A0  3C 60 80 34 */	lis r3, __OSDBJump@ha
-/* 8033A4A4  38 03 A6 E4 */	addi r0, r3, __OSDBJump@l
-/* 8033A4A8  38 84 A6 C0 */	addi r4, r4, __OSDBIntegrator@l
+/* 8033A49C  3C 80 80 34 */	lis r4, __OSDBIntegrator@ha /* 0x8033A6C0@ha */
+/* 8033A4A0  3C 60 80 34 */	lis r3, __OSDBJump@ha /* 0x8033A6E4@ha */
+/* 8033A4A4  38 03 A6 E4 */	addi r0, r3, __OSDBJump@l /* 0x8033A6E4@l */
+/* 8033A4A8  38 84 A6 C0 */	addi r4, r4, __OSDBIntegrator@l /* 0x8033A6C0@l */
 /* 8033A4AC  7E A4 00 50 */	subf r21, r4, r0
 /* 8033A4B0  7E 83 A3 78 */	mr r3, r20
 /* 8033A4B4  7E A5 AB 78 */	mr r5, r21
@@ -38,17 +38,17 @@ lbl_8033A440:
 /* 8033A4D0  7E A4 AB 78 */	mr r4, r21
 /* 8033A4D4  48 00 11 BD */	bl ICInvalidateRange
 lbl_8033A4D8:
-/* 8033A4D8  3C 80 80 34 */	lis r4, __OSDBJump@ha
-/* 8033A4DC  3C 60 80 34 */	lis r3, __OSSetExceptionHandler@ha
-/* 8033A4E0  3B E4 A6 E4 */	addi r31, r4, __OSDBJump@l
-/* 8033A4E4  38 03 A6 E8 */	addi r0, r3, __OSSetExceptionHandler@l
+/* 8033A4D8  3C 80 80 34 */	lis r4, __OSDBJump@ha /* 0x8033A6E4@ha */
+/* 8033A4DC  3C 60 80 34 */	lis r3, __OSSetExceptionHandler@ha /* 0x8033A6E8@ha */
+/* 8033A4E0  3B E4 A6 E4 */	addi r31, r4, __OSDBJump@l /* 0x8033A6E4@l */
+/* 8033A4E4  38 03 A6 E8 */	addi r0, r3, __OSSetExceptionHandler@l /* 0x8033A6E8@l */
 /* 8033A4E8  3B 9D 01 24 */	addi r28, r29, 0x124
 /* 8033A4EC  7F 7F 00 50 */	subf r27, r31, r0
 /* 8033A4F0  3B 40 00 00 */	li r26, 0
 /* 8033A4F4  48 00 00 04 */	b lbl_8033A4F8
 lbl_8033A4F8:
-/* 8033A4F8  3C 60 80 34 */	lis r3, __DBVECTOR@ha
-/* 8033A4FC  3A A3 A7 70 */	addi r21, r3, __DBVECTOR@l
+/* 8033A4F8  3C 60 80 34 */	lis r3, __DBVECTOR@ha /* 0x8033A770@ha */
+/* 8033A4FC  3A A3 A7 70 */	addi r21, r3, __DBVECTOR@l /* 0x8033A770@l */
 /* 8033A500  3E C0 60 00 */	lis r22, 0x6000
 /* 8033A504  48 00 00 04 */	b lbl_8033A508
 lbl_8033A508:
@@ -153,8 +153,8 @@ lbl_8033A650:
 /* 8033A668  3A 80 00 00 */	li r20, 0
 /* 8033A66C  48 00 00 04 */	b lbl_8033A670
 lbl_8033A670:
-/* 8033A670  3C 60 80 34 */	lis r3, OSDefaultExceptionHandler@ha
-/* 8033A674  3A E3 A7 B4 */	addi r23, r3, OSDefaultExceptionHandler@l
+/* 8033A670  3C 60 80 34 */	lis r3, OSDefaultExceptionHandler@ha /* 0x8033A7B4@ha */
+/* 8033A674  3A E3 A7 B4 */	addi r23, r3, OSDefaultExceptionHandler@l /* 0x8033A7B4@l */
 /* 8033A678  48 00 00 04 */	b lbl_8033A67C
 lbl_8033A67C:
 /* 8033A67C  48 00 00 14 */	b lbl_8033A690

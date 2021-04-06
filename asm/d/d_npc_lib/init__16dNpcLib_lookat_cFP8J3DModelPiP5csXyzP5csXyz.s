@@ -22,8 +22,8 @@ lbl_80251444:
 /* 80251458  93 D8 00 CC */	stw r30, 0xcc(r24)
 /* 8025145C  3A E0 00 00 */	li r23, 0
 /* 80251460  3A C0 00 00 */	li r22, 0
-/* 80251464  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80251468  3B E3 D4 70 */	addi r31, r3, now__14mDoMtx_stack_c@l
+/* 80251464  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80251468  3B E3 D4 70 */	addi r31, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 lbl_8025146C:
 /* 8025146C  7F BA B0 2E */	lwzx r29, r26, r22
 /* 80251470  2C 1D 00 00 */	cmpwi r29, 0

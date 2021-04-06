@@ -5,8 +5,8 @@ lbl_80200DA0:
 /* 80200DAC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200DB0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200DB4  41 82 00 1C */	beq lbl_80200DD0
-/* 80200DB8  3C A0 80 3C */	lis r5, __vt__25dMeter_drawEmpButtonHIO_c@ha
-/* 80200DBC  38 05 F1 3C */	addi r0, r5, __vt__25dMeter_drawEmpButtonHIO_c@l
+/* 80200DB8  3C A0 80 3C */	lis r5, __vt__25dMeter_drawEmpButtonHIO_c@ha /* 0x803BF13C@ha */
+/* 80200DBC  38 05 F1 3C */	addi r0, r5, __vt__25dMeter_drawEmpButtonHIO_c@l /* 0x803BF13C@l */
 /* 80200DC0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200DC4  7C 80 07 35 */	extsh. r0, r4
 /* 80200DC8  40 81 00 08 */	ble lbl_80200DD0

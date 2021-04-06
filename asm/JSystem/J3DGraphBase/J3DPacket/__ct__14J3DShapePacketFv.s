@@ -5,8 +5,8 @@ lbl_80312B20:
 /* 80312B2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80312B30  7C 7F 1B 78 */	mr r31, r3
 /* 80312B34  4B FF FC 45 */	bl __ct__13J3DDrawPacketFv
-/* 80312B38  3C 60 80 3D */	lis r3, __vt__14J3DShapePacket@ha
-/* 80312B3C  38 03 D9 40 */	addi r0, r3, __vt__14J3DShapePacket@l
+/* 80312B38  3C 60 80 3D */	lis r3, __vt__14J3DShapePacket@ha /* 0x803CD940@ha */
+/* 80312B3C  38 03 D9 40 */	addi r0, r3, __vt__14J3DShapePacket@l /* 0x803CD940@l */
 /* 80312B40  90 1F 00 00 */	stw r0, 0(r31)
 /* 80312B44  38 00 00 00 */	li r0, 0
 /* 80312B48  90 1F 00 28 */	stw r0, 0x28(r31)

@@ -17,8 +17,8 @@ lbl_8015C41C:
 /* 8015C458  38 7F 09 60 */	addi r3, r31, 0x960
 /* 8015C45C  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 8015C460  48 00 21 51 */	bl initOffset__20daPy_boomerangMove_cFPC4cXyz
-/* 8015C464  3C 60 80 3B */	lis r3, item_info__10dItem_data@ha
-/* 8015C468  38 63 ED 78 */	addi r3, r3, item_info__10dItem_data@l
+/* 8015C464  3C 60 80 3B */	lis r3, item_info__10dItem_data@ha /* 0x803AED78@ha */
+/* 8015C468  38 63 ED 78 */	addi r3, r3, item_info__10dItem_data@l /* 0x803AED78@l */
 /* 8015C46C  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 8015C470  54 00 10 3A */	slwi r0, r0, 2
 /* 8015C474  7C 63 02 14 */	add r3, r3, r0

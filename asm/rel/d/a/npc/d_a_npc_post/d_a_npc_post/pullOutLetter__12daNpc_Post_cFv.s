@@ -16,8 +16,8 @@ lbl_80AAABA0:
 /* 80AAABD8  41 82 00 5C */	beq lbl_80AAAC34
 /* 80AAABDC  80 7E 05 78 */	lwz r3, 0x578(r30)
 /* 80AAABE0  C0 23 00 1C */	lfs f1, 0x1c(r3)
-/* 80AAABE4  3C 60 80 AB */	lis r3, lit_5115@ha
-/* 80AAABE8  C0 03 D3 20 */	lfs f0, lit_5115@l(r3)
+/* 80AAABE4  3C 60 80 AB */	lis r3, lit_5115@ha /* 0x80AAD320@ha */
+/* 80AAABE8  C0 03 D3 20 */	lfs f0, lit_5115@l(r3)  /* 0x80AAD320@l */
 /* 80AAABEC  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 80AAABF0  40 80 00 5C */	bge lbl_80AAAC4C
 /* 80AAABF4  38 00 00 01 */	li r0, 1

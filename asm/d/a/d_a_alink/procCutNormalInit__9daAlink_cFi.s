@@ -6,8 +6,8 @@ lbl_800D2F58:
 /* 800D2F68  48 28 F2 6D */	bl _savegpr_27
 /* 800D2F6C  7C 7D 1B 78 */	mr r29, r3
 /* 800D2F70  7C 9B 23 78 */	mr r27, r4
-/* 800D2F74  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800D2F78  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 800D2F74  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800D2F78  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 800D2F7C  57 60 20 36 */	slwi r0, r27, 4
 /* 800D2F80  3B DF 41 B0 */	addi r30, r31, 0x41b0
 /* 800D2F84  7F DE 02 14 */	add r30, r30, r0
@@ -109,8 +109,8 @@ lbl_800D30CC:
 /* 800D30D8  38 00 00 0C */	li r0, 0xc
 /* 800D30DC  98 1D 2F 99 */	stb r0, 0x2f99(r29)
 lbl_800D30E0:
-/* 800D30E0  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800D30E4  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800D30E0  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800D30E4  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800D30E8  D0 1D 35 88 */	stfs f0, 0x3588(r29)
 /* 800D30EC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800D30F0  D0 1D 35 8C */	stfs f0, 0x358c(r29)
@@ -131,8 +131,8 @@ lbl_800D30E0:
 /* 800D312C  4B FF F1 D9 */	bl setSwordComboVoice__9daAlink_cFv
 /* 800D3130  38 00 00 00 */	li r0, 0
 /* 800D3134  B0 1D 30 12 */	sth r0, 0x3012(r29)
-/* 800D3138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D313C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D3138  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D313C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D3140  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800D3144  60 00 80 00 */	ori r0, r0, 0x8000
 /* 800D3148  90 03 5F 18 */	stw r0, 0x5f18(r3)

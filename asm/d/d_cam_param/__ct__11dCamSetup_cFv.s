@@ -4,8 +4,8 @@ lbl_80088668:
 /* 80088670  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80088674  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80088678  7C 7F 1B 78 */	mr r31, r3
-/* 8008867C  3C 60 80 3B */	lis r3, __vt__11dCamSetup_c@ha
-/* 80088680  38 03 C5 00 */	addi r0, r3, __vt__11dCamSetup_c@l
+/* 8008867C  3C 60 80 3B */	lis r3, __vt__11dCamSetup_c@ha /* 0x803AC500@ha */
+/* 80088680  38 03 C5 00 */	addi r0, r3, __vt__11dCamSetup_c@l /* 0x803AC500@l */
 /* 80088684  90 1F 00 FC */	stw r0, 0xfc(r31)
 /* 80088688  38 7F 01 00 */	addi r3, r31, 0x100
 /* 8008868C  4B FF FD A9 */	bl __ct__9dCstick_cFv

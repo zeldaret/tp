@@ -7,18 +7,18 @@ lbl_80C48708:
 /* 80C4871C  88 03 05 EA */	lbz r0, 0x5ea(r3)
 /* 80C48720  28 00 00 03 */	cmplwi r0, 3
 /* 80C48724  40 82 00 28 */	bne lbl_80C4874C
-/* 80C48728  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C4872C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C48728  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C4872C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C48730  38 63 09 58 */	addi r3, r3, 0x958
 /* 80C48734  38 80 00 02 */	li r4, 2
-/* 80C48738  4B 3E C1 FC */	b isDungeonItem__12dSv_memBit_cCFi
+/* 80C48738  4B 3E C1 FD */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 80C4873C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C48740  40 82 00 28 */	bne lbl_80C48768
 /* 80C48744  38 60 00 00 */	li r3, 0
 /* 80C48748  48 00 00 3C */	b lbl_80C48784
 lbl_80C4874C:
-/* 80C4874C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C48750  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C4874C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C48750  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C48754  88 03 09 74 */	lbz r0, 0x974(r3)
 /* 80C48758  28 00 00 00 */	cmplwi r0, 0
 /* 80C4875C  40 82 00 0C */	bne lbl_80C48768

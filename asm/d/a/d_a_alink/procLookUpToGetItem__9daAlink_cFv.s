@@ -35,8 +35,8 @@ lbl_8011CB9C:
 /* 8011CB9C  A8 1F 30 0C */	lha r0, 0x300c(r31)
 /* 8011CBA0  2C 00 00 00 */	cmpwi r0, 0
 /* 8011CBA4  41 82 00 18 */	beq lbl_8011CBBC
-/* 8011CBA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011CBAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011CBA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011CBAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011CBB0  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011CBB4  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8011CBB8  4B F2 B5 C5 */	bl cutEnd__16dEvent_manager_cFi

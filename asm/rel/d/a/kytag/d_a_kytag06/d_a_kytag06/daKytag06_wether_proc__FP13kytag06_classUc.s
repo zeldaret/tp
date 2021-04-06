@@ -4,16 +4,16 @@ lbl_808584B4:
 /* 808584BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 808584C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 808584C4  93 C1 00 08 */	stw r30, 8(r1)
-/* 808584C8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 808584CC  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 808584C8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 808584CC  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 808584D0  38 00 00 00 */	li r0, 0
 /* 808584D4  90 1F 0E D8 */	stw r0, 0xed8(r31)
 /* 808584D8  8B DF 12 C8 */	lbz r30, 0x12c8(r31)
 /* 808584DC  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 808584E0  28 00 00 07 */	cmplwi r0, 7
 /* 808584E4  41 81 01 98 */	bgt lbl_8085867C
-/* 808584E8  3C 60 80 86 */	lis r3, lit_4064@ha
-/* 808584EC  38 63 A0 4C */	addi r3, r3, lit_4064@l
+/* 808584E8  3C 60 80 86 */	lis r3, lit_4064@ha /* 0x8085A04C@ha */
+/* 808584EC  38 63 A0 4C */	addi r3, r3, lit_4064@l /* 0x8085A04C@l */
 /* 808584F0  54 00 10 3A */	slwi r0, r0, 2
 /* 808584F4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 808584F8  7C 09 03 A6 */	mtctr r0
@@ -38,8 +38,8 @@ lbl_80858520:
 /* 8085853C  48 00 01 40 */	b lbl_8085867C
 lbl_80858540:
 /* 80858540  3B C0 00 01 */	li r30, 1
-/* 80858544  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 80858548  80 03 0C D8 */	lwz r0, g_Counter@l(r3)
+/* 80858544  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 80858548  80 03 0C D8 */	lwz r0, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 8085854C  54 00 07 BF */	clrlwi. r0, r0, 0x1e
 /* 80858550  40 82 00 2C */	bne lbl_8085857C
 /* 80858554  80 7F 0E 80 */	lwz r3, 0xe80(r31)
@@ -47,12 +47,12 @@ lbl_80858540:
 /* 8085855C  40 80 00 14 */	bge lbl_80858570
 /* 80858560  38 63 00 01 */	addi r3, r3, 1
 /* 80858564  90 7F 0E 80 */	stw r3, 0xe80(r31)
-/* 80858568  4B 80 30 E4 */	b dKyw_rain_set__Fi
+/* 80858568  4B 80 30 E5 */	bl dKyw_rain_set__Fi
 /* 8085856C  48 00 00 10 */	b lbl_8085857C
 lbl_80858570:
 /* 80858570  38 63 FF FF */	addi r3, r3, -1
 /* 80858574  90 7F 0E 80 */	stw r3, 0xe80(r31)
-/* 80858578  4B 80 30 D4 */	b dKyw_rain_set__Fi
+/* 80858578  4B 80 30 D5 */	bl dKyw_rain_set__Fi
 lbl_8085857C:
 /* 8085857C  80 7F 0E 8C */	lwz r3, 0xe8c(r31)
 /* 80858580  2C 03 00 00 */	cmpwi r3, 0
@@ -67,7 +67,7 @@ lbl_80858594:
 /* 808585A0  40 80 00 10 */	bge lbl_808585B0
 /* 808585A4  38 63 00 01 */	addi r3, r3, 1
 /* 808585A8  90 7F 0E 80 */	stw r3, 0xe80(r31)
-/* 808585AC  4B 80 30 A0 */	b dKyw_rain_set__Fi
+/* 808585AC  4B 80 30 A1 */	bl dKyw_rain_set__Fi
 lbl_808585B0:
 /* 808585B0  80 7F 0E 8C */	lwz r3, 0xe8c(r31)
 /* 808585B4  2C 03 00 00 */	cmpwi r3, 0
@@ -84,7 +84,7 @@ lbl_808585C8:
 /* 808585DC  40 80 00 10 */	bge lbl_808585EC
 /* 808585E0  38 63 00 01 */	addi r3, r3, 1
 /* 808585E4  90 7F 0E 80 */	stw r3, 0xe80(r31)
-/* 808585E8  4B 80 30 64 */	b dKyw_rain_set__Fi
+/* 808585E8  4B 80 30 65 */	bl dKyw_rain_set__Fi
 lbl_808585EC:
 /* 808585EC  80 7F 0E 8C */	lwz r3, 0xe8c(r31)
 /* 808585F0  2C 03 00 00 */	cmpwi r3, 0
@@ -108,8 +108,8 @@ lbl_8085862C:
 /* 80858630  80 9F 0E 8C */	lwz r4, 0xe8c(r31)
 /* 80858634  2C 04 00 7D */	cmpwi r4, 0x7d
 /* 80858638  40 80 00 20 */	bge lbl_80858658
-/* 8085863C  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 80858640  80 03 0C D8 */	lwz r0, g_Counter@l(r3)
+/* 8085863C  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 80858640  80 03 0C D8 */	lwz r0, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 80858644  54 00 07 BF */	clrlwi. r0, r0, 0x1e
 /* 80858648  40 82 00 34 */	bne lbl_8085867C
 /* 8085864C  38 04 00 01 */	addi r0, r4, 1
@@ -131,14 +131,14 @@ lbl_8085867C:
 /* 80858680  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 80858684  7C 03 00 40 */	cmplw r3, r0
 /* 80858688  41 82 00 24 */	beq lbl_808586AC
-/* 8085868C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80858690  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8085868C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80858690  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80858694  88 03 12 D8 */	lbz r0, 0x12d8(r3)
 /* 80858698  28 00 00 00 */	cmplwi r0, 0
 /* 8085869C  40 82 00 10 */	bne lbl_808586AC
 /* 808586A0  9B DF 12 C8 */	stb r30, 0x12c8(r31)
 /* 808586A4  7F C3 F3 78 */	mr r3, r30
-/* 808586A8  4B 95 01 3C */	b dKy_change_colpat__FUc
+/* 808586A8  4B 95 01 3D */	bl dKy_change_colpat__FUc
 lbl_808586AC:
 /* 808586AC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 808586B0  83 C1 00 08 */	lwz r30, 8(r1)

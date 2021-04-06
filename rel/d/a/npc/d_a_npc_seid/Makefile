@@ -3,19 +3,20 @@
 #
 
 M355_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid.plf
+M355_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid.lcf
+M355_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid.map
 
 M355_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seid/executor.cpp \
-	rel/d/a/npc/d_a_npc_seid/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seid/d_a_npc_seid.cpp \
 
 M355_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/d_a_npc_seid.o \
 
 M355_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/libRuntime.PPCEABI.H.a \
 
 M355_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M355_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map355.map\
+	-m _prolog \
+	-lcf $(M355_LDSCRIPT) \
+	-unused -map $(M355_MAP) \
+	-w off \
 
 $(M355_TARGET): $(M355_O_FILES) $(M355_LIBS)
+	@echo [355] creating $(M355_TARGET)
 	@echo $(M355_LIBS) $(M355_O_FILES) > build/M355_ofiles
-	$(LD) -opt_partial $(M355_LDFLAGS) -o $(M355_TARGET) @build/M355_ofiles
+	@python3 tools/lcf.py rel 355 --output $(M355_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M355_LDFLAGS) -o $(M355_TARGET) @build/M355_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seid/%.o: rel/d/a/npc/d_a_npc_seid/%.cpp
+	@echo [355] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M355_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M355_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seid/libs/Runtime.PPCEABI.H/Makefile
 

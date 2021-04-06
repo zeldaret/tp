@@ -5,14 +5,14 @@ lbl_805E9B48:
 /* 805E9B54  93 E1 00 7C */	stw r31, 0x7c(r1)
 /* 805E9B58  93 C1 00 78 */	stw r30, 0x78(r1)
 /* 805E9B5C  7C 7E 1B 78 */	mr r30, r3
-/* 805E9B60  3C 60 80 5F */	lis r3, lit_3911@ha
-/* 805E9B64  3B E3 D0 60 */	addi r31, r3, lit_3911@l
+/* 805E9B60  3C 60 80 5F */	lis r3, lit_3911@ha /* 0x805ED060@ha */
+/* 805E9B64  3B E3 D0 60 */	addi r31, r3, lit_3911@l /* 0x805ED060@l */
 /* 805E9B68  80 7E 05 D4 */	lwz r3, 0x5d4(r30)
 /* 805E9B6C  38 03 FF FC */	addi r0, r3, -4
 /* 805E9B70  28 00 00 1B */	cmplwi r0, 0x1b
 /* 805E9B74  41 81 07 B8 */	bgt lbl_805EA32C
-/* 805E9B78  3C 60 80 5F */	lis r3, lit_8743@ha
-/* 805E9B7C  38 63 D4 FC */	addi r3, r3, lit_8743@l
+/* 805E9B78  3C 60 80 5F */	lis r3, lit_8743@ha /* 0x805ED4FC@ha */
+/* 805E9B7C  38 63 D4 FC */	addi r3, r3, lit_8743@l /* 0x805ED4FC@l */
 /* 805E9B80  54 00 10 3A */	slwi r0, r0, 2
 /* 805E9B84  7C 03 00 2E */	lwzx r0, r3, r0
 /* 805E9B88  7C 09 03 A6 */	mtctr r0
@@ -21,7 +21,7 @@ lbl_805E9B90:
 /* 805E9B90  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9B94  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9B98  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9B9C  4B D3 E8 90 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9B9C  4B D3 E8 91 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9BA0  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9BA4  41 82 00 5C */	beq lbl_805E9C00
 /* 805E9BA8  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -50,7 +50,7 @@ lbl_805E9C00:
 /* 805E9C00  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9C04  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9C08  C0 3F 03 04 */	lfs f1, 0x304(r31)
-/* 805E9C0C  4B D3 E8 20 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9C0C  4B D3 E8 21 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9C10  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9C14  41 82 07 18 */	beq lbl_805EA32C
 /* 805E9C18  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -69,13 +69,13 @@ lbl_805E9C48:
 /* 805E9C48  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9C4C  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9C50  C0 3F 00 30 */	lfs f1, 0x30(r31)
-/* 805E9C54  4B D3 E7 D8 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9C54  4B D3 E7 D9 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9C58  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9C5C  40 82 00 1C */	bne lbl_805E9C78
 /* 805E9C60  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9C64  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9C68  C0 3F 03 08 */	lfs f1, 0x308(r31)
-/* 805E9C6C  4B D3 E7 C0 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9C6C  4B D3 E7 C1 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9C70  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9C74  41 82 00 34 */	beq lbl_805E9CA8
 lbl_805E9C78:
@@ -95,7 +95,7 @@ lbl_805E9CA8:
 /* 805E9CA8  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9CAC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9CB0  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9CB4  4B D3 E7 78 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9CB4  4B D3 E7 79 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9CB8  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9CBC  41 82 06 70 */	beq lbl_805EA32C
 /* 805E9CC0  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007049F@ha */
@@ -114,7 +114,7 @@ lbl_805E9CF0:
 /* 805E9CF0  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9CF4  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9CF8  C0 3F 03 0C */	lfs f1, 0x30c(r31)
-/* 805E9CFC  4B D3 E7 30 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9CFC  4B D3 E7 31 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9D00  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9D04  41 82 06 28 */	beq lbl_805EA32C
 /* 805E9D08  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -133,7 +133,7 @@ lbl_805E9D38:
 /* 805E9D38  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9D3C  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9D40  C0 3F 03 10 */	lfs f1, 0x310(r31)
-/* 805E9D44  4B D3 E6 E8 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9D44  4B D3 E6 E9 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9D48  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9D4C  41 82 05 E0 */	beq lbl_805EA32C
 /* 805E9D50  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -152,13 +152,13 @@ lbl_805E9D80:
 /* 805E9D80  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9D84  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9D88  C0 3F 02 0C */	lfs f1, 0x20c(r31)
-/* 805E9D8C  4B D3 E6 A0 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9D8C  4B D3 E6 A1 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9D90  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9D94  40 82 00 1C */	bne lbl_805E9DB0
 /* 805E9D98  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9D9C  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9DA0  C0 3F 02 C8 */	lfs f1, 0x2c8(r31)
-/* 805E9DA4  4B D3 E6 88 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9DA4  4B D3 E6 89 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9DA8  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9DAC  41 82 05 80 */	beq lbl_805EA32C
 lbl_805E9DB0:
@@ -178,7 +178,7 @@ lbl_805E9DE0:
 /* 805E9DE0  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9DE4  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9DE8  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9DEC  4B D3 E6 40 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9DEC  4B D3 E6 41 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9DF0  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9DF4  41 82 05 38 */	beq lbl_805EA32C
 /* 805E9DF8  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A1@ha */
@@ -196,7 +196,7 @@ lbl_805E9E24:
 /* 805E9E24  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9E28  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9E2C  C0 3F 02 70 */	lfs f1, 0x270(r31)
-/* 805E9E30  4B D3 E5 FC */	b checkPass__12J3DFrameCtrlFf
+/* 805E9E30  4B D3 E5 FD */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9E34  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9E38  41 82 04 F4 */	beq lbl_805EA32C
 /* 805E9E3C  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -215,7 +215,7 @@ lbl_805E9E6C:
 /* 805E9E6C  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9E70  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9E74  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9E78  4B D3 E5 B4 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9E78  4B D3 E5 B5 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9E7C  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9E80  41 82 00 30 */	beq lbl_805E9EB0
 /* 805E9E84  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A2@ha */
@@ -233,7 +233,7 @@ lbl_805E9EB0:
 /* 805E9EB0  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9EB4  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9EB8  C0 3F 03 14 */	lfs f1, 0x314(r31)
-/* 805E9EBC  4B D3 E5 70 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9EBC  4B D3 E5 71 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9EC0  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9EC4  41 82 04 68 */	beq lbl_805EA32C
 /* 805E9EC8  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A3@ha */
@@ -252,7 +252,7 @@ lbl_805E9EF8:
 /* 805E9EF8  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9EFC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9F00  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9F04  4B D3 E5 28 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9F04  4B D3 E5 29 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9F08  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9F0C  41 82 00 30 */	beq lbl_805E9F3C
 /* 805E9F10  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A4@ha */
@@ -270,7 +270,7 @@ lbl_805E9F3C:
 /* 805E9F3C  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9F40  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9F44  C0 3F 03 18 */	lfs f1, 0x318(r31)
-/* 805E9F48  4B D3 E4 E4 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9F48  4B D3 E4 E5 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9F4C  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9F50  41 82 03 DC */	beq lbl_805EA32C
 /* 805E9F54  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A5@ha */
@@ -289,7 +289,7 @@ lbl_805E9F84:
 /* 805E9F84  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9F88  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9F8C  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805E9F90  4B D3 E4 9C */	b checkPass__12J3DFrameCtrlFf
+/* 805E9F90  4B D3 E4 9D */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9F94  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9F98  41 82 00 30 */	beq lbl_805E9FC8
 /* 805E9F9C  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A6@ha */
@@ -307,7 +307,7 @@ lbl_805E9FC8:
 /* 805E9FC8  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805E9FCC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805E9FD0  C0 3F 02 0C */	lfs f1, 0x20c(r31)
-/* 805E9FD4  4B D3 E4 58 */	b checkPass__12J3DFrameCtrlFf
+/* 805E9FD4  4B D3 E4 59 */	bl checkPass__12J3DFrameCtrlFf
 /* 805E9FD8  2C 03 00 00 */	cmpwi r3, 0
 /* 805E9FDC  41 82 03 50 */	beq lbl_805EA32C
 /* 805E9FE0  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A7@ha */
@@ -326,7 +326,7 @@ lbl_805EA010:
 /* 805EA010  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA014  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA018  C0 3F 02 D4 */	lfs f1, 0x2d4(r31)
-/* 805EA01C  4B D3 E4 10 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA01C  4B D3 E4 11 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA020  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA024  41 82 03 08 */	beq lbl_805EA32C
 /* 805EA028  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -345,7 +345,7 @@ lbl_805EA058:
 /* 805EA058  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA05C  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA060  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805EA064  4B D3 E3 C8 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA064  4B D3 E3 C9 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA068  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA06C  41 82 00 30 */	beq lbl_805EA09C
 /* 805EA070  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A9@ha */
@@ -363,7 +363,7 @@ lbl_805EA09C:
 /* 805EA09C  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA0A0  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA0A4  C0 3F 03 1C */	lfs f1, 0x31c(r31)
-/* 805EA0A8  4B D3 E3 84 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA0A8  4B D3 E3 85 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA0AC  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA0B0  41 82 00 34 */	beq lbl_805EA0E4
 /* 805EA0B4  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002B@ha */
@@ -382,7 +382,7 @@ lbl_805EA0E4:
 /* 805EA0E4  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA0E8  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA0EC  C0 3F 03 20 */	lfs f1, 0x320(r31)
-/* 805EA0F0  4B D3 E3 3C */	b checkPass__12J3DFrameCtrlFf
+/* 805EA0F0  4B D3 E3 3D */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA0F4  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA0F8  41 82 02 34 */	beq lbl_805EA32C
 /* 805EA0FC  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002C@ha */
@@ -401,7 +401,7 @@ lbl_805EA12C:
 /* 805EA12C  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA130  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA134  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805EA138  4B D3 E2 F4 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA138  4B D3 E2 F5 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA13C  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA140  41 82 01 EC */	beq lbl_805EA32C
 /* 805EA144  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704AB@ha */
@@ -419,7 +419,7 @@ lbl_805EA170:
 /* 805EA170  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA174  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA178  C0 3F 03 24 */	lfs f1, 0x324(r31)
-/* 805EA17C  4B D3 E2 B0 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA17C  4B D3 E2 B1 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA180  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA184  41 82 01 A8 */	beq lbl_805EA32C
 /* 805EA188  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704A0@ha */
@@ -438,7 +438,7 @@ lbl_805EA1B8:
 /* 805EA1B8  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA1BC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA1C0  C0 3F 02 0C */	lfs f1, 0x20c(r31)
-/* 805EA1C4  4B D3 E2 68 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA1C4  4B D3 E2 69 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA1C8  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA1CC  41 82 01 60 */	beq lbl_805EA32C
 /* 805EA1D0  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704AC@ha */
@@ -456,13 +456,13 @@ lbl_805EA1FC:
 /* 805EA1FC  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA200  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA204  C0 3F 02 E0 */	lfs f1, 0x2e0(r31)
-/* 805EA208  4B D3 E2 24 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA208  4B D3 E2 25 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA20C  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA210  40 82 00 1C */	bne lbl_805EA22C
 /* 805EA214  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA218  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA21C  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 805EA220  4B D3 E2 0C */	b checkPass__12J3DFrameCtrlFf
+/* 805EA220  4B D3 E2 0D */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA224  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA228  41 82 01 04 */	beq lbl_805EA32C
 lbl_805EA22C:
@@ -482,7 +482,7 @@ lbl_805EA25C:
 /* 805EA25C  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA260  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA264  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 805EA268  4B D3 E1 C4 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA268  4B D3 E1 C5 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA26C  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA270  41 82 00 30 */	beq lbl_805EA2A0
 /* 805EA274  3C 60 00 07 */	lis r3, 0x0007 /* 0x000704AA@ha */
@@ -500,7 +500,7 @@ lbl_805EA2A0:
 /* 805EA2A0  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA2A4  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA2A8  C0 3F 03 28 */	lfs f1, 0x328(r31)
-/* 805EA2AC  4B D3 E1 80 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA2AC  4B D3 E1 81 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA2B0  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA2B4  41 82 00 34 */	beq lbl_805EA2E8
 /* 805EA2B8  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002B@ha */
@@ -519,7 +519,7 @@ lbl_805EA2E8:
 /* 805EA2E8  80 7E 0E 30 */	lwz r3, 0xe30(r30)
 /* 805EA2EC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805EA2F0  C0 3F 03 2C */	lfs f1, 0x32c(r31)
-/* 805EA2F4  4B D3 E1 38 */	b checkPass__12J3DFrameCtrlFf
+/* 805EA2F4  4B D3 E1 39 */	bl checkPass__12J3DFrameCtrlFf
 /* 805EA2F8  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA2FC  41 82 00 30 */	beq lbl_805EA32C
 /* 805EA300  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002C@ha */

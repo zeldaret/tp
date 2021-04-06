@@ -3,14 +3,14 @@ lbl_80D3D69C:
 /* 80D3D6A0  7C 08 02 A6 */	mflr r0
 /* 80D3D6A4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D3D6A8  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D3D6AC  4B 62 4B 30 */	b _savegpr_29
+/* 80D3D6AC  4B 62 4B 31 */	bl _savegpr_29
 /* 80D3D6B0  7C BD 2B 78 */	mr r29, r5
 /* 80D3D6B4  7C 80 07 35 */	extsh. r0, r4
 /* 80D3D6B8  41 82 00 68 */	beq lbl_80D3D720
 /* 80D3D6BC  54 9F 04 3E */	clrlwi r31, r4, 0x10
 /* 80D3D6C0  7F DF E8 50 */	subf r30, r31, r29
 /* 80D3D6C4  7F C3 F3 78 */	mr r3, r30
-/* 80D3D6C8  4B 62 7A 08 */	b abs
+/* 80D3D6C8  4B 62 7A 09 */	bl abs
 /* 80D3D6CC  2C 03 00 04 */	cmpwi r3, 4
 /* 80D3D6D0  40 81 00 44 */	ble lbl_80D3D714
 /* 80D3D6D4  7F C0 16 70 */	srawi r0, r30, 2
@@ -40,7 +40,7 @@ lbl_80D3D720:
 /* 80D3D720  38 60 00 00 */	li r3, 0
 lbl_80D3D724:
 /* 80D3D724  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D3D728  4B 62 4B 00 */	b _restgpr_29
+/* 80D3D728  4B 62 4B 01 */	bl _restgpr_29
 /* 80D3D72C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D3D730  7C 08 03 A6 */	mtlr r0
 /* 80D3D734  38 21 00 20 */	addi r1, r1, 0x20

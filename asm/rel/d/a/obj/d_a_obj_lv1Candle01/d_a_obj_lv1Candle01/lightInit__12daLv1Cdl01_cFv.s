@@ -1,6 +1,6 @@
 lbl_80C570D8:
-/* 80C570D8  3C 80 80 C5 */	lis r4, mCcDObjInfo__12daLv1Cdl01_c@ha
-/* 80C570DC  38 84 78 5C */	addi r4, r4, mCcDObjInfo__12daLv1Cdl01_c@l
+/* 80C570D8  3C 80 80 C5 */	lis r4, mCcDObjInfo__12daLv1Cdl01_c@ha /* 0x80C5785C@ha */
+/* 80C570DC  38 84 78 5C */	addi r4, r4, mCcDObjInfo__12daLv1Cdl01_c@l /* 0x80C5785C@l */
 /* 80C570E0  C0 03 07 24 */	lfs f0, 0x724(r3)
 /* 80C570E4  D0 03 07 34 */	stfs f0, 0x734(r3)
 /* 80C570E8  C0 03 07 28 */	lfs f0, 0x728(r3)

@@ -8,8 +8,8 @@ lbl_8014C500:
 /* 8014C518  7C BA 2B 78 */	mr r26, r5
 /* 8014C51C  7C DB 33 78 */	mr r27, r6
 /* 8014C520  3B C0 00 00 */	li r30, 0
-/* 8014C524  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8014C528  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014C524  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014C528  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014C52C  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8014C530  4B ED 7E 55 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8014C534  7C 7F 1B 78 */	mr r31, r3

@@ -4,8 +4,8 @@ lbl_8011894C:
 /* 80118954  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80118958  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8011895C  7C 7F 1B 78 */	mr r31, r3
-/* 80118960  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80118964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80118960  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80118964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80118968  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 8011896C  54 80 04 3E */	clrlwi r0, r4, 0x10
 /* 80118970  28 00 00 01 */	cmplwi r0, 1
@@ -21,8 +21,8 @@ lbl_8011894C:
 /* 80118998  39 83 18 EC */	addi r12, r3, 0x18ec
 /* 8011899C  48 24 96 E9 */	bl __ptmf_scall
 /* 801189A0  60 00 00 00 */	nop 
-/* 801189A4  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha
-/* 801189A8  38 03 55 8C */	addi r0, r3, l_horseBaseAnime@l
+/* 801189A4  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha /* 0x8042558C@ha */
+/* 801189A8  38 03 55 8C */	addi r0, r3, l_horseBaseAnime@l /* 0x8042558C@l */
 /* 801189AC  90 1F 38 4C */	stw r0, 0x384c(r31)
 /* 801189B0  38 00 00 01 */	li r0, 1
 /* 801189B4  98 1F 2F AA */	stb r0, 0x2faa(r31)

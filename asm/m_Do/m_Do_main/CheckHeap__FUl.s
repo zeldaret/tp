@@ -9,8 +9,8 @@ lbl_8000578C:
 /* 800057A8  48 33 C7 59 */	bl OSCheckActiveThreads
 /* 800057AC  38 A0 00 00 */	li r5, 0
 /* 800057B0  57 64 30 32 */	slwi r4, r27, 6
-/* 800057B4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 800057B8  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l
+/* 800057B4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 800057B8  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 800057BC  7C 60 22 14 */	add r3, r0, r4
 /* 800057C0  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 800057C4  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
@@ -24,8 +24,8 @@ lbl_800057E0:
 /* 800057E0  54 BC 06 3E */	clrlwi r28, r5, 0x18
 /* 800057E4  3B 60 00 00 */	li r27, 0
 /* 800057E8  3B E0 00 00 */	li r31, 0
-/* 800057EC  3C 60 80 3A */	lis r3, HeapCheckTable@ha
-/* 800057F0  3B C3 2E F4 */	addi r30, r3, HeapCheckTable@l
+/* 800057EC  3C 60 80 3A */	lis r3, HeapCheckTable@ha /* 0x803A2EF4@ha */
+/* 800057F0  3B C3 2E F4 */	addi r30, r3, HeapCheckTable@l /* 0x803A2EF4@l */
 lbl_800057F4:
 /* 800057F4  7C 7E F8 2E */	lwzx r3, r30, r31
 /* 800057F8  4B FF FF 31 */	bl CheckHeap1__9HeapCheckFv

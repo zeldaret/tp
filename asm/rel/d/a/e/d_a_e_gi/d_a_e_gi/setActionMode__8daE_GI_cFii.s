@@ -1,6 +1,6 @@
 lbl_806CD90C:
-/* 806CD90C  3C C0 80 6D */	lis r6, lit_4056@ha
-/* 806CD910  C0 06 0E B4 */	lfs f0, lit_4056@l(r6)
+/* 806CD90C  3C C0 80 6D */	lis r6, lit_4056@ha /* 0x806D0EB4@ha */
+/* 806CD910  C0 06 0E B4 */	lfs f0, lit_4056@l(r6)  /* 0x806D0EB4@l */
 /* 806CD914  D0 03 06 64 */	stfs f0, 0x664(r3)
 /* 806CD918  90 83 06 70 */	stw r4, 0x670(r3)
 /* 806CD91C  90 A3 06 74 */	stw r5, 0x674(r3)

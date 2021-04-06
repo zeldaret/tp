@@ -37,32 +37,32 @@ lbl_80289BC8:
 /* 80289BE8  41 82 00 58 */	beq lbl_80289C40
 /* 80289BEC  48 00 00 68 */	b lbl_80289C54
 lbl_80289BF0:
-/* 80289BF0  3C 60 80 29 */	lis r3, func_80289CE4@ha
-/* 80289BF4  38 03 9C E4 */	addi r0, r3, func_80289CE4@l
+/* 80289BF0  3C 60 80 29 */	lis r3, func_80289CE4@ha /* 0x80289CE4@ha */
+/* 80289BF4  38 03 9C E4 */	addi r0, r3, func_80289CE4@l /* 0x80289CE4@l */
 /* 80289BF8  7C 1C 03 78 */	mr r28, r0
 /* 80289BFC  38 C0 00 02 */	li r6, 2
 /* 80289C00  48 00 00 5C */	b lbl_80289C5C
 lbl_80289C04:
-/* 80289C04  3C 60 80 29 */	lis r3, func_80289DE8@ha
-/* 80289C08  38 03 9D E8 */	addi r0, r3, func_80289DE8@l
+/* 80289C04  3C 60 80 29 */	lis r3, func_80289DE8@ha /* 0x80289DE8@ha */
+/* 80289C08  38 03 9D E8 */	addi r0, r3, func_80289DE8@l /* 0x80289DE8@l */
 /* 80289C0C  7C 1C 03 78 */	mr r28, r0
 /* 80289C10  38 C0 00 03 */	li r6, 3
 /* 80289C14  48 00 00 48 */	b lbl_80289C5C
 lbl_80289C18:
-/* 80289C18  3C 60 80 29 */	lis r3, func_80289EEC@ha
-/* 80289C1C  38 03 9E EC */	addi r0, r3, func_80289EEC@l
+/* 80289C18  3C 60 80 29 */	lis r3, func_80289EEC@ha /* 0x80289EEC@ha */
+/* 80289C1C  38 03 9E EC */	addi r0, r3, func_80289EEC@l /* 0x80289EEC@l */
 /* 80289C20  7C 1C 03 78 */	mr r28, r0
 /* 80289C24  38 C0 00 04 */	li r6, 4
 /* 80289C28  48 00 00 34 */	b lbl_80289C5C
 lbl_80289C2C:
-/* 80289C2C  3C 60 80 29 */	lis r3, func_80289FF0@ha
-/* 80289C30  38 03 9F F0 */	addi r0, r3, func_80289FF0@l
+/* 80289C2C  3C 60 80 29 */	lis r3, func_80289FF0@ha /* 0x80289FF0@ha */
+/* 80289C30  38 03 9F F0 */	addi r0, r3, func_80289FF0@l /* 0x80289FF0@l */
 /* 80289C34  7C 1C 03 78 */	mr r28, r0
 /* 80289C38  38 C0 00 05 */	li r6, 5
 /* 80289C3C  48 00 00 20 */	b lbl_80289C5C
 lbl_80289C40:
-/* 80289C40  3C 60 80 29 */	lis r3, func_8028A0F4@ha
-/* 80289C44  38 03 A0 F4 */	addi r0, r3, func_8028A0F4@l
+/* 80289C40  3C 60 80 29 */	lis r3, func_8028A0F4@ha /* 0x8028A0F4@ha */
+/* 80289C44  38 03 A0 F4 */	addi r0, r3, func_8028A0F4@l /* 0x8028A0F4@l */
 /* 80289C48  7C 1C 03 78 */	mr r28, r0
 /* 80289C4C  38 C0 00 06 */	li r6, 6
 /* 80289C50  48 00 00 0C */	b lbl_80289C5C

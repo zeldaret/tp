@@ -6,7 +6,7 @@ lbl_80A1A05C:
 /* 80A1A06C  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 80A1A070  FF E0 08 90 */	fmr f31, f1
 /* 80A1A074  FC 20 10 90 */	fmr f1, f2
-/* 80A1A078  4B 84 D8 DC */	b cM_rndF__Ff
+/* 80A1A078  4B 84 D8 DD */	bl cM_rndF__Ff
 /* 80A1A07C  EC 3F 08 2A */	fadds f1, f31, f1
 /* 80A1A080  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 80A1A084  CB E1 00 10 */	lfd f31, 0x10(r1)

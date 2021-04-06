@@ -9,15 +9,15 @@ lbl_80CA43D4:
 /* 80CA43F0  DB A1 00 40 */	stfd f29, 0x40(r1)
 /* 80CA43F4  F3 A1 00 48 */	psq_st f29, 72(r1), 0, 0 /* qr0 */
 /* 80CA43F8  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CA43FC  4B 6B DD CC */	b _savegpr_24
+/* 80CA43FC  4B 6B DD CD */	bl _savegpr_24
 /* 80CA4400  7C 7E 1B 78 */	mr r30, r3
-/* 80CA4404  3C 60 80 CA */	lis r3, m__19daObj_Nougu_Param_c@ha
-/* 80CA4408  3B E3 49 B8 */	addi r31, r3, m__19daObj_Nougu_Param_c@l
+/* 80CA4404  3C 60 80 CA */	lis r3, m__19daObj_Nougu_Param_c@ha /* 0x80CA49B8@ha */
+/* 80CA4408  3B E3 49 B8 */	addi r31, r3, m__19daObj_Nougu_Param_c@l /* 0x80CA49B8@l */
 /* 80CA440C  38 7E 05 78 */	addi r3, r30, 0x578
-/* 80CA4410  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CA4414  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CA4410  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CA4414  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CA4418  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80CA441C  4B 3D 26 90 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80CA441C  4B 3D 26 91 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80CA4420  80 1E 06 54 */	lwz r0, 0x654(r30)
 /* 80CA4424  90 1E 07 CC */	stw r0, 0x7cc(r30)
 /* 80CA4428  80 1E 06 58 */	lwz r0, 0x658(r30)
@@ -62,12 +62,12 @@ lbl_80CA44B8:
 /* 80CA44C0  C3 BF 00 2C */	lfs f29, 0x2c(r31)
 /* 80CA44C4  3B 00 00 00 */	li r24, 0
 /* 80CA44C8  3B A0 00 00 */	li r29, 0
-/* 80CA44CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CA44D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CA44CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CA44D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CA44D4  3B 63 23 3C */	addi r27, r3, 0x233c
 /* 80CA44D8  C3 DF 00 30 */	lfs f30, 0x30(r31)
-/* 80CA44DC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80CA44E0  3B 83 D4 70 */	addi r28, r3, now__14mDoMtx_stack_c@l
+/* 80CA44DC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80CA44E0  3B 83 D4 70 */	addi r28, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80CA44E4  C3 FF 00 34 */	lfs f31, 0x34(r31)
 lbl_80CA44E8:
 /* 80CA44E8  D3 C1 00 08 */	stfs f30, 8(r1)
@@ -75,27 +75,27 @@ lbl_80CA44E8:
 /* 80CA44F0  D3 A1 00 10 */	stfs f29, 0x10(r1)
 /* 80CA44F4  7F 83 E3 78 */	mr r3, r28
 /* 80CA44F8  A8 9E 04 E6 */	lha r4, 0x4e6(r30)
-/* 80CA44FC  4B 36 7E E0 */	b mDoMtx_YrotS__FPA4_fs
+/* 80CA44FC  4B 36 7E E1 */	bl mDoMtx_YrotS__FPA4_fs
 /* 80CA4500  7F 83 E3 78 */	mr r3, r28
 /* 80CA4504  38 81 00 08 */	addi r4, r1, 8
 /* 80CA4508  7C 85 23 78 */	mr r5, r4
-/* 80CA450C  4B 6A 28 60 */	b PSMTXMultVec
+/* 80CA450C  4B 6A 28 61 */	bl PSMTXMultVec
 /* 80CA4510  38 61 00 08 */	addi r3, r1, 8
 /* 80CA4514  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 80CA4518  7C 65 1B 78 */	mr r5, r3
-/* 80CA451C  4B 6A 2B 74 */	b PSVECAdd
+/* 80CA451C  4B 6A 2B 75 */	bl PSVECAdd
 /* 80CA4520  7F 3E EA 14 */	add r25, r30, r29
 /* 80CA4524  3B 59 09 2C */	addi r26, r25, 0x92c
 /* 80CA4528  7F 43 D3 78 */	mr r3, r26
 /* 80CA452C  38 81 00 08 */	addi r4, r1, 8
-/* 80CA4530  4B 5C B1 18 */	b SetC__8cM3dGSphFRC4cXyz
+/* 80CA4530  4B 5C B1 19 */	bl SetC__8cM3dGSphFRC4cXyz
 /* 80CA4534  7F 43 D3 78 */	mr r3, r26
 /* 80CA4538  C0 3F 00 34 */	lfs f1, 0x34(r31)
-/* 80CA453C  4B 5C B1 CC */	b SetR__8cM3dGSphFf
+/* 80CA453C  4B 5C B1 CD */	bl SetR__8cM3dGSphFf
 /* 80CA4540  7F 63 DB 78 */	mr r3, r27
 /* 80CA4544  3B 39 08 08 */	addi r25, r25, 0x808
 /* 80CA4548  7F 24 CB 78 */	mr r4, r25
-/* 80CA454C  4B 5C 06 5C */	b Set__4cCcSFP8cCcD_Obj
+/* 80CA454C  4B 5C 06 5D */	bl Set__4cCcSFP8cCcD_Obj
 /* 80CA4550  7F 23 CB 78 */	mr r3, r25
 /* 80CA4554  81 99 00 3C */	lwz r12, 0x3c(r25)
 /* 80CA4558  81 8C 00 28 */	lwz r12, 0x28(r12)
@@ -132,7 +132,7 @@ lbl_80CA44E8:
 /* 80CA45D4  E3 A1 00 48 */	psq_l f29, 72(r1), 0, 0 /* qr0 */
 /* 80CA45D8  CB A1 00 40 */	lfd f29, 0x40(r1)
 /* 80CA45DC  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CA45E0  4B 6B DC 34 */	b _restgpr_24
+/* 80CA45E0  4B 6B DC 35 */	bl _restgpr_24
 /* 80CA45E4  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80CA45E8  7C 08 03 A6 */	mtlr r0
 /* 80CA45EC  38 21 00 70 */	addi r1, r1, 0x70

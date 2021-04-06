@@ -20,11 +20,11 @@ lbl_80186A80:
 /* 80186AC8  88 1F 02 65 */	lbz r0, 0x265(r31)
 /* 80186ACC  54 00 10 3A */	slwi r0, r0, 2
 /* 80186AD0  7F E3 FB 78 */	mr r3, r31
-/* 80186AD4  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha
-/* 80186AD8  38 84 A8 78 */	addi r4, r4, SelOpenEndFrameTbl@l
+/* 80186AD4  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha /* 0x803BA878@ha */
+/* 80186AD8  38 84 A8 78 */	addi r4, r4, SelOpenEndFrameTbl@l /* 0x803BA878@l */
 /* 80186ADC  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80186AE0  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha
-/* 80186AE4  38 A5 A8 6C */	addi r5, r5, SelOpenStartFrameTbl@l
+/* 80186AE0  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha /* 0x803BA86C@ha */
+/* 80186AE4  38 A5 A8 6C */	addi r5, r5, SelOpenStartFrameTbl@l /* 0x803BA86C@l */
 /* 80186AE8  7C A5 00 2E */	lwzx r5, r5, r0
 /* 80186AEC  4B FF EE A9 */	bl selectDataMoveAnmInitSet__14dFile_select_cFii
 /* 80186AF0  7F E3 FB 78 */	mr r3, r31

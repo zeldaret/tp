@@ -3,17 +3,15 @@
 #
 
 M755_TARGET := $(BUILD_DIR)/rel/d/a/d_a_tboxSw.plf
+M755_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_tboxSw.lcf
+M755_MAP := $(BUILD_DIR)/rel/d/a/d_a_tboxSw.map
 
 M755_CPP_FILES := \
-	rel/d/a/d_a_tboxSw/executor.cpp \
-	rel/d/a/d_a_tboxSw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_tboxSw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_tboxSw/d_a_tboxSw.cpp \
 
 M755_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_tboxSw/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tboxSw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tboxSw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_tboxSw/d_a_tboxSw.o \
 
 M755_LIBS := \
@@ -29,15 +27,21 @@ M755_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map755.map\
+	-m _prolog \
+	-lcf $(M755_LDSCRIPT) \
+	-unused -map $(M755_MAP) \
+	-w off \
 
 $(M755_TARGET): $(M755_O_FILES) $(M755_LIBS)
+	@echo [755] creating $(M755_TARGET)
 	@echo $(M755_LIBS) $(M755_O_FILES) > build/M755_ofiles
-	$(LD) -opt_partial $(M755_LDFLAGS) -o $(M755_TARGET) @build/M755_ofiles
+	@python3 tools/lcf.py rel 755 --output $(M755_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M755_LDFLAGS) -o $(M755_TARGET) @build/M755_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_tboxSw/%.o: rel/d/a/d_a_tboxSw/%.cpp
+	@echo [755] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M755_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M755_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

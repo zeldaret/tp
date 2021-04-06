@@ -7,25 +7,25 @@ lbl_80B0FD18:
 /* 80B0FD2C  80 03 0B D8 */	lwz r0, 0xbd8(r3)
 /* 80B0FD30  28 00 00 00 */	cmplwi r0, 0
 /* 80B0FD34  41 82 00 98 */	beq lbl_80B0FDCC
-/* 80B0FD38  3C 80 80 B1 */	lis r4, l_arcName@ha
-/* 80B0FD3C  38 84 0A B8 */	addi r4, r4, l_arcName@l
+/* 80B0FD38  3C 80 80 B1 */	lis r4, l_arcName@ha /* 0x80B10AB8@ha */
+/* 80B0FD3C  38 84 0A B8 */	addi r4, r4, l_arcName@l /* 0x80B10AB8@l */
 /* 80B0FD40  80 84 00 00 */	lwz r4, 0(r4)
-/* 80B0FD44  3C A0 80 B1 */	lis r5, l_btkGetParamList@ha
-/* 80B0FD48  38 A5 0A A0 */	addi r5, r5, l_btkGetParamList@l
+/* 80B0FD44  3C A0 80 B1 */	lis r5, l_btkGetParamList@ha /* 0x80B10AA0@ha */
+/* 80B0FD48  38 A5 0A A0 */	addi r5, r5, l_btkGetParamList@l /* 0x80B10AA0@l */
 /* 80B0FD4C  80 A5 00 00 */	lwz r5, 0(r5)
-/* 80B0FD50  4B 64 2E 54 */	b getTexSRTKeyAnmP__8daNpcF_cFPci
+/* 80B0FD50  4B 64 2E 55 */	bl getTexSRTKeyAnmP__8daNpcF_cFPci
 /* 80B0FD54  80 1F 05 B4 */	lwz r0, 0x5b4(r31)
 /* 80B0FD58  7C 03 00 40 */	cmplw r3, r0
 /* 80B0FD5C  40 82 00 64 */	bne lbl_80B0FDC0
 /* 80B0FD60  A8 1F 08 FE */	lha r0, 0x8fe(r31)
 /* 80B0FD64  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80B0FD68  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80B0FD6C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80B0FD68  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80B0FD6C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80B0FD70  7C 04 04 2E */	lfsx f0, r4, r0
-/* 80B0FD74  3C 60 80 B1 */	lis r3, lit_4891@ha
-/* 80B0FD78  C0 43 09 D8 */	lfs f2, lit_4891@l(r3)
-/* 80B0FD7C  3C 60 80 B1 */	lis r3, lit_4892@ha
-/* 80B0FD80  C0 23 09 DC */	lfs f1, lit_4892@l(r3)
+/* 80B0FD74  3C 60 80 B1 */	lis r3, lit_4891@ha /* 0x80B109D8@ha */
+/* 80B0FD78  C0 43 09 D8 */	lfs f2, lit_4891@l(r3)  /* 0x80B109D8@l */
+/* 80B0FD7C  3C 60 80 B1 */	lis r3, lit_4892@ha /* 0x80B109DC@ha */
+/* 80B0FD80  C0 23 09 DC */	lfs f1, lit_4892@l(r3)  /* 0x80B109DC@l */
 /* 80B0FD84  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80B0FD88  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80B0FD8C  80 7F 0B D8 */	lwz r3, 0xbd8(r31)

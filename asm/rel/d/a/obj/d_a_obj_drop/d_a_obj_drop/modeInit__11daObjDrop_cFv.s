@@ -9,12 +9,12 @@ lbl_80BE08A0:
 /* 80BE08BC  54 1F C6 3E */	rlwinm r31, r0, 0x18, 0x18, 0x1f
 /* 80BE08C0  28 1F 00 FF */	cmplwi r31, 0xff
 /* 80BE08C4  41 82 00 24 */	beq lbl_80BE08E8
-/* 80BE08C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE08CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE08C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE08CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE08D0  7F E4 FB 78 */	mr r4, r31
 /* 80BE08D4  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BE08D8  7C 05 07 74 */	extsb r5, r0
-/* 80BE08DC  4B 45 4A 84 */	b isSwitch__10dSv_info_cCFii
+/* 80BE08DC  4B 45 4A 85 */	bl isSwitch__10dSv_info_cCFii
 /* 80BE08E0  2C 03 00 00 */	cmpwi r3, 0
 /* 80BE08E4  41 82 00 48 */	beq lbl_80BE092C
 lbl_80BE08E8:
@@ -25,8 +25,8 @@ lbl_80BE08E8:
 /* 80BE08F8  38 00 00 03 */	li r0, 3
 /* 80BE08FC  98 1E 06 B7 */	stb r0, 0x6b7(r30)
 lbl_80BE0900:
-/* 80BE0900  3C 60 80 BE */	lis r3, lit_4183@ha
-/* 80BE0904  C0 23 20 08 */	lfs f1, lit_4183@l(r3)
+/* 80BE0900  3C 60 80 BE */	lis r3, lit_4183@ha /* 0x80BE2008@ha */
+/* 80BE0904  C0 23 20 08 */	lfs f1, lit_4183@l(r3)  /* 0x80BE2008@l */
 /* 80BE0908  C0 1E 04 D4 */	lfs f0, 0x4d4(r30)
 /* 80BE090C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80BE0910  D0 1E 04 AC */	stfs f0, 0x4ac(r30)
@@ -39,10 +39,10 @@ lbl_80BE0900:
 lbl_80BE092C:
 /* 80BE092C  38 00 00 00 */	li r0, 0
 /* 80BE0930  98 1E 06 B2 */	stb r0, 0x6b2(r30)
-/* 80BE0934  3C 60 80 BE */	lis r3, searchParentSub__FPvPv@ha
-/* 80BE0938  38 63 FC D8 */	addi r3, r3, searchParentSub__FPvPv@l
+/* 80BE0934  3C 60 80 BE */	lis r3, searchParentSub__FPvPv@ha /* 0x80BDFCD8@ha */
+/* 80BE0938  38 63 FC D8 */	addi r3, r3, searchParentSub__FPvPv@l /* 0x80BDFCD8@l */
 /* 80BE093C  7F C4 F3 78 */	mr r4, r30
-/* 80BE0940  4B 44 09 F8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80BE0940  4B 44 09 F9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80BE0944  28 03 00 00 */	cmplwi r3, 0
 /* 80BE0948  41 82 00 28 */	beq lbl_80BE0970
 /* 80BE094C  41 82 00 0C */	beq lbl_80BE0958

@@ -5,12 +5,12 @@ lbl_808607F8:
 /* 80860804  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80860808  93 C1 00 08 */	stw r30, 8(r1)
 /* 8086080C  7C 7E 1B 78 */	mr r30, r3
-/* 80860810  3C 60 80 86 */	lis r3, lit_3823@ha
-/* 80860814  3B E3 0B 40 */	addi r31, r3, lit_3823@l
+/* 80860810  3C 60 80 86 */	lis r3, lit_3823@ha /* 0x80860B40@ha */
+/* 80860814  3B E3 0B 40 */	addi r31, r3, lit_3823@l /* 0x80860B40@l */
 /* 80860818  88 1E 05 8C */	lbz r0, 0x58c(r30)
 /* 8086081C  28 00 00 00 */	cmplwi r0, 0
 /* 80860820  40 82 00 48 */	bne lbl_80860868
-/* 80860824  4B 93 F2 94 */	b dKy_daynight_check__Fv
+/* 80860824  4B 93 F2 95 */	bl dKy_daynight_check__Fv
 /* 80860828  2C 03 00 00 */	cmpwi r3, 0
 /* 8086082C  40 82 00 20 */	bne lbl_8086084C
 /* 80860830  38 7E 05 90 */	addi r3, r30, 0x590
@@ -18,7 +18,7 @@ lbl_808607F8:
 /* 80860838  C0 5F 00 1C */	lfs f2, 0x1c(r31)
 /* 8086083C  C0 7F 00 20 */	lfs f3, 0x20(r31)
 /* 80860840  C0 9F 00 24 */	lfs f4, 0x24(r31)
-/* 80860844  4B A0 F1 38 */	b cLib_addCalc__FPfffff
+/* 80860844  4B A0 F1 39 */	bl cLib_addCalc__FPfffff
 /* 80860848  48 00 00 4C */	b lbl_80860894
 lbl_8086084C:
 /* 8086084C  38 7E 05 90 */	addi r3, r30, 0x590
@@ -26,11 +26,11 @@ lbl_8086084C:
 /* 80860854  C0 5F 00 1C */	lfs f2, 0x1c(r31)
 /* 80860858  C0 7F 00 20 */	lfs f3, 0x20(r31)
 /* 8086085C  C0 9F 00 24 */	lfs f4, 0x24(r31)
-/* 80860860  4B A0 F1 1C */	b cLib_addCalc__FPfffff
+/* 80860860  4B A0 F1 1D */	bl cLib_addCalc__FPfffff
 /* 80860864  48 00 00 30 */	b lbl_80860894
 lbl_80860868:
-/* 80860868  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8086086C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80860868  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8086086C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80860870  88 03 12 C2 */	lbz r0, 0x12c2(r3)
 /* 80860874  28 00 00 0B */	cmplwi r0, 0xb
 /* 80860878  40 82 00 1C */	bne lbl_80860894
@@ -39,7 +39,7 @@ lbl_80860868:
 /* 80860884  C0 5F 00 1C */	lfs f2, 0x1c(r31)
 /* 80860888  C0 7F 00 20 */	lfs f3, 0x20(r31)
 /* 8086088C  C0 9F 00 24 */	lfs f4, 0x24(r31)
-/* 80860890  4B A0 F0 EC */	b cLib_addCalc__FPfffff
+/* 80860890  4B A0 F0 ED */	bl cLib_addCalc__FPfffff
 lbl_80860894:
 /* 80860894  38 60 00 01 */	li r3, 1
 /* 80860898  83 E1 00 0C */	lwz r31, 0xc(r1)

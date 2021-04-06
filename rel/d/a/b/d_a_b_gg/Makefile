@@ -3,19 +3,20 @@
 #
 
 M143_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_gg.plf
+M143_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_gg.lcf
+M143_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_gg.map
 
 M143_CPP_FILES := \
-	rel/d/a/b/d_a_b_gg/executor.cpp \
-	rel/d/a/b/d_a_b_gg/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/b/d_a_b_gg/d_a_b_gg.cpp \
 
 M143_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_gg/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_gg/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_gg/d_a_b_gg.o \
 
 M143_LIBS := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_gg/libRuntime.PPCEABI.H.a \
 
 M143_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M143_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map143.map\
+	-m _prolog \
+	-lcf $(M143_LDSCRIPT) \
+	-unused -map $(M143_MAP) \
+	-w off \
 
 $(M143_TARGET): $(M143_O_FILES) $(M143_LIBS)
+	@echo [143] creating $(M143_TARGET)
 	@echo $(M143_LIBS) $(M143_O_FILES) > build/M143_ofiles
-	$(LD) -opt_partial $(M143_LDFLAGS) -o $(M143_TARGET) @build/M143_ofiles
+	@python3 tools/lcf.py rel 143 --output $(M143_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M143_LDFLAGS) -o $(M143_TARGET) @build/M143_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_gg/%.o: rel/d/a/b/d_a_b_gg/%.cpp
+	@echo [143] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M143_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M143_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/b/d_a_b_gg/libs/Runtime.PPCEABI.H/Makefile
 

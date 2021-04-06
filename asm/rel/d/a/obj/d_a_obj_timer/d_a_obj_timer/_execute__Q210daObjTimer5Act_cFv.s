@@ -5,10 +5,10 @@ lbl_804854BC:
 /* 804854C8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804854CC  93 C1 00 08 */	stw r30, 8(r1)
 /* 804854D0  7C 7E 1B 78 */	mr r30, r3
-/* 804854D4  3C 60 80 48 */	lis r3, cNullVec__6Z2Calc@ha
-/* 804854D8  3B E3 56 48 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 804854DC  3C 60 80 48 */	lis r3, data_804856E8@ha
-/* 804854E0  38 A3 56 E8 */	addi r5, r3, data_804856E8@l
+/* 804854D4  3C 60 80 48 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80485648@ha */
+/* 804854D8  3B E3 56 48 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80485648@l */
+/* 804854DC  3C 60 80 48 */	lis r3, data_804856E8@ha /* 0x804856E8@ha */
+/* 804854E0  38 A3 56 E8 */	addi r5, r3, data_804856E8@l /* 0x804856E8@l */
 /* 804854E4  88 05 00 00 */	lbz r0, 0(r5)
 /* 804854E8  7C 00 07 75 */	extsb. r0, r0
 /* 804854EC  40 82 00 40 */	bne lbl_8048552C
@@ -33,15 +33,15 @@ lbl_8048552C:
 /* 80485534  38 A0 00 08 */	li r5, 8
 /* 80485538  48 00 00 E5 */	bl func_8048561C
 /* 8048553C  7C 64 1B 78 */	mr r4, r3
-/* 80485540  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80485544  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80485540  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80485544  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80485548  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 8048554C  7C 05 07 74 */	extsb r5, r0
-/* 80485550  4B BA FE 10 */	b isSwitch__10dSv_info_cCFii
+/* 80485550  4B BA FE 11 */	bl isSwitch__10dSv_info_cCFii
 /* 80485554  2C 03 00 00 */	cmpwi r3, 0
 /* 80485558  41 82 00 14 */	beq lbl_8048556C
 /* 8048555C  7F C3 F3 78 */	mr r3, r30
-/* 80485560  4B B9 47 1C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80485560  4B B9 47 1D */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80485564  38 60 00 01 */	li r3, 1
 /* 80485568  48 00 00 24 */	b lbl_8048558C
 lbl_8048556C:
@@ -50,7 +50,7 @@ lbl_8048556C:
 /* 80485574  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80485578  39 9F 00 38 */	addi r12, r31, 0x38
 /* 8048557C  7D 8C 02 14 */	add r12, r12, r0
-/* 80485580  4B ED CB 04 */	b __ptmf_scall
+/* 80485580  4B ED CB 05 */	bl __ptmf_scall
 /* 80485584  60 00 00 00 */	nop 
 /* 80485588  38 60 00 01 */	li r3, 1
 lbl_8048558C:

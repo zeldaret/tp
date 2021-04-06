@@ -2,10 +2,10 @@ lbl_80CB9464:
 /* 80CB9464  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80CB9468  7C 08 02 A6 */	mflr r0
 /* 80CB946C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80CB9470  3C 80 80 CC */	lis r4, cNullVec__6Z2Calc@ha
-/* 80CB9474  38 E4 9A CC */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 80CB9478  3C 80 80 CC */	lis r4, data_80CB9C0C@ha
-/* 80CB947C  38 C4 9C 0C */	addi r6, r4, data_80CB9C0C@l
+/* 80CB9470  3C 80 80 CC */	lis r4, cNullVec__6Z2Calc@ha /* 0x80CB9ACC@ha */
+/* 80CB9474  38 E4 9A CC */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x80CB9ACC@l */
+/* 80CB9478  3C 80 80 CC */	lis r4, data_80CB9C0C@ha /* 0x80CB9C0C@ha */
+/* 80CB947C  38 C4 9C 0C */	addi r6, r4, data_80CB9C0C@l /* 0x80CB9C0C@l */
 /* 80CB9480  88 06 00 00 */	lbz r0, 0(r6)
 /* 80CB9484  7C 00 07 75 */	extsb. r0, r0
 /* 80CB9488  40 82 00 70 */	bne lbl_80CB94F8
@@ -41,7 +41,7 @@ lbl_80CB94F8:
 /* 80CB94FC  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80CB9500  39 87 00 50 */	addi r12, r7, 0x50
 /* 80CB9504  7D 8C 02 14 */	add r12, r12, r0
-/* 80CB9508  4B 6A 8B 7C */	b __ptmf_scall
+/* 80CB9508  4B 6A 8B 7D */	bl __ptmf_scall
 /* 80CB950C  60 00 00 00 */	nop 
 /* 80CB9510  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80CB9514  7C 08 03 A6 */	mtlr r0

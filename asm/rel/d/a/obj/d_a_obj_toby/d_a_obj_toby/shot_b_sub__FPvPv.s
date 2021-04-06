@@ -4,13 +4,13 @@ lbl_80D13A38:
 /* 80D13A40  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D13A44  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D13A48  7C 7F 1B 78 */	mr r31, r3
-/* 80D13A4C  4B 30 52 94 */	b fopAc_IsActor__FPv
+/* 80D13A4C  4B 30 52 95 */	bl fopAc_IsActor__FPv
 /* 80D13A50  2C 03 00 00 */	cmpwi r3, 0
 /* 80D13A54  41 82 00 50 */	beq lbl_80D13AA4
 /* 80D13A58  A8 1F 00 08 */	lha r0, 8(r31)
 /* 80D13A5C  2C 00 00 FE */	cmpwi r0, 0xfe
 /* 80D13A60  40 82 00 24 */	bne lbl_80D13A84
-/* 80D13A64  4B 44 BE 38 */	b checkBoomerangCharge__9daPy_py_cFv
+/* 80D13A64  4B 44 BE 39 */	bl checkBoomerangCharge__9daPy_py_cFv
 /* 80D13A68  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D13A6C  41 82 00 18 */	beq lbl_80D13A84
 /* 80D13A70  80 1F 00 B0 */	lwz r0, 0xb0(r31)

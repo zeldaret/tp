@@ -3,7 +3,7 @@ lbl_80D4ECCC:
 /* 80D4ECD0  7C 08 02 A6 */	mflr r0
 /* 80D4ECD4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80D4ECD8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80D4ECDC  4B 61 34 FC */	b _savegpr_28
+/* 80D4ECDC  4B 61 34 FD */	bl _savegpr_28
 /* 80D4ECE0  7C 7C 1B 78 */	mr r28, r3
 /* 80D4ECE4  3B A0 00 00 */	li r29, 0
 /* 80D4ECE8  3B E0 00 00 */	li r31, 0
@@ -15,10 +15,10 @@ lbl_80D4ECF0:
 /* 80D4ECFC  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80D4ED00  41 82 00 24 */	beq lbl_80D4ED24
 /* 80D4ED04  90 61 00 08 */	stw r3, 8(r1)
-/* 80D4ED08  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80D4ED0C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80D4ED08  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80D4ED0C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80D4ED10  38 81 00 08 */	addi r4, r1, 8
-/* 80D4ED14  4B 2C AA E4 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80D4ED14  4B 2C AA E5 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80D4ED18  38 81 00 0C */	addi r4, r1, 0xc
 /* 80D4ED1C  7C 64 F9 2E */	stwx r3, r4, r31
 /* 80D4ED20  48 00 00 10 */	b lbl_80D4ED30
@@ -44,7 +44,7 @@ lbl_80D4ED54:
 /* 80D4ED64  38 60 00 00 */	li r3, 0
 lbl_80D4ED68:
 /* 80D4ED68  39 61 00 30 */	addi r11, r1, 0x30
-/* 80D4ED6C  4B 61 34 B8 */	b _restgpr_28
+/* 80D4ED6C  4B 61 34 B9 */	bl _restgpr_28
 /* 80D4ED70  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80D4ED74  7C 08 03 A6 */	mtlr r0
 /* 80D4ED78  38 21 00 30 */	addi r1, r1, 0x30

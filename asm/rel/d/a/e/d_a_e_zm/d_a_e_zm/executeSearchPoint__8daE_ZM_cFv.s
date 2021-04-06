@@ -9,10 +9,10 @@ lbl_8083033C:
 /* 80830358  40 82 00 2C */	bne lbl_80830384
 /* 8083035C  38 00 00 00 */	li r0, 0
 /* 80830360  98 1F 06 E5 */	stb r0, 0x6e5(r31)
-/* 80830364  3C 60 80 83 */	lis r3, s_PointSearch__FPvPv@ha
-/* 80830368  38 63 02 88 */	addi r3, r3, s_PointSearch__FPvPv@l
+/* 80830364  3C 60 80 83 */	lis r3, s_PointSearch__FPvPv@ha /* 0x80830288@ha */
+/* 80830368  38 63 02 88 */	addi r3, r3, s_PointSearch__FPvPv@l /* 0x80830288@l */
 /* 8083036C  7F E4 FB 78 */	mr r4, r31
-/* 80830370  4B 7F 0F C8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80830370  4B 7F 0F C9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80830374  7F E3 FB 78 */	mr r3, r31
 /* 80830378  38 80 00 01 */	li r4, 1
 /* 8083037C  38 A0 00 00 */	li r5, 0

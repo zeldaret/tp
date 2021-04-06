@@ -7,12 +7,12 @@ lbl_80C26A20:
 /* 80C26A34  DB C1 00 30 */	stfd f30, 0x30(r1)
 /* 80C26A38  F3 C1 00 38 */	psq_st f30, 56(r1), 0, 0 /* qr0 */
 /* 80C26A3C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C26A40  4B 73 B7 90 */	b _savegpr_26
+/* 80C26A40  4B 73 B7 91 */	bl _savegpr_26
 /* 80C26A44  7C 7C 1B 78 */	mr r28, r3
-/* 80C26A48  3C 60 80 C2 */	lis r3, lit_3668@ha
-/* 80C26A4C  3B E3 74 F0 */	addi r31, r3, lit_3668@l
-/* 80C26A50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C26A54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C26A48  3C 60 80 C2 */	lis r3, lit_3668@ha /* 0x80C274F0@ha */
+/* 80C26A4C  3B E3 74 F0 */	addi r31, r3, lit_3668@l /* 0x80C274F0@l */
+/* 80C26A50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C26A54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C26A58  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 80C26A5C  3B 5E 04 D0 */	addi r26, r30, 0x4d0
 /* 80C26A60  3B A0 00 00 */	li r29, 0
@@ -20,11 +20,11 @@ lbl_80C26A20:
 /* 80C26A68  98 1C 05 D6 */	stb r0, 0x5d6(r28)
 /* 80C26A6C  38 7C 04 D0 */	addi r3, r28, 0x4d0
 /* 80C26A70  7F 44 D3 78 */	mr r4, r26
-/* 80C26A74  4B 64 A1 90 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80C26A74  4B 64 A1 91 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80C26A78  7C 7B 1B 78 */	mr r27, r3
 /* 80C26A7C  38 7C 04 D0 */	addi r3, r28, 0x4d0
 /* 80C26A80  7F 44 D3 78 */	mr r4, r26
-/* 80C26A84  4B 72 09 18 */	b PSVECSquareDistance
+/* 80C26A84  4B 72 09 19 */	bl PSVECSquareDistance
 /* 80C26A88  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80C26A8C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C26A90  40 81 00 58 */	ble lbl_80C26AE8
@@ -53,8 +53,8 @@ lbl_80C26AE8:
 /* 80C26AE8  C8 1F 00 20 */	lfd f0, 0x20(r31)
 /* 80C26AEC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C26AF0  40 80 00 10 */	bge lbl_80C26B00
-/* 80C26AF4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80C26AF8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80C26AF4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80C26AF8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80C26AFC  48 00 00 70 */	b lbl_80C26B6C
 lbl_80C26B00:
 /* 80C26B00  D0 21 00 08 */	stfs f1, 8(r1)
@@ -88,11 +88,11 @@ lbl_80C26B58:
 lbl_80C26B5C:
 /* 80C26B5C  2C 00 00 01 */	cmpwi r0, 1
 /* 80C26B60  40 82 00 0C */	bne lbl_80C26B6C
-/* 80C26B64  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80C26B68  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80C26B64  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80C26B68  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80C26B6C:
-/* 80C26B6C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80C26B70  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80C26B6C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80C26B70  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80C26B74  A8 1C 04 E6 */	lha r0, 0x4e6(r28)
 /* 80C26B78  7C 00 D8 50 */	subf r0, r0, r27
 /* 80C26B7C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
@@ -137,14 +137,14 @@ lbl_80C26BEC:
 /* 80C26C14  EC 20 08 28 */	fsubs f1, f0, f1
 /* 80C26C18  C0 5F 00 30 */	lfs f2, 0x30(r31)
 /* 80C26C1C  C0 7F 00 34 */	lfs f3, 0x34(r31)
-/* 80C26C20  4B 64 8D 5C */	b cLib_addCalc__FPfffff
+/* 80C26C20  4B 64 8D 5D */	bl cLib_addCalc__FPfffff
 /* 80C26C24  38 60 00 00 */	li r3, 0
 /* 80C26C28  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 80C26C2C  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 80C26C30  E3 C1 00 38 */	psq_l f30, 56(r1), 0, 0 /* qr0 */
 /* 80C26C34  CB C1 00 30 */	lfd f30, 0x30(r1)
 /* 80C26C38  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C26C3C  4B 73 B5 E0 */	b _restgpr_26
+/* 80C26C3C  4B 73 B5 E1 */	bl _restgpr_26
 /* 80C26C40  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80C26C44  7C 08 03 A6 */	mtlr r0
 /* 80C26C48  38 21 00 50 */	addi r1, r1, 0x50

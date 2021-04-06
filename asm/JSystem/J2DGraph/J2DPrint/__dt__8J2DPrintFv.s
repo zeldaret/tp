@@ -5,8 +5,8 @@ lbl_802F4420:
 /* 802F442C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F4430  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802F4434  41 82 00 1C */	beq lbl_802F4450
-/* 802F4438  3C A0 80 3D */	lis r5, __vt__8J2DPrint@ha
-/* 802F443C  38 05 CF A0 */	addi r0, r5, __vt__8J2DPrint@l
+/* 802F4438  3C A0 80 3D */	lis r5, __vt__8J2DPrint@ha /* 0x803CCFA0@ha */
+/* 802F443C  38 05 CF A0 */	addi r0, r5, __vt__8J2DPrint@l /* 0x803CCFA0@l */
 /* 802F4440  90 1F 00 00 */	stw r0, 0(r31)
 /* 802F4444  7C 80 07 35 */	extsh. r0, r4
 /* 802F4448  40 81 00 08 */	ble lbl_802F4450

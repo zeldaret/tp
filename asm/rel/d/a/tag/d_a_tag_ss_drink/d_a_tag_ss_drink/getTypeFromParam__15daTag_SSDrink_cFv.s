@@ -3,8 +3,8 @@ lbl_80D62ED8:
 /* 80D62EDC  54 00 07 3E */	clrlwi r0, r0, 0x1c
 /* 80D62EE0  28 00 00 06 */	cmplwi r0, 6
 /* 80D62EE4  41 81 00 8C */	bgt lbl_80D62F70
-/* 80D62EE8  3C 80 80 D6 */	lis r4, lit_3806@ha
-/* 80D62EEC  38 84 37 BC */	addi r4, r4, lit_3806@l
+/* 80D62EE8  3C 80 80 D6 */	lis r4, lit_3806@ha /* 0x80D637BC@ha */
+/* 80D62EEC  38 84 37 BC */	addi r4, r4, lit_3806@l /* 0x80D637BC@l */
 /* 80D62EF0  54 00 10 3A */	slwi r0, r0, 2
 /* 80D62EF4  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80D62EF8  7C 09 03 A6 */	mtctr r0

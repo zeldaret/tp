@@ -49,8 +49,8 @@ lbl_8012467C:
 /* 801246A4  41 82 00 68 */	beq lbl_8012470C
 /* 801246A8  38 00 00 05 */	li r0, 5
 /* 801246AC  98 03 00 56 */	stb r0, 0x56(r3)
-/* 801246B0  3C 80 80 39 */	lis r4, swordCutSplashScale@ha
-/* 801246B4  38 84 1D 54 */	addi r4, r4, swordCutSplashScale@l
+/* 801246B0  3C 80 80 39 */	lis r4, swordCutSplashScale@ha /* 0x80391D54@ha */
+/* 801246B4  38 84 1D 54 */	addi r4, r4, swordCutSplashScale@l /* 0x80391D54@l */
 /* 801246B8  E0 04 00 00 */	psq_l f0, 0(r4), 0, 0 /* qr0 */
 /* 801246BC  C0 44 00 08 */	lfs f2, 8(r4)
 /* 801246C0  F0 01 00 08 */	psq_st f0, 8(r1), 0, 0 /* qr0 */

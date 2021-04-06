@@ -7,11 +7,11 @@ lbl_80A94AC8:
 /* 80A94ADC  7C 7E 1B 78 */	mr r30, r3
 /* 80A94AE0  7C BF 2B 78 */	mr r31, r5
 /* 80A94AE4  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80A94AE8  4B 7D C1 1C */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80A94AE8  4B 7D C1 1D */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80A94AEC  7C 64 1B 78 */	mr r4, r3
 /* 80A94AF0  38 7E 0D 7A */	addi r3, r30, 0xd7a
 /* 80A94AF4  7F E5 FB 78 */	mr r5, r31
-/* 80A94AF8  4B 7D C0 98 */	b cLib_chaseAngleS__FPsss
+/* 80A94AF8  4B 7D C0 99 */	bl cLib_chaseAngleS__FPsss
 /* 80A94AFC  A8 1E 0D 7A */	lha r0, 0xd7a(r30)
 /* 80A94B00  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 80A94B04  A8 1E 0D 7A */	lha r0, 0xd7a(r30)

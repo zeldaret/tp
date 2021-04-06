@@ -5,12 +5,12 @@ lbl_80AFBDA0:
 /* 80AFBDAC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AFBDB0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AFBDB4  41 82 00 1C */	beq lbl_80AFBDD0
-/* 80AFBDB8  3C A0 80 B0 */	lis r5, __vt__16daNpcThe_Param_c@ha
-/* 80AFBDBC  38 05 C6 5C */	addi r0, r5, __vt__16daNpcThe_Param_c@l
+/* 80AFBDB8  3C A0 80 B0 */	lis r5, __vt__16daNpcThe_Param_c@ha /* 0x80AFC65C@ha */
+/* 80AFBDBC  38 05 C6 5C */	addi r0, r5, __vt__16daNpcThe_Param_c@l /* 0x80AFC65C@l */
 /* 80AFBDC0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80AFBDC4  7C 80 07 35 */	extsh. r0, r4
 /* 80AFBDC8  40 81 00 08 */	ble lbl_80AFBDD0
-/* 80AFBDCC  4B 7D 2F 70 */	b __dl__FPv
+/* 80AFBDCC  4B 7D 2F 71 */	bl __dl__FPv
 lbl_80AFBDD0:
 /* 80AFBDD0  7F E3 FB 78 */	mr r3, r31
 /* 80AFBDD4  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -39,8 +39,6 @@ extern "C" void parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
@@ -50,7 +48,7 @@ extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
 // Declarations:
 //
 
-/* 802DC864-802DC8C8 0064+00 s=0 e=2 z=0  None .text
+/* 802DC864-802DC8C8 2D71A4 0064+00 0/0 2/2 0/0 .text
  * parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit */
 #pragma push
 #pragma optimization_level 0
@@ -63,11 +61,8 @@ asm void JGadget::binary::parseVariableUInt_16_32_following(void const* param_0,
 }
 #pragma pop
 
-/* 802DC8C8-802DC910 0048+00 s=0 e=4 z=0  None .text
+/* 802DC8C8-802DC910 2D7208 0048+00 0/0 4/4 0/0 .text
  * __dt__Q37JGadget6binary19TParse_header_blockFv               */
-//	802DC8E0: 803C488C (__vt__Q37JGadget6binary19TParse_header_block)
-//	802DC8E4: 803C488C (__vt__Q37JGadget6binary19TParse_header_block)
-//	802DC8F4: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -77,10 +72,8 @@ asm JGadget::binary::TParse_header_block::~TParse_header_block() {
 }
 #pragma pop
 
-/* 802DC910-802DCA1C 010C+00 s=0 e=9 z=0  None .text
+/* 802DC910-802DCA1C 2D7250 010C+00 0/0 9/9 0/0 .text
  * parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl    */
-//	802DC920: 803621D0 (_savegpr_26)
-//	802DCA08: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

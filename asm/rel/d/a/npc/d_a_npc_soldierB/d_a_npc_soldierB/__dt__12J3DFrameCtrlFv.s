@@ -5,12 +5,12 @@ lbl_80AF5934:
 /* 80AF5940  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AF5944  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AF5948  41 82 00 1C */	beq lbl_80AF5964
-/* 80AF594C  3C A0 80 AF */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 80AF5950  38 05 5D 94 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 80AF594C  3C A0 80 AF */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x80AF5D94@ha */
+/* 80AF5950  38 05 5D 94 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x80AF5D94@l */
 /* 80AF5954  90 1F 00 00 */	stw r0, 0(r31)
 /* 80AF5958  7C 80 07 35 */	extsh. r0, r4
 /* 80AF595C  40 81 00 08 */	ble lbl_80AF5964
-/* 80AF5960  4B 7D 93 DC */	b __dl__FPv
+/* 80AF5960  4B 7D 93 DD */	bl __dl__FPv
 lbl_80AF5964:
 /* 80AF5964  7F E3 FB 78 */	mr r3, r31
 /* 80AF5968  83 E1 00 0C */	lwz r31, 0xc(r1)

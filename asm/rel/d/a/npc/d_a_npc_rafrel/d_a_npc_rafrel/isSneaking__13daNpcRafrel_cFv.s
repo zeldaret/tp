@@ -5,13 +5,13 @@ lbl_80ABAFBC:
 /* 80ABAFC8  88 03 0E 17 */	lbz r0, 0xe17(r3)
 /* 80ABAFCC  28 00 00 00 */	cmplwi r0, 0
 /* 80ABAFD0  40 82 00 30 */	bne lbl_80ABB000
-/* 80ABAFD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80ABAFD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80ABAFD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80ABAFD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80ABAFDC  88 03 4E 0A */	lbz r0, 0x4e0a(r3)
 /* 80ABAFE0  2C 00 00 05 */	cmpwi r0, 5
 /* 80ABAFE4  40 82 00 1C */	bne lbl_80ABB000
 /* 80ABAFE8  38 60 00 00 */	li r3, 0
-/* 80ABAFEC  4B 57 19 90 */	b getLayerNo__14dComIfG_play_cFi
+/* 80ABAFEC  4B 57 19 91 */	bl getLayerNo__14dComIfG_play_cFi
 /* 80ABAFF0  2C 03 00 02 */	cmpwi r3, 2
 /* 80ABAFF4  40 82 00 0C */	bne lbl_80ABB000
 /* 80ABAFF8  38 60 00 01 */	li r3, 1

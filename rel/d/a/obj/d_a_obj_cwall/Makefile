@@ -3,19 +3,20 @@
 #
 
 M433_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall.plf
+M433_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall.lcf
+M433_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall.map
 
 M433_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cwall/executor.cpp \
-	rel/d/a/obj/d_a_obj_cwall/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_cwall/d_a_obj_cwall.cpp \
 
 M433_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/d_a_obj_cwall.o \
 
 M433_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/libRuntime.PPCEABI.H.a \
 
 M433_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M433_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map433.map\
+	-m _prolog \
+	-lcf $(M433_LDSCRIPT) \
+	-unused -map $(M433_MAP) \
+	-w off \
 
 $(M433_TARGET): $(M433_O_FILES) $(M433_LIBS)
+	@echo [433] creating $(M433_TARGET)
 	@echo $(M433_LIBS) $(M433_O_FILES) > build/M433_ofiles
-	$(LD) -opt_partial $(M433_LDFLAGS) -o $(M433_TARGET) @build/M433_ofiles
+	@python3 tools/lcf.py rel 433 --output $(M433_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M433_LDFLAGS) -o $(M433_TARGET) @build/M433_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cwall/%.o: rel/d/a/obj/d_a_obj_cwall/%.cpp
+	@echo [433] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M433_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M433_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_cwall/libs/Runtime.PPCEABI.H/Makefile
 

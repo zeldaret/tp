@@ -28,11 +28,11 @@ struct daObjWSword_c {
     /* 80D3BE54 */ void _delete();
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -101,12 +101,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void CheckCreateHeap(fopAc_ac_c*);
-static void daObjWSword_Draw(daObjWSword_c*);
-static void daObjWSword_Execute(daObjWSword_c*);
-static void daObjWSword_Delete(daObjWSword_c*);
-static void daObjWSword_Create(fopAc_ac_c*);
-
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" void initBaseMtx__13daObjWSword_cFv();
 extern "C" void setBaseMtx__13daObjWSword_cFv();
@@ -125,24 +119,11 @@ extern "C" static void daObjWSword_Delete__FP13daObjWSword_c();
 extern "C" static void daObjWSword_Create__FP10fopAc_ac_c();
 extern "C" static void func_80D3BF08();
 extern "C" static void func_80D3BF10();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_WoodenSword[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
+extern "C" extern char const* const d_a_obj_wsword__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -185,19 +166,17 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 80D3B978-80D3B998 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
-//	80D3B984: 80D3BAB8 (CreateHeap__13daObjWSword_cFv)
+/* 80D3B978-80D3B998 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D3B998-80D3B9D4 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__13daObjWSword_cFv */
-//	80D3B9C0: 80D3B9D4 (setBaseMtx__13daObjWSword_cFv)
+/* 80D3B998-80D3B9D4 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,16 +186,7 @@ asm void daObjWSword_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80D3B9D4-80D3BA40 006C+00 s=2 e=0 z=0  None .text      setBaseMtx__13daObjWSword_cFv */
-//	80D3B9E8: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3B9EC: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3B9FC: 803468E8 (PSMTXTrans)
-//	80D3BA00: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3BA04: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3BA14: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
-//	80D3BA18: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3BA1C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D3BA28: 803464B0 (PSMTXCopy)
+/* 80D3B9D4-80D3BA40 0000D4 006C+00 2/2 0/0 0/0 .text            setBaseMtx__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,19 +197,10 @@ asm void daObjWSword_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D3BF20-80D3BF2C 000A+02 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D3BF20 = "Obj_brksw";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80D3BF2A = "\0";
-#pragma pop
+/* 80D3BF2C-80D3BF30 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wsword__stringBase0;
 
-/* 80D3BF2C-80D3BF30 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D3BF30-80D3BF74 0044+00 s=1 e=0 z=0  None .data      l_cyl_src */
+/* 80D3BF30-80D3BF74 000004 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 SECTION_DATA static u8 l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
@@ -248,13 +209,7 @@ SECTION_DATA static u8 l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
 
-/* 80D3BA40-80D3BAB8 0078+00 s=1 e=0 z=0  None .text      Create__13daObjWSword_cFv */
-//	80D3BA54: 80D3B998 (initBaseMtx__13daObjWSword_cFv)
-//	80D3BA74: 80083860 (Init__9dCcD_SttsFiiP10fopAc_ac_c)
-//	80D3BA7C: 80D3BF30 (l_cyl_src)
-//	80D3BA80: 80D3BF30 (l_cyl_src)
-//	80D3BA84: 800848B4 (Set__8dCcD_CylFRC11dCcD_SrcCyl)
-//	80D3BA9C: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
+/* 80D3BA40-80D3BAB8 000140 0078+00 1/1 0/0 0/0 .text            Create__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,13 +219,7 @@ asm void daObjWSword_c::Create() {
 }
 #pragma pop
 
-/* 80D3BAB8-80D3BB28 0070+00 s=1 e=0 z=0  None .text      CreateHeap__13daObjWSword_cFv */
-//	80D3BACC: 80D3BF2C (l_arcName)
-//	80D3BAD0: 80D3BF2C (l_arcName)
-//	80D3BADC: 804061C0 (g_dComIfG_gameInfo)
-//	80D3BAE0: 804061C0 (g_dComIfG_gameInfo)
-//	80D3BAF0: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80D3BB00: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80D3BAB8-80D3BB28 0001B8 0070+00 1/1 0/0 0/0 .text            CreateHeap__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,7 +230,7 @@ asm void daObjWSword_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D3BF74-80D3BF94 0020+00 s=1 e=0 z=0  None .data      l_daObjWSword_Method */
+/* 80D3BF74-80D3BF94 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjWSword_Method */
 SECTION_DATA static void* l_daObjWSword_Method[8] = {
     (void*)daObjWSword_Create__FP10fopAc_ac_c,
     (void*)daObjWSword_Delete__FP13daObjWSword_c,
@@ -293,8 +242,8 @@ SECTION_DATA static void* l_daObjWSword_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D3BF94-80D3BFC4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_WoodenSword */
-SECTION_DATA void* g_profile_Obj_WoodenSword[12] = {
+/* 80D3BF94-80D3BFC4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_WoodenSword */
+SECTION_DATA extern void* g_profile_Obj_WoodenSword[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01700000, (void*)&g_fpcLf_Method,
     (void*)0x00000904, (void*)NULL,
@@ -303,22 +252,22 @@ SECTION_DATA void* g_profile_Obj_WoodenSword[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80D3BFC4-80D3BFD0 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA void* __vt__8cM3dGCyl[3] = {
+/* 80D3BFC4-80D3BFD0 000098 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80D3BFD0-80D3BFDC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA void* __vt__8cM3dGAab[3] = {
+/* 80D3BFD0-80D3BFDC 0000A4 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80D3BFDC-80D3C000 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
+/* 80D3BFDC-80D3C000 0000B0 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_ObjAcchFv,
@@ -330,38 +279,7 @@ SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_80D3BF08,
 };
 
-/* 80D3BB28-80D3BCA0 0178+00 s=1 e=0 z=0  None .text      create__13daObjWSword_cFv */
-//	80D3BB38: 803621DC (_savegpr_29)
-//	80D3BB58: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D3BB64: 800760A0 (__ct__9dBgS_AcchFv)
-//	80D3BB68: 80D3BFDC (__vt__12dBgS_ObjAcch)
-//	80D3BB6C: 80D3BFDC (__vt__12dBgS_ObjAcch)
-//	80D3BB88: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	80D3BB90: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	80D3BB94: 803C3728 (__vt__9cCcD_Stts)
-//	80D3BB98: 803C3728 (__vt__9cCcD_Stts)
-//	80D3BBA4: 80083760 (__ct__10dCcD_GSttsFv)
-//	80D3BBA8: 803AC2E4 (__vt__9dCcD_Stts)
-//	80D3BBAC: 803AC2E4 (__vt__9dCcD_Stts)
-//	80D3BBC4: 80083A28 (__ct__12dCcD_GObjInfFv)
-//	80D3BBC8: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80D3BBCC: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80D3BBD4: 80D3BFD0 (__vt__8cM3dGAab)
-//	80D3BBD8: 80D3BFD0 (__vt__8cM3dGAab)
-//	80D3BBE0: 80D3BFC4 (__vt__8cM3dGCyl)
-//	80D3BBE4: 80D3BFC4 (__vt__8cM3dGCyl)
-//	80D3BBEC: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80D3BBF0: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80D3BC00: 803AC050 (__vt__8dCcD_Cyl)
-//	80D3BC04: 803AC050 (__vt__8dCcD_Cyl)
-//	80D3BC2C: 80D3BF2C (l_arcName)
-//	80D3BC30: 80D3BF2C (l_arcName)
-//	80D3BC38: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80D3BC4C: 80D3B978 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80D3BC50: 80D3B978 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80D3BC58: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80D3BC70: 80D3BA40 (Create__13daObjWSword_cFv)
-//	80D3BC8C: 80362228 (_restgpr_29)
+/* 80D3BB28-80D3BCA0 000228 0178+00 1/1 0/0 0/0 .text            create__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -371,10 +289,7 @@ asm void daObjWSword_c::create() {
 }
 #pragma pop
 
-/* 80D3BCA0-80D3BCE8 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-//	80D3BCB8: 80D3BFC4 (__vt__8cM3dGCyl)
-//	80D3BCBC: 80D3BFC4 (__vt__8cM3dGCyl)
-//	80D3BCCC: 802CED3C (__dl__FPv)
+/* 80D3BCA0-80D3BCE8 0003A0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,10 +299,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80D3BCE8-80D3BD30 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-//	80D3BD00: 80D3BFD0 (__vt__8cM3dGAab)
-//	80D3BD04: 80D3BFD0 (__vt__8cM3dGAab)
-//	80D3BD14: 802CED3C (__dl__FPv)
+/* 80D3BCE8-80D3BD30 0003E8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -397,11 +309,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80D3BD30-80D3BDA0 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
-//	80D3BD50: 80D3BFDC (__vt__12dBgS_ObjAcch)
-//	80D3BD54: 80D3BFDC (__vt__12dBgS_ObjAcch)
-//	80D3BD70: 80075F94 (__dt__9dBgS_AcchFv)
-//	80D3BD80: 802CED3C (__dl__FPv)
+/* 80D3BD30-80D3BDA0 000430 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -411,12 +319,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80D3BDA0-80D3BDF0 0050+00 s=1 e=0 z=0  None .text      execute__13daObjWSword_cFv */
-//	80D3BDB4: 80D3B9D4 (setBaseMtx__13daObjWSword_cFv)
-//	80D3BDC0: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	80D3BDC4: 804061C0 (g_dComIfG_gameInfo)
-//	80D3BDC8: 804061C0 (g_dComIfG_gameInfo)
-//	80D3BDD4: 80264BA8 (Set__4cCcSFP8cCcD_Obj)
+/* 80D3BDA0-80D3BDF0 0004A0 0050+00 1/1 0/0 0/0 .text            execute__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -426,15 +329,7 @@ asm void daObjWSword_c::execute() {
 }
 #pragma pop
 
-/* 80D3BDF0-80D3BE54 0064+00 s=1 e=0 z=0  None .text      draw__13daObjWSword_cFv */
-//	80D3BE04: 8042CA54 (g_env_light)
-//	80D3BE08: 8042CA54 (g_env_light)
-//	80D3BE18: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80D3BE1C: 8042CA54 (g_env_light)
-//	80D3BE20: 8042CA54 (g_env_light)
-//	80D3BE30: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80D3BE38:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
+/* 80D3BDF0-80D3BE54 0004F0 0064+00 1/1 0/0 0/0 .text            draw__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -444,10 +339,7 @@ asm void daObjWSword_c::draw() {
 }
 #pragma pop
 
-/* 80D3BE54-80D3BE88 0034+00 s=1 e=0 z=0  None .text      _delete__13daObjWSword_cFv */
-//	80D3BE60: 80D3BF2C (l_arcName)
-//	80D3BE64: 80D3BF2C (l_arcName)
-//	80D3BE70: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80D3BE54-80D3BE88 000554 0034+00 1/1 0/0 0/0 .text            _delete__13daObjWSword_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -457,68 +349,73 @@ asm void daObjWSword_c::_delete() {
 }
 #pragma pop
 
-/* 80D3BE88-80D3BEA8 0020+00 s=1 e=0 z=0  None .text      daObjWSword_Draw__FP13daObjWSword_c */
-//	80D3BE94: 80D3BDF0 (draw__13daObjWSword_cFv)
+/* 80D3BE88-80D3BEA8 000588 0020+00 1/0 0/0 0/0 .text            daObjWSword_Draw__FP13daObjWSword_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjWSword_Draw(daObjWSword_c* param_0) {
+static asm void daObjWSword_Draw(daObjWSword_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Draw__FP13daObjWSword_c.s"
 }
 #pragma pop
 
-/* 80D3BEA8-80D3BEC8 0020+00 s=1 e=0 z=0  None .text      daObjWSword_Execute__FP13daObjWSword_c */
-//	80D3BEB4: 80D3BDA0 (execute__13daObjWSword_cFv)
+/* 80D3BEA8-80D3BEC8 0005A8 0020+00 1/0 0/0 0/0 .text daObjWSword_Execute__FP13daObjWSword_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjWSword_Execute(daObjWSword_c* param_0) {
+static asm void daObjWSword_Execute(daObjWSword_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Execute__FP13daObjWSword_c.s"
 }
 #pragma pop
 
-/* 80D3BEC8-80D3BEE8 0020+00 s=1 e=0 z=0  None .text      daObjWSword_Delete__FP13daObjWSword_c */
-//	80D3BED4: 80D3BE54 (_delete__13daObjWSword_cFv)
+/* 80D3BEC8-80D3BEE8 0005C8 0020+00 1/0 0/0 0/0 .text daObjWSword_Delete__FP13daObjWSword_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjWSword_Delete(daObjWSword_c* param_0) {
+static asm void daObjWSword_Delete(daObjWSword_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Delete__FP13daObjWSword_c.s"
 }
 #pragma pop
 
-/* 80D3BEE8-80D3BF08 0020+00 s=1 e=0 z=0  None .text      daObjWSword_Create__FP10fopAc_ac_c */
-//	80D3BEF4: 80D3BB28 (create__13daObjWSword_cFv)
+/* 80D3BEE8-80D3BF08 0005E8 0020+00 1/0 0/0 0/0 .text            daObjWSword_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjWSword_Create(fopAc_ac_c* param_0) {
+static asm void daObjWSword_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/daObjWSword_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D3BF08-80D3BF10 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
-//	80D3BF0C: 80D3BD30 (__dt__12dBgS_ObjAcchFv)
+/* 80D3BF08-80D3BF10 000608 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D3BF08() {
+static asm void func_80D3BF08() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/func_80D3BF08.s"
 }
 #pragma pop
 
-/* 80D3BF10-80D3BF18 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
-//	80D3BF14: 80D3BD30 (__dt__12dBgS_ObjAcchFv)
+/* 80D3BF10-80D3BF18 000610 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D3BF10() {
+static asm void func_80D3BF10() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wsword/d_a_obj_wsword/func_80D3BF10.s"
 }
+#pragma pop
+
+/* 80D3BF20-80D3BF2C 000000 000A+02 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D3BF20 = "Obj_brksw";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80D3BF2A = "\0";
 #pragma pop

@@ -11,8 +11,8 @@ lbl_8019B2F4:
 /* 8019B318  8B FD 01 18 */	lbz r31, 0x118(r29)
 /* 8019B31C  7F A3 EB 78 */	mr r3, r29
 /* 8019B320  1C BF 00 0C */	mulli r5, r31, 0xc
-/* 8019B324  3C 80 80 3C */	lis r4, move_process@ha
-/* 8019B328  38 04 BC A0 */	addi r0, r4, move_process@l
+/* 8019B324  3C 80 80 3C */	lis r4, move_process@ha /* 0x803BBCA0@ha */
+/* 8019B328  38 04 BC A0 */	addi r0, r4, move_process@l /* 0x803BBCA0@l */
 /* 8019B32C  7D 80 2A 14 */	add r12, r0, r5
 /* 8019B330  48 1C 6D 55 */	bl __ptmf_scall
 /* 8019B334  60 00 00 00 */	nop 
@@ -21,8 +21,8 @@ lbl_8019B2F4:
 /* 8019B340  41 82 00 20 */	beq lbl_8019B360
 /* 8019B344  7F A3 EB 78 */	mr r3, r29
 /* 8019B348  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8019B34C  3C 80 80 3C */	lis r4, init_process@ha
-/* 8019B350  38 04 BB C8 */	addi r0, r4, init_process@l
+/* 8019B34C  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BBBC8@ha */
+/* 8019B350  38 04 BB C8 */	addi r0, r4, init_process@l /* 0x803BBBC8@l */
 /* 8019B354  7D 80 2A 14 */	add r12, r0, r5
 /* 8019B358  48 1C 6D 2D */	bl __ptmf_scall
 /* 8019B35C  60 00 00 00 */	nop 

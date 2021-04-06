@@ -5,7 +5,7 @@ lbl_8061A95C:
 /* 8061A968  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8061A96C  7C 7F 1B 78 */	mr r31, r3
 /* 8061A970  7F E5 FB 78 */	mr r5, r31
-/* 8061A974  4B D2 C7 1C */	b PSVECAdd
+/* 8061A974  4B D2 C7 1D */	bl PSVECAdd
 /* 8061A978  7F E3 FB 78 */	mr r3, r31
 /* 8061A97C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8061A980  80 01 00 14 */	lwz r0, 0x14(r1)

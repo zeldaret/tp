@@ -15,15 +15,15 @@ lbl_80357180:
 /* 80357184  48 00 01 5C */	b lbl_803572E0
 lbl_80357188:
 /* 80357188  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E3@ha */
-/* 8035718C  88 03 30 E3 */	lbz r0, 0x30E3(r3)
+/* 8035718C  88 03 30 E3 */	lbz r0, 0x30E3(r3)  /* 0x800030E3@l */
 /* 80357190  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 80357194  41 82 00 0C */	beq lbl_803571A0
 /* 80357198  38 60 FF FD */	li r3, -3
 /* 8035719C  48 00 01 44 */	b lbl_803572E0
 lbl_803571A0:
 /* 803571A0  1C 9E 01 10 */	mulli r4, r30, 0x110
-/* 803571A4  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 803571A8  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 803571A4  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 803571A8  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803571AC  7F E0 22 14 */	add r31, r0, r4
 /* 803571B0  4B FE 65 45 */	bl OSDisableInterrupts
 /* 803571B4  80 1F 00 04 */	lwz r0, 4(r31)
@@ -56,8 +56,8 @@ lbl_80357200:
 /* 80357218  7F A0 EB 78 */	mr r0, r29
 /* 8035721C  48 00 00 0C */	b lbl_80357228
 lbl_80357220:
-/* 80357220  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha
-/* 80357224  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l
+/* 80357220  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha /* 0x80352A30@ha */
+/* 80357224  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l /* 0x80352A30@l */
 lbl_80357228:
 /* 80357228  90 1F 00 D0 */	stw r0, 0xd0(r31)
 /* 8035722C  38 00 00 00 */	li r0, 0
@@ -65,8 +65,8 @@ lbl_80357228:
 /* 80357234  80 1F 00 00 */	lwz r0, 0(r31)
 /* 80357238  2C 00 00 00 */	cmpwi r0, 0
 /* 8035723C  40 82 00 34 */	bne lbl_80357270
-/* 80357240  3C 60 80 35 */	lis r3, __CARDExtHandler@ha
-/* 80357244  38 83 2A 68 */	addi r4, r3, __CARDExtHandler@l
+/* 80357240  3C 60 80 35 */	lis r3, __CARDExtHandler@ha /* 0x80352A68@ha */
+/* 80357244  38 83 2A 68 */	addi r4, r3, __CARDExtHandler@l /* 0x80352A68@l */
 /* 80357248  38 7E 00 00 */	addi r3, r30, 0
 /* 8035724C  4B FE C4 55 */	bl EXIAttach
 /* 80357250  2C 03 00 00 */	cmpwi r3, 0
@@ -91,11 +91,11 @@ lbl_80357270:
 /* 80357298  7F 83 E3 78 */	mr r3, r28
 /* 8035729C  93 BF 00 88 */	stw r29, 0x88(r31)
 /* 803572A0  4B FE 64 7D */	bl OSRestoreInterrupts
-/* 803572A4  3C 60 80 35 */	lis r3, __CARDMountCallback@ha
-/* 803572A8  38 03 70 1C */	addi r0, r3, __CARDMountCallback@l
-/* 803572AC  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha
+/* 803572A4  3C 60 80 35 */	lis r3, __CARDMountCallback@ha /* 0x8035701C@ha */
+/* 803572A8  38 03 70 1C */	addi r0, r3, __CARDMountCallback@l /* 0x8035701C@l */
+/* 803572AC  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha /* 0x80352D00@ha */
 /* 803572B0  90 1F 00 DC */	stw r0, 0xdc(r31)
-/* 803572B4  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l
+/* 803572B4  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l /* 0x80352D00@l */
 /* 803572B8  38 7E 00 00 */	addi r3, r30, 0
 /* 803572BC  38 80 00 00 */	li r4, 0
 /* 803572C0  4B FE CD 69 */	bl EXILock

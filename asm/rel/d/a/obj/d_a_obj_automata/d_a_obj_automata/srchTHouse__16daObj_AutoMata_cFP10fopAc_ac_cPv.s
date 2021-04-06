@@ -14,7 +14,7 @@ lbl_80BA64A0:
 lbl_80BA64D0:
 /* 80BA64D0  38 60 FF FF */	li r3, -1
 lbl_80BA64D4:
-/* 80BA64D4  4B 47 AE C8 */	b fpcEx_IsExist__FUi
+/* 80BA64D4  4B 47 AE C9 */	bl fpcEx_IsExist__FUi
 /* 80BA64D8  2C 03 00 00 */	cmpwi r3, 0
 /* 80BA64DC  41 82 00 0C */	beq lbl_80BA64E8
 /* 80BA64E0  7F E3 FB 78 */	mr r3, r31

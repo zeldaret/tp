@@ -18,8 +18,8 @@ lbl_802E3BA0:
 /* 802E3BE0  7C 04 03 78 */	mr r4, r0
 /* 802E3BE4  48 08 4F 49 */	bl strcpy
 /* 802E3BE8  38 61 00 10 */	addi r3, r1, 0x10
-/* 802E3BEC  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha
-/* 802E3BF0  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l
+/* 802E3BEC  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha /* 0x8039D490@ha */
+/* 802E3BF0  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l /* 0x8039D490@l */
 /* 802E3BF4  38 84 04 E9 */	addi r4, r4, 0x4e9
 /* 802E3BF8  48 08 4E C5 */	bl strcat
 /* 802E3BFC  93 E1 00 08 */	stw r31, 8(r1)
@@ -38,8 +38,8 @@ lbl_802E3BA0:
 /* 802E3C30  38 60 00 01 */	li r3, 1
 /* 802E3C34  48 00 00 44 */	b lbl_802E3C78
 lbl_802E3C38:
-/* 802E3C38  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha
-/* 802E3C3C  38 63 45 98 */	addi r3, r3, sMapFileList__12JUTException@l
+/* 802E3C38  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha /* 0x80434598@ha */
+/* 802E3C3C  38 63 45 98 */	addi r3, r3, sMapFileList__12JUTException@l /* 0x80434598@l */
 /* 802E3C40  80 63 00 00 */	lwz r3, 0(r3)
 /* 802E3C44  28 03 00 00 */	cmplwi r3, 0
 /* 802E3C48  41 82 00 2C */	beq lbl_802E3C74

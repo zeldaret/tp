@@ -11,8 +11,8 @@ lbl_8000CCC8:
 lbl_8000CCEC:
 /* 8000CCEC  38 04 00 30 */	addi r0, r4, 0x30
 /* 8000CCF0  90 0D 80 28 */	stw r0, next__14mDoMtx_stack_c(r13)
-/* 8000CCF4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8000CCF8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8000CCF4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8000CCF8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8000CCFC  48 33 97 B5 */	bl PSMTXCopy
 /* 8000CD00  38 60 00 01 */	li r3, 1
 lbl_8000CD04:

@@ -6,9 +6,9 @@ lbl_80352B40:
 /* 80352B50  3B E3 00 00 */	addi r31, r3, 0
 /* 80352B54  1C 9F 01 10 */	mulli r4, r31, 0x110
 /* 80352B58  93 C1 00 20 */	stw r30, 0x20(r1)
-/* 80352B5C  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 80352B5C  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80352B60  93 A1 00 1C */	stw r29, 0x1c(r1)
-/* 80352B64  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80352B64  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80352B68  7F C0 22 14 */	add r30, r0, r4
 /* 80352B6C  38 7E 00 E0 */	addi r3, r30, 0xe0
 /* 80352B70  4B FE 80 CD */	bl OSCancelAlarm

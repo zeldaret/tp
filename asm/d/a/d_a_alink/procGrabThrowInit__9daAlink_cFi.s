@@ -6,8 +6,8 @@ lbl_800E63F0:
 /* 800E6400  48 27 BD DD */	bl _savegpr_29
 /* 800E6404  7C 7F 1B 78 */	mr r31, r3
 /* 800E6408  7C 9D 23 78 */	mr r29, r4
-/* 800E640C  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800E6410  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800E640C  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800E6410  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800E6414  80 03 31 A0 */	lwz r0, 0x31a0(r3)
 /* 800E6418  54 00 05 6B */	rlwinm. r0, r0, 0, 0x15, 0x15
 /* 800E641C  41 82 00 98 */	beq lbl_800E64B4
@@ -125,8 +125,8 @@ lbl_800E658C:
 /* 800E65B8  B0 1F 30 0C */	sth r0, 0x300c(r31)
 lbl_800E65BC:
 /* 800E65BC  93 BF 31 98 */	stw r29, 0x3198(r31)
-/* 800E65C0  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800E65C4  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800E65C0  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800E65C4  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800E65C8  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800E65CC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800E65D0  D0 1F 35 8C */	stfs f0, 0x358c(r31)

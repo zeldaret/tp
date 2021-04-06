@@ -7,8 +7,8 @@ lbl_801C2234:
 /* 801C2248  7C 7E 1B 78 */	mr r30, r3
 /* 801C224C  8B E3 00 F5 */	lbz r31, 0xf5(r3)
 /* 801C2250  1C BF 00 0C */	mulli r5, r31, 0xc
-/* 801C2254  3C 80 80 3C */	lis r4, move_process@ha
-/* 801C2258  38 04 CD 44 */	addi r0, r4, move_process@l
+/* 801C2254  3C 80 80 3C */	lis r4, move_process@ha /* 0x803BCD44@ha */
+/* 801C2258  38 04 CD 44 */	addi r0, r4, move_process@l /* 0x803BCD44@l */
 /* 801C225C  7D 80 2A 14 */	add r12, r0, r5
 /* 801C2260  48 19 FE 25 */	bl __ptmf_scall
 /* 801C2264  60 00 00 00 */	nop 
@@ -17,8 +17,8 @@ lbl_801C2234:
 /* 801C2270  41 82 00 20 */	beq lbl_801C2290
 /* 801C2274  7F C3 F3 78 */	mr r3, r30
 /* 801C2278  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C227C  3C 80 80 3C */	lis r4, init_process@ha
-/* 801C2280  38 04 CC E4 */	addi r0, r4, init_process@l
+/* 801C227C  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BCCE4@ha */
+/* 801C2280  38 04 CC E4 */	addi r0, r4, init_process@l /* 0x803BCCE4@l */
 /* 801C2284  7D 80 2A 14 */	add r12, r0, r5
 /* 801C2288  48 19 FD FD */	bl __ptmf_scall
 /* 801C228C  60 00 00 00 */	nop 

@@ -6,9 +6,9 @@ lbl_803453A0:
 /* 803453B0  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 803453B4  7C 7E 1B 78 */	mr r30, r3
 /* 803453B8  4B FF 83 3D */	bl OSDisableInterrupts
-/* 803453BC  3C 80 80 45 */	lis r4, RDSTHandler@ha
+/* 803453BC  3C 80 80 45 */	lis r4, RDSTHandler@ha /* 0x8044C7D0@ha */
 /* 803453C0  38 00 00 04 */	li r0, 4
-/* 803453C4  38 A4 C7 D0 */	addi r5, r4, RDSTHandler@l
+/* 803453C4  38 A4 C7 D0 */	addi r5, r4, RDSTHandler@l /* 0x8044C7D0@l */
 /* 803453C8  7C 09 03 A6 */	mtctr r0
 /* 803453CC  3B E3 00 00 */	addi r31, r3, 0
 /* 803453D0  38 65 00 00 */	addi r3, r5, 0
@@ -17,9 +17,9 @@ lbl_803453D8:
 /* 803453D8  80 03 00 00 */	lwz r0, 0(r3)
 /* 803453DC  7C 00 F0 40 */	cmplw r0, r30
 /* 803453E0  40 82 00 84 */	bne lbl_80345464
-/* 803453E4  3C 60 80 45 */	lis r3, RDSTHandler@ha
+/* 803453E4  3C 60 80 45 */	lis r3, RDSTHandler@ha /* 0x8044C7D0@ha */
 /* 803453E8  54 84 10 3A */	slwi r4, r4, 2
-/* 803453EC  38 03 C7 D0 */	addi r0, r3, RDSTHandler@l
+/* 803453EC  38 03 C7 D0 */	addi r0, r3, RDSTHandler@l /* 0x8044C7D0@l */
 /* 803453F0  7C 60 22 14 */	add r3, r0, r4
 /* 803453F4  38 00 00 00 */	li r0, 0
 /* 803453F8  90 03 00 00 */	stw r0, 0(r3)

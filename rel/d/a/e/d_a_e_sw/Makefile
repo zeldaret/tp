@@ -3,19 +3,20 @@
 #
 
 M235_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_sw.plf
+M235_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_sw.lcf
+M235_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_sw.map
 
 M235_CPP_FILES := \
-	rel/d/a/e/d_a_e_sw/executor.cpp \
-	rel/d/a/e/d_a_e_sw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_sw/d_a_e_sw.cpp \
 
 M235_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sw/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_sw/d_a_e_sw.o \
 
 M235_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sw/libRuntime.PPCEABI.H.a \
 
 M235_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M235_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map235.map\
+	-m _prolog \
+	-lcf $(M235_LDSCRIPT) \
+	-unused -map $(M235_MAP) \
+	-w off \
 
 $(M235_TARGET): $(M235_O_FILES) $(M235_LIBS)
+	@echo [235] creating $(M235_TARGET)
 	@echo $(M235_LIBS) $(M235_O_FILES) > build/M235_ofiles
-	$(LD) -opt_partial $(M235_LDFLAGS) -o $(M235_TARGET) @build/M235_ofiles
+	@python3 tools/lcf.py rel 235 --output $(M235_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M235_LDFLAGS) -o $(M235_TARGET) @build/M235_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_sw/%.o: rel/d/a/e/d_a_e_sw/%.cpp
+	@echo [235] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M235_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M235_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_sw/libs/Runtime.PPCEABI.H/Makefile
 

@@ -17,8 +17,8 @@ lbl_80165FB4:
 /* 80165FF0  FF E0 20 90 */	fmr f31, f4
 /* 80165FF4  80 63 00 00 */	lwz r3, 0(r3)
 /* 80165FF8  4B EB 83 11 */	bl fopCamM_GetParam__FP12camera_class
-/* 80165FFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80166000  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80165FFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80166000  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80166004  1C 03 00 38 */	mulli r0, r3, 0x38
 /* 80166008  7C 64 02 14 */	add r3, r4, r0
 /* 8016600C  88 03 5D 78 */	lbz r0, 0x5d78(r3)

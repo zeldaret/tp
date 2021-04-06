@@ -32,8 +32,8 @@ lbl_8024F250:
 lbl_8024F258:
 /* 8024F258  28 07 00 0C */	cmplwi r7, 0xc
 /* 8024F25C  41 81 02 E8 */	bgt lbl_8024F544
-/* 8024F260  3C A0 80 3C */	lis r5, lit_4121@ha
-/* 8024F264  38 C5 27 50 */	addi r6, r5, lit_4121@l
+/* 8024F260  3C A0 80 3C */	lis r5, lit_4121@ha /* 0x803C2750@ha */
+/* 8024F264  38 C5 27 50 */	addi r6, r5, lit_4121@l /* 0x803C2750@l */
 /* 8024F268  54 E5 10 3A */	slwi r5, r7, 2
 /* 8024F26C  7C A6 28 2E */	lwzx r5, r6, r5
 /* 8024F270  7C A9 03 A6 */	mtctr r5

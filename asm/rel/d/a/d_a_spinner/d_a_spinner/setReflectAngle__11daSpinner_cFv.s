@@ -29,7 +29,7 @@ lbl_804D30F0:
 /* 804D30F8  7C 03 00 50 */	subf r0, r3, r0
 /* 804D30FC  7C 1E 07 34 */	extsh r30, r0
 /* 804D3100  7F C3 F3 78 */	mr r3, r30
-/* 804D3104  4B E9 1F CC */	b abs
+/* 804D3104  4B E9 1F CD */	bl abs
 /* 804D3108  2C 03 48 00 */	cmpwi r3, 0x4800
 /* 804D310C  40 81 00 24 */	ble lbl_804D3130
 /* 804D3110  A8 7F 04 DE */	lha r3, 0x4de(r31)

@@ -31,18 +31,18 @@ lbl_80047758:
 /* 800477CC  4B FF FF 8D */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800477D0  48 00 01 48 */	b lbl_80047918
 lbl_800477D4:
-/* 800477D4  3C 60 80 42 */	lis r3, map_tool_name_4511@ha
-/* 800477D8  38 63 46 C8 */	addi r3, r3, map_tool_name_4511@l
-/* 800477DC  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha
-/* 800477E0  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l
+/* 800477D4  3C 60 80 42 */	lis r3, map_tool_name_4511@ha /* 0x804246C8@ha */
+/* 800477D8  38 63 46 C8 */	addi r3, r3, map_tool_name_4511@l /* 0x804246C8@l */
+/* 800477DC  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha /* 0x80379F60@ha */
+/* 800477E0  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l /* 0x80379F60@l */
 /* 800477E4  38 84 01 4F */	addi r4, r4, 0x14f
 /* 800477E8  56 C5 06 3E */	clrlwi r5, r22, 0x18
 /* 800477EC  4C C6 31 82 */	crclr 6
 /* 800477F0  48 31 EC ED */	bl sprintf
 /* 800477F4  7F 43 D3 78 */	mr r3, r26
 /* 800477F8  7F 64 DB 78 */	mr r4, r27
-/* 800477FC  3C A0 80 42 */	lis r5, map_tool_name_4511@ha
-/* 80047800  38 A5 46 C8 */	addi r5, r5, map_tool_name_4511@l
+/* 800477FC  3C A0 80 42 */	lis r5, map_tool_name_4511@ha /* 0x804246C8@ha */
+/* 80047800  38 A5 46 C8 */	addi r5, r5, map_tool_name_4511@l /* 0x804246C8@l */
 /* 80047804  38 C0 00 FF */	li r6, 0xff
 /* 80047808  4B FF FF 51 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 8004780C  48 00 01 0C */	b lbl_80047918
@@ -54,8 +54,8 @@ lbl_80047810:
 lbl_80047820:
 /* 80047820  3B A0 00 0A */	li r29, 0xa
 /* 80047824  3B 20 01 68 */	li r25, 0x168
-/* 80047828  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8004782C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80047828  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8004782C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80047830  3F C3 00 02 */	addis r30, r3, 2
 /* 80047834  3B DE C2 F8 */	addi r30, r30, -15624
 lbl_80047838:
@@ -78,8 +78,8 @@ lbl_80047864:
 /* 80047874  80 7B 01 00 */	lwz r3, 0x100(r27)
 /* 80047878  28 03 00 00 */	cmplwi r3, 0
 /* 8004787C  41 82 00 2C */	beq lbl_800478A8
-/* 80047880  3C 80 80 38 */	lis r4, data_80379F50@ha
-/* 80047884  38 84 9F 50 */	addi r4, r4, data_80379F50@l
+/* 80047880  3C 80 80 38 */	lis r4, data_80379F50@ha /* 0x80379F50@ha */
+/* 80047884  38 84 9F 50 */	addi r4, r4, data_80379F50@l /* 0x80379F50@l */
 /* 80047888  7F C5 F3 78 */	mr r5, r30
 /* 8004788C  38 C0 00 80 */	li r6, 0x80
 /* 80047890  4B FF 4A ED */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci

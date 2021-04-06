@@ -3,19 +3,20 @@
 #
 
 M21_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush.plf
+M21_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush.lcf
+M21_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush.map
 
 M21_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swpush/executor.cpp \
-	rel/d/a/obj/d_a_obj_swpush/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_swpush/d_a_obj_swpush.cpp \
 
 M21_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/d_a_obj_swpush.o \
 
 M21_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/libRuntime.PPCEABI.H.a \
 
 M21_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M21_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map21.map\
+	-m _prolog \
+	-lcf $(M21_LDSCRIPT) \
+	-unused -map $(M21_MAP) \
+	-w off \
 
 $(M21_TARGET): $(M21_O_FILES) $(M21_LIBS)
+	@echo [ 21] creating $(M21_TARGET)
 	@echo $(M21_LIBS) $(M21_O_FILES) > build/M21_ofiles
-	$(LD) -opt_partial $(M21_LDFLAGS) -o $(M21_TARGET) @build/M21_ofiles
+	@python3 tools/lcf.py rel 21 --output $(M21_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M21_LDFLAGS) -o $(M21_TARGET) @build/M21_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush/%.o: rel/d/a/obj/d_a_obj_swpush/%.cpp
+	@echo [ 21] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M21_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M21_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_swpush/libs/Runtime.PPCEABI.H/Makefile
 

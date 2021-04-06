@@ -8,8 +8,8 @@ lbl_801F191C:
 /* 801F1934  48 07 19 79 */	bl cAPICPad_ANY_BUTTON__FUl
 /* 801F1938  28 03 00 00 */	cmplwi r3, 0
 /* 801F193C  41 82 00 58 */	beq lbl_801F1994
-/* 801F1940  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801F1944  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801F1940  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801F1944  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801F1948  A8 03 00 94 */	lha r0, 0x94(r3)
 /* 801F194C  2C 00 00 00 */	cmpwi r0, 0
 /* 801F1950  40 82 00 44 */	bne lbl_801F1994

@@ -22,7 +22,7 @@ extern "C" extern u8 ga8cSignature__Q27JStudio4data[8];
 //
 
 /* ############################################################################################## */
-/* 80455460-80455468 0008+00 s=0 e=1 z=0  None .sdata2    ga8cSignature__Q27JStudio4data */
-SECTION_SDATA2 u8 ga8cSignature__Q27JStudio4data[8] = {
+/* 80455460-80455468 003A60 0008+00 0/0 1/1 0/0 .sdata2          ga8cSignature__Q27JStudio4data */
+SECTION_SDATA2 extern u8 ga8cSignature__Q27JStudio4data[8] = {
     0x6A, 0x73, 0x74, 0x75, 0x64, 0x69, 0x6F, 0x00,
 };

@@ -1,8 +1,8 @@
 lbl_800E70C0:
 /* 800E70C0  A8 A4 00 08 */	lha r5, 8(r4)
 /* 800E70C4  38 60 00 00 */	li r3, 0
-/* 800E70C8  3C 80 80 39 */	lis r4, l_insectNameList@ha
-/* 800E70CC  38 84 FB BC */	addi r4, r4, l_insectNameList@l
+/* 800E70C8  3C 80 80 39 */	lis r4, l_insectNameList@ha /* 0x8038FBBC@ha */
+/* 800E70CC  38 84 FB BC */	addi r4, r4, l_insectNameList@l /* 0x8038FBBC@l */
 /* 800E70D0  38 00 00 0C */	li r0, 0xc
 /* 800E70D4  7C 09 03 A6 */	mtctr r0
 lbl_800E70D8:

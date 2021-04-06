@@ -7,20 +7,20 @@ lbl_805E9310:
 /* 805E9324  88 03 06 90 */	lbz r0, 0x690(r3)
 /* 805E9328  28 00 00 00 */	cmplwi r0, 0
 /* 805E932C  41 82 00 38 */	beq lbl_805E9364
-/* 805E9330  3C 60 80 5F */	lis r3, data_805ED728@ha
-/* 805E9334  C0 23 D7 28 */	lfs f1, data_805ED728@l(r3)
-/* 805E9338  3C 60 80 5F */	lis r3, lit_6106@ha
-/* 805E933C  C0 03 D3 00 */	lfs f0, lit_6106@l(r3)
+/* 805E9330  3C 60 80 5F */	lis r3, data_805ED728@ha /* 0x805ED728@ha */
+/* 805E9334  C0 23 D7 28 */	lfs f1, data_805ED728@l(r3)  /* 0x805ED728@l */
+/* 805E9338  3C 60 80 5F */	lis r3, lit_6106@ha /* 0x805ED300@ha */
+/* 805E933C  C0 03 D3 00 */	lfs f0, lit_6106@l(r3)  /* 0x805ED300@l */
 /* 805E9340  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805E9344  40 81 00 14 */	ble lbl_805E9358
 /* 805E9348  38 7F 0E 4C */	addi r3, r31, 0xe4c
 /* 805E934C  38 80 00 00 */	li r4, 0
-/* 805E9350  4B CD 88 2C */	b setLinkSearch__15Z2CreatureEnemyFb
+/* 805E9350  4B CD 88 2D */	bl setLinkSearch__15Z2CreatureEnemyFb
 /* 805E9354  48 00 00 10 */	b lbl_805E9364
 lbl_805E9358:
 /* 805E9358  38 7F 0E 4C */	addi r3, r31, 0xe4c
 /* 805E935C  38 80 00 01 */	li r4, 1
-/* 805E9360  4B CD 88 1C */	b setLinkSearch__15Z2CreatureEnemyFb
+/* 805E9360  4B CD 88 1D */	bl setLinkSearch__15Z2CreatureEnemyFb
 lbl_805E9364:
 /* 805E9364  7F E3 FB 78 */	mr r3, r31
 /* 805E9368  4B FF FF 39 */	bl HitChk__8daB_GG_cFv

@@ -1,6 +1,6 @@
 lbl_80CB01E0:
-/* 80CB01E0  3C 80 80 CB */	lis r4, l_shake_data@ha
-/* 80CB01E4  38 84 0A 38 */	addi r4, r4, l_shake_data@l
+/* 80CB01E0  3C 80 80 CB */	lis r4, l_shake_data@ha /* 0x80CB0A38@ha */
+/* 80CB01E4  38 84 0A 38 */	addi r4, r4, l_shake_data@l /* 0x80CB0A38@l */
 /* 80CB01E8  88 04 00 0C */	lbz r0, 0xc(r4)
 /* 80CB01EC  98 03 07 42 */	stb r0, 0x742(r3)
 /* 80CB01F0  88 04 00 0D */	lbz r0, 0xd(r4)

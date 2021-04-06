@@ -7,8 +7,8 @@ lbl_8019135C:
 /* 80191370  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80191374  7C 9F 23 78 */	mr r31, r4
 /* 80191378  41 82 00 4C */	beq lbl_801913C4
-/* 8019137C  3C 60 80 3C */	lis r3, __vt__15dDlst_FileSel_c@ha
-/* 80191380  38 03 B3 A8 */	addi r0, r3, __vt__15dDlst_FileSel_c@l
+/* 8019137C  3C 60 80 3C */	lis r3, __vt__15dDlst_FileSel_c@ha /* 0x803BB3A8@ha */
+/* 80191380  38 03 B3 A8 */	addi r0, r3, __vt__15dDlst_FileSel_c@l /* 0x803BB3A8@l */
 /* 80191384  90 1E 00 00 */	stw r0, 0(r30)
 /* 80191388  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8019138C  28 03 00 00 */	cmplwi r3, 0

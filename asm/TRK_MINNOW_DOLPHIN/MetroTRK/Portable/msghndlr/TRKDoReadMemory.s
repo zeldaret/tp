@@ -7,8 +7,8 @@ lbl_8036E8E0:
 /* 8036E8F4  90 0C 00 04 */	stw r0, 4(r12)
 /* 8036E8F8  BF 4C FF E8 */	stmw r26, -0x18(r12)
 /* 8036E8FC  7C 7F 1B 78 */	mr r31, r3
-/* 8036E900  3C 60 80 3A */	lis r3, lit_321@ha
-/* 8036E904  3B A3 28 D0 */	addi r29, r3, lit_321@l
+/* 8036E900  3C 60 80 3A */	lis r3, lit_321@ha /* 0x803A28D0@ha */
+/* 8036E904  3B A3 28 D0 */	addi r29, r3, lit_321@l /* 0x803A28D0@l */
 /* 8036E908  38 9D 01 B0 */	addi r4, r29, 0x1b0
 /* 8036E90C  38 60 00 01 */	li r3, 1
 /* 8036E910  83 5F 00 20 */	lwz r26, 0x20(r31)
@@ -99,9 +99,9 @@ lbl_8036EA48:
 /* 8036EA50  38 1E F9 00 */	addi r0, r30, -1792
 /* 8036EA54  28 00 00 06 */	cmplwi r0, 6
 /* 8036EA58  41 81 00 44 */	bgt lbl_8036EA9C
-/* 8036EA5C  3C 60 80 3D */	lis r3, lit_536@ha
+/* 8036EA5C  3C 60 80 3D */	lis r3, lit_536@ha /* 0x803D321C@ha */
 /* 8036EA60  54 00 10 3A */	slwi r0, r0, 2
-/* 8036EA64  38 63 32 1C */	addi r3, r3, lit_536@l
+/* 8036EA64  38 63 32 1C */	addi r3, r3, lit_536@l /* 0x803D321C@l */
 /* 8036EA68  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8036EA6C  7C 09 03 A6 */	mtctr r0
 /* 8036EA70  4E 80 04 20 */	bctr 

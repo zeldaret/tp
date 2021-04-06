@@ -12,8 +12,8 @@ lbl_800D2C78:
 /* 800D2CA0  54 00 02 11 */	rlwinm. r0, r0, 0, 8, 8
 /* 800D2CA4  41 82 00 30 */	beq lbl_800D2CD4
 /* 800D2CA8  C0 3F 33 98 */	lfs f1, 0x3398(r31)
-/* 800D2CAC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800D2CB0  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800D2CAC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800D2CB0  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800D2CB4  C0 03 00 3C */	lfs f0, 0x3c(r3)
 /* 800D2CB8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 800D2CBC  D0 1F 33 98 */	stfs f0, 0x3398(r31)
@@ -42,8 +42,8 @@ lbl_800D2CF8:
 /* 800D2D10  38 84 05 38 */	addi r4, r4, 0x538
 /* 800D2D14  48 19 DE F1 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 800D2D18  B0 7F 04 E6 */	sth r3, 0x4e6(r31)
-/* 800D2D1C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800D2D20  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800D2D1C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800D2D20  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800D2D24  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800D2D28  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800D2D2C  7C 64 02 14 */	add r3, r4, r0
@@ -146,8 +146,8 @@ lbl_800D2E9C:
 /* 800D2E9C  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800D2EA0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800D2EA4  40 80 00 10 */	bge lbl_800D2EB4
-/* 800D2EA8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800D2EAC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800D2EA8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800D2EAC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800D2EB0  48 00 00 70 */	b lbl_800D2F20
 lbl_800D2EB4:
 /* 800D2EB4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -181,8 +181,8 @@ lbl_800D2F0C:
 lbl_800D2F10:
 /* 800D2F10  2C 00 00 01 */	cmpwi r0, 1
 /* 800D2F14  40 82 00 0C */	bne lbl_800D2F20
-/* 800D2F18  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800D2F1C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800D2F18  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800D2F1C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800D2F20:
 /* 800D2F20  C0 02 93 18 */	lfs f0, lit_7308(r2)
 /* 800D2F24  FC 01 00 40 */	fcmpo cr0, f1, f0

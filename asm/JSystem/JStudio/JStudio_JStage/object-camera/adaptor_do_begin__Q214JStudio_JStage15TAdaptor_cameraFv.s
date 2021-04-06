@@ -26,11 +26,11 @@ lbl_8028BA1C:
 /* 8028BA7C  7F 63 DB 78 */	mr r3, r27
 /* 8028BA80  7F C4 F3 78 */	mr r4, r30
 /* 8028BA84  48 00 06 19 */	bl getJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl
-/* 8028BA88  3C 60 80 43 */	lis r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-/* 8028BA8C  38 03 12 D4 */	addi r0, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
+/* 8028BA88  3C 60 80 43 */	lis r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha /* 0x804312D4@ha */
+/* 8028BA8C  38 03 12 D4 */	addi r0, r3, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l /* 0x804312D4@l */
 /* 8028BA90  7C 1C 03 78 */	mr r28, r0
-/* 8028BA94  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 8028BA98  3B C3 5E B8 */	addi r30, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 8028BA94  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 8028BA98  3B C3 5E B8 */	addi r30, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 8028BA9C  3B E0 00 00 */	li r31, 0
 /* 8028BAA0  48 00 00 34 */	b lbl_8028BAD4
 lbl_8028BAA4:

@@ -75,17 +75,17 @@ lbl_80AA76F0:
 lbl_80AA76F4:
 /* 80AA76F4  7F E3 FB 78 */	mr r3, r31
 /* 80AA76F8  80 BF 0A 24 */	lwz r5, 0xa24(r31)
-/* 80AA76FC  4B 6A EB 4C */	b getAnmP__9daNpcCd_cFii
+/* 80AA76FC  4B 6A EB 4D */	bl getAnmP__9daNpcCd_cFii
 /* 80AA7700  7C 64 1B 78 */	mr r4, r3
 /* 80AA7704  7F E3 FB 78 */	mr r3, r31
-/* 80AA7708  3C A0 80 AB */	lis r5, lit_3963@ha
-/* 80AA770C  C0 25 8A 18 */	lfs f1, lit_3963@l(r5)
-/* 80AA7710  3C A0 80 AB */	lis r5, lit_3964@ha
-/* 80AA7714  C0 45 8A 1C */	lfs f2, lit_3964@l(r5)
+/* 80AA7708  3C A0 80 AB */	lis r5, lit_3963@ha /* 0x80AA8A18@ha */
+/* 80AA770C  C0 25 8A 18 */	lfs f1, lit_3963@l(r5)  /* 0x80AA8A18@l */
+/* 80AA7710  3C A0 80 AB */	lis r5, lit_3964@ha /* 0x80AA8A1C@ha */
+/* 80AA7714  C0 45 8A 1C */	lfs f2, lit_3964@l(r5)  /* 0x80AA8A1C@l */
 /* 80AA7718  38 A0 00 02 */	li r5, 2
 /* 80AA771C  38 C0 00 00 */	li r6, 0
 /* 80AA7720  38 E0 FF FF */	li r7, -1
-/* 80AA7724  4B 6A F6 FC */	b setAnm__9daNpcCd_cFP18J3DAnmTransformKeyffiii
+/* 80AA7724  4B 6A F6 FD */	bl setAnm__9daNpcCd_cFP18J3DAnmTransformKeyffiii
 /* 80AA7728  38 00 00 00 */	li r0, 0
 /* 80AA772C  98 1F 0A 43 */	stb r0, 0xa43(r31)
 /* 80AA7730  38 00 00 01 */	li r0, 1

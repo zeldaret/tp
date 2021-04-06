@@ -10,8 +10,8 @@ lbl_80244558:
 /* 80244578  7C 98 23 78 */	mr r24, r4
 /* 8024457C  7C B7 2B 78 */	mr r23, r5
 /* 80244580  4B FF 7B 5D */	bl __ct__14dMsgScrnBase_cFv
-/* 80244584  3C 60 80 3C */	lis r3, __vt__16dMsgScrnJimaku_c@ha
-/* 80244588  38 03 11 E8 */	addi r0, r3, __vt__16dMsgScrnJimaku_c@l
+/* 80244584  3C 60 80 3C */	lis r3, __vt__16dMsgScrnJimaku_c@ha /* 0x803C11E8@ha */
+/* 80244588  38 03 11 E8 */	addi r0, r3, __vt__16dMsgScrnJimaku_c@l /* 0x803C11E8@l */
 /* 8024458C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80244590  28 17 00 00 */	cmplwi r23, 0
 /* 80244594  41 82 00 0C */	beq lbl_802445A0
@@ -33,11 +33,11 @@ lbl_802445AC:
 lbl_802445CC:
 /* 802445CC  90 1F 00 04 */	stw r0, 4(r31)
 /* 802445D0  80 7F 00 04 */	lwz r3, 4(r31)
-/* 802445D4  3C 80 80 3A */	lis r4, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha
-/* 802445D8  38 84 9A 80 */	addi r4, r4, msg_scrn_d_msg_scrn_jimaku__stringBase0@l
+/* 802445D4  3C 80 80 3A */	lis r4, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha /* 0x80399A80@ha */
+/* 802445D8  38 84 9A 80 */	addi r4, r4, msg_scrn_d_msg_scrn_jimaku__stringBase0@l /* 0x80399A80@l */
 /* 802445DC  3C A0 00 02 */	lis r5, 2
-/* 802445E0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 802445E4  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l
+/* 802445E0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802445E4  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802445E8  80 C6 5C E4 */	lwz r6, 0x5ce4(r6)
 /* 802445EC  48 0B 40 5D */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 802445F0  80 7F 00 04 */	lwz r3, 4(r31)
@@ -76,8 +76,8 @@ lbl_80244618:
 /* 80244670  7C 60 1B 78 */	mr r0, r3
 lbl_80244674:
 /* 80244674  90 1F 00 08 */	stw r0, 8(r31)
-/* 80244678  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8024467C  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 80244678  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8024467C  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80244680  C0 24 00 C0 */	lfs f1, 0xc0(r4)
 /* 80244684  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80244688  80 63 00 04 */	lwz r3, 4(r3)
@@ -88,8 +88,8 @@ lbl_80244674:
 /* 8024469C  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 802446A0  7D 89 03 A6 */	mtctr r12
 /* 802446A4  4E 80 04 21 */	bctrl 
-/* 802446A8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 802446AC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 802446A8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802446AC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802446B0  C0 03 02 60 */	lfs f0, 0x260(r3)
 /* 802446B4  D0 1F 00 CC */	stfs f0, 0xcc(r31)
 /* 802446B8  80 7F 00 08 */	lwz r3, 8(r31)
@@ -161,10 +161,10 @@ lbl_80244730:
 /* 802447B8  3B 40 00 00 */	li r26, 0
 /* 802447BC  3B 20 00 00 */	li r25, 0
 /* 802447C0  3B 00 00 00 */	li r24, 0
-/* 802447C4  3C 60 80 3A */	lis r3, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha
-/* 802447C8  3B A3 9A 80 */	addi r29, r3, msg_scrn_d_msg_scrn_jimaku__stringBase0@l
-/* 802447CC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 802447D0  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l
+/* 802447C4  3C 60 80 3A */	lis r3, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha /* 0x80399A80@ha */
+/* 802447C8  3B A3 9A 80 */	addi r29, r3, msg_scrn_d_msg_scrn_jimaku__stringBase0@l /* 0x80399A80@l */
+/* 802447CC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802447D0  3B C3 02 8C */	addi r30, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 lbl_802447D4:
 /* 802447D4  38 18 00 0C */	addi r0, r24, 0xc
 /* 802447D8  7C 7F 00 2E */	lwzx r3, r31, r0
@@ -211,8 +211,8 @@ lbl_802447D4:
 /* 8024487C  7C 7F 00 2E */	lwzx r3, r31, r0
 /* 80244880  80 63 00 04 */	lwz r3, 4(r3)
 /* 80244884  38 80 02 00 */	li r4, 0x200
-/* 80244888  3C A0 80 3A */	lis r5, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha
-/* 8024488C  38 A5 9A 80 */	addi r5, r5, msg_scrn_d_msg_scrn_jimaku__stringBase0@l
+/* 80244888  3C A0 80 3A */	lis r5, msg_scrn_d_msg_scrn_jimaku__stringBase0@ha /* 0x80399A80@ha */
+/* 8024488C  38 A5 9A 80 */	addi r5, r5, msg_scrn_d_msg_scrn_jimaku__stringBase0@l /* 0x80399A80@l */
 /* 80244890  38 A5 00 1E */	addi r5, r5, 0x1e
 /* 80244894  4C C6 31 82 */	crclr 6
 /* 80244898  48 0B BE B5 */	bl setString__10J2DTextBoxFsPCce

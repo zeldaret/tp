@@ -1,6 +1,6 @@
 lbl_8061A924:
-/* 8061A924  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8061A928  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
+/* 8061A924  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8061A928  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8061A92C  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8061A930  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8061A934  C0 04 00 1C */	lfs f0, 0x1c(r4)

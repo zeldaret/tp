@@ -7,8 +7,8 @@ lbl_802D3378:
 /* 802D338C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D3390  7C 9F 23 78 */	mr r31, r4
 /* 802D3394  41 82 00 84 */	beq lbl_802D3418
-/* 802D3398  3C 60 80 3D */	lis r3, __vt__12JKRAramBlock@ha
-/* 802D339C  38 03 C1 78 */	addi r0, r3, __vt__12JKRAramBlock@l
+/* 802D3398  3C 60 80 3D */	lis r3, __vt__12JKRAramBlock@ha /* 0x803CC178@ha */
+/* 802D339C  38 03 C1 78 */	addi r0, r3, __vt__12JKRAramBlock@l /* 0x803CC178@l */
 /* 802D33A0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D33A4  80 7E 00 08 */	lwz r3, 8(r30)
 /* 802D33A8  80 9E 00 0C */	lwz r4, 0xc(r30)

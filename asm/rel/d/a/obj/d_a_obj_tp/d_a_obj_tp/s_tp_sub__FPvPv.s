@@ -6,7 +6,7 @@ lbl_80D1D850:
 /* 80D1D860  93 C1 00 08 */	stw r30, 8(r1)
 /* 80D1D864  7C 7E 1B 78 */	mr r30, r3
 /* 80D1D868  7C 9F 23 78 */	mr r31, r4
-/* 80D1D86C  4B 2F B4 74 */	b fopAc_IsActor__FPv
+/* 80D1D86C  4B 2F B4 75 */	bl fopAc_IsActor__FPv
 /* 80D1D870  2C 03 00 00 */	cmpwi r3, 0
 /* 80D1D874  41 82 00 38 */	beq lbl_80D1D8AC
 /* 80D1D878  A8 1E 00 08 */	lha r0, 8(r30)

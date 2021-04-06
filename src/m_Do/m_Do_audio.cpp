@@ -52,15 +52,11 @@ struct Z2MultiSeMgr {
     /* 802AEB34 */ ~Z2MultiSeMgr();
 };
 
+struct JAISoundID {};
+
 struct JAISoundHandle {
     /* 80007838 */ ~JAISoundHandle();
     /* 802A2184 */ void releaseSound();
-};
-
-struct JAISoundID {};
-
-struct JKRSolidHeap {
-    /* 802D0BF4 */ void adjustSize();
 };
 
 struct JGeometry {
@@ -68,6 +64,10 @@ struct JGeometry {
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct JKRSolidHeap {
+    /* 802D0BF4 */ void adjustSize();
 };
 
 struct Z2AudioMgr {
@@ -118,15 +118,6 @@ struct JAISeCategoryMgr {
 // Forward References:
 //
 
-static void mDoAud_Create();
-void mDoAud_Execute();
-void mDoAud_setSceneName(char const*, s32, s32);
-void mDoAud_load1stDynamicWave();
-void mDoAud_setFadeOutStart(u8);
-void mDoAud_setFadeInStart(u8);
-void mDoAud_resetProcess();
-void mDoAud_resetRecover();
-
 extern "C" void reset__17mDoAud_zelAudio_cFv();
 extern "C" static void mDoAud_Create__Fv();
 extern "C" void mDoAud_Execute__Fv();
@@ -143,16 +134,10 @@ extern "C" void __dt__14JAISoundHandleFv();
 extern "C" void __dt__12Z2MultiSeObjFv();
 extern "C" void __dt__16JAISeCategoryMgrFv();
 extern "C" extern char const* const m_Do_m_Do_audio__stringBase0;
-extern "C" extern void* __vt__17mDoAud_zelAudio_c[3];
-extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
-extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 g_mDoAud_audioHeap[4];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void OSReport_Error();
 extern "C" void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap();
@@ -221,11 +206,14 @@ extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 //
 
 /* ############################################################################################## */
-/* 80450BB8-80450BBC 0004+00 s=5 e=6 z=0  None .sbss      None */
+/* 80450BB8-80450BBC -00001 0004+00 5/5 6/6 0/0 .sbss            None */
+/* 80450BB8 0001+00 data_80450BB8 None */
+/* 80450BB9 0001+00 data_80450BB9 None */
+/* 80450BBA 0002+00 data_80450BBA None */
+extern u8 struct_80450BB8[4];
 u8 struct_80450BB8[4];
 
-/* 80006FB4-80006FC0 000C+00 s=1 e=0 z=0  None .text      reset__17mDoAud_zelAudio_cFv */
-//	80006FB8: 80450BBA (struct_80450BB8)
+/* 80006FB4-80006FC0 0018F4 000C+00 1/1 0/0 0/0 .text            reset__17mDoAud_zelAudio_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,90 +224,33 @@ asm void mDoAud_zelAudio_c::reset() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80373D68-80373DD0 0065+03 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80373D68 = "/Audiores/Z2Sound.baa";
-SECTION_DEAD char const* const stringBase_80373D7E = "/Audiores/Seqs/Z2SoundSeqs.arc";
-SECTION_DEAD char const* const stringBase_80373D9D =
-    "ヒープ確保失敗につきオーディオ初期化できません\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80373DCD = "\0\0";
-#pragma pop
-
-/* 803DBF40-803DBF4C 000C+00 s=1 e=0 z=0  None .bss       @3620 */
+/* 803DBF40-803DBF4C 008C60 000C+00 1/1 0/1 0/0 .bss             @3620 */
 static u8 lit_3620[12];
 
-/* 803DBF4C-803DD2D8 138C+00 s=3 e=0 z=0  None .bss       g_mDoAud_zelAudio */
+/* 803DBF4C-803DD2D8 008C6C 138C+00 3/3 0/0 0/0 .bss             g_mDoAud_zelAudio */
 static u8 g_mDoAud_zelAudio[5004];
 
-/* 80450BBC-80450BC0 0004+00 s=1 e=1 z=0  None .sbss      g_mDoAud_audioHeap */
+/* 80450BBC-80450BC0 0000BC 0004+00 1/1 1/1 0/0 .sbss            g_mDoAud_audioHeap */
+extern u8 g_mDoAud_audioHeap[4];
 u8 g_mDoAud_audioHeap[4];
 
-/* 80450BC0-80450BC4 0004+00 s=1 e=0 z=0  None .sbss      l_affCommand */
+/* 80450BC0-80450BC4 0000C0 0004+00 1/1 0/0 0/0 .sbss            l_affCommand */
 static u8 l_affCommand[4];
 
-/* 80450BC4-80450BC8 0004+00 s=1 e=0 z=0  None .sbss      l_arcCommand */
+/* 80450BC4-80450BC8 0000C4 0004+00 1/1 0/0 0/0 .sbss            l_arcCommand */
 static u8 l_arcCommand[4];
 
-/* 80006FC0-80007164 01A4+00 s=1 e=0 z=0  None .text      mDoAud_Create__Fv */
-//	80006FD0: 80450BC0 (l_affCommand)
-//	80006FDC: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	80006FE0: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	80006FEC: 80016394 (create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap)
-//	80006FF0: 80450BC0 (l_affCommand)
-//	80006FFC: 80450BC4 (l_arcCommand)
-//	80007008: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	8000700C: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	80007020: 800161E0
-//(create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap) 	80007024:
-//80450BC4 (l_arcCommand) 	80007030: 80450BC0 (l_affCommand) 	80007040: 80450BC4 (l_arcCommand)
-//80007050: 80450BBC (g_mDoAud_audioHeap) 	8000705C: 80451374 (sCurrentHeap__7JKRHeap) 80007064:
-// 802CE7B0 (changeGroupID__7JKRHeapFUc) 	8000706C: 80450BC4 (l_arcCommand) 	80007074: 80450BC0
-//(l_affCommand) 	8000707C: 803DBF4C (g_mDoAud_zelAudio) 	80007080: 803DBF4C (g_mDoAud_zelAudio)
-//	80007084: 80450BBC (g_mDoAud_audioHeap)
-//	8000708C: 802CD34C (init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive)
-//	80007090: 80451374 (sCurrentHeap__7JKRHeap)
-//	80007098: 802CE7B0 (changeGroupID__7JKRHeapFUc)
-//	8000709C: 80450BBC (g_mDoAud_audioHeap)
-//	800070A0: 802D0BF4 (adjustSize__12JKRSolidHeapFv)
-//	800070A8: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	800070AC: 80373D68 (m_Do_m_Do_audio__stringBase0)
-//	800070B8: 80006C0C (OSReport_Error)
-//	800070BC: 804061C0 (g_dComIfG_gameInfo)
-//	800070C0: 804061C0 (g_dComIfG_gameInfo)
-//	800070C8: 803DBF4C (g_mDoAud_zelAudio)
-//	800070CC: 803DBF4C (g_mDoAud_zelAudio)
-//	800070D4: 802B6758 (setEventBit__11Z2StatusMgrFPv)
-//	800070D8: 803DBF4C (g_mDoAud_zelAudio)
-//	800070DC: 803DBF4C (g_mDoAud_zelAudio)
-//	800070E0: 80006FB4 (reset__17mDoAud_zelAudio_cFv)
-//	800070E4: 80340590 (OSGetSoundMode)
-//	800070EC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800070F0: 802CD888 (setOutputMode__10Z2AudioMgrFUl)
-//	800070F4: 80450BC0 (l_affCommand)
-//	80007100: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	80007104: 80450BC0 (l_affCommand)
-//	80007124: 80450BC4 (l_arcCommand)
-//	80007148: 80450BB8 (struct_80450BB8)
-//	8000714C: 80450C80 (struct_80450C80)
+/* 80006FC0-80007164 001900 01A4+00 1/1 0/0 0/0 .text            mDoAud_Create__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoAud_Create() {
+static asm void mDoAud_Create() {
     nofralloc
 #include "asm/m_Do/m_Do_audio/mDoAud_Create__Fv.s"
 }
 #pragma pop
 
-/* 80007164-800071BC 0058+00 s=0 e=1 z=0  None .text      mDoAud_Execute__Fv */
-//	80007170: 80450BB8 (struct_80450BB8)
-//	8000717C: 80450C78 (mResetData__6mDoRst)
-//	80007198: 80006FC0 (mDoAud_Create__Fv)
-//	800071A0: 803DBF4C (g_mDoAud_zelAudio)
-//	800071A4: 803DBF4C (g_mDoAud_zelAudio)
-//	800071A8: 802CD904 (gframeProcess__10Z2AudioMgrFv)
+/* 80007164-800071BC 001AA4 0058+00 0/0 1/1 0/0 .text            mDoAud_Execute__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,9 +260,7 @@ asm void mDoAud_Execute() {
 }
 #pragma pop
 
-/* 800071BC-800071F8 003C+00 s=0 e=3 z=0  None .text      mDoAud_setSceneName__FPCcll */
-//	800071D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800071E4: 802B6AF8 (setSceneName__10Z2SceneMgrFPcll)
+/* 800071BC-800071F8 001AFC 003C+00 0/0 3/3 0/0 .text            mDoAud_setSceneName__FPCcll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -341,9 +270,7 @@ asm void mDoAud_setSceneName(char const* param_0, s32 param_1, s32 param_2) {
 }
 #pragma pop
 
-/* 800071F8-80007224 002C+00 s=0 e=1 z=0  None .text      mDoAud_load1stDynamicWave__Fv */
-//	80007204: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8000720C: 802B9D40 (load1stDynamicWave__10Z2SceneMgrFv)
+/* 800071F8-80007224 001B38 002C+00 0/0 1/1 0/0 .text            mDoAud_load1stDynamicWave__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,9 +280,7 @@ asm void mDoAud_load1stDynamicWave() {
 }
 #pragma pop
 
-/* 80007224-80007254 0030+00 s=0 e=2 z=0  None .text      mDoAud_setFadeOutStart__FUc */
-//	80007234: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80007240: 802B697C (setFadeOutStart__10Z2SceneMgrFUc)
+/* 80007224-80007254 001B64 0030+00 0/0 2/2 0/0 .text            mDoAud_setFadeOutStart__FUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -365,9 +290,7 @@ asm void mDoAud_setFadeOutStart(u8 param_0) {
 }
 #pragma pop
 
-/* 80007254-80007284 0030+00 s=0 e=2 z=1  None .text      mDoAud_setFadeInStart__FUc */
-//	80007264: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80007270: 802B6A18 (setFadeInStart__10Z2SceneMgrFUc)
+/* 80007254-80007284 001B94 0030+00 0/0 2/2 1/1 .text            mDoAud_setFadeInStart__FUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -377,11 +300,7 @@ asm void mDoAud_setFadeInStart(u8 param_0) {
 }
 #pragma pop
 
-/* 80007284-800072C4 0040+00 s=0 e=1 z=0  None .text      mDoAud_resetProcess__Fv */
-//	80007290: 80450BB9 (struct_80450BB8)
-//	8000729C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800072A8: 802CD974 (resetProcess__10Z2AudioMgrFUlb)
-//	800072B0: 80450BB9 (struct_80450BB8)
+/* 80007284-800072C4 001BC4 0040+00 0/0 1/1 0/0 .text            mDoAud_resetProcess__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -391,13 +310,7 @@ asm void mDoAud_resetProcess() {
 }
 #pragma pop
 
-/* 800072C4-80007318 0054+00 s=0 e=2 z=0  None .text      mDoAud_resetRecover__Fv */
-//	800072D0: 80450BB9 (struct_80450BB8)
-//	800072DC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800072E0: 802CDA6C (hasReset__10Z2AudioMgrCFv)
-//	800072F4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800072F8: 802CD9CC (resetRecover__10Z2AudioMgrFv)
-//	80007300: 80450BB9 (struct_80450BB8)
+/* 800072C4-80007318 001C04 0054+00 0/0 2/2 0/0 .text            mDoAud_resetRecover__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -408,30 +321,18 @@ asm void mDoAud_resetRecover() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2F40-803A2F4C 000C+00 s=2 e=0 z=0  None .data      __vt__17mDoAud_zelAudio_c */
-SECTION_DATA void* __vt__17mDoAud_zelAudio_c[3] = {
+/* 803A2F40-803A2F4C 000060 000C+00 2/2 0/0 0/0 .data            __vt__17mDoAud_zelAudio_c */
+SECTION_DATA extern void* __vt__17mDoAud_zelAudio_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)func_802CDB1C,
 };
 
-/* 80007318-80007368 0050+00 s=0 e=0 z=0  None .text      __sinit_m_Do_audio_cpp */
-//	80007324: 803DBF4C (g_mDoAud_zelAudio)
-//	80007328: 803DBF4C (g_mDoAud_zelAudio)
-//	8000732C: 802CD248 (__ct__10Z2AudioMgrFv)
-//	80007330: 803A2F40 (__vt__17mDoAud_zelAudio_c)
-//	80007334: 803A2F40 (__vt__17mDoAud_zelAudio_c)
-//	80007338: 803DBF4C (g_mDoAud_zelAudio)
-//	8000733C: 803DBF4C (g_mDoAud_zelAudio)
-//	80007344: 80007368 (__dt__17mDoAud_zelAudio_cFv)
-//	80007348: 80007368 (__dt__17mDoAud_zelAudio_cFv)
-//	8000734C: 803DBF40 (lit_3620)
-//	80007350: 803DBF40 (lit_3620)
-//	80007354: 80361C24 (__register_global_object)
+/* 80007318-80007368 001C58 0050+00 0/0 1/0 0/0 .text            __sinit_m_Do_audio_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_m_Do_audio_cpp() {
+asm void __sinit_m_Do_audio_cpp() {
     nofralloc
 #include "asm/m_Do/m_Do_audio/__sinit_m_Do_audio_cpp.s"
 }
@@ -442,11 +343,7 @@ extern "C" asm void __sinit_m_Do_audio_cpp() {
 SECTION_CTORS void* const _ctors_80007318 = (void*)__sinit_m_Do_audio_cpp;
 #pragma pop
 
-/* 80007368-800073C8 0060+00 s=1 e=0 z=0  None .text      __dt__17mDoAud_zelAudio_cFv */
-//	80007388: 803A2F40 (__vt__17mDoAud_zelAudio_c)
-//	8000738C: 803A2F40 (__vt__17mDoAud_zelAudio_c)
-//	80007398: 800073C8 (__dt__10Z2AudioMgrFv)
-//	800073A8: 802CED3C (__dl__FPv)
+/* 80007368-800073C8 001CA8 0060+00 1/1 0/0 0/0 .text            __dt__17mDoAud_zelAudio_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -457,8 +354,8 @@ asm mDoAud_zelAudio_c::~mDoAud_zelAudio_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2F4C-803A2F60 0010+04 s=1 e=2 z=0  None .data      __vt__12JAUSoundInfo */
-SECTION_DATA void* __vt__12JAUSoundInfo[4 + 1 /* padding */] = {
+/* 803A2F4C-803A2F60 00006C 0010+04 1/1 2/2 0/0 .data            __vt__12JAUSoundInfo */
+SECTION_DATA extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
@@ -467,87 +364,7 @@ SECTION_DATA void* __vt__12JAUSoundInfo[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 800073C8-80007838 0470+00 s=1 e=0 z=0  None .text      __dt__10Z2AudioMgrFv */
-//	800073D8: 803621DC (_savegpr_29)
-//	800073E8: 803CBF38 (__vt__10Z2AudioMgr)
-//	800073EC: 803CBF38 (__vt__10Z2AudioMgr)
-//	80007404: 80450B40 (data_80450B40)
-//	80007418: 80450B40 (data_80450B40)
-//	8000742C: 803CBF24 (__vt__15Z2SpeechStarter)
-//	80007430: 803CBF24 (__vt__15Z2SpeechStarter)
-//	80007440: 803C9D80 (__vt__14Z2SoundStarter)
-//	80007444: 803C9D80 (__vt__14Z2SoundStarter)
-//	80007460: 80450B74 (data_80450B74)
-//	80007470: 80450B74 (data_80450B74)
-//	80007478: 802A2F88 (__dt__15JAISoundStarterFv)
-//	80007484: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	80007494: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	800074A0: 80450B70 (data_80450B70)
-//	800074B4: 80450B70 (data_80450B70)
-//	800074C0: 802BD1FC (__dt__10Z2AudienceFv)
-//	800074CC: 803CAC48 (__vt__11Z2SoundInfo)
-//	800074D0: 803CAC48 (__vt__11Z2SoundInfo)
-//	800074FC: 80450B4C (data_80450B4C)
-//	8000750C: 80450B4C (data_80450B4C)
-//	80007518: 802A3AD8 (__dt__16JAIStreamDataMgrFv)
-//	80007524: 803A2F4C (__vt__12JAUSoundInfo)
-//	80007528: 803A2F4C (__vt__12JAUSoundInfo)
-//	80007538: 80450B50 (data_80450B50)
-//	8000754C: 80450B50 (data_80450B50)
-//	80007558: 802A2D50 (__dt__12JAISoundInfoFv)
-//	80007564: 803C9D70 (__vt__10Z2SoundMgr)
-//	80007568: 803C9D70 (__vt__10Z2SoundMgr)
-//	80007584: 802DBEAC (__dt__10JSUPtrListFv)
-//	80007590: 80450B64 (data_80450B64)
-//	800075A0: 80450B64 (data_80450B64)
-//	800075AC: 803C9958 (__vt__9JAISeqMgr)
-//	800075B0: 803C9958 (__vt__9JAISeqMgr)
-//	800075C4: 802DBEAC (__dt__10JSUPtrListFv)
-//	800075D0: 802A1774 (__dt__14JAISeqDataUserFv)
-//	800075DC: 80450B68 (data_80450B68)
-//	800075EC: 80450B68 (data_80450B68)
-//	800075F8: 803C98B0 (__vt__8JAISeMgr)
-//	800075FC: 803C98B0 (__vt__8JAISeMgr)
-//	80007608: 800078DC (__dt__16JAISeCategoryMgrFv)
-//	8000760C: 800078DC (__dt__16JAISeCategoryMgrFv)
-//	80007618: 80361CE8 (__destroy_arr)
-//	80007624: 802A1774 (__dt__14JAISeqDataUserFv)
-//	80007630: 80450B6C (data_80450B6C)
-//	80007640: 80450B6C (data_80450B6C)
-//	8000764C: 80450B60 (data_80450B60)
-//	80007660: 80450B60 (data_80450B60)
-//	8000766C: 803C9D80 (__vt__14Z2SoundStarter)
-//	80007670: 803C9D80 (__vt__14Z2SoundStarter)
-//	8000768C: 80450B74 (data_80450B74)
-//	8000769C: 80450B74 (data_80450B74)
-//	800076A8: 802A2F88 (__dt__15JAISoundStarterFv)
-//	800076B4: 8029D0FC (__dt__15JASAudioReseterFv)
-//	800076D0: 802DBEAC (__dt__10JSUPtrListFv)
-//	800076DC: 80450B48 (data_80450B48)
-//	800076F0: 80450B48 (data_80450B48)
-//	80007704: 80450B7C (data_80450B7C)
-//	80007718: 80450B7C (data_80450B7C)
-//	8000772C: 80450B80 (data_80450B80)
-//	80007740: 80450B80 (data_80450B80)
-//	80007754: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	80007760: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	8000776C: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	8000777C: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	80007788: 80450B84 (data_80450B84)
-//	8000779C: 80450B84 (data_80450B84)
-//	800077AC: 80007888 (__dt__12Z2MultiSeObjFv)
-//	800077B0: 80007888 (__dt__12Z2MultiSeObjFv)
-//	800077BC: 80361CE8 (__destroy_arr)
-//	800077C4: 80007888 (__dt__12Z2MultiSeObjFv)
-//	800077C8: 80007888 (__dt__12Z2MultiSeObjFv)
-//	800077D4: 80361CE8 (__destroy_arr)
-//	800077DC: 80007838 (__dt__14JAISoundHandleFv)
-//	800077E0: 80007838 (__dt__14JAISoundHandleFv)
-//	800077EC: 80361CE8 (__destroy_arr)
-//	800077F8: 80450B88 (data_80450B88)
-//	80007808: 80450B88 (data_80450B88)
-//	80007818: 802CED3C (__dl__FPv)
-//	80007824: 80362228 (_restgpr_29)
+/* 800073C8-80007838 001D08 0470+00 1/1 0/0 0/0 .text            __dt__10Z2AudioMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -557,9 +374,7 @@ asm Z2AudioMgr::~Z2AudioMgr() {
 }
 #pragma pop
 
-/* 80007838-80007888 0050+00 s=1 e=1 z=0  None .text      __dt__14JAISoundHandleFv */
-//	80007858: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	80007868: 802CED3C (__dl__FPv)
+/* 80007838-80007888 002178 0050+00 1/1 1/1 0/0 .text            __dt__14JAISoundHandleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -569,9 +384,7 @@ asm JAISoundHandle::~JAISoundHandle() {
 }
 #pragma pop
 
-/* 80007888-800078DC 0054+00 s=1 e=1 z=0  None .text      __dt__12Z2MultiSeObjFv */
-//	800078AC: 802AEB34 (__dt__12Z2MultiSeMgrFv)
-//	800078BC: 802CED3C (__dl__FPv)
+/* 80007888-800078DC 0021C8 0054+00 1/1 1/1 0/0 .text            __dt__12Z2MultiSeObjFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -581,12 +394,7 @@ asm Z2MultiSeObj::~Z2MultiSeObj() {
 }
 #pragma pop
 
-/* 800078DC-80007954 0078+00 s=1 e=3 z=0  None .text      __dt__16JAISeCategoryMgrFv */
-//	800078FC: 803C98C4 (__vt__16JAISeCategoryMgr)
-//	80007900: 803C98C4 (__vt__16JAISeCategoryMgr)
-//	80007918: 802DBEAC (__dt__10JSUPtrListFv)
-//	80007924: 802A1774 (__dt__14JAISeqDataUserFv)
-//	80007934: 802CED3C (__dl__FPv)
+/* 800078DC-80007954 00221C 0078+00 1/1 3/2 0/0 .text            __dt__16JAISeCategoryMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,4 +402,16 @@ asm JAISeCategoryMgr::~JAISeCategoryMgr() {
     nofralloc
 #include "asm/m_Do/m_Do_audio/__dt__16JAISeCategoryMgrFv.s"
 }
+#pragma pop
+
+/* 80373D68-80373DD0 0003C8 0065+03 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80373D68 = "/Audiores/Z2Sound.baa";
+SECTION_DEAD static char const* const stringBase_80373D7E = "/Audiores/Seqs/Z2SoundSeqs.arc";
+SECTION_DEAD static char const* const stringBase_80373D9D =
+    "ヒープ確保失敗につきオーディオ初期化できません\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80373DCD = "\0\0";
 #pragma pop

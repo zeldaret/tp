@@ -53,10 +53,10 @@ extern "C" extern u32 __float_epsilon;
 //
 
 /* ############################################################################################## */
-/* 80455468-8045546C 0004+00 s=1 e=0 z=0  None .sdata2    @488 */
+/* 80455468-8045546C 003A68 0004+00 1/1 0/0 0/0 .sdata2          @488 */
 SECTION_SDATA2 static f32 lit_488 = 0.01745329238474369f;
 
-/* 8045546C-80455470 0004+00 s=2 e=0 z=0  None .sdata2    @489 */
+/* 8045546C-80455470 003A6C 0004+00 2/2 0/0 0/0 .sdata2          @489 */
 SECTION_SDATA2 static u8 lit_489[4] = {
     0x00,
     0x00,
@@ -64,18 +64,7 @@ SECTION_SDATA2 static u8 lit_489[4] = {
     0x00,
 };
 
-/* 802859DC-80285B44 0168+00 s=1 e=0 z=0  None .text      getRotation_xyz__Q27JStudio4mathFPA4_ffff
- */
-//	80285A28: 80455468 (lit_488)
-//	80285A34: 8036C028 (cos)
-//	80285A40: 8036C590 (sin)
-//	80285A48: 80455468 (lit_488)
-//	80285A54: 8036C028 (cos)
-//	80285A60: 8036C590 (sin)
-//	80285A68: 80455468 (lit_488)
-//	80285A74: 8036C028 (cos)
-//	80285A80: 8036C590 (sin)
-//	80285AF0: 8045546C (lit_489)
+/* 802859DC-80285B44 28031C 0168+00 1/1 0/0 0/0 .text getRotation_xyz__Q27JStudio4mathFPA4_ffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,14 +74,8 @@ asm void JStudio::math::getRotation_xyz(f32 (*param_0)[4], f32 param_1, f32 para
 }
 #pragma pop
 
-/* 80285B44-80285BCC 0088+00 s=0 e=2 z=0  None .text
+/* 80285B44-80285BCC 280484 0088+00 0/0 2/2 0/0 .text
  * getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec */
-//	80285B54: 803621DC (_savegpr_29)
-//	80285B74: 80346968 (PSMTXScale)
-//	80285B88: 802859DC (getRotation_xyz__Q27JStudio4mathFPA4_ffff)
-//	80285B98: 803464E4 (PSMTXConcat)
-//	80285BB0: 8034691C (PSMTXTransApply)
-//	80285BB8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -104,58 +87,32 @@ asm void JStudio::math::getTransformation_SRxyzT(f32 (*param_0)[4], Vec const& p
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455470-80455478 0008+00 s=1 e=0 z=0  None .sdata2    @623 */
+/* 80455470-80455478 003A70 0008+00 1/1 0/0 0/0 .sdata2          @623 */
 SECTION_SDATA2 static u8 lit_623[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80455478-80455480 0008+00 s=1 e=0 z=0  None .sdata2    @624 */
+/* 80455478-80455480 003A78 0008+00 1/1 0/0 0/0 .sdata2          @624 */
 SECTION_SDATA2 static f64 lit_624 = 1.0;
 
-/* 80455480-80455488 0004+04 s=1 e=0 z=0  None .sdata2    @625 */
+/* 80455480-80455488 003A80 0004+04 1/1 0/0 0/0 .sdata2          @625 */
 SECTION_SDATA2 static f32 lit_625[1 + 1 /* padding */] = {
     32.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455488-80455490 0008+00 s=1 e=0 z=0  None .sdata2    @626 */
+/* 80455488-80455490 003A88 0008+00 1/1 0/0 0/0 .sdata2          @626 */
 SECTION_SDATA2 static f64 lit_626 = -1.5707963267948966;
 
-/* 80455490-80455498 0008+00 s=1 e=0 z=0  None .sdata2    @627 */
+/* 80455490-80455498 003A90 0008+00 1/1 0/0 0/0 .sdata2          @627 */
 SECTION_SDATA2 static f64 lit_627 = 1.5707963267948966;
 
-/* 80455498-804554A0 0008+00 s=1 e=0 z=0  None .sdata2    @628 */
+/* 80455498-804554A0 003A98 0008+00 1/1 0/0 0/0 .sdata2          @628 */
 SECTION_SDATA2 static f64 lit_628 = 57.29577951308232;
 
-/* 80285BCC-80285E0C 0240+00 s=0 e=2 z=0  None .text
+/* 80285BCC-80285E0C 28050C 0240+00 0/0 2/2 0/0 .text
  * getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf */
-//	80285BFC: 803621D8 (_savegpr_28)
-//	80285C2C: 80347150 (PSVECMag)
-//	80285C50: 80347150 (PSVECMag)
-//	80285C74: 80347150 (PSVECMag)
-//	80285C94: 80455470 (lit_623)
-//	80285CA0: 8045546C (lit_489)
-//	80285CB0: 80455478 (lit_624)
-//	80285CB8: 8045546C (lit_489)
-//	80285CC8: 80455478 (lit_624)
-//	80285CD0: 8045546C (lit_489)
-//	80285CE0: 80455478 (lit_624)
-//	80285D20: 80455478 (lit_624)
-//	80285D28: 80455480 (lit_625)
-//	80285D2C: 80450AEC (__float_epsilon)
-//	80285D30: 80450AEC (__float_epsilon)
-//	80285D4C: 8036C720 (atan2)
-//	80285D54: 80455488 (lit_626)
-//	80285D58: 80455470 (lit_623)
-//	80285D70: 8036C720 (atan2)
-//	80285D78: 80455490 (lit_627)
-//	80285D7C: 80455470 (lit_623)
-//	80285D8C: 8036C720 (atan2)
-//	80285D9C: 8036C720 (atan2)
-//	80285DA8: 8036C700 (asin)
-//	80285DAC: 80455498 (lit_628)
-//	80285DF8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

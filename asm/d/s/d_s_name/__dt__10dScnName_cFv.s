@@ -25,11 +25,11 @@ lbl_80258D08:
 /* 80258D20  7D 89 03 A6 */	mtctr r12
 /* 80258D24  4E 80 04 21 */	bctrl 
 lbl_80258D28:
-/* 80258D28  3C 60 80 3A */	lis r3, d_s_d_s_name__stringBase0@ha
-/* 80258D2C  38 63 A2 A8 */	addi r3, r3, d_s_d_s_name__stringBase0@l
+/* 80258D28  3C 60 80 3A */	lis r3, d_s_d_s_name__stringBase0@ha /* 0x8039A2A8@ha */
+/* 80258D2C  38 63 A2 A8 */	addi r3, r3, d_s_d_s_name__stringBase0@l /* 0x8039A2A8@l */
 /* 80258D30  38 63 00 0D */	addi r3, r3, 0xd
-/* 80258D34  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80258D38  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80258D34  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80258D38  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80258D3C  3C 84 00 02 */	addis r4, r4, 2
 /* 80258D40  38 A0 00 80 */	li r5, 0x80
 /* 80258D44  38 84 C2 F8 */	addi r4, r4, -15624
@@ -37,8 +37,8 @@ lbl_80258D28:
 /* 80258D4C  80 7F 01 CC */	lwz r3, 0x1cc(r31)
 /* 80258D50  48 07 56 F9 */	bl destroy__7JKRHeapFv
 /* 80258D54  3B A0 00 00 */	li r29, 0
-/* 80258D58  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80258D5C  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
+/* 80258D58  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80258D5C  3B C3 01 88 */	addi r30, r3, g_meter2_info@l /* 0x80430188@l */
 lbl_80258D60:
 /* 80258D60  7F C3 F3 78 */	mr r3, r30
 /* 80258D64  38 1D 00 0B */	addi r0, r29, 0xb
@@ -48,14 +48,14 @@ lbl_80258D60:
 /* 80258D74  2C 1D 00 04 */	cmpwi r29, 4
 /* 80258D78  41 80 FF E8 */	blt lbl_80258D60
 /* 80258D7C  38 00 00 00 */	li r0, 0
-/* 80258D80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80258D84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80258D80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80258D84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80258D88  98 03 5D 44 */	stb r0, 0x5d44(r3)
 /* 80258D8C  90 03 61 B0 */	stw r0, 0x61b0(r3)
 /* 80258D90  34 1F 01 D4 */	addic. r0, r31, 0x1d4
 /* 80258D94  41 82 00 10 */	beq lbl_80258DA4
-/* 80258D98  3C 60 80 3C */	lis r3, __vt__17dScnName_camera_c@ha
-/* 80258D9C  38 03 31 40 */	addi r0, r3, __vt__17dScnName_camera_c@l
+/* 80258D98  3C 60 80 3C */	lis r3, __vt__17dScnName_camera_c@ha /* 0x803C3140@ha */
+/* 80258D9C  38 03 31 40 */	addi r0, r3, __vt__17dScnName_camera_c@l /* 0x803C3140@l */
 /* 80258DA0  90 1F 04 10 */	stw r0, 0x410(r31)
 lbl_80258DA4:
 /* 80258DA4  7F 80 07 35 */	extsh. r0, r28

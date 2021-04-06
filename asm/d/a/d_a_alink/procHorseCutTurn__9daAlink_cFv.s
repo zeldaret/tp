@@ -27,8 +27,8 @@ lbl_800F1BD8:
 /* 800F1C04  48 00 00 F8 */	b lbl_800F1CFC
 lbl_800F1C08:
 /* 800F1C08  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800F1C0C  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F1C10  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F1C0C  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F1C10  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F1C14  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800F1C18  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800F1C1C  40 81 00 80 */	ble lbl_800F1C9C
@@ -67,8 +67,8 @@ lbl_800F1C68:
 /* 800F1C98  48 00 00 68 */	b lbl_800F1D00
 lbl_800F1C9C:
 /* 800F1C9C  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800F1CA0  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F1CA4  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F1CA0  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F1CA4  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F1CA8  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 800F1CAC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800F1CB0  4C 41 13 82 */	cror 2, 1, 2

@@ -3,19 +3,20 @@
 #
 
 M365_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA.plf
+M365_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA.lcf
+M365_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA.map
 
 M365_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_soldierA/executor.cpp \
-	rel/d/a/npc/d_a_npc_soldierA/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_soldierA/d_a_npc_soldierA.cpp \
 
 M365_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/d_a_npc_soldierA.o \
 
 M365_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/libRuntime.PPCEABI.H.a \
 
 M365_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M365_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map365.map\
+	-m _prolog \
+	-lcf $(M365_LDSCRIPT) \
+	-unused -map $(M365_MAP) \
+	-w off \
 
 $(M365_TARGET): $(M365_O_FILES) $(M365_LIBS)
+	@echo [365] creating $(M365_TARGET)
 	@echo $(M365_LIBS) $(M365_O_FILES) > build/M365_ofiles
-	$(LD) -opt_partial $(M365_LDFLAGS) -o $(M365_TARGET) @build/M365_ofiles
+	@python3 tools/lcf.py rel 365 --output $(M365_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M365_LDFLAGS) -o $(M365_TARGET) @build/M365_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_soldierA/%.o: rel/d/a/npc/d_a_npc_soldierA/%.cpp
+	@echo [365] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M365_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M365_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_soldierA/libs/Runtime.PPCEABI.H/Makefile
 

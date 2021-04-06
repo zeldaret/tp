@@ -3,18 +3,18 @@ lbl_80A802C4:
 /* 80A802C8  7C 08 02 A6 */	mflr r0
 /* 80A802CC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A802D0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A802D4  4B 8E 1F 04 */	b _savegpr_28
+/* 80A802D4  4B 8E 1F 05 */	bl _savegpr_28
 /* 80A802D8  7C 7C 1B 78 */	mr r28, r3
 /* 80A802DC  7C 9D 23 78 */	mr r29, r4
-/* 80A802E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A802E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A802E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A802E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A802E8  3B C3 4F F8 */	addi r30, r3, 0x4ff8
 /* 80A802EC  7F C3 F3 78 */	mr r3, r30
-/* 80A802F0  3C A0 80 A8 */	lis r5, struct_80A83840+0x0@ha
-/* 80A802F4  38 A5 38 40 */	addi r5, r5, struct_80A83840+0x0@l
+/* 80A802F0  3C A0 80 A8 */	lis r5, d_a_npc_moir__stringBase0@ha /* 0x80A83840@ha */
+/* 80A802F4  38 A5 38 40 */	addi r5, r5, d_a_npc_moir__stringBase0@l /* 0x80A83840@l */
 /* 80A802F8  38 A5 00 69 */	addi r5, r5, 0x69
 /* 80A802FC  38 C0 00 03 */	li r6, 3
-/* 80A80300  4B 5C 7D EC */	b getMySubstanceP__16dEvent_manager_cFiPCci
+/* 80A80300  4B 5C 7D ED */	bl getMySubstanceP__16dEvent_manager_cFiPCci
 /* 80A80304  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A80308  40 82 00 0C */	bne lbl_80A80314
 /* 80A8030C  38 60 00 00 */	li r3, 0
@@ -22,7 +22,7 @@ lbl_80A802C4:
 lbl_80A80314:
 /* 80A80314  7F C3 F3 78 */	mr r3, r30
 /* 80A80318  7F A4 EB 78 */	mr r4, r29
-/* 80A8031C  4B 5C 7A 30 */	b getIsAddvance__16dEvent_manager_cFi
+/* 80A8031C  4B 5C 7A 31 */	bl getIsAddvance__16dEvent_manager_cFi
 /* 80A80320  2C 03 00 00 */	cmpwi r3, 0
 /* 80A80324  41 82 00 60 */	beq lbl_80A80384
 /* 80A80328  80 1F 00 00 */	lwz r0, 0(r31)
@@ -57,7 +57,7 @@ lbl_80A80384:
 /* 80A80384  38 60 00 00 */	li r3, 0
 lbl_80A80388:
 /* 80A80388  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A8038C  4B 8E 1E 98 */	b _restgpr_28
+/* 80A8038C  4B 8E 1E 99 */	bl _restgpr_28
 /* 80A80390  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A80394  7C 08 03 A6 */	mtlr r0
 /* 80A80398  38 21 00 20 */	addi r1, r1, 0x20

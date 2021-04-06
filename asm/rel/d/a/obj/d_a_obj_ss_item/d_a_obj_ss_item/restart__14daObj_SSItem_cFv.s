@@ -13,8 +13,8 @@ lbl_80CE78E0:
 /* 80CE790C  B0 03 04 E6 */	sth r0, 0x4e6(r3)
 /* 80CE7910  A8 03 04 E0 */	lha r0, 0x4e0(r3)
 /* 80CE7914  B0 03 04 E8 */	sth r0, 0x4e8(r3)
-/* 80CE7918  3C 80 80 CE */	lis r4, lit_4309@ha
-/* 80CE791C  38 A4 7F 9C */	addi r5, r4, lit_4309@l
+/* 80CE7918  3C 80 80 CE */	lis r4, lit_4309@ha /* 0x80CE7F9C@ha */
+/* 80CE791C  38 A4 7F 9C */	addi r5, r4, lit_4309@l /* 0x80CE7F9C@l */
 /* 80CE7920  80 85 00 00 */	lwz r4, 0(r5)
 /* 80CE7924  80 05 00 04 */	lwz r0, 4(r5)
 /* 80CE7928  90 81 00 08 */	stw r4, 8(r1)

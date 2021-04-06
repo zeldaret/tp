@@ -9,8 +9,8 @@ lbl_803036EC:
 /* 80303708  7C BD 2B 78 */	mr r29, r5
 /* 8030370C  7C FE 3B 78 */	mr r30, r7
 /* 80303710  4B FF 89 41 */	bl __ct__10J2DPictureFv
-/* 80303714  3C 60 80 3D */	lis r3, __vt__12J2DPictureEx@ha
-/* 80303718  38 03 D4 B8 */	addi r0, r3, __vt__12J2DPictureEx@l
+/* 80303714  3C 60 80 3D */	lis r3, __vt__12J2DPictureEx@ha /* 0x803CD4B8@ha */
+/* 80303718  38 03 D4 B8 */	addi r0, r3, __vt__12J2DPictureEx@l /* 0x803CD4B8@l */
 /* 8030371C  90 1C 00 00 */	stw r0, 0(r28)
 /* 80303720  38 00 00 00 */	li r0, 0
 /* 80303724  90 1C 01 94 */	stw r0, 0x194(r28)
@@ -47,8 +47,8 @@ lbl_803036EC:
 /* 803037A0  38 A0 00 00 */	li r5, 0
 /* 803037A4  4B FD 8D 39 */	bl seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
 /* 803037A8  38 61 00 2C */	addi r3, r1, 0x2c
-/* 803037AC  3C 80 80 30 */	lis r4, func_802FF204@ha
-/* 803037B0  38 84 F2 04 */	addi r4, r4, func_802FF204@l
+/* 803037AC  3C 80 80 30 */	lis r4, func_802FF204@ha /* 0x802FF204@ha */
+/* 803037B0  38 84 F2 04 */	addi r4, r4, func_802FF204@l /* 0x802FF204@l */
 /* 803037B4  38 A0 00 00 */	li r5, 0
 /* 803037B8  38 C0 00 04 */	li r6, 4
 /* 803037BC  38 E0 00 04 */	li r7, 4

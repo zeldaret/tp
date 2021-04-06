@@ -3,17 +3,15 @@
 #
 
 M745_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath.plf
+M745_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath.lcf
+M745_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath.map
 
 M745_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_sppath/executor.cpp \
-	rel/d/a/tag/d_a_tag_sppath/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_sppath/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath.cpp \
 
 M745_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath.o \
 
 M745_LIBS := \
@@ -29,15 +27,21 @@ M745_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map745.map\
+	-m _prolog \
+	-lcf $(M745_LDSCRIPT) \
+	-unused -map $(M745_MAP) \
+	-w off \
 
 $(M745_TARGET): $(M745_O_FILES) $(M745_LIBS)
+	@echo [745] creating $(M745_TARGET)
 	@echo $(M745_LIBS) $(M745_O_FILES) > build/M745_ofiles
-	$(LD) -opt_partial $(M745_LDFLAGS) -o $(M745_TARGET) @build/M745_ofiles
+	@python3 tools/lcf.py rel 745 --output $(M745_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M745_LDFLAGS) -o $(M745_TARGET) @build/M745_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_sppath/%.o: rel/d/a/tag/d_a_tag_sppath/%.cpp
+	@echo [745] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M745_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M745_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

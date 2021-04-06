@@ -3,19 +3,20 @@
 #
 
 M395_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst.plf
+M395_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst.lcf
+M395_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst.map
 
 M395_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_TvCdlst/executor.cpp \
-	rel/d/a/obj/d_a_obj_TvCdlst/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_TvCdlst/d_a_obj_TvCdlst.cpp \
 
 M395_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/d_a_obj_TvCdlst.o \
 
 M395_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/libRuntime.PPCEABI.H.a \
 
 M395_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M395_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map395.map\
+	-m _prolog \
+	-lcf $(M395_LDSCRIPT) \
+	-unused -map $(M395_MAP) \
+	-w off \
 
 $(M395_TARGET): $(M395_O_FILES) $(M395_LIBS)
+	@echo [395] creating $(M395_TARGET)
 	@echo $(M395_LIBS) $(M395_O_FILES) > build/M395_ofiles
-	$(LD) -opt_partial $(M395_LDFLAGS) -o $(M395_TARGET) @build/M395_ofiles
+	@python3 tools/lcf.py rel 395 --output $(M395_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M395_LDFLAGS) -o $(M395_TARGET) @build/M395_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_TvCdlst/%.o: rel/d/a/obj/d_a_obj_TvCdlst/%.cpp
+	@echo [395] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M395_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M395_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_TvCdlst/libs/Runtime.PPCEABI.H/Makefile
 

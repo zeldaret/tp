@@ -49,8 +49,8 @@ lbl_8012A2D4:
 /* 8012A2D4  80 1E 05 7C */	lwz r0, 0x57c(r30)
 /* 8012A2D8  54 00 02 11 */	rlwinm. r0, r0, 0, 8, 8
 /* 8012A2DC  41 82 00 2C */	beq lbl_8012A308
-/* 8012A2E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012A2E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012A2E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012A2E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012A2E8  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8012A2EC  38 80 00 02 */	li r4, 2
 /* 8012A2F0  38 A0 00 00 */	li r5, 0

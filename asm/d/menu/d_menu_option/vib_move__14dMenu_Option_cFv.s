@@ -21,8 +21,8 @@ lbl_801E41F8:
 /* 801E4244  41 82 00 24 */	beq lbl_801E4268
 /* 801E4248  7F E3 FB 78 */	mr r3, r31
 /* 801E424C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E4250  3C 80 80 3C */	lis r4, tv_process@ha
-/* 801E4254  38 04 DD 70 */	addi r0, r4, tv_process@l
+/* 801E4250  3C 80 80 3C */	lis r4, tv_process@ha /* 0x803BDD70@ha */
+/* 801E4254  38 04 DD 70 */	addi r0, r4, tv_process@l /* 0x803BDD70@l */
 /* 801E4258  7D 80 2A 14 */	add r12, r0, r5
 /* 801E425C  48 17 DE 29 */	bl __ptmf_scall
 /* 801E4260  60 00 00 00 */	nop 
@@ -77,8 +77,8 @@ lbl_801E42F8:
 /* 801E4318  40 82 00 38 */	bne lbl_801E4350
 /* 801E431C  38 00 00 01 */	li r0, 1
 /* 801E4320  98 1F 03 EA */	stb r0, 0x3ea(r31)
-/* 801E4324  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 801E4328  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 801E4324  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 801E4328  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 801E432C  80 63 00 00 */	lwz r3, 0(r3)
 /* 801E4330  38 63 00 68 */	addi r3, r3, 0x68
 /* 801E4334  38 9F 03 E0 */	addi r4, r31, 0x3e0
@@ -126,8 +126,8 @@ lbl_801E43B0:
 /* 801E43D0  40 82 00 38 */	bne lbl_801E4408
 /* 801E43D4  38 00 00 01 */	li r0, 1
 /* 801E43D8  98 1F 03 EA */	stb r0, 0x3ea(r31)
-/* 801E43DC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 801E43E0  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 801E43DC  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 801E43E0  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 801E43E4  80 63 00 00 */	lwz r3, 0(r3)
 /* 801E43E8  38 63 00 68 */	addi r3, r3, 0x68
 /* 801E43EC  38 9F 03 E0 */	addi r4, r31, 0x3e0

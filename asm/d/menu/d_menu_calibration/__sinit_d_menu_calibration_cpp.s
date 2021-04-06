@@ -1,6 +1,6 @@
 lbl_801AFC14:
-/* 801AFC14  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801AFC18  38 63 C2 38 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801AFC14  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BC238@ha */
+/* 801AFC18  38 63 C2 38 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BC238@l */
 /* 801AFC1C  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 801AFC20  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 801AFC24  90 83 00 54 */	stw r4, 0x54(r3)

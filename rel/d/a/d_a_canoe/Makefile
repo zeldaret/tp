@@ -3,19 +3,20 @@
 #
 
 M61_TARGET := $(BUILD_DIR)/rel/d/a/d_a_canoe.plf
+M61_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_canoe.lcf
+M61_MAP := $(BUILD_DIR)/rel/d/a/d_a_canoe.map
 
 M61_CPP_FILES := \
-	rel/d/a/d_a_canoe/executor.cpp \
-	rel/d/a/d_a_canoe/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_canoe/d_a_canoe.cpp \
 
 M61_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_canoe/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_canoe/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_canoe/d_a_canoe.o \
 
 M61_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_canoe/libRuntime.PPCEABI.H.a \
 
 M61_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M61_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map61.map\
+	-m _prolog \
+	-lcf $(M61_LDSCRIPT) \
+	-unused -map $(M61_MAP) \
+	-w off \
 
 $(M61_TARGET): $(M61_O_FILES) $(M61_LIBS)
+	@echo [ 61] creating $(M61_TARGET)
 	@echo $(M61_LIBS) $(M61_O_FILES) > build/M61_ofiles
-	$(LD) -opt_partial $(M61_LDFLAGS) -o $(M61_TARGET) @build/M61_ofiles
+	@python3 tools/lcf.py rel 61 --output $(M61_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M61_LDFLAGS) -o $(M61_TARGET) @build/M61_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_canoe/%.o: rel/d/a/d_a_canoe/%.cpp
+	@echo [ 61] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M61_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M61_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_canoe/libs/Runtime.PPCEABI.H/Makefile
 

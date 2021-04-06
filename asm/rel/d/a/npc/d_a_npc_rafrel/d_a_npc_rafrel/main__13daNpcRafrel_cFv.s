@@ -3,40 +3,40 @@ lbl_80ABE1D0:
 /* 80ABE1D4  7C 08 02 A6 */	mflr r0
 /* 80ABE1D8  90 01 00 C4 */	stw r0, 0xc4(r1)
 /* 80ABE1DC  39 61 00 C0 */	addi r11, r1, 0xc0
-/* 80ABE1E0  4B 8A 3F FC */	b _savegpr_29
+/* 80ABE1E0  4B 8A 3F FD */	bl _savegpr_29
 /* 80ABE1E4  7C 7E 1B 78 */	mr r30, r3
-/* 80ABE1E8  3C 60 80 AC */	lis r3, m__19daNpcRafrel_Param_c@ha
-/* 80ABE1EC  3B E3 F9 E0 */	addi r31, r3, m__19daNpcRafrel_Param_c@l
+/* 80ABE1E8  3C 60 80 AC */	lis r3, m__19daNpcRafrel_Param_c@ha /* 0x80ABF9E0@ha */
+/* 80ABE1EC  3B E3 F9 E0 */	addi r31, r3, m__19daNpcRafrel_Param_c@l /* 0x80ABF9E0@l */
 /* 80ABE1F0  38 7E 0D E0 */	addi r3, r30, 0xde0
-/* 80ABE1F4  4B 8A 3E 24 */	b __ptmf_test
+/* 80ABE1F4  4B 8A 3E 25 */	bl __ptmf_test
 /* 80ABE1F8  2C 03 00 00 */	cmpwi r3, 0
 /* 80ABE1FC  41 82 00 18 */	beq lbl_80ABE214
 /* 80ABE200  7F C3 F3 78 */	mr r3, r30
 /* 80ABE204  38 80 00 00 */	li r4, 0
 /* 80ABE208  39 9E 0D E0 */	addi r12, r30, 0xde0
-/* 80ABE20C  4B 8A 3E 78 */	b __ptmf_scall
+/* 80ABE20C  4B 8A 3E 79 */	bl __ptmf_scall
 /* 80ABE210  60 00 00 00 */	nop 
 lbl_80ABE214:
 /* 80ABE214  80 7E 0E 00 */	lwz r3, 0xe00(r30)
 /* 80ABE218  3C 03 00 01 */	addis r0, r3, 1
 /* 80ABE21C  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80ABE220  41 82 00 4C */	beq lbl_80ABE26C
-/* 80ABE224  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80ABE228  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80ABE224  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80ABE228  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80ABE22C  88 1D 4F AD */	lbz r0, 0x4fad(r29)
 /* 80ABE230  28 00 00 00 */	cmplwi r0, 0
 /* 80ABE234  41 82 00 38 */	beq lbl_80ABE26C
 /* 80ABE238  38 7D 4F F8 */	addi r3, r29, 0x4ff8
-/* 80ABE23C  4B 58 A1 AC */	b getRunEventName__16dEvent_manager_cFv
-/* 80ABE240  3C 80 80 AC */	lis r4, struct_80ABFDBC+0x0@ha
-/* 80ABE244  38 84 FD BC */	addi r4, r4, struct_80ABFDBC+0x0@l
+/* 80ABE23C  4B 58 A1 AD */	bl getRunEventName__16dEvent_manager_cFv
+/* 80ABE240  3C 80 80 AC */	lis r4, d_a_npc_rafrel__stringBase0@ha /* 0x80ABFDBC@ha */
+/* 80ABE244  38 84 FD BC */	addi r4, r4, d_a_npc_rafrel__stringBase0@l /* 0x80ABFDBC@l */
 /* 80ABE248  38 84 00 AE */	addi r4, r4, 0xae
-/* 80ABE24C  4B 8A A7 48 */	b strcmp
+/* 80ABE24C  4B 8A A7 49 */	bl strcmp
 /* 80ABE250  2C 03 00 00 */	cmpwi r3, 0
 /* 80ABE254  40 82 00 18 */	bne lbl_80ABE26C
 /* 80ABE258  38 7D 4E C8 */	addi r3, r29, 0x4ec8
 /* 80ABE25C  80 9E 0E 00 */	lwz r4, 0xe00(r30)
-/* 80ABE260  4B 58 54 8C */	b setPtI_Id__14dEvt_control_cFUi
+/* 80ABE260  4B 58 54 8D */	bl setPtI_Id__14dEvt_control_cFUi
 /* 80ABE264  38 00 FF FF */	li r0, -1
 /* 80ABE268  90 1E 0E 00 */	stw r0, 0xe00(r30)
 lbl_80ABE26C:
@@ -160,13 +160,13 @@ lbl_80ABE3D8:
 /* 80ABE43C  40 80 00 10 */	bge lbl_80ABE44C
 /* 80ABE440  7F C3 F3 78 */	mr r3, r30
 /* 80ABE444  38 81 00 88 */	addi r4, r1, 0x88
-/* 80ABE448  4B 69 4D 08 */	b playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80ABE448  4B 69 4D 09 */	bl playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80ABE44C:
 /* 80ABE44C  7F C3 F3 78 */	mr r3, r30
 /* 80ABE450  48 00 00 21 */	bl playMotion__13daNpcRafrel_cFv
 /* 80ABE454  38 60 00 01 */	li r3, 1
 /* 80ABE458  39 61 00 C0 */	addi r11, r1, 0xc0
-/* 80ABE45C  4B 8A 3D CC */	b _restgpr_29
+/* 80ABE45C  4B 8A 3D CD */	bl _restgpr_29
 /* 80ABE460  80 01 00 C4 */	lwz r0, 0xc4(r1)
 /* 80ABE464  7C 08 03 A6 */	mtlr r0
 /* 80ABE468  38 21 00 C0 */	addi r1, r1, 0xc0

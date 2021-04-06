@@ -14,8 +14,8 @@ lbl_80AEBF04:
 /* 80AEBF34  39 20 00 00 */	li r9, 0
 /* 80AEBF38  39 40 00 00 */	li r10, 0
 /* 80AEBF3C  48 00 00 89 */	bl __ct__13dShopSystem_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
-/* 80AEBF40  3C 60 80 AF */	lis r3, __vt__16daNpc_shopMaro_c@ha
-/* 80AEBF44  38 03 C9 DC */	addi r0, r3, __vt__16daNpc_shopMaro_c@l
+/* 80AEBF40  3C 60 80 AF */	lis r3, __vt__16daNpc_shopMaro_c@ha /* 0x80AEC9DC@ha */
+/* 80AEBF44  38 03 C9 DC */	addi r0, r3, __vt__16daNpc_shopMaro_c@l /* 0x80AEC9DC@l */
 /* 80AEBF48  90 1F 0E 3C */	stw r0, 0xe3c(r31)
 /* 80AEBF4C  7F E3 FB 78 */	mr r3, r31
 /* 80AEBF50  83 E1 00 1C */	lwz r31, 0x1c(r1)

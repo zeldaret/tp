@@ -48,12 +48,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTag_Push_Create(void*);
-static void daTag_Push_Delete(void*);
-static void daTag_Push_Execute(void*);
-static void daTag_Push_Draw(void*);
-static bool daTag_Push_IsDelete(void*);
-
 extern "C" void srchActor__12daTag_Push_cFPvPv();
 extern "C" void create__12daTag_Push_cFv();
 extern "C" bool Delete__12daTag_Push_cFv();
@@ -68,20 +62,10 @@ extern "C" static void daTag_Push_Draw__FPv();
 extern "C" static bool daTag_Push_IsDelete__FPv();
 extern "C" void __dt__18daNpcT_ActorMngr_cFv();
 extern "C" void __dt__12daTag_Push_cFv();
-extern "C" extern void* g_profile_TAG_PUSH[12];
-extern "C" extern void* __vt__18daNpcT_ActorMngr_c[3];
-extern "C" extern void* __vt__12daTag_Push_c[3];
 
 //
 // External References:
 //
-
-void fopAc_IsActor(void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void fpcEx_IsExist(unsigned int);
-void daNpcT_chkPointInArea(cXyz, cXyz, cXyz, s16, int);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -108,7 +92,7 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 80490950-80490978 0028+00 s=1 e=0 z=0  None .data      @3868 */
+/* 80490950-80490978 -00001 0028+00 1/1 0/0 0/0 .data            @3868 */
 SECTION_DATA static void* lit_3868[10] = {
     (void*)(((char*)srchActor__12daTag_Push_cFPvPv) + 0x138),
     (void*)(((char*)srchActor__12daTag_Push_cFPvPv) + 0x88),
@@ -122,13 +106,7 @@ SECTION_DATA static void* lit_3868[10] = {
     (void*)(((char*)srchActor__12daTag_Push_cFPvPv) + 0x128),
 };
 
-/* 804902B8-80490418 0160+00 s=2 e=0 z=0  None .text      srchActor__12daTag_Push_cFPvPv */
-//	804902C8: 803621DC (_savegpr_29)
-//	804902DC: 80018CE0 (fopAc_IsActor__FPv)
-//	804902FC: 8002139C (fpcEx_IsExist__FUi)
-//	80490328: 80490950 (lit_3868)
-//	8049032C: 80490950 (lit_3868)
-//	80490404: 80362228 (_restgpr_29)
+/* 804902B8-80490418 000078 0160+00 2/1 0/0 0/0 .text            srchActor__12daTag_Push_cFPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -139,10 +117,11 @@ asm void daTag_Push_c::srchActor(void* param_0, void* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8049094C-80490950 0004+00 s=1 e=0 z=0  None .rodata    @3887 */
+/* 8049094C-80490950 000000 0004+00 1/1 0/0 0/0 .rodata          @3887 */
 SECTION_RODATA static u32 const lit_3887 = 0x42C80000;
+SECTION_DEAD void* const cg_8049094C = (void*)(&lit_3887);
 
-/* 80490978-80490998 0020+00 s=1 e=0 z=0  None .data      daTag_Push_MethodTable */
+/* 80490978-80490998 -00001 0020+00 1/0 0/0 0/0 .data            daTag_Push_MethodTable */
 SECTION_DATA static void* daTag_Push_MethodTable[8] = {
     (void*)daTag_Push_Create__FPv,
     (void*)daTag_Push_Delete__FPv,
@@ -154,8 +133,8 @@ SECTION_DATA static void* daTag_Push_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 80490998-804909C8 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_PUSH */
-SECTION_DATA void* g_profile_TAG_PUSH[12] = {
+/* 80490998-804909C8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_PUSH */
+SECTION_DATA extern void* g_profile_TAG_PUSH[12] = {
     (void*)0xFFFFFFFD, (void*)0x0008FFFD,
     (void*)0x02EC0000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,
@@ -164,30 +143,21 @@ SECTION_DATA void* g_profile_TAG_PUSH[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 804909C8-804909D4 000C+00 s=3 e=0 z=0  None .data      __vt__18daNpcT_ActorMngr_c */
-SECTION_DATA void* __vt__18daNpcT_ActorMngr_c[3] = {
+/* 804909C8-804909D4 000078 000C+00 3/3 0/0 0/0 .data            __vt__18daNpcT_ActorMngr_c */
+SECTION_DATA extern void* __vt__18daNpcT_ActorMngr_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daNpcT_ActorMngr_cFv,
 };
 
-/* 804909D4-804909E0 000C+00 s=2 e=0 z=0  None .data      __vt__12daTag_Push_c */
-SECTION_DATA void* __vt__12daTag_Push_c[3] = {
+/* 804909D4-804909E0 000084 000C+00 2/2 0/0 0/0 .data            __vt__12daTag_Push_c */
+SECTION_DATA extern void* __vt__12daTag_Push_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12daTag_Push_cFv,
 };
 
-/* 80490418-804904D4 00BC+00 s=1 e=0 z=0  None .text      create__12daTag_Push_cFv */
-//	80490448: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8049044C: 804909D4 (__vt__12daTag_Push_c)
-//	80490450: 804909D4 (__vt__12daTag_Push_c)
-//	80490458: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	8049045C: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	80490468: 801456D4 (initialize__18daNpcT_ActorMngr_cFv)
-//	8049047C: 8049094C (lit_3887)
-//	80490480: 8049094C (lit_3887)
-//	804904A4: 804906C4 (isDelete__12daTag_Push_cFv)
+/* 80490418-804904D4 0001D8 00BC+00 1/1 0/0 0/0 .text            create__12daTag_Push_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,29 +167,12 @@ asm void daTag_Push_c::create() {
 }
 #pragma pop
 
-/* 804904D4-804904DC 0008+00 s=1 e=0 z=0  None .text      Delete__12daTag_Push_cFv */
+/* 804904D4-804904DC 000294 0008+00 1/1 0/0 0/0 .text            Delete__12daTag_Push_cFv */
 bool daTag_Push_c::Delete() {
     return true;
 }
 
-/* 804904DC-804906BC 01E0+00 s=1 e=0 z=0  None .text      Execute__12daTag_Push_cFv */
-//	804904FC: 80450D64 (struct_80450D64)
-//	80490500: 80450D64 (struct_80450D64)
-//	80490514: 80145708 (getActorP__18daNpcT_ActorMngr_cFv)
-//	80490520: 804906C4 (isDelete__12daTag_Push_cFv)
-//	80490558: 801456E0 (entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c)
-//	80490560: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	8049056C: 804061C0 (g_dComIfG_gameInfo)
-//	80490570: 804061C0 (g_dComIfG_gameInfo)
-//	80490588: 804902B8 (srchActor__12daTag_Push_cFPvPv)
-//	8049058C: 804902B8 (srchActor__12daTag_Push_cFPvPv)
-//	80490594: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	804905A8: 801456E0 (entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c)
-//	804905B4: 804061C0 (g_dComIfG_gameInfo)
-//	804905B8: 804061C0 (g_dComIfG_gameInfo)
-//	804905EC: 80490724 (chkPointInArea__12daTag_Push_cF4cXyz)
-//	80490614: 801506BC (entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c)
-//	8049065C: 801456E0 (entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c)
+/* 804904DC-804906BC 00029C 01E0+00 1/1 0/0 0/0 .text            Execute__12daTag_Push_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,15 +182,12 @@ asm void daTag_Push_c::Execute() {
 }
 #pragma pop
 
-/* 804906BC-804906C4 0008+00 s=1 e=0 z=0  None .text      Draw__12daTag_Push_cFv */
+/* 804906BC-804906C4 00047C 0008+00 1/1 0/0 0/0 .text            Draw__12daTag_Push_cFv */
 bool daTag_Push_c::Draw() {
     return true;
 }
 
-/* 804906C4-80490724 0060+00 s=2 e=0 z=0  None .text      isDelete__12daTag_Push_cFv */
-//	804906EC: 804061C0 (g_dComIfG_gameInfo)
-//	804906F0: 804061C0 (g_dComIfG_gameInfo)
-//	804906FC: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 804906C4-80490724 000484 0060+00 2/2 0/0 0/0 .text            isDelete__12daTag_Push_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,11 +197,7 @@ asm void daTag_Push_c::isDelete() {
 }
 #pragma pop
 
-/* 80490724-804907FC 00D8+00 s=1 e=0 z=0  None .text      chkPointInArea__12daTag_Push_cF4cXyz */
-//	80490750: 804061C0 (g_dComIfG_gameInfo)
-//	80490754: 804061C0 (g_dComIfG_gameInfo)
-//	80490760: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804907D8: 8014C384 (daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi)
+/* 80490724-804907FC 0004E4 00D8+00 1/1 0/0 0/0 .text chkPointInArea__12daTag_Push_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -261,59 +207,52 @@ asm void daTag_Push_c::chkPointInArea(cXyz param_0) {
 }
 #pragma pop
 
-/* 804907FC-8049081C 0020+00 s=1 e=0 z=0  None .text      daTag_Push_Create__FPv */
-//	80490808: 80490418 (create__12daTag_Push_cFv)
+/* 804907FC-8049081C 0005BC 0020+00 1/0 0/0 0/0 .text            daTag_Push_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Push_Create(void* param_0) {
+static asm void daTag_Push_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_push/d_a_tag_push/daTag_Push_Create__FPv.s"
 }
 #pragma pop
 
-/* 8049081C-8049083C 0020+00 s=1 e=0 z=0  None .text      daTag_Push_Delete__FPv */
-//	80490828: 804904D4 (Delete__12daTag_Push_cFv)
+/* 8049081C-8049083C 0005DC 0020+00 1/0 0/0 0/0 .text            daTag_Push_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Push_Delete(void* param_0) {
+static asm void daTag_Push_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_push/d_a_tag_push/daTag_Push_Delete__FPv.s"
 }
 #pragma pop
 
-/* 8049083C-8049085C 0020+00 s=1 e=0 z=0  None .text      daTag_Push_Execute__FPv */
-//	80490848: 804904DC (Execute__12daTag_Push_cFv)
+/* 8049083C-8049085C 0005FC 0020+00 1/0 0/0 0/0 .text            daTag_Push_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Push_Execute(void* param_0) {
+static asm void daTag_Push_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_push/d_a_tag_push/daTag_Push_Execute__FPv.s"
 }
 #pragma pop
 
-/* 8049085C-8049087C 0020+00 s=1 e=0 z=0  None .text      daTag_Push_Draw__FPv */
-//	80490868: 804906BC (Draw__12daTag_Push_cFv)
+/* 8049085C-8049087C 00061C 0020+00 1/0 0/0 0/0 .text            daTag_Push_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Push_Draw(void* param_0) {
+static asm void daTag_Push_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_push/d_a_tag_push/daTag_Push_Draw__FPv.s"
 }
 #pragma pop
 
-/* 8049087C-80490884 0008+00 s=1 e=0 z=0  None .text      daTag_Push_IsDelete__FPv */
+/* 8049087C-80490884 00063C 0008+00 1/0 0/0 0/0 .text            daTag_Push_IsDelete__FPv */
 static bool daTag_Push_IsDelete(void* param_0) {
     return true;
 }
 
-/* 80490884-804908CC 0048+00 s=1 e=0 z=0  None .text      __dt__18daNpcT_ActorMngr_cFv */
-//	8049089C: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	804908A0: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	804908B0: 802CED3C (__dl__FPv)
+/* 80490884-804908CC 000644 0048+00 1/0 0/0 0/0 .text            __dt__18daNpcT_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,13 +262,7 @@ asm daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c() {
 }
 #pragma pop
 
-/* 804908CC-80490944 0078+00 s=1 e=0 z=0  None .text      __dt__12daTag_Push_cFv */
-//	804908EC: 804909D4 (__vt__12daTag_Push_c)
-//	804908F0: 804909D4 (__vt__12daTag_Push_c)
-//	80490900: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	80490904: 804909C8 (__vt__18daNpcT_ActorMngr_c)
-//	80490914: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80490924: 802CED3C (__dl__FPv)
+/* 804908CC-80490944 00068C 0078+00 1/0 0/0 0/0 .text            __dt__12daTag_Push_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

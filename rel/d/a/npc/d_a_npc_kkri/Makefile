@@ -3,19 +3,20 @@
 #
 
 M84_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri.plf
+M84_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri.lcf
+M84_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri.map
 
 M84_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kkri/executor.cpp \
-	rel/d/a/npc/d_a_npc_kkri/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kkri/d_a_npc_kkri.cpp \
 
 M84_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/d_a_npc_kkri.o \
 
 M84_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/libRuntime.PPCEABI.H.a \
 
 M84_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M84_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map84.map\
+	-m _prolog \
+	-lcf $(M84_LDSCRIPT) \
+	-unused -map $(M84_MAP) \
+	-w off \
 
 $(M84_TARGET): $(M84_O_FILES) $(M84_LIBS)
+	@echo [ 84] creating $(M84_TARGET)
 	@echo $(M84_LIBS) $(M84_O_FILES) > build/M84_ofiles
-	$(LD) -opt_partial $(M84_LDFLAGS) -o $(M84_TARGET) @build/M84_ofiles
+	@python3 tools/lcf.py rel 84 --output $(M84_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M84_LDFLAGS) -o $(M84_TARGET) @build/M84_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kkri/%.o: rel/d/a/npc/d_a_npc_kkri/%.cpp
+	@echo [ 84] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M84_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M84_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kkri/libs/Runtime.PPCEABI.H/Makefile
 

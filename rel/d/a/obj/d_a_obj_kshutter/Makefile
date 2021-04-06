@@ -3,18 +3,16 @@
 #
 
 M506_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter.plf
+M506_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter.lcf
+M506_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter.map
 
 M506_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kshutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_kshutter/d_a_obj_kshutter.cpp \
 
 M506_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/d_a_obj_kshutter.o \
 
@@ -31,15 +29,21 @@ M506_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map506.map\
+	-m _prolog \
+	-lcf $(M506_LDSCRIPT) \
+	-unused -map $(M506_MAP) \
+	-w off \
 
 $(M506_TARGET): $(M506_O_FILES) $(M506_LIBS)
+	@echo [506] creating $(M506_TARGET)
 	@echo $(M506_LIBS) $(M506_O_FILES) > build/M506_ofiles
-	$(LD) -opt_partial $(M506_LDFLAGS) -o $(M506_TARGET) @build/M506_ofiles
+	@python3 tools/lcf.py rel 506 --output $(M506_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M506_LDFLAGS) -o $(M506_TARGET) @build/M506_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kshutter/%.o: rel/d/a/obj/d_a_obj_kshutter/%.cpp
+	@echo [506] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M506_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M506_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

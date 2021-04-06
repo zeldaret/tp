@@ -36,8 +36,8 @@ lbl_8011D5AC:
 /* 8011D5C0  41 82 00 2C */	beq lbl_8011D5EC
 /* 8011D5C4  7F E3 FB 78 */	mr r3, r31
 /* 8011D5C8  38 80 00 00 */	li r4, 0
-/* 8011D5CC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8011D5D0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8011D5CC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8011D5D0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8011D5D4  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 8011D5D8  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011D5DC  48 00 C0 FD */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
@@ -54,8 +54,8 @@ lbl_8011D5EC:
 /* 8011D604  4B F8 FA 09 */	bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 8011D608  38 00 00 00 */	li r0, 0
 /* 8011D60C  B0 1F 30 0C */	sth r0, 0x300c(r31)
-/* 8011D610  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011D614  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011D610  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011D614  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011D618  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011D61C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011D620  D0 1F 35 8C */	stfs f0, 0x358c(r31)

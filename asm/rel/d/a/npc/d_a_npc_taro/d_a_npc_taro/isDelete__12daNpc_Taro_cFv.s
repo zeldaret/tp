@@ -6,8 +6,8 @@ lbl_80566D7C:
 /* 80566D8C  88 03 10 C4 */	lbz r0, 0x10c4(r3)
 /* 80566D90  28 00 00 0F */	cmplwi r0, 0xf
 /* 80566D94  41 81 01 F8 */	bgt lbl_80566F8C
-/* 80566D98  3C 60 80 57 */	lis r3, lit_5030@ha
-/* 80566D9C  38 63 2C 30 */	addi r3, r3, lit_5030@l
+/* 80566D98  3C 60 80 57 */	lis r3, lit_5030@ha /* 0x80572C30@ha */
+/* 80566D9C  38 63 2C 30 */	addi r3, r3, lit_5030@l /* 0x80572C30@l */
 /* 80566DA0  54 00 10 3A */	slwi r0, r0, 2
 /* 80566DA4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80566DA8  7C 09 03 A6 */	mtctr r0
@@ -15,11 +15,11 @@ lbl_80566D7C:
 lbl_80566DB0:
 /* 80566DB0  3B E0 00 00 */	li r31, 0
 /* 80566DB4  38 60 00 12 */	li r3, 0x12
-/* 80566DB8  4B BE 5C F4 */	b daNpcT_chkEvtBit__FUl
+/* 80566DB8  4B BE 5C F5 */	bl daNpcT_chkEvtBit__FUl
 /* 80566DBC  2C 03 00 00 */	cmpwi r3, 0
 /* 80566DC0  41 82 00 14 */	beq lbl_80566DD4
 /* 80566DC4  38 60 00 1F */	li r3, 0x1f
-/* 80566DC8  4B BE 5C E4 */	b daNpcT_chkEvtBit__FUl
+/* 80566DC8  4B BE 5C E5 */	bl daNpcT_chkEvtBit__FUl
 /* 80566DCC  2C 03 00 00 */	cmpwi r3, 0
 /* 80566DD0  41 82 00 08 */	beq lbl_80566DD8
 lbl_80566DD4:
@@ -29,7 +29,7 @@ lbl_80566DD8:
 /* 80566DDC  48 00 01 B4 */	b lbl_80566F90
 lbl_80566DE0:
 /* 80566DE0  38 60 00 12 */	li r3, 0x12
-/* 80566DE4  4B BE 5C C8 */	b daNpcT_chkEvtBit__FUl
+/* 80566DE4  4B BE 5C C9 */	bl daNpcT_chkEvtBit__FUl
 /* 80566DE8  7C 60 00 34 */	cntlzw r0, r3
 /* 80566DEC  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80566DF0  48 00 01 A0 */	b lbl_80566F90
@@ -42,11 +42,11 @@ lbl_80566DFC:
 lbl_80566E04:
 /* 80566E04  3B E0 00 00 */	li r31, 0
 /* 80566E08  38 60 00 3D */	li r3, 0x3d
-/* 80566E0C  4B BE 5C A0 */	b daNpcT_chkEvtBit__FUl
+/* 80566E0C  4B BE 5C A1 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E10  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E14  41 82 00 14 */	beq lbl_80566E28
 /* 80566E18  38 60 00 A4 */	li r3, 0xa4
-/* 80566E1C  4B BE 5C 90 */	b daNpcT_chkEvtBit__FUl
+/* 80566E1C  4B BE 5C 91 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E20  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E24  41 82 00 08 */	beq lbl_80566E2C
 lbl_80566E28:
@@ -57,11 +57,11 @@ lbl_80566E2C:
 lbl_80566E34:
 /* 80566E34  3B E0 00 00 */	li r31, 0
 /* 80566E38  38 60 00 A4 */	li r3, 0xa4
-/* 80566E3C  4B BE 5C 70 */	b daNpcT_chkEvtBit__FUl
+/* 80566E3C  4B BE 5C 71 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E40  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E44  41 82 00 14 */	beq lbl_80566E58
 /* 80566E48  38 60 00 35 */	li r3, 0x35
-/* 80566E4C  4B BE 5C 60 */	b daNpcT_chkEvtBit__FUl
+/* 80566E4C  4B BE 5C 61 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E50  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E54  41 82 00 08 */	beq lbl_80566E5C
 lbl_80566E58:
@@ -72,11 +72,11 @@ lbl_80566E5C:
 lbl_80566E64:
 /* 80566E64  3B E0 00 00 */	li r31, 0
 /* 80566E68  38 60 00 35 */	li r3, 0x35
-/* 80566E6C  4B BE 5C 40 */	b daNpcT_chkEvtBit__FUl
+/* 80566E6C  4B BE 5C 41 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E70  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E74  41 82 00 14 */	beq lbl_80566E88
 /* 80566E78  38 60 00 55 */	li r3, 0x55
-/* 80566E7C  4B BE 5C 30 */	b daNpcT_chkEvtBit__FUl
+/* 80566E7C  4B BE 5C 31 */	bl daNpcT_chkEvtBit__FUl
 /* 80566E80  2C 03 00 00 */	cmpwi r3, 0
 /* 80566E84  41 82 00 08 */	beq lbl_80566E8C
 lbl_80566E88:
@@ -87,11 +87,11 @@ lbl_80566E8C:
 lbl_80566E94:
 /* 80566E94  3B E0 00 00 */	li r31, 0
 /* 80566E98  38 60 00 55 */	li r3, 0x55
-/* 80566E9C  4B BE 5C 10 */	b daNpcT_chkEvtBit__FUl
+/* 80566E9C  4B BE 5C 11 */	bl daNpcT_chkEvtBit__FUl
 /* 80566EA0  2C 03 00 00 */	cmpwi r3, 0
 /* 80566EA4  41 82 00 14 */	beq lbl_80566EB8
 /* 80566EA8  38 60 00 40 */	li r3, 0x40
-/* 80566EAC  4B BE 5C 00 */	b daNpcT_chkEvtBit__FUl
+/* 80566EAC  4B BE 5C 01 */	bl daNpcT_chkEvtBit__FUl
 /* 80566EB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80566EB4  41 82 00 08 */	beq lbl_80566EBC
 lbl_80566EB8:
@@ -101,7 +101,7 @@ lbl_80566EBC:
 /* 80566EC0  48 00 00 D0 */	b lbl_80566F90
 lbl_80566EC4:
 /* 80566EC4  38 60 00 40 */	li r3, 0x40
-/* 80566EC8  4B BE 5B E4 */	b daNpcT_chkEvtBit__FUl
+/* 80566EC8  4B BE 5B E5 */	bl daNpcT_chkEvtBit__FUl
 /* 80566ECC  7C 60 00 34 */	cntlzw r0, r3
 /* 80566ED0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80566ED4  48 00 00 BC */	b lbl_80566F90
@@ -110,16 +110,16 @@ lbl_80566ED8:
 /* 80566EDC  48 00 00 B4 */	b lbl_80566F90
 lbl_80566EE0:
 /* 80566EE0  38 60 00 13 */	li r3, 0x13
-/* 80566EE4  4B BE 5B C8 */	b daNpcT_chkEvtBit__FUl
+/* 80566EE4  4B BE 5B C9 */	bl daNpcT_chkEvtBit__FUl
 /* 80566EE8  48 00 00 A8 */	b lbl_80566F90
 lbl_80566EEC:
 /* 80566EEC  3B E0 00 00 */	li r31, 0
 /* 80566EF0  38 60 00 13 */	li r3, 0x13
-/* 80566EF4  4B BE 5B B8 */	b daNpcT_chkEvtBit__FUl
+/* 80566EF4  4B BE 5B B9 */	bl daNpcT_chkEvtBit__FUl
 /* 80566EF8  2C 03 00 00 */	cmpwi r3, 0
 /* 80566EFC  41 82 00 14 */	beq lbl_80566F10
 /* 80566F00  38 60 00 12 */	li r3, 0x12
-/* 80566F04  4B BE 5B A8 */	b daNpcT_chkEvtBit__FUl
+/* 80566F04  4B BE 5B A9 */	bl daNpcT_chkEvtBit__FUl
 /* 80566F08  2C 03 00 00 */	cmpwi r3, 0
 /* 80566F0C  41 82 00 08 */	beq lbl_80566F14
 lbl_80566F10:
@@ -130,11 +130,11 @@ lbl_80566F14:
 lbl_80566F1C:
 /* 80566F1C  3B E0 00 00 */	li r31, 0
 /* 80566F20  38 60 00 12 */	li r3, 0x12
-/* 80566F24  4B BE 5B 88 */	b daNpcT_chkEvtBit__FUl
+/* 80566F24  4B BE 5B 89 */	bl daNpcT_chkEvtBit__FUl
 /* 80566F28  2C 03 00 00 */	cmpwi r3, 0
 /* 80566F2C  41 82 00 14 */	beq lbl_80566F40
 /* 80566F30  38 60 02 5C */	li r3, 0x25c
-/* 80566F34  4B BE 5B 78 */	b daNpcT_chkEvtBit__FUl
+/* 80566F34  4B BE 5B 79 */	bl daNpcT_chkEvtBit__FUl
 /* 80566F38  2C 03 00 00 */	cmpwi r3, 0
 /* 80566F3C  41 82 00 08 */	beq lbl_80566F44
 lbl_80566F40:
@@ -148,11 +148,11 @@ lbl_80566F4C:
 lbl_80566F54:
 /* 80566F54  3B E0 00 00 */	li r31, 0
 /* 80566F58  38 60 02 71 */	li r3, 0x271
-/* 80566F5C  4B BE 5B 50 */	b daNpcT_chkEvtBit__FUl
+/* 80566F5C  4B BE 5B 51 */	bl daNpcT_chkEvtBit__FUl
 /* 80566F60  2C 03 00 00 */	cmpwi r3, 0
 /* 80566F64  41 82 00 14 */	beq lbl_80566F78
 /* 80566F68  38 60 00 B8 */	li r3, 0xb8
-/* 80566F6C  4B BE 5B 40 */	b daNpcT_chkEvtBit__FUl
+/* 80566F6C  4B BE 5B 41 */	bl daNpcT_chkEvtBit__FUl
 /* 80566F70  2C 03 00 00 */	cmpwi r3, 0
 /* 80566F74  41 82 00 08 */	beq lbl_80566F7C
 lbl_80566F78:

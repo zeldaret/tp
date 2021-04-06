@@ -4,23 +4,23 @@ lbl_80BDED64:
 /* 80BDED6C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BDED70  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80BDED74  7C 7F 1B 78 */	mr r31, r3
-/* 80BDED78  3C 60 80 BE */	lis r3, lit_3719@ha
-/* 80BDED7C  C0 23 F8 80 */	lfs f1, lit_3719@l(r3)
+/* 80BDED78  3C 60 80 BE */	lis r3, lit_3719@ha /* 0x80BDF880@ha */
+/* 80BDED7C  C0 23 F8 80 */	lfs f1, lit_3719@l(r3)  /* 0x80BDF880@l */
 /* 80BDED80  C0 1F 06 38 */	lfs f0, 0x638(r31)
 /* 80BDED84  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80BDED88  40 82 00 44 */	bne lbl_80BDEDCC
 /* 80BDED8C  D0 21 00 08 */	stfs f1, 8(r1)
-/* 80BDED90  3C 60 80 BE */	lis r3, lit_4092@ha
-/* 80BDED94  C0 03 F8 D8 */	lfs f0, lit_4092@l(r3)
+/* 80BDED90  3C 60 80 BE */	lis r3, lit_4092@ha /* 0x80BDF8D8@ha */
+/* 80BDED94  C0 03 F8 D8 */	lfs f0, lit_4092@l(r3)  /* 0x80BDF8D8@l */
 /* 80BDED98  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80BDED9C  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80BDEDA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BDEDA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BDEDA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BDEDA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BDEDA8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80BDEDAC  38 80 00 04 */	li r4, 4
 /* 80BDEDB0  38 A0 00 1F */	li r5, 0x1f
 /* 80BDEDB4  38 C1 00 08 */	addi r6, r1, 8
-/* 80BDEDB8  4B 49 0C 6C */	b StartShock__12dVibration_cFii4cXyz
+/* 80BDEDB8  4B 49 0C 6D */	bl StartShock__12dVibration_cFii4cXyz
 /* 80BDEDBC  7F E3 FB 78 */	mr r3, r31
 /* 80BDEDC0  4B FF FC 5D */	bl modeSwWaitLowerInit__17daObjDmElevator_cFv
 /* 80BDEDC4  38 00 00 00 */	li r0, 0

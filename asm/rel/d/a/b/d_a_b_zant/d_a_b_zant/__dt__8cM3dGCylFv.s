@@ -5,12 +5,12 @@ lbl_8064E724:
 /* 8064E730  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8064E734  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8064E738  41 82 00 1C */	beq lbl_8064E754
-/* 8064E73C  3C A0 80 65 */	lis r5, __vt__8cM3dGCyl@ha
-/* 8064E740  38 05 F5 20 */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 8064E73C  3C A0 80 65 */	lis r5, __vt__8cM3dGCyl@ha /* 0x8064F520@ha */
+/* 8064E740  38 05 F5 20 */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x8064F520@l */
 /* 8064E744  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 8064E748  7C 80 07 35 */	extsh. r0, r4
 /* 8064E74C  40 81 00 08 */	ble lbl_8064E754
-/* 8064E750  4B C8 05 EC */	b __dl__FPv
+/* 8064E750  4B C8 05 ED */	bl __dl__FPv
 lbl_8064E754:
 /* 8064E754  7F E3 FB 78 */	mr r3, r31
 /* 8064E758  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -18,10 +18,10 @@ lbl_8060A670:
 /* 8060A6B0  40 82 00 30 */	bne lbl_8060A6E0
 /* 8060A6B4  38 80 00 16 */	li r4, 0x16
 /* 8060A6B8  38 A0 00 00 */	li r5, 0
-/* 8060A6BC  3C C0 80 61 */	lis r6, lit_4206@ha
-/* 8060A6C0  C0 26 FE 28 */	lfs f1, lit_4206@l(r6)
-/* 8060A6C4  3C C0 80 61 */	lis r6, lit_3930@ha
-/* 8060A6C8  C0 46 FD E8 */	lfs f2, lit_3930@l(r6)
+/* 8060A6BC  3C C0 80 61 */	lis r6, lit_4206@ha /* 0x8060FE28@ha */
+/* 8060A6C0  C0 26 FE 28 */	lfs f1, lit_4206@l(r6)  /* 0x8060FE28@l */
+/* 8060A6C4  3C C0 80 61 */	lis r6, lit_3930@ha /* 0x8060FDE8@ha */
+/* 8060A6C8  C0 46 FD E8 */	lfs f2, lit_3930@l(r6)  /* 0x8060FDE8@l */
 /* 8060A6CC  4B FF D2 59 */	bl setBck__9daB_MGN_cFiUcff
 /* 8060A6D0  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 8060A6D4  38 03 C0 00 */	addi r0, r3, -16384
@@ -30,10 +30,10 @@ lbl_8060A670:
 lbl_8060A6E0:
 /* 8060A6E0  38 80 00 10 */	li r4, 0x10
 /* 8060A6E4  38 A0 00 00 */	li r5, 0
-/* 8060A6E8  3C C0 80 61 */	lis r6, lit_4206@ha
-/* 8060A6EC  C0 26 FE 28 */	lfs f1, lit_4206@l(r6)
-/* 8060A6F0  3C C0 80 61 */	lis r6, lit_3930@ha
-/* 8060A6F4  C0 46 FD E8 */	lfs f2, lit_3930@l(r6)
+/* 8060A6E8  3C C0 80 61 */	lis r6, lit_4206@ha /* 0x8060FE28@ha */
+/* 8060A6EC  C0 26 FE 28 */	lfs f1, lit_4206@l(r6)  /* 0x8060FE28@l */
+/* 8060A6F0  3C C0 80 61 */	lis r6, lit_3930@ha /* 0x8060FDE8@ha */
+/* 8060A6F4  C0 46 FD E8 */	lfs f2, lit_3930@l(r6)  /* 0x8060FDE8@l */
 /* 8060A6F8  4B FF D2 2D */	bl setBck__9daB_MGN_cFiUcff
 /* 8060A6FC  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 8060A700  38 03 40 00 */	addi r0, r3, 0x4000

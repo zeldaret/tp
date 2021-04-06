@@ -9,8 +9,8 @@ lbl_801F7A40:
 /* 801F7A5C  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 801F7A60  28 00 00 00 */	cmplwi r0, 0
 /* 801F7A64  40 82 00 1C */	bne lbl_801F7A80
-/* 801F7A68  3C 60 80 39 */	lis r3, d_menu_d_menu_skill__stringBase0@ha
-/* 801F7A6C  38 63 7D B8 */	addi r3, r3, d_menu_d_menu_skill__stringBase0@l
+/* 801F7A68  3C 60 80 39 */	lis r3, d_menu_d_menu_skill__stringBase0@ha /* 0x80397DB8@ha */
+/* 801F7A6C  38 63 7D B8 */	addi r3, r3, d_menu_d_menu_skill__stringBase0@l /* 0x80397DB8@l */
 /* 801F7A70  38 80 00 00 */	li r4, 0
 /* 801F7A74  38 A0 00 00 */	li r5, 0
 /* 801F7A78  4B E1 E3 9D */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
@@ -45,8 +45,8 @@ lbl_801F7AE0:
 /* 801F7AE0  38 60 00 00 */	li r3, 0
 /* 801F7AE4  48 00 01 1C */	b lbl_801F7C00
 lbl_801F7AE8:
-/* 801F7AE8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801F7AEC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801F7AE8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801F7AEC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801F7AF0  A8 83 0A 64 */	lha r4, 0xa64(r3)
 /* 801F7AF4  A8 63 0A 68 */	lha r3, 0xa68(r3)
 /* 801F7AF8  B0 9F 02 00 */	sth r4, 0x200(r31)

@@ -18,15 +18,15 @@ lbl_807F8610:
 /* 807F8650  C0 1F 06 90 */	lfs f0, 0x690(r31)
 /* 807F8654  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 807F8658  38 61 00 10 */	addi r3, r1, 0x10
-/* 807F865C  3C 80 80 80 */	lis r4, lit_3803@ha
-/* 807F8660  C0 24 CC BC */	lfs f1, lit_3803@l(r4)
+/* 807F865C  3C 80 80 80 */	lis r4, lit_3803@ha /* 0x807FCCBC@ha */
+/* 807F8660  C0 24 CC BC */	lfs f1, lit_3803@l(r4)  /* 0x807FCCBC@l */
 /* 807F8664  38 80 00 00 */	li r4, 0
-/* 807F8668  4B 82 72 14 */	b fopKyM_createWpillar__FPC4cXyzfi
+/* 807F8668  4B 82 72 15 */	bl fopKyM_createWpillar__FPC4cXyzfi
 /* 807F866C  C0 3F 06 90 */	lfs f1, 0x690(r31)
 /* 807F8670  C0 1F 07 70 */	lfs f0, 0x770(r31)
 /* 807F8674  EC 21 00 28 */	fsubs f1, f1, f0
-/* 807F8678  3C 60 80 80 */	lis r3, lit_3912@ha
-/* 807F867C  C0 03 CC F8 */	lfs f0, lit_3912@l(r3)
+/* 807F8678  3C 60 80 80 */	lis r3, lit_3912@ha /* 0x807FCCF8@ha */
+/* 807F867C  C0 03 CC F8 */	lfs f0, lit_3912@l(r3)  /* 0x807FCCF8@l */
 /* 807F8680  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807F8684  40 81 00 34 */	ble lbl_807F86B8
 /* 807F8688  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002E@ha */

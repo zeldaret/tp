@@ -3,15 +3,15 @@ lbl_806CCAA0:
 /* 806CCAA4  7C 08 02 A6 */	mflr r0
 /* 806CCAA8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 806CCAAC  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 806CCAB0  3C 60 80 6D */	lis r3, cNullVec__6Z2Calc@ha
-/* 806CCAB4  3B E3 D1 18 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 806CCAB8  3C 60 80 6D */	lis r3, l_HIO@ha
-/* 806CCABC  38 63 D3 68 */	addi r3, r3, l_HIO@l
+/* 806CCAB0  3C 60 80 6D */	lis r3, cNullVec__6Z2Calc@ha /* 0x806CD118@ha */
+/* 806CCAB4  3B E3 D1 18 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x806CD118@l */
+/* 806CCAB8  3C 60 80 6D */	lis r3, l_HIO@ha /* 0x806CD368@ha */
+/* 806CCABC  38 63 D3 68 */	addi r3, r3, l_HIO@l /* 0x806CD368@l */
 /* 806CCAC0  4B FF AF 8D */	bl __ct__12daE_GE_HIO_cFv
-/* 806CCAC4  3C 80 80 6D */	lis r4, __dt__12daE_GE_HIO_cFv@ha
-/* 806CCAC8  38 84 CA 58 */	addi r4, r4, __dt__12daE_GE_HIO_cFv@l
-/* 806CCACC  3C A0 80 6D */	lis r5, lit_3920@ha
-/* 806CCAD0  38 A5 D3 5C */	addi r5, r5, lit_3920@l
+/* 806CCAC4  3C 80 80 6D */	lis r4, __dt__12daE_GE_HIO_cFv@ha /* 0x806CCA58@ha */
+/* 806CCAC8  38 84 CA 58 */	addi r4, r4, __dt__12daE_GE_HIO_cFv@l /* 0x806CCA58@l */
+/* 806CCACC  3C A0 80 6D */	lis r5, lit_3920@ha /* 0x806CD35C@ha */
+/* 806CCAD0  38 A5 D3 5C */	addi r5, r5, lit_3920@l /* 0x806CD35C@l */
 /* 806CCAD4  4B FF AF 05 */	bl __register_global_object
 /* 806CCAD8  80 7F 00 64 */	lwz r3, 0x64(r31)
 /* 806CCADC  80 1F 00 68 */	lwz r0, 0x68(r31)

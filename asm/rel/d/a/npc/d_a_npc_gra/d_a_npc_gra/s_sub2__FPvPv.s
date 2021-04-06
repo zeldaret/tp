@@ -6,7 +6,7 @@ lbl_809BFB54:
 /* 809BFB64  93 C1 00 08 */	stw r30, 8(r1)
 /* 809BFB68  7C 7E 1B 78 */	mr r30, r3
 /* 809BFB6C  7C 9F 23 78 */	mr r31, r4
-/* 809BFB70  4B 65 91 70 */	b fopAc_IsActor__FPv
+/* 809BFB70  4B 65 91 71 */	bl fopAc_IsActor__FPv
 /* 809BFB74  2C 03 00 00 */	cmpwi r3, 0
 /* 809BFB78  41 82 00 2C */	beq lbl_809BFBA4
 /* 809BFB7C  A8 1E 00 08 */	lha r0, 8(r30)

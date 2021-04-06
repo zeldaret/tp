@@ -4,8 +4,8 @@ lbl_80773A8C:
 /* 80773A94  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80773A98  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80773A9C  7C 7F 1B 78 */	mr r31, r3
-/* 80773AA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80773AA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80773AA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80773AA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80773AA8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80773AAC  38 00 00 15 */	li r0, 0x15
 /* 80773AB0  B0 1F 0A 42 */	sth r0, 0xa42(r31)
@@ -15,8 +15,8 @@ lbl_80773A8C:
 /* 80773AC0  3C 63 00 01 */	addis r3, r3, 1
 /* 80773AC4  38 03 80 00 */	addi r0, r3, -32768
 /* 80773AC8  B0 1F 0A DE */	sth r0, 0xade(r31)
-/* 80773ACC  3C 60 80 78 */	lis r3, l_HIO@ha
-/* 80773AD0  38 63 A8 84 */	addi r3, r3, l_HIO@l
+/* 80773ACC  3C 60 80 78 */	lis r3, l_HIO@ha /* 0x8077A884@ha */
+/* 80773AD0  38 63 A8 84 */	addi r3, r3, l_HIO@l /* 0x8077A884@l */
 /* 80773AD4  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 80773AD8  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80773ADC  C0 03 00 34 */	lfs f0, 0x34(r3)

@@ -22,8 +22,8 @@ lbl_80089640:
 /* 80089640  3C 05 BF AD */	addis r0, r5, 0xbfad
 /* 80089644  28 00 54 41 */	cmplwi r0, 0x5441
 /* 80089648  40 82 00 1C */	bne lbl_80089664
-/* 8008964C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80089650  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8008964C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80089650  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80089654  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 80089658  80 84 4F 8C */	lwz r4, 0x4f8c(r4)
 /* 8008965C  4B FB 9C 91 */	bl convPId__14dEvt_control_cFUi
@@ -31,8 +31,8 @@ lbl_80089640:
 lbl_80089664:
 /* 80089664  28 04 41 52 */	cmplwi r4, 0x4152
 /* 80089668  40 82 00 1C */	bne lbl_80089684
-/* 8008966C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80089670  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8008966C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80089670  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80089674  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 80089678  80 84 4F 90 */	lwz r4, 0x4f90(r4)
 /* 8008967C  4B FB 9C 71 */	bl convPId__14dEvt_control_cFUi
@@ -41,8 +41,8 @@ lbl_80089684:
 /* 80089684  3C 85 BF AC */	addis r4, r5, 0xbfac
 /* 80089688  28 04 41 4C */	cmplwi r4, 0x414c
 /* 8008968C  40 82 00 1C */	bne lbl_800896A8
-/* 80089690  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80089694  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80089690  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80089694  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80089698  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 8008969C  80 84 4F 94 */	lwz r4, 0x4f94(r4)
 /* 800896A0  4B FB 9C 4D */	bl convPId__14dEvt_control_cFUi
@@ -51,8 +51,8 @@ lbl_800896A8:
 /* 800896A8  3C 05 BF BC */	addis r0, r5, 0xbfbc
 /* 800896AC  28 00 4F 4F */	cmplwi r0, 0x4f4f
 /* 800896B0  40 82 00 1C */	bne lbl_800896CC
-/* 800896B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800896B8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800896B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800896B8  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800896BC  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 800896C0  80 84 4F 9C */	lwz r4, 0x4f9c(r4)
 /* 800896C4  4B FB 9C 29 */	bl convPId__14dEvt_control_cFUi
@@ -64,8 +64,8 @@ lbl_800896CC:
 /* 800896D8  28 00 54 45 */	cmplwi r0, 0x5445
 /* 800896DC  40 82 00 1C */	bne lbl_800896F8
 lbl_800896E0:
-/* 800896E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800896E4  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800896E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800896E4  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800896E8  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 800896EC  80 84 4F 98 */	lwz r4, 0x4f98(r4)
 /* 800896F0  4B FB 9B FD */	bl convPId__14dEvt_control_cFUi
@@ -74,8 +74,8 @@ lbl_800896F8:
 /* 800896F8  3C 05 B3 97 */	addis r0, r5, 0xb397
 /* 800896FC  28 00 6E 6B */	cmplwi r0, 0x6e6b
 /* 80089700  40 82 00 14 */	bne lbl_80089714
-/* 80089704  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80089708  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80089704  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80089708  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8008970C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80089710  48 00 00 0C */	b lbl_8008971C
 lbl_80089714:

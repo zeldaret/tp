@@ -22,7 +22,7 @@ lbl_809B792C:
 /* 809B7938  7C 00 07 35 */	extsh. r0, r0
 /* 809B793C  41 81 00 50 */	bgt lbl_809B798C
 /* 809B7940  38 60 00 0B */	li r3, 0xb
-/* 809B7944  4B 7F 0E A0 */	b dKy_change_colpat__FUc
+/* 809B7944  4B 7F 0E A1 */	bl dKy_change_colpat__FUc
 /* 809B7948  3B E0 00 01 */	li r31, 1
 /* 809B794C  48 00 00 40 */	b lbl_809B798C
 lbl_809B7950:
@@ -38,7 +38,7 @@ lbl_809B796C:
 /* 809B7970  38 A0 00 00 */	li r5, 0
 /* 809B7974  38 C0 00 00 */	li r6, 0
 /* 809B7978  38 E0 00 00 */	li r7, 0
-/* 809B797C  4B 79 42 FC */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 809B797C  4B 79 42 FD */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 809B7980  2C 03 00 00 */	cmpwi r3, 0
 /* 809B7984  41 82 00 08 */	beq lbl_809B798C
 /* 809B7988  3B E0 00 01 */	li r31, 1

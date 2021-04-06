@@ -23,17 +23,17 @@ extern "C" bool TRKInitializeMutex();
 // Declarations:
 //
 
-/* 8036F498-8036F4A0 0008+00 s=0 e=6 z=0  None .text      TRKReleaseMutex */
-extern "C" bool TRKReleaseMutex() {
+/* 8036F498-8036F4A0 369DD8 0008+00 0/0 6/6 0/0 .text            TRKReleaseMutex */
+bool TRKReleaseMutex() {
     return false;
 }
 
-/* 8036F4A0-8036F4A8 0008+00 s=0 e=6 z=0  None .text      TRKAcquireMutex */
-extern "C" bool TRKAcquireMutex() {
+/* 8036F4A0-8036F4A8 369DE0 0008+00 0/0 6/6 0/0 .text            TRKAcquireMutex */
+bool TRKAcquireMutex() {
     return false;
 }
 
-/* 8036F4A8-8036F4B0 0008+00 s=0 e=2 z=0  None .text      TRKInitializeMutex */
-extern "C" bool TRKInitializeMutex() {
+/* 8036F4A8-8036F4B0 369DE8 0008+00 0/0 2/2 0/0 .text            TRKInitializeMutex */
+bool TRKInitializeMutex() {
     return false;
 }

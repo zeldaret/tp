@@ -1,6 +1,6 @@
 lbl_80BC8B20:
-/* 80BC8B20  3C 80 80 BD */	lis r4, lit_3731@ha
-/* 80BC8B24  38 84 8C DC */	addi r4, r4, lit_3731@l
+/* 80BC8B20  3C 80 80 BD */	lis r4, lit_3731@ha /* 0x80BC8CDC@ha */
+/* 80BC8B24  38 84 8C DC */	addi r4, r4, lit_3731@l /* 0x80BC8CDC@l */
 /* 80BC8B28  C0 04 00 54 */	lfs f0, 0x54(r4)
 /* 80BC8B2C  D0 03 05 EC */	stfs f0, 0x5ec(r3)
 /* 80BC8B30  C0 04 00 58 */	lfs f0, 0x58(r4)

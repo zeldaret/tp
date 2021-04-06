@@ -5,7 +5,7 @@ lbl_80ACDCE4:
 /* 80ACDCF0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80ACDCF4  3B E0 00 00 */	li r31, 0
 /* 80ACDCF8  38 60 02 58 */	li r3, 0x258
-/* 80ACDCFC  4B 67 ED B0 */	b daNpcT_chkEvtBit__FUl
+/* 80ACDCFC  4B 67 ED B1 */	bl daNpcT_chkEvtBit__FUl
 /* 80ACDD00  2C 03 00 00 */	cmpwi r3, 0
 /* 80ACDD04  41 82 00 08 */	beq lbl_80ACDD0C
 /* 80ACDD08  3B E0 00 01 */	li r31, 1

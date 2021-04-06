@@ -63,24 +63,6 @@ struct J2DPane {
 // Forward References:
 //
 
-void fopMsgM_setStageLayer(void*);
-void fopMsgM_SearchByID(unsigned int);
-void fopMsgM_GetAppend(void*);
-void fopMsgM_Delete(void*);
-static void createAppend(fopAc_ac_c*, cXyz*, u32*, u32*, unsigned int);
-static void createTimerAppend(int, u32, u8, u8, f32, f32, f32, f32, unsigned int);
-void fopMsgM_create(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int (*)(void*));
-void fop_Timer_create(s16, u8, u32, u8, u8, f32, f32, f32, f32, int (*)(void*));
-void fopMsgM_messageSet(u32, fopAc_ac_c*, u32);
-void fopMsgM_messageSet(u32, u32);
-void fopMsgM_messageSetDemo(u32);
-void fopMsgM_messageGet(char*, u32);
-void fopMsgM_setMessageID(unsigned int);
-void fopMsgM_Create(s16, int (*)(void*), void*);
-void fopMsgM_valueIncrease(int, int, u8);
-void fopMsgM_createExpHeap(u32, JKRHeap*);
-void fopMsgM_destroyExpHeap(JKRExpHeap*);
-
 extern "C" void fopMsgM_setStageLayer__FPv();
 extern "C" void fopMsgM_SearchByID__FUi();
 extern "C" void fopMsgM_GetAppend__FPv();
@@ -106,15 +88,6 @@ extern "C" void fopMsgM_destroyExpHeap__FP10JKRExpHeap();
 //
 // External References:
 //
-
-void mDoExt_getGameHeap();
-void fopScnM_SearchByID(unsigned int);
-void fpcBs_Is_JustOfType(int, int);
-void fpcEx_SearchByID(unsigned int);
-void fpcLy_CurrentLayer();
-void fpcM_Delete(void*);
-void fpcPi_Change(process_priority_class*, unsigned int, u16, u16);
-void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
 
 extern "C" void mDoExt_getGameHeap__Fv();
 extern "C" void fopScnM_SearchByID__FUi();
@@ -153,12 +126,7 @@ extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
 // Declarations:
 //
 
-/* 8001F9B4-8001FA24 0070+00 s=0 e=3 z=0  None .text      fopMsgM_setStageLayer__FPv */
-//	8001F9CC: 80450D60 (mProcID__20dStage_roomControl_c)
-//	8001F9D0: 8001ECB0 (fopScnM_SearchByID__FUi)
-//	8001F9D8: 80450D40 (g_fpcNd_type)
-//	8001F9E0: 8002064C (fpcBs_Is_JustOfType__Fii)
-//	8001FA08: 800232E8 (fpcPi_Change__FP22process_priority_classUiUsUs)
+/* 8001F9B4-8001FA24 01A2F4 0070+00 0/0 3/3 0/0 .text            fopMsgM_setStageLayer__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -168,8 +136,7 @@ asm void fopMsgM_setStageLayer(void* param_0) {
 }
 #pragma pop
 
-/* 8001FA24-8001FA44 0020+00 s=3 e=14 z=4  None .text      fopMsgM_SearchByID__FUi */
-//	8001FA30: 80021358 (fpcEx_SearchByID__FUi)
+/* 8001FA24-8001FA44 01A364 0020+00 3/3 14/14 4/4 .text            fopMsgM_SearchByID__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,7 +146,7 @@ asm void fopMsgM_SearchByID(unsigned int param_0) {
 }
 #pragma pop
 
-/* 8001FA44-8001FA4C 0008+00 s=0 e=2 z=0  None .text      fopMsgM_GetAppend__FPv */
+/* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -189,8 +156,7 @@ asm void fopMsgM_GetAppend(void* param_0) {
 }
 #pragma pop
 
-/* 8001FA4C-8001FA6C 0020+00 s=0 e=2 z=0  None .text      fopMsgM_Delete__FPv */
-//	8001FA58: 80022118 (fpcM_Delete__FPv)
+/* 8001FA4C-8001FA6C 01A38C 0020+00 0/0 2/2 0/0 .text            fopMsgM_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,7 +167,7 @@ asm void fopMsgM_Delete(void* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451C70-80451C74 0004+00 s=6 e=0 z=0  None .sdata2    @3902 */
+/* 80451C70-80451C74 000270 0004+00 6/6 0/0 0/0 .sdata2          @3902 */
 SECTION_SDATA2 static u8 lit_3902[4] = {
     0x00,
     0x00,
@@ -209,47 +175,32 @@ SECTION_SDATA2 static u8 lit_3902[4] = {
     0x00,
 };
 
-/* 8001FA6C-8001FB50 00E4+00 s=1 e=0 z=0  None .text      createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
+/* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
-//	8001FA7C: 803621D0 (_savegpr_26)
-//	8001FA9C: 80263228 (memalignB__3cMlFiUl)
-//	8001FAB4: 804061C0 (g_dComIfG_gameInfo)
-//	8001FAB8: 804061C0 (g_dComIfG_gameInfo)
-//	8001FACC: 8023826C (setTalkActor__12dMsgObject_cFP10fopAc_ac_c)
-//	8001FB14: 80451C70 (lit_3902)
-//	8001FB3C: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* param_2, u32* param_3,
+static asm void createAppend(fopAc_ac_c* param_0, cXyz* param_1, u32* param_2, u32* param_3,
                              unsigned int param_4) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi.s"
 }
 #pragma pop
 
-/* 8001FB50-8001FC4C 00FC+00 s=1 e=0 z=0  None .text      createTimerAppend__FiUlUcUcffffUi */
-//	8001FB80: 803621D4 (_savegpr_27)
-//	8001FBB0: 80263228 (memalignB__3cMlFiUl)
-//	8001FBD4: 80451C70 (lit_3902)
-//	8001FC38: 80362220 (_restgpr_27)
+/* 8001FB50-8001FC4C 01A490 00FC+00 1/1 0/0 0/0 .text            createTimerAppend__FiUlUcUcffffUi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4,
+static asm void createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3, f32 param_4,
                                   f32 param_5, f32 param_6, f32 param_7, unsigned int param_8) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/createTimerAppend__FiUlUcUcffffUi.s"
 }
 #pragma pop
 
-/* 8001FC4C-8001FCC0 0074+00 s=0 e=1 z=0  None .text
+/* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
  * fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i            */
-//	8001FC5C: 803621DC (_savegpr_29)
-//	8001FC7C: 8001FA6C (createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi)
-//	8001FC90: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	8001FCA4: 80023D94 (fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv)
-//	8001FCAC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -260,12 +211,7 @@ asm void fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* pa
 }
 #pragma pop
 
-/* 8001FCC0-8001FD34 0074+00 s=0 e=2 z=0  None .text      fop_Timer_create__FsUcUlUcUcffffPFPv_i */
-//	8001FCD0: 803621DC (_savegpr_29)
-//	8001FCF0: 8001FB50 (createTimerAppend__FiUlUcUcffffUi)
-//	8001FD04: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	8001FD18: 80023D94 (fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv)
-//	8001FD20: 80362228 (_restgpr_29)
+/* 8001FCC0-8001FD34 01A600 0074+00 0/0 2/2 0/0 .text fop_Timer_create__FsUcUlUcUcffffPFPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,30 +223,14 @@ asm void fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 p
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505C8-804505D0 0004+04 s=4 e=0 z=0  None .sdata     i_msgID */
+/* 804505C8-804505D0 000048 0004+04 4/4 0/0 0/0 .sdata           i_msgID */
 SECTION_SDATA static u32 i_msgID[1 + 1 /* padding */] = {
     0xFFFFFFFF,
     /* padding */
     0x00000000,
 };
 
-/* 8001FD34-8001FE84 0150+00 s=0 e=2 z=1  None .text      fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
-//	8001FD44: 803621D8 (_savegpr_28)
-//	8001FD54: 804061C0 (g_dComIfG_gameInfo)
-//	8001FD58: 804061C0 (g_dComIfG_gameInfo)
-//	8001FD68: 80430188 (g_meter2_info)
-//	8001FD6C: 80430188 (g_meter2_info)
-//	8001FD74: 8021F6EC (emphasisButtonDelete__9dMeter2_cFv)
-//	8001FDB0: 804061C0 (g_dComIfG_gameInfo)
-//	8001FDB4: 804061C0 (g_dComIfG_gameInfo)
-//	8001FDE8: 80451C70 (lit_3902)
-//	8001FDF8: 8043028C (g_MsgObject_HIO_c)
-//	8001FDFC: 8043028C (g_MsgObject_HIO_c)
-//	8001FE10: 804505C8 (i_msgID)
-//	8001FE14: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	8001FE5C: 80233D04 (setMessageIndex__12dMsgObject_cFUlUlb)
-//	8001FE60: 804505C8 (i_msgID)
-//	8001FE70: 80362224 (_restgpr_28)
+/* 8001FD34-8001FE84 01A674 0150+00 0/0 2/2 1/1 .text fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -310,21 +240,7 @@ asm void fopMsgM_messageSet(u32 param_0, fopAc_ac_c* param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 8001FE84-8001FFC4 0140+00 s=0 e=6 z=4  None .text      fopMsgM_messageSet__FUlUl */
-//	8001FE94: 803621DC (_savegpr_29)
-//	8001FEA0: 804061C0 (g_dComIfG_gameInfo)
-//	8001FEA4: 804061C0 (g_dComIfG_gameInfo)
-//	8001FEB4: 80430188 (g_meter2_info)
-//	8001FEB8: 80430188 (g_meter2_info)
-//	8001FEC0: 8021F6EC (emphasisButtonDelete__9dMeter2_cFv)
-//	8001FEF8: 80451C70 (lit_3902)
-//	8001FF08: 804505C8 (i_msgID)
-//	8001FF0C: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	8001FF50: 80237A74 (setTalkPartner__12dMsgObject_cFP10fopAc_ac_c)
-//	8001FF64: 80233D04 (setMessageIndex__12dMsgObject_cFUlUlb)
-//	8001FF68: 804505C8 (i_msgID)
-//	8001FFA0: 804505C8 (i_msgID)
-//	8001FFB0: 80362228 (_restgpr_29)
+/* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,18 +250,7 @@ asm void fopMsgM_messageSet(u32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 8001FFC4-800200C0 00FC+00 s=0 e=1 z=13  None .text      fopMsgM_messageSetDemo__FUl */
-//	8001FFDC: 80238098 (endFlowGroup__12dMsgObject_cFv)
-//	8001FFE0: 804061C0 (g_dComIfG_gameInfo)
-//	8001FFE4: 804061C0 (g_dComIfG_gameInfo)
-//	8001FFF4: 80430188 (g_meter2_info)
-//	8001FFF8: 80430188 (g_meter2_info)
-//	80020000: 8021F6EC (emphasisButtonDelete__9dMeter2_cFv)
-//	80020038: 80451C70 (lit_3902)
-//	80020048: 804505C8 (i_msgID)
-//	8002004C: 8001FA24 (fopMsgM_SearchByID__FUi)
-//	80020098: 80233E70 (setMessageIndexDemo__12dMsgObject_cFUlb)
-//	8002009C: 804505C8 (i_msgID)
+/* 8001FFC4-800200C0 01A904 00FC+00 0/0 1/1 13/13 .text            fopMsgM_messageSetDemo__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -355,10 +260,7 @@ asm void fopMsgM_messageSetDemo(u32 param_0) {
 }
 #pragma pop
 
-/* 800200C0-80020100 0040+00 s=0 e=7 z=1  None .text      fopMsgM_messageGet__FPcUl */
-//	800200D4: 80430188 (g_meter2_info)
-//	800200D8: 80430188 (g_meter2_info)
-//	800200E4: 8021C250 (getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c)
+/* 800200C0-80020100 01AA00 0040+00 0/0 7/7 1/1 .text            fopMsgM_messageGet__FPcUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,8 +270,7 @@ asm void fopMsgM_messageGet(char* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 80020100-80020108 0008+00 s=0 e=1 z=0  None .text      fopMsgM_setMessageID__FUi */
-//	80020100: 804505C8 (i_msgID)
+/* 80020100-80020108 01AA40 0008+00 0/0 1/1 0/0 .text            fopMsgM_setMessageID__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -379,11 +280,7 @@ asm void fopMsgM_setMessageID(unsigned int param_0) {
 }
 #pragma pop
 
-/* 80020108-80020158 0050+00 s=0 e=2 z=0  None .text      fopMsgM_Create__FsPFPv_iPv */
-//	80020118: 803621DC (_savegpr_29)
-//	80020128: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	8002013C: 80023D94 (fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv)
-//	80020144: 80362228 (_restgpr_29)
+/* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -393,7 +290,7 @@ asm void fopMsgM_Create(s16 param_0, int (*)(void*), void* param_2) {
 }
 #pragma pop
 
-/* 80020158-80020160 0008+00 s=0 e=5 z=0  None .text      setAlpha__7J2DPaneFUc */
+/* 80020158-80020160 01AA98 0008+00 0/0 5/0 0/0 .text            setAlpha__7J2DPaneFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,7 +301,7 @@ asm void J2DPane::setAlpha(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3970-803A3990 001C+04 s=1 e=0 z=0  None .data      @4305 */
+/* 803A3970-803A3990 -00001 001C+04 1/1 0/0 0/0 .data            @4305 */
 SECTION_DATA static void* lit_4305[7 + 1 /* padding */] = {
     (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x88),
     (void*)(((char*)fopMsgM_valueIncrease__FiiUc) + 0x90),
@@ -417,43 +314,25 @@ SECTION_DATA static void* lit_4305[7 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80451C74-80451C78 0004+00 s=1 e=0 z=0  None .sdata2    @4167 */
+/* 80451C74-80451C78 000274 0004+00 1/1 0/0 0/0 .sdata2          @4167 */
 SECTION_SDATA2 static f32 lit_4167 = 0.5f;
 
-/* 80451C78-80451C7C 0004+00 s=1 e=0 z=0  None .sdata2    @4298 */
+/* 80451C78-80451C7C 000278 0004+00 1/1 0/0 0/0 .sdata2          @4298 */
 SECTION_SDATA2 static f32 lit_4298 = 1.0f;
 
-/* 80451C7C-80451C80 0004+00 s=1 e=0 z=0  None .sdata2    @4299 */
+/* 80451C7C-80451C80 00027C 0004+00 1/1 0/0 0/0 .sdata2          @4299 */
 SECTION_SDATA2 static f32 lit_4299 = 2.0f;
 
-/* 80451C80-80451C84 0004+00 s=1 e=0 z=0  None .sdata2    @4300 */
+/* 80451C80-80451C84 000280 0004+00 1/1 0/0 0/0 .sdata2          @4300 */
 SECTION_SDATA2 static f32 lit_4300 = 32768.0f;
 
-/* 80451C84-80451C88 0004+00 s=1 e=0 z=0  None .sdata2    @4301 */
+/* 80451C84-80451C88 000284 0004+00 1/1 0/0 0/0 .sdata2          @4301 */
 SECTION_SDATA2 static f32 lit_4301 = 65535.0f;
 
-/* 80451C88-80451C90 0008+00 s=1 e=0 z=0  None .sdata2    @4303 */
+/* 80451C88-80451C90 000288 0008+00 1/1 0/0 0/0 .sdata2          @4303 */
 SECTION_SDATA2 static f64 lit_4303 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80020160-800202CC 016C+00 s=1 e=4 z=2  None .text      fopMsgM_valueIncrease__FiiUc */
-//	8002016C: 80451C78 (lit_4298)
-//	80020190: 80451C88 (lit_4303)
-//	800201D0: 803A3970 (lit_4305)
-//	800201D4: 803A3970 (lit_4305)
-//	800201F0: 80451C70 (lit_3902)
-//	8002021C: 80451C7C (lit_4299)
-//	80020224: 80451C78 (lit_4298)
-//	80020238: 80451C74 (lit_4167)
-//	8002023C: 80451C80 (lit_4300)
-//	80020258: 80439A20 (sincosTable___5JMath)
-//	8002025C: 80439A20 (sincosTable___5JMath)
-//	8002026C: 80451C74 (lit_4167)
-//	80020270: 80451C84 (lit_4301)
-//	8002028C: 80439A20 (sincosTable___5JMath)
-//	80020290: 80439A20 (sincosTable___5JMath)
-//	800202A0: 80451C80 (lit_4300)
-//	800202B8: 80439A20 (sincosTable___5JMath)
-//	800202BC: 80439A20 (sincosTable___5JMath)
+/* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,7 +342,7 @@ asm void fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 800202CC-80020338 006C+00 s=0 e=2 z=0  None .text      setBlendRatio__10J2DPictureFff */
+/* 800202CC-80020338 01AC0C 006C+00 0/0 2/0 0/0 .text            setBlendRatio__10J2DPictureFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -473,7 +352,7 @@ asm void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80020338-80020368 0030+00 s=0 e=1 z=0  None .text      append__10J2DPictureFPCcf */
+/* 80020338-80020368 01AC78 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPCcf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -483,7 +362,7 @@ asm void J2DPicture::append(char const* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80020368-8002039C 0034+00 s=0 e=1 z=0  None .text      insert__10J2DPictureFPCcUcf */
+/* 80020368-8002039C 01ACA8 0034+00 0/0 1/0 0/0 .text            insert__10J2DPictureFPCcUcf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -493,9 +372,8 @@ asm void J2DPicture::insert(char const* param_0, u8 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8002039C-800203E0 0044+00 s=0 e=3 z=0  None .text      fopMsgM_createExpHeap__FUlP7JKRHeap */
-//	800203B8: 8000ED50 (mDoExt_getGameHeap__Fv)
-//	800203C8: 802CEE2C (create__10JKRExpHeapFUlP7JKRHeapb)
+/* 8002039C-800203E0 01ACDC 0044+00 0/0 3/3 0/0 .text            fopMsgM_createExpHeap__FUlP7JKRHeap
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -505,8 +383,7 @@ asm void fopMsgM_createExpHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 800203E0-80020400 0020+00 s=0 e=3 z=0  None .text      fopMsgM_destroyExpHeap__FP10JKRExpHeap */
-//	800203EC: 802CE448 (destroy__7JKRHeapFv)
+/* 800203E0-80020400 01AD20 0020+00 0/0 3/3 0/0 .text fopMsgM_destroyExpHeap__FP10JKRExpHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

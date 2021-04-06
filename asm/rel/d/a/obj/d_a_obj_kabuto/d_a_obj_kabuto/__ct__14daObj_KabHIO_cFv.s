@@ -1,8 +1,8 @@
 lbl_80C2AE6C:
-/* 80C2AE6C  3C 80 80 C3 */	lis r4, lit_3775@ha
-/* 80C2AE70  38 A4 E1 10 */	addi r5, r4, lit_3775@l
-/* 80C2AE74  3C 80 80 C3 */	lis r4, __vt__14daObj_KabHIO_c@ha
-/* 80C2AE78  38 04 E2 D8 */	addi r0, r4, __vt__14daObj_KabHIO_c@l
+/* 80C2AE6C  3C 80 80 C3 */	lis r4, lit_3775@ha /* 0x80C2E110@ha */
+/* 80C2AE70  38 A4 E1 10 */	addi r5, r4, lit_3775@l /* 0x80C2E110@l */
+/* 80C2AE74  3C 80 80 C3 */	lis r4, __vt__14daObj_KabHIO_c@ha /* 0x80C2E2D8@ha */
+/* 80C2AE78  38 04 E2 D8 */	addi r0, r4, __vt__14daObj_KabHIO_c@l /* 0x80C2E2D8@l */
 /* 80C2AE7C  90 03 00 00 */	stw r0, 0(r3)
 /* 80C2AE80  38 00 FF FF */	li r0, -1
 /* 80C2AE84  98 03 00 04 */	stb r0, 4(r3)

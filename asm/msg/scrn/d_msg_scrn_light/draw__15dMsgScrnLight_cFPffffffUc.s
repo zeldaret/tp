@@ -21,8 +21,8 @@ lbl_80245C04:
 /* 80245C50  FF A0 18 90 */	fmr f29, f3
 /* 80245C54  FF C0 20 90 */	fmr f30, f4
 /* 80245C58  FF E0 28 90 */	fmr f31, f5
-/* 80245C5C  3C 60 80 43 */	lis r3, g_MsgScrnLight_HIO_c@ha
-/* 80245C60  38 63 06 D4 */	addi r3, r3, g_MsgScrnLight_HIO_c@l
+/* 80245C5C  3C 60 80 43 */	lis r3, g_MsgScrnLight_HIO_c@ha /* 0x804306D4@ha */
+/* 80245C60  38 63 06 D4 */	addi r3, r3, g_MsgScrnLight_HIO_c@l /* 0x804306D4@l */
 /* 80245C64  88 03 00 05 */	lbz r0, 5(r3)
 /* 80245C68  28 00 00 00 */	cmplwi r0, 0
 /* 80245C6C  41 82 00 AC */	beq lbl_80245D18

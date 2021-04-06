@@ -12,7 +12,7 @@ lbl_80982EB4:
 /* 80982EDC  88 1E 09 F4 */	lbz r0, 0x9f4(r30)
 /* 80982EE0  28 00 00 00 */	cmplwi r0, 0
 /* 80982EE4  41 82 00 14 */	beq lbl_80982EF8
-/* 80982EE8  4B 6A CB 6C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80982EE8  4B 6A CB 6D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80982EEC  2C 03 00 00 */	cmpwi r3, 0
 /* 80982EF0  40 82 00 08 */	bne lbl_80982EF8
 lbl_80982EF4:

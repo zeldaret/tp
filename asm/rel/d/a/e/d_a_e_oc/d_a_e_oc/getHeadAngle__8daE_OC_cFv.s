@@ -20,7 +20,7 @@ lbl_8072E42C:
 /* 8072E474  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 8072E478  38 61 00 14 */	addi r3, r1, 0x14
 /* 8072E47C  38 81 00 08 */	addi r4, r1, 8
-/* 8072E480  4B B4 27 84 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 8072E480  4B B4 27 85 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8072E484  7C 63 07 34 */	extsh r3, r3
 /* 8072E488  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8072E48C  7C 08 03 A6 */	mtlr r0

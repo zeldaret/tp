@@ -6,18 +6,18 @@ lbl_80764174:
 /* 80764184  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80764188  7C 7E 1B 78 */	mr r30, r3
 /* 8076418C  38 60 00 58 */	li r3, 0x58
-/* 80764190  4B B6 AA BC */	b __nw__FUl
+/* 80764190  4B B6 AA BD */	bl __nw__FUl
 /* 80764194  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80764198  41 82 00 74 */	beq lbl_8076420C
-/* 8076419C  3C 60 80 76 */	lis r3, stringBase0@ha
-/* 807641A0  38 63 4D D4 */	addi r3, r3, stringBase0@l
+/* 8076419C  3C 60 80 76 */	lis r3, d_a_e_rb__stringBase0@ha /* 0x80764DD4@ha */
+/* 807641A0  38 63 4D D4 */	addi r3, r3, d_a_e_rb__stringBase0@l /* 0x80764DD4@l */
 /* 807641A4  38 80 00 0B */	li r4, 0xb
-/* 807641A8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 807641AC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 807641A8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807641AC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807641B0  3C A5 00 02 */	addis r5, r5, 2
 /* 807641B4  38 C0 00 80 */	li r6, 0x80
 /* 807641B8  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 807641BC  4B 8D 81 30 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 807641BC  4B 8D 81 31 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 807641C0  7C 64 1B 78 */	mr r4, r3
 /* 807641C4  38 1E 09 6C */	addi r0, r30, 0x96c
 /* 807641C8  90 01 00 08 */	stw r0, 8(r1)
@@ -31,11 +31,11 @@ lbl_80764174:
 /* 807641E8  38 C0 00 00 */	li r6, 0
 /* 807641EC  38 E0 00 00 */	li r7, 0
 /* 807641F0  39 00 00 00 */	li r8, 0
-/* 807641F4  3D 20 80 76 */	lis r9, lit_3790@ha
-/* 807641F8  C0 29 4D 14 */	lfs f1, lit_3790@l(r9)
+/* 807641F4  3D 20 80 76 */	lis r9, lit_3790@ha /* 0x80764D14@ha */
+/* 807641F8  C0 29 4D 14 */	lfs f1, lit_3790@l(r9)  /* 0x80764D14@l */
 /* 807641FC  39 20 00 00 */	li r9, 0
 /* 80764200  39 40 FF FF */	li r10, -1
-/* 80764204  4B 8A C5 CC */	b __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
+/* 80764204  4B 8A C5 CD */	bl __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 /* 80764208  7C 7F 1B 78 */	mr r31, r3
 lbl_8076420C:
 /* 8076420C  93 FE 09 68 */	stw r31, 0x968(r30)

@@ -9,8 +9,8 @@ lbl_802E746C:
 /* 802E7488  7C BE 2B 78 */	mr r30, r5
 /* 802E748C  7C DF 33 78 */	mr r31, r6
 /* 802E7490  4B FE 9F ED */	bl __ct__11JKRDisposerFv
-/* 802E7494  3C 60 80 3D */	lis r3, __vt__10JUTConsole@ha
-/* 802E7498  38 03 C9 A8 */	addi r0, r3, __vt__10JUTConsole@l
+/* 802E7494  3C 60 80 3D */	lis r3, __vt__10JUTConsole@ha /* 0x803CC9A8@ha */
+/* 802E7498  38 03 C9 A8 */	addi r0, r3, __vt__10JUTConsole@l /* 0x803CC9A8@l */
 /* 802E749C  90 1C 00 00 */	stw r0, 0(r28)
 /* 802E74A0  38 00 00 00 */	li r0, 0
 /* 802E74A4  90 1C 00 18 */	stw r0, 0x18(r28)

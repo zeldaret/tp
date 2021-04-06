@@ -7,8 +7,8 @@ lbl_801033CC:
 /* 801033E0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 801033E4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 801033E8  7C 7E 1B 78 */	mr r30, r3
-/* 801033EC  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 801033F0  3B E3 D6 58 */	addi r31, r3, lit_3757@l
+/* 801033EC  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 801033F0  3B E3 D6 58 */	addi r31, r3, lit_3757@l /* 0x8038D658@l */
 /* 801033F4  80 1E 05 74 */	lwz r0, 0x574(r30)
 /* 801033F8  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 801033FC  41 82 00 10 */	beq lbl_8010340C
@@ -26,8 +26,8 @@ lbl_80103414:
 /* 80103424  7F C3 F3 78 */	mr r3, r30
 /* 80103428  38 80 00 01 */	li r4, 1
 /* 8010342C  4B FF FE 9D */	bl swimOutAfter__9daAlink_cFi
-/* 80103430  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80103434  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80103430  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80103434  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80103438  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 8010343C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80103440  7C 64 02 14 */	add r3, r4, r0
@@ -77,8 +77,8 @@ lbl_801034EC:
 /* 801034EC  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 801034F0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801034F4  40 80 00 10 */	bge lbl_80103504
-/* 801034F8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801034FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801034F8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801034FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80103500  48 00 00 70 */	b lbl_80103570
 lbl_80103504:
 /* 80103504  D0 21 00 08 */	stfs f1, 8(r1)
@@ -112,8 +112,8 @@ lbl_8010355C:
 lbl_80103560:
 /* 80103560  2C 00 00 01 */	cmpwi r0, 1
 /* 80103564  40 82 00 0C */	bne lbl_80103570
-/* 80103568  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8010356C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80103568  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8010356C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80103570:
 /* 80103570  D0 3E 33 98 */	stfs f1, 0x3398(r30)
 /* 80103574  38 61 00 18 */	addi r3, r1, 0x18

@@ -34,16 +34,6 @@ struct base_process_class {};
 // Forward References:
 //
 
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_MakeOfType(int*);
-void fpcBs_MakeOfId();
-void fpcBs_Execute(base_process_class*);
-static void fpcBs_DeleteAppend(base_process_class*);
-void fpcBs_IsDelete(base_process_class*);
-void fpcBs_Delete(base_process_class*);
-void fpcBs_Create(s16, unsigned int, void*);
-void fpcBs_SubCreate(base_process_class*);
-
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_MakeOfType__FPi();
 extern "C" void fpcBs_MakeOfId__Fv();
@@ -57,20 +47,6 @@ extern "C" void fpcBs_SubCreate__FP18base_process_class();
 //
 // External References:
 //
-
-void fpcDtTg_Init(delete_tag_class*, void*);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-void fpcLyTg_Init(layer_management_tag_class*, unsigned int, void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
-void fpcPi_Init(process_priority_class*, void*, unsigned int, u16, u16);
-void fpcPf_Get(s16);
-void fpcLnTg_Init(line_tag*, void*);
-void fpcPause_Init(void*);
-void sBs_ClearArea(void*, u32);
 
 extern "C" void fpcDtTg_Init__FP16delete_tag_classPv();
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
@@ -94,7 +70,7 @@ extern "C" void _restgpr_26();
 // Declarations:
 //
 
-/* 8002064C-8002065C 0010+00 s=0 e=14 z=0  None .text      fpcBs_Is_JustOfType__Fii */
+/* 8002064C-8002065C 01AF8C 0010+00 0/0 14/14 0/0 .text            fpcBs_Is_JustOfType__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,21 +81,16 @@ asm void fpcBs_Is_JustOfType(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450D00-80450D04 0004+00 s=1 e=0 z=0  None .sbss      g_fpcBs_type */
+/* 80450D00-80450D04 000200 0004+00 1/1 0/0 0/0 .sbss            g_fpcBs_type */
 static u8 g_fpcBs_type[4];
 
-/* 80450D04-80450D08 0004+00 s=1 e=0 z=0  None .sbss      t_type$2207 */
+/* 80450D04-80450D08 000204 0004+00 1/1 0/0 0/0 .sbss            t_type$2207 */
 static u8 t_type[4];
 
-/* 80450D08-80450D0C 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 80450D08-80450D0C 000208 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450D08[4];
 
-/* 8002065C-8002069C 0040+00 s=1 e=5 z=0  None .text      fpcBs_MakeOfType__FPi */
-//	8002065C: 80450D08 (data_80450D08)
-//	8002066C: 80450D04 (t_type)
-//	80020674: 80450D08 (data_80450D08)
-//	80020684: 80450D04 (t_type)
-//	8002068C: 80450D04 (t_type)
+/* 8002065C-8002069C 01AF9C 0040+00 1/1 5/5 0/0 .text            fpcBs_MakeOfType__FPi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -130,18 +101,13 @@ asm void fpcBs_MakeOfType(int* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450D0C-80450D10 0004+00 s=1 e=0 z=0  None .sbss      process_id$2216 */
+/* 80450D0C-80450D10 00020C 0004+00 1/1 0/0 0/0 .sbss            process_id$2216 */
 static u8 process_id[4];
 
-/* 80450D10-80450D18 0008+00 s=1 e=0 z=0  None .sbss      None */
+/* 80450D10-80450D18 000210 0008+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450D10[8];
 
-/* 8002069C-800206C4 0028+00 s=0 e=2 z=0  None .text      fpcBs_MakeOfId__Fv */
-//	8002069C: 80450D10 (data_80450D10)
-//	800206AC: 80450D0C (process_id)
-//	800206B0: 80450D10 (data_80450D10)
-//	800206B4: 80450D0C (process_id)
-//	800206BC: 80450D0C (process_id)
+/* 8002069C-800206C4 01AFDC 0028+00 0/0 2/2 0/0 .text            fpcBs_MakeOfId__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,11 +117,7 @@ asm void fpcBs_MakeOfId() {
 }
 #pragma pop
 
-/* 800206C4-80020720 005C+00 s=0 e=1 z=0  None .text      fpcBs_Execute__FP18base_process_class */
-//	800206DC: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	800206E8: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	800206F4: 80022460 (fpcMtd_Execute__FP20process_method_classPv)
-//	80020700: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
+/* 800206C4-80020720 01B004 005C+00 0/0 1/1 0/0 .text fpcBs_Execute__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,23 +127,18 @@ asm void fpcBs_Execute(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 80020720-80020760 0040+00 s=2 e=0 z=0  None .text      fpcBs_DeleteAppend__FP18base_process_class
+/* 80020720-80020760 01B060 0040+00 2/2 0/0 0/0 .text fpcBs_DeleteAppend__FP18base_process_class
  */
-//	80020740: 80263260 (free__3cMlFPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcBs_DeleteAppend(base_process_class* param_0) {
+static asm void fpcBs_DeleteAppend(base_process_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_base/fpcBs_DeleteAppend__FP18base_process_class.s"
 }
 #pragma pop
 
-/* 80020760-800207BC 005C+00 s=0 e=1 z=0  None .text      fpcBs_IsDelete__FP18base_process_class */
-//	80020778: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	80020784: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80020790: 80022484 (fpcMtd_IsDelete__FP20process_method_classPv)
-//	8002079C: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
+/* 80020760-800207BC 01B0A0 005C+00 0/0 1/1 0/0 .text fpcBs_IsDelete__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -191,10 +148,7 @@ asm void fpcBs_IsDelete(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 800207BC-80020820 0064+00 s=0 e=2 z=0  None .text      fpcBs_Delete__FP18base_process_class */
-//	800207DC: 800224A8 (fpcMtd_Delete__FP20process_method_classPv)
-//	800207F0: 80020720 (fpcBs_DeleteAppend__FP18base_process_class)
-//	80020800: 80263260 (free__3cMlFPv)
+/* 800207BC-80020820 01B0FC 0064+00 0/0 2/1 0/0 .text fpcBs_Delete__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -204,19 +158,7 @@ asm void fpcBs_Delete(base_process_class* param_0) {
 }
 #pragma pop
 
-/* 80020820-8002091C 00FC+00 s=0 e=2 z=0  None .text      fpcBs_Create__FsUiPv */
-//	80020830: 803621D0 (_savegpr_26)
-//	80020840: 80023564 (fpcPf_Get__Fs)
-//	8002085C: 80263228 (memalignB__3cMlFiUl)
-//	80020874: 80271CAC (sBs_ClearArea__FPvUl)
-//	80020884: 80021EB0 (fpcLyTg_Init__FP26layer_management_tag_classUiPv)
-//	80020890: 8002368C (fpcLnTg_Init__FP8line_tagPv)
-//	8002089C: 8002101C (fpcDtTg_Init__FP16delete_tag_classPv)
-//	800208B4: 800234BC (fpcPi_Init__FP22process_priority_classPvUiUsUs)
-//	800208CC: 80450D00 (g_fpcBs_type)
-//	800208D0: 8002065C (fpcBs_MakeOfType__FPi)
-//	800208E4: 80023948 (fpcPause_Init__FPv)
-//	80020908: 8036221C (_restgpr_26)
+/* 80020820-8002091C 01B160 00FC+00 0/0 2/2 0/0 .text            fpcBs_Create__FsUiPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,9 +168,7 @@ asm void fpcBs_Create(s16 param_0, unsigned int param_1, void* param_2) {
 }
 #pragma pop
 
-/* 8002091C-800209C8 00AC+00 s=0 e=2 z=0  None .text      fpcBs_SubCreate__FP18base_process_class */
-//	80020938: 800224CC (fpcMtd_Create__FP20process_method_classPv)
-//	8002096C: 80020720 (fpcBs_DeleteAppend__FP18base_process_class)
+/* 8002091C-800209C8 01B25C 00AC+00 0/0 2/2 0/0 .text fpcBs_SubCreate__FP18base_process_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

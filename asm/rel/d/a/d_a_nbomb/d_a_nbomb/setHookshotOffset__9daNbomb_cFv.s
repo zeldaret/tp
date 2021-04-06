@@ -5,33 +5,33 @@ lbl_804C87F0:
 /* 804C87FC  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 804C8800  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 804C8804  7C 7E 1B 78 */	mr r30, r3
-/* 804C8808  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804C880C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804C8808  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804C880C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804C8810  83 E3 5D B4 */	lwz r31, 0x5db4(r3)
 /* 804C8814  38 61 00 14 */	addi r3, r1, 0x14
 /* 804C8818  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 804C881C  38 BE 04 D0 */	addi r5, r30, 0x4d0
-/* 804C8820  4B D9 E3 14 */	b __mi__4cXyzCFRC3Vec
+/* 804C8820  4B D9 E3 15 */	bl __mi__4cXyzCFRC3Vec
 /* 804C8824  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 804C8828  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 804C882C  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 804C8830  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 804C8834  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 804C8838  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 804C883C  3C 60 80 4D */	lis r3, lit_4255@ha
-/* 804C8840  C0 03 C3 80 */	lfs f0, lit_4255@l(r3)
+/* 804C883C  3C 60 80 4D */	lis r3, lit_4255@ha /* 0x804CC380@ha */
+/* 804C8840  C0 03 C3 80 */	lfs f0, lit_4255@l(r3)  /* 0x804CC380@l */
 /* 804C8844  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 804C8848  38 61 00 08 */	addi r3, r1, 8
 /* 804C884C  38 81 00 20 */	addi r4, r1, 0x20
-/* 804C8850  4B D9 E6 F8 */	b normalizeZP__4cXyzFv
+/* 804C8850  4B D9 E6 F9 */	bl normalizeZP__4cXyzFv
 /* 804C8854  38 61 00 20 */	addi r3, r1, 0x20
 /* 804C8858  7C 64 1B 78 */	mr r4, r3
-/* 804C885C  3C A0 80 4D */	lis r5, lit_4678@ha
-/* 804C8860  C0 25 C3 B0 */	lfs f1, lit_4678@l(r5)
-/* 804C8864  4B E7 E8 74 */	b PSVECScale
+/* 804C885C  3C A0 80 4D */	lis r5, lit_4678@ha /* 0x804CC3B0@ha */
+/* 804C8860  C0 25 C3 B0 */	lfs f1, lit_4678@l(r5)  /* 0x804CC3B0@l */
+/* 804C8864  4B E7 E8 75 */	bl PSVECScale
 /* 804C8868  C0 21 00 24 */	lfs f1, 0x24(r1)
-/* 804C886C  3C 60 80 4D */	lis r3, lit_4678@ha
-/* 804C8870  C0 03 C3 B0 */	lfs f0, lit_4678@l(r3)
+/* 804C886C  3C 60 80 4D */	lis r3, lit_4678@ha /* 0x804CC3B0@ha */
+/* 804C8870  C0 03 C3 B0 */	lfs f0, lit_4678@l(r3)  /* 0x804CC3B0@l */
 /* 804C8874  EC 01 00 2A */	fadds f0, f1, f0
 /* 804C8878  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 804C887C  7F E3 FB 78 */	mr r3, r31

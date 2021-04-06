@@ -4,8 +4,8 @@ lbl_80D4AA18:
 /* 80D4AA20  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D4AA24  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80D4AA28  7C 7F 1B 78 */	mr r31, r3
-/* 80D4AA2C  3C A0 80 D5 */	lis r5, m__14daPeru_Param_c@ha
-/* 80D4AA30  38 A5 C0 60 */	addi r5, r5, m__14daPeru_Param_c@l
+/* 80D4AA2C  3C A0 80 D5 */	lis r5, m__14daPeru_Param_c@ha /* 0x80D4C060@ha */
+/* 80D4AA30  38 A5 C0 60 */	addi r5, r5, m__14daPeru_Param_c@l /* 0x80D4C060@l */
 /* 80D4AA34  80 04 00 00 */	lwz r0, 0(r4)
 /* 80D4AA38  2C 00 00 0A */	cmpwi r0, 0xa
 /* 80D4AA3C  41 82 00 08 */	beq lbl_80D4AA44
@@ -35,9 +35,9 @@ lbl_80D4AA44:
 /* 80D4AA98  38 00 00 00 */	li r0, 0
 /* 80D4AA9C  90 1F 0E 80 */	stw r0, 0xe80(r31)
 /* 80D4AAA0  38 60 01 27 */	li r3, 0x127
-/* 80D4AAA4  4B 40 1F 88 */	b daNpcT_onEvtBit__FUl
-/* 80D4AAA8  3C 60 80 D5 */	lis r3, lit_5846@ha
-/* 80D4AAAC  38 83 C6 10 */	addi r4, r3, lit_5846@l
+/* 80D4AAA4  4B 40 1F 89 */	bl daNpcT_onEvtBit__FUl
+/* 80D4AAA8  3C 60 80 D5 */	lis r3, lit_5846@ha /* 0x80D4C610@ha */
+/* 80D4AAAC  38 83 C6 10 */	addi r4, r3, lit_5846@l /* 0x80D4C610@l */
 /* 80D4AAB0  80 64 00 00 */	lwz r3, 0(r4)
 /* 80D4AAB4  80 04 00 04 */	lwz r0, 4(r4)
 /* 80D4AAB8  90 61 00 08 */	stw r3, 8(r1)

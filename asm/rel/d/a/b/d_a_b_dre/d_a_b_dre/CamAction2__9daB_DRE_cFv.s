@@ -3,22 +3,22 @@ lbl_805C85E8:
 /* 805C85EC  7C 08 02 A6 */	mflr r0
 /* 805C85F0  90 01 00 F4 */	stw r0, 0xf4(r1)
 /* 805C85F4  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 805C85F8  4B D9 9B DC */	b _savegpr_27
+/* 805C85F8  4B D9 9B DD */	bl _savegpr_27
 /* 805C85FC  7C 7D 1B 78 */	mr r29, r3
-/* 805C8600  3C 60 80 5D */	lis r3, lit_1109@ha
-/* 805C8604  3B C3 B0 40 */	addi r30, r3, lit_1109@l
-/* 805C8608  3C 60 80 5D */	lis r3, lit_3844@ha
-/* 805C860C  3B E3 AD 5C */	addi r31, r3, lit_3844@l
+/* 805C8600  3C 60 80 5D */	lis r3, lit_1109@ha /* 0x805CB040@ha */
+/* 805C8604  3B C3 B0 40 */	addi r30, r3, lit_1109@l /* 0x805CB040@l */
+/* 805C8608  3C 60 80 5D */	lis r3, lit_3844@ha /* 0x805CAD5C@ha */
+/* 805C860C  3B E3 AD 5C */	addi r31, r3, lit_3844@l /* 0x805CAD5C@l */
 /* 805C8610  C0 1D 04 D0 */	lfs f0, 0x4d0(r29)
 /* 805C8614  D0 01 00 B0 */	stfs f0, 0xb0(r1)
 /* 805C8618  C0 1D 04 D4 */	lfs f0, 0x4d4(r29)
 /* 805C861C  D0 01 00 B4 */	stfs f0, 0xb4(r1)
 /* 805C8620  C0 1D 04 D8 */	lfs f0, 0x4d8(r29)
 /* 805C8624  D0 01 00 B8 */	stfs f0, 0xb8(r1)
-/* 805C8628  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805C862C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805C8628  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805C862C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805C8630  83 83 5D AC */	lwz r28, 0x5dac(r3)
-/* 805C8634  4B BB 90 0C */	b dCam_getBody__Fv
+/* 805C8634  4B BB 90 0D */	bl dCam_getBody__Fv
 /* 805C8638  C0 1E 00 70 */	lfs f0, 0x70(r30)
 /* 805C863C  D0 1D 05 38 */	stfs f0, 0x538(r29)
 /* 805C8640  3B 7E 00 70 */	addi r27, r30, 0x70
@@ -156,11 +156,11 @@ lbl_805C87BC:
 /* 805C8840  4B FF F8 4D */	bl SetStopCam__9daB_DRE_cF4cXyzffs
 /* 805C8844  38 00 00 64 */	li r0, 0x64
 /* 805C8848  B0 1D 06 2C */	sth r0, 0x62c(r29)
-/* 805C884C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805C8850  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805C884C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805C8850  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805C8854  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 805C8858  7F A4 EB 78 */	mr r4, r29
-/* 805C885C  4B A7 AE 30 */	b setPtT__14dEvt_control_cFPv
+/* 805C885C  4B A7 AE 31 */	bl setPtT__14dEvt_control_cFPv
 /* 805C8860  38 00 00 17 */	li r0, 0x17
 /* 805C8864  90 1C 06 14 */	stw r0, 0x614(r28)
 /* 805C8868  38 00 00 03 */	li r0, 3
@@ -199,8 +199,8 @@ lbl_805C88BC:
 /* 805C88E8  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805C88EC  4B FF F4 E9 */	bl SetAnm__9daB_DRE_cFP16mDoExt_McaMorfSOiiff
 /* 805C88F0  38 00 00 02 */	li r0, 2
-/* 805C88F4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805C88F8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 805C88F4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805C88F8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805C88FC  98 03 12 CC */	stb r0, 0x12cc(r3)
 /* 805C8900  88 7D 05 B4 */	lbz r3, 0x5b4(r29)
 /* 805C8904  38 03 00 01 */	addi r0, r3, 1
@@ -399,7 +399,7 @@ lbl_805C8B68:
 /* 805C8BDC  4B FF F4 2D */	bl SetStopingCam__9daB_DRE_cFv
 lbl_805C8BE0:
 /* 805C8BE0  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 805C8BE4  4B D9 96 3C */	b _restgpr_27
+/* 805C8BE4  4B D9 96 3D */	bl _restgpr_27
 /* 805C8BE8  80 01 00 F4 */	lwz r0, 0xf4(r1)
 /* 805C8BEC  7C 08 03 A6 */	mtlr r0
 /* 805C8BF0  38 21 00 F0 */	addi r1, r1, 0xf0

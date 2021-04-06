@@ -8,8 +8,8 @@ lbl_801F1CEC:
 /* 801F1D04  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801F1D08  28 00 00 01 */	cmplwi r0, 1
 /* 801F1D0C  40 82 00 34 */	bne lbl_801F1D40
-/* 801F1D10  3C 60 80 3C */	lis r3, lit_4901@ha
-/* 801F1D14  38 83 E7 58 */	addi r4, r3, lit_4901@l
+/* 801F1D10  3C 60 80 3C */	lis r3, lit_4901@ha /* 0x803BE758@ha */
+/* 801F1D14  38 83 E7 58 */	addi r4, r3, lit_4901@l /* 0x803BE758@l */
 /* 801F1D18  80 64 00 00 */	lwz r3, 0(r4)
 /* 801F1D1C  80 04 00 04 */	lwz r0, 4(r4)
 /* 801F1D20  90 7F 01 C4 */	stw r3, 0x1c4(r31)

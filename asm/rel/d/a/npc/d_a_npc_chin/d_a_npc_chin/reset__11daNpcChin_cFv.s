@@ -4,18 +4,18 @@ lbl_8098DBBC:
 /* 8098DBC4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8098DBC8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8098DBCC  7C 7F 1B 78 */	mr r31, r3
-/* 8098DBD0  4B 7C 4C F8 */	b initialize__8daNpcF_cFv
+/* 8098DBD0  4B 7C 4C F9 */	bl initialize__8daNpcF_cFv
 /* 8098DBD4  80 7F 0B D8 */	lwz r3, 0xbd8(r31)
-/* 8098DBD8  4B 7C 2B 60 */	b initialize__15daNpcF_MatAnm_cFv
+/* 8098DBD8  4B 7C 2B 61 */	bl initialize__15daNpcF_MatAnm_cFv
 /* 8098DBDC  38 7F 0B DC */	addi r3, r31, 0xbdc
-/* 8098DBE0  4B 7C 34 58 */	b initialize__15daNpcF_Lookat_cFv
+/* 8098DBE0  4B 7C 34 59 */	bl initialize__15daNpcF_Lookat_cFv
 /* 8098DBE4  38 7F 0E 70 */	addi r3, r31, 0xe70
-/* 8098DBE8  4B 7C 2A C8 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 8098DBE8  4B 7C 2A C9 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 8098DBEC  38 A0 00 00 */	li r5, 0
 /* 8098DBF0  90 BF 0D F8 */	stw r5, 0xdf8(r31)
 /* 8098DBF4  90 BF 0D FC */	stw r5, 0xdfc(r31)
-/* 8098DBF8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8098DBFC  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8098DBF8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8098DBFC  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8098DC00  80 64 00 00 */	lwz r3, 0(r4)
 /* 8098DC04  80 04 00 04 */	lwz r0, 4(r4)
 /* 8098DC08  90 7F 0D B8 */	stw r3, 0xdb8(r31)
@@ -50,12 +50,12 @@ lbl_8098DC74:
 lbl_8098DC78:
 /* 8098DC78  38 00 00 00 */	li r0, 0
 /* 8098DC7C  98 1F 0E 08 */	stb r0, 0xe08(r31)
-/* 8098DC80  3C 60 80 99 */	lis r3, lit_3885@ha
-/* 8098DC84  C0 03 19 7C */	lfs f0, lit_3885@l(r3)
+/* 8098DC80  3C 60 80 99 */	lis r3, lit_3885@ha /* 0x8099197C@ha */
+/* 8098DC84  C0 03 19 7C */	lfs f0, lit_3885@l(r3)  /* 0x8099197C@l */
 /* 8098DC88  D0 1F 09 74 */	stfs f0, 0x974(r31)
 /* 8098DC8C  D0 1F 09 7C */	stfs f0, 0x97c(r31)
-/* 8098DC90  3C 60 80 99 */	lis r3, lit_4844@ha
-/* 8098DC94  38 83 22 14 */	addi r4, r3, lit_4844@l
+/* 8098DC90  3C 60 80 99 */	lis r3, lit_4844@ha /* 0x80992214@ha */
+/* 8098DC94  38 83 22 14 */	addi r4, r3, lit_4844@l /* 0x80992214@l */
 /* 8098DC98  80 64 00 00 */	lwz r3, 0(r4)
 /* 8098DC9C  80 04 00 04 */	lwz r0, 4(r4)
 /* 8098DCA0  90 61 00 08 */	stw r3, 8(r1)

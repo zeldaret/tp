@@ -20,8 +20,8 @@ lbl_800E1880:
 /* 800E1884  38 80 00 54 */	li r4, 0x54
 /* 800E1888  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 800E188C  41 82 00 14 */	beq lbl_800E18A0
-/* 800E1890  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha
-/* 800E1894  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l
+/* 800E1890  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E1894  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E1898  C0 25 00 2C */	lfs f1, 0x2c(r5)
 /* 800E189C  48 00 00 08 */	b lbl_800E18A4
 lbl_800E18A0:

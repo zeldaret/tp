@@ -3,17 +3,15 @@
 #
 
 M105_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm.plf
+M105_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm.lcf
+M105_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm.map
 
 M105_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_magne_arm/executor.cpp \
-	rel/d/a/obj/d_a_obj_magne_arm/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_magne_arm/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_magne_arm/d_a_obj_magne_arm.cpp \
 
 M105_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/d_a_obj_magne_arm.o \
 
 M105_LIBS := \
@@ -29,15 +27,21 @@ M105_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map105.map\
+	-m _prolog \
+	-lcf $(M105_LDSCRIPT) \
+	-unused -map $(M105_MAP) \
+	-w off \
 
 $(M105_TARGET): $(M105_O_FILES) $(M105_LIBS)
+	@echo [105] creating $(M105_TARGET)
 	@echo $(M105_LIBS) $(M105_O_FILES) > build/M105_ofiles
-	$(LD) -opt_partial $(M105_LDFLAGS) -o $(M105_TARGET) @build/M105_ofiles
+	@python3 tools/lcf.py rel 105 --output $(M105_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M105_LDFLAGS) -o $(M105_TARGET) @build/M105_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magne_arm/%.o: rel/d/a/obj/d_a_obj_magne_arm/%.cpp
+	@echo [105] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M105_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M105_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

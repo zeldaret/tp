@@ -25,11 +25,11 @@ lbl_801125A8:
 lbl_801125C0:
 /* 801125C0  7F E3 FB 78 */	mr r3, r31
 /* 801125C4  38 80 01 9C */	li r4, 0x19c
-/* 801125C8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 801125CC  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 801125C8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 801125CC  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 801125D0  C0 25 00 18 */	lfs f1, 0x18(r5)
-/* 801125D4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha
-/* 801125D8  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l
+/* 801125D4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 801125D8  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 801125DC  C0 45 00 18 */	lfs f2, 0x18(r5)
 /* 801125E0  4B F9 AD C9 */	bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 801125E4  7F E3 FB 78 */	mr r3, r31

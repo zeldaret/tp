@@ -12,8 +12,8 @@ lbl_8001AAE0:
 /* 8001AB08  7C 9C 23 78 */	mr r28, r4
 /* 8001AB0C  7C BD 2B 78 */	mr r29, r5
 /* 8001AB10  FF C0 20 90 */	fmr f30, f4
-/* 8001AB14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001AB18  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8001AB14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001AB18  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001AB1C  80 9F 5D AC */	lwz r4, 0x5dac(r31)
 /* 8001AB20  7C 9E 23 78 */	mr r30, r4
 /* 8001AB24  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
@@ -61,8 +61,8 @@ lbl_8001ABA8:
 /* 8001ABC0  7F 63 DB 78 */	mr r3, r27
 /* 8001ABC4  80 9F 5D AC */	lwz r4, 0x5dac(r31)
 /* 8001ABC8  4B FF FB 49 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 8001ABCC  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8001ABD0  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 8001ABCC  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8001ABD0  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8001ABD4  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 8001ABD8  7C 03 00 50 */	subf r0, r3, r0
 /* 8001ABDC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c

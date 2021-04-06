@@ -6,8 +6,8 @@ lbl_80042958:
 /* 80042968  93 C1 00 08 */	stw r30, 8(r1)
 /* 8004296C  7C 7E 1B 78 */	mr r30, r3
 /* 80042970  7C BF 2B 78 */	mr r31, r5
-/* 80042974  3C A0 80 04 */	lis r5, dEv_defaultSkipZev__FPvi@ha
-/* 80042978  38 A5 26 1C */	addi r5, r5, dEv_defaultSkipZev__FPvi@l
+/* 80042974  3C A0 80 04 */	lis r5, dEv_defaultSkipZev__FPvi@ha /* 0x8004261C@ha */
+/* 80042978  38 A5 26 1C */	addi r5, r5, dEv_defaultSkipZev__FPvi@l /* 0x8004261C@l */
 /* 8004297C  38 C0 00 01 */	li r6, 1
 /* 80042980  4B FF FF 95 */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 /* 80042984  38 7E 01 14 */	addi r3, r30, 0x114

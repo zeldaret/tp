@@ -1,6 +1,6 @@
 lbl_802DECF8:
-/* 802DECF8  3C 80 80 3A */	lis r4, __vt__7JUTFont@ha
-/* 802DECFC  38 04 31 F0 */	addi r0, r4, __vt__7JUTFont@l
+/* 802DECF8  3C 80 80 3A */	lis r4, __vt__7JUTFont@ha /* 0x803A31F0@ha */
+/* 802DECFC  38 04 31 F0 */	addi r0, r4, __vt__7JUTFont@l /* 0x803A31F0@l */
 /* 802DED00  90 03 00 00 */	stw r0, 0(r3)
 /* 802DED04  38 00 FF FF */	li r0, -1
 /* 802DED08  90 03 00 0C */	stw r0, 0xc(r3)

@@ -7,11 +7,11 @@ lbl_80030CCC:
 /* 80030CE0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80030CE4  7C 9F 23 78 */	mr r31, r4
 /* 80030CE8  41 82 00 34 */	beq lbl_80030D1C
-/* 80030CEC  3C 80 80 3B */	lis r4, __vt__4cBgS@ha
-/* 80030CF0  38 04 B6 1C */	addi r0, r4, __vt__4cBgS@l
+/* 80030CEC  3C 80 80 3B */	lis r4, __vt__4cBgS@ha /* 0x803AB61C@ha */
+/* 80030CF0  38 04 B6 1C */	addi r0, r4, __vt__4cBgS@l /* 0x803AB61C@l */
 /* 80030CF4  90 1E 14 00 */	stw r0, 0x1400(r30)
-/* 80030CF8  3C 80 80 03 */	lis r4, __dt__11cBgS_ChkElmFv@ha
-/* 80030CFC  38 84 FE F8 */	addi r4, r4, __dt__11cBgS_ChkElmFv@l
+/* 80030CF8  3C 80 80 03 */	lis r4, __dt__11cBgS_ChkElmFv@ha /* 0x8002FEF8@ha */
+/* 80030CFC  38 84 FE F8 */	addi r4, r4, __dt__11cBgS_ChkElmFv@l /* 0x8002FEF8@l */
 /* 80030D00  38 A0 00 14 */	li r5, 0x14
 /* 80030D04  38 C0 01 00 */	li r6, 0x100
 /* 80030D08  48 33 0F E1 */	bl __destroy_arr

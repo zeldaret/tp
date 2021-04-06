@@ -3,19 +3,20 @@
 #
 
 M300_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol.plf
+M300_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol.lcf
+M300_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol.map
 
 M300_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_drainSol/executor.cpp \
-	rel/d/a/npc/d_a_npc_drainSol/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_drainSol/d_a_npc_drainSol.cpp \
 
 M300_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/d_a_npc_drainSol.o \
 
 M300_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/libRuntime.PPCEABI.H.a \
 
 M300_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M300_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map300.map\
+	-m _prolog \
+	-lcf $(M300_LDSCRIPT) \
+	-unused -map $(M300_MAP) \
+	-w off \
 
 $(M300_TARGET): $(M300_O_FILES) $(M300_LIBS)
+	@echo [300] creating $(M300_TARGET)
 	@echo $(M300_LIBS) $(M300_O_FILES) > build/M300_ofiles
-	$(LD) -opt_partial $(M300_LDFLAGS) -o $(M300_TARGET) @build/M300_ofiles
+	@python3 tools/lcf.py rel 300 --output $(M300_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M300_LDFLAGS) -o $(M300_TARGET) @build/M300_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_drainSol/%.o: rel/d/a/npc/d_a_npc_drainSol/%.cpp
+	@echo [300] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M300_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M300_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_drainSol/libs/Runtime.PPCEABI.H/Makefile
 

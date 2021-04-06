@@ -4,14 +4,14 @@ lbl_80CD58A0:
 /* 80CD58A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CD58AC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CD58B0  93 C1 00 08 */	stw r30, 8(r1)
-/* 80CD58B4  3C 60 80 CD */	lis r3, lit_1109@ha
-/* 80CD58B8  3B C3 68 E0 */	addi r30, r3, lit_1109@l
-/* 80CD58BC  3C 60 80 CD */	lis r3, m__21daObj_Sekizoa_Param_c@ha
-/* 80CD58C0  3B E3 5C FC */	addi r31, r3, m__21daObj_Sekizoa_Param_c@l
-/* 80CD58C4  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CD58C8  38 63 5E D8 */	addi r3, r3, cNullVec__6Z2Calc@l
-/* 80CD58CC  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80CD58D0  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80CD58B4  3C 60 80 CD */	lis r3, lit_1109@ha /* 0x80CD68E0@ha */
+/* 80CD58B8  3B C3 68 E0 */	addi r30, r3, lit_1109@l /* 0x80CD68E0@l */
+/* 80CD58BC  3C 60 80 CD */	lis r3, m__21daObj_Sekizoa_Param_c@ha /* 0x80CD5CFC@ha */
+/* 80CD58C0  3B E3 5C FC */	addi r31, r3, m__21daObj_Sekizoa_Param_c@l /* 0x80CD5CFC@l */
+/* 80CD58C4  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CD5ED8@ha */
+/* 80CD58C8  38 63 5E D8 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x80CD5ED8@l */
+/* 80CD58CC  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80CD58D0  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80CD58D4  80 85 00 00 */	lwz r4, 0(r5)
 /* 80CD58D8  80 05 00 04 */	lwz r0, 4(r5)
 /* 80CD58DC  90 83 05 BC */	stw r4, 0x5bc(r3)
@@ -74,8 +74,8 @@ lbl_80CD58A0:
 /* 80CD59C0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80CD59C4  C0 1F 01 60 */	lfs f0, 0x160(r31)
 /* 80CD59C8  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80CD59CC  3C 80 80 CD */	lis r4, __dt__4cXyzFv@ha
-/* 80CD59D0  38 84 4B D0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80CD59CC  3C 80 80 CD */	lis r4, __dt__4cXyzFv@ha /* 0x80CD4BD0@ha */
+/* 80CD59D0  38 84 4B D0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80CD4BD0@l */
 /* 80CD59D4  38 BE 00 40 */	addi r5, r30, 0x40
 /* 80CD59D8  4B FF 89 01 */	bl __register_global_object
 /* 80CD59DC  C0 1F 01 64 */	lfs f0, 0x164(r31)
@@ -85,16 +85,16 @@ lbl_80CD58A0:
 /* 80CD59EC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80CD59F0  C0 1F 01 60 */	lfs f0, 0x160(r31)
 /* 80CD59F4  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80CD59F8  3C 80 80 CD */	lis r4, __dt__4cXyzFv@ha
-/* 80CD59FC  38 84 4B D0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80CD59F8  3C 80 80 CD */	lis r4, __dt__4cXyzFv@ha /* 0x80CD4BD0@ha */
+/* 80CD59FC  38 84 4B D0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80CD4BD0@l */
 /* 80CD5A00  38 BE 00 58 */	addi r5, r30, 0x58
 /* 80CD5A04  4B FF 88 D5 */	bl __register_global_object
-/* 80CD5A08  3C 60 80 CD */	lis r3, __vt__21daObj_Sekizoa_Param_c@ha
-/* 80CD5A0C  38 03 68 CC */	addi r0, r3, __vt__21daObj_Sekizoa_Param_c@l
+/* 80CD5A08  3C 60 80 CD */	lis r3, __vt__21daObj_Sekizoa_Param_c@ha /* 0x80CD68CC@ha */
+/* 80CD5A0C  38 03 68 CC */	addi r0, r3, __vt__21daObj_Sekizoa_Param_c@l /* 0x80CD68CC@l */
 /* 80CD5A10  90 1E 00 7C */	stw r0, 0x7c(r30)
 /* 80CD5A14  38 7E 00 7C */	addi r3, r30, 0x7c
-/* 80CD5A18  3C 80 80 CD */	lis r4, __dt__21daObj_Sekizoa_Param_cFv@ha
-/* 80CD5A1C  38 84 5C 30 */	addi r4, r4, __dt__21daObj_Sekizoa_Param_cFv@l
+/* 80CD5A18  3C 80 80 CD */	lis r4, __dt__21daObj_Sekizoa_Param_cFv@ha /* 0x80CD5C30@ha */
+/* 80CD5A1C  38 84 5C 30 */	addi r4, r4, __dt__21daObj_Sekizoa_Param_cFv@l /* 0x80CD5C30@l */
 /* 80CD5A20  38 BE 00 70 */	addi r5, r30, 0x70
 /* 80CD5A24  4B FF 88 B5 */	bl __register_global_object
 /* 80CD5A28  83 E1 00 0C */	lwz r31, 0xc(r1)

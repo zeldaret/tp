@@ -49,11 +49,11 @@ lbl_802F8F50:
 /* 802F8F88  88 BE 01 00 */	lbz r5, 0x100(r30)
 /* 802F8F8C  38 C0 00 01 */	li r6, 1
 /* 802F8F90  4B FF D8 51 */	bl draw__7J2DPaneFffPC14J2DGrafContextbb
-/* 802F8F94  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802F8F98  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802F8F94  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802F8F98  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802F8F9C  90 01 00 18 */	stw r0, 0x18(r1)
-/* 802F8FA0  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802F8FA4  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802F8FA0  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802F8FA4  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802F8FA8  90 01 00 18 */	stw r0, 0x18(r1)
 lbl_802F8FAC:
 /* 802F8FAC  88 1E 01 00 */	lbz r0, 0x100(r30)

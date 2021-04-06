@@ -6,11 +6,11 @@ lbl_801CE224:
 /* 801CE234  93 C1 00 08 */	stw r30, 8(r1)
 /* 801CE238  7C 9E 23 78 */	mr r30, r4
 /* 801CE23C  3B E0 00 00 */	li r31, 0
-/* 801CE240  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801CE244  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801CE240  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801CE244  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801CE248  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 801CE24C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap_map__stringBase0@ha
-/* 801CE250  38 84 62 3C */	addi r4, r4, d_menu_d_menu_fmap_map__stringBase0@l
+/* 801CE24C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap_map__stringBase0@ha /* 0x8039623C@ha */
+/* 801CE250  38 84 62 3C */	addi r4, r4, d_menu_d_menu_fmap_map__stringBase0@l /* 0x8039623C@l */
 /* 801CE254  48 19 A7 41 */	bl strcmp
 /* 801CE258  2C 03 00 00 */	cmpwi r3, 0
 /* 801CE25C  40 82 00 10 */	bne lbl_801CE26C

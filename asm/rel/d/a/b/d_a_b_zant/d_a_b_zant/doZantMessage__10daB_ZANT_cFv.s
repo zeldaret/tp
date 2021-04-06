@@ -24,7 +24,7 @@ lbl_8064013C:
 /* 80640158  48 00 00 14 */	b lbl_8064016C
 lbl_8064015C:
 /* 8064015C  80 7F 07 84 */	lwz r3, 0x784(r31)
-/* 80640160  4B 9D F8 C4 */	b fopMsgM_SearchByID__FUi
+/* 80640160  4B 9D F8 C5 */	bl fopMsgM_SearchByID__FUi
 /* 80640164  90 7F 07 88 */	stw r3, 0x788(r31)
 lbl_80640168:
 /* 80640168  38 60 00 00 */	li r3, 0

@@ -8,8 +8,8 @@ lbl_8013CCF4:
 /* 8013CD0C  4B F8 52 61 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013CD10  7F E3 FB 78 */	mr r3, r31
 /* 8013CD14  38 80 00 78 */	li r4, 0x78
-/* 8013CD18  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtBite_c0@ha
-/* 8013CD1C  38 A5 F7 48 */	addi r5, r5, m__22daAlinkHIO_wlAtBite_c0@l
+/* 8013CD18  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtBite_c0@ha /* 0x8038F748@ha */
+/* 8013CD1C  38 A5 F7 48 */	addi r5, r5, m__22daAlinkHIO_wlAtBite_c0@l /* 0x8038F748@l */
 /* 8013CD20  38 A5 00 14 */	addi r5, r5, 0x14
 /* 8013CD24  4B FE CB 25 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013CD28  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -32,8 +32,8 @@ lbl_8013CD64:
 /* 8013CD68  B0 1F 04 DE */	sth r0, 0x4de(r31)
 /* 8013CD6C  38 00 00 50 */	li r0, 0x50
 /* 8013CD70  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 8013CD74  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtBite_c0@ha
-/* 8013CD78  38 63 F7 48 */	addi r3, r3, m__22daAlinkHIO_wlAtBite_c0@l
+/* 8013CD74  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtBite_c0@ha /* 0x8038F748@ha */
+/* 8013CD78  38 63 F7 48 */	addi r3, r3, m__22daAlinkHIO_wlAtBite_c0@l /* 0x8038F748@l */
 /* 8013CD7C  A8 03 00 28 */	lha r0, 0x28(r3)
 /* 8013CD80  B0 1F 30 08 */	sth r0, 0x3008(r31)
 /* 8013CD84  38 00 00 00 */	li r0, 0
@@ -51,8 +51,8 @@ lbl_8013CD64:
 /* 8013CDB4  81 8C 01 14 */	lwz r12, 0x114(r12)
 /* 8013CDB8  7D 89 03 A6 */	mtctr r12
 /* 8013CDBC  4E 80 04 21 */	bctrl 
-/* 8013CDC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013CDC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013CDC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013CDC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013CDC8  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8013CDCC  64 00 00 20 */	oris r0, r0, 0x20
 /* 8013CDD0  90 03 5F 1C */	stw r0, 0x5f1c(r3)

@@ -12,8 +12,8 @@ lbl_801A9CBC:
 /* 801A9CE4  7C FE 3B 78 */	mr r30, r7
 /* 801A9CE8  7D 1F 43 78 */	mr r31, r8
 /* 801A9CEC  FF E0 08 90 */	fmr f31, f1
-/* 801A9CF0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A9CF4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A9CF0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A9CF4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A9CF8  38 63 11 08 */	addi r3, r3, 0x1108
 /* 801A9CFC  4B FF EF 09 */	bl NewAmbColGet__FP11_GXColorS10
 /* 801A9D00  90 61 00 08 */	stw r3, 8(r1)

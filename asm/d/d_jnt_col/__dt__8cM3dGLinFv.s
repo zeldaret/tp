@@ -5,8 +5,8 @@ lbl_80036A5C:
 /* 80036A68  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80036A6C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80036A70  41 82 00 1C */	beq lbl_80036A8C
-/* 80036A74  3C A0 80 3A */	lis r5, __vt__8cM3dGLin@ha
-/* 80036A78  38 05 78 F8 */	addi r0, r5, __vt__8cM3dGLin@l
+/* 80036A74  3C A0 80 3A */	lis r5, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 80036A78  38 05 78 F8 */	addi r0, r5, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 80036A7C  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80036A80  7C 80 07 35 */	extsh. r0, r4
 /* 80036A84  40 81 00 08 */	ble lbl_80036A8C

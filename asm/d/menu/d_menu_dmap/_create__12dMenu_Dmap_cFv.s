@@ -24,19 +24,19 @@ lbl_801BD7C0:
 /* 801BD818  48 11 14 35 */	bl __nw__FUl
 /* 801BD81C  7C 7D 1B 79 */	or. r29, r3, r3
 /* 801BD820  41 82 00 F4 */	beq lbl_801BD914
-/* 801BD824  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha
-/* 801BD828  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l
+/* 801BD824  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha /* 0x803BCAE0@ha */
+/* 801BD828  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l /* 0x803BCAE0@l */
 /* 801BD82C  90 1D 00 00 */	stw r0, 0(r29)
 /* 801BD830  38 7D 00 04 */	addi r3, r29, 4
-/* 801BD834  3C 80 80 1C */	lis r4, __ct__15renderingDmap_cFv@ha
-/* 801BD838  38 84 05 1C */	addi r4, r4, __ct__15renderingDmap_cFv@l
-/* 801BD83C  3C A0 80 1C */	lis r5, __dt__15renderingDmap_cFv@ha
-/* 801BD840  38 A5 03 80 */	addi r5, r5, __dt__15renderingDmap_cFv@l
+/* 801BD834  3C 80 80 1C */	lis r4, __ct__15renderingDmap_cFv@ha /* 0x801C051C@ha */
+/* 801BD838  38 84 05 1C */	addi r4, r4, __ct__15renderingDmap_cFv@l /* 0x801C051C@l */
+/* 801BD83C  3C A0 80 1C */	lis r5, __dt__15renderingDmap_cFv@ha /* 0x801C0380@ha */
+/* 801BD840  38 A5 03 80 */	addi r5, r5, __dt__15renderingDmap_cFv@l /* 0x801C0380@l */
 /* 801BD844  38 C0 00 38 */	li r6, 0x38
 /* 801BD848  38 E0 00 02 */	li r7, 2
 /* 801BD84C  48 1A 45 15 */	bl __construct_array
-/* 801BD850  3C 60 80 3C */	lis r3, __vt__20dMenu_StageMapCtrl_c@ha
-/* 801BD854  38 03 CA EC */	addi r0, r3, __vt__20dMenu_StageMapCtrl_c@l
+/* 801BD850  3C 60 80 3C */	lis r3, __vt__20dMenu_StageMapCtrl_c@ha /* 0x803BCAEC@ha */
+/* 801BD854  38 03 CA EC */	addi r0, r3, __vt__20dMenu_StageMapCtrl_c@l /* 0x803BCAEC@l */
 /* 801BD858  90 1D 00 00 */	stw r0, 0(r29)
 /* 801BD85C  38 00 00 00 */	li r0, 0
 /* 801BD860  90 1D 00 8C */	stw r0, 0x8c(r29)
@@ -81,8 +81,8 @@ lbl_801BD7C0:
 /* 801BD8FC  98 1D 00 F7 */	stb r0, 0xf7(r29)
 /* 801BD900  98 1D 00 F8 */	stb r0, 0xf8(r29)
 /* 801BD904  98 1D 00 F9 */	stb r0, 0xf9(r29)
-/* 801BD908  3C 60 80 3C */	lis r3, __vt__19dMenu_DmapMapCtrl_c@ha
-/* 801BD90C  38 03 CD 74 */	addi r0, r3, __vt__19dMenu_DmapMapCtrl_c@l
+/* 801BD908  3C 60 80 3C */	lis r3, __vt__19dMenu_DmapMapCtrl_c@ha /* 0x803BCD74@ha */
+/* 801BD90C  38 03 CD 74 */	addi r0, r3, __vt__19dMenu_DmapMapCtrl_c@l /* 0x803BCD74@l */
 /* 801BD910  90 1D 00 00 */	stw r0, 0(r29)
 lbl_801BD914:
 /* 801BD914  93 BF 00 04 */	stw r29, 4(r31)
@@ -161,14 +161,14 @@ lbl_801BDA0C:
 /* 801BDA28  B0 1F 01 66 */	sth r0, 0x166(r31)
 /* 801BDA2C  B0 1F 01 68 */	sth r0, 0x168(r31)
 lbl_801BDA30:
-/* 801BDA30  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801BDA34  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801BDA30  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BDA34  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801BDA38  88 03 00 BF */	lbz r0, 0xbf(r3)
 /* 801BDA3C  28 00 00 06 */	cmplwi r0, 6
 /* 801BDA40  40 82 00 A0 */	bne lbl_801BDAE0
 /* 801BDA44  3B 80 00 00 */	li r28, 0
-/* 801BDA48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801BDA4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801BDA48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801BDA4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801BDA50  3B A3 09 58 */	addi r29, r3, 0x958
 /* 801BDA54  7F A3 EB 78 */	mr r3, r29
 /* 801BDA58  38 80 00 67 */	li r4, 0x67
@@ -344,8 +344,8 @@ lbl_801BDCB8:
 /* 801BDCE0  7F E3 FB 78 */	mr r3, r31
 /* 801BDCE4  88 1F 01 7B */	lbz r0, 0x17b(r31)
 /* 801BDCE8  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BDCEC  3C 80 80 3C */	lis r4, init_process@ha
-/* 801BDCF0  38 04 C8 28 */	addi r0, r4, init_process@l
+/* 801BDCEC  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BC828@ha */
+/* 801BDCF0  38 04 C8 28 */	addi r0, r4, init_process@l /* 0x803BC828@l */
 /* 801BDCF4  7D 80 2A 14 */	add r12, r0, r5
 /* 801BDCF8  48 1A 43 8D */	bl __ptmf_scall
 /* 801BDCFC  60 00 00 00 */	nop 
@@ -354,8 +354,8 @@ lbl_801BDCB8:
 /* 801BDD08  7F E3 FB 78 */	mr r3, r31
 /* 801BDD0C  88 1F 01 7E */	lbz r0, 0x17e(r31)
 /* 801BDD10  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BDD14  3C 80 80 3C */	lis r4, map_init_process@ha
-/* 801BDD18  38 04 C9 D8 */	addi r0, r4, map_init_process@l
+/* 801BDD14  3C 80 80 3C */	lis r4, map_init_process@ha /* 0x803BC9D8@ha */
+/* 801BDD18  38 04 C9 D8 */	addi r0, r4, map_init_process@l /* 0x803BC9D8@l */
 /* 801BDD1C  7D 80 2A 14 */	add r12, r0, r5
 /* 801BDD20  48 1A 43 65 */	bl __ptmf_scall
 /* 801BDD24  60 00 00 00 */	nop 

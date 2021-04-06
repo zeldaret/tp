@@ -11,16 +11,6 @@
 // Types:
 //
 
-struct jmessage_tControl {
-    /* 802299EC */ jmessage_tControl();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
 struct jmessage_tReference {
     /* 80228B04 */ jmessage_tReference();
     /* 80228CB4 */ ~jmessage_tReference();
@@ -51,6 +41,16 @@ struct jmessage_tReference {
     /* 8022994C */ void isLightEnd();
     /* 802299AC */ void decideOutFontRupeeColor(int);
     /* 80232A20 */ void getActorPos();
+};
+
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
+struct jmessage_tControl {
+    /* 802299EC */ jmessage_tControl();
 };
 
 struct jmessage_tSequenceProcessor {
@@ -305,16 +305,6 @@ struct J2DPane {
 // Forward References:
 //
 
-static void checkCharInfoCharactor(int);
-static void changeCodeToChar(u16);
-static void change1ByteTo2Bytes(int);
-static void changeKataToHira(int);
-static void isOutfontKanjiCode(int);
-static void getFontCCColorTable(u8, u8);
-static void getFontGCColorTable(u8, u8);
-static void getOutFontNumberType(int);
-static void getPohNum();
-
 extern "C" static void checkCharInfoCharactor__Fi();
 extern "C" static void changeCodeToChar__FUs();
 extern "C" static void change1ByteTo2Bytes__Fi();
@@ -460,27 +450,10 @@ extern "C" void __dt__28jmessage_tRenderingProcessorFv();
 extern "C" void __dt__27jmessage_tSequenceProcessorFv();
 extern "C" void getActorPos__19jmessage_tReferenceFv();
 extern "C" extern char const* const d_msg_d_msg_class__stringBase0;
-extern "C" extern void* __vt__35jmessage_string_tRenderingProcessor[16];
-extern "C" extern void* __vt__34jmessage_string_tSequenceProcessor[22];
-extern "C" extern void* __vt__33jmessage_string_tMeasureProcessor[16];
-extern "C" extern void* __vt__24jmessage_string_tControl[3];
-extern "C" extern void* __vt__26jmessage_string_tReference[4];
-extern "C" extern void* __vt__28jmessage_tRenderingProcessor[16];
-extern "C" extern void* __vt__27jmessage_tSequenceProcessor[22];
-extern "C" extern void* __vt__26jmessage_tMeasureProcessor[16];
-extern "C" extern void* __vt__19jmessage_tReference[4 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void mDoExt_getMesgFont();
-void dComIfGp_getReverb(int);
-void dComIfGs_checkGetInsectNum();
-void dMeter2Info_getNewLetterNum();
-void dMsgObject_getFundRaising();
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -597,37 +570,32 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80228578-802285CC 0054+00 s=1 e=0 z=0  None .text      checkCharInfoCharactor__Fi */
+/* 80228578-802285CC 222EB8 0054+00 1/1 0/0 0/0 .text            checkCharInfoCharactor__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void checkCharInfoCharactor(int param_0) {
+static asm void checkCharInfoCharactor(int param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/checkCharInfoCharactor__Fi.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804510C0-804510C8 0003+05 s=1 e=0 z=0  None .sbss      mMoji$3770 */
+/* 804510C0-804510C8 0005C0 0003+05 1/1 0/0 0/0 .sbss            mMoji$3770 */
 static u8 mMoji[3 + 5 /* padding */];
 
-/* 802285CC-80228608 003C+00 s=3 e=0 z=0  None .text      changeCodeToChar__FUs */
-//	802285D0: 804510C0 (mMoji)
-//	802285DC: 804510C0 (mMoji)
-//	802285E8: 804510C0 (mMoji)
-//	802285F4: 804510C0 (mMoji)
-//	80228600: 804510C0 (mMoji)
+/* 802285CC-80228608 222F0C 003C+00 3/3 0/0 0/0 .text            changeCodeToChar__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void changeCodeToChar(u16 param_0) {
+static asm void changeCodeToChar(u16 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/changeCodeToChar__FUs.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BFDF8-803BFE78 0080+00 s=1 e=0 z=0  None .data      char_table$3795 */
+/* 803BFDF8-803BFE78 01CF18 0080+00 1/1 0/0 0/0 .data            char_table$3795 */
 SECTION_DATA static u8 char_table[128] = {
     0x00, 0x00, 0x81, 0x42, 0x81, 0x75, 0x81, 0x76, 0x81, 0x41, 0x81, 0x45, 0x83, 0x92, 0x83, 0x40,
     0x83, 0x42, 0x83, 0x44, 0x83, 0x46, 0x83, 0x48, 0x83, 0x83, 0x83, 0x85, 0x83, 0x87, 0x83, 0x62,
@@ -639,7 +607,7 @@ SECTION_DATA static u8 char_table[128] = {
     0x83, 0x8A, 0x83, 0x8B, 0x83, 0x8C, 0x83, 0x8D, 0x83, 0x8F, 0x83, 0x93, 0x81, 0x4A, 0x81, 0x4B,
 };
 
-/* 803BFE78-803BFF78 0100+00 s=1 e=0 z=0  None .data      @3831 */
+/* 803BFE78-803BFF78 -00001 0100+00 1/1 0/0 0/0 .data            @3831 */
 SECTION_DATA static void* lit_3831[64] = {
     (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xB0),
     (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xBC),
@@ -707,86 +675,76 @@ SECTION_DATA static void* lit_3831[64] = {
     (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x224),
 };
 
-/* 80228608-80228838 0230+00 s=5 e=0 z=0  None .text      change1ByteTo2Bytes__Fi */
-//	80228684: 803BFDF8 (char_table)
-//	80228688: 803BFDF8 (char_table)
-//	802286A0: 803BFE78 (lit_3831)
-//	802286A4: 803BFE78 (lit_3831)
+/* 80228608-80228838 222F48 0230+00 5/4 0/0 0/0 .text            change1ByteTo2Bytes__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void change1ByteTo2Bytes(int param_0) {
+static asm void change1ByteTo2Bytes(int param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/change1ByteTo2Bytes__Fi.s"
 }
 #pragma pop
 
-/* 80228838-802288A8 0070+00 s=8 e=0 z=0  None .text      changeKataToHira__Fi */
+/* 80228838-802288A8 223178 0070+00 8/8 0/0 0/0 .text            changeKataToHira__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void changeKataToHira(int param_0) {
+static asm void changeKataToHira(int param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/changeKataToHira__Fi.s"
 }
 #pragma pop
 
-/* 802288A8-802288FC 0054+00 s=4 e=0 z=0  None .text      isOutfontKanjiCode__Fi */
+/* 802288A8-802288FC 2231E8 0054+00 4/4 0/0 0/0 .text            isOutfontKanjiCode__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void isOutfontKanjiCode(int param_0) {
+static asm void isOutfontKanjiCode(int param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/isOutfontKanjiCode__Fi.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803995C8-803995EC 0024+00 s=1 e=0 z=0  None .rodata    colorTable$3861 */
+/* 803995C8-803995EC 025C28 0024+00 1/1 0/0 0/0 .rodata          colorTable$3861 */
 SECTION_RODATA static u8 const colorTable_3861[36] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x78, 0x78, 0xFF, 0xAA, 0xDC, 0x8C, 0xFF,
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
+SECTION_DEAD void* const cg_803995C8 = (void*)(&colorTable_3861);
 
-/* 802288FC-802289A8 00AC+00 s=2 e=0 z=0  None .text      getFontCCColorTable__FUcUc */
-//	80228910: 8043028C (g_MsgObject_HIO_c)
-//	80228914: 8043028C (g_MsgObject_HIO_c)
-//	8022894C: 803995C8 (colorTable_3861)
-//	80228950: 803995C8 (colorTable_3861)
+/* 802288FC-802289A8 22323C 00AC+00 2/2 0/0 0/0 .text            getFontCCColorTable__FUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getFontCCColorTable(u8 param_0, u8 param_1) {
+static asm void getFontCCColorTable(u8 param_0, u8 param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_class/getFontCCColorTable__FUcUc.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803995EC-80399610 0024+00 s=1 e=0 z=0  None .rodata    colorTable$3877 */
+/* 803995EC-80399610 025C4C 0024+00 1/1 0/0 0/0 .rodata          colorTable$3877 */
 SECTION_RODATA static u8 const colorTable_3877[36] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x78, 0x78, 0xFF, 0xAA, 0xDC, 0x8C, 0xFF,
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
+SECTION_DEAD void* const cg_803995EC = (void*)(&colorTable_3877);
 
-/* 802289A8-80228A54 00AC+00 s=2 e=0 z=0  None .text      getFontGCColorTable__FUcUc */
-//	802289BC: 8043028C (g_MsgObject_HIO_c)
-//	802289C0: 8043028C (g_MsgObject_HIO_c)
-//	802289F8: 803995EC (colorTable_3877)
-//	802289FC: 803995EC (colorTable_3877)
+/* 802289A8-80228A54 2232E8 00AC+00 2/2 0/0 0/0 .text            getFontGCColorTable__FUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getFontGCColorTable(u8 param_0, u8 param_1) {
+static asm void getFontGCColorTable(u8 param_0, u8 param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_class/getFontGCColorTable__FUcUc.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BFF78-803BFFA0 0028+00 s=1 e=0 z=0  None .data      @3903 */
+/* 803BFF78-803BFFA0 -00001 0028+00 1/1 0/0 0/0 .data            @3903 */
 SECTION_DATA static void* lit_3903[10] = {
     (void*)(((char*)getOutFontNumberType__Fi) + 0x20),
     (void*)(((char*)getOutFontNumberType__Fi) + 0x28),
@@ -800,32 +758,28 @@ SECTION_DATA static void* lit_3903[10] = {
     (void*)(((char*)getOutFontNumberType__Fi) + 0x68),
 };
 
-/* 80228A54-80228ACC 0078+00 s=3 e=0 z=0  None .text      getOutFontNumberType__Fi */
-//	80228A5C: 803BFF78 (lit_3903)
-//	80228A60: 803BFF78 (lit_3903)
+/* 80228A54-80228ACC 223394 0078+00 3/2 0/0 0/0 .text            getOutFontNumberType__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getOutFontNumberType(int param_0) {
+static asm void getOutFontNumberType(int param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_class/getOutFontNumberType__Fi.s"
 }
 #pragma pop
 
-/* 80228ACC-80228B04 0038+00 s=3 e=0 z=0  None .text      getPohNum__Fv */
-//	80228AD0: 804061C0 (g_dComIfG_gameInfo)
-//	80228AD4: 804061C0 (g_dComIfG_gameInfo)
+/* 80228ACC-80228B04 22340C 0038+00 3/3 0/0 0/0 .text            getPohNum__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getPohNum() {
+static asm void getPohNum() {
     nofralloc
 #include "asm/d/msg/d_msg_class/getPohNum__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BFFA0-803BFFD0 0030+00 s=1 e=0 z=0  None .data      @5158 */
+/* 803BFFA0-803BFFD0 -00001 0030+00 1/1 0/0 0/0 .data            @5158 */
 SECTION_DATA static void* lit_5158[12] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xCE8),
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xCF8),
@@ -841,7 +795,7 @@ SECTION_DATA static void* lit_5158[12] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xDE8),
 };
 
-/* 803BFFD0-803C000C 003C+00 s=1 e=0 z=0  None .data      @5157 */
+/* 803BFFD0-803C000C -00001 003C+00 1/1 0/0 0/0 .data            @5157 */
 SECTION_DATA static void* lit_5157[15] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x9DC),
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xA60),
@@ -860,7 +814,7 @@ SECTION_DATA static void* lit_5157[15] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xC5C),
 };
 
-/* 803C000C-803C0044 0038+00 s=1 e=0 z=0  None .data      @5156 */
+/* 803C000C-803C0044 -00001 0038+00 1/1 0/0 0/0 .data            @5156 */
 SECTION_DATA static void* lit_5156[14] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x7FC),
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x818),
@@ -878,7 +832,7 @@ SECTION_DATA static void* lit_5156[14] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x990),
 };
 
-/* 803C0044-803C0144 0100+00 s=1 e=0 z=0  None .data      @5155 */
+/* 803C0044-803C0144 -00001 0100+00 1/1 0/0 0/0 .data            @5155 */
 SECTION_DATA static void* lit_5155[64] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x2A8),
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1D8),
@@ -946,7 +900,7 @@ SECTION_DATA static void* lit_5155[64] = {
     (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x230),
 };
 
-/* 803C0144-803C0208 00C4+00 s=1 e=0 z=0  None .data      @5269 */
+/* 803C0144-803C0208 -00001 00C4+00 1/1 0/0 0/0 .data            @5269 */
 SECTION_DATA static void* lit_5269[49] = {
     (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x90),
     (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x98),
@@ -999,7 +953,7 @@ SECTION_DATA static void* lit_5269[49] = {
     (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x138),
 };
 
-/* 803C0208-803C0230 0028+00 s=1 e=0 z=0  None .data      @5735 */
+/* 803C0208-803C0230 -00001 0028+00 1/1 0/0 0/0 .data            @5735 */
 SECTION_DATA static void* lit_5735[10] = {
     (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x314),
     (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
@@ -1013,7 +967,7 @@ SECTION_DATA static void* lit_5735[10] = {
     (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
 };
 
-/* 803C0230-803C0330 0100+00 s=1 e=0 z=0  None .data      @6062 */
+/* 803C0230-803C0330 -00001 0100+00 1/1 0/0 0/0 .data            @6062 */
 SECTION_DATA static void* lit_6062[64] = {
     (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x188),
     (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x254),
@@ -1081,7 +1035,7 @@ SECTION_DATA static void* lit_6062[64] = {
     (void*)(((char*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl) + 0x244),
 };
 
-/* 803C0330-803C03F4 00C4+00 s=1 e=0 z=0  None .data      @6110 */
+/* 803C0330-803C03F4 -00001 00C4+00 1/1 0/0 0/0 .data            @6110 */
 SECTION_DATA static void* lit_6110[49] = {
     (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x54),
     (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x5C),
@@ -1134,7 +1088,7 @@ SECTION_DATA static void* lit_6110[49] = {
     (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xFC),
 };
 
-/* 803C03F4-803C0448 0054+00 s=1 e=0 z=0  None .data      @6572 */
+/* 803C03F4-803C0448 -00001 0054+00 1/1 0/0 0/0 .data            @6572 */
 SECTION_DATA static void* lit_6572[21] = {
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x9BC),
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x7B4),
@@ -1159,7 +1113,7 @@ SECTION_DATA static void* lit_6572[21] = {
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x9A4),
 };
 
-/* 803C0448-803C0548 0100+00 s=1 e=0 z=0  None .data      @6571 */
+/* 803C0448-803C0548 -00001 0100+00 1/1 0/0 0/0 .data            @6571 */
 SECTION_DATA static void* lit_6571[64] = {
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x158),
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
@@ -1227,7 +1181,7 @@ SECTION_DATA static void* lit_6571[64] = {
     (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x22C),
 };
 
-/* 803C0548-803C056C 0024+00 s=1 e=0 z=0  None .data      @6703 */
+/* 803C0548-803C056C -00001 0024+00 1/1 0/0 0/0 .data            @6703 */
 SECTION_DATA static void* lit_6703[9] = {
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0xC8),
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x134),
@@ -1240,7 +1194,7 @@ SECTION_DATA static void* lit_6703[9] = {
     (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x3A8),
 };
 
-/* 803C056C-803C059C 0030+00 s=1 e=0 z=0  None .data      @7487 */
+/* 803C056C-803C059C -00001 0030+00 1/1 0/0 0/0 .data            @7487 */
 SECTION_DATA static void* lit_7487[12] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x940),
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x950),
@@ -1256,7 +1210,7 @@ SECTION_DATA static void* lit_7487[12] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xA20),
 };
 
-/* 803C059C-803C05D8 003C+00 s=1 e=0 z=0  None .data      @7486 */
+/* 803C059C-803C05D8 -00001 003C+00 1/1 0/0 0/0 .data            @7486 */
 SECTION_DATA static void* lit_7486[15] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x61C),
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x6A0),
@@ -1275,7 +1229,7 @@ SECTION_DATA static void* lit_7486[15] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x8A4),
 };
 
-/* 803C05D8-803C0610 0038+00 s=1 e=0 z=0  None .data      @7485 */
+/* 803C05D8-803C0610 -00001 0038+00 1/1 0/0 0/0 .data            @7485 */
 SECTION_DATA static void* lit_7485[14] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x468),
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x480),
@@ -1293,7 +1247,7 @@ SECTION_DATA static void* lit_7485[14] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x5C8),
 };
 
-/* 803C0610-803C0710 0100+00 s=1 e=0 z=0  None .data      @7484 */
+/* 803C0610-803C0710 -00001 0100+00 1/1 0/0 0/0 .data            @7484 */
 SECTION_DATA static void* lit_7484[64] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x104),
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
@@ -1361,7 +1315,7 @@ SECTION_DATA static void* lit_7484[64] = {
     (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x224),
 };
 
-/* 803C0710-803C0764 0054+00 s=1 e=0 z=0  None .data      @7997 */
+/* 803C0710-803C0764 -00001 0054+00 1/1 0/0 0/0 .data            @7997 */
 SECTION_DATA static void* lit_7997[21] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB38),
@@ -1386,7 +1340,7 @@ SECTION_DATA static void* lit_7997[21] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC3C),
 };
 
-/* 803C0764-803C0794 0030+00 s=1 e=0 z=0  None .data      @7996 */
+/* 803C0764-803C0794 -00001 0030+00 1/1 0/0 0/0 .data            @7996 */
 SECTION_DATA static void* lit_7996[12] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA24),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA30),
@@ -1402,7 +1356,7 @@ SECTION_DATA static void* lit_7996[12] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB08),
 };
 
-/* 803C0794-803C07D0 003C+00 s=1 e=0 z=0  None .data      @7995 */
+/* 803C0794-803C07D0 -00001 003C+00 1/1 0/0 0/0 .data            @7995 */
 SECTION_DATA static void* lit_7995[15] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x714),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x798),
@@ -1421,7 +1375,7 @@ SECTION_DATA static void* lit_7995[15] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x99C),
 };
 
-/* 803C07D0-803C0808 0038+00 s=1 e=0 z=0  None .data      @7994 */
+/* 803C07D0-803C0808 -00001 0038+00 1/1 0/0 0/0 .data            @7994 */
 SECTION_DATA static void* lit_7994[14] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x574),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x58C),
@@ -1439,7 +1393,7 @@ SECTION_DATA static void* lit_7994[14] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x6D4),
 };
 
-/* 803C0808-803C0908 0100+00 s=1 e=0 z=0  None .data      @7993 */
+/* 803C0808-803C0908 -00001 0100+00 1/1 0/0 0/0 .data            @7993 */
 SECTION_DATA static void* lit_7993[64] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x118),
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
@@ -1507,9 +1461,9 @@ SECTION_DATA static void* lit_7993[64] = {
     (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x240),
 };
 
-/* 803C0908-803C0948 0040+00 s=2 e=0 z=0  None .data __vt__35jmessage_string_tRenderingProcessor
+/* 803C0908-803C0948 01DA28 0040+00 2/2 0/0 0/0 .data __vt__35jmessage_string_tRenderingProcessor
  */
-SECTION_DATA void* __vt__35jmessage_string_tRenderingProcessor[16] = {
+SECTION_DATA extern void* __vt__35jmessage_string_tRenderingProcessor[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__35jmessage_string_tRenderingProcessorFv,
@@ -1528,9 +1482,9 @@ SECTION_DATA void* __vt__35jmessage_string_tRenderingProcessor[16] = {
     (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
 };
 
-/* 803C0948-803C09A0 0058+00 s=2 e=0 z=0  None .data      __vt__34jmessage_string_tSequenceProcessor
+/* 803C0948-803C09A0 01DA68 0058+00 2/2 0/0 0/0 .data __vt__34jmessage_string_tSequenceProcessor
  */
-SECTION_DATA void* __vt__34jmessage_string_tSequenceProcessor[22] = {
+SECTION_DATA extern void* __vt__34jmessage_string_tSequenceProcessor[22] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__34jmessage_string_tSequenceProcessorFv,
@@ -1555,9 +1509,8 @@ SECTION_DATA void* __vt__34jmessage_string_tSequenceProcessor[22] = {
     (void*)do_branch__Q28JMessage18TSequenceProcessorFPCvPCc,
 };
 
-/* 803C09A0-803C09E0 0040+00 s=3 e=0 z=0  None .data      __vt__33jmessage_string_tMeasureProcessor
- */
-SECTION_DATA void* __vt__33jmessage_string_tMeasureProcessor[16] = {
+/* 803C09A0-803C09E0 01DAC0 0040+00 3/3 0/0 0/0 .data __vt__33jmessage_string_tMeasureProcessor */
+SECTION_DATA extern void* __vt__33jmessage_string_tMeasureProcessor[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__33jmessage_string_tMeasureProcessorFv,
@@ -1576,23 +1529,24 @@ SECTION_DATA void* __vt__33jmessage_string_tMeasureProcessor[16] = {
     (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
 };
 
-/* 803C09E0-803C09EC 000C+00 s=2 e=0 z=0  None .data      __vt__24jmessage_string_tControl */
-SECTION_DATA void* __vt__24jmessage_string_tControl[3] = {
+/* 803C09E0-803C09EC 01DB00 000C+00 2/2 0/0 0/0 .data            __vt__24jmessage_string_tControl */
+SECTION_DATA extern void* __vt__24jmessage_string_tControl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__24jmessage_string_tControlFv,
 };
 
-/* 803C09EC-803C09FC 0010+00 s=2 e=0 z=0  None .data      __vt__26jmessage_string_tReference */
-SECTION_DATA void* __vt__26jmessage_string_tReference[4] = {
+/* 803C09EC-803C09FC 01DB0C 0010+00 2/2 0/0 0/0 .data            __vt__26jmessage_string_tReference
+ */
+SECTION_DATA extern void* __vt__26jmessage_string_tReference[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__26jmessage_string_tReferenceFv,
     (void*)do_word__Q28JMessage10TReferenceCFUl,
 };
 
-/* 803C09FC-803C0A3C 0040+00 s=2 e=0 z=0  None .data      __vt__28jmessage_tRenderingProcessor */
-SECTION_DATA void* __vt__28jmessage_tRenderingProcessor[16] = {
+/* 803C09FC-803C0A3C 01DB1C 0040+00 2/2 0/0 0/0 .data __vt__28jmessage_tRenderingProcessor */
+SECTION_DATA extern void* __vt__28jmessage_tRenderingProcessor[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__28jmessage_tRenderingProcessorFv,
@@ -1611,8 +1565,9 @@ SECTION_DATA void* __vt__28jmessage_tRenderingProcessor[16] = {
     (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
 };
 
-/* 803C0A3C-803C0A94 0058+00 s=2 e=0 z=0  None .data      __vt__27jmessage_tSequenceProcessor */
-SECTION_DATA void* __vt__27jmessage_tSequenceProcessor[22] = {
+/* 803C0A3C-803C0A94 01DB5C 0058+00 2/2 0/0 0/0 .data            __vt__27jmessage_tSequenceProcessor
+ */
+SECTION_DATA extern void* __vt__27jmessage_tSequenceProcessor[22] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__27jmessage_tSequenceProcessorFv,
@@ -1637,8 +1592,9 @@ SECTION_DATA void* __vt__27jmessage_tSequenceProcessor[22] = {
     (void*)do_branch__Q28JMessage18TSequenceProcessorFPCvPCc,
 };
 
-/* 803C0A94-803C0AD4 0040+00 s=3 e=0 z=0  None .data      __vt__26jmessage_tMeasureProcessor */
-SECTION_DATA void* __vt__26jmessage_tMeasureProcessor[16] = {
+/* 803C0A94-803C0AD4 01DBB4 0040+00 3/3 0/0 0/0 .data            __vt__26jmessage_tMeasureProcessor
+ */
+SECTION_DATA extern void* __vt__26jmessage_tMeasureProcessor[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__26jmessage_tMeasureProcessorFv,
@@ -1657,8 +1613,8 @@ SECTION_DATA void* __vt__26jmessage_tMeasureProcessor[16] = {
     (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
 };
 
-/* 803C0AD4-803C0AE8 0010+04 s=2 e=0 z=0  None .data      __vt__19jmessage_tReference */
-SECTION_DATA void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
+/* 803C0AD4-803C0AE8 01DBF4 0010+04 2/2 0/0 0/0 .data            __vt__19jmessage_tReference */
+SECTION_DATA extern void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__19jmessage_tReferenceFv,
@@ -1667,13 +1623,13 @@ SECTION_DATA void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80454A58-80454A5C 0004+00 s=1 e=0 z=0  None .sdata2    @4025 */
+/* 80454A58-80454A5C 003058 0004+00 1/1 0/0 0/0 .sdata2          @4025 */
 SECTION_SDATA2 static f32 lit_4025 = 9.0f / 10.0f;
 
-/* 80454A5C-80454A60 0004+00 s=14 e=0 z=0  None .sdata2    @4026 */
+/* 80454A5C-80454A60 00305C 0004+00 14/14 0/0 0/0 .sdata2          @4026 */
 SECTION_SDATA2 static f32 lit_4026 = 0.5f;
 
-/* 80454A60-80454A64 0004+00 s=25 e=0 z=0  None .sdata2    @4027 */
+/* 80454A60-80454A64 003060 0004+00 25/25 0/0 0/0 .sdata2          @4027 */
 SECTION_SDATA2 static u8 lit_4027[4] = {
     0x00,
     0x00,
@@ -1681,26 +1637,10 @@ SECTION_SDATA2 static u8 lit_4027[4] = {
     0x00,
 };
 
-/* 80454A64-80454A68 0004+00 s=23 e=0 z=0  None .sdata2    @4028 */
+/* 80454A64-80454A68 003064 0004+00 23/23 0/0 0/0 .sdata2          @4028 */
 SECTION_SDATA2 static f32 lit_4028 = 1.0f;
 
-/* 80228B04-80228CB4 01B0+00 s=0 e=1 z=0  None .text      __ct__19jmessage_tReferenceFv */
-//	80228B18: 803C9C6C (__vt__Q28JMessage10TReference)
-//	80228B1C: 803C9C6C (__vt__Q28JMessage10TReference)
-//	80228B2C: 803C0AD4 (__vt__19jmessage_tReference)
-//	80228B30: 803C0AD4 (__vt__19jmessage_tReference)
-//	80228B3C: 802CEC4C (__nw__FUl)
-//	80228B58: 80454A58 (lit_4025)
-//	80228B5C: 80454A5C (lit_4026)
-//	80228B68: 80032044 (__ct__9STControlFssssffss)
-//	80228B88: 80454A58 (lit_4025)
-//	80228B8C: 80454A5C (lit_4026)
-//	80228B98: 80032088 (setWaitParm__9STControlFssssffss)
-//	80228B9C: 80454A60 (lit_4027)
-//	80228BE4: 80454A64 (lit_4028)
-//	80228C28: 80229810 (resetCharCountBuffer__19jmessage_tReferenceFv)
-//	80228C74: 802297B0 (resetCharactor__19jmessage_tReferenceFv)
-//	80228C7C: 80229744 (resetWord__19jmessage_tReferenceFv)
+/* 80228B04-80228CB4 223444 01B0+00 0/0 1/1 0/0 .text            __ct__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1710,12 +1650,7 @@ asm jmessage_tReference::jmessage_tReference() {
 }
 #pragma pop
 
-/* 80228CB4-80228D28 0074+00 s=1 e=0 z=0  None .text      __dt__19jmessage_tReferenceFv */
-//	80228CD4: 803C0AD4 (__vt__19jmessage_tReference)
-//	80228CD8: 803C0AD4 (__vt__19jmessage_tReference)
-//	80228CE4: 802CED3C (__dl__FPv)
-//	80228CF8: 802A7AF8 (__dt__Q28JMessage10TReferenceFv)
-//	80228D08: 802CED3C (__dl__FPv)
+/* 80228CB4-80228D28 2235F4 0074+00 1/0 0/0 0/0 .text            __dt__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1726,22 +1661,12 @@ asm jmessage_tReference::~jmessage_tReference() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A68-80454A70 0008+00 s=1 e=0 z=0  None .sdata2    @4078 */
+/* 80454A68-80454A70 003068 0008+00 1/1 0/0 0/0 .sdata2          @4078 */
 SECTION_SDATA2 static u8 lit_4078[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80228D28-80228DE0 00B8+00 s=1 e=0 z=0  None .text      calcDistance__19jmessage_tReferenceFv */
-//	80228D3C: 80454A60 (lit_4027)
-//	80228D64: 80454A64 (lit_4028)
-//	80228D70: 804061C0 (g_dComIfG_gameInfo)
-//	80228D74: 804061C0 (g_dComIfG_gameInfo)
-//	80228D88: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80228D94: 80454A60 (lit_4027)
-//	80228DA8: 80347138 (PSVECSquareMag)
-//	80228DAC: 80454A60 (lit_4027)
-//	80228DBC: 80454A68 (lit_4078)
-//	80228DC4: 80454A64 (lit_4028)
+/* 80228D28-80228DE0 223668 00B8+00 1/1 0/0 0/0 .text calcDistance__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1751,11 +1676,8 @@ asm void jmessage_tReference::calcDistance() {
 }
 #pragma pop
 
-/* 80228DE0-80228E6C 008C+00 s=5 e=0 z=0  None .text      getLineMax__19jmessage_tReferenceFv */
-//	80228DF4: 80228E6C (isKanban__19jmessage_tReferenceFv)
-//	80228E0C: 80228F3C (isBook__19jmessage_tReferenceFv)
-//	80228E24: 80228F70 (isStaffRoll__19jmessage_tReferenceFv)
-//	80228E3C: 80228F08 (isSaveSeq__19jmessage_tReferenceFv)
+/* 80228DE0-80228E6C 223720 008C+00 5/5 0/0 0/0 .text            getLineMax__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1765,8 +1687,8 @@ asm void jmessage_tReference::getLineMax() {
 }
 #pragma pop
 
-/* 80228E6C-80228EA0 0034+00 s=2 e=0 z=0  None .text      isKanban__19jmessage_tReferenceFv */
-//	80228E8C: 802370BC (isKanbanMessage__12dMsgObject_cFv)
+/* 80228E6C-80228EA0 2237AC 0034+00 2/2 0/0 0/0 .text            isKanban__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1776,8 +1698,7 @@ asm void jmessage_tReference::isKanban() {
 }
 #pragma pop
 
-/* 80228EA0-80228ED4 0034+00 s=2 e=0 z=0  None .text      isPlaceName__19jmessage_tReferenceFv */
-//	80228EC0: 802371E4 (isPlaceMessage__12dMsgObject_cFv)
+/* 80228EA0-80228ED4 2237E0 0034+00 2/2 0/0 0/0 .text isPlaceName__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1787,8 +1708,8 @@ asm void jmessage_tReference::isPlaceName() {
 }
 #pragma pop
 
-/* 80228ED4-80228F08 0034+00 s=2 e=0 z=0  None .text      isBossName__19jmessage_tReferenceFv */
-//	80228EF4: 802371F8 (isBossMessage__12dMsgObject_cFv)
+/* 80228ED4-80228F08 223814 0034+00 2/2 0/0 0/0 .text            isBossName__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1798,8 +1719,8 @@ asm void jmessage_tReference::isBossName() {
 }
 #pragma pop
 
-/* 80228F08-80228F3C 0034+00 s=2 e=0 z=0  None .text      isSaveSeq__19jmessage_tReferenceFv */
-//	80228F28: 80237228 (isSaveMessage__12dMsgObject_cFv)
+/* 80228F08-80228F3C 223848 0034+00 2/2 0/0 0/0 .text            isSaveSeq__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1809,8 +1730,7 @@ asm void jmessage_tReference::isSaveSeq() {
 }
 #pragma pop
 
-/* 80228F3C-80228F70 0034+00 s=2 e=0 z=0  None .text      isBook__19jmessage_tReferenceFv */
-//	80228F5C: 8023720C (isBookMessage__12dMsgObject_cFv)
+/* 80228F3C-80228F70 22387C 0034+00 2/2 0/0 0/0 .text            isBook__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1820,8 +1740,7 @@ asm void jmessage_tReference::isBook() {
 }
 #pragma pop
 
-/* 80228F70-80228FA4 0034+00 s=3 e=0 z=0  None .text      isStaffRoll__19jmessage_tReferenceFv */
-//	80228F90: 80237214 (isStaffMessage__12dMsgObject_cFv)
+/* 80228F70-80228FA4 2238B0 0034+00 3/3 0/0 0/0 .text isStaffRoll__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1831,8 +1750,7 @@ asm void jmessage_tReference::isStaffRoll() {
 }
 #pragma pop
 
-/* 80228FA4-80228FD8 0034+00 s=1 e=0 z=0  None .text      isHowl__19jmessage_tReferenceFv */
-//	80228FC4: 802370E8 (isHowlMessage__12dMsgObject_cFv)
+/* 80228FA4-80228FD8 2238E4 0034+00 1/1 0/0 0/0 .text            isHowl__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1842,8 +1760,8 @@ asm void jmessage_tReference::isHowl() {
 }
 #pragma pop
 
-/* 80228FD8-8022900C 0034+00 s=2 e=0 z=0  None .text      isMidona__19jmessage_tReferenceFv */
-//	80228FF8: 802370FC (isMidonaMessage__12dMsgObject_cFv)
+/* 80228FD8-8022900C 223918 0034+00 2/2 0/0 0/0 .text            isMidona__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1853,7 +1771,7 @@ asm void jmessage_tReference::isMidona() {
 }
 #pragma pop
 
-/* 8022900C-80229034 0028+00 s=1 e=0 z=0  None .text      resetReference__19jmessage_tReferenceFv */
+/* 8022900C-80229034 22394C 0028+00 1/1 0/0 0/0 .text resetReference__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1864,19 +1782,11 @@ asm void jmessage_tReference::resetReference() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A70-80454A78 0008+00 s=16 e=0 z=0  None .sdata2    @4198 */
+/* 80454A70-80454A78 003070 0008+00 16/16 0/0 0/0 .sdata2          @4198 */
 SECTION_SDATA2 static f64 lit_4198 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80229034-80229168 0134+00 s=0 e=1 z=0  None .text      pageSend__19jmessage_tReferenceFv */
-//	802290C0: 80454A60 (lit_4027)
-//	802290D4: 80454A64 (lit_4028)
-//	802290D8: 8043028C (g_MsgObject_HIO_c)
-//	802290DC: 8043028C (g_MsgObject_HIO_c)
-//	802290E4: 80454A70 (lit_4198)
-//	8022911C: 80454A64 (lit_4028)
-//	80229120: 8043028C (g_MsgObject_HIO_c)
-//	80229124: 8043028C (g_MsgObject_HIO_c)
-//	8022912C: 80454A70 (lit_4198)
+/* 80229034-80229168 223974 0134+00 0/0 1/1 0/0 .text            pageSend__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1887,51 +1797,10 @@ asm void jmessage_tReference::pageSend() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A78-80454A7C 0004+00 s=4 e=0 z=0  None .sdata2    @4291 */
+/* 80454A78-80454A7C 003078 0004+00 4/4 0/0 0/0 .sdata2          @4291 */
 SECTION_SDATA2 static f32 lit_4291 = -1.0f;
 
-/* 80229168-802294A8 0340+00 s=0 e=2 z=0  None .text      selectMessage__19jmessage_tReferenceFv */
-//	8022918C: 8003219C (checkTrigger__9STControlFv)
-//	802291A0: 80032524 (checkUpTrigger__9STControlFv)
-//	802291D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802291E8: 80454A64 (lit_4028)
-//	802291F0: 80454A78 (lit_4291)
-//	802291FC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80229228: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8022923C: 80454A64 (lit_4028)
-//	80229244: 80454A78 (lit_4291)
-//	80229250: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	8022925C: 800325A0 (checkDownTrigger__9STControlFv)
-//	80229290: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802292A4: 80454A64 (lit_4028)
-//	802292AC: 80454A78 (lit_4291)
-//	802292B8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802292E4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802292F8: 80454A64 (lit_4028)
-//	80229300: 80454A78 (lit_4291)
-//	8022930C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80229318: 8003242C (checkLeftTrigger__9STControlFv)
-//	80229340: 8022CBE8 (calcStringLength__27jmessage_tSequenceProcessorFv)
-//	8022934C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80229360: 80454A64 (lit_4028)
-//	80229368: 80454A78 (lit_4291)
-//	80229374: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80229394: 8022CBE8 (calcStringLength__27jmessage_tSequenceProcessorFv)
-//	802293A0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802293B4: 80454A64 (lit_4028)
-//	802293BC: 80454A78 (lit_4291)
-//	802293C8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802293D4: 800324A8 (checkRightTrigger__9STControlFv)
-//	802293FC: 8022CBE8 (calcStringLength__27jmessage_tSequenceProcessorFv)
-//	80229408: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8022941C: 80454A64 (lit_4028)
-//	80229424: 80454A78 (lit_4291)
-//	80229430: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	8022945C: 8022CBE8 (calcStringLength__27jmessage_tSequenceProcessorFv)
-//	80229468: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8022947C: 80454A64 (lit_4028)
-//	80229484: 80454A78 (lit_4291)
-//	80229490: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 80229168-802294A8 223AA8 0340+00 0/0 2/2 0/0 .text selectMessage__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1941,29 +1810,7 @@ asm void jmessage_tReference::selectMessage() {
 }
 #pragma pop
 
-/* 802294A8-80229730 0288+00 s=0 e=1 z=0  None .text      inputNumber__19jmessage_tReferenceFv */
-//	802294B8: 803621D4 (_savegpr_27)
-//	802294C4: 8003219C (checkTrigger__9STControlFv)
-//	802294D8: 804061C0 (g_dComIfG_gameInfo)
-//	802294DC: 804061C0 (g_dComIfG_gameInfo)
-//	80229514: 80032524 (checkUpTrigger__9STControlFv)
-//	80229580: 800325A0 (checkDownTrigger__9STControlFv)
-//	802295EC: 8003242C (checkLeftTrigger__9STControlFv)
-//	80229618: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8022962C: 80454A64 (lit_4028)
-//	80229634: 80454A78 (lit_4291)
-//	80229640: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	8022964C: 800324A8 (checkRightTrigger__9STControlFv)
-//	80229674: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80229688: 80454A64 (lit_4028)
-//	80229690: 80454A78 (lit_4291)
-//	8022969C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802296D8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802296EC: 80454A64 (lit_4028)
-//	802296F4: 80454A78 (lit_4291)
-//	80229700: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	8022970C: 802299AC (decideOutFontRupeeColor__19jmessage_tReferenceFi)
-//	8022971C: 80362220 (_restgpr_27)
+/* 802294A8-80229730 223DE8 0288+00 0/0 1/1 0/0 .text inputNumber__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1973,7 +1820,7 @@ asm void jmessage_tReference::inputNumber() {
 }
 #pragma pop
 
-/* 80229730-80229744 0014+00 s=5 e=0 z=0  None .text      getWord__19jmessage_tReferenceFi */
+/* 80229730-80229744 224070 0014+00 5/5 0/0 0/0 .text            getWord__19jmessage_tReferenceFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1983,7 +1830,8 @@ asm void jmessage_tReference::getWord(int param_0) {
 }
 #pragma pop
 
-/* 80229744-80229768 0024+00 s=2 e=0 z=0  None .text      resetWord__19jmessage_tReferenceFv */
+/* 80229744-80229768 224084 0024+00 2/2 0/0 0/0 .text            resetWord__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1993,7 +1841,7 @@ asm void jmessage_tReference::resetWord() {
 }
 #pragma pop
 
-/* 80229768-80229788 0020+00 s=3 e=0 z=0  None .text      setCharactor__19jmessage_tReferenceFUs */
+/* 80229768-80229788 2240A8 0020+00 3/3 0/0 0/0 .text setCharactor__19jmessage_tReferenceFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2003,7 +1851,7 @@ asm void jmessage_tReference::setCharactor(u16 param_0) {
 }
 #pragma pop
 
-/* 80229788-802297B0 0028+00 s=3 e=0 z=0  None .text      addCharactor__19jmessage_tReferenceFUs */
+/* 80229788-802297B0 2240C8 0028+00 3/3 0/0 0/0 .text addCharactor__19jmessage_tReferenceFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2013,7 +1861,7 @@ asm void jmessage_tReference::addCharactor(u16 param_0) {
 }
 #pragma pop
 
-/* 802297B0-802297E4 0034+00 s=3 e=0 z=0  None .text      resetCharactor__19jmessage_tReferenceFv */
+/* 802297B0-802297E4 2240F0 0034+00 3/3 0/0 0/0 .text resetCharactor__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2023,8 +1871,8 @@ asm void jmessage_tReference::resetCharactor() {
 }
 #pragma pop
 
-/* 802297E4-80229810 002C+00 s=0 e=1 z=0  None .text shiftCharCountBuffer__19jmessage_tReferenceFv
- */
+/* 802297E4-80229810 224124 002C+00 0/0 1/1 0/0 .text
+ * shiftCharCountBuffer__19jmessage_tReferenceFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2034,8 +1882,8 @@ asm void jmessage_tReference::shiftCharCountBuffer() {
 }
 #pragma pop
 
-/* 80229810-80229848 0038+00 s=1 e=5 z=0  None .text resetCharCountBuffer__19jmessage_tReferenceFv
- */
+/* 80229810-80229848 224150 0038+00 1/1 5/5 0/0 .text
+ * resetCharCountBuffer__19jmessage_tReferenceFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2045,7 +1893,7 @@ asm void jmessage_tReference::resetCharCountBuffer() {
 }
 #pragma pop
 
-/* 80229848-8022986C 0024+00 s=1 e=0 z=0  None .text
+/* 80229848-8022986C 224188 0024+00 1/1 0/0 0/0 .text
  * allsetCharCountBuffer__19jmessage_tReferenceFv               */
 #pragma push
 #pragma optimization_level 0
@@ -2056,11 +1904,8 @@ asm void jmessage_tReference::allsetCharCountBuffer() {
 }
 #pragma pop
 
-/* 8022986C-802298DC 0070+00 s=2 e=0 z=0  None .text      isCharSend__19jmessage_tReferenceFv */
-//	80229878: 8043028C (g_MsgObject_HIO_c)
-//	8022987C: 8043028C (g_MsgObject_HIO_c)
-//	8022988C: 8043028C (g_MsgObject_HIO_c)
-//	80229890: 8043028C (g_MsgObject_HIO_c)
+/* 8022986C-802298DC 2241AC 0070+00 2/2 0/0 0/0 .text            isCharSend__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2070,11 +1915,7 @@ asm void jmessage_tReference::isCharSend() {
 }
 #pragma pop
 
-/* 802298DC-8022994C 0070+00 s=1 e=0 z=0  None .text      isLightSend__19jmessage_tReferenceFv */
-//	802298E8: 8043028C (g_MsgObject_HIO_c)
-//	802298EC: 8043028C (g_MsgObject_HIO_c)
-//	802298FC: 8043028C (g_MsgObject_HIO_c)
-//	80229900: 8043028C (g_MsgObject_HIO_c)
+/* 802298DC-8022994C 22421C 0070+00 1/1 0/0 0/0 .text isLightSend__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2084,11 +1925,8 @@ asm void jmessage_tReference::isLightSend() {
 }
 #pragma pop
 
-/* 8022994C-802299AC 0060+00 s=0 e=1 z=0  None .text      isLightEnd__19jmessage_tReferenceFv */
-//	80229958: 8043028C (g_MsgObject_HIO_c)
-//	8022995C: 8043028C (g_MsgObject_HIO_c)
-//	80229968: 8043028C (g_MsgObject_HIO_c)
-//	8022996C: 8043028C (g_MsgObject_HIO_c)
+/* 8022994C-802299AC 22428C 0060+00 0/0 1/1 0/0 .text            isLightEnd__19jmessage_tReferenceFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2098,7 +1936,7 @@ asm void jmessage_tReference::isLightEnd() {
 }
 #pragma pop
 
-/* 802299AC-802299EC 0040+00 s=2 e=0 z=0  None .text
+/* 802299AC-802299EC 2242EC 0040+00 2/2 0/0 0/0 .text
  * decideOutFontRupeeColor__19jmessage_tReferenceFi             */
 #pragma push
 #pragma optimization_level 0
@@ -2109,10 +1947,7 @@ asm void jmessage_tReference::decideOutFontRupeeColor(int param_0) {
 }
 #pragma pop
 
-/* 802299EC-80229A28 003C+00 s=0 e=1 z=0  None .text      __ct__17jmessage_tControlFv */
-//	80229A00: 802A7548 (__ct__Q28JMessage8TControlFv)
-//	80229A04: 803A7928 (__vt__17jmessage_tControl)
-//	80229A08: 803A7928 (__vt__17jmessage_tControl)
+/* 802299EC-80229A28 22432C 003C+00 0/0 1/1 0/0 .text            __ct__17jmessage_tControlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2122,14 +1957,8 @@ asm jmessage_tControl::jmessage_tControl() {
 }
 #pragma pop
 
-/* 80229A28-80229AC4 009C+00 s=1 e=0 z=0  None .text
+/* 80229A28-80229AC4 224368 009C+00 1/1 0/0 0/0 .text
  * __ct__26jmessage_tMeasureProcessorFPC19jmessage_tReference   */
-//	80229A40: 802A8A84 (__ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference)
-//	80229A44: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	80229A48: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	80229A58: 802297B0 (resetCharactor__19jmessage_tReferenceFv)
-//	80229A5C: 80454A64 (lit_4028)
-//	80229A90: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2139,22 +1968,8 @@ asm jmessage_tMeasureProcessor::jmessage_tMeasureProcessor(jmessage_tReference c
 }
 #pragma pop
 
-/* 80229AC4-80229CB4 01F0+00 s=1 e=0 z=0  None .text do_begin__26jmessage_tMeasureProcessorFPCvPCc
- */
-//	80229ADC: 803621C8 (_savegpr_24)
-//	80229AF0: 802297B0 (resetCharactor__19jmessage_tReferenceFv)
-//	80229AFC: 80454A64 (lit_4028)
-//	80229B1C: 80454A60 (lit_4027)
-//	80229B58: 80228EA0 (isPlaceName__19jmessage_tReferenceFv)
-//	80229B68: 80228F70 (isStaffRoll__19jmessage_tReferenceFv)
-//	80229B78: 80228ED4 (isBossName__19jmessage_tReferenceFv)
-//	80229BE0: 80454A60 (lit_4027)
-//	80229C48: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	80229C54: 80229744 (resetWord__19jmessage_tReferenceFv)
-//	80229C74: 80237610 (resetSelectBomBag__12dMsgObject_cFv)
-//	80229C78: 80454A64 (lit_4028)
-//	80229C90: 8022B0B0 (do_scale__26jmessage_tMeasureProcessorFf)
-//	80229CA0: 80362214 (_restgpr_24)
+/* 80229AC4-80229CB4 224404 01F0+00 1/0 0/0 0/0 .text
+ * do_begin__26jmessage_tMeasureProcessorFPCvPCc                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2164,10 +1979,7 @@ asm void jmessage_tMeasureProcessor::do_begin(void const* param_0, char const* p
 }
 #pragma pop
 
-/* 80229CB4-80229E3C 0188+00 s=1 e=0 z=0  None .text      do_end__26jmessage_tMeasureProcessorFv */
-//	80229D6C: 8022B3EC (do_pageType__26jmessage_tMeasureProcessorFi)
-//	80229E0C: 80450B70 (data_80450B70)
-//	80229E20: 802CBD88 (setString__12Z2SpeechMgr2FPCUssUcUs)
+/* 80229CB4-80229E3C 2245F4 0188+00 1/0 0/0 0/0 .text do_end__26jmessage_tMeasureProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2177,25 +1989,8 @@ asm void jmessage_tMeasureProcessor::do_end() {
 }
 #pragma pop
 
-/* 80229E3C-8022A268 042C+00 s=1 e=0 z=0  None .text do_character__26jmessage_tMeasureProcessorFi
+/* 80229E3C-8022A268 22477C 042C+00 1/0 0/0 0/0 .text do_character__26jmessage_tMeasureProcessorFi
  */
-//	80229E54: 803621D4 (_savegpr_27)
-//	80229EA8: 802288A8 (isOutfontKanjiCode__Fi)
-//	80229EB8: 80228608 (change1ByteTo2Bytes__Fi)
-//	80229EC0: 80228838 (changeKataToHira__Fi)
-//	80229ECC: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	80229EE8: 802288A8 (isOutfontKanjiCode__Fi)
-//	80229EF8: 80228838 (changeKataToHira__Fi)
-//	80229F04: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	80229FDC: 8022B3EC (do_pageType__26jmessage_tMeasureProcessorFi)
-//	8022A004: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022A024: 80454A64 (lit_4028)
-//	8022A0AC: 80454A70 (lit_4198)
-//	8022A104: 80454A64 (lit_4028)
-//	8022A134: 80454A70 (lit_4198)
-//	8022A18C: 80454A70 (lit_4198)
-//	8022A1C4: 80454A64 (lit_4028)
-//	8022A254: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2206,241 +2001,14 @@ asm void jmessage_tMeasureProcessor::do_character(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80399610-80399660 004A+06 s=22 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399610 = "'";
-SECTION_DEAD char const* const stringBase_80399612 = "s";
-SECTION_DEAD char const* const stringBase_80399614 = "%d";
-SECTION_DEAD char const* const stringBase_80399617 = "";
-SECTION_DEAD char const* const stringBase_80399618 = ""
-                                                     "\x1B"
-                                                     "CR[%d]";
-SECTION_DEAD char const* const stringBase_80399620 = ""
-                                                     "\x1B"
-                                                     "CD[%d]";
-SECTION_DEAD char const* const stringBase_80399628 = ""
-                                                     "\x1B"
-                                                     "CC[%08x]"
-                                                     "\x1B"
-                                                     "GC[%08x]";
-SECTION_DEAD char const* const stringBase_8039963B = ""
-                                                     "\x1B"
-                                                     "FX[%d]"
-                                                     "\x1B"
-                                                     "FY[%d]";
-SECTION_DEAD char const* const stringBase_8039964A = ""
-                                                     "\x1B"
-                                                     "CU[%d]";
-SECTION_DEAD char const* const stringBase_80399652 = ""
-                                                     "\x1B"
-                                                     "CL[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
-#pragma pop
-
-/* 80454A7C-80454A80 0004+00 s=5 e=0 z=0  None .sdata2    @5151 */
+/* 80454A7C-80454A80 00307C 0004+00 5/5 0/0 0/0 .sdata2          @5151 */
 SECTION_SDATA2 static f32 lit_5151 = 100.0f;
 
-/* 80454A80-80454A88 0008+00 s=5 e=0 z=0  None .sdata2    @5154 */
+/* 80454A80-80454A88 003080 0008+00 5/5 0/0 0/0 .sdata2          @5154 */
 SECTION_SDATA2 static f64 lit_5154 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8022A268-8022B0B0 0E48+00 s=5 e=0 z=0  None .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
+/* 8022A268-8022B0B0 224BA8 0E48+00 5/0 0/0 0/0 .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
  */
-//	8022A278: 803621DC (_savegpr_29)
-//	8022A360: 80454A80 (lit_5154)
-//	8022A378: 80454A7C (lit_5151)
-//	8022A380: 8022B0B0 (do_scale__26jmessage_tMeasureProcessorFf)
-//	8022A398: 8022B458 (do_rubyset__26jmessage_tMeasureProcessorFPCvUl)
-//	8022A428: 803C0044 (lit_5155)
-//	8022A42C: 803C0044 (lit_5155)
-//	8022A440: 80454A64 (lit_4028)
-//	8022A45C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022A460: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022A468: 804061C0 (g_dComIfG_gameInfo)
-//	8022A46C: 804061C0 (g_dComIfG_gameInfo)
-//	8022A480: 803664DC (sprintf)
-//	8022A48C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A49C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022A4A0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022A4A8: 804061C0 (g_dComIfG_gameInfo)
-//	8022A4AC: 804061C0 (g_dComIfG_gameInfo)
-//	8022A4C8: 803664DC (sprintf)
-//	8022A4D4: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A524: 804061C0 (g_dComIfG_gameInfo)
-//	8022A528: 804061C0 (g_dComIfG_gameInfo)
-//	8022A534: 80368B2C (strcpy)
-//	8022A540: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A560: 804061C0 (g_dComIfG_gameInfo)
-//	8022A564: 804061C0 (g_dComIfG_gameInfo)
-//	8022A570: 80368B2C (strcpy)
-//	8022A57C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A59C: 80238514 (getWord__12dMsgObject_cFv)
-//	8022A5A8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A5CC: 802372CC (getSmellName__12dMsgObject_cFv)
-//	8022A5D8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A5FC: 80237334 (getPortalName__12dMsgObject_cFv)
-//	8022A608: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A640: 8023738C (getBombName__12dMsgObject_cFv)
-//	8022A64C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A670: 8023741C (getInsectName__12dMsgObject_cFv)
-//	8022A67C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A6A0: 80237478 (getLetterName__12dMsgObject_cFv)
-//	8022A6AC: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A6F4: 8022B3EC (do_pageType__26jmessage_tMeasureProcessorFi)
-//	8022A704: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022A7B4: 8022B3EC (do_pageType__26jmessage_tMeasureProcessorFi)
-//	8022A7C4: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022A86C: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022A880: 80454A64 (lit_4028)
-//	8022A8A8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022A8B8: 8022B454 (do_name1__26jmessage_tMeasureProcessorFv)
-//	8022A8C8: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022A8D8: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022A8F8: 802375E4 (addSelectBomBag__12dMsgObject_cFUc)
-//	8022A910: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022A934: 802374D0 (getSelectBombNum__12dMsgObject_cFv)
-//	8022A93C: 804510D0 (g_msg_unit)
-//	8022A950: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022A95C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A968: 802385E0 (getSelectBombPrice__12dMsgObject_cFv)
-//	8022A970: 804510D0 (g_msg_unit)
-//	8022A984: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022A990: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022A9C4: 804061C0 (g_dComIfG_gameInfo)
-//	8022A9C8: 804061C0 (g_dComIfG_gameInfo)
-//	8022A9D0: 800340F8 (getBombNum__21dSv_player_item_max_cCFUc)
-//	8022A9D8: 804510D0 (g_msg_unit)
-//	8022A9EC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022A9F8: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AA04: 804061C0 (g_dComIfG_gameInfo)
-//	8022AA08: 804061C0 (g_dComIfG_gameInfo)
-//	8022AA10: 804510D0 (g_msg_unit)
-//	8022AA20: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AA2C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AA4C: 803C000C (lit_5156)
-//	8022AA50: 803C000C (lit_5156)
-//	8022AA68: 802285CC (changeCodeToChar__FUs)
-//	8022AA74: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AA84: 802285CC (changeCodeToChar__FUs)
-//	8022AA90: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AAA0: 802285CC (changeCodeToChar__FUs)
-//	8022AAAC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AAC0: 802285CC (changeCodeToChar__FUs)
-//	8022AACC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AAE0: 802285CC (changeCodeToChar__FUs)
-//	8022AAEC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AB00: 802285CC (changeCodeToChar__FUs)
-//	8022AB0C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AB20: 802285CC (changeCodeToChar__FUs)
-//	8022AB2C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AB40: 802285CC (changeCodeToChar__FUs)
-//	8022AB4C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AB60: 802285CC (changeCodeToChar__FUs)
-//	8022AB6C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AB80: 802285CC (changeCodeToChar__FUs)
-//	8022AB8C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022ABA0: 802285CC (changeCodeToChar__FUs)
-//	8022ABAC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022ABC0: 802285CC (changeCodeToChar__FUs)
-//	8022ABCC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022ABE0: 802285CC (changeCodeToChar__FUs)
-//	8022ABEC: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AC00: 802285CC (changeCodeToChar__FUs)
-//	8022AC0C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AC2C: 803BFFD0 (lit_5157)
-//	8022AC30: 803BFFD0 (lit_5157)
-//	8022AC50: 804510D0 (g_msg_unit)
-//	8022AC58: 80430188 (g_meter2_info)
-//	8022AC5C: 80430188 (g_meter2_info)
-//	8022AC6C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AC80: 804061C0 (g_dComIfG_gameInfo)
-//	8022AC84: 804061C0 (g_dComIfG_gameInfo)
-//	8022AC8C: 804510D0 (g_msg_unit)
-//	8022AC9C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022ACA4: 804510D0 (g_msg_unit)
-//	8022ACAC: 80430188 (g_meter2_info)
-//	8022ACB0: 80430188 (g_meter2_info)
-//	8022ACC0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022ACC8: 804510D0 (g_msg_unit)
-//	8022ACD0: 804061C0 (g_dComIfG_gameInfo)
-//	8022ACD4: 804061C0 (g_dComIfG_gameInfo)
-//	8022ACE4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022ACEC: 804510D0 (g_msg_unit)
-//	8022ACF4: 804061C0 (g_dComIfG_gameInfo)
-//	8022ACF8: 804061C0 (g_dComIfG_gameInfo)
-//	8022AD08: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AD20: 80238928 (dMsgObject_getFundRaising__Fv)
-//	8022AD2C: 804510D0 (g_msg_unit)
-//	8022AD3C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AD44: 8021E754 (dMeter2Info_getNewLetterNum__Fv)
-//	8022AD4C: 804510D0 (g_msg_unit)
-//	8022AD5C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AD64: 80228ACC (getPohNum__Fv)
-//	8022AD6C: 804510D0 (g_msg_unit)
-//	8022AD7C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AD90: 804061C0 (g_dComIfG_gameInfo)
-//	8022AD94: 804061C0 (g_dComIfG_gameInfo)
-//	8022ADA0: 804061C0 (g_dComIfG_gameInfo)
-//	8022ADA4: 804061C0 (g_dComIfG_gameInfo)
-//	8022ADAC: 804510D0 (g_msg_unit)
-//	8022ADBC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022ADD0: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	8022ADDC: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	8022ADE8: 804510D0 (g_msg_unit)
-//	8022ADF8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AE00: 804510D0 (g_msg_unit)
-//	8022AE14: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AE1C: 804510D0 (g_msg_unit)
-//	8022AE24: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE28: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE38: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AE40: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE44: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE54: 80034A04 (getEventReg__11dSv_event_cCFUs)
-//	8022AE5C: 804510D0 (g_msg_unit)
-//	8022AE74: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AE7C: 804510D0 (g_msg_unit)
-//	8022AE84: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE88: 804061C0 (g_dComIfG_gameInfo)
-//	8022AE98: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AEA0: 804510D0 (g_msg_unit)
-//	8022AEA8: 804061C0 (g_dComIfG_gameInfo)
-//	8022AEAC: 804061C0 (g_dComIfG_gameInfo)
-//	8022AEBC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AEC4: 804510D0 (g_msg_unit)
-//	8022AED0: 804061C0 (g_dComIfG_gameInfo)
-//	8022AED4: 804061C0 (g_dComIfG_gameInfo)
-//	8022AEE4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AEEC: 804510D0 (g_msg_unit)
-//	8022AEF4: 80430188 (g_meter2_info)
-//	8022AEF8: 80430188 (g_meter2_info)
-//	8022AF08: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022AF20: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AF38: 803BFFA0 (lit_5158)
-//	8022AF3C: 803BFFA0 (lit_5158)
-//	8022AF54: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AF64: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AF74: 802285CC (changeCodeToChar__FUs)
-//	8022AF80: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AF90: 802285CC (changeCodeToChar__FUs)
-//	8022AF9C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AFAC: 802285CC (changeCodeToChar__FUs)
-//	8022AFB8: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AFC8: 802285CC (changeCodeToChar__FUs)
-//	8022AFD4: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022AFE4: 802285CC (changeCodeToChar__FUs)
-//	8022AFF0: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022B000: 802285CC (changeCodeToChar__FUs)
-//	8022B00C: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022B01C: 802285CC (changeCodeToChar__FUs)
-//	8022B028: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022B038: 802285CC (changeCodeToChar__FUs)
-//	8022B044: 8022B4E0 (push_word__26jmessage_tMeasureProcessorFPc)
-//	8022B054: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022B078: 8022B18C (do_space__26jmessage_tMeasureProcessorFUl)
-//	8022B09C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2450,9 +2018,7 @@ asm void jmessage_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u3
 }
 #pragma pop
 
-/* 8022B0B0-8022B18C 00DC+00 s=2 e=0 z=0  None .text      do_scale__26jmessage_tMeasureProcessorFf
- */
-//	8022B0C4: 80454A64 (lit_4028)
+/* 8022B0B0-8022B18C 2259F0 00DC+00 2/2 0/0 0/0 .text do_scale__26jmessage_tMeasureProcessorFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2462,16 +2028,7 @@ asm void jmessage_tMeasureProcessor::do_scale(f32 param_0) {
 }
 #pragma pop
 
-/* 8022B18C-8022B3EC 0260+00 s=2 e=0 z=0  None .text      do_space__26jmessage_tMeasureProcessorFUl
- */
-//	8022B204: 803C0144 (lit_5269)
-//	8022B208: 803C0144 (lit_5269)
-//	8022B2D0: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B320: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B330: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B344: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B368: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B39C: 80454A64 (lit_4028)
+/* 8022B18C-8022B3EC 225ACC 0260+00 2/1 0/0 0/0 .text do_space__26jmessage_tMeasureProcessorFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2481,7 +2038,7 @@ asm void jmessage_tMeasureProcessor::do_space(u32 param_0) {
 }
 #pragma pop
 
-/* 8022B3EC-8022B454 0068+00 s=3 e=0 z=0  None .text do_pageType__26jmessage_tMeasureProcessorFi
+/* 8022B3EC-8022B454 225D2C 0068+00 3/3 0/0 0/0 .text do_pageType__26jmessage_tMeasureProcessorFi
  */
 #pragma push
 #pragma optimization_level 0
@@ -2492,18 +2049,13 @@ asm void jmessage_tMeasureProcessor::do_pageType(int param_0) {
 }
 #pragma pop
 
-/* 8022B454-8022B458 0004+00 s=1 e=0 z=0  None .text      do_name1__26jmessage_tMeasureProcessorFv
- */
+/* 8022B454-8022B458 225D94 0004+00 1/1 0/0 0/0 .text do_name1__26jmessage_tMeasureProcessorFv */
 void jmessage_tMeasureProcessor::do_name1() {
     /* empty function */
 }
 
-/* 8022B458-8022B4E0 0088+00 s=1 e=0 z=0  None .text
+/* 8022B458-8022B4E0 225D98 0088+00 1/1 0/0 0/0 .text
  * do_rubyset__26jmessage_tMeasureProcessorFPCvUl               */
-//	8022B468: 803621D8 (_savegpr_28)
-//	8022B4B0: 80228838 (changeKataToHira__Fi)
-//	8022B4BC: 80229768 (setCharactor__19jmessage_tReferenceFUs)
-//	8022B4CC: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2513,14 +2065,8 @@ asm void jmessage_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1
 }
 #pragma pop
 
-/* 8022B4E0-8022B558 0078+00 s=1 e=0 z=0  None .text      push_word__26jmessage_tMeasureProcessorFPc
+/* 8022B4E0-8022B558 225E20 0078+00 1/1 0/0 0/0 .text push_word__26jmessage_tMeasureProcessorFPc
  */
-//	8022B4F0: 803621DC (_savegpr_29)
-//	8022B50C: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022B514: 80368B2C (strcpy)
-//	8022B524: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022B530: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022B544: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2530,13 +2076,8 @@ asm void jmessage_tMeasureProcessor::push_word(char* param_0) {
 }
 #pragma pop
 
-/* 8022B558-8022B5F4 009C+00 s=0 e=1 z=0  None .text
+/* 8022B558-8022B5F4 225E98 009C+00 0/0 1/1 0/0 .text
  * __ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl */
-//	8022B574: 802A8374
-//(__ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl) 8022B578:
-// 803C0A3C (__vt__27jmessage_tSequenceProcessor) 	8022B57C: 803C0A3C
-//(__vt__27jmessage_tSequenceProcessor) 	8022B58C: 80229A28
-//(__ct__26jmessage_tMeasureProcessorFPC19jmessage_tReference)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2547,11 +2088,7 @@ asm jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference
 }
 #pragma pop
 
-/* 8022B5F4-8022B654 0060+00 s=1 e=0 z=0  None .text      __dt__26jmessage_tMeasureProcessorFv */
-//	8022B614: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	8022B618: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	8022B624: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	8022B634: 802CED3C (__dl__FPv)
+/* 8022B5F4-8022B654 225F34 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_tMeasureProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2561,64 +2098,20 @@ asm jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {
 }
 #pragma pop
 
-/* 8022B654-8022B658 0004+00 s=1 e=0 z=0  None .text      do_reset__27jmessage_tSequenceProcessorFv
- */
+/* 8022B654-8022B658 225F94 0004+00 1/0 0/0 0/0 .text do_reset__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_reset() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80454A88-80454A8C 0004+00 s=1 e=0 z=0  None .sdata2    @5490 */
+/* 80454A88-80454A8C 003088 0004+00 1/1 0/0 0/0 .sdata2          @5490 */
 SECTION_SDATA2 static f32 lit_5490 = 10.0f;
 
-/* 80454A8C-80454A90 0004+00 s=2 e=0 z=0  None .sdata2    @5491 */
+/* 80454A8C-80454A90 00308C 0004+00 2/2 0/0 0/0 .sdata2          @5491 */
 SECTION_SDATA2 static f32 lit_5491 = 255.0f;
 
-/* 8022B658-8022BA3C 03E4+00 s=1 e=0 z=0  None .text
+/* 8022B658-8022BA3C 225F98 03E4+00 1/0 0/0 0/0 .text
  * do_begin__27jmessage_tSequenceProcessorFPCvPCc               */
-//	8022B668: 803621D8 (_savegpr_28)
-//	8022B68C: 8043028C (g_MsgObject_HIO_c)
-//	8022B690: 8043028C (g_MsgObject_HIO_c)
-//	8022B6A0: 8043028C (g_MsgObject_HIO_c)
-//	8022B6A4: 8043028C (g_MsgObject_HIO_c)
-//	8022B710: 80228D28 (calcDistance__19jmessage_tReferenceFv)
-//	8022B718: 804061C0 (g_dComIfG_gameInfo)
-//	8022B71C: 804061C0 (g_dComIfG_gameInfo)
-//	8022B768: 80238500 (getMsgOutputType__12dMsgObject_cFv)
-//	8022B778: 80238500 (getMsgOutputType__12dMsgObject_cFv)
-//	8022B7AC: 804061C0 (g_dComIfG_gameInfo)
-//	8022B7B0: 804061C0 (g_dComIfG_gameInfo)
-//	8022B7BC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8022B7C0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8022B7C8: 8003498C (onEventBit__11dSv_event_cFUs)
-//	8022B7D0: 802360A0 (talkStartInit__12dMsgObject_cFv)
-//	8022B7E8: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	8022B7EC:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	8022B84C: 802A8B20 (process__Q28JMessage19TRenderingProcessorFPCc)
-//	8022B868: 8022CBE8 (calcStringLength__27jmessage_tSequenceProcessorFv)
-//	8022B894: 80454A88 (lit_5490)
-//	8022B8AC: 80238500 (getMsgOutputType__12dMsgObject_cFv)
-//	8022B8BC: 80238500 (getMsgOutputType__12dMsgObject_cFv)
-//	8022B8E0: 80454A8C (lit_5491)
-//	8022B8E8: 80454A64 (lit_4028)
-//	8022B900: 8043028C (g_MsgObject_HIO_c)
-//	8022B904: 8043028C (g_MsgObject_HIO_c)
-//	8022B90C: 80454A70 (lit_4198)
-//	8022B934: 80454A60 (lit_4027)
-//	8022B948: 8043028C (g_MsgObject_HIO_c)
-//	8022B94C: 8043028C (g_MsgObject_HIO_c)
-//	8022B954: 80454A70 (lit_4198)
-//	8022B97C: 80454A60 (lit_4027)
-//	8022B990: 8043028C (g_MsgObject_HIO_c)
-//	8022B994: 8043028C (g_MsgObject_HIO_c)
-//	8022B99C: 80454A70 (lit_4198)
-//	8022B9C4: 80454A60 (lit_4027)
-//	8022B9D8: 8043028C (g_MsgObject_HIO_c)
-//	8022B9DC: 8043028C (g_MsgObject_HIO_c)
-//	8022B9EC: 80454A70 (lit_4198)
-//	8022BA18: 8022900C (resetReference__19jmessage_tReferenceFv)
-//	8022BA28: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2628,13 +2121,7 @@ asm void jmessage_tSequenceProcessor::do_begin(void const* param_0, char const* 
 }
 #pragma pop
 
-/* 8022BA3C-8022BB7C 0140+00 s=1 e=0 z=0  None .text      do_end__27jmessage_tSequenceProcessorFv */
-//	8022BA58: 80238574 (getSelectWordFlag__12dMsgObject_cFv)
-//	8022BA64: 80238574 (getSelectWordFlag__12dMsgObject_cFv)
-//	8022BAD4: 80228FD8 (isMidona__19jmessage_tReferenceFv)
-//	8022BB18: 804061C0 (g_dComIfG_gameInfo)
-//	8022BB1C: 804061C0 (g_dComIfG_gameInfo)
-//	8022BB58: 80229848 (allsetCharCountBuffer__19jmessage_tReferenceFv)
+/* 8022BA3C-8022BB7C 22637C 0140+00 1/0 0/0 0/0 .text do_end__27jmessage_tSequenceProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2644,28 +2131,8 @@ asm void jmessage_tSequenceProcessor::do_end() {
 }
 #pragma pop
 
-/* 8022BB7C-8022BFE0 0464+00 s=2 e=0 z=0  None .text do_isReady__27jmessage_tSequenceProcessorFv
+/* 8022BB7C-8022BFE0 2264BC 0464+00 2/0 0/0 0/0 .text do_isReady__27jmessage_tSequenceProcessorFv
  */
-//	8022BB98: 804061C0 (g_dComIfG_gameInfo)
-//	8022BB9C: 804061C0 (g_dComIfG_gameInfo)
-//	8022BBB0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8022BC2C: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	8022BC30: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	8022BC5C: 80228E6C (isKanban__19jmessage_tReferenceFv)
-//	8022BC6C: 80228EA0 (isPlaceName__19jmessage_tReferenceFv)
-//	8022BC7C: 80228F70 (isStaffRoll__19jmessage_tReferenceFv)
-//	8022BC8C: 80228ED4 (isBossName__19jmessage_tReferenceFv)
-//	8022BC9C: 80228F08 (isSaveSeq__19jmessage_tReferenceFv)
-//	8022BCAC: 80228FA4 (isHowl__19jmessage_tReferenceFv)
-//	8022BD64: 80228F3C (isBook__19jmessage_tReferenceFv)
-//	8022BE24: 80228FD8 (isMidona__19jmessage_tReferenceFv)
-//	8022BE44: 80228FD8 (isMidona__19jmessage_tReferenceFv)
-//	8022BE78: 803C0208 (lit_5735)
-//	8022BE7C: 803C0208 (lit_5735)
-//	8022BE90: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	8022BE94: 803DD2E8 (m_cpadInfo__8mDoCPd_c)
-//	8022BF78: 8043028C (g_MsgObject_HIO_c)
-//	8022BF7C: 8043028C (g_MsgObject_HIO_c)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2675,19 +2142,8 @@ asm void jmessage_tSequenceProcessor::do_isReady() {
 }
 #pragma pop
 
-/* 8022BFE0-8022C1A0 01C0+00 s=1 e=0 z=0  None .text do_character__27jmessage_tSequenceProcessorFi
- */
-//	8022BFF0: 803621DC (_savegpr_29)
-//	8022C040: 802288A8 (isOutfontKanjiCode__Fi)
-//	8022C050: 80228608 (change1ByteTo2Bytes__Fi)
-//	8022C058: 80228838 (changeKataToHira__Fi)
-//	8022C064: 80229788 (addCharactor__19jmessage_tReferenceFUs)
-//	8022C080: 802288A8 (isOutfontKanjiCode__Fi)
-//	8022C090: 80228838 (changeKataToHira__Fi)
-//	8022C09C: 80229788 (addCharactor__19jmessage_tReferenceFUs)
-//	8022C0C0: 80232A20 (getActorPos__19jmessage_tReferenceFv)
-//	8022C0EC: 8022CB10 (messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz)
-//	8022C18C: 80362228 (_restgpr_29)
+/* 8022BFE0-8022C1A0 226920 01C0+00 1/0 0/0 0/0 .text
+ * do_character__27jmessage_tSequenceProcessorFi                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2697,60 +2153,8 @@ asm void jmessage_tSequenceProcessor::do_character(int param_0) {
 }
 #pragma pop
 
-/* 8022C1A0-8022C8FC 075C+00 s=2 e=0 z=0  None .text do_tag__27jmessage_tSequenceProcessorFUlPCvUl
- */
-//	8022C1B0: 803621D8 (_savegpr_28)
-//	8022C24C: 80232A20 (getActorPos__19jmessage_tReferenceFv)
-//	8022C278: 8022CB10 (messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz)
-//	8022C288: 804061C0 (g_dComIfG_gameInfo)
-//	8022C28C: 804061C0 (g_dComIfG_gameInfo)
-//	8022C2FC: 8022CA24 (do_rubyset__27jmessage_tSequenceProcessorFPCvUl)
-//	8022C310: 803C0230 (lit_6062)
-//	8022C314: 803C0230 (lit_6062)
-//	8022C32C: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C338: 80238514 (getWord__12dMsgObject_cFv)
-//	8022C344: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C354: 802372CC (getSmellName__12dMsgObject_cFv)
-//	8022C360: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C370: 80237334 (getPortalName__12dMsgObject_cFv)
-//	8022C37C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C38C: 8023738C (getBombName__12dMsgObject_cFv)
-//	8022C398: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C3A8: 8023741C (getInsectName__12dMsgObject_cFv)
-//	8022C3B4: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C3C4: 80237478 (getLetterName__12dMsgObject_cFv)
-//	8022C3D0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C3E8: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C464: 80430188 (g_meter2_info)
-//	8022C468: 80430188 (g_meter2_info)
-//	8022C6D8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022C6E8: 8022C904 (do_name1__27jmessage_tSequenceProcessorFv)
-//	8022C6FC: 8022C908 (do_space__27jmessage_tSequenceProcessorFUl)
-//	8022C710: 802299AC (decideOutFontRupeeColor__19jmessage_tReferenceFi)
-//	8022C740: 804061C0 (g_dComIfG_gameInfo)
-//	8022C744: 804061C0 (g_dComIfG_gameInfo)
-//	8022C74C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8022C750: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8022C758: 8003498C (onEventBit__11dSv_event_cFUs)
-//	8022C778: 802374D0 (getSelectBombNum__12dMsgObject_cFv)
-//	8022C780: 804510D0 (g_msg_unit)
-//	8022C794: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022C7A4: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022C7AC: 80368B2C (strcpy)
-//	8022C7B4: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C7C0: 802385E0 (getSelectBombPrice__12dMsgObject_cFv)
-//	8022C7C8: 804510D0 (g_msg_unit)
-//	8022C7DC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022C7EC: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022C7F4: 80368B2C (strcpy)
-//	8022C7FC: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C80C: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C834: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C85C: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C890: 8022CAAC (push_word__27jmessage_tSequenceProcessorFv)
-//	8022C8A4: 8022C908 (do_space__27jmessage_tSequenceProcessorFUl)
-//	8022C8CC: 8022C908 (do_space__27jmessage_tSequenceProcessorFUl)
-//	8022C8E8: 80362224 (_restgpr_28)
+/* 8022C1A0-8022C8FC 226AE0 075C+00 2/0 0/0 0/0 .text
+ * do_tag__27jmessage_tSequenceProcessorFUlPCvUl                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2760,23 +2164,19 @@ asm void jmessage_tSequenceProcessor::do_tag(u32 param_0, void const* param_1, u
 }
 #pragma pop
 
-/* 8022C8FC-8022C904 0008+00 s=1 e=0 z=0  None .text
+/* 8022C8FC-8022C904 22723C 0008+00 1/0 0/0 0/0 .text
  * do_jump_isReady__27jmessage_tSequenceProcessorFv             */
 bool jmessage_tSequenceProcessor::do_jump_isReady() {
     return true;
 }
 
-/* 8022C904-8022C908 0004+00 s=1 e=0 z=0  None .text      do_name1__27jmessage_tSequenceProcessorFv
- */
+/* 8022C904-8022C908 227244 0004+00 1/1 0/0 0/0 .text do_name1__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_name1() {
     /* empty function */
 }
 
-/* 8022C908-8022CA24 011C+00 s=2 e=0 z=0  None .text      do_space__27jmessage_tSequenceProcessorFUl
+/* 8022C908-8022CA24 227248 011C+00 2/1 0/0 0/0 .text do_space__27jmessage_tSequenceProcessorFUl
  */
-//	8022C944: 803C0330 (lit_6110)
-//	8022C948: 803C0330 (lit_6110)
-//	8022CA10: 80229788 (addCharactor__19jmessage_tReferenceFUs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2786,12 +2186,8 @@ asm void jmessage_tSequenceProcessor::do_space(u32 param_0) {
 }
 #pragma pop
 
-/* 8022CA24-8022CAAC 0088+00 s=1 e=0 z=0  None .text
+/* 8022CA24-8022CAAC 227364 0088+00 1/1 0/0 0/0 .text
  * do_rubyset__27jmessage_tSequenceProcessorFPCvUl              */
-//	8022CA34: 803621D8 (_savegpr_28)
-//	8022CA7C: 80228838 (changeKataToHira__Fi)
-//	8022CA88: 80229788 (addCharactor__19jmessage_tReferenceFUs)
-//	8022CA98: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2801,10 +2197,8 @@ asm void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_
 }
 #pragma pop
 
-/* 8022CAAC-8022CB10 0064+00 s=1 e=0 z=0  None .text      push_word__27jmessage_tSequenceProcessorFv
+/* 8022CAAC-8022CB10 2273EC 0064+00 1/1 0/0 0/0 .text push_word__27jmessage_tSequenceProcessorFv
  */
-//	8022CAD4: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022CAE0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2814,22 +2208,8 @@ asm void jmessage_tSequenceProcessor::push_word() {
 }
 #pragma pop
 
-/* 8022CB10-8022CBE4 00D4+00 s=2 e=0 z=0  None .text
+/* 8022CB10-8022CBE4 227450 00D4+00 2/2 0/0 0/0 .text
  * messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz      */
-//	8022CB20: 803621DC (_savegpr_29)
-//	8022CB48: 80450D64 (struct_80450D64)
-//	8022CB54: 8002D06C (dComIfGp_getReverb__Fi)
-//	8022CB5C: 80450B70 (data_80450B70)
-//	8022CB6C: 802CCA18 (playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc)
-//	8022CB74: 80450B70 (data_80450B70)
-//	8022CB80: 802CCA18 (playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc)
-//	8022CB88: 80450D64 (struct_80450D64)
-//	8022CB94: 8002D06C (dComIfGp_getReverb__Fi)
-//	8022CB9C: 80450B70 (data_80450B70)
-//	8022CBAC: 802CCA18 (playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc)
-//	8022CBB4: 80450B70 (data_80450B70)
-//	8022CBC8: 802CCA18 (playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc)
-//	8022CBD0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2839,20 +2219,14 @@ asm void jmessage_tSequenceProcessor::messageSePlay(u8 param_0, u8 param_1, cXyz
 }
 #pragma pop
 
-/* 8022CBE4-8022CBE8 0004+00 s=1 e=0 z=0  None .text do_jump__27jmessage_tSequenceProcessorFPCvPCc
- */
+/* 8022CBE4-8022CBE8 227524 0004+00 1/0 0/0 0/0 .text
+ * do_jump__27jmessage_tSequenceProcessorFPCvPCc                */
 void jmessage_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {
     /* empty function */
 }
 
-/* 8022CBE8-8022CCB0 00C8+00 s=2 e=0 z=0  None .text
+/* 8022CBE8-8022CCB0 227528 00C8+00 2/2 0/0 0/0 .text
  * calcStringLength__27jmessage_tSequenceProcessorFv            */
-//	8022CBF8: 803621D8 (_savegpr_28)
-//	8022CC28: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	8022CC2C:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	8022CC8C: 802A8B20 (process__Q28JMessage19TRenderingProcessorFPCc)
-//	8022CC9C: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2862,14 +2236,8 @@ asm void jmessage_tSequenceProcessor::calcStringLength() {
 }
 #pragma pop
 
-/* 8022CCB0-8022CDC8 0118+00 s=0 e=1 z=0  None .text
+/* 8022CCB0-8022CDC8 2275F0 0118+00 0/0 1/1 0/0 .text
  * __ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference */
-//	8022CCC4: 802A8A84 (__ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference)
-//	8022CCC8: 803C09FC (__vt__28jmessage_tRenderingProcessor)
-//	8022CCCC: 803C09FC (__vt__28jmessage_tRenderingProcessor)
-//	8022CCE4: 80454A60 (lit_4027)
-//	8022CCFC: 80454A64 (lit_4028)
-//	8022CD2C: 80454A60 (lit_4027)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2879,41 +2247,14 @@ asm jmessage_tRenderingProcessor::jmessage_tRenderingProcessor(jmessage_tReferen
 }
 #pragma pop
 
-/* 8022CDC8-8022CDCC 0004+00 s=1 e=0 z=0  None .text      do_reset__28jmessage_tRenderingProcessorFv
+/* 8022CDC8-8022CDCC 227708 0004+00 1/0 0/0 0/0 .text do_reset__28jmessage_tRenderingProcessorFv
  */
 void jmessage_tRenderingProcessor::do_reset() {
     /* empty function */
 }
 
-/* 8022CDCC-8022CFD8 020C+00 s=1 e=0 z=0  None .text
+/* 8022CDCC-8022CFD8 22770C 020C+00 1/0 0/0 0/0 .text
  * do_begin__28jmessage_tRenderingProcessorFPCvPCc              */
-//	8022CDDC: 803621D0 (_savegpr_26)
-//	8022CDE8: 80454A60 (lit_4027)
-//	8022CE58: 80454A64 (lit_4028)
-//	8022CE94: 80226CF8 (initialize__10COutFont_cFv)
-//	8022CE9C: 80454A60 (lit_4027)
-//	8022CEC4: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CEC8: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CED0: 80368B2C (strcpy)
-//	8022CED8: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CEDC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CEE4: 80368B2C (strcpy)
-//	8022CEEC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CEF0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CEF8: 80368B2C (strcpy)
-//	8022CF08: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CF0C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022CF1C: 80368B2C (strcpy)
-//	8022CF2C: 80368B2C (strcpy)
-//	8022CF44: 80454A64 (lit_4028)
-//	8022CF5C: 8022E860 (do_scale__28jmessage_tRenderingProcessorFf)
-//	8022CF68: 8022E7CC (do_color__28jmessage_tRenderingProcessorFUc)
-//	8022CF78: 8022E17C (do_widthcenter__28jmessage_tRenderingProcessorFv)
-//	8022CF80: 8022E318 (do_heightcenter__28jmessage_tRenderingProcessorFv)
-//	8022CF9C: 80454A80 (lit_5154)
-//	8022CFB4: 80454A7C (lit_5151)
-//	8022CFBC: 8022E860 (do_scale__28jmessage_tRenderingProcessorFf)
-//	8022CFC4: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2923,16 +2264,7 @@ asm void jmessage_tRenderingProcessor::do_begin(void const* param_0, char const*
 }
 #pragma pop
 
-/* 8022CFD8-8022D0A0 00C8+00 s=1 e=0 z=0  None .text      do_end__28jmessage_tRenderingProcessorFv
- */
-//	8022CFE8: 803621DC (_savegpr_29)
-//	8022CFF0: 80238574 (getSelectWordFlag__12dMsgObject_cFv)
-//	8022D00C: 80238528 (getSelectWord__12dMsgObject_cFi)
-//	8022D018: 80368B2C (strcpy)
-//	8022D03C: 80368ABC (strcat)
-//	8022D058: 80368ABC (strcat)
-//	8022D064: 80238574 (getSelectWordFlag__12dMsgObject_cFv)
-//	8022D08C: 80362228 (_restgpr_29)
+/* 8022CFD8-8022D0A0 227918 00C8+00 1/0 0/0 0/0 .text do_end__28jmessage_tRenderingProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2943,45 +2275,11 @@ asm void jmessage_tRenderingProcessor::do_end() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A90-80454A94 0004+00 s=1 e=0 z=0  None .sdata2    @6374 */
+/* 80454A90-80454A94 003090 0004+00 1/1 0/0 0/0 .sdata2          @6374 */
 SECTION_SDATA2 static f32 lit_6374 = 3.0f / 10.0f;
 
-/* 8022D0A0-8022D74C 06AC+00 s=1 e=0 z=0  None .text
+/* 8022D0A0-8022D74C 2279E0 06AC+00 1/0 0/0 0/0 .text
  * do_character__28jmessage_tRenderingProcessorFi               */
-//	8022D0C0: 803621D4 (_savegpr_27)
-//	8022D174: 80454A64 (lit_4028)
-//	8022D1A0: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022D1A4: 80454A60 (lit_4027)
-//	8022D1D4: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022D1EC: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022D200: 8022E17C (do_widthcenter__28jmessage_tRenderingProcessorFv)
-//	8022D208: 8022E318 (do_heightcenter__28jmessage_tRenderingProcessorFv)
-//	8022D234: 80454A70 (lit_4198)
-//	8022D254: 80454A64 (lit_4028)
-//	8022D264: 80454A5C (lit_4026)
-//	8022D294: 80454A70 (lit_4198)
-//	8022D2EC: 80454A70 (lit_4198)
-//	8022D364: 80454A70 (lit_4198)
-//	8022D3AC: 80454A70 (lit_4198)
-//	8022D408: 80454A70 (lit_4198)
-//	8022D42C: 80228578 (checkCharInfoCharactor__Fi)
-//	8022D458: 80454A70 (lit_4198)
-//	8022D488: 80454A70 (lit_4198)
-//	8022D4CC: 80454A70 (lit_4198)
-//	8022D4FC: 80454A64 (lit_4028)
-//	8022D50C: 80454A90 (lit_6374)
-//	8022D518: 80454A5C (lit_4026)
-//	8022D56C: 80454A64 (lit_4028)
-//	8022D570: 8022F784 (getCharInfo__28jmessage_tRenderingProcessorFfffff)
-//	8022D590: 80454A70 (lit_4198)
-//	8022D5B0: 80454A64 (lit_4028)
-//	8022D5C0: 80454A5C (lit_4026)
-//	8022D5F0: 80454A70 (lit_4198)
-//	8022D64C: 80454A70 (lit_4198)
-//	8022D6DC: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022D708: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022D720: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022D738: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2991,115 +2289,8 @@ asm void jmessage_tRenderingProcessor::do_character(int param_0) {
 }
 #pragma pop
 
-/* 8022D74C-8022E12C 09E0+00 s=3 e=0 z=0  None .text
+/* 8022D74C-8022E12C 22808C 09E0+00 3/0 0/0 0/0 .text
  * do_tag__28jmessage_tRenderingProcessorFUlPCvUl               */
-//	8022D828: 8022E7CC (do_color__28jmessage_tRenderingProcessorFUc)
-//	8022D840: 80454A80 (lit_5154)
-//	8022D858: 80454A7C (lit_5151)
-//	8022D860: 8022E860 (do_scale__28jmessage_tRenderingProcessorFf)
-//	8022D878: 8022F148 (do_rubyset__28jmessage_tRenderingProcessorFPCvUl)
-//	8022D88C: 803C0448 (lit_6571)
-//	8022D890: 803C0448 (lit_6571)
-//	8022D8A8: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022D8B4: 80238514 (getWord__12dMsgObject_cFv)
-//	8022D8C0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D8C4: 80238574 (getSelectWordFlag__12dMsgObject_cFv)
-//	8022D8D8: 802372CC (getSmellName__12dMsgObject_cFv)
-//	8022D8E4: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D8F4: 80237334 (getPortalName__12dMsgObject_cFv)
-//	8022D900: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D910: 8023738C (getBombName__12dMsgObject_cFv)
-//	8022D91C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D92C: 8023741C (getInsectName__12dMsgObject_cFv)
-//	8022D938: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D948: 80237478 (getLetterName__12dMsgObject_cFv)
-//	8022D954: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022D96C: 8022E960 (do_linedown__28jmessage_tRenderingProcessorFs)
-//	8022D97C: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022D9D0: 8022E260 (do_selwidthcenter__28jmessage_tRenderingProcessorFi)
-//	8022D9E0: 8022ED10 (do_arrow2__28jmessage_tRenderingProcessorFv)
-//	8022D9F0: 8022ED10 (do_arrow2__28jmessage_tRenderingProcessorFv)
-//	8022DA1C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022DA2C: 8022F53C (do_name1__28jmessage_tRenderingProcessorFv)
-//	8022DA44: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DA5C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DA74: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DA8C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DAA4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DABC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DAD4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DAEC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB04: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB1C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB34: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB4C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB64: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB7C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DB94: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DBAC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DBC4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DBDC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DBF4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC0C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC24: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC3C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC54: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC64: 8022F540 (do_numset__28jmessage_tRenderingProcessorFs)
-//	8022DC84: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DC9C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DCB4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DCC0: 80238638 (getItemEquipButton__12dMsgObject_cFv)
-//	8022DCD8: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DCEC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DCF8: 80238638 (getItemEquipButton__12dMsgObject_cFv)
-//	8022DD10: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DD24: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DD3C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DD54: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DD6C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DD7C: 802374D0 (getSelectBombNum__12dMsgObject_cFv)
-//	8022DD84: 804510D0 (g_msg_unit)
-//	8022DD98: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022DDA8: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022DDB0: 80368B2C (strcpy)
-//	8022DDB8: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DDC4: 802385E0 (getSelectBombPrice__12dMsgObject_cFv)
-//	8022DDCC: 804510D0 (g_msg_unit)
-//	8022DDE0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8022DDF0: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022DDF8: 80368B2C (strcpy)
-//	8022DE00: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DE10: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DE40: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DE68: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DEA0: 8022F734 (push_word__28jmessage_tRenderingProcessorFv)
-//	8022DEB8: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DED0: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DEE8: 803C03F4 (lit_6572)
-//	8022DEEC: 803C03F4 (lit_6572)
-//	8022DF0C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF24: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF3C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF54: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF6C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF84: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DF9C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DFB4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DFCC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DFE4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022DFFC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E014: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E02C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E038: 804061C0 (g_dComIfG_gameInfo)
-//	8022E03C: 804061C0 (g_dComIfG_gameInfo)
-//	8022E058: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E06C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E084: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E09C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E0B4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E0CC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E0E4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022E0FC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3109,9 +2300,8 @@ asm void jmessage_tRenderingProcessor::do_tag(u32 param_0, void const* param_1, 
 }
 #pragma pop
 
-/* 8022E12C-8022E17C 0050+00 s=0 e=2 z=0  None .text
+/* 8022E12C-8022E17C 228A6C 0050+00 0/0 2/2 0/0 .text
  * resetRendering__28jmessage_tRenderingProcessorFv             */
-//	8022E13C: 80454A60 (lit_4027)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3121,15 +2311,8 @@ asm void jmessage_tRenderingProcessor::resetRendering() {
 }
 #pragma pop
 
-/* 8022E17C-8022E260 00E4+00 s=2 e=0 z=0  None .text
+/* 8022E17C-8022E260 228ABC 00E4+00 2/2 0/0 0/0 .text
  * do_widthcenter__28jmessage_tRenderingProcessorFv             */
-//	8022E1D4: 8022EECC (getLineLength__28jmessage_tRenderingProcessorFi)
-//	8022E1DC: 80454A5C (lit_4026)
-//	8022E1E8: 80454A64 (lit_4028)
-//	8022E200: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E204: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E21C: 803665BC (snprintf)
-//	8022E234: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3139,14 +2322,8 @@ asm void jmessage_tRenderingProcessor::do_widthcenter() {
 }
 #pragma pop
 
-/* 8022E260-8022E318 00B8+00 s=1 e=0 z=0  None .text
+/* 8022E260-8022E318 228BA0 00B8+00 1/1 0/0 0/0 .text
  * do_selwidthcenter__28jmessage_tRenderingProcessorFi          */
-//	8022E280: 80454A5C (lit_4026)
-//	8022E2A0: 80454A64 (lit_4028)
-//	8022E2B8: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E2BC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E2D4: 803665BC (snprintf)
-//	8022E2EC: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3156,49 +2333,8 @@ asm void jmessage_tRenderingProcessor::do_selwidthcenter(int param_0) {
 }
 #pragma pop
 
-/* 8022E318-8022E7CC 04B4+00 s=3 e=0 z=0  None .text
+/* 8022E318-8022E7CC 228C58 04B4+00 3/2 0/0 0/0 .text
  * do_heightcenter__28jmessage_tRenderingProcessorFv            */
-//	8022E340: 803621DC (_savegpr_29)
-//	8022E34C: 80454A60 (lit_4027)
-//	8022E370: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022E37C: 80454A70 (lit_4198)
-//	8022E3A4: 80454A5C (lit_4026)
-//	8022E3C8: 803C0548 (lit_6703)
-//	8022E3CC: 803C0548 (lit_6703)
-//	8022E3F8: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022E410: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022E41C: 80454A70 (lit_4198)
-//	8022E438: 80454A5C (lit_4026)
-//	8022E470: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022E47C: 80454A70 (lit_4198)
-//	8022E498: 80454A5C (lit_4026)
-//	8022E4D4: 80454A5C (lit_4026)
-//	8022E4F0: 80454A5C (lit_4026)
-//	8022E528: 80228DE0 (getLineMax__19jmessage_tReferenceFv)
-//	8022E534: 80454A70 (lit_4198)
-//	8022E550: 80454A5C (lit_4026)
-//	8022E574: 80454A5C (lit_4026)
-//	8022E5A0: 80454A80 (lit_5154)
-//	8022E5B8: 80454A7C (lit_5151)
-//	8022E5CC: 80454A5C (lit_4026)
-//	8022E5F4: 80454A5C (lit_4026)
-//	8022E620: 80454A80 (lit_5154)
-//	8022E638: 80454A7C (lit_5151)
-//	8022E64C: 80454A5C (lit_4026)
-//	8022E674: 80454A5C (lit_4026)
-//	8022E6A4: 80454A5C (lit_4026)
-//	8022E6CC: 80454A5C (lit_4026)
-//	8022E6F0: 80454A60 (lit_4027)
-//	8022E6F8: 80454A60 (lit_4027)
-//	8022E718: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E71C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E734: 803665BC (snprintf)
-//	8022E74C: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022E778: 80454A60 (lit_4027)
-//	8022E77C: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022E794: 80454A60 (lit_4027)
-//	8022E798: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022E7B8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3208,16 +2344,8 @@ asm void jmessage_tRenderingProcessor::do_heightcenter() {
 }
 #pragma pop
 
-/* 8022E7CC-8022E860 0094+00 s=2 e=0 z=0  None .text do_color__28jmessage_tRenderingProcessorFUc
+/* 8022E7CC-8022E860 22910C 0094+00 2/2 0/0 0/0 .text do_color__28jmessage_tRenderingProcessorFUc
  */
-//	8022E7DC: 803621DC (_savegpr_29)
-//	8022E7F8: 802288FC (getFontCCColorTable__FUcUc)
-//	8022E808: 802289A8 (getFontGCColorTable__FUcUc)
-//	8022E814: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E818: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E82C: 803664DC (sprintf)
-//	8022E844: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022E84C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3227,16 +2355,8 @@ asm void jmessage_tRenderingProcessor::do_color(u8 param_0) {
 }
 #pragma pop
 
-/* 8022E860-8022E960 0100+00 s=2 e=0 z=0  None .text      do_scale__28jmessage_tRenderingProcessorFf
+/* 8022E860-8022E960 2291A0 0100+00 2/2 0/0 0/0 .text do_scale__28jmessage_tRenderingProcessorFf
  */
-//	8022E870: 803621D8 (_savegpr_28)
-//	8022E884: 80454A5C (lit_4026)
-//	8022E908: 8022E9C0 (do_transY__28jmessage_tRenderingProcessorFsb)
-//	8022E914: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E918: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E92C: 803664DC (sprintf)
-//	8022E944: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022E94C: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3246,12 +2366,8 @@ asm void jmessage_tRenderingProcessor::do_scale(f32 param_0) {
 }
 #pragma pop
 
-/* 8022E960-8022E9C0 0060+00 s=1 e=0 z=0  None .text do_linedown__28jmessage_tRenderingProcessorFs
- */
-//	8022E97C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E980: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E990: 803664DC (sprintf)
-//	8022E9A8: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
+/* 8022E960-8022E9C0 2292A0 0060+00 1/1 0/0 0/0 .text
+ * do_linedown__28jmessage_tRenderingProcessorFs                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3261,26 +2377,8 @@ asm void jmessage_tRenderingProcessor::do_linedown(s16 param_0) {
 }
 #pragma pop
 
-/* 8022E9C0-8022EAE4 0124+00 s=1 e=0 z=0  None .text do_transY__28jmessage_tRenderingProcessorFsb
+/* 8022E9C0-8022EAE4 229300 0124+00 1/1 0/0 0/0 .text do_transY__28jmessage_tRenderingProcessorFsb
  */
-//	8022E9D0: 803621DC (_savegpr_29)
-//	8022E9F0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022E9F4: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA0C: 803664DC (sprintf)
-//	8022EA14: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA18: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA28: 803664DC (sprintf)
-//	8022EA34: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA38: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA4C: 803664DC (sprintf)
-//	8022EA54: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA58: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EA68: 803664DC (sprintf)
-//	8022EA74: 80454A70 (lit_4198)
-//	8022EAAC: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022EAC4: 80454A60 (lit_4027)
-//	8022EAC8: 8022F384 (do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff)
-//	8022EAD0: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3291,24 +2389,11 @@ asm void jmessage_tRenderingProcessor::do_transY(s16 param_0, bool param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A94-80454A98 0004+00 s=1 e=0 z=0  None .sdata2    @6781 */
+/* 80454A94-80454A98 003094 0004+00 1/1 0/0 0/0 .sdata2          @6781 */
 SECTION_SDATA2 static f32 lit_6781 = 24.0f;
 
-/* 8022EAE4-8022ED10 022C+00 s=2 e=0 z=0  None .text
+/* 8022EAE4-8022ED10 229424 022C+00 2/2 0/0 0/0 .text
  * do_outfont__28jmessage_tRenderingProcessorFUcUl              */
-//	8022EB14: 803621D4 (_savegpr_27)
-//	8022EB54: 80454A94 (lit_6781)
-//	8022EC24: 80454A5C (lit_4026)
-//	8022EC48: 80454A64 (lit_4028)
-//	8022EC4C: 8022F784 (getCharInfo__28jmessage_tRenderingProcessorFfffff)
-//	8022EC50: 80454A5C (lit_4026)
-//	8022EC58: 80454A64 (lit_4028)
-//	8022EC80: 80454A70 (lit_4198)
-//	8022ECAC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022ECB0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022ECBC: 803665BC (snprintf)
-//	8022ECD4: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022ECFC: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3318,18 +2403,8 @@ asm void jmessage_tRenderingProcessor::do_outfont(u8 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 8022ED10-8022EECC 01BC+00 s=1 e=0 z=0  None .text do_arrow2__28jmessage_tRenderingProcessorFv
+/* 8022ED10-8022EECC 229650 01BC+00 1/1 0/0 0/0 .text do_arrow2__28jmessage_tRenderingProcessorFv
  */
-//	8022ED28: 803621DC (_savegpr_29)
-//	8022ED4C: 80454A70 (lit_4198)
-//	8022ED7C: 80454A70 (lit_4198)
-//	8022EE1C: 80454A5C (lit_4026)
-//	8022EE48: 80454A70 (lit_4198)
-//	8022EE74: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EE78: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022EE84: 803665BC (snprintf)
-//	8022EE9C: 8022EF00 (do_strcat__28jmessage_tRenderingProcessorFPcbbb)
-//	8022EEB8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3339,7 +2414,7 @@ asm void jmessage_tRenderingProcessor::do_arrow2() {
 }
 #pragma pop
 
-/* 8022EECC-8022EF00 0034+00 s=1 e=0 z=0  None .text
+/* 8022EECC-8022EF00 22980C 0034+00 1/1 0/0 0/0 .text
  * getLineLength__28jmessage_tRenderingProcessorFi              */
 #pragma push
 #pragma optimization_level 0
@@ -3350,29 +2425,8 @@ asm void jmessage_tRenderingProcessor::getLineLength(int param_0) {
 }
 #pragma pop
 
-/* 8022EF00-8022F148 0248+00 s=10 e=0 z=0  None .text
+/* 8022EF00-8022F148 229840 0248+00 10/10 0/0 0/0 .text
  * do_strcat__28jmessage_tRenderingProcessorFPcbbb              */
-//	8022EF10: 803621D0 (_savegpr_26)
-//	8022EF30: 8022986C (isCharSend__19jmessage_tReferenceFv)
-//	8022EF48: 80368BE4 (strlen)
-//	8022EF84: 80368ABC (strcat)
-//	8022EFDC: 80454A8C (lit_5491)
-//	8022EFF0: 80454A60 (lit_4027)
-//	8022F004: 80454A8C (lit_5491)
-//	8022F048: 80368ABC (strcat)
-//	8022F068: 80368ABC (strcat)
-//	8022F080: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F084: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F0A0: 803664DC (sprintf)
-//	8022F0A8: 80368BE4 (strlen)
-//	8022F0C0: 80368BE4 (strlen)
-//	8022F0CC: 80368BE4 (strlen)
-//	8022F0DC: 80368B2C (strcpy)
-//	8022F0E8: 80368ABC (strcat)
-//	8022F0F4: 80368ABC (strcat)
-//	8022F118: 80368ABC (strcat)
-//	8022F12C: 80368ABC (strcat)
-//	8022F134: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3383,14 +2437,8 @@ asm void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bo
 }
 #pragma pop
 
-/* 8022F148-8022F384 023C+00 s=1 e=0 z=0  None .text
+/* 8022F148-8022F384 229A88 023C+00 1/1 0/0 0/0 .text
  * do_rubyset__28jmessage_tRenderingProcessorFPCvUl             */
-//	8022F168: 803621CC (_savegpr_25)
-//	8022F198: 80454A60 (lit_4027)
-//	8022F1D0: 80368ABC (strcat)
-//	8022F22C: 80454A70 (lit_4198)
-//	8022F2B0: 80454A70 (lit_4198)
-//	8022F370: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3400,26 +2448,8 @@ asm void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param
 }
 #pragma pop
 
-/* 8022F384-8022F53C 01B8+00 s=3 e=0 z=0  None .text
+/* 8022F384-8022F53C 229CC4 01B8+00 3/3 0/0 0/0 .text
  * do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff         */
-//	8022F3A4: 803621D8 (_savegpr_28)
-//	8022F3C0: 8022986C (isCharSend__19jmessage_tReferenceFv)
-//	8022F3CC: 80454A60 (lit_4027)
-//	8022F3DC: 80454A5C (lit_4026)
-//	8022F404: 80454A64 (lit_4028)
-//	8022F41C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F420: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F43C: 803665BC (snprintf)
-//	8022F448: 80368ABC (strcat)
-//	8022F450: 80454A70 (lit_4198)
-//	8022F478: 80454A78 (lit_4291)
-//	8022F490: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F494: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022F4B0: 803665BC (snprintf)
-//	8022F4BC: 80368ABC (strcat)
-//	8022F4D0: 80454A70 (lit_4198)
-//	8022F510: 80368ABC (strcat)
-//	8022F528: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3430,32 +2460,14 @@ asm void jmessage_tRenderingProcessor::do_rubystrcat(char* param_0, char* param_
 }
 #pragma pop
 
-/* 8022F53C-8022F540 0004+00 s=1 e=0 z=0  None .text      do_name1__28jmessage_tRenderingProcessorFv
+/* 8022F53C-8022F540 229E7C 0004+00 1/1 0/0 0/0 .text do_name1__28jmessage_tRenderingProcessorFv
  */
 void jmessage_tRenderingProcessor::do_name1() {
     /* empty function */
 }
 
-/* 8022F540-8022F734 01F4+00 s=1 e=0 z=0  None .text do_numset__28jmessage_tRenderingProcessorFs
+/* 8022F540-8022F734 229E80 01F4+00 1/1 0/0 0/0 .text do_numset__28jmessage_tRenderingProcessorFs
  */
-//	8022F550: 803621DC (_savegpr_29)
-//	8022F594: 80228A54 (getOutFontNumberType__Fi)
-//	8022F5A8: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F5BC: 80228A54 (getOutFontNumberType__Fi)
-//	8022F5CC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F5F8: 80228A54 (getOutFontNumberType__Fi)
-//	8022F60C: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F630: 80228A54 (getOutFontNumberType__Fi)
-//	8022F640: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F66C: 80228A54 (getOutFontNumberType__Fi)
-//	8022F680: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F6A4: 80228A54 (getOutFontNumberType__Fi)
-//	8022F6B4: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F6D8: 80228A54 (getOutFontNumberType__Fi)
-//	8022F6EC: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F708: 80228A54 (getOutFontNumberType__Fi)
-//	8022F718: 8022EAE4 (do_outfont__28jmessage_tRenderingProcessorFUcUl)
-//	8022F720: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3465,10 +2477,8 @@ asm void jmessage_tRenderingProcessor::do_numset(s16 param_0) {
 }
 #pragma pop
 
-/* 8022F734-8022F784 0050+00 s=1 e=0 z=0  None .text push_word__28jmessage_tRenderingProcessorFv
+/* 8022F734-8022F784 22A074 0050+00 1/1 0/0 0/0 .text push_word__28jmessage_tRenderingProcessorFv
  */
-//	8022F754: 80229730 (getWord__19jmessage_tReferenceFi)
-//	8022F760: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3478,11 +2488,8 @@ asm void jmessage_tRenderingProcessor::push_word() {
 }
 #pragma pop
 
-/* 8022F784-8022F8C0 013C+00 s=2 e=0 z=0  None .text
+/* 8022F784-8022F8C0 22A0C4 013C+00 2/2 0/0 0/0 .text
  * getCharInfo__28jmessage_tRenderingProcessorFfffff            */
-//	8022F794: 8036213C (_savefpr_27)
-//	8022F7C0: 802298DC (isLightSend__19jmessage_tReferenceFv)
-//	8022F8A4: 80362188 (_restfpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3493,14 +2500,7 @@ asm void jmessage_tRenderingProcessor::getCharInfo(f32 param_0, f32 param_1, f32
 }
 #pragma pop
 
-/* 8022F8C0-8022F94C 008C+00 s=0 e=1 z=0  None .text      __ct__26jmessage_string_tReferenceFv */
-//	8022F8D4: 803C9C6C (__vt__Q28JMessage10TReference)
-//	8022F8D8: 803C9C6C (__vt__Q28JMessage10TReference)
-//	8022F8E8: 803C09EC (__vt__26jmessage_string_tReference)
-//	8022F8EC: 803C09EC (__vt__26jmessage_string_tReference)
-//	8022F8FC: 800149F0 (mDoExt_getMesgFont__Fv)
-//	8022F908: 80454A60 (lit_4027)
-//	8022F930: 8022FA34 (resetCharactor__26jmessage_string_tReferenceFv)
+/* 8022F8C0-8022F94C 22A200 008C+00 0/0 1/1 0/0 .text __ct__26jmessage_string_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3510,11 +2510,7 @@ asm jmessage_string_tReference::jmessage_string_tReference() {
 }
 #pragma pop
 
-/* 8022F94C-8022F9AC 0060+00 s=1 e=0 z=0  None .text      __dt__26jmessage_string_tReferenceFv */
-//	8022F96C: 803C09EC (__vt__26jmessage_string_tReference)
-//	8022F970: 803C09EC (__vt__26jmessage_string_tReference)
-//	8022F97C: 802A7AF8 (__dt__Q28JMessage10TReferenceFv)
-//	8022F98C: 802CED3C (__dl__FPv)
+/* 8022F94C-8022F9AC 22A28C 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_string_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3524,10 +2520,8 @@ asm jmessage_string_tReference::~jmessage_string_tReference() {
 }
 #pragma pop
 
-/* 8022F9AC-8022FA2C 0080+00 s=0 e=3 z=0  None .text
+/* 8022F9AC-8022FA2C 22A2EC 0080+00 0/0 3/3 0/0 .text
  * init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-//	8022F9EC: 80454A60 (lit_4027)
-//	8022FA18: 80226CF8 (initialize__10COutFont_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3538,28 +2532,26 @@ asm void jmessage_string_tReference::init(J2DTextBox* param_0, J2DTextBox* param
 }
 #pragma pop
 
-/* 8022FA2C-8022FA30 0004+00 s=3 e=0 z=0  None .text setCharactor__26jmessage_string_tReferenceFUs
- */
+/* 8022FA2C-8022FA30 22A36C 0004+00 3/3 0/0 0/0 .text
+ * setCharactor__26jmessage_string_tReferenceFUs                */
 void jmessage_string_tReference::setCharactor(u16 param_0) {
     /* empty function */
 }
 
-/* 8022FA30-8022FA34 0004+00 s=3 e=0 z=0  None .text addCharactor__26jmessage_string_tReferenceFUs
- */
+/* 8022FA30-8022FA34 22A370 0004+00 3/3 0/0 0/0 .text
+ * addCharactor__26jmessage_string_tReferenceFUs                */
 void jmessage_string_tReference::addCharactor(u16 param_0) {
     /* empty function */
 }
 
-/* 8022FA34-8022FA38 0004+00 s=3 e=0 z=0  None .text
+/* 8022FA34-8022FA38 22A374 0004+00 3/3 0/0 0/0 .text
  * resetCharactor__26jmessage_string_tReferenceFv               */
 void jmessage_string_tReference::resetCharactor() {
     /* empty function */
 }
 
-/* 8022FA38-8022FA6C 0034+00 s=2 e=1 z=0  None .text getLineLength__26jmessage_string_tReferenceFi
- */
-//	8022FA40: 80454A60 (lit_4027)
-//	8022FA64: 80454A60 (lit_4027)
+/* 8022FA38-8022FA6C 22A378 0034+00 2/2 1/1 0/0 .text
+ * getLineLength__26jmessage_string_tReferenceFi                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3569,7 +2561,7 @@ asm void jmessage_string_tReference::getLineLength(int param_0) {
 }
 #pragma pop
 
-/* 8022FA6C-8022FA98 002C+00 s=2 e=0 z=0  None .text
+/* 8022FA6C-8022FA98 22A3AC 002C+00 2/2 0/0 0/0 .text
  * addLineLength__26jmessage_string_tReferenceFif               */
 #pragma push
 #pragma optimization_level 0
@@ -3580,10 +2572,8 @@ asm void jmessage_string_tReference::addLineLength(int param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8022FA98-8022FACC 0034+00 s=1 e=0 z=0  None .text
+/* 8022FA98-8022FACC 22A3D8 0034+00 1/1 0/0 0/0 .text
  * getOutfontLength__26jmessage_string_tReferenceFi             */
-//	8022FAA0: 80454A60 (lit_4027)
-//	8022FAC4: 80454A60 (lit_4027)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3593,7 +2583,7 @@ asm void jmessage_string_tReference::getOutfontLength(int param_0) {
 }
 #pragma pop
 
-/* 8022FACC-8022FAF0 0024+00 s=1 e=0 z=0  None .text
+/* 8022FACC-8022FAF0 22A40C 0024+00 1/1 0/0 0/0 .text
  * setOutfontLength__26jmessage_string_tReferenceFif            */
 #pragma push
 #pragma optimization_level 0
@@ -3604,9 +2594,8 @@ asm void jmessage_string_tReference::setOutfontLength(int param_0, f32 param_1) 
 }
 #pragma pop
 
-/* 8022FAF0-8022FB24 0034+00 s=2 e=0 z=0  None .text
+/* 8022FAF0-8022FB24 22A430 0034+00 2/2 0/0 0/0 .text
  * clearOutfontLength__26jmessage_string_tReferenceFi           */
-//	8022FB10: 80454A60 (lit_4027)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3616,7 +2605,7 @@ asm void jmessage_string_tReference::clearOutfontLength(int param_0) {
 }
 #pragma pop
 
-/* 8022FB24-8022FB5C 0038+00 s=4 e=0 z=0  None .text
+/* 8022FB24-8022FB5C 22A464 0038+00 4/4 0/0 0/0 .text
  * getLineCountNowPage__26jmessage_string_tReferenceFv          */
 #pragma push
 #pragma optimization_level 0
@@ -3627,10 +2616,8 @@ asm void jmessage_string_tReference::getLineCountNowPage() {
 }
 #pragma pop
 
-/* 8022FB5C-8022FB98 003C+00 s=0 e=1 z=0  None .text      __ct__24jmessage_string_tControlFv */
-//	8022FB70: 802A7548 (__ct__Q28JMessage8TControlFv)
-//	8022FB74: 803C09E0 (__vt__24jmessage_string_tControl)
-//	8022FB78: 803C09E0 (__vt__24jmessage_string_tControl)
+/* 8022FB5C-8022FB98 22A49C 003C+00 0/0 1/1 0/0 .text            __ct__24jmessage_string_tControlFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3640,12 +2627,8 @@ asm jmessage_string_tControl::jmessage_string_tControl() {
 }
 #pragma pop
 
-/* 8022FB98-8022FBE4 004C+00 s=1 e=0 z=0  None .text
+/* 8022FB98-8022FBE4 22A4D8 004C+00 1/1 0/0 0/0 .text
  * __ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference */
-//	8022FBAC: 802A8A84 (__ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference)
-//	8022FBB0: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	8022FBB4: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	8022FBC8: 8022FA34 (resetCharactor__26jmessage_string_tReferenceFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3656,9 +2639,8 @@ asm jmessage_string_tMeasureProcessor::jmessage_string_tMeasureProcessor(
 }
 #pragma pop
 
-/* 8022FBE4-8022FC14 0030+00 s=1 e=0 z=0  None .text
+/* 8022FBE4-8022FC14 22A524 0030+00 1/0 0/0 0/0 .text
  * do_begin__33jmessage_string_tMeasureProcessorFPCvPCc         */
-//	8022FC00: 8022FA34 (resetCharactor__26jmessage_string_tReferenceFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3668,8 +2650,8 @@ asm void jmessage_string_tMeasureProcessor::do_begin(void const* param_0, char c
 }
 #pragma pop
 
-/* 8022FC14-8022FC28 0014+00 s=1 e=0 z=0  None .text do_end__33jmessage_string_tMeasureProcessorFv
- */
+/* 8022FC14-8022FC28 22A554 0014+00 1/0 0/0 0/0 .text
+ * do_end__33jmessage_string_tMeasureProcessorFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3680,31 +2662,15 @@ asm void jmessage_string_tMeasureProcessor::do_end() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454A98-80454AA0 0004+04 s=3 e=0 z=0  None .sdata2    @7190 */
+/* 80454A98-80454AA0 003098 0004+04 3/3 0/0 0/0 .sdata2          @7190 */
 SECTION_SDATA2 static f32 lit_7190[1 + 1 /* padding */] = {
     20.0f,
     /* padding */
     0.0f,
 };
 
-/* 8022FC28-8022FDF0 01C8+00 s=1 e=0 z=0  None .text
+/* 8022FC28-8022FDF0 22A568 01C8+00 1/0 0/0 0/0 .text
  * do_character__33jmessage_string_tMeasureProcessorFi          */
-//	8022FC48: 803621DC (_savegpr_29)
-//	8022FC90: 802288A8 (isOutfontKanjiCode__Fi)
-//	8022FCA0: 80228608 (change1ByteTo2Bytes__Fi)
-//	8022FCA8: 80228838 (changeKataToHira__Fi)
-//	8022FCB4: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	8022FCD0: 802288A8 (isOutfontKanjiCode__Fi)
-//	8022FCE0: 80228838 (changeKataToHira__Fi)
-//	8022FCEC: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	8022FD0C: 80454A60 (lit_4027)
-//	8022FD10: 80454A98 (lit_7190)
-//	8022FD60: 80454A70 (lit_4198)
-//	8022FDA0: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8022FDB0: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	8022FDB8: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8022FDC4: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	8022FDDC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3714,237 +2680,8 @@ asm void jmessage_string_tMeasureProcessor::do_character(int param_0) {
 }
 #pragma pop
 
-/* 8022FDF0-8023098C 0B9C+00 s=5 e=0 z=0  None .text
+/* 8022FDF0-8023098C 22A730 0B9C+00 5/0 0/0 0/0 .text
  * do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl          */
-//	8022FE34: 80454A60 (lit_4027)
-//	8022FE38: 80454A98 (lit_7190)
-//	8022FECC: 8023098C (do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl)
-//	8022FEDC: 803C0610 (lit_7484)
-//	8022FEE0: 803C0610 (lit_7484)
-//	8022FEF4: 804061C0 (g_dComIfG_gameInfo)
-//	8022FEF8: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF04: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF0C: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF10: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF1C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF24: 80238514 (getWord__12dMsgObject_cFv)
-//	8022FF30: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF38: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF3C: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF44: 802372CC (getSmellName__12dMsgObject_cFv)
-//	8022FF50: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF58: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF5C: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF64: 80237334 (getPortalName__12dMsgObject_cFv)
-//	8022FF70: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF78: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF7C: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF84: 8023738C (getBombName__12dMsgObject_cFv)
-//	8022FF90: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FF98: 804061C0 (g_dComIfG_gameInfo)
-//	8022FF9C: 804061C0 (g_dComIfG_gameInfo)
-//	8022FFA4: 8023741C (getInsectName__12dMsgObject_cFv)
-//	8022FFB0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FFB8: 804061C0 (g_dComIfG_gameInfo)
-//	8022FFBC: 804061C0 (g_dComIfG_gameInfo)
-//	8022FFC4: 80237478 (getLetterName__12dMsgObject_cFv)
-//	8022FFD0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8022FFDC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022FFE0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8022FFE8: 804061C0 (g_dComIfG_gameInfo)
-//	8022FFEC: 804061C0 (g_dComIfG_gameInfo)
-//	80230000: 803664DC (sprintf)
-//	8023000C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230018: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8023001C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80230024: 804061C0 (g_dComIfG_gameInfo)
-//	80230028: 804061C0 (g_dComIfG_gameInfo)
-//	80230044: 803664DC (sprintf)
-//	80230050: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230060: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	8023006C: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8023007C: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	80230084: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230094: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
-//	802300A8: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802300B8: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	802300C0: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802300D0: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
-//	802300E4: 804061C0 (g_dComIfG_gameInfo)
-//	802300E8: 804061C0 (g_dComIfG_gameInfo)
-//	802300F0: 802374D0 (getSelectBombNum__12dMsgObject_cFv)
-//	802300F8: 804510D0 (g_msg_unit)
-//	8023010C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230118: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230120: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8023012C: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	80230134: 802385E0 (getSelectBombPrice__12dMsgObject_cFv)
-//	8023013C: 804510D0 (g_msg_unit)
-//	80230150: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8023015C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230164: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230170: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	802301A0: 804061C0 (g_dComIfG_gameInfo)
-//	802301A4: 804061C0 (g_dComIfG_gameInfo)
-//	802301AC: 800340F8 (getBombNum__21dSv_player_item_max_cCFUc)
-//	802301B4: 804510D0 (g_msg_unit)
-//	802301C8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802301D4: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802301DC: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802301E8: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	802301F0: 804061C0 (g_dComIfG_gameInfo)
-//	802301F4: 804061C0 (g_dComIfG_gameInfo)
-//	802301FC: 804510D0 (g_msg_unit)
-//	8023020C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230218: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230220: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8023022C: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	80230240: 803C05D8 (lit_7485)
-//	80230244: 803C05D8 (lit_7485)
-//	8023025C: 802285CC (changeCodeToChar__FUs)
-//	80230268: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230274: 802285CC (changeCodeToChar__FUs)
-//	80230280: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8023028C: 802285CC (changeCodeToChar__FUs)
-//	80230298: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802302A8: 802285CC (changeCodeToChar__FUs)
-//	802302B4: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802302C4: 802285CC (changeCodeToChar__FUs)
-//	802302D0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802302E0: 802285CC (changeCodeToChar__FUs)
-//	802302EC: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802302FC: 802285CC (changeCodeToChar__FUs)
-//	80230308: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230318: 802285CC (changeCodeToChar__FUs)
-//	80230324: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230334: 802285CC (changeCodeToChar__FUs)
-//	80230340: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230350: 802285CC (changeCodeToChar__FUs)
-//	8023035C: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8023036C: 802285CC (changeCodeToChar__FUs)
-//	80230378: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230388: 802285CC (changeCodeToChar__FUs)
-//	80230394: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802303A4: 802285CC (changeCodeToChar__FUs)
-//	802303B0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802303C0: 802285CC (changeCodeToChar__FUs)
-//	802303CC: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802303D4: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802303E0: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	802303F4: 803C059C (lit_7486)
-//	802303F8: 803C059C (lit_7486)
-//	80230418: 804510D0 (g_msg_unit)
-//	80230420: 80430188 (g_meter2_info)
-//	80230424: 80430188 (g_meter2_info)
-//	80230434: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230448: 804061C0 (g_dComIfG_gameInfo)
-//	8023044C: 804061C0 (g_dComIfG_gameInfo)
-//	80230454: 804510D0 (g_msg_unit)
-//	80230464: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8023046C: 804510D0 (g_msg_unit)
-//	80230474: 80430188 (g_meter2_info)
-//	80230478: 80430188 (g_meter2_info)
-//	80230488: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230490: 804510D0 (g_msg_unit)
-//	80230498: 804061C0 (g_dComIfG_gameInfo)
-//	8023049C: 804061C0 (g_dComIfG_gameInfo)
-//	802304AC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802304B4: 804510D0 (g_msg_unit)
-//	802304BC: 804061C0 (g_dComIfG_gameInfo)
-//	802304C0: 804061C0 (g_dComIfG_gameInfo)
-//	802304D0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802304E0: 804061C0 (g_dComIfG_gameInfo)
-//	802304E4: 804061C0 (g_dComIfG_gameInfo)
-//	802304F0: 80238928 (dMsgObject_getFundRaising__Fv)
-//	802304FC: 804510D0 (g_msg_unit)
-//	8023050C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230514: 8021E754 (dMeter2Info_getNewLetterNum__Fv)
-//	8023051C: 804510D0 (g_msg_unit)
-//	8023052C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230534: 80228ACC (getPohNum__Fv)
-//	8023053C: 804510D0 (g_msg_unit)
-//	8023054C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230560: 804061C0 (g_dComIfG_gameInfo)
-//	80230564: 804061C0 (g_dComIfG_gameInfo)
-//	80230570: 804061C0 (g_dComIfG_gameInfo)
-//	80230574: 804061C0 (g_dComIfG_gameInfo)
-//	8023057C: 804510D0 (g_msg_unit)
-//	8023058C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802305A0: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	802305AC: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	802305B8: 804510D0 (g_msg_unit)
-//	802305C8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802305D0: 804510D0 (g_msg_unit)
-//	802305E4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802305EC: 804510D0 (g_msg_unit)
-//	802305F4: 804061C0 (g_dComIfG_gameInfo)
-//	802305F8: 804061C0 (g_dComIfG_gameInfo)
-//	80230608: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230610: 804061C0 (g_dComIfG_gameInfo)
-//	80230614: 804061C0 (g_dComIfG_gameInfo)
-//	80230624: 80034A04 (getEventReg__11dSv_event_cCFUs)
-//	8023062C: 804510D0 (g_msg_unit)
-//	80230644: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8023064C: 804510D0 (g_msg_unit)
-//	80230654: 804061C0 (g_dComIfG_gameInfo)
-//	80230658: 804061C0 (g_dComIfG_gameInfo)
-//	80230668: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230670: 804510D0 (g_msg_unit)
-//	80230678: 804061C0 (g_dComIfG_gameInfo)
-//	8023067C: 804061C0 (g_dComIfG_gameInfo)
-//	8023068C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80230694: 804510D0 (g_msg_unit)
-//	802306A0: 804061C0 (g_dComIfG_gameInfo)
-//	802306A4: 804061C0 (g_dComIfG_gameInfo)
-//	802306B4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802306BC: 804510D0 (g_msg_unit)
-//	802306C4: 80430188 (g_meter2_info)
-//	802306C8: 80430188 (g_meter2_info)
-//	802306D8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802306F0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802306F8: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230704: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	80230718: 803C056C (lit_7487)
-//	8023071C: 803C056C (lit_7487)
-//	80230738: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230748: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230754: 802285CC (changeCodeToChar__FUs)
-//	80230760: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8023076C: 802285CC (changeCodeToChar__FUs)
-//	80230778: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230784: 802285CC (changeCodeToChar__FUs)
-//	80230790: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	8023079C: 802285CC (changeCodeToChar__FUs)
-//	802307A8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802307B4: 802285CC (changeCodeToChar__FUs)
-//	802307C0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802307CC: 802285CC (changeCodeToChar__FUs)
-//	802307D8: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802307E4: 802285CC (changeCodeToChar__FUs)
-//	802307F0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	802307FC: 802285CC (changeCodeToChar__FUs)
-//	80230808: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
-//	80230814: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230824: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	8023082C: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8023083C: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
-//	80230844: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230850: 8022FAF0 (clearOutfontLength__26jmessage_string_tReferenceFi)
-//	802308A0: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	802308AC: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802308BC: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	802308C4: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	802308D4: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
-//	802308E4: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	802308F0: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230900: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	80230908: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230918: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
-//	80230928: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	80230934: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80230944: 8022FA6C (addLineLength__26jmessage_string_tReferenceFif)
-//	8023094C: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	8023095C: 8022FACC (setOutfontLength__26jmessage_string_tReferenceFif)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3954,12 +2691,8 @@ asm void jmessage_string_tMeasureProcessor::do_tag(u32 param_0, void const* para
 }
 #pragma pop
 
-/* 8023098C-80230A08 007C+00 s=1 e=0 z=0  None .text
+/* 8023098C-80230A08 22B2CC 007C+00 1/1 0/0 0/0 .text
  * do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl        */
-//	8023099C: 803621D8 (_savegpr_28)
-//	802309D8: 80228838 (changeKataToHira__Fi)
-//	802309E4: 8022FA2C (setCharactor__26jmessage_string_tReferenceFUs)
-//	802309F4: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3969,14 +2702,9 @@ asm void jmessage_string_tMeasureProcessor::do_rubyset(void const* param_0, u32 
 }
 #pragma pop
 
-/* 80230A08-80230A5C 0054+00 s=0 e=1 z=0  None .text
+/* 80230A08-80230A5C 22B348 0054+00 0/0 1/1 0/0 .text
  * __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
  */
-//	80230A24: 802A8374
-//(__ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl) 80230A28:
-// 803C0948 (__vt__34jmessage_string_tSequenceProcessor) 	80230A2C: 803C0948
-//(__vt__34jmessage_string_tSequenceProcessor) 	80230A3C: 8022FB98
-//(__ct__33jmessage_string_tMeasureProcessorFPC26jmessage_string_tReference)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3987,12 +2715,8 @@ asm jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
 }
 #pragma pop
 
-/* 80230A5C-80230ABC 0060+00 s=1 e=0 z=0  None .text __dt__33jmessage_string_tMeasureProcessorFv
+/* 80230A5C-80230ABC 22B39C 0060+00 1/0 0/0 0/0 .text __dt__33jmessage_string_tMeasureProcessorFv
  */
-//	80230A7C: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	80230A80: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	80230A8C: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	80230A9C: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4002,20 +2726,14 @@ asm jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
 }
 #pragma pop
 
-/* 80230ABC-80230AC0 0004+00 s=1 e=0 z=0  None .text
+/* 80230ABC-80230AC0 22B3FC 0004+00 1/0 0/0 0/0 .text
  * do_reset__34jmessage_string_tSequenceProcessorFv             */
 void jmessage_string_tSequenceProcessor::do_reset() {
     /* empty function */
 }
 
-/* 80230AC0-80230B7C 00BC+00 s=1 e=0 z=0  None .text
+/* 80230AC0-80230B7C 22B400 00BC+00 1/0 0/0 0/0 .text
  * do_begin__34jmessage_string_tSequenceProcessorFPCvPCc        */
-//	80230AD0: 803621DC (_savegpr_29)
-//	80230AFC: 802A828C
-//(process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor) 	80230B00:
-// 802A828C (process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor)
-//	80230B60: 802A8B20 (process__Q28JMessage19TRenderingProcessorFPCc)
-//	80230B68: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4025,28 +2743,26 @@ asm void jmessage_string_tSequenceProcessor::do_begin(void const* param_0, char 
 }
 #pragma pop
 
-/* 80230B7C-80230B80 0004+00 s=1 e=0 z=0  None .text
+/* 80230B7C-80230B80 22B4BC 0004+00 1/0 0/0 0/0 .text
  * do_end__34jmessage_string_tSequenceProcessorFv               */
 void jmessage_string_tSequenceProcessor::do_end() {
     /* empty function */
 }
 
-/* 80230B80-80230B88 0008+00 s=1 e=0 z=0  None .text
+/* 80230B80-80230B88 22B4C0 0008+00 1/0 0/0 0/0 .text
  * do_isReady__34jmessage_string_tSequenceProcessorFv           */
 bool jmessage_string_tSequenceProcessor::do_isReady() {
     return true;
 }
 
-/* 80230B88-80230B8C 0004+00 s=1 e=0 z=0  None .text
+/* 80230B88-80230B8C 22B4C8 0004+00 1/0 0/0 0/0 .text
  * do_character__34jmessage_string_tSequenceProcessorFi         */
 void jmessage_string_tSequenceProcessor::do_character(int param_0) {
     /* empty function */
 }
 
-/* 80230B8C-80230BBC 0030+00 s=1 e=0 z=0  None .text
+/* 80230B8C-80230BBC 22B4CC 0030+00 1/0 0/0 0/0 .text
  * do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl         */
-//	80230BA8: 80430188 (g_meter2_info)
-//	80230BAC: 80430188 (g_meter2_info)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4056,23 +2772,20 @@ asm void jmessage_string_tSequenceProcessor::do_tag(u32 param_0, void const* par
 }
 #pragma pop
 
-/* 80230BBC-80230BC4 0008+00 s=1 e=0 z=0  None .text
+/* 80230BBC-80230BC4 22B4FC 0008+00 1/0 0/0 0/0 .text
  * do_jump_isReady__34jmessage_string_tSequenceProcessorFv      */
 bool jmessage_string_tSequenceProcessor::do_jump_isReady() {
     return true;
 }
 
-/* 80230BC4-80230BC8 0004+00 s=1 e=0 z=0  None .text
+/* 80230BC4-80230BC8 22B504 0004+00 1/0 0/0 0/0 .text
  * do_jump__34jmessage_string_tSequenceProcessorFPCvPCc         */
 void jmessage_string_tSequenceProcessor::do_jump(void const* param_0, char const* param_1) {
     /* empty function */
 }
 
-/* 80230BC8-80230C20 0058+00 s=0 e=1 z=0  None .text
+/* 80230BC8-80230C20 22B508 0058+00 0/0 1/1 0/0 .text
  * __ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference */
-//	80230BDC: 802A8A84 (__ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference)
-//	80230BE0: 803C0908 (__vt__35jmessage_string_tRenderingProcessor)
-//	80230BE4: 803C0908 (__vt__35jmessage_string_tRenderingProcessor)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4083,7 +2796,7 @@ asm jmessage_string_tRenderingProcessor::jmessage_string_tRenderingProcessor(
 }
 #pragma pop
 
-/* 80230C20-80230C5C 003C+00 s=5 e=0 z=0  None .text
+/* 80230C20-80230C5C 22B560 003C+00 5/5 0/0 0/0 .text
  * getLineCountNowPage__35jmessage_string_tRenderingProcessorFv */
 #pragma push
 #pragma optimization_level 0
@@ -4094,9 +2807,8 @@ asm void jmessage_string_tRenderingProcessor::getLineCountNowPage() {
 }
 #pragma pop
 
-/* 80230C5C-80230CA0 0044+00 s=1 e=0 z=0  None .text
+/* 80230C5C-80230CA0 22B59C 0044+00 1/0 0/0 0/0 .text
  * do_reset__35jmessage_string_tRenderingProcessorFv            */
-//	80230C5C: 80454A60 (lit_4027)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4106,10 +2818,8 @@ asm void jmessage_string_tRenderingProcessor::do_reset() {
 }
 #pragma pop
 
-/* 80230CA0-80230CE8 0048+00 s=1 e=0 z=0  None .text
+/* 80230CA0-80230CE8 22B5E0 0048+00 1/0 0/0 0/0 .text
  * do_begin__35jmessage_string_tRenderingProcessorFPCvPCc       */
-//	80230CC8: 80231D70 (do_widthcenter__35jmessage_string_tRenderingProcessorFv)
-//	80230CD0: 80231EF0 (do_heightcenter__35jmessage_string_tRenderingProcessorFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4119,12 +2829,8 @@ asm void jmessage_string_tRenderingProcessor::do_begin(void const* param_0, char
 }
 #pragma pop
 
-/* 80230CE8-80230D48 0060+00 s=1 e=0 z=0  None .text
+/* 80230CE8-80230D48 22B628 0060+00 1/0 0/0 0/0 .text
  * do_end__35jmessage_string_tRenderingProcessorFv              */
-//	80230D0C: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80230D14: 80368B2C (strcpy)
-//	80230D28: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80230D30: 80368B2C (strcpy)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4134,40 +2840,8 @@ asm void jmessage_string_tRenderingProcessor::do_end() {
 }
 #pragma pop
 
-/* 80230D48-80231110 03C8+00 s=1 e=0 z=0  None .text
+/* 80230D48-80231110 22B688 03C8+00 1/0 0/0 0/0 .text
  * do_character__35jmessage_string_tRenderingProcessorFi        */
-//	80230D68: 803621DC (_savegpr_29)
-//	80230DB0: 802288A8 (isOutfontKanjiCode__Fi)
-//	80230DC0: 80228608 (change1ByteTo2Bytes__Fi)
-//	80230DC8: 80228838 (changeKataToHira__Fi)
-//	80230DD4: 8022FA30 (addCharactor__26jmessage_string_tReferenceFUs)
-//	80230DF0: 802288A8 (isOutfontKanjiCode__Fi)
-//	80230E00: 80228838 (changeKataToHira__Fi)
-//	80230E0C: 8022FA30 (addCharactor__26jmessage_string_tReferenceFUs)
-//	80230E2C: 80454A60 (lit_4027)
-//	80230E30: 80454A98 (lit_7190)
-//	80230E74: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	80230E80: 80232260 (do_rubystrcat__35jmessage_string_tRenderingProcessorFPc)
-//	80230E90: 80454A60 (lit_4027)
-//	80230EC0: 80231D70 (do_widthcenter__35jmessage_string_tRenderingProcessorFv)
-//	80230EFC: 80454A70 (lit_4198)
-//	80230F84: 80454A5C (lit_4026)
-//	80230FA4: 80454A64 (lit_4028)
-//	80230FBC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80230FC0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80230FD8: 803665BC (snprintf)
-//	80230FE4: 80232260 (do_rubystrcat__35jmessage_string_tRenderingProcessorFPc)
-//	80230FEC: 80454A78 (lit_4291)
-//	80231004: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231008: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231024: 803665BC (snprintf)
-//	80231030: 80232260 (do_rubystrcat__35jmessage_string_tRenderingProcessorFPc)
-//	80231038: 80454A60 (lit_4027)
-//	80231060: 80454A70 (lit_4198)
-//	802310A4: 80454A70 (lit_4198)
-//	802310D8: 80232260 (do_rubystrcat__35jmessage_string_tRenderingProcessorFPc)
-//	802310E4: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	802310FC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4177,263 +2851,8 @@ asm void jmessage_string_tRenderingProcessor::do_character(int param_0) {
 }
 #pragma pop
 
-/* 80231110-80231D70 0C60+00 s=6 e=0 z=0  None .text
+/* 80231110-80231D70 22BA50 0C60+00 6/0 0/0 0/0 .text
  * do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl        */
-//	802311C0: 8023256C (do_color__35jmessage_string_tRenderingProcessorFUc)
-//	802311CC: 80454A80 (lit_5154)
-//	802311E4: 80454A7C (lit_5151)
-//	802311EC: 80232600 (do_scale__35jmessage_string_tRenderingProcessorFf)
-//	80231200: 802320B0 (do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl)
-//	80231210: 803C0808 (lit_7993)
-//	80231214: 803C0808 (lit_7993)
-//	80231228: 804061C0 (g_dComIfG_gameInfo)
-//	8023122C: 804061C0 (g_dComIfG_gameInfo)
-//	80231234: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023123C: 804061C0 (g_dComIfG_gameInfo)
-//	80231240: 804061C0 (g_dComIfG_gameInfo)
-//	80231248: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231250: 80238514 (getWord__12dMsgObject_cFv)
-//	8023125C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231264: 804061C0 (g_dComIfG_gameInfo)
-//	80231268: 804061C0 (g_dComIfG_gameInfo)
-//	80231270: 802372CC (getSmellName__12dMsgObject_cFv)
-//	8023127C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231284: 804061C0 (g_dComIfG_gameInfo)
-//	80231288: 804061C0 (g_dComIfG_gameInfo)
-//	80231290: 80237334 (getPortalName__12dMsgObject_cFv)
-//	8023129C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802312A4: 804061C0 (g_dComIfG_gameInfo)
-//	802312A8: 804061C0 (g_dComIfG_gameInfo)
-//	802312B0: 8023738C (getBombName__12dMsgObject_cFv)
-//	802312BC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802312C4: 804061C0 (g_dComIfG_gameInfo)
-//	802312C8: 804061C0 (g_dComIfG_gameInfo)
-//	802312D0: 8023741C (getInsectName__12dMsgObject_cFv)
-//	802312DC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802312E4: 804061C0 (g_dComIfG_gameInfo)
-//	802312E8: 804061C0 (g_dComIfG_gameInfo)
-//	802312F0: 80237478 (getLetterName__12dMsgObject_cFv)
-//	802312FC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023130C: 80232690 (do_linedown__35jmessage_string_tRenderingProcessorFs)
-//	80231318: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8023131C: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231324: 804061C0 (g_dComIfG_gameInfo)
-//	80231328: 804061C0 (g_dComIfG_gameInfo)
-//	8023133C: 803664DC (sprintf)
-//	80231348: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231354: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231358: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231360: 804061C0 (g_dComIfG_gameInfo)
-//	80231364: 804061C0 (g_dComIfG_gameInfo)
-//	80231380: 803664DC (sprintf)
-//	8023138C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231398: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313A4: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313B0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313BC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313C8: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313D4: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313E0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313EC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802313F8: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231404: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231410: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	8023141C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231428: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231434: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231440: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	8023144C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231458: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231464: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231470: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	8023147C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231488: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231494: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802314A0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802314A4: 804061C0 (g_dComIfG_gameInfo)
-//	802314A8: 804061C0 (g_dComIfG_gameInfo)
-//	802314B8: 802326E4 (do_numset__35jmessage_string_tRenderingProcessorFs)
-//	802314C4: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802314D0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802314DC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	802314E4: 80238638 (getItemEquipButton__12dMsgObject_cFv)
-//	802314F8: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231508: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231510: 80238638 (getItemEquipButton__12dMsgObject_cFv)
-//	80231524: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231534: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231540: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	8023154C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231558: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231560: 804061C0 (g_dComIfG_gameInfo)
-//	80231564: 804061C0 (g_dComIfG_gameInfo)
-//	8023156C: 802374D0 (getSelectBombNum__12dMsgObject_cFv)
-//	80231574: 804510D0 (g_msg_unit)
-//	80231588: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231594: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023159C: 802385E0 (getSelectBombPrice__12dMsgObject_cFv)
-//	802315A4: 804510D0 (g_msg_unit)
-//	802315B8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802315C4: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802315F4: 804061C0 (g_dComIfG_gameInfo)
-//	802315F8: 804061C0 (g_dComIfG_gameInfo)
-//	80231600: 800340F8 (getBombNum__21dSv_player_item_max_cCFUc)
-//	80231608: 804510D0 (g_msg_unit)
-//	8023161C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231628: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231630: 804061C0 (g_dComIfG_gameInfo)
-//	80231634: 804061C0 (g_dComIfG_gameInfo)
-//	8023163C: 804510D0 (g_msg_unit)
-//	8023164C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231658: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023166C: 803C07D0 (lit_7994)
-//	80231670: 803C07D0 (lit_7994)
-//	80231688: 802285CC (changeCodeToChar__FUs)
-//	80231694: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802316A0: 802285CC (changeCodeToChar__FUs)
-//	802316AC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802316B8: 802285CC (changeCodeToChar__FUs)
-//	802316C4: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802316D4: 802285CC (changeCodeToChar__FUs)
-//	802316E0: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802316F0: 802285CC (changeCodeToChar__FUs)
-//	802316FC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023170C: 802285CC (changeCodeToChar__FUs)
-//	80231718: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231728: 802285CC (changeCodeToChar__FUs)
-//	80231734: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231744: 802285CC (changeCodeToChar__FUs)
-//	80231750: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231760: 802285CC (changeCodeToChar__FUs)
-//	8023176C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023177C: 802285CC (changeCodeToChar__FUs)
-//	80231788: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231798: 802285CC (changeCodeToChar__FUs)
-//	802317A4: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802317B4: 802285CC (changeCodeToChar__FUs)
-//	802317C0: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802317D0: 802285CC (changeCodeToChar__FUs)
-//	802317DC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	802317EC: 802285CC (changeCodeToChar__FUs)
-//	802317F8: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	8023180C: 803C0794 (lit_7995)
-//	80231810: 803C0794 (lit_7995)
-//	80231830: 804510D0 (g_msg_unit)
-//	80231838: 80430188 (g_meter2_info)
-//	8023183C: 80430188 (g_meter2_info)
-//	8023184C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231860: 804061C0 (g_dComIfG_gameInfo)
-//	80231864: 804061C0 (g_dComIfG_gameInfo)
-//	8023186C: 804510D0 (g_msg_unit)
-//	8023187C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231884: 804510D0 (g_msg_unit)
-//	8023188C: 80430188 (g_meter2_info)
-//	80231890: 80430188 (g_meter2_info)
-//	802318A0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802318A8: 804510D0 (g_msg_unit)
-//	802318B0: 804061C0 (g_dComIfG_gameInfo)
-//	802318B4: 804061C0 (g_dComIfG_gameInfo)
-//	802318C4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802318CC: 804510D0 (g_msg_unit)
-//	802318D4: 804061C0 (g_dComIfG_gameInfo)
-//	802318D8: 804061C0 (g_dComIfG_gameInfo)
-//	802318E8: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802318F8: 804061C0 (g_dComIfG_gameInfo)
-//	802318FC: 804061C0 (g_dComIfG_gameInfo)
-//	80231908: 80238928 (dMsgObject_getFundRaising__Fv)
-//	80231914: 804510D0 (g_msg_unit)
-//	80231924: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8023192C: 8021E754 (dMeter2Info_getNewLetterNum__Fv)
-//	80231934: 804510D0 (g_msg_unit)
-//	80231944: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	8023194C: 80228ACC (getPohNum__Fv)
-//	80231954: 804510D0 (g_msg_unit)
-//	80231964: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231978: 804061C0 (g_dComIfG_gameInfo)
-//	8023197C: 804061C0 (g_dComIfG_gameInfo)
-//	80231988: 804061C0 (g_dComIfG_gameInfo)
-//	8023198C: 804061C0 (g_dComIfG_gameInfo)
-//	80231994: 804510D0 (g_msg_unit)
-//	802319A4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802319B8: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	802319C4: 8002E428 (dComIfGs_checkGetInsectNum__Fv)
-//	802319D0: 804510D0 (g_msg_unit)
-//	802319E0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	802319E8: 804510D0 (g_msg_unit)
-//	802319FC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231A04: 804510D0 (g_msg_unit)
-//	80231A0C: 804061C0 (g_dComIfG_gameInfo)
-//	80231A10: 804061C0 (g_dComIfG_gameInfo)
-//	80231A20: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231A28: 804061C0 (g_dComIfG_gameInfo)
-//	80231A2C: 804061C0 (g_dComIfG_gameInfo)
-//	80231A3C: 80034A04 (getEventReg__11dSv_event_cCFUs)
-//	80231A44: 804510D0 (g_msg_unit)
-//	80231A5C: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231A64: 804510D0 (g_msg_unit)
-//	80231A6C: 804061C0 (g_dComIfG_gameInfo)
-//	80231A70: 804061C0 (g_dComIfG_gameInfo)
-//	80231A80: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231A88: 804510D0 (g_msg_unit)
-//	80231A90: 804061C0 (g_dComIfG_gameInfo)
-//	80231A94: 804061C0 (g_dComIfG_gameInfo)
-//	80231AA4: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231AAC: 804510D0 (g_msg_unit)
-//	80231AB8: 804061C0 (g_dComIfG_gameInfo)
-//	80231ABC: 804061C0 (g_dComIfG_gameInfo)
-//	80231ACC: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231AD4: 804510D0 (g_msg_unit)
-//	80231ADC: 80430188 (g_meter2_info)
-//	80231AE0: 80430188 (g_meter2_info)
-//	80231AF0: 80238CEC (setTag__10dMsgUnit_cFiiPcb)
-//	80231B08: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B1C: 803C0764 (lit_7996)
-//	80231B20: 803C0764 (lit_7996)
-//	80231B38: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B44: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B50: 802285CC (changeCodeToChar__FUs)
-//	80231B5C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B68: 802285CC (changeCodeToChar__FUs)
-//	80231B74: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B80: 802285CC (changeCodeToChar__FUs)
-//	80231B8C: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231B98: 802285CC (changeCodeToChar__FUs)
-//	80231BA4: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231BB0: 802285CC (changeCodeToChar__FUs)
-//	80231BBC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231BC8: 802285CC (changeCodeToChar__FUs)
-//	80231BD4: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231BE0: 802285CC (changeCodeToChar__FUs)
-//	80231BEC: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231BF8: 802285CC (changeCodeToChar__FUs)
-//	80231C04: 802327BC (push_word__35jmessage_string_tRenderingProcessorFPCc)
-//	80231C10: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C1C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C30: 803C0710 (lit_7997)
-//	80231C34: 803C0710 (lit_7997)
-//	80231C4C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C58: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C64: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C70: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C7C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C88: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231C94: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CA0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CAC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CB8: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CC4: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CD0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CDC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231CE4: 804061C0 (g_dComIfG_gameInfo)
-//	80231CE8: 804061C0 (g_dComIfG_gameInfo)
-//	80231CFC: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D08: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D14: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D20: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D2C: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D38: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D44: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80231D50: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4444,25 +2863,8 @@ asm void jmessage_string_tRenderingProcessor::do_tag(u32 param_0, void const* pa
 }
 #pragma pop
 
-/* 80231D70-80231EF0 0180+00 s=2 e=0 z=0  None .text
+/* 80231D70-80231EF0 22C6B0 0180+00 2/2 0/0 0/0 .text
  * do_widthcenter__35jmessage_string_tRenderingProcessorFv      */
-//	80231D8C: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	80231DD0: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	80231DDC: 8022FA38 (getLineLength__26jmessage_string_tReferenceFi)
-//	80231DE0: 80454A5C (lit_4026)
-//	80231DE4: 80454A64 (lit_4028)
-//	80231E10: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	80231E1C: 8022FA98 (getOutfontLength__26jmessage_string_tReferenceFi)
-//	80231E34: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231E38: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231E44: 803665BC (snprintf)
-//	80231E50: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	80231E54: 80454A64 (lit_4028)
-//	80231E74: 80454A70 (lit_4198)
-//	80231EB4: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231EB8: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231EC4: 803665BC (snprintf)
-//	80231ED0: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4472,18 +2874,8 @@ asm void jmessage_string_tRenderingProcessor::do_widthcenter() {
 }
 #pragma pop
 
-/* 80231EF0-80232044 0154+00 s=1 e=0 z=0  None .text
+/* 80231EF0-80232044 22C830 0154+00 1/1 0/0 0/0 .text
  * do_heightcenter__35jmessage_string_tRenderingProcessorFv     */
-//	80231F20: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80231F68: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80231F70: 80454A70 (lit_4198)
-//	80231F98: 80454A5C (lit_4026)
-//	80231FA8: 80454A64 (lit_4028)
-//	80231FE0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231FE4: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80231FFC: 803665BC (snprintf)
-//	80232008: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	80232014: 80232260 (do_rubystrcat__35jmessage_string_tRenderingProcessorFPc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4493,11 +2885,8 @@ asm void jmessage_string_tRenderingProcessor::do_heightcenter() {
 }
 #pragma pop
 
-/* 80232044-802320B0 006C+00 s=7 e=0 z=0  None .text
+/* 80232044-802320B0 22C984 006C+00 7/7 0/0 0/0 .text
  * do_strcat__35jmessage_string_tRenderingProcessorFPc          */
-//	80232060: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	80232070: 80368BE4 (strlen)
-//	80232094: 80368ABC (strcat)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4507,17 +2896,8 @@ asm void jmessage_string_tRenderingProcessor::do_strcat(char* param_0) {
 }
 #pragma pop
 
-/* 802320B0-80232260 01B0+00 s=1 e=0 z=0  None .text
+/* 802320B0-80232260 22C9F0 01B0+00 1/1 0/0 0/0 .text
  * do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl      */
-//	802320D8: 803621C8 (_savegpr_24)
-//	802320E8: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	8023212C: 80454A60 (lit_4027)
-//	80232134: 80454A70 (lit_4198)
-//	8023216C: 80368ABC (strcat)
-//	802321FC: 80228838 (changeKataToHira__Fi)
-//	80232208: 8022FA30 (addCharactor__26jmessage_string_tReferenceFUs)
-//	80232228: 80454A60 (lit_4027)
-//	8023224C: 80362214 (_restgpr_24)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4527,11 +2907,8 @@ asm void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u3
 }
 #pragma pop
 
-/* 80232260-802322CC 006C+00 s=2 e=0 z=0  None .text
+/* 80232260-802322CC 22CBA0 006C+00 2/2 0/0 0/0 .text
  * do_rubystrcat__35jmessage_string_tRenderingProcessorFPc      */
-//	8023227C: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	8023228C: 80368BE4 (strlen)
-//	802322B0: 80368ABC (strcat)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4541,32 +2918,8 @@ asm void jmessage_string_tRenderingProcessor::do_rubystrcat(char* param_0) {
 }
 #pragma pop
 
-/* 802322CC-8023256C 02A0+00 s=2 e=0 z=0  None .text
+/* 802322CC-8023256C 22CC0C 02A0+00 2/2 0/0 0/0 .text
  * do_outfont__35jmessage_string_tRenderingProcessorFUc         */
-//	80232314: 803621DC (_savegpr_29)
-//	80232334: 80454A60 (lit_4027)
-//	80232350: 802F7100 (getBounds__7J2DPaneFv)
-//	8023235C: 802F7100 (getBounds__7J2DPaneFv)
-//	80232368: 802F7AFC (getParentPane__7J2DPaneFv)
-//	80232378: 802F7100 (getBounds__7J2DPaneFv)
-//	80232388: 802F7100 (getBounds__7J2DPaneFv)
-//	80232398: 802F7AFC (getParentPane__7J2DPaneFv)
-//	802323A8: 80454A60 (lit_4027)
-//	802323D4: 80230C20 (getLineCountNowPage__35jmessage_string_tRenderingProcessorFv)
-//	802323E0: 8022FA38 (getLineLength__26jmessage_string_tReferenceFi)
-//	802323E4: 80454A5C (lit_4026)
-//	8023241C: 8022FB24 (getLineCountNowPage__26jmessage_string_tReferenceFv)
-//	80232424: 80454A70 (lit_4198)
-//	8023244C: 80454A5C (lit_4026)
-//	8023249C: 80454A5C (lit_4026)
-//	802324A0: 80454A64 (lit_4028)
-//	802324C0: 80454A70 (lit_4198)
-//	802324EC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802324F0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802324FC: 803665BC (snprintf)
-//	80232508: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	80232518: 8022FA30 (addCharactor__26jmessage_string_tReferenceFUs)
-//	80232558: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4576,16 +2929,8 @@ asm void jmessage_string_tRenderingProcessor::do_outfont(u8 param_0) {
 }
 #pragma pop
 
-/* 8023256C-80232600 0094+00 s=1 e=0 z=0  None .text
+/* 8023256C-80232600 22CEAC 0094+00 1/1 0/0 0/0 .text
  * do_color__35jmessage_string_tRenderingProcessorFUc           */
-//	8023257C: 803621DC (_savegpr_29)
-//	802325A8: 802288FC (getFontCCColorTable__FUcUc)
-//	802325B8: 802289A8 (getFontGCColorTable__FUcUc)
-//	802325C4: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802325C8: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802325D8: 803664DC (sprintf)
-//	802325E4: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
-//	802325EC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4595,13 +2940,8 @@ asm void jmessage_string_tRenderingProcessor::do_color(u8 param_0) {
 }
 #pragma pop
 
-/* 80232600-80232690 0090+00 s=1 e=0 z=0  None .text
+/* 80232600-80232690 22CF40 0090+00 1/1 0/0 0/0 .text
  * do_scale__35jmessage_string_tRenderingProcessorFf            */
-//	80232620: 80399610 (d_msg_d_msg_class__stringBase0)
-//	80232624: 80399610 (d_msg_d_msg_class__stringBase0)
-//	8023262C: 80454A5C (lit_4026)
-//	8023266C: 803664DC (sprintf)
-//	80232678: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4611,12 +2951,8 @@ asm void jmessage_string_tRenderingProcessor::do_scale(f32 param_0) {
 }
 #pragma pop
 
-/* 80232690-802326E4 0054+00 s=1 e=0 z=0  None .text
+/* 80232690-802326E4 22CFD0 0054+00 1/1 0/0 0/0 .text
  * do_linedown__35jmessage_string_tRenderingProcessorFs         */
-//	802326AC: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802326B0: 80399610 (d_msg_d_msg_class__stringBase0)
-//	802326C0: 803664DC (sprintf)
-//	802326CC: 80232044 (do_strcat__35jmessage_string_tRenderingProcessorFPc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4626,16 +2962,8 @@ asm void jmessage_string_tRenderingProcessor::do_linedown(s16 param_0) {
 }
 #pragma pop
 
-/* 802326E4-802327BC 00D8+00 s=1 e=0 z=0  None .text
+/* 802326E4-802327BC 22D024 00D8+00 1/1 0/0 0/0 .text
  * do_numset__35jmessage_string_tRenderingProcessorFs           */
-//	80232724: 80228A54 (getOutFontNumberType__Fi)
-//	80232730: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	8023274C: 80228A54 (getOutFontNumberType__Fi)
-//	80232758: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80232774: 80228A54 (getOutFontNumberType__Fi)
-//	80232780: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
-//	80232794: 80228A54 (getOutFontNumberType__Fi)
-//	802327A0: 802322CC (do_outfont__35jmessage_string_tRenderingProcessorFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4645,10 +2973,8 @@ asm void jmessage_string_tRenderingProcessor::do_numset(s16 param_0) {
 }
 #pragma pop
 
-/* 802327BC-802327F8 003C+00 s=1 e=0 z=0  None .text
+/* 802327BC-802327F8 22D0FC 003C+00 1/1 0/0 0/0 .text
  * push_word__35jmessage_string_tRenderingProcessorFPCc         */
-//	802327D4: 80368B2C (strcpy)
-//	802327E0: 802A7BF8 (stack_pushCurrent__Q28JMessage10TProcessorFPCc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4658,12 +2984,8 @@ asm void jmessage_string_tRenderingProcessor::push_word(char const* param_0) {
 }
 #pragma pop
 
-/* 802327F8-80232858 0060+00 s=1 e=0 z=0  None .text __dt__35jmessage_string_tRenderingProcessorFv
- */
-//	80232818: 803C0908 (__vt__35jmessage_string_tRenderingProcessor)
-//	8023281C: 803C0908 (__vt__35jmessage_string_tRenderingProcessor)
-//	80232828: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	80232838: 802CED3C (__dl__FPv)
+/* 802327F8-80232858 22D138 0060+00 1/0 0/0 0/0 .text
+ * __dt__35jmessage_string_tRenderingProcessorFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4673,15 +2995,8 @@ asm jmessage_string_tRenderingProcessor::~jmessage_string_tRenderingProcessor() 
 }
 #pragma pop
 
-/* 80232858-802328DC 0084+00 s=1 e=0 z=0  None .text __dt__34jmessage_string_tSequenceProcessorFv
+/* 80232858-802328DC 22D198 0084+00 1/0 0/0 0/0 .text __dt__34jmessage_string_tSequenceProcessorFv
  */
-//	80232878: 803C0948 (__vt__34jmessage_string_tSequenceProcessor)
-//	8023287C: 803C0948 (__vt__34jmessage_string_tSequenceProcessor)
-//	8023288C: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	80232890: 803C09A0 (__vt__33jmessage_string_tMeasureProcessor)
-//	802328A0: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	802328AC: 802A83B8 (__dt__Q28JMessage18TSequenceProcessorFv)
-//	802328BC: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4691,11 +3006,8 @@ asm jmessage_string_tSequenceProcessor::~jmessage_string_tSequenceProcessor() {
 }
 #pragma pop
 
-/* 802328DC-8023293C 0060+00 s=1 e=0 z=0  None .text      __dt__24jmessage_string_tControlFv */
-//	802328FC: 803C09E0 (__vt__24jmessage_string_tControl)
-//	80232900: 803C09E0 (__vt__24jmessage_string_tControl)
-//	8023290C: 802A758C (__dt__Q28JMessage8TControlFv)
-//	8023291C: 802CED3C (__dl__FPv)
+/* 802328DC-8023293C 22D21C 0060+00 1/0 0/0 0/0 .text            __dt__24jmessage_string_tControlFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4705,11 +3017,7 @@ asm jmessage_string_tControl::~jmessage_string_tControl() {
 }
 #pragma pop
 
-/* 8023293C-8023299C 0060+00 s=1 e=0 z=0  None .text      __dt__28jmessage_tRenderingProcessorFv */
-//	8023295C: 803C09FC (__vt__28jmessage_tRenderingProcessor)
-//	80232960: 803C09FC (__vt__28jmessage_tRenderingProcessor)
-//	8023296C: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	8023297C: 802CED3C (__dl__FPv)
+/* 8023293C-8023299C 22D27C 0060+00 1/0 0/0 0/0 .text __dt__28jmessage_tRenderingProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4719,14 +3027,7 @@ asm jmessage_tRenderingProcessor::~jmessage_tRenderingProcessor() {
 }
 #pragma pop
 
-/* 8023299C-80232A20 0084+00 s=1 e=0 z=0  None .text      __dt__27jmessage_tSequenceProcessorFv */
-//	802329BC: 803C0A3C (__vt__27jmessage_tSequenceProcessor)
-//	802329C0: 803C0A3C (__vt__27jmessage_tSequenceProcessor)
-//	802329D0: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	802329D4: 803C0A94 (__vt__26jmessage_tMeasureProcessor)
-//	802329E4: 802A8AC0 (__dt__Q28JMessage19TRenderingProcessorFv)
-//	802329F0: 802A83B8 (__dt__Q28JMessage18TSequenceProcessorFv)
-//	80232A00: 802CED3C (__dl__FPv)
+/* 8023299C-80232A20 22D2DC 0084+00 1/0 0/0 0/0 .text __dt__27jmessage_tSequenceProcessorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4736,7 +3037,7 @@ asm jmessage_tSequenceProcessor::~jmessage_tSequenceProcessor() {
 }
 #pragma pop
 
-/* 80232A20-80232A3C 001C+00 s=2 e=0 z=0  None .text      getActorPos__19jmessage_tReferenceFv */
+/* 80232A20-80232A3C 22D360 001C+00 2/2 0/0 0/0 .text getActorPos__19jmessage_tReferenceFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4744,4 +3045,38 @@ asm void jmessage_tReference::getActorPos() {
     nofralloc
 #include "asm/d/msg/d_msg_class/getActorPos__19jmessage_tReferenceFv.s"
 }
+#pragma pop
+
+/* 80399610-80399660 025C70 004A+06 22/22 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399610 = "'";
+SECTION_DEAD static char const* const stringBase_80399612 = "s";
+SECTION_DEAD static char const* const stringBase_80399614 = "%d";
+SECTION_DEAD static char const* const stringBase_80399617 = "";
+SECTION_DEAD static char const* const stringBase_80399618 = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+SECTION_DEAD static char const* const stringBase_80399620 = ""
+                                                            "\x1B"
+                                                            "CD[%d]";
+SECTION_DEAD static char const* const stringBase_80399628 = ""
+                                                            "\x1B"
+                                                            "CC[%08x]"
+                                                            "\x1B"
+                                                            "GC[%08x]";
+SECTION_DEAD static char const* const stringBase_8039963B = ""
+                                                            "\x1B"
+                                                            "FX[%d]"
+                                                            "\x1B"
+                                                            "FY[%d]";
+SECTION_DEAD static char const* const stringBase_8039964A = ""
+                                                            "\x1B"
+                                                            "CU[%d]";
+SECTION_DEAD static char const* const stringBase_80399652 = ""
+                                                            "\x1B"
+                                                            "CL[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
 #pragma pop

@@ -12,7 +12,7 @@ lbl_80B481F0:
 lbl_80B48218:
 /* 80B48218  38 80 03 21 */	li r4, 0x321
 /* 80B4821C  38 A0 00 00 */	li r5, 0
-/* 80B48220  4B 60 39 D0 */	b initTalk__8daNpcT_cFiPP10fopAc_ac_c
+/* 80B48220  4B 60 39 D1 */	bl initTalk__8daNpcT_cFiPP10fopAc_ac_c
 lbl_80B48224:
 /* 80B48224  38 60 00 01 */	li r3, 1
 /* 80B48228  80 01 00 14 */	lwz r0, 0x14(r1)

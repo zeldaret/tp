@@ -3,18 +3,16 @@
 #
 
 M643_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang.plf
+M643_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang.lcf
+M643_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang.map
 
 M643_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swhang/executor.cpp \
-	rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.cpp \
 
 M643_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/d_a_obj_swhang.o \
 
@@ -31,15 +29,21 @@ M643_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map643.map\
+	-m _prolog \
+	-lcf $(M643_LDSCRIPT) \
+	-unused -map $(M643_MAP) \
+	-w off \
 
 $(M643_TARGET): $(M643_O_FILES) $(M643_LIBS)
+	@echo [643] creating $(M643_TARGET)
 	@echo $(M643_LIBS) $(M643_O_FILES) > build/M643_ofiles
-	$(LD) -opt_partial $(M643_LDFLAGS) -o $(M643_TARGET) @build/M643_ofiles
+	@python3 tools/lcf.py rel 643 --output $(M643_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M643_LDFLAGS) -o $(M643_TARGET) @build/M643_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swhang/%.o: rel/d/a/obj/d_a_obj_swhang/%.cpp
+	@echo [643] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M643_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M643_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -12,20 +12,20 @@ lbl_8045BBE0:
 /* 8045BC08  88 1F 0D 01 */	lbz r0, 0xd01(r31)
 /* 8045BC0C  28 00 00 05 */	cmplwi r0, 5
 /* 8045BC10  40 80 01 28 */	bge lbl_8045BD38
-/* 8045BC14  3C 60 80 46 */	lis r3, lit_3873@ha
-/* 8045BC18  C0 23 CA 00 */	lfs f1, lit_3873@l(r3)
+/* 8045BC14  3C 60 80 46 */	lis r3, lit_3873@ha /* 0x8045CA00@ha */
+/* 8045BC18  C0 23 CA 00 */	lfs f1, lit_3873@l(r3)  /* 0x8045CA00@l */
 /* 8045BC1C  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 8045BC20  3C 60 80 46 */	lis r3, lit_4076@ha
-/* 8045BC24  C0 03 CA 0C */	lfs f0, lit_4076@l(r3)
+/* 8045BC20  3C 60 80 46 */	lis r3, lit_4076@ha /* 0x8045CA0C@ha */
+/* 8045BC24  C0 03 CA 0C */	lfs f0, lit_4076@l(r3)  /* 0x8045CA0C@l */
 /* 8045BC28  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8045BC2C  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 8045BC30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8045BC34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8045BC30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8045BC34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8045BC38  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8045BC3C  38 80 00 04 */	li r4, 4
 /* 8045BC40  38 A0 00 1F */	li r5, 0x1f
 /* 8045BC44  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8045BC48  4B C1 3D DC */	b StartShock__12dVibration_cFii4cXyz
+/* 8045BC48  4B C1 3D DD */	bl StartShock__12dVibration_cFii4cXyz
 /* 8045BC4C  48 00 00 EC */	b lbl_8045BD38
 lbl_8045BC50:
 /* 8045BC50  80 1F 00 B0 */	lwz r0, 0xb0(r31)
@@ -37,19 +37,19 @@ lbl_8045BC50:
 /* 8045BC68  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 8045BC6C  38 E0 00 00 */	li r7, 0
 /* 8045BC70  39 00 00 01 */	li r8, 1
-/* 8045BC74  4B BB FA 08 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 8045BC74  4B BB FA 09 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 8045BC78  48 00 00 0C */	b lbl_8045BC84
 lbl_8045BC7C:
 /* 8045BC7C  38 00 00 03 */	li r0, 3
 /* 8045BC80  98 1F 0C C5 */	stb r0, 0xcc5(r31)
 lbl_8045BC84:
-/* 8045BC84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8045BC88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8045BC84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8045BC88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8045BC8C  A0 1F 0C CC */	lhz r0, 0xccc(r31)
 /* 8045BC90  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8045BC94  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8045BC98  7C 05 07 74 */	extsb r5, r0
-/* 8045BC9C  4B BD 96 C4 */	b isSwitch__10dSv_info_cCFii
+/* 8045BC9C  4B BD 96 C5 */	bl isSwitch__10dSv_info_cCFii
 /* 8045BCA0  2C 03 00 00 */	cmpwi r3, 0
 /* 8045BCA4  41 82 00 1C */	beq lbl_8045BCC0
 /* 8045BCA8  88 1F 0D 00 */	lbz r0, 0xd00(r31)
@@ -72,22 +72,22 @@ lbl_8045BCC0:
 /* 8045BCE8  4B FF E2 2D */	bl settingCullSizeBoxForCull__9daBgObj_cFi
 /* 8045BCEC  80 1F 0C FC */	lwz r0, 0xcfc(r31)
 /* 8045BCF0  90 01 00 08 */	stw r0, 8(r1)
-/* 8045BCF4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8045BCF8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8045BCF4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8045BCF8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8045BCFC  38 81 00 08 */	addi r4, r1, 8
-/* 8045BD00  4B BB DA F8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8045BD00  4B BB DA F9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8045BD04  7C 64 1B 79 */	or. r4, r3, r3
 /* 8045BD08  41 82 00 0C */	beq lbl_8045BD14
 /* 8045BD0C  7F E3 FB 78 */	mr r3, r31
 /* 8045BD10  4B FF DF FD */	bl setAttentionInfo__9daBgObj_cFP10fopAc_ac_c
 lbl_8045BD14:
-/* 8045BD14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8045BD18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8045BD14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8045BD18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8045BD1C  A0 1F 0C CC */	lhz r0, 0xccc(r31)
 /* 8045BD20  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8045BD24  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8045BD28  7C 05 07 74 */	extsb r5, r0
-/* 8045BD2C  4B BD 94 D4 */	b onSwitch__10dSv_info_cFii
+/* 8045BD2C  4B BD 94 D5 */	bl onSwitch__10dSv_info_cFii
 /* 8045BD30  38 00 00 00 */	li r0, 0
 /* 8045BD34  98 1F 0D 00 */	stb r0, 0xd00(r31)
 lbl_8045BD38:

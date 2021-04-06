@@ -9,7 +9,7 @@ lbl_805297A8:
 /* 805297C4  40 82 00 1C */	bne lbl_805297E0
 /* 805297C8  28 1F 00 00 */	cmplwi r31, 0
 /* 805297CC  41 82 00 08 */	beq lbl_805297D4
-/* 805297D0  4B AE F3 94 */	b __ct__10fopAc_ac_cFv
+/* 805297D0  4B AE F3 95 */	bl __ct__10fopAc_ac_cFv
 lbl_805297D4:
 /* 805297D4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 805297D8  60 00 00 08 */	ori r0, r0, 8

@@ -13,8 +13,8 @@ lbl_8003C2B0:
 /* 8003C2B0  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 8003C2B4  28 00 00 00 */	cmplwi r0, 0
 /* 8003C2B8  40 82 00 20 */	bne lbl_8003C2D8
-/* 8003C2BC  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003C2C0  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003C2BC  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003C2C0  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003C2C4  38 63 02 C0 */	addi r3, r3, 0x2c0
 /* 8003C2C8  7F E4 FB 78 */	mr r4, r31
 /* 8003C2CC  4C C6 31 82 */	crclr 6

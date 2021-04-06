@@ -5,10 +5,10 @@ lbl_80D25B04:
 /* 80D25B10  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80D25B14  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80D25B18  7C 7F 1B 78 */	mr r31, r3
-/* 80D25B1C  3C 80 80 D2 */	lis r4, l_midna_offset@ha
-/* 80D25B20  3B C4 6B 5C */	addi r30, r4, l_midna_offset@l
-/* 80D25B24  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha
-/* 80D25B28  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l
+/* 80D25B1C  3C 80 80 D2 */	lis r4, l_midna_offset@ha /* 0x80D26B5C@ha */
+/* 80D25B20  3B C4 6B 5C */	addi r30, r4, l_midna_offset@l /* 0x80D26B5C@l */
+/* 80D25B24  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 80D25B28  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l /* 0x80451018@l */
 /* 80D25B2C  80 84 00 00 */	lwz r4, 0(r4)
 /* 80D25B30  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80D25B34  28 00 00 01 */	cmplwi r0, 1
@@ -25,7 +25,7 @@ lbl_80D25B04:
 /* 80D25B60  90 04 08 90 */	stw r0, 0x890(r4)
 /* 80D25B64  38 64 04 D0 */	addi r3, r4, 0x4d0
 /* 80D25B68  38 9F 09 98 */	addi r4, r31, 0x998
-/* 80D25B6C  4B 62 18 30 */	b PSVECSquareDistance
+/* 80D25B6C  4B 62 18 31 */	bl PSVECSquareDistance
 /* 80D25B70  C0 1E 00 30 */	lfs f0, 0x30(r30)
 /* 80D25B74  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D25B78  40 81 00 58 */	ble lbl_80D25BD0
@@ -54,8 +54,8 @@ lbl_80D25BD0:
 /* 80D25BD0  C8 1E 00 90 */	lfd f0, 0x90(r30)
 /* 80D25BD4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D25BD8  40 80 00 10 */	bge lbl_80D25BE8
-/* 80D25BDC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D25BE0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D25BDC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D25BE0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D25BE4  48 00 00 70 */	b lbl_80D25C54
 lbl_80D25BE8:
 /* 80D25BE8  D0 21 00 08 */	stfs f1, 8(r1)
@@ -89,8 +89,8 @@ lbl_80D25C40:
 lbl_80D25C44:
 /* 80D25C44  2C 00 00 01 */	cmpwi r0, 1
 /* 80D25C48  40 82 00 0C */	bne lbl_80D25C54
-/* 80D25C4C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D25C50  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D25C4C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D25C50  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80D25C54:
 /* 80D25C54  C0 1E 00 98 */	lfs f0, 0x98(r30)
 /* 80D25C58  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -102,7 +102,7 @@ lbl_80D25C54:
 /* 80D25C70  A0 BF 09 64 */	lhz r5, 0x964(r31)
 /* 80D25C74  38 C0 00 00 */	li r6, 0
 /* 80D25C78  38 E0 00 00 */	li r7, 0
-/* 80D25C7C  4B 52 43 14 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80D25C7C  4B 52 43 15 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80D25C80  48 00 00 08 */	b lbl_80D25C88
 lbl_80D25C84:
 /* 80D25C84  4B FF FC 91 */	bl orderZHintEvent__14daObjVolcBom_cFv

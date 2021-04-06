@@ -3,19 +3,20 @@
 #
 
 M318_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz.plf
+M318_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz.lcf
+M318_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz.map
 
 M318_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_hoz/executor.cpp \
-	rel/d/a/npc/d_a_npc_hoz/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_hoz/d_a_npc_hoz.cpp \
 
 M318_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz/d_a_npc_hoz.o \
 
 M318_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz/libRuntime.PPCEABI.H.a \
 
 M318_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M318_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map318.map\
+	-m _prolog \
+	-lcf $(M318_LDSCRIPT) \
+	-unused -map $(M318_MAP) \
+	-w off \
 
 $(M318_TARGET): $(M318_O_FILES) $(M318_LIBS)
+	@echo [318] creating $(M318_TARGET)
 	@echo $(M318_LIBS) $(M318_O_FILES) > build/M318_ofiles
-	$(LD) -opt_partial $(M318_LDFLAGS) -o $(M318_TARGET) @build/M318_ofiles
+	@python3 tools/lcf.py rel 318 --output $(M318_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M318_LDFLAGS) -o $(M318_TARGET) @build/M318_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_hoz/%.o: rel/d/a/npc/d_a_npc_hoz/%.cpp
+	@echo [318] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M318_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M318_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_hoz/libs/Runtime.PPCEABI.H/Makefile
 

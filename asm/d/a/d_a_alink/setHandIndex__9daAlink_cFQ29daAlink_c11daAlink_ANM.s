@@ -1,7 +1,7 @@
 lbl_800AA2BC:
 /* 800AA2BC  1C A4 00 0C */	mulli r5, r4, 0xc
-/* 800AA2C0  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha
-/* 800AA2C4  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l
+/* 800AA2C0  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha /* 0x8038FCA8@ha */
+/* 800AA2C4  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l /* 0x8038FCA8@l */
 /* 800AA2C8  7C 80 2A 14 */	add r4, r0, r5
 /* 800AA2CC  88 04 00 04 */	lbz r0, 4(r4)
 /* 800AA2D0  98 03 2F 92 */	stb r0, 0x2f92(r3)

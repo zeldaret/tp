@@ -7,8 +7,8 @@ lbl_800FE5A0:
 /* 800FE5B4  7C 7E 1B 78 */	mr r30, r3
 /* 800FE5B8  A8 03 04 E6 */	lha r0, 0x4e6(r3)
 /* 800FE5BC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FE5C0  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 800FE5C4  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 800FE5C0  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FE5C4  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FE5C8  7C C5 04 2E */	lfsx f6, r5, r0
 /* 800FE5CC  7C A5 02 14 */	add r5, r5, r0
 /* 800FE5D0  C0 E5 00 04 */	lfs f7, 4(r5)

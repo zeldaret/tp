@@ -42,11 +42,6 @@ struct dEvt_control_c {
 // Forward References:
 //
 
-static void daTagMwait_Create(fopAc_ac_c*);
-static void daTagMwait_Delete(daTagMwait_c*);
-static void daTagMwait_Execute(daTagMwait_c*);
-static bool daTagMwait_Draw(daTagMwait_c*);
-
 extern "C" void create__12daTagMwait_cFv();
 extern "C" static void daTagMwait_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagMwait_cFv();
@@ -54,25 +49,11 @@ extern "C" static void daTagMwait_Delete__FP12daTagMwait_c();
 extern "C" void execute__12daTagMwait_cFv();
 extern "C" static void daTagMwait_Execute__FP12daTagMwait_c();
 extern "C" static bool daTagMwait_Draw__FP12daTagMwait_c();
-extern "C" extern u32 const lit_3842;
-extern "C" extern u32 const lit_3843;
-extern "C" extern u32 const lit_3844;
-extern "C" extern u32 const lit_3845[1 + 1 /* padding */];
-extern "C" extern u8 const lit_3847[8];
-extern "C" extern u8 const lit_4006[4 + 4 /* padding */];
-extern "C" extern u8 const lit_4007[8];
-extern "C" extern u8 const lit_4008[8];
-extern "C" extern u8 const lit_4009[8];
-extern "C" extern u32 const lit_4010;
 extern "C" extern void* g_profile_Tag_Mwait[12];
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -103,20 +84,52 @@ extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 //
 
 /* ############################################################################################## */
-/* 80D5C580-80D5C584 0004+00 s=2 e=0 z=0  None .rodata    @3841 */
+/* 80D5C580-80D5C584 000000 0004+00 2/2 0/0 0/0 .rodata          @3841 */
 SECTION_RODATA static u32 const lit_3841 = 0xBF800000;
+SECTION_DEAD void* const cg_80D5C580 = (void*)(&lit_3841);
 
-/* 80D5BE18-80D5BFFC 01E4+00 s=1 e=0 z=0  None .text      create__12daTagMwait_cFv */
-//	80D5BE28: 803621DC (_savegpr_29)
-//	80D5BE30: 80D5C580 (lit_3841)
-//	80D5BE34: 80D5C580 (lit_3841)
-//	80D5BE50: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D5BE58: 80249F00 (__ct__10dMsgFlow_cFv)
-//	80D5BE74: 804061C0 (g_dComIfG_gameInfo)
-//	80D5BE78: 804061C0 (g_dComIfG_gameInfo)
-//	80D5BE88: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D5BF38: 803470D8 (PSVECScale)
-//	80D5BFE8: 80362228 (_restgpr_29)
+/* 80D5C584-80D5C588 000004 0004+00 0/1 0/0 0/0 .rodata          @3842 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3842 = 0x42C80000;
+SECTION_DEAD void* const cg_80D5C584 = (void*)(&lit_3842);
+#pragma pop
+
+/* 80D5C588-80D5C58C 000008 0004+00 0/1 0/0 0/0 .rodata          @3843 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3843 = 0x41200000;
+SECTION_DEAD void* const cg_80D5C588 = (void*)(&lit_3843);
+#pragma pop
+
+/* 80D5C58C-80D5C590 00000C 0004+00 0/1 0/0 0/0 .rodata          @3844 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3844 = 0x435C0000;
+SECTION_DEAD void* const cg_80D5C58C = (void*)(&lit_3844);
+#pragma pop
+
+/* 80D5C590-80D5C598 000010 0004+04 0/1 0/0 0/0 .rodata          @3845 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3845[1 + 1 /* padding */] = {
+    0x43160000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_80D5C590 = (void*)(&lit_3845);
+#pragma pop
+
+/* 80D5C598-80D5C5A0 000018 0008+00 0/1 0/0 0/0 .rodata          @3847 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3847[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80D5C598 = (void*)(&lit_3847);
+#pragma pop
+
+/* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,21 +139,18 @@ asm void daTagMwait_c::create() {
 }
 #pragma pop
 
-/* 80D5BFFC-80D5C01C 0020+00 s=1 e=0 z=0  None .text      daTagMwait_Create__FP10fopAc_ac_c */
-//	80D5C008: 80D5BE18 (create__12daTagMwait_cFv)
+/* 80D5BFFC-80D5C01C 00025C 0020+00 1/0 0/0 0/0 .text            daTagMwait_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Create(fopAc_ac_c* param_0) {
+static asm void daTagMwait_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D5C01C-80D5C080 0064+00 s=1 e=0 z=0  None .text      __dt__12daTagMwait_cFv */
-//	80D5C044: 80249F48 (__dt__10dMsgFlow_cFv)
-//	80D5C050: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80D5C060: 802CED3C (__dl__FPv)
+/* 80D5C01C-80D5C080 00027C 0064+00 1/1 0/0 0/0 .text            __dt__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -150,48 +160,70 @@ asm daTagMwait_c::~daTagMwait_c() {
 }
 #pragma pop
 
-/* 80D5C080-80D5C0A8 0028+00 s=1 e=0 z=0  None .text      daTagMwait_Delete__FP12daTagMwait_c */
-//	80D5C090: 80D5C01C (__dt__12daTagMwait_cFv)
+/* 80D5C080-80D5C0A8 0002E0 0028+00 1/0 0/0 0/0 .text            daTagMwait_Delete__FP12daTagMwait_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Delete(daTagMwait_c* param_0) {
+static asm void daTagMwait_Delete(daTagMwait_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Delete__FP12daTagMwait_c.s"
 }
 #pragma pop
 
-/* 80D5C0A8-80D5C550 04A8+00 s=1 e=0 z=0  None .text      execute__12daTagMwait_cFv */
-//	80D5C0C0: 803621D8 (_savegpr_28)
-//	80D5C0C8: 80D5C580 (lit_3841)
-//	80D5C0CC: 80D5C580 (lit_3841)
-//	80D5C0D0: 80451018 (m_midnaActor__9daPy_py_c)
-//	80D5C0D4: 80451018 (m_midnaActor__9daPy_py_c)
-//	80D5C0D8: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C0DC: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C144: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80D5C164: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	80D5C170: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C174: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C17C: 80042468 (reset__14dEvt_control_cFv)
-//	80D5C190: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80D5C1B0: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
-//	80D5C220: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D5C298: 8034739C (PSVECSquareDistance)
-//	80D5C308: 80450AE0 (__float_nan)
-//	80D5C30C: 80450AE0 (__float_nan)
-//	80D5C378: 80450AE0 (__float_nan)
-//	80D5C37C: 80450AE0 (__float_nan)
-//	80D5C3D8: 8034739C (PSVECSquareDistance)
-//	80D5C41C: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C420: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C430: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D5C450: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C454: 804061C0 (g_dComIfG_gameInfo)
-//	80D5C464: 80035200 (onSwitch__10dSv_info_cFii)
-//	80D5C480: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80D5C4C4: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
-//	80D5C53C: 80362224 (_restgpr_28)
+/* ############################################################################################## */
+/* 80D5C5A0-80D5C5A8 000020 0004+04 0/1 0/0 0/0 .rodata          @4006 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4006[4 + 4 /* padding */] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    /* padding */
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80D5C5A0 = (void*)(&lit_4006);
+#pragma pop
+
+/* 80D5C5A8-80D5C5B0 000028 0008+00 0/1 0/0 0/0 .rodata          @4007 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4007[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80D5C5A8 = (void*)(&lit_4007);
+#pragma pop
+
+/* 80D5C5B0-80D5C5B8 000030 0008+00 0/1 0/0 0/0 .rodata          @4008 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4008[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80D5C5B0 = (void*)(&lit_4008);
+#pragma pop
+
+/* 80D5C5B8-80D5C5C0 000038 0008+00 0/1 0/0 0/0 .rodata          @4009 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4009[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80D5C5B8 = (void*)(&lit_4009);
+#pragma pop
+
+/* 80D5C5C0-80D5C5C4 000040 0004+00 0/1 0/0 0/0 .rodata          @4010 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4010 = 0x40A00000;
+SECTION_DEAD void* const cg_80D5C5C0 = (void*)(&lit_4010);
+#pragma pop
+
+/* 80D5C0A8-80D5C550 000308 04A8+00 1/1 0/0 0/0 .text            execute__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,76 +233,24 @@ asm void daTagMwait_c::execute() {
 }
 #pragma pop
 
-/* 80D5C550-80D5C570 0020+00 s=1 e=0 z=0  None .text      daTagMwait_Execute__FP12daTagMwait_c */
-//	80D5C55C: 80D5C0A8 (execute__12daTagMwait_cFv)
+/* 80D5C550-80D5C570 0007B0 0020+00 1/0 0/0 0/0 .text daTagMwait_Execute__FP12daTagMwait_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Execute(daTagMwait_c* param_0) {
+static asm void daTagMwait_Execute(daTagMwait_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Execute__FP12daTagMwait_c.s"
 }
 #pragma pop
 
-/* 80D5C570-80D5C578 0008+00 s=1 e=0 z=0  None .text      daTagMwait_Draw__FP12daTagMwait_c */
+/* 80D5C570-80D5C578 0007D0 0008+00 1/0 0/0 0/0 .text            daTagMwait_Draw__FP12daTagMwait_c
+ */
 static bool daTagMwait_Draw(daTagMwait_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80D5C584-80D5C588 0004+00 s=0 e=0 z=0  None .rodata    @3842 */
-SECTION_RODATA u32 const lit_3842 = 0x42C80000;
-
-/* 80D5C588-80D5C58C 0004+00 s=0 e=0 z=0  None .rodata    @3843 */
-SECTION_RODATA u32 const lit_3843 = 0x41200000;
-
-/* 80D5C58C-80D5C590 0004+00 s=0 e=0 z=0  None .rodata    @3844 */
-SECTION_RODATA u32 const lit_3844 = 0x435C0000;
-
-/* 80D5C590-80D5C598 0004+04 s=0 e=0 z=0  None .rodata    @3845 */
-SECTION_RODATA u32 const lit_3845[1 + 1 /* padding */] = {
-    0x43160000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80D5C598-80D5C5A0 0008+00 s=0 e=0 z=0  None .rodata    @3847 */
-SECTION_RODATA u8 const lit_3847[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D5C5A0-80D5C5A8 0004+04 s=0 e=0 z=0  None .rodata    @4006 */
-SECTION_RODATA u8 const lit_4006[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80D5C5A8-80D5C5B0 0008+00 s=0 e=0 z=0  None .rodata    @4007 */
-SECTION_RODATA u8 const lit_4007[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D5C5B0-80D5C5B8 0008+00 s=0 e=0 z=0  None .rodata    @4008 */
-SECTION_RODATA u8 const lit_4008[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D5C5B8-80D5C5C0 0008+00 s=0 e=0 z=0  None .rodata    @4009 */
-SECTION_RODATA u8 const lit_4009[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D5C5C0-80D5C5C4 0004+00 s=0 e=0 z=0  None .rodata    @4010 */
-SECTION_RODATA u32 const lit_4010 = 0x40A00000;
-
-/* 80D5C5C4-80D5C5E4 0020+00 s=1 e=0 z=0  None .data      l_daTagMwait_Method */
+/* 80D5C5C4-80D5C5E4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMwait_Method */
 SECTION_DATA static void* l_daTagMwait_Method[8] = {
     (void*)daTagMwait_Create__FP10fopAc_ac_c,
     (void*)daTagMwait_Delete__FP12daTagMwait_c,
@@ -282,8 +262,8 @@ SECTION_DATA static void* l_daTagMwait_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D5C5E4-80D5C614 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Mwait */
-SECTION_DATA void* g_profile_Tag_Mwait[12] = {
+/* 80D5C5E4-80D5C614 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mwait */
+SECTION_DATA extern void* g_profile_Tag_Mwait[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C30000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,

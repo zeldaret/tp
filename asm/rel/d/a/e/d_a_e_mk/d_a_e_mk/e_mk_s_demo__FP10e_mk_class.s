@@ -3,10 +3,10 @@ lbl_8071637C:
 /* 80716380  7C 08 02 A6 */	mflr r0
 /* 80716384  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80716388  39 61 00 30 */	addi r11, r1, 0x30
-/* 8071638C  4B C4 BE 50 */	b _savegpr_29
+/* 8071638C  4B C4 BE 51 */	bl _savegpr_29
 /* 80716390  7C 7E 1B 78 */	mr r30, r3
-/* 80716394  3C 80 80 72 */	lis r4, lit_3777@ha
-/* 80716398  3B E4 C5 44 */	addi r31, r4, lit_3777@l
+/* 80716394  3C 80 80 72 */	lis r4, lit_3777@ha /* 0x8071C544@ha */
+/* 80716398  3B E4 C5 44 */	addi r31, r4, lit_3777@l /* 0x8071C544@l */
 /* 8071639C  80 83 05 C8 */	lwz r4, 0x5c8(r3)
 /* 807163A0  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 807163A4  FC 00 00 1E */	fctiwz f0, f0
@@ -129,11 +129,11 @@ lbl_8071654C:
 /* 80716550  40 82 00 20 */	bne lbl_80716570
 /* 80716554  38 00 00 01 */	li r0, 1
 /* 80716558  98 1E 07 07 */	stb r0, 0x707(r30)
-/* 8071655C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80716560  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8071655C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80716560  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80716564  80 63 00 00 */	lwz r3, 0(r3)
 /* 80716568  38 63 03 D0 */	addi r3, r3, 0x3d0
-/* 8071656C  4B B9 98 AC */	b bgmStreamPlay__8Z2SeqMgrFv
+/* 8071656C  4B B9 98 AD */	bl bgmStreamPlay__8Z2SeqMgrFv
 lbl_80716570:
 /* 80716570  2C 1D 00 08 */	cmpwi r29, 8
 /* 80716574  40 82 00 0C */	bne lbl_80716580
@@ -256,7 +256,7 @@ lbl_80716720:
 /* 80716728  38 00 00 01 */	li r0, 1
 /* 8071672C  B0 1E 06 B6 */	sth r0, 0x6b6(r30)
 /* 80716730  C0 3F 00 58 */	lfs f1, 0x58(r31)
-/* 80716734  4B B5 12 20 */	b cM_rndF__Ff
+/* 80716734  4B B5 12 21 */	bl cM_rndF__Ff
 /* 80716738  C0 1F 00 90 */	lfs f0, 0x90(r31)
 /* 8071673C  EC 00 08 2A */	fadds f0, f0, f1
 /* 80716740  FC 00 00 1E */	fctiwz f0, f0
@@ -271,7 +271,7 @@ lbl_80716720:
 /* 80716764  B0 1E 0C 34 */	sth r0, 0xc34(r30)
 lbl_80716768:
 /* 80716768  39 61 00 30 */	addi r11, r1, 0x30
-/* 8071676C  4B C4 BA BC */	b _restgpr_29
+/* 8071676C  4B C4 BA BD */	bl _restgpr_29
 /* 80716770  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80716774  7C 08 03 A6 */	mtlr r0
 /* 80716778  38 21 00 30 */	addi r1, r1, 0x30

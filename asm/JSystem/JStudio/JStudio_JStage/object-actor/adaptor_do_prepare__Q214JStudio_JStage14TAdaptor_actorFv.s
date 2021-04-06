@@ -1,6 +1,6 @@
 lbl_8028A728:
-/* 8028A728  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
-/* 8028A72C  38 04 11 A0 */	addi r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+/* 8028A728  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha /* 0x804311A0@ha */
+/* 8028A72C  38 04 11 A0 */	addi r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l /* 0x804311A0@l */
 /* 8028A730  7C 05 03 78 */	mr r5, r0
 /* 8028A734  48 00 00 2C */	b lbl_8028A760
 lbl_8028A738:
@@ -20,8 +20,8 @@ lbl_8028A760:
 /* 8028A760  80 05 00 04 */	lwz r0, 4(r5)
 /* 8028A764  2C 00 FF FF */	cmpwi r0, -1
 /* 8028A768  40 82 FF D0 */	bne lbl_8028A738
-/* 8028A76C  3C 80 80 43 */	lis r4, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha
-/* 8028A770  38 04 12 04 */	addi r0, r4, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l
+/* 8028A76C  3C 80 80 43 */	lis r4, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha /* 0x80431204@ha */
+/* 8028A770  38 04 12 04 */	addi r0, r4, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l /* 0x80431204@l */
 /* 8028A774  7C 05 03 78 */	mr r5, r0
 /* 8028A778  48 00 00 2C */	b lbl_8028A7A4
 lbl_8028A77C:

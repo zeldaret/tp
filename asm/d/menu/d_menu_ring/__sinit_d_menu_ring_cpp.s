@@ -1,6 +1,6 @@
 lbl_801EF580:
-/* 801EF580  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801EF584  38 A3 DE 70 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 801EF580  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BDE70@ha */
+/* 801EF584  38 A3 DE 70 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BDE70@l */
 /* 801EF588  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 801EF58C  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 801EF590  90 65 00 3C */	stw r3, 0x3c(r5)

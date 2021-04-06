@@ -35,8 +35,8 @@ lbl_800ED970:
 /* 800ED984  38 00 00 60 */	li r0, 0x60
 /* 800ED988  98 1E 2F 99 */	stb r0, 0x2f99(r30)
 /* 800ED98C  7F A3 EB 78 */	mr r3, r29
-/* 800ED990  3C 80 80 39 */	lis r4, localOffset_18237@ha
-/* 800ED994  38 84 19 6C */	addi r4, r4, localOffset_18237@l
+/* 800ED990  3C 80 80 39 */	lis r4, localOffset_18237@ha /* 0x8039196C@ha */
+/* 800ED994  38 84 19 6C */	addi r4, r4, localOffset_18237@l /* 0x8039196C@l */
 /* 800ED998  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 800ED99C  48 25 93 D1 */	bl PSMTXMultVec
 /* 800ED9A0  7F A3 EB 78 */	mr r3, r29

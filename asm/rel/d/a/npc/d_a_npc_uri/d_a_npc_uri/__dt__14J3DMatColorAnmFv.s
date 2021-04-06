@@ -7,7 +7,7 @@ lbl_80B27038:
 /* 80B2704C  41 82 00 10 */	beq lbl_80B2705C
 /* 80B27050  7C 80 07 35 */	extsh. r0, r4
 /* 80B27054  40 81 00 08 */	ble lbl_80B2705C
-/* 80B27058  4B 7A 7C E4 */	b __dl__FPv
+/* 80B27058  4B 7A 7C E5 */	bl __dl__FPv
 lbl_80B2705C:
 /* 80B2705C  7F E3 FB 78 */	mr r3, r31
 /* 80B27060  83 E1 00 0C */	lwz r31, 0xc(r1)

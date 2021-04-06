@@ -26,13 +26,10 @@ extern "C" void __ct__8cBgS_ChkFv();
 extern "C" void __dt__8cBgS_ChkFv();
 extern "C" void SetExtChk__8cBgS_ChkFR8cBgS_Chk();
 extern "C" void ChkSameActorPid__8cBgS_ChkCFUi();
-extern "C" extern void* __vt__8cBgS_Chk[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -41,8 +38,8 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C3F80-803C3F90 000C+04 s=2 e=0 z=0  None .data      __vt__8cBgS_Chk */
-SECTION_DATA void* __vt__8cBgS_Chk[3 + 1 /* padding */] = {
+/* 803C3F80-803C3F90 0210A0 000C+04 2/2 0/0 0/0 .data            __vt__8cBgS_Chk */
+SECTION_DATA extern void* __vt__8cBgS_Chk[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cBgS_ChkFv,
@@ -50,9 +47,7 @@ SECTION_DATA void* __vt__8cBgS_Chk[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80267B4C-80267B70 0024+00 s=0 e=7 z=0  None .text      __ct__8cBgS_ChkFv */
-//	80267B4C: 803C3F80 (__vt__8cBgS_Chk)
-//	80267B50: 803C3F80 (__vt__8cBgS_Chk)
+/* 80267B4C-80267B70 26248C 0024+00 0/0 7/7 0/0 .text            __ct__8cBgS_ChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -62,10 +57,7 @@ asm cBgS_Chk::cBgS_Chk() {
 }
 #pragma pop
 
-/* 80267B70-80267BB8 0048+00 s=1 e=7 z=0  None .text      __dt__8cBgS_ChkFv */
-//	80267B88: 803C3F80 (__vt__8cBgS_Chk)
-//	80267B8C: 803C3F80 (__vt__8cBgS_Chk)
-//	80267B9C: 802CED3C (__dl__FPv)
+/* 80267B70-80267BB8 2624B0 0048+00 1/0 7/7 0/0 .text            __dt__8cBgS_ChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,7 +67,7 @@ asm cBgS_Chk::~cBgS_Chk() {
 }
 #pragma pop
 
-/* 80267BB8-80267BDC 0024+00 s=0 e=4 z=0  None .text      SetExtChk__8cBgS_ChkFR8cBgS_Chk */
+/* 80267BB8-80267BDC 2624F8 0024+00 0/0 4/4 0/0 .text            SetExtChk__8cBgS_ChkFR8cBgS_Chk */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,7 +77,7 @@ asm void cBgS_Chk::SetExtChk(cBgS_Chk& param_0) {
 }
 #pragma pop
 
-/* 80267BDC-80267C1C 0040+00 s=0 e=7 z=0  None .text      ChkSameActorPid__8cBgS_ChkCFUi */
+/* 80267BDC-80267C1C 26251C 0040+00 0/0 7/7 0/0 .text            ChkSameActorPid__8cBgS_ChkCFUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

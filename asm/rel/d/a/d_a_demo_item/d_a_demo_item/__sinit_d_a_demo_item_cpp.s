@@ -4,10 +4,10 @@ lbl_804E18CC:
 /* 804E18D4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 804E18D8  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 804E18DC  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 804E18E0  3C 60 80 4E */	lis r3, lit_1109@ha
-/* 804E18E4  3B C3 1B E8 */	addi r30, r3, lit_1109@l
-/* 804E18E8  3C 60 80 4E */	lis r3, l_light_color@ha
-/* 804E18EC  3B E3 19 D4 */	addi r31, r3, l_light_color@l
+/* 804E18E0  3C 60 80 4E */	lis r3, lit_1109@ha /* 0x804E1BE8@ha */
+/* 804E18E4  3B C3 1B E8 */	addi r30, r3, lit_1109@l /* 0x804E1BE8@l */
+/* 804E18E8  3C 60 80 4E */	lis r3, l_light_color@ha /* 0x804E19D4@ha */
+/* 804E18EC  3B E3 19 D4 */	addi r31, r3, l_light_color@l /* 0x804E19D4@l */
 /* 804E18F0  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 804E18F4  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 804E18F8  C0 3F 00 64 */	lfs f1, 0x64(r31)
@@ -18,8 +18,8 @@ lbl_804E18CC:
 /* 804E190C  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 804E1910  D0 23 00 04 */	stfs f1, 4(r3)
 /* 804E1914  D0 03 00 08 */	stfs f0, 8(r3)
-/* 804E1918  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E191C  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E1918  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E191C  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E1920  38 BE 00 40 */	addi r5, r30, 0x40
 /* 804E1924  4B FF E2 35 */	bl __register_global_object
 /* 804E1928  C0 5F 00 6C */	lfs f2, 0x6c(r31)
@@ -32,8 +32,8 @@ lbl_804E18CC:
 /* 804E1944  38 7E 00 64 */	addi r3, r30, 0x64
 /* 804E1948  D0 23 00 04 */	stfs f1, 4(r3)
 /* 804E194C  D0 03 00 08 */	stfs f0, 8(r3)
-/* 804E1950  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E1954  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E1950  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E1954  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E1958  38 BE 00 58 */	addi r5, r30, 0x58
 /* 804E195C  4B FF E1 FD */	bl __register_global_object
 /* 804E1960  C0 5F 00 08 */	lfs f2, 8(r31)
@@ -46,8 +46,8 @@ lbl_804E18CC:
 /* 804E197C  38 7E 00 7C */	addi r3, r30, 0x7c
 /* 804E1980  D0 23 00 04 */	stfs f1, 4(r3)
 /* 804E1984  D0 03 00 08 */	stfs f0, 8(r3)
-/* 804E1988  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E198C  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E1988  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E198C  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E1990  38 BE 00 70 */	addi r5, r30, 0x70
 /* 804E1994  4B FF E1 C5 */	bl __register_global_object
 /* 804E1998  83 E1 00 3C */	lwz r31, 0x3c(r1)

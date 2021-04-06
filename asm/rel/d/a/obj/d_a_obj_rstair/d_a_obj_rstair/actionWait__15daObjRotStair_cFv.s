@@ -20,7 +20,7 @@ lbl_80CC20E0:
 /* 80CC2128  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80CC212C  38 E0 00 00 */	li r7, 0
 /* 80CC2130  39 00 00 01 */	li r8, 1
-/* 80CC2134  4B 35 95 48 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80CC2134  4B 35 95 49 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80CC2138  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CC213C  60 00 00 02 */	ori r0, r0, 2
 /* 80CC2140  B0 1F 00 FA */	sth r0, 0xfa(r31)

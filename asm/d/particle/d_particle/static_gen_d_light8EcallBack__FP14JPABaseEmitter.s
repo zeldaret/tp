@@ -5,12 +5,12 @@ lbl_8004A224:
 /* 8004A230  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004A234  7C 7F 1B 78 */	mr r31, r3
 /* 8004A238  48 31 1C 95 */	bl GXFlush
-/* 8004A23C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004A240  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004A23C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004A240  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004A244  38 80 00 00 */	li r4, 0
 /* 8004A248  48 31 60 05 */	bl GXLoadPosMtxImm
-/* 8004A24C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004A250  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004A24C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004A250  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004A254  38 80 00 00 */	li r4, 0
 /* 8004A258  48 31 60 45 */	bl GXLoadNrmMtxImm
 /* 8004A25C  48 31 19 11 */	bl GXInvalidateVtxCache

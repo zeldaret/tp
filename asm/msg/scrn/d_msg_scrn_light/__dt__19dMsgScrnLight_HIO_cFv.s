@@ -5,8 +5,8 @@ lbl_80246348:
 /* 80246354  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80246358  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8024635C  41 82 00 1C */	beq lbl_80246378
-/* 80246360  3C A0 80 3C */	lis r5, __vt__19dMsgScrnLight_HIO_c@ha
-/* 80246364  38 05 12 A4 */	addi r0, r5, __vt__19dMsgScrnLight_HIO_c@l
+/* 80246360  3C A0 80 3C */	lis r5, __vt__19dMsgScrnLight_HIO_c@ha /* 0x803C12A4@ha */
+/* 80246364  38 05 12 A4 */	addi r0, r5, __vt__19dMsgScrnLight_HIO_c@l /* 0x803C12A4@l */
 /* 80246368  90 1F 00 00 */	stw r0, 0(r31)
 /* 8024636C  7C 80 07 35 */	extsh. r0, r4
 /* 80246370  40 81 00 08 */	ble lbl_80246378

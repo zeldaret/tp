@@ -47,13 +47,13 @@ lbl_80278088:
 /* 8027813C  38 81 00 14 */	addi r4, r1, 0x14
 /* 80278140  80 1E 02 10 */	lwz r0, 0x210(r30)
 /* 80278144  54 00 10 3A */	slwi r0, r0, 2
-/* 80278148  3C A0 80 3C */	lis r5, p_prj@ha
-/* 8027814C  38 A5 43 20 */	addi r5, r5, p_prj@l
+/* 80278148  3C A0 80 3C */	lis r5, p_prj@ha /* 0x803C4320@ha */
+/* 8027814C  38 A5 43 20 */	addi r5, r5, p_prj@l /* 0x803C4320@l */
 /* 80278150  7D 85 00 2E */	lwzx r12, r5, r0
 /* 80278154  7D 89 03 A6 */	mtctr r12
 /* 80278158  4E 80 04 21 */	bctrl 
-/* 8027815C  3C 60 80 3C */	lis r3, jpa_dl@ha
-/* 80278160  38 63 42 E0 */	addi r3, r3, jpa_dl@l
+/* 8027815C  3C 60 80 3C */	lis r3, jpa_dl@ha /* 0x803C42E0@ha */
+/* 80278160  38 63 42 E0 */	addi r3, r3, jpa_dl@l /* 0x803C42E0@l */
 /* 80278164  38 80 00 20 */	li r4, 0x20
 /* 80278168  48 0E 7D 89 */	bl GXCallDisplayList
 lbl_8027816C:

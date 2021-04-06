@@ -9,8 +9,8 @@ lbl_800F1894:
 /* 800F18B0  7F E3 FB 78 */	mr r3, r31
 /* 800F18B4  38 80 00 96 */	li r4, 0x96
 /* 800F18B8  38 A0 00 02 */	li r5, 2
-/* 800F18BC  3C C0 80 39 */	lis r6, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F18C0  38 C6 DC 9C */	addi r6, r6, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F18BC  3C C0 80 39 */	lis r6, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F18C0  38 C6 DC 9C */	addi r6, r6, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F18C4  4B FB BE 2D */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F18C8  7F E3 FB 78 */	mr r3, r31
 /* 800F18CC  38 80 00 E8 */	li r4, 0xe8
@@ -31,8 +31,8 @@ lbl_800F1894:
 /* 800F1908  C0 22 92 BC */	lfs f1, lit_6041(r2)
 /* 800F190C  4B FB C1 E1 */	bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 lbl_800F1910:
-/* 800F1910  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800F1914  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800F1910  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800F1914  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800F1918  A8 03 00 56 */	lha r0, 0x56(r3)
 /* 800F191C  B0 1F 30 0C */	sth r0, 0x300c(r31)
 /* 800F1920  38 00 00 00 */	li r0, 0

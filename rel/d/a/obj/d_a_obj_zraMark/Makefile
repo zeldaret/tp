@@ -3,17 +3,15 @@
 #
 
 M699_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark.plf
+M699_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark.lcf
+M699_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark.map
 
 M699_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_zraMark/executor.cpp \
-	rel/d/a/obj/d_a_obj_zraMark/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_zraMark/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark.cpp \
 
 M699_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark.o \
 
 M699_LIBS := \
@@ -29,15 +27,21 @@ M699_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map699.map\
+	-m _prolog \
+	-lcf $(M699_LDSCRIPT) \
+	-unused -map $(M699_MAP) \
+	-w off \
 
 $(M699_TARGET): $(M699_O_FILES) $(M699_LIBS)
+	@echo [699] creating $(M699_TARGET)
 	@echo $(M699_LIBS) $(M699_O_FILES) > build/M699_ofiles
-	$(LD) -opt_partial $(M699_LDFLAGS) -o $(M699_TARGET) @build/M699_ofiles
+	@python3 tools/lcf.py rel 699 --output $(M699_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M699_LDFLAGS) -o $(M699_TARGET) @build/M699_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zraMark/%.o: rel/d/a/obj/d_a_obj_zraMark/%.cpp
+	@echo [699] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M699_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M699_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -52,8 +52,6 @@ struct CARDFileInfo {};
 // Forward References:
 //
 
-static void mDoMemCd_main(void*);
-
 extern "C" void __ct__15mDoMemCd_Ctrl_cFv();
 extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
 extern "C" void main__15mDoMemCd_Ctrl_cFv();
@@ -78,15 +76,10 @@ extern "C" void setCardState__15mDoMemCd_Ctrl_cFl();
 extern "C" static void mDoMemCd_main__FPv();
 extern "C" void __sinit_m_Do_MemCard_cpp();
 extern "C" extern char const* const m_Do_m_Do_MemCard__stringBase0;
-extern "C" extern u8 g_mDoMemCd_control[8192];
 
 //
 // External References:
 //
-
-void mDoExt_getAssertHeap();
-void mDoMemCdRWm_Store(CARDFileInfo*, void*, u32);
-void mDoMemCdRWm_Restore(CARDFileInfo*, void*, u32);
 
 SECTION_INIT void memcpy();
 extern "C" void mDoExt_getAssertHeap__Fv();
@@ -127,34 +120,19 @@ extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 8001672C-80016730 0004+00 s=1 e=0 z=0  None .text      __ct__15mDoMemCd_Ctrl_cFv */
+/* 8001672C-80016730 01106C 0004+00 1/1 0/0 0/0 .text            __ct__15mDoMemCd_Ctrl_cFv */
 mDoMemCd_Ctrl_c::mDoMemCd_Ctrl_c() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 803DFC20-803E0C20 1000+00 s=1 e=0 z=0  None .bss       MemCardStack */
+/* 803DFC20-803E0C20 00C940 1000+00 1/1 0/0 0/0 .bss             MemCardStack */
 static u8 MemCardStack[4096];
 
-/* 803E0C20-803E0F40 0318+08 s=1 e=0 z=0  None .bss       MemCardThread */
+/* 803E0C20-803E0F40 00D940 0318+08 1/1 0/0 0/0 .bss             MemCardThread */
 static u8 MemCardThread[792 + 8 /* padding */];
 
-/* 80016730-800167D0 00A0+00 s=0 e=1 z=0  None .text      ThdInit__15mDoMemCd_Ctrl_cFv */
-//	80016744: 80353AC8 (CARDInit)
-//	80016768: 8033F008 (OSInitMutex)
-//	80016770: 8033F310 (OSInitCond)
-//	80016774: 80340C84 (OSGetCurrentThread)
-//	80016778: 80341E5C (OSGetThreadPriority)
-//	80016780: 803E0C20 (MemCardThread)
-//	80016784: 803E0C20 (MemCardThread)
-//	80016788: 8001741C (mDoMemCd_main__FPv)
-//	8001678C: 8001741C (mDoMemCd_main__FPv)
-//	80016794: 803DFC20 (MemCardStack)
-//	80016798: 803DFC20 (MemCardStack)
-//	800167AC: 8034128C (OSCreateThread)
-//	800167B0: 803E0C20 (MemCardThread)
-//	800167B4: 803E0C20 (MemCardThread)
-//	800167B8: 803417B4 (OSResumeThread)
+/* 80016730-800167D0 011070 00A0+00 0/0 1/1 0/0 .text            ThdInit__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,17 +142,7 @@ asm void mDoMemCd_Ctrl_c::ThdInit() {
 }
 #pragma pop
 
-/* 800167D0-80016894 00C4+00 s=1 e=0 z=0  None .text      main__15mDoMemCd_Ctrl_cFv */
-//	800167E8: 8033F040 (OSLockMutex)
-//	800167F8: 8033F330 (OSWaitCond)
-//	8001680C: 8033F11C (OSUnlockMutex)
-//	80016844: 80016A0C (restore__15mDoMemCd_Ctrl_cFv)
-//	80016850: 80016BD4 (store__15mDoMemCd_Ctrl_cFv)
-//	8001685C: 80016EA8 (format__15mDoMemCd_Ctrl_cFv)
-//	80016868: 80016FB8 (attach__15mDoMemCd_Ctrl_cFv)
-//	80016874: 80017110 (detach__15mDoMemCd_Ctrl_cFv)
-//	8001687C: 8033F040 (OSLockMutex)
-//	8001688C: 8033F11C (OSUnlockMutex)
+/* 800167D0-80016894 011110 00C4+00 1/1 0/0 0/0 .text            main__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -184,22 +152,7 @@ asm void mDoMemCd_Ctrl_c::main() {
 }
 #pragma pop
 
-/* 80016894-800169B4 0120+00 s=0 e=1 z=0  None .text      update__15mDoMemCd_Ctrl_cFv */
-//	800168A8: 80450C78 (mResetData__6mDoRst)
-//	800168BC: 8033F040 (OSLockMutex)
-//	800168D4: 8033F11C (OSUnlockMutex)
-//	800168DC: 8033F404 (OSSignalCond)
-//	800168E8: 80016D74 (getStatus__15mDoMemCd_Ctrl_cFUl)
-//	800168F8: 80356A14 (CARDProbe)
-//	8001690C: 80016D74 (getStatus__15mDoMemCd_Ctrl_cFUl)
-//	8001691C: 8033F040 (OSLockMutex)
-//	8001693C: 8033F11C (OSUnlockMutex)
-//	80016944: 8033F404 (OSSignalCond)
-//	80016950: 80356A14 (CARDProbe)
-//	80016964: 80016D74 (getStatus__15mDoMemCd_Ctrl_cFUl)
-//	80016974: 8033F040 (OSLockMutex)
-//	80016994: 8033F11C (OSUnlockMutex)
-//	8001699C: 8033F404 (OSSignalCond)
+/* 80016894-800169B4 0111D4 0120+00 0/0 1/1 0/0 .text            update__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,10 +162,7 @@ asm void mDoMemCd_Ctrl_c::update() {
 }
 #pragma pop
 
-/* 800169B4-80016A0C 0058+00 s=0 e=2 z=0  None .text      load__15mDoMemCd_Ctrl_cFv */
-//	800169CC: 8033F254 (OSTryLockMutex)
-//	800169EC: 8033F11C (OSUnlockMutex)
-//	800169F4: 8033F404 (OSSignalCond)
+/* 800169B4-80016A0C 0112F4 0058+00 0/0 2/2 0/0 .text            load__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,24 +172,7 @@ asm void mDoMemCd_Ctrl_c::load() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803743F8-80374408 0009+07 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803743F8 = "gczelda2";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
-#pragma pop
-
-/* 80016A0C-80016AB0 00A4+00 s=1 e=0 z=0  None .text      restore__15mDoMemCd_Ctrl_cFv */
-//	80016A30: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016A34: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016A3C: 80357F98 (CARDOpen)
-//	80016A54: 8001769C (mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl)
-//	80016A74: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
-//	80016A7C: 803580B4 (CARDClose)
-//	80016A8C: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
+/* 80016A0C-80016AB0 01134C 00A4+00 1/1 0/0 0/0 .text            restore__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -249,12 +182,8 @@ asm void mDoMemCd_Ctrl_c::restore() {
 }
 #pragma pop
 
-/* 80016AB0-80016B58 00A8+00 s=0 e=2 z=0  None .text      LoadSync__15mDoMemCd_Ctrl_cFPvUlUl */
-//	80016AC0: 803621D4 (_savegpr_27)
-//	80016AF0: 8033F254 (OSTryLockMutex)
-//	80016B14: 80003540 (memcpy)
-//	80016B38: 8033F11C (OSUnlockMutex)
-//	80016B44: 80362220 (_restgpr_27)
+/* 80016AB0-80016B58 0113F0 00A8+00 0/0 2/2 0/0 .text            LoadSync__15mDoMemCd_Ctrl_cFPvUlUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,13 +193,7 @@ asm void mDoMemCd_Ctrl_c::LoadSync(void* param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 80016B58-80016BD4 007C+00 s=0 e=2 z=0  None .text      save__15mDoMemCd_Ctrl_cFPvUlUl */
-//	80016B68: 803621D8 (_savegpr_28)
-//	80016B80: 8033F254 (OSTryLockMutex)
-//	80016B98: 80003540 (memcpy)
-//	80016BB0: 8033F11C (OSUnlockMutex)
-//	80016BB8: 8033F404 (OSSignalCond)
-//	80016BC0: 80362224 (_restgpr_28)
+/* 80016B58-80016BD4 011498 007C+00 0/0 2/2 0/0 .text            save__15mDoMemCd_Ctrl_cFPvUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,19 +203,7 @@ asm void mDoMemCd_Ctrl_c::save(void* param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 80016BD4-80016CE0 010C+00 s=1 e=0 z=0  None .text      store__15mDoMemCd_Ctrl_cFv */
-//	80016C04: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016C08: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016C18: 80358458 (CARDCreate)
-//	80016C40: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
-//	80016C54: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016C58: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80016C60: 80357F98 (CARDOpen)
-//	80016C78: 80017498 (mDoMemCdRWm_Store__FP12CARDFileInfoPvUl)
-//	80016C88: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
-//	80016C9C: 803580B4 (CARDClose)
-//	80016CAC: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
-//	80016CBC: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
+/* 80016BD4-80016CE0 011514 010C+00 1/1 0/0 0/0 .text            store__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -302,9 +213,7 @@ asm void mDoMemCd_Ctrl_c::store() {
 }
 #pragma pop
 
-/* 80016CE0-80016D74 0094+00 s=0 e=6 z=0  None .text      SaveSync__15mDoMemCd_Ctrl_cFv */
-//	80016D14: 8033F254 (OSTryLockMutex)
-//	80016D54: 8033F11C (OSUnlockMutex)
+/* 80016CE0-80016D74 011620 0094+00 0/0 6/6 0/0 .text            SaveSync__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,7 +224,7 @@ asm void mDoMemCd_Ctrl_c::SaveSync() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A34F8-803A3530 0038+00 s=1 e=0 z=0  None .data      @3770 */
+/* 803A34F8-803A3530 -00001 0038+00 1/1 0/0 0/0 .data            @3770 */
 SECTION_DATA static void* lit_3770[14] = {
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0x74),
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0x4C),
@@ -333,11 +242,7 @@ SECTION_DATA static void* lit_3770[14] = {
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0xB4),
 };
 
-/* 80016D74-80016E58 00E4+00 s=2 e=2 z=0  None .text      getStatus__15mDoMemCd_Ctrl_cFUl */
-//	80016D90: 8033F254 (OSTryLockMutex)
-//	80016DA8: 803A34F8 (lit_3770)
-//	80016DAC: 803A34F8 (lit_3770)
-//	80016E30: 8033F11C (OSUnlockMutex)
+/* 80016D74-80016E58 0116B4 00E4+00 2/1 2/2 0/0 .text            getStatus__15mDoMemCd_Ctrl_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,10 +252,8 @@ asm void mDoMemCd_Ctrl_c::getStatus(u32 param_0) {
 }
 #pragma pop
 
-/* 80016E58-80016EA8 0050+00 s=0 e=2 z=0  None .text      command_format__15mDoMemCd_Ctrl_cFv */
-//	80016E70: 8033F254 (OSTryLockMutex)
-//	80016E88: 8033F11C (OSUnlockMutex)
-//	80016E90: 8033F404 (OSSignalCond)
+/* 80016E58-80016EA8 011798 0050+00 0/0 2/2 0/0 .text            command_format__15mDoMemCd_Ctrl_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -360,11 +263,7 @@ asm void mDoMemCd_Ctrl_c::command_format() {
 }
 #pragma pop
 
-/* 80016EA8-80016F2C 0084+00 s=1 e=0 z=0  None .text      format__15mDoMemCd_Ctrl_cFv */
-//	80016ECC: 80357C20 (CARDFormat)
-//	80016ED8: 8033F254 (OSTryLockMutex)
-//	80016F00: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
-//	80016F10: 8033F11C (OSUnlockMutex)
+/* 80016EA8-80016F2C 0117E8 0084+00 1/1 0/0 0/0 .text            format__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -374,9 +273,7 @@ asm void mDoMemCd_Ctrl_c::format() {
 }
 #pragma pop
 
-/* 80016F2C-80016FB8 008C+00 s=0 e=2 z=0  None .text      FormatSync__15mDoMemCd_Ctrl_cFv */
-//	80016F60: 8033F254 (OSTryLockMutex)
-//	80016F98: 8033F11C (OSUnlockMutex)
+/* 80016F2C-80016FB8 01186C 008C+00 0/0 2/2 0/0 .text            FormatSync__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -386,11 +283,7 @@ asm void mDoMemCd_Ctrl_c::FormatSync() {
 }
 #pragma pop
 
-/* 80016FB8-800170B8 0100+00 s=1 e=0 z=0  None .text      attach__15mDoMemCd_Ctrl_cFv */
-//	80016FD8: 80356A4C (CARDProbeEx)
-//	80017034: 80017148 (mount__15mDoMemCd_Ctrl_cFv)
-//	80017044: 80017274 (loadfile__15mDoMemCd_Ctrl_cFv)
-//	80017060: 800172D4 (checkspace__15mDoMemCd_Ctrl_cFv)
+/* 80016FB8-800170B8 0118F8 0100+00 1/1 0/0 0/0 .text            attach__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -400,10 +293,8 @@ asm void mDoMemCd_Ctrl_c::attach() {
 }
 #pragma pop
 
-/* 800170B8-80017110 0058+00 s=0 e=1 z=0  None .text      command_attach__15mDoMemCd_Ctrl_cFv */
-//	800170D0: 8033F254 (OSTryLockMutex)
-//	800170F0: 8033F11C (OSUnlockMutex)
-//	800170F8: 8033F404 (OSSignalCond)
+/* 800170B8-80017110 0119F8 0058+00 0/0 1/1 0/0 .text            command_attach__15mDoMemCd_Ctrl_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -413,8 +304,7 @@ asm void mDoMemCd_Ctrl_c::command_attach() {
 }
 #pragma pop
 
-/* 80017110-80017148 0038+00 s=1 e=0 z=0  None .text      detach__15mDoMemCd_Ctrl_cFv */
-//	80017128: 803573D8 (CARDUnmount)
+/* 80017110-80017148 011A50 0038+00 1/1 0/0 0/0 .text            detach__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -425,7 +315,7 @@ asm void mDoMemCd_Ctrl_c::detach() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3530-803A3568 0038+00 s=1 e=0 z=0  None .data      @3850 */
+/* 803A3530-803A3568 -00001 0038+00 1/1 0/0 0/0 .data            @3850 */
 SECTION_DATA static void* lit_3850[14] = {
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xF4),
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
@@ -443,16 +333,10 @@ SECTION_DATA static void* lit_3850[14] = {
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xBC),
 };
 
-/* 803E0F40-803EAF40 A000+00 s=1 e=0 z=0  None .bss       MemCardWorkArea0 */
+/* 803E0F40-803EAF40 00DC60 A000+00 1/1 0/0 0/0 .bss             MemCardWorkArea0 */
 static u8 MemCardWorkArea0[40960];
 
-/* 80017148-80017274 012C+00 s=2 e=0 z=0  None .text      mount__15mDoMemCd_Ctrl_cFv */
-//	80017160: 803E0F40 (MemCardWorkArea0)
-//	80017164: 803E0F40 (MemCardWorkArea0)
-//	8001716C: 803572F4 (CARDMount)
-//	800171DC: 803568F4 (CARDCheck)
-//	800171EC: 803A3530 (lit_3850)
-//	800171F0: 803A3530 (lit_3850)
+/* 80017148-80017274 011A88 012C+00 2/1 0/0 0/0 .text            mount__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,12 +346,7 @@ asm void mDoMemCd_Ctrl_c::mount() {
 }
 #pragma pop
 
-/* 80017274-800172D4 0060+00 s=1 e=0 z=0  None .text      loadfile__15mDoMemCd_Ctrl_cFv */
-//	8001728C: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80017290: 803743F8 (m_Do_m_Do_MemCard__stringBase0)
-//	80017298: 80357F98 (CARDOpen)
-//	800172A8: 803580B4 (CARDClose)
-//	800172B8: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
+/* 80017274-800172D4 011BB4 0060+00 1/1 0/0 0/0 .text            loadfile__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,9 +356,7 @@ asm void mDoMemCd_Ctrl_c::loadfile() {
 }
 #pragma pop
 
-/* 800172D4-80017360 008C+00 s=1 e=0 z=0  None .text      checkspace__15mDoMemCd_Ctrl_cFv */
-//	800172F4: 80353CD0 (CARDFreeBlocks)
-//	80017304: 80017360 (setCardState__15mDoMemCd_Ctrl_cFl)
+/* 800172D4-80017360 011C14 008C+00 1/1 0/0 0/0 .text            checkspace__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -489,8 +366,8 @@ asm void mDoMemCd_Ctrl_c::checkspace() {
 }
 #pragma pop
 
-/* 80017360-8001741C 00BC+00 s=5 e=0 z=0  None .text      setCardState__15mDoMemCd_Ctrl_cFl */
-//	800173DC: 803568F4 (CARDCheck)
+/* 80017360-8001741C 011CA0 00BC+00 5/5 0/0 0/0 .text            setCardState__15mDoMemCd_Ctrl_cFl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,35 +378,25 @@ asm void mDoMemCd_Ctrl_c::setCardState(s32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803EAF40-803ECF40 2000+00 s=2 e=27 z=0  None .bss       g_mDoMemCd_control */
+/* 803EAF40-803ECF40 017C60 2000+00 2/2 27/27 0/0 .bss             g_mDoMemCd_control */
+extern u8 g_mDoMemCd_control[8192];
 u8 g_mDoMemCd_control[8192];
 
-/* 8001741C-80017470 0054+00 s=1 e=0 z=0  None .text      mDoMemCd_main__FPv */
-//	80017428: 80340C84 (OSGetCurrentThread)
-//	80017438: 802D16B8 (__ct__9JKRThreadFP8OSThreadi)
-//	80017444: 802D1758 (__dt__9JKRThreadFv)
-//	80017448: 8000ECE4 (mDoExt_getAssertHeap__Fv)
-//	8001744C: 802CE438 (becomeCurrentHeap__7JKRHeapFv)
-//	80017450: 803EAF40 (g_mDoMemCd_control)
-//	80017454: 803EAF40 (g_mDoMemCd_control)
-//	80017458: 800167D0 (main__15mDoMemCd_Ctrl_cFv)
+/* 8001741C-80017470 011D5C 0054+00 1/1 0/0 0/0 .text            mDoMemCd_main__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoMemCd_main(void* param_0) {
+static asm void mDoMemCd_main(void* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_MemCard/mDoMemCd_main__FPv.s"
 }
 #pragma pop
 
-/* 80017470-80017498 0028+00 s=0 e=0 z=0  None .text      __sinit_m_Do_MemCard_cpp */
-//	8001747C: 803EAF40 (g_mDoMemCd_control)
-//	80017480: 803EAF40 (g_mDoMemCd_control)
-//	80017484: 8001672C (__ct__15mDoMemCd_Ctrl_cFv)
+/* 80017470-80017498 011DB0 0028+00 0/0 1/0 0/0 .text            __sinit_m_Do_MemCard_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_m_Do_MemCard_cpp() {
+asm void __sinit_m_Do_MemCard_cpp() {
     nofralloc
 #include "asm/m_Do/m_Do_MemCard/__sinit_m_Do_MemCard_cpp.s"
 }
@@ -538,4 +405,13 @@ extern "C" asm void __sinit_m_Do_MemCard_cpp() {
 #pragma push
 #pragma force_active on
 SECTION_CTORS void* const _ctors_80017470 = (void*)__sinit_m_Do_MemCard_cpp;
+#pragma pop
+
+/* 803743F8-80374408 000A58 0009+07 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803743F8 = "gczelda2";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
 #pragma pop

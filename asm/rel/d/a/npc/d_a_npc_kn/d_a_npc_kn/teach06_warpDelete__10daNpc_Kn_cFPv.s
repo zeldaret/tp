@@ -26,7 +26,7 @@ lbl_80A30F20:
 /* 80A30F34  28 00 00 02 */	cmplwi r0, 2
 /* 80A30F38  40 82 00 0C */	bne lbl_80A30F44
 /* 80A30F3C  7F E3 FB 78 */	mr r3, r31
-/* 80A30F40  4B 5E 8D 3C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80A30F40  4B 5E 8D 3D */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80A30F44:
 /* 80A30F44  38 60 00 01 */	li r3, 1
 /* 80A30F48  83 E1 00 0C */	lwz r31, 0xc(r1)

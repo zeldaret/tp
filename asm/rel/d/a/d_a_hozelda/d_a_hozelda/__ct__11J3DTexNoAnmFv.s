@@ -1,6 +1,6 @@
 lbl_8084662C:
-/* 8084662C  3C 80 80 85 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80846630  38 04 8F 6C */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 8084662C  3C 80 80 85 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80848F6C@ha */
+/* 80846630  38 04 8F 6C */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80848F6C@l */
 /* 80846634  90 03 00 00 */	stw r0, 0(r3)
 /* 80846638  38 80 00 00 */	li r4, 0
 /* 8084663C  B0 83 00 04 */	sth r4, 4(r3)

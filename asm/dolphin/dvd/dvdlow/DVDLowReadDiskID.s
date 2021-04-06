@@ -14,21 +14,21 @@ lbl_80347F70:
 /* 80347FA0  38 E4 60 00 */	addi r7, r4, 0x6000 /* 0xCC006000@l */
 /* 80347FA4  91 0D 91 90 */	stw r8, StopAtNextInt(r13)
 /* 80347FA8  90 04 60 08 */	stw r0, 0x6008(r4)
-/* 80347FAC  3C 80 80 45 */	lis r4, AlarmForTimeout@ha
+/* 80347FAC  3C 80 80 45 */	lis r4, AlarmForTimeout@ha /* 0x8044C898@ha */
 /* 80347FB0  38 00 00 03 */	li r0, 3
 /* 80347FB4  91 07 00 0C */	stw r8, 0xc(r7)
-/* 80347FB8  3B E4 C8 98 */	addi r31, r4, AlarmForTimeout@l
+/* 80347FB8  3B E4 C8 98 */	addi r31, r4, AlarmForTimeout@l /* 0x8044C898@l */
 /* 80347FBC  90 C7 00 10 */	stw r6, 0x10(r7)
 /* 80347FC0  90 67 00 14 */	stw r3, 0x14(r7)
 /* 80347FC4  7F E3 FB 78 */	mr r3, r31
 /* 80347FC8  90 C7 00 18 */	stw r6, 0x18(r7)
 /* 80347FCC  90 07 00 1C */	stw r0, 0x1c(r7)
-/* 80347FD0  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 80347FD0  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 80347FD4  54 00 F0 BE */	srwi r0, r0, 2
 /* 80347FD8  1F C0 00 0A */	mulli r30, r0, 0xa
 /* 80347FDC  4B FF 29 1D */	bl OSCreateAlarm
-/* 80347FE0  3C 60 80 34 */	lis r3, AlarmHandlerForTimeout@ha
-/* 80347FE4  38 E3 7A 18 */	addi r7, r3, AlarmHandlerForTimeout@l
+/* 80347FE0  3C 60 80 34 */	lis r3, AlarmHandlerForTimeout@ha /* 0x80347A18@ha */
+/* 80347FE4  38 E3 7A 18 */	addi r7, r3, AlarmHandlerForTimeout@l /* 0x80347A18@l */
 /* 80347FE8  38 7F 00 00 */	addi r3, r31, 0
 /* 80347FEC  38 DE 00 00 */	addi r6, r30, 0
 /* 80347FF0  38 A0 00 00 */	li r5, 0

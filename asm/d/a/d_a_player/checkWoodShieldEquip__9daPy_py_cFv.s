@@ -1,6 +1,6 @@
 lbl_8015F3C4:
-/* 8015F3C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F3C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F3C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F3C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F3CC  88 63 00 15 */	lbz r3, 0x15(r3)
 /* 8015F3D0  38 80 00 01 */	li r4, 1
 /* 8015F3D4  38 03 FF D6 */	addi r0, r3, -42

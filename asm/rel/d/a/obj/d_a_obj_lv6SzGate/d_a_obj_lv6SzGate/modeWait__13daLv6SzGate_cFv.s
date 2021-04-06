@@ -4,12 +4,12 @@ lbl_80C75F70:
 /* 80C75F78  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C75F7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C75F80  7C 7F 1B 78 */	mr r31, r3
-/* 80C75F84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C75F88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C75F84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C75F88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C75F8C  88 9F 05 E2 */	lbz r4, 0x5e2(r31)
 /* 80C75F90  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C75F94  7C 05 07 74 */	extsb r5, r0
-/* 80C75F98  4B 3B F3 C8 */	b isSwitch__10dSv_info_cCFii
+/* 80C75F98  4B 3B F3 C9 */	bl isSwitch__10dSv_info_cCFii
 /* 80C75F9C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C75FA0  41 82 00 0C */	beq lbl_80C75FAC
 /* 80C75FA4  7F E3 FB 78 */	mr r3, r31

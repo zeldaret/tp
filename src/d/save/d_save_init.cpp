@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-void setInitEventBit();
-
 extern "C" void setInitEventBit__Fv();
 
 //
@@ -23,7 +21,7 @@ extern "C" void setInitEventBit__Fv();
 // Declarations:
 //
 
-/* 80035C88-80035C8C 0004+00 s=0 e=1 z=0  None .text      setInitEventBit__Fv */
+/* 80035C88-80035C8C 0305C8 0004+00 0/0 1/1 0/0 .text            setInitEventBit__Fv */
 void setInitEventBit() {
     /* empty function */
 }

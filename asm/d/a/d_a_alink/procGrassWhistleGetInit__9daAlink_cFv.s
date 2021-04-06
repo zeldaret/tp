@@ -22,8 +22,8 @@ lbl_801118C4:
 /* 801118E0  98 1F 2F 98 */	stb r0, 0x2f98(r31)
 /* 801118E4  7F E3 FB 78 */	mr r3, r31
 /* 801118E8  38 80 01 08 */	li r4, 0x108
-/* 801118EC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 801118F0  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 801118EC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 801118F0  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 801118F4  38 A5 00 50 */	addi r5, r5, 0x50
 /* 801118F8  4B F9 B7 FD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 801118FC  38 00 00 FE */	li r0, 0xfe
@@ -49,8 +49,8 @@ lbl_801118C4:
 /* 8011194C  3C 63 00 01 */	addis r3, r3, 1
 /* 80111950  38 03 80 00 */	addi r0, r3, -32768
 /* 80111954  B0 1F 30 12 */	sth r0, 0x3012(r31)
-/* 80111958  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8011195C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80111958  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8011195C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80111960  A8 05 04 E6 */	lha r0, 0x4e6(r5)
 /* 80111964  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80111968  7C 64 02 14 */	add r3, r4, r0

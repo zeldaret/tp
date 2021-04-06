@@ -5,7 +5,7 @@ lbl_80697BB8:
 /* 80697BC4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80697BC8  7C 7F 1B 78 */	mr r31, r3
 /* 80697BCC  38 7F 00 58 */	addi r3, r31, 0x58
-/* 80697BD0  4B C2 6C 74 */	b __ct__16Z2SoundObjSimpleFv
+/* 80697BD0  4B C2 6C 75 */	bl __ct__16Z2SoundObjSimpleFv
 /* 80697BD4  7F E3 FB 78 */	mr r3, r31
 /* 80697BD8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80697BDC  80 01 00 14 */	lwz r0, 0x14(r1)

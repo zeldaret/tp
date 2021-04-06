@@ -5,8 +5,8 @@ lbl_80120124:
 /* 80120130  39 61 00 40 */	addi r11, r1, 0x40
 /* 80120134  48 24 20 A1 */	bl _savegpr_27
 /* 80120138  7C 7E 1B 78 */	mr r30, r3
-/* 8012013C  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 80120140  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 8012013C  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 80120140  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 80120144  A8 03 30 0A */	lha r0, 0x300a(r3)
 /* 80120148  2C 00 00 00 */	cmpwi r0, 0
 /* 8012014C  41 82 00 44 */	beq lbl_80120190
@@ -122,8 +122,8 @@ lbl_8012029C:
 /* 801202E0  90 01 00 08 */	stw r0, 8(r1)
 /* 801202E4  38 00 00 00 */	li r0, 0
 /* 801202E8  90 01 00 0C */	stw r0, 0xc(r1)
-/* 801202EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801202F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801202EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801202F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801202F4  38 63 4E 00 */	addi r3, r3, 0x4e00
 /* 801202F8  A8 9E 30 10 */	lha r4, 0x3010(r30)
 /* 801202FC  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
@@ -154,8 +154,8 @@ lbl_80120350:
 /* 80120358  48 00 01 DD */	bl commonFallInit__9daAlink_cFi
 /* 8012035C  48 00 00 CC */	b lbl_80120428
 lbl_80120360:
-/* 80120360  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80120364  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80120360  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80120364  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80120368  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8012036C  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 80120370  4B F2 7E 0D */	bl cutEnd__16dEvent_manager_cFi
@@ -175,8 +175,8 @@ lbl_80120384:
 /* 801203A0  4E 80 04 21 */	bctrl 
 /* 801203A4  48 00 00 80 */	b lbl_80120424
 lbl_801203A8:
-/* 801203A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801203AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801203A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801203AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801203B0  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 801203B4  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 801203B8  4B F2 7D C5 */	bl cutEnd__16dEvent_manager_cFi

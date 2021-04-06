@@ -5,12 +5,12 @@ lbl_80AE5E70:
 /* 80AE5E7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AE5E80  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AE5E84  41 82 00 1C */	beq lbl_80AE5EA0
-/* 80AE5E88  3C A0 80 AE */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha
-/* 80AE5E8C  38 05 77 24 */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l
+/* 80AE5E88  3C A0 80 AE */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha /* 0x80AE7724@ha */
+/* 80AE5E8C  38 05 77 24 */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l /* 0x80AE7724@l */
 /* 80AE5E90  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 80AE5E94  7C 80 07 35 */	extsh. r0, r4
 /* 80AE5E98  40 81 00 08 */	ble lbl_80AE5EA0
-/* 80AE5E9C  4B 7E 8E A0 */	b __dl__FPv
+/* 80AE5E9C  4B 7E 8E A1 */	bl __dl__FPv
 lbl_80AE5EA0:
 /* 80AE5EA0  7F E3 FB 78 */	mr r3, r31
 /* 80AE5EA4  83 E1 00 0C */	lwz r31, 0xc(r1)

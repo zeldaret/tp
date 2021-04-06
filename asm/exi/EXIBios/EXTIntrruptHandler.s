@@ -19,8 +19,8 @@ lbl_80343D84:
 /* 80343DC8  7C 63 04 30 */	srw r3, r3, r0
 /* 80343DCC  4B FF 9C F1 */	bl __OSMaskInterrupts
 /* 80343DD0  57 C4 30 32 */	slwi r4, r30, 6
-/* 80343DD4  3C 60 80 45 */	lis r3, Ecb@ha
-/* 80343DD8  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 80343DD4  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 80343DD8  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 80343DDC  7F A0 22 14 */	add r29, r0, r4
 /* 80343DE0  83 9D 00 08 */	lwz r28, 8(r29)
 /* 80343DE4  80 1D 00 0C */	lwz r0, 0xc(r29)

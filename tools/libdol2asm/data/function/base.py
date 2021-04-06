@@ -28,13 +28,14 @@ class Function(Symbol):
     def uses_any_templates(self):
         if self.func_name and self.func_name.has_template:
             return True
-        
+
         is_templated = [False]
+
         def callback(tp, depth):
             if isinstance(tp, NamedType):
                 is_templated[0] |= tp.has_template
             if is_templated[0]:
-                return True                
+                return True
 
         if self.return_type:
             self.return_type.traverse(callback, 0)
@@ -49,11 +50,17 @@ class Function(Symbol):
 
     @property
     def is_static(self):
-        static = super().is_static
-        if not static:
+        s = self.reference_count.static
+        e = self.reference_count.extern
+        r = self.reference_count.rel
+        static_by_references = (s > 0 and e == 0 and r == 0)
+        if not static_by_references:
             return False
 
         if not self.func_name:
+            # very arbitrary, but function begining with __ are often special
+            if self.identifier.name and self.identifier.name.startswith("__"):
+                return False
             return True
 
         return not self.uses_any_templates
@@ -62,36 +69,30 @@ class Function(Symbol):
     def label(self):
         return self.identifier.label
 
-    def function_name(self,
-                      original: bool = False,
-                      full_qualified_name: bool = True,
-                      without_template: bool = False,
-                      specialize_templates: bool = False):
+    def function_name(self, c_export: bool, full_qualified_name: bool):
+        if not self.func_name or c_export:
+            return self.identifier.label
 
-        if not self.func_name or original:
+        if self.func_name.require_specialization:
             return self.identifier.label
 
         name = self.func_name
-        if self.special_func_name and self.has_class and specialize_templates:
+        if self.special_func_name and self.has_class:
             # fix up the constructor and destructor if the function is template specialized
             special_name = None
             if self.special_func_name == "ct":
-                special_name = name.second_last.to_str(specialize_templates=specialize_templates,
-                                                        without_template=without_template)
+                special_name = name.second_last.to_str()
             if self.special_func_name == "dt":
-                special_name = "~" + name.second_last.to_str(specialize_templates=specialize_templates,
-                                                        without_template=without_template)
+                special_name = "~" + name.second_last.to_str()
 
             if special_name:
                 name = NamedType(
                     self.func_name.names[:-1] + [ClassName(special_name, [])])
 
         if full_qualified_name:
-            return name.to_str(specialize_templates=specialize_templates,
-                                                        without_template=without_template)
+            return name.to_str()
         else:
-            return name.last.to_str(specialize_templates=specialize_templates,
-                                                        without_template=without_template)
+            return name.last.to_str()
 
     def is_demangled(self):
         return self.func_name != None
@@ -107,7 +108,8 @@ class Function(Symbol):
             return f"(((char*){self.label})+0x{offset:X})"
 
     def relocation_symbols(self, context, symbol_table, section):
-        symbols = section.relocations_in_range(symbol_table, self.start, self.end)
+        symbols = section.relocations_in_range(
+            symbol_table, self.start, self.end)
         return symbols
 
     def types(self):
@@ -124,17 +126,14 @@ class Function(Symbol):
     async def export_function_header(self, exporter,
                                      builder: AsyncBuilder,
                                      forward: bool,
-                                     original: bool = False,
-                                     full_qualified_name: bool = True,
-                                     specialize_templates: bool = False,
-                                     without_template: bool = False,
-                                     comment_arguments: bool = False,
-                                     template_args: List[str] = None):
-
+                                     c_export: bool,
+                                     full_qualified_name: bool):
+        # TODO: remove or refactor
         if False:
             await builder.write(f"// {self.is_static} {self.uses_any_templates}")
-            
+
             lines = []
+
             def callback(tp, depth):
                 pad = '\t' * depth
                 template = False
@@ -148,74 +147,67 @@ class Function(Symbol):
                 arg_type.traverse(callback, 0)
 
             for line in lines:
-                await builder.write(line)           
+                await builder.write(line)
 
-        declspec = "extern \"C\" "
-        if not original and self.is_demangled():
-            declspec = ""
+        arg_type = ""
+        if forward:
+            arg_type = ", ".join([x.type(specialize_templates=True) for x in self.argument_types])
+        else:
+            arg_type = ", ".join([x.decl(f"param_{i}",specialize_templates=True) for i, x in zip(
+                range(len(self.argument_types)), self.argument_types)])
 
         if self._section == ".init":
-            declspec = "SECTION_INIT "
+            await builder.write_nonewline(f"SECTION_INIT ")
+        elif c_export or (self.func_name and self.func_name.require_specialization and full_qualified_name):
+            await builder.write_nonewline(f"extern \"C\" ")
 
-        await builder.write_nonewline(f"{declspec}")
+        if self.is_static and not self.has_class:
+            await self.export_static(builder)
         if self.asm and not forward:
             await builder.write_nonewline(f"asm ")
 
-        if full_qualified_name and not self.has_class:
-            # this symbol is only referenced by other symbol in the same translation unit
-            if self.is_static:
-                await builder.write_nonewline(f"static ")
+        return_type = self.return_type
+        if not self.return_type:
+            return_type = VOID
 
-        if not self.special_func_name in special_func_no_return or original:
-            return_type = self.return_type
-            if not self.return_type:
-                return_type = VOID
+        is_special_function = (
+            self.special_func_name in special_func_no_return)
+        specialized = (
+            self.func_name and self.func_name.require_specialization)
+        if c_export:
+            await builder.write_nonewline(f"{return_type.type()} ")
+            await builder.write_nonewline(f"{self.function_name(c_export=True,full_qualified_name=full_qualified_name)}")
 
-            await builder.write_nonewline(f"{return_type.type(specialize_templates,without_template)} ")
-        await builder.write_nonewline(f"{self.function_name(original, full_qualified_name, without_template, specialize_templates)}")
-
-        arg_type = ""
-        if not original and self.is_demangled():
-            if forward:
-                arg_type = ", ".join([x.type(specialize_templates,without_template) for x in self.argument_types])
+            # specialized function will have the arguments even when exported as C
+            if specialized:
+                await builder.write_nonewline(f"({arg_type})")
             else:
-                arg_type = ", ".join([x.decl(f"param_{i}",specialize_templates,without_template) for i, x in zip(
-                    range(len(self.argument_types)), self.argument_types)])
+                await builder.write_nonewline(f"()")
+        else:
+            if not is_special_function or specialized:
+                await builder.write_nonewline(f"{return_type.type()} ")
 
-        if template_args:
-            args = ", ".join(template_args)
-            await builder.write_nonewline(f"<{args}>")
-
-        if comment_arguments:
-            arg_type = f"/* {arg_type} */"
-        await builder.write_nonewline(f"({arg_type})")
-        if not original and self.has_class and self.func_is_const:
-            await builder.write_nonewline(f" const")
+            await builder.write_nonewline(f"{self.function_name(c_export=False, full_qualified_name=full_qualified_name)}")
+            await builder.write_nonewline(f"({arg_type})")
+            if self.has_class and self.func_is_const:
+                if specialized:
+                    await builder.write_nonewline(f" /* const */")
+                else:
+                    await builder.write_nonewline(f" const")
 
     async def export_forward_references(self, exporter,
                                         builder: AsyncBuilder,
-                                        c_export: bool = False,
-                                        full_qualified_name: bool = True,
-                                        template_args: List[str] = None):
-        if not template_args:
-            template_args = []
-
-        if c_export:
-            # export unmangled name
-            await self.export_function_header(exporter, builder, forward=True, original=True)
-            await builder.write(f";")
+                                        c_export: bool = False):
+        # forward reference will only happen for c style functions. other functions willö
+        # will be forward referenced using the cpp-exporter types finder.
+        if not c_export:
             return
 
-        if full_qualified_name:
-            if self.is_demangled():
-                # forward references are not written for class functions
-                if not self.has_class:
-                    await self.export_function_header(exporter, builder, forward=True, full_qualified_name=True, specialize_templates=True)
-                    await builder.write(f";")
-        else:
-            # export the function as a class method
-            await self.export_function_header(exporter, builder, forward=True, full_qualified_name=False, template_args=template_args)
-            await builder.write(f";")
+        await self.export_function_header(exporter, builder,
+                                          forward=True,
+                                          c_export=c_export,
+                                          full_qualified_name=False)
+        await builder.write(f";")
 
     async def export_function_body(self, exporter, builder: AsyncBuilder):
         assert False
@@ -227,10 +219,9 @@ class Function(Symbol):
             await builder.write("#pragma push")
             await builder.write(f"#pragma function_align {self.alignment}")
 
-        await self.export_function_header(exporter, builder, forward=False, specialize_templates=self.has_template)
+        await self.export_function_header(exporter, builder, forward=False, c_export=False, full_qualified_name=True)
         await self.export_function_body(exporter, builder)
 
         if self.alignment:
             await builder.write("#pragma pop")
         await builder.write("")
-

@@ -1,6 +1,6 @@
 lbl_80C5CCA4:
-/* 80C5CCA4  3C 80 80 C6 */	lis r4, l_HIO@ha
-/* 80C5CCA8  38 84 D3 54 */	addi r4, r4, l_HIO@l
+/* 80C5CCA4  3C 80 80 C6 */	lis r4, l_HIO@ha /* 0x80C5D354@ha */
+/* 80C5CCA8  38 84 D3 54 */	addi r4, r4, l_HIO@l /* 0x80C5D354@l */
 /* 80C5CCAC  A8 04 00 04 */	lha r0, 4(r4)
 /* 80C5CCB0  B0 03 05 88 */	sth r0, 0x588(r3)
 /* 80C5CCB4  38 00 00 00 */	li r0, 0

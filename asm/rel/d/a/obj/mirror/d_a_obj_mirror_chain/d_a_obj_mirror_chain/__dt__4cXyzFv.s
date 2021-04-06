@@ -7,7 +7,7 @@ lbl_80C96DAC:
 /* 80C96DC0  41 82 00 10 */	beq lbl_80C96DD0
 /* 80C96DC4  7C 80 07 35 */	extsh. r0, r4
 /* 80C96DC8  40 81 00 08 */	ble lbl_80C96DD0
-/* 80C96DCC  4B 63 7F 70 */	b __dl__FPv
+/* 80C96DCC  4B 63 7F 71 */	bl __dl__FPv
 lbl_80C96DD0:
 /* 80C96DD0  7F E3 FB 78 */	mr r3, r31
 /* 80C96DD4  83 E1 00 0C */	lwz r31, 0xc(r1)

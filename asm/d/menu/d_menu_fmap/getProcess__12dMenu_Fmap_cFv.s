@@ -1,6 +1,6 @@
 lbl_801CB1DC:
-/* 801CB1DC  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801CB1E0  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l
+/* 801CB1DC  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801CB1E0  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801CB1E4  88 04 02 F9 */	lbz r0, 0x2f9(r4)
 /* 801CB1E8  28 00 00 00 */	cmplwi r0, 0
 /* 801CB1EC  41 82 00 0C */	beq lbl_801CB1F8

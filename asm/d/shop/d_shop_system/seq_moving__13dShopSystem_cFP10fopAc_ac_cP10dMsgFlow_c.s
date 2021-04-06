@@ -25,8 +25,8 @@ lbl_80199A18:
 /* 80199A74  28 00 00 07 */	cmplwi r0, 7
 /* 80199A78  40 82 00 30 */	bne lbl_80199AA8
 /* 80199A7C  C0 21 00 20 */	lfs f1, 0x20(r1)
-/* 80199A80  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 80199A84  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 80199A80  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 80199A84  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 80199A88  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 80199A8C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80199A90  D0 01 00 20 */	stfs f0, 0x20(r1)
@@ -37,8 +37,8 @@ lbl_80199A18:
 /* 80199AA4  48 00 00 1C */	b lbl_80199AC0
 lbl_80199AA8:
 /* 80199AA8  C0 21 00 24 */	lfs f1, 0x24(r1)
-/* 80199AAC  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 80199AB0  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 80199AAC  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 80199AB0  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 80199AB4  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 80199AB8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80199ABC  D0 01 00 24 */	stfs f0, 0x24(r1)
@@ -63,8 +63,8 @@ lbl_80199AC0:
 /* 80199B04  28 00 00 07 */	cmplwi r0, 7
 /* 80199B08  40 82 00 30 */	bne lbl_80199B38
 /* 80199B0C  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 80199B10  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 80199B14  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 80199B10  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 80199B14  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 80199B18  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 80199B1C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80199B20  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -75,8 +75,8 @@ lbl_80199AC0:
 /* 80199B34  48 00 00 1C */	b lbl_80199B50
 lbl_80199B38:
 /* 80199B38  C0 21 00 30 */	lfs f1, 0x30(r1)
-/* 80199B3C  3C 60 80 43 */	lis r3, g_cursorHIO@ha
-/* 80199B40  38 63 01 10 */	addi r3, r3, g_cursorHIO@l
+/* 80199B3C  3C 60 80 43 */	lis r3, g_cursorHIO@ha /* 0x80430110@ha */
+/* 80199B40  38 63 01 10 */	addi r3, r3, g_cursorHIO@l /* 0x80430110@l */
 /* 80199B44  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 80199B48  EC 01 00 2A */	fadds f0, f1, f0
 /* 80199B4C  D0 01 00 30 */	stfs f0, 0x30(r1)

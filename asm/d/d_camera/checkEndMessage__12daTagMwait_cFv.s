@@ -3,8 +3,8 @@ lbl_80182D9C:
 /* 80182DA0  7C 08 02 A6 */	mflr r0
 /* 80182DA4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80182DA8  7C 65 1B 78 */	mr r5, r3
-/* 80182DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80182DB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80182DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80182DB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80182DB4  88 85 05 69 */	lbz r4, 0x569(r5)
 /* 80182DB8  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80182DBC  7C 05 07 74 */	extsb r5, r0

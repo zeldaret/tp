@@ -24,41 +24,28 @@ extern "C" void copysign();
 //
 
 /* ############################################################################################## */
-/* 80456B10-80456B18 0008+00 s=1 e=0 z=0  None .sdata2    @91 */
+/* 80456B10-80456B18 005110 0008+00 1/1 0/0 0/0 .sdata2          @91 */
 SECTION_SDATA2 static u8 lit_91[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80456B18-80456B20 0008+00 s=1 e=0 z=0  None .sdata2    @92 */
+/* 80456B18-80456B20 005118 0008+00 1/1 0/0 0/0 .sdata2          @92 */
 SECTION_SDATA2 static f64 lit_92 = 1.8014398509481984e+16;
 
-/* 80456B20-80456B28 0008+00 s=1 e=0 z=0  None .sdata2    @93 */
+/* 80456B20-80456B28 005120 0008+00 1/1 0/0 0/0 .sdata2          @93 */
 SECTION_SDATA2 static f64 lit_93 = 1e-300;
 
-/* 80456B28-80456B30 0008+00 s=1 e=0 z=0  None .sdata2    @94 */
+/* 80456B28-80456B30 005128 0008+00 1/1 0/0 0/0 .sdata2          @94 */
 SECTION_SDATA2 static f64 lit_94 = 1e+300;
 
-/* 80456B30-80456B38 0008+00 s=1 e=0 z=0  None .sdata2    @95 */
+/* 80456B30-80456B38 005130 0008+00 1/1 0/0 0/0 .sdata2          @95 */
 SECTION_SDATA2 static f64 lit_95 = 5.551115123125783e-17;
 
-/* 8036C2D0-8036C494 01C4+00 s=0 e=3 z=0  None .text      ldexp */
-//	8036C35C: 80456B10 (lit_91)
-//	8036C394: 80456B18 (lit_92)
-//	8036C3B8: 80456B20 (lit_93)
-//	8036C3E4: 80456B28 (lit_94)
-//	8036C3EC: 8036C000 (copysign)
-//	8036C3F0: 80456B28 (lit_94)
-//	8036C434: 80456B28 (lit_94)
-//	8036C43C: 8036C000 (copysign)
-//	8036C440: 80456B28 (lit_94)
-//	8036C44C: 80456B20 (lit_93)
-//	8036C454: 8036C000 (copysign)
-//	8036C458: 80456B20 (lit_93)
-//	8036C470: 80456B30 (lit_95)
+/* 8036C2D0-8036C494 366C10 01C4+00 0/0 3/3 0/0 .text            ldexp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ldexp() {
+asm void ldexp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/s_ldexp/ldexp.s"
 }

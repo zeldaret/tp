@@ -3,11 +3,11 @@ lbl_80BD3720:
 /* 80BD3724  7C 08 02 A6 */	mflr r0
 /* 80BD3728  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80BD372C  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BD3730  4B 78 EA 98 */	b _savegpr_24
+/* 80BD3730  4B 78 EA 99 */	bl _savegpr_24
 /* 80BD3734  7C 7A 1B 78 */	mr r26, r3
 /* 80BD3738  7C BB 2B 78 */	mr r27, r5
-/* 80BD373C  3C 60 80 BD */	lis r3, lit_3703@ha
-/* 80BD3740  3B E3 3F F0 */	addi r31, r3, lit_3703@l
+/* 80BD373C  3C 60 80 BD */	lis r3, lit_3703@ha /* 0x80BD3FF0@ha */
+/* 80BD3740  3B E3 3F F0 */	addi r31, r3, lit_3703@l /* 0x80BD3FF0@l */
 /* 80BD3744  7C 9C 23 78 */	mr r28, r4
 /* 80BD3748  1F 1C 00 0C */	mulli r24, r28, 0xc
 /* 80BD374C  1F 3C 00 06 */	mulli r25, r28, 6
@@ -109,7 +109,7 @@ lbl_80BD38BC:
 /* 80BD38BC  7C 1C D8 00 */	cmpw r28, r27
 /* 80BD38C0  41 80 FE 94 */	blt lbl_80BD3754
 /* 80BD38C4  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BD38C8  4B 78 E9 4C */	b _restgpr_24
+/* 80BD38C8  4B 78 E9 4D */	bl _restgpr_24
 /* 80BD38CC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80BD38D0  7C 08 03 A6 */	mtlr r0
 /* 80BD38D4  38 21 00 40 */	addi r1, r1, 0x40

@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -104,13 +104,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void createSolidHeap(fopAc_ac_c*);
-static void daObjMirrorSand_Draw(daObjMirrorSand_c*);
-static void daObjMirrorSand_Execute(daObjMirrorSand_c*);
-static bool daObjMirrorSand_IsDelete(daObjMirrorSand_c*);
-static void daObjMirrorSand_Delete(daObjMirrorSand_c*);
-static void daObjMirrorSand_Create(fopAc_ac_c*);
-
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" void initBaseMtx__17daObjMirrorSand_cFv();
@@ -121,22 +114,11 @@ extern "C" static bool daObjMirrorSand_IsDelete__FP17daObjMirrorSand_c();
 extern "C" static void daObjMirrorSand_Delete__FP17daObjMirrorSand_c();
 extern "C" void __dt__4dBgWFv();
 extern "C" static void daObjMirrorSand_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_MirrorSand[12];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
+extern "C" extern char const* const d_a_obj_mirror_sand__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -187,33 +169,29 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80C989D8-80C989DC 0004+00 s=1 e=0 z=0  None .rodata    @3729 */
+/* 80C989D8-80C989DC 000000 0004+00 1/1 0/0 0/0 .rodata          @3729 */
 SECTION_RODATA static u32 const lit_3729 = 0x3F800000;
+SECTION_DEAD void* const cg_80C989D8 = (void*)(&lit_3729);
 
-/* 80C989DC-80C989E0 0004+00 s=3 e=0 z=0  None .rodata    @3730 */
+/* 80C989DC-80C989E0 000004 0004+00 3/3 0/0 0/0 .rodata          @3730 */
 SECTION_RODATA static u8 const lit_3730[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80C989DC = (void*)(&lit_3730);
 
-/* 80C989E0-80C989E8 0008+00 s=1 e=0 z=0  None .rodata    @3732 */
+/* 80C989E0-80C989E8 000008 0008+00 1/1 0/0 0/0 .rodata          @3732 */
 SECTION_RODATA static u8 const lit_3732[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80C989E0 = (void*)(&lit_3732);
 
-/* 80C989E8-80C989F0 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C989E8 = "MR-Sand";
-#pragma pop
+/* 80C989F0-80C989F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_sand__stringBase0;
 
-/* 80C989F0-80C989F4 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C989F4-80C98A14 0020+00 s=1 e=0 z=0  None .data      l_daObjMirrorSand_Method */
+/* 80C989F4-80C98A14 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirrorSand_Method */
 SECTION_DATA static void* l_daObjMirrorSand_Method[8] = {
     (void*)daObjMirrorSand_Create__FP10fopAc_ac_c,
     (void*)daObjMirrorSand_Delete__FP17daObjMirrorSand_c,
@@ -225,8 +203,8 @@ SECTION_DATA static void* l_daObjMirrorSand_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C98A14-80C98A44 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_MirrorSand */
-SECTION_DATA void* g_profile_Obj_MirrorSand[12] = {
+/* 80C98A14-80C98A44 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_MirrorSand */
+SECTION_DATA extern void* g_profile_Obj_MirrorSand[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00AF0000, (void*)&g_fpcLf_Method,
     (void*)0x0000072C, (void*)NULL,
@@ -235,83 +213,24 @@ SECTION_DATA void* g_profile_Obj_MirrorSand[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80C98A44-80C98A50 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
+/* 80C98A44-80C98A50 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C981D8-80C984C0 02E8+00 s=1 e=0 z=0  None .text      createSolidHeap__FP10fopAc_ac_c */
-//	80C981E8: 803621D4 (_savegpr_27)
-//	80C981F0: 80C989F0 (l_arcName)
-//	80C981F4: 80C989F0 (l_arcName)
-//	80C98200: 804061C0 (g_dComIfG_gameInfo)
-//	80C98204: 804061C0 (g_dComIfG_gameInfo)
-//	80C98218: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C98228: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80C98244: 80C989F0 (l_arcName)
-//	80C98248: 80C989F0 (l_arcName)
-//	80C9825C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C98268: 802CEC4C (__nw__FUl)
-//	80C98274: 80C98A44 (__vt__12J3DFrameCtrl)
-//	80C98278: 80C98A44 (__vt__12J3DFrameCtrl)
-//	80C98284: 803283FC (init__12J3DFrameCtrlFs)
-//	80C9829C: 804061C0 (g_dComIfG_gameInfo)
-//	80C982A0: 804061C0 (g_dComIfG_gameInfo)
-//	80C982B4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C982C0: 804061C0 (g_dComIfG_gameInfo)
-//	80C982C4: 804061C0 (g_dComIfG_gameInfo)
-//	80C982CC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C982D0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C982D8: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C982F0: 804061C0 (g_dComIfG_gameInfo)
-//	80C982F4: 804061C0 (g_dComIfG_gameInfo)
-//	80C982FC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C98300: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C98308: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C98320: 80C989D8 (lit_3729)
-//	80C98324: 80C989D8 (lit_3729)
-//	80C9832C: 80C989DC (lit_3730)
-//	80C98330: 80C989DC (lit_3730)
-//	80C98358: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
-//	80C98374: 804061C0 (g_dComIfG_gameInfo)
-//	80C98378: 804061C0 (g_dComIfG_gameInfo)
-//	80C9838C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C98398: 804061C0 (g_dComIfG_gameInfo)
-//	80C9839C: 804061C0 (g_dComIfG_gameInfo)
-//	80C983A4: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C983A8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C983B0: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C983C8: 804061C0 (g_dComIfG_gameInfo)
-//	80C983CC: 804061C0 (g_dComIfG_gameInfo)
-//	80C983D4: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C983D8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C983E0: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C983FC: 80C989E0 (lit_3732)
-//	80C98400: 80C989E0 (lit_3732)
-//	80C98424: 80C989F0 (l_arcName)
-//	80C98428: 80C989F0 (l_arcName)
-//	80C9843C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C98450: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	80C98464: 80C989F0 (l_arcName)
-//	80C98468: 80C989F0 (l_arcName)
-//	80C9847C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80C98490: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	80C984AC: 80362220 (_restgpr_27)
+/* 80C981D8-80C984C0 000078 02E8+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createSolidHeap(fopAc_ac_c* param_0) {
+static asm void createSolidHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C984C0-80C98508 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-//	80C984D8: 80C98A44 (__vt__12J3DFrameCtrl)
-//	80C984DC: 80C98A44 (__vt__12J3DFrameCtrl)
-//	80C984EC: 802CED3C (__dl__FPv)
+/* 80C984C0-80C98508 000360 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -321,8 +240,8 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C98508-80C98534 002C+00 s=1 e=0 z=0  None .text      initBaseMtx__17daObjMirrorSand_cFv */
-//	80C98520: 80C98534 (setBaseMtx__17daObjMirrorSand_cFv)
+/* 80C98508-80C98534 0003A8 002C+00 1/1 0/0 0/0 .text            initBaseMtx__17daObjMirrorSand_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,16 +251,8 @@ asm void daObjMirrorSand_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80C98534-80C98598 0064+00 s=1 e=0 z=0  None .text      setBaseMtx__17daObjMirrorSand_cFv */
-//	80C9854C: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80C98554: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80C98558: 803DD470 (now__14mDoMtx_stack_c)
-//	80C9855C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C98568: 803464B0 (PSMTXCopy)
-//	80C9856C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C98570: 803DD470 (now__14mDoMtx_stack_c)
-//	80C98578: 803464B0 (PSMTXCopy)
-//	80C98580: 8007B9C0 (Move__4dBgWFv)
+/* 80C98534-80C98598 0003D4 0064+00 1/1 0/0 0/0 .text            setBaseMtx__17daObjMirrorSand_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -351,87 +262,46 @@ asm void daObjMirrorSand_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C98598-80C98668 00D0+00 s=1 e=0 z=0  None .text daObjMirrorSand_Draw__FP17daObjMirrorSand_c
+/* 80C98598-80C98668 000438 00D0+00 1/0 0/0 0/0 .text daObjMirrorSand_Draw__FP17daObjMirrorSand_c
  */
-//	80C985B0: 8042CA54 (g_env_light)
-//	80C985B4: 8042CA54 (g_env_light)
-//	80C985C4: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80C985C8: 8042CA54 (g_env_light)
-//	80C985CC: 8042CA54 (g_env_light)
-//	80C985DC: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C985F0:
-// 8000D9CC (entry__13mDoExt_bckAnmFP12J3DModelDataf) 	80C985F4: 804061C0 (g_dComIfG_gameInfo)
-//	80C985F8: 804061C0 (g_dComIfG_gameInfo)
-//	80C98600: 80434AC8 (j3dSys)
-//	80C98604: 80434AC8 (j3dSys)
-//	80C98618: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80C9861C: 804061C0 (g_dComIfG_gameInfo)
-//	80C98620: 804061C0 (g_dComIfG_gameInfo)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorSand_Draw(daObjMirrorSand_c* param_0) {
+static asm void daObjMirrorSand_Draw(daObjMirrorSand_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand/daObjMirrorSand_Draw__FP17daObjMirrorSand_c.s"
 }
 #pragma pop
 
-/* 80C98668-80C98700 0098+00 s=1 e=0 z=0  None .text
+/* 80C98668-80C98700 000508 0098+00 1/0 0/0 0/0 .text
  * daObjMirrorSand_Execute__FP17daObjMirrorSand_c               */
-//	80C98684: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80C986A0: 80C989DC (lit_3730)
-//	80C986A4: 80C989DC (lit_3730)
-//	80C986B0: 804061C0 (g_dComIfG_gameInfo)
-//	80C986B4: 804061C0 (g_dComIfG_gameInfo)
-//	80C986C0: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C986D0: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80C986E0: 8007B9C0 (Move__4dBgWFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorSand_Execute(daObjMirrorSand_c* param_0) {
+static asm void daObjMirrorSand_Execute(daObjMirrorSand_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand/daObjMirrorSand_Execute__FP17daObjMirrorSand_c.s"
 }
 #pragma pop
 
-/* 80C98700-80C98708 0008+00 s=1 e=0 z=0  None .text
+/* 80C98700-80C98708 0005A0 0008+00 1/0 0/0 0/0 .text
  * daObjMirrorSand_IsDelete__FP17daObjMirrorSand_c              */
 static bool daObjMirrorSand_IsDelete(daObjMirrorSand_c* param_0) {
     return true;
 }
 
-/* 80C98708-80C987B8 00B0+00 s=1 e=0 z=0  None .text daObjMirrorSand_Delete__FP17daObjMirrorSand_c
- */
-//	80C98724: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80C98730: 804061C0 (g_dComIfG_gameInfo)
-//	80C98734: 804061C0 (g_dComIfG_gameInfo)
-//	80C98740: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C98748: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80C98754: 804061C0 (g_dComIfG_gameInfo)
-//	80C98758: 804061C0 (g_dComIfG_gameInfo)
-//	80C98764: 80074250 (Release__4cBgSFP9dBgW_Base)
-//	80C9876C: 80C989F0 (l_arcName)
-//	80C98770: 80C989F0 (l_arcName)
-//	80C98778: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80C98780: 80C987B8 (__dt__4dBgWFv)
-//	80C98784: 80C987B8 (__dt__4dBgWFv)
-//	80C98790: 80361CE8 (__destroy_arr)
-//	80C9879C: 80018C8C (__dt__10fopAc_ac_cFv)
+/* 80C98708-80C987B8 0005A8 00B0+00 1/0 0/0 0/0 .text
+ * daObjMirrorSand_Delete__FP17daObjMirrorSand_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorSand_Delete(daObjMirrorSand_c* param_0) {
+static asm void daObjMirrorSand_Delete(daObjMirrorSand_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand/daObjMirrorSand_Delete__FP17daObjMirrorSand_c.s"
 }
 #pragma pop
 
-/* 80C987B8-80C98818 0060+00 s=2 e=0 z=0  None .text      __dt__4dBgWFv */
-//	80C987D8: 803ABA80 (__vt__4dBgW)
-//	80C987DC: 803ABA80 (__vt__4dBgW)
-//	80C987E8: 8007933C (__dt__4cBgWFv)
-//	80C987F8: 802CED3C (__dl__FPv)
+/* 80C987B8-80C98818 000658 0060+00 2/2 0/0 0/0 .text            __dt__4dBgWFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -441,46 +311,19 @@ asm dBgW::~dBgW() {
 }
 #pragma pop
 
-/* 80C98818-80C989D0 01B8+00 s=1 e=0 z=0  None .text      daObjMirrorSand_Create__FP10fopAc_ac_c */
-//	80C98828: 803621D8 (_savegpr_28)
-//	80C98848: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C98850: 8007B970 (__ct__4dBgWFv)
-//	80C98854: 8007B970 (__ct__4dBgWFv)
-//	80C98858: 80C987B8 (__dt__4dBgWFv)
-//	80C9885C: 80C987B8 (__dt__4dBgWFv)
-//	80C98868: 80361D60 (__construct_array)
-//	80C9887C: 80C989F0 (l_arcName)
-//	80C98880: 80C989F0 (l_arcName)
-//	80C98888: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C9889C: 80C981D8 (createSolidHeap__FP10fopAc_ac_c)
-//	80C988A0: 80C981D8 (createSolidHeap__FP10fopAc_ac_c)
-//	80C988A8: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80C988C8: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80C988CC: 80C989DC (lit_3730)
-//	80C988D0: 80C989DC (lit_3730)
-//	80C98900: 804061C0 (g_dComIfG_gameInfo)
-//	80C98904: 804061C0 (g_dComIfG_gameInfo)
-//	80C98918: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C98924: 804061C0 (g_dComIfG_gameInfo)
-//	80C98928: 804061C0 (g_dComIfG_gameInfo)
-//	80C98930: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C98934: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C9893C: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C98954: 804061C0 (g_dComIfG_gameInfo)
-//	80C98958: 804061C0 (g_dComIfG_gameInfo)
-//	80C98960: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C98964: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80C9896C: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80C98994: 804061C0 (g_dComIfG_gameInfo)
-//	80C98998: 804061C0 (g_dComIfG_gameInfo)
-//	80C989A8: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80C989B0: 80C98508 (initBaseMtx__17daObjMirrorSand_cFv)
-//	80C989BC: 80362224 (_restgpr_28)
+/* 80C98818-80C989D0 0006B8 01B8+00 1/0 0/0 0/0 .text daObjMirrorSand_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorSand_Create(fopAc_ac_c* param_0) {
+static asm void daObjMirrorSand_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand/daObjMirrorSand_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80C989E8-80C989F0 000010 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C989E8 = "MR-Sand";
 #pragma pop

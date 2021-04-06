@@ -4,8 +4,8 @@ lbl_80BC834C:
 /* 80BC8354  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BC8358  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BC835C  7C 7F 1B 78 */	mr r31, r3
-/* 80BC8360  3C 80 80 BD */	lis r4, lit_3731@ha
-/* 80BC8364  38 84 8C DC */	addi r4, r4, lit_3731@l
+/* 80BC8360  3C 80 80 BD */	lis r4, lit_3731@ha /* 0x80BC8CDC@ha */
+/* 80BC8364  38 84 8C DC */	addi r4, r4, lit_3731@l /* 0x80BC8CDC@l */
 /* 80BC8368  C0 24 00 08 */	lfs f1, 8(r4)
 /* 80BC836C  C0 44 00 0C */	lfs f2, 0xc(r4)
 /* 80BC8370  C0 64 00 10 */	lfs f3, 0x10(r4)

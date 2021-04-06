@@ -5,12 +5,12 @@ lbl_807EEE74:
 /* 807EEE80  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807EEE84  7C 7F 1B 79 */	or. r31, r3, r3
 /* 807EEE88  41 82 00 1C */	beq lbl_807EEEA4
-/* 807EEE8C  3C A0 80 7F */	lis r5, __vt__10cCcD_GStts@ha
-/* 807EEE90  38 05 FA DC */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 807EEE8C  3C A0 80 7F */	lis r5, __vt__10cCcD_GStts@ha /* 0x807EFADC@ha */
+/* 807EEE90  38 05 FA DC */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x807EFADC@l */
 /* 807EEE94  90 1F 00 00 */	stw r0, 0(r31)
 /* 807EEE98  7C 80 07 35 */	extsh. r0, r4
 /* 807EEE9C  40 81 00 08 */	ble lbl_807EEEA4
-/* 807EEEA0  4B AD FE 9C */	b __dl__FPv
+/* 807EEEA0  4B AD FE 9D */	bl __dl__FPv
 lbl_807EEEA4:
 /* 807EEEA4  7F E3 FB 78 */	mr r3, r31
 /* 807EEEA8  83 E1 00 0C */	lwz r31, 0xc(r1)

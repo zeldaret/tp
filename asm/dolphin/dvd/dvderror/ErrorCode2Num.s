@@ -1,8 +1,8 @@
 lbl_8034BA6C:
 /* 8034BA6C  38 00 00 02 */	li r0, 2
-/* 8034BA70  3C 80 80 3D */	lis r4, ErrorTable@ha
+/* 8034BA70  3C 80 80 3D */	lis r4, ErrorTable@ha /* 0x803D16A8@ha */
 /* 8034BA74  7C 09 03 A6 */	mtctr r0
-/* 8034BA78  38 84 16 A8 */	addi r4, r4, ErrorTable@l
+/* 8034BA78  38 84 16 A8 */	addi r4, r4, ErrorTable@l /* 0x803D16A8@l */
 /* 8034BA7C  38 A0 00 00 */	li r5, 0
 lbl_8034BA80:
 /* 8034BA80  80 04 00 00 */	lwz r0, 0(r4)

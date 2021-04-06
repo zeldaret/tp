@@ -3,19 +3,20 @@
 #
 
 M459_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere.plf
+M459_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere.lcf
+M459_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere.map
 
 M459_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_glowSphere/executor.cpp \
-	rel/d/a/obj/d_a_obj_glowSphere/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_glowSphere/d_a_obj_glowSphere.cpp \
 
 M459_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/d_a_obj_glowSphere.o \
 
 M459_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/libRuntime.PPCEABI.H.a \
 
 M459_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M459_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map459.map\
+	-m _prolog \
+	-lcf $(M459_LDSCRIPT) \
+	-unused -map $(M459_MAP) \
+	-w off \
 
 $(M459_TARGET): $(M459_O_FILES) $(M459_LIBS)
+	@echo [459] creating $(M459_TARGET)
 	@echo $(M459_LIBS) $(M459_O_FILES) > build/M459_ofiles
-	$(LD) -opt_partial $(M459_LDFLAGS) -o $(M459_TARGET) @build/M459_ofiles
+	@python3 tools/lcf.py rel 459 --output $(M459_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M459_LDFLAGS) -o $(M459_TARGET) @build/M459_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_glowSphere/%.o: rel/d/a/obj/d_a_obj_glowSphere/%.cpp
+	@echo [459] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M459_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M459_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_glowSphere/libs/Runtime.PPCEABI.H/Makefile
 

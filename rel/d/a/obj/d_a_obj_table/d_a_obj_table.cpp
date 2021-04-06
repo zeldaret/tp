@@ -33,9 +33,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -81,9 +81,9 @@ struct dComIfG_play_c {
 
 struct dBgW {};
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -102,12 +102,6 @@ struct dBgS_MoveBgActor {
 // Forward References:
 //
 
-static void daObjTable_Draw(daObjTable_c*);
-static void daObjTable_Execute(daObjTable_c*);
-static bool daObjTable_IsDelete(daObjTable_c*);
-static void daObjTable_Delete(daObjTable_c*);
-static void daObjTable_Create(fopAc_ac_c*);
-
 extern "C" static void daObjTable_Draw__FP12daObjTable_c();
 extern "C" static void daObjTable_Execute__FP12daObjTable_c();
 extern "C" static bool daObjTable_IsDelete__FP12daObjTable_c();
@@ -118,23 +112,11 @@ extern "C" void Create__12daObjTable_cFv();
 extern "C" void Execute__12daObjTable_cFPPA3_A4_f();
 extern "C" void Draw__12daObjTable_cFv();
 extern "C" void Delete__12daObjTable_cFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Table[12];
-extern "C" extern void* __vt__12daObjTable_c[10];
+extern "C" extern char const* const d_a_obj_table__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fopAcM_orderChangeEventId(fopAc_ac_c*, s16, u16, u16);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGs_isStageSwitch(int, int);
-void dKy_darkworld_check();
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -185,62 +167,48 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80D06438-80D06464 002C+00 s=1 e=0 z=0  None .text      daObjTable_Draw__FP12daObjTable_c */
+/* 80D06438-80D06464 000078 002C+00 1/0 0/0 0/0 .text            daObjTable_Draw__FP12daObjTable_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Draw(daObjTable_c* param_0) {
+static asm void daObjTable_Draw(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Draw__FP12daObjTable_c.s"
 }
 #pragma pop
 
-/* 80D06464-80D06484 0020+00 s=1 e=0 z=0  None .text      daObjTable_Execute__FP12daObjTable_c */
-//	80D06470: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
+/* 80D06464-80D06484 0000A4 0020+00 1/0 0/0 0/0 .text daObjTable_Execute__FP12daObjTable_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Execute(daObjTable_c* param_0) {
+static asm void daObjTable_Execute(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Execute__FP12daObjTable_c.s"
 }
 #pragma pop
 
-/* 80D06484-80D0648C 0008+00 s=1 e=0 z=0  None .text      daObjTable_IsDelete__FP12daObjTable_c */
+/* 80D06484-80D0648C 0000C4 0008+00 1/0 0/0 0/0 .text daObjTable_IsDelete__FP12daObjTable_c */
 static bool daObjTable_IsDelete(daObjTable_c* param_0) {
     return true;
 }
 
-/* 80D0648C-80D064B0 0024+00 s=1 e=0 z=0  None .text      daObjTable_Delete__FP12daObjTable_c */
-//	80D06498: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
+/* 80D0648C-80D064B0 0000CC 0024+00 1/0 0/0 0/0 .text            daObjTable_Delete__FP12daObjTable_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Delete(daObjTable_c* param_0) {
+static asm void daObjTable_Delete(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Delete__FP12daObjTable_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D06C04-80D06C08 0004+00 s=2 e=0 z=0  None .rodata    @4017 */
-SECTION_RODATA static u32 const lit_4017 = 0x42C80000;
+/* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_table__stringBase0;
 
-/* 80D06C08-80D06C0C 0004+00 s=1 e=0 z=0  None .rodata    @4077 */
-SECTION_RODATA static u32 const lit_4077 = 0x43FA0000;
-
-/* 80D06C0C-80D06C1C 0010+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D06C0C = "Table";
-SECTION_DEAD char const* const stringBase_80D06C12 = "TABLE_MAP";
-#pragma pop
-
-/* 80D06C1C-80D06C20 0004+00 s=4 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D06C20-80D06C40 0020+00 s=1 e=0 z=0  None .data      l_daObjTable_Method */
+/* 80D06C20-80D06C40 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTable_Method */
 SECTION_DATA static void* l_daObjTable_Method[8] = {
     (void*)daObjTable_Create__FP10fopAc_ac_c,
     (void*)daObjTable_Delete__FP12daObjTable_c,
@@ -252,8 +220,8 @@ SECTION_DATA static void* l_daObjTable_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D06C40-80D06C70 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Table */
-SECTION_DATA void* g_profile_Obj_Table[12] = {
+/* 80D06C40-80D06C70 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Table */
+SECTION_DATA extern void* g_profile_Obj_Table[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00B80000, (void*)&g_fpcLf_Method,
     (void*)0x00000600, (void*)NULL,
@@ -262,8 +230,8 @@ SECTION_DATA void* g_profile_Obj_Table[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D06C70-80D06C98 0028+00 s=1 e=0 z=0  None .data      __vt__12daObjTable_c */
-SECTION_DATA void* __vt__12daObjTable_c[10] = {
+/* 80D06C70-80D06C98 000054 0028+00 1/1 0/0 0/0 .data            __vt__12daObjTable_c */
+SECTION_DATA extern void* __vt__12daObjTable_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__12daObjTable_cFv,
@@ -276,34 +244,18 @@ SECTION_DATA void* __vt__12daObjTable_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80D064B0-80D06560 00B0+00 s=1 e=0 z=0  None .text      daObjTable_Create__FP10fopAc_ac_c */
-//	80D064E0: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80D064E4: 80D06C70 (__vt__12daObjTable_c)
-//	80D064E8: 80D06C70 (__vt__12daObjTable_c)
-//	80D064F4: 80249F00 (__ct__10dMsgFlow_cFv)
-//	80D06508: 80D06C1C (l_arcName)
-//	80D0650C: 80D06C1C (l_arcName)
-//	80D06514: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80D06524: 80D06C1C (l_arcName)
-//	80D06528: 80D06C1C (l_arcName)
-//	80D06540: 800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
+/* 80D064B0-80D06560 0000F0 00B0+00 1/0 0/0 0/0 .text            daObjTable_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Create(fopAc_ac_c* param_0) {
+static asm void daObjTable_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D06560-80D065D0 0070+00 s=1 e=0 z=0  None .text      CreateHeap__12daObjTable_cFv */
-//	80D06574: 80D06C1C (l_arcName)
-//	80D06578: 80D06C1C (l_arcName)
-//	80D06584: 804061C0 (g_dComIfG_gameInfo)
-//	80D06588: 804061C0 (g_dComIfG_gameInfo)
-//	80D06598: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80D065A8: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80D06560-80D065D0 0001A0 0070+00 1/0 0/0 0/0 .text            CreateHeap__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,61 +265,12 @@ asm void daObjTable_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D065D0-80D0695C 038C+00 s=1 e=0 z=0  None .text      Create__12daObjTable_cFv */
-//	80D065E0: 803621DC (_savegpr_29)
-//	80D065F0: 8001A578 (fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData)
-//	80D065F4: 801AC57C (dKy_darkworld_check__Fv)
-//	80D06608: 8002D740 (dComIfGs_isStageSwitch__Fii)
-//	80D0667C: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80D06688: 804061C0 (g_dComIfG_gameInfo)
-//	80D0668C: 804061C0 (g_dComIfG_gameInfo)
-//	80D06698: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D0669C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D066A4: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D066D8: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D066E8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D066EC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D066F4: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06704: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06708: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06710: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06744: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06754: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06758: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06760: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06770: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06774: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D0677C: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D0678C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06790: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06798: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D067E8: 804061C0 (g_dComIfG_gameInfo)
-//	80D067EC: 804061C0 (g_dComIfG_gameInfo)
-//	80D067F8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D067FC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06804: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06814: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06818: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06820: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06830: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D06834: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80D0683C: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	80D06880: 801AC57C (dKy_darkworld_check__Fv)
-//	80D068AC: 80D06C04 (lit_4017)
-//	80D068B0: 80D06C04 (lit_4017)
-//	80D068E8: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80D068EC: 80238098 (endFlowGroup__12dMsgObject_cFv)
-//	80D06900: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80D06904: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06908: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06910: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80D06914: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06918: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06920: 803464B0 (PSMTXCopy)
-//	80D06924: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06928: 803DD470 (now__14mDoMtx_stack_c)
-//	80D06934: 803464B0 (PSMTXCopy)
-//	80D06948: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80D06C04-80D06C08 000000 0004+00 2/2 0/0 0/0 .rodata          @4017 */
+SECTION_RODATA static u32 const lit_4017 = 0x42C80000;
+SECTION_DEAD void* const cg_80D06C04 = (void*)(&lit_4017);
+
+/* 80D065D0-80D0695C 000210 038C+00 1/0 0/0 0/0 .text            Create__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -377,28 +280,8 @@ asm void daObjTable_c::Create() {
 }
 #pragma pop
 
-/* 80D0695C-80D06AD8 017C+00 s=1 e=0 z=0  None .text      Execute__12daObjTable_cFPPA3_A4_f */
-//	80D0696C: 803621DC (_savegpr_29)
-//	80D06984: 804061C0 (g_dComIfG_gameInfo)
-//	80D06988: 804061C0 (g_dComIfG_gameInfo)
-//	80D069B4: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	80D069C8: 80042518 (reset__14dEvt_control_cFPv)
-//	80D069CC: 80D06C0C (stringBase0)
-//	80D069D0: 80D06C0C (stringBase0)
-//	80D069E4: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	80D069F0: 80D06C0C (stringBase0)
-//	80D069F4: 80D06C0C (stringBase0)
-//	80D06A00: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	80D06A1C: 8001B5E4 (fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs)
-//	80D06A2C: 80D06C1C (l_arcName)
-//	80D06A30: 80D06C1C (l_arcName)
-//	80D06A40: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	80D06A68: 80047A78 (endCheck__16dEvent_manager_cFs)
-//	80D06A80: 80430188 (g_meter2_info)
-//	80D06A84: 80430188 (g_meter2_info)
-//	80D06AAC: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80D06AB0: 80238098 (endFlowGroup__12dMsgObject_cFv)
-//	80D06AC4: 80362228 (_restgpr_29)
+/* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -408,23 +291,12 @@ asm void daObjTable_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80D06AD8-80D06BC8 00F0+00 s=1 e=0 z=0  None .text      Draw__12daObjTable_cFv */
-//	80D06AF0: 8042CA54 (g_env_light)
-//	80D06AF4: 8042CA54 (g_env_light)
-//	80D06B04: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80D06B08: 8042CA54 (g_env_light)
-//	80D06B0C: 8042CA54 (g_env_light)
-//	80D06B1C: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80D06B20:
-// 804061C0 (g_dComIfG_gameInfo) 	80D06B24: 804061C0 (g_dComIfG_gameInfo) 	80D06B2C: 80434AC8
-// (j3dSys) 	80D06B30: 80434AC8 (j3dSys) 	80D06B44: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80D06B48: 804061C0 (g_dComIfG_gameInfo)
-//	80D06B4C: 804061C0 (g_dComIfG_gameInfo)
-//	80D06B64: 80D06C04 (lit_4017)
-//	80D06B68: 80D06C04 (lit_4017)
-//	80D06B98: 80D06C08 (lit_4077)
-//	80D06B9C: 80D06C08 (lit_4077)
-//	80D06BA4: 80055C74 (setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c)
+/* ############################################################################################## */
+/* 80D06C08-80D06C0C 000004 0004+00 1/1 0/0 0/0 .rodata          @4077 */
+SECTION_RODATA static u32 const lit_4077 = 0x43FA0000;
+SECTION_DEAD void* const cg_80D06C08 = (void*)(&lit_4077);
+
+/* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -434,10 +306,7 @@ asm void daObjTable_c::Draw() {
 }
 #pragma pop
 
-/* 80D06BC8-80D06BFC 0034+00 s=1 e=0 z=0  None .text      Delete__12daObjTable_cFv */
-//	80D06BD4: 80D06C1C (l_arcName)
-//	80D06BD8: 80D06C1C (l_arcName)
-//	80D06BE4: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 80D06BC8-80D06BFC 000808 0034+00 1/0 0/0 0/0 .text            Delete__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,4 +314,12 @@ asm void daObjTable_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/Delete__12daObjTable_cFv.s"
 }
+#pragma pop
+
+/* 80D06C0C-80D06C1C 000008 0010+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D06C0C = "Table";
+SECTION_DEAD static char const* const stringBase_80D06C12 = "TABLE_MAP";
 #pragma pop

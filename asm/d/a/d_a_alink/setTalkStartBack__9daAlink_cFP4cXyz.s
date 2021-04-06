@@ -68,8 +68,8 @@ lbl_80118404:
 /* 80118404  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80118408  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8011840C  40 80 00 10 */	bge lbl_8011841C
-/* 80118410  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80118414  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80118410  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80118414  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80118418  48 00 00 70 */	b lbl_80118488
 lbl_8011841C:
 /* 8011841C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -103,8 +103,8 @@ lbl_80118474:
 lbl_80118478:
 /* 80118478  2C 00 00 01 */	cmpwi r0, 1
 /* 8011847C  40 82 00 0C */	bne lbl_80118488
-/* 80118480  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80118484  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80118480  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80118484  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80118488:
 /* 80118488  C0 42 93 50 */	lfs f2, lit_8247(r2)
 /* 8011848C  FC 01 10 40 */	fcmpo cr0, f1, f2
@@ -130,8 +130,8 @@ lbl_80118488:
 /* 801184DC  38 7D 1D 08 */	addi r3, r29, 0x1d08
 /* 801184E0  7F C4 F3 78 */	mr r4, r30
 /* 801184E4  48 14 F8 45 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 801184E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801184EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801184E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801184EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801184F0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801184F4  38 9D 1D 08 */	addi r4, r29, 0x1d08
 /* 801184F8  4B F5 BF A9 */	bl GroundCross__4cBgSFP11cBgS_GndChk
@@ -148,8 +148,8 @@ lbl_80118488:
 /* 80118524  D0 1D 33 98 */	stfs f0, 0x3398(r29)
 /* 80118528  7F A3 EB 78 */	mr r3, r29
 /* 8011852C  38 80 00 12 */	li r4, 0x12
-/* 80118530  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 80118534  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 80118530  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 80118534  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 80118538  C0 05 00 20 */	lfs f0, 0x20(r5)
 /* 8011853C  FC 20 00 50 */	fneg f1, f0
 /* 80118540  C0 42 92 C4 */	lfs f2, lit_6109(r2)

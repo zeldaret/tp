@@ -1,8 +1,8 @@
 lbl_80529D2C:
-/* 80529D2C  3C 80 80 53 */	lis r4, lit_3679@ha
-/* 80529D30  38 A4 61 68 */	addi r5, r4, lit_3679@l
-/* 80529D34  3C 80 80 53 */	lis r4, __vt__15daMg_Fish_HIO_c@ha
-/* 80529D38  38 04 6B 6C */	addi r0, r4, __vt__15daMg_Fish_HIO_c@l
+/* 80529D2C  3C 80 80 53 */	lis r4, lit_3679@ha /* 0x80536168@ha */
+/* 80529D30  38 A4 61 68 */	addi r5, r4, lit_3679@l /* 0x80536168@l */
+/* 80529D34  3C 80 80 53 */	lis r4, __vt__15daMg_Fish_HIO_c@ha /* 0x80536B6C@ha */
+/* 80529D38  38 04 6B 6C */	addi r0, r4, __vt__15daMg_Fish_HIO_c@l /* 0x80536B6C@l */
 /* 80529D3C  90 03 00 00 */	stw r0, 0(r3)
 /* 80529D40  38 00 FF FF */	li r0, -1
 /* 80529D44  98 03 00 04 */	stb r0, 4(r3)

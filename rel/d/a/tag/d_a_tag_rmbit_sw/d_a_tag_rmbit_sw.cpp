@@ -50,11 +50,6 @@ struct cXyz {
 // Forward References:
 //
 
-static void daTagRmbitSw_create(daTagRmbitSw_c*);
-static void daTagRmbitSw_Delete(daTagRmbitSw_c*);
-static void daTagRmbitSw_execute(daTagRmbitSw_c*);
-static void daTagRmbitSw_draw(daTagRmbitSw_c*);
-
 extern "C" void __ct__14daTagRmbitSw_cFv();
 extern "C" void __dt__14daTagRmbitSw_cFv();
 extern "C" void create__14daTagRmbitSw_cFv();
@@ -67,17 +62,10 @@ extern "C" static void daTagRmbitSw_create__FP14daTagRmbitSw_c();
 extern "C" static void daTagRmbitSw_Delete__FP14daTagRmbitSw_c();
 extern "C" static void daTagRmbitSw_execute__FP14daTagRmbitSw_c();
 extern "C" static void daTagRmbitSw_draw__FP14daTagRmbitSw_c();
-extern "C" extern void* g_profile_Tag_RmbitSw[12];
-extern "C" extern void* __vt__14daTagRmbitSw_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void dComIfGs_onVisitedRoom(int);
-void dComIfGs_offVisitedRoom(int);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -101,7 +89,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D5FFB4-80D5FFD4 0020+00 s=1 e=0 z=0  None .data      daTagRmbitSw_METHODS */
+/* 80D5FFB4-80D5FFD4 -00001 0020+00 1/0 0/0 0/0 .data            daTagRmbitSw_METHODS */
 SECTION_DATA static void* daTagRmbitSw_METHODS[8] = {
     (void*)daTagRmbitSw_create__FP14daTagRmbitSw_c,
     (void*)daTagRmbitSw_Delete__FP14daTagRmbitSw_c,
@@ -113,8 +101,8 @@ SECTION_DATA static void* daTagRmbitSw_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D5FFD4-80D60004 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_RmbitSw */
-SECTION_DATA void* g_profile_Tag_RmbitSw[12] = {
+/* 80D5FFD4-80D60004 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_RmbitSw */
+SECTION_DATA extern void* g_profile_Tag_RmbitSw[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01AB0000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,
@@ -123,17 +111,14 @@ SECTION_DATA void* g_profile_Tag_RmbitSw[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D60004-80D60010 000C+00 s=2 e=0 z=0  None .data      __vt__14daTagRmbitSw_c */
-SECTION_DATA void* __vt__14daTagRmbitSw_c[3] = {
+/* 80D60004-80D60010 000050 000C+00 2/2 0/0 0/0 .data            __vt__14daTagRmbitSw_c */
+SECTION_DATA extern void* __vt__14daTagRmbitSw_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14daTagRmbitSw_cFv,
 };
 
-/* 80D5FAF8-80D5FB34 003C+00 s=2 e=0 z=0  None .text      __ct__14daTagRmbitSw_cFv */
-//	80D5FB0C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D5FB10: 80D60004 (__vt__14daTagRmbitSw_c)
-//	80D5FB14: 80D60004 (__vt__14daTagRmbitSw_c)
+/* 80D5FAF8-80D5FB34 000078 003C+00 2/2 0/0 0/0 .text            __ct__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,11 +128,7 @@ asm daTagRmbitSw_c::daTagRmbitSw_c() {
 }
 #pragma pop
 
-/* 80D5FB34-80D5FB94 0060+00 s=1 e=0 z=0  None .text      __dt__14daTagRmbitSw_cFv */
-//	80D5FB54: 80D60004 (__vt__14daTagRmbitSw_c)
-//	80D5FB58: 80D60004 (__vt__14daTagRmbitSw_c)
-//	80D5FB64: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80D5FB74: 802CED3C (__dl__FPv)
+/* 80D5FB34-80D5FB94 0000B4 0060+00 1/0 0/0 0/0 .text            __dt__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -157,9 +138,7 @@ asm daTagRmbitSw_c::~daTagRmbitSw_c() {
 }
 #pragma pop
 
-/* 80D5FB94-80D5FBEC 0058+00 s=1 e=0 z=0  None .text      create__14daTagRmbitSw_cFv */
-//	80D5FBBC: 80D5FAF8 (__ct__14daTagRmbitSw_cFv)
-//	80D5FBD0: 80D5FDB8 (init__14daTagRmbitSw_cFv)
+/* 80D5FB94-80D5FBEC 000114 0058+00 1/1 0/0 0/0 .text            create__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,44 +148,17 @@ asm void daTagRmbitSw_c::create() {
 }
 #pragma pop
 
-/* 80D5FBEC-80D5FBF4 0008+00 s=1 e=0 z=0  None .text      Delete__14daTagRmbitSw_cFv */
+/* 80D5FBEC-80D5FBF4 00016C 0008+00 1/1 0/0 0/0 .text            Delete__14daTagRmbitSw_cFv */
 bool daTagRmbitSw_c::Delete() {
     return true;
 }
 
-/* 80D5FBF4-80D5FBFC 0008+00 s=1 e=0 z=0  None .text      draw__14daTagRmbitSw_cFv */
+/* 80D5FBF4-80D5FBFC 000174 0008+00 1/1 0/0 0/0 .text            draw__14daTagRmbitSw_cFv */
 bool daTagRmbitSw_c::draw() {
     return true;
 }
 
-/* 80D5FBFC-80D5FDB8 01BC+00 s=1 e=0 z=0  None .text      execute__14daTagRmbitSw_cFv */
-//	80D5FC10: 80D5FDF0 (chkPlyrInTag__14daTagRmbitSw_cFv)
-//	80D5FC38: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FC3C: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FC48: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D5FC7C: 8002FB80 (dComIfGs_onVisitedRoom__Fi)
-//	80D5FC84: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FC88: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FC8C: 800350A8 (getSave2__10dSv_save_cFi)
-//	80D5FC98: 80034AA4 (onVisitedRoom__13dSv_memory2_cFi)
-//	80D5FCC0: 8002FC3C (dComIfGs_offVisitedRoom__Fi)
-//	80D5FCC8: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FCCC: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FCD0: 800350A8 (getSave2__10dSv_save_cFi)
-//	80D5FCDC: 80034AC8 (offVisitedRoom__13dSv_memory2_cFi)
-//	80D5FCF8: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FCFC: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FD08: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D5FD3C: 8002FB80 (dComIfGs_onVisitedRoom__Fi)
-//	80D5FD44: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FD48: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FD4C: 800350A8 (getSave2__10dSv_save_cFi)
-//	80D5FD58: 80034AA4 (onVisitedRoom__13dSv_memory2_cFi)
-//	80D5FD80: 8002FC3C (dComIfGs_offVisitedRoom__Fi)
-//	80D5FD88: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FD8C: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FD90: 800350A8 (getSave2__10dSv_save_cFi)
-//	80D5FD9C: 80034AC8 (offVisitedRoom__13dSv_memory2_cFi)
+/* 80D5FBFC-80D5FDB8 00017C 01BC+00 1/1 0/0 0/0 .text            execute__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,17 +169,15 @@ asm void daTagRmbitSw_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5FFA8-80D5FFAC 0004+00 s=1 e=0 z=0  None .rodata    @3817 */
+/* 80D5FFA8-80D5FFAC 000000 0004+00 1/1 0/0 0/0 .rodata          @3817 */
 SECTION_RODATA static u32 const lit_3817 = 0x42480000;
+SECTION_DEAD void* const cg_80D5FFA8 = (void*)(&lit_3817);
 
-/* 80D5FFAC-80D5FFB0 0004+00 s=1 e=0 z=0  None .rodata    @3818 */
+/* 80D5FFAC-80D5FFB0 000004 0004+00 1/1 0/0 0/0 .rodata          @3818 */
 SECTION_RODATA static u32 const lit_3818 = 0x42C80000;
+SECTION_DEAD void* const cg_80D5FFAC = (void*)(&lit_3818);
 
-/* 80D5FDB8-80D5FDF0 0038+00 s=1 e=0 z=0  None .text      init__14daTagRmbitSw_cFv */
-//	80D5FDB8: 80D5FFA8 (lit_3817)
-//	80D5FDBC: 80D5FFA8 (lit_3817)
-//	80D5FDCC: 80D5FFAC (lit_3818)
-//	80D5FDD0: 80D5FFAC (lit_3818)
+/* 80D5FDB8-80D5FDF0 000338 0038+00 1/1 0/0 0/0 .text            init__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,26 +188,16 @@ asm void daTagRmbitSw_c::init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5FFB0-80D5FFB4 0004+00 s=1 e=0 z=0  None .rodata    @3853 */
+/* 80D5FFB0-80D5FFB4 000008 0004+00 1/1 0/0 0/0 .rodata          @3853 */
 SECTION_RODATA static u8 const lit_3853[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80D5FFB0 = (void*)(&lit_3853);
 
-/* 80D5FDF0-80D5FEEC 00FC+00 s=1 e=0 z=0  None .text      chkPlyrInTag__14daTagRmbitSw_cFv */
-//	80D5FE04: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FE08: 804061C0 (g_dComIfG_gameInfo)
-//	80D5FE2C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80D5FE48: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5FE4C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5FE5C: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80D5FE60: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5FE64: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5FE70: 80346D6C (PSMTXMultVec)
-//	80D5FE74: 80D5FFB0 (lit_3853)
-//	80D5FE78: 80D5FFB0 (lit_3853)
+/* 80D5FDF0-80D5FEEC 000370 00FC+00 1/1 0/0 0/0 .text            chkPlyrInTag__14daTagRmbitSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,47 +207,41 @@ asm void daTagRmbitSw_c::chkPlyrInTag() {
 }
 #pragma pop
 
-/* 80D5FEEC-80D5FF40 0054+00 s=1 e=0 z=0  None .text      daTagRmbitSw_create__FP14daTagRmbitSw_c */
-//	80D5FF14: 80D5FAF8 (__ct__14daTagRmbitSw_cFv)
-//	80D5FF28: 80D5FB94 (create__14daTagRmbitSw_cFv)
+/* 80D5FEEC-80D5FF40 00046C 0054+00 1/0 0/0 0/0 .text daTagRmbitSw_create__FP14daTagRmbitSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRmbitSw_create(daTagRmbitSw_c* param_0) {
+static asm void daTagRmbitSw_create(daTagRmbitSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw/daTagRmbitSw_create__FP14daTagRmbitSw_c.s"
 }
 #pragma pop
 
-/* 80D5FF40-80D5FF60 0020+00 s=1 e=0 z=0  None .text      daTagRmbitSw_Delete__FP14daTagRmbitSw_c */
-//	80D5FF4C: 80D5FBEC (Delete__14daTagRmbitSw_cFv)
+/* 80D5FF40-80D5FF60 0004C0 0020+00 1/0 0/0 0/0 .text daTagRmbitSw_Delete__FP14daTagRmbitSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRmbitSw_Delete(daTagRmbitSw_c* param_0) {
+static asm void daTagRmbitSw_Delete(daTagRmbitSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw/daTagRmbitSw_Delete__FP14daTagRmbitSw_c.s"
 }
 #pragma pop
 
-/* 80D5FF60-80D5FF80 0020+00 s=1 e=0 z=0  None .text      daTagRmbitSw_execute__FP14daTagRmbitSw_c
- */
-//	80D5FF6C: 80D5FBFC (execute__14daTagRmbitSw_cFv)
+/* 80D5FF60-80D5FF80 0004E0 0020+00 1/0 0/0 0/0 .text daTagRmbitSw_execute__FP14daTagRmbitSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRmbitSw_execute(daTagRmbitSw_c* param_0) {
+static asm void daTagRmbitSw_execute(daTagRmbitSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw/daTagRmbitSw_execute__FP14daTagRmbitSw_c.s"
 }
 #pragma pop
 
-/* 80D5FF80-80D5FFA0 0020+00 s=1 e=0 z=0  None .text      daTagRmbitSw_draw__FP14daTagRmbitSw_c */
-//	80D5FF8C: 80D5FBF4 (draw__14daTagRmbitSw_cFv)
+/* 80D5FF80-80D5FFA0 000500 0020+00 1/0 0/0 0/0 .text daTagRmbitSw_draw__FP14daTagRmbitSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRmbitSw_draw(daTagRmbitSw_c* param_0) {
+static asm void daTagRmbitSw_draw(daTagRmbitSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw/daTagRmbitSw_draw__FP14daTagRmbitSw_c.s"
 }

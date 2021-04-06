@@ -5,7 +5,7 @@ lbl_80C8B1B0:
 /* 80C8B1BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C8B1C0  7C 7F 1B 78 */	mr r31, r3
 /* 80C8B1C4  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 80C8B1C8  4B 38 22 60 */	b play__14mDoExt_baseAnmFv
+/* 80C8B1C8  4B 38 22 61 */	bl play__14mDoExt_baseAnmFv
 /* 80C8B1CC  2C 03 00 01 */	cmpwi r3, 1
 /* 80C8B1D0  40 82 00 0C */	bne lbl_80C8B1DC
 /* 80C8B1D4  7F E3 FB 78 */	mr r3, r31

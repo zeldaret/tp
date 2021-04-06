@@ -22,8 +22,8 @@ lbl_800F784C:
 /* 800F7860  41 82 00 48 */	beq lbl_800F78A8
 /* 800F7864  38 00 00 FF */	li r0, 0xff
 /* 800F7868  B0 1F 30 1A */	sth r0, 0x301a(r31)
-/* 800F786C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F7870  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F786C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F7870  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F7874  38 63 00 9C */	addi r3, r3, 0x9c
 /* 800F7878  38 80 00 FF */	li r4, 0xff
 /* 800F787C  4B F3 C4 C5 */	bl setBaitItem__17dSv_player_item_cFUc
@@ -60,8 +60,8 @@ lbl_800F78DC:
 /* 800F78E8  40 81 00 2C */	ble lbl_800F7914
 /* 800F78EC  38 7F 04 E6 */	addi r3, r31, 0x4e6
 /* 800F78F0  A8 9F 2F E2 */	lha r4, 0x2fe2(r31)
-/* 800F78F4  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 800F78F8  38 E5 D6 BC */	addi r7, r5, m__18daAlinkHIO_move_c0@l
+/* 800F78F4  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800F78F8  38 E5 D6 BC */	addi r7, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800F78FC  A8 A7 00 18 */	lha r5, 0x18(r7)
 /* 800F7900  A8 C7 00 14 */	lha r6, 0x14(r7)
 /* 800F7904  A8 E7 00 16 */	lha r7, 0x16(r7)
@@ -87,8 +87,8 @@ lbl_800F7948:
 /* 800F794C  C0 02 93 88 */	lfs f0, lit_8782(r2)
 /* 800F7950  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800F7954  40 80 00 1C */	bge lbl_800F7970
-/* 800F7958  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800F795C  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800F7958  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800F795C  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800F7960  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 800F7964  D0 1F 1F DC */	stfs f0, 0x1fdc(r31)
 /* 800F7968  C0 02 92 B8 */	lfs f0, lit_6040(r2)

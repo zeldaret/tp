@@ -68,15 +68,15 @@ lbl_80104E3C:
 /* 80104E6C  7F E3 FB 78 */	mr r3, r31
 /* 80104E70  48 00 3F 45 */	bl setHookshotSight__9daAlink_cFv
 lbl_80104E74:
-/* 80104E74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80104E78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80104E74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80104E78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80104E7C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80104E80  54 00 03 98 */	rlwinm r0, r0, 0, 0xe, 0xc
 /* 80104E84  90 03 5F 18 */	stw r0, 0x5f18(r3)
 /* 80104E88  48 00 00 18 */	b lbl_80104EA0
 lbl_80104E8C:
-/* 80104E8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80104E90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80104E8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80104E90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80104E94  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80104E98  64 00 00 04 */	oris r0, r0, 4
 /* 80104E9C  90 03 5F 18 */	stw r0, 0x5f18(r3)

@@ -3,19 +3,20 @@
 #
 
 M626_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag.plf
+M626_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag.lcf
+M626_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag.map
 
 M626_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_snowEffTag/executor.cpp \
-	rel/d/a/obj/d_a_obj_snowEffTag/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_snowEffTag/d_a_obj_snowEffTag.cpp \
 
 M626_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/d_a_obj_snowEffTag.o \
 
 M626_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/libRuntime.PPCEABI.H.a \
 
 M626_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M626_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map626.map\
+	-m _prolog \
+	-lcf $(M626_LDSCRIPT) \
+	-unused -map $(M626_MAP) \
+	-w off \
 
 $(M626_TARGET): $(M626_O_FILES) $(M626_LIBS)
+	@echo [626] creating $(M626_TARGET)
 	@echo $(M626_LIBS) $(M626_O_FILES) > build/M626_ofiles
-	$(LD) -opt_partial $(M626_LDFLAGS) -o $(M626_TARGET) @build/M626_ofiles
+	@python3 tools/lcf.py rel 626 --output $(M626_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M626_LDFLAGS) -o $(M626_TARGET) @build/M626_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snowEffTag/%.o: rel/d/a/obj/d_a_obj_snowEffTag/%.cpp
+	@echo [626] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M626_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M626_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_snowEffTag/libs/Runtime.PPCEABI.H/Makefile
 

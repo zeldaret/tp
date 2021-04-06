@@ -77,8 +77,8 @@ lbl_802CC064:
 /* 802CC078  38 03 FF F5 */	addi r0, r3, -11
 /* 802CC07C  28 00 00 14 */	cmplwi r0, 0x14
 /* 802CC080  41 81 00 B8 */	bgt lbl_802CC138
-/* 802CC084  3C 60 80 3D */	lis r3, lit_3839@ha
-/* 802CC088  38 63 BE D0 */	addi r3, r3, lit_3839@l
+/* 802CC084  3C 60 80 3D */	lis r3, lit_3839@ha /* 0x803CBED0@ha */
+/* 802CC088  38 63 BE D0 */	addi r3, r3, lit_3839@l /* 0x803CBED0@l */
 /* 802CC08C  54 00 10 3A */	slwi r0, r0, 2
 /* 802CC090  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802CC094  7C 09 03 A6 */	mtctr r0

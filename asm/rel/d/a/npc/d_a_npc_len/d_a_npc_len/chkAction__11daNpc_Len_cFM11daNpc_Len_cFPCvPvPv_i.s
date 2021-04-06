@@ -3,7 +3,7 @@ lbl_80A66004:
 /* 80A66008  7C 08 02 A6 */	mflr r0
 /* 80A6600C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A66010  38 63 0F D8 */	addi r3, r3, 0xfd8
-/* 80A66014  4B 8F C0 34 */	b __ptmf_cmpr
+/* 80A66014  4B 8F C0 35 */	bl __ptmf_cmpr
 /* 80A66018  7C 60 00 34 */	cntlzw r0, r3
 /* 80A6601C  54 03 D9 7E */	srwi r3, r0, 5
 /* 80A66020  80 01 00 14 */	lwz r0, 0x14(r1)

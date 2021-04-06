@@ -3,7 +3,7 @@ lbl_8048D428:
 /* 8048D42C  7C 08 02 A6 */	mflr r0
 /* 8048D430  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8048D434  39 61 00 40 */	addi r11, r1, 0x40
-/* 8048D438  4B ED 4D A4 */	b _savegpr_29
+/* 8048D438  4B ED 4D A5 */	bl _savegpr_29
 /* 8048D43C  7C 7D 1B 78 */	mr r29, r3
 /* 8048D440  7C 9E 23 78 */	mr r30, r4
 /* 8048D444  4B FF FE E1 */	bl getOnEvtBit__14daTag_EvtMsg_cFv
@@ -17,7 +17,7 @@ lbl_8048D428:
 /* 8048D464  41 82 00 18 */	beq lbl_8048D47C
 /* 8048D468  7F A3 EB 78 */	mr r3, r29
 /* 8048D46C  4B FF FE B9 */	bl getOnEvtBit__14daTag_EvtMsg_cFv
-/* 8048D470  4B CC 81 C4 */	b daNpcF_chkEvtBit__FUl
+/* 8048D470  4B CC 81 C5 */	bl daNpcF_chkEvtBit__FUl
 /* 8048D474  2C 03 00 00 */	cmpwi r3, 0
 /* 8048D478  41 82 00 58 */	beq lbl_8048D4D0
 lbl_8048D47C:
@@ -36,10 +36,10 @@ lbl_8048D47C:
 /* 8048D4AC  7F A3 EB 78 */	mr r3, r29
 /* 8048D4B0  4B FF FE AD */	bl getOnSwBit__14daTag_EvtMsg_cFv
 /* 8048D4B4  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 8048D4B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048D4BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048D4B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048D4BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048D4C0  7F E5 FB 78 */	mr r5, r31
-/* 8048D4C4  4B BA 7E 9C */	b isSwitch__10dSv_info_cCFii
+/* 8048D4C4  4B BA 7E 9D */	bl isSwitch__10dSv_info_cCFii
 /* 8048D4C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8048D4CC  40 82 00 64 */	bne lbl_8048D530
 lbl_8048D4D0:
@@ -65,13 +65,13 @@ lbl_8048D4D0:
 /* 8048D51C  38 81 00 14 */	addi r4, r1, 0x14
 /* 8048D520  38 A1 00 08 */	addi r5, r1, 8
 /* 8048D524  A8 DD 04 E6 */	lha r6, 0x4e6(r29)
-/* 8048D528  4B CC 84 40 */	b daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs
+/* 8048D528  4B CC 84 41 */	bl daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs
 /* 8048D52C  48 00 00 08 */	b lbl_8048D534
 lbl_8048D530:
 /* 8048D530  38 60 00 00 */	li r3, 0
 lbl_8048D534:
 /* 8048D534  39 61 00 40 */	addi r11, r1, 0x40
-/* 8048D538  4B ED 4C F0 */	b _restgpr_29
+/* 8048D538  4B ED 4C F1 */	bl _restgpr_29
 /* 8048D53C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8048D540  7C 08 03 A6 */	mtlr r0
 /* 8048D544  38 21 00 40 */	addi r1, r1, 0x40

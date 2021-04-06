@@ -37,8 +37,8 @@ lbl_800E0734:
 /* 800E0740  90 1D 28 34 */	stw r0, 0x2834(r29)
 /* 800E0744  80 1D 28 28 */	lwz r0, 0x2828(r29)
 /* 800E0748  90 1D 28 38 */	stw r0, 0x2838(r29)
-/* 800E074C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E0750  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800E074C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E0750  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E0754  80 04 5F 18 */	lwz r0, 0x5f18(r4)
 /* 800E0758  64 03 00 40 */	oris r3, r0, 0x40
 /* 800E075C  90 64 5F 18 */	stw r3, 0x5f18(r4)
@@ -52,8 +52,8 @@ lbl_800E0734:
 /* 800E077C  B0 0D 8A 9E */	sth r0, struct_8045101C+0x2(r13)
 /* 800E0780  48 00 00 44 */	b lbl_800E07C4
 lbl_800E0784:
-/* 800E0784  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha
-/* 800E0788  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l
+/* 800E0784  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha /* 0x8038E840@ha */
+/* 800E0788  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l /* 0x8038E840@l */
 /* 800E078C  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 800E0790  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 800E0794  C0 03 00 2C */	lfs f0, 0x2c(r3)

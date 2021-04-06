@@ -6,11 +6,11 @@ lbl_802A4F68:
 /* 802A4F78  48 0B D2 61 */	bl _savegpr_28
 /* 802A4F7C  7C 7C 1B 78 */	mr r28, r3
 /* 802A4F80  3B A0 00 00 */	li r29, 0
-/* 802A4F84  3C 60 80 3D */	lis r3, __files@ha
-/* 802A4F88  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802A4F84  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802A4F88  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802A4F8C  3B C3 00 A0 */	addi r30, r3, 0xa0
-/* 802A4F90  3C 60 80 3A */	lis r3, JAUSectionHeap__stringBase0@ha
-/* 802A4F94  3B E3 B9 50 */	addi r31, r3, JAUSectionHeap__stringBase0@l
+/* 802A4F90  3C 60 80 3A */	lis r3, JAUSectionHeap__stringBase0@ha /* 0x8039B950@ha */
+/* 802A4F94  3B E3 B9 50 */	addi r31, r3, JAUSectionHeap__stringBase0@l /* 0x8039B950@l */
 lbl_802A4F98:
 /* 802A4F98  28 1D 00 FF */	cmplwi r29, 0xff
 /* 802A4F9C  41 80 00 18 */	blt lbl_802A4FB4

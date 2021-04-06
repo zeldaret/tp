@@ -5,8 +5,8 @@ lbl_80030E84:
 /* 80030E90  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80030E94  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80030E98  41 82 00 1C */	beq lbl_80030EB4
-/* 80030E9C  3C A0 80 3A */	lis r5, __vt__8cM3dGAab@ha
-/* 80030EA0  38 05 72 18 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 80030E9C  3C A0 80 3A */	lis r5, __vt__8cM3dGAab@ha /* 0x803A7218@ha */
+/* 80030EA0  38 05 72 18 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x803A7218@l */
 /* 80030EA4  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80030EA8  7C 80 07 35 */	extsh. r0, r4
 /* 80030EAC  40 81 00 08 */	ble lbl_80030EB4

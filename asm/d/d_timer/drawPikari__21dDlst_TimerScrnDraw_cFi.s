@@ -110,10 +110,10 @@ lbl_80260CD4:
 /* 80260CF0  EF 81 00 28 */	fsubs f28, f1, f0
 /* 80260CF4  3B 00 00 00 */	li r24, 0
 /* 80260CF8  3B 5A 00 8C */	addi r26, r26, 0x8c
-/* 80260CFC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80260D00  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l
-/* 80260D04  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80260D08  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
+/* 80260CFC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80260D00  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l /* 0x8042EBC8@l */
+/* 80260D04  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80260D08  3B A3 01 88 */	addi r29, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80260D0C  C3 A1 00 44 */	lfs f29, 0x44(r1)
 /* 80260D10  CB E2 B5 58 */	lfd f31, lit_4627(r2)
 /* 80260D14  3F C0 43 30 */	lis r30, 0x4330

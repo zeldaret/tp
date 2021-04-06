@@ -14,8 +14,8 @@ lbl_801016AC:
 /* 801016DC  4B FB FC 01 */	bl deleteEquipItem__9daAlink_cFii
 /* 801016E0  7F C3 F3 78 */	mr r3, r30
 /* 801016E4  38 80 00 AE */	li r4, 0xae
-/* 801016E8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha
-/* 801016EC  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l
+/* 801016E8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 801016EC  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 801016F0  4B FA BA 05 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 801016F4  7F C3 F3 78 */	mr r3, r30
 /* 801016F8  C0 22 92 C0 */	lfs f1, lit_6108(r2)

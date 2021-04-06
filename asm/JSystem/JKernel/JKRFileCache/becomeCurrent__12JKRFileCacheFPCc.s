@@ -22,8 +22,8 @@ lbl_802D4D44:
 /* 802D4D94  88 03 00 01 */	lbz r0, 1(r3)
 /* 802D4D98  7C 00 07 75 */	extsb. r0, r0
 /* 802D4D9C  41 82 00 20 */	beq lbl_802D4DBC
-/* 802D4DA0  3C 80 80 3A */	lis r4, JKRFileCache__stringBase0@ha
-/* 802D4DA4  38 84 D1 58 */	addi r4, r4, JKRFileCache__stringBase0@l
+/* 802D4DA0  3C 80 80 3A */	lis r4, JKRFileCache__stringBase0@ha /* 0x8039D158@ha */
+/* 802D4DA4  38 84 D1 58 */	addi r4, r4, JKRFileCache__stringBase0@l /* 0x8039D158@l */
 /* 802D4DA8  48 09 3D 15 */	bl strcat
 /* 802D4DAC  48 00 00 10 */	b lbl_802D4DBC
 lbl_802D4DB0:

@@ -4,8 +4,8 @@ lbl_801DE824:
 /* 801DE82C  90 01 00 B4 */	stw r0, 0xb4(r1)
 /* 801DE830  93 E1 00 AC */	stw r31, 0xac(r1)
 /* 801DE834  7C 7F 1B 78 */	mr r31, r3
-/* 801DE838  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801DE83C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801DE838  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801DE83C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801DE840  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801DE844  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801DE848  41 82 00 A4 */	beq lbl_801DE8EC

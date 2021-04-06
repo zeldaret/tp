@@ -17,10 +17,10 @@ lbl_80982B90:
 /* 80982B98  38 60 00 00 */	li r3, 0
 /* 80982B9C  48 00 00 60 */	b lbl_80982BFC
 lbl_80982BA0:
-/* 80982BA0  3C 60 80 98 */	lis r3, s_sub__FPvPv@ha
-/* 80982BA4  38 63 2B 04 */	addi r3, r3, s_sub__FPvPv@l
+/* 80982BA0  3C 60 80 98 */	lis r3, s_sub__FPvPv@ha /* 0x80982B04@ha */
+/* 80982BA4  38 63 2B 04 */	addi r3, r3, s_sub__FPvPv@l /* 0x80982B04@l */
 /* 80982BA8  7F E4 FB 78 */	mr r4, r31
-/* 80982BAC  4B 69 E7 8C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80982BAC  4B 69 E7 8D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80982BB0  38 80 00 00 */	li r4, 0
 /* 80982BB4  38 60 00 00 */	li r3, 0
 /* 80982BB8  38 00 00 05 */	li r0, 5

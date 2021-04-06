@@ -6,8 +6,8 @@ lbl_8015F730:
 /* 8015F740  4B FF FF 21 */	bl checkRoomRestartStart__9daPy_py_cFv
 /* 8015F744  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8015F748  40 82 00 54 */	bne lbl_8015F79C
-/* 8015F74C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F750  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F74C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F750  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F754  37 E3 4E 20 */	addic. r31, r3, 0x4e20
 /* 8015F758  41 82 00 44 */	beq lbl_8015F79C
 /* 8015F75C  7F E3 FB 78 */	mr r3, r31
@@ -30,8 +30,8 @@ lbl_8015F79C:
 /* 8015F79C  38 60 00 00 */	li r3, 0
 /* 8015F7A0  48 00 00 14 */	b lbl_8015F7B4
 lbl_8015F7A4:
-/* 8015F7A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F7A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F7A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F7A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F7AC  80 03 0D D0 */	lwz r0, 0xdd0(r3)
 /* 8015F7B0  54 03 03 18 */	rlwinm r3, r0, 0, 0xc, 0xc
 lbl_8015F7B4:

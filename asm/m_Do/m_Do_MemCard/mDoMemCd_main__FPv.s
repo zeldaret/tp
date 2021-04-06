@@ -12,8 +12,8 @@ lbl_8001741C:
 /* 80017444  48 2B A3 15 */	bl __dt__9JKRThreadFv
 /* 80017448  4B FF 78 9D */	bl mDoExt_getAssertHeap__Fv
 /* 8001744C  48 2B 6F ED */	bl becomeCurrentHeap__7JKRHeapFv
-/* 80017450  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80017454  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 80017450  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80017454  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80017458  4B FF F3 79 */	bl main__15mDoMemCd_Ctrl_cFv
 /* 8001745C  38 60 00 00 */	li r3, 0
 /* 80017460  80 01 00 94 */	lwz r0, 0x94(r1)

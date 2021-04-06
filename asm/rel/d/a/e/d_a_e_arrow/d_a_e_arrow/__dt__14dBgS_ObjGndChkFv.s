@@ -7,8 +7,8 @@ lbl_8067DA70:
 /* 8067DA84  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8067DA88  7C 9F 23 78 */	mr r31, r4
 /* 8067DA8C  41 82 00 40 */	beq lbl_8067DACC
-/* 8067DA90  3C 80 80 68 */	lis r4, __vt__14dBgS_ObjGndChk@ha
-/* 8067DA94  38 84 EA E0 */	addi r4, r4, __vt__14dBgS_ObjGndChk@l
+/* 8067DA90  3C 80 80 68 */	lis r4, __vt__14dBgS_ObjGndChk@ha /* 0x8067EAE0@ha */
+/* 8067DA94  38 84 EA E0 */	addi r4, r4, __vt__14dBgS_ObjGndChk@l /* 0x8067EAE0@l */
 /* 8067DA98  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 8067DA9C  38 04 00 0C */	addi r0, r4, 0xc
 /* 8067DAA0  90 1E 00 20 */	stw r0, 0x20(r30)
@@ -17,11 +17,11 @@ lbl_8067DA70:
 /* 8067DAAC  38 04 00 24 */	addi r0, r4, 0x24
 /* 8067DAB0  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 8067DAB4  38 80 00 00 */	li r4, 0
-/* 8067DAB8  4B 9F 9B 38 */	b __dt__11dBgS_GndChkFv
+/* 8067DAB8  4B 9F 9B 39 */	bl __dt__11dBgS_GndChkFv
 /* 8067DABC  7F E0 07 35 */	extsh. r0, r31
 /* 8067DAC0  40 81 00 0C */	ble lbl_8067DACC
 /* 8067DAC4  7F C3 F3 78 */	mr r3, r30
-/* 8067DAC8  4B C5 12 74 */	b __dl__FPv
+/* 8067DAC8  4B C5 12 75 */	bl __dl__FPv
 lbl_8067DACC:
 /* 8067DACC  7F C3 F3 78 */	mr r3, r30
 /* 8067DAD0  83 E1 00 0C */	lwz r31, 0xc(r1)

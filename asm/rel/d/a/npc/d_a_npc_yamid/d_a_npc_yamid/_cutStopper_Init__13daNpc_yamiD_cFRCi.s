@@ -12,7 +12,7 @@ lbl_80B44B8C:
 lbl_80B44BB4:
 /* 80B44BB4  38 80 03 21 */	li r4, 0x321
 /* 80B44BB8  38 A0 00 00 */	li r5, 0
-/* 80B44BBC  4B 60 70 34 */	b initTalk__8daNpcT_cFiPP10fopAc_ac_c
+/* 80B44BBC  4B 60 70 35 */	bl initTalk__8daNpcT_cFiPP10fopAc_ac_c
 lbl_80B44BC0:
 /* 80B44BC0  38 60 00 01 */	li r3, 1
 /* 80B44BC4  80 01 00 14 */	lwz r0, 0x14(r1)

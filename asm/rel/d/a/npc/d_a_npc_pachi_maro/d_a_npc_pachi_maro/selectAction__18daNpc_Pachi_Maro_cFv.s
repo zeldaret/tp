@@ -1,6 +1,6 @@
 lbl_80A994B4:
-/* 80A994B4  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80A994B8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80A994B4  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A994B8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80A994BC  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A994C0  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A994C4  90 83 0F B0 */	stw r4, 0xfb0(r3)
@@ -12,8 +12,8 @@ lbl_80A994B4:
 /* 80A994DC  41 82 00 08 */	beq lbl_80A994E4
 /* 80A994E0  48 00 00 28 */	b lbl_80A99508
 lbl_80A994E4:
-/* 80A994E4  3C 80 80 AA */	lis r4, lit_4973@ha
-/* 80A994E8  38 A4 BF A4 */	addi r5, r4, lit_4973@l
+/* 80A994E4  3C 80 80 AA */	lis r4, lit_4973@ha /* 0x80A9BFA4@ha */
+/* 80A994E8  38 A4 BF A4 */	addi r5, r4, lit_4973@l /* 0x80A9BFA4@l */
 /* 80A994EC  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A994F0  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A994F4  90 83 0F B0 */	stw r4, 0xfb0(r3)
@@ -22,8 +22,8 @@ lbl_80A994E4:
 /* 80A99500  90 03 0F B8 */	stw r0, 0xfb8(r3)
 /* 80A99504  48 00 00 24 */	b lbl_80A99528
 lbl_80A99508:
-/* 80A99508  3C 80 80 AA */	lis r4, lit_4975@ha
-/* 80A9950C  38 A4 BF B0 */	addi r5, r4, lit_4975@l
+/* 80A99508  3C 80 80 AA */	lis r4, lit_4975@ha /* 0x80A9BFB0@ha */
+/* 80A9950C  38 A4 BF B0 */	addi r5, r4, lit_4975@l /* 0x80A9BFB0@l */
 /* 80A99510  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A99514  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A99518  90 83 0F B0 */	stw r4, 0xfb0(r3)

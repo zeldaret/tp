@@ -5,15 +5,15 @@ lbl_80A85160:
 /* 80A8516C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A85170  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A85174  7C 7E 1B 78 */	mr r30, r3
-/* 80A85178  3C 80 80 A9 */	lis r4, m__19daNpc_myna2_Param_c@ha
-/* 80A8517C  3B E4 84 34 */	addi r31, r4, m__19daNpc_myna2_Param_c@l
-/* 80A85180  4B 6C D7 48 */	b initialize__8daNpcF_cFv
+/* 80A85178  3C 80 80 A9 */	lis r4, m__19daNpc_myna2_Param_c@ha /* 0x80A88434@ha */
+/* 80A8517C  3B E4 84 34 */	addi r31, r4, m__19daNpc_myna2_Param_c@l /* 0x80A88434@l */
+/* 80A85180  4B 6C D7 49 */	bl initialize__8daNpcF_cFv
 /* 80A85184  38 7E 0B 4C */	addi r3, r30, 0xb4c
-/* 80A85188  4B 6C BE B0 */	b initialize__15daNpcF_Lookat_cFv
+/* 80A85188  4B 6C BE B1 */	bl initialize__15daNpcF_Lookat_cFv
 /* 80A8518C  38 7E 0C 78 */	addi r3, r30, 0xc78
-/* 80A85190  4B 6C B5 20 */	b initialize__18daNpcF_ActorMngr_cFv
-/* 80A85194  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80A85198  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80A85190  4B 6C B5 21 */	bl initialize__18daNpcF_ActorMngr_cFv
+/* 80A85194  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A85198  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80A8519C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A851A0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A851A4  90 7E 0D C0 */	stw r3, 0xdc0(r30)
@@ -114,13 +114,13 @@ lbl_80A852E4:
 /* 80A85314  28 00 00 01 */	cmplwi r0, 1
 /* 80A85318  40 82 00 10 */	bne lbl_80A85328
 /* 80A8531C  38 60 00 4A */	li r3, 0x4a
-/* 80A85320  4B 6D 04 14 */	b daNpcF_offTmpBit__FUl
+/* 80A85320  4B 6D 04 15 */	bl daNpcF_offTmpBit__FUl
 /* 80A85324  48 00 00 14 */	b lbl_80A85338
 lbl_80A85328:
 /* 80A85328  28 00 00 03 */	cmplwi r0, 3
 /* 80A8532C  40 82 00 0C */	bne lbl_80A85338
 /* 80A85330  38 60 00 4B */	li r3, 0x4b
-/* 80A85334  4B 6D 04 00 */	b daNpcF_offTmpBit__FUl
+/* 80A85334  4B 6D 04 01 */	bl daNpcF_offTmpBit__FUl
 lbl_80A85338:
 /* 80A85338  38 00 00 01 */	li r0, 1
 /* 80A8533C  98 1E 09 EE */	stb r0, 0x9ee(r30)

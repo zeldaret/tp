@@ -3,18 +3,18 @@ lbl_8095B48C:
 /* 8095B490  7C 08 02 A6 */	mflr r0
 /* 8095B494  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8095B498  39 61 00 20 */	addi r11, r1, 0x20
-/* 8095B49C  4B A0 6D 3C */	b _savegpr_28
+/* 8095B49C  4B A0 6D 3D */	bl _savegpr_28
 /* 8095B4A0  7C 7C 1B 78 */	mr r28, r3
 /* 8095B4A4  7C 9D 23 78 */	mr r29, r4
-/* 8095B4A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8095B4AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8095B4A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8095B4AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8095B4B0  3B C3 4F F8 */	addi r30, r3, 0x4ff8
 /* 8095B4B4  7F C3 F3 78 */	mr r3, r30
-/* 8095B4B8  3C A0 80 96 */	lis r5, stringBase0@ha
-/* 8095B4BC  38 A5 D9 10 */	addi r5, r5, stringBase0@l
+/* 8095B4B8  3C A0 80 96 */	lis r5, d_a_npc_ash__stringBase0@ha /* 0x8095D910@ha */
+/* 8095B4BC  38 A5 D9 10 */	addi r5, r5, d_a_npc_ash__stringBase0@l /* 0x8095D910@l */
 /* 8095B4C0  38 A5 00 7B */	addi r5, r5, 0x7b
 /* 8095B4C4  38 C0 00 03 */	li r6, 3
-/* 8095B4C8  4B 6E CC 24 */	b getMySubstanceP__16dEvent_manager_cFiPCci
+/* 8095B4C8  4B 6E CC 25 */	bl getMySubstanceP__16dEvent_manager_cFiPCci
 /* 8095B4CC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8095B4D0  40 82 00 0C */	bne lbl_8095B4DC
 /* 8095B4D4  38 60 00 00 */	li r3, 0
@@ -22,7 +22,7 @@ lbl_8095B48C:
 lbl_8095B4DC:
 /* 8095B4DC  7F C3 F3 78 */	mr r3, r30
 /* 8095B4E0  7F A4 EB 78 */	mr r4, r29
-/* 8095B4E4  4B 6E C8 68 */	b getIsAddvance__16dEvent_manager_cFi
+/* 8095B4E4  4B 6E C8 69 */	bl getIsAddvance__16dEvent_manager_cFi
 /* 8095B4E8  2C 03 00 00 */	cmpwi r3, 0
 /* 8095B4EC  41 82 00 84 */	beq lbl_8095B570
 /* 8095B4F0  80 1F 00 00 */	lwz r0, 0(r31)
@@ -68,7 +68,7 @@ lbl_8095B570:
 /* 8095B570  38 60 00 00 */	li r3, 0
 lbl_8095B574:
 /* 8095B574  39 61 00 20 */	addi r11, r1, 0x20
-/* 8095B578  4B A0 6C AC */	b _restgpr_28
+/* 8095B578  4B A0 6C AD */	bl _restgpr_28
 /* 8095B57C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8095B580  7C 08 03 A6 */	mtlr r0
 /* 8095B584  38 21 00 20 */	addi r1, r1, 0x20

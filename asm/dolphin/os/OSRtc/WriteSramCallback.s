@@ -1,10 +1,10 @@
 lbl_8033FE90:
 /* 8033FE90  7C 08 02 A6 */	mflr r0
-/* 8033FE94  3C 60 80 45 */	lis r3, Scb@ha
+/* 8033FE94  3C 60 80 45 */	lis r3, Scb@ha /* 0x8044BB20@ha */
 /* 8033FE98  90 01 00 04 */	stw r0, 4(r1)
 /* 8033FE9C  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 8033FEA0  93 E1 00 14 */	stw r31, 0x14(r1)
-/* 8033FEA4  3B E3 BB 20 */	addi r31, r3, Scb@l
+/* 8033FEA4  3B E3 BB 20 */	addi r31, r3, Scb@l /* 0x8044BB20@l */
 /* 8033FEA8  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 8033FEAC  3B DF 00 40 */	addi r30, r31, 0x40
 /* 8033FEB0  80 9F 00 40 */	lwz r4, 0x40(r31)

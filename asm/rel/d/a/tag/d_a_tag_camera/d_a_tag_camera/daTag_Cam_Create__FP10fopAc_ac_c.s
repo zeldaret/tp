@@ -4,15 +4,15 @@ lbl_8048A3DC:
 /* 8048A3E4  90 01 00 74 */	stw r0, 0x74(r1)
 /* 8048A3E8  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 8048A3EC  93 C1 00 68 */	stw r30, 0x68(r1)
-/* 8048A3F0  3C 80 80 49 */	lis r4, lit_3874@ha
-/* 8048A3F4  3B C4 A5 90 */	addi r30, r4, lit_3874@l
+/* 8048A3F0  3C 80 80 49 */	lis r4, lit_3874@ha /* 0x8048A590@ha */
+/* 8048A3F4  3B C4 A5 90 */	addi r30, r4, lit_3874@l /* 0x8048A590@l */
 /* 8048A3F8  7C 7F 1B 78 */	mr r31, r3
 /* 8048A3FC  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 8048A400  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8048A404  40 82 00 1C */	bne lbl_8048A420
 /* 8048A408  28 1F 00 00 */	cmplwi r31, 0
 /* 8048A40C  41 82 00 08 */	beq lbl_8048A414
-/* 8048A410  4B B8 E7 54 */	b __ct__10fopAc_ac_cFv
+/* 8048A410  4B B8 E7 55 */	bl __ct__10fopAc_ac_cFv
 lbl_8048A414:
 /* 8048A414  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8048A418  60 00 00 08 */	ori r0, r0, 8
@@ -79,11 +79,11 @@ lbl_8048A4B8:
 /* 8048A504  D0 1F 05 84 */	stfs f0, 0x584(r31)
 /* 8048A508  D0 5F 05 88 */	stfs f2, 0x588(r31)
 lbl_8048A50C:
-/* 8048A50C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048A510  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048A50C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048A510  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048A514  80 03 5D B4 */	lwz r0, 0x5db4(r3)
-/* 8048A518  3C 60 80 49 */	lis r3, data_8048A670@ha
-/* 8048A51C  90 03 A6 70 */	stw r0, data_8048A670@l(r3)
+/* 8048A518  3C 60 80 49 */	lis r3, data_8048A670@ha /* 0x8048A670@ha */
+/* 8048A51C  90 03 A6 70 */	stw r0, data_8048A670@l(r3)  /* 0x8048A670@l */
 /* 8048A520  38 A1 00 04 */	addi r5, r1, 4
 /* 8048A524  38 9E 00 08 */	addi r4, r30, 8
 /* 8048A528  38 00 00 0B */	li r0, 0xb

@@ -5,8 +5,8 @@ lbl_80B12750:
 /* 80B1275C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B12760  93 C1 00 08 */	stw r30, 8(r1)
 /* 80B12764  7C 7E 1B 78 */	mr r30, r3
-/* 80B12768  3C 80 80 B1 */	lis r4, lit_3648@ha
-/* 80B1276C  3B E4 42 DC */	addi r31, r4, lit_3648@l
+/* 80B12768  3C 80 80 B1 */	lis r4, lit_3648@ha /* 0x80B142DC@ha */
+/* 80B1276C  3B E4 42 DC */	addi r31, r4, lit_3648@l /* 0x80B142DC@l */
 /* 80B12770  A8 03 06 0A */	lha r0, 0x60a(r3)
 /* 80B12774  2C 00 00 01 */	cmpwi r0, 1
 /* 80B12778  41 82 00 34 */	beq lbl_80B127AC
@@ -43,7 +43,7 @@ lbl_80B127E4:
 /* 80B127E8  C0 3F 00 20 */	lfs f1, 0x20(r31)
 /* 80B127EC  C0 5F 00 7C */	lfs f2, 0x7c(r31)
 /* 80B127F0  C0 7F 00 78 */	lfs f3, 0x78(r31)
-/* 80B127F4  4B 75 D2 48 */	b cLib_addCalc2__FPffff
+/* 80B127F4  4B 75 D2 49 */	bl cLib_addCalc2__FPffff
 /* 80B127F8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80B127FC  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80B12800  80 01 00 14 */	lwz r0, 0x14(r1)

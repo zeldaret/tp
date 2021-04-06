@@ -3,19 +3,20 @@
 #
 
 M285_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB.plf
+M285_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB.lcf
+M285_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB.map
 
 M285_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ashB/executor.cpp \
-	rel/d/a/npc/d_a_npc_ashB/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ashB/d_a_npc_ashB.cpp \
 
 M285_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/d_a_npc_ashB.o \
 
 M285_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/libRuntime.PPCEABI.H.a \
 
 M285_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M285_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map285.map\
+	-m _prolog \
+	-lcf $(M285_LDSCRIPT) \
+	-unused -map $(M285_MAP) \
+	-w off \
 
 $(M285_TARGET): $(M285_O_FILES) $(M285_LIBS)
+	@echo [285] creating $(M285_TARGET)
 	@echo $(M285_LIBS) $(M285_O_FILES) > build/M285_ofiles
-	$(LD) -opt_partial $(M285_LDFLAGS) -o $(M285_TARGET) @build/M285_ofiles
+	@python3 tools/lcf.py rel 285 --output $(M285_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M285_LDFLAGS) -o $(M285_TARGET) @build/M285_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ashB/%.o: rel/d/a/npc/d_a_npc_ashB/%.cpp
+	@echo [285] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M285_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M285_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ashB/libs/Runtime.PPCEABI.H/Makefile
 

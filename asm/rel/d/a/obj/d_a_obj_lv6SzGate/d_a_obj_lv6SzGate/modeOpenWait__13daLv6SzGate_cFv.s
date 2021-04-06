@@ -6,10 +6,10 @@ lbl_80C76094:
 /* 80C760A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C760A8  7C 7E 1B 78 */	mr r30, r3
 /* 80C760AC  38 7E 05 B0 */	addi r3, r30, 0x5b0
-/* 80C760B0  4B 39 73 78 */	b play__14mDoExt_baseAnmFv
+/* 80C760B0  4B 39 73 79 */	bl play__14mDoExt_baseAnmFv
 /* 80C760B4  7C 7F 1B 78 */	mr r31, r3
 /* 80C760B8  38 7E 05 C8 */	addi r3, r30, 0x5c8
-/* 80C760BC  4B 39 73 6C */	b play__14mDoExt_baseAnmFv
+/* 80C760BC  4B 39 73 6D */	bl play__14mDoExt_baseAnmFv
 /* 80C760C0  2C 1F 00 01 */	cmpwi r31, 1
 /* 80C760C4  41 82 00 0C */	beq lbl_80C760D0
 /* 80C760C8  2C 03 00 01 */	cmpwi r3, 1

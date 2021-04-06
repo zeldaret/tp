@@ -9,7 +9,7 @@ lbl_80D55CD8:
 /* 80D55CF4  40 82 00 1C */	bne lbl_80D55D10
 /* 80D55CF8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D55CFC  41 82 00 08 */	beq lbl_80D55D04
-/* 80D55D00  4B 2C 2E 64 */	b __ct__10fopAc_ac_cFv
+/* 80D55D00  4B 2C 2E 65 */	bl __ct__10fopAc_ac_cFv
 lbl_80D55D04:
 /* 80D55D04  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D55D08  60 00 00 08 */	ori r0, r0, 8

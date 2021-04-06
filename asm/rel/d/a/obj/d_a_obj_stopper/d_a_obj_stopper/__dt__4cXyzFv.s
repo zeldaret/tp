@@ -7,7 +7,7 @@ lbl_80CECFE8:
 /* 80CECFFC  41 82 00 10 */	beq lbl_80CED00C
 /* 80CED000  7C 80 07 35 */	extsh. r0, r4
 /* 80CED004  40 81 00 08 */	ble lbl_80CED00C
-/* 80CED008  4B 5E 1D 34 */	b __dl__FPv
+/* 80CED008  4B 5E 1D 35 */	bl __dl__FPv
 lbl_80CED00C:
 /* 80CED00C  7F E3 FB 78 */	mr r3, r31
 /* 80CED010  83 E1 00 0C */	lwz r31, 0xc(r1)

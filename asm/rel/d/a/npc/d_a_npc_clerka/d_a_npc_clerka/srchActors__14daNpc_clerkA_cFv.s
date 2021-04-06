@@ -10,14 +10,14 @@ lbl_80993330:
 /* 80993350  48 00 00 28 */	b lbl_80993378
 lbl_80993354:
 /* 80993354  38 7F 10 C0 */	addi r3, r31, 0x10c0
-/* 80993358  4B 7B 23 B0 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80993358  4B 7B 23 B1 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8099335C  28 03 00 00 */	cmplwi r3, 0
 /* 80993360  40 82 00 18 */	bne lbl_80993378
 /* 80993364  7F E3 FB 78 */	mr r3, r31
-/* 80993368  4B 7B 8C 48 */	b getShopItemTagP__8daNpcT_cFv
+/* 80993368  4B 7B 8C 49 */	bl getShopItemTagP__8daNpcT_cFv
 /* 8099336C  7C 64 1B 78 */	mr r4, r3
 /* 80993370  38 7F 10 C0 */	addi r3, r31, 0x10c0
-/* 80993374  4B 7B 23 6C */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 80993374  4B 7B 23 6D */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_80993378:
 /* 80993378  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8099337C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -31,31 +31,31 @@ lbl_80BED704:
 /* 80BED704  38 00 00 01 */	li r0, 1
 /* 80BED708  98 1E 10 AC */	stb r0, 0x10ac(r30)
 /* 80BED70C  38 7E 10 AD */	addi r3, r30, 0x10ad
-/* 80BED710  3C 80 80 BF */	lis r4, stringBase0@ha
-/* 80BED714  38 84 E1 E8 */	addi r4, r4, stringBase0@l
+/* 80BED710  3C 80 80 BF */	lis r4, d_a_obj_flag2__stringBase0@ha /* 0x80BEE1E8@ha */
+/* 80BED714  38 84 E1 E8 */	addi r4, r4, d_a_obj_flag2__stringBase0@l /* 0x80BEE1E8@l */
 /* 80BED718  38 84 00 2A */	addi r4, r4, 0x2a
 /* 80BED71C  4C C6 31 82 */	crclr 6
-/* 80BED720  4B 77 8D BC */	b sprintf
+/* 80BED720  4B 77 8D BD */	bl sprintf
 /* 80BED724  38 7E 05 6C */	addi r3, r30, 0x56c
 /* 80BED728  38 9E 10 AD */	addi r4, r30, 0x10ad
-/* 80BED72C  4B 43 F7 90 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80BED72C  4B 43 F7 91 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80BED730  2C 03 00 04 */	cmpwi r3, 4
 /* 80BED734  41 82 00 08 */	beq lbl_80BED73C
 /* 80BED738  48 00 00 54 */	b lbl_80BED78C
 lbl_80BED73C:
 /* 80BED73C  7F C3 F3 78 */	mr r3, r30
-/* 80BED740  4B 44 41 30 */	b getArcName__12daSetBgObj_cFP10fopAc_ac_c
+/* 80BED740  4B 44 41 31 */	bl getArcName__12daSetBgObj_cFP10fopAc_ac_c
 /* 80BED744  7C 64 1B 78 */	mr r4, r3
 /* 80BED748  38 7E 05 74 */	addi r3, r30, 0x574
-/* 80BED74C  4B 43 F7 70 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80BED74C  4B 43 F7 71 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80BED750  7C 7F 1B 78 */	mr r31, r3
 /* 80BED754  2C 1F 00 04 */	cmpwi r31, 4
 /* 80BED758  40 82 00 30 */	bne lbl_80BED788
 /* 80BED75C  7F C3 F3 78 */	mr r3, r30
-/* 80BED760  3C 80 80 BF */	lis r4, createSolidHeap__FP10fopAc_ac_c@ha
-/* 80BED764  38 84 D6 80 */	addi r4, r4, createSolidHeap__FP10fopAc_ac_c@l
+/* 80BED760  3C 80 80 BF */	lis r4, createSolidHeap__FP10fopAc_ac_c@ha /* 0x80BED680@ha */
+/* 80BED764  38 84 D6 80 */	addi r4, r4, createSolidHeap__FP10fopAc_ac_c@l /* 0x80BED680@l */
 /* 80BED768  38 A0 08 20 */	li r5, 0x820
-/* 80BED76C  4B 42 CD 44 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80BED76C  4B 42 CD 45 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80BED770  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80BED774  40 82 00 0C */	bne lbl_80BED780
 /* 80BED778  38 60 00 05 */	li r3, 5

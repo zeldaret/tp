@@ -96,14 +96,10 @@ extern "C" void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii();
 extern "C" void fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc();
 extern "C" void getExpandedResSize__13JKRDvdArchiveCFPCv();
 extern "C" extern char const* const JKRDvdArchive__stringBase0;
-extern "C" extern void* __vt__13JKRDvdArchive[20];
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
@@ -156,8 +152,8 @@ extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 //
 
 /* ############################################################################################## */
-/* 803CC398-803CC3E8 0050+00 s=2 e=0 z=0  None .data      __vt__13JKRDvdArchive */
-SECTION_DATA void* __vt__13JKRDvdArchive[20] = {
+/* 803CC398-803CC3E8 0294B8 0050+00 2/2 0/0 0/0 .data            __vt__13JKRDvdArchive */
+SECTION_DATA extern void* __vt__13JKRDvdArchive[20] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JKRDvdArchiveFv,
@@ -180,17 +176,8 @@ SECTION_DATA void* __vt__13JKRDvdArchive[20] = {
     (void*)getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry,
 };
 
-/* 802D7BF0-802D7C98 00A8+00 s=0 e=1 z=0  None .text
+/* 802D7BF0-802D7C98 2D2530 00A8+00 0/0 1/1 0/0 .text
  * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection       */
-//	802D7C00: 803621DC (_savegpr_29)
-//	802D7C14: 802D6294 (__ct__10JKRArchiveFlQ210JKRArchive10EMountMode)
-//	802D7C18: 803CC398 (__vt__13JKRDvdArchive)
-//	802D7C1C: 803CC398 (__vt__13JKRDvdArchive)
-//	802D7C30: 802D7DB4 (open__13JKRDvdArchiveFl)
-//	802D7C64: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D7C68: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D7C70: 802DBFF0 (prepend__10JSUPtrListFP10JSUPtrLink)
-//	802D7C84: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -200,19 +187,7 @@ asm JKRDvdArchive::JKRDvdArchive(s32 param_0, JKRArchive::EMountDirection param_
 }
 #pragma pop
 
-/* 802D7C98-802D7DB4 011C+00 s=1 e=0 z=0  None .text      __dt__13JKRDvdArchiveFv */
-//	802D7CA8: 803621D8 (_savegpr_28)
-//	802D7CB8: 803CC398 (__vt__13JKRDvdArchive)
-//	802D7CBC: 803CC398 (__vt__13JKRDvdArchive)
-//	802D7CF8: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D7D18: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D7D34: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D7D64: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D7D68: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D7D70: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D7D84: 802D6334 (__dt__10JKRArchiveFv)
-//	802D7D94: 802CED3C (__dl__FPv)
-//	802D7DA0: 80362224 (_restgpr_28)
+/* 802D7C98-802D7DB4 2D25D8 011C+00 1/0 0/0 0/0 .text            __dt__13JKRDvdArchiveFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,28 +197,7 @@ asm JKRDvdArchive::~JKRDvdArchive() {
 }
 #pragma pop
 
-/* 802D7DB4-802D8050 029C+00 s=1 e=0 z=0  None .text      open__13JKRDvdArchiveFl */
-//	802D7DC4: 803621D8 (_savegpr_28)
-//	802D7DEC: 80451370 (sSystemHeap__7JKRHeap)
-//	802D7DF4: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D7E04: 802D96A0 (__ct__10JKRDvdFileFl)
-//	802D7E2C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D7E38: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D7E78: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D7E84: 8033B580 (DCInvalidateRange)
-//	802D7EA8: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D7EEC: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D7EF8: 8033B580 (DCInvalidateRange)
-//	802D7F80: 803650D0 (abs)
-//	802D7F98: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D7FAC: 80451370 (sSystemHeap__7JKRHeap)
-//	802D7FB4: 802CE548 (free__7JKRHeapFPv)
-//	802D7FD4: 80003458 (memset)
-//	802D7FF0: 80451370 (sSystemHeap__7JKRHeap)
-//	802D7FF8: 802CE548 (free__7JKRHeapFPv)
-//	802D803C: 80362224 (_restgpr_28)
+/* 802D7DB4-802D8050 2D26F4 029C+00 1/1 0/0 0/0 .text            open__13JKRDvdArchiveFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,11 +207,8 @@ asm void JKRDvdArchive::open(s32 param_0) {
 }
 #pragma pop
 
-/* 802D8050-802D8168 0118+00 s=1 e=0 z=0  None .text
+/* 802D8050-802D8168 2D2990 0118+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl */
-//	802D8060: 803621D8 (_savegpr_28)
-//	802D80D4: 802D8474 (fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc)
-//	802D8154: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,12 +218,8 @@ asm void JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* param_0, u32* pa
 }
 #pragma pop
 
-/* 802D8168-802D826C 0104+00 s=1 e=0 z=0  None .text
+/* 802D8168-802D826C 2D2AA8 0104+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
-//	802D8178: 803621D4 (_savegpr_27)
-//	802D81F0: 802D826C (fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii)
-//	802D8240: 802CEB18 (copyMemory__7JKRHeapFPvPvUl)
-//	802D8258: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,42 +230,8 @@ asm void JKRDvdArchive::fetchResource(void* param_0, u32 param_1, JKRArchive::SD
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039D1B0-8039D220 006D+03 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039D1B0 = "JKRDvdArchive.cpp";
-SECTION_DEAD char const* const stringBase_8039D1C2 = "%s";
-SECTION_DEAD char const* const stringBase_8039D1C5 = "Sorry, not applied for SZP archive.\n";
-SECTION_DEAD char const* const stringBase_8039D1EA = "??? bad sequence\n";
-SECTION_DEAD char const* const stringBase_8039D1FC = "Sorry, not applied SZP archive.\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D21D = "\0\0";
-#pragma pop
-
-/* 802D826C-802D8474 0208+00 s=1 e=1 z=0  None .text
+/* 802D826C-802D8474 2D2BAC 0208+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii       */
-//	802D827C: 803621D0 (_savegpr_26)
-//	802D830C: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8318: 8033B580 (DCInvalidateRange)
-//	802D8350: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D835C: 8033B580 (DCInvalidateRange)
-//	802D83BC: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D83C8: 8033B580 (DCInvalidateRange)
-//	802D8408: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8414: 8033B580 (DCInvalidateRange)
-//	802D8420: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8424: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8438: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D843C: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8440: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8454: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D8460: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,31 +242,8 @@ asm void JKRDvdArchive::fetchResource_subroutine(s32 param_0, u32 param_1, u32 p
 }
 #pragma pop
 
-/* 802D8474-802D8698 0224+00 s=1 e=1 z=0  None .text
+/* 802D8474-802D8698 2D2DB4 0224+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc */
-//	802D8484: 803621CC (_savegpr_25)
-//	802D84EC: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D851C: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8528: 8033B580 (DCInvalidateRange)
-//	802D8564: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8570: 8033B580 (DCInvalidateRange)
-//	802D85A0: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D85D0: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D85DC: 8033B580 (DCInvalidateRange)
-//	802D85F8: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D8628: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8634: 8033B580 (DCInvalidateRange)
-//	802D8644: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8648: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D865C: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D8660: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8664: 8039D1B0 (JKRDvdArchive__stringBase0)
-//	802D8678: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D8684: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -365,14 +255,7 @@ asm void JKRDvdArchive::fetchResource_subroutine(s32 param_0, u32 param_1, u32 p
 }
 #pragma pop
 
-/* 802D8698-802D87D4 013C+00 s=1 e=0 z=0  None .text      getExpandedResSize__13JKRDvdArchiveCFPCv
- */
-//	802D86A8: 803621DC (_savegpr_29)
-//	802D86D4: 802D6734 (findPtrResource__10JKRArchiveCFPCv)
-//	802D876C: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8778: 8033B580 (DCInvalidateRange)
-//	802D87C0: 80362228 (_restgpr_29)
+/* 802D8698-802D87D4 2D2FD8 013C+00 1/0 0/0 0/0 .text getExpandedResSize__13JKRDvdArchiveCFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,4 +263,17 @@ asm void JKRDvdArchive::getExpandedResSize(void const* param_0) const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdArchive/getExpandedResSize__13JKRDvdArchiveCFPCv.s"
 }
+#pragma pop
+
+/* 8039D1B0-8039D220 029810 006D+03 2/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039D1B0 = "JKRDvdArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D1C2 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D1C5 = "Sorry, not applied for SZP archive.\n";
+SECTION_DEAD static char const* const stringBase_8039D1EA = "??? bad sequence\n";
+SECTION_DEAD static char const* const stringBase_8039D1FC = "Sorry, not applied SZP archive.\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D21D = "\0\0";
 #pragma pop

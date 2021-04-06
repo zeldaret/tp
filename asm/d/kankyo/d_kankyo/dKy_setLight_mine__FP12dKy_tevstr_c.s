@@ -28,8 +28,8 @@ lbl_801A8854:
 /* 801A88BC  C0 DF 00 30 */	lfs f6, 0x30(r31)
 /* 801A88C0  48 1B 4D 71 */	bl GXInitLightAttn
 /* 801A88C4  38 61 00 0C */	addi r3, r1, 0xc
-/* 801A88C8  3C 80 80 3C */	lis r4, lightMaskData@ha
-/* 801A88CC  38 84 BE AC */	addi r4, r4, lightMaskData@l
+/* 801A88C8  3C 80 80 3C */	lis r4, lightMaskData@ha /* 0x803BBEAC@ha */
+/* 801A88CC  38 84 BE AC */	addi r4, r4, lightMaskData@l /* 0x803BBEAC@l */
 /* 801A88D0  A0 84 00 00 */	lhz r4, 0(r4)
 /* 801A88D4  48 1B 50 11 */	bl GXLoadLightObjImm
 /* 801A88D8  83 E1 00 5C */	lwz r31, 0x5c(r1)

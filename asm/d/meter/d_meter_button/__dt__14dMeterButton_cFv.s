@@ -7,8 +7,8 @@ lbl_80201370:
 /* 80201384  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80201388  7C 9F 23 78 */	mr r31, r4
 /* 8020138C  41 82 00 24 */	beq lbl_802013B0
-/* 80201390  3C 80 80 3C */	lis r4, __vt__14dMeterButton_c@ha
-/* 80201394  38 04 F2 58 */	addi r0, r4, __vt__14dMeterButton_c@l
+/* 80201390  3C 80 80 3C */	lis r4, __vt__14dMeterButton_c@ha /* 0x803BF258@ha */
+/* 80201394  38 04 F2 58 */	addi r0, r4, __vt__14dMeterButton_c@l /* 0x803BF258@l */
 /* 80201398  90 1E 00 00 */	stw r0, 0(r30)
 /* 8020139C  48 00 17 01 */	bl _delete__14dMeterButton_cFv
 /* 802013A0  7F E0 07 35 */	extsh. r0, r31

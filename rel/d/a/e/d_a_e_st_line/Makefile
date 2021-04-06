@@ -3,17 +3,15 @@
 #
 
 M234_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_st_line.plf
+M234_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_st_line.lcf
+M234_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_st_line.map
 
 M234_CPP_FILES := \
-	rel/d/a/e/d_a_e_st_line/executor.cpp \
-	rel/d/a/e/d_a_e_st_line/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_st_line/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_st_line/d_a_e_st_line.cpp \
 
 M234_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/d_a_e_st_line.o \
 
 M234_LIBS := \
@@ -29,15 +27,21 @@ M234_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map234.map\
+	-m _prolog \
+	-lcf $(M234_LDSCRIPT) \
+	-unused -map $(M234_MAP) \
+	-w off \
 
 $(M234_TARGET): $(M234_O_FILES) $(M234_LIBS)
+	@echo [234] creating $(M234_TARGET)
 	@echo $(M234_LIBS) $(M234_O_FILES) > build/M234_ofiles
-	$(LD) -opt_partial $(M234_LDFLAGS) -o $(M234_TARGET) @build/M234_ofiles
+	@python3 tools/lcf.py rel 234 --output $(M234_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M234_LDFLAGS) -o $(M234_TARGET) @build/M234_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_st_line/%.o: rel/d/a/e/d_a_e_st_line/%.cpp
+	@echo [234] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M234_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M234_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

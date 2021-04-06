@@ -5,8 +5,8 @@ lbl_801D6C98:
 /* 801D6CA4  93 E1 00 5C */	stw r31, 0x5c(r1)
 /* 801D6CA8  93 C1 00 58 */	stw r30, 0x58(r1)
 /* 801D6CAC  7C 7E 1B 78 */	mr r30, r3
-/* 801D6CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801D6CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801D6CB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801D6CB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801D6CB8  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801D6CBC  7F E3 FB 78 */	mr r3, r31
 /* 801D6CC0  81 9F 00 00 */	lwz r12, 0(r31)

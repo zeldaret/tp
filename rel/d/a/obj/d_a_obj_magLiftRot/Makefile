@@ -3,19 +3,20 @@
 #
 
 M566_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot.plf
+M566_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot.lcf
+M566_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot.map
 
 M566_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_magLiftRot/executor.cpp \
-	rel/d/a/obj/d_a_obj_magLiftRot/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot.cpp \
 
 M566_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot.o \
 
 M566_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/libRuntime.PPCEABI.H.a \
 
 M566_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M566_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map566.map\
+	-m _prolog \
+	-lcf $(M566_LDSCRIPT) \
+	-unused -map $(M566_MAP) \
+	-w off \
 
 $(M566_TARGET): $(M566_O_FILES) $(M566_LIBS)
+	@echo [566] creating $(M566_TARGET)
 	@echo $(M566_LIBS) $(M566_O_FILES) > build/M566_ofiles
-	$(LD) -opt_partial $(M566_LDFLAGS) -o $(M566_TARGET) @build/M566_ofiles
+	@python3 tools/lcf.py rel 566 --output $(M566_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M566_LDFLAGS) -o $(M566_TARGET) @build/M566_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLiftRot/%.o: rel/d/a/obj/d_a_obj_magLiftRot/%.cpp
+	@echo [566] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M566_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M566_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_magLiftRot/libs/Runtime.PPCEABI.H/Makefile
 

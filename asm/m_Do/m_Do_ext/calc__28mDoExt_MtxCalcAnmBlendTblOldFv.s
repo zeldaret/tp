@@ -12,8 +12,8 @@ lbl_8000F4B0:
 /* 8000F4D8  80 6D 90 74 */	lwz r3, mJoint__10J3DMtxCalc(r13)
 /* 8000F4DC  A3 E3 00 14 */	lhz r31, 0x14(r3)
 /* 8000F4E0  7F FB FB 78 */	mr r27, r31
-/* 8000F4E4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000F4E8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000F4E4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000F4E8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000F4EC  93 83 00 30 */	stw r28, 0x30(r3)
 /* 8000F4F0  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 8000F4F4  83 C3 00 04 */	lwz r30, 4(r3)

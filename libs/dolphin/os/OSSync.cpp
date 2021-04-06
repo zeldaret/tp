@@ -12,7 +12,7 @@
 //
 
 extern "C" static void SystemCallVector();
-extern "C" static void __OSSystemCallVectorEnd();
+extern "C" void __OSSystemCallVectorEnd();
 extern "C" void __OSInitSystemCall();
 
 //
@@ -27,38 +27,31 @@ extern "C" void ICInvalidateRange();
 // Declarations:
 //
 
-/* 80340A20-80340A3C 001C+00 s=1 e=0 z=0  None .text      SystemCallVector */
+/* 80340A20-80340A3C 33B360 001C+00 1/1 0/0 0/0 .text            SystemCallVector */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SystemCallVector() {
+static asm void SystemCallVector() {
     nofralloc
 #include "asm/dolphin/os/OSSync/SystemCallVector.s"
 }
 #pragma pop
 
-/* 80340A3C-80340A40 0004+00 s=1 e=0 z=0  None .text      __OSSystemCallVectorEnd */
+/* 80340A3C-80340A40 33B37C 0004+00 1/1 0/0 0/0 .text            __OSSystemCallVectorEnd */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __OSSystemCallVectorEnd() {
+asm void __OSSystemCallVectorEnd() {
     nofralloc
 #include "asm/dolphin/os/OSSync/__OSSystemCallVectorEnd.s"
 }
 #pragma pop
 
-/* 80340A40-80340AA4 0064+00 s=0 e=1 z=0  None .text      __OSInitSystemCall */
-//	80340A54: 80340A20 (SystemCallVector)
-//	80340A58: 80340A3C (__OSSystemCallVectorEnd)
-//	80340A60: 80340A3C (__OSSystemCallVectorEnd)
-//	80340A64: 80340A20 (SystemCallVector)
-//	80340A70: 80003540 (memcpy)
-//	80340A7C: 8033B60C (DCFlushRangeNoSync)
-//	80340A8C: 8033B690 (ICInvalidateRange)
+/* 80340A40-80340AA4 33B380 0064+00 0/0 1/1 0/0 .text            __OSInitSystemCall */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSInitSystemCall() {
+asm void __OSInitSystemCall() {
     nofralloc
 #include "asm/dolphin/os/OSSync/__OSInitSystemCall.s"
 }

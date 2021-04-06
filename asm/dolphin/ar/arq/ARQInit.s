@@ -11,9 +11,9 @@ lbl_80352264:
 /* 80352288  3B E0 00 00 */	li r31, 0
 /* 8035228C  38 00 10 00 */	li r0, 0x1000
 /* 80352290  93 ED 93 60 */	stw r31, __ARQRequestQueueLo(r13)
-/* 80352294  3C 60 80 35 */	lis r3, __ARQInterruptServiceRoutine@ha
+/* 80352294  3C 60 80 35 */	lis r3, __ARQInterruptServiceRoutine@ha /* 0x80352198@ha */
 /* 80352298  93 ED 93 58 */	stw r31, __ARQRequestQueueHi(r13)
-/* 8035229C  38 63 21 98 */	addi r3, r3, __ARQInterruptServiceRoutine@l
+/* 8035229C  38 63 21 98 */	addi r3, r3, __ARQInterruptServiceRoutine@l /* 0x80352198@l */
 /* 803522A0  90 0D 93 78 */	stw r0, __ARQChunkSize(r13)
 /* 803522A4  4B FF E2 B1 */	bl ARRegisterDMACallback
 /* 803522A8  38 00 00 01 */	li r0, 1

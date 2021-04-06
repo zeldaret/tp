@@ -2,10 +2,10 @@ lbl_8058A300:
 /* 8058A300  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8058A304  7C 08 02 A6 */	mflr r0
 /* 8058A308  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8058A30C  3C 80 80 59 */	lis r4, cNullVec__6Z2Calc@ha
-/* 8058A310  38 E4 AD 24 */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 8058A314  3C 80 80 59 */	lis r4, struct_8058AEA8+0x1@ha
-/* 8058A318  38 C4 AE A9 */	addi r6, r4, struct_8058AEA8+0x1@l
+/* 8058A30C  3C 80 80 59 */	lis r4, cNullVec__6Z2Calc@ha /* 0x8058AD24@ha */
+/* 8058A310  38 E4 AD 24 */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x8058AD24@l */
+/* 8058A314  3C 80 80 59 */	lis r4, struct_8058AEA8+0x1@ha /* 0x8058AEA9@ha */
+/* 8058A318  38 C4 AE A9 */	addi r6, r4, struct_8058AEA8+0x1@l /* 0x8058AEA9@l */
 /* 8058A31C  88 06 00 00 */	lbz r0, 0(r6)
 /* 8058A320  7C 00 07 75 */	extsb. r0, r0
 /* 8058A324  40 82 00 58 */	bne lbl_8058A37C
@@ -35,7 +35,7 @@ lbl_8058A37C:
 /* 8058A380  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8058A384  39 87 00 A4 */	addi r12, r7, 0xa4
 /* 8058A388  7D 8C 02 14 */	add r12, r12, r0
-/* 8058A38C  4B DD 7C F8 */	b __ptmf_scall
+/* 8058A38C  4B DD 7C F9 */	bl __ptmf_scall
 /* 8058A390  60 00 00 00 */	nop 
 /* 8058A394  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8058A398  7C 08 03 A6 */	mtlr r0

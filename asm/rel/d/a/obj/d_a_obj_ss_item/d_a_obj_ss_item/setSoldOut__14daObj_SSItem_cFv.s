@@ -17,7 +17,7 @@ lbl_80CE7778:
 lbl_80CE77B4:
 /* 80CE77B4  38 80 FF FF */	li r4, -1
 lbl_80CE77B8:
-/* 80CE77B8  4B C6 10 34 */	b soldoutItem__8daMyna_cFUi
+/* 80CE77B8  4B C6 10 35 */	bl soldoutItem__8daMyna_cFUi
 lbl_80CE77BC:
 /* 80CE77BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80CE77C0  7C 08 03 A6 */	mtlr r0

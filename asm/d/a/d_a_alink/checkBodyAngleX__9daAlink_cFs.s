@@ -18,8 +18,8 @@ lbl_800CE764:
 /* 800CE764  7F E3 FB 78 */	mr r3, r31
 /* 800CE768  48 00 01 20 */	b lbl_800CE888
 lbl_800CE76C:
-/* 800CE76C  3C 60 80 39 */	lis r3, lit_5908@ha
-/* 800CE770  38 83 17 34 */	addi r4, r3, lit_5908@l
+/* 800CE76C  3C 60 80 39 */	lis r3, lit_5908@ha /* 0x80391734@ha */
+/* 800CE770  38 83 17 34 */	addi r4, r3, lit_5908@l /* 0x80391734@l */
 /* 800CE774  80 64 00 00 */	lwz r3, 0(r4)
 /* 800CE778  80 04 00 04 */	lwz r0, 4(r4)
 /* 800CE77C  90 61 00 38 */	stw r3, 0x38(r1)
@@ -52,14 +52,14 @@ lbl_800CE7DC:
 /* 800CE7E0  4B F3 E5 85 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800CE7E4  7F C3 F3 78 */	mr r3, r30
 /* 800CE7E8  48 01 3C 15 */	bl concatMagneBootMtx__9daAlink_cFv
-/* 800CE7EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800CE7F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800CE7EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800CE7F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800CE7F4  7F E4 FB 78 */	mr r4, r31
 /* 800CE7F8  A8 BE 04 E6 */	lha r5, 0x4e6(r30)
 /* 800CE7FC  38 C0 00 00 */	li r6, 0
 /* 800CE800  4B F3 DA A1 */	bl mDoMtx_ZXYrotM__FPA4_fsss
-/* 800CE804  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800CE808  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800CE804  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800CE808  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800CE80C  38 81 00 38 */	addi r4, r1, 0x38
 /* 800CE810  38 A1 00 20 */	addi r5, r1, 0x20
 /* 800CE814  48 27 85 59 */	bl PSMTXMultVec

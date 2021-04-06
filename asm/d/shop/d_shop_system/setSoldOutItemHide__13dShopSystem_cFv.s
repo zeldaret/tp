@@ -17,8 +17,8 @@ lbl_8019A524:
 /* 8019A52C  7C 63 02 14 */	add r3, r3, r0
 /* 8019A530  80 03 0E 4C */	lwz r0, 0xe4c(r3)
 /* 8019A534  90 01 00 08 */	stw r0, 8(r1)
-/* 8019A538  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8019A53C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8019A538  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8019A53C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8019A540  38 81 00 08 */	addi r4, r1, 8
 /* 8019A544  4B E7 F2 B5 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8019A548  28 03 00 00 */	cmplwi r3, 0

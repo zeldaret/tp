@@ -5,14 +5,14 @@ lbl_80BDC618:
 /* 80BDC624  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BDC628  93 C1 00 08 */	stw r30, 8(r1)
 /* 80BDC62C  7C 7E 1B 78 */	mr r30, r3
-/* 80BDC630  3C 80 80 BE */	lis r4, lit_3678@ha
-/* 80BDC634  3B E4 CB 3C */	addi r31, r4, lit_3678@l
+/* 80BDC630  3C 80 80 BE */	lis r4, lit_3678@ha /* 0x80BDCB3C@ha */
+/* 80BDC634  3B E4 CB 3C */	addi r31, r4, lit_3678@l /* 0x80BDCB3C@l */
 /* 80BDC638  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 80BDC63C  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80BDC640  40 82 00 1C */	bne lbl_80BDC65C
 /* 80BDC644  28 1E 00 00 */	cmplwi r30, 0
 /* 80BDC648  41 82 00 08 */	beq lbl_80BDC650
-/* 80BDC64C  4B 43 C5 18 */	b __ct__10fopAc_ac_cFv
+/* 80BDC64C  4B 43 C5 19 */	bl __ct__10fopAc_ac_cFv
 lbl_80BDC650:
 /* 80BDC650  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80BDC654  60 00 00 08 */	ori r0, r0, 8
@@ -32,12 +32,12 @@ lbl_80BDC65C:
 /* 80BDC688  38 00 FF FF */	li r0, -1
 /* 80BDC68C  B0 1E 05 6C */	sth r0, 0x56c(r30)
 lbl_80BDC690:
-/* 80BDC690  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BDC694  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BDC690  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BDC694  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BDC698  88 9E 05 69 */	lbz r4, 0x569(r30)
 /* 80BDC69C  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BDC6A0  7C 05 07 74 */	extsb r5, r0
-/* 80BDC6A4  4B 45 8C BC */	b isSwitch__10dSv_info_cCFii
+/* 80BDC6A4  4B 45 8C BD */	bl isSwitch__10dSv_info_cCFii
 /* 80BDC6A8  2C 03 00 00 */	cmpwi r3, 0
 /* 80BDC6AC  41 82 00 14 */	beq lbl_80BDC6C0
 /* 80BDC6B0  38 00 00 02 */	li r0, 2
@@ -49,12 +49,12 @@ lbl_80BDC6C0:
 /* 80BDC6C4  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 80BDC6C8  C0 5F 00 04 */	lfs f2, 4(r31)
 /* 80BDC6CC  C0 7F 00 08 */	lfs f3, 8(r31)
-/* 80BDC6D0  4B 43 DE 58 */	b fopAcM_SetMin__FP10fopAc_ac_cfff
+/* 80BDC6D0  4B 43 DE 59 */	bl fopAcM_SetMin__FP10fopAc_ac_cfff
 /* 80BDC6D4  7F C3 F3 78 */	mr r3, r30
 /* 80BDC6D8  C0 3F 00 0C */	lfs f1, 0xc(r31)
 /* 80BDC6DC  C0 5F 00 10 */	lfs f2, 0x10(r31)
 /* 80BDC6E0  C0 7F 00 14 */	lfs f3, 0x14(r31)
-/* 80BDC6E4  4B 43 DE 54 */	b fopAcM_SetMax__FP10fopAc_ac_cfff
+/* 80BDC6E4  4B 43 DE 55 */	bl fopAcM_SetMax__FP10fopAc_ac_cfff
 /* 80BDC6E8  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 80BDC6EC  D0 1E 05 50 */	stfs f0, 0x550(r30)
 /* 80BDC6F0  C0 1E 04 D4 */	lfs f0, 0x4d4(r30)

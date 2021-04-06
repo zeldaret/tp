@@ -17,8 +17,8 @@ lbl_800225DC:
 /* 80022618  2C 03 00 00 */	cmpwi r3, 0
 /* 8002261C  40 82 00 1C */	bne lbl_80022638
 /* 80022620  7F E3 FB 78 */	mr r3, r31
-/* 80022624  3C 80 80 02 */	lis r4, fpcNd_IsCreatingFromUnder__FPv@ha
-/* 80022628  38 84 25 DC */	addi r4, r4, fpcNd_IsCreatingFromUnder__FPv@l
+/* 80022624  3C 80 80 02 */	lis r4, fpcNd_IsCreatingFromUnder__FPv@ha /* 0x800225DC@ha */
+/* 80022628  38 84 25 DC */	addi r4, r4, fpcNd_IsCreatingFromUnder__FPv@l /* 0x800225DC@l */
 /* 8002262C  38 A0 00 00 */	li r5, 0
 /* 80022630  4B FF F5 F9 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
 /* 80022634  48 00 00 10 */	b lbl_80022644

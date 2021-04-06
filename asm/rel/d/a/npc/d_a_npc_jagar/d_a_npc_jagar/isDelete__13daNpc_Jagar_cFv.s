@@ -20,15 +20,15 @@ lbl_80A15130:
 lbl_80A15138:
 /* 80A15138  3B E0 00 01 */	li r31, 1
 /* 80A1513C  38 60 00 D3 */	li r3, 0xd3
-/* 80A15140  4B 73 79 6C */	b daNpcT_chkEvtBit__FUl
+/* 80A15140  4B 73 79 6D */	bl daNpcT_chkEvtBit__FUl
 /* 80A15144  2C 03 00 00 */	cmpwi r3, 0
 /* 80A15148  40 82 00 28 */	bne lbl_80A15170
-/* 80A1514C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A15150  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A1514C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A15150  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A15154  38 63 01 00 */	addi r3, r3, 0x100
 /* 80A15158  38 80 00 02 */	li r4, 2
 /* 80A1515C  38 A0 00 00 */	li r5, 0
-/* 80A15160  4B 61 F0 A8 */	b isCollect__20dSv_player_collect_cCFiUc
+/* 80A15160  4B 61 F0 A9 */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 80A15164  2C 03 00 00 */	cmpwi r3, 0
 /* 80A15168  40 82 00 08 */	bne lbl_80A15170
 /* 80A1516C  3B E0 00 00 */	li r31, 0

@@ -44,8 +44,8 @@ lbl_801877CC:
 /* 801877E8  48 00 00 28 */	b lbl_80187810
 lbl_801877EC:
 /* 801877EC  38 83 02 B5 */	addi r4, r3, 0x2b5
-/* 801877F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801877F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801877F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801877F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801877F8  38 63 01 C5 */	addi r3, r3, 0x1c5
 /* 801877FC  48 1E 13 31 */	bl strcpy
 /* 80187800  38 00 00 01 */	li r0, 1

@@ -3,19 +3,20 @@
 #
 
 M333_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf.plf
+M333_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf.lcf
+M333_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf.map
 
 M333_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_lf/executor.cpp \
-	rel/d/a/npc/d_a_npc_lf/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_lf/d_a_npc_lf.cpp \
 
 M333_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/d_a_npc_lf.o \
 
 M333_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/libRuntime.PPCEABI.H.a \
 
 M333_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M333_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map333.map\
+	-m _prolog \
+	-lcf $(M333_LDSCRIPT) \
+	-unused -map $(M333_MAP) \
+	-w off \
 
 $(M333_TARGET): $(M333_O_FILES) $(M333_LIBS)
+	@echo [333] creating $(M333_TARGET)
 	@echo $(M333_LIBS) $(M333_O_FILES) > build/M333_ofiles
-	$(LD) -opt_partial $(M333_LDFLAGS) -o $(M333_TARGET) @build/M333_ofiles
+	@python3 tools/lcf.py rel 333 --output $(M333_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M333_LDFLAGS) -o $(M333_TARGET) @build/M333_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lf/%.o: rel/d/a/npc/d_a_npc_lf/%.cpp
+	@echo [333] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M333_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M333_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_lf/libs/Runtime.PPCEABI.H/Makefile
 

@@ -274,8 +274,8 @@ lbl_8017DD80:
 /* 8017DD88  FC 40 F8 90 */	fmr f2, f31
 /* 8017DD8C  4B F0 A3 B1 */	bl rationalBezierRatio__8dCamMathFff
 lbl_8017DD90:
-/* 8017DD90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8017DD94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8017DD90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8017DD94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8017DD98  88 03 01 EA */	lbz r0, 0x1ea(r3)
 /* 8017DD9C  28 00 00 00 */	cmplwi r0, 0
 /* 8017DDA0  41 82 00 08 */	beq lbl_8017DDA8

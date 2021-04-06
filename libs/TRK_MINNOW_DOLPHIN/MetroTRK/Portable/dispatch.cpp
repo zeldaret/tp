@@ -40,7 +40,7 @@ extern "C" void MWTRACE();
 //
 
 /* ############################################################################################## */
-/* 803A2890-803A28AC 0019+03 s=1 e=0 z=0  None .rodata    @126 */
+/* 803A2890-803A28AC 02EEF0 0019+03 1/1 0/0 0/0 .rodata          @126 */
 SECTION_RODATA static u8 const lit_126[25 + 3 /* padding */] = {
     0x44,
     0x69,
@@ -72,8 +72,9 @@ SECTION_RODATA static u8 const lit_126[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2890 = (void*)(&lit_126);
 
-/* 803A28AC-803A28D0 001D+07 s=1 e=0 z=0  None .rodata    @127 */
+/* 803A28AC-803A28D0 02EF0C 001D+07 1/1 0/0 0/0 .rodata          @127 */
 SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
     0x44,
     0x69,
@@ -113,8 +114,9 @@ SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A28AC = (void*)(&lit_127);
 
-/* 803D3190-803D3200 006C+04 s=1 e=0 z=0  None .data      @128 */
+/* 803D3190-803D3200 -00001 006C+04 1/1 0/0 0/0 .data            @128 */
 SECTION_DATA static void* lit_128[27 + 1 /* padding */] = {
     (void*)(((char*)TRKDispatchMessage) + 0x13C),
     (void*)(((char*)TRKDispatchMessage) + 0x60),
@@ -147,40 +149,17 @@ SECTION_DATA static void* lit_128[27 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8036DB9C-8036DD0C 0170+00 s=1 e=1 z=0  None .text      TRKDispatchMessage */
-//	8036DBBC: 8036D61C (TRKSetBufferPosition)
-//	8036DBC0: 803A2890 (lit_126)
-//	8036DBC8: 803A2890 (lit_126)
-//	8036DBD4: 80372C54 (MWTRACE)
-//	8036DBE4: 803D3190 (lit_128)
-//	8036DBEC: 803D3190 (lit_128)
-//	8036DC00: 8036EC5C (TRKDoConnect)
-//	8036DC10: 8036EBE4 (TRKDoDisconnect)
-//	8036DC20: 8036EB8C (TRKDoReset)
-//	8036DC30: 8036EB34 (TRKDoOverride)
-//	8036DC40: 8036EB2C (TRKDoVersions)
-//	8036DC50: 8036EB24 (TRKDoSupportMask)
-//	8036DC60: 8036E8E0 (TRKDoReadMemory)
-//	8036DC70: 8036E6A4 (TRKDoWriteMemory)
-//	8036DC80: 8036E3C4 (TRKDoReadRegisters)
-//	8036DC90: 8036E134 (TRKDoWriteRegisters)
-//	8036DCA0: 8036E084 (TRKDoContinue)
-//	8036DCB0: 8036DE64 (TRKDoStep)
-//	8036DCC0: 8036DDBC (TRKDoStop)
-//	8036DCD0: 8036DD14 (TRKDoSetOption)
-//	8036DCD8: 803A28AC (lit_127)
-//	8036DCE0: 803A28AC (lit_127)
-//	8036DCEC: 80372C54 (MWTRACE)
+/* 8036DB9C-8036DD0C 3684DC 0170+00 1/0 1/1 0/0 .text            TRKDispatchMessage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKDispatchMessage() {
+asm void TRKDispatchMessage() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch/TRKDispatchMessage.s"
 }
 #pragma pop
 
-/* 8036DD0C-8036DD14 0008+00 s=0 e=1 z=0  None .text      TRKInitializeDispatcher */
-extern "C" bool TRKInitializeDispatcher() {
+/* 8036DD0C-8036DD14 36864C 0008+00 0/0 1/1 0/0 .text            TRKInitializeDispatcher */
+bool TRKInitializeDispatcher() {
     return false;
 }

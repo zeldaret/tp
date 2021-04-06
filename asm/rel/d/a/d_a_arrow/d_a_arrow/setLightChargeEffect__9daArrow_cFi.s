@@ -3,10 +3,10 @@ lbl_8049A1EC:
 /* 8049A1F0  7C 08 02 A6 */	mflr r0
 /* 8049A1F4  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8049A1F8  39 61 00 50 */	addi r11, r1, 0x50
-/* 8049A1FC  4B EC 7F CC */	b _savegpr_24
+/* 8049A1FC  4B EC 7F CD */	bl _savegpr_24
 /* 8049A200  7C 7C 1B 78 */	mr r28, r3
-/* 8049A204  3C 60 80 4A */	lis r3, lit_3768@ha
-/* 8049A208  3B E3 DC 84 */	addi r31, r3, lit_3768@l
+/* 8049A204  3C 60 80 4A */	lis r3, lit_3768@ha /* 0x8049DC84@ha */
+/* 8049A208  3B E3 DC 84 */	addi r31, r3, lit_3768@l /* 0x8049DC84@l */
 /* 8049A20C  80 BC 05 68 */	lwz r5, 0x568(r28)
 /* 8049A210  28 05 00 00 */	cmplwi r5, 0
 /* 8049A214  41 82 01 08 */	beq lbl_8049A31C
@@ -27,12 +27,12 @@ lbl_8049A244:
 /* 8049A248  38 65 00 24 */	addi r3, r5, 0x24
 /* 8049A24C  38 9F 00 D0 */	addi r4, r31, 0xd0
 /* 8049A250  38 A1 00 20 */	addi r5, r1, 0x20
-/* 8049A254  4B EA CB 18 */	b PSMTXMultVec
+/* 8049A254  4B EA CB 19 */	bl PSMTXMultVec
 /* 8049A258  3B A0 00 00 */	li r29, 0
 /* 8049A25C  3B 60 00 00 */	li r27, 0
 /* 8049A260  3B 40 00 00 */	li r26, 0
-/* 8049A264  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8049A268  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l
+/* 8049A264  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8049A268  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_8049A26C:
 /* 8049A26C  2C 1E 00 00 */	cmpwi r30, 0
 /* 8049A270  41 82 00 70 */	beq lbl_8049A2E0
@@ -56,19 +56,19 @@ lbl_8049A26C:
 /* 8049A2B8  39 20 00 00 */	li r9, 0
 /* 8049A2BC  39 40 00 00 */	li r10, 0
 /* 8049A2C0  C0 3F 00 B8 */	lfs f1, 0xb8(r31)
-/* 8049A2C4  4B BB 32 08 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 8049A2C4  4B BB 32 09 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8049A2C8  7C 7C C1 2E */	stwx r3, r28, r24
 /* 8049A2CC  80 79 5D 3C */	lwz r3, 0x5d3c(r25)
 /* 8049A2D0  38 63 02 10 */	addi r3, r3, 0x210
 /* 8049A2D4  7C 9C C0 2E */	lwzx r4, r28, r24
-/* 8049A2D8  4B BB 15 DC */	b forceOnEventMove__Q213dPa_control_c7level_cFUl
+/* 8049A2D8  4B BB 15 DD */	bl forceOnEventMove__Q213dPa_control_c7level_cFUl
 /* 8049A2DC  48 00 00 2C */	b lbl_8049A308
 lbl_8049A2E0:
 /* 8049A2E0  80 79 5D 3C */	lwz r3, 0x5d3c(r25)
 /* 8049A2E4  38 63 02 10 */	addi r3, r3, 0x210
 /* 8049A2E8  38 1A 09 6C */	addi r0, r26, 0x96c
 /* 8049A2EC  7C 9C 00 2E */	lwzx r4, r28, r0
-/* 8049A2F0  4B BB 16 28 */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 8049A2F0  4B BB 16 29 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 8049A2F4  28 03 00 00 */	cmplwi r3, 0
 /* 8049A2F8  41 82 00 10 */	beq lbl_8049A308
 /* 8049A2FC  80 03 00 F4 */	lwz r0, 0xf4(r3)
@@ -82,7 +82,7 @@ lbl_8049A308:
 /* 8049A318  41 80 FF 54 */	blt lbl_8049A26C
 lbl_8049A31C:
 /* 8049A31C  39 61 00 50 */	addi r11, r1, 0x50
-/* 8049A320  4B EC 7E F4 */	b _restgpr_24
+/* 8049A320  4B EC 7E F5 */	bl _restgpr_24
 /* 8049A324  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8049A328  7C 08 03 A6 */	mtlr r0
 /* 8049A32C  38 21 00 50 */	addi r1, r1, 0x50

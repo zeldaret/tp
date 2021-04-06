@@ -5,8 +5,8 @@ lbl_8023C274:
 /* 8023C280  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8023C284  93 C1 00 08 */	stw r30, 8(r1)
 /* 8023C288  7C 7E 1B 78 */	mr r30, r3
-/* 8023C28C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8023C290  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023C28C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8023C290  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8023C294  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 8023C298  7F E3 FB 78 */	mr r3, r31
 /* 8023C29C  81 9F 00 00 */	lwz r12, 0(r31)

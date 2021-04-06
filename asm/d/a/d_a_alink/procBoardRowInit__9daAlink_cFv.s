@@ -10,8 +10,8 @@ lbl_80106E88:
 /* 80106EA8  4B FF F8 11 */	bl getBoardRowAnmSpeed__9daAlink_cFv
 /* 80106EAC  7F E3 FB 78 */	mr r3, r31
 /* 80106EB0  38 80 00 F9 */	li r4, 0xf9
-/* 80106EB4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80106EB8  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 80106EB4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80106EB8  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80106EBC  C0 45 00 84 */	lfs f2, 0x84(r5)
 /* 80106EC0  4B FA 61 21 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80106EC4  80 1F 05 84 */	lwz r0, 0x584(r31)

@@ -6,20 +6,20 @@ lbl_802877A8:
 /* 802877B8  48 0D AA 25 */	bl _savegpr_29
 /* 802877BC  7C A8 2B 78 */	mr r8, r5
 /* 802877C0  7C C9 33 78 */	mr r9, r6
-/* 802877C4  3C A0 80 43 */	lis r5, lit_744@ha
-/* 802877C8  38 C5 10 10 */	addi r6, r5, lit_744@l
-/* 802877CC  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 802877D0  39 65 AA 68 */	addi r11, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l
-/* 802877D4  3C A0 80 3C */	lis r5, lit_742@ha
-/* 802877D8  38 A5 4B 00 */	addi r5, r5, lit_742@l
+/* 802877C4  3C A0 80 43 */	lis r5, lit_744@ha /* 0x80431010@ha */
+/* 802877C8  38 C5 10 10 */	addi r6, r5, lit_744@l /* 0x80431010@l */
+/* 802877CC  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA68@ha */
+/* 802877D0  39 65 AA 68 */	addi r11, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA68@l */
+/* 802877D4  3C A0 80 3C */	lis r5, lit_742@ha /* 0x803C4B00@ha */
+/* 802877D8  38 A5 4B 00 */	addi r5, r5, lit_742@l /* 0x803C4B00@l */
 /* 802877DC  83 E3 00 34 */	lwz r31, 0x34(r3)
 /* 802877E0  28 1F 00 00 */	cmplwi r31, 0
 /* 802877E4  41 82 03 40 */	beq lbl_80287B24
 /* 802877E8  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 802877EC  54 8C D9 7E */	srwi r12, r4, 5
 /* 802877F0  54 87 06 FE */	clrlwi r7, r4, 0x1b
-/* 802877F4  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 802877F8  39 43 21 80 */	addi r10, r3, __ptmf_null@l
+/* 802877F4  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 802877F8  39 43 21 80 */	addi r10, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 802877FC  80 8A 00 00 */	lwz r4, 0(r10)
 /* 80287800  80 6A 00 04 */	lwz r3, 4(r10)
 /* 80287804  90 81 00 08 */	stw r4, 8(r1)
@@ -29,8 +29,8 @@ lbl_802877A8:
 /* 80287814  38 8C FF F7 */	addi r4, r12, -9
 /* 80287818  28 04 00 4D */	cmplwi r4, 0x4d
 /* 8028781C  41 81 03 08 */	bgt lbl_80287B24
-/* 80287820  3C 60 80 3C */	lis r3, lit_1752@ha
-/* 80287824  38 63 50 68 */	addi r3, r3, lit_1752@l
+/* 80287820  3C 60 80 3C */	lis r3, lit_1752@ha /* 0x803C5068@ha */
+/* 80287824  38 63 50 68 */	addi r3, r3, lit_1752@l /* 0x803C5068@l */
 /* 80287828  54 84 10 3A */	slwi r4, r4, 2
 /* 8028782C  7C 63 20 2E */	lwzx r3, r3, r4
 /* 80287830  7C 69 03 A6 */	mtctr r3

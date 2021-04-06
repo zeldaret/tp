@@ -5,12 +5,12 @@ lbl_80996CCC:
 /* 80996CD8  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80996CDC  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80996CE0  39 61 00 30 */	addi r11, r1, 0x30
-/* 80996CE4  4B 9C B4 F0 */	b _savegpr_27
+/* 80996CE4  4B 9C B4 F1 */	bl _savegpr_27
 /* 80996CE8  7C 7E 1B 78 */	mr r30, r3
 /* 80996CEC  7C 9B 23 78 */	mr r27, r4
 /* 80996CF0  7C BD 2B 78 */	mr r29, r5
-/* 80996CF4  3C 60 80 9A */	lis r3, m__20daNpc_clerkB_Param_c@ha
-/* 80996CF8  3B E3 99 78 */	addi r31, r3, m__20daNpc_clerkB_Param_c@l
+/* 80996CF4  3C 60 80 9A */	lis r3, m__20daNpc_clerkB_Param_c@ha /* 0x80999978@ha */
+/* 80996CF8  3B E3 99 78 */	addi r31, r3, m__20daNpc_clerkB_Param_c@l /* 0x80999978@l */
 /* 80996CFC  3B 80 00 00 */	li r28, 0
 /* 80996D00  38 60 00 00 */	li r3, 0
 /* 80996D04  98 7E 11 0E */	stb r3, 0x110e(r30)
@@ -42,7 +42,7 @@ lbl_80996D58:
 /* 80996D68  41 82 00 24 */	beq lbl_80996D8C
 /* 80996D6C  83 BE 0B 5C */	lwz r29, 0xb5c(r30)
 /* 80996D70  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80996D74  4B 7A EB 24 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80996D74  4B 7A EB 25 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80996D78  93 BE 0B 5C */	stw r29, 0xb5c(r30)
 /* 80996D7C  38 00 00 08 */	li r0, 8
 /* 80996D80  90 1E 0B 58 */	stw r0, 0xb58(r30)
@@ -54,7 +54,7 @@ lbl_80996D8C:
 /* 80996D94  41 82 00 24 */	beq lbl_80996DB8
 /* 80996D98  83 BE 0B 80 */	lwz r29, 0xb80(r30)
 /* 80996D9C  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80996DA0  4B 7A EA F8 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80996DA0  4B 7A EA F9 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80996DA4  93 BE 0B 80 */	stw r29, 0xb80(r30)
 /* 80996DA8  38 00 00 06 */	li r0, 6
 /* 80996DAC  90 1E 0B 7C */	stw r0, 0xb7c(r30)
@@ -62,7 +62,7 @@ lbl_80996D8C:
 /* 80996DB4  D0 1E 0B 8C */	stfs f0, 0xb8c(r30)
 lbl_80996DB8:
 /* 80996DB8  38 60 00 13 */	li r3, 0x13
-/* 80996DBC  4B 8A 14 40 */	b setStatus__12dMsgObject_cFUs
+/* 80996DBC  4B 8A 14 41 */	bl setStatus__12dMsgObject_cFUs
 /* 80996DC0  38 00 00 14 */	li r0, 0x14
 /* 80996DC4  90 1E 11 04 */	stw r0, 0x1104(r30)
 /* 80996DC8  38 00 00 01 */	li r0, 1
@@ -71,7 +71,7 @@ lbl_80996DB8:
 lbl_80996DD4:
 /* 80996DD4  C3 FE 11 08 */	lfs f31, 0x1108(r30)
 /* 80996DD8  38 7E 11 08 */	addi r3, r30, 0x1108
-/* 80996DDC  4B 8D 99 64 */	b cLib_chaseF__FPfff
+/* 80996DDC  4B 8D 99 65 */	bl cLib_chaseF__FPfff
 /* 80996DE0  80 1E 11 04 */	lwz r0, 0x1104(r30)
 /* 80996DE4  2C 00 00 00 */	cmpwi r0, 0
 /* 80996DE8  41 82 00 18 */	beq lbl_80996E00
@@ -129,7 +129,7 @@ lbl_80996EA0:
 /* 80996EA8  41 82 00 24 */	beq lbl_80996ECC
 /* 80996EAC  83 BE 0B 5C */	lwz r29, 0xb5c(r30)
 /* 80996EB0  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80996EB4  4B 7A E9 E4 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80996EB4  4B 7A E9 E5 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80996EB8  93 BE 0B 5C */	stw r29, 0xb5c(r30)
 /* 80996EBC  38 00 00 08 */	li r0, 8
 /* 80996EC0  90 1E 0B 58 */	stw r0, 0xb58(r30)
@@ -141,7 +141,7 @@ lbl_80996ECC:
 /* 80996ED4  41 82 00 24 */	beq lbl_80996EF8
 /* 80996ED8  83 BE 0B 80 */	lwz r29, 0xb80(r30)
 /* 80996EDC  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80996EE0  4B 7A E9 B8 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80996EE0  4B 7A E9 B9 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80996EE4  93 BE 0B 80 */	stw r29, 0xb80(r30)
 /* 80996EE8  38 00 00 08 */	li r0, 8
 /* 80996EEC  90 1E 0B 7C */	stw r0, 0xb7c(r30)
@@ -154,7 +154,7 @@ lbl_80996F00:
 /* 80996F00  88 1E 11 0F */	lbz r0, 0x110f(r30)
 /* 80996F04  28 00 00 00 */	cmplwi r0, 0
 /* 80996F08  40 82 00 50 */	bne lbl_80996F58
-/* 80996F0C  4B 8A 13 20 */	b getStatus__12dMsgObject_cFv
+/* 80996F0C  4B 8A 13 21 */	bl getStatus__12dMsgObject_cFv
 /* 80996F10  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80996F14  20 60 00 01 */	subfic r3, r0, 1
 /* 80996F18  30 03 FF FF */	addic r0, r3, -1
@@ -166,7 +166,7 @@ lbl_80996F00:
 /* 80996F30  7F A5 EB 78 */	mr r5, r29
 /* 80996F34  38 C0 00 00 */	li r6, 0
 /* 80996F38  38 E0 00 00 */	li r7, 0
-/* 80996F3C  4B 8B 30 54 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80996F3C  4B 8B 30 55 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80996F40  38 00 00 01 */	li r0, 1
 /* 80996F44  98 1E 11 0F */	stb r0, 0x110f(r30)
 /* 80996F48  38 60 00 01 */	li r3, 1
@@ -180,7 +180,7 @@ lbl_80996F5C:
 /* 80996F5C  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80996F60  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80996F64  39 61 00 30 */	addi r11, r1, 0x30
-/* 80996F68  4B 9C B2 B8 */	b _restgpr_27
+/* 80996F68  4B 9C B2 B9 */	bl _restgpr_27
 /* 80996F6C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80996F70  7C 08 03 A6 */	mtlr r0
 /* 80996F74  38 21 00 40 */	addi r1, r1, 0x40

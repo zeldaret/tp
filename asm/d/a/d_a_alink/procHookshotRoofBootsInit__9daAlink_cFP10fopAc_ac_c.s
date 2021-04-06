@@ -36,8 +36,8 @@ lbl_8010CFA8:
 /* 8010CFF0  4B FF E6 55 */	bl initHookshotRoofWaitActor__9daAlink_cFP10fopAc_ac_c
 /* 8010CFF4  C0 02 96 00 */	lfs f0, lit_30895(r2)
 /* 8010CFF8  D0 1E 2B 98 */	stfs f0, 0x2b98(r30)
-/* 8010CFFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010D000  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010CFFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010D000  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010D004  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8010D008  64 00 00 01 */	oris r0, r0, 1
 /* 8010D00C  90 03 5F 1C */	stw r0, 0x5f1c(r3)

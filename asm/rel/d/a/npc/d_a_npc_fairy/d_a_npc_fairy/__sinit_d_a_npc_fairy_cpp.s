@@ -2,10 +2,10 @@ lbl_809B8E50:
 /* 809B8E50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 809B8E54  7C 08 02 A6 */	mflr r0
 /* 809B8E58  90 01 00 14 */	stw r0, 0x14(r1)
-/* 809B8E5C  3C 60 80 9C */	lis r3, cNullVec__6Z2Calc@ha
-/* 809B8E60  38 83 95 D8 */	addi r4, r3, cNullVec__6Z2Calc@l
-/* 809B8E64  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 809B8E68  38 A3 21 80 */	addi r5, r3, __ptmf_null@l
+/* 809B8E5C  3C 60 80 9C */	lis r3, cNullVec__6Z2Calc@ha /* 0x809B95D8@ha */
+/* 809B8E60  38 83 95 D8 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x809B95D8@l */
+/* 809B8E64  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809B8E68  38 A3 21 80 */	addi r5, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 809B8E6C  80 65 00 00 */	lwz r3, 0(r5)
 /* 809B8E70  80 05 00 04 */	lwz r0, 4(r5)
 /* 809B8E74  90 64 04 C8 */	stw r3, 0x4c8(r4)
@@ -115,14 +115,14 @@ lbl_809B8E50:
 /* 809B9014  90 03 00 D0 */	stw r0, 0xd0(r3)
 /* 809B9018  80 04 04 C4 */	lwz r0, 0x4c4(r4)
 /* 809B901C  90 03 00 D4 */	stw r0, 0xd4(r3)
-/* 809B9020  3C 60 80 9C */	lis r3, __vt__19daNpc_Fairy_Param_c@ha
-/* 809B9024  38 03 A4 04 */	addi r0, r3, __vt__19daNpc_Fairy_Param_c@l
-/* 809B9028  3C 60 80 9C */	lis r3, l_HIO@ha
-/* 809B902C  94 03 A4 24 */	stwu r0, l_HIO@l(r3)
-/* 809B9030  3C 80 80 9C */	lis r4, __dt__19daNpc_Fairy_Param_cFv@ha
-/* 809B9034  38 84 92 78 */	addi r4, r4, __dt__19daNpc_Fairy_Param_cFv@l
-/* 809B9038  3C A0 80 9C */	lis r5, lit_3868@ha
-/* 809B903C  38 A5 A4 18 */	addi r5, r5, lit_3868@l
+/* 809B9020  3C 60 80 9C */	lis r3, __vt__19daNpc_Fairy_Param_c@ha /* 0x809BA404@ha */
+/* 809B9024  38 03 A4 04 */	addi r0, r3, __vt__19daNpc_Fairy_Param_c@l /* 0x809BA404@l */
+/* 809B9028  3C 60 80 9C */	lis r3, l_HIO@ha /* 0x809BA424@ha */
+/* 809B902C  94 03 A4 24 */	stwu r0, l_HIO@l(r3)  /* 0x809BA424@l */
+/* 809B9030  3C 80 80 9C */	lis r4, __dt__19daNpc_Fairy_Param_cFv@ha /* 0x809B9278@ha */
+/* 809B9034  38 84 92 78 */	addi r4, r4, __dt__19daNpc_Fairy_Param_cFv@l /* 0x809B9278@l */
+/* 809B9038  3C A0 80 9C */	lis r5, lit_3868@ha /* 0x809BA418@ha */
+/* 809B903C  38 A5 A4 18 */	addi r5, r5, lit_3868@l /* 0x809BA418@l */
 /* 809B9040  4B FF 8A 59 */	bl __register_global_object
 /* 809B9044  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 809B9048  7C 08 03 A6 */	mtlr r0

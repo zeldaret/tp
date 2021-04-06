@@ -10,18 +10,18 @@ lbl_804E2060:
 /* 804E2080  40 80 00 08 */	bge lbl_804E2088
 /* 804E2084  48 00 00 24 */	b lbl_804E20A8
 lbl_804E2088:
-/* 804E2088  3C 60 80 4E */	lis r3, struct_804E4ADC+0x0@ha
-/* 804E208C  38 63 4A DC */	addi r3, r3, struct_804E4ADC+0x0@l
+/* 804E2088  3C 60 80 4E */	lis r3, d_a_door_bossL1__stringBase0@ha /* 0x804E4ADC@ha */
+/* 804E208C  38 63 4A DC */	addi r3, r3, d_a_door_bossL1__stringBase0@l /* 0x804E4ADC@l */
 /* 804E2090  38 63 02 2C */	addi r3, r3, 0x22c
 /* 804E2094  48 00 00 20 */	b lbl_804E20B4
 lbl_804E2098:
-/* 804E2098  3C 60 80 4E */	lis r3, struct_804E4ADC+0x0@ha
-/* 804E209C  38 63 4A DC */	addi r3, r3, struct_804E4ADC+0x0@l
+/* 804E2098  3C 60 80 4E */	lis r3, d_a_door_bossL1__stringBase0@ha /* 0x804E4ADC@ha */
+/* 804E209C  38 63 4A DC */	addi r3, r3, d_a_door_bossL1__stringBase0@l /* 0x804E4ADC@l */
 /* 804E20A0  38 63 02 36 */	addi r3, r3, 0x236
 /* 804E20A4  48 00 00 10 */	b lbl_804E20B4
 lbl_804E20A8:
-/* 804E20A8  3C 60 80 4E */	lis r3, struct_804E4ADC+0x0@ha
-/* 804E20AC  38 63 4A DC */	addi r3, r3, struct_804E4ADC+0x0@l
+/* 804E20A8  3C 60 80 4E */	lis r3, d_a_door_bossL1__stringBase0@ha /* 0x804E4ADC@ha */
+/* 804E20AC  38 63 4A DC */	addi r3, r3, d_a_door_bossL1__stringBase0@l /* 0x804E4ADC@l */
 /* 804E20B0  38 63 02 2C */	addi r3, r3, 0x22c
 lbl_804E20B4:
 /* 804E20B4  80 01 00 14 */	lwz r0, 0x14(r1)

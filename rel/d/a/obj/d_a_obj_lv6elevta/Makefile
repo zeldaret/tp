@@ -3,17 +3,15 @@
 #
 
 M555_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta.plf
+M555_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta.lcf
+M555_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta.map
 
 M555_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6elevta/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6elevta/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv6elevta/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv6elevta/d_a_obj_lv6elevta.cpp \
 
 M555_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/d_a_obj_lv6elevta.o \
 
 M555_LIBS := \
@@ -29,15 +27,21 @@ M555_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map555.map\
+	-m _prolog \
+	-lcf $(M555_LDSCRIPT) \
+	-unused -map $(M555_MAP) \
+	-w off \
 
 $(M555_TARGET): $(M555_O_FILES) $(M555_LIBS)
+	@echo [555] creating $(M555_TARGET)
 	@echo $(M555_LIBS) $(M555_O_FILES) > build/M555_ofiles
-	$(LD) -opt_partial $(M555_LDFLAGS) -o $(M555_TARGET) @build/M555_ofiles
+	@python3 tools/lcf.py rel 555 --output $(M555_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M555_LDFLAGS) -o $(M555_TARGET) @build/M555_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6elevta/%.o: rel/d/a/obj/d_a_obj_lv6elevta/%.cpp
+	@echo [555] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M555_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M555_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

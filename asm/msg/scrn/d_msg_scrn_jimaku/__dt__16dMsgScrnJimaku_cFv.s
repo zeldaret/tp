@@ -7,8 +7,8 @@ lbl_80244A74:
 /* 80244A88  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80244A8C  7C 9F 23 78 */	mr r31, r4
 /* 80244A90  41 82 01 80 */	beq lbl_80244C10
-/* 80244A94  3C 60 80 3C */	lis r3, __vt__16dMsgScrnJimaku_c@ha
-/* 80244A98  38 03 11 E8 */	addi r0, r3, __vt__16dMsgScrnJimaku_c@l
+/* 80244A94  3C 60 80 3C */	lis r3, __vt__16dMsgScrnJimaku_c@ha /* 0x803C11E8@ha */
+/* 80244A98  38 03 11 E8 */	addi r0, r3, __vt__16dMsgScrnJimaku_c@l /* 0x803C11E8@l */
 /* 80244A9C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80244AA0  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80244AA4  28 03 00 00 */	cmplwi r3, 0
@@ -82,22 +82,22 @@ lbl_80244B90:
 /* 80244B94  2C 1B 00 02 */	cmpwi r27, 2
 /* 80244B98  3B BD 00 04 */	addi r29, r29, 4
 /* 80244B9C  41 80 FF 9C */	blt lbl_80244B38
-/* 80244BA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80244BA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80244BA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80244BA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80244BA8  80 63 5C 6C */	lwz r3, 0x5c6c(r3)
 /* 80244BAC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80244BB0  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 80244BB4  7D 89 03 A6 */	mtctr r12
 /* 80244BB8  4E 80 04 21 */	bctrl 
-/* 80244BBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80244BC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80244BBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80244BC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80244BC4  80 63 5C 70 */	lwz r3, 0x5c70(r3)
 /* 80244BC8  81 83 00 00 */	lwz r12, 0(r3)
 /* 80244BCC  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 80244BD0  7D 89 03 A6 */	mtctr r12
 /* 80244BD4  4E 80 04 21 */	bctrl 
-/* 80244BD8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80244BDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80244BD8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80244BDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80244BE0  80 63 5C E4 */	lwz r3, 0x5ce4(r3)
 /* 80244BE4  81 83 00 00 */	lwz r12, 0(r3)
 /* 80244BE8  81 8C 00 24 */	lwz r12, 0x24(r12)

@@ -3,18 +3,16 @@
 #
 
 M133_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt.plf
+M133_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt.lcf
+M133_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt.map
 
 M133_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_statue_evt/executor.cpp \
-	rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_statue_evt/d_a_tag_statue_evt.cpp \
 
 M133_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/d_a_tag_statue_evt.o \
 
@@ -31,15 +29,21 @@ M133_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map133.map\
+	-m _prolog \
+	-lcf $(M133_LDSCRIPT) \
+	-unused -map $(M133_MAP) \
+	-w off \
 
 $(M133_TARGET): $(M133_O_FILES) $(M133_LIBS)
+	@echo [133] creating $(M133_TARGET)
 	@echo $(M133_LIBS) $(M133_O_FILES) > build/M133_ofiles
-	$(LD) -opt_partial $(M133_LDFLAGS) -o $(M133_TARGET) @build/M133_ofiles
+	@python3 tools/lcf.py rel 133 --output $(M133_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M133_LDFLAGS) -o $(M133_TARGET) @build/M133_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/%.o: rel/d/a/tag/d_a_tag_statue_evt/%.cpp
+	@echo [133] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M133_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M133_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

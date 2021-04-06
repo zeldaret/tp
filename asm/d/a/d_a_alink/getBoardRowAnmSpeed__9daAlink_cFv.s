@@ -1,6 +1,6 @@
 lbl_801066B8:
-/* 801066B8  3C 80 80 39 */	lis r4, m__19daAlinkHIO_board_c0@ha
-/* 801066BC  38 84 E8 70 */	addi r4, r4, m__19daAlinkHIO_board_c0@l
+/* 801066B8  3C 80 80 39 */	lis r4, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 801066BC  38 84 E8 70 */	addi r4, r4, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 801066C0  C0 84 00 88 */	lfs f4, 0x88(r4)
 /* 801066C4  C0 04 00 78 */	lfs f0, 0x78(r4)
 /* 801066C8  EC 60 20 28 */	fsubs f3, f0, f4

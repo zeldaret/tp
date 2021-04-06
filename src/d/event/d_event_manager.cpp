@@ -142,13 +142,6 @@ struct Z2SeMgr {
 // Forward References:
 //
 
-static void extraOnObjectCallBack(fopAc_ac_c*, void*);
-static void extraOffObjectCallBack(fopAc_ac_c*, void*);
-static void allOffObjectCallBack(fopAc_ac_c*, void*);
-static void dEvmng_strcmp(char const*, char*);
-static void findShutterCallBack(fopAc_ac_c*, void*);
-static void dEv_talkman_get_action(int);
-
 extern "C" void init__18dEvent_exception_cFv();
 extern "C" void setStartDemo__18dEvent_exception_cFi();
 extern "C" void getEventName__18dEvent_exception_cFv();
@@ -207,18 +200,6 @@ extern "C" extern char const* const d_event_d_event_manager__stringBase0;
 //
 // External References:
 //
-
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
-void fopAcM_searchFromName4Event(char const*, s16);
-void dComIfG_getStageRes(char const*);
-void dComIfG_getRoomArcName(int);
-void dComIfGp_SelectWarpPt_get();
-void dEv_defaultSkipProc(void*, int);
-void dEv_defaultSkipZev(void*, int);
-void dEv_defaultSkipStb(void*, int);
-void dCam_getBody();
 
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
@@ -290,7 +271,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800463DC-800463F0 0014+00 s=2 e=0 z=0  None .text      init__18dEvent_exception_cFv */
+/* 800463DC-800463F0 040D1C 0014+00 2/2 0/0 0/0 .text            init__18dEvent_exception_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -300,14 +281,7 @@ asm void dEvent_exception_c::init() {
 }
 #pragma pop
 
-/* 800463F0-80046480 0090+00 s=0 e=2 z=0  None .text      setStartDemo__18dEvent_exception_cFi */
-//	80046400: 803621DC (_savegpr_29)
-//	8004640C: 80450D64 (struct_80450D64)
-//	8004641C: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	80046434: 804061C0 (g_dComIfG_gameInfo)
-//	80046438: 804061C0 (g_dComIfG_gameInfo)
-//	80046440: 80035360 (isSwitch__10dSv_info_cCFii)
-//	8004646C: 80362228 (_restgpr_29)
+/* 800463F0-80046480 040D30 0090+00 0/0 2/2 0/0 .text setStartDemo__18dEvent_exception_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,7 +292,67 @@ asm void dEvent_exception_c::setStartDemo(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80379F50-80379F60 000F+01 s=6 e=0 z=0  None .rodata
+/* 803A8270-803A82A8 -00001 0038+00 1/1 0/0 0/0 .data            soecial_names$3966 */
+SECTION_DATA static void* soecial_names[14] = {
+    (void*)&d_event_d_event_manager__stringBase0,
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x10),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x1E),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x2C),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x3F),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x50),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x63),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x6E),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x7B),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x89),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x94),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xA3),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xB2),
+    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xC3),
+};
+
+/* 80046480-800465E8 040DC0 0168+00 1/1 0/0 0/0 .text getEventName__18dEvent_exception_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void dEvent_exception_c::getEventName() {
+    nofralloc
+#include "asm/d/event/d_event_manager/getEventName__18dEvent_exception_cFv.s"
+}
+#pragma pop
+
+/* 800465E8-80046688 040F28 00A0+00 1/1 0/0 0/0 .text
+ * getSubstance__16dEvent_manager_cFP11dEvDtData_ci             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void dEvent_manager_c::getSubstance(dEvDtData_c* param_0, int param_1) {
+    nofralloc
+#include "asm/d/event/d_event_manager/getSubstance__16dEvent_manager_cFP11dEvDtData_ci.s"
+}
+#pragma pop
+
+/* 80046688-800466E0 040FC8 0058+00 0/0 1/1 0/0 .text            __ct__16dEvent_manager_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm dEvent_manager_c::dEvent_manager_c() {
+    nofralloc
+#include "asm/d/event/d_event_manager/__ct__16dEvent_manager_cFv.s"
+}
+#pragma pop
+
+/* 800466E0-80046710 041020 0030+00 1/1 0/0 0/0 .text            __ct__11dEvDtBase_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm dEvDtBase_c::dEvDtBase_c() {
+    nofralloc
+#include "asm/d/event/d_event_manager/__ct__11dEvDtBase_cFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379F50-80379F60 0065B0 000F+01 6/6 0/0 0/0 .rodata
  * DataFileName__29@unnamed@d_event_manager_cpp@                */
 SECTION_RODATA static u8 const data_80379F50[15 + 1 /* padding */] = {
     0x65,
@@ -339,150 +373,9 @@ SECTION_RODATA static u8 const data_80379F50[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+SECTION_DEAD void* const cg_80379F50 = (void*)(&data_80379F50);
 
-/* 80379F60-8037A108 01A4+04 s=15 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379F60 = "NORMAL_COMEBACK";
-SECTION_DEAD char const* const stringBase_80379F70 = "DEFAULT_START";
-SECTION_DEAD char const* const stringBase_80379F7E = "SHUTTER_START";
-SECTION_DEAD char const* const stringBase_80379F8C = "SHUTTER_START_STOP";
-SECTION_DEAD char const* const stringBase_80379F9F = "BS_SHUTTER_START";
-SECTION_DEAD char const* const stringBase_80379FB0 = "BS_SHUTTER_START_B";
-SECTION_DEAD char const* const stringBase_80379FC3 = "KNOB_START";
-SECTION_DEAD char const* const stringBase_80379FCE = "KNOB_START_B";
-SECTION_DEAD char const* const stringBase_80379FDB = "FMASTER_START";
-SECTION_DEAD char const* const stringBase_80379FE9 = "FALL_START";
-SECTION_DEAD char const* const stringBase_80379FF4 = "CRAWLOUT_START";
-SECTION_DEAD char const* const stringBase_8037A003 = "BOSSWARP_START";
-SECTION_DEAD char const* const stringBase_8037A012 = "PORTALWARP_START";
-SECTION_DEAD char const* const stringBase_8037A023 = "PORTALWARP_START_B";
-SECTION_DEAD char const* const stringBase_8037A036 = "(!NO REGIST!)";
-SECTION_DEAD char const* const stringBase_8037A044 = "(!NO INFO!)";
-SECTION_DEAD char const* const stringBase_8037A050 = "(!BAD NUMBER!)";
-SECTION_DEAD char const* const stringBase_8037A05F = "(MAP TOOL CAMERA)";
-SECTION_DEAD char const* const stringBase_8037A071 = "(!BAD DATA!)";
-SECTION_DEAD char const* const stringBase_8037A07E = "Event";
-SECTION_DEAD char const* const stringBase_8037A084 = "WOLF_WORLD_CHANGE_OUT";
-SECTION_DEAD char const* const stringBase_8037A09A = "WORLD_CHANGE_OUT";
-SECTION_DEAD char const* const stringBase_8037A0AB = "ALL";
-SECTION_DEAD char const* const stringBase_8037A0AF = "MapToolCamera%d";
-SECTION_DEAD char const* const stringBase_8037A0BF = "Alink";
-SECTION_DEAD char const* const stringBase_8037A0C5 = "Link";
-SECTION_DEAD char const* const stringBase_8037A0CA = "NO DATA";
-SECTION_DEAD char const* const stringBase_8037A0D2 = "NOT RUNNING";
-SECTION_DEAD char const* const stringBase_8037A0DE = "SHUTTER_DOOR";
-SECTION_DEAD char const* const stringBase_8037A0EB = "WAIT";
-SECTION_DEAD char const* const stringBase_8037A0F0 = "TALK0";
-SECTION_DEAD char const* const stringBase_8037A0F6 = "TALK1";
-SECTION_DEAD char const* const stringBase_8037A0FC = "TALKMAN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A104 = "\0\0\0";
-#pragma pop
-
-/* 803A8270-803A82A8 0038+00 s=1 e=0 z=0  None .data      soecial_names$3966 */
-SECTION_DATA static void* soecial_names[14] = {
-    (void*)&d_event_d_event_manager__stringBase0,
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x10),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x1E),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x2C),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x3F),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x50),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x63),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x6E),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x7B),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x89),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x94),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xA3),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xB2),
-    (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0xC3),
-};
-
-/* 80046480-800465E8 0168+00 s=1 e=0 z=0  None .text      getEventName__18dEvent_exception_cFv */
-//	80046498: 80450D64 (struct_80450D64)
-//	800464A0: 804061C0 (g_dComIfG_gameInfo)
-//	800464A4: 804061C0 (g_dComIfG_gameInfo)
-//	800464AC: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	800464CC: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800464D0: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046514: 8002FAD4 (dComIfGp_SelectWarpPt_get__Fv)
-//	80046530: 803A8270 (soecial_names)
-//	80046534: 803A8270 (soecial_names)
-//	80046554: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046558: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046578: 80379F60 (d_event_d_event_manager__stringBase0)
-//	8004657C: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800465B4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800465B8: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800465C4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800465C8: 80379F60 (d_event_d_event_manager__stringBase0)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_exception_c::getEventName() {
-    nofralloc
-#include "asm/d/event/d_event_manager/getEventName__18dEvent_exception_cFv.s"
-}
-#pragma pop
-
-/* 800465E8-80046688 00A0+00 s=1 e=0 z=0  None .text
- * getSubstance__16dEvent_manager_cFP11dEvDtData_ci             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvent_manager_c::getSubstance(dEvDtData_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/event/d_event_manager/getSubstance__16dEvent_manager_cFP11dEvDtData_ci.s"
-}
-#pragma pop
-
-/* 80046688-800466E0 0058+00 s=0 e=1 z=0  None .text      __ct__16dEvent_manager_cFv */
-//	8004669C: 800466E0 (__ct__11dEvDtBase_cFv)
-//	800466A0: 800466E0 (__ct__11dEvDtBase_cFv)
-//	800466A4: 80030190 (__dt__11dEvDtBase_cFv)
-//	800466A8: 80030190 (__dt__11dEvDtBase_cFv)
-//	800466B4: 80361D60 (__construct_array)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvent_manager_c::dEvent_manager_c() {
-    nofralloc
-#include "asm/d/event/d_event_manager/__ct__16dEvent_manager_cFv.s"
-}
-#pragma pop
-
-/* 800466E0-80046710 0030+00 s=1 e=0 z=0  None .text      __ct__11dEvDtBase_cFv */
-//	800466F4: 80046138 (init__11dEvDtBase_cFv)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dEvDtBase_c::dEvDtBase_c() {
-    nofralloc
-#include "asm/d/event/d_event_manager/__ct__11dEvDtBase_cFv.s"
-}
-#pragma pop
-
-/* 80046710-80046800 00F0+00 s=0 e=1 z=0  None .text      create__16dEvent_manager_cFv */
-//	80046720: 803621DC (_savegpr_29)
-//	80046734: 800463DC (init__18dEvent_exception_cFv)
-//	8004673C: 80043E58 (init__11dEvDtFlag_cFv)
-//	80046768: 80046138 (init__11dEvDtBase_cFv)
-//	8004677C: 80379F50 (data_80379F50)
-//	80046780: 80379F50 (data_80379F50)
-//	80046784: 8002F434 (dComIfG_getStageRes__FPCc)
-//	80046794: 8004616C (init__11dEvDtBase_cFPci)
-//	8004679C: 80046138 (init__11dEvDtBase_cFv)
-//	800467A0: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800467A4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800467AC: 80379F50 (data_80379F50)
-//	800467B0: 80379F50 (data_80379F50)
-//	800467B4: 804061C0 (g_dComIfG_gameInfo)
-//	800467B8: 804061C0 (g_dComIfG_gameInfo)
-//	800467C8: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	800467D8: 8004616C (init__11dEvDtBase_cFPci)
-//	800467E0: 80046138 (init__11dEvDtBase_cFv)
-//	800467EC: 80362228 (_restgpr_29)
+/* 80046710-80046800 041050 00F0+00 0/0 1/1 0/0 .text            create__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -492,15 +385,7 @@ asm void dEvent_manager_c::create() {
 }
 #pragma pop
 
-/* 80046800-80046888 0088+00 s=0 e=8 z=24  None .text      setObjectArchive__16dEvent_manager_cFPc
- */
-//	80046828: 80379F50 (data_80379F50)
-//	8004682C: 80379F50 (data_80379F50)
-//	80046830: 804061C0 (g_dComIfG_gameInfo)
-//	80046834: 804061C0 (g_dComIfG_gameInfo)
-//	80046844: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80046858: 8004616C (init__11dEvDtBase_cFPci)
-//	80046864: 80046138 (init__11dEvDtBase_cFv)
+/* 80046800-80046888 041140 0088+00 0/0 8/8 24/24 .text setObjectArchive__16dEvent_manager_cFPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -510,15 +395,7 @@ asm void dEvent_manager_c::setObjectArchive(char* param_0) {
 }
 #pragma pop
 
-/* 80046888-80046904 007C+00 s=0 e=1 z=0  None .text      demoInit__16dEvent_manager_cFv */
-//	800468A8: 80406194 (mDemoArcName__20dStage_roomControl_c)
-//	800468AC: 80406194 (mDemoArcName__20dStage_roomControl_c)
-//	800468B8: 80379F50 (data_80379F50)
-//	800468BC: 80379F50 (data_80379F50)
-//	800468C0: 804061C0 (g_dComIfG_gameInfo)
-//	800468C4: 804061C0 (g_dComIfG_gameInfo)
-//	800468D4: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	800468E4: 8004616C (init__11dEvDtBase_cFPci)
+/* 80046888-80046904 0411C8 007C+00 0/0 1/1 0/0 .text            demoInit__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -528,16 +405,7 @@ asm void dEvent_manager_c::demoInit() {
 }
 #pragma pop
 
-/* 80046904-800469EC 00E8+00 s=0 e=1 z=0  None .text      roomInit__16dEvent_manager_cFi */
-//	80046928: 80450D64 (struct_80450D64)
-//	80046934: 8002F4BC (dComIfG_getRoomArcName__Fi)
-//	80046940: 80368B2C (strcpy)
-//	80046948: 80379F50 (data_80379F50)
-//	8004694C: 80379F50 (data_80379F50)
-//	80046950: 804061C0 (g_dComIfG_gameInfo)
-//	80046954: 804061C0 (g_dComIfG_gameInfo)
-//	80046964: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	800469CC: 8004616C (init__11dEvDtBase_cFPci)
+/* 80046904-800469EC 041244 00E8+00 0/0 1/1 0/0 .text            roomInit__16dEvent_manager_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -547,10 +415,7 @@ asm void dEvent_manager_c::roomInit(int param_0) {
 }
 #pragma pop
 
-/* 800469EC-80046A58 006C+00 s=0 e=1 z=0  None .text      roomFinish__16dEvent_manager_cFi */
-//	800469FC: 803621D8 (_savegpr_28)
-//	80046A2C: 80046138 (init__11dEvDtBase_cFv)
-//	80046A44: 80362224 (_restgpr_28)
+/* 800469EC-80046A58 04132C 006C+00 0/0 1/1 0/0 .text            roomFinish__16dEvent_manager_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -560,26 +425,7 @@ asm void dEvent_manager_c::roomFinish(int param_0) {
 }
 #pragma pop
 
-/* 80046A58-80046C0C 01B4+00 s=0 e=1 z=0  None .text      orderStartDemo__16dEvent_manager_cFv */
-//	80046A68: 803621DC (_savegpr_29)
-//	80046A9C: 80046480 (getEventName__18dEvent_exception_cFv)
-//	80046AB0: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80046AD4: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	80046B00: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80046B24: 8001B8E0 (fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs)
-//	80046B2C: 804061C0 (g_dComIfG_gameInfo)
-//	80046B30: 804061C0 (g_dComIfG_gameInfo)
-//	80046B4C: 804061C0 (g_dComIfG_gameInfo)
-//	80046B50: 804061C0 (g_dComIfG_gameInfo)
-//	80046B64: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046B68: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046B80: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80046BA4: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	80046BB4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046BB8: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046BC8: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80046BEC: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	80046BF8: 80362228 (_restgpr_29)
+/* 80046A58-80046C0C 041398 01B4+00 0/0 1/1 0/0 .text orderStartDemo__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -589,12 +435,7 @@ asm void dEvent_manager_c::orderStartDemo() {
 }
 #pragma pop
 
-/* 80046C0C-80046C74 0068+00 s=0 e=1 z=0  None .text      remove__16dEvent_manager_cFv */
-//	80046C1C: 803621DC (_savegpr_29)
-//	80046C30: 80046138 (init__11dEvDtBase_cFv)
-//	80046C50: 800463DC (init__18dEvent_exception_cFv)
-//	80046C58: 80043E58 (init__11dEvDtFlag_cFv)
-//	80046C60: 80362228 (_restgpr_29)
+/* 80046C0C-80046C74 04154C 0068+00 0/0 1/1 0/0 .text            remove__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -604,46 +445,38 @@ asm void dEvent_manager_c::remove() {
 }
 #pragma pop
 
-/* 80046C74-80046C88 0014+00 s=1 e=0 z=0  None .text      extraOnObjectCallBack__FP10fopAc_ac_cPv */
+/* 80046C74-80046C88 0415B4 0014+00 1/1 0/0 0/0 .text extraOnObjectCallBack__FP10fopAc_ac_cPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void extraOnObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
+static asm void extraOnObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/extraOnObjectCallBack__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
 
-/* 80046C88-80046C9C 0014+00 s=1 e=0 z=0  None .text      extraOffObjectCallBack__FP10fopAc_ac_cPv
- */
+/* 80046C88-80046C9C 0415C8 0014+00 1/1 0/0 0/0 .text extraOffObjectCallBack__FP10fopAc_ac_cPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void extraOffObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
+static asm void extraOffObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/extraOffObjectCallBack__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
 
-/* 80046C9C-80046CB8 001C+00 s=1 e=0 z=0  None .text      allOffObjectCallBack__FP10fopAc_ac_cPv */
+/* 80046C9C-80046CB8 0415DC 001C+00 1/1 0/0 0/0 .text allOffObjectCallBack__FP10fopAc_ac_cPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void allOffObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
+static asm void allOffObjectCallBack(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/allOffObjectCallBack__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
 
-/* 80046CB8-80046DA0 00E8+00 s=1 e=0 z=0  None .text startProc__16dEvent_manager_cFP12dEvDtEvent_c
- */
-//	80046CC8: 803621D4 (_savegpr_27)
-//	80046D18: 80048618 (specialCast__16dEvent_manager_cFPCci)
-//	80046D2C: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
-//	80046D58: 800482CC (issueStaff__16dEvent_manager_cFPCc)
-//	80046D60: 80044134 (init__12dEvDtStaff_cFv)
-//	80046D84: 80043E58 (init__11dEvDtFlag_cFv)
-//	80046D8C: 80362220 (_restgpr_27)
+/* 80046CB8-80046DA0 0415F8 00E8+00 1/1 0/0 0/0 .text
+ * startProc__16dEvent_manager_cFP12dEvDtEvent_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,8 +486,8 @@ asm void dEvent_manager_c::startProc(dEvDtEvent_c* param_0) {
 }
 #pragma pop
 
-/* 80046DA0-80046DAC 000C+00 s=2 e=0 z=0  None .text closeProc__16dEvent_manager_cFP12dEvDtEvent_c
- */
+/* 80046DA0-80046DAC 0416E0 000C+00 2/2 0/0 0/0 .text
+ * closeProc__16dEvent_manager_cFP12dEvDtEvent_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -664,20 +497,7 @@ asm void dEvent_manager_c::closeProc(dEvDtEvent_c* param_0) {
 }
 #pragma pop
 
-/* 80046DAC-80046E64 00B8+00 s=0 e=2 z=0  None .text      endProc__16dEvent_manager_cFsi */
-//	80046DBC: 803621DC (_savegpr_29)
-//	80046DC8: 800474BC (getEventData__16dEvent_manager_cFs)
-//	80046DE4: 80046DA0 (closeProc__16dEvent_manager_cFP12dEvDtEvent_c)
-//	80046DF4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046DF8: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80046E00: 80046C9C (allOffObjectCallBack__FP10fopAc_ac_cPv)
-//	80046E04: 80046C9C (allOffObjectCallBack__FP10fopAc_ac_cPv)
-//	80046E08: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80046E28: 804061C0 (g_dComIfG_gameInfo)
-//	80046E2C: 804061C0 (g_dComIfG_gameInfo)
-//	80046E3C: 800436F4 (setPtD__14dEvt_control_cFPv)
-//	80046E48: 800436BC (setPtI__14dEvt_control_cFPv)
-//	80046E50: 80362228 (_restgpr_29)
+/* 80046DAC-80046E64 0416EC 00B8+00 0/0 2/2 0/0 .text            endProc__16dEvent_manager_cFsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -688,99 +508,34 @@ asm void dEvent_manager_c::endProc(s16 param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451F00-80451F08 0004+04 s=1 e=0 z=0  None .sdata2    @4398 */
+/* 80451F00-80451F08 000500 0004+04 1/1 0/0 0/0 .sdata2          @4398 */
 SECTION_SDATA2 static f32 lit_4398[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80451F08-80451F10 0008+00 s=1 e=0 z=0  None .sdata2    @4399 */
+/* 80451F08-80451F10 000508 0008+00 1/1 0/0 0/0 .sdata2          @4399 */
 SECTION_SDATA2 static f64 lit_4399 = 0.5;
 
-/* 80451F10-80451F18 0008+00 s=1 e=0 z=0  None .sdata2    @4400 */
+/* 80451F10-80451F18 000510 0008+00 1/1 0/0 0/0 .sdata2          @4400 */
 SECTION_SDATA2 static f64 lit_4400 = 3.0;
 
-/* 80451F18-80451F20 0008+00 s=1 e=0 z=0  None .sdata2    @4401 */
+/* 80451F18-80451F20 000518 0008+00 1/1 0/0 0/0 .sdata2          @4401 */
 SECTION_SDATA2 static u8 lit_4401[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80451F20-80451F24 0004+00 s=1 e=0 z=0  None .sdata2    @4402 */
+/* 80451F20-80451F24 000520 0004+00 1/1 0/0 0/0 .sdata2          @4402 */
 SECTION_SDATA2 static f32 lit_4402 = 180.0f;
 
-/* 80451F24-80451F28 0004+00 s=1 e=0 z=0  None .sdata2    @4403 */
+/* 80451F24-80451F28 000524 0004+00 1/1 0/0 0/0 .sdata2          @4403 */
 SECTION_SDATA2 static f32 lit_4403 = 1.0f;
 
-/* 80451F28-80451F2C 0004+00 s=1 e=0 z=0  None .sdata2    @4404 */
+/* 80451F28-80451F2C 000528 0004+00 1/1 0/0 0/0 .sdata2          @4404 */
 SECTION_SDATA2 static f32 lit_4404 = -1.0f;
 
-/* 80046E64-800473FC 0598+00 s=0 e=1 z=0  None .text      Sequencer__16dEvent_manager_cFv */
-//	80046E74: 803621C8 (_savegpr_24)
-//	80046E7C: 804061C0 (g_dComIfG_gameInfo)
-//	80046E80: 804061C0 (g_dComIfG_gameInfo)
-//	80046E8C: 800474BC (getEventData__16dEvent_manager_cFs)
-//	80046E98: 80043278 (getStageEventDt__14dEvt_control_cFv)
-//	80046F04: 800429A8 (onSkipFade__14dEvt_control_cFv)
-//	80046F10: 800432EC (convPId__14dEvt_control_cFUi)
-//	80046F28: 800432EC (convPId__14dEvt_control_cFUi)
-//	80046F38: 804061C0 (g_dComIfG_gameInfo)
-//	80046F3C: 804061C0 (g_dComIfG_gameInfo)
-//	80046F74: 80042778 (dEv_defaultSkipStb__FPvi)
-//	80046F78: 80042778 (dEv_defaultSkipStb__FPvi)
-//	80046F80: 80042914 (setSkipProc__14dEvt_control_cFPvPFPvi_ii)
-//	80046F8C: 8004261C (dEv_defaultSkipZev__FPvi)
-//	80046F90: 8004261C (dEv_defaultSkipZev__FPvi)
-//	80046F98: 80042914 (setSkipProc__14dEvt_control_cFPvPFPvi_ii)
-//	80046FA4: 800425E8 (dEv_defaultSkipProc__FPvi)
-//	80046FA8: 800425E8 (dEv_defaultSkipProc__FPvi)
-//	80046FB0: 80042914 (setSkipProc__14dEvt_control_cFPvPFPvi_ii)
-//	80046FB4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80046FC0: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	80046FC8: 80043E78 (finishCheck__12dEvDtEvent_cFv)
-//	8004701C: 804061C0 (g_dComIfG_gameInfo)
-//	80047020: 804061C0 (g_dComIfG_gameInfo)
-//	80047040: 80181640 (dCam_getBody__Fv)
-//	8004704C: 80181E98 (Center__9dCamera_cFv)
-//	80047074: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80047094: 80347138 (PSVECSquareMag)
-//	80047098: 80451F00 (lit_4398)
-//	800470A8: 80451F08 (lit_4399)
-//	800470B0: 80451F10 (lit_4400)
-//	800470F8: 80451F18 (lit_4401)
-//	80047104: 80450AE0 (__float_nan)
-//	80047108: 80450AE0 (__float_nan)
-//	80047174: 80450AE0 (__float_nan)
-//	80047178: 80450AE0 (__float_nan)
-//	80047184: 80451F20 (lit_4402)
-//	80047190: 80181640 (dCam_getBody__Fv)
-//	80047194: 80180A40 (EventRecoverNotime__9dCamera_cFv)
-//	800471B8: 80451F20 (lit_4402)
-//	800471C4: 80181640 (dCam_getBody__Fv)
-//	800471C8: 80180A40 (EventRecoverNotime__9dCamera_cFv)
-//	800471D0: 80181640 (dCam_getBody__Fv)
-//	800471D4: 80180A40 (EventRecoverNotime__9dCamera_cFv)
-//	80047224: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80047238: 80451F24 (lit_4403)
-//	80047240: 80451F28 (lit_4404)
-//	8004724C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	8004725C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80047270: 80451F24 (lit_4403)
-//	80047278: 80451F28 (lit_4404)
-//	80047284: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	800472AC: 80043280 (sceneChange__14dEvt_control_cFi)
-//	800472C8: 80043280 (sceneChange__14dEvt_control_cFi)
-//	800472F4: 80043280 (sceneChange__14dEvt_control_cFi)
-//	80047310: 80043280 (sceneChange__14dEvt_control_cFi)
-//	8004733C: 80043280 (sceneChange__14dEvt_control_cFi)
-//	80047358: 80043280 (sceneChange__14dEvt_control_cFi)
-//	80047374: 8004628C (advanceCut__11dEvDtBase_cFP12dEvDtEvent_c)
-//	80047380: 80046DA0 (closeProc__16dEvent_manager_cFP12dEvDtEvent_c)
-//	80047388: 80042468 (reset__14dEvt_control_cFv)
-//	800473AC: 8004628C (advanceCut__11dEvDtBase_cFP12dEvDtEvent_c)
-//	800473D4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	800473E0: 802B61E8 (setDemoName__11Z2StatusMgrFPc)
-//	800473E8: 80362214 (_restgpr_24)
+/* 80046E64-800473FC 0417A4 0598+00 0/0 1/1 0/0 .text            Sequencer__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -790,9 +545,7 @@ asm void dEvent_manager_c::Sequencer() {
 }
 #pragma pop
 
-/* 800473FC-80047454 0058+00 s=0 e=1 z=0  None .text      Experts__16dEvent_manager_cFv */
-//	80047414: 800474BC (getEventData__16dEvent_manager_cFs)
-//	8004743C: 80043F70 (specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c)
+/* 800473FC-80047454 041D3C 0058+00 0/0 1/1 0/0 .text            Experts__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -802,7 +555,8 @@ asm void dEvent_manager_c::Experts() {
 }
 #pragma pop
 
-/* 80047454-800474BC 0068+00 s=1 e=0 z=0  None .text      getEventData__16dEvent_manager_cFsi */
+/* 80047454-800474BC 041D94 0068+00 1/1 0/0 0/0 .text            getEventData__16dEvent_manager_cFsi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -812,8 +566,8 @@ asm void dEvent_manager_c::getEventData(s16 param_0, int param_1) {
 }
 #pragma pop
 
-/* 800474BC-80047514 0058+00 s=9 e=3 z=4  None .text      getEventData__16dEvent_manager_cFs */
-//	80047500: 80047454 (getEventData__16dEvent_manager_cFsi)
+/* 800474BC-80047514 041DFC 0058+00 9/9 3/3 4/4 .text            getEventData__16dEvent_manager_cFs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -824,22 +578,10 @@ asm void dEvent_manager_c::getEventData(s16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804246A0-804246B4 0011+03 s=1 e=0 z=0  None .bss       map_tool_name$4449 */
+/* 804246A0-804246B4 0513C0 0011+03 1/1 0/0 0/0 .bss             map_tool_name$4449 */
 static u8 map_tool_name_4449[17 + 3 /* padding */];
 
-/* 80047514-80047698 0184+00 s=3 e=8 z=3  None .text      getEventIdx__16dEvent_manager_cFPCcUcl */
-//	80047524: 803621C8 (_savegpr_24)
-//	80047540: 80450D64 (struct_80450D64)
-//	8004755C: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	80047598: 804246A0 (map_tool_name_4449)
-//	8004759C: 804246A0 (map_tool_name_4449)
-//	800475A0: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800475A4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800475B4: 803664DC (sprintf)
-//	800475BC: 804246A0 (map_tool_name_4449)
-//	800475C0: 804246A0 (map_tool_name_4449)
-//	80047634: 80368994 (strcmp)
-//	80047684: 80362214 (_restgpr_24)
+/* 80047514-80047698 041E54 0184+00 3/3 8/8 3/3 .text getEventIdx__16dEvent_manager_cFPCcUcl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -850,23 +592,11 @@ asm void dEvent_manager_c::getEventIdx(char const* param_0, u8 param_1, s32 para
 #pragma pop
 
 /* ############################################################################################## */
-/* 804246B4-804246C8 0011+03 s=1 e=0 z=0  None .bss       map_tool_name$4498 */
+/* 804246B4-804246C8 0513D4 0011+03 1/1 0/0 0/0 .bss             map_tool_name$4498 */
 static u8 map_tool_name_4498[17 + 3 /* padding */];
 
-/* 80047698-80047758 00C0+00 s=0 e=3 z=25  None .text
+/* 80047698-80047758 041FD8 00C0+00 0/0 3/3 25/25 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc              */
-//	800476A8: 803621DC (_savegpr_29)
-//	800476C4: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	800476F8: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	80047700: 804246B4 (map_tool_name_4498)
-//	80047704: 804246B4 (map_tool_name_4498)
-//	80047708: 80379F60 (d_event_d_event_manager__stringBase0)
-//	8004770C: 80379F60 (d_event_d_event_manager__stringBase0)
-//	8004771C: 803664DC (sprintf)
-//	80047728: 804246B4 (map_tool_name_4498)
-//	8004772C: 804246B4 (map_tool_name_4498)
-//	80047734: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	80047744: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -877,29 +607,11 @@ asm void dEvent_manager_c::getEventIdx(fopAc_ac_c* param_0, u8 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804246C8-804246E0 0011+07 s=1 e=0 z=0  None .bss       map_tool_name$4511 */
+/* 804246C8-804246E0 0513E8 0011+07 1/1 0/0 0/0 .bss             map_tool_name$4511 */
 static u8 map_tool_name_4511[17 + 7 /* padding */];
 
-/* 80047758-80047930 01D8+00 s=1 e=10 z=92  None .text
+/* 80047758-80047930 042098 01D8+00 1/1 10/10 92/92 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc           */
-//	80047768: 803621C0 (_savegpr_22)
-//	80047798: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
-//	800477D4: 804246C8 (map_tool_name_4511)
-//	800477D8: 804246C8 (map_tool_name_4511)
-//	800477DC: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800477E0: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800477F0: 803664DC (sprintf)
-//	800477FC: 804246C8 (map_tool_name_4511)
-//	80047800: 804246C8 (map_tool_name_4511)
-//	80047828: 804061C0 (g_dComIfG_gameInfo)
-//	8004782C: 804061C0 (g_dComIfG_gameInfo)
-//	80047844: 80046138 (init__11dEvDtBase_cFv)
-//	80047880: 80379F50 (data_80379F50)
-//	80047884: 80379F50 (data_80379F50)
-//	80047890: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	800478A0: 8004616C (init__11dEvDtBase_cFPci)
-//	800478CC: 80368994 (strcmp)
-//	8004791C: 8036220C (_restgpr_22)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -909,9 +621,7 @@ asm void dEvent_manager_c::getEventIdx(fopAc_ac_c* param_0, char const* param_1,
 }
 #pragma pop
 
-/* 80047930-80047984 0054+00 s=0 e=0 z=1  None .text      isMapToolCamera__16dEvent_manager_cFUcl */
-//	80047944: 80450D64 (struct_80450D64)
-//	80047954: 80043500 (searchMapEventData__14dEvt_control_cFUcl)
+/* 80047930-80047984 042270 0054+00 0/0 0/0 1/1 .text isMapToolCamera__16dEvent_manager_cFUcl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -921,9 +631,7 @@ asm void dEvent_manager_c::isMapToolCamera(u8 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 80047984-800479F8 0074+00 s=0 e=6 z=0  None .text      order__16dEvent_manager_cFs */
-//	800479A0: 800474BC (getEventData__16dEvent_manager_cFs)
-//	800479D8: 80046CB8 (startProc__16dEvent_manager_cFP12dEvDtEvent_c)
+/* 80047984-800479F8 0422C4 0074+00 0/0 6/6 0/0 .text            order__16dEvent_manager_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -933,8 +641,7 @@ asm void dEvent_manager_c::order(s16 param_0) {
 }
 #pragma pop
 
-/* 800479F8-80047A38 0040+00 s=1 e=0 z=9  None .text      startCheck__16dEvent_manager_cFs */
-//	80047A04: 800474BC (getEventData__16dEvent_manager_cFs)
+/* 800479F8-80047A38 042338 0040+00 1/1 0/0 9/9 .text            startCheck__16dEvent_manager_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -944,9 +651,7 @@ asm void dEvent_manager_c::startCheck(s16 param_0) {
 }
 #pragma pop
 
-/* 80047A38-80047A78 0040+00 s=0 e=2 z=0  None .text      startCheckOld__16dEvent_manager_cFPCc */
-//	80047A54: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80047A60: 800479F8 (startCheck__16dEvent_manager_cFs)
+/* 80047A38-80047A78 042378 0040+00 0/0 2/2 0/0 .text startCheckOld__16dEvent_manager_cFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -956,11 +661,8 @@ asm void dEvent_manager_c::startCheckOld(char const* param_0) {
 }
 #pragma pop
 
-/* 80047A78-80047ADC 0064+00 s=1 e=2 z=122  None .text      endCheck__16dEvent_manager_cFs */
-//	80047A8C: 804061C0 (g_dComIfG_gameInfo)
-//	80047A90: 804061C0 (g_dComIfG_gameInfo)
-//	80047A98: 8004360C (runningEventID__14dEvt_control_cFs)
-//	80047AA4: 800474BC (getEventData__16dEvent_manager_cFs)
+/* 80047A78-80047ADC 0423B8 0064+00 1/1 2/2 122/122 .text            endCheck__16dEvent_manager_cFs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -970,9 +672,7 @@ asm void dEvent_manager_c::endCheck(s16 param_0) {
 }
 #pragma pop
 
-/* 80047ADC-80047B1C 0040+00 s=0 e=2 z=10  None .text      endCheckOld__16dEvent_manager_cFPCc */
-//	80047AF8: 80047514 (getEventIdx__16dEvent_manager_cFPCcUcl)
-//	80047B04: 80047A78 (endCheck__16dEvent_manager_cFs)
+/* 80047ADC-80047B1C 04241C 0040+00 0/0 2/2 10/10 .text endCheckOld__16dEvent_manager_cFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -982,23 +682,8 @@ asm void dEvent_manager_c::endCheckOld(char const* param_0) {
 }
 #pragma pop
 
-/* 80047B1C-80047D4C 0230+00 s=1 e=10 z=210  None .text
+/* 80047B1C-80047D4C 04245C 0230+00 1/1 10/10 210/210 .text
  * getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci           */
-//	80047B2C: 803621B8 (_savegpr_20)
-//	80047B40: 804061C0 (g_dComIfG_gameInfo)
-//	80047B44: 804061C0 (g_dComIfG_gameInfo)
-//	80047B88: 800474BC (getEventData__16dEvent_manager_cFs)
-//	80047BB8: 80368924 (strchr)
-//	80047C08: 80368B2C (strcpy)
-//	80047C20: 80368924 (strchr)
-//	80047C44: 80368994 (strcmp)
-//	80047CD8: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80047CDC: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80047CE4: 80368994 (strcmp)
-//	80047CF0: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80047CF4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80047D00: 80368994 (strcmp)
-//	80047D38: 80362204 (_restgpr_20)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1008,9 +693,7 @@ asm void dEvent_manager_c::getMyStaffId(char const* param_0, fopAc_ac_c* param_1
 }
 #pragma pop
 
-/* 80047D4C-80047DAC 0060+00 s=0 e=9 z=417  None .text      getIsAddvance__16dEvent_manager_cFi */
-//	80047D4C: 804061C0 (g_dComIfG_gameInfo)
-//	80047D50: 804061C0 (g_dComIfG_gameInfo)
+/* 80047D4C-80047DAC 04268C 0060+00 0/0 9/9 417/417 .text getIsAddvance__16dEvent_manager_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1020,25 +703,18 @@ asm void dEvent_manager_c::getIsAddvance(int param_0) {
 }
 #pragma pop
 
-/* 80047DAC-80047E10 0064+00 s=1 e=0 z=0  None .text      dEvmng_strcmp__FPCcPc */
+/* 80047DAC-80047E10 0426EC 0064+00 1/1 0/0 0/0 .text            dEvmng_strcmp__FPCcPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEvmng_strcmp(char const* param_0, char* param_1) {
+static asm void dEvmng_strcmp(char const* param_0, char* param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/dEvmng_strcmp__FPCcPc.s"
 }
 #pragma pop
 
-/* 80047E10-80047F5C 014C+00 s=1 e=1 z=118  None .text getMyActIdx__16dEvent_manager_cFiPCPCciii
- */
-//	80047E20: 803621CC (_savegpr_25)
-//	80047E30: 804061C0 (g_dComIfG_gameInfo)
-//	80047E34: 804061C0 (g_dComIfG_gameInfo)
-//	80047EB0: 80047F5C (getMyNowCutName__16dEvent_manager_cFi)
-//	80047EF0: 80047DAC (dEvmng_strcmp__FPCcPc)
-//	80047F10: 80368994 (strcmp)
-//	80047F48: 80362218 (_restgpr_25)
+/* 80047E10-80047F5C 042750 014C+00 1/1 1/1 118/118 .text
+ * getMyActIdx__16dEvent_manager_cFiPCPCciii                    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1049,9 +725,7 @@ asm void dEvent_manager_c::getMyActIdx(int param_0, char const* const* param_1, 
 }
 #pragma pop
 
-/* 80047F5C-80047FC8 006C+00 s=1 e=9 z=62  None .text      getMyNowCutName__16dEvent_manager_cFi */
-//	80047F5C: 804061C0 (g_dComIfG_gameInfo)
-//	80047F60: 804061C0 (g_dComIfG_gameInfo)
+/* 80047F5C-80047FC8 04289C 006C+00 1/1 9/9 62/62 .text getMyNowCutName__16dEvent_manager_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1061,12 +735,7 @@ asm void dEvent_manager_c::getMyNowCutName(int param_0) {
 }
 #pragma pop
 
-/* 80047FC8-800480EC 0124+00 s=2 e=0 z=0  None .text      getMyDataP__16dEvent_manager_cFiPCci */
-//	80047FD8: 803621DC (_savegpr_29)
-//	80047FE4: 804061C0 (g_dComIfG_gameInfo)
-//	80047FE8: 804061C0 (g_dComIfG_gameInfo)
-//	800480B0: 80368994 (strcmp)
-//	800480D8: 80362228 (_restgpr_29)
+/* 80047FC8-800480EC 042908 0124+00 2/2 0/0 0/0 .text getMyDataP__16dEvent_manager_cFiPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1076,10 +745,8 @@ asm void dEvent_manager_c::getMyDataP(int param_0, char const* param_1, int para
 }
 #pragma pop
 
-/* 800480EC-80048144 0058+00 s=0 e=22 z=355  None .text getMySubstanceP__16dEvent_manager_cFiPCci
- */
-//	8004810C: 80047FC8 (getMyDataP__16dEvent_manager_cFiPCci)
-//	80048128: 800465E8 (getSubstance__16dEvent_manager_cFP11dEvDtData_ci)
+/* 800480EC-80048144 042A2C 0058+00 0/0 22/22 355/355 .text
+ * getMySubstanceP__16dEvent_manager_cFiPCci                    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1089,9 +756,8 @@ asm void dEvent_manager_c::getMySubstanceP(int param_0, char const* param_1, int
 }
 #pragma pop
 
-/* 80048144-8004817C 0038+00 s=0 e=12 z=0  None .text getMySubstanceNum__16dEvent_manager_cFiPCc
+/* 80048144-8004817C 042A84 0038+00 0/0 12/12 0/0 .text getMySubstanceNum__16dEvent_manager_cFiPCc
  */
-//	80048154: 80047FC8 (getMyDataP__16dEvent_manager_cFiPCci)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1101,10 +767,8 @@ asm void dEvent_manager_c::getMySubstanceNum(int param_0, char const* param_1) {
 }
 #pragma pop
 
-/* 8004817C-800481F4 0078+00 s=1 e=78 z=182  None .text      cutEnd__16dEvent_manager_cFi */
-//	80048188: 804061C0 (g_dComIfG_gameInfo)
-//	8004818C: 804061C0 (g_dComIfG_gameInfo)
-//	800481E0: 80043DC8 (flagSet__11dEvDtFlag_cFi)
+/* 8004817C-800481F4 042ABC 0078+00 1/1 78/78 182/182 .text            cutEnd__16dEvent_manager_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1114,18 +778,8 @@ asm void dEvent_manager_c::cutEnd(int param_0) {
 }
 #pragma pop
 
-/* 800481F4-800482CC 00D8+00 s=0 e=4 z=0  None .text
+/* 800481F4-800482CC 042B34 00D8+00 0/0 4/4 0/0 .text
  * getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs              */
-//	80048204: 803621D8 (_savegpr_28)
-//	8004821C: 80046138 (init__11dEvDtBase_cFv)
-//	80048254: 80379F50 (data_80379F50)
-//	80048258: 80379F50 (data_80379F50)
-//	8004825C: 804061C0 (g_dComIfG_gameInfo)
-//	80048260: 804061C0 (g_dComIfG_gameInfo)
-//	80048270: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80048280: 8004616C (init__11dEvDtBase_cFPci)
-//	80048298: 800474BC (getEventData__16dEvent_manager_cFs)
-//	800482B8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1135,15 +789,8 @@ asm void dEvent_manager_c::getEventPrio(fopAc_ac_c* param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 800482CC-80048348 007C+00 s=1 e=1 z=0  None .text      issueStaff__16dEvent_manager_cFPCc */
-//	800482E4: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800482E8: 80379F60 (d_event_d_event_manager__stringBase0)
-//	800482F0: 80368994 (strcmp)
-//	800482FC: 80046C74 (extraOnObjectCallBack__FP10fopAc_ac_cPv)
-//	80048300: 80046C74 (extraOnObjectCallBack__FP10fopAc_ac_cPv)
-//	80048308: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80048318: 80368B2C (strcpy)
-//	80048324: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
+/* 800482CC-80048348 042C0C 007C+00 1/1 1/1 0/0 .text            issueStaff__16dEvent_manager_cFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1153,15 +800,8 @@ asm void dEvent_manager_c::issueStaff(char const* param_0) {
 }
 #pragma pop
 
-/* 80048348-800483C4 007C+00 s=0 e=1 z=0  None .text      cancelStaff__16dEvent_manager_cFPCc */
-//	80048360: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048364: 80379F60 (d_event_d_event_manager__stringBase0)
-//	8004836C: 80368994 (strcmp)
-//	80048378: 80046C88 (extraOffObjectCallBack__FP10fopAc_ac_cPv)
-//	8004837C: 80046C88 (extraOffObjectCallBack__FP10fopAc_ac_cPv)
-//	80048384: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80048394: 80368B2C (strcpy)
-//	800483A0: 8001D7A0 (fopAcM_searchFromName4Event__FPCcs)
+/* 80048348-800483C4 042C88 007C+00 0/0 1/1 0/0 .text            cancelStaff__16dEvent_manager_cFPCc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1171,7 +811,7 @@ asm void dEvent_manager_c::cancelStaff(char const* param_0) {
 }
 #pragma pop
 
-/* 800483C4-800483E0 001C+00 s=1 e=2 z=38  None .text      setGoal__16dEvent_manager_cFP4cXyz */
+/* 800483C4-800483E0 042D04 001C+00 1/1 2/2 38/38 .text setGoal__16dEvent_manager_cFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1181,7 +821,7 @@ asm void dEvent_manager_c::setGoal(cXyz* param_0) {
 }
 #pragma pop
 
-/* 800483E0-800483E8 0008+00 s=0 e=1 z=1  None .text      getGoal__16dEvent_manager_cFv */
+/* 800483E0-800483E8 042D20 0008+00 0/0 1/1 1/1 .text            getGoal__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1191,14 +831,7 @@ asm void dEvent_manager_c::getGoal() {
 }
 #pragma pop
 
-/* 800483E8-8004846C 0084+00 s=0 e=5 z=27  None .text      getRunEventName__16dEvent_manager_cFv */
-//	80048400: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048404: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048424: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048428: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048434: 800474BC (getEventData__16dEvent_manager_cFs)
-//	80048450: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048454: 80379F60 (d_event_d_event_manager__stringBase0)
+/* 800483E8-8004846C 042D28 0084+00 0/0 5/5 27/27 .text getRunEventName__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1209,46 +842,28 @@ asm void dEvent_manager_c::getRunEventName() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451F2C-80451F30 0004+00 s=1 e=0 z=0  None .sdata2    @5025 */
+/* 80451F2C-80451F30 00052C 0004+00 1/1 0/0 0/0 .sdata2          @5025 */
 SECTION_SDATA2 static f32 lit_5025 = 10.0f;
 
-/* 80451F30-80451F34 0004+00 s=1 e=0 z=0  None .sdata2    @5026 */
+/* 80451F30-80451F34 000530 0004+00 1/1 0/0 0/0 .sdata2          @5026 */
 SECTION_SDATA2 static f32 lit_5026 = -10.0f;
 
-/* 8004846C-80048520 00B4+00 s=1 e=0 z=0  None .text      findShutterCallBack__FP10fopAc_ac_cPv */
-//	800484AC: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	800484C8: 80451F2C (lit_5025)
-//	800484D4: 80451F30 (lit_5026)
+/* 8004846C-80048520 042DAC 00B4+00 1/1 0/0 0/0 .text findShutterCallBack__FP10fopAc_ac_cPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void findShutterCallBack(fopAc_ac_c* param_0, void* param_1) {
+static asm void findShutterCallBack(fopAc_ac_c* param_0, void* param_1) {
     nofralloc
 #include "asm/d/event/d_event_manager/findShutterCallBack__FP10fopAc_ac_cPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451F34-80451F38 0004+00 s=1 e=0 z=0  None .sdata2    @5055 */
+/* 80451F34-80451F38 000534 0004+00 1/1 0/0 0/0 .sdata2          @5055 */
 SECTION_SDATA2 static f32 lit_5055 = 100.0f;
 
-/* 80048520-80048618 00F8+00 s=1 e=0 z=0  None .text      specialCast_Shutter__16dEvent_manager_cFsi
+/* 80048520-80048618 042E60 00F8+00 1/1 0/0 0/0 .text specialCast_Shutter__16dEvent_manager_cFsi
  */
-//	80048530: 803621DC (_savegpr_29)
-//	80048540: 804061C0 (g_dComIfG_gameInfo)
-//	80048544: 804061C0 (g_dComIfG_gameInfo)
-//	80048550: 8004846C (findShutterCallBack__FP10fopAc_ac_cPv)
-//	80048554: 8004846C (findShutterCallBack__FP10fopAc_ac_cPv)
-//	8004855C: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80048598: 80451F34 (lit_5055)
-//	800485A0: 80439A20 (sincosTable___5JMath)
-//	800485A4: 80439A20 (sincosTable___5JMath)
-//	800485D4: 800483C4 (setGoal__16dEvent_manager_cFP4cXyz)
-//	800485D8: 804061C0 (g_dComIfG_gameInfo)
-//	800485DC: 804061C0 (g_dComIfG_gameInfo)
-//	800485EC: 8004365C (setPt2__14dEvt_control_cFPv)
-//	800485F8: 800436F4 (setPtD__14dEvt_control_cFPv)
-//	80048604: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1258,19 +873,7 @@ asm void dEvent_manager_c::specialCast_Shutter(s16 param_0, int param_1) {
 }
 #pragma pop
 
-/* 80048618-80048748 0130+00 s=1 e=0 z=0  None .text      specialCast__16dEvent_manager_cFPCci */
-//	80048628: 803621DC (_savegpr_29)
-//	8004864C: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048650: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048658: 80368994 (strcmp)
-//	80048670: 80048520 (specialCast_Shutter__16dEvent_manager_cFsi)
-//	80048688: 80048520 (specialCast_Shutter__16dEvent_manager_cFsi)
-//	800486A4: 80048520 (specialCast_Shutter__16dEvent_manager_cFsi)
-//	800486C0: 80048520 (specialCast_Shutter__16dEvent_manager_cFsi)
-//	800486DC: 80048520 (specialCast_Shutter__16dEvent_manager_cFsi)
-//	800486EC: 804061C0 (g_dComIfG_gameInfo)
-//	800486F0: 804061C0 (g_dComIfG_gameInfo)
-//	80048734: 80362228 (_restgpr_29)
+/* 80048618-80048748 042F58 0130+00 1/1 0/0 0/0 .text specialCast__16dEvent_manager_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1281,7 +884,7 @@ asm void dEvent_manager_c::specialCast(char const* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A82A8-803A82B8 000C+04 s=1 e=0 z=0  None .data      action_table$5100 */
+/* 803A82A8-803A82B8 -00001 000C+04 1/1 0/0 0/0 .data            action_table$5100 */
 SECTION_DATA static void* action_table[3 + 1 /* padding */] = {
     (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x18B),
     (void*)(((char*)&d_event_d_event_manager__stringBase0) + 0x190),
@@ -1290,29 +893,17 @@ SECTION_DATA static void* action_table[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80048748-800487F0 00A8+00 s=1 e=0 z=0  None .text      dEv_talkman_get_action__Fi */
-//	80048758: 803621D8 (_savegpr_28)
-//	80048760: 804061C0 (g_dComIfG_gameInfo)
-//	80048764: 804061C0 (g_dComIfG_gameInfo)
-//	80048770: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048774: 80379F60 (d_event_d_event_manager__stringBase0)
-//	80048784: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	800487A4: 803A82A8 (action_table)
-//	800487A8: 803A82A8 (action_table)
-//	800487B8: 80047E10 (getMyActIdx__16dEvent_manager_cFiPCPCciii)
-//	800487D0: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	800487DC: 80362224 (_restgpr_28)
+/* 80048748-800487F0 043088 00A8+00 1/1 0/0 0/0 .text            dEv_talkman_get_action__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEv_talkman_get_action(int param_0) {
+static asm void dEv_talkman_get_action(int param_0) {
     nofralloc
 #include "asm/d/event/d_event_manager/dEv_talkman_get_action__Fi.s"
 }
 #pragma pop
 
-/* 800487F0-8004882C 003C+00 s=0 e=0 z=108  None .text      ChkPresentEnd__16dEvent_manager_cFv */
-//	80048800: 80048748 (dEv_talkman_get_action__Fi)
+/* 800487F0-8004882C 043130 003C+00 0/0 0/0 108/108 .text ChkPresentEnd__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1322,9 +913,7 @@ asm void dEvent_manager_c::ChkPresentEnd() {
 }
 #pragma pop
 
-/* 8004882C-8004886C 0040+00 s=0 e=2 z=2  None .text      checkStartDemo__16dEvent_manager_cFv */
-//	8004882C: 804061C0 (g_dComIfG_gameInfo)
-//	80048830: 804061C0 (g_dComIfG_gameInfo)
+/* 8004882C-8004886C 04316C 0040+00 0/0 2/2 2/2 .text checkStartDemo__16dEvent_manager_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1332,4 +921,45 @@ asm void dEvent_manager_c::checkStartDemo() {
     nofralloc
 #include "asm/d/event/d_event_manager/checkStartDemo__16dEvent_manager_cFv.s"
 }
+#pragma pop
+
+/* 80379F60-8037A108 0065C0 01A4+04 15/13 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379F60 = "NORMAL_COMEBACK";
+SECTION_DEAD static char const* const stringBase_80379F70 = "DEFAULT_START";
+SECTION_DEAD static char const* const stringBase_80379F7E = "SHUTTER_START";
+SECTION_DEAD static char const* const stringBase_80379F8C = "SHUTTER_START_STOP";
+SECTION_DEAD static char const* const stringBase_80379F9F = "BS_SHUTTER_START";
+SECTION_DEAD static char const* const stringBase_80379FB0 = "BS_SHUTTER_START_B";
+SECTION_DEAD static char const* const stringBase_80379FC3 = "KNOB_START";
+SECTION_DEAD static char const* const stringBase_80379FCE = "KNOB_START_B";
+SECTION_DEAD static char const* const stringBase_80379FDB = "FMASTER_START";
+SECTION_DEAD static char const* const stringBase_80379FE9 = "FALL_START";
+SECTION_DEAD static char const* const stringBase_80379FF4 = "CRAWLOUT_START";
+SECTION_DEAD static char const* const stringBase_8037A003 = "BOSSWARP_START";
+SECTION_DEAD static char const* const stringBase_8037A012 = "PORTALWARP_START";
+SECTION_DEAD static char const* const stringBase_8037A023 = "PORTALWARP_START_B";
+SECTION_DEAD static char const* const stringBase_8037A036 = "(!NO REGIST!)";
+SECTION_DEAD static char const* const stringBase_8037A044 = "(!NO INFO!)";
+SECTION_DEAD static char const* const stringBase_8037A050 = "(!BAD NUMBER!)";
+SECTION_DEAD static char const* const stringBase_8037A05F = "(MAP TOOL CAMERA)";
+SECTION_DEAD static char const* const stringBase_8037A071 = "(!BAD DATA!)";
+SECTION_DEAD static char const* const stringBase_8037A07E = "Event";
+SECTION_DEAD static char const* const stringBase_8037A084 = "WOLF_WORLD_CHANGE_OUT";
+SECTION_DEAD static char const* const stringBase_8037A09A = "WORLD_CHANGE_OUT";
+SECTION_DEAD static char const* const stringBase_8037A0AB = "ALL";
+SECTION_DEAD static char const* const stringBase_8037A0AF = "MapToolCamera%d";
+SECTION_DEAD static char const* const stringBase_8037A0BF = "Alink";
+SECTION_DEAD static char const* const stringBase_8037A0C5 = "Link";
+SECTION_DEAD static char const* const stringBase_8037A0CA = "NO DATA";
+SECTION_DEAD static char const* const stringBase_8037A0D2 = "NOT RUNNING";
+SECTION_DEAD static char const* const stringBase_8037A0DE = "SHUTTER_DOOR";
+SECTION_DEAD static char const* const stringBase_8037A0EB = "WAIT";
+SECTION_DEAD static char const* const stringBase_8037A0F0 = "TALK0";
+SECTION_DEAD static char const* const stringBase_8037A0F6 = "TALK1";
+SECTION_DEAD static char const* const stringBase_8037A0FC = "TALKMAN";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A104 = "\0\0\0";
 #pragma pop

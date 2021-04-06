@@ -1,6 +1,6 @@
 lbl_8024F59C:
-/* 8024F59C  3C 80 80 3C */	lis r4, cNullVec__6Z2Calc@ha
-/* 8024F5A0  38 A4 1F 50 */	addi r5, r4, cNullVec__6Z2Calc@l
+/* 8024F59C  3C 80 80 3C */	lis r4, cNullVec__6Z2Calc@ha /* 0x803C1F50@ha */
+/* 8024F5A0  38 A4 1F 50 */	addi r5, r4, cNullVec__6Z2Calc@l /* 0x803C1F50@l */
 /* 8024F5A4  88 03 02 A9 */	lbz r0, 0x2a9(r3)
 /* 8024F5A8  2C 00 00 01 */	cmpwi r0, 1
 /* 8024F5AC  41 82 00 40 */	beq lbl_8024F5EC

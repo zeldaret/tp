@@ -9,8 +9,8 @@ lbl_8004C188:
 /* 8004C1A4  80 0D 89 20 */	lwz r0, mEmitterMng__13dPa_control_c(r13)
 /* 8004C1A8  28 00 00 00 */	cmplwi r0, 0
 /* 8004C1AC  41 82 00 54 */	beq lbl_8004C200
-/* 8004C1B0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004C1B4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004C1B0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004C1B4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004C1B8  48 2C 45 85 */	bl reinitGX__6J3DSysFv
 /* 8004C1BC  48 15 B4 05 */	bl dKy_setLight_again__Fv
 /* 8004C1C0  57 E0 06 3E */	clrlwi r0, r31, 0x18

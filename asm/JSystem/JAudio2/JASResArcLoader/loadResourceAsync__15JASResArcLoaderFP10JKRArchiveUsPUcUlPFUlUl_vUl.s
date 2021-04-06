@@ -13,8 +13,8 @@ lbl_80290D18:
 /* 80290D44  90 E1 00 18 */	stw r7, 0x18(r1)
 /* 80290D48  91 01 00 1C */	stw r8, 0x1c(r1)
 /* 80290D4C  4B FF F1 B1 */	bl getThreadPointer__6JASDvdFv
-/* 80290D50  3C 80 80 29 */	lis r4, loadResourceCallback__15JASResArcLoaderFPv@ha
-/* 80290D54  38 84 0C 7C */	addi r4, r4, loadResourceCallback__15JASResArcLoaderFPv@l
+/* 80290D50  3C 80 80 29 */	lis r4, loadResourceCallback__15JASResArcLoaderFPv@ha /* 0x80290C7C@ha */
+/* 80290D54  38 84 0C 7C */	addi r4, r4, loadResourceCallback__15JASResArcLoaderFPv@l /* 0x80290C7C@l */
 /* 80290D58  38 A1 00 08 */	addi r5, r1, 8
 /* 80290D5C  38 C0 00 1C */	li r6, 0x1c
 /* 80290D60  4B FF ED FD */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl

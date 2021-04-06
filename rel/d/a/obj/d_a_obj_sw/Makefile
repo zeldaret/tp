@@ -3,17 +3,15 @@
 #
 
 M637_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw.plf
+M637_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw.lcf
+M637_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw.map
 
 M637_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sw/executor.cpp \
-	rel/d/a/obj/d_a_obj_sw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_sw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_sw/d_a_obj_sw.cpp \
 
 M637_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/d_a_obj_sw.o \
 
 M637_LIBS := \
@@ -29,15 +27,21 @@ M637_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map637.map\
+	-m _prolog \
+	-lcf $(M637_LDSCRIPT) \
+	-unused -map $(M637_MAP) \
+	-w off \
 
 $(M637_TARGET): $(M637_O_FILES) $(M637_LIBS)
+	@echo [637] creating $(M637_TARGET)
 	@echo $(M637_LIBS) $(M637_O_FILES) > build/M637_ofiles
-	$(LD) -opt_partial $(M637_LDFLAGS) -o $(M637_TARGET) @build/M637_ofiles
+	@python3 tools/lcf.py rel 637 --output $(M637_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M637_LDFLAGS) -o $(M637_TARGET) @build/M637_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sw/%.o: rel/d/a/obj/d_a_obj_sw/%.cpp
+	@echo [637] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M637_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M637_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

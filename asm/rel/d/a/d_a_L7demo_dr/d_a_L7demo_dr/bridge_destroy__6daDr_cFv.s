@@ -3,12 +3,12 @@ lbl_805A9A34:
 /* 805A9A38  7C 08 02 A6 */	mflr r0
 /* 805A9A3C  90 01 00 84 */	stw r0, 0x84(r1)
 /* 805A9A40  39 61 00 80 */	addi r11, r1, 0x80
-/* 805A9A44  4B DB 87 98 */	b _savegpr_29
+/* 805A9A44  4B DB 87 99 */	bl _savegpr_29
 /* 805A9A48  7C 7F 1B 78 */	mr r31, r3
-/* 805A9A4C  3C 80 80 5B */	lis r4, lit_3864@ha
-/* 805A9A50  3B C4 A4 54 */	addi r30, r4, lit_3864@l
-/* 805A9A54  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805A9A58  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
+/* 805A9A4C  3C 80 80 5B */	lis r4, lit_3864@ha /* 0x805AA454@ha */
+/* 805A9A50  3B C4 A4 54 */	addi r30, r4, lit_3864@l /* 0x805AA454@l */
+/* 805A9A54  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A9A58  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A9A5C  88 05 5D B0 */	lbz r0, 0x5db0(r5)
 /* 805A9A60  7C 00 07 74 */	extsb r0, r0
 /* 805A9A64  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -56,7 +56,7 @@ lbl_805A9A34:
 /* 805A9B0C  38 64 02 48 */	addi r3, r4, 0x248
 /* 805A9B10  38 81 00 4C */	addi r4, r1, 0x4c
 /* 805A9B14  38 A1 00 40 */	addi r5, r1, 0x40
-/* 805A9B18  4B BD 6F 90 */	b Set__9dCamera_cF4cXyz4cXyz
+/* 805A9B18  4B BD 6F 91 */	bl Set__9dCamera_cF4cXyz4cXyz
 /* 805A9B1C  80 7F 06 54 */	lwz r3, 0x654(r31)
 /* 805A9B20  38 03 00 01 */	addi r0, r3, 1
 /* 805A9B24  90 1F 06 54 */	stw r0, 0x654(r31)
@@ -96,17 +96,17 @@ lbl_805A9B2C:
 /* 805A9BA8  38 64 02 48 */	addi r3, r4, 0x248
 /* 805A9BAC  38 81 00 34 */	addi r4, r1, 0x34
 /* 805A9BB0  38 A1 00 28 */	addi r5, r1, 0x28
-/* 805A9BB4  4B BD 6E F4 */	b Set__9dCamera_cF4cXyz4cXyz
+/* 805A9BB4  4B BD 6E F5 */	bl Set__9dCamera_cF4cXyz4cXyz
 /* 805A9BB8  48 00 01 40 */	b lbl_805A9CF8
 lbl_805A9BBC:
 /* 805A9BBC  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 805A9BC0  40 82 00 EC */	bne lbl_805A9CAC
 /* 805A9BC4  38 00 00 B5 */	li r0, 0xb5
 /* 805A9BC8  B0 01 00 08 */	sth r0, 8(r1)
-/* 805A9BCC  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 805A9BD0  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 805A9BCC  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 805A9BD0  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 805A9BD4  38 81 00 08 */	addi r4, r1, 8
-/* 805A9BD8  4B A6 FC 20 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 805A9BD8  4B A6 FC 21 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 805A9BDC  28 03 00 00 */	cmplwi r3, 0
 /* 805A9BE0  41 82 00 0C */	beq lbl_805A9BEC
 /* 805A9BE4  38 00 00 00 */	li r0, 0
@@ -117,13 +117,13 @@ lbl_805A9BEC:
 /* 805A9BF4  C0 1E 00 28 */	lfs f0, 0x28(r30)
 /* 805A9BF8  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 805A9BFC  D0 21 00 24 */	stfs f1, 0x24(r1)
-/* 805A9C00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805A9C04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805A9C00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A9C04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A9C08  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 805A9C0C  38 80 00 08 */	li r4, 8
 /* 805A9C10  38 A0 00 1F */	li r5, 0x1f
 /* 805A9C14  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 805A9C18  4B AC 5E F8 */	b StartQuake__12dVibration_cFii4cXyz
+/* 805A9C18  4B AC 5E F9 */	bl StartQuake__12dVibration_cFii4cXyz
 /* 805A9C1C  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070489@ha */
 /* 805A9C20  38 03 04 89 */	addi r0, r3, 0x0489 /* 0x00070489@l */
 /* 805A9C24  90 01 00 0C */	stw r0, 0xc(r1)
@@ -170,8 +170,8 @@ lbl_805A9CAC:
 /* 805A9CC4  88 1F 06 59 */	lbz r0, 0x659(r31)
 /* 805A9CC8  28 00 00 00 */	cmplwi r0, 0
 /* 805A9CCC  40 82 00 2C */	bne lbl_805A9CF8
-/* 805A9CD0  3C 80 80 5B */	lis r4, lit_4041@ha
-/* 805A9CD4  38 A4 A5 00 */	addi r5, r4, lit_4041@l
+/* 805A9CD0  3C 80 80 5B */	lis r4, lit_4041@ha /* 0x805AA500@ha */
+/* 805A9CD4  38 A4 A5 00 */	addi r5, r4, lit_4041@l /* 0x805AA500@l */
 /* 805A9CD8  80 85 00 00 */	lwz r4, 0(r5)
 /* 805A9CDC  80 05 00 04 */	lwz r0, 4(r5)
 /* 805A9CE0  90 81 00 10 */	stw r4, 0x10(r1)
@@ -182,7 +182,7 @@ lbl_805A9CAC:
 /* 805A9CF4  4B FF F5 45 */	bl setAction__6daDr_cFM6daDr_cFPCvPv_v
 lbl_805A9CF8:
 /* 805A9CF8  39 61 00 80 */	addi r11, r1, 0x80
-/* 805A9CFC  4B DB 85 2C */	b _restgpr_29
+/* 805A9CFC  4B DB 85 2D */	bl _restgpr_29
 /* 805A9D00  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 805A9D04  7C 08 03 A6 */	mtlr r0
 /* 805A9D08  38 21 00 80 */	addi r1, r1, 0x80

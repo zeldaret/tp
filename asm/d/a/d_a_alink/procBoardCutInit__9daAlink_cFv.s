@@ -14,8 +14,8 @@ lbl_801074AC:
 /* 801074DC  2C 03 00 00 */	cmpwi r3, 0
 /* 801074E0  41 82 00 3C */	beq lbl_8010751C
 /* 801074E4  C0 5E 1F E0 */	lfs f2, 0x1fe0(r30)
-/* 801074E8  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 801074EC  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 801074E8  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 801074EC  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 801074F0  A8 03 00 56 */	lha r0, 0x56(r3)
 /* 801074F4  C8 22 92 B0 */	lfd f1, lit_6025(r2)
 /* 801074F8  6C 00 80 00 */	xoris r0, r0, 0x8000

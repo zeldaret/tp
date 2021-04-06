@@ -3,19 +3,20 @@
 #
 
 M609_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw.plf
+M609_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw.lcf
+M609_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw.map
 
 M609_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rw/executor.cpp \
-	rel/d/a/obj/d_a_obj_rw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_rw/d_a_obj_rw.cpp \
 
 M609_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/d_a_obj_rw.o \
 
 M609_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/libRuntime.PPCEABI.H.a \
 
 M609_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M609_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map609.map\
+	-m _prolog \
+	-lcf $(M609_LDSCRIPT) \
+	-unused -map $(M609_MAP) \
+	-w off \
 
 $(M609_TARGET): $(M609_O_FILES) $(M609_LIBS)
+	@echo [609] creating $(M609_TARGET)
 	@echo $(M609_LIBS) $(M609_O_FILES) > build/M609_ofiles
-	$(LD) -opt_partial $(M609_LDFLAGS) -o $(M609_TARGET) @build/M609_ofiles
+	@python3 tools/lcf.py rel 609 --output $(M609_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M609_LDFLAGS) -o $(M609_TARGET) @build/M609_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rw/%.o: rel/d/a/obj/d_a_obj_rw/%.cpp
+	@echo [609] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M609_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M609_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_rw/libs/Runtime.PPCEABI.H/Makefile
 

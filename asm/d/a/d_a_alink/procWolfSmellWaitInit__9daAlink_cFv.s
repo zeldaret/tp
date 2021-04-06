@@ -13,8 +13,8 @@ lbl_8011D0A0:
 lbl_8011D0CC:
 /* 8011D0CC  7F E3 FB 78 */	mr r3, r31
 /* 8011D0D0  38 80 00 72 */	li r4, 0x72
-/* 8011D0D4  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha
-/* 8011D0D8  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l
+/* 8011D0D4  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8011D0D8  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8011D0DC  C0 25 00 54 */	lfs f1, 0x54(r5)
 /* 8011D0E0  C0 45 00 58 */	lfs f2, 0x58(r5)
 /* 8011D0E4  48 00 C5 F5 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff

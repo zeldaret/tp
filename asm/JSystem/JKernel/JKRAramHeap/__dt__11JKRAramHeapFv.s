@@ -7,11 +7,11 @@ lbl_802D2F14:
 /* 802D2F28  7C 7D 1B 79 */	or. r29, r3, r3
 /* 802D2F2C  7C 9E 23 78 */	mr r30, r4
 /* 802D2F30  41 82 00 70 */	beq lbl_802D2FA0
-/* 802D2F34  3C 60 80 3D */	lis r3, __vt__11JKRAramHeap@ha
-/* 802D2F38  38 03 C1 68 */	addi r0, r3, __vt__11JKRAramHeap@l
+/* 802D2F34  3C 60 80 3D */	lis r3, __vt__11JKRAramHeap@ha /* 0x803CC168@ha */
+/* 802D2F38  38 03 C1 68 */	addi r0, r3, __vt__11JKRAramHeap@l /* 0x803CC168@l */
 /* 802D2F3C  90 1D 00 00 */	stw r0, 0(r29)
-/* 802D2F40  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha
-/* 802D2F44  83 E3 43 0C */	lwz r31, sAramList__11JKRAramHeap@l(r3)
+/* 802D2F40  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha /* 0x8043430C@ha */
+/* 802D2F44  83 E3 43 0C */	lwz r31, sAramList__11JKRAramHeap@l(r3)  /* 0x8043430C@l */
 /* 802D2F48  48 00 00 34 */	b lbl_802D2F7C
 lbl_802D2F4C:
 /* 802D2F4C  93 E1 00 08 */	stw r31, 8(r1)

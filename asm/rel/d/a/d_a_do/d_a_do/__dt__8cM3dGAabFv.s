@@ -5,12 +5,12 @@ lbl_8066EC88:
 /* 8066EC94  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8066EC98  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8066EC9C  41 82 00 1C */	beq lbl_8066ECB8
-/* 8066ECA0  3C A0 80 67 */	lis r5, __vt__8cM3dGAab@ha
-/* 8066ECA4  38 05 F2 28 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 8066ECA0  3C A0 80 67 */	lis r5, __vt__8cM3dGAab@ha /* 0x8066F228@ha */
+/* 8066ECA4  38 05 F2 28 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x8066F228@l */
 /* 8066ECA8  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 8066ECAC  7C 80 07 35 */	extsh. r0, r4
 /* 8066ECB0  40 81 00 08 */	ble lbl_8066ECB8
-/* 8066ECB4  4B C6 00 88 */	b __dl__FPv
+/* 8066ECB4  4B C6 00 89 */	bl __dl__FPv
 lbl_8066ECB8:
 /* 8066ECB8  7F E3 FB 78 */	mr r3, r31
 /* 8066ECBC  83 E1 00 0C */	lwz r31, 0xc(r1)

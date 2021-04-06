@@ -3,19 +3,20 @@
 #
 
 M652_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai.plf
+M652_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai.lcf
+M652_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai.map
 
 M652_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_takaraDai/executor.cpp \
-	rel/d/a/obj/d_a_obj_takaraDai/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_takaraDai/d_a_obj_takaraDai.cpp \
 
 M652_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/d_a_obj_takaraDai.o \
 
 M652_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/libRuntime.PPCEABI.H.a \
 
 M652_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M652_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map652.map\
+	-m _prolog \
+	-lcf $(M652_LDSCRIPT) \
+	-unused -map $(M652_MAP) \
+	-w off \
 
 $(M652_TARGET): $(M652_O_FILES) $(M652_LIBS)
+	@echo [652] creating $(M652_TARGET)
 	@echo $(M652_LIBS) $(M652_O_FILES) > build/M652_ofiles
-	$(LD) -opt_partial $(M652_LDFLAGS) -o $(M652_TARGET) @build/M652_ofiles
+	@python3 tools/lcf.py rel 652 --output $(M652_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M652_LDFLAGS) -o $(M652_TARGET) @build/M652_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_takaraDai/%.o: rel/d/a/obj/d_a_obj_takaraDai/%.cpp
+	@echo [652] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M652_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M652_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_takaraDai/libs/Runtime.PPCEABI.H/Makefile
 

@@ -28,42 +28,42 @@ extern "C" bool AMC_IsStub();
 // Declarations:
 //
 
-/* 80372CFC-80372D00 0004+00 s=0 e=1 z=0  None .text      EXI2_Init */
-extern "C" void EXI2_Init() {
+/* 80372CFC-80372D00 36D63C 0004+00 0/0 1/1 0/0 .text            EXI2_Init */
+void EXI2_Init() {
     /* empty function */
 }
 
-/* 80372D00-80372D04 0004+00 s=0 e=1 z=0  None .text      EXI2_EnableInterrupts */
-extern "C" void EXI2_EnableInterrupts() {
+/* 80372D00-80372D04 36D640 0004+00 0/0 1/1 0/0 .text            EXI2_EnableInterrupts */
+void EXI2_EnableInterrupts() {
     /* empty function */
 }
 
-/* 80372D04-80372D0C 0008+00 s=0 e=2 z=0  None .text      EXI2_Poll */
-extern "C" bool EXI2_Poll() {
+/* 80372D04-80372D0C 36D644 0008+00 0/0 2/2 0/0 .text            EXI2_Poll */
+bool EXI2_Poll() {
     return false;
 }
 
-/* 80372D0C-80372D14 0008+00 s=0 e=2 z=0  None .text      EXI2_ReadN */
-extern "C" bool EXI2_ReadN() {
+/* 80372D0C-80372D14 36D64C 0008+00 0/0 2/2 0/0 .text            EXI2_ReadN */
+bool EXI2_ReadN() {
     return false;
 }
 
-/* 80372D14-80372D1C 0008+00 s=0 e=1 z=0  None .text      EXI2_WriteN */
-extern "C" bool EXI2_WriteN() {
+/* 80372D14-80372D1C 36D654 0008+00 0/0 1/1 0/0 .text            EXI2_WriteN */
+bool EXI2_WriteN() {
     return false;
 }
 
-/* 80372D1C-80372D20 0004+00 s=0 e=1 z=0  None .text      EXI2_Reserve */
-extern "C" void EXI2_Reserve() {
+/* 80372D1C-80372D20 36D65C 0004+00 0/0 1/1 0/0 .text            EXI2_Reserve */
+void EXI2_Reserve() {
     /* empty function */
 }
 
-/* 80372D20-80372D24 0004+00 s=0 e=1 z=0  None .text      EXI2_Unreserve */
-extern "C" void EXI2_Unreserve() {
+/* 80372D20-80372D24 36D660 0004+00 0/0 1/1 0/0 .text            EXI2_Unreserve */
+void EXI2_Unreserve() {
     /* empty function */
 }
 
-/* 80372D24-80372D2C 0008+00 s=0 e=1 z=0  None .text      AMC_IsStub */
-extern "C" bool AMC_IsStub() {
+/* 80372D24-80372D2C 36D664 0008+00 0/0 1/1 0/0 .text            AMC_IsStub */
+bool AMC_IsStub() {
     return true;
 }

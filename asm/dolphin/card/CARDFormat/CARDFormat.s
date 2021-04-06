@@ -5,9 +5,9 @@ lbl_80357C20:
 /* 80357C2C  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80357C30  7C 7F 1B 78 */	mr r31, r3
 /* 80357C34  4B FF BF 41 */	bl __CARDGetFontEncode
-/* 80357C38  3C A0 80 35 */	lis r5, __CARDSyncCallback@ha
+/* 80357C38  3C A0 80 35 */	lis r5, __CARDSyncCallback@ha /* 0x80352A34@ha */
 /* 80357C3C  38 83 00 00 */	addi r4, r3, 0
-/* 80357C40  38 A5 2A 34 */	addi r5, r5, __CARDSyncCallback@l
+/* 80357C40  38 A5 2A 34 */	addi r5, r5, __CARDSyncCallback@l /* 0x80352A34@l */
 /* 80357C44  38 7F 00 00 */	addi r3, r31, 0
 /* 80357C48  4B FF F9 81 */	bl __CARDFormatRegionAsync
 /* 80357C4C  2C 03 00 00 */	cmpwi r3, 0

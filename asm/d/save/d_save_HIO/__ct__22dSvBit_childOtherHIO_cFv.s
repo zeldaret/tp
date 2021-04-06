@@ -1,6 +1,6 @@
 lbl_8025C13C:
-/* 8025C13C  3C 80 80 3C */	lis r4, __vt__22dSvBit_childOtherHIO_c@ha
-/* 8025C140  38 04 33 00 */	addi r0, r4, __vt__22dSvBit_childOtherHIO_c@l
+/* 8025C13C  3C 80 80 3C */	lis r4, __vt__22dSvBit_childOtherHIO_c@ha /* 0x803C3300@ha */
+/* 8025C140  38 04 33 00 */	addi r0, r4, __vt__22dSvBit_childOtherHIO_c@l /* 0x803C3300@l */
 /* 8025C144  90 03 00 00 */	stw r0, 0(r3)
 /* 8025C148  38 80 00 00 */	li r4, 0
 /* 8025C14C  98 83 00 05 */	stb r4, 5(r3)

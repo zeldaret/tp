@@ -9,8 +9,8 @@ lbl_8035591C:
 /* 80355938  93 81 00 18 */	stw r28, 0x18(r1)
 /* 8035593C  3B 83 00 00 */	addi r28, r3, 0
 /* 80355940  1C BC 01 10 */	mulli r5, r28, 0x110
-/* 80355944  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80355948  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80355944  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80355948  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 8035594C  7F C0 2A 14 */	add r30, r0, r5
 /* 80355950  80 1E 00 00 */	lwz r0, 0(r30)
 /* 80355954  2C 00 00 00 */	cmpwi r0, 0
@@ -32,8 +32,8 @@ lbl_80355964:
 /* 80355990  38 80 20 00 */	li r4, 0x2000
 /* 80355994  4B FE 5C 49 */	bl DCStoreRange
 /* 80355998  93 BE 00 D8 */	stw r29, 0xd8(r30)
-/* 8035599C  3C 60 80 35 */	lis r3, EraseCallback@ha
-/* 803559A0  38 A3 58 54 */	addi r5, r3, EraseCallback@l
+/* 8035599C  3C 60 80 35 */	lis r3, EraseCallback@ha /* 0x80355854@ha */
+/* 803559A0  38 A3 58 54 */	addi r5, r3, EraseCallback@l /* 0x80355854@l */
 /* 803559A4  80 1E 00 80 */	lwz r0, 0x80(r30)
 /* 803559A8  7F 83 E3 78 */	mr r3, r28
 /* 803559AC  80 9E 00 0C */	lwz r4, 0xc(r30)

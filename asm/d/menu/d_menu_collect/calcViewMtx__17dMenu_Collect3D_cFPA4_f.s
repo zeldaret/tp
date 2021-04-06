@@ -12,8 +12,8 @@ lbl_801B774C:
 /* 801B7774  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801B7778  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 801B777C  38 81 00 14 */	addi r4, r1, 0x14
-/* 801B7780  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 801B7784  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l
+/* 801B7780  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 801B7784  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 801B7788  38 C1 00 08 */	addi r6, r1, 8
 /* 801B778C  38 E0 00 00 */	li r7, 0
 /* 801B7790  4B E5 4F 81 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs

@@ -7,13 +7,13 @@ lbl_80267FD0:
 /* 80267FE4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80267FE8  7C 9F 23 78 */	mr r31, r4
 /* 80267FEC  41 82 00 40 */	beq lbl_8026802C
-/* 80267FF0  3C 60 80 3C */	lis r3, __vt__13cBgS_ShdwDraw@ha
-/* 80267FF4  38 03 3F C0 */	addi r0, r3, __vt__13cBgS_ShdwDraw@l
+/* 80267FF0  3C 60 80 3C */	lis r3, __vt__13cBgS_ShdwDraw@ha /* 0x803C3FC0@ha */
+/* 80267FF4  38 03 3F C0 */	addi r0, r3, __vt__13cBgS_ShdwDraw@l /* 0x803C3FC0@l */
 /* 80267FF8  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80267FFC  34 1E 00 14 */	addic. r0, r30, 0x14
 /* 80268000  41 82 00 10 */	beq lbl_80268010
-/* 80268004  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha
-/* 80268008  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l
+/* 80268004  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha /* 0x803A7218@ha */
+/* 80268008  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l /* 0x803A7218@l */
 /* 8026800C  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_80268010:
 /* 80268010  7F C3 F3 78 */	mr r3, r30

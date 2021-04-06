@@ -9,12 +9,12 @@ lbl_800561F8:
 /* 80056214  41 82 00 40 */	beq lbl_80056254
 /* 80056218  34 1E 00 A8 */	addic. r0, r30, 0xa8
 /* 8005621C  41 82 00 28 */	beq lbl_80056244
-/* 80056220  3C 60 80 3B */	lis r3, __vt__22dDlst_shadowRealPoly_c@ha
-/* 80056224  38 03 8D DC */	addi r0, r3, __vt__22dDlst_shadowRealPoly_c@l
+/* 80056220  3C 60 80 3B */	lis r3, __vt__22dDlst_shadowRealPoly_c@ha /* 0x803A8DDC@ha */
+/* 80056224  38 03 8D DC */	addi r0, r3, __vt__22dDlst_shadowRealPoly_c@l /* 0x803A8DDC@l */
 /* 80056228  90 1E 00 A8 */	stw r0, 0xa8(r30)
 /* 8005622C  38 7E 00 B0 */	addi r3, r30, 0xb0
-/* 80056230  3C 80 80 05 */	lis r4, __dt__17dDlst_shadowTri_cFv@ha
-/* 80056234  38 84 62 70 */	addi r4, r4, __dt__17dDlst_shadowTri_cFv@l
+/* 80056230  3C 80 80 05 */	lis r4, __dt__17dDlst_shadowTri_cFv@ha /* 0x80056270@ha */
+/* 80056234  38 84 62 70 */	addi r4, r4, __dt__17dDlst_shadowTri_cFv@l /* 0x80056270@l */
 /* 80056238  38 A0 00 24 */	li r5, 0x24
 /* 8005623C  38 C0 01 00 */	li r6, 0x100
 /* 80056240  48 30 BA A9 */	bl __destroy_arr

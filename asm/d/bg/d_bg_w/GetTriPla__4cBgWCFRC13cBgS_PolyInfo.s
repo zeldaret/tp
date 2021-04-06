@@ -3,8 +3,8 @@ lbl_8007B270:
 /* 8007B274  80 84 00 94 */	lwz r4, 0x94(r4)
 /* 8007B278  1C 00 00 18 */	mulli r0, r0, 0x18
 /* 8007B27C  7C A4 02 14 */	add r5, r4, r0
-/* 8007B280  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 8007B284  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 8007B280  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8007B284  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8007B288  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8007B28C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 8007B290  D0 03 00 00 */	stfs f0, 0(r3)

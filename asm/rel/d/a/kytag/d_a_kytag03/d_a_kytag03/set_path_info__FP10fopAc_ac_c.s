@@ -10,7 +10,7 @@ lbl_80856238:
 /* 80856258  41 82 00 14 */	beq lbl_8085626C
 /* 8085625C  88 05 04 E2 */	lbz r0, 0x4e2(r5)
 /* 80856260  7C 04 07 74 */	extsb r4, r0
-/* 80856264  4B 7F B5 88 */	b dPath_GetRoomPath__Fii
+/* 80856264  4B 7F B5 89 */	bl dPath_GetRoomPath__Fii
 /* 80856268  7C 64 1B 78 */	mr r4, r3
 lbl_8085626C:
 /* 8085626C  7C 83 23 78 */	mr r3, r4

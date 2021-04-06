@@ -3,17 +3,15 @@
 #
 
 M6_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00.plf
+M6_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00.lcf
+M6_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00.map
 
 M6_CPP_FILES := \
-	rel/d/a/door/d_a_door_dbdoor00/executor.cpp \
-	rel/d/a/door/d_a_door_dbdoor00/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_dbdoor00/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00.cpp \
 
 M6_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00.o \
 
 M6_LIBS := \
@@ -29,15 +27,21 @@ M6_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map6.map\
+	-m _prolog \
+	-lcf $(M6_LDSCRIPT) \
+	-unused -map $(M6_MAP) \
+	-w off \
 
 $(M6_TARGET): $(M6_O_FILES) $(M6_LIBS)
+	@echo [  6] creating $(M6_TARGET)
 	@echo $(M6_LIBS) $(M6_O_FILES) > build/M6_ofiles
-	$(LD) -opt_partial $(M6_LDFLAGS) -o $(M6_TARGET) @build/M6_ofiles
+	@python3 tools/lcf.py rel 6 --output $(M6_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M6_LDFLAGS) -o $(M6_TARGET) @build/M6_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_dbdoor00/%.o: rel/d/a/door/d_a_door_dbdoor00/%.cpp
+	@echo [  6] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M6_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M6_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

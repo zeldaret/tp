@@ -29,15 +29,15 @@ struct daTagSmkEmt_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct dKy_tevstr_c {};
+struct cXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -48,11 +48,6 @@ struct dPa_control_c {
 //
 // Forward References:
 //
-
-static void daTagSmkEmt_create(daTagSmkEmt_c*);
-static void daTagSmkEmt_Delete(daTagSmkEmt_c*);
-static void daTagSmkEmt_execute(daTagSmkEmt_c*);
-static void daTagSmkEmt_draw(daTagSmkEmt_c*);
 
 extern "C" void __ct__13daTagSmkEmt_cFv();
 extern "C" void __dt__13daTagSmkEmt_cFv();
@@ -66,14 +61,10 @@ extern "C" static void daTagSmkEmt_create__FP13daTagSmkEmt_c();
 extern "C" static void daTagSmkEmt_Delete__FP13daTagSmkEmt_c();
 extern "C" static void daTagSmkEmt_execute__FP13daTagSmkEmt_c();
 extern "C" static void daTagSmkEmt_draw__FP13daTagSmkEmt_c();
-extern "C" extern void* g_profile_Tag_SmkEmt[12];
-extern "C" extern void* __vt__13daTagSmkEmt_c[3];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -93,7 +84,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D6160C-80D6162C 0020+00 s=1 e=0 z=0  None .data      daTagSmkEmt_METHODS */
+/* 80D6160C-80D6162C -00001 0020+00 1/0 0/0 0/0 .data            daTagSmkEmt_METHODS */
 SECTION_DATA static void* daTagSmkEmt_METHODS[8] = {
     (void*)daTagSmkEmt_create__FP13daTagSmkEmt_c,
     (void*)daTagSmkEmt_Delete__FP13daTagSmkEmt_c,
@@ -105,8 +96,8 @@ SECTION_DATA static void* daTagSmkEmt_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D6162C-80D6165C 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_SmkEmt */
-SECTION_DATA void* g_profile_Tag_SmkEmt[12] = {
+/* 80D6162C-80D6165C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_SmkEmt */
+SECTION_DATA extern void* g_profile_Tag_SmkEmt[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01A00000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,
@@ -115,18 +106,14 @@ SECTION_DATA void* g_profile_Tag_SmkEmt[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D6165C-80D61668 000C+00 s=2 e=0 z=0  None .data      __vt__13daTagSmkEmt_c */
-SECTION_DATA void* __vt__13daTagSmkEmt_c[3] = {
+/* 80D6165C-80D61668 000050 000C+00 2/2 0/0 0/0 .data            __vt__13daTagSmkEmt_c */
+SECTION_DATA extern void* __vt__13daTagSmkEmt_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13daTagSmkEmt_cFv,
 };
 
-/* 80D612D8-80D61324 004C+00 s=2 e=0 z=0  None .text      __ct__13daTagSmkEmt_cFv */
-//	80D612EC: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D612F0: 80D6165C (__vt__13daTagSmkEmt_c)
-//	80D612F4: 80D6165C (__vt__13daTagSmkEmt_c)
-//	80D61308: 80003458 (memset)
+/* 80D612D8-80D61324 000078 004C+00 2/2 0/0 0/0 .text            __ct__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,11 +123,7 @@ asm daTagSmkEmt_c::daTagSmkEmt_c() {
 }
 #pragma pop
 
-/* 80D61324-80D61384 0060+00 s=1 e=0 z=0  None .text      __dt__13daTagSmkEmt_cFv */
-//	80D61344: 80D6165C (__vt__13daTagSmkEmt_c)
-//	80D61348: 80D6165C (__vt__13daTagSmkEmt_c)
-//	80D61354: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80D61364: 802CED3C (__dl__FPv)
+/* 80D61324-80D61384 0000C4 0060+00 1/0 0/0 0/0 .text            __dt__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -150,9 +133,7 @@ asm daTagSmkEmt_c::~daTagSmkEmt_c() {
 }
 #pragma pop
 
-/* 80D61384-80D613DC 0058+00 s=1 e=0 z=0  None .text      create__13daTagSmkEmt_cFv */
-//	80D613AC: 80D612D8 (__ct__13daTagSmkEmt_cFv)
-//	80D613C0: 80D61410 (createSmkEmt__13daTagSmkEmt_cFv)
+/* 80D61384-80D613DC 000124 0058+00 1/1 0/0 0/0 .text            create__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -162,8 +143,7 @@ asm void daTagSmkEmt_c::create() {
 }
 #pragma pop
 
-/* 80D613DC-80D61400 0024+00 s=1 e=0 z=0  None .text      Delete__13daTagSmkEmt_cFv */
-//	80D613E8: 80D61500 (deleteSmkEmt__13daTagSmkEmt_cFv)
+/* 80D613DC-80D61400 00017C 0024+00 1/1 0/0 0/0 .text            Delete__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -173,18 +153,18 @@ asm void daTagSmkEmt_c::Delete() {
 }
 #pragma pop
 
-/* 80D61400-80D61408 0008+00 s=1 e=0 z=0  None .text      draw__13daTagSmkEmt_cFv */
+/* 80D61400-80D61408 0001A0 0008+00 1/1 0/0 0/0 .text            draw__13daTagSmkEmt_cFv */
 bool daTagSmkEmt_c::draw() {
     return true;
 }
 
-/* 80D61408-80D61410 0008+00 s=1 e=0 z=0  None .text      execute__13daTagSmkEmt_cFv */
+/* 80D61408-80D61410 0001A8 0008+00 1/1 0/0 0/0 .text            execute__13daTagSmkEmt_cFv */
 bool daTagSmkEmt_c::execute() {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80D61600-80D61608 0006+02 s=1 e=0 z=0  None .rodata    PARTICLE_NAME$3654 */
+/* 80D61600-80D61608 000000 0006+02 1/1 0/0 0/0 .rodata          PARTICLE_NAME$3654 */
 SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
     0x87,
     0xE7,
@@ -196,22 +176,13 @@ SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_80D61600 = (void*)(&PARTICLE_NAME);
 
-/* 80D61608-80D6160C 0004+00 s=1 e=0 z=0  None .rodata    @3677 */
+/* 80D61608-80D6160C 000008 0004+00 1/1 0/0 0/0 .rodata          @3677 */
 SECTION_RODATA static u32 const lit_3677 = 0x3F800000;
+SECTION_DEAD void* const cg_80D61608 = (void*)(&lit_3677);
 
-/* 80D61410-80D61500 00F0+00 s=1 e=0 z=0  None .text      createSmkEmt__13daTagSmkEmt_cFv */
-//	80D61420: 803621CC (_savegpr_25)
-//	80D61450: 802673F4 (__ct__5csXyzFsss)
-//	80D61454: 80D61608 (lit_3677)
-//	80D61458: 80D61608 (lit_3677)
-//	80D61478: 804061C0 (g_dComIfG_gameInfo)
-//	80D6147C: 804061C0 (g_dComIfG_gameInfo)
-//	80D61480: 80D61600 (PARTICLE_NAME)
-//	80D61484: 80D61600 (PARTICLE_NAME)
-//	80D614C8: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80D614EC: 80362218 (_restgpr_25)
+/* 80D61410-80D61500 0001B0 00F0+00 1/1 0/0 0/0 .text            createSmkEmt__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -221,7 +192,7 @@ asm void daTagSmkEmt_c::createSmkEmt() {
 }
 #pragma pop
 
-/* 80D61500-80D61544 0044+00 s=1 e=0 z=0  None .text      deleteSmkEmt__13daTagSmkEmt_cFv */
+/* 80D61500-80D61544 0002A0 0044+00 1/1 0/0 0/0 .text            deleteSmkEmt__13daTagSmkEmt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,46 +202,42 @@ asm void daTagSmkEmt_c::deleteSmkEmt() {
 }
 #pragma pop
 
-/* 80D61544-80D61598 0054+00 s=1 e=0 z=0  None .text      daTagSmkEmt_create__FP13daTagSmkEmt_c */
-//	80D6156C: 80D612D8 (__ct__13daTagSmkEmt_cFv)
-//	80D61580: 80D61384 (create__13daTagSmkEmt_cFv)
+/* 80D61544-80D61598 0002E4 0054+00 1/0 0/0 0/0 .text daTagSmkEmt_create__FP13daTagSmkEmt_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSmkEmt_create(daTagSmkEmt_c* param_0) {
+static asm void daTagSmkEmt_create(daTagSmkEmt_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt/daTagSmkEmt_create__FP13daTagSmkEmt_c.s"
 }
 #pragma pop
 
-/* 80D61598-80D615B8 0020+00 s=1 e=0 z=0  None .text      daTagSmkEmt_Delete__FP13daTagSmkEmt_c */
-//	80D615A4: 80D613DC (Delete__13daTagSmkEmt_cFv)
+/* 80D61598-80D615B8 000338 0020+00 1/0 0/0 0/0 .text daTagSmkEmt_Delete__FP13daTagSmkEmt_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSmkEmt_Delete(daTagSmkEmt_c* param_0) {
+static asm void daTagSmkEmt_Delete(daTagSmkEmt_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt/daTagSmkEmt_Delete__FP13daTagSmkEmt_c.s"
 }
 #pragma pop
 
-/* 80D615B8-80D615D8 0020+00 s=1 e=0 z=0  None .text      daTagSmkEmt_execute__FP13daTagSmkEmt_c */
-//	80D615C4: 80D61408 (execute__13daTagSmkEmt_cFv)
+/* 80D615B8-80D615D8 000358 0020+00 1/0 0/0 0/0 .text daTagSmkEmt_execute__FP13daTagSmkEmt_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSmkEmt_execute(daTagSmkEmt_c* param_0) {
+static asm void daTagSmkEmt_execute(daTagSmkEmt_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt/daTagSmkEmt_execute__FP13daTagSmkEmt_c.s"
 }
 #pragma pop
 
-/* 80D615D8-80D615F8 0020+00 s=1 e=0 z=0  None .text      daTagSmkEmt_draw__FP13daTagSmkEmt_c */
-//	80D615E4: 80D61400 (draw__13daTagSmkEmt_cFv)
+/* 80D615D8-80D615F8 000378 0020+00 1/0 0/0 0/0 .text            daTagSmkEmt_draw__FP13daTagSmkEmt_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSmkEmt_draw(daTagSmkEmt_c* param_0) {
+static asm void daTagSmkEmt_draw(daTagSmkEmt_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt/daTagSmkEmt_draw__FP13daTagSmkEmt_c.s"
 }

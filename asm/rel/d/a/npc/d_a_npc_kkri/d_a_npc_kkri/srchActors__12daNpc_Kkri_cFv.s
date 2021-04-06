@@ -13,15 +13,15 @@ lbl_8055032C:
 /* 80550358  48 00 00 2C */	b lbl_80550384
 lbl_8055035C:
 /* 8055035C  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 80550360  4B BF 53 A8 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80550360  4B BF 53 A9 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80550364  28 03 00 00 */	cmplwi r3, 0
 /* 80550368  40 82 00 1C */	bne lbl_80550384
 /* 8055036C  7F E3 FB 78 */	mr r3, r31
 /* 80550370  38 80 01 68 */	li r4, 0x168
-/* 80550374  4B BF BA B8 */	b getNearestActorP__8daNpcT_cFs
+/* 80550374  4B BF BA B9 */	bl getNearestActorP__8daNpcT_cFs
 /* 80550378  7C 64 1B 78 */	mr r4, r3
 /* 8055037C  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 80550380  4B BF 53 60 */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 80550380  4B BF 53 61 */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_80550384:
 /* 80550384  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80550388  80 01 00 14 */	lwz r0, 0x14(r1)

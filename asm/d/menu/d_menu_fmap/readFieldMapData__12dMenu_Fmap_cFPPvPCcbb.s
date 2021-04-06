@@ -9,8 +9,8 @@ lbl_801CC094:
 /* 801CC0B0  7C B9 2B 78 */	mr r25, r5
 /* 801CC0B4  7C DA 33 78 */	mr r26, r6
 /* 801CC0B8  80 63 00 64 */	lwz r3, 0x64(r3)
-/* 801CC0BC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801CC0C0  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l
+/* 801CC0BC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801CC0C0  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801CC0C4  80 1D 5C 68 */	lwz r0, 0x5c68(r29)
 /* 801CC0C8  7C 03 00 40 */	cmplw r3, r0
 /* 801CC0CC  41 82 00 9C */	beq lbl_801CC168

@@ -3,17 +3,15 @@
 #
 
 M520_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB.plf
+M520_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB.lcf
+M520_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB.map
 
 M520_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv3WaterB/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv3WaterB/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv3WaterB/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB.cpp \
 
 M520_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB.o \
 
 M520_LIBS := \
@@ -29,15 +27,21 @@ M520_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map520.map\
+	-m _prolog \
+	-lcf $(M520_LDSCRIPT) \
+	-unused -map $(M520_MAP) \
+	-w off \
 
 $(M520_TARGET): $(M520_O_FILES) $(M520_LIBS)
+	@echo [520] creating $(M520_TARGET)
 	@echo $(M520_LIBS) $(M520_O_FILES) > build/M520_ofiles
-	$(LD) -opt_partial $(M520_LDFLAGS) -o $(M520_TARGET) @build/M520_ofiles
+	@python3 tools/lcf.py rel 520 --output $(M520_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M520_LDFLAGS) -o $(M520_TARGET) @build/M520_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3WaterB/%.o: rel/d/a/obj/d_a_obj_lv3WaterB/%.cpp
+	@echo [520] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M520_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M520_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

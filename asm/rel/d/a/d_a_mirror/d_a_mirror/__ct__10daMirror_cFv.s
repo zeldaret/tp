@@ -4,13 +4,13 @@ lbl_80871E24:
 /* 80871E2C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80871E30  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80871E34  7C 7F 1B 78 */	mr r31, r3
-/* 80871E38  4B 7A 6D 2C */	b __ct__10fopAc_ac_cFv
+/* 80871E38  4B 7A 6D 2D */	bl __ct__10fopAc_ac_cFv
 /* 80871E3C  38 7F 05 70 */	addi r3, r31, 0x570
 /* 80871E40  4B FF ED 99 */	bl __ct__16dMirror_packet_cFv
-/* 80871E44  3C 60 80 42 */	lis r3, m_entryModel__10daMirror_c@ha
-/* 80871E48  38 A3 45 7C */	addi r5, r3, m_entryModel__10daMirror_c@l
-/* 80871E4C  3C 60 80 87 */	lis r3, lit_4377@ha
-/* 80871E50  38 83 26 68 */	addi r4, r3, lit_4377@l
+/* 80871E44  3C 60 80 42 */	lis r3, m_entryModel__10daMirror_c@ha /* 0x8042457C@ha */
+/* 80871E48  38 A3 45 7C */	addi r5, r3, m_entryModel__10daMirror_c@l /* 0x8042457C@l */
+/* 80871E4C  3C 60 80 87 */	lis r3, lit_4377@ha /* 0x80872668@ha */
+/* 80871E50  38 83 26 68 */	addi r4, r3, lit_4377@l /* 0x80872668@l */
 /* 80871E54  80 64 00 00 */	lwz r3, 0(r4)
 /* 80871E58  80 04 00 04 */	lwz r0, 4(r4)
 /* 80871E5C  90 65 00 00 */	stw r3, 0(r5)

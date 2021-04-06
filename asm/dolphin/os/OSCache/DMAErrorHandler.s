@@ -24,8 +24,8 @@ lbl_8033B9CC:
 /* 8033B9E4  91 21 00 20 */	stw r9, 0x20(r1)
 /* 8033B9E8  91 41 00 24 */	stw r10, 0x24(r1)
 /* 8033B9EC  7C 9D 23 78 */	mr r29, r4
-/* 8033B9F0  3C 60 80 3D */	lis r3, lit_63@ha
-/* 8033B9F4  3B E3 F5 10 */	addi r31, r3, lit_63@l
+/* 8033B9F0  3C 60 80 3D */	lis r3, lit_63@ha /* 0x803CF510@ha */
+/* 8033B9F4  3B E3 F5 10 */	addi r31, r3, lit_63@l /* 0x803CF510@l */
 /* 8033B9F8  4B FF E3 95 */	bl PPCMfhid2
 /* 8033B9FC  7C 7E 1B 78 */	mr r30, r3
 /* 8033BA00  4C C6 31 82 */	crclr 6

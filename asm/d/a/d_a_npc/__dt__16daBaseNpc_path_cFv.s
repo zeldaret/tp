@@ -5,8 +5,8 @@ lbl_801503FC:
 /* 80150408  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015040C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80150410  41 82 00 1C */	beq lbl_8015042C
-/* 80150414  3C A0 80 3B */	lis r5, __vt__16daBaseNpc_path_c@ha
-/* 80150418  38 05 3A 50 */	addi r0, r5, __vt__16daBaseNpc_path_c@l
+/* 80150414  3C A0 80 3B */	lis r5, __vt__16daBaseNpc_path_c@ha /* 0x803B3A50@ha */
+/* 80150418  38 05 3A 50 */	addi r0, r5, __vt__16daBaseNpc_path_c@l /* 0x803B3A50@l */
 /* 8015041C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80150420  7C 80 07 35 */	extsh. r0, r4
 /* 80150424  40 81 00 08 */	ble lbl_8015042C

@@ -3,19 +3,20 @@
 #
 
 M295_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt.plf
+M295_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt.lcf
+M295_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt.map
 
 M295_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_clerkt/executor.cpp \
-	rel/d/a/npc/d_a_npc_clerkt/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_clerkt/d_a_npc_clerkt.cpp \
 
 M295_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt/d_a_npc_clerkt.o \
 
 M295_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt/libRuntime.PPCEABI.H.a \
 
 M295_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M295_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map295.map\
+	-m _prolog \
+	-lcf $(M295_LDSCRIPT) \
+	-unused -map $(M295_MAP) \
+	-w off \
 
 $(M295_TARGET): $(M295_O_FILES) $(M295_LIBS)
+	@echo [295] creating $(M295_TARGET)
 	@echo $(M295_LIBS) $(M295_O_FILES) > build/M295_ofiles
-	$(LD) -opt_partial $(M295_LDFLAGS) -o $(M295_TARGET) @build/M295_ofiles
+	@python3 tools/lcf.py rel 295 --output $(M295_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M295_LDFLAGS) -o $(M295_TARGET) @build/M295_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_clerkt/%.o: rel/d/a/npc/d_a_npc_clerkt/%.cpp
+	@echo [295] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M295_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M295_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_clerkt/libs/Runtime.PPCEABI.H/Makefile
 

@@ -13,15 +13,15 @@ lbl_8051EE08:
 /* 8051EE18  7C 00 07 74 */	extsb r0, r0
 /* 8051EE1C  2C 00 00 10 */	cmpwi r0, 0x10
 /* 8051EE20  41 80 00 40 */	blt lbl_8051EE60
-/* 8051EE24  3C 60 80 45 */	lis r3, m_grass__9daGrass_c@ha
-/* 8051EE28  80 83 0D B0 */	lwz r4, m_grass__9daGrass_c@l(r3)
+/* 8051EE24  3C 60 80 45 */	lis r3, m_grass__9daGrass_c@ha /* 0x80450DB0@ha */
+/* 8051EE28  80 83 0D B0 */	lwz r4, m_grass__9daGrass_c@l(r3)  /* 0x80450DB0@l */
 /* 8051EE2C  1C 60 00 38 */	mulli r3, r0, 0x38
 /* 8051EE30  3C 63 00 02 */	addis r3, r3, 2
 /* 8051EE34  38 63 BD 64 */	addi r3, r3, -17052
 /* 8051EE38  7C A4 19 AE */	stbx r5, r4, r3
-/* 8051EE3C  4B D4 8A 30 */	b cM_rnd__Fv
-/* 8051EE40  3C 60 80 52 */	lis r3, lit_4600@ha
-/* 8051EE44  C0 03 30 98 */	lfs f0, lit_4600@l(r3)
+/* 8051EE3C  4B D4 8A 31 */	bl cM_rnd__Fv
+/* 8051EE40  3C 60 80 52 */	lis r3, lit_4600@ha /* 0x80523098@ha */
+/* 8051EE44  C0 03 30 98 */	lfs f0, lit_4600@l(r3)  /* 0x80523098@l */
 /* 8051EE48  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8051EE4C  FC 00 00 1E */	fctiwz f0, f0
 /* 8051EE50  D8 01 00 08 */	stfd f0, 8(r1)

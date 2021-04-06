@@ -5,8 +5,8 @@ lbl_800566D4:
 /* 800566E0  38 00 00 00 */	li r0, 0
 /* 800566E4  90 0D 90 50 */	stw r0, sOldVcdVatCmd__8J3DShape(r13)
 /* 800566E8  38 00 00 03 */	li r0, 3
-/* 800566EC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 800566F0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 800566EC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 800566F0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 800566F4  90 03 00 50 */	stw r0, 0x50(r3)
 /* 800566F8  7C 83 23 78 */	mr r3, r4
 /* 800566FC  48 2C ED B1 */	bl draw__13J3DDrawBufferCFv

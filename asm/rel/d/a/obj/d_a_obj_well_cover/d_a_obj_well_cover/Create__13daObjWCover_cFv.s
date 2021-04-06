@@ -11,7 +11,7 @@ lbl_80D36348:
 /* 80D3636C  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80D36370  80 83 00 04 */	lwz r4, 4(r3)
 /* 80D36374  7F E3 FB 78 */	mr r3, r31
-/* 80D36378  4B 2E 42 00 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80D36378  4B 2E 42 01 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80D3637C  38 60 00 01 */	li r3, 1
 /* 80D36380  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80D36384  80 01 00 14 */	lwz r0, 0x14(r1)

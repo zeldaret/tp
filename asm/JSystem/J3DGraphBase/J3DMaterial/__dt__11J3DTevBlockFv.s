@@ -5,8 +5,8 @@ lbl_80317224:
 /* 80317230  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80317234  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80317238  41 82 00 1C */	beq lbl_80317254
-/* 8031723C  3C A0 80 3D */	lis r5, __vt__11J3DTevBlock@ha
-/* 80317240  38 05 E9 58 */	addi r0, r5, __vt__11J3DTevBlock@l
+/* 8031723C  3C A0 80 3D */	lis r5, __vt__11J3DTevBlock@ha /* 0x803CE958@ha */
+/* 80317240  38 05 E9 58 */	addi r0, r5, __vt__11J3DTevBlock@l /* 0x803CE958@l */
 /* 80317244  90 1F 00 00 */	stw r0, 0(r31)
 /* 80317248  7C 80 07 35 */	extsh. r0, r4
 /* 8031724C  40 81 00 08 */	ble lbl_80317254

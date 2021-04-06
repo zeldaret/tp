@@ -7,8 +7,8 @@ lbl_80AA31EC:
 /* 80AA3200  90 83 0A F8 */	stw r4, 0xaf8(r3)
 /* 80AA3204  80 03 0A F8 */	lwz r0, 0xaf8(r3)
 /* 80AA3208  1C A0 00 18 */	mulli r5, r0, 0x18
-/* 80AA320C  3C 80 80 AA */	lis r4, ActionTable__13daNpcPasser_c@ha
-/* 80AA3210  38 04 6A 9C */	addi r0, r4, ActionTable__13daNpcPasser_c@l
+/* 80AA320C  3C 80 80 AA */	lis r4, ActionTable__13daNpcPasser_c@ha /* 0x80AA6A9C@ha */
+/* 80AA3210  38 04 6A 9C */	addi r0, r4, ActionTable__13daNpcPasser_c@l /* 0x80AA6A9C@l */
 /* 80AA3214  7C 00 2A 14 */	add r0, r0, r5
 /* 80AA3218  90 03 0A F4 */	stw r0, 0xaf4(r3)
 /* 80AA321C  48 00 00 15 */	bl callInit__13daNpcPasser_cFv

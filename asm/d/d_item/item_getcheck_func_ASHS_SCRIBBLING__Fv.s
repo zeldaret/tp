@@ -2,8 +2,8 @@ lbl_8009ACE0:
 /* 8009ACE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009ACE4  7C 08 02 A6 */	mflr r0
 /* 8009ACE8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8009ACEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009ACF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009ACEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009ACF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009ACF4  38 63 00 9C */	addi r3, r3, 0x9c
 /* 8009ACF8  38 80 00 13 */	li r4, 0x13
 /* 8009ACFC  38 A0 00 01 */	li r5, 1

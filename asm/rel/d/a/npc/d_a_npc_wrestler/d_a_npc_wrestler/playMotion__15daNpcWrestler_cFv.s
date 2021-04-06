@@ -2,8 +2,8 @@ lbl_80B3FCE8:
 /* 80B3FCE8  94 21 FC E0 */	stwu r1, -0x320(r1)
 /* 80B3FCEC  7C 08 02 A6 */	mflr r0
 /* 80B3FCF0  90 01 03 24 */	stw r0, 0x324(r1)
-/* 80B3FCF4  3C 80 80 B4 */	lis r4, m__21daNpcWrestler_Param_c@ha
-/* 80B3FCF8  38 84 16 DC */	addi r4, r4, m__21daNpcWrestler_Param_c@l
+/* 80B3FCF4  3C 80 80 B4 */	lis r4, m__21daNpcWrestler_Param_c@ha /* 0x80B416DC@ha */
+/* 80B3FCF8  38 84 16 DC */	addi r4, r4, m__21daNpcWrestler_Param_c@l /* 0x80B416DC@l */
 /* 80B3FCFC  80 A4 02 68 */	lwz r5, 0x268(r4)
 /* 80B3FD00  80 04 02 6C */	lwz r0, 0x26c(r4)
 /* 80B3FD04  90 A1 02 94 */	stw r5, 0x294(r1)
@@ -512,7 +512,7 @@ lbl_80B403C4:
 /* 80B404DC  A8 03 09 DA */	lha r0, 0x9da(r3)
 /* 80B404E0  B0 03 0E 92 */	sth r0, 0xe92(r3)
 /* 80B404E4  38 81 02 A0 */	addi r4, r1, 0x2a0
-/* 80B404E8  4B 61 2D 7C */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80B404E8  4B 61 2D 7D */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80B404EC:
 /* 80B404EC  80 01 03 24 */	lwz r0, 0x324(r1)
 /* 80B404F0  7C 08 03 A6 */	mtlr r0

@@ -28,10 +28,6 @@ struct daTagSetBall_c {
 // Forward References:
 //
 
-static void daTagSetBall_Execute(daTagSetBall_c*);
-static void daTagSetBall_Delete(daTagSetBall_c*);
-static void daTagSetBall_Create(daTagSetBall_c*);
-
 extern "C" void initBaseMtx__14daTagSetBall_cFv();
 extern "C" void setBaseMtx__14daTagSetBall_cFv();
 extern "C" void Create__14daTagSetBall_cFv();
@@ -55,8 +51,7 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 // Declarations:
 //
 
-/* 80D601F8-80D60218 0020+00 s=1 e=0 z=0  None .text      initBaseMtx__14daTagSetBall_cFv */
-//	80D60204: 80D60218 (setBaseMtx__14daTagSetBall_cFv)
+/* 80D601F8-80D60218 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daTagSetBall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -66,13 +61,12 @@ asm void daTagSetBall_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80D60218-80D6021C 0004+00 s=1 e=0 z=0  None .text      setBaseMtx__14daTagSetBall_cFv */
+/* 80D60218-80D6021C 000098 0004+00 1/1 0/0 0/0 .text            setBaseMtx__14daTagSetBall_cFv */
 void daTagSetBall_c::setBaseMtx() {
     /* empty function */
 }
 
-/* 80D6021C-80D6024C 0030+00 s=1 e=0 z=0  None .text      Create__14daTagSetBall_cFv */
-//	80D60234: 80D601F8 (initBaseMtx__14daTagSetBall_cFv)
+/* 80D6021C-80D6024C 00009C 0030+00 1/1 0/0 0/0 .text            Create__14daTagSetBall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -82,9 +76,7 @@ asm void daTagSetBall_c::Create() {
 }
 #pragma pop
 
-/* 80D6024C-80D602B4 0068+00 s=1 e=0 z=0  None .text      create__14daTagSetBall_cFv */
-//	80D60274: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D60288: 80D6021C (Create__14daTagSetBall_cFv)
+/* 80D6024C-80D602B4 0000CC 0068+00 1/1 0/0 0/0 .text            create__14daTagSetBall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,52 +86,48 @@ asm void daTagSetBall_c::create() {
 }
 #pragma pop
 
-/* 80D602B4-80D602BC 0008+00 s=1 e=0 z=0  None .text      execute__14daTagSetBall_cFv */
+/* 80D602B4-80D602BC 000134 0008+00 1/1 0/0 0/0 .text            execute__14daTagSetBall_cFv */
 bool daTagSetBall_c::execute() {
     return true;
 }
 
-/* 80D602BC-80D602C4 0008+00 s=1 e=0 z=0  None .text      _delete__14daTagSetBall_cFv */
+/* 80D602BC-80D602C4 00013C 0008+00 1/1 0/0 0/0 .text            _delete__14daTagSetBall_cFv */
 bool daTagSetBall_c::_delete() {
     return true;
 }
 
-/* 80D602C4-80D602E4 0020+00 s=1 e=0 z=0  None .text      daTagSetBall_Execute__FP14daTagSetBall_c
- */
-//	80D602D0: 80D602B4 (execute__14daTagSetBall_cFv)
+/* 80D602C4-80D602E4 000144 0020+00 1/0 0/0 0/0 .text daTagSetBall_Execute__FP14daTagSetBall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSetBall_Execute(daTagSetBall_c* param_0) {
+static asm void daTagSetBall_Execute(daTagSetBall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Execute__FP14daTagSetBall_c.s"
 }
 #pragma pop
 
-/* 80D602E4-80D60304 0020+00 s=1 e=0 z=0  None .text      daTagSetBall_Delete__FP14daTagSetBall_c */
-//	80D602F0: 80D602BC (_delete__14daTagSetBall_cFv)
+/* 80D602E4-80D60304 000164 0020+00 1/0 0/0 0/0 .text daTagSetBall_Delete__FP14daTagSetBall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSetBall_Delete(daTagSetBall_c* param_0) {
+static asm void daTagSetBall_Delete(daTagSetBall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Delete__FP14daTagSetBall_c.s"
 }
 #pragma pop
 
-/* 80D60304-80D60324 0020+00 s=1 e=0 z=0  None .text      daTagSetBall_Create__FP14daTagSetBall_c */
-//	80D60310: 80D6024C (create__14daTagSetBall_cFv)
+/* 80D60304-80D60324 000184 0020+00 1/0 0/0 0/0 .text daTagSetBall_Create__FP14daTagSetBall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSetBall_Create(daTagSetBall_c* param_0) {
+static asm void daTagSetBall_Create(daTagSetBall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall/daTagSetBall_Create__FP14daTagSetBall_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D6032C-80D6034C 0020+00 s=1 e=0 z=0  None .data      l_daTagSetBall_Method */
+/* 80D6032C-80D6034C -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSetBall_Method */
 SECTION_DATA static void* l_daTagSetBall_Method[8] = {
     (void*)daTagSetBall_Create__FP14daTagSetBall_c,
     (void*)daTagSetBall_Delete__FP14daTagSetBall_c,
@@ -151,8 +139,8 @@ SECTION_DATA static void* l_daTagSetBall_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D6034C-80D6037C 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_SetBall */
-SECTION_DATA void* g_profile_Tag_SetBall[12] = {
+/* 80D6034C-80D6037C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_SetBall */
+SECTION_DATA extern void* g_profile_Tag_SetBall[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x019F0000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

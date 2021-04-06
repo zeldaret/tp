@@ -8,20 +8,20 @@ lbl_80037180:
 /* 80037198  7C 00 07 75 */	extsb. r0, r0
 /* 8003719C  40 82 00 34 */	bne lbl_800371D0
 /* 800371A0  C0 02 83 98 */	lfs f0, lit_3671(r2)
-/* 800371A4  3C 60 80 42 */	lis r3, scale_3676@ha
-/* 800371A8  D4 03 45 F4 */	stfsu f0, scale_3676@l(r3)
+/* 800371A4  3C 60 80 42 */	lis r3, scale_3676@ha /* 0x804245F4@ha */
+/* 800371A8  D4 03 45 F4 */	stfsu f0, scale_3676@l(r3)  /* 0x804245F4@l */
 /* 800371AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 800371B0  D0 03 00 08 */	stfs f0, 8(r3)
-/* 800371B4  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
-/* 800371B8  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
-/* 800371BC  3C A0 80 42 */	lis r5, lit_3677@ha
-/* 800371C0  38 A5 45 E8 */	addi r5, r5, lit_3677@l
+/* 800371B4  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 800371B8  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80009184@l */
+/* 800371BC  3C A0 80 42 */	lis r5, lit_3677@ha /* 0x804245E8@ha */
+/* 800371C0  38 A5 45 E8 */	addi r5, r5, lit_3677@l /* 0x804245E8@l */
 /* 800371C4  48 32 AA 61 */	bl __register_global_object
 /* 800371C8  38 00 00 01 */	li r0, 1
 /* 800371CC  98 0D 88 70 */	stb r0, struct_80450DF0+0x0(r13)
 lbl_800371D0:
-/* 800371D0  3C 60 80 42 */	lis r3, scale_3676@ha
-/* 800371D4  C4 03 45 F4 */	lfsu f0, scale_3676@l(r3)
+/* 800371D0  3C 60 80 42 */	lis r3, scale_3676@ha /* 0x804245F4@ha */
+/* 800371D4  C4 03 45 F4 */	lfsu f0, scale_3676@l(r3)  /* 0x804245F4@l */
 /* 800371D8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 800371DC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800371E0  D0 01 00 0C */	stfs f0, 0xc(r1)

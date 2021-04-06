@@ -14,7 +14,7 @@ lbl_80BD0E1C:
 /* 80BD0E4C  38 7F 06 0C */	addi r3, r31, 0x60c
 /* 80BD0E50  38 80 00 00 */	li r4, 0
 /* 80BD0E54  38 A0 01 50 */	li r5, 0x150
-/* 80BD0E58  4B 69 FD 38 */	b cLib_chaseAngleS__FPsss
+/* 80BD0E58  4B 69 FD 39 */	bl cLib_chaseAngleS__FPsss
 /* 80BD0E5C  A8 9F 06 0C */	lha r4, 0x60c(r31)
 /* 80BD0E60  7C 80 07 35 */	extsh. r0, r4
 /* 80BD0E64  41 82 01 1C */	beq lbl_80BD0F80
@@ -23,11 +23,11 @@ lbl_80BD0E1C:
 /* 80BD0E70  40 82 00 B0 */	bne lbl_80BD0F20
 /* 80BD0E74  A8 1F 06 0E */	lha r0, 0x60e(r31)
 /* 80BD0E78  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80BD0E7C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80BD0E80  38 A3 9A 20 */	addi r5, r3, sincosTable___5JMath@l
+/* 80BD0E7C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BD0E80  38 A3 9A 20 */	addi r5, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BD0E84  7C 45 04 2E */	lfsx f2, r5, r0
-/* 80BD0E88  3C 60 80 BD */	lis r3, lit_3796@ha
-/* 80BD0E8C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)
+/* 80BD0E88  3C 60 80 BD */	lis r3, lit_3796@ha /* 0x80BD3110@ha */
+/* 80BD0E8C  C8 23 31 10 */	lfd f1, lit_3796@l(r3)  /* 0x80BD3110@l */
 /* 80BD0E90  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80BD0E94  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80BD0E98  3C 80 43 30 */	lis r4, 0x4330
@@ -67,11 +67,11 @@ lbl_80BD0E1C:
 lbl_80BD0F20:
 /* 80BD0F20  A8 1F 06 0E */	lha r0, 0x60e(r31)
 /* 80BD0F24  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80BD0F28  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80BD0F2C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80BD0F28  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BD0F2C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BD0F30  7C 43 04 2E */	lfsx f2, r3, r0
-/* 80BD0F34  3C 60 80 BD */	lis r3, lit_3796@ha
-/* 80BD0F38  C8 23 31 10 */	lfd f1, lit_3796@l(r3)
+/* 80BD0F34  3C 60 80 BD */	lis r3, lit_3796@ha /* 0x80BD3110@ha */
+/* 80BD0F38  C8 23 31 10 */	lfd f1, lit_3796@l(r3)  /* 0x80BD3110@l */
 /* 80BD0F3C  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80BD0F40  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BD0F44  3C 00 43 30 */	lis r0, 0x4330

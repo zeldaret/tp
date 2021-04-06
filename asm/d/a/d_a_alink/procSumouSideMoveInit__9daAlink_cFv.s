@@ -13,8 +13,8 @@ lbl_800EB208:
 /* 800EB234  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 800EB238  38 03 C0 00 */	addi r0, r3, -16384
 /* 800EB23C  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800EB240  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha
-/* 800EB244  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l
+/* 800EB240  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800EB244  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800EB248  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 800EB24C  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 800EB250  7F E3 FB 78 */	mr r3, r31
@@ -28,8 +28,8 @@ lbl_800EB208:
 /* 800EB270  38 80 00 15 */	li r4, 0x15
 /* 800EB274  4B FC 7F F5 */	bl setDoStatusEmphasys__9daAlink_cFUc
 /* 800EB278  38 00 00 05 */	li r0, 5
-/* 800EB27C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EB280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EB27C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EB280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EB284  98 03 5E 81 */	stb r0, 0x5e81(r3)
 /* 800EB288  38 00 00 0C */	li r0, 0xc
 /* 800EB28C  98 1F 2F 99 */	stb r0, 0x2f99(r31)

@@ -11,8 +11,8 @@ lbl_801EB960:
 /* 801EB984  7C 7B 1B 78 */	mr r27, r3
 /* 801EB988  88 83 06 AE */	lbz r4, 0x6ae(r3)
 /* 801EB98C  C0 22 A9 D4 */	lfs f1, lit_4810(r2)
-/* 801EB990  3C A0 80 43 */	lis r5, g_ringHIO@ha
-/* 801EB994  3B A5 FA FC */	addi r29, r5, g_ringHIO@l
+/* 801EB990  3C A0 80 43 */	lis r5, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EB994  3B A5 FA FC */	addi r29, r5, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EB998  C0 1D 01 10 */	lfs f0, 0x110(r29)
 /* 801EB99C  EC 21 00 2A */	fadds f1, f1, f0
 /* 801EB9A0  C0 42 A9 D8 */	lfs f2, lit_4811(r2)

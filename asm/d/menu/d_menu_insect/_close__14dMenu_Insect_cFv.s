@@ -6,8 +6,8 @@ lbl_801D8B2C:
 /* 801D8B3C  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 801D8B40  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801D8B44  7C 7F 1B 78 */	mr r31, r3
-/* 801D8B48  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801D8B4C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801D8B48  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801D8B4C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801D8B50  A8 A3 0A 16 */	lha r5, 0xa16(r3)
 /* 801D8B54  38 60 00 00 */	li r3, 0
 /* 801D8B58  B0 7F 00 F0 */	sth r3, 0xf0(r31)

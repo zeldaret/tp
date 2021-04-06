@@ -16,31 +16,31 @@ lbl_8002EFC4:
 /* 8002EFC8  40 80 00 58 */	bge lbl_8002F020
 /* 8002EFCC  48 00 00 3C */	b lbl_8002F008
 lbl_8002EFD0:
-/* 8002EFD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002EFD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002EFD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002EFD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002EFD8  38 63 01 00 */	addi r3, r3, 0x100
 /* 8002EFDC  38 80 00 02 */	li r4, 2
 /* 8002EFE0  38 A0 00 00 */	li r5, 0
 /* 8002EFE4  48 00 52 05 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 8002EFE8  48 00 00 38 */	b lbl_8002F020
 lbl_8002EFEC:
-/* 8002EFEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002EFF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002EFEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002EFF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002EFF4  38 63 01 00 */	addi r3, r3, 0x100
 /* 8002EFF8  38 80 00 02 */	li r4, 2
 /* 8002EFFC  38 A0 00 01 */	li r5, 1
 /* 8002F000  48 00 51 E9 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 8002F004  48 00 00 1C */	b lbl_8002F020
 lbl_8002F008:
-/* 8002F008  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002F00C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002F008  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002F00C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002F010  38 63 01 00 */	addi r3, r3, 0x100
 /* 8002F014  38 80 00 02 */	li r4, 2
 /* 8002F018  38 A0 00 02 */	li r5, 2
 /* 8002F01C  48 00 51 CD */	bl setCollect__20dSv_player_collect_cFiUc
 lbl_8002F020:
-/* 8002F020  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002F024  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002F020  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002F024  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002F028  9B E3 00 15 */	stb r31, 0x15(r3)
 /* 8002F02C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002F030  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -12,16 +12,16 @@ lbl_8029EF20:
 /* 8029EF24  40 80 00 44 */	bge lbl_8029EF68
 /* 8029EF28  48 00 00 20 */	b lbl_8029EF48
 lbl_8029EF2C:
-/* 8029EF2C  3C 60 80 43 */	lis r3, sync_stack@ha
-/* 8029EF30  38 A3 40 60 */	addi r5, r3, sync_stack@l
+/* 8029EF2C  3C 60 80 43 */	lis r3, sync_stack@ha /* 0x80434060@ha */
+/* 8029EF30  38 A3 40 60 */	addi r5, r3, sync_stack@l /* 0x80434060@l */
 /* 8029EF34  80 65 00 00 */	lwz r3, 0(r5)
 /* 8029EF38  80 85 00 04 */	lwz r4, 4(r5)
 /* 8029EF3C  80 A5 00 08 */	lwz r5, 8(r5)
 /* 8029EF40  4B FF FF 01 */	bl DsyncFrame2__FUlUlUl
 /* 8029EF44  48 00 00 24 */	b lbl_8029EF68
 lbl_8029EF48:
-/* 8029EF48  3C 60 80 43 */	lis r3, sync_stack@ha
-/* 8029EF4C  38 E3 40 60 */	addi r7, r3, sync_stack@l
+/* 8029EF48  3C 60 80 43 */	lis r3, sync_stack@ha /* 0x80434060@ha */
+/* 8029EF4C  38 E3 40 60 */	addi r7, r3, sync_stack@l /* 0x80434060@l */
 /* 8029EF50  80 67 00 00 */	lwz r3, 0(r7)
 /* 8029EF54  80 87 00 04 */	lwz r4, 4(r7)
 /* 8029EF58  80 A7 00 08 */	lwz r5, 8(r7)

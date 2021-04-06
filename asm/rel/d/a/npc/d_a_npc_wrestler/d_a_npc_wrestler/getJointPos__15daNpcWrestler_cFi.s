@@ -10,11 +10,11 @@ lbl_80B358F0:
 /* 80B35910  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80B35914  1C 05 00 30 */	mulli r0, r5, 0x30
 /* 80B35918  7C 63 02 14 */	add r3, r3, r0
-/* 80B3591C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80B35920  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 80B35924  4B 81 0B 8C */	b PSMTXCopy
-/* 80B35928  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80B3592C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80B3591C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80B35920  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80B35924  4B 81 0B 8D */	bl PSMTXCopy
+/* 80B35928  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80B3592C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80B35930  C0 43 00 0C */	lfs f2, 0xc(r3)
 /* 80B35934  D0 41 00 08 */	stfs f2, 8(r1)
 /* 80B35938  C0 23 00 1C */	lfs f1, 0x1c(r3)

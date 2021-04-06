@@ -34,17 +34,17 @@ lbl_80047548:
 /* 80047590  4B FF FF 85 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80047594  48 00 00 EC */	b lbl_80047680
 lbl_80047598:
-/* 80047598  3C 60 80 42 */	lis r3, map_tool_name_4449@ha
-/* 8004759C  38 63 46 A0 */	addi r3, r3, map_tool_name_4449@l
-/* 800475A0  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha
-/* 800475A4  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l
+/* 80047598  3C 60 80 42 */	lis r3, map_tool_name_4449@ha /* 0x804246A0@ha */
+/* 8004759C  38 63 46 A0 */	addi r3, r3, map_tool_name_4449@l /* 0x804246A0@l */
+/* 800475A0  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha /* 0x80379F60@ha */
+/* 800475A4  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l /* 0x80379F60@l */
 /* 800475A8  38 84 01 4F */	addi r4, r4, 0x14f
 /* 800475AC  57 05 06 3E */	clrlwi r5, r24, 0x18
 /* 800475B0  4C C6 31 82 */	crclr 6
 /* 800475B4  48 31 EF 29 */	bl sprintf
 /* 800475B8  7F A3 EB 78 */	mr r3, r29
-/* 800475BC  3C 80 80 42 */	lis r4, map_tool_name_4449@ha
-/* 800475C0  38 84 46 A0 */	addi r4, r4, map_tool_name_4449@l
+/* 800475BC  3C 80 80 42 */	lis r4, map_tool_name_4449@ha /* 0x804246A0@ha */
+/* 800475C0  38 84 46 A0 */	addi r4, r4, map_tool_name_4449@l /* 0x804246A0@l */
 /* 800475C4  38 A0 00 FF */	li r5, 0xff
 /* 800475C8  7F E6 FB 78 */	mr r6, r31
 /* 800475CC  4B FF FF 49 */	bl getEventIdx__16dEvent_manager_cFPCcUcl

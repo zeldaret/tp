@@ -184,18 +184,10 @@ extern "C" void setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor();
 extern "C" void setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor();
 extern "C" void isOugiID__14dMsgScrnItem_cFv();
 extern "C" extern char const* const msg_scrn_d_msg_scrn_item__stringBase0;
-extern "C" extern void* __vt__14dMsgScrnItem_c[22];
 
 //
 // External References:
 //
-
-void mDoExt_getMesgFont();
-void mDoLib_project(Vec*, Vec*);
-void dComIfGp_getSubHeap2D(int);
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -283,21 +275,8 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 80399990-80399A20 008A+06 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399990 = "zelda_item_get_window.blo";
-SECTION_DEAD char const* const stringBase_803999AA = "zelda_item_get_window_text.blo";
-SECTION_DEAD char const* const stringBase_803999C9 = "zelda_item_get_window.btk";
-SECTION_DEAD char const* const stringBase_803999E3 = "zelda_item_get_window.bpk";
-SECTION_DEAD char const* const stringBase_803999FD = "zelda_item_get_window_02.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399A1A = "\0\0\0\0\0";
-#pragma pop
-
-/* 803C0F78-803C0FD0 0058+00 s=2 e=0 z=0  None .data      __vt__14dMsgScrnItem_c */
-SECTION_DATA void* __vt__14dMsgScrnItem_c[22] = {
+/* 803C0F78-803C0FD0 01E098 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnItem_c */
+SECTION_DATA extern void* __vt__14dMsgScrnItem_c[22] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMsgScrnBase_cFv,
@@ -322,16 +301,16 @@ SECTION_DATA void* __vt__14dMsgScrnItem_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnItem_cFUc,
 };
 
-/* 80454BF8-80454BFC 0004+00 s=2 e=0 z=0  None .sdata2    @4192 */
+/* 80454BF8-80454BFC 0031F8 0004+00 2/2 0/0 0/0 .sdata2          @4192 */
 SECTION_SDATA2 static f32 lit_4192 = 100.0f;
 
-/* 80454BFC-80454C00 0004+00 s=3 e=0 z=0  None .sdata2    @4193 */
+/* 80454BFC-80454C00 0031FC 0004+00 3/3 0/0 0/0 .sdata2          @4193 */
 SECTION_SDATA2 static f32 lit_4193 = 1.0f;
 
-/* 80454C00-80454C04 0004+00 s=1 e=0 z=0  None .sdata2    @4194 */
+/* 80454C00-80454C04 003200 0004+00 1/1 0/0 0/0 .sdata2          @4194 */
 SECTION_SDATA2 static f32 lit_4194 = 48.0f;
 
-/* 80454C04-80454C08 0004+00 s=3 e=0 z=0  None .sdata2    @4195 */
+/* 80454C04-80454C08 003204 0004+00 3/3 0/0 0/0 .sdata2          @4195 */
 SECTION_SDATA2 static u8 lit_4195[4] = {
     0x00,
     0x00,
@@ -339,125 +318,16 @@ SECTION_SDATA2 static u8 lit_4195[4] = {
     0x00,
 };
 
-/* 80454C08-80454C0C 0004+00 s=1 e=0 z=0  None .sdata2    @4196 */
+/* 80454C08-80454C0C 003208 0004+00 1/1 0/0 0/0 .sdata2          @4196 */
 SECTION_SDATA2 static f32 lit_4196 = 6.0f / 5.0f;
 
-/* 80454C0C-80454C10 0004+00 s=3 e=0 z=0  None .sdata2    @4197 */
+/* 80454C0C-80454C10 00320C 0004+00 3/3 0/0 0/0 .sdata2          @4197 */
 SECTION_SDATA2 static f32 lit_4197 = 0.5f;
 
-/* 80454C10-80454C18 0008+00 s=2 e=0 z=0  None .sdata2    @4199 */
+/* 80454C10-80454C18 003210 0008+00 2/2 0/0 0/0 .sdata2          @4199 */
 SECTION_SDATA2 static f64 lit_4199 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8023E79C-8023F51C 0D80+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap
- */
-//	8023E7B4: 803621CC (_savegpr_25)
-//	8023E7C8: 8023C0DC (__ct__14dMsgScrnBase_cFv)
-//	8023E7CC: 803C0F78 (__vt__14dMsgScrnItem_c)
-//	8023E7D0: 803C0F78 (__vt__14dMsgScrnItem_c)
-//	8023E7EC: 8002E3D0 (dComIfGp_getSubHeap2D__Fi)
-//	8023E800: 8023C16C (init__14dMsgScrnBase_cFv)
-//	8023E804: 802383D0 (getMessageID__12dMsgObject_cFv)
-//	8023E850: 802383D0 (getMessageID__12dMsgObject_cFv)
-//	8023E928: 802408A4 (isOugiID__14dMsgScrnItem_cFv)
-//	8023E968: 802CE4D4 (alloc__7JKRHeapFUli)
-//	8023E9D0: 804061C0 (g_dComIfG_gameInfo)
-//	8023E9D4: 804061C0 (g_dComIfG_gameInfo)
-//	8023EA38: 802408A4 (isOugiID__14dMsgScrnItem_cFv)
-//	8023EA44: 804061C0 (g_dComIfG_gameInfo)
-//	8023EA48: 804061C0 (g_dComIfG_gameInfo)
-//	8023EA5C: 802D5ECC (readIdxResource__10JKRArchiveFPvUlUl)
-//	8023EA6C: 802CEC4C (__nw__FUl)
-//	8023EA7C: 802FC708 (__ct__10J2DPictureFPC7ResTIMG)
-//	8023EAA4: 80430188 (g_meter2_info)
-//	8023EAA8: 80430188 (g_meter2_info)
-//	8023EAC4: 8021CF08
-//(readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei)
-//	8023EAE8: 802CEC4C (__nw__FUl)
-//	8023EAFC: 802FC708 (__ct__10J2DPictureFPC7ResTIMG)
-//	8023EB1C: 80430188 (g_meter2_info)
-//	8023EB20: 80430188 (g_meter2_info)
-//	8023EB3C: 8021D36C
-//(setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture) 8023EB44:
-// 802CEC4C (__nw__FUl) 	8023EB50: 802F8498 (__ct__9J2DScreenFv) 	8023EB60: 80399990
-//(msg_scrn_d_msg_scrn_item__stringBase0) 	8023EB64: 80399990
-//(msg_scrn_d_msg_scrn_item__stringBase0) 	8023EB6C: 804061C0 (g_dComIfG_gameInfo) 	8023EB70: 804061C0
-//(g_dComIfG_gameInfo) 	8023EB78: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive) 	8023EB80:
-//802550E8 (dPaneClass_showNullPane__FP9J2DScreen) 	8023EB88: 802CEC4C (__nw__FUl) 	8023EB94: 802F8498
-//(__ct__9J2DScreenFv) 	8023EBA4: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0) 	8023EBA8: 80399990
-//(msg_scrn_d_msg_scrn_item__stringBase0) 	8023EBB8: 802F8648
-//(setPriority__9J2DScreenFPCcUlP10JKRArchive) 	8023EBC0: 802550E8
-//(dPaneClass_showNullPane__FP9J2DScreen) 	8023EBC4: 8042EBC8 (g_drawHIO) 	8023EBC8: 8042EBC8
-//(g_drawHIO) 	8023EBDC: 80454C10 (lit_4199) 	8023EBF4: 80454BF8 (lit_4192) 	8023EC14: 803AC5A0
-//(item_resource__10dItem_data) 	8023EC18: 803AC5A0 (item_resource__10dItem_data) 	8023EC2C: 80454C10
-//(lit_4199) 	8023EC44: 80454BF8 (lit_4192) 	8023EC50: 80454BFC (lit_4193) 	8023EC8C: 80454C10
-//(lit_4199) 	8023ECA8: 80454C00 (lit_4194) 	8023ECEC: 80454C10 (lit_4199) 	8023ED08: 80454C00
-//(lit_4194) 	8023EDC0: 802F76F8 (setBasePosition__7J2DPaneF15J2DBasePosition) 	8023EDD8: 802CEC4C
-//(__nw__FUl) 	8023EDE4: 8023B9B4 (__ct__15dMsgScrnArrow_cFv) 	8023EDF4: 802CEC4C (__nw__FUl)
-//	8023EE00: 802390B4 (__ct__17dMsgScrn3Select_cFv)
-//	8023EE10: 802CEC4C (__nw__FUl)
-//	8023EE24: 80245934 (__ct__15dMsgScrnLight_cFUcUc)
-//	8023EE3C: 802CE4D4 (alloc__7JKRHeapFUli)
-//	8023EE4C: 80003458 (memset)
-//	8023EE74: 802F7100 (getBounds__7J2DPaneFv)
-//	8023EEA0: 802F7100 (getBounds__7J2DPaneFv)
-//	8023EEAC: 80454C04 (lit_4195)
-//	8023EEC0: 8043028C (g_MsgObject_HIO_c)
-//	8023EEC4: 8043028C (g_MsgObject_HIO_c)
-//	8023EEEC: 80454C04 (lit_4195)
-//	8023EEF8: 802CEC4C (__nw__FUl)
-//	8023EF20: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023EF30: 802CEC4C (__nw__FUl)
-//	8023EF58: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023EF68: 802CEC4C (__nw__FUl)
-//	8023EF90: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023EFE4: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023EFE8: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023EFF4: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	8023EFF8: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	8023F018: 80454C04 (lit_4195)
-//	8023F020: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023F024: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023F030: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	8023F034: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	8023F054: 80454C04 (lit_4195)
-//	8023F05C: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023F060: 80399990 (msg_scrn_d_msg_scrn_item__stringBase0)
-//	8023F06C: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	8023F070: 80308A6C (load__20J2DAnmLoaderDataBaseFPCv)
-//	8023F090: 80454C04 (lit_4195)
-//	8023F0A4: 802CEC4C (__nw__FUl)
-//	8023F0C8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023F0D4: 8043028C (g_MsgObject_HIO_c)
-//	8023F0D8: 8043028C (g_MsgObject_HIO_c)
-//	8023F108: 802CEC4C (__nw__FUl)
-//	8023F130: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023F140: 802CEC4C (__nw__FUl)
-//	8023F164: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023F174: 802CEC4C (__nw__FUl)
-//	8023F198: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	8023F23C: 800149F0 (mDoExt_getMesgFont__Fv)
-//	8023F26C: 800149F0 (mDoExt_getMesgFont__Fv)
-//	8023F308: 80454C08 (lit_4196)
-//	8023F36C: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	8023F370: 80454C0C (lit_4197)
-//	8023F374: 80454BFC (lit_4193)
-//	8023F378: 8043028C (g_MsgObject_HIO_c)
-//	8023F37C: 8043028C (g_MsgObject_HIO_c)
-//	8023F3A0: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	8023F3A4: 80454C0C (lit_4197)
-//	8023F3A8: 80454BFC (lit_4193)
-//	8023F3AC: 8043028C (g_MsgObject_HIO_c)
-//	8023F3B0: 8043028C (g_MsgObject_HIO_c)
-//	8023F44C: 80454C08 (lit_4196)
-//	8023F478: 8023A934 (getTextBoxWidth__17dMsgScrn3Select_cFv)
-//	8023F484: 8023A94C (getFontSize__17dMsgScrn3Select_cFv)
-//	8023F490: 8023A95C (getRubyFontSize__17dMsgScrn3Select_cFv)
-//	8023F49C: 8023A97C (getCharSpace__17dMsgScrn3Select_cFv)
-//	8023F4A8: 8023A98C (getRubyCharSpace__17dMsgScrn3Select_cFv)
-//	8023F4C0: 8023A9AC (getTextBoxGlobalPosX__17dMsgScrn3Select_cFi)
-//	8023F4D4: 8023A9D8 (getTextBoxGlobalPosY__17dMsgScrn3Select_cFi)
-//	8023F4F0: 80454C04 (lit_4195)
-//	8023F508: 80362218 (_restgpr_25)
+/* 8023E79C-8023F51C 2390DC 0D80+00 0/0 1/1 0/0 .text __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -467,21 +337,7 @@ asm dMsgScrnItem_c::dMsgScrnItem_c(u8 param_0, u8 param_1, JKRExpHeap* param_2) 
 }
 #pragma pop
 
-/* 8023F51C-8023F888 036C+00 s=1 e=0 z=0  None .text      __dt__14dMsgScrnItem_cFv */
-//	8023F52C: 803621D0 (_savegpr_26)
-//	8023F53C: 803C0F78 (__vt__14dMsgScrnItem_c)
-//	8023F540: 803C0F78 (__vt__14dMsgScrnItem_c)
-//	8023F564: 802CE548 (free__7JKRHeapFPv)
-//	8023F684: 802CE548 (free__7JKRHeapFPv)
-//	8023F7FC: 804061C0 (g_dComIfG_gameInfo)
-//	8023F800: 804061C0 (g_dComIfG_gameInfo)
-//	8023F818: 804061C0 (g_dComIfG_gameInfo)
-//	8023F81C: 804061C0 (g_dComIfG_gameInfo)
-//	8023F834: 804061C0 (g_dComIfG_gameInfo)
-//	8023F838: 804061C0 (g_dComIfG_gameInfo)
-//	8023F858: 8023C124 (__dt__14dMsgScrnBase_cFv)
-//	8023F868: 802CED3C (__dl__FPv)
-//	8023F874: 8036221C (_restgpr_26)
+/* 8023F51C-8023F888 239E5C 036C+00 1/0 0/0 0/0 .text            __dt__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -492,26 +348,10 @@ asm dMsgScrnItem_c::~dMsgScrnItem_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454C18-80454C20 0008+00 s=2 e=0 z=0  None .sdata2    @4388 */
+/* 80454C18-80454C20 003218 0008+00 2/2 0/0 0/0 .sdata2          @4388 */
 SECTION_SDATA2 static f64 lit_4388 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8023F888-8023FB24 029C+00 s=1 e=0 z=0  None .text      exec__14dMsgScrnItem_cFv */
-//	8023F8B8: 8024074C (setBtk0Animation__14dMsgScrnItem_cFP19J2DAnmTextureSRTKey)
-//	8023F8C4: 802407E8 (setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor)
-//	8023F8D0: 80240844 (setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor)
-//	8023F8DC: 8043028C (g_MsgObject_HIO_c)
-//	8023F8E0: 8043028C (g_MsgObject_HIO_c)
-//	8023F8E4: 80454C18 (lit_4388)
-//	8023F950: 80454C18 (lit_4388)
-//	8023F9D4: 802F9690 (animation__9J2DScreenFv)
-//	8023F9DC: 8023C574 (isTalkNow__14dMsgScrnBase_cFv)
-//	8023F9EC: 80454BFC (lit_4193)
-//	8023FA64: 8043028C (g_MsgObject_HIO_c)
-//	8023FA68: 8043028C (g_MsgObject_HIO_c)
-//	8023FA98: 8043028C (g_MsgObject_HIO_c)
-//	8023FA9C: 8043028C (g_MsgObject_HIO_c)
-//	8023FAD8: 8043028C (g_MsgObject_HIO_c)
-//	8023FADC: 8043028C (g_MsgObject_HIO_c)
+/* 8023F888-8023FB24 23A1C8 029C+00 1/0 0/0 0/0 .text            exec__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -522,49 +362,16 @@ asm void dMsgScrnItem_c::exec() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454C20-80454C24 0004+00 s=1 e=0 z=0  None .sdata2    @4476 */
+/* 80454C20-80454C24 003220 0004+00 1/1 0/0 0/0 .sdata2          @4476 */
 SECTION_SDATA2 static f32 lit_4476 = 2.0f;
 
-/* 80454C24-80454C28 0004+00 s=1 e=0 z=0  None .sdata2    @4477 */
+/* 80454C24-80454C28 003224 0004+00 1/1 0/0 0/0 .sdata2          @4477 */
 SECTION_SDATA2 static f32 lit_4477 = 255.0f;
 
-/* 80454C28-80454C2C 0004+00 s=1 e=0 z=0  None .sdata2    @4478 */
+/* 80454C28-80454C2C 003228 0004+00 1/1 0/0 0/0 .sdata2          @4478 */
 SECTION_SDATA2 static f32 lit_4478 = 3.0f / 5.0f;
 
-/* 8023FB24-8023FF30 040C+00 s=1 e=0 z=0  None .text      drawSelf__14dMsgScrnItem_cFv */
-//	8023FB3C: 803621CC (_savegpr_25)
-//	8023FB44: 804061C0 (g_dComIfG_gameInfo)
-//	8023FB48: 804061C0 (g_dComIfG_gameInfo)
-//	8023FB78: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8023FB88: 8043028C (g_MsgObject_HIO_c)
-//	8023FB8C: 8043028C (g_MsgObject_HIO_c)
-//	8023FBC0: 80245C04 (draw__15dMsgScrnLight_cFPffffffUc)
-//	8023FBDC: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	8023FBE4: 8043028C (g_MsgObject_HIO_c)
-//	8023FBE8: 8043028C (g_MsgObject_HIO_c)
-//	8023FBF0: 80454C20 (lit_4476)
-//	8023FBFC: 80454BFC (lit_4193)
-//	8023FC00: 8023C32C (drawOutFont__14dMsgScrnBase_cFfff)
-//	8023FC08: 80454C04 (lit_4195)
-//	8023FC14: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	8023FC1C: 80454C04 (lit_4195)
-//	8023FC24: 80239DD4 (draw__17dMsgScrn3Select_cFff)
-//	8023FC2C: 8023BDC0 (draw__15dMsgScrnArrow_cFv)
-//	8023FC38: 8043028C (g_MsgObject_HIO_c)
-//	8023FC3C: 8043028C (g_MsgObject_HIO_c)
-//	8023FC40: 8042EBC8 (g_drawHIO)
-//	8023FC44: 8042EBC8 (g_drawHIO)
-//	8023FC58: 80454C24 (lit_4477)
-//	8023FD78: 80454C28 (lit_4478)
-//	8023FDCC: 80454C10 (lit_4199)
-//	8023FDE4: 80454BF8 (lit_4192)
-//	8023FE0C: 803AC5A0 (item_resource__10dItem_data)
-//	8023FE10: 803AC5A0 (item_resource__10dItem_data)
-//	8023FE1C: 80454C10 (lit_4199)
-//	8023FE34: 80454BF8 (lit_4192)
-//	8023FE40: 80454BFC (lit_4193)
-//	8023FEAC: 80454C0C (lit_4197)
-//	8023FF1C: 80362218 (_restgpr_25)
+/* 8023FB24-8023FF30 23A464 040C+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -574,8 +381,7 @@ asm void dMsgScrnItem_c::drawSelf() {
 }
 #pragma pop
 
-/* 8023FF30-8023FF54 0024+00 s=1 e=0 z=0  None .text      arwAnimeInit__14dMsgScrnItem_cFv */
-//	8023FF40: 8023BE34 (arwAnimeInit__15dMsgScrnArrow_cFv)
+/* 8023FF30-8023FF54 23A870 0024+00 1/0 0/0 0/0 .text            arwAnimeInit__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -585,8 +391,7 @@ asm void dMsgScrnItem_c::arwAnimeInit() {
 }
 #pragma pop
 
-/* 8023FF54-8023FF78 0024+00 s=1 e=0 z=0  None .text      arwAnimeMove__14dMsgScrnItem_cFv */
-//	8023FF64: 8023BE90 (arwAnimeMove__15dMsgScrnArrow_cFv)
+/* 8023FF54-8023FF78 23A894 0024+00 1/0 0/0 0/0 .text            arwAnimeMove__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -596,8 +401,7 @@ asm void dMsgScrnItem_c::arwAnimeMove() {
 }
 #pragma pop
 
-/* 8023FF78-8023FF9C 0024+00 s=1 e=0 z=0  None .text      dotAnimeInit__14dMsgScrnItem_cFv */
-//	8023FF88: 8023BFC4 (dotAnimeInit__15dMsgScrnArrow_cFv)
+/* 8023FF78-8023FF9C 23A8B8 0024+00 1/0 0/0 0/0 .text            dotAnimeInit__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -607,8 +411,7 @@ asm void dMsgScrnItem_c::dotAnimeInit() {
 }
 #pragma pop
 
-/* 8023FF9C-8023FFC0 0024+00 s=1 e=0 z=0  None .text      dotAnimeMove__14dMsgScrnItem_cFv */
-//	8023FFAC: 8023C010 (dotAnimeMove__15dMsgScrnArrow_cFv)
+/* 8023FF9C-8023FFC0 23A8DC 0024+00 1/0 0/0 0/0 .text            dotAnimeMove__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -618,9 +421,7 @@ asm void dMsgScrnItem_c::dotAnimeMove() {
 }
 #pragma pop
 
-/* 8023FFC0-8023FFE4 0024+00 s=1 e=0 z=0  None .text      setSelectString__14dMsgScrnItem_cFPcPcPc
- */
-//	8023FFD0: 80239C78 (setString__17dMsgScrn3Select_cFPcPcPc)
+/* 8023FFC0-8023FFE4 23A900 0024+00 1/0 0/0 0/0 .text setSelectString__14dMsgScrnItem_cFPcPcPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -630,9 +431,8 @@ asm void dMsgScrnItem_c::setSelectString(char* param_0, char* param_1, char* par
 }
 #pragma pop
 
-/* 8023FFE4-80240008 0024+00 s=1 e=0 z=0  None .text setSelectRubyString__14dMsgScrnItem_cFPcPcPc
+/* 8023FFE4-80240008 23A924 0024+00 1/0 0/0 0/0 .text setSelectRubyString__14dMsgScrnItem_cFPcPcPc
  */
-//	8023FFF4: 80239D08 (setRubyString__17dMsgScrn3Select_cFPcPcPc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -642,8 +442,7 @@ asm void dMsgScrnItem_c::setSelectRubyString(char* param_0, char* param_1, char*
 }
 #pragma pop
 
-/* 80240008-8024002C 0024+00 s=1 e=0 z=0  None .text      isSelect__14dMsgScrnItem_cFv */
-//	80240018: 80239C64 (isSelect__17dMsgScrn3Select_cFv)
+/* 80240008-8024002C 23A948 0024+00 1/0 0/0 0/0 .text            isSelect__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,9 +452,7 @@ asm void dMsgScrnItem_c::isSelect() {
 }
 #pragma pop
 
-/* 8024002C-8024005C 0030+00 s=1 e=0 z=0  None .text      selectAnimeInit__14dMsgScrnItem_cFUcUcfUc
- */
-//	80240048: 8023A094 (selAnimeInit__17dMsgScrn3Select_cFUcUcUcfUc)
+/* 8024002C-8024005C 23A96C 0030+00 1/0 0/0 0/0 .text selectAnimeInit__14dMsgScrnItem_cFUcUcfUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -665,8 +462,7 @@ asm void dMsgScrnItem_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8
 }
 #pragma pop
 
-/* 8024005C-80240080 0024+00 s=1 e=0 z=0  None .text      selectAnimeMove__14dMsgScrnItem_cFUcUcb */
-//	8024006C: 8023A398 (selAnimeMove__17dMsgScrn3Select_cFUcUcb)
+/* 8024005C-80240080 23A99C 0024+00 1/0 0/0 0/0 .text selectAnimeMove__14dMsgScrnItem_cFUcUcb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -676,8 +472,8 @@ asm void dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
 }
 #pragma pop
 
-/* 80240080-802400A4 0024+00 s=1 e=0 z=0  None .text      selectAnimeEnd__14dMsgScrnItem_cFv */
-//	80240090: 8023A680 (selAnimeEnd__17dMsgScrn3Select_cFv)
+/* 80240080-802400A4 23A9C0 0024+00 1/0 0/0 0/0 .text            selectAnimeEnd__14dMsgScrnItem_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -687,13 +483,12 @@ asm void dMsgScrnItem_c::selectAnimeEnd() {
 }
 #pragma pop
 
-/* 802400A4-802400A8 0004+00 s=1 e=0 z=0  None .text      fukiScale__14dMsgScrnItem_cFf */
+/* 802400A4-802400A8 23A9E4 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnItem_cFf */
 void dMsgScrnItem_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 802400A8-802400CC 0024+00 s=1 e=0 z=0  None .text      fukiTrans__14dMsgScrnItem_cFff */
-//	802400B8: 802545B0 (paneTrans__8CPaneMgrFff)
+/* 802400A8-802400CC 23A9E8 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnItem_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,14 +498,7 @@ asm void dMsgScrnItem_c::fukiTrans(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 802400CC-80240174 00A8+00 s=1 e=0 z=0  None .text      fukiAlpha__14dMsgScrnItem_cFf */
-//	802400E4: 803621D8 (_savegpr_28)
-//	802400FC: 8043028C (g_MsgObject_HIO_c)
-//	80240100: 8043028C (g_MsgObject_HIO_c)
-//	8024010C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80240128: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80240140: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80240160: 80362224 (_restgpr_28)
+/* 802400CC-80240174 23AA0C 00A8+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnItem_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -721,102 +509,34 @@ asm void dMsgScrnItem_c::fukiAlpha(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454C2C-80454C30 0004+00 s=1 e=0 z=0  None .sdata2    @4663 */
+/* 80454C2C-80454C30 00322C 0004+00 1/1 0/0 0/0 .sdata2          @4663 */
 SECTION_SDATA2 static f32 lit_4663 = 608.0f;
 
-/* 80454C30-80454C34 0004+00 s=1 e=0 z=0  None .sdata2    @4664 */
+/* 80454C30-80454C34 003230 0004+00 1/1 0/0 0/0 .sdata2          @4664 */
 SECTION_SDATA2 static f32 lit_4664 = 448.0f;
 
-/* 80454C34-80454C38 0004+00 s=1 e=0 z=0  None .sdata2    @4665 */
+/* 80454C34-80454C38 003234 0004+00 1/1 0/0 0/0 .sdata2          @4665 */
 SECTION_SDATA2 static f32 lit_4665 = 50.0f;
 
-/* 80454C38-80454C3C 0004+00 s=1 e=0 z=0  None .sdata2    @4666 */
+/* 80454C38-80454C3C 003238 0004+00 1/1 0/0 0/0 .sdata2          @4666 */
 SECTION_SDATA2 static f32 lit_4666 = 105.0f;
 
-/* 80454C3C-80454C40 0004+00 s=1 e=0 z=0  None .sdata2    @4667 */
+/* 80454C3C-80454C40 00323C 0004+00 1/1 0/0 0/0 .sdata2          @4667 */
 SECTION_SDATA2 static f32 lit_4667 = 486.0f;
 
-/* 80454C40-80454C44 0004+00 s=1 e=0 z=0  None .sdata2    @4668 */
+/* 80454C40-80454C44 003240 0004+00 1/1 0/0 0/0 .sdata2          @4668 */
 SECTION_SDATA2 static f32 lit_4668 = 230.0f;
 
-/* 80454C44-80454C48 0004+00 s=1 e=0 z=0  None .sdata2    @4669 */
+/* 80454C44-80454C48 003244 0004+00 1/1 0/0 0/0 .sdata2          @4669 */
 SECTION_SDATA2 static f32 lit_4669 = 235.0f;
 
-/* 80454C48-80454C4C 0004+00 s=1 e=0 z=0  None .sdata2    @4670 */
+/* 80454C48-80454C4C 003248 0004+00 1/1 0/0 0/0 .sdata2          @4670 */
 SECTION_SDATA2 static f32 lit_4670 = 355.0f;
 
-/* 80454C4C-80454C50 0004+00 s=1 e=0 z=0  None .sdata2    @4671 */
+/* 80454C4C-80454C50 00324C 0004+00 1/1 0/0 0/0 .sdata2          @4671 */
 SECTION_SDATA2 static f32 lit_4671 = 209.0f;
 
-/* 80240174-8024074C 05D8+00 s=1 e=0 z=0  None .text      fukiPosCalc__14dMsgScrnItem_cFUc */
-//	8024019C: 803621DC (_savegpr_29)
-//	802401A8: 8023819C (getActor__12dMsgObject_cFv)
-//	802401E4: 804061C0 (g_dComIfG_gameInfo)
-//	802401E8: 804061C0 (g_dComIfG_gameInfo)
-//	802401F8: 80015310 (mDoLib_project__FP3VecP3Vec)
-//	802401FC: 80454C04 (lit_4195)
-//	80240214: 8026702C (__eq__4cXyzCFRC3Vec)
-//	80240230: 80015310 (mDoLib_project__FP3VecP3Vec)
-//	80240238: 80454C04 (lit_4195)
-//	80240248: 80454C2C (lit_4663)
-//	80240268: 80454C30 (lit_4664)
-//	80240278: 80454C0C (lit_4197)
-//	802402C4: 8043028C (g_MsgObject_HIO_c)
-//	802402C8: 8043028C (g_MsgObject_HIO_c)
-//	802402D0: 80454C18 (lit_4388)
-//	802402EC: 80454C34 (lit_4665)
-//	8024030C: 80454C34 (lit_4665)
-//	80240310: 8043028C (g_MsgObject_HIO_c)
-//	80240314: 8043028C (g_MsgObject_HIO_c)
-//	8024031C: 80454C18 (lit_4388)
-//	80240354: 8043028C (g_MsgObject_HIO_c)
-//	80240358: 8043028C (g_MsgObject_HIO_c)
-//	80240360: 80454C18 (lit_4388)
-//	80240390: 80454C04 (lit_4195)
-//	802403B8: 8043028C (g_MsgObject_HIO_c)
-//	802403BC: 8043028C (g_MsgObject_HIO_c)
-//	802403E4: 802F7100 (getBounds__7J2DPaneFv)
-//	8024040C: 802F7100 (getBounds__7J2DPaneFv)
-//	80240418: 80454C0C (lit_4197)
-//	80240420: 80454C38 (lit_4666)
-//	80240430: 80454C3C (lit_4667)
-//	80240434: 80454C40 (lit_4668)
-//	80240438: 80239D98 (translate__17dMsgScrn3Select_cFff)
-//	80240440: 8043028C (g_MsgObject_HIO_c)
-//	80240444: 8043028C (g_MsgObject_HIO_c)
-//	8024046C: 802F7100 (getBounds__7J2DPaneFv)
-//	80240494: 802F7100 (getBounds__7J2DPaneFv)
-//	802404A0: 80454C0C (lit_4197)
-//	802404A8: 80454C44 (lit_4669)
-//	802404B8: 80454C3C (lit_4667)
-//	802404BC: 80454C48 (lit_4670)
-//	802404C0: 80239D98 (translate__17dMsgScrn3Select_cFff)
-//	802404C8: 8043028C (g_MsgObject_HIO_c)
-//	802404CC: 8043028C (g_MsgObject_HIO_c)
-//	802404D4: 80454C04 (lit_4195)
-//	802404E0: 80454C3C (lit_4667)
-//	802404E4: 80454C4C (lit_4671)
-//	802404E8: 80239D98 (translate__17dMsgScrn3Select_cFff)
-//	8024054C: 80253B2C (reinit__8CPaneMgrFv)
-//	80240570: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	80240574: 80454C0C (lit_4197)
-//	80240584: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80240588: 80454C0C (lit_4197)
-//	8024059C: 8023BDF8 (setPos__15dMsgScrnArrow_cFff)
-//	802405B4: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	802405B8: 80454C0C (lit_4197)
-//	802405D8: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	802405DC: 80454C0C (lit_4197)
-//	8024060C: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80240618: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	80240634: 802542E8 (getGlobalPosX__8CPaneMgrFv)
-//	80240638: 80454C0C (lit_4197)
-//	8024065C: 80254364 (getGlobalPosY__8CPaneMgrFv)
-//	80240660: 80454C0C (lit_4197)
-//	80240688: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802406B0: 8023BDF8 (setPos__15dMsgScrnArrow_cFff)
-//	802406C8: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80240738: 80362228 (_restgpr_29)
+/* 80240174-8024074C 23AAB4 05D8+00 1/0 0/0 0/0 .text            fukiPosCalc__14dMsgScrnItem_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -826,7 +546,7 @@ asm void dMsgScrnItem_c::fukiPosCalc(u8 param_0) {
 }
 #pragma pop
 
-/* 8024074C-802407E8 009C+00 s=1 e=0 z=0  None .text
+/* 8024074C-802407E8 23B08C 009C+00 1/1 0/0 0/0 .text
  * setBtk0Animation__14dMsgScrnItem_cFP19J2DAnmTextureSRTKey    */
 #pragma push
 #pragma optimization_level 0
@@ -837,7 +557,7 @@ asm void dMsgScrnItem_c::setBtk0Animation(J2DAnmTextureSRTKey* param_0) {
 }
 #pragma pop
 
-/* 802407E8-80240844 005C+00 s=1 e=0 z=0  None .text
+/* 802407E8-80240844 23B128 005C+00 1/1 0/0 0/0 .text
  * setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor            */
 #pragma push
 #pragma optimization_level 0
@@ -848,7 +568,7 @@ asm void dMsgScrnItem_c::setBpk0Animation(J2DAnmColor* param_0) {
 }
 #pragma pop
 
-/* 80240844-802408A4 0060+00 s=1 e=0 z=0  None .text
+/* 80240844-802408A4 23B184 0060+00 1/1 0/0 0/0 .text
  * setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor            */
 #pragma push
 #pragma optimization_level 0
@@ -859,8 +579,7 @@ asm void dMsgScrnItem_c::setBpk1Animation(J2DAnmColor* param_0) {
 }
 #pragma pop
 
-/* 802408A4-8024096C 00C8+00 s=1 e=0 z=0  None .text      isOugiID__14dMsgScrnItem_cFv */
-//	802408B0: 802383D0 (getMessageID__12dMsgObject_cFv)
+/* 802408A4-8024096C 23B1E4 00C8+00 1/1 0/0 0/0 .text            isOugiID__14dMsgScrnItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -868,4 +587,17 @@ asm void dMsgScrnItem_c::isOugiID() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_item/isOugiID__14dMsgScrnItem_cFv.s"
 }
+#pragma pop
+
+/* 80399990-80399A20 025FF0 008A+06 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399990 = "zelda_item_get_window.blo";
+SECTION_DEAD static char const* const stringBase_803999AA = "zelda_item_get_window_text.blo";
+SECTION_DEAD static char const* const stringBase_803999C9 = "zelda_item_get_window.btk";
+SECTION_DEAD static char const* const stringBase_803999E3 = "zelda_item_get_window.bpk";
+SECTION_DEAD static char const* const stringBase_803999FD = "zelda_item_get_window_02.bpk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399A1A = "\0\0\0\0\0";
 #pragma pop

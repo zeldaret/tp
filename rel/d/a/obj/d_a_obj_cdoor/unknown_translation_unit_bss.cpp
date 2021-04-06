@@ -22,5 +22,8 @@ extern "C" extern u8 struct_80BC7EB8[4];
 //
 
 /* ############################################################################################## */
-/* 80BC7EB8-80BC7EBC 0004+00 s=0 e=2 z=0  None .bss       None */
+/* 80BC7EB8-80BC7EBC -00001 0004+00 0/0 2/2 0/0 .bss             None */
+/* 80BC7EB8 0001+00 data_80BC7EB8 None */
+/* 80BC7EB9 0003+00 data_80BC7EB9 None */
+extern u8 struct_80BC7EB8[4];
 u8 struct_80BC7EB8[4];

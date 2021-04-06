@@ -42,8 +42,8 @@ lbl_802BEC94:
 /* 802BEC94  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 802BEC98  38 03 FF FF */	addi r0, r3, -1
 /* 802BEC9C  90 1F 00 40 */	stw r0, 0x40(r31)
-/* 802BECA0  3C 60 80 45 */	lis r3, __float_max@ha
-/* 802BECA4  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 802BECA0  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 802BECA4  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 802BECA8  D0 1F 00 28 */	stfs f0, 0x28(r31)
 /* 802BECAC  C0 22 C1 50 */	lfs f1, lit_3821(r2)
 /* 802BECB0  D0 3F 00 2C */	stfs f1, 0x2c(r31)

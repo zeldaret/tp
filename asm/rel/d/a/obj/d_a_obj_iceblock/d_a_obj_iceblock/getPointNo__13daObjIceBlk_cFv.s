@@ -3,12 +3,12 @@ lbl_80C21EA4:
 /* 80C21EA8  7C 08 02 A6 */	mflr r0
 /* 80C21EAC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C21EB0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C21EB4  4B 74 03 20 */	b _savegpr_27
+/* 80C21EB4  4B 74 03 21 */	bl _savegpr_27
 /* 80C21EB8  7C 7B 1B 78 */	mr r27, r3
 /* 80C21EBC  3B A0 00 00 */	li r29, 0
 /* 80C21EC0  3B 80 00 00 */	li r28, 0
-/* 80C21EC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C21EC8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80C21EC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C21EC8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C21ECC  3B E0 00 01 */	li r31, 1
 /* 80C21ED0  48 00 00 34 */	b lbl_80C21F04
 lbl_80C21ED4:
@@ -17,7 +17,7 @@ lbl_80C21ED4:
 /* 80C21EDC  7C 80 E2 14 */	add r4, r0, r28
 /* 80C21EE0  88 1B 04 BA */	lbz r0, 0x4ba(r27)
 /* 80C21EE4  7C 05 07 74 */	extsb r5, r0
-/* 80C21EE8  4B 41 34 78 */	b isSwitch__10dSv_info_cCFii
+/* 80C21EE8  4B 41 34 79 */	bl isSwitch__10dSv_info_cCFii
 /* 80C21EEC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C21EF0  41 82 00 10 */	beq lbl_80C21F00
 /* 80C21EF4  7F E0 E0 30 */	slw r0, r31, r28
@@ -31,7 +31,7 @@ lbl_80C21F04:
 /* 80C21F0C  41 80 FF C8 */	blt lbl_80C21ED4
 /* 80C21F10  7F A3 EB 78 */	mr r3, r29
 /* 80C21F14  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C21F18  4B 74 03 08 */	b _restgpr_27
+/* 80C21F18  4B 74 03 09 */	bl _restgpr_27
 /* 80C21F1C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C21F20  7C 08 03 A6 */	mtlr r0
 /* 80C21F24  38 21 00 20 */	addi r1, r1, 0x20

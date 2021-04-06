@@ -3,19 +3,20 @@
 #
 
 M200_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_hp.plf
+M200_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_hp.lcf
+M200_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_hp.map
 
 M200_CPP_FILES := \
-	rel/d/a/e/d_a_e_hp/executor.cpp \
-	rel/d/a/e/d_a_e_hp/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_hp/d_a_e_hp.cpp \
 
 M200_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hp/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hp/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_hp/d_a_e_hp.o \
 
 M200_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hp/libRuntime.PPCEABI.H.a \
 
 M200_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M200_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map200.map\
+	-m _prolog \
+	-lcf $(M200_LDSCRIPT) \
+	-unused -map $(M200_MAP) \
+	-w off \
 
 $(M200_TARGET): $(M200_O_FILES) $(M200_LIBS)
+	@echo [200] creating $(M200_TARGET)
 	@echo $(M200_LIBS) $(M200_O_FILES) > build/M200_ofiles
-	$(LD) -opt_partial $(M200_LDFLAGS) -o $(M200_TARGET) @build/M200_ofiles
+	@python3 tools/lcf.py rel 200 --output $(M200_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M200_LDFLAGS) -o $(M200_TARGET) @build/M200_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hp/%.o: rel/d/a/e/d_a_e_hp/%.cpp
+	@echo [200] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M200_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M200_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_hp/libs/Runtime.PPCEABI.H/Makefile
 

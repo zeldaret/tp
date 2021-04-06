@@ -18,8 +18,8 @@ lbl_8015FBF8:
 /* 8015FC38  28 1C 00 00 */	cmplwi r28, 0
 /* 8015FC3C  40 82 00 24 */	bne lbl_8015FC60
 lbl_8015FC40:
-/* 8015FC40  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 8015FC44  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 8015FC40  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8015FC44  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 8015FC48  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 8015FC4C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8015FC50  D0 1F 00 04 */	stfs f0, 4(r31)

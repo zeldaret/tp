@@ -3,17 +3,15 @@
 #
 
 M59_TARGET := $(BUILD_DIR)/rel/d/a/d_a_andsw2.plf
+M59_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_andsw2.lcf
+M59_MAP := $(BUILD_DIR)/rel/d/a/d_a_andsw2.map
 
 M59_CPP_FILES := \
-	rel/d/a/d_a_andsw2/executor.cpp \
-	rel/d/a/d_a_andsw2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_andsw2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_andsw2/d_a_andsw2.cpp \
 
 M59_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw2/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_andsw2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_andsw2/d_a_andsw2.o \
 
 M59_LIBS := \
@@ -29,15 +27,21 @@ M59_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map59.map\
+	-m _prolog \
+	-lcf $(M59_LDSCRIPT) \
+	-unused -map $(M59_MAP) \
+	-w off \
 
 $(M59_TARGET): $(M59_O_FILES) $(M59_LIBS)
+	@echo [ 59] creating $(M59_TARGET)
 	@echo $(M59_LIBS) $(M59_O_FILES) > build/M59_ofiles
-	$(LD) -opt_partial $(M59_LDFLAGS) -o $(M59_TARGET) @build/M59_ofiles
+	@python3 tools/lcf.py rel 59 --output $(M59_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M59_LDFLAGS) -o $(M59_TARGET) @build/M59_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_andsw2/%.o: rel/d/a/d_a_andsw2/%.cpp
+	@echo [ 59] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M59_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M59_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

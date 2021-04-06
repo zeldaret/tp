@@ -50,7 +50,7 @@ lbl_802CAB64:
 /* 802CAB70  C0 02 C4 60 */	lfs f0, lit_3485(r2)
 /* 802CAB74  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 802CAB78  D0 03 00 30 */	stfs f0, 0x30(r3)
-/* 802CAB7C  3C 80 80 3D */	lis r4, sGuideData@ha
-/* 802CAB80  38 04 BC C0 */	addi r0, r4, sGuideData@l
+/* 802CAB7C  3C 80 80 3D */	lis r4, sGuideData@ha /* 0x803CBCC0@ha */
+/* 802CAB80  38 04 BC C0 */	addi r0, r4, sGuideData@l /* 0x803CBCC0@l */
 /* 802CAB84  90 03 00 10 */	stw r0, 0x10(r3)
 /* 802CAB88  4E 80 00 20 */	blr 

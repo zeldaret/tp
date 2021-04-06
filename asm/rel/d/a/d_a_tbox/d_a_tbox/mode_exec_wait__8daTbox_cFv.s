@@ -21,32 +21,32 @@ lbl_804956EC:
 /* 80495738  D0 41 00 08 */	stfs f2, 8(r1)
 /* 8049573C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80495740  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80495744  3C 60 80 49 */	lis r3, lit_4222@ha
-/* 80495748  C0 03 62 54 */	lfs f0, lit_4222@l(r3)
+/* 80495744  3C 60 80 49 */	lis r3, lit_4222@ha /* 0x80496254@ha */
+/* 80495748  C0 03 62 54 */	lfs f0, lit_4222@l(r3)  /* 0x80496254@l */
 /* 8049574C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80495750  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80495754  3C 60 80 49 */	lis r3, lit_4223@ha
-/* 80495758  C0 03 62 58 */	lfs f0, lit_4223@l(r3)
+/* 80495754  3C 60 80 49 */	lis r3, lit_4223@ha /* 0x80496258@ha */
+/* 80495758  C0 03 62 58 */	lfs f0, lit_4223@l(r3)  /* 0x80496258@l */
 /* 8049575C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80495760  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80495764  38 61 00 14 */	addi r3, r1, 0x14
 /* 80495768  38 81 00 08 */	addi r4, r1, 8
 /* 8049576C  7F E5 FB 78 */	mr r5, r31
-/* 80495770  4B B8 84 F8 */	b lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c
+/* 80495770  4B B8 84 F9 */	bl lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 80495774  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80495778  41 82 00 64 */	beq lbl_804957DC
-/* 8049577C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80495780  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8049577C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80495780  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80495784  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80495788  3C 80 80 3F */	lis r4, mLineCheck__11fopAcM_lc_c@ha
-/* 8049578C  38 84 1C 48 */	addi r4, r4, mLineCheck__11fopAcM_lc_c@l
+/* 80495788  3C 80 80 3F */	lis r4, mLineCheck__11fopAcM_lc_c@ha /* 0x803F1C48@ha */
+/* 8049578C  38 84 1C 48 */	addi r4, r4, mLineCheck__11fopAcM_lc_c@l /* 0x803F1C48@l */
 /* 80495790  38 84 00 14 */	addi r4, r4, 0x14
-/* 80495794  4B BD F3 28 */	b ChkMoveBG__4dBgSFRC13cBgS_PolyInfo
+/* 80495794  4B BD F3 29 */	bl ChkMoveBG__4dBgSFRC13cBgS_PolyInfo
 /* 80495798  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8049579C  41 82 00 40 */	beq lbl_804957DC
 /* 804957A0  3B C0 00 01 */	li r30, 1
-/* 804957A4  3C 60 80 3F */	lis r3, mLineCheck__11fopAcM_lc_c@ha
-/* 804957A8  38 63 1C 48 */	addi r3, r3, mLineCheck__11fopAcM_lc_c@l
+/* 804957A4  3C 60 80 3F */	lis r3, mLineCheck__11fopAcM_lc_c@ha /* 0x803F1C48@ha */
+/* 804957A8  38 63 1C 48 */	addi r3, r3, mLineCheck__11fopAcM_lc_c@l /* 0x803F1C48@l */
 /* 804957AC  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 804957B0  D0 1F 04 A8 */	stfs f0, 0x4a8(r31)
 /* 804957B4  C0 03 00 34 */	lfs f0, 0x34(r3)

@@ -48,8 +48,8 @@ lbl_8021A4E0:
 /* 8021A50C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8021A510  38 00 FF FF */	li r0, -1
 /* 8021A514  90 01 00 10 */	stw r0, 0x10(r1)
-/* 8021A518  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8021A51C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8021A518  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8021A51C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8021A520  7F C4 F3 78 */	mr r4, r30
 /* 8021A524  80 E7 04 E8 */	lwz r7, 0x4e8(r7)
 /* 8021A528  81 1D 05 14 */	lwz r8, 0x514(r29)
@@ -67,8 +67,8 @@ lbl_8021A550:
 /* 8021A554  80 7D 05 14 */	lwz r3, 0x514(r29)
 /* 8021A558  98 03 00 B0 */	stb r0, 0xb0(r3)
 lbl_8021A55C:
-/* 8021A55C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8021A560  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8021A55C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021A560  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021A564  88 03 05 68 */	lbz r0, 0x568(r3)
 /* 8021A568  28 00 00 01 */	cmplwi r0, 1
 /* 8021A56C  40 82 00 2C */	bne lbl_8021A598
@@ -83,8 +83,8 @@ lbl_8021A55C:
 /* 8021A590  EC 81 00 24 */	fdivs f4, f1, f0
 /* 8021A594  48 00 00 3C */	b lbl_8021A5D0
 lbl_8021A598:
-/* 8021A598  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha
-/* 8021A59C  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l
+/* 8021A598  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha /* 0x803AC5A0@ha */
+/* 8021A59C  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l /* 0x803AC5A0@l */
 /* 8021A5A0  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 8021A5A4  1C 00 00 18 */	mulli r0, r0, 0x18
 /* 8021A5A8  7C 63 02 14 */	add r3, r3, r0
@@ -155,8 +155,8 @@ lbl_8021A5D0:
 /* 8021A6A8  57 E5 10 3A */	slwi r5, r31, 2
 /* 8021A6AC  80 7D 03 28 */	lwz r3, 0x328(r29)
 /* 8021A6B0  C0 5D 06 DC */	lfs f2, 0x6dc(r29)
-/* 8021A6B4  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8021A6B8  38 04 EB C8 */	addi r0, r4, g_drawHIO@l
+/* 8021A6B4  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021A6B8  38 04 EB C8 */	addi r0, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021A6BC  7C 80 2A 14 */	add r4, r0, r5
 /* 8021A6C0  C0 24 01 84 */	lfs f1, 0x184(r4)
 /* 8021A6C4  C0 1D 06 EC */	lfs f0, 0x6ec(r29)

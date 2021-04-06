@@ -7,8 +7,8 @@ lbl_803138C8:
 /* 803138DC  7C 7C 1B 78 */	mr r28, r3
 /* 803138E0  7C 9D 23 78 */	mr r29, r4
 /* 803138E4  7C BE 2B 78 */	mr r30, r5
-/* 803138E8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803138EC  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 803138E8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803138EC  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803138F0  80 7F 00 40 */	lwz r3, 0x40(r31)
 /* 803138F4  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 803138F8  80 9F 01 04 */	lwz r4, 0x104(r31)

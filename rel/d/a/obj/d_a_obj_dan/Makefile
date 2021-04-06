@@ -3,19 +3,20 @@
 #
 
 M435_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan.plf
+M435_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan.lcf
+M435_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan.map
 
 M435_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_dan/executor.cpp \
-	rel/d/a/obj/d_a_obj_dan/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_dan/d_a_obj_dan.cpp \
 
 M435_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/d_a_obj_dan.o \
 
 M435_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/libRuntime.PPCEABI.H.a \
 
 M435_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M435_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map435.map\
+	-m _prolog \
+	-lcf $(M435_LDSCRIPT) \
+	-unused -map $(M435_MAP) \
+	-w off \
 
 $(M435_TARGET): $(M435_O_FILES) $(M435_LIBS)
+	@echo [435] creating $(M435_TARGET)
 	@echo $(M435_LIBS) $(M435_O_FILES) > build/M435_ofiles
-	$(LD) -opt_partial $(M435_LDFLAGS) -o $(M435_TARGET) @build/M435_ofiles
+	@python3 tools/lcf.py rel 435 --output $(M435_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M435_LDFLAGS) -o $(M435_TARGET) @build/M435_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dan/%.o: rel/d/a/obj/d_a_obj_dan/%.cpp
+	@echo [435] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M435_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M435_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_dan/libs/Runtime.PPCEABI.H/Makefile
 

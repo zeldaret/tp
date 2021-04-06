@@ -5,7 +5,7 @@ lbl_805A2150:
 /* 805A215C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805A2160  7C 7F 1B 79 */	or. r31, r3, r3
 /* 805A2164  41 82 00 24 */	beq lbl_805A2188
-/* 805A2168  4B A7 6B 78 */	b fopAc_IsActor__FPv
+/* 805A2168  4B A7 6B 79 */	bl fopAc_IsActor__FPv
 /* 805A216C  2C 03 00 00 */	cmpwi r3, 0
 /* 805A2170  41 82 00 18 */	beq lbl_805A2188
 /* 805A2174  A8 1F 00 0E */	lha r0, 0xe(r31)

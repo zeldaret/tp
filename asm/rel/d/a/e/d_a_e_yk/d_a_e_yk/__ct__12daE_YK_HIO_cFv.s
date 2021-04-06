@@ -1,8 +1,8 @@
 lbl_8080482C:
-/* 8080482C  3C 80 80 80 */	lis r4, lit_3941@ha
-/* 80804830  38 A4 7C 9C */	addi r5, r4, lit_3941@l
-/* 80804834  3C 80 80 80 */	lis r4, __vt__12daE_YK_HIO_c@ha
-/* 80804838  38 04 7E E0 */	addi r0, r4, __vt__12daE_YK_HIO_c@l
+/* 8080482C  3C 80 80 80 */	lis r4, lit_3941@ha /* 0x80807C9C@ha */
+/* 80804830  38 A4 7C 9C */	addi r5, r4, lit_3941@l /* 0x80807C9C@l */
+/* 80804834  3C 80 80 80 */	lis r4, __vt__12daE_YK_HIO_c@ha /* 0x80807EE0@ha */
+/* 80804838  38 04 7E E0 */	addi r0, r4, __vt__12daE_YK_HIO_c@l /* 0x80807EE0@l */
 /* 8080483C  90 03 00 00 */	stw r0, 0(r3)
 /* 80804840  38 00 FF FF */	li r0, -1
 /* 80804844  98 03 00 04 */	stb r0, 4(r3)

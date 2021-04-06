@@ -17,7 +17,7 @@ lbl_8025DA9C:
 /* 8025DAD8  7C 84 18 10 */	subfc r4, r4, r3
 /* 8025DADC  7C 65 01 10 */	subfe r3, r5, r0
 /* 8025DAE0  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
-/* 8025DAE4  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 8025DAE4  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 8025DAE8  54 05 F0 BE */	srwi r5, r0, 2
 /* 8025DAEC  38 00 03 E8 */	li r0, 0x3e8
 /* 8025DAF0  7C C5 03 96 */	divwu r6, r5, r0

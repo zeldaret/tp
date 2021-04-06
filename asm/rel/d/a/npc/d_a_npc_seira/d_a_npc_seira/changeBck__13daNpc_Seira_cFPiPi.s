@@ -6,8 +6,8 @@ lbl_80ACD600:
 /* 80ACD610  38 03 FF F9 */	addi r0, r3, -7
 /* 80ACD614  28 00 00 0A */	cmplwi r0, 0xa
 /* 80ACD618  4D 81 00 20 */	bgtlr 
-/* 80ACD61C  3C 60 80 AD */	lis r3, lit_5133@ha
-/* 80ACD620  38 63 08 64 */	addi r3, r3, lit_5133@l
+/* 80ACD61C  3C 60 80 AD */	lis r3, lit_5133@ha /* 0x80AD0864@ha */
+/* 80ACD620  38 63 08 64 */	addi r3, r3, lit_5133@l /* 0x80AD0864@l */
 /* 80ACD624  54 00 10 3A */	slwi r0, r0, 2
 /* 80ACD628  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80ACD62C  7C 09 03 A6 */	mtctr r0

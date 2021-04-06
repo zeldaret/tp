@@ -8,8 +8,8 @@ lbl_80230B98:
 /* 80230BA0  48 00 00 14 */	b lbl_80230BB4
 lbl_80230BA4:
 /* 80230BA4  A0 05 00 00 */	lhz r0, 0(r5)
-/* 80230BA8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80230BAC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80230BA8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80230BAC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80230BB0  B0 03 00 94 */	sth r0, 0x94(r3)
 lbl_80230BB4:
 /* 80230BB4  38 60 00 01 */	li r3, 1

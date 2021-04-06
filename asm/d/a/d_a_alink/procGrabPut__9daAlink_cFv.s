@@ -16,8 +16,8 @@ lbl_800E6914:
 /* 800E694C  B0 1D 04 DE */	sth r0, 0x4de(r29)
 /* 800E6950  28 1F 00 00 */	cmplwi r31, 0
 /* 800E6954  41 82 00 78 */	beq lbl_800E69CC
-/* 800E6958  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800E695C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800E6958  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800E695C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800E6960  A8 1D 04 E6 */	lha r0, 0x4e6(r29)
 /* 800E6964  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800E6968  7C 64 02 14 */	add r3, r4, r0
@@ -90,8 +90,8 @@ lbl_800E6A58:
 /* 800E6A5C  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 800E6A60  C0 7D 34 7C */	lfs f3, 0x347c(r29)
 /* 800E6A64  C0 5E 00 10 */	lfs f2, 0x10(r30)
-/* 800E6A68  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha
-/* 800E6A6C  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l
+/* 800E6A68  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E6A6C  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E6A70  C0 04 00 58 */	lfs f0, 0x58(r4)
 /* 800E6A74  EC 02 00 28 */	fsubs f0, f2, f0
 /* 800E6A78  EC 43 00 32 */	fmuls f2, f3, f0

@@ -41,8 +41,8 @@ lbl_800DE090:
 lbl_800DE098:
 /* 800DE098  3B A0 00 F0 */	li r29, 0xf0
 lbl_800DE09C:
-/* 800DE09C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_turnMove_c0@ha
-/* 800DE0A0  38 63 DF 70 */	addi r3, r3, m__22daAlinkHIO_turnMove_c0@l
+/* 800DE09C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_turnMove_c0@ha /* 0x8038DF70@ha */
+/* 800DE0A0  38 63 DF 70 */	addi r3, r3, m__22daAlinkHIO_turnMove_c0@l /* 0x8038DF70@l */
 /* 800DE0A4  C0 23 00 04 */	lfs f1, 4(r3)
 /* 800DE0A8  A8 03 00 16 */	lha r0, 0x16(r3)
 /* 800DE0AC  B0 1C 30 0A */	sth r0, 0x300a(r28)
@@ -57,8 +57,8 @@ lbl_800DE09C:
 /* 800DE0D0  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800DE0D4  C8 01 00 30 */	lfd f0, 0x30(r1)
 /* 800DE0D8  EC 40 10 28 */	fsubs f2, f0, f2
-/* 800DE0DC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800DE0E0  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800DE0DC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800DE0E0  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800DE0E4  C0 03 00 3C */	lfs f0, 0x3c(r3)
 /* 800DE0E8  EC 02 00 32 */	fmuls f0, f2, f0
 /* 800DE0EC  FC 00 00 1E */	fctiwz f0, f0
@@ -68,8 +68,8 @@ lbl_800DE09C:
 lbl_800DE0FC:
 /* 800DE0FC  7F 83 E3 78 */	mr r3, r28
 /* 800DE100  7F A4 EB 78 */	mr r4, r29
-/* 800DE104  3C A0 80 39 */	lis r5, m__22daAlinkHIO_turnMove_c0@ha
-/* 800DE108  38 C5 DF 70 */	addi r6, r5, m__22daAlinkHIO_turnMove_c0@l
+/* 800DE104  3C A0 80 39 */	lis r5, m__22daAlinkHIO_turnMove_c0@ha /* 0x8038DF70@ha */
+/* 800DE108  38 C5 DF 70 */	addi r6, r5, m__22daAlinkHIO_turnMove_c0@l /* 0x8038DF70@l */
 /* 800DE10C  C0 46 00 08 */	lfs f2, 8(r6)
 /* 800DE110  A8 A6 00 00 */	lha r5, 0(r6)
 /* 800DE114  C0 66 00 0C */	lfs f3, 0xc(r6)
@@ -139,8 +139,8 @@ lbl_800DE208:
 /* 800DE208  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800DE20C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DE210  40 80 00 10 */	bge lbl_800DE220
-/* 800DE214  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DE218  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800DE214  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DE218  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800DE21C  48 00 00 70 */	b lbl_800DE28C
 lbl_800DE220:
 /* 800DE220  D0 21 00 08 */	stfs f1, 8(r1)
@@ -174,8 +174,8 @@ lbl_800DE278:
 lbl_800DE27C:
 /* 800DE27C  2C 00 00 01 */	cmpwi r0, 1
 /* 800DE280  40 82 00 0C */	bne lbl_800DE28C
-/* 800DE284  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800DE288  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800DE284  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800DE288  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800DE28C:
 /* 800DE28C  D0 3C 34 78 */	stfs f1, 0x3478(r28)
 /* 800DE290  38 61 00 24 */	addi r3, r1, 0x24
@@ -225,8 +225,8 @@ lbl_800DE328:
 /* 800DE330  48 04 2E 91 */	bl setFootEffectProcType__9daAlink_cFi
 /* 800DE334  38 00 00 04 */	li r0, 4
 /* 800DE338  98 1C 2F 9D */	stb r0, 0x2f9d(r28)
-/* 800DE33C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DE340  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DE33C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DE340  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DE344  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800DE348  60 00 00 04 */	ori r0, r0, 4
 /* 800DE34C  90 03 5F 18 */	stw r0, 0x5f18(r3)

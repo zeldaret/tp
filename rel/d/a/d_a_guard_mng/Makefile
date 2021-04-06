@@ -3,17 +3,15 @@
 #
 
 M261_TARGET := $(BUILD_DIR)/rel/d/a/d_a_guard_mng.plf
+M261_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_guard_mng.lcf
+M261_MAP := $(BUILD_DIR)/rel/d/a/d_a_guard_mng.map
 
 M261_CPP_FILES := \
-	rel/d/a/d_a_guard_mng/executor.cpp \
-	rel/d/a/d_a_guard_mng/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_guard_mng/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_guard_mng/d_a_guard_mng.cpp \
 
 M261_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_guard_mng/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_guard_mng/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_guard_mng/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_guard_mng/d_a_guard_mng.o \
 
 M261_LIBS := \
@@ -29,15 +27,21 @@ M261_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map261.map\
+	-m _prolog \
+	-lcf $(M261_LDSCRIPT) \
+	-unused -map $(M261_MAP) \
+	-w off \
 
 $(M261_TARGET): $(M261_O_FILES) $(M261_LIBS)
+	@echo [261] creating $(M261_TARGET)
 	@echo $(M261_LIBS) $(M261_O_FILES) > build/M261_ofiles
-	$(LD) -opt_partial $(M261_LDFLAGS) -o $(M261_TARGET) @build/M261_ofiles
+	@python3 tools/lcf.py rel 261 --output $(M261_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M261_LDFLAGS) -o $(M261_TARGET) @build/M261_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_guard_mng/%.o: rel/d/a/d_a_guard_mng/%.cpp
+	@echo [261] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M261_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M261_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

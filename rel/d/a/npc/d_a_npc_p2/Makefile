@@ -3,17 +3,15 @@
 #
 
 M341_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2.plf
+M341_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2.lcf
+M341_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2.map
 
 M341_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_p2/executor.cpp \
-	rel/d/a/npc/d_a_npc_p2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_p2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_p2/d_a_npc_p2.cpp \
 
 M341_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/d_a_npc_p2.o \
 
 M341_LIBS := \
@@ -29,15 +27,21 @@ M341_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map341.map\
+	-m _prolog \
+	-lcf $(M341_LDSCRIPT) \
+	-unused -map $(M341_MAP) \
+	-w off \
 
 $(M341_TARGET): $(M341_O_FILES) $(M341_LIBS)
+	@echo [341] creating $(M341_TARGET)
 	@echo $(M341_LIBS) $(M341_O_FILES) > build/M341_ofiles
-	$(LD) -opt_partial $(M341_LDFLAGS) -o $(M341_TARGET) @build/M341_ofiles
+	@python3 tools/lcf.py rel 341 --output $(M341_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M341_LDFLAGS) -o $(M341_TARGET) @build/M341_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_p2/%.o: rel/d/a/npc/d_a_npc_p2/%.cpp
+	@echo [341] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M341_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M341_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

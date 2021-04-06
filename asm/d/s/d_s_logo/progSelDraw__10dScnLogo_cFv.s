@@ -5,8 +5,8 @@ lbl_8025631C:
 /* 80256328  39 61 00 90 */	addi r11, r1, 0x90
 /* 8025632C  48 10 BE AD */	bl _savegpr_28
 /* 80256330  7C 7D 1B 78 */	mr r29, r3
-/* 80256334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80256338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80256334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80256338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025633C  3B C3 5F 64 */	addi r30, r3, 0x5f64
 /* 80256340  7F C3 F3 78 */	mr r3, r30
 /* 80256344  3B 9E 01 B4 */	addi r28, r30, 0x1b4
@@ -31,8 +31,8 @@ lbl_8025631C:
 /* 80256390  88 1D 02 09 */	lbz r0, 0x209(r29)
 /* 80256394  28 00 00 00 */	cmplwi r0, 0
 /* 80256398  40 82 00 80 */	bne lbl_80256418
-/* 8025639C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 802563A0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8025639C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 802563A0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 802563A4  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 802563A8  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 802563AC  40 82 00 14 */	bne lbl_802563C0
@@ -64,8 +64,8 @@ lbl_802563C0:
 /* 80256410  B0 1D 02 12 */	sth r0, 0x212(r29)
 /* 80256414  48 00 00 78 */	b lbl_8025648C
 lbl_80256418:
-/* 80256418  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8025641C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80256418  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8025641C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80256420  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 80256424  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80256428  40 82 00 14 */	bne lbl_8025643C
@@ -95,8 +95,8 @@ lbl_8025643C:
 /* 80256484  B0 1D 02 10 */	sth r0, 0x210(r29)
 /* 80256488  B0 7D 02 12 */	sth r3, 0x212(r29)
 lbl_8025648C:
-/* 8025648C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80256490  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8025648C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80256490  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80256494  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80256498  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8025649C  40 82 00 10 */	bne lbl_802564AC

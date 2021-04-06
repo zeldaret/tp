@@ -1,6 +1,6 @@
 lbl_808783FC:
-/* 808783FC  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80878400  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l
+/* 808783FC  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80878400  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80878404  80 03 00 A0 */	lwz r0, 0xa0(r3)
 /* 80878408  2C 00 00 00 */	cmpwi r0, 0
 /* 8087840C  41 82 00 24 */	beq lbl_80878430

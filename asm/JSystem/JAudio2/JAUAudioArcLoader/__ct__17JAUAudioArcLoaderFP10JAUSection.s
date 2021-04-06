@@ -7,8 +7,8 @@ lbl_802A4740:
 /* 802A4754  7C 7E 1B 78 */	mr r30, r3
 /* 802A4758  7C 9F 23 78 */	mr r31, r4
 /* 802A475C  4B FF FA E9 */	bl __ct__22JAUAudioArcInterpreterFv
-/* 802A4760  3C 60 80 3D */	lis r3, __vt__17JAUAudioArcLoader@ha
-/* 802A4764  38 03 9A 78 */	addi r0, r3, __vt__17JAUAudioArcLoader@l
+/* 802A4760  3C 60 80 3D */	lis r3, __vt__17JAUAudioArcLoader@ha /* 0x803C9A78@ha */
+/* 802A4764  38 03 9A 78 */	addi r0, r3, __vt__17JAUAudioArcLoader@l /* 0x803C9A78@l */
 /* 802A4768  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A476C  93 FE 00 0C */	stw r31, 0xc(r30)
 /* 802A4770  7F C3 F3 78 */	mr r3, r30

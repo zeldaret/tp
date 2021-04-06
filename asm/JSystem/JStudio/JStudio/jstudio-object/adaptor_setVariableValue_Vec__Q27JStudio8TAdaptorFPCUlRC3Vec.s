@@ -4,8 +4,8 @@ lbl_80286204:
 /* 8028620C  80 04 00 00 */	lwz r0, 0(r4)
 /* 80286210  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 80286214  7D 26 02 14 */	add r9, r6, r0
-/* 80286218  3C C0 80 28 */	lis r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 8028621C  39 06 5E B8 */	addi r8, r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 80286218  3C C0 80 28 */	lis r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 8028621C  39 06 5E B8 */	addi r8, r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 80286220  91 09 00 08 */	stw r8, 8(r9)
 /* 80286224  38 E0 00 00 */	li r7, 0
 /* 80286228  90 E9 00 04 */	stw r7, 4(r9)

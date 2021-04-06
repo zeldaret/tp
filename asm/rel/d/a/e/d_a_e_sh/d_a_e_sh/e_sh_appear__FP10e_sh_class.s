@@ -13,9 +13,9 @@ lbl_8078EC04:
 lbl_8078EC30:
 /* 8078EC30  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 8078EC34  38 63 00 0C */	addi r3, r3, 0xc
-/* 8078EC38  3C 80 80 79 */	lis r4, lit_4237@ha
-/* 8078EC3C  C0 24 1D D4 */	lfs f1, lit_4237@l(r4)
-/* 8078EC40  4B B9 97 EC */	b checkPass__12J3DFrameCtrlFf
+/* 8078EC38  3C 80 80 79 */	lis r4, lit_4237@ha /* 0x80791DD4@ha */
+/* 8078EC3C  C0 24 1D D4 */	lfs f1, lit_4237@l(r4)  /* 0x80791DD4@l */
+/* 8078EC40  4B B9 97 ED */	bl checkPass__12J3DFrameCtrlFf
 /* 8078EC44  2C 03 00 00 */	cmpwi r3, 0
 /* 8078EC48  41 82 00 2C */	beq lbl_8078EC74
 /* 8078EC4C  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007009E@ha */
@@ -34,8 +34,8 @@ lbl_8078EC74:
 /* 8078EC7C  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8078EC80  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8078EC84  40 82 00 1C */	bne lbl_8078ECA0
-/* 8078EC88  3C 60 80 79 */	lis r3, lit_3903@ha
-/* 8078EC8C  C0 23 1D 74 */	lfs f1, lit_3903@l(r3)
+/* 8078EC88  3C 60 80 79 */	lis r3, lit_3903@ha /* 0x80791D74@ha */
+/* 8078EC8C  C0 23 1D 74 */	lfs f1, lit_3903@l(r3)  /* 0x80791D74@l */
 /* 8078EC90  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8078EC94  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8078EC98  41 82 00 08 */	beq lbl_8078ECA0

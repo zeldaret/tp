@@ -8,8 +8,8 @@ lbl_8002F0E0:
 /* 8002F0F8  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8002F0FC  C0 05 00 08 */	lfs f0, 8(r5)
 /* 8002F100  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8002F104  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002F108  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002F104  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002F108  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002F10C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8002F110  38 A1 00 08 */	addi r5, r1, 8
 /* 8002F114  48 00 00 15 */	bl setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc

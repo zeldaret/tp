@@ -82,12 +82,6 @@ struct cBgS {
 // Forward References:
 //
 
-static void daTag_KMsg_Create(void*);
-static void daTag_KMsg_Delete(void*);
-static void daTag_KMsg_Execute(void*);
-static void daTag_KMsg_Draw(void*);
-static bool daTag_KMsg_IsDelete(void*);
-
 extern "C" void create__12daTag_KMsg_cFv();
 extern "C" void Delete__12daTag_KMsg_cFv();
 extern "C" void Execute__12daTag_KMsg_cFv();
@@ -99,28 +93,11 @@ extern "C" static void daTag_KMsg_Execute__FPv();
 extern "C" static void daTag_KMsg_Draw__FPv();
 extern "C" static bool daTag_KMsg_IsDelete__FPv();
 extern "C" void __dt__12daTag_KMsg_cFv();
-extern "C" extern u32 const lit_4206;
-extern "C" extern u32 const lit_4207;
-extern "C" extern u32 const lit_4208;
-extern "C" extern u32 const lit_4209[1 + 1 /* padding */];
-extern "C" extern u8 const lit_4211[8];
-extern "C" extern void* g_profile_TAG_KMSG[12];
-extern "C" extern void* __vt__12daTag_KMsg_c[3];
+extern "C" extern char const* const d_a_tag_kmsg__stringBase0;
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderChangeEventId(fopAc_ac_c*, s16, u16, u16);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void fopAcM_cancelCarryNow(fopAc_ac_c*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void daNpcT_chkDoBtnIsSpeak(fopAc_ac_c*);
-void daNpcT_getDistTableIdx(int, int);
-void daNpcT_chkEvtBit(u32);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -170,106 +147,28 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 8048EADC-8048EAE0 0004+00 s=2 e=0 z=0  None .rodata    @3884 */
+/* 8048EADC-8048EAE0 000000 0004+00 2/2 0/0 0/0 .rodata          @3884 */
 SECTION_RODATA static u32 const lit_3884 = 0x41200000;
+SECTION_DEAD void* const cg_8048EADC = (void*)(&lit_3884);
 
-/* 8048EAE0-8048EAE4 0004+00 s=0 e=0 z=0  None .rodata    @4206 */
-SECTION_RODATA u32 const lit_4206 = 0x4E6E6B28;
-
-/* 8048EAE4-8048EAE8 0004+00 s=0 e=0 z=0  None .rodata    @4207 */
-SECTION_RODATA u32 const lit_4207 = 0xBF000000;
-
-/* 8048EAE8-8048EAEC 0004+00 s=0 e=0 z=0  None .rodata    @4208 */
-SECTION_RODATA u32 const lit_4208 = 0xC1A00000;
-
-/* 8048EAEC-8048EAF4 0004+04 s=0 e=0 z=0  None .rodata    @4209 */
-SECTION_RODATA u32 const lit_4209[1 + 1 /* padding */] = {
-    0x42A00000,
-    /* padding */
-    0x00000000,
-};
-
-/* 8048EAF4-8048EAFC 0008+00 s=0 e=0 z=0  None .rodata    @4211 */
-SECTION_RODATA u8 const lit_4211[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8048EAFC-8048EB08 000C+00 s=5 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_8048EAFC[12] = {
-    /* 8048EAFC 0001 stringBase_8048EAFC @stringBase0 */
-    0x00,
-    /* 8048EAFD 000B data_8048EAFD None */
-    0x45,
-    0x58,
-    0x54,
-    0x49,
-    0x4E,
-    0x43,
-    0x54,
-    0x49,
-    0x4F,
-    0x4E,
-    0x00,
-};
-
-/* 8048EB08-8048EB2C 0024+00 s=2 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_8048EB08[36] = {
-    /* 8048EB08 0009 data_8048EB08 None */
-    0x50,
-    0x55,
-    0x52,
-    0x43,
-    0x48,
-    0x41,
-    0x53,
-    0x45,
-    0x00,
-    /* 8048EB11 0006 data_8048EB11 None */
-    0x42,
-    0x61,
-    0x6E,
-    0x73,
-    0x31,
-    0x00,
-    /* 8048EB17 0015 data_8048EB17 None */
-    0x73,
-    0x65,
-    0x6B,
-    0x69,
-    0x7A,
-    0x6F,
-    0x41,
-    0x00,
-    0x4C,
-    0x76,
-    0x36,
-    0x47,
-    0x61,
-    0x74,
-    0x65,
-    0x00,
-    0x4B,
-    0x4D,
-    0x73,
-    0x67,
-    0x00,
-};
-
-/* 8048EB2C-8048EB44 0018+00 s=1 e=0 z=0  None .data      l_evtList */
+/* 8048EB2C-8048EB44 -00001 0018+00 1/1 0/0 0/0 .data            l_evtList */
 SECTION_DATA static void* l_evtList[6] = {
-    (void*)(((char*)&struct_8048EAFC) + 0x0) /* @stringBase0 */, (void*)NULL,
-    (void*)(((char*)&struct_8048EAFC) + 0x1) /* None */,         (void*)0x00000002,
-    (void*)(((char*)&struct_8048EB08) + 0x0) /* None */,         (void*)0x00000001,
+    (void*)&d_a_tag_kmsg__stringBase0,
+    (void*)NULL,
+    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x1),
+    (void*)0x00000002,
+    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0xC),
+    (void*)0x00000001,
 };
 
-/* 8048EB44-8048EB50 000C+00 s=1 e=0 z=0  None .data      l_resNameList */
+/* 8048EB44-8048EB50 -00001 000C+00 1/1 0/0 0/0 .data            l_resNameList */
 SECTION_DATA static void* l_resNameList[3] = {
-    (void*)(((char*)&struct_8048EAFC) + 0x0) /* @stringBase0 */,
-    (void*)(((char*)&struct_8048EB08) + 0x9) /* None */,
-    (void*)(((char*)&struct_8048EB08) + 0xF) /* None */,
+    (void*)&d_a_tag_kmsg__stringBase0,
+    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x15),
+    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x1B),
 };
 
-/* 8048EB50-8048EB70 0020+00 s=1 e=0 z=0  None .data      daTag_KMsg_MethodTable */
+/* 8048EB50-8048EB70 -00001 0020+00 1/0 0/0 0/0 .data            daTag_KMsg_MethodTable */
 SECTION_DATA static void* daTag_KMsg_MethodTable[8] = {
     (void*)daTag_KMsg_Create__FPv,
     (void*)daTag_KMsg_Delete__FPv,
@@ -281,8 +180,8 @@ SECTION_DATA static void* daTag_KMsg_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 8048EB70-8048EBA0 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_KMSG */
-SECTION_DATA void* g_profile_TAG_KMSG[12] = {
+/* 8048EB70-8048EBA0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_KMSG */
+SECTION_DATA extern void* g_profile_TAG_KMSG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0008FFFD,
     (void*)0x02EB0000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,
@@ -291,24 +190,14 @@ SECTION_DATA void* g_profile_TAG_KMSG[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 8048EBA0-8048EBAC 000C+00 s=2 e=0 z=0  None .data      __vt__12daTag_KMsg_c */
-SECTION_DATA void* __vt__12daTag_KMsg_c[3] = {
+/* 8048EBA0-8048EBAC 000074 000C+00 2/2 0/0 0/0 .data            __vt__12daTag_KMsg_c */
+SECTION_DATA extern void* __vt__12daTag_KMsg_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12daTag_KMsg_cFv,
 };
 
-/* 8048DE78-8048DFDC 0164+00 s=1 e=0 z=0  None .text      create__12daTag_KMsg_cFv */
-//	8048DED8: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8048DEDC: 8048EBA0 (__vt__12daTag_KMsg_c)
-//	8048DEE0: 8048EBA0 (__vt__12daTag_KMsg_c)
-//	8048DEEC: 80249F00 (__ct__10dMsgFlow_cFv)
-//	8048DF20: 8048EAFC (struct_8048EAFC)
-//	8048DF24: 8048EAFC (struct_8048EAFC)
-//	8048DF2C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	8048DF74: 8048EADC (lit_3884)
-//	8048DF78: 8048EADC (lit_3884)
-//	8048DFAC: 8048E8C0 (isDelete__12daTag_KMsg_cFv)
+/* 8048DE78-8048DFDC 000078 0164+00 1/1 0/0 0/0 .text            create__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,7 +207,7 @@ asm void daTag_KMsg_c::create() {
 }
 #pragma pop
 
-/* 8048DFDC-8048E010 0034+00 s=1 e=0 z=0  None .text      Delete__12daTag_KMsg_cFv */
+/* 8048DFDC-8048E010 0001DC 0034+00 1/1 0/0 0/0 .text            Delete__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -328,73 +217,49 @@ asm void daTag_KMsg_c::Delete() {
 }
 #pragma pop
 
-/* 8048E010-8048E8B8 08A8+00 s=1 e=0 z=0  None .text      Execute__12daTag_KMsg_cFv */
-//	8048E028: 803621CC (_savegpr_25)
-//	8048E030: 8048EADC (lit_3884)
-//	8048E034: 8048EADC (lit_3884)
-//	8048E044: 80450D64 (struct_80450D64)
-//	8048E048: 80450D64 (struct_80450D64)
-//	8048E058: 8048E8C0 (isDelete__12daTag_KMsg_cFv)
-//	8048E068: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	8048E108: 8014CA18 (daNpcT_getDistTableIdx__Fii)
-//	8048E1B0: 804061C0 (g_dComIfG_gameInfo)
-//	8048E1B4: 804061C0 (g_dComIfG_gameInfo)
-//	8048E1D0: 804061C0 (g_dComIfG_gameInfo)
-//	8048E1D4: 804061C0 (g_dComIfG_gameInfo)
-//	8048E22C: 8048EB2C (l_evtList)
-//	8048E230: 8048EB2C (l_evtList)
-//	8048E238: 80368BE4 (strlen)
-//	8048E244: 8048EB2C (l_evtList)
-//	8048E248: 8048EB2C (l_evtList)
-//	8048E258: 8048EB44 (l_resNameList)
-//	8048E25C: 8048EB44 (l_resNameList)
-//	8048E264: 80368BE4 (strlen)
-//	8048E278: 8048EB44 (l_resNameList)
-//	8048E27C: 8048EB44 (l_resNameList)
-//	8048E290: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	8048E2A4: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	8048E2B4: 80042518 (reset__14dEvt_control_cFPv)
-//	8048E2CC: 8001B5E4 (fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs)
-//	8048E2F8: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	8048E314: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	8048E324: 80042468 (reset__14dEvt_control_cFv)
-//	8048E344: 80047A78 (endCheck__16dEvent_manager_cFs)
-//	8048E354: 80042468 (reset__14dEvt_control_cFv)
-//	8048E36C: 8048EAFC (struct_8048EAFC)
-//	8048E370: 8048EAFC (struct_8048EAFC)
-//	8048E380: 80047B1C (getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci)
-//	8048E394: 8004817C (cutEnd__16dEvent_manager_cFi)
-//	8048E3D8: 8001CBA0 (fopAcM_cancelCarryNow__FP10fopAc_ac_c)
-//	8048E3DC: 8048EB2C (l_evtList)
-//	8048E3E0: 8048EB2C (l_evtList)
-//	8048E3E8: 80368BE4 (strlen)
-//	8048E3F4: 8048EB2C (l_evtList)
-//	8048E3F8: 8048EB2C (l_evtList)
-//	8048E404: 8048EB44 (l_resNameList)
-//	8048E408: 8048EB44 (l_resNameList)
-//	8048E410: 80368BE4 (strlen)
-//	8048E424: 8048EB44 (l_resNameList)
-//	8048E428: 8048EB44 (l_resNameList)
-//	8048E43C: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	8048E450: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	8048E474: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	8048E4AC: 8014C5E0 (daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c)
-//	8048E4C8: 804061C0 (g_dComIfG_gameInfo)
-//	8048E4CC: 804061C0 (g_dComIfG_gameInfo)
-//	8048E4E4: 804061C0 (g_dComIfG_gameInfo)
-//	8048E4E8: 804061C0 (g_dComIfG_gameInfo)
-//	8048E760: 80270F98 (__ct__7cSAngleFs)
-//	8048E788: 802710F8 (Sin__7cSAngleCFv)
-//	8048E7AC: 80271120 (Cos__7cSAngleCFv)
-//	8048E7C8: 80077C68 (__ct__11dBgS_LinChkFv)
-//	8048E7F4: 80077D64 (Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c)
-//	8048E800: 800743B4 (LineCross__4cBgSFP11cBgS_LinChk)
-//	8048E818: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8048E83C: 80266CE4 (norm__4cXyzCFv)
-//	8048E84C: 80266B84 (__ml__4cXyzCFf)
-//	8048E85C: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	8048E888: 80077CDC (__dt__11dBgS_LinChkFv)
-//	8048E8A4: 80362218 (_restgpr_25)
+/* ############################################################################################## */
+/* 8048EAE0-8048EAE4 000004 0004+00 0/1 0/0 0/0 .rodata          @4206 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4206 = 0x4E6E6B28;
+SECTION_DEAD void* const cg_8048EAE0 = (void*)(&lit_4206);
+#pragma pop
+
+/* 8048EAE4-8048EAE8 000008 0004+00 0/1 0/0 0/0 .rodata          @4207 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4207 = 0xBF000000;
+SECTION_DEAD void* const cg_8048EAE4 = (void*)(&lit_4207);
+#pragma pop
+
+/* 8048EAE8-8048EAEC 00000C 0004+00 0/1 0/0 0/0 .rodata          @4208 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4208 = 0xC1A00000;
+SECTION_DEAD void* const cg_8048EAE8 = (void*)(&lit_4208);
+#pragma pop
+
+/* 8048EAEC-8048EAF4 000010 0004+04 0/1 0/0 0/0 .rodata          @4209 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4209[1 + 1 /* padding */] = {
+    0x42A00000,
+    /* padding */
+    0x00000000,
+};
+SECTION_DEAD void* const cg_8048EAEC = (void*)(&lit_4209);
+#pragma pop
+
+/* 8048EAF4-8048EAFC 000018 0008+00 0/1 0/0 0/0 .rodata          @4211 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4211[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_8048EAF4 = (void*)(&lit_4211);
+#pragma pop
+
+/* 8048E010-8048E8B8 000210 08A8+00 1/1 0/0 0/0 .text            Execute__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,16 +269,12 @@ asm void daTag_KMsg_c::Execute() {
 }
 #pragma pop
 
-/* 8048E8B8-8048E8C0 0008+00 s=1 e=0 z=0  None .text      Draw__12daTag_KMsg_cFv */
+/* 8048E8B8-8048E8C0 000AB8 0008+00 1/1 0/0 0/0 .text            Draw__12daTag_KMsg_cFv */
 bool daTag_KMsg_c::Draw() {
     return true;
 }
 
-/* 8048E8C0-8048E9A8 00E8+00 s=2 e=0 z=0  None .text      isDelete__12daTag_KMsg_cFv */
-//	8048E92C: 8014CAAC (daNpcT_chkEvtBit__FUl)
-//	8048E958: 804061C0 (g_dComIfG_gameInfo)
-//	8048E95C: 804061C0 (g_dComIfG_gameInfo)
-//	8048E968: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 8048E8C0-8048E9A8 000AC0 00E8+00 2/2 0/0 0/0 .text            isDelete__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -423,64 +284,52 @@ asm void daTag_KMsg_c::isDelete() {
 }
 #pragma pop
 
-/* 8048E9A8-8048E9C8 0020+00 s=1 e=0 z=0  None .text      daTag_KMsg_Create__FPv */
-//	8048E9B4: 8048DE78 (create__12daTag_KMsg_cFv)
+/* 8048E9A8-8048E9C8 000BA8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_KMsg_Create(void* param_0) {
+static asm void daTag_KMsg_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Create__FPv.s"
 }
 #pragma pop
 
-/* 8048E9C8-8048E9E8 0020+00 s=1 e=0 z=0  None .text      daTag_KMsg_Delete__FPv */
-//	8048E9D4: 8048DFDC (Delete__12daTag_KMsg_cFv)
+/* 8048E9C8-8048E9E8 000BC8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_KMsg_Delete(void* param_0) {
+static asm void daTag_KMsg_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Delete__FPv.s"
 }
 #pragma pop
 
-/* 8048E9E8-8048EA08 0020+00 s=1 e=0 z=0  None .text      daTag_KMsg_Execute__FPv */
-//	8048E9F4: 8048E010 (Execute__12daTag_KMsg_cFv)
+/* 8048E9E8-8048EA08 000BE8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_KMsg_Execute(void* param_0) {
+static asm void daTag_KMsg_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Execute__FPv.s"
 }
 #pragma pop
 
-/* 8048EA08-8048EA28 0020+00 s=1 e=0 z=0  None .text      daTag_KMsg_Draw__FPv */
-//	8048EA14: 8048E8B8 (Draw__12daTag_KMsg_cFv)
+/* 8048EA08-8048EA28 000C08 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_KMsg_Draw(void* param_0) {
+static asm void daTag_KMsg_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Draw__FPv.s"
 }
 #pragma pop
 
-/* 8048EA28-8048EA30 0008+00 s=1 e=0 z=0  None .text      daTag_KMsg_IsDelete__FPv */
+/* 8048EA28-8048EA30 000C28 0008+00 1/0 0/0 0/0 .text            daTag_KMsg_IsDelete__FPv */
 static bool daTag_KMsg_IsDelete(void* param_0) {
     return true;
 }
 
-/* 8048EA30-8048EAD4 00A4+00 s=1 e=0 z=0  None .text      __dt__12daTag_KMsg_cFv */
-//	8048EA50: 8048EBA0 (__vt__12daTag_KMsg_c)
-//	8048EA54: 8048EBA0 (__vt__12daTag_KMsg_c)
-//	8048EA80: 8048EAFC (struct_8048EAFC)
-//	8048EA84: 8048EAFC (struct_8048EAFC)
-//	8048EA8C: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	8048EA98: 80249F48 (__dt__10dMsgFlow_cFv)
-//	8048EAA4: 80018C8C (__dt__10fopAc_ac_cFv)
-//	8048EAB4: 802CED3C (__dl__FPv)
+/* 8048EA30-8048EAD4 000C30 00A4+00 1/0 0/0 0/0 .text            __dt__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -488,4 +337,17 @@ asm daTag_KMsg_c::~daTag_KMsg_c() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/__dt__12daTag_KMsg_cFv.s"
 }
+#pragma pop
+
+/* 8048EAFC-8048EB2C 000020 0030+00 5/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8048EAFC = "";
+SECTION_DEAD static char const* const stringBase_8048EAFD = "EXTINCTION";
+SECTION_DEAD static char const* const stringBase_8048EB08 = "PURCHASE";
+SECTION_DEAD static char const* const stringBase_8048EB11 = "Bans1";
+SECTION_DEAD static char const* const stringBase_8048EB17 = "sekizoA";
+SECTION_DEAD static char const* const stringBase_8048EB1F = "Lv6Gate";
+SECTION_DEAD static char const* const stringBase_8048EB27 = "KMsg";
 #pragma pop

@@ -4,8 +4,8 @@ lbl_800D7768:
 /* 800D7770  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800D7774  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800D7778  7C 7F 1B 78 */	mr r31, r3
-/* 800D777C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D7780  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D777C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D7780  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D7784  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800D7788  7F E4 FB 78 */	mr r4, r31
 /* 800D778C  4B F9 D6 C5 */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo

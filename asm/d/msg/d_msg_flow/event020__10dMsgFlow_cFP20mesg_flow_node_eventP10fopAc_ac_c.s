@@ -8,8 +8,8 @@ lbl_8024CCAC:
 /* 8024CCC4  38 84 00 04 */	addi r4, r4, 4
 /* 8024CCC8  4B FF E4 69 */	bl getParam__10dMsgFlow_cFPUc
 /* 8024CCCC  7C 7F 1B 78 */	mr r31, r3
-/* 8024CCD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024CCD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024CCD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CCD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CCD8  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 8024CCDC  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8024CCE0  88 1B 04 E2 */	lbz r0, 0x4e2(r27)

@@ -4,13 +4,13 @@ lbl_80A22534:
 /* 80A2253C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A22540  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80A22544  7C 7F 1B 78 */	mr r31, r3
-/* 80A22548  3C 60 80 A2 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80A2254C  38 A3 5B 24 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80A22548  3C 60 80 A2 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A25B24@ha */
+/* 80A2254C  38 A3 5B 24 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80A25B24@l */
 /* 80A22550  80 1F 14 40 */	lwz r0, 0x1440(r31)
 /* 80A22554  2C 00 00 00 */	cmpwi r0, 0
 /* 80A22558  41 80 02 40 */	blt lbl_80A22798
-/* 80A2255C  3C 60 80 A2 */	lis r3, struct_80A26068+0x2@ha
-/* 80A22560  38 83 60 6A */	addi r4, r3, struct_80A26068+0x2@l
+/* 80A2255C  3C 60 80 A2 */	lis r3, struct_80A26068+0x2@ha /* 0x80A2606A@ha */
+/* 80A22560  38 83 60 6A */	addi r4, r3, struct_80A26068+0x2@l /* 0x80A2606A@l */
 /* 80A22564  88 04 00 00 */	lbz r0, 0(r4)
 /* 80A22568  7C 00 07 75 */	extsb. r0, r0
 /* 80A2256C  40 82 01 F8 */	bne lbl_80A22764
@@ -111,8 +111,8 @@ lbl_80A22534:
 /* 80A226E8  90 03 00 B8 */	stw r0, 0xb8(r3)
 /* 80A226EC  80 05 01 C8 */	lwz r0, 0x1c8(r5)
 /* 80A226F0  90 03 00 BC */	stw r0, 0xbc(r3)
-/* 80A226F4  3C C0 80 3A */	lis r6, __ptmf_null@ha
-/* 80A226F8  38 E6 21 80 */	addi r7, r6, __ptmf_null@l
+/* 80A226F4  3C C0 80 3A */	lis r6, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A226F8  38 E6 21 80 */	addi r7, r6, __ptmf_null@l /* 0x803A2180@l */
 /* 80A226FC  80 C7 00 00 */	lwz r6, 0(r7)
 /* 80A22700  80 07 00 04 */	lwz r0, 4(r7)
 /* 80A22704  90 C3 00 C0 */	stw r6, 0xc0(r3)
@@ -155,13 +155,13 @@ lbl_80A22764:
 /* 80A22794  48 00 0A F1 */	bl setAction__14daNpcKasiKyu_cFM14daNpcKasiKyu_cFPCvPvi_i
 lbl_80A22798:
 /* 80A22798  38 7F 14 08 */	addi r3, r31, 0x1408
-/* 80A2279C  4B 93 F8 7C */	b __ptmf_test
+/* 80A2279C  4B 93 F8 7D */	bl __ptmf_test
 /* 80A227A0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A227A4  41 82 00 18 */	beq lbl_80A227BC
 /* 80A227A8  7F E3 FB 78 */	mr r3, r31
 /* 80A227AC  38 80 00 00 */	li r4, 0
 /* 80A227B0  39 9F 14 08 */	addi r12, r31, 0x1408
-/* 80A227B4  4B 93 F8 D0 */	b __ptmf_scall
+/* 80A227B4  4B 93 F8 D1 */	bl __ptmf_scall
 /* 80A227B8  60 00 00 00 */	nop 
 lbl_80A227BC:
 /* 80A227BC  7F E3 FB 78 */	mr r3, r31

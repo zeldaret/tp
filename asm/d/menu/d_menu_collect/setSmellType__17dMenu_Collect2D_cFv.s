@@ -6,8 +6,8 @@ lbl_801B3524:
 /* 801B3534  48 1A EC A5 */	bl _savegpr_28
 /* 801B3538  7C 7C 1B 78 */	mr r28, r3
 /* 801B353C  3B C0 FF FF */	li r30, -1
-/* 801B3540  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B3544  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B3540  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B3544  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B3548  88 03 00 16 */	lbz r0, 0x16(r3)
 /* 801B354C  2C 00 00 B3 */	cmpwi r0, 0xb3
 /* 801B3550  41 82 00 40 */	beq lbl_801B3590
@@ -44,8 +44,8 @@ lbl_801B35AC:
 /* 801B35AC  7C 1D F0 00 */	cmpw r29, r30
 /* 801B35B0  40 82 00 38 */	bne lbl_801B35E8
 /* 801B35B4  80 7C 00 18 */	lwz r3, 0x18(r28)
-/* 801B35B8  3C 80 80 39 */	lis r4, smell_tag@ha
-/* 801B35BC  38 04 50 50 */	addi r0, r4, smell_tag@l
+/* 801B35B8  3C 80 80 39 */	lis r4, smell_tag@ha /* 0x80395050@ha */
+/* 801B35BC  38 04 50 50 */	addi r0, r4, smell_tag@l /* 0x80395050@l */
 /* 801B35C0  7C 80 FA 14 */	add r4, r0, r31
 /* 801B35C4  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B35C8  80 C4 00 04 */	lwz r6, 4(r4)
@@ -58,8 +58,8 @@ lbl_801B35AC:
 /* 801B35E4  48 00 00 34 */	b lbl_801B3618
 lbl_801B35E8:
 /* 801B35E8  80 7C 00 18 */	lwz r3, 0x18(r28)
-/* 801B35EC  3C 80 80 39 */	lis r4, smell_tag@ha
-/* 801B35F0  38 04 50 50 */	addi r0, r4, smell_tag@l
+/* 801B35EC  3C 80 80 39 */	lis r4, smell_tag@ha /* 0x80395050@ha */
+/* 801B35F0  38 04 50 50 */	addi r0, r4, smell_tag@l /* 0x80395050@l */
 /* 801B35F4  7C 80 FA 14 */	add r4, r0, r31
 /* 801B35F8  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B35FC  80 C4 00 04 */	lwz r6, 4(r4)

@@ -4,8 +4,8 @@ lbl_80875DD8:
 /* 80875DE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80875DE4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80875DE8  93 C1 00 08 */	stw r30, 8(r1)
-/* 80875DEC  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80875DF0  3B E3 9B D0 */	addi r31, r3, daMP_ActivePlayer@l
+/* 80875DEC  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80875DF0  3B E3 9B D0 */	addi r31, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 lbl_80875DF4:
 /* 80875DF4  88 1F 00 A7 */	lbz r0, 0xa7(r31)
 /* 80875DF8  28 00 00 00 */	cmplwi r0, 0
@@ -31,11 +31,11 @@ lbl_80875E04:
 lbl_80875E44:
 /* 80875E44  7F C3 F3 78 */	mr r3, r30
 /* 80875E48  4B FF FA D1 */	bl daMP_PushFreeReadBuffer__FPv
-/* 80875E4C  4B AC 78 A8 */	b OSDisableInterrupts
+/* 80875E4C  4B AC 78 A9 */	bl OSDisableInterrupts
 /* 80875E50  80 9F 00 D8 */	lwz r4, 0xd8(r31)
 /* 80875E54  38 04 00 01 */	addi r0, r4, 1
 /* 80875E58  90 1F 00 D8 */	stw r0, 0xd8(r31)
-/* 80875E5C  4B AC 78 C0 */	b OSRestoreInterrupts
+/* 80875E5C  4B AC 78 C1 */	bl OSRestoreInterrupts
 lbl_80875E60:
 /* 80875E60  80 1F 00 D8 */	lwz r0, 0xd8(r31)
 /* 80875E64  2C 00 00 00 */	cmpwi r0, 0

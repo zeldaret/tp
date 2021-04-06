@@ -7,8 +7,8 @@ lbl_8028B138:
 /* 8028B14C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028B150  7C 9F 23 78 */	mr r31, r4
 /* 8028B154  41 82 00 28 */	beq lbl_8028B17C
-/* 8028B158  3C 80 80 3C */	lis r4, __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_@ha
-/* 8028B15C  38 04 57 B4 */	addi r0, r4, __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_@l
+/* 8028B158  3C 80 80 3C */	lis r4, __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_@ha /* 0x803C57B4@ha */
+/* 8028B15C  38 04 57 B4 */	addi r0, r4, __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_@l /* 0x803C57B4@l */
 /* 8028B160  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028B164  38 80 00 00 */	li r4, 0
 /* 8028B168  4B FF AC A5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv

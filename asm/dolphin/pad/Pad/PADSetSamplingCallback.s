@@ -7,13 +7,13 @@ lbl_8034FBA0:
 /* 8034FBB4  83 ED 92 E8 */	lwz r31, SamplingCallback(r13)
 /* 8034FBB8  90 6D 92 E8 */	stw r3, SamplingCallback(r13)
 /* 8034FBBC  41 82 00 14 */	beq lbl_8034FBD0
-/* 8034FBC0  3C 60 80 35 */	lis r3, SamplingHandler@ha
-/* 8034FBC4  38 63 FB 40 */	addi r3, r3, SamplingHandler@l
+/* 8034FBC0  3C 60 80 35 */	lis r3, SamplingHandler@ha /* 0x8034FB40@ha */
+/* 8034FBC4  38 63 FB 40 */	addi r3, r3, SamplingHandler@l /* 0x8034FB40@l */
 /* 8034FBC8  4B FF 57 0D */	bl SIRegisterPollingHandler
 /* 8034FBCC  48 00 00 10 */	b lbl_8034FBDC
 lbl_8034FBD0:
-/* 8034FBD0  3C 60 80 35 */	lis r3, SamplingHandler@ha
-/* 8034FBD4  38 63 FB 40 */	addi r3, r3, SamplingHandler@l
+/* 8034FBD0  3C 60 80 35 */	lis r3, SamplingHandler@ha /* 0x8034FB40@ha */
+/* 8034FBD4  38 63 FB 40 */	addi r3, r3, SamplingHandler@l /* 0x8034FB40@l */
 /* 8034FBD8  4B FF 57 C9 */	bl SIUnregisterPollingHandler
 lbl_8034FBDC:
 /* 8034FBDC  7F E3 FB 78 */	mr r3, r31

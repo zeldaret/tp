@@ -1,6 +1,6 @@
 lbl_8014EFA4:
-/* 8014EFA4  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 8014EFA8  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l
+/* 8014EFA4  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014EFA8  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014EFAC  80 C6 5D B4 */	lwz r6, 0x5db4(r6)
 /* 8014EFB0  80 06 05 74 */	lwz r0, 0x574(r6)
 /* 8014EFB4  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

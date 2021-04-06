@@ -5,9 +5,9 @@ lbl_80D6786C:
 /* 80D67878  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D6787C  7C 7F 1B 78 */	mr r31, r3
 /* 80D67880  38 7F 05 68 */	addi r3, r31, 0x568
-/* 80D67884  3C 80 80 D6 */	lis r4, l_arcName@ha
-/* 80D67888  38 84 7B E0 */	addi r4, r4, l_arcName@l
-/* 80D6788C  4B 2C 57 7C */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80D67884  3C 80 80 D6 */	lis r4, l_arcName@ha /* 0x80D67BE0@ha */
+/* 80D67888  38 84 7B E0 */	addi r4, r4, l_arcName@l /* 0x80D67BE0@l */
+/* 80D6788C  4B 2C 57 7D */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80D67890  80 7F 05 E8 */	lwz r3, 0x5e8(r31)
 /* 80D67894  28 03 00 00 */	cmplwi r3, 0
 /* 80D67898  41 82 00 18 */	beq lbl_80D678B0
@@ -50,7 +50,7 @@ lbl_80D67920:
 /* 80D67920  80 7F 05 DC */	lwz r3, 0x5dc(r31)
 /* 80D67924  28 03 00 00 */	cmplwi r3, 0
 /* 80D67928  41 82 00 08 */	beq lbl_80D67930
-/* 80D6792C  4B 56 6B 1C */	b destroy__7JKRHeapFv
+/* 80D6792C  4B 56 6B 1D */	bl destroy__7JKRHeapFv
 lbl_80D67930:
 /* 80D67930  38 60 00 01 */	li r3, 1
 /* 80D67934  83 E1 00 0C */	lwz r31, 0xc(r1)

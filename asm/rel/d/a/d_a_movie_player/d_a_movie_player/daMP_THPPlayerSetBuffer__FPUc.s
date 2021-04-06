@@ -3,9 +3,9 @@ lbl_808777F0:
 /* 808777F4  7C 08 02 A6 */	mflr r0
 /* 808777F8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 808777FC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80877800  4B AE A9 D4 */	b _savegpr_27
-/* 80877804  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 80877808  38 A4 9B D0 */	addi r5, r4, daMP_ActivePlayer@l
+/* 80877800  4B AE A9 D5 */	bl _savegpr_27
+/* 80877804  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80877808  38 A4 9B D0 */	addi r5, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 8087780C  80 05 00 A0 */	lwz r0, 0xa0(r5)
 /* 80877810  2C 00 00 00 */	cmpwi r0, 0
 /* 80877814  41 82 01 D8 */	beq lbl_808779EC
@@ -71,8 +71,8 @@ lbl_80877840:
 /* 80877900  54 00 00 34 */	rlwinm r0, r0, 0, 0, 0x1a
 /* 80877904  7F FF 02 14 */	add r31, r31, r0
 lbl_80877908:
-/* 80877908  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 8087790C  3B C3 9B D0 */	addi r30, r3, daMP_ActivePlayer@l
+/* 80877908  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 8087790C  3B C3 9B D0 */	addi r30, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80877910  80 7E 00 80 */	lwz r3, 0x80(r30)
 /* 80877914  80 1E 00 84 */	lwz r0, 0x84(r30)
 /* 80877918  7C 63 01 D6 */	mullw r3, r3, r0
@@ -86,24 +86,24 @@ lbl_80877934:
 /* 80877934  93 FE 01 78 */	stw r31, 0x178(r30)
 /* 80877938  7F E3 FB 78 */	mr r3, r31
 /* 8087793C  7F 84 E3 78 */	mr r4, r28
-/* 80877940  4B AC 3C 40 */	b DCInvalidateRange
+/* 80877940  4B AC 3C 41 */	bl DCInvalidateRange
 /* 80877944  7F FF E2 14 */	add r31, r31, r28
 /* 80877948  93 FE 01 7C */	stw r31, 0x17c(r30)
 /* 8087794C  7F E3 FB 78 */	mr r3, r31
 /* 80877950  7F 64 DB 78 */	mr r4, r27
-/* 80877954  4B AC 3C 2C */	b DCInvalidateRange
+/* 80877954  4B AC 3C 2D */	bl DCInvalidateRange
 /* 80877958  7F FF DA 14 */	add r31, r31, r27
 /* 8087795C  93 FE 01 80 */	stw r31, 0x180(r30)
 /* 80877960  7F E3 FB 78 */	mr r3, r31
 /* 80877964  7F 64 DB 78 */	mr r4, r27
-/* 80877968  4B AC 3C 18 */	b DCInvalidateRange
+/* 80877968  4B AC 3C 19 */	bl DCInvalidateRange
 /* 8087796C  7F FF DA 14 */	add r31, r31, r27
 /* 80877970  3B BD 00 01 */	addi r29, r29, 1
 /* 80877974  28 1D 00 03 */	cmplwi r29, 3
 /* 80877978  3B DE 00 10 */	addi r30, r30, 0x10
 /* 8087797C  41 80 FF B8 */	blt lbl_80877934
-/* 80877980  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80877984  38 A3 9B D0 */	addi r5, r3, daMP_ActivePlayer@l
+/* 80877980  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80877984  38 A3 9B D0 */	addi r5, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80877988  88 05 00 A7 */	lbz r0, 0xa7(r5)
 /* 8087798C  28 00 00 00 */	cmplwi r0, 0
 /* 80877990  41 82 00 48 */	beq lbl_808779D8
@@ -125,8 +125,8 @@ lbl_80877934:
 /* 808779D0  90 85 01 C8 */	stw r4, 0x1c8(r5)
 /* 808779D4  7F FF 02 14 */	add r31, r31, r0
 lbl_808779D8:
-/* 808779D8  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 808779DC  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l
+/* 808779D8  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 808779DC  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 808779E0  93 E3 00 9C */	stw r31, 0x9c(r3)
 /* 808779E4  38 60 00 01 */	li r3, 1
 /* 808779E8  48 00 00 08 */	b lbl_808779F0
@@ -134,7 +134,7 @@ lbl_808779EC:
 /* 808779EC  38 60 00 00 */	li r3, 0
 lbl_808779F0:
 /* 808779F0  39 61 00 20 */	addi r11, r1, 0x20
-/* 808779F4  4B AE A8 2C */	b _restgpr_27
+/* 808779F4  4B AE A8 2D */	bl _restgpr_27
 /* 808779F8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 808779FC  7C 08 03 A6 */	mtlr r0
 /* 80877A00  38 21 00 20 */	addi r1, r1, 0x20

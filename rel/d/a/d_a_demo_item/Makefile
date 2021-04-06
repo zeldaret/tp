@@ -3,19 +3,20 @@
 #
 
 M63_TARGET := $(BUILD_DIR)/rel/d/a/d_a_demo_item.plf
+M63_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_demo_item.lcf
+M63_MAP := $(BUILD_DIR)/rel/d/a/d_a_demo_item.map
 
 M63_CPP_FILES := \
-	rel/d/a/d_a_demo_item/executor.cpp \
-	rel/d/a/d_a_demo_item/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_demo_item/d_a_demo_item.cpp \
 
 M63_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_demo_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_demo_item/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_demo_item/d_a_demo_item.o \
 
 M63_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_demo_item/libRuntime.PPCEABI.H.a \
 
 M63_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M63_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map63.map\
+	-m _prolog \
+	-lcf $(M63_LDSCRIPT) \
+	-unused -map $(M63_MAP) \
+	-w off \
 
 $(M63_TARGET): $(M63_O_FILES) $(M63_LIBS)
+	@echo [ 63] creating $(M63_TARGET)
 	@echo $(M63_LIBS) $(M63_O_FILES) > build/M63_ofiles
-	$(LD) -opt_partial $(M63_LDFLAGS) -o $(M63_TARGET) @build/M63_ofiles
+	@python3 tools/lcf.py rel 63 --output $(M63_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M63_LDFLAGS) -o $(M63_TARGET) @build/M63_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_demo_item/%.o: rel/d/a/d_a_demo_item/%.cpp
+	@echo [ 63] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M63_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M63_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_demo_item/libs/Runtime.PPCEABI.H/Makefile
 

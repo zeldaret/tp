@@ -4,8 +4,8 @@ lbl_806BA61C:
 /* 806BA624  90 01 00 14 */	stw r0, 0x14(r1)
 /* 806BA628  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806BA62C  7C 7F 1B 78 */	mr r31, r3
-/* 806BA630  3C 60 80 6C */	lis r3, lit_3826@ha
-/* 806BA634  38 83 B6 D0 */	addi r4, r3, lit_3826@l
+/* 806BA630  3C 60 80 6C */	lis r3, lit_3826@ha /* 0x806BB6D0@ha */
+/* 806BA634  38 83 B6 D0 */	addi r4, r3, lit_3826@l /* 0x806BB6D0@l */
 /* 806BA638  88 1F 05 B1 */	lbz r0, 0x5b1(r31)
 /* 806BA63C  2C 00 00 01 */	cmpwi r0, 1
 /* 806BA640  41 82 00 48 */	beq lbl_806BA688
@@ -26,7 +26,7 @@ lbl_806BA674:
 /* 806BA674  38 7F 04 FC */	addi r3, r31, 0x4fc
 /* 806BA678  C0 24 01 1C */	lfs f1, 0x11c(r4)
 /* 806BA67C  C0 44 00 FC */	lfs f2, 0xfc(r4)
-/* 806BA680  4B BB 60 C0 */	b cLib_chaseF__FPfff
+/* 806BA680  4B BB 60 C1 */	bl cLib_chaseF__FPfff
 /* 806BA684  48 00 00 34 */	b lbl_806BA6B8
 lbl_806BA688:
 /* 806BA688  A8 1F 05 C8 */	lha r0, 0x5c8(r31)
@@ -41,7 +41,7 @@ lbl_806BA6A8:
 /* 806BA6A8  38 7F 04 FC */	addi r3, r31, 0x4fc
 /* 806BA6AC  C0 24 01 20 */	lfs f1, 0x120(r4)
 /* 806BA6B0  C0 44 00 FC */	lfs f2, 0xfc(r4)
-/* 806BA6B4  4B BB 60 8C */	b cLib_chaseF__FPfff
+/* 806BA6B4  4B BB 60 8D */	bl cLib_chaseF__FPfff
 lbl_806BA6B8:
 /* 806BA6B8  C0 3F 05 E8 */	lfs f1, 0x5e8(r31)
 /* 806BA6BC  C0 1F 04 FC */	lfs f0, 0x4fc(r31)

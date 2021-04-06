@@ -21,11 +21,11 @@ extern "C" void modf();
 // Declarations:
 //
 
-/* 8036C494-8036C590 00FC+00 s=0 e=1 z=0  None .text      modf */
+/* 8036C494-8036C590 366DD4 00FC+00 0/0 1/1 0/0 .text            modf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void modf() {
+asm void modf() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/s_modf/modf.s"
 }

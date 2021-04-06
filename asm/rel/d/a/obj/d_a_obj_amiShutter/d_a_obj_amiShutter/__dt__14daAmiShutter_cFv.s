@@ -7,30 +7,30 @@ lbl_80BA22E8:
 /* 80BA22FC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80BA2300  7C 9F 23 78 */	mr r31, r4
 /* 80BA2304  41 82 00 5C */	beq lbl_80BA2360
-/* 80BA2308  3C 60 80 BA */	lis r3, __vt__14daAmiShutter_c@ha
-/* 80BA230C  38 63 24 F4 */	addi r3, r3, __vt__14daAmiShutter_c@l
+/* 80BA2308  3C 60 80 BA */	lis r3, __vt__14daAmiShutter_c@ha /* 0x80BA24F4@ha */
+/* 80BA230C  38 63 24 F4 */	addi r3, r3, __vt__14daAmiShutter_c@l /* 0x80BA24F4@l */
 /* 80BA2310  90 7E 05 9C */	stw r3, 0x59c(r30)
 /* 80BA2314  38 03 00 28 */	addi r0, r3, 0x28
 /* 80BA2318  90 1E 05 A8 */	stw r0, 0x5a8(r30)
 /* 80BA231C  34 1E 05 A8 */	addic. r0, r30, 0x5a8
 /* 80BA2320  41 82 00 10 */	beq lbl_80BA2330
-/* 80BA2324  3C 60 80 BA */	lis r3, __vt__17dEvLib_callback_c@ha
-/* 80BA2328  38 03 24 DC */	addi r0, r3, __vt__17dEvLib_callback_c@l
+/* 80BA2324  3C 60 80 BA */	lis r3, __vt__17dEvLib_callback_c@ha /* 0x80BA24DC@ha */
+/* 80BA2328  38 03 24 DC */	addi r0, r3, __vt__17dEvLib_callback_c@l /* 0x80BA24DC@l */
 /* 80BA232C  90 1E 05 A8 */	stw r0, 0x5a8(r30)
 lbl_80BA2330:
 /* 80BA2330  28 1E 00 00 */	cmplwi r30, 0
 /* 80BA2334  41 82 00 1C */	beq lbl_80BA2350
-/* 80BA2338  3C 60 80 3B */	lis r3, __vt__16dBgS_MoveBgActor@ha
-/* 80BA233C  38 03 B9 A0 */	addi r0, r3, __vt__16dBgS_MoveBgActor@l
+/* 80BA2338  3C 60 80 3B */	lis r3, __vt__16dBgS_MoveBgActor@ha /* 0x803AB9A0@ha */
+/* 80BA233C  38 03 B9 A0 */	addi r0, r3, __vt__16dBgS_MoveBgActor@l /* 0x803AB9A0@l */
 /* 80BA2340  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80BA2344  7F C3 F3 78 */	mr r3, r30
 /* 80BA2348  38 80 00 00 */	li r4, 0
-/* 80BA234C  4B 47 69 40 */	b __dt__10fopAc_ac_cFv
+/* 80BA234C  4B 47 69 41 */	bl __dt__10fopAc_ac_cFv
 lbl_80BA2350:
 /* 80BA2350  7F E0 07 35 */	extsh. r0, r31
 /* 80BA2354  40 81 00 0C */	ble lbl_80BA2360
 /* 80BA2358  7F C3 F3 78 */	mr r3, r30
-/* 80BA235C  4B 72 C9 E0 */	b __dl__FPv
+/* 80BA235C  4B 72 C9 E1 */	bl __dl__FPv
 lbl_80BA2360:
 /* 80BA2360  7F C3 F3 78 */	mr r3, r30
 /* 80BA2364  83 E1 00 0C */	lwz r31, 0xc(r1)

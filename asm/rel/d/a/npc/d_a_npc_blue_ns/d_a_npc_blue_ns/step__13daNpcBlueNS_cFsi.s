@@ -30,10 +30,10 @@ lbl_8096AA64:
 /* 8096AA64  2C 00 00 01 */	cmpwi r0, 1
 /* 8096AA68  40 82 00 58 */	bne lbl_8096AAC0
 /* 8096AA6C  A8 9F 09 96 */	lha r4, 0x996(r31)
-/* 8096AA70  3C A0 80 97 */	lis r5, lit_4847@ha
-/* 8096AA74  C0 25 CA 4C */	lfs f1, lit_4847@l(r5)
+/* 8096AA70  3C A0 80 97 */	lis r5, lit_4847@ha /* 0x8096CA4C@ha */
+/* 8096AA74  C0 25 CA 4C */	lfs f1, lit_4847@l(r5)  /* 0x8096CA4C@l */
 /* 8096AA78  38 A0 00 00 */	li r5, 0
-/* 8096AA7C  4B 7E 94 78 */	b turn__8daNpcF_cFsfi
+/* 8096AA7C  4B 7E 94 79 */	bl turn__8daNpcF_cFsfi
 /* 8096AA80  2C 03 00 00 */	cmpwi r3, 0
 /* 8096AA84  41 82 00 2C */	beq lbl_8096AAB0
 /* 8096AA88  A8 1F 04 DE */	lha r0, 0x4de(r31)

@@ -1,6 +1,6 @@
 lbl_8009825C:
-/* 8009825C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80098260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009825C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80098260  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80098264  C0 23 5D C0 */	lfs f1, 0x5dc0(r3)
 /* 80098268  C0 02 91 DC */	lfs f0, lit_3794(r2)
 /* 8009826C  EC 01 00 2A */	fadds f0, f1, f0

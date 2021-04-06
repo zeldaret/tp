@@ -3,19 +3,20 @@
 #
 
 M406_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos.plf
+M406_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos.lcf
+M406_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos.map
 
 M406_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bemos/executor.cpp \
-	rel/d/a/obj/d_a_obj_bemos/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos.cpp \
 
 M406_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos.o \
 
 M406_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/libRuntime.PPCEABI.H.a \
 
 M406_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M406_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map406.map\
+	-m _prolog \
+	-lcf $(M406_LDSCRIPT) \
+	-unused -map $(M406_MAP) \
+	-w off \
 
 $(M406_TARGET): $(M406_O_FILES) $(M406_LIBS)
+	@echo [406] creating $(M406_TARGET)
 	@echo $(M406_LIBS) $(M406_O_FILES) > build/M406_ofiles
-	$(LD) -opt_partial $(M406_LDFLAGS) -o $(M406_TARGET) @build/M406_ofiles
+	@python3 tools/lcf.py rel 406 --output $(M406_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M406_LDFLAGS) -o $(M406_TARGET) @build/M406_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bemos/%.o: rel/d/a/obj/d_a_obj_bemos/%.cpp
+	@echo [406] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M406_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M406_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_bemos/libs/Runtime.PPCEABI.H/Makefile
 

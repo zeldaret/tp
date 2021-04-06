@@ -8,8 +8,8 @@ lbl_801B46FC:
 /* 801B4714  4E 80 00 20 */	blr 
 lbl_801B4718:
 /* 801B4718  1C A5 00 38 */	mulli r5, r5, 0x38
-/* 801B471C  3C 60 80 39 */	lis r3, itemTag@ha
-/* 801B4720  38 03 51 18 */	addi r0, r3, itemTag@l
+/* 801B471C  3C 60 80 39 */	lis r3, itemTag@ha /* 0x80395118@ha */
+/* 801B4720  38 03 51 18 */	addi r0, r3, itemTag@l /* 0x80395118@l */
 /* 801B4724  7C 60 2A 14 */	add r3, r0, r5
 /* 801B4728  54 80 18 38 */	slwi r0, r4, 3
 /* 801B472C  7C 83 02 14 */	add r4, r3, r0

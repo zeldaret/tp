@@ -13,7 +13,7 @@ lbl_80C596F4:
 /* 80C59720  38 63 05 A8 */	addi r3, r3, 0x5a8
 /* 80C59724  38 A0 00 FF */	li r5, 0xff
 /* 80C59728  38 C0 00 01 */	li r6, 1
-/* 80C5972C  4B 3E F2 14 */	b orderEvent__17dEvLib_callback_cFiii
+/* 80C5972C  4B 3E F2 15 */	bl orderEvent__17dEvLib_callback_cFiii
 /* 80C59730  48 00 00 14 */	b lbl_80C59744
 lbl_80C59734:
 /* 80C59734  81 83 05 9C */	lwz r12, 0x59c(r3)

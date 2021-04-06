@@ -1,8 +1,8 @@
 lbl_804A95EC:
-/* 804A95EC  3C 80 80 4C */	lis r4, lit_3879@ha
-/* 804A95F0  38 A4 B5 34 */	addi r5, r4, lit_3879@l
-/* 804A95F4  3C 80 80 4C */	lis r4, __vt__13dmg_rod_HIO_c@ha
-/* 804A95F8  38 04 BB 7C */	addi r0, r4, __vt__13dmg_rod_HIO_c@l
+/* 804A95EC  3C 80 80 4C */	lis r4, lit_3879@ha /* 0x804BB534@ha */
+/* 804A95F0  38 A4 B5 34 */	addi r5, r4, lit_3879@l /* 0x804BB534@l */
+/* 804A95F4  3C 80 80 4C */	lis r4, __vt__13dmg_rod_HIO_c@ha /* 0x804BBB7C@ha */
+/* 804A95F8  38 04 BB 7C */	addi r0, r4, __vt__13dmg_rod_HIO_c@l /* 0x804BBB7C@l */
 /* 804A95FC  90 03 00 00 */	stw r0, 0(r3)
 /* 804A9600  38 00 FF FF */	li r0, -1
 /* 804A9604  98 03 00 04 */	stb r0, 4(r3)

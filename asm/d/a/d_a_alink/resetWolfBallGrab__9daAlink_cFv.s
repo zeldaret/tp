@@ -26,8 +26,8 @@ lbl_80138F18:
 /* 80138F78  C0 22 92 C4 */	lfs f1, lit_6109(r2)
 /* 80138F7C  4B F7 47 A9 */	bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_80138F80:
-/* 80138F80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80138F84  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80138F80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80138F84  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80138F88  80 7E 5D 3C */	lwz r3, 0x5d3c(r30)
 /* 80138F8C  38 80 00 00 */	li r4, 0
 /* 80138F90  90 81 00 08 */	stw r4, 8(r1)

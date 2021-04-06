@@ -5,8 +5,8 @@ lbl_801DCBBC:
 /* 801DCBC8  88 03 00 E1 */	lbz r0, 0xe1(r3)
 /* 801DCBCC  28 00 00 FF */	cmplwi r0, 0xff
 /* 801DCBD0  41 82 00 AC */	beq lbl_801DCC7C
-/* 801DCBD4  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 801DCBD8  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 801DCBD4  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801DCBD8  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801DCBDC  88 04 05 68 */	lbz r0, 0x568(r4)
 /* 801DCBE0  28 00 00 01 */	cmplwi r0, 1
 /* 801DCBE4  40 82 00 2C */	bne lbl_801DCC10

@@ -21,8 +21,8 @@ lbl_8012F500:
 /* 8012F54C  48 00 00 D0 */	b lbl_8012F61C
 lbl_8012F550:
 /* 8012F550  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8012F554  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 8012F558  38 63 F1 A0 */	addi r3, r3, m__24daAlinkHIO_wlWallHang_c0@l
+/* 8012F554  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 8012F558  38 63 F1 A0 */	addi r3, r3, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 8012F55C  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 8012F560  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8012F564  40 81 00 B4 */	ble lbl_8012F618
@@ -46,12 +46,12 @@ lbl_8012F598:
 /* 8012F5A4  41 82 00 74 */	beq lbl_8012F618
 /* 8012F5A8  7F C3 F3 78 */	mr r3, r30
 /* 8012F5AC  38 80 00 12 */	li r4, 0x12
-/* 8012F5B0  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 8012F5B4  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l
+/* 8012F5B0  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 8012F5B4  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 8012F5B8  38 A5 00 64 */	addi r5, r5, 0x64
 /* 8012F5BC  4B FF A2 8D */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-/* 8012F5C0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8012F5C4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8012F5C0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8012F5C4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8012F5C8  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8012F5CC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8012F5D0  7C 64 02 14 */	add r3, r4, r0

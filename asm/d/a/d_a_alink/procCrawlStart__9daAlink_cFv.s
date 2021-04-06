@@ -15,8 +15,8 @@ lbl_800F9384:
 /* 800F93B8  EC 02 00 32 */	fmuls f0, f2, f0
 /* 800F93BC  EC 03 00 28 */	fsubs f0, f3, f0
 /* 800F93C0  D0 1E 33 CC */	stfs f0, 0x33cc(r30)
-/* 800F93C4  3C 60 80 39 */	lis r3, l_crawlFrontOffset@ha
-/* 800F93C8  38 63 FA 54 */	addi r3, r3, l_crawlFrontOffset@l
+/* 800F93C4  3C 60 80 39 */	lis r3, l_crawlFrontOffset@ha /* 0x8038FA54@ha */
+/* 800F93C8  38 63 FA 54 */	addi r3, r3, l_crawlFrontOffset@l /* 0x8038FA54@l */
 /* 800F93CC  C0 23 00 08 */	lfs f1, 8(r3)
 /* 800F93D0  C0 1E 33 CC */	lfs f0, 0x33cc(r30)
 /* 800F93D4  EC 21 00 32 */	fmuls f1, f1, f0

@@ -57,8 +57,8 @@ lbl_800E4EB4:
 /* 800E4EB8  28 00 00 1B */	cmplwi r0, 0x1b
 /* 800E4EBC  40 82 00 28 */	bne lbl_800E4EE4
 /* 800E4EC0  C0 3D 34 78 */	lfs f1, 0x3478(r29)
-/* 800E4EC4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800E4EC8  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800E4EC4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800E4EC8  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800E4ECC  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 800E4ED0  EC 01 00 24 */	fdivs f0, f1, f0
 /* 800E4ED4  FC 00 02 10 */	fabs f0, f0
@@ -67,8 +67,8 @@ lbl_800E4EB4:
 /* 800E4EE0  48 00 00 24 */	b lbl_800E4F04
 lbl_800E4EE4:
 /* 800E4EE4  C0 3D 33 98 */	lfs f1, 0x3398(r29)
-/* 800E4EE8  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800E4EEC  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800E4EE8  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800E4EEC  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800E4EF0  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 800E4EF4  EC 01 00 24 */	fdivs f0, f1, f0
 /* 800E4EF8  FC 00 02 10 */	fabs f0, f0

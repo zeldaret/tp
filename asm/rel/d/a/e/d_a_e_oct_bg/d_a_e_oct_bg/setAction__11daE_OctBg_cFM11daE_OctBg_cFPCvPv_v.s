@@ -7,14 +7,14 @@ lbl_8073626C:
 /* 80736280  7C 7E 1B 78 */	mr r30, r3
 /* 80736284  7C 9F 23 78 */	mr r31, r4
 /* 80736288  38 7E 0B 58 */	addi r3, r30, 0xb58
-/* 8073628C  4B C2 BD 8C */	b __ptmf_test
+/* 8073628C  4B C2 BD 8D */	bl __ptmf_test
 /* 80736290  2C 03 00 00 */	cmpwi r3, 0
 /* 80736294  41 82 00 1C */	beq lbl_807362B0
 /* 80736298  38 00 FF FF */	li r0, -1
 /* 8073629C  90 1E 0B 70 */	stw r0, 0xb70(r30)
 /* 807362A0  7F C3 F3 78 */	mr r3, r30
 /* 807362A4  39 9E 0B 58 */	addi r12, r30, 0xb58
-/* 807362A8  4B C2 BD DC */	b __ptmf_scall
+/* 807362A8  4B C2 BD DD */	bl __ptmf_scall
 /* 807362AC  60 00 00 00 */	nop 
 lbl_807362B0:
 /* 807362B0  80 7E 0B 58 */	lwz r3, 0xb58(r30)
@@ -33,7 +33,7 @@ lbl_807362B0:
 /* 807362E4  90 1E 0B 70 */	stw r0, 0xb70(r30)
 /* 807362E8  7F C3 F3 78 */	mr r3, r30
 /* 807362EC  39 9E 0B 58 */	addi r12, r30, 0xb58
-/* 807362F0  4B C2 BD 94 */	b __ptmf_scall
+/* 807362F0  4B C2 BD 95 */	bl __ptmf_scall
 /* 807362F4  60 00 00 00 */	nop 
 /* 807362F8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 807362FC  83 C1 00 08 */	lwz r30, 8(r1)

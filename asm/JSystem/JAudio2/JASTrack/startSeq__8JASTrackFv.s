@@ -6,8 +6,8 @@ lbl_80291A28:
 /* 80291A38  7C 7F 1B 78 */	mr r31, r3
 /* 80291A3C  48 0A BC B9 */	bl OSDisableInterrupts
 /* 80291A40  90 61 00 08 */	stw r3, 8(r1)
-/* 80291A44  3C 60 80 43 */	lis r3, sTrackList__8JASTrack@ha
-/* 80291A48  38 63 1A CC */	addi r3, r3, sTrackList__8JASTrack@l
+/* 80291A44  3C 60 80 43 */	lis r3, sTrackList__8JASTrack@ha /* 0x80431ACC@ha */
+/* 80291A48  38 63 1A CC */	addi r3, r3, sTrackList__8JASTrack@l /* 0x80431ACC@l */
 /* 80291A4C  7F E4 FB 78 */	mr r4, r31
 /* 80291A50  48 00 15 41 */	bl append__Q28JASTrack5TListFP8JASTrack
 /* 80291A54  38 00 00 01 */	li r0, 1

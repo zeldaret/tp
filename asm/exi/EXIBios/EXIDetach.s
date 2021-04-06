@@ -7,8 +7,8 @@ lbl_803437AC:
 /* 803437C0  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 803437C4  3B A3 00 00 */	addi r29, r3, 0
 /* 803437C8  54 64 30 32 */	slwi r4, r3, 6
-/* 803437CC  3C 60 80 45 */	lis r3, Ecb@ha
-/* 803437D0  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 803437CC  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 803437D0  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 803437D4  7F E0 22 14 */	add r31, r0, r4
 /* 803437D8  4B FF 9F 1D */	bl OSDisableInterrupts
 /* 803437DC  7C 7E 1B 78 */	mr r30, r3

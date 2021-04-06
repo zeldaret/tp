@@ -7,8 +7,8 @@ lbl_80286C9C:
 /* 80286CB0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80286CB4  7C 9F 23 78 */	mr r31, r4
 /* 80286CB8  41 82 00 28 */	beq lbl_80286CE0
-/* 80286CBC  3C 80 80 3C */	lis r4, __vt__Q27JStudio21TAdaptor_ambientLight@ha
-/* 80286CC0  38 04 55 60 */	addi r0, r4, __vt__Q27JStudio21TAdaptor_ambientLight@l
+/* 80286CBC  3C 80 80 3C */	lis r4, __vt__Q27JStudio21TAdaptor_ambientLight@ha /* 0x803C5560@ha */
+/* 80286CC0  38 04 55 60 */	addi r0, r4, __vt__Q27JStudio21TAdaptor_ambientLight@l /* 0x803C5560@l */
 /* 80286CC4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80286CC8  38 80 00 00 */	li r4, 0
 /* 80286CCC  4B FF F3 05 */	bl __dt__Q27JStudio8TAdaptorFv

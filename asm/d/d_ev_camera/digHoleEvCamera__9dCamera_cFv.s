@@ -13,8 +13,8 @@ lbl_80095FD0:
 /* 80095FFC  38 00 00 00 */	li r0, 0
 /* 80096000  90 1F 03 E8 */	stw r0, 0x3e8(r31)
 /* 80096004  38 9F 03 EC */	addi r4, r31, 0x3ec
-/* 80096008  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha
-/* 8009600C  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l
+/* 80096008  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha /* 0x8037AAF4@ha */
+/* 8009600C  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l /* 0x8037AAF4@l */
 /* 80096010  38 A5 01 7B */	addi r5, r5, 0x17b
 /* 80096014  38 C0 00 03 */	li r6, 3
 /* 80096018  4B FF 30 75 */	bl getEvIntData__9dCamera_cFPiPci
@@ -328,11 +328,11 @@ lbl_80096400:
 /* 800964C4  D0 1F 00 78 */	stfs f0, 0x78(r31)
 /* 800964C8  48 00 00 30 */	b lbl_800964F8
 lbl_800964CC:
-/* 800964CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800964D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800964CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800964D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800964D4  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 800964D8  3C 80 80 38 */	lis r4, d_d_ev_camera__stringBase0@ha
-/* 800964DC  38 84 AA F4 */	addi r4, r4, d_d_ev_camera__stringBase0@l
+/* 800964D8  3C 80 80 38 */	lis r4, d_d_ev_camera__stringBase0@ha /* 0x8037AAF4@ha */
+/* 800964DC  38 84 AA F4 */	addi r4, r4, d_d_ev_camera__stringBase0@l /* 0x8037AAF4@l */
 /* 800964E0  38 84 02 20 */	addi r4, r4, 0x220
 /* 800964E4  48 2D 24 B1 */	bl strcmp
 /* 800964E8  2C 03 00 00 */	cmpwi r3, 0

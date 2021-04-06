@@ -13,8 +13,8 @@ lbl_800937AC:
 /* 800937D8  28 00 00 00 */	cmplwi r0, 0
 /* 800937DC  40 82 00 98 */	bne lbl_80093874
 /* 800937E0  38 9D 03 F0 */	addi r4, r29, 0x3f0
-/* 800937E4  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha
-/* 800937E8  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l
+/* 800937E4  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha /* 0x8037AAF4@ha */
+/* 800937E8  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l /* 0x8037AAF4@l */
 /* 800937EC  38 A5 01 7B */	addi r5, r5, 0x17b
 /* 800937F0  38 C0 00 00 */	li r6, 0
 /* 800937F4  4B FF 58 99 */	bl getEvIntData__9dCamera_cFPiPci
@@ -170,8 +170,8 @@ lbl_80093A10:
 /* 80093A3C  D0 01 01 EC */	stfs f0, 0x1ec(r1)
 /* 80093A40  D0 21 01 F0 */	stfs f1, 0x1f0(r1)
 /* 80093A44  3B E1 02 00 */	addi r31, r1, 0x200
-/* 80093A48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80093A4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80093A48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80093A4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80093A50  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80093A54  80 8D 8A 98 */	lwz r4, m_midnaActor__9daPy_py_c(r13)
 /* 80093A58  80 1D 01 90 */	lwz r0, 0x190(r29)
@@ -246,8 +246,8 @@ lbl_80093A88:
 /* 80093B64  D0 81 02 84 */	stfs f4, 0x284(r1)
 /* 80093B68  D0 01 02 88 */	stfs f0, 0x288(r1)
 /* 80093B6C  38 A1 02 08 */	addi r5, r1, 0x208
-/* 80093B70  3C 60 80 38 */	lis r3, lit_9468@ha
-/* 80093B74  38 63 AA 08 */	addi r3, r3, lit_9468@l
+/* 80093B70  3C 60 80 38 */	lis r3, lit_9468@ha /* 0x8037AA08@ha */
+/* 80093B74  38 63 AA 08 */	addi r3, r3, lit_9468@l /* 0x8037AA08@l */
 /* 80093B78  38 83 FF FC */	addi r4, r3, -4
 /* 80093B7C  38 00 00 07 */	li r0, 7
 /* 80093B80  7C 09 03 A6 */	mtctr r0
@@ -430,8 +430,8 @@ lbl_80093DF0:
 /* 80093E28  41 82 01 40 */	beq lbl_80093F68
 /* 80093E2C  3B E0 00 00 */	li r31, 0
 /* 80093E30  3B 80 00 00 */	li r28, 0
-/* 80093E34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80093E38  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
+/* 80093E34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80093E38  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80093E3C  3B 61 02 0C */	addi r27, r1, 0x20c
 /* 80093E40  48 00 00 C8 */	b lbl_80093F08
 lbl_80093E44:

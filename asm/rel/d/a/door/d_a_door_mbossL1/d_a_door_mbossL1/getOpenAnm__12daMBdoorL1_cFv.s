@@ -7,8 +7,8 @@ lbl_80672FE4:
 /* 80672FF8  4B FF FF 8D */	bl getDoorType__12daMBdoorL1_cFv
 /* 80672FFC  2C 03 00 01 */	cmpwi r3, 1
 /* 80673000  40 82 00 14 */	bne lbl_80673014
-/* 80673004  3C 60 80 67 */	lis r3, struct_80677660+0x0@ha
-/* 80673008  38 63 76 60 */	addi r3, r3, struct_80677660+0x0@l
+/* 80673004  3C 60 80 67 */	lis r3, d_a_door_mbossL1__stringBase0@ha /* 0x80677660@ha */
+/* 80673008  38 63 76 60 */	addi r3, r3, d_a_door_mbossL1__stringBase0@l /* 0x80677660@l */
 /* 8067300C  38 63 01 72 */	addi r3, r3, 0x172
 /* 80673010  48 00 00 24 */	b lbl_80673034
 lbl_80673014:
@@ -17,8 +17,8 @@ lbl_80673014:
 /* 8067301C  2C 03 00 00 */	cmpwi r3, 0
 /* 80673020  38 60 00 00 */	li r3, 0
 /* 80673024  40 82 00 10 */	bne lbl_80673034
-/* 80673028  3C 60 80 67 */	lis r3, struct_80677660+0x0@ha
-/* 8067302C  38 63 76 60 */	addi r3, r3, struct_80677660+0x0@l
+/* 80673028  3C 60 80 67 */	lis r3, d_a_door_mbossL1__stringBase0@ha /* 0x80677660@ha */
+/* 8067302C  38 63 76 60 */	addi r3, r3, d_a_door_mbossL1__stringBase0@l /* 0x80677660@l */
 /* 80673030  38 63 01 81 */	addi r3, r3, 0x181
 lbl_80673034:
 /* 80673034  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -19,8 +19,8 @@ lbl_803522D4:
 /* 80352318  91 5D 00 1C */	stw r10, 0x1c(r29)
 /* 8035231C  48 00 00 10 */	b lbl_8035232C
 lbl_80352320:
-/* 80352320  3C 60 80 35 */	lis r3, __ARQCallbackHack@ha
-/* 80352324  38 03 21 94 */	addi r0, r3, __ARQCallbackHack@l
+/* 80352320  3C 60 80 35 */	lis r3, __ARQCallbackHack@ha /* 0x80352194@ha */
+/* 80352324  38 03 21 94 */	addi r0, r3, __ARQCallbackHack@l /* 0x80352194@l */
 /* 80352328  90 1D 00 1C */	stw r0, 0x1c(r29)
 lbl_8035232C:
 /* 8035232C  4B FE B3 C9 */	bl OSDisableInterrupts

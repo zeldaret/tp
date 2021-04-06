@@ -15,8 +15,8 @@ lbl_802195A4:
 /* 802195D8  41 82 01 88 */	beq lbl_80219760
 /* 802195DC  80 7E 03 00 */	lwz r3, 0x300(r30)
 /* 802195E0  88 03 00 18 */	lbz r0, 0x18(r3)
-/* 802195E4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802195E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802195E4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802195E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802195EC  C0 43 00 A8 */	lfs f2, 0xa8(r3)
 /* 802195F0  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 802195F4  C0 03 00 84 */	lfs f0, 0x84(r3)
@@ -35,18 +35,18 @@ lbl_802195A4:
 /* 80219628  80 7E 02 F8 */	lwz r3, 0x2f8(r30)
 /* 8021962C  48 03 C1 FD */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219630  FF E0 08 90 */	fmr f31, f1
-/* 80219634  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80219638  3B E3 01 88 */	addi r31, r3, g_meter2_info@l
+/* 80219634  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80219638  3B E3 01 88 */	addi r31, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8021963C  A0 1F 00 AE */	lhz r0, 0xae(r31)
 /* 80219640  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80219644  40 82 00 24 */	bne lbl_80219668
-/* 80219648  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021964C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80219648  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021964C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80219650  88 03 5E 4A */	lbz r0, 0x5e4a(r3)
 /* 80219654  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 80219658  40 82 00 10 */	bne lbl_80219668
-/* 8021965C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80219660  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8021965C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80219660  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80219664  8B 63 04 2B */	lbz r27, 0x42b(r3)
 lbl_80219668:
 /* 80219668  80 7E 03 00 */	lwz r3, 0x300(r30)
@@ -67,8 +67,8 @@ lbl_80219668:
 /* 802196A4  4E 80 04 21 */	bctrl 
 /* 802196A8  3B 40 00 00 */	li r26, 0
 /* 802196AC  3B A0 00 00 */	li r29, 0
-/* 802196B0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802196B4  3B 63 EB C8 */	addi r27, r3, g_drawHIO@l
+/* 802196B0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802196B4  3B 63 EB C8 */	addi r27, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802196B8  CB C2 AE C0 */	lfd f30, lit_6293(r2)
 /* 802196BC  3F 80 43 30 */	lis r28, 0x4330
 lbl_802196C0:

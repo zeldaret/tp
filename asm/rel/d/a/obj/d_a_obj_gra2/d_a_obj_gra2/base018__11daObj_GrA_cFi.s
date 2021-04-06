@@ -9,8 +9,8 @@ lbl_80C041E8:
 /* 80C04204  38 80 00 0D */	li r4, 0xd
 /* 80C04208  C0 3F 0A 94 */	lfs f1, 0xa94(r31)
 /* 80C0420C  4B FF D1 A5 */	bl setBaseAnm__11daObj_GrA_cFif
-/* 80C04210  3C 60 80 C1 */	lis r3, lit_10254@ha
-/* 80C04214  C0 03 FD CC */	lfs f0, lit_10254@l(r3)
+/* 80C04210  3C 60 80 C1 */	lis r3, lit_10254@ha /* 0x80C0FDCC@ha */
+/* 80C04214  C0 03 FD CC */	lfs f0, lit_10254@l(r3)  /* 0x80C0FDCC@l */
 /* 80C04218  80 7F 07 54 */	lwz r3, 0x754(r31)
 /* 80C0421C  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80C04220  3C 60 00 05 */	lis r3, 0x0005 /* 0x00050089@ha */

@@ -5,6 +5,7 @@ from . import linker_map
 from .disassemble import Access, BranchAccess, FloatLoadAccess, DoubleLoadAccess
 from .data import *
 
+
 def string_decode(data: bytearray) -> Tuple[str, str]:
     """ Try to decode the data using utf-8 or shift-jis """
 
@@ -112,13 +113,14 @@ def value_initialized_symbol(section: Section,
             _ctors_data = padding_data[0:count*4]
 
             __init_cpp_exceptions_reference = ReferenceArray.create(
-                    identifier,
-                    symbol.addr,
-                    data,
-                    bytearray())
+                identifier,
+                symbol.addr,
+                data,
+                bytearray(),
+                always_extern=True)
 
             # instead of creating the _ctors ourself we let the linker do it
-            _ctors = ArbitraryData(
+            _ctors = LinkerGenerated(
                 identifier=Identifier("_xx", symbol.addr + 4, "_ctors"),
                 addr=symbol.addr + 4,
                 size=len(_ctors_data),
@@ -126,47 +128,87 @@ def value_initialized_symbol(section: Section,
                 data_type=PointerType(VOID),
                 padding=0,
                 padding_data=[],
-                zero_length=True)
+                zero_length=True,
+                always_extern=True)
 
             return [
                 __init_cpp_exceptions_reference,
                 _ctors
             ]
+        elif not symbol.name:
+            assert len(data) % 4 == 0
+            assert len(padding_data) == 0
+            _ctors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr, "_ctors"),
+                addr=symbol.addr,
+                size=len(data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
+            return [_ctors]
 
     if section.name == ".dtors":
         if symbol.name == "__destroy_global_chain_reference":
             assert len(data) == 4
             __destroy_global_chain_reference = ReferenceArray.create(
-                identifier, symbol.addr, data, bytearray())
+                identifier, symbol.addr, data, bytearray(),
+                always_extern=True)
 
             if len(padding_data) == 0:
                 return [__destroy_global_chain_reference]
 
+            # _dtors
+            _dtors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr + 4, "_dtors"),
+                addr=symbol.addr + 4,
+                size=len(padding_data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
             return [
                 __destroy_global_chain_reference,
-                ArbitraryData.create_with_data(
-                    Identifier('pad', symbol.addr + 4, None),
-                    symbol.addr + 4,
-                    padding_data,
-                    bytearray())
+                _dtors
             ]
-
         elif symbol.name == "__fini_cpp_exceptions_reference":
             assert len(data) == 4
             assert len(padding_data) == 0
 
             __fini_cpp_exceptions_reference = ReferenceArray.create(
-                identifier, symbol.addr, data, bytearray())
-                
+                identifier, symbol.addr, data, bytearray(),
+                always_extern=True)
+
             __dtors_null_terminator = ReferenceArray.create(
-                    Identifier("_xx", symbol.addr + 4, "__dtors_null_terminator"), 
-                    symbol.addr + 4, bytearray([0, 0, 0, 0]), bytearray())
+                Identifier("_xx", symbol.addr + 4, "__dtors_null_terminator"),
+                symbol.addr + 4, bytearray([0, 0, 0, 0]), bytearray(),
+                always_extern=True)
 
             return [
                 __fini_cpp_exceptions_reference,
                 __dtors_null_terminator,
             ]
+        elif not symbol.name:
+            assert len(data) % 4 == 0
+            assert len(padding_data) == 0
+            _ctors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr, "_dtors"),
+                addr=symbol.addr,
+                size=len(data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
 
+            return [_ctors]
     if isinstance(symbol.access, FloatLoadAccess):
         is_float_constant = identifier.name and identifier.name.startswith(
             "__float_")

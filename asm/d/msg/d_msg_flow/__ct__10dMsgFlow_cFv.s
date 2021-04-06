@@ -4,8 +4,8 @@ lbl_80249F00:
 /* 80249F08  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80249F0C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80249F10  7C 7F 1B 78 */	mr r31, r3
-/* 80249F14  3C 80 80 3C */	lis r4, __vt__10dMsgFlow_c@ha
-/* 80249F18  38 04 1F 40 */	addi r0, r4, __vt__10dMsgFlow_c@l
+/* 80249F14  3C 80 80 3C */	lis r4, __vt__10dMsgFlow_c@ha /* 0x803C1F40@ha */
+/* 80249F18  38 04 1F 40 */	addi r0, r4, __vt__10dMsgFlow_c@l /* 0x803C1F40@l */
 /* 80249F1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80249F20  38 00 00 00 */	li r0, 0
 /* 80249F24  98 03 00 48 */	stb r0, 0x48(r3)

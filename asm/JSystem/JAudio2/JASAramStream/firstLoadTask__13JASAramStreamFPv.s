@@ -19,8 +19,8 @@ lbl_8029676C:
 /* 802967B0  2C 00 00 00 */	cmpwi r0, 0
 /* 802967B4  40 82 00 28 */	bne lbl_802967DC
 /* 802967B8  80 6D 8C D0 */	lwz r3, sLoadThread__13JASAramStream(r13)
-/* 802967BC  3C 80 80 29 */	lis r4, prepareFinishTask__13JASAramStreamFPv@ha
-/* 802967C0  38 84 68 C8 */	addi r4, r4, prepareFinishTask__13JASAramStreamFPv@l
+/* 802967BC  3C 80 80 29 */	lis r4, prepareFinishTask__13JASAramStreamFPv@ha /* 0x802968C8@ha */
+/* 802967C0  38 84 68 C8 */	addi r4, r4, prepareFinishTask__13JASAramStreamFPv@l /* 0x802968C8@l */
 /* 802967C4  7F C5 F3 78 */	mr r5, r30
 /* 802967C8  4B FF 94 8D */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 802967CC  2C 03 00 00 */	cmpwi r3, 0
@@ -34,8 +34,8 @@ lbl_802967DC:
 /* 802967E8  38 03 FF FF */	addi r0, r3, -1
 /* 802967EC  90 1F 00 04 */	stw r0, 4(r31)
 /* 802967F0  80 6D 8C D0 */	lwz r3, sLoadThread__13JASAramStream(r13)
-/* 802967F4  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha
-/* 802967F8  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l
+/* 802967F4  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha /* 0x8029676C@ha */
+/* 802967F8  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l /* 0x8029676C@l */
 /* 802967FC  7F E5 FB 78 */	mr r5, r31
 /* 80296800  38 C0 00 0C */	li r6, 0xc
 /* 80296804  4B FF 93 59 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl

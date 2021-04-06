@@ -19,7 +19,7 @@ lbl_803575F8:
 /* 80357608  7F 63 DB 78 */	mr r3, r27
 /* 8035760C  4B CA BE 4D */	bl memset
 /* 80357610  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC00206E@ha */
-/* 80357614  A2 43 20 6E */	lhz r18, 0x206E(r3)
+/* 80357614  A2 43 20 6E */	lhz r18, 0x206E(r3)  /* 0xCC00206E@l */
 /* 80357618  B2 9B 00 24 */	sth r20, 0x24(r27)
 /* 8035761C  4B FE 8B 29 */	bl __OSLockSram
 /* 80357620  80 03 00 0C */	lwz r0, 0xc(r3)
@@ -382,8 +382,8 @@ lbl_80357B7C:
 /* 80357B90  7E 60 9B 78 */	mr r0, r19
 /* 80357B94  48 00 00 0C */	b lbl_80357BA0
 lbl_80357B98:
-/* 80357B98  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha
-/* 80357B9C  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l
+/* 80357B98  3C 60 80 35 */	lis r3, __CARDDefaultApiCallback@ha /* 0x80352A30@ha */
+/* 80357B9C  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l /* 0x80352A30@l */
 lbl_80357BA0:
 /* 80357BA0  80 A1 00 18 */	lwz r5, 0x18(r1)
 /* 80357BA4  3C 60 00 01 */	lis r3, 0x0001 /* 0x0000A000@ha */
@@ -394,9 +394,9 @@ lbl_80357BA0:
 /* 80357BB8  4B FE 3A 25 */	bl DCStoreRange
 /* 80357BBC  80 81 00 18 */	lwz r4, 0x18(r1)
 /* 80357BC0  38 00 00 00 */	li r0, 0
-/* 80357BC4  3C 60 80 35 */	lis r3, FormatCallback@ha
+/* 80357BC4  3C 60 80 35 */	lis r3, FormatCallback@ha /* 0x80357484@ha */
 /* 80357BC8  90 04 00 28 */	stw r0, 0x28(r4)
-/* 80357BCC  38 A3 74 84 */	addi r5, r3, FormatCallback@l
+/* 80357BCC  38 A3 74 84 */	addi r5, r3, FormatCallback@l /* 0x80357484@l */
 /* 80357BD0  38 76 00 00 */	addi r3, r22, 0
 /* 80357BD4  80 C1 00 18 */	lwz r6, 0x18(r1)
 /* 80357BD8  80 86 00 0C */	lwz r4, 0xc(r6)

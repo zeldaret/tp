@@ -33,9 +33,6 @@ struct cXyz {};
 // Forward References:
 //
 
-static void daTagGuard_Create(fopAc_ac_c*);
-static void daTagGuard_Delete(daTagGuard_c*);
-
 extern "C" void getAppearPoint__12daTagGuard_cFP3Vec();
 extern "C" void createGuard__12daTagGuard_cFUl();
 extern "C" static void daTagGuard_Create__FP10fopAc_ac_c();
@@ -45,12 +42,6 @@ extern "C" extern void* g_profile_TAG_GUARD[12];
 //
 // External References:
 //
-
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void dPath_GetPnt(dPath const*, int);
-void dPath_GetRoomPath(int, int);
-void cLib_targetAngleY(Vec const*, Vec const*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -65,8 +56,7 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 // Declarations:
 //
 
-/* 80D597F8-80D5985C 0064+00 s=0 e=0 z=1  None .text      getAppearPoint__12daTagGuard_cFP3Vec */
-//	80D59828: 800517B0 (dPath_GetPnt__FPC5dPathi)
+/* 80D597F8-80D5985C 000078 0064+00 0/0 0/0 1/1 .text getAppearPoint__12daTagGuard_cFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -76,9 +66,7 @@ asm void daTagGuard_c::getAppearPoint(Vec* param_0) {
 }
 #pragma pop
 
-/* 80D5985C-80D59928 00CC+00 s=0 e=0 z=1  None .text      createGuard__12daTagGuard_cFUl */
-//	80D598A8: 800517B0 (dPath_GetPnt__FPC5dPathi)
-//	80D5990C: 80019EF0 (fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i)
+/* 80D5985C-80D59928 0000DC 00CC+00 0/0 0/0 1/1 .text            createGuard__12daTagGuard_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,34 +76,30 @@ asm void daTagGuard_c::createGuard(u32 param_0) {
 }
 #pragma pop
 
-/* 80D59928-80D599E0 00B8+00 s=1 e=0 z=0  None .text      daTagGuard_Create__FP10fopAc_ac_c */
-//	80D59954: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D59974: 800517EC (dPath_GetRoomPath__Fii)
-//	80D59984: 800517B0 (dPath_GetPnt__FPC5dPathi)
-//	80D59994: 800517B0 (dPath_GetPnt__FPC5dPathi)
-//	80D599BC: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
+/* 80D59928-80D599E0 0001A8 00B8+00 1/0 0/0 0/0 .text            daTagGuard_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagGuard_Create(fopAc_ac_c* param_0) {
+static asm void daTagGuard_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_guard/d_a_tag_guard/daTagGuard_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D599E0-80D59A10 0030+00 s=1 e=0 z=0  None .text      daTagGuard_Delete__FP12daTagGuard_c */
-//	80D599F8: 80018C8C (__dt__10fopAc_ac_cFv)
+/* 80D599E0-80D59A10 000260 0030+00 1/0 0/0 0/0 .text            daTagGuard_Delete__FP12daTagGuard_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagGuard_Delete(daTagGuard_c* param_0) {
+static asm void daTagGuard_Delete(daTagGuard_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_guard/d_a_tag_guard/daTagGuard_Delete__FP12daTagGuard_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D59A18-80D59A38 0020+00 s=1 e=0 z=0  None .data      l_daTagGuard_Method */
+/* 80D59A18-80D59A38 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagGuard_Method */
 SECTION_DATA static void* l_daTagGuard_Method[8] = {
     (void*)daTagGuard_Create__FP10fopAc_ac_c,
     (void*)daTagGuard_Delete__FP12daTagGuard_c,
@@ -127,8 +111,8 @@ SECTION_DATA static void* l_daTagGuard_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D59A38-80D59A68 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_GUARD */
-SECTION_DATA void* g_profile_TAG_GUARD[12] = {
+/* 80D59A38-80D59A68 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_GUARD */
+SECTION_DATA extern void* g_profile_TAG_GUARD[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02960000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

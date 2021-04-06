@@ -24,7 +24,7 @@ extern "C" void __kernel_rem_pio2();
 //
 
 /* ############################################################################################## */
-/* 803A23B0-803A24B8 0108+00 s=1 e=0 z=0  None .rodata    two_over_pi */
+/* 803A23B0-803A24B8 02EA10 0108+00 1/1 0/0 0/0 .rodata          two_over_pi */
 SECTION_RODATA static u8 const two_over_pi[264] = {
     0x00, 0xA2, 0xF9, 0x83, 0x00, 0x6E, 0x4E, 0x44, 0x00, 0x15, 0x29, 0xFC, 0x00, 0x27, 0x57, 0xD1,
     0x00, 0xF5, 0x34, 0xDD, 0x00, 0xC0, 0xDB, 0x62, 0x00, 0x95, 0x99, 0x3C, 0x00, 0x43, 0x90, 0x41,
@@ -44,8 +44,9 @@ SECTION_RODATA static u8 const two_over_pi[264] = {
     0x00, 0x4D, 0x73, 0x27, 0x00, 0x31, 0x06, 0x06, 0x00, 0x15, 0x56, 0xCA, 0x00, 0x73, 0xA8, 0xC9,
     0x00, 0x60, 0xE2, 0x7B, 0x00, 0xC0, 0x8C, 0x6B,
 };
+SECTION_DEAD void* const cg_803A23B0 = (void*)(&two_over_pi);
 
-/* 803A24B8-803A2538 0080+00 s=1 e=0 z=0  None .rodata    npio2_hw */
+/* 803A24B8-803A2538 02EB18 0080+00 1/1 0/0 0/0 .rodata          npio2_hw */
 SECTION_RODATA static u8 const npio2_hw[128] = {
     0x3F, 0xF9, 0x21, 0xFB, 0x40, 0x09, 0x21, 0xFB, 0x40, 0x12, 0xD9, 0x7C, 0x40, 0x19, 0x21, 0xFB,
     0x40, 0x1F, 0x6A, 0x7A, 0x40, 0x22, 0xD9, 0x7C, 0x40, 0x25, 0xFD, 0xBB, 0x40, 0x29, 0x21, 0xFB,
@@ -56,73 +57,48 @@ SECTION_RODATA static u8 const npio2_hw[128] = {
     0x40, 0x43, 0xA2, 0x8C, 0x40, 0x44, 0x6B, 0x9C, 0x40, 0x45, 0x34, 0xAC, 0x40, 0x45, 0xFD, 0xBB,
     0x40, 0x46, 0xC6, 0xCB, 0x40, 0x47, 0x8F, 0xDB, 0x40, 0x48, 0x58, 0xEB, 0x40, 0x49, 0x21, 0xFB,
 };
+SECTION_DEAD void* const cg_803A24B8 = (void*)(&npio2_hw);
 
-/* 80456968-80456970 0008+00 s=1 e=0 z=0  None .sdata2    @145 */
+/* 80456968-80456970 004F68 0008+00 1/1 0/0 0/0 .sdata2          @145 */
 SECTION_SDATA2 static u8 lit_145[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80456970-80456978 0008+00 s=1 e=0 z=0  None .sdata2    @146 */
+/* 80456970-80456978 004F70 0008+00 1/1 0/0 0/0 .sdata2          @146 */
 SECTION_SDATA2 static f64 lit_146 = 1.5707963267341256;
 
-/* 80456978-80456980 0008+00 s=1 e=0 z=0  None .sdata2    @147 */
+/* 80456978-80456980 004F78 0008+00 1/1 0/0 0/0 .sdata2          @147 */
 SECTION_SDATA2 static f64 lit_147 = 6.077100506506192e-11;
 
-/* 80456980-80456988 0008+00 s=1 e=0 z=0  None .sdata2    @148 */
+/* 80456980-80456988 004F80 0008+00 1/1 0/0 0/0 .sdata2          @148 */
 SECTION_SDATA2 static f64 lit_148 = 6.077100506303966e-11;
 
-/* 80456988-80456990 0008+00 s=1 e=0 z=0  None .sdata2    @149 */
+/* 80456988-80456990 004F88 0008+00 1/1 0/0 0/0 .sdata2          @149 */
 SECTION_SDATA2 static f64 lit_149 = 2.0222662487959506e-21;
 
-/* 80456990-80456998 0008+00 s=1 e=0 z=0  None .sdata2    @150 */
+/* 80456990-80456998 004F90 0008+00 1/1 0/0 0/0 .sdata2          @150 */
 SECTION_SDATA2 static f64 lit_150 = 0.5;
 
-/* 80456998-804569A0 0008+00 s=1 e=0 z=0  None .sdata2    @151 */
+/* 80456998-804569A0 004F98 0008+00 1/1 0/0 0/0 .sdata2          @151 */
 SECTION_SDATA2 static f64 lit_151 = 0.6366197723675814;
 
-/* 804569A0-804569A8 0008+00 s=1 e=0 z=0  None .sdata2    @152 */
+/* 804569A0-804569A8 004FA0 0008+00 1/1 0/0 0/0 .sdata2          @152 */
 SECTION_SDATA2 static f64 lit_152 = 2.0222662487111665e-21;
 
-/* 804569A8-804569B0 0008+00 s=1 e=0 z=0  None .sdata2    @153 */
+/* 804569A8-804569B0 004FA8 0008+00 1/1 0/0 0/0 .sdata2          @153 */
 SECTION_SDATA2 static f64 lit_153 = 8.4784276603689e-32;
 
-/* 804569B0-804569B8 0008+00 s=1 e=0 z=0  None .sdata2    @154 */
+/* 804569B0-804569B8 004FB0 0008+00 1/1 0/0 0/0 .sdata2          @154 */
 SECTION_SDATA2 static f64 lit_154 = 16777216.0;
 
-/* 804569B8-804569C0 0008+00 s=1 e=0 z=0  None .sdata2    @157 */
+/* 804569B8-804569C0 004FB8 0008+00 1/1 0/0 0/0 .sdata2          @157 */
 SECTION_SDATA2 static f64 lit_157 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8036A708-8036AAA8 03A0+00 s=0 e=3 z=0  None .text      __ieee754_rem_pio2 */
-//	8036A744: 80456968 (lit_145)
-//	8036A768: 80456970 (lit_146)
-//	8036A780: 80456978 (lit_147)
-//	8036A7A0: 80456980 (lit_148)
-//	8036A7A4: 80456988 (lit_149)
-//	8036A7D0: 80456970 (lit_146)
-//	8036A7E8: 80456978 (lit_147)
-//	8036A808: 80456980 (lit_148)
-//	8036A80C: 80456988 (lit_149)
-//	8036A850: 80456998 (lit_151)
-//	8036A854: 80456990 (lit_150)
-//	8036A860: 804569B8 (lit_157)
-//	8036A864: 80456970 (lit_146)
-//	8036A868: 80456978 (lit_147)
-//	8036A898: 803A24B8 (npio2_hw)
-//	8036A8A0: 803A24B8 (npio2_hw)
-//	8036A8E0: 80456980 (lit_148)
-//	8036A8E8: 80456988 (lit_149)
-//	8036A91C: 804569A0 (lit_152)
-//	8036A924: 804569A8 (lit_153)
-//	8036A9BC: 804569B8 (lit_157)
-//	8036A9C8: 804569B0 (lit_154)
-//	8036A9D4: 80456968 (lit_145)
-//	8036AA54: 803A23B0 (two_over_pi)
-//	8036AA5C: 803A23B0 (two_over_pi)
-//	8036AA68: 8036AB9C (__kernel_rem_pio2)
+/* 8036A708-8036AAA8 365048 03A0+00 0/0 3/3 0/0 .text            __ieee754_rem_pio2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __ieee754_rem_pio2() {
+asm void __ieee754_rem_pio2() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/e_rem_pio2/__ieee754_rem_pio2.s"
 }

@@ -4,11 +4,11 @@ lbl_80015858:
 /* 80015860  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80015864  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80015868  7C 68 1B 78 */	mr r8, r3
-/* 8001586C  3C 60 80 3E */	lis r3, l_thread__9mDoDvdThd@ha
-/* 80015870  3B E3 D9 40 */	addi r31, r3, l_thread__9mDoDvdThd@l
+/* 8001586C  3C 60 80 3E */	lis r3, l_thread__9mDoDvdThd@ha /* 0x803DD940@ha */
+/* 80015870  3B E3 D9 40 */	addi r31, r3, l_thread__9mDoDvdThd@l /* 0x803DD940@l */
 /* 80015874  38 7F 00 00 */	addi r3, r31, 0
-/* 80015878  3C 80 80 01 */	lis r4, main__9mDoDvdThdFPv@ha
-/* 8001587C  38 84 57 FC */	addi r4, r4, main__9mDoDvdThdFPv@l
+/* 80015878  3C 80 80 01 */	lis r4, main__9mDoDvdThdFPv@ha /* 0x800157FC@ha */
+/* 8001587C  38 84 57 FC */	addi r4, r4, main__9mDoDvdThdFPv@l /* 0x800157FC@l */
 /* 80015880  38 BF 13 20 */	addi r5, r31, 0x1320
 /* 80015884  38 DF 03 20 */	addi r6, r31, 0x320
 /* 80015888  38 E0 10 00 */	li r7, 0x1000

@@ -19,13 +19,6 @@ struct node_class {};
 // Forward References:
 //
 
-static void cLs_Init(node_list_class*);
-void cLs_SingleCut(node_class*);
-void cLs_Addition(node_list_class*, node_class*);
-void cLs_Insert(node_list_class*, int, node_class*);
-void cLs_GetFirst(node_list_class*);
-void cLs_Create(node_list_class*);
-
 extern "C" static void cLs_Init__FP15node_list_class();
 extern "C" void cLs_SingleCut__FP10node_class();
 extern "C" void cLs_Addition__FP15node_list_classP10node_class();
@@ -36,16 +29,6 @@ extern "C" void cLs_Create__FP15node_list_class();
 //
 // External References:
 //
-
-void cNd_LengthOf(node_class*);
-void cNd_First(node_class*);
-void cNd_Last(node_class*);
-void cNd_Order(node_class*, int);
-void cNd_SingleCut(node_class*);
-void cNd_Addition(node_class*, node_class*);
-void cNd_Insert(node_class*, node_class*);
-void cNd_SetObject(node_class*, void*);
-void cNd_ClearObject(node_class*);
 
 extern "C" void cNd_LengthOf__FP10node_class();
 extern "C" void cNd_First__FP10node_class();
@@ -63,19 +46,17 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 80265E64-80265E78 0014+00 s=1 e=0 z=0  None .text      cLs_Init__FP15node_list_class */
+/* 80265E64-80265E78 2607A4 0014+00 1/1 0/0 0/0 .text            cLs_Init__FP15node_list_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLs_Init(node_list_class* param_0) {
+static asm void cLs_Init(node_list_class* param_0) {
     nofralloc
 #include "asm/SSystem/SComponent/c_list/cLs_Init__FP15node_list_class.s"
 }
 #pragma pop
 
-/* 80265E78-80265EFC 0084+00 s=1 e=4 z=0  None .text      cLs_SingleCut__FP10node_class */
-//	80265EC0: 802661BC (cNd_SingleCut__FP10node_class)
-//	80265EC8: 802662D8 (cNd_ClearObject__FP10node_class)
+/* 80265E78-80265EFC 2607B8 0084+00 1/1 4/4 0/0 .text            cLs_SingleCut__FP10node_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,12 +66,8 @@ asm void cLs_SingleCut(node_class* param_0) {
 }
 #pragma pop
 
-/* 80265EFC-80265F70 0074+00 s=1 e=4 z=0  None .text
+/* 80265EFC-80265F70 26083C 0074+00 1/1 4/4 0/0 .text
  * cLs_Addition__FP15node_list_classP10node_class               */
-//	80265F2C: 80266210 (cNd_Addition__FP10node_classP10node_class)
-//	80265F34: 8026613C (cNd_Last__FP10node_class)
-//	80265F44: 802662B0 (cNd_SetObject__FP10node_classPv)
-//	80265F4C: 802660DC (cNd_LengthOf__FP10node_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -100,16 +77,8 @@ asm void cLs_Addition(node_list_class* param_0, node_class* param_1) {
 }
 #pragma pop
 
-/* 80265F70-80265FF8 0088+00 s=0 e=1 z=0  None .text cLs_Insert__FP15node_list_classiP10node_class
- */
-//	80265F80: 803621DC (_savegpr_29)
-//	80265F90: 8026616C (cNd_Order__FP10node_classi)
-//	80265FA4: 80265EFC (cLs_Addition__FP15node_list_classP10node_class)
-//	80265FB4: 802662B0 (cNd_SetObject__FP10node_classPv)
-//	80265FC0: 80266244 (cNd_Insert__FP10node_classP10node_class)
-//	80265FC8: 8026610C (cNd_First__FP10node_class)
-//	80265FD4: 802660DC (cNd_LengthOf__FP10node_class)
-//	80265FE4: 80362228 (_restgpr_29)
+/* 80265F70-80265FF8 2608B0 0088+00 0/0 1/1 0/0 .text
+ * cLs_Insert__FP15node_list_classiP10node_class                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -119,8 +88,8 @@ asm void cLs_Insert(node_list_class* param_0, int param_1, node_class* param_2) 
 }
 #pragma pop
 
-/* 80265FF8-80266040 0048+00 s=0 e=1 z=0  None .text      cLs_GetFirst__FP15node_list_class */
-//	8026601C: 80265E78 (cLs_SingleCut__FP10node_class)
+/* 80265FF8-80266040 260938 0048+00 0/0 1/1 0/0 .text            cLs_GetFirst__FP15node_list_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -130,8 +99,7 @@ asm void cLs_GetFirst(node_list_class* param_0) {
 }
 #pragma pop
 
-/* 80266040-80266060 0020+00 s=0 e=4 z=0  None .text      cLs_Create__FP15node_list_class */
-//	8026604C: 80265E64 (cLs_Init__FP15node_list_class)
+/* 80266040-80266060 260980 0020+00 0/0 4/4 0/0 .text            cLs_Create__FP15node_list_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

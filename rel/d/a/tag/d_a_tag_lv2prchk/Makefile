@@ -3,18 +3,16 @@
 #
 
 M128_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk.plf
+M128_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk.lcf
+M128_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk.map
 
 M128_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_lv2prchk/executor.cpp \
-	rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_lv2prchk/d_a_tag_lv2prchk.cpp \
 
 M128_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/d_a_tag_lv2prchk.o \
 
@@ -31,15 +29,21 @@ M128_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map128.map\
+	-m _prolog \
+	-lcf $(M128_LDSCRIPT) \
+	-unused -map $(M128_MAP) \
+	-w off \
 
 $(M128_TARGET): $(M128_O_FILES) $(M128_LIBS)
+	@echo [128] creating $(M128_TARGET)
 	@echo $(M128_LIBS) $(M128_O_FILES) > build/M128_ofiles
-	$(LD) -opt_partial $(M128_LDFLAGS) -o $(M128_TARGET) @build/M128_ofiles
+	@python3 tools/lcf.py rel 128 --output $(M128_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M128_LDFLAGS) -o $(M128_TARGET) @build/M128_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv2prchk/%.o: rel/d/a/tag/d_a_tag_lv2prchk/%.cpp
+	@echo [128] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M128_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M128_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

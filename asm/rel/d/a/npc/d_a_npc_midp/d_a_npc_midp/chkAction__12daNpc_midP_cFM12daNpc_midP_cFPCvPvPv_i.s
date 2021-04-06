@@ -3,7 +3,7 @@ lbl_80A72228:
 /* 80A7222C  7C 08 02 A6 */	mflr r0
 /* 80A72230  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A72234  38 63 0F 90 */	addi r3, r3, 0xf90
-/* 80A72238  4B 8E FE 10 */	b __ptmf_cmpr
+/* 80A72238  4B 8E FE 11 */	bl __ptmf_cmpr
 /* 80A7223C  7C 60 00 34 */	cntlzw r0, r3
 /* 80A72240  54 03 D9 7E */	srwi r3, r0, 5
 /* 80A72244  80 01 00 14 */	lwz r0, 0x14(r1)

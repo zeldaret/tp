@@ -3,19 +3,20 @@
 #
 
 M498_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_key.plf
+M498_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_key.lcf
+M498_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_key.map
 
 M498_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_key/executor.cpp \
-	rel/d/a/obj/d_a_obj_key/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_key/d_a_obj_key.cpp \
 
 M498_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/d_a_obj_key.o \
 
 M498_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/libRuntime.PPCEABI.H.a \
 
 M498_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M498_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map498.map\
+	-m _prolog \
+	-lcf $(M498_LDSCRIPT) \
+	-unused -map $(M498_MAP) \
+	-w off \
 
 $(M498_TARGET): $(M498_O_FILES) $(M498_LIBS)
+	@echo [498] creating $(M498_TARGET)
 	@echo $(M498_LIBS) $(M498_O_FILES) > build/M498_ofiles
-	$(LD) -opt_partial $(M498_LDFLAGS) -o $(M498_TARGET) @build/M498_ofiles
+	@python3 tools/lcf.py rel 498 --output $(M498_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M498_LDFLAGS) -o $(M498_TARGET) @build/M498_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_key/%.o: rel/d/a/obj/d_a_obj_key/%.cpp
+	@echo [498] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M498_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M498_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_key/libs/Runtime.PPCEABI.H/Makefile
 

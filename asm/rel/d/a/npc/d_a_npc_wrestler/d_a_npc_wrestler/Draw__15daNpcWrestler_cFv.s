@@ -21,7 +21,7 @@ lbl_80B2FE3C:
 /* 80B2FE64  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 80B2FE68  38 C0 00 00 */	li r6, 0
 /* 80B2FE6C  38 E0 00 00 */	li r7, 0
-/* 80B2FE70  4B 62 24 3C */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 80B2FE70  4B 62 24 3D */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 lbl_80B2FE74:
 /* 80B2FE74  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80B2FE78  7C 08 03 A6 */	mtlr r0

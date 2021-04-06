@@ -12,8 +12,8 @@ lbl_800D4D04:
 lbl_800D4D2C:
 /* 800D4D2C  7F E3 FB 78 */	mr r3, r31
 /* 800D4D30  4B FF D5 8D */	bl setSwordChargeVoiceSe__9daAlink_cFv
-/* 800D4D34  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800D4D38  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800D4D34  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800D4D38  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800D4D3C  A8 03 00 52 */	lha r0, 0x52(r3)
 /* 800D4D40  B0 1F 30 7E */	sth r0, 0x307e(r31)
 /* 800D4D44  7F E3 FB 78 */	mr r3, r31

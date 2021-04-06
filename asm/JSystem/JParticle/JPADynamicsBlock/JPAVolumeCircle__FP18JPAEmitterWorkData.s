@@ -82,8 +82,8 @@ lbl_8027B460:
 /* 8027B470  EC 03 00 32 */	fmuls f0, f3, f0
 /* 8027B474  EC 02 00 2A */	fadds f0, f2, f0
 /* 8027B478  EC 41 00 32 */	fmuls f2, f1, f0
-/* 8027B47C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8027B480  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l
+/* 8027B47C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8027B480  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8027B484  54 E0 04 38 */	rlwinm r0, r7, 0, 0x10, 0x1c
 /* 8027B488  7C 85 02 14 */	add r4, r5, r0
 /* 8027B48C  C0 04 00 04 */	lfs f0, 4(r4)

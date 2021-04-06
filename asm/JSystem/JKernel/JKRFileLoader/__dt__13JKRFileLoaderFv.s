@@ -7,8 +7,8 @@ lbl_802D4148:
 /* 802D415C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D4160  7C 9F 23 78 */	mr r31, r4
 /* 802D4164  41 82 00 54 */	beq lbl_802D41B8
-/* 802D4168  3C 60 80 3D */	lis r3, __vt__13JKRFileLoader@ha
-/* 802D416C  38 03 C1 C8 */	addi r0, r3, __vt__13JKRFileLoader@l
+/* 802D4168  3C 60 80 3D */	lis r3, __vt__13JKRFileLoader@ha /* 0x803CC1C8@ha */
+/* 802D416C  38 03 C1 C8 */	addi r0, r3, __vt__13JKRFileLoader@l /* 0x803CC1C8@l */
 /* 802D4170  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D4174  80 0D 8E 98 */	lwz r0, sCurrentVolume__13JKRFileLoader(r13)
 /* 802D4178  7C 00 F0 40 */	cmplw r0, r30

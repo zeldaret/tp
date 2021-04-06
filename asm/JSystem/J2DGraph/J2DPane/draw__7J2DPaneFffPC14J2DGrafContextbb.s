@@ -235,8 +235,8 @@ lbl_802F6B48:
 /* 802F6B50  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 802F6B54  40 82 01 54 */	bne lbl_802F6CA8
 lbl_802F6B58:
-/* 802F6B58  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802F6B5C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802F6B58  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802F6B5C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802F6B60  90 01 00 18 */	stw r0, 0x18(r1)
 /* 802F6B64  C0 1C 00 04 */	lfs f0, 4(r28)
 /* 802F6B68  D0 01 00 1C */	stfs f0, 0x1c(r1)
@@ -319,8 +319,8 @@ lbl_802F6C74:
 /* 802F6C90  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 802F6C94  7D 89 03 A6 */	mtctr r12
 /* 802F6C98  4E 80 04 21 */	bctrl 
-/* 802F6C9C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802F6CA0  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802F6C9C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802F6CA0  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802F6CA4  90 01 00 18 */	stw r0, 0x18(r1)
 lbl_802F6CA8:
 /* 802F6CA8  83 7B 00 DC */	lwz r27, 0xdc(r27)

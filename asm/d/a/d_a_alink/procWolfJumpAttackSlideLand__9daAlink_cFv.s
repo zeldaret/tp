@@ -17,8 +17,8 @@ lbl_8013AAF0:
 /* 8013AAFC  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 8013AB00  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 8013AB04  C0 42 94 A8 */	lfs f2, lit_16570(r2)
-/* 8013AB08  3C 80 80 39 */	lis r4, m__22daAlinkHIO_wlAtLand_c0@ha
-/* 8013AB0C  38 84 F6 18 */	addi r4, r4, m__22daAlinkHIO_wlAtLand_c0@l
+/* 8013AB08  3C 80 80 39 */	lis r4, m__22daAlinkHIO_wlAtLand_c0@ha /* 0x8038F618@ha */
+/* 8013AB0C  38 84 F6 18 */	addi r4, r4, m__22daAlinkHIO_wlAtLand_c0@l /* 0x8038F618@l */
 /* 8013AB10  C0 64 00 3C */	lfs f3, 0x3c(r4)
 /* 8013AB14  C0 82 92 98 */	lfs f4, lit_5943(r2)
 /* 8013AB18  48 13 4E 65 */	bl cLib_addCalc__FPfffff

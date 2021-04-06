@@ -6,12 +6,12 @@ lbl_80709A04:
 /* 80709A14  7C 7F 1B 78 */	mr r31, r3
 /* 80709A18  A8 03 05 CE */	lha r0, 0x5ce(r3)
 /* 80709A1C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80709A20  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80709A24  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80709A20  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80709A24  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80709A28  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80709A2C  A8 1F 05 CA */	lha r0, 0x5ca(r31)
-/* 80709A30  3C 60 80 71 */	lis r3, lit_4045@ha
-/* 80709A34  C8 23 A5 44 */	lfd f1, lit_4045@l(r3)
+/* 80709A30  3C 60 80 71 */	lis r3, lit_4045@ha /* 0x8070A544@ha */
+/* 80709A34  C8 23 A5 44 */	lfd f1, lit_4045@l(r3)  /* 0x8070A544@l */
 /* 80709A38  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80709A3C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80709A40  3C 00 43 30 */	lis r0, 0x4330
@@ -28,7 +28,7 @@ lbl_80709A04:
 /* 80709A6C  38 A0 00 03 */	li r5, 3
 /* 80709A70  38 C0 01 00 */	li r6, 0x100
 /* 80709A74  38 E0 00 00 */	li r7, 0
-/* 80709A78  4B B6 6A C8 */	b cLib_addCalcAngleS__FPsssss
+/* 80709A78  4B B6 6A C9 */	bl cLib_addCalcAngleS__FPsssss
 /* 80709A7C  A8 7F 05 CE */	lha r3, 0x5ce(r31)
 /* 80709A80  A8 1F 05 CC */	lha r0, 0x5cc(r31)
 /* 80709A84  7C 03 02 14 */	add r0, r3, r0
@@ -36,7 +36,7 @@ lbl_80709A04:
 /* 80709A8C  38 7F 05 CA */	addi r3, r31, 0x5ca
 /* 80709A90  38 80 00 00 */	li r4, 0
 /* 80709A94  38 A0 00 10 */	li r5, 0x10
-/* 80709A98  4B B6 70 F8 */	b cLib_chaseAngleS__FPsss
+/* 80709A98  4B B6 70 F9 */	bl cLib_chaseAngleS__FPsss
 /* 80709A9C  30 03 FF FF */	addic r0, r3, -1
 /* 80709AA0  7C 00 19 10 */	subfe r0, r0, r3
 /* 80709AA4  54 03 06 3E */	clrlwi r3, r0, 0x18

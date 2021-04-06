@@ -35,13 +35,13 @@ lbl_809B1B6C:
 /* 809B1B84  48 00 00 28 */	b lbl_809B1BAC
 lbl_809B1B88:
 /* 809B1B88  38 7F 00 0C */	addi r3, r31, 0xc
-/* 809B1B8C  4B 65 B8 9C */	b play__14mDoExt_baseAnmFv
+/* 809B1B8C  4B 65 B8 9D */	bl play__14mDoExt_baseAnmFv
 /* 809B1B90  38 7F 00 24 */	addi r3, r31, 0x24
-/* 809B1B94  4B 65 B8 94 */	b play__14mDoExt_baseAnmFv
+/* 809B1B94  4B 65 B8 95 */	bl play__14mDoExt_baseAnmFv
 /* 809B1B98  80 7F 00 00 */	lwz r3, 0(r31)
 /* 809B1B9C  38 80 00 00 */	li r4, 0
 /* 809B1BA0  38 A0 00 00 */	li r5, 0
-/* 809B1BA4  4B 65 F5 0C */	b play__16mDoExt_McaMorfSOFUlSc
+/* 809B1BA4  4B 65 F5 0D */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 809B1BA8  38 60 00 01 */	li r3, 1
 lbl_809B1BAC:
 /* 809B1BAC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -15,13 +15,13 @@ struct layer_class {};
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct csXyz {};
 
-struct dKy_tevstr_c {};
+struct cXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -37,15 +37,6 @@ struct cMl {
 // Forward References:
 //
 
-static void fopKyM_CreateAppend();
-static void createAppend(int, cXyz*, cXyz*);
-void fopKyM_Delete(void*);
-static void fopKyM_Create(s16, int (*)(void*), void*);
-void fopKyM_create(s16, int, cXyz*, cXyz*, int (*)(void*));
-void fopKyM_fastCreate(s16, int, cXyz*, cXyz*, int (*)(void*));
-void fopKyM_createWpillar(cXyz const*, f32, int);
-void fopKyM_createMpillar(cXyz const*, f32);
-
 extern "C" static void fopKyM_CreateAppend__Fv();
 extern "C" static void createAppend__FiP4cXyzP4cXyz();
 extern "C" void fopKyM_Delete__FPv();
@@ -58,12 +49,6 @@ extern "C" void fopKyM_createMpillar__FPC4cXyzf();
 //
 // External References:
 //
-
-void fpcLy_CurrentLayer();
-void fpcM_Delete(void*);
-void fpcM_FastCreate(s16, int (*)(void*), void*, void*);
-void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-void cLib_memSet(void*, int, u32);
 
 extern "C" void fpcLy_CurrentLayer__Fv();
 extern "C" void fpcM_Delete__FPv();
@@ -84,41 +69,34 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80451C68-80451C70 0004+04 s=2 e=0 z=0  None .sdata2    @3713 */
+/* 80451C68-80451C70 000268 0004+04 2/2 0/0 0/0 .sdata2          @3713 */
 SECTION_SDATA2 static f32 lit_3713[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8001F660-8001F6B8 0058+00 s=2 e=0 z=0  None .text      fopKyM_CreateAppend__Fv */
-//	8001F678: 80263228 (memalignB__3cMlFiUl)
-//	8001F68C: 8026F95C (cLib_memSet__FPviUl)
-//	8001F690: 80451C68 (lit_3713)
+/* 8001F660-8001F6B8 019FA0 0058+00 2/2 0/0 0/0 .text            fopKyM_CreateAppend__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKyM_CreateAppend() {
+static asm void fopKyM_CreateAppend() {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/fopKyM_CreateAppend__Fv.s"
 }
 #pragma pop
 
-/* 8001F6B8-8001F748 0090+00 s=2 e=0 z=0  None .text      createAppend__FiP4cXyzP4cXyz */
-//	8001F6C8: 803621DC (_savegpr_29)
-//	8001F6D8: 8001F660 (fopKyM_CreateAppend__Fv)
-//	8001F734: 80362228 (_restgpr_29)
+/* 8001F6B8-8001F748 019FF8 0090+00 2/2 0/0 0/0 .text            createAppend__FiP4cXyzP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createAppend(int param_0, cXyz* param_1, cXyz* param_2) {
+static asm void createAppend(int param_0, cXyz* param_1, cXyz* param_2) {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/createAppend__FiP4cXyzP4cXyz.s"
 }
 #pragma pop
 
-/* 8001F748-8001F768 0020+00 s=0 e=3 z=1  None .text      fopKyM_Delete__FPv */
-//	8001F754: 80022118 (fpcM_Delete__FPv)
+/* 8001F748-8001F768 01A088 0020+00 0/0 3/3 1/1 .text            fopKyM_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -128,23 +106,17 @@ asm void fopKyM_Delete(void* param_0) {
 }
 #pragma pop
 
-/* 8001F768-8001F7B8 0050+00 s=2 e=0 z=0  None .text      fopKyM_Create__FsPFPv_iPv */
-//	8001F778: 803621DC (_savegpr_29)
-//	8001F788: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	8001F79C: 80023D94 (fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv)
-//	8001F7A4: 80362228 (_restgpr_29)
+/* 8001F768-8001F7B8 01A0A8 0050+00 2/2 0/0 0/0 .text            fopKyM_Create__FsPFPv_iPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKyM_Create(s16 param_0, int (*)(void*), void* param_2) {
+static asm void fopKyM_Create(s16 param_0, int (*)(void*), void* param_2) {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/fopKyM_Create__FsPFPv_iPv.s"
 }
 #pragma pop
 
-/* 8001F7B8-8001F818 0060+00 s=0 e=3 z=1  None .text      fopKyM_create__FsiP4cXyzP4cXyzPFPv_i */
-//	8001F7E0: 8001F6B8 (createAppend__FiP4cXyzP4cXyz)
-//	8001F7FC: 8001F768 (fopKyM_Create__FsPFPv_iPv)
+/* 8001F7B8-8001F818 01A0F8 0060+00 0/0 3/3 1/1 .text fopKyM_create__FsiP4cXyzP4cXyzPFPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -154,10 +126,7 @@ asm void fopKyM_create(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3, i
 }
 #pragma pop
 
-/* 8001F818-8001F87C 0064+00 s=0 e=1 z=0  None .text      fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i
- */
-//	8001F840: 8001F6B8 (createAppend__FiP4cXyzP4cXyz)
-//	8001F860: 800222F4 (fpcM_FastCreate__FsPFPv_iPvPv)
+/* 8001F818-8001F87C 01A158 0064+00 0/0 1/1 0/0 .text fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -167,9 +136,8 @@ asm void fopKyM_fastCreate(s16 param_0, int param_1, cXyz* param_2, cXyz* param_
 }
 #pragma pop
 
-/* 8001F87C-8001F90C 0090+00 s=0 e=6 z=37  None .text      fopKyM_createWpillar__FPC4cXyzfi */
-//	8001F8A4: 8001F660 (fopKyM_CreateAppend__Fv)
-//	8001F8E8: 8001F768 (fopKyM_Create__FsPFPv_iPv)
+/* 8001F87C-8001F90C 01A1BC 0090+00 0/0 6/6 37/37 .text            fopKyM_createWpillar__FPC4cXyzfi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,7 +148,7 @@ asm void fopKyM_createWpillar(cXyz const* param_0, f32 param_1, int param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505C0-804505C8 0004+04 s=1 e=0 z=0  None .sdata     m_name$3788 */
+/* 804505C0-804505C8 000040 0004+04 1/1 0/0 0/0 .sdata           m_name$3788 */
 SECTION_SDATA static u8 m_name[4 + 4 /* padding */] = {
     0x87,
     0x57,
@@ -193,15 +161,7 @@ SECTION_SDATA static u8 m_name[4 + 4 /* padding */] = {
     0x00,
 };
 
-/* 8001F90C-8001F9B4 00A8+00 s=0 e=0 z=3  None .text      fopKyM_createMpillar__FPC4cXyzf */
-//	8001F91C: 803621D8 (_savegpr_28)
-//	8001F938: 804061C0 (g_dComIfG_gameInfo)
-//	8001F93C: 804061C0 (g_dComIfG_gameInfo)
-//	8001F964: 804505C0 (m_name)
-//	8001F980: 80451C68 (lit_3713)
-//	8001F984: 8004CA90
-//(set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8001F9A0: 80362224 (_restgpr_28)
+/* 8001F90C-8001F9B4 01A24C 00A8+00 0/0 0/0 3/3 .text            fopKyM_createMpillar__FPC4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

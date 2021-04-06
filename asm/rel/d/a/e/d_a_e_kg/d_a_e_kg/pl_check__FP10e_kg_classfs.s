@@ -2,8 +2,8 @@ lbl_806F81A8:
 /* 806F81A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 806F81AC  7C 08 02 A6 */	mflr r0
 /* 806F81B0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 806F81B4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 806F81B8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 806F81B4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806F81B8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806F81BC  80 C5 5D AC */	lwz r6, 0x5dac(r5)
 /* 806F81C0  C0 03 06 90 */	lfs f0, 0x690(r3)
 /* 806F81C4  FC 00 08 40 */	fcmpo cr0, f0, f1

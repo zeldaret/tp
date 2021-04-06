@@ -16,7 +16,7 @@ lbl_80BBA13C:
 /* 80BBA174  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80BBA178  38 E0 00 00 */	li r7, 0
 /* 80BBA17C  39 00 00 01 */	li r8, 1
-/* 80BBA180  4B 46 14 FC */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80BBA180  4B 46 14 FD */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80BBA184  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80BBA188  60 00 00 02 */	ori r0, r0, 2
 /* 80BBA18C  B0 1F 00 FA */	sth r0, 0xfa(r31)

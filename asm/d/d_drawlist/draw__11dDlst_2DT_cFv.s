@@ -171,8 +171,8 @@ lbl_80051F98:
 /* 8005223C  48 30 A7 49 */	bl GXSetCullMode
 /* 80052240  38 60 00 01 */	li r3, 1
 /* 80052244  48 30 DB 95 */	bl GXSetDither
-/* 80052248  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8005224C  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80052248  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8005224C  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80052250  38 80 00 00 */	li r4, 0
 /* 80052254  48 30 DF F9 */	bl GXLoadPosMtxImm
 /* 80052258  80 0D 80 C8 */	lwz r0, l_color_4033(r13)
@@ -191,7 +191,7 @@ lbl_80051F98:
 /* 8005228C  A8 7B 00 14 */	lha r3, 0x14(r27)
 /* 80052290  A8 1B 00 12 */	lha r0, 0x12(r27)
 /* 80052294  3C C0 CC 01 */	lis r6, 0xCC01 /* 0xCC008000@ha */
-/* 80052298  B0 06 80 00 */	sth r0, 0x8000(r6)
+/* 80052298  B0 06 80 00 */	sth r0, 0x8000(r6)  /* 0xCC008000@l */
 /* 8005229C  B0 66 80 00 */	sth r3, -0x8000(r6)
 /* 800522A0  38 A0 00 00 */	li r5, 0
 /* 800522A4  B0 A6 80 00 */	sth r5, -0x8000(r6)
@@ -225,8 +225,8 @@ lbl_80051F98:
 /* 80052314  B3 86 80 00 */	sth r28, -0x8000(r6)
 /* 80052318  38 60 00 00 */	li r3, 0
 /* 8005231C  48 30 E2 B5 */	bl GXSetClipMode
-/* 80052320  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80052324  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80052320  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80052324  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80052328  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 8005232C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80052330  81 8C 00 18 */	lwz r12, 0x18(r12)

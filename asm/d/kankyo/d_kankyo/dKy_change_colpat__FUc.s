@@ -1,6 +1,6 @@
 lbl_801A87E4:
-/* 801A87E4  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 801A87E8  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 801A87E4  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A87E8  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 801A87EC  98 65 12 C5 */	stb r3, 0x12c5(r5)
 /* 801A87F0  88 85 12 C3 */	lbz r4, 0x12c3(r5)
 /* 801A87F4  54 60 06 3E */	clrlwi r0, r3, 0x18

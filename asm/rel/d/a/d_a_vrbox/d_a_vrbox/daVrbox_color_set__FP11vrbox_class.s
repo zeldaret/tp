@@ -3,9 +3,9 @@ lbl_804986B8:
 /* 804986BC  7C 08 02 A6 */	mflr r0
 /* 804986C0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804986C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 804986C8  4B EC 9B 14 */	b _savegpr_29
-/* 804986CC  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 804986D0  3B E4 CA 54 */	addi r31, r4, g_env_light@l
+/* 804986C8  4B EC 9B 15 */	bl _savegpr_29
+/* 804986CC  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 804986D0  3B E4 CA 54 */	addi r31, r4, g_env_light@l /* 0x8042CA54@l */
 /* 804986D4  A9 7F 10 CC */	lha r11, 0x10cc(r31)
 /* 804986D8  A9 5F 10 CA */	lha r10, 0x10ca(r31)
 /* 804986DC  A9 3F 10 C8 */	lha r9, 0x10c8(r31)
@@ -79,8 +79,8 @@ lbl_804987B4:
 /* 804987E4  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 804987E8  7D 89 03 A6 */	mtctr r12
 /* 804987EC  4E 80 04 21 */	bctrl 
-/* 804987F0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 804987F4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 804987F0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 804987F4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 804987F8  A8 03 10 E8 */	lha r0, 0x10e8(r3)
 /* 804987FC  B0 01 00 08 */	sth r0, 8(r1)
 /* 80498800  A8 03 10 EA */	lha r0, 0x10ea(r3)
@@ -100,7 +100,7 @@ lbl_80498834:
 /* 80498834  38 60 00 01 */	li r3, 1
 lbl_80498838:
 /* 80498838  39 61 00 20 */	addi r11, r1, 0x20
-/* 8049883C  4B EC 99 EC */	b _restgpr_29
+/* 8049883C  4B EC 99 ED */	bl _restgpr_29
 /* 80498840  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80498844  7C 08 03 A6 */	mtlr r0
 /* 80498848  38 21 00 20 */	addi r1, r1, 0x20

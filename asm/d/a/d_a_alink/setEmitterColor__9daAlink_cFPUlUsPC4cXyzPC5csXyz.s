@@ -9,8 +9,8 @@ lbl_801206C4:
 /* 801206E0  7C AA 2B 78 */	mr r10, r5
 /* 801206E4  7C C8 33 78 */	mr r8, r6
 /* 801206E8  7C E9 3B 78 */	mr r9, r7
-/* 801206EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801206F0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 801206EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801206F0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801206F4  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 801206F8  38 00 00 FF */	li r0, 0xff
 /* 801206FC  90 01 00 08 */	stw r0, 8(r1)

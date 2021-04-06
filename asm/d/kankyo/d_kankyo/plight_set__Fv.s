@@ -6,8 +6,8 @@ lbl_8019E734:
 /* 8019E744  48 1C 3A 8D */	bl _savegpr_26
 /* 8019E748  3B E0 00 00 */	li r31, 0
 /* 8019E74C  3B C0 00 00 */	li r30, 0
-/* 8019E750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019E754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019E750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019E754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019E758  3B 63 4E 20 */	addi r27, r3, 0x4e20
 /* 8019E75C  7F 63 DB 78 */	mr r3, r27
 /* 8019E760  81 9B 00 00 */	lwz r12, 0(r27)
@@ -16,8 +16,8 @@ lbl_8019E734:
 /* 8019E76C  4E 80 04 21 */	bctrl 
 /* 8019E770  7C 7C 1B 79 */	or. r28, r3, r3
 /* 8019E774  41 82 00 C8 */	beq lbl_8019E83C
-/* 8019E778  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019E77C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019E778  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E77C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019E780  93 83 07 CC */	stw r28, 0x7cc(r3)
 /* 8019E784  3B 40 00 00 */	li r26, 0
 /* 8019E788  3B A0 00 00 */	li r29, 0
@@ -27,8 +27,8 @@ lbl_8019E790:
 /* 8019E794  40 80 00 84 */	bge lbl_8019E818
 /* 8019E798  7C 9C EA 14 */	add r4, r28, r29
 /* 8019E79C  C0 04 00 00 */	lfs f0, 0(r4)
-/* 8019E7A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019E7A4  38 03 CA 54 */	addi r0, r3, g_env_light@l
+/* 8019E7A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E7A4  38 03 CA 54 */	addi r0, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019E7A8  7C 60 F2 14 */	add r3, r0, r30
 /* 8019E7AC  D0 03 00 38 */	stfs f0, 0x38(r3)
 /* 8019E7B0  C0 04 00 04 */	lfs f0, 4(r4)

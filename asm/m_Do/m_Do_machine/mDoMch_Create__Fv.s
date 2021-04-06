@@ -36,8 +36,8 @@ lbl_8000BDB8:
 /* 8000BDC0  48 32 F4 D5 */	bl OSGetArenaLo
 /* 8000BDC4  7C 63 F8 50 */	subf r3, r3, r31
 /* 8000BDC8  3B C3 FF 10 */	addi r30, r3, -240
-/* 8000BDCC  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BDD0  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BDCC  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BDD0  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BDD4  38 63 02 55 */	addi r3, r3, 0x255
 /* 8000BDD8  7F C4 F3 78 */	mr r4, r30
 /* 8000BDDC  4B FF FF 19 */	bl my_PrintHeap__FPCcUl
@@ -50,8 +50,8 @@ lbl_8000BDF4:
 /* 8000BDF4  3C 9E FF 25 */	addis r4, r30, 0xff25
 /* 8000BDF8  38 04 32 D0 */	addi r0, r4, 0x32d0
 /* 8000BDFC  90 0D 81 F4 */	stw r0, sysHeapSize__Q29JFWSystem11CSetUpParam(r13)
-/* 8000BE00  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BE04  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BE00  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BE04  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BE08  38 63 02 5E */	addi r3, r3, 0x25e
 /* 8000BE0C  38 84 32 D0 */	addi r4, r4, 0x32d0
 /* 8000BE10  4B FF FE E5 */	bl my_PrintHeap__FPCcUl
@@ -81,8 +81,8 @@ lbl_8000BE50:
 /* 8000BE6C  4B FF F8 D1 */	bl mDoMch_IsProgressiveMode__Fv
 /* 8000BE70  2C 03 00 00 */	cmpwi r3, 0
 /* 8000BE74  41 82 00 10 */	beq lbl_8000BE84
-/* 8000BE78  3C 60 80 3A */	lis r3, g_ntscZeldaProg@ha
-/* 8000BE7C  38 03 2F 9C */	addi r0, r3, g_ntscZeldaProg@l
+/* 8000BE78  3C 60 80 3A */	lis r3, g_ntscZeldaProg@ha /* 0x803A2F9C@ha */
+/* 8000BE7C  38 03 2F 9C */	addi r0, r3, g_ntscZeldaProg@l /* 0x803A2F9C@l */
 /* 8000BE80  90 0D 80 20 */	stw r0, mRenderModeObj__15mDoMch_render_c(r13)
 lbl_8000BE84:
 /* 8000BE84  80 0D 80 20 */	lwz r0, mRenderModeObj__15mDoMch_render_c(r13)
@@ -106,8 +106,8 @@ lbl_8000BE84:
 /* 8000BECC  80 6D 8F 48 */	lwz r3, sDebugPrint__10JUTDbPrint(r13)
 /* 8000BED0  98 03 00 0C */	stb r0, 0xc(r3)
 lbl_8000BED4:
-/* 8000BED4  3C 60 80 01 */	lis r3, myMemoryErrorRoutine__FPvUli@ha
-/* 8000BED8  38 63 B3 EC */	addi r3, r3, myMemoryErrorRoutine__FPvUli@l
+/* 8000BED4  3C 60 80 01 */	lis r3, myMemoryErrorRoutine__FPvUli@ha /* 0x8000B3EC@ha */
+/* 8000BED8  38 63 B3 EC */	addi r3, r3, myMemoryErrorRoutine__FPvUli@l /* 0x8000B3EC@l */
 /* 8000BEDC  48 2C 2C AD */	bl setErrorHandler__7JKRHeapFPFPvUli_v
 /* 8000BEE0  80 6D 8D F8 */	lwz r3, sRootHeap__7JKRHeap(r13)
 /* 8000BEE4  38 80 00 01 */	li r4, 1
@@ -120,8 +120,8 @@ lbl_8000BED4:
 /* 8000BF00  7F C4 F3 78 */	mr r4, r30
 /* 8000BF04  48 00 2E 85 */	bl mDoExt_createCommandHeap__FUlP7JKRHeap
 /* 8000BF08  7C 64 1B 78 */	mr r4, r3
-/* 8000BF0C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BF10  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BF0C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BF10  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BF14  38 63 02 6D */	addi r3, r3, 0x26d
 /* 8000BF18  38 A0 10 00 */	li r5, 0x1000
 /* 8000BF1C  4B FF FD DD */	bl my_SysPrintHeap__FPCcPvUl
@@ -130,8 +130,8 @@ lbl_8000BED4:
 /* 8000BF28  7F C4 F3 78 */	mr r4, r30
 /* 8000BF2C  48 00 2E 8D */	bl mDoExt_createArchiveHeap__FUlP7JKRHeap
 /* 8000BF30  7C 64 1B 78 */	mr r4, r3
-/* 8000BF34  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BF38  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BF34  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BF38  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BF3C  38 63 02 7C */	addi r3, r3, 0x27c
 /* 8000BF40  3C A0 00 8E */	lis r5, 0x008E /* 0x008DF400@ha */
 /* 8000BF44  38 A5 F4 00 */	addi r5, r5, 0xF400 /* 0x008DF400@l */
@@ -141,8 +141,8 @@ lbl_8000BED4:
 /* 8000BF54  7F C4 F3 78 */	mr r4, r30
 /* 8000BF58  48 00 2E A5 */	bl mDoExt_createJ2dHeap__FUlP7JKRHeap
 /* 8000BF5C  7C 64 1B 78 */	mr r4, r3
-/* 8000BF60  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BF64  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BF60  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BF64  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BF68  38 63 02 8D */	addi r3, r3, 0x28d
 /* 8000BF6C  3C A0 00 08 */	lis r5, 0x0008 /* 0x0007D000@ha */
 /* 8000BF70  38 A5 D0 00 */	addi r5, r5, 0xD000 /* 0x0007D000@l */
@@ -152,8 +152,8 @@ lbl_8000BED4:
 /* 8000BF80  7F C4 F3 78 */	mr r4, r30
 /* 8000BF84  48 00 2D 99 */	bl mDoExt_createGameHeap__FUlP7JKRHeap
 /* 8000BF88  7C 64 1B 78 */	mr r4, r3
-/* 8000BF8C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BF90  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BF8C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BF90  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BF94  38 63 02 9C */	addi r3, r3, 0x29c
 /* 8000BF98  3C A0 00 45 */	lis r5, 0x0045 /* 0x0044E000@ha */
 /* 8000BF9C  38 A5 E0 00 */	addi r5, r5, 0xE000 /* 0x0044E000@l */
@@ -166,8 +166,8 @@ lbl_8000BED4:
 /* 8000BFB8  7F E4 FB 78 */	mr r4, r31
 /* 8000BFBC  48 00 2D 9D */	bl mDoExt_createZeldaHeap__FUlP7JKRHeap
 /* 8000BFC0  7C 7F 1B 78 */	mr r31, r3
-/* 8000BFC4  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BFC8  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BFC4  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BFC8  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BFCC  38 63 02 A9 */	addi r3, r3, 0x2a9
 /* 8000BFD0  7F E4 FB 78 */	mr r4, r31
 /* 8000BFD4  7F C5 F3 78 */	mr r5, r30
@@ -197,15 +197,15 @@ lbl_8000C020:
 /* 8000C030  90 03 00 40 */	stw r0, 0x40(r3)
 /* 8000C034  38 00 00 2A */	li r0, 0x2a
 /* 8000C038  90 03 00 44 */	stw r0, 0x44(r3)
-/* 8000C03C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000C040  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000C03C  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000C040  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000C044  38 63 02 B6 */	addi r3, r3, 0x2b6
 /* 8000C048  48 2D 7A C5 */	bl appendMapFile__12JUTExceptionFPCc
-/* 8000C04C  3C 60 80 01 */	lis r3, myExceptionCallback__FUsP9OSContextUlUl@ha
-/* 8000C050  38 63 B7 C8 */	addi r3, r3, myExceptionCallback__FUsP9OSContextUlUl@l
+/* 8000C04C  3C 60 80 01 */	lis r3, myExceptionCallback__FUsP9OSContextUlUl@ha /* 0x8000B7C8@ha */
+/* 8000C050  38 63 B7 C8 */	addi r3, r3, myExceptionCallback__FUsP9OSContextUlUl@l /* 0x8000B7C8@l */
 /* 8000C054  48 2D 7A 99 */	bl setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
-/* 8000C058  3C 60 80 01 */	lis r3, fault_callback_scroll__FUsP9OSContextUlUl@ha
-/* 8000C05C  38 63 B9 5C */	addi r3, r3, fault_callback_scroll__FUsP9OSContextUlUl@l
+/* 8000C058  3C 60 80 01 */	lis r3, fault_callback_scroll__FUsP9OSContextUlUl@ha /* 0x8000B95C@ha */
+/* 8000C05C  38 63 B9 5C */	addi r3, r3, fault_callback_scroll__FUsP9OSContextUlUl@l /* 0x8000B95C@l */
 /* 8000C060  48 2D 7A 9D */	bl setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
 /* 8000C064  48 00 2D 1D */	bl mDoExt_getZeldaHeap__Fv
 /* 8000C068  48 25 71 B9 */	bl init__3cMlFP7JKRHeap
@@ -223,8 +223,8 @@ lbl_8000C020:
 /* 8000C098  38 63 FF FE */	addi r3, r3, -2
 /* 8000C09C  48 00 97 BD */	bl create__9mDoDvdThdFl
 /* 8000C0A0  48 00 A4 FD */	bl mDoDvdErr_ThdInit__Fv
-/* 8000C0A4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8000C0A8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8000C0A4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8000C0A8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8000C0AC  48 00 A6 85 */	bl ThdInit__15mDoMemCd_Ctrl_cFv
 /* 8000C0B0  38 60 00 01 */	li r3, 1
 /* 8000C0B4  83 E1 00 0C */	lwz r31, 0xc(r1)

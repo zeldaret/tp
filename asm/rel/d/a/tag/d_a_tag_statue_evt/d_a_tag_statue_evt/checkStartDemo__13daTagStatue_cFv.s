@@ -3,12 +3,12 @@ lbl_805A7B78:
 /* 805A7B7C  7C 08 02 A6 */	mflr r0
 /* 805A7B80  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805A7B84  39 61 00 20 */	addi r11, r1, 0x20
-/* 805A7B88  4B DB A6 54 */	b _savegpr_29
+/* 805A7B88  4B DB A6 55 */	bl _savegpr_29
 /* 805A7B8C  7C 7D 1B 78 */	mr r29, r3
-/* 805A7B90  3C 80 80 5B */	lis r4, l_event_bit@ha
-/* 805A7B94  3B E4 81 04 */	addi r31, r4, l_event_bit@l
-/* 805A7B98  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805A7B9C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 805A7B90  3C 80 80 5B */	lis r4, l_event_bit@ha /* 0x805A8104@ha */
+/* 805A7B94  3B E4 81 04 */	addi r31, r4, l_event_bit@l /* 0x805A8104@l */
+/* 805A7B98  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A7B9C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A7BA0  83 C4 5D AC */	lwz r30, 0x5dac(r4)
 /* 805A7BA4  48 00 01 2D */	bl checkOnEffect__13daTagStatue_cFv
 /* 805A7BA8  2C 03 00 00 */	cmpwi r3, 0
@@ -18,7 +18,7 @@ lbl_805A7B78:
 lbl_805A7BB8:
 /* 805A7BB8  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 805A7BBC  38 9D 04 D0 */	addi r4, r29, 0x4d0
-/* 805A7BC0  4B D9 F7 DC */	b PSVECSquareDistance
+/* 805A7BC0  4B D9 F7 DD */	bl PSVECSquareDistance
 /* 805A7BC4  C0 1F 00 10 */	lfs f0, 0x10(r31)
 /* 805A7BC8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805A7BCC  40 81 00 58 */	ble lbl_805A7C24
@@ -47,8 +47,8 @@ lbl_805A7C24:
 /* 805A7C24  C8 1F 00 40 */	lfd f0, 0x40(r31)
 /* 805A7C28  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805A7C2C  40 80 00 10 */	bge lbl_805A7C3C
-/* 805A7C30  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 805A7C34  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 805A7C30  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 805A7C34  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 805A7C38  48 00 00 70 */	b lbl_805A7CA8
 lbl_805A7C3C:
 /* 805A7C3C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -82,8 +82,8 @@ lbl_805A7C94:
 lbl_805A7C98:
 /* 805A7C98  2C 00 00 01 */	cmpwi r0, 1
 /* 805A7C9C  40 82 00 0C */	bne lbl_805A7CA8
-/* 805A7CA0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 805A7CA4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 805A7CA0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 805A7CA4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_805A7CA8:
 /* 805A7CA8  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 805A7CAC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -91,7 +91,7 @@ lbl_805A7CA8:
 /* 805A7CB4  54 03 0F FE */	srwi r3, r0, 0x1f
 lbl_805A7CB8:
 /* 805A7CB8  39 61 00 20 */	addi r11, r1, 0x20
-/* 805A7CBC  4B DB A5 6C */	b _restgpr_29
+/* 805A7CBC  4B DB A5 6D */	bl _restgpr_29
 /* 805A7CC0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805A7CC4  7C 08 03 A6 */	mtlr r0
 /* 805A7CC8  38 21 00 20 */	addi r1, r1, 0x20

@@ -78,7 +78,7 @@ ASFLAGS := -mgekko -I include
 LDFLAGS := -unused -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -pragma "cats off" -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -str pool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
@@ -114,27 +114,31 @@ tools:
 docs:
 	$(DOXYGEN) Doxyfile
 	
-rels: $(RELS)
-
+rels: $(ELF) $(RELS)
+	@echo generating RELs from .plf
+	@python3 tools/makerel.py build --string-table $(BUILD_DIR)/frameworkF.str $(RELS) $(ELF)
 
 $(ELF): $(LIBS) $(O_FILES)
-	echo $(O_FILES) > build/o_files
-	python3 tools/lcf.py --output $(LDSCRIPT)
+	@echo $(O_FILES) > build/o_files
+	@python3 tools/lcf.py dol --output $(LDSCRIPT)
 	$(LD) -application $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files $(LIBS)
-# The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.
-#	$(OBJCOPY) $@ $@
 
+#
 $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo building... $<
 	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
 	@$(CC) $(CFLAGS) -c -o $@ $@.iconv.cpp
 
+# shared cpp files for RELs
+$(BUILD_DIR)/rel/%.o: rel/%.cpp
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -sdata 0 -sdata2 0 -c -o $@ $<
+
 # include library and rel makefiles
 -include include_link.mk
 
 ### Debug Print ###
-
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 
 .PHONY: default all dirs clean tools docs print-%

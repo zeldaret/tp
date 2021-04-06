@@ -18,8 +18,8 @@ lbl_80325AC8:
 /* 80325AD8  A0 04 00 00 */	lhz r0, 0(r4)
 /* 80325ADC  28 00 00 12 */	cmplwi r0, 0x12
 /* 80325AE0  41 81 00 A0 */	bgt lbl_80325B80
-/* 80325AE4  3C 60 80 3D */	lis r3, lit_871@ha
-/* 80325AE8  38 63 EC A8 */	addi r3, r3, lit_871@l
+/* 80325AE4  3C 60 80 3D */	lis r3, lit_871@ha /* 0x803CECA8@ha */
+/* 80325AE8  38 63 EC A8 */	addi r3, r3, lit_871@l /* 0x803CECA8@l */
 /* 80325AEC  54 00 10 3A */	slwi r0, r0, 2
 /* 80325AF0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80325AF4  7C 09 03 A6 */	mtctr r0

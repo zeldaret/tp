@@ -48,8 +48,6 @@ extern "C" void getNthLink__10JSUPtrListCFUl();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -58,7 +56,7 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 802DBDFC-802DBE14 0018+00 s=0 e=34 z=0  None .text      __ct__10JSUPtrLinkFPv */
+/* 802DBDFC-802DBE14 2D673C 0018+00 0/0 34/34 0/0 .text            __ct__10JSUPtrLinkFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,9 +66,7 @@ asm JSUPtrLink::JSUPtrLink(void* param_0) {
 }
 #pragma pop
 
-/* 802DBE14-802DBE74 0060+00 s=0 e=27 z=0  None .text      __dt__10JSUPtrLinkFv */
-//	802DBE44: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802DBE54: 802CED3C (__dl__FPv)
+/* 802DBE14-802DBE74 2D6754 0060+00 0/0 27/27 0/0 .text            __dt__10JSUPtrLinkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -80,8 +76,7 @@ asm JSUPtrLink::~JSUPtrLink() {
 }
 #pragma pop
 
-/* 802DBE74-802DBEAC 0038+00 s=0 e=4 z=0  None .text      __ct__10JSUPtrListFb */
-//	802DBE90: 802DBF14 (initiate__10JSUPtrListFv)
+/* 802DBE74-802DBEAC 2D67B4 0038+00 0/0 4/4 0/0 .text            __ct__10JSUPtrListFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -91,8 +86,7 @@ asm JSUPtrList::JSUPtrList(bool param_0) {
 }
 #pragma pop
 
-/* 802DBEAC-802DBF14 0068+00 s=0 e=25 z=0  None .text      __dt__10JSUPtrListFv */
-//	802DBEF8: 802CED3C (__dl__FPv)
+/* 802DBEAC-802DBF14 2D67EC 0068+00 0/0 25/25 0/0 .text            __dt__10JSUPtrListFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,7 +96,7 @@ asm JSUPtrList::~JSUPtrList() {
 }
 #pragma pop
 
-/* 802DBF14-802DBF28 0014+00 s=1 e=27 z=0  None .text      initiate__10JSUPtrListFv */
+/* 802DBF14-802DBF28 2D6854 0014+00 1/1 27/27 0/0 .text            initiate__10JSUPtrListFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,7 +106,7 @@ asm void JSUPtrList::initiate() {
 }
 #pragma pop
 
-/* 802DBF28-802DBF4C 0024+00 s=2 e=0 z=0  None .text      setFirst__10JSUPtrListFP10JSUPtrLink */
+/* 802DBF28-802DBF4C 2D6868 0024+00 2/2 0/0 0/0 .text setFirst__10JSUPtrListFP10JSUPtrLink */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,11 +116,7 @@ asm void JSUPtrList::setFirst(JSUPtrLink* param_0) {
 }
 #pragma pop
 
-/* 802DBF4C-802DBFF0 00A4+00 s=1 e=29 z=0  None .text      append__10JSUPtrListFP10JSUPtrLink */
-//	802DBF5C: 803621DC (_savegpr_29)
-//	802DBF7C: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802DBFA0: 802DBF28 (setFirst__10JSUPtrListFP10JSUPtrLink)
-//	802DBFDC: 80362228 (_restgpr_29)
+/* 802DBF4C-802DBFF0 2D688C 00A4+00 1/1 29/29 0/0 .text append__10JSUPtrListFP10JSUPtrLink */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,11 +126,8 @@ asm void JSUPtrList::append(JSUPtrLink* param_0) {
 }
 #pragma pop
 
-/* 802DBFF0-802DC094 00A4+00 s=1 e=8 z=0  None .text      prepend__10JSUPtrListFP10JSUPtrLink */
-//	802DC000: 803621DC (_savegpr_29)
-//	802DC020: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802DC044: 802DBF28 (setFirst__10JSUPtrListFP10JSUPtrLink)
-//	802DC080: 80362228 (_restgpr_29)
+/* 802DBFF0-802DC094 2D6930 00A4+00 1/1 8/8 0/0 .text            prepend__10JSUPtrListFP10JSUPtrLink
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -150,13 +137,8 @@ asm void JSUPtrList::prepend(JSUPtrLink* param_0) {
 }
 #pragma pop
 
-/* 802DC094-802DC15C 00C8+00 s=0 e=4 z=0  None .text
+/* 802DC094-802DC15C 2D69D4 00C8+00 0/0 4/4 0/0 .text
  * insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink              */
-//	802DC0A4: 803621DC (_savegpr_29)
-//	802DC0C4: 802DBFF0 (prepend__10JSUPtrListFP10JSUPtrLink)
-//	802DC0D8: 802DBF4C (append__10JSUPtrListFP10JSUPtrLink)
-//	802DC10C: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802DC148: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -166,7 +148,7 @@ asm void JSUPtrList::insert(JSUPtrLink* param_0, JSUPtrLink* param_1) {
 }
 #pragma pop
 
-/* 802DC15C-802DC20C 00B0+00 s=4 e=31 z=0  None .text      remove__10JSUPtrListFP10JSUPtrLink */
+/* 802DC15C-802DC20C 2D6A9C 00B0+00 4/4 31/31 0/0 .text remove__10JSUPtrListFP10JSUPtrLink */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -176,7 +158,7 @@ asm void JSUPtrList::remove(JSUPtrLink* param_0) {
 }
 #pragma pop
 
-/* 802DC20C-802DC23C 0030+00 s=0 e=3 z=0  None .text      getNthLink__10JSUPtrListCFUl */
+/* 802DC20C-802DC23C 2D6B4C 0030+00 0/0 3/3 0/0 .text            getNthLink__10JSUPtrListCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -3,19 +3,20 @@
 #
 
 M380_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis.plf
+M380_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis.lcf
+M380_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis.map
 
 M380_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_yamis/executor.cpp \
-	rel/d/a/npc/d_a_npc_yamis/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_yamis/d_a_npc_yamis.cpp \
 
 M380_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/d_a_npc_yamis.o \
 
 M380_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/libRuntime.PPCEABI.H.a \
 
 M380_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M380_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map380.map\
+	-m _prolog \
+	-lcf $(M380_LDSCRIPT) \
+	-unused -map $(M380_MAP) \
+	-w off \
 
 $(M380_TARGET): $(M380_O_FILES) $(M380_LIBS)
+	@echo [380] creating $(M380_TARGET)
 	@echo $(M380_LIBS) $(M380_O_FILES) > build/M380_ofiles
-	$(LD) -opt_partial $(M380_LDFLAGS) -o $(M380_TARGET) @build/M380_ofiles
+	@python3 tools/lcf.py rel 380 --output $(M380_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M380_LDFLAGS) -o $(M380_TARGET) @build/M380_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yamis/%.o: rel/d/a/npc/d_a_npc_yamis/%.cpp
+	@echo [380] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M380_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M380_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_yamis/libs/Runtime.PPCEABI.H/Makefile
 

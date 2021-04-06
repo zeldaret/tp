@@ -46,8 +46,8 @@ lbl_80109844:
 /* 80109848  38 80 01 8D */	li r4, 0x18d
 /* 8010984C  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 80109850  41 82 00 14 */	beq lbl_80109864
-/* 80109854  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha
-/* 80109858  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l
+/* 80109854  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80109858  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 8010985C  C0 25 00 40 */	lfs f1, 0x40(r5)
 /* 80109860  48 00 00 08 */	b lbl_80109868
 lbl_80109864:

@@ -19,7 +19,7 @@ lbl_80373110:
 /* 80373154  4B FC A9 69 */	bl __OSMaskInterrupts
 /* 80373158  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006828@ha */
 /* 8037315C  38 00 00 00 */	li r0, 0
-/* 80373160  90 03 68 28 */	stw r0, 0x6828(r3)
+/* 80373160  90 03 68 28 */	stw r0, 0x6828(r3)  /* 0xCC006828@l */
 /* 80373164  7F E3 FB 78 */	mr r3, r31
 /* 80373168  4B FC A5 B5 */	bl OSRestoreInterrupts
 /* 8037316C  80 01 00 24 */	lwz r0, 0x24(r1)

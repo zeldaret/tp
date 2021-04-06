@@ -101,15 +101,10 @@ extern "C" void __dt__Q28dMpath_n18dTexObjAggregate_cFv();
 extern "C" extern char const* const d_map_d_map_path__stringBase0;
 extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
 extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" extern u8 m_texObjAgg__8dMpath_n[28];
 
 //
 // External References:
 //
-
-void mDoLib_setResTimgObj(ResTIMG const*, _GXTexObj*, u32, _GXTlutObj*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj();
 extern "C" void draw__12dDlst_base_cFv();
@@ -176,34 +171,14 @@ extern "C" extern u8 g_clearColor[4];
 //
 
 /* ############################################################################################## */
-/* 80379C30-80379C4C 001C+00 s=1 e=0 z=0  None .rodata    data$3644 */
+/* 80379C30-80379C4C 006290 001C+00 1/1 0/0 0/0 .rodata          data$3644 */
 SECTION_RODATA static u8 const data[28] = {
     0x00, 0x00, 0x00, 0x4F, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x4D, 0x00, 0x00,
     0x00, 0x4E, 0x00, 0x00, 0x00, 0x4C, 0x00, 0x00, 0x00, 0x51, 0x00, 0x00, 0x00, 0x52,
 };
+SECTION_DEAD void* const cg_80379C30 = (void*)(&data);
 
-/* 80379C4C-80379C58 0007+05 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379C4C = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379C53 = "\0\0\0\0";
-#pragma pop
-
-/* 8003C85C-8003C8F4 0098+00 s=0 e=1 z=0  None .text      create__Q28dMpath_n18dTexObjAggregate_cFv
- */
-//	8003C86C: 803621D0 (_savegpr_26)
-//	8003C87C: 804061C0 (g_dComIfG_gameInfo)
-//	8003C880: 804061C0 (g_dComIfG_gameInfo)
-//	8003C888: 80379C4C (d_map_d_map_path__stringBase0)
-//	8003C88C: 80379C4C (d_map_d_map_path__stringBase0)
-//	8003C890: 80379C30 (data)
-//	8003C894: 80379C30 (data)
-//	8003C8A0: 802CEC4C (__nw__FUl)
-//	8003C8B8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8003C8C8: 8001513C (mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj)
-//	8003C8E0: 8036221C (_restgpr_26)
+/* 8003C85C-8003C8F4 03719C 0098+00 0/0 1/1 0/0 .text create__Q28dMpath_n18dTexObjAggregate_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,11 +188,7 @@ asm void dMpath_n::dTexObjAggregate_c::create() {
 }
 #pragma pop
 
-/* 8003C8F4-8003C94C 0058+00 s=1 e=1 z=0  None .text      remove__Q28dMpath_n18dTexObjAggregate_cFv
- */
-//	8003C904: 803621D8 (_savegpr_28)
-//	8003C91C: 802CED3C (__dl__FPv)
-//	8003C938: 80362224 (_restgpr_28)
+/* 8003C8F4-8003C94C 037234 0058+00 1/1 1/1 0/0 .text remove__Q28dMpath_n18dTexObjAggregate_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,11 +198,8 @@ asm void dMpath_n::dTexObjAggregate_c::remove() {
 }
 #pragma pop
 
-/* 8003C94C-8003CA40 00F4+00 s=2 e=9 z=0  None .text
+/* 8003C94C-8003CA40 03728C 00F4+00 2/0 9/2 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class       */
-//	8003C9B8: 8035C8BC (GXSetLineWidth)
-//	8003C9EC: 8035F37C (GXSetTevColor)
-//	8003C9FC: 8035C764 (GXBegin)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -241,10 +209,8 @@ asm void dDrawPath_c::rendering(dDrawPath_c::line_class const* param_0) {
 }
 #pragma pop
 
-/* 8003CA40-8003CB00 00C0+00 s=2 e=9 z=0  None .text
+/* 8003CA40-8003CB00 037380 00C0+00 2/0 9/1 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class       */
-//	8003CAA4: 8035F37C (GXSetTevColor)
-//	8003CABC: 8035C764 (GXBegin)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -254,10 +220,8 @@ asm void dDrawPath_c::rendering(dDrawPath_c::poly_class const* param_0) {
 }
 #pragma pop
 
-/* 8003CB00-8003CBBC 00BC+00 s=1 e=0 z=0  None .text
+/* 8003CB00-8003CBBC 037440 00BC+00 1/1 0/0 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c11group_class      */
-//	8003CB10: 803621D4 (_savegpr_27)
-//	8003CBA8: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,11 +231,8 @@ asm void dDrawPath_c::rendering(dDrawPath_c::group_class const* param_0) {
 }
 #pragma pop
 
-/* 8003CBBC-8003CC24 0068+00 s=1 e=0 z=0  None .text
+/* 8003CBBC-8003CC24 0374FC 0068+00 1/1 0/0 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c11floor_class      */
-//	8003CBCC: 803621D8 (_savegpr_28)
-//	8003CBF8: 8003CB00 (rendering__11dDrawPath_cFPCQ211dDrawPath_c11group_class)
-//	8003CC10: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,12 +242,8 @@ asm void dDrawPath_c::rendering(dDrawPath_c::floor_class const* param_0) {
 }
 #pragma pop
 
-/* 8003CC24-8003CCC4 00A0+00 s=2 e=9 z=0  None .text
+/* 8003CC24-8003CCC4 037564 00A0+00 2/0 9/1 0/0 .text
  * rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class       */
-//	8003CC34: 803621D8 (_savegpr_28)
-//	8003CC50: 8035BB28 (GXSetArray)
-//	8003CC94: 8003CBBC (rendering__11dDrawPath_cFPCQ211dDrawPath_c11floor_class)
-//	8003CCB0: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -296,7 +253,7 @@ asm void dDrawPath_c::rendering(dDrawPath_c::room_class const* param_0) {
 }
 #pragma pop
 
-/* 8003CCC4-8003CD38 0074+00 s=2 e=9 z=0  None .text      drawPath__11dDrawPath_cFv */
+/* 8003CCC4-8003CD38 037604 0074+00 2/0 9/1 0/0 .text            drawPath__11dDrawPath_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -306,7 +263,7 @@ asm void dDrawPath_c::drawPath() {
 }
 #pragma pop
 
-/* 8003CD38-8003CDAC 0074+00 s=0 e=3 z=0  None .text
+/* 8003CD38-8003CDAC 037678 0074+00 0/0 3/3 0/0 .text
  * makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs        */
 #pragma push
 #pragma optimization_level 0
@@ -318,7 +275,8 @@ asm void dRenderingMap_c::makeResTIMG(ResTIMG* param_0, u16 param_1, u16 param_2
 }
 #pragma pop
 
-/* 8003CDAC-8003CE78 00CC+00 s=0 e=2 z=0  None .text      renderingMap__15dRenderingMap_cFv */
+/* 8003CDAC-8003CE78 0376EC 00CC+00 0/0 2/2 0/0 .text            renderingMap__15dRenderingMap_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -328,17 +286,8 @@ asm void dRenderingMap_c::renderingMap() {
 }
 #pragma pop
 
-/* 8003CE78-8003CF40 00C8+00 s=2 e=3 z=0  None .text
+/* 8003CE78-8003CF40 0377B8 00C8+00 2/2 3/3 0/0 .text
  * setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv  */
-//	8003CE88: 8035F890 (GXSetNumTevStages)
-//	8003CE90: 8035DB30 (GXSetNumChans)
-//	8003CE98: 8035BDFC (GXSetNumTexGens)
-//	8003CEAC: 8035F6F4 (GXSetTevOrder)
-//	8003CEC4: 8035F224 (GXSetTevColorIn)
-//	8003CEE0: 8035F2AC (GXSetTevColorOp)
-//	8003CEF8: 8035F268 (GXSetTevAlphaIn)
-//	8003CF14: 8035F314 (GXSetTevAlphaOp)
-//	8003CF2C: 8035F624 (GXSetAlphaCompare)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -348,24 +297,8 @@ asm void dRenderingFDAmap_c::setTevSettingNonTextureDirectColor() const {
 }
 #pragma pop
 
-/* 8003CF40-8003D0AC 016C+00 s=1 e=3 z=0  None .text
+/* 8003CF40-8003D0AC 037880 016C+00 1/1 3/3 0/0 .text
  * setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv   */
-//	8003CF50: 8035F890 (GXSetNumTevStages)
-//	8003CF58: 8035DB30 (GXSetNumChans)
-//	8003CF60: 8035BDFC (GXSetNumTexGens)
-//	8003CF7C: 8035BB7C (GXSetTexCoordGen2)
-//	8003CF90: 8035F6F4 (GXSetTevOrder)
-//	8003CFA4: 8035F6F4 (GXSetTevOrder)
-//	8003CFBC: 8035F224 (GXSetTevColorIn)
-//	8003CFD8: 8035F2AC (GXSetTevColorOp)
-//	8003CFF0: 8035F224 (GXSetTevColorIn)
-//	8003D00C: 8035F2AC (GXSetTevColorOp)
-//	8003D024: 8035F268 (GXSetTevAlphaIn)
-//	8003D040: 8035F314 (GXSetTevAlphaOp)
-//	8003D058: 8035F268 (GXSetTevAlphaIn)
-//	8003D074: 8035F314 (GXSetTevAlphaOp)
-//	8003D08C: 8035F624 (GXSetAlphaCompare)
-//	8003D098: 8035F4A4 (GXSetTevKColorSel)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,7 +309,7 @@ asm void dRenderingFDAmap_c::setTevSettingIntensityTextureToCI() const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451E08-80451E0C 0004+00 s=3 e=0 z=0  None .sdata2    @3836 */
+/* 80451E08-80451E0C 000408 0004+00 3/3 0/0 0/0 .sdata2          @3836 */
 SECTION_SDATA2 static u8 lit_3836[4] = {
     0x00,
     0x00,
@@ -384,16 +317,8 @@ SECTION_SDATA2 static u8 lit_3836[4] = {
     0x00,
 };
 
-/* 8003D0AC-8003D188 00DC+00 s=1 e=0 z=0  None .text      drawBack__18dRenderingFDAmap_cCFv */
-//	8003D0C0: 8035B58C (GXClearVtxDesc)
-//	8003D0CC: 8035AEB8 (GXSetVtxDesc)
-//	8003D0E4: 8035B5C4 (GXSetVtxAttrFmt)
-//	8003D10C: 8035F37C (GXSetTevColor)
-//	8003D11C: 8035C764 (GXBegin)
-//	8003D13C: 80451E08 (lit_3836)
-//	8003D14C: 80451E08 (lit_3836)
-//	8003D15C: 80451E08 (lit_3836)
-//	8003D16C: 80451E08 (lit_3836)
+/* 8003D0AC-8003D188 0379EC 00DC+00 1/1 0/0 0/0 .text            drawBack__18dRenderingFDAmap_cCFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,49 +329,19 @@ asm void dRenderingFDAmap_c::drawBack() const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451E0C-80451E10 0004+00 s=1 e=0 z=0  None .sdata2    @3846 */
+/* 80451E0C-80451E10 00040C 0004+00 1/1 0/0 0/0 .sdata2          @3846 */
 SECTION_SDATA2 static f32 lit_3846 = 1.0f;
 
-/* 80451E10-80451E14 0004+00 s=1 e=0 z=0  None .sdata2    @3847 */
+/* 80451E10-80451E14 000410 0004+00 1/1 0/0 0/0 .sdata2          @3847 */
 SECTION_SDATA2 static f32 lit_3847 = 0.5f;
 
-/* 80451E14-80451E18 0004+00 s=1 e=0 z=0  None .sdata2    @3848 */
+/* 80451E14-80451E18 000414 0004+00 1/1 0/0 0/0 .sdata2          @3848 */
 SECTION_SDATA2 static f32 lit_3848 = 10000.0f;
 
-/* 80451E18-80451E20 0008+00 s=1 e=0 z=0  None .sdata2    @3850 */
+/* 80451E18-80451E20 000418 0008+00 1/1 0/0 0/0 .sdata2          @3850 */
 SECTION_SDATA2 static f64 lit_3850 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8003D188-8003D320 0198+00 s=1 e=8 z=0  None .text      preRenderingMap__18dRenderingFDAmap_cFv */
-//	8003D19C: 80451E08 (lit_3836)
-//	8003D1A8: 80451E18 (lit_3850)
-//	8003D1D8: 80451E0C (lit_3846)
-//	8003D1DC: 80360464 (GXSetViewport)
-//	8003D1F0: 803604D0 (GXSetScissor)
-//	8003D1F8: 8035DB30 (GXSetNumChans)
-//	8003D200: 8035F890 (GXSetNumTevStages)
-//	8003D220: 8035DB6C (GXSetChanCtrl)
-//	8003D238: 8035F624 (GXSetAlphaCompare)
-//	8003D240: 8035FCD0 (GXSetZCompLoc)
-//	8003D250: 8035FC9C (GXSetZMode)
-//	8003D264: 8035FBF0 (GXSetBlendMode)
-//	8003D268: 80450600 (g_clearColor)
-//	8003D274: 80451E08 (lit_3836)
-//	8003D288: 8035F8B8 (GXSetFog)
-//	8003D290: 8035C984 (GXSetCullMode)
-//	8003D298: 8035FDD8 (GXSetDither)
-//	8003D2A0: 8035F0D4 (GXSetNumIndStages)
-//	8003D2A8: 803605D0 (GXSetClipMode)
-//	8003D2B0: 8003CE78 (setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv)
-//	8003D2B4: 80451E10 (lit_3847)
-//	8003D2D4: 80451E08 (lit_3836)
-//	8003D2D8: 80451E14 (lit_3848)
-//	8003D2DC: 80346FF8 (C_MTXOrtho)
-//	8003D2E8: 803600D4 (GXSetProjection)
-//	8003D2EC: 803A2FD8 (g_mDoMtx_identity)
-//	8003D2F0: 803A2FD8 (g_mDoMtx_identity)
-//	8003D2F8: 8036024C (GXLoadPosMtxImm)
-//	8003D300: 803602EC (GXSetCurrentMtx)
-//	8003D308: 8003D0AC (drawBack__18dRenderingFDAmap_cCFv)
+/* 8003D188-8003D320 037AC8 0198+00 1/0 8/0 0/0 .text preRenderingMap__18dRenderingFDAmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -456,17 +351,7 @@ asm void dRenderingFDAmap_c::preRenderingMap() {
 }
 #pragma pop
 
-/* 8003D320-8003D3C0 00A0+00 s=1 e=7 z=0  None .text      postRenderingMap__18dRenderingFDAmap_cFv
- */
-//	8003D344: 8035D0E8 (GXSetCopyFilter)
-//	8003D358: 8035CA80 (GXSetTexCopySrc)
-//	8003D36C: 8035CB30 (GXSetTexCopyDst)
-//	8003D378: 8035D46C (GXCopyTex)
-//	8003D37C: 8035C374 (GXPixModeSync)
-//	8003D384: 803605D0 (GXSetClipMode)
-//	8003D38C: 8035FDD8 (GXSetDither)
-//	8003D390: 804061C0 (g_dComIfG_gameInfo)
-//	8003D394: 804061C0 (g_dComIfG_gameInfo)
+/* 8003D320-8003D3C0 037C60 00A0+00 1/0 7/1 0/0 .text postRenderingMap__18dRenderingFDAmap_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,50 +362,15 @@ asm void dRenderingFDAmap_c::postRenderingMap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80424678-80424684 000C+00 s=1 e=0 z=0  None .bss       @3639 */
+/* 80424678-80424684 051398 000C+00 1/1 0/0 0/0 .bss             @3639 */
 static u8 lit_3639[12];
 
-/* 80424684-804246A0 001C+00 s=2 e=5 z=0  None .bss       m_texObjAgg__8dMpath_n */
+/* 80424684-804246A0 0513A4 001C+00 2/2 5/5 0/0 .bss             m_texObjAgg__8dMpath_n */
+extern u8 m_texObjAgg__8dMpath_n[28];
 u8 m_texObjAgg__8dMpath_n[28];
 
-/* 8003D3C0-8003D68C 02CC+00 s=0 e=2 z=0  None .text
+/* 8003D3C0-8003D68C 037D00 02CC+00 0/0 2/2 0/0 .text
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */
-//	8003D3D0: 803621D0 (_savegpr_26)
-//	8003D3FC: 8003CF40 (setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv)
-//	8003D400: 8035B58C (GXClearVtxDesc)
-//	8003D40C: 8035AEB8 (GXSetVtxDesc)
-//	8003D418: 8035AEB8 (GXSetVtxDesc)
-//	8003D430: 8035B5C4 (GXSetVtxAttrFmt)
-//	8003D448: 8035B5C4 (GXSetVtxAttrFmt)
-//	8003D450: 8035F890 (GXSetNumTevStages)
-//	8003D454: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D458: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D464: 8035E414 (GXLoadTexObj)
-//	8003D478: 8035C8BC (GXSetLineWidth)
-//	8003D484: 8035C8FC (GXSetPointSize)
-//	8003D4BC: 8035F37C (GXSetTevColor)
-//	8003D4DC: 8035F37C (GXSetTevColor)
-//	8003D50C: 8035F224 (GXSetTevColorIn)
-//	8003D528: 8035F2AC (GXSetTevColorOp)
-//	8003D540: 8035F268 (GXSetTevAlphaIn)
-//	8003D55C: 8035F314 (GXSetTevAlphaOp)
-//	8003D56C: 8035C764 (GXBegin)
-//	8003D57C: 80451E08 (lit_3836)
-//	8003D584: 80451E08 (lit_3836)
-//	8003D594: 80451E08 (lit_3836)
-//	8003D59C: 80451E08 (lit_3836)
-//	8003D5B8: 8035F224 (GXSetTevColorIn)
-//	8003D5D4: 8035F2AC (GXSetTevColorOp)
-//	8003D5EC: 8035F268 (GXSetTevAlphaIn)
-//	8003D608: 8035F314 (GXSetTevAlphaOp)
-//	8003D618: 8035C764 (GXBegin)
-//	8003D624: 80451E08 (lit_3836)
-//	8003D62C: 80451E08 (lit_3836)
-//	8003D648: 8003CE78 (setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv)
-//	8003D64C: 8035B58C (GXClearVtxDesc)
-//	8003D658: 8035AEB8 (GXSetVtxDesc)
-//	8003D670: 8035B5C4 (GXSetVtxAttrFmt)
-//	8003D678: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,8 +380,7 @@ asm void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* 
 }
 #pragma pop
 
-/* 8003D68C-8003D6B8 002C+00 s=1 e=6 z=0  None .text      getDecoLineColor__18dRenderingFDAmap_cFii
- */
+/* 8003D68C-8003D6B8 037FCC 002C+00 1/0 6/0 0/0 .text getDecoLineColor__18dRenderingFDAmap_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -541,7 +390,7 @@ asm void dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8003D6B8-8003D6E4 002C+00 s=1 e=6 z=0  None .text
+/* 8003D6B8-8003D6E4 037FF8 002C+00 1/0 6/0 0/0 .text
  * getDecorationLineWidth__18dRenderingFDAmap_cFi               */
 #pragma push
 #pragma optimization_level 0
@@ -552,20 +401,11 @@ asm void dRenderingFDAmap_c::getDecorationLineWidth(int param_0) {
 }
 #pragma pop
 
-/* 8003D6E4-8003D740 005C+00 s=0 e=0 z=0  None .text      __sinit_d_map_path_cpp */
-//	8003D6F8: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D6FC: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D714: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D718: 80424684 (m_texObjAgg__8dMpath_n)
-//	8003D71C: 8003D740 (__dt__Q28dMpath_n18dTexObjAggregate_cFv)
-//	8003D720: 8003D740 (__dt__Q28dMpath_n18dTexObjAggregate_cFv)
-//	8003D724: 80424678 (lit_3639)
-//	8003D728: 80424678 (lit_3639)
-//	8003D72C: 80361C24 (__register_global_object)
+/* 8003D6E4-8003D740 038024 005C+00 0/0 1/0 0/0 .text            __sinit_d_map_path_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_map_path_cpp() {
+asm void __sinit_d_map_path_cpp() {
     nofralloc
 #include "asm/d/map/d_map_path/__sinit_d_map_path_cpp.s"
 }
@@ -576,9 +416,7 @@ extern "C" asm void __sinit_d_map_path_cpp() {
 SECTION_CTORS void* const _ctors_8003D6E4 = (void*)__sinit_d_map_path_cpp;
 #pragma pop
 
-/* 8003D740-8003D790 0050+00 s=1 e=0 z=0  None .text      __dt__Q28dMpath_n18dTexObjAggregate_cFv */
-//	8003D760: 8003C8F4 (remove__Q28dMpath_n18dTexObjAggregate_cFv)
-//	8003D770: 802CED3C (__dl__FPv)
+/* 8003D740-8003D790 038080 0050+00 1/1 0/0 0/0 .text __dt__Q28dMpath_n18dTexObjAggregate_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -589,8 +427,8 @@ asm dMpath_n::dTexObjAggregate_c::~dTexObjAggregate_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A7C90-803A7CF8 0068+00 s=0 e=12 z=0  None .data      __vt__18dRenderingFDAmap_c */
-SECTION_DATA void* __vt__18dRenderingFDAmap_c[26] = {
+/* 803A7C90-803A7CF8 004DB0 0068+00 0/0 12/12 0/0 .data            __vt__18dRenderingFDAmap_c */
+SECTION_DATA extern void* __vt__18dRenderingFDAmap_c[26] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,
@@ -619,8 +457,8 @@ SECTION_DATA void* __vt__18dRenderingFDAmap_c[26] = {
     (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
 };
 
-/* 803A7CF8-803A7D38 0040+00 s=0 e=15 z=0  None .data      __vt__11dDrawPath_c */
-SECTION_DATA void* __vt__11dDrawPath_c[16] = {
+/* 803A7CF8-803A7D38 004E18 0040+00 0/0 15/15 0/0 .data            __vt__11dDrawPath_c */
+SECTION_DATA extern void* __vt__11dDrawPath_c[16] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,
@@ -638,3 +476,12 @@ SECTION_DATA void* __vt__11dDrawPath_c[16] = {
     (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class,
     (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class,
 };
+
+/* 80379C4C-80379C58 0062AC 0007+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379C4C = "Always";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379C53 = "\0\0\0\0";
+#pragma pop

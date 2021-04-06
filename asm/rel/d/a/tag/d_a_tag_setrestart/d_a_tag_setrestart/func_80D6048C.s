@@ -11,15 +11,15 @@ lbl_80D6048C:
 /* 80D604B0  7F E0 FB 79 */	or. r0, r31, r31
 /* 80D604B4  41 82 00 2C */	beq lbl_80D604E0
 /* 80D604B8  7C 1E 03 78 */	mr r30, r0
-/* 80D604BC  4B 2B 86 A8 */	b __ct__10fopAc_ac_cFv
+/* 80D604BC  4B 2B 86 A9 */	bl __ct__10fopAc_ac_cFv
 /* 80D604C0  38 7E 05 6C */	addi r3, r30, 0x56c
-/* 80D604C4  3C 80 80 D6 */	lis r4, __ct__4cXyzFv@ha
-/* 80D604C8  38 84 05 5C */	addi r4, r4, __ct__4cXyzFv@l
-/* 80D604CC  3C A0 80 D6 */	lis r5, __dt__4cXyzFv@ha
-/* 80D604D0  38 A5 05 20 */	addi r5, r5, __dt__4cXyzFv@l
+/* 80D604C4  3C 80 80 D6 */	lis r4, __ct__4cXyzFv@ha /* 0x80D6055C@ha */
+/* 80D604C8  38 84 05 5C */	addi r4, r4, __ct__4cXyzFv@l /* 0x80D6055C@l */
+/* 80D604CC  3C A0 80 D6 */	lis r5, __dt__4cXyzFv@ha /* 0x80D60520@ha */
+/* 80D604D0  38 A5 05 20 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80D60520@l */
 /* 80D604D4  38 C0 00 0C */	li r6, 0xc
 /* 80D604D8  38 E0 00 04 */	li r7, 4
-/* 80D604DC  4B 60 18 84 */	b __construct_array
+/* 80D604DC  4B 60 18 85 */	bl __construct_array
 lbl_80D604E0:
 /* 80D604E0  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D604E4  60 00 00 08 */	ori r0, r0, 8

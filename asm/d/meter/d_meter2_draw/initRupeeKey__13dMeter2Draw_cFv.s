@@ -5,8 +5,8 @@ lbl_80212404:
 /* 80212410  39 61 00 20 */	addi r11, r1, 0x20
 /* 80212414  48 14 FD BD */	bl _savegpr_26
 /* 80212418  7C 7F 1B 78 */	mr r31, r3
-/* 8021241C  3C 60 80 3A */	lis r3, a_tag@ha
-/* 80212420  3B C3 82 58 */	addi r30, r3, a_tag@l
+/* 8021241C  3C 60 80 3A */	lis r3, a_tag@ha /* 0x80398258@ha */
+/* 80212420  3B C3 82 58 */	addi r30, r3, a_tag@l /* 0x80398258@l */
 /* 80212424  38 60 00 6C */	li r3, 0x6c
 /* 80212428  48 0B C8 25 */	bl __nw__FUl
 /* 8021242C  7C 60 1B 79 */	or. r0, r3, r3
@@ -170,15 +170,15 @@ lbl_80212678:
 /* 8021267C  80 7F 02 E0 */	lwz r3, 0x2e0(r31)
 /* 80212680  C0 22 AE 80 */	lfs f1, lit_4182(r2)
 /* 80212684  48 04 31 4D */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 80212688  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021268C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80212688  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021268C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80212690  A0 03 00 04 */	lhz r0, 4(r3)
 /* 80212694  7F E3 FB 78 */	mr r3, r31
 /* 80212698  7C 04 07 34 */	extsh r4, r0
 /* 8021269C  48 00 3C 91 */	bl drawRupee__13dMeter2Draw_cFs
 /* 802126A0  7F E3 FB 78 */	mr r3, r31
-/* 802126A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 802126A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 802126A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802126A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802126AC  88 84 09 74 */	lbz r4, 0x974(r4)
 /* 802126B0  48 00 43 91 */	bl drawKey__13dMeter2Draw_cFs
 /* 802126B4  7F E3 FB 78 */	mr r3, r31

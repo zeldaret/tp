@@ -7,14 +7,14 @@ lbl_80046888:
 /* 8004689C  88 03 06 BC */	lbz r0, 0x6bc(r3)
 /* 800468A0  28 00 00 00 */	cmplwi r0, 0
 /* 800468A4  40 82 00 4C */	bne lbl_800468F0
-/* 800468A8  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 800468AC  8C 03 61 94 */	lbzu r0, mDemoArcName__20dStage_roomControl_c@l(r3)
+/* 800468A8  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 800468AC  8C 03 61 94 */	lbzu r0, mDemoArcName__20dStage_roomControl_c@l(r3)  /* 0x80406194@l */
 /* 800468B0  7C 00 07 75 */	extsb. r0, r0
 /* 800468B4  41 82 00 34 */	beq lbl_800468E8
-/* 800468B8  3C 80 80 38 */	lis r4, data_80379F50@ha
-/* 800468BC  38 84 9F 50 */	addi r4, r4, data_80379F50@l
-/* 800468C0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 800468C4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 800468B8  3C 80 80 38 */	lis r4, data_80379F50@ha /* 0x80379F50@ha */
+/* 800468BC  38 84 9F 50 */	addi r4, r4, data_80379F50@l /* 0x80379F50@l */
+/* 800468C0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800468C4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800468C8  3C A5 00 02 */	addis r5, r5, 2
 /* 800468CC  38 C0 00 80 */	li r6, 0x80
 /* 800468D0  38 A5 C2 F8 */	addi r5, r5, -15624

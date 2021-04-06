@@ -15,8 +15,8 @@ lbl_80054854:
 /* 80054888  7C BD 2B 78 */	mr r29, r5
 /* 8005488C  38 61 00 20 */	addi r3, r1, 0x20
 /* 80054890  48 21 36 F9 */	bl __ct__13cBgS_ShdwDrawFv
-/* 80054894  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha
-/* 80054898  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l
+/* 80054894  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha /* 0x803A8DEC@ha */
+/* 80054898  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l /* 0x803A8DEC@l */
 /* 8005489C  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800548A0  C0 22 86 58 */	lfs f1, lit_5127(r2)
 /* 800548A4  EC 1F 07 F2 */	fmuls f0, f31, f31
@@ -78,28 +78,28 @@ lbl_80054954:
 /* 8005496C  C0 22 86 64 */	lfs f1, lit_5130(r2)
 /* 80054970  C0 0D 86 F4 */	lfs f0, mFovyRate__14mDoLib_clipper(r13)
 /* 80054974  EC 01 00 32 */	fmuls f0, f1, f0
-/* 80054978  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 8005497C  3B C3 D8 E4 */	addi r30, r3, mClipper__14mDoLib_clipper@l
+/* 80054978  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 8005497C  3B C3 D8 E4 */	addi r30, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
 /* 80054980  D0 1E 00 58 */	stfs f0, 0x58(r30)
 /* 80054984  7F C3 F3 78 */	mr r3, r30
 /* 80054988  48 21 EE 05 */	bl calcViewFrustum__11J3DUClipperFv
-/* 8005498C  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 80054990  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
-/* 80054994  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 80054998  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8005498C  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 80054990  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
+/* 80054994  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 80054998  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8005499C  38 A1 00 08 */	addi r5, r1, 8
 /* 800549A0  38 C1 00 14 */	addi r6, r1, 0x14
 /* 800549A4  48 21 F0 A1 */	bl clip__11J3DUClipperCFPA4_CfP3VecP3Vec
 /* 800549A8  7C 7F 1B 78 */	mr r31, r3
 /* 800549AC  C0 0D 86 F0 */	lfs f0, mSystemFar__14mDoLib_clipper(r13)
 /* 800549B0  D0 1E 00 58 */	stfs f0, 0x58(r30)
-/* 800549B4  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 800549B8  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
+/* 800549B4  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 800549B8  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
 /* 800549BC  48 21 ED D1 */	bl calcViewFrustum__11J3DUClipperFv
 /* 800549C0  2C 1F 00 00 */	cmpwi r31, 0
 /* 800549C4  41 82 00 24 */	beq lbl_800549E8
-/* 800549C8  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha
-/* 800549CC  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l
+/* 800549C8  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha /* 0x803A8DEC@ha */
+/* 800549CC  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l /* 0x803A8DEC@l */
 /* 800549D0  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800549D4  38 61 00 20 */	addi r3, r1, 0x20
 /* 800549D8  38 80 00 00 */	li r4, 0
@@ -112,19 +112,19 @@ lbl_800549E8:
 /* 800549F0  38 A1 00 08 */	addi r5, r1, 8
 /* 800549F4  48 21 36 55 */	bl Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
 /* 800549F8  38 61 00 20 */	addi r3, r1, 0x20
-/* 800549FC  3C 80 80 05 */	lis r4, psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla@ha
-/* 80054A00  38 84 46 88 */	addi r4, r4, psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla@l
+/* 800549FC  3C 80 80 05 */	lis r4, psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla@ha /* 0x80054688@ha */
+/* 80054A00  38 84 46 88 */	addi r4, r4, psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla@l /* 0x80054688@l */
 /* 80054A04  48 21 36 69 */	bl SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i
 /* 80054A08  93 61 00 54 */	stw r27, 0x54(r1)
 /* 80054A0C  93 81 00 58 */	stw r28, 0x58(r1)
 /* 80054A10  93 A1 00 5C */	stw r29, 0x5c(r1)
-/* 80054A14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80054A18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80054A14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80054A18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80054A1C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80054A20  38 81 00 20 */	addi r4, r1, 0x20
 /* 80054A24  48 01 FE 1D */	bl ShdwDraw__4cBgSFP13cBgS_ShdwDraw
-/* 80054A28  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha
-/* 80054A2C  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l
+/* 80054A28  3C 60 80 3B */	lis r3, __vt__14ShdwDrawPoly_c@ha /* 0x803A8DEC@ha */
+/* 80054A2C  38 03 8D EC */	addi r0, r3, __vt__14ShdwDrawPoly_c@l /* 0x803A8DEC@l */
 /* 80054A30  90 01 00 30 */	stw r0, 0x30(r1)
 /* 80054A34  38 61 00 20 */	addi r3, r1, 0x20
 /* 80054A38  38 80 00 00 */	li r4, 0

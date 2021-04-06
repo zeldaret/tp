@@ -25,14 +25,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static bool daEcont_Draw(econt_class*);
-static void s_rd_sub(void*, void*);
-static void rider_game(econt_class*);
-static void daEcont_Execute(econt_class*);
-static bool daEcont_IsDelete(econt_class*);
-static void daEcont_Delete(econt_class*);
-static void daEcont_Create(fopAc_ac_c*);
-
 extern "C" static bool daEcont_Draw__FP11econt_class();
 extern "C" static void s_rd_sub__FPvPv();
 extern "C" static void rider_game__FP11econt_class();
@@ -40,21 +32,11 @@ extern "C" static void daEcont_Execute__FP11econt_class();
 extern "C" static bool daEcont_IsDelete__FP11econt_class();
 extern "C" static void daEcont_Delete__FP11econt_class();
 extern "C" static void daEcont_Create__FP10fopAc_ac_c();
-extern "C" extern u32 const lit_3871;
-extern "C" extern u32 const lit_3872;
-extern "C" extern u32 const lit_3873;
 extern "C" extern void* g_profile_ECONT[12];
 
 //
 // External References:
 //
-
-void fopAc_IsActor(void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void dComIfG_TimerStart(int, s16);
-void dComIfG_TimerDeleteRequest(int);
-void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();
@@ -74,112 +56,95 @@ extern "C" extern u8 data_805197E0[4];
 // Declarations:
 //
 
-/* 80519518-80519520 0008+00 s=1 e=0 z=0  None .text      daEcont_Draw__FP11econt_class */
+/* 80519518-80519520 000078 0008+00 1/0 0/0 0/0 .text            daEcont_Draw__FP11econt_class */
 static bool daEcont_Draw(econt_class* param_0) {
     return true;
 }
 
-/* 80519520-80519578 0058+00 s=1 e=0 z=0  None .text      s_rd_sub__FPvPv */
-//	80519534: 80018CE0 (fopAc_IsActor__FPv)
-//	8051954C: 805197E0 (data_805197E0)
-//	80519550: 805197E0 (data_805197E0)
+/* 80519520-80519578 000080 0058+00 1/1 0/0 0/0 .text            s_rd_sub__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void s_rd_sub(void* param_0, void* param_1) {
+static asm void s_rd_sub(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_econt/d_a_econt/s_rd_sub__FPvPv.s"
 }
 #pragma pop
 
-/* 80519578-80519664 00EC+00 s=1 e=0 z=0  None .text      rider_game__FP11econt_class */
-//	8051958C: 804061C0 (g_dComIfG_gameInfo)
-//	80519590: 804061C0 (g_dComIfG_gameInfo)
-//	805195A0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805195AC: 804061C0 (g_dComIfG_gameInfo)
-//	805195B0: 804061C0 (g_dComIfG_gameInfo)
-//	805195C4: 805197E0 (data_805197E0)
-//	805195C8: 805197E0 (data_805197E0)
-//	805195CC: 80519520 (s_rd_sub__FPvPv)
-//	805195D0: 80519520 (s_rd_sub__FPvPv)
-//	805195D8: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	805195FC: 805197E0 (data_805197E0)
-//	80519600: 805197E0 (data_805197E0)
-//	80519604: 80430188 (g_meter2_info)
-//	80519608: 80430188 (g_meter2_info)
-//	80519618: 8002F52C (dComIfG_TimerStart__Fis)
-//	80519620: 805197E0 (data_805197E0)
-//	80519624: 805197E0 (data_805197E0)
-//	80519634: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	8051963C: 805197E0 (data_805197E0)
-//	80519640: 805197E0 (data_805197E0)
-//	80519644: 80430188 (g_meter2_info)
-//	80519648: 80430188 (g_meter2_info)
+/* 80519578-80519664 0000D8 00EC+00 1/1 0/0 0/0 .text            rider_game__FP11econt_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rider_game(econt_class* param_0) {
+static asm void rider_game(econt_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_econt/d_a_econt/rider_game__FP11econt_class.s"
 }
 #pragma pop
 
-/* 80519664-805196B4 0050+00 s=1 e=0 z=0  None .text      daEcont_Execute__FP11econt_class */
-//	8051969C: 80519578 (rider_game__FP11econt_class)
+/* 80519664-805196B4 0001C4 0050+00 1/0 0/0 0/0 .text            daEcont_Execute__FP11econt_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daEcont_Execute(econt_class* param_0) {
+static asm void daEcont_Execute(econt_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_econt/d_a_econt/daEcont_Execute__FP11econt_class.s"
 }
 #pragma pop
 
-/* 805196B4-805196BC 0008+00 s=1 e=0 z=0  None .text      daEcont_IsDelete__FP11econt_class */
+/* 805196B4-805196BC 000214 0008+00 1/0 0/0 0/0 .text            daEcont_IsDelete__FP11econt_class
+ */
 static bool daEcont_IsDelete(econt_class* param_0) {
     return true;
 }
 
-/* 805196BC-805196E4 0028+00 s=1 e=0 z=0  None .text      daEcont_Delete__FP11econt_class */
-//	805196CC: 8002F79C (dComIfG_TimerDeleteRequest__Fi)
+/* 805196BC-805196E4 00021C 0028+00 1/0 0/0 0/0 .text            daEcont_Delete__FP11econt_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daEcont_Delete(econt_class* param_0) {
+static asm void daEcont_Delete(econt_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_econt/d_a_econt/daEcont_Delete__FP11econt_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8051977C-80519780 0004+00 s=1 e=0 z=0  None .rodata    @3870 */
+/* 8051977C-80519780 000000 0004+00 1/1 0/0 0/0 .rodata          @3870 */
 SECTION_RODATA static u32 const lit_3870 = 0x43520000;
+SECTION_DEAD void* const cg_8051977C = (void*)(&lit_3870);
 
-/* 805196E4-80519774 0090+00 s=1 e=0 z=0  None .text      daEcont_Create__FP10fopAc_ac_c */
-//	805196FC: 8051977C (lit_3870)
-//	80519700: 8051977C (lit_3870)
-//	80519718: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8051974C: 80260F8C (dTimer_createTimer__FlUlUcUcffff)
+/* 80519780-80519784 000004 0004+00 0/1 0/0 0/0 .rodata          @3871 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3871 = 0x43CD0000;
+SECTION_DEAD void* const cg_80519780 = (void*)(&lit_3871);
+#pragma pop
+
+/* 80519784-80519788 000008 0004+00 0/1 0/0 0/0 .rodata          @3872 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3872 = 0x42000000;
+SECTION_DEAD void* const cg_80519784 = (void*)(&lit_3872);
+#pragma pop
+
+/* 80519788-8051978C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3873 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3873 = 0x43D18000;
+SECTION_DEAD void* const cg_80519788 = (void*)(&lit_3873);
+#pragma pop
+
+/* 805196E4-80519774 000244 0090+00 1/0 0/0 0/0 .text            daEcont_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daEcont_Create(fopAc_ac_c* param_0) {
+static asm void daEcont_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_econt/d_a_econt/daEcont_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80519780-80519784 0004+00 s=0 e=0 z=0  None .rodata    @3871 */
-SECTION_RODATA u32 const lit_3871 = 0x43CD0000;
-
-/* 80519784-80519788 0004+00 s=0 e=0 z=0  None .rodata    @3872 */
-SECTION_RODATA u32 const lit_3872 = 0x42000000;
-
-/* 80519788-8051978C 0004+00 s=0 e=0 z=0  None .rodata    @3873 */
-SECTION_RODATA u32 const lit_3873 = 0x43D18000;
-
-/* 8051978C-805197AC 0020+00 s=1 e=0 z=0  None .data      l_daEcont_Method */
+/* 8051978C-805197AC -00001 0020+00 1/0 0/0 0/0 .data            l_daEcont_Method */
 SECTION_DATA static void* l_daEcont_Method[8] = {
     (void*)daEcont_Create__FP10fopAc_ac_c,
     (void*)daEcont_Delete__FP11econt_class,
@@ -191,8 +156,8 @@ SECTION_DATA static void* l_daEcont_Method[8] = {
     (void*)NULL,
 };
 
-/* 805197AC-805197DC 0030+00 s=0 e=0 z=1  None .data      g_profile_ECONT */
-SECTION_DATA void* g_profile_ECONT[12] = {
+/* 805197AC-805197DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ECONT */
+SECTION_DATA extern void* g_profile_ECONT[12] = {
     (void*)0xFFFFFFFD, (void*)0x0008FFFD,
     (void*)0x02E30000, (void*)&g_fpcLf_Method,
     (void*)0x000005C0, (void*)NULL,

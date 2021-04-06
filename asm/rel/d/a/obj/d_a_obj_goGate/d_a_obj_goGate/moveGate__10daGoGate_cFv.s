@@ -3,12 +3,12 @@ lbl_80BFD9D4:
 /* 80BFD9D8  7C 08 02 A6 */	mflr r0
 /* 80BFD9DC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BFD9E0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BFD9E4  4B 76 47 F8 */	b _savegpr_29
+/* 80BFD9E4  4B 76 47 F9 */	bl _savegpr_29
 /* 80BFD9E8  7C 7E 1B 78 */	mr r30, r3
-/* 80BFD9EC  3C 60 80 C0 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80BFD9F0  3B E3 E0 10 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80BFD9F4  3C 60 80 C0 */	lis r3, data_80BFE128@ha
-/* 80BFD9F8  38 A3 E1 28 */	addi r5, r3, data_80BFE128@l
+/* 80BFD9EC  3C 60 80 C0 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80BFE010@ha */
+/* 80BFD9F0  3B E3 E0 10 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80BFE010@l */
+/* 80BFD9F4  3C 60 80 C0 */	lis r3, data_80BFE128@ha /* 0x80BFE128@ha */
+/* 80BFD9F8  38 A3 E1 28 */	addi r5, r3, data_80BFE128@l /* 0x80BFE128@l */
 /* 80BFD9FC  88 05 00 00 */	lbz r0, 0(r5)
 /* 80BFDA00  7C 00 07 75 */	extsb. r0, r0
 /* 80BFDA04  40 82 00 58 */	bne lbl_80BFDA5C
@@ -35,12 +35,12 @@ lbl_80BFD9D4:
 /* 80BFDA58  98 05 00 00 */	stb r0, 0(r5)
 lbl_80BFDA5C:
 /* 80BFDA5C  8B BE 05 AE */	lbz r29, 0x5ae(r30)
-/* 80BFDA60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BFDA64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BFDA60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BFDA64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BFDA68  88 9E 05 AD */	lbz r4, 0x5ad(r30)
 /* 80BFDA6C  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BFDA70  7C 05 07 74 */	extsb r5, r0
-/* 80BFDA74  4B 43 78 EC */	b isSwitch__10dSv_info_cCFii
+/* 80BFDA74  4B 43 78 ED */	bl isSwitch__10dSv_info_cCFii
 /* 80BFDA78  98 7E 05 AE */	stb r3, 0x5ae(r30)
 /* 80BFDA7C  88 1E 05 AE */	lbz r0, 0x5ae(r30)
 /* 80BFDA80  7C 00 E8 40 */	cmplw r0, r29
@@ -59,10 +59,10 @@ lbl_80BFDAA4:
 /* 80BFDAAC  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80BFDAB0  39 9F 00 44 */	addi r12, r31, 0x44
 /* 80BFDAB4  7D 8C 02 14 */	add r12, r12, r0
-/* 80BFDAB8  4B 76 45 CC */	b __ptmf_scall
+/* 80BFDAB8  4B 76 45 CD */	bl __ptmf_scall
 /* 80BFDABC  60 00 00 00 */	nop 
 /* 80BFDAC0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BFDAC4  4B 76 47 64 */	b _restgpr_29
+/* 80BFDAC4  4B 76 47 65 */	bl _restgpr_29
 /* 80BFDAC8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80BFDACC  7C 08 03 A6 */	mtlr r0
 /* 80BFDAD0  38 21 00 20 */	addi r1, r1, 0x20

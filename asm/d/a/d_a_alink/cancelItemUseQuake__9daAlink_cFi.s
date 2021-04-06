@@ -14,8 +14,8 @@ lbl_800B71BC:
 /* 800B71BC  80 03 05 7C */	lwz r0, 0x57c(r3)
 /* 800B71C0  54 00 07 B8 */	rlwinm r0, r0, 0, 0x1e, 0x1c
 /* 800B71C4  90 03 05 7C */	stw r0, 0x57c(r3)
-/* 800B71C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B71CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B71C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B71CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B71D0  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800B71D4  38 80 00 1F */	li r4, 0x1f
 /* 800B71D8  4B FB 8B BD */	bl StopQuake__12dVibration_cFi

@@ -5,7 +5,7 @@ lbl_80588078:
 /* 80588084  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80588088  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8058808C  41 82 00 24 */	beq lbl_805880B0
-/* 80588090  4B A9 0C 50 */	b fopAc_IsActor__FPv
+/* 80588090  4B A9 0C 51 */	bl fopAc_IsActor__FPv
 /* 80588094  2C 03 00 00 */	cmpwi r3, 0
 /* 80588098  41 82 00 18 */	beq lbl_805880B0
 /* 8058809C  A8 1F 00 0E */	lha r0, 0xe(r31)

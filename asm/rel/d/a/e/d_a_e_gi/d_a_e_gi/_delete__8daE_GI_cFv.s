@@ -5,15 +5,15 @@ lbl_806D0054:
 /* 806D0060  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806D0064  7C 7F 1B 78 */	mr r31, r3
 /* 806D0068  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 806D006C  3C 80 80 6D */	lis r4, stringBase0@ha
-/* 806D0070  38 84 0F 78 */	addi r4, r4, stringBase0@l
-/* 806D0074  4B 95 CF 94 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 806D006C  3C 80 80 6D */	lis r4, d_a_e_gi__stringBase0@ha /* 0x806D0F78@ha */
+/* 806D0070  38 84 0F 78 */	addi r4, r4, d_a_e_gi__stringBase0@l /* 0x806D0F78@l */
+/* 806D0074  4B 95 CF 95 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 806D0078  88 1F 10 78 */	lbz r0, 0x1078(r31)
 /* 806D007C  28 00 00 00 */	cmplwi r0, 0
 /* 806D0080  41 82 00 10 */	beq lbl_806D0090
 /* 806D0084  38 00 00 00 */	li r0, 0
-/* 806D0088  3C 60 80 6D */	lis r3, data_806D1128@ha
-/* 806D008C  98 03 11 28 */	stb r0, data_806D1128@l(r3)
+/* 806D0088  3C 60 80 6D */	lis r3, data_806D1128@ha /* 0x806D1128@ha */
+/* 806D008C  98 03 11 28 */	stb r0, data_806D1128@l(r3)  /* 0x806D1128@l */
 lbl_806D0090:
 /* 806D0090  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 806D0094  28 00 00 00 */	cmplwi r0, 0

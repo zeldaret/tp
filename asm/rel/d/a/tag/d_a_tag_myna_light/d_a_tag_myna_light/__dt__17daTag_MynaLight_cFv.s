@@ -7,15 +7,15 @@ lbl_80D5D298:
 /* 80D5D2AC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D5D2B0  7C 9F 23 78 */	mr r31, r4
 /* 80D5D2B4  41 82 00 28 */	beq lbl_80D5D2DC
-/* 80D5D2B8  3C 80 80 D6 */	lis r4, __vt__17daTag_MynaLight_c@ha
-/* 80D5D2BC  38 04 D3 98 */	addi r0, r4, __vt__17daTag_MynaLight_c@l
+/* 80D5D2B8  3C 80 80 D6 */	lis r4, __vt__17daTag_MynaLight_c@ha /* 0x80D5D398@ha */
+/* 80D5D2BC  38 04 D3 98 */	addi r0, r4, __vt__17daTag_MynaLight_c@l /* 0x80D5D398@l */
 /* 80D5D2C0  90 1E 05 68 */	stw r0, 0x568(r30)
 /* 80D5D2C4  38 80 00 00 */	li r4, 0
-/* 80D5D2C8  4B 2B B9 C4 */	b __dt__10fopAc_ac_cFv
+/* 80D5D2C8  4B 2B B9 C5 */	bl __dt__10fopAc_ac_cFv
 /* 80D5D2CC  7F E0 07 35 */	extsh. r0, r31
 /* 80D5D2D0  40 81 00 0C */	ble lbl_80D5D2DC
 /* 80D5D2D4  7F C3 F3 78 */	mr r3, r30
-/* 80D5D2D8  4B 57 1A 64 */	b __dl__FPv
+/* 80D5D2D8  4B 57 1A 65 */	bl __dl__FPv
 lbl_80D5D2DC:
 /* 80D5D2DC  7F C3 F3 78 */	mr r3, r30
 /* 80D5D2E0  83 E1 00 0C */	lwz r31, 0xc(r1)

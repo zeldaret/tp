@@ -1,6 +1,6 @@
 lbl_802CBB7C:
-/* 802CBB7C  3C 60 80 43 */	lis r3, sCorrectPhrase@ha
-/* 802CBB80  38 C3 41 F8 */	addi r6, r3, sCorrectPhrase@l
+/* 802CBB7C  3C 60 80 43 */	lis r3, sCorrectPhrase@ha /* 0x804341F8@ha */
+/* 802CBB80  38 C3 41 F8 */	addi r6, r3, sCorrectPhrase@l /* 0x804341F8@l */
 /* 802CBB84  3C A0 01 00 */	lis r5, 0x0100 /* 0x01000052@ha */
 /* 802CBB88  38 05 00 52 */	addi r0, r5, 0x0052 /* 0x01000052@l */
 /* 802CBB8C  90 06 00 00 */	stw r0, 0(r6)

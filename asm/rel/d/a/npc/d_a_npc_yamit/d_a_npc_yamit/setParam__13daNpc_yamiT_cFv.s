@@ -3,13 +3,13 @@ lbl_80B4A9A0:
 /* 80B4A9A4  7C 08 02 A6 */	mflr r0
 /* 80B4A9A8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B4A9AC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B4A9B0  4B 81 78 2C */	b _savegpr_29
+/* 80B4A9B0  4B 81 78 2D */	bl _savegpr_29
 /* 80B4A9B4  7C 7F 1B 78 */	mr r31, r3
 /* 80B4A9B8  48 00 09 49 */	bl selectAction__13daNpc_yamiT_cFv
 /* 80B4A9BC  7F E3 FB 78 */	mr r3, r31
 /* 80B4A9C0  48 00 01 71 */	bl srchActors__13daNpc_yamiT_cFv
-/* 80B4A9C4  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha
-/* 80B4A9C8  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l
+/* 80B4A9C4  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha /* 0x80B4CDA4@ha */
+/* 80B4A9C8  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l /* 0x80B4CDA4@l */
 /* 80B4A9CC  AB A3 00 48 */	lha r29, 0x48(r3)
 /* 80B4A9D0  AB C3 00 4A */	lha r30, 0x4a(r3)
 /* 80B4A9D4  A8 A3 00 4C */	lha r5, 0x4c(r3)
@@ -28,18 +28,18 @@ lbl_80B4A9A0:
 lbl_80B4AA08:
 /* 80B4AA08  7C A3 07 34 */	extsh r3, r5
 /* 80B4AA0C  7C 84 07 34 */	extsh r4, r4
-/* 80B4AA10  4B 60 20 08 */	b daNpcT_getDistTableIdx__Fii
+/* 80B4AA10  4B 60 20 09 */	bl daNpcT_getDistTableIdx__Fii
 /* 80B4AA14  98 7F 05 44 */	stb r3, 0x544(r31)
 /* 80B4AA18  88 1F 05 44 */	lbz r0, 0x544(r31)
 /* 80B4AA1C  98 1F 05 45 */	stb r0, 0x545(r31)
 /* 80B4AA20  7F A3 07 34 */	extsh r3, r29
 /* 80B4AA24  7F C4 07 34 */	extsh r4, r30
-/* 80B4AA28  4B 60 1F F0 */	b daNpcT_getDistTableIdx__Fii
+/* 80B4AA28  4B 60 1F F1 */	bl daNpcT_getDistTableIdx__Fii
 /* 80B4AA2C  98 7F 05 47 */	stb r3, 0x547(r31)
 /* 80B4AA30  38 00 00 00 */	li r0, 0
 /* 80B4AA34  90 1F 05 5C */	stw r0, 0x55c(r31)
-/* 80B4AA38  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha
-/* 80B4AA3C  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l
+/* 80B4AA38  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha /* 0x80B4CDA4@ha */
+/* 80B4AA3C  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l /* 0x80B4CDA4@l */
 /* 80B4AA40  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80B4AA44  D0 1F 04 EC */	stfs f0, 0x4ec(r31)
 /* 80B4AA48  D0 1F 04 F0 */	stfs f0, 0x4f0(r31)
@@ -57,9 +57,9 @@ lbl_80B4AA08:
 /* 80B4AA78  D0 1F 0D F8 */	stfs f0, 0xdf8(r31)
 /* 80B4AA7C  38 7F 08 A0 */	addi r3, r31, 0x8a0
 /* 80B4AA80  C0 3F 0D F0 */	lfs f1, 0xdf0(r31)
-/* 80B4AA84  4B 52 B4 BC */	b SetWallR__12dBgS_AcchCirFf
-/* 80B4AA88  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha
-/* 80B4AA8C  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l
+/* 80B4AA84  4B 52 B4 BD */	bl SetWallR__12dBgS_AcchCirFf
+/* 80B4AA88  3C 60 80 B5 */	lis r3, m__19daNpc_yamiT_Param_c@ha /* 0x80B4CDA4@ha */
+/* 80B4AA8C  38 63 CD A4 */	addi r3, r3, m__19daNpc_yamiT_Param_c@l /* 0x80B4CDA4@l */
 /* 80B4AA90  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80B4AA94  D0 1F 08 D0 */	stfs f0, 0x8d0(r31)
 /* 80B4AA98  C0 03 00 0C */	lfs f0, 0xc(r3)
@@ -71,7 +71,7 @@ lbl_80B4AA08:
 /* 80B4AAB0  C0 03 00 44 */	lfs f0, 0x44(r3)
 /* 80B4AAB4  D0 1F 0A 84 */	stfs f0, 0xa84(r31)
 /* 80B4AAB8  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B4AABC  4B 81 77 6C */	b _restgpr_29
+/* 80B4AABC  4B 81 77 6D */	bl _restgpr_29
 /* 80B4AAC0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B4AAC4  7C 08 03 A6 */	mtlr r0
 /* 80B4AAC8  38 21 00 20 */	addi r1, r1, 0x20

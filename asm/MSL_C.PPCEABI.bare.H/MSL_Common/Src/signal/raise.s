@@ -15,9 +15,9 @@ lbl_80368844:
 lbl_8036884C:
 /* 8036884C  38 60 00 04 */	li r3, 4
 /* 80368850  4B FF CC 19 */	bl __begin_critical_region
-/* 80368854  3C 60 80 45 */	lis r3, signal_funcs@ha
+/* 80368854  3C 60 80 45 */	lis r3, signal_funcs@ha /* 0x8044D878@ha */
 /* 80368858  57 C0 10 3A */	slwi r0, r30, 2
-/* 8036885C  38 63 D8 78 */	addi r3, r3, signal_funcs@l
+/* 8036885C  38 63 D8 78 */	addi r3, r3, signal_funcs@l /* 0x8044D878@l */
 /* 80368860  7C 63 02 14 */	add r3, r3, r0
 /* 80368864  87 E3 FF FC */	lwzu r31, -4(r3)
 /* 80368868  28 1F 00 01 */	cmplwi r31, 1

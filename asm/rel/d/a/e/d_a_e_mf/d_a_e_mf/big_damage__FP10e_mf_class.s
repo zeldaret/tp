@@ -5,8 +5,8 @@ lbl_8070FF98:
 /* 8070FFA4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8070FFA8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8070FFAC  7C 7F 1B 78 */	mr r31, r3
-/* 8070FFB0  3C 60 80 71 */	lis r3, lit_3828@ha
-/* 8070FFB4  3B C3 39 74 */	addi r30, r3, lit_3828@l
+/* 8070FFB0  3C 60 80 71 */	lis r3, lit_3828@ha /* 0x80713974@ha */
+/* 8070FFB4  3B C3 39 74 */	addi r30, r3, lit_3828@l /* 0x80713974@l */
 /* 8070FFB8  A8 9F 10 A2 */	lha r4, 0x10a2(r31)
 /* 8070FFBC  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 8070FFC0  38 03 80 00 */	addi r0, r3, -32768
@@ -21,7 +21,7 @@ lbl_8070FF98:
 /* 8070FFE4  A8 1F 10 A2 */	lha r0, 0x10a2(r31)
 /* 8070FFE8  B0 1F 07 06 */	sth r0, 0x706(r31)
 /* 8070FFEC  C0 3E 00 60 */	lfs f1, 0x60(r30)
-/* 8070FFF0  4B B5 79 64 */	b cM_rndF__Ff
+/* 8070FFF0  4B B5 79 65 */	bl cM_rndF__Ff
 /* 8070FFF4  C0 1E 00 E8 */	lfs f0, 0xe8(r30)
 /* 8070FFF8  EC 00 08 2A */	fadds f0, f0, f1
 /* 8070FFFC  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -33,7 +33,7 @@ lbl_8070FF98:
 /* 80710014  54 60 06 31 */	rlwinm. r0, r3, 0, 0x18, 0x18
 /* 80710018  41 82 00 28 */	beq lbl_80710040
 /* 8071001C  C0 3E 01 1C */	lfs f1, 0x11c(r30)
-/* 80710020  4B B5 79 6C */	b cM_rndFX__Ff
+/* 80710020  4B B5 79 6D */	bl cM_rndFX__Ff
 /* 80710024  C0 1E 01 18 */	lfs f0, 0x118(r30)
 /* 80710028  EC 00 08 2A */	fadds f0, f0, f1
 /* 8071002C  FC 00 00 1E */	fctiwz f0, f0
@@ -45,7 +45,7 @@ lbl_80710040:
 /* 80710040  54 60 05 29 */	rlwinm. r0, r3, 0, 0x14, 0x14
 /* 80710044  41 82 00 2C */	beq lbl_80710070
 /* 80710048  C0 3E 01 1C */	lfs f1, 0x11c(r30)
-/* 8071004C  4B B5 79 40 */	b cM_rndFX__Ff
+/* 8071004C  4B B5 79 41 */	bl cM_rndFX__Ff
 /* 80710050  C0 1E 01 18 */	lfs f0, 0x118(r30)
 /* 80710054  EC 00 08 2A */	fadds f0, f0, f1
 /* 80710058  FC 00 00 50 */	fneg f0, f0
@@ -56,7 +56,7 @@ lbl_80710040:
 /* 8071006C  48 00 00 1C */	b lbl_80710088
 lbl_80710070:
 /* 80710070  C0 3E 01 20 */	lfs f1, 0x120(r30)
-/* 80710074  4B B5 79 18 */	b cM_rndFX__Ff
+/* 80710074  4B B5 79 19 */	bl cM_rndFX__Ff
 /* 80710078  FC 00 08 1E */	fctiwz f0, f1
 /* 8071007C  D8 01 00 08 */	stfd f0, 8(r1)
 /* 80710080  80 01 00 0C */	lwz r0, 0xc(r1)

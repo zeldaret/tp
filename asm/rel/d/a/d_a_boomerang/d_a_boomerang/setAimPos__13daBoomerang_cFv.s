@@ -5,8 +5,8 @@ lbl_8049FD6C:
 /* 8049FD78  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 8049FD7C  28 00 00 01 */	cmplwi r0, 1
 /* 8049FD80  4C 82 00 20 */	bnelr 
-/* 8049FD84  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8049FD88  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8049FD84  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8049FD88  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8049FD8C  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 8049FD90  C0 04 35 34 */	lfs f0, 0x3534(r4)
 /* 8049FD94  D0 03 09 90 */	stfs f0, 0x990(r3)

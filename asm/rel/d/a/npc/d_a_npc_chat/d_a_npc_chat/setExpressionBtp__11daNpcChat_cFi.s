@@ -14,10 +14,10 @@ lbl_80983114:
 /* 80983118  80 63 00 04 */	lwz r3, 4(r3)
 /* 8098311C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80983120  7F E3 FB 78 */	mr r3, r31
-/* 80983124  3C C0 80 98 */	lis r6, lit_4247@ha
-/* 80983128  C0 26 6F 10 */	lfs f1, lit_4247@l(r6)
+/* 80983124  3C C0 80 98 */	lis r6, lit_4247@ha /* 0x80986F10@ha */
+/* 80983128  C0 26 6F 10 */	lfs f1, lit_4247@l(r6)  /* 0x80986F10@l */
 /* 8098312C  38 C0 00 02 */	li r6, 2
-/* 80983130  4B 7C FB 94 */	b setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
+/* 80983130  4B 7C FB 95 */	bl setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80983134  2C 03 00 00 */	cmpwi r3, 0
 /* 80983138  41 82 00 18 */	beq lbl_80983150
 /* 8098313C  80 1F 09 9C */	lwz r0, 0x99c(r31)

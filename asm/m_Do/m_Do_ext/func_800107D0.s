@@ -18,8 +18,8 @@ lbl_800107D0:
 /* 80010810  83 C1 00 5C */	lwz r30, 0x5c(r1)
 /* 80010814  83 E1 00 60 */	lwz r31, 0x60(r1)
 /* 80010818  4B FF F1 39 */	bl __ct__13mDoExt_morf_cFv
-/* 8001081C  3C 60 80 3A */	lis r3, __vt__16mDoExt_McaMorfSO@ha
-/* 80010820  38 03 32 B0 */	addi r0, r3, __vt__16mDoExt_McaMorfSO@l
+/* 8001081C  3C 60 80 3A */	lis r3, __vt__16mDoExt_McaMorfSO@ha /* 0x803A32B0@ha */
+/* 80010820  38 03 32 B0 */	addi r0, r3, __vt__16mDoExt_McaMorfSO@l /* 0x803A32B0@l */
 /* 80010824  90 15 00 00 */	stw r0, 0(r21)
 /* 80010828  38 00 00 00 */	li r0, 0
 /* 8001082C  98 15 00 54 */	stb r0, 0x54(r21)

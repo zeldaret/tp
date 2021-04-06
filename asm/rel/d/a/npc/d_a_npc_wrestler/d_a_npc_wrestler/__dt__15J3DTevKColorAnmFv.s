@@ -7,7 +7,7 @@ lbl_80B2FBF4:
 /* 80B2FC08  41 82 00 10 */	beq lbl_80B2FC18
 /* 80B2FC0C  7C 80 07 35 */	extsh. r0, r4
 /* 80B2FC10  40 81 00 08 */	ble lbl_80B2FC18
-/* 80B2FC14  4B 79 F1 28 */	b __dl__FPv
+/* 80B2FC14  4B 79 F1 29 */	bl __dl__FPv
 lbl_80B2FC18:
 /* 80B2FC18  7F E3 FB 78 */	mr r3, r31
 /* 80B2FC1C  83 E1 00 0C */	lwz r31, 0xc(r1)

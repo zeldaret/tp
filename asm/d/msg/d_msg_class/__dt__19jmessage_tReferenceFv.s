@@ -7,8 +7,8 @@ lbl_80228CB4:
 /* 80228CC8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80228CCC  7C 9F 23 78 */	mr r31, r4
 /* 80228CD0  41 82 00 3C */	beq lbl_80228D0C
-/* 80228CD4  3C 60 80 3C */	lis r3, __vt__19jmessage_tReference@ha
-/* 80228CD8  38 03 0A D4 */	addi r0, r3, __vt__19jmessage_tReference@l
+/* 80228CD4  3C 60 80 3C */	lis r3, __vt__19jmessage_tReference@ha /* 0x803C0AD4@ha */
+/* 80228CD8  38 03 0A D4 */	addi r0, r3, __vt__19jmessage_tReference@l /* 0x803C0AD4@l */
 /* 80228CDC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80228CE0  80 7E 00 08 */	lwz r3, 8(r30)
 /* 80228CE4  48 0A 60 59 */	bl __dl__FPv

@@ -39,11 +39,11 @@ struct daGraveStone_c {
     /* 80C1311C */ void Delete();
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -63,6 +63,8 @@ struct dPa_control_c {
     };
 };
 
+struct csXyz {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F58 */ void SetWall(f32, f32);
@@ -74,8 +76,6 @@ struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -153,9 +153,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -166,13 +166,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daGraveStone_Draw(daGraveStone_c*);
-static void daGraveStone_Execute(daGraveStone_c*);
-static bool daGraveStone_IsDelete(daGraveStone_c*);
-static void daGraveStone_Delete(daGraveStone_c*);
-static void daGraveStone_create(fopAc_ac_c*);
-void cLib_calcTimer__template0(s16*);
 
 extern "C" void setBaseMtx__14daGraveStone_cFv();
 extern "C" void moveCalc__14daGraveStone_cFv();
@@ -195,35 +188,14 @@ extern "C" static void daGraveStone_Execute__FP14daGraveStone_c();
 extern "C" static bool daGraveStone_IsDelete__FP14daGraveStone_c();
 extern "C" static void daGraveStone_Delete__FP14daGraveStone_c();
 extern "C" static void daGraveStone_create__FP10fopAc_ac_c();
-extern "C" void func_80C1321C();
+extern "C" void func_80C1321C(s16*);
 extern "C" static void func_80C13238();
 extern "C" static void func_80C13240();
-extern "C" extern u32 const lit_3718;
-extern "C" extern u32 const lit_3719;
-extern "C" extern u32 const lit_3720;
-extern "C" extern u32 const lit_3721;
-extern "C" extern u32 const lit_3722;
-extern "C" extern u32 const lit_3723;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_GraveStone[12];
-extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
-extern "C" extern void* __vt__14daGraveStone_c[10];
+extern "C" extern char const* const d_a_obj_grave_stone__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fopAcM_posMoveF(fopAc_ac_c*, cXyz const*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();
@@ -295,19 +267,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80C125F8-80C1266C 0074+00 s=2 e=0 z=0  None .text      setBaseMtx__14daGraveStone_cFv */
-//	80C1260C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12610: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12620: 803468E8 (PSMTXTrans)
-//	80C12624: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12628: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12630: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80C12634: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12638: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12644: 803464B0 (PSMTXCopy)
-//	80C12648: 803DD470 (now__14mDoMtx_stack_c)
-//	80C1264C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12654: 803464B0 (PSMTXCopy)
+/* 80C125F8-80C1266C 000078 0074+00 2/2 0/0 0/0 .text            setBaseMtx__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,49 +278,76 @@ asm void daGraveStone_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C13250-80C13280 0030+00 s=1 e=0 z=0  None .rodata    mCcDObjInfo__14daGraveStone_c */
+/* 80C13250-80C13280 000000 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__14daGraveStone_c */
 SECTION_RODATA static u8 const mCcDObjInfo__14daGraveStone_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80C13250 = (void*)(&mCcDObjInfo__14daGraveStone_c);
 
-/* 80C1266C-80C12918 02AC+00 s=1 e=0 z=0  None .text      moveCalc__14daGraveStone_cFv */
-//	80C12684: 80C13250 (mCcDObjInfo__14daGraveStone_c)
-//	80C12688: 80C13250 (mCcDObjInfo__14daGraveStone_c)
-//	80C12690: 80C1321C (func_80C1321C)
-//	80C126A4: 8001A6CC (fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz)
-//	80C126AC: 804061C0 (g_dComIfG_gameInfo)
-//	80C126B0: 804061C0 (g_dComIfG_gameInfo)
-//	80C126B8: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS)
-//	80C12744: 80C12A38 (setEnvTevColor__14daGraveStone_cFv)
-//	80C1274C: 80C12A94 (setRoomNo__14daGraveStone_cFv)
-//	80C12770: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12774: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12778: 803464B0 (PSMTXCopy)
-//	80C127B0: 8000CCC8 (push__14mDoMtx_stack_cFv)
-//	80C127BC: 803DD470 (now__14mDoMtx_stack_c)
-//	80C127C0: 803DD470 (now__14mDoMtx_stack_c)
-//	80C127CC: 80346D6C (PSMTXMultVec)
-//	80C127F0: 8000CD14 (pop__14mDoMtx_stack_cFv)
-//	80C127FC: 8000CCC8 (push__14mDoMtx_stack_cFv)
-//	80C12800: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12804: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12810: 80346D6C (PSMTXMultVec)
-//	80C12834: 8000CD14 (pop__14mDoMtx_stack_cFv)
-//	80C12840: 8000CCC8 (push__14mDoMtx_stack_cFv)
-//	80C12844: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12848: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12854: 80346D6C (PSMTXMultVec)
-//	80C12878: 8000CD14 (pop__14mDoMtx_stack_cFv)
-//	80C12884: 8000CCC8 (push__14mDoMtx_stack_cFv)
-//	80C12888: 803DD470 (now__14mDoMtx_stack_c)
-//	80C1288C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C12898: 80346D6C (PSMTXMultVec)
-//	80C128BC: 8000CD14 (pop__14mDoMtx_stack_cFv)
-//	80C128CC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80C128D0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80C128FC: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 80C13280-80C132C4 000030 0044+00 1/1 0/0 0/0 .rodata          mCcDCyl__14daGraveStone_c */
+SECTION_RODATA static u8 const mCcDCyl__14daGraveStone_c[68] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80C13280 = (void*)(&mCcDCyl__14daGraveStone_c);
+
+/* 80C132C4-80C132C8 000074 0004+00 2/3 0/0 0/0 .rodata          @3717 */
+SECTION_RODATA static u8 const lit_3717[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80C132C4 = (void*)(&lit_3717);
+
+/* 80C132C8-80C132CC 000078 0004+00 0/1 0/0 0/0 .rodata          @3718 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3718 = 0x3F800000;
+SECTION_DEAD void* const cg_80C132C8 = (void*)(&lit_3718);
+#pragma pop
+
+/* 80C132CC-80C132D0 00007C 0004+00 0/1 0/0 0/0 .rodata          @3719 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3719 = 0xC1F00000;
+SECTION_DEAD void* const cg_80C132CC = (void*)(&lit_3719);
+#pragma pop
+
+/* 80C132D0-80C132D4 000080 0004+00 0/1 0/0 0/0 .rodata          @3720 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3720 = 0x41F00000;
+SECTION_DEAD void* const cg_80C132D0 = (void*)(&lit_3720);
+#pragma pop
+
+/* 80C132D4-80C132D8 000084 0004+00 0/1 0/0 0/0 .rodata          @3721 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3721 = 0x42B40000;
+SECTION_DEAD void* const cg_80C132D4 = (void*)(&lit_3721);
+#pragma pop
+
+/* 80C132D8-80C132DC 000088 0004+00 0/1 0/0 0/0 .rodata          @3722 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3722 = 0xC2B40000;
+SECTION_DEAD void* const cg_80C132D8 = (void*)(&lit_3722);
+#pragma pop
+
+/* 80C132DC-80C132E0 00008C 0004+00 0/1 0/0 0/0 .rodata          @3723 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3723 = 0xBF800000;
+SECTION_DEAD void* const cg_80C132DC = (void*)(&lit_3723);
+#pragma pop
+
+/* 80C1266C-80C12918 0000EC 02AC+00 1/1 0/0 0/0 .text            moveCalc__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -371,54 +358,11 @@ asm void daGraveStone_c::moveCalc() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C13280-80C132C4 0044+00 s=1 e=0 z=0  None .rodata    mCcDCyl__14daGraveStone_c */
-SECTION_RODATA static u8 const mCcDCyl__14daGraveStone_c[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C132C4-80C132C8 0004+00 s=2 e=0 z=0  None .rodata    @3717 */
-SECTION_RODATA static u8 const lit_3717[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80C132C8-80C132CC 0004+00 s=0 e=0 z=0  None .rodata    @3718 */
-SECTION_RODATA u32 const lit_3718 = 0x3F800000;
-
-/* 80C132CC-80C132D0 0004+00 s=0 e=0 z=0  None .rodata    @3719 */
-SECTION_RODATA u32 const lit_3719 = 0xC1F00000;
-
-/* 80C132D0-80C132D4 0004+00 s=0 e=0 z=0  None .rodata    @3720 */
-SECTION_RODATA u32 const lit_3720 = 0x41F00000;
-
-/* 80C132D4-80C132D8 0004+00 s=0 e=0 z=0  None .rodata    @3721 */
-SECTION_RODATA u32 const lit_3721 = 0x42B40000;
-
-/* 80C132D8-80C132DC 0004+00 s=0 e=0 z=0  None .rodata    @3722 */
-SECTION_RODATA u32 const lit_3722 = 0xC2B40000;
-
-/* 80C132DC-80C132E0 0004+00 s=0 e=0 z=0  None .rodata    @3723 */
-SECTION_RODATA u32 const lit_3723 = 0xBF800000;
-
-/* 80C132E0-80C132E4 0004+00 s=1 e=0 z=0  None .rodata    @3771 */
+/* 80C132E0-80C132E4 000090 0004+00 1/1 0/0 0/0 .rodata          @3771 */
 SECTION_RODATA static u32 const lit_3771 = 0x40200000;
+SECTION_DEAD void* const cg_80C132E0 = (void*)(&lit_3771);
 
-/* 80C12918-80C12A38 0120+00 s=1 e=0 z=0  None .text      setPrtcl__14daGraveStone_cFv */
-//	80C12928: 803621D0 (_savegpr_26)
-//	80C12938: 804061C0 (g_dComIfG_gameInfo)
-//	80C1293C: 804061C0 (g_dComIfG_gameInfo)
-//	80C12940: 80C132C4 (lit_3717)
-//	80C12944: 80C132C4 (lit_3717)
-//	80C129A4: 80051008
-//(setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff) 	80C129C0:
-// 8004B918 (getEmitter__Q213dPa_control_c7level_cFUl) 	80C129CC: 80C132E0 (lit_3771) 	80C129D0:
-// 80C132E0 (lit_3771) 	80C12A24: 8036221C (_restgpr_26)
+/* 80C12918-80C12A38 000398 0120+00 1/1 0/0 0/0 .text            setPrtcl__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -428,11 +372,8 @@ asm void daGraveStone_c::setPrtcl() {
 }
 #pragma pop
 
-/* 80C12A38-80C12A94 005C+00 s=2 e=0 z=0  None .text      setEnvTevColor__14daGraveStone_cFv */
-//	80C12A50: 804061C0 (g_dComIfG_gameInfo)
-//	80C12A54: 804061C0 (g_dComIfG_gameInfo)
-//	80C12A64: 80074BE8 (GetPolyColor__4dBgSFRC13cBgS_PolyInfo)
-//	80C12A74: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80C12A38-80C12A94 0004B8 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__14daGraveStone_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,10 +383,7 @@ asm void daGraveStone_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 80C12A94-80C12AD8 0044+00 s=2 e=0 z=0  None .text      setRoomNo__14daGraveStone_cFv */
-//	80C12AA8: 804061C0 (g_dComIfG_gameInfo)
-//	80C12AAC: 804061C0 (g_dComIfG_gameInfo)
-//	80C12AB8: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80C12A94-80C12AD8 000514 0044+00 2/2 0/0 0/0 .text            setRoomNo__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,22 +393,7 @@ asm void daGraveStone_c::setRoomNo() {
 }
 #pragma pop
 
-/* 80C12AD8-80C12CA4 01CC+00 s=1 e=0 z=0  None .text      Create__14daGraveStone_cFv */
-//	80C12AE8: 803621D8 (_savegpr_28)
-//	80C12AF0: 80C125F8 (setBaseMtx__14daGraveStone_cFv)
-//	80C12B04: 80C132C4 (lit_3717)
-//	80C12B08: 80C132C4 (lit_3717)
-//	80C12B10: 80075F58 (SetWall__12dBgS_AcchCirFff)
-//	80C12B3C: 80076248
-//(Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz) 	80C12B50:
-//80083860 (Init__9dCcD_SttsFiiP10fopAc_ac_c) 	80C12B58: 80C13280 (mCcDCyl__14daGraveStone_c)
-//80C12B5C: 80C13280 (mCcDCyl__14daGraveStone_c) 	80C12B60: 800848B4
-// (Set__8dCcD_CylFRC11dCcD_SrcCyl) 	80C12B70: 804061C0 (g_dComIfG_gameInfo) 	80C12B74: 804061C0
-// (g_dComIfG_gameInfo) 	80C12B7C: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS) 	80C12BF4: 80C12A38
-//(setEnvTevColor__14daGraveStone_cFv) 	80C12BFC: 80C12A94 (setRoomNo__14daGraveStone_cFv) 80C12C20:
-// 80C132C4 (lit_3717) 	80C12C24: 80C132C4 (lit_3717) 	80C12C3C: 80050C9C
-//(init__7dPaPo_cFP9dBgS_Acchff) 	80C12C7C: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//80C12C90: 80362224 (_restgpr_28)
+/* 80C12AD8-80C12CA4 000558 01CC+00 1/0 0/0 0/0 .text            Create__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -481,27 +404,10 @@ asm void daGraveStone_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C132E4-80C13301 001D+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C132E4 = "H_Haka";
-SECTION_DEAD char const* const stringBase_80C132EB = "H_Haka.bmd";
-SECTION_DEAD char const* const stringBase_80C132F6 = "H_Haka.dzb";
-#pragma pop
+/* 80C13304-80C13308 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_grave_stone__stringBase0;
 
-/* 80C13304-80C13308 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C12CA4-80C12D1C 0078+00 s=1 e=0 z=0  None .text      CreateHeap__14daGraveStone_cFv */
-//	80C12CB8: 80C13304 (l_arcName)
-//	80C12CBC: 80C13304 (l_arcName)
-//	80C12CC4: 80C132E4 (stringBase0)
-//	80C12CC8: 80C132E4 (stringBase0)
-//	80C12CD0: 804061C0 (g_dComIfG_gameInfo)
-//	80C12CD4: 804061C0 (g_dComIfG_gameInfo)
-//	80C12CE4: 8003C37C (getRes__14dRes_control_cFPCcPCcP11dRes_info_ci)
-//	80C12CF4: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 80C12CA4-80C12D1C 000724 0078+00 1/0 0/0 0/0 .text            CreateHeap__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -512,7 +418,7 @@ asm void daGraveStone_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C13308-80C13328 0020+00 s=1 e=0 z=0  None .data      l_daGraveStone_Method */
+/* 80C13308-80C13328 -00001 0020+00 1/0 0/0 0/0 .data            l_daGraveStone_Method */
 SECTION_DATA static void* l_daGraveStone_Method[8] = {
     (void*)daGraveStone_create__FP10fopAc_ac_c,
     (void*)daGraveStone_Delete__FP14daGraveStone_c,
@@ -524,8 +430,8 @@ SECTION_DATA static void* l_daGraveStone_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C13328-80C13358 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_GraveStone */
-SECTION_DATA void* g_profile_Obj_GraveStone[12] = {
+/* 80C13328-80C13358 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_GraveStone */
+SECTION_DATA extern void* g_profile_Obj_GraveStone[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00870000, (void*)&g_fpcLf_Method,
     (void*)0x00000AEC, (void*)NULL,
@@ -534,22 +440,22 @@ SECTION_DATA void* g_profile_Obj_GraveStone[12] = {
     (void*)0x00044100, (void*)0x000E0000,
 };
 
-/* 80C13358-80C13364 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA void* __vt__8cM3dGCyl[3] = {
+/* 80C13358-80C13364 000054 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80C13364-80C13370 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA void* __vt__8cM3dGAab[3] = {
+/* 80C13364-80C13370 000060 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C13370-80C13394 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
+/* 80C13370-80C13394 00006C 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_ObjAcchFv,
@@ -561,8 +467,8 @@ SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_80C13238,
 };
 
-/* 80C13394-80C133BC 0028+00 s=1 e=0 z=0  None .data      __vt__14daGraveStone_c */
-SECTION_DATA void* __vt__14daGraveStone_c[10] = {
+/* 80C13394-80C133BC 000090 0028+00 1/1 0/0 0/0 .data            __vt__14daGraveStone_c */
+SECTION_DATA extern void* __vt__14daGraveStone_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daGraveStone_cFv,
@@ -575,57 +481,7 @@ SECTION_DATA void* __vt__14daGraveStone_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C12D1C-80C12EF0 01D4+00 s=1 e=0 z=0  None .text      create__14daGraveStone_cFv */
-//	80C12D2C: 803621DC (_savegpr_29)
-//	80C12D4C: 80078624 (__ct__16dBgS_MoveBgActorFv)
-//	80C12D50: 80C13394 (__vt__14daGraveStone_c)
-//	80C12D54: 80C13394 (__vt__14daGraveStone_c)
-//	80C12D64: 800760A0 (__ct__9dBgS_AcchFv)
-//	80C12D68: 80C13370 (__vt__12dBgS_ObjAcch)
-//	80C12D6C: 80C13370 (__vt__12dBgS_ObjAcch)
-//	80C12D88: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	80C12D8C: 803C3728 (__vt__9cCcD_Stts)
-//	80C12D90: 803C3728 (__vt__9cCcD_Stts)
-//	80C12D9C: 80083760 (__ct__10dCcD_GSttsFv)
-//	80C12DA0: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C12DA4: 803AC2E4 (__vt__9dCcD_Stts)
-//	80C12DB8: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	80C12DC4: 80083A28 (__ct__12dCcD_GObjInfFv)
-//	80C12DC8: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C12DCC: 803C36D0 (__vt__14cCcD_ShapeAttr)
-//	80C12DD4: 80C13364 (__vt__8cM3dGAab)
-//	80C12DD8: 80C13364 (__vt__8cM3dGAab)
-//	80C12DE0: 80C13358 (__vt__8cM3dGCyl)
-//	80C12DE4: 80C13358 (__vt__8cM3dGCyl)
-//	80C12DEC: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C12DF0: 803C35A4 (__vt__12cCcD_CylAttr)
-//	80C12E00: 803AC050 (__vt__8dCcD_Cyl)
-//	80C12E04: 803AC050 (__vt__8dCcD_Cyl)
-//	80C12E20: 80267C1C (__ct__11cBgS_GndChkFv)
-//	80C12E28: 80C12F2C (__ct__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv)
-//	80C12E2C: 80C12F2C (__ct__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv)
-//	80C12E30: 80C12EF0 (__dt__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv)
-//	80C12E34: 80C12EF0 (__dt__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv)
-//	80C12E40: 80361D60 (__construct_array)
-//	80C12E54: 80C13304 (l_arcName)
-//	80C12E58: 80C13304 (l_arcName)
-//	80C12E60: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80C12E70: 804061C0 (g_dComIfG_gameInfo)
-//	80C12E74: 804061C0 (g_dComIfG_gameInfo)
-//	80C12E7C: 80C13304 (l_arcName)
-//	80C12E80: 80C13304 (l_arcName)
-//	80C12E88: 80C132E4 (stringBase0)
-//	80C12E8C: 80C132E4 (stringBase0)
-//	80C12E98: 8003C6B8 (getObjectResName2Index__14dRes_control_cFPCcPCc)
-//	80C12EA4: 80C13304 (l_arcName)
-//	80C12EA8: 80C13304 (l_arcName)
-//	80C12EB0: 80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C12EB4:
-//80075AD8
-//(dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz) 	80C12EC0:
-//800787BC
-//(MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f)
-//	80C12EDC: 80362228 (_restgpr_29)
+/* 80C12D1C-80C12EF0 00079C 01D4+00 1/1 0/0 0/0 .text            create__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -635,9 +491,8 @@ asm void daGraveStone_c::create() {
 }
 #pragma pop
 
-/* 80C12EF0-80C12F2C 003C+00 s=1 e=0 z=0  None .text
+/* 80C12EF0-80C12F2C 000970 003C+00 1/1 0/0 0/0 .text
  * __dt__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv         */
-//	80C12F10: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -647,16 +502,13 @@ asm daGraveStone_c::daObj_GrvStn_prtclMngr_c::~daObj_GrvStn_prtclMngr_c() {
 }
 #pragma pop
 
-/* 80C12F2C-80C12F30 0004+00 s=1 e=0 z=0  None .text
+/* 80C12F2C-80C12F30 0009AC 0004+00 1/1 0/0 0/0 .text
  * __ct__Q214daGraveStone_c24daObj_GrvStn_prtclMngr_cFv         */
 daGraveStone_c::daObj_GrvStn_prtclMngr_c::daObj_GrvStn_prtclMngr_c() {
     /* empty function */
 }
 
-/* 80C12F30-80C12F78 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-//	80C12F48: 80C13358 (__vt__8cM3dGCyl)
-//	80C12F4C: 80C13358 (__vt__8cM3dGCyl)
-//	80C12F5C: 802CED3C (__dl__FPv)
+/* 80C12F30-80C12F78 0009B0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -666,10 +518,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80C12F78-80C12FC0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-//	80C12F90: 80C13364 (__vt__8cM3dGAab)
-//	80C12F94: 80C13364 (__vt__8cM3dGAab)
-//	80C12FA4: 802CED3C (__dl__FPv)
+/* 80C12F78-80C12FC0 0009F8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -679,11 +528,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C12FC0-80C13030 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
-//	80C12FE0: 80C13370 (__vt__12dBgS_ObjAcch)
-//	80C12FE4: 80C13370 (__vt__12dBgS_ObjAcch)
-//	80C13000: 80075F94 (__dt__9dBgS_AcchFv)
-//	80C13010: 802CED3C (__dl__FPv)
+/* 80C12FC0-80C13030 000A40 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -693,10 +538,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80C13030-80C13078 0048+00 s=1 e=0 z=0  None .text      Execute__14daGraveStone_cFPPA3_A4_f */
-//	80C1304C: 80C1266C (moveCalc__14daGraveStone_cFv)
-//	80C13054: 80C125F8 (setBaseMtx__14daGraveStone_cFv)
-//	80C1305C: 80C12918 (setPrtcl__14daGraveStone_cFv)
+/* 80C13030-80C13078 000AB0 0048+00 1/0 0/0 0/0 .text            Execute__14daGraveStone_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -706,18 +549,7 @@ asm void daGraveStone_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C13078-80C1311C 00A4+00 s=1 e=0 z=0  None .text      Draw__14daGraveStone_cFv */
-//	80C13090: 8042CA54 (g_env_light)
-//	80C13094: 8042CA54 (g_env_light)
-//	80C130A4: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80C130A8: 8042CA54 (g_env_light)
-//	80C130AC: 8042CA54 (g_env_light)
-//	80C130BC: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80C130C0:
-// 804061C0 (g_dComIfG_gameInfo) 	80C130C4: 804061C0 (g_dComIfG_gameInfo) 	80C130CC: 80434AC8
-// (j3dSys) 	80C130D0: 80434AC8 (j3dSys) 	80C130E4: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80C130E8: 804061C0 (g_dComIfG_gameInfo)
-//	80C130EC: 804061C0 (g_dComIfG_gameInfo)
+/* 80C13078-80C1311C 000AF8 00A4+00 1/0 0/0 0/0 .text            Draw__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -727,14 +559,7 @@ asm void daGraveStone_c::Draw() {
 }
 #pragma pop
 
-/* 80C1311C-80C13188 006C+00 s=1 e=0 z=0  None .text      Delete__14daGraveStone_cFv */
-//	80C13134: 80C13304 (l_arcName)
-//	80C13138: 80C13304 (l_arcName)
-//	80C13140: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80C13150: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80C1315C: 804061C0 (g_dComIfG_gameInfo)
-//	80C13160: 804061C0 (g_dComIfG_gameInfo)
-//	80C1316C: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 80C1311C-80C13188 000B9C 006C+00 1/0 0/0 0/0 .text            Delete__14daGraveStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -744,84 +569,87 @@ asm void daGraveStone_c::Delete() {
 }
 #pragma pop
 
-/* 80C13188-80C131B4 002C+00 s=1 e=0 z=0  None .text      daGraveStone_Draw__FP14daGraveStone_c */
+/* 80C13188-80C131B4 000C08 002C+00 1/0 0/0 0/0 .text daGraveStone_Draw__FP14daGraveStone_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daGraveStone_Draw(daGraveStone_c* param_0) {
+static asm void daGraveStone_Draw(daGraveStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/daGraveStone_Draw__FP14daGraveStone_c.s"
 }
 #pragma pop
 
-/* 80C131B4-80C131D4 0020+00 s=1 e=0 z=0  None .text      daGraveStone_Execute__FP14daGraveStone_c
- */
-//	80C131C0: 80078950 (MoveBGExecute__16dBgS_MoveBgActorFv)
+/* 80C131B4-80C131D4 000C34 0020+00 1/0 0/0 0/0 .text daGraveStone_Execute__FP14daGraveStone_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daGraveStone_Execute(daGraveStone_c* param_0) {
+static asm void daGraveStone_Execute(daGraveStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/daGraveStone_Execute__FP14daGraveStone_c.s"
 }
 #pragma pop
 
-/* 80C131D4-80C131DC 0008+00 s=1 e=0 z=0  None .text      daGraveStone_IsDelete__FP14daGraveStone_c
- */
+/* 80C131D4-80C131DC 000C54 0008+00 1/0 0/0 0/0 .text daGraveStone_IsDelete__FP14daGraveStone_c */
 static bool daGraveStone_IsDelete(daGraveStone_c* param_0) {
     return true;
 }
 
-/* 80C131DC-80C131FC 0020+00 s=1 e=0 z=0  None .text      daGraveStone_Delete__FP14daGraveStone_c */
-//	80C131E8: 800788DC (MoveBGDelete__16dBgS_MoveBgActorFv)
+/* 80C131DC-80C131FC 000C5C 0020+00 1/0 0/0 0/0 .text daGraveStone_Delete__FP14daGraveStone_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daGraveStone_Delete(daGraveStone_c* param_0) {
+static asm void daGraveStone_Delete(daGraveStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/daGraveStone_Delete__FP14daGraveStone_c.s"
 }
 #pragma pop
 
-/* 80C131FC-80C1321C 0020+00 s=1 e=0 z=0  None .text      daGraveStone_create__FP10fopAc_ac_c */
-//	80C13208: 80C12D1C (create__14daGraveStone_cFv)
+/* 80C131FC-80C1321C 000C7C 0020+00 1/0 0/0 0/0 .text            daGraveStone_create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daGraveStone_create(fopAc_ac_c* param_0) {
+static asm void daGraveStone_create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/daGraveStone_create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C1321C-80C13238 001C+00 s=1 e=0 z=0  None .text      cLib_calcTimer<s>__FPs */
+/* 80C1321C-80C13238 000C9C 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_calcTimer__template0(s16* param_0) {
+extern "C" asm void func_80C1321C(s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/func_80C1321C.s"
 }
 #pragma pop
 
-/* 80C13238-80C13240 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
-//	80C1323C: 80C12FC0 (__dt__12dBgS_ObjAcchFv)
+/* 80C13238-80C13240 000CB8 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C13238() {
+static asm void func_80C13238() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/func_80C13238.s"
 }
 #pragma pop
 
-/* 80C13240-80C13248 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
-//	80C13244: 80C12FC0 (__dt__12dBgS_ObjAcchFv)
+/* 80C13240-80C13248 000CC0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C13240() {
+static asm void func_80C13240() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone/func_80C13240.s"
 }
+#pragma pop
+
+/* 80C132E4-80C13301 000094 001D+00 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C132E4 = "H_Haka";
+SECTION_DEAD static char const* const stringBase_80C132EB = "H_Haka.bmd";
+SECTION_DEAD static char const* const stringBase_80C132F6 = "H_Haka.dzb";
 #pragma pop

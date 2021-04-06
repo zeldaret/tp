@@ -6,7 +6,7 @@ lbl_80A8823C:
 /* 80A8824C  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 80A88250  FF E0 08 90 */	fmr f31, f1
 /* 80A88254  FC 20 10 90 */	fmr f1, f2
-/* 80A88258  4B 7D F6 FC */	b cM_rndF__Ff
+/* 80A88258  4B 7D F6 FD */	bl cM_rndF__Ff
 /* 80A8825C  EC 3F 08 2A */	fadds f1, f31, f1
 /* 80A88260  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 80A88264  CB E1 00 10 */	lfd f31, 0x10(r1)

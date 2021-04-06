@@ -3,15 +3,15 @@ lbl_8080C24C:
 /* 8080C250  7C 08 02 A6 */	mflr r0
 /* 8080C254  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8080C258  39 61 00 30 */	addi r11, r1, 0x30
-/* 8080C25C  4B B5 5F 80 */	b _savegpr_29
+/* 8080C25C  4B B5 5F 81 */	bl _savegpr_29
 /* 8080C260  7C 7F 1B 78 */	mr r31, r3
-/* 8080C264  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 8080C268  3B A3 59 94 */	addi r29, r3, lit_3925@l
+/* 8080C264  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 8080C268  3B A3 59 94 */	addi r29, r3, lit_3925@l /* 0x80815994@l */
 /* 8080C26C  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 8080C270  38 9F 06 70 */	addi r4, r31, 0x670
-/* 8080C274  4B A6 49 90 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 8080C274  4B A6 49 91 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8080C278  7C 7E 1B 78 */	mr r30, r3
-/* 8080C27C  4B A5 B5 F0 */	b cM_rnd__Fv
+/* 8080C27C  4B A5 B5 F1 */	bl cM_rnd__Fv
 /* 8080C280  38 60 00 01 */	li r3, 1
 /* 8080C284  98 7F 06 A8 */	stb r3, 0x6a8(r31)
 /* 8080C288  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
@@ -29,7 +29,7 @@ lbl_8080C24C:
 /* 8080C2B8  38 00 00 02 */	li r0, 2
 /* 8080C2BC  98 1F 06 A5 */	stb r0, 0x6a5(r31)
 /* 8080C2C0  C0 3D 00 D8 */	lfs f1, 0xd8(r29)
-/* 8080C2C4  4B A5 B6 C8 */	b cM_rndFX__Ff
+/* 8080C2C4  4B A5 B6 C9 */	bl cM_rndFX__Ff
 /* 8080C2C8  7F C0 07 34 */	extsh r0, r30
 /* 8080C2CC  C8 5D 00 A8 */	lfd f2, 0xa8(r29)
 /* 8080C2D0  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -65,8 +65,8 @@ lbl_8080C32C:
 /* 8080C33C  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 8080C340  48 00 00 14 */	b lbl_8080C354
 lbl_8080C344:
-/* 8080C344  3C 60 80 81 */	lis r3, l_HIO@ha
-/* 8080C348  38 63 5D 38 */	addi r3, r3, l_HIO@l
+/* 8080C344  3C 60 80 81 */	lis r3, l_HIO@ha /* 0x80815D38@ha */
+/* 8080C348  38 63 5D 38 */	addi r3, r3, l_HIO@l /* 0x80815D38@l */
 /* 8080C34C  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 8080C350  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 lbl_8080C354:
@@ -74,7 +74,7 @@ lbl_8080C354:
 /* 8080C358  4B FF FE A5 */	bl setSurpriseAway__8daE_YM_cFv
 lbl_8080C35C:
 /* 8080C35C  39 61 00 30 */	addi r11, r1, 0x30
-/* 8080C360  4B B5 5E C8 */	b _restgpr_29
+/* 8080C360  4B B5 5E C9 */	bl _restgpr_29
 /* 8080C364  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8080C368  7C 08 03 A6 */	mtlr r0
 /* 8080C36C  38 21 00 30 */	addi r1, r1, 0x30

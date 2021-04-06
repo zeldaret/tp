@@ -3,17 +3,15 @@
 #
 
 M326_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk.plf
+M326_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk.lcf
+M326_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk.map
 
 M326_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kdk/executor.cpp \
-	rel/d/a/npc/d_a_npc_kdk/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_kdk/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_kdk/d_a_npc_kdk.cpp \
 
 M326_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/d_a_npc_kdk.o \
 
 M326_LIBS := \
@@ -29,15 +27,21 @@ M326_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map326.map\
+	-m _prolog \
+	-lcf $(M326_LDSCRIPT) \
+	-unused -map $(M326_MAP) \
+	-w off \
 
 $(M326_TARGET): $(M326_O_FILES) $(M326_LIBS)
+	@echo [326] creating $(M326_TARGET)
 	@echo $(M326_LIBS) $(M326_O_FILES) > build/M326_ofiles
-	$(LD) -opt_partial $(M326_LDFLAGS) -o $(M326_TARGET) @build/M326_ofiles
+	@python3 tools/lcf.py rel 326 --output $(M326_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M326_LDFLAGS) -o $(M326_TARGET) @build/M326_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kdk/%.o: rel/d/a/npc/d_a_npc_kdk/%.cpp
+	@echo [326] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M326_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M326_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

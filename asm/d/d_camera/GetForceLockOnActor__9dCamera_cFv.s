@@ -4,8 +4,8 @@ lbl_80181500:
 /* 80181508  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8018150C  80 03 01 98 */	lwz r0, 0x198(r3)
 /* 80181510  90 01 00 08 */	stw r0, 8(r1)
-/* 80181514  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80181518  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80181514  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80181518  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8018151C  38 81 00 08 */	addi r4, r1, 8
 /* 80181520  4B E9 82 D9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80181524  80 01 00 14 */	lwz r0, 0x14(r1)

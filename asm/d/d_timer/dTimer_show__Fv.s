@@ -3,8 +3,8 @@ lbl_80261298:
 /* 8026129C  7C 08 02 A6 */	mflr r0
 /* 802612A0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802612A4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802612A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802612AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802612A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802612AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802612B0  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 802612B4  7F E3 FB 78 */	mr r3, r31
 /* 802612B8  4B DC B9 25 */	bl getTimerPtr__14dComIfG_play_cFv

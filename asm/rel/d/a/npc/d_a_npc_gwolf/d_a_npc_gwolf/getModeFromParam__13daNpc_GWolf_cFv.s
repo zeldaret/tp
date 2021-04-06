@@ -9,8 +9,8 @@ lbl_809F4E84:
 lbl_809F4EA0:
 /* 809F4EA0  28 00 00 07 */	cmplwi r0, 7
 /* 809F4EA4  41 81 00 54 */	bgt lbl_809F4EF8
-/* 809F4EA8  3C 60 80 A0 */	lis r3, lit_5060@ha
-/* 809F4EAC  38 63 8A 4C */	addi r3, r3, lit_5060@l
+/* 809F4EA8  3C 60 80 A0 */	lis r3, lit_5060@ha /* 0x809F8A4C@ha */
+/* 809F4EAC  38 63 8A 4C */	addi r3, r3, lit_5060@l /* 0x809F8A4C@l */
 /* 809F4EB0  54 00 10 3A */	slwi r0, r0, 2
 /* 809F4EB4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 809F4EB8  7C 09 03 A6 */	mtctr r0

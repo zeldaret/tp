@@ -3,19 +3,20 @@
 #
 
 M500_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki.plf
+M500_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki.lcf
+M500_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki.map
 
 M500_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ki/executor.cpp \
-	rel/d/a/obj/d_a_obj_ki/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_ki/d_a_obj_ki.cpp \
 
 M500_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/d_a_obj_ki.o \
 
 M500_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/libRuntime.PPCEABI.H.a \
 
 M500_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M500_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map500.map\
+	-m _prolog \
+	-lcf $(M500_LDSCRIPT) \
+	-unused -map $(M500_MAP) \
+	-w off \
 
 $(M500_TARGET): $(M500_O_FILES) $(M500_LIBS)
+	@echo [500] creating $(M500_TARGET)
 	@echo $(M500_LIBS) $(M500_O_FILES) > build/M500_ofiles
-	$(LD) -opt_partial $(M500_LDFLAGS) -o $(M500_TARGET) @build/M500_ofiles
+	@python3 tools/lcf.py rel 500 --output $(M500_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M500_LDFLAGS) -o $(M500_TARGET) @build/M500_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ki/%.o: rel/d/a/obj/d_a_obj_ki/%.cpp
+	@echo [500] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M500_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M500_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_ki/libs/Runtime.PPCEABI.H/Makefile
 

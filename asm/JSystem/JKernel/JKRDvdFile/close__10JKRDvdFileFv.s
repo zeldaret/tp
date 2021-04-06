@@ -13,14 +13,14 @@ lbl_802D9938:
 /* 802D9964  41 82 00 20 */	beq lbl_802D9984
 /* 802D9968  38 00 00 00 */	li r0, 0
 /* 802D996C  98 1F 00 18 */	stb r0, 0x18(r31)
-/* 802D9970  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha
-/* 802D9974  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l
+/* 802D9970  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha /* 0x8043436C@ha */
+/* 802D9974  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l /* 0x8043436C@l */
 /* 802D9978  38 9F 00 E4 */	addi r4, r31, 0xe4
 /* 802D997C  48 00 27 E1 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D9980  48 00 00 20 */	b lbl_802D99A0
 lbl_802D9984:
-/* 802D9984  3C 60 80 3A */	lis r3, JKRDvdFile__stringBase0@ha
-/* 802D9988  38 63 D2 60 */	addi r3, r3, JKRDvdFile__stringBase0@l
+/* 802D9984  3C 60 80 3A */	lis r3, JKRDvdFile__stringBase0@ha /* 0x8039D260@ha */
+/* 802D9988  38 63 D2 60 */	addi r3, r3, JKRDvdFile__stringBase0@l /* 0x8039D260@l */
 /* 802D998C  38 80 00 D5 */	li r4, 0xd5
 /* 802D9990  38 A3 00 0F */	addi r5, r3, 0xf
 /* 802D9994  38 C3 00 12 */	addi r6, r3, 0x12

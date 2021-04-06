@@ -12,8 +12,8 @@ lbl_800D1540:
 /* 800D1568  7C FE 3B 78 */	mr r30, r7
 /* 800D156C  7D 1F 43 78 */	mr r31, r8
 /* 800D1570  FF E0 10 90 */	fmr f31, f2
-/* 800D1574  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D1578  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D1574  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D1578  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D157C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800D1580  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800D1584  40 82 00 24 */	bne lbl_800D15A8

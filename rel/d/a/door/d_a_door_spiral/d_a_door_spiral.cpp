@@ -25,8 +25,8 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 804673E0-80467410 0030+00 s=0 e=0 z=1  None .data      g_profile_SPIRAL_DOOR */
-SECTION_DATA void* g_profile_SPIRAL_DOOR[12] = {
+/* 804673E0-80467410 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SPIRAL_DOOR */
+SECTION_DATA extern void* g_profile_SPIRAL_DOOR[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD, (void*)0x022D0000, (void*)&g_fpcLf_Method,
     (void*)0x000006B0, (void*)NULL,       (void*)NULL,       (void*)&g_fopAc_Method,
     (void*)0x012D0000, (void*)NULL,       (void*)0x00044000, (void*)0x00060000,

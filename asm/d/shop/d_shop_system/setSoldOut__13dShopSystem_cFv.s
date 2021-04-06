@@ -12,15 +12,15 @@ lbl_8019A364:
 /* 8019A38C  2C 00 00 00 */	cmpwi r0, 0
 /* 8019A390  40 80 00 50 */	bge lbl_8019A3E0
 /* 8019A394  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
-/* 8019A398  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A39C  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 8019A398  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A39C  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A3A0  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8019A3A4  A8 03 04 B8 */	lha r0, 0x4b8(r3)
 /* 8019A3A8  54 1F 06 3E */	clrlwi r31, r0, 0x18
 /* 8019A3AC  28 1F 00 FF */	cmplwi r31, 0xff
 /* 8019A3B0  41 82 00 30 */	beq lbl_8019A3E0
-/* 8019A3B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019A3B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019A3B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019A3B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019A3BC  3B A3 09 58 */	addi r29, r3, 0x958
 /* 8019A3C0  7F A3 EB 78 */	mr r3, r29
 /* 8019A3C4  7F E4 FB 78 */	mr r4, r31
@@ -51,8 +51,8 @@ lbl_8019A420:
 /* 8019A420  2C 1F 00 00 */	cmpwi r31, 0
 /* 8019A424  40 82 00 20 */	bne lbl_8019A444
 /* 8019A428  38 00 00 00 */	li r0, 0
-/* 8019A42C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A430  90 03 B8 A4 */	stw r0, dShopSystem_itemActor@l(r3)
+/* 8019A42C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A430  90 03 B8 A4 */	stw r0, dShopSystem_itemActor@l(r3)  /* 0x803BB8A4@l */
 /* 8019A434  98 8D 81 68 */	stb r4, dShopSystem_itemNo(r13)
 /* 8019A438  38 00 00 02 */	li r0, 2
 /* 8019A43C  90 0D 8A DC */	stw r0, dShopSystem_item_count(r13)
@@ -61,8 +61,8 @@ lbl_8019A444:
 /* 8019A444  2C 1F 00 01 */	cmpwi r31, 1
 /* 8019A448  40 82 00 28 */	bne lbl_8019A470
 /* 8019A44C  38 00 00 00 */	li r0, 0
-/* 8019A450  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A454  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 8019A450  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A454  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A458  90 03 00 04 */	stw r0, 4(r3)
 /* 8019A45C  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 8019A460  98 83 00 01 */	stb r4, 1(r3)
@@ -73,8 +73,8 @@ lbl_8019A470:
 /* 8019A470  2C 1F 00 02 */	cmpwi r31, 2
 /* 8019A474  40 82 00 28 */	bne lbl_8019A49C
 /* 8019A478  38 00 00 00 */	li r0, 0
-/* 8019A47C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A480  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 8019A47C  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A480  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A484  90 03 00 08 */	stw r0, 8(r3)
 /* 8019A488  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 8019A48C  98 83 00 02 */	stb r4, 2(r3)
@@ -85,8 +85,8 @@ lbl_8019A49C:
 /* 8019A49C  2C 1F 00 06 */	cmpwi r31, 6
 /* 8019A4A0  40 82 00 24 */	bne lbl_8019A4C4
 /* 8019A4A4  38 00 00 00 */	li r0, 0
-/* 8019A4A8  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A4AC  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l
+/* 8019A4A8  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A4AC  38 63 B8 A4 */	addi r3, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A4B0  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8019A4B4  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 8019A4B8  98 83 00 06 */	stb r4, 6(r3)

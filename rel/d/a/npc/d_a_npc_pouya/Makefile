@@ -3,19 +3,20 @@
 #
 
 M348_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya.plf
+M348_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya.lcf
+M348_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya.map
 
 M348_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_pouya/executor.cpp \
-	rel/d/a/npc/d_a_npc_pouya/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_pouya/d_a_npc_pouya.cpp \
 
 M348_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/d_a_npc_pouya.o \
 
 M348_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/libRuntime.PPCEABI.H.a \
 
 M348_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M348_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map348.map\
+	-m _prolog \
+	-lcf $(M348_LDSCRIPT) \
+	-unused -map $(M348_MAP) \
+	-w off \
 
 $(M348_TARGET): $(M348_O_FILES) $(M348_LIBS)
+	@echo [348] creating $(M348_TARGET)
 	@echo $(M348_LIBS) $(M348_O_FILES) > build/M348_ofiles
-	$(LD) -opt_partial $(M348_LDFLAGS) -o $(M348_TARGET) @build/M348_ofiles
+	@python3 tools/lcf.py rel 348 --output $(M348_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M348_LDFLAGS) -o $(M348_TARGET) @build/M348_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pouya/%.o: rel/d/a/npc/d_a_npc_pouya/%.cpp
+	@echo [348] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M348_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M348_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_pouya/libs/Runtime.PPCEABI.H/Makefile
 

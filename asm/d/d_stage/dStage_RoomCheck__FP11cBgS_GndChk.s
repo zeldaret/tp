@@ -11,8 +11,8 @@ lbl_80026FE8:
 /* 8002700C  7F E4 FB 78 */	mr r4, r31
 /* 80027010  48 00 00 1C */	b lbl_8002702C
 lbl_80027014:
-/* 80027014  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80027018  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80027014  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80027018  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002701C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80027020  38 84 00 14 */	addi r4, r4, 0x14
 /* 80027024  48 04 E0 DD */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
@@ -27,8 +27,8 @@ lbl_8002703C:
 /* 80027040  7C 00 07 74 */	extsb r0, r0
 /* 80027044  7C 04 00 00 */	cmpw r4, r0
 /* 80027048  41 82 00 14 */	beq lbl_8002705C
-/* 8002704C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80027050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002704C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80027050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80027054  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 80027058  4B FF D6 C5 */	bl zoneCountCheck__20dStage_roomControl_cCFi
 lbl_8002705C:
@@ -37,8 +37,8 @@ lbl_8002705C:
 /* 80027064  8B ED 87 E4 */	lbz r31, struct_80450D64+0x0(r13)
 /* 80027068  7F FF 07 74 */	extsb r31, r31
 lbl_8002706C:
-/* 8002706C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80027070  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 8002706C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80027070  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80027074  38 7D 4E 20 */	addi r3, r29, 0x4e20
 /* 80027078  81 9D 4E 20 */	lwz r12, 0x4e20(r29)
 /* 8002707C  81 8C 00 30 */	lwz r12, 0x30(r12)

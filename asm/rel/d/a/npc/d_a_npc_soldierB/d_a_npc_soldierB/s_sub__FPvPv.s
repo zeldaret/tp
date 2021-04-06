@@ -4,7 +4,7 @@ lbl_80AF4CA4:
 /* 80AF4CAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AF4CB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AF4CB4  7C 7F 1B 78 */	mr r31, r3
-/* 80AF4CB8  4B 52 40 28 */	b fopAc_IsActor__FPv
+/* 80AF4CB8  4B 52 40 29 */	bl fopAc_IsActor__FPv
 /* 80AF4CBC  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF4CC0  41 82 00 24 */	beq lbl_80AF4CE4
 /* 80AF4CC4  A8 1F 00 08 */	lha r0, 8(r31)

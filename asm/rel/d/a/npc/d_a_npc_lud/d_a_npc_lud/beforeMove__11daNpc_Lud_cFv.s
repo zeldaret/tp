@@ -12,7 +12,7 @@ lbl_80A6C2E4:
 /* 80A6C30C  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A6C310  28 00 00 00 */	cmplwi r0, 0
 /* 80A6C314  40 82 00 1C */	bne lbl_80A6C330
-/* 80A6C318  4B 5C 37 3C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A6C318  4B 5C 37 3D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A6C31C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A6C320  40 82 00 14 */	bne lbl_80A6C334
 /* 80A6C324  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_80A6C348:
 /* 80A6C34C  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 80A6C350  28 00 00 00 */	cmplwi r0, 0
 /* 80A6C354  40 82 00 1C */	bne lbl_80A6C370
-/* 80A6C358  4B 5C 36 FC */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A6C358  4B 5C 36 FD */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A6C35C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A6C360  40 82 00 14 */	bne lbl_80A6C374
 /* 80A6C364  88 1E 0A 89 */	lbz r0, 0xa89(r30)

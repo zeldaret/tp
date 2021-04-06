@@ -12,8 +12,8 @@ lbl_8018FC64:
 /* 8018FC8C  54 00 10 3A */	slwi r0, r0, 2
 /* 8018FC90  7C 7F 02 14 */	add r3, r31, r0
 /* 8018FC94  80 63 01 40 */	lwz r3, 0x140(r3)
-/* 8018FC98  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha
-/* 8018FC9C  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l
+/* 8018FC98  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018FC9C  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018FCA0  38 84 00 6B */	addi r4, r4, 0x6b
 /* 8018FCA4  48 1D 8E 89 */	bl strcpy
 /* 8018FCA8  48 00 00 40 */	b lbl_8018FCE8

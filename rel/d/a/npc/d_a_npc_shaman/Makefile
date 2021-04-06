@@ -3,19 +3,20 @@
 #
 
 M360_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman.plf
+M360_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman.lcf
+M360_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman.map
 
 M360_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_shaman/executor.cpp \
-	rel/d/a/npc/d_a_npc_shaman/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_shaman/d_a_npc_shaman.cpp \
 
 M360_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/d_a_npc_shaman.o \
 
 M360_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/libRuntime.PPCEABI.H.a \
 
 M360_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M360_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map360.map\
+	-m _prolog \
+	-lcf $(M360_LDSCRIPT) \
+	-unused -map $(M360_MAP) \
+	-w off \
 
 $(M360_TARGET): $(M360_O_FILES) $(M360_LIBS)
+	@echo [360] creating $(M360_TARGET)
 	@echo $(M360_LIBS) $(M360_O_FILES) > build/M360_ofiles
-	$(LD) -opt_partial $(M360_LDFLAGS) -o $(M360_TARGET) @build/M360_ofiles
+	@python3 tools/lcf.py rel 360 --output $(M360_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M360_LDFLAGS) -o $(M360_TARGET) @build/M360_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shaman/%.o: rel/d/a/npc/d_a_npc_shaman/%.cpp
+	@echo [360] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M360_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M360_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_shaman/libs/Runtime.PPCEABI.H/Makefile
 

@@ -2,8 +2,8 @@ lbl_800CEAF4:
 /* 800CEAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800CEAF8  7C 08 02 A6 */	mflr r0
 /* 800CEAFC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800CEB00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CEB04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CEB00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CEB04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CEB08  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800CEB0C  60 00 20 00 */	ori r0, r0, 0x2000
 /* 800CEB10  90 03 5F 18 */	stw r0, 0x5f18(r3)

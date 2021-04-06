@@ -26,11 +26,11 @@ lbl_80145540:
 /* 80145560  48 20 18 0D */	bl PSMTXMultVec
 /* 80145564  38 61 00 08 */	addi r3, r1, 8
 /* 80145568  4B ED 87 55 */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
-/* 8014556C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80145570  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014556C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80145570  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80145574  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80145578  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha
-/* 8014557C  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l
+/* 80145578  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha /* 0x803F1CC4@ha */
+/* 8014557C  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l /* 0x803F1CC4@l */
 /* 80145580  38 84 00 14 */	addi r4, r4, 0x14
 /* 80145584  4B F2 FB 7D */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 80145588  98 7F 05 C8 */	stb r3, 0x5c8(r31)

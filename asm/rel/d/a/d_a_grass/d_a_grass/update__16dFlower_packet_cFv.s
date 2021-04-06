@@ -5,32 +5,32 @@ lbl_80522A64:
 /* 80522A70  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80522A74  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 80522A78  39 61 00 50 */	addi r11, r1, 0x50
-/* 80522A7C  4B E3 F7 50 */	b _savegpr_25
+/* 80522A7C  4B E3 F7 51 */	bl _savegpr_25
 /* 80522A80  7C 7A 1B 78 */	mr r26, r3
-/* 80522A84  3C 60 80 52 */	lis r3, lit_3999@ha
-/* 80522A88  3B E3 30 28 */	addi r31, r3, lit_3999@l
+/* 80522A84  3C 60 80 52 */	lis r3, lit_3999@ha /* 0x80523028@ha */
+/* 80522A88  3B E3 30 28 */	addi r31, r3, lit_3999@l /* 0x80523028@l */
 /* 80522A8C  3F DA 00 01 */	addis r30, r26, 1
 /* 80522A90  3B 20 00 00 */	li r25, 0
-/* 80522A94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80522A98  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l
+/* 80522A94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80522A98  3B A3 D4 70 */	addi r29, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80522A9C  7F BC EB 78 */	mr r28, r29
 /* 80522AA0  7F BB EB 78 */	mr r27, r29
 /* 80522AA4  3B DE 19 54 */	addi r30, r30, 0x1954
 lbl_80522AA8:
 /* 80522AA8  7F A3 EB 78 */	mr r3, r29
 /* 80522AAC  A8 9E 00 02 */	lha r4, 2(r30)
-/* 80522AB0  4B AE 99 2C */	b mDoMtx_YrotS__FPA4_fs
+/* 80522AB0  4B AE 99 2D */	bl mDoMtx_YrotS__FPA4_fs
 /* 80522AB4  7F A3 EB 78 */	mr r3, r29
 /* 80522AB8  A8 9E 00 04 */	lha r4, 4(r30)
-/* 80522ABC  4B AE 98 E0 */	b mDoMtx_XrotM__FPA4_fs
+/* 80522ABC  4B AE 98 E1 */	bl mDoMtx_XrotM__FPA4_fs
 /* 80522AC0  7F 83 E3 78 */	mr r3, r28
 /* 80522AC4  A8 1E 00 02 */	lha r0, 2(r30)
 /* 80522AC8  7C 00 00 D0 */	neg r0, r0
 /* 80522ACC  7C 04 07 34 */	extsh r4, r0
-/* 80522AD0  4B AE 99 64 */	b mDoMtx_YrotM__FPA4_fs
+/* 80522AD0  4B AE 99 65 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80522AD4  7F 63 DB 78 */	mr r3, r27
 /* 80522AD8  38 9E 00 08 */	addi r4, r30, 8
-/* 80522ADC  4B E2 39 D4 */	b PSMTXCopy
+/* 80522ADC  4B E2 39 D5 */	bl PSMTXCopy
 /* 80522AE0  3B 39 00 01 */	addi r25, r25, 1
 /* 80522AE4  2C 19 00 48 */	cmpwi r25, 0x48
 /* 80522AE8  3B DE 00 38 */	addi r30, r30, 0x38
@@ -73,12 +73,12 @@ lbl_80522B48:
 /* 80522B74  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80522B78  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80522B7C  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80522B80  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 80522B84  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
-/* 80522B88  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 80522B8C  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 80522B80  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 80522B84  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
+/* 80522B88  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 80522B8C  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 80522B90  38 A1 00 08 */	addi r5, r1, 8
-/* 80522B94  4B D5 0D 68 */	b clip__11J3DUClipperCFPA4_Cf3Vecf
+/* 80522B94  4B D5 0D 69 */	bl clip__11J3DUClipperCFPA4_Cf3Vecf
 /* 80522B98  2C 03 00 00 */	cmpwi r3, 0
 /* 80522B9C  41 82 00 1C */	beq lbl_80522BB8
 /* 80522BA0  88 1D 00 00 */	lbz r0, 0(r29)
@@ -123,33 +123,33 @@ lbl_80522BB8:
 /* 80522C38  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80522C3C  EF E3 00 2A */	fadds f31, f3, f0
 /* 80522C40  7F 23 CB 78 */	mr r3, r25
-/* 80522C44  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80522C48  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 80522C4C  4B E2 38 64 */	b PSMTXCopy
+/* 80522C44  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80522C48  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80522C4C  4B E2 38 65 */	bl PSMTXCopy
 /* 80522C50  FC 20 F8 90 */	fmr f1, f31
 /* 80522C54  FC 40 F8 90 */	fmr f2, f31
 /* 80522C58  FC 60 F8 90 */	fmr f3, f31
-/* 80522C5C  4B AE A1 DC */	b scaleM__14mDoMtx_stack_cFfff
-/* 80522C60  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80522C64  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80522C5C  4B AE A1 DD */	bl scaleM__14mDoMtx_stack_cFfff
+/* 80522C60  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80522C64  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80522C68  7F 24 CB 78 */	mr r4, r25
 /* 80522C6C  38 BD 00 14 */	addi r5, r29, 0x14
-/* 80522C70  4B E2 38 74 */	b PSMTXConcat
+/* 80522C70  4B E2 38 75 */	bl PSMTXConcat
 lbl_80522C74:
 /* 80522C74  3B 7B 00 01 */	addi r27, r27, 1
 /* 80522C78  2C 1B 03 E8 */	cmpwi r27, 0x3e8
 /* 80522C7C  3B BD 00 48 */	addi r29, r29, 0x48
 /* 80522C80  41 80 FE 84 */	blt lbl_80522B04
-/* 80522C84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80522C88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80522C84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80522C88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80522C8C  80 63 5F 90 */	lwz r3, 0x5f90(r3)
 /* 80522C90  7F 44 D3 78 */	mr r4, r26
 /* 80522C94  38 A0 00 00 */	li r5, 0
-/* 80522C98  4B E0 27 F4 */	b entryImm__13J3DDrawBufferFP9J3DPacketUs
+/* 80522C98  4B E0 27 F5 */	bl entryImm__13J3DDrawBufferFP9J3DPacketUs
 /* 80522C9C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80522CA0  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80522CA4  39 61 00 50 */	addi r11, r1, 0x50
-/* 80522CA8  4B E3 F5 70 */	b _restgpr_25
+/* 80522CA8  4B E3 F5 71 */	bl _restgpr_25
 /* 80522CAC  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80522CB0  7C 08 03 A6 */	mtlr r0
 /* 80522CB4  38 21 00 60 */	addi r1, r1, 0x60

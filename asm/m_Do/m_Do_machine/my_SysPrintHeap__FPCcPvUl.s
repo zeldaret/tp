@@ -5,8 +5,8 @@ lbl_8000BCF8:
 /* 8000BD04  7C 67 1B 78 */	mr r7, r3
 /* 8000BD08  7C 86 23 78 */	mr r6, r4
 /* 8000BD0C  7C A0 2B 78 */	mr r0, r5
-/* 8000BD10  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha
-/* 8000BD14  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l
+/* 8000BD10  3C 60 80 37 */	lis r3, m_Do_m_Do_machine__stringBase0@ha /* 0x80373DE8@ha */
+/* 8000BD14  38 63 3D E8 */	addi r3, r3, m_Do_m_Do_machine__stringBase0@l /* 0x80373DE8@l */
 /* 8000BD18  38 63 02 2F */	addi r3, r3, 0x22f
 /* 8000BD1C  7C E4 3B 78 */	mr r4, r7
 /* 8000BD20  7C C5 33 78 */	mr r5, r6

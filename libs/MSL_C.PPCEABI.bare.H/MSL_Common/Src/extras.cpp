@@ -25,26 +25,21 @@ extern "C" extern u8 __lower_map[256];
 // Declarations:
 //
 
-/* 8036CA74-8036CA94 0020+00 s=0 e=1 z=0  None .text      strnicmp */
-//	8036CA80: 8036581C (__msl_strnicmp)
+/* 8036CA74-8036CA94 3673B4 0020+00 0/0 1/1 0/0 .text            strnicmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strnicmp() {
+asm void strnicmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/extras/strnicmp.s"
 }
 #pragma pop
 
-/* 8036CA94-8036CB20 008C+00 s=0 e=1 z=0  None .text      stricmp */
-//	8036CAB0: 803D2D18 (__lower_map)
-//	8036CAB8: 803D2D18 (__lower_map)
-//	8036CAE0: 803D2D18 (__lower_map)
-//	8036CAE8: 803D2D18 (__lower_map)
+/* 8036CA94-8036CB20 3673D4 008C+00 0/0 1/1 0/0 .text            stricmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void stricmp() {
+asm void stricmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/extras/stricmp.s"
 }

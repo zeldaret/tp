@@ -11,8 +11,8 @@ lbl_80216B28:
 /* 80216B4C  38 80 00 00 */	li r4, 0
 /* 80216B50  3B A0 00 00 */	li r29, 0
 /* 80216B54  C0 03 07 E0 */	lfs f0, 0x7e0(r3)
-/* 80216B58  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80216B5C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80216B58  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80216B5C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80216B60  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 80216B64  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80216B68  40 82 00 0C */	bne lbl_80216B74
@@ -23,8 +23,8 @@ lbl_80216B74:
 /* 80216B78  3B E0 00 01 */	li r31, 1
 lbl_80216B7C:
 /* 80216B7C  C0 1B 07 E4 */	lfs f0, 0x7e4(r27)
-/* 80216B80  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80216B84  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80216B80  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80216B84  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80216B88  C0 23 03 48 */	lfs f1, 0x348(r3)
 /* 80216B8C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80216B90  40 82 00 0C */	bne lbl_80216B9C
@@ -35,8 +35,8 @@ lbl_80216B9C:
 /* 80216BA0  3B C0 00 01 */	li r30, 1
 lbl_80216BA4:
 /* 80216BA4  C0 1B 07 E8 */	lfs f0, 0x7e8(r27)
-/* 80216BA8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80216BAC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80216BA8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80216BAC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80216BB0  C0 23 03 68 */	lfs f1, 0x368(r3)
 /* 80216BB4  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80216BB8  40 82 00 0C */	bne lbl_80216BC4
@@ -47,8 +47,8 @@ lbl_80216BC4:
 /* 80216BC8  38 80 00 01 */	li r4, 1
 lbl_80216BCC:
 /* 80216BCC  C0 1B 07 EC */	lfs f0, 0x7ec(r27)
-/* 80216BD0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80216BD4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80216BD0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80216BD4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80216BD8  C0 23 03 98 */	lfs f1, 0x398(r3)
 /* 80216BDC  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80216BE0  40 82 00 0C */	bne lbl_80216BEC

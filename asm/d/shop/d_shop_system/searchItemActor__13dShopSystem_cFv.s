@@ -19,16 +19,16 @@ lbl_8019A5D0:
 lbl_8019A614:
 /* 8019A614  7C 03 20 00 */	cmpw r3, r4
 /* 8019A618  40 80 00 14 */	bge lbl_8019A62C
-/* 8019A61C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor__FPvPv@ha
-/* 8019A620  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor__FPvPv@l
+/* 8019A61C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor__FPvPv@ha /* 0x80197098@ha */
+/* 8019A620  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor__FPvPv@l /* 0x80197098@l */
 /* 8019A624  7F C4 F3 78 */	mr r4, r30
 /* 8019A628  4B E8 6D 11 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A62C:
 /* 8019A62C  80 0D 8A E4 */	lwz r0, dShopSystem_camera_count(r13)
 /* 8019A630  2C 00 00 02 */	cmpwi r0, 2
 /* 8019A634  40 80 00 14 */	bge lbl_8019A648
-/* 8019A638  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor__FPvPv@ha
-/* 8019A63C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor__FPvPv@l
+/* 8019A638  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor__FPvPv@ha /* 0x80197270@ha */
+/* 8019A63C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor__FPvPv@l /* 0x80197270@l */
 /* 8019A640  7F C4 F3 78 */	mr r4, r30
 /* 8019A644  4B E8 6C F5 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A648:
@@ -48,8 +48,8 @@ lbl_8019A650:
 /* 8019A678  41 82 01 68 */	beq lbl_8019A7E0
 /* 8019A67C  3A A0 00 00 */	li r21, 0
 /* 8019A680  3B 60 00 00 */	li r27, 0
-/* 8019A684  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A688  3A E3 B8 A4 */	addi r23, r3, dShopSystem_itemActor@l
+/* 8019A684  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A688  3A E3 B8 A4 */	addi r23, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A68C  3A C1 00 2C */	addi r22, r1, 0x2c
 /* 8019A690  3B 01 00 64 */	addi r24, r1, 0x64
 /* 8019A694  C3 E2 A1 44 */	lfs f31, lit_5084(r2)
@@ -124,8 +124,8 @@ lbl_8019A788:
 /* 8019A78C  41 80 FF 84 */	blt lbl_8019A710
 /* 8019A790  38 80 00 00 */	li r4, 0
 /* 8019A794  39 01 00 2C */	addi r8, r1, 0x2c
-/* 8019A798  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A79C  38 E3 B8 A4 */	addi r7, r3, dShopSystem_itemActor@l
+/* 8019A798  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A79C  38 E3 B8 A4 */	addi r7, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A7A0  38 C1 00 18 */	addi r6, r1, 0x18
 /* 8019A7A4  38 A1 00 10 */	addi r5, r1, 0x10
 /* 8019A7A8  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
@@ -147,8 +147,8 @@ lbl_8019A7E0:
 /* 8019A7E0  3B E0 00 00 */	li r31, 0
 /* 8019A7E4  3B A0 00 00 */	li r29, 0
 /* 8019A7E8  3B 80 00 00 */	li r28, 0
-/* 8019A7EC  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A7F0  3B 63 B8 A4 */	addi r27, r3, dShopSystem_itemActor@l
+/* 8019A7EC  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A7F0  3B 63 B8 A4 */	addi r27, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A7F4  48 00 00 A8 */	b lbl_8019A89C
 lbl_8019A7F8:
 /* 8019A7F8  7C 7B E0 2E */	lwzx r3, r27, r28
@@ -231,8 +231,8 @@ lbl_8019A8F0:
 /* 8019A914  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8019A918  38 7E 0E 78 */	addi r3, r30, 0xe78
 /* 8019A91C  7F C4 F3 78 */	mr r4, r30
-/* 8019A920  3C A0 80 3C */	lis r5, dShopSystem_itemActor@ha
-/* 8019A924  39 45 B8 A4 */	addi r10, r5, dShopSystem_itemActor@l
+/* 8019A920  3C A0 80 3C */	lis r5, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A924  39 45 B8 A4 */	addi r10, r5, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019A928  80 AA 00 00 */	lwz r5, 0(r10)
 /* 8019A92C  80 CA 00 04 */	lwz r6, 4(r10)
 /* 8019A930  80 EA 00 08 */	lwz r7, 8(r10)
@@ -255,11 +255,11 @@ lbl_8019A8F0:
 lbl_8019A974:
 /* 8019A974  3A A0 00 00 */	li r21, 0
 /* 8019A978  3B E0 00 00 */	li r31, 0
-/* 8019A97C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019A980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019A97C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019A980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019A984  3A E3 09 58 */	addi r23, r3, 0x958
-/* 8019A988  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019A98C  3B 83 B8 A4 */	addi r28, r3, dShopSystem_itemActor@l
+/* 8019A988  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019A98C  3B 83 B8 A4 */	addi r28, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 lbl_8019A990:
 /* 8019A990  7C 7C F8 2E */	lwzx r3, r28, r31
 /* 8019A994  28 03 00 00 */	cmplwi r3, 0
@@ -297,8 +297,8 @@ lbl_8019A9F4:
 lbl_8019AA10:
 /* 8019AA10  38 7E 0E 78 */	addi r3, r30, 0xe78
 /* 8019AA14  7F C4 F3 78 */	mr r4, r30
-/* 8019AA18  3C A0 80 3C */	lis r5, dShopSystem_itemActor@ha
-/* 8019AA1C  38 E5 B8 A4 */	addi r7, r5, dShopSystem_itemActor@l
+/* 8019AA18  3C A0 80 3C */	lis r5, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019AA1C  38 E5 B8 A4 */	addi r7, r5, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019AA20  80 A7 00 00 */	lwz r5, 0(r7)
 /* 8019AA24  80 C7 00 04 */	lwz r6, 4(r7)
 /* 8019AA28  80 E7 00 08 */	lwz r7, 8(r7)
@@ -310,11 +310,11 @@ lbl_8019AA10:
 /* 8019AA40  4B FF BB 05 */	bl setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
 /* 8019AA44  3A A0 00 00 */	li r21, 0
 /* 8019AA48  3B E0 00 00 */	li r31, 0
-/* 8019AA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019AA50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019AA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019AA50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019AA54  3A E3 09 58 */	addi r23, r3, 0x958
-/* 8019AA58  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 8019AA5C  3B 83 B8 A4 */	addi r28, r3, dShopSystem_itemActor@l
+/* 8019AA58  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 8019AA5C  3B 83 B8 A4 */	addi r28, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 lbl_8019AA60:
 /* 8019AA60  7C 7C F8 2E */	lwzx r3, r28, r31
 /* 8019AA64  28 03 00 00 */	cmplwi r3, 0

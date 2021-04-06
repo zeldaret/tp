@@ -3,19 +3,20 @@
 #
 
 M154_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice.plf
+M154_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice.lcf
+M154_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice.map
 
 M154_CPP_FILES := \
-	rel/d/a/b/d_a_b_yo_ice/executor.cpp \
-	rel/d/a/b/d_a_b_yo_ice/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/b/d_a_b_yo_ice/d_a_b_yo_ice.cpp \
 
 M154_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/d_a_b_yo_ice.o \
 
 M154_LIBS := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/libRuntime.PPCEABI.H.a \
 
 M154_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M154_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map154.map\
+	-m _prolog \
+	-lcf $(M154_LDSCRIPT) \
+	-unused -map $(M154_MAP) \
+	-w off \
 
 $(M154_TARGET): $(M154_O_FILES) $(M154_LIBS)
+	@echo [154] creating $(M154_TARGET)
 	@echo $(M154_LIBS) $(M154_O_FILES) > build/M154_ofiles
-	$(LD) -opt_partial $(M154_LDFLAGS) -o $(M154_TARGET) @build/M154_ofiles
+	@python3 tools/lcf.py rel 154 --output $(M154_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M154_LDFLAGS) -o $(M154_TARGET) @build/M154_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_yo_ice/%.o: rel/d/a/b/d_a_b_yo_ice/%.cpp
+	@echo [154] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M154_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M154_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/b/d_a_b_yo_ice/libs/Runtime.PPCEABI.H/Makefile
 

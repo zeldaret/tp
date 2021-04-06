@@ -8,16 +8,16 @@ lbl_80BBABBC:
 /* 80BBABD4  7C 9F 23 78 */	mr r31, r4
 /* 80BBABD8  41 82 00 30 */	beq lbl_80BBAC08
 /* 80BBABDC  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80BBABE0  3C 80 80 BC */	lis r4, l_arcName@ha
-/* 80BBABE4  38 84 AE 84 */	addi r4, r4, l_arcName@l
-/* 80BBABE8  4B 47 24 20 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80BBABE0  3C 80 80 BC */	lis r4, l_arcName@ha /* 0x80BBAE84@ha */
+/* 80BBABE4  38 84 AE 84 */	addi r4, r4, l_arcName@l /* 0x80BBAE84@l */
+/* 80BBABE8  4B 47 24 21 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80BBABEC  7F C3 F3 78 */	mr r3, r30
 /* 80BBABF0  38 80 00 00 */	li r4, 0
-/* 80BBABF4  4B 45 E0 98 */	b __dt__10fopAc_ac_cFv
+/* 80BBABF4  4B 45 E0 99 */	bl __dt__10fopAc_ac_cFv
 /* 80BBABF8  7F E0 07 35 */	extsh. r0, r31
 /* 80BBABFC  40 81 00 0C */	ble lbl_80BBAC08
 /* 80BBAC00  7F C3 F3 78 */	mr r3, r30
-/* 80BBAC04  4B 71 41 38 */	b __dl__FPv
+/* 80BBAC04  4B 71 41 39 */	bl __dl__FPv
 lbl_80BBAC08:
 /* 80BBAC08  7F C3 F3 78 */	mr r3, r30
 /* 80BBAC0C  83 E1 00 0C */	lwz r31, 0xc(r1)

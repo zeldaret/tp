@@ -5,8 +5,8 @@ lbl_802A9A34:
 /* 802A9A40  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A9A44  7C 7F 1B 78 */	mr r31, r3
 /* 802A9A48  4B FF AC F9 */	bl __ct__17JAUAudioArcLoaderFP10JAUSection
-/* 802A9A4C  3C 60 80 3D */	lis r3, __vt__16Z2AudioArcLoader@ha
-/* 802A9A50  38 03 9C D0 */	addi r0, r3, __vt__16Z2AudioArcLoader@l
+/* 802A9A4C  3C 60 80 3D */	lis r3, __vt__16Z2AudioArcLoader@ha /* 0x803C9CD0@ha */
+/* 802A9A50  38 03 9C D0 */	addi r0, r3, __vt__16Z2AudioArcLoader@l /* 0x803C9CD0@l */
 /* 802A9A54  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A9A58  7F E3 FB 78 */	mr r3, r31
 /* 802A9A5C  83 E1 00 0C */	lwz r31, 0xc(r1)

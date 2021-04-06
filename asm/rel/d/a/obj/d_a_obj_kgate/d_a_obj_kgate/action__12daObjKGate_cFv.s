@@ -2,10 +2,10 @@ lbl_805897F0:
 /* 805897F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 805897F4  7C 08 02 A6 */	mflr r0
 /* 805897F8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 805897FC  3C 80 80 59 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80589800  38 E4 AD 24 */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 80589804  3C 80 80 59 */	lis r4, struct_8058AEA8+0x0@ha
-/* 80589808  38 C4 AE A8 */	addi r6, r4, struct_8058AEA8+0x0@l
+/* 805897FC  3C 80 80 59 */	lis r4, cNullVec__6Z2Calc@ha /* 0x8058AD24@ha */
+/* 80589800  38 E4 AD 24 */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x8058AD24@l */
+/* 80589804  3C 80 80 59 */	lis r4, struct_8058AEA8+0x0@ha /* 0x8058AEA8@ha */
+/* 80589808  38 C4 AE A8 */	addi r6, r4, struct_8058AEA8+0x0@l /* 0x8058AEA8@l */
 /* 8058980C  88 06 00 00 */	lbz r0, 0(r6)
 /* 80589810  7C 00 07 75 */	extsb. r0, r0
 /* 80589814  40 82 00 58 */	bne lbl_8058986C
@@ -38,7 +38,7 @@ lbl_8058986C:
 /* 8058987C  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80589880  39 87 00 5C */	addi r12, r7, 0x5c
 /* 80589884  7D 8C 02 14 */	add r12, r12, r0
-/* 80589888  4B DD 87 FC */	b __ptmf_scall
+/* 80589888  4B DD 87 FD */	bl __ptmf_scall
 /* 8058988C  60 00 00 00 */	nop 
 lbl_80589890:
 /* 80589890  80 01 00 14 */	lwz r0, 0x14(r1)

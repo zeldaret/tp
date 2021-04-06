@@ -1,6 +1,6 @@
 lbl_8059BF54:
-/* 8059BF54  3C 80 80 5A */	lis r4, l_dzbIdx@ha
-/* 8059BF58  38 84 C6 A4 */	addi r4, r4, l_dzbIdx@l
+/* 8059BF54  3C 80 80 5A */	lis r4, l_dzbIdx@ha /* 0x8059C6A4@ha */
+/* 8059BF58  38 84 C6 A4 */	addi r4, r4, l_dzbIdx@l /* 0x8059C6A4@l */
 /* 8059BF5C  C0 63 04 FC */	lfs f3, 0x4fc(r3)
 /* 8059BF60  C0 44 00 18 */	lfs f2, 0x18(r4)
 /* 8059BF64  C0 23 05 F8 */	lfs f1, 0x5f8(r3)

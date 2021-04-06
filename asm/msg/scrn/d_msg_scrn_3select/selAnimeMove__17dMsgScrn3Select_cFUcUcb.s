@@ -12,8 +12,8 @@ lbl_8023A398:
 /* 8023A3C0  98 C3 01 08 */	stb r6, 0x108(r3)
 /* 8023A3C4  88 03 01 13 */	lbz r0, 0x113(r3)
 /* 8023A3C8  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8023A3CC  3C 80 80 3C */	lis r4, process@ha
-/* 8023A3D0  38 04 0C 54 */	addi r0, r4, process@l
+/* 8023A3CC  3C 80 80 3C */	lis r4, process@ha /* 0x803C0C54@ha */
+/* 8023A3D0  38 04 0C 54 */	addi r0, r4, process@l /* 0x803C0C54@l */
 /* 8023A3D4  7D 80 2A 14 */	add r12, r0, r5
 /* 8023A3D8  48 12 7C AD */	bl __ptmf_scall
 /* 8023A3DC  60 00 00 00 */	nop 

@@ -7,11 +7,11 @@ lbl_80CDB628:
 /* 80CDB63C  4B FF FA 9D */	bl effectStop__7daKey_cFv
 /* 80CDB640  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 80CDB644  54 00 20 36 */	slwi r0, r0, 4
-/* 80CDB648  3C 60 80 3B */	lis r3, field_item_res__10dItem_data@ha
-/* 80CDB64C  38 63 DD 88 */	addi r3, r3, field_item_res__10dItem_data@l
+/* 80CDB648  3C 60 80 3B */	lis r3, field_item_res__10dItem_data@ha /* 0x803ADD88@ha */
+/* 80CDB64C  38 63 DD 88 */	addi r3, r3, field_item_res__10dItem_data@l /* 0x803ADD88@l */
 /* 80CDB650  7C 83 00 2E */	lwzx r4, r3, r0
 /* 80CDB654  7F E3 FB 78 */	mr r3, r31
-/* 80CDB658  4B 46 90 CC */	b DeleteBase__12daItemBase_cFPCc
+/* 80CDB658  4B 46 90 CD */	bl DeleteBase__12daItemBase_cFPCc
 /* 80CDB65C  38 60 00 01 */	li r3, 1
 /* 80CDB660  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CDB664  80 01 00 14 */	lwz r0, 0x14(r1)

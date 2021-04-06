@@ -3,17 +3,15 @@
 #
 
 M575_TARGET := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw.plf
+M575_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw.lcf
+M575_MAP := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw.map
 
 M575_CPP_FILES := \
-	rel/d/a/obj/mirror/d_a_obj_mirror_screw/executor.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_screw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_screw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw.cpp \
 
 M575_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw.o \
 
 M575_LIBS := \
@@ -29,15 +27,21 @@ M575_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map575.map\
+	-m _prolog \
+	-lcf $(M575_LDSCRIPT) \
+	-unused -map $(M575_MAP) \
+	-w off \
 
 $(M575_TARGET): $(M575_O_FILES) $(M575_LIBS)
+	@echo [575] creating $(M575_TARGET)
 	@echo $(M575_LIBS) $(M575_O_FILES) > build/M575_ofiles
-	$(LD) -opt_partial $(M575_LDFLAGS) -o $(M575_TARGET) @build/M575_ofiles
+	@python3 tools/lcf.py rel 575 --output $(M575_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M575_LDFLAGS) -o $(M575_TARGET) @build/M575_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_screw/%.cpp
+	@echo [575] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M575_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M575_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

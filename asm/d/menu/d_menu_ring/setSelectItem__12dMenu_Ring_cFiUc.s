@@ -34,8 +34,8 @@ lbl_801EDB68:
 /* 801EDB8C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 801EDB90  38 00 FF FF */	li r0, -1
 /* 801EDB94  90 01 00 10 */	stw r0, 0x10(r1)
-/* 801EDB98  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801EDB9C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801EDB98  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801EDB9C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801EDBA0  7F E4 FB 78 */	mr r4, r31
 /* 801EDBA4  7D 5D 32 14 */	add r10, r29, r6
 /* 801EDBA8  80 CA 00 68 */	lwz r6, 0x68(r10)
@@ -47,8 +47,8 @@ lbl_801EDB68:
 /* 801EDBC0  57 C0 08 3C */	slwi r0, r30, 1
 /* 801EDBC4  7C 9D 02 14 */	add r4, r29, r0
 /* 801EDBC8  B0 64 06 86 */	sth r3, 0x686(r4)
-/* 801EDBCC  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha
-/* 801EDBD0  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l
+/* 801EDBCC  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha /* 0x803AC5A0@ha */
+/* 801EDBD0  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l /* 0x803AC5A0@l */
 /* 801EDBD4  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 801EDBD8  1C 00 00 18 */	mulli r0, r0, 0x18
 /* 801EDBDC  7C 63 02 14 */	add r3, r3, r0

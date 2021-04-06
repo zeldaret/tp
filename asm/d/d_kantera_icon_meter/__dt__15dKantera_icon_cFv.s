@@ -7,8 +7,8 @@ lbl_801AE974:
 /* 801AE988  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801AE98C  7C 9F 23 78 */	mr r31, r4
 /* 801AE990  41 82 00 BC */	beq lbl_801AEA4C
-/* 801AE994  3C 60 80 3C */	lis r3, __vt__15dKantera_icon_c@ha
-/* 801AE998  38 03 C2 28 */	addi r0, r3, __vt__15dKantera_icon_c@l
+/* 801AE994  3C 60 80 3C */	lis r3, __vt__15dKantera_icon_c@ha /* 0x803BC228@ha */
+/* 801AE998  38 03 C2 28 */	addi r0, r3, __vt__15dKantera_icon_c@l /* 0x803BC228@l */
 /* 801AE99C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801AE9A0  80 7E 00 04 */	lwz r3, 4(r30)
 /* 801AE9A4  80 63 00 04 */	lwz r3, 4(r3)

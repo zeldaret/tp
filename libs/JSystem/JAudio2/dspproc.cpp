@@ -11,13 +11,6 @@
 // Forward References:
 //
 
-void DSPReleaseHalt2(u32);
-static void setup_callback(u16);
-void DsetupTable(u32, u32, u32, u32, u32);
-void DsetMixerLevel(f32);
-void DsyncFrame2ch(u32, u32, u32);
-void DsyncFrame4ch(u32, u32, u32, u32, u32);
-
 extern "C" void DSPReleaseHalt2__FUl();
 extern "C" static void setup_callback__FUs();
 extern "C" void DsetupTable__FUlUlUlUlUl();
@@ -29,9 +22,6 @@ extern "C" void DsyncFrame4ch__FUlUlUlUlUl();
 // External References:
 //
 
-void DSP_CreateMap2(u32);
-void DSPSendCommands2(u32*, u32, void (*)(u16));
-
 extern "C" void DSP_CreateMap2__FUl();
 extern "C" void DSPSendCommands2__FPUlUlPFUs_v();
 
@@ -39,9 +29,7 @@ extern "C" void DSPSendCommands2__FPUlUlPFUs_v();
 // Declarations:
 //
 
-/* 8029E4E0-8029E528 0048+00 s=0 e=1 z=0  None .text      DSPReleaseHalt2__FUl */
-//	8029E4F4: 8029E0BC (DSP_CreateMap2__FUl)
-//	8029E510: 8029E7E0 (DSPSendCommands2__FPUlUlPFUs_v)
+/* 8029E4E0-8029E528 298E20 0048+00 0/0 1/1 0/0 .text            DSPReleaseHalt2__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,27 +41,21 @@ asm void DSPReleaseHalt2(u32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804512F8-80451300 0004+04 s=2 e=0 z=0  None .sbss      flag */
+/* 804512F8-80451300 0007F8 0004+04 2/2 0/0 0/0 .sbss            flag */
 static u8 flag[4 + 4 /* padding */];
 
-/* 8029E540-8029E54C 000C+00 s=1 e=0 z=0  None .text      setup_callback__FUs */
-//	8029E544: 804512F8 (flag)
+/* 8029E540-8029E54C 298E80 000C+00 1/1 0/0 0/0 .text            setup_callback__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void setup_callback(u16 param_0) {
+static asm void setup_callback(u16 param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/dspproc/setup_callback__FUs.s"
 }
 #pragma pop
 
-/* 8029E560-8029E5C4 0064+00 s=0 e=1 z=0  None .text      DsetupTable__FUlUlUlUlUl */
-//	8029E578: 8029E540 (setup_callback__FUs)
-//	8029E580: 8029E540 (setup_callback__FUs)
-//	8029E5A0: 804512F8 (flag)
-//	8029E5A4: 8029E7E0 (DSPSendCommands2__FPUlUlPFUs_v)
-//	8029E5A8: 804512F8 (flag)
+/* 8029E560-8029E5C4 298EA0 0064+00 0/0 1/1 0/0 .text            DsetupTable__FUlUlUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,7 +67,7 @@ asm void DsetupTable(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 par
 #pragma pop
 
 /* ############################################################################################## */
-/* 804507C8-804507D0 0002+06 s=3 e=0 z=0  None .sdata     DSP_MIXERLEVEL */
+/* 804507C8-804507D0 000248 0002+06 3/3 0/0 0/0 .sdata           DSP_MIXERLEVEL */
 SECTION_SDATA static u16 DSP_MIXERLEVEL[1 + 3 /* padding */] = {
     0x4000,
     /* padding */
@@ -94,16 +76,14 @@ SECTION_SDATA static u16 DSP_MIXERLEVEL[1 + 3 /* padding */] = {
     0x0000,
 };
 
-/* 80455770-80455778 0004+04 s=1 e=0 z=0  None .sdata2    @333 */
+/* 80455770-80455778 003D70 0004+04 1/1 0/0 0/0 .sdata2          @333 */
 SECTION_SDATA2 static f32 lit_333[1 + 1 /* padding */] = {
     4096.0f,
     /* padding */
     0.0f,
 };
 
-/* 8029E5E0-8029E604 0024+00 s=0 e=1 z=0  None .text      DsetMixerLevel__Ff */
-//	8029E5E0: 80455770 (lit_333)
-//	8029E5F8: 804507C8 (DSP_MIXERLEVEL)
+/* 8029E5E0-8029E604 298F20 0024+00 0/0 1/1 0/0 .text            DsetMixerLevel__Ff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,9 +94,7 @@ asm void DsetMixerLevel(f32 param_0) {
 }
 #pragma pop
 
-/* 8029E620-8029E674 0054+00 s=0 e=1 z=0  None .text      DsyncFrame2ch__FUlUlUl */
-//	8029E634: 804507C8 (DSP_MIXERLEVEL)
-//	8029E660: 8029E7E0 (DSPSendCommands2__FPUlUlPFUs_v)
+/* 8029E620-8029E674 298F60 0054+00 0/0 1/1 0/0 .text            DsyncFrame2ch__FUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,9 +105,7 @@ asm void DsyncFrame2ch(u32 param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 8029E680-8029E6D0 0050+00 s=0 e=1 z=0  None .text      DsyncFrame4ch__FUlUlUlUlUl */
-//	8029E694: 804507C8 (DSP_MIXERLEVEL)
-//	8029E6BC: 8029E7E0 (DSPSendCommands2__FPUlUlPFUs_v)
+/* 8029E680-8029E6D0 298FC0 0050+00 0/0 1/1 0/0 .text            DsyncFrame4ch__FUlUlUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

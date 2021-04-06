@@ -6,7 +6,7 @@ lbl_80C036B4:
 /* 80C036C4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C036C8  7C 7E 1B 78 */	mr r30, r3
 /* 80C036CC  7C 9F 23 78 */	mr r31, r4
-/* 80C036D0  4B 41 56 10 */	b fopAc_IsActor__FPv
+/* 80C036D0  4B 41 56 11 */	bl fopAc_IsActor__FPv
 /* 80C036D4  2C 03 00 00 */	cmpwi r3, 0
 /* 80C036D8  41 82 00 2C */	beq lbl_80C03704
 /* 80C036DC  A8 1E 00 08 */	lha r0, 8(r30)

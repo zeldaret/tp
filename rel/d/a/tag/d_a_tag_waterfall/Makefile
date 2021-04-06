@@ -3,19 +3,20 @@
 #
 
 M751_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall.plf
+M751_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall.lcf
+M751_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall.map
 
 M751_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_waterfall/executor.cpp \
-	rel/d/a/tag/d_a_tag_waterfall/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_waterfall/d_a_tag_waterfall.cpp \
 
 M751_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/d_a_tag_waterfall.o \
 
 M751_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/libRuntime.PPCEABI.H.a \
 
 M751_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M751_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map751.map\
+	-m _prolog \
+	-lcf $(M751_LDSCRIPT) \
+	-unused -map $(M751_MAP) \
+	-w off \
 
 $(M751_TARGET): $(M751_O_FILES) $(M751_LIBS)
+	@echo [751] creating $(M751_TARGET)
 	@echo $(M751_LIBS) $(M751_O_FILES) > build/M751_ofiles
-	$(LD) -opt_partial $(M751_LDFLAGS) -o $(M751_TARGET) @build/M751_ofiles
+	@python3 tools/lcf.py rel 751 --output $(M751_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M751_LDFLAGS) -o $(M751_TARGET) @build/M751_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_waterfall/%.o: rel/d/a/tag/d_a_tag_waterfall/%.cpp
+	@echo [751] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M751_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M751_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_waterfall/libs/Runtime.PPCEABI.H/Makefile
 

@@ -24,8 +24,8 @@ lbl_8034B20C:
 /* 8034B218  3B E0 00 00 */	li r31, 0
 /* 8034B21C  48 00 00 34 */	b lbl_8034B250
 lbl_8034B220:
-/* 8034B220  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
-/* 8034B224  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l
+/* 8034B220  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
+/* 8034B224  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 8034B228  7C 1F 00 40 */	cmplw r31, r0
 /* 8034B22C  40 82 00 0C */	bne lbl_8034B238
 /* 8034B230  3B E0 00 00 */	li r31, 0

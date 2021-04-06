@@ -5,8 +5,8 @@ lbl_8002AD3C:
 /* 8002AD48  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002AD4C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8002AD50  41 82 00 1C */	beq lbl_8002AD6C
-/* 8002AD54  3C A0 80 3A */	lis r5, __vt__11dDrawPath_c@ha
-/* 8002AD58  38 05 7C F8 */	addi r0, r5, __vt__11dDrawPath_c@l
+/* 8002AD54  3C A0 80 3A */	lis r5, __vt__11dDrawPath_c@ha /* 0x803A7CF8@ha */
+/* 8002AD58  38 05 7C F8 */	addi r0, r5, __vt__11dDrawPath_c@l /* 0x803A7CF8@l */
 /* 8002AD5C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8002AD60  7C 80 07 35 */	extsh. r0, r4
 /* 8002AD64  40 81 00 08 */	ble lbl_8002AD6C

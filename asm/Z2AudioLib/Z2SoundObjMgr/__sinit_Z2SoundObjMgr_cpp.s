@@ -4,8 +4,8 @@ lbl_802C01EC:
 /* 802C01F4  81 22 C1 84 */	lwz r9, data_80455B84(r2)
 /* 802C01F8  91 41 00 28 */	stw r10, 0x28(r1)
 /* 802C01FC  91 21 00 2C */	stw r9, 0x2c(r1)
-/* 802C0200  3C 60 80 3D */	lis r3, mEnemyInfo@ha
-/* 802C0204  39 03 AD 70 */	addi r8, r3, mEnemyInfo@l
+/* 802C0200  3C 60 80 3D */	lis r3, mEnemyInfo@ha /* 0x803CAD70@ha */
+/* 802C0204  39 03 AD 70 */	addi r8, r3, mEnemyInfo@l /* 0x803CAD70@l */
 /* 802C0208  91 48 00 08 */	stw r10, 8(r8)
 /* 802C020C  91 28 00 0C */	stw r9, 0xc(r8)
 /* 802C0210  80 E2 C1 A8 */	lwz r7, sAreaSmallFloating(r2)

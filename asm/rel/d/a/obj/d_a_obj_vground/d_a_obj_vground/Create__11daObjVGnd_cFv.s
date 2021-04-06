@@ -11,7 +11,7 @@ lbl_80D214AC:
 /* 80D214D0  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 80D214D4  80 83 00 04 */	lwz r4, 4(r3)
 /* 80D214D8  7F E3 FB 78 */	mr r3, r31
-/* 80D214DC  4B 2F 90 9C */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80D214DC  4B 2F 90 9D */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80D214E0  7F E3 FB 78 */	mr r3, r31
 /* 80D214E4  48 00 02 C5 */	bl execute__11daObjVGnd_cFv
 /* 80D214E8  38 60 00 01 */	li r3, 1

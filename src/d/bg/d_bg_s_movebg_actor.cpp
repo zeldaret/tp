@@ -32,11 +32,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct cXyz {};
+struct csXyz {};
 
 struct cBgS_PolyInfo {};
 
-struct csXyz {};
+struct cXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -79,8 +79,6 @@ struct cBgS {
 // Forward References:
 //
 
-static void CheckCreateHeap(fopAc_ac_c*);
-
 extern "C" void __ct__16dBgS_MoveBgActorFv();
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" bool CreateHeap__16dBgS_MoveBgActorFv();
@@ -96,16 +94,10 @@ extern "C" void
 MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
 extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
 extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void* operator new(u32);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
@@ -131,8 +123,8 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 803AB9A0-803AB9C8 0028+00 s=1 e=0 z=34  None .data      __vt__16dBgS_MoveBgActor */
-SECTION_DATA void* __vt__16dBgS_MoveBgActor[10] = {
+/* 803AB9A0-803AB9C8 008AC0 0028+00 1/1 0/0 34/34 .data            __vt__16dBgS_MoveBgActor */
+SECTION_DATA extern void* __vt__16dBgS_MoveBgActor[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__16dBgS_MoveBgActorFv,
@@ -145,10 +137,7 @@ SECTION_DATA void* __vt__16dBgS_MoveBgActor[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80078624-80078668 0044+00 s=0 e=0 z=173  None .text      __ct__16dBgS_MoveBgActorFv */
-//	80078638: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8007863C: 803AB9A0 (__vt__16dBgS_MoveBgActor)
-//	80078640: 803AB9A0 (__vt__16dBgS_MoveBgActor)
+/* 80078624-80078668 072F64 0044+00 0/0 0/0 173/173 .text            __ct__16dBgS_MoveBgActorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,78 +147,68 @@ asm dBgS_MoveBgActor::dBgS_MoveBgActor() {
 }
 #pragma pop
 
-/* 80078668-80078688 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
-//	80078674: 800786C8 (MoveBGCreateHeap__16dBgS_MoveBgActorFv)
+/* 80078668-80078688 072FA8 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_s_movebg_actor/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80078688-80078690 0008+00 s=1 e=0 z=2  None .text      CreateHeap__16dBgS_MoveBgActorFv */
+/* 80078688-80078690 072FC8 0008+00 1/0 0/0 2/0 .text            CreateHeap__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::CreateHeap() {
     return true;
 }
 
-/* 80078690-80078698 0008+00 s=1 e=0 z=60  None .text      Create__16dBgS_MoveBgActorFv */
+/* 80078690-80078698 072FD0 0008+00 1/0 0/0 60/0 .text            Create__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::Create() {
     return true;
 }
 
-/* 80078698-800786A0 0008+00 s=1 e=0 z=3  None .text      Execute__16dBgS_MoveBgActorFPPA3_A4_f */
+/* 80078698-800786A0 072FD8 0008+00 1/0 0/0 3/0 .text Execute__16dBgS_MoveBgActorFPPA3_A4_f */
 bool dBgS_MoveBgActor::Execute(f32 (**param_0)[3][4]) {
     return true;
 }
 
-/* 800786A0-800786A8 0008+00 s=1 e=0 z=2  None .text      Draw__16dBgS_MoveBgActorFv */
+/* 800786A0-800786A8 072FE0 0008+00 1/0 0/0 2/0 .text            Draw__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::Draw() {
     return true;
 }
 
-/* 800786A8-800786B0 0008+00 s=1 e=0 z=6  None .text      Delete__16dBgS_MoveBgActorFv */
+/* 800786A8-800786B0 072FE8 0008+00 1/0 0/0 6/0 .text            Delete__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::Delete() {
     return true;
 }
 
-/* 800786B0-800786B8 0008+00 s=1 e=0 z=171  None .text      IsDelete__16dBgS_MoveBgActorFv */
+/* 800786B0-800786B8 072FF0 0008+00 1/0 0/0 171/0 .text            IsDelete__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::IsDelete() {
     return true;
 }
 
-/* 800786B8-800786C0 0008+00 s=1 e=0 z=171  None .text      ToFore__16dBgS_MoveBgActorFv */
+/* 800786B8-800786C0 072FF8 0008+00 1/0 0/0 171/0 .text            ToFore__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::ToFore() {
     return true;
 }
 
-/* 800786C0-800786C8 0008+00 s=1 e=0 z=171  None .text      ToBack__16dBgS_MoveBgActorFv */
+/* 800786C0-800786C8 073000 0008+00 1/0 0/0 171/0 .text            ToBack__16dBgS_MoveBgActorFv */
 bool dBgS_MoveBgActor::ToBack() {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80450F70-80450F74 0004+00 s=2 e=0 z=0  None .sbss      m_name__16dBgS_MoveBgActor */
+/* 80450F70-80450F74 000470 0004+00 2/2 0/0 0/0 .sbss            m_name__16dBgS_MoveBgActor */
 static u8 m_name__16dBgS_MoveBgActor[4];
 
-/* 80450F74-80450F78 0004+00 s=2 e=0 z=0  None .sbss      m_dzb_id__16dBgS_MoveBgActor */
+/* 80450F74-80450F78 000474 0004+00 2/2 0/0 0/0 .sbss            m_dzb_id__16dBgS_MoveBgActor */
 static u8 m_dzb_id__16dBgS_MoveBgActor[4];
 
-/* 80450F78-80450F80 0004+04 s=2 e=0 z=1  None .sbss      m_set_func__16dBgS_MoveBgActor */
+/* 80450F78-80450F80 000478 0004+04 2/2 0/0 1/1 .sbss            m_set_func__16dBgS_MoveBgActor */
+extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 
-/* 800786C8-800787BC 00F4+00 s=1 e=0 z=0  None .text      MoveBGCreateHeap__16dBgS_MoveBgActorFv */
-//	800786FC: 80450F74 (m_dzb_id__16dBgS_MoveBgActor)
-//	8007871C: 802CEC4C (__nw__FUl)
-//	80078728: 8007B970 (__ct__4dBgWFv)
-//	80078740: 80450F70 (m_name__16dBgS_MoveBgActor)
-//	80078744: 80450F74 (m_dzb_id__16dBgS_MoveBgActor)
-//	80078748: 804061C0 (g_dComIfG_gameInfo)
-//	8007874C: 804061C0 (g_dComIfG_gameInfo)
-//	8007875C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80078770: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	8007877C: 80450F78 (m_set_func__16dBgS_MoveBgActor)
+/* 800786C8-800787BC 073008 00F4+00 1/1 0/0 0/0 .text MoveBGCreateHeap__16dBgS_MoveBgActorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,31 +218,9 @@ asm void dBgS_MoveBgActor::MoveBGCreateHeap() {
 }
 #pragma pop
 
-/* 800787BC-800788DC 0120+00 s=0 e=0 z=169  None .text
+/* 800787BC-800788DC 0730FC 0120+00 0/0 0/0 169/169 .text
  * MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
  */
-//	800787CC: 803621D4 (_savegpr_27)
-//	800787EC: 803DD470 (now__14mDoMtx_stack_c)
-//	800787F0: 803DD470 (now__14mDoMtx_stack_c)
-//	80078800: 803468E8 (PSMTXTrans)
-//	80078804: 803DD470 (now__14mDoMtx_stack_c)
-//	80078808: 803DD470 (now__14mDoMtx_stack_c)
-//	80078810: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80078820: 8000CE38 (scaleM__14mDoMtx_stack_cFfff)
-//	80078824: 803DD470 (now__14mDoMtx_stack_c)
-//	80078828: 803DD470 (now__14mDoMtx_stack_c)
-//	80078830: 803464B0 (PSMTXCopy)
-//	80078840: 803464B0 (PSMTXCopy)
-//	80078844: 80450F70 (m_name__16dBgS_MoveBgActor)
-//	80078848: 80450F74 (m_dzb_id__16dBgS_MoveBgActor)
-//	8007884C: 80450F78 (m_set_func__16dBgS_MoveBgActor)
-//	80078854: 80078668 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80078858: 80078668 (CheckCreateHeap__FP10fopAc_ac_c)
-//	80078860: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80078880: 804061C0 (g_dComIfG_gameInfo)
-//	80078884: 804061C0 (g_dComIfG_gameInfo)
-//	80078890: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	800788C8: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -276,11 +233,7 @@ asm void dBgS_MoveBgActor::MoveBGCreate(char const* param_0, int param_1,
 }
 #pragma pop
 
-/* 800788DC-80078950 0074+00 s=0 e=0 z=169  None .text      MoveBGDelete__16dBgS_MoveBgActorFv */
-//	80078914: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80078920: 804061C0 (g_dComIfG_gameInfo)
-//	80078924: 804061C0 (g_dComIfG_gameInfo)
-//	80078930: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 800788DC-80078950 07321C 0074+00 0/0 0/0 169/169 .text MoveBGDelete__16dBgS_MoveBgActorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -290,19 +243,7 @@ asm void dBgS_MoveBgActor::MoveBGDelete() {
 }
 #pragma pop
 
-/* 80078950-80078A14 00C4+00 s=0 e=0 z=183  None .text      MoveBGExecute__16dBgS_MoveBgActorFv */
-//	80078994: 803DD470 (now__14mDoMtx_stack_c)
-//	80078998: 803DD470 (now__14mDoMtx_stack_c)
-//	800789A8: 803468E8 (PSMTXTrans)
-//	800789AC: 803DD470 (now__14mDoMtx_stack_c)
-//	800789B0: 803DD470 (now__14mDoMtx_stack_c)
-//	800789B8: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	800789C8: 8000CE38 (scaleM__14mDoMtx_stack_cFfff)
-//	800789CC: 803DD470 (now__14mDoMtx_stack_c)
-//	800789D0: 803DD470 (now__14mDoMtx_stack_c)
-//	800789D8: 803464B0 (PSMTXCopy)
-//	800789E4: 803464B0 (PSMTXCopy)
-//	800789F4: 8007B9C0 (Move__4dBgWFv)
+/* 80078950-80078A14 073290 00C4+00 0/0 0/0 183/183 .text MoveBGExecute__16dBgS_MoveBgActorFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

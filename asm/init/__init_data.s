@@ -5,8 +5,8 @@ lbl_80003340:
 /* 8000334C  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80003350  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 80003354  93 A1 00 0C */	stw r29, 0xc(r1)
-/* 80003358  3C 60 80 00 */	lis r3, _rom_copy_info@ha
-/* 8000335C  38 03 55 44 */	addi r0, r3, _rom_copy_info@l
+/* 80003358  3C 60 80 00 */	lis r3, _rom_copy_info@ha /* 0x80005544@ha */
+/* 8000335C  38 03 55 44 */	addi r0, r3, _rom_copy_info@l /* 0x80005544@l */
 /* 80003360  7C 1D 03 78 */	mr r29, r0
 /* 80003364  48 00 00 04 */	b lbl_80003368
 lbl_80003368:
@@ -30,8 +30,8 @@ lbl_800033A4:
 /* 800033A4  3B BD 00 0C */	addi r29, r29, 0xc
 /* 800033A8  4B FF FF C4 */	b lbl_8000336C
 lbl_800033AC:
-/* 800033AC  3C 60 80 00 */	lis r3, _bss_init_info@ha
-/* 800033B0  38 03 55 C8 */	addi r0, r3, _bss_init_info@l
+/* 800033AC  3C 60 80 00 */	lis r3, _bss_init_info@ha /* 0x800055C8@ha */
+/* 800033B0  38 03 55 C8 */	addi r0, r3, _bss_init_info@l /* 0x800055C8@l */
 /* 800033B4  7C 1D 03 78 */	mr r29, r0
 /* 800033B8  48 00 00 04 */	b lbl_800033BC
 lbl_800033BC:

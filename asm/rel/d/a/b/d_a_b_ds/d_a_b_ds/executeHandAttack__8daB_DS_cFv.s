@@ -5,8 +5,8 @@ lbl_805D2520:
 /* 805D252C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805D2530  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805D2534  7C 7E 1B 78 */	mr r30, r3
-/* 805D2538  3C 80 80 5E */	lis r4, lit_3932@ha
-/* 805D253C  3B E4 CA 54 */	addi r31, r4, lit_3932@l
+/* 805D2538  3C 80 80 5E */	lis r4, lit_3932@ha /* 0x805DCA54@ha */
+/* 805D253C  3B E4 CA 54 */	addi r31, r4, lit_3932@l /* 0x805DCA54@l */
 /* 805D2540  80 03 06 84 */	lwz r0, 0x684(r3)
 /* 805D2544  2C 00 00 01 */	cmpwi r0, 1
 /* 805D2548  41 82 00 5C */	beq lbl_805D25A4
@@ -22,8 +22,8 @@ lbl_805D255C:
 /* 805D256C  1C 00 00 03 */	mulli r0, r0, 3
 /* 805D2570  7C 04 02 14 */	add r0, r4, r0
 /* 805D2574  54 00 10 3A */	slwi r0, r0, 2
-/* 805D2578  3C 80 80 5E */	lis r4, Ds_HandAt_id@ha
-/* 805D257C  38 84 D6 14 */	addi r4, r4, Ds_HandAt_id@l
+/* 805D2578  3C 80 80 5E */	lis r4, Ds_HandAt_id@ha /* 0x805DD614@ha */
+/* 805D257C  38 84 D6 14 */	addi r4, r4, Ds_HandAt_id@l /* 0x805DD614@l */
 /* 805D2580  7C 84 00 2E */	lwzx r4, r4, r0
 /* 805D2584  38 A0 00 00 */	li r5, 0
 /* 805D2588  C0 3F 01 90 */	lfs f1, 0x190(r31)

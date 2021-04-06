@@ -3,18 +3,16 @@
 #
 
 M100_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate.plf
+M100_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate.lcf
+M100_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate.map
 
 M100_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kgate/executor.cpp \
-	rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_kgate/d_a_obj_kgate.cpp \
 
 M100_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/d_a_obj_kgate.o \
 
@@ -31,15 +29,21 @@ M100_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map100.map\
+	-m _prolog \
+	-lcf $(M100_LDSCRIPT) \
+	-unused -map $(M100_MAP) \
+	-w off \
 
 $(M100_TARGET): $(M100_O_FILES) $(M100_LIBS)
+	@echo [100] creating $(M100_TARGET)
 	@echo $(M100_LIBS) $(M100_O_FILES) > build/M100_ofiles
-	$(LD) -opt_partial $(M100_LDFLAGS) -o $(M100_TARGET) @build/M100_ofiles
+	@python3 tools/lcf.py rel 100 --output $(M100_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M100_LDFLAGS) -o $(M100_TARGET) @build/M100_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kgate/%.o: rel/d/a/obj/d_a_obj_kgate/%.cpp
+	@echo [100] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M100_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M100_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,8 +1,8 @@
 lbl_8073620C:
-/* 8073620C  3C 80 80 74 */	lis r4, lit_3768@ha
-/* 80736210  38 A4 9D 60 */	addi r5, r4, lit_3768@l
-/* 80736214  3C 80 80 74 */	lis r4, __vt__15daE_OctBg_HIO_c@ha
-/* 80736218  38 04 A0 E8 */	addi r0, r4, __vt__15daE_OctBg_HIO_c@l
+/* 8073620C  3C 80 80 74 */	lis r4, lit_3768@ha /* 0x80739D60@ha */
+/* 80736210  38 A4 9D 60 */	addi r5, r4, lit_3768@l /* 0x80739D60@l */
+/* 80736214  3C 80 80 74 */	lis r4, __vt__15daE_OctBg_HIO_c@ha /* 0x8073A0E8@ha */
+/* 80736218  38 04 A0 E8 */	addi r0, r4, __vt__15daE_OctBg_HIO_c@l /* 0x8073A0E8@l */
 /* 8073621C  90 03 00 00 */	stw r0, 0(r3)
 /* 80736220  38 00 FF FF */	li r0, -1
 /* 80736224  98 03 00 04 */	stb r0, 4(r3)

@@ -6,8 +6,8 @@ lbl_805DF9F4:
 /* 805DFA04  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 805DFA08  D0 03 05 40 */	stfs f0, 0x540(r3)
 /* 805DFA0C  C0 03 05 3C */	lfs f0, 0x53c(r3)
-/* 805DFA10  3C 80 80 5F */	lis r4, lit_4089@ha
-/* 805DFA14  C0 24 D1 B0 */	lfs f1, lit_4089@l(r4)
+/* 805DFA10  3C 80 80 5F */	lis r4, lit_4089@ha /* 0x805ED1B0@ha */
+/* 805DFA14  C0 24 D1 B0 */	lfs f1, lit_4089@l(r4)  /* 0x805ED1B0@l */
 /* 805DFA18  EC 00 08 2A */	fadds f0, f0, f1
 /* 805DFA1C  D0 03 05 3C */	stfs f0, 0x53c(r3)
 /* 805DFA20  C0 03 05 38 */	lfs f0, 0x538(r3)

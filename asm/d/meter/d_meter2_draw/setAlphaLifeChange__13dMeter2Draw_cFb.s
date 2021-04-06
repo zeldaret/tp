@@ -24,8 +24,8 @@ lbl_80214C68:
 /* 80214C74  3B E0 00 01 */	li r31, 1
 lbl_80214C78:
 /* 80214C78  C0 1A 07 94 */	lfs f0, 0x794(r26)
-/* 80214C7C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80214C80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80214C7C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80214C80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80214C84  C0 23 00 20 */	lfs f1, 0x20(r3)
 /* 80214C88  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80214C8C  40 82 00 0C */	bne lbl_80214C98
@@ -36,8 +36,8 @@ lbl_80214C98:
 /* 80214C9C  3B C0 00 01 */	li r30, 1
 lbl_80214CA0:
 /* 80214CA0  C0 1A 07 9C */	lfs f0, 0x79c(r26)
-/* 80214CA4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80214CA8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80214CA4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80214CA8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80214CAC  C0 23 00 34 */	lfs f1, 0x34(r3)
 /* 80214CB0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80214CB4  40 82 00 0C */	bne lbl_80214CC0
@@ -48,8 +48,8 @@ lbl_80214CC0:
 /* 80214CC4  3B C0 00 01 */	li r30, 1
 lbl_80214CC8:
 /* 80214CC8  C0 1A 07 98 */	lfs f0, 0x798(r26)
-/* 80214CCC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80214CD0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80214CCC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80214CD0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80214CD4  C0 23 00 24 */	lfs f1, 0x24(r3)
 /* 80214CD8  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80214CDC  40 82 00 0C */	bne lbl_80214CE8
@@ -60,8 +60,8 @@ lbl_80214CE8:
 /* 80214CEC  3B A0 00 01 */	li r29, 1
 lbl_80214CF0:
 /* 80214CF0  C0 1A 07 A0 */	lfs f0, 0x7a0(r26)
-/* 80214CF4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80214CF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80214CF4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80214CF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80214CFC  C0 23 00 3C */	lfs f1, 0x3c(r3)
 /* 80214D00  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80214D04  40 82 00 0C */	bne lbl_80214D10

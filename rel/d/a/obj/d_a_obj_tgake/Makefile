@@ -3,17 +3,15 @@
 #
 
 M656_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake.plf
+M656_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake.lcf
+M656_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake.map
 
 M656_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tgake/executor.cpp \
-	rel/d/a/obj/d_a_obj_tgake/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tgake/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tgake/d_a_obj_tgake.cpp \
 
 M656_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/d_a_obj_tgake.o \
 
 M656_LIBS := \
@@ -29,15 +27,21 @@ M656_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map656.map\
+	-m _prolog \
+	-lcf $(M656_LDSCRIPT) \
+	-unused -map $(M656_MAP) \
+	-w off \
 
 $(M656_TARGET): $(M656_O_FILES) $(M656_LIBS)
+	@echo [656] creating $(M656_TARGET)
 	@echo $(M656_LIBS) $(M656_O_FILES) > build/M656_ofiles
-	$(LD) -opt_partial $(M656_LDFLAGS) -o $(M656_TARGET) @build/M656_ofiles
+	@python3 tools/lcf.py rel 656 --output $(M656_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M656_LDFLAGS) -o $(M656_TARGET) @build/M656_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tgake/%.o: rel/d/a/obj/d_a_obj_tgake/%.cpp
+	@echo [656] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M656_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M656_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

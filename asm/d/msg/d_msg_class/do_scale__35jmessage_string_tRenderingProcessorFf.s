@@ -7,8 +7,8 @@ lbl_80232600:
 /* 80232614  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 80232618  80 C3 00 08 */	lwz r6, 8(r3)
 /* 8023261C  38 61 00 08 */	addi r3, r1, 8
-/* 80232620  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 80232624  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 80232620  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 80232624  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 80232628  38 84 00 2B */	addi r4, r4, 0x2b
 /* 8023262C  C0 42 B0 5C */	lfs f2, lit_4026(r2)
 /* 80232630  C0 06 01 1C */	lfs f0, 0x11c(r6)

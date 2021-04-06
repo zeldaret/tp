@@ -3,10 +3,10 @@ lbl_80833F1C:
 /* 80833F20  7C 08 02 A6 */	mflr r0
 /* 80833F24  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80833F28  39 61 00 50 */	addi r11, r1, 0x50
-/* 80833F2C  4B B2 E2 A4 */	b _savegpr_26
+/* 80833F2C  4B B2 E2 A5 */	bl _savegpr_26
 /* 80833F30  7C 7F 1B 78 */	mr r31, r3
-/* 80833F34  3C 80 80 83 */	lis r4, lit_3909@ha
-/* 80833F38  3B 64 52 D0 */	addi r27, r4, lit_3909@l
+/* 80833F34  3C 80 80 83 */	lis r4, lit_3909@ha /* 0x808352D0@ha */
+/* 80833F38  3B 64 52 D0 */	addi r27, r4, lit_3909@l /* 0x808352D0@l */
 /* 80833F3C  80 03 06 64 */	lwz r0, 0x664(r3)
 /* 80833F40  2C 00 00 02 */	cmpwi r0, 2
 /* 80833F44  41 82 00 B0 */	beq lbl_80833FF4
@@ -96,10 +96,10 @@ lbl_80834064:
 /* 80834078  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8083407C  3B 40 00 00 */	li r26, 0
 /* 80834080  3B C0 00 00 */	li r30, 0
-/* 80834084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80834088  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
-/* 8083408C  3C 60 80 83 */	lis r3, w_eff_id@ha
-/* 80834090  3B A3 53 D4 */	addi r29, r3, w_eff_id@l
+/* 80834084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80834088  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 8083408C  3C 60 80 83 */	lis r3, w_eff_id@ha /* 0x808353D4@ha */
+/* 80834090  3B A3 53 D4 */	addi r29, r3, w_eff_id@l /* 0x808353D4@l */
 lbl_80834094:
 /* 80834094  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 80834098  38 80 00 00 */	li r4, 0
@@ -117,16 +117,16 @@ lbl_80834094:
 /* 808340C8  39 20 00 00 */	li r9, 0
 /* 808340CC  39 40 00 FF */	li r10, 0xff
 /* 808340D0  C0 3B 00 08 */	lfs f1, 8(r27)
-/* 808340D4  4B 81 89 BC */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 808340D4  4B 81 89 BD */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 808340D8  3B 5A 00 01 */	addi r26, r26, 1
 /* 808340DC  2C 1A 00 04 */	cmpwi r26, 4
 /* 808340E0  3B DE 00 02 */	addi r30, r30, 2
 /* 808340E4  41 80 FF B0 */	blt lbl_80834094
 /* 808340E8  7F E3 FB 78 */	mr r3, r31
-/* 808340EC  4B 7E 5B 90 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 808340EC  4B 7E 5B 91 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_808340F0:
 /* 808340F0  39 61 00 50 */	addi r11, r1, 0x50
-/* 808340F4  4B B2 E1 28 */	b _restgpr_26
+/* 808340F4  4B B2 E1 29 */	bl _restgpr_26
 /* 808340F8  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 808340FC  7C 08 03 A6 */	mtlr r0
 /* 80834100  38 21 00 50 */	addi r1, r1, 0x50

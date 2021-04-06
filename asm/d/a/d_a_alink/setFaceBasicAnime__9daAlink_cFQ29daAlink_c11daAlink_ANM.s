@@ -6,8 +6,8 @@ lbl_800AF9A8:
 /* 800AF9B8  93 C1 00 08 */	stw r30, 8(r1)
 /* 800AF9BC  7C 7E 1B 78 */	mr r30, r3
 /* 800AF9C0  1C A4 00 0C */	mulli r5, r4, 0xc
-/* 800AF9C4  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha
-/* 800AF9C8  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l
+/* 800AF9C4  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha /* 0x8038FCA8@ha */
+/* 800AF9C8  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l /* 0x8038FCA8@l */
 /* 800AF9CC  7F E0 2A 14 */	add r31, r0, r5
 /* 800AF9D0  A0 9F 00 06 */	lhz r4, 6(r31)
 /* 800AF9D4  4B FF FE CD */	bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

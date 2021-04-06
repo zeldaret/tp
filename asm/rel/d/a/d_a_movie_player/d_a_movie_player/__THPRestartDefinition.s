@@ -1,7 +1,7 @@
 lbl_808739A8:
 /* 808739A8  38 00 00 01 */	li r0, 1
-/* 808739AC  3C 60 80 88 */	lis r3, __THPInfo@ha
-/* 808739B0  38 A3 9B C4 */	addi r5, r3, __THPInfo@l
+/* 808739AC  3C 60 80 88 */	lis r3, __THPInfo@ha /* 0x80879BC4@ha */
+/* 808739B0  38 A3 9B C4 */	addi r5, r3, __THPInfo@l /* 0x80879BC4@l */
 /* 808739B4  80 65 00 00 */	lwz r3, 0(r5)
 /* 808739B8  98 03 06 A9 */	stb r0, 0x6a9(r3)
 /* 808739BC  80 85 00 00 */	lwz r4, 0(r5)

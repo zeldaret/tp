@@ -25,8 +25,8 @@ lbl_802D49EC:
 /* 802D4A08  38 60 00 00 */	li r3, 0
 /* 802D4A0C  48 00 00 90 */	b lbl_802D4A9C
 lbl_802D4A10:
-/* 802D4A10  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
-/* 802D4A14  83 A3 43 54 */	lwz r29, sVolumeList__13JKRFileLoader@l(r3)
+/* 802D4A10  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha /* 0x80434354@ha */
+/* 802D4A14  83 A3 43 54 */	lwz r29, sVolumeList__13JKRFileLoader@l(r3)  /* 0x80434354@l */
 /* 802D4A18  48 00 00 50 */	b lbl_802D4A68
 lbl_802D4A1C:
 /* 802D4A1C  80 9D 00 00 */	lwz r4, 0(r29)

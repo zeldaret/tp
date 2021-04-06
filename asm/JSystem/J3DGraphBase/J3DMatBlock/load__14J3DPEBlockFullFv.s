@@ -31,8 +31,8 @@ lbl_8031F404:
 /* 8031F430  38 BF 00 1C */	addi r5, r31, 0x1c
 /* 8031F434  4B FF 05 61 */	bl J3DGDSetFogRangeAdj__FUcUsP14_GXFogAdjTable
 /* 8031F438  88 FF 00 33 */	lbz r7, 0x33(r31)
-/* 8031F43C  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha
-/* 8031F440  38 83 6E 60 */	addi r4, r3, j3dAlphaCmpTable@l
+/* 8031F43C  3C 60 80 43 */	lis r3, j3dAlphaCmpTable@ha /* 0x80436E60@ha */
+/* 8031F440  38 83 6E 60 */	addi r4, r3, j3dAlphaCmpTable@l /* 0x80436E60@l */
 /* 8031F444  A0 1F 00 30 */	lhz r0, 0x30(r31)
 /* 8031F448  1C 00 00 03 */	mulli r0, r0, 3
 /* 8031F44C  7C 64 02 14 */	add r3, r4, r0
@@ -210,8 +210,8 @@ lbl_8031F6B8:
 /* 8031F6DC  38 03 00 01 */	addi r0, r3, 1
 /* 8031F6E0  90 04 00 08 */	stw r0, 8(r4)
 /* 8031F6E4  98 A3 00 00 */	stb r5, 0(r3)
-/* 8031F6E8  3C 60 80 43 */	lis r3, j3dZModeTable@ha
-/* 8031F6EC  38 83 71 60 */	addi r4, r3, j3dZModeTable@l
+/* 8031F6E8  3C 60 80 43 */	lis r3, j3dZModeTable@ha /* 0x80437160@ha */
+/* 8031F6EC  38 83 71 60 */	addi r4, r3, j3dZModeTable@l /* 0x80437160@l */
 /* 8031F6F0  A0 1F 00 38 */	lhz r0, 0x38(r31)
 /* 8031F6F4  1C 00 00 03 */	mulli r0, r0, 3
 /* 8031F6F8  7C 64 02 14 */	add r3, r4, r0

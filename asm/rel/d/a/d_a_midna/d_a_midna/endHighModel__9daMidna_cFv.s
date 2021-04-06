@@ -10,7 +10,7 @@ lbl_804C0134:
 /* 804C0154  80 7F 06 B0 */	lwz r3, 0x6b0(r31)
 /* 804C0158  80 63 00 04 */	lwz r3, 4(r3)
 /* 804C015C  38 63 00 58 */	addi r3, r3, 0x58
-/* 804C0160  4B E6 F6 54 */	b removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
+/* 804C0160  4B E6 F6 55 */	bl removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 lbl_804C0164:
 /* 804C0164  80 1F 08 90 */	lwz r0, 0x890(r31)
 /* 804C0168  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a

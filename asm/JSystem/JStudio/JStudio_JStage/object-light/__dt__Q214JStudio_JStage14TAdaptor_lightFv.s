@@ -7,8 +7,8 @@ lbl_8028CBF4:
 /* 8028CC08  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028CC0C  7C 9F 23 78 */	mr r31, r4
 /* 8028CC10  41 82 00 3C */	beq lbl_8028CC4C
-/* 8028CC14  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage14TAdaptor_light@ha
-/* 8028CC18  38 04 5A 40 */	addi r0, r4, __vt__Q214JStudio_JStage14TAdaptor_light@l
+/* 8028CC14  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage14TAdaptor_light@ha /* 0x803C5A40@ha */
+/* 8028CC18  38 04 5A 40 */	addi r0, r4, __vt__Q214JStudio_JStage14TAdaptor_light@l /* 0x803C5A40@l */
 /* 8028CC1C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028CC20  81 83 00 00 */	lwz r12, 0(r3)
 /* 8028CC24  81 8C 00 14 */	lwz r12, 0x14(r12)

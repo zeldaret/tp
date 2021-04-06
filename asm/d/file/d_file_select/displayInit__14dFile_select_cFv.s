@@ -7,8 +7,8 @@ lbl_8018CF50:
 /* 8018CF64  38 80 00 00 */	li r4, 0
 /* 8018CF68  98 83 03 B1 */	stb r4, 0x3b1(r3)
 /* 8018CF6C  98 83 02 70 */	stb r4, 0x270(r3)
-/* 8018CF70  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 8018CF74  38 63 C9 EC */	addi r3, r3, g_fsHIO@l
+/* 8018CF70  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018CF74  38 63 C9 EC */	addi r3, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018CF78  88 03 00 0B */	lbz r0, 0xb(r3)
 /* 8018CF7C  B0 1F 03 AC */	sth r0, 0x3ac(r31)
 /* 8018CF80  98 9F 00 B8 */	stb r4, 0xb8(r31)
@@ -21,8 +21,8 @@ lbl_8018CF50:
 /* 8018CF9C  98 9F 02 81 */	stb r4, 0x281(r31)
 /* 8018CFA0  98 9F 02 83 */	stb r4, 0x283(r31)
 /* 8018CFA4  38 00 00 02 */	li r0, 2
-/* 8018CFA8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018CFAC  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018CFA8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018CFAC  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018CFB0  98 03 1F BE */	stb r0, 0x1fbe(r3)
 /* 8018CFB4  98 9F 02 48 */	stb r4, 0x248(r31)
 /* 8018CFB8  98 9F 02 4A */	stb r4, 0x24a(r31)

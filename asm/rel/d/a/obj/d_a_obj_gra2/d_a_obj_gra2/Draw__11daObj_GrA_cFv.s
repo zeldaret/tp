@@ -6,18 +6,18 @@ lbl_80C00A44:
 /* 80C00A54  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 80C00A58  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C00A5C  7C 7F 1B 78 */	mr r31, r3
-/* 80C00A60  3C 60 80 C1 */	lis r3, lit_4409@ha
-/* 80C00A64  C3 E3 FB A0 */	lfs f31, lit_4409@l(r3)
+/* 80C00A60  3C 60 80 C1 */	lis r3, lit_4409@ha /* 0x80C0FBA0@ha */
+/* 80C00A64  C3 E3 FB A0 */	lfs f31, lit_4409@l(r3)  /* 0x80C0FBA0@l */
 /* 80C00A68  88 1F 0A 7E */	lbz r0, 0xa7e(r31)
 /* 80C00A6C  28 00 00 03 */	cmplwi r0, 3
 /* 80C00A70  40 82 00 0C */	bne lbl_80C00A7C
-/* 80C00A74  3C 60 80 C1 */	lis r3, lit_4410@ha
-/* 80C00A78  C3 E3 FB A4 */	lfs f31, lit_4410@l(r3)
+/* 80C00A74  3C 60 80 C1 */	lis r3, lit_4410@ha /* 0x80C0FBA4@ha */
+/* 80C00A78  C3 E3 FB A4 */	lfs f31, lit_4410@l(r3)  /* 0x80C0FBA4@l */
 lbl_80C00A7C:
 /* 80C00A7C  88 1F 08 44 */	lbz r0, 0x844(r31)
 /* 80C00A80  28 00 00 00 */	cmplwi r0, 0
 /* 80C00A84  41 82 00 10 */	beq lbl_80C00A94
-/* 80C00A88  4B 42 EF CC */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80C00A88  4B 42 EF CD */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80C00A8C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C00A90  41 82 00 1C */	beq lbl_80C00AAC
 lbl_80C00A94:

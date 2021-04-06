@@ -17,8 +17,8 @@ lbl_8002451C:
 /* 80024558  48 00 01 AC */	b lbl_80024704
 lbl_8002455C:
 /* 8002455C  38 60 00 00 */	li r3, 0
-/* 80024560  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha
-/* 80024564  38 A4 60 94 */	addi r5, r4, mStatus__20dStage_roomControl_c@l
+/* 80024560  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80024564  38 A4 60 94 */	addi r5, r4, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 80024568  38 00 00 40 */	li r0, 0x40
 /* 8002456C  7C 09 03 A6 */	mtctr r0
 lbl_80024570:
@@ -34,8 +34,8 @@ lbl_80024588:
 /* 80024590  3B 00 00 01 */	li r24, 1
 /* 80024594  3B E0 00 00 */	li r31, 0
 /* 80024598  3B 20 00 00 */	li r25, 0
-/* 8002459C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 800245A0  3B A3 60 94 */	addi r29, r3, mStatus__20dStage_roomControl_c@l
+/* 8002459C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 800245A0  3B A3 60 94 */	addi r29, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 lbl_800245A4:
 /* 800245A4  7C 7D CA 14 */	add r3, r29, r25
 /* 800245A8  3B C3 03 F4 */	addi r30, r3, 0x3f4
@@ -63,8 +63,8 @@ lbl_800245E0:
 /* 800245FC  48 00 01 08 */	b lbl_80024704
 lbl_80024600:
 /* 80024600  3B A0 00 00 */	li r29, 0
-/* 80024604  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80024608  3B E3 60 94 */	addi r31, r3, mStatus__20dStage_roomControl_c@l
+/* 80024604  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80024608  3B E3 60 94 */	addi r31, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8002460C  7F 79 DB 78 */	mr r25, r27
 /* 80024610  48 00 00 E8 */	b lbl_800246F8
 lbl_80024614:
@@ -100,8 +100,8 @@ lbl_8002466C:
 /* 80024684  41 82 00 08 */	beq lbl_8002468C
 /* 80024688  38 80 00 02 */	li r4, 2
 lbl_8002468C:
-/* 8002468C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80024690  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 8002468C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80024690  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 80024694  7C A0 C2 14 */	add r5, r0, r24
 /* 80024698  88 65 03 F4 */	lbz r3, 0x3f4(r5)
 /* 8002469C  54 80 06 3E */	clrlwi r0, r4, 0x18

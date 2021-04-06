@@ -3,17 +3,15 @@
 #
 
 M600_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle.plf
+M600_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle.lcf
+M600_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle.map
 
 M600_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rcircle/executor.cpp \
-	rel/d/a/obj/d_a_obj_rcircle/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_rcircle/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_rcircle/d_a_obj_rcircle.cpp \
 
 M600_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/d_a_obj_rcircle.o \
 
 M600_LIBS := \
@@ -29,15 +27,21 @@ M600_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map600.map\
+	-m _prolog \
+	-lcf $(M600_LDSCRIPT) \
+	-unused -map $(M600_MAP) \
+	-w off \
 
 $(M600_TARGET): $(M600_O_FILES) $(M600_LIBS)
+	@echo [600] creating $(M600_TARGET)
 	@echo $(M600_LIBS) $(M600_O_FILES) > build/M600_ofiles
-	$(LD) -opt_partial $(M600_LDFLAGS) -o $(M600_TARGET) @build/M600_ofiles
+	@python3 tools/lcf.py rel 600 --output $(M600_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M600_LDFLAGS) -o $(M600_TARGET) @build/M600_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rcircle/%.o: rel/d/a/obj/d_a_obj_rcircle/%.cpp
+	@echo [600] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M600_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M600_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

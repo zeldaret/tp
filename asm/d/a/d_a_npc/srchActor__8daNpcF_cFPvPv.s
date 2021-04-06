@@ -20,8 +20,8 @@ lbl_801526E8:
 /* 80152730  40 82 00 20 */	bne lbl_80152750
 /* 80152734  80 8D 8A 70 */	lwz r4, mFindCount__8daNpcF_c(r13)
 /* 80152738  54 80 10 3A */	slwi r0, r4, 2
-/* 8015273C  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha
-/* 80152740  38 63 57 E8 */	addi r3, r3, mFindActorPList__8daNpcF_c@l
+/* 8015273C  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha /* 0x804257E8@ha */
+/* 80152740  38 63 57 E8 */	addi r3, r3, mFindActorPList__8daNpcF_c@l /* 0x804257E8@l */
 /* 80152744  7F C3 01 2E */	stwx r30, r3, r0
 /* 80152748  38 04 00 01 */	addi r0, r4, 1
 /* 8015274C  90 0D 8A 70 */	stw r0, mFindCount__8daNpcF_c(r13)

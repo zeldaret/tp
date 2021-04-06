@@ -3,17 +3,15 @@
 #
 
 M428_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen.plf
+M428_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen.lcf
+M428_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen.map
 
 M428_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvhahen/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvhahen/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvhahen/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen.cpp \
 
 M428_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen.o \
 
 M428_LIBS := \
@@ -29,15 +27,21 @@ M428_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map428.map\
+	-m _prolog \
+	-lcf $(M428_LDSCRIPT) \
+	-unused -map $(M428_MAP) \
+	-w off \
 
 $(M428_TARGET): $(M428_O_FILES) $(M428_LIBS)
+	@echo [428] creating $(M428_TARGET)
 	@echo $(M428_LIBS) $(M428_O_FILES) > build/M428_ofiles
-	$(LD) -opt_partial $(M428_LDFLAGS) -o $(M428_TARGET) @build/M428_ofiles
+	@python3 tools/lcf.py rel 428 --output $(M428_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M428_LDFLAGS) -o $(M428_TARGET) @build/M428_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvhahen/%.o: rel/d/a/obj/d_a_obj_crvhahen/%.cpp
+	@echo [428] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M428_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M428_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

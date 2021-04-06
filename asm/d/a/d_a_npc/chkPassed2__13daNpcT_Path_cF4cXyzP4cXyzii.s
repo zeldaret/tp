@@ -195,8 +195,8 @@ lbl_801467A0:
 /* 801467C0  C0 01 00 2C */	lfs f0, 0x2c(r1)
 /* 801467C4  D0 01 00 98 */	stfs f0, 0x98(r1)
 lbl_801467C8:
-/* 801467C8  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha
-/* 801467CC  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l
+/* 801467C8  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha /* 0x803B3B60@ha */
+/* 801467CC  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l /* 0x803B3B60@l */
 /* 801467D0  90 01 00 EC */	stw r0, 0xec(r1)
 /* 801467D4  A0 1A 00 1E */	lhz r0, 0x1e(r26)
 /* 801467D8  C8 22 9A 00 */	lfd f1, lit_4677(r2)
@@ -293,14 +293,14 @@ lbl_801467C8:
 /* 80146944  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80146948  28 00 40 00 */	cmplwi r0, 0x4000
 /* 8014694C  40 81 00 18 */	ble lbl_80146964
-/* 80146950  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha
-/* 80146954  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l
+/* 80146950  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha /* 0x803B3B60@ha */
+/* 80146954  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l /* 0x803B3B60@l */
 /* 80146958  90 01 00 EC */	stw r0, 0xec(r1)
 /* 8014695C  38 60 00 01 */	li r3, 1
 /* 80146960  48 00 00 14 */	b lbl_80146974
 lbl_80146964:
-/* 80146964  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha
-/* 80146968  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l
+/* 80146964  3C 60 80 3B */	lis r3, __vt__16daNpcT_Hermite_c@ha /* 0x803B3B60@ha */
+/* 80146968  38 03 3B 60 */	addi r0, r3, __vt__16daNpcT_Hermite_c@l /* 0x803B3B60@l */
 /* 8014696C  90 01 00 EC */	stw r0, 0xec(r1)
 /* 80146970  38 60 00 00 */	li r3, 0
 lbl_80146974:

@@ -39,8 +39,8 @@ lbl_8025AEA0:
 lbl_8025AEAC:
 /* 8025AEAC  83 7A 00 00 */	lwz r27, 0(r26)
 /* 8025AEB0  3B 80 00 00 */	li r28, 0
-/* 8025AEB4  3C 60 80 3A */	lis r3, d_s_d_s_room__stringBase0@ha
-/* 8025AEB8  3B E3 A3 88 */	addi r31, r3, d_s_d_s_room__stringBase0@l
+/* 8025AEB4  3C 60 80 3A */	lis r3, d_s_d_s_room__stringBase0@ha /* 0x8039A388@ha */
+/* 8025AEB8  3B E3 A3 88 */	addi r31, r3, d_s_d_s_room__stringBase0@l /* 0x8039A388@l */
 /* 8025AEBC  48 00 00 44 */	b lbl_8025AF00
 lbl_8025AEC0:
 /* 8025AEC0  7F 83 E3 78 */	mr r3, r28

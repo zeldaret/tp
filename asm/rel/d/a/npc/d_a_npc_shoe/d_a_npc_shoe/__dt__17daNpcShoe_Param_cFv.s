@@ -5,12 +5,12 @@ lbl_80AEA344:
 /* 80AEA350  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AEA354  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AEA358  41 82 00 1C */	beq lbl_80AEA374
-/* 80AEA35C  3C A0 80 AF */	lis r5, __vt__17daNpcShoe_Param_c@ha
-/* 80AEA360  38 05 A7 24 */	addi r0, r5, __vt__17daNpcShoe_Param_c@l
+/* 80AEA35C  3C A0 80 AF */	lis r5, __vt__17daNpcShoe_Param_c@ha /* 0x80AEA724@ha */
+/* 80AEA360  38 05 A7 24 */	addi r0, r5, __vt__17daNpcShoe_Param_c@l /* 0x80AEA724@l */
 /* 80AEA364  90 1F 00 00 */	stw r0, 0(r31)
 /* 80AEA368  7C 80 07 35 */	extsh. r0, r4
 /* 80AEA36C  40 81 00 08 */	ble lbl_80AEA374
-/* 80AEA370  4B 7E 49 CC */	b __dl__FPv
+/* 80AEA370  4B 7E 49 CD */	bl __dl__FPv
 lbl_80AEA374:
 /* 80AEA374  7F E3 FB 78 */	mr r3, r31
 /* 80AEA378  83 E1 00 0C */	lwz r31, 0xc(r1)

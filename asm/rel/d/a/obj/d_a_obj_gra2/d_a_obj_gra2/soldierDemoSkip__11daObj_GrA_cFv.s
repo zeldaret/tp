@@ -8,18 +8,18 @@ lbl_80C0780C:
 /* 80C07824  4B FF B2 B1 */	bl setLookMode__11daObj_GrA_cFi
 /* 80C07828  7F E3 FB 78 */	mr r3, r31
 /* 80C0782C  38 80 00 00 */	li r4, 0
-/* 80C07830  3C A0 80 C1 */	lis r5, lit_4333@ha
-/* 80C07834  C0 25 FB 98 */	lfs f1, lit_4333@l(r5)
+/* 80C07830  3C A0 80 C1 */	lis r5, lit_4333@ha /* 0x80C0FB98@ha */
+/* 80C07834  C0 25 FB 98 */	lfs f1, lit_4333@l(r5)  /* 0x80C0FB98@l */
 /* 80C07838  4B FF 9F 55 */	bl setBaseMotion__11daObj_GrA_cFif
 /* 80C0783C  7F E3 FB 78 */	mr r3, r31
 /* 80C07840  38 80 00 0D */	li r4, 0xd
-/* 80C07844  3C A0 80 C1 */	lis r5, lit_4333@ha
-/* 80C07848  C0 25 FB 98 */	lfs f1, lit_4333@l(r5)
+/* 80C07844  3C A0 80 C1 */	lis r5, lit_4333@ha /* 0x80C0FB98@ha */
+/* 80C07848  C0 25 FB 98 */	lfs f1, lit_4333@l(r5)  /* 0x80C0FB98@l */
 /* 80C0784C  4B FF 9F 61 */	bl setFaceMotion__11daObj_GrA_cFif
 /* 80C07850  38 00 00 00 */	li r0, 0
 /* 80C07854  90 1F 10 9C */	stw r0, 0x109c(r31)
-/* 80C07858  3C 60 80 C1 */	lis r3, lit_7324@ha
-/* 80C0785C  38 83 02 44 */	addi r4, r3, lit_7324@l
+/* 80C07858  3C 60 80 C1 */	lis r3, lit_7324@ha /* 0x80C10244@ha */
+/* 80C0785C  38 83 02 44 */	addi r4, r3, lit_7324@l /* 0x80C10244@l */
 /* 80C07860  80 64 00 00 */	lwz r3, 0(r4)
 /* 80C07864  80 04 00 04 */	lwz r0, 4(r4)
 /* 80C07868  90 61 00 08 */	stw r3, 8(r1)

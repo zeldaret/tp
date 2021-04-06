@@ -7,8 +7,8 @@ lbl_80280B20:
 /* 80280B34  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80280B38  7C 9F 23 78 */	mr r31, r4
 /* 80280B3C  41 82 00 28 */	beq lbl_80280B64
-/* 80280B40  3C 80 80 3C */	lis r4, __vt__Q26JStage13TAmbientLight@ha
-/* 80280B44  38 04 46 38 */	addi r0, r4, __vt__Q26JStage13TAmbientLight@l
+/* 80280B40  3C 80 80 3C */	lis r4, __vt__Q26JStage13TAmbientLight@ha /* 0x803C4638@ha */
+/* 80280B44  38 04 46 38 */	addi r0, r4, __vt__Q26JStage13TAmbientLight@l /* 0x803C4638@l */
 /* 80280B48  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280B4C  38 80 00 00 */	li r4, 0
 /* 80280B50  48 00 02 85 */	bl __dt__Q26JStage7TObjectFv

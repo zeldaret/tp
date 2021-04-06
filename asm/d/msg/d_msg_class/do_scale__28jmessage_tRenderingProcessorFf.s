@@ -45,8 +45,8 @@ lbl_8022E860:
 /* 8022E90C  B3 BC 01 3E */	sth r29, 0x13e(r28)
 lbl_8022E910:
 /* 8022E910  38 61 00 08 */	addi r3, r1, 8
-/* 8022E914  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha
-/* 8022E918  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l
+/* 8022E914  3C 80 80 3A */	lis r4, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022E918  38 84 96 10 */	addi r4, r4, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022E91C  38 84 00 2B */	addi r4, r4, 0x2b
 /* 8022E920  7F E5 07 34 */	extsh r5, r31
 /* 8022E924  7F C6 07 34 */	extsh r6, r30

@@ -5,8 +5,8 @@ lbl_802A2D50:
 /* 802A2D5C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A2D60  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A2D64  41 82 00 38 */	beq lbl_802A2D9C
-/* 802A2D68  3C 60 80 3D */	lis r3, __vt__12JAISoundInfo@ha
-/* 802A2D6C  38 03 99 A0 */	addi r0, r3, __vt__12JAISoundInfo@l
+/* 802A2D68  3C 60 80 3D */	lis r3, __vt__12JAISoundInfo@ha /* 0x803C99A0@ha */
+/* 802A2D6C  38 03 99 A0 */	addi r0, r3, __vt__12JAISoundInfo@l /* 0x803C99A0@l */
 /* 802A2D70  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A2D74  41 82 00 18 */	beq lbl_802A2D8C
 /* 802A2D78  80 0D 85 DC */	lwz r0, data_80450B5C(r13)

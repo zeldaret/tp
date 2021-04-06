@@ -18,8 +18,8 @@ lbl_8011E57C:
 /* 8011E5BC  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 8011E5C0  4B EF D6 29 */	bl fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz
 /* 8011E5C4  7C 64 1B 78 */	mr r4, r3
-/* 8011E5C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011E5CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011E5C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011E5CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011E5D0  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8011E5D4  4B F2 51 19 */	bl setPtI_Id__14dEvt_control_cFUi
 /* 8011E5D8  38 00 00 01 */	li r0, 1

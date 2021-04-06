@@ -19,18 +19,12 @@ struct node_class {};
 // Forward References:
 //
 
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
-void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
-
 extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
 
 //
 // External References:
 //
-
-void cNdIt_Method(node_class*, int (*)(node_class*, void*), void*);
-void cNdIt_Judge(node_class*, void* (*)(node_class*, void*), void*);
 
 extern "C" void cNdIt_Method__FP10node_classPFP10node_classPv_iPv();
 extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
@@ -39,9 +33,8 @@ extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
 // Declarations:
 //
 
-/* 80266060-80266098 0038+00 s=0 e=5 z=0  None .text
+/* 80266060-80266098 2609A0 0038+00 0/0 5/5 0/0 .text
  * cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv       */
-//	8026607C: 80266324 (cNdIt_Method__FP10node_classPFP10node_classPv_iPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -51,9 +44,8 @@ asm void cLsIt_Method(node_list_class* param_0, int (*)(node_class*, void*), voi
 }
 #pragma pop
 
-/* 80266098-802660D0 0038+00 s=0 e=4 z=0  None .text
+/* 80266098-802660D0 2609D8 0038+00 0/0 4/4 0/0 .text
  * cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv       */
-//	802660B4: 802663B4 (cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

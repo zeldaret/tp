@@ -3,40 +3,40 @@ lbl_80A126D4:
 /* 80A126D8  7C 08 02 A6 */	mflr r0
 /* 80A126DC  90 01 00 F4 */	stw r0, 0xf4(r1)
 /* 80A126E0  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 80A126E4  4B 94 FA F8 */	b _savegpr_29
+/* 80A126E4  4B 94 FA F9 */	bl _savegpr_29
 /* 80A126E8  7C 7E 1B 78 */	mr r30, r3
-/* 80A126EC  3C 60 80 A1 */	lis r3, l_insectParams@ha
-/* 80A126F0  3B E3 3D AC */	addi r31, r3, l_insectParams@l
+/* 80A126EC  3C 60 80 A1 */	lis r3, l_insectParams@ha /* 0x80A13DAC@ha */
+/* 80A126F0  3B E3 3D AC */	addi r31, r3, l_insectParams@l /* 0x80A13DAC@l */
 /* 80A126F4  38 7E 0D C8 */	addi r3, r30, 0xdc8
-/* 80A126F8  4B 94 F9 20 */	b __ptmf_test
+/* 80A126F8  4B 94 F9 21 */	bl __ptmf_test
 /* 80A126FC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A12700  41 82 00 18 */	beq lbl_80A12718
 /* 80A12704  7F C3 F3 78 */	mr r3, r30
 /* 80A12708  38 80 00 00 */	li r4, 0
 /* 80A1270C  39 9E 0D C8 */	addi r12, r30, 0xdc8
-/* 80A12710  4B 94 F9 74 */	b __ptmf_scall
+/* 80A12710  4B 94 F9 75 */	bl __ptmf_scall
 /* 80A12714  60 00 00 00 */	nop 
 lbl_80A12718:
 /* 80A12718  80 7E 0D F8 */	lwz r3, 0xdf8(r30)
 /* 80A1271C  3C 03 00 01 */	addis r0, r3, 1
 /* 80A12720  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80A12724  41 82 00 4C */	beq lbl_80A12770
-/* 80A12728  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A1272C  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80A12728  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A1272C  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A12730  88 1D 4F AD */	lbz r0, 0x4fad(r29)
 /* 80A12734  28 00 00 00 */	cmplwi r0, 0
 /* 80A12738  41 82 00 38 */	beq lbl_80A12770
 /* 80A1273C  38 7D 4F F8 */	addi r3, r29, 0x4ff8
-/* 80A12740  4B 63 5C A8 */	b getRunEventName__16dEvent_manager_cFv
-/* 80A12744  3C 80 80 A1 */	lis r4, stringBase0@ha
-/* 80A12748  38 84 41 68 */	addi r4, r4, stringBase0@l
+/* 80A12740  4B 63 5C A9 */	bl getRunEventName__16dEvent_manager_cFv
+/* 80A12744  3C 80 80 A1 */	lis r4, d_a_npc_ins__stringBase0@ha /* 0x80A14168@ha */
+/* 80A12748  38 84 41 68 */	addi r4, r4, d_a_npc_ins__stringBase0@l /* 0x80A14168@l */
 /* 80A1274C  38 84 00 22 */	addi r4, r4, 0x22
-/* 80A12750  4B 95 62 44 */	b strcmp
+/* 80A12750  4B 95 62 45 */	bl strcmp
 /* 80A12754  2C 03 00 00 */	cmpwi r3, 0
 /* 80A12758  40 82 00 18 */	bne lbl_80A12770
 /* 80A1275C  38 7D 4E C8 */	addi r3, r29, 0x4ec8
 /* 80A12760  80 9E 0D F8 */	lwz r4, 0xdf8(r30)
-/* 80A12764  4B 63 0F 88 */	b setPtI_Id__14dEvt_control_cFUi
+/* 80A12764  4B 63 0F 89 */	bl setPtI_Id__14dEvt_control_cFUi
 /* 80A12768  38 00 FF FF */	li r0, -1
 /* 80A1276C  90 1E 0D F8 */	stw r0, 0xdf8(r30)
 lbl_80A12770:
@@ -187,12 +187,12 @@ lbl_80A12938:
 /* 80A129AC  40 80 00 10 */	bge lbl_80A129BC
 /* 80A129B0  7F C3 F3 78 */	mr r3, r30
 /* 80A129B4  38 81 00 B4 */	addi r4, r1, 0xb4
-/* 80A129B8  4B 74 07 98 */	b playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80A129B8  4B 74 07 99 */	bl playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80A129BC:
 /* 80A129BC  7F C3 F3 78 */	mr r3, r30
 /* 80A129C0  48 00 00 51 */	bl playMotion__10daNpcIns_cFv
-/* 80A129C4  3C 60 80 A1 */	lis r3, lit_4607@ha
-/* 80A129C8  38 83 43 A4 */	addi r4, r3, lit_4607@l
+/* 80A129C4  3C 60 80 A1 */	lis r3, lit_4607@ha /* 0x80A143A4@ha */
+/* 80A129C8  38 83 43 A4 */	addi r4, r3, lit_4607@l /* 0x80A143A4@l */
 /* 80A129CC  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A129D0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A129D4  90 61 00 A8 */	stw r3, 0xa8(r1)
@@ -201,11 +201,11 @@ lbl_80A129BC:
 /* 80A129E0  90 01 00 B0 */	stw r0, 0xb0(r1)
 /* 80A129E4  38 61 00 A8 */	addi r3, r1, 0xa8
 /* 80A129E8  38 9E 0D C8 */	addi r4, r30, 0xdc8
-/* 80A129EC  4B 94 F6 5C */	b __ptmf_cmpr
+/* 80A129EC  4B 94 F6 5D */	bl __ptmf_cmpr
 /* 80A129F0  7C 60 00 34 */	cntlzw r0, r3
 /* 80A129F4  54 03 D9 7E */	srwi r3, r0, 5
 /* 80A129F8  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 80A129FC  4B 94 F8 2C */	b _restgpr_29
+/* 80A129FC  4B 94 F8 2D */	bl _restgpr_29
 /* 80A12A00  80 01 00 F4 */	lwz r0, 0xf4(r1)
 /* 80A12A04  7C 08 03 A6 */	mtlr r0
 /* 80A12A08  38 21 00 F0 */	addi r1, r1, 0xf0

@@ -1,8 +1,8 @@
 lbl_806A226C:
-/* 806A226C  3C 80 80 6A */	lis r4, lit_3903@ha
-/* 806A2270  38 A4 71 C4 */	addi r5, r4, lit_3903@l
-/* 806A2274  3C 80 80 6A */	lis r4, __vt__12daE_DD_HIO_c@ha
-/* 806A2278  38 04 74 A0 */	addi r0, r4, __vt__12daE_DD_HIO_c@l
+/* 806A226C  3C 80 80 6A */	lis r4, lit_3903@ha /* 0x806A71C4@ha */
+/* 806A2270  38 A4 71 C4 */	addi r5, r4, lit_3903@l /* 0x806A71C4@l */
+/* 806A2274  3C 80 80 6A */	lis r4, __vt__12daE_DD_HIO_c@ha /* 0x806A74A0@ha */
+/* 806A2278  38 04 74 A0 */	addi r0, r4, __vt__12daE_DD_HIO_c@l /* 0x806A74A0@l */
 /* 806A227C  90 03 00 00 */	stw r0, 0(r3)
 /* 806A2280  38 00 FF FF */	li r0, -1
 /* 806A2284  98 03 00 04 */	stb r0, 4(r3)

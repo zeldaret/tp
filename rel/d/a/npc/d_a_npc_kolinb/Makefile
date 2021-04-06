@@ -3,19 +3,20 @@
 #
 
 M329_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb.plf
+M329_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb.lcf
+M329_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb.map
 
 M329_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kolinb/executor.cpp \
-	rel/d/a/npc/d_a_npc_kolinb/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kolinb/d_a_npc_kolinb.cpp \
 
 M329_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/d_a_npc_kolinb.o \
 
 M329_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/libRuntime.PPCEABI.H.a \
 
 M329_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M329_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map329.map\
+	-m _prolog \
+	-lcf $(M329_LDSCRIPT) \
+	-unused -map $(M329_MAP) \
+	-w off \
 
 $(M329_TARGET): $(M329_O_FILES) $(M329_LIBS)
+	@echo [329] creating $(M329_TARGET)
 	@echo $(M329_LIBS) $(M329_O_FILES) > build/M329_ofiles
-	$(LD) -opt_partial $(M329_LDFLAGS) -o $(M329_TARGET) @build/M329_ofiles
+	@python3 tools/lcf.py rel 329 --output $(M329_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M329_LDFLAGS) -o $(M329_TARGET) @build/M329_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolinb/%.o: rel/d/a/npc/d_a_npc_kolinb/%.cpp
+	@echo [329] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M329_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M329_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kolinb/libs/Runtime.PPCEABI.H/Makefile
 

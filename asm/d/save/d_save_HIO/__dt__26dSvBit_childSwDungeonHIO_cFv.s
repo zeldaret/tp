@@ -5,8 +5,8 @@ lbl_8025C56C:
 /* 8025C578  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025C57C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025C580  41 82 00 1C */	beq lbl_8025C59C
-/* 8025C584  3C A0 80 3C */	lis r5, __vt__26dSvBit_childSwDungeonHIO_c@ha
-/* 8025C588  38 05 33 78 */	addi r0, r5, __vt__26dSvBit_childSwDungeonHIO_c@l
+/* 8025C584  3C A0 80 3C */	lis r5, __vt__26dSvBit_childSwDungeonHIO_c@ha /* 0x803C3378@ha */
+/* 8025C588  38 05 33 78 */	addi r0, r5, __vt__26dSvBit_childSwDungeonHIO_c@l /* 0x803C3378@l */
 /* 8025C58C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025C590  7C 80 07 35 */	extsh. r0, r4
 /* 8025C594  40 81 00 08 */	ble lbl_8025C59C

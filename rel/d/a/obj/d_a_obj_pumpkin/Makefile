@@ -3,19 +3,20 @@
 #
 
 M599_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin.plf
+M599_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin.lcf
+M599_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin.map
 
 M599_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_pumpkin/executor.cpp \
-	rel/d/a/obj/d_a_obj_pumpkin/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin.cpp \
 
 M599_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/d_a_obj_pumpkin.o \
 
 M599_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/libRuntime.PPCEABI.H.a \
 
 M599_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M599_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map599.map\
+	-m _prolog \
+	-lcf $(M599_LDSCRIPT) \
+	-unused -map $(M599_MAP) \
+	-w off \
 
 $(M599_TARGET): $(M599_O_FILES) $(M599_LIBS)
+	@echo [599] creating $(M599_TARGET)
 	@echo $(M599_LIBS) $(M599_O_FILES) > build/M599_ofiles
-	$(LD) -opt_partial $(M599_LDFLAGS) -o $(M599_TARGET) @build/M599_ofiles
+	@python3 tools/lcf.py rel 599 --output $(M599_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M599_LDFLAGS) -o $(M599_TARGET) @build/M599_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pumpkin/%.o: rel/d/a/obj/d_a_obj_pumpkin/%.cpp
+	@echo [599] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M599_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M599_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_pumpkin/libs/Runtime.PPCEABI.H/Makefile
 

@@ -25,20 +25,12 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fopAcIt_Executor(int (*)(void*, void*), void*);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-
 extern "C" void fopAcIt_Executor__FPFPvPv_iPv();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 
 //
 // External References:
 //
-
-void cLsIt_Method(node_list_class*, int (*)(node_class*, void*), void*);
-void cLsIt_Judge(node_list_class*, void* (*)(node_class*, void*), void*);
-void cTgIt_MethodCall(create_tag_class*, method_filter*);
-void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
 
 extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
@@ -50,12 +42,7 @@ extern "C" extern u8 g_fopAcTg_Queue[12 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800197BC-800197F8 003C+00 s=0 e=5 z=3  None .text      fopAcIt_Executor__FPFPvPv_iPv */
-//	800197D0: 803A35E0 (g_fopAcTg_Queue)
-//	800197D4: 803A35E0 (g_fopAcTg_Queue)
-//	800197D8: 80266A7C (cTgIt_MethodCall__FP16create_tag_classP13method_filter)
-//	800197DC: 80266A7C (cTgIt_MethodCall__FP16create_tag_classP13method_filter)
-//	800197E4: 80266060 (cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv)
+/* 800197BC-800197F8 0140FC 003C+00 0/0 5/5 3/3 .text            fopAcIt_Executor__FPFPvPv_iPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,12 +52,8 @@ asm void fopAcIt_Executor(int (*)(void*, void*), void* param_1) {
 }
 #pragma pop
 
-/* 800197F8-80019834 003C+00 s=0 e=67 z=388  None .text      fopAcIt_Judge__FPFPvPv_PvPv */
-//	8001980C: 803A35E0 (g_fopAcTg_Queue)
-//	80019810: 803A35E0 (g_fopAcTg_Queue)
-//	80019814: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80019818: 80266AB0 (cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter)
-//	80019820: 80266098 (cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv)
+/* 800197F8-80019834 014138 003C+00 0/0 67/67 388/388 .text            fopAcIt_Judge__FPFPvPv_PvPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

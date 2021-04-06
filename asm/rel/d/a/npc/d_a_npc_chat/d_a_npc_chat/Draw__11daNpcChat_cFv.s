@@ -4,8 +4,8 @@ lbl_809824CC:
 /* 809824D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809824D8  38 80 00 00 */	li r4, 0
 /* 809824DC  38 A0 00 00 */	li r5, 0
-/* 809824E0  3C C0 80 98 */	lis r6, m__17daNpcChat_Param_c@ha
-/* 809824E4  38 C6 6D 3C */	addi r6, r6, m__17daNpcChat_Param_c@l
+/* 809824E0  3C C0 80 98 */	lis r6, m__17daNpcChat_Param_c@ha /* 0x80986D3C@ha */
+/* 809824E4  38 C6 6D 3C */	addi r6, r6, m__17daNpcChat_Param_c@l /* 0x80986D3C@l */
 /* 809824E8  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 809824EC  38 C0 00 00 */	li r6, 0
 /* 809824F0  38 E0 00 00 */	li r7, 0

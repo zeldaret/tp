@@ -3,17 +3,15 @@
 #
 
 M669_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp.plf
+M669_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp.lcf
+M669_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp.map
 
 M669_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tp/executor.cpp \
-	rel/d/a/obj/d_a_obj_tp/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tp/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tp/d_a_obj_tp.cpp \
 
 M669_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/d_a_obj_tp.o \
 
 M669_LIBS := \
@@ -29,15 +27,21 @@ M669_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map669.map\
+	-m _prolog \
+	-lcf $(M669_LDSCRIPT) \
+	-unused -map $(M669_MAP) \
+	-w off \
 
 $(M669_TARGET): $(M669_O_FILES) $(M669_LIBS)
+	@echo [669] creating $(M669_TARGET)
 	@echo $(M669_LIBS) $(M669_O_FILES) > build/M669_ofiles
-	$(LD) -opt_partial $(M669_LDFLAGS) -o $(M669_TARGET) @build/M669_ofiles
+	@python3 tools/lcf.py rel 669 --output $(M669_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M669_LDFLAGS) -o $(M669_TARGET) @build/M669_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tp/%.o: rel/d/a/obj/d_a_obj_tp/%.cpp
+	@echo [669] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M669_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M669_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,7 +1,7 @@
 lbl_805A84D4:
 /* 805A84D4  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 805A84D8  3C 80 80 5B */	lis r4, lit_3759@ha
-/* 805A84DC  38 84 8F BC */	addi r4, r4, lit_3759@l
+/* 805A84D8  3C 80 80 5B */	lis r4, lit_3759@ha /* 0x805A8FBC@ha */
+/* 805A84DC  38 84 8F BC */	addi r4, r4, lit_3759@l /* 0x805A8FBC@l */
 /* 805A84E0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 805A84E4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805A84E8  4C 40 13 82 */	cror 2, 0, 2

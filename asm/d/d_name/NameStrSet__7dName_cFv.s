@@ -5,8 +5,8 @@ lbl_80250E54:
 /* 80250E60  39 61 00 20 */	addi r11, r1, 0x20
 /* 80250E64  48 11 13 6D */	bl _savegpr_26
 /* 80250E68  7C 7F 1B 78 */	mr r31, r3
-/* 80250E6C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80250E70  38 63 1F 50 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 80250E6C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C1F50@ha */
+/* 80250E70  38 63 1F 50 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803C1F50@l */
 /* 80250E74  38 BF 03 1C */	addi r5, r31, 0x31c
 /* 80250E78  38 C0 00 00 */	li r6, 0
 /* 80250E7C  39 00 00 00 */	li r8, 0

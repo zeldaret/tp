@@ -30,8 +30,8 @@ lbl_80139950:
 lbl_80139970:
 /* 80139970  38 7F 33 98 */	addi r3, r31, 0x3398
 /* 80139974  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80139978  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8013997C  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 80139978  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8013997C  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 80139980  C0 44 00 10 */	lfs f2, 0x10(r4)
 /* 80139984  48 13 6D BD */	bl cLib_chaseF__FPfff
 /* 80139988  7F E3 FB 78 */	mr r3, r31

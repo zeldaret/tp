@@ -6,11 +6,11 @@ lbl_80470674:
 /* 80470684  7C 7F 1B 78 */	mr r31, r3
 /* 80470688  38 7F 0E 10 */	addi r3, r31, 0xe10
 /* 8047068C  7F E4 FB 78 */	mr r4, r31
-/* 80470690  3C A0 80 48 */	lis r5, kibako_jc_data@ha
-/* 80470694  38 A5 A7 10 */	addi r5, r5, kibako_jc_data@l
+/* 80470690  3C A0 80 48 */	lis r5, kibako_jc_data@ha /* 0x8047A710@ha */
+/* 80470694  38 A5 A7 10 */	addi r5, r5, kibako_jc_data@l /* 0x8047A710@l */
 /* 80470698  80 DF 05 70 */	lwz r6, 0x570(r31)
 /* 8047069C  38 E0 00 01 */	li r7, 1
-/* 804706A0  4B BC 56 00 */	b init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli
+/* 804706A0  4B BC 56 01 */	bl init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli
 /* 804706A4  2C 03 00 00 */	cmpwi r3, 0
 /* 804706A8  40 82 00 0C */	bne lbl_804706B4
 /* 804706AC  38 60 00 00 */	li r3, 0

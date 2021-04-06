@@ -3,12 +3,12 @@ lbl_8065A594:
 /* 8065A598  7C 08 02 A6 */	mflr r0
 /* 8065A59C  90 01 00 74 */	stw r0, 0x74(r1)
 /* 8065A5A0  39 61 00 70 */	addi r11, r1, 0x70
-/* 8065A5A4  4B D0 7C 38 */	b _savegpr_29
+/* 8065A5A4  4B D0 7C 39 */	bl _savegpr_29
 /* 8065A5A8  7C 7D 1B 78 */	mr r29, r3
-/* 8065A5AC  3C 80 80 66 */	lis r4, cNullVec__6Z2Calc@ha
-/* 8065A5B0  3B C4 2F 58 */	addi r30, r4, cNullVec__6Z2Calc@l
-/* 8065A5B4  3C 80 80 66 */	lis r4, lit_3987@ha
-/* 8065A5B8  3B E4 2D B0 */	addi r31, r4, lit_3987@l
+/* 8065A5AC  3C 80 80 66 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80662F58@ha */
+/* 8065A5B0  3B C4 2F 58 */	addi r30, r4, cNullVec__6Z2Calc@l /* 0x80662F58@l */
+/* 8065A5B4  3C 80 80 66 */	lis r4, lit_3987@ha /* 0x80662DB0@ha */
+/* 8065A5B8  3B E4 2D B0 */	addi r31, r4, lit_3987@l /* 0x80662DB0@l */
 /* 8065A5BC  A0 03 0C 5C */	lhz r0, 0xc5c(r3)
 /* 8065A5C0  2C 00 00 02 */	cmpwi r0, 2
 /* 8065A5C4  41 82 01 10 */	beq lbl_8065A6D4
@@ -87,7 +87,7 @@ lbl_8065A6D4:
 /* 8065A6D4  80 7D 05 74 */	lwz r3, 0x574(r29)
 /* 8065A6D8  38 63 00 0C */	addi r3, r3, 0xc
 /* 8065A6DC  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 8065A6E0  4B CC DD 4C */	b checkPass__12J3DFrameCtrlFf
+/* 8065A6E0  4B CC DD 4D */	bl checkPass__12J3DFrameCtrlFf
 /* 8065A6E4  2C 03 00 00 */	cmpwi r3, 0
 /* 8065A6E8  41 82 00 2C */	beq lbl_8065A714
 /* 8065A6EC  3C 60 00 05 */	lis r3, 0x0005 /* 0x0005001F@ha */
@@ -161,7 +161,7 @@ lbl_8065A7AC:
 /* 8065A7E8  4B FF E9 2D */	bl setProcess__7daCow_cFM7daCow_cFPCvPv_vi
 /* 8065A7EC  48 00 00 A0 */	b lbl_8065A88C
 lbl_8065A7F0:
-/* 8065A7F0  4B C0 D0 7C */	b cM_rnd__Fv
+/* 8065A7F0  4B C0 D0 7D */	bl cM_rnd__Fv
 /* 8065A7F4  C0 1F 00 80 */	lfs f0, 0x80(r31)
 /* 8065A7F8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8065A7FC  40 80 00 30 */	bge lbl_8065A82C
@@ -204,7 +204,7 @@ lbl_8065A864:
 /* 8065A888  4B FF E8 8D */	bl setProcess__7daCow_cFM7daCow_cFPCvPv_vi
 lbl_8065A88C:
 /* 8065A88C  39 61 00 70 */	addi r11, r1, 0x70
-/* 8065A890  4B D0 79 98 */	b _restgpr_29
+/* 8065A890  4B D0 79 99 */	bl _restgpr_29
 /* 8065A894  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 8065A898  7C 08 03 A6 */	mtlr r0
 /* 8065A89C  38 21 00 70 */	addi r1, r1, 0x70

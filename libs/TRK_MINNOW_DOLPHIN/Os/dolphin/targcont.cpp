@@ -26,15 +26,11 @@ extern "C" void ReserveEXI2Port();
 // Declarations:
 //
 
-/* 8037214C-80372180 0034+00 s=0 e=2 z=0  None .text      TRKTargetContinue */
-//	8037215C: 8036FB00 (TRKTargetSetStopped)
-//	80372160: 80371D08 (UnreserveEXI2Port)
-//	80372164: 8036F8B4 (TRKSwapAndGo)
-//	80372168: 80371D38 (ReserveEXI2Port)
+/* 8037214C-80372180 36CA8C 0034+00 0/0 2/2 0/0 .text            TRKTargetContinue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKTargetContinue() {
+asm void TRKTargetContinue() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/targcont/TRKTargetContinue.s"
 }

@@ -50,14 +50,14 @@ lbl_8015EE88:
 /* 8015EEA8  38 C0 00 00 */	li r6, 0
 /* 8015EEAC  38 E0 00 00 */	li r7, 0
 /* 8015EEB0  48 1C 9F 91 */	bl __ct__15J3DAnmTransformFsPfPsPf
-/* 8015EEB4  3C 60 80 3A */	lis r3, __vt__18J3DAnmTransformKey@ha
-/* 8015EEB8  38 03 7C 70 */	addi r0, r3, __vt__18J3DAnmTransformKey@l
+/* 8015EEB4  3C 60 80 3A */	lis r3, __vt__18J3DAnmTransformKey@ha /* 0x803A7C70@ha */
+/* 8015EEB8  38 03 7C 70 */	addi r0, r3, __vt__18J3DAnmTransformKey@l /* 0x803A7C70@l */
 /* 8015EEBC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8015EEC0  38 80 00 00 */	li r4, 0
 /* 8015EEC4  90 9F 00 20 */	stw r4, 0x20(r31)
 /* 8015EEC8  90 9F 00 24 */	stw r4, 0x24(r31)
-/* 8015EECC  3C 60 80 3A */	lis r3, __vt__18mDoExt_transAnmBas@ha
-/* 8015EED0  38 03 7C 5C */	addi r0, r3, __vt__18mDoExt_transAnmBas@l
+/* 8015EECC  3C 60 80 3A */	lis r3, __vt__18mDoExt_transAnmBas@ha /* 0x803A7C5C@ha */
+/* 8015EED0  38 03 7C 5C */	addi r0, r3, __vt__18mDoExt_transAnmBas@l /* 0x803A7C5C@l */
 /* 8015EED4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8015EED8  90 9F 00 28 */	stw r4, 0x28(r31)
 /* 8015EEDC  48 00 00 80 */	b lbl_8015EF5C
@@ -73,8 +73,8 @@ lbl_8015EEE0:
 /* 8015EF00  38 C0 00 00 */	li r6, 0
 /* 8015EF04  38 E0 00 00 */	li r7, 0
 /* 8015EF08  48 1C 9F 39 */	bl __ct__15J3DAnmTransformFsPfPsPf
-/* 8015EF0C  3C 60 80 3A */	lis r3, __vt__18J3DAnmTransformKey@ha
-/* 8015EF10  38 03 7C 70 */	addi r0, r3, __vt__18J3DAnmTransformKey@l
+/* 8015EF0C  3C 60 80 3A */	lis r3, __vt__18J3DAnmTransformKey@ha /* 0x803A7C70@ha */
+/* 8015EF10  38 03 7C 70 */	addi r0, r3, __vt__18J3DAnmTransformKey@l /* 0x803A7C70@l */
 /* 8015EF14  90 1F 00 00 */	stw r0, 0(r31)
 /* 8015EF18  38 00 00 00 */	li r0, 0
 /* 8015EF1C  90 1F 00 20 */	stw r0, 0x20(r31)

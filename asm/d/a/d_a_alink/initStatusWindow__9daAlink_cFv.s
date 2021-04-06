@@ -43,8 +43,8 @@ lbl_80140740:
 /* 80140744  38 80 00 00 */	li r4, 0
 /* 80140748  4B FF FB F1 */	bl changeModelDataDirect__9daAlink_cFi
 lbl_8014074C:
-/* 8014074C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80140750  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l
+/* 8014074C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80140750  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80140754  80 7B 5C AC */	lwz r3, 0x5cac(r27)
 /* 80140758  7F 44 D3 78 */	mr r4, r26
 /* 8014075C  38 A0 14 00 */	li r5, 0x1400
@@ -54,8 +54,8 @@ lbl_8014074C:
 /* 8014076C  48 18 E4 E1 */	bl __nw__FUl
 /* 80140770  7C 7C 1B 79 */	or. r28, r3, r3
 /* 80140774  41 82 00 20 */	beq lbl_80140794
-/* 80140778  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 8014077C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80140778  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8014077C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80140780  90 1C 00 00 */	stw r0, 0(r28)
 /* 80140784  38 80 00 00 */	li r4, 0
 /* 80140788  48 1E 7C 75 */	bl init__12J3DFrameCtrlFs

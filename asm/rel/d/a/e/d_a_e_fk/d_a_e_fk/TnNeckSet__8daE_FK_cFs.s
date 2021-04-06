@@ -7,7 +7,7 @@ lbl_806B9BB4:
 /* 806B9BC8  38 7F 05 D8 */	addi r3, r31, 0x5d8
 /* 806B9BCC  38 A0 00 05 */	li r5, 5
 /* 806B9BD0  38 C0 10 00 */	li r6, 0x1000
-/* 806B9BD4  4B BB 6A 34 */	b cLib_addCalcAngleS2__FPssss
+/* 806B9BD4  4B BB 6A 35 */	bl cLib_addCalcAngleS2__FPssss
 /* 806B9BD8  A8 1F 05 D8 */	lha r0, 0x5d8(r31)
 /* 806B9BDC  2C 00 30 00 */	cmpwi r0, 0x3000
 /* 806B9BE0  40 81 00 10 */	ble lbl_806B9BF0

@@ -6,7 +6,7 @@ lbl_8033EC6C:
 /* 8033EC7C  41 82 00 18 */	beq lbl_8033EC94
 /* 8033EC80  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC004010@ha */
 /* 8033EC84  38 00 00 FF */	li r0, 0xff
-/* 8033EC88  B0 03 40 10 */	sth r0, 0x4010(r3)
+/* 8033EC88  B0 03 40 10 */	sth r0, 0x4010(r3)  /* 0xCC004010@l */
 /* 8033EC8C  3C 60 F0 00 */	lis r3, 0xf000
 /* 8033EC90  4B FF EE 2D */	bl __OSMaskInterrupts
 lbl_8033EC94:

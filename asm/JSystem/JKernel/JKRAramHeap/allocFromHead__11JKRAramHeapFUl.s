@@ -7,8 +7,8 @@ lbl_802D3034:
 /* 802D3048  54 04 00 34 */	rlwinm r4, r0, 0, 0, 0x1a
 /* 802D304C  39 00 FF FF */	li r8, -1
 /* 802D3050  38 60 00 00 */	li r3, 0
-/* 802D3054  3C A0 80 43 */	lis r5, sAramList__11JKRAramHeap@ha
-/* 802D3058  80 E5 43 0C */	lwz r7, sAramList__11JKRAramHeap@l(r5)
+/* 802D3054  3C A0 80 43 */	lis r5, sAramList__11JKRAramHeap@ha /* 0x8043430C@ha */
+/* 802D3058  80 E5 43 0C */	lwz r7, sAramList__11JKRAramHeap@l(r5)  /* 0x8043430C@l */
 /* 802D305C  48 00 00 30 */	b lbl_802D308C
 lbl_802D3060:
 /* 802D3060  80 A7 00 00 */	lwz r5, 0(r7)

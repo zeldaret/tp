@@ -42,64 +42,46 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80353F24-80354090 016C+00 s=1 e=0 z=0  None .text      bitrev */
+/* 80353F24-80354090 34E864 016C+00 1/1 0/0 0/0 .text            bitrev */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void bitrev() {
+static asm void bitrev() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/bitrev.s"
 }
 #pragma pop
 
-/* 80354090-803541D4 0144+00 s=2 e=0 z=0  None .text      ReadArrayUnlock */
-//	803540A4: 8044CBC0 (__CARDBlock)
-//	803540A8: 8044CBC0 (__CARDBlock)
-//	803540D0: 80343868 (EXISelect)
-//	803540F4: 80003458 (memset)
-//	8035414C: 80342F5C (EXIImmEx)
-//	8035416C: 80342F5C (EXIImmEx)
-//	8035418C: 80342F5C (EXIImmEx)
-//	803541A0: 80343994 (EXIDeselect)
+/* 80354090-803541D4 34E9D0 0144+00 2/2 0/0 0/0 .text            ReadArrayUnlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ReadArrayUnlock() {
+static asm void ReadArrayUnlock() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/ReadArrayUnlock.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450A68-80450A70 0004+04 s=2 e=0 z=0  None .sdata     next */
+/* 80450A68-80450A70 0004E8 0004+04 2/2 0/0 0/0 .sdata           next */
 SECTION_SDATA static u32 next[1 + 1 /* padding */] = {
     0x00000001,
     /* padding */
     0x00000000,
 };
 
-/* 803541D4-80354298 00C4+00 s=2 e=0 z=0  None .text      DummyLen */
-//	803541F4: 80342714 (OSGetTick)
-//	803541F8: 80450A68 (next)
-//	80354204: 80450A68 (next)
-//	80354210: 80450A68 (next)
-//	80354214: 80450A68 (next)
-//	80354224: 80342714 (OSGetTick)
-//	8035423C: 80450A68 (next)
-//	80354244: 80450A68 (next)
-//	80354250: 80450A68 (next)
-//	80354254: 80450A68 (next)
+/* 803541D4-80354298 34EB14 00C4+00 2/2 0/0 0/0 .text            DummyLen */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DummyLen() {
+static asm void DummyLen() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/DummyLen.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1EA0-803D2000 0160+00 s=1 e=0 z=0  None .data      CardData */
+/* 803D1EA0-803D2000 02EFC0 0160+00 1/1 0/0 0/0 .data            CardData */
 SECTION_DATA static u8 CardData[352] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x21, 0x02, 0xFF, 0x00, 0x21,
@@ -125,75 +107,31 @@ SECTION_DATA static u8 CardData[352] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80354298-80354DF0 0B58+00 s=0 e=1 z=0  None .text      __CARDUnlock */
-//	803542AC: 8044CBC0 (__CARDBlock)
-//	803542B4: 8044CBC0 (__CARDBlock)
-//	803542D8: 80342714 (OSGetTick)
-//	803542DC: 80450A68 (next)
-//	803542E8: 80450A68 (next)
-//	803542FC: 80450A68 (next)
-//	80354300: 80450A68 (next)
-//	80354310: 803541D4 (DummyLen)
-//	8035432C: 80354090 (ReadArrayUnlock)
-//	803544E0: 80353F24 (bitrev)
-//	803544E8: 803541D4 (DummyLen)
-//	80354504: 80354090 (ReadArrayUnlock)
-//	80354D5C: 8033B5AC (DCFlushRange)
-//	80354D68: 8033B580 (DCInvalidateRange)
-//	80354D74: 8033B5AC (DCFlushRange)
-//	80354D7C: 803D1EA0 (CardData)
-//	80354D84: 803D1EA0 (CardData)
-//	80354D94: 80354DF0 (InitCallback)
-//	80354D9C: 80354E60 (DoneCallback)
-//	80354DA8: 80354DF0 (InitCallback)
-//	80354DAC: 80354E60 (DoneCallback)
-//	80354DC8: 8029EA00 (DSPAddTask)
+/* 80354298-80354DF0 34EBD8 0B58+00 0/0 1/1 0/0 .text            __CARDUnlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDUnlock() {
+asm void __CARDUnlock() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/__CARDUnlock.s"
 }
 #pragma pop
 
-/* 80354DF0-80354E60 0070+00 s=1 e=0 z=0  None .text      InitCallback */
-//	80354DF4: 8044CBC0 (__CARDBlock)
-//	80354DFC: 8044CBC0 (__CARDBlock)
-//	80354E28: 80352468 (DSPSendMailToDSP)
-//	80354E2C: 80352430 (DSPCheckMailToDSP)
-//	80354E3C: 80352468 (DSPSendMailToDSP)
-//	80354E40: 80352430 (DSPCheckMailToDSP)
+/* 80354DF0-80354E60 34F730 0070+00 1/1 0/0 0/0 .text            InitCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void InitCallback() {
+static asm void InitCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/InitCallback.s"
 }
 #pragma pop
 
-/* 80354E60-80355184 0324+00 s=1 e=0 z=0  None .text      DoneCallback */
-//	80354E64: 8044CBC0 (__CARDBlock)
-//	80354E6C: 8044CBC0 (__CARDBlock)
-//	80354EC4: 803541D4 (DummyLen)
-//	80354EE8: 80354090 (ReadArrayUnlock)
-//	80354EF8: 8034411C (EXIUnlock)
-//	80354F04: 8035701C (__CARDMountCallback)
-//	803550B8: 803541D4 (DummyLen)
-//	803550DC: 80354090 (ReadArrayUnlock)
-//	803550EC: 8034411C (EXIUnlock)
-//	803550F8: 8035701C (__CARDMountCallback)
-//	80355108: 80352E44 (__CARDReadStatus)
-//	80355114: 8034356C (EXIProbe)
-//	80355124: 8034411C (EXIUnlock)
-//	80355130: 8035701C (__CARDMountCallback)
-//	80355150: 8034411C (EXIUnlock)
-//	80355160: 8035701C (__CARDMountCallback)
+/* 80354E60-80355184 34F7A0 0324+00 1/1 0/0 0/0 .text            DoneCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DoneCallback() {
+static asm void DoneCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDUnlock/DoneCallback.s"
 }

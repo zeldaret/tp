@@ -12,8 +12,8 @@ lbl_800217E8:
 /* 80021810  2C 00 00 00 */	cmpwi r0, 0
 /* 80021814  40 82 00 70 */	bne lbl_80021884
 /* 80021818  48 24 46 61 */	bl cLs_SingleCut__FP10node_class
-/* 8002181C  3C 60 80 3A */	lis r3, l_fpcLy_Crear@ha
-/* 80021820  38 83 39 B0 */	addi r4, r3, l_fpcLy_Crear@l
+/* 8002181C  3C 60 80 3A */	lis r3, l_fpcLy_Crear@ha /* 0x803A39B0@ha */
+/* 80021820  38 83 39 B0 */	addi r4, r3, l_fpcLy_Crear@l /* 0x803A39B0@l */
 /* 80021824  80 64 00 00 */	lwz r3, 0(r4)
 /* 80021828  80 04 00 04 */	lwz r0, 4(r4)
 /* 8002182C  90 7F 00 00 */	stw r3, 0(r31)

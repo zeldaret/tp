@@ -13,8 +13,8 @@ lbl_80126650:
 lbl_8012667C:
 /* 8012667C  38 62 92 90 */	la r3, l_arcName(r2) /* 80452C90-_SDA2_BASE_ */
 /* 80126680  38 80 00 5B */	li r4, 0x5b
-/* 80126684  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80126688  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80126684  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80126688  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012668C  3C A5 00 02 */	addis r5, r5, 2
 /* 80126690  38 C0 00 80 */	li r6, 0x80
 /* 80126694  38 A5 C2 F8 */	addi r5, r5, -15624

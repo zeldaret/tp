@@ -1,6 +1,6 @@
 lbl_80C43EEC:
-/* 80C43EEC  3C 80 80 C4 */	lis r4, __vt__14daObj_Ki_HIO_c@ha
-/* 80C43EF0  38 04 4B F0 */	addi r0, r4, __vt__14daObj_Ki_HIO_c@l
+/* 80C43EEC  3C 80 80 C4 */	lis r4, __vt__14daObj_Ki_HIO_c@ha /* 0x80C44BF0@ha */
+/* 80C43EF0  38 04 4B F0 */	addi r0, r4, __vt__14daObj_Ki_HIO_c@l /* 0x80C44BF0@l */
 /* 80C43EF4  90 03 00 00 */	stw r0, 0(r3)
 /* 80C43EF8  38 00 FF FF */	li r0, -1
 /* 80C43EFC  98 03 00 04 */	stb r0, 4(r3)

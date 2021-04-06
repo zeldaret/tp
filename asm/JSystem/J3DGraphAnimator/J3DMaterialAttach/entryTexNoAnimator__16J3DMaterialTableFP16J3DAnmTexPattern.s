@@ -44,8 +44,8 @@ lbl_8032FC48:
 /* 8032FC60  3B E0 00 01 */	li r31, 1
 /* 8032FC64  48 00 00 34 */	b lbl_8032FC98
 lbl_8032FC68:
-/* 8032FC68  3C A0 80 3A */	lis r5, __vt__11J3DTexNoAnm@ha
-/* 8032FC6C  38 05 7C 84 */	addi r0, r5, __vt__11J3DTexNoAnm@l
+/* 8032FC68  3C A0 80 3A */	lis r5, __vt__11J3DTexNoAnm@ha /* 0x803A7C84@ha */
+/* 8032FC6C  38 05 7C 84 */	addi r0, r5, __vt__11J3DTexNoAnm@l /* 0x803A7C84@l */
 /* 8032FC70  90 01 00 08 */	stw r0, 8(r1)
 /* 8032FC74  B3 C1 00 0C */	sth r30, 0xc(r1)
 /* 8032FC78  38 00 00 01 */	li r0, 1
@@ -53,8 +53,8 @@ lbl_8032FC68:
 /* 8032FC80  93 A1 00 10 */	stw r29, 0x10(r1)
 /* 8032FC84  38 A1 00 08 */	addi r5, r1, 8
 /* 8032FC88  4B FF C9 9D */	bl setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm
-/* 8032FC8C  3C 60 80 3A */	lis r3, __vt__11J3DTexNoAnm@ha
-/* 8032FC90  38 03 7C 84 */	addi r0, r3, __vt__11J3DTexNoAnm@l
+/* 8032FC8C  3C 60 80 3A */	lis r3, __vt__11J3DTexNoAnm@ha /* 0x803A7C84@ha */
+/* 8032FC90  38 03 7C 84 */	addi r0, r3, __vt__11J3DTexNoAnm@l /* 0x803A7C84@l */
 /* 8032FC94  90 01 00 08 */	stw r0, 8(r1)
 lbl_8032FC98:
 /* 8032FC98  3B DE 00 01 */	addi r30, r30, 1

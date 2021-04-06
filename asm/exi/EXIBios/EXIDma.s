@@ -9,8 +9,8 @@ lbl_80342FFC:
 /* 80343018  3B C6 00 00 */	addi r30, r6, 0
 /* 8034301C  3B 27 00 00 */	addi r25, r7, 0
 /* 80343020  54 64 30 32 */	slwi r4, r3, 6
-/* 80343024  3C 60 80 45 */	lis r3, Ecb@ha
-/* 80343028  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 80343024  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 80343028  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 8034302C  7F 40 22 14 */	add r26, r0, r4
 /* 80343030  4B FF A6 C5 */	bl OSDisableInterrupts
 /* 80343034  7C 7F 1B 78 */	mr r31, r3

@@ -6,12 +6,12 @@ lbl_80033754:
 /* 80033764  48 32 EA 71 */	bl _savegpr_27
 /* 80033768  3B 60 00 00 */	li r27, 0
 /* 8003376C  3B E0 00 00 */	li r31, 0
-/* 80033770  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80033774  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80033770  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80033774  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80033778  3B A3 00 CC */	addi r29, r3, 0xcc
 /* 8003377C  3B 83 07 F0 */	addi r28, r3, 0x7f0
-/* 80033780  3C 60 80 3A */	lis r3, saveBitLabels__16dSv_event_flag_c@ha
-/* 80033784  3B C3 72 88 */	addi r30, r3, saveBitLabels__16dSv_event_flag_c@l
+/* 80033780  3C 60 80 3A */	lis r3, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 80033784  3B C3 72 88 */	addi r30, r3, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 lbl_80033788:
 /* 80033788  7F A3 EB 78 */	mr r3, r29
 /* 8003378C  38 1B 00 C0 */	addi r0, r27, 0xc0

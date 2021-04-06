@@ -4,14 +4,14 @@ lbl_8059F9FC:
 /* 8059FA04  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8059FA08  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8059FA0C  7C 7F 1B 78 */	mr r31, r3
-/* 8059FA10  3C 60 80 5A */	lis r3, lit_3884@ha
-/* 8059FA14  84 03 11 88 */	lwzu r0, lit_3884@l(r3)
+/* 8059FA10  3C 60 80 5A */	lis r3, lit_3884@ha /* 0x805A1188@ha */
+/* 8059FA14  84 03 11 88 */	lwzu r0, lit_3884@l(r3)  /* 0x805A1188@l */
 /* 8059FA18  90 01 00 08 */	stw r0, 8(r1)
 /* 8059FA1C  A0 03 00 04 */	lhz r0, 4(r3)
 /* 8059FA20  B0 01 00 0C */	sth r0, 0xc(r1)
-/* 8059FA24  3C 60 80 5A */	lis r3, lit_3886@ha
-/* 8059FA28  C0 23 11 90 */	lfs f1, lit_3886@l(r3)
-/* 8059FA2C  4B CC 7F 28 */	b cM_rndF__Ff
+/* 8059FA24  3C 60 80 5A */	lis r3, lit_3886@ha /* 0x805A1190@ha */
+/* 8059FA28  C0 23 11 90 */	lfs f1, lit_3886@l(r3)  /* 0x805A1190@l */
+/* 8059FA2C  4B CC 7F 29 */	bl cM_rndF__Ff
 /* 8059FA30  FC 00 08 1E */	fctiwz f0, f1
 /* 8059FA34  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 8059FA38  80 01 00 14 */	lwz r0, 0x14(r1)

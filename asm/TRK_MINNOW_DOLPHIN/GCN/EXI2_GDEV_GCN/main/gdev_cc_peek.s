@@ -14,9 +14,9 @@ lbl_80372950:
 /* 80372958  48 00 06 3D */	bl DBRead
 /* 8037295C  2C 03 00 00 */	cmpwi r3, 0
 /* 80372960  40 82 00 1C */	bne lbl_8037297C
-/* 80372964  3C 60 80 45 */	lis r3, gRecvCB@ha
+/* 80372964  3C 60 80 45 */	lis r3, gRecvCB@ha /* 0x80450550@ha */
 /* 80372968  7F E5 FB 78 */	mr r5, r31
-/* 8037296C  38 63 05 50 */	addi r3, r3, gRecvCB@l
+/* 8037296C  38 63 05 50 */	addi r3, r3, gRecvCB@l /* 0x80450550@l */
 /* 80372970  38 81 00 08 */	addi r4, r1, 8
 /* 80372974  4B FF FE 35 */	bl CircleBufferWriteBytes
 /* 80372978  48 00 00 0C */	b lbl_80372984

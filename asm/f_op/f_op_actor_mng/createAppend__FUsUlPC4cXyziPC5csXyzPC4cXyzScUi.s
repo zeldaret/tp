@@ -29,8 +29,8 @@ lbl_80019B64:
 /* 80019B84  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80019B88  48 00 00 20 */	b lbl_80019BA8
 lbl_80019B8C:
-/* 80019B8C  3C 80 80 43 */	lis r4, Zero__4cXyz@ha
-/* 80019B90  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)
+/* 80019B8C  3C 80 80 43 */	lis r4, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80019B90  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)  /* 0x80430CF4@l */
 /* 80019B94  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80019B98  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80019B9C  D0 03 00 08 */	stfs f0, 8(r3)

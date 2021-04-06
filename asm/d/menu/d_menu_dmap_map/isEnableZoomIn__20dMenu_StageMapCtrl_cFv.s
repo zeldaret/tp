@@ -3,8 +3,8 @@ lbl_801C2538:
 /* 801C253C  88 03 00 F3 */	lbz r0, 0xf3(r3)
 /* 801C2540  28 00 00 00 */	cmplwi r0, 0
 /* 801C2544  40 82 00 2C */	bne lbl_801C2570
-/* 801C2548  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha
-/* 801C254C  38 84 60 94 */	addi r4, r4, mStatus__20dStage_roomControl_c@l
+/* 801C2548  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 801C254C  38 84 60 94 */	addi r4, r4, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 801C2550  88 03 00 E6 */	lbz r0, 0xe6(r3)
 /* 801C2554  7C 00 07 74 */	extsb r0, r0
 /* 801C2558  1C 00 04 04 */	mulli r0, r0, 0x404

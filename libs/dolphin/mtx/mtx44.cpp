@@ -25,13 +25,13 @@ extern "C" void tanf();
 //
 
 /* ############################################################################################## */
-/* 80456528-8045652C 0004+00 s=2 e=0 z=0  None .sdata2    @99 */
+/* 80456528-8045652C 004B28 0004+00 2/2 0/0 0/0 .sdata2          @99 */
 SECTION_SDATA2 static f32 lit_99 = 1.0f;
 
-/* 8045652C-80456530 0004+00 s=1 e=0 z=0  None .sdata2    @100 */
+/* 8045652C-80456530 004B2C 0004+00 1/1 0/0 0/0 .sdata2          @100 */
 SECTION_SDATA2 static f32 lit_100 = 2.0f;
 
-/* 80456530-80456534 0004+00 s=2 e=0 z=0  None .sdata2    @101 */
+/* 80456530-80456534 004B30 0004+00 2/2 0/0 0/0 .sdata2          @101 */
 SECTION_SDATA2 static u8 lit_101[4] = {
     0x00,
     0x00,
@@ -39,40 +39,30 @@ SECTION_SDATA2 static u8 lit_101[4] = {
     0x00,
 };
 
-/* 80456534-80456538 0004+00 s=2 e=0 z=0  None .sdata2    @102 */
+/* 80456534-80456538 004B34 0004+00 2/2 0/0 0/0 .sdata2          @102 */
 SECTION_SDATA2 static f32 lit_102 = -1.0f;
 
-/* 80456538-8045653C 0004+00 s=1 e=0 z=0  None .sdata2    @105 */
+/* 80456538-8045653C 004B38 0004+00 1/1 0/0 0/0 .sdata2          @105 */
 SECTION_SDATA2 static f32 lit_105 = 0.5f;
 
-/* 8045653C-80456540 0004+00 s=1 e=0 z=0  None .sdata2    @106 */
+/* 8045653C-80456540 004B3C 0004+00 1/1 0/0 0/0 .sdata2          @106 */
 SECTION_SDATA2 static f32 lit_106 = 0.01745329238474369f;
 
-/* 80346F28-80346FF8 00D0+00 s=0 e=6 z=0  None .text      C_MTXPerspective */
-//	80346F54: 80456538 (lit_105)
-//	80346F58: 8045653C (lit_106)
-//	80346F64: 8036C9C4 (tanf)
-//	80346F68: 80456528 (lit_99)
-//	80346F84: 80456530 (lit_101)
-//	80346FCC: 80456534 (lit_102)
+/* 80346F28-80346FF8 341868 00D0+00 0/0 6/6 0/0 .text            C_MTXPerspective */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void C_MTXPerspective() {
+asm void C_MTXPerspective() {
     nofralloc
 #include "asm/dolphin/mtx/mtx44/C_MTXPerspective.s"
 }
 #pragma pop
 
-/* 80346FF8-80347090 0098+00 s=0 e=11 z=2  None .text      C_MTXOrtho */
-//	80346FFC: 80456528 (lit_99)
-//	80347004: 8045652C (lit_100)
-//	8034702C: 80456530 (lit_101)
-//	8034706C: 80456534 (lit_102)
+/* 80346FF8-80347090 341938 0098+00 0/0 11/11 2/2 .text            C_MTXOrtho */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void C_MTXOrtho() {
+asm void C_MTXOrtho() {
     nofralloc
 #include "asm/dolphin/mtx/mtx44/C_MTXOrtho.s"
 }

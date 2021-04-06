@@ -30,18 +30,18 @@ lbl_8033470C:
 /* 80334724  40 82 00 44 */	bne lbl_80334768
 /* 80334728  38 61 00 24 */	addi r3, r1, 0x24
 /* 8033472C  4B FF FF 61 */	bl __ct__14J3DModelLoaderFv
-/* 80334730  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v21@ha
-/* 80334734  38 03 F1 08 */	addi r0, r3, __vt__18J3DModelLoader_v21@l
+/* 80334730  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v21@ha /* 0x803CF108@ha */
+/* 80334734  38 03 F1 08 */	addi r0, r3, __vt__18J3DModelLoader_v21@l /* 0x803CF108@l */
 /* 80334738  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8033473C  38 61 00 24 */	addi r3, r1, 0x24
 /* 80334740  7F C4 F3 78 */	mr r4, r30
 /* 80334744  7F E5 FB 78 */	mr r5, r31
 /* 80334748  48 00 00 99 */	bl load__14J3DModelLoaderFPCvUl
-/* 8033474C  3C 80 80 3D */	lis r4, __vt__18J3DModelLoader_v21@ha
-/* 80334750  38 04 F1 08 */	addi r0, r4, __vt__18J3DModelLoader_v21@l
+/* 8033474C  3C 80 80 3D */	lis r4, __vt__18J3DModelLoader_v21@ha /* 0x803CF108@ha */
+/* 80334750  38 04 F1 08 */	addi r0, r4, __vt__18J3DModelLoader_v21@l /* 0x803CF108@l */
 /* 80334754  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80334758  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha
-/* 8033475C  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l
+/* 80334758  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha /* 0x803CF1F4@ha */
+/* 8033475C  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l /* 0x803CF1F4@l */
 /* 80334760  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80334764  48 00 00 64 */	b lbl_803347C8
 lbl_80334768:
@@ -54,18 +54,18 @@ lbl_80334768:
 /* 80334780  40 82 00 44 */	bne lbl_803347C4
 /* 80334784  38 61 00 08 */	addi r3, r1, 8
 /* 80334788  4B FF FF 05 */	bl __ct__14J3DModelLoaderFv
-/* 8033478C  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v26@ha
-/* 80334790  38 03 F1 4C */	addi r0, r3, __vt__18J3DModelLoader_v26@l
+/* 8033478C  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v26@ha /* 0x803CF14C@ha */
+/* 80334790  38 03 F1 4C */	addi r0, r3, __vt__18J3DModelLoader_v26@l /* 0x803CF14C@l */
 /* 80334794  90 01 00 08 */	stw r0, 8(r1)
 /* 80334798  38 61 00 08 */	addi r3, r1, 8
 /* 8033479C  7F C4 F3 78 */	mr r4, r30
 /* 803347A0  7F E5 FB 78 */	mr r5, r31
 /* 803347A4  48 00 00 3D */	bl load__14J3DModelLoaderFPCvUl
-/* 803347A8  3C 80 80 3D */	lis r4, __vt__18J3DModelLoader_v26@ha
-/* 803347AC  38 04 F1 4C */	addi r0, r4, __vt__18J3DModelLoader_v26@l
+/* 803347A8  3C 80 80 3D */	lis r4, __vt__18J3DModelLoader_v26@ha /* 0x803CF14C@ha */
+/* 803347AC  38 04 F1 4C */	addi r0, r4, __vt__18J3DModelLoader_v26@l /* 0x803CF14C@l */
 /* 803347B0  90 01 00 08 */	stw r0, 8(r1)
-/* 803347B4  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha
-/* 803347B8  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l
+/* 803347B4  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha /* 0x803CF1F4@ha */
+/* 803347B8  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l /* 0x803CF1F4@l */
 /* 803347BC  90 01 00 08 */	stw r0, 8(r1)
 /* 803347C0  48 00 00 08 */	b lbl_803347C8
 lbl_803347C4:

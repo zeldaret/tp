@@ -44,8 +44,8 @@ lbl_8048BEE4:
 /* 8048BEE4  38 00 FF FF */	li r0, -1
 /* 8048BEE8  90 03 05 74 */	stw r0, 0x574(r3)
 /* 8048BEEC  C0 03 04 EC */	lfs f0, 0x4ec(r3)
-/* 8048BEF0  3C 80 80 49 */	lis r4, lit_3784@ha
-/* 8048BEF4  C0 24 C3 98 */	lfs f1, lit_3784@l(r4)
+/* 8048BEF0  3C 80 80 49 */	lis r4, lit_3784@ha /* 0x8048C398@ha */
+/* 8048BEF4  C0 24 C3 98 */	lfs f1, lit_3784@l(r4)  /* 0x8048C398@l */
 /* 8048BEF8  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8048BEFC  D0 03 04 EC */	stfs f0, 0x4ec(r3)
 /* 8048BF00  C0 03 04 F0 */	lfs f0, 0x4f0(r3)
@@ -58,8 +58,8 @@ lbl_8048BEE4:
 /* 8048BF1C  2C 00 00 01 */	cmpwi r0, 1
 /* 8048BF20  40 82 00 30 */	bne lbl_8048BF50
 /* 8048BF24  C0 03 04 EC */	lfs f0, 0x4ec(r3)
-/* 8048BF28  3C 80 80 49 */	lis r4, lit_3815@ha
-/* 8048BF2C  C0 24 C3 B8 */	lfs f1, lit_3815@l(r4)
+/* 8048BF28  3C 80 80 49 */	lis r4, lit_3815@ha /* 0x8048C3B8@ha */
+/* 8048BF2C  C0 24 C3 B8 */	lfs f1, lit_3815@l(r4)  /* 0x8048C3B8@l */
 /* 8048BF30  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8048BF34  D0 03 04 EC */	stfs f0, 0x4ec(r3)
 /* 8048BF38  C0 03 04 F0 */	lfs f0, 0x4f0(r3)

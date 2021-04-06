@@ -3,8 +3,8 @@ lbl_80BFA60C:
 /* 80BFA610  7C 08 02 A6 */	mflr r0
 /* 80BFA614  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BFA618  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80BFA61C  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha
-/* 80BFA620  38 83 AF EA */	addi r4, r3, struct_80BFAFE8+0x2@l
+/* 80BFA61C  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha /* 0x80BFAFEA@ha */
+/* 80BFA620  38 83 AF EA */	addi r4, r3, struct_80BFAFE8+0x2@l /* 0x80BFAFEA@l */
 /* 80BFA624  A8 64 00 00 */	lha r3, 0(r4)
 /* 80BFA628  2C 03 00 00 */	cmpwi r3, 0
 /* 80BFA62C  40 81 00 1C */	ble lbl_80BFA648
@@ -15,12 +15,12 @@ lbl_80BFA60C:
 /* 80BFA640  48 00 00 99 */	bl clrSphSe__12_GlSph_Mng_cFv
 /* 80BFA644  48 00 00 80 */	b lbl_80BFA6C4
 lbl_80BFA648:
-/* 80BFA648  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x0@ha
-/* 80BFA64C  A0 03 AF E8 */	lhz r0, struct_80BFAFE8+0x0@l(r3)
+/* 80BFA648  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x0@ha /* 0x80BFAFE8@ha */
+/* 80BFA64C  A0 03 AF E8 */	lhz r0, struct_80BFAFE8+0x0@l(r3)  /* 0x80BFAFE8@l */
 /* 80BFA650  28 00 00 00 */	cmplwi r0, 0
 /* 80BFA654  41 82 00 68 */	beq lbl_80BFA6BC
-/* 80BFA658  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BFA65C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80BFA658  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BFA65C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BFA660  80 1F 5F 1C */	lwz r0, 0x5f1c(r31)
 /* 80BFA664  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80BFA668  40 82 00 20 */	bne lbl_80BFA688
@@ -39,13 +39,13 @@ lbl_80BFA688:
 /* 80BFA698  41 82 00 2C */	beq lbl_80BFA6C4
 lbl_80BFA69C:
 /* 80BFA69C  38 00 00 10 */	li r0, 0x10
-/* 80BFA6A0  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha
-/* 80BFA6A4  B0 03 AF EA */	sth r0, struct_80BFAFE8+0x2@l(r3)
+/* 80BFA6A0  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha /* 0x80BFAFEA@ha */
+/* 80BFA6A4  B0 03 AF EA */	sth r0, struct_80BFAFE8+0x2@l(r3)  /* 0x80BFAFEA@l */
 /* 80BFA6A8  48 00 00 1C */	b lbl_80BFA6C4
 lbl_80BFA6AC:
 /* 80BFA6AC  38 00 00 10 */	li r0, 0x10
-/* 80BFA6B0  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha
-/* 80BFA6B4  B0 03 AF EA */	sth r0, struct_80BFAFE8+0x2@l(r3)
+/* 80BFA6B0  3C 60 80 C0 */	lis r3, struct_80BFAFE8+0x2@ha /* 0x80BFAFEA@ha */
+/* 80BFA6B4  B0 03 AF EA */	sth r0, struct_80BFAFE8+0x2@l(r3)  /* 0x80BFAFEA@l */
 /* 80BFA6B8  48 00 00 0C */	b lbl_80BFA6C4
 lbl_80BFA6BC:
 /* 80BFA6BC  38 00 00 00 */	li r0, 0

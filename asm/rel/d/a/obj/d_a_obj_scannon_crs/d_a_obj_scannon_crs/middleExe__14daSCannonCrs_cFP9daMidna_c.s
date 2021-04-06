@@ -14,20 +14,20 @@ lbl_80CC9CA4:
 lbl_80CC9CD4:
 /* 80CC9CD4  88 1E 06 4E */	lbz r0, 0x64e(r30)
 /* 80CC9CD8  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80CC9CDC  3C 60 80 CD */	lis r3, s_exeProc__14daSCannonCrs_c@ha
-/* 80CC9CE0  38 03 B1 D0 */	addi r0, r3, s_exeProc__14daSCannonCrs_c@l
+/* 80CC9CDC  3C 60 80 CD */	lis r3, s_exeProc__14daSCannonCrs_c@ha /* 0x80CCB1D0@ha */
+/* 80CC9CE0  38 03 B1 D0 */	addi r0, r3, s_exeProc__14daSCannonCrs_c@l /* 0x80CCB1D0@l */
 /* 80CC9CE4  7C 60 22 14 */	add r3, r0, r4
-/* 80CC9CE8  4B 69 83 30 */	b __ptmf_test
+/* 80CC9CE8  4B 69 83 31 */	bl __ptmf_test
 /* 80CC9CEC  2C 03 00 00 */	cmpwi r3, 0
 /* 80CC9CF0  41 82 00 28 */	beq lbl_80CC9D18
 /* 80CC9CF4  7F C3 F3 78 */	mr r3, r30
 /* 80CC9CF8  7F E4 FB 78 */	mr r4, r31
 /* 80CC9CFC  88 1E 06 4E */	lbz r0, 0x64e(r30)
 /* 80CC9D00  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 80CC9D04  3C A0 80 CD */	lis r5, s_exeProc__14daSCannonCrs_c@ha
-/* 80CC9D08  38 05 B1 D0 */	addi r0, r5, s_exeProc__14daSCannonCrs_c@l
+/* 80CC9D04  3C A0 80 CD */	lis r5, s_exeProc__14daSCannonCrs_c@ha /* 0x80CCB1D0@ha */
+/* 80CC9D08  38 05 B1 D0 */	addi r0, r5, s_exeProc__14daSCannonCrs_c@l /* 0x80CCB1D0@l */
 /* 80CC9D0C  7D 80 32 14 */	add r12, r0, r6
-/* 80CC9D10  4B 69 83 74 */	b __ptmf_scall
+/* 80CC9D10  4B 69 83 75 */	bl __ptmf_scall
 /* 80CC9D14  60 00 00 00 */	nop 
 lbl_80CC9D18:
 /* 80CC9D18  A0 1E 00 FA */	lhz r0, 0xfa(r30)
@@ -40,9 +40,9 @@ lbl_80CC9D30:
 /* 80CC9D30  7F C3 F3 78 */	mr r3, r30
 /* 80CC9D34  48 00 0B 15 */	bl setModelMtx__14daSCannonCrs_cFv
 /* 80CC9D38  38 7E 05 CC */	addi r3, r30, 0x5cc
-/* 80CC9D3C  4B 34 36 EC */	b play__14mDoExt_baseAnmFv
+/* 80CC9D3C  4B 34 36 ED */	bl play__14mDoExt_baseAnmFv
 /* 80CC9D40  38 7E 05 E8 */	addi r3, r30, 0x5e8
-/* 80CC9D44  4B 34 36 E4 */	b play__14mDoExt_baseAnmFv
+/* 80CC9D44  4B 34 36 E5 */	bl play__14mDoExt_baseAnmFv
 /* 80CC9D48  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CC9D4C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80CC9D50  80 01 00 14 */	lwz r0, 0x14(r1)

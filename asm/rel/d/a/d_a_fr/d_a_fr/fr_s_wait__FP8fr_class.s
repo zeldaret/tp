@@ -5,8 +5,8 @@ lbl_8051A558:
 /* 8051A564  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8051A568  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8051A56C  7C 7E 1B 78 */	mr r30, r3
-/* 8051A570  3C 80 80 52 */	lis r4, lit_3649@ha
-/* 8051A574  3B E4 B9 C8 */	addi r31, r4, lit_3649@l
+/* 8051A570  3C 80 80 52 */	lis r4, lit_3649@ha /* 0x8051B9C8@ha */
+/* 8051A574  3B E4 B9 C8 */	addi r31, r4, lit_3649@l /* 0x8051B9C8@l */
 /* 8051A578  A8 83 05 D4 */	lha r4, 0x5d4(r3)
 /* 8051A57C  2C 04 00 01 */	cmpwi r4, 1
 /* 8051A580  41 82 00 50 */	beq lbl_8051A5D0
@@ -23,7 +23,7 @@ lbl_8051A594:
 /* 8051A5A8  C0 5F 00 1C */	lfs f2, 0x1c(r31)
 /* 8051A5AC  4B FF F3 A1 */	bl anm_init__FP8fr_classifUcf
 /* 8051A5B0  C0 3F 00 0C */	lfs f1, 0xc(r31)
-/* 8051A5B4  4B D4 D3 A0 */	b cM_rndF__Ff
+/* 8051A5B4  4B D4 D3 A1 */	bl cM_rndF__Ff
 /* 8051A5B8  C0 1F 00 70 */	lfs f0, 0x70(r31)
 /* 8051A5BC  EC 00 08 2A */	fadds f0, f0, f1
 /* 8051A5C0  FC 00 00 1E */	fctiwz f0, f0
@@ -37,7 +37,7 @@ lbl_8051A5D0:
 /* 8051A5DC  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8051A5E0  C0 3F 00 24 */	lfs f1, 0x24(r31)
 /* 8051A5E4  C0 5F 00 84 */	lfs f2, 0x84(r31)
-/* 8051A5E8  4B D5 54 98 */	b cLib_addCalc0__FPfff
+/* 8051A5E8  4B D5 54 99 */	bl cLib_addCalc0__FPfff
 /* 8051A5EC  A8 1E 05 DC */	lha r0, 0x5dc(r30)
 /* 8051A5F0  2C 00 00 00 */	cmpwi r0, 0
 /* 8051A5F4  40 82 00 14 */	bne lbl_8051A608

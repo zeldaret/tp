@@ -3,18 +3,16 @@
 #
 
 M552_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos.plf
+M552_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos.lcf
+M552_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos.map
 
 M552_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6bemos/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos.cpp \
 
 M552_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/d_a_obj_lv6bemos.o \
 
@@ -31,15 +29,21 @@ M552_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map552.map\
+	-m _prolog \
+	-lcf $(M552_LDSCRIPT) \
+	-unused -map $(M552_MAP) \
+	-w off \
 
 $(M552_TARGET): $(M552_O_FILES) $(M552_LIBS)
+	@echo [552] creating $(M552_TARGET)
 	@echo $(M552_LIBS) $(M552_O_FILES) > build/M552_ofiles
-	$(LD) -opt_partial $(M552_LDFLAGS) -o $(M552_TARGET) @build/M552_ofiles
+	@python3 tools/lcf.py rel 552 --output $(M552_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M552_LDFLAGS) -o $(M552_TARGET) @build/M552_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6bemos/%.o: rel/d/a/obj/d_a_obj_lv6bemos/%.cpp
+	@echo [552] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M552_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M552_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

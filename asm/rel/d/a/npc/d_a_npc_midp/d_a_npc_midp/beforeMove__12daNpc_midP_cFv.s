@@ -9,7 +9,7 @@ lbl_80A71DB0:
 /* 80A71DCC  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A71DD0  28 00 00 00 */	cmplwi r0, 0
 /* 80A71DD4  40 82 00 1C */	bne lbl_80A71DF0
-/* 80A71DD8  4B 5B DC 7C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A71DD8  4B 5B DC 7D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A71DDC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A71DE0  40 82 00 14 */	bne lbl_80A71DF4
 /* 80A71DE4  88 1E 0A 89 */	lbz r0, 0xa89(r30)

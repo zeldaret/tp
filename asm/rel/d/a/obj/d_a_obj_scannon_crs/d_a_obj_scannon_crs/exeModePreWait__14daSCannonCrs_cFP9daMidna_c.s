@@ -7,10 +7,10 @@ lbl_80CC9F34:
 /* 80CC9F48  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80CC9F4C  28 00 00 01 */	cmplwi r0, 1
 /* 80CC9F50  40 82 00 14 */	bne lbl_80CC9F64
-/* 80CC9F54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CC9F58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CC9F54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CC9F58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CC9F5C  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80CC9F60  4B 37 85 08 */	b reset__14dEvt_control_cFv
+/* 80CC9F60  4B 37 85 09 */	bl reset__14dEvt_control_cFv
 lbl_80CC9F64:
 /* 80CC9F64  38 00 00 00 */	li r0, 0
 /* 80CC9F68  98 1F 06 4E */	stb r0, 0x64e(r31)

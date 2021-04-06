@@ -77,10 +77,6 @@ extern "C" extern u8 data_80450F58[8];
 // External References:
 //
 
-void dCam_getBody();
-void dKy_darkworld_check();
-void cM_rnd();
-
 extern "C" void checkVibration__19dSv_player_config_cCFv();
 extern "C" void StartShake__9dCamera_cFlPUcl4cXyz();
 extern "C" void StopShake__9dCamera_cFv();
@@ -109,120 +105,58 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 8006F168-8006F184 001C+00 s=1 e=0 z=0  None .text makedata__25@unnamed@d_vibration_cpp@FPUsUll
+/* 8006F168-8006F184 069AA8 001C+00 1/1 0/0 0/0 .text makedata__25@unnamed@d_vibration_cpp@FPUsUll
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8006F168() {
+static asm void func_8006F168() {
     nofralloc
 #include "asm/d/d_vibration/func_8006F168.s"
 }
 #pragma pop
 
-/* 8006F184-8006F1A4 0020+00 s=1 e=0 z=0  None .text rollshift__25@unnamed@d_vibration_cpp@FUlll
+/* 8006F184-8006F1A4 069AC4 0020+00 1/1 0/0 0/0 .text rollshift__25@unnamed@d_vibration_cpp@FUlll
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8006F184() {
+static asm void func_8006F184() {
     nofralloc
 #include "asm/d/d_vibration/func_8006F184.s"
 }
 #pragma pop
 
-/* 8006F1A4-8006F1D8 0034+00 s=2 e=0 z=0  None .text      makebits__25@unnamed@d_vibration_cpp@FUlll
+/* 8006F1A4-8006F1D8 069AE4 0034+00 2/2 0/0 0/0 .text makebits__25@unnamed@d_vibration_cpp@FUlll
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8006F1A4() {
+static asm void func_8006F1A4() {
     nofralloc
 #include "asm/d/d_vibration/func_8006F1A4.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452620-80452628 0008+00 s=1 e=0 z=0  None .sdata2    @3756 */
+/* 80452620-80452628 000C20 0008+00 1/1 0/0 0/0 .sdata2          @3756 */
 SECTION_SDATA2 static f64 lit_3756 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8006F1D8-8006F268 0090+00 s=1 e=0 z=0  None .text      randombit__25@unnamed@d_vibration_cpp@Fll
- */
-//	8006F1F0: 803621D0 (_savegpr_26)
-//	8006F200: 80452620 (lit_3756)
-//	8006F214: 8026786C (cM_rnd__Fv)
-//	8006F22C: 803620AC (__cvt_fp2unsigned)
-//	8006F254: 8036221C (_restgpr_26)
+/* 8006F1D8-8006F268 069B18 0090+00 1/1 0/0 0/0 .text randombit__25@unnamed@d_vibration_cpp@Fll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8006F1D8() {
+static asm void func_8006F1D8() {
     nofralloc
 #include "asm/d/d_vibration/func_8006F1D8.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450F50-80450F58 0008+00 s=1 e=0 z=0  None .sbss      data$3831 */
+/* 80450F50-80450F58 000450 0008+00 1/1 0/0 0/0 .sbss            data$3831 */
 static u8 data[8];
 
-/* 8006F268-8006FA24 07BC+00 s=0 e=2 z=0  None .text      Run__12dVibration_cFv */
-//	8006F278: 803621DC (_savegpr_29)
-//	8006F288: 804061C0 (g_dComIfG_gameInfo)
-//	8006F28C: 804061C0 (g_dComIfG_gameInfo)
-//	8006F294: 80034644 (checkVibration__19dSv_player_config_cCFv)
-//	8006F418: 8006F1D8 (func_8006F1D8)
-//	8006F42C: 801AC57C (dKy_darkworld_check__Fv)
-//	8006F43C: 804061C0 (g_dComIfG_gameInfo)
-//	8006F440: 804061C0 (g_dComIfG_gameInfo)
-//	8006F464: 80266CE4 (norm__4cXyzCFv)
-//	8006F468: 80181640 (dCam_getBody__Fv)
-//	8006F47C: 80181000 (StartShake__9dCamera_cFlPUcl4cXyz)
-//	8006F494: 8006F184 (func_8006F184)
-//	8006F4A4: 8006F1D8 (func_8006F1D8)
-//	8006F4B8: 801AC57C (dKy_darkworld_check__Fv)
-//	8006F4C8: 804061C0 (g_dComIfG_gameInfo)
-//	8006F4CC: 804061C0 (g_dComIfG_gameInfo)
-//	8006F4F0: 80266CE4 (norm__4cXyzCFv)
-//	8006F4F4: 80181640 (dCam_getBody__Fv)
-//	8006F508: 80181000 (StartShake__9dCamera_cFlPUcl4cXyz)
-//	8006F538: 8006F1A4 (func_8006F1A4)
-//	8006F544: 8006F184 (func_8006F184)
-//	8006F56C: 8006F1D8 (func_8006F1D8)
-//	8006F588: 801AC57C (dKy_darkworld_check__Fv)
-//	8006F598: 804061C0 (g_dComIfG_gameInfo)
-//	8006F59C: 804061C0 (g_dComIfG_gameInfo)
-//	8006F5C4: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	8006F5E8: 80266CE4 (norm__4cXyzCFv)
-//	8006F5EC: 80181640 (dCam_getBody__Fv)
-//	8006F600: 80181000 (StartShake__9dCamera_cFlPUcl4cXyz)
-//	8006F614: 804061C0 (g_dComIfG_gameInfo)
-//	8006F618: 804061C0 (g_dComIfG_gameInfo)
-//	8006F634: 80181640 (dCam_getBody__Fv)
-//	8006F638: 80181158 (StopShake__9dCamera_cFv)
-//	8006F760: 8006F1D8 (func_8006F1D8)
-//	8006F76C: 80450F50 (data)
-//	8006F778: 8006F168 (func_8006F168)
-//	8006F780: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006F784: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006F798: 802E18CC
-//(startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl) 	8006F7B0:
-// 8006F184 (func_8006F184) 	8006F7C0: 8006F1D8 (func_8006F1D8) 	8006F7D4: 80450F50 (data)
-// 8006F7DC: 8006F168 (func_8006F168) 	8006F7E4: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F7E8:
-// 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F7FC: 802E18CC
-//(startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl) 	8006F824:
-// 8006F1A4 (func_8006F1A4) 	8006F830: 8006F184 (func_8006F184) 	8006F850: 8006F1D8
-// (func_8006F1D8) 	8006F86C: 80450F50 (data) 	8006F878: 8006F168 (func_8006F168) 	8006F880: 803DD2D8
-//(m_gamePad__8mDoCPd_c) 	8006F884: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F898: 802E18CC
-//(startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl) 	8006F8A0:
-// 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F8A4: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F8B0: 802E1978
-//(stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv) 	8006F8B4: 803DD2D8
-//(m_gamePad__8mDoCPd_c) 	8006F8B8: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F8C8: 802E168C
-//(stopMotor__Q210JUTGamePad7CRumbleFib) 	8006F998: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F99C:
-// 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F9A8: 802E1978
-//(stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv) 	8006F9AC: 803DD2D8
-//(m_gamePad__8mDoCPd_c) 	8006F9B0: 803DD2D8 (m_gamePad__8mDoCPd_c) 	8006F9C0: 802E168C
-//(stopMotor__Q210JUTGamePad7CRumbleFib) 	8006FA10: 80362228 (_restgpr_29)
+/* 8006F268-8006FA24 069BA8 07BC+00 0/0 2/2 0/0 .text            Run__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -232,16 +166,7 @@ asm void dVibration_c::Run() {
 }
 #pragma pop
 
-/* 8006FA24-8006FB10 00EC+00 s=0 e=62 z=298  None .text      StartShock__12dVibration_cFii4cXyz */
-//	8006FA34: 803621DC (_savegpr_29)
-//	8006FA74: 8037A678 (CS_patt__12dVibration_c)
-//	8006FA78: 8037A678 (CS_patt__12dVibration_c)
-//	8006FAA8: 804061C0 (g_dComIfG_gameInfo)
-//	8006FAAC: 804061C0 (g_dComIfG_gameInfo)
-//	8006FAB4: 80034644 (checkVibration__19dSv_player_config_cCFv)
-//	8006FAD0: 8037A620 (MS_patt__12dVibration_c)
-//	8006FAD4: 8037A620 (MS_patt__12dVibration_c)
-//	8006FAFC: 80362228 (_restgpr_29)
+/* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -251,18 +176,7 @@ asm void dVibration_c::StartShock(int param_0, int param_1, cXyz param_2) {
 }
 #pragma pop
 
-/* 8006FB10-8006FC0C 00FC+00 s=0 e=8 z=67  None .text      StartQuake__12dVibration_cFii4cXyz */
-//	8006FB20: 803621DC (_savegpr_29)
-//	8006FB60: 8037A720 (CQ_patt__12dVibration_c)
-//	8006FB64: 8037A720 (CQ_patt__12dVibration_c)
-//	8006FB94: 804061C0 (g_dComIfG_gameInfo)
-//	8006FB98: 804061C0 (g_dComIfG_gameInfo)
-//	8006FBA0: 80034644 (checkVibration__19dSv_player_config_cCFv)
-//	8006FBBC: 8037A6D0 (MQ_patt__12dVibration_c)
-//	8006FBC0: 8037A6D0 (MQ_patt__12dVibration_c)
-//	8006FBDC: 8037A720 (CQ_patt__12dVibration_c)
-//	8006FBE0: 8037A720 (CQ_patt__12dVibration_c)
-//	8006FBF8: 80362228 (_restgpr_29)
+/* 8006FB10-8006FC0C 06A450 00FC+00 0/0 8/8 67/67 .text StartQuake__12dVibration_cFii4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,14 +186,7 @@ asm void dVibration_c::StartQuake(int param_0, int param_1, cXyz param_2) {
 }
 #pragma pop
 
-/* 8006FC0C-8006FD94 0188+00 s=0 e=2 z=2  None .text      StartQuake__12dVibration_cFPCUcii4cXyz */
-//	8006FC1C: 803621D0 (_savegpr_26)
-//	8006FD0C: 8006F1A4 (func_8006F1A4)
-//	8006FD2C: 804061C0 (g_dComIfG_gameInfo)
-//	8006FD30: 804061C0 (g_dComIfG_gameInfo)
-//	8006FD38: 80034644 (checkVibration__19dSv_player_config_cCFv)
-//	8006FD60: 8006F1A4 (func_8006F1A4)
-//	8006FD80: 8036221C (_restgpr_26)
+/* 8006FC0C-8006FD94 06A54C 0188+00 0/0 2/2 2/2 .text StartQuake__12dVibration_cFPCUcii4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,7 +196,7 @@ asm void dVibration_c::StartQuake(u8 const* param_0, int param_1, int param_2, c
 }
 #pragma pop
 
-/* 8006FD94-8006FE00 006C+00 s=0 e=6 z=82  None .text      StopQuake__12dVibration_cFi */
+/* 8006FD94-8006FE00 06A6D4 006C+00 0/0 6/6 82/82 .text            StopQuake__12dVibration_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,14 +206,7 @@ asm void dVibration_c::StopQuake(int param_0) {
 }
 #pragma pop
 
-/* 8006FE00-8006FE5C 005C+00 s=2 e=0 z=0  None .text      Kill__12dVibration_cFv */
-//	8006FE14: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FE18: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FE24: 802E1948 (stopPatternedRumble__Q210JUTGamePad7CRumbleFs)
-//	8006FE28: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FE2C: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FE3C: 802E168C (stopMotor__Q210JUTGamePad7CRumbleFib)
-//	8006FE44: 8006FE84 (setDefault__12dVibration_cFv)
+/* 8006FE00-8006FE5C 06A740 005C+00 2/2 0/0 0/0 .text            Kill__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,7 +216,7 @@ asm void dVibration_c::Kill() {
 }
 #pragma pop
 
-/* 8006FE5C-8006FE84 0028+00 s=0 e=0 z=10  None .text      CheckQuake__12dVibration_cFv */
+/* 8006FE5C-8006FE84 06A79C 0028+00 0/0 0/0 10/10 .text            CheckQuake__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,7 +226,7 @@ asm void dVibration_c::CheckQuake() {
 }
 #pragma pop
 
-/* 8006FE84-8006FF04 0080+00 s=2 e=0 z=0  None .text      setDefault__12dVibration_cFv */
+/* 8006FE84-8006FF04 06A7C4 0080+00 2/2 0/0 0/0 .text            setDefault__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -336,9 +236,7 @@ asm void dVibration_c::setDefault() {
 }
 #pragma pop
 
-/* 8006FF04-8006FF38 0034+00 s=0 e=2 z=0  None .text      Init__12dVibration_cFv */
-//	8006FF18: 8006FE00 (Kill__12dVibration_cFv)
-//	8006FF20: 8006FE84 (setDefault__12dVibration_cFv)
+/* 8006FF04-8006FF38 06A844 0034+00 0/0 2/2 0/0 .text            Init__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -348,13 +246,7 @@ asm void dVibration_c::Init() {
 }
 #pragma pop
 
-/* 8006FF38-8006FFF8 00C0+00 s=0 e=1 z=0  None .text      Pause__12dVibration_cFv */
-//	8006FF70: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FF74: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FF80: 802E1948 (stopPatternedRumble__Q210JUTGamePad7CRumbleFs)
-//	8006FF84: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FF88: 803DD2D8 (m_gamePad__8mDoCPd_c)
-//	8006FF98: 802E168C (stopMotor__Q210JUTGamePad7CRumbleFib)
+/* 8006FF38-8006FFF8 06A878 00C0+00 0/0 1/1 0/0 .text            Pause__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,8 +256,7 @@ asm void dVibration_c::Pause() {
 }
 #pragma pop
 
-/* 8006FFF8-80070018 0020+00 s=0 e=1 z=0  None .text      Remove__12dVibration_cFv */
-//	80070004: 8006FE00 (Kill__12dVibration_cFv)
+/* 8006FFF8-80070018 06A938 0020+00 0/0 1/1 0/0 .text            Remove__12dVibration_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,5 +267,6 @@ asm void dVibration_c::Remove() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450F58-80450F60 0008+00 s=0 e=2 z=0  None .sbss      None */
+/* 80450F58-80450F60 000458 0008+00 0/0 2/2 0/0 .sbss            None */
+extern u8 data_80450F58[8];
 u8 data_80450F58[8];

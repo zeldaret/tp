@@ -23,8 +23,8 @@ lbl_8011BD98:
 /* 8011BDBC  4B FA 3C 35 */	bl setItemActor__9daAlink_cFv
 /* 8011BDC0  7F E3 FB 78 */	mr r3, r31
 /* 8011BDC4  38 80 00 BB */	li r4, 0xbb
-/* 8011BDC8  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha
-/* 8011BDCC  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l
+/* 8011BDC8  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 8011BDCC  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 8011BDD0  38 A5 00 14 */	addi r5, r5, 0x14
 /* 8011BDD4  4B F9 13 21 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8011BDD8  38 60 00 01 */	li r3, 1

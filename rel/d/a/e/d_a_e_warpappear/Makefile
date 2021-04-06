@@ -3,17 +3,15 @@
 #
 
 M243_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear.plf
+M243_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear.lcf
+M243_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear.map
 
 M243_CPP_FILES := \
-	rel/d/a/e/d_a_e_warpappear/executor.cpp \
-	rel/d/a/e/d_a_e_warpappear/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_warpappear/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_warpappear/d_a_e_warpappear.cpp \
 
 M243_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/d_a_e_warpappear.o \
 
 M243_LIBS := \
@@ -29,15 +27,21 @@ M243_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map243.map\
+	-m _prolog \
+	-lcf $(M243_LDSCRIPT) \
+	-unused -map $(M243_MAP) \
+	-w off \
 
 $(M243_TARGET): $(M243_O_FILES) $(M243_LIBS)
+	@echo [243] creating $(M243_TARGET)
 	@echo $(M243_LIBS) $(M243_O_FILES) > build/M243_ofiles
-	$(LD) -opt_partial $(M243_LDFLAGS) -o $(M243_TARGET) @build/M243_ofiles
+	@python3 tools/lcf.py rel 243 --output $(M243_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M243_LDFLAGS) -o $(M243_TARGET) @build/M243_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_warpappear/%.o: rel/d/a/e/d_a_e_warpappear/%.cpp
+	@echo [243] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M243_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M243_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

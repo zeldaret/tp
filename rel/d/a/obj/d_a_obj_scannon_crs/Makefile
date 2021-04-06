@@ -3,17 +3,15 @@
 #
 
 M614_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs.plf
+M614_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs.lcf
+M614_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs.map
 
 M614_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_scannon_crs/executor.cpp \
-	rel/d/a/obj/d_a_obj_scannon_crs/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_scannon_crs/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_scannon_crs/d_a_obj_scannon_crs.cpp \
 
 M614_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/d_a_obj_scannon_crs.o \
 
 M614_LIBS := \
@@ -29,15 +27,21 @@ M614_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map614.map\
+	-m _prolog \
+	-lcf $(M614_LDSCRIPT) \
+	-unused -map $(M614_MAP) \
+	-w off \
 
 $(M614_TARGET): $(M614_O_FILES) $(M614_LIBS)
+	@echo [614] creating $(M614_TARGET)
 	@echo $(M614_LIBS) $(M614_O_FILES) > build/M614_ofiles
-	$(LD) -opt_partial $(M614_LDFLAGS) -o $(M614_TARGET) @build/M614_ofiles
+	@python3 tools/lcf.py rel 614 --output $(M614_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M614_LDFLAGS) -o $(M614_TARGET) @build/M614_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_scannon_crs/%.o: rel/d/a/obj/d_a_obj_scannon_crs/%.cpp
+	@echo [614] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M614_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M614_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

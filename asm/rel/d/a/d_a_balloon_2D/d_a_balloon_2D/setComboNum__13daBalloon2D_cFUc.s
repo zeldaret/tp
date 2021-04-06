@@ -3,7 +3,7 @@ lbl_806540BC:
 /* 806540C0  7C 08 02 A6 */	mflr r0
 /* 806540C4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 806540C8  39 61 00 20 */	addi r11, r1, 0x20
-/* 806540CC  4B D0 E1 0C */	b _savegpr_28
+/* 806540CC  4B D0 E1 0D */	bl _savegpr_28
 /* 806540D0  7C 7F 1B 78 */	mr r31, r3
 /* 806540D4  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 806540D8  28 00 00 63 */	cmplwi r0, 0x63
@@ -11,13 +11,13 @@ lbl_806540BC:
 /* 806540E0  38 80 00 63 */	li r4, 0x63
 lbl_806540E4:
 /* 806540E4  98 9F 07 44 */	stb r4, 0x744(r31)
-/* 806540E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806540EC  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 806540E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806540EC  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806540F0  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
 /* 806540F4  54 9C 06 3E */	clrlwi r28, r4, 0x18
 /* 806540F8  38 00 00 0A */	li r0, 0xa
 /* 806540FC  7C 7C 03 D6 */	divw r3, r28, r0
-/* 80654100  4B BC A1 C8 */	b dMeter2Info_getNumberTextureName__Fi
+/* 80654100  4B BC A1 C9 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 80654104  7C 65 1B 78 */	mr r5, r3
 /* 80654108  7F A3 EB 78 */	mr r3, r29
 /* 8065410C  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -38,7 +38,7 @@ lbl_806540E4:
 /* 80654148  7C 1C 1B D6 */	divw r0, r28, r3
 /* 8065414C  7C 00 19 D6 */	mullw r0, r0, r3
 /* 80654150  7C 60 E0 50 */	subf r3, r0, r28
-/* 80654154  4B BC A1 74 */	b dMeter2Info_getNumberTextureName__Fi
+/* 80654154  4B BC A1 75 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 80654158  7C 65 1B 78 */	mr r5, r3
 /* 8065415C  7F A3 EB 78 */	mr r3, r29
 /* 80654160  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -57,7 +57,7 @@ lbl_806540E4:
 /* 80654194  7F E3 FB 78 */	mr r3, r31
 /* 80654198  48 00 04 B5 */	bl setComboAlpha__13daBalloon2D_cFv
 /* 8065419C  39 61 00 20 */	addi r11, r1, 0x20
-/* 806541A0  4B D0 E0 84 */	b _restgpr_28
+/* 806541A0  4B D0 E0 85 */	bl _restgpr_28
 /* 806541A4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 806541A8  7C 08 03 A6 */	mtlr r0
 /* 806541AC  38 21 00 20 */	addi r1, r1, 0x20

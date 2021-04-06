@@ -28,8 +28,8 @@ lbl_80A1FAF0:
 /* 80A1FAFC  48 00 00 B0 */	b lbl_80A1FBAC
 lbl_80A1FB00:
 /* 80A1FB00  38 80 00 00 */	li r4, 0
-/* 80A1FB04  3C A0 80 A2 */	lis r5, lit_3998@ha
-/* 80A1FB08  C0 25 10 90 */	lfs f1, lit_3998@l(r5)
+/* 80A1FB04  3C A0 80 A2 */	lis r5, lit_3998@ha /* 0x80A21090@ha */
+/* 80A1FB08  C0 25 10 90 */	lfs f1, lit_3998@l(r5)  /* 0x80A21090@l */
 /* 80A1FB0C  38 A0 00 00 */	li r5, 0
 /* 80A1FB10  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80A1FB14  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -41,7 +41,7 @@ lbl_80A1FB00:
 /* 80A1FB2C  7F E3 FB 78 */	mr r3, r31
 /* 80A1FB30  80 9F 14 38 */	lwz r4, 0x1438(r31)
 /* 80A1FB34  38 A0 00 00 */	li r5, 0
-/* 80A1FB38  4B 73 41 E4 */	b initTalk__8daNpcF_cFiPP10fopAc_ac_c
+/* 80A1FB38  4B 73 41 E5 */	bl initTalk__8daNpcF_cFiPP10fopAc_ac_c
 /* 80A1FB3C  48 00 00 70 */	b lbl_80A1FBAC
 lbl_80A1FB40:
 /* 80A1FB40  80 1F 14 68 */	lwz r0, 0x1468(r31)
@@ -66,8 +66,8 @@ lbl_80A1FB78:
 /* 80A1FB84  60 00 08 00 */	ori r0, r0, 0x800
 /* 80A1FB88  90 1F 14 68 */	stw r0, 0x1468(r31)
 /* 80A1FB8C  38 80 00 01 */	li r4, 1
-/* 80A1FB90  3C A0 80 A2 */	lis r5, lit_3998@ha
-/* 80A1FB94  C0 25 10 90 */	lfs f1, lit_3998@l(r5)
+/* 80A1FB90  3C A0 80 A2 */	lis r5, lit_3998@ha /* 0x80A21090@ha */
+/* 80A1FB94  C0 25 10 90 */	lfs f1, lit_3998@l(r5)  /* 0x80A21090@l */
 /* 80A1FB98  38 A0 00 00 */	li r5, 0
 /* 80A1FB9C  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80A1FBA0  81 8C 00 3C */	lwz r12, 0x3c(r12)

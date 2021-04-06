@@ -5,14 +5,14 @@ lbl_8048AA50:
 /* 8048AA5C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8048AA60  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8048AA64  7C 7E 1B 78 */	mr r30, r3
-/* 8048AA68  3C 80 80 49 */	lis r4, lit_3769@ha
-/* 8048AA6C  3B E4 AC 28 */	addi r31, r4, lit_3769@l
+/* 8048AA68  3C 80 80 49 */	lis r4, lit_3769@ha /* 0x8048AC28@ha */
+/* 8048AA6C  3B E4 AC 28 */	addi r31, r4, lit_3769@l /* 0x8048AC28@l */
 /* 8048AA70  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 8048AA74  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8048AA78  40 82 00 1C */	bne lbl_8048AA94
 /* 8048AA7C  28 1E 00 00 */	cmplwi r30, 0
 /* 8048AA80  41 82 00 08 */	beq lbl_8048AA88
-/* 8048AA84  4B B8 E0 E0 */	b __ct__10fopAc_ac_cFv
+/* 8048AA84  4B B8 E0 E1 */	bl __ct__10fopAc_ac_cFv
 lbl_8048AA88:
 /* 8048AA88  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 8048AA8C  60 00 00 08 */	ori r0, r0, 8

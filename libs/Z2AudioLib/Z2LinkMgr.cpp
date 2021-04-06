@@ -15,6 +15,8 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct JAISoundID {};
+
 struct JAISoundHandle {};
 
 struct JGeometry {
@@ -23,8 +25,6 @@ struct JGeometry {
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundID {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);
@@ -225,18 +225,10 @@ extern "C" void startFireSound__15Z2SoundObjCoachFUs();
 extern "C" void startSound__15Z2SoundObjCoachF10JAISoundIDUlSc();
 extern "C" static void func_802C588C();
 extern "C" static void func_802C5894();
-extern "C" extern void* __vt__15Z2SoundObjCoach[8];
-extern "C" extern void* __vt__18Z2RideSoundStarter[5];
-extern "C" extern void* __vt__14Z2CreatureRide[18];
-extern "C" extern void* __vt__18Z2LinkSoundStarter[5];
-extern "C" extern void* __vt__14Z2CreatureLink[18];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void isEventBit__11dSv_event_cCFUs();
 extern "C" void stop__8JAISoundFUl();
@@ -310,12 +302,12 @@ extern "C" extern u8 data_80450B88[4];
 // Declarations:
 //
 
-/* 802C321C-802C3220 0004+00 s=0 e=1 z=0  None .text      setLinkGroupInfo__14Z2CreatureLinkFUc */
+/* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
 void Z2CreatureLink::setLinkGroupInfo(u8 param_0) {
     /* empty function */
 }
 
-/* 802C3220-802C3228 0008+00 s=0 e=1 z=0  None .text      setLinkHp__14Z2CreatureLinkFll */
+/* 802C3220-802C3228 2BDB60 0008+00 0/0 1/1 0/0 .text            setLinkHp__14Z2CreatureLinkFll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -325,7 +317,7 @@ asm void Z2CreatureLink::setLinkHp(s32 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802C3228-802C328C 0064+00 s=0 e=1 z=0  None .text      setLinkSwordType__14Z2CreatureLinkFll */
+/* 802C3228-802C328C 2BDB68 0064+00 0/0 1/1 0/0 .text setLinkSwordType__14Z2CreatureLinkFll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -335,7 +327,7 @@ asm void Z2CreatureLink::setLinkSwordType(s32 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802C328C-802C32F0 0064+00 s=0 e=1 z=0  None .text      setLinkShieldType__14Z2CreatureLinkFll */
+/* 802C328C-802C32F0 2BDBCC 0064+00 0/0 1/1 0/0 .text setLinkShieldType__14Z2CreatureLinkFll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -345,9 +337,7 @@ asm void Z2CreatureLink::setLinkShieldType(s32 param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802C32F0-802C333C 004C+00 s=0 e=1 z=0  None .text      setLinkBootsType__14Z2CreatureLinkFl */
-//	802C3300: 80450B80 (data_80450B80)
-//	802C3328: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
+/* 802C32F0-802C333C 2BDC30 004C+00 0/0 1/1 0/0 .text setLinkBootsType__14Z2CreatureLinkFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -358,8 +348,8 @@ asm void Z2CreatureLink::setLinkBootsType(s32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CB8F0-803CB910 0020+00 s=1 e=0 z=1  None .data      __vt__15Z2SoundObjCoach */
-SECTION_DATA void* __vt__15Z2SoundObjCoach[8] = {
+/* 803CB8F0-803CB910 028A10 0020+00 1/1 0/0 1/1 .data            __vt__15Z2SoundObjCoach */
+SECTION_DATA extern void* __vt__15Z2SoundObjCoach[8] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)framework__14Z2SoundObjBaseFUlSc,
@@ -370,14 +360,14 @@ SECTION_DATA void* __vt__15Z2SoundObjCoach[8] = {
     (void*)startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc,
 };
 
-/* 803CB910-803CB924 0014+00 s=3 e=0 z=0  None .data      __vt__18Z2RideSoundStarter */
-SECTION_DATA void* __vt__18Z2RideSoundStarter[5] = {
+/* 803CB910-803CB924 028A30 0014+00 3/3 0/0 0/0 .data            __vt__18Z2RideSoundStarter */
+SECTION_DATA extern void* __vt__18Z2RideSoundStarter[5] = {
     (void*)NULL /* RTTI */, (void*)NULL,          (void*)__dt__18Z2RideSoundStarterFv,
     (void*)func_802AABF4,   (void*)func_802C5284,
 };
 
-/* 803CB924-803CB96C 0048+00 s=2 e=0 z=0  None .data      __vt__14Z2CreatureRide */
-SECTION_DATA void* __vt__14Z2CreatureRide[18] = {
+/* 803CB924-803CB96C 028A44 0048+00 2/2 0/0 0/0 .data            __vt__14Z2CreatureRide */
+SECTION_DATA extern void* __vt__14Z2CreatureRide[18] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)deleteObject__14Z2CreatureRideFv,
@@ -398,14 +388,14 @@ SECTION_DATA void* __vt__14Z2CreatureRide[18] = {
     (void*)__dt__14Z2CreatureRideFv,
 };
 
-/* 803CB96C-803CB980 0014+00 s=3 e=0 z=0  None .data      __vt__18Z2LinkSoundStarter */
-SECTION_DATA void* __vt__18Z2LinkSoundStarter[5] = {
+/* 803CB96C-803CB980 028A8C 0014+00 3/3 0/0 0/0 .data            __vt__18Z2LinkSoundStarter */
+SECTION_DATA extern void* __vt__18Z2LinkSoundStarter[5] = {
     (void*)NULL /* RTTI */, (void*)NULL,          (void*)__dt__18Z2LinkSoundStarterFv,
     (void*)func_802AABF4,   (void*)func_802C4928,
 };
 
-/* 803CB980-803CB9C8 0048+00 s=2 e=0 z=0  None .data      __vt__14Z2CreatureLink */
-SECTION_DATA void* __vt__14Z2CreatureLink[18] = {
+/* 803CB980-803CB9C8 028AA0 0048+00 2/2 0/0 0/0 .data            __vt__14Z2CreatureLink */
+SECTION_DATA extern void* __vt__14Z2CreatureLink[18] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)deleteObject__14Z2CreatureLinkFv,
@@ -426,16 +416,11 @@ SECTION_DATA void* __vt__14Z2CreatureLink[18] = {
     (void*)__dt__14Z2CreatureLinkFv,
 };
 
-/* 80451360-80451368 0004+04 s=3 e=15 z=0  None .sbss      mLinkPtr__14Z2CreatureLink */
+/* 80451360-80451368 000860 0004+04 3/3 15/15 0/0 .sbss            mLinkPtr__14Z2CreatureLink */
+extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
-/* 802C333C-802C3464 0128+00 s=0 e=1 z=0  None .text      __ct__14Z2CreatureLinkFv */
-//	802C3350: 802C03C8 (__ct__10Z2CreatureFv)
-//	802C3358: 802C48E8 (__ct__18Z2LinkSoundStarterFv)
-//	802C335C: 803CB980 (__vt__14Z2CreatureLink)
-//	802C3360: 803CB980 (__vt__14Z2CreatureLink)
-//	802C3374: 802BE844 (__ct__16Z2SoundObjSimpleFv)
-//	802C3380: 80451360 (mLinkPtr__14Z2CreatureLink)
+/* 802C333C-802C3464 2BDC7C 0128+00 0/0 1/1 0/0 .text            __ct__14Z2CreatureLinkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,15 +430,7 @@ asm Z2CreatureLink::Z2CreatureLink() {
 }
 #pragma pop
 
-/* 802C3464-802C3500 009C+00 s=1 e=0 z=0  None .text      __dt__18Z2LinkSoundStarterFv */
-//	802C3484: 803CB96C (__vt__18Z2LinkSoundStarter)
-//	802C3488: 803CB96C (__vt__18Z2LinkSoundStarter)
-//	802C3494: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C3498: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C34B4: 80450B74 (data_80450B74)
-//	802C34C4: 80450B74 (data_80450B74)
-//	802C34D0: 802A2F88 (__dt__15JAISoundStarterFv)
-//	802C34E0: 802CED3C (__dl__FPv)
+/* 802C3464-802C3500 2BDDA4 009C+00 1/0 0/0 0/0 .text            __dt__18Z2LinkSoundStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,21 +440,7 @@ asm Z2LinkSoundStarter::~Z2LinkSoundStarter() {
 }
 #pragma pop
 
-/* 802C3500-802C35F8 00F8+00 s=2 e=1 z=0  None .text      __dt__14Z2CreatureLinkFv */
-//	802C3520: 803CB980 (__vt__14Z2CreatureLink)
-//	802C3524: 803CB980 (__vt__14Z2CreatureLink)
-//	802C354C: 803CAD10 (__vt__16Z2SoundObjSimple)
-//	802C3550: 803CAD10 (__vt__16Z2SoundObjSimple)
-//	802C3560: 802BDF48 (__dt__14Z2SoundObjBaseFv)
-//	802C356C: 803CB96C (__vt__18Z2LinkSoundStarter)
-//	802C3570: 803CB96C (__vt__18Z2LinkSoundStarter)
-//	802C3580: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C3584: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C35A0: 80450B74 (data_80450B74)
-//	802C35B0: 80450B74 (data_80450B74)
-//	802C35BC: 802A2F88 (__dt__15JAISoundStarterFv)
-//	802C35C8: 802C0420 (__dt__10Z2CreatureFv)
-//	802C35D8: 802CED3C (__dl__FPv)
+/* 802C3500-802C35F8 2BDE40 00F8+00 2/1 1/1 0/0 .text            __dt__14Z2CreatureLinkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,9 +450,7 @@ asm Z2CreatureLink::~Z2CreatureLink() {
 }
 #pragma pop
 
-/* 802C35F8-802C3638 0040+00 s=1 e=0 z=0  None .text      deleteObject__14Z2CreatureLinkFv */
-//	802C3618: 802C374C (deleteKantera__14Z2CreatureLinkFv)
-//	802C3620: 802C04E8 (deleteObject__10Z2CreatureFv)
+/* 802C35F8-802C3638 2BDF38 0040+00 1/0 0/0 0/0 .text            deleteObject__14Z2CreatureLinkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -499,9 +460,7 @@ asm void Z2CreatureLink::deleteObject() {
 }
 #pragma pop
 
-/* 802C3638-802C3710 00D8+00 s=0 e=1 z=0  None .text      init__14Z2CreatureLinkFP3VecP3VecP3Vec */
-//	802C3660: 802C05B0 (init__10Z2CreatureFP3VecP3VecP3VecUcUcUc)
-//	802C3668: 80450B44 (data_80450B44)
+/* 802C3638-802C3710 2BDF78 00D8+00 0/0 1/1 0/0 .text init__14Z2CreatureLinkFP3VecP3VecP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -511,7 +470,8 @@ asm void Z2CreatureLink::init(Vec* param_0, Vec* param_1, Vec* param_2) {
 }
 #pragma pop
 
-/* 802C3710-802C374C 003C+00 s=0 e=1 z=0  None .text      initKantera__14Z2CreatureLinkFP3Vec */
+/* 802C3710-802C374C 2BE050 003C+00 0/0 1/1 0/0 .text            initKantera__14Z2CreatureLinkFP3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,8 +481,8 @@ asm void Z2CreatureLink::initKantera(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C374C-802C3778 002C+00 s=1 e=1 z=0  None .text      deleteKantera__14Z2CreatureLinkFv */
-//	802C3764: 802BDFF8 (deleteObject__14Z2SoundObjBaseFv)
+/* 802C374C-802C3778 2BE08C 002C+00 1/1 1/1 0/0 .text            deleteKantera__14Z2CreatureLinkFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -532,7 +492,7 @@ asm void Z2CreatureLink::deleteKantera() {
 }
 #pragma pop
 
-/* 802C3778-802C3780 0008+00 s=0 e=5 z=0  None .text      setKanteraState__14Z2CreatureLinkFUc */
+/* 802C3778-802C3780 2BE0B8 0008+00 0/0 5/5 0/0 .text setKanteraState__14Z2CreatureLinkFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -543,53 +503,31 @@ asm void Z2CreatureLink::setKanteraState(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455C98-80455C9C 0004+00 s=9 e=0 z=0  None .sdata2    @3721 */
+/* 80455C98-80455C9C 004298 0004+00 9/9 0/0 0/0 .sdata2          @3721 */
 SECTION_SDATA2 static f32 lit_3721 = 1.0f;
 
-/* 80455C9C-80455CA0 0004+00 s=2 e=0 z=0  None .sdata2    @3722 */
+/* 80455C9C-80455CA0 00429C 0004+00 2/2 0/0 0/0 .sdata2          @3722 */
 SECTION_SDATA2 static f32 lit_3722 = -1.0f;
 
-/* 80455CA0-80455CA8 0004+04 s=11 e=0 z=0  None .sdata2    @3723 */
+/* 80455CA0-80455CA8 0042A0 0004+04 11/11 0/0 0/0 .sdata2          @3723 */
 SECTION_SDATA2 static f32 lit_3723[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455CA8-80455CB0 0008+00 s=1 e=0 z=0  None .sdata2    @3724 */
+/* 80455CA8-80455CB0 0042A8 0008+00 1/1 0/0 0/0 .sdata2          @3724 */
 SECTION_SDATA2 static f64 lit_3724 = 0.5;
 
-/* 80455CB0-80455CB8 0008+00 s=1 e=0 z=0  None .sdata2    @3725 */
+/* 80455CB0-80455CB8 0042B0 0008+00 1/1 0/0 0/0 .sdata2          @3725 */
 SECTION_SDATA2 static f64 lit_3725 = 3.0;
 
-/* 80455CB8-80455CC0 0008+00 s=1 e=0 z=0  None .sdata2    @3726 */
+/* 80455CB8-80455CC0 0042B8 0008+00 1/1 0/0 0/0 .sdata2          @3726 */
 SECTION_SDATA2 static u8 lit_3726[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 802C3780-802C3A64 02E4+00 s=1 e=0 z=0  None .text      framework__14Z2CreatureLinkFUlSc */
-//	802C3798: 803621DC (_savegpr_29)
-//	802C37A8: 802C064C (framework__10Z2CreatureFUlSc)
-//	802C3800: 80450B88 (data_80450B88)
-//	802C3814: 80455C98 (lit_3721)
-//	802C381C: 80455C9C (lit_3722)
-//	802C3828: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802C3838: 80450B7C (data_80450B7C)
-//	802C3840: 80455CA0 (lit_3723)
-//	802C3868: 802C3E68 (startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C388C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C38B8: 802C3E68 (startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C38E0: 8034739C (PSVECSquareDistance)
-//	802C38E4: 80455CA0 (lit_3723)
-//	802C38F4: 80455CA8 (lit_3724)
-//	802C38FC: 80455CB0 (lit_3725)
-//	802C3944: 80455CB8 (lit_3726)
-//	802C3950: 80450AE0 (__float_nan)
-//	802C3954: 80450AE0 (__float_nan)
-//	802C39C0: 80450AE0 (__float_nan)
-//	802C39C4: 80450AE0 (__float_nan)
-//	802C39F0: 80450B7C (data_80450B7C)
-//	802C3A50: 80362228 (_restgpr_29)
+/* 802C3780-802C3A64 2BE0C0 02E4+00 1/0 0/0 0/0 .text            framework__14Z2CreatureLinkFUlSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -599,7 +537,8 @@ asm void Z2CreatureLink::framework(u32 param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C3A64-802C3A6C 0008+00 s=0 e=1 z=0  None .text      setSinkDepth__14Z2CreatureLinkFSc */
+/* 802C3A64-802C3A6C 2BE3A4 0008+00 0/0 1/1 0/0 .text            setSinkDepth__14Z2CreatureLinkFSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -610,16 +549,10 @@ asm void Z2CreatureLink::setSinkDepth(s8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455CC0-80455CC4 0004+00 s=1 e=0 z=0  None .sdata2    @3743 */
+/* 80455CC0-80455CC4 0042C0 0004+00 1/1 0/0 0/0 .sdata2          @3743 */
 SECTION_SDATA2 static f32 lit_3743 = 7.0f / 20.0f;
 
-/* 802C3A6C-802C3AEC 0080+00 s=0 e=4 z=0  None .text      setRiding__14Z2CreatureLinkFb */
-//	802C3AA4: 80450B44 (data_80450B44)
-//	802C3AA8: 80455CC0 (lit_3743)
-//	802C3AB0: 802BD90C (setTargetVolume__10Z2AudienceFfi)
-//	802C3AB8: 80450B44 (data_80450B44)
-//	802C3ABC: 80455CA0 (lit_3723)
-//	802C3AC4: 802BD90C (setTargetVolume__10Z2AudienceFfi)
+/* 802C3A6C-802C3AEC 2BE3AC 0080+00 0/0 4/4 0/0 .text            setRiding__14Z2CreatureLinkFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -629,7 +562,8 @@ asm void Z2CreatureLink::setRiding(bool param_0) {
 }
 #pragma pop
 
-/* 802C3AEC-802C3AFC 0010+00 s=0 e=5 z=0  None .text      setMagnetized__14Z2CreatureLinkFb */
+/* 802C3AEC-802C3AFC 2BE42C 0010+00 0/0 5/5 0/0 .text            setMagnetized__14Z2CreatureLinkFb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -639,23 +573,8 @@ asm void Z2CreatureLink::setMagnetized(bool param_0) {
 }
 #pragma pop
 
-/* 802C3AFC-802C3BD4 00D8+00 s=0 e=2 z=0  None .text      setWolfEyeOpen__14Z2CreatureLinkFb */
-//	802C3B2C: 80450B88 (data_80450B88)
-//	802C3B40: 80455C98 (lit_3721)
-//	802C3B48: 80455C9C (lit_3722)
-//	802C3B54: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802C3B58: 80450B40 (data_80450B40)
-//	802C3B60: 802BAE1C (setFxForceOff__11Z2FxLineMgrFb)
-//	802C3B64: 80450B48 (data_80450B48)
-//	802C3B6C: 802BFFEC (setGhostEnemyState__13Z2SoundObjMgrFUc)
-//	802C3B80: 80450B88 (data_80450B88)
-//	802C3B94: 80455C98 (lit_3721)
-//	802C3B9C: 80455C9C (lit_3722)
-//	802C3BA8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802C3BAC: 80450B40 (data_80450B40)
-//	802C3BB4: 802BAE1C (setFxForceOff__11Z2FxLineMgrFb)
-//	802C3BB8: 80450B48 (data_80450B48)
-//	802C3BC0: 802BFFEC (setGhostEnemyState__13Z2SoundObjMgrFUc)
+/* 802C3AFC-802C3BD4 2BE43C 00D8+00 0/0 2/2 0/0 .text            setWolfEyeOpen__14Z2CreatureLinkFb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -666,67 +585,33 @@ asm void Z2CreatureLink::setWolfEyeOpen(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455CC4-80455CC8 0004+00 s=1 e=0 z=0  None .sdata2    @3834 */
+/* 80455CC4-80455CC8 0042C4 0004+00 1/1 0/0 0/0 .sdata2          @3834 */
 SECTION_SDATA2 static f32 lit_3834 = 32.0f;
 
-/* 80455CC8-80455CCC 0004+00 s=4 e=0 z=0  None .sdata2    @3835 */
+/* 80455CC8-80455CCC 0042C8 0004+00 4/4 0/0 0/0 .sdata2          @3835 */
 SECTION_SDATA2 static f32 lit_3835 = 127.0f;
 
-/* 80455CCC-80455CD0 0004+00 s=2 e=0 z=0  None .sdata2    @3836 */
+/* 80455CCC-80455CD0 0042CC 0004+00 2/2 0/0 0/0 .sdata2          @3836 */
 SECTION_SDATA2 static f32 lit_3836 = 2.0f / 5.0f;
 
-/* 80455CD0-80455CD4 0004+00 s=4 e=0 z=0  None .sdata2    @3837 */
+/* 80455CD0-80455CD4 0042D0 0004+00 4/4 0/0 0/0 .sdata2          @3837 */
 SECTION_SDATA2 static f32 lit_3837 = 7.0f / 10.0f;
 
-/* 80455CD4-80455CD8 0004+00 s=3 e=0 z=0  None .sdata2    @3838 */
+/* 80455CD4-80455CD8 0042D4 0004+00 3/3 0/0 0/0 .sdata2          @3838 */
 SECTION_SDATA2 static f32 lit_3838 = 23.0f;
 
-/* 80455CD8-80455CE0 0004+04 s=4 e=0 z=0  None .sdata2    @3839 */
+/* 80455CD8-80455CE0 0042D8 0004+04 4/4 0/0 0/0 .sdata2          @3839 */
 SECTION_SDATA2 static f32 lit_3839[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 80455CE0-80455CE8 0008+00 s=3 e=0 z=0  None .sdata2    @3842 */
+/* 80455CE0-80455CE8 0042E0 0008+00 3/3 0/0 0/0 .sdata2          @3842 */
 SECTION_SDATA2 static f64 lit_3842 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802C3BD4-802C3E68 0294+00 s=3 e=3 z=0  None .text
+/* 802C3BD4-802C3E68 2BE514 0294+00 3/3 3/3 0/0 .text
  * startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc            */
-//	802C3BF4: 803621DC (_savegpr_29)
-//	802C3C84: 80450B84 (data_80450B84)
-//	802C3C8C: 802B4844 (setBattleSeqState__8Z2SeqMgrFUc)
-//	802C3CA4: 802AB254 (getHandleSoundID__14Z2SoundHandlesF10JAISoundID)
-//	802C3CB8: 802A24DC (stop__8JAISoundFUl)
-//	802C3CDC: 80455CE0 (lit_3842)
-//	802C3CF8: 80455CC4 (lit_3834)
-//	802C3CFC: 80455CC8 (lit_3835)
-//	802C3D00: 80455CCC (lit_3836)
-//	802C3D04: 80455C98 (lit_3721)
-//	802C3D0C: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C3D1C: 80455CE0 (lit_3842)
-//	802C3D38: 80455CC4 (lit_3834)
-//	802C3D3C: 80455CC8 (lit_3835)
-//	802C3D40: 80455C98 (lit_3721)
-//	802C3D44: 80455CD0 (lit_3837)
-//	802C3D4C: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C3D64: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C3D78: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C3D9C: 80455CE0 (lit_3842)
-//	802C3DB8: 80455CA0 (lit_3723)
-//	802C3DBC: 80455CD4 (lit_3838)
-//	802C3DC0: 80455CD8 (lit_3839)
-//	802C3DC4: 80455C98 (lit_3721)
-//	802C3DCC: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C3DDC: 80455CE0 (lit_3842)
-//	802C3DF8: 80455CA0 (lit_3723)
-//	802C3DFC: 80455CD4 (lit_3838)
-//	802C3E00: 80455C98 (lit_3721)
-//	802C3E04: 80455CD0 (lit_3837)
-//	802C3E0C: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C3E24: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C3E38: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C3E54: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -737,122 +622,41 @@ asm void Z2CreatureLink::startLinkSound(JAISoundID param_0, u32 param_1, s8 para
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455CE8-80455CEC 0004+00 s=1 e=0 z=0  None .sdata2    @3941 */
+/* 80455CE8-80455CEC 0042E8 0004+00 1/1 0/0 0/0 .sdata2          @3941 */
 SECTION_SDATA2 static f32 lit_3941 = 30.0f;
 
-/* 80455CEC-80455CF0 0004+00 s=3 e=0 z=0  None .sdata2    @3942 */
+/* 80455CEC-80455CF0 0042EC 0004+00 3/3 0/0 0/0 .sdata2          @3942 */
 SECTION_SDATA2 static f32 lit_3942 = 3.0f / 10.0f;
 
-/* 80455CF0-80455CF4 0004+00 s=4 e=0 z=0  None .sdata2    @3943 */
+/* 80455CF0-80455CF4 0042F0 0004+00 4/4 0/0 0/0 .sdata2          @3943 */
 SECTION_SDATA2 static f32 lit_3943 = 4.0f / 5.0f;
 
-/* 80455CF4-80455CF8 0004+00 s=1 e=0 z=0  None .sdata2    @3944 */
+/* 80455CF4-80455CF8 0042F4 0004+00 1/1 0/0 0/0 .sdata2          @3944 */
 SECTION_SDATA2 static f32 lit_3944 = 180.0f;
 
-/* 80455CF8-80455CFC 0004+00 s=1 e=0 z=0  None .sdata2    @3945 */
+/* 80455CF8-80455CFC 0042F8 0004+00 1/1 0/0 0/0 .sdata2          @3945 */
 SECTION_SDATA2 static f32 lit_3945 = 120.0f;
 
-/* 80455CFC-80455D00 0004+00 s=4 e=0 z=0  None .sdata2    @3946 */
+/* 80455CFC-80455D00 0042FC 0004+00 4/4 0/0 0/0 .sdata2          @3946 */
 SECTION_SDATA2 static f32 lit_3946 = 3.0f / 5.0f;
 
-/* 80455D00-80455D04 0004+00 s=1 e=0 z=0  None .sdata2    @3947 */
+/* 80455D00-80455D04 004300 0004+00 1/1 0/0 0/0 .sdata2          @3947 */
 SECTION_SDATA2 static f32 lit_3947 = 80.0f;
 
-/* 80455D04-80455D08 0004+00 s=1 e=0 z=0  None .sdata2    @3948 */
+/* 80455D04-80455D08 004304 0004+00 1/1 0/0 0/0 .sdata2          @3948 */
 SECTION_SDATA2 static f32 lit_3948 = 6.0f / 5.0f;
 
-/* 80455D08-80455D0C 0004+00 s=2 e=0 z=0  None .sdata2    @3949 */
+/* 80455D08-80455D0C 004308 0004+00 2/2 0/0 0/0 .sdata2          @3949 */
 SECTION_SDATA2 static f32 lit_3949 = 0.25f;
 
-/* 80455D0C-80455D10 0004+00 s=1 e=0 z=0  None .sdata2    @3950 */
+/* 80455D0C-80455D10 00430C 0004+00 1/1 0/0 0/0 .sdata2          @3950 */
 SECTION_SDATA2 static f32 lit_3950 = 11.0f / 10.0f;
 
-/* 80455D10-80455D18 0008+00 s=2 e=0 z=0  None .sdata2    @3954 */
+/* 80455D10-80455D18 004310 0008+00 2/2 0/0 0/0 .sdata2          @3954 */
 SECTION_SDATA2 static f64 lit_3954 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802C3E68-802C4320 04B8+00 s=1 e=3 z=0  None .text
+/* 802C3E68-802C4320 2BE7A8 04B8+00 1/1 3/3 0/0 .text
  * startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc       */
-//	802C3E88: 803621D8 (_savegpr_28)
-//	802C3EA4: 80450B7C (data_80450B7C)
-//	802C3EB4: 80450B80 (data_80450B80)
-//	802C3EFC: 80455C98 (lit_3721)
-//	802C3F8C: 80455CE0 (lit_3842)
-//	802C3FA8: 80455CA0 (lit_3723)
-//	802C3FAC: 80455CC8 (lit_3835)
-//	802C3FB0: 80455CCC (lit_3836)
-//	802C3FBC: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C3FCC: 80455CE0 (lit_3842)
-//	802C3FE8: 80455CA0 (lit_3723)
-//	802C3FEC: 80455CC8 (lit_3835)
-//	802C3FF0: 80455C98 (lit_3721)
-//	802C3FF4: 80455CD0 (lit_3837)
-//	802C3FFC: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C4018: 80455CE0 (lit_3842)
-//	802C4034: 80455CA0 (lit_3723)
-//	802C4038: 80455CD4 (lit_3838)
-//	802C403C: 80455CD0 (lit_3837)
-//	802C4048: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C4058: 80455CE0 (lit_3842)
-//	802C4074: 80455CA0 (lit_3723)
-//	802C4078: 80455CD4 (lit_3838)
-//	802C407C: 80455C98 (lit_3721)
-//	802C4080: 80455CD0 (lit_3837)
-//	802C4088: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C4098: 80455D10 (lit_3954)
-//	802C40B0: 80455CA0 (lit_3723)
-//	802C40B4: 80455CE8 (lit_3941)
-//	802C40B8: 80455CEC (lit_3942)
-//	802C40BC: 80455CF0 (lit_3943)
-//	802C40C8: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C40E8: 80455D10 (lit_3954)
-//	802C4100: 80455CF4 (lit_3944)
-//	802C4104: 80455CF8 (lit_3945)
-//	802C4108: 80455CFC (lit_3946)
-//	802C410C: 80455CA0 (lit_3723)
-//	802C4110: 80455CCC (lit_3836)
-//	802C4118: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C4124: 80455D10 (lit_3954)
-//	802C413C: 80455CA0 (lit_3723)
-//	802C4140: 80455CE8 (lit_3941)
-//	802C4144: 80455CFC (lit_3946)
-//	802C4148: 80455CCC (lit_3836)
-//	802C414C: 80455C98 (lit_3721)
-//	802C4154: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C4164: 80455D10 (lit_3954)
-//	802C417C: 80455CA0 (lit_3723)
-//	802C4180: 80455D00 (lit_3947)
-//	802C4184: 80455CEC (lit_3942)
-//	802C4188: 80455CF0 (lit_3943)
-//	802C418C: 80455D04 (lit_3948)
-//	802C4194: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C41A0: 804061C0 (g_dComIfG_gameInfo)
-//	802C41A4: 804061C0 (g_dComIfG_gameInfo)
-//	802C41AC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	802C41B0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	802C41B8: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	802C41C4: 80450B84 (data_80450B84)
-//	802C41F0: 80455CA0 (lit_3723)
-//	802C4208: 80455CA0 (lit_3723)
-//	802C4214: 80455D10 (lit_3954)
-//	802C422C: 80455CA0 (lit_3723)
-//	802C4230: 80455D00 (lit_3947)
-//	802C4234: 80455D08 (lit_3949)
-//	802C4238: 80455CCC (lit_3836)
-//	802C423C: 80455C98 (lit_3721)
-//	802C4244: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C4250: 80455D10 (lit_3954)
-//	802C4268: 80455CA0 (lit_3723)
-//	802C426C: 80455D00 (lit_3947)
-//	802C4270: 80455CEC (lit_3942)
-//	802C4274: 80455CD8 (lit_3839)
-//	802C4278: 80455D0C (lit_3950)
-//	802C4280: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C4290: 80450B7C (data_80450B7C)
-//	802C42A0: 80455CEC (lit_3942)
-//	802C42B8: 80455C98 (lit_3721)
-//	802C42DC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C42F0: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C430C: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -862,14 +666,8 @@ asm void Z2CreatureLink::startLinkSoundLevel(JAISoundID param_0, u32 param_1, s8
 }
 #pragma pop
 
-/* 802C4320-802C45B0 0290+00 s=1 e=1 z=0  None .text
+/* 802C4320-802C45B0 2BEC60 0290+00 1/1 1/1 0/0 .text
  * startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc              */
-//	802C4330: 803621DC (_savegpr_29)
-//	802C438C: 80450B7C (data_80450B7C)
-//	802C439C: 80450B80 (data_80450B80)
-//	802C43E4: 802AB254 (getHandleSoundID__14Z2SoundHandlesF10JAISoundID)
-//	802C4430: 80450B48 (data_80450B48)
-//	802C459C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -879,16 +677,8 @@ asm void Z2CreatureLink::startLinkVoice(JAISoundID param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C45B0-802C46F0 0140+00 s=0 e=1 z=0  None .text
+/* 802C45B0-802C46F0 2BEEF0 0140+00 0/0 1/1 0/0 .text
  * startLinkVoiceLevel__14Z2CreatureLinkF10JAISoundIDSc         */
-//	802C45F0: 80455CA0 (lit_3723)
-//	802C4624: 80455C98 (lit_3721)
-//	802C4630: 80455CEC (lit_3942)
-//	802C463C: 80455CD8 (lit_3839)
-//	802C4648: 80455CF0 (lit_3943)
-//	802C4690: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C4694: 80450B74 (data_80450B74)
-//	802C46A8: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -898,7 +688,7 @@ asm void Z2CreatureLink::startLinkVoiceLevel(JAISoundID param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C46F0-802C4784 0094+00 s=0 e=2 z=0  None .text
+/* 802C46F0-802C4784 2BF030 0094+00 0/0 2/2 0/0 .text
  * startLinkSwordSound__14Z2CreatureLinkF10JAISoundIDUlSc       */
 #pragma push
 #pragma optimization_level 0
@@ -909,14 +699,7 @@ asm void Z2CreatureLink::startLinkSwordSound(JAISoundID param_0, u32 param_1, s8
 }
 #pragma pop
 
-/* 802C4784-802C4814 0090+00 s=1 e=0 z=0  None .text      startCollisionSE__14Z2CreatureLinkFUlUl */
-//	802C4794: 803621DC (_savegpr_29)
-//	802C47C0: 80450B84 (data_80450B84)
-//	802C47C8: 802B4844 (setBattleSeqState__8Z2SeqMgrFUc)
-//	802C47DC: 80450B84 (data_80450B84)
-//	802C47E4: 802B4AFC (setBattleLastHit__8Z2SeqMgrFUc)
-//	802C47F8: 802BE4A4 (startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase)
-//	802C4800: 80362228 (_restgpr_29)
+/* 802C4784-802C4814 2BF0C4 0090+00 1/0 0/0 0/0 .text startCollisionSE__14Z2CreatureLinkFUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -927,17 +710,11 @@ asm void Z2CreatureLink::startCollisionSE(u32 param_0, u32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D18-80455D1C 0004+00 s=1 e=0 z=0  None .sdata2    @4178 */
+/* 80455D18-80455D1C 004318 0004+00 1/1 0/0 0/0 .sdata2          @4178 */
 SECTION_SDATA2 static f32 lit_4178 = 100.0f;
 
-/* 802C4814-802C48D8 00C4+00 s=0 e=4 z=2  None .text
+/* 802C4814-802C48D8 2BF154 00C4+00 0/0 4/4 2/2 .text
  * startHitItemSE__14Z2CreatureLinkFUlUlP14Z2SoundObjBasef      */
-//	802C4850: 802BE4A4 (startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase)
-//	802C4860: 802BE4A4 (startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase)
-//	802C4868: 80455CA0 (lit_3723)
-//	802C488C: 80455D18 (lit_4178)
-//	802C48A8: 80455D18 (lit_4178)
-//	802C48B4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -948,7 +725,8 @@ asm void Z2CreatureLink::startHitItemSE(u32 param_0, u32 param_1, Z2SoundObjBase
 }
 #pragma pop
 
-/* 802C48D8-802C48E8 0010+00 s=0 e=1 z=0  None .text      setResumeAttack__14Z2CreatureLinkFb */
+/* 802C48D8-802C48E8 2BF218 0010+00 0/0 1/1 0/0 .text            setResumeAttack__14Z2CreatureLinkFb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -958,10 +736,7 @@ asm void Z2CreatureLink::setResumeAttack(bool param_0) {
 }
 #pragma pop
 
-/* 802C48E8-802C4928 0040+00 s=1 e=0 z=0  None .text      __ct__18Z2LinkSoundStarterFv */
-//	802C4900: 802AAB94 (__ct__14Z2SoundStarterFb)
-//	802C4904: 803CB96C (__vt__18Z2LinkSoundStarter)
-//	802C4908: 803CB96C (__vt__18Z2LinkSoundStarter)
+/* 802C48E8-802C4928 2BF228 0040+00 1/1 0/0 0/0 .text            __ct__18Z2LinkSoundStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -972,66 +747,11 @@ asm Z2LinkSoundStarter::Z2LinkSoundStarter() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D1C-80455D20 0004+00 s=2 e=0 z=0  None .sdata2    @4399 */
+/* 80455D1C-80455D20 00431C 0004+00 2/2 0/0 0/0 .sdata2          @4399 */
 SECTION_SDATA2 static f32 lit_4399 = 9.0f / 10.0f;
 
-/* 802C4928-802C4FFC 06D4+00 s=2 e=0 z=0  None .text
+/* 802C4928-802C4FFC 2BF268 06D4+00 2/0 0/0 0/0 .text
  * startSound__18Z2LinkSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-//	802C4960: 803621C8 (_savegpr_24)
-//	802C4998: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C49A8: 80450B7C (data_80450B7C)
-//	802C49B0: 80455CA0 (lit_3723)
-//	802C4BAC: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4BB4: 802AB504 (isActive__14Z2SoundHandlesCFv)
-//	802C4BC0: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4BCC: 802AB4A0 (stopAllSounds__14Z2SoundHandlesFUl)
-//	802C4BD8: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4C18: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4C50: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4C5C: 802AB254 (getHandleSoundID__14Z2SoundHandlesF10JAISoundID)
-//	802C4C74: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4C80: 802C4320 (startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc)
-//	802C4C9C: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4CA8: 802AB254 (getHandleSoundID__14Z2SoundHandlesF10JAISoundID)
-//	802C4CC0: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4CCC: 802C4320 (startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc)
-//	802C4CE0: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4CEC: 802AB254 (getHandleSoundID__14Z2SoundHandlesF10JAISoundID)
-//	802C4D00: 802A24DC (stop__8JAISoundFUl)
-//	802C4D04: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4D58: 80455CE0 (lit_3842)
-//	802C4D74: 80455CA0 (lit_3723)
-//	802C4D78: 80455CC8 (lit_3835)
-//	802C4D7C: 80455C98 (lit_3721)
-//	802C4D80: 80455CD8 (lit_3839)
-//	802C4D88: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C4DA0: 80455CE0 (lit_3842)
-//	802C4DBC: 80455CA0 (lit_3723)
-//	802C4DC0: 80455CD4 (lit_3838)
-//	802C4DC4: 80455C98 (lit_3721)
-//	802C4DC8: 80455CD0 (lit_3837)
-//	802C4DD0: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802C4E0C: 802AAC3C (func_802AAC3C)
-//	802C4E1C: 80450B80 (data_80450B80)
-//	802C4E2C: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4E50: 80455CC8 (lit_3835)
-//	802C4E64: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C4E68: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4E8C: 80455CC8 (lit_3835)
-//	802C4EA0: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C4EA4: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4ECC: 80455CC8 (lit_3835)
-//	802C4EF4: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4F1C: 80455CFC (lit_3946)
-//	802C4F24: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C4F30: 80455D1C (lit_4399)
-//	802C4F38: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C4F44: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C4F68: 80455CC8 (lit_3835)
-//	802C4F7C: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C4FA0: 80455CC8 (lit_3835)
-//	802C4FB4: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C4FE8: 80362214 (_restgpr_24)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1044,11 +764,7 @@ asm void Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* para
 }
 #pragma pop
 
-/* 802C4FFC-802C5078 007C+00 s=0 e=0 z=3  None .text      __ct__14Z2CreatureRideFv */
-//	802C5010: 802C03C8 (__ct__10Z2CreatureFv)
-//	802C501C: 802C5234 (__ct__18Z2RideSoundStarterFP14Z2CreatureRide)
-//	802C5020: 803CB924 (__vt__14Z2CreatureRide)
-//	802C5024: 803CB924 (__vt__14Z2CreatureRide)
+/* 802C4FFC-802C5078 2BF93C 007C+00 0/0 0/0 3/3 .text            __ct__14Z2CreatureRideFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1058,15 +774,7 @@ asm Z2CreatureRide::Z2CreatureRide() {
 }
 #pragma pop
 
-/* 802C5078-802C5114 009C+00 s=1 e=0 z=0  None .text      __dt__18Z2RideSoundStarterFv */
-//	802C5098: 803CB910 (__vt__18Z2RideSoundStarter)
-//	802C509C: 803CB910 (__vt__18Z2RideSoundStarter)
-//	802C50A8: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C50AC: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C50C8: 80450B74 (data_80450B74)
-//	802C50D8: 80450B74 (data_80450B74)
-//	802C50E4: 802A2F88 (__dt__15JAISoundStarterFv)
-//	802C50F4: 802CED3C (__dl__FPv)
+/* 802C5078-802C5114 2BF9B8 009C+00 1/0 0/0 0/0 .text            __dt__18Z2RideSoundStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1076,18 +784,7 @@ asm Z2RideSoundStarter::~Z2RideSoundStarter() {
 }
 #pragma pop
 
-/* 802C5114-802C51EC 00D8+00 s=2 e=0 z=2  None .text      __dt__14Z2CreatureRideFv */
-//	802C5134: 803CB924 (__vt__14Z2CreatureRide)
-//	802C5138: 803CB924 (__vt__14Z2CreatureRide)
-//	802C5160: 803CB910 (__vt__18Z2RideSoundStarter)
-//	802C5164: 803CB910 (__vt__18Z2RideSoundStarter)
-//	802C5174: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C5178: 803C9D80 (__vt__14Z2SoundStarter)
-//	802C5194: 80450B74 (data_80450B74)
-//	802C51A4: 80450B74 (data_80450B74)
-//	802C51B0: 802A2F88 (__dt__15JAISoundStarterFv)
-//	802C51BC: 802C0420 (__dt__10Z2CreatureFv)
-//	802C51CC: 802CED3C (__dl__FPv)
+/* 802C5114-802C51EC 2BFA54 00D8+00 2/1 0/0 2/2 .text            __dt__14Z2CreatureRideFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1097,8 +794,7 @@ asm Z2CreatureRide::~Z2CreatureRide() {
 }
 #pragma pop
 
-/* 802C51EC-802C520C 0020+00 s=1 e=0 z=0  None .text      deleteObject__14Z2CreatureRideFv */
-//	802C51F8: 802C04E8 (deleteObject__10Z2CreatureFv)
+/* 802C51EC-802C520C 2BFB2C 0020+00 1/0 0/0 0/0 .text            deleteObject__14Z2CreatureRideFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1108,8 +804,7 @@ asm void Z2CreatureRide::deleteObject() {
 }
 #pragma pop
 
-/* 802C520C-802C522C 0020+00 s=0 e=0 z=3  None .text      init__14Z2CreatureRideFP3VecP3VecUcUc */
-//	802C5218: 802C0530 (init__10Z2CreatureFP3VecP3VecUcUc)
+/* 802C520C-802C522C 2BFB4C 0020+00 0/0 0/0 3/3 .text init__14Z2CreatureRideFP3VecP3VecUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1119,7 +814,8 @@ asm void Z2CreatureRide::init(Vec* param_0, Vec* param_1, u8 param_2, u8 param_3
 }
 #pragma pop
 
-/* 802C522C-802C5234 0008+00 s=0 e=2 z=1  None .text      setLinkRiding__14Z2CreatureRideFb */
+/* 802C522C-802C5234 2BFB6C 0008+00 0/0 2/2 1/1 .text            setLinkRiding__14Z2CreatureRideFb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1129,11 +825,8 @@ asm void Z2CreatureRide::setLinkRiding(bool param_0) {
 }
 #pragma pop
 
-/* 802C5234-802C5284 0050+00 s=1 e=0 z=0  None .text __ct__18Z2RideSoundStarterFP14Z2CreatureRide
+/* 802C5234-802C5284 2BFB74 0050+00 1/1 0/0 0/0 .text __ct__18Z2RideSoundStarterFP14Z2CreatureRide
  */
-//	802C5254: 802AAB94 (__ct__14Z2SoundStarterFb)
-//	802C5258: 803CB910 (__vt__18Z2RideSoundStarter)
-//	802C525C: 803CB910 (__vt__18Z2RideSoundStarter)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1143,28 +836,8 @@ asm Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* param_0) {
 }
 #pragma pop
 
-/* 802C5284-802C54B8 0234+00 s=2 e=0 z=0  None .text
+/* 802C5284-802C54B8 2BFBC4 0234+00 2/0 0/0 0/0 .text
  * startSound__18Z2RideSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-//	802C529C: 803621DC (_savegpr_29)
-//	802C52A8: 80450B80 (data_80450B80)
-//	802C5320: 802AAC3C (func_802AAC3C)
-//	802C5340: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C5364: 80455CC8 (lit_3835)
-//	802C5378: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C537C: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C53A4: 80455CC8 (lit_3835)
-//	802C53CC: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C53F4: 80455CFC (lit_3946)
-//	802C53FC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C5408: 80455D1C (lit_4399)
-//	802C5410: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C543C: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C5448: 80455CC8 (lit_3835)
-//	802C545C: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C5470: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802C547C: 80455CC8 (lit_3835)
-//	802C5490: 802C3BD4 (startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc)
-//	802C54A4: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1177,11 +850,7 @@ asm void Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* para
 }
 #pragma pop
 
-/* 802C54B8-802C54FC 0044+00 s=0 e=0 z=1  None .text      __ct__15Z2SoundObjCoachFv */
-//	802C54CC: 802BDEF0 (__ct__14Z2SoundObjBaseFv)
-//	802C54D0: 803CB8F0 (__vt__15Z2SoundObjCoach)
-//	802C54D4: 803CB8F0 (__vt__15Z2SoundObjCoach)
-//	802C54DC: 80455CA0 (lit_3723)
+/* 802C54B8-802C54FC 2BFDF8 0044+00 0/0 0/0 1/1 .text            __ct__15Z2SoundObjCoachFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1191,8 +860,7 @@ asm Z2SoundObjCoach::Z2SoundObjCoach() {
 }
 #pragma pop
 
-/* 802C54FC-802C551C 0020+00 s=1 e=0 z=0  None .text      init__15Z2SoundObjCoachFP3VecUc */
-//	802C5508: 802BDFB0 (init__14Z2SoundObjBaseFP3VecUc)
+/* 802C54FC-802C551C 2BFE3C 0020+00 1/0 0/0 0/0 .text            init__15Z2SoundObjCoachFP3VecUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1203,52 +871,22 @@ asm void Z2SoundObjCoach::init(Vec* param_0, u8 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D20-80455D24 0004+00 s=1 e=0 z=0  None .sdata2    @4621 */
+/* 80455D20-80455D24 004320 0004+00 1/1 0/0 0/0 .sdata2          @4621 */
 SECTION_SDATA2 static f32 lit_4621 = 2.0f;
 
-/* 80455D24-80455D28 0004+00 s=1 e=0 z=0  None .sdata2    @4622 */
+/* 80455D24-80455D28 004324 0004+00 1/1 0/0 0/0 .sdata2          @4622 */
 SECTION_SDATA2 static f32 lit_4622 = 35.0f;
 
-/* 80455D28-80455D2C 0004+00 s=1 e=0 z=0  None .sdata2    @4623 */
+/* 80455D28-80455D2C 004328 0004+00 1/1 0/0 0/0 .sdata2          @4623 */
 SECTION_SDATA2 static f32 lit_4623 = 22.0f / 25.0f;
 
-/* 80455D2C-80455D30 0004+00 s=3 e=0 z=0  None .sdata2    @4624 */
+/* 80455D2C-80455D30 00432C 0004+00 3/3 0/0 0/0 .sdata2          @4624 */
 SECTION_SDATA2 static f32 lit_4624 = 1.25f;
 
-/* 80455D30-80455D34 0004+00 s=2 e=0 z=0  None .sdata2    @4625 */
+/* 80455D30-80455D34 004330 0004+00 2/2 0/0 0/0 .sdata2          @4625 */
 SECTION_SDATA2 static f32 lit_4625 = 50.0f;
 
-/* 802C551C-802C56C0 01A4+00 s=0 e=0 z=1  None .text      startWheelSound__15Z2SoundObjCoachFf */
-//	802C5544: 80455D20 (lit_4621)
-//	802C5550: 80455D24 (lit_4622)
-//	802C559C: 80455CA0 (lit_3723)
-//	802C55A0: 80455D24 (lit_4622)
-//	802C55A4: 80455D08 (lit_3949)
-//	802C55A8: 80455D28 (lit_4623)
-//	802C55AC: 80455D2C (lit_4624)
-//	802C55B4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C55C4: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C55CC: 80455CA0 (lit_3723)
-//	802C55D0: 80455D24 (lit_4622)
-//	802C55D4: 80455CEC (lit_3942)
-//	802C55D8: 80455CD0 (lit_3837)
-//	802C55DC: 80455C98 (lit_3721)
-//	802C55E4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C55F4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C563C: 80455D24 (lit_4622)
-//	802C5640: 80455D30 (lit_4625)
-//	802C5644: 80455D08 (lit_3949)
-//	802C5648: 80455D28 (lit_4623)
-//	802C564C: 80455D2C (lit_4624)
-//	802C5654: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C5664: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C566C: 80455D24 (lit_4622)
-//	802C5670: 80455D30 (lit_4625)
-//	802C5674: 80455CEC (lit_3942)
-//	802C5678: 80455CF0 (lit_3943)
-//	802C567C: 80455C98 (lit_3721)
-//	802C5684: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C5694: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802C551C-802C56C0 2BFE5C 01A4+00 0/0 0/0 1/1 .text startWheelSound__15Z2SoundObjCoachFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1259,32 +897,16 @@ asm void Z2SoundObjCoach::startWheelSound(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D34-80455D38 0004+00 s=1 e=0 z=0  None .sdata2    @4645 */
+/* 80455D34-80455D38 004334 0004+00 1/1 0/0 0/0 .sdata2          @4645 */
 SECTION_SDATA2 static f32 lit_4645 = 1500.0f;
 
-/* 80455D38-80455D3C 0004+00 s=2 e=0 z=0  None .sdata2    @4646 */
+/* 80455D38-80455D3C 004338 0004+00 2/2 0/0 0/0 .sdata2          @4646 */
 SECTION_SDATA2 static f32 lit_4646 = 1.0f / 5.0f;
 
-/* 80455D3C-80455D40 0004+00 s=2 e=0 z=0  None .sdata2    @4647 */
+/* 80455D3C-80455D40 00433C 0004+00 2/2 0/0 0/0 .sdata2          @4647 */
 SECTION_SDATA2 static f32 lit_4647 = 17.0f / 20.0f;
 
-/* 802C56C0-802C57C0 0100+00 s=0 e=0 z=1  None .text      startFireSound__15Z2SoundObjCoachFUs */
-//	802C5718: 80455D10 (lit_3954)
-//	802C5730: 80455CA0 (lit_3723)
-//	802C5734: 80455D34 (lit_4645)
-//	802C5738: 80455D38 (lit_4646)
-//	802C573C: 80455D3C (lit_4647)
-//	802C5740: 80455D2C (lit_4624)
-//	802C5748: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C5758: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C5760: 80455D10 (lit_3954)
-//	802C5778: 80455CA0 (lit_3723)
-//	802C577C: 80455D34 (lit_4645)
-//	802C5780: 80455D38 (lit_4646)
-//	802C5784: 80455CFC (lit_3946)
-//	802C5788: 80455C98 (lit_3721)
-//	802C5790: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C57A0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802C56C0-802C57C0 2C0000 0100+00 0/0 0/0 1/1 .text startFireSound__15Z2SoundObjCoachFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1294,25 +916,8 @@ asm void Z2SoundObjCoach::startFireSound(u16 param_0) {
 }
 #pragma pop
 
-/* 802C57C0-802C588C 00CC+00 s=1 e=0 z=0  None .text
+/* 802C57C0-802C588C 2C0100 00CC+00 1/0 0/0 0/0 .text
  * startSound__15Z2SoundObjCoachF10JAISoundIDUlSc               */
-//	802C57D0: 803621DC (_savegpr_29)
-//	802C57E8: 802BE144 (startSound__14Z2SoundObjBaseF10JAISoundIDUlSc)
-//	802C5814: 80455CA0 (lit_3723)
-//	802C5818: 80455D30 (lit_4625)
-//	802C581C: 80455D38 (lit_4646)
-//	802C5820: 80455D3C (lit_4647)
-//	802C5824: 80455D2C (lit_4624)
-//	802C582C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C583C: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802C5844: 80455CA0 (lit_3723)
-//	802C5848: 80455D30 (lit_4625)
-//	802C584C: 80455D38 (lit_4646)
-//	802C5850: 80455CF0 (lit_3943)
-//	802C5854: 80455C98 (lit_3721)
-//	802C585C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802C586C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802C5878: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1322,23 +927,21 @@ asm void Z2SoundObjCoach::startSound(JAISoundID param_0, u32 param_1, s8 param_2
 }
 #pragma pop
 
-/* 802C588C-802C5894 0008+00 s=1 e=0 z=0  None .text      @144@__dt__14Z2CreatureLinkFv */
-//	802C5890: 802C3500 (__dt__14Z2CreatureLinkFv)
+/* 802C588C-802C5894 2C01CC 0008+00 1/0 0/0 0/0 .text            @144@__dt__14Z2CreatureLinkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802C588C() {
+static asm void func_802C588C() {
     nofralloc
 #include "asm/Z2AudioLib/Z2LinkMgr/func_802C588C.s"
 }
 #pragma pop
 
-/* 802C5894-802C589C 0008+00 s=1 e=0 z=0  None .text      @144@__dt__14Z2CreatureRideFv */
-//	802C5898: 802C5114 (__dt__14Z2CreatureRideFv)
+/* 802C5894-802C589C 2C01D4 0008+00 1/0 0/0 0/0 .text            @144@__dt__14Z2CreatureRideFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802C5894() {
+static asm void func_802C5894() {
     nofralloc
 #include "asm/Z2AudioLib/Z2LinkMgr/func_802C5894.s"
 }

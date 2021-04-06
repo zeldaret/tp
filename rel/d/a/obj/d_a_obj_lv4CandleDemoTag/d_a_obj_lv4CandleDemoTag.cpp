@@ -68,11 +68,6 @@ struct cXyz {};
 // Forward References:
 //
 
-static void dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c*);
-static void dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c*);
-static void dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c*);
-static void dalv4CandleDemoTag_Create(fopAc_ac_c*);
-
 extern "C" void __ct__24dalv4CandleDemoTag_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__20dalv4CandleDemoTag_cFv();
@@ -104,28 +99,10 @@ extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" void __dt__20dalv4CandleDemoTag_cFv();
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* lit_3702[3];
-extern "C" extern void* lit_3703[3];
-extern "C" extern void* lit_3704[3];
-extern "C" extern void* lit_3705[3];
-extern "C" extern u8 data_80C5D268[48];
-extern "C" extern void* g_profile_Tag_Lv4CandleDm[12];
-extern "C" extern void* __vt__20dalv4CandleDemoTag_c[10];
-extern "C" extern void* __vt__17dEvLib_callback_c[6];
-extern "C" extern void* __vt__24dalv4CandleDemoTag_HIO_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 
 //
 // External References:
 //
-
-void fopAc_IsActor(void*);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
-void fopAcM_myRoomSearchEnemy(s8);
-void dPath_GetRoomPath(int, int);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -155,13 +132,15 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80C5D218-80C5D224 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C5D218-80C5D224 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C5D224-80C5D238 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C5D224-80C5D238 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -169,43 +148,59 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C5D238-80C5D244 000C+00 s=0 e=0 z=0  None .data      @3702 */
-SECTION_DATA void* lit_3702[3] = {
+/* 80C5D238-80C5D244 -00001 000C+00 0/1 0/0 0/0 .data            @3702 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3702[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWatch__20dalv4CandleDemoTag_cFv,
 };
+#pragma pop
 
-/* 80C5D244-80C5D250 000C+00 s=0 e=0 z=0  None .data      @3703 */
-SECTION_DATA void* lit_3703[3] = {
+/* 80C5D244-80C5D250 -00001 000C+00 0/1 0/0 0/0 .data            @3703 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3703[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeEnemyCreate__20dalv4CandleDemoTag_cFv,
 };
+#pragma pop
 
-/* 80C5D250-80C5D25C 000C+00 s=0 e=0 z=0  None .data      @3704 */
-SECTION_DATA void* lit_3704[3] = {
+/* 80C5D250-80C5D25C -00001 000C+00 0/1 0/0 0/0 .data            @3704 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3704[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeNG__20dalv4CandleDemoTag_cFv,
 };
+#pragma pop
 
-/* 80C5D25C-80C5D268 000C+00 s=0 e=0 z=0  None .data      @3705 */
-SECTION_DATA void* lit_3705[3] = {
+/* 80C5D25C-80C5D268 -00001 000C+00 0/1 0/0 0/0 .data            @3705 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static void* lit_3705[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeEnd__20dalv4CandleDemoTag_cFv,
 };
+#pragma pop
 
-/* 80C5D268-80C5D298 0030+00 s=0 e=0 z=0  None .data      mode_proc$3701 */
-SECTION_DATA u8 data_80C5D268[48] = {
+/* 80C5D268-80C5D298 000050 0030+00 0/1 0/0 0/0 .data            mode_proc$3701 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 mode_proc[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 80C5D298-80C5D2B8 0020+00 s=1 e=0 z=0  None .data      l_dalv4CandleDemoTag_Method */
+/* 80C5D298-80C5D2B8 -00001 0020+00 1/0 0/0 0/0 .data            l_dalv4CandleDemoTag_Method */
 SECTION_DATA static void* l_dalv4CandleDemoTag_Method[8] = {
     (void*)dalv4CandleDemoTag_Create__FP10fopAc_ac_c,
     (void*)dalv4CandleDemoTag_Delete__FP20dalv4CandleDemoTag_c,
@@ -217,8 +212,8 @@ SECTION_DATA static void* l_dalv4CandleDemoTag_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C5D2B8-80C5D2E8 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Lv4CandleDm */
-SECTION_DATA void* g_profile_Tag_Lv4CandleDm[12] = {
+/* 80C5D2B8-80C5D2E8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Lv4CandleDm */
+SECTION_DATA extern void* g_profile_Tag_Lv4CandleDm[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01740000, (void*)&g_fpcLf_Method,
     (void*)0x00000590, (void*)NULL,
@@ -227,8 +222,8 @@ SECTION_DATA void* g_profile_Tag_Lv4CandleDm[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C5D2E8-80C5D310 0028+00 s=2 e=0 z=0  None .data      __vt__20dalv4CandleDemoTag_c */
-SECTION_DATA void* __vt__20dalv4CandleDemoTag_c[10] = {
+/* 80C5D2E8-80C5D310 0000D0 0028+00 2/2 0/0 0/0 .data            __vt__20dalv4CandleDemoTag_c */
+SECTION_DATA extern void* __vt__20dalv4CandleDemoTag_c[10] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
@@ -241,8 +236,8 @@ SECTION_DATA void* __vt__20dalv4CandleDemoTag_c[10] = {
     (void*)eventStart__20dalv4CandleDemoTag_cFv,
 };
 
-/* 80C5D310-80C5D328 0018+00 s=3 e=0 z=0  None .data      __vt__17dEvLib_callback_c */
-SECTION_DATA void* __vt__17dEvLib_callback_c[6] = {
+/* 80C5D310-80C5D328 0000F8 0018+00 3/3 0/0 0/0 .data            __vt__17dEvLib_callback_c */
+SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17dEvLib_callback_cFv,
@@ -251,25 +246,22 @@ SECTION_DATA void* __vt__17dEvLib_callback_c[6] = {
     (void*)eventEnd__17dEvLib_callback_cFv,
 };
 
-/* 80C5D328-80C5D334 000C+00 s=2 e=0 z=0  None .data      __vt__24dalv4CandleDemoTag_HIO_c */
-SECTION_DATA void* __vt__24dalv4CandleDemoTag_HIO_c[3] = {
+/* 80C5D328-80C5D334 000110 000C+00 2/2 0/0 0/0 .data            __vt__24dalv4CandleDemoTag_HIO_c */
+SECTION_DATA extern void* __vt__24dalv4CandleDemoTag_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__24dalv4CandleDemoTag_HIO_cFv,
 };
 
-/* 80C5D334-80C5D340 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA void* __vt__14mDoHIO_entry_c[3] = {
+/* 80C5D334-80C5D340 00011C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80C5C9EC-80C5CA10 0024+00 s=1 e=0 z=0  None .text      __ct__24dalv4CandleDemoTag_HIO_cFv */
-//	80C5C9EC: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5C9F0: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5C9F8: 80C5D328 (__vt__24dalv4CandleDemoTag_HIO_c)
-//	80C5C9FC: 80C5D328 (__vt__24dalv4CandleDemoTag_HIO_c)
+/* 80C5C9EC-80C5CA10 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__24dalv4CandleDemoTag_HIO_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -279,10 +271,7 @@ asm dalv4CandleDemoTag_HIO_c::dalv4CandleDemoTag_HIO_c() {
 }
 #pragma pop
 
-/* 80C5CA10-80C5CA58 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
-//	80C5CA28: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5CA2C: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5CA3C: 802CED3C (__dl__FPv)
+/* 80C5CA10-80C5CA58 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,10 +281,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80C5CA58-80C5CA90 0038+00 s=2 e=0 z=0  None .text      setBaseMtx__20dalv4CandleDemoTag_cFv */
-//	80C5CA68: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5CA6C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C5CA7C: 803468E8 (PSMTXTrans)
+/* 80C5CA58-80C5CA90 000158 0038+00 2/2 0/0 0/0 .text setBaseMtx__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -305,22 +291,7 @@ asm void dalv4CandleDemoTag_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C5CA90-80C5CBA4 0114+00 s=1 e=0 z=0  None .text      create__20dalv4CandleDemoTag_cFv */
-//	80C5CAB8: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C5CABC: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5CAC0: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5CAD4: 80C5D2E8 (__vt__20dalv4CandleDemoTag_c)
-//	80C5CAD8: 80C5D2E8 (__vt__20dalv4CandleDemoTag_c)
-//	80C5CB0C: 800517EC (dPath_GetRoomPath__Fii)
-//	80C5CB34: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CB38: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CB48: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80C5CB50: 80C5CA58 (setBaseMtx__20dalv4CandleDemoTag_cFv)
-//	80C5CB5C: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CB60: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CB6C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C5CB7C: 80C5CF34 (init_modeEnd__20dalv4CandleDemoTag_cFv)
-//	80C5CB88: 80C5CCA4 (init_modeWatch__20dalv4CandleDemoTag_cFv)
+/* 80C5CA90-80C5CBA4 000190 0114+00 1/1 0/0 0/0 .text            create__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -330,10 +301,8 @@ asm void dalv4CandleDemoTag_c::create() {
 }
 #pragma pop
 
-/* 80C5CBA4-80C5CBE8 0044+00 s=1 e=0 z=0  None .text      Execute__20dalv4CandleDemoTag_cFv */
-//	80C5CBBC: 8004886C (eventUpdate__17dEvLib_callback_cFv)
-//	80C5CBC4: 80C5CBE8 (procMain__20dalv4CandleDemoTag_cFv)
-//	80C5CBCC: 80C5CA58 (setBaseMtx__20dalv4CandleDemoTag_cFv)
+/* 80C5CBA4-80C5CBE8 0002A4 0044+00 1/1 0/0 0/0 .text            Execute__20dalv4CandleDemoTag_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -344,21 +313,17 @@ asm void dalv4CandleDemoTag_c::Execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C5D348-80C5D354 000C+00 s=1 e=0 z=0  None .bss       @3632 */
+/* 80C5D348-80C5D354 000008 000C+00 1/1 0/0 0/0 .bss             @3632 */
 static u8 lit_3632[12];
 
-/* 80C5D354-80C5D35C 0008+00 s=2 e=0 z=0  None .bss       l_HIO */
+/* 80C5D354-80C5D35C 000014 0008+00 2/2 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[8];
 
-/* 80C5D35C-80C5D360 0004+00 s=1 e=0 z=0  None .bss       None */
+/* 80C5D35C-80C5D360 00001C 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C5D35C[4];
 
-/* 80C5CBE8-80C5CCA4 00BC+00 s=1 e=0 z=0  None .text      procMain__20dalv4CandleDemoTag_cFv */
-//	80C5CBF4: 80C5D218 (cNullVec__6Z2Calc)
-//	80C5CBF8: 80C5D218 (cNullVec__6Z2Calc)
-//	80C5CBFC: 80C5D35C (data_80C5D35C)
-//	80C5CC00: 80C5D35C (data_80C5D35C)
-//	80C5CC8C: 80362084 (__ptmf_scall)
+/* 80C5CBE8-80C5CCA4 0002E8 00BC+00 1/1 0/0 0/0 .text            procMain__20dalv4CandleDemoTag_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,10 +333,7 @@ asm void dalv4CandleDemoTag_c::procMain() {
 }
 #pragma pop
 
-/* 80C5CCA4-80C5CCC0 001C+00 s=2 e=0 z=0  None .text      init_modeWatch__20dalv4CandleDemoTag_cFv
- */
-//	80C5CCA4: 80C5D354 (l_HIO)
-//	80C5CCA8: 80C5D354 (l_HIO)
+/* 80C5CCA4-80C5CCC0 0003A4 001C+00 2/2 0/0 0/0 .text init_modeWatch__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -381,18 +343,8 @@ asm void dalv4CandleDemoTag_c::init_modeWatch() {
 }
 #pragma pop
 
-/* 80C5CCC0-80C5CDC0 0100+00 s=1 e=0 z=0  None .text      modeWatch__20dalv4CandleDemoTag_cFv */
-//	80C5CCD8: 80C5CF9C (searchShutterAct__20dalv4CandleDemoTag_cFPvPv)
-//	80C5CCDC: 80C5CF9C (searchShutterAct__20dalv4CandleDemoTag_cFPvPv)
-//	80C5CCE4: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80C5CD04: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CD08: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CD18: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C5CD54: 80048940 (orderEvent__17dEvLib_callback_cFiii)
-//	80C5CD84: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CD88: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CD94: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80C5CDA4: 80C5CF34 (init_modeEnd__20dalv4CandleDemoTag_cFv)
+/* 80C5CCC0-80C5CDC0 0003C0 0100+00 1/0 0/0 0/0 .text            modeWatch__20dalv4CandleDemoTag_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -402,12 +354,8 @@ asm void dalv4CandleDemoTag_c::modeWatch() {
 }
 #pragma pop
 
-/* 80C5CDC0-80C5CE70 00B0+00 s=1 e=0 z=0  None .text
+/* 80C5CDC0-80C5CE70 0004C0 00B0+00 1/1 0/0 0/0 .text
  * init_modeEnemyCreate__20dalv4CandleDemoTag_cFv               */
-//	80C5CDD0: 803621D8 (_savegpr_28)
-//	80C5CDE4: 800517EC (dPath_GetRoomPath__Fii)
-//	80C5CE38: 80019D98 (fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc)
-//	80C5CE5C: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,10 +365,7 @@ asm void dalv4CandleDemoTag_c::init_modeEnemyCreate() {
 }
 #pragma pop
 
-/* 80C5CE70-80C5CEB4 0044+00 s=1 e=0 z=0  None .text      modeEnemyCreate__20dalv4CandleDemoTag_cFv
- */
-//	80C5CE8C: 8001CA1C (fopAcM_myRoomSearchEnemy__FSc)
-//	80C5CE9C: 80C5CEB4 (init_modeNG__20dalv4CandleDemoTag_cFv)
+/* 80C5CE70-80C5CEB4 000570 0044+00 1/0 0/0 0/0 .text modeEnemyCreate__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -430,7 +375,7 @@ asm void dalv4CandleDemoTag_c::modeEnemyCreate() {
 }
 #pragma pop
 
-/* 80C5CEB4-80C5CEC0 000C+00 s=1 e=0 z=0  None .text      init_modeNG__20dalv4CandleDemoTag_cFv */
+/* 80C5CEB4-80C5CEC0 0005B4 000C+00 1/1 0/0 0/0 .text init_modeNG__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -440,15 +385,7 @@ asm void dalv4CandleDemoTag_c::init_modeNG() {
 }
 #pragma pop
 
-/* 80C5CEC0-80C5CF34 0074+00 s=1 e=0 z=0  None .text      modeNG__20dalv4CandleDemoTag_cFv */
-//	80C5CEDC: 8001CA1C (fopAcM_myRoomSearchEnemy__FSc)
-//	80C5CEE8: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CEEC: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CEFC: 80035200 (onSwitch__10dSv_info_cFii)
-//	80C5CF00: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CF04: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CF14: 800352B0 (offSwitch__10dSv_info_cFii)
-//	80C5CF1C: 80C5CCA4 (init_modeWatch__20dalv4CandleDemoTag_cFv)
+/* 80C5CEC0-80C5CF34 0005C0 0074+00 1/0 0/0 0/0 .text            modeNG__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -458,7 +395,7 @@ asm void dalv4CandleDemoTag_c::modeNG() {
 }
 #pragma pop
 
-/* 80C5CF34-80C5CF40 000C+00 s=2 e=0 z=0  None .text      init_modeEnd__20dalv4CandleDemoTag_cFv */
+/* 80C5CF34-80C5CF40 000634 000C+00 2/2 0/0 0/0 .text init_modeEnd__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,10 +405,8 @@ asm void dalv4CandleDemoTag_c::init_modeEnd() {
 }
 #pragma pop
 
-/* 80C5CF40-80C5CF78 0038+00 s=1 e=0 z=0  None .text      modeEnd__20dalv4CandleDemoTag_cFv */
-//	80C5CF50: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CF54: 804061C0 (g_dComIfG_gameInfo)
-//	80C5CF64: 800352B0 (offSwitch__10dSv_info_cFii)
+/* 80C5CF40-80C5CF78 000640 0038+00 1/0 0/0 0/0 .text            modeEnd__20dalv4CandleDemoTag_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -481,8 +416,7 @@ asm void dalv4CandleDemoTag_c::modeEnd() {
 }
 #pragma pop
 
-/* 80C5CF78-80C5CF9C 0024+00 s=2 e=0 z=0  None .text      eventStart__20dalv4CandleDemoTag_cFv */
-//	80C5CF84: 80C5CDC0 (init_modeEnemyCreate__20dalv4CandleDemoTag_cFv)
+/* 80C5CF78-80C5CF9C 000678 0024+00 2/1 0/0 0/0 .text eventStart__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -492,9 +426,8 @@ asm void dalv4CandleDemoTag_c::eventStart() {
 }
 #pragma pop
 
-/* 80C5CF9C-80C5CFEC 0050+00 s=1 e=0 z=0  None .text searchShutterAct__20dalv4CandleDemoTag_cFPvPv
- */
-//	80C5CFB4: 80018CE0 (fopAc_IsActor__FPv)
+/* 80C5CF9C-80C5CFEC 00069C 0050+00 1/1 0/0 0/0 .text
+ * searchShutterAct__20dalv4CandleDemoTag_cFPvPv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -504,70 +437,61 @@ asm void dalv4CandleDemoTag_c::searchShutterAct(void* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 80C5CFEC-80C5CFF4 0008+00 s=1 e=0 z=0  None .text      Draw__20dalv4CandleDemoTag_cFv */
+/* 80C5CFEC-80C5CFF4 0006EC 0008+00 1/1 0/0 0/0 .text            Draw__20dalv4CandleDemoTag_cFv */
 bool dalv4CandleDemoTag_c::Draw() {
     return true;
 }
 
-/* 80C5CFF4-80C5CFFC 0008+00 s=1 e=0 z=0  None .text      Delete__20dalv4CandleDemoTag_cFv */
+/* 80C5CFF4-80C5CFFC 0006F4 0008+00 1/1 0/0 0/0 .text            Delete__20dalv4CandleDemoTag_cFv */
 bool dalv4CandleDemoTag_c::Delete() {
     return true;
 }
 
-/* 80C5CFFC-80C5D01C 0020+00 s=1 e=0 z=0  None .text
+/* 80C5CFFC-80C5D01C 0006FC 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Draw__FP20dalv4CandleDemoTag_c            */
-//	80C5D008: 80C5CFEC (Draw__20dalv4CandleDemoTag_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c* param_0) {
+static asm void dalv4CandleDemoTag_Draw(dalv4CandleDemoTag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Draw__FP20dalv4CandleDemoTag_c.s"
 }
 #pragma pop
 
-/* 80C5D01C-80C5D03C 0020+00 s=1 e=0 z=0  None .text
+/* 80C5D01C-80C5D03C 00071C 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Execute__FP20dalv4CandleDemoTag_c         */
-//	80C5D028: 80C5CBA4 (Execute__20dalv4CandleDemoTag_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c* param_0) {
+static asm void dalv4CandleDemoTag_Execute(dalv4CandleDemoTag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Execute__FP20dalv4CandleDemoTag_c.s"
 }
 #pragma pop
 
-/* 80C5D03C-80C5D05C 0020+00 s=1 e=0 z=0  None .text
+/* 80C5D03C-80C5D05C 00073C 0020+00 1/0 0/0 0/0 .text
  * dalv4CandleDemoTag_Delete__FP20dalv4CandleDemoTag_c          */
-//	80C5D048: 80C5CFF4 (Delete__20dalv4CandleDemoTag_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c* param_0) {
+static asm void dalv4CandleDemoTag_Delete(dalv4CandleDemoTag_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Delete__FP20dalv4CandleDemoTag_c.s"
 }
 #pragma pop
 
-/* 80C5D05C-80C5D07C 0020+00 s=1 e=0 z=0  None .text      dalv4CandleDemoTag_Create__FP10fopAc_ac_c
- */
-//	80C5D068: 80C5CA90 (create__20dalv4CandleDemoTag_cFv)
+/* 80C5D05C-80C5D07C 00075C 0020+00 1/0 0/0 0/0 .text dalv4CandleDemoTag_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dalv4CandleDemoTag_Create(fopAc_ac_c* param_0) {
+static asm void dalv4CandleDemoTag_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/dalv4CandleDemoTag_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C5D07C-80C5D0D8 005C+00 s=2 e=0 z=0  None .text      __dt__24dalv4CandleDemoTag_HIO_cFv */
-//	80C5D094: 80C5D328 (__vt__24dalv4CandleDemoTag_HIO_c)
-//	80C5D098: 80C5D328 (__vt__24dalv4CandleDemoTag_HIO_c)
-//	80C5D0A4: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5D0A8: 80C5D334 (__vt__14mDoHIO_entry_c)
-//	80C5D0BC: 802CED3C (__dl__FPv)
+/* 80C5D07C-80C5D0D8 00077C 005C+00 2/1 0/0 0/0 .text            __dt__24dalv4CandleDemoTag_HIO_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -577,19 +501,11 @@ asm dalv4CandleDemoTag_HIO_c::~dalv4CandleDemoTag_HIO_c() {
 }
 #pragma pop
 
-/* 80C5D0D8-80C5D114 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_lv4CandleDemoTag_cpp */
-//	80C5D0E4: 80C5D354 (l_HIO)
-//	80C5D0E8: 80C5D354 (l_HIO)
-//	80C5D0EC: 80C5C9EC (__ct__24dalv4CandleDemoTag_HIO_cFv)
-//	80C5D0F0: 80C5D07C (__dt__24dalv4CandleDemoTag_HIO_cFv)
-//	80C5D0F4: 80C5D07C (__dt__24dalv4CandleDemoTag_HIO_cFv)
-//	80C5D0F8: 80C5D348 (lit_3632)
-//	80C5D0FC: 80C5D348 (lit_3632)
-//	80C5D100: 80C5C978 (__register_global_object)
+/* 80C5D0D8-80C5D114 0007D8 003C+00 0/0 1/0 0/0 .text __sinit_d_a_obj_lv4CandleDemoTag_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp() {
+asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/__sinit_d_a_obj_lv4CandleDemoTag_cpp.s"
 }
@@ -600,33 +516,28 @@ extern "C" asm void __sinit_d_a_obj_lv4CandleDemoTag_cpp() {
 SECTION_CTORS void* const _ctors_80C5D0D8 = (void*)__sinit_d_a_obj_lv4CandleDemoTag_cpp;
 #pragma pop
 
-/* 80C5D114-80C5D11C 0008+00 s=1 e=0 z=0  None .text      @1392@eventStart__20dalv4CandleDemoTag_cFv
+/* 80C5D114-80C5D11C 000814 0008+00 1/0 0/0 0/0 .text @1392@eventStart__20dalv4CandleDemoTag_cFv
  */
-//	80C5D118: 80C5CF78 (eventStart__20dalv4CandleDemoTag_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C5D114() {
+static asm void func_80C5D114() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/func_80C5D114.s"
 }
 #pragma pop
 
-/* 80C5D11C-80C5D124 0008+00 s=1 e=0 z=0  None .text      @1392@__dt__20dalv4CandleDemoTag_cFv */
-//	80C5D120: 80C5D184 (__dt__20dalv4CandleDemoTag_cFv)
+/* 80C5D11C-80C5D124 00081C 0008+00 1/0 0/0 0/0 .text @1392@__dt__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C5D11C() {
+static asm void func_80C5D11C() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag/func_80C5D11C.s"
 }
 #pragma pop
 
-/* 80C5D124-80C5D16C 0048+00 s=1 e=0 z=0  None .text      __dt__17dEvLib_callback_cFv */
-//	80C5D13C: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5D140: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5D150: 802CED3C (__dl__FPv)
+/* 80C5D124-80C5D16C 000824 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -636,28 +547,23 @@ asm dEvLib_callback_c::~dEvLib_callback_c() {
 }
 #pragma pop
 
-/* 80C5D16C-80C5D174 0008+00 s=2 e=0 z=0  None .text      eventRun__17dEvLib_callback_cFv */
+/* 80C5D16C-80C5D174 00086C 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
 bool dEvLib_callback_c::eventRun() {
     return true;
 }
 
-/* 80C5D174-80C5D17C 0008+00 s=2 e=0 z=0  None .text      eventEnd__17dEvLib_callback_cFv */
+/* 80C5D174-80C5D17C 000874 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
 bool dEvLib_callback_c::eventEnd() {
     return true;
 }
 
-/* 80C5D17C-80C5D184 0008+00 s=1 e=0 z=0  None .text      eventStart__17dEvLib_callback_cFv */
+/* 80C5D17C-80C5D184 00087C 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
+ */
 bool dEvLib_callback_c::eventStart() {
     return true;
 }
 
-/* 80C5D184-80C5D204 0080+00 s=2 e=0 z=0  None .text      __dt__20dalv4CandleDemoTag_cFv */
-//	80C5D1A4: 80C5D2E8 (__vt__20dalv4CandleDemoTag_c)
-//	80C5D1A8: 80C5D2E8 (__vt__20dalv4CandleDemoTag_c)
-//	80C5D1C0: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5D1C4: 80C5D310 (__vt__17dEvLib_callback_c)
-//	80C5D1D4: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80C5D1E4: 802CED3C (__dl__FPv)
+/* 80C5D184-80C5D204 000884 0080+00 2/1 0/0 0/0 .text            __dt__20dalv4CandleDemoTag_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

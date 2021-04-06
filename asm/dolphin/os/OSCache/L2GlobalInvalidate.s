@@ -24,8 +24,8 @@ lbl_8033B930:
 /* 8033B948  4B FF E3 A1 */	bl PPCMtl2cr
 /* 8033B94C  48 00 00 04 */	b lbl_8033B950
 lbl_8033B950:
-/* 8033B950  3C 60 80 3D */	lis r3, lit_63@ha
-/* 8033B954  3B E3 F5 10 */	addi r31, r3, lit_63@l
+/* 8033B950  3C 60 80 3D */	lis r3, lit_63@ha /* 0x803CF510@ha */
+/* 8033B954  3B E3 F5 10 */	addi r31, r3, lit_63@l /* 0x803CF510@l */
 /* 8033B958  48 00 00 04 */	b lbl_8033B95C
 lbl_8033B95C:
 /* 8033B95C  48 00 00 10 */	b lbl_8033B96C

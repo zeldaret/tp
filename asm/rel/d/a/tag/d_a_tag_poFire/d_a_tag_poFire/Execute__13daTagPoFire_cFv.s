@@ -5,7 +5,7 @@ lbl_80D5DBF0:
 /* 80D5DBFC  88 03 05 69 */	lbz r0, 0x569(r3)
 /* 80D5DC00  28 00 00 00 */	cmplwi r0, 0
 /* 80D5DC04  41 82 00 08 */	beq lbl_80D5DC0C
-/* 80D5DC08  4B 2B C0 74 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80D5DC08  4B 2B C0 75 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80D5DC0C:
 /* 80D5DC0C  38 60 00 01 */	li r3, 1
 /* 80D5DC10  80 01 00 14 */	lwz r0, 0x14(r1)

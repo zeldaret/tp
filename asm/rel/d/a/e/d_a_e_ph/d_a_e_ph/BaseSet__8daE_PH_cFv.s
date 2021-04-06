@@ -7,19 +7,19 @@ lbl_807410B0:
 /* 807410C4  38 7F 06 16 */	addi r3, r31, 0x616
 /* 807410C8  38 80 00 00 */	li r4, 0
 /* 807410CC  38 A0 00 40 */	li r5, 0x40
-/* 807410D0  4B B2 FA C0 */	b cLib_chaseAngleS__FPsss
+/* 807410D0  4B B2 FA C1 */	bl cLib_chaseAngleS__FPsss
 /* 807410D4  A8 7F 06 1A */	lha r3, 0x61a(r31)
 /* 807410D8  A8 1F 06 18 */	lha r0, 0x618(r31)
 /* 807410DC  7C 03 02 14 */	add r0, r3, r0
 /* 807410E0  B0 1F 06 1A */	sth r0, 0x61a(r31)
 /* 807410E4  A8 1F 06 1A */	lha r0, 0x61a(r31)
 /* 807410E8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 807410EC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 807410F0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 807410EC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 807410F0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 807410F4  7C 44 04 2E */	lfsx f2, r4, r0
 /* 807410F8  A8 1F 06 16 */	lha r0, 0x616(r31)
-/* 807410FC  3C 60 80 74 */	lis r3, lit_4215@ha
-/* 80741100  C8 23 1C 74 */	lfd f1, lit_4215@l(r3)
+/* 807410FC  3C 60 80 74 */	lis r3, lit_4215@ha /* 0x80741C74@ha */
+/* 80741100  C8 23 1C 74 */	lfd f1, lit_4215@l(r3)  /* 0x80741C74@l */
 /* 80741104  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80741108  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8074110C  3C 60 43 30 */	lis r3, 0x4330

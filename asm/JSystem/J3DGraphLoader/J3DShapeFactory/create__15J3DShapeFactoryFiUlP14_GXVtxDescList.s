@@ -11,8 +11,8 @@ lbl_80337400:
 /* 80337424  4B F9 78 29 */	bl __nw__FUl
 /* 80337428  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8033742C  41 82 00 2C */	beq lbl_80337458
-/* 80337430  3C 80 80 3D */	lis r4, __vt__8J3DShape@ha
-/* 80337434  38 04 DC 78 */	addi r0, r4, __vt__8J3DShape@l
+/* 80337430  3C 80 80 3D */	lis r4, __vt__8J3DShape@ha /* 0x803CDC78@ha */
+/* 80337434  38 04 DC 78 */	addi r0, r4, __vt__8J3DShape@l /* 0x803CDC78@l */
 /* 80337438  90 1F 00 00 */	stw r0, 0(r31)
 /* 8033743C  3C 80 3C F4 */	lis r4, 0x3CF4 /* 0x3CF3CF00@ha */
 /* 80337440  38 04 CF 00 */	addi r0, r4, 0xCF00 /* 0x3CF3CF00@l */

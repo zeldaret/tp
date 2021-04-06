@@ -47,9 +47,9 @@ struct csXyz {};
 
 struct cXyz {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -60,11 +60,6 @@ struct Z2SeMgr {
 // Forward References:
 //
 
-static void daTagMstop_Create(fopAc_ac_c*);
-static void daTagMstop_Delete(daTagMstop_c*);
-static void daTagMstop_Execute(daTagMstop_c*);
-static bool daTagMstop_Draw(daTagMstop_c*);
-
 extern "C" void create__12daTagMstop_cFv();
 extern "C" static void daTagMstop_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagMstop_cFv();
@@ -73,26 +68,11 @@ extern "C" void eventOrder__12daTagMstop_cFv();
 extern "C" void execute__12daTagMstop_cFv();
 extern "C" static void daTagMstop_Execute__FP12daTagMstop_c();
 extern "C" static bool daTagMstop_Draw__FP12daTagMstop_c();
-extern "C" extern u32 const lit_4056;
-extern "C" extern u32 const lit_4057;
-extern "C" extern u32 const lit_4058;
-extern "C" extern u8 const lit_4059[4];
 extern "C" extern void* g_profile_Tag_Mstop[12];
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_searchActorAngleY(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_orderPotentialEvent(fopAc_ac_c*, u16, u16, u16);
-void dComIfGp_getReverb(int);
-void dComIfGp_getRoomCamera(int);
-void dComIfGp_getRoomArrow(int);
-void daNpcF_getPlayerInfoFromPlayerList(int, int, cXyz&, csXyz&);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -133,27 +113,15 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 805A696C-805A6970 0004+00 s=2 e=0 z=0  None .rodata    @3863 */
+/* 805A696C-805A6970 000000 0004+00 2/2 0/0 0/0 .rodata          @3863 */
 SECTION_RODATA static u32 const lit_3863 = 0x461C4000;
+SECTION_DEAD void* const cg_805A696C = (void*)(&lit_3863);
 
-/* 805A6970-805A6974 0004+00 s=1 e=0 z=0  None .rodata    @3864 */
+/* 805A6970-805A6974 000004 0004+00 1/1 0/0 0/0 .rodata          @3864 */
 SECTION_RODATA static u32 const lit_3864 = 0x42C80000;
+SECTION_DEAD void* const cg_805A6970 = (void*)(&lit_3864);
 
-/* 805A6138-805A6318 01E0+00 s=1 e=0 z=0  None .text      create__12daTagMstop_cFv */
-//	805A6148: 803621DC (_savegpr_29)
-//	805A6168: 80018B64 (__ct__10fopAc_ac_cFv)
-//	805A6170: 80249F00 (__ct__10dMsgFlow_cFv)
-//	805A6228: 805A696C (lit_3863)
-//	805A622C: 805A696C (lit_3863)
-//	805A6240: 805A6970 (lit_3864)
-//	805A6244: 805A6970 (lit_3864)
-//	805A6270: 80155774 (daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz)
-//	805A628C: 8002D25C (dComIfGp_getRoomCamera__Fi)
-//	805A62A8: 8002D2AC (dComIfGp_getRoomArrow__Fi)
-//	805A62E8: 804061C0 (g_dComIfG_gameInfo)
-//	805A62EC: 804061C0 (g_dComIfG_gameInfo)
-//	805A62F4: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	805A6304: 80362228 (_restgpr_29)
+/* 805A6138-805A6318 000078 01E0+00 1/1 0/0 0/0 .text            create__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -163,21 +131,18 @@ asm void daTagMstop_c::create() {
 }
 #pragma pop
 
-/* 805A6318-805A6338 0020+00 s=1 e=0 z=0  None .text      daTagMstop_Create__FP10fopAc_ac_c */
-//	805A6324: 805A6138 (create__12daTagMstop_cFv)
+/* 805A6318-805A6338 000258 0020+00 1/0 0/0 0/0 .text            daTagMstop_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Create(fopAc_ac_c* param_0) {
+static asm void daTagMstop_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A6338-805A639C 0064+00 s=1 e=0 z=0  None .text      __dt__12daTagMstop_cFv */
-//	805A6360: 80249F48 (__dt__10dMsgFlow_cFv)
-//	805A636C: 80018C8C (__dt__10fopAc_ac_cFv)
-//	805A637C: 802CED3C (__dl__FPv)
+/* 805A6338-805A639C 000278 0064+00 1/1 0/0 0/0 .text            __dt__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,19 +152,18 @@ asm daTagMstop_c::~daTagMstop_c() {
 }
 #pragma pop
 
-/* 805A639C-805A63C4 0028+00 s=1 e=0 z=0  None .text      daTagMstop_Delete__FP12daTagMstop_c */
-//	805A63AC: 805A6338 (__dt__12daTagMstop_cFv)
+/* 805A639C-805A63C4 0002DC 0028+00 1/0 0/0 0/0 .text            daTagMstop_Delete__FP12daTagMstop_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Delete(daTagMstop_c* param_0) {
+static asm void daTagMstop_Delete(daTagMstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Delete__FP12daTagMstop_c.s"
 }
 #pragma pop
 
-/* 805A63C4-805A63F8 0034+00 s=1 e=0 z=0  None .text      eventOrder__12daTagMstop_cFv */
-//	805A63E4: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
+/* 805A63C4-805A63F8 000304 0034+00 1/1 0/0 0/0 .text            eventOrder__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,60 +173,41 @@ asm void daTagMstop_c::eventOrder() {
 }
 #pragma pop
 
-/* 805A63F8-805A693C 0544+00 s=1 e=0 z=0  None .text      execute__12daTagMstop_cFv */
-//	805A6408: 803621D8 (_savegpr_28)
-//	805A6410: 805A696C (lit_3863)
-//	805A6414: 805A696C (lit_3863)
-//	805A642C: 8002D06C (dComIfGp_getReverb__Fi)
-//	805A6440: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A6444: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A646C: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	805A6470: 80451018 (m_midnaActor__9daPy_py_c)
-//	805A6474: 80451018 (m_midnaActor__9daPy_py_c)
-//	805A6488: 804061C0 (g_dComIfG_gameInfo)
-//	805A648C: 804061C0 (g_dComIfG_gameInfo)
-//	805A64E4: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	805A6500: 8034739C (PSVECSquareDistance)
-//	805A6510: 804061C0 (g_dComIfG_gameInfo)
-//	805A6514: 804061C0 (g_dComIfG_gameInfo)
-//	805A651C: 80042468 (reset__14dEvt_control_cFv)
-//	805A6580: 804061C0 (g_dComIfG_gameInfo)
-//	805A6584: 804061C0 (g_dComIfG_gameInfo)
-//	805A658C: 80042468 (reset__14dEvt_control_cFv)
-//	805A669C: 804061C0 (g_dComIfG_gameInfo)
-//	805A66A0: 804061C0 (g_dComIfG_gameInfo)
-//	805A66AC: 80042518 (reset__14dEvt_control_cFPv)
-//	805A66C0: 8001B908 (fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs)
-//	805A6714: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	805A6720: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A6724: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A6750: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	805A6770: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	805A678C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A6790: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	805A67BC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	805A6810: 804061C0 (g_dComIfG_gameInfo)
-//	805A6814: 804061C0 (g_dComIfG_gameInfo)
-//	805A6820: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A6838: 804061C0 (g_dComIfG_gameInfo)
-//	805A683C: 804061C0 (g_dComIfG_gameInfo)
-//	805A6848: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805A684C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805A6854: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	805A6864: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	805A687C: 804061C0 (g_dComIfG_gameInfo)
-//	805A6880: 804061C0 (g_dComIfG_gameInfo)
-//	805A688C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	805A68A4: 804061C0 (g_dComIfG_gameInfo)
-//	805A68A8: 804061C0 (g_dComIfG_gameInfo)
-//	805A68B4: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805A68B8: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	805A68C0: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	805A68FC: 804061C0 (g_dComIfG_gameInfo)
-//	805A6900: 804061C0 (g_dComIfG_gameInfo)
-//	805A6908: 8001AA94 (fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	805A691C: 805A63C4 (eventOrder__12daTagMstop_cFv)
-//	805A6928: 80362224 (_restgpr_28)
+/* ############################################################################################## */
+/* 805A6974-805A6978 000008 0004+00 0/1 0/0 0/0 .rodata          @4056 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4056 = 0x3F800000;
+SECTION_DEAD void* const cg_805A6974 = (void*)(&lit_4056);
+#pragma pop
+
+/* 805A6978-805A697C 00000C 0004+00 0/1 0/0 0/0 .rodata          @4057 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4057 = 0xBF800000;
+SECTION_DEAD void* const cg_805A6978 = (void*)(&lit_4057);
+#pragma pop
+
+/* 805A697C-805A6980 000010 0004+00 0/1 0/0 0/0 .rodata          @4058 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4058 = 0x451C4000;
+SECTION_DEAD void* const cg_805A697C = (void*)(&lit_4058);
+#pragma pop
+
+/* 805A6980-805A6984 000014 0004+00 0/1 0/0 0/0 .rodata          @4059 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4059[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_805A6980 = (void*)(&lit_4059);
+#pragma pop
+
+/* 805A63F8-805A693C 000338 0544+00 1/1 0/0 0/0 .text            execute__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,41 +217,24 @@ asm void daTagMstop_c::execute() {
 }
 #pragma pop
 
-/* 805A693C-805A695C 0020+00 s=1 e=0 z=0  None .text      daTagMstop_Execute__FP12daTagMstop_c */
-//	805A6948: 805A63F8 (execute__12daTagMstop_cFv)
+/* 805A693C-805A695C 00087C 0020+00 1/0 0/0 0/0 .text daTagMstop_Execute__FP12daTagMstop_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Execute(daTagMstop_c* param_0) {
+static asm void daTagMstop_Execute(daTagMstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Execute__FP12daTagMstop_c.s"
 }
 #pragma pop
 
-/* 805A695C-805A6964 0008+00 s=1 e=0 z=0  None .text      daTagMstop_Draw__FP12daTagMstop_c */
+/* 805A695C-805A6964 00089C 0008+00 1/0 0/0 0/0 .text            daTagMstop_Draw__FP12daTagMstop_c
+ */
 static bool daTagMstop_Draw(daTagMstop_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 805A6974-805A6978 0004+00 s=0 e=0 z=0  None .rodata    @4056 */
-SECTION_RODATA u32 const lit_4056 = 0x3F800000;
-
-/* 805A6978-805A697C 0004+00 s=0 e=0 z=0  None .rodata    @4057 */
-SECTION_RODATA u32 const lit_4057 = 0xBF800000;
-
-/* 805A697C-805A6980 0004+00 s=0 e=0 z=0  None .rodata    @4058 */
-SECTION_RODATA u32 const lit_4058 = 0x451C4000;
-
-/* 805A6980-805A6984 0004+00 s=0 e=0 z=0  None .rodata    @4059 */
-SECTION_RODATA u8 const lit_4059[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 805A6984-805A69A4 0020+00 s=1 e=0 z=0  None .data      l_daTagMstop_Method */
+/* 805A6984-805A69A4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMstop_Method */
 SECTION_DATA static void* l_daTagMstop_Method[8] = {
     (void*)daTagMstop_Create__FP10fopAc_ac_c,
     (void*)daTagMstop_Delete__FP12daTagMstop_c,
@@ -318,8 +246,8 @@ SECTION_DATA static void* l_daTagMstop_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A69A4-805A69D4 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Mstop */
-SECTION_DATA void* g_profile_Tag_Mstop[12] = {
+/* 805A69A4-805A69D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mstop */
+SECTION_DATA extern void* g_profile_Tag_Mstop[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C40000, (void*)&g_fpcLf_Method,
     (void*)0x000005D4, (void*)NULL,

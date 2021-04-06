@@ -5,8 +5,8 @@ lbl_802A4260:
 /* 802A426C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A4270  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A4274  41 82 00 1C */	beq lbl_802A4290
-/* 802A4278  3C A0 80 3D */	lis r5, __vt__22JAUAudioArcInterpreter@ha
-/* 802A427C  38 05 9A 30 */	addi r0, r5, __vt__22JAUAudioArcInterpreter@l
+/* 802A4278  3C A0 80 3D */	lis r5, __vt__22JAUAudioArcInterpreter@ha /* 0x803C9A30@ha */
+/* 802A427C  38 05 9A 30 */	addi r0, r5, __vt__22JAUAudioArcInterpreter@l /* 0x803C9A30@l */
 /* 802A4280  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A4284  7C 80 07 35 */	extsh. r0, r4
 /* 802A4288  40 81 00 08 */	ble lbl_802A4290

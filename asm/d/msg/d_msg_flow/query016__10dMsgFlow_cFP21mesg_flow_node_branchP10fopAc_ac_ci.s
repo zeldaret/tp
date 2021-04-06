@@ -2,8 +2,8 @@ lbl_8024B62C:
 /* 8024B62C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024B630  7C 08 02 A6 */	mflr r0
 /* 8024B634  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8024B638  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B63C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024B638  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B63C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B640  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024B644  A0 84 00 04 */	lhz r4, 4(r4)
 /* 8024B648  4B DE 96 2D */	bl isItem__12dSv_danBit_cCFi

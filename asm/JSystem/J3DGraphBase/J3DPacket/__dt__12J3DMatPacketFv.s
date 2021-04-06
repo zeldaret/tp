@@ -7,8 +7,8 @@ lbl_803129A4:
 /* 803129B8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 803129BC  7C 9F 23 78 */	mr r31, r4
 /* 803129C0  41 82 00 28 */	beq lbl_803129E8
-/* 803129C4  3C 80 80 3D */	lis r4, __vt__12J3DMatPacket@ha
-/* 803129C8  38 04 D9 54 */	addi r0, r4, __vt__12J3DMatPacket@l
+/* 803129C4  3C 80 80 3D */	lis r4, __vt__12J3DMatPacket@ha /* 0x803CD954@ha */
+/* 803129C8  38 04 D9 54 */	addi r0, r4, __vt__12J3DMatPacket@l /* 0x803CD954@l */
 /* 803129CC  90 1E 00 00 */	stw r0, 0(r30)
 /* 803129D0  38 80 00 00 */	li r4, 0
 /* 803129D4  4B FF FD DD */	bl __dt__13J3DDrawPacketFv

@@ -39,8 +39,8 @@ lbl_8013CBC8:
 lbl_8013CBCC:
 /* 8013CBCC  7F A3 EB 78 */	mr r3, r29
 /* 8013CBD0  7F E4 FB 78 */	mr r4, r31
-/* 8013CBD4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtBite_c0@ha
-/* 8013CBD8  38 C5 F7 48 */	addi r6, r5, m__22daAlinkHIO_wlAtBite_c0@l
+/* 8013CBD4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtBite_c0@ha /* 0x8038F748@ha */
+/* 8013CBD8  38 C5 F7 48 */	addi r6, r5, m__22daAlinkHIO_wlAtBite_c0@l /* 0x8038F748@l */
 /* 8013CBDC  C0 26 00 2C */	lfs f1, 0x2c(r6)
 /* 8013CBE0  FC 40 F8 90 */	fmr f2, f31
 /* 8013CBE4  38 A0 FF FF */	li r5, -1
@@ -50,8 +50,8 @@ lbl_8013CBCC:
 /* 8013CBF4  7F E4 FB 78 */	mr r4, r31
 /* 8013CBF8  FC 20 F8 90 */	fmr f1, f31
 /* 8013CBFC  4B FF C9 B9 */	bl setWolfEnemyThrowUpperAnime__9daAlink_cFQ29daAlink_c12daAlink_WANMf
-/* 8013CC00  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8013CC04  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013CC00  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8013CC04  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8013CC08  D0 1D 35 88 */	stfs f0, 0x3588(r29)
 /* 8013CC0C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013CC10  D0 1D 35 8C */	stfs f0, 0x358c(r29)

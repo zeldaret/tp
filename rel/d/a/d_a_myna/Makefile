@@ -3,19 +3,20 @@
 #
 
 M281_TARGET := $(BUILD_DIR)/rel/d/a/d_a_myna.plf
+M281_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_myna.lcf
+M281_MAP := $(BUILD_DIR)/rel/d/a/d_a_myna.map
 
 M281_CPP_FILES := \
-	rel/d/a/d_a_myna/executor.cpp \
-	rel/d/a/d_a_myna/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_myna/d_a_myna.cpp \
 
 M281_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_myna/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_myna/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_myna/d_a_myna.o \
 
 M281_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_myna/libRuntime.PPCEABI.H.a \
 
 M281_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M281_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map281.map\
+	-m _prolog \
+	-lcf $(M281_LDSCRIPT) \
+	-unused -map $(M281_MAP) \
+	-w off \
 
 $(M281_TARGET): $(M281_O_FILES) $(M281_LIBS)
+	@echo [281] creating $(M281_TARGET)
 	@echo $(M281_LIBS) $(M281_O_FILES) > build/M281_ofiles
-	$(LD) -opt_partial $(M281_LDFLAGS) -o $(M281_TARGET) @build/M281_ofiles
+	@python3 tools/lcf.py rel 281 --output $(M281_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M281_LDFLAGS) -o $(M281_TARGET) @build/M281_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_myna/%.o: rel/d/a/d_a_myna/%.cpp
+	@echo [281] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M281_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M281_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_myna/libs/Runtime.PPCEABI.H/Makefile
 

@@ -15,8 +15,8 @@ lbl_80252300:
 /* 80252334  2C 03 00 04 */	cmpwi r3, 4
 /* 80252338  40 82 00 60 */	bne lbl_80252398
 lbl_8025233C:
-/* 8025233C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80252340  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025233C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80252340  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80252344  88 03 4E 1C */	lbz r0, 0x4e1c(r3)
 /* 80252348  2C 00 00 01 */	cmpwi r0, 1
 /* 8025234C  40 82 00 08 */	bne lbl_80252354
@@ -63,8 +63,8 @@ lbl_802523C8:
 /* 802523CC  34 03 FF FF */	addic. r0, r3, -1
 /* 802523D0  90 1F 00 D0 */	stw r0, 0xd0(r31)
 /* 802523D4  40 82 00 3C */	bne lbl_80252410
-/* 802523D8  3C 60 80 25 */	lis r3, dOvlpFd_Wait__FP14overlap1_class@ha
-/* 802523DC  38 03 22 C8 */	addi r0, r3, dOvlpFd_Wait__FP14overlap1_class@l
+/* 802523D8  3C 60 80 25 */	lis r3, dOvlpFd_Wait__FP14overlap1_class@ha /* 0x802522C8@ha */
+/* 802523DC  38 03 22 C8 */	addi r0, r3, dOvlpFd_Wait__FP14overlap1_class@l /* 0x802522C8@l */
 /* 802523E0  90 0D 8B 60 */	stw r0, dOvlpFd_execute_f(r13)
 /* 802523E4  80 6D 8C 40 */	lwz r3, sManager__10JFWDisplay(r13)
 /* 802523E8  80 63 00 04 */	lwz r3, 4(r3)

@@ -7,8 +7,8 @@ lbl_80249A70:
 /* 80249A84  7C 7D 1B 78 */	mr r29, r3
 /* 80249A88  7C 9E 23 78 */	mr r30, r4
 /* 80249A8C  7C BF 2B 78 */	mr r31, r5
-/* 80249A90  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80249A94  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80249A90  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80249A94  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80249A98  80 83 00 10 */	lwz r4, 0x10(r3)
 /* 80249A9C  28 04 00 00 */	cmplwi r4, 0
 /* 80249AA0  41 82 00 64 */	beq lbl_80249B04

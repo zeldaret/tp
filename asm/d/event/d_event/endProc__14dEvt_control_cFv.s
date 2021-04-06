@@ -28,8 +28,8 @@ lbl_80042200:
 /* 8004221C  98 7F 00 ED */	stb r3, 0xed(r31)
 /* 80042220  B0 1F 00 E0 */	sth r0, 0xe0(r31)
 /* 80042224  98 1F 00 EE */	stb r0, 0xee(r31)
-/* 80042228  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8004222C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80042228  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8004222C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80042230  38 63 51 88 */	addi r3, r3, 0x5188
 /* 80042234  38 80 FF FE */	li r4, -2
 /* 80042238  48 00 41 B9 */	bl setStartDemo__18dEvent_exception_cFi

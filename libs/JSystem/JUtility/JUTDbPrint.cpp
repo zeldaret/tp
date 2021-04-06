@@ -44,9 +44,6 @@ struct J2DOrthoGraph {
 // Forward References:
 //
 
-void JUTReport(int, int, char const*, ...);
-void JUTReport(int, int, int, char const*, ...);
-
 extern "C" void __ct__10JUTDbPrintFP7JUTFontP7JKRHeap();
 extern "C" void start__10JUTDbPrintFP7JUTFontP7JKRHeap();
 extern "C" void changeFont__10JUTDbPrintFP7JUTFont();
@@ -56,13 +53,10 @@ extern "C" void flush__10JUTDbPrintFiiii();
 extern "C" void drawString__10JUTDbPrintFiiiPCUc();
 extern "C" void JUTReport__FiiPCce();
 extern "C" void JUTReport__FiiiPCce();
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new(u32);
 
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
@@ -90,8 +84,7 @@ extern "C" extern u8 sManager__8JUTVideo[4];
 // Declarations:
 //
 
-/* 802E0148-802E0190 0048+00 s=1 e=0 z=0  None .text      __ct__10JUTDbPrintFP7JUTFontP7JKRHeap */
-//	802E0168: 80451374 (sCurrentHeap__7JKRHeap)
+/* 802E0148-802E0190 2DAA88 0048+00 1/1 0/0 0/0 .text __ct__10JUTDbPrintFP7JUTFontP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,16 +95,11 @@ asm JUTDbPrint::JUTDbPrint(JUTFont* param_0, JKRHeap* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804514C8-804514D0 0004+04 s=3 e=6 z=0  None .sbss      sDebugPrint__10JUTDbPrint */
+/* 804514C8-804514D0 0009C8 0004+04 3/3 6/6 0/0 .sbss            sDebugPrint__10JUTDbPrint */
+extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 
-/* 802E0190-802E0204 0074+00 s=0 e=2 z=0  None .text      start__10JUTDbPrintFP7JUTFontP7JKRHeap */
-//	802E01AC: 804514C8 (sDebugPrint__10JUTDbPrint)
-//	802E01C0: 80451374 (sCurrentHeap__7JKRHeap)
-//	802E01C8: 802CEC4C (__nw__FUl)
-//	802E01DC: 802E0148 (__ct__10JUTDbPrintFP7JUTFontP7JKRHeap)
-//	802E01E4: 804514C8 (sDebugPrint__10JUTDbPrint)
-//	802E01E8: 804514C8 (sDebugPrint__10JUTDbPrint)
+/* 802E0190-802E0204 2DAAD0 0074+00 0/0 2/2 0/0 .text start__10JUTDbPrintFP7JUTFontP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -121,7 +109,8 @@ asm void JUTDbPrint::start(JUTFont* param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 802E0204-802E021C 0018+00 s=0 e=1 z=0  None .text      changeFont__10JUTDbPrintFP7JUTFont */
+/* 802E0204-802E021C 2DAB44 0018+00 0/0 1/1 0/0 .text            changeFont__10JUTDbPrintFP7JUTFont
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,11 +120,7 @@ asm void JUTDbPrint::changeFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* 802E021C-802E02A4 0088+00 s=2 e=0 z=0  None .text      enter__10JUTDbPrintFiiiPCci */
-//	802E022C: 803621CC (_savegpr_25)
-//	802E0258: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802E027C: 80368B2C (strcpy)
-//	802E0290: 80362218 (_restgpr_25)
+/* 802E021C-802E02A4 2DAB5C 0088+00 2/2 0/0 0/0 .text            enter__10JUTDbPrintFiiiPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -146,9 +131,7 @@ asm void JUTDbPrint::enter(int param_0, int param_1, int param_2, char const* pa
 }
 #pragma pop
 
-/* 802E02A4-802E02DC 0038+00 s=0 e=1 z=0  None .text      flush__10JUTDbPrintFv */
-//	802E02B0: 80451538 (sManager__8JUTVideo)
-//	802E02C8: 802E02DC (flush__10JUTDbPrintFiiii)
+/* 802E02A4-802E02DC 2DABE4 0038+00 0/0 1/1 0/0 .text            flush__10JUTDbPrintFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -159,30 +142,16 @@ asm void JUTDbPrint::flush() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456008-8045600C 0004+00 s=1 e=0 z=0  None .sdata2    @835 */
+/* 80456008-8045600C 004608 0004+00 1/1 0/0 0/0 .sdata2          @835 */
 SECTION_SDATA2 static f32 lit_835 = -1.0f;
 
-/* 8045600C-80456010 0004+00 s=1 e=0 z=0  None .sdata2    @836 */
+/* 8045600C-80456010 00460C 0004+00 1/1 0/0 0/0 .sdata2          @836 */
 SECTION_SDATA2 static f32 lit_836 = 1.0f;
 
-/* 80456010-80456018 0008+00 s=2 e=0 z=0  None .sdata2    @838 */
+/* 80456010-80456018 004610 0008+00 2/2 0/0 0/0 .sdata2          @838 */
 SECTION_SDATA2 static f64 lit_838 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802E02DC-802E0440 0164+00 s=1 e=0 z=0  None .text      flush__10JUTDbPrintFiiii */
-//	802E02EC: 803621D8 (_savegpr_28)
-//	802E0314: 80456010 (lit_838)
-//	802E036C: 80456008 (lit_835)
-//	802E0370: 8045600C (lit_836)
-//	802E0374: 802E96D0 (__ct__13J2DOrthoGraphFffffff)
-//	802E037C: 802E97B4 (setPort__13J2DOrthoGraphFv)
-//	802E03A4: 802DED70 (setCharColor__7JUTFontFQ28JUtility6TColor)
-//	802E03CC: 802E0440 (drawString__10JUTDbPrintFiiiPCUc)
-//	802E03F0: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802E0410: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	802E0414: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	802E041C: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E0420: 803CC9B8 (__vt__14J2DGrafContext)
-//	802E042C: 80362224 (_restgpr_28)
+/* 802E02DC-802E0440 2DAC1C 0164+00 1/1 0/0 0/0 .text            flush__10JUTDbPrintFiiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -192,12 +161,7 @@ asm void JUTDbPrint::flush(int param_0, int param_1, int param_2, int param_3) {
 }
 #pragma pop
 
-/* 802E0440-802E0530 00F0+00 s=1 e=0 z=0  None .text      drawString__10JUTDbPrintFiiiPCUc */
-//	802E0458: 803621D4 (_savegpr_27)
-//	802E0484: 80456010 (lit_838)
-//	802E04B4: 80456010 (lit_838)
-//	802E050C: 802DEE28 (drawString_size_scale__7JUTFontFffffPCcUlb)
-//	802E051C: 80362220 (_restgpr_27)
+/* 802E0440-802E0530 2DAD80 00F0+00 1/1 0/0 0/0 .text            drawString__10JUTDbPrintFiiiPCUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,10 +171,7 @@ asm void JUTDbPrint::drawString(int param_0, int param_1, int param_2, u8 const*
 }
 #pragma pop
 
-/* 802E0530-802E0600 00D0+00 s=0 e=2 z=2  None .text      JUTReport__FiiPCce */
-//	802E05B4: 80366690 (vsnprintf)
-//	802E05C0: 804514C8 (sDebugPrint__10JUTDbPrint)
-//	802E05E4: 802E021C (enter__10JUTDbPrintFiiiPCci)
+/* 802E0530-802E0600 2DAE70 00D0+00 0/0 2/2 2/2 .text            JUTReport__FiiPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -220,12 +181,7 @@ asm void JUTReport(int param_0, int param_1, char const* param_2, ...) {
 }
 #pragma pop
 
-/* 802E0600-802E06DC 00DC+00 s=0 e=1 z=0  None .text      JUTReport__FiiiPCce */
-//	802E0610: 803621DC (_savegpr_29)
-//	802E0690: 80366690 (vsnprintf)
-//	802E069C: 804514C8 (sDebugPrint__10JUTDbPrint)
-//	802E06C0: 802E021C (enter__10JUTDbPrintFiiiPCci)
-//	802E06C8: 80362228 (_restgpr_29)
+/* 802E0600-802E06DC 2DAF40 00DC+00 0/0 1/1 0/0 .text            JUTReport__FiiiPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

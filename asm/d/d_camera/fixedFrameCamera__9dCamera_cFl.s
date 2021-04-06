@@ -151,8 +151,8 @@ lbl_8017E1EC:
 /* 8017E1EC  C8 02 9C D8 */	lfd f0, lit_6179(r2)
 /* 8017E1F0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8017E1F4  40 80 00 10 */	bge lbl_8017E204
-/* 8017E1F8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8017E1FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8017E1F8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8017E1FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8017E200  48 00 00 70 */	b lbl_8017E270
 lbl_8017E204:
 /* 8017E204  D0 21 00 2C */	stfs f1, 0x2c(r1)
@@ -186,8 +186,8 @@ lbl_8017E25C:
 lbl_8017E260:
 /* 8017E260  2C 00 00 01 */	cmpwi r0, 1
 /* 8017E264  40 82 00 0C */	bne lbl_8017E270
-/* 8017E268  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8017E26C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8017E268  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8017E26C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8017E270:
 /* 8017E270  38 61 00 34 */	addi r3, r1, 0x34
 /* 8017E274  A8 1F 07 D0 */	lha r0, 0x7d0(r31)
@@ -219,11 +219,11 @@ lbl_8017E2BC:
 /* 8017E2D8  4B FE 75 E9 */	bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 8017E2DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8017E2E0  41 82 00 84 */	beq lbl_8017E364
-/* 8017E2E4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8017E2E8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8017E2E4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8017E2E8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8017E2EC  90 01 01 48 */	stw r0, 0x148(r1)
-/* 8017E2F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8017E2F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8017E2F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8017E2F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8017E2F8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8017E2FC  38 81 01 7C */	addi r4, r1, 0x17c
 /* 8017E300  38 A1 01 38 */	addi r5, r1, 0x138
@@ -248,8 +248,8 @@ lbl_8017E2BC:
 /* 8017E34C  D0 1F 04 18 */	stfs f0, 0x418(r31)
 /* 8017E350  C0 01 00 98 */	lfs f0, 0x98(r1)
 /* 8017E354  D0 1F 04 1C */	stfs f0, 0x41c(r31)
-/* 8017E358  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8017E35C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8017E358  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8017E35C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8017E360  90 01 01 48 */	stw r0, 0x148(r1)
 lbl_8017E364:
 /* 8017E364  38 61 00 84 */	addi r3, r1, 0x84
@@ -320,8 +320,8 @@ lbl_8017E458:
 /* 8017E458  C8 02 9C D8 */	lfd f0, lit_6179(r2)
 /* 8017E45C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8017E460  40 80 00 10 */	bge lbl_8017E470
-/* 8017E464  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8017E468  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 8017E464  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8017E468  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8017E46C  48 00 00 78 */	b lbl_8017E4E4
 lbl_8017E470:
 /* 8017E470  D0 21 00 28 */	stfs f1, 0x28(r1)
@@ -355,8 +355,8 @@ lbl_8017E4C8:
 lbl_8017E4CC:
 /* 8017E4CC  2C 00 00 01 */	cmpwi r0, 1
 /* 8017E4D0  40 82 00 10 */	bne lbl_8017E4E0
-/* 8017E4D4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8017E4D8  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 8017E4D4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8017E4D8  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8017E4DC  48 00 00 08 */	b lbl_8017E4E4
 lbl_8017E4E0:
 /* 8017E4E0  FF C0 08 90 */	fmr f30, f1
@@ -399,8 +399,8 @@ lbl_8017E530:
 /* 8017E560  38 61 01 68 */	addi r3, r1, 0x168
 /* 8017E564  38 80 FF FF */	li r4, -1
 /* 8017E568  4B EF 98 99 */	bl __dt__14dBgS_CamLinChkFv
-/* 8017E56C  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8017E570  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8017E56C  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8017E570  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8017E574  90 01 01 64 */	stw r0, 0x164(r1)
 lbl_8017E578:
 /* 8017E578  88 1F 01 58 */	lbz r0, 0x158(r31)

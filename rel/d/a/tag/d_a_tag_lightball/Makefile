@@ -3,17 +3,15 @@
 #
 
 M725_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball.plf
+M725_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball.lcf
+M725_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball.map
 
 M725_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_lightball/executor.cpp \
-	rel/d/a/tag/d_a_tag_lightball/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_lightball/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_lightball/d_a_tag_lightball.cpp \
 
 M725_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/d_a_tag_lightball.o \
 
 M725_LIBS := \
@@ -29,15 +27,21 @@ M725_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map725.map\
+	-m _prolog \
+	-lcf $(M725_LDSCRIPT) \
+	-unused -map $(M725_MAP) \
+	-w off \
 
 $(M725_TARGET): $(M725_O_FILES) $(M725_LIBS)
+	@echo [725] creating $(M725_TARGET)
 	@echo $(M725_LIBS) $(M725_O_FILES) > build/M725_ofiles
-	$(LD) -opt_partial $(M725_LDFLAGS) -o $(M725_TARGET) @build/M725_ofiles
+	@python3 tools/lcf.py rel 725 --output $(M725_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M725_LDFLAGS) -o $(M725_TARGET) @build/M725_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lightball/%.o: rel/d/a/tag/d_a_tag_lightball/%.cpp
+	@echo [725] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M725_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M725_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

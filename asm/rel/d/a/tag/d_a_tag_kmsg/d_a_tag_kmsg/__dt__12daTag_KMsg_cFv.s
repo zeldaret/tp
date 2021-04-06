@@ -7,8 +7,8 @@ lbl_8048EA30:
 /* 8048EA44  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8048EA48  7C 9F 23 78 */	mr r31, r4
 /* 8048EA4C  41 82 00 6C */	beq lbl_8048EAB8
-/* 8048EA50  3C 60 80 49 */	lis r3, __vt__12daTag_KMsg_c@ha
-/* 8048EA54  38 03 EB A0 */	addi r0, r3, __vt__12daTag_KMsg_c@l
+/* 8048EA50  3C 60 80 49 */	lis r3, __vt__12daTag_KMsg_c@ha /* 0x8048EBA0@ha */
+/* 8048EA54  38 03 EB A0 */	addi r0, r3, __vt__12daTag_KMsg_c@l /* 0x8048EBA0@l */
 /* 8048EA58  90 1E 05 C8 */	stw r0, 0x5c8(r30)
 /* 8048EA5C  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 8048EA60  54 03 46 3E */	srwi r3, r0, 0x18
@@ -19,21 +19,21 @@ lbl_8048EA30:
 /* 8048EA74  2C 00 00 03 */	cmpwi r0, 3
 /* 8048EA78  40 82 00 18 */	bne lbl_8048EA90
 /* 8048EA7C  38 7E 05 68 */	addi r3, r30, 0x568
-/* 8048EA80  3C 80 80 49 */	lis r4, struct_8048EAFC+0x0@ha
-/* 8048EA84  38 84 EA FC */	addi r4, r4, struct_8048EAFC+0x0@l
+/* 8048EA80  3C 80 80 49 */	lis r4, d_a_tag_kmsg__stringBase0@ha /* 0x8048EAFC@ha */
+/* 8048EA84  38 84 EA FC */	addi r4, r4, d_a_tag_kmsg__stringBase0@l /* 0x8048EAFC@l */
 /* 8048EA88  38 84 00 23 */	addi r4, r4, 0x23
-/* 8048EA8C  4B B9 E5 7C */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 8048EA8C  4B B9 E5 7D */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 lbl_8048EA90:
 /* 8048EA90  38 7E 05 70 */	addi r3, r30, 0x570
 /* 8048EA94  38 80 FF FF */	li r4, -1
-/* 8048EA98  4B DB B4 B0 */	b __dt__10dMsgFlow_cFv
+/* 8048EA98  4B DB B4 B1 */	bl __dt__10dMsgFlow_cFv
 /* 8048EA9C  7F C3 F3 78 */	mr r3, r30
 /* 8048EAA0  38 80 00 00 */	li r4, 0
-/* 8048EAA4  4B B8 A1 E8 */	b __dt__10fopAc_ac_cFv
+/* 8048EAA4  4B B8 A1 E9 */	bl __dt__10fopAc_ac_cFv
 /* 8048EAA8  7F E0 07 35 */	extsh. r0, r31
 /* 8048EAAC  40 81 00 0C */	ble lbl_8048EAB8
 /* 8048EAB0  7F C3 F3 78 */	mr r3, r30
-/* 8048EAB4  4B E4 02 88 */	b __dl__FPv
+/* 8048EAB4  4B E4 02 89 */	bl __dl__FPv
 lbl_8048EAB8:
 /* 8048EAB8  7F C3 F3 78 */	mr r3, r30
 /* 8048EABC  83 E1 00 0C */	lwz r31, 0xc(r1)

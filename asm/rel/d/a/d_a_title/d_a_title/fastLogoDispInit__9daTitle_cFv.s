@@ -1,16 +1,16 @@
 lbl_80D675EC:
 /* 80D675EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80D675F0  A8 03 05 80 */	lha r0, 0x580(r3)
-/* 80D675F4  3C 80 80 D6 */	lis r4, lit_4337@ha
-/* 80D675F8  C8 44 7C 04 */	lfd f2, lit_4337@l(r4)
+/* 80D675F4  3C 80 80 D6 */	lis r4, lit_4337@ha /* 0x80D67C04@ha */
+/* 80D675F8  C8 44 7C 04 */	lfd f2, lit_4337@l(r4)  /* 0x80D67C04@l */
 /* 80D675FC  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80D67600  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80D67604  3C A0 43 30 */	lis r5, 0x4330
 /* 80D67608  90 A1 00 08 */	stw r5, 8(r1)
 /* 80D6760C  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80D67610  EC 00 10 28 */	fsubs f0, f0, f2
-/* 80D67614  3C 80 80 D6 */	lis r4, lit_4003@ha
-/* 80D67618  C0 24 7B E8 */	lfs f1, lit_4003@l(r4)
+/* 80D67614  3C 80 80 D6 */	lis r4, lit_4003@ha /* 0x80D67BE8@ha */
+/* 80D67618  C0 24 7B E8 */	lfs f1, lit_4003@l(r4)  /* 0x80D67BE8@l */
 /* 80D6761C  EC 00 08 28 */	fsubs f0, f0, f1
 /* 80D67620  D0 03 05 88 */	stfs f0, 0x588(r3)
 /* 80D67624  A8 03 05 9C */	lha r0, 0x59c(r3)

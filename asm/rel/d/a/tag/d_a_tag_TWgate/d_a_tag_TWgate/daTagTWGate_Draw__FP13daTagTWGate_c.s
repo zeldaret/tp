@@ -6,7 +6,7 @@ lbl_80D554E4:
 /* 80D554F4  28 00 00 00 */	cmplwi r0, 0
 /* 80D554F8  41 82 00 0C */	beq lbl_80D55504
 /* 80D554FC  80 63 05 68 */	lwz r3, 0x568(r3)
-/* 80D55500  4B 2B BC C0 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 80D55500  4B 2B BC C1 */	bl entryDL__16mDoExt_McaMorfSOFv
 lbl_80D55504:
 /* 80D55504  38 60 00 01 */	li r3, 1
 /* 80D55508  80 01 00 14 */	lwz r0, 0x14(r1)

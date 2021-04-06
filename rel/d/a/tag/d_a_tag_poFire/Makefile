@@ -3,19 +3,20 @@
 #
 
 M733_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire.plf
+M733_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire.lcf
+M733_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire.map
 
 M733_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_poFire/executor.cpp \
-	rel/d/a/tag/d_a_tag_poFire/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire.cpp \
 
 M733_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire.o \
 
 M733_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/libRuntime.PPCEABI.H.a \
 
 M733_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M733_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map733.map\
+	-m _prolog \
+	-lcf $(M733_LDSCRIPT) \
+	-unused -map $(M733_MAP) \
+	-w off \
 
 $(M733_TARGET): $(M733_O_FILES) $(M733_LIBS)
+	@echo [733] creating $(M733_TARGET)
 	@echo $(M733_LIBS) $(M733_O_FILES) > build/M733_ofiles
-	$(LD) -opt_partial $(M733_LDFLAGS) -o $(M733_TARGET) @build/M733_ofiles
+	@python3 tools/lcf.py rel 733 --output $(M733_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M733_LDFLAGS) -o $(M733_TARGET) @build/M733_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_poFire/%.o: rel/d/a/tag/d_a_tag_poFire/%.cpp
+	@echo [733] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M733_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M733_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_poFire/libs/Runtime.PPCEABI.H/Makefile
 

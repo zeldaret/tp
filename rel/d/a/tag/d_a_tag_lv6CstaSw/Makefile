@@ -3,19 +3,20 @@
 #
 
 M727_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw.plf
+M727_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw.lcf
+M727_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw.map
 
 M727_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_lv6CstaSw/executor.cpp \
-	rel/d/a/tag/d_a_tag_lv6CstaSw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_lv6CstaSw/d_a_tag_lv6CstaSw.cpp \
 
 M727_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/d_a_tag_lv6CstaSw.o \
 
 M727_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/libRuntime.PPCEABI.H.a \
 
 M727_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M727_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map727.map\
+	-m _prolog \
+	-lcf $(M727_LDSCRIPT) \
+	-unused -map $(M727_MAP) \
+	-w off \
 
 $(M727_TARGET): $(M727_O_FILES) $(M727_LIBS)
+	@echo [727] creating $(M727_TARGET)
 	@echo $(M727_LIBS) $(M727_O_FILES) > build/M727_ofiles
-	$(LD) -opt_partial $(M727_LDFLAGS) -o $(M727_TARGET) @build/M727_ofiles
+	@python3 tools/lcf.py rel 727 --output $(M727_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M727_LDFLAGS) -o $(M727_TARGET) @build/M727_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv6CstaSw/%.o: rel/d/a/tag/d_a_tag_lv6CstaSw/%.cpp
+	@echo [727] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M727_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_lv6CstaSw/libs/Runtime.PPCEABI.H/Makefile
 

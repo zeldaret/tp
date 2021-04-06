@@ -54,7 +54,7 @@ extern "C" void PSVECScale();
 // Declarations:
 //
 
-/* 8026EC54-8026EC88 0034+00 s=0 e=4 z=0  None .text      Set__8cM3dGAabFPC4cXyzPC4cXyz */
+/* 8026EC54-8026EC88 269594 0034+00 0/0 4/4 0/0 .text            Set__8cM3dGAabFPC4cXyzPC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -64,7 +64,7 @@ asm void cM3dGAab::Set(cXyz const* param_0, cXyz const* param_1) {
 }
 #pragma pop
 
-/* 8026EC88-8026ECD0 0048+00 s=0 e=6 z=0  None .text      CrossY__8cM3dGAabCFPC4cXyz */
+/* 8026EC88-8026ECD0 2695C8 0048+00 0/0 6/6 0/0 .text            CrossY__8cM3dGAabCFPC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,7 +74,7 @@ asm void cM3dGAab::CrossY(cXyz const* param_0) const {
 }
 #pragma pop
 
-/* 8026ECD0-8026ECE4 0014+00 s=0 e=6 z=0  None .text      UnderPlaneYUnder__8cM3dGAabCFf */
+/* 8026ECD0-8026ECE4 269610 0014+00 0/0 6/6 0/0 .text            UnderPlaneYUnder__8cM3dGAabCFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,7 +84,7 @@ asm void cM3dGAab::UnderPlaneYUnder(f32 param_0) const {
 }
 #pragma pop
 
-/* 8026ECE4-8026ECF8 0014+00 s=0 e=6 z=0  None .text      TopPlaneYUnder__8cM3dGAabCFf */
+/* 8026ECE4-8026ECF8 269624 0014+00 0/0 6/6 0/0 .text            TopPlaneYUnder__8cM3dGAabCFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -95,15 +95,13 @@ asm void cM3dGAab::TopPlaneYUnder(f32 param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804551D0-804551D4 0004+00 s=1 e=0 z=0  None .sdata2    @416 */
+/* 804551D0-804551D4 0037D0 0004+00 1/1 0/0 0/0 .sdata2          @416 */
 SECTION_SDATA2 static f32 lit_416 = 1000000000.0f;
 
-/* 804551D4-804551D8 0004+00 s=1 e=0 z=0  None .sdata2    @417 */
+/* 804551D4-804551D8 0037D4 0004+00 1/1 0/0 0/0 .sdata2          @417 */
 SECTION_SDATA2 static f32 lit_417 = -1000000000.0f;
 
-/* 8026ECF8-8026ED1C 0024+00 s=0 e=6 z=0  None .text      ClearForMinMax__8cM3dGAabFv */
-//	8026ECF8: 804551D0 (lit_416)
-//	8026ED08: 804551D4 (lit_417)
+/* 8026ECF8-8026ED1C 269638 0024+00 0/0 6/6 0/0 .text            ClearForMinMax__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,9 +111,7 @@ asm void cM3dGAab::ClearForMinMax() {
 }
 #pragma pop
 
-/* 8026ED1C-8026ED60 0044+00 s=1 e=3 z=0  None .text      SetMinMax__8cM3dGAabFRC4cXyz */
-//	8026ED38: 8026EDA4 (SetMin__8cM3dGAabFRC4cXyz)
-//	8026ED44: 8026EDE4 (SetMax__8cM3dGAabFRC4cXyz)
+/* 8026ED1C-8026ED60 26965C 0044+00 1/1 3/3 0/0 .text            SetMinMax__8cM3dGAabFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,9 +121,7 @@ asm void cM3dGAab::SetMinMax(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 8026ED60-8026EDA4 0044+00 s=0 e=2 z=0  None .text      SetMinMax__8cM3dGAabFRC8cM3dGAab */
-//	8026ED7C: 8026ED1C (SetMinMax__8cM3dGAabFRC4cXyz)
-//	8026ED88: 8026ED1C (SetMinMax__8cM3dGAabFRC4cXyz)
+/* 8026ED60-8026EDA4 2696A0 0044+00 0/0 2/2 0/0 .text            SetMinMax__8cM3dGAabFRC8cM3dGAab */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,7 +131,7 @@ asm void cM3dGAab::SetMinMax(cM3dGAab const& param_0) {
 }
 #pragma pop
 
-/* 8026EDA4-8026EDE4 0040+00 s=1 e=1 z=0  None .text      SetMin__8cM3dGAabFRC4cXyz */
+/* 8026EDA4-8026EDE4 2696E4 0040+00 1/1 1/1 0/0 .text            SetMin__8cM3dGAabFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,7 +141,7 @@ asm void cM3dGAab::SetMin(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 8026EDE4-8026EE24 0040+00 s=1 e=1 z=0  None .text      SetMax__8cM3dGAabFRC4cXyz */
+/* 8026EDE4-8026EE24 269724 0040+00 1/1 1/1 0/0 .text            SetMax__8cM3dGAabFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,17 +152,14 @@ asm void cM3dGAab::SetMax(cXyz const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804551D8-804551E0 0004+04 s=1 e=0 z=0  None .sdata2    @493 */
+/* 804551D8-804551E0 0037D8 0004+04 1/1 0/0 0/0 .sdata2          @493 */
 SECTION_SDATA2 static f32 lit_493[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 8026EE24-8026EE68 0044+00 s=0 e=1 z=0  None .text      CalcCenter__8cM3dGAabCFP4cXyz */
-//	8026EE40: 80347090 (PSVECAdd)
-//	8026EE4C: 804551D8 (lit_493)
-//	8026EE50: 803470D8 (PSVECScale)
+/* 8026EE24-8026EE68 269764 0044+00 0/0 1/1 0/0 .text            CalcCenter__8cM3dGAabCFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,7 +169,7 @@ asm void cM3dGAab::CalcCenter(cXyz* param_0) const {
 }
 #pragma pop
 
-/* 8026EE68-8026EEB4 004C+00 s=0 e=1 z=0  None .text      PlusR__8cM3dGAabFf */
+/* 8026EE68-8026EEB4 2697A8 004C+00 0/0 1/1 0/0 .text            PlusR__8cM3dGAabFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

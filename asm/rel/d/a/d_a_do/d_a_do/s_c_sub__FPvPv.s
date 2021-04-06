@@ -4,7 +4,7 @@ lbl_8066B774:
 /* 8066B77C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8066B780  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8066B784  7C 7F 1B 78 */	mr r31, r3
-/* 8066B788  4B 9A D5 58 */	b fopAc_IsActor__FPv
+/* 8066B788  4B 9A D5 59 */	bl fopAc_IsActor__FPv
 /* 8066B78C  2C 03 00 00 */	cmpwi r3, 0
 /* 8066B790  41 82 00 18 */	beq lbl_8066B7A8
 /* 8066B794  A8 1F 00 08 */	lha r0, 8(r31)

@@ -11,8 +11,8 @@ lbl_804709DC:
 /* 80470A00  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 80470A04  7D 89 03 A6 */	mtctr r12
 /* 80470A08  4E 80 04 21 */	bctrl 
-/* 80470A0C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha
-/* 80470A10  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)
+/* 80470A0C  3C 60 80 45 */	lis r3, struct_80450D64+0x0@ha /* 0x80450D64@ha */
+/* 80470A10  88 03 0D 64 */	lbz r0, struct_80450D64+0x0@l(r3)  /* 0x80450D64@l */
 /* 80470A14  7C 00 07 75 */	extsb. r0, r0
 /* 80470A18  41 82 00 10 */	beq lbl_80470A28
 /* 80470A1C  80 1F 04 9C */	lwz r0, 0x49c(r31)
@@ -25,11 +25,11 @@ lbl_80470A28:
 /* 80470A34  D0 1F 0D FC */	stfs f0, 0xdfc(r31)
 /* 80470A38  C0 1F 04 D8 */	lfs f0, 0x4d8(r31)
 /* 80470A3C  D0 1F 0E 00 */	stfs f0, 0xe00(r31)
-/* 80470A40  3C 60 80 48 */	lis r3, lit_4707@ha
-/* 80470A44  C0 03 A3 D0 */	lfs f0, lit_4707@l(r3)
+/* 80470A40  3C 60 80 48 */	lis r3, lit_4707@ha /* 0x8047A3D0@ha */
+/* 80470A44  C0 03 A3 D0 */	lfs f0, lit_4707@l(r3)  /* 0x8047A3D0@l */
 /* 80470A48  D0 1F 0E 04 */	stfs f0, 0xe04(r31)
 /* 80470A4C  38 7F 0D F8 */	addi r3, r31, 0xdf8
-/* 80470A50  4B D3 6D C4 */	b dKy_dalkmist_inf_set__FP18DALKMIST_INFLUENCE
+/* 80470A50  4B D3 6D C5 */	bl dKy_dalkmist_inf_set__FP18DALKMIST_INFLUENCE
 /* 80470A54  38 60 00 01 */	li r3, 1
 /* 80470A58  98 7F 0E 0C */	stb r3, 0xe0c(r31)
 /* 80470A5C  80 1F 04 9C */	lwz r0, 0x49c(r31)

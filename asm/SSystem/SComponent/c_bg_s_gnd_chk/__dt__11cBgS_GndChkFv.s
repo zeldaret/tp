@@ -7,8 +7,8 @@ lbl_80267C94:
 /* 80267CA8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80267CAC  7C 9F 23 78 */	mr r31, r4
 /* 80267CB0  41 82 00 40 */	beq lbl_80267CF0
-/* 80267CB4  3C 60 80 3C */	lis r3, __vt__11cBgS_GndChk@ha
-/* 80267CB8  38 63 3F 90 */	addi r3, r3, __vt__11cBgS_GndChk@l
+/* 80267CB4  3C 60 80 3C */	lis r3, __vt__11cBgS_GndChk@ha /* 0x803C3F90@ha */
+/* 80267CB8  38 63 3F 90 */	addi r3, r3, __vt__11cBgS_GndChk@l /* 0x803C3F90@l */
 /* 80267CBC  90 7E 00 10 */	stw r3, 0x10(r30)
 /* 80267CC0  38 03 00 0C */	addi r0, r3, 0xc
 /* 80267CC4  90 1E 00 20 */	stw r0, 0x20(r30)

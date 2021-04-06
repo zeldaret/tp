@@ -9,12 +9,12 @@ lbl_806683C0:
 /* 806683DC  DB A1 00 40 */	stfd f29, 0x40(r1)
 /* 806683E0  F3 A1 00 48 */	psq_st f29, 72(r1), 0, 0 /* qr0 */
 /* 806683E4  39 61 00 40 */	addi r11, r1, 0x40
-/* 806683E8  4B CF 9D E0 */	b _savegpr_24
+/* 806683E8  4B CF 9D E1 */	bl _savegpr_24
 /* 806683EC  7C 7F 1B 78 */	mr r31, r3
-/* 806683F0  3C 60 80 67 */	lis r3, lit_1109@ha
-/* 806683F4  3B 83 F2 78 */	addi r28, r3, lit_1109@l
-/* 806683F8  3C 60 80 67 */	lis r3, lit_3662@ha
-/* 806683FC  3B A3 ED E8 */	addi r29, r3, lit_3662@l
+/* 806683F0  3C 60 80 67 */	lis r3, lit_1109@ha /* 0x8066F278@ha */
+/* 806683F4  3B 83 F2 78 */	addi r28, r3, lit_1109@l /* 0x8066F278@l */
+/* 806683F8  3C 60 80 67 */	lis r3, lit_3662@ha /* 0x8066EDE8@ha */
+/* 806683FC  3B A3 ED E8 */	addi r29, r3, lit_3662@l /* 0x8066EDE8@l */
 /* 80668400  38 C0 00 00 */	li r6, 0
 /* 80668404  90 DC 00 80 */	stw r6, 0x80(r28)
 /* 80668408  7C C3 33 78 */	mr r3, r6
@@ -27,10 +27,10 @@ lbl_8066841C:
 /* 80668420  7C C4 19 2E */	stwx r6, r4, r3
 /* 80668424  38 63 00 04 */	addi r3, r3, 4
 /* 80668428  42 00 FF F4 */	bdnz lbl_8066841C
-/* 8066842C  3C 60 80 67 */	lis r3, s_w_sub__FPvPv@ha
-/* 80668430  38 63 83 3C */	addi r3, r3, s_w_sub__FPvPv@l
+/* 8066842C  3C 60 80 67 */	lis r3, s_w_sub__FPvPv@ha /* 0x8066833C@ha */
+/* 80668430  38 63 83 3C */	addi r3, r3, s_w_sub__FPvPv@l /* 0x8066833C@l */
 /* 80668434  7F E4 FB 78 */	mr r4, r31
-/* 80668438  4B 9B 8F 00 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80668438  4B 9B 8F 01 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8066843C  C3 FD 00 2C */	lfs f31, 0x2c(r29)
 /* 80668440  80 1C 00 80 */	lwz r0, 0x80(r28)
 /* 80668444  2C 00 00 00 */	cmpwi r0, 0
@@ -121,7 +121,7 @@ lbl_8066855C:
 /* 8066856C  E3 A1 00 48 */	psq_l f29, 72(r1), 0, 0 /* qr0 */
 /* 80668570  CB A1 00 40 */	lfd f29, 0x40(r1)
 /* 80668574  39 61 00 40 */	addi r11, r1, 0x40
-/* 80668578  4B CF 9C 9C */	b _restgpr_24
+/* 80668578  4B CF 9C 9D */	bl _restgpr_24
 /* 8066857C  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80668580  7C 08 03 A6 */	mtlr r0
 /* 80668584  38 21 00 70 */	addi r1, r1, 0x70

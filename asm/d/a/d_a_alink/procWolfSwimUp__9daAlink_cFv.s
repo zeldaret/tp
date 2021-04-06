@@ -7,8 +7,8 @@ lbl_80138484:
 /* 80138498  7C 7E 1B 78 */	mr r30, r3
 /* 8013849C  3B FE 1F D0 */	addi r31, r30, 0x1fd0
 /* 801384A0  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 801384A4  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlSwim_c0@ha
-/* 801384A8  38 84 F8 B4 */	addi r4, r4, m__20daAlinkHIO_wlSwim_c0@l
+/* 801384A4  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 801384A8  38 84 F8 B4 */	addi r4, r4, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 801384AC  C0 44 00 54 */	lfs f2, 0x54(r4)
 /* 801384B0  4B F7 B4 75 */	bl setNormalSpeedF__9daAlink_cFff
 /* 801384B4  7F E3 FB 78 */	mr r3, r31
@@ -25,8 +25,8 @@ lbl_801384D4:
 /* 801384DC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801384E0  40 81 00 28 */	ble lbl_80138508
 /* 801384E4  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 801384E8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha
-/* 801384EC  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l
+/* 801384E8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 801384EC  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 801384F0  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 801384F4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801384F8  40 81 00 10 */	ble lbl_80138508

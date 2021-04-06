@@ -11,10 +11,10 @@ lbl_80BE4D98:
 /* 80BE4DBC  3C 04 00 01 */	addis r0, r4, 1
 /* 80BE4DC0  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80BE4DC4  40 82 00 30 */	bne lbl_80BE4DF4
-/* 80BE4DC8  3C 60 80 BE */	lis r3, searchTornado2__FPvPv@ha
-/* 80BE4DCC  38 63 4C 38 */	addi r3, r3, searchTornado2__FPvPv@l
+/* 80BE4DC8  3C 60 80 BE */	lis r3, searchTornado2__FPvPv@ha /* 0x80BE4C38@ha */
+/* 80BE4DCC  38 63 4C 38 */	addi r3, r3, searchTornado2__FPvPv@l /* 0x80BE4C38@l */
 /* 80BE4DD0  7F E4 FB 78 */	mr r4, r31
-/* 80BE4DD4  4B 43 C5 64 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80BE4DD4  4B 43 C5 65 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80BE4DD8  28 03 00 00 */	cmplwi r3, 0
 /* 80BE4DDC  41 82 00 18 */	beq lbl_80BE4DF4
 /* 80BE4DE0  41 82 00 0C */	beq lbl_80BE4DEC

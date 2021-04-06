@@ -6,25 +6,25 @@ lbl_80AEFC80:
 /* 80AEFC90  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80AEFC94  7C 7E 1B 78 */	mr r30, r3
 /* 80AEFC98  3B E0 00 00 */	li r31, 0
-/* 80AEFC9C  3C 60 80 AF */	lis r3, l_bmdGetParamList@ha
-/* 80AEFCA0  84 83 28 A8 */	lwzu r4, l_bmdGetParamList@l(r3)
+/* 80AEFC9C  3C 60 80 AF */	lis r3, l_bmdGetParamList@ha /* 0x80AF28A8@ha */
+/* 80AEFCA0  84 83 28 A8 */	lwzu r4, l_bmdGetParamList@l(r3)  /* 0x80AF28A8@l */
 /* 80AEFCA4  2C 04 00 00 */	cmpwi r4, 0
 /* 80AEFCA8  41 80 00 34 */	blt lbl_80AEFCDC
 /* 80AEFCAC  80 03 00 04 */	lwz r0, 4(r3)
 /* 80AEFCB0  54 00 10 3A */	slwi r0, r0, 2
-/* 80AEFCB4  3C 60 80 AF */	lis r3, l_resNames@ha
-/* 80AEFCB8  38 63 29 30 */	addi r3, r3, l_resNames@l
+/* 80AEFCB4  3C 60 80 AF */	lis r3, l_resNames@ha /* 0x80AF2930@ha */
+/* 80AEFCB8  38 63 29 30 */	addi r3, r3, l_resNames@l /* 0x80AF2930@l */
 /* 80AEFCBC  7C 63 00 2E */	lwzx r3, r3, r0
-/* 80AEFCC0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80AEFCC4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80AEFCC0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AEFCC4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AEFCC8  3C A5 00 02 */	addis r5, r5, 2
 /* 80AEFCCC  38 C0 00 80 */	li r6, 0x80
 /* 80AEFCD0  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80AEFCD4  4B 54 C6 18 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80AEFCD4  4B 54 C6 19 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80AEFCD8  7C 7F 1B 78 */	mr r31, r3
 lbl_80AEFCDC:
 /* 80AEFCDC  38 60 00 58 */	li r3, 0x58
-/* 80AEFCE0  4B 7D EF 6C */	b __nw__FUl
+/* 80AEFCE0  4B 7D EF 6D */	bl __nw__FUl
 /* 80AEFCE4  7C 60 1B 79 */	or. r0, r3, r3
 /* 80AEFCE8  41 82 00 4C */	beq lbl_80AEFD34
 /* 80AEFCEC  38 1E 0B 48 */	addi r0, r30, 0xb48
@@ -39,11 +39,11 @@ lbl_80AEFCDC:
 /* 80AEFD10  38 C0 00 00 */	li r6, 0
 /* 80AEFD14  38 E0 00 00 */	li r7, 0
 /* 80AEFD18  39 00 FF FF */	li r8, -1
-/* 80AEFD1C  3D 20 80 AF */	lis r9, lit_4448@ha
-/* 80AEFD20  C0 29 27 64 */	lfs f1, lit_4448@l(r9)
+/* 80AEFD1C  3D 20 80 AF */	lis r9, lit_4448@ha /* 0x80AF2764@ha */
+/* 80AEFD20  C0 29 27 64 */	lfs f1, lit_4448@l(r9)  /* 0x80AF2764@l */
 /* 80AEFD24  39 20 00 00 */	li r9, 0
 /* 80AEFD28  39 40 FF FF */	li r10, -1
-/* 80AEFD2C  4B 52 0A A4 */	b __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
+/* 80AEFD2C  4B 52 0A A5 */	bl __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 /* 80AEFD30  7C 60 1B 78 */	mr r0, r3
 lbl_80AEFD34:
 /* 80AEFD34  90 1E 05 68 */	stw r0, 0x568(r30)
@@ -53,7 +53,7 @@ lbl_80AEFD34:
 /* 80AEFD44  80 03 00 04 */	lwz r0, 4(r3)
 /* 80AEFD48  28 00 00 00 */	cmplwi r0, 0
 /* 80AEFD4C  40 82 00 10 */	bne lbl_80AEFD5C
-/* 80AEFD50  4B 52 15 C0 */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 80AEFD50  4B 52 15 C1 */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 80AEFD54  38 00 00 00 */	li r0, 0
 /* 80AEFD58  90 1E 05 68 */	stw r0, 0x568(r30)
 lbl_80AEFD5C:
@@ -65,8 +65,8 @@ lbl_80AEFD5C:
 lbl_80AEFD70:
 /* 80AEFD70  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80AEFD74  38 C0 00 00 */	li r6, 0
-/* 80AEFD78  3C 60 80 AF */	lis r3, ctrlJointCallBack__16daNpc_SoldierA_cFP8J3DJointi@ha
-/* 80AEFD7C  38 83 01 30 */	addi r4, r3, ctrlJointCallBack__16daNpc_SoldierA_cFP8J3DJointi@l
+/* 80AEFD78  3C 60 80 AF */	lis r3, ctrlJointCallBack__16daNpc_SoldierA_cFP8J3DJointi@ha /* 0x80AF0130@ha */
+/* 80AEFD7C  38 83 01 30 */	addi r4, r3, ctrlJointCallBack__16daNpc_SoldierA_cFP8J3DJointi@l /* 0x80AF0130@l */
 /* 80AEFD80  48 00 00 18 */	b lbl_80AEFD98
 lbl_80AEFD84:
 /* 80AEFD84  80 7F 00 28 */	lwz r3, 0x28(r31)
@@ -82,32 +82,32 @@ lbl_80AEFD98:
 /* 80AEFDA8  93 C5 00 14 */	stw r30, 0x14(r5)
 /* 80AEFDAC  7F C3 F3 78 */	mr r3, r30
 /* 80AEFDB0  38 80 00 04 */	li r4, 4
-/* 80AEFDB4  3C A0 80 AF */	lis r5, lit_4449@ha
-/* 80AEFDB8  C0 25 27 68 */	lfs f1, lit_4449@l(r5)
+/* 80AEFDB4  3C A0 80 AF */	lis r5, lit_4449@ha /* 0x80AF2768@ha */
+/* 80AEFDB8  C0 25 27 68 */	lfs f1, lit_4449@l(r5)  /* 0x80AF2768@l */
 /* 80AEFDBC  81 9E 0B 44 */	lwz r12, 0xb44(r30)
 /* 80AEFDC0  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 80AEFDC4  7D 89 03 A6 */	mtctr r12
 /* 80AEFDC8  4E 80 04 21 */	bctrl 
-/* 80AEFDCC  3C 60 80 AF */	lis r3, l_bmdGetParamList@ha
-/* 80AEFDD0  38 83 28 A8 */	addi r4, r3, l_bmdGetParamList@l
+/* 80AEFDCC  3C 60 80 AF */	lis r3, l_bmdGetParamList@ha /* 0x80AF28A8@ha */
+/* 80AEFDD0  38 83 28 A8 */	addi r4, r3, l_bmdGetParamList@l /* 0x80AF28A8@l */
 /* 80AEFDD4  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 80AEFDD8  54 00 10 3A */	slwi r0, r0, 2
-/* 80AEFDDC  3C 60 80 AF */	lis r3, l_resNames@ha
-/* 80AEFDE0  38 63 29 30 */	addi r3, r3, l_resNames@l
+/* 80AEFDDC  3C 60 80 AF */	lis r3, l_resNames@ha /* 0x80AF2930@ha */
+/* 80AEFDE0  38 63 29 30 */	addi r3, r3, l_resNames@l /* 0x80AF2930@l */
 /* 80AEFDE4  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80AEFDE8  80 84 00 08 */	lwz r4, 8(r4)
-/* 80AEFDEC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80AEFDF0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80AEFDEC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AEFDF0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AEFDF4  3C A5 00 02 */	addis r5, r5, 2
 /* 80AEFDF8  38 C0 00 80 */	li r6, 0x80
 /* 80AEFDFC  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80AEFE00  4B 54 C4 EC */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80AEFE00  4B 54 C4 ED */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80AEFE04  28 03 00 00 */	cmplwi r3, 0
 /* 80AEFE08  41 82 00 28 */	beq lbl_80AEFE30
 /* 80AEFE0C  3C 80 00 08 */	lis r4, 8
 /* 80AEFE10  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80AEFE14  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80AEFE18  4B 52 4E 3C */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80AEFE18  4B 52 4E 3D */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80AEFE1C  90 7E 0B D8 */	stw r3, 0xbd8(r30)
 /* 80AEFE20  80 7E 0B D8 */	lwz r3, 0xbd8(r30)
 /* 80AEFE24  30 03 FF FF */	addic r0, r3, -1

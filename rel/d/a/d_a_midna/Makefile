@@ -3,18 +3,16 @@
 #
 
 M51_TARGET := $(BUILD_DIR)/rel/d/a/d_a_midna.plf
+M51_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_midna.lcf
+M51_MAP := $(BUILD_DIR)/rel/d/a/d_a_midna.map
 
 M51_CPP_FILES := \
-	rel/d/a/d_a_midna/executor.cpp \
-	rel/d/a/d_a_midna/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_midna/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_midna/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_midna/d_a_midna.cpp \
 
 M51_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_midna/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_midna/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_midna/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_midna/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_midna/d_a_midna.o \
 
@@ -31,15 +29,21 @@ M51_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map51.map\
+	-m _prolog \
+	-lcf $(M51_LDSCRIPT) \
+	-unused -map $(M51_MAP) \
+	-w off \
 
 $(M51_TARGET): $(M51_O_FILES) $(M51_LIBS)
+	@echo [ 51] creating $(M51_TARGET)
 	@echo $(M51_LIBS) $(M51_O_FILES) > build/M51_ofiles
-	$(LD) -opt_partial $(M51_LDFLAGS) -o $(M51_TARGET) @build/M51_ofiles
+	@python3 tools/lcf.py rel 51 --output $(M51_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M51_LDFLAGS) -o $(M51_TARGET) @build/M51_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_midna/%.o: rel/d/a/d_a_midna/%.cpp
+	@echo [ 51] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M51_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

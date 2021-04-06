@@ -3,19 +3,19 @@ lbl_80959910:
 /* 80959914  7C 08 02 A6 */	mflr r0
 /* 80959918  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8095991C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80959920  4B A0 88 BC */	b _savegpr_29
+/* 80959920  4B A0 88 BD */	bl _savegpr_29
 /* 80959924  7C 7F 1B 78 */	mr r31, r3
-/* 80959928  4B 7F 8F A0 */	b initialize__8daNpcF_cFv
+/* 80959928  4B 7F 8F A1 */	bl initialize__8daNpcF_cFv
 /* 8095992C  80 7F 0B E0 */	lwz r3, 0xbe0(r31)
-/* 80959930  4B 7F 6E 08 */	b initialize__15daNpcF_MatAnm_cFv
+/* 80959930  4B 7F 6E 09 */	bl initialize__15daNpcF_MatAnm_cFv
 /* 80959934  38 7F 0B E4 */	addi r3, r31, 0xbe4
-/* 80959938  4B 7F 77 00 */	b initialize__15daNpcF_Lookat_cFv
+/* 80959938  4B 7F 77 01 */	bl initialize__15daNpcF_Lookat_cFv
 /* 8095993C  3B A0 00 00 */	li r29, 0
 /* 80959940  3B C0 00 00 */	li r30, 0
 lbl_80959944:
 /* 80959944  38 7E 0C 80 */	addi r3, r30, 0xc80
 /* 80959948  7C 7F 1A 14 */	add r3, r31, r3
-/* 8095994C  4B 7F 6D 64 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 8095994C  4B 7F 6D 65 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 80959950  3B BD 00 01 */	addi r29, r29, 1
 /* 80959954  2C 1D 00 06 */	cmpwi r29, 6
 /* 80959958  3B DE 00 08 */	addi r30, r30, 8
@@ -23,8 +23,8 @@ lbl_80959944:
 /* 80959960  38 A0 00 00 */	li r5, 0
 /* 80959964  90 BF 0F 50 */	stw r5, 0xf50(r31)
 /* 80959968  90 BF 0F 54 */	stw r5, 0xf54(r31)
-/* 8095996C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80959970  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8095996C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80959970  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80959974  80 64 00 00 */	lwz r3, 0(r4)
 /* 80959978  80 04 00 04 */	lwz r0, 4(r4)
 /* 8095997C  90 7F 0F 30 */	stw r3, 0xf30(r31)
@@ -34,8 +34,8 @@ lbl_80959944:
 /* 8095998C  38 80 FF FF */	li r4, -1
 /* 80959990  B0 9F 0F 5A */	sth r4, 0xf5a(r31)
 /* 80959994  B0 BF 0F 5C */	sth r5, 0xf5c(r31)
-/* 80959998  3C 60 80 96 */	lis r3, m__16daNpcAsh_Param_c@ha
-/* 8095999C  38 63 D6 40 */	addi r3, r3, m__16daNpcAsh_Param_c@l
+/* 80959998  3C 60 80 96 */	lis r3, m__16daNpcAsh_Param_c@ha /* 0x8095D640@ha */
+/* 8095999C  38 63 D6 40 */	addi r3, r3, m__16daNpcAsh_Param_c@l /* 0x8095D640@l */
 /* 809599A0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 809599A4  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 809599A8  C0 1F 04 A8 */	lfs f0, 0x4a8(r31)
@@ -78,8 +78,8 @@ lbl_80959944:
 /* 80959A3C  B0 1F 08 F8 */	sth r0, 0x8f8(r31)
 /* 80959A40  A8 1F 08 F4 */	lha r0, 0x8f4(r31)
 /* 80959A44  B0 1F 08 FA */	sth r0, 0x8fa(r31)
-/* 80959A48  3C 60 80 96 */	lis r3, lit_4301@ha
-/* 80959A4C  C0 03 D6 C0 */	lfs f0, lit_4301@l(r3)
+/* 80959A48  3C 60 80 96 */	lis r3, lit_4301@ha /* 0x8095D6C0@ha */
+/* 80959A4C  C0 03 D6 C0 */	lfs f0, lit_4301@l(r3)  /* 0x8095D6C0@l */
 /* 80959A50  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80959A54  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 80959A58  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -108,8 +108,8 @@ lbl_80959AA8:
 /* 80959AA8  88 1F 0F 60 */	lbz r0, 0xf60(r31)
 /* 80959AAC  28 00 00 00 */	cmplwi r0, 0
 /* 80959AB0  40 82 00 34 */	bne lbl_80959AE4
-/* 80959AB4  3C 60 80 96 */	lis r3, lit_4605@ha
-/* 80959AB8  38 83 DB 8C */	addi r4, r3, lit_4605@l
+/* 80959AB4  3C 60 80 96 */	lis r3, lit_4605@ha /* 0x8095DB8C@ha */
+/* 80959AB8  38 83 DB 8C */	addi r4, r3, lit_4605@l /* 0x8095DB8C@l */
 /* 80959ABC  80 64 00 00 */	lwz r3, 0(r4)
 /* 80959AC0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80959AC4  90 61 00 14 */	stw r3, 0x14(r1)
@@ -121,8 +121,8 @@ lbl_80959AA8:
 /* 80959ADC  48 00 00 4D */	bl setAction__10daNpcAsh_cFM10daNpcAsh_cFPCvPvPv_b
 /* 80959AE0  48 00 00 30 */	b lbl_80959B10
 lbl_80959AE4:
-/* 80959AE4  3C 60 80 96 */	lis r3, lit_4608@ha
-/* 80959AE8  38 83 DB 98 */	addi r4, r3, lit_4608@l
+/* 80959AE4  3C 60 80 96 */	lis r3, lit_4608@ha /* 0x8095DB98@ha */
+/* 80959AE8  38 83 DB 98 */	addi r4, r3, lit_4608@l /* 0x8095DB98@l */
 /* 80959AEC  80 64 00 00 */	lwz r3, 0(r4)
 /* 80959AF0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80959AF4  90 61 00 08 */	stw r3, 8(r1)
@@ -134,7 +134,7 @@ lbl_80959AE4:
 /* 80959B0C  48 00 00 1D */	bl setAction__10daNpcAsh_cFM10daNpcAsh_cFPCvPvPv_b
 lbl_80959B10:
 /* 80959B10  39 61 00 30 */	addi r11, r1, 0x30
-/* 80959B14  4B A0 87 14 */	b _restgpr_29
+/* 80959B14  4B A0 87 15 */	bl _restgpr_29
 /* 80959B18  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80959B1C  7C 08 03 A6 */	mtlr r0
 /* 80959B20  38 21 00 30 */	addi r1, r1, 0x30

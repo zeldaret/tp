@@ -13,6 +13,12 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 80112C80 */ csXyz();
+    /* 8026745C */ void operator+=(csXyz&);
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -22,12 +28,6 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
-};
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
 };
 
 struct mDoMtx_stack_c {
@@ -44,13 +44,13 @@ struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
-struct J3DAnmTexPattern {};
-
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmColor {};
 
 struct J3DAnmTextureSRTKey {};
+
+struct J3DAnmTevRegKey {};
+
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -116,21 +116,21 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct J3DAnmTransformKey {};
-
-struct _GXColorS10 {};
-
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct dCcD_GObjInf {
+    /* 80084460 */ void ChkTgHit();
+};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
 };
 
-struct dCcD_GObjInf {
-    /* 80084460 */ void ChkTgHit();
-};
+struct _GXColorS10 {};
+
+struct J3DAnmTransformKey {};
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -714,56 +714,6 @@ struct J3DMatColorAnm {
 // Forward References:
 //
 
-static void daNpcT_addIdx(int, int, u16&, int);
-static void daNpcT_subIdx(int, int, u16&, int);
-static void daNpcT_incIdx(int, u16&, int, int);
-static void daNpcT_decIdx(int, u16&, int, int);
-static void daNpcT_chkPassed(cXyz, dPnt*, u16, u16, int, int, cXyz*, int*, int*);
-void daNpcT_chkActorInScreen(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32, int);
-void daNpcT_chkPointInArea(cXyz, cXyz, cXyz, s16, int);
-void daNpcT_getPlayerInfoFromPlayerList(int, int, cXyz*, csXyz*);
-void daNpcT_chkDoBtnIsSpeak(fopAc_ac_c*);
-void daNpcT_judgeRace(dPath*, fopAc_ac_c**, daNpcT_pntData_c*, int, int*);
-void daNpcT_getDistTableIdx(int, int);
-void daNpcT_onEvtBit(u32);
-void daNpcT_offEvtBit(u32);
-void daNpcT_chkEvtBit(u32);
-void daNpcT_onTmpBit(u32);
-void daNpcT_offTmpBit(u32);
-void daNpcT_chkTmpBit(u32);
-void cLib_calcTimer__template1(s16*);
-void cLib_calcTimer__template2(int*);
-void cLib_getRndValue__template0(int, int);
-static void daBaseNpc_addIdx(int, int, u16*, int);
-static void daBaseNpc_subIdx(int, int, u16*, int);
-static void daBaseNpc_incIdx(int, u16*, int, int);
-static void daBaseNpc_decIdx(int, u16*, int, int);
-static void daNpcBase_BBasis(int, int, int, int*);
-static void CheckCreateHeap(fopAc_ac_c*);
-static void daBaseNpc_PntVsLineSegmentLengthSquare2D(f32, f32, f32, f32, f32, f32, f32*, f32*,
-                                                     f32*);
-static void daBaseNpc_putNurbs(dPnt*, int, int, dPnt*, int);
-static void daBaseNpc_chkPnt(cXyz, dPnt*, u16, u16, int, int);
-static void daBaseNpc_getGroundAngle(cBgS_PolyInfo*, s16);
-static void daNpcF_addIdx(int, int, u16&, int);
-static void daNpcF_subIdx(int, int, u16&, int);
-static void daNpcF_incIdx(int, u16&, int, int);
-static void daNpcF_decIdx(int, u16&, int, int);
-void daNpcF_pntVsLineSegmentLengthSquare2D(f32, f32, f32, f32, f32, f32, f32*, f32*, f32*);
-static bool daNpcF_putNurbs(dPnt*, int, int, dPnt*, int);
-void daNpcF_chkPassed(cXyz, dPnt*, u16, u16, int, int);
-void daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);
-void daNpcF_chkEvtBit(u32);
-void daNpcF_onEvtBit(u32);
-void daNpcF_chkTmpBit(u32);
-void daNpcF_onTmpBit(u32);
-void daNpcF_offTmpBit(u32);
-void daNpcF_getPlayerInfoFromPlayerList(int, int, cXyz&, csXyz&);
-void daNpcF_chkDoBtnEqSpeak(fopAc_ac_c*);
-void daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
-void daNpcF_getDistTableIdx(int, int);
-void daNpcF_clearMessageTmpBit();
-
 extern "C" void initialize__18daNpcT_ActorMngr_cFv();
 extern "C" void entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c();
 extern "C" void remove__18daNpcT_ActorMngr_cFv();
@@ -911,9 +861,9 @@ extern "C" void __dt__22daNpcT_MotionSeqMngr_cFv();
 extern "C" void __dt__18daNpcT_ActorMngr_cFv();
 extern "C" void __dt__15daNpcT_JntAnm_cFv();
 extern "C" void __dt__15daNpcT_MatAnm_cFv();
-extern "C" void func_8014D32C();
-extern "C" void func_8014D348();
-extern "C" void func_8014D364();
+extern "C" void func_8014D32C(s16*);
+extern "C" void func_8014D348(int*);
+extern "C" void func_8014D364(int, int);
 extern "C" void __sinit_d_a_npc_cpp();
 extern "C" static void daBaseNpc_addIdx__FiiPUsi();
 extern "C" static void daBaseNpc_subIdx__FiiPUsi();
@@ -1109,86 +1059,12 @@ extern "C" bool ToBack__20daNpcF_MoveBgActor_cFv();
 extern "C" bool setExpressionBtp__8daNpcF_cFi();
 extern "C" void __dt__15daNpcF_MatAnm_cFv();
 extern "C" void __dt__23daBaseNpc_moveBgActor_cFv();
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
-extern "C" extern u8 const mCcDObj__11daBaseNpc_c[48];
-extern "C" extern u8 const mCcDObjInfo__8daNpcF_c[48];
 extern "C" extern char const* const d_a_d_a_npc__stringBase0;
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern u8 mCcDSph__8daNpcT_c[64];
-extern "C" extern u8 mCcDCyl__11daBaseNpc_c[68];
-extern "C" extern u8 mCcDSph__11daBaseNpc_c[64];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern u8 mCcDSph__8daNpcF_c[64];
-extern "C" extern void* __vt__18daNpcF_ActorMngr_c[3];
-extern "C" extern void* __vt__20daNpcF_MoveBgActor_c[26];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__23daBaseNpc_moveBgActor_c[25];
-extern "C" extern void* __vt__11daBaseNpc_c[17 + 9 /* padding */];
-extern "C" extern void* __vt__18daBaseNpc_lookat_c[3 + 12 /* padding */];
-extern "C" extern void* __vt__16daBaseNpc_path_c[3];
-extern "C" extern void* __vt__18daBaseNpc_matAnm_c[4];
-extern "C" extern void* __vt__18daBaseNpc_acMngr_c[3];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__22daNpcT_MotionSeqMngr_c[3];
-extern "C" extern void* __vt__18daNpcT_ActorMngr_c[3];
-extern "C" extern void* __vt__15daNpcT_JntAnm_c[3];
-extern "C" extern void* __vt__16daNpcT_Hermite_c[3];
-extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
-extern "C" extern u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
 extern "C" extern u8 data_80450FF8[8];
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotS(f32 (*)[4], s16, s16, s16);
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoMtx_XrotS(f32 (*)[4], s16);
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoLib_project(Vec*, Vec*);
-void fopAc_IsActor(void*);
-void fopAcM_SearchByID(unsigned int, fopAc_ac_c**);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_posMoveF(fopAc_ac_c*, cXyz const*);
-void fopAcM_searchActorAngleY(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_searchActorDistance(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_searchActorDistanceXZ(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_orderChangeEventId(fopAc_ac_c*, s16, u16, u16);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void fopAcM_setEffectMtx(fopAc_ac_c const*, J3DModelData const*);
-void fopAcM_getPolygonAngle(cBgS_PolyInfo const&, s16);
-void fopAcM_getPolygonAngle(cM3dGPla const*, s16);
-void fopKyM_create(s16, int, cXyz*, cXyz*, int (*)(void*));
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void dComIfGd_setSimpleShadow(cXyz*, f32, f32, cBgS_PolyInfo&, s16, f32, _GXTexObj*);
-void dComIfGd_setShadow(u32, s8, J3DModel*, cXyz*, f32, f32, f32, f32, cBgS_PolyInfo&,
-                        dKy_tevstr_c*, s16, f32, _GXTexObj*);
-void dComIfGs_wolfeye_effect_check();
-void dPath_GetRoomPath(int, int);
-void dKy_pol_sound_get(cBgS_PolyInfo const*);
-void dKy_darkworld_check();
-void cM_rad2s(f32);
-void cM_atan2s(f32, f32);
-void cM_rnd();
-void cM_rndF(f32);
-void cBgW_CheckBGround(f32);
-void cM3d_Len2dSqPntAndSegLine(f32, f32, f32, f32, f32, f32, f32*, f32*, f32*);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
-void cLib_chaseS(s16*, s16, s16);
-void cLib_chaseF(f32*, f32, f32);
-void cLib_targetAngleY(Vec const*, Vec const*);
-void cLib_targetAngleX(cXyz const*, cXyz const*);
-void* operator new(u32);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void __dt__4cXyzFv();
@@ -1421,7 +1297,7 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 // Declarations:
 //
 
-/* 801456D4-801456E0 000C+00 s=1 e=0 z=159  None .text      initialize__18daNpcT_ActorMngr_cFv */
+/* 801456D4-801456E0 140014 000C+00 1/1 0/0 159/159 .text initialize__18daNpcT_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1431,8 +1307,8 @@ asm void daNpcT_ActorMngr_c::initialize() {
 }
 #pragma pop
 
-/* 801456E0-801456FC 001C+00 s=1 e=0 z=160  None .text entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
- */
+/* 801456E0-801456FC 140020 001C+00 1/1 0/0 160/160 .text
+ * entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c                    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1442,7 +1318,8 @@ asm void daNpcT_ActorMngr_c::entry(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 801456FC-80145708 000C+00 s=1 e=0 z=382  None .text      remove__18daNpcT_ActorMngr_cFv */
+/* 801456FC-80145708 14003C 000C+00 1/1 0/0 382/382 .text            remove__18daNpcT_ActorMngr_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1452,9 +1329,7 @@ asm void daNpcT_ActorMngr_c::remove() {
 }
 #pragma pop
 
-/* 80145708-80145764 005C+00 s=2 e=1 z=233  None .text      getActorP__18daNpcT_ActorMngr_cFv */
-//	80145724: 800199BC (fopAcM_SearchByID__FUiPP10fopAc_ac_c)
-//	8014573C: 80018CE0 (fopAc_IsActor__FPv)
+/* 80145708-80145764 140048 005C+00 2/2 1/1 233/233 .text getActorP__18daNpcT_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1465,7 +1340,7 @@ asm void daNpcT_ActorMngr_c::getActorP() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804533D8-804533DC 0004+00 s=54 e=0 z=0  None .sdata2    @4116 */
+/* 804533D8-804533DC 0019D8 0004+00 54/54 0/0 0/0 .sdata2          @4116 */
 SECTION_SDATA2 static u8 lit_4116[4] = {
     0x00,
     0x00,
@@ -1473,8 +1348,8 @@ SECTION_SDATA2 static u8 lit_4116[4] = {
     0x00,
 };
 
-/* 80145764-80145788 0024+00 s=0 e=0 z=103  None .text      initialize__15daNpcT_MatAnm_cFv */
-//	80145764: 804533D8 (lit_4116)
+/* 80145764-80145788 1400A4 0024+00 0/0 0/0 103/103 .text            initialize__15daNpcT_MatAnm_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1485,18 +1360,13 @@ asm void daNpcT_MatAnm_c::initialize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804533DC-804533E0 0004+00 s=25 e=0 z=0  None .sdata2    @4140 */
+/* 804533DC-804533E0 0019DC 0004+00 25/25 0/0 0/0 .sdata2          @4140 */
 SECTION_SDATA2 static f32 lit_4140 = 1.0f;
 
-/* 804533E0-804533E8 0008+00 s=24 e=0 z=0  None .sdata2    @4142 */
+/* 804533E0-804533E8 0019E0 0008+00 24/24 0/0 0/0 .sdata2          @4142 */
 SECTION_SDATA2 static f64 lit_4142 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80145788-80145898 0110+00 s=1 e=0 z=0  None .text      calc__15daNpcT_MatAnm_cCFP11J3DMaterial */
-//	80145798: 803621D8 (_savegpr_28)
-//	801457A4: 8032C3C4 (calc__14J3DMaterialAnmCFP11J3DMaterial)
-//	80145804: 804533DC (lit_4140)
-//	8014580C: 804533E0 (lit_4142)
-//	80145884: 80362224 (_restgpr_28)
+/* 80145788-80145898 1400C8 0110+00 1/0 0/0 0/0 .text calc__15daNpcT_MatAnm_cCFP11J3DMaterial */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1507,12 +1377,11 @@ asm void daNpcT_MatAnm_c::calc(J3DMaterial* param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804533E8-804533EC 0004+00 s=13 e=0 z=0  None .sdata2    @4148 */
+/* 804533E8-804533EC 0019E8 0004+00 13/13 0/0 0/0 .sdata2          @4148 */
 SECTION_SDATA2 static f32 lit_4148 = -1.0f;
 
-/* 80145898-801458C0 0028+00 s=4 e=0 z=533  None .text      initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80145898-801458C0 1401D8 0028+00 4/4 0/0 533/533 .text initialize__22daNpcT_MotionSeqMngr_cFv
  */
-//	801458B0: 804533E8 (lit_4148)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1522,9 +1391,7 @@ asm void daNpcT_MotionSeqMngr_c::initialize() {
 }
 #pragma pop
 
-/* 801458C0-80145A24 0164+00 s=2 e=0 z=2  None .text      play__22daNpcT_MotionSeqMngr_cFUsPiPf */
-//	801459C0: 804533E0 (lit_4142)
-//	801459EC: 804533E8 (lit_4148)
+/* 801458C0-80145A24 140200 0164+00 2/2 0/0 2/2 .text play__22daNpcT_MotionSeqMngr_cFUsPiPf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1534,8 +1401,8 @@ asm void daNpcT_MotionSeqMngr_c::play(u16 param_0, int* param_1, f32* param_2) {
 }
 #pragma pop
 
-/* 80145A24-80145A38 0014+00 s=0 e=0 z=43  None .text checkEndSequence__22daNpcT_MotionSeqMngr_cFv
- */
+/* 80145A24-80145A38 140364 0014+00 0/0 0/0 43/43 .text
+ * checkEndSequence__22daNpcT_MotionSeqMngr_cFv                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1545,51 +1412,47 @@ asm void daNpcT_MotionSeqMngr_c::checkEndSequence() {
 }
 #pragma pop
 
-/* 80145A38-80145A78 0040+00 s=2 e=0 z=0  None .text      daNpcT_addIdx__FiiRUsi */
+/* 80145A38-80145A78 140378 0040+00 2/2 0/0 0/0 .text            daNpcT_addIdx__FiiRUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcT_addIdx(int param_0, int param_1, u16& param_2, int param_3) {
+static asm void daNpcT_addIdx(int param_0, int param_1, u16& param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcT_addIdx__FiiRUsi.s"
 }
 #pragma pop
 
-/* 80145A78-80145AC4 004C+00 s=2 e=0 z=0  None .text      daNpcT_subIdx__FiiRUsi */
+/* 80145A78-80145AC4 1403B8 004C+00 2/2 0/0 0/0 .text            daNpcT_subIdx__FiiRUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcT_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
+static asm void daNpcT_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcT_subIdx__FiiRUsi.s"
 }
 #pragma pop
 
-/* 80145AC4-80145B20 005C+00 s=5 e=0 z=0  None .text      daNpcT_incIdx__FiRUsii */
-//	80145AF4: 80145A78 (daNpcT_subIdx__FiiRUsi)
-//	80145B0C: 80145A38 (daNpcT_addIdx__FiiRUsi)
+/* 80145AC4-80145B20 140404 005C+00 5/5 0/0 0/0 .text            daNpcT_incIdx__FiRUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcT_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
+static asm void daNpcT_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcT_incIdx__FiRUsii.s"
 }
 #pragma pop
 
-/* 80145B20-80145B7C 005C+00 s=3 e=0 z=0  None .text      daNpcT_decIdx__FiRUsii */
-//	80145B50: 80145A38 (daNpcT_addIdx__FiiRUsi)
-//	80145B68: 80145A78 (daNpcT_subIdx__FiiRUsi)
+/* 80145B20-80145B7C 140460 005C+00 3/3 0/0 0/0 .text            daNpcT_decIdx__FiRUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcT_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
+static asm void daNpcT_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcT_decIdx__FiRUsii.s"
 }
 #pragma pop
 
-/* 80145B7C-80145C40 00C4+00 s=1 e=0 z=0  None .text
+/* 80145B7C-80145C40 1404BC 00C4+00 1/1 0/0 0/0 .text
  * hermite__13daNpcT_Path_cFR4cXyzR4cXyzR4cXyzR4cXyzR16daNpcT_Hermite_cR4cXyz */
 #pragma push
 #pragma optimization_level 0
@@ -1601,8 +1464,7 @@ asm void daNpcT_Path_c::hermite(cXyz& param_0, cXyz& param_1, cXyz& param_2, cXy
 }
 #pragma pop
 
-/* 80145C40-80145C74 0034+00 s=0 e=0 z=44  None .text      initialize__13daNpcT_Path_cFv */
-//	80145C48: 804533D8 (lit_4116)
+/* 80145C40-80145C74 140580 0034+00 0/0 0/0 44/44 .text            initialize__13daNpcT_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1612,8 +1474,7 @@ asm void daNpcT_Path_c::initialize() {
 }
 #pragma pop
 
-/* 80145C74-80145D2C 00B8+00 s=0 e=0 z=18  None .text      setPathInfo__13daNpcT_Path_cFUcScUc */
-//	80145CA8: 800517EC (dPath_GetRoomPath__Fii)
+/* 80145C74-80145D2C 1405B4 00B8+00 0/0 0/0 18/18 .text setPathInfo__13daNpcT_Path_cFUcScUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1623,8 +1484,7 @@ asm void daNpcT_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 80145D2C-80145DA0 0074+00 s=0 e=0 z=1  None .text      setNextPathInfo__13daNpcT_Path_cFScUc */
-//	80145D60: 800517EC (dPath_GetRoomPath__Fii)
+/* 80145D2C-80145DA0 14066C 0074+00 0/0 0/0 1/1 .text setNextPathInfo__13daNpcT_Path_cFScUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1634,7 +1494,7 @@ asm void daNpcT_Path_c::setNextPathInfo(s8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80145DA0-80145DD0 0030+00 s=0 e=0 z=1  None .text      reverse__13daNpcT_Path_cFv */
+/* 80145DA0-80145DD0 1406E0 0030+00 0/0 0/0 1/1 .text            reverse__13daNpcT_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1644,9 +1504,7 @@ asm void daNpcT_Path_c::reverse() {
 }
 #pragma pop
 
-/* 80145DD0-80145E38 0068+00 s=2 e=0 z=8  None .text      setNextIdx__13daNpcT_Path_cFi */
-//	80145E0C: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	80145E24: 80145AC4 (daNpcT_incIdx__FiRUsii)
+/* 80145DD0-80145E38 140710 0068+00 2/2 0/0 8/8 .text            setNextIdx__13daNpcT_Path_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1656,11 +1514,7 @@ asm void daNpcT_Path_c::setNextIdx(int param_0) {
 }
 #pragma pop
 
-/* 80145E38-80145FB4 017C+00 s=0 e=0 z=1  None .text      getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi */
-//	80145E48: 803621D4 (_savegpr_27)
-//	80145EDC: 80146188 (chkPassed1__13daNpcT_Path_cF4cXyzi)
-//	80145EF4: 80145DD0 (setNextIdx__13daNpcT_Path_cFi)
-//	80145FA0: 80362220 (_restgpr_27)
+/* 80145E38-80145FB4 140778 017C+00 0/0 0/0 1/1 .text getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1670,13 +1524,8 @@ asm void daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1, int param_2) {
 }
 #pragma pop
 
-/* 80145FB4-80146188 01D4+00 s=0 e=0 z=10  None .text      getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii
+/* 80145FB4-80146188 1408F4 01D4+00 0/0 0/0 10/10 .text getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii
  */
-//	80145FC4: 803621D0 (_savegpr_26)
-//	8014605C: 80146188 (chkPassed1__13daNpcT_Path_cF4cXyzi)
-//	80146074: 80145DD0 (setNextIdx__13daNpcT_Path_cFi)
-//	8014610C: 801464D8 (chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii)
-//	80146174: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1687,41 +1536,11 @@ asm void daNpcT_Path_c::getDstPosH(cXyz param_0, cXyz* param_1, int param_2, int
 #pragma pop
 
 /* ############################################################################################## */
-/* 804533EC-804533F0 0004+00 s=1 e=0 z=0  None .sdata2    @4513 */
+/* 804533EC-804533F0 0019EC 0004+00 1/1 0/0 0/0 .sdata2          @4513 */
 SECTION_SDATA2 static f32 lit_4513 = 100.0f;
 
-/* 80146188-801464D8 0350+00 s=2 e=0 z=2  None .text      chkPassed1__13daNpcT_Path_cF4cXyzi */
-//	80146198: 803621D8 (_savegpr_28)
-//	801461E8: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	8014620C: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	80146230: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	80146250: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	80146318: 804533D8 (lit_4116)
-//	80146324: 804533EC (lit_4513)
-//	80146334: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	8014633C: 803DD470 (now__14mDoMtx_stack_c)
-//	80146340: 803DD470 (now__14mDoMtx_stack_c)
-//	80146344: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80146348: 803DD470 (now__14mDoMtx_stack_c)
-//	8014634C: 803DD470 (now__14mDoMtx_stack_c)
-//	80146358: 80346D6C (PSMTXMultVec)
-//	80146368: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80146394: 804533D8 (lit_4116)
-//	801463A0: 804533EC (lit_4513)
-//	801463B0: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	801463B8: 803DD470 (now__14mDoMtx_stack_c)
-//	801463BC: 803DD470 (now__14mDoMtx_stack_c)
-//	801463C0: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801463C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801463C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801463D4: 80346D6C (PSMTXMultVec)
-//	801463E4: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80146424: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	80146454: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	80146478: 80267674 (cM_atan2s__Fff)
-//	80146498: 80267674 (cM_atan2s__Fff)
-//	801464A4: 803650D0 (abs)
-//	801464C4: 80362224 (_restgpr_28)
+/* 80146188-801464D8 140AC8 0350+00 2/2 0/0 2/2 .text            chkPassed1__13daNpcT_Path_cF4cXyzi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1732,12 +1551,12 @@ asm void daNpcT_Path_c::chkPassed1(cXyz param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803B36A8-803B36B4 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 803B36A8-803B36B4 0107C8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B36B4-803B36D8 0024+00 s=1 e=0 z=0  None .data      @5258 */
+/* 803B36B4-803B36D8 -00001 0024+00 1/2 0/0 0/0 .data            @5258 */
 SECTION_DATA static void* lit_5258[9] = {
     (void*)(((char*)setParam__15daNpcT_JntAnm_cFP10fopAc_ac_cP8J3DModelP4cXyziiiffffffffffP4cXyz) +
             0x3E8),
@@ -1759,8 +1578,8 @@ SECTION_DATA static void* lit_5258[9] = {
             0x568),
 };
 
-/* 803B36D8-803B371C 0044+00 s=0 e=0 z=54  None .data      mCcDCyl__8daNpcT_c */
-SECTION_DATA u8 mCcDCyl__8daNpcT_c[68] = {
+/* 803B36D8-803B371C 0107F8 0044+00 0/0 0/0 54/54 .data            mCcDCyl__8daNpcT_c */
+SECTION_DATA extern u8 mCcDCyl__8daNpcT_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1768,16 +1587,16 @@ SECTION_DATA u8 mCcDCyl__8daNpcT_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B371C-803B375C 0040+00 s=0 e=0 z=3  None .data      mCcDSph__8daNpcT_c */
-SECTION_DATA u8 mCcDSph__8daNpcT_c[64] = {
+/* 803B371C-803B375C 01083C 0040+00 0/0 0/0 3/3 .data            mCcDSph__8daNpcT_c */
+SECTION_DATA extern u8 mCcDSph__8daNpcT_c[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B375C-803B37A0 0044+00 s=0 e=0 z=1  None .data      mCcDCyl__11daBaseNpc_c */
-SECTION_DATA u8 mCcDCyl__11daBaseNpc_c[68] = {
+/* 803B375C-803B37A0 01087C 0044+00 0/0 0/0 1/1 .data            mCcDCyl__11daBaseNpc_c */
+SECTION_DATA extern u8 mCcDCyl__11daBaseNpc_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1785,16 +1604,16 @@ SECTION_DATA u8 mCcDCyl__11daBaseNpc_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B37A0-803B37E0 0040+00 s=0 e=0 z=1  None .data      mCcDSph__11daBaseNpc_c */
-SECTION_DATA u8 mCcDSph__11daBaseNpc_c[64] = {
+/* 803B37A0-803B37E0 0108C0 0040+00 0/0 0/0 1/1 .data            mCcDSph__11daBaseNpc_c */
+SECTION_DATA extern u8 mCcDSph__11daBaseNpc_c[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B37E0-803B3824 0044+00 s=0 e=0 z=36  None .data      mCcDCyl__8daNpcF_c */
-SECTION_DATA u8 mCcDCyl__8daNpcF_c[68] = {
+/* 803B37E0-803B3824 010900 0044+00 0/0 0/0 36/36 .data            mCcDCyl__8daNpcF_c */
+SECTION_DATA extern u8 mCcDCyl__8daNpcF_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1802,23 +1621,23 @@ SECTION_DATA u8 mCcDCyl__8daNpcF_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B3824-803B3864 0040+00 s=0 e=0 z=2  None .data      mCcDSph__8daNpcF_c */
-SECTION_DATA u8 mCcDSph__8daNpcF_c[64] = {
+/* 803B3824-803B3864 010944 0040+00 0/0 0/0 2/2 .data            mCcDSph__8daNpcF_c */
+SECTION_DATA extern u8 mCcDSph__8daNpcF_c[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803B3864-803B3870 000C+00 s=2 e=0 z=0  None .data      __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA void* __vt__18daNpcF_ActorMngr_c[3] = {
+/* 803B3864-803B3870 010984 000C+00 2/2 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
+SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daNpcF_ActorMngr_cFv,
 };
 
-/* 803B3870-803B38D8 0068+00 s=1 e=0 z=0  None .data      __vt__20daNpcF_MoveBgActor_c */
-SECTION_DATA void* __vt__20daNpcF_MoveBgActor_c[26] = {
+/* 803B3870-803B38D8 010990 0068+00 1/1 0/0 0/0 .data            __vt__20daNpcF_MoveBgActor_c */
+SECTION_DATA extern void* __vt__20daNpcF_MoveBgActor_c[26] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20daNpcF_MoveBgActor_cFv,
@@ -1847,8 +1666,8 @@ SECTION_DATA void* __vt__20daNpcF_MoveBgActor_c[26] = {
     (void*)ToBack__20daNpcF_MoveBgActor_cFv,
 };
 
-/* 803B38D8-803B3920 0048+00 s=1 e=0 z=76  None .data      __vt__8daNpcF_c */
-SECTION_DATA void* __vt__8daNpcF_c[18] = {
+/* 803B38D8-803B3920 0109F8 0048+00 1/1 0/0 76/76 .data            __vt__8daNpcF_c */
+SECTION_DATA extern void* __vt__8daNpcF_c[18] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8daNpcF_cFv,
@@ -1869,8 +1688,8 @@ SECTION_DATA void* __vt__8daNpcF_c[18] = {
     (void*)drawOtherMdls__8daNpcF_cFv,
 };
 
-/* 803B3920-803B3948 0010+18 s=1 e=0 z=24  None .data      __vt__15daNpcF_MatAnm_c */
-SECTION_DATA void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */] = {
+/* 803B3920-803B3948 010A40 0010+18 1/1 0/0 24/24 .data            __vt__15daNpcF_MatAnm_c */
+SECTION_DATA extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daNpcF_MatAnm_cFv,
@@ -1884,8 +1703,8 @@ SECTION_DATA void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */] = {
     NULL,
 };
 
-/* 803B3948-803B39AC 0064+00 s=2 e=0 z=0  None .data      __vt__23daBaseNpc_moveBgActor_c */
-SECTION_DATA void* __vt__23daBaseNpc_moveBgActor_c[25] = {
+/* 803B3948-803B39AC 010A68 0064+00 2/2 0/0 0/0 .data            __vt__23daBaseNpc_moveBgActor_c */
+SECTION_DATA extern void* __vt__23daBaseNpc_moveBgActor_c[25] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__23daBaseNpc_moveBgActor_cFv,
@@ -1913,8 +1732,8 @@ SECTION_DATA void* __vt__23daBaseNpc_moveBgActor_c[25] = {
     (void*)ToBack__23daBaseNpc_moveBgActor_cFv,
 };
 
-/* 803B39AC-803B3A14 0044+24 s=2 e=0 z=0  None .data      __vt__11daBaseNpc_c */
-SECTION_DATA void* __vt__11daBaseNpc_c[17 + 9 /* padding */] = {
+/* 803B39AC-803B3A14 010ACC 0044+24 2/2 0/0 0/0 .data            __vt__11daBaseNpc_c */
+SECTION_DATA extern void* __vt__11daBaseNpc_c[17 + 9 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11daBaseNpc_cFv,
@@ -1944,8 +1763,8 @@ SECTION_DATA void* __vt__11daBaseNpc_c[17 + 9 /* padding */] = {
     NULL,
 };
 
-/* 803B3A14-803B3A50 000C+30 s=3 e=0 z=0  None .data      __vt__18daBaseNpc_lookat_c */
-SECTION_DATA void* __vt__18daBaseNpc_lookat_c[3 + 12 /* padding */] = {
+/* 803B3A14-803B3A50 010B34 000C+30 3/3 0/0 0/0 .data            __vt__18daBaseNpc_lookat_c */
+SECTION_DATA extern void* __vt__18daBaseNpc_lookat_c[3 + 12 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daBaseNpc_lookat_cFv,
@@ -1964,30 +1783,30 @@ SECTION_DATA void* __vt__18daBaseNpc_lookat_c[3 + 12 /* padding */] = {
     NULL,
 };
 
-/* 803B3A50-803B3A5C 000C+00 s=2 e=0 z=0  None .data      __vt__16daBaseNpc_path_c */
-SECTION_DATA void* __vt__16daBaseNpc_path_c[3] = {
+/* 803B3A50-803B3A5C 010B70 000C+00 2/2 0/0 0/0 .data            __vt__16daBaseNpc_path_c */
+SECTION_DATA extern void* __vt__16daBaseNpc_path_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16daBaseNpc_path_cFv,
 };
 
-/* 803B3A5C-803B3A6C 0010+00 s=1 e=0 z=0  None .data      __vt__18daBaseNpc_matAnm_c */
-SECTION_DATA void* __vt__18daBaseNpc_matAnm_c[4] = {
+/* 803B3A5C-803B3A6C 010B7C 0010+00 1/1 0/0 0/0 .data            __vt__18daBaseNpc_matAnm_c */
+SECTION_DATA extern void* __vt__18daBaseNpc_matAnm_c[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daBaseNpc_matAnm_cFv,
     (void*)calc__18daBaseNpc_matAnm_cCFP11J3DMaterial,
 };
 
-/* 803B3A6C-803B3A78 000C+00 s=2 e=0 z=0  None .data      __vt__18daBaseNpc_acMngr_c */
-SECTION_DATA void* __vt__18daBaseNpc_acMngr_c[3] = {
+/* 803B3A6C-803B3A78 010B8C 000C+00 2/2 0/0 0/0 .data            __vt__18daBaseNpc_acMngr_c */
+SECTION_DATA extern void* __vt__18daBaseNpc_acMngr_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daBaseNpc_acMngr_cFv,
 };
 
-/* 803B3A78-803B3B3C 00C4+00 s=1 e=0 z=110  None .data      __vt__8daNpcT_c */
-SECTION_DATA void* __vt__8daNpcT_c[49] = {
+/* 803B3A78-803B3B3C 010B98 00C4+00 1/1 0/0 110/110 .data            __vt__8daNpcT_c */
+SECTION_DATA extern void* __vt__8daNpcT_c[49] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8daNpcT_cFv,
@@ -2039,82 +1858,51 @@ SECTION_DATA void* __vt__8daNpcT_c[49] = {
     (void*)setMotionAnm__8daNpcT_cFifi,
 };
 
-/* 803B3B3C-803B3B48 000C+00 s=2 e=0 z=0  None .data      __vt__22daNpcT_MotionSeqMngr_c */
-SECTION_DATA void* __vt__22daNpcT_MotionSeqMngr_c[3] = {
+/* 803B3B3C-803B3B48 010C5C 000C+00 2/2 0/0 0/0 .data            __vt__22daNpcT_MotionSeqMngr_c */
+SECTION_DATA extern void* __vt__22daNpcT_MotionSeqMngr_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__22daNpcT_MotionSeqMngr_cFv,
 };
 
-/* 803B3B48-803B3B54 000C+00 s=3 e=0 z=0  None .data      __vt__18daNpcT_ActorMngr_c */
-SECTION_DATA void* __vt__18daNpcT_ActorMngr_c[3] = {
+/* 803B3B48-803B3B54 010C68 000C+00 3/3 0/0 0/0 .data            __vt__18daNpcT_ActorMngr_c */
+SECTION_DATA extern void* __vt__18daNpcT_ActorMngr_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daNpcT_ActorMngr_cFv,
 };
 
-/* 803B3B54-803B3B60 000C+00 s=2 e=0 z=0  None .data      __vt__15daNpcT_JntAnm_c */
-SECTION_DATA void* __vt__15daNpcT_JntAnm_c[3] = {
+/* 803B3B54-803B3B60 010C74 000C+00 2/2 0/0 0/0 .data            __vt__15daNpcT_JntAnm_c */
+SECTION_DATA extern void* __vt__15daNpcT_JntAnm_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daNpcT_JntAnm_cFv,
 };
 
-/* 803B3B60-803B3B6C 000C+00 s=2 e=0 z=0  None .data      __vt__16daNpcT_Hermite_c */
-SECTION_DATA void* __vt__16daNpcT_Hermite_c[3] = {
+/* 803B3B60-803B3B6C 010C80 000C+00 2/2 0/0 0/0 .data            __vt__16daNpcT_Hermite_c */
+SECTION_DATA extern void* __vt__16daNpcT_Hermite_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16daNpcT_Hermite_cFv,
 };
 
-/* 804533F0-804533F4 0004+00 s=4 e=0 z=0  None .sdata2    @4672 */
+/* 804533F0-804533F4 0019F0 0004+00 4/4 0/0 0/0 .sdata2          @4672 */
 SECTION_SDATA2 static f32 lit_4672 = 2.0f;
 
-/* 804533F4-804533F8 0004+00 s=1 e=0 z=0  None .sdata2    @4673 */
+/* 804533F4-804533F8 0019F4 0004+00 1/1 0/0 0/0 .sdata2          @4673 */
 SECTION_SDATA2 static f32 lit_4673 = 3.0f;
 
-/* 804533F8-80453400 0004+04 s=3 e=0 z=0  None .sdata2    @4674 */
+/* 804533F8-80453400 0019F8 0004+04 3/3 0/0 0/0 .sdata2          @4674 */
 SECTION_SDATA2 static f32 lit_4674[1 + 1 /* padding */] = {
     -2.0f,
     /* padding */
     0.0f,
 };
 
-/* 80453400-80453408 0008+00 s=1 e=0 z=0  None .sdata2    @4677 */
+/* 80453400-80453408 001A00 0008+00 1/1 0/0 0/0 .sdata2          @4677 */
 SECTION_SDATA2 static f64 lit_4677 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 801464D8-8014698C 04B4+00 s=1 e=0 z=0  None .text      chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii
- */
-//	801464E8: 803621D0 (_savegpr_26)
-//	80146540: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	80146564: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	80146588: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	801465A8: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	801465E8: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	8014660C: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	8014671C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80146748: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80146780: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801467AC: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801467C8: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	801467CC: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	801467D8: 80453400 (lit_4677)
-//	801467F0: 804533DC (lit_4140)
-//	801467F4: 804533E0 (lit_4142)
-//	80146820: 804533F0 (lit_4672)
-//	80146828: 804533F4 (lit_4673)
-//	8014683C: 804533F8 (lit_4674)
-//	80146880: 80145B7C (hermite__13daNpcT_Path_cFR4cXyzR4cXyzR4cXyzR4cXyzR16daNpcT_Hermite_cR4cXyz)
-//	801468C0: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	801468F0: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	80146914: 80267674 (cM_atan2s__Fff)
-//	80146934: 80267674 (cM_atan2s__Fff)
-//	80146940: 803650D0 (abs)
-//	80146950: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	80146954: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	80146964: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	80146968: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	80146978: 8036221C (_restgpr_26)
+/* 801464D8-8014698C 140E18 04B4+00 1/1 0/0 0/0 .text chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2124,52 +1912,20 @@ asm void daNpcT_Path_c::chkPassed2(cXyz param_0, cXyz* param_1, int param_2, int
 }
 #pragma pop
 
-/* 8014698C-80146C98 030C+00 s=1 e=0 z=0  None .text
+/* 8014698C-80146C98 1412CC 030C+00 1/1 0/0 0/0 .text
  * daNpcT_chkPassed__F4cXyzP4dPntUsUsiiP4cXyzPiPi               */
-//	8014699C: 803621C0 (_savegpr_22)
-//	801469DC: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	801469F0: 80145B20 (daNpcT_decIdx__FiRUsii)
-//	80146A60: 804533D8 (lit_4116)
-//	80146A6C: 804533F0 (lit_4672)
-//	80146A8C: 80267674 (cM_atan2s__Fff)
-//	80146ABC: 80267674 (cM_atan2s__Fff)
-//	80146AE8: 80267674 (cM_atan2s__Fff)
-//	80146AF4: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80146AF8: 803DD470 (now__14mDoMtx_stack_c)
-//	80146AFC: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B04: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80146B08: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B0C: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B18: 80346D6C (PSMTXMultVec)
-//	80146B20: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80146B24: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B28: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B38: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80146B3C: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B40: 803DD470 (now__14mDoMtx_stack_c)
-//	80146B4C: 80346D6C (PSMTXMultVec)
-//	80146B74: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	80146B84: 80451180 (G_CM3D_F_ABS_MIN)
-//	80146BBC: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	80146BE0: 80267674 (cM_atan2s__Fff)
-//	80146C04: 80267674 (cM_atan2s__Fff)
-//	80146C24: 80267674 (cM_atan2s__Fff)
-//	80146C44: 804533D8 (lit_4116)
-//	80146C70: 803650D0 (abs)
-//	80146C84: 8036220C (_restgpr_22)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcT_chkPassed(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
+static asm void daNpcT_chkPassed(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
                                  int param_5, cXyz* param_6, int* param_7, int* param_8) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcT_chkPassed__F4cXyzP4dPntUsUsiiP4cXyzPiPi.s"
 }
 #pragma pop
 
-/* 80146C98-80146CD8 0040+00 s=0 e=0 z=121  None .text      initialize__15daNpcT_JntAnm_cFv */
-//	80146CAC: 801456D4 (initialize__18daNpcT_ActorMngr_cFv)
-//	80146CC0: 80003458 (memset)
+/* 80146C98-80146CD8 1415D8 0040+00 0/0 0/0 121/121 .text            initialize__15daNpcT_JntAnm_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2180,134 +1936,28 @@ asm void daNpcT_JntAnm_c::initialize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453408-80453410 0008+00 s=8 e=0 z=0  None .sdata2    @4723 */
+/* 80453408-80453410 001A08 0008+00 8/8 0/0 0/0 .sdata2          @4723 */
 SECTION_SDATA2 static f64 lit_4723 = 0.5;
 
-/* 80453410-80453418 0008+00 s=8 e=0 z=0  None .sdata2    @4724 */
+/* 80453410-80453418 001A10 0008+00 8/8 0/0 0/0 .sdata2          @4724 */
 SECTION_SDATA2 static f64 lit_4724 = 3.0;
 
-/* 80453418-80453420 0008+00 s=8 e=0 z=0  None .sdata2    @4725 */
+/* 80453418-80453420 001A18 0008+00 8/8 0/0 0/0 .sdata2          @4725 */
 SECTION_SDATA2 static u8 lit_4725[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80453420-80453424 0004+00 s=5 e=0 z=0  None .sdata2    @5239 */
+/* 80453420-80453424 001A20 0004+00 5/5 0/0 0/0 .sdata2          @5239 */
 SECTION_SDATA2 static f32 lit_5239 = 182.04444885253906f;
 
-/* 80453424-80453428 0004+00 s=2 e=0 z=0  None .sdata2    @5240 */
+/* 80453424-80453428 001A24 0004+00 2/2 0/0 0/0 .sdata2          @5240 */
 SECTION_SDATA2 static f32 lit_5240 = 9.58738019107841e-05f;
 
-/* 80453428-8045342C 0004+00 s=2 e=0 z=0  None .sdata2    @5241 */
+/* 80453428-8045342C 001A28 0004+00 2/2 0/0 0/0 .sdata2          @5241 */
 SECTION_SDATA2 static f32 lit_5241 = 1000.0f;
 
-/* 80146CD8-80147858 0B80+00 s=1 e=0 z=52  None .text
+/* 80146CD8-80147858 141618 0B80+00 1/0 0/0 52/52 .text
  * setParam__15daNpcT_JntAnm_cFP10fopAc_ac_cP8J3DModelP4cXyziiiffffffffffP4cXyz */
-//	80146D38: 803621D0 (_savegpr_26)
-//	80146DAC: 803DD470 (now__14mDoMtx_stack_c)
-//	80146DB0: 803DD470 (now__14mDoMtx_stack_c)
-//	80146DB4: 803464B0 (PSMTXCopy)
-//	80146DB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80146DBC: 803DD470 (now__14mDoMtx_stack_c)
-//	80146DD8: 804533D8 (lit_4116)
-//	80146DF0: 80346D6C (PSMTXMultVec)
-//	80146E0C: 803DD470 (now__14mDoMtx_stack_c)
-//	80146E10: 803DD470 (now__14mDoMtx_stack_c)
-//	80146E1C: 80346D6C (PSMTXMultVec)
-//	80146E28: 80270C74 (cLib_targetAngleX__FPC4cXyzPC4cXyz)
-//	80146E38: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	80146E64: 803DD470 (now__14mDoMtx_stack_c)
-//	80146E68: 803DD470 (now__14mDoMtx_stack_c)
-//	80146E6C: 803464B0 (PSMTXCopy)
-//	80146E70: 803DD470 (now__14mDoMtx_stack_c)
-//	80146E74: 803DD470 (now__14mDoMtx_stack_c)
-//	80146EA8: 803DD470 (now__14mDoMtx_stack_c)
-//	80146EAC: 803DD470 (now__14mDoMtx_stack_c)
-//	80146EB0: 803464B0 (PSMTXCopy)
-//	80146EB4: 803DD470 (now__14mDoMtx_stack_c)
-//	80146EB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80146ED4: 80453420 (lit_5239)
-//	80146EEC: 80453424 (lit_5240)
-//	80146EF4: 804533E0 (lit_4142)
-//	80146FAC: 804533D8 (lit_4116)
-//	801470A8: 803B36B4 (lit_5258)
-//	801470AC: 803B36B4 (lit_5258)
-//	801470CC: 804061C0 (g_dComIfG_gameInfo)
-//	801470D0: 804061C0 (g_dComIfG_gameInfo)
-//	80147104: 80145708 (getActorP__18daNpcT_ActorMngr_cFv)
-//	8014717C: 804061C0 (g_dComIfG_gameInfo)
-//	80147180: 804061C0 (g_dComIfG_gameInfo)
-//	80147244: 8014D348 (func_8014D348)
-//	80147268: 8014D364 (func_8014D364)
-//	8014729C: 804533D8 (lit_4116)
-//	801472A8: 80453428 (lit_5241)
-//	801472C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801472C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801472D0: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801472D4: 803DD470 (now__14mDoMtx_stack_c)
-//	801472D8: 803DD470 (now__14mDoMtx_stack_c)
-//	801472E4: 80346D6C (PSMTXMultVec)
-//	801472F4: 80347090 (PSVECAdd)
-//	8014732C: 803464B0 (PSMTXCopy)
-//	80147330: 804533D8 (lit_4116)
-//	80147344: 803DD470 (now__14mDoMtx_stack_c)
-//	80147348: 803DD470 (now__14mDoMtx_stack_c)
-//	8014734C: 803464B0 (PSMTXCopy)
-//	80147350: 803DD470 (now__14mDoMtx_stack_c)
-//	80147354: 803DD470 (now__14mDoMtx_stack_c)
-//	8014735C: 803465B0 (PSMTXInverse)
-//	8014736C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147388: 803DD470 (now__14mDoMtx_stack_c)
-//	8014738C: 803DD470 (now__14mDoMtx_stack_c)
-//	80147398: 80346D6C (PSMTXMultVec)
-//	801473A8: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	801473CC: 803DD470 (now__14mDoMtx_stack_c)
-//	801473D0: 803DD470 (now__14mDoMtx_stack_c)
-//	801473E4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014740C: 80346D6C (PSMTXMultVec)
-//	8014741C: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80147454: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147470: 803DD470 (now__14mDoMtx_stack_c)
-//	80147474: 803DD470 (now__14mDoMtx_stack_c)
-//	80147480: 80346D6C (PSMTXMultVec)
-//	80147490: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	801474B8: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801474D4: 803DD470 (now__14mDoMtx_stack_c)
-//	801474D8: 803DD470 (now__14mDoMtx_stack_c)
-//	801474E4: 80346D6C (PSMTXMultVec)
-//	801474F4: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	8014751C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014753C: 802675E4 (cM_rad2s__Ff)
-//	80147548: 803DD470 (now__14mDoMtx_stack_c)
-//	8014754C: 803DD470 (now__14mDoMtx_stack_c)
-//	80147550: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80147554: 803DD470 (now__14mDoMtx_stack_c)
-//	80147558: 803DD470 (now__14mDoMtx_stack_c)
-//	80147564: 80346D6C (PSMTXMultVec)
-//	80147574: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	8014759C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801475C4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147618: 803DD470 (now__14mDoMtx_stack_c)
-//	8014761C: 803DD470 (now__14mDoMtx_stack_c)
-//	80147630: 804533DC (lit_4140)
-//	80147660: 802675E4 (cM_rad2s__Ff)
-//	80147678: 804533DC (lit_4140)
-//	801476A8: 802675E4 (cM_rad2s__Ff)
-//	801476C0: 8000CF0C (ZXYrotS__14mDoMtx_stack_cFRC5csXyz)
-//	801476CC: 803465B0 (PSMTXInverse)
-//	801476F4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147710: 803DD470 (now__14mDoMtx_stack_c)
-//	80147714: 803DD470 (now__14mDoMtx_stack_c)
-//	80147720: 80346D6C (PSMTXMultVec)
-//	80147730: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80147750: 803DD470 (now__14mDoMtx_stack_c)
-//	80147754: 803DD470 (now__14mDoMtx_stack_c)
-//	80147760: 80346D6C (PSMTXMultVec)
-//	80147764: 803DD470 (now__14mDoMtx_stack_c)
-//	80147768: 803DD470 (now__14mDoMtx_stack_c)
-//	80147774: 80346D6C (PSMTXMultVec)
-//	801477C0: 80347090 (PSVECAdd)
-//	801477D0: 80266AE4 (__pl__4cXyzCFRC3Vec)
-//	80147844: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2321,65 +1971,7 @@ asm void daNpcT_JntAnm_c::setParam(fopAc_ac_c* param_0, J3DModel* param_1, cXyz*
 }
 #pragma pop
 
-/* 80147858-80147C38 03E0+00 s=1 e=0 z=0  None .text      calc__15daNpcT_JntAnm_cFf */
-//	80147868: 803621CC (_savegpr_25)
-//	80147890: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	80147898: 804533D8 (lit_4116)
-//	801478A4: 80453428 (lit_5241)
-//	801478AC: 803DD470 (now__14mDoMtx_stack_c)
-//	801478B0: 803DD470 (now__14mDoMtx_stack_c)
-//	801478B4: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801478B8: 803DD470 (now__14mDoMtx_stack_c)
-//	801478BC: 803DD470 (now__14mDoMtx_stack_c)
-//	801478C8: 80346D6C (PSMTXMultVec)
-//	801478D8: 80347090 (PSVECAdd)
-//	801478E4: 803DD470 (now__14mDoMtx_stack_c)
-//	801478E8: 803DD470 (now__14mDoMtx_stack_c)
-//	80147904: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	80147914: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	80147920: 80453424 (lit_5240)
-//	80147924: 804533E0 (lit_4142)
-//	80147974: 804533D8 (lit_4116)
-//	801479A0: 804533DC (lit_4140)
-//	801479B0: 802675E4 (cM_rad2s__Ff)
-//	801479B8: 803DD470 (now__14mDoMtx_stack_c)
-//	801479BC: 803DD470 (now__14mDoMtx_stack_c)
-//	801479C0: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801479D4: 802675E4 (cM_rad2s__Ff)
-//	801479DC: 803DD470 (now__14mDoMtx_stack_c)
-//	801479E0: 803DD470 (now__14mDoMtx_stack_c)
-//	801479E4: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801479F4: 802675E4 (cM_rad2s__Ff)
-//	801479FC: 803DD470 (now__14mDoMtx_stack_c)
-//	80147A00: 803DD470 (now__14mDoMtx_stack_c)
-//	80147A04: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80147A1C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147A44: 80346D6C (PSMTXMultVec)
-//	80147A54: 80347090 (PSVECAdd)
-//	80147A90: 803DD470 (now__14mDoMtx_stack_c)
-//	80147A94: 803DD470 (now__14mDoMtx_stack_c)
-//	80147AB0: 80270C74 (cLib_targetAngleX__FPC4cXyzPC4cXyz)
-//	80147AC4: 80270C74 (cLib_targetAngleX__FPC4cXyzPC4cXyz)
-//	80147AD8: 80453424 (lit_5240)
-//	80147ADC: 804533E0 (lit_4142)
-//	80147B2C: 804533D8 (lit_4116)
-//	80147B58: 804533DC (lit_4140)
-//	80147B68: 802675E4 (cM_rad2s__Ff)
-//	80147B70: 803DD470 (now__14mDoMtx_stack_c)
-//	80147B74: 803DD470 (now__14mDoMtx_stack_c)
-//	80147B78: 8000C344 (mDoMtx_XrotS__FPA4_fs)
-//	80147B8C: 802675E4 (cM_rad2s__Ff)
-//	80147B94: 803DD470 (now__14mDoMtx_stack_c)
-//	80147B98: 803DD470 (now__14mDoMtx_stack_c)
-//	80147B9C: 8000C344 (mDoMtx_XrotS__FPA4_fs)
-//	80147BAC: 802675E4 (cM_rad2s__Ff)
-//	80147BB4: 803DD470 (now__14mDoMtx_stack_c)
-//	80147BB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80147BBC: 8000C344 (mDoMtx_XrotS__FPA4_fs)
-//	80147BD4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80147BFC: 80346D6C (PSMTXMultVec)
-//	80147C0C: 80347090 (PSVECAdd)
-//	80147C24: 80362218 (_restgpr_25)
+/* 80147858-80147C38 142198 03E0+00 1/1 0/0 0/0 .text            calc__15daNpcT_JntAnm_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2390,23 +1982,11 @@ asm void daNpcT_JntAnm_c::calc(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045342C-80453430 0004+00 s=1 e=0 z=0  None .sdata2    @5410 */
+/* 8045342C-80453430 001A2C 0004+00 1/1 0/0 0/0 .sdata2          @5410 */
 SECTION_SDATA2 static f32 lit_5410 = 3.1415927410125732f;
 
-/* 80147C38-80147DCC 0194+00 s=0 e=0 z=52  None .text      calcJntRad__15daNpcT_JntAnm_cFfff */
-//	80147C60: 803621D8 (_savegpr_28)
-//	80147C80: 804533D8 (lit_4116)
-//	80147CB0: 80147858 (calc__15daNpcT_JntAnm_cFf)
-//	80147CBC: 804533DC (lit_4140)
-//	80147CE4: 8045342C (lit_5410)
-//	80147CE8: 8026FA3C (cLib_addCalc2__FPffff)
-//	80147CF8: 8045342C (lit_5410)
-//	80147CFC: 8026FA3C (cLib_addCalc2__FPffff)
-//	80147D0C: 8045342C (lit_5410)
-//	80147D10: 8026FA3C (cLib_addCalc2__FPffff)
-//	80147D14: 804533D8 (lit_4116)
-//	80147D40: 804533D8 (lit_4116)
-//	80147DB8: 80362224 (_restgpr_28)
+/* 80147C38-80147DCC 142578 0194+00 0/0 0/0 52/52 .text            calcJntRad__15daNpcT_JntAnm_cFfff
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2417,17 +1997,14 @@ asm void daNpcT_JntAnm_c::calcJntRad(f32 param_0, f32 param_1, f32 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453430-80453434 0004+00 s=1 e=0 z=0  None .sdata2    @5422 */
+/* 80453430-80453434 001A30 0004+00 1/1 0/0 0/0 .sdata2          @5422 */
 SECTION_SDATA2 static f32 lit_5422 = 10922.0f;
 
-/* 80453434-80453438 0004+00 s=1 e=0 z=0  None .sdata2    @5423 */
+/* 80453434-80453438 001A34 0004+00 1/1 0/0 0/0 .sdata2          @5423 */
 SECTION_SDATA2 static f32 lit_5423 = 7281.0f;
 
-/* 80147DCC-80147E3C 0070+00 s=0 e=0 z=28  None .text
+/* 80147DCC-80147E3C 14270C 0070+00 0/0 0/0 28/28 .text
  * setParam__19daNpcT_DmgStagger_cFP10fopAc_ac_cP10fopAc_ac_cs  */
-//	80147DF8: 80453430 (lit_5422)
-//	80147E00: 80453434 (lit_5423)
-//	80147E10: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2438,33 +2015,13 @@ asm void daNpcT_DmgStagger_c::setParam(fopAc_ac_c* param_0, fopAc_ac_c* param_1,
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453438-8045343C 0004+00 s=1 e=0 z=0  None .sdata2    @5459 */
+/* 80453438-8045343C 001A38 0004+00 1/1 0/0 0/0 .sdata2          @5459 */
 SECTION_SDATA2 static f32 lit_5459 = 1.0f / 10.0f;
 
-/* 8045343C-80453440 0004+00 s=1 e=0 z=0  None .sdata2    @5460 */
+/* 8045343C-80453440 001A3C 0004+00 1/1 0/0 0/0 .sdata2          @5460 */
 SECTION_SDATA2 static f32 lit_5460 = 125.0f;
 
-/* 80147E3C-80147FA4 0168+00 s=0 e=0 z=47  None .text      calc__19daNpcT_DmgStagger_cFi */
-//	80147E54: 803621CC (_savegpr_25)
-//	80147E60: 803DD470 (now__14mDoMtx_stack_c)
-//	80147E64: 803DD470 (now__14mDoMtx_stack_c)
-//	80147E6C: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80147E74: 804533D8 (lit_4116)
-//	80147E78: 80453438 (lit_5459)
-//	80147E7C: 8045343C (lit_5460)
-//	80147E80: 8026FA3C (cLib_addCalc2__FPffff)
-//	80147E88: 804533D8 (lit_4116)
-//	80147E8C: 80453438 (lit_5459)
-//	80147E90: 8045343C (lit_5460)
-//	80147E94: 8026FA3C (cLib_addCalc2__FPffff)
-//	80147EA4: 80439A20 (sincosTable___5JMath)
-//	80147EA8: 80439A20 (sincosTable___5JMath)
-//	80147EAC: 804533D8 (lit_4116)
-//	80147EB0: 803DD470 (now__14mDoMtx_stack_c)
-//	80147EB4: 803DD470 (now__14mDoMtx_stack_c)
-//	80147EE8: 80346D6C (PSMTXMultVec)
-//	80147F4C: 802706D0 (cLib_chaseS__FPsss)
-//	80147F90: 80362218 (_restgpr_25)
+/* 80147E3C-80147FA4 14277C 0168+00 0/0 0/0 47/47 .text            calc__19daNpcT_DmgStagger_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2474,7 +2031,7 @@ asm void daNpcT_DmgStagger_c::calc(int param_0) {
 }
 #pragma pop
 
-/* 80147FA4-80147FD4 0030+00 s=0 e=0 z=53  None .text
+/* 80147FA4-80147FD4 1428E4 0030+00 0/0 0/0 53/53 .text
  * tgHitCallBack__8daNpcT_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 #pragma push
 #pragma optimization_level 0
@@ -2487,23 +2044,19 @@ asm void daNpcT_c::tgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fop
 #pragma pop
 
 /* ############################################################################################## */
-/* 80425708-804257D0 00C8+00 s=4 e=0 z=40  None .bss       mFindActorPtrs__8daNpcT_c */
+/* 80425708-804257D0 052428 00C8+00 4/4 0/0 40/40 .bss             mFindActorPtrs__8daNpcT_c */
+extern u8 mFindActorPtrs__8daNpcT_c[200];
 u8 mFindActorPtrs__8daNpcT_c[200];
 
-/* 80450FD8-80450FDC 0002+02 s=4 e=0 z=2  None .sbss      mSrchName__8daNpcT_c */
+/* 80450FD8-80450FDC 0004D8 0002+02 4/4 0/0 2/2 .sbss            mSrchName__8daNpcT_c */
+extern u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
 u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
 
-/* 80450FDC-80450FE0 0004+00 s=4 e=0 z=42  None .sbss      mFindCount__8daNpcT_c */
+/* 80450FDC-80450FE0 0004DC 0004+00 4/4 0/0 42/42 .sbss            mFindCount__8daNpcT_c */
+extern u8 mFindCount__8daNpcT_c[4];
 u8 mFindCount__8daNpcT_c[4];
 
-/* 80147FD4-80148058 0084+00 s=3 e=0 z=2  None .text      srchActor__8daNpcT_cFPvPv */
-//	80147FF0: 80450FDC (mFindCount__8daNpcT_c)
-//	80147FFC: 80018CE0 (fopAc_IsActor__FPv)
-//	80148010: 80450FD8 (mSrchName__8daNpcT_c)
-//	80148020: 80450FDC (mFindCount__8daNpcT_c)
-//	80148028: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	8014802C: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	80148038: 80450FDC (mFindCount__8daNpcT_c)
+/* 80147FD4-80148058 142914 0084+00 3/3 0/0 2/2 .text            srchActor__8daNpcT_cFPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2513,10 +2066,7 @@ asm void daNpcT_c::srchActor(void* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 80148058-80148094 003C+00 s=1 e=0 z=7  None .text      getTrnsfrmAnmP__8daNpcT_cFPCci */
-//	8014806C: 804061C0 (g_dComIfG_gameInfo)
-//	80148070: 804061C0 (g_dComIfG_gameInfo)
-//	80148080: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80148058-80148094 142998 003C+00 1/1 0/0 7/7 .text            getTrnsfrmAnmP__8daNpcT_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2526,10 +2076,8 @@ asm void daNpcT_c::getTrnsfrmAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80148094-801480D0 003C+00 s=1 e=0 z=11  None .text      getTrnsfrmKeyAnmP__8daNpcT_cFPCci */
-//	801480A8: 804061C0 (g_dComIfG_gameInfo)
-//	801480AC: 804061C0 (g_dComIfG_gameInfo)
-//	801480BC: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80148094-801480D0 1429D4 003C+00 1/1 0/0 11/11 .text            getTrnsfrmKeyAnmP__8daNpcT_cFPCci
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2539,10 +2087,7 @@ asm void daNpcT_c::getTrnsfrmKeyAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 801480D0-8014810C 003C+00 s=1 e=0 z=1  None .text      getTexPtrnAnmP__8daNpcT_cFPCci */
-//	801480E4: 804061C0 (g_dComIfG_gameInfo)
-//	801480E8: 804061C0 (g_dComIfG_gameInfo)
-//	801480F8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 801480D0-8014810C 142A10 003C+00 1/1 0/0 1/1 .text            getTexPtrnAnmP__8daNpcT_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2552,10 +2097,7 @@ asm void daNpcT_c::getTexPtrnAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014810C-80148148 003C+00 s=1 e=0 z=7  None .text      getTexSRTKeyAnmP__8daNpcT_cFPCci */
-//	80148120: 804061C0 (g_dComIfG_gameInfo)
-//	80148124: 804061C0 (g_dComIfG_gameInfo)
-//	80148134: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 8014810C-80148148 142A4C 003C+00 1/1 0/0 7/7 .text            getTexSRTKeyAnmP__8daNpcT_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2565,10 +2107,7 @@ asm void daNpcT_c::getTexSRTKeyAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80148148-80148184 003C+00 s=0 e=0 z=9  None .text      getTevRegKeyAnmP__8daNpcT_cFPCci */
-//	8014815C: 804061C0 (g_dComIfG_gameInfo)
-//	80148160: 804061C0 (g_dComIfG_gameInfo)
-//	80148170: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80148148-80148184 142A88 003C+00 0/0 0/0 9/9 .text            getTevRegKeyAnmP__8daNpcT_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2578,10 +2117,7 @@ asm void daNpcT_c::getTevRegKeyAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80148184-801481C0 003C+00 s=0 e=0 z=2  None .text      getColorAnmP__8daNpcT_cFPCci */
-//	80148198: 804061C0 (g_dComIfG_gameInfo)
-//	8014819C: 804061C0 (g_dComIfG_gameInfo)
-//	801481AC: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80148184-801481C0 142AC4 003C+00 0/0 0/0 2/2 .text            getColorAnmP__8daNpcT_cFPCci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2591,9 +2127,8 @@ asm void daNpcT_c::getColorAnmP(char const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 801481C0-80148204 0044+00 s=1 e=0 z=0  None .text setBckAnm__8daNpcT_cFP15J3DAnmTransformfiiib
+/* 801481C0-80148204 142B00 0044+00 1/1 0/0 0/0 .text setBckAnm__8daNpcT_cFP15J3DAnmTransformfiiib
  */
-//	801481F0: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2604,13 +2139,8 @@ asm void daNpcT_c::setBckAnm(J3DAnmTransform* param_0, f32 param_1, int param_2,
 }
 #pragma pop
 
-/* 80148204-801482F8 00F4+00 s=1 e=0 z=1  None .text
+/* 80148204-801482F8 142B44 00F4+00 1/1 0/0 1/1 .text
  * setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii          */
-//	80148234: 803621DC (_savegpr_29)
-//	8014824C: 804533E0 (lit_4142)
-//	80148290: 80010E70 (setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff)
-//	801482B8: 80010E70 (setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff)
-//	801482E4: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2621,9 +2151,8 @@ asm void daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 p
 }
 #pragma pop
 
-/* 801482F8-80148338 0040+00 s=1 e=0 z=1  None .text
+/* 801482F8-80148338 142C38 0040+00 1/1 0/0 1/1 .text
  * setBtpAnm__8daNpcT_cFP16J3DAnmTexPatternP12J3DModelDatafi    */
-//	80148324: 8000D54C (init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2634,9 +2163,8 @@ asm void daNpcT_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1, f
 }
 #pragma pop
 
-/* 80148338-80148378 0040+00 s=1 e=0 z=6  None .text
+/* 80148338-80148378 142C78 0040+00 1/1 0/0 6/6 .text
  * setBtkAnm__8daNpcT_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi */
-//	80148364: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2647,9 +2175,8 @@ asm void daNpcT_c::setBtkAnm(J3DAnmTextureSRTKey* param_0, J3DModelData* param_1
 }
 #pragma pop
 
-/* 80148378-801483B8 0040+00 s=0 e=0 z=9  None .text
+/* 80148378-801483B8 142CB8 0040+00 0/0 0/0 9/9 .text
  * setBrkAnm__8daNpcT_cFP15J3DAnmTevRegKeyP12J3DModelDatafi     */
-//	801483A4: 8000D70C (init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2660,9 +2187,8 @@ asm void daNpcT_c::setBrkAnm(J3DAnmTevRegKey* param_0, J3DModelData* param_1, f3
 }
 #pragma pop
 
-/* 801483B8-801483F8 0040+00 s=0 e=0 z=2  None .text
+/* 801483B8-801483F8 142CF8 0040+00 0/0 0/0 2/2 .text
  * setBpkAnm__8daNpcT_cFP11J3DAnmColorP12J3DModelDatafi         */
-//	801483E4: 8000D47C (init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2673,10 +2199,7 @@ asm void daNpcT_c::setBpkAnm(J3DAnmColor* param_0, J3DModelData* param_1, f32 pa
 }
 #pragma pop
 
-/* 801483F8-801484AC 00B4+00 s=0 e=0 z=58  None .text      loadRes__8daNpcT_cFPCScPPCc */
-//	80148408: 803621D0 (_savegpr_26)
-//	80148454: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80148498: 8036221C (_restgpr_26)
+/* 801483F8-801484AC 142D38 00B4+00 0/0 0/0 58/58 .text            loadRes__8daNpcT_cFPCScPPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2686,10 +2209,7 @@ asm void daNpcT_c::loadRes(s8 const* param_0, char const** param_1) {
 }
 #pragma pop
 
-/* 801484AC-8014852C 0080+00 s=0 e=0 z=58  None .text      deleteRes__8daNpcT_cFPCScPPCc */
-//	801484BC: 803621D4 (_savegpr_27)
-//	801484EC: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80148518: 80362220 (_restgpr_27)
+/* 801484AC-8014852C 142DEC 0080+00 0/0 0/0 58/58 .text            deleteRes__8daNpcT_cFPCScPPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2700,32 +2220,10 @@ asm void daNpcT_c::deleteRes(s8 const* param_0, char const** param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453440-80453444 0004+00 s=3 e=0 z=0  None .sdata2    @5667 */
+/* 80453440-80453444 001A40 0004+00 3/3 0/0 0/0 .sdata2          @5667 */
 SECTION_SDATA2 static f32 lit_5667 = -1000000000.0f;
 
-/* 8014852C-8014886C 0340+00 s=0 e=0 z=59  None .text      execute__8daNpcT_cFv */
-//	801485A0: 8001A6CC (fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz)
-//	801485A8: 804061C0 (g_dComIfG_gameInfo)
-//	801485AC: 804061C0 (g_dComIfG_gameInfo)
-//	801485B8: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS)
-//	80148634: 8001DAE4 (fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos)
-//	80148644: 80453440 (lit_5667)
-//	80148658: 801AB4C0 (dKy_pol_sound_get__FPC13cBgS_PolyInfo)
-//	80148668: 8002D06C (dComIfGp_getReverb__Fi)
-//	80148690: 801AB4C0 (dKy_pol_sound_get__FPC13cBgS_PolyInfo)
-//	801486B0: 80453440 (lit_5667)
-//	801486C4: 80148C70 (setEnvTevColor__8daNpcT_cFv)
-//	801486CC: 80148CCC (setRoomNo__8daNpcT_cFv)
-//	801486FC: 8014924C (ctrlFaceMotion__8daNpcT_cFv)
-//	80148744: 80149300 (ctrlMotion__8daNpcT_cFv)
-//	8014874C: 80148E4C (playAllAnm__8daNpcT_cFv)
-//	80148754: 8014924C (ctrlFaceMotion__8daNpcT_cFv)
-//	80148774: 80149300 (ctrlMotion__8daNpcT_cFv)
-//	80148790: 804533D8 (lit_4116)
-//	80148794: 804533DC (lit_4140)
-//	80148798: 80270740 (cLib_chaseF__FPfff)
-//	80148800: 804061C0 (g_dComIfG_gameInfo)
-//	80148804: 804061C0 (g_dComIfG_gameInfo)
+/* 8014852C-8014886C 142E6C 0340+00 0/0 0/0 59/59 .text            execute__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2736,49 +2234,10 @@ asm void daNpcT_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453444-80453448 0004+00 s=3 e=0 z=0  None .sdata2    @5794 */
+/* 80453444-80453448 001A44 0004+00 3/3 0/0 0/0 .sdata2          @5794 */
 SECTION_SDATA2 static f32 lit_5794 = 20.0f;
 
-/* 8014886C-80148C70 0404+00 s=0 e=0 z=58  None .text      draw__8daNpcT_cFiifP11_GXColorS10fiii */
-//	8014888C: 803621C0 (_savegpr_22)
-//	801488F0: 8002FA54 (dComIfGs_wolfeye_effect_check__Fv)
-//	8014897C: 804533E0 (lit_4142)
-//	801489B8: 80451180 (G_CM3D_F_ABS_MIN)
-//	801489CC: 80453444 (lit_5794)
-//	80148A1C: 8000D5E8 (entry__13mDoExt_btpAnmFP16J3DMaterialTables)
-//	80148A38: 8000D6D8 (entry__13mDoExt_btkAnmFP16J3DMaterialTablef)
-//	80148A54: 8000D7A8 (entry__13mDoExt_brkAnmFP16J3DMaterialTablef)
-//	80148A70: 8000D518 (entry__13mDoExt_bpkAnmFP16J3DMaterialTablef)
-//	80148A84: 8001D42C (fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData)
-//	80148AB4: 8042CA54 (g_env_light)
-//	80148AB8: 8042CA54 (g_env_light)
-//	80148AC8: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80148ACC: 8042CA54 (g_env_light)
-//	80148AD0: 8042CA54 (g_env_light)
-//	80148ADC: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80148AE0:
-// 804061C0 (g_dComIfG_gameInfo) 	80148AE4: 804061C0 (g_dComIfG_gameInfo) 	80148AEC: 80434AC8
-// (j3dSys) 	80148AF0: 80434AC8 (j3dSys) 	80148B04: 800111C0 (entryDL__16mDoExt_McaMorfSOFv) 	80148B08:
-//804061C0 (g_dComIfG_gameInfo) 	80148B0C: 804061C0 (g_dComIfG_gameInfo) 	80148B24: 8042CA54
-//(g_env_light) 	80148B28: 8042CA54 (g_env_light) 	80148B38: 801A37C4
-//(settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c) 	80148B3C: 8042CA54 (g_env_light)
-//	80148B40: 8042CA54 (g_env_light)
-//	80148B4C: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80148B54:
-// 800111C0 (entryDL__16mDoExt_McaMorfSOFv) 	80148B6C: 8032F6F8
-//(removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern) 	80148B84: 8032F7B4
-//(removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey) 	80148B9C: 8032F880
-//(removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey) 	80148BB4: 8032F64C
-//(removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor) 	80148BF4: 804533DC (lit_4140)
-//	80148BF8: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80148BFC: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80148C00: 8002E910
-//(dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj)
-//	80148C20: 804533DC (lit_4140)
-//	80148C24: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80148C28: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80148C2C: 8002D0B4 (dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj)
-//	80148C5C: 8036220C (_restgpr_22)
+/* 8014886C-80148C70 1431AC 0404+00 0/0 0/0 58/58 .text draw__8daNpcT_cFiifP11_GXColorS10fiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2789,11 +2248,7 @@ asm void daNpcT_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* para
 }
 #pragma pop
 
-/* 80148C70-80148CCC 005C+00 s=1 e=0 z=58  None .text      setEnvTevColor__8daNpcT_cFv */
-//	80148C88: 804061C0 (g_dComIfG_gameInfo)
-//	80148C8C: 804061C0 (g_dComIfG_gameInfo)
-//	80148C9C: 80074BE8 (GetPolyColor__4dBgSFRC13cBgS_PolyInfo)
-//	80148CAC: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80148C70-80148CCC 1435B0 005C+00 1/1 0/0 58/58 .text            setEnvTevColor__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2803,10 +2258,7 @@ asm void daNpcT_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 80148CCC-80148D10 0044+00 s=1 e=0 z=58  None .text      setRoomNo__8daNpcT_cFv */
-//	80148CE0: 804061C0 (g_dComIfG_gameInfo)
-//	80148CE4: 804061C0 (g_dComIfG_gameInfo)
-//	80148CF0: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80148CCC-80148D10 14360C 0044+00 1/1 0/0 58/58 .text            setRoomNo__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2816,10 +2268,7 @@ asm void daNpcT_c::setRoomNo() {
 }
 #pragma pop
 
-/* 80148D10-80148DD0 00C0+00 s=1 e=0 z=0  None .text      checkEndAnm__8daNpcT_cFf */
-//	80148D58: 804533D8 (lit_4116)
-//	80148D80: 80451180 (G_CM3D_F_ABS_MIN)
-//	80148DA8: 80451180 (G_CM3D_F_ABS_MIN)
+/* 80148D10-80148DD0 143650 00C0+00 1/1 0/0 0/0 .text            checkEndAnm__8daNpcT_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2829,9 +2278,7 @@ asm void daNpcT_c::checkEndAnm(f32 param_0) {
 }
 #pragma pop
 
-/* 80148DD0-80148E4C 007C+00 s=1 e=0 z=0  None .text      checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf */
-//	80148E10: 804533D8 (lit_4116)
-//	80148E2C: 804533D8 (lit_4116)
+/* 80148DD0-80148E4C 143710 007C+00 1/1 0/0 0/0 .text checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2841,30 +2288,7 @@ asm void daNpcT_c::checkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80148E4C-801490D4 0288+00 s=1 e=0 z=0  None .text      playAllAnm__8daNpcT_cFv */
-//	80148E88: 804533D8 (lit_4116)
-//	80148E94: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80148EA4: 80148DD0 (checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf)
-//	80148ED8: 804533D8 (lit_4116)
-//	80148EF4: 8014D364 (func_8014D364)
-//	80148F00: 8014D348 (func_8014D348)
-//	80148F0C: 804533D8 (lit_4116)
-//	80148F18: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80148F34: 80148DD0 (checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf)
-//	80148F48: 8014D364 (func_8014D364)
-//	80148F7C: 804533D8 (lit_4116)
-//	80148F90: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80148FA8: 804533D8 (lit_4116)
-//	80148FBC: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80148FD4: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80148FEC: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80148FF8: 80148D10 (checkEndAnm__8daNpcT_cFf)
-//	80149028: 804533D8 (lit_4116)
-//	80149048: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80149068: 804533D8 (lit_4116)
-//	80149074: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80149094: 804533D8 (lit_4116)
-//	801490A0: 8000D428 (play__14mDoExt_baseAnmFv)
+/* 80148E4C-801490D4 14378C 0288+00 1/1 0/0 0/0 .text            playAllAnm__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2874,9 +2298,7 @@ asm void daNpcT_c::playAllAnm() {
 }
 #pragma pop
 
-/* 801490D4-80149190 00BC+00 s=1 e=1 z=55  None .text      ctrlBtk__8daNpcT_cFv */
-//	80149100: 80439A20 (sincosTable___5JMath)
-//	80149104: 80439A20 (sincosTable___5JMath)
+/* 801490D4-80149190 143A14 00BC+00 1/0 1/0 55/0 .text            ctrlBtk__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2886,15 +2308,7 @@ asm void daNpcT_c::ctrlBtk() {
 }
 #pragma pop
 
-/* 80149190-8014924C 00BC+00 s=0 e=0 z=57  None .text      setMtx__8daNpcT_cFv */
-//	801491B4: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	801491BC: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	801491C4: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	801491C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801491CC: 803DD470 (now__14mDoMtx_stack_c)
-//	801491D4: 803464B0 (PSMTXCopy)
-//	801491F4: 80451180 (G_CM3D_F_ABS_MIN)
-//	80149230: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
+/* 80149190-8014924C 143AD0 00BC+00 0/0 0/0 57/57 .text            setMtx__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2904,14 +2318,7 @@ asm void daNpcT_c::setMtx() {
 }
 #pragma pop
 
-/* 8014924C-80149300 00B4+00 s=1 e=0 z=0  None .text      ctrlFaceMotion__8daNpcT_cFv */
-//	80149270: 801458C0 (play__22daNpcT_MotionSeqMngr_cFUsPiPf)
-//	80149288: 8014A388 (setFaceMotionAnm__8daNpcT_cFib)
-//	80149290: 804533D8 (lit_4116)
-//	801492A4: 8000FB7C (setMorf__13mDoExt_morf_cFf)
-//	801492C0: 8000FB7C (setMorf__13mDoExt_morf_cFf)
-//	801492CC: 8000FB7C (setMorf__13mDoExt_morf_cFf)
-//	801492E8: 8000FB7C (setMorf__13mDoExt_morf_cFf)
+/* 8014924C-80149300 143B8C 00B4+00 1/1 0/0 0/0 .text            ctrlFaceMotion__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2921,14 +2328,7 @@ asm void daNpcT_c::ctrlFaceMotion() {
 }
 #pragma pop
 
-/* 80149300-801493B8 00B8+00 s=1 e=0 z=0  None .text      ctrlMotion__8daNpcT_cFv */
-//	80149324: 801458C0 (play__22daNpcT_MotionSeqMngr_cFUsPiPf)
-//	80149338: 804533E8 (lit_4148)
-//	80149350: 804533D8 (lit_4116)
-//	80149370: 804533D8 (lit_4116)
-//	80149388: 8000FB7C (setMorf__13mDoExt_morf_cFf)
-//	8014938C: 804533D8 (lit_4116)
-//	801493A0: 8000FB7C (setMorf__13mDoExt_morf_cFf)
+/* 80149300-801493B8 143C40 00B8+00 1/1 0/0 0/0 .text            ctrlMotion__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2938,18 +2338,7 @@ asm void daNpcT_c::ctrlMotion() {
 }
 #pragma pop
 
-/* 801493B8-8014951C 0164+00 s=1 e=0 z=2  None .text      ctrlMsgAnm__8daNpcT_cFPiPiP10fopAc_ac_ci
- */
-//	801493C8: 803621D4 (_savegpr_27)
-//	80149408: 804061C0 (g_dComIfG_gameInfo)
-//	8014940C: 804061C0 (g_dComIfG_gameInfo)
-//	80149418: 800432EC (convPId__14dEvt_control_cFUi)
-//	80149424: 8023819C (getActor__12dMsgObject_cFv)
-//	80149460: 804061C0 (g_dComIfG_gameInfo)
-//	80149464: 804061C0 (g_dComIfG_gameInfo)
-//	80149480: 802383A4 (isMouthCheck__12dMsgObject_cFv)
-//	801494FC: 8014D348 (func_8014D348)
-//	80149508: 80362220 (_restgpr_27)
+/* 801493B8-8014951C 143CF8 0164+00 1/1 0/0 2/2 .text ctrlMsgAnm__8daNpcT_cFPiPiP10fopAc_ac_ci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2959,63 +2348,8 @@ asm void daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, i
 }
 #pragma pop
 
-/* 8014951C-8014997C 0460+00 s=1 e=1 z=59  None .text      ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel
+/* 8014951C-8014997C 143E5C 0460+00 1/0 1/0 59/0 .text ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel
  */
-//	8014952C: 803621D4 (_savegpr_27)
-//	80149550: 803DD470 (now__14mDoMtx_stack_c)
-//	80149554: 803DD470 (now__14mDoMtx_stack_c)
-//	80149558: 803464B0 (PSMTXCopy)
-//	801495B0: 803DD470 (now__14mDoMtx_stack_c)
-//	801495B4: 803DD470 (now__14mDoMtx_stack_c)
-//	801495BC: 803464B0 (PSMTXCopy)
-//	801495D8: 804533D8 (lit_4116)
-//	801495E8: 803DD470 (now__14mDoMtx_stack_c)
-//	801495EC: 803DD470 (now__14mDoMtx_stack_c)
-//	80149608: 8000C208 (mDoMtx_ZXYrotS__FPA4_fsss)
-//	8014962C: 802675E4 (cM_rad2s__Ff)
-//	80149638: 802675E4 (cM_rad2s__Ff)
-//	80149650: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80149674: 802675E4 (cM_rad2s__Ff)
-//	80149680: 802675E4 (cM_rad2s__Ff)
-//	80149698: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	8014969C: 803DD470 (now__14mDoMtx_stack_c)
-//	801496A0: 803DD470 (now__14mDoMtx_stack_c)
-//	801496A8: 803465B0 (PSMTXInverse)
-//	801496AC: 803DD470 (now__14mDoMtx_stack_c)
-//	801496B0: 803DD470 (now__14mDoMtx_stack_c)
-//	801496B8: 803464B0 (PSMTXCopy)
-//	801496C0: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	801496C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801496C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801496E4: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
-//	80149708: 802675E4 (cM_rad2s__Ff)
-//	80149714: 802675E4 (cM_rad2s__Ff)
-//	8014972C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80149760: 802675E4 (cM_rad2s__Ff)
-//	8014977C: 802675E4 (cM_rad2s__Ff)
-//	80149794: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	801497BC: 804533DC (lit_4140)
-//	801497D0: 802675E4 (cM_rad2s__Ff)
-//	801497E0: 804533DC (lit_4140)
-//	801497F4: 802675E4 (cM_rad2s__Ff)
-//	8014980C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80149810: 803DD470 (now__14mDoMtx_stack_c)
-//	80149814: 803DD470 (now__14mDoMtx_stack_c)
-//	80149820: 803464E4 (PSMTXConcat)
-//	80149824: 803DD470 (now__14mDoMtx_stack_c)
-//	80149828: 803DD470 (now__14mDoMtx_stack_c)
-//	80149834: 803464E4 (PSMTXConcat)
-//	80149850: 803DD470 (now__14mDoMtx_stack_c)
-//	80149854: 803DD470 (now__14mDoMtx_stack_c)
-//	80149864: 803464B0 (PSMTXCopy)
-//	80149868: 803DD470 (now__14mDoMtx_stack_c)
-//	8014986C: 803DD470 (now__14mDoMtx_stack_c)
-//	80149870: 80434BE4 (mCurrentMtx__6J3DSys)
-//	80149874: 80434BE4 (mCurrentMtx__6J3DSys)
-//	80149878: 803464B0 (PSMTXCopy)
-//	801498D8: 8000D990 (changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform)
-//	801498F0: 80451180 (G_CM3D_F_ABS_MIN)
-//	80149968: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3025,94 +2359,7 @@ asm void daNpcT_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80392680-803926B0 0030+00 s=1 e=0 z=4  None .rodata    mCcDObjData__8daNpcT_c */
-SECTION_RODATA u8 const mCcDObjData__8daNpcT_c[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803926B0-803926E0 0030+00 s=0 e=0 z=0  None .rodata    mCcDObj__11daBaseNpc_c */
-SECTION_RODATA u8 const mCcDObj__11daBaseNpc_c[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803926E0-80392710 0030+00 s=0 e=0 z=0  None .rodata    mCcDObjInfo__8daNpcF_c */
-SECTION_RODATA u8 const mCcDObjInfo__8daNpcF_c[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80392710-80392A18 0302+06 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80392710 = "DEFAULT_GETITEM";
-SECTION_DEAD char const* const stringBase_80392720 = ".bck";
-SECTION_DEAD char const* const stringBase_80392725 = ".btp";
-SECTION_DEAD char const* const stringBase_8039272A = ".btk";
-SECTION_DEAD char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
-SECTION_DEAD char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
-SECTION_DEAD char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
-SECTION_DEAD char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
-SECTION_DEAD char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
-SECTION_DEAD char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
-SECTION_DEAD char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
-SECTION_DEAD char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
-SECTION_DEAD char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
-SECTION_DEAD char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
-SECTION_DEAD char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
-SECTION_DEAD char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
-SECTION_DEAD char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
-SECTION_DEAD char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
-SECTION_DEAD char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
-SECTION_DEAD char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
-SECTION_DEAD char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
-SECTION_DEAD char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
-SECTION_DEAD char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
-SECTION_DEAD char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
-SECTION_DEAD char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
-SECTION_DEAD char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
-SECTION_DEAD char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
-SECTION_DEAD char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
-SECTION_DEAD char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
-SECTION_DEAD char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
-SECTION_DEAD char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
-SECTION_DEAD char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD char const* const stringBase_803929A1 =
-    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
-SECTION_DEAD char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
-SECTION_DEAD char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
-SECTION_DEAD char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
-SECTION_DEAD char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80392A12 = "\0\0\0\0\0";
-#pragma pop
-
-/* 8014997C-80149BB4 0238+00 s=1 e=1 z=58  None .text      evtProc__8daNpcT_cFv */
-//	8014998C: 803621D8 (_savegpr_28)
-//	80149998: 804061C0 (g_dComIfG_gameInfo)
-//	8014999C: 804061C0 (g_dComIfG_gameInfo)
-//	801499FC: 80047A78 (endCheck__16dEvent_manager_cFs)
-//	80149A28: 80042468 (reset__14dEvt_control_cFv)
-//	80149A3C: 800483E8 (getRunEventName__16dEvent_manager_cFv)
-//	80149A40: 80392710 (d_a_d_a_npc__stringBase0)
-//	80149A44: 80392710 (d_a_d_a_npc__stringBase0)
-//	80149A48: 80368994 (strcmp)
-//	80149A70: 8004368C (setPtT__14dEvt_control_cFPv)
-//	80149A7C: 800436EC (setPtI_Id__14dEvt_control_cFUi)
-//	80149AB8: 801493B8 (ctrlMsgAnm__8daNpcT_cFPiPiP10fopAc_ac_ci)
-//	80149AE4: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	80149AF4: 804533E8 (lit_4148)
-//	80149B20: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	80149B2C: 804533E8 (lit_4148)
-//	80149BA0: 80362224 (_restgpr_28)
+/* 8014997C-80149BB4 1442BC 0238+00 1/0 1/0 58/0 .text            evtProc__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3122,19 +2369,7 @@ asm void daNpcT_c::evtProc() {
 }
 #pragma pop
 
-/* 80149BB4-80149D7C 01C8+00 s=1 e=1 z=60  None .text      setFootPos__8daNpcT_cFv */
-//	80149C24: 803DD470 (now__14mDoMtx_stack_c)
-//	80149C28: 803DD470 (now__14mDoMtx_stack_c)
-//	80149C2C: 803464B0 (PSMTXCopy)
-//	80149C30: 803DD470 (now__14mDoMtx_stack_c)
-//	80149C34: 803DD470 (now__14mDoMtx_stack_c)
-//	80149C5C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80149CD8: 803DD470 (now__14mDoMtx_stack_c)
-//	80149CDC: 803DD470 (now__14mDoMtx_stack_c)
-//	80149CE0: 803464B0 (PSMTXCopy)
-//	80149CE4: 803DD470 (now__14mDoMtx_stack_c)
-//	80149CE8: 803DD470 (now__14mDoMtx_stack_c)
-//	80149D10: 80266B34 (__mi__4cXyzCFRC3Vec)
+/* 80149BB4-80149D7C 1444F4 01C8+00 1/0 1/0 60/0 .text            setFootPos__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3144,23 +2379,8 @@ asm void daNpcT_c::setFootPos() {
 }
 #pragma pop
 
-/* 80149D7C-8014A05C 02E0+00 s=1 e=1 z=60  None .text      setFootPrtcl__8daNpcT_cFP4cXyzff */
-//	80149D9C: 803621CC (_savegpr_25)
-//	80149E14: 80077D64 (Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c)
-//	80149E18: 804061C0 (g_dComIfG_gameInfo)
-//	80149E1C: 804061C0 (g_dComIfG_gameInfo)
-//	80149E2C: 800743B4 (LineCross__4cBgSFP11cBgS_LinChk)
-//	80149E48: 8001DAE4 (fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos)
-//	80149E58: 80074E50 (GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo)
-//	80149EAC: 80077D64 (Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c)
-//	80149EB8: 800743B4 (LineCross__4cBgSFP11cBgS_LinChk)
-//	80149ED4: 8001DAE4 (fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos)
-//	80149EE4: 80074E50 (GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo)
-//	80149F90: 8005115C
-//(setEffectTwo__8dPaPoT_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff)
-//	80149FDC: 8001F7B8 (fopKyM_create__FsiP4cXyzP4cXyzPFPv_i)
-//	8014A028: 8001F7B8 (fopKyM_create__FsiP4cXyzP4cXyzPFPv_i)
-//	8014A048: 80362218 (_restgpr_25)
+/* 80149D7C-8014A05C 1446BC 02E0+00 1/0 1/0 60/0 .text            setFootPrtcl__8daNpcT_cFP4cXyzff
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3170,13 +2390,12 @@ asm void daNpcT_c::setFootPrtcl(cXyz* param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8014A05C-8014A064 0008+00 s=1 e=1 z=60  None .text      checkCullDraw__8daNpcT_cFv */
+/* 8014A05C-8014A064 14499C 0008+00 1/0 1/0 60/0 .text            checkCullDraw__8daNpcT_cFv */
 bool daNpcT_c::checkCullDraw() {
     return false;
 }
 
-/* 8014A064-8014A0B0 004C+00 s=1 e=1 z=60  None .text      twilight__8daNpcT_cFv */
-//	8014A09C: 8014C030 (setHitodamaPrtcl__8daNpcT_cFv)
+/* 8014A064-8014A0B0 1449A4 004C+00 1/0 1/0 60/0 .text            twilight__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3186,18 +2405,7 @@ asm void daNpcT_c::twilight() {
 }
 #pragma pop
 
-/* 8014A0B0-8014A224 0174+00 s=1 e=1 z=59  None .text      evtOrder__8daNpcT_cFv */
-//	8014A0D4: 80368BE4 (strlen)
-//	8014A100: 80368BE4 (strlen)
-//	8014A130: 804061C0 (g_dComIfG_gameInfo)
-//	8014A134: 804061C0 (g_dComIfG_gameInfo)
-//	8014A140: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	8014A144: 804061C0 (g_dComIfG_gameInfo)
-//	8014A148: 804061C0 (g_dComIfG_gameInfo)
-//	8014A168: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	8014A18C: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	8014A1A0: 8015F424 (checkNowWolfEyeUp__9daPy_py_cFv)
-//	8014A20C: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
+/* 8014A0B0-8014A224 1449F0 0174+00 1/0 1/0 59/0 .text            evtOrder__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3207,17 +2415,7 @@ asm void daNpcT_c::evtOrder() {
 }
 #pragma pop
 
-/* 8014A224-8014A324 0100+00 s=0 e=2 z=81  None .text      evtChange__8daNpcT_cFv */
-//	8014A24C: 80368BE4 (strlen)
-//	8014A278: 80368BE4 (strlen)
-//	8014A2A8: 804061C0 (g_dComIfG_gameInfo)
-//	8014A2AC: 804061C0 (g_dComIfG_gameInfo)
-//	8014A2B8: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	8014A2BC: 804061C0 (g_dComIfG_gameInfo)
-//	8014A2C0: 804061C0 (g_dComIfG_gameInfo)
-//	8014A2E0: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	8014A2F0: 80042518 (reset__14dEvt_control_cFPv)
-//	8014A308: 8001B5E4 (fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs)
+/* 8014A224-8014A324 144B64 0100+00 0/0 2/2 81/81 .text            evtChange__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3227,8 +2425,7 @@ asm void daNpcT_c::evtChange() {
 }
 #pragma pop
 
-/* 8014A324-8014A388 0064+00 s=1 e=1 z=60  None .text      clrParam__8daNpcT_cFv */
-//	8014A368: 80003458 (memset)
+/* 8014A324-8014A388 144C64 0064+00 1/0 1/0 60/0 .text            clrParam__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3238,16 +2435,7 @@ asm void daNpcT_c::clrParam() {
 }
 #pragma pop
 
-/* 8014A388-8014A628 02A0+00 s=1 e=0 z=57  None .text      setFaceMotionAnm__8daNpcT_cFib */
-//	8014A398: 803621D4 (_savegpr_27)
-//	8014A48C: 80148058 (getTrnsfrmAnmP__8daNpcT_cFPCci)
-//	8014A4A4: 804533DC (lit_4140)
-//	8014A4B8: 801481C0 (setBckAnm__8daNpcT_cFP15J3DAnmTransformfiiib)
-//	8014A548: 801480D0 (getTexPtrnAnmP__8daNpcT_cFPCci)
-//	8014A594: 804533DC (lit_4140)
-//	8014A59C: 801482F8 (setBtpAnm__8daNpcT_cFP16J3DAnmTexPatternP12J3DModelDatafi)
-//	8014A5F8: 804533D8 (lit_4116)
-//	8014A614: 80362220 (_restgpr_27)
+/* 8014A388-8014A628 144CC8 02A0+00 1/1 0/0 57/57 .text            setFaceMotionAnm__8daNpcT_cFib */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3257,15 +2445,7 @@ asm void daNpcT_c::setFaceMotionAnm(int param_0, bool param_1) {
 }
 #pragma pop
 
-/* 8014A628-8014A908 02E0+00 s=1 e=1 z=59  None .text      setMotionAnm__8daNpcT_cFifi */
-//	8014A640: 803621D0 (_savegpr_26)
-//	8014A73C: 80148094 (getTrnsfrmKeyAnmP__8daNpcT_cFPCci)
-//	8014A788: 804533DC (lit_4140)
-//	8014A79C: 80148204 (setMcaMorfAnm__8daNpcT_cFP18J3DAnmTransformKeyffiii)
-//	8014A848: 8014810C (getTexSRTKeyAnmP__8daNpcT_cFPCci)
-//	8014A884: 804533DC (lit_4140)
-//	8014A88C: 80148338 (setBtkAnm__8daNpcT_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi)
-//	8014A8F4: 8036221C (_restgpr_26)
+/* 8014A628-8014A908 144F68 02E0+00 1/0 1/0 59/0 .text            setMotionAnm__8daNpcT_cFifi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3276,15 +2456,10 @@ asm void daNpcT_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453448-8045344C 0004+00 s=1 e=0 z=0  None .sdata2    @6667 */
+/* 80453448-8045344C 001A48 0004+00 1/1 0/0 0/0 .sdata2          @6667 */
 SECTION_SDATA2 static f32 lit_6667 = 300.0f;
 
-/* 8014A908-8014A99C 0094+00 s=0 e=0 z=40  None .text      setPos__8daNpcT_cF4cXyz */
-//	8014A928: 80453448 (lit_6667)
-//	8014A938: 80267D28 (SetPos__11cBgS_GndChkFPC4cXyz)
-//	8014A93C: 804061C0 (g_dComIfG_gameInfo)
-//	8014A940: 804061C0 (g_dComIfG_gameInfo)
-//	8014A94C: 800744A0 (GroundCross__4cBgSFP11cBgS_GndChk)
+/* 8014A908-8014A99C 145248 0094+00 0/0 0/0 40/40 .text            setPos__8daNpcT_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3294,7 +2469,7 @@ asm void daNpcT_c::setPos(cXyz param_0) {
 }
 #pragma pop
 
-/* 8014A99C-8014AA18 007C+00 s=0 e=0 z=29  None .text      setAngle__8daNpcT_cF5csXyz */
+/* 8014A99C-8014AA18 1452DC 007C+00 0/0 0/0 29/29 .text            setAngle__8daNpcT_cF5csXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3304,7 +2479,7 @@ asm void daNpcT_c::setAngle(csXyz param_0) {
 }
 #pragma pop
 
-/* 8014AA18-8014AA40 0028+00 s=0 e=0 z=138  None .text      setAngle__8daNpcT_cFs */
+/* 8014AA18-8014AA40 145358 0028+00 0/0 0/0 138/138 .text            setAngle__8daNpcT_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3314,11 +2489,7 @@ asm void daNpcT_c::setAngle(s16 param_0) {
 }
 #pragma pop
 
-/* 8014AA40-8014AAD0 0090+00 s=0 e=0 z=33  None .text      hitChk__8daNpcT_cFP12dCcD_GObjInfUl */
-//	8014AA50: 803621DC (_savegpr_29)
-//	8014AA68: 80083830 (Move__10dCcD_GSttsFv)
-//	8014AA7C: 80083688 (GetAc__22dCcD_GAtTgCoCommonBaseFv)
-//	8014AABC: 80362228 (_restgpr_29)
+/* 8014AA40-8014AAD0 145380 0090+00 0/0 0/0 33/33 .text hitChk__8daNpcT_cFP12dCcD_GObjInfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3328,14 +2499,7 @@ asm void daNpcT_c::hitChk(dCcD_GObjInf* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 8014AAD0-8014ABD0 0100+00 s=0 e=0 z=27  None .text      setDamage__8daNpcT_cFiii */
-//	8014AAE0: 803621D8 (_savegpr_28)
-//	8014AB50: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014AB5C: 804533D8 (lit_4116)
-//	8014AB90: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014AB9C: 804533D8 (lit_4116)
-//	8014ABA4: 804533D8 (lit_4116)
-//	8014ABBC: 80362224 (_restgpr_28)
+/* 8014AAD0-8014ABD0 145410 0100+00 0/0 0/0 27/27 .text            setDamage__8daNpcT_cFiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3346,23 +2510,11 @@ asm void daNpcT_c::setDamage(int param_0, int param_1, int param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045344C-80453450 0004+00 s=7 e=0 z=0  None .sdata2    @6775 */
+/* 8045344C-80453450 001A4C 0004+00 7/7 0/0 0/0 .sdata2          @6775 */
 SECTION_SDATA2 static f32 lit_6775 = 180.0f;
 
-/* 8014ABD0-8014ACF0 0120+00 s=2 e=0 z=53  None .text chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs
+/* 8014ABD0-8014ACF0 145510 0120+00 2/2 0/0 53/53 .text chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs
  */
-//	8014ABE0: 803621DC (_savegpr_29)
-//	8014ABF8: 80451180 (G_CM3D_F_ABS_MIN)
-//	8014AC0C: 8045344C (lit_6775)
-//	8014AC18: 80453420 (lit_5239)
-//	8014AC38: 8014B3EC (getAttnPos__8daNpcT_cFP10fopAc_ac_c)
-//	8014AC60: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014AC6C: 80271880 (__ct__7cSGlobeFRC4cXyz)
-//	8014AC74: 802710E8 (Inv__7cSAngleCFv)
-//	8014AC80: 80270F98 (__ct__7cSAngleFs)
-//	8014AC90: 80271228 (__mi__7cSAngleCFs)
-//	8014AC9C: 80270F68 (__ct__7cSAngleFRC7cSAngle)
-//	8014ACDC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3372,9 +2524,8 @@ asm void daNpcT_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1, s16 param_2
 }
 #pragma pop
 
-/* 8014ACF0-8014ADA0 00B0+00 s=2 e=0 z=12  None .text      chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs
+/* 8014ACF0-8014ADA0 145630 00B0+00 2/2 0/0 12/12 .text chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs
  */
-//	8014AD8C: 8014ADA0 (chkPointInArea__8daNpcT_cF4cXyz4cXyz4cXyzs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3385,9 +2536,8 @@ asm void daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 p
 }
 #pragma pop
 
-/* 8014ADA0-8014AE1C 007C+00 s=1 e=0 z=1  None .text      chkPointInArea__8daNpcT_cF4cXyz4cXyz4cXyzs
+/* 8014ADA0-8014AE1C 1456E0 007C+00 1/1 0/0 1/1 .text chkPointInArea__8daNpcT_cF4cXyz4cXyz4cXyzs
  */
-//	8014AE08: 8014C384 (daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3398,44 +2548,25 @@ asm void daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453450-80453454 0004+00 s=2 e=0 z=0  None .sdata2    @6904 */
+/* 80453450-80453454 001A50 0004+00 2/2 0/0 0/0 .sdata2          @6904 */
 SECTION_SDATA2 static f32 lit_6904 = 30.0f;
 
-/* 80453454-80453458 0004+00 s=2 e=0 z=0  None .sdata2    @6905 */
+/* 80453454-80453458 001A54 0004+00 2/2 0/0 0/0 .sdata2          @6905 */
 SECTION_SDATA2 static f32 lit_6905 = 45.0f;
 
-/* 80453458-8045345C 0004+00 s=2 e=0 z=0  None .sdata2    @6906 */
+/* 80453458-8045345C 001A58 0004+00 2/2 0/0 0/0 .sdata2          @6906 */
 SECTION_SDATA2 static f32 lit_6906 = 60.0f;
 
-/* 8045345C-80453460 0004+00 s=2 e=0 z=0  None .sdata2    @6907 */
+/* 8045345C-80453460 001A5C 0004+00 2/2 0/0 0/0 .sdata2          @6907 */
 SECTION_SDATA2 static f32 lit_6907 = 90.0f;
 
-/* 80453460-80453464 0004+00 s=2 e=0 z=0  None .sdata2    @6908 */
+/* 80453460-80453464 001A60 0004+00 2/2 0/0 0/0 .sdata2          @6908 */
 SECTION_SDATA2 static f32 lit_6908 = 110.0f;
 
-/* 80453464-80453468 0004+00 s=2 e=0 z=0  None .sdata2    @6909 */
+/* 80453464-80453468 001A64 0004+00 2/2 0/0 0/0 .sdata2          @6909 */
 SECTION_SDATA2 static f32 lit_6909 = 135.0f;
 
-/* 8014AE1C-8014B010 01F4+00 s=1 e=0 z=0  None .text      chkFindActor__8daNpcT_cFP10fopAc_ac_cis */
-//	8014AE4C: 803621D4 (_savegpr_27)
-//	8014AE6C: 8014B3EC (getAttnPos__8daNpcT_cFP10fopAc_ac_c)
-//	8014AEAC: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014AEBC: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014AEC8: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014AED0: 804533E8 (lit_4148)
-//	8014AEDC: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014AEE4: 804533E8 (lit_4148)
-//	8014AEF0: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014AEF8: 8045344C (lit_6775)
-//	8014AF04: 80453450 (lit_6904)
-//	8014AF14: 80453454 (lit_6905)
-//	8014AF24: 80453458 (lit_6906)
-//	8014AF34: 8045345C (lit_6907)
-//	8014AF44: 80453460 (lit_6908)
-//	8014AF54: 80453464 (lit_6909)
-//	8014AFA4: 8014ACF0 (chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs)
-//	8014AFC0: 8014ABD0 (chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs)
-//	8014AFFC: 80362220 (_restgpr_27)
+/* 8014AE1C-8014B010 14575C 01F4+00 1/1 0/0 0/0 .text chkFindActor__8daNpcT_cFP10fopAc_ac_cis */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3445,9 +2576,7 @@ asm void daNpcT_c::chkFindActor(fopAc_ac_c* param_0, int param_1, s16 param_2) {
 }
 #pragma pop
 
-/* 8014B010-8014B024 0014+00 s=5 e=1 z=0  None .text      getDistTable__12dAttention_cFi */
-//	8014B014: 803A9C70 (dist_table__12dAttention_c)
-//	8014B018: 803A9C70 (dist_table__12dAttention_c)
+/* 8014B010-8014B024 145950 0014+00 5/5 1/1 0/0 .text            getDistTable__12dAttention_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3457,11 +2586,7 @@ asm void dAttention_c::getDistTable(int param_0) {
 }
 #pragma pop
 
-/* 8014B024-8014B0C8 00A4+00 s=1 e=0 z=0  None .text      chkWolfAction__8daNpcT_cFv */
-//	8014B038: 804061C0 (g_dComIfG_gameInfo)
-//	8014B03C: 804061C0 (g_dComIfG_gameInfo)
-//	8014B070: 804061C0 (g_dComIfG_gameInfo)
-//	8014B074: 804061C0 (g_dComIfG_gameInfo)
+/* 8014B024-8014B0C8 145964 00A4+00 1/1 0/0 0/0 .text            chkWolfAction__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3471,25 +2596,7 @@ asm void daNpcT_c::chkWolfAction() {
 }
 #pragma pop
 
-/* 8014B0C8-8014B338 0270+00 s=0 e=0 z=2  None .text      chkFindWolf__8daNpcT_cFsiiffffi */
-//	8014B0F8: 803621D0 (_savegpr_26)
-//	8014B128: 804061C0 (g_dComIfG_gameInfo)
-//	8014B12C: 804061C0 (g_dComIfG_gameInfo)
-//	8014B134: 8014B3EC (getAttnPos__8daNpcT_cFP10fopAc_ac_c)
-//	8014B150: 804061C0 (g_dComIfG_gameInfo)
-//	8014B154: 804061C0 (g_dComIfG_gameInfo)
-//	8014B1A8: 8014ACF0 (chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs)
-//	8014B1C4: 8014ABD0 (chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs)
-//	8014B1DC: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B1E8: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B1F4: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B244: 8014ACF0 (chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs)
-//	8014B260: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B26C: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B278: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014B2C8: 8014ACF0 (chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs)
-//	8014B2E8: 8014B024 (chkWolfAction__8daNpcT_cFv)
-//	8014B324: 8036221C (_restgpr_26)
+/* 8014B0C8-8014B338 145A08 0270+00 0/0 0/0 2/2 .text            chkFindWolf__8daNpcT_cFsiiffffi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3500,17 +2607,7 @@ asm void daNpcT_c::chkFindWolf(s16 param_0, int param_1, int param_2, f32 param_
 }
 #pragma pop
 
-/* 8014B338-8014B3EC 00B4+00 s=0 e=0 z=75  None .text      srchPlayerActor__8daNpcT_cFv */
-//	8014B354: 80145708 (getActorP__18daNpcT_ActorMngr_cFv)
-//	8014B364: 804061C0 (g_dComIfG_gameInfo)
-//	8014B368: 804061C0 (g_dComIfG_gameInfo)
-//	8014B378: 8014AE1C (chkFindActor__8daNpcT_cFP10fopAc_ac_cis)
-//	8014B388: 801456FC (remove__18daNpcT_ActorMngr_cFv)
-//	8014B394: 804061C0 (g_dComIfG_gameInfo)
-//	8014B398: 804061C0 (g_dComIfG_gameInfo)
-//	8014B3A8: 8014AE1C (chkFindActor__8daNpcT_cFP10fopAc_ac_cis)
-//	8014B3BC: 801456E0 (entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c)
-//	8014B3C4: 80145708 (getActorP__18daNpcT_ActorMngr_cFv)
+/* 8014B338-8014B3EC 145C78 00B4+00 0/0 0/0 75/75 .text            srchPlayerActor__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3520,10 +2617,8 @@ asm void daNpcT_c::srchPlayerActor() {
 }
 #pragma pop
 
-/* 8014B3EC-8014B4A4 00B8+00 s=3 e=0 z=5  None .text      getAttnPos__8daNpcT_cFP10fopAc_ac_c */
-//	8014B42C: 8015F3FC (getAttentionOffsetY__9daPy_py_cFv)
-//	8014B43C: 804061C0 (g_dComIfG_gameInfo)
-//	8014B440: 804061C0 (g_dComIfG_gameInfo)
+/* 8014B3EC-8014B4A4 145D2C 00B8+00 3/3 0/0 5/5 .text            getAttnPos__8daNpcT_cFP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3534,24 +2629,16 @@ asm void daNpcT_c::getAttnPos(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453468-8045346C 0004+00 s=4 e=0 z=0  None .sdata2    @7089 */
+/* 80453468-8045346C 001A68 0004+00 4/4 0/0 0/0 .sdata2          @7089 */
 SECTION_SDATA2 static f32 lit_7089 = 0.0054931640625f;
 
-/* 8045346C-80453470 0004+00 s=4 e=0 z=0  None .sdata2    @7090 */
+/* 8045346C-80453470 001A6C 0004+00 4/4 0/0 0/0 .sdata2          @7090 */
 SECTION_SDATA2 static f32 lit_7090 = 8.0f;
 
-/* 80453470-80453474 0004+00 s=2 e=0 z=0  None .sdata2    @7091 */
+/* 80453470-80453474 001A70 0004+00 2/2 0/0 0/0 .sdata2          @7091 */
 SECTION_SDATA2 static f32 lit_7091 = 16384.0f;
 
-/* 8014B4A4-8014B648 01A4+00 s=1 e=0 z=1  None .text      turn__8daNpcT_cFsii */
-//	8014B4B4: 80453468 (lit_7089)
-//	8014B4C4: 804533E0 (lit_4142)
-//	8014B4F4: 8045344C (lit_6775)
-//	8014B548: 8045346C (lit_7090)
-//	8014B5A8: 80439A20 (sincosTable___5JMath)
-//	8014B5AC: 80439A20 (sincosTable___5JMath)
-//	8014B5B4: 804533E0 (lit_4142)
-//	8014B5E0: 80453470 (lit_7091)
+/* 8014B4A4-8014B648 145DE4 01A4+00 1/1 0/0 1/1 .text            turn__8daNpcT_cFsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3561,16 +2648,7 @@ asm void daNpcT_c::turn(s16 param_0, int param_1, int param_2) {
 }
 #pragma pop
 
-/* 8014B648-8014B808 01C0+00 s=0 e=0 z=177  None .text      step__8daNpcT_cFsiiii */
-//	8014B658: 803621D8 (_savegpr_28)
-//	8014B6C8: 80453468 (lit_7089)
-//	8014B6CC: 804533E0 (lit_4142)
-//	8014B718: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014B728: 804533E8 (lit_4148)
-//	8014B740: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014B750: 804533E8 (lit_4148)
-//	8014B790: 8014B4A4 (turn__8daNpcT_cFsii)
-//	8014B7F4: 80362224 (_restgpr_28)
+/* 8014B648-8014B808 145F88 01C0+00 0/0 0/0 177/177 .text            step__8daNpcT_cFsiiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3581,40 +2659,10 @@ asm void daNpcT_c::step(s16 param_0, int param_1, int param_2, int param_3, int 
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453474-80453478 0004+00 s=1 e=0 z=0  None .sdata2    @7222 */
+/* 80453474-80453478 001A74 0004+00 1/1 0/0 0/0 .sdata2          @7222 */
 SECTION_SDATA2 static f32 lit_7222 = 17.0f / 20.0f;
 
-/* 8014B808-8014BB00 02F8+00 s=0 e=0 z=11  None .text      calcSpeedAndAngle__8daNpcT_cF4cXyziss */
-//	8014B818: 803621DC (_savegpr_29)
-//	8014B830: 804533D8 (lit_4116)
-//	8014B840: 80270C04 (cLib_targetAngleY__FPC3VecPC3Vec)
-//	8014B858: 80270608 (cLib_addCalcAngleS2__FPssss)
-//	8014B880: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014B88C: 804533D8 (lit_4116)
-//	8014B8A0: 80347138 (PSVECSquareMag)
-//	8014B8A4: 804533D8 (lit_4116)
-//	8014B8B4: 80453408 (lit_4723)
-//	8014B8BC: 80453410 (lit_4724)
-//	8014B904: 80453418 (lit_4725)
-//	8014B910: 80450AE0 (__float_nan)
-//	8014B914: 80450AE0 (__float_nan)
-//	8014B980: 80450AE0 (__float_nan)
-//	8014B984: 80450AE0 (__float_nan)
-//	8014B99C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014B9A8: 804533D8 (lit_4116)
-//	8014B9BC: 80347138 (PSVECSquareMag)
-//	8014B9C0: 804533D8 (lit_4116)
-//	8014B9D0: 80453408 (lit_4723)
-//	8014B9D8: 80453410 (lit_4724)
-//	8014BA20: 80453418 (lit_4725)
-//	8014BA2C: 80450AE0 (__float_nan)
-//	8014BA30: 80450AE0 (__float_nan)
-//	8014BA9C: 80450AE0 (__float_nan)
-//	8014BAA0: 80450AE0 (__float_nan)
-//	8014BAA8: 80439A20 (sincosTable___5JMath)
-//	8014BAAC: 80439A20 (sincosTable___5JMath)
-//	8014BADC: 80453474 (lit_7222)
-//	8014BAEC: 80362228 (_restgpr_29)
+/* 8014B808-8014BB00 146148 02F8+00 0/0 0/0 11/11 .text calcSpeedAndAngle__8daNpcT_cF4cXyziss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3625,18 +2673,11 @@ asm void daNpcT_c::calcSpeedAndAngle(cXyz param_0, int param_1, s16 param_2, s16
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453478-8045347C 0004+00 s=1 e=0 z=0  None .sdata2    @7242 */
+/* 80453478-8045347C 001A78 0004+00 1/1 0/0 0/0 .sdata2          @7242 */
 SECTION_SDATA2 static f32 lit_7242 = 6.0f;
 
-/* 8014BB00-8014BBF0 00F0+00 s=0 e=0 z=2  None .text getActorDistance__8daNpcT_cFP10fopAc_ac_cii
+/* 8014BB00-8014BBF0 146440 00F0+00 0/0 0/0 2/2 .text getActorDistance__8daNpcT_cFP10fopAc_ac_cii
  */
-//	8014BB20: 803621D8 (_savegpr_28)
-//	8014BB38: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014BB44: 8014B010 (getDistTable__12dAttention_cFi)
-//	8014BB54: 8001A964 (fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	8014BB70: 80453478 (lit_7242)
-//	8014BB7C: 804533E0 (lit_4142)
-//	8014BBDC: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3646,12 +2687,7 @@ asm void daNpcT_c::getActorDistance(fopAc_ac_c* param_0, int param_1, int param_
 }
 #pragma pop
 
-/* 8014BBF0-8014BC78 0088+00 s=0 e=1 z=180  None .text      initTalk__8daNpcT_cFiPP10fopAc_ac_c */
-//	8014BC1C: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	8014BC24: 804061C0 (g_dComIfG_gameInfo)
-//	8014BC28: 804061C0 (g_dComIfG_gameInfo)
-//	8014BC30: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	8014BC4C: 804533D8 (lit_4116)
+/* 8014BBF0-8014BC78 146530 0088+00 0/0 1/1 180/180 .text initTalk__8daNpcT_cFiPP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3661,21 +2697,8 @@ asm void daNpcT_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 }
 #pragma pop
 
-/* 8014BC78-8014BE2C 01B4+00 s=0 e=0 z=169  None .text      talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 8014BC78-8014BE2C 1465B8 01B4+00 0/0 0/0 169/169 .text talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
  */
-//	8014BC88: 803621D0 (_savegpr_26)
-//	8014BCA4: 802382F4 (isMsgSendControl__12dMsgObject_cFv)
-//	8014BCB8: 802382C8 (offMsgSendControl__12dMsgObject_cFv)
-//	8014BCD0: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	8014BCE8: 8024A548 (getMsg__10dMsgFlow_cFv)
-//	8014BCF8: 8024A548 (getMsg__10dMsgFlow_cFv)
-//	8014BD38: 8024A538 (getMsgNo__10dMsgFlow_cFv)
-//	8014BD84: 8024A424 (checkEventRender__10dMsgFlow_cFPiPiPiPi)
-//	8014BDBC: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014BDC8: 804533E8 (lit_4148)
-//	8014BDFC: 80145898 (initialize__22daNpcT_MotionSeqMngr_cFv)
-//	8014BE08: 804533E8 (lit_4148)
-//	8014BE18: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3686,23 +2709,10 @@ asm void daNpcT_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045347C-80453480 0004+00 s=2 e=0 z=0  None .sdata2    @7337 */
+/* 8045347C-80453480 001A7C 0004+00 2/2 0/0 0/0 .sdata2          @7337 */
 SECTION_SDATA2 static f32 lit_7337 = 1000000000.0f;
 
-/* 8014BE2C-8014BEE4 00B8+00 s=0 e=0 z=25  None .text      getNearestActorP__8daNpcT_cFs */
-//	8014BE44: 803621D4 (_savegpr_27)
-//	8014BE50: 8045347C (lit_7337)
-//	8014BE58: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BE5C: 80450FD8 (mSrchName__8daNpcT_c)
-//	8014BE60: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BE64: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BE6C: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	8014BE78: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	8014BE7C: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	8014BE8C: 8001A7E0 (fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	8014BEA0: 8001A7E0 (fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	8014BEB4: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BED0: 80362220 (_restgpr_27)
+/* 8014BE2C-8014BEE4 14676C 00B8+00 0/0 0/0 25/25 .text            getNearestActorP__8daNpcT_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3712,15 +2722,7 @@ asm void daNpcT_c::getNearestActorP(s16 param_0) {
 }
 #pragma pop
 
-/* 8014BEE4-8014BFB0 00CC+00 s=0 e=0 z=12  None .text      getEvtAreaTagP__8daNpcT_cFii */
-//	8014BF08: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BF10: 80450FD8 (mSrchName__8daNpcT_c)
-//	8014BF14: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BF18: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BF20: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	8014BF28: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BF2C: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	8014BF30: 80425708 (mFindActorPtrs__8daNpcT_c)
+/* 8014BEE4-8014BFB0 146824 00CC+00 0/0 0/0 12/12 .text            getEvtAreaTagP__8daNpcT_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3730,15 +2732,7 @@ asm void daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014BFB0-8014C030 0080+00 s=0 e=0 z=5  None .text      getShopItemTagP__8daNpcT_cFv */
-//	8014BFC4: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BFCC: 80450FD8 (mSrchName__8daNpcT_c)
-//	8014BFD0: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BFD4: 80147FD4 (srchActor__8daNpcT_cFPvPv)
-//	8014BFD8: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	8014BFE0: 80450FDC (mFindCount__8daNpcT_c)
-//	8014BFE4: 80425708 (mFindActorPtrs__8daNpcT_c)
-//	8014BFE8: 80425708 (mFindActorPtrs__8daNpcT_c)
+/* 8014BFB0-8014C030 1468F0 0080+00 0/0 0/0 5/5 .text            getShopItemTagP__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3749,7 +2743,7 @@ asm void daNpcT_c::getShopItemTagP() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453480-80453484 0004+00 s=1 e=0 z=0  None .sdata2    id$7388 */
+/* 80453480-80453484 001A80 0004+00 1/1 0/0 0/0 .sdata2          id$7388 */
 SECTION_SDATA2 static u8 id_7388[4] = {
     0x84,
     0x97,
@@ -3757,24 +2751,10 @@ SECTION_SDATA2 static u8 id_7388[4] = {
     0x98,
 };
 
-/* 80453484-80453488 0004+00 s=2 e=0 z=0  None .sdata2    @7442 */
+/* 80453484-80453488 001A84 0004+00 2/2 0/0 0/0 .sdata2          @7442 */
 SECTION_SDATA2 static f32 lit_7442 = 4.0f;
 
-/* 8014C030-8014C200 01D0+00 s=1 e=0 z=0  None .text      setHitodamaPrtcl__8daNpcT_cFv */
-//	8014C040: 803621D0 (_savegpr_26)
-//	8014C064: 80439A20 (sincosTable___5JMath)
-//	8014C068: 80439A20 (sincosTable___5JMath)
-//	8014C070: 8045346C (lit_7090)
-//	8014C088: 80453484 (lit_7442)
-//	8014C12C: 804061C0 (g_dComIfG_gameInfo)
-//	8014C130: 804061C0 (g_dComIfG_gameInfo)
-//	8014C168: 80453480 (id_7388)
-//	8014C180: 804533DC (lit_4140)
-//	8014C184: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8014C198: 8004B918 (getEmitter__Q213dPa_control_c7level_cFUl)
-//	8014C1A4: 8002FA54 (dComIfGs_wolfeye_effect_check__Fv)
-//	8014C1EC: 8036221C (_restgpr_26)
+/* 8014C030-8014C200 146970 01D0+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3785,26 +2765,14 @@ asm void daNpcT_c::setHitodamaPrtcl() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453488-8045348C 0004+00 s=1 e=0 z=0  None .sdata2    @7550 */
+/* 80453488-8045348C 001A88 0004+00 1/1 0/0 0/0 .sdata2          @7550 */
 SECTION_SDATA2 static f32 lit_7550 = 608.0f;
 
-/* 8045348C-80453490 0004+00 s=1 e=0 z=0  None .sdata2    @7551 */
+/* 8045348C-80453490 001A8C 0004+00 1/1 0/0 0/0 .sdata2          @7551 */
 SECTION_SDATA2 static f32 lit_7551 = 448.0f;
 
-/* 8014C200-8014C384 0184+00 s=0 e=0 z=2  None .text
+/* 8014C200-8014C384 146B40 0184+00 0/0 0/0 2/2 .text
  * daNpcT_chkActorInScreen__FP10fopAc_ac_cfffffffi              */
-//	8014C2A0: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C2A4: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C2A8: 803464B0 (PSMTXCopy)
-//	8014C2AC: 804533D8 (lit_4116)
-//	8014C2B8: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	8014C2BC: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C2C0: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C2D0: 80346DC0 (PSMTXMultVecArray)
-//	8014C2EC: 804533D8 (lit_4116)
-//	8014C2F0: 80453488 (lit_7550)
-//	8014C2F4: 8045348C (lit_7551)
-//	8014C304: 80015310 (mDoLib_project__FP3VecP3Vec)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3815,20 +2783,7 @@ asm void daNpcT_chkActorInScreen(fopAc_ac_c* param_0, f32 param_1, f32 param_2, 
 }
 #pragma pop
 
-/* 8014C384-8014C500 017C+00 s=1 e=0 z=3  None .text      daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi
- */
-//	8014C3B4: 803621D8 (_savegpr_28)
-//	8014C3C8: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C3CC: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C3D8: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	8014C3F4: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	8014C3F8: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C3FC: 803DD470 (now__14mDoMtx_stack_c)
-//	8014C408: 80346D6C (PSMTXMultVec)
-//	8014C450: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014C46C: 804533D8 (lit_4116)
-//	8014C4AC: 804533DC (lit_4140)
-//	8014C4EC: 80362224 (_restgpr_28)
+/* 8014C384-8014C500 146CC4 017C+00 1/1 0/0 3/3 .text daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3838,13 +2793,8 @@ asm void daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 par
 }
 #pragma pop
 
-/* 8014C500-8014C5E0 00E0+00 s=0 e=0 z=29  None .text
+/* 8014C500-8014C5E0 146E40 00E0+00 0/0 0/0 29/29 .text
  * daNpcT_getPlayerInfoFromPlayerList__FiiP4cXyzP5csXyz         */
-//	8014C510: 803621CC (_savegpr_25)
-//	8014C524: 804061C0 (g_dComIfG_gameInfo)
-//	8014C528: 804061C0 (g_dComIfG_gameInfo)
-//	8014C530: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	8014C5CC: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3855,19 +2805,7 @@ asm void daNpcT_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz* para
 }
 #pragma pop
 
-/* 8014C5E0-8014C700 0120+00 s=0 e=0 z=5  None .text      daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c */
-//	8014C5F0: 803621D8 (_savegpr_28)
-//	8014C5FC: 804061C0 (g_dComIfG_gameInfo)
-//	8014C600: 804061C0 (g_dComIfG_gameInfo)
-//	8014C634: 804061C0 (g_dComIfG_gameInfo)
-//	8014C638: 804061C0 (g_dComIfG_gameInfo)
-//	8014C64C: 80073734 (ActionTarget__12dAttention_cFl)
-//	8014C65C: 80070880 (getActionBtnB__12dAttention_cFv)
-//	8014C66C: 80070880 (getActionBtnB__12dAttention_cFv)
-//	8014C6A0: 8007353C (LockonTarget__12dAttention_cFl)
-//	8014C6B0: 80070880 (getActionBtnB__12dAttention_cFv)
-//	8014C6C0: 80070880 (getActionBtnB__12dAttention_cFv)
-//	8014C6EC: 80362224 (_restgpr_28)
+/* 8014C5E0-8014C700 146F20 0120+00 0/0 0/0 5/5 .text daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3877,18 +2815,8 @@ asm void daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8014C700-8014CA18 0318+00 s=0 e=0 z=2  None .text
+/* 8014C700-8014CA18 147040 0318+00 0/0 0/0 2/2 .text
  * daNpcT_judgeRace__FP5dPathPP10fopAc_ac_cP16daNpcT_pntData_ciPi */
-//	8014C718: 803621B0 (_savegpr_18)
-//	8014C740: 804533D8 (lit_4116)
-//	8014C7C8: 8014698C (daNpcT_chkPassed__F4cXyzP4dPntUsUsiiP4cXyzPiPi)
-//	8014C7E8: 80145AC4 (daNpcT_incIdx__FiRUsii)
-//	8014C8EC: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	8014C93C: 8026862C (cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf)
-//	8014C97C: 80267674 (cM_atan2s__Fff)
-//	8014C99C: 80267674 (cM_atan2s__Fff)
-//	8014C9A8: 803650D0 (abs)
-//	8014CA04: 803621FC (_restgpr_18)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3899,7 +2827,7 @@ asm void daNpcT_judgeRace(dPath* param_0, fopAc_ac_c** param_1, daNpcT_pntData_c
 }
 #pragma pop
 
-/* 8014CA18-8014CA2C 0014+00 s=0 e=0 z=61  None .text      daNpcT_getDistTableIdx__Fii */
+/* 8014CA18-8014CA2C 147358 0014+00 0/0 0/0 61/61 .text            daNpcT_getDistTableIdx__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3909,12 +2837,7 @@ asm void daNpcT_getDistTableIdx(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014CA2C-8014CA6C 0040+00 s=0 e=0 z=25  None .text      daNpcT_onEvtBit__FUl */
-//	8014CA3C: 804061C0 (g_dComIfG_gameInfo)
-//	8014CA40: 804061C0 (g_dComIfG_gameInfo)
-//	8014CA4C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CA50: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CA58: 8003498C (onEventBit__11dSv_event_cFUs)
+/* 8014CA2C-8014CA6C 14736C 0040+00 0/0 0/0 25/25 .text            daNpcT_onEvtBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3924,12 +2847,7 @@ asm void daNpcT_onEvtBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CA6C-8014CAAC 0040+00 s=0 e=0 z=1  None .text      daNpcT_offEvtBit__FUl */
-//	8014CA7C: 804061C0 (g_dComIfG_gameInfo)
-//	8014CA80: 804061C0 (g_dComIfG_gameInfo)
-//	8014CA8C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CA90: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CA98: 800349A4 (offEventBit__11dSv_event_cFUs)
+/* 8014CA6C-8014CAAC 1473AC 0040+00 0/0 0/0 1/1 .text            daNpcT_offEvtBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3939,12 +2857,7 @@ asm void daNpcT_offEvtBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CAAC-8014CAEC 0040+00 s=0 e=0 z=155  None .text      daNpcT_chkEvtBit__FUl */
-//	8014CABC: 804061C0 (g_dComIfG_gameInfo)
-//	8014CAC0: 804061C0 (g_dComIfG_gameInfo)
-//	8014CACC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CAD0: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	8014CAD8: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 8014CAAC-8014CAEC 1473EC 0040+00 0/0 0/0 155/155 .text            daNpcT_chkEvtBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3954,12 +2867,7 @@ asm void daNpcT_chkEvtBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CAEC-8014CB2C 0040+00 s=0 e=0 z=26  None .text      daNpcT_onTmpBit__FUl */
-//	8014CAFC: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB00: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB0C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB10: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB18: 8003498C (onEventBit__11dSv_event_cFUs)
+/* 8014CAEC-8014CB2C 14742C 0040+00 0/0 0/0 26/26 .text            daNpcT_onTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3969,12 +2877,7 @@ asm void daNpcT_onTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CB2C-8014CB6C 0040+00 s=0 e=0 z=78  None .text      daNpcT_offTmpBit__FUl */
-//	8014CB3C: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB40: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB4C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB50: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB58: 800349A4 (offEventBit__11dSv_event_cFUs)
+/* 8014CB2C-8014CB6C 14746C 0040+00 0/0 0/0 78/78 .text            daNpcT_offTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3984,12 +2887,7 @@ asm void daNpcT_offTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CB6C-8014CBAC 0040+00 s=0 e=0 z=38  None .text      daNpcT_chkTmpBit__FUl */
-//	8014CB7C: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB80: 804061C0 (g_dComIfG_gameInfo)
-//	8014CB8C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB90: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8014CB98: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 8014CB6C-8014CBAC 1474AC 0040+00 0/0 0/0 38/38 .text            daNpcT_chkTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3999,10 +2897,7 @@ asm void daNpcT_chkTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 8014CBAC-8014CBF4 0048+00 s=1 e=0 z=0  None .text      __dt__16daNpcT_Hermite_cFv */
-//	8014CBC4: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	8014CBC8: 803B3B60 (__vt__16daNpcT_Hermite_c)
-//	8014CBD8: 802CED3C (__dl__FPv)
+/* 8014CBAC-8014CBF4 1474EC 0048+00 1/0 0/0 0/0 .text            __dt__16daNpcT_Hermite_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4012,7 +2907,7 @@ asm daNpcT_Hermite_c::~daNpcT_Hermite_c() {
 }
 #pragma pop
 
-/* 8014CBF4-8014CC0C 0018+00 s=1 e=1 z=0  None .text      decTmr__8daNpcT_cFv */
+/* 8014CBF4-8014CC0C 147534 0018+00 1/0 1/0 0/0 .text            decTmr__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4022,142 +2917,142 @@ asm void daNpcT_c::decTmr() {
 }
 #pragma pop
 
-/* 8014CC0C-8014CC10 0004+00 s=1 e=1 z=0  None .text      setCollision__8daNpcT_cFv */
+/* 8014CC0C-8014CC10 14754C 0004+00 1/0 1/0 0/0 .text            setCollision__8daNpcT_cFv */
 void daNpcT_c::setCollision() {
     /* empty function */
 }
 
-/* 8014CC10-8014CC14 0004+00 s=1 e=1 z=0  None .text      setAttnPos__8daNpcT_cFv */
+/* 8014CC10-8014CC14 147550 0004+00 1/0 1/0 0/0 .text            setAttnPos__8daNpcT_cFv */
 void daNpcT_c::setAttnPos() {
     /* empty function */
 }
 
-/* 8014CC14-8014CC18 0004+00 s=1 e=1 z=0  None .text      ctrlSubFaceMotion__8daNpcT_cFi */
+/* 8014CC14-8014CC18 147554 0004+00 1/0 1/0 0/0 .text            ctrlSubFaceMotion__8daNpcT_cFi */
 void daNpcT_c::ctrlSubFaceMotion(int param_0) {
     /* empty function */
 }
 
-/* 8014CC18-8014CC1C 0004+00 s=1 e=1 z=0  None .text      afterMoved__8daNpcT_cFv */
+/* 8014CC18-8014CC1C 147558 0004+00 1/0 1/0 0/0 .text            afterMoved__8daNpcT_cFv */
 void daNpcT_c::afterMoved() {
     /* empty function */
 }
 
-/* 8014CC1C-8014CC20 0004+00 s=1 e=1 z=0  None .text      beforeMove__8daNpcT_cFv */
+/* 8014CC1C-8014CC20 14755C 0004+00 1/0 1/0 0/0 .text            beforeMove__8daNpcT_cFv */
 void daNpcT_c::beforeMove() {
     /* empty function */
 }
 
-/* 8014CC20-8014CC24 0004+00 s=1 e=1 z=0  None .text      action__8daNpcT_cFv */
+/* 8014CC20-8014CC24 147560 0004+00 1/0 1/0 0/0 .text            action__8daNpcT_cFv */
 void daNpcT_c::action() {
     /* empty function */
 }
 
-/* 8014CC24-8014CC28 0004+00 s=1 e=1 z=0  None .text      setParam__8daNpcT_cFv */
+/* 8014CC24-8014CC28 147564 0004+00 1/0 1/0 0/0 .text            setParam__8daNpcT_cFv */
 void daNpcT_c::setParam() {
     /* empty function */
 }
 
-/* 8014CC28-8014CC2C 0004+00 s=1 e=1 z=0  None .text      drawOtherMdl__8daNpcT_cFv */
+/* 8014CC28-8014CC2C 147568 0004+00 1/0 1/0 0/0 .text            drawOtherMdl__8daNpcT_cFv */
 void daNpcT_c::drawOtherMdl() {
     /* empty function */
 }
 
-/* 8014CC2C-8014CC30 0004+00 s=1 e=1 z=0  None .text      drawGhost__8daNpcT_cFv */
+/* 8014CC2C-8014CC30 14756C 0004+00 1/0 1/0 0/0 .text            drawGhost__8daNpcT_cFv */
 void daNpcT_c::drawGhost() {
     /* empty function */
 }
 
-/* 8014CC30-8014CC38 0008+00 s=1 e=1 z=0  None .text      drawDbgInfo__8daNpcT_cFv */
+/* 8014CC30-8014CC38 147570 0008+00 1/0 1/0 0/0 .text            drawDbgInfo__8daNpcT_cFv */
 bool daNpcT_c::drawDbgInfo() {
     return false;
 }
 
-/* 8014CC38-8014CC40 0008+00 s=1 e=1 z=0  None .text      checkRemoveJoint__8daNpcT_cFi */
+/* 8014CC38-8014CC40 147578 0008+00 1/0 1/0 0/0 .text            checkRemoveJoint__8daNpcT_cFi */
 bool daNpcT_c::checkRemoveJoint(int param_0) {
     return false;
 }
 
-/* 8014CC40-8014CC48 0008+00 s=1 e=1 z=0  None .text      checkChangeJoint__8daNpcT_cFi */
+/* 8014CC40-8014CC48 147580 0008+00 1/0 1/0 0/0 .text            checkChangeJoint__8daNpcT_cFi */
 bool daNpcT_c::checkChangeJoint(int param_0) {
     return false;
 }
 
-/* 8014CC48-8014CC4C 0004+00 s=1 e=1 z=0  None .text      afterJntAnm__8daNpcT_cFi */
+/* 8014CC48-8014CC4C 147588 0004+00 1/0 1/0 0/0 .text            afterJntAnm__8daNpcT_cFi */
 void daNpcT_c::afterJntAnm(int param_0) {
     /* empty function */
 }
 
-/* 8014CC4C-8014CC54 0008+00 s=1 e=1 z=0  None .text      getHeadJointNo__8daNpcT_cFv */
+/* 8014CC4C-8014CC54 14758C 0008+00 1/0 1/0 0/0 .text            getHeadJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getHeadJointNo() {
     return -1;
 }
 
-/* 8014CC54-8014CC5C 0008+00 s=1 e=1 z=0  None .text      getNeckJointNo__8daNpcT_cFv */
+/* 8014CC54-8014CC5C 147594 0008+00 1/0 1/0 0/0 .text            getNeckJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getNeckJointNo() {
     return -1;
 }
 
-/* 8014CC5C-8014CC64 0008+00 s=1 e=1 z=0  None .text      getBackboneJointNo__8daNpcT_cFv */
+/* 8014CC5C-8014CC64 14759C 0008+00 1/0 1/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getBackboneJointNo() {
     return -1;
 }
 
-/* 8014CC64-8014CC68 0004+00 s=1 e=1 z=0  None .text      setAfterTalkMotion__8daNpcT_cFv */
+/* 8014CC64-8014CC68 1475A4 0004+00 1/0 1/0 0/0 .text            setAfterTalkMotion__8daNpcT_cFv */
 void daNpcT_c::setAfterTalkMotion() {
     /* empty function */
 }
 
-/* 8014CC68-8014CC70 0008+00 s=1 e=1 z=0  None .text      evtCutProc__8daNpcT_cFv */
+/* 8014CC68-8014CC70 1475A8 0008+00 1/0 1/0 0/0 .text            evtCutProc__8daNpcT_cFv */
 bool daNpcT_c::evtCutProc() {
     return false;
 }
 
-/* 8014CC70-8014CC78 0008+00 s=1 e=1 z=0  None .text      evtEndProc__8daNpcT_cFv */
+/* 8014CC70-8014CC78 1475B0 0008+00 1/0 1/0 0/0 .text            evtEndProc__8daNpcT_cFv */
 bool daNpcT_c::evtEndProc() {
     return true;
 }
 
-/* 8014CC78-8014CC80 0008+00 s=1 e=1 z=0  None .text      evtTalk__8daNpcT_cFv */
+/* 8014CC78-8014CC80 1475B8 0008+00 1/0 1/0 0/0 .text            evtTalk__8daNpcT_cFv */
 bool daNpcT_c::evtTalk() {
     return true;
 }
 
-/* 8014CC80-8014CC88 0008+00 s=1 e=1 z=0  None .text      checkChangeEvt__8daNpcT_cFv */
+/* 8014CC80-8014CC88 1475C0 0008+00 1/0 1/0 0/0 .text            checkChangeEvt__8daNpcT_cFv */
 bool daNpcT_c::checkChangeEvt() {
     return false;
 }
 
-/* 8014CC88-8014CC90 0008+00 s=1 e=1 z=0  None .text      getFootRJointNo__8daNpcT_cFv */
+/* 8014CC88-8014CC90 1475C8 0008+00 1/0 1/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getFootRJointNo() {
     return -1;
 }
 
-/* 8014CC90-8014CC98 0008+00 s=1 e=1 z=0  None .text      getFootLJointNo__8daNpcT_cFv */
+/* 8014CC90-8014CC98 1475D0 0008+00 1/0 1/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getFootLJointNo() {
     return -1;
 }
 
-/* 8014CC98-8014CCA0 0008+00 s=1 e=1 z=0  None .text      chkXYItems__8daNpcT_cFv */
+/* 8014CC98-8014CCA0 1475D8 0008+00 1/0 1/0 0/0 .text            chkXYItems__8daNpcT_cFv */
 bool daNpcT_c::chkXYItems() {
     return false;
 }
 
-/* 8014CCA0-8014CCA8 0008+00 s=1 e=1 z=0  None .text      afterSetFaceMotionAnm__8daNpcT_cFiifi */
+/* 8014CCA0-8014CCA8 1475E0 0008+00 1/0 1/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
 bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
     return true;
 }
 
-/* 8014CCA8-8014CCAC 0004+00 s=1 e=1 z=0  None .text      changeBtp__8daNpcT_cFPiPi */
+/* 8014CCA8-8014CCAC 1475E8 0004+00 1/0 1/0 0/0 .text            changeBtp__8daNpcT_cFPiPi */
 void daNpcT_c::changeBtp(int* param_0, int* param_1) {
     /* empty function */
 }
 
-/* 8014CCAC-8014CCB0 0004+00 s=1 e=1 z=0  None .text      changeBck__8daNpcT_cFPiPi */
+/* 8014CCAC-8014CCB0 1475EC 0004+00 1/0 1/0 0/0 .text            changeBck__8daNpcT_cFPiPi */
 void daNpcT_c::changeBck(int* param_0, int* param_1) {
     /* empty function */
 }
 
-/* 8014CCB0-8014CCE0 0030+00 s=1 e=1 z=0  None .text
+/* 8014CCB0-8014CCE0 1475F0 0030+00 1/0 1/0 0/0 .text
  * getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c     */
 #pragma push
 #pragma optimization_level 0
@@ -4168,22 +3063,23 @@ asm void daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
 }
 #pragma pop
 
-/* 8014CCE0-8014CCE8 0008+00 s=1 e=1 z=0  None .text      afterSetMotionAnm__8daNpcT_cFiifi */
+/* 8014CCE0-8014CCE8 147620 0008+00 1/0 1/0 0/0 .text            afterSetMotionAnm__8daNpcT_cFiifi
+ */
 bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
     return true;
 }
 
-/* 8014CCE8-8014CCEC 0004+00 s=1 e=1 z=0  None .text      changeBtk__8daNpcT_cFPiPi */
+/* 8014CCE8-8014CCEC 147628 0004+00 1/0 1/0 0/0 .text            changeBtk__8daNpcT_cFPiPi */
 void daNpcT_c::changeBtk(int* param_0, int* param_1) {
     /* empty function */
 }
 
-/* 8014CCEC-8014CCF0 0004+00 s=1 e=1 z=0  None .text      changeAnm__8daNpcT_cFPiPi */
+/* 8014CCEC-8014CCF0 14762C 0004+00 1/0 1/0 0/0 .text            changeAnm__8daNpcT_cFPiPi */
 void daNpcT_c::changeAnm(int* param_0, int* param_1) {
     /* empty function */
 }
 
-/* 8014CCF0-8014CD20 0030+00 s=1 e=1 z=0  None .text
+/* 8014CCF0-8014CD20 147630 0030+00 1/0 1/0 0/0 .text
  * getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c             */
 #pragma push
 #pragma optimization_level 0
@@ -4194,82 +3090,7 @@ asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
 }
 #pragma pop
 
-/* 8014CD20-8014D0A8 0388+00 s=1 e=1 z=0  None .text      __dt__8daNpcT_cFv */
-//	8014CD40: 803B3A78 (__vt__8daNpcT_c)
-//	8014CD44: 803B3A78 (__vt__8daNpcT_c)
-//	8014CD58: 80018BD0 (__dt__5csXyzFv)
-//	8014CD5C: 80018BD0 (__dt__5csXyzFv)
-//	8014CD68: 80361CE8 (__destroy_arr)
-//	8014CD74: 803B3B54 (__vt__15daNpcT_JntAnm_c)
-//	8014CD78: 803B3B54 (__vt__15daNpcT_JntAnm_c)
-//	8014CD84: 80009184 (__dt__4cXyzFv)
-//	8014CD88: 80009184 (__dt__4cXyzFv)
-//	8014CD94: 80361CE8 (__destroy_arr)
-//	8014CD9C: 80009184 (__dt__4cXyzFv)
-//	8014CDA0: 80009184 (__dt__4cXyzFv)
-//	8014CDAC: 80361CE8 (__destroy_arr)
-//	8014CDB4: 80009184 (__dt__4cXyzFv)
-//	8014CDB8: 80009184 (__dt__4cXyzFv)
-//	8014CDC4: 80361CE8 (__destroy_arr)
-//	8014CDCC: 80009184 (__dt__4cXyzFv)
-//	8014CDD0: 80009184 (__dt__4cXyzFv)
-//	8014CDDC: 80361CE8 (__destroy_arr)
-//	8014CDE4: 80009184 (__dt__4cXyzFv)
-//	8014CDE8: 80009184 (__dt__4cXyzFv)
-//	8014CDF4: 80361CE8 (__destroy_arr)
-//	8014CDFC: 80009184 (__dt__4cXyzFv)
-//	8014CE00: 80009184 (__dt__4cXyzFv)
-//	8014CE0C: 80361CE8 (__destroy_arr)
-//	8014CE18: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE1C: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE2C: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE30: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE40: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE44: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014CE54: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014CE58: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014CE68: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014CE6C: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014CE7C: 80077CDC (__dt__11dBgS_LinChkFv)
-//	8014CE88: 800775F0 (__dt__11dBgS_GndChkFv)
-//	8014CE94: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014CE98: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014CEB0: 803AC310 (__vt__10dCcD_GStts)
-//	8014CEB4: 803AC310 (__vt__10dCcD_GStts)
-//	8014CEC4: 803AC31C (__vt__10cCcD_GStts)
-//	8014CEC8: 803AC31C (__vt__10cCcD_GStts)
-//	8014CED8: 803C3728 (__vt__9cCcD_Stts)
-//	8014CEDC: 803C3728 (__vt__9cCcD_Stts)
-//	8014CEEC: 80249F48 (__dt__10dMsgFlow_cFv)
-//	8014CEF8: 80267C94 (__dt__11cBgS_GndChkFv)
-//	8014CF04: 803AB664 (__vt__12dBgS_AcchCir)
-//	8014CF08: 803AB664 (__vt__12dBgS_AcchCir)
-//	8014CF18: 8026EF18 (__dt__8cM3dGCirFv)
-//	8014CF24: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	8014CF30: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014CF34: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014CF4C: 803AC310 (__vt__10dCcD_GStts)
-//	8014CF50: 803AC310 (__vt__10dCcD_GStts)
-//	8014CF60: 803AC31C (__vt__10cCcD_GStts)
-//	8014CF64: 803AC31C (__vt__10cCcD_GStts)
-//	8014CF74: 803C3728 (__vt__9cCcD_Stts)
-//	8014CF78: 803C3728 (__vt__9cCcD_Stts)
-//	8014CF88: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014CF8C: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014CFAC: 80075F94 (__dt__9dBgS_AcchFv)
-//	8014CFC8: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014CFCC: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014CFEC: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014CFF0: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D010: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D014: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D034: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D038: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D058: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D05C: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014D06C: 802C0420 (__dt__10Z2CreatureFv)
-//	8014D078: 80018C8C (__dt__10fopAc_ac_cFv)
-//	8014D088: 802CED3C (__dl__FPv)
+/* 8014CD20-8014D0A8 147660 0388+00 1/0 1/1 0/0 .text            __dt__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4279,25 +3100,25 @@ asm daNpcT_c::~daNpcT_c() {
 }
 #pragma pop
 
-/* 8014D0A8-8014D0B0 0008+00 s=1 e=1 z=0  None .text      getEyeballLMaterialNo__8daNpcT_cFv */
+/* 8014D0A8-8014D0B0 1479E8 0008+00 1/0 1/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
+ */
 bool daNpcT_c::getEyeballLMaterialNo() {
     return false;
 }
 
-/* 8014D0B0-8014D0B8 0008+00 s=1 e=1 z=0  None .text      getEyeballRMaterialNo__8daNpcT_cFv */
+/* 8014D0B0-8014D0B8 1479F0 0008+00 1/0 1/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
+ */
 bool daNpcT_c::getEyeballRMaterialNo() {
     return false;
 }
 
-/* 8014D0B8-8014D0C0 0008+00 s=1 e=1 z=0  None .text      getEyeballMaterialNo__8daNpcT_cFv */
+/* 8014D0B8-8014D0C0 1479F8 0008+00 1/0 1/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
+ */
 bool daNpcT_c::getEyeballMaterialNo() {
     return false;
 }
 
-/* 8014D0C0-8014D108 0048+00 s=1 e=0 z=0  None .text      __dt__22daNpcT_MotionSeqMngr_cFv */
-//	8014D0D8: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014D0DC: 803B3B3C (__vt__22daNpcT_MotionSeqMngr_c)
-//	8014D0EC: 802CED3C (__dl__FPv)
+/* 8014D0C0-8014D108 147A00 0048+00 1/0 0/0 0/0 .text            __dt__22daNpcT_MotionSeqMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4307,10 +3128,7 @@ asm daNpcT_MotionSeqMngr_c::~daNpcT_MotionSeqMngr_c() {
 }
 #pragma pop
 
-/* 8014D108-8014D150 0048+00 s=1 e=0 z=0  None .text      __dt__18daNpcT_ActorMngr_cFv */
-//	8014D120: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014D124: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014D134: 802CED3C (__dl__FPv)
+/* 8014D108-8014D150 147A48 0048+00 1/0 0/0 0/0 .text            __dt__18daNpcT_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4320,30 +3138,7 @@ asm daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c() {
 }
 #pragma pop
 
-/* 8014D150-8014D24C 00FC+00 s=1 e=0 z=0  None .text      __dt__15daNpcT_JntAnm_cFv */
-//	8014D170: 803B3B54 (__vt__15daNpcT_JntAnm_c)
-//	8014D174: 803B3B54 (__vt__15daNpcT_JntAnm_c)
-//	8014D180: 80009184 (__dt__4cXyzFv)
-//	8014D184: 80009184 (__dt__4cXyzFv)
-//	8014D190: 80361CE8 (__destroy_arr)
-//	8014D198: 80009184 (__dt__4cXyzFv)
-//	8014D19C: 80009184 (__dt__4cXyzFv)
-//	8014D1A8: 80361CE8 (__destroy_arr)
-//	8014D1B0: 80009184 (__dt__4cXyzFv)
-//	8014D1B4: 80009184 (__dt__4cXyzFv)
-//	8014D1C0: 80361CE8 (__destroy_arr)
-//	8014D1C8: 80009184 (__dt__4cXyzFv)
-//	8014D1CC: 80009184 (__dt__4cXyzFv)
-//	8014D1D8: 80361CE8 (__destroy_arr)
-//	8014D1E0: 80009184 (__dt__4cXyzFv)
-//	8014D1E4: 80009184 (__dt__4cXyzFv)
-//	8014D1F0: 80361CE8 (__destroy_arr)
-//	8014D1F8: 80009184 (__dt__4cXyzFv)
-//	8014D1FC: 80009184 (__dt__4cXyzFv)
-//	8014D208: 80361CE8 (__destroy_arr)
-//	8014D214: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014D218: 803B3B48 (__vt__18daNpcT_ActorMngr_c)
-//	8014D22C: 802CED3C (__dl__FPv)
+/* 8014D150-8014D24C 147A90 00FC+00 1/0 0/0 0/0 .text            __dt__15daNpcT_JntAnm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4354,8 +3149,8 @@ asm daNpcT_JntAnm_c::~daNpcT_JntAnm_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803B3B6C-803B3B80 0010+04 s=1 e=0 z=45  None .data      __vt__15daNpcT_MatAnm_c */
-SECTION_DATA void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */] = {
+/* 803B3B6C-803B3B80 010C8C 0010+04 1/1 0/0 45/45 .data            __vt__15daNpcT_MatAnm_c */
+SECTION_DATA extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daNpcT_MatAnm_cFv,
@@ -4364,27 +3159,7 @@ SECTION_DATA void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8014D24C-8014D32C 00E0+00 s=1 e=0 z=0  None .text      __dt__15daNpcT_MatAnm_cFv */
-//	8014D26C: 803B3B6C (__vt__15daNpcT_MatAnm_c)
-//	8014D270: 803B3B6C (__vt__15daNpcT_MatAnm_c)
-//	8014D27C: 803CEE60 (__vt__14J3DMaterialAnm)
-//	8014D280: 803CEE60 (__vt__14J3DMaterialAnm)
-//	8014D28C: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	8014D290: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	8014D29C: 80361CE8 (__destroy_arr)
-//	8014D2A4: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	8014D2A8: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	8014D2B4: 80361CE8 (__destroy_arr)
-//	8014D2BC: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	8014D2C0: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	8014D2CC: 80361CE8 (__destroy_arr)
-//	8014D2D4: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	8014D2D8: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	8014D2E4: 80361CE8 (__destroy_arr)
-//	8014D2EC: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	8014D2F0: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	8014D2FC: 80361CE8 (__destroy_arr)
-//	8014D30C: 802CED3C (__dl__FPv)
+/* 8014D24C-8014D32C 147B8C 00E0+00 1/0 0/0 0/0 .text            __dt__15daNpcT_MatAnm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4394,48 +3169,50 @@ asm daNpcT_MatAnm_c::~daNpcT_MatAnm_c() {
 }
 #pragma pop
 
-/* 8014D32C-8014D348 001C+00 s=1 e=0 z=0  None .text      cLib_calcTimer<s>__FPs */
+/* 8014D32C-8014D348 147C6C 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_calcTimer__template1(s16* param_0) {
+extern "C" asm void func_8014D32C(s16* param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D32C.s"
 }
 #pragma pop
 
-/* 8014D348-8014D364 001C+00 s=7 e=2 z=0  None .text      cLib_calcTimer<i>__FPi */
+/* 8014D348-8014D364 147C88 001C+00 7/7 2/2 0/0 .text            cLib_calcTimer<i>__FPi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_calcTimer__template2(int* param_0) {
+extern "C" asm void func_8014D348(int* param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D348.s"
 }
 #pragma pop
 
-/* 8014D364-8014D3D8 0074+00 s=4 e=1 z=0  None .text      cLib_getRndValue<i>__Fii */
-//	8014D378: 804533E0 (lit_4142)
-//	8014D394: 80267954 (cM_rndF__Ff)
-//	8014D398: 804533E0 (lit_4142)
+/* 8014D364-8014D3D8 147CA4 0074+00 4/4 1/1 0/0 .text            cLib_getRndValue<i>__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_getRndValue__template0(int param_0, int param_1) {
+extern "C" asm void func_8014D364(int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D364.s"
 }
 #pragma pop
 
-/* 8014D3D8-8014D538 0160+00 s=0 e=0 z=0  None .text      __sinit_d_a_npc_cpp */
-//	8014D3DC: 80392680 (mCcDObjData__8daNpcT_c)
-//	8014D3E0: 80392680 (mCcDObjData__8daNpcT_c)
-//	8014D3E4: 803B36A8 (cNullVec__6Z2Calc)
-//	8014D3E8: 803B36A8 (cNullVec__6Z2Calc)
+/* ############################################################################################## */
+/* 80392680-803926B0 01ECE0 0030+00 1/1 0/0 4/4 .rodata          mCcDObjData__8daNpcT_c */
+SECTION_RODATA extern u8 const mCcDObjData__8daNpcT_c[48] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80392680 = (void*)(&mCcDObjData__8daNpcT_c);
+
+/* 8014D3D8-8014D538 147D18 0160+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_npc_cpp() {
+asm void __sinit_d_a_npc_cpp() {
     nofralloc
 #include "asm/d/a/d_a_npc/__sinit_d_a_npc_cpp.s"
 }
@@ -4446,73 +3223,57 @@ extern "C" asm void __sinit_d_a_npc_cpp() {
 SECTION_CTORS void* const _ctors_8014D3D8 = (void*)__sinit_d_a_npc_cpp;
 #pragma pop
 
-/* 8014D538-8014D584 004C+00 s=2 e=0 z=0  None .text      daBaseNpc_addIdx__FiiPUsi */
+/* 8014D538-8014D584 147E78 004C+00 2/2 0/0 0/0 .text            daBaseNpc_addIdx__FiiPUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_addIdx(int param_0, int param_1, u16* param_2, int param_3) {
+static asm void daBaseNpc_addIdx(int param_0, int param_1, u16* param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_addIdx__FiiPUsi.s"
 }
 #pragma pop
 
-/* 8014D584-8014D5C4 0040+00 s=2 e=0 z=0  None .text      daBaseNpc_subIdx__FiiPUsi */
+/* 8014D584-8014D5C4 147EC4 0040+00 2/2 0/0 0/0 .text            daBaseNpc_subIdx__FiiPUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_subIdx(int param_0, int param_1, u16* param_2, int param_3) {
+static asm void daBaseNpc_subIdx(int param_0, int param_1, u16* param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_subIdx__FiiPUsi.s"
 }
 #pragma pop
 
-/* 8014D5C4-8014D620 005C+00 s=2 e=0 z=0  None .text      daBaseNpc_incIdx__FiPUsii */
-//	8014D5F4: 8014D584 (daBaseNpc_subIdx__FiiPUsi)
-//	8014D60C: 8014D538 (daBaseNpc_addIdx__FiiPUsi)
+/* 8014D5C4-8014D620 147F04 005C+00 2/2 0/0 0/0 .text            daBaseNpc_incIdx__FiPUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_incIdx(int param_0, u16* param_1, int param_2, int param_3) {
+static asm void daBaseNpc_incIdx(int param_0, u16* param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_incIdx__FiPUsii.s"
 }
 #pragma pop
 
-/* 8014D620-8014D67C 005C+00 s=1 e=0 z=0  None .text      daBaseNpc_decIdx__FiPUsii */
-//	8014D650: 8014D538 (daBaseNpc_addIdx__FiiPUsi)
-//	8014D668: 8014D584 (daBaseNpc_subIdx__FiiPUsi)
+/* 8014D620-8014D67C 147F60 005C+00 1/1 0/0 0/0 .text            daBaseNpc_decIdx__FiPUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_decIdx(int param_0, u16* param_1, int param_2, int param_3) {
+static asm void daBaseNpc_decIdx(int param_0, u16* param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_decIdx__FiPUsii.s"
 }
 #pragma pop
 
-/* 8014D67C-8014D804 0188+00 s=1 e=0 z=0  None .text      daNpcBase_BBasis__FiiiPi */
-//	8014D69C: 803621CC (_savegpr_25)
-//	8014D6D4: 804533E0 (lit_4142)
-//	8014D6F0: 804533D8 (lit_4116)
-//	8014D710: 804533E0 (lit_4142)
-//	8014D740: 804533E0 (lit_4142)
-//	8014D75C: 804533D8 (lit_4116)
-//	8014D784: 804533E0 (lit_4142)
-//	8014D7D0: 804533DC (lit_4140)
-//	8014D7D8: 804533D8 (lit_4116)
-//	8014D7F0: 80362218 (_restgpr_25)
+/* 8014D67C-8014D804 147FBC 0188+00 1/1 0/0 0/0 .text            daNpcBase_BBasis__FiiiPi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcBase_BBasis(int param_0, int param_1, int param_2, int* param_3) {
+static asm void daNpcBase_BBasis(int param_0, int param_1, int param_2, int* param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcBase_BBasis__FiiiPi.s"
 }
 #pragma pop
 
-/* 8014D804-8014D81C 0018+00 s=0 e=0 z=1  None .text      __ct__18daBaseNpc_acMngr_cFv */
-//	8014D804: 803B3A6C (__vt__18daBaseNpc_acMngr_c)
-//	8014D808: 803B3A6C (__vt__18daBaseNpc_acMngr_c)
+/* 8014D804-8014D81C 148144 0018+00 0/0 0/0 1/1 .text            __ct__18daBaseNpc_acMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4522,8 +3283,7 @@ asm daBaseNpc_acMngr_c::daBaseNpc_acMngr_c() {
 }
 #pragma pop
 
-/* 8014D81C-8014D838 001C+00 s=0 e=0 z=9  None .text      entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
- */
+/* 8014D81C-8014D838 14815C 001C+00 0/0 0/0 9/9 .text entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4533,8 +3293,7 @@ asm void daBaseNpc_acMngr_c::entry(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8014D838-8014D884 004C+00 s=0 e=0 z=6  None .text      getActor__18daBaseNpc_acMngr_cFv */
-//	8014D854: 800199BC (fopAcM_SearchByID__FUiPP10fopAc_ac_c)
+/* 8014D838-8014D884 148178 004C+00 0/0 0/0 6/6 .text            getActor__18daBaseNpc_acMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4544,13 +3303,8 @@ asm void daBaseNpc_acMngr_c::getActor() {
 }
 #pragma pop
 
-/* 8014D884-8014D998 0114+00 s=1 e=0 z=0  None .text      calc__18daBaseNpc_matAnm_cCFP11J3DMaterial
+/* 8014D884-8014D998 1481C4 0114+00 1/0 0/0 0/0 .text calc__18daBaseNpc_matAnm_cCFP11J3DMaterial
  */
-//	8014D894: 803621D8 (_savegpr_28)
-//	8014D8A0: 8032C3C4 (calc__14J3DMaterialAnmCFP11J3DMaterial)
-//	8014D8E4: 804533DC (lit_4140)
-//	8014D8EC: 804533E0 (lit_4142)
-//	8014D984: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4560,9 +3314,7 @@ asm void daBaseNpc_matAnm_c::calc(J3DMaterial* param_0) const {
 }
 #pragma pop
 
-/* 8014D998-8014D9A8 0010+00 s=0 e=0 z=1  None .text      __ct__16daBaseNpc_path_cFv */
-//	8014D998: 803B3A50 (__vt__16daBaseNpc_path_c)
-//	8014D99C: 803B3A50 (__vt__16daBaseNpc_path_c)
+/* 8014D998-8014D9A8 1482D8 0010+00 0/0 0/0 1/1 .text            __ct__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4572,7 +3324,7 @@ asm daBaseNpc_path_c::daBaseNpc_path_c() {
 }
 #pragma pop
 
-/* 8014D9A8-8014D9BC 0014+00 s=1 e=0 z=4  None .text      isPath__16daBaseNpc_path_cFv */
+/* 8014D9A8-8014D9BC 1482E8 0014+00 1/1 0/0 4/4 .text            isPath__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4582,10 +3334,7 @@ asm void daBaseNpc_path_c::isPath() {
 }
 #pragma pop
 
-/* 8014D9BC-8014DA48 008C+00 s=0 e=0 z=1  None .text      setPathInfo__16daBaseNpc_path_cFUcScSc */
-//	8014D9F0: 800517EC (dPath_GetRoomPath__Fii)
-//	8014DA24: 8014F8C4 (daBaseNpc_putNurbs__FP4dPntiiP4dPnti)
-//	8014DA30: 8014D9A8 (isPath__16daBaseNpc_path_cFv)
+/* 8014D9BC-8014DA48 1482FC 008C+00 0/0 0/0 1/1 .text setPathInfo__16daBaseNpc_path_cFUcScSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4595,7 +3344,7 @@ asm void daBaseNpc_path_c::setPathInfo(u8 param_0, s8 param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 8014DA48-8014DA64 001C+00 s=0 e=0 z=1  None .text      reverseDir__16daBaseNpc_path_cFv */
+/* 8014DA48-8014DA64 148388 001C+00 0/0 0/0 1/1 .text            reverseDir__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4605,8 +3354,7 @@ asm void daBaseNpc_path_c::reverseDir() {
 }
 #pragma pop
 
-/* 8014DA64-8014DAC4 0060+00 s=0 e=0 z=3  None .text      chkPnt__16daBaseNpc_path_cF4cXyz */
-//	8014DAB0: 8014FB28 (daBaseNpc_chkPnt__F4cXyzP4dPntUsUsii)
+/* 8014DA64-8014DAC4 1483A4 0060+00 0/0 0/0 3/3 .text            chkPnt__16daBaseNpc_path_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4616,8 +3364,7 @@ asm void daBaseNpc_path_c::chkPnt(cXyz param_0) {
 }
 #pragma pop
 
-/* 8014DAC4-8014DB04 0040+00 s=0 e=0 z=3  None .text      setNextPnt__16daBaseNpc_path_cFv */
-//	8014DAF0: 8014D5C4 (daBaseNpc_incIdx__FiPUsii)
+/* 8014DAC4-8014DB04 148404 0040+00 0/0 0/0 3/3 .text            setNextPnt__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4627,7 +3374,7 @@ asm void daBaseNpc_path_c::setNextPnt() {
 }
 #pragma pop
 
-/* 8014DB04-8014DB0C 0008+00 s=0 e=0 z=3  None .text      getIdx__16daBaseNpc_path_cFv */
+/* 8014DB04-8014DB0C 148444 0008+00 0/0 0/0 3/3 .text            getIdx__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4637,7 +3384,7 @@ asm void daBaseNpc_path_c::getIdx() {
 }
 #pragma pop
 
-/* 8014DB0C-8014DB14 0008+00 s=0 e=0 z=1  None .text      setIdx__16daBaseNpc_path_cFUs */
+/* 8014DB0C-8014DB14 14844C 0008+00 0/0 0/0 1/1 .text            setIdx__16daBaseNpc_path_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4647,7 +3394,7 @@ asm void daBaseNpc_path_c::setIdx(u16 param_0) {
 }
 #pragma pop
 
-/* 8014DB14-8014DB40 002C+00 s=0 e=0 z=4  None .text      getPntPos__16daBaseNpc_path_cFUs */
+/* 8014DB14-8014DB40 148454 002C+00 0/0 0/0 4/4 .text            getPntPos__16daBaseNpc_path_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4657,7 +3404,7 @@ asm void daBaseNpc_path_c::getPntPos(u16 param_0) {
 }
 #pragma pop
 
-/* 8014DB40-8014DBB4 0074+00 s=1 e=0 z=0  None .text      limitter__18daBaseNpc_lookat_cFsPsss */
+/* 8014DB40-8014DBB4 148480 0074+00 1/1 0/0 0/0 .text limitter__18daBaseNpc_lookat_cFsPsss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4668,117 +3415,14 @@ asm void daBaseNpc_lookat_c::limitter(s16 param_0, s16* param_1, s16 param_2, s1
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453490-80453494 0004+00 s=2 e=0 z=0  None .sdata2    @8404 */
+/* 80453490-80453494 001A90 0004+00 2/2 0/0 0/0 .sdata2          @8404 */
 SECTION_SDATA2 static f32 lit_8404 = 0.25f;
 
-/* 80453494-80453498 0004+00 s=1 e=0 z=0  None .sdata2    @8405 */
+/* 80453494-80453498 001A94 0004+00 1/1 0/0 0/0 .sdata2          @8405 */
 SECTION_SDATA2 static f32 lit_8405 = 4.0f / 5.0f;
 
-/* 8014DBB4-8014E634 0A80+00 s=0 e=0 z=1  None .text
+/* 8014DBB4-8014E634 1484F4 0A80+00 0/0 0/0 1/1 .text
  * calc__18daBaseNpc_lookat_cFP10fopAc_ac_cPA4_fs               */
-//	8014DBD4: 803621A8 (_savegpr_16)
-//	8014DBF8: 804533E0 (lit_4142)
-//	8014DC5C: 804533D8 (lit_4116)
-//	8014DC60: 80453490 (lit_8404)
-//	8014DC84: 8026FA3C (cLib_addCalc2__FPffff)
-//	8014DC8C: 804533D8 (lit_4116)
-//	8014DC90: 80453490 (lit_8404)
-//	8014DCA8: 8026FA3C (cLib_addCalc2__FPffff)
-//	8014DCB0: 804533D8 (lit_4116)
-//	8014DCB4: 80453490 (lit_8404)
-//	8014DCCC: 8026FA3C (cLib_addCalc2__FPffff)
-//	8014DD28: 803464B0 (PSMTXCopy)
-//	8014DD2C: 804533D8 (lit_4116)
-//	8014DD40: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD44: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD48: 803464B0 (PSMTXCopy)
-//	8014DD4C: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD50: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD58: 803465B0 (PSMTXInverse)
-//	8014DD5C: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD60: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD68: 803464B0 (PSMTXCopy)
-//	8014DD70: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	8014DD74: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD78: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD84: 803464E4 (PSMTXConcat)
-//	8014DD90: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DD94: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DDA8: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014DDD4: 80346D6C (PSMTXMultVec)
-//	8014DE10: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014DE2C: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DE30: 803DD470 (now__14mDoMtx_stack_c)
-//	8014DE3C: 80346D6C (PSMTXMultVec)
-//	8014DE50: 804533D8 (lit_4116)
-//	8014DE54: 80439A20 (sincosTable___5JMath)
-//	8014DE58: 80439A20 (sincosTable___5JMath)
-//	8014DE5C: 80453494 (lit_8405)
-//	8014DE80: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014DEC4: 80347138 (PSVECSquareMag)
-//	8014DED4: 80453408 (lit_4723)
-//	8014DEDC: 80453410 (lit_4724)
-//	8014DF24: 80453418 (lit_4725)
-//	8014DF30: 80450AE0 (__float_nan)
-//	8014DF34: 80450AE0 (__float_nan)
-//	8014DFA0: 80450AE0 (__float_nan)
-//	8014DFA4: 80450AE0 (__float_nan)
-//	8014DFB4: 80267674 (cM_atan2s__Fff)
-//	8014DFE4: 80267674 (cM_atan2s__Fff)
-//	8014DFFC: 80347138 (PSVECSquareMag)
-//	8014E00C: 80453408 (lit_4723)
-//	8014E014: 80453410 (lit_4724)
-//	8014E05C: 80453418 (lit_4725)
-//	8014E068: 80450AE0 (__float_nan)
-//	8014E06C: 80450AE0 (__float_nan)
-//	8014E0D8: 80450AE0 (__float_nan)
-//	8014E0DC: 80450AE0 (__float_nan)
-//	8014E108: 80451160 (Zero__5csXyz)
-//	8014E110: 803DD470 (now__14mDoMtx_stack_c)
-//	8014E114: 803DD470 (now__14mDoMtx_stack_c)
-//	8014E11C: 804533D8 (lit_4116)
-//	8014E128: 80451160 (Zero__5csXyz)
-//	8014E158: 8000CE9C (XYZrotS__14mDoMtx_stack_cFRC5csXyz)
-//	8014E164: 803464B0 (PSMTXCopy)
-//	8014E170: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	8014E19C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	8014E1AC: 803464E4 (PSMTXConcat)
-//	8014E1D8: 80346D6C (PSMTXMultVec)
-//	8014E234: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014E254: 802670AC (isZero__4cXyzCFv)
-//	8014E268: 80266EF4 (normalize__4cXyzFv)
-//	8014E278: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014E298: 802670AC (isZero__4cXyzCFv)
-//	8014E2AC: 80266EF4 (normalize__4cXyzFv)
-//	8014E2B8: 804533D8 (lit_4116)
-//	8014E2CC: 80347138 (PSVECSquareMag)
-//	8014E2D0: 804533D8 (lit_4116)
-//	8014E2E0: 80453408 (lit_4723)
-//	8014E2E8: 80453410 (lit_4724)
-//	8014E330: 80453418 (lit_4725)
-//	8014E33C: 80450AE0 (__float_nan)
-//	8014E340: 80450AE0 (__float_nan)
-//	8014E3AC: 80450AE0 (__float_nan)
-//	8014E3B0: 80450AE0 (__float_nan)
-//	8014E3C0: 80267674 (cM_atan2s__Fff)
-//	8014E3D4: 80267674 (cM_atan2s__Fff)
-//	8014E3E4: 804533D8 (lit_4116)
-//	8014E3F8: 80347138 (PSVECSquareMag)
-//	8014E3FC: 804533D8 (lit_4116)
-//	8014E40C: 80453408 (lit_4723)
-//	8014E414: 80453410 (lit_4724)
-//	8014E45C: 80453418 (lit_4725)
-//	8014E468: 80450AE0 (__float_nan)
-//	8014E46C: 80450AE0 (__float_nan)
-//	8014E4D8: 80450AE0 (__float_nan)
-//	8014E4DC: 80450AE0 (__float_nan)
-//	8014E4EC: 80267674 (cM_atan2s__Fff)
-//	8014E500: 80267674 (cM_atan2s__Fff)
-//	8014E54C: 8014DB40 (limitter__18daBaseNpc_lookat_cFsPsss)
-//	8014E564: 8014DB40 (limitter__18daBaseNpc_lookat_cFsPsss)
-//	8014E5B4: 80451160 (Zero__5csXyz)
-//	8014E5E0: 8026745C (__apl__5csXyzFR5csXyz)
-//	8014E620: 803621F4 (_restgpr_16)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4788,7 +3432,7 @@ asm void daBaseNpc_lookat_c::calc(fopAc_ac_c* param_0, f32 (*param_1)[4], s16 pa
 }
 #pragma pop
 
-/* 8014E634-8014E658 0024+00 s=0 e=0 z=1  None .text      setMaxJntLmt__18daBaseNpc_lookat_cF5csXyzi
+/* 8014E634-8014E658 148F74 0024+00 0/0 0/0 1/1 .text setMaxJntLmt__18daBaseNpc_lookat_cF5csXyzi
  */
 #pragma push
 #pragma optimization_level 0
@@ -4799,7 +3443,7 @@ asm void daBaseNpc_lookat_c::setMaxJntLmt(csXyz param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014E658-8014E67C 0024+00 s=0 e=0 z=1  None .text      setMinJntLmt__18daBaseNpc_lookat_cF5csXyzi
+/* 8014E658-8014E67C 148F98 0024+00 0/0 0/0 1/1 .text setMinJntLmt__18daBaseNpc_lookat_cF5csXyzi
  */
 #pragma push
 #pragma optimization_level 0
@@ -4810,7 +3454,7 @@ asm void daBaseNpc_lookat_c::setMinJntLmt(csXyz param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014E67C-8014E6A0 0024+00 s=0 e=0 z=1  None .text      setJntPos__18daBaseNpc_lookat_cF4cXyzi */
+/* 8014E67C-8014E6A0 148FBC 0024+00 0/0 0/0 1/1 .text setJntPos__18daBaseNpc_lookat_cF4cXyzi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4820,7 +3464,7 @@ asm void daBaseNpc_lookat_c::setJntPos(cXyz param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014E6A0-8014E6AC 000C+00 s=0 e=0 z=1  None .text      setAttnPos__18daBaseNpc_lookat_cFP4cXyz */
+/* 8014E6A0-8014E6AC 148FE0 000C+00 0/0 0/0 1/1 .text setAttnPos__18daBaseNpc_lookat_cFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4830,7 +3474,7 @@ asm void daBaseNpc_lookat_c::setAttnPos(cXyz* param_0) {
 }
 #pragma pop
 
-/* 8014E6AC-8014E6C8 001C+00 s=0 e=0 z=1  None .text      getRot__18daBaseNpc_lookat_cFi */
+/* 8014E6AC-8014E6C8 148FEC 001C+00 0/0 0/0 1/1 .text            getRot__18daBaseNpc_lookat_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4840,59 +3484,7 @@ asm void daBaseNpc_lookat_c::getRot(int param_0) {
 }
 #pragma pop
 
-/* 8014E6C8-8014E89C 01D4+00 s=1 e=0 z=0  None .text      __ct__11daBaseNpc_cFv */
-//	8014E6E0: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8014E6E4: 803B39AC (__vt__11daBaseNpc_c)
-//	8014E6E8: 803B39AC (__vt__11daBaseNpc_c)
-//	8014E6F8: 800760A0 (__ct__9dBgS_AcchFv)
-//	8014E6FC: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014E700: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014E71C: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	8014E724: 802C03C8 (__ct__10Z2CreatureFv)
-//	8014E72C: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E730: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E740: 803283FC (init__12J3DFrameCtrlFs)
-//	8014E750: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E754: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E764: 803283FC (init__12J3DFrameCtrlFs)
-//	8014E774: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E778: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014E788: 803283FC (init__12J3DFrameCtrlFs)
-//	8014E798: 80249F00 (__ct__10dMsgFlow_cFv)
-//	8014E79C: 803C3728 (__vt__9cCcD_Stts)
-//	8014E7A0: 803C3728 (__vt__9cCcD_Stts)
-//	8014E7AC: 80083760 (__ct__10dCcD_GSttsFv)
-//	8014E7B0: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014E7B4: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014E7C8: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	8014E7CC: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	8014E7D0: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	8014E7DC: 80112C80 (__ct__5csXyzFv)
-//	8014E7E0: 80112C80 (__ct__5csXyzFv)
-//	8014E7E4: 80018BD0 (__dt__5csXyzFv)
-//	8014E7E8: 80018BD0 (__dt__5csXyzFv)
-//	8014E7F4: 80361D60 (__construct_array)
-//	8014E7FC: 80112C80 (__ct__5csXyzFv)
-//	8014E800: 80112C80 (__ct__5csXyzFv)
-//	8014E804: 80018BD0 (__dt__5csXyzFv)
-//	8014E808: 80018BD0 (__dt__5csXyzFv)
-//	8014E814: 80361D60 (__construct_array)
-//	8014E81C: 800125DC (__ct__4cXyzFv)
-//	8014E820: 800125DC (__ct__4cXyzFv)
-//	8014E824: 80009184 (__dt__4cXyzFv)
-//	8014E828: 80009184 (__dt__4cXyzFv)
-//	8014E834: 80361D60 (__construct_array)
-//	8014E83C: 80112C80 (__ct__5csXyzFv)
-//	8014E840: 80112C80 (__ct__5csXyzFv)
-//	8014E844: 80018BD0 (__dt__5csXyzFv)
-//	8014E848: 80018BD0 (__dt__5csXyzFv)
-//	8014E854: 80361D60 (__construct_array)
-//	8014E85C: 80112C80 (__ct__5csXyzFv)
-//	8014E860: 80112C80 (__ct__5csXyzFv)
-//	8014E864: 80018BD0 (__dt__5csXyzFv)
-//	8014E868: 80018BD0 (__dt__5csXyzFv)
-//	8014E874: 80361D60 (__construct_array)
-//	8014E87C: 80267C1C (__ct__11cBgS_GndChkFv)
+/* 8014E6C8-8014E89C 149008 01D4+00 1/1 0/0 0/0 .text            __ct__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4902,52 +3494,7 @@ asm daBaseNpc_c::daBaseNpc_c() {
 }
 #pragma pop
 
-/* 8014E89C-8014EAD0 0234+00 s=2 e=0 z=2  None .text      __dt__11daBaseNpc_cFv */
-//	8014E8BC: 803B39AC (__vt__11daBaseNpc_c)
-//	8014E8C0: 803B39AC (__vt__11daBaseNpc_c)
-//	8014E8D0: 80267C94 (__dt__11cBgS_GndChkFv)
-//	8014E8DC: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	8014E8E0: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	8014E8EC: 80018BD0 (__dt__5csXyzFv)
-//	8014E8F0: 80018BD0 (__dt__5csXyzFv)
-//	8014E8FC: 80361CE8 (__destroy_arr)
-//	8014E904: 80018BD0 (__dt__5csXyzFv)
-//	8014E908: 80018BD0 (__dt__5csXyzFv)
-//	8014E914: 80361CE8 (__destroy_arr)
-//	8014E91C: 80009184 (__dt__4cXyzFv)
-//	8014E920: 80009184 (__dt__4cXyzFv)
-//	8014E92C: 80361CE8 (__destroy_arr)
-//	8014E934: 80018BD0 (__dt__5csXyzFv)
-//	8014E938: 80018BD0 (__dt__5csXyzFv)
-//	8014E944: 80361CE8 (__destroy_arr)
-//	8014E94C: 80018BD0 (__dt__5csXyzFv)
-//	8014E950: 80018BD0 (__dt__5csXyzFv)
-//	8014E95C: 80361CE8 (__destroy_arr)
-//	8014E968: 803AB664 (__vt__12dBgS_AcchCir)
-//	8014E96C: 803AB664 (__vt__12dBgS_AcchCir)
-//	8014E97C: 8026EF18 (__dt__8cM3dGCirFv)
-//	8014E988: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	8014E994: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014E998: 803AC2E4 (__vt__9dCcD_Stts)
-//	8014E9B0: 803AC310 (__vt__10dCcD_GStts)
-//	8014E9B4: 803AC310 (__vt__10dCcD_GStts)
-//	8014E9C4: 803AC31C (__vt__10cCcD_GStts)
-//	8014E9C8: 803AC31C (__vt__10cCcD_GStts)
-//	8014E9D8: 803C3728 (__vt__9cCcD_Stts)
-//	8014E9DC: 803C3728 (__vt__9cCcD_Stts)
-//	8014E9EC: 80249F48 (__dt__10dMsgFlow_cFv)
-//	8014EA08: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA0C: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA2C: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA30: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA50: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA54: 803A3354 (__vt__12J3DFrameCtrl)
-//	8014EA64: 802C0420 (__dt__10Z2CreatureFv)
-//	8014EA70: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014EA74: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	8014EA94: 80075F94 (__dt__9dBgS_AcchFv)
-//	8014EAA0: 80018C8C (__dt__10fopAc_ac_cFv)
-//	8014EAB0: 802CED3C (__dl__FPv)
+/* 8014E89C-8014EAD0 1491DC 0234+00 2/1 0/0 2/2 .text            __dt__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4957,15 +3504,7 @@ asm daBaseNpc_c::~daBaseNpc_c() {
 }
 #pragma pop
 
-/* 8014EAD0-8014EC50 0180+00 s=2 e=0 z=2  None .text      execute__11daBaseNpc_cFv */
-//	8014EB10: 8001A6CC (fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz)
-//	8014EB18: 804061C0 (g_dComIfG_gameInfo)
-//	8014EB1C: 804061C0 (g_dComIfG_gameInfo)
-//	8014EB24: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS)
-//	8014EBA0: 80453440 (lit_5667)
-//	8014EBB8: 80150230 (daBaseNpc_getGroundAngle__FP13cBgS_PolyInfos)
-//	8014EBC4: 8014F0A0 (setEnvTevColor__11daBaseNpc_cFv)
-//	8014EBCC: 8014F0FC (setRoomNo__11daBaseNpc_cFv)
+/* 8014EAD0-8014EC50 149410 0180+00 2/0 0/0 2/0 .text            execute__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4975,38 +3514,7 @@ asm void daBaseNpc_c::execute() {
 }
 #pragma pop
 
-/* 8014EC50-8014EE3C 01EC+00 s=2 e=0 z=2  None .text      draw__11daBaseNpc_cFf */
-//	8014EC68: 803621D8 (_savegpr_28)
-//	8014EC80: 801AC57C (dKy_darkworld_check__Fv)
-//	8014EC8C: 8042CA54 (g_env_light)
-//	8014EC90: 8042CA54 (g_env_light)
-//	8014ECA0: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	8014ECA8: 8042CA54 (g_env_light)
-//	8014ECAC: 8042CA54 (g_env_light)
-//	8014ECBC: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	8014ECC0: 8042CA54 (g_env_light)
-//	8014ECC4: 8042CA54 (g_env_light)
-//	8014ECD0: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	8014ED1C:
-// 8000D5E8 (entry__13mDoExt_btpAnmFP16J3DMaterialTables) 	8014ED38: 8000D6D8
-//(entry__13mDoExt_btkAnmFP16J3DMaterialTablef) 	8014ED3C: 801AC57C (dKy_darkworld_check__Fv)
-//	8014ED48: 804061C0 (g_dComIfG_gameInfo)
-//	8014ED4C: 804061C0 (g_dComIfG_gameInfo)
-//	8014ED54: 80434AC8 (j3dSys)
-//	8014ED58: 80434AC8 (j3dSys)
-//	8014ED6C: 800111C0 (entryDL__16mDoExt_McaMorfSOFv)
-//	8014ED70: 804061C0 (g_dComIfG_gameInfo)
-//	8014ED74: 804061C0 (g_dComIfG_gameInfo)
-//	8014ED90: 800111C0 (entryDL__16mDoExt_McaMorfSOFv)
-//	8014EDA8: 8032F6F8 (removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern)
-//	8014EDC0: 8032F7B4 (removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey)
-//	8014EDD8: 80453444 (lit_5794)
-//	8014EDF0: 804533DC (lit_4140)
-//	8014EDF4: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	8014EDF8: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	8014EDFC: 8002E910
-//(dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj)
-//	8014EE28: 80362224 (_restgpr_28)
+/* 8014EC50-8014EE3C 149590 01EC+00 2/0 0/0 2/0 .text            draw__11daBaseNpc_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5016,15 +3524,12 @@ asm void daBaseNpc_c::draw(f32 param_0) {
 }
 #pragma pop
 
-/* 8014EE3C-8014EE44 0008+00 s=2 e=0 z=1  None .text      getResName__11daBaseNpc_cFv */
+/* 8014EE3C-8014EE44 14977C 0008+00 2/0 0/0 1/0 .text            getResName__11daBaseNpc_cFv */
 bool daBaseNpc_c::getResName() {
     return false;
 }
 
-/* 8014EE44-8014EE80 003C+00 s=0 e=0 z=2  None .text      getTrnsfrmKeyAnmP__11daBaseNpc_cFPci */
-//	8014EE58: 804061C0 (g_dComIfG_gameInfo)
-//	8014EE5C: 804061C0 (g_dComIfG_gameInfo)
-//	8014EE6C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 8014EE44-8014EE80 149784 003C+00 0/0 0/0 2/2 .text getTrnsfrmKeyAnmP__11daBaseNpc_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5034,10 +3539,8 @@ asm void daBaseNpc_c::getTrnsfrmKeyAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014EE80-8014EEE4 0064+00 s=0 e=0 z=1  None .text
+/* 8014EE80-8014EEE4 1497C0 0064+00 0/0 0/0 1/1 .text
  * setMcaMorfAnm__11daBaseNpc_cFP18J3DAnmTransformKeyffiii      */
-//	8014EE9C: 804533E0 (lit_4142)
-//	8014EECC: 80010E70 (setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5048,9 +3551,8 @@ asm void daBaseNpc_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f3
 }
 #pragma pop
 
-/* 8014EEE4-8014EF28 0044+00 s=0 e=0 z=1  None .text
+/* 8014EEE4-8014EF28 149824 0044+00 0/0 0/0 1/1 .text
  * setBckAnm__11daBaseNpc_cFP15J3DAnmTransformfiiib             */
-//	8014EF14: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5061,10 +3563,8 @@ asm void daBaseNpc_c::setBckAnm(J3DAnmTransform* param_0, f32 param_1, int param
 }
 #pragma pop
 
-/* 8014EF28-8014EF64 003C+00 s=0 e=0 z=1  None .text      getTexPtrnAnmP__11daBaseNpc_cFPci */
-//	8014EF3C: 804061C0 (g_dComIfG_gameInfo)
-//	8014EF40: 804061C0 (g_dComIfG_gameInfo)
-//	8014EF50: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 8014EF28-8014EF64 149868 003C+00 0/0 0/0 1/1 .text            getTexPtrnAnmP__11daBaseNpc_cFPci
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5074,9 +3574,8 @@ asm void daBaseNpc_c::getTexPtrnAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014EF64-8014EFA4 0040+00 s=0 e=0 z=1  None .text
+/* 8014EF64-8014EFA4 1498A4 0040+00 0/0 0/0 1/1 .text
  * setBtpAnm__11daBaseNpc_cFP16J3DAnmTexPatternP12J3DModelDatafi */
-//	8014EF90: 8000D54C (init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5087,9 +3586,7 @@ asm void daBaseNpc_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1
 }
 #pragma pop
 
-/* 8014EFA4-8014EFF0 004C+00 s=2 e=0 z=2  None .text      attnSttsOn__11daBaseNpc_cFii */
-//	8014EFA4: 804061C0 (g_dComIfG_gameInfo)
-//	8014EFA8: 804061C0 (g_dComIfG_gameInfo)
+/* 8014EFA4-8014EFF0 1498E4 004C+00 2/0 0/0 2/0 .text            attnSttsOn__11daBaseNpc_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5099,17 +3596,12 @@ asm void daBaseNpc_c::attnSttsOn(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 8014EFF0-8014EFF4 0004+00 s=2 e=0 z=1  None .text      setParam__11daBaseNpc_cFv */
+/* 8014EFF0-8014EFF4 149930 0004+00 2/0 0/0 1/0 .text            setParam__11daBaseNpc_cFv */
 void daBaseNpc_c::setParam() {
     /* empty function */
 }
 
-/* 8014EFF4-8014F09C 00A8+00 s=0 e=0 z=1  None .text      orderEvent__11daBaseNpc_cFiPc */
-//	8014F010: 804061C0 (g_dComIfG_gameInfo)
-//	8014F014: 804061C0 (g_dComIfG_gameInfo)
-//	8014F024: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	8014F048: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	8014F084: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
+/* 8014EFF4-8014F09C 149934 00A8+00 0/0 0/0 1/1 .text            orderEvent__11daBaseNpc_cFiPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5119,16 +3611,12 @@ asm void daBaseNpc_c::orderEvent(int param_0, char* param_1) {
 }
 #pragma pop
 
-/* 8014F09C-8014F0A0 0004+00 s=2 e=0 z=1  None .text      mainProc__11daBaseNpc_cFv */
+/* 8014F09C-8014F0A0 1499DC 0004+00 2/0 0/0 1/0 .text            mainProc__11daBaseNpc_cFv */
 void daBaseNpc_c::mainProc() {
     /* empty function */
 }
 
-/* 8014F0A0-8014F0FC 005C+00 s=1 e=0 z=2  None .text      setEnvTevColor__11daBaseNpc_cFv */
-//	8014F0B8: 804061C0 (g_dComIfG_gameInfo)
-//	8014F0BC: 804061C0 (g_dComIfG_gameInfo)
-//	8014F0CC: 80074BE8 (GetPolyColor__4dBgSFRC13cBgS_PolyInfo)
-//	8014F0DC: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 8014F0A0-8014F0FC 1499E0 005C+00 1/1 0/0 2/2 .text            setEnvTevColor__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5138,10 +3626,7 @@ asm void daBaseNpc_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 8014F0FC-8014F140 0044+00 s=1 e=0 z=2  None .text      setRoomNo__11daBaseNpc_cFv */
-//	8014F110: 804061C0 (g_dComIfG_gameInfo)
-//	8014F114: 804061C0 (g_dComIfG_gameInfo)
-//	8014F120: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 8014F0FC-8014F140 149A3C 0044+00 1/1 0/0 2/2 .text            setRoomNo__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5151,13 +3636,12 @@ asm void daBaseNpc_c::setRoomNo() {
 }
 #pragma pop
 
-/* 8014F140-8014F148 0008+00 s=2 e=0 z=2  None .text      btkCtrl__11daBaseNpc_cFv */
+/* 8014F140-8014F148 149A80 0008+00 2/0 0/0 2/0 .text            btkCtrl__11daBaseNpc_cFv */
 bool daBaseNpc_c::btkCtrl() {
     return false;
 }
 
-/* 8014F148-8014F1C8 0080+00 s=1 e=0 z=0  None .text      checkEndAnm__11daBaseNpc_cFf */
-//	8014F18C: 804533D8 (lit_4116)
+/* 8014F148-8014F1C8 149A88 0080+00 1/1 0/0 0/0 .text            checkEndAnm__11daBaseNpc_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5167,9 +3651,8 @@ asm void daBaseNpc_c::checkEndAnm(f32 param_0) {
 }
 #pragma pop
 
-/* 8014F1C8-8014F228 0060+00 s=1 e=0 z=0  None .text      checkEndAnm__11daBaseNpc_cFP12J3DFrameCtrl
+/* 8014F1C8-8014F228 149B08 0060+00 1/1 0/0 0/0 .text checkEndAnm__11daBaseNpc_cFP12J3DFrameCtrl
  */
-//	8014F204: 804533D8 (lit_4116)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5179,17 +3662,7 @@ asm void daBaseNpc_c::checkEndAnm(J3DFrameCtrl* param_0) {
 }
 #pragma pop
 
-/* 8014F228-8014F38C 0164+00 s=2 e=0 z=2  None .text      allAnmPlay__11daBaseNpc_cFv */
-//	8014F268: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	8014F274: 8014F148 (checkEndAnm__11daBaseNpc_cFf)
-//	8014F2C0: 8000D428 (play__14mDoExt_baseAnmFv)
-//	8014F2E4: 8000D428 (play__14mDoExt_baseAnmFv)
-//	8014F300: 8000D428 (play__14mDoExt_baseAnmFv)
-//	8014F318: 8014F1C8 (checkEndAnm__11daBaseNpc_cFP12J3DFrameCtrl)
-//	8014F32C: 8014D364 (func_8014D364)
-//	8014F334: 804533D8 (lit_4116)
-//	8014F34C: 8014D32C (func_8014D32C)
-//	8014F358: 804533DC (lit_4140)
+/* 8014F228-8014F38C 149B68 0164+00 2/0 0/0 2/0 .text            allAnmPlay__11daBaseNpc_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5199,23 +3672,13 @@ asm void daBaseNpc_c::allAnmPlay() {
 }
 #pragma pop
 
-/* 8014F38C-8014F390 0004+00 s=2 e=0 z=1  None .text      adjustShapeAngle__11daBaseNpc_cFv */
+/* 8014F38C-8014F390 149CCC 0004+00 2/0 0/0 1/0 .text            adjustShapeAngle__11daBaseNpc_cFv
+ */
 void daBaseNpc_c::adjustShapeAngle() {
     /* empty function */
 }
 
-/* 8014F390-8014F4A0 0110+00 s=2 e=0 z=1  None .text      setMtx__11daBaseNpc_cFi */
-//	8014F3A0: 803621D8 (_savegpr_28)
-//	8014F3BC: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	8014F3C4: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	8014F3CC: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	8014F3D0: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F3D4: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F3DC: 803464B0 (PSMTXCopy)
-//	8014F424: 8000D9E8 (entryJoint__13mDoExt_bckAnmFP12J3DModelDataUsf)
-//	8014F444: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
-//	8014F484: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
-//	8014F48C: 80362224 (_restgpr_28)
+/* 8014F390-8014F4A0 149CD0 0110+00 2/0 0/0 1/0 .text            setMtx__11daBaseNpc_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5225,30 +3688,28 @@ asm void daBaseNpc_c::setMtx(int param_0) {
 }
 #pragma pop
 
-/* 8014F4A0-8014F4A4 0004+00 s=2 e=0 z=1  None .text      setCollisions__11daBaseNpc_cFv */
+/* 8014F4A0-8014F4A4 149DE0 0004+00 2/0 0/0 1/0 .text            setCollisions__11daBaseNpc_cFv */
 void daBaseNpc_c::setCollisions() {
     /* empty function */
 }
 
-/* 8014F4A4-8014F4A8 0004+00 s=2 e=0 z=1  None .text      setAttnPos__11daBaseNpc_cFv */
+/* 8014F4A4-8014F4A8 149DE4 0004+00 2/0 0/0 1/0 .text            setAttnPos__11daBaseNpc_cFv */
 void daBaseNpc_c::setAttnPos() {
     /* empty function */
 }
 
-/* 8014F4A8-8014F4AC 0004+00 s=2 e=0 z=1  None .text      drawOtherMdls__11daBaseNpc_cFv */
+/* 8014F4A8-8014F4AC 149DE8 0004+00 2/0 0/0 1/0 .text            drawOtherMdls__11daBaseNpc_cFv */
 void daBaseNpc_c::drawOtherMdls() {
     /* empty function */
 }
 
-/* 8014F4AC-8014F4B4 0008+00 s=2 e=0 z=1  None .text      dbgDraw__11daBaseNpc_cFv */
+/* 8014F4AC-8014F4B4 149DEC 0008+00 2/0 0/0 1/0 .text            dbgDraw__11daBaseNpc_cFv */
 bool daBaseNpc_c::dbgDraw() {
     return true;
 }
 
-/* 8014F4B4-8014F4F8 0044+00 s=0 e=0 z=1  None .text      __ct__23daBaseNpc_moveBgActor_cFv */
-//	8014F4C8: 8014E6C8 (__ct__11daBaseNpc_cFv)
-//	8014F4CC: 803B3948 (__vt__23daBaseNpc_moveBgActor_c)
-//	8014F4D0: 803B3948 (__vt__23daBaseNpc_moveBgActor_c)
+/* 8014F4B4-8014F4F8 149DF4 0044+00 0/0 0/0 1/1 .text            __ct__23daBaseNpc_moveBgActor_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5258,39 +3719,30 @@ asm daBaseNpc_moveBgActor_c::daBaseNpc_moveBgActor_c() {
 }
 #pragma pop
 
-/* 8014F4F8-8014F518 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
-//	8014F504: 8014F518 (MoveBGCreateHeap__23daBaseNpc_moveBgActor_cFv)
+/* 8014F4F8-8014F518 149E38 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450FE0-80450FE4 0004+00 s=2 e=0 z=0  None .sbss      m_name__23daBaseNpc_moveBgActor_c */
+/* 80450FE0-80450FE4 0004E0 0004+00 2/2 0/0 0/0 .sbss            m_name__23daBaseNpc_moveBgActor_c
+ */
 static u8 m_name__23daBaseNpc_moveBgActor_c[4];
 
-/* 80450FE4-80450FE8 0004+00 s=2 e=0 z=0  None .sbss      m_dzb_id__23daBaseNpc_moveBgActor_c */
+/* 80450FE4-80450FE8 0004E4 0004+00 2/2 0/0 0/0 .sbss            m_dzb_id__23daBaseNpc_moveBgActor_c
+ */
 static u8 m_dzb_id__23daBaseNpc_moveBgActor_c[4];
 
-/* 80450FE8-80450FEC 0004+00 s=2 e=0 z=0  None .sbss      m_set_func__23daBaseNpc_moveBgActor_c */
+/* 80450FE8-80450FEC 0004E8 0004+00 2/2 0/0 0/0 .sbss m_set_func__23daBaseNpc_moveBgActor_c */
 static u8 m_set_func__23daBaseNpc_moveBgActor_c[4];
 
-/* 8014F518-8014F60C 00F4+00 s=1 e=0 z=0  None .text MoveBGCreateHeap__23daBaseNpc_moveBgActor_cFv
- */
-//	8014F54C: 80450FE4 (m_dzb_id__23daBaseNpc_moveBgActor_c)
-//	8014F56C: 802CEC4C (__nw__FUl)
-//	8014F578: 8007B970 (__ct__4dBgWFv)
-//	8014F590: 80450FE0 (m_name__23daBaseNpc_moveBgActor_c)
-//	8014F594: 80450FE4 (m_dzb_id__23daBaseNpc_moveBgActor_c)
-//	8014F598: 804061C0 (g_dComIfG_gameInfo)
-//	8014F59C: 804061C0 (g_dComIfG_gameInfo)
-//	8014F5AC: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8014F5C0: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
-//	8014F5CC: 80450FE8 (m_set_func__23daBaseNpc_moveBgActor_c)
+/* 8014F518-8014F60C 149E58 00F4+00 1/1 0/0 0/0 .text
+ * MoveBGCreateHeap__23daBaseNpc_moveBgActor_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5300,28 +3752,9 @@ asm void daBaseNpc_moveBgActor_c::MoveBGCreateHeap() {
 }
 #pragma pop
 
-/* 8014F60C-8014F6FC 00F0+00 s=0 e=0 z=1  None .text
+/* 8014F60C-8014F6FC 149F4C 00F0+00 0/0 0/0 1/1 .text
  * MoveBGCreate__23daBaseNpc_moveBgActor_cFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUl
  */
-//	8014F61C: 803621D4 (_savegpr_27)
-//	8014F638: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	8014F63C: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F640: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F648: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	8014F650: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	8014F654: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F658: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F660: 803464B0 (PSMTXCopy)
-//	8014F664: 80450FE0 (m_name__23daBaseNpc_moveBgActor_c)
-//	8014F668: 80450FE4 (m_dzb_id__23daBaseNpc_moveBgActor_c)
-//	8014F66C: 80450FE8 (m_set_func__23daBaseNpc_moveBgActor_c)
-//	8014F674: 8014F4F8 (CheckCreateHeap__FP10fopAc_ac_c)
-//	8014F678: 8014F4F8 (CheckCreateHeap__FP10fopAc_ac_c)
-//	8014F680: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	8014F6A0: 804061C0 (g_dComIfG_gameInfo)
-//	8014F6A4: 804061C0 (g_dComIfG_gameInfo)
-//	8014F6B0: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	8014F6E8: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5334,12 +3767,7 @@ asm void daBaseNpc_moveBgActor_c::MoveBGCreate(char const* param_0, int param_1,
 }
 #pragma pop
 
-/* 8014F6FC-8014F770 0074+00 s=0 e=0 z=1  None .text      MoveBGDelete__23daBaseNpc_moveBgActor_cFv
- */
-//	8014F734: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	8014F740: 804061C0 (g_dComIfG_gameInfo)
-//	8014F744: 804061C0 (g_dComIfG_gameInfo)
-//	8014F750: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 8014F6FC-8014F770 14A03C 0074+00 0/0 0/0 1/1 .text MoveBGDelete__23daBaseNpc_moveBgActor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5349,18 +3777,8 @@ asm void daBaseNpc_moveBgActor_c::MoveBGDelete() {
 }
 #pragma pop
 
-/* 8014F770-8014F81C 00AC+00 s=0 e=0 z=2  None .text      MoveBGExecute__23daBaseNpc_moveBgActor_cFv
+/* 8014F770-8014F81C 14A0B0 00AC+00 0/0 0/0 2/2 .text MoveBGExecute__23daBaseNpc_moveBgActor_cFv
  */
-//	8014F7B8: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	8014F7BC: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F7C0: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F7C8: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	8014F7D0: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	8014F7D4: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F7D8: 803DD470 (now__14mDoMtx_stack_c)
-//	8014F7E0: 803464B0 (PSMTXCopy)
-//	8014F7EC: 803464B0 (PSMTXCopy)
-//	8014F7FC: 8007B9C0 (Move__4dBgWFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5370,14 +3788,12 @@ asm void daBaseNpc_moveBgActor_c::MoveBGExecute() {
 }
 #pragma pop
 
-/* 8014F81C-8014F8C4 00A8+00 s=1 e=0 z=0  None .text
+/* 8014F81C-8014F8C4 14A15C 00A8+00 1/1 0/0 0/0 .text
  * daBaseNpc_PntVsLineSegmentLengthSquare2D__FffffffPfPfPf      */
-//	8014F834: 804533D8 (lit_4116)
-//	8014F870: 804533DC (lit_4140)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_PntVsLineSegmentLengthSquare2D(f32 param_0, f32 param_1, f32 param_2,
+static asm void daBaseNpc_PntVsLineSegmentLengthSquare2D(f32 param_0, f32 param_1, f32 param_2,
                                                          f32 param_3, f32 param_4, f32 param_5,
                                                          f32* param_6, f32* param_7, f32* param_8) {
     nofralloc
@@ -5385,136 +3801,40 @@ asm static void daBaseNpc_PntVsLineSegmentLengthSquare2D(f32 param_0, f32 param_
 }
 #pragma pop
 
-/* 8014F8C4-8014FB28 0264+00 s=1 e=0 z=0  None .text      daBaseNpc_putNurbs__FP4dPntiiP4dPnti */
-//	8014F8EC: 803621A8 (_savegpr_16)
-//	8014F9B4: 804533E0 (lit_4142)
-//	8014F9BC: 804533D8 (lit_4116)
-//	8014FA04: 8014D67C (daNpcBase_BBasis__FiiiPi)
-//	8014FB14: 803621F4 (_restgpr_16)
+/* 8014F8C4-8014FB28 14A204 0264+00 1/1 0/0 0/0 .text daBaseNpc_putNurbs__FP4dPntiiP4dPnti */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3,
+static asm void daBaseNpc_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3,
                                    int param_4) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_putNurbs__FP4dPntiiP4dPnti.s"
 }
 #pragma pop
 
-/* 8014FB28-80150230 0708+00 s=1 e=0 z=0  None .text      daBaseNpc_chkPnt__F4cXyzP4dPntUsUsii */
-//	8014FB38: 803621D0 (_savegpr_26)
-//	8014FB6C: 8014D5C4 (daBaseNpc_incIdx__FiPUsii)
-//	8014FB80: 8014D620 (daBaseNpc_decIdx__FiPUsii)
-//	8014FC20: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014FC2C: 804533D8 (lit_4116)
-//	8014FC40: 80347138 (PSVECSquareMag)
-//	8014FC44: 804533D8 (lit_4116)
-//	8014FC54: 80453408 (lit_4723)
-//	8014FC5C: 80453410 (lit_4724)
-//	8014FCA4: 80453418 (lit_4725)
-//	8014FCB0: 80450AE0 (__float_nan)
-//	8014FCB4: 80450AE0 (__float_nan)
-//	8014FD20: 80450AE0 (__float_nan)
-//	8014FD24: 80450AE0 (__float_nan)
-//	8014FD44: 80267674 (cM_atan2s__Fff)
-//	8014FD60: 804533E8 (lit_4148)
-//	8014FD70: 80439A20 (sincosTable___5JMath)
-//	8014FD74: 80439A20 (sincosTable___5JMath)
-//	8014FD9C: 804533F0 (lit_4672)
-//	8014FDD8: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014FDE4: 804533D8 (lit_4116)
-//	8014FDF8: 80347138 (PSVECSquareMag)
-//	8014FDFC: 804533D8 (lit_4116)
-//	8014FE0C: 80453408 (lit_4723)
-//	8014FE14: 80453410 (lit_4724)
-//	8014FE5C: 80453418 (lit_4725)
-//	8014FE68: 80450AE0 (__float_nan)
-//	8014FE6C: 80450AE0 (__float_nan)
-//	8014FED8: 80450AE0 (__float_nan)
-//	8014FEDC: 80450AE0 (__float_nan)
-//	8014FEFC: 80267674 (cM_atan2s__Fff)
-//	8014FF18: 804533F8 (lit_4674)
-//	8014FF28: 80439A20 (sincosTable___5JMath)
-//	8014FF2C: 80439A20 (sincosTable___5JMath)
-//	8014FF54: 804533F0 (lit_4672)
-//	8014FF8C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8014FF98: 804533D8 (lit_4116)
-//	8014FFAC: 80347138 (PSVECSquareMag)
-//	8014FFB0: 804533D8 (lit_4116)
-//	8014FFC0: 80453408 (lit_4723)
-//	8014FFC8: 80453410 (lit_4724)
-//	80150010: 80453418 (lit_4725)
-//	8015001C: 80450AE0 (__float_nan)
-//	80150020: 80450AE0 (__float_nan)
-//	8015008C: 80450AE0 (__float_nan)
-//	80150090: 80450AE0 (__float_nan)
-//	801500B0: 80267674 (cM_atan2s__Fff)
-//	801500CC: 804533F8 (lit_4674)
-//	801500DC: 80439A20 (sincosTable___5JMath)
-//	801500E0: 80439A20 (sincosTable___5JMath)
-//	80150108: 804533F0 (lit_4672)
-//	8015014C: 8014F81C (daBaseNpc_PntVsLineSegmentLengthSquare2D__FffffffPfPfPf)
-//	8015015C: 80451180 (G_CM3D_F_ABS_MIN)
-//	80150194: 8014F81C (daBaseNpc_PntVsLineSegmentLengthSquare2D__FffffffPfPfPf)
-//	801501B8: 80267674 (cM_atan2s__Fff)
-//	801501DC: 80267674 (cM_atan2s__Fff)
-//	801501FC: 80267674 (cM_atan2s__Fff)
-//	80150208: 803650D0 (abs)
-//	8015021C: 8036221C (_restgpr_26)
+/* 8014FB28-80150230 14A468 0708+00 1/1 0/0 0/0 .text daBaseNpc_chkPnt__F4cXyzP4dPntUsUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
+static asm void daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4,
                                  int param_5) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_chkPnt__F4cXyzP4dPntUsUsii.s"
 }
 #pragma pop
 
-/* 80150230-801502EC 00BC+00 s=1 e=0 z=0  None .text daBaseNpc_getGroundAngle__FP13cBgS_PolyInfos
+/* 80150230-801502EC 14AB70 00BC+00 1/1 0/0 0/0 .text daBaseNpc_getGroundAngle__FP13cBgS_PolyInfos
  */
-//	80150240: 803621DC (_savegpr_29)
-//	8015024C: 804061C0 (g_dComIfG_gameInfo)
-//	80150250: 804061C0 (g_dComIfG_gameInfo)
-//	80150260: 80074660 (ChkPolySafe__4cBgSFRC13cBgS_PolyInfo)
-//	8015026C: 803A37C0 (__vt__8cM3dGPla)
-//	80150270: 803A37C0 (__vt__8cM3dGPla)
-//	80150284: 80074744 (GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla)
-//	80150294: 802681E4 (cBgW_CheckBGround__Ff)
-//	801502A0: 803A37C0 (__vt__8cM3dGPla)
-//	801502A4: 803A37C0 (__vt__8cM3dGPla)
-//	801502BC: 8001DBD8 (fopAcM_getPolygonAngle__FPC8cM3dGPlas)
-//	801502C0: 803A37C0 (__vt__8cM3dGPla)
-//	801502C4: 803A37C0 (__vt__8cM3dGPla)
-//	801502D8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBaseNpc_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
+static asm void daBaseNpc_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
     nofralloc
 #include "asm/d/a/d_a_npc/daBaseNpc_getGroundAngle__FP13cBgS_PolyInfos.s"
 }
 #pragma pop
 
-/* 801502EC-801503BC 00D0+00 s=1 e=0 z=0  None .text      __dt__18daBaseNpc_lookat_cFv */
-//	8015030C: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	80150310: 803B3A14 (__vt__18daBaseNpc_lookat_c)
-//	8015031C: 80018BD0 (__dt__5csXyzFv)
-//	80150320: 80018BD0 (__dt__5csXyzFv)
-//	8015032C: 80361CE8 (__destroy_arr)
-//	80150334: 80018BD0 (__dt__5csXyzFv)
-//	80150338: 80018BD0 (__dt__5csXyzFv)
-//	80150344: 80361CE8 (__destroy_arr)
-//	8015034C: 80009184 (__dt__4cXyzFv)
-//	80150350: 80009184 (__dt__4cXyzFv)
-//	8015035C: 80361CE8 (__destroy_arr)
-//	80150364: 80018BD0 (__dt__5csXyzFv)
-//	80150368: 80018BD0 (__dt__5csXyzFv)
-//	80150374: 80361CE8 (__destroy_arr)
-//	8015037C: 80018BD0 (__dt__5csXyzFv)
-//	80150380: 80018BD0 (__dt__5csXyzFv)
-//	8015038C: 80361CE8 (__destroy_arr)
-//	8015039C: 802CED3C (__dl__FPv)
+/* 801502EC-801503BC 14AC2C 00D0+00 1/0 0/0 0/0 .text            __dt__18daBaseNpc_lookat_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5524,51 +3844,53 @@ asm daBaseNpc_lookat_c::~daBaseNpc_lookat_c() {
 }
 #pragma pop
 
-/* 801503BC-801503C4 0008+00 s=1 e=0 z=0  None .text      CreateHeap__23daBaseNpc_moveBgActor_cFv */
+/* 801503BC-801503C4 14ACFC 0008+00 1/0 0/0 0/0 .text CreateHeap__23daBaseNpc_moveBgActor_cFv */
 bool daBaseNpc_moveBgActor_c::CreateHeap() {
     return true;
 }
 
-/* 801503C4-801503CC 0008+00 s=1 e=0 z=0  None .text      Create__23daBaseNpc_moveBgActor_cFv */
+/* 801503C4-801503CC 14AD04 0008+00 1/0 0/0 0/0 .text            Create__23daBaseNpc_moveBgActor_cFv
+ */
 bool daBaseNpc_moveBgActor_c::Create() {
     return true;
 }
 
-/* 801503CC-801503D4 0008+00 s=1 e=0 z=0  None .text      Delete__23daBaseNpc_moveBgActor_cFv */
+/* 801503CC-801503D4 14AD0C 0008+00 1/0 0/0 0/0 .text            Delete__23daBaseNpc_moveBgActor_cFv
+ */
 bool daBaseNpc_moveBgActor_c::Delete() {
     return true;
 }
 
-/* 801503D4-801503DC 0008+00 s=1 e=0 z=0  None .text Execute__23daBaseNpc_moveBgActor_cFPPA3_A4_f
+/* 801503D4-801503DC 14AD14 0008+00 1/0 0/0 0/0 .text Execute__23daBaseNpc_moveBgActor_cFPPA3_A4_f
  */
 bool daBaseNpc_moveBgActor_c::Execute(f32 (**param_0)[3][4]) {
     return true;
 }
 
-/* 801503DC-801503E4 0008+00 s=1 e=0 z=0  None .text      Draw__23daBaseNpc_moveBgActor_cFv */
+/* 801503DC-801503E4 14AD1C 0008+00 1/0 0/0 0/0 .text            Draw__23daBaseNpc_moveBgActor_cFv
+ */
 bool daBaseNpc_moveBgActor_c::Draw() {
     return true;
 }
 
-/* 801503E4-801503EC 0008+00 s=1 e=0 z=0  None .text      IsDelete__23daBaseNpc_moveBgActor_cFv */
+/* 801503E4-801503EC 14AD24 0008+00 1/0 0/0 0/0 .text IsDelete__23daBaseNpc_moveBgActor_cFv */
 bool daBaseNpc_moveBgActor_c::IsDelete() {
     return true;
 }
 
-/* 801503EC-801503F4 0008+00 s=1 e=0 z=0  None .text      ToFore__23daBaseNpc_moveBgActor_cFv */
+/* 801503EC-801503F4 14AD2C 0008+00 1/0 0/0 0/0 .text            ToFore__23daBaseNpc_moveBgActor_cFv
+ */
 bool daBaseNpc_moveBgActor_c::ToFore() {
     return true;
 }
 
-/* 801503F4-801503FC 0008+00 s=1 e=0 z=0  None .text      ToBack__23daBaseNpc_moveBgActor_cFv */
+/* 801503F4-801503FC 14AD34 0008+00 1/0 0/0 0/0 .text            ToBack__23daBaseNpc_moveBgActor_cFv
+ */
 bool daBaseNpc_moveBgActor_c::ToBack() {
     return true;
 }
 
-/* 801503FC-80150444 0048+00 s=1 e=0 z=0  None .text      __dt__16daBaseNpc_path_cFv */
-//	80150414: 803B3A50 (__vt__16daBaseNpc_path_c)
-//	80150418: 803B3A50 (__vt__16daBaseNpc_path_c)
-//	80150428: 802CED3C (__dl__FPv)
+/* 801503FC-80150444 14AD3C 0048+00 1/0 0/0 0/0 .text            __dt__16daBaseNpc_path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5578,27 +3900,7 @@ asm daBaseNpc_path_c::~daBaseNpc_path_c() {
 }
 #pragma pop
 
-/* 80150444-80150524 00E0+00 s=1 e=0 z=0  None .text      __dt__18daBaseNpc_matAnm_cFv */
-//	80150464: 803B3A5C (__vt__18daBaseNpc_matAnm_c)
-//	80150468: 803B3A5C (__vt__18daBaseNpc_matAnm_c)
-//	80150474: 803CEE60 (__vt__14J3DMaterialAnm)
-//	80150478: 803CEE60 (__vt__14J3DMaterialAnm)
-//	80150484: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	80150488: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	80150494: 80361CE8 (__destroy_arr)
-//	8015049C: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	801504A0: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	801504AC: 80361CE8 (__destroy_arr)
-//	801504B4: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	801504B8: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	801504C4: 80361CE8 (__destroy_arr)
-//	801504CC: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	801504D0: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	801504DC: 80361CE8 (__destroy_arr)
-//	801504E4: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	801504E8: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	801504F4: 80361CE8 (__destroy_arr)
-//	80150504: 802CED3C (__dl__FPv)
+/* 80150444-80150524 14AD84 00E0+00 1/0 0/0 0/0 .text            __dt__18daBaseNpc_matAnm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5608,10 +3910,7 @@ asm daBaseNpc_matAnm_c::~daBaseNpc_matAnm_c() {
 }
 #pragma pop
 
-/* 80150524-8015056C 0048+00 s=1 e=0 z=0  None .text      __dt__18daBaseNpc_acMngr_cFv */
-//	8015053C: 803B3A6C (__vt__18daBaseNpc_acMngr_c)
-//	80150540: 803B3A6C (__vt__18daBaseNpc_acMngr_c)
-//	80150550: 802CED3C (__dl__FPv)
+/* 80150524-8015056C 14AE64 0048+00 1/0 0/0 0/0 .text            __dt__18daBaseNpc_acMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5621,51 +3920,47 @@ asm daBaseNpc_acMngr_c::~daBaseNpc_acMngr_c() {
 }
 #pragma pop
 
-/* 8015056C-801505AC 0040+00 s=2 e=0 z=0  None .text      daNpcF_addIdx__FiiRUsi */
+/* 8015056C-801505AC 14AEAC 0040+00 2/2 0/0 0/0 .text            daNpcF_addIdx__FiiRUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcF_addIdx(int param_0, int param_1, u16& param_2, int param_3) {
+static asm void daNpcF_addIdx(int param_0, int param_1, u16& param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcF_addIdx__FiiRUsi.s"
 }
 #pragma pop
 
-/* 801505AC-801505F8 004C+00 s=2 e=0 z=0  None .text      daNpcF_subIdx__FiiRUsi */
+/* 801505AC-801505F8 14AEEC 004C+00 2/2 0/0 0/0 .text            daNpcF_subIdx__FiiRUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcF_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
+static asm void daNpcF_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcF_subIdx__FiiRUsi.s"
 }
 #pragma pop
 
-/* 801505F8-80150654 005C+00 s=4 e=0 z=0  None .text      daNpcF_incIdx__FiRUsii */
-//	80150628: 801505AC (daNpcF_subIdx__FiiRUsi)
-//	80150640: 8015056C (daNpcF_addIdx__FiiRUsi)
+/* 801505F8-80150654 14AF38 005C+00 4/4 0/0 0/0 .text            daNpcF_incIdx__FiRUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcF_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
+static asm void daNpcF_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcF_incIdx__FiRUsii.s"
 }
 #pragma pop
 
-/* 80150654-801506B0 005C+00 s=3 e=0 z=0  None .text      daNpcF_decIdx__FiRUsii */
-//	80150684: 8015056C (daNpcF_addIdx__FiiRUsi)
-//	8015069C: 801505AC (daNpcF_subIdx__FiiRUsi)
+/* 80150654-801506B0 14AF94 005C+00 3/3 0/0 0/0 .text            daNpcF_decIdx__FiRUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daNpcF_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
+static asm void daNpcF_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/daNpcF_decIdx__FiRUsii.s"
 }
 #pragma pop
 
-/* 801506B0-801506BC 000C+00 s=0 e=0 z=130  None .text      initialize__18daNpcF_ActorMngr_cFv */
+/* 801506B0-801506BC 14AFF0 000C+00 0/0 0/0 130/130 .text initialize__18daNpcF_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5675,8 +3970,8 @@ asm void daNpcF_ActorMngr_c::initialize() {
 }
 #pragma pop
 
-/* 801506BC-801506D8 001C+00 s=1 e=0 z=130  None .text entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c
- */
+/* 801506BC-801506D8 14AFFC 001C+00 1/1 0/0 130/130 .text
+ * entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c                    */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5686,7 +3981,7 @@ asm void daNpcF_ActorMngr_c::entry(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 801506D8-801506E0 0008+00 s=0 e=0 z=1  None .text      entry__18daNpcF_ActorMngr_cFUi */
+/* 801506D8-801506E0 14B018 0008+00 0/0 0/0 1/1 .text            entry__18daNpcF_ActorMngr_cFUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5696,7 +3991,7 @@ asm void daNpcF_ActorMngr_c::entry(unsigned int param_0) {
 }
 #pragma pop
 
-/* 801506E0-801506EC 000C+00 s=2 e=0 z=55  None .text      remove__18daNpcF_ActorMngr_cFv */
+/* 801506E0-801506EC 14B020 000C+00 2/2 0/0 55/55 .text            remove__18daNpcF_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5706,8 +4001,7 @@ asm void daNpcF_ActorMngr_c::remove() {
 }
 #pragma pop
 
-/* 801506EC-80150738 004C+00 s=1 e=0 z=135  None .text      getActorP__18daNpcF_ActorMngr_cFv */
-//	80150708: 800199BC (fopAcM_SearchByID__FUiPP10fopAc_ac_c)
+/* 801506EC-80150738 14B02C 004C+00 1/1 0/0 135/135 .text getActorP__18daNpcF_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5717,8 +4011,8 @@ asm void daNpcF_ActorMngr_c::getActorP() {
 }
 #pragma pop
 
-/* 80150738-8015075C 0024+00 s=0 e=0 z=48  None .text      initialize__15daNpcF_MatAnm_cFv */
-//	80150738: 804533D8 (lit_4116)
+/* 80150738-8015075C 14B078 0024+00 0/0 0/0 48/48 .text            initialize__15daNpcF_MatAnm_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5728,12 +4022,7 @@ asm void daNpcF_MatAnm_c::initialize() {
 }
 #pragma pop
 
-/* 8015075C-80150870 0114+00 s=1 e=0 z=0  None .text      calc__15daNpcF_MatAnm_cCFP11J3DMaterial */
-//	8015076C: 803621D8 (_savegpr_28)
-//	80150778: 8032C3C4 (calc__14J3DMaterialAnmCFP11J3DMaterial)
-//	801507BC: 804533DC (lit_4140)
-//	801507C4: 804533E0 (lit_4142)
-//	8015085C: 80362224 (_restgpr_28)
+/* 8015075C-80150870 14B09C 0114+00 1/0 0/0 0/0 .text calc__15daNpcF_MatAnm_cCFP11J3DMaterial */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5743,9 +4032,7 @@ asm void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
 }
 #pragma pop
 
-/* 80150870-80150900 0090+00 s=2 e=0 z=8  None .text      initialize__16daNpcF_SPCurve_cFP5dPathi */
-//	80150898: 804533D8 (lit_4116)
-//	801508E4: 80154E54 (daNpcF_putNurbs__FP4dPntiiP4dPnti)
+/* 80150870-80150900 14B1B0 0090+00 2/2 0/0 8/8 .text initialize__16daNpcF_SPCurve_cFP5dPathi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5755,9 +4042,7 @@ asm void daNpcF_SPCurve_c::initialize(dPath* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80150900-8015095C 005C+00 s=0 e=0 z=20  None .text      initialize__13daNpcF_Path_cFv */
-//	80150934: 80150870 (initialize__16daNpcF_SPCurve_cFP5dPathi)
-//	80150938: 804533D8 (lit_4116)
+/* 80150900-8015095C 14B240 005C+00 0/0 0/0 20/20 .text            initialize__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5767,9 +4052,7 @@ asm void daNpcF_Path_c::initialize() {
 }
 #pragma pop
 
-/* 8015095C-80150A24 00C8+00 s=0 e=0 z=12  None .text      setPathInfo__13daNpcF_Path_cFUcScUc */
-//	80150990: 800517EC (dPath_GetRoomPath__Fii)
-//	801509B4: 80150870 (initialize__16daNpcF_SPCurve_cFP5dPathi)
+/* 8015095C-80150A24 14B29C 00C8+00 0/0 0/0 12/12 .text setPathInfo__13daNpcF_Path_cFUcScUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5779,8 +4062,7 @@ asm void daNpcF_Path_c::setPathInfo(u8 param_0, s8 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 80150A24-80150A7C 0058+00 s=1 e=0 z=1  None .text      chkPassed__13daNpcF_Path_cF4cXyz */
-//	80150A68: 80154E5C (daNpcF_chkPassed__F4cXyzP4dPntUsUsii)
+/* 80150A24-80150A7C 14B364 0058+00 1/1 0/0 1/1 .text            chkPassed__13daNpcF_Path_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5790,17 +4072,8 @@ asm void daNpcF_Path_c::chkPassed(cXyz param_0) {
 }
 #pragma pop
 
-/* 80150A7C-80150BBC 0140+00 s=0 e=0 z=4  None .text      chkPassedDst__13daNpcF_Path_cF4cXyz */
-//	80150A9C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80150AA4: 80347138 (PSVECSquareMag)
-//	80150AA8: 804533D8 (lit_4116)
-//	80150AB8: 80453408 (lit_4723)
-//	80150AC0: 80453410 (lit_4724)
-//	80150B08: 80453418 (lit_4725)
-//	80150B14: 80450AE0 (__float_nan)
-//	80150B18: 80450AE0 (__float_nan)
-//	80150B84: 80450AE0 (__float_nan)
-//	80150B88: 80450AE0 (__float_nan)
+/* 80150A7C-80150BBC 14B3BC 0140+00 0/0 0/0 4/4 .text            chkPassedDst__13daNpcF_Path_cF4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5810,7 +4083,7 @@ asm void daNpcF_Path_c::chkPassedDst(cXyz param_0) {
 }
 #pragma pop
 
-/* 80150BBC-80150BE0 0024+00 s=0 e=0 z=8  None .text      reverse__13daNpcF_Path_cFv */
+/* 80150BBC-80150BE0 14B4FC 0024+00 0/0 0/0 8/8 .text            reverse__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5820,8 +4093,7 @@ asm void daNpcF_Path_c::reverse() {
 }
 #pragma pop
 
-/* 80150BE0-80150C18 0038+00 s=2 e=0 z=6  None .text      setNextIdx__13daNpcF_Path_cFv */
-//	80150C04: 801505F8 (daNpcF_incIdx__FiRUsii)
+/* 80150BE0-80150C18 14B520 0038+00 2/2 0/0 6/6 .text            setNextIdx__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5831,8 +4103,7 @@ asm void daNpcF_Path_c::setNextIdx() {
 }
 #pragma pop
 
-/* 80150C18-80150C60 0048+00 s=0 e=0 z=9  None .text      getNextIdx__13daNpcF_Path_cFv */
-//	80150C48: 801505F8 (daNpcF_incIdx__FiRUsii)
+/* 80150C18-80150C60 14B558 0048+00 0/0 0/0 9/9 .text            getNextIdx__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5842,8 +4113,7 @@ asm void daNpcF_Path_c::getNextIdx() {
 }
 #pragma pop
 
-/* 80150C60-80150CA8 0048+00 s=0 e=0 z=3  None .text      getBeforeIdx__13daNpcF_Path_cFv */
-//	80150C90: 80150654 (daNpcF_decIdx__FiRUsii)
+/* 80150C60-80150CA8 14B5A0 0048+00 0/0 0/0 3/3 .text            getBeforeIdx__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5853,8 +4123,7 @@ asm void daNpcF_Path_c::getBeforeIdx() {
 }
 #pragma pop
 
-/* 80150CA8-80150D44 009C+00 s=0 e=0 z=1  None .text      getBeforePos__13daNpcF_Path_cFR4cXyz */
-//	80150CE4: 80150654 (daNpcF_decIdx__FiRUsii)
+/* 80150CA8-80150D44 14B5E8 009C+00 0/0 0/0 1/1 .text getBeforePos__13daNpcF_Path_cFR4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5864,8 +4133,8 @@ asm void daNpcF_Path_c::getBeforePos(cXyz& param_0) {
 }
 #pragma pop
 
-/* 80150D44-80150DE0 009C+00 s=0 e=0 z=1  None .text      getNextPos__13daNpcF_Path_cFR4cXyz */
-//	80150D80: 801505F8 (daNpcF_incIdx__FiRUsii)
+/* 80150D44-80150DE0 14B684 009C+00 0/0 0/0 1/1 .text            getNextPos__13daNpcF_Path_cFR4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5875,11 +4144,7 @@ asm void daNpcF_Path_c::getNextPos(cXyz& param_0) {
 }
 #pragma pop
 
-/* 80150DE0-80150EB4 00D4+00 s=0 e=0 z=16  None .text      getDstPos__13daNpcF_Path_cF4cXyzR4cXyz */
-//	80150DF0: 803621D8 (_savegpr_28)
-//	80150E70: 80150A24 (chkPassed__13daNpcF_Path_cF4cXyz)
-//	80150E80: 80150BE0 (setNextIdx__13daNpcF_Path_cFv)
-//	80150EA0: 80362224 (_restgpr_28)
+/* 80150DE0-80150EB4 14B720 00D4+00 0/0 0/0 16/16 .text getDstPos__13daNpcF_Path_cF4cXyzR4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5889,18 +4154,7 @@ asm void daNpcF_Path_c::getDstPos(cXyz param_0, cXyz& param_1) {
 }
 #pragma pop
 
-/* 80150EB4-80151038 0184+00 s=0 e=0 z=2  None .text      setNextIdxDst__13daNpcF_Path_cF4cXyz */
-//	80150ED0: 80150BE0 (setNextIdx__13daNpcF_Path_cFv)
-//	80150F14: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80150F1C: 80347138 (PSVECSquareMag)
-//	80150F20: 804533D8 (lit_4116)
-//	80150F30: 80453408 (lit_4723)
-//	80150F38: 80453410 (lit_4724)
-//	80150F80: 80453418 (lit_4725)
-//	80150F8C: 80450AE0 (__float_nan)
-//	80150F90: 80450AE0 (__float_nan)
-//	80150FFC: 80450AE0 (__float_nan)
-//	80151000: 80450AE0 (__float_nan)
+/* 80150EB4-80151038 14B7F4 0184+00 0/0 0/0 2/2 .text setNextIdxDst__13daNpcF_Path_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5910,8 +4164,8 @@ asm void daNpcF_Path_c::setNextIdxDst(cXyz param_0) {
 }
 #pragma pop
 
-/* 80151038-801510B8 0080+00 s=0 e=0 z=72  None .text      initialize__15daNpcF_Lookat_cFv */
-//	80151044: 804533D8 (lit_4116)
+/* 80151038-801510B8 14B978 0080+00 0/0 0/0 72/72 .text            initialize__15daNpcF_Lookat_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5922,43 +4176,20 @@ asm void daNpcF_Lookat_c::initialize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804257D0-804257DC 000C+00 s=1 e=0 z=0  None .bss       @9946 */
+/* 804257D0-804257DC 0524F0 000C+00 1/1 0/0 0/0 .bss             @9946 */
 static u8 lit_9946[12];
 
-/* 804257DC-804257E8 000C+00 s=1 e=0 z=0  None .bss       vec$9945 */
+/* 804257DC-804257E8 0524FC 000C+00 1/1 0/0 0/0 .bss             vec$9945 */
 static u8 vec[12];
 
-/* 80450FEC-80450FF0 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 80450FEC-80450FF0 0004EC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450FEC[4];
 
-/* 80453498-8045349C 0004+00 s=1 e=0 z=0  None .sdata2    @9971 */
+/* 80453498-8045349C 001A98 0004+00 1/1 0/0 0/0 .sdata2          @9971 */
 SECTION_SDATA2 static f32 lit_9971 = 32.0f;
 
-/* 801510B8-80151350 0298+00 s=0 e=0 z=34  None .text
+/* 801510B8-80151350 14B9F8 0298+00 0/0 0/0 34/34 .text
  * setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz              */
-//	80151108: 803621DC (_savegpr_29)
-//	80151138: 80450FEC (data_80450FEC)
-//	80151144: 804533D8 (lit_4116)
-//	80151148: 804257DC (vec)
-//	8015114C: 804257DC (vec)
-//	80151154: 80453498 (lit_9971)
-//	8015115C: 80009184 (__dt__4cXyzFv)
-//	80151160: 80009184 (__dt__4cXyzFv)
-//	80151164: 804257D0 (lit_9946)
-//	80151168: 804257D0 (lit_9946)
-//	8015116C: 80361C24 (__register_global_object)
-//	80151174: 80450FEC (data_80450FEC)
-//	80151190: 80453420 (lit_5239)
-//	801512B0: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	801512B4: 803DD470 (now__14mDoMtx_stack_c)
-//	801512B8: 803DD470 (now__14mDoMtx_stack_c)
-//	801512C0: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	801512C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801512C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801512CC: 804257DC (vec)
-//	801512D0: 804257DC (vec)
-//	801512D8: 80346D6C (PSMTXMultVec)
-//	8015133C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5970,23 +4201,8 @@ asm void daNpcF_Lookat_c::setParam(f32 param_0, f32 param_1, f32 param_2, f32 pa
 }
 #pragma pop
 
-/* 80151350-801515D4 0284+00 s=0 e=0 z=34  None .text
+/* 80151350-801515D4 14BC90 0284+00 0/0 0/0 34/34 .text
  * calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii        */
-//	80151368: 803621C0 (_savegpr_22)
-//	801513A0: 80151648 (initCalc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fP4cXyzP5csXyzPfR4cXyzi)
-//	801513B8: 80151A54 (update__15daNpcF_Lookat_cFP4cXyzP5csXyzPf)
-//	801513F8: 80151B68 (calcMoveDisAngle__15daNpcF_Lookat_cFiP4cXyzP5csXyz4cXyzii)
-//	8015140C: 80151F54 (setRotAngle__15daNpcF_Lookat_cFv)
-//	80151414: 80151FE0 (clrRotAngle__15daNpcF_Lookat_cFv)
-//	8015145C: 804533E0 (lit_4142)
-//	8015149C: 80453490 (lit_8404)
-//	801514BC: 8026FA3C (cLib_addCalc2__FPffff)
-//	801514E0: 804533E0 (lit_4142)
-//	80151520: 80453490 (lit_8404)
-//	80151538: 8026FA3C (cLib_addCalc2__FPffff)
-//	8015154C: 804533D8 (lit_4116)
-//	80151564: 804533D8 (lit_4116)
-//	801515C0: 8036220C (_restgpr_22)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5997,7 +4213,7 @@ asm void daNpcF_Lookat_c::calc(fopAc_ac_c* param_0, f32 (*param_1)[4], csXyz** p
 }
 #pragma pop
 
-/* 801515D4-80151648 0074+00 s=1 e=0 z=0  None .text adjustMoveDisAngle__15daNpcF_Lookat_cFRssss
+/* 801515D4-80151648 14BF14 0074+00 1/1 0/0 0/0 .text adjustMoveDisAngle__15daNpcF_Lookat_cFRssss
  */
 #pragma push
 #pragma optimization_level 0
@@ -6009,59 +4225,11 @@ asm void daNpcF_Lookat_c::adjustMoveDisAngle(s16& param_0, s16 param_1, s16 para
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045349C-804534A0 0004+00 s=1 e=0 z=0  None .sdata2    @10253 */
+/* 8045349C-804534A0 001A9C 0004+00 1/1 0/0 0/0 .sdata2          @10253 */
 SECTION_SDATA2 static f32 lit_10253 = 63.0f / 100.0f;
 
-/* 80151648-80151A54 040C+00 s=1 e=0 z=0  None .text
+/* 80151648-80151A54 14BF88 040C+00 1/1 0/0 0/0 .text
  * initCalc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fP4cXyzP5csXyzPfR4cXyzi */
-//	80151668: 803621C4 (_savegpr_23)
-//	8015168C: 803464B0 (PSMTXCopy)
-//	80151690: 804533D8 (lit_4116)
-//	801516A4: 803DD470 (now__14mDoMtx_stack_c)
-//	801516A8: 803DD470 (now__14mDoMtx_stack_c)
-//	801516AC: 803464B0 (PSMTXCopy)
-//	801516B0: 803DD470 (now__14mDoMtx_stack_c)
-//	801516B4: 803DD470 (now__14mDoMtx_stack_c)
-//	801516BC: 803465B0 (PSMTXInverse)
-//	801516C0: 803DD470 (now__14mDoMtx_stack_c)
-//	801516C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801516CC: 803464B0 (PSMTXCopy)
-//	801516D4: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	801516D8: 803DD470 (now__14mDoMtx_stack_c)
-//	801516DC: 803DD470 (now__14mDoMtx_stack_c)
-//	801516E8: 803464E4 (PSMTXConcat)
-//	801516F4: 803DD470 (now__14mDoMtx_stack_c)
-//	801516F8: 803DD470 (now__14mDoMtx_stack_c)
-//	80151708: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80151730: 80346D6C (PSMTXMultVec)
-//	80151750: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	8015176C: 803DD470 (now__14mDoMtx_stack_c)
-//	80151770: 803DD470 (now__14mDoMtx_stack_c)
-//	8015177C: 80346D6C (PSMTXMultVec)
-//	80151790: 804533D8 (lit_4116)
-//	80151794: 80439A20 (sincosTable___5JMath)
-//	80151798: 80439A20 (sincosTable___5JMath)
-//	8015179C: 8045349C (lit_10253)
-//	801517AC: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801517CC: 80347138 (PSVECSquareMag)
-//	801517DC: 80453408 (lit_4723)
-//	801517E4: 80453410 (lit_4724)
-//	8015182C: 80453418 (lit_4725)
-//	80151838: 80450AE0 (__float_nan)
-//	8015183C: 80450AE0 (__float_nan)
-//	801518A8: 80450AE0 (__float_nan)
-//	801518AC: 80450AE0 (__float_nan)
-//	801518E0: 80347138 (PSVECSquareMag)
-//	801518F0: 80453408 (lit_4723)
-//	801518F8: 80453410 (lit_4724)
-//	80151940: 80453418 (lit_4725)
-//	8015194C: 80450AE0 (__float_nan)
-//	80151950: 80450AE0 (__float_nan)
-//	801519BC: 80450AE0 (__float_nan)
-//	801519C0: 80450AE0 (__float_nan)
-//	801519D0: 80267674 (cM_atan2s__Fff)
-//	80151A00: 80267674 (cM_atan2s__Fff)
-//	80151A40: 80362210 (_restgpr_23)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6072,21 +4240,7 @@ asm void daNpcF_Lookat_c::initCalc(fopAc_ac_c* param_0, f32 (*param_1)[4], cXyz*
 }
 #pragma pop
 
-/* 80151A54-80151B68 0114+00 s=1 e=0 z=0  None .text      update__15daNpcF_Lookat_cFP4cXyzP5csXyzPf
- */
-//	80151A6C: 803621B8 (_savegpr_20)
-//	80151A80: 80451160 (Zero__5csXyz)
-//	80151A88: 80451164 (data_80451164)
-//	80151AA0: 803DD470 (now__14mDoMtx_stack_c)
-//	80151AA4: 803DD470 (now__14mDoMtx_stack_c)
-//	80151AAC: 804533D8 (lit_4116)
-//	80151AB8: 8000CE9C (XYZrotS__14mDoMtx_stack_cFRC5csXyz)
-//	80151AC4: 803464B0 (PSMTXCopy)
-//	80151AD0: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80151AFC: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80151B0C: 803464E4 (PSMTXConcat)
-//	80151B2C: 80346D6C (PSMTXMultVec)
-//	80151B54: 80362204 (_restgpr_20)
+/* 80151A54-80151B68 14C394 0114+00 1/1 0/0 0/0 .text update__15daNpcF_Lookat_cFP4cXyzP5csXyzPf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6096,42 +4250,8 @@ asm void daNpcF_Lookat_c::update(cXyz* param_0, csXyz* param_1, f32* param_2) {
 }
 #pragma pop
 
-/* 80151B68-80151F54 03EC+00 s=1 e=0 z=0  None .text
+/* 80151B68-80151F54 14C4A8 03EC+00 1/1 0/0 0/0 .text
  * calcMoveDisAngle__15daNpcF_Lookat_cFiP4cXyzP5csXyz4cXyzii    */
-//	80151B78: 803621C8 (_savegpr_24)
-//	80151BC4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80151BE4: 802670AC (isZero__4cXyzCFv)
-//	80151BF8: 80266EF4 (normalize__4cXyzFv)
-//	80151C08: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80151C28: 802670AC (isZero__4cXyzCFv)
-//	80151C3C: 80266EF4 (normalize__4cXyzFv)
-//	80151C48: 804533D8 (lit_4116)
-//	80151C5C: 80347138 (PSVECSquareMag)
-//	80151C60: 804533D8 (lit_4116)
-//	80151C70: 80453408 (lit_4723)
-//	80151C78: 80453410 (lit_4724)
-//	80151CC0: 80453418 (lit_4725)
-//	80151CCC: 80450AE0 (__float_nan)
-//	80151CD0: 80450AE0 (__float_nan)
-//	80151D3C: 80450AE0 (__float_nan)
-//	80151D40: 80450AE0 (__float_nan)
-//	80151D50: 80267674 (cM_atan2s__Fff)
-//	80151D64: 80267674 (cM_atan2s__Fff)
-//	80151D74: 804533D8 (lit_4116)
-//	80151D88: 80347138 (PSVECSquareMag)
-//	80151D8C: 804533D8 (lit_4116)
-//	80151D9C: 80453408 (lit_4723)
-//	80151DA4: 80453410 (lit_4724)
-//	80151DEC: 80453418 (lit_4725)
-//	80151DF8: 80450AE0 (__float_nan)
-//	80151DFC: 80450AE0 (__float_nan)
-//	80151E68: 80450AE0 (__float_nan)
-//	80151E6C: 80450AE0 (__float_nan)
-//	80151E7C: 80267674 (cM_atan2s__Fff)
-//	80151E90: 80267674 (cM_atan2s__Fff)
-//	80151EE0: 801515D4 (adjustMoveDisAngle__15daNpcF_Lookat_cFRssss)
-//	80151EFC: 801515D4 (adjustMoveDisAngle__15daNpcF_Lookat_cFRssss)
-//	80151F40: 80362214 (_restgpr_24)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6142,7 +4262,7 @@ asm void daNpcF_Lookat_c::calcMoveDisAngle(int param_0, cXyz* param_1, csXyz* pa
 }
 #pragma pop
 
-/* 80151F54-80151FE0 008C+00 s=1 e=0 z=0  None .text      setRotAngle__15daNpcF_Lookat_cFv */
+/* 80151F54-80151FE0 14C894 008C+00 1/1 0/0 0/0 .text            setRotAngle__15daNpcF_Lookat_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6152,7 +4272,7 @@ asm void daNpcF_Lookat_c::setRotAngle() {
 }
 #pragma pop
 
-/* 80151FE0-80152014 0034+00 s=1 e=0 z=0  None .text      clrRotAngle__15daNpcF_Lookat_cFv */
+/* 80151FE0-80152014 14C920 0034+00 1/1 0/0 0/0 .text            clrRotAngle__15daNpcF_Lookat_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6162,28 +4282,7 @@ asm void daNpcF_Lookat_c::clrRotAngle() {
 }
 #pragma pop
 
-/* 80152014-801522AC 0298+00 s=0 e=0 z=38  None .text      execute__8daNpcF_cFv */
-//	80152024: 803621D8 (_savegpr_28)
-//	80152060: 8001A6CC (fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz)
-//	80152068: 804061C0 (g_dComIfG_gameInfo)
-//	8015206C: 804061C0 (g_dComIfG_gameInfo)
-//	80152074: 80076AAC (CrrPos__9dBgS_AcchFR4dBgS)
-//	801520F0: 80453440 (lit_5667)
-//	80152108: 8015556C (daNpcF_getGroundAngle__FP13cBgS_PolyInfos)
-//	80152114: 80152D84 (setEnvTevColor__8daNpcF_cFv)
-//	8015211C: 80152DE0 (setRoomNo__8daNpcF_cFv)
-//	80152124: 801AB4C0 (dKy_pol_sound_get__FPC13cBgS_PolyInfo)
-//	80152134: 8002D06C (dComIfGp_getReverb__Fi)
-//	8015215C: 801AB4C0 (dKy_pol_sound_get__FPC13cBgS_PolyInfo)
-//	8015216C: 80152F40 (playAllAnm__8daNpcF_cFv)
-//	8015219C: 804533D8 (lit_4116)
-//	801521A0: 804533DC (lit_4140)
-//	801521A4: 80270740 (cLib_chaseF__FPfff)
-//	801521E4: 80154BD8 (setHitodamaPrtcl__8daNpcF_cFv)
-//	80152250: 8014D348 (func_8014D348)
-//	80152264: 801506E0 (remove__18daNpcF_ActorMngr_cFv)
-//	8015228C: 8014D348 (func_8014D348)
-//	80152298: 80362224 (_restgpr_28)
+/* 80152014-801522AC 14C954 0298+00 0/0 0/0 38/38 .text            execute__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6193,44 +4292,7 @@ asm void daNpcF_c::execute() {
 }
 #pragma pop
 
-/* 801522AC-80152614 0368+00 s=0 e=0 z=33  None .text      draw__8daNpcF_cFiifP11_GXColorS10i */
-//	801522C4: 803621C8 (_savegpr_24)
-//	80152310: 8002FA54 (dComIfGs_wolfeye_effect_check__Fv)
-//	80152348: 804533E0 (lit_4142)
-//	80152380: 804533D8 (lit_4116)
-//	8015238C: 80451180 (G_CM3D_F_ABS_MIN)
-//	801523A0: 80453444 (lit_5794)
-//	80152424: 8042CA54 (g_env_light)
-//	80152428: 8042CA54 (g_env_light)
-//	80152438: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80152440: 8042CA54 (g_env_light)
-//	80152444: 8042CA54 (g_env_light)
-//	80152454: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80152458: 8042CA54 (g_env_light)
-//	8015245C: 8042CA54 (g_env_light)
-//	80152468: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	801524AC:
-// 8000D5E8 (entry__13mDoExt_btpAnmFP16J3DMaterialTables) 	801524C8: 8000D6D8
-//(entry__13mDoExt_btkAnmFP16J3DMaterialTablef) 	801524E4: 8000D7A8
-//(entry__13mDoExt_brkAnmFP16J3DMaterialTablef) 	801524F8: 8001D42C
-//(fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData) 	80152508: 804061C0 (g_dComIfG_gameInfo)
-//	8015250C: 804061C0 (g_dComIfG_gameInfo)
-//	80152514: 80434AC8 (j3dSys)
-//	80152518: 80434AC8 (j3dSys)
-//	8015252C: 800111C0 (entryDL__16mDoExt_McaMorfSOFv)
-//	80152530: 804061C0 (g_dComIfG_gameInfo)
-//	80152534: 804061C0 (g_dComIfG_gameInfo)
-//	80152550: 800111C0 (entryDL__16mDoExt_McaMorfSOFv)
-//	80152568: 8032F6F8 (removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern)
-//	80152580: 8032F7B4 (removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey)
-//	80152598: 8032F880 (removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey)
-//	801525B0: 80453444 (lit_5794)
-//	801525C8: 804533DC (lit_4140)
-//	801525CC: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	801525D0: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	801525D4: 8002E910
-//(dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj)
-//	80152600: 80362214 (_restgpr_24)
+/* 801522AC-80152614 14CBEC 0368+00 0/0 0/0 33/33 .text draw__8daNpcF_cFiifP11_GXColorS10i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6240,10 +4302,8 @@ asm void daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* para
 }
 #pragma pop
 
-/* 80152614-80152654 0040+00 s=0 e=0 z=13  None .text
+/* 80152614-80152654 14CF54 0040+00 0/0 0/0 13/13 .text
  * tgHitCallBack__8daNpcF_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-//	80152628: 804061C0 (g_dComIfG_gameInfo)
-//	8015262C: 804061C0 (g_dComIfG_gameInfo)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6255,19 +4315,13 @@ asm void daNpcF_c::tgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fop
 #pragma pop
 
 /* ############################################################################################## */
-/* 804257E8-80425978 0190+00 s=4 e=0 z=0  None .bss       mFindActorPList__8daNpcF_c */
+/* 804257E8-80425978 052508 0190+00 4/4 0/0 0/0 .bss             mFindActorPList__8daNpcF_c */
 static u8 mFindActorPList__8daNpcF_c[400];
 
-/* 80450FF0-80450FF4 0004+00 s=4 e=0 z=0  None .sbss      mFindCount__8daNpcF_c */
+/* 80450FF0-80450FF4 0004F0 0004+00 4/4 0/0 0/0 .sbss            mFindCount__8daNpcF_c */
 static u8 mFindCount__8daNpcF_c[4];
 
-/* 80152654-801526E8 0094+00 s=0 e=0 z=12  None .text      srchAttnActor1__8daNpcF_cFPvPv */
-//	80152668: 80450FF0 (mFindCount__8daNpcF_c)
-//	80152674: 80018CE0 (fopAc_IsActor__FPv)
-//	801526B4: 80450FF0 (mFindCount__8daNpcF_c)
-//	801526BC: 804257E8 (mFindActorPList__8daNpcF_c)
-//	801526C0: 804257E8 (mFindActorPList__8daNpcF_c)
-//	801526CC: 80450FF0 (mFindCount__8daNpcF_c)
+/* 80152654-801526E8 14CF94 0094+00 0/0 0/0 12/12 .text            srchAttnActor1__8daNpcF_cFPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6278,17 +4332,10 @@ asm void daNpcF_c::srchAttnActor1(void* param_0, void* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450FF4-80450FF8 0002+02 s=2 e=0 z=0  None .sbss      mSrchActorName__8daNpcF_c */
+/* 80450FF4-80450FF8 0004F4 0002+02 2/2 0/0 0/0 .sbss            mSrchActorName__8daNpcF_c */
 static u8 mSrchActorName__8daNpcF_c[2 + 2 /* padding */];
 
-/* 801526E8-8015276C 0084+00 s=1 e=0 z=0  None .text      srchActor__8daNpcF_cFPvPv */
-//	80152704: 80450FF0 (mFindCount__8daNpcF_c)
-//	80152710: 80018CE0 (fopAc_IsActor__FPv)
-//	80152724: 80450FF4 (mSrchActorName__8daNpcF_c)
-//	80152734: 80450FF0 (mFindCount__8daNpcF_c)
-//	8015273C: 804257E8 (mFindActorPList__8daNpcF_c)
-//	80152740: 804257E8 (mFindActorPList__8daNpcF_c)
-//	8015274C: 80450FF0 (mFindCount__8daNpcF_c)
+/* 801526E8-8015276C 14D028 0084+00 1/1 0/0 0/0 .text            srchActor__8daNpcF_cFPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6298,15 +4345,7 @@ asm void daNpcF_c::srchActor(void* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 8015276C-801527FC 0090+00 s=2 e=0 z=40  None .text      setMtx__8daNpcF_cFv */
-//	80152790: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80152798: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	801527A0: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	801527A4: 803DD470 (now__14mDoMtx_stack_c)
-//	801527A8: 803DD470 (now__14mDoMtx_stack_c)
-//	801527B0: 803464B0 (PSMTXCopy)
-//	801527D4: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
-//	801527E0: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
+/* 8015276C-801527FC 14D0AC 0090+00 2/0 0/0 40/9 .text            setMtx__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6316,16 +4355,7 @@ asm void daNpcF_c::setMtx() {
 }
 #pragma pop
 
-/* 801527FC-801528C8 00CC+00 s=2 e=0 z=38  None .text      setMtx2__8daNpcF_cFv */
-//	80152820: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	80152828: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80152830: 8000CE70 (scaleM__14mDoMtx_stack_cFRC4cXyz)
-//	80152834: 803DD470 (now__14mDoMtx_stack_c)
-//	80152838: 803DD470 (now__14mDoMtx_stack_c)
-//	80152840: 803464B0 (PSMTXCopy)
-//	80152854: 80451180 (G_CM3D_F_ABS_MIN)
-//	801528A0: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
-//	801528AC: 800111EC (modelCalc__16mDoExt_McaMorfSOFv)
+/* 801527FC-801528C8 14D13C 00CC+00 2/0 0/0 38/0 .text            setMtx2__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6336,19 +4366,10 @@ asm void daNpcF_c::setMtx2() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804534A0-804534A4 0004+00 s=1 e=0 z=0  None .sdata2    @10745 */
+/* 804534A0-804534A4 001AA0 0004+00 1/1 0/0 0/0 .sdata2          @10745 */
 SECTION_SDATA2 static f32 lit_10745 = 65536.0f;
 
-/* 801528C8-80152B2C 0264+00 s=0 e=0 z=76  None .text      initialize__8daNpcF_cFv */
-//	801528D8: 803621DC (_savegpr_29)
-//	801528E4: 801506E0 (remove__18daNpcF_ActorMngr_cFv)
-//	801528F8: 801506E0 (remove__18daNpcF_ActorMngr_cFv)
-//	80152910: 804533D8 (lit_4116)
-//	80152934: 804533D8 (lit_4116)
-//	80152A3C: 804533D8 (lit_4116)
-//	80152AFC: 804534A0 (lit_10745)
-//	80152B00: 80267954 (cM_rndF__Ff)
-//	80152B18: 80362228 (_restgpr_29)
+/* 801528C8-80152B2C 14D208 0264+00 0/0 0/0 76/76 .text            initialize__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6358,10 +4379,8 @@ asm void daNpcF_c::initialize() {
 }
 #pragma pop
 
-/* 80152B2C-80152B68 003C+00 s=0 e=0 z=69  None .text      getTrnsfrmKeyAnmP__8daNpcF_cFPci */
-//	80152B40: 804061C0 (g_dComIfG_gameInfo)
-//	80152B44: 804061C0 (g_dComIfG_gameInfo)
-//	80152B54: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80152B2C-80152B68 14D46C 003C+00 0/0 0/0 69/69 .text            getTrnsfrmKeyAnmP__8daNpcF_cFPci
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6371,10 +4390,7 @@ asm void daNpcF_c::getTrnsfrmKeyAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80152B68-80152BA4 003C+00 s=0 e=0 z=31  None .text      getTexPtrnAnmP__8daNpcF_cFPci */
-//	80152B7C: 804061C0 (g_dComIfG_gameInfo)
-//	80152B80: 804061C0 (g_dComIfG_gameInfo)
-//	80152B90: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80152B68-80152BA4 14D4A8 003C+00 0/0 0/0 31/31 .text            getTexPtrnAnmP__8daNpcF_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6384,10 +4400,8 @@ asm void daNpcF_c::getTexPtrnAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80152BA4-80152BE0 003C+00 s=0 e=0 z=50  None .text      getTexSRTKeyAnmP__8daNpcF_cFPci */
-//	80152BB8: 804061C0 (g_dComIfG_gameInfo)
-//	80152BBC: 804061C0 (g_dComIfG_gameInfo)
-//	80152BCC: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80152BA4-80152BE0 14D4E4 003C+00 0/0 0/0 50/50 .text            getTexSRTKeyAnmP__8daNpcF_cFPci
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6397,10 +4411,7 @@ asm void daNpcF_c::getTexSRTKeyAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80152BE0-80152C1C 003C+00 s=0 e=0 z=2  None .text      getTevRegKeyAnmP__8daNpcF_cFPci */
-//	80152BF4: 804061C0 (g_dComIfG_gameInfo)
-//	80152BF8: 804061C0 (g_dComIfG_gameInfo)
-//	80152C08: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
+/* 80152BE0-80152C1C 14D520 003C+00 0/0 0/0 2/2 .text            getTevRegKeyAnmP__8daNpcF_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6410,10 +4421,8 @@ asm void daNpcF_c::getTevRegKeyAnmP(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80152C1C-80152C80 0064+00 s=0 e=0 z=38  None .text
+/* 80152C1C-80152C80 14D55C 0064+00 0/0 0/0 38/38 .text
  * setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii          */
-//	80152C38: 804533E0 (lit_4142)
-//	80152C68: 80010E70 (setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6424,9 +4433,8 @@ asm void daNpcF_c::setMcaMorfAnm(J3DAnmTransformKey* param_0, f32 param_1, f32 p
 }
 #pragma pop
 
-/* 80152C80-80152CC4 0044+00 s=0 e=0 z=25  None .text setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib
- */
-//	80152CB0: 8000D7DC (init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb)
+/* 80152C80-80152CC4 14D5C0 0044+00 0/0 0/0 25/25 .text
+ * setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6437,9 +4445,8 @@ asm void daNpcF_c::setBckAnm(J3DAnmTransform* param_0, f32 param_1, int param_2,
 }
 #pragma pop
 
-/* 80152CC4-80152D04 0040+00 s=0 e=0 z=32  None .text
+/* 80152CC4-80152D04 14D604 0040+00 0/0 0/0 32/32 .text
  * setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi    */
-//	80152CF0: 8000D54C (init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6450,9 +4457,8 @@ asm void daNpcF_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1, f
 }
 #pragma pop
 
-/* 80152D04-80152D44 0040+00 s=0 e=0 z=26  None .text
+/* 80152D04-80152D44 14D644 0040+00 0/0 0/0 26/26 .text
  * setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi */
-//	80152D30: 8000D63C (init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6463,9 +4469,8 @@ asm void daNpcF_c::setBtkAnm(J3DAnmTextureSRTKey* param_0, J3DModelData* param_1
 }
 #pragma pop
 
-/* 80152D44-80152D84 0040+00 s=0 e=0 z=2  None .text
+/* 80152D44-80152D84 14D684 0040+00 0/0 0/0 2/2 .text
  * setBrkAnm__8daNpcF_cFP15J3DAnmTevRegKeyP12J3DModelDatafi     */
-//	80152D70: 8000D70C (init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6476,11 +4481,7 @@ asm void daNpcF_c::setBrkAnm(J3DAnmTevRegKey* param_0, J3DModelData* param_1, f3
 }
 #pragma pop
 
-/* 80152D84-80152DE0 005C+00 s=1 e=0 z=40  None .text      setEnvTevColor__8daNpcF_cFv */
-//	80152D9C: 804061C0 (g_dComIfG_gameInfo)
-//	80152DA0: 804061C0 (g_dComIfG_gameInfo)
-//	80152DB0: 80074BE8 (GetPolyColor__4dBgSFRC13cBgS_PolyInfo)
-//	80152DC0: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80152D84-80152DE0 14D6C4 005C+00 1/1 0/0 40/40 .text            setEnvTevColor__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6490,10 +4491,7 @@ asm void daNpcF_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 80152DE0-80152E24 0044+00 s=1 e=0 z=40  None .text      setRoomNo__8daNpcF_cFv */
-//	80152DF4: 804061C0 (g_dComIfG_gameInfo)
-//	80152DF8: 804061C0 (g_dComIfG_gameInfo)
-//	80152E04: 80075100 (GetRoomId__4dBgSFRC13cBgS_PolyInfo)
+/* 80152DE0-80152E24 14D720 0044+00 1/1 0/0 40/40 .text            setRoomNo__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6503,10 +4501,7 @@ asm void daNpcF_c::setRoomNo() {
 }
 #pragma pop
 
-/* 80152E24-80152EC4 00A0+00 s=1 e=0 z=0  None .text      chkEndAnm__8daNpcF_cFf */
-//	80152E6C: 804533D8 (lit_4116)
-//	80152E8C: 804533D8 (lit_4116)
-//	80152EA4: 804533D8 (lit_4116)
+/* 80152E24-80152EC4 14D764 00A0+00 1/1 0/0 0/0 .text            chkEndAnm__8daNpcF_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6516,9 +4511,7 @@ asm void daNpcF_c::chkEndAnm(f32 param_0) {
 }
 #pragma pop
 
-/* 80152EC4-80152F40 007C+00 s=1 e=0 z=0  None .text      chkEndAnm__8daNpcF_cFP12J3DFrameCtrlf */
-//	80152F04: 804533D8 (lit_4116)
-//	80152F20: 804533D8 (lit_4116)
+/* 80152EC4-80152F40 14D804 007C+00 1/1 0/0 0/0 .text chkEndAnm__8daNpcF_cFP12J3DFrameCtrlf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6528,25 +4521,7 @@ asm void daNpcF_c::chkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80152F40-80153150 0210+00 s=1 e=0 z=2  None .text      playAllAnm__8daNpcF_cFv */
-//	80152F7C: 804533D8 (lit_4116)
-//	80152F88: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80152F98: 80152EC4 (chkEndAnm__8daNpcF_cFP12J3DFrameCtrlf)
-//	80152FCC: 804533D8 (lit_4116)
-//	80152FD8: 8000D428 (play__14mDoExt_baseAnmFv)
-//	80152FF8: 80152EC4 (chkEndAnm__8daNpcF_cFP12J3DFrameCtrlf)
-//	8015300C: 8014D364 (func_8014D364)
-//	80153014: 804533D8 (lit_4116)
-//	8015302C: 8014D348 (func_8014D348)
-//	80153038: 804533DC (lit_4140)
-//	8015305C: 804533D8 (lit_4116)
-//	80153070: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80153088: 800110B0 (play__16mDoExt_McaMorfSOFUlSc)
-//	80153094: 80152E24 (chkEndAnm__8daNpcF_cFf)
-//	801530C4: 804533D8 (lit_4116)
-//	801530EC: 8000D428 (play__14mDoExt_baseAnmFv)
-//	8015310C: 804533D8 (lit_4116)
-//	80153118: 8000D428 (play__14mDoExt_baseAnmFv)
+/* 80152F40-80153150 14D880 0210+00 1/1 0/0 2/2 .text            playAllAnm__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6556,10 +4531,8 @@ asm void daNpcF_c::playAllAnm() {
 }
 #pragma pop
 
-/* 80153150-80153264 0114+00 s=0 e=0 z=25  None .text
+/* 80153150-80153264 14DA90 0114+00 0/0 0/0 25/25 .text
  * playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData */
-//	80153220: 804533D8 (lit_4116)
-//	80153240: 8000FB7C (setMorf__13mDoExt_morf_cFf)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6569,12 +4542,8 @@ asm void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** param_0) {
 }
 #pragma pop
 
-/* 80153264-8015337C 0118+00 s=0 e=0 z=37  None .text
+/* 80153264-8015337C 14DBA4 0118+00 0/0 0/0 37/37 .text
  * playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData  */
-//	80153310: 804533D8 (lit_4116)
-//	80153334: 804533D8 (lit_4116)
-//	8015334C: 804533D8 (lit_4116)
-//	80153358: 8000FB7C (setMorf__13mDoExt_morf_cFf)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6584,34 +4553,7 @@ asm void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** param_0) {
 }
 #pragma pop
 
-/* 8015337C-80153578 01FC+00 s=0 e=0 z=34  None .text      setLookatMtx__8daNpcF_cFiPif */
-//	8015338C: 803621DC (_savegpr_29)
-//	801533C4: 804533E0 (lit_4142)
-//	8015344C: 803DD470 (now__14mDoMtx_stack_c)
-//	80153450: 803DD470 (now__14mDoMtx_stack_c)
-//	80153458: 803464B0 (PSMTXCopy)
-//	80153474: 804533D8 (lit_4116)
-//	80153488: 8000CF0C (ZXYrotS__14mDoMtx_stack_cFRC5csXyz)
-//	801534A8: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	801534C0: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	801534C4: 803DD470 (now__14mDoMtx_stack_c)
-//	801534C8: 803DD470 (now__14mDoMtx_stack_c)
-//	801534D0: 803465B0 (PSMTXInverse)
-//	801534D4: 803DD470 (now__14mDoMtx_stack_c)
-//	801534D8: 803DD470 (now__14mDoMtx_stack_c)
-//	801534E0: 803464B0 (PSMTXCopy)
-//	801534E8: 8000CD64 (transS__14mDoMtx_stack_cFRC4cXyz)
-//	801534F0: 8000CED4 (XYZrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80153504: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	8015351C: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80153534: 8000CF44 (ZXYrotM__14mDoMtx_stack_cFRC5csXyz)
-//	80153538: 803DD470 (now__14mDoMtx_stack_c)
-//	8015353C: 803DD470 (now__14mDoMtx_stack_c)
-//	80153548: 803464E4 (PSMTXConcat)
-//	8015354C: 803DD470 (now__14mDoMtx_stack_c)
-//	80153550: 803DD470 (now__14mDoMtx_stack_c)
-//	8015355C: 803464E4 (PSMTXConcat)
-//	80153564: 80362228 (_restgpr_29)
+/* 8015337C-80153578 14DCBC 01FC+00 0/0 0/0 34/34 .text            setLookatMtx__8daNpcF_cFiPif */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6621,13 +4563,8 @@ asm void daNpcF_c::setLookatMtx(int param_0, int* param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 80153578-80153658 00E0+00 s=0 e=0 z=13  None .text      hitChk2__8daNpcF_cFP8dCcD_Cylii */
-//	80153588: 803621D4 (_savegpr_27)
-//	801535A4: 80083830 (Move__10dCcD_GSttsFv)
-//	801535B8: 80084460 (ChkTgHit__12dCcD_GObjInfFv)
-//	801535C8: 80083688 (GetAc__22dCcD_GAtTgCoCommonBaseFv)
-//	801535DC: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	80153644: 80362220 (_restgpr_27)
+/* 80153578-80153658 14DEB8 00E0+00 0/0 0/0 13/13 .text            hitChk2__8daNpcF_cFP8dCcD_Cylii
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6638,20 +4575,13 @@ asm void daNpcF_c::hitChk2(dCcD_Cyl* param_0, int param_1, int param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804534A4-804534A8 0004+00 s=1 e=0 z=0  None .sdata2    @11061 */
+/* 804534A4-804534A8 001AA4 0004+00 1/1 0/0 0/0 .sdata2          @11061 */
 SECTION_SDATA2 static f32 lit_11061 = 8192.0f;
 
-/* 804534A8-804534AC 0004+00 s=1 e=0 z=0  None .sdata2    @11062 */
+/* 804534A8-804534AC 001AA8 0004+00 1/1 0/0 0/0 .sdata2          @11062 */
 SECTION_SDATA2 static f32 lit_11062 = 12743.0f;
 
-/* 80153658-80153718 00C0+00 s=0 e=0 z=12  None .text      setDamage__8daNpcF_cFiii */
-//	80153668: 803621DC (_savegpr_29)
-//	80153684: 804533D8 (lit_4116)
-//	801536A8: 804533D8 (lit_4116)
-//	801536C0: 804534A4 (lit_11061)
-//	801536C8: 804534A8 (lit_11062)
-//	801536E4: 804533D8 (lit_4116)
-//	80153704: 80362228 (_restgpr_29)
+/* 80153658-80153718 14DF98 00C0+00 0/0 0/0 12/12 .text            setDamage__8daNpcF_cFiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6661,18 +4591,8 @@ asm void daNpcF_c::setDamage(int param_0, int param_1, int param_2) {
 }
 #pragma pop
 
-/* 80153718-8015387C 0164+00 s=0 e=0 z=81  None .text      ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
+/* 80153718-8015387C 14E058 0164+00 0/0 0/0 81/81 .text ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
  */
-//	80153728: 803621D4 (_savegpr_27)
-//	80153768: 804061C0 (g_dComIfG_gameInfo)
-//	8015376C: 804061C0 (g_dComIfG_gameInfo)
-//	80153778: 800432EC (convPId__14dEvt_control_cFUi)
-//	80153784: 8023819C (getActor__12dMsgObject_cFv)
-//	801537C0: 804061C0 (g_dComIfG_gameInfo)
-//	801537C4: 804061C0 (g_dComIfG_gameInfo)
-//	801537E0: 802383A4 (isMouthCheck__12dMsgObject_cFv)
-//	8015385C: 8014D348 (func_8014D348)
-//	80153868: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6682,15 +4602,8 @@ asm void daNpcF_c::ctrlMsgAnm(int& param_0, int& param_1, fopAc_ac_c* param_2, i
 }
 #pragma pop
 
-/* 8015387C-80153954 00D8+00 s=0 e=0 z=45  None .text      orderEvent__8daNpcF_cFiPcUsUsUcUs */
-//	8015388C: 803621D0 (_savegpr_26)
-//	801538B0: 804061C0 (g_dComIfG_gameInfo)
-//	801538B4: 804061C0 (g_dComIfG_gameInfo)
-//	801538C4: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	801538E4: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
-//	801538F8: 8015F424 (checkNowWolfEyeUp__9daPy_py_cFv)
-//	80153938: 8001B19C (fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs)
-//	80153940: 8036221C (_restgpr_26)
+/* 8015387C-80153954 14E1BC 00D8+00 0/0 0/0 45/45 .text            orderEvent__8daNpcF_cFiPcUsUsUcUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6701,17 +4614,8 @@ asm void daNpcF_c::orderEvent(int param_0, char* param_1, u16 param_2, u16 param
 }
 #pragma pop
 
-/* 80153954-801539F0 009C+00 s=0 e=0 z=31  None .text      changeEvent__8daNpcF_cFPcPcUsUs */
-//	80153964: 803621D4 (_savegpr_27)
-//	80153984: 804061C0 (g_dComIfG_gameInfo)
-//	80153988: 804061C0 (g_dComIfG_gameInfo)
-//	80153994: 80046800 (setObjectArchive__16dEvent_manager_cFPc)
-//	80153998: 804061C0 (g_dComIfG_gameInfo)
-//	8015399C: 804061C0 (g_dComIfG_gameInfo)
-//	801539B0: 80047758 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc)
-//	801539C0: 80042518 (reset__14dEvt_control_cFPv)
-//	801539D4: 8001B5E4 (fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs)
-//	801539DC: 80362220 (_restgpr_27)
+/* 80153954-801539F0 14E294 009C+00 0/0 0/0 31/31 .text            changeEvent__8daNpcF_cFPcPcUsUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6721,12 +4625,8 @@ asm void daNpcF_c::changeEvent(char* param_0, char* param_1, u16 param_2, u16 pa
 }
 #pragma pop
 
-/* 801539F0-80153A78 0088+00 s=0 e=0 z=21  None .text      chkActorInSight__8daNpcF_cFP10fopAc_ac_cf
+/* 801539F0-80153A78 14E330 0088+00 0/0 0/0 21/21 .text chkActorInSight__8daNpcF_cFP10fopAc_ac_cf
  */
-//	80153A10: 8001A710 (fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	80153A1C: 803650D0 (abs)
-//	80153A28: 8045344C (lit_6775)
-//	80153A34: 80453420 (lit_5239)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6736,19 +4636,8 @@ asm void daNpcF_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80153A78-80153BDC 0164+00 s=1 e=0 z=0  None .text
+/* 80153A78-80153BDC 14E3B8 0164+00 1/1 0/0 0/0 .text
  * chkActorInArea__8daNpcF_cFP10fopAc_ac_c4cXyz4cXyzs           */
-//	80153AA8: 803621D8 (_savegpr_28)
-//	80153ABC: 803DD470 (now__14mDoMtx_stack_c)
-//	80153AC0: 803DD470 (now__14mDoMtx_stack_c)
-//	80153ACC: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	80153AE8: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	80153AEC: 803DD470 (now__14mDoMtx_stack_c)
-//	80153AF0: 803DD470 (now__14mDoMtx_stack_c)
-//	80153AFC: 80346D6C (PSMTXMultVec)
-//	80153B3C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80153B74: 804533DC (lit_4140)
-//	80153BC8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6759,21 +4648,11 @@ asm void daNpcF_c::chkActorInArea(fopAc_ac_c* param_0, cXyz param_1, cXyz param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 804534AC-804534B0 0004+00 s=3 e=0 z=0  None .sdata2    @11253 */
+/* 804534AC-804534B0 001AAC 0004+00 3/3 0/0 0/0 .sdata2          @11253 */
 SECTION_SDATA2 static f32 lit_11253 = 0.5f;
 
-/* 80153BDC-80153D1C 0140+00 s=0 e=0 z=25  None .text
+/* 80153BDC-80153D1C 14E51C 0140+00 0/0 0/0 25/25 .text
  * chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci    */
-//	80153BFC: 803621D4 (_savegpr_27)
-//	80153C18: 8014B010 (getDistTable__12dAttention_cFi)
-//	80153C20: 804533E8 (lit_4148)
-//	80153C2C: 8014B010 (getDistTable__12dAttention_cFi)
-//	80153C34: 804533E8 (lit_4148)
-//	80153C58: 8014B010 (getDistTable__12dAttention_cFi)
-//	80153C78: 804534AC (lit_11253)
-//	80153C88: 8014B010 (getDistTable__12dAttention_cFi)
-//	80153CE0: 80153A78 (chkActorInArea__8daNpcF_cFP10fopAc_ac_c4cXyz4cXyzs)
-//	80153D08: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6783,9 +4662,7 @@ asm void daNpcF_c::chkActorInAttnArea(fopAc_ac_c* param_0, fopAc_ac_c* param_1, 
 }
 #pragma pop
 
-/* 80153D1C-80153D84 0068+00 s=0 e=0 z=118  None .text      initTalk__8daNpcF_cFiPP10fopAc_ac_c */
-//	80153D48: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80153D4C: 804533D8 (lit_4116)
+/* 80153D1C-80153D84 14E65C 0068+00 0/0 0/0 118/118 .text initTalk__8daNpcF_cFiPP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6795,19 +4672,7 @@ asm void daNpcF_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 }
 #pragma pop
 
-/* 80153D84-80153EF4 0170+00 s=0 e=0 z=119  None .text      talkProc__8daNpcF_cFPiiPP10fopAc_ac_c */
-//	80153D94: 803621D4 (_savegpr_27)
-//	80153DB8: 802382F4 (isMsgSendControl__12dMsgObject_cFv)
-//	80153DCC: 802382C8 (offMsgSendControl__12dMsgObject_cFv)
-//	80153DE4: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	80153DFC: 8024A548 (getMsg__10dMsgFlow_cFv)
-//	80153E0C: 8024A548 (getMsg__10dMsgFlow_cFv)
-//	80153E20: 8024A548 (getMsg__10dMsgFlow_cFv)
-//	80153E44: 8024A538 (getMsgNo__10dMsgFlow_cFv)
-//	80153E80: 8024A424 (checkEventRender__10dMsgFlow_cFPiPiPiPi)
-//	80153E9C: 804533E8 (lit_4148)
-//	80153EC0: 804533E8 (lit_4148)
-//	80153EE0: 80362220 (_restgpr_27)
+/* 80153D84-80153EF4 14E6C4 0170+00 0/0 0/0 119/119 .text talkProc__8daNpcF_cFPiiPP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6817,15 +4682,7 @@ asm void daNpcF_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2) {
 }
 #pragma pop
 
-/* 80153EF4-801540A4 01B0+00 s=1 e=0 z=55  None .text      turn__8daNpcF_cFsfi */
-//	80153F08: 80453468 (lit_7089)
-//	80153F18: 804533E0 (lit_4142)
-//	80153F48: 8045344C (lit_6775)
-//	80153F88: 8045346C (lit_7090)
-//	80153FF0: 80439A20 (sincosTable___5JMath)
-//	80153FF4: 80439A20 (sincosTable___5JMath)
-//	80153FFC: 804533E0 (lit_4142)
-//	8015403C: 80453470 (lit_7091)
+/* 80153EF4-801540A4 14E834 01B0+00 1/1 0/0 55/55 .text            turn__8daNpcF_cFsfi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6835,15 +4692,7 @@ asm void daNpcF_c::turn(s16 param_0, f32 param_1, int param_2) {
 }
 #pragma pop
 
-/* 801540A4-80154250 01AC+00 s=0 e=0 z=58  None .text      step__8daNpcF_cFsiii */
-//	801540B4: 803621DC (_savegpr_29)
-//	801540D0: 80453468 (lit_7089)
-//	801540E0: 804533E0 (lit_4142)
-//	80154128: 804533E8 (lit_4148)
-//	8015414C: 804533E8 (lit_4148)
-//	801541B8: 804533E0 (lit_4142)
-//	801541D8: 80153EF4 (turn__8daNpcF_cFsfi)
-//	8015423C: 80362228 (_restgpr_29)
+/* 801540A4-80154250 14E9E4 01AC+00 0/0 0/0 58/58 .text            step__8daNpcF_cFsiii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6853,7 +4702,7 @@ asm void daNpcF_c::step(s16 param_0, int param_1, int param_2, int param_3) {
 }
 #pragma pop
 
-/* 80154250-80154278 0028+00 s=0 e=0 z=81  None .text      setAngle__8daNpcF_cFs */
+/* 80154250-80154278 14EB90 0028+00 0/0 0/0 81/81 .text            setAngle__8daNpcF_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6863,8 +4712,7 @@ asm void daNpcF_c::setAngle(s16 param_0) {
 }
 #pragma pop
 
-/* 80154278-801542A0 0028+00 s=0 e=0 z=36  None .text      getDistTableIdx__8daNpcF_cFii */
-//	8015428C: 80155AD4 (daNpcF_getDistTableIdx__Fii)
+/* 80154278-801542A0 14EBB8 0028+00 0/0 0/0 36/36 .text            getDistTableIdx__8daNpcF_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6874,15 +4722,7 @@ asm void daNpcF_c::getDistTableIdx(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 801542A0-8015436C 00CC+00 s=0 e=0 z=6  None .text      getEvtAreaTagP__8daNpcF_cFii */
-//	801542C4: 80450FF0 (mFindCount__8daNpcF_c)
-//	801542CC: 80450FF4 (mSrchActorName__8daNpcF_c)
-//	801542D0: 801526E8 (srchActor__8daNpcF_cFPvPv)
-//	801542D4: 801526E8 (srchActor__8daNpcF_cFPvPv)
-//	801542DC: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	801542E4: 80450FF0 (mFindCount__8daNpcF_c)
-//	801542E8: 804257E8 (mFindActorPList__8daNpcF_c)
-//	801542EC: 804257E8 (mFindActorPList__8daNpcF_c)
+/* 801542A0-8015436C 14EBE0 00CC+00 0/0 0/0 6/6 .text            getEvtAreaTagP__8daNpcF_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6893,43 +4733,11 @@ asm void daNpcF_c::getEvtAreaTagP(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804534B0-804534B4 0004+00 s=1 e=0 z=0  None .sdata2    @11605 */
+/* 804534B0-804534B4 001AB0 0004+00 1/1 0/0 0/0 .sdata2          @11605 */
 SECTION_SDATA2 static f32 lit_11605 = 450.0f;
 
-/* 8015436C-80154730 03C4+00 s=0 e=0 z=12  None .text getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii
+/* 8015436C-80154730 14ECAC 03C4+00 0/0 0/0 12/12 .text getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii
  */
-//	801543A4: 803621B4 (_savegpr_19)
-//	801543D8: 8026786C (cM_rnd__Fv)
-//	801543DC: 804534AC (lit_11253)
-//	801543E4: 804534B0 (lit_11605)
-//	801543FC: 8026786C (cM_rnd__Fv)
-//	80154400: 804534AC (lit_11253)
-//	80154408: 804533E0 (lit_4142)
-//	8015443C: 8045347C (lit_7337)
-//	8015444C: 804061C0 (g_dComIfG_gameInfo)
-//	80154450: 804061C0 (g_dComIfG_gameInfo)
-//	8015446C: 800199BC (fopAcM_SearchByID__FUiPP10fopAc_ac_c)
-//	80154480: 801506EC (getActorP__18daNpcF_ActorMngr_cFv)
-//	80154494: 8014D348 (func_8014D348)
-//	801544A8: 801506EC (getActorP__18daNpcF_ActorMngr_cFv)
-//	801544D0: 804061C0 (g_dComIfG_gameInfo)
-//	801544D4: 804061C0 (g_dComIfG_gameInfo)
-//	801544DC: 8001A964 (fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	801544E8: 80450FF0 (mFindCount__8daNpcF_c)
-//	801544F4: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	80154500: 804257E8 (mFindActorPList__8daNpcF_c)
-//	80154504: 804257E8 (mFindActorPList__8daNpcF_c)
-//	80154518: 8015496C (getAttentionPos__8daNpcF_cFP10fopAc_ac_c)
-//	80154550: 80154834 (chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs)
-//	8015456C: 80154730 (chkActorInSight2__8daNpcF_cFP10fopAc_ac_cfs)
-//	8015458C: 801506EC (getActorP__18daNpcF_ActorMngr_cFv)
-//	801545C8: 8001A964 (fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c)
-//	801545E8: 80450FF0 (mFindCount__8daNpcF_c)
-//	80154608: 804061C0 (g_dComIfG_gameInfo)
-//	8015460C: 804061C0 (g_dComIfG_gameInfo)
-//	80154628: 800199BC (fopAcM_SearchByID__FUiPP10fopAc_ac_c)
-//	80154684: 801506BC (entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c)
-//	8015471C: 80362200 (_restgpr_19)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6940,19 +4748,8 @@ asm void daNpcF_c::getAttnActorP(int param_0, void* (*)(void*, void*), f32 param
 }
 #pragma pop
 
-/* 80154730-80154834 0104+00 s=2 e=0 z=0  None .text chkActorInSight2__8daNpcF_cFP10fopAc_ac_cfs
+/* 80154730-80154834 14F070 0104+00 2/2 0/0 0/0 .text chkActorInSight2__8daNpcF_cFP10fopAc_ac_cfs
  */
-//	80154740: 803621DC (_savegpr_29)
-//	80154750: 8045344C (lit_6775)
-//	8015475C: 80453420 (lit_5239)
-//	8015477C: 8015496C (getAttentionPos__8daNpcF_cFP10fopAc_ac_c)
-//	801547A4: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801547B0: 80271880 (__ct__7cSGlobeFRC4cXyz)
-//	801547B8: 802710E8 (Inv__7cSAngleCFv)
-//	801547C4: 80270F98 (__ct__7cSAngleFs)
-//	801547D4: 80271228 (__mi__7cSAngleCFs)
-//	801547E0: 80270F68 (__ct__7cSAngleFRC7cSAngle)
-//	80154820: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6962,10 +4759,7 @@ asm void daNpcF_c::chkActorInSight2(fopAc_ac_c* param_0, f32 param_1, s16 param_
 }
 #pragma pop
 
-/* 80154834-801548F4 00C0+00 s=2 e=0 z=0  None .text      chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs
- */
-//	80154868: 804534AC (lit_11253)
-//	801548E0: 801548F4 (chkPointInArea__8daNpcF_cF4cXyz4cXyz4cXyzs)
+/* 80154834-801548F4 14F174 00C0+00 2/2 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6976,9 +4770,8 @@ asm void daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 p
 }
 #pragma pop
 
-/* 801548F4-8015496C 0078+00 s=1 e=0 z=0  None .text      chkPointInArea__8daNpcF_cF4cXyz4cXyz4cXyzs
+/* 801548F4-8015496C 14F234 0078+00 1/1 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyz4cXyzs
  */
-//	80154958: 80155968 (daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6988,9 +4781,7 @@ asm void daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 
 }
 #pragma pop
 
-/* 8015496C-801549E0 0074+00 s=3 e=0 z=0  None .text      getAttentionPos__8daNpcF_cFP10fopAc_ac_c
- */
-//	801549A4: 8015F3FC (getAttentionOffsetY__9daPy_py_cFv)
+/* 8015496C-801549E0 14F2AC 0074+00 3/3 0/0 0/0 .text getAttentionPos__8daNpcF_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7000,28 +4791,7 @@ asm void daNpcF_c::getAttentionPos(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 801549E0-80154BD8 01F8+00 s=0 e=0 z=18  None .text      chkFindPlayer2__8daNpcF_cFis */
-//	80154A10: 803621D4 (_savegpr_27)
-//	80154A28: 804061C0 (g_dComIfG_gameInfo)
-//	80154A2C: 804061C0 (g_dComIfG_gameInfo)
-//	80154A34: 8015496C (getAttentionPos__8daNpcF_cFP10fopAc_ac_c)
-//	80154A74: 8014B010 (getDistTable__12dAttention_cFi)
-//	80154A84: 8014B010 (getDistTable__12dAttention_cFi)
-//	80154A90: 8014B010 (getDistTable__12dAttention_cFi)
-//	80154A98: 804533E8 (lit_4148)
-//	80154AA4: 8014B010 (getDistTable__12dAttention_cFi)
-//	80154AAC: 804533E8 (lit_4148)
-//	80154AB8: 8014B010 (getDistTable__12dAttention_cFi)
-//	80154AC0: 8045344C (lit_6775)
-//	80154ACC: 80453450 (lit_6904)
-//	80154ADC: 80453454 (lit_6905)
-//	80154AEC: 80453458 (lit_6906)
-//	80154AFC: 8045345C (lit_6907)
-//	80154B0C: 80453460 (lit_6908)
-//	80154B1C: 80453464 (lit_6909)
-//	80154B6C: 80154834 (chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs)
-//	80154B88: 80154730 (chkActorInSight2__8daNpcF_cFP10fopAc_ac_cfs)
-//	80154BC4: 80362220 (_restgpr_27)
+/* 801549E0-80154BD8 14F320 01F8+00 0/0 0/0 18/18 .text            chkFindPlayer2__8daNpcF_cFis */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7032,7 +4802,7 @@ asm void daNpcF_c::chkFindPlayer2(int param_0, s16 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804534B4-804534B8 0004+00 s=1 e=0 z=0  None .sdata2    id$11798 */
+/* 804534B4-804534B8 001AB4 0004+00 1/1 0/0 0/0 .sdata2          id$11798 */
 SECTION_SDATA2 static u8 id_11798[4] = {
     0x84,
     0x97,
@@ -7040,21 +4810,7 @@ SECTION_SDATA2 static u8 id_11798[4] = {
     0x98,
 };
 
-/* 80154BD8-80154DA8 01D0+00 s=1 e=0 z=0  None .text      setHitodamaPrtcl__8daNpcF_cFv */
-//	80154BE8: 803621D0 (_savegpr_26)
-//	80154C0C: 80439A20 (sincosTable___5JMath)
-//	80154C10: 80439A20 (sincosTable___5JMath)
-//	80154C18: 8045346C (lit_7090)
-//	80154C30: 80453484 (lit_7442)
-//	80154CD4: 804061C0 (g_dComIfG_gameInfo)
-//	80154CD8: 804061C0 (g_dComIfG_gameInfo)
-//	80154D10: 804534B4 (id_11798)
-//	80154D28: 804533DC (lit_4140)
-//	80154D2C: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80154D40: 8004B918 (getEmitter__Q213dPa_control_c7level_cFUl)
-//	80154D4C: 8002FA54 (dComIfGs_wolfeye_effect_check__Fv)
-//	80154D94: 8036221C (_restgpr_26)
+/* 80154BD8-80154DA8 14F518 01D0+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7064,10 +4820,8 @@ asm void daNpcF_c::setHitodamaPrtcl() {
 }
 #pragma pop
 
-/* 80154DA8-80154E54 00AC+00 s=1 e=0 z=1  None .text
+/* 80154DA8-80154E54 14F6E8 00AC+00 1/1 0/0 1/1 .text
  * daNpcF_pntVsLineSegmentLengthSquare2D__FffffffPfPfPf         */
-//	80154DC0: 804533D8 (lit_4116)
-//	80154DFC: 804533DC (lit_4140)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7079,71 +4833,13 @@ asm void daNpcF_pntVsLineSegmentLengthSquare2D(f32 param_0, f32 param_1, f32 par
 }
 #pragma pop
 
-/* 80154E54-80154E5C 0008+00 s=1 e=0 z=0  None .text      daNpcF_putNurbs__FP4dPntiiP4dPnti */
+/* 80154E54-80154E5C 14F794 0008+00 1/1 0/0 0/0 .text            daNpcF_putNurbs__FP4dPntiiP4dPnti
+ */
 static bool daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4) {
     return false;
 }
 
-/* 80154E5C-8015556C 0710+00 s=1 e=0 z=1  None .text      daNpcF_chkPassed__F4cXyzP4dPntUsUsii */
-//	80154E6C: 803621D0 (_savegpr_26)
-//	80154EA0: 801505F8 (daNpcF_incIdx__FiRUsii)
-//	80154EB4: 80150654 (daNpcF_decIdx__FiRUsii)
-//	80154F54: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80154F60: 804533D8 (lit_4116)
-//	80154F74: 80347138 (PSVECSquareMag)
-//	80154F78: 804533D8 (lit_4116)
-//	80154F88: 80453408 (lit_4723)
-//	80154F90: 80453410 (lit_4724)
-//	80154FD8: 80453418 (lit_4725)
-//	80154FE4: 80450AE0 (__float_nan)
-//	80154FE8: 80450AE0 (__float_nan)
-//	80155054: 80450AE0 (__float_nan)
-//	80155058: 80450AE0 (__float_nan)
-//	80155078: 80267674 (cM_atan2s__Fff)
-//	80155094: 804533E8 (lit_4148)
-//	801550A4: 80439A20 (sincosTable___5JMath)
-//	801550A8: 80439A20 (sincosTable___5JMath)
-//	801550D0: 804533F0 (lit_4672)
-//	8015510C: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80155118: 804533D8 (lit_4116)
-//	8015512C: 80347138 (PSVECSquareMag)
-//	80155130: 804533D8 (lit_4116)
-//	80155140: 80453408 (lit_4723)
-//	80155148: 80453410 (lit_4724)
-//	80155190: 80453418 (lit_4725)
-//	8015519C: 80450AE0 (__float_nan)
-//	801551A0: 80450AE0 (__float_nan)
-//	8015520C: 80450AE0 (__float_nan)
-//	80155210: 80450AE0 (__float_nan)
-//	80155230: 80267674 (cM_atan2s__Fff)
-//	8015524C: 804533F8 (lit_4674)
-//	8015525C: 80439A20 (sincosTable___5JMath)
-//	80155260: 80439A20 (sincosTable___5JMath)
-//	80155288: 804533F0 (lit_4672)
-//	801552C0: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	801552CC: 804533D8 (lit_4116)
-//	801552E0: 80347138 (PSVECSquareMag)
-//	801552E4: 804533D8 (lit_4116)
-//	801552F4: 80453408 (lit_4723)
-//	801552FC: 80453410 (lit_4724)
-//	80155344: 80453418 (lit_4725)
-//	80155350: 80450AE0 (__float_nan)
-//	80155354: 80450AE0 (__float_nan)
-//	801553C0: 80450AE0 (__float_nan)
-//	801553C4: 80450AE0 (__float_nan)
-//	801553E4: 80267674 (cM_atan2s__Fff)
-//	80155400: 804533F8 (lit_4674)
-//	80155410: 80439A20 (sincosTable___5JMath)
-//	80155414: 80439A20 (sincosTable___5JMath)
-//	8015543C: 804533F0 (lit_4672)
-//	80155480: 80154DA8 (daNpcF_pntVsLineSegmentLengthSquare2D__FffffffPfPfPf)
-//	80155490: 80451180 (G_CM3D_F_ABS_MIN)
-//	801554C8: 80154DA8 (daNpcF_pntVsLineSegmentLengthSquare2D__FffffffPfPfPf)
-//	801554EC: 80267674 (cM_atan2s__Fff)
-//	80155510: 80267674 (cM_atan2s__Fff)
-//	80155530: 80267674 (cM_atan2s__Fff)
-//	8015553C: 803650D0 (abs)
-//	80155558: 8036221C (_restgpr_26)
+/* 80154E5C-8015556C 14F79C 0710+00 1/1 0/0 1/1 .text daNpcF_chkPassed__F4cXyzP4dPntUsUsii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7154,24 +4850,7 @@ asm void daNpcF_chkPassed(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3,
 }
 #pragma pop
 
-/* 8015556C-80155634 00C8+00 s=1 e=0 z=8  None .text      daNpcF_getGroundAngle__FP13cBgS_PolyInfos
- */
-//	8015557C: 803621DC (_savegpr_29)
-//	80155588: 803A37C0 (__vt__8cM3dGPla)
-//	8015558C: 803A37C0 (__vt__8cM3dGPla)
-//	80155594: 804061C0 (g_dComIfG_gameInfo)
-//	80155598: 804061C0 (g_dComIfG_gameInfo)
-//	801555A8: 80074660 (ChkPolySafe__4cBgSFRC13cBgS_PolyInfo)
-//	801555C0: 80074744 (GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla)
-//	801555D0: 802681E4 (cBgW_CheckBGround__Ff)
-//	801555DC: 803A37C0 (__vt__8cM3dGPla)
-//	801555E0: 803A37C0 (__vt__8cM3dGPla)
-//	801555F8: 8001DBD8 (fopAcM_getPolygonAngle__FPC8cM3dGPlas)
-//	801555FC: 803A37C0 (__vt__8cM3dGPla)
-//	80155600: 803A37C0 (__vt__8cM3dGPla)
-//	8015560C: 803A37C0 (__vt__8cM3dGPla)
-//	80155610: 803A37C0 (__vt__8cM3dGPla)
-//	80155620: 80362228 (_restgpr_29)
+/* 8015556C-80155634 14FEAC 00C8+00 1/1 0/0 8/8 .text daNpcF_getGroundAngle__FP13cBgS_PolyInfos */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7181,12 +4860,7 @@ asm void daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 80155634-80155674 0040+00 s=0 e=0 z=69  None .text      daNpcF_chkEvtBit__FUl */
-//	80155644: 804061C0 (g_dComIfG_gameInfo)
-//	80155648: 804061C0 (g_dComIfG_gameInfo)
-//	80155654: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80155658: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80155660: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 80155634-80155674 14FF74 0040+00 0/0 0/0 69/69 .text            daNpcF_chkEvtBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7196,12 +4870,7 @@ asm void daNpcF_chkEvtBit(u32 param_0) {
 }
 #pragma pop
 
-/* 80155674-801556B4 0040+00 s=0 e=0 z=13  None .text      daNpcF_onEvtBit__FUl */
-//	80155684: 804061C0 (g_dComIfG_gameInfo)
-//	80155688: 804061C0 (g_dComIfG_gameInfo)
-//	80155694: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80155698: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	801556A0: 8003498C (onEventBit__11dSv_event_cFUs)
+/* 80155674-801556B4 14FFB4 0040+00 0/0 0/0 13/13 .text            daNpcF_onEvtBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7211,12 +4880,7 @@ asm void daNpcF_onEvtBit(u32 param_0) {
 }
 #pragma pop
 
-/* 801556B4-801556F4 0040+00 s=0 e=0 z=6  None .text      daNpcF_chkTmpBit__FUl */
-//	801556C4: 804061C0 (g_dComIfG_gameInfo)
-//	801556C8: 804061C0 (g_dComIfG_gameInfo)
-//	801556D4: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	801556D8: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	801556E0: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 801556B4-801556F4 14FFF4 0040+00 0/0 0/0 6/6 .text            daNpcF_chkTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7226,12 +4890,7 @@ asm void daNpcF_chkTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 801556F4-80155734 0040+00 s=0 e=0 z=6  None .text      daNpcF_onTmpBit__FUl */
-//	80155704: 804061C0 (g_dComIfG_gameInfo)
-//	80155708: 804061C0 (g_dComIfG_gameInfo)
-//	80155714: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80155718: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80155720: 8003498C (onEventBit__11dSv_event_cFUs)
+/* 801556F4-80155734 150034 0040+00 0/0 0/0 6/6 .text            daNpcF_onTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7241,12 +4900,7 @@ asm void daNpcF_onTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 80155734-80155774 0040+00 s=1 e=0 z=36  None .text      daNpcF_offTmpBit__FUl */
-//	80155744: 804061C0 (g_dComIfG_gameInfo)
-//	80155748: 804061C0 (g_dComIfG_gameInfo)
-//	80155754: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80155758: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80155760: 800349A4 (offEventBit__11dSv_event_cFUs)
+/* 80155734-80155774 150074 0040+00 1/1 0/0 36/36 .text            daNpcF_offTmpBit__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7256,13 +4910,8 @@ asm void daNpcF_offTmpBit(u32 param_0) {
 }
 #pragma pop
 
-/* 80155774-80155854 00E0+00 s=0 e=2 z=5  None .text
+/* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text
  * daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz         */
-//	80155784: 803621CC (_savegpr_25)
-//	80155798: 804061C0 (g_dComIfG_gameInfo)
-//	8015579C: 804061C0 (g_dComIfG_gameInfo)
-//	801557A4: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	80155840: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7273,19 +4922,7 @@ asm void daNpcF_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz& para
 }
 #pragma pop
 
-/* 80155854-80155968 0114+00 s=0 e=0 z=1  None .text      daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
-//	80155864: 803621D8 (_savegpr_28)
-//	80155870: 804061C0 (g_dComIfG_gameInfo)
-//	80155874: 804061C0 (g_dComIfG_gameInfo)
-//	8015589C: 804061C0 (g_dComIfG_gameInfo)
-//	801558A0: 804061C0 (g_dComIfG_gameInfo)
-//	801558B4: 80073734 (ActionTarget__12dAttention_cFl)
-//	801558C4: 80070880 (getActionBtnB__12dAttention_cFv)
-//	801558D4: 80070880 (getActionBtnB__12dAttention_cFv)
-//	80155908: 8007353C (LockonTarget__12dAttention_cFl)
-//	80155918: 80070880 (getActionBtnB__12dAttention_cFv)
-//	80155928: 80070880 (getActionBtnB__12dAttention_cFv)
-//	80155954: 80362224 (_restgpr_28)
+/* 80155854-80155968 150194 0114+00 0/0 0/0 1/1 .text daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7295,19 +4932,7 @@ asm void daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80155968-80155AD4 016C+00 s=1 e=0 z=2  None .text      daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs
- */
-//	80155998: 803621DC (_savegpr_29)
-//	801559A8: 803DD470 (now__14mDoMtx_stack_c)
-//	801559AC: 803DD470 (now__14mDoMtx_stack_c)
-//	801559B8: 8000C3DC (mDoMtx_YrotS__FPA4_fs)
-//	801559D4: 8000CD9C (transM__14mDoMtx_stack_cFfff)
-//	801559D8: 803DD470 (now__14mDoMtx_stack_c)
-//	801559DC: 803DD470 (now__14mDoMtx_stack_c)
-//	801559E8: 80346D6C (PSMTXMultVec)
-//	80155A28: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80155A88: 804533DC (lit_4140)
-//	80155AC0: 80362228 (_restgpr_29)
+/* 80155968-80155AD4 1502A8 016C+00 1/1 0/0 2/2 .text daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7317,7 +4942,7 @@ asm void daNpcF_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 par
 }
 #pragma pop
 
-/* 80155AD4-80155AE8 0014+00 s=1 e=0 z=1  None .text      daNpcF_getDistTableIdx__Fii */
+/* 80155AD4-80155AE8 150414 0014+00 1/1 0/0 1/1 .text            daNpcF_getDistTableIdx__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7327,17 +4952,7 @@ asm void daNpcF_getDistTableIdx(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80155AE8-80155B54 006C+00 s=0 e=0 z=6  None .text      daNpcF_clearMessageTmpBit__Fv */
-//	80155AF8: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B00: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B08: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B10: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B18: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B20: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B28: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B30: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B38: 80155734 (daNpcF_offTmpBit__FUl)
-//	80155B40: 80155734 (daNpcF_offTmpBit__FUl)
+/* 80155AE8-80155B54 150428 006C+00 0/0 0/0 6/6 .text            daNpcF_clearMessageTmpBit__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7347,11 +4962,7 @@ asm void daNpcF_clearMessageTmpBit() {
 }
 #pragma pop
 
-/* 80155B54-80155BB4 0060+00 s=1 e=0 z=0  None .text      __dt__20daNpcF_MoveBgActor_cFv */
-//	80155B74: 803B3870 (__vt__20daNpcF_MoveBgActor_c)
-//	80155B78: 803B3870 (__vt__20daNpcF_MoveBgActor_c)
-//	80155B84: 80155BF4 (__dt__8daNpcF_cFv)
-//	80155B94: 802CED3C (__dl__FPv)
+/* 80155B54-80155BB4 150494 0060+00 1/0 0/0 0/0 .text            __dt__20daNpcF_MoveBgActor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7361,112 +4972,67 @@ asm daNpcF_MoveBgActor_c::~daNpcF_MoveBgActor_c() {
 }
 #pragma pop
 
-/* 80155BB4-80155BB8 0004+00 s=2 e=0 z=0  None .text      setCollisions__8daNpcF_cFv */
+/* 80155BB4-80155BB8 1504F4 0004+00 2/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
 void daNpcF_c::setCollisions() {
     /* empty function */
 }
 
-/* 80155BB8-80155BBC 0004+00 s=2 e=0 z=0  None .text      setAttnPos__8daNpcF_cFv */
+/* 80155BB8-80155BBC 1504F8 0004+00 2/0 0/0 0/0 .text            setAttnPos__8daNpcF_cFv */
 void daNpcF_c::setAttnPos() {
     /* empty function */
 }
 
-/* 80155BBC-80155BC0 0004+00 s=2 e=0 z=0  None .text      adjustShapeAngle__8daNpcF_cFv */
+/* 80155BBC-80155BC0 1504FC 0004+00 2/0 0/0 0/0 .text            adjustShapeAngle__8daNpcF_cFv */
 void daNpcF_c::adjustShapeAngle() {
     /* empty function */
 }
 
-/* 80155BC0-80155BC8 0008+00 s=2 e=0 z=0  None .text      main__8daNpcF_cFv */
+/* 80155BC0-80155BC8 150500 0008+00 2/0 0/0 0/0 .text            main__8daNpcF_cFv */
 bool daNpcF_c::main() {
     return true;
 }
 
-/* 80155BC8-80155BCC 0004+00 s=2 e=0 z=0  None .text      setParam__8daNpcF_cFv */
+/* 80155BC8-80155BCC 150508 0004+00 2/0 0/0 0/0 .text            setParam__8daNpcF_cFv */
 void daNpcF_c::setParam() {
     /* empty function */
 }
 
-/* 80155BCC-80155BD0 0004+00 s=2 e=0 z=0  None .text      drawOtherMdls__8daNpcF_cFv */
+/* 80155BCC-80155BD0 15050C 0004+00 2/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
 void daNpcF_c::drawOtherMdls() {
     /* empty function */
 }
 
-/* 80155BD0-80155BD8 0008+00 s=2 e=0 z=0  None .text      drawDbgInfo__8daNpcF_cFv */
+/* 80155BD0-80155BD8 150510 0008+00 2/0 0/0 0/0 .text            drawDbgInfo__8daNpcF_cFv */
 bool daNpcF_c::drawDbgInfo() {
     return true;
 }
 
-/* 80155BD8-80155BE0 0008+00 s=2 e=0 z=0  None .text      ctrlBtk__8daNpcF_cFv */
+/* 80155BD8-80155BE0 150518 0008+00 2/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
 bool daNpcF_c::ctrlBtk() {
     return false;
 }
 
-/* 80155BE0-80155BE8 0008+00 s=2 e=0 z=0  None .text      setExpressionAnm__8daNpcF_cFib */
+/* 80155BE0-80155BE8 150520 0008+00 2/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
 bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
     return true;
 }
 
-/* 80155BE8-80155BEC 0004+00 s=2 e=0 z=0  None .text      setMotionAnm__8daNpcF_cFif */
+/* 80155BE8-80155BEC 150528 0004+00 2/0 0/0 0/0 .text            setMotionAnm__8daNpcF_cFif */
 void daNpcF_c::setMotionAnm(int param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80155BEC-80155BF0 0004+00 s=2 e=0 z=0  None .text      setMotion__8daNpcF_cFifi */
+/* 80155BEC-80155BF0 15052C 0004+00 2/0 0/0 0/0 .text            setMotion__8daNpcF_cFifi */
 void daNpcF_c::setMotion(int param_0, f32 param_1, int param_2) {
     /* empty function */
 }
 
-/* 80155BF0-80155BF4 0004+00 s=2 e=0 z=0  None .text      setExpression__8daNpcF_cFif */
+/* 80155BF0-80155BF4 150530 0004+00 2/0 0/0 0/0 .text            setExpression__8daNpcF_cFif */
 void daNpcF_c::setExpression(int param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80155BF4-80155E40 024C+00 s=2 e=0 z=0  None .text      __dt__8daNpcF_cFv */
-//	80155C14: 803B38D8 (__vt__8daNpcF_c)
-//	80155C18: 803B38D8 (__vt__8daNpcF_c)
-//	80155C28: 80077CDC (__dt__11dBgS_LinChkFv)
-//	80155C34: 800775F0 (__dt__11dBgS_GndChkFv)
-//	80155C40: 80267C94 (__dt__11cBgS_GndChkFv)
-//	80155C4C: 80249F48 (__dt__10dMsgFlow_cFv)
-//	80155C54: 80018BD0 (__dt__5csXyzFv)
-//	80155C58: 80018BD0 (__dt__5csXyzFv)
-//	80155C64: 80361CE8 (__destroy_arr)
-//	80155C6C: 80018BD0 (__dt__5csXyzFv)
-//	80155C70: 80018BD0 (__dt__5csXyzFv)
-//	80155C7C: 80361CE8 (__destroy_arr)
-//	80155C84: 80009184 (__dt__4cXyzFv)
-//	80155C88: 80009184 (__dt__4cXyzFv)
-//	80155C94: 80361CE8 (__destroy_arr)
-//	80155C9C: 80155E40 (__dt__18daNpcF_ActorMngr_cFv)
-//	80155CA0: 80155E40 (__dt__18daNpcF_ActorMngr_cFv)
-//	80155CAC: 80361CE8 (__destroy_arr)
-//	80155CB8: 803B3864 (__vt__18daNpcF_ActorMngr_c)
-//	80155CBC: 803B3864 (__vt__18daNpcF_ActorMngr_c)
-//	80155CCC: 803AB664 (__vt__12dBgS_AcchCir)
-//	80155CD0: 803AB664 (__vt__12dBgS_AcchCir)
-//	80155CE0: 8026EF18 (__dt__8cM3dGCirFv)
-//	80155CEC: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	80155CF8: 803AC2E4 (__vt__9dCcD_Stts)
-//	80155CFC: 803AC2E4 (__vt__9dCcD_Stts)
-//	80155D14: 803AC310 (__vt__10dCcD_GStts)
-//	80155D18: 803AC310 (__vt__10dCcD_GStts)
-//	80155D28: 803AC31C (__vt__10cCcD_GStts)
-//	80155D2C: 803AC31C (__vt__10cCcD_GStts)
-//	80155D3C: 803C3728 (__vt__9cCcD_Stts)
-//	80155D40: 803C3728 (__vt__9cCcD_Stts)
-//	80155D50: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	80155D54: 803B35C8 (__vt__12dBgS_ObjAcch)
-//	80155D74: 80075F94 (__dt__9dBgS_AcchFv)
-//	80155D90: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155D94: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155DB4: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155DB8: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155DD8: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155DDC: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155DFC: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155E00: 803A3354 (__vt__12J3DFrameCtrl)
-//	80155E10: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80155E20: 802CED3C (__dl__FPv)
+/* 80155BF4-80155E40 150534 024C+00 2/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7476,10 +5042,7 @@ asm daNpcF_c::~daNpcF_c() {
 }
 #pragma pop
 
-/* 80155E40-80155E88 0048+00 s=2 e=0 z=0  None .text      __dt__18daNpcF_ActorMngr_cFv */
-//	80155E58: 803B3864 (__vt__18daNpcF_ActorMngr_c)
-//	80155E5C: 803B3864 (__vt__18daNpcF_ActorMngr_c)
-//	80155E6C: 802CED3C (__dl__FPv)
+/* 80155E40-80155E88 150780 0048+00 2/1 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7489,73 +5052,53 @@ asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
 }
 #pragma pop
 
-/* 80155E88-80155E90 0008+00 s=1 e=0 z=0  None .text      CreateHeap__20daNpcF_MoveBgActor_cFv */
+/* 80155E88-80155E90 1507C8 0008+00 1/0 0/0 0/0 .text CreateHeap__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::CreateHeap() {
     return true;
 }
 
-/* 80155E90-80155E98 0008+00 s=1 e=0 z=0  None .text      Create__20daNpcF_MoveBgActor_cFv */
+/* 80155E90-80155E98 1507D0 0008+00 1/0 0/0 0/0 .text            Create__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::Create() {
     return true;
 }
 
-/* 80155E98-80155EA0 0008+00 s=1 e=0 z=0  None .text      Delete__20daNpcF_MoveBgActor_cFv */
+/* 80155E98-80155EA0 1507D8 0008+00 1/0 0/0 0/0 .text            Delete__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::Delete() {
     return true;
 }
 
-/* 80155EA0-80155EA8 0008+00 s=1 e=0 z=0  None .text      Execute__20daNpcF_MoveBgActor_cFPPA3_A4_f
- */
+/* 80155EA0-80155EA8 1507E0 0008+00 1/0 0/0 0/0 .text Execute__20daNpcF_MoveBgActor_cFPPA3_A4_f */
 bool daNpcF_MoveBgActor_c::Execute(f32 (**param_0)[3][4]) {
     return true;
 }
 
-/* 80155EA8-80155EB0 0008+00 s=1 e=0 z=0  None .text      Draw__20daNpcF_MoveBgActor_cFv */
+/* 80155EA8-80155EB0 1507E8 0008+00 1/0 0/0 0/0 .text            Draw__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::Draw() {
     return true;
 }
 
-/* 80155EB0-80155EB8 0008+00 s=1 e=0 z=0  None .text      IsDelete__20daNpcF_MoveBgActor_cFv */
+/* 80155EB0-80155EB8 1507F0 0008+00 1/0 0/0 0/0 .text            IsDelete__20daNpcF_MoveBgActor_cFv
+ */
 bool daNpcF_MoveBgActor_c::IsDelete() {
     return true;
 }
 
-/* 80155EB8-80155EC0 0008+00 s=1 e=0 z=0  None .text      ToFore__20daNpcF_MoveBgActor_cFv */
+/* 80155EB8-80155EC0 1507F8 0008+00 1/0 0/0 0/0 .text            ToFore__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::ToFore() {
     return true;
 }
 
-/* 80155EC0-80155EC8 0008+00 s=1 e=0 z=0  None .text      ToBack__20daNpcF_MoveBgActor_cFv */
+/* 80155EC0-80155EC8 150800 0008+00 1/0 0/0 0/0 .text            ToBack__20daNpcF_MoveBgActor_cFv */
 bool daNpcF_MoveBgActor_c::ToBack() {
     return true;
 }
 
-/* 80155EC8-80155ED0 0008+00 s=2 e=0 z=0  None .text      setExpressionBtp__8daNpcF_cFi */
+/* 80155EC8-80155ED0 150808 0008+00 2/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
 bool daNpcF_c::setExpressionBtp(int param_0) {
     return true;
 }
 
-/* 80155ED0-80155FB0 00E0+00 s=1 e=0 z=0  None .text      __dt__15daNpcF_MatAnm_cFv */
-//	80155EF0: 803B3920 (__vt__15daNpcF_MatAnm_c)
-//	80155EF4: 803B3920 (__vt__15daNpcF_MatAnm_c)
-//	80155F00: 803CEE60 (__vt__14J3DMaterialAnm)
-//	80155F04: 803CEE60 (__vt__14J3DMaterialAnm)
-//	80155F10: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	80155F14: 8003B150 (__dt__15J3DTevKColorAnmFv)
-//	80155F20: 80361CE8 (__destroy_arr)
-//	80155F28: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	80155F2C: 8003B1A4 (__dt__14J3DTevColorAnmFv)
-//	80155F38: 80361CE8 (__destroy_arr)
-//	80155F40: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	80155F44: 8003B1F8 (__dt__11J3DTexNoAnmFv)
-//	80155F50: 80361CE8 (__destroy_arr)
-//	80155F58: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	80155F5C: 8003B264 (__dt__12J3DTexMtxAnmFv)
-//	80155F68: 80361CE8 (__destroy_arr)
-//	80155F70: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	80155F74: 8003B2B8 (__dt__14J3DMatColorAnmFv)
-//	80155F80: 80361CE8 (__destroy_arr)
-//	80155F90: 802CED3C (__dl__FPv)
+/* 80155ED0-80155FB0 150810 00E0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_MatAnm_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7565,11 +5108,8 @@ asm daNpcF_MatAnm_c::~daNpcF_MatAnm_c() {
 }
 #pragma pop
 
-/* 80155FB0-80156010 0060+00 s=1 e=0 z=0  None .text      __dt__23daBaseNpc_moveBgActor_cFv */
-//	80155FD0: 803B3948 (__vt__23daBaseNpc_moveBgActor_c)
-//	80155FD4: 803B3948 (__vt__23daBaseNpc_moveBgActor_c)
-//	80155FE0: 8014E89C (__dt__11daBaseNpc_cFv)
-//	80155FF0: 802CED3C (__dl__FPv)
+/* 80155FB0-80156010 1508F0 0060+00 1/0 0/0 0/0 .text            __dt__23daBaseNpc_moveBgActor_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -7580,5 +5120,76 @@ asm daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450FF8-80451000 0008+00 s=0 e=1 z=0  None .sbss      None */
+/* 803926B0-803926E0 01ED10 0030+00 0/0 0/0 0/0 .rodata          mCcDObj__11daBaseNpc_c */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const mCcDObj__11daBaseNpc_c[48] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_803926B0 = (void*)(&mCcDObj__11daBaseNpc_c);
+#pragma pop
+
+/* 803926E0-80392710 01ED40 0030+00 0/0 0/0 0/0 .rodata          mCcDObjInfo__8daNpcF_c */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const mCcDObjInfo__8daNpcF_c[48] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_803926E0 = (void*)(&mCcDObjInfo__8daNpcF_c);
+#pragma pop
+
+/* 80450FF8-80451000 0004F8 0008+00 0/0 1/1 0/0 .sbss            None */
+extern u8 data_80450FF8[8];
 u8 data_80450FF8[8];
+
+/* 80392710-80392A18 01ED70 0302+06 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80392710 = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80392720 = ".bck";
+SECTION_DEAD static char const* const stringBase_80392725 = ".btp";
+SECTION_DEAD static char const* const stringBase_8039272A = ".btk";
+SECTION_DEAD static char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
+SECTION_DEAD static char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
+SECTION_DEAD static char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
+SECTION_DEAD static char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
+SECTION_DEAD static char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
+SECTION_DEAD static char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
+SECTION_DEAD static char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
+SECTION_DEAD static char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
+SECTION_DEAD static char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
+SECTION_DEAD static char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
+SECTION_DEAD static char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
+SECTION_DEAD static char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
+SECTION_DEAD static char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
+SECTION_DEAD static char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
+SECTION_DEAD static char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
+SECTION_DEAD static char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
+SECTION_DEAD static char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
+SECTION_DEAD static char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
+SECTION_DEAD static char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
+SECTION_DEAD static char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
+SECTION_DEAD static char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
+SECTION_DEAD static char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
+SECTION_DEAD static char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
+SECTION_DEAD static char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
+SECTION_DEAD static char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
+SECTION_DEAD static char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
+SECTION_DEAD static char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
+SECTION_DEAD static char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_803929A1 =
+    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
+SECTION_DEAD static char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
+SECTION_DEAD static char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
+SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
+SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80392A12 = "\0\0\0\0\0";
+#pragma pop

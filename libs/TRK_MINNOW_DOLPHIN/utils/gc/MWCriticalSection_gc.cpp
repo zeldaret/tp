@@ -26,29 +26,27 @@ extern "C" void OSRestoreInterrupts();
 // Declarations:
 //
 
-/* 80372CA4-80372CC8 0024+00 s=0 e=2 z=0  None .text      MWExitCriticalSection */
-//	80372CB4: 8033D71C (OSRestoreInterrupts)
+/* 80372CA4-80372CC8 36D5E4 0024+00 0/0 2/2 0/0 .text            MWExitCriticalSection */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void MWExitCriticalSection() {
+asm void MWExitCriticalSection() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc/MWExitCriticalSection.s"
 }
 #pragma pop
 
-/* 80372CC8-80372CF8 0030+00 s=0 e=2 z=0  None .text      MWEnterCriticalSection */
-//	80372CDC: 8033D6F4 (OSDisableInterrupts)
+/* 80372CC8-80372CF8 36D608 0030+00 0/0 2/2 0/0 .text            MWEnterCriticalSection */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void MWEnterCriticalSection() {
+asm void MWEnterCriticalSection() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc/MWEnterCriticalSection.s"
 }
 #pragma pop
 
-/* 80372CF8-80372CFC 0004+00 s=0 e=1 z=0  None .text      MWInitializeCriticalSection */
-extern "C" void MWInitializeCriticalSection() {
+/* 80372CF8-80372CFC 36D638 0004+00 0/0 1/1 0/0 .text            MWInitializeCriticalSection */
+void MWInitializeCriticalSection() {
     /* empty function */
 }

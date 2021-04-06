@@ -1,6 +1,6 @@
 lbl_80ABA2B4:
-/* 80ABA2B4  3C 80 80 AC */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80ABA2B8  38 04 02 28 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80ABA2B4  3C 80 80 AC */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80AC0228@ha */
+/* 80ABA2B8  38 04 02 28 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80AC0228@l */
 /* 80ABA2BC  90 03 00 00 */	stw r0, 0(r3)
 /* 80ABA2C0  38 80 00 00 */	li r4, 0
 /* 80ABA2C4  B0 83 00 04 */	sth r4, 4(r3)

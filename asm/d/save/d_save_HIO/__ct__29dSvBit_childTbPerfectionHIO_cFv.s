@@ -1,6 +1,6 @@
 lbl_8025BF68:
-/* 8025BF68  3C 80 80 3C */	lis r4, __vt__29dSvBit_childTbPerfectionHIO_c@ha
-/* 8025BF6C  38 04 33 24 */	addi r0, r4, __vt__29dSvBit_childTbPerfectionHIO_c@l
+/* 8025BF68  3C 80 80 3C */	lis r4, __vt__29dSvBit_childTbPerfectionHIO_c@ha /* 0x803C3324@ha */
+/* 8025BF6C  38 04 33 24 */	addi r0, r4, __vt__29dSvBit_childTbPerfectionHIO_c@l /* 0x803C3324@l */
 /* 8025BF70  90 03 00 00 */	stw r0, 0(r3)
 /* 8025BF74  38 C0 00 00 */	li r6, 0
 /* 8025BF78  38 80 00 00 */	li r4, 0

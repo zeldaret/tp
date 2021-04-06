@@ -36,8 +36,8 @@ lbl_8003D3C0:
 /* 8003D448  48 31 E1 7D */	bl GXSetVtxAttrFmt
 /* 8003D44C  38 60 00 01 */	li r3, 1
 /* 8003D450  48 32 24 41 */	bl GXSetNumTevStages
-/* 8003D454  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha
-/* 8003D458  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l
+/* 8003D454  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha /* 0x80424684@ha */
+/* 8003D458  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l /* 0x80424684@l */
 /* 8003D45C  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 8003D460  38 80 00 00 */	li r4, 0
 /* 8003D464  48 32 0F B1 */	bl GXLoadTexObj
@@ -110,7 +110,7 @@ lbl_8003D4F0:
 /* 8003D56C  48 31 F1 F9 */	bl GXBegin
 /* 8003D570  A0 1C 00 00 */	lhz r0, 0(r28)
 /* 8003D574  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 8003D578  B0 03 80 00 */	sth r0, 0x8000(r3)
+/* 8003D578  B0 03 80 00 */	sth r0, 0x8000(r3)  /* 0xCC008000@l */
 /* 8003D57C  C0 02 84 08 */	lfs f0, lit_3836(r2)
 /* 8003D580  D0 03 80 00 */	stfs f0, -0x8000(r3)
 /* 8003D584  C0 02 84 08 */	lfs f0, lit_3836(r2)

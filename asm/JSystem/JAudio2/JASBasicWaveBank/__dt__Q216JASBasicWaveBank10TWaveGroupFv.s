@@ -7,8 +7,8 @@ lbl_80298A0C:
 /* 80298A20  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80298A24  7C 9F 23 78 */	mr r31, r4
 /* 80298A28  41 82 00 40 */	beq lbl_80298A68
-/* 80298A2C  3C 60 80 3C */	lis r3, __vt__Q216JASBasicWaveBank10TWaveGroup@ha
-/* 80298A30  38 03 77 3C */	addi r0, r3, __vt__Q216JASBasicWaveBank10TWaveGroup@l
+/* 80298A2C  3C 60 80 3C */	lis r3, __vt__Q216JASBasicWaveBank10TWaveGroup@ha /* 0x803C773C@ha */
+/* 80298A30  38 03 77 3C */	addi r0, r3, __vt__Q216JASBasicWaveBank10TWaveGroup@l /* 0x803C773C@l */
 /* 80298A34  90 1E 00 00 */	stw r0, 0(r30)
 /* 80298A38  80 7E 00 78 */	lwz r3, 0x78(r30)
 /* 80298A3C  28 03 00 00 */	cmplwi r3, 0

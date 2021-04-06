@@ -15,13 +15,13 @@ lbl_8080BB7C:
 /* 8080BBB0  48 00 01 38 */	b lbl_8080BCE8
 lbl_8080BBB4:
 /* 8080BBB4  38 7F 09 54 */	addi r3, r31, 0x954
-/* 8080BBB8  4B 87 7C 78 */	b Move__10dCcD_GSttsFv
+/* 8080BBB8  4B 87 7C 79 */	bl Move__10dCcD_GSttsFv
 /* 8080BBBC  38 7F 09 74 */	addi r3, r31, 0x974
-/* 8080BBC0  4B 87 88 A0 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 8080BBC0  4B 87 88 A1 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 8080BBC4  28 03 00 00 */	cmplwi r3, 0
 /* 8080BBC8  41 82 01 20 */	beq lbl_8080BCE8
 /* 8080BBCC  38 7F 09 74 */	addi r3, r31, 0x974
-/* 8080BBD0  4B 87 89 28 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 8080BBD0  4B 87 89 29 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 8080BBD4  90 7F 0A AC */	stw r3, 0xaac(r31)
 /* 8080BBD8  A8 1F 07 00 */	lha r0, 0x700(r31)
 /* 8080BBDC  2C 00 00 00 */	cmpwi r0, 0
@@ -33,7 +33,7 @@ lbl_8080BBB4:
 lbl_8080BBF4:
 /* 8080BBF4  7F E3 FB 78 */	mr r3, r31
 /* 8080BBF8  38 9F 0A AC */	addi r4, r31, 0xaac
-/* 8080BBFC  4B 87 C0 08 */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 8080BBFC  4B 87 C0 09 */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 8080BC00  80 7F 0A AC */	lwz r3, 0xaac(r31)
 /* 8080BC04  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8080BC08  74 00 D8 00 */	andis. r0, r0, 0xd800
@@ -81,8 +81,8 @@ lbl_8080BC64:
 /* 8080BCA0  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8080BCA4  54 00 00 C7 */	rlwinm. r0, r0, 0, 3, 3
 /* 8080BCA8  41 82 00 2C */	beq lbl_8080BCD4
-/* 8080BCAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8080BCB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8080BCAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8080BCB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8080BCB4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8080BCB8  38 80 00 03 */	li r4, 3
 /* 8080BCBC  7F E5 FB 78 */	mr r5, r31
@@ -90,7 +90,7 @@ lbl_8080BC64:
 /* 8080BCC4  38 E0 00 00 */	li r7, 0
 /* 8080BCC8  39 00 00 00 */	li r8, 0
 /* 8080BCCC  39 20 00 00 */	li r9, 0
-/* 8080BCD0  4B 84 05 48 */	b setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
+/* 8080BCD0  4B 84 05 49 */	bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 lbl_8080BCD4:
 /* 8080BCD4  7F E3 FB 78 */	mr r3, r31
 /* 8080BCD8  38 80 00 03 */	li r4, 3

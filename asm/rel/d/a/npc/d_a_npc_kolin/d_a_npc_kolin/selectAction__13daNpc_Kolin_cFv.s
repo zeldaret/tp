@@ -5,10 +5,10 @@ lbl_80555E38:
 /* 80555E44  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80555E48  93 C1 00 08 */	stw r30, 8(r1)
 /* 80555E4C  7C 7F 1B 78 */	mr r31, r3
-/* 80555E50  3C 60 80 56 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80555E54  3B C3 A8 C8 */	addi r30, r3, cNullVec__6Z2Calc@l
-/* 80555E58  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80555E5C  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80555E50  3C 60 80 56 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8055A8C8@ha */
+/* 80555E54  3B C3 A8 C8 */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x8055A8C8@l */
+/* 80555E58  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80555E5C  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80555E60  80 64 00 00 */	lwz r3, 0(r4)
 /* 80555E64  80 04 00 04 */	lwz r0, 4(r4)
 /* 80555E68  90 7F 0F D8 */	stw r3, 0xfd8(r31)
@@ -30,7 +30,7 @@ lbl_80555E94:
 /* 80555EA4  80 1E 08 CC */	lwz r0, 0x8cc(r30)
 /* 80555EA8  90 1F 0F E0 */	stw r0, 0xfe0(r31)
 /* 80555EAC  38 60 00 16 */	li r3, 0x16
-/* 80555EB0  4B BF 6C BC */	b daNpcT_chkTmpBit__FUl
+/* 80555EB0  4B BF 6C BD */	bl daNpcT_chkTmpBit__FUl
 /* 80555EB4  2C 03 00 00 */	cmpwi r3, 0
 /* 80555EB8  41 82 00 54 */	beq lbl_80555F0C
 /* 80555EBC  80 7E 08 D0 */	lwz r3, 0x8d0(r30)

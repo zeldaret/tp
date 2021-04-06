@@ -3,18 +3,16 @@
 #
 
 M263_TARGET := $(BUILD_DIR)/rel/d/a/d_a_hozelda.plf
+M263_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_hozelda.lcf
+M263_MAP := $(BUILD_DIR)/rel/d/a/d_a_hozelda.map
 
 M263_CPP_FILES := \
-	rel/d/a/d_a_hozelda/executor.cpp \
-	rel/d/a/d_a_hozelda/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_hozelda/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_hozelda/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_hozelda/d_a_hozelda.cpp \
 
 M263_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_hozelda/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_hozelda/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_hozelda/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_hozelda/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_hozelda/d_a_hozelda.o \
 
@@ -31,15 +29,21 @@ M263_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map263.map\
+	-m _prolog \
+	-lcf $(M263_LDSCRIPT) \
+	-unused -map $(M263_MAP) \
+	-w off \
 
 $(M263_TARGET): $(M263_O_FILES) $(M263_LIBS)
+	@echo [263] creating $(M263_TARGET)
 	@echo $(M263_LIBS) $(M263_O_FILES) > build/M263_ofiles
-	$(LD) -opt_partial $(M263_LDFLAGS) -o $(M263_TARGET) @build/M263_ofiles
+	@python3 tools/lcf.py rel 263 --output $(M263_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M263_LDFLAGS) -o $(M263_TARGET) @build/M263_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_hozelda/%.o: rel/d/a/d_a_hozelda/%.cpp
+	@echo [263] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M263_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M263_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -7,8 +7,8 @@ lbl_80140C80:
 /* 80140C94  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80140C98  7C 9F 23 78 */	mr r31, r4
 /* 80140C9C  41 82 00 24 */	beq lbl_80140CC0
-/* 80140CA0  3C 80 80 3B */	lis r4, __vt__8dEyeHL_c@ha
-/* 80140CA4  38 04 2E 80 */	addi r0, r4, __vt__8dEyeHL_c@l
+/* 80140CA0  3C 80 80 3B */	lis r4, __vt__8dEyeHL_c@ha /* 0x803B2E80@ha */
+/* 80140CA4  38 04 2E 80 */	addi r0, r4, __vt__8dEyeHL_c@l /* 0x803B2E80@l */
 /* 80140CA8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80140CAC  4B F5 BD 7D */	bl remove__8dEyeHL_cFv
 /* 80140CB0  7F E0 07 35 */	extsh. r0, r31

@@ -6,15 +6,15 @@ lbl_804953D4:
 /* 804953E4  7C 7F 1B 78 */	mr r31, r3
 /* 804953E8  38 00 00 00 */	li r0, 0
 /* 804953EC  B0 03 09 C4 */	sth r0, 0x9c4(r3)
-/* 804953F0  3C 60 80 43 */	lis r3, BaseX__4cXyz@ha
-/* 804953F4  C4 03 0D 0C */	lfsu f0, BaseX__4cXyz@l(r3)
+/* 804953F0  3C 60 80 43 */	lis r3, BaseX__4cXyz@ha /* 0x80430D0C@ha */
+/* 804953F4  C4 03 0D 0C */	lfsu f0, BaseX__4cXyz@l(r3)  /* 0x80430D0C@l */
 /* 804953F8  D0 1F 09 B8 */	stfs f0, 0x9b8(r31)
 /* 804953FC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80495400  D0 1F 09 BC */	stfs f0, 0x9bc(r31)
 /* 80495404  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80495408  D0 1F 09 C0 */	stfs f0, 0x9c0(r31)
 /* 8049540C  38 7F 09 88 */	addi r3, r31, 0x988
-/* 80495410  4B EB 10 74 */	b PSMTXIdentity
+/* 80495410  4B EB 10 75 */	bl PSMTXIdentity
 /* 80495414  80 7F 07 24 */	lwz r3, 0x724(r31)
 /* 80495418  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 8049541C  D0 03 00 18 */	stfs f0, 0x18(r3)
@@ -37,12 +37,12 @@ lbl_80495454:
 /* 8049545C  80 7F 05 68 */	lwz r3, 0x568(r31)
 /* 80495460  28 03 00 00 */	cmplwi r3, 0
 /* 80495464  41 82 00 08 */	beq lbl_8049546C
-/* 80495468  4B BE 65 58 */	b Move__4dBgWFv
+/* 80495468  4B BE 65 59 */	bl Move__4dBgWFv
 lbl_8049546C:
 /* 8049546C  80 7F 07 38 */	lwz r3, 0x738(r31)
 /* 80495470  28 03 00 00 */	cmplwi r3, 0
 /* 80495474  41 82 00 08 */	beq lbl_8049547C
-/* 80495478  4B BE 65 48 */	b Move__4dBgWFv
+/* 80495478  4B BE 65 49 */	bl Move__4dBgWFv
 lbl_8049547C:
 /* 8049547C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80495480  80 01 00 14 */	lwz r0, 0x14(r1)

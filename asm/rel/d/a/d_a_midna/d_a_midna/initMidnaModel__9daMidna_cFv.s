@@ -5,8 +5,8 @@ lbl_804C44CC:
 /* 804C44D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804C44DC  93 C1 00 08 */	stw r30, 8(r1)
 /* 804C44E0  7C 7F 1B 78 */	mr r31, r3
-/* 804C44E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804C44E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804C44E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804C44E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804C44EC  83 C3 5D B4 */	lwz r30, 0x5db4(r3)
 /* 804C44F0  80 1F 08 94 */	lwz r0, 0x894(r31)
 /* 804C44F4  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -51,9 +51,9 @@ lbl_804C4578:
 /* 804C4588  80 03 00 08 */	lwz r0, 8(r3)
 /* 804C458C  90 1F 06 A0 */	stw r0, 0x6a0(r31)
 /* 804C4590  38 7F 06 20 */	addi r3, r31, 0x620
-/* 804C4594  4B C9 A8 18 */	b initData__14daPy_anmHeap_cFv
+/* 804C4594  4B C9 A8 19 */	bl initData__14daPy_anmHeap_cFv
 /* 804C4598  38 7F 06 34 */	addi r3, r31, 0x634
-/* 804C459C  4B C9 A8 10 */	b initData__14daPy_anmHeap_cFv
+/* 804C459C  4B C9 A8 11 */	bl initData__14daPy_anmHeap_cFv
 /* 804C45A0  48 00 01 98 */	b lbl_804C4738
 lbl_804C45A4:
 /* 804C45A4  80 7F 06 88 */	lwz r3, 0x688(r31)
@@ -84,9 +84,9 @@ lbl_804C45EC:
 /* 804C4600  90 1F 06 9C */	stw r0, 0x69c(r31)
 /* 804C4604  90 1F 06 A0 */	stw r0, 0x6a0(r31)
 /* 804C4608  38 7F 06 20 */	addi r3, r31, 0x620
-/* 804C460C  4B C9 A7 A0 */	b initData__14daPy_anmHeap_cFv
+/* 804C460C  4B C9 A7 A1 */	bl initData__14daPy_anmHeap_cFv
 /* 804C4610  38 7F 06 34 */	addi r3, r31, 0x634
-/* 804C4614  4B C9 A7 98 */	b initData__14daPy_anmHeap_cFv
+/* 804C4614  4B C9 A7 99 */	bl initData__14daPy_anmHeap_cFv
 lbl_804C4618:
 /* 804C4618  88 1E 2F BF */	lbz r0, 0x2fbf(r30)
 /* 804C461C  28 00 00 00 */	cmplwi r0, 0
@@ -162,9 +162,9 @@ lbl_804C471C:
 /* 804C4720  28 00 00 04 */	cmplwi r0, 4
 /* 804C4724  41 80 FF D8 */	blt lbl_804C46FC
 /* 804C4728  38 7F 06 20 */	addi r3, r31, 0x620
-/* 804C472C  4B C9 A6 80 */	b initData__14daPy_anmHeap_cFv
+/* 804C472C  4B C9 A6 81 */	bl initData__14daPy_anmHeap_cFv
 /* 804C4730  38 7F 06 34 */	addi r3, r31, 0x634
-/* 804C4734  4B C9 A6 78 */	b initData__14daPy_anmHeap_cFv
+/* 804C4734  4B C9 A6 79 */	bl initData__14daPy_anmHeap_cFv
 lbl_804C4738:
 /* 804C4738  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 804C473C  83 C1 00 08 */	lwz r30, 8(r1)

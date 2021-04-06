@@ -10,8 +10,8 @@ lbl_8018F2A4:
 /* 8018F2C4  38 03 FF FF */	addi r0, r3, -1
 /* 8018F2C8  B0 1F 03 AC */	sth r0, 0x3ac(r31)
 lbl_8018F2CC:
-/* 8018F2CC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018F2D0  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018F2CC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018F2D0  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018F2D4  4B E8 7C 59 */	bl FormatSync__15mDoMemCd_Ctrl_cFv
 /* 8018F2D8  90 7F 03 B4 */	stw r3, 0x3b4(r31)
 /* 8018F2DC  80 1F 03 B4 */	lwz r0, 0x3b4(r31)

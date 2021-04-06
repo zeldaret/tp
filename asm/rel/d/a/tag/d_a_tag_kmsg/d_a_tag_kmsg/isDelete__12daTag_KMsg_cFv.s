@@ -29,7 +29,7 @@ lbl_8048E920:
 /* 8048E924  48 00 00 70 */	b lbl_8048E994
 lbl_8048E928:
 /* 8048E928  38 60 00 40 */	li r3, 0x40
-/* 8048E92C  4B CB E1 80 */	b daNpcT_chkEvtBit__FUl
+/* 8048E92C  4B CB E1 81 */	bl daNpcT_chkEvtBit__FUl
 /* 8048E930  7C 60 00 34 */	cntlzw r0, r3
 /* 8048E934  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8048E938  48 00 00 5C */	b lbl_8048E994
@@ -42,11 +42,11 @@ lbl_8048E944:
 /* 8048E94C  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8048E950  28 04 00 FF */	cmplwi r4, 0xff
 /* 8048E954  41 82 00 24 */	beq lbl_8048E978
-/* 8048E958  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8048E95C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048E958  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048E95C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048E960  88 05 04 E2 */	lbz r0, 0x4e2(r5)
 /* 8048E964  7C 05 07 74 */	extsb r5, r0
-/* 8048E968  4B BA 69 F8 */	b isSwitch__10dSv_info_cCFii
+/* 8048E968  4B BA 69 F9 */	bl isSwitch__10dSv_info_cCFii
 /* 8048E96C  2C 03 00 00 */	cmpwi r3, 0
 /* 8048E970  41 82 00 08 */	beq lbl_8048E978
 /* 8048E974  3B E0 00 01 */	li r31, 1

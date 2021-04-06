@@ -45,8 +45,8 @@ lbl_8034184C:
 /* 8034184C  28 03 00 00 */	cmplwi r3, 0
 /* 80341850  40 82 FF DC */	bne lbl_8034182C
 /* 80341854  90 1D 02 D0 */	stw r0, 0x2d0(r29)
-/* 80341858  3C 60 80 45 */	lis r3, RunQueue@ha
-/* 8034185C  38 03 BB 78 */	addi r0, r3, RunQueue@l
+/* 80341858  3C 60 80 45 */	lis r3, RunQueue@ha /* 0x8044BB78@ha */
+/* 8034185C  38 03 BB 78 */	addi r0, r3, RunQueue@l /* 0x8044BB78@l */
 /* 80341860  80 7D 02 D0 */	lwz r3, 0x2d0(r29)
 /* 80341864  54 63 18 38 */	slwi r3, r3, 3
 /* 80341868  7C 00 1A 14 */	add r0, r0, r3

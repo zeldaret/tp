@@ -1,10 +1,10 @@
 lbl_80340590:
 /* 80340590  7C 08 02 A6 */	mflr r0
-/* 80340594  3C 60 80 45 */	lis r3, Scb@ha
+/* 80340594  3C 60 80 45 */	lis r3, Scb@ha /* 0x8044BB20@ha */
 /* 80340598  90 01 00 04 */	stw r0, 4(r1)
 /* 8034059C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803405A0  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 803405A4  3B E3 BB 20 */	addi r31, r3, Scb@l
+/* 803405A4  3B E3 BB 20 */	addi r31, r3, Scb@l /* 0x8044BB20@l */
 /* 803405A8  4B FF D1 4D */	bl OSDisableInterrupts
 /* 803405AC  80 1F 00 48 */	lwz r0, 0x48(r31)
 /* 803405B0  38 9F 00 48 */	addi r4, r31, 0x48

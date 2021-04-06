@@ -2,8 +2,8 @@ lbl_800FD1F0:
 /* 800FD1F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800FD1F4  A8 C3 30 6E */	lha r6, 0x306e(r3)
 /* 800FD1F8  54 C0 04 38 */	rlwinm r0, r6, 0, 0x10, 0x1c
-/* 800FD1FC  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 800FD200  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 800FD1FC  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FD200  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FD204  7C C5 04 2E */	lfsx f6, r5, r0
 /* 800FD208  7C A5 02 14 */	add r5, r5, r0
 /* 800FD20C  C0 05 00 04 */	lfs f0, 4(r5)

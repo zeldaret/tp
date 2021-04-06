@@ -13,7 +13,7 @@ lbl_80CA62F8:
 /* 80CA6324  4B FF F6 99 */	bl setBaseMtx__15daObjOCTHASHI_cFv
 /* 80CA6328  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CA632C  7C 03 07 74 */	extsb r3, r0
-/* 80CA6330  4B 38 6D 3C */	b dComIfGp_getReverb__Fi
+/* 80CA6330  4B 38 6D 3D */	bl dComIfGp_getReverb__Fi
 /* 80CA6334  7C 65 1B 78 */	mr r5, r3
 /* 80CA6338  38 7E 06 EC */	addi r3, r30, 0x6ec
 /* 80CA633C  38 80 00 00 */	li r4, 0

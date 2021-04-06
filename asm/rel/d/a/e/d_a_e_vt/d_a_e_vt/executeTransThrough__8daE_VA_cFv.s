@@ -4,8 +4,8 @@ lbl_807C8A84:
 /* 807C8A8C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807C8A90  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807C8A94  7C 7F 1B 78 */	mr r31, r3
-/* 807C8A98  3C 80 80 7D */	lis r4, lit_3907@ha
-/* 807C8A9C  38 C4 EC A8 */	addi r6, r4, lit_3907@l
+/* 807C8A98  3C 80 80 7D */	lis r4, lit_3907@ha /* 0x807CECA8@ha */
+/* 807C8A9C  38 C4 EC A8 */	addi r6, r4, lit_3907@l /* 0x807CECA8@l */
 /* 807C8AA0  80 03 13 20 */	lwz r0, 0x1320(r3)
 /* 807C8AA4  2C 00 00 01 */	cmpwi r0, 1
 /* 807C8AA8  41 82 00 3C */	beq lbl_807C8AE4
@@ -43,18 +43,18 @@ lbl_807C8B0C:
 /* 807C8B1C  38 A0 00 00 */	li r5, 0
 /* 807C8B20  4B FF AD F9 */	bl setActionMode__8daE_VA_cFii
 lbl_807C8B24:
-/* 807C8B24  4B 99 69 00 */	b checkNowWolfEyeUp__9daPy_py_cFv
+/* 807C8B24  4B 99 69 01 */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 807C8B28  2C 03 00 00 */	cmpwi r3, 0
 /* 807C8B2C  40 82 00 38 */	bne lbl_807C8B64
 /* 807C8B30  80 1F 13 58 */	lwz r0, 0x1358(r31)
 /* 807C8B34  2C 00 00 00 */	cmpwi r0, 0
 /* 807C8B38  40 82 00 2C */	bne lbl_807C8B64
-/* 807C8B3C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 807C8B40  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 807C8B3C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 807C8B40  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 807C8B44  80 63 00 00 */	lwz r3, 0(r3)
 /* 807C8B48  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 807C8B4C  38 80 00 01 */	li r4, 1
-/* 807C8B50  4B AE 92 A4 */	b changeSubBgmStatus__8Z2SeqMgrFl
+/* 807C8B50  4B AE 92 A5 */	bl changeSubBgmStatus__8Z2SeqMgrFl
 /* 807C8B54  7F E3 FB 78 */	mr r3, r31
 /* 807C8B58  38 80 00 13 */	li r4, 0x13
 /* 807C8B5C  38 A0 00 00 */	li r5, 0

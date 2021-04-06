@@ -1,6 +1,6 @@
 lbl_8019E548:
-/* 8019E548  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019E54C  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 8019E548  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E54C  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019E550  54 64 0F FE */	srwi r4, r3, 0x1f
 /* 8019E554  38 04 FF FF */	addi r0, r4, -1
 /* 8019E558  7C 60 00 38 */	and r0, r3, r0

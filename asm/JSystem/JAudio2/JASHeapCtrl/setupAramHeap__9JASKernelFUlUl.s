@@ -5,8 +5,8 @@ lbl_80290AD0:
 /* 80290ADC  7C 60 1B 78 */	mr r0, r3
 /* 80290AE0  7C 85 23 78 */	mr r5, r4
 /* 80290AE4  90 0D 8C 94 */	stw r0, sAramBase__9JASKernel(r13)
-/* 80290AE8  3C 60 80 43 */	lis r3, audioAramHeap__9JASKernel@ha
-/* 80290AEC  38 63 15 DC */	addi r3, r3, audioAramHeap__9JASKernel@l
+/* 80290AE8  3C 60 80 43 */	lis r3, audioAramHeap__9JASKernel@ha /* 0x804315DC@ha */
+/* 80290AEC  38 63 15 DC */	addi r3, r3, audioAramHeap__9JASKernel@l /* 0x804315DC@l */
 /* 80290AF0  7C 04 03 78 */	mr r4, r0
 /* 80290AF4  4B FF F6 B9 */	bl initRootHeap__7JASHeapFPvUl
 /* 80290AF8  80 01 00 14 */	lwz r0, 0x14(r1)

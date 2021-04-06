@@ -11,8 +11,8 @@ lbl_8020824C:
 /* 80208270  C0 02 AD 4C */	lfs f0, lit_4147(r2)
 /* 80208274  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80208278  41 82 00 B4 */	beq lbl_8020832C
-/* 8020827C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80208280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020827C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80208280  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80208284  88 03 5E 47 */	lbz r0, 0x5e47(r3)
 /* 80208288  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8020828C  41 82 00 20 */	beq lbl_802082AC
@@ -27,8 +27,8 @@ lbl_802082AC:
 /* 802082AC  80 7F 00 48 */	lwz r3, 0x48(r31)
 /* 802082B0  FC 20 00 90 */	fmr f1, f0
 /* 802082B4  48 04 D5 1D */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 802082B8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 802082BC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 802082B8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 802082BC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 802082C0  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 802082C4  80 63 01 0C */	lwz r3, 0x10c(r3)
 /* 802082C8  80 9F 00 48 */	lwz r4, 0x48(r31)

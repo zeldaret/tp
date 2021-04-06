@@ -12,8 +12,8 @@ lbl_8029F03C:
 /* 8029F064  48 03 CD 99 */	bl __ct__10JSUPtrLinkFPv
 /* 8029F068  38 7C 00 10 */	addi r3, r28, 0x10
 /* 8029F06C  48 00 32 8D */	bl __ct__8JAISoundFv
-/* 8029F070  3C 60 80 3D */	lis r3, __vt__5JAISe@ha
-/* 8029F074  38 63 98 58 */	addi r3, r3, __vt__5JAISe@l
+/* 8029F070  3C 60 80 3D */	lis r3, __vt__5JAISe@ha /* 0x803C9858@ha */
+/* 8029F074  38 63 98 58 */	addi r3, r3, __vt__5JAISe@l /* 0x803C9858@l */
 /* 8029F078  90 7C 00 A8 */	stw r3, 0xa8(r28)
 /* 8029F07C  38 03 00 08 */	addi r0, r3, 8
 /* 8029F080  90 1C 00 10 */	stw r0, 0x10(r28)

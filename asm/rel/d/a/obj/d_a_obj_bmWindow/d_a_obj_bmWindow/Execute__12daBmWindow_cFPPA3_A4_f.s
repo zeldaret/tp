@@ -11,7 +11,7 @@ lbl_80BB88D8:
 /* 80BB88FC  38 03 00 24 */	addi r0, r3, 0x24
 /* 80BB8900  90 1F 00 00 */	stw r0, 0(r31)
 /* 80BB8904  38 7E 05 CC */	addi r3, r30, 0x5cc
-/* 80BB8908  4B 4C AF 28 */	b Move__10dCcD_GSttsFv
+/* 80BB8908  4B 4C AF 29 */	bl Move__10dCcD_GSttsFv
 /* 80BB890C  7F C3 F3 78 */	mr r3, r30
 /* 80BB8910  4B FF FA 41 */	bl setBaseMtx__12daBmWindow_cFv
 /* 80BB8914  38 60 00 01 */	li r3, 1

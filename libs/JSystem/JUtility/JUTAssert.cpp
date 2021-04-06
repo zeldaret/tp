@@ -63,20 +63,18 @@ extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802E495C-802E4960 0004+00 s=0 e=1 z=0  None .text      create__12JUTAssertionFv */
+/* 802E495C-802E4960 2DF29C 0004+00 0/0 1/1 0/0 .text            create__12JUTAssertionFv */
 void JUTAssertion::create() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80451530-80451538 0004+04 s=2 e=0 z=0  None .sbss
+/* 80451530-80451538 000A30 0004+04 2/2 0/0 0/0 .sbss
  * sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@      */
 static u8 data_80451530[4 + 4 /* padding */];
 
-/* 802E4960-802E499C 003C+00 s=2 e=0 z=0  None .text      flush_subroutine__12JUTAssertionFv */
-//	802E4960: 80451530 (data_80451530)
-//	802E4984: 80451530 (data_80451530)
-//	802E4988: 80451530 (data_80451530)
+/* 802E4960-802E499C 2DF2A0 003C+00 2/2 0/0 0/0 .text            flush_subroutine__12JUTAssertionFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,26 +85,15 @@ asm void JUTAssertion::flush_subroutine() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80434870-804348B0 0040+00 s=2 e=0 z=0  None .bss
+/* 80434870-804348B0 061590 0040+00 2/2 0/0 0/0 .bss
  * sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@  */
 static u8 data_80434870[64];
 
-/* 804348B0-804349B0 0100+00 s=2 e=0 z=0  None .bss
+/* 804348B0-804349B0 0615D0 0100+00 2/2 0/0 0/0 .bss
  * sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@    */
 static u8 data_804348B0[256];
 
-/* 802E499C-802E4A54 00B8+00 s=0 e=1 z=0  None .text      flushMessage__12JUTAssertionFv */
-//	802E49AC: 802E4960 (flush_subroutine__12JUTAssertionFv)
-//	802E49B8: 804508F8 (data_804508F8)
-//	802E49C4: 80451528 (sDirectPrint__14JUTDirectPrint)
-//	802E49F8: 802E4798 (setCharColor__14JUTDirectPrintFQ28JUtility6TColor)
-//	802E4A08: 80434870 (data_80434870)
-//	802E4A0C: 80434870 (data_80434870)
-//	802E4A10: 802E46D8 (drawString__14JUTDirectPrintFUsUsPc)
-//	802E4A20: 804348B0 (data_804348B0)
-//	802E4A24: 804348B0 (data_804348B0)
-//	802E4A28: 802E46D8 (drawString__14JUTDirectPrintFUsUsPc)
-//	802E4A3C: 802E4798 (setCharColor__14JUTDirectPrintFQ28JUtility6TColor)
+/* 802E499C-802E4A54 2DF2DC 00B8+00 0/0 1/1 0/0 .text            flushMessage__12JUTAssertionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -117,48 +104,23 @@ asm void JUTAssertion::flushMessage() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804560B8-804560BC 0004+00 s=1 e=0 z=0  None .sdata2    @724 */
+/* 804560B8-804560BC 0046B8 0004+00 1/1 0/0 0/0 .sdata2          @724 */
 SECTION_SDATA2 static f32 lit_724 = 30.0f;
 
-/* 804560BC-804560C0 0004+00 s=1 e=0 z=0  None .sdata2    @725 */
+/* 804560BC-804560C0 0046BC 0004+00 1/1 0/0 0/0 .sdata2          @725 */
 SECTION_SDATA2 static f32 lit_725 = 36.0f;
 
-/* 804560C0-804560C8 0004+04 s=1 e=0 z=0  None .sdata2    @726 */
+/* 804560C0-804560C8 0046C0 0004+04 1/1 0/0 0/0 .sdata2          @726 */
 SECTION_SDATA2 static f32 lit_726[1 + 1 /* padding */] = {
     54.0f,
     /* padding */
     0.0f,
 };
 
-/* 804560C8-804560D0 0008+00 s=1 e=0 z=0  None .sdata2    @728 */
+/* 804560C8-804560D0 0046C8 0008+00 1/1 0/0 0/0 .sdata2          @728 */
 SECTION_SDATA2 static f64 lit_728 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802E4A54-802E4C34 01E0+00 s=0 e=1 z=0  None .text      flushMessage_dbPrint__12JUTAssertionFv */
-//	802E4A70: 802E4960 (flush_subroutine__12JUTAssertionFv)
-//	802E4A7C: 804508F8 (data_804508F8)
-//	802E4A88: 804514C8 (sDebugPrint__10JUTDbPrint)
-//	802E4AA0: 8034D8BC (VIGetRetraceCount)
-//	802E4AE8: 802DED70 (setCharColor__7JUTFontFQ28JUtility6TColor)
-//	802E4AEC: 80434870 (data_80434870)
-//	802E4AF0: 80434870 (data_80434870)
-//	802E4AF4: 80368BE4 (strlen)
-//	802E4B10: 804560C8 (lit_728)
-//	802E4B40: 804560C8 (lit_728)
-//	802E4B60: 804560B8 (lit_724)
-//	802E4B64: 804560BC (lit_725)
-//	802E4B6C: 80434870 (data_80434870)
-//	802E4B70: 80434870 (data_80434870)
-//	802E4B7C: 802DEE28 (drawString_size_scale__7JUTFontFffffPCcUlb)
-//	802E4B80: 804348B0 (data_804348B0)
-//	802E4B84: 804348B0 (data_804348B0)
-//	802E4B88: 80368BE4 (strlen)
-//	802E4BA4: 804560C8 (lit_728)
-//	802E4BD4: 804560C8 (lit_728)
-//	802E4BF4: 804560B8 (lit_724)
-//	802E4BF8: 804560C0 (lit_726)
-//	802E4C00: 804348B0 (data_804348B0)
-//	802E4C04: 804348B0 (data_804348B0)
-//	802E4C10: 802DEE28 (drawString_size_scale__7JUTFontFffffPCcUlb)
+/* 802E4A54-802E4C34 2DF394 01E0+00 0/0 1/1 0/0 .text flushMessage_dbPrint__12JUTAssertionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -168,8 +130,7 @@ asm void JUTAssertion::flushMessage_dbPrint() {
 }
 #pragma pop
 
-/* 802E4C34-802E4C3C 0008+00 s=0 e=2 z=0  None .text      setVisible__12JUTAssertionFb */
-//	802E4C34: 804508F8 (data_804508F8)
+/* 802E4C34-802E4C3C 2DF574 0008+00 0/0 2/2 0/0 .text            setVisible__12JUTAssertionFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,8 +140,8 @@ asm void JUTAssertion::setVisible(bool param_0) {
 }
 #pragma pop
 
-/* 802E4C3C-802E4C54 0018+00 s=0 e=2 z=0  None .text      setMessageCount__12JUTAssertionFi */
-//	802E4C4C: 80451530 (data_80451530)
+/* 802E4C3C-802E4C54 2DF57C 0018+00 0/0 2/2 0/0 .text            setMessageCount__12JUTAssertionFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

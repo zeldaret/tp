@@ -4,8 +4,8 @@ lbl_800315A4:
 /* 800315AC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800315B0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800315B4  93 C1 00 08 */	stw r30, 8(r1)
-/* 800315B8  3C 60 80 42 */	lis r3, mData__7daSus_c@ha
-/* 800315BC  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l
+/* 800315B8  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 800315BC  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 800315C0  7C 1F 03 78 */	mr r31, r0
 /* 800315C4  3B C0 00 00 */	li r30, 0
 /* 800315C8  48 00 00 20 */	b lbl_800315E8

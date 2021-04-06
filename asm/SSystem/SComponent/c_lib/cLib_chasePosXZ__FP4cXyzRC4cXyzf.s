@@ -54,8 +54,8 @@ lbl_80270A5C:
 /* 80270A5C  C8 02 B7 F8 */	lfd f0, lit_2381(r2)
 /* 80270A60  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80270A64  40 80 00 10 */	bge lbl_80270A74
-/* 80270A68  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80270A6C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80270A68  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80270A6C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80270A70  48 00 00 70 */	b lbl_80270AE0
 lbl_80270A74:
 /* 80270A74  D0 21 00 08 */	stfs f1, 8(r1)
@@ -89,8 +89,8 @@ lbl_80270ACC:
 lbl_80270AD0:
 /* 80270AD0  2C 00 00 01 */	cmpwi r0, 1
 /* 80270AD4  40 82 00 0C */	bne lbl_80270AE0
-/* 80270AD8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80270ADC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80270AD8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80270ADC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80270AE0:
 /* 80270AE0  C0 02 B7 E0 */	lfs f0, lit_2262(r2)
 /* 80270AE4  FC 1F 00 00 */	fcmpu cr0, f31, f0

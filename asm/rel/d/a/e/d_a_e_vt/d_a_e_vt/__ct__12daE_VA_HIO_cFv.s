@@ -1,8 +1,8 @@
 lbl_807C25EC:
-/* 807C25EC  3C 80 80 7D */	lis r4, lit_3907@ha
-/* 807C25F0  38 A4 EC A8 */	addi r5, r4, lit_3907@l
-/* 807C25F4  3C 80 80 7D */	lis r4, __vt__12daE_VA_HIO_c@ha
-/* 807C25F8  38 04 F4 60 */	addi r0, r4, __vt__12daE_VA_HIO_c@l
+/* 807C25EC  3C 80 80 7D */	lis r4, lit_3907@ha /* 0x807CECA8@ha */
+/* 807C25F0  38 A4 EC A8 */	addi r5, r4, lit_3907@l /* 0x807CECA8@l */
+/* 807C25F4  3C 80 80 7D */	lis r4, __vt__12daE_VA_HIO_c@ha /* 0x807CF460@ha */
+/* 807C25F8  38 04 F4 60 */	addi r0, r4, __vt__12daE_VA_HIO_c@l /* 0x807CF460@l */
 /* 807C25FC  90 03 00 00 */	stw r0, 0(r3)
 /* 807C2600  38 00 FF FF */	li r0, -1
 /* 807C2604  98 03 00 04 */	stb r0, 4(r3)

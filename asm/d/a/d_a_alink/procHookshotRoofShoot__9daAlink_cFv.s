@@ -29,8 +29,8 @@ lbl_8010CDA8:
 lbl_8010CDC4:
 /* 8010CDC4  38 00 00 00 */	li r0, 0
 /* 8010CDC8  98 1F 20 68 */	stb r0, 0x2068(r31)
-/* 8010CDCC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010CDD0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8010CDCC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010CDD0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010CDD4  80 1E 5F 18 */	lwz r0, 0x5f18(r30)
 /* 8010CDD8  54 00 03 98 */	rlwinm r0, r0, 0, 0xe, 0xc
 /* 8010CDDC  90 1E 5F 18 */	stw r0, 0x5f18(r30)

@@ -7,9 +7,9 @@ lbl_8034B8AC:
 /* 8034B8C0  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 8034B8C4  3B C3 00 00 */	addi r30, r3, 0
 /* 8034B8C8  4B FF 1E 2D */	bl OSDisableInterrupts
-/* 8034B8CC  3C 80 80 45 */	lis r4, WaitingQueue@ha
+/* 8034B8CC  3C 80 80 45 */	lis r4, WaitingQueue@ha /* 0x8044C998@ha */
 /* 8034B8D0  57 C5 18 38 */	slwi r5, r30, 3
-/* 8034B8D4  38 04 C9 98 */	addi r0, r4, WaitingQueue@l
+/* 8034B8D4  38 04 C9 98 */	addi r0, r4, WaitingQueue@l /* 0x8044C998@l */
 /* 8034B8D8  7C A0 2A 14 */	add r5, r0, r5
 /* 8034B8DC  80 85 00 04 */	lwz r4, 4(r5)
 /* 8034B8E0  93 E4 00 00 */	stw r31, 0(r4)

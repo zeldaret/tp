@@ -9,8 +9,8 @@ lbl_80244D8C:
 /* 80244DA8  7C 7C 1B 78 */	mr r28, r3
 /* 80244DAC  FF E0 08 90 */	fmr f31, f1
 /* 80244DB0  80 63 00 08 */	lwz r3, 8(r3)
-/* 80244DB4  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 80244DB8  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 80244DB4  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80244DB8  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80244DBC  C0 04 00 38 */	lfs f0, 0x38(r4)
 /* 80244DC0  EC 3F 00 32 */	fmuls f1, f31, f0
 /* 80244DC4  48 01 0A 0D */	bl setAlphaRate__13CPaneMgrAlphaFf

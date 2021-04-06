@@ -11,22 +11,22 @@ lbl_800787BC:
 /* 800787E0  7C FE 3B 78 */	mr r30, r7
 /* 800787E4  28 08 00 00 */	cmplwi r8, 0
 /* 800787E8  40 82 00 50 */	bne lbl_80078838
-/* 800787EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800787F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800787EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800787F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800787F4  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 800787F8  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 800787FC  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 80078800  48 2C E0 E9 */	bl PSMTXTrans
-/* 80078804  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80078808  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80078804  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80078808  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8007880C  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
 /* 80078810  4B F9 3C 25 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80078814  C0 3F 04 EC */	lfs f1, 0x4ec(r31)
 /* 80078818  C0 5F 04 F0 */	lfs f2, 0x4f0(r31)
 /* 8007881C  C0 7F 04 F4 */	lfs f3, 0x4f4(r31)
 /* 80078820  4B F9 46 19 */	bl scaleM__14mDoMtx_stack_cFfff
-/* 80078824  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80078828  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80078824  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80078828  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8007882C  38 9F 05 6C */	addi r4, r31, 0x56c
 /* 80078830  48 2C DC 81 */	bl PSMTXCopy
 /* 80078834  48 00 00 10 */	b lbl_80078844
@@ -39,8 +39,8 @@ lbl_80078844:
 /* 80078848  93 8D 89 F4 */	stw r28, m_dzb_id__16dBgS_MoveBgActor(r13)
 /* 8007884C  93 AD 89 F8 */	stw r29, m_set_func__16dBgS_MoveBgActor(r13)
 /* 80078850  7F E3 FB 78 */	mr r3, r31
-/* 80078854  3C 80 80 08 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha
-/* 80078858  38 84 86 68 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l
+/* 80078854  3C 80 80 08 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha /* 0x80078668@ha */
+/* 80078858  38 84 86 68 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l /* 0x80078668@l */
 /* 8007885C  7F C5 F3 78 */	mr r5, r30
 /* 80078860  4B FA 1C 51 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80078864  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -51,8 +51,8 @@ lbl_80078874:
 /* 80078874  80 9F 05 68 */	lwz r4, 0x568(r31)
 /* 80078878  28 04 00 00 */	cmplwi r4, 0
 /* 8007887C  41 82 00 28 */	beq lbl_800788A4
-/* 80078880  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80078884  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80078880  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80078884  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80078888  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8007888C  7F E5 FB 78 */	mr r5, r31
 /* 80078890  4B FF C1 79 */	bl Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c

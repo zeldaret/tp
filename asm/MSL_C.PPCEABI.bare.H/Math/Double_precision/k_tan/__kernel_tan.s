@@ -53,8 +53,8 @@ lbl_8036BB2C:
 /* 8036BB4C  D8 01 00 08 */	stfd f0, 8(r1)
 lbl_8036BB50:
 /* 8036BB50  C8 01 00 08 */	lfd f0, 8(r1)
-/* 8036BB54  3C 80 80 3A */	lis r4, T@ha
-/* 8036BB58  38 A4 25 88 */	addi r5, r4, T@l
+/* 8036BB54  3C 80 80 3A */	lis r4, T@ha /* 0x803A2588@ha */
+/* 8036BB58  38 A4 25 88 */	addi r5, r4, T@l /* 0x803A2588@l */
 /* 8036BB5C  3C 80 3F E6 */	lis r4, 0x3FE6 /* 0x3FE59428@ha */
 /* 8036BB60  FD A0 00 32 */	fmul f13, f0, f0
 /* 8036BB64  38 04 94 28 */	addi r0, r4, 0x9428 /* 0x3FE59428@l */

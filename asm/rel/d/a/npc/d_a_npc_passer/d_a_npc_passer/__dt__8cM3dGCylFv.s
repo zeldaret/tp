@@ -5,12 +5,12 @@ lbl_80AA67B4:
 /* 80AA67C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AA67C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AA67C8  41 82 00 1C */	beq lbl_80AA67E4
-/* 80AA67CC  3C A0 80 AA */	lis r5, __vt__8cM3dGCyl@ha
-/* 80AA67D0  38 05 74 20 */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 80AA67CC  3C A0 80 AA */	lis r5, __vt__8cM3dGCyl@ha /* 0x80AA7420@ha */
+/* 80AA67D0  38 05 74 20 */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x80AA7420@l */
 /* 80AA67D4  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 80AA67D8  7C 80 07 35 */	extsh. r0, r4
 /* 80AA67DC  40 81 00 08 */	ble lbl_80AA67E4
-/* 80AA67E0  4B 82 85 5C */	b __dl__FPv
+/* 80AA67E0  4B 82 85 5D */	bl __dl__FPv
 lbl_80AA67E4:
 /* 80AA67E4  7F E3 FB 78 */	mr r3, r31
 /* 80AA67E8  83 E1 00 0C */	lwz r31, 0xc(r1)

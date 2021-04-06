@@ -5,17 +5,17 @@ lbl_80C62320:
 /* 80C6232C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C62330  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C62334  7C 7E 1B 78 */	mr r30, r3
-/* 80C62338  3C 60 80 C6 */	lis r3, lit_3627@ha
-/* 80C6233C  3B E3 26 A8 */	addi r31, r3, lit_3627@l
+/* 80C62338  3C 60 80 C6 */	lis r3, lit_3627@ha /* 0x80C626A8@ha */
+/* 80C6233C  3B E3 26 A8 */	addi r31, r3, lit_3627@l /* 0x80C626A8@l */
 /* 80C62340  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C62344  7C 03 07 74 */	extsb r3, r0
-/* 80C62348  4B 3C AD 24 */	b dComIfGp_getReverb__Fi
+/* 80C62348  4B 3C AD 25 */	bl dComIfGp_getReverb__Fi
 /* 80C6234C  7C 67 1B 78 */	mr r7, r3
 /* 80C62350  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801B1@ha */
 /* 80C62354  38 03 01 B1 */	addi r0, r3, 0x01B1 /* 0x000801B1@l */
 /* 80C62358  90 01 00 08 */	stw r0, 8(r1)
-/* 80C6235C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C62360  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C6235C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C62360  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C62364  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C62368  38 81 00 08 */	addi r4, r1, 8
 /* 80C6236C  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -25,15 +25,15 @@ lbl_80C62320:
 /* 80C6237C  C0 7F 00 10 */	lfs f3, 0x10(r31)
 /* 80C62380  FC 80 18 90 */	fmr f4, f3
 /* 80C62384  39 00 00 00 */	li r8, 0
-/* 80C62388  4B 64 A1 84 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C62388  4B 64 A1 85 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80C6238C  38 7E 05 B0 */	addi r3, r30, 0x5b0
 /* 80C62390  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 80C62394  C0 5F 00 14 */	lfs f2, 0x14(r31)
-/* 80C62398  3C 80 80 C6 */	lis r4, l_HIO@ha
-/* 80C6239C  38 84 27 DC */	addi r4, r4, l_HIO@l
+/* 80C62398  3C 80 80 C6 */	lis r4, l_HIO@ha /* 0x80C627DC@ha */
+/* 80C6239C  38 84 27 DC */	addi r4, r4, l_HIO@l /* 0x80C627DC@l */
 /* 80C623A0  C0 64 00 08 */	lfs f3, 8(r4)
 /* 80C623A4  C0 9F 00 18 */	lfs f4, 0x18(r31)
-/* 80C623A8  4B 60 D5 D4 */	b cLib_addCalc__FPfffff
+/* 80C623A8  4B 60 D5 D5 */	bl cLib_addCalc__FPfffff
 /* 80C623AC  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 80C623B0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80C623B4  40 82 00 14 */	bne lbl_80C623C8

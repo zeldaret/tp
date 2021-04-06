@@ -7,7 +7,7 @@ lbl_805B3C20:
 /* 805B3C34  41 82 00 10 */	beq lbl_805B3C44
 /* 805B3C38  7C 80 07 35 */	extsh. r0, r4
 /* 805B3C3C  40 81 00 08 */	ble lbl_805B3C44
-/* 805B3C40  4B D1 B0 FC */	b __dl__FPv
+/* 805B3C40  4B D1 B0 FD */	bl __dl__FPv
 lbl_805B3C44:
 /* 805B3C44  7F E3 FB 78 */	mr r3, r31
 /* 805B3C48  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -16,7 +16,7 @@ lbl_809F466C:
 /* 809F466C  38 7F 04 E4 */	addi r3, r31, 0x4e4
 /* 809F4670  38 A0 00 03 */	li r5, 3
 /* 809F4674  38 C0 00 80 */	li r6, 0x80
-/* 809F4678  4B 87 BF 90 */	b cLib_addCalcAngleS2__FPssss
+/* 809F4678  4B 87 BF 91 */	bl cLib_addCalcAngleS2__FPssss
 /* 809F467C  A8 1F 04 E4 */	lha r0, 0x4e4(r31)
 /* 809F4680  B0 1F 08 F0 */	sth r0, 0x8f0(r31)
 /* 809F4684  83 E1 00 0C */	lwz r31, 0xc(r1)

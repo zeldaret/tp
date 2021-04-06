@@ -3,19 +3,20 @@
 #
 
 M344_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro.plf
+M344_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro.lcf
+M344_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro.map
 
 M344_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_pachi_taro/executor.cpp \
-	rel/d/a/npc/d_a_npc_pachi_taro/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_pachi_taro/d_a_npc_pachi_taro.cpp \
 
 M344_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/d_a_npc_pachi_taro.o \
 
 M344_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/libRuntime.PPCEABI.H.a \
 
 M344_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M344_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map344.map\
+	-m _prolog \
+	-lcf $(M344_LDSCRIPT) \
+	-unused -map $(M344_MAP) \
+	-w off \
 
 $(M344_TARGET): $(M344_O_FILES) $(M344_LIBS)
+	@echo [344] creating $(M344_TARGET)
 	@echo $(M344_LIBS) $(M344_O_FILES) > build/M344_ofiles
-	$(LD) -opt_partial $(M344_LDFLAGS) -o $(M344_TARGET) @build/M344_ofiles
+	@python3 tools/lcf.py rel 344 --output $(M344_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M344_LDFLAGS) -o $(M344_TARGET) @build/M344_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_pachi_taro/%.o: rel/d/a/npc/d_a_npc_pachi_taro/%.cpp
+	@echo [344] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M344_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M344_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_pachi_taro/libs/Runtime.PPCEABI.H/Makefile
 

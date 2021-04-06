@@ -8,17 +8,17 @@ lbl_802A0074:
 /* 802A008C  41 82 00 08 */	beq lbl_802A0094
 /* 802A0090  93 ED 85 EC */	stw r31, data_80450B6C(r13)
 lbl_802A0094:
-/* 802A0094  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha
-/* 802A0098  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l
+/* 802A0094  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
+/* 802A0098  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l /* 0x803C9940@l */
 /* 802A009C  90 1F 00 00 */	stw r0, 0(r31)
-/* 802A00A0  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha
-/* 802A00A4  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l
+/* 802A00A0  3C 60 80 3D */	lis r3, __vt__8JAISeMgr@ha /* 0x803C98B0@ha */
+/* 802A00A4  38 03 98 B0 */	addi r0, r3, __vt__8JAISeMgr@l /* 0x803C98B0@l */
 /* 802A00A8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A00AC  38 7F 00 14 */	addi r3, r31, 0x14
-/* 802A00B0  3C 80 80 2A */	lis r4, __ct__16JAISeCategoryMgrFv@ha
-/* 802A00B4  38 84 09 94 */	addi r4, r4, __ct__16JAISeCategoryMgrFv@l
-/* 802A00B8  3C A0 80 00 */	lis r5, __dt__16JAISeCategoryMgrFv@ha
-/* 802A00BC  38 A5 78 DC */	addi r5, r5, __dt__16JAISeCategoryMgrFv@l
+/* 802A00B0  3C 80 80 2A */	lis r4, __ct__16JAISeCategoryMgrFv@ha /* 0x802A0994@ha */
+/* 802A00B4  38 84 09 94 */	addi r4, r4, __ct__16JAISeCategoryMgrFv@l /* 0x802A0994@l */
+/* 802A00B8  3C A0 80 00 */	lis r5, __dt__16JAISeCategoryMgrFv@ha /* 0x800078DC@ha */
+/* 802A00BC  38 A5 78 DC */	addi r5, r5, __dt__16JAISeCategoryMgrFv@l /* 0x800078DC@l */
 /* 802A00C0  38 C0 00 6C */	li r6, 0x6c
 /* 802A00C4  38 E0 00 10 */	li r7, 0x10
 /* 802A00C8  48 0C 1C 99 */	bl __construct_array

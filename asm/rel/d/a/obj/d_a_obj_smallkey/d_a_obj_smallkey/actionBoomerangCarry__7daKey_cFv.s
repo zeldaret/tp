@@ -6,10 +6,10 @@ lbl_80CDAF40:
 /* 80CDAF50  7C 7F 1B 78 */	mr r31, r3
 /* 80CDAF54  38 00 00 FE */	li r0, 0xfe
 /* 80CDAF58  B0 01 00 08 */	sth r0, 8(r1)
-/* 80CDAF5C  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 80CDAF60  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 80CDAF5C  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 80CDAF60  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 80CDAF64  38 81 00 08 */	addi r4, r1, 8
-/* 80CDAF68  4B 33 E8 90 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80CDAF68  4B 33 E8 91 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80CDAF6C  28 03 00 00 */	cmplwi r3, 0
 /* 80CDAF70  41 82 00 1C */	beq lbl_80CDAF8C
 /* 80CDAF74  C0 03 04 D0 */	lfs f0, 0x4d0(r3)

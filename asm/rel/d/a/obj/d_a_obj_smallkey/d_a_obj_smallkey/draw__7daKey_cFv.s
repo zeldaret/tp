@@ -4,7 +4,7 @@ lbl_80CDB5D4:
 /* 80CDB5DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CDB5E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CDB5E4  7C 7F 1B 78 */	mr r31, r3
-/* 80CDB5E8  4B 35 C4 E4 */	b chkDraw__12daItemBase_cFv
+/* 80CDB5E8  4B 35 C4 E5 */	bl chkDraw__12daItemBase_cFv
 /* 80CDB5EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CDB5F0  40 82 00 0C */	bne lbl_80CDB5FC
 /* 80CDB5F4  38 60 00 01 */	li r3, 1

@@ -26,8 +26,8 @@ lbl_8024E678:
 /* 8024E688  4B DC 63 69 */	bl mDoExt_getMesgFont__Fv
 /* 8024E68C  90 7F 00 14 */	stw r3, 0x14(r31)
 /* 8024E690  38 00 FF FF */	li r0, -1
-/* 8024E694  3C 60 80 43 */	lis r3, g_nmHIO@ha
-/* 8024E698  38 63 07 34 */	addi r3, r3, g_nmHIO@l
+/* 8024E694  3C 60 80 43 */	lis r3, g_nmHIO@ha /* 0x80430734@ha */
+/* 8024E698  38 63 07 34 */	addi r3, r3, g_nmHIO@l /* 0x80430734@l */
 /* 8024E69C  98 03 00 04 */	stb r0, 4(r3)
 /* 8024E6A0  7F E3 FB 78 */	mr r3, r31
 /* 8024E6A4  48 00 1F 29 */	bl screenSet__7dName_cFv

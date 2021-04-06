@@ -14,8 +14,8 @@ lbl_801AE37C:
 /* 801AE3AC  28 00 00 00 */	cmplwi r0, 0
 /* 801AE3B0  41 82 00 14 */	beq lbl_801AE3C4
 /* 801AE3B4  41 82 00 10 */	beq lbl_801AE3C4
-/* 801AE3B8  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 801AE3BC  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 801AE3B8  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 801AE3BC  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 801AE3C0  90 1F 01 20 */	stw r0, 0x120(r31)
 lbl_801AE3C4:
 /* 801AE3C4  34 1F 01 08 */	addic. r0, r31, 0x108
@@ -23,8 +23,8 @@ lbl_801AE3C4:
 /* 801AE3CC  28 00 00 00 */	cmplwi r0, 0
 /* 801AE3D0  41 82 00 14 */	beq lbl_801AE3E4
 /* 801AE3D4  41 82 00 10 */	beq lbl_801AE3E4
-/* 801AE3D8  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 801AE3DC  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 801AE3D8  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 801AE3DC  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 801AE3E0  90 1F 01 08 */	stw r0, 0x108(r31)
 lbl_801AE3E4:
 /* 801AE3E4  38 60 00 01 */	li r3, 1

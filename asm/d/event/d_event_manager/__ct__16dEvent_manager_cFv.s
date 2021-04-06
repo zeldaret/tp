@@ -4,10 +4,10 @@ lbl_80046688:
 /* 80046690  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80046694  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80046698  7C 7F 1B 78 */	mr r31, r3
-/* 8004669C  3C 80 80 04 */	lis r4, __ct__11dEvDtBase_cFv@ha
-/* 800466A0  38 84 66 E0 */	addi r4, r4, __ct__11dEvDtBase_cFv@l
-/* 800466A4  3C A0 80 03 */	lis r5, __dt__11dEvDtBase_cFv@ha
-/* 800466A8  38 A5 01 90 */	addi r5, r5, __dt__11dEvDtBase_cFv@l
+/* 8004669C  3C 80 80 04 */	lis r4, __ct__11dEvDtBase_cFv@ha /* 0x800466E0@ha */
+/* 800466A0  38 84 66 E0 */	addi r4, r4, __ct__11dEvDtBase_cFv@l /* 0x800466E0@l */
+/* 800466A4  3C A0 80 03 */	lis r5, __dt__11dEvDtBase_cFv@ha /* 0x80030190@ha */
+/* 800466A8  38 A5 01 90 */	addi r5, r5, __dt__11dEvDtBase_cFv@l /* 0x80030190@l */
 /* 800466AC  38 C0 00 24 */	li r6, 0x24
 /* 800466B0  38 E0 00 0B */	li r7, 0xb
 /* 800466B4  48 31 B6 AD */	bl __construct_array

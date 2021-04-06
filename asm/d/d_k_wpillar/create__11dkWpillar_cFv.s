@@ -9,8 +9,8 @@ lbl_80261B54:
 /* 80261B70  41 82 00 A4 */	beq lbl_80261C14
 /* 80261B74  7C 7C 1B 78 */	mr r28, r3
 /* 80261B78  3B A3 00 FC */	addi r29, r3, 0xfc
-/* 80261B7C  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 80261B80  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 80261B7C  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80261B80  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80261B84  90 1D 00 00 */	stw r0, 0(r29)
 /* 80261B88  7F A3 EB 78 */	mr r3, r29
 /* 80261B8C  38 80 00 00 */	li r4, 0
@@ -18,8 +18,8 @@ lbl_80261B54:
 /* 80261B94  38 00 00 00 */	li r0, 0
 /* 80261B98  90 1D 00 18 */	stw r0, 0x18(r29)
 /* 80261B9C  3B BC 01 18 */	addi r29, r28, 0x118
-/* 80261BA0  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 80261BA4  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 80261BA0  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80261BA4  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80261BA8  90 1C 01 18 */	stw r0, 0x118(r28)
 /* 80261BAC  7F A3 EB 78 */	mr r3, r29
 /* 80261BB0  38 80 00 00 */	li r4, 0
@@ -27,8 +27,8 @@ lbl_80261B54:
 /* 80261BB8  38 00 00 00 */	li r0, 0
 /* 80261BBC  90 1D 00 14 */	stw r0, 0x14(r29)
 /* 80261BC0  3B BC 01 30 */	addi r29, r28, 0x130
-/* 80261BC4  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 80261BC8  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 80261BC4  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80261BC8  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80261BCC  90 1C 01 30 */	stw r0, 0x130(r28)
 /* 80261BD0  7F A3 EB 78 */	mr r3, r29
 /* 80261BD4  38 80 00 00 */	li r4, 0
@@ -37,12 +37,12 @@ lbl_80261B54:
 /* 80261BE0  90 1D 00 14 */	stw r0, 0x14(r29)
 /* 80261BE4  3B BC 01 4C */	addi r29, r28, 0x14c
 /* 80261BE8  7F A3 EB 78 */	mr r3, r29
-/* 80261BEC  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha
-/* 80261BF0  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l
+/* 80261BEC  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha /* 0x803A1EC8@ha */
+/* 80261BF0  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l /* 0x803A1EC8@l */
 /* 80261BF4  48 0C 3A D1 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 80261BF8  38 7D 00 74 */	addi r3, r29, 0x74
-/* 80261BFC  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha
-/* 80261C00  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l
+/* 80261BFC  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha /* 0x80018C0C@ha */
+/* 80261C00  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l /* 0x80018C0C@l */
 /* 80261C04  38 A0 00 00 */	li r5, 0
 /* 80261C08  38 C0 00 74 */	li r6, 0x74
 /* 80261C0C  38 E0 00 06 */	li r7, 6
@@ -52,12 +52,12 @@ lbl_80261C14:
 /* 80261C18  4B DB C0 A5 */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 80261C1C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80261C20  41 82 00 40 */	beq lbl_80261C60
-/* 80261C24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80261C28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80261C24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80261C28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80261C2C  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 80261C30  7F C3 F3 78 */	mr r3, r30
-/* 80261C34  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha
-/* 80261C38  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l
+/* 80261C34  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha /* 0x803F1CC4@ha */
+/* 80261C38  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l /* 0x803F1CC4@l */
 /* 80261C3C  3B A4 00 14 */	addi r29, r4, 0x14
 /* 80261C40  7F A4 EB 78 */	mr r4, r29
 /* 80261C44  4B E1 34 BD */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
@@ -75,14 +75,14 @@ lbl_80261C6C:
 /* 80261C6C  38 7F 01 4C */	addi r3, r31, 0x14c
 /* 80261C70  7F 84 07 74 */	extsb r4, r28
 /* 80261C74  4B F4 6C 79 */	bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
-/* 80261C78  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80261C7C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80261C78  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80261C7C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80261C80  38 80 00 10 */	li r4, 0x10
 /* 80261C84  38 BF 00 DC */	addi r5, r31, 0xdc
 /* 80261C88  38 DF 01 4C */	addi r6, r31, 0x14c
 /* 80261C8C  4B F4 1B 39 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 80261C90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80261C94  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80261C90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80261C94  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80261C98  80 7D 5D 3C */	lwz r3, 0x5d3c(r29)
 /* 80261C9C  38 80 00 00 */	li r4, 0
 /* 80261CA0  90 81 00 08 */	stw r4, 8(r1)
@@ -136,8 +136,8 @@ lbl_80261D40:
 /* 80261D58  41 82 01 04 */	beq lbl_80261E5C
 /* 80261D5C  38 62 B5 F0 */	la r3, l_arcName(r2) /* 80454FF0-_SDA2_BASE_ */
 /* 80261D60  38 80 00 1C */	li r4, 0x1c
-/* 80261D64  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80261D68  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80261D64  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80261D68  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80261D6C  3F 85 00 02 */	addis r28, r5, 2
 /* 80261D70  3B 9C C2 F8 */	addi r28, r28, -15624
 /* 80261D74  7F 85 E3 78 */	mr r5, r28
@@ -227,14 +227,14 @@ lbl_80261EA0:
 /* 80261EB0  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80261EB4  C0 1F 00 F0 */	lfs f0, 0xf0(r31)
 /* 80261EB8  D0 03 00 20 */	stfs f0, 0x20(r3)
-/* 80261EBC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80261EC0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80261EBC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80261EC0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80261EC4  C0 3F 00 DC */	lfs f1, 0xdc(r31)
 /* 80261EC8  C0 5F 00 E0 */	lfs f2, 0xe0(r31)
 /* 80261ECC  C0 7F 00 E4 */	lfs f3, 0xe4(r31)
 /* 80261ED0  48 0E 4A 19 */	bl PSMTXTrans
-/* 80261ED4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80261ED8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80261ED4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80261ED8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80261EDC  80 9F 00 F8 */	lwz r4, 0xf8(r31)
 /* 80261EE0  38 84 00 24 */	addi r4, r4, 0x24
 /* 80261EE4  48 0E 45 CD */	bl PSMTXCopy

@@ -24,13 +24,6 @@ struct daE_YM_TAG_c {
 // Forward References:
 //
 
-static bool daE_YM_TAG_Draw(daE_YM_TAG_c*);
-static void s_e_ym(void*, void*);
-static void daE_YM_TAG_Execute(daE_YM_TAG_c*);
-static bool daE_YM_TAG_IsDelete(daE_YM_TAG_c*);
-static bool daE_YM_TAG_Delete(daE_YM_TAG_c*);
-static void daE_YM_TAG_Create(daE_YM_TAG_c*);
-
 extern "C" static bool daE_YM_TAG_Draw__FP12daE_YM_TAG_c();
 extern "C" static void s_e_ym__FPvPv();
 extern "C" void execute__12daE_YM_TAG_cFv();
@@ -45,11 +38,6 @@ extern "C" extern void* g_profile_E_YM_TAG[12];
 // External References:
 //
 
-void fopAc_IsActor(void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void fpcM_IsCreating(unsigned int);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAc_IsActor__FPv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
@@ -62,28 +50,23 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 // Declarations:
 //
 
-/* 80815DF8-80815E00 0008+00 s=1 e=0 z=0  None .text      daE_YM_TAG_Draw__FP12daE_YM_TAG_c */
+/* 80815DF8-80815E00 000078 0008+00 1/0 0/0 0/0 .text            daE_YM_TAG_Draw__FP12daE_YM_TAG_c
+ */
 static bool daE_YM_TAG_Draw(daE_YM_TAG_c* param_0) {
     return true;
 }
 
-/* 80815E00-80815E8C 008C+00 s=1 e=0 z=0  None .text      s_e_ym__FPvPv */
-//	80815E1C: 80018CE0 (fopAc_IsActor__FPv)
-//	80815E48: 80022138 (fpcM_IsCreating__FUi)
+/* 80815E00-80815E8C 000080 008C+00 1/1 0/0 0/0 .text            s_e_ym__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void s_e_ym(void* param_0, void* param_1) {
+static asm void s_e_ym(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/s_e_ym__FPvPv.s"
 }
 #pragma pop
 
-/* 80815E8C-80815EF8 006C+00 s=1 e=0 z=0  None .text      execute__12daE_YM_TAG_cFv */
-//	80815EA0: 80815E00 (s_e_ym__FPvPv)
-//	80815EA4: 80815E00 (s_e_ym__FPvPv)
-//	80815EAC: 80021338 (fpcEx_Search__FPFPvPv_PvPv)
-//	80815EDC: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 80815E8C-80815EF8 00010C 006C+00 1/1 0/0 0/0 .text            execute__12daE_YM_TAG_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -93,29 +76,28 @@ asm void daE_YM_TAG_c::execute() {
 }
 #pragma pop
 
-/* 80815EF8-80815F18 0020+00 s=1 e=0 z=0  None .text      daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
-//	80815F04: 80815E8C (execute__12daE_YM_TAG_cFv)
+/* 80815EF8-80815F18 000178 0020+00 1/0 0/0 0/0 .text daE_YM_TAG_Execute__FP12daE_YM_TAG_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YM_TAG_Execute(daE_YM_TAG_c* param_0) {
+static asm void daE_YM_TAG_Execute(daE_YM_TAG_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/daE_YM_TAG_Execute__FP12daE_YM_TAG_c.s"
 }
 #pragma pop
 
-/* 80815F18-80815F20 0008+00 s=1 e=0 z=0  None .text      daE_YM_TAG_IsDelete__FP12daE_YM_TAG_c */
+/* 80815F18-80815F20 000198 0008+00 1/0 0/0 0/0 .text daE_YM_TAG_IsDelete__FP12daE_YM_TAG_c */
 static bool daE_YM_TAG_IsDelete(daE_YM_TAG_c* param_0) {
     return true;
 }
 
-/* 80815F20-80815F28 0008+00 s=1 e=0 z=0  None .text      daE_YM_TAG_Delete__FP12daE_YM_TAG_c */
+/* 80815F20-80815F28 0001A0 0008+00 1/0 0/0 0/0 .text            daE_YM_TAG_Delete__FP12daE_YM_TAG_c
+ */
 static bool daE_YM_TAG_Delete(daE_YM_TAG_c* param_0) {
     return true;
 }
 
-/* 80815F28-80815F90 0068+00 s=1 e=0 z=0  None .text      create__12daE_YM_TAG_cFv */
-//	80815F50: 80018B64 (__ct__10fopAc_ac_cFv)
+/* 80815F28-80815F90 0001A8 0068+00 1/1 0/0 0/0 .text            create__12daE_YM_TAG_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,19 +107,19 @@ asm void daE_YM_TAG_c::create() {
 }
 #pragma pop
 
-/* 80815F90-80815FB0 0020+00 s=1 e=0 z=0  None .text      daE_YM_TAG_Create__FP12daE_YM_TAG_c */
-//	80815F9C: 80815F28 (create__12daE_YM_TAG_cFv)
+/* 80815F90-80815FB0 000210 0020+00 1/0 0/0 0/0 .text            daE_YM_TAG_Create__FP12daE_YM_TAG_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YM_TAG_Create(daE_YM_TAG_c* param_0) {
+static asm void daE_YM_TAG_Create(daE_YM_TAG_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag/daE_YM_TAG_Create__FP12daE_YM_TAG_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80815FB8-80815FD8 0020+00 s=1 e=0 z=0  None .data      l_daE_YM_TAG_Method */
+/* 80815FB8-80815FD8 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YM_TAG_Method */
 SECTION_DATA static void* l_daE_YM_TAG_Method[8] = {
     (void*)daE_YM_TAG_Create__FP12daE_YM_TAG_c,
     (void*)daE_YM_TAG_Delete__FP12daE_YM_TAG_c,
@@ -149,8 +131,8 @@ SECTION_DATA static void* l_daE_YM_TAG_Method[8] = {
     (void*)NULL,
 };
 
-/* 80815FD8-80816008 0030+00 s=0 e=0 z=1  None .data      g_profile_E_YM_TAG */
-SECTION_DATA void* g_profile_E_YM_TAG[12] = {
+/* 80815FD8-80816008 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YM_TAG */
+SECTION_DATA extern void* g_profile_E_YM_TAG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01F50000, (void*)&g_fpcLf_Method,
     (void*)0x00000568, (void*)NULL,

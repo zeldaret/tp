@@ -4,8 +4,8 @@ lbl_80190208:
 /* 80190210  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80190214  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80190218  7C 7F 1B 78 */	mr r31, r3
-/* 8019021C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80190220  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8019021C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80190220  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80190224  4B E8 6A BD */	bl SaveSync__15mDoMemCd_Ctrl_cFv
 /* 80190228  90 7F 03 B4 */	stw r3, 0x3b4(r31)
 /* 8019022C  80 1F 03 B4 */	lwz r0, 0x3b4(r31)

@@ -25,7 +25,7 @@ extern "C" void MWTRACE();
 //
 
 /* ############################################################################################## */
-/* 803A26B8-803A26E0 0025+03 s=1 e=0 z=0  None .rodata    @98 */
+/* 803A26B8-803A26E0 02ED18 0025+03 1/1 0/0 0/0 .rodata          @98 */
 SECTION_RODATA static u8 const lit_98[37 + 3 /* padding */] = {
     0x4D,
     0x65,
@@ -69,16 +69,13 @@ SECTION_RODATA static u8 const lit_98[37 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A26B8 = (void*)(&lit_98);
 
-/* 8036CFD8-8036D01C 0044+00 s=0 e=6 z=0  None .text      TRKMessageSend */
-//	8036CFEC: 80371D68 (TRKWriteUARTN)
-//	8036CFF0: 803A26B8 (lit_98)
-//	8036CFFC: 803A26B8 (lit_98)
-//	8036D004: 80372C54 (MWTRACE)
+/* 8036CFD8-8036D01C 367918 0044+00 0/0 6/6 0/0 .text            TRKMessageSend */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKMessageSend() {
+asm void TRKMessageSend() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msg/TRKMessageSend.s"
 }

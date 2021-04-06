@@ -6,17 +6,17 @@ lbl_801A60E0:
 /* 801A60F0  F3 E1 00 88 */	psq_st f31, 136(r1), 0, 0 /* qr0 */
 /* 801A60F4  39 61 00 80 */	addi r11, r1, 0x80
 /* 801A60F8  48 1B C0 D5 */	bl _savegpr_25
-/* 801A60FC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 801A6100  38 03 4A C8 */	addi r0, r3, j3dSys@l
+/* 801A60FC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 801A6100  38 03 4A C8 */	addi r0, r3, j3dSys@l /* 0x80434AC8@l */
 /* 801A6104  7C 1B 03 78 */	mr r27, r0
 /* 801A6108  3B 40 00 00 */	li r26, 0
 /* 801A610C  3B E0 00 00 */	li r31, 0
 /* 801A6110  3B C0 00 00 */	li r30, 0
-/* 801A6114  3C 60 80 43 */	lis r3, lightStatusData@ha
-/* 801A6118  3B 83 E0 7C */	addi r28, r3, lightStatusData@l
+/* 801A6114  3C 60 80 43 */	lis r3, lightStatusData@ha /* 0x8042E07C@ha */
+/* 801A6118  3B 83 E0 7C */	addi r28, r3, lightStatusData@l /* 0x8042E07C@l */
 /* 801A611C  C3 E2 A2 0C */	lfs f31, lit_4409(r2)
-/* 801A6120  3C 60 80 3C */	lis r3, lightMaskData@ha
-/* 801A6124  3B A3 BE AC */	addi r29, r3, lightMaskData@l
+/* 801A6120  3C 60 80 3C */	lis r3, lightMaskData@ha /* 0x803BBEAC@ha */
+/* 801A6124  3B A3 BE AC */	addi r29, r3, lightMaskData@l /* 0x803BBEAC@l */
 lbl_801A6128:
 /* 801A6128  7F 3C F2 14 */	add r25, r28, r30
 /* 801A612C  7F 63 DB 78 */	mr r3, r27

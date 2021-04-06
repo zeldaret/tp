@@ -85,8 +85,8 @@ lbl_8021462C:
 /* 80214778  80 7B 00 80 */	lwz r3, 0x80(r27)
 /* 8021477C  C0 22 AE 80 */	lfs f1, lit_4182(r2)
 /* 80214780  FC 40 08 90 */	fmr f2, f1
-/* 80214784  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80214788  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80214784  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80214788  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021478C  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 80214790  48 0E 47 45 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80214794  E3 E1 00 68 */	psq_l f31, 104(r1), 0, 0 /* qr0 */

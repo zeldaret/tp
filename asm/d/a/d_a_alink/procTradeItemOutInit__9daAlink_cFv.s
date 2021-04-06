@@ -31,8 +31,8 @@ lbl_8011DFCC:
 lbl_8011DFD4:
 /* 8011DFD4  38 00 00 00 */	li r0, 0
 /* 8011DFD8  B0 1F 30 0E */	sth r0, 0x300e(r31)
-/* 8011DFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011DFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011DFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011DFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011DFE4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8011DFE8  60 00 00 10 */	ori r0, r0, 0x10
 /* 8011DFEC  90 03 5F 18 */	stw r0, 0x5f18(r3)

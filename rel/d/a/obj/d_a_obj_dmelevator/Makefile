@@ -3,19 +3,20 @@
 #
 
 M438_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator.plf
+M438_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator.lcf
+M438_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator.map
 
 M438_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_dmelevator/executor.cpp \
-	rel/d/a/obj/d_a_obj_dmelevator/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_dmelevator/d_a_obj_dmelevator.cpp \
 
 M438_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/d_a_obj_dmelevator.o \
 
 M438_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/libRuntime.PPCEABI.H.a \
 
 M438_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M438_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map438.map\
+	-m _prolog \
+	-lcf $(M438_LDSCRIPT) \
+	-unused -map $(M438_MAP) \
+	-w off \
 
 $(M438_TARGET): $(M438_O_FILES) $(M438_LIBS)
+	@echo [438] creating $(M438_TARGET)
 	@echo $(M438_LIBS) $(M438_O_FILES) > build/M438_ofiles
-	$(LD) -opt_partial $(M438_LDFLAGS) -o $(M438_TARGET) @build/M438_ofiles
+	@python3 tools/lcf.py rel 438 --output $(M438_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M438_LDFLAGS) -o $(M438_TARGET) @build/M438_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dmelevator/%.o: rel/d/a/obj/d_a_obj_dmelevator/%.cpp
+	@echo [438] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M438_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M438_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_dmelevator/libs/Runtime.PPCEABI.H/Makefile
 

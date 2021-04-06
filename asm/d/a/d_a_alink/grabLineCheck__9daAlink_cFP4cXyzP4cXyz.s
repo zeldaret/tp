@@ -7,8 +7,8 @@ lbl_800E5B6C:
 /* 800E5B80  38 7F 1E 5C */	addi r3, r31, 0x1e5c
 /* 800E5B84  80 DF 28 30 */	lwz r6, 0x2830(r31)
 /* 800E5B88  4B F9 21 DD */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
-/* 800E5B8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E5B90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E5B8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E5B90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E5B94  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800E5B98  38 9F 1E 5C */	addi r4, r31, 0x1e5c
 /* 800E5B9C  4B F8 E8 19 */	bl LineCross__4cBgSFP11cBgS_LinChk

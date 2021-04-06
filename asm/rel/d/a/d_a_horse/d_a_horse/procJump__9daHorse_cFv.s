@@ -5,8 +5,8 @@ lbl_808432E0:
 /* 808432EC  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 808432F0  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 808432F4  7C 7E 1B 78 */	mr r30, r3
-/* 808432F8  3C 60 80 84 */	lis r3, lit_3894@ha
-/* 808432FC  3B E3 54 AC */	addi r31, r3, lit_3894@l
+/* 808432F8  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
+/* 808432FC  3B E3 54 AC */	addi r31, r3, lit_3894@l /* 0x808454AC@l */
 /* 80843300  A8 7E 17 22 */	lha r3, 0x1722(r30)
 /* 80843304  2C 03 00 00 */	cmpwi r3, 0
 /* 80843308  41 82 00 0C */	beq lbl_80843314
@@ -32,7 +32,7 @@ lbl_80843314:
 /* 80843354  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 80843358  38 61 00 08 */	addi r3, r1, 8
 /* 8084335C  38 81 00 14 */	addi r4, r1, 0x14
-/* 80843360  4B B0 40 3C */	b PSVECSquareDistance
+/* 80843360  4B B0 40 3D */	bl PSVECSquareDistance
 /* 80843364  C0 1E 17 78 */	lfs f0, 0x1778(r30)
 /* 80843368  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8084336C  41 81 00 10 */	bgt lbl_8084337C
@@ -56,7 +56,7 @@ lbl_8084339C:
 /* 808433A8  28 00 00 0D */	cmplwi r0, 0xd
 /* 808433AC  40 82 00 3C */	bne lbl_808433E8
 /* 808433B0  38 7E 05 B0 */	addi r3, r30, 0x5b0
-/* 808433B4  4B 91 B1 18 */	b checkAnmEnd__16daPy_frameCtrl_cFv
+/* 808433B4  4B 91 B1 19 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 808433B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 808433BC  41 82 02 2C */	beq lbl_808435E8
 /* 808433C0  7F C3 F3 78 */	mr r3, r30
@@ -73,7 +73,7 @@ lbl_808433E8:
 /* 808433E8  28 00 00 0C */	cmplwi r0, 0xc
 /* 808433EC  40 82 01 5C */	bne lbl_80843548
 /* 808433F0  38 7E 05 B0 */	addi r3, r30, 0x5b0
-/* 808433F4  4B 91 B0 D8 */	b checkAnmEnd__16daPy_frameCtrl_cFv
+/* 808433F4  4B 91 B0 D9 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 808433F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 808433FC  41 82 01 EC */	beq lbl_808435E8
 /* 80843400  A8 1E 17 1A */	lha r0, 0x171a(r30)
@@ -167,7 +167,7 @@ lbl_80843548:
 /* 80843554  2C 00 00 00 */	cmpwi r0, 0
 /* 80843558  40 82 00 90 */	bne lbl_808435E8
 /* 8084355C  38 7E 05 B0 */	addi r3, r30, 0x5b0
-/* 80843560  4B 91 AF 6C */	b checkAnmEnd__16daPy_frameCtrl_cFv
+/* 80843560  4B 91 AF 6D */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80843564  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80843568  41 82 00 80 */	beq lbl_808435E8
 /* 8084356C  A8 1E 05 B8 */	lha r0, 0x5b8(r30)

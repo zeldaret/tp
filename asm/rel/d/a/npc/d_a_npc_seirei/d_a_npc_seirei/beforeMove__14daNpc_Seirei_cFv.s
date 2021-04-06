@@ -9,7 +9,7 @@ lbl_80AD62A4:
 /* 80AD62C0  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80AD62C4  28 00 00 00 */	cmplwi r0, 0
 /* 80AD62C8  40 82 00 1C */	bne lbl_80AD62E4
-/* 80AD62CC  4B 55 97 88 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80AD62CC  4B 55 97 89 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80AD62D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD62D4  40 82 00 14 */	bne lbl_80AD62E8
 /* 80AD62D8  88 1E 0A 89 */	lbz r0, 0xa89(r30)

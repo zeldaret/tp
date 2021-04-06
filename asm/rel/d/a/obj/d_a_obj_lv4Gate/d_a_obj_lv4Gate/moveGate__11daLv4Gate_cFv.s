@@ -2,10 +2,10 @@ lbl_80C5EEA4:
 /* 80C5EEA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80C5EEA8  7C 08 02 A6 */	mflr r0
 /* 80C5EEAC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80C5EEB0  3C 80 80 C6 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80C5EEB4  38 E4 F4 1C */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 80C5EEB8  3C 80 80 C6 */	lis r4, data_80C5F538@ha
-/* 80C5EEBC  38 C4 F5 38 */	addi r6, r4, data_80C5F538@l
+/* 80C5EEB0  3C 80 80 C6 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80C5F41C@ha */
+/* 80C5EEB4  38 E4 F4 1C */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x80C5F41C@l */
+/* 80C5EEB8  3C 80 80 C6 */	lis r4, data_80C5F538@ha /* 0x80C5F538@ha */
+/* 80C5EEBC  38 C4 F5 38 */	addi r6, r4, data_80C5F538@l /* 0x80C5F538@l */
 /* 80C5EEC0  88 06 00 00 */	lbz r0, 0(r6)
 /* 80C5EEC4  7C 00 07 75 */	extsb. r0, r0
 /* 80C5EEC8  40 82 00 58 */	bne lbl_80C5EF20
@@ -35,7 +35,7 @@ lbl_80C5EF20:
 /* 80C5EF24  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80C5EF28  39 87 00 44 */	addi r12, r7, 0x44
 /* 80C5EF2C  7D 8C 02 14 */	add r12, r12, r0
-/* 80C5EF30  4B 70 31 54 */	b __ptmf_scall
+/* 80C5EF30  4B 70 31 55 */	bl __ptmf_scall
 /* 80C5EF34  60 00 00 00 */	nop 
 /* 80C5EF38  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C5EF3C  7C 08 03 A6 */	mtlr r0

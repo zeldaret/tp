@@ -20,14 +20,14 @@ lbl_800AC394:
 /* 800AC3DC  48 01 39 D5 */	bl checkZoraWearAbility__9daAlink_cCFv
 /* 800AC3E0  2C 03 00 00 */	cmpwi r3, 0
 /* 800AC3E4  41 82 00 18 */	beq lbl_800AC3FC
-/* 800AC3E8  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800AC3EC  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800AC3E8  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800AC3EC  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800AC3F0  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 800AC3F4  EF DE 00 32 */	fmuls f30, f30, f0
 /* 800AC3F8  48 00 00 14 */	b lbl_800AC40C
 lbl_800AC3FC:
-/* 800AC3FC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800AC400  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800AC3FC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800AC400  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800AC404  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 800AC408  EF DE 00 32 */	fmuls f30, f30, f0
 lbl_800AC40C:

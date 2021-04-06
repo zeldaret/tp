@@ -1,6 +1,6 @@
 lbl_8002FA54:
-/* 8002FA54  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8002FA58  38 83 CA 54 */	addi r4, r3, g_env_light@l
+/* 8002FA54  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8002FA58  38 83 CA 54 */	addi r4, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8002FA5C  38 60 00 00 */	li r3, 0
 /* 8002FA60  88 04 0F 3D */	lbz r0, 0xf3d(r4)
 /* 8002FA64  28 00 00 01 */	cmplwi r0, 1

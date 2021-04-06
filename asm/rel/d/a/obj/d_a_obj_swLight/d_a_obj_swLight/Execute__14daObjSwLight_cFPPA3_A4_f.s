@@ -8,32 +8,32 @@ lbl_80CF7320:
 /* 80CF7338  7C 9F 23 78 */	mr r31, r4
 /* 80CF733C  48 00 00 A5 */	bl action__14daObjSwLight_cFv
 /* 80CF7340  38 7E 05 A0 */	addi r3, r30, 0x5a0
-/* 80CF7344  4B 35 15 28 */	b eventUpdate__17dEvLib_callback_cFv
+/* 80CF7344  4B 35 15 29 */	bl eventUpdate__17dEvLib_callback_cFv
 /* 80CF7348  38 1E 05 6C */	addi r0, r30, 0x56c
 /* 80CF734C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80CF7350  7F C3 F3 78 */	mr r3, r30
 /* 80CF7354  4B FF FC 81 */	bl setBaseMtx__14daObjSwLight_cFv
 /* 80CF7358  38 7E 09 A0 */	addi r3, r30, 0x9a0
-/* 80CF735C  4B 38 D1 04 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80CF735C  4B 38 D1 05 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80CF7360  28 03 00 00 */	cmplwi r3, 0
 /* 80CF7364  41 82 00 38 */	beq lbl_80CF739C
 /* 80CF7368  38 7E 09 A0 */	addi r3, r30, 0x9a0
-/* 80CF736C  4B 38 D1 8C */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80CF736C  4B 38 D1 8D */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80CF7370  28 03 00 00 */	cmplwi r3, 0
 /* 80CF7374  41 82 00 28 */	beq lbl_80CF739C
 /* 80CF7378  38 7E 09 A0 */	addi r3, r30, 0x9a0
-/* 80CF737C  4B 38 D2 00 */	b GetTgHitObjSe__12dCcD_GObjInfFv
+/* 80CF737C  4B 38 D2 01 */	bl GetTgHitObjSe__12dCcD_GObjInfFv
 /* 80CF7380  38 80 00 01 */	li r4, 1
-/* 80CF7384  4B 38 D2 2C */	b getHitSeID__12dCcD_GObjInfFUci
+/* 80CF7384  4B 38 D2 2D */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 80CF7388  7C 64 1B 78 */	mr r4, r3
 /* 80CF738C  38 7E 0B 00 */	addi r3, r30, 0xb00
 /* 80CF7390  38 A0 00 09 */	li r5, 9
 /* 80CF7394  38 C0 00 00 */	li r6, 0
-/* 80CF7398  4B 5C 71 0C */	b startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
+/* 80CF7398  4B 5C 71 0D */	bl startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
 lbl_80CF739C:
 /* 80CF739C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CF73A0  7C 03 07 74 */	extsb r3, r0
-/* 80CF73A4  4B 33 5C C8 */	b dComIfGp_getReverb__Fi
+/* 80CF73A4  4B 33 5C C9 */	bl dComIfGp_getReverb__Fi
 /* 80CF73A8  7C 65 1B 78 */	mr r5, r3
 /* 80CF73AC  38 7E 0B 00 */	addi r3, r30, 0xb00
 /* 80CF73B0  38 80 00 00 */	li r4, 0

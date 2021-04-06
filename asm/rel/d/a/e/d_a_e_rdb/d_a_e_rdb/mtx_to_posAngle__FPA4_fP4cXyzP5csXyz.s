@@ -9,7 +9,7 @@ lbl_80765600:
 /* 8076561C  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 80765620  D0 04 00 08 */	stfs f0, 8(r4)
 /* 80765624  7C A4 2B 78 */	mr r4, r5
-/* 80765628  4B 8A 75 D8 */	b mDoMtx_MtxToRot__FPA4_CfP5csXyz
+/* 80765628  4B 8A 75 D9 */	bl mDoMtx_MtxToRot__FPA4_CfP5csXyz
 /* 8076562C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80765630  7C 08 03 A6 */	mtlr r0
 /* 80765634  38 21 00 10 */	addi r1, r1, 0x10

@@ -16,8 +16,8 @@ lbl_80118B34:
 /* 80118B6C  A0 1E 2F E8 */	lhz r0, 0x2fe8(r30)
 /* 80118B70  28 00 01 50 */	cmplwi r0, 0x150
 /* 80118B74  41 82 00 64 */	beq lbl_80118BD8
-/* 80118B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80118B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80118B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80118B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80118B80  A0 03 00 02 */	lhz r0, 2(r3)
 /* 80118B84  7C 1F 00 00 */	cmpw r31, r0
 /* 80118B88  41 80 00 50 */	blt lbl_80118BD8
@@ -25,8 +25,8 @@ lbl_80118B34:
 /* 80118B90  4B FB EC 39 */	bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 80118B94  2C 03 00 00 */	cmpwi r3, 0
 /* 80118B98  40 82 00 40 */	bne lbl_80118BD8
-/* 80118B9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80118BA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80118B9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80118BA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80118BA4  38 63 00 9C */	addi r3, r3, 0x9c
 /* 80118BA8  38 80 00 6C */	li r4, 0x6c
 /* 80118BAC  4B F1 AB 35 */	bl checkBottle__17dSv_player_item_cFUc

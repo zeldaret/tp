@@ -5,8 +5,8 @@ lbl_80BEA584:
 /* 80BEA590  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BEA594  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BEA598  7C 7F 1B 78 */	mr r31, r3
-/* 80BEA59C  3C 80 80 BF */	lis r4, lit_3656@ha
-/* 80BEA5A0  3B C4 B4 C4 */	addi r30, r4, lit_3656@l
+/* 80BEA59C  3C 80 80 BF */	lis r4, lit_3656@ha /* 0x80BEB4C4@ha */
+/* 80BEA5A0  3B C4 B4 C4 */	addi r30, r4, lit_3656@l /* 0x80BEB4C4@l */
 /* 80BEA5A4  48 00 01 91 */	bl action__15daObjFPillar2_cFv
 /* 80BEA5A8  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 80BEA5AC  D0 1F 09 44 */	stfs f0, 0x944(r31)
@@ -21,8 +21,8 @@ lbl_80BEA584:
 /* 80BEA5D0  40 80 00 3C */	bge lbl_80BEA60C
 /* 80BEA5D4  48 00 00 68 */	b lbl_80BEA63C
 lbl_80BEA5D8:
-/* 80BEA5D8  3C 60 80 43 */	lis r3, BaseY__4cXyz@ha
-/* 80BEA5DC  C4 03 0D 24 */	lfsu f0, BaseY__4cXyz@l(r3)
+/* 80BEA5D8  3C 60 80 43 */	lis r3, BaseY__4cXyz@ha /* 0x80430D24@ha */
+/* 80BEA5DC  C4 03 0D 24 */	lfsu f0, BaseY__4cXyz@l(r3)  /* 0x80430D24@l */
 /* 80BEA5E0  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80BEA5E4  C0 43 00 04 */	lfs f2, 4(r3)
 /* 80BEA5E8  D0 41 00 18 */	stfs f2, 0x18(r1)
@@ -35,8 +35,8 @@ lbl_80BEA5D8:
 /* 80BEA604  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80BEA608  48 00 00 34 */	b lbl_80BEA63C
 lbl_80BEA60C:
-/* 80BEA60C  3C 60 80 43 */	lis r3, BaseZ__4cXyz@ha
-/* 80BEA610  C4 03 0D 3C */	lfsu f0, BaseZ__4cXyz@l(r3)
+/* 80BEA60C  3C 60 80 43 */	lis r3, BaseZ__4cXyz@ha /* 0x80430D3C@ha */
+/* 80BEA610  C4 03 0D 3C */	lfsu f0, BaseZ__4cXyz@l(r3)  /* 0x80430D3C@l */
 /* 80BEA614  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80BEA618  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80BEA61C  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -48,15 +48,15 @@ lbl_80BEA60C:
 /* 80BEA634  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80BEA638  D0 01 00 1C */	stfs f0, 0x1c(r1)
 lbl_80BEA63C:
-/* 80BEA63C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80BEA640  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80BEA63C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80BEA640  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80BEA644  A8 9F 04 DE */	lha r4, 0x4de(r31)
-/* 80BEA648  4B 42 1D 94 */	b mDoMtx_YrotS__FPA4_fs
-/* 80BEA64C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80BEA650  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80BEA648  4B 42 1D 95 */	bl mDoMtx_YrotS__FPA4_fs
+/* 80BEA64C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80BEA650  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80BEA654  38 81 00 14 */	addi r4, r1, 0x14
 /* 80BEA658  7C 85 23 78 */	mr r5, r4
-/* 80BEA65C  4B 75 C7 10 */	b PSMTXMultVec
+/* 80BEA65C  4B 75 C7 11 */	bl PSMTXMultVec
 /* 80BEA660  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80BEA664  D0 1F 09 5C */	stfs f0, 0x95c(r31)
 /* 80BEA668  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
@@ -66,7 +66,7 @@ lbl_80BEA63C:
 /* 80BEA678  38 61 00 08 */	addi r3, r1, 8
 /* 80BEA67C  38 81 00 14 */	addi r4, r1, 0x14
 /* 80BEA680  38 BF 04 D0 */	addi r5, r31, 0x4d0
-/* 80BEA684  4B 67 C4 60 */	b __pl__4cXyzCFRC3Vec
+/* 80BEA684  4B 67 C4 61 */	bl __pl__4cXyzCFRC3Vec
 /* 80BEA688  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80BEA68C  D0 1F 09 68 */	stfs f0, 0x968(r31)
 /* 80BEA690  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -85,18 +85,18 @@ lbl_80BEA63C:
 /* 80BEA6C4  40 81 00 24 */	ble lbl_80BEA6E8
 /* 80BEA6C8  38 7F 08 F4 */	addi r3, r31, 0x8f4
 /* 80BEA6CC  38 9F 09 5C */	addi r4, r31, 0x95c
-/* 80BEA6D0  4B 68 49 6C */	b Set__8cM3dGCpsFRC9cM3dGCpsS
-/* 80BEA6D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BEA6D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BEA6D0  4B 68 49 6D */	bl Set__8cM3dGCpsFRC9cM3dGCpsS
+/* 80BEA6D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BEA6D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BEA6DC  38 63 23 3C */	addi r3, r3, 0x233c
 /* 80BEA6E0  38 9F 07 D0 */	addi r4, r31, 0x7d0
-/* 80BEA6E4  4B 67 A4 C4 */	b Set__4cCcSFP8cCcD_Obj
+/* 80BEA6E4  4B 67 A4 C5 */	bl Set__4cCcSFP8cCcD_Obj
 lbl_80BEA6E8:
 /* 80BEA6E8  7F E3 FB 78 */	mr r3, r31
 /* 80BEA6EC  4B FF F6 71 */	bl setBaseMtx__15daObjFPillar2_cFv
 /* 80BEA6F0  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BEA6F4  7C 03 07 74 */	extsb r3, r0
-/* 80BEA6F8  4B 44 29 74 */	b dComIfGp_getReverb__Fi
+/* 80BEA6F8  4B 44 29 75 */	bl dComIfGp_getReverb__Fi
 /* 80BEA6FC  7C 65 1B 78 */	mr r5, r3
 /* 80BEA700  38 7F 09 BC */	addi r3, r31, 0x9bc
 /* 80BEA704  38 80 00 00 */	li r4, 0

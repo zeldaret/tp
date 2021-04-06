@@ -1,8 +1,8 @@
 lbl_80467E14:
-/* 80467E14  3C 60 80 47 */	lis r3, lit_1109@ha
-/* 80467E18  38 C3 80 70 */	addi r6, r3, lit_1109@l
-/* 80467E1C  3C 60 80 46 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80467E20  38 A3 7F 5C */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80467E14  3C 60 80 47 */	lis r3, lit_1109@ha /* 0x80468070@ha */
+/* 80467E18  38 C3 80 70 */	addi r6, r3, lit_1109@l /* 0x80468070@l */
+/* 80467E1C  3C 60 80 46 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80467F5C@ha */
+/* 80467E20  38 A3 7F 5C */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80467F5C@l */
 /* 80467E24  80 65 00 2C */	lwz r3, 0x2c(r5)
 /* 80467E28  80 05 00 30 */	lwz r0, 0x30(r5)
 /* 80467E2C  90 66 00 40 */	stw r3, 0x40(r6)

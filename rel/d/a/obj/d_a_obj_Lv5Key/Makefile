@@ -3,17 +3,15 @@
 #
 
 M393_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key.plf
+M393_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key.lcf
+M393_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key.map
 
 M393_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_Lv5Key/executor.cpp \
-	rel/d/a/obj/d_a_obj_Lv5Key/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_Lv5Key/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_Lv5Key/d_a_obj_Lv5Key.cpp \
 
 M393_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/d_a_obj_Lv5Key.o \
 
 M393_LIBS := \
@@ -29,15 +27,21 @@ M393_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map393.map\
+	-m _prolog \
+	-lcf $(M393_LDSCRIPT) \
+	-unused -map $(M393_MAP) \
+	-w off \
 
 $(M393_TARGET): $(M393_O_FILES) $(M393_LIBS)
+	@echo [393] creating $(M393_TARGET)
 	@echo $(M393_LIBS) $(M393_O_FILES) > build/M393_ofiles
-	$(LD) -opt_partial $(M393_LDFLAGS) -o $(M393_TARGET) @build/M393_ofiles
+	@python3 tools/lcf.py rel 393 --output $(M393_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M393_LDFLAGS) -o $(M393_TARGET) @build/M393_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Lv5Key/%.o: rel/d/a/obj/d_a_obj_Lv5Key/%.cpp
+	@echo [393] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M393_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M393_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

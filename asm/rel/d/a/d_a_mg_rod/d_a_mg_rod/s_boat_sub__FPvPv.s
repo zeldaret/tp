@@ -6,7 +6,7 @@ lbl_804AC1C0:
 /* 804AC1D0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804AC1D4  7C 7E 1B 78 */	mr r30, r3
 /* 804AC1D8  7C 9F 23 78 */	mr r31, r4
-/* 804AC1DC  4B B6 CB 04 */	b fopAc_IsActor__FPv
+/* 804AC1DC  4B B6 CB 05 */	bl fopAc_IsActor__FPv
 /* 804AC1E0  2C 03 00 00 */	cmpwi r3, 0
 /* 804AC1E4  41 82 00 28 */	beq lbl_804AC20C
 /* 804AC1E8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -15,7 +15,7 @@ lbl_804AC1C0:
 /* 804AC1F4  38 61 00 08 */	addi r3, r1, 8
 /* 804AC1F8  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 804AC1FC  38 BF 04 D0 */	addi r5, r31, 0x4d0
-/* 804AC200  4B DB A9 34 */	b __mi__4cXyzCFRC3Vec
+/* 804AC200  4B DB A9 35 */	bl __mi__4cXyzCFRC3Vec
 /* 804AC204  7F C3 F3 78 */	mr r3, r30
 /* 804AC208  48 00 00 08 */	b lbl_804AC210
 lbl_804AC20C:

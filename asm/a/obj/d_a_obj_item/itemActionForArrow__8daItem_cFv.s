@@ -5,8 +5,8 @@ lbl_8015D688:
 /* 8015D694  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015D698  7C 7F 1B 78 */	mr r31, r3
 /* 8015D69C  38 7F 05 8C */	addi r3, r31, 0x58c
-/* 8015D6A0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8015D6A4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8015D6A0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015D6A4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015D6A8  38 84 0F 38 */	addi r4, r4, 0xf38
 /* 8015D6AC  4B F1 94 01 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 8015D6B0  7F E3 FB 78 */	mr r3, r31

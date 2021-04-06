@@ -43,11 +43,10 @@ extern "C" void free__7JKRHeapFPv();
 //
 
 /* ############################################################################################## */
-/* 80451150-80451158 0004+04 s=3 e=0 z=0  None .sbss      Heap__3cMl */
+/* 80451150-80451158 000650 0004+04 3/3 0/0 0/0 .sbss            Heap__3cMl */
 static u8 Heap__3cMl[4 + 4 /* padding */];
 
-/* 80263220-80263228 0008+00 s=0 e=1 z=0  None .text      init__3cMlFP7JKRHeap */
-//	80263220: 80451150 (Heap__3cMl)
+/* 80263220-80263228 25DB60 0008+00 0/0 1/1 0/0 .text            init__3cMlFP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -57,9 +56,7 @@ asm void cMl::init(JKRHeap* param_0) {
 }
 #pragma pop
 
-/* 80263228-80263260 0038+00 s=0 e=8 z=0  None .text      memalignB__3cMlFiUl */
-//	80263248: 80451150 (Heap__3cMl)
-//	8026324C: 802CE4D4 (alloc__7JKRHeapFUli)
+/* 80263228-80263260 25DB68 0038+00 0/0 8/8 0/0 .text            memalignB__3cMlFiUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -69,9 +66,7 @@ asm void cMl::memalignB(int param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 80263260-8026328C 002C+00 s=0 e=4 z=0  None .text      free__3cMlFPv */
-//	80263274: 80451150 (Heap__3cMl)
-//	80263278: 802CE548 (free__7JKRHeapFPv)
+/* 80263260-8026328C 25DBA0 002C+00 0/0 4/4 0/0 .text            free__3cMlFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -82,5 +77,6 @@ asm void cMl::free(void* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451158-80451160 0008+00 s=0 e=1 z=0  None .sbss      None */
+/* 80451158-80451160 000658 0008+00 0/0 1/1 0/0 .sbss            None */
+extern u8 data_80451158[8];
 u8 data_80451158[8];

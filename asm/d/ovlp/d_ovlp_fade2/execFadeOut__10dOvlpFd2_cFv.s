@@ -5,8 +5,8 @@ lbl_80252A78:
 /* 80252A84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80252A88  7C 7F 1B 78 */	mr r31, r3
 /* 80252A8C  38 00 00 00 */	li r0, 0
-/* 80252A90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80252A94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80252A90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80252A94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80252A98  98 03 5D 44 */	stb r0, 0x5d44(r3)
 /* 80252A9C  38 7F 01 12 */	addi r3, r31, 0x112
 /* 80252AA0  38 80 07 D0 */	li r4, 0x7d0
@@ -35,8 +35,8 @@ lbl_80252A78:
 /* 80252AFC  2C 03 00 00 */	cmpwi r3, 0
 /* 80252B00  41 82 00 38 */	beq lbl_80252B38
 /* 80252B04  4B DC B9 C1 */	bl fopOvlpM_SceneIsStart__Fv
-/* 80252B08  3C 60 80 3C */	lis r3, lit_3736@ha
-/* 80252B0C  38 83 2D 08 */	addi r4, r3, lit_3736@l
+/* 80252B08  3C 60 80 3C */	lis r3, lit_3736@ha /* 0x803C2D08@ha */
+/* 80252B0C  38 83 2D 08 */	addi r4, r3, lit_3736@l /* 0x803C2D08@l */
 /* 80252B10  80 64 00 00 */	lwz r3, 0(r4)
 /* 80252B14  80 04 00 04 */	lwz r0, 4(r4)
 /* 80252B18  90 7F 00 CC */	stw r3, 0xcc(r31)

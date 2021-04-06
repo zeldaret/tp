@@ -5,8 +5,8 @@ lbl_8029EEA0:
 /* 8029EEAC  88 0D 8D 88 */	lbz r0, struct_80451308+0x0(r13)
 /* 8029EEB0  28 00 00 01 */	cmplwi r0, 1
 /* 8029EEB4  41 82 00 28 */	beq lbl_8029EEDC
-/* 8029EEB8  3D 00 80 43 */	lis r8, sync_stack@ha
-/* 8029EEBC  94 68 40 60 */	stwu r3, sync_stack@l(r8)
+/* 8029EEB8  3D 00 80 43 */	lis r8, sync_stack@ha /* 0x80434060@ha */
+/* 8029EEBC  94 68 40 60 */	stwu r3, sync_stack@l(r8)  /* 0x80434060@l */
 /* 8029EEC0  38 00 00 02 */	li r0, 2
 /* 8029EEC4  98 0D 8D 89 */	stb r0, struct_80451308+0x1(r13)
 /* 8029EEC8  90 88 00 04 */	stw r4, 4(r8)

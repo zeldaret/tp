@@ -5,8 +5,8 @@ lbl_8025C29C:
 /* 8025C2A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025C2AC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025C2B0  41 82 00 1C */	beq lbl_8025C2CC
-/* 8025C2B4  3C A0 80 3C */	lis r5, __vt__22dSvBit_childOtherHIO_c@ha
-/* 8025C2B8  38 05 33 00 */	addi r0, r5, __vt__22dSvBit_childOtherHIO_c@l
+/* 8025C2B4  3C A0 80 3C */	lis r5, __vt__22dSvBit_childOtherHIO_c@ha /* 0x803C3300@ha */
+/* 8025C2B8  38 05 33 00 */	addi r0, r5, __vt__22dSvBit_childOtherHIO_c@l /* 0x803C3300@l */
 /* 8025C2BC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025C2C0  7C 80 07 35 */	extsh. r0, r4
 /* 8025C2C4  40 81 00 08 */	ble lbl_8025C2CC

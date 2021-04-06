@@ -16,11 +16,11 @@ lbl_80066048:
 /* 80066080  48 2F C1 55 */	bl _savegpr_27
 /* 80066084  7C 7B 1B 78 */	mr r27, r3
 /* 80066088  7C 9C 23 78 */	mr r28, r4
-/* 8006608C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80066090  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8006608C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80066090  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80066094  83 DF 5D 74 */	lwz r30, 0x5d74(r31)
-/* 80066098  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006609C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80066098  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006609C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800660A0  83 A3 0E 84 */	lwz r29, 0xe84(r3)
 /* 800660A4  80 03 0E 8C */	lwz r0, 0xe8c(r3)
 /* 800660A8  2C 00 00 00 */	cmpwi r0, 0
@@ -37,11 +37,11 @@ lbl_80066048:
 /* 800660D4  48 00 00 08 */	b lbl_800660DC
 /* 800660D8  48 00 04 24 */	b lbl_800664FC
 lbl_800660DC:
-/* 800660DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800660E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800660DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800660E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800660E4  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 800660E8  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 800660EC  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 800660E8  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 800660EC  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 800660F0  38 84 00 36 */	addi r4, r4, 0x36
 /* 800660F4  48 30 28 A1 */	bl strcmp
 /* 800660F8  2C 03 00 00 */	cmpwi r3, 0
@@ -220,8 +220,8 @@ lbl_80066390:
 /* 80066390  C3 C2 88 40 */	lfs f30, lit_4365(r2)
 lbl_80066394:
 /* 80066394  3B A0 00 00 */	li r29, 0
-/* 80066398  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006639C  3B 83 CA 54 */	addi r28, r3, g_env_light@l
+/* 80066398  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006639C  3B 83 CA 54 */	addi r28, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800663A0  C3 E2 88 90 */	lfs f31, lit_5099(r2)
 /* 800663A4  3F 60 CC 01 */	lis r27, 0xcc01
 /* 800663A8  48 00 01 34 */	b lbl_800664DC

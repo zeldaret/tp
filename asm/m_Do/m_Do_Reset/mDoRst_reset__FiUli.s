@@ -23,8 +23,8 @@ lbl_80015660:
 /* 80015660  48 33 5B 69 */	bl DVDGetDriveStatus
 /* 80015664  2C 03 00 01 */	cmpwi r3, 1
 /* 80015668  40 82 00 14 */	bne lbl_8001567C
-/* 8001566C  3C 60 80 37 */	lis r3, m_Do_m_Do_Reset__stringBase0@ha
-/* 80015670  38 63 41 98 */	addi r3, r3, m_Do_m_Do_Reset__stringBase0@l
+/* 8001566C  3C 60 80 37 */	lis r3, m_Do_m_Do_Reset__stringBase0@ha /* 0x80374198@ha */
+/* 80015670  38 63 41 98 */	addi r3, r3, m_Do_m_Do_Reset__stringBase0@l /* 0x80374198@l */
 /* 80015674  4C C6 31 82 */	crclr 6
 /* 80015678  4B FF 11 9D */	bl OSAttention
 lbl_8001567C:
@@ -62,8 +62,8 @@ lbl_800156E4:
 /* 800156F0  7F C3 F3 78 */	mr r3, r30
 /* 800156F4  48 32 80 29 */	bl OSRestoreInterrupts
 /* 800156F8  4B FF FE E5 */	bl destroyVideo__Fv
-/* 800156FC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80015700  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l
+/* 800156FC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80015700  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80015704  48 00 00 08 */	b lbl_8001570C
 lbl_80015708:
 /* 80015708  48 33 72 BD */	bl VIWaitForRetrace
@@ -74,8 +74,8 @@ lbl_8001570C:
 /* 80015718  4B FF FE C1 */	bl my_OSCancelAlarmAll__Fv
 /* 8001571C  48 32 60 D1 */	bl LCDisable
 /* 80015720  80 6D 86 F8 */	lwz r3, mResetData__6mDoRst(r13)
-/* 80015724  3C 80 80 01 */	lis r4, getResetData__6mDoRstFv@ha
-/* 80015728  38 84 57 F4 */	addi r4, r4, getResetData__6mDoRstFv@l
+/* 80015724  3C 80 80 01 */	lis r4, getResetData__6mDoRstFv@ha /* 0x800157F4@ha */
+/* 80015728  38 84 57 F4 */	addi r4, r4, getResetData__6mDoRstFv@l /* 0x800157F4@l */
 /* 8001572C  38 84 00 18 */	addi r4, r4, 0x18
 /* 80015730  48 32 9F 11 */	bl OSSetSaveRegion
 /* 80015734  7F 63 DB 78 */	mr r3, r27

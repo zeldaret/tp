@@ -28,7 +28,7 @@ lbl_802CE3B8:
 /* 802CE3DC  93 ED 8E 08 */	stw r31, mCodeEnd__7JKRHeap(r13)
 /* 802CE3E0  93 ED 8E 0C */	stw r31, mUserRamStart__7JKRHeap(r13)
 /* 802CE3E4  93 CD 8E 10 */	stw r30, mUserRamEnd__7JKRHeap(r13)
-/* 802CE3E8  80 03 00 28 */	lwz r0, 0x0028(r3)
+/* 802CE3E8  80 03 00 28 */	lwz r0, 0x0028(r3)  /* 0x80000028@l */
 /* 802CE3EC  90 0D 8E 14 */	stw r0, mMemorySize__7JKRHeap(r13)
 /* 802CE3F0  7F C3 F3 78 */	mr r3, r30
 /* 802CE3F4  48 06 CE B1 */	bl OSSetArenaLo

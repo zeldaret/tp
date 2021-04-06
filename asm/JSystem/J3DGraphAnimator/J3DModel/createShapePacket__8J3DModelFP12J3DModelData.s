@@ -13,10 +13,10 @@ lbl_80327300:
 /* 8032732C  1C 7D 00 3C */	mulli r3, r29, 0x3c
 /* 80327330  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327334  4B FA 79 91 */	bl __nwa__FUl
-/* 80327338  3C 80 80 31 */	lis r4, __ct__14J3DShapePacketFv@ha
-/* 8032733C  38 84 2B 20 */	addi r4, r4, __ct__14J3DShapePacketFv@l
-/* 80327340  3C A0 80 31 */	lis r5, __dt__14J3DShapePacketFv@ha
-/* 80327344  38 A5 2B 74 */	addi r5, r5, __dt__14J3DShapePacketFv@l
+/* 80327338  3C 80 80 31 */	lis r4, __ct__14J3DShapePacketFv@ha /* 0x80312B20@ha */
+/* 8032733C  38 84 2B 20 */	addi r4, r4, __ct__14J3DShapePacketFv@l /* 0x80312B20@l */
+/* 80327340  3C A0 80 31 */	lis r5, __dt__14J3DShapePacketFv@ha /* 0x80312B74@ha */
+/* 80327344  38 A5 2B 74 */	addi r5, r5, __dt__14J3DShapePacketFv@l /* 0x80312B74@l */
 /* 80327348  38 C0 00 3C */	li r6, 0x3c
 /* 8032734C  7F A7 EB 78 */	mr r7, r29
 /* 80327350  48 03 AB C5 */	bl __construct_new_array

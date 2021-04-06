@@ -5,8 +5,8 @@ lbl_80018AE0:
 /* 80018AEC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80018AF0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80018AF4  41 82 00 1C */	beq lbl_80018B10
-/* 80018AF8  3C A0 80 3A */	lis r5, __vt__11fapGm_HIO_c@ha
-/* 80018AFC  38 05 35 A0 */	addi r0, r5, __vt__11fapGm_HIO_c@l
+/* 80018AF8  3C A0 80 3A */	lis r5, __vt__11fapGm_HIO_c@ha /* 0x803A35A0@ha */
+/* 80018AFC  38 05 35 A0 */	addi r0, r5, __vt__11fapGm_HIO_c@l /* 0x803A35A0@l */
 /* 80018B00  90 1F 00 00 */	stw r0, 0(r31)
 /* 80018B04  7C 80 07 35 */	extsh. r0, r4
 /* 80018B08  40 81 00 08 */	ble lbl_80018B10

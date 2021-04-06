@@ -8,8 +8,8 @@ lbl_8033268C:
 /* 803326A4  7C 9D 23 78 */	mr r29, r4
 /* 803326A8  7C BE 2B 78 */	mr r30, r5
 /* 803326AC  38 61 00 34 */	addi r3, r1, 0x34
-/* 803326B0  3C 80 80 3A */	lis r4, j3dDefaultFogInfo@ha
-/* 803326B4  38 84 1F BC */	addi r4, r4, j3dDefaultFogInfo@l
+/* 803326B0  3C 80 80 3A */	lis r4, j3dDefaultFogInfo@ha /* 0x803A1FBC@ha */
+/* 803326B4  38 84 1F BC */	addi r4, r4, j3dDefaultFogInfo@l /* 0x803A1FBC@l */
 /* 803326B8  4B FF 31 49 */	bl __as__10J3DFogInfoFRC10J3DFogInfo
 /* 803326BC  80 9D 00 04 */	lwz r4, 4(r29)
 /* 803326C0  80 7D 00 08 */	lwz r3, 8(r29)

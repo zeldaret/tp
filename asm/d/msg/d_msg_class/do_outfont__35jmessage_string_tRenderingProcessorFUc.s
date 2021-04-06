@@ -140,8 +140,8 @@ lbl_802324B0:
 /* 802324E0  D0 1E 00 4C */	stfs f0, 0x4c(r30)
 /* 802324E4  38 61 00 08 */	addi r3, r1, 8
 /* 802324E8  38 80 00 0F */	li r4, 0xf
-/* 802324EC  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha
-/* 802324F0  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l
+/* 802324EC  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 802324F0  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 802324F4  38 A5 00 08 */	addi r5, r5, 8
 /* 802324F8  4C C6 31 82 */	crclr 6
 /* 802324FC  48 13 40 C1 */	bl snprintf

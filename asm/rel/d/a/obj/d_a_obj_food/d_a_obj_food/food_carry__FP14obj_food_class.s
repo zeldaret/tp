@@ -4,10 +4,10 @@ lbl_80BF09A4:
 /* 80BF09AC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BF09B0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80BF09B4  7C 7F 1B 78 */	mr r31, r3
-/* 80BF09B8  3C 60 80 BF */	lis r3, lit_3647@ha
-/* 80BF09BC  39 03 1D 90 */	addi r8, r3, lit_3647@l
-/* 80BF09C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BF09C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BF09B8  3C 60 80 BF */	lis r3, lit_3647@ha /* 0x80BF1D90@ha */
+/* 80BF09BC  39 03 1D 90 */	addi r8, r3, lit_3647@l /* 0x80BF1D90@l */
+/* 80BF09C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BF09C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BF09C8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80BF09CC  C0 28 00 0C */	lfs f1, 0xc(r8)
 /* 80BF09D0  D0 3F 04 FC */	stfs f1, 0x4fc(r31)
@@ -43,8 +43,8 @@ lbl_80BF0A3C:
 /* 80BF0A44  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080282@ha */
 /* 80BF0A48  38 03 02 82 */	addi r0, r3, 0x0282 /* 0x00080282@l */
 /* 80BF0A4C  90 01 00 08 */	stw r0, 8(r1)
-/* 80BF0A50  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80BF0A54  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80BF0A50  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80BF0A54  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80BF0A58  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BF0A5C  38 81 00 08 */	addi r4, r1, 8
 /* 80BF0A60  38 BF 04 D0 */	addi r5, r31, 0x4d0
@@ -55,23 +55,23 @@ lbl_80BF0A3C:
 /* 80BF0A74  C0 68 00 20 */	lfs f3, 0x20(r8)
 /* 80BF0A78  FC 80 18 90 */	fmr f4, f3
 /* 80BF0A7C  39 00 00 00 */	li r8, 0
-/* 80BF0A80  4B 6B AF 04 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80BF0A80  4B 6B AF 05 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80BF0A84  38 00 00 03 */	li r0, 3
 /* 80BF0A88  B0 1F 05 7E */	sth r0, 0x57e(r31)
 lbl_80BF0A8C:
 /* 80BF0A8C  7F E3 FB 78 */	mr r3, r31
-/* 80BF0A90  4B 42 C7 6C */	b fopAcM_carryOffRevise__FP10fopAc_ac_c
+/* 80BF0A90  4B 42 C7 6D */	bl fopAcM_carryOffRevise__FP10fopAc_ac_c
 lbl_80BF0A94:
 /* 80BF0A94  38 7F 05 8E */	addi r3, r31, 0x58e
 /* 80BF0A98  38 80 00 00 */	li r4, 0
 /* 80BF0A9C  38 A0 00 01 */	li r5, 1
 /* 80BF0AA0  38 C0 08 00 */	li r6, 0x800
-/* 80BF0AA4  4B 67 FB 64 */	b cLib_addCalcAngleS2__FPssss
+/* 80BF0AA4  4B 67 FB 65 */	bl cLib_addCalcAngleS2__FPssss
 /* 80BF0AA8  38 7F 05 90 */	addi r3, r31, 0x590
 /* 80BF0AAC  38 80 00 00 */	li r4, 0
 /* 80BF0AB0  38 A0 00 01 */	li r5, 1
 /* 80BF0AB4  38 C0 08 00 */	li r6, 0x800
-/* 80BF0AB8  4B 67 FB 50 */	b cLib_addCalcAngleS2__FPssss
+/* 80BF0AB8  4B 67 FB 51 */	bl cLib_addCalcAngleS2__FPssss
 /* 80BF0ABC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80BF0AC0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80BF0AC4  7C 08 03 A6 */	mtlr r0

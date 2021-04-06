@@ -5,8 +5,8 @@ lbl_8065F088:
 /* 8065F094  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8065F098  93 C1 00 08 */	stw r30, 8(r1)
 /* 8065F09C  7C 7E 1B 78 */	mr r30, r3
-/* 8065F0A0  3C A0 80 66 */	lis r5, lit_3987@ha
-/* 8065F0A4  3B E5 2D B0 */	addi r31, r5, lit_3987@l
+/* 8065F0A0  3C A0 80 66 */	lis r5, lit_3987@ha /* 0x80662DB0@ha */
+/* 8065F0A4  3B E5 2D B0 */	addi r31, r5, lit_3987@l /* 0x80662DB0@l */
 /* 8065F0A8  38 A0 00 00 */	li r5, 0
 /* 8065F0AC  B0 A3 0C 42 */	sth r5, 0xc42(r3)
 /* 8065F0B0  38 00 00 05 */	li r0, 5

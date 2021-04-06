@@ -12,8 +12,8 @@ lbl_801A7FC0:
 /* 801A7FE8  FC 00 00 1E */	fctiwz f0, f0
 /* 801A7FEC  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 801A7FF0  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 801A7FF4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A7FF8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A7FF4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7FF8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A7FFC  B0 03 11 C0 */	sth r0, 0x11c0(r3)
 /* 801A8000  7C 80 07 34 */	extsh r0, r4
 /* 801A8004  6C 00 80 00 */	xoris r0, r0, 0x8000

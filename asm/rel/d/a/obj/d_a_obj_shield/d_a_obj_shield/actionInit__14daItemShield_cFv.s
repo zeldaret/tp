@@ -4,7 +4,7 @@ lbl_80CD77F0:
 /* 80CD77F8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CD77FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CD7800  7C 7F 1B 78 */	mr r31, r3
-/* 80CD7804  4B 36 02 70 */	b show__12daItemBase_cFv
+/* 80CD7804  4B 36 02 71 */	bl show__12daItemBase_cFv
 /* 80CD7808  7F E3 FB 78 */	mr r3, r31
 /* 80CD780C  48 00 00 1D */	bl actionWaitInit__14daItemShield_cFv
 /* 80CD7810  38 60 00 01 */	li r3, 1

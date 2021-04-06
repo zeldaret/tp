@@ -3,19 +3,20 @@
 #
 
 M382_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia.plf
+M382_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia.lcf
+M382_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia.map
 
 M382_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_yelia/executor.cpp \
-	rel/d/a/npc/d_a_npc_yelia/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia.cpp \
 
 M382_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/d_a_npc_yelia.o \
 
 M382_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/libRuntime.PPCEABI.H.a \
 
 M382_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M382_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map382.map\
+	-m _prolog \
+	-lcf $(M382_LDSCRIPT) \
+	-unused -map $(M382_MAP) \
+	-w off \
 
 $(M382_TARGET): $(M382_O_FILES) $(M382_LIBS)
+	@echo [382] creating $(M382_TARGET)
 	@echo $(M382_LIBS) $(M382_O_FILES) > build/M382_ofiles
-	$(LD) -opt_partial $(M382_LDFLAGS) -o $(M382_TARGET) @build/M382_ofiles
+	@python3 tools/lcf.py rel 382 --output $(M382_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M382_LDFLAGS) -o $(M382_TARGET) @build/M382_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_yelia/%.o: rel/d/a/npc/d_a_npc_yelia/%.cpp
+	@echo [382] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M382_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M382_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_yelia/libs/Runtime.PPCEABI.H/Makefile
 

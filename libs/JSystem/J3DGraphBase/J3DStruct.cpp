@@ -51,7 +51,7 @@ extern "C" void __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo();
 // Declarations:
 //
 
-/* 803256C4-80325718 0054+00 s=0 e=11 z=24  None .text      __as__12J3DLightInfoFRC12J3DLightInfo */
+/* 803256C4-80325718 320004 0054+00 0/0 11/11 24/24 .text __as__12J3DLightInfoFRC12J3DLightInfo */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -61,7 +61,7 @@ asm void J3DLightInfo::operator=(J3DLightInfo const& param_0) {
 }
 #pragma pop
 
-/* 80325718-80325794 007C+00 s=0 e=4 z=0  None .text      __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo */
+/* 80325718-80325794 320058 007C+00 0/0 4/4 0/0 .text __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,10 +72,10 @@ asm void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456410-80456414 0004+00 s=1 e=0 z=0  None .sdata2    @409 */
+/* 80456410-80456414 004A10 0004+00 1/1 0/0 0/0 .sdata2          @409 */
 SECTION_SDATA2 static f32 lit_409 = 1.0f;
 
-/* 80456414-80456418 0004+00 s=1 e=0 z=0  None .sdata2    @410 */
+/* 80456414-80456418 004A14 0004+00 1/1 0/0 0/0 .sdata2          @410 */
 SECTION_SDATA2 static u8 lit_410[4] = {
     0x00,
     0x00,
@@ -83,9 +83,8 @@ SECTION_SDATA2 static u8 lit_410[4] = {
     0x00,
 };
 
-/* 80325794-803257DC 0048+00 s=0 e=2 z=7  None .text      setEffectMtx__13J3DTexMtxInfoFPA4_f */
-//	803257C4: 80456414 (lit_410)
-//	803257D0: 80456410 (lit_409)
+/* 80325794-803257DC 3200D4 0048+00 0/0 2/2 7/7 .text            setEffectMtx__13J3DTexMtxInfoFPA4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -95,8 +94,8 @@ asm void J3DTexMtxInfo::setEffectMtx(f32 (*param_0)[4]) {
 }
 #pragma pop
 
-/* 803257DC-80325800 0024+00 s=0 e=5 z=0  None .text __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo
- */
+/* 803257DC-80325800 32011C 0024+00 0/0 5/5 0/0 .text
+ * __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -106,7 +105,8 @@ asm void J3DIndTexMtxInfo::operator=(J3DIndTexMtxInfo const& param_0) {
 }
 #pragma pop
 
-/* 80325800-8032587C 007C+00 s=0 e=6 z=0  None .text      __as__10J3DFogInfoFRC10J3DFogInfo */
+/* 80325800-8032587C 320140 007C+00 0/0 6/6 0/0 .text            __as__10J3DFogInfoFRC10J3DFogInfo
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -116,7 +116,7 @@ asm void J3DFogInfo::operator=(J3DFogInfo const& param_0) {
 }
 #pragma pop
 
-/* 8032587C-803258A0 0024+00 s=0 e=6 z=0  None .text __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo
+/* 8032587C-803258A0 3201BC 0024+00 0/0 6/6 0/0 .text __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo
  */
 #pragma push
 #pragma optimization_level 0

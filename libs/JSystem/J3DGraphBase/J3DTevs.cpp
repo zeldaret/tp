@@ -60,19 +60,6 @@ struct J3DLightObj {
 // Forward References:
 //
 
-void loadTexCoordGens(u32, J3DTexCoord*);
-void isTexNoReg(void*);
-void getTexNoReg(void*);
-void loadTexNo(u32, u16 const&);
-void patchTexNo_PtrToIdx(u32, u16 const&);
-void loadNBTScale(J3DNBTScale&);
-void makeTexCoordTable();
-void makeAlphaCmpTable();
-void makeZModeTable();
-void makeTevSwapTable();
-static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, _GXTexMtxType);
-static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
-
 extern "C" void load__11J3DLightObjCFUl();
 extern "C" void loadTexCoordGens__FUlP11J3DTexCoord();
 extern "C" void load__9J3DTexMtxCFUl();
@@ -92,17 +79,6 @@ extern "C" void loadTexMtx__9J3DTexMtxCFUl();
 extern "C" void loadPostTexMtx__9J3DTexMtxCFUl();
 extern "C" static void J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType();
 extern "C" static void J3DGDLoadPostTexMtxImm__FPA4_fUl();
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultTexMtxInfo[100];
-extern "C" extern u8 const j3dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j3dDefaultTevStageInfo[20];
-extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
-extern "C" extern u8 const j3dDefaultFogInfo[44];
-extern "C" extern u8 const j3dDefaultNBTScaleInfo[16];
-extern "C" extern u8 j3dTevSwapTableTable[1024];
-extern "C" extern u8 j3dAlphaCmpTable[768];
-extern "C" extern u8 j3dZModeTable[96];
 extern "C" extern u32 j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
 extern "C" extern u32 data_804563C8;
@@ -122,24 +98,6 @@ extern "C" extern u16 j3dDefaultZModeID[1 + 1 /* padding */];
 //
 // External References:
 //
-
-void J3DGDSetLightAttn(_GXLightID, f32, f32, f32, f32, f32, f32);
-void J3DGDSetLightColor(_GXLightID, _GXColor);
-void J3DGDSetLightPos(_GXLightID, f32, f32, f32);
-void J3DGDSetLightDir(_GXLightID, f32, f32, f32);
-void J3DGDSetTexCoordGen(_GXTexGenType, _GXTexGenSrc);
-void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode, _GXTexFilter, _GXTexFilter,
-                           f32, f32, f32, u8, u8, _GXAnisotropy);
-void J3DGDSetTexImgAttr(_GXTexMapID, u16, u16, _GXTexFmt);
-void J3DGDSetTexImgPtr(_GXTexMapID, void*);
-void J3DGDSetTexImgPtrRaw(_GXTexMapID, u32);
-void J3DGDSetTexTlut(_GXTexMapID, u32, _GXTlutFmt);
-void J3DGDLoadTlut(void*, u32, _GXTlutSize);
-void J3DGetTextureMtx(J3DTextureSRTInfo const&, Vec const&, f32 (*)[4]);
-void J3DGetTextureMtxOld(J3DTextureSRTInfo const&, Vec const&, f32 (*)[4]);
-void J3DGetTextureMtxMaya(J3DTextureSRTInfo const&, f32 (*)[4]);
-void J3DGetTextureMtxMayaOld(J3DTextureSRTInfo const&, f32 (*)[4]);
-void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 
 extern "C" void J3DGDSetLightAttn__F10_GXLightIDffffff();
 extern "C" void J3DGDSetLightColor__F10_GXLightID8_GXColor();
@@ -172,13 +130,7 @@ extern "C" extern u8 __GDCurrentDL[4];
 // Declarations:
 //
 
-/* 80323590-80323644 00B4+00 s=0 e=3 z=0  None .text      load__11J3DLightObjCFUl */
-//	803235AC: 80451980 (__GDCurrentDL)
-//	803235C4: 803610D4 (GDOverflowed)
-//	803235E0: 8030D76C (J3DGDSetLightPos__F10_GXLightIDfff)
-//	80323600: 8030D364 (J3DGDSetLightAttn__F10_GXLightIDffffff)
-//	80323614: 8030D65C (J3DGDSetLightColor__F10_GXLightID8_GXColor)
-//	80323628: 8030D938 (J3DGDSetLightDir__F10_GXLightIDfff)
+/* 80323590-80323644 31DED0 00B4+00 0/0 3/3 0/0 .text            load__11J3DLightObjCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -188,32 +140,8 @@ asm void J3DLightObj::load(u32 param_0) const {
 }
 #pragma pop
 
-/* 80323644-803238C4 0280+00 s=0 e=3 z=0  None .text      loadTexCoordGens__FUlP11J3DTexCoord */
-//	80323654: 803621D0 (_savegpr_26)
-//	80323660: 80451980 (__GDCurrentDL)
-//	80323680: 803610D4 (GDOverflowed)
-//	80323688: 80451980 (__GDCurrentDL)
-//	803236A8: 80451980 (__GDCurrentDL)
-//	803236C0: 80451980 (__GDCurrentDL)
-//	803236D4: 80451980 (__GDCurrentDL)
-//	803236EC: 80451980 (__GDCurrentDL)
-//	80323718: 8030E064 (J3DGDSetTexCoordGen__F13_GXTexGenType12_GXTexGenSrc)
-//	80323730: 80451980 (__GDCurrentDL)
-//	80323744: 80451980 (__GDCurrentDL)
-//	80323758: 80451980 (__GDCurrentDL)
-//	8032376C: 80451980 (__GDCurrentDL)
-//	80323784: 80451980 (__GDCurrentDL)
-//	80323798: 80434AC8 (j3dSys)
-//	8032379C: 80434AC8 (j3dSys)
-//	803237DC: 80451980 (__GDCurrentDL)
-//	803237F4: 80451980 (__GDCurrentDL)
-//	8032380C: 80451980 (__GDCurrentDL)
-//	80323820: 80451980 (__GDCurrentDL)
-//	80323854: 80451980 (__GDCurrentDL)
-//	80323868: 80451980 (__GDCurrentDL)
-//	8032387C: 80451980 (__GDCurrentDL)
-//	80323894: 80451980 (__GDCurrentDL)
-//	803238B0: 8036221C (_restgpr_26)
+/* 80323644-803238C4 31DF84 0280+00 0/0 3/3 0/0 .text            loadTexCoordGens__FUlP11J3DTexCoord
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -223,11 +151,7 @@ asm void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1) {
 }
 #pragma pop
 
-/* 803238C4-80323900 003C+00 s=0 e=6 z=0  None .text      load__9J3DTexMtxCFUl */
-//	803238D0: 80434AC8 (j3dSys)
-//	803238D4: 80434AC8 (j3dSys)
-//	803238E4: 803243BC (loadPostTexMtx__9J3DTexMtxCFUl)
-//	803238EC: 80324358 (loadTexMtx__9J3DTexMtxCFUl)
+/* 803238C4-80323900 31E204 003C+00 0/0 6/6 0/0 .text            load__9J3DTexMtxCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,8 +161,7 @@ asm void J3DTexMtx::load(u32 param_0) const {
 }
 #pragma pop
 
-/* 80323900-80323920 0020+00 s=0 e=2 z=0  None .text      calc__9J3DTexMtxFPA4_Cf */
-//	8032390C: 80323920 (calcTexMtx__9J3DTexMtxFPA4_Cf)
+/* 80323900-80323920 31E240 0020+00 0/0 2/2 0/0 .text            calc__9J3DTexMtxFPA4_Cf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -249,21 +172,21 @@ asm void J3DTexMtx::calc(f32 const (*param_0)[4]) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CEAC8-803CEAF8 0030+00 s=1 e=0 z=0  None .data      qMtx$1001 */
+/* 803CEAC8-803CEAF8 02BBE8 0030+00 1/1 0/0 0/0 .data            qMtx$1001 */
 SECTION_DATA static u8 qMtx_1001[48] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CEAF8-803CEB28 0030+00 s=1 e=0 z=0  None .data      qMtx2$1002 */
+/* 803CEAF8-803CEB28 02BC18 0030+00 1/1 0/0 0/0 .data            qMtx2$1002 */
 SECTION_DATA static u8 qMtx2_1002[48] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CEB28-803CEB58 0030+00 s=1 e=0 z=0  None .data      @1059 */
+/* 803CEB28-803CEB58 -00001 0030+00 1/1 0/0 0/0 .data            @1059 */
 SECTION_DATA static void* lit_1059[12] = {
     (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x2A4),
     (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x1C8),
@@ -279,47 +202,7 @@ SECTION_DATA static void* lit_1059[12] = {
     (void*)(((char*)calcTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
 };
 
-/* 80323920-80323C0C 02EC+00 s=2 e=0 z=0  None .text      calcTexMtx__9J3DTexMtxFPA4_Cf */
-//	80323950: 803CEB28 (lit_1059)
-//	80323954: 803CEB28 (lit_1059)
-//	8032397C: 80311ACC (J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323994: 80311C34 (J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f)
-//	8032399C: 803CEAC8 (qMtx_1001)
-//	803239A0: 803CEAC8 (qMtx_1001)
-//	803239A8: 803464E4 (PSMTXConcat)
-//	803239B8: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	803239C8: 803464E4 (PSMTXConcat)
-//	803239E4: 80311ACC (J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	803239FC: 80311C34 (J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f)
-//	80323A04: 803CEAC8 (qMtx_1001)
-//	80323A08: 803CEAC8 (qMtx_1001)
-//	80323A10: 803464E4 (PSMTXConcat)
-//	80323A20: 803464E4 (PSMTXConcat)
-//	80323A3C: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323A54: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323A5C: 803CEAF8 (qMtx2_1002)
-//	80323A60: 803CEAF8 (qMtx2_1002)
-//	80323A68: 803464E4 (PSMTXConcat)
-//	80323A78: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323A88: 803464E4 (PSMTXConcat)
-//	80323AA4: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323ABC: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323AC4: 803CEAF8 (qMtx2_1002)
-//	80323AC8: 803CEAF8 (qMtx2_1002)
-//	80323AD0: 803464E4 (PSMTXConcat)
-//	80323AE0: 803464E4 (PSMTXConcat)
-//	80323AFC: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323B14: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323B24: 803464E4 (PSMTXConcat)
-//	80323B40: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323B58: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323B68: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323B78: 803464E4 (PSMTXConcat)
-//	80323B94: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323BAC: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323BBC: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323BD8: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323BF0: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
+/* 80323920-80323C0C 31E260 02EC+00 2/1 0/0 0/0 .text            calcTexMtx__9J3DTexMtxFPA4_Cf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -330,21 +213,21 @@ asm void J3DTexMtx::calcTexMtx(f32 const (*param_0)[4]) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CEB58-803CEB88 0030+00 s=1 e=0 z=0  None .data      qMtx$1063 */
+/* 803CEB58-803CEB88 02BC78 0030+00 1/1 0/0 0/0 .data            qMtx$1063 */
 SECTION_DATA static u8 qMtx_1063[48] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CEB88-803CEBB8 0030+00 s=1 e=0 z=0  None .data      qMtx2$1064 */
+/* 803CEB88-803CEBB8 02BCA8 0030+00 1/1 0/0 0/0 .data            qMtx2$1064 */
 SECTION_DATA static u8 qMtx2_1064[48] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CEBB8-803CEBE8 0030+00 s=1 e=0 z=0  None .data      @1131 */
+/* 803CEBB8-803CEBE8 -00001 0030+00 1/1 0/0 0/0 .data            @1131 */
 SECTION_DATA static void* lit_1131[12] = {
     (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x310),
     (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x200),
@@ -360,53 +243,8 @@ SECTION_DATA static void* lit_1131[12] = {
     (void*)(((char*)calcPostTexMtx__9J3DTexMtxFPA4_Cf) + 0x48),
 };
 
-/* 80323C0C-80323F64 0358+00 s=1 e=2 z=0  None .text      calcPostTexMtx__9J3DTexMtxFPA4_Cf */
-//	80323C3C: 803CEBB8 (lit_1131)
-//	80323C40: 803CEBB8 (lit_1131)
-//	80323C68: 80311ACC (J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323C80: 80311C34 (J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f)
-//	80323C88: 803CEB58 (qMtx_1063)
-//	80323C8C: 803CEB58 (qMtx_1063)
-//	80323C94: 803464E4 (PSMTXConcat)
-//	80323CA4: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323CB4: 803464E4 (PSMTXConcat)
-//	80323CD0: 80311ACC (J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323CE8: 80311C34 (J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f)
-//	80323CF0: 803CEB58 (qMtx_1063)
-//	80323CF4: 803CEB58 (qMtx_1063)
-//	80323CFC: 803464E4 (PSMTXConcat)
-//	80323D0C: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323D28: 80311ACC (J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323D40: 80311C34 (J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f)
-//	80323D48: 803CEB58 (qMtx_1063)
-//	80323D4C: 803CEB58 (qMtx_1063)
-//	80323D54: 803464E4 (PSMTXConcat)
-//	80323D70: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323D88: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323D90: 803CEB88 (qMtx2_1064)
-//	80323D94: 803CEB88 (qMtx2_1064)
-//	80323D9C: 803464E4 (PSMTXConcat)
-//	80323DAC: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323DBC: 803464E4 (PSMTXConcat)
-//	80323DD8: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323DF0: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323DF8: 803CEB88 (qMtx2_1064)
-//	80323DFC: 803CEB88 (qMtx2_1064)
-//	80323E04: 803464E4 (PSMTXConcat)
-//	80323E20: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323E38: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323E54: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323E6C: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323E7C: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323E8C: 803464E4 (PSMTXConcat)
-//	80323EA8: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323EC0: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323ED0: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323EEC: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323F04: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
-//	80323F14: 80311E4C (J3DMtxProjConcat__FPA4_fPA4_fPA4_f)
-//	80323F30: 80311B80 (J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f)
-//	80323F48: 80311CE4 (J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f)
+/* 80323C0C-80323F64 31E54C 0358+00 1/0 2/2 0/0 .text            calcPostTexMtx__9J3DTexMtxFPA4_Cf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -416,7 +254,7 @@ asm void J3DTexMtx::calcPostTexMtx(f32 const (*param_0)[4]) {
 }
 #pragma pop
 
-/* 80323F64-80323F88 0024+00 s=0 e=1 z=0  None .text      isTexNoReg__FPv */
+/* 80323F64-80323F88 31E8A4 0024+00 0/0 1/1 0/0 .text            isTexNoReg__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -426,7 +264,7 @@ asm void isTexNoReg(void* param_0) {
 }
 #pragma pop
 
-/* 80323F88-80323F94 000C+00 s=0 e=1 z=0  None .text      getTexNoReg__FPv */
+/* 80323F88-80323F94 31E8C8 000C+00 0/0 1/1 0/0 .text            getTexNoReg__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -437,35 +275,16 @@ asm void getTexNoReg(void* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804563B0-804563B4 0004+00 s=1 e=0 z=0  None .sdata2    @1167 */
+/* 804563B0-804563B4 0049B0 0004+00 1/1 0/0 0/0 .sdata2          @1167 */
 SECTION_SDATA2 static f32 lit_1167 = 0.125f;
 
-/* 804563B4-804563B8 0004+00 s=1 e=0 z=0  None .sdata2    @1168 */
+/* 804563B4-804563B8 0049B4 0004+00 1/1 0/0 0/0 .sdata2          @1168 */
 SECTION_SDATA2 static f32 lit_1168 = 1.0f / 100.0f;
 
-/* 804563B8-804563C0 0008+00 s=1 e=0 z=0  None .sdata2    @1171 */
+/* 804563B8-804563C0 0049B8 0008+00 1/1 0/0 0/0 .sdata2          @1171 */
 SECTION_SDATA2 static f64 lit_1171 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80323F94-8032413C 01A8+00 s=0 e=20 z=0  None .text      loadTexNo__FUlRCUs */
-//	80323FA4: 803621D8 (_savegpr_28)
-//	80323FAC: 80434AC8 (j3dSys)
-//	80323FB0: 80434AC8 (j3dSys)
-//	80323FD0: 80434C2C (sTexCoordScaleTable__6J3DSys)
-//	80323FD4: 80434C2C (sTexCoordScaleTable__6J3DSys)
-//	80323FE8: 80451980 (__GDCurrentDL)
-//	80324000: 803610D4 (GDOverflowed)
-//	80324010: 8030E67C (J3DGDSetTexImgPtr__F11_GXTexMapIDPv)
-//	80324028: 8030E5D4 (J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt)
-//	80324040: 804563B0 (lit_1167)
-//	8032404C: 804563B8 (lit_1171)
-//	8032408C: 804563B4 (lit_1168)
-//	803240B8: 8030E438
-//(J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy)
-//	803240DC: 80451980 (__GDCurrentDL)
-//	803240F4: 803610D4 (GDOverflowed)
-//	80324110: 8030E878 (J3DGDLoadTlut__FPvUl11_GXTlutSize)
-//	80324120: 8030E7E0 (J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt)
-//	80324128: 80362224 (_restgpr_28)
+/* 80323F94-8032413C 31E8D4 01A8+00 0/0 20/20 0/0 .text            loadTexNo__FUlRCUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,8 +294,7 @@ asm void loadTexNo(u32 param_0, u16 const& param_1) {
 }
 #pragma pop
 
-/* 8032413C-80324160 0024+00 s=0 e=2 z=0  None .text      patchTexNo_PtrToIdx__FUlRCUs */
-//	8032414C: 8030E70C (J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl)
+/* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -486,11 +304,7 @@ asm void patchTexNo_PtrToIdx(u32 param_0, u16 const& param_1) {
 }
 #pragma pop
 
-/* 80324160-80324194 0034+00 s=0 e=2 z=0  None .text      loadNBTScale__FR11J3DNBTScale */
-//	80324170: 80434AC8 (j3dSys)
-//	80324174: 80434AC8 (j3dSys)
-//	80324184: 80434AC8 (j3dSys)
-//	80324188: 80434AC8 (j3dSys)
+/* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,22 +315,24 @@ asm void loadNBTScale(J3DNBTScale& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A1EC8-803A1EFC 0034+00 s=0 e=9 z=24  None .rodata    j3dDefaultLightInfo */
-SECTION_RODATA u8 const j3dDefaultLightInfo[52] = {
+/* 803A1EC8-803A1EFC 02E528 0034+00 0/0 9/9 24/24 .rodata          j3dDefaultLightInfo */
+SECTION_RODATA extern u8 const j3dDefaultLightInfo[52] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
     0xFF, 0xFF, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1EC8 = (void*)(&j3dDefaultLightInfo);
 
-/* 803A1EFC-803A1F1C 0020+00 s=0 e=5 z=0  None .rodata    j3dDefaultTexCoordInfo */
-SECTION_RODATA u8 const j3dDefaultTexCoordInfo[32] = {
+/* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
+SECTION_RODATA extern u8 const j3dDefaultTexCoordInfo[32] = {
     0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
     0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
 };
+SECTION_DEAD void* const cg_803A1EFC = (void*)(&j3dDefaultTexCoordInfo);
 
-/* 803A1F1C-803A1F80 0064+00 s=0 e=1 z=0  None .rodata    j3dDefaultTexMtxInfo */
-SECTION_RODATA u8 const j3dDefaultTexMtxInfo[100] = {
+/* 803A1F1C-803A1F80 02E57C 0064+00 0/0 1/1 0/0 .rodata          j3dDefaultTexMtxInfo */
+SECTION_RODATA extern u8 const j3dDefaultTexMtxInfo[100] = {
     0x01, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -525,37 +341,43 @@ SECTION_RODATA u8 const j3dDefaultTexMtxInfo[100] = {
     0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1F1C = (void*)(&j3dDefaultTexMtxInfo);
 
-/* 803A1F80-803A1F9C 001C+00 s=0 e=2 z=0  None .rodata    j3dDefaultIndTexMtxInfo */
-SECTION_RODATA u8 const j3dDefaultIndTexMtxInfo[28] = {
+/* 803A1F80-803A1F9C 02E5E0 001C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTexMtxInfo */
+SECTION_RODATA extern u8 const j3dDefaultIndTexMtxInfo[28] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1F80 = (void*)(&j3dDefaultIndTexMtxInfo);
 
-/* 803A1F9C-803A1FB0 0014+00 s=0 e=1 z=0  None .rodata    j3dDefaultTevStageInfo */
-SECTION_RODATA u8 const j3dDefaultTevStageInfo[20] = {
+/* 803A1F9C-803A1FB0 02E5FC 0014+00 0/0 1/1 0/0 .rodata          j3dDefaultTevStageInfo */
+SECTION_RODATA extern u8 const j3dDefaultTevStageInfo[20] = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1F9C = (void*)(&j3dDefaultTevStageInfo);
 
-/* 803A1FB0-803A1FBC 000C+00 s=0 e=2 z=0  None .rodata    j3dDefaultIndTevStageInfo */
-SECTION_RODATA u8 const j3dDefaultIndTevStageInfo[12] = {
+/* 803A1FB0-803A1FBC 02E610 000C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTevStageInfo */
+SECTION_RODATA extern u8 const j3dDefaultIndTevStageInfo[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1FB0 = (void*)(&j3dDefaultIndTevStageInfo);
 
-/* 803A1FBC-803A1FE8 002C+00 s=0 e=3 z=0  None .rodata    j3dDefaultFogInfo */
-SECTION_RODATA u8 const j3dDefaultFogInfo[44] = {
+/* 803A1FBC-803A1FE8 02E61C 002C+00 0/0 3/3 0/0 .rodata          j3dDefaultFogInfo */
+SECTION_RODATA extern u8 const j3dDefaultFogInfo[44] = {
     0x00, 0x00, 0x01, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC,
     0xCD, 0x46, 0x1C, 0x40, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1FBC = (void*)(&j3dDefaultFogInfo);
 
-/* 803A1FE8-803A1FF8 0010+00 s=0 e=3 z=0  None .rodata    j3dDefaultNBTScaleInfo */
-SECTION_RODATA u8 const j3dDefaultNBTScaleInfo[16] = {
+/* 803A1FE8-803A1FF8 02E648 0010+00 0/0 3/3 0/0 .rodata          j3dDefaultNBTScaleInfo */
+SECTION_RODATA extern u8 const j3dDefaultNBTScaleInfo[16] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A1FE8 = (void*)(&j3dDefaultNBTScaleInfo);
 
-/* 803A1FF8-803A2008 000B+05 s=1 e=0 z=0  None .rodata    @1197 */
+/* 803A1FF8-803A2008 02E658 000B+05 1/1 0/0 0/0 .rodata          @1197 */
 SECTION_RODATA static u8 const lit_1197[11 + 5 /* padding */] = {
     0x1E,
     0x21,
@@ -575,15 +397,12 @@ SECTION_RODATA static u8 const lit_1197[11 + 5 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A1FF8 = (void*)(&lit_1197);
 
-/* 80434C98-80436A60 1DC7+01 s=1 e=0 z=0  None .bss       j3dTexCoordTable */
+/* 80434C98-80436A60 0619B8 1DC7+01 1/1 0/0 0/0 .bss             j3dTexCoordTable */
 static u8 j3dTexCoordTable[7623 + 1 /* padding */];
 
-/* 80324194-8032423C 00A8+00 s=0 e=1 z=0  None .text      makeTexCoordTable__Fv */
-//	80324198: 803A1FF8 (lit_1197)
-//	8032419C: 803A1FF8 (lit_1197)
-//	803241C0: 80434C98 (j3dTexCoordTable)
-//	803241C4: 80434C98 (j3dTexCoordTable)
+/* 80324194-8032423C 31EAD4 00A8+00 0/0 1/1 0/0 .text            makeTexCoordTable__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,15 +413,15 @@ asm void makeTexCoordTable() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80436A60-80436E60 0400+00 s=1 e=3 z=0  None .bss       j3dTevSwapTableTable */
+/* 80436A60-80436E60 063780 0400+00 1/1 3/3 0/0 .bss             j3dTevSwapTableTable */
+extern u8 j3dTevSwapTableTable[1024];
 u8 j3dTevSwapTableTable[1024];
 
-/* 80436E60-80437160 0300+00 s=1 e=2 z=0  None .bss       j3dAlphaCmpTable */
+/* 80436E60-80437160 063B80 0300+00 1/1 2/2 0/0 .bss             j3dAlphaCmpTable */
+extern u8 j3dAlphaCmpTable[768];
 u8 j3dAlphaCmpTable[768];
 
-/* 8032423C-803242A8 006C+00 s=0 e=1 z=0  None .text      makeAlphaCmpTable__Fv */
-//	8032423C: 80436E60 (j3dAlphaCmpTable)
-//	80324240: 80436E60 (j3dAlphaCmpTable)
+/* 8032423C-803242A8 31EB7C 006C+00 0/0 1/1 0/0 .text            makeAlphaCmpTable__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -613,12 +432,11 @@ asm void makeAlphaCmpTable() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80437160-804371C0 0060+00 s=1 e=4 z=5  None .bss       j3dZModeTable */
+/* 80437160-804371C0 063E80 0060+00 1/1 4/4 5/5 .bss             j3dZModeTable */
+extern u8 j3dZModeTable[96];
 u8 j3dZModeTable[96];
 
-/* 803242A8-80324314 006C+00 s=0 e=1 z=0  None .text      makeZModeTable__Fv */
-//	803242A8: 80437160 (j3dZModeTable)
-//	803242AC: 80437160 (j3dZModeTable)
+/* 803242A8-80324314 31EBE8 006C+00 0/0 1/1 0/0 .text            makeZModeTable__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -628,9 +446,7 @@ asm void makeZModeTable() {
 }
 #pragma pop
 
-/* 80324314-80324358 0044+00 s=0 e=1 z=0  None .text      makeTevSwapTable__Fv */
-//	80324314: 80436A60 (j3dTevSwapTableTable)
-//	80324318: 80436A60 (j3dTevSwapTableTable)
+/* 80324314-80324358 31EC54 0044+00 0/0 1/1 0/0 .text            makeTevSwapTable__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -640,10 +456,7 @@ asm void makeTevSwapTable() {
 }
 #pragma pop
 
-/* 80324358-803243BC 0064+00 s=1 e=0 z=0  None .text      loadTexMtx__9J3DTexMtxCFUl */
-//	80324374: 80451980 (__GDCurrentDL)
-//	8032438C: 803610D4 (GDOverflowed)
-//	803243A0: 8032441C (J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType)
+/* 80324358-803243BC 31EC98 0064+00 1/1 0/0 0/0 .text            loadTexMtx__9J3DTexMtxCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,10 +466,7 @@ asm void J3DTexMtx::loadTexMtx(u32 param_0) const {
 }
 #pragma pop
 
-/* 803243BC-8032441C 0060+00 s=1 e=0 z=0  None .text      loadPostTexMtx__9J3DTexMtxCFUl */
-//	803243D8: 80451980 (__GDCurrentDL)
-//	803243F0: 803610D4 (GDOverflowed)
-//	80324400: 8032499C (J3DGDLoadPostTexMtxImm__FPA4_fUl)
+/* 803243BC-8032441C 31ECFC 0060+00 1/1 0/0 0/0 .text            loadPostTexMtx__9J3DTexMtxCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -666,197 +476,92 @@ asm void J3DTexMtx::loadPostTexMtx(u32 param_0) const {
 }
 #pragma pop
 
-/* 8032441C-8032499C 0580+00 s=1 e=0 z=0  None .text J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType
+/* 8032441C-8032499C 31ED5C 0580+00 1/1 0/0 0/0 .text J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType
  */
-//	8032443C: 80451980 (__GDCurrentDL)
-//	80324458: 80451980 (__GDCurrentDL)
-//	8032446C: 80451980 (__GDCurrentDL)
-//	80324484: 80451980 (__GDCurrentDL)
-//	80324498: 80451980 (__GDCurrentDL)
-//	803244BC: 80451980 (__GDCurrentDL)
-//	803244D4: 80451980 (__GDCurrentDL)
-//	803244EC: 80451980 (__GDCurrentDL)
-//	80324500: 80451980 (__GDCurrentDL)
-//	80324524: 80451980 (__GDCurrentDL)
-//	8032453C: 80451980 (__GDCurrentDL)
-//	80324554: 80451980 (__GDCurrentDL)
-//	80324568: 80451980 (__GDCurrentDL)
-//	8032458C: 80451980 (__GDCurrentDL)
-//	803245A4: 80451980 (__GDCurrentDL)
-//	803245BC: 80451980 (__GDCurrentDL)
-//	803245D0: 80451980 (__GDCurrentDL)
-//	803245F4: 80451980 (__GDCurrentDL)
-//	8032460C: 80451980 (__GDCurrentDL)
-//	80324624: 80451980 (__GDCurrentDL)
-//	80324638: 80451980 (__GDCurrentDL)
-//	8032465C: 80451980 (__GDCurrentDL)
-//	80324674: 80451980 (__GDCurrentDL)
-//	8032468C: 80451980 (__GDCurrentDL)
-//	803246A0: 80451980 (__GDCurrentDL)
-//	803246C4: 80451980 (__GDCurrentDL)
-//	803246DC: 80451980 (__GDCurrentDL)
-//	803246F4: 80451980 (__GDCurrentDL)
-//	80324708: 80451980 (__GDCurrentDL)
-//	8032472C: 80451980 (__GDCurrentDL)
-//	80324744: 80451980 (__GDCurrentDL)
-//	8032475C: 80451980 (__GDCurrentDL)
-//	80324770: 80451980 (__GDCurrentDL)
-//	80324794: 80451980 (__GDCurrentDL)
-//	803247AC: 80451980 (__GDCurrentDL)
-//	803247C4: 80451980 (__GDCurrentDL)
-//	803247D8: 80451980 (__GDCurrentDL)
-//	80324804: 80451980 (__GDCurrentDL)
-//	8032481C: 80451980 (__GDCurrentDL)
-//	80324834: 80451980 (__GDCurrentDL)
-//	80324848: 80451980 (__GDCurrentDL)
-//	8032486C: 80451980 (__GDCurrentDL)
-//	80324884: 80451980 (__GDCurrentDL)
-//	8032489C: 80451980 (__GDCurrentDL)
-//	803248B0: 80451980 (__GDCurrentDL)
-//	803248D4: 80451980 (__GDCurrentDL)
-//	803248EC: 80451980 (__GDCurrentDL)
-//	80324904: 80451980 (__GDCurrentDL)
-//	80324918: 80451980 (__GDCurrentDL)
-//	8032493C: 80451980 (__GDCurrentDL)
-//	80324954: 80451980 (__GDCurrentDL)
-//	8032496C: 80451980 (__GDCurrentDL)
-//	80324980: 80451980 (__GDCurrentDL)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void J3DGDLoadTexMtxImm(f32 (*param_0)[4], u32 param_1, _GXTexMtxType param_2) {
+static asm void J3DGDLoadTexMtxImm(f32 (*param_0)[4], u32 param_1, _GXTexMtxType param_2) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DTevs/J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType.s"
 }
 #pragma pop
 
-/* 8032499C-80324F08 056C+00 s=1 e=0 z=0  None .text      J3DGDLoadPostTexMtxImm__FPA4_fUl */
-//	803249B0: 80451980 (__GDCurrentDL)
-//	803249C8: 80451980 (__GDCurrentDL)
-//	803249E0: 80451980 (__GDCurrentDL)
-//	803249F8: 80451980 (__GDCurrentDL)
-//	80324A0C: 80451980 (__GDCurrentDL)
-//	80324A30: 80451980 (__GDCurrentDL)
-//	80324A48: 80451980 (__GDCurrentDL)
-//	80324A60: 80451980 (__GDCurrentDL)
-//	80324A74: 80451980 (__GDCurrentDL)
-//	80324A98: 80451980 (__GDCurrentDL)
-//	80324AB0: 80451980 (__GDCurrentDL)
-//	80324AC8: 80451980 (__GDCurrentDL)
-//	80324ADC: 80451980 (__GDCurrentDL)
-//	80324B00: 80451980 (__GDCurrentDL)
-//	80324B18: 80451980 (__GDCurrentDL)
-//	80324B30: 80451980 (__GDCurrentDL)
-//	80324B44: 80451980 (__GDCurrentDL)
-//	80324B68: 80451980 (__GDCurrentDL)
-//	80324B80: 80451980 (__GDCurrentDL)
-//	80324B98: 80451980 (__GDCurrentDL)
-//	80324BAC: 80451980 (__GDCurrentDL)
-//	80324BD0: 80451980 (__GDCurrentDL)
-//	80324BE8: 80451980 (__GDCurrentDL)
-//	80324C00: 80451980 (__GDCurrentDL)
-//	80324C14: 80451980 (__GDCurrentDL)
-//	80324C38: 80451980 (__GDCurrentDL)
-//	80324C50: 80451980 (__GDCurrentDL)
-//	80324C68: 80451980 (__GDCurrentDL)
-//	80324C7C: 80451980 (__GDCurrentDL)
-//	80324CA0: 80451980 (__GDCurrentDL)
-//	80324CB8: 80451980 (__GDCurrentDL)
-//	80324CD0: 80451980 (__GDCurrentDL)
-//	80324CE4: 80451980 (__GDCurrentDL)
-//	80324D08: 80451980 (__GDCurrentDL)
-//	80324D20: 80451980 (__GDCurrentDL)
-//	80324D38: 80451980 (__GDCurrentDL)
-//	80324D4C: 80451980 (__GDCurrentDL)
-//	80324D70: 80451980 (__GDCurrentDL)
-//	80324D88: 80451980 (__GDCurrentDL)
-//	80324DA0: 80451980 (__GDCurrentDL)
-//	80324DB4: 80451980 (__GDCurrentDL)
-//	80324DD8: 80451980 (__GDCurrentDL)
-//	80324DF0: 80451980 (__GDCurrentDL)
-//	80324E08: 80451980 (__GDCurrentDL)
-//	80324E1C: 80451980 (__GDCurrentDL)
-//	80324E40: 80451980 (__GDCurrentDL)
-//	80324E58: 80451980 (__GDCurrentDL)
-//	80324E70: 80451980 (__GDCurrentDL)
-//	80324E84: 80451980 (__GDCurrentDL)
-//	80324EA8: 80451980 (__GDCurrentDL)
-//	80324EC0: 80451980 (__GDCurrentDL)
-//	80324ED8: 80451980 (__GDCurrentDL)
-//	80324EEC: 80451980 (__GDCurrentDL)
+/* 8032499C-80324F08 31F2DC 056C+00 1/1 0/0 0/0 .text            J3DGDLoadPostTexMtxImm__FPA4_fUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void J3DGDLoadPostTexMtxImm(f32 (*param_0)[4], u32 param_1) {
+static asm void J3DGDLoadPostTexMtxImm(f32 (*param_0)[4], u32 param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DTevs/J3DGDLoadPostTexMtxImm__FPA4_fUl.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804563C0-804563C4 0004+00 s=0 e=4 z=0  None .sdata2    j3dDefaultColInfo */
-SECTION_SDATA2 u32 j3dDefaultColInfo = 0xFFFFFFFF;
+/* 804563C0-804563C4 0049C0 0004+00 0/0 4/4 0/0 .sdata2          j3dDefaultColInfo */
+SECTION_SDATA2 extern u32 j3dDefaultColInfo = 0xFFFFFFFF;
 
-/* 804563C4-804563C8 0004+00 s=0 e=2 z=0  None .sdata2    j3dDefaultAmbInfo */
-SECTION_SDATA2 u32 j3dDefaultAmbInfo = 0x32323232;
+/* 804563C4-804563C8 0049C4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultAmbInfo */
+SECTION_SDATA2 extern u32 j3dDefaultAmbInfo = 0x32323232;
 
-/* 804563C8-804563CC 0004+00 s=0 e=1 z=0  None .sdata2    None */
-SECTION_SDATA2 u32 data_804563C8 = 0x01000000;
+/* 804563C8-804563CC 0049C8 0004+00 0/0 1/1 0/0 .sdata2          None */
+SECTION_SDATA2 extern u32 data_804563C8 = 0x01000000;
 
-/* 804563CC-804563D0 0004+00 s=0 e=3 z=0  None .sdata2    j3dDefaultTevOrderInfoNull */
-SECTION_SDATA2 u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
+/* 804563CC-804563D0 0049CC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultTevOrderInfoNull */
+SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
 
-/* 804563D0-804563D4 0004+00 s=0 e=2 z=0  None .sdata2    j3dDefaultIndTexOrderNull */
-SECTION_SDATA2 u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
+/* 804563D0-804563D4 0049D0 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexOrderNull */
+SECTION_SDATA2 extern u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
 
-/* 804563D4-804563D8 0004+00 s=0 e=5 z=0  None .sdata2    j3dDefaultTevColor */
-SECTION_SDATA2 u32 j3dDefaultTevColor = 0x00FF00FF;
+/* 804563D4-804563D8 0049D4 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevColor */
+SECTION_SDATA2 extern u32 j3dDefaultTevColor = 0x00FF00FF;
 
-/* 804563D8-804563DC 0004+00 s=0 e=1 z=0  None .sdata2    None */
-SECTION_SDATA2 u32 data_804563D8 = 0x00FF00FF;
+/* 804563D8-804563DC 0049D8 0004+00 0/0 1/5 0/0 .sdata2          None */
+SECTION_SDATA2 extern u32 data_804563D8 = 0x00FF00FF;
 
-/* 804563DC-804563E0 0004+00 s=0 e=2 z=0  None .sdata2    j3dDefaultIndTexCoordScaleInfo */
-SECTION_SDATA2 u8 j3dDefaultIndTexCoordScaleInfo[4] = {
+/* 804563DC-804563E0 0049DC 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexCoordScaleInfo */
+SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
 
-/* 804563E0-804563E4 0004+00 s=0 e=5 z=0  None .sdata2    j3dDefaultTevKColor */
-SECTION_SDATA2 u32 j3dDefaultTevKColor = 0xFFFFFFFF;
+/* 804563E0-804563E4 0049E0 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevKColor */
+SECTION_SDATA2 extern u32 j3dDefaultTevKColor = 0xFFFFFFFF;
 
-/* 804563E4-804563E8 0004+00 s=0 e=2 z=0  None .sdata2    j3dDefaultTevSwapMode */
-SECTION_SDATA2 u8 j3dDefaultTevSwapMode[4] = {
+/* 804563E4-804563E8 0049E4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapMode */
+SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
 
-/* 804563E8-804563EC 0004+00 s=0 e=2 z=0  None .sdata2    j3dDefaultTevSwapModeTable */
-SECTION_SDATA2 u32 j3dDefaultTevSwapModeTable = 0x00010203;
+/* 804563E8-804563EC 0049E8 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapModeTable */
+SECTION_SDATA2 extern u32 j3dDefaultTevSwapModeTable = 0x00010203;
 
-/* 804563EC-804563F0 0004+00 s=0 e=3 z=0  None .sdata2    j3dDefaultBlendInfo */
-SECTION_SDATA2 u32 j3dDefaultBlendInfo = 0x01040505;
+/* 804563EC-804563F0 0049EC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultBlendInfo */
+SECTION_SDATA2 extern u32 j3dDefaultBlendInfo = 0x01040505;
 
-/* 804563F0-804563F8 0008+00 s=0 e=3 z=0  None .sdata2    j3dDefaultColorChanInfo */
-SECTION_SDATA2 u8 j3dDefaultColorChanInfo[8] = {
+/* 804563F0-804563F8 0049F0 0008+00 0/0 3/3 0/0 .sdata2          j3dDefaultColorChanInfo */
+SECTION_SDATA2 extern u8 j3dDefaultColorChanInfo[8] = {
     0x00, 0x00, 0x00, 0x02, 0x02, 0x00, 0xFF, 0xFF,
 };
 
-/* 804563F8-804563FC 0004+00 s=0 e=2 z=0  None .sdata2    None */
+/* 804563F8-804563FC -00001 0004+00 0/0 2/2 0/0 .sdata2          None */
+SECTION_SDATA2 extern u8 struct_804563F8[4];
 SECTION_SDATA2 u8 struct_804563F8[4] = {
-    /* 804563F8 0002 data_804563F8 None */
+    /* 804563F8 0002+00 data_804563F8 None */
     0x1B,
     0x00,
-    /* 804563FA 0002 data_804563FA j3dDefaultAlphaCmpID */
+    /* 804563FA 0002+00 data_804563FA j3dDefaultAlphaCmpID */
     0x00,
     0xE7,
 };
 
-/* 804563FC-80456400 0002+02 s=0 e=3 z=0  None .sdata2    j3dDefaultZModeID */
-SECTION_SDATA2 u16 j3dDefaultZModeID[1 + 1 /* padding */] = {
+/* 804563FC-80456400 0049FC 0002+02 0/0 3/3 0/0 .sdata2          j3dDefaultZModeID */
+SECTION_SDATA2 extern u16 j3dDefaultZModeID[1 + 1 /* padding */] = {
     0x0017,
     /* padding */
     0x0000,

@@ -23,17 +23,18 @@ ET_HIPROC = 0xFFFF
 
 EM_POWERPC = 0x14
 
+
 @dataclass
 class Header:
     e_ident: Dict[int, object] = field(default_factory=lambda: {
-            EI_MAG: 0x7F454C46,
-            EI_CLASS: 1,  # 32-bit
-            EI_DATA: 2,  # big endian
-            EI_VERSION: 1,
-            EI_OSABI: 0,
-            EI_ABIVERSION: 0,
-            EI_PAD: [0, 0, 0, 0, 0, 0, 0]
-        })
+        EI_MAG: 0x7F454C46,
+        EI_CLASS: 1,  # 32-bit
+        EI_DATA: 2,  # big endian
+        EI_VERSION: 1,
+        EI_OSABI: 0,
+        EI_ABIVERSION: 0,
+        EI_PAD: [0, 0, 0, 0, 0, 0, 0]
+    })
     e_type: int = 0
     e_machine: int = 0
     e_version: int = 0
@@ -112,6 +113,7 @@ PF_X = 0x1
 PF_W = 0x2
 PF_R = 0x4
 
+
 @dataclass
 class ProgramHeader:
     p_type: int = 0
@@ -142,6 +144,7 @@ class ProgramHeader:
         write_u32(file, self.p_memsz)
         write_u32(file, self.p_flags)
         write_u32(file, self.p_align)
+
 
 SHT_NULL = 0x0
 SHT_PROGBITS = 0x1
@@ -219,8 +222,10 @@ SH_FLAGS = {
     0x8000000: "SHF_EXCLUDE",
 }
 
-@dataclass
+
+@dataclass(unsafe_hash=True)
 class SectionHeader:
+    id: int = 0
     sh_name: int = 0
     sh_type: int = 0
     sh_flags: int = 0
@@ -232,9 +237,10 @@ class SectionHeader:
     sh_addralign: int = 0
     sh_entsize: int = 0
 
-    data: bytes = field(default_factory=bytes)
+    data: bytes = field(default_factory=bytes, hash=False)
 
-    def read(self, file: IO):
+    def read(self,  id: int, file: IO):
+        self.id = id
         self.sh_name = read_u32(file)
         self.sh_type = read_u32(file)
         self.sh_flags = read_u32(file)
@@ -258,17 +264,22 @@ class SectionHeader:
         write_u32(file, self.sh_addralign)
         write_u32(file, self.sh_entsize)
 
+
 def ST_BIND(i):
     return ((i) >> 4)
+
 
 def ST_TYPE(i):
     return ((i) & 0xf)
 
+
 def ST_INFO(b, t):
     return ((((b) & 0xf) << 4)+((t) & 0xf))
 
+
 def ST_VISIBILITY(o):
     return ((o) & 0x3)
+
 
 STB_LOCAL = 0
 STB_GLOBAL = 1
@@ -334,13 +345,14 @@ SHN_ABS = 0xfff1
 SHN_COMMON = 0xfff2
 SHN_HIRESERVE = 0xffff
 
+
 @dataclass
 class Symbol:
-    st_name: int= 0
-    st_value: int= 0
-    st_size: int= 0
-    st_info: int= 0
-    st_other: int= 0
+    st_name: int = 0
+    st_value: int = 0
+    st_size: int = 0
+    st_info: int = 0
+    st_other: int = 0
     st_shndx: int = SHN_UNDEF
 
     def read(self, file: IO):
@@ -359,14 +371,18 @@ class Symbol:
         write_u8(file, self.st_other)
         write_u16(file, self.st_shndx)
 
+
 def R_SYM(i):
-    return      ((i)>>8)
+    return ((i) >> 8)
+
 
 def R_TYPE(i):
-    return ((i)&0xFF)
+    return ((i) & 0xFF)
 
-def R_INFO(s,t):
-    return (((s)<<8)+((t)&0xFF))
+
+def R_INFO(s, t):
+    return (((s) << 8)+((t) & 0xFF))
+
 
 @dataclass
 class RelA:

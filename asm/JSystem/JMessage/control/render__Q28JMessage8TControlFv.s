@@ -23,8 +23,8 @@ lbl_802A76F4:
 /* 802A770C  93 9E 00 0C */	stw r28, 0xc(r30)
 /* 802A7710  38 00 00 00 */	li r0, 0
 /* 802A7714  90 1E 00 10 */	stw r0, 0x10(r30)
-/* 802A7718  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A771C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A7718  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 802A771C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 802A7720  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 802A7724  7F C3 F3 78 */	mr r3, r30
 /* 802A7728  7F 84 E3 78 */	mr r4, r28

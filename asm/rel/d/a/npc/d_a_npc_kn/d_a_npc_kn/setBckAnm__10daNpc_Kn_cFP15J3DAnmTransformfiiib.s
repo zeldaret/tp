@@ -11,7 +11,7 @@ lbl_80A38640:
 /* 80A38664  7D 47 07 34 */	extsh r7, r10
 /* 80A38668  7C 08 07 34 */	extsh r8, r0
 /* 80A3866C  38 63 06 54 */	addi r3, r3, 0x654
-/* 80A38670  4B 5D 51 6C */	b init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
+/* 80A38670  4B 5D 51 6D */	bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 80A38674  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80A38678  7C 08 03 A6 */	mtlr r0
 /* 80A3867C  38 21 00 10 */	addi r1, r1, 0x10

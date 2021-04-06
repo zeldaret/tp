@@ -1,6 +1,6 @@
 lbl_801C65F8:
-/* 801C65F8  3C 80 80 3C */	lis r4, __vt__9dMf_HIO_c@ha
-/* 801C65FC  38 04 D6 70 */	addi r0, r4, __vt__9dMf_HIO_c@l
+/* 801C65F8  3C 80 80 3C */	lis r4, __vt__9dMf_HIO_c@ha /* 0x803BD670@ha */
+/* 801C65FC  38 04 D6 70 */	addi r0, r4, __vt__9dMf_HIO_c@l /* 0x803BD670@l */
 /* 801C6600  90 03 00 00 */	stw r0, 0(r3)
 /* 801C6604  90 6D 8B 20 */	stw r3, mMySelfPointer__9dMf_HIO_c(r13)
 /* 801C6608  C0 02 A7 20 */	lfs f0, lit_3994(r2)

@@ -1,8 +1,8 @@
 lbl_80C2836C:
-/* 80C2836C  3C 80 80 C3 */	lis r4, lit_3649@ha
-/* 80C28370  38 A4 92 38 */	addi r5, r4, lit_3649@l
-/* 80C28374  3C 80 80 C3 */	lis r4, __vt__15daObj_ITA_HIO_c@ha
-/* 80C28378  38 04 93 B8 */	addi r0, r4, __vt__15daObj_ITA_HIO_c@l
+/* 80C2836C  3C 80 80 C3 */	lis r4, lit_3649@ha /* 0x80C29238@ha */
+/* 80C28370  38 A4 92 38 */	addi r5, r4, lit_3649@l /* 0x80C29238@l */
+/* 80C28374  3C 80 80 C3 */	lis r4, __vt__15daObj_ITA_HIO_c@ha /* 0x80C293B8@ha */
+/* 80C28378  38 04 93 B8 */	addi r0, r4, __vt__15daObj_ITA_HIO_c@l /* 0x80C293B8@l */
 /* 80C2837C  90 03 00 00 */	stw r0, 0(r3)
 /* 80C28380  38 00 FF FF */	li r0, -1
 /* 80C28384  98 03 00 04 */	stb r0, 4(r3)

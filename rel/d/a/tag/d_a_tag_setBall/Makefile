@@ -3,17 +3,15 @@
 #
 
 M739_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall.plf
+M739_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall.lcf
+M739_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall.map
 
 M739_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_setBall/executor.cpp \
-	rel/d/a/tag/d_a_tag_setBall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_setBall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.cpp \
 
 M739_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.o \
 
 M739_LIBS := \
@@ -29,15 +27,21 @@ M739_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map739.map\
+	-m _prolog \
+	-lcf $(M739_LDSCRIPT) \
+	-unused -map $(M739_MAP) \
+	-w off \
 
 $(M739_TARGET): $(M739_O_FILES) $(M739_LIBS)
+	@echo [739] creating $(M739_TARGET)
 	@echo $(M739_LIBS) $(M739_O_FILES) > build/M739_ofiles
-	$(LD) -opt_partial $(M739_LDFLAGS) -o $(M739_TARGET) @build/M739_ofiles
+	@python3 tools/lcf.py rel 739 --output $(M739_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M739_LDFLAGS) -o $(M739_TARGET) @build/M739_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setBall/%.o: rel/d/a/tag/d_a_tag_setBall/%.cpp
+	@echo [739] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M739_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M739_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

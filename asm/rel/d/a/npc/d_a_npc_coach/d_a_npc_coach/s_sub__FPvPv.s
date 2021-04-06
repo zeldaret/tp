@@ -4,7 +4,7 @@ lbl_8099E0E0:
 /* 8099E0E8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8099E0EC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8099E0F0  7C 7F 1B 78 */	mr r31, r3
-/* 8099E0F4  4B 67 AB EC */	b fopAc_IsActor__FPv
+/* 8099E0F4  4B 67 AB ED */	bl fopAc_IsActor__FPv
 /* 8099E0F8  2C 03 00 00 */	cmpwi r3, 0
 /* 8099E0FC  41 82 00 24 */	beq lbl_8099E120
 /* 8099E100  A8 1F 00 08 */	lha r0, 8(r31)

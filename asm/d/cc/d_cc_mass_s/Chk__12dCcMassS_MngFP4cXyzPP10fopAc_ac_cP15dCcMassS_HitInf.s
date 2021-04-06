@@ -10,8 +10,8 @@ lbl_800858AC:
 /* 800858CC  7C 99 23 78 */	mr r25, r4
 /* 800858D0  7C BA 2B 78 */	mr r26, r5
 /* 800858D4  7C DB 33 78 */	mr r27, r6
-/* 800858D8  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha
-/* 800858DC  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l
+/* 800858D8  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha /* 0x803A7224@ha */
+/* 800858DC  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l /* 0x803A7224@l */
 /* 800858E0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800858E4  3B C0 00 00 */	li r30, 0
 /* 800858E8  38 00 00 00 */	li r0, 0
@@ -275,8 +275,8 @@ lbl_80085C80:
 /* 80085CB8  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 80085CBC  D0 18 02 1C */	stfs f0, 0x21c(r24)
 lbl_80085CC0:
-/* 80085CC0  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha
-/* 80085CC4  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l
+/* 80085CC0  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha /* 0x803A7224@ha */
+/* 80085CC4  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l /* 0x803A7224@l */
 /* 80085CC8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80085CCC  7F C3 F3 78 */	mr r3, r30
 /* 80085CD0  E3 E1 00 78 */	psq_l f31, 120(r1), 0, 0 /* qr0 */

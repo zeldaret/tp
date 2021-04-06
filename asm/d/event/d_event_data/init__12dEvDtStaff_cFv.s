@@ -10,7 +10,7 @@ lbl_80044134:
 /* 80044154  80 03 00 2C */	lwz r0, 0x2c(r3)
 /* 80044158  2C 00 00 02 */	cmpwi r0, 2
 /* 8004415C  4C 82 00 20 */	bnelr 
-/* 80044160  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80044164  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80044160  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80044164  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80044168  90 83 51 84 */	stw r4, 0x5184(r3)
 /* 8004416C  4E 80 00 20 */	blr 

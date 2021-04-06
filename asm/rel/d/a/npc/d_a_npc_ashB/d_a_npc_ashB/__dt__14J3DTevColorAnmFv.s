@@ -7,7 +7,7 @@ lbl_8095E7AC:
 /* 8095E7C0  41 82 00 10 */	beq lbl_8095E7D0
 /* 8095E7C4  7C 80 07 35 */	extsh. r0, r4
 /* 8095E7C8  40 81 00 08 */	ble lbl_8095E7D0
-/* 8095E7CC  4B 97 05 70 */	b __dl__FPv
+/* 8095E7CC  4B 97 05 71 */	bl __dl__FPv
 lbl_8095E7D0:
 /* 8095E7D0  7F E3 FB 78 */	mr r3, r31
 /* 8095E7D4  83 E1 00 0C */	lwz r31, 0xc(r1)

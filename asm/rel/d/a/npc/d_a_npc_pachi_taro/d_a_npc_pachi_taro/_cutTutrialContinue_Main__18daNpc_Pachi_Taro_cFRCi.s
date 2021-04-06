@@ -27,7 +27,7 @@ lbl_80AA0200:
 /* 80AA0200  38 7E 0D 7A */	addi r3, r30, 0xd7a
 /* 80AA0204  A8 9E 04 B6 */	lha r4, 0x4b6(r30)
 /* 80AA0208  38 A0 08 00 */	li r5, 0x800
-/* 80AA020C  4B 7D 09 84 */	b cLib_chaseAngleS__FPsss
+/* 80AA020C  4B 7D 09 85 */	bl cLib_chaseAngleS__FPsss
 /* 80AA0210  A8 1E 0D 7A */	lha r0, 0xd7a(r30)
 /* 80AA0214  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 80AA0218  A8 1E 0D 7A */	lha r0, 0xd7a(r30)
@@ -35,7 +35,7 @@ lbl_80AA0200:
 /* 80AA0220  2C 03 00 00 */	cmpwi r3, 0
 /* 80AA0224  41 82 00 18 */	beq lbl_80AA023C
 /* 80AA0228  38 7E 0F 8C */	addi r3, r30, 0xf8c
-/* 80AA022C  4B 6A 54 DC */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80AA022C  4B 6A 54 DD */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80AA0230  38 00 00 02 */	li r0, 2
 /* 80AA0234  98 03 0F 86 */	stb r0, 0xf86(r3)
 /* 80AA0238  3B E0 00 01 */	li r31, 1

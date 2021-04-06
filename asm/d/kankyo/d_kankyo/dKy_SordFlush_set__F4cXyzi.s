@@ -6,8 +6,8 @@ lbl_801A8484:
 /* 801A8494  48 1B 9D 49 */	bl _savegpr_29
 /* 801A8498  7C 7D 1B 78 */	mr r29, r3
 /* 801A849C  7C 9E 23 78 */	mr r30, r4
-/* 801A84A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A84A4  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 801A84A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A84A4  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A84A8  48 00 40 D5 */	bl dKy_darkworld_check__Fv
 /* 801A84AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801A84B0  40 82 00 70 */	bne lbl_801A8520
@@ -20,8 +20,8 @@ lbl_801A8484:
 /* 801A84CC  4C 40 13 82 */	cror 2, 0, 2
 /* 801A84D0  40 82 00 50 */	bne lbl_801A8520
 lbl_801A84D4:
-/* 801A84D4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A84D8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A84D4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A84D8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A84DC  88 03 07 A4 */	lbz r0, 0x7a4(r3)
 /* 801A84E0  28 00 00 00 */	cmplwi r0, 0
 /* 801A84E4  40 82 00 2C */	bne lbl_801A8510

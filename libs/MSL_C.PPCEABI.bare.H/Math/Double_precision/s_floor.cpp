@@ -22,25 +22,19 @@ extern "C" void floor();
 //
 
 /* ############################################################################################## */
-/* 80456AF8-80456B00 0008+00 s=1 e=0 z=0  None .sdata2    @124 */
+/* 80456AF8-80456B00 0050F8 0008+00 1/1 0/0 0/0 .sdata2          @124 */
 SECTION_SDATA2 static f64 lit_124 = 1e+300;
 
-/* 80456B00-80456B08 0008+00 s=1 e=0 z=0  None .sdata2    @125 */
+/* 80456B00-80456B08 005100 0008+00 1/1 0/0 0/0 .sdata2          @125 */
 SECTION_SDATA2 static u8 lit_125[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8036C0FC-8036C244 0148+00 s=0 e=5 z=0  None .text      floor */
-//	8036C124: 80456AF8 (lit_124)
-//	8036C128: 80456B00 (lit_125)
-//	8036C180: 80456AF8 (lit_124)
-//	8036C184: 80456B00 (lit_125)
-//	8036C1E0: 80456AF8 (lit_124)
-//	8036C1E4: 80456B00 (lit_125)
+/* 8036C0FC-8036C244 366A3C 0148+00 0/0 5/5 0/0 .text            floor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void floor() {
+asm void floor() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/s_floor/floor.s"
 }

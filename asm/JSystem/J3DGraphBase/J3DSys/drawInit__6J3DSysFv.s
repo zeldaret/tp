@@ -193,8 +193,8 @@ lbl_803100BC:
 /* 803103B8  48 04 F3 3D */	bl GXSetTevOrder
 /* 803103BC  3B 80 00 00 */	li r28, 0
 /* 803103C0  3B C0 00 00 */	li r30, 0
-/* 803103C4  3C 80 80 3D */	lis r4, j3dIdentityMtx@ha
-/* 803103C8  3B A4 D8 B0 */	addi r29, r4, j3dIdentityMtx@l
+/* 803103C4  3C 80 80 3D */	lis r4, j3dIdentityMtx@ha /* 0x803CD8B0@ha */
+/* 803103C8  3B A4 D8 B0 */	addi r29, r4, j3dIdentityMtx@l /* 0x803CD8B0@l */
 lbl_803103CC:
 /* 803103CC  7F A3 EB 78 */	mr r3, r29
 /* 803103D0  38 9E 00 1E */	addi r4, r30, 0x1e
@@ -205,8 +205,8 @@ lbl_803103CC:
 /* 803103E4  3B DE 00 03 */	addi r30, r30, 3
 /* 803103E8  41 80 FF E4 */	blt lbl_803103CC
 /* 803103EC  38 C1 00 20 */	addi r6, r1, 0x20
-/* 803103F0  3C 80 80 3A */	lis r4, lit_737@ha
-/* 803103F4  38 84 1E 18 */	addi r4, r4, lit_737@l
+/* 803103F0  3C 80 80 3A */	lis r4, lit_737@ha /* 0x803A1E18@ha */
+/* 803103F4  38 84 1E 18 */	addi r4, r4, lit_737@l /* 0x803A1E18@l */
 /* 803103F8  38 A4 FF FC */	addi r5, r4, -4
 /* 803103FC  38 00 00 03 */	li r0, 3
 /* 80310400  7C 09 03 A6 */	mtctr r0
@@ -262,8 +262,8 @@ lbl_80310438:
 /* 803104BC  39 20 00 02 */	li r9, 2
 /* 803104C0  48 04 D6 AD */	bl GXSetChanCtrl
 /* 803104C4  3B 80 00 00 */	li r28, 0
-/* 803104C8  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha
-/* 803104CC  3B A4 1E FC */	addi r29, r4, j3dDefaultTexCoordInfo@l
+/* 803104C8  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha /* 0x803A1EFC@ha */
+/* 803104CC  3B A4 1E FC */	addi r29, r4, j3dDefaultTexCoordInfo@l /* 0x803A1EFC@l */
 /* 803104D0  48 00 00 2C */	b lbl_803104FC
 lbl_803104D4:
 /* 803104D4  57 83 06 3E */	clrlwi r3, r28, 0x18

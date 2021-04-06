@@ -19,8 +19,8 @@ lbl_800EA97C:
 /* 800EA990  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800EA994  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800EA998  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800EA99C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800EA9A0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800EA99C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800EA9A0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800EA9A4  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800EA9A8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800EA9AC  D0 1F 35 8C */	stfs f0, 0x358c(r31)

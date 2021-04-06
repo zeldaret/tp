@@ -5,8 +5,8 @@ lbl_80470890:
 /* 8047089C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804708A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 804708A4  7C 7F 1B 78 */	mr r31, r3
-/* 804708A8  3C 60 80 48 */	lis r3, l_cyl_info@ha
-/* 804708AC  3B C3 99 0C */	addi r30, r3, l_cyl_info@l
+/* 804708A8  3C 60 80 48 */	lis r3, l_cyl_info@ha /* 0x8047990C@ha */
+/* 804708AC  3B C3 99 0C */	addi r30, r3, l_cyl_info@l /* 0x8047990C@l */
 /* 804708B0  38 60 00 00 */	li r3, 0
 /* 804708B4  98 7F 08 82 */	stb r3, 0x882(r31)
 /* 804708B8  80 1F 08 64 */	lwz r0, 0x864(r31)

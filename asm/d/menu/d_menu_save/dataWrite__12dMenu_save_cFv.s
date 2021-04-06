@@ -5,19 +5,19 @@ lbl_801F2840:
 /* 801F284C  39 61 00 20 */	addi r11, r1, 0x20
 /* 801F2850  48 16 F9 8D */	bl _savegpr_29
 /* 801F2854  7C 7D 1B 78 */	mr r29, r3
-/* 801F2858  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F285C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F2858  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F285C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F2860  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 801F2864  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 801F2868  7D 89 03 A6 */	mtctr r12
 /* 801F286C  4E 80 04 21 */	bctrl 
 /* 801F2870  88 03 00 09 */	lbz r0, 9(r3)
 /* 801F2874  54 04 FE FE */	rlwinm r4, r0, 0x1f, 0x1b, 0x1f
-/* 801F2878  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F287C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F2878  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F287C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F2880  4B E4 28 71 */	bl putSave__10dSv_info_cFi
-/* 801F2884  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F2888  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F2884  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F2888  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F288C  38 9D 01 D0 */	addi r4, r29, 0x1d0
 /* 801F2890  88 BD 00 54 */	lbz r5, 0x54(r29)
 /* 801F2894  4B E4 2F 05 */	bl memory_to_card__10dSv_info_cFPci

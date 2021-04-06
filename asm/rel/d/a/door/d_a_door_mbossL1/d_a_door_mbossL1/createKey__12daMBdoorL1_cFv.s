@@ -25,23 +25,23 @@ lbl_80673790:
 /* 806737EC  38 80 00 00 */	li r4, 0
 /* 806737F0  38 A0 00 00 */	li r5, 0
 /* 806737F4  38 C0 00 00 */	li r6, 0
-/* 806737F8  4B BF 3B FC */	b __ct__5csXyzFsss
+/* 806737F8  4B BF 3B FD */	bl __ct__5csXyzFsss
 /* 806737FC  7F C3 F3 78 */	mr r3, r30
-/* 80673800  4B 9C 69 A0 */	b getFrontOption__13door_param2_cFP10fopAc_ac_c
+/* 80673800  4B 9C 69 A1 */	bl getFrontOption__13door_param2_cFP10fopAc_ac_c
 /* 80673804  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80673808  28 00 00 02 */	cmplwi r0, 2
 /* 8067380C  40 82 00 34 */	bne lbl_80673840
-/* 80673810  3C 60 80 67 */	lis r3, lit_3740@ha
-/* 80673814  C0 03 75 98 */	lfs f0, lit_3740@l(r3)
+/* 80673810  3C 60 80 67 */	lis r3, lit_3740@ha /* 0x80677598@ha */
+/* 80673814  C0 03 75 98 */	lfs f0, lit_3740@l(r3)  /* 0x80677598@l */
 /* 80673818  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8067381C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80673820  3C 60 80 67 */	lis r3, lit_4122@ha
-/* 80673824  C0 03 75 C8 */	lfs f0, lit_4122@l(r3)
+/* 80673820  3C 60 80 67 */	lis r3, lit_4122@ha /* 0x806775C8@ha */
+/* 80673824  C0 03 75 C8 */	lfs f0, lit_4122@l(r3)  /* 0x806775C8@l */
 /* 80673828  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 8067382C  38 00 00 00 */	li r0, 0
 /* 80673830  B0 01 00 12 */	sth r0, 0x12(r1)
 /* 80673834  7F C3 F3 78 */	mr r3, r30
-/* 80673838  4B 9C 69 80 */	b getFRoomNo__13door_param2_cFP10fopAc_ac_c
+/* 80673838  4B 9C 69 81 */	bl getFRoomNo__13door_param2_cFP10fopAc_ac_c
 /* 8067383C  54 7F 06 3E */	clrlwi r31, r3, 0x18
 lbl_80673840:
 /* 80673840  38 00 00 00 */	li r0, 0
@@ -60,7 +60,7 @@ lbl_80673860:
 /* 8067386C  39 01 00 10 */	addi r8, r1, 0x10
 /* 80673870  39 3E 04 EC */	addi r9, r30, 0x4ec
 /* 80673874  39 40 FF FF */	li r10, -1
-/* 80673878  4B 9A 67 00 */	b fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80673878  4B 9A 67 01 */	bl fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 8067387C  90 7E 05 F4 */	stw r3, 0x5f4(r30)
 /* 80673880  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 80673884  D0 1E 04 D0 */	stfs f0, 0x4d0(r30)

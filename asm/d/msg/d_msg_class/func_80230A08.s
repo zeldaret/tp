@@ -7,8 +7,8 @@ lbl_80230A08:
 /* 80230A1C  7C 7E 1B 78 */	mr r30, r3
 /* 80230A20  7C 9F 23 78 */	mr r31, r4
 /* 80230A24  48 07 79 51 */	bl __ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl
-/* 80230A28  3C 60 80 3C */	lis r3, __vt__34jmessage_string_tSequenceProcessor@ha
-/* 80230A2C  38 03 09 48 */	addi r0, r3, __vt__34jmessage_string_tSequenceProcessor@l
+/* 80230A28  3C 60 80 3C */	lis r3, __vt__34jmessage_string_tSequenceProcessor@ha /* 0x803C0948@ha */
+/* 80230A2C  38 03 09 48 */	addi r0, r3, __vt__34jmessage_string_tSequenceProcessor@l /* 0x803C0948@l */
 /* 80230A30  90 1E 00 00 */	stw r0, 0(r30)
 /* 80230A34  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 80230A38  7F E4 FB 78 */	mr r4, r31

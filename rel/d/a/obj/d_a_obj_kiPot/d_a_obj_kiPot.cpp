@@ -44,11 +44,6 @@ struct dAttCatch_c {
 // Forward References:
 //
 
-static void daKiPot_Draw(daKiPot_c*);
-static void daKiPot_Execute(daKiPot_c*);
-static void daKiPot_Delete(daKiPot_c*);
-static void daKiPot_Create(fopAc_ac_c*);
-
 extern "C" void __ct__13daKiPot_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__9daKiPot_cFv();
@@ -66,20 +61,10 @@ extern "C" static void daKiPot_Delete__FP9daKiPot_c();
 extern "C" static void daKiPot_Create__FP10fopAc_ac_c();
 extern "C" void __dt__13daKiPot_HIO_cFv();
 extern "C" void __sinit_d_a_obj_kiPot_cpp();
-extern "C" extern u32 const lit_3711;
-extern "C" extern u32 const lit_3712;
-extern "C" extern u32 const lit_3713;
-extern "C" extern void* g_profile_Obj_KiPot[12];
-extern "C" extern void* __vt__13daKiPot_HIO_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -99,25 +84,25 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80C451A4-80C451BC 0018+00 s=1 e=0 z=0  None .data      l_cull_box */
+/* 80C451A4-80C451BC 000000 0018+00 1/1 0/0 0/0 .data            l_cull_box */
 SECTION_DATA static u8 l_cull_box[24] = {
     0xC2, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
     0x42, 0x48, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
 };
 
-/* 80C451BC-80C451C8 000C+00 s=1 e=0 z=0  None .data      @3688 */
+/* 80C451BC-80C451C8 -00001 000C+00 1/1 0/0 0/0 .data            @3688 */
 SECTION_DATA static void* lit_3688[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWait__9daKiPot_cFv,
 };
 
-/* 80C451C8-80C451D4 000C+00 s=1 e=0 z=0  None .data      mode_proc$3687 */
+/* 80C451C8-80C451D4 000024 000C+00 1/1 0/0 0/0 .data            mode_proc$3687 */
 SECTION_DATA static u8 mode_proc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C451D4-80C451F4 0020+00 s=1 e=0 z=0  None .data      l_daKiPot_Method */
+/* 80C451D4-80C451F4 -00001 0020+00 1/0 0/0 0/0 .data            l_daKiPot_Method */
 SECTION_DATA static void* l_daKiPot_Method[8] = {
     (void*)daKiPot_Create__FP10fopAc_ac_c,
     (void*)daKiPot_Delete__FP9daKiPot_c,
@@ -129,8 +114,8 @@ SECTION_DATA static void* l_daKiPot_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C451F4-80C45224 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_KiPot */
-SECTION_DATA void* g_profile_Obj_KiPot[12] = {
+/* 80C451F4-80C45224 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KiPot */
+SECTION_DATA extern void* g_profile_Obj_KiPot[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x016D0000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,
@@ -139,25 +124,21 @@ SECTION_DATA void* g_profile_Obj_KiPot[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C45224-80C45230 000C+00 s=2 e=0 z=0  None .data      __vt__13daKiPot_HIO_c */
-SECTION_DATA void* __vt__13daKiPot_HIO_c[3] = {
+/* 80C45224-80C45230 000080 000C+00 2/2 0/0 0/0 .data            __vt__13daKiPot_HIO_c */
+SECTION_DATA extern void* __vt__13daKiPot_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13daKiPot_HIO_cFv,
 };
 
-/* 80C45230-80C4523C 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA void* __vt__14mDoHIO_entry_c[3] = {
+/* 80C45230-80C4523C 00008C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80C44D0C-80C44D30 0024+00 s=1 e=0 z=0  None .text      __ct__13daKiPot_HIO_cFv */
-//	80C44D0C: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C44D10: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C44D18: 80C45224 (__vt__13daKiPot_HIO_c)
-//	80C44D1C: 80C45224 (__vt__13daKiPot_HIO_c)
+/* 80C44D0C-80C44D30 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__13daKiPot_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -167,10 +148,7 @@ asm daKiPot_HIO_c::daKiPot_HIO_c() {
 }
 #pragma pop
 
-/* 80C44D30-80C44D78 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
-//	80C44D48: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C44D4C: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C44D5C: 802CED3C (__dl__FPv)
+/* 80C44D30-80C44D78 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -180,13 +158,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80C44D78-80C44DD0 0058+00 s=2 e=0 z=0  None .text      setBaseMtx__9daKiPot_cFv */
-//	80C44D8C: 803DD470 (now__14mDoMtx_stack_c)
-//	80C44D90: 803DD470 (now__14mDoMtx_stack_c)
-//	80C44DA0: 803468E8 (PSMTXTrans)
-//	80C44DA4: 803DD470 (now__14mDoMtx_stack_c)
-//	80C44DA8: 803DD470 (now__14mDoMtx_stack_c)
-//	80C44DB8: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
+/* 80C44D78-80C44DD0 000158 0058+00 2/2 0/0 0/0 .text            setBaseMtx__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,13 +168,7 @@ asm void daKiPot_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C44DD0-80C44E7C 00AC+00 s=1 e=0 z=0  None .text      create__9daKiPot_cFv */
-//	80C44DF8: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80C44E0C: 80C44D78 (setBaseMtx__9daKiPot_cFv)
-//	80C44E10: 80C451A4 (l_cull_box)
-//	80C44E14: 80C451A4 (l_cull_box)
-//	80C44E50: 8001A548 (fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff)
-//	80C44E60: 80C44F74 (init_modeWait__9daKiPot_cFv)
+/* 80C44DD0-80C44E7C 0001B0 00AC+00 1/1 0/0 0/0 .text            create__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,14 +179,11 @@ asm void daKiPot_c::create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C45194-80C45198 0004+00 s=2 e=0 z=0  None .rodata    @3683 */
+/* 80C45194-80C45198 000000 0004+00 2/2 0/0 0/0 .rodata          @3683 */
 SECTION_RODATA static u32 const lit_3683 = 0x43160000;
+SECTION_DEAD void* const cg_80C45194 = (void*)(&lit_3683);
 
-/* 80C44E7C-80C44EF8 007C+00 s=1 e=0 z=0  None .text      Execute__9daKiPot_cFv */
-//	80C44E90: 80C44EF8 (procMain__9daKiPot_cFv)
-//	80C44EB0: 80C45194 (lit_3683)
-//	80C44EB4: 80C45194 (lit_3683)
-//	80C44EDC: 80C44D78 (setBaseMtx__9daKiPot_cFv)
+/* 80C44E7C-80C44EF8 00025C 007C+00 1/1 0/0 0/0 .text            Execute__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,25 +194,16 @@ asm void daKiPot_c::Execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C45248-80C45254 000C+00 s=1 e=0 z=0  None .bss       @3620 */
+/* 80C45248-80C45254 000008 000C+00 1/1 0/0 0/0 .bss             @3620 */
 static u8 lit_3620[12];
 
-/* 80C45254-80C4525C 0008+00 s=1 e=0 z=0  None .bss       l_HIO */
+/* 80C45254-80C4525C 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[8];
 
-/* 80C4525C-80C45260 0004+00 s=1 e=0 z=0  None .bss       None */
+/* 80C4525C-80C45260 00001C 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C4525C[4];
 
-/* 80C44EF8-80C44F74 007C+00 s=1 e=0 z=0  None .text      procMain__9daKiPot_cFv */
-//	80C44F04: 80C4525C (data_80C4525C)
-//	80C44F08: 80C4525C (data_80C4525C)
-//	80C44F18: 80C451C8 (mode_proc)
-//	80C44F1C: 80C451C8 (mode_proc)
-//	80C44F20: 80C451BC (lit_3688)
-//	80C44F24: 80C451BC (lit_3688)
-//	80C44F50: 80C451C8 (mode_proc)
-//	80C44F54: 80C451C8 (mode_proc)
-//	80C44F5C: 80362084 (__ptmf_scall)
+/* 80C44EF8-80C44F74 0002D8 007C+00 1/1 0/0 0/0 .text            procMain__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -259,7 +213,7 @@ asm void daKiPot_c::procMain() {
 }
 #pragma pop
 
-/* 80C44F74-80C44F80 000C+00 s=1 e=0 z=0  None .text      init_modeWait__9daKiPot_cFv */
+/* 80C44F74-80C44F80 000354 000C+00 1/1 0/0 0/0 .text            init_modeWait__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -269,13 +223,29 @@ asm void daKiPot_c::init_modeWait() {
 }
 #pragma pop
 
-/* 80C44F80-80C45008 0088+00 s=1 e=0 z=0  None .text      modeWait__9daKiPot_cFv */
-//	80C44F98: 80C45194 (lit_3683)
-//	80C44F9C: 80C45194 (lit_3683)
-//	80C44FA0: 80C45008 (chkEvent__9daKiPot_cFv)
-//	80C44FB8: 804061C0 (g_dComIfG_gameInfo)
-//	80C44FBC: 804061C0 (g_dComIfG_gameInfo)
-//	80C44FE0: 80073A08 (request__11dAttCatch_cFP10fopAc_ac_cUcfffsi)
+/* ############################################################################################## */
+/* 80C45198-80C4519C 000004 0004+00 0/1 0/0 0/0 .rodata          @3711 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3711 = 0x42C80000;
+SECTION_DEAD void* const cg_80C45198 = (void*)(&lit_3711);
+#pragma pop
+
+/* 80C4519C-80C451A0 000008 0004+00 0/1 0/0 0/0 .rodata          @3712 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3712 = 0x42480000;
+SECTION_DEAD void* const cg_80C4519C = (void*)(&lit_3712);
+#pragma pop
+
+/* 80C451A0-80C451A4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3713 = 0xC2480000;
+SECTION_DEAD void* const cg_80C451A0 = (void*)(&lit_3713);
+#pragma pop
+
+/* 80C44F80-80C45008 000360 0088+00 1/0 0/0 0/0 .text            modeWait__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -285,9 +255,7 @@ asm void daKiPot_c::modeWait() {
 }
 #pragma pop
 
-/* 80C45008-80C45058 0050+00 s=1 e=0 z=0  None .text      chkEvent__9daKiPot_cFv */
-//	80C4500C: 804061C0 (g_dComIfG_gameInfo)
-//	80C45010: 804061C0 (g_dComIfG_gameInfo)
+/* 80C45008-80C45058 0003E8 0050+00 1/1 0/0 0/0 .text            chkEvent__9daKiPot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,66 +265,57 @@ asm void daKiPot_c::chkEvent() {
 }
 #pragma pop
 
-/* 80C45058-80C45060 0008+00 s=1 e=0 z=0  None .text      Draw__9daKiPot_cFv */
+/* 80C45058-80C45060 000438 0008+00 1/1 0/0 0/0 .text            Draw__9daKiPot_cFv */
 bool daKiPot_c::Draw() {
     return true;
 }
 
-/* 80C45060-80C45068 0008+00 s=1 e=0 z=0  None .text      Delete__9daKiPot_cFv */
+/* 80C45060-80C45068 000440 0008+00 1/1 0/0 0/0 .text            Delete__9daKiPot_cFv */
 bool daKiPot_c::Delete() {
     return true;
 }
 
-/* 80C45068-80C45088 0020+00 s=1 e=0 z=0  None .text      daKiPot_Draw__FP9daKiPot_c */
-//	80C45074: 80C45058 (Draw__9daKiPot_cFv)
+/* 80C45068-80C45088 000448 0020+00 1/0 0/0 0/0 .text            daKiPot_Draw__FP9daKiPot_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKiPot_Draw(daKiPot_c* param_0) {
+static asm void daKiPot_Draw(daKiPot_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot/daKiPot_Draw__FP9daKiPot_c.s"
 }
 #pragma pop
 
-/* 80C45088-80C450A8 0020+00 s=1 e=0 z=0  None .text      daKiPot_Execute__FP9daKiPot_c */
-//	80C45094: 80C44E7C (Execute__9daKiPot_cFv)
+/* 80C45088-80C450A8 000468 0020+00 1/0 0/0 0/0 .text            daKiPot_Execute__FP9daKiPot_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKiPot_Execute(daKiPot_c* param_0) {
+static asm void daKiPot_Execute(daKiPot_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot/daKiPot_Execute__FP9daKiPot_c.s"
 }
 #pragma pop
 
-/* 80C450A8-80C450C8 0020+00 s=1 e=0 z=0  None .text      daKiPot_Delete__FP9daKiPot_c */
-//	80C450B4: 80C45060 (Delete__9daKiPot_cFv)
+/* 80C450A8-80C450C8 000488 0020+00 1/0 0/0 0/0 .text            daKiPot_Delete__FP9daKiPot_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKiPot_Delete(daKiPot_c* param_0) {
+static asm void daKiPot_Delete(daKiPot_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot/daKiPot_Delete__FP9daKiPot_c.s"
 }
 #pragma pop
 
-/* 80C450C8-80C450E8 0020+00 s=1 e=0 z=0  None .text      daKiPot_Create__FP10fopAc_ac_c */
-//	80C450D4: 80C44DD0 (create__9daKiPot_cFv)
+/* 80C450C8-80C450E8 0004A8 0020+00 1/0 0/0 0/0 .text            daKiPot_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daKiPot_Create(fopAc_ac_c* param_0) {
+static asm void daKiPot_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot/daKiPot_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C450E8-80C45144 005C+00 s=2 e=0 z=0  None .text      __dt__13daKiPot_HIO_cFv */
-//	80C45100: 80C45224 (__vt__13daKiPot_HIO_c)
-//	80C45104: 80C45224 (__vt__13daKiPot_HIO_c)
-//	80C45110: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C45114: 80C45230 (__vt__14mDoHIO_entry_c)
-//	80C45128: 802CED3C (__dl__FPv)
+/* 80C450E8-80C45144 0004C8 005C+00 2/1 0/0 0/0 .text            __dt__13daKiPot_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -366,19 +325,11 @@ asm daKiPot_HIO_c::~daKiPot_HIO_c() {
 }
 #pragma pop
 
-/* 80C45144-80C45180 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_kiPot_cpp */
-//	80C45150: 80C45254 (l_HIO)
-//	80C45154: 80C45254 (l_HIO)
-//	80C45158: 80C44D0C (__ct__13daKiPot_HIO_cFv)
-//	80C4515C: 80C450E8 (__dt__13daKiPot_HIO_cFv)
-//	80C45160: 80C450E8 (__dt__13daKiPot_HIO_cFv)
-//	80C45164: 80C45248 (lit_3620)
-//	80C45168: 80C45248 (lit_3620)
-//	80C4516C: 80C44C98 (__register_global_object)
+/* 80C45144-80C45180 000524 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_kiPot_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_kiPot_cpp() {
+asm void __sinit_d_a_obj_kiPot_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot/__sinit_d_a_obj_kiPot_cpp.s"
 }
@@ -388,13 +339,3 @@ extern "C" asm void __sinit_d_a_obj_kiPot_cpp() {
 #pragma force_active on
 SECTION_CTORS void* const _ctors_80C45144 = (void*)__sinit_d_a_obj_kiPot_cpp;
 #pragma pop
-
-/* ############################################################################################## */
-/* 80C45198-80C4519C 0004+00 s=0 e=0 z=0  None .rodata    @3711 */
-SECTION_RODATA u32 const lit_3711 = 0x42C80000;
-
-/* 80C4519C-80C451A0 0004+00 s=0 e=0 z=0  None .rodata    @3712 */
-SECTION_RODATA u32 const lit_3712 = 0x42480000;
-
-/* 80C451A0-80C451A4 0004+00 s=0 e=0 z=0  None .rodata    @3713 */
-SECTION_RODATA u32 const lit_3713 = 0xC2480000;

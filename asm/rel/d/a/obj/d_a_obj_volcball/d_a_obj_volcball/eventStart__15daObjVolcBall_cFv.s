@@ -4,10 +4,10 @@ lbl_80D22DDC:
 /* 80D22DE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D22DE8  80 03 29 20 */	lwz r0, 0x2920(r3)
 /* 80D22DEC  90 01 00 08 */	stw r0, 8(r1)
-/* 80D22DF0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80D22DF4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80D22DF0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80D22DF4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80D22DF8  38 81 00 08 */	addi r4, r1, 8
-/* 80D22DFC  4B 2F 69 FC */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80D22DFC  4B 2F 69 FD */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80D22E00  28 03 00 00 */	cmplwi r3, 0
 /* 80D22E04  41 82 00 0C */	beq lbl_80D22E10
 /* 80D22E08  38 00 00 01 */	li r0, 1

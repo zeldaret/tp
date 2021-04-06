@@ -6,13 +6,13 @@ lbl_80854190:
 /* 808541A0  7C 7F 1B 78 */	mr r31, r3
 /* 808541A4  38 7F 05 68 */	addi r3, r31, 0x568
 /* 808541A8  80 9F 07 5C */	lwz r4, 0x75c(r31)
-/* 808541AC  4B 7D 8E 5C */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 808541AC  4B 7D 8E 5D */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 808541B0  88 1F 0B 54 */	lbz r0, 0xb54(r31)
 /* 808541B4  28 00 00 00 */	cmplwi r0, 0
 /* 808541B8  41 82 00 10 */	beq lbl_808541C8
 /* 808541BC  38 00 00 00 */	li r0, 0
-/* 808541C0  3C 60 80 85 */	lis r3, data_80854F68@ha
-/* 808541C4  98 03 4F 68 */	stb r0, data_80854F68@l(r3)
+/* 808541C0  3C 60 80 85 */	lis r3, data_80854F68@ha /* 0x80854F68@ha */
+/* 808541C4  98 03 4F 68 */	stb r0, data_80854F68@l(r3)  /* 0x80854F68@l */
 lbl_808541C8:
 /* 808541C8  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 808541CC  28 00 00 00 */	cmplwi r0, 0

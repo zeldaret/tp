@@ -5,8 +5,8 @@ lbl_80C66FFC:
 /* 80C67008  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C6700C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C67010  7C 7E 1B 78 */	mr r30, r3
-/* 80C67014  3C 60 80 C6 */	lis r3, lit_3746@ha
-/* 80C67018  3B E3 75 D4 */	addi r31, r3, lit_3746@l
+/* 80C67014  3C 60 80 C6 */	lis r3, lit_3746@ha /* 0x80C675D4@ha */
+/* 80C67018  3B E3 75 D4 */	addi r31, r3, lit_3746@l /* 0x80C675D4@l */
 /* 80C6701C  38 7E 09 42 */	addi r3, r30, 0x942
 /* 80C67020  48 00 05 69 */	bl func_80C67588
 /* 80C67024  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -30,7 +30,7 @@ lbl_80C67064:
 /* 80C67068  C0 3E 09 3C */	lfs f1, 0x93c(r30)
 /* 80C6706C  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 80C67070  EC 21 00 28 */	fsubs f1, f1, f0
-/* 80C67074  4B 60 96 CC */	b cLib_chaseF__FPfff
+/* 80C67074  4B 60 96 CD */	bl cLib_chaseF__FPfff
 /* 80C67078  2C 03 00 00 */	cmpwi r3, 0
 /* 80C6707C  41 82 00 18 */	beq lbl_80C67094
 /* 80C67080  88 1E 09 41 */	lbz r0, 0x941(r30)

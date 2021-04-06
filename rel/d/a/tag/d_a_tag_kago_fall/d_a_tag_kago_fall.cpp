@@ -65,9 +65,9 @@ struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -76,10 +76,6 @@ struct Z2SeMgr {
 //
 // Forward References:
 //
-
-static void daTagKagoFall_Execute(daTagKagoFall_c*);
-static void daTagKagoFall_Delete(daTagKagoFall_c*);
-static void daTagKagoFall_Create(daTagKagoFall_c*);
 
 extern "C" void create__15daTagKagoFall_cFv();
 extern "C" void execute__15daTagKagoFall_cFv();
@@ -90,23 +86,12 @@ extern "C" bool _delete__15daTagKagoFall_cFv();
 extern "C" static void daTagKagoFall_Execute__FP15daTagKagoFall_c();
 extern "C" static void daTagKagoFall_Delete__FP15daTagKagoFall_c();
 extern "C" static void daTagKagoFall_Create__FP15daTagKagoFall_c();
-extern "C" extern u32 const lit_4022;
-extern "C" extern u32 const lit_4023;
-extern "C" extern u32 const lit_4024;
-extern "C" extern u8 const lit_4025[4];
-extern "C" extern u32 const lit_4118;
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_tag_kago_fall__stringBase0;
 extern "C" extern void* g_profile_Tag_KagoFall[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void fopAcM_orderPotentialEvent(fopAc_ac_c*, u16, u16, u16);
-void dStage_changeScene(int, f32, u32, s8, s16, int);
-void dComIfGp_setNextStage(char const*, s16, s8, s8, f32, u32, int, s8, s16, int, int);
-void dCam_getBody();
 
 extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -149,41 +134,18 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80D5A6EC-80D5A6F0 0004+00 s=3 e=0 z=0  None .rodata    @3907 */
+/* 80D5A6EC-80D5A6F0 000000 0004+00 3/3 0/0 0/0 .rodata          @3907 */
 SECTION_RODATA static u32 const lit_3907 = 0x42960000;
+SECTION_DEAD void* const cg_80D5A6EC = (void*)(&lit_3907);
 
-/* 80D5A6F0-80D5A6F4 0004+00 s=1 e=0 z=0  None .rodata    @3908 */
+/* 80D5A6F0-80D5A6F4 000004 0004+00 1/1 0/0 0/0 .rodata          @3908 */
 SECTION_RODATA static u32 const lit_3908 = 0x43160000;
+SECTION_DEAD void* const cg_80D5A6F0 = (void*)(&lit_3908);
 
-/* 80D5A710-80D5A714 0004+00 s=3 e=0 z=0  None .data      m_master_id */
+/* 80D5A710-80D5A714 000000 0004+00 3/3 0/0 0/0 .data            m_master_id */
 SECTION_DATA static u32 m_master_id = 0xFFFFFFFF;
 
-/* 80D59C58-80D59DE0 0188+00 s=1 e=0 z=0  None .text      create__15daTagKagoFall_cFv */
-//	80D59C88: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D59C90: 80249F00 (__ct__10dMsgFlow_cFv)
-//	80D59CA4: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80D59CB8: 804061C0 (g_dComIfG_gameInfo)
-//	80D59CBC: 804061C0 (g_dComIfG_gameInfo)
-//	80D59CEC: 80D59E18 (setActionMode__15daTagKagoFall_cFUcUc)
-//	80D59CF8: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80D59D14: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D18: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D28: 803468E8 (PSMTXTrans)
-//	80D59D2C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D30: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D38: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80D59D3C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D40: 803DD470 (now__14mDoMtx_stack_c)
-//	80D59D48: 803465B0 (PSMTXInverse)
-//	80D59D50: 80D5A6EC (lit_3907)
-//	80D59D54: 80D5A6EC (lit_3907)
-//	80D59D70: 80D5A6F0 (lit_3908)
-//	80D59D74: 80D5A6F0 (lit_3908)
-//	80D59D8C: 80D59E18 (setActionMode__15daTagKagoFall_cFUcUc)
-//	80D59D90: 80D5A710 (m_master_id)
-//	80D59D94: 80D5A710 (m_master_id)
-//	80D59DBC: 80D5A710 (m_master_id)
-//	80D59DC0: 80D5A710 (m_master_id)
+/* 80D59C58-80D59DE0 000078 0188+00 1/1 0/0 0/0 .text            create__15daTagKagoFall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -193,9 +155,7 @@ asm void daTagKagoFall_c::create() {
 }
 #pragma pop
 
-/* 80D59DE0-80D59E18 0038+00 s=1 e=0 z=0  None .text      execute__15daTagKagoFall_cFv */
-//	80D59DF8: 80D59E24 (actionWaitRiver__15daTagKagoFall_cFv)
-//	80D59E00: 80D5A218 (actionWaitFall__15daTagKagoFall_cFv)
+/* 80D59DE0-80D59E18 000200 0038+00 1/1 0/0 0/0 .text            execute__15daTagKagoFall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -205,7 +165,7 @@ asm void daTagKagoFall_c::execute() {
 }
 #pragma pop
 
-/* 80D59E18-80D59E24 000C+00 s=1 e=0 z=0  None .text      setActionMode__15daTagKagoFall_cFUcUc */
+/* 80D59E18-80D59E24 000238 000C+00 1/1 0/0 0/0 .text setActionMode__15daTagKagoFall_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,70 +176,40 @@ asm void daTagKagoFall_c::setActionMode(u8 param_0, u8 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5A6F4-80D5A6F8 0004+00 s=0 e=0 z=0  None .rodata    @4022 */
-SECTION_RODATA u32 const lit_4022 = 0x3F800000;
+/* 80D5A6F4-80D5A6F8 000008 0004+00 0/2 0/0 0/0 .rodata          @4022 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4022 = 0x3F800000;
+SECTION_DEAD void* const cg_80D5A6F4 = (void*)(&lit_4022);
+#pragma pop
 
-/* 80D5A6F8-80D5A6FC 0004+00 s=0 e=0 z=0  None .rodata    @4023 */
-SECTION_RODATA u32 const lit_4023 = 0xBF800000;
+/* 80D5A6F8-80D5A6FC 00000C 0004+00 0/2 0/0 0/0 .rodata          @4023 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4023 = 0xBF800000;
+SECTION_DEAD void* const cg_80D5A6F8 = (void*)(&lit_4023);
+#pragma pop
 
-/* 80D5A6FC-80D5A700 0004+00 s=0 e=0 z=0  None .rodata    @4024 */
-SECTION_RODATA u32 const lit_4024 = 0x3D4CCCCD;
+/* 80D5A6FC-80D5A700 000010 0004+00 0/2 0/0 0/0 .rodata          @4024 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4024 = 0x3D4CCCCD;
+SECTION_DEAD void* const cg_80D5A6FC = (void*)(&lit_4024);
+#pragma pop
 
-/* 80D5A700-80D5A704 0004+00 s=0 e=0 z=0  None .rodata    @4025 */
-SECTION_RODATA u8 const lit_4025[4] = {
+/* 80D5A700-80D5A704 000014 0004+00 0/2 0/0 0/0 .rodata          @4025 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4025[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
-
-/* 80D5A704-80D5A708 0004+00 s=0 e=0 z=0  None .rodata    @4118 */
-SECTION_RODATA u32 const lit_4118 = 0x453B8000;
-
-/* 80D5A708-80D5A710 0008+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D5A708 = "F_SP112";
+SECTION_DEAD void* const cg_80D5A700 = (void*)(&lit_4025);
 #pragma pop
 
-/* 80D59E24-80D5A218 03F4+00 s=1 e=0 z=0  None .text      actionWaitRiver__15daTagKagoFall_cFv */
-//	80D59E34: 803621D4 (_savegpr_27)
-//	80D59E3C: 80D5A6EC (lit_3907)
-//	80D59E40: 80D5A6EC (lit_3907)
-//	80D59E44: 804061C0 (g_dComIfG_gameInfo)
-//	80D59E48: 804061C0 (g_dComIfG_gameInfo)
-//	80D59E50: 80181640 (dCam_getBody__Fv)
-//	80D59EB8: 80D5A710 (m_master_id)
-//	80D59EBC: 80D5A710 (m_master_id)
-//	80D59F20: 804061C0 (g_dComIfG_gameInfo)
-//	80D59F24: 804061C0 (g_dComIfG_gameInfo)
-//	80D59F60: 8001B908 (fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs)
-//	80D59F78: 801614D0 (Stop__9dCamera_cFv)
-//	80D59F84: 8016300C (SetTrimSize__9dCamera_cFl)
-//	80D59F88: 80181640 (dCam_getBody__Fv)
-//	80D59F94: 80181E64 (Eye__9dCamera_cFv)
-//	80D5A014: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A018: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A044: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D5A04C: 80450604 (g_blackColor)
-//	80D5A050: 80450604 (g_blackColor)
-//	80D5A054: 80007FD8 (fadeOut__13mDoGph_gInf_cFfR8_GXColor)
-//	80D5A098: 80181640 (dCam_getBody__Fv)
-//	80D5A0A4: 80180AA8 (Set__9dCamera_cF4cXyz4cXyz)
-//	80D5A108: 80181640 (dCam_getBody__Fv)
-//	80D5A114: 80180AA8 (Set__9dCamera_cF4cXyz4cXyz)
-//	80D5A13C: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80D5A16C: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	80D5A178: 80238440 (getSelectCursorPos__12dMsgObject_cFv)
-//	80D5A1A0: 80027170 (dStage_changeScene__FifUlScsi)
-//	80D5A1A8: 80450D64 (struct_80450D64)
-//	80D5A1AC: 80450D64 (struct_80450D64)
-//	80D5A1B8: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80D5A1D0: 80D5A708 (stringBase0)
-//	80D5A1D4: 80D5A708 (stringBase0)
-//	80D5A1F4: 8002D2FC (dComIfGp_setNextStage__FPCcsScScfUliScsii)
-//	80D5A204: 80362220 (_restgpr_27)
+/* 80D59E24-80D5A218 000244 03F4+00 1/1 0/0 0/0 .text actionWaitRiver__15daTagKagoFall_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,46 +219,16 @@ asm void daTagKagoFall_c::actionWaitRiver() {
 }
 #pragma pop
 
-/* 80D5A218-80D5A67C 0464+00 s=1 e=0 z=0  None .text      actionWaitFall__15daTagKagoFall_cFv */
-//	80D5A228: 803621D8 (_savegpr_28)
-//	80D5A230: 80D5A6EC (lit_3907)
-//	80D5A234: 80D5A6EC (lit_3907)
-//	80D5A238: 804061C0 (g_dComIfG_gameInfo)
-//	80D5A23C: 804061C0 (g_dComIfG_gameInfo)
-//	80D5A284: 80346D6C (PSMTXMultVec)
-//	80D5A2EC: 80D5A710 (m_master_id)
-//	80D5A2F0: 80D5A710 (m_master_id)
-//	80D5A3A0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A3A4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A3D0: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D5A430: 8001B908 (fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs)
-//	80D5A448: 80450604 (g_blackColor)
-//	80D5A44C: 80450604 (g_blackColor)
-//	80D5A450: 80007FD8 (fadeOut__13mDoGph_gInf_cFfR8_GXColor)
-//	80D5A46C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A470: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D5A49C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D5A50C: 80181640 (dCam_getBody__Fv)
-//	80D5A510: 801614D0 (Stop__9dCamera_cFv)
-//	80D5A514: 80181640 (dCam_getBody__Fv)
-//	80D5A51C: 8016300C (SetTrimSize__9dCamera_cFl)
-//	80D5A534: 80249F90 (init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c)
-//	80D5A544: 80077C68 (__ct__11dBgS_LinChkFv)
-//	80D5A568: 80077D64 (Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c)
-//	80D5A56C: 804061C0 (g_dComIfG_gameInfo)
-//	80D5A570: 804061C0 (g_dComIfG_gameInfo)
-//	80D5A57C: 800743B4 (LineCross__4cBgSFP11cBgS_LinChk)
-//	80D5A598: 80077CDC (__dt__11dBgS_LinChkFv)
-//	80D5A5D0: 8024A2D8 (doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci)
-//	80D5A5DC: 80238440 (getSelectCursorPos__12dMsgObject_cFv)
-//	80D5A604: 80027170 (dStage_changeScene__FifUlScsi)
-//	80D5A60C: 80450D64 (struct_80450D64)
-//	80D5A610: 80450D64 (struct_80450D64)
-//	80D5A61C: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80D5A634: 80D5A708 (stringBase0)
-//	80D5A638: 80D5A708 (stringBase0)
-//	80D5A658: 8002D2FC (dComIfGp_setNextStage__FPCcsScScfUliScsii)
-//	80D5A668: 80362224 (_restgpr_28)
+/* ############################################################################################## */
+/* 80D5A704-80D5A708 000018 0004+00 0/1 0/0 0/0 .rodata          @4118 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4118 = 0x453B8000;
+SECTION_DEAD void* const cg_80D5A704 = (void*)(&lit_4118);
+#pragma pop
+
+/* 80D5A218-80D5A67C 000638 0464+00 1/1 0/0 0/0 .text            actionWaitFall__15daTagKagoFall_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -338,49 +238,44 @@ asm void daTagKagoFall_c::actionWaitFall() {
 }
 #pragma pop
 
-/* 80D5A67C-80D5A684 0008+00 s=1 e=0 z=0  None .text      _delete__15daTagKagoFall_cFv */
+/* 80D5A67C-80D5A684 000A9C 0008+00 1/1 0/0 0/0 .text            _delete__15daTagKagoFall_cFv */
 bool daTagKagoFall_c::_delete() {
     return true;
 }
 
-/* 80D5A684-80D5A6A4 0020+00 s=1 e=0 z=0  None .text      daTagKagoFall_Execute__FP15daTagKagoFall_c
+/* 80D5A684-80D5A6A4 000AA4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Execute__FP15daTagKagoFall_c
  */
-//	80D5A690: 80D59DE0 (execute__15daTagKagoFall_cFv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagKagoFall_Execute(daTagKagoFall_c* param_0) {
+static asm void daTagKagoFall_Execute(daTagKagoFall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Execute__FP15daTagKagoFall_c.s"
 }
 #pragma pop
 
-/* 80D5A6A4-80D5A6C4 0020+00 s=1 e=0 z=0  None .text      daTagKagoFall_Delete__FP15daTagKagoFall_c
- */
-//	80D5A6B0: 80D5A67C (_delete__15daTagKagoFall_cFv)
+/* 80D5A6A4-80D5A6C4 000AC4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Delete__FP15daTagKagoFall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagKagoFall_Delete(daTagKagoFall_c* param_0) {
+static asm void daTagKagoFall_Delete(daTagKagoFall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Delete__FP15daTagKagoFall_c.s"
 }
 #pragma pop
 
-/* 80D5A6C4-80D5A6E4 0020+00 s=1 e=0 z=0  None .text      daTagKagoFall_Create__FP15daTagKagoFall_c
- */
-//	80D5A6D0: 80D59C58 (create__15daTagKagoFall_cFv)
+/* 80D5A6C4-80D5A6E4 000AE4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Create__FP15daTagKagoFall_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagKagoFall_Create(daTagKagoFall_c* param_0) {
+static asm void daTagKagoFall_Create(daTagKagoFall_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Create__FP15daTagKagoFall_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5A714-80D5A734 0020+00 s=1 e=0 z=0  None .data      l_daTagKagoFall_Method */
+/* 80D5A714-80D5A734 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagKagoFall_Method */
 SECTION_DATA static void* l_daTagKagoFall_Method[8] = {
     (void*)daTagKagoFall_Create__FP15daTagKagoFall_c,
     (void*)daTagKagoFall_Delete__FP15daTagKagoFall_c,
@@ -392,8 +287,8 @@ SECTION_DATA static void* l_daTagKagoFall_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D5A734-80D5A764 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_KagoFall */
-SECTION_DATA void* g_profile_Tag_KagoFall[12] = {
+/* 80D5A734-80D5A764 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_KagoFall */
+SECTION_DATA extern void* g_profile_Tag_KagoFall[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01810000, (void*)&g_fpcLf_Method,
     (void*)0x000005FC, (void*)NULL,
@@ -401,3 +296,10 @@ SECTION_DATA void* g_profile_Tag_KagoFall[12] = {
     (void*)0x022D0000, (void*)&l_daTagKagoFall_Method,
     (void*)0x00040000, (void*)0x000E0000,
 };
+
+/* 80D5A708-80D5A710 00001C 0008+00 2/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D5A708 = "F_SP112";
+#pragma pop

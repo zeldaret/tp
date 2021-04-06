@@ -5,8 +5,8 @@ lbl_80077A00:
 /* 80077A0C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80077A10  7C 7F 1B 78 */	mr r31, r3
 /* 80077A14  4B FF FB 69 */	bl __ct__11dBgS_GndChkFv
-/* 80077A18  3C 60 80 3B */	lis r3, __vt__14dBgS_CamGndChk@ha
-/* 80077A1C  38 63 B6 B8 */	addi r3, r3, __vt__14dBgS_CamGndChk@l
+/* 80077A18  3C 60 80 3B */	lis r3, __vt__14dBgS_CamGndChk@ha /* 0x803AB6B8@ha */
+/* 80077A1C  38 63 B6 B8 */	addi r3, r3, __vt__14dBgS_CamGndChk@l /* 0x803AB6B8@l */
 /* 80077A20  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80077A24  38 03 00 0C */	addi r0, r3, 0xc
 /* 80077A28  90 1F 00 20 */	stw r0, 0x20(r31)
@@ -16,8 +16,8 @@ lbl_80077A00:
 /* 80077A38  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 80077A3C  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 80077A40  48 00 14 41 */	bl SetCam__16dBgS_PolyPassChkFv
-/* 80077A44  3C 60 80 3B */	lis r3, __vt__18dBgS_CamGndChk_Wtr@ha
-/* 80077A48  38 63 B6 88 */	addi r3, r3, __vt__18dBgS_CamGndChk_Wtr@l
+/* 80077A44  3C 60 80 3B */	lis r3, __vt__18dBgS_CamGndChk_Wtr@ha /* 0x803AB688@ha */
+/* 80077A48  38 63 B6 88 */	addi r3, r3, __vt__18dBgS_CamGndChk_Wtr@l /* 0x803AB688@l */
 /* 80077A4C  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80077A50  38 03 00 0C */	addi r0, r3, 0xc
 /* 80077A54  90 1F 00 20 */	stw r0, 0x20(r31)

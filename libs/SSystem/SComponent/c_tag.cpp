@@ -23,15 +23,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void cTg_IsUse(create_tag_class*);
-void cTg_SingleCutFromTree(create_tag_class*);
-void cTg_AdditionToTree(node_lists_tree_class*, int, create_tag_class*);
-void cTg_InsertToTree(node_lists_tree_class*, int, create_tag_class*, int);
-void cTg_GetFirst(node_list_class*);
-void cTg_SingleCut(create_tag_class*);
-void cTg_Addition(node_list_class*, create_tag_class*);
-void cTg_Create(create_tag_class*, void*);
-
 extern "C" void cTg_IsUse__FP16create_tag_class();
 extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
 extern "C" void cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class();
@@ -45,14 +36,6 @@ extern "C" void cTg_Create__FP16create_tag_classPv();
 // External References:
 //
 
-void cLs_SingleCut(node_class*);
-void cLs_Addition(node_list_class*, node_class*);
-void cLs_GetFirst(node_list_class*);
-void cNd_Create(node_class*, void*);
-void cTr_SingleCut(node_class*);
-void cTr_Addition(node_lists_tree_class*, int, node_class*);
-void cTr_Insert(node_lists_tree_class*, int, node_class*, int);
-
 extern "C" void cLs_SingleCut__FP10node_class();
 extern "C" void cLs_Addition__FP15node_list_classP10node_class();
 extern "C" void cLs_GetFirst__FP15node_list_class();
@@ -65,7 +48,7 @@ extern "C" void cTr_Insert__FP21node_lists_tree_classiP10node_classi();
 // Declarations:
 //
 
-/* 80266880-8026688C 000C+00 s=0 e=3 z=0  None .text      cTg_IsUse__FP16create_tag_class */
+/* 80266880-8026688C 2611C0 000C+00 0/0 3/3 0/0 .text            cTg_IsUse__FP16create_tag_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,9 +58,8 @@ asm void cTg_IsUse(create_tag_class* param_0) {
 }
 #pragma pop
 
-/* 8026688C-802668CC 0040+00 s=0 e=4 z=0  None .text cTg_SingleCutFromTree__FP16create_tag_class
+/* 8026688C-802668CC 2611CC 0040+00 0/0 4/4 0/0 .text cTg_SingleCutFromTree__FP16create_tag_class
  */
-//	802668AC: 80266440 (cTr_SingleCut__FP10node_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,9 +69,8 @@ asm void cTg_SingleCutFromTree(create_tag_class* param_0) {
 }
 #pragma pop
 
-/* 802668CC-8026691C 0050+00 s=0 e=3 z=0  None .text
+/* 802668CC-8026691C 26120C 0050+00 0/0 3/3 0/0 .text
  * cTg_AdditionToTree__FP21node_lists_tree_classiP16create_tag_class */
-//	802668EC: 80266460 (cTr_Addition__FP21node_lists_tree_classiP10node_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -100,9 +81,8 @@ asm void cTg_AdditionToTree(node_lists_tree_class* param_0, int param_1,
 }
 #pragma pop
 
-/* 8026691C-8026696C 0050+00 s=0 e=1 z=0  None .text
+/* 8026691C-8026696C 26125C 0050+00 0/0 1/1 0/0 .text
  * cTg_InsertToTree__FP21node_lists_tree_classiP16create_tag_classi */
-//	8026693C: 802664A4 (cTr_Insert__FP21node_lists_tree_classiP10node_classi)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,8 +93,8 @@ asm void cTg_InsertToTree(node_lists_tree_class* param_0, int param_1, create_ta
 }
 #pragma pop
 
-/* 8026696C-802669A4 0038+00 s=0 e=1 z=0  None .text      cTg_GetFirst__FP15node_list_class */
-//	80266978: 80265FF8 (cLs_GetFirst__FP15node_list_class)
+/* 8026696C-802669A4 2612AC 0038+00 0/0 1/1 0/0 .text            cTg_GetFirst__FP15node_list_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -124,8 +104,8 @@ asm void cTg_GetFirst(node_list_class* param_0) {
 }
 #pragma pop
 
-/* 802669A4-802669E4 0040+00 s=0 e=7 z=0  None .text      cTg_SingleCut__FP16create_tag_class */
-//	802669C4: 80265E78 (cLs_SingleCut__FP10node_class)
+/* 802669A4-802669E4 2612E4 0040+00 0/0 7/7 0/0 .text            cTg_SingleCut__FP16create_tag_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -135,9 +115,8 @@ asm void cTg_SingleCut(create_tag_class* param_0) {
 }
 #pragma pop
 
-/* 802669E4-80266A34 0050+00 s=0 e=7 z=0  None .text
+/* 802669E4-80266A34 261324 0050+00 0/0 7/7 0/0 .text
  * cTg_Addition__FP15node_list_classP16create_tag_class         */
-//	80266A04: 80265EFC (cLs_Addition__FP15node_list_classP10node_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,8 +126,7 @@ asm void cTg_Addition(node_list_class* param_0, create_tag_class* param_1) {
 }
 #pragma pop
 
-/* 80266A34-80266A7C 0048+00 s=0 e=10 z=0  None .text      cTg_Create__FP16create_tag_classPv */
-//	80266A54: 80266310 (cNd_Create__FP10node_classPv)
+/* 80266A34-80266A7C 261374 0048+00 0/0 10/10 0/0 .text cTg_Create__FP16create_tag_classPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

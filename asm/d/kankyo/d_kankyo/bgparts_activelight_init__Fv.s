@@ -1,6 +1,6 @@
 lbl_8019E854:
-/* 8019E854  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019E858  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019E854  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E858  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019E85C  38 00 00 02 */	li r0, 2
 /* 8019E860  7C 09 03 A6 */	mtctr r0
 lbl_8019E864:

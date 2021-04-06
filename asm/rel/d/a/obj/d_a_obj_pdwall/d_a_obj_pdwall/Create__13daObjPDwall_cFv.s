@@ -5,19 +5,19 @@ lbl_80CACBA8:
 /* 80CACBB4  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80CACBB8  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80CACBBC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80CACBC0  4B 6B 56 10 */	b _savegpr_26
+/* 80CACBC0  4B 6B 56 11 */	bl _savegpr_26
 /* 80CACBC4  7C 7E 1B 78 */	mr r30, r3
-/* 80CACBC8  3C 60 80 CB */	lis r3, l_cull_box@ha
-/* 80CACBCC  3B E3 D1 B8 */	addi r31, r3, l_cull_box@l
+/* 80CACBC8  3C 60 80 CB */	lis r3, l_cull_box@ha /* 0x80CAD1B8@ha */
+/* 80CACBCC  3B E3 D1 B8 */	addi r31, r3, l_cull_box@l /* 0x80CAD1B8@l */
 /* 80CACBD0  38 00 00 00 */	li r0, 0
 /* 80CACBD4  90 1E 0A 14 */	stw r0, 0xa14(r30)
 /* 80CACBD8  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80CACBDC  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80CACBE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CACBE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CACBE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CACBE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CACBE8  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80CACBEC  7C 05 07 74 */	extsb r5, r0
-/* 80CACBF0  4B 38 87 70 */	b isSwitch__10dSv_info_cCFii
+/* 80CACBF0  4B 38 87 71 */	bl isSwitch__10dSv_info_cCFii
 /* 80CACBF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80CACBF8  41 82 00 10 */	beq lbl_80CACC08
 /* 80CACBFC  38 00 00 01 */	li r0, 1
@@ -37,7 +37,7 @@ lbl_80CACC20:
 /* 80CACC28  7F 7E EA 14 */	add r27, r30, r29
 /* 80CACC2C  80 9B 05 D8 */	lwz r4, 0x5d8(r27)
 /* 80CACC30  38 84 00 24 */	addi r4, r4, 0x24
-/* 80CACC34  4B 69 98 7C */	b PSMTXCopy
+/* 80CACC34  4B 69 98 7D */	bl PSMTXCopy
 /* 80CACC38  D3 FB 07 E0 */	stfs f31, 0x7e0(r27)
 /* 80CACC3C  88 1E 0A 10 */	lbz r0, 0xa10(r30)
 /* 80CACC40  28 00 00 00 */	cmplwi r0, 0
@@ -72,12 +72,12 @@ lbl_80CACC7C:
 /* 80CACCAC  C0 84 00 0C */	lfs f4, 0xc(r4)
 /* 80CACCB0  C0 A4 00 10 */	lfs f5, 0x10(r4)
 /* 80CACCB4  C0 C4 00 14 */	lfs f6, 0x14(r4)
-/* 80CACCB8  4B 36 D8 90 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80CACCB8  4B 36 D8 91 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80CACCBC  38 60 00 01 */	li r3, 1
 /* 80CACCC0  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80CACCC4  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80CACCC8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80CACCCC  4B 6B 55 50 */	b _restgpr_26
+/* 80CACCCC  4B 6B 55 51 */	bl _restgpr_26
 /* 80CACCD0  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80CACCD4  7C 08 03 A6 */	mtlr r0
 /* 80CACCD8  38 21 00 40 */	addi r1, r1, 0x40

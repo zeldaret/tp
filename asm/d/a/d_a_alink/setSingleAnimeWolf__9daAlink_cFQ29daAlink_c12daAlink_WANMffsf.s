@@ -18,8 +18,8 @@ lbl_80129704:
 /* 80129744  FF E0 18 90 */	fmr f31, f3
 /* 80129748  38 9F 1F 58 */	addi r4, r31, 0x1f58
 /* 8012974C  54 1E 18 38 */	slwi r30, r0, 3
-/* 80129750  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha
-/* 80129754  38 05 10 10 */	addi r0, r5, m_wlAnmDataTable__9daAlink_c@l
+/* 80129750  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 80129754  38 05 10 10 */	addi r0, r5, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 80129758  7F A0 F2 14 */	add r29, r0, r30
 /* 8012975C  A0 BD 00 00 */	lhz r5, 0(r29)
 /* 80129760  3C C0 00 01 */	lis r6, 0x0001 /* 0x00010800@ha */
@@ -56,8 +56,8 @@ lbl_801297B4:
 /* 801297D4  98 1F 2F 9B */	stb r0, 0x2f9b(r31)
 /* 801297D8  48 00 00 18 */	b lbl_801297F0
 lbl_801297DC:
-/* 801297DC  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha
-/* 801297E0  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l
+/* 801297DC  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 801297E0  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 801297E4  7C 60 F2 14 */	add r3, r0, r30
 /* 801297E8  88 03 00 02 */	lbz r0, 2(r3)
 /* 801297EC  98 1F 2F 9B */	stb r0, 0x2f9b(r31)
@@ -66,8 +66,8 @@ lbl_801297F0:
 /* 801297F4  90 1F 21 5C */	stw r0, 0x215c(r31)
 /* 801297F8  38 1D 00 04 */	addi r0, r29, 4
 /* 801297FC  90 1F 21 60 */	stw r0, 0x2160(r31)
-/* 80129800  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha
-/* 80129804  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l
+/* 80129800  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 80129804  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 80129808  7C 60 F2 14 */	add r3, r0, r30
 /* 8012980C  88 03 00 03 */	lbz r0, 3(r3)
 /* 80129810  98 1F 2F D8 */	stb r0, 0x2fd8(r31)

@@ -5,8 +5,8 @@ lbl_802F9A7C:
 /* 802F9A88  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802F9A8C  7C 7F 1B 78 */	mr r31, r3
 /* 802F9A90  4B FF C1 69 */	bl __ct__7J2DPaneFv
-/* 802F9A94  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha
-/* 802F9A98  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l
+/* 802F9A94  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha /* 0x803CD108@ha */
+/* 802F9A98  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l /* 0x803CD108@l */
 /* 802F9A9C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802F9AA0  38 60 00 00 */	li r3, 0
 /* 802F9AA4  90 7F 01 00 */	stw r3, 0x100(r31)

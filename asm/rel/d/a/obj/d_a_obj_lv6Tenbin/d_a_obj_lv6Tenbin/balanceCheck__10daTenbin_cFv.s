@@ -11,15 +11,15 @@ lbl_80C77688:
 /* 80C77688  A0 03 05 B4 */	lhz r0, 0x5b4(r3)
 /* 80C7768C  7C 05 00 40 */	cmplw r5, r0
 /* 80C77690  40 82 00 18 */	bne lbl_80C776A8
-/* 80C77694  3C 80 80 C7 */	lis r4, lit_3670@ha
-/* 80C77698  C0 04 79 B8 */	lfs f0, lit_3670@l(r4)
+/* 80C77694  3C 80 80 C7 */	lis r4, lit_3670@ha /* 0x80C779B8@ha */
+/* 80C77698  C0 04 79 B8 */	lfs f0, lit_3670@l(r4)  /* 0x80C779B8@l */
 /* 80C7769C  D0 03 05 C4 */	stfs f0, 0x5c4(r3)
 /* 80C776A0  D0 03 05 C8 */	stfs f0, 0x5c8(r3)
 /* 80C776A4  48 00 00 48 */	b lbl_80C776EC
 lbl_80C776A8:
 /* 80C776A8  40 81 00 24 */	ble lbl_80C776CC
-/* 80C776AC  3C 80 80 C7 */	lis r4, l_HIO@ha
-/* 80C776B0  38 84 7A DC */	addi r4, r4, l_HIO@l
+/* 80C776AC  3C 80 80 C7 */	lis r4, l_HIO@ha /* 0x80C77ADC@ha */
+/* 80C776B0  38 84 7A DC */	addi r4, r4, l_HIO@l /* 0x80C77ADC@l */
 /* 80C776B4  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80C776B8  FC 00 00 50 */	fneg f0, f0
 /* 80C776BC  D0 03 05 C4 */	stfs f0, 0x5c4(r3)
@@ -28,20 +28,20 @@ lbl_80C776A8:
 /* 80C776C8  48 00 00 24 */	b lbl_80C776EC
 lbl_80C776CC:
 /* 80C776CC  40 80 00 20 */	bge lbl_80C776EC
-/* 80C776D0  3C 80 80 C7 */	lis r4, l_HIO@ha
-/* 80C776D4  38 84 7A DC */	addi r4, r4, l_HIO@l
+/* 80C776D0  3C 80 80 C7 */	lis r4, l_HIO@ha /* 0x80C77ADC@ha */
+/* 80C776D4  38 84 7A DC */	addi r4, r4, l_HIO@l /* 0x80C77ADC@l */
 /* 80C776D8  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80C776DC  D0 03 05 C4 */	stfs f0, 0x5c4(r3)
 /* 80C776E0  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80C776E4  FC 00 00 50 */	fneg f0, f0
 /* 80C776E8  D0 03 05 C8 */	stfs f0, 0x5c8(r3)
 lbl_80C776EC:
-/* 80C776EC  3C 80 80 C7 */	lis r4, l_HIO@ha
-/* 80C776F0  38 84 7A DC */	addi r4, r4, l_HIO@l
+/* 80C776EC  3C 80 80 C7 */	lis r4, l_HIO@ha /* 0x80C77ADC@ha */
+/* 80C776F0  38 84 7A DC */	addi r4, r4, l_HIO@l /* 0x80C77ADC@l */
 /* 80C776F4  88 04 00 40 */	lbz r0, 0x40(r4)
 /* 80C776F8  98 03 05 CC */	stb r0, 0x5cc(r3)
-/* 80C776FC  3C 80 80 C7 */	lis r4, lit_3670@ha
-/* 80C77700  C0 04 79 B8 */	lfs f0, lit_3670@l(r4)
+/* 80C776FC  3C 80 80 C7 */	lis r4, lit_3670@ha /* 0x80C779B8@ha */
+/* 80C77700  C0 04 79 B8 */	lfs f0, lit_3670@l(r4)  /* 0x80C779B8@l */
 /* 80C77704  D0 03 05 DC */	stfs f0, 0x5dc(r3)
 /* 80C77708  D0 03 06 08 */	stfs f0, 0x608(r3)
 /* 80C7770C  38 00 00 00 */	li r0, 0

@@ -3,18 +3,16 @@
 #
 
 M120_TARGET := $(BUILD_DIR)/rel/d/a/d_a_swc00.plf
+M120_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_swc00.lcf
+M120_MAP := $(BUILD_DIR)/rel/d/a/d_a_swc00.map
 
 M120_CPP_FILES := \
-	rel/d/a/d_a_swc00/executor.cpp \
-	rel/d/a/d_a_swc00/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_swc00/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_swc00/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_swc00/d_a_swc00.cpp \
 
 M120_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_swc00/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swc00/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swc00/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_swc00/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_swc00/d_a_swc00.o \
 
@@ -31,15 +29,21 @@ M120_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map120.map\
+	-m _prolog \
+	-lcf $(M120_LDSCRIPT) \
+	-unused -map $(M120_MAP) \
+	-w off \
 
 $(M120_TARGET): $(M120_O_FILES) $(M120_LIBS)
+	@echo [120] creating $(M120_TARGET)
 	@echo $(M120_LIBS) $(M120_O_FILES) > build/M120_ofiles
-	$(LD) -opt_partial $(M120_LDFLAGS) -o $(M120_TARGET) @build/M120_ofiles
+	@python3 tools/lcf.py rel 120 --output $(M120_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M120_LDFLAGS) -o $(M120_TARGET) @build/M120_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swc00/%.o: rel/d/a/d_a_swc00/%.cpp
+	@echo [120] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M120_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M120_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

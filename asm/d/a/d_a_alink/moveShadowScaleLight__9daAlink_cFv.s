@@ -97,8 +97,8 @@ lbl_800CBB88:
 /* 800CBB90  C0 42 93 A0 */	lfs f2, lit_9054(r2)
 /* 800CBB94  48 1A 4B AD */	bl cLib_chaseF__FPfff
 lbl_800CBB98:
-/* 800CBB98  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800CBB9C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800CBB98  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800CBB9C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800CBBA0  38 83 00 04 */	addi r4, r3, 4
 /* 800CBBA4  A8 1E 2F F4 */	lha r0, 0x2ff4(r30)
 /* 800CBBA8  54 05 04 38 */	rlwinm r5, r0, 0, 0x10, 0x1c

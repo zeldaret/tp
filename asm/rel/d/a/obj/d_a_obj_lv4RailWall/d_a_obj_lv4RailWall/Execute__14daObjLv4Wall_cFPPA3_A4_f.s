@@ -11,10 +11,10 @@ lbl_80C60DC4:
 /* 80C60DE8  40 82 00 20 */	bne lbl_80C60E08
 /* 80C60DEC  38 00 00 B3 */	li r0, 0xb3
 /* 80C60DF0  B0 01 00 08 */	sth r0, 8(r1)
-/* 80C60DF4  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 80C60DF8  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 80C60DF4  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 80C60DF8  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 80C60DFC  38 81 00 08 */	addi r4, r1, 8
-/* 80C60E00  4B 3B 89 F8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80C60E00  4B 3B 89 F9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80C60E04  90 7E 09 4C */	stw r3, 0x94c(r30)
 lbl_80C60E08:
 /* 80C60E08  80 1E 09 4C */	lwz r0, 0x94c(r30)
@@ -32,8 +32,8 @@ lbl_80C60E1C:
 /* 80C60E34  C0 5E 04 D8 */	lfs f2, 0x4d8(r30)
 /* 80C60E38  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 80C60E3C  C0 3E 09 50 */	lfs f1, 0x950(r30)
-/* 80C60E40  3C 60 80 C6 */	lis r3, lit_3711@ha
-/* 80C60E44  C0 03 1B 40 */	lfs f0, lit_3711@l(r3)
+/* 80C60E40  3C 60 80 C6 */	lis r3, lit_3711@ha /* 0x80C61B40@ha */
+/* 80C60E44  C0 03 1B 40 */	lfs f0, lit_3711@l(r3)  /* 0x80C61B40@l */
 /* 80C60E48  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80C60E4C  EC 03 00 2A */	fadds f0, f3, f0
 /* 80C60E50  D0 01 00 10 */	stfs f0, 0x10(r1)

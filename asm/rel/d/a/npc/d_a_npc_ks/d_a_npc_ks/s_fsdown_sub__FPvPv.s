@@ -4,7 +4,7 @@ lbl_80A50028:
 /* 80A50030  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A50034  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A50038  7C 7F 1B 78 */	mr r31, r3
-/* 80A5003C  4B 5C 8C A4 */	b fopAc_IsActor__FPv
+/* 80A5003C  4B 5C 8C A5 */	bl fopAc_IsActor__FPv
 /* 80A50040  2C 03 00 00 */	cmpwi r3, 0
 /* 80A50044  41 82 00 38 */	beq lbl_80A5007C
 /* 80A50048  A8 1F 00 08 */	lha r0, 8(r31)

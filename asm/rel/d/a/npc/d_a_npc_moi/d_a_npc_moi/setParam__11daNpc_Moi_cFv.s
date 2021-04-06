@@ -3,10 +3,10 @@ lbl_80A751E4:
 /* 80A751E8  7C 08 02 A6 */	mflr r0
 /* 80A751EC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80A751F0  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A751F4  4B 8E CF D8 */	b _savegpr_25
+/* 80A751F4  4B 8E CF D9 */	bl _savegpr_25
 /* 80A751F8  7C 7C 1B 78 */	mr r28, r3
-/* 80A751FC  3C 80 80 A8 */	lis r4, m__17daNpc_Moi_Param_c@ha
-/* 80A75200  3B E4 AE F0 */	addi r31, r4, m__17daNpc_Moi_Param_c@l
+/* 80A751FC  3C 80 80 A8 */	lis r4, m__17daNpc_Moi_Param_c@ha /* 0x80A7AEF0@ha */
+/* 80A75200  3B E4 AE F0 */	addi r31, r4, m__17daNpc_Moi_Param_c@l /* 0x80A7AEF0@l */
 /* 80A75204  48 00 12 AD */	bl selectAction__11daNpc_Moi_cFv
 /* 80A75208  7F 83 E3 78 */	mr r3, r28
 /* 80A7520C  48 00 03 BD */	bl srchActors__11daNpc_Moi_cFv
@@ -42,8 +42,8 @@ lbl_80A75274:
 /* 80A7527C  3B C0 00 05 */	li r30, 5
 /* 80A75280  3B 40 00 07 */	li r26, 7
 lbl_80A75284:
-/* 80A75284  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A75288  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A75284  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A75288  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A7528C  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80A75290  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80A75294  81 8C 01 88 */	lwz r12, 0x188(r12)
@@ -70,7 +70,7 @@ lbl_80A752C8:
 /* 80A752E0  98 1C 05 45 */	stb r0, 0x545(r28)
 /* 80A752E4  7F C3 07 34 */	extsh r3, r30
 /* 80A752E8  7F A4 07 34 */	extsh r4, r29
-/* 80A752EC  4B 6D 77 2C */	b daNpcT_getDistTableIdx__Fii
+/* 80A752EC  4B 6D 77 2D */	bl daNpcT_getDistTableIdx__Fii
 /* 80A752F0  98 7C 05 47 */	stb r3, 0x547(r28)
 /* 80A752F4  38 00 00 00 */	li r0, 0
 /* 80A752F8  90 1C 05 5C */	stw r0, 0x55c(r28)
@@ -81,13 +81,13 @@ lbl_80A752C8:
 lbl_80A7530C:
 /* 80A7530C  7F 43 07 34 */	extsh r3, r26
 /* 80A75310  7F 24 07 34 */	extsh r4, r25
-/* 80A75314  4B 6D 77 04 */	b daNpcT_getDistTableIdx__Fii
+/* 80A75314  4B 6D 77 05 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A75318  98 7C 05 44 */	stb r3, 0x544(r28)
 /* 80A7531C  88 1C 05 44 */	lbz r0, 0x544(r28)
 /* 80A75320  98 1C 05 45 */	stb r0, 0x545(r28)
 /* 80A75324  7F C3 07 34 */	extsh r3, r30
 /* 80A75328  7F A4 07 34 */	extsh r4, r29
-/* 80A7532C  4B 6D 76 EC */	b daNpcT_getDistTableIdx__Fii
+/* 80A7532C  4B 6D 76 ED */	bl daNpcT_getDistTableIdx__Fii
 /* 80A75330  98 7C 05 47 */	stb r3, 0x547(r28)
 /* 80A75334  93 7C 05 5C */	stw r27, 0x55c(r28)
 lbl_80A75338:
@@ -115,7 +115,7 @@ lbl_80A75338:
 lbl_80A7538C:
 /* 80A7538C  38 7C 08 A0 */	addi r3, r28, 0x8a0
 /* 80A75390  C0 3C 0D F0 */	lfs f1, 0xdf0(r28)
-/* 80A75394  4B 60 0B AC */	b SetWallR__12dBgS_AcchCirFf
+/* 80A75394  4B 60 0B AD */	bl SetWallR__12dBgS_AcchCirFf
 /* 80A75398  38 7F 00 00 */	addi r3, r31, 0
 /* 80A7539C  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A753A0  D0 1C 08 D0 */	stfs f0, 0x8d0(r28)
@@ -164,7 +164,7 @@ lbl_80A75430:
 /* 80A75440  7F 83 E3 78 */	mr r3, r28
 /* 80A75444  48 00 15 DD */	bl setSwAT__11daNpc_Moi_cFv
 /* 80A75448  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A7544C  4B 8E CD CC */	b _restgpr_25
+/* 80A7544C  4B 8E CD CD */	bl _restgpr_25
 /* 80A75450  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80A75454  7C 08 03 A6 */	mtlr r0
 /* 80A75458  38 21 00 30 */	addi r1, r1, 0x30

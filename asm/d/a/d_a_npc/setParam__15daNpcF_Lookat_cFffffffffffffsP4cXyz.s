@@ -35,15 +35,15 @@ lbl_801510B8:
 /* 8015113C  7C 00 07 75 */	extsb. r0, r0
 /* 80151140  40 82 00 38 */	bne lbl_80151178
 /* 80151144  C0 02 99 D8 */	lfs f0, lit_4116(r2)
-/* 80151148  3C 60 80 42 */	lis r3, vec@ha
-/* 8015114C  D4 03 57 DC */	stfsu f0, vec@l(r3)
+/* 80151148  3C 60 80 42 */	lis r3, vec@ha /* 0x804257DC@ha */
+/* 8015114C  D4 03 57 DC */	stfsu f0, vec@l(r3)  /* 0x804257DC@l */
 /* 80151150  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80151154  C0 02 9A 98 */	lfs f0, lit_9971(r2)
 /* 80151158  D0 03 00 08 */	stfs f0, 8(r3)
-/* 8015115C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
-/* 80151160  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
-/* 80151164  3C A0 80 42 */	lis r5, lit_9946@ha
-/* 80151168  38 A5 57 D0 */	addi r5, r5, lit_9946@l
+/* 8015115C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 80151160  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80009184@l */
+/* 80151164  3C A0 80 42 */	lis r5, lit_9946@ha /* 0x804257D0@ha */
+/* 80151168  38 A5 57 D0 */	addi r5, r5, lit_9946@l /* 0x804257D0@l */
 /* 8015116C  48 21 0A B9 */	bl __register_global_object
 /* 80151170  38 00 00 01 */	li r0, 1
 /* 80151174  98 0D 8A 6C */	stb r0, data_80450FEC(r13)
@@ -127,14 +127,14 @@ lbl_80151178:
 /* 801512A8  B0 9D 00 74 */	sth r4, 0x74(r29)
 /* 801512AC  38 7D 00 18 */	addi r3, r29, 0x18
 /* 801512B0  4B EB BA B5 */	bl transS__14mDoMtx_stack_cFRC4cXyz
-/* 801512B4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801512B8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801512B4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801512B8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801512BC  7F C4 F3 78 */	mr r4, r30
 /* 801512C0  4B EB B1 75 */	bl mDoMtx_YrotM__FPA4_fs
-/* 801512C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801512C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 801512CC  3C 80 80 42 */	lis r4, vec@ha
-/* 801512D0  38 84 57 DC */	addi r4, r4, vec@l
+/* 801512C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801512C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 801512CC  3C 80 80 42 */	lis r4, vec@ha /* 0x804257DC@ha */
+/* 801512D0  38 84 57 DC */	addi r4, r4, vec@l /* 0x804257DC@l */
 /* 801512D4  38 BD 00 24 */	addi r5, r29, 0x24
 /* 801512D8  48 1F 5A 95 */	bl PSMTXMultVec
 /* 801512DC  38 00 00 00 */	li r0, 0

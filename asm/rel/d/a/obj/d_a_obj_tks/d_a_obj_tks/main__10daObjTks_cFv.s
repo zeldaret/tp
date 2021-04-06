@@ -3,17 +3,17 @@ lbl_80D116C8:
 /* 80D116CC  7C 08 02 A6 */	mflr r0
 /* 80D116D0  90 01 00 A4 */	stw r0, 0xa4(r1)
 /* 80D116D4  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 80D116D8  4B 65 0B 04 */	b _savegpr_29
+/* 80D116D8  4B 65 0B 05 */	bl _savegpr_29
 /* 80D116DC  7C 7D 1B 78 */	mr r29, r3
-/* 80D116E0  3C 60 80 D1 */	lis r3, m__16daObjTks_Param_c@ha
-/* 80D116E4  3B E3 27 3C */	addi r31, r3, m__16daObjTks_Param_c@l
+/* 80D116E0  3C 60 80 D1 */	lis r3, m__16daObjTks_Param_c@ha /* 0x80D1273C@ha */
+/* 80D116E4  3B E3 27 3C */	addi r31, r3, m__16daObjTks_Param_c@l /* 0x80D1273C@l */
 /* 80D116E8  38 7D 0D B8 */	addi r3, r29, 0xdb8
-/* 80D116EC  4B 65 09 2C */	b __ptmf_test
+/* 80D116EC  4B 65 09 2D */	bl __ptmf_test
 /* 80D116F0  2C 03 00 00 */	cmpwi r3, 0
 /* 80D116F4  41 82 00 14 */	beq lbl_80D11708
 /* 80D116F8  7F A3 EB 78 */	mr r3, r29
 /* 80D116FC  39 9D 0D B8 */	addi r12, r29, 0xdb8
-/* 80D11700  4B 65 09 84 */	b __ptmf_scall
+/* 80D11700  4B 65 09 85 */	bl __ptmf_scall
 /* 80D11704  60 00 00 00 */	nop 
 lbl_80D11708:
 /* 80D11708  80 7F 00 BC */	lwz r3, 0xbc(r31)
@@ -55,7 +55,7 @@ lbl_80D11708:
 /* 80D11798  40 80 00 10 */	bge lbl_80D117A8
 /* 80D1179C  7F A3 EB 78 */	mr r3, r29
 /* 80D117A0  38 81 00 28 */	addi r4, r1, 0x28
-/* 80D117A4  4B 44 19 AC */	b playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80D117A4  4B 44 19 AD */	bl playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80D117A8:
 /* 80D117A8  80 7F 00 E4 */	lwz r3, 0xe4(r31)
 /* 80D117AC  80 1F 00 E8 */	lwz r0, 0xe8(r31)
@@ -129,11 +129,11 @@ lbl_80D117A8:
 /* 80D118BC  40 80 00 10 */	bge lbl_80D118CC
 /* 80D118C0  7F A3 EB 78 */	mr r3, r29
 /* 80D118C4  38 81 00 60 */	addi r4, r1, 0x60
-/* 80D118C8  4B 44 19 9C */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80D118C8  4B 44 19 9D */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80D118CC:
 /* 80D118CC  38 60 00 01 */	li r3, 1
 /* 80D118D0  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 80D118D4  4B 65 09 54 */	b _restgpr_29
+/* 80D118D4  4B 65 09 55 */	bl _restgpr_29
 /* 80D118D8  80 01 00 A4 */	lwz r0, 0xa4(r1)
 /* 80D118DC  7C 08 03 A6 */	mtlr r0
 /* 80D118E0  38 21 00 A0 */	addi r1, r1, 0xa0

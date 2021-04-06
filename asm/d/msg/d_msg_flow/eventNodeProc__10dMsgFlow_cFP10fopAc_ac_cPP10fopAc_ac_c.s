@@ -15,8 +15,8 @@ lbl_8024ADEC:
 /* 8024AE20  7C C5 33 78 */	mr r5, r6
 /* 8024AE24  88 1D 00 01 */	lbz r0, 1(r29)
 /* 8024AE28  1C E0 00 0C */	mulli r7, r0, 0xc
-/* 8024AE2C  3C C0 80 3C */	lis r6, mEventList__10dMsgFlow_c@ha
-/* 8024AE30  38 06 1C CC */	addi r0, r6, mEventList__10dMsgFlow_c@l
+/* 8024AE2C  3C C0 80 3C */	lis r6, mEventList__10dMsgFlow_c@ha /* 0x803C1CCC@ha */
+/* 8024AE30  38 06 1C CC */	addi r0, r6, mEventList__10dMsgFlow_c@l /* 0x803C1CCC@l */
 /* 8024AE34  7D 80 3A 14 */	add r12, r0, r7
 /* 8024AE38  48 11 72 4D */	bl __ptmf_scall
 /* 8024AE3C  60 00 00 00 */	nop 
@@ -66,8 +66,8 @@ lbl_8024AED8:
 /* 8024AEE0  48 00 02 51 */	bl getParam__10dMsgFlow_cFPUc
 /* 8024AEE4  2C 03 00 00 */	cmpwi r3, 0
 /* 8024AEE8  40 82 00 60 */	bne lbl_8024AF48
-/* 8024AEEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024AEF0  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 8024AEEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024AEF0  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024AEF4  80 65 5D B4 */	lwz r3, 0x5db4(r5)
 /* 8024AEF8  A0 03 31 20 */	lhz r0, 0x3120(r3)
 /* 8024AEFC  28 00 FF FF */	cmplwi r0, 0xffff
@@ -109,8 +109,8 @@ lbl_8024AF48:
 /* 8024AF80  88 1E 00 48 */	lbz r0, 0x48(r30)
 /* 8024AF84  28 00 00 00 */	cmplwi r0, 0
 /* 8024AF88  40 82 00 54 */	bne lbl_8024AFDC
-/* 8024AF8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024AF90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024AF8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024AF90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024AF94  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 8024AF98  4B FE C1 65 */	bl isMidonaMessage__12dMsgObject_cFv
 /* 8024AF9C  54 60 06 3F */	clrlwi. r0, r3, 0x18

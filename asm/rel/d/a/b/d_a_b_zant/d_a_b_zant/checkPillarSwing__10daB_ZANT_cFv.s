@@ -12,7 +12,7 @@ lbl_80647A34:
 /* 80647A5C  7C 7F 02 14 */	add r3, r31, r0
 /* 80647A60  80 63 07 3C */	lwz r3, 0x73c(r3)
 /* 80647A64  38 81 00 08 */	addi r4, r1, 8
-/* 80647A68  4B 9D 1F 54 */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 80647A68  4B 9D 1F 55 */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 80647A6C  80 61 00 08 */	lwz r3, 8(r1)
 /* 80647A70  28 03 00 00 */	cmplwi r3, 0
 /* 80647A74  41 82 00 40 */	beq lbl_80647AB4

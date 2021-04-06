@@ -5,8 +5,8 @@ lbl_8020E070:
 /* 8020E07C  39 61 00 30 */	addi r11, r1, 0x30
 /* 8020E080  48 15 41 5D */	bl _savegpr_29
 /* 8020E084  7C 7D 1B 78 */	mr r29, r3
-/* 8020E088  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E08C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020E088  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E08C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E090  A0 03 00 B0 */	lhz r0, 0xb0(r3)
 /* 8020E094  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8020E098  40 82 03 AC */	bne lbl_8020E444
@@ -39,8 +39,8 @@ lbl_8020E0D0:
 /* 8020E100  48 09 D8 85 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 8020E104  48 00 03 40 */	b lbl_8020E444
 lbl_8020E108:
-/* 8020E108  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E10C  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
+/* 8020E108  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E10C  3B C3 01 88 */	addi r30, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E110  88 1E 00 C1 */	lbz r0, 0xc1(r30)
 /* 8020E114  28 00 00 01 */	cmplwi r0, 1
 /* 8020E118  41 82 00 2C */	beq lbl_8020E144
@@ -55,8 +55,8 @@ lbl_8020E108:
 /* 8020E13C  28 00 00 06 */	cmplwi r0, 6
 /* 8020E140  40 82 01 4C */	bne lbl_8020E28C
 lbl_8020E144:
-/* 8020E144  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E148  3B E3 01 88 */	addi r31, r3, g_meter2_info@l
+/* 8020E144  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E148  3B E3 01 88 */	addi r31, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E14C  88 1F 00 BF */	lbz r0, 0xbf(r31)
 /* 8020E150  28 00 00 00 */	cmplwi r0, 0
 /* 8020E154  40 82 00 58 */	bne lbl_8020E1AC
@@ -94,8 +94,8 @@ lbl_8020E1AC:
 /* 8020E1D0  88 1E 00 C1 */	lbz r0, 0xc1(r30)
 /* 8020E1D4  28 00 00 07 */	cmplwi r0, 7
 /* 8020E1D8  41 81 00 60 */	bgt lbl_8020E238
-/* 8020E1DC  3C 60 80 3C */	lis r3, lit_4516@ha
-/* 8020E1E0  38 63 F2 D8 */	addi r3, r3, lit_4516@l
+/* 8020E1DC  3C 60 80 3C */	lis r3, lit_4516@ha /* 0x803BF2D8@ha */
+/* 8020E1E0  38 63 F2 D8 */	addi r3, r3, lit_4516@l /* 0x803BF2D8@l */
 /* 8020E1E4  54 00 10 3A */	slwi r0, r0, 2
 /* 8020E1E8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8020E1EC  7C 09 03 A6 */	mtctr r0
@@ -119,8 +119,8 @@ lbl_8020E1AC:
 /* 8020E234  98 1F 00 BF */	stb r0, 0xbf(r31)
 lbl_8020E238:
 /* 8020E238  38 00 04 00 */	li r0, 0x400
-/* 8020E23C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E240  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020E23C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E240  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E244  B0 03 00 AA */	sth r0, 0xaa(r3)
 /* 8020E248  38 00 00 B8 */	li r0, 0xb8
 /* 8020E24C  90 01 00 10 */	stw r0, 0x10(r1)
@@ -148,8 +148,8 @@ lbl_8020E28C:
 /* 8020E29C  48 00 04 71 */	bl isDmapScreen__11dMeterMap_cFv
 /* 8020E2A0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8020E2A4  41 82 00 FC */	beq lbl_8020E3A0
-/* 8020E2A8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E2AC  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
+/* 8020E2A8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E2AC  3B C3 01 88 */	addi r30, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E2B0  88 1E 00 BF */	lbz r0, 0xbf(r30)
 /* 8020E2B4  28 00 00 00 */	cmplwi r0, 0
 /* 8020E2B8  40 82 00 58 */	bne lbl_8020E310
@@ -184,8 +184,8 @@ lbl_8020E310:
 /* 8020E328  38 00 00 06 */	li r0, 6
 /* 8020E32C  98 1E 00 BF */	stb r0, 0xbf(r30)
 /* 8020E330  38 00 04 00 */	li r0, 0x400
-/* 8020E334  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E338  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020E334  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E338  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E33C  B0 03 00 AA */	sth r0, 0xaa(r3)
 /* 8020E340  38 00 00 B8 */	li r0, 0xb8
 /* 8020E344  90 01 00 08 */	stw r0, 8(r1)
@@ -203,8 +203,8 @@ lbl_8020E310:
 /* 8020E374  48 01 06 5D */	bl dMeter2Info_set2DVibration__Fv
 /* 8020E378  48 00 00 28 */	b lbl_8020E3A0
 lbl_8020E37C:
-/* 8020E37C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8020E380  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8020E37C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8020E380  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8020E384  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8020E388  54 60 07 39 */	rlwinm. r0, r3, 0, 0x1c, 0x1c
 /* 8020E38C  40 82 00 14 */	bne lbl_8020E3A0
@@ -213,8 +213,8 @@ lbl_8020E37C:
 /* 8020E398  7F A3 EB 78 */	mr r3, r29
 /* 8020E39C  48 00 06 31 */	bl keyCheck__11dMeterMap_cFv
 lbl_8020E3A0:
-/* 8020E3A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020E3A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020E3A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020E3A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020E3A8  3B C3 09 58 */	addi r30, r3, 0x958
 /* 8020E3AC  7F C3 F3 78 */	mr r3, r30
 /* 8020E3B0  38 80 00 01 */	li r4, 1
@@ -228,8 +228,8 @@ lbl_8020E3A0:
 /* 8020E3D0  7F A3 EB 78 */	mr r3, r29
 /* 8020E3D4  4B FF F4 A1 */	bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 8020E3D8  38 00 00 01 */	li r0, 1
-/* 8020E3DC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E3E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020E3DC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E3E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E3E4  98 03 00 BF */	stb r0, 0xbf(r3)
 lbl_8020E3E8:
 /* 8020E3E8  7F C3 F3 78 */	mr r3, r30
@@ -249,8 +249,8 @@ lbl_8020E3F8:
 /* 8020E41C  7F A3 EB 78 */	mr r3, r29
 /* 8020E420  4B FF F4 55 */	bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 8020E424  38 00 00 01 */	li r0, 1
-/* 8020E428  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020E42C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020E428  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020E42C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020E430  98 03 00 BF */	stb r0, 0xbf(r3)
 lbl_8020E434:
 /* 8020E434  7F C3 F3 78 */	mr r3, r30

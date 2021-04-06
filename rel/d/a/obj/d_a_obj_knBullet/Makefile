@@ -3,17 +3,15 @@
 #
 
 M505_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet.plf
+M505_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet.lcf
+M505_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet.map
 
 M505_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_knBullet/executor.cpp \
-	rel/d/a/obj/d_a_obj_knBullet/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_knBullet/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet.cpp \
 
 M505_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet.o \
 
 M505_LIBS := \
@@ -29,15 +27,21 @@ M505_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map505.map\
+	-m _prolog \
+	-lcf $(M505_LDSCRIPT) \
+	-unused -map $(M505_MAP) \
+	-w off \
 
 $(M505_TARGET): $(M505_O_FILES) $(M505_LIBS)
+	@echo [505] creating $(M505_TARGET)
 	@echo $(M505_LIBS) $(M505_O_FILES) > build/M505_ofiles
-	$(LD) -opt_partial $(M505_LDFLAGS) -o $(M505_TARGET) @build/M505_ofiles
+	@python3 tools/lcf.py rel 505 --output $(M505_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M505_LDFLAGS) -o $(M505_TARGET) @build/M505_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_knBullet/%.o: rel/d/a/obj/d_a_obj_knBullet/%.cpp
+	@echo [505] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M505_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M505_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

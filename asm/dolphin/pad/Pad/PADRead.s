@@ -7,14 +7,14 @@ lbl_8034EEA0:
 /* 8034EEB4  4B FE E8 41 */	bl OSDisableInterrupts
 /* 8034EEB8  3B 20 00 00 */	li r25, 0
 /* 8034EEBC  1C B9 00 0C */	mulli r5, r25, 0xc
-/* 8034EEC0  3C 80 80 45 */	lis r4, Origin@ha
-/* 8034EEC4  38 04 CB 80 */	addi r0, r4, Origin@l
+/* 8034EEC0  3C 80 80 45 */	lis r4, Origin@ha /* 0x8044CB80@ha */
+/* 8034EEC4  38 04 CB 80 */	addi r0, r4, Origin@l /* 0x8044CB80@l */
 /* 8034EEC8  7F 80 2A 14 */	add r28, r0, r5
-/* 8034EECC  3C 80 80 35 */	lis r4, PADOriginUpdateCallback@ha
-/* 8034EED0  3C A0 80 35 */	lis r5, PADReceiveCheckCallback@ha
+/* 8034EECC  3C 80 80 35 */	lis r4, PADOriginUpdateCallback@ha /* 0x8034E51C@ha */
+/* 8034EED0  3C A0 80 35 */	lis r5, PADReceiveCheckCallback@ha /* 0x8034E9EC@ha */
 /* 8034EED4  3B 43 00 00 */	addi r26, r3, 0
-/* 8034EED8  3A C4 E5 1C */	addi r22, r4, PADOriginUpdateCallback@l
-/* 8034EEDC  3B E5 E9 EC */	addi r31, r5, PADReceiveCheckCallback@l
+/* 8034EED8  3A C4 E5 1C */	addi r22, r4, PADOriginUpdateCallback@l /* 0x8034E51C@l */
+/* 8034EEDC  3B E5 E9 EC */	addi r31, r5, PADReceiveCheckCallback@l /* 0x8034E9EC@l */
 /* 8034EEE0  3B 00 00 00 */	li r24, 0
 /* 8034EEE4  3F C0 80 00 */	lis r30, 0x8000
 lbl_8034EEE8:

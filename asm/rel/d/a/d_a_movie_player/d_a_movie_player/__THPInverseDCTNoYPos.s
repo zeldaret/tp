@@ -12,10 +12,10 @@ lbl_8087445C:
 /* 80874484  F3 61 00 28 */	psq_st f27, 40(r1), 0, 0 /* qr0 */
 /* 80874488  DB 41 00 10 */	stfd f26, 0x10(r1)
 /* 8087448C  F3 41 00 18 */	psq_st f26, 24(r1), 0, 0 /* qr0 */
-/* 80874490  3C A0 80 88 */	lis r5, __THPJpegNaturalOrder@ha
-/* 80874494  38 C5 90 34 */	addi r6, r5, __THPJpegNaturalOrder@l
-/* 80874498  3C A0 80 88 */	lis r5, lit_1109@ha
-/* 8087449C  38 A5 95 A0 */	addi r5, r5, lit_1109@l
+/* 80874490  3C A0 80 88 */	lis r5, __THPJpegNaturalOrder@ha /* 0x80879034@ha */
+/* 80874494  38 C5 90 34 */	addi r6, r5, __THPJpegNaturalOrder@l /* 0x80879034@l */
+/* 80874498  3C A0 80 88 */	lis r5, lit_1109@ha /* 0x808795A0@ha */
+/* 8087449C  38 A5 95 A0 */	addi r5, r5, lit_1109@l /* 0x808795A0@l */
 /* 808744A0  C3 C6 00 98 */	lfs f30, 0x98(r6)
 /* 808744A4  C3 A6 00 9C */	lfs f29, 0x9c(r6)
 /* 808744A8  C3 86 00 A0 */	lfs f28, 0xa0(r6)

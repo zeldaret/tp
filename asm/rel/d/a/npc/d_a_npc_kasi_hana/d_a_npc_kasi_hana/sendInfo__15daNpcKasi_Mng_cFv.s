@@ -8,7 +8,7 @@ lbl_80A1B628:
 /* 80A1B640  4B FF FF B1 */	bl getSygnalInfo__15daNpcKasi_Mng_cFv
 /* 80A1B644  7C 7F 1B 78 */	mr r31, r3
 /* 80A1B648  38 7E 00 08 */	addi r3, r30, 8
-/* 80A1B64C  4B 73 50 A0 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1B64C  4B 73 50 A1 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1B650  28 03 00 00 */	cmplwi r3, 0
 /* 80A1B654  41 82 00 40 */	beq lbl_80A1B694
 /* 80A1B658  93 E3 14 40 */	stw r31, 0x1440(r3)
@@ -28,7 +28,7 @@ lbl_80A1B628:
 /* 80A1B690  90 03 14 5C */	stw r0, 0x145c(r3)
 lbl_80A1B694:
 /* 80A1B694  38 7E 00 10 */	addi r3, r30, 0x10
-/* 80A1B698  4B 73 50 54 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1B698  4B 73 50 55 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1B69C  28 03 00 00 */	cmplwi r3, 0
 /* 80A1B6A0  41 82 00 40 */	beq lbl_80A1B6E0
 /* 80A1B6A4  93 E3 14 44 */	stw r31, 0x1444(r3)

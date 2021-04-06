@@ -15,8 +15,8 @@ lbl_80028FB4:
 /* 80028FE8  41 82 00 1C */	beq lbl_80029004
 /* 80028FEC  80 1D 00 34 */	lwz r0, 0x34(r29)
 /* 80028FF0  54 04 10 3A */	slwi r4, r0, 2
-/* 80028FF4  3C 60 80 38 */	lis r3, colorTable@ha
-/* 80028FF8  38 03 8E F8 */	addi r0, r3, colorTable@l
+/* 80028FF4  3C 60 80 38 */	lis r3, colorTable@ha /* 0x80378EF8@ha */
+/* 80028FF8  38 03 8E F8 */	addi r0, r3, colorTable@l /* 0x80378EF8@l */
 /* 80028FFC  7C 60 22 14 */	add r3, r0, r4
 /* 80029000  48 00 00 20 */	b lbl_80029020
 lbl_80029004:

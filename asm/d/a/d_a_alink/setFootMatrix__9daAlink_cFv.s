@@ -5,8 +5,8 @@ lbl_800A29DC:
 /* 800A29E8  39 61 00 40 */	addi r11, r1, 0x40
 /* 800A29EC  48 2B F7 DD */	bl _savegpr_24
 /* 800A29F0  7C 79 1B 78 */	mr r25, r3
-/* 800A29F4  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800A29F8  3B A3 D6 58 */	addi r29, r3, lit_3757@l
+/* 800A29F4  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800A29F8  3B A3 D6 58 */	addi r29, r3, lit_3757@l /* 0x8038D658@l */
 /* 800A29FC  3B 99 29 04 */	addi r28, r25, 0x2904
 /* 800A2A00  3B C0 00 00 */	li r30, 0
 /* 800A2A04  3B 00 00 00 */	li r24, 0
@@ -61,8 +61,8 @@ lbl_800A2AAC:
 lbl_800A2AB8:
 /* 800A2AB8  3B 40 00 00 */	li r26, 0
 /* 800A2ABC  3B 00 00 00 */	li r24, 0
-/* 800A2AC0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2AC4  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l
+/* 800A2AC0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2AC4  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2AC8  7F DF F3 78 */	mr r31, r30
 lbl_800A2ACC:
 /* 800A2ACC  38 62 98 2C */	la r3, footJointTable(r2) /* 8045322C-_SDA2_BASE_ */

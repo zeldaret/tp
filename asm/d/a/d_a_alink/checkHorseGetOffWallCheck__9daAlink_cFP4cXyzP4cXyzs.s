@@ -20,8 +20,8 @@ lbl_800EF118:
 /* 800EF12C  48 00 00 54 */	b lbl_800EF180
 lbl_800EF130:
 /* 800EF130  C0 22 94 D4 */	lfs f1, lit_18929(r2)
-/* 800EF134  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha
-/* 800EF138  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l
+/* 800EF134  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 800EF138  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 800EF13C  C0 03 00 5C */	lfs f0, 0x5c(r3)
 /* 800EF140  EC 01 00 32 */	fmuls f0, f1, f0
 /* 800EF144  FC 00 00 1E */	fctiwz f0, f0

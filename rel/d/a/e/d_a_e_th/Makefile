@@ -3,19 +3,20 @@
 #
 
 M236_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_th.plf
+M236_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_th.lcf
+M236_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_th.map
 
 M236_CPP_FILES := \
-	rel/d/a/e/d_a_e_th/executor.cpp \
-	rel/d/a/e/d_a_e_th/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_th/d_a_e_th.cpp \
 
 M236_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_th/d_a_e_th.o \
 
 M236_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th/libRuntime.PPCEABI.H.a \
 
 M236_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M236_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map236.map\
+	-m _prolog \
+	-lcf $(M236_LDSCRIPT) \
+	-unused -map $(M236_MAP) \
+	-w off \
 
 $(M236_TARGET): $(M236_O_FILES) $(M236_LIBS)
+	@echo [236] creating $(M236_TARGET)
 	@echo $(M236_LIBS) $(M236_O_FILES) > build/M236_ofiles
-	$(LD) -opt_partial $(M236_LDFLAGS) -o $(M236_TARGET) @build/M236_ofiles
+	@python3 tools/lcf.py rel 236 --output $(M236_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M236_LDFLAGS) -o $(M236_TARGET) @build/M236_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_th/%.o: rel/d/a/e/d_a_e_th/%.cpp
+	@echo [236] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M236_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M236_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_th/libs/Runtime.PPCEABI.H/Makefile
 

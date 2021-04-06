@@ -12,8 +12,8 @@ lbl_8018EB10:
 /* 8018EB38  41 82 00 54 */	beq lbl_8018EB8C
 /* 8018EB3C  38 00 00 01 */	li r0, 1
 /* 8018EB40  98 1F 03 B1 */	stb r0, 0x3b1(r31)
-/* 8018EB44  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 8018EB48  38 63 C9 EC */	addi r3, r3, g_fsHIO@l
+/* 8018EB44  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018EB48  38 63 C9 EC */	addi r3, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018EB4C  88 03 00 0D */	lbz r0, 0xd(r3)
 /* 8018EB50  B0 1F 03 AC */	sth r0, 0x3ac(r31)
 /* 8018EB54  A8 9F 03 AC */	lha r4, 0x3ac(r31)
@@ -35,8 +35,8 @@ lbl_8018EB8C:
 /* 8018EB8C  7F E3 FB 78 */	mr r3, r31
 /* 8018EB90  38 A0 00 FF */	li r5, 0xff
 /* 8018EB94  38 C0 00 00 */	li r6, 0
-/* 8018EB98  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 8018EB9C  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 8018EB98  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018EB9C  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018EBA0  88 E7 00 08 */	lbz r7, 8(r7)
 /* 8018EBA4  4B FF EF DD */	bl yesnoWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 8018EBA8  7F E3 FB 78 */	mr r3, r31

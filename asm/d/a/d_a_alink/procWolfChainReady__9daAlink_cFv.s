@@ -18,8 +18,8 @@ lbl_8013E2A8:
 lbl_8013E2E8:
 /* 8013E2E8  7F E3 FB 78 */	mr r3, r31
 /* 8013E2EC  38 80 00 02 */	li r4, 2
-/* 8013E2F0  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlAutoJump_c0@ha
-/* 8013E2F4  38 A5 F0 A8 */	addi r5, r5, m__24daAlinkHIO_wlAutoJump_c0@l
+/* 8013E2F0  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlAutoJump_c0@ha /* 0x8038F0A8@ha */
+/* 8013E2F4  38 A5 F0 A8 */	addi r5, r5, m__24daAlinkHIO_wlAutoJump_c0@l /* 0x8038F0A8@l */
 /* 8013E2F8  C0 25 00 54 */	lfs f1, 0x54(r5)
 /* 8013E2FC  4B FF 0A D5 */	bl procWolfFallInit__9daAlink_cFif
 /* 8013E300  48 00 03 98 */	b lbl_8013E698
@@ -96,8 +96,8 @@ lbl_8013E410:
 /* 8013E410  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 8013E414  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013E418  40 80 00 10 */	bge lbl_8013E428
-/* 8013E41C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8013E420  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8013E41C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8013E420  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8013E424  48 00 00 78 */	b lbl_8013E49C
 lbl_8013E428:
 /* 8013E428  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -131,8 +131,8 @@ lbl_8013E480:
 lbl_8013E484:
 /* 8013E484  2C 00 00 01 */	cmpwi r0, 1
 /* 8013E488  40 82 00 10 */	bne lbl_8013E498
-/* 8013E48C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8013E490  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8013E48C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8013E490  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8013E494  48 00 00 08 */	b lbl_8013E49C
 lbl_8013E498:
 /* 8013E498  FF E0 08 90 */	fmr f31, f1
@@ -167,8 +167,8 @@ lbl_8013E504:
 /* 8013E504  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 8013E508  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013E50C  40 80 00 10 */	bge lbl_8013E51C
-/* 8013E510  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8013E514  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 8013E510  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8013E514  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8013E518  48 00 00 78 */	b lbl_8013E590
 lbl_8013E51C:
 /* 8013E51C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -202,8 +202,8 @@ lbl_8013E574:
 lbl_8013E578:
 /* 8013E578  2C 00 00 01 */	cmpwi r0, 1
 /* 8013E57C  40 82 00 10 */	bne lbl_8013E58C
-/* 8013E580  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8013E584  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 8013E580  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8013E584  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8013E588  48 00 00 08 */	b lbl_8013E590
 lbl_8013E58C:
 /* 8013E58C  FF C0 08 90 */	fmr f30, f1
@@ -271,8 +271,8 @@ lbl_8013E670:
 /* 8013E678  40 82 00 1C */	bne lbl_8013E694
 /* 8013E67C  7F E3 FB 78 */	mr r3, r31
 /* 8013E680  38 80 00 02 */	li r4, 2
-/* 8013E684  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlAutoJump_c0@ha
-/* 8013E688  38 A5 F0 A8 */	addi r5, r5, m__24daAlinkHIO_wlAutoJump_c0@l
+/* 8013E684  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlAutoJump_c0@ha /* 0x8038F0A8@ha */
+/* 8013E688  38 A5 F0 A8 */	addi r5, r5, m__24daAlinkHIO_wlAutoJump_c0@l /* 0x8038F0A8@l */
 /* 8013E68C  C0 25 00 54 */	lfs f1, 0x54(r5)
 /* 8013E690  4B FF 07 41 */	bl procWolfFallInit__9daAlink_cFif
 lbl_8013E694:

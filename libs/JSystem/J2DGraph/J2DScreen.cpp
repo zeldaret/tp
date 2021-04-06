@@ -54,13 +54,13 @@ struct JGeometry {
 
 struct J2DAnmBase {};
 
-struct J2DAnmVisibilityFull {};
-
 struct J2DGrafContext {};
 
-struct J2DAnmTransform {};
-
 struct J2DAnmVtxColor {};
+
+struct J2DAnmVisibilityFull {};
+
+struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -91,13 +91,13 @@ struct J2DPane {
     /* 802F8478 */ void drawSelf(f32, f32);
 };
 
-struct J2DAnmTexPattern {};
+struct J2DAnmColor {};
 
 struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmColor {};
+struct J2DAnmTexPattern {};
 
 struct J2DMaterial {
     /* 802EA1AC */ J2DMaterial();
@@ -232,18 +232,10 @@ extern "C" void calcMtx__9J2DScreenFv();
 extern "C" void setAnimation__9J2DScreenFP10J2DAnmBase();
 extern "C" void setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull();
 extern "C" void setAnimationVC__9J2DScreenFP14J2DAnmVtxColor();
-extern "C" extern void* __vt__9J2DScreen[39 + 1 /* padding */];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void* operator new[](u32);
-void* operator new[](u32, int);
-void operator delete(void*);
-void operator delete[](void*);
 
 extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void clearAnmTransform__9J2DScreenFv();
@@ -344,8 +336,8 @@ extern "C" extern void* __vt__13J2DOrthoGraph[10];
 //
 
 /* ############################################################################################## */
-/* 803CD068-803CD108 009C+04 s=2 e=0 z=0  None .data      __vt__9J2DScreen */
-SECTION_DATA void* __vt__9J2DScreen[39 + 1 /* padding */] = {
+/* 803CD068-803CD108 02A188 009C+04 2/2 0/0 0/0 .data            __vt__9J2DScreen */
+SECTION_DATA extern void* __vt__9J2DScreen[39 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__9J2DScreenFv,
@@ -390,7 +382,7 @@ SECTION_DATA void* __vt__9J2DScreen[39 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80456220-80456224 0004+00 s=4 e=0 z=0  None .sdata2    @1561 */
+/* 80456220-80456224 004820 0004+00 4/4 0/0 0/0 .sdata2          @1561 */
 SECTION_SDATA2 static u8 lit_1561[4] = {
     0x00,
     0x00,
@@ -398,23 +390,17 @@ SECTION_SDATA2 static u8 lit_1561[4] = {
     0x00,
 };
 
-/* 80456224-80456228 0004+00 s=2 e=0 z=0  None .sdata2    @1562 */
+/* 80456224-80456228 004824 0004+00 2/2 0/0 0/0 .sdata2          @1562 */
 SECTION_SDATA2 static f32 lit_1562 = 640.0f;
 
-/* 80456228-80456230 0004+04 s=2 e=0 z=0  None .sdata2    @1563 */
+/* 80456228-80456230 004828 0004+04 2/2 0/0 0/0 .sdata2          @1563 */
 SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
     480.0f,
     /* padding */
     0.0f,
 };
 
-/* 802F8498-802F8540 00A8+00 s=0 e=59 z=4  None .text      __ct__9J2DScreenFv */
-//	802F84AC: 80456220 (lit_1561)
-//	802F84C0: 80456224 (lit_1562)
-//	802F84C8: 80456228 (lit_1563)
-//	802F84E8: 802F5D40 (func_802F5D40)
-//	802F84EC: 803CD068 (__vt__9J2DScreen)
-//	802F84F0: 803CD068 (__vt__9J2DScreen)
+/* 802F8498-802F8540 2F2DD8 00A8+00 0/0 59/59 4/4 .text            __ct__9J2DScreenFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -424,12 +410,7 @@ asm J2DScreen::J2DScreen() {
 }
 #pragma pop
 
-/* 802F8540-802F85A8 0068+00 s=1 e=0 z=0  None .text      __dt__9J2DScreenFv */
-//	802F8560: 803CD068 (__vt__9J2DScreen)
-//	802F8564: 803CD068 (__vt__9J2DScreen)
-//	802F856C: 802F85A8 (clean__9J2DScreenFv)
-//	802F8578: 802F658C (__dt__7J2DPaneFv)
-//	802F8588: 802CED3C (__dl__FPv)
+/* 802F8540-802F85A8 2F2E80 0068+00 1/0 0/0 0/0 .text            __dt__9J2DScreenFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -439,13 +420,7 @@ asm J2DScreen::~J2DScreen() {
 }
 #pragma pop
 
-/* 802F85A8-802F8648 00A0+00 s=3 e=0 z=0  None .text      clean__9J2DScreenFv */
-//	802F85C0: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F85C4: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F85C8: 80361C6C (__destroy_new_array)
-//	802F85DC: 802CED60 (__dla__FPv)
-//	802F85EC: 802CED60 (__dla__FPv)
-//	802F8608: 802CED60 (__dla__FPv)
+/* 802F85A8-802F8648 2F2EE8 00A0+00 3/3 0/0 0/0 .text            clean__9J2DScreenFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,26 +430,8 @@ asm void J2DScreen::clean() {
 }
 #pragma pop
 
-/* 802F8648-802F8748 0100+00 s=0 e=58 z=4  None .text setPriority__9J2DScreenFPCcUlP10JKRArchive
+/* 802F8648-802F8748 2F2F88 0100+00 0/0 58/58 4/4 .text setPriority__9J2DScreenFPCcUlP10JKRArchive
  */
-//	802F8658: 803621D8 (_savegpr_28)
-//	802F867C: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	802F86A8: 803C2DF8 (__vt__10JSUIosBase)
-//	802F86AC: 803C2DF8 (__vt__10JSUIosBase)
-//	802F86BC: 803CC4D4 (__vt__14JSUInputStream)
-//	802F86C0: 803CC4D4 (__vt__14JSUInputStream)
-//	802F86C8: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802F86CC: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802F86D4: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802F86D8: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802F86E4: 802DC520 (setBuffer__20JSUMemoryInputStreamFPCvl)
-//	802F86F8: 802F8748 (setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive)
-//	802F8700: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802F8704: 803CC4F0 (__vt__20JSUMemoryInputStream)
-//	802F870C: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802F8710: 803CC4B0 (__vt__20JSURandomInputStream)
-//	802F8720: 802DC23C (__dt__14JSUInputStreamFv)
-//	802F8734: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -484,9 +441,8 @@ asm void J2DScreen::setPriority(char const* param_0, u32 param_1, JKRArchive* pa
 }
 #pragma pop
 
-/* 802F8748-802F8778 0030+00 s=1 e=1 z=0  None .text
+/* 802F8748-802F8778 2F3088 0030+00 1/1 1/1 0/0 .text
  * setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-//	802F8764: 802F8778 (private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -496,14 +452,8 @@ asm void J2DScreen::setPriority(JSURandomInputStream* param_0, u32 param_1, JKRA
 }
 #pragma pop
 
-/* 802F8778-802F8834 00BC+00 s=1 e=0 z=0  None .text
+/* 802F8778-802F8834 2F30B8 00BC+00 1/1 0/0 0/0 .text
  * private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-//	802F8788: 803621D8 (_savegpr_28)
-//	802F879C: 802F8834 (checkSignature__9J2DScreenFP20JSURandomInputStream)
-//	802F87B8: 802F8894 (getScreenInformation__9J2DScreenFP20JSURandomInputStream)
-//	802F87E0: 802F8990
-//(makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive) 	802F87FC:
-// 802F85A8 (clean__9J2DScreenFv) 	802F8820: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -513,9 +463,8 @@ asm void J2DScreen::private_set(JSURandomInputStream* param_0, u32 param_1, JKRA
 }
 #pragma pop
 
-/* 802F8834-802F8894 0060+00 s=1 e=0 z=0  None .text
+/* 802F8834-802F8894 2F3174 0060+00 1/1 0/0 0/0 .text
  * checkSignature__9J2DScreenFP20JSURandomInputStream           */
-//	802F884C: 802DC298 (read__14JSUInputStreamFPvl)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,15 +475,11 @@ asm void J2DScreen::checkSignature(JSURandomInputStream* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456230-80456238 0008+00 s=1 e=0 z=0  None .sdata2    @1705 */
+/* 80456230-80456238 004830 0008+00 1/1 0/0 0/0 .sdata2          @1705 */
 SECTION_SDATA2 static f64 lit_1705 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802F8894-802F8990 00FC+00 s=1 e=0 z=0  None .text
+/* 802F8894-802F8990 2F31D4 00FC+00 1/1 0/0 0/0 .text
  * getScreenInformation__9J2DScreenFP20JSURandomInputStream     */
-//	802F88BC: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F88D8: 80456220 (lit_1561)
-//	802F88E8: 80456230 (lit_1705)
-//	802F8924: 802F6D18 (func_802F6D18)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -544,17 +489,8 @@ asm void J2DScreen::getScreenInformation(JSURandomInputStream* param_0) {
 }
 #pragma pop
 
-/* 802F8990-802F8B98 0208+00 s=1 e=0 z=0  None .text
+/* 802F8990-802F8B98 2F32D0 0208+00 1/1 0/0 0/0 .text
  * makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive */
-//	802F89A0: 803621CC (_savegpr_25)
-//	802F89D0: 802DC458 (peek__20JSURandomInputStreamFPvl)
-//	802F8A54: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F8A6C: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F8AA0: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F8AB8: 802F9280 (getResReference__9J2DScreenFP20JSURandomInputStreamUl)
-//	802F8ADC: 802F9280 (getResReference__9J2DScreenFP20JSURandomInputStreamUl)
-//	802F8B04: 802F937C (createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive)
-//	802F8B84: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -565,35 +501,8 @@ asm void J2DScreen::makeHierarchyPanes(J2DPane* param_0, JSURandomInputStream* p
 }
 #pragma pop
 
-/* 802F8B98-802F8ED4 033C+00 s=1 e=0 z=0  None .text
+/* 802F8B98-802F8ED4 2F34D8 033C+00 1/0 0/0 0/0 .text
  * createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive */
-//	802F8BA8: 803621D0 (_savegpr_26)
-//	802F8C5C: 802CEC4C (__nw__FUl)
-//	802F8C74: 802F5F9C (__ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc)
-//	802F8C88: 802CEC4C (__nw__FUl)
-//	802F8CA0: 802F9B74 (__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive)
-//	802F8CB4: 802CEC4C (__nw__FUl)
-//	802F8CCC: 802FC118 (__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive)
-//	802F8CE0: 802CEC4C (__nw__FUl)
-//	802F8CF8: 802FF6D8 (__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive)
-//	802F8D0C: 802CEC4C (__nw__FUl)
-//	802F8D24: 802F5F9C (__ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc)
-//	802F8D40: 802CEC4C (__nw__FUl)
-//	802F8D5C: 80300C94 (__ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial)
-//	802F8D70: 802CEC4C (__nw__FUl)
-//	802F8D88: 802F9C10 (__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial)
-//	802F8DA4: 802CEC4C (__nw__FUl)
-//	802F8DC0: 803036EC (__ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial)
-//	802F8DD4: 802CEC4C (__nw__FUl)
-//	802F8DEC: 802FC1D4 (__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial)
-//	802F8E08: 802CEC4C (__nw__FUl)
-//	802F8E24: 803071E4 (__ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial)
-//	802F8E38: 802CEC4C (__nw__FUl)
-//	802F8E54: 802FF75C (__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial)
-//	802F8E84: 802CEC4C (__nw__FUl)
-//	802F8E9C: 802F5F9C (__ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc)
-//	802F8EB4: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F8EC0: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -605,38 +514,13 @@ asm void J2DScreen::createPane(J2DScrnBlockHeader const& param_0, JSURandomInput
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456238-8045623C 0004+00 s=1 e=0 z=0  None .sdata2    @1829 */
+/* 80456238-8045623C 004838 0004+00 1/1 0/0 0/0 .sdata2          @1829 */
 SECTION_SDATA2 static f32 lit_1829 = -1.0f;
 
-/* 8045623C-80456240 0004+00 s=1 e=0 z=0  None .sdata2    @1830 */
+/* 8045623C-80456240 00483C 0004+00 1/1 0/0 0/0 .sdata2          @1830 */
 SECTION_SDATA2 static f32 lit_1830 = 1.0f;
 
-/* 802F8ED4-802F90A0 01CC+00 s=0 e=51 z=4  None .text      draw__9J2DScreenFffPC14J2DGrafContext */
-//	802F8F24: 80360548 (GXGetScissor)
-//	802F8F48: 802F67E0 (draw__7J2DPaneFffPC14J2DGrafContextbb)
-//	802F8F54: 80456220 (lit_1561)
-//	802F8F5C: 80456224 (lit_1562)
-//	802F8F60: 80456228 (lit_1563)
-//	802F8F64: 80456238 (lit_1829)
-//	802F8F68: 8045623C (lit_1830)
-//	802F8F6C: 802E96D0 (__ct__13J2DOrthoGraphFffffff)
-//	802F8F74: 802E97B4 (setPort__13J2DOrthoGraphFv)
-//	802F8F90: 802F67E0 (draw__7J2DPaneFffPC14J2DGrafContextbb)
-//	802F8F94: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	802F8F98: 803CC9E0 (__vt__13J2DOrthoGraph)
-//	802F8FA0: 803CC9B8 (__vt__14J2DGrafContext)
-//	802F8FA4: 803CC9B8 (__vt__14J2DGrafContext)
-//	802F8FC8: 803604D0 (GXSetScissor)
-//	802F8FD0: 8035F0D4 (GXSetNumIndStages)
-//	802F8FDC: 8035F0F8 (GXSetTevDirect)
-//	802F8FF0: 8035F890 (GXSetNumTevStages)
-//	802F8FFC: 8035F198 (GXSetTevOp)
-//	802F9010: 8035F6F4 (GXSetTevOrder)
-//	802F901C: 8035AEB8 (GXSetVtxDesc)
-//	802F9024: 8035C984 (GXSetCullMode)
-//	802F902C: 8035BDFC (GXSetNumTexGens)
-//	802F904C: 8035DB6C (GXSetChanCtrl)
-//	802F9068: 8035F5A4 (GXSetTevSwapModeTable)
+/* 802F8ED4-802F90A0 2F3814 01CC+00 0/0 51/51 4/4 .text draw__9J2DScreenFffPC14J2DGrafContext */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -646,8 +530,7 @@ asm void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* param_2
 }
 #pragma pop
 
-/* 802F90A0-802F90E0 0040+00 s=1 e=0 z=0  None .text      search__9J2DScreenFUx */
-//	802F90C4: 802F72E0 (search__7J2DPaneFUx)
+/* 802F90A0-802F90E0 2F39E0 0040+00 1/0 0/0 0/0 .text            search__9J2DScreenFUx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -657,8 +540,7 @@ asm void J2DScreen::search(u64 param_0) {
 }
 #pragma pop
 
-/* 802F90E0-802F9120 0040+00 s=1 e=0 z=0  None .text      searchUserInfo__9J2DScreenFUx */
-//	802F9104: 802F7388 (searchUserInfo__7J2DPaneFUx)
+/* 802F90E0-802F9120 2F3A20 0040+00 1/0 0/0 0/0 .text            searchUserInfo__9J2DScreenFUx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -668,19 +550,7 @@ asm void J2DScreen::searchUserInfo(u64 param_0) {
 }
 #pragma pop
 
-/* 802F9120-802F9280 0160+00 s=1 e=0 z=0  None .text      drawSelf__9J2DScreenFffPA3_A4_f */
-//	802F9190: 8035FBF0 (GXSetBlendMode)
-//	802F91A8: 8035B5C4 (GXSetVtxAttrFmt)
-//	802F91B8: 8035C764 (GXBegin)
-//	802F91BC: 80456220 (lit_1561)
-//	802F91C8: 80456220 (lit_1561)
-//	802F91D0: 80456220 (lit_1561)
-//	802F91F0: 80456220 (lit_1561)
-//	802F91F8: 80456220 (lit_1561)
-//	802F9224: 80456220 (lit_1561)
-//	802F923C: 80456220 (lit_1561)
-//	802F9248: 80456220 (lit_1561)
-//	802F9268: 8035B5C4 (GXSetVtxAttrFmt)
+/* 802F9120-802F9280 2F3A60 0160+00 1/0 0/0 0/0 .text            drawSelf__9J2DScreenFffPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -690,16 +560,8 @@ asm void J2DScreen::drawSelf(f32 param_0, f32 param_1, f32 (*param_2)[3][4]) {
 }
 #pragma pop
 
-/* 802F9280-802F937C 00FC+00 s=1 e=0 z=0  None .text
+/* 802F9280-802F937C 2F3BC0 00FC+00 1/1 0/0 0/0 .text
  * getResReference__9J2DScreenFP20JSURandomInputStreamUl        */
-//	802F9290: 803621D4 (_savegpr_27)
-//	802F92D8: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F9304: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F9318: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F932C: 802CECC4 (__nwa__FUl)
-//	802F9340: 802CECEC (__nwa__FUli)
-//	802F935C: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F9368: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -709,37 +571,8 @@ asm void J2DScreen::getResReference(JSURandomInputStream* param_0, u32 param_1) 
 }
 #pragma pop
 
-/* 802F937C-802F9600 0284+00 s=1 e=0 z=0  None .text
+/* 802F937C-802F9600 2F3CBC 0284+00 1/1 0/0 0/0 .text
  * createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-//	802F938C: 803621CC (_savegpr_25)
-//	802F93C4: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F93D4: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F940C: 802CECC4 (__nwa__FUl)
-//	802F9410: 802EA1AC (__ct__11J2DMaterialFv)
-//	802F9414: 802EA1AC (__ct__11J2DMaterialFv)
-//	802F9418: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F941C: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F9428: 80361F14 (__construct_new_array)
-//	802F9444: 802CECEC (__nwa__FUli)
-//	802F9448: 802EA1AC (__ct__11J2DMaterialFv)
-//	802F944C: 802EA1AC (__ct__11J2DMaterialFv)
-//	802F9450: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F9454: 802EA2CC (__dt__11J2DMaterialFv)
-//	802F9460: 80361F14 (__construct_new_array)
-//	802F9470: 802CECEC (__nwa__FUli)
-//	802F9498: 802DC4DC (seek__20JSURandomInputStreamFl17JSUStreamSeekFrom)
-//	802F94A8: 802DC298 (read__14JSUInputStreamFPvl)
-//	802F94B4: 802F2AD0 (__ct__18J2DMaterialFactoryFRC16J2DMaterialBlock)
-//	802F94E4: 802F2D1C
-//(create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive)
-//	802F9558: 802CECC4 (__nwa__FUl)
-//	802F9590: 802CEC4C (__nw__FUl)
-//	802F95A0: 802DE9E0 (__ct__10JUTNameTabFPC7ResNTAB)
-//	802F95BC: 802CED60 (__dla__FPv)
-//	802F95C8: 802CED60 (__dla__FPv)
-//	802F95D8: 802CED60 (__dla__FPv)
-//	802F95E0: 802F85A8 (clean__9J2DScreenFv)
-//	802F95EC: 80362218 (_restgpr_25)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -750,8 +583,7 @@ asm void J2DScreen::createMaterial(JSURandomInputStream* param_0, u32 param_1,
 }
 #pragma pop
 
-/* 802F9600-802F9620 0020+00 s=1 e=0 z=0  None .text      isUsed__9J2DScreenFPC7ResTIMG */
-//	802F960C: 802F7430 (isUsed__7J2DPaneFPC7ResTIMG)
+/* 802F9600-802F9620 2F3F40 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -761,8 +593,7 @@ asm void J2DScreen::isUsed(ResTIMG const* param_0) {
 }
 #pragma pop
 
-/* 802F9620-802F9640 0020+00 s=1 e=0 z=0  None .text      isUsed__9J2DScreenFPC7ResFONT */
-//	802F962C: 802F74B8 (isUsed__7J2DPaneFPC7ResFONT)
+/* 802F9620-802F9640 2F3F60 0020+00 1/0 0/0 0/0 .text            isUsed__9J2DScreenFPC7ResFONT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -773,13 +604,11 @@ asm void J2DScreen::isUsed(ResFONT const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451590-80451598 0004+04 s=1 e=3 z=0  None .sbss      mDataManage__9J2DScreen */
+/* 80451590-80451598 000A90 0004+04 1/1 3/3 0/0 .sbss            mDataManage__9J2DScreen */
+extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
-/* 802F9640-802F9690 0050+00 s=0 e=6 z=0  None .text      getNameResource__9J2DScreenFPCc */
-//	802F9658: 802D4270 (getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader)
-//	802F9664: 80451590 (mDataManage__9J2DScreen)
-//	802F9678: 8030CE18 (get__13J2DDataManageFPCc)
+/* 802F9640-802F9690 2F3F80 0050+00 0/0 6/6 0/0 .text            getNameResource__9J2DScreenFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -789,8 +618,7 @@ asm void J2DScreen::getNameResource(char const* param_0) {
 }
 #pragma pop
 
-/* 802F9690-802F9704 0074+00 s=0 e=30 z=3  None .text      animation__9J2DScreenFv */
-//	802F96D4: 802EAC78 (animation__11J2DMaterialFv)
+/* 802F9690-802F9704 2F3FD0 0074+00 0/0 30/30 3/3 .text            animation__9J2DScreenFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -800,10 +628,7 @@ asm void J2DScreen::animation() {
 }
 #pragma pop
 
-/* 802F9704-802F9798 0094+00 s=1 e=0 z=0  None .text      setAnimation__9J2DScreenFP11J2DAnmColor */
-//	802F9714: 803621D8 (_savegpr_28)
-//	802F976C: 802EA89C (setAnimation__11J2DMaterialFP11J2DAnmColor)
-//	802F9784: 80362224 (_restgpr_28)
+/* 802F9704-802F9798 2F4044 0094+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP11J2DAnmColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -813,11 +638,8 @@ asm void J2DScreen::setAnimation(J2DAnmColor* param_0) {
 }
 #pragma pop
 
-/* 802F9798-802F9838 00A0+00 s=1 e=0 z=0  None .text
+/* 802F9798-802F9838 2F40D8 00A0+00 1/0 0/0 0/0 .text
  * setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey              */
-//	802F97A8: 803621D8 (_savegpr_28)
-//	802F980C: 802EA94C (setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey)
-//	802F9824: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -827,11 +649,8 @@ asm void J2DScreen::setAnimation(J2DAnmTextureSRTKey* param_0) {
 }
 #pragma pop
 
-/* 802F9838-802F98CC 0094+00 s=1 e=0 z=0  None .text setAnimation__9J2DScreenFP16J2DAnmTexPattern
+/* 802F9838-802F98CC 2F4178 0094+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP16J2DAnmTexPattern
  */
-//	802F9848: 803621D8 (_savegpr_28)
-//	802F98A0: 802EAA2C (setAnimation__11J2DMaterialFP16J2DAnmTexPattern)
-//	802F98B8: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -841,12 +660,8 @@ asm void J2DScreen::setAnimation(J2DAnmTexPattern* param_0) {
 }
 #pragma pop
 
-/* 802F98CC-802F99A8 00DC+00 s=1 e=0 z=0  None .text setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+/* 802F98CC-802F99A8 2F420C 00DC+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP15J2DAnmTevRegKey
  */
-//	802F98DC: 803621D8 (_savegpr_28)
-//	802F9934: 802EAB0C (setAnimation__11J2DMaterialFP15J2DAnmTevRegKey)
-//	802F997C: 802EAB0C (setAnimation__11J2DMaterialFP15J2DAnmTevRegKey)
-//	802F9994: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -856,9 +671,8 @@ asm void J2DScreen::setAnimation(J2DAnmTevRegKey* param_0) {
 }
 #pragma pop
 
-/* 802F99A8-802F99C8 0020+00 s=1 e=0 z=0  None .text      setAnimation__9J2DScreenFP14J2DAnmVtxColor
+/* 802F99A8-802F99C8 2F42E8 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP14J2DAnmVtxColor
  */
-//	802F99B4: 802F81A0 (setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -868,9 +682,8 @@ asm void J2DScreen::setAnimation(J2DAnmVtxColor* param_0) {
 }
 #pragma pop
 
-/* 802F99C8-802F99E8 0020+00 s=1 e=0 z=0  None .text
+/* 802F99C8-802F99E8 2F4308 0020+00 1/0 0/0 0/0 .text
  * setAnimation__9J2DScreenFP20J2DAnmVisibilityFull             */
-//	802F99D4: 802F8118 (setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -880,7 +693,7 @@ asm void J2DScreen::setAnimation(J2DAnmVisibilityFull* param_0) {
 }
 #pragma pop
 
-/* 802F99E8-802F9A18 0030+00 s=1 e=0 z=0  None .text
+/* 802F99E8-802F9A18 2F4328 0030+00 1/0 0/0 0/0 .text
  * createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl */
 #pragma push
 #pragma optimization_level 0
@@ -892,12 +705,12 @@ asm void J2DScreen::createPane(J2DScrnBlockHeader const& param_0, JSURandomInput
 }
 #pragma pop
 
-/* 802F9A18-802F9A20 0008+00 s=1 e=0 z=0  None .text      getTypeID__9J2DScreenCFv */
+/* 802F9A18-802F9A20 2F4358 0008+00 1/0 0/0 0/0 .text            getTypeID__9J2DScreenCFv */
 s32 J2DScreen::getTypeID() const {
     return 8;
 }
 
-/* 802F9A20-802F9A54 0034+00 s=1 e=0 z=0  None .text      calcMtx__9J2DScreenFv */
+/* 802F9A20-802F9A54 2F4360 0034+00 1/0 0/0 0/0 .text            calcMtx__9J2DScreenFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -907,8 +720,7 @@ asm void J2DScreen::calcMtx() {
 }
 #pragma pop
 
-/* 802F9A54-802F9A74 0020+00 s=1 e=0 z=0  None .text      setAnimation__9J2DScreenFP10J2DAnmBase */
-//	802F9A60: 802F7EF4 (setAnimation__7J2DPaneFP10J2DAnmBase)
+/* 802F9A54-802F9A74 2F4394 0020+00 1/0 0/0 0/0 .text setAnimation__9J2DScreenFP10J2DAnmBase */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -918,13 +730,13 @@ asm void J2DScreen::setAnimation(J2DAnmBase* param_0) {
 }
 #pragma pop
 
-/* 802F9A74-802F9A78 0004+00 s=1 e=0 z=0  None .text
+/* 802F9A74-802F9A78 2F43B4 0004+00 1/0 0/0 0/0 .text
  * setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull           */
 void J2DScreen::setAnimationVF(J2DAnmVisibilityFull* param_0) {
     /* empty function */
 }
 
-/* 802F9A78-802F9A7C 0004+00 s=1 e=0 z=0  None .text setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+/* 802F9A78-802F9A7C 2F43B8 0004+00 1/0 0/0 0/0 .text setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
  */
 void J2DScreen::setAnimationVC(J2DAnmVtxColor* param_0) {
     /* empty function */

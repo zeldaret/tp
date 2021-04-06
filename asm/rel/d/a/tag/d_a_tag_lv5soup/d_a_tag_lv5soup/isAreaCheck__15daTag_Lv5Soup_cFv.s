@@ -9,15 +9,15 @@ lbl_80D5AEA4:
 /* 80D5AEC0  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80D5AEC4  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80D5AEC8  7C 7E 1B 78 */	mr r30, r3
-/* 80D5AECC  3C 60 80 D6 */	lis r3, lit_3655@ha
-/* 80D5AED0  3B E3 B1 5C */	addi r31, r3, lit_3655@l
+/* 80D5AECC  3C 60 80 D6 */	lis r3, lit_3655@ha /* 0x80D5B15C@ha */
+/* 80D5AED0  3B E3 B1 5C */	addi r31, r3, lit_3655@l /* 0x80D5B15C@l */
 /* 80D5AED4  38 61 00 18 */	addi r3, r1, 0x18
-/* 80D5AED8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D5AEDC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D5AED8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D5AEDC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D5AEE0  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 80D5AEE4  38 84 04 D0 */	addi r4, r4, 0x4d0
 /* 80D5AEE8  38 BE 04 D0 */	addi r5, r30, 0x4d0
-/* 80D5AEEC  4B 50 BC 48 */	b __mi__4cXyzCFRC3Vec
+/* 80D5AEEC  4B 50 BC 49 */	bl __mi__4cXyzCFRC3Vec
 /* 80D5AEF0  C0 61 00 18 */	lfs f3, 0x18(r1)
 /* 80D5AEF4  D0 61 00 24 */	stfs f3, 0x24(r1)
 /* 80D5AEF8  C0 01 00 1C */	lfs f0, 0x1c(r1)
@@ -34,7 +34,7 @@ lbl_80D5AEA4:
 /* 80D5AF24  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80D5AF28  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 80D5AF2C  38 61 00 0C */	addi r3, r1, 0xc
-/* 80D5AF30  4B 5E C2 08 */	b PSVECSquareMag
+/* 80D5AF30  4B 5E C2 09 */	bl PSVECSquareMag
 /* 80D5AF34  C0 1F 00 14 */	lfs f0, 0x14(r31)
 /* 80D5AF38  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D5AF3C  40 81 00 58 */	ble lbl_80D5AF94
@@ -63,8 +63,8 @@ lbl_80D5AF94:
 /* 80D5AF94  C8 1F 00 28 */	lfd f0, 0x28(r31)
 /* 80D5AF98  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D5AF9C  40 80 00 10 */	bge lbl_80D5AFAC
-/* 80D5AFA0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D5AFA4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D5AFA0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D5AFA4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D5AFA8  48 00 00 70 */	b lbl_80D5B018
 lbl_80D5AFAC:
 /* 80D5AFAC  D0 21 00 08 */	stfs f1, 8(r1)
@@ -98,8 +98,8 @@ lbl_80D5B004:
 lbl_80D5B008:
 /* 80D5B008  2C 00 00 01 */	cmpwi r0, 1
 /* 80D5B00C  40 82 00 0C */	bne lbl_80D5B018
-/* 80D5B010  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D5B014  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D5B010  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D5B014  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80D5B018:
 /* 80D5B018  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 80D5B01C  40 80 00 24 */	bge lbl_80D5B040

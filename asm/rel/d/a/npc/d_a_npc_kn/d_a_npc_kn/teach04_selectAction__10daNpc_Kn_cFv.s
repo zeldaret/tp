@@ -1,6 +1,6 @@
 lbl_80A2D3FC:
-/* 80A2D3FC  3C 80 80 A4 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80A2D400  38 A4 0D 34 */	addi r5, r4, cNullVec__6Z2Calc@l
+/* 80A2D3FC  3C 80 80 A4 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80A40D34@ha */
+/* 80A2D400  38 A4 0D 34 */	addi r5, r4, cNullVec__6Z2Calc@l /* 0x80A40D34@l */
 /* 80A2D404  88 03 15 AE */	lbz r0, 0x15ae(r3)
 /* 80A2D408  7C 00 07 74 */	extsb r0, r0
 /* 80A2D40C  2C 00 00 0A */	cmpwi r0, 0xa

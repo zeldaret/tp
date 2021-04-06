@@ -7,8 +7,8 @@ lbl_800078DC:
 /* 800078F0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800078F4  7C 9F 23 78 */	mr r31, r4
 /* 800078F8  41 82 00 40 */	beq lbl_80007938
-/* 800078FC  3C 60 80 3D */	lis r3, __vt__16JAISeCategoryMgr@ha
-/* 80007900  38 03 98 C4 */	addi r0, r3, __vt__16JAISeCategoryMgr@l
+/* 800078FC  3C 60 80 3D */	lis r3, __vt__16JAISeCategoryMgr@ha /* 0x803C98C4@ha */
+/* 80007900  38 03 98 C4 */	addi r0, r3, __vt__16JAISeCategoryMgr@l /* 0x803C98C4@l */
 /* 80007904  90 1E 00 00 */	stw r0, 0(r30)
 /* 80007908  34 1E 00 58 */	addic. r0, r30, 0x58
 /* 8000790C  41 82 00 10 */	beq lbl_8000791C

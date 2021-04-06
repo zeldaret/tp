@@ -15,7 +15,7 @@ lbl_80BC7AD0:
 /* 80BC7B04  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80BC7B08  38 E0 00 00 */	li r7, 0
 /* 80BC7B0C  39 00 00 01 */	li r8, 1
-/* 80BC7B10  4B 45 3B 6C */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80BC7B10  4B 45 3B 6D */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80BC7B14  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80BC7B18  60 00 00 02 */	ori r0, r0, 2
 /* 80BC7B1C  B0 1F 00 FA */	sth r0, 0xfa(r31)

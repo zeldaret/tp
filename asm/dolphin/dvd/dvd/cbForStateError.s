@@ -12,9 +12,9 @@ lbl_803492DC:
 /* 80349304  48 00 00 70 */	b lbl_80349374
 lbl_80349308:
 /* 80349308  48 00 29 F5 */	bl __DVDPrintFatalMessage
-/* 8034930C  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
+/* 8034930C  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
 /* 80349310  83 ED 91 F8 */	lwz r31, executing(r13)
-/* 80349314  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l
+/* 80349314  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 80349318  38 60 00 01 */	li r3, 1
 /* 8034931C  90 0D 91 F8 */	stw r0, executing(r13)
 /* 80349320  90 6D 92 10 */	stw r3, FatalErrorFlag(r13)

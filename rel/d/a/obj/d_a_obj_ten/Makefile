@@ -3,19 +3,20 @@
 #
 
 M654_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten.plf
+M654_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten.lcf
+M654_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten.map
 
 M654_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ten/executor.cpp \
-	rel/d/a/obj/d_a_obj_ten/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_ten/d_a_obj_ten.cpp \
 
 M654_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten/d_a_obj_ten.o \
 
 M654_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten/libRuntime.PPCEABI.H.a \
 
 M654_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M654_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map654.map\
+	-m _prolog \
+	-lcf $(M654_LDSCRIPT) \
+	-unused -map $(M654_MAP) \
+	-w off \
 
 $(M654_TARGET): $(M654_O_FILES) $(M654_LIBS)
+	@echo [654] creating $(M654_TARGET)
 	@echo $(M654_LIBS) $(M654_O_FILES) > build/M654_ofiles
-	$(LD) -opt_partial $(M654_LDFLAGS) -o $(M654_TARGET) @build/M654_ofiles
+	@python3 tools/lcf.py rel 654 --output $(M654_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M654_LDFLAGS) -o $(M654_TARGET) @build/M654_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ten/%.o: rel/d/a/obj/d_a_obj_ten/%.cpp
+	@echo [654] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M654_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M654_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_ten/libs/Runtime.PPCEABI.H/Makefile
 

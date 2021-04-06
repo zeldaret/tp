@@ -89,8 +89,8 @@ lbl_802EC8C4:
 /* 802EC8F0  7C 83 01 AE */	stbx r4, r3, r0
 /* 802EC8F4  39 29 00 01 */	addi r9, r9, 1
 /* 802EC8F8  42 00 FF CC */	bdnz lbl_802EC8C4
-/* 802EC8FC  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802EC900  84 A4 1B F4 */	lwzu r5, j2dDefaultIndTevStageInfo@l(r4)
+/* 802EC8FC  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802EC900  84 A4 1B F4 */	lwzu r5, j2dDefaultIndTevStageInfo@l(r4)  /* 0x803A1BF4@l */
 /* 802EC904  80 04 00 04 */	lwz r0, 4(r4)
 /* 802EC908  90 A1 00 1C */	stw r5, 0x1c(r1)
 /* 802EC90C  90 01 00 20 */	stw r0, 0x20(r1)

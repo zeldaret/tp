@@ -9,14 +9,14 @@ lbl_80D5C01C:
 /* 80D5C038  41 82 00 2C */	beq lbl_80D5C064
 /* 80D5C03C  38 7E 05 80 */	addi r3, r30, 0x580
 /* 80D5C040  38 80 FF FF */	li r4, -1
-/* 80D5C044  4B 4E DF 04 */	b __dt__10dMsgFlow_cFv
+/* 80D5C044  4B 4E DF 05 */	bl __dt__10dMsgFlow_cFv
 /* 80D5C048  7F C3 F3 78 */	mr r3, r30
 /* 80D5C04C  38 80 00 00 */	li r4, 0
-/* 80D5C050  4B 2B CC 3C */	b __dt__10fopAc_ac_cFv
+/* 80D5C050  4B 2B CC 3D */	bl __dt__10fopAc_ac_cFv
 /* 80D5C054  7F E0 07 35 */	extsh. r0, r31
 /* 80D5C058  40 81 00 0C */	ble lbl_80D5C064
 /* 80D5C05C  7F C3 F3 78 */	mr r3, r30
-/* 80D5C060  4B 57 2C DC */	b __dl__FPv
+/* 80D5C060  4B 57 2C DD */	bl __dl__FPv
 lbl_80D5C064:
 /* 80D5C064  7F C3 F3 78 */	mr r3, r30
 /* 80D5C068  83 E1 00 0C */	lwz r31, 0xc(r1)

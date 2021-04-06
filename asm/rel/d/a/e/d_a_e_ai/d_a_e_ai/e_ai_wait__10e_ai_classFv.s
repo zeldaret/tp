@@ -5,8 +5,8 @@ lbl_8067AA48:
 /* 8067AA54  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8067AA58  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8067AA5C  7C 7E 1B 78 */	mr r30, r3
-/* 8067AA60  3C 80 80 68 */	lis r4, lit_3789@ha
-/* 8067AA64  3B E4 C3 FC */	addi r31, r4, lit_3789@l
+/* 8067AA60  3C 80 80 68 */	lis r4, lit_3789@ha /* 0x8067C3FC@ha */
+/* 8067AA64  3B E4 C3 FC */	addi r31, r4, lit_3789@l /* 0x8067C3FC@l */
 /* 8067AA68  A8 03 06 90 */	lha r0, 0x690(r3)
 /* 8067AA6C  2C 00 00 03 */	cmpwi r0, 3
 /* 8067AA70  41 82 01 0C */	beq lbl_8067AB7C
@@ -31,22 +31,22 @@ lbl_8067AA9C:
 /* 8067AAB4  B0 1E 06 90 */	sth r0, 0x690(r30)
 /* 8067AAB8  48 00 01 D0 */	b lbl_8067AC88
 lbl_8067AABC:
-/* 8067AABC  3C 80 80 68 */	lis r4, l_HIO@ha
-/* 8067AAC0  38 84 C6 A8 */	addi r4, r4, l_HIO@l
+/* 8067AABC  3C 80 80 68 */	lis r4, l_HIO@ha /* 0x8067C6A8@ha */
+/* 8067AAC0  38 84 C6 A8 */	addi r4, r4, l_HIO@l /* 0x8067C6A8@l */
 /* 8067AAC4  C0 24 00 10 */	lfs f1, 0x10(r4)
 /* 8067AAC8  38 80 50 00 */	li r4, 0x5000
 /* 8067AACC  4B FF EB 45 */	bl pl_check__10e_ai_classFfs
 /* 8067AAD0  2C 03 00 00 */	cmpwi r3, 0
 /* 8067AAD4  41 82 01 B4 */	beq lbl_8067AC88
-/* 8067AAD8  3C 60 80 68 */	lis r3, stringBase0@ha
-/* 8067AADC  38 63 C5 38 */	addi r3, r3, stringBase0@l
+/* 8067AAD8  3C 60 80 68 */	lis r3, d_a_e_ai__stringBase0@ha /* 0x8067C538@ha */
+/* 8067AADC  38 63 C5 38 */	addi r3, r3, d_a_e_ai__stringBase0@l /* 0x8067C538@l */
 /* 8067AAE0  38 80 00 12 */	li r4, 0x12
-/* 8067AAE4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8067AAE8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8067AAE4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067AAE8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067AAEC  3C A5 00 02 */	addis r5, r5, 2
 /* 8067AAF0  38 C0 00 80 */	li r6, 0x80
 /* 8067AAF4  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8067AAF8  4B 9C 17 F4 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8067AAF8  4B 9C 17 F5 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8067AAFC  7C 65 1B 78 */	mr r5, r3
 /* 8067AB00  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 8067AB04  80 63 00 04 */	lwz r3, 4(r3)
@@ -58,7 +58,7 @@ lbl_8067AABC:
 /* 8067AB1C  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8067AB20  39 00 00 00 */	li r8, 0
 /* 8067AB24  39 20 FF FF */	li r9, -1
-/* 8067AB28  4B 99 2B E4 */	b init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
+/* 8067AB28  4B 99 2B E5 */	bl init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
 /* 8067AB2C  38 00 00 12 */	li r0, 0x12
 /* 8067AB30  98 1E 05 CC */	stb r0, 0x5cc(r30)
 /* 8067AB34  38 00 00 03 */	li r0, 3
@@ -112,15 +112,15 @@ lbl_8067ABA4:
 /* 8067ABE4  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 8067ABE8  7D 89 03 A6 */	mtctr r12
 /* 8067ABEC  4E 80 04 21 */	bctrl 
-/* 8067ABF0  3C 60 80 68 */	lis r3, stringBase0@ha
-/* 8067ABF4  38 63 C5 38 */	addi r3, r3, stringBase0@l
+/* 8067ABF0  3C 60 80 68 */	lis r3, d_a_e_ai__stringBase0@ha /* 0x8067C538@ha */
+/* 8067ABF4  38 63 C5 38 */	addi r3, r3, d_a_e_ai__stringBase0@l /* 0x8067C538@l */
 /* 8067ABF8  38 80 00 11 */	li r4, 0x11
-/* 8067ABFC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8067AC00  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8067ABFC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067AC00  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067AC04  3C A5 00 02 */	addis r5, r5, 2
 /* 8067AC08  38 C0 00 80 */	li r6, 0x80
 /* 8067AC0C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8067AC10  4B 9C 16 DC */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8067AC10  4B 9C 16 DD */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8067AC14  7C 65 1B 78 */	mr r5, r3
 /* 8067AC18  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 8067AC1C  80 63 00 04 */	lwz r3, 4(r3)
@@ -132,7 +132,7 @@ lbl_8067ABA4:
 /* 8067AC34  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8067AC38  39 00 00 00 */	li r8, 0
 /* 8067AC3C  39 20 FF FF */	li r9, -1
-/* 8067AC40  4B 99 2A CC */	b init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
+/* 8067AC40  4B 99 2A CD */	bl init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
 /* 8067AC44  38 00 00 11 */	li r0, 0x11
 /* 8067AC48  98 1E 05 CC */	stb r0, 0x5cc(r30)
 /* 8067AC4C  48 00 00 3C */	b lbl_8067AC88

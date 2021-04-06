@@ -49,8 +49,8 @@ lbl_80051E5C:
 /* 80051F18  88 7F 00 0C */	lbz r3, 0xc(r31)
 /* 80051F1C  38 80 00 00 */	li r4, 0
 /* 80051F20  48 30 A9 DD */	bl GXSetPointSize
-/* 80051F24  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80051F28  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80051F24  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80051F28  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80051F2C  38 80 00 00 */	li r4, 0
 /* 80051F30  48 30 E3 1D */	bl GXLoadPosMtxImm
 /* 80051F34  38 60 00 00 */	li r3, 0
@@ -62,12 +62,12 @@ lbl_80051E5C:
 /* 80051F4C  A8 9F 00 06 */	lha r4, 6(r31)
 /* 80051F50  A8 1F 00 04 */	lha r0, 4(r31)
 /* 80051F54  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 80051F58  B0 03 80 00 */	sth r0, 0x8000(r3)
+/* 80051F58  B0 03 80 00 */	sth r0, 0x8000(r3)  /* 0xCC008000@l */
 /* 80051F5C  B0 83 80 00 */	sth r4, -0x8000(r3)
 /* 80051F60  38 00 00 00 */	li r0, 0
 /* 80051F64  B0 03 80 00 */	sth r0, -0x8000(r3)
-/* 80051F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80051F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80051F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80051F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80051F70  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 80051F74  81 83 00 00 */	lwz r12, 0(r3)
 /* 80051F78  81 8C 00 18 */	lwz r12, 0x18(r12)

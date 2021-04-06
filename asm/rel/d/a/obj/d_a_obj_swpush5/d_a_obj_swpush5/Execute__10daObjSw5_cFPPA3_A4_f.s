@@ -17,7 +17,7 @@ lbl_8059BBD4:
 /* 8059BC10  7F C3 F3 78 */	mr r3, r30
 /* 8059BC14  48 00 03 41 */	bl calc_top_pos__10daObjSw5_cFv
 /* 8059BC18  80 7E 05 B8 */	lwz r3, 0x5b8(r30)
-/* 8059BC1C  4B AD FD A4 */	b Move__4dBgWFv
+/* 8059BC1C  4B AD FD A5 */	bl Move__4dBgWFv
 /* 8059BC20  38 1E 05 6C */	addi r0, r30, 0x56c
 /* 8059BC24  90 1F 00 00 */	stw r0, 0(r31)
 /* 8059BC28  7F C3 F3 78 */	mr r3, r30

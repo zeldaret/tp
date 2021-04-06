@@ -11,8 +11,8 @@ lbl_800EED98:
 /* 800EEDBC  4E 80 04 21 */	bctrl 
 /* 800EEDC0  28 03 00 00 */	cmplwi r3, 0
 /* 800EEDC4  41 82 00 4C */	beq lbl_800EEE10
-/* 800EEDC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EEDCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EEDC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EEDCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EEDD0  83 E3 5D B8 */	lwz r31, 0x5db8(r3)
 /* 800EEDD4  7F C3 F3 78 */	mr r3, r30
 /* 800EEDD8  38 81 00 08 */	addi r4, r1, 8

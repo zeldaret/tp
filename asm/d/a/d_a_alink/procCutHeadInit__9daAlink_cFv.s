@@ -28,12 +28,12 @@ lbl_800D5CD4:
 /* 800D5CE8  4B FF B7 49 */	bl resetCombo__9daAlink_cFi
 /* 800D5CEC  7F E3 FB 78 */	mr r3, r31
 /* 800D5CF0  38 80 00 7C */	li r4, 0x7c
-/* 800D5CF4  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D5CF8  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l
+/* 800D5CF4  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D5CF8  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D5CFC  4B FD 73 F9 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D5D00  7F E3 FB 78 */	mr r3, r31
-/* 800D5D04  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D5D08  38 84 DD B8 */	addi r4, r4, m__21daAlinkHIO_cutHead_c0@l
+/* 800D5D04  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D5D08  38 84 DD B8 */	addi r4, r4, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D5D0C  C0 24 00 3C */	lfs f1, 0x3c(r4)
 /* 800D5D10  C0 5F 05 34 */	lfs f2, 0x534(r31)
 /* 800D5D14  38 80 00 00 */	li r4, 0
@@ -55,8 +55,8 @@ lbl_800D5CD4:
 /* 800D5D54  48 08 8F 65 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800D5D58  48 00 00 40 */	b lbl_800D5D98
 lbl_800D5D5C:
-/* 800D5D5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800D5D60  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800D5D5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800D5D60  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800D5D64  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800D5D68  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800D5D6C  7C 64 02 14 */	add r3, r4, r0
@@ -71,8 +71,8 @@ lbl_800D5D5C:
 /* 800D5D90  38 7F 28 0C */	addi r3, r31, 0x280c
 /* 800D5D94  48 08 8F 69 */	bl clearData__16daPy_actorKeep_cFv
 lbl_800D5D98:
-/* 800D5D98  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D5D9C  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l
+/* 800D5D98  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D5D9C  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D5DA0  C0 23 00 40 */	lfs f1, 0x40(r3)
 /* 800D5DA4  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 800D5DA8  C0 42 92 E0 */	lfs f2, lit_6845(r2)
@@ -136,8 +136,8 @@ lbl_800D5E7C:
 /* 800D5E7C  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800D5E80  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800D5E84  40 80 00 10 */	bge lbl_800D5E94
-/* 800D5E88  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800D5E8C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800D5E88  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800D5E8C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800D5E90  48 00 00 70 */	b lbl_800D5F00
 lbl_800D5E94:
 /* 800D5E94  D0 21 00 08 */	stfs f1, 8(r1)
@@ -171,11 +171,11 @@ lbl_800D5EEC:
 lbl_800D5EF0:
 /* 800D5EF0  2C 00 00 01 */	cmpwi r0, 1
 /* 800D5EF4  40 82 00 0C */	bne lbl_800D5F00
-/* 800D5EF8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800D5EFC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800D5EF8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800D5EFC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800D5F00:
-/* 800D5F00  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D5F04  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l
+/* 800D5F00  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D5F04  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D5F08  C0 03 00 44 */	lfs f0, 0x44(r3)
 /* 800D5F0C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800D5F10  40 81 00 08 */	ble lbl_800D5F18
@@ -208,8 +208,8 @@ lbl_800D5F18:
 /* 800D5F78  38 A0 00 03 */	li r5, 3
 /* 800D5F7C  38 C0 00 01 */	li r6, 1
 /* 800D5F80  38 E0 00 03 */	li r7, 3
-/* 800D5F84  3D 00 80 39 */	lis r8, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D5F88  39 08 DD B8 */	addi r8, r8, m__21daAlinkHIO_cutHead_c0@l
+/* 800D5F84  3D 00 80 39 */	lis r8, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D5F88  39 08 DD B8 */	addi r8, r8, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D5F8C  C0 28 00 5C */	lfs f1, 0x5c(r8)
 /* 800D5F90  C0 48 00 58 */	lfs f2, 0x58(r8)
 /* 800D5F94  4B FF B6 F5 */	bl setSwordAtParam__9daAlink_cF11dCcG_At_SplUcUciff

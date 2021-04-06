@@ -4,8 +4,8 @@ lbl_801C2718:
 /* 801C2720  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C2724  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801C2728  7C 7F 1B 78 */	mr r31, r3
-/* 801C272C  3C 60 80 3C */	lis r3, __vt__16dMenuMapCommon_c@ha
-/* 801C2730  38 03 D0 2C */	addi r0, r3, __vt__16dMenuMapCommon_c@l
+/* 801C272C  3C 60 80 3C */	lis r3, __vt__16dMenuMapCommon_c@ha /* 0x803BD02C@ha */
+/* 801C2730  38 03 D0 2C */	addi r0, r3, __vt__16dMenuMapCommon_c@l /* 0x803BD02C@l */
 /* 801C2734  90 1F 00 00 */	stw r0, 0(r31)
 /* 801C2738  38 60 00 00 */	li r3, 0
 /* 801C273C  7C 64 1B 78 */	mr r4, r3

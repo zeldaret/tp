@@ -7,8 +7,8 @@ lbl_80162D38:
 /* 80162D4C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80162D50  48 1F F4 8D */	bl _savegpr_29
 /* 80162D54  7C 7E 1B 78 */	mr r30, r3
-/* 80162D58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80162D5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80162D58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80162D5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80162D60  80 83 5D B4 */	lwz r4, 0x5db4(r3)
 /* 80162D64  80 AD 8A 98 */	lwz r5, m_midnaActor__9daPy_py_c(r13)
 /* 80162D68  38 60 00 00 */	li r3, 0
@@ -21,8 +21,8 @@ lbl_80162D38:
 /* 80162D84  38 60 00 01 */	li r3, 1
 lbl_80162D88:
 /* 80162D88  98 7E 01 94 */	stb r3, 0x194(r30)
-/* 80162D8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80162D90  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80162D8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80162D90  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80162D94  80 7F 5D 7C */	lwz r3, 0x5d7c(r31)
 /* 80162D98  38 00 F7 FB */	li r0, -2053
 /* 80162D9C  7C 60 00 38 */	and r0, r3, r0
@@ -37,8 +37,8 @@ lbl_80162D88:
 /* 80162DC0  80 1F 5D 7C */	lwz r0, 0x5d7c(r31)
 /* 80162DC4  54 00 06 6E */	rlwinm r0, r0, 0, 0x19, 0x17
 /* 80162DC8  90 1F 5D 7C */	stw r0, 0x5d7c(r31)
-/* 80162DCC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80162DD0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80162DCC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80162DD0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80162DD4  80 03 51 84 */	lwz r0, 0x5184(r3)
 /* 80162DD8  2C 00 00 00 */	cmpwi r0, 0
 /* 80162DDC  40 82 00 10 */	bne lbl_80162DEC
@@ -47,8 +47,8 @@ lbl_80162D88:
 /* 80162DE8  41 82 00 AC */	beq lbl_80162E94
 lbl_80162DEC:
 /* 80162DEC  80 9E 06 8C */	lwz r4, 0x68c(r30)
-/* 80162DF0  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 80162DF4  3B A3 C8 F8 */	addi r29, r3, data_8042C8F8@l
+/* 80162DF0  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 80162DF4  3B A3 C8 F8 */	addi r29, r3, data_8042C8F8@l /* 0x8042C8F8@l */
 /* 80162DF8  80 1D 00 04 */	lwz r0, 4(r29)
 /* 80162DFC  7C 04 00 00 */	cmpw r4, r0
 /* 80162E00  41 82 00 48 */	beq lbl_80162E48

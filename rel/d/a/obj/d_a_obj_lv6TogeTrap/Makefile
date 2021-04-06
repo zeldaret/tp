@@ -3,19 +3,20 @@
 #
 
 M551_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap.plf
+M551_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap.lcf
+M551_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap.map
 
 M551_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6TogeTrap/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6TogeTrap/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6TogeTrap/d_a_obj_lv6TogeTrap.cpp \
 
 M551_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap/d_a_obj_lv6TogeTrap.o \
 
 M551_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap/libRuntime.PPCEABI.H.a \
 
 M551_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M551_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map551.map\
+	-m _prolog \
+	-lcf $(M551_LDSCRIPT) \
+	-unused -map $(M551_MAP) \
+	-w off \
 
 $(M551_TARGET): $(M551_O_FILES) $(M551_LIBS)
+	@echo [551] creating $(M551_TARGET)
 	@echo $(M551_LIBS) $(M551_O_FILES) > build/M551_ofiles
-	$(LD) -opt_partial $(M551_LDFLAGS) -o $(M551_TARGET) @build/M551_ofiles
+	@python3 tools/lcf.py rel 551 --output $(M551_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M551_LDFLAGS) -o $(M551_TARGET) @build/M551_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeTrap/%.o: rel/d/a/obj/d_a_obj_lv6TogeTrap/%.cpp
+	@echo [551] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M551_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M551_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6TogeTrap/libs/Runtime.PPCEABI.H/Makefile
 

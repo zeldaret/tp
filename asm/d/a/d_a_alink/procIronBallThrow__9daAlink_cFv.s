@@ -29,28 +29,28 @@ lbl_801158AC:
 /* 801158C4  41 82 00 78 */	beq lbl_8011593C
 /* 801158C8  38 00 00 05 */	li r0, 5
 /* 801158CC  B0 1E 30 18 */	sth r0, 0x3018(r30)
-/* 801158D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801158D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801158D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801158D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801158D8  A8 9E 05 9C */	lha r4, 0x59c(r30)
 /* 801158DC  A8 BE 04 E6 */	lha r5, 0x4e6(r30)
 /* 801158E0  38 C0 00 00 */	li r6, 0
 /* 801158E4  4B EF 69 25 */	bl mDoMtx_ZXYrotS__FPA4_fsss
-/* 801158E8  3C 60 80 39 */	lis r3, lit_34968@ha
-/* 801158EC  38 83 1A 50 */	addi r4, r3, lit_34968@l
+/* 801158E8  3C 60 80 39 */	lis r3, lit_34968@ha /* 0x80391A50@ha */
+/* 801158EC  38 83 1A 50 */	addi r4, r3, lit_34968@l /* 0x80391A50@l */
 /* 801158F0  80 64 00 00 */	lwz r3, 0(r4)
 /* 801158F4  80 04 00 04 */	lwz r0, 4(r4)
 /* 801158F8  90 61 00 08 */	stw r3, 8(r1)
 /* 801158FC  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80115900  80 04 00 08 */	lwz r0, 8(r4)
 /* 80115904  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80115908  3C 60 80 39 */	lis r3, m__22daAlinkHIO_ironBall_c0@ha
-/* 8011590C  38 63 EA 70 */	addi r3, r3, m__22daAlinkHIO_ironBall_c0@l
+/* 80115908  3C 60 80 39 */	lis r3, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 8011590C  38 63 EA 70 */	addi r3, r3, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 80115910  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 80115914  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80115918  C0 03 00 70 */	lfs f0, 0x70(r3)
 /* 8011591C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80115920  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80115924  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80115920  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80115924  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80115928  38 81 00 08 */	addi r4, r1, 8
 /* 8011592C  80 BE 38 48 */	lwz r5, 0x3848(r30)
 /* 80115930  48 23 14 3D */	bl PSMTXMultVec
@@ -68,8 +68,8 @@ lbl_8011593C:
 /* 8011595C  B0 1E 30 0C */	sth r0, 0x300c(r30)
 /* 80115960  7F C3 F3 78 */	mr r3, r30
 /* 80115964  38 80 01 64 */	li r4, 0x164
-/* 80115968  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha
-/* 8011596C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l
+/* 80115968  3C A0 80 39 */	lis r5, m__22daAlinkHIO_ironBall_c0@ha /* 0x8038EA70@ha */
+/* 8011596C  38 A5 EA 70 */	addi r5, r5, m__22daAlinkHIO_ironBall_c0@l /* 0x8038EA70@l */
 /* 80115970  C0 25 00 34 */	lfs f1, 0x34(r5)
 /* 80115974  C0 45 00 38 */	lfs f2, 0x38(r5)
 /* 80115978  4B F9 76 69 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

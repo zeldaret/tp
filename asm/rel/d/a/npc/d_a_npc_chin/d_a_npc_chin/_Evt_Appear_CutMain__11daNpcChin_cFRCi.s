@@ -24,7 +24,7 @@ lbl_80990C24:
 /* 80990C24  38 80 00 00 */	li r4, 0
 /* 80990C28  38 A0 00 01 */	li r5, 1
 /* 80990C2C  38 C0 00 00 */	li r6, 0
-/* 80990C30  4B 7C 31 54 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80990C30  4B 7C 31 55 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80990C34  2C 03 00 00 */	cmpwi r3, 0
 /* 80990C38  41 82 00 0C */	beq lbl_80990C44
 /* 80990C3C  3B E0 00 01 */	li r31, 1
@@ -37,7 +37,7 @@ lbl_80990C50:
 /* 80990C50  38 80 00 00 */	li r4, 0
 /* 80990C54  38 A0 00 01 */	li r5, 1
 /* 80990C58  38 C0 00 00 */	li r6, 0
-/* 80990C5C  4B 7C 31 28 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80990C5C  4B 7C 31 29 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80990C60  2C 03 00 00 */	cmpwi r3, 0
 /* 80990C64  41 82 00 0C */	beq lbl_80990C70
 /* 80990C68  3B E0 00 01 */	li r31, 1

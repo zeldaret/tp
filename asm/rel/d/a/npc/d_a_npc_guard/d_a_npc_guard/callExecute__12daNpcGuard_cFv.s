@@ -4,7 +4,7 @@ lbl_809EFE8C:
 /* 809EFE94  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809EFE98  80 83 0B 08 */	lwz r4, 0xb08(r3)
 /* 809EFE9C  39 84 00 0C */	addi r12, r4, 0xc
-/* 809EFEA0  4B 97 21 E4 */	b __ptmf_scall
+/* 809EFEA0  4B 97 21 E5 */	bl __ptmf_scall
 /* 809EFEA4  60 00 00 00 */	nop 
 /* 809EFEA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 809EFEAC  7C 08 03 A6 */	mtlr r0

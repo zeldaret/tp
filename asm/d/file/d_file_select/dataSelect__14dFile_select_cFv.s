@@ -6,8 +6,8 @@ lbl_801853C4:
 /* 801853D4  7C 7F 1B 78 */	mr r31, r3
 /* 801853D8  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 801853DC  4B EA CD C1 */	bl checkTrigger__9STControlFv
-/* 801853E0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801853E4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801853E0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801853E4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801853E8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801853EC  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801853F0  40 82 00 0C */	bne lbl_801853FC

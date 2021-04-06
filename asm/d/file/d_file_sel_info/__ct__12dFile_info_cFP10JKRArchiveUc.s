@@ -4,14 +4,14 @@ lbl_80192434:
 /* 8019243C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80192440  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80192444  7C 7F 1B 78 */	mr r31, r3
-/* 80192448  3C C0 80 3C */	lis r6, __vt__12dFile_info_c@ha
-/* 8019244C  38 06 B5 98 */	addi r0, r6, __vt__12dFile_info_c@l
+/* 80192448  3C C0 80 3C */	lis r6, __vt__12dFile_info_c@ha /* 0x803BB598@ha */
+/* 8019244C  38 06 B5 98 */	addi r0, r6, __vt__12dFile_info_c@l /* 0x803BB598@l */
 /* 80192450  90 03 00 00 */	stw r0, 0(r3)
-/* 80192454  3C C0 80 3A */	lis r6, __vt__12dDlst_base_c@ha
-/* 80192458  38 06 6F 88 */	addi r0, r6, __vt__12dDlst_base_c@l
+/* 80192454  3C C0 80 3A */	lis r6, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 80192458  38 06 6F 88 */	addi r0, r6, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 8019245C  90 03 00 08 */	stw r0, 8(r3)
-/* 80192460  3C C0 80 3C */	lis r6, __vt__16dDlst_FileInfo_c@ha
-/* 80192464  38 06 B5 88 */	addi r0, r6, __vt__16dDlst_FileInfo_c@l
+/* 80192460  3C C0 80 3C */	lis r6, __vt__16dDlst_FileInfo_c@ha /* 0x803BB588@ha */
+/* 80192464  38 06 B5 88 */	addi r0, r6, __vt__16dDlst_FileInfo_c@l /* 0x803BB588@l */
 /* 80192468  90 03 00 08 */	stw r0, 8(r3)
 /* 8019246C  90 83 00 04 */	stw r4, 4(r3)
 /* 80192470  98 A3 00 22 */	stb r5, 0x22(r3)

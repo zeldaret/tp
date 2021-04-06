@@ -3,19 +3,20 @@
 #
 
 M173_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_bee.plf
+M173_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_bee.lcf
+M173_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_bee.map
 
 M173_CPP_FILES := \
-	rel/d/a/e/d_a_e_bee/executor.cpp \
-	rel/d/a/e/d_a_e_bee/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_bee/d_a_e_bee.cpp \
 
 M173_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bee/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bee/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_bee/d_a_e_bee.o \
 
 M173_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bee/libRuntime.PPCEABI.H.a \
 
 M173_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M173_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map173.map\
+	-m _prolog \
+	-lcf $(M173_LDSCRIPT) \
+	-unused -map $(M173_MAP) \
+	-w off \
 
 $(M173_TARGET): $(M173_O_FILES) $(M173_LIBS)
+	@echo [173] creating $(M173_TARGET)
 	@echo $(M173_LIBS) $(M173_O_FILES) > build/M173_ofiles
-	$(LD) -opt_partial $(M173_LDFLAGS) -o $(M173_TARGET) @build/M173_ofiles
+	@python3 tools/lcf.py rel 173 --output $(M173_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M173_LDFLAGS) -o $(M173_TARGET) @build/M173_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bee/%.o: rel/d/a/e/d_a_e_bee/%.cpp
+	@echo [173] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M173_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M173_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_bee/libs/Runtime.PPCEABI.H/Makefile
 

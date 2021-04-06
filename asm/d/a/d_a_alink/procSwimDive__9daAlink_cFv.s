@@ -34,8 +34,8 @@ lbl_80104B0C:
 /* 80104B18  B0 1F 30 00 */	sth r0, 0x3000(r31)
 /* 80104B1C  7F E3 FB 78 */	mr r3, r31
 /* 80104B20  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80104B24  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha
-/* 80104B28  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l
+/* 80104B24  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80104B28  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104B2C  C0 44 00 80 */	lfs f2, 0x80(r4)
 /* 80104B30  4B FA ED F5 */	bl setNormalSpeedF__9daAlink_cFff
 /* 80104B34  C0 3F 34 7C */	lfs f1, 0x347c(r31)
@@ -82,8 +82,8 @@ lbl_80104BC8:
 /* 80104BCC  48 05 99 01 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80104BD0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80104BD4  41 82 00 60 */	beq lbl_80104C34
-/* 80104BD8  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 80104BDC  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 80104BD8  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80104BDC  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104BE0  C0 03 00 84 */	lfs f0, 0x84(r3)
 /* 80104BE4  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 80104BE8  A8 1F 30 0C */	lha r0, 0x300c(r31)

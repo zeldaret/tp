@@ -14,8 +14,8 @@ lbl_8001E310:
 /* 8001E340  7F E7 FB 78 */	mr r7, r31
 /* 8001E344  48 00 5A 51 */	bl fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv
 /* 8001E348  57 A0 10 3A */	slwi r0, r29, 2
-/* 8001E34C  3C 80 80 3F */	lis r4, l_fopCamM_id@ha
-/* 8001E350  38 84 1D D8 */	addi r4, r4, l_fopCamM_id@l
+/* 8001E34C  3C 80 80 3F */	lis r4, l_fopCamM_id@ha /* 0x803F1DD8@ha */
+/* 8001E350  38 84 1D D8 */	addi r4, r4, l_fopCamM_id@l /* 0x803F1DD8@l */
 /* 8001E354  7C 64 01 2E */	stwx r3, r4, r0
 /* 8001E358  7C 64 00 2E */	lwzx r3, r4, r0
 /* 8001E35C  39 61 00 20 */	addi r11, r1, 0x20

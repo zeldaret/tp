@@ -41,14 +41,14 @@ lbl_80969558:
 /* 80969598  7C 60 1B 78 */	mr r0, r3
 lbl_8096959C:
 /* 8096959C  B0 01 00 08 */	sth r0, 8(r1)
-/* 809695A0  3C 60 80 97 */	lis r3, lit_4306@ha
-/* 809695A4  C0 03 C9 E8 */	lfs f0, lit_4306@l(r3)
+/* 809695A0  3C 60 80 97 */	lis r3, lit_4306@ha /* 0x8096C9E8@ha */
+/* 809695A4  C0 03 C9 E8 */	lfs f0, lit_4306@l(r3)  /* 0x8096C9E8@l */
 /* 809695A8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 809695AC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 809695B0  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 809695B4  54 C0 08 3C */	slwi r0, r6, 1
-/* 809695B8  3C 60 80 97 */	lis r3, sNameYami@ha
-/* 809695BC  38 63 CA 04 */	addi r3, r3, sNameYami@l
+/* 809695B8  3C 60 80 97 */	lis r3, sNameYami@ha /* 0x8096CA04@ha */
+/* 809695BC  38 63 CA 04 */	addi r3, r3, sNameYami@l /* 0x8096CA04@l */
 /* 809695C0  7C 63 02 AE */	lhax r3, r3, r0
 /* 809695C4  38 A1 00 1C */	addi r5, r1, 0x1c
 /* 809695C8  88 07 04 E2 */	lbz r0, 0x4e2(r7)
@@ -56,7 +56,7 @@ lbl_8096959C:
 /* 809695D0  38 E1 00 08 */	addi r7, r1, 8
 /* 809695D4  39 01 00 10 */	addi r8, r1, 0x10
 /* 809695D8  39 20 FF FF */	li r9, -1
-/* 809695DC  4B 6B 07 BC */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 809695DC  4B 6B 07 BD */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 809695E0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 809695E4  7C 08 03 A6 */	mtlr r0
 /* 809695E8  38 21 00 30 */	addi r1, r1, 0x30

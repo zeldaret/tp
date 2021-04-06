@@ -5,7 +5,7 @@ lbl_80A9E2CC:
 /* 80A9E2D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A9E2DC  7C 7F 1B 78 */	mr r31, r3
 /* 80A9E2E0  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 80A9E2E4  4B 7D 29 20 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80A9E2E4  4B 7D 29 21 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80A9E2E8  B0 7F 0D 7A */	sth r3, 0xd7a(r31)
 /* 80A9E2EC  B0 7F 04 DE */	sth r3, 0x4de(r31)
 /* 80A9E2F0  B0 7F 04 E6 */	sth r3, 0x4e6(r31)

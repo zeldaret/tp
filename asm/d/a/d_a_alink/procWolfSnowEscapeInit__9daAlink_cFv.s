@@ -31,8 +31,8 @@ lbl_8011D858:
 /* 8011D89C  4E 80 04 21 */	bctrl 
 /* 8011D8A0  38 00 00 0D */	li r0, 0xd
 /* 8011D8A4  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 8011D8A8  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8011D8AC  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8011D8A8  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8011D8AC  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8011D8B0  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011D8B4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011D8B8  D0 1F 35 8C */	stfs f0, 0x358c(r31)

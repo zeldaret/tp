@@ -3,18 +3,16 @@
 #
 
 M686_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover.plf
+M686_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover.lcf
+M686_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover.map
 
 M686_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_well_cover/executor.cpp \
-	rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_well_cover/d_a_obj_well_cover.cpp \
 
 M686_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/d_a_obj_well_cover.o \
 
@@ -31,15 +29,21 @@ M686_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map686.map\
+	-m _prolog \
+	-lcf $(M686_LDSCRIPT) \
+	-unused -map $(M686_MAP) \
+	-w off \
 
 $(M686_TARGET): $(M686_O_FILES) $(M686_LIBS)
+	@echo [686] creating $(M686_TARGET)
 	@echo $(M686_LIBS) $(M686_O_FILES) > build/M686_ofiles
-	$(LD) -opt_partial $(M686_LDFLAGS) -o $(M686_TARGET) @build/M686_ofiles
+	@python3 tools/lcf.py rel 686 --output $(M686_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M686_LDFLAGS) -o $(M686_TARGET) @build/M686_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/%.o: rel/d/a/obj/d_a_obj_well_cover/%.cpp
+	@echo [686] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M686_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M686_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

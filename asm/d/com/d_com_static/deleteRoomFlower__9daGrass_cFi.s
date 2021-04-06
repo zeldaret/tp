@@ -6,8 +6,8 @@ lbl_80031A20:
 /* 80031A30  80 6D 88 34 */	lwz r3, m_flower__9daGrass_c(r13)
 /* 80031A34  28 03 00 00 */	cmplwi r3, 0
 /* 80031A38  41 82 00 30 */	beq lbl_80031A68
-/* 80031A3C  3C A0 80 42 */	lis r5, m_deleteRoom__16dFlower_packet_c@ha
-/* 80031A40  38 C5 45 94 */	addi r6, r5, m_deleteRoom__16dFlower_packet_c@l
+/* 80031A3C  3C A0 80 42 */	lis r5, m_deleteRoom__16dFlower_packet_c@ha /* 0x80424594@ha */
+/* 80031A40  38 C5 45 94 */	addi r6, r5, m_deleteRoom__16dFlower_packet_c@l /* 0x80424594@l */
 /* 80031A44  80 A6 00 00 */	lwz r5, 0(r6)
 /* 80031A48  80 06 00 04 */	lwz r0, 4(r6)
 /* 80031A4C  90 A1 00 08 */	stw r5, 8(r1)

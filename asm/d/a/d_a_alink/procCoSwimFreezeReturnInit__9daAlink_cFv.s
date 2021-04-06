@@ -7,10 +7,10 @@ lbl_800DC278:
 /* 800DC28C  39 61 00 20 */	addi r11, r1, 0x20
 /* 800DC290  48 28 5F 49 */	bl _savegpr_28
 /* 800DC294  7C 7F 1B 78 */	mr r31, r3
-/* 800DC298  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800DC29C  3B C3 D6 58 */	addi r30, r3, lit_3757@l
-/* 800DC2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DC2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DC298  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800DC29C  3B C3 D6 58 */	addi r30, r3, lit_3757@l /* 0x8038D658@l */
+/* 800DC2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DC2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DC2A8  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800DC2AC  7F E4 FB 78 */	mr r4, r31
 /* 800DC2B0  38 A0 00 00 */	li r5, 0
@@ -114,8 +114,8 @@ lbl_800DC41C:
 /* 800DC41C  48 0A 52 25 */	bl dCam_getBody__Fv
 /* 800DC420  38 80 00 09 */	li r4, 9
 /* 800DC424  7F 85 E3 78 */	mr r5, r28
-/* 800DC428  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha
-/* 800DC42C  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l
+/* 800DC428  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800DC42C  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800DC430  38 C6 00 43 */	addi r6, r6, 0x43
 /* 800DC434  38 E0 00 01 */	li r7, 1
 /* 800DC438  39 1F 31 94 */	addi r8, r31, 0x3194

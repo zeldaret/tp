@@ -5,8 +5,8 @@ lbl_80293CAC:
 /* 80293CB8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80293CBC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80293CC0  41 82 00 1C */	beq lbl_80293CDC
-/* 80293CC4  3C A0 80 3C */	lis r5, __vt__12JASSeqParser@ha
-/* 80293CC8  38 05 76 50 */	addi r0, r5, __vt__12JASSeqParser@l
+/* 80293CC4  3C A0 80 3C */	lis r5, __vt__12JASSeqParser@ha /* 0x803C7650@ha */
+/* 80293CC8  38 05 76 50 */	addi r0, r5, __vt__12JASSeqParser@l /* 0x803C7650@l */
 /* 80293CCC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80293CD0  7C 80 07 35 */	extsh. r0, r4
 /* 80293CD4  40 81 00 08 */	ble lbl_80293CDC

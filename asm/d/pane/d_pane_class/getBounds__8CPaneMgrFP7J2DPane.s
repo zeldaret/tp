@@ -59,10 +59,10 @@ lbl_80255064:
 /* 80255098  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 8025509C  EC 00 10 2A */	fadds f0, f0, f2
 /* 802550A0  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 802550A4  3C 60 80 43 */	lis r3, static_mBounds@ha
+/* 802550A4  3C 60 80 43 */	lis r3, static_mBounds@ha /* 0x80430748@ha */
 /* 802550A8  80 81 00 08 */	lwz r4, 8(r1)
 /* 802550AC  80 01 00 0C */	lwz r0, 0xc(r1)
-/* 802550B0  94 83 07 48 */	stwu r4, static_mBounds@l(r3)
+/* 802550B0  94 83 07 48 */	stwu r4, static_mBounds@l(r3)  /* 0x80430748@l */
 /* 802550B4  90 03 00 04 */	stw r0, 4(r3)
 /* 802550B8  80 81 00 10 */	lwz r4, 0x10(r1)
 /* 802550BC  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -9,13 +9,13 @@ lbl_802D96A0:
 /* 802D96BC  7F A0 EB 78 */	mr r0, r29
 /* 802D96C0  7C 1E 03 78 */	mr r30, r0
 /* 802D96C4  4B FF 7D B9 */	bl __ct__11JKRDisposerFv
-/* 802D96C8  3C 60 80 3D */	lis r3, __vt__7JKRFile@ha
-/* 802D96CC  38 03 C3 28 */	addi r0, r3, __vt__7JKRFile@l
+/* 802D96C8  3C 60 80 3D */	lis r3, __vt__7JKRFile@ha /* 0x803CC328@ha */
+/* 802D96CC  38 03 C3 28 */	addi r0, r3, __vt__7JKRFile@l /* 0x803CC328@l */
 /* 802D96D0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D96D4  38 00 00 00 */	li r0, 0
 /* 802D96D8  98 1E 00 18 */	stb r0, 0x18(r30)
-/* 802D96DC  3C 60 80 3D */	lis r3, __vt__10JKRDvdFile@ha
-/* 802D96E0  38 03 C4 38 */	addi r0, r3, __vt__10JKRDvdFile@l
+/* 802D96DC  3C 60 80 3D */	lis r3, __vt__10JKRDvdFile@ha /* 0x803CC438@ha */
+/* 802D96E0  38 03 C4 38 */	addi r0, r3, __vt__10JKRDvdFile@l /* 0x803CC438@l */
 /* 802D96E4  90 1D 00 00 */	stw r0, 0(r29)
 /* 802D96E8  38 7D 00 E4 */	addi r3, r29, 0xe4
 /* 802D96EC  7F A4 EB 78 */	mr r4, r29

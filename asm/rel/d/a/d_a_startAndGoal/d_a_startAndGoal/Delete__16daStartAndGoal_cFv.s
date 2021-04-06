@@ -9,10 +9,10 @@ lbl_80D4DCFC:
 /* 80D4DD18  40 82 00 1C */	bne lbl_80D4DD34
 /* 80D4DD1C  88 1F 0B 99 */	lbz r0, 0xb99(r31)
 /* 80D4DD20  54 00 18 38 */	slwi r0, r0, 3
-/* 80D4DD24  3C 60 80 D5 */	lis r3, l_timerType@ha
-/* 80D4DD28  38 63 DE CC */	addi r3, r3, l_timerType@l
+/* 80D4DD24  3C 60 80 D5 */	lis r3, l_timerType@ha /* 0x80D4DECC@ha */
+/* 80D4DD28  38 63 DE CC */	addi r3, r3, l_timerType@l /* 0x80D4DECC@l */
 /* 80D4DD2C  7C 63 00 2E */	lwzx r3, r3, r0
-/* 80D4DD30  4B 2E 1A 6C */	b dComIfG_TimerDeleteRequest__Fi
+/* 80D4DD30  4B 2E 1A 6D */	bl dComIfG_TimerDeleteRequest__Fi
 lbl_80D4DD34:
 /* 80D4DD34  88 1F 0B A0 */	lbz r0, 0xba0(r31)
 /* 80D4DD38  28 00 00 01 */	cmplwi r0, 1
@@ -23,11 +23,11 @@ lbl_80D4DD34:
 /* 80D4DD4C  28 00 00 01 */	cmplwi r0, 1
 /* 80D4DD50  40 82 00 18 */	bne lbl_80D4DD68
 lbl_80D4DD54:
-/* 80D4DD54  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80D4DD58  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80D4DD54  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80D4DD58  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80D4DD5C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80D4DD60  38 63 03 D0 */	addi r3, r3, 0x3d0
-/* 80D4DD64  4B 56 1B 20 */	b subBgmStop__8Z2SeqMgrFv
+/* 80D4DD64  4B 56 1B 21 */	bl subBgmStop__8Z2SeqMgrFv
 lbl_80D4DD68:
 /* 80D4DD68  38 60 00 01 */	li r3, 1
 /* 80D4DD6C  83 E1 00 0C */	lwz r31, 0xc(r1)

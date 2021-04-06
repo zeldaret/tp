@@ -16,8 +16,8 @@ lbl_801F4954:
 /* 801F495C  54 00 10 3A */	slwi r0, r0, 2
 /* 801F4960  7C 7F 02 14 */	add r3, r31, r0
 /* 801F4964  80 63 01 68 */	lwz r3, 0x168(r3)
-/* 801F4968  3C 80 80 43 */	lis r4, g_msHIO@ha
-/* 801F496C  3B A4 E8 4C */	addi r29, r4, g_msHIO@l
+/* 801F4968  3C 80 80 43 */	lis r4, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F496C  3B A4 E8 4C */	addi r29, r4, g_msHIO@l /* 0x8042E84C@l */
 /* 801F4970  88 9D 00 08 */	lbz r4, 8(r29)
 /* 801F4974  38 A0 00 FF */	li r5, 0xff
 /* 801F4978  38 C0 00 00 */	li r6, 0
@@ -34,8 +34,8 @@ lbl_801F4954:
 /* 801F49A4  38 C0 00 FF */	li r6, 0xff
 /* 801F49A8  38 E0 00 00 */	li r7, 0
 /* 801F49AC  48 06 0E CD */	bl alphaAnime__13CPaneMgrAlphaFsUcUcUc
-/* 801F49B0  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801F49B4  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801F49B0  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801F49B4  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801F49B8  A8 84 00 94 */	lha r4, 0x94(r4)
 /* 801F49BC  57 C0 06 3E */	clrlwi r0, r30, 0x18
 /* 801F49C0  28 00 00 01 */	cmplwi r0, 1

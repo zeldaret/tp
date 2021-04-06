@@ -9,8 +9,8 @@ lbl_802937CC:
 /* 802937D0  38 04 FF E0 */	addi r0, r4, -32
 /* 802937D4  28 00 00 09 */	cmplwi r0, 9
 /* 802937D8  41 81 00 DC */	bgt lbl_802938B4
-/* 802937DC  3C 80 80 3C */	lis r4, lit_87@ha
-/* 802937E0  38 84 5B B8 */	addi r4, r4, lit_87@l
+/* 802937DC  3C 80 80 3C */	lis r4, lit_87@ha /* 0x803C5BB8@ha */
+/* 802937E0  38 84 5B B8 */	addi r4, r4, lit_87@l /* 0x803C5BB8@l */
 /* 802937E4  54 00 10 3A */	slwi r0, r0, 2
 /* 802937E8  7C 04 00 2E */	lwzx r0, r4, r0
 /* 802937EC  7C 09 03 A6 */	mtctr r0

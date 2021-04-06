@@ -34,22 +34,14 @@ struct JKRHeap {
 // Forward References:
 //
 
-void mDoDvdErr_ThdInit();
-void mDoDvdErr_ThdCleanup();
-static void mDoDvdErr_Watch(void*);
-static void AlarmHandler(OSAlarm*, OSContext*);
-
 extern "C" void mDoDvdErr_ThdInit__Fv();
 extern "C" void mDoDvdErr_ThdCleanup__Fv();
 extern "C" static void mDoDvdErr_Watch__FPv();
 extern "C" static void AlarmHandler__FP7OSAlarmP9OSContext();
-extern "C" extern u8 DvdErr_stack[3072];
 
 //
 // External References:
 //
-
-void mDoExt_getAssertHeap();
 
 extern "C" void mDoExt_getAssertHeap__Fv();
 extern "C" void suspend__9mDoDvdThdFv();
@@ -77,27 +69,19 @@ extern "C" extern u8 data_80450C88[8];
 //
 
 /* ############################################################################################## */
-/* 803DECC0-803DEFE0 0318+08 s=4 e=0 z=0  None .bss       DvdErr_thread */
+/* 803DECC0-803DEFE0 00B9E0 0318+08 4/4 0/0 0/0 .bss             DvdErr_thread */
 static u8 DvdErr_thread[792 + 8 /* padding */];
 
-/* 8001659C-8001665C 00C0+00 s=0 e=1 z=0  None .text      mDoDvdErr_ThdInit__Fv */
-//	800165AC: 803621DC (_savegpr_29)
-//	800165B0: 803DECC0 (DvdErr_thread)
-//	800165B4: 803DECC0 (DvdErr_thread)
-//	800165B8: 80450C88 (data_80450C88)
-//	800165C4: 803426FC (OSGetTime)
-//	800165D0: 80340C84 (OSGetCurrentThread)
-//	800165D4: 80341E5C (OSGetThreadPriority)
-//	800165E0: 800166A4 (mDoDvdErr_Watch__FPv)
-//	800165E4: 800166A4 (mDoDvdErr_Watch__FPv)
-//	80016600: 8034128C (OSCreateThread)
-//	80016608: 803417B4 (OSResumeThread)
-//	80016610: 8033A8F8 (OSCreateAlarm)
-//	80016630: 80016704 (AlarmHandler__FP7OSAlarmP9OSContext)
-//	80016634: 80016704 (AlarmHandler__FP7OSAlarmP9OSContext)
-//	80016638: 8033ABC0 (OSSetPeriodicAlarm)
-//	80016640: 80450C88 (data_80450C88)
-//	80016648: 80362228 (_restgpr_29)
+/* 803DEFE0-803DFBE0 00BD00 0C00+00 0/1 0/0 0/0 .bss             DvdErr_stack */
+#pragma push
+#pragma force_active on
+static u8 DvdErr_stack[3072];
+#pragma pop
+
+/* 803DFBE0-803DFC20 00C900 0028+18 1/2 0/0 0/0 .bss             Alarm */
+static u8 Alarm[40 + 24 /* padding */];
+
+/* 8001659C-8001665C 010EDC 00C0+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdInit__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,22 +91,7 @@ asm void mDoDvdErr_ThdInit() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803DEFE0-803DFBE0 0C00+00 s=0 e=0 z=0  None .bss       DvdErr_stack */
-u8 DvdErr_stack[3072];
-
-/* 803DFBE0-803DFC20 0028+18 s=1 e=0 z=0  None .bss       Alarm */
-static u8 Alarm[40 + 24 /* padding */];
-
-/* 8001665C-800166A4 0048+00 s=0 e=1 z=0  None .text      mDoDvdErr_ThdCleanup__Fv */
-//	80016668: 80450C88 (data_80450C88)
-//	80016674: 803DECC0 (DvdErr_thread)
-//	80016678: 803DECC0 (DvdErr_thread)
-//	8001667C: 80341558 (OSCancelThread)
-//	80016680: 803DFBE0 (Alarm)
-//	80016684: 803DFBE0 (Alarm)
-//	80016688: 8033AC3C (OSCancelAlarm)
-//	80016690: 80450C88 (data_80450C88)
+/* 8001665C-800166A4 010F9C 0048+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdCleanup__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,35 +101,22 @@ asm void mDoDvdErr_ThdCleanup() {
 }
 #pragma pop
 
-/* 800166A4-80016704 0060+00 s=1 e=0 z=0  None .text      mDoDvdErr_Watch__FPv */
-//	800166B4: 8033D6F4 (OSDisableInterrupts)
-//	800166B8: 80340C84 (OSGetCurrentThread)
-//	800166C8: 802D16B8 (__ct__9JKRThreadFP8OSThreadi)
-//	800166D4: 802D1758 (__dt__9JKRThreadFv)
-//	800166D8: 8000ECE4 (mDoExt_getAssertHeap__Fv)
-//	800166DC: 802CE438 (becomeCurrentHeap__7JKRHeapFv)
-//	800166E0: 803DECC0 (DvdErr_thread)
-//	800166E4: 803DECC0 (DvdErr_thread)
-//	800166E8: 8034B1C8 (DVDGetDriveStatus)
-//	800166F4: 800158B4 (suspend__9mDoDvdThdFv)
-//	800166FC: 80341A3C (OSSuspendThread)
+/* 800166A4-80016704 010FE4 0060+00 1/1 0/0 0/0 .text            mDoDvdErr_Watch__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoDvdErr_Watch(void* param_0) {
+static asm void mDoDvdErr_Watch(void* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_DVDError/mDoDvdErr_Watch__FPv.s"
 }
 #pragma pop
 
-/* 80016704-8001672C 0028+00 s=1 e=0 z=0  None .text      AlarmHandler__FP7OSAlarmP9OSContext */
-//	80016710: 803DECC0 (DvdErr_thread)
-//	80016714: 803DECC0 (DvdErr_thread)
-//	80016718: 803417B4 (OSResumeThread)
+/* 80016704-8001672C 011044 0028+00 1/1 0/0 0/0 .text            AlarmHandler__FP7OSAlarmP9OSContext
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void AlarmHandler(OSAlarm* param_0, OSContext* param_1) {
+static asm void AlarmHandler(OSAlarm* param_0, OSContext* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_DVDError/AlarmHandler__FP7OSAlarmP9OSContext.s"
 }

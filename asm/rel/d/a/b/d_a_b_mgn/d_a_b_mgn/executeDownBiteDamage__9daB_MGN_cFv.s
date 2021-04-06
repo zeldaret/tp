@@ -3,12 +3,12 @@ lbl_8060B028:
 /* 8060B02C  7C 08 02 A6 */	mflr r0
 /* 8060B030  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8060B034  39 61 00 40 */	addi r11, r1, 0x40
-/* 8060B038  4B D5 71 A4 */	b _savegpr_29
+/* 8060B038  4B D5 71 A5 */	bl _savegpr_29
 /* 8060B03C  7C 7D 1B 78 */	mr r29, r3
-/* 8060B040  3C 60 80 61 */	lis r3, lit_3928@ha
-/* 8060B044  3B E3 FD E0 */	addi r31, r3, lit_3928@l
-/* 8060B048  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060B04C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060B040  3C 60 80 61 */	lis r3, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060B044  3B E3 FD E0 */	addi r31, r3, lit_3928@l /* 0x8060FDE0@l */
+/* 8060B048  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060B04C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060B050  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 8060B054  88 1D 0A FA */	lbz r0, 0xafa(r29)
 /* 8060B058  2C 00 00 01 */	cmpwi r0, 1
@@ -63,13 +63,13 @@ lbl_8060B0F8:
 /* 8060B110  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8060B114  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8060B118  D0 21 00 28 */	stfs f1, 0x28(r1)
-/* 8060B11C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060B120  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060B11C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060B120  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060B124  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8060B128  38 80 00 03 */	li r4, 3
 /* 8060B12C  38 A0 00 1F */	li r5, 0x1f
 /* 8060B130  38 C1 00 20 */	addi r6, r1, 0x20
-/* 8060B134  4B A6 48 F0 */	b StartShock__12dVibration_cFii4cXyz
+/* 8060B134  4B A6 48 F1 */	bl StartShock__12dVibration_cFii4cXyz
 /* 8060B138  7F A3 EB 78 */	mr r3, r29
 /* 8060B13C  4B FF CC 09 */	bl offBodyCo__9daB_MGN_cFv
 lbl_8060B140:
@@ -98,13 +98,13 @@ lbl_8060B16C:
 /* 8060B190  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8060B194  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8060B198  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 8060B19C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060B1A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060B19C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060B1A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060B1A4  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8060B1A8  38 80 00 03 */	li r4, 3
 /* 8060B1AC  38 A0 00 1F */	li r5, 0x1f
 /* 8060B1B0  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8060B1B4  4B A6 48 70 */	b StartShock__12dVibration_cFii4cXyz
+/* 8060B1B4  4B A6 48 71 */	bl StartShock__12dVibration_cFii4cXyz
 /* 8060B1B8  A0 1D 05 8E */	lhz r0, 0x58e(r29)
 /* 8060B1BC  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
 /* 8060B1C0  B0 1D 05 8E */	sth r0, 0x58e(r29)
@@ -269,7 +269,7 @@ lbl_8060B3F0:
 /* 8060B414  4B FF F2 5D */	bl setDownEnd__9daB_MGN_cFv
 lbl_8060B418:
 /* 8060B418  39 61 00 40 */	addi r11, r1, 0x40
-/* 8060B41C  4B D5 6E 0C */	b _restgpr_29
+/* 8060B41C  4B D5 6E 0D */	bl _restgpr_29
 /* 8060B420  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8060B424  7C 08 03 A6 */	mtlr r0
 /* 8060B428  38 21 00 40 */	addi r1, r1, 0x40

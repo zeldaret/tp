@@ -43,18 +43,18 @@ lbl_8028ED54:
 /* 8028ED5C  83 A4 00 14 */	lwz r29, 0x14(r4)
 /* 8028ED60  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8028ED64  38 81 00 7C */	addi r4, r1, 0x7c
-/* 8028ED68  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle@ha
-/* 8028ED6C  38 A5 AB 10 */	addi r5, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle@l
+/* 8028ED68  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle@ha /* 0x8039AB10@ha */
+/* 8028ED6C  38 A5 AB 10 */	addi r5, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle@l /* 0x8039AB10@l */
 /* 8028ED70  4B FF 75 05 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028ED74  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8028ED78  38 81 00 88 */	addi r4, r1, 0x88
-/* 8028ED7C  3C A0 80 3A */	lis r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle@ha
-/* 8028ED80  38 A5 AB 1C */	addi r5, r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle@l
+/* 8028ED7C  3C A0 80 3A */	lis r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle@ha /* 0x8039AB1C@ha */
+/* 8028ED80  38 A5 AB 1C */	addi r5, r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle@l /* 0x8039AB1C@l */
 /* 8028ED84  4B FF 74 F1 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028ED88  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8028ED8C  38 81 00 94 */	addi r4, r1, 0x94
-/* 8028ED90  3C A0 80 3A */	lis r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle@ha
-/* 8028ED94  38 A5 AB 28 */	addi r5, r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle@l
+/* 8028ED90  3C A0 80 3A */	lis r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle@ha /* 0x8039AB28@ha */
+/* 8028ED94  38 A5 AB 28 */	addi r5, r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle@l /* 0x8039AB28@l */
 /* 8028ED98  4B FF 74 DD */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028ED9C  80 DE 00 04 */	lwz r6, 4(r30)
 /* 8028EDA0  88 06 01 D8 */	lbz r0, 0x1d8(r6)
@@ -202,8 +202,8 @@ lbl_8028EFA8:
 lbl_8028EFB0:
 /* 8028EFB0  3B 80 00 FF */	li r28, 0xff
 /* 8028EFB4  38 81 00 08 */	addi r4, r1, 8
-/* 8028EFB8  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle@ha
-/* 8028EFBC  38 A5 AB 40 */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle@l
+/* 8028EFB8  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle@ha /* 0x8039AB40@ha */
+/* 8028EFBC  38 A5 AB 40 */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle@l /* 0x8039AB40@l */
 /* 8028EFC0  4B FF 73 CD */	bl adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
 /* 8028EFC4  88 01 00 0B */	lbz r0, 0xb(r1)
 /* 8028EFC8  C8 22 BB 50 */	lfd f1, lit_1629(r2)

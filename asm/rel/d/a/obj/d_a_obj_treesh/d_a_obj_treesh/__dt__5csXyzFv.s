@@ -7,7 +7,7 @@ lbl_80D1F10C:
 /* 80D1F120  41 82 00 10 */	beq lbl_80D1F130
 /* 80D1F124  7C 80 07 35 */	extsh. r0, r4
 /* 80D1F128  40 81 00 08 */	ble lbl_80D1F130
-/* 80D1F12C  4B 5A FC 10 */	b __dl__FPv
+/* 80D1F12C  4B 5A FC 11 */	bl __dl__FPv
 lbl_80D1F130:
 /* 80D1F130  7F E3 FB 78 */	mr r3, r31
 /* 80D1F134  83 E1 00 0C */	lwz r31, 0xc(r1)

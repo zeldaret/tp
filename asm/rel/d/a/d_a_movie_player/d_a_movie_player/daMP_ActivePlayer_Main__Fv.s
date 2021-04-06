@@ -7,18 +7,18 @@ lbl_80878938:
 /* 8087894C  40 82 00 38 */	bne lbl_80878984
 /* 80878950  4B FF F9 F5 */	bl daMP_THPPlayerStop__Fv
 /* 80878954  4B FF ED 99 */	bl daMP_THPPlayerClose__Fv
-/* 80878958  3C 60 80 94 */	lis r3, daMP_buffer@ha
-/* 8087895C  38 63 5B 04 */	addi r3, r3, daMP_buffer@l
+/* 80878958  3C 60 80 94 */	lis r3, daMP_buffer@ha /* 0x80945B04@ha */
+/* 8087895C  38 63 5B 04 */	addi r3, r3, daMP_buffer@l /* 0x80945B04@l */
 /* 80878960  80 63 00 00 */	lwz r3, 0(r3)
 /* 80878964  28 03 00 00 */	cmplwi r3, 0
 /* 80878968  41 82 00 08 */	beq lbl_80878970
 /* 8087896C  4B FF FF A9 */	bl JKRFree__FPv
 lbl_80878970:
-/* 80878970  3C 60 80 88 */	lis r3, stringBase0@ha
-/* 80878974  38 63 91 1C */	addi r3, r3, stringBase0@l
+/* 80878970  3C 60 80 88 */	lis r3, d_a_movie_player__stringBase0@ha /* 0x8087911C@ha */
+/* 80878974  38 63 91 1C */	addi r3, r3, d_a_movie_player__stringBase0@l /* 0x8087911C@l */
 /* 80878978  38 63 02 EC */	addi r3, r3, 0x2ec
 /* 8087897C  4C C6 31 82 */	crclr 6
-/* 80878980  4B 78 E1 3C */	b OSReport
+/* 80878980  4B 78 E1 3D */	bl OSReport
 lbl_80878984:
 /* 80878984  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80878988  7C 08 03 A6 */	mtlr r0

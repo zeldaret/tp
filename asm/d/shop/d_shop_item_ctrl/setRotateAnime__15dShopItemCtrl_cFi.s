@@ -15,8 +15,8 @@ lbl_80196B14:
 /* 80196B20  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196B24  41 82 00 58 */	beq lbl_80196B7C
 /* 80196B28  90 61 00 08 */	stw r3, 8(r1)
-/* 80196B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80196B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80196B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80196B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80196B34  38 81 00 08 */	addi r4, r1, 8
 /* 80196B38  4B E8 2C C1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196B3C  7C 7E 1B 79 */	or. r30, r3, r3

@@ -9,15 +9,15 @@ lbl_80602418:
 /* 80602434  7C CA 33 78 */	mr r10, r6
 /* 80602438  7C E0 3B 78 */	mr r0, r7
 /* 8060243C  7D 09 43 78 */	mr r9, r8
-/* 80602440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80602444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80602440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80602444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80602448  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8060244C  7F E4 FB 78 */	mr r4, r31
 /* 80602450  7D 85 63 78 */	mr r5, r12
 /* 80602454  7D 66 5B 78 */	mr r6, r11
 /* 80602458  7D 47 53 78 */	mr r7, r10
 /* 8060245C  7C 08 03 78 */	mr r8, r0
-/* 80602460  4B A4 9D B8 */	b setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
+/* 80602460  4B A4 9D B9 */	bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 /* 80602464  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80602468  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8060246C  7C 08 03 A6 */	mtlr r0

@@ -4,8 +4,8 @@ lbl_8031D368:
 /* 8031D370  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8031D374  88 03 00 0B */	lbz r0, 0xb(r3)
 /* 8031D378  54 05 1E B8 */	rlwinm r5, r0, 3, 0x1a, 0x1c
-/* 8031D37C  3C 80 80 43 */	lis r4, sTexCoordScaleTable__6J3DSys@ha
-/* 8031D380  38 04 4C 2C */	addi r0, r4, sTexCoordScaleTable__6J3DSys@l
+/* 8031D37C  3C 80 80 43 */	lis r4, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031D380  38 04 4C 2C */	addi r0, r4, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031D384  7D 00 2A 14 */	add r8, r0, r5
 /* 8031D388  88 63 00 0A */	lbz r3, 0xa(r3)
 /* 8031D38C  A0 88 00 00 */	lhz r4, 0(r8)

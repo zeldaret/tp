@@ -39,27 +39,18 @@ struct JASDvd {
 // Forward References:
 //
 
-static void my_OSCancelAlarmAll();
-static void destroyVideo();
-void mDoRst_reset(int, u32, int);
-void mDoRst_resetCallBack(int, void*);
-
 extern "C" static void my_OSCancelAlarmAll__Fv();
 extern "C" static void destroyVideo__Fv();
 extern "C" void mDoRst_reset__FiUli();
 extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" void getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
 extern "C" extern u8 data_80450C88[8];
 
 //
 // External References:
 //
-
-void mDoDvdErr_ThdCleanup();
-void cAPICPad_recalibrate();
 
 extern "C" void OSAttention();
 extern "C" void mDoDvdErr_ThdCleanup__Fv();
@@ -102,78 +93,27 @@ extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800155D8-800155DC 0004+00 s=1 e=0 z=0  None .text      my_OSCancelAlarmAll__Fv */
+/* 800155D8-800155DC 00FF18 0004+00 1/1 0/0 0/0 .text            my_OSCancelAlarmAll__Fv */
 static void my_OSCancelAlarmAll() {
     /* empty function */
 }
 
-/* 800155DC-80015614 0038+00 s=1 e=0 z=0  None .text      destroyVideo__Fv */
-//	800155E8: 802E4CAC (destroyManager__8JUTVideoFv)
-//	800155F0: 8035C5AC (GXSetDrawDoneCallback)
-//	800155F8: 8034D840 (VISetBlack)
-//	800155FC: 8034D694 (VIFlush)
-//	80015600: 8034C9C4 (VIWaitForRetrace)
+/* 800155DC-80015614 00FF1C 0038+00 1/1 0/0 0/0 .text            destroyVideo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void destroyVideo() {
+static asm void destroyVideo() {
     nofralloc
 #include "asm/m_Do/m_Do_Reset/destroyVideo__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80374198-803741A8 0010+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
-#pragma pop
-
-/* 80450C78-80450C80 0004+04 s=3 e=42 z=2  None .sbss      mResetData__6mDoRst */
+/* 80450C78-80450C80 000178 0004+04 3/3 42/42 2/2 .sbss            mResetData__6mDoRst */
+extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
-/* 80015614-8001574C 0138+00 s=0 e=3 z=0  None .text      mDoRst_reset__FiUli */
-//	80015624: 803621D4 (_savegpr_27)
-//	80015634: 80451550 (sManager__6JUTXfb)
-//	80015638: 802E5214 (clearIndex__6JUTXfbFv)
-//	8001563C: 8001665C (mDoDvdErr_ThdCleanup__Fv)
-//	80015640: 8026328C (cAPICPad_recalibrate__Fv)
-//	80015644: 80450BB8 (struct_80450BB8)
-//	80015650: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80015654: 802CDA6C (hasReset__10Z2AudioMgrCFv)
-//	80015660: 8034B1C8 (DVDGetDriveStatus)
-//	8001566C: 80374198 (m_Do_m_Do_Reset__stringBase0)
-//	80015670: 80374198 (m_Do_m_Do_Reset__stringBase0)
-//	80015678: 80006814 (OSAttention)
-//	8001567C: 8028FEFC (getThreadPointer__6JASDvdFv)
-//	8001568C: 8028FE88 (pause__13JASTaskThreadFb)
-//	800156A0: 80341A3C (OSSuspendThread)
-//	800156A8: 80341714 (OSDetachThread)
-//	800156B0: 80341558 (OSCancelThread)
-//	800156B4: 8034C9C4 (VIWaitForRetrace)
-//	800156B8: 8034C9C4 (VIWaitForRetrace)
-//	800156BC: 8035AEA0 (GXGetCurrentGXThread)
-//	800156C4: 8033D6F4 (OSDisableInterrupts)
-//	800156CC: 80340C84 (OSGetCurrentThread)
-//	800156DC: 80341558 (OSCancelThread)
-//	800156E0: 8035AE54 (GXSetCurrentGXThread)
-//	800156E4: 8035BECC (GXFlush)
-//	800156E8: 8035C094 (GXAbortFrame)
-//	800156EC: 8035C2F4 (GXDrawDone)
-//	800156F4: 8033D71C (OSRestoreInterrupts)
-//	800156F8: 800155DC (destroyVideo__Fv)
-//	800156FC: 803EAF40 (g_mDoMemCd_control)
-//	80015700: 803EAF40 (g_mDoMemCd_control)
-//	80015708: 8034C9C4 (VIWaitForRetrace)
-//	80015718: 800155D8 (my_OSCancelAlarmAll__Fv)
-//	8001571C: 8033B7EC (LCDisable)
-//	80015720: 80450C78 (mResetData__6mDoRst)
-//	80015724: 800157F4 (getResetData__6mDoRstFv)
-//	80015728: 800157F4 (getResetData__6mDoRstFv)
-//	80015730: 8033F640 (OSSetSaveRegion)
-//	80015740: 8033F8AC (OSResetSystem)
-//	80015744: 8034C9C4 (VIWaitForRetrace)
+/* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -183,18 +123,7 @@ asm void mDoRst_reset(int param_0, u32 param_1, int param_2) {
 }
 #pragma pop
 
-/* 8001574C-800157F4 00A8+00 s=0 e=3 z=0  None .text      mDoRst_resetCallBack__FiPv */
-//	80015758: 80450C78 (mResetData__6mDoRst)
-//	80015770: 8026328C (cAPICPad_recalibrate__Fv)
-//	80015788: 80451501 (struct_80451500)
-//	80015794: 804514EC (sCallback__Q210JUTGamePad13C3ButtonReset)
-//	80015798: 804514F0 (sCallbackArg__Q210JUTGamePad13C3ButtonReset)
-//	800157A8: 80450C78 (mResetData__6mDoRst)
-//	800157B0: 8026328C (cAPICPad_recalibrate__Fv)
-//	800157B4: 8034B628 (DVDCheckDisk)
-//	800157C0: 8034B1C8 (DVDGetDriveStatus)
-//	800157D0: 80450C78 (mResetData__6mDoRst)
-//	800157DC: 80450C78 (mResetData__6mDoRst)
+/* 8001574C-800157F4 01008C 00A8+00 0/0 3/3 0/0 .text            mDoRst_resetCallBack__FiPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -204,8 +133,7 @@ asm void mDoRst_resetCallBack(int param_0, void* param_1) {
 }
 #pragma pop
 
-/* 800157F4-800157FC 0008+00 s=1 e=0 z=0  None .text      getResetData__6mDoRstFv */
-//	800157F4: 80450C78 (mResetData__6mDoRst)
+/* 800157F4-800157FC 010134 0008+00 1/1 0/0 0/0 .text            getResetData__6mDoRstFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,8 +144,19 @@ asm void mDoRst::getResetData() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C80-80450C88 0008+00 s=0 e=6 z=0  None .sbss      None */
+/* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
+/* 80450C80 0001+00 data_80450C80 None */
+/* 80450C81 0007+00 data_80450C81 None */
+extern u8 struct_80450C80[8];
 u8 struct_80450C80[8];
 
-/* 80450C88-80450C90 0008+00 s=0 e=2 z=0  None .sbss      None */
+/* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
+extern u8 data_80450C88[8];
 u8 data_80450C88[8];
+
+/* 80374198-803741A8 0007F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
+#pragma pop

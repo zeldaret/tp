@@ -1,13 +1,13 @@
 lbl_8034E6C0:
 /* 8034E6C0  7C 08 02 A6 */	mflr r0
-/* 8034E6C4  3C C0 80 45 */	lis r6, Type@ha
+/* 8034E6C4  3C C0 80 45 */	lis r6, Type@ha /* 0x8044CB70@ha */
 /* 8034E6C8  90 01 00 04 */	stw r0, 4(r1)
 /* 8034E6CC  54 80 07 3F */	clrlwi. r0, r4, 0x1c
 /* 8034E6D0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8034E6D4  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8034E6D8  3F E0 80 00 */	lis r31, 0x8000
 /* 8034E6DC  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 8034E6E0  3B C6 CB 70 */	addi r30, r6, Type@l
+/* 8034E6E0  3B C6 CB 70 */	addi r30, r6, Type@l /* 0x8044CB70@l */
 /* 8034E6E4  93 A1 00 34 */	stw r29, 0x34(r1)
 /* 8034E6E8  93 81 00 30 */	stw r28, 0x30(r1)
 /* 8034E6EC  83 AD 84 A4 */	lwz r29, ResettingChan(r13)
@@ -33,9 +33,9 @@ lbl_8034E6C0:
 /* 8034E73C  38 A0 00 0C */	li r5, 0xc
 /* 8034E740  38 63 00 10 */	addi r3, r3, 0x10
 /* 8034E744  4B CB 4D 15 */	bl memset
-/* 8034E748  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha
+/* 8034E748  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha /* 0x8034E6C0@ha */
 /* 8034E74C  80 6D 84 A4 */	lwz r3, ResettingChan(r13)
-/* 8034E750  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l
+/* 8034E750  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l /* 0x8034E6C0@l */
 /* 8034E754  4B FF 7A 01 */	bl SIGetTypeAsync
 /* 8034E758  48 00 02 74 */	b lbl_8034E9CC
 lbl_8034E75C:
@@ -65,9 +65,9 @@ lbl_8034E780:
 /* 8034E7B4  38 A0 00 0C */	li r5, 0xc
 /* 8034E7B8  38 63 00 10 */	addi r3, r3, 0x10
 /* 8034E7BC  4B CB 4C 9D */	bl memset
-/* 8034E7C0  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha
+/* 8034E7C0  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha /* 0x8034E6C0@ha */
 /* 8034E7C4  80 6D 84 A4 */	lwz r3, ResettingChan(r13)
-/* 8034E7C8  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l
+/* 8034E7C8  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l /* 0x8034E6C0@l */
 /* 8034E7CC  4B FF 79 89 */	bl SIGetTypeAsync
 /* 8034E7D0  48 00 01 FC */	b lbl_8034E9CC
 lbl_8034E7D4:
@@ -101,9 +101,9 @@ lbl_8034E7D4:
 /* 8034E840  38 A0 00 0C */	li r5, 0xc
 /* 8034E844  38 63 00 10 */	addi r3, r3, 0x10
 /* 8034E848  4B CB 4C 11 */	bl memset
-/* 8034E84C  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha
+/* 8034E84C  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha /* 0x8034E6C0@ha */
 /* 8034E850  80 6D 84 A4 */	lwz r3, ResettingChan(r13)
-/* 8034E854  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l
+/* 8034E854  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l /* 0x8034E6C0@l */
 /* 8034E858  4B FF 78 FD */	bl SIGetTypeAsync
 /* 8034E85C  48 00 01 70 */	b lbl_8034E9CC
 lbl_8034E860:
@@ -115,9 +115,9 @@ lbl_8034E870:
 /* 8034E870  28 05 00 00 */	cmplwi r5, 0
 /* 8034E874  41 82 00 38 */	beq lbl_8034E8AC
 /* 8034E878  1C 1D 00 0C */	mulli r0, r29, 0xc
-/* 8034E87C  3C 60 80 35 */	lis r3, PADOriginCallback@ha
+/* 8034E87C  3C 60 80 35 */	lis r3, PADOriginCallback@ha /* 0x8034E458@ha */
 /* 8034E880  7C DE 02 14 */	add r6, r30, r0
-/* 8034E884  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l
+/* 8034E884  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l /* 0x8034E458@l */
 /* 8034E888  38 7D 00 00 */	addi r3, r29, 0
 /* 8034E88C  38 8D 84 BC */	la r4, CmdCalibrate(r13) /* 80450A3C-_SDA_BASE_ */
 /* 8034E890  38 A0 00 03 */	li r5, 3
@@ -129,9 +129,9 @@ lbl_8034E870:
 /* 8034E8A8  48 00 00 C0 */	b lbl_8034E968
 lbl_8034E8AC:
 /* 8034E8AC  1C 1D 00 0C */	mulli r0, r29, 0xc
-/* 8034E8B0  3C 60 80 35 */	lis r3, PADOriginCallback@ha
+/* 8034E8B0  3C 60 80 35 */	lis r3, PADOriginCallback@ha /* 0x8034E458@ha */
 /* 8034E8B4  7C DE 02 14 */	add r6, r30, r0
-/* 8034E8B8  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l
+/* 8034E8B8  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l /* 0x8034E458@l */
 /* 8034E8BC  38 7D 00 00 */	addi r3, r29, 0
 /* 8034E8C0  38 8D 84 B8 */	la r4, CmdReadOrigin(r13) /* 80450A38-_SDA_BASE_ */
 /* 8034E8C4  38 A0 00 01 */	li r5, 1
@@ -151,9 +151,9 @@ lbl_8034E8E0:
 /* 8034E8F8  54 C0 00 43 */	rlwinm. r0, r6, 0, 1, 1
 /* 8034E8FC  41 82 00 38 */	beq lbl_8034E934
 /* 8034E900  1C 1D 00 0C */	mulli r0, r29, 0xc
-/* 8034E904  3C 60 80 35 */	lis r3, PADOriginCallback@ha
+/* 8034E904  3C 60 80 35 */	lis r3, PADOriginCallback@ha /* 0x8034E458@ha */
 /* 8034E908  7C DE 02 14 */	add r6, r30, r0
-/* 8034E90C  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l
+/* 8034E90C  39 03 E4 58 */	addi r8, r3, PADOriginCallback@l /* 0x8034E458@l */
 /* 8034E910  38 7D 00 00 */	addi r3, r29, 0
 /* 8034E914  38 8D 84 B8 */	la r4, CmdReadOrigin(r13) /* 80450A38-_SDA_BASE_ */
 /* 8034E918  38 A0 00 01 */	li r5, 1
@@ -165,10 +165,10 @@ lbl_8034E8E0:
 /* 8034E930  48 00 00 38 */	b lbl_8034E968
 lbl_8034E934:
 /* 8034E934  1C 1D 00 0C */	mulli r0, r29, 0xc
-/* 8034E938  3C 60 80 35 */	lis r3, PADProbeCallback@ha
+/* 8034E938  3C 60 80 35 */	lis r3, PADProbeCallback@ha /* 0x8034E5E8@ha */
 /* 8034E93C  7C 9E 22 14 */	add r4, r30, r4
 /* 8034E940  7C DE 02 14 */	add r6, r30, r0
-/* 8034E944  39 03 E5 E8 */	addi r8, r3, PADProbeCallback@l
+/* 8034E944  39 03 E5 E8 */	addi r8, r3, PADProbeCallback@l /* 0x8034E5E8@l */
 /* 8034E948  38 7D 00 00 */	addi r3, r29, 0
 /* 8034E94C  38 A0 00 03 */	li r5, 3
 /* 8034E950  38 E0 00 08 */	li r7, 8
@@ -199,9 +199,9 @@ lbl_8034E968:
 /* 8034E9B0  38 A0 00 0C */	li r5, 0xc
 /* 8034E9B4  38 63 00 10 */	addi r3, r3, 0x10
 /* 8034E9B8  4B CB 4A A1 */	bl memset
-/* 8034E9BC  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha
+/* 8034E9BC  3C 80 80 35 */	lis r4, PADTypeAndStatusCallback@ha /* 0x8034E6C0@ha */
 /* 8034E9C0  80 6D 84 A4 */	lwz r3, ResettingChan(r13)
-/* 8034E9C4  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l
+/* 8034E9C4  38 84 E6 C0 */	addi r4, r4, PADTypeAndStatusCallback@l /* 0x8034E6C0@l */
 /* 8034E9C8  4B FF 77 8D */	bl SIGetTypeAsync
 lbl_8034E9CC:
 /* 8034E9CC  80 01 00 44 */	lwz r0, 0x44(r1)

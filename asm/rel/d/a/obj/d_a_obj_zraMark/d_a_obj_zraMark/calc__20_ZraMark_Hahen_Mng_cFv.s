@@ -12,13 +12,13 @@ lbl_80D439F8:
 lbl_80D43A20:
 /* 80D43A20  38 7F 03 A4 */	addi r3, r31, 0x3a4
 /* 80D43A24  38 9F 03 AA */	addi r4, r31, 0x3aa
-/* 80D43A28  4B 52 3A 34 */	b __apl__5csXyzFR5csXyz
+/* 80D43A28  4B 52 3A 35 */	bl __apl__5csXyzFR5csXyz
 /* 80D43A2C  7F E3 FB 78 */	mr r3, r31
 /* 80D43A30  4B FF FD D9 */	bl calcSpeed__16_ZraMark_Hahen_cFv
 /* 80D43A34  38 7F 03 8C */	addi r3, r31, 0x38c
 /* 80D43A38  38 9F 03 98 */	addi r4, r31, 0x398
 /* 80D43A3C  7C 65 1B 78 */	mr r5, r3
-/* 80D43A40  4B 60 36 50 */	b PSVECAdd
+/* 80D43A40  4B 60 36 51 */	bl PSVECAdd
 /* 80D43A44  7F E3 FB 78 */	mr r3, r31
 /* 80D43A48  4B FF FE 1D */	bl setMtx__16_ZraMark_Hahen_cFv
 /* 80D43A4C  3B DE 00 01 */	addi r30, r30, 1

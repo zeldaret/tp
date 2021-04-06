@@ -4,10 +4,10 @@ lbl_804E464C:
 /* 804E4654  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804E4658  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804E465C  7C 7F 1B 78 */	mr r31, r3
-/* 804E4660  3C 60 80 4E */	lis r3, cNullVec__6Z2Calc@ha
-/* 804E4664  38 C3 4D F8 */	addi r6, r3, cNullVec__6Z2Calc@l
-/* 804E4668  3C 60 80 4E */	lis r3, data_804E50A8@ha
-/* 804E466C  38 A3 50 A8 */	addi r5, r3, data_804E50A8@l
+/* 804E4660  3C 60 80 4E */	lis r3, cNullVec__6Z2Calc@ha /* 0x804E4DF8@ha */
+/* 804E4664  38 C3 4D F8 */	addi r6, r3, cNullVec__6Z2Calc@l /* 0x804E4DF8@l */
+/* 804E4668  3C 60 80 4E */	lis r3, data_804E50A8@ha /* 0x804E50A8@ha */
+/* 804E466C  38 A3 50 A8 */	addi r5, r3, data_804E50A8@l /* 0x804E50A8@l */
 /* 804E4670  88 05 00 00 */	lbz r0, 0(r5)
 /* 804E4674  7C 00 07 75 */	extsb. r0, r0
 /* 804E4678  40 82 00 70 */	bne lbl_804E46E8
@@ -42,17 +42,17 @@ lbl_804E46E8:
 /* 804E46E8  80 1F 04 9C */	lwz r0, 0x49c(r31)
 /* 804E46EC  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 804E46F0  41 82 00 48 */	beq lbl_804E4738
-/* 804E46F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804E46F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804E46F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804E46F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804E46FC  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 804E4700  3C 80 80 4E */	lis r4, l_staff_name@ha
-/* 804E4704  38 84 4A 14 */	addi r4, r4, l_staff_name@l
+/* 804E4700  3C 80 80 4E */	lis r4, l_staff_name@ha /* 0x804E4A14@ha */
+/* 804E4704  38 84 4A 14 */	addi r4, r4, l_staff_name@l /* 0x804E4A14@l */
 /* 804E4708  38 A0 00 00 */	li r5, 0
 /* 804E470C  38 C0 00 00 */	li r6, 0
-/* 804E4710  4B B6 34 0C */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 804E4710  4B B6 34 0D */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 804E4714  90 7F 05 A0 */	stw r3, 0x5a0(r31)
-/* 804E4718  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 804E471C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 804E4718  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 804E471C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 804E4720  A0 03 00 B0 */	lhz r0, 0xb0(r3)
 /* 804E4724  60 00 00 02 */	ori r0, r0, 2
 /* 804E4728  B0 03 00 B0 */	sth r0, 0xb0(r3)
@@ -65,7 +65,7 @@ lbl_804E4738:
 /* 804E4740  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 804E4744  39 86 01 F0 */	addi r12, r6, 0x1f0
 /* 804E4748  7D 8C 02 14 */	add r12, r12, r0
-/* 804E474C  4B E7 D9 38 */	b __ptmf_scall
+/* 804E474C  4B E7 D9 39 */	bl __ptmf_scall
 /* 804E4750  60 00 00 00 */	nop 
 lbl_804E4754:
 /* 804E4754  38 60 00 01 */	li r3, 1

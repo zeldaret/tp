@@ -4,8 +4,8 @@ lbl_80345B8C:
 /* 80345B94  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80345B98  BE 61 00 2C */	stmw r19, 0x2c(r1)
 /* 80345B9C  3B 03 00 00 */	addi r24, r3, 0
-/* 80345BA0  3C 60 80 45 */	lis r3, Packet@ha
-/* 80345BA4  3A E3 C6 30 */	addi r23, r3, Packet@l
+/* 80345BA0  3C 60 80 45 */	lis r3, Packet@ha /* 0x8044C630@ha */
+/* 80345BA4  3A E3 C6 30 */	addi r23, r3, Packet@l /* 0x8044C630@l */
 /* 80345BA8  57 00 28 34 */	slwi r0, r24, 5
 /* 80345BAC  3B 24 00 00 */	addi r25, r4, 0
 /* 80345BB0  3B 45 00 00 */	addi r26, r5, 0
@@ -20,8 +20,8 @@ lbl_80345B8C:
 /* 80345BD4  3A A3 00 00 */	addi r21, r3, 0
 /* 80345BD8  2C 00 FF FF */	cmpwi r0, -1
 /* 80345BDC  40 82 00 14 */	bne lbl_80345BF0
-/* 80345BE0  3C 60 80 3D */	lis r3, Si@ha
-/* 80345BE4  80 03 11 FC */	lwz r0, Si@l(r3)
+/* 80345BE0  3C 60 80 3D */	lis r3, Si@ha /* 0x803D11FC@ha */
+/* 80345BE4  80 03 11 FC */	lwz r0, Si@l(r3)  /* 0x803D11FC@l */
 /* 80345BE8  7C 00 C0 00 */	cmpw r0, r24
 /* 80345BEC  40 82 00 14 */	bne lbl_80345C00
 lbl_80345BF0:
@@ -57,9 +57,9 @@ lbl_80345C3C:
 /* 80345C58  1C 18 00 28 */	mulli r0, r24, 0x28
 /* 80345C5C  7F C4 98 10 */	subfc r30, r4, r19
 /* 80345C60  7F E3 A1 10 */	subfe r31, r3, r20
-/* 80345C64  3C 80 80 34 */	lis r4, AlarmHandler@ha
+/* 80345C64  3C 80 80 34 */	lis r4, AlarmHandler@ha /* 0x80345B00@ha */
 /* 80345C68  7C 77 02 14 */	add r3, r23, r0
-/* 80345C6C  38 E4 5B 00 */	addi r7, r4, AlarmHandler@l
+/* 80345C6C  38 E4 5B 00 */	addi r7, r4, AlarmHandler@l /* 0x80345B00@l */
 /* 80345C70  38 DE 00 00 */	addi r6, r30, 0
 /* 80345C74  38 BF 00 00 */	addi r5, r31, 0
 /* 80345C78  38 63 00 80 */	addi r3, r3, 0x80

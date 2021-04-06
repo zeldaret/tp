@@ -5,8 +5,8 @@ lbl_80070110:
 /* 8007011C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80070120  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80070124  41 82 00 1C */	beq lbl_80070140
-/* 80070128  3C A0 80 3B */	lis r5, __vt__11dAttParam_c@ha
-/* 8007012C  38 05 9C 60 */	addi r0, r5, __vt__11dAttParam_c@l
+/* 80070128  3C A0 80 3B */	lis r5, __vt__11dAttParam_c@ha /* 0x803A9C60@ha */
+/* 8007012C  38 05 9C 60 */	addi r0, r5, __vt__11dAttParam_c@l /* 0x803A9C60@l */
 /* 80070130  90 1F 00 40 */	stw r0, 0x40(r31)
 /* 80070134  7C 80 07 35 */	extsh. r0, r4
 /* 80070138  40 81 00 08 */	ble lbl_80070140

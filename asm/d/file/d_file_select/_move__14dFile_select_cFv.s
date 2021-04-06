@@ -5,8 +5,8 @@ lbl_801844FC:
 /* 80184508  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8018450C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80184510  7C 7F 1B 78 */	mr r31, r3
-/* 80184514  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80184518  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80184514  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80184518  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018451C  48 09 7D 1D */	bl decMsgKeyWaitTimer__13dMeter2Info_cFv
 /* 80184520  48 1C 6C A9 */	bl DVDGetDriveStatus
 /* 80184524  2C 03 00 00 */	cmpwi r3, 0
@@ -19,8 +19,8 @@ lbl_801844FC:
 /* 80184540  38 00 00 00 */	li r0, 0
 /* 80184544  98 1F 03 B1 */	stb r0, 0x3b1(r31)
 lbl_80184548:
-/* 80184548  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018454C  3B C3 AF 40 */	addi r30, r3, g_mDoMemCd_control@l
+/* 80184548  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018454C  3B C3 AF 40 */	addi r30, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80184550  88 1E 1F BE */	lbz r0, 0x1fbe(r30)
 /* 80184554  28 00 00 00 */	cmplwi r0, 0
 /* 80184558  41 82 00 0C */	beq lbl_80184564
@@ -51,8 +51,8 @@ lbl_801845B0:
 /* 801845B0  7F E3 FB 78 */	mr r3, r31
 /* 801845B4  88 1F 02 6F */	lbz r0, 0x26f(r31)
 /* 801845B8  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801845BC  3C 80 80 3C */	lis r4, DataSelProc@ha
-/* 801845C0  38 04 AA EC */	addi r0, r4, DataSelProc@l
+/* 801845BC  3C 80 80 3C */	lis r4, DataSelProc@ha /* 0x803BAAEC@ha */
+/* 801845C0  38 04 AA EC */	addi r0, r4, DataSelProc@l /* 0x803BAAEC@l */
 /* 801845C4  7D 80 2A 14 */	add r12, r0, r5
 /* 801845C8  48 1D DA BD */	bl __ptmf_scall
 /* 801845CC  60 00 00 00 */	nop 

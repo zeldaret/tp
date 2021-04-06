@@ -4,7 +4,7 @@ lbl_80505D80:
 /* 80505D88  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80505D8C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80505D90  7C 7F 1B 78 */	mr r31, r3
-/* 80505D94  4B B1 2F 4C */	b fopAc_IsActor__FPv
+/* 80505D94  4B B1 2F 4D */	bl fopAc_IsActor__FPv
 /* 80505D98  2C 03 00 00 */	cmpwi r3, 0
 /* 80505D9C  41 82 00 48 */	beq lbl_80505DE4
 /* 80505DA0  A8 1F 00 08 */	lha r0, 8(r31)
@@ -13,14 +13,14 @@ lbl_80505D80:
 /* 80505DAC  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80505DB0  28 00 00 00 */	cmplwi r0, 0
 /* 80505DB4  41 82 00 30 */	beq lbl_80505DE4
-/* 80505DB8  3C 60 80 52 */	lis r3, target_info_count@ha
-/* 80505DBC  38 83 92 2C */	addi r4, r3, target_info_count@l
+/* 80505DB8  3C 60 80 52 */	lis r3, target_info_count@ha /* 0x8051922C@ha */
+/* 80505DBC  38 83 92 2C */	addi r4, r3, target_info_count@l /* 0x8051922C@l */
 /* 80505DC0  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80505DC4  2C 05 00 0A */	cmpwi r5, 0xa
 /* 80505DC8  40 80 00 1C */	bge lbl_80505DE4
 /* 80505DCC  54 A0 10 3A */	slwi r0, r5, 2
-/* 80505DD0  3C 60 80 52 */	lis r3, target_info@ha
-/* 80505DD4  38 63 92 04 */	addi r3, r3, target_info@l
+/* 80505DD0  3C 60 80 52 */	lis r3, target_info@ha /* 0x80519204@ha */
+/* 80505DD4  38 63 92 04 */	addi r3, r3, target_info@l /* 0x80519204@l */
 /* 80505DD8  7F E3 01 2E */	stwx r31, r3, r0
 /* 80505DDC  38 05 00 01 */	addi r0, r5, 1
 /* 80505DE0  90 04 00 00 */	stw r0, 0(r4)

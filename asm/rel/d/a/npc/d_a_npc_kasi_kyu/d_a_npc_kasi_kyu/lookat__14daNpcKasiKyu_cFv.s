@@ -3,10 +3,10 @@ lbl_80A23350:
 /* 80A23354  7C 08 02 A6 */	mflr r0
 /* 80A23358  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80A2335C  39 61 00 60 */	addi r11, r1, 0x60
-/* 80A23360  4B 93 EE 78 */	b _savegpr_28
+/* 80A23360  4B 93 EE 79 */	bl _savegpr_28
 /* 80A23364  7C 7C 1B 78 */	mr r28, r3
-/* 80A23368  3C 60 80 A2 */	lis r3, m__20daNpcKasiKyu_Param_c@ha
-/* 80A2336C  38 83 58 B8 */	addi r4, r3, m__20daNpcKasiKyu_Param_c@l
+/* 80A23368  3C 60 80 A2 */	lis r3, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A2336C  38 83 58 B8 */	addi r4, r3, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A23370  38 A0 00 00 */	li r5, 0
 /* 80A23374  80 7C 05 68 */	lwz r3, 0x568(r28)
 /* 80A23378  83 E3 00 04 */	lwz r31, 4(r3)
@@ -67,8 +67,8 @@ lbl_80A2344C:
 /* 80A2344C  3B C0 00 01 */	li r30, 1
 /* 80A23450  48 00 00 20 */	b lbl_80A23470
 lbl_80A23454:
-/* 80A23454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A23458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A23454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A23458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A2345C  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80A23460  2C 00 00 03 */	cmpwi r0, 3
 /* 80A23464  40 82 00 0C */	bne lbl_80A23470
@@ -111,7 +111,7 @@ lbl_80A234C8:
 /* 80A234E8  FD 00 28 90 */	fmr f8, f5
 /* 80A234EC  A8 9C 08 F2 */	lha r4, 0x8f2(r28)
 /* 80A234F0  38 A1 00 24 */	addi r5, r1, 0x24
-/* 80A234F4  4B 72 DB C4 */	b setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
+/* 80A234F4  4B 72 DB C5 */	bl setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
 /* 80A234F8  38 7C 0B F0 */	addi r3, r28, 0xbf0
 /* 80A234FC  7F 84 E3 78 */	mr r4, r28
 /* 80A23500  38 BF 00 24 */	addi r5, r31, 0x24
@@ -119,9 +119,9 @@ lbl_80A234C8:
 /* 80A23508  7F C7 F3 78 */	mr r7, r30
 /* 80A2350C  7F A8 EB 78 */	mr r8, r29
 /* 80A23510  39 20 00 00 */	li r9, 0
-/* 80A23514  4B 72 DE 3C */	b calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
+/* 80A23514  4B 72 DE 3D */	bl calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
 /* 80A23518  39 61 00 60 */	addi r11, r1, 0x60
-/* 80A2351C  4B 93 ED 08 */	b _restgpr_28
+/* 80A2351C  4B 93 ED 09 */	bl _restgpr_28
 /* 80A23520  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80A23524  7C 08 03 A6 */	mtlr r0
 /* 80A23528  38 21 00 60 */	addi r1, r1, 0x60

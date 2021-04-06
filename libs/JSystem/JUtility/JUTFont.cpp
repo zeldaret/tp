@@ -45,9 +45,7 @@ extern "C" extern void* __vt__7JUTFont[17];
 // Declarations:
 //
 
-/* 802DECF8-802DED24 002C+00 s=0 e=2 z=0  None .text      __ct__7JUTFontFv */
-//	802DECF8: 803A31F0 (__vt__7JUTFont)
-//	802DECFC: 803A31F0 (__vt__7JUTFont)
+/* 802DECF8-802DED24 2D9638 002C+00 0/0 2/2 0/0 .text            __ct__7JUTFontFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -57,8 +55,7 @@ asm JUTFont::JUTFont() {
 }
 #pragma pop
 
-/* 802DED24-802DED70 004C+00 s=0 e=9 z=0  None .text      initialize_state__7JUTFontFv */
-//	802DED48: 802DED70 (setCharColor__7JUTFontFQ28JUtility6TColor)
+/* 802DED24-802DED70 2D9664 004C+00 0/0 9/9 0/0 .text            initialize_state__7JUTFontFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,8 +65,7 @@ asm void JUTFont::initialize_state() {
 }
 #pragma pop
 
-/* 802DED70-802DEDC4 0054+00 s=1 e=3 z=0  None .text      setCharColor__7JUTFontFQ28JUtility6TColor
- */
+/* 802DED70-802DEDC4 2D96B0 0054+00 1/1 3/3 0/0 .text setCharColor__7JUTFontFQ28JUtility6TColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -79,7 +75,7 @@ asm void JUTFont::setCharColor(JUtility::TColor param_0) {
 }
 #pragma pop
 
-/* 802DEDC4-802DEE28 0064+00 s=0 e=2 z=0  None .text
+/* 802DEDC4-802DEE28 2D9704 0064+00 0/0 2/2 0/0 .text
  * setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor  */
 #pragma push
 #pragma optimization_level 0
@@ -90,10 +86,8 @@ asm void JUTFont::setGradColor(JUtility::TColor param_0, JUtility::TColor param_
 }
 #pragma pop
 
-/* 802DEE28-802DEF48 0120+00 s=0 e=3 z=0  None .text      drawString_size_scale__7JUTFontFffffPCcUlb
+/* 802DEE28-802DEF48 2D9768 0120+00 0/0 3/3 0/0 .text drawString_size_scale__7JUTFontFffffPCcUlb
  */
-//	802DEE60: 803621D4 (_savegpr_27)
-//	802DEF34: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

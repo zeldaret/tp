@@ -3,17 +3,15 @@
 #
 
 M492_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou.plf
+M492_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou.lcf
+M492_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou.map
 
 M492_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kaisou/executor.cpp \
-	rel/d/a/obj/d_a_obj_kaisou/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kaisou/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kaisou/d_a_obj_kaisou.cpp \
 
 M492_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/d_a_obj_kaisou.o \
 
 M492_LIBS := \
@@ -29,15 +27,21 @@ M492_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map492.map\
+	-m _prolog \
+	-lcf $(M492_LDSCRIPT) \
+	-unused -map $(M492_MAP) \
+	-w off \
 
 $(M492_TARGET): $(M492_O_FILES) $(M492_LIBS)
+	@echo [492] creating $(M492_TARGET)
 	@echo $(M492_LIBS) $(M492_O_FILES) > build/M492_ofiles
-	$(LD) -opt_partial $(M492_LDFLAGS) -o $(M492_TARGET) @build/M492_ofiles
+	@python3 tools/lcf.py rel 492 --output $(M492_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M492_LDFLAGS) -o $(M492_TARGET) @build/M492_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kaisou/%.o: rel/d/a/obj/d_a_obj_kaisou/%.cpp
+	@echo [492] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M492_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M492_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

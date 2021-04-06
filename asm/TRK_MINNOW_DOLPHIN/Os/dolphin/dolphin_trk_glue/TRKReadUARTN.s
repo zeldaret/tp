@@ -1,9 +1,9 @@
 lbl_80371DA4:
 /* 80371DA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80371DA8  7C 08 02 A6 */	mflr r0
-/* 80371DAC  3C A0 80 3D */	lis r5, gDBCommTable@ha
+/* 80371DAC  3C A0 80 3D */	lis r5, gDBCommTable@ha /* 0x803D32A8@ha */
 /* 80371DB0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80371DB4  38 A5 32 A8 */	addi r5, r5, gDBCommTable@l
+/* 80371DB4  38 A5 32 A8 */	addi r5, r5, gDBCommTable@l /* 0x803D32A8@l */
 /* 80371DB8  81 85 00 10 */	lwz r12, 0x10(r5)
 /* 80371DBC  7D 89 03 A6 */	mtctr r12
 /* 80371DC0  4E 80 04 21 */	bctrl 

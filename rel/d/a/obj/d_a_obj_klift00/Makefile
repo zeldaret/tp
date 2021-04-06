@@ -3,17 +3,15 @@
 #
 
 M101_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00.plf
+M101_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00.lcf
+M101_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00.map
 
 M101_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_klift00/executor.cpp \
-	rel/d/a/obj/d_a_obj_klift00/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_klift00/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_klift00/d_a_obj_klift00.cpp \
 
 M101_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/d_a_obj_klift00.o \
 
 M101_LIBS := \
@@ -29,15 +27,21 @@ M101_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map101.map\
+	-m _prolog \
+	-lcf $(M101_LDSCRIPT) \
+	-unused -map $(M101_MAP) \
+	-w off \
 
 $(M101_TARGET): $(M101_O_FILES) $(M101_LIBS)
+	@echo [101] creating $(M101_TARGET)
 	@echo $(M101_LIBS) $(M101_O_FILES) > build/M101_ofiles
-	$(LD) -opt_partial $(M101_LDFLAGS) -o $(M101_TARGET) @build/M101_ofiles
+	@python3 tools/lcf.py rel 101 --output $(M101_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M101_LDFLAGS) -o $(M101_TARGET) @build/M101_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_klift00/%.o: rel/d/a/obj/d_a_obj_klift00/%.cpp
+	@echo [101] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M101_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M101_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

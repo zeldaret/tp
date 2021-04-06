@@ -22,6 +22,7 @@ def insert_access_as_symbol(context: Context,
                             sections: Dict[int, ExecutableSection],
                             map_sections: Dict[str, linker_map.Section],
                             map_addrs: Dict[str, Dict[int, linker_map.Symbol]],
+                            ait: Dict[str, IntervalTree],
                             access: Access) -> bool:
     """Insert new symbol from the access data"""
 
@@ -41,11 +42,17 @@ def insert_access_as_symbol(context: Context,
         map_addrs[section.name][relative_addr].access = access
         return False
 
+    overlap = ait[section.name].at(relative_addr)
+    if len(overlap) > 0:
+        overlap_symbol = list(overlap)[0].data
+        if overlap_symbol.name == "@stringBase0":
+            return False
+
     obj = None
     lib = None
     name = None
 
-    # because this is an access we have not other information about the name, here we try to set names to known addresses
+    # because this is an "access" we have no other information about the name, here we try to set names for known addresses
     if module_id == 0:
         if section.name == ".init":
             obj = "init.o"
@@ -70,7 +77,7 @@ def infer_location_from_other_symbols(section: linker_map.Section, symbols: List
     lib = None
     symbols_without_obj = []
     for symbol in symbols:
-        # iften, code and data are not stored in the same section (except .init). thus, if the symbol is in any code section
+        # often, code and data are not stored in the same section (except .init). thus, if the symbol is in any code section
         # set the 'is_function' flag so we later can parse the symbol as a function.
         if section.is_addr_code(symbol.addr) and symbol.name:
             symbol.is_function = True
@@ -183,7 +190,8 @@ def search(context: Context,
            map_path: Path,
            sections: List[ExecutableSection],
            relocations: Dict[int, "rel.Relocation"],
-           all_relocations: Dict[int, "librel.Relocation"]) -> Module:
+           all_relocations: Dict[int, "librel.Relocation"],
+           cache: bool) -> Module:
     """ Search for symbols from executable sections and the linker map. """
 
     # Get symbolsby reading the linker map
@@ -198,7 +206,16 @@ def search(context: Context,
     accesses = binary.analyze(
         context,
         module_id, 
-        sections)
+        sections,
+        cache=cache)
+
+    ait_sections = dict()
+    for name, section in map_sections.items():
+        ait_sections[name] = IntervalTree([
+            Interval(symbol.start, symbol.end, symbol)
+            for symbol in section.symbols
+            if symbol.size > 0
+        ])
 
     # TODO: do we really need to sort?
     sorted_accesses = list(accesses.items())
@@ -219,7 +236,7 @@ def search(context: Context,
 
         # add access as symbol, the check if the address is already a symbol is done inside 'insert_access_as_symbol'
         insert_access_as_symbol(context, module_id, sections,
-                                map_sections, map_addrs, access)
+                                map_sections, map_addrs, ait_sections, access)
 
     # add entrypoint to the right section. the entrypoint is required as it is not included in the linker map.
     if module_id == 0:
@@ -229,7 +246,7 @@ def search(context: Context,
 
             branch_access = BranchAccess(at=0x00000000, addr=settings.ENTRY_POINT)
             insert_access_as_symbol(
-                context, module_id, sections, map_sections, map_addrs, branch_access)
+                context, module_id, sections, map_sections, map_addrs, ait_sections, branch_access)
             break
 
     # insert relocation that are not already symbol from the linker map
@@ -249,6 +266,12 @@ def search(context: Context,
                 if module_id == 0: # relative address are used for symbols
                     addr -= section.addr
 
+                overlap = ait_sections[section.name].at(addr)
+                if len(overlap) > 0:
+                    overlap_symbol = list(overlap)[0].data
+                    if overlap_symbol.name == "@stringBase0":
+                        continue
+                    
                 if not addr in table[section.name]:
                     symbol = linker_map.Symbol(addr, 0, 0, None, None, None)
                     symbol.source = f"relocation/{section.name}/{r.addend:08X}"
@@ -264,19 +287,21 @@ def search(context: Context,
     tree_order = defaultdict(lambda: defaultdict(list))
     for section in map_sections.values():
 
+        """
         # .rel will be compiled with some standard libraries, but the linker map for the rel does not included what library these function come from.
         for symbol in section.symbols:
             if module_id != 0:
                 if symbol.obj == "global_destructor_chain.o":
                     symbol.lib = "Runtime.PPCEABI.H.a"
+        """
 
         # calculate the size of symbols and determine where symbols without a library and object file should be located.
         infer_location_from_other_symbols(section, section.symbols)
         calculate_symbol_sizes(section, section.symbols)
 
-        for symbol in section.symbols:
-            if symbol.addr >= 0x80450c90 and symbol.addr < 0x80450ca0:
-                context.debug(f"{symbol.addr:08X} {symbol.size:04X} {symbol.name} ({symbol.source})")
+        #for symbol in section.symbols:
+        #    if symbol.addr >= 0x80450c90 and symbol.addr < 0x80450ca0:
+        #        context.debug(f"{symbol.addr:08X} {symbol.size:04X} {symbol.name} ({symbol.source})")
 
         if section.symbols:
             for symbol in section.symbols:
@@ -287,6 +312,7 @@ def search(context: Context,
 
         #
         for symbol in section.symbols:
+            symbol.relative_addr = symbol.addr
             symbol.addr += section.addr + section.first_padding
             section_count[section.name] += 1
             tree[symbol.lib][symbol.obj][section.name].append(symbol)
@@ -316,6 +342,14 @@ def search(context: Context,
                 translation_name.replace(".o", ""))
             library.add_translation_unit(translation_unit)
 
+            # global_destructor_chain.o will be generate from template
+            if module_id > 0 and translation_name == "global_destructor_chain.o":
+                translation_unit.generate = False
+
+            # executor.o will be generate from template
+            if module_id > 0 and translation_name == "executor.o":
+                translation_unit.generate = False
+
             for sk, sv in v[tuk].items():
                 map_section = map_sections[sk]
                 exe_section = sections[map_section.index]
@@ -323,7 +357,8 @@ def search(context: Context,
                                   map_section.addr, map_section.size,
                                   map_section.data,
                                   base_addr=exe_section.base_addr,
-                                  index=map_section.index)
+                                  index=map_section.index,
+                                  alignment=exe_section.alignment)
 
 
                 if map_section.index in relocations:
@@ -364,5 +399,40 @@ def search(context: Context,
 
                 # clear data
                 section.data = None
+
+            if module_id > 0 and translation_name == "global_destructor_chain.o":
+                translation_unit.special = "rel"
+
+                for section in translation_unit.sections.values():
+                    if section.name == ".dtors":
+                        assert len(section.symbols) > 0
+                        first = section.symbols[0]
+                        length = sum([ x.size+x.padding for x in section.symbols ])
+                        _dtors = LinkerGenerated(
+                            identifier=Identifier("_xx", symbol.addr + 4, "_dtors"),
+                            addr=first.addr,
+                            size=length,
+                            data=[],
+                            data_type=PointerType(VOID),
+                            padding=0,
+                            padding_data=[],
+                            zero_length=True,
+                            always_extern=True)
+                        _dtors.set_mlts(module.index,library.name, translation_unit.name, section.name)
+                        section.symbols = [_dtors]
+                    elif section.name == ".text":
+                        for symbol in section.symbols:
+                            if symbol.identifier.name == "__register_global_object":
+                                symbol.argument_types.extend([
+                                    PointerType(VOID), # object
+                                    PointerType(VOID), # dtor
+                                    PointerType(VOID), # chain
+                                ])
+                            elif symbol.identifier.name == "__destroy_global_chain":
+                                pass
+
+            if module_id > 0 and translation_name == "executor.o":
+                translation_unit.special = "rel"
+
 
     return module

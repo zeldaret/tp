@@ -20,8 +20,8 @@ lbl_800F7E48:
 /* 800F7E90  7C 9D 23 78 */	mr r29, r4
 /* 800F7E94  A8 03 04 DE */	lha r0, 0x4de(r3)
 /* 800F7E98  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800F7E9C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 800F7EA0  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 800F7E9C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F7EA0  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F7EA4  7F 65 04 2E */	lfsx f27, r5, r0
 /* 800F7EA8  38 C5 00 04 */	addi r6, r5, 4
 /* 800F7EAC  7F 46 04 2E */	lfsx f26, r6, r0
@@ -48,8 +48,8 @@ lbl_800F7E48:
 /* 800F7F00  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 800F7F04  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800F7F08  40 82 00 84 */	bne lbl_800F7F8C
-/* 800F7F0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F7F10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F7F0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F7F10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F7F14  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800F7F18  38 9F 1B 5C */	addi r4, r31, 0x1b5c
 /* 800F7F1C  4B F7 CE E5 */	bl GetWallCode__4dBgSFRC13cBgS_PolyInfo

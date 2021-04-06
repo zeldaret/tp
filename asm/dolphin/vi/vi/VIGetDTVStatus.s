@@ -5,7 +5,7 @@ lbl_8034DB04:
 /* 8034DB10  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8034DB14  4B FE FB E1 */	bl OSDisableInterrupts
 /* 8034DB18  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC00206E@ha */
-/* 8034DB1C  A0 04 20 6E */	lhz r0, 0x206E(r4)
+/* 8034DB1C  A0 04 20 6E */	lhz r0, 0x206E(r4)  /* 0xCC00206E@l */
 /* 8034DB20  54 1F 07 BE */	clrlwi r31, r0, 0x1e
 /* 8034DB24  4B FE FB F9 */	bl OSRestoreInterrupts
 /* 8034DB28  57 E3 07 FE */	clrlwi r3, r31, 0x1f

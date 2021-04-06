@@ -11,12 +11,6 @@
 // Forward References:
 //
 
-static bool daNpc_Mk_Create(void*);
-static bool daNpc_Mk_Delete(void*);
-static bool daNpc_Mk_Execute(void*);
-static bool daNpc_Mk_Draw(void*);
-static bool daNpc_Mk_IsDelete(void*);
-
 extern "C" static bool daNpc_Mk_Create__FPv();
 extern "C" static bool daNpc_Mk_Delete__FPv();
 extern "C" static bool daNpc_Mk_Execute__FPv();
@@ -35,33 +29,33 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 // Declarations:
 //
 
-/* 80A73DD8-80A73DE0 0008+00 s=1 e=0 z=0  None .text      daNpc_Mk_Create__FPv */
+/* 80A73DD8-80A73DE0 000078 0008+00 1/0 0/0 0/0 .text            daNpc_Mk_Create__FPv */
 static bool daNpc_Mk_Create(void* param_0) {
     return true;
 }
 
-/* 80A73DE0-80A73DE8 0008+00 s=1 e=0 z=0  None .text      daNpc_Mk_Delete__FPv */
+/* 80A73DE0-80A73DE8 000080 0008+00 1/0 0/0 0/0 .text            daNpc_Mk_Delete__FPv */
 static bool daNpc_Mk_Delete(void* param_0) {
     return true;
 }
 
-/* 80A73DE8-80A73DF0 0008+00 s=1 e=0 z=0  None .text      daNpc_Mk_Execute__FPv */
+/* 80A73DE8-80A73DF0 000088 0008+00 1/0 0/0 0/0 .text            daNpc_Mk_Execute__FPv */
 static bool daNpc_Mk_Execute(void* param_0) {
     return true;
 }
 
-/* 80A73DF0-80A73DF8 0008+00 s=1 e=0 z=0  None .text      daNpc_Mk_Draw__FPv */
+/* 80A73DF0-80A73DF8 000090 0008+00 1/0 0/0 0/0 .text            daNpc_Mk_Draw__FPv */
 static bool daNpc_Mk_Draw(void* param_0) {
     return true;
 }
 
-/* 80A73DF8-80A73E00 0008+00 s=1 e=0 z=0  None .text      daNpc_Mk_IsDelete__FPv */
+/* 80A73DF8-80A73E00 000098 0008+00 1/0 0/0 0/0 .text            daNpc_Mk_IsDelete__FPv */
 static bool daNpc_Mk_IsDelete(void* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80A73E08-80A73E28 0020+00 s=1 e=0 z=0  None .data      daNpc_Mk_MethodTable */
+/* 80A73E08-80A73E28 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Mk_MethodTable */
 SECTION_DATA static void* daNpc_Mk_MethodTable[8] = {
     (void*)daNpc_Mk_Create__FPv,
     (void*)daNpc_Mk_Delete__FPv,
@@ -73,8 +67,8 @@ SECTION_DATA static void* daNpc_Mk_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 80A73E28-80A73E58 0030+00 s=0 e=0 z=1  None .data      g_profile_NPC_MK */
-SECTION_DATA void* g_profile_NPC_MK[12] = {
+/* 80A73E28-80A73E58 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_MK */
+SECTION_DATA extern void* g_profile_NPC_MK[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02A80000, (void*)&g_fpcLf_Method,
     (void*)0x00000001, (void*)NULL,

@@ -23,6 +23,11 @@ import hashlib
 import json
 import git
 import libdol
+import librel
+import libarc
+import yaz0
+import struct
+import io
 
 from pathlib import Path
 from rich.logging import RichHandler
@@ -50,6 +55,9 @@ loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
 for logger in loggers:
     logger.setLevel(logging.INFO)
 
+DEFAULT_GAME_PATH = Path("game")
+DEFAULT_BUILD_PATH = Path("build/dolzel2")
+
 @click.group()
 @click.version_option(VERSION)
 def tp():
@@ -67,7 +75,37 @@ def progress(debug, matchning, format):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
+    text = Text("--- Progress")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
     calculate_progress(matchning, format)
+
+@tp.command(name="check")
+@click.option('--debug/--no-debug')
+@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
+@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+def check(debug, game_path, build_path):
+    """ Compare SHA1 Checksums """
+
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    text = Text("--- Check")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    try:
+        check_sha1(game_path, build_path)
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    except CheckException as e:
+        LOG.error(e)
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
 
 def calculate_progress(matchning, format):
     if not matchning:
@@ -169,7 +207,6 @@ def calculate_progress(matchning, format):
         print(init_pct, text_pct, total_pct)
         LOG.error("unknown format: '{format}'")
 
-
 def find_function_ranges(asm_files):
     function_ranges = []
     for asm in asm_files:
@@ -194,11 +231,12 @@ def find_function_ranges(asm_files):
 
     return function_ranges
 
-
 @tp.command(name="pull-request")
 @click.option('--debug/--no-debug')
-@click.option('--thread-count', '-j', 'thread_count', help="Thread that should be used. This option is passed forward to any 'make' command.", default=4)
-def pull_request(debug, thread_count):
+@click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
+@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
+@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+def pull_request(debug, thread_count, game_path, build_path):
     """ Verify that everything is OK before pull-request """
 
     if debug:
@@ -233,6 +271,23 @@ def pull_request(debug, thread_count):
         text.stylize("bold green")
         CONSOLE.print(text)
     else:
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
+
+    #
+    text = Text("--- Check")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    try:
+        check_sha1(game_path, build_path)
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    except CheckException as e:
+        LOG.error(e)
         text = Text("    ERR")
         text.stylize("bold red")
         CONSOLE.print(text)
@@ -444,46 +499,149 @@ def clang_format(thread_count):
 
     return True
 
-
 def rebuild(thread_count):
     LOG.debug("make clean")
     with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
         task = progress.add_task(f"make clean", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "clean"]
-        subprocess.run(args=cmd, stdout=subprocess.PIPE,
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
         LOG.debug("make clean complete")
+        if result.returncode != 0:
+            return False
 
     LOG.debug("make main.dol")
     with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
         task = progress.add_task(f"make", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "build/dolzel2/main.dol"]
-        subprocess.run(args=cmd, stdout=subprocess.PIPE,
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
         LOG.debug("make main.dol complete")
+        if result.returncode != 0:
+            return False
 
-    dol = Path("build/dolzel2/main.dol")
-    if not dol.exists():
-        return False
+    LOG.debug("make RELs")
+    with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
+        task = progress.add_task(f"make rels", total=1000, start=False)
 
-    with dol.open("rb") as file:
-        data = file.read()
+        cmd = ["make", f"-j{thread_count}", "rels"]
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE)
+        LOG.debug("make RELs complete")
+        if result.returncode != 0:
+            return False
 
-    # TODO: move?
-    expected = "4997D93B9692620C40E90374A0F1DBF0E4889395"
+    return True
 
+
+def sha1_from_data(data):
     sha1 = hashlib.sha1()
     sha1.update(data)
-    current = sha1.hexdigest().upper()
 
-    LOG.debug(f"expected: '{expected}'")
-    LOG.debug(f"current:  '{current}'")
+    return sha1.hexdigest().upper()
 
-    if expected != current:
-        LOG.error("main.dol is not OK!")
-        return False
+def get_files_with_ext(path, ext):
+    return [x for x in path.glob(f"**/*{ext}") if x.is_file()]
+
+class CheckException(Exception):
+    ...
+
+def check_sha1(game_path, build_path):
+        
+    dol_path = game_path.joinpath("main.dol")
+    if not dol_path.exists():
+        raise CheckException(f"File not found: '{dol_path}'")
+
+    rel_path = game_path.joinpath("rel/Final/Release")
+    if not rel_path.exists():
+        raise CheckException(f"Path not found: '{rel_path}'")
+
+    rels_path = get_files_with_ext(rel_path, ".rel")
+    rels_archive_path = game_path.joinpath("RELS.arc")
+    if not rels_archive_path.exists():
+        raise CheckException(f"File not found: '{rels_archive_path}'")
+
+    LOG.debug(f"DOL Path: '{dol_path}'")
+    LOG.debug(f"RELs Path: '{rel_path}' (found {len(rels_path)} RELs)")
+    LOG.debug(f"RELs Archive Path: '{rels_archive_path}'")
+
+    EXPECTED = {}
+    with dol_path.open('rb') as file:
+        data = file.read()
+        EXPECTED[0] = (str(dol_path), sha1_from_data(data),sha1_from_data(data),)
+
+    for rel_filepath in rels_path:
+        with rel_filepath.open('rb') as file:
+            data = bytearray(file.read())
+            yaz0_data = data
+            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                data = yaz0.decompress(io.BytesIO(data))
+
+            rel = librel.read(data)
+            EXPECTED[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    with rels_archive_path.open('rb') as file:
+        rarc = libarc.read(file.read())
+        for depth, file in rarc.files_and_folders:
+            if not isinstance(file, libarc.File):
+                continue
+
+            if file.name.endswith(".rel"):
+                data = file.data
+                yaz0_data = data
+                if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                    data = yaz0.decompress(io.BytesIO(data))
+
+                xxx_path = Path('build').joinpath(file.name)
+                with xxx_path.open('wb') as write_file:
+                    write_file.write(data)
+
+                rel = librel.read(data)
+                EXPECTED[rel.index] = (file.name, sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    if not build_path.exists():
+        raise CheckException(f"Path not found: '{build_path}'")
+
+    build_dol_path = build_path.joinpath("main.dol")
+    if not build_dol_path.exists():
+        raise CheckException(f"File not found: '{build_dol_path}'")
+
+    build_rels_path = get_files_with_ext(build_path, ".rel")
+
+    CURRENT = {}
+    with build_dol_path.open('rb') as file:
+        data = file.read()
+        CURRENT[0] = (str(build_dol_path), sha1_from_data(data),sha1_from_data(data),)
+
+    for rel_filepath in build_rels_path:
+        with rel_filepath.open('rb') as file:
+            data = bytearray(file.read())
+            yaz0_data = data
+            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                data = yaz0.decompress(io.BytesIO(data))
+            
+            rel = librel.read(data)
+            CURRENT[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    expected_keys = set(EXPECTED.keys())
+    current_keys = set(CURRENT.keys())
+    match = expected_keys - current_keys
+    if len(match) > 0:
+        raise CheckException(f"Missing RELs (expected: {len(expected_keys)}, found: {len(current_keys)})")
+
+    errors = 0
+    for key in expected_keys:
+        if key in current_keys:
+            expected = EXPECTED[key]
+            current = CURRENT[key]
+            if current[2] != expected[2]:
+                errors += 1
+                LOG.error(f"{current[2]} {expected[2]} {current[0]} ({expected[0]})")
+
+    if errors > 0:
+        raise CheckException("NO MATCH!")
 
     return True
 

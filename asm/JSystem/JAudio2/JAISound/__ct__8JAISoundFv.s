@@ -1,6 +1,6 @@
 lbl_802A22F8:
-/* 802A22F8  3C 80 80 3D */	lis r4, __vt__8JAISound@ha
-/* 802A22FC  38 04 99 70 */	addi r0, r4, __vt__8JAISound@l
+/* 802A22F8  3C 80 80 3D */	lis r4, __vt__8JAISound@ha /* 0x803C9970@ha */
+/* 802A22FC  38 04 99 70 */	addi r0, r4, __vt__8JAISound@l /* 0x803C9970@l */
 /* 802A2300  90 03 00 00 */	stw r0, 0(r3)
 /* 802A2304  C0 02 BD BC */	lfs f0, lit_697(r2)
 /* 802A2308  D0 03 00 48 */	stfs f0, 0x48(r3)

@@ -5,8 +5,8 @@ lbl_8020C850:
 /* 8020C85C  39 61 00 60 */	addi r11, r1, 0x60
 /* 8020C860  48 15 59 69 */	bl _savegpr_24
 /* 8020C864  7C 7A 1B 78 */	mr r26, r3
-/* 8020C868  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020C86C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020C868  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020C86C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020C870  83 A3 5F 50 */	lwz r29, 0x5f50(r3)
 /* 8020C874  7F A3 EB 78 */	mr r3, r29
 /* 8020C878  81 9D 00 00 */	lwz r12, 0(r29)
@@ -31,10 +31,10 @@ lbl_8020C850:
 /* 8020C8C4  3B 60 00 00 */	li r27, 0
 /* 8020C8C8  3B 20 00 00 */	li r25, 0
 /* 8020C8CC  3B 00 00 00 */	li r24, 0
-/* 8020C8D0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020C8D4  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l
-/* 8020C8D8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020C8DC  3B E3 01 88 */	addi r31, r3, g_meter2_info@l
+/* 8020C8D0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020C8D4  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l /* 0x8042EBC8@l */
+/* 8020C8D8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020C8DC  3B E3 01 88 */	addi r31, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020C8E0  48 00 01 B4 */	b lbl_8020CA94
 lbl_8020C8E4:
 /* 8020C8E4  7F 9A C2 14 */	add r28, r26, r24

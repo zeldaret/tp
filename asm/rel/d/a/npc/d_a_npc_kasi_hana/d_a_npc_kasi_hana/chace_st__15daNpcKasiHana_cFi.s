@@ -16,8 +16,8 @@ lbl_80A1E1AC:
 lbl_80A1E1B8:
 /* 80A1E1B8  38 00 00 01 */	li r0, 1
 /* 80A1E1BC  98 1F 14 45 */	stb r0, 0x1445(r31)
-/* 80A1E1C0  3C 60 80 A2 */	lis r3, lit_3908@ha
-/* 80A1E1C4  C0 03 10 80 */	lfs f0, lit_3908@l(r3)
+/* 80A1E1C0  3C 60 80 A2 */	lis r3, lit_3908@ha /* 0x80A21080@ha */
+/* 80A1E1C4  C0 03 10 80 */	lfs f0, lit_3908@l(r3)  /* 0x80A21080@l */
 /* 80A1E1C8  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A1E1CC  B0 1F 14 06 */	sth r0, 0x1406(r31)
 /* 80A1E1D0  48 00 00 40 */	b lbl_80A1E210
@@ -26,8 +26,8 @@ lbl_80A1E1D4:
 /* 80A1E1D8  48 00 0F C1 */	bl _turn_to_link__15daNpcKasiHana_cFs
 /* 80A1E1DC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A1E1E0  41 82 00 30 */	beq lbl_80A1E210
-/* 80A1E1E4  3C 60 80 A2 */	lis r3, lit_5485@ha
-/* 80A1E1E8  38 83 16 14 */	addi r4, r3, lit_5485@l
+/* 80A1E1E4  3C 60 80 A2 */	lis r3, lit_5485@ha /* 0x80A21614@ha */
+/* 80A1E1E8  38 83 16 14 */	addi r4, r3, lit_5485@l /* 0x80A21614@l */
 /* 80A1E1EC  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A1E1F0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A1E1F4  90 61 00 08 */	stw r3, 8(r1)

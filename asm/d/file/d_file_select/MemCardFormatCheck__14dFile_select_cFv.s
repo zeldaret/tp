@@ -8,8 +8,8 @@ lbl_8018F374:
 /* 8018F38C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8018F390  28 00 00 01 */	cmplwi r0, 1
 /* 8018F394  40 82 00 58 */	bne lbl_8018F3EC
-/* 8018F398  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018F39C  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018F398  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018F39C  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018F3A0  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018F3A4  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018F3A8  90 7F 02 84 */	stw r3, 0x284(r31)

@@ -16,16 +16,6 @@ extern "C" void TRKInitializeSerialHandler();
 extern "C" void TRKProcessInput();
 extern "C" void TRKGetInput();
 extern "C" void TRKTestForPacket();
-extern "C" extern u8 const lit_122[34 + 2 /* padding */];
-extern "C" extern u8 const lit_123[34 + 2 /* padding */];
-extern "C" extern u8 const lit_124[32];
-extern "C" extern u8 const lit_125[32];
-extern "C" extern u8 const lit_126[33 + 3 /* padding */];
-extern "C" extern u8 const lit_146[36];
-extern "C" extern u8 const lit_147[27 + 1 /* padding */];
-extern "C" extern u8 const lit_148[49 + 3 /* padding */];
-extern "C" extern u8 const lit_149[40];
-extern "C" extern u8 const lit_150[29 + 7 /* padding */];
 extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 
 //
@@ -47,13 +37,13 @@ extern "C" void MWTRACE();
 // Declarations:
 //
 
-/* 8036D858-8036D860 0008+00 s=0 e=1 z=0  None .text      TRKTerminateSerialHandler */
-extern "C" bool TRKTerminateSerialHandler() {
+/* 8036D858-8036D860 368198 0008+00 0/0 1/1 0/0 .text            TRKTerminateSerialHandler */
+bool TRKTerminateSerialHandler() {
     return false;
 }
 
 /* ############################################################################################## */
-/* 803A2700-803A2724 0022+02 s=2 e=0 z=0  None .rodata    @121 */
+/* 803A2700-803A2724 02ED60 0022+02 2/2 0/0 0/0 .rodata          @121 */
 SECTION_RODATA static u8 const lit_121[34 + 2 /* padding */] = {
     0x54,
     0x52,
@@ -93,89 +83,12 @@ SECTION_RODATA static u8 const lit_121[34 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2700 = (void*)(&lit_121);
 
-/* 8044F270-8044F288 0014+04 s=3 e=0 z=0  None .bss       gTRKFramingState */
-static u8 gTRKFramingState[20 + 4 /* padding */];
-
-/* 8036D860-8036D924 00C4+00 s=0 e=1 z=0  None .text      TRKInitializeSerialHandler */
-//	8036D868: 8044F270 (gTRKFramingState)
-//	8036D86C: 803A2700 (lit_121)
-//	8036D874: 8044F270 (gTRKFramingState)
-//	8036D884: 803A2700 (lit_121)
-//	8036D8A4: 80372C54 (MWTRACE)
-//	8036D8B8: 80372C54 (MWTRACE)
-//	8036D8CC: 80372C54 (MWTRACE)
-//	8036D8E0: 80372C54 (MWTRACE)
-//	8036D8F4: 80372C54 (MWTRACE)
-//	8036D908: 80372C54 (MWTRACE)
+/* 803A2724-803A2748 02ED84 0022+02 0/1 0/0 0/0 .rodata          @122 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKInitializeSerialHandler() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKInitializeSerialHandler.s"
-}
-#pragma pop
-
-/* 8036D924-8036D974 0050+00 s=0 e=1 z=0  None .text      TRKProcessInput */
-//	8036D940: 8036CC3C (TRKConstructEvent)
-//	8036D944: 8044F270 (gTRKFramingState)
-//	8036D94C: 8044F270 (gTRKFramingState)
-//	8036D95C: 8036CC54 (TRKPostEvent)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKProcessInput() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKProcessInput.s"
-}
-#pragma pop
-
-/* 8036D974-8036D9D4 0060+00 s=0 e=1 z=0  None .text      TRKGetInput */
-//	8036D984: 8036D9D4 (TRKTestForPacket)
-//	8036D994: 8036D6F0 (TRKGetBuffer)
-//	8036D9A0: 8036CC3C (TRKConstructEvent)
-//	8036D9A4: 8044F270 (gTRKFramingState)
-//	8036D9AC: 8044F270 (gTRKFramingState)
-//	8036D9BC: 8036CC54 (TRKPostEvent)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKGetInput() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKGetInput.s"
-}
-#pragma pop
-
-/* 8036D9D4-8036DB10 013C+00 s=1 e=1 z=0  None .text      TRKTestForPacket */
-//	8036D9DC: 803A2700 (lit_121)
-//	8036D9E8: 803A2700 (lit_121)
-//	8036D9F0: 80371DE0 (TRKPollUART)
-//	8036DA0C: 8036D71C (TRKGetFreeBuffer)
-//	8036DA24: 80372C54 (MWTRACE)
-//	8036DA30: 8036D61C (TRKSetBufferPosition)
-//	8036DA3C: 80371DA4 (TRKReadUARTN)
-//	8036DA54: 8036D388 (TRKAppendBuffer_ui8)
-//	8036DA74: 80372C54 (MWTRACE)
-//	8036DA84: 80371DA4 (TRKReadUARTN)
-//	8036DA9C: 8036D388 (TRKAppendBuffer_ui8)
-//	8036DAB0: 80372C54 (MWTRACE)
-//	8036DAB8: 8036D68C (TRKReleaseBuffer)
-//	8036DAD0: 80372C54 (MWTRACE)
-//	8036DAD8: 8036D68C (TRKReleaseBuffer)
-//	8036DAF0: 80372C54 (MWTRACE)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKTestForPacket() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKTestForPacket.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A2724-803A2748 0022+02 s=0 e=0 z=0  None .rodata    @122 */
-SECTION_RODATA u8 const lit_122[34 + 2 /* padding */] = {
+#pragma force_active on
+SECTION_RODATA static u8 const lit_122[34 + 2 /* padding */] = {
     0x54,
     0x52,
     0x4B,
@@ -214,9 +127,13 @@ SECTION_RODATA u8 const lit_122[34 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2724 = (void*)(&lit_122);
+#pragma pop
 
-/* 803A2748-803A276C 0022+02 s=0 e=0 z=0  None .rodata    @123 */
-SECTION_RODATA u8 const lit_123[34 + 2 /* padding */] = {
+/* 803A2748-803A276C 02EDA8 0022+02 0/1 0/0 0/0 .rodata          @123 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_123[34 + 2 /* padding */] = {
     0x54,
     0x52,
     0x4B,
@@ -255,21 +172,33 @@ SECTION_RODATA u8 const lit_123[34 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2748 = (void*)(&lit_123);
+#pragma pop
 
-/* 803A276C-803A278C 0020+00 s=0 e=0 z=0  None .rodata    @124 */
-SECTION_RODATA u8 const lit_124[32] = {
+/* 803A276C-803A278C 02EDCC 0020+00 0/1 0/0 0/0 .rodata          @124 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_124[32] = {
     0x54, 0x52, 0x4B, 0x5F, 0x43, 0x4D, 0x44, 0x5F, 0x43, 0x6F, 0x6E, 0x6E, 0x65, 0x63, 0x74, 0x20,
     0x09, 0x20, 0x20, 0x20, 0x20, 0x25, 0x6C, 0x64, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A276C = (void*)(&lit_124);
+#pragma pop
 
-/* 803A278C-803A27AC 0020+00 s=0 e=0 z=0  None .rodata    @125 */
-SECTION_RODATA u8 const lit_125[32] = {
+/* 803A278C-803A27AC 02EDEC 0020+00 0/1 0/0 0/0 .rodata          @125 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_125[32] = {
     0x54, 0x52, 0x4B, 0x5F, 0x43, 0x4D, 0x44, 0x5F, 0x52, 0x65, 0x70, 0x6C, 0x79, 0x41, 0x63, 0x6B,
     0x09, 0x20, 0x20, 0x20, 0x20, 0x25, 0x6C, 0x64, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A278C = (void*)(&lit_125);
+#pragma pop
 
-/* 803A27AC-803A27D0 0021+03 s=0 e=0 z=0  None .rodata    @126 */
-SECTION_RODATA u8 const lit_126[33 + 3 /* padding */] = {
+/* 803A27AC-803A27D0 02EE0C 0021+03 0/1 0/0 0/0 .rodata          @126 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_126[33 + 3 /* padding */] = {
     0x54,
     0x52,
     0x4B,
@@ -308,16 +237,58 @@ SECTION_RODATA u8 const lit_126[33 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A27AC = (void*)(&lit_126);
+#pragma pop
 
-/* 803A27D0-803A27F4 0024+00 s=0 e=0 z=0  None .rodata    @146 */
-SECTION_RODATA u8 const lit_146[36] = {
+/* 8044F270-8044F288 07BF90 0014+04 3/3 0/0 0/0 .bss             gTRKFramingState */
+static u8 gTRKFramingState[20 + 4 /* padding */];
+
+/* 8036D860-8036D924 3681A0 00C4+00 0/0 1/1 0/0 .text            TRKInitializeSerialHandler */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKInitializeSerialHandler() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKInitializeSerialHandler.s"
+}
+#pragma pop
+
+/* 8036D924-8036D974 368264 0050+00 0/0 1/1 0/0 .text            TRKProcessInput */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKProcessInput() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKProcessInput.s"
+}
+#pragma pop
+
+/* 8036D974-8036D9D4 3682B4 0060+00 0/0 1/1 0/0 .text            TRKGetInput */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKGetInput() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKGetInput.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 803A27D0-803A27F4 02EE30 0024+00 0/1 0/0 0/0 .rodata          @146 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_146[36] = {
     0x54, 0x65, 0x73, 0x74, 0x46, 0x6F, 0x72, 0x50, 0x61, 0x63, 0x6B, 0x65,
     0x74, 0x20, 0x3A, 0x20, 0x46, 0x72, 0x65, 0x65, 0x42, 0x75, 0x66, 0x66,
     0x65, 0x72, 0x20, 0x69, 0x73, 0x20, 0x20, 0x25, 0x6C, 0x64, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A27D0 = (void*)(&lit_146);
+#pragma pop
 
-/* 803A27F4-803A2810 001B+01 s=0 e=0 z=0  None .rodata    @147 */
-SECTION_RODATA u8 const lit_147[27 + 1 /* padding */] = {
+/* 803A27F4-803A2810 02EE54 001B+01 0/1 0/0 0/0 .rodata          @147 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_147[27 + 1 /* padding */] = {
     0x52,
     0x65,
     0x61,
@@ -348,9 +319,13 @@ SECTION_RODATA u8 const lit_147[27 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+SECTION_DEAD void* const cg_803A27F4 = (void*)(&lit_147);
+#pragma pop
 
-/* 803A2810-803A2844 0031+03 s=0 e=0 z=0  None .rodata    @148 */
-SECTION_RODATA u8 const lit_148[49 + 3 /* padding */] = {
+/* 803A2810-803A2844 02EE70 0031+03 0/1 0/0 0/0 .rodata          @148 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_148[49 + 3 /* padding */] = {
     0x54,
     0x65,
     0x73,
@@ -405,16 +380,24 @@ SECTION_RODATA u8 const lit_148[49 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2810 = (void*)(&lit_148);
+#pragma pop
 
-/* 803A2844-803A286C 0028+00 s=0 e=0 z=0  None .rodata    @149 */
-SECTION_RODATA u8 const lit_149[40] = {
+/* 803A2844-803A286C 02EEA4 0028+00 0/1 0/0 0/0 .rodata          @149 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_149[40] = {
     0x54, 0x65, 0x73, 0x74, 0x46, 0x6F, 0x72, 0x50, 0x61, 0x63, 0x6B, 0x65, 0x74, 0x20,
     0x3A, 0x20, 0x49, 0x6E, 0x76, 0x61, 0x6C, 0x69, 0x64, 0x20, 0x73, 0x69, 0x7A, 0x65,
     0x20, 0x6F, 0x66, 0x20, 0x70, 0x61, 0x63, 0x6B, 0x65, 0x74, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A2844 = (void*)(&lit_149);
+#pragma pop
 
-/* 803A286C-803A2890 001D+07 s=0 e=0 z=0  None .rodata    @150 */
-SECTION_RODATA u8 const lit_150[29 + 7 /* padding */] = {
+/* 803A286C-803A2890 02EECC 001D+07 0/1 0/0 0/0 .rodata          @150 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_150[29 + 7 /* padding */] = {
     0x54,
     0x65,
     0x73,
@@ -453,6 +436,20 @@ SECTION_RODATA u8 const lit_150[29 + 7 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A286C = (void*)(&lit_150);
+#pragma pop
 
-/* 804519B8-804519C0 0004+04 s=0 e=2 z=0  None .sbss      gTRKInputPendingPtr */
+/* 8036D9D4-8036DB10 368314 013C+00 1/1 1/1 0/0 .text            TRKTestForPacket */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKTestForPacket() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll/TRKTestForPacket.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 804519B8-804519C0 000EB8 0004+04 0/0 2/2 0/0 .sbss            gTRKInputPendingPtr */
+extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 u8 gTRKInputPendingPtr[4 + 4 /* padding */];

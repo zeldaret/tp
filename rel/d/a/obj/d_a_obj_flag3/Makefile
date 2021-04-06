@@ -3,17 +3,15 @@
 #
 
 M451_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3.plf
+M451_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3.lcf
+M451_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3.map
 
 M451_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_flag3/executor.cpp \
-	rel/d/a/obj/d_a_obj_flag3/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_flag3/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_flag3/d_a_obj_flag3.cpp \
 
 M451_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3/d_a_obj_flag3.o \
 
 M451_LIBS := \
@@ -29,15 +27,21 @@ M451_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map451.map\
+	-m _prolog \
+	-lcf $(M451_LDSCRIPT) \
+	-unused -map $(M451_MAP) \
+	-w off \
 
 $(M451_TARGET): $(M451_O_FILES) $(M451_LIBS)
+	@echo [451] creating $(M451_TARGET)
 	@echo $(M451_LIBS) $(M451_O_FILES) > build/M451_ofiles
-	$(LD) -opt_partial $(M451_LDFLAGS) -o $(M451_TARGET) @build/M451_ofiles
+	@python3 tools/lcf.py rel 451 --output $(M451_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M451_LDFLAGS) -o $(M451_TARGET) @build/M451_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag3/%.o: rel/d/a/obj/d_a_obj_flag3/%.cpp
+	@echo [451] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M451_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M451_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

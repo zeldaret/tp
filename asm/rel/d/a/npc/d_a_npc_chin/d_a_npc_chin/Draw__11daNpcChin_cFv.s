@@ -13,12 +13,12 @@ lbl_8098CD74:
 /* 8098CDA0  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 8098CDA4  38 80 00 00 */	li r4, 0
 /* 8098CDA8  38 A0 00 00 */	li r5, 0
-/* 8098CDAC  3C C0 80 99 */	lis r6, m__17daNpcChin_Param_c@ha
-/* 8098CDB0  38 C6 19 0C */	addi r6, r6, m__17daNpcChin_Param_c@l
+/* 8098CDAC  3C C0 80 99 */	lis r6, m__17daNpcChin_Param_c@ha /* 0x8099190C@ha */
+/* 8098CDB0  38 C6 19 0C */	addi r6, r6, m__17daNpcChin_Param_c@l /* 0x8099190C@l */
 /* 8098CDB4  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 8098CDB8  38 C0 00 00 */	li r6, 0
 /* 8098CDBC  38 E0 00 00 */	li r7, 0
-/* 8098CDC0  4B 7C 54 EC */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 8098CDC0  4B 7C 54 ED */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 8098CDC4  38 7F 0E 30 */	addi r3, r31, 0xe30
 /* 8098CDC8  38 9F 01 0C */	addi r4, r31, 0x10c
 /* 8098CDCC  4B FF F2 95 */	bl draw__Q211daNpcChin_c12_SpotLight_cFP12dKy_tevstr_c

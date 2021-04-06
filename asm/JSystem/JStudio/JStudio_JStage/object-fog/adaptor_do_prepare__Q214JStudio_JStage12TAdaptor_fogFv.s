@@ -1,6 +1,6 @@
 lbl_8028C684:
-/* 8028C684  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@ha
-/* 8028C688  38 04 13 9C */	addi r0, r4, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@l
+/* 8028C684  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@ha /* 0x8043139C@ha */
+/* 8028C688  38 04 13 9C */	addi r0, r4, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@l /* 0x8043139C@l */
 /* 8028C68C  7C 05 03 78 */	mr r5, r0
 /* 8028C690  48 00 00 2C */	b lbl_8028C6BC
 lbl_8028C694:

@@ -7,20 +7,20 @@ lbl_80BB7818:
 /* 80BB782C  DB C1 00 20 */	stfd f30, 0x20(r1)
 /* 80BB7830  F3 C1 00 28 */	psq_st f30, 40(r1), 0, 0 /* qr0 */
 /* 80BB7834  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BB7838  4B 7A A9 A0 */	b _savegpr_28
+/* 80BB7838  4B 7A A9 A1 */	bl _savegpr_28
 /* 80BB783C  7C 7C 1B 78 */	mr r28, r3
-/* 80BB7840  3C 60 80 BB */	lis r3, VIBMODE_POWER@ha
-/* 80BB7844  3B E3 7E B0 */	addi r31, r3, VIBMODE_POWER@l
+/* 80BB7840  3C 60 80 BB */	lis r3, VIBMODE_POWER@ha /* 0x80BB7EB0@ha */
+/* 80BB7844  3B E3 7E B0 */	addi r31, r3, VIBMODE_POWER@l /* 0x80BB7EB0@l */
 /* 80BB7848  88 1C 05 7A */	lbz r0, 0x57a(r28)
 /* 80BB784C  28 00 00 00 */	cmplwi r0, 0
 /* 80BB7850  41 82 01 10 */	beq lbl_80BB7960
 /* 80BB7854  C3 DC 04 D4 */	lfs f30, 0x4d4(r28)
 /* 80BB7858  38 7C 04 D0 */	addi r3, r28, 0x4d0
-/* 80BB785C  4B 46 65 28 */	b waterCheck__11fopAcM_wt_cFPC4cXyz
+/* 80BB785C  4B 46 65 29 */	bl waterCheck__11fopAcM_wt_cFPC4cXyz
 /* 80BB7860  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80BB7864  41 82 00 14 */	beq lbl_80BB7878
-/* 80BB7868  3C 60 80 45 */	lis r3, mWaterY__11fopAcM_wt_c@ha
-/* 80BB786C  C0 23 0C D8 */	lfs f1, mWaterY__11fopAcM_wt_c@l(r3)
+/* 80BB7868  3C 60 80 45 */	lis r3, mWaterY__11fopAcM_wt_c@ha /* 0x80450CD8@ha */
+/* 80BB786C  C0 23 0C D8 */	lfs f1, mWaterY__11fopAcM_wt_c@l(r3)  /* 0x80450CD8@l */
 /* 80BB7870  C0 1F 01 0C */	lfs f0, 0x10c(r31)
 /* 80BB7874  EF C1 00 28 */	fsubs f30, f1, f0
 lbl_80BB7878:
@@ -35,13 +35,13 @@ lbl_80BB788C:
 /* 80BB7894  C0 5F 01 10 */	lfs f2, 0x110(r31)
 /* 80BB7898  C0 7F 01 14 */	lfs f3, 0x114(r31)
 /* 80BB789C  C0 9F 01 18 */	lfs f4, 0x118(r31)
-/* 80BB78A0  4B 6B 80 DC */	b cLib_addCalc__FPfffff
+/* 80BB78A0  4B 6B 80 DD */	bl cLib_addCalc__FPfffff
 /* 80BB78A4  38 7E 00 3C */	addi r3, r30, 0x3c
 /* 80BB78A8  C0 3E 00 44 */	lfs f1, 0x44(r30)
 /* 80BB78AC  C0 5F 01 10 */	lfs f2, 0x110(r31)
 /* 80BB78B0  C0 7F 01 14 */	lfs f3, 0x114(r31)
 /* 80BB78B4  C0 9F 01 18 */	lfs f4, 0x118(r31)
-/* 80BB78B8  4B 6B 80 C4 */	b cLib_addCalc__FPfffff
+/* 80BB78B8  4B 6B 80 C5 */	bl cLib_addCalc__FPfffff
 /* 80BB78BC  C0 1E 00 4C */	lfs f0, 0x4c(r30)
 /* 80BB78C0  EC 00 F8 28 */	fsubs f0, f0, f31
 /* 80BB78C4  D0 1E 00 4C */	stfs f0, 0x4c(r30)
@@ -72,7 +72,7 @@ lbl_80BB7918:
 /* 80BB7920  C0 5F 01 10 */	lfs f2, 0x110(r31)
 /* 80BB7924  C0 7F 01 14 */	lfs f3, 0x114(r31)
 /* 80BB7928  C0 9F 01 18 */	lfs f4, 0x118(r31)
-/* 80BB792C  4B 6B 80 50 */	b cLib_addCalc__FPfffff
+/* 80BB792C  4B 6B 80 51 */	bl cLib_addCalc__FPfffff
 /* 80BB7930  A8 7E 00 50 */	lha r3, 0x50(r30)
 /* 80BB7934  A8 1E 00 54 */	lha r0, 0x54(r30)
 /* 80BB7938  7C 03 02 14 */	add r0, r3, r0
@@ -91,7 +91,7 @@ lbl_80BB7960:
 /* 80BB7968  E3 C1 00 28 */	psq_l f30, 40(r1), 0, 0 /* qr0 */
 /* 80BB796C  CB C1 00 20 */	lfd f30, 0x20(r1)
 /* 80BB7970  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BB7974  4B 7A A8 B0 */	b _restgpr_28
+/* 80BB7974  4B 7A A8 B1 */	bl _restgpr_28
 /* 80BB7978  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80BB797C  7C 08 03 A6 */	mtlr r0
 /* 80BB7980  38 21 00 40 */	addi r1, r1, 0x40

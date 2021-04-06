@@ -7,8 +7,8 @@ lbl_80245B00:
 /* 80245B14  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80245B18  7C 9F 23 78 */	mr r31, r4
 /* 80245B1C  41 82 00 CC */	beq lbl_80245BE8
-/* 80245B20  3C 60 80 3C */	lis r3, __vt__15dMsgScrnLight_c@ha
-/* 80245B24  38 03 12 98 */	addi r0, r3, __vt__15dMsgScrnLight_c@l
+/* 80245B20  3C 60 80 3C */	lis r3, __vt__15dMsgScrnLight_c@ha /* 0x803C1298@ha */
+/* 80245B24  38 03 12 98 */	addi r0, r3, __vt__15dMsgScrnLight_c@l /* 0x803C1298@l */
 /* 80245B28  90 1E 00 00 */	stw r0, 0(r30)
 /* 80245B2C  88 6D 8B 58 */	lbz r3, data_804510D8(r13)
 /* 80245B30  38 03 FF FF */	addi r0, r3, -1

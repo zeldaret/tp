@@ -10,8 +10,8 @@ lbl_8001F034:
 /* 8001F054  7C C0 33 78 */	mr r0, r6
 /* 8001F058  7C FA 3B 78 */	mr r26, r7
 /* 8001F05C  7D 1B 43 78 */	mr r27, r8
-/* 8001F060  3C 60 80 3A */	lis r3, submethod@ha
-/* 8001F064  3B E3 38 C8 */	addi r31, r3, submethod@l
+/* 8001F060  3C 60 80 3A */	lis r3, submethod@ha /* 0x803A38C8@ha */
+/* 8001F064  3B E3 38 C8 */	addi r31, r3, submethod@l /* 0x803A38C8@l */
 /* 8001F068  3B C0 00 00 */	li r30, 0
 /* 8001F06C  3B BF 00 10 */	addi r29, r31, 0x10
 /* 8001F070  38 60 00 74 */	li r3, 0x74

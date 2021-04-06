@@ -20,8 +20,8 @@ lbl_800C67C4:
 /* 800C67DC  41 82 00 5C */	beq lbl_800C6838
 /* 800C67E0  7F E3 FB 78 */	mr r3, r31
 /* 800C67E4  38 80 01 9B */	li r4, 0x19b
-/* 800C67E8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C67EC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800C67E8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C67EC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C67F0  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800C67F4  4B FE 69 01 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C67F8  38 00 00 01 */	li r0, 1

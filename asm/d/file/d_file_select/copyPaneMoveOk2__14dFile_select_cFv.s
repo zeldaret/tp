@@ -19,8 +19,8 @@ lbl_8018A8A8:
 /* 8018A8A8  54 80 10 3A */	slwi r0, r4, 2
 /* 8018A8AC  7C 7E 02 14 */	add r3, r30, r0
 /* 8018A8B0  80 63 02 2C */	lwz r3, 0x22c(r3)
-/* 8018A8B4  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018A8B8  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 8018A8B4  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018A8B8  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018A8BC  88 84 00 07 */	lbz r4, 7(r4)
 /* 8018A8C0  38 A0 00 00 */	li r5, 0
 /* 8018A8C4  38 C0 00 FF */	li r6, 0xff
@@ -31,8 +31,8 @@ lbl_8018A8D4:
 /* 8018A8D4  54 80 10 3A */	slwi r0, r4, 2
 /* 8018A8D8  7C 7E 02 14 */	add r3, r30, r0
 /* 8018A8DC  80 63 02 20 */	lwz r3, 0x220(r3)
-/* 8018A8E0  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018A8E4  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 8018A8E0  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018A8E4  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018A8E8  88 84 00 07 */	lbz r4, 7(r4)
 /* 8018A8EC  38 A0 00 00 */	li r5, 0
 /* 8018A8F0  38 C0 00 FF */	li r6, 0xff
@@ -52,8 +52,8 @@ lbl_8018A8FC:
 /* 8018A924  40 82 00 24 */	bne lbl_8018A948
 /* 8018A928  28 04 00 01 */	cmplwi r4, 1
 /* 8018A92C  40 82 00 1C */	bne lbl_8018A948
-/* 8018A930  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 8018A934  38 63 C9 EC */	addi r3, r3, g_fsHIO@l
+/* 8018A930  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018A934  38 63 C9 EC */	addi r3, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018A938  88 03 00 0A */	lbz r0, 0xa(r3)
 /* 8018A93C  B0 1E 03 AC */	sth r0, 0x3ac(r30)
 /* 8018A940  38 00 00 2A */	li r0, 0x2a

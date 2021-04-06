@@ -21,8 +21,8 @@ lbl_800C755C:
 /* 800C75A8  48 00 00 D0 */	b lbl_800C7678
 lbl_800C75AC:
 /* 800C75AC  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800C75B0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C75B4  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l
+/* 800C75B0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C75B4  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C75B8  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800C75BC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C75C0  40 81 00 B4 */	ble lbl_800C7674
@@ -46,12 +46,12 @@ lbl_800C75F4:
 /* 800C7600  41 82 00 74 */	beq lbl_800C7674
 /* 800C7604  7F C3 F3 78 */	mr r3, r30
 /* 800C7608  38 80 01 28 */	li r4, 0x128
-/* 800C760C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C7610  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800C760C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C7610  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7614  38 A5 00 28 */	addi r5, r5, 0x28
 /* 800C7618  4B FE 5A DD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C761C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C7620  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800C761C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C7620  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C7624  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 800C7628  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800C762C  7C 64 02 14 */	add r3, r4, r0

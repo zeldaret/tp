@@ -1,6 +1,6 @@
 lbl_8059DDC0:
-/* 8059DDC0  3C 60 80 5A */	lis r3, cNullVec__6Z2Calc@ha
-/* 8059DDC4  38 A3 DF 68 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 8059DDC0  3C 60 80 5A */	lis r3, cNullVec__6Z2Calc@ha /* 0x8059DF68@ha */
+/* 8059DDC4  38 A3 DF 68 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x8059DF68@l */
 /* 8059DDC8  80 65 00 28 */	lwz r3, 0x28(r5)
 /* 8059DDCC  80 05 00 2C */	lwz r0, 0x2c(r5)
 /* 8059DDD0  90 65 00 70 */	stw r3, 0x70(r5)

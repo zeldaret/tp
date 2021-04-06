@@ -26,27 +26,21 @@ extern "C" void GetUseSerialIO();
 // Declarations:
 //
 
-/* 8037219C-80372258 00BC+00 s=0 e=1 z=0  None .text      __TRK_write_console */
-//	803721B8: 80372180 (GetUseSerialIO)
-//	803721CC: 8036ECCC (GetTRKConnected)
-//	803721F8: 803711D0 (TRKAccessFile)
+/* 8037219C-80372258 36CADC 00BC+00 0/0 1/1 0/0 .text            __TRK_write_console */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __TRK_write_console() {
+asm void __TRK_write_console() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Export/mslsupp/__TRK_write_console.s"
 }
 #pragma pop
 
-/* 80372258-80372314 00BC+00 s=0 e=1 z=0  None .text      __read_console */
-//	80372274: 80372180 (GetUseSerialIO)
-//	80372288: 8036ECCC (GetTRKConnected)
-//	803722B4: 803711D0 (TRKAccessFile)
+/* 80372258-80372314 36CB98 00BC+00 0/0 1/0 0/0 .text            __read_console */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __read_console() {
+asm void __read_console() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Export/mslsupp/__read_console.s"
 }

@@ -1,11 +1,11 @@
 lbl_80CB8E6C:
-/* 80CB8E6C  3C 80 80 CC */	lis r4, lit_3649@ha
-/* 80CB8E70  38 A4 9A 84 */	addi r5, r4, lit_3649@l
-/* 80CB8E74  3C 80 80 CC */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80CB8E78  38 04 9B D0 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80CB8E6C  3C 80 80 CC */	lis r4, lit_3649@ha /* 0x80CB9A84@ha */
+/* 80CB8E70  38 A4 9A 84 */	addi r5, r4, lit_3649@l /* 0x80CB9A84@l */
+/* 80CB8E74  3C 80 80 CC */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80CB9BD0@ha */
+/* 80CB8E78  38 04 9B D0 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80CB9BD0@l */
 /* 80CB8E7C  90 03 00 00 */	stw r0, 0(r3)
-/* 80CB8E80  3C 80 80 CC */	lis r4, __vt__14daRfHole_HIO_c@ha
-/* 80CB8E84  38 04 9B C4 */	addi r0, r4, __vt__14daRfHole_HIO_c@l
+/* 80CB8E80  3C 80 80 CC */	lis r4, __vt__14daRfHole_HIO_c@ha /* 0x80CB9BC4@ha */
+/* 80CB8E84  38 04 9B C4 */	addi r0, r4, __vt__14daRfHole_HIO_c@l /* 0x80CB9BC4@l */
 /* 80CB8E88  90 03 00 00 */	stw r0, 0(r3)
 /* 80CB8E8C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80CB8E90  D0 03 00 04 */	stfs f0, 4(r3)

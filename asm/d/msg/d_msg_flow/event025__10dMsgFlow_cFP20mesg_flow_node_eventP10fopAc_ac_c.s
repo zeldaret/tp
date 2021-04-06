@@ -5,8 +5,8 @@ lbl_8024CF54:
 /* 8024CF60  38 84 00 04 */	addi r4, r4, 4
 /* 8024CF64  4B FF E1 CD */	bl getParam__10dMsgFlow_cFPUc
 /* 8024CF68  7C 60 1B 78 */	mr r0, r3
-/* 8024CF6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024CF70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024CF6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CF70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CF74  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 8024CF78  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000FBFF@ha */
 /* 8024CF7C  38 84 FB FF */	addi r4, r4, 0xFBFF /* 0x0000FBFF@l */

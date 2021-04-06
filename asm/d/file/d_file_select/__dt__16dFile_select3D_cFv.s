@@ -7,8 +7,8 @@ lbl_80190380:
 /* 80190394  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80190398  7C 9F 23 78 */	mr r31, r4
 /* 8019039C  41 82 00 24 */	beq lbl_801903C0
-/* 801903A0  3C 80 80 3C */	lis r4, __vt__16dFile_select3D_c@ha
-/* 801903A4  38 04 B3 5C */	addi r0, r4, __vt__16dFile_select3D_c@l
+/* 801903A0  3C 80 80 3C */	lis r4, __vt__16dFile_select3D_c@ha /* 0x803BB35C@ha */
+/* 801903A4  38 04 B3 5C */	addi r0, r4, __vt__16dFile_select3D_c@l /* 0x803BB35C@l */
 /* 801903A8  90 1E 00 00 */	stw r0, 0(r30)
 /* 801903AC  48 00 00 F5 */	bl freeHeap__16dFile_select3D_cFv
 /* 801903B0  7F E0 07 35 */	extsh. r0, r31

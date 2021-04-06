@@ -17,8 +17,8 @@ lbl_806A93B8:
 /* 806A93BC  48 00 00 E1 */	bl Yazirushi__8daE_DF_cFv
 /* 806A93C0  7F E3 FB 78 */	mr r3, r31
 /* 806A93C4  4B FF FF 41 */	bl Action__8daE_DF_cFv
-/* 806A93C8  3C 60 80 6B */	lis r3, lit_4621@ha
-/* 806A93CC  C0 03 9F EC */	lfs f0, lit_4621@l(r3)
+/* 806A93C8  3C 60 80 6B */	lis r3, lit_4621@ha /* 0x806A9FEC@ha */
+/* 806A93CC  C0 03 9F EC */	lfs f0, lit_4621@l(r3)  /* 0x806A9FEC@l */
 /* 806A93D0  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 806A93D4  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 806A93D8  D0 01 00 14 */	stfs f0, 0x14(r1)
@@ -32,9 +32,9 @@ lbl_806A93B8:
 /* 806A93F8  40 82 00 4C */	bne lbl_806A9444
 /* 806A93FC  80 7F 05 C8 */	lwz r3, 0x5c8(r31)
 /* 806A9400  38 63 00 0C */	addi r3, r3, 0xc
-/* 806A9404  3C 80 80 6B */	lis r4, lit_4622@ha
-/* 806A9408  C0 24 9F F0 */	lfs f1, lit_4622@l(r4)
-/* 806A940C  4B C7 F0 20 */	b checkPass__12J3DFrameCtrlFf
+/* 806A9404  3C 80 80 6B */	lis r4, lit_4622@ha /* 0x806A9FF0@ha */
+/* 806A9408  C0 24 9F F0 */	lfs f1, lit_4622@l(r4)  /* 0x806A9FF0@l */
+/* 806A940C  4B C7 F0 21 */	bl checkPass__12J3DFrameCtrlFf
 /* 806A9410  2C 03 00 00 */	cmpwi r3, 0
 /* 806A9414  41 82 00 30 */	beq lbl_806A9444
 /* 806A9418  3C 60 00 07 */	lis r3, 0x0007 /* 0x000701A1@ha */
@@ -57,11 +57,11 @@ lbl_806A9444:
 lbl_806A9458:
 /* 806A9458  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 806A945C  7C 03 07 74 */	extsb r3, r0
-/* 806A9460  4B 98 3C 0C */	b dComIfGp_getReverb__Fi
+/* 806A9460  4B 98 3C 0D */	bl dComIfGp_getReverb__Fi
 /* 806A9464  7C 65 1B 78 */	mr r5, r3
 /* 806A9468  80 7F 05 C8 */	lwz r3, 0x5c8(r31)
 /* 806A946C  38 80 00 00 */	li r4, 0
-/* 806A9470  4B 96 7C 40 */	b play__16mDoExt_McaMorfSOFUlSc
+/* 806A9470  4B 96 7C 41 */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 806A9474  7F E3 FB 78 */	mr r3, r31
 /* 806A9478  48 00 01 41 */	bl setBaseMtx__8daE_DF_cFv
 /* 806A947C  7F E3 FB 78 */	mr r3, r31

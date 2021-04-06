@@ -4,8 +4,8 @@ lbl_80336650:
 /* 80336658  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8033665C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80336660  7C 7F 1B 78 */	mr r31, r3
-/* 80336664  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha
-/* 80336668  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l
+/* 80336664  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha /* 0x803CDCF0@ha */
+/* 80336668  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l /* 0x803CDCF0@l */
 /* 8033666C  90 03 00 00 */	stw r0, 0(r3)
 /* 80336670  3C 80 3C F4 */	lis r4, 0x3CF4 /* 0x3CF3CF00@ha */
 /* 80336674  38 04 CF 00 */	addi r0, r4, 0xCF00 /* 0x3CF3CF00@l */

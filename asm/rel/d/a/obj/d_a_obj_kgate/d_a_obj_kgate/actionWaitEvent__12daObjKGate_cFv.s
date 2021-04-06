@@ -9,8 +9,8 @@ lbl_8058A1B0:
 /* 8058A1CC  40 82 00 8C */	bne lbl_8058A258
 /* 8058A1D0  38 00 00 01 */	li r0, 1
 /* 8058A1D4  98 1F 0B A4 */	stb r0, 0xba4(r31)
-/* 8058A1D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8058A1DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8058A1D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8058A1DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8058A1E0  A8 83 5D C8 */	lha r4, 0x5dc8(r3)
 /* 8058A1E4  38 04 FF FF */	addi r0, r4, -1
 /* 8058A1E8  B0 03 5D C8 */	sth r0, 0x5dc8(r3)
@@ -18,28 +18,28 @@ lbl_8058A1B0:
 /* 8058A1F0  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8058A1F4  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8058A1F8  7C 05 07 74 */	extsb r5, r0
-/* 8058A1FC  4B AA B0 04 */	b onSwitch__10dSv_info_cFii
+/* 8058A1FC  4B AA B0 05 */	bl onSwitch__10dSv_info_cFii
 /* 8058A200  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 8058A204  7C 03 07 74 */	extsb r3, r0
-/* 8058A208  4B AA 2E 64 */	b dComIfGp_getReverb__Fi
+/* 8058A208  4B AA 2E 65 */	bl dComIfGp_getReverb__Fi
 /* 8058A20C  7C 67 1B 78 */	mr r7, r3
 /* 8058A210  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080202@ha */
 /* 8058A214  38 03 02 02 */	addi r0, r3, 0x0202 /* 0x00080202@l */
 /* 8058A218  90 01 00 08 */	stw r0, 8(r1)
-/* 8058A21C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8058A220  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8058A21C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8058A220  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8058A224  80 63 00 00 */	lwz r3, 0(r3)
 /* 8058A228  38 81 00 08 */	addi r4, r1, 8
 /* 8058A22C  38 BF 05 38 */	addi r5, r31, 0x538
 /* 8058A230  38 C0 00 00 */	li r6, 0
-/* 8058A234  3D 00 80 59 */	lis r8, lit_3881@ha
-/* 8058A238  C0 28 AB D4 */	lfs f1, lit_3881@l(r8)
+/* 8058A234  3D 00 80 59 */	lis r8, lit_3881@ha /* 0x8058ABD4@ha */
+/* 8058A238  C0 28 AB D4 */	lfs f1, lit_3881@l(r8)  /* 0x8058ABD4@l */
 /* 8058A23C  FC 40 08 90 */	fmr f2, f1
-/* 8058A240  3D 00 80 59 */	lis r8, lit_3882@ha
-/* 8058A244  C0 68 AB D8 */	lfs f3, lit_3882@l(r8)
+/* 8058A240  3D 00 80 59 */	lis r8, lit_3882@ha /* 0x8058ABD8@ha */
+/* 8058A244  C0 68 AB D8 */	lfs f3, lit_3882@l(r8)  /* 0x8058ABD8@l */
 /* 8058A248  FC 80 18 90 */	fmr f4, f3
 /* 8058A24C  39 00 00 00 */	li r8, 0
-/* 8058A250  4B D2 17 34 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 8058A250  4B D2 17 35 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 8058A254  48 00 00 2C */	b lbl_8058A280
 lbl_8058A258:
 /* 8058A258  4B FF F2 4D */	bl checkOpen__12daObjKGate_cFv

@@ -1,6 +1,6 @@
 lbl_8025C004:
-/* 8025C004  3C 80 80 3C */	lis r4, __vt__25dSvBit_childDarknessHIO_c@ha
-/* 8025C008  38 04 33 18 */	addi r0, r4, __vt__25dSvBit_childDarknessHIO_c@l
+/* 8025C004  3C 80 80 3C */	lis r4, __vt__25dSvBit_childDarknessHIO_c@ha /* 0x803C3318@ha */
+/* 8025C008  38 04 33 18 */	addi r0, r4, __vt__25dSvBit_childDarknessHIO_c@l /* 0x803C3318@l */
 /* 8025C00C  90 03 00 00 */	stw r0, 0(r3)
 /* 8025C010  38 C0 00 00 */	li r6, 0
 /* 8025C014  38 80 00 00 */	li r4, 0

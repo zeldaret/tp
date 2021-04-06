@@ -11,8 +11,8 @@ lbl_800462FC:
 /* 80046320  1C 00 00 50 */	mulli r0, r0, 0x50
 /* 80046324  7F C3 02 14 */	add r30, r3, r0
 /* 80046328  80 9E 00 34 */	lwz r4, 0x34(r30)
-/* 8004632C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80046330  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8004632C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80046330  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80046334  38 7F 51 B4 */	addi r3, r31, 0x51b4
 /* 80046338  4B FF DA 29 */	bl flagCheck__11dEvDtFlag_cFi
 /* 8004633C  2C 03 00 00 */	cmpwi r3, 0

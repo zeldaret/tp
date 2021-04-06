@@ -71,13 +71,10 @@ extern "C" bool do_getSize__13JKRAssertHeapFPv();
 extern "C" bool do_getFreeSize__13JKRAssertHeapFv();
 extern "C" bool do_getMaxFreeBlock__13JKRAssertHeapFv();
 extern "C" bool do_getTotalFreeSize__13JKRAssertHeapFv();
-extern "C" extern void* __vt__13JKRAssertHeap[24];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
 extern "C" void __dt__7JKRHeapFv();
@@ -95,8 +92,8 @@ extern "C" extern u8 sRootHeap__7JKRHeap[4];
 //
 
 /* ############################################################################################## */
-/* 803CC090-803CC0F0 0060+00 s=2 e=0 z=0  None .data      __vt__13JKRAssertHeap */
-SECTION_DATA void* __vt__13JKRAssertHeap[24] = {
+/* 803CC090-803CC0F0 0291B0 0060+00 2/2 0/0 0/0 .data            __vt__13JKRAssertHeap */
+SECTION_DATA extern void* __vt__13JKRAssertHeap[24] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JKRAssertHeapFv,
@@ -123,10 +120,7 @@ SECTION_DATA void* __vt__13JKRAssertHeap[24] = {
     (void*)state_dump__7JKRHeapCFRCQ27JKRHeap6TState,
 };
 
-/* 802D12C4-802D1300 003C+00 s=1 e=0 z=0  None .text      __ct__13JKRAssertHeapFPvUlP7JKRHeapb */
-//	802D12D8: 802CE138 (__ct__7JKRHeapFPvUlP7JKRHeapb)
-//	802D12DC: 803CC090 (__vt__13JKRAssertHeap)
-//	802D12E0: 803CC090 (__vt__13JKRAssertHeap)
+/* 802D12C4-802D1300 2CBC04 003C+00 1/1 0/0 0/0 .text __ct__13JKRAssertHeapFPvUlP7JKRHeapb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,12 +130,7 @@ asm JKRAssertHeap::JKRAssertHeap(void* param_0, u32 param_1, JKRHeap* param_2, b
 }
 #pragma pop
 
-/* 802D1300-802D1368 0068+00 s=1 e=0 z=0  None .text      __dt__13JKRAssertHeapFv */
-//	802D1320: 803CC090 (__vt__13JKRAssertHeap)
-//	802D1324: 803CC090 (__vt__13JKRAssertHeap)
-//	802D132C: 802CEAC0 (dispose__7JKRHeapFv)
-//	802D1338: 802CE264 (__dt__7JKRHeapFv)
-//	802D1348: 802CED3C (__dl__FPv)
+/* 802D1300-802D1368 2CBC40 0068+00 1/0 0/0 0/0 .text            __dt__13JKRAssertHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,10 +140,8 @@ asm JKRAssertHeap::~JKRAssertHeap() {
 }
 #pragma pop
 
-/* 802D1368-802D13D8 0070+00 s=0 e=1 z=0  None .text      create__13JKRAssertHeapFP7JKRHeap */
-//	802D1380: 80451378 (sRootHeap__7JKRHeap)
-//	802D1390: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D13B8: 802D12C4 (__ct__13JKRAssertHeapFPvUlP7JKRHeapb)
+/* 802D1368-802D13D8 2CBCA8 0070+00 0/0 1/1 0/0 .text            create__13JKRAssertHeapFP7JKRHeap
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,7 +151,7 @@ asm void JKRAssertHeap::create(JKRHeap* param_0) {
 }
 #pragma pop
 
-/* 802D13D8-802D1408 0030+00 s=1 e=0 z=0  None .text      do_destroy__13JKRAssertHeapFv */
+/* 802D13D8-802D1408 2CBD18 0030+00 1/0 0/0 0/0 .text            do_destroy__13JKRAssertHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -174,7 +161,7 @@ asm void JKRAssertHeap::do_destroy() {
 }
 #pragma pop
 
-/* 802D1408-802D1414 000C+00 s=1 e=0 z=0  None .text      getHeapType__13JKRAssertHeapFv */
+/* 802D1408-802D1414 2CBD48 000C+00 1/0 0/0 0/0 .text            getHeapType__13JKRAssertHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -184,77 +171,79 @@ asm void JKRAssertHeap::getHeapType() {
 }
 #pragma pop
 
-/* 802D1414-802D141C 0008+00 s=1 e=0 z=0  None .text      check__13JKRAssertHeapFv */
+/* 802D1414-802D141C 2CBD54 0008+00 1/0 0/0 0/0 .text            check__13JKRAssertHeapFv */
 bool JKRAssertHeap::check() {
     return true;
 }
 
-/* 802D141C-802D1424 0008+00 s=1 e=0 z=0  None .text      dump__13JKRAssertHeapFv */
+/* 802D141C-802D1424 2CBD5C 0008+00 1/0 0/0 0/0 .text            dump__13JKRAssertHeapFv */
 bool JKRAssertHeap::dump() {
     return true;
 }
 
-/* 802D1424-802D142C 0008+00 s=1 e=0 z=0  None .text      dump_sort__13JKRAssertHeapFv */
+/* 802D1424-802D142C 2CBD64 0008+00 1/0 0/0 0/0 .text            dump_sort__13JKRAssertHeapFv */
 bool JKRAssertHeap::dump_sort() {
     return true;
 }
 
-/* 802D142C-802D1434 0008+00 s=1 e=0 z=0  None .text      do_changeGroupID__13JKRAssertHeapFUc */
+/* 802D142C-802D1434 2CBD6C 0008+00 1/0 0/0 0/0 .text do_changeGroupID__13JKRAssertHeapFUc */
 bool JKRAssertHeap::do_changeGroupID(u8 param_0) {
     return false;
 }
 
-/* 802D1434-802D143C 0008+00 s=1 e=0 z=0  None .text      do_getCurrentGroupId__13JKRAssertHeapFv */
+/* 802D1434-802D143C 2CBD74 0008+00 1/0 0/0 0/0 .text do_getCurrentGroupId__13JKRAssertHeapFv */
 bool JKRAssertHeap::do_getCurrentGroupId() {
     return false;
 }
 
-/* 802D143C-802D1444 0008+00 s=1 e=0 z=0  None .text      do_alloc__13JKRAssertHeapFUli */
+/* 802D143C-802D1444 2CBD7C 0008+00 1/0 0/0 0/0 .text            do_alloc__13JKRAssertHeapFUli */
 bool JKRAssertHeap::do_alloc(u32 param_0, int param_1) {
     return false;
 }
 
-/* 802D1444-802D1448 0004+00 s=1 e=0 z=0  None .text      do_free__13JKRAssertHeapFPv */
+/* 802D1444-802D1448 2CBD84 0004+00 1/0 0/0 0/0 .text            do_free__13JKRAssertHeapFPv */
 void JKRAssertHeap::do_free(void* param_0) {
     /* empty function */
 }
 
-/* 802D1448-802D144C 0004+00 s=1 e=0 z=0  None .text      do_freeAll__13JKRAssertHeapFv */
+/* 802D1448-802D144C 2CBD88 0004+00 1/0 0/0 0/0 .text            do_freeAll__13JKRAssertHeapFv */
 void JKRAssertHeap::do_freeAll() {
     /* empty function */
 }
 
-/* 802D144C-802D1450 0004+00 s=1 e=0 z=0  None .text      do_freeTail__13JKRAssertHeapFv */
+/* 802D144C-802D1450 2CBD8C 0004+00 1/0 0/0 0/0 .text            do_freeTail__13JKRAssertHeapFv */
 void JKRAssertHeap::do_freeTail() {
     /* empty function */
 }
 
-/* 802D1450-802D1454 0004+00 s=1 e=0 z=0  None .text      do_fillFreeArea__13JKRAssertHeapFv */
+/* 802D1450-802D1454 2CBD90 0004+00 1/0 0/0 0/0 .text            do_fillFreeArea__13JKRAssertHeapFv
+ */
 void JKRAssertHeap::do_fillFreeArea() {
     /* empty function */
 }
 
-/* 802D1454-802D145C 0008+00 s=1 e=0 z=0  None .text      do_resize__13JKRAssertHeapFPvUl */
+/* 802D1454-802D145C 2CBD94 0008+00 1/0 0/0 0/0 .text            do_resize__13JKRAssertHeapFPvUl */
 bool JKRAssertHeap::do_resize(void* param_0, u32 param_1) {
     return false;
 }
 
-/* 802D145C-802D1464 0008+00 s=1 e=0 z=0  None .text      do_getSize__13JKRAssertHeapFPv */
+/* 802D145C-802D1464 2CBD9C 0008+00 1/0 0/0 0/0 .text            do_getSize__13JKRAssertHeapFPv */
 bool JKRAssertHeap::do_getSize(void* param_0) {
     return false;
 }
 
-/* 802D1464-802D146C 0008+00 s=1 e=0 z=0  None .text      do_getFreeSize__13JKRAssertHeapFv */
+/* 802D1464-802D146C 2CBDA4 0008+00 1/0 0/0 0/0 .text            do_getFreeSize__13JKRAssertHeapFv
+ */
 bool JKRAssertHeap::do_getFreeSize() {
     return false;
 }
 
-/* 802D146C-802D1474 0008+00 s=1 e=0 z=0  None .text      do_getMaxFreeBlock__13JKRAssertHeapFv */
+/* 802D146C-802D1474 2CBDAC 0008+00 1/0 0/0 0/0 .text do_getMaxFreeBlock__13JKRAssertHeapFv */
 bool JKRAssertHeap::do_getMaxFreeBlock() {
     return false;
 }
 
-/* 802D1474-802D147C 0008+00 s=1 e=0 z=0  None .text      do_getTotalFreeSize__13JKRAssertHeapFv */
+/* 802D1474-802D147C 2CBDB4 0008+00 1/0 0/0 0/0 .text do_getTotalFreeSize__13JKRAssertHeapFv */
 bool JKRAssertHeap::do_getTotalFreeSize() {
     return false;
 }

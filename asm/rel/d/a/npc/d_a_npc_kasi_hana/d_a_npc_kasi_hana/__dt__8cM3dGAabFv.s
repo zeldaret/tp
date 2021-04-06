@@ -5,12 +5,12 @@ lbl_80A20614:
 /* 80A20620  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A20624  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A20628  41 82 00 1C */	beq lbl_80A20644
-/* 80A2062C  3C A0 80 A2 */	lis r5, __vt__8cM3dGAab@ha
-/* 80A20630  38 05 17 C4 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 80A2062C  3C A0 80 A2 */	lis r5, __vt__8cM3dGAab@ha /* 0x80A217C4@ha */
+/* 80A20630  38 05 17 C4 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x80A217C4@l */
 /* 80A20634  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80A20638  7C 80 07 35 */	extsh. r0, r4
 /* 80A2063C  40 81 00 08 */	ble lbl_80A20644
-/* 80A20640  4B 8A E6 FC */	b __dl__FPv
+/* 80A20640  4B 8A E6 FD */	bl __dl__FPv
 lbl_80A20644:
 /* 80A20644  7F E3 FB 78 */	mr r3, r31
 /* 80A20648  83 E1 00 0C */	lwz r31, 0xc(r1)

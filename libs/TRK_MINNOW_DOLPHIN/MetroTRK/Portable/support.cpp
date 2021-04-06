@@ -16,9 +16,6 @@ extern "C" void HandleCloseFileSupportRequest();
 extern "C" void HandleOpenFileSupportRequest();
 extern "C" void TRKRequestSend();
 extern "C" void TRKSuppAccessFile();
-extern "C" extern u8 const lit_275[40];
-extern "C" extern u8 const lit_276[20];
-extern "C" extern u8 const lit_277[81 + 3 /* padding */];
 
 //
 // External References:
@@ -42,63 +39,38 @@ extern "C" void MWTRACE();
 // Declarations:
 //
 
-/* 8036ED84-8036EE94 0110+00 s=0 e=1 z=0  None .text      HandlePositionFileSupportRequest */
-//	8036EDBC: 80003458 (memset)
-//	8036EDE8: 8036D71C (TRKGetFreeBuffer)
-//	8036EE00: 8036D388 (TRKAppendBuffer_ui8)
-//	8036EE34: 8036F098 (TRKRequestSend)
-//	8036EE44: 8036D6F0 (TRKGetBuffer)
-//	8036EE64: 8036D68C (TRKReleaseBuffer)
-//	8036EE6C: 8036D68C (TRKReleaseBuffer)
+/* 8036ED84-8036EE94 3696C4 0110+00 0/0 1/1 0/0 .text            HandlePositionFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandlePositionFileSupportRequest() {
+asm void HandlePositionFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandlePositionFileSupportRequest.s"
 }
 #pragma pop
 
-/* 8036EE94-8036EF7C 00E8+00 s=0 e=1 z=0  None .text      HandleCloseFileSupportRequest */
-//	8036EEC0: 80003458 (memset)
-//	8036EEE0: 8036D71C (TRKGetFreeBuffer)
-//	8036EEF8: 8036D388 (TRKAppendBuffer_ui8)
-//	8036EF24: 8036F098 (TRKRequestSend)
-//	8036EF34: 8036D6F0 (TRKGetBuffer)
-//	8036EF50: 8036D68C (TRKReleaseBuffer)
-//	8036EF58: 8036D68C (TRKReleaseBuffer)
+/* 8036EE94-8036EF7C 3697D4 00E8+00 0/0 1/1 0/0 .text            HandleCloseFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandleCloseFileSupportRequest() {
+asm void HandleCloseFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandleCloseFileSupportRequest.s"
 }
 #pragma pop
 
-/* 8036EF7C-8036F098 011C+00 s=0 e=1 z=0  None .text      HandleOpenFileSupportRequest */
-//	8036EFA8: 80003458 (memset)
-//	8036EFC0: 80368BE4 (strlen)
-//	8036EFD4: 80368BE4 (strlen)
-//	8036EFE8: 8036D71C (TRKGetFreeBuffer)
-//	8036EFF8: 8036D388 (TRKAppendBuffer_ui8)
-//	8036F008: 80368BE4 (strlen)
-//	8036F01C: 8036D388 (TRKAppendBuffer_ui8)
-//	8036F048: 8036F098 (TRKRequestSend)
-//	8036F058: 8036D6F0 (TRKGetBuffer)
-//	8036F074: 8036D68C (TRKReleaseBuffer)
-//	8036F07C: 8036D68C (TRKReleaseBuffer)
+/* 8036EF7C-8036F098 3698BC 011C+00 0/0 1/1 0/0 .text            HandleOpenFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandleOpenFileSupportRequest() {
+asm void HandleOpenFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandleOpenFileSupportRequest.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2AB8-803A2AD0 0015+03 s=1 e=0 z=0  None .rodata    @274 */
+/* 803A2AB8-803A2AD0 02F118 0015+03 1/1 0/0 0/0 .rodata          @274 */
 SECTION_RODATA static u8 const lit_274[21 + 3 /* padding */] = {
     0x43,
     0x61,
@@ -126,67 +98,33 @@ SECTION_RODATA static u8 const lit_274[21 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2AB8 = (void*)(&lit_274);
 
-/* 8036F098-8036F278 01E0+00 s=4 e=1 z=0  None .text      TRKRequestSend */
-//	8036F0B0: 803A2AB8 (lit_274)
-//	8036F0C0: 803A2AB8 (lit_274)
-//	8036F0E0: 80372C54 (MWTRACE)
-//	8036F0E8: 8036CFD8 (TRKMessageSend)
-//	8036F100: 8036D9D4 (TRKTestForPacket)
-//	8036F13C: 8036D6F0 (TRKGetBuffer)
-//	8036F148: 8036D61C (TRKSetBufferPosition)
-//	8036F154: 8036ECDC (OutputData)
-//	8036F170: 80372C54 (MWTRACE)
-//	8036F180: 8036D924 (TRKProcessInput)
-//	8036F1D0: 80372C54 (MWTRACE)
-//	8036F208: 80372C54 (MWTRACE)
-//	8036F224: 8036D68C (TRKReleaseBuffer)
+/* 803A2AD0-803A2AF8 02F130 0028+00 0/1 0/0 0/0 .rodata          @275 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKRequestSend() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKRequestSend.s"
-}
-#pragma pop
-
-/* 8036F278-8036F498 0220+00 s=0 e=1 z=0  None .text      TRKSuppAccessFile */
-//	8036F2DC: 80003458 (memset)
-//	8036F334: 8036D71C (TRKGetFreeBuffer)
-//	8036F344: 8036D388 (TRKAppendBuffer_ui8)
-//	8036F368: 8036D388 (TRKAppendBuffer_ui8)
-//	8036F3B4: 8036F098 (TRKRequestSend)
-//	8036F3C4: 8036D6F0 (TRKGetBuffer)
-//	8036F3F8: 8036D61C (TRKSetBufferPosition)
-//	8036F408: 8036D10C (TRKReadBuffer_ui8)
-//	8036F434: 8036D68C (TRKReleaseBuffer)
-//	8036F440: 8036CFD8 (TRKMessageSend)
-//	8036F44C: 8036D68C (TRKReleaseBuffer)
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void TRKSuppAccessFile() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKSuppAccessFile.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A2AD0-803A2AF8 0028+00 s=0 e=0 z=0  None .rodata    @275 */
-SECTION_RODATA u8 const lit_275[40] = {
+#pragma force_active on
+SECTION_RODATA static u8 const lit_275[40] = {
     0x6D, 0x73, 0x67, 0x5F, 0x63, 0x6F, 0x6D, 0x6D, 0x61, 0x6E, 0x64, 0x20, 0x3A, 0x20,
     0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x20, 0x68, 0x64, 0x72, 0x2D, 0x3E, 0x63, 0x6D,
     0x64, 0x49, 0x44, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A2AD0 = (void*)(&lit_275);
+#pragma pop
 
-/* 803A2AF8-803A2B0C 0014+00 s=0 e=0 z=0  None .rodata    @276 */
-SECTION_RODATA u8 const lit_276[20] = {
+/* 803A2AF8-803A2B0C 02F158 0014+00 0/1 0/0 0/0 .rodata          @276 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_276[20] = {
     0x6D, 0x73, 0x67, 0x5F, 0x65, 0x72, 0x72, 0x6F, 0x72, 0x20,
     0x3A, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
 };
+SECTION_DEAD void* const cg_803A2AF8 = (void*)(&lit_276);
+#pragma pop
 
-/* 803A2B0C-803A2B60 0051+03 s=0 e=0 z=0  None .rodata    @277 */
-SECTION_RODATA u8 const lit_277[81 + 3 /* padding */] = {
+/* 803A2B0C-803A2B60 02F16C 0051+03 0/1 0/0 0/0 .rodata          @277 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_277[81 + 3 /* padding */] = {
     0x52,
     0x65,
     0x71,
@@ -273,3 +211,25 @@ SECTION_RODATA u8 const lit_277[81 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+SECTION_DEAD void* const cg_803A2B0C = (void*)(&lit_277);
+#pragma pop
+
+/* 8036F098-8036F278 3699D8 01E0+00 4/4 1/1 0/0 .text            TRKRequestSend */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKRequestSend() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKRequestSend.s"
+}
+#pragma pop
+
+/* 8036F278-8036F498 369BB8 0220+00 0/0 1/1 0/0 .text            TRKSuppAccessFile */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void TRKSuppAccessFile() {
+    nofralloc
+#include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKSuppAccessFile.s"
+}
+#pragma pop

@@ -11,11 +11,11 @@ lbl_80053A00:
 /* 80053A24  7C FD 3B 78 */	mr r29, r7
 /* 80053A28  7D 1E 43 78 */	mr r30, r8
 /* 80053A2C  7D 3F 4B 78 */	mr r31, r9
-/* 80053A30  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha
-/* 80053A34  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 80053A30  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 80053A34  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 80053A38  90 19 00 00 */	stw r0, 0(r25)
-/* 80053A3C  3C 60 80 3B */	lis r3, __vt__10dDlst_2D_c@ha
-/* 80053A40  38 03 8E 20 */	addi r0, r3, __vt__10dDlst_2D_c@l
+/* 80053A3C  3C 60 80 3B */	lis r3, __vt__10dDlst_2D_c@ha /* 0x803A8E20@ha */
+/* 80053A40  38 03 8E 20 */	addi r0, r3, __vt__10dDlst_2D_c@l /* 0x803A8E20@l */
 /* 80053A44  90 19 00 00 */	stw r0, 0(r25)
 /* 80053A48  38 79 00 08 */	addi r3, r25, 8
 /* 80053A4C  48 2A 86 05 */	bl __ct__10J2DPictureFv

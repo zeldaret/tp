@@ -20,9 +20,9 @@ lbl_80D0BCB8:
 /* 80D0BD00  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80D0BD04  80 83 00 04 */	lwz r4, 4(r3)
 /* 80D0BD08  7F E3 FB 78 */	mr r3, r31
-/* 80D0BD0C  4B 30 E8 6C */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80D0BD0C  4B 30 E8 6D */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80D0BD10  7F E3 FB 78 */	mr r3, r31
-/* 80D0BD14  4B 36 CC 3C */	b MoveBGExecute__16dBgS_MoveBgActorFv
+/* 80D0BD14  4B 36 CC 3D */	bl MoveBGExecute__16dBgS_MoveBgActorFv
 /* 80D0BD18  38 60 00 01 */	li r3, 1
 /* 80D0BD1C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80D0BD20  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -1,6 +1,6 @@
 lbl_80018944:
-/* 80018944  3C 80 80 3A */	lis r4, __vt__11fapGm_HIO_c@ha
-/* 80018948  38 04 35 A0 */	addi r0, r4, __vt__11fapGm_HIO_c@l
+/* 80018944  3C 80 80 3A */	lis r4, __vt__11fapGm_HIO_c@ha /* 0x803A35A0@ha */
+/* 80018948  38 04 35 A0 */	addi r0, r4, __vt__11fapGm_HIO_c@l /* 0x803A35A0@l */
 /* 8001894C  90 03 00 00 */	stw r0, 0(r3)
 /* 80018950  38 00 FF FF */	li r0, -1
 /* 80018954  90 03 00 08 */	stw r0, 8(r3)

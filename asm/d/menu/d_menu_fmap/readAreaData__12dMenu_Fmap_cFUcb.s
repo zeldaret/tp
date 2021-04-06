@@ -58,8 +58,8 @@ lbl_801CB9F8:
 /* 801CBA04  90 01 00 C0 */	stw r0, 0xc0(r1)
 /* 801CBA08  56 1A 15 BA */	rlwinm r26, r16, 2, 0x16, 0x1d
 /* 801CBA0C  7F 6F D2 14 */	add r27, r15, r26
-/* 801CBA10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801CBA14  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 801CBA10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801CBA14  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801CBA18  90 01 00 C4 */	stw r0, 0xc4(r1)
 /* 801CBA1C  80 61 00 C0 */	lwz r3, 0xc0(r1)
 /* 801CBA20  39 C3 FF FF */	addi r14, r3, -1

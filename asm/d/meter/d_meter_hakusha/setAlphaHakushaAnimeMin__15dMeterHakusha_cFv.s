@@ -10,12 +10,12 @@ lbl_8020D258:
 /* 8020D278  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 8020D27C  41 82 00 34 */	beq lbl_8020D2B0
 /* 8020D280  80 7F 00 2C */	lwz r3, 0x2c(r31)
-/* 8020D284  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020D288  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020D284  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020D288  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020D28C  C0 24 03 A0 */	lfs f1, 0x3a0(r4)
 /* 8020D290  48 04 85 41 */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D294  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020D298  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020D294  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020D298  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020D29C  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8020D2A0  80 63 01 0C */	lwz r3, 0x10c(r3)
 /* 8020D2A4  80 9F 00 2C */	lwz r4, 0x2c(r31)
@@ -28,12 +28,12 @@ lbl_8020D2B0:
 /* 8020D2BC  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 8020D2C0  41 82 00 34 */	beq lbl_8020D2F4
 /* 8020D2C4  80 7F 00 30 */	lwz r3, 0x30(r31)
-/* 8020D2C8  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020D2CC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020D2C8  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020D2CC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020D2D0  C0 24 03 A8 */	lfs f1, 0x3a8(r4)
 /* 8020D2D4  48 04 84 FD */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D2D8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020D2DC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020D2D8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020D2DC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020D2E0  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8020D2E4  80 63 01 0C */	lwz r3, 0x10c(r3)
 /* 8020D2E8  80 9F 00 30 */	lwz r4, 0x30(r31)

@@ -1,8 +1,8 @@
 lbl_8068A5EC:
-/* 8068A5EC  3C 80 80 69 */	lis r4, lit_3903@ha
-/* 8068A5F0  38 A4 D7 EC */	addi r5, r4, lit_3903@l
-/* 8068A5F4  3C 80 80 69 */	lis r4, __vt__12daE_BI_HIO_c@ha
-/* 8068A5F8  38 04 DA C8 */	addi r0, r4, __vt__12daE_BI_HIO_c@l
+/* 8068A5EC  3C 80 80 69 */	lis r4, lit_3903@ha /* 0x8068D7EC@ha */
+/* 8068A5F0  38 A4 D7 EC */	addi r5, r4, lit_3903@l /* 0x8068D7EC@l */
+/* 8068A5F4  3C 80 80 69 */	lis r4, __vt__12daE_BI_HIO_c@ha /* 0x8068DAC8@ha */
+/* 8068A5F8  38 04 DA C8 */	addi r0, r4, __vt__12daE_BI_HIO_c@l /* 0x8068DAC8@l */
 /* 8068A5FC  90 03 00 00 */	stw r0, 0(r3)
 /* 8068A600  38 00 FF FF */	li r0, -1
 /* 8068A604  98 03 00 04 */	stb r0, 4(r3)

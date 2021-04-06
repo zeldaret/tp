@@ -17,8 +17,8 @@ lbl_801C1E00:
 /* 801C1E3C  7F C3 F3 78 */	mr r3, r30
 /* 801C1E40  88 1E 00 F5 */	lbz r0, 0xf5(r30)
 /* 801C1E44  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C1E48  3C 80 80 3C */	lis r4, init_process@ha
-/* 801C1E4C  38 04 CC E4 */	addi r0, r4, init_process@l
+/* 801C1E48  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BCCE4@ha */
+/* 801C1E4C  38 04 CC E4 */	addi r0, r4, init_process@l /* 0x803BCCE4@l */
 /* 801C1E50  7D 80 2A 14 */	add r12, r0, r5
 /* 801C1E54  48 1A 02 31 */	bl __ptmf_scall
 /* 801C1E58  60 00 00 00 */	nop 

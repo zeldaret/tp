@@ -19,29 +19,29 @@ lbl_80282E9C:
 /* 80282EA0  40 80 00 08 */	bge lbl_80282EA8
 /* 80282EA4  48 00 00 34 */	b lbl_80282ED8
 lbl_80282EA8:
-/* 80282EA8  3C 60 80 28 */	lis r3, update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
-/* 80282EAC  38 03 2F E8 */	addi r0, r3, update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+/* 80282EA8  3C 60 80 28 */	lis r3, update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha /* 0x80282FE8@ha */
+/* 80282EAC  38 03 2F E8 */	addi r0, r3, update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l /* 0x80282FE8@l */
 /* 80282EB0  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 80282EB4  48 00 00 48 */	b lbl_80282EFC
 lbl_80282EB8:
-/* 80282EB8  3C 60 80 28 */	lis r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
-/* 80282EBC  38 03 2F F4 */	addi r0, r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+/* 80282EB8  3C 60 80 28 */	lis r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha /* 0x80282FF4@ha */
+/* 80282EBC  38 03 2F F4 */	addi r0, r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l /* 0x80282FF4@l */
 /* 80282EC0  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 80282EC4  48 00 00 38 */	b lbl_80282EFC
 lbl_80282EC8:
-/* 80282EC8  3C 60 80 28 */	lis r3, update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
-/* 80282ECC  38 03 30 24 */	addi r0, r3, update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+/* 80282EC8  3C 60 80 28 */	lis r3, update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha /* 0x80283024@ha */
+/* 80282ECC  38 03 30 24 */	addi r0, r3, update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l /* 0x80283024@l */
 /* 80282ED0  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 80282ED4  48 00 00 28 */	b lbl_80282EFC
 lbl_80282ED8:
-/* 80282ED8  3C 60 80 28 */	lis r3, update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
-/* 80282EDC  38 03 30 60 */	addi r0, r3, update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+/* 80282ED8  3C 60 80 28 */	lis r3, update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha /* 0x80283060@ha */
+/* 80282EDC  38 03 30 60 */	addi r0, r3, update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l /* 0x80283060@l */
 /* 80282EE0  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 80282EE4  80 1F 00 48 */	lwz r0, 0x48(r31)
 /* 80282EE8  28 00 00 02 */	cmplwi r0, 2
 /* 80282EEC  40 82 00 10 */	bne lbl_80282EFC
-/* 80282EF0  3C 60 80 28 */	lis r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
-/* 80282EF4  38 03 2F F4 */	addi r0, r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+/* 80282EF0  3C 60 80 28 */	lis r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha /* 0x80282FF4@ha */
+/* 80282EF4  38 03 2F F4 */	addi r0, r3, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l /* 0x80282FF4@l */
 /* 80282EF8  90 1F 00 58 */	stw r0, 0x58(r31)
 lbl_80282EFC:
 /* 80282EFC  83 E1 00 0C */	lwz r31, 0xc(r1)

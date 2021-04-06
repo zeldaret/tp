@@ -13,14 +13,14 @@ lbl_80039160:
 /* 80039164  48 29 5A E9 */	bl __nw__FUl
 /* 80039168  28 03 00 00 */	cmplwi r3, 0
 /* 8003916C  41 82 00 30 */	beq lbl_8003919C
-/* 80039170  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha
-/* 80039174  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l
+/* 80039170  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha /* 0x803C47E8@ha */
+/* 80039174  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l /* 0x803C47E8@l */
 /* 80039178  90 03 00 00 */	stw r0, 0(r3)
-/* 8003917C  3C 80 80 3C */	lis r4, __vt__Q26JStage13TAmbientLight@ha
-/* 80039180  38 04 46 38 */	addi r0, r4, __vt__Q26JStage13TAmbientLight@l
+/* 8003917C  3C 80 80 3C */	lis r4, __vt__Q26JStage13TAmbientLight@ha /* 0x803C4638@ha */
+/* 80039180  38 04 46 38 */	addi r0, r4, __vt__Q26JStage13TAmbientLight@l /* 0x803C4638@l */
 /* 80039184  90 03 00 00 */	stw r0, 0(r3)
-/* 80039188  3C 80 80 3A */	lis r4, __vt__15dDemo_ambient_c@ha
-/* 8003918C  38 04 7A 5C */	addi r0, r4, __vt__15dDemo_ambient_c@l
+/* 80039188  3C 80 80 3A */	lis r4, __vt__15dDemo_ambient_c@ha /* 0x803A7A5C@ha */
+/* 8003918C  38 04 7A 5C */	addi r0, r4, __vt__15dDemo_ambient_c@l /* 0x803A7A5C@l */
 /* 80039190  90 03 00 00 */	stw r0, 0(r3)
 /* 80039194  38 00 00 00 */	li r0, 0
 /* 80039198  98 03 00 04 */	stb r0, 4(r3)

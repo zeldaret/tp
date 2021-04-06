@@ -6,8 +6,8 @@ lbl_8021B810:
 /* 8021B820  93 C1 00 08 */	stw r30, 8(r1)
 /* 8021B824  7C 7E 1B 78 */	mr r30, r3
 /* 8021B828  7C 9F 23 78 */	mr r31, r4
-/* 8021B82C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8021B830  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8021B82C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021B830  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021B834  88 03 04 29 */	lbz r0, 0x429(r3)
 /* 8021B838  28 00 00 00 */	cmplwi r0, 0
 /* 8021B83C  41 82 00 40 */	beq lbl_8021B87C
@@ -51,8 +51,8 @@ lbl_8021B8C8:
 /* 8021B8CC  38 03 FF D3 */	addi r0, r3, -45
 /* 8021B8D0  28 00 00 63 */	cmplwi r0, 0x63
 /* 8021B8D4  41 81 02 40 */	bgt lbl_8021BB14
-/* 8021B8D8  3C 60 80 3C */	lis r3, lit_9106@ha
-/* 8021B8DC  38 63 F5 C0 */	addi r3, r3, lit_9106@l
+/* 8021B8D8  3C 60 80 3C */	lis r3, lit_9106@ha /* 0x803BF5C0@ha */
+/* 8021B8DC  38 63 F5 C0 */	addi r3, r3, lit_9106@l /* 0x803BF5C0@l */
 /* 8021B8E0  54 00 10 3A */	slwi r0, r0, 2
 /* 8021B8E4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8021B8E8  7C 09 03 A6 */	mtctr r0
@@ -181,8 +181,8 @@ lbl_8021B8C8:
 /* 8021BAD4  D0 1E 00 58 */	stfs f0, 0x58(r30)
 /* 8021BAD8  C0 02 AF 94 */	lfs f0, lit_9105(r2)
 /* 8021BADC  D0 1E 00 5C */	stfs f0, 0x5c(r30)
-/* 8021BAE0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8021BAE4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8021BAE0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021BAE4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021BAE8  C0 03 01 A8 */	lfs f0, 0x1a8(r3)
 /* 8021BAEC  D0 1E 00 60 */	stfs f0, 0x60(r30)
 /* 8021BAF0  C0 03 01 9C */	lfs f0, 0x19c(r3)
@@ -195,8 +195,8 @@ lbl_8021B8C8:
 /* 8021BB0C  D0 1E 00 70 */	stfs f0, 0x70(r30)
 /* 8021BB10  48 00 00 44 */	b lbl_8021BB54
 lbl_8021BB14:
-/* 8021BB14  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8021BB18  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8021BB14  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021BB18  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021BB1C  C0 03 01 84 */	lfs f0, 0x184(r3)
 /* 8021BB20  D0 1E 00 58 */	stfs f0, 0x58(r30)
 /* 8021BB24  C0 03 01 90 */	lfs f0, 0x190(r3)

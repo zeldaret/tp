@@ -4,7 +4,7 @@ lbl_806B01B4:
 /* 806B01BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 806B01C0  38 60 00 47 */	li r3, 0x47
 /* 806B01C4  38 81 00 08 */	addi r4, r1, 8
-/* 806B01C8  4B 96 98 64 */	b fopAcM_SearchByName__FsPP10fopAc_ac_c
+/* 806B01C8  4B 96 98 65 */	bl fopAcM_SearchByName__FsPP10fopAc_ac_c
 /* 806B01CC  80 61 00 08 */	lwz r3, 8(r1)
 /* 806B01D0  28 03 00 00 */	cmplwi r3, 0
 /* 806B01D4  41 82 00 18 */	beq lbl_806B01EC

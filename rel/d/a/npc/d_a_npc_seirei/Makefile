@@ -3,19 +3,20 @@
 #
 
 M358_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei.plf
+M358_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei.lcf
+M358_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei.map
 
 M358_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seirei/executor.cpp \
-	rel/d/a/npc/d_a_npc_seirei/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei.cpp \
 
 M358_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/d_a_npc_seirei.o \
 
 M358_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/libRuntime.PPCEABI.H.a \
 
 M358_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M358_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map358.map\
+	-m _prolog \
+	-lcf $(M358_LDSCRIPT) \
+	-unused -map $(M358_MAP) \
+	-w off \
 
 $(M358_TARGET): $(M358_O_FILES) $(M358_LIBS)
+	@echo [358] creating $(M358_TARGET)
 	@echo $(M358_LIBS) $(M358_O_FILES) > build/M358_ofiles
-	$(LD) -opt_partial $(M358_LDFLAGS) -o $(M358_TARGET) @build/M358_ofiles
+	@python3 tools/lcf.py rel 358 --output $(M358_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M358_LDFLAGS) -o $(M358_TARGET) @build/M358_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seirei/%.o: rel/d/a/npc/d_a_npc_seirei/%.cpp
+	@echo [358] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M358_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M358_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seirei/libs/Runtime.PPCEABI.H/Makefile
 

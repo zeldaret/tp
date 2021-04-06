@@ -30,6 +30,11 @@ class ClassName:
     def has_templates(self) -> bool:
         return len(self.templates) > 0
 
+    @property
+    def require_specialization(self) -> bool:
+        return self.template_index >= 0
+
+
 @dataclass(frozen=True, eq=True)
 class NamedType(Type):
     names: List[ClassName]
@@ -40,7 +45,14 @@ class NamedType(Type):
     def type(self,
              specialize_templates: bool = False,
              without_template: bool = False) -> str:
-        return "::".join([x.to_str(specialize_templates=specialize_templates, without_template=without_template) for x in self.names])
+
+        # everything but the last name is specialized
+        before = [
+            x.to_str(specialize_templates=specialize_templates, without_template=without_template) 
+            for x in self.names[:-1]
+        ]
+
+        return "::".join(before + [self.names[-1].to_str(without_template=without_template)])
 
     def to_str(self,
                specialize_templates: bool = False,
@@ -65,6 +77,11 @@ class NamedType(Type):
     @property
     def has_class(self) -> bool:
         return len(self.names) > 1
+
+    @property
+    def require_specialization(self) -> bool:
+        return any([x.require_specialization for x in self.names])
+
 
     @property
     def top_level(self) -> ClassName:

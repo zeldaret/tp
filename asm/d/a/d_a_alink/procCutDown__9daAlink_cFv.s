@@ -33,8 +33,8 @@ lbl_800D584C:
 /* 800D586C  B0 1F 30 0C */	sth r0, 0x300c(r31)
 /* 800D5870  7F E3 FB 78 */	mr r3, r31
 /* 800D5874  38 80 00 79 */	li r4, 0x79
-/* 800D5878  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha
-/* 800D587C  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l
+/* 800D5878  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha /* 0x8038DD44@ha */
+/* 800D587C  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l /* 0x8038DD44@l */
 /* 800D5880  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800D5884  4B FD 78 71 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_800D5888:

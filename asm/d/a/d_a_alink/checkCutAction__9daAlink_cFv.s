@@ -5,8 +5,8 @@ lbl_800D23C0:
 /* 800D23CC  39 61 00 20 */	addi r11, r1, 0x20
 /* 800D23D0  48 28 FE 05 */	bl _savegpr_27
 /* 800D23D4  7C 7D 1B 78 */	mr r29, r3
-/* 800D23D8  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800D23DC  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800D23D8  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800D23DC  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800D23E0  4B FF FD F1 */	bl commonCutAction__9daAlink_cFv
 /* 800D23E4  2C 03 00 00 */	cmpwi r3, 0
 /* 800D23E8  41 82 00 0C */	beq lbl_800D23F4

@@ -5,7 +5,7 @@ lbl_80D57840:
 /* 80D5784C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D57850  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80D57854  41 82 00 30 */	beq lbl_80D57884
-/* 80D57858  4B 2C 14 88 */	b fopAc_IsActor__FPv
+/* 80D57858  4B 2C 14 89 */	bl fopAc_IsActor__FPv
 /* 80D5785C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D57860  41 82 00 24 */	beq lbl_80D57884
 /* 80D57864  A8 1F 00 0E */	lha r0, 0xe(r31)

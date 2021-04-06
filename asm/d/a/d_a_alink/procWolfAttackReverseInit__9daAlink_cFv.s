@@ -12,8 +12,8 @@ lbl_8013C8C8:
 /* 8013C8F0  7F E3 FB 78 */	mr r3, r31
 /* 8013C8F4  38 80 00 9A */	li r4, 0x9a
 /* 8013C8F8  4B F7 2F A9 */	bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
-/* 8013C8FC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAttack_c0@ha
-/* 8013C900  38 63 F7 A4 */	addi r3, r3, m__22daAlinkHIO_wlAttack_c0@l
+/* 8013C8FC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAttack_c0@ha /* 0x8038F7A4@ha */
+/* 8013C900  38 63 F7 A4 */	addi r3, r3, m__22daAlinkHIO_wlAttack_c0@l /* 0x8038F7A4@l */
 /* 8013C904  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 8013C908  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 8013C90C  C0 03 00 2C */	lfs f0, 0x2c(r3)
@@ -27,8 +27,8 @@ lbl_8013C8C8:
 /* 8013C92C  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 8013C930  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8013C934  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 8013C938  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013C93C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013C938  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013C93C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013C940  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8013C944  38 80 00 05 */	li r4, 5
 /* 8013C948  38 A0 00 0F */	li r5, 0xf
@@ -61,8 +61,8 @@ lbl_8013C988:
 /* 8013C9AC  80 1F 05 84 */	lwz r0, 0x584(r31)
 /* 8013C9B0  60 00 00 01 */	ori r0, r0, 1
 /* 8013C9B4  90 1F 05 84 */	stw r0, 0x584(r31)
-/* 8013C9B8  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8013C9BC  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013C9B8  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8013C9BC  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8013C9C0  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8013C9C4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013C9C8  D0 1F 35 8C */	stfs f0, 0x358c(r31)

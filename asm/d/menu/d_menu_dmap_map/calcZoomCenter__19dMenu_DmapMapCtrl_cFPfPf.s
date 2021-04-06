@@ -9,8 +9,8 @@ lbl_801C1B14:
 /* 801C1B30  C0 02 A6 60 */	lfs f0, lit_3803(r2)
 /* 801C1B34  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801C1B38  D0 01 00 08 */	stfs f0, 8(r1)
-/* 801C1B3C  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha
-/* 801C1B40  38 84 60 94 */	addi r4, r4, mStatus__20dStage_roomControl_c@l
+/* 801C1B3C  3C 80 80 3F */	lis r4, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 801C1B40  38 84 60 94 */	addi r4, r4, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 801C1B44  88 63 00 E6 */	lbz r3, 0xe6(r3)
 /* 801C1B48  7C 63 07 74 */	extsb r3, r3
 /* 801C1B4C  1C 03 04 04 */	mulli r0, r3, 0x404

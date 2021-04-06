@@ -6,8 +6,8 @@ lbl_800D2890:
 /* 800D28A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 800D28A4  7C 7E 1B 78 */	mr r30, r3
 /* 800D28A8  3B E0 00 01 */	li r31, 1
-/* 800D28AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D28B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D28AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D28B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D28B4  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800D28B8  38 80 29 02 */	li r4, 0x2902
 /* 800D28BC  4B F6 21 01 */	bl isEventBit__11dSv_event_cCFUs

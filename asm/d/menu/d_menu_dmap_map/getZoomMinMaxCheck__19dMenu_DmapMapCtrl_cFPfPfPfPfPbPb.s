@@ -19,8 +19,8 @@ lbl_801C18C0:
 /* 801C1904  7C FC 3B 78 */	mr r28, r7
 /* 801C1908  7D 1D 43 78 */	mr r29, r8
 /* 801C190C  7D 3E 4B 78 */	mr r30, r9
-/* 801C1910  3C 80 80 45 */	lis r4, __float_max@ha
-/* 801C1914  C0 04 0A E8 */	lfs f0, __float_max@l(r4)
+/* 801C1910  3C 80 80 45 */	lis r4, __float_max@ha /* 0x80450AE8@ha */
+/* 801C1914  C0 04 0A E8 */	lfs f0, __float_max@l(r4)  /* 0x80450AE8@l */
 /* 801C1918  FF E0 00 90 */	fmr f31, f0
 /* 801C191C  FC 20 00 50 */	fneg f1, f0
 /* 801C1920  FF C0 08 90 */	fmr f30, f1
@@ -43,8 +43,8 @@ lbl_801C1948:
 /* 801C1960  28 00 00 00 */	cmplwi r0, 0
 /* 801C1964  41 82 00 AC */	beq lbl_801C1A10
 lbl_801C1968:
-/* 801C1968  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 801C196C  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 801C1968  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 801C196C  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 801C1970  7C 60 BA 14 */	add r3, r0, r23
 /* 801C1974  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 801C1978  28 00 00 00 */	cmplwi r0, 0

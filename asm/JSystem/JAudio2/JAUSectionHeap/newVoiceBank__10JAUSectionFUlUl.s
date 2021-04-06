@@ -24,13 +24,13 @@ lbl_802A5BC4:
 /* 802A5BD4  48 02 90 79 */	bl __nw__FUl
 /* 802A5BD8  28 03 00 00 */	cmplwi r3, 0
 /* 802A5BDC  41 82 00 24 */	beq lbl_802A5C00
-/* 802A5BE0  3C 80 80 3C */	lis r4, __vt__7JASBank@ha
-/* 802A5BE4  38 04 76 BC */	addi r0, r4, __vt__7JASBank@l
+/* 802A5BE0  3C 80 80 3C */	lis r4, __vt__7JASBank@ha /* 0x803C76BC@ha */
+/* 802A5BE4  38 04 76 BC */	addi r0, r4, __vt__7JASBank@l /* 0x803C76BC@l */
 /* 802A5BE8  90 03 00 00 */	stw r0, 0(r3)
 /* 802A5BEC  38 00 00 00 */	li r0, 0
 /* 802A5BF0  90 03 00 04 */	stw r0, 4(r3)
-/* 802A5BF4  3C 80 80 3C */	lis r4, __vt__12JASVoiceBank@ha
-/* 802A5BF8  38 04 76 D0 */	addi r0, r4, __vt__12JASVoiceBank@l
+/* 802A5BF4  3C 80 80 3C */	lis r4, __vt__12JASVoiceBank@ha /* 0x803C76D0@ha */
+/* 802A5BF8  38 04 76 D0 */	addi r0, r4, __vt__12JASVoiceBank@l /* 0x803C76D0@l */
 /* 802A5BFC  90 03 00 00 */	stw r0, 0(r3)
 lbl_802A5C00:
 /* 802A5C00  7C 7C 1B 78 */	mr r28, r3
@@ -50,11 +50,11 @@ lbl_802A5C28:
 /* 802A5C34  7C 64 01 2E */	stwx r3, r4, r0
 /* 802A5C38  28 1E 00 FF */	cmplwi r30, 0xff
 /* 802A5C3C  41 80 00 28 */	blt lbl_802A5C64
-/* 802A5C40  3C 60 80 3D */	lis r3, __files@ha
-/* 802A5C44  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802A5C40  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802A5C44  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802A5C48  38 63 00 A0 */	addi r3, r3, 0xa0
-/* 802A5C4C  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha
-/* 802A5C50  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l
+/* 802A5C4C  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha /* 0x8039B950@ha */
+/* 802A5C50  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l /* 0x8039B950@l */
 /* 802A5C54  38 84 00 47 */	addi r4, r4, 0x47
 /* 802A5C58  4C C6 31 82 */	crclr 6
 /* 802A5C5C  48 0C 0B 41 */	bl fprintf

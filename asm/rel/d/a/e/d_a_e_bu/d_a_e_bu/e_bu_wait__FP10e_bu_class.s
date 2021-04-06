@@ -3,10 +3,10 @@ lbl_80691C24:
 /* 80691C28  7C 08 02 A6 */	mflr r0
 /* 80691C2C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80691C30  39 61 00 30 */	addi r11, r1, 0x30
-/* 80691C34  4B CD 05 A8 */	b _savegpr_29
+/* 80691C34  4B CD 05 A9 */	bl _savegpr_29
 /* 80691C38  7C 7D 1B 78 */	mr r29, r3
-/* 80691C3C  3C 80 80 69 */	lis r4, lit_3788@ha
-/* 80691C40  3B E4 46 90 */	addi r31, r4, lit_3788@l
+/* 80691C3C  3C 80 80 69 */	lis r4, lit_3788@ha /* 0x80694690@ha */
+/* 80691C40  3B E4 46 90 */	addi r31, r4, lit_3788@l /* 0x80694690@l */
 /* 80691C44  80 83 05 C0 */	lwz r4, 0x5c0(r3)
 /* 80691C48  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 80691C4C  FC 00 00 1E */	fctiwz f0, f0
@@ -68,14 +68,14 @@ lbl_80691D04:
 /* 80691D18  EC 21 00 2A */	fadds f1, f1, f0
 /* 80691D1C  C0 5F 00 58 */	lfs f2, 0x58(r31)
 /* 80691D20  C0 7F 00 5C */	lfs f3, 0x5c(r31)
-/* 80691D24  4B BD DD 18 */	b cLib_addCalc2__FPffff
+/* 80691D24  4B BD DD 19 */	bl cLib_addCalc2__FPffff
 lbl_80691D28:
 /* 80691D28  2C 1E 00 29 */	cmpwi r30, 0x29
 /* 80691D2C  41 80 00 80 */	blt lbl_80691DAC
 /* 80691D30  38 00 00 03 */	li r0, 3
 /* 80691D34  B0 1D 06 74 */	sth r0, 0x674(r29)
 /* 80691D38  C0 3F 00 60 */	lfs f1, 0x60(r31)
-/* 80691D3C  4B BD 5C 18 */	b cM_rndF__Ff
+/* 80691D3C  4B BD 5C 19 */	bl cM_rndF__Ff
 /* 80691D40  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 80691D44  EC 40 08 2A */	fadds f2, f0, f1
 /* 80691D48  7F A3 EB 78 */	mr r3, r29
@@ -97,7 +97,7 @@ lbl_80691D78:
 /* 80691D84  EC 21 00 2A */	fadds f1, f1, f0
 /* 80691D88  C0 5F 00 58 */	lfs f2, 0x58(r31)
 /* 80691D8C  C0 7F 00 5C */	lfs f3, 0x5c(r31)
-/* 80691D90  4B BD DC AC */	b cLib_addCalc2__FPffff
+/* 80691D90  4B BD DC AD */	bl cLib_addCalc2__FPffff
 /* 80691D94  A8 1D 06 AC */	lha r0, 0x6ac(r29)
 /* 80691D98  2C 00 00 00 */	cmpwi r0, 0
 /* 80691D9C  40 82 00 10 */	bne lbl_80691DAC
@@ -106,7 +106,7 @@ lbl_80691D78:
 /* 80691DA8  B0 1D 06 74 */	sth r0, 0x674(r29)
 lbl_80691DAC:
 /* 80691DAC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80691DB0  4B CD 04 78 */	b _restgpr_29
+/* 80691DB0  4B CD 04 79 */	bl _restgpr_29
 /* 80691DB4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80691DB8  7C 08 03 A6 */	mtlr r0
 /* 80691DBC  38 21 00 30 */	addi r1, r1, 0x30

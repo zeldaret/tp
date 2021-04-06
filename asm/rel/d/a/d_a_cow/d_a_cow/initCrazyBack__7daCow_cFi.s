@@ -9,10 +9,10 @@ lbl_8065F744:
 /* 8065F760  40 82 00 48 */	bne lbl_8065F7A8
 /* 8065F764  38 80 00 1C */	li r4, 0x1c
 /* 8065F768  38 A0 00 02 */	li r5, 2
-/* 8065F76C  3C C0 80 66 */	lis r6, lit_4087@ha
-/* 8065F770  C0 26 2D D0 */	lfs f1, lit_4087@l(r6)
-/* 8065F774  3C C0 80 66 */	lis r6, lit_3989@ha
-/* 8065F778  C0 46 2D B8 */	lfs f2, lit_3989@l(r6)
+/* 8065F76C  3C C0 80 66 */	lis r6, lit_4087@ha /* 0x80662DD0@ha */
+/* 8065F770  C0 26 2D D0 */	lfs f1, lit_4087@l(r6)  /* 0x80662DD0@l */
+/* 8065F774  3C C0 80 66 */	lis r6, lit_3989@ha /* 0x80662DB8@ha */
+/* 8065F778  C0 46 2D B8 */	lfs f2, lit_3989@l(r6)  /* 0x80662DB8@l */
 /* 8065F77C  4B FF 8F B5 */	bl setBck__7daCow_cFiUcff
 /* 8065F780  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8065F784  54 03 C6 3E */	rlwinm r3, r0, 0x18, 0x18, 0x1f
@@ -20,7 +20,7 @@ lbl_8065F744:
 /* 8065F78C  41 82 00 1C */	beq lbl_8065F7A8
 /* 8065F790  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 8065F794  7C 04 07 74 */	extsb r4, r0
-/* 8065F798  4B 9F 20 54 */	b dPath_GetRoomPath__Fii
+/* 8065F798  4B 9F 20 55 */	bl dPath_GetRoomPath__Fii
 /* 8065F79C  90 7F 0C 0C */	stw r3, 0xc0c(r31)
 /* 8065F7A0  38 00 00 03 */	li r0, 3
 /* 8065F7A4  98 1F 0C 10 */	stb r0, 0xc10(r31)

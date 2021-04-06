@@ -3,19 +3,20 @@
 #
 
 M624_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile.plf
+M624_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile.lcf
+M624_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile.map
 
 M624_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_smtile/executor.cpp \
-	rel/d/a/obj/d_a_obj_smtile/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_smtile/d_a_obj_smtile.cpp \
 
 M624_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/d_a_obj_smtile.o \
 
 M624_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/libRuntime.PPCEABI.H.a \
 
 M624_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M624_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map624.map\
+	-m _prolog \
+	-lcf $(M624_LDSCRIPT) \
+	-unused -map $(M624_MAP) \
+	-w off \
 
 $(M624_TARGET): $(M624_O_FILES) $(M624_LIBS)
+	@echo [624] creating $(M624_TARGET)
 	@echo $(M624_LIBS) $(M624_O_FILES) > build/M624_ofiles
-	$(LD) -opt_partial $(M624_LDFLAGS) -o $(M624_TARGET) @build/M624_ofiles
+	@python3 tools/lcf.py rel 624 --output $(M624_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M624_LDFLAGS) -o $(M624_TARGET) @build/M624_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smtile/%.o: rel/d/a/obj/d_a_obj_smtile/%.cpp
+	@echo [624] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M624_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M624_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_smtile/libs/Runtime.PPCEABI.H/Makefile
 

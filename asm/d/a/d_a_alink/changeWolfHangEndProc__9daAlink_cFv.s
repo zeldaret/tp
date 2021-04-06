@@ -12,15 +12,15 @@ lbl_801354C8:
 /* 801354F0  C0 1F 33 D8 */	lfs f0, 0x33d8(r31)
 /* 801354F4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801354F8  40 81 00 1C */	ble lbl_80135514
-/* 801354FC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha
-/* 80135500  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l
+/* 801354FC  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 80135500  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 80135504  C0 23 00 48 */	lfs f1, 0x48(r3)
 /* 80135508  C0 03 00 94 */	lfs f0, 0x94(r3)
 /* 8013550C  EC 21 00 2A */	fadds f1, f1, f0
 /* 80135510  48 00 00 10 */	b lbl_80135520
 lbl_80135514:
-/* 80135514  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 80135518  38 63 F1 A0 */	addi r3, r3, m__24daAlinkHIO_wlWallHang_c0@l
+/* 80135514  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 80135518  38 63 F1 A0 */	addi r3, r3, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 8013551C  C0 23 00 88 */	lfs f1, 0x88(r3)
 lbl_80135520:
 /* 80135520  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
@@ -42,8 +42,8 @@ lbl_80135548:
 /* 8013555C  41 82 00 78 */	beq lbl_801355D4
 /* 80135560  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80135564  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80135568  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013556C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80135568  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013556C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80135570  7C 03 04 2E */	lfsx f0, r3, r0
 /* 80135574  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 80135578  C0 42 93 00 */	lfs f2, lit_6895(r2)
@@ -63,8 +63,8 @@ lbl_80135548:
 /* 801355B0  90 1F 05 78 */	stw r0, 0x578(r31)
 /* 801355B4  7F E3 FB 78 */	mr r3, r31
 /* 801355B8  38 80 00 02 */	li r4, 2
-/* 801355BC  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 801355C0  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l
+/* 801355BC  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 801355C0  38 A5 F1 A0 */	addi r5, r5, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 801355C4  C0 25 00 98 */	lfs f1, 0x98(r5)
 /* 801355C8  4B FF 98 09 */	bl procWolfFallInit__9daAlink_cFif
 /* 801355CC  38 60 00 01 */	li r3, 1

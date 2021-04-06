@@ -70,8 +70,8 @@ lbl_800F1774:
 /* 800F1784  4B FE 0C 3D */	bl checkCutAction__9daAlink_cFv
 /* 800F1788  48 00 00 F0 */	b lbl_800F1878
 lbl_800F178C:
-/* 800F178C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F1790  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F178C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F1790  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F1794  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800F1798  28 00 00 FF */	cmplwi r0, 0xff
 /* 800F179C  41 82 00 14 */	beq lbl_800F17B0
@@ -99,8 +99,8 @@ lbl_800F17E4:
 /* 800F17E8  C0 1F 34 84 */	lfs f0, 0x3484(r31)
 /* 800F17EC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800F17F0  40 81 00 40 */	ble lbl_800F1830
-/* 800F17F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F17F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F17F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F17F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F17FC  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800F1800  28 00 00 FF */	cmplwi r0, 0xff
 /* 800F1804  41 82 00 14 */	beq lbl_800F1818

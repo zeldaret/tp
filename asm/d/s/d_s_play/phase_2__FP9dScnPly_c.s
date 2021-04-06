@@ -5,8 +5,8 @@ lbl_8025A4F8:
 /* 8025A504  39 61 00 20 */	addi r11, r1, 0x20
 /* 8025A508  48 10 7C D5 */	bl _savegpr_29
 /* 8025A50C  7C 7D 1B 78 */	mr r29, r3
-/* 8025A510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025A514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025A510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025A514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025A518  3C 63 00 02 */	addis r3, r3, 2
 /* 8025A51C  38 80 00 80 */	li r4, 0x80
 /* 8025A520  38 63 C2 F8 */	addi r3, r3, -15624
@@ -20,8 +20,8 @@ lbl_8025A53C:
 /* 8025A53C  38 60 00 00 */	li r3, 0
 /* 8025A540  4B DD 24 3D */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025A544  7C 7F 1B 78 */	mr r31, r3
-/* 8025A548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025A54C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025A548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025A54C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025A550  3B C3 4E 20 */	addi r30, r3, 0x4e20
 /* 8025A554  7F C3 F3 78 */	mr r3, r30
 /* 8025A558  81 9E 00 00 */	lwz r12, 0(r30)
@@ -42,8 +42,8 @@ lbl_8025A53C:
 /* 8025A594  54 00 EE 3E */	rlwinm r0, r0, 0x1d, 0x18, 0x1f
 /* 8025A598  7C 04 03 78 */	mr r4, r0
 lbl_8025A59C:
-/* 8025A59C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025A5A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025A59C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025A5A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025A5A4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8025A5A8  38 BD 01 CC */	addi r5, r29, 0x1cc
 /* 8025A5AC  4B DF 18 51 */	bl readScene__13dPa_control_cFUcPP21mDoDvdThd_toMainRam_c

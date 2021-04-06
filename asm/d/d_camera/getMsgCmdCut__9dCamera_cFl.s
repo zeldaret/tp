@@ -1,6 +1,6 @@
 lbl_8016E4A4:
-/* 8016E4A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8016E4A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8016E4A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8016E4A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8016E4AC  80 03 5E EC */	lwz r0, 0x5eec(r3)
 /* 8016E4B0  2C 00 00 01 */	cmpwi r0, 1
 /* 8016E4B4  41 80 00 0C */	blt lbl_8016E4C0

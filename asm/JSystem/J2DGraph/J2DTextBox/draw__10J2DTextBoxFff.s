@@ -88,8 +88,8 @@ lbl_803003E4:
 /* 8030042C  C0 22 C8 80 */	lfs f1, lit_1660(r2)
 /* 80300430  FC 40 08 90 */	fmr f2, f1
 /* 80300434  88 9E 00 B2 */	lbz r4, 0xb2(r30)
-/* 80300438  3C A0 80 3A */	lis r5, J2DTextBox__stringBase0@ha
-/* 8030043C  38 A5 1C 58 */	addi r5, r5, J2DTextBox__stringBase0@l
+/* 80300438  3C A0 80 3A */	lis r5, J2DTextBox__stringBase0@ha /* 0x803A1C58@ha */
+/* 8030043C  38 A5 1C 58 */	addi r5, r5, J2DTextBox__stringBase0@l /* 0x803A1C58@l */
 /* 80300440  4C C6 32 42 */	crset 6
 /* 80300444  4B FF 43 35 */	bl print__8J2DPrintFffUcPCce
 lbl_80300448:

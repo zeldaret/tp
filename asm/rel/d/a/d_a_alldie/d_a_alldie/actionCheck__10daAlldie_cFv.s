@@ -6,7 +6,7 @@ lbl_804D5838:
 /* 804D5848  7C 7F 1B 78 */	mr r31, r3
 /* 804D584C  88 03 04 E2 */	lbz r0, 0x4e2(r3)
 /* 804D5850  7C 03 07 74 */	extsb r3, r0
-/* 804D5854  4B B4 71 C8 */	b fopAcM_myRoomSearchEnemy__FSc
+/* 804D5854  4B B4 71 C9 */	bl fopAcM_myRoomSearchEnemy__FSc
 /* 804D5858  28 03 00 00 */	cmplwi r3, 0
 /* 804D585C  40 82 00 14 */	bne lbl_804D5870
 /* 804D5860  38 00 00 02 */	li r0, 2

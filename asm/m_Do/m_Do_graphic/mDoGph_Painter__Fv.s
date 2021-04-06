@@ -8,8 +8,8 @@ lbl_8000A604:
 /* 8000A61C  F3 C1 03 C8 */	psq_st f30, 968(r1), 0, 0 /* qr0 */
 /* 8000A620  39 61 03 C0 */	addi r11, r1, 0x3c0
 /* 8000A624  48 35 7B 99 */	bl _savegpr_21
-/* 8000A628  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000A62C  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 8000A628  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A62C  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A630  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 8000A634  28 03 00 00 */	cmplwi r3, 0
 /* 8000A638  41 82 00 08 */	beq lbl_8000A640
@@ -52,8 +52,8 @@ lbl_8000A640:
 /* 8000A6C8  98 03 00 02 */	stb r0, 2(r3)
 /* 8000A6CC  88 04 00 03 */	lbz r0, 3(r4)
 /* 8000A6D0  98 03 00 03 */	stb r0, 3(r3)
-/* 8000A6D4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000A6D8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000A6D4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000A6D8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000A6DC  48 30 59 E1 */	bl drawInit__6J3DSysFv
 /* 8000A6E0  38 60 00 01 */	li r3, 1
 /* 8000A6E4  48 35 56 F5 */	bl GXSetDither
@@ -80,16 +80,16 @@ lbl_8000A640:
 /* 8000A738  38 61 02 A8 */	addi r3, r1, 0x2a8
 /* 8000A73C  48 2D F0 79 */	bl setPort__13J2DOrthoGraphFv
 /* 8000A740  38 01 02 A8 */	addi r0, r1, 0x2a8
-/* 8000A744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000A748  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 8000A744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A748  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A74C  90 05 5F 50 */	stw r0, 0x5f50(r5)
 /* 8000A750  3B E5 5F 64 */	addi r31, r5, 0x5f64
 /* 8000A754  7F E3 FB 78 */	mr r3, r31
 /* 8000A758  38 9F 00 54 */	addi r4, r31, 0x54
 /* 8000A75C  80 A5 5F C8 */	lwz r5, 0x5fc8(r5)
 /* 8000A760  48 04 C0 65 */	bl draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c
-/* 8000A764  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000A768  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
+/* 8000A764  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A768  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A76C  88 1A 5D 44 */	lbz r0, 0x5d44(r26)
 /* 8000A770  2C 00 00 00 */	cmpwi r0, 0
 /* 8000A774  41 82 07 84 */	beq lbl_8000AEF8
@@ -170,8 +170,8 @@ lbl_8000A818:
 /* 8000A898  FC A0 18 90 */	fmr f5, f3
 /* 8000A89C  FC C0 18 90 */	fmr f6, f3
 /* 8000A8A0  48 33 C3 79 */	bl C_MTXLightPerspective
-/* 8000A8A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000A8A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8000A8A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A8A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A8AC  92 A3 5F 44 */	stw r21, 0x5f44(r3)
 /* 8000A8B0  93 C3 5F 48 */	stw r30, 0x5f48(r3)
 /* 8000A8B4  93 A3 5F 4C */	stw r29, 0x5f4c(r3)
@@ -180,33 +180,33 @@ lbl_8000A818:
 /* 8000A8C0  48 35 58 15 */	bl GXSetProjection
 /* 8000A8C4  48 32 F4 35 */	bl PPCSync
 /* 8000A8C8  38 7E 01 40 */	addi r3, r30, 0x140
-/* 8000A8CC  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8000A8D0  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8000A8CC  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000A8D0  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8000A8D4  48 33 BB DD */	bl PSMTXCopy
 /* 8000A8D8  48 19 B7 E5 */	bl dKy_setLight__Fv
 /* 8000A8DC  7F E3 FB 78 */	mr r3, r31
 /* 8000A8E0  80 9F 00 00 */	lwz r4, 0(r31)
 /* 8000A8E4  48 04 BD F1 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A8E8  7F E3 FB 78 */	mr r3, r31
-/* 8000A8EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A8F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A8EC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A8F0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A8F4  80 84 5F 68 */	lwz r4, 0x5f68(r4)
 /* 8000A8F8  48 04 BE 19 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A8FC  38 60 00 00 */	li r3, 0
 /* 8000A900  48 35 5C D1 */	bl GXSetClipMode
 /* 8000A904  7F E3 FB 78 */	mr r3, r31
-/* 8000A908  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A90C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A908  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A90C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A910  80 84 5F 70 */	lwz r4, 0x5f70(r4)
 /* 8000A914  48 04 BD C1 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A918  7F E3 FB 78 */	mr r3, r31
-/* 8000A91C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A920  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A91C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A920  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A924  80 84 5F 78 */	lwz r4, 0x5f78(r4)
 /* 8000A928  48 04 BD AD */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A92C  7F E3 FB 78 */	mr r3, r31
-/* 8000A930  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A934  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A930  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A934  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A938  80 84 5F B0 */	lwz r4, 0x5fb0(r4)
 /* 8000A93C  48 04 BD 99 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A940  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
@@ -227,28 +227,28 @@ lbl_8000A970:
 /* 8000A974  38 9E 01 40 */	addi r4, r30, 0x140
 /* 8000A978  48 04 B0 9D */	bl draw__21dDlst_shadowControl_cFPA4_f
 /* 8000A97C  7F E3 FB 78 */	mr r3, r31
-/* 8000A980  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A984  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A980  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A984  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A988  80 84 5F 80 */	lwz r4, 0x5f80(r4)
 /* 8000A98C  48 04 BD 49 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A990  7F E3 FB 78 */	mr r3, r31
-/* 8000A994  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A998  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A994  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A998  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A99C  80 84 5F 88 */	lwz r4, 0x5f88(r4)
 /* 8000A9A0  48 04 BD 35 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A9A4  7F E3 FB 78 */	mr r3, r31
-/* 8000A9A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A9AC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A9A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A9AC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A9B0  80 84 5F 90 */	lwz r4, 0x5f90(r4)
 /* 8000A9B4  48 04 BD 21 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A9B8  7F E3 FB 78 */	mr r3, r31
-/* 8000A9BC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A9C0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A9BC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A9C0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A9C4  80 84 5F 74 */	lwz r4, 0x5f74(r4)
 /* 8000A9C8  48 04 BD 49 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A9CC  7F E3 FB 78 */	mr r3, r31
-/* 8000A9D0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000A9D4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000A9D0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000A9D4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000A9D8  80 84 5F 7C */	lwz r4, 0x5f7c(r4)
 /* 8000A9DC  48 04 BD 35 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000A9E0  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
@@ -266,22 +266,22 @@ lbl_8000A9F8:
 /* 8000AA0C  48 04 17 7D */	bl draw__13dPa_control_cFP11JPADrawInfoUc
 lbl_8000AA10:
 /* 8000AA10  7F E3 FB 78 */	mr r3, r31
-/* 8000AA14  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AA18  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AA14  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AA18  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AA1C  80 84 5F 84 */	lwz r4, 0x5f84(r4)
 /* 8000AA20  48 04 BC F1 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AA24  7F E3 FB 78 */	mr r3, r31
-/* 8000AA28  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AA2C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AA28  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AA2C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AA30  80 84 5F 8C */	lwz r4, 0x5f8c(r4)
 /* 8000AA34  48 04 BC DD */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
-/* 8000AA38  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000AA3C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000AA38  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AA3C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000AA40  48 30 5C FD */	bl reinitGX__6J3DSysFv
 /* 8000AA44  38 60 00 00 */	li r3, 0
 /* 8000AA48  48 35 5B 89 */	bl GXSetClipMode
-/* 8000AA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000AA50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8000AA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AA50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AA54  88 03 5E B5 */	lbz r0, 0x5eb5(r3)
 /* 8000AA58  28 00 00 00 */	cmplwi r0, 0
 /* 8000AA5C  40 82 04 9C */	bne lbl_8000AEF8
@@ -289,8 +289,8 @@ lbl_8000AA10:
 /* 8000AA64  4B FF F8 2D */	bl motionBlure__FP10view_class
 /* 8000AA68  7F C3 F3 78 */	mr r3, r30
 /* 8000AA6C  7F A4 EB 78 */	mr r4, r29
-/* 8000AA70  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8000AA74  38 05 61 C0 */	addi r0, r5, g_dComIfG_gameInfo@l
+/* 8000AA70  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AA74  38 05 61 C0 */	addi r0, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AA78  7F 60 DA 14 */	add r27, r0, r27
 /* 8000AA7C  C4 1B 5D 84 */	lfsu f0, 0x5d84(r27)
 /* 8000AA80  FC 00 00 1E */	fctiwz f0, f0
@@ -300,19 +300,19 @@ lbl_8000AA10:
 /* 8000AA90  48 35 3B D5 */	bl GXInvalidateTexAll
 /* 8000AA94  38 60 00 00 */	li r3, 0
 /* 8000AA98  48 35 5B 39 */	bl GXSetClipMode
-/* 8000AA9C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8000AAA0  3B 23 CA 54 */	addi r25, r3, g_env_light@l
+/* 8000AA9C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8000AAA0  3B 23 CA 54 */	addi r25, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8000AAA4  88 19 12 FA */	lbz r0, 0x12fa(r25)
 /* 8000AAA8  28 00 00 00 */	cmplwi r0, 0
 /* 8000AAAC  40 82 00 2C */	bne lbl_8000AAD8
 /* 8000AAB0  7F E3 FB 78 */	mr r3, r31
-/* 8000AAB4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AAB8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AAB4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AAB8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AABC  80 84 5F A0 */	lwz r4, 0x5fa0(r4)
 /* 8000AAC0  48 04 BC 15 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AAC4  7F E3 FB 78 */	mr r3, r31
-/* 8000AAC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AACC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AAC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AACC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AAD0  80 84 5F A4 */	lwz r4, 0x5fa4(r4)
 /* 8000AAD4  48 04 BC 3D */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 lbl_8000AAD8:
@@ -331,15 +331,15 @@ lbl_8000AAF0:
 /* 8000AB04  48 04 16 85 */	bl draw__13dPa_control_cFP11JPADrawInfoUc
 lbl_8000AB08:
 /* 8000AB08  7F E3 FB 78 */	mr r3, r31
-/* 8000AB0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AB10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AB0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AB10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AB14  80 84 5F A8 */	lwz r4, 0x5fa8(r4)
 /* 8000AB18  48 04 BB F9 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AB1C  38 60 00 00 */	li r3, 0
 /* 8000AB20  48 35 5A B1 */	bl GXSetClipMode
 /* 8000AB24  7F E3 FB 78 */	mr r3, r31
-/* 8000AB28  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AB2C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AB28  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AB2C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AB30  80 84 5F 94 */	lwz r4, 0x5f94(r4)
 /* 8000AB34  48 04 BB A1 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AB38  38 60 00 00 */	li r3, 0
@@ -406,13 +406,13 @@ lbl_8000ABE8:
 /* 8000AC10  28 00 00 01 */	cmplwi r0, 1
 /* 8000AC14  40 82 00 2C */	bne lbl_8000AC40
 /* 8000AC18  7F E3 FB 78 */	mr r3, r31
-/* 8000AC1C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AC20  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AC1C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AC20  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AC24  80 84 5F A0 */	lwz r4, 0x5fa0(r4)
 /* 8000AC28  48 04 BA AD */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AC2C  7F E3 FB 78 */	mr r3, r31
-/* 8000AC30  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AC34  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AC30  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AC34  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AC38  80 84 5F A4 */	lwz r4, 0x5fa4(r4)
 /* 8000AC3C  48 04 BA D5 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 lbl_8000AC40:
@@ -426,14 +426,14 @@ lbl_8000AC58:
 /* 8000AC58  38 60 00 00 */	li r3, 0
 /* 8000AC5C  48 35 59 75 */	bl GXSetClipMode
 /* 8000AC60  7F E3 FB 78 */	mr r3, r31
-/* 8000AC64  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AC68  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AC64  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AC68  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AC6C  80 84 5F 6C */	lwz r4, 0x5f6c(r4)
 /* 8000AC70  48 04 BA 65 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AC74  3B 3A 4E 00 */	addi r25, r26, 0x4e00
 /* 8000AC78  7F 23 CB 78 */	mr r3, r25
-/* 8000AC7C  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha
-/* 8000AC80  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l
+/* 8000AC7C  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha /* 0x80373DD0@ha */
+/* 8000AC80  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l /* 0x80373DD0@l */
 /* 8000AC84  48 35 DD 11 */	bl strcmp
 /* 8000AC88  2C 03 00 00 */	cmpwi r3, 0
 /* 8000AC8C  40 82 00 20 */	bne lbl_8000ACAC
@@ -472,45 +472,45 @@ lbl_8000ACAC:
 /* 8000AD0C  D0 21 00 50 */	stfs f1, 0x50(r1)
 /* 8000AD10  38 61 01 30 */	addi r3, r1, 0x130
 /* 8000AD14  38 81 00 54 */	addi r4, r1, 0x54
-/* 8000AD18  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 8000AD1C  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l
+/* 8000AD18  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8000AD1C  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 8000AD20  38 C1 00 48 */	addi r6, r1, 0x48
 /* 8000AD24  38 E0 00 00 */	li r7, 0
 /* 8000AD28  48 00 19 E9 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 8000AD2C  38 61 01 30 */	addi r3, r1, 0x130
-/* 8000AD30  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8000AD34  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8000AD30  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AD34  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8000AD38  48 33 B7 79 */	bl PSMTXCopy
 /* 8000AD3C  7F E3 FB 78 */	mr r3, r31
-/* 8000AD40  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AD44  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AD40  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AD44  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AD48  80 84 5F AC */	lwz r4, 0x5fac(r4)
 /* 8000AD4C  48 04 B9 C5 */	bl drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AD50  38 7E 01 40 */	addi r3, r30, 0x140
-/* 8000AD54  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8000AD58  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8000AD54  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AD58  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8000AD5C  48 33 B7 55 */	bl PSMTXCopy
 /* 8000AD60  38 7E 01 00 */	addi r3, r30, 0x100
 /* 8000AD64  38 80 00 00 */	li r4, 0
 /* 8000AD68  48 35 53 6D */	bl GXSetProjection
-/* 8000AD6C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000AD70  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000AD6C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AD70  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000AD74  48 30 59 C9 */	bl reinitGX__6J3DSysFv
-/* 8000AD78  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8000AD7C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8000AD78  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8000AD7C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8000AD80  88 03 12 D8 */	lbz r0, 0x12d8(r3)
 /* 8000AD84  28 00 00 00 */	cmplwi r0, 0
 /* 8000AD88  40 82 00 20 */	bne lbl_8000ADA8
 /* 8000AD8C  7F 23 CB 78 */	mr r3, r25
-/* 8000AD90  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha
-/* 8000AD94  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l
+/* 8000AD90  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha /* 0x80373DD0@ha */
+/* 8000AD94  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l /* 0x80373DD0@l */
 /* 8000AD98  38 84 00 08 */	addi r4, r4, 8
 /* 8000AD9C  48 35 DB F9 */	bl strcmp
 /* 8000ADA0  2C 03 00 00 */	cmpwi r3, 0
 /* 8000ADA4  40 82 00 48 */	bne lbl_8000ADEC
 lbl_8000ADA8:
-/* 8000ADA8  3C 60 80 3E */	lis r3, m_bloom__13mDoGph_gInf_c@ha
-/* 8000ADAC  38 63 D4 28 */	addi r3, r3, m_bloom__13mDoGph_gInf_c@l
+/* 8000ADA8  3C 60 80 3E */	lis r3, m_bloom__13mDoGph_gInf_c@ha /* 0x803DD428@ha */
+/* 8000ADAC  38 63 D4 28 */	addi r3, r3, m_bloom__13mDoGph_gInf_c@l /* 0x803DD428@l */
 /* 8000ADB0  88 83 00 08 */	lbz r4, 8(r3)
 /* 8000ADB4  80 03 00 04 */	lwz r0, 4(r3)
 /* 8000ADB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -528,19 +528,19 @@ lbl_8000ADD0:
 /* 8000ADE4  80 A1 03 84 */	lwz r5, 0x384(r1)
 /* 8000ADE8  4B FF F3 79 */	bl retry_captue_frame__FP10view_classP15view_port_classi
 lbl_8000ADEC:
-/* 8000ADEC  3C 60 80 3E */	lis r3, m_bloom__13mDoGph_gInf_c@ha
-/* 8000ADF0  38 63 D4 28 */	addi r3, r3, m_bloom__13mDoGph_gInf_c@l
+/* 8000ADEC  3C 60 80 3E */	lis r3, m_bloom__13mDoGph_gInf_c@ha /* 0x803DD428@ha */
+/* 8000ADF0  38 63 D4 28 */	addi r3, r3, m_bloom__13mDoGph_gInf_c@l /* 0x803DD428@l */
 /* 8000ADF4  4B FF E8 5D */	bl draw__Q213mDoGph_gInf_c7bloom_cFv
 /* 8000ADF8  38 7E 01 40 */	addi r3, r30, 0x140
-/* 8000ADFC  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8000AE00  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8000ADFC  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AE00  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8000AE04  48 33 B6 AD */	bl PSMTXCopy
 /* 8000AE08  38 7E 01 00 */	addi r3, r30, 0x100
 /* 8000AE0C  38 80 00 00 */	li r4, 0
 /* 8000AE10  48 35 52 C5 */	bl GXSetProjection
 /* 8000AE14  7F E3 FB 78 */	mr r3, r31
-/* 8000AE18  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8000AE1C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8000AE18  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AE1C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AE20  80 84 5F B4 */	lwz r4, 0x5fb4(r4)
 /* 8000AE24  48 04 B8 B1 */	bl drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer
 /* 8000AE28  C0 02 80 38 */	lfs f0, lit_4062(r2)
@@ -586,8 +586,8 @@ lbl_8000AEC0:
 /* 8000AEC4  7F A4 EB 78 */	mr r4, r29
 /* 8000AEC8  4B FF E2 F9 */	bl trimming__FP10view_classP15view_port_class
 /* 8000AECC  7F 23 CB 78 */	mr r3, r25
-/* 8000AED0  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha
-/* 8000AED4  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l
+/* 8000AED0  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha /* 0x80373DD0@ha */
+/* 8000AED4  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l /* 0x80373DD0@l */
 /* 8000AED8  38 84 00 0F */	addi r4, r4, 0xf
 /* 8000AEDC  48 35 DA B9 */	bl strcmp
 /* 8000AEE0  2C 03 00 00 */	cmpwi r3, 0
@@ -600,8 +600,8 @@ lbl_8000AEF8:
 /* 8000AEF8  38 60 00 00 */	li r3, 0
 /* 8000AEFC  48 35 56 D5 */	bl GXSetClipMode
 /* 8000AF00  48 04 BA 01 */	bl calcWipe__12dDlst_list_cFv
-/* 8000AF04  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000AF08  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000AF04  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AF08  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000AF0C  48 30 58 31 */	bl reinitGX__6J3DSysFv
 /* 8000AF10  C0 02 80 38 */	lfs f0, lit_4062(r2)
 /* 8000AF14  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -617,8 +617,8 @@ lbl_8000AEF8:
 /* 8000AF3C  48 2D E8 D1 */	bl func_802E980C
 /* 8000AF40  38 61 02 A8 */	addi r3, r1, 0x2a8
 /* 8000AF44  48 2D E8 71 */	bl setPort__13J2DOrthoGraphFv
-/* 8000AF48  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000AF4C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000AF48  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000AF4C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000AF50  38 81 00 90 */	addi r4, r1, 0x90
 /* 8000AF54  48 33 B5 5D */	bl PSMTXCopy
 /* 8000AF58  38 61 00 60 */	addi r3, r1, 0x60
@@ -639,8 +639,8 @@ lbl_8000AEF8:
 /* 8000AF94  FC E0 28 90 */	fmr f7, f5
 /* 8000AF98  FD 00 28 90 */	fmr f8, f5
 /* 8000AF9C  48 33 BD 49 */	bl C_MTXLightOrtho
-/* 8000AFA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000AFA4  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l
+/* 8000AFA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AFA4  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AFA8  88 19 5E B5 */	lbz r0, 0x5eb5(r25)
 /* 8000AFAC  28 00 00 00 */	cmplwi r0, 0
 /* 8000AFB0  40 82 00 1C */	bne lbl_8000AFCC
@@ -662,8 +662,8 @@ lbl_8000AFE4:
 /* 8000AFE8  48 2D E7 CD */	bl setPort__13J2DOrthoGraphFv
 /* 8000AFEC  7F E3 FB 78 */	mr r3, r31
 /* 8000AFF0  38 9F 00 B4 */	addi r4, r31, 0xb4
-/* 8000AFF4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8000AFF8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8000AFF4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000AFF8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000AFFC  80 A5 61 18 */	lwz r5, 0x6118(r5)
 /* 8000B000  48 04 B7 C5 */	bl draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c
 /* 8000B004  4B FF F5 89 */	bl drawItem3D__Fv
@@ -671,14 +671,14 @@ lbl_8000AFE4:
 /* 8000B00C  48 2D E7 A9 */	bl setPort__13J2DOrthoGraphFv
 /* 8000B010  7F E3 FB 78 */	mr r3, r31
 /* 8000B014  38 9F 00 6C */	addi r4, r31, 0x6c
-/* 8000B018  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8000B01C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8000B018  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000B01C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000B020  80 A5 60 10 */	lwz r5, 0x6010(r5)
 /* 8000B024  48 04 B7 A1 */	bl draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c
 /* 8000B028  7F E3 FB 78 */	mr r3, r31
 /* 8000B02C  38 9F 01 BC */	addi r4, r31, 0x1bc
-/* 8000B030  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8000B034  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8000B030  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000B034  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000B038  80 A5 61 A0 */	lwz r5, 0x61a0(r5)
 /* 8000B03C  48 04 B7 89 */	bl draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c
 /* 8000B040  88 19 5E B5 */	lbz r0, 0x5eb5(r25)
@@ -691,11 +691,11 @@ lbl_8000AFE4:
 /* 8000B05C  38 A0 00 0F */	li r5, 0xf
 /* 8000B060  48 04 11 29 */	bl draw__13dPa_control_cFP11JPADrawInfoUc
 lbl_8000B064:
-/* 8000B064  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000B068  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8000B064  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000B068  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000B06C  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 8000B070  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha
-/* 8000B074  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l
+/* 8000B070  3C 80 80 37 */	lis r4, m_Do_m_Do_graphic__stringBase0@ha /* 0x80373DD0@ha */
+/* 8000B074  38 84 3D D0 */	addi r4, r4, m_Do_m_Do_graphic__stringBase0@l /* 0x80373DD0@l */
 /* 8000B078  38 84 00 0F */	addi r4, r4, 0xf
 /* 8000B07C  48 35 D9 19 */	bl strcmp
 /* 8000B080  2C 03 00 00 */	cmpwi r3, 0
@@ -714,19 +714,19 @@ lbl_8000B098:
 /* 8000B0AC  48 04 10 DD */	bl draw__13dPa_control_cFP11JPADrawInfoUc
 lbl_8000B0B0:
 /* 8000B0B0  38 61 00 90 */	addi r3, r1, 0x90
-/* 8000B0B4  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 8000B0B8  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 8000B0B4  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000B0B8  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 8000B0BC  48 33 B3 F5 */	bl PSMTXCopy
 /* 8000B0C0  80 6D 8C 40 */	lwz r3, sManager__10JFWDisplay(r13)
 /* 8000B0C4  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B0C8  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8000B0CC  7D 89 03 A6 */	mtctr r12
 /* 8000B0D0  4E 80 04 21 */	bctrl 
-/* 8000B0D4  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 8000B0D8  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 8000B0D4  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 8000B0D8  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 8000B0DC  90 01 02 A8 */	stw r0, 0x2a8(r1)
-/* 8000B0E0  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 8000B0E4  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 8000B0E0  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 8000B0E4  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 8000B0E8  90 01 02 A8 */	stw r0, 0x2a8(r1)
 /* 8000B0EC  38 60 00 01 */	li r3, 1
 /* 8000B0F0  E3 E1 03 D8 */	psq_l f31, 984(r1), 0, 0 /* qr0 */

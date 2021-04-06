@@ -1,7 +1,7 @@
 lbl_8009236C:
 /* 8009236C  C0 04 00 00 */	lfs f0, 0(r4)
-/* 80092370  3C E0 80 40 */	lis r7, g_dComIfG_gameInfo@ha
-/* 80092374  38 07 61 C0 */	addi r0, r7, g_dComIfG_gameInfo@l
+/* 80092370  3C E0 80 40 */	lis r7, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80092374  38 07 61 C0 */	addi r0, r7, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80092378  1C 63 00 38 */	mulli r3, r3, 0x38
 /* 8009237C  7C 60 1A 14 */	add r3, r0, r3
 /* 80092380  D0 03 5D 8C */	stfs f0, 0x5d8c(r3)

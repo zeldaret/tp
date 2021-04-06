@@ -1,10 +1,10 @@
 lbl_80349E30:
 /* 80349E30  7C 08 02 A6 */	mflr r0
-/* 80349E34  3C 60 80 45 */	lis r3, BB2@ha
+/* 80349E34  3C 60 80 45 */	lis r3, BB2@ha /* 0x8044C900@ha */
 /* 80349E38  90 01 00 04 */	stw r0, 4(r1)
 /* 80349E3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80349E40  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80349E44  3B E3 C9 00 */	addi r31, r3, BB2@l
+/* 80349E44  3B E3 C9 00 */	addi r31, r3, BB2@l /* 0x8044C900@l */
 /* 80349E48  80 0D 92 14 */	lwz r0, CurrCommand(r13)
 /* 80349E4C  2C 00 00 0D */	cmpwi r0, 0xd
 /* 80349E50  41 82 00 28 */	beq lbl_80349E78
@@ -39,15 +39,15 @@ lbl_80349EA8:
 /* 80349EB4  38 7F 00 70 */	addi r3, r31, 0x70
 /* 80349EB8  4B FF 0A 41 */	bl OSCreateAlarm
 /* 80349EBC  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 80349EC0  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 80349EC0  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80349EC4  3C 80 10 62 */	lis r4, 0x1062 /* 0x10624DD3@ha */
-/* 80349EC8  3C 60 80 35 */	lis r3, AlarmHandler@ha
+/* 80349EC8  3C 60 80 35 */	lis r3, AlarmHandler@ha /* 0x80349DEC@ha */
 /* 80349ECC  54 00 F0 BE */	srwi r0, r0, 2
 /* 80349ED0  38 84 4D D3 */	addi r4, r4, 0x4DD3 /* 0x10624DD3@l */
 /* 80349ED4  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 80349ED8  54 00 D1 BE */	srwi r0, r0, 6
 /* 80349EDC  1C C0 04 7E */	mulli r6, r0, 0x47e
-/* 80349EE0  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
+/* 80349EE0  38 E3 9D EC */	addi r7, r3, AlarmHandler@l /* 0x80349DEC@l */
 /* 80349EE4  38 7F 00 70 */	addi r3, r31, 0x70
 /* 80349EE8  38 A0 00 00 */	li r5, 0
 /* 80349EEC  4B FF 0C 6D */	bl OSSetAlarm

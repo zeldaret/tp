@@ -7,12 +7,12 @@ lbl_8004FCC8:
 /* 8004FCDC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FCE0  7C 9F 23 78 */	mr r31, r4
 /* 8004FCE4  41 82 00 4C */	beq lbl_8004FD30
-/* 8004FCE8  3C 80 80 3B */	lis r4, __vt__22dPa_hermiteEcallBack_c@ha
-/* 8004FCEC  38 04 83 A0 */	addi r0, r4, __vt__22dPa_hermiteEcallBack_c@l
+/* 8004FCE8  3C 80 80 3B */	lis r4, __vt__22dPa_hermiteEcallBack_c@ha /* 0x803A83A0@ha */
+/* 8004FCEC  38 04 83 A0 */	addi r0, r4, __vt__22dPa_hermiteEcallBack_c@l /* 0x803A83A0@l */
 /* 8004FCF0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FCF4  41 82 00 2C */	beq lbl_8004FD20
-/* 8004FCF8  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 8004FCFC  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 8004FCF8  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x803A8554@ha */
+/* 8004FCFC  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x803A8554@l */
 /* 8004FD00  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FD04  81 83 00 00 */	lwz r12, 0(r3)
 /* 8004FD08  81 8C 00 20 */	lwz r12, 0x20(r12)

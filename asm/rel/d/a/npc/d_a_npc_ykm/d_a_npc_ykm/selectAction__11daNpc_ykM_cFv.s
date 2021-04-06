@@ -1,8 +1,8 @@
 lbl_80B5680C:
-/* 80B5680C  3C 80 80 B6 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80B56810  38 C4 DA E8 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80B56814  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80B56818  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80B5680C  3C 80 80 B6 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80B5DAE8@ha */
+/* 80B56810  38 C4 DA E8 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80B5DAE8@l */
+/* 80B56814  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80B56818  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80B5681C  80 85 00 00 */	lwz r4, 0(r5)
 /* 80B56820  80 05 00 04 */	lwz r0, 4(r5)
 /* 80B56824  90 83 14 E4 */	stw r4, 0x14e4(r3)

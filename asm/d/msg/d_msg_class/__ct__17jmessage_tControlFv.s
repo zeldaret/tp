@@ -5,8 +5,8 @@ lbl_802299EC:
 /* 802299F8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802299FC  7C 7F 1B 78 */	mr r31, r3
 /* 80229A00  48 07 DB 49 */	bl __ct__Q28JMessage8TControlFv
-/* 80229A04  3C 60 80 3A */	lis r3, __vt__17jmessage_tControl@ha
-/* 80229A08  38 03 79 28 */	addi r0, r3, __vt__17jmessage_tControl@l
+/* 80229A04  3C 60 80 3A */	lis r3, __vt__17jmessage_tControl@ha /* 0x803A7928@ha */
+/* 80229A08  38 03 79 28 */	addi r0, r3, __vt__17jmessage_tControl@l /* 0x803A7928@l */
 /* 80229A0C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80229A10  7F E3 FB 78 */	mr r3, r31
 /* 80229A14  83 E1 00 0C */	lwz r31, 0xc(r1)

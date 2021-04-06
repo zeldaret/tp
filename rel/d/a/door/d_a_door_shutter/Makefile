@@ -3,17 +3,15 @@
 #
 
 M8_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_shutter.plf
+M8_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_shutter.lcf
+M8_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_shutter.map
 
 M8_CPP_FILES := \
-	rel/d/a/door/d_a_door_shutter/executor.cpp \
-	rel/d/a/door/d_a_door_shutter/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_shutter/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_shutter/d_a_door_shutter.cpp \
 
 M8_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/d_a_door_shutter.o \
 
 M8_LIBS := \
@@ -29,15 +27,21 @@ M8_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map8.map\
+	-m _prolog \
+	-lcf $(M8_LDSCRIPT) \
+	-unused -map $(M8_MAP) \
+	-w off \
 
 $(M8_TARGET): $(M8_O_FILES) $(M8_LIBS)
+	@echo [  8] creating $(M8_TARGET)
 	@echo $(M8_LIBS) $(M8_O_FILES) > build/M8_ofiles
-	$(LD) -opt_partial $(M8_LDFLAGS) -o $(M8_TARGET) @build/M8_ofiles
+	@python3 tools/lcf.py rel 8 --output $(M8_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M8_LDFLAGS) -o $(M8_TARGET) @build/M8_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_shutter/%.o: rel/d/a/door/d_a_door_shutter/%.cpp
+	@echo [  8] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M8_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M8_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

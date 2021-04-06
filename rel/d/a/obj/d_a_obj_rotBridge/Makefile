@@ -3,19 +3,20 @@
 #
 
 M605_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge.plf
+M605_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge.lcf
+M605_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge.map
 
 M605_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rotBridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_rotBridge/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_rotBridge/d_a_obj_rotBridge.cpp \
 
 M605_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/d_a_obj_rotBridge.o \
 
 M605_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/libRuntime.PPCEABI.H.a \
 
 M605_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M605_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map605.map\
+	-m _prolog \
+	-lcf $(M605_LDSCRIPT) \
+	-unused -map $(M605_MAP) \
+	-w off \
 
 $(M605_TARGET): $(M605_O_FILES) $(M605_LIBS)
+	@echo [605] creating $(M605_TARGET)
 	@echo $(M605_LIBS) $(M605_O_FILES) > build/M605_ofiles
-	$(LD) -opt_partial $(M605_LDFLAGS) -o $(M605_TARGET) @build/M605_ofiles
+	@python3 tools/lcf.py rel 605 --output $(M605_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M605_LDFLAGS) -o $(M605_TARGET) @build/M605_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotBridge/%.o: rel/d/a/obj/d_a_obj_rotBridge/%.cpp
+	@echo [605] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M605_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M605_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_rotBridge/libs/Runtime.PPCEABI.H/Makefile
 

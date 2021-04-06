@@ -8,19 +8,19 @@ lbl_805A9FFC:
 /* 805AA014  28 00 00 00 */	cmplwi r0, 0
 /* 805AA018  41 82 00 0C */	beq lbl_805AA024
 /* 805AA01C  80 7F 05 70 */	lwz r3, 0x570(r31)
-/* 805AA020  4B A6 72 F0 */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 805AA020  4B A6 72 F1 */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 lbl_805AA024:
 /* 805AA024  38 60 00 00 */	li r3, 0
-/* 805AA028  4B A8 29 54 */	b getLayerNo__14dComIfG_play_cFi
+/* 805AA028  4B A8 29 55 */	bl getLayerNo__14dComIfG_play_cFi
 /* 805AA02C  2C 03 00 00 */	cmpwi r3, 0
 /* 805AA030  40 82 00 0C */	bne lbl_805AA03C
 /* 805AA034  38 60 00 01 */	li r3, 1
 /* 805AA038  48 00 00 18 */	b lbl_805AA050
 lbl_805AA03C:
 /* 805AA03C  38 7F 05 68 */	addi r3, r31, 0x568
-/* 805AA040  3C 80 80 5B */	lis r4, stringBase0@ha
-/* 805AA044  38 84 A4 C8 */	addi r4, r4, stringBase0@l
-/* 805AA048  4B A8 2F C0 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 805AA040  3C 80 80 5B */	lis r4, d_a_L7demo_dr__stringBase0@ha /* 0x805AA4C8@ha */
+/* 805AA044  38 84 A4 C8 */	addi r4, r4, d_a_L7demo_dr__stringBase0@l /* 0x805AA4C8@l */
+/* 805AA048  4B A8 2F C1 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 805AA04C  38 60 00 01 */	li r3, 1
 lbl_805AA050:
 /* 805AA050  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -7,8 +7,8 @@ lbl_800D27E4:
 /* 800D27F8  88 03 2F 8E */	lbz r0, 0x2f8e(r3)
 /* 800D27FC  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800D2800  41 82 00 38 */	beq lbl_800D2838
-/* 800D2804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D2808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D2804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D2808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D280C  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800D2810  38 80 2A 40 */	li r4, 0x2a40
 /* 800D2814  4B F6 21 A9 */	bl isEventBit__11dSv_event_cCFUs

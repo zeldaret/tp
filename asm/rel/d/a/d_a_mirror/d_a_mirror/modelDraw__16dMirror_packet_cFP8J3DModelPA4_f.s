@@ -3,7 +3,7 @@ lbl_80871268:
 /* 8087126C  7C 08 02 A6 */	mflr r0
 /* 80871270  90 01 00 74 */	stw r0, 0x74(r1)
 /* 80871274  39 61 00 70 */	addi r11, r1, 0x70
-/* 80871278  4B AF 0F 38 */	b _savegpr_18
+/* 80871278  4B AF 0F 39 */	bl _savegpr_18
 /* 8087127C  7C 72 1B 78 */	mr r18, r3
 /* 80871280  7C 9B 23 78 */	mr r27, r4
 /* 80871284  7C BC 2B 78 */	mr r28, r5
@@ -16,15 +16,15 @@ lbl_80871268:
 /* 808712A0  7F 83 E3 78 */	mr r3, r28
 /* 808712A4  38 81 00 28 */	addi r4, r1, 0x28
 /* 808712A8  38 A1 00 1C */	addi r5, r1, 0x1c
-/* 808712AC  4B AD 5A C0 */	b PSMTXMultVec
-/* 808712B0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 808712B4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 808712AC  4B AD 5A C1 */	bl PSMTXMultVec
+/* 808712B0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 808712B4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 808712B8  38 81 00 28 */	addi r4, r1, 0x28
 /* 808712BC  38 A1 00 10 */	addi r5, r1, 0x10
-/* 808712C0  4B AD 5A AC */	b PSMTXMultVec
+/* 808712C0  4B AD 5A AD */	bl PSMTXMultVec
 /* 808712C4  C0 32 01 80 */	lfs f1, 0x180(r18)
-/* 808712C8  3C 60 80 87 */	lis r3, lit_3945@ha
-/* 808712CC  C0 03 25 98 */	lfs f0, lit_3945@l(r3)
+/* 808712C8  3C 60 80 87 */	lis r3, lit_3945@ha /* 0x80872598@ha */
+/* 808712CC  C0 03 25 98 */	lfs f0, lit_3945@l(r3)  /* 0x80872598@l */
 /* 808712D0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 808712D4  40 81 00 14 */	ble lbl_808712E8
 /* 808712D8  C0 21 00 24 */	lfs f1, 0x24(r1)
@@ -32,11 +32,11 @@ lbl_80871268:
 /* 808712E0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 808712E4  41 81 01 70 */	bgt lbl_80871454
 lbl_808712E8:
-/* 808712E8  3C 60 80 87 */	lis r3, lit_3956@ha
-/* 808712EC  80 03 25 A8 */	lwz r0, lit_3956@l(r3)
+/* 808712E8  3C 60 80 87 */	lis r3, lit_3956@ha /* 0x808725A8@ha */
+/* 808712EC  80 03 25 A8 */	lwz r0, lit_3956@l(r3)  /* 0x808725A8@l */
 /* 808712F0  90 01 00 0C */	stw r0, 0xc(r1)
-/* 808712F4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 808712F8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 808712F4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 808712F8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 808712FC  A8 03 11 08 */	lha r0, 0x1108(r3)
 /* 80871300  98 01 00 0C */	stb r0, 0xc(r1)
 /* 80871304  A8 03 11 0A */	lha r0, 0x110a(r3)
@@ -48,8 +48,8 @@ lbl_808712E8:
 /* 8087131C  83 FB 00 04 */	lwz r31, 4(r27)
 /* 80871320  A3 5F 00 5C */	lhz r26, 0x5c(r31)
 /* 80871324  3B A0 00 00 */	li r29, 0
-/* 80871328  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha
-/* 8087132C  3B 23 15 D0 */	addi r25, r3, sOldVcdVatCmd__8J3DShape@l
+/* 80871328  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha /* 0x804515D0@ha */
+/* 8087132C  3B 23 15 D0 */	addi r25, r3, sOldVcdVatCmd__8J3DShape@l /* 0x804515D0@l */
 /* 80871330  48 00 01 18 */	b lbl_80871448
 lbl_80871334:
 /* 80871334  80 7B 00 C0 */	lwz r3, 0xc0(r27)
@@ -94,30 +94,30 @@ lbl_80871334:
 /* 808713D0  7D 89 03 A6 */	mtctr r12
 /* 808713D4  4E 80 04 21 */	bctrl 
 /* 808713D8  80 75 00 20 */	lwz r3, 0x20(r21)
-/* 808713DC  4B AA 12 3C */	b callDL__17J3DDisplayListObjCFv
+/* 808713DC  4B AA 12 3D */	bl callDL__17J3DDisplayListObjCFv
 /* 808713E0  7E 83 A3 78 */	mr r3, r20
-/* 808713E4  4B AA 3F 1C */	b loadPreDrawSetting__8J3DShapeCFv
+/* 808713E4  4B AA 3F 1D */	bl loadPreDrawSetting__8J3DShapeCFv
 /* 808713E8  80 7E 00 20 */	lwz r3, 0x20(r30)
 /* 808713EC  28 03 00 00 */	cmplwi r3, 0
 /* 808713F0  41 82 00 08 */	beq lbl_808713F8
-/* 808713F4  4B AA 12 24 */	b callDL__17J3DDisplayListObjCFv
+/* 808713F4  4B AA 12 25 */	bl callDL__17J3DDisplayListObjCFv
 lbl_808713F8:
 /* 808713F8  56 C3 06 3E */	clrlwi r3, r22, 0x18
 /* 808713FC  56 E4 06 3E */	clrlwi r4, r23, 0x18
 /* 80871400  57 05 06 3E */	clrlwi r5, r24, 0x18
 /* 80871404  7E 46 93 78 */	mr r6, r18
 /* 80871408  38 E0 00 01 */	li r7, 1
-/* 8087140C  4B A5 C9 BC */	b GFSetGenMode2__FUcUcUcUc11_GXCullMode
+/* 8087140C  4B A5 C9 BD */	bl GFSetGenMode2__FUcUcUcUc11_GXCullMode
 /* 80871410  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 80871414  90 01 00 08 */	stw r0, 8(r1)
 /* 80871418  38 60 00 00 */	li r3, 0
 /* 8087141C  38 81 00 08 */	addi r4, r1, 8
-/* 80871420  4B A5 CA 34 */	b GFSetChanAmbColor__F12_GXChannelID8_GXColor
+/* 80871420  4B A5 CA 35 */	bl GFSetChanAmbColor__F12_GXChannelID8_GXColor
 /* 80871424  93 9E 00 30 */	stw r28, 0x30(r30)
 /* 80871428  7F C3 F3 78 */	mr r3, r30
-/* 8087142C  4B AA 1B 90 */	b drawFast__14J3DShapePacketFv
-/* 80871430  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80871434  38 03 4A C8 */	addi r0, r3, j3dSys@l
+/* 8087142C  4B AA 1B 91 */	bl drawFast__14J3DShapePacketFv
+/* 80871430  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80871434  38 03 4A C8 */	addi r0, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80871438  90 1E 00 30 */	stw r0, 0x30(r30)
 lbl_8087143C:
 /* 8087143C  38 00 00 00 */	li r0, 0
@@ -129,7 +129,7 @@ lbl_80871448:
 /* 80871450  41 80 FE E4 */	blt lbl_80871334
 lbl_80871454:
 /* 80871454  39 61 00 70 */	addi r11, r1, 0x70
-/* 80871458  4B AF 0D A4 */	b _restgpr_18
+/* 80871458  4B AF 0D A5 */	bl _restgpr_18
 /* 8087145C  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80871460  7C 08 03 A6 */	mtlr r0
 /* 80871464  38 21 00 70 */	addi r1, r1, 0x70

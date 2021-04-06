@@ -51,16 +51,6 @@ struct dEvent_manager_c {
 // Forward References:
 //
 
-static void daAndsw2_actionOnAll(daAndsw2_c*);
-static void daAndsw2_actionTimer(daAndsw2_c*);
-static void daAndsw2_actionOrder(daAndsw2_c*);
-static void daAndsw2_actionEvent(daAndsw2_c*);
-static void daAndsw2_actionOff(daAndsw2_c*);
-static bool daAndsw2_actionWait(daAndsw2_c*);
-static void daAndsw2_Execute(daAndsw2_c*);
-static void daAndsw2_Delete(daAndsw2_c*);
-static void daAndsw2_Create(fopAc_ac_c*);
-
 extern "C" void getEventNo__10daAndsw2_cFv();
 extern "C" void getSwbit__10daAndsw2_cFv();
 extern "C" void getSwbit2__10daAndsw2_cFv();
@@ -89,10 +79,6 @@ extern "C" extern void* g_profile_ANDSW2[12];
 // External References:
 //
 
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void dLib_getEventSwitchNo(int);
-void operator delete(void*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
@@ -118,7 +104,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 804D5DF8-804D5E04 000C+00 s=2 e=0 z=0  None .text      getEventNo__10daAndsw2_cFv */
+/* 804D5DF8-804D5E04 000078 000C+00 2/2 0/0 0/0 .text            getEventNo__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -128,7 +114,7 @@ asm void daAndsw2_c::getEventNo() {
 }
 #pragma pop
 
-/* 804D5E04-804D5E10 000C+00 s=6 e=0 z=0  None .text      getSwbit__10daAndsw2_cFv */
+/* 804D5E04-804D5E10 000084 000C+00 6/6 0/0 0/0 .text            getSwbit__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,7 +124,7 @@ asm void daAndsw2_c::getSwbit() {
 }
 #pragma pop
 
-/* 804D5E10-804D5E1C 000C+00 s=1 e=0 z=0  None .text      getSwbit2__10daAndsw2_cFv */
+/* 804D5E10-804D5E1C 000090 000C+00 1/1 0/0 0/0 .text            getSwbit2__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,7 +134,7 @@ asm void daAndsw2_c::getSwbit2() {
 }
 #pragma pop
 
-/* 804D5E1C-804D5E28 000C+00 s=6 e=0 z=0  None .text      getType__10daAndsw2_cFv */
+/* 804D5E1C-804D5E28 00009C 000C+00 6/6 0/0 0/0 .text            getType__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,7 +144,7 @@ asm void daAndsw2_c::getType() {
 }
 #pragma pop
 
-/* 804D5E28-804D5E34 000C+00 s=1 e=0 z=0  None .text      getTimer__10daAndsw2_cFv */
+/* 804D5E28-804D5E34 0000A8 000C+00 1/1 0/0 0/0 .text            getTimer__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -168,7 +154,7 @@ asm void daAndsw2_c::getTimer() {
 }
 #pragma pop
 
-/* 804D5E34-804D5E40 000C+00 s=3 e=0 z=0  None .text      getNum__10daAndsw2_cFv */
+/* 804D5E34-804D5E40 0000B4 000C+00 3/3 0/0 0/0 .text            getNum__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,11 +164,7 @@ asm void daAndsw2_c::getNum() {
 }
 #pragma pop
 
-/* 804D5E40-804D5EB0 0070+00 s=3 e=0 z=0  None .text      getTopSw__10daAndsw2_cFv */
-//	804D5E54: 804D5E10 (getSwbit2__10daAndsw2_cFv)
-//	804D5E68: 804D5E10 (getSwbit2__10daAndsw2_cFv)
-//	804D5E74: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D5E88: 804D5E04 (getSwbit__10daAndsw2_cFv)
+/* 804D5E40-804D5EB0 0000C0 0070+00 3/3 0/0 0/0 .text            getTopSw__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -192,7 +174,7 @@ asm void daAndsw2_c::getTopSw() {
 }
 #pragma pop
 
-/* 804D5EB0-804D5EBC 000C+00 s=1 e=0 z=0  None .text      getSwAns__10daAndsw2_cFv */
+/* 804D5EB0-804D5EBC 000130 000C+00 1/1 0/0 0/0 .text            getSwAns__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -202,14 +184,7 @@ asm void daAndsw2_c::getSwAns() {
 }
 #pragma pop
 
-/* 804D5EBC-804D5F64 00A8+00 s=4 e=0 z=0  None .text      chkAllSw2__10daAndsw2_cFv */
-//	804D5ECC: 803621D4 (_savegpr_27)
-//	804D5ED4: 804D5E40 (getTopSw__10daAndsw2_cFv)
-//	804D5EE0: 804D5E34 (getNum__10daAndsw2_cFv)
-//	804D5F0C: 804061C0 (g_dComIfG_gameInfo)
-//	804D5F10: 804061C0 (g_dComIfG_gameInfo)
-//	804D5F28: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D5F50: 80362220 (_restgpr_27)
+/* 804D5EBC-804D5F64 00013C 00A8+00 4/4 0/0 0/0 .text            chkAllSw2__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -219,15 +194,7 @@ asm void daAndsw2_c::chkAllSw2() {
 }
 #pragma pop
 
-/* 804D5F64-804D6024 00C0+00 s=4 e=0 z=0  None .text      chkSwStatus__10daAndsw2_cFv */
-//	804D5F74: 803621D0 (_savegpr_26)
-//	804D5F7C: 804D5E40 (getTopSw__10daAndsw2_cFv)
-//	804D5F88: 804D5E34 (getNum__10daAndsw2_cFv)
-//	804D5FB8: 804061C0 (g_dComIfG_gameInfo)
-//	804D5FBC: 804061C0 (g_dComIfG_gameInfo)
-//	804D5FD4: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D5FF4: 804D5EB0 (getSwAns__10daAndsw2_cFv)
-//	804D6010: 8036221C (_restgpr_26)
+/* 804D5F64-804D6024 0001E4 00C0+00 4/4 0/0 0/0 .text            chkSwStatus__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,14 +204,7 @@ asm void daAndsw2_c::chkSwStatus() {
 }
 #pragma pop
 
-/* 804D6024-804D60CC 00A8+00 s=1 e=0 z=0  None .text      chkSwStatus2__10daAndsw2_cFv */
-//	804D6034: 803621D4 (_savegpr_27)
-//	804D603C: 804D5E40 (getTopSw__10daAndsw2_cFv)
-//	804D6048: 804D5E34 (getNum__10daAndsw2_cFv)
-//	804D6074: 804061C0 (g_dComIfG_gameInfo)
-//	804D6078: 804061C0 (g_dComIfG_gameInfo)
-//	804D6090: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D60B8: 80362220 (_restgpr_27)
+/* 804D6024-804D60CC 0002A4 00A8+00 1/1 0/0 0/0 .text            chkSwStatus2__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -254,9 +214,7 @@ asm void daAndsw2_c::chkSwStatus2() {
 }
 #pragma pop
 
-/* 804D60CC-804D6120 0054+00 s=1 e=0 z=0  None .text      __dt__10daAndsw2_cFv */
-//	804D60F0: 80018C8C (__dt__10fopAc_ac_cFv)
-//	804D6100: 802CED3C (__dl__FPv)
+/* 804D60CC-804D6120 00034C 0054+00 1/1 0/0 0/0 .text            __dt__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +225,7 @@ asm daAndsw2_c::~daAndsw2_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804D6AC8-804D6AE4 001C+00 s=1 e=0 z=0  None .data      @3821 */
+/* 804D6AC8-804D6AE4 -00001 001C+00 1/1 0/0 0/0 .data            @3821 */
 SECTION_DATA static void* lit_3821[7] = {
     (void*)(((char*)create__10daAndsw2_cFv) + 0x74),
     (void*)(((char*)create__10daAndsw2_cFv) + 0xD8),
@@ -278,44 +236,7 @@ SECTION_DATA static void* lit_3821[7] = {
     (void*)(((char*)create__10daAndsw2_cFv) + 0xD8),
 };
 
-/* 804D6120-804D63A4 0284+00 s=2 e=0 z=0  None .text      create__10daAndsw2_cFv */
-//	804D6138: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6158: 80018B64 (__ct__10fopAc_ac_cFv)
-//	804D616C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D617C: 804D6AC8 (lit_3821)
-//	804D6180: 804D6AC8 (lit_3821)
-//	804D619C: 804061C0 (g_dComIfG_gameInfo)
-//	804D61A0: 804061C0 (g_dComIfG_gameInfo)
-//	804D61B0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D61D4: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D61DC: 804061C0 (g_dComIfG_gameInfo)
-//	804D61E0: 804061C0 (g_dComIfG_gameInfo)
-//	804D61EC: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
-//	804D620C: 804061C0 (g_dComIfG_gameInfo)
-//	804D6210: 804061C0 (g_dComIfG_gameInfo)
-//	804D6220: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D6244: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D624C: 804061C0 (g_dComIfG_gameInfo)
-//	804D6250: 804061C0 (g_dComIfG_gameInfo)
-//	804D625C: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
-//	804D6270: 804061C0 (g_dComIfG_gameInfo)
-//	804D6274: 804061C0 (g_dComIfG_gameInfo)
-//	804D6284: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D62A8: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D62B0: 804061C0 (g_dComIfG_gameInfo)
-//	804D62B4: 804061C0 (g_dComIfG_gameInfo)
-//	804D62C0: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
-//	804D62D4: 804061C0 (g_dComIfG_gameInfo)
-//	804D62D8: 804061C0 (g_dComIfG_gameInfo)
-//	804D62E8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D630C: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D6314: 804061C0 (g_dComIfG_gameInfo)
-//	804D6318: 804061C0 (g_dComIfG_gameInfo)
-//	804D6324: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
-//	804D6348: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D6350: 804061C0 (g_dComIfG_gameInfo)
-//	804D6354: 804061C0 (g_dComIfG_gameInfo)
-//	804D6360: 80047698 (getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc)
+/* 804D6120-804D63A4 0003A0 0284+00 2/1 0/0 0/0 .text            create__10daAndsw2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -325,182 +246,104 @@ asm void daAndsw2_c::create() {
 }
 #pragma pop
 
-/* 804D63A4-804D6580 01DC+00 s=1 e=0 z=0  None .text      daAndsw2_actionOnAll__FP10daAndsw2_c */
-//	804D63B4: 803621DC (_savegpr_29)
-//	804D63C0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D63F4: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D6410: 804D5F64 (chkSwStatus__10daAndsw2_cFv)
-//	804D6438: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6440: 804061C0 (g_dComIfG_gameInfo)
-//	804D6444: 804061C0 (g_dComIfG_gameInfo)
-//	804D644C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D645C: 804D6024 (chkSwStatus2__10daAndsw2_cFv)
-//	804D6480: 804D5E28 (getTimer__10daAndsw2_cFv)
-//	804D6494: 804D5E28 (getTimer__10daAndsw2_cFv)
-//	804D64C0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D64E8: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D64F0: 804061C0 (g_dComIfG_gameInfo)
-//	804D64F4: 804061C0 (g_dComIfG_gameInfo)
-//	804D64FC: 80035200 (onSwitch__10dSv_info_cFii)
-//	804D6504: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6518: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D652C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D654C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D656C: 80362228 (_restgpr_29)
+/* 804D63A4-804D6580 000624 01DC+00 1/0 0/0 0/0 .text daAndsw2_actionOnAll__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_actionOnAll(daAndsw2_c* param_0) {
+static asm void daAndsw2_actionOnAll(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_actionOnAll__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6580-804D6704 0184+00 s=1 e=0 z=0  None .text      daAndsw2_actionTimer__FP10daAndsw2_c */
-//	804D6598: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D65AC: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D65BC: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D65D0: 804D5F64 (chkSwStatus__10daAndsw2_cFv)
-//	804D65E0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D65F4: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D6604: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6618: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D666C: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6674: 804061C0 (g_dComIfG_gameInfo)
-//	804D6678: 804061C0 (g_dComIfG_gameInfo)
-//	804D6680: 80035200 (onSwitch__10dSv_info_cFii)
-//	804D6688: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D669C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D66BC: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D66D0: 804D5E1C (getType__10daAndsw2_cFv)
+/* 804D6580-804D6704 000800 0184+00 1/0 0/0 0/0 .text daAndsw2_actionTimer__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_actionTimer(daAndsw2_c* param_0) {
+static asm void daAndsw2_actionTimer(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_actionTimer__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6704-804D68A4 01A0+00 s=1 e=0 z=0  None .text      daAndsw2_actionOrder__FP10daAndsw2_c */
-//	804D6738: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6740: 804061C0 (g_dComIfG_gameInfo)
-//	804D6744: 804061C0 (g_dComIfG_gameInfo)
-//	804D674C: 80035200 (onSwitch__10dSv_info_cFii)
-//	804D6754: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6768: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D6778: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D678C: 804D5F64 (chkSwStatus__10daAndsw2_cFv)
-//	804D679C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D67B0: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D67C0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D67D4: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D67F0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6804: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D680C: 8003261C (dLib_getEventSwitchNo__Fi)
-//	804D6814: 804061C0 (g_dComIfG_gameInfo)
-//	804D6818: 804061C0 (g_dComIfG_gameInfo)
-//	804D6828: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804D6840: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6848: 804061C0 (g_dComIfG_gameInfo)
-//	804D684C: 804061C0 (g_dComIfG_gameInfo)
-//	804D6854: 80035200 (onSwitch__10dSv_info_cFii)
-//	804D6864: 804D5DF8 (getEventNo__10daAndsw2_cFv)
-//	804D6884: 8001B67C (fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs)
+/* 804D6704-804D68A4 000984 01A0+00 1/0 0/0 0/0 .text daAndsw2_actionOrder__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_actionOrder(daAndsw2_c* param_0) {
+static asm void daAndsw2_actionOrder(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_actionOrder__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D68A4-804D6960 00BC+00 s=1 e=0 z=0  None .text      daAndsw2_actionEvent__FP10daAndsw2_c */
-//	804D68BC: 804061C0 (g_dComIfG_gameInfo)
-//	804D68C0: 804061C0 (g_dComIfG_gameInfo)
-//	804D68CC: 80047A78 (endCheck__16dEvent_manager_cFs)
-//	804D68DC: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D68F0: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6904: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6918: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D6940: 80042468 (reset__14dEvt_control_cFv)
+/* 804D68A4-804D6960 000B24 00BC+00 1/0 0/0 0/0 .text daAndsw2_actionEvent__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_actionEvent(daAndsw2_c* param_0) {
+static asm void daAndsw2_actionEvent(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_actionEvent__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6960-804D6A34 00D4+00 s=1 e=0 z=0  None .text      daAndsw2_actionOff__FP10daAndsw2_c */
-//	804D697C: 804D5E1C (getType__10daAndsw2_cFv)
-//	804D69B0: 804D5EBC (chkAllSw2__10daAndsw2_cFv)
-//	804D69CC: 804D5F64 (chkSwStatus__10daAndsw2_cFv)
-//	804D6A00: 804D5E04 (getSwbit__10daAndsw2_cFv)
-//	804D6A08: 804061C0 (g_dComIfG_gameInfo)
-//	804D6A0C: 804061C0 (g_dComIfG_gameInfo)
-//	804D6A14: 800352B0 (offSwitch__10dSv_info_cFii)
+/* 804D6960-804D6A34 000BE0 00D4+00 1/0 0/0 0/0 .text            daAndsw2_actionOff__FP10daAndsw2_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_actionOff(daAndsw2_c* param_0) {
+static asm void daAndsw2_actionOff(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_actionOff__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6A34-804D6A3C 0008+00 s=1 e=0 z=0  None .text      daAndsw2_actionWait__FP10daAndsw2_c */
+/* 804D6A34-804D6A3C 000CB4 0008+00 1/0 0/0 0/0 .text            daAndsw2_actionWait__FP10daAndsw2_c
+ */
 static bool daAndsw2_actionWait(daAndsw2_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 804D6AE4-804D6AFC 0018+00 s=1 e=0 z=0  None .data l_action$localstatic3$execute__10daAndsw2_cFv
- */
+/* 804D6AE4-804D6AFC -00001 0018+00 1/1 0/0 0/0 .data
+ * l_action$localstatic3$execute__10daAndsw2_cFv                */
 SECTION_DATA static void* data_804D6AE4[6] = {
     (void*)daAndsw2_actionOnAll__FP10daAndsw2_c, (void*)daAndsw2_actionTimer__FP10daAndsw2_c,
     (void*)daAndsw2_actionOrder__FP10daAndsw2_c, (void*)daAndsw2_actionEvent__FP10daAndsw2_c,
     (void*)daAndsw2_actionOff__FP10daAndsw2_c,   (void*)daAndsw2_actionWait__FP10daAndsw2_c,
 };
 
-/* 804D6A3C-804D6A78 003C+00 s=1 e=0 z=0  None .text      daAndsw2_Execute__FP10daAndsw2_c */
-//	804D6A50: 804D6AE4 (data_804D6AE4)
-//	804D6A54: 804D6AE4 (data_804D6AE4)
+/* 804D6A3C-804D6A78 000CBC 003C+00 1/0 0/0 0/0 .text            daAndsw2_Execute__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_Execute(daAndsw2_c* param_0) {
+static asm void daAndsw2_Execute(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_Execute__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6A78-804D6AA0 0028+00 s=1 e=0 z=0  None .text      daAndsw2_Delete__FP10daAndsw2_c */
-//	804D6A88: 804D60CC (__dt__10daAndsw2_cFv)
+/* 804D6A78-804D6AA0 000CF8 0028+00 1/0 0/0 0/0 .text            daAndsw2_Delete__FP10daAndsw2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_Delete(daAndsw2_c* param_0) {
+static asm void daAndsw2_Delete(daAndsw2_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_Delete__FP10daAndsw2_c.s"
 }
 #pragma pop
 
-/* 804D6AA0-804D6AC0 0020+00 s=1 e=0 z=0  None .text      daAndsw2_Create__FP10fopAc_ac_c */
-//	804D6AAC: 804D6120 (create__10daAndsw2_cFv)
+/* 804D6AA0-804D6AC0 000D20 0020+00 1/0 0/0 0/0 .text            daAndsw2_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daAndsw2_Create(fopAc_ac_c* param_0) {
+static asm void daAndsw2_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_andsw2/d_a_andsw2/daAndsw2_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804D6AFC-804D6B1C 0020+00 s=1 e=0 z=0  None .data      l_daAndsw2_Method */
+/* 804D6AFC-804D6B1C -00001 0020+00 1/0 0/0 0/0 .data            l_daAndsw2_Method */
 SECTION_DATA static void* l_daAndsw2_Method[8] = {
     (void*)daAndsw2_Create__FP10fopAc_ac_c,
     (void*)daAndsw2_Delete__FP10daAndsw2_c,
@@ -512,8 +355,8 @@ SECTION_DATA static void* l_daAndsw2_Method[8] = {
     (void*)NULL,
 };
 
-/* 804D6B1C-804D6B4C 0030+00 s=0 e=0 z=1  None .data      g_profile_ANDSW2 */
-SECTION_DATA void* g_profile_ANDSW2[12] = {
+/* 804D6B1C-804D6B4C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ANDSW2 */
+SECTION_DATA extern void* g_profile_ANDSW2[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02310000, (void*)&g_fpcLf_Method,
     (void*)0x00000570, (void*)NULL,

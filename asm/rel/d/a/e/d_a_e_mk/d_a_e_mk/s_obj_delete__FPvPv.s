@@ -4,7 +4,7 @@ lbl_807144D4:
 /* 807144DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807144E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807144E4  7C 7F 1B 78 */	mr r31, r3
-/* 807144E8  4B 90 47 F8 */	b fopAc_IsActor__FPv
+/* 807144E8  4B 90 47 F9 */	bl fopAc_IsActor__FPv
 /* 807144EC  2C 03 00 00 */	cmpwi r3, 0
 /* 807144F0  41 82 00 2C */	beq lbl_8071451C
 /* 807144F4  A8 1F 00 08 */	lha r0, 8(r31)
@@ -17,7 +17,7 @@ lbl_8071450C:
 /* 8071450C  2C 00 01 C6 */	cmpwi r0, 0x1c6
 /* 80714510  40 82 00 0C */	bne lbl_8071451C
 /* 80714514  7F E3 FB 78 */	mr r3, r31
-/* 80714518  4B 90 57 64 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80714518  4B 90 57 65 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_8071451C:
 /* 8071451C  38 60 00 00 */	li r3, 0
 /* 80714520  83 E1 00 0C */	lwz r31, 0xc(r1)

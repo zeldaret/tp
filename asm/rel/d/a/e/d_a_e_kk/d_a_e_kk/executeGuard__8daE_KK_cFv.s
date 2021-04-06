@@ -5,8 +5,8 @@ lbl_806FC8F4:
 /* 806FC900  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806FC904  93 C1 00 08 */	stw r30, 8(r1)
 /* 806FC908  7C 7F 1B 78 */	mr r31, r3
-/* 806FC90C  3C 80 80 70 */	lis r4, lit_3792@ha
-/* 806FC910  3B C4 F5 E8 */	addi r30, r4, lit_3792@l
+/* 806FC90C  3C 80 80 70 */	lis r4, lit_3792@ha /* 0x806FF5E8@ha */
+/* 806FC910  3B C4 F5 E8 */	addi r30, r4, lit_3792@l /* 0x806FF5E8@l */
 /* 806FC914  80 03 06 64 */	lwz r0, 0x664(r3)
 /* 806FC918  2C 00 00 01 */	cmpwi r0, 1
 /* 806FC91C  41 82 00 8C */	beq lbl_806FC9A8
@@ -65,15 +65,15 @@ lbl_806FC9D0:
 /* 806FC9DC  4B FF E9 11 */	bl nextActionCheck__8daE_KK_cFv
 lbl_806FC9E0:
 /* 806FC9E0  7F E3 FB 78 */	mr r3, r31
-/* 806FC9E4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806FC9E8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 806FC9E4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806FC9E8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806FC9EC  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 806FC9F0  4B 91 DD 20 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FC9F0  4B 91 DD 21 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FC9F4  7C 64 1B 78 */	mr r4, r3
 /* 806FC9F8  38 7F 04 DE */	addi r3, r31, 0x4de
 /* 806FC9FC  38 A0 00 08 */	li r5, 8
 /* 806FCA00  38 C0 05 00 */	li r6, 0x500
-/* 806FCA04  4B B7 3C 04 */	b cLib_addCalcAngleS2__FPssss
+/* 806FCA04  4B B7 3C 05 */	bl cLib_addCalcAngleS2__FPssss
 /* 806FCA08  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 806FCA0C  B0 1F 04 E6 */	sth r0, 0x4e6(r31)
 /* 806FCA10  83 E1 00 0C */	lwz r31, 0xc(r1)

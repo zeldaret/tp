@@ -5,8 +5,8 @@ lbl_8020D49C:
 /* 8020D4A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8020D4AC  93 C1 00 08 */	stw r30, 8(r1)
 /* 8020D4B0  3B C0 00 00 */	li r30, 0
-/* 8020D4B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020D4B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020D4B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020D4B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020D4BC  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 8020D4C0  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 8020D4C4  7D 89 03 A6 */	mtctr r12

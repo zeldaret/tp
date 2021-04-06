@@ -7,8 +7,8 @@ lbl_802D1300:
 /* 802D1314  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D1318  7C 9F 23 78 */	mr r31, r4
 /* 802D131C  41 82 00 30 */	beq lbl_802D134C
-/* 802D1320  3C 80 80 3D */	lis r4, __vt__13JKRAssertHeap@ha
-/* 802D1324  38 04 C0 90 */	addi r0, r4, __vt__13JKRAssertHeap@l
+/* 802D1320  3C 80 80 3D */	lis r4, __vt__13JKRAssertHeap@ha /* 0x803CC090@ha */
+/* 802D1324  38 04 C0 90 */	addi r0, r4, __vt__13JKRAssertHeap@l /* 0x803CC090@l */
 /* 802D1328  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D132C  4B FF D7 95 */	bl dispose__7JKRHeapFv
 /* 802D1330  7F C3 F3 78 */	mr r3, r30

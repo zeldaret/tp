@@ -3,19 +3,20 @@
 #
 
 M684_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0.plf
+M684_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0.lcf
+M684_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0.map
 
 M684_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_web0/executor.cpp \
-	rel/d/a/obj/d_a_obj_web0/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_web0/d_a_obj_web0.cpp \
 
 M684_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/d_a_obj_web0.o \
 
 M684_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/libRuntime.PPCEABI.H.a \
 
 M684_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M684_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map684.map\
+	-m _prolog \
+	-lcf $(M684_LDSCRIPT) \
+	-unused -map $(M684_MAP) \
+	-w off \
 
 $(M684_TARGET): $(M684_O_FILES) $(M684_LIBS)
+	@echo [684] creating $(M684_TARGET)
 	@echo $(M684_LIBS) $(M684_O_FILES) > build/M684_ofiles
-	$(LD) -opt_partial $(M684_LDFLAGS) -o $(M684_TARGET) @build/M684_ofiles
+	@python3 tools/lcf.py rel 684 --output $(M684_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M684_LDFLAGS) -o $(M684_TARGET) @build/M684_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_web0/%.o: rel/d/a/obj/d_a_obj_web0/%.cpp
+	@echo [684] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M684_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M684_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_web0/libs/Runtime.PPCEABI.H/Makefile
 

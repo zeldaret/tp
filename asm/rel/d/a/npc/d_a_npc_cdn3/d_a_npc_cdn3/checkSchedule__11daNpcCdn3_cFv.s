@@ -3,7 +3,7 @@ lbl_8097B288:
 /* 8097B28C  7C 08 02 A6 */	mflr r0
 /* 8097B290  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8097B294  39 61 00 20 */	addi r11, r1, 0x20
-/* 8097B298  4B 9E 6F 44 */	b _savegpr_29
+/* 8097B298  4B 9E 6F 45 */	bl _savegpr_29
 /* 8097B29C  7C 7F 1B 78 */	mr r31, r3
 /* 8097B2A0  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 8097B2A4  54 00 06 3E */	clrlwi r0, r0, 0x18
@@ -25,31 +25,31 @@ lbl_8097B288:
 /* 8097B2E4  88 1F 0A C6 */	lbz r0, 0xac6(r31)
 /* 8097B2E8  28 00 00 00 */	cmplwi r0, 0
 /* 8097B2EC  41 82 00 10 */	beq lbl_8097B2FC
-/* 8097B2F0  4B 82 48 40 */	b dKy_getDarktime_minute__Fv
+/* 8097B2F0  4B 82 48 41 */	bl dKy_getDarktime_minute__Fv
 /* 8097B2F4  7C 7E 1B 78 */	mr r30, r3
 /* 8097B2F8  48 00 00 0C */	b lbl_8097B304
 lbl_8097B2FC:
-/* 8097B2FC  4B 82 47 40 */	b dKy_getdaytime_minute__Fv
+/* 8097B2FC  4B 82 47 41 */	bl dKy_getdaytime_minute__Fv
 /* 8097B300  7C 7E 1B 78 */	mr r30, r3
 lbl_8097B304:
 /* 8097B304  88 1F 0A C6 */	lbz r0, 0xac6(r31)
 /* 8097B308  28 00 00 00 */	cmplwi r0, 0
 /* 8097B30C  41 82 00 0C */	beq lbl_8097B318
-/* 8097B310  4B 82 47 E4 */	b dKy_getDarktime_hour__Fv
+/* 8097B310  4B 82 47 E5 */	bl dKy_getDarktime_hour__Fv
 /* 8097B314  48 00 00 08 */	b lbl_8097B31C
 lbl_8097B318:
-/* 8097B318  4B 82 46 F8 */	b dKy_getdaytime_hour__Fv
+/* 8097B318  4B 82 46 F9 */	bl dKy_getdaytime_hour__Fv
 lbl_8097B31C:
 /* 8097B31C  1C 03 00 3C */	mulli r0, r3, 0x3c
 /* 8097B320  7F DE 02 14 */	add r30, r30, r0
 /* 8097B324  88 1F 0A C6 */	lbz r0, 0xac6(r31)
 /* 8097B328  28 00 00 00 */	cmplwi r0, 0
 /* 8097B32C  41 82 00 10 */	beq lbl_8097B33C
-/* 8097B330  4B 82 48 8C */	b dKy_getDarktime_week__Fv
+/* 8097B330  4B 82 48 8D */	bl dKy_getDarktime_week__Fv
 /* 8097B334  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8097B338  48 00 00 08 */	b lbl_8097B340
 lbl_8097B33C:
-/* 8097B33C  4B 82 D7 FC */	b dKy_get_dayofweek__Fv
+/* 8097B33C  4B 82 D7 FD */	bl dKy_get_dayofweek__Fv
 lbl_8097B340:
 /* 8097B340  80 9F 0B 88 */	lwz r4, 0xb88(r31)
 /* 8097B344  80 04 05 68 */	lwz r0, 0x568(r4)
@@ -66,7 +66,7 @@ lbl_8097B340:
 /* 8097B370  4B FF DA 65 */	bl setAction__11daNpcCdn3_cFQ211daNpcCdn3_c6Mode_e
 lbl_8097B374:
 /* 8097B374  39 61 00 20 */	addi r11, r1, 0x20
-/* 8097B378  4B 9E 6E B0 */	b _restgpr_29
+/* 8097B378  4B 9E 6E B1 */	bl _restgpr_29
 /* 8097B37C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8097B380  7C 08 03 A6 */	mtlr r0
 /* 8097B384  38 21 00 20 */	addi r1, r1, 0x20

@@ -3,19 +3,20 @@
 #
 
 M384_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw.plf
+M384_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw.lcf
+M384_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw.map
 
 M384_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ykw/executor.cpp \
-	rel/d/a/npc/d_a_npc_ykw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ykw/d_a_npc_ykw.cpp \
 
 M384_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/d_a_npc_ykw.o \
 
 M384_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/libRuntime.PPCEABI.H.a \
 
 M384_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M384_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map384.map\
+	-m _prolog \
+	-lcf $(M384_LDSCRIPT) \
+	-unused -map $(M384_MAP) \
+	-w off \
 
 $(M384_TARGET): $(M384_O_FILES) $(M384_LIBS)
+	@echo [384] creating $(M384_TARGET)
 	@echo $(M384_LIBS) $(M384_O_FILES) > build/M384_ofiles
-	$(LD) -opt_partial $(M384_LDFLAGS) -o $(M384_TARGET) @build/M384_ofiles
+	@python3 tools/lcf.py rel 384 --output $(M384_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M384_LDFLAGS) -o $(M384_TARGET) @build/M384_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykw/%.o: rel/d/a/npc/d_a_npc_ykw/%.cpp
+	@echo [384] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M384_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M384_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ykw/libs/Runtime.PPCEABI.H/Makefile
 

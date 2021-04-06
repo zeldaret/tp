@@ -6,9 +6,9 @@ lbl_80341C98:
 /* 80341CA8  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 80341CAC  7C 7E 1B 78 */	mr r30, r3
 /* 80341CB0  4B FF BA 45 */	bl OSDisableInterrupts
-/* 80341CB4  3C 80 80 45 */	lis r4, RunQueue@ha
+/* 80341CB4  3C 80 80 45 */	lis r4, RunQueue@ha /* 0x8044BB78@ha */
 /* 80341CB8  3B E3 00 00 */	addi r31, r3, 0
-/* 80341CBC  38 A4 BB 78 */	addi r5, r4, RunQueue@l
+/* 80341CBC  38 A4 BB 78 */	addi r5, r4, RunQueue@l /* 0x8044BB78@l */
 /* 80341CC0  48 00 00 9C */	b lbl_80341D5C
 lbl_80341CC4:
 /* 80341CC4  80 66 02 E0 */	lwz r3, 0x2e0(r6)

@@ -5,17 +5,17 @@ lbl_8029E720:
 /* 8029E72C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029E730  7C 7F 1B 78 */	mr r31, r3
 /* 8029E734  48 00 01 AD */	bl DspInitWork__Fv
-/* 8029E738  3C 80 80 3C */	lis r4, jdsp@ha
-/* 8029E73C  3C 60 80 43 */	lis r3, AUDIO_YIELD_BUFFER@ha
-/* 8029E740  38 A4 79 20 */	addi r5, r4, jdsp@l
-/* 8029E744  3C C0 80 43 */	lis r6, audio_task@ha
-/* 8029E748  38 83 1F E0 */	addi r4, r3, AUDIO_YIELD_BUFFER@l
-/* 8029E74C  3C 60 80 2A */	lis r3, DspHandShake__FPv@ha
-/* 8029E750  39 26 1F 80 */	addi r9, r6, audio_task@l
+/* 8029E738  3C 80 80 3C */	lis r4, jdsp@ha /* 0x803C7920@ha */
+/* 8029E73C  3C 60 80 43 */	lis r3, AUDIO_YIELD_BUFFER@ha /* 0x80431FE0@ha */
+/* 8029E740  38 A4 79 20 */	addi r5, r4, jdsp@l /* 0x803C7920@l */
+/* 8029E744  3C C0 80 43 */	lis r6, audio_task@ha /* 0x80431F80@ha */
+/* 8029E748  38 83 1F E0 */	addi r4, r3, AUDIO_YIELD_BUFFER@l /* 0x80431FE0@l */
+/* 8029E74C  3C 60 80 2A */	lis r3, DspHandShake__FPv@ha /* 0x8029E6E0@ha */
+/* 8029E750  39 26 1F 80 */	addi r9, r6, audio_task@l /* 0x80431F80@l */
 /* 8029E754  38 C0 00 00 */	li r6, 0
 /* 8029E758  3D 05 80 00 */	addis r8, r5, 0x8000
 /* 8029E75C  3C A4 80 00 */	addis r5, r4, 0x8000
-/* 8029E760  38 03 E6 E0 */	addi r0, r3, DspHandShake__FPv@l
+/* 8029E760  38 03 E6 E0 */	addi r0, r3, DspHandShake__FPv@l /* 0x8029E6E0@l */
 /* 8029E764  39 40 00 F0 */	li r10, 0xf0
 /* 8029E768  38 E0 1F 00 */	li r7, 0x1f00
 /* 8029E76C  38 80 20 00 */	li r4, 0x2000
@@ -34,8 +34,8 @@ lbl_8029E720:
 /* 8029E7A0  90 C9 00 30 */	stw r6, 0x30(r9)
 /* 8029E7A4  93 E9 00 34 */	stw r31, 0x34(r9)
 /* 8029E7A8  48 0B 3D 15 */	bl DSPInit
-/* 8029E7AC  3C 60 80 43 */	lis r3, audio_task@ha
-/* 8029E7B0  38 63 1F 80 */	addi r3, r3, audio_task@l
+/* 8029E7AC  3C 60 80 43 */	lis r3, audio_task@ha /* 0x80431F80@ha */
+/* 8029E7B0  38 63 1F 80 */	addi r3, r3, audio_task@l /* 0x80431F80@l */
 /* 8029E7B4  48 00 02 ED */	bl DSPAddPriorTask__FP15STRUCT_DSP_TASK
 /* 8029E7B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E7BC  83 E1 00 0C */	lwz r31, 0xc(r1)

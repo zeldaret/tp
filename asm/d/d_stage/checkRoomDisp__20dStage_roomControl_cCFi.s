@@ -1,6 +1,6 @@
 lbl_800244E8:
-/* 800244E8  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 800244EC  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 800244E8  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 800244EC  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 800244F0  1C 04 04 04 */	mulli r0, r4, 0x404
 /* 800244F4  7C 63 02 14 */	add r3, r3, r0
 /* 800244F8  88 63 03 F4 */	lbz r3, 0x3f4(r3)

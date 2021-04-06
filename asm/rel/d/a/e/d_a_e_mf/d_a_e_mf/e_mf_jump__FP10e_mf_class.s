@@ -5,8 +5,8 @@ lbl_8070DBB4:
 /* 8070DBC0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8070DBC4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8070DBC8  7C 7E 1B 78 */	mr r30, r3
-/* 8070DBCC  3C 80 80 71 */	lis r4, lit_3828@ha
-/* 8070DBD0  3B E4 39 74 */	addi r31, r4, lit_3828@l
+/* 8070DBCC  3C 80 80 71 */	lis r4, lit_3828@ha /* 0x80713974@ha */
+/* 8070DBD0  3B E4 39 74 */	addi r31, r4, lit_3828@l /* 0x80713974@l */
 /* 8070DBD4  38 80 00 01 */	li r4, 1
 /* 8070DBD8  98 83 06 D4 */	stb r4, 0x6d4(r3)
 /* 8070DBDC  A8 03 05 B4 */	lha r0, 0x5b4(r3)
@@ -122,7 +122,7 @@ lbl_8070DD74:
 /* 8070DD74  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8070DD78  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8070DD7C  C0 5F 00 60 */	lfs f2, 0x60(r31)
-/* 8070DD80  4B B6 1D 00 */	b cLib_addCalc0__FPfff
+/* 8070DD80  4B B6 1D 01 */	bl cLib_addCalc0__FPfff
 /* 8070DD84  80 7E 05 DC */	lwz r3, 0x5dc(r30)
 /* 8070DD88  38 80 00 01 */	li r4, 1
 /* 8070DD8C  88 03 00 11 */	lbz r0, 0x11(r3)

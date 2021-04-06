@@ -64,10 +64,10 @@ lbl_8016880C:
 /* 80168838  38 6D 8A BC */	la r3, struct_8045103C+0x0(r13) /* 8045103C-_SDA_BASE_ */
 /* 8016883C  C0 22 9D 54 */	lfs f1, lit_9406(r2)
 /* 80168840  48 10 87 89 */	bl __ct__7cSAngleFf
-/* 80168844  3C 80 80 03 */	lis r4, __dt__7cSAngleFv@ha
-/* 80168848  38 84 05 10 */	addi r4, r4, __dt__7cSAngleFv@l
-/* 8016884C  3C A0 80 43 */	lis r5, lit_9808@ha
-/* 80168850  38 A5 C9 A0 */	addi r5, r5, lit_9808@l
+/* 80168844  3C 80 80 03 */	lis r4, __dt__7cSAngleFv@ha /* 0x80030510@ha */
+/* 80168848  38 84 05 10 */	addi r4, r4, __dt__7cSAngleFv@l /* 0x80030510@l */
+/* 8016884C  3C A0 80 43 */	lis r5, lit_9808@ha /* 0x8042C9A0@ha */
+/* 80168850  38 A5 C9 A0 */	addi r5, r5, lit_9808@l /* 0x8042C9A0@l */
 /* 80168854  48 1F 93 D1 */	bl __register_global_object
 /* 80168858  38 00 00 01 */	li r0, 1
 /* 8016885C  98 0D 8A B9 */	stb r0, struct_80451038+0x1(r13)
@@ -230,8 +230,8 @@ lbl_80168AB0:
 /* 80168AC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80168AC8  40 82 00 1C */	bne lbl_80168AE4
 /* 80168ACC  80 9F 06 8C */	lwz r4, 0x68c(r31)
-/* 80168AD0  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 80168AD4  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l
+/* 80168AD0  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 80168AD4  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l /* 0x8042C8F8@l */
 /* 80168AD8  80 03 00 9C */	lwz r0, 0x9c(r3)
 /* 80168ADC  7C 04 00 00 */	cmpw r4, r0
 /* 80168AE0  40 82 00 14 */	bne lbl_80168AF4
@@ -1278,8 +1278,8 @@ lbl_80169928:
 /* 801699D4  41 82 00 44 */	beq lbl_80169A18
 /* 801699D8  7F E3 FB 78 */	mr r3, r31
 /* 801699DC  38 81 00 E4 */	addi r4, r1, 0xe4
-/* 801699E0  3C A0 80 39 */	lis r5, d_d_camera__stringBase0@ha
-/* 801699E4  38 A5 3F 68 */	addi r5, r5, d_d_camera__stringBase0@l
+/* 801699E0  3C A0 80 39 */	lis r5, d_d_camera__stringBase0@ha /* 0x80393F68@ha */
+/* 801699E4  38 A5 3F 68 */	addi r5, r5, d_d_camera__stringBase0@l /* 0x80393F68@l */
 /* 801699E8  38 A5 01 A0 */	addi r5, r5, 0x1a0
 /* 801699EC  38 C0 00 14 */	li r6, 0x14
 /* 801699F0  4B F1 F6 9D */	bl getEvIntData__9dCamera_cFPiPci
@@ -1575,8 +1575,8 @@ lbl_80169E28:
 /* 80169E40  48 00 02 E0 */	b lbl_8016A120
 lbl_80169E44:
 /* 80169E44  80 9F 06 8C */	lwz r4, 0x68c(r31)
-/* 80169E48  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 80169E4C  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l
+/* 80169E48  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 80169E4C  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l /* 0x8042C8F8@l */
 /* 80169E50  80 03 00 94 */	lwz r0, 0x94(r3)
 /* 80169E54  7C 04 00 00 */	cmpw r4, r0
 /* 80169E58  40 82 00 10 */	bne lbl_80169E68

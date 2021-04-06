@@ -4,8 +4,8 @@ lbl_80073864:
 /* 8007386C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80073870  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80073874  90 01 00 08 */	stw r0, 8(r1)
-/* 80073878  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8007387C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80073878  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8007387C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80073880  38 81 00 08 */	addi r4, r1, 8
 /* 80073884  4B FA 5F 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80073888  80 01 00 14 */	lwz r0, 0x14(r1)

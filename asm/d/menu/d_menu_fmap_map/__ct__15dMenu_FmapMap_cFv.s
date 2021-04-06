@@ -1,18 +1,18 @@
 lbl_801CEC24:
-/* 801CEC24  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha
-/* 801CEC28  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l
+/* 801CEC24  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801CEC28  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801CEC2C  90 03 00 00 */	stw r0, 0(r3)
-/* 801CEC30  3C 80 80 3A */	lis r4, __vt__11dDrawPath_c@ha
-/* 801CEC34  38 04 7C F8 */	addi r0, r4, __vt__11dDrawPath_c@l
+/* 801CEC30  3C 80 80 3A */	lis r4, __vt__11dDrawPath_c@ha /* 0x803A7CF8@ha */
+/* 801CEC34  38 04 7C F8 */	addi r0, r4, __vt__11dDrawPath_c@l /* 0x803A7CF8@l */
 /* 801CEC38  90 03 00 00 */	stw r0, 0(r3)
-/* 801CEC3C  3C 80 80 3A */	lis r4, __vt__28dDrawPathWithNormalPattern_c@ha
-/* 801CEC40  38 04 6F 94 */	addi r0, r4, __vt__28dDrawPathWithNormalPattern_c@l
+/* 801CEC3C  3C 80 80 3A */	lis r4, __vt__28dDrawPathWithNormalPattern_c@ha /* 0x803A6F94@ha */
+/* 801CEC40  38 04 6F 94 */	addi r0, r4, __vt__28dDrawPathWithNormalPattern_c@l /* 0x803A6F94@l */
 /* 801CEC44  90 03 00 00 */	stw r0, 0(r3)
-/* 801CEC48  3C 80 80 3A */	lis r4, __vt__15dRenderingMap_c@ha
-/* 801CEC4C  38 04 6F D4 */	addi r0, r4, __vt__15dRenderingMap_c@l
+/* 801CEC48  3C 80 80 3A */	lis r4, __vt__15dRenderingMap_c@ha /* 0x803A6FD4@ha */
+/* 801CEC4C  38 04 6F D4 */	addi r0, r4, __vt__15dRenderingMap_c@l /* 0x803A6FD4@l */
 /* 801CEC50  90 03 00 00 */	stw r0, 0(r3)
-/* 801CEC54  3C 80 80 3A */	lis r4, __vt__18dRenderingFDAmap_c@ha
-/* 801CEC58  38 04 7C 90 */	addi r0, r4, __vt__18dRenderingFDAmap_c@l
+/* 801CEC54  3C 80 80 3A */	lis r4, __vt__18dRenderingFDAmap_c@ha /* 0x803A7C90@ha */
+/* 801CEC58  38 04 7C 90 */	addi r0, r4, __vt__18dRenderingFDAmap_c@l /* 0x803A7C90@l */
 /* 801CEC5C  90 03 00 00 */	stw r0, 0(r3)
 /* 801CEC60  38 A0 00 00 */	li r5, 0
 /* 801CEC64  90 A3 00 04 */	stw r5, 4(r3)
@@ -26,8 +26,8 @@ lbl_801CEC24:
 /* 801CEC84  B0 A3 00 1E */	sth r5, 0x1e(r3)
 /* 801CEC88  B0 A3 00 20 */	sth r5, 0x20(r3)
 /* 801CEC8C  B0 A3 00 22 */	sth r5, 0x22(r3)
-/* 801CEC90  3C 80 80 3C */	lis r4, __vt__15renderingFmap_c@ha
-/* 801CEC94  38 04 D6 E8 */	addi r0, r4, __vt__15renderingFmap_c@l
+/* 801CEC90  3C 80 80 3C */	lis r4, __vt__15renderingFmap_c@ha /* 0x803BD6E8@ha */
+/* 801CEC94  38 04 D6 E8 */	addi r0, r4, __vt__15renderingFmap_c@l /* 0x803BD6E8@l */
 /* 801CEC98  90 03 00 00 */	stw r0, 0(r3)
 /* 801CEC9C  90 A3 00 78 */	stw r5, 0x78(r3)
 /* 801CECA0  90 A3 00 7C */	stw r5, 0x7c(r3)
@@ -49,8 +49,8 @@ lbl_801CEC24:
 /* 801CECE0  98 A3 00 B9 */	stb r5, 0xb9(r3)
 /* 801CECE4  98 A3 00 BA */	stb r5, 0xba(r3)
 /* 801CECE8  98 A3 00 BB */	stb r5, 0xbb(r3)
-/* 801CECEC  3C 80 80 3C */	lis r4, __vt__15dMenu_FmapMap_c@ha
-/* 801CECF0  38 04 D6 80 */	addi r0, r4, __vt__15dMenu_FmapMap_c@l
+/* 801CECEC  3C 80 80 3C */	lis r4, __vt__15dMenu_FmapMap_c@ha /* 0x803BD680@ha */
+/* 801CECF0  38 04 D6 80 */	addi r0, r4, __vt__15dMenu_FmapMap_c@l /* 0x803BD680@l */
 /* 801CECF4  90 03 00 00 */	stw r0, 0(r3)
 /* 801CECF8  90 A3 00 BC */	stw r5, 0xbc(r3)
 /* 801CECFC  90 A3 00 C0 */	stw r5, 0xc0(r3)

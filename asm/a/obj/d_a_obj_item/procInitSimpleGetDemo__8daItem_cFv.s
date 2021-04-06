@@ -4,8 +4,8 @@ lbl_8015C058:
 /* 8015C060  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8015C064  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8015C068  7C 7F 1B 78 */	mr r31, r3
-/* 8015C06C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015C070  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015C06C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015C070  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015C074  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 8015C078  38 61 00 08 */	addi r3, r1, 8
 /* 8015C07C  48 00 1F 5D */	bl getItemPos__9daPy_py_cCFv

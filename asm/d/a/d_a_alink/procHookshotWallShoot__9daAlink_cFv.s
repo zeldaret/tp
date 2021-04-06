@@ -21,8 +21,8 @@ lbl_8010D6FC:
 lbl_8010D714:
 /* 8010D714  38 00 00 00 */	li r0, 0
 /* 8010D718  98 1D 20 68 */	stb r0, 0x2068(r29)
-/* 8010D71C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010D720  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 8010D71C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010D720  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010D724  80 1C 5F 18 */	lwz r0, 0x5f18(r28)
 /* 8010D728  54 00 03 98 */	rlwinm r0, r0, 0, 0xe, 0xc
 /* 8010D72C  90 1C 5F 18 */	stw r0, 0x5f18(r28)

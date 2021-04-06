@@ -1,6 +1,6 @@
 lbl_8026F3DC:
-/* 8026F3DC  3C A0 80 3A */	lis r5, __vt__8cM3dGPla@ha
-/* 8026F3E0  38 05 37 C0 */	addi r0, r5, __vt__8cM3dGPla@l
+/* 8026F3DC  3C A0 80 3A */	lis r5, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8026F3E0  38 05 37 C0 */	addi r0, r5, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8026F3E4  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8026F3E8  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8026F3EC  D0 03 00 00 */	stfs f0, 0(r3)

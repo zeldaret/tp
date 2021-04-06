@@ -5,8 +5,8 @@ lbl_801236BC:
 /* 801236C8  39 61 00 20 */	addi r11, r1, 0x20
 /* 801236CC  48 23 EB 0D */	bl _savegpr_28
 /* 801236D0  7C 7F 1B 78 */	mr r31, r3
-/* 801236D4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 801236D8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 801236D4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 801236D8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 801236DC  38 63 01 77 */	addi r3, r3, 0x177
 /* 801236E0  4B F7 A3 81 */	bl checkStageName__9daAlink_cFPCc
 /* 801236E4  54 60 06 3F */	clrlwi. r0, r3, 0x18

@@ -6,10 +6,10 @@ lbl_80C51088:
 /* 80C51098  7C 7F 1B 78 */	mr r31, r3
 /* 80C5109C  48 00 00 5D */	bl setBaseMtx__10daObjLdy_cFv
 /* 80C510A0  38 BF 07 20 */	addi r5, r31, 0x720
-/* 80C510A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80C510A8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
-/* 80C510AC  3C 60 80 C5 */	lis r3, lit_3782@ha
-/* 80C510B0  C0 03 20 50 */	lfs f0, lit_3782@l(r3)
+/* 80C510A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80C510A8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
+/* 80C510AC  3C 60 80 C5 */	lis r3, lit_3782@ha /* 0x80C52050@ha */
+/* 80C510B0  C0 03 20 50 */	lfs f0, lit_3782@l(r3)  /* 0x80C52050@l */
 /* 80C510B4  38 00 00 03 */	li r0, 3
 /* 80C510B8  7C 09 03 A6 */	mtctr r0
 lbl_80C510BC:

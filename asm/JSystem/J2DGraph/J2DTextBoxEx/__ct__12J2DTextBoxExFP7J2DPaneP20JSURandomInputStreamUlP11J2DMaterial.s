@@ -10,8 +10,8 @@ lbl_803071E4:
 /* 80307204  7C DD 33 78 */	mr r29, r6
 /* 80307208  7C FE 3B 78 */	mr r30, r7
 /* 8030720C  4B FF 84 55 */	bl __ct__10J2DTextBoxFv
-/* 80307210  3C 60 80 3D */	lis r3, __vt__12J2DTextBoxEx@ha
-/* 80307214  38 03 D6 08 */	addi r0, r3, __vt__12J2DTextBoxEx@l
+/* 80307210  3C 60 80 3D */	lis r3, __vt__12J2DTextBoxEx@ha /* 0x803CD608@ha */
+/* 80307214  38 03 D6 08 */	addi r0, r3, __vt__12J2DTextBoxEx@l /* 0x803CD608@l */
 /* 80307218  90 1B 00 00 */	stw r0, 0(r27)
 /* 8030721C  38 00 00 00 */	li r0, 0
 /* 80307220  90 1B 01 44 */	stw r0, 0x144(r27)

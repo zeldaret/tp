@@ -19,20 +19,20 @@ lbl_80016730:
 /* 80016774  48 32 A5 11 */	bl OSGetCurrentThread
 /* 80016778  48 32 B6 E5 */	bl OSGetThreadPriority
 /* 8001677C  7C 68 1B 78 */	mr r8, r3
-/* 80016780  3C 60 80 3E */	lis r3, MemCardThread@ha
-/* 80016784  38 63 0C 20 */	addi r3, r3, MemCardThread@l
-/* 80016788  3C 80 80 01 */	lis r4, mDoMemCd_main__FPv@ha
-/* 8001678C  38 84 74 1C */	addi r4, r4, mDoMemCd_main__FPv@l
+/* 80016780  3C 60 80 3E */	lis r3, MemCardThread@ha /* 0x803E0C20@ha */
+/* 80016784  38 63 0C 20 */	addi r3, r3, MemCardThread@l /* 0x803E0C20@l */
+/* 80016788  3C 80 80 01 */	lis r4, mDoMemCd_main__FPv@ha /* 0x8001741C@ha */
+/* 8001678C  38 84 74 1C */	addi r4, r4, mDoMemCd_main__FPv@l /* 0x8001741C@l */
 /* 80016790  38 A0 00 00 */	li r5, 0
-/* 80016794  3C C0 80 3E */	lis r6, MemCardStack@ha
-/* 80016798  38 C6 FC 20 */	addi r6, r6, MemCardStack@l
+/* 80016794  3C C0 80 3E */	lis r6, MemCardStack@ha /* 0x803DFC20@ha */
+/* 80016798  38 C6 FC 20 */	addi r6, r6, MemCardStack@l /* 0x803DFC20@l */
 /* 8001679C  38 C6 10 00 */	addi r6, r6, 0x1000
 /* 800167A0  38 E0 10 00 */	li r7, 0x1000
 /* 800167A4  39 08 00 01 */	addi r8, r8, 1
 /* 800167A8  39 20 00 01 */	li r9, 1
 /* 800167AC  48 32 AA E1 */	bl OSCreateThread
-/* 800167B0  3C 60 80 3E */	lis r3, MemCardThread@ha
-/* 800167B4  38 63 0C 20 */	addi r3, r3, MemCardThread@l
+/* 800167B0  3C 60 80 3E */	lis r3, MemCardThread@ha /* 0x803E0C20@ha */
+/* 800167B4  38 63 0C 20 */	addi r3, r3, MemCardThread@l /* 0x803E0C20@l */
 /* 800167B8  48 32 AF FD */	bl OSResumeThread
 /* 800167BC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800167C0  80 01 00 14 */	lwz r0, 0x14(r1)

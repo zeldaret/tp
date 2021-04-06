@@ -3,17 +3,15 @@
 #
 
 M718_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw.plf
+M718_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw.lcf
+M718_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw.map
 
 M718_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_csw/executor.cpp \
-	rel/d/a/tag/d_a_tag_csw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_csw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_csw/d_a_tag_csw.cpp \
 
 M718_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/d_a_tag_csw.o \
 
 M718_LIBS := \
@@ -29,15 +27,21 @@ M718_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map718.map\
+	-m _prolog \
+	-lcf $(M718_LDSCRIPT) \
+	-unused -map $(M718_MAP) \
+	-w off \
 
 $(M718_TARGET): $(M718_O_FILES) $(M718_LIBS)
+	@echo [718] creating $(M718_TARGET)
 	@echo $(M718_LIBS) $(M718_O_FILES) > build/M718_ofiles
-	$(LD) -opt_partial $(M718_LDFLAGS) -o $(M718_TARGET) @build/M718_ofiles
+	@python3 tools/lcf.py rel 718 --output $(M718_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M718_LDFLAGS) -o $(M718_TARGET) @build/M718_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_csw/%.o: rel/d/a/tag/d_a_tag_csw/%.cpp
+	@echo [718] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M718_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M718_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

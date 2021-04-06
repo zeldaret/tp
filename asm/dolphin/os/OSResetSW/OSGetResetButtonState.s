@@ -9,7 +9,7 @@ lbl_8033FBD8:
 /* 8033FBF4  7C 7E 1B 78 */	mr r30, r3
 /* 8033FBF8  48 00 2B 25 */	bl __OSGetSystemTime
 /* 8033FBFC  3C A0 CC 00 */	lis r5, 0xCC00 /* 0xCC003000@ha */
-/* 8033FC00  80 05 30 00 */	lwz r0, 0x3000(r5)
+/* 8033FC00  80 05 30 00 */	lwz r0, 0x3000(r5)  /* 0xCC003000@l */
 /* 8033FC04  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 8033FC08  40 82 00 DC */	bne lbl_8033FCE4
 /* 8033FC0C  80 0D 91 24 */	lwz r0, Down(r13)
@@ -43,7 +43,7 @@ lbl_8033FC54:
 /* 8033FC70  40 82 00 58 */	bne lbl_8033FCC8
 /* 8033FC74  3C C0 80 00 */	lis r6, 0x8000 /* 0x800000F8@ha */
 /* 8033FC78  80 AD 91 3C */	lwz r5, data_804516BC(r13)
-/* 8033FC7C  80 E6 00 F8 */	lwz r7, 0x00F8(r6)
+/* 8033FC7C  80 E6 00 F8 */	lwz r7, 0x00F8(r6)  /* 0x800000F8@l */
 /* 8033FC80  3C C0 43 1C */	lis r6, 0x431C /* 0x431BDE83@ha */
 /* 8033FC84  39 06 DE 83 */	addi r8, r6, 0xDE83 /* 0x431BDE83@l */
 /* 8033FC88  80 0D 91 38 */	lwz r0, HoldDown(r13)
@@ -98,7 +98,7 @@ lbl_8033FD20:
 /* 8033FD34  7C A0 03 79 */	or. r0, r5, r0
 /* 8033FD38  41 82 00 50 */	beq lbl_8033FD88
 /* 8033FD3C  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
-/* 8033FD40  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 8033FD40  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 8033FD44  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
 /* 8033FD48  38 A5 4D D3 */	addi r5, r5, 0x4DD3 /* 0x10624DD3@l */
 /* 8033FD4C  54 00 F0 BE */	srwi r0, r0, 2
@@ -124,7 +124,7 @@ lbl_8033FD88:
 lbl_8033FD98:
 /* 8033FD98  3C A0 80 00 */	lis r5, 0x8000 /* 0x800030E3@ha */
 /* 8033FD9C  93 AD 91 28 */	stw r29, LastState(r13)
-/* 8033FDA0  88 05 30 E3 */	lbz r0, 0x30E3(r5)
+/* 8033FDA0  88 05 30 E3 */	lbz r0, 0x30E3(r5)  /* 0x800030E3@l */
 /* 8033FDA4  54 00 06 FF */	clrlwi. r0, r0, 0x1b
 /* 8033FDA8  41 82 00 A0 */	beq lbl_8033FE48
 /* 8033FDAC  1D 40 00 3C */	mulli r10, r0, 0x3c

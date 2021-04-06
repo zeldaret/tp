@@ -7,8 +7,8 @@ lbl_802DB730:
 /* 802DB744  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802DB748  7C 9F 23 78 */	mr r31, r4
 /* 802DB74C  41 82 00 28 */	beq lbl_802DB774
-/* 802DB750  3C 80 80 3D */	lis r4, __vt__9JKRDecomp@ha
-/* 802DB754  38 04 C4 A0 */	addi r0, r4, __vt__9JKRDecomp@l
+/* 802DB750  3C 80 80 3D */	lis r4, __vt__9JKRDecomp@ha /* 0x803CC4A0@ha */
+/* 802DB754  38 04 C4 A0 */	addi r0, r4, __vt__9JKRDecomp@l /* 0x803CC4A0@l */
 /* 802DB758  90 1E 00 00 */	stw r0, 0(r30)
 /* 802DB75C  38 80 00 00 */	li r4, 0
 /* 802DB760  4B FF 5F F9 */	bl __dt__9JKRThreadFv

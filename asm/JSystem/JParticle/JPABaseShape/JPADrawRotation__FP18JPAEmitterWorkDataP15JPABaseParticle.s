@@ -10,15 +10,15 @@ lbl_80278FC8:
 /* 80278FE8  48 0E 91 F5 */	bl _savegpr_29
 /* 80278FEC  7C 7D 1B 78 */	mr r29, r3
 /* 80278FF0  7C 9E 23 78 */	mr r30, r4
-/* 80278FF4  3C 60 80 3C */	lis r3, jpa_dl@ha
-/* 80278FF8  3B E3 42 E0 */	addi r31, r3, jpa_dl@l
+/* 80278FF4  3C 60 80 3C */	lis r3, jpa_dl@ha /* 0x803C42E0@ha */
+/* 80278FF8  3B E3 42 E0 */	addi r31, r3, jpa_dl@l /* 0x803C42E0@l */
 /* 80278FFC  80 04 00 7C */	lwz r0, 0x7c(r4)
 /* 80279000  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80279004  40 82 00 E4 */	bne lbl_802790E8
 /* 80279008  A0 1E 00 88 */	lhz r0, 0x88(r30)
 /* 8027900C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80279010  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80279014  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80279010  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80279014  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80279018  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8027901C  7C 63 02 14 */	add r3, r3, r0
 /* 80279020  C0 43 00 04 */	lfs f2, 4(r3)

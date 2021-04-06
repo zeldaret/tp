@@ -16,8 +16,8 @@ lbl_80286648:
 lbl_80286680:
 /* 80286680  80 83 00 14 */	lwz r4, 0x14(r3)
 lbl_80286684:
-/* 80286684  3C 60 80 28 */	lis r3, update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 80286688  38 03 5F 08 */	addi r0, r3, update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 80286684  3C 60 80 28 */	lis r3, update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285F08@ha */
+/* 80286688  38 03 5F 08 */	addi r0, r3, update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285F08@l */
 /* 8028668C  90 1F 00 08 */	stw r0, 8(r31)
 /* 80286690  38 00 00 00 */	li r0, 0
 /* 80286694  90 1F 00 04 */	stw r0, 4(r31)

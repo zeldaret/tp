@@ -7,7 +7,7 @@ lbl_80C63F34:
 /* 80C63F48  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C63F4C  7C 9F 23 78 */	mr r31, r4
 /* 80C63F50  41 82 00 3C */	beq lbl_80C63F8C
-/* 80C63F54  4B 3B 4D 8C */	b fopAc_IsActor__FPv
+/* 80C63F54  4B 3B 4D 8D */	bl fopAc_IsActor__FPv
 /* 80C63F58  2C 03 00 00 */	cmpwi r3, 0
 /* 80C63F5C  41 82 00 30 */	beq lbl_80C63F8C
 /* 80C63F60  A8 1E 00 0E */	lha r0, 0xe(r30)

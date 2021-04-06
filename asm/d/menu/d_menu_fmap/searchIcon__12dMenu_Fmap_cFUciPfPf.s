@@ -9,8 +9,8 @@ lbl_801CD000:
 /* 801CD01C  7C BD 2B 78 */	mr r29, r5
 /* 801CD020  7C DE 33 78 */	mr r30, r6
 /* 801CD024  7C FF 3B 78 */	mr r31, r7
-/* 801CD028  3C 80 80 3A */	lis r4, __vt__19dMenuFmapIconDisp_c@ha
-/* 801CD02C  38 04 7D 74 */	addi r0, r4, __vt__19dMenuFmapIconDisp_c@l
+/* 801CD028  3C 80 80 3A */	lis r4, __vt__19dMenuFmapIconDisp_c@ha /* 0x803A7D74@ha */
+/* 801CD02C  38 04 7D 74 */	addi r0, r4, __vt__19dMenuFmapIconDisp_c@l /* 0x803A7D74@l */
 /* 801CD030  90 01 00 48 */	stw r0, 0x48(r1)
 /* 801CD034  3B 00 00 00 */	li r24, 0
 /* 801CD038  8B 2D 87 E4 */	lbz r25, struct_80450D64+0x0(r13)

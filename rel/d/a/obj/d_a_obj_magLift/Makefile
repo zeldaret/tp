@@ -3,19 +3,20 @@
 #
 
 M565_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift.plf
+M565_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift.lcf
+M565_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift.map
 
 M565_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_magLift/executor.cpp \
-	rel/d/a/obj/d_a_obj_magLift/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_magLift/d_a_obj_magLift.cpp \
 
 M565_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/d_a_obj_magLift.o \
 
 M565_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/libRuntime.PPCEABI.H.a \
 
 M565_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M565_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map565.map\
+	-m _prolog \
+	-lcf $(M565_LDSCRIPT) \
+	-unused -map $(M565_MAP) \
+	-w off \
 
 $(M565_TARGET): $(M565_O_FILES) $(M565_LIBS)
+	@echo [565] creating $(M565_TARGET)
 	@echo $(M565_LIBS) $(M565_O_FILES) > build/M565_ofiles
-	$(LD) -opt_partial $(M565_LDFLAGS) -o $(M565_TARGET) @build/M565_ofiles
+	@python3 tools/lcf.py rel 565 --output $(M565_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M565_LDFLAGS) -o $(M565_TARGET) @build/M565_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_magLift/%.o: rel/d/a/obj/d_a_obj_magLift/%.cpp
+	@echo [565] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M565_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M565_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_magLift/libs/Runtime.PPCEABI.H/Makefile
 

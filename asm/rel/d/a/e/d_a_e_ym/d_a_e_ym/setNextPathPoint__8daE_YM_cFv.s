@@ -19,7 +19,7 @@ lbl_808100C4:
 /* 808100C4  80 7F 06 AC */	lwz r3, 0x6ac(r31)
 /* 808100C8  88 9F 06 B4 */	lbz r4, 0x6b4(r31)
 /* 808100CC  7C 84 07 74 */	extsb r4, r4
-/* 808100D0  4B 84 16 E0 */	b dPath_GetPnt__FPC5dPathi
+/* 808100D0  4B 84 16 E1 */	bl dPath_GetPnt__FPC5dPathi
 /* 808100D4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 808100D8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 808100DC  C0 03 00 08 */	lfs f0, 8(r3)
@@ -28,7 +28,7 @@ lbl_808100C4:
 /* 808100E8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 808100EC  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 808100F0  38 81 00 08 */	addi r4, r1, 8
-/* 808100F4  4B A6 0B 10 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 808100F4  4B A6 0B 11 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 808100F8  B0 7F 04 DE */	sth r3, 0x4de(r31)
 /* 808100FC  B0 7F 04 E6 */	sth r3, 0x4e6(r31)
 /* 80810100  38 00 00 02 */	li r0, 2
@@ -36,10 +36,10 @@ lbl_808100C4:
 /* 80810108  7F E3 FB 78 */	mr r3, r31
 /* 8081010C  38 80 00 10 */	li r4, 0x10
 /* 80810110  38 A0 00 02 */	li r5, 2
-/* 80810114  3C C0 80 81 */	lis r6, lit_4872@ha
-/* 80810118  C0 26 5A 14 */	lfs f1, lit_4872@l(r6)
-/* 8081011C  3C C0 80 81 */	lis r6, lit_3927@ha
-/* 80810120  C0 46 59 9C */	lfs f2, lit_3927@l(r6)
+/* 80810114  3C C0 80 81 */	lis r6, lit_4872@ha /* 0x80815A14@ha */
+/* 80810118  C0 26 5A 14 */	lfs f1, lit_4872@l(r6)  /* 0x80815A14@l */
+/* 8081011C  3C C0 80 81 */	lis r6, lit_3927@ha /* 0x8081599C@ha */
+/* 80810120  C0 46 59 9C */	lfs f2, lit_3927@l(r6)  /* 0x8081599C@l */
 /* 80810124  4B FF 80 BD */	bl bckSet__8daE_YM_cFiUcff
 /* 80810128  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8081012C  80 01 00 24 */	lwz r0, 0x24(r1)

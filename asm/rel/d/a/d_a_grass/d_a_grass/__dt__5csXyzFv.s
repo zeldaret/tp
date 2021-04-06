@@ -7,7 +7,7 @@ lbl_8051EB4C:
 /* 8051EB60  41 82 00 10 */	beq lbl_8051EB70
 /* 8051EB64  7C 80 07 35 */	extsh. r0, r4
 /* 8051EB68  40 81 00 08 */	ble lbl_8051EB70
-/* 8051EB6C  4B DB 01 D0 */	b __dl__FPv
+/* 8051EB6C  4B DB 01 D1 */	bl __dl__FPv
 lbl_8051EB70:
 /* 8051EB70  7F E3 FB 78 */	mr r3, r31
 /* 8051EB74  83 E1 00 0C */	lwz r31, 0xc(r1)

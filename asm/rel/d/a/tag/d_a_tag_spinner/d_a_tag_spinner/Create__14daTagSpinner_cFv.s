@@ -5,8 +5,8 @@ lbl_80D6191C:
 /* 80D61928  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D6192C  7C 7F 1B 78 */	mr r31, r3
 /* 80D61930  4B FF FF 75 */	bl initBaseMtx__14daTagSpinner_cFv
-/* 80D61934  3C 60 80 D6 */	lis r3, lit_3715@ha
-/* 80D61938  C0 23 1B 44 */	lfs f1, lit_3715@l(r3)
+/* 80D61934  3C 60 80 D6 */	lis r3, lit_3715@ha /* 0x80D61B44@ha */
+/* 80D61938  C0 23 1B 44 */	lfs f1, lit_3715@l(r3)  /* 0x80D61B44@l */
 /* 80D6193C  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 80D61940  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80D61944  D0 1F 05 68 */	stfs f0, 0x568(r31)

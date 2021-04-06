@@ -5,12 +5,12 @@ lbl_80317180:
 /* 8031718C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80317190  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80317194  41 82 00 30 */	beq lbl_803171C4
-/* 80317198  3C 60 80 3D */	lis r3, __vt__21J3DTexGenBlockPatched@ha
-/* 8031719C  38 03 E6 0C */	addi r0, r3, __vt__21J3DTexGenBlockPatched@l
+/* 80317198  3C 60 80 3D */	lis r3, __vt__21J3DTexGenBlockPatched@ha /* 0x803CE60C@ha */
+/* 8031719C  38 03 E6 0C */	addi r0, r3, __vt__21J3DTexGenBlockPatched@l /* 0x803CE60C@l */
 /* 803171A0  90 1F 00 00 */	stw r0, 0(r31)
 /* 803171A4  41 82 00 10 */	beq lbl_803171B4
-/* 803171A8  3C 60 80 3D */	lis r3, __vt__14J3DTexGenBlock@ha
-/* 803171AC  38 03 DE 34 */	addi r0, r3, __vt__14J3DTexGenBlock@l
+/* 803171A8  3C 60 80 3D */	lis r3, __vt__14J3DTexGenBlock@ha /* 0x803CDE34@ha */
+/* 803171AC  38 03 DE 34 */	addi r0, r3, __vt__14J3DTexGenBlock@l /* 0x803CDE34@l */
 /* 803171B0  90 1F 00 00 */	stw r0, 0(r31)
 lbl_803171B4:
 /* 803171B4  7C 80 07 35 */	extsh. r0, r4

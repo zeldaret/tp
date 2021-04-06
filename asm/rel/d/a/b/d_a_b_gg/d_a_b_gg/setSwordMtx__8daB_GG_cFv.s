@@ -12,14 +12,14 @@ lbl_805EB9DC:
 /* 805EBA04  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 805EBA08  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 805EBA0C  38 63 03 00 */	addi r3, r3, 0x300
-/* 805EBA10  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 805EBA14  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 805EBA18  4B D5 AA 98 */	b PSMTXCopy
-/* 805EBA1C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 805EBA20  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 805EBA10  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805EBA14  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 805EBA18  4B D5 AA 99 */	bl PSMTXCopy
+/* 805EBA1C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805EBA20  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 805EBA24  80 9F 0E 38 */	lwz r4, 0xe38(r31)
 /* 805EBA28  38 84 00 24 */	addi r4, r4, 0x24
-/* 805EBA2C  4B D5 AA 84 */	b PSMTXCopy
+/* 805EBA2C  4B D5 AA 85 */	bl PSMTXCopy
 /* 805EBA30  48 00 00 08 */	b lbl_805EBA38
 lbl_805EBA34:
 /* 805EBA34  48 00 00 19 */	bl setSwordMtx1__8daB_GG_cFv

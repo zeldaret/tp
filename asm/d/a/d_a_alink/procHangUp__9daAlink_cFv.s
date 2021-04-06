@@ -14,8 +14,8 @@ lbl_800FB328:
 /* 800FB358  40 82 00 4C */	bne lbl_800FB3A4
 /* 800FB35C  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 800FB360  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FB364  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FB368  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800FB364  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FB368  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FB36C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800FB370  C0 3E 04 D0 */	lfs f1, 0x4d0(r30)
 /* 800FB374  C0 42 93 8C */	lfs f2, lit_8783(r2)
@@ -39,8 +39,8 @@ lbl_800FB3AC:
 /* 800FB3B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800FB3B8  40 82 00 1C */	bne lbl_800FB3D4
 /* 800FB3BC  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800FB3C0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wallFall_c0@ha
-/* 800FB3C4  38 63 E1 B8 */	addi r3, r3, m__22daAlinkHIO_wallFall_c0@l
+/* 800FB3C0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wallFall_c0@ha /* 0x8038E1B8@ha */
+/* 800FB3C4  38 63 E1 B8 */	addi r3, r3, m__22daAlinkHIO_wallFall_c0@l /* 0x8038E1B8@l */
 /* 800FB3C8  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800FB3CC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800FB3D0  40 81 00 50 */	ble lbl_800FB420
@@ -49,8 +49,8 @@ lbl_800FB3D4:
 /* 800FB3D8  2C 04 00 00 */	cmpwi r4, 0
 /* 800FB3DC  40 82 00 1C */	bne lbl_800FB3F8
 /* 800FB3E0  7F C3 F3 78 */	mr r3, r30
-/* 800FB3E4  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FB3E8  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FB3E4  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FB3E8  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FB3EC  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 800FB3F0  48 00 07 D9 */	bl procHangClimbInit__9daAlink_cFf
 /* 800FB3F4  48 00 00 2C */	b lbl_800FB420

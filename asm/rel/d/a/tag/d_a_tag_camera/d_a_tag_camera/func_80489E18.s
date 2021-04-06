@@ -4,12 +4,12 @@ lbl_80489E18:
 /* 80489E20  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80489E24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80489E28  93 C1 00 08 */	stw r30, 8(r1)
-/* 80489E2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80489E30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80489E2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80489E30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80489E34  83 C3 5D B8 */	lwz r30, 0x5db8(r3)
 /* 80489E38  3B E0 00 00 */	li r31, 0
-/* 80489E3C  3C 60 80 49 */	lis r3, data_8048A670@ha
-/* 80489E40  38 63 A6 70 */	addi r3, r3, data_8048A670@l
+/* 80489E3C  3C 60 80 49 */	lis r3, data_8048A670@ha /* 0x8048A670@ha */
+/* 80489E40  38 63 A6 70 */	addi r3, r3, data_8048A670@l /* 0x8048A670@l */
 /* 80489E44  80 63 00 00 */	lwz r3, 0(r3)
 /* 80489E48  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80489E4C  81 8C 01 88 */	lwz r12, 0x188(r12)

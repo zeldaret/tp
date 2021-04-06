@@ -7,8 +7,8 @@ lbl_80048D80:
 /* 80048D94  7C 7C 1B 79 */	or. r28, r3, r3
 /* 80048D98  7C 9D 23 78 */	mr r29, r4
 /* 80048D9C  41 82 00 54 */	beq lbl_80048DF0
-/* 80048DA0  3C 60 80 3B */	lis r3, __vt__15dSmplMdl_draw_c@ha
-/* 80048DA4  38 03 82 F8 */	addi r0, r3, __vt__15dSmplMdl_draw_c@l
+/* 80048DA0  3C 60 80 3B */	lis r3, __vt__15dSmplMdl_draw_c@ha /* 0x803A82F8@ha */
+/* 80048DA4  38 03 82 F8 */	addi r0, r3, __vt__15dSmplMdl_draw_c@l /* 0x803A82F8@l */
 /* 80048DA8  90 1C 00 00 */	stw r0, 0(r28)
 /* 80048DAC  3B C0 00 00 */	li r30, 0
 /* 80048DB0  3B E0 00 00 */	li r31, 0

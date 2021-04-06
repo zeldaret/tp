@@ -7,8 +7,8 @@ lbl_80160304:
 /* 80160318  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016031C  7C 9F 23 78 */	mr r31, r4
 /* 80160320  41 82 01 34 */	beq lbl_80160454
-/* 80160324  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80160328  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80160324  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80160328  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8016032C  80 03 0D D0 */	lwz r0, 0xdd0(r3)
 /* 80160330  54 00 07 3E */	clrlwi r0, r0, 0x1c
 /* 80160334  28 00 00 07 */	cmplwi r0, 7
@@ -43,8 +43,8 @@ lbl_80160394:
 /* 801603A4  38 80 FF FF */	li r4, -1
 /* 801603A8  4B F2 85 11 */	bl __dt__11dCamSetup_cFv
 /* 801603AC  38 7E 06 14 */	addi r3, r30, 0x614
-/* 801603B0  3C 80 80 16 */	lis r4, func_801602C4@ha
-/* 801603B4  38 84 02 C4 */	addi r4, r4, func_801602C4@l
+/* 801603B0  3C 80 80 16 */	lis r4, func_801602C4@ha /* 0x801602C4@ha */
+/* 801603B4  38 84 02 C4 */	addi r4, r4, func_801602C4@l /* 0x801602C4@l */
 /* 801603B8  38 A0 00 14 */	li r5, 0x14
 /* 801603BC  38 C0 00 04 */	li r6, 4
 /* 801603C0  48 20 19 29 */	bl __destroy_arr
@@ -52,8 +52,8 @@ lbl_80160394:
 /* 801603C8  41 82 00 18 */	beq lbl_801603E0
 /* 801603CC  34 1E 05 D8 */	addic. r0, r30, 0x5d8
 /* 801603D0  41 82 00 10 */	beq lbl_801603E0
-/* 801603D4  3C 60 80 3C */	lis r3, __vt__14d2DBSplinePath@ha
-/* 801603D8  38 03 A7 EC */	addi r0, r3, __vt__14d2DBSplinePath@l
+/* 801603D4  3C 60 80 3C */	lis r3, __vt__14d2DBSplinePath@ha /* 0x803BA7EC@ha */
+/* 801603D8  38 03 A7 EC */	addi r0, r3, __vt__14d2DBSplinePath@l /* 0x803BA7EC@l */
 /* 801603DC  90 1E 06 08 */	stw r0, 0x608(r30)
 lbl_801603E0:
 /* 801603E0  34 1E 02 CC */	addic. r0, r30, 0x2cc
@@ -74,13 +74,13 @@ lbl_80160410:
 /* 80160414  41 82 00 18 */	beq lbl_8016042C
 /* 80160418  34 1E 02 28 */	addic. r0, r30, 0x228
 /* 8016041C  41 82 00 10 */	beq lbl_8016042C
-/* 80160420  3C 60 80 3B */	lis r3, __vt__18dDlst_effectLine_c@ha
-/* 80160424  38 03 8D F8 */	addi r0, r3, __vt__18dDlst_effectLine_c@l
+/* 80160420  3C 60 80 3B */	lis r3, __vt__18dDlst_effectLine_c@ha /* 0x803A8DF8@ha */
+/* 80160424  38 03 8D F8 */	addi r0, r3, __vt__18dDlst_effectLine_c@l /* 0x803A8DF8@l */
 /* 80160428  90 1E 02 28 */	stw r0, 0x228(r30)
 lbl_8016042C:
 /* 8016042C  38 7E 00 D0 */	addi r3, r30, 0xd0
-/* 80160430  3C 80 80 18 */	lis r4, __dt__Q29dCamera_c10dCamInfo_cFv@ha
-/* 80160434  38 84 29 20 */	addi r4, r4, __dt__Q29dCamera_c10dCamInfo_cFv@l
+/* 80160430  3C 80 80 18 */	lis r4, __dt__Q29dCamera_c10dCamInfo_cFv@ha /* 0x80182920@ha */
+/* 80160434  38 84 29 20 */	addi r4, r4, __dt__Q29dCamera_c10dCamInfo_cFv@l /* 0x80182920@l */
 /* 80160438  38 A0 00 20 */	li r5, 0x20
 /* 8016043C  38 C0 00 02 */	li r6, 2
 /* 80160440  48 20 18 A9 */	bl __destroy_arr

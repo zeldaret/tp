@@ -8,8 +8,8 @@ lbl_80109284:
 /* 8010929C  4B FF F7 7D */	bl checkHookshotWait__9daAlink_cCFv
 /* 801092A0  2C 03 00 00 */	cmpwi r3, 0
 /* 801092A4  41 82 00 10 */	beq lbl_801092B4
-/* 801092A8  3C 60 80 45 */	lis r3, __float_max@ha
-/* 801092AC  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 801092A8  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 801092AC  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 801092B0  D0 1F 34 90 */	stfs f0, 0x3490(r31)
 lbl_801092B4:
 /* 801092B4  A8 7F 30 1A */	lha r3, 0x301a(r31)
@@ -76,8 +76,8 @@ lbl_8010937C:
 /* 80109390  7F E3 FB 78 */	mr r3, r31
 /* 80109394  38 80 01 8C */	li r4, 0x18c
 /* 80109398  38 A0 00 02 */	li r5, 2
-/* 8010939C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_hookshot_c0@ha
-/* 801093A0  38 C6 E9 C0 */	addi r6, r6, m__22daAlinkHIO_hookshot_c0@l
+/* 8010939C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 801093A0  38 C6 E9 C0 */	addi r6, r6, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 801093A4  4B FA 43 4D */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 801093A8  80 1F 31 A0 */	lwz r0, 0x31a0(r31)
 /* 801093AC  54 00 03 5B */	rlwinm. r0, r0, 0, 0xd, 0xd
@@ -99,8 +99,8 @@ lbl_801093C0:
 /* 801093E8  D0 1F 1F 50 */	stfs f0, 0x1f50(r31)
 /* 801093EC  7F E3 FB 78 */	mr r3, r31
 /* 801093F0  38 80 01 2B */	li r4, 0x12b
-/* 801093F4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha
-/* 801093F8  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l
+/* 801093F4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 801093F8  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 801093FC  4B FA 3C F9 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_80109400:
 /* 80109400  80 1F 05 7C */	lwz r0, 0x57c(r31)
@@ -111,8 +111,8 @@ lbl_80109400:
 /* 80109414  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 80109418  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8010941C  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80109420  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80109424  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80109420  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80109424  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80109428  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8010942C  38 80 00 01 */	li r4, 1
 /* 80109430  38 A0 00 01 */	li r5, 1
@@ -150,8 +150,8 @@ lbl_8010948C:
 /* 801094A4  38 80 00 02 */	li r4, 2
 /* 801094A8  C0 22 92 C4 */	lfs f1, lit_6109(r2)
 /* 801094AC  4B FA 42 79 */	bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
-/* 801094B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801094B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801094B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801094B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801094B8  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 801094BC  54 00 04 A0 */	rlwinm r0, r0, 0, 0x12, 0x10
 /* 801094C0  90 03 5F 18 */	stw r0, 0x5f18(r3)

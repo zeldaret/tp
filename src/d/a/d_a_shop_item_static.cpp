@@ -26,12 +26,9 @@ struct daItemBase_c {
 // Forward References:
 //
 
-void CheckShopItemCreateHeap(fopAc_ac_c*);
-
 extern "C" void getRotateP__12daShopItem_cFv();
 extern "C" void getPosP__12daShopItem_cFv();
 extern "C" void CheckShopItemCreateHeap__FP10fopAc_ac_c();
-extern "C" extern void* const mData__12daShopItem_c[276];
 extern "C" extern char const* const d_a_d_a_shop_item_static__stringBase0;
 
 //
@@ -44,7 +41,7 @@ extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
 // Declarations:
 //
 
-/* 80037C14-80037C1C 0008+00 s=0 e=1 z=0  None .text      getRotateP__12daShopItem_cFv */
+/* 80037C14-80037C1C 032554 0008+00 0/0 1/1 0/0 .text            getRotateP__12daShopItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -54,7 +51,7 @@ asm void daShopItem_c::getRotateP() {
 }
 #pragma pop
 
-/* 80037C1C-80037C24 0008+00 s=0 e=2 z=0  None .text      getPosP__12daShopItem_cFv */
+/* 80037C1C-80037C24 03255C 0008+00 0/0 2/2 0/0 .text            getPosP__12daShopItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,8 +62,8 @@ asm void daShopItem_c::getPosP() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803792E8-80379738 0450+00 s=1 e=0 z=9  None .rodata    mData__12daShopItem_c */
-SECTION_RODATA void* const mData__12daShopItem_c[276] = {
+/* 803792E8-80379738 -00001 0450+00 1/1 0/0 9/9 .rodata          mData__12daShopItem_c */
+SECTION_RODATA extern void* const mData__12daShopItem_c[276] = {
     (void*)&d_a_d_a_shop_item_static__stringBase0,
     (void*)0x0003FFFF,
     (void*)0xFFFFFFFF,
@@ -344,39 +341,9 @@ SECTION_RODATA void* const mData__12daShopItem_c[276] = {
     (void*)0x0000000C,
     (void*)NULL,
 };
+SECTION_DEAD void* const cg_803792E8 = (void*)(&mData__12daShopItem_c);
 
-/* 80379738-803797F8 00BF+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379738 = "B_mD_sold";
-SECTION_DEAD char const* const stringBase_80379742 = "B_mD_oil";
-SECTION_DEAD char const* const stringBase_8037974B = "O_mD_red";
-SECTION_DEAD char const* const stringBase_80379754 = "B_mD_milk";
-SECTION_DEAD char const* const stringBase_8037975E = "O_mD_bott";
-SECTION_DEAD char const* const stringBase_80379768 = "O_mD_arw";
-SECTION_DEAD char const* const stringBase_80379771 = "O_mD_SHB";
-SECTION_DEAD char const* const stringBase_8037977A = "O_mD_SHA";
-SECTION_DEAD char const* const stringBase_80379783 = "O_mD_bomb";
-SECTION_DEAD char const* const stringBase_8037978D = "O_mD_pg";
-SECTION_DEAD char const* const stringBase_80379795 = "O_mD_bi";
-SECTION_DEAD char const* const stringBase_8037979D = "O_mD_bmcs";
-SECTION_DEAD char const* const stringBase_803797A7 = "O_mD_bmc2";
-SECTION_DEAD char const* const stringBase_803797B1 = "O_mD_jira";
-SECTION_DEAD char const* const stringBase_803797BB = "O_mD_hati";
-SECTION_DEAD char const* const stringBase_803797C5 = "O_mD_pach";
-SECTION_DEAD char const* const stringBase_803797CF = "O_mD_blue";
-SECTION_DEAD char const* const stringBase_803797D9 = "O_mD_hawk";
-SECTION_DEAD char const* const stringBase_803797E3 = "O_mD_marm";
-SECTION_DEAD char const* const stringBase_803797ED = "O_mD_gren";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803797F7 = "";
-#pragma pop
-
-/* 80037C24-80037C7C 0058+00 s=0 e=0 z=1  None .text      CheckShopItemCreateHeap__FP10fopAc_ac_c */
-//	80037C38: 803792E8 (mData__12daShopItem_c)
-//	80037C3C: 803792E8 (mData__12daShopItem_c)
-//	80037C68: 8014475C (CreateItemHeap__12daItemBase_cFPCcsssssss)
+/* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,4 +351,32 @@ asm void CheckShopItemCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/a/d_a_shop_item_static/CheckShopItemCreateHeap__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80379738-803797F8 005D98 00BF+01 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379738 = "B_mD_sold";
+SECTION_DEAD static char const* const stringBase_80379742 = "B_mD_oil";
+SECTION_DEAD static char const* const stringBase_8037974B = "O_mD_red";
+SECTION_DEAD static char const* const stringBase_80379754 = "B_mD_milk";
+SECTION_DEAD static char const* const stringBase_8037975E = "O_mD_bott";
+SECTION_DEAD static char const* const stringBase_80379768 = "O_mD_arw";
+SECTION_DEAD static char const* const stringBase_80379771 = "O_mD_SHB";
+SECTION_DEAD static char const* const stringBase_8037977A = "O_mD_SHA";
+SECTION_DEAD static char const* const stringBase_80379783 = "O_mD_bomb";
+SECTION_DEAD static char const* const stringBase_8037978D = "O_mD_pg";
+SECTION_DEAD static char const* const stringBase_80379795 = "O_mD_bi";
+SECTION_DEAD static char const* const stringBase_8037979D = "O_mD_bmcs";
+SECTION_DEAD static char const* const stringBase_803797A7 = "O_mD_bmc2";
+SECTION_DEAD static char const* const stringBase_803797B1 = "O_mD_jira";
+SECTION_DEAD static char const* const stringBase_803797BB = "O_mD_hati";
+SECTION_DEAD static char const* const stringBase_803797C5 = "O_mD_pach";
+SECTION_DEAD static char const* const stringBase_803797CF = "O_mD_blue";
+SECTION_DEAD static char const* const stringBase_803797D9 = "O_mD_hawk";
+SECTION_DEAD static char const* const stringBase_803797E3 = "O_mD_marm";
+SECTION_DEAD static char const* const stringBase_803797ED = "O_mD_gren";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803797F7 = "";
 #pragma pop

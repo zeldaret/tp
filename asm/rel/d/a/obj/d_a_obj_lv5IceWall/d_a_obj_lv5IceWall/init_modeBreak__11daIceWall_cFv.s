@@ -7,11 +7,11 @@ lbl_80C6C170:
 /* 80C6C184  88 83 08 67 */	lbz r4, 0x867(r3)
 /* 80C6C188  28 04 00 FF */	cmplwi r4, 0xff
 /* 80C6C18C  41 82 00 18 */	beq lbl_80C6C1A4
-/* 80C6C190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C6C194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C6C190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C6C194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C6C198  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C6C19C  7C 05 07 74 */	extsb r5, r0
-/* 80C6C1A0  4B 3C 90 60 */	b onSwitch__10dSv_info_cFii
+/* 80C6C1A0  4B 3C 90 61 */	bl onSwitch__10dSv_info_cFii
 lbl_80C6C1A4:
 /* 80C6C1A4  38 00 00 01 */	li r0, 1
 /* 80C6C1A8  98 1F 08 64 */	stb r0, 0x864(r31)

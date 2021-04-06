@@ -5,8 +5,8 @@ lbl_801940D4:
 /* 801940E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801940E4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801940E8  41 82 00 1C */	beq lbl_80194104
-/* 801940EC  3C A0 80 3C */	lis r5, __vt__11dMeterSub_c@ha
-/* 801940F0  38 05 B6 D4 */	addi r0, r5, __vt__11dMeterSub_c@l
+/* 801940EC  3C A0 80 3C */	lis r5, __vt__11dMeterSub_c@ha /* 0x803BB6D4@ha */
+/* 801940F0  38 05 B6 D4 */	addi r0, r5, __vt__11dMeterSub_c@l /* 0x803BB6D4@l */
 /* 801940F4  90 1F 00 00 */	stw r0, 0(r31)
 /* 801940F8  7C 80 07 35 */	extsh. r0, r4
 /* 801940FC  40 81 00 08 */	ble lbl_80194104

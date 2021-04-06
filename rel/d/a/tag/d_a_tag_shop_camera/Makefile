@@ -3,17 +3,15 @@
 #
 
 M741_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera.plf
+M741_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera.lcf
+M741_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera.map
 
 M741_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_shop_camera/executor.cpp \
-	rel/d/a/tag/d_a_tag_shop_camera/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_shop_camera/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_shop_camera/d_a_tag_shop_camera.cpp \
 
 M741_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/d_a_tag_shop_camera.o \
 
 M741_LIBS := \
@@ -29,15 +27,21 @@ M741_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map741.map\
+	-m _prolog \
+	-lcf $(M741_LDSCRIPT) \
+	-unused -map $(M741_MAP) \
+	-w off \
 
 $(M741_TARGET): $(M741_O_FILES) $(M741_LIBS)
+	@echo [741] creating $(M741_TARGET)
 	@echo $(M741_LIBS) $(M741_O_FILES) > build/M741_ofiles
-	$(LD) -opt_partial $(M741_LDFLAGS) -o $(M741_TARGET) @build/M741_ofiles
+	@python3 tools/lcf.py rel 741 --output $(M741_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M741_LDFLAGS) -o $(M741_TARGET) @build/M741_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_camera/%.o: rel/d/a/tag/d_a_tag_shop_camera/%.cpp
+	@echo [741] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M741_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M741_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

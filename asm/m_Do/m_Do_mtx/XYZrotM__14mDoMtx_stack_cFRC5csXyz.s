@@ -3,8 +3,8 @@ lbl_8000CED4:
 /* 8000CED8  7C 08 02 A6 */	mflr r0
 /* 8000CEDC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8000CEE0  7C 66 1B 78 */	mr r6, r3
-/* 8000CEE4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8000CEE8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8000CEE4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8000CEE8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8000CEEC  A8 86 00 00 */	lha r4, 0(r6)
 /* 8000CEF0  A8 A6 00 02 */	lha r5, 2(r6)
 /* 8000CEF4  A8 C6 00 04 */	lha r6, 4(r6)

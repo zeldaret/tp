@@ -89,13 +89,10 @@ extern "C" void JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec();
 extern "C" void JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec();
 extern "C" void JSGGetViewRoll__Q26JStage7TCameraCFv();
 extern "C" void JSGSetViewRoll__Q26JStage7TCameraFf();
-extern "C" extern void* __vt__Q26JStage7TCamera[37 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();
@@ -117,8 +114,8 @@ extern "C" extern u32 __float_max;
 //
 
 /* ############################################################################################## */
-/* 803C4680-803C4718 0094+04 s=1 e=1 z=0  None .data      __vt__Q26JStage7TCamera */
-SECTION_DATA void* __vt__Q26JStage7TCamera[37 + 1 /* padding */] = {
+/* 803C4680-803C4718 0217A0 0094+04 1/1 1/1 0/0 .data            __vt__Q26JStage7TCamera */
+SECTION_DATA extern void* __vt__Q26JStage7TCamera[37 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
@@ -160,11 +157,7 @@ SECTION_DATA void* __vt__Q26JStage7TCamera[37 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80280BA0-80280C00 0060+00 s=0 e=1 z=0  None .text      __dt__Q26JStage7TCameraFv */
-//	80280BC0: 803C4680 (__vt__Q26JStage7TCamera)
-//	80280BC4: 803C4680 (__vt__Q26JStage7TCamera)
-//	80280BD0: 80280DD4 (__dt__Q26JStage7TObjectFv)
-//	80280BE0: 802CED3C (__dl__FPv)
+/* 80280BA0-80280C00 27B4E0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage7TCameraFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -174,34 +167,34 @@ asm JStage::TCamera::~TCamera() {
 }
 #pragma pop
 
-/* 80280C00-80280C08 0008+00 s=1 e=1 z=0  None .text      JSGFGetType__Q26JStage7TCameraCFv */
+/* 80280C00-80280C08 27B540 0008+00 1/0 1/0 0/0 .text            JSGFGetType__Q26JStage7TCameraCFv
+ */
 s32 JStage::TCamera::JSGFGetType() const {
     return 3;
 }
 
-/* 80280C08-80280C10 0008+00 s=1 e=1 z=0  None .text      JSGGetProjectionType__Q26JStage7TCameraCFv
+/* 80280C08-80280C10 27B548 0008+00 1/0 1/0 0/0 .text JSGGetProjectionType__Q26JStage7TCameraCFv
  */
 bool JStage::TCamera::JSGGetProjectionType() const {
     return true;
 }
 
-/* 80280C10-80280C14 0004+00 s=1 e=1 z=0  None .text
+/* 80280C10-80280C14 27B550 0004+00 1/0 1/0 0/0 .text
  * JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection */
 void JStage::TCamera::JSGSetProjectionType(JStage::TECameraProjection param_0) {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 804553D8-804553E0 0004+04 s=4 e=0 z=0  None .sdata2    @319 */
+/* 804553D8-804553E0 0039D8 0004+04 4/4 0/0 0/0 .sdata2          @319 */
 SECTION_SDATA2 static f32 lit_319[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80280C14-80280C1C 0008+00 s=1 e=0 z=0  None .text      JSGGetProjectionNear__Q26JStage7TCameraCFv
+/* 80280C14-80280C1C 27B554 0008+00 1/0 0/0 0/0 .text JSGGetProjectionNear__Q26JStage7TCameraCFv
  */
-//	80280C14: 804553D8 (lit_319)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -211,16 +204,12 @@ asm void JStage::TCamera::JSGGetProjectionNear() const {
 }
 #pragma pop
 
-/* 80280C1C-80280C20 0004+00 s=1 e=0 z=0  None .text      JSGSetProjectionNear__Q26JStage7TCameraFf
- */
+/* 80280C1C-80280C20 27B55C 0004+00 1/0 0/0 0/0 .text JSGSetProjectionNear__Q26JStage7TCameraFf */
 void JStage::TCamera::JSGSetProjectionNear(f32 param_0) {
     /* empty function */
 }
 
-/* 80280C20-80280C2C 000C+00 s=1 e=0 z=0  None .text      JSGGetProjectionFar__Q26JStage7TCameraCFv
- */
-//	80280C20: 80450AE8 (__float_max)
-//	80280C24: 80450AE8 (__float_max)
+/* 80280C20-80280C2C 27B560 000C+00 1/0 0/0 0/0 .text JSGGetProjectionFar__Q26JStage7TCameraCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -230,15 +219,13 @@ asm void JStage::TCamera::JSGGetProjectionFar() const {
 }
 #pragma pop
 
-/* 80280C2C-80280C30 0004+00 s=1 e=0 z=0  None .text      JSGSetProjectionFar__Q26JStage7TCameraFf
- */
+/* 80280C2C-80280C30 27B56C 0004+00 1/0 0/0 0/0 .text JSGSetProjectionFar__Q26JStage7TCameraFf */
 void JStage::TCamera::JSGSetProjectionFar(f32 param_0) {
     /* empty function */
 }
 
-/* 80280C30-80280C38 0008+00 s=1 e=0 z=0  None .text      JSGGetProjectionFovy__Q26JStage7TCameraCFv
+/* 80280C30-80280C38 27B570 0008+00 1/0 0/0 0/0 .text JSGGetProjectionFovy__Q26JStage7TCameraCFv
  */
-//	80280C30: 804553D8 (lit_319)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -248,15 +235,13 @@ asm void JStage::TCamera::JSGGetProjectionFovy() const {
 }
 #pragma pop
 
-/* 80280C38-80280C3C 0004+00 s=1 e=0 z=0  None .text      JSGSetProjectionFovy__Q26JStage7TCameraFf
- */
+/* 80280C38-80280C3C 27B578 0004+00 1/0 0/0 0/0 .text JSGSetProjectionFovy__Q26JStage7TCameraFf */
 void JStage::TCamera::JSGSetProjectionFovy(f32 param_0) {
     /* empty function */
 }
 
-/* 80280C3C-80280C44 0008+00 s=1 e=0 z=0  None .text JSGGetProjectionAspect__Q26JStage7TCameraCFv
+/* 80280C3C-80280C44 27B57C 0008+00 1/0 0/0 0/0 .text JSGGetProjectionAspect__Q26JStage7TCameraCFv
  */
-//	80280C3C: 804553D8 (lit_319)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -266,73 +251,72 @@ asm void JStage::TCamera::JSGGetProjectionAspect() const {
 }
 #pragma pop
 
-/* 80280C44-80280C48 0004+00 s=1 e=0 z=0  None .text JSGSetProjectionAspect__Q26JStage7TCameraFf
+/* 80280C44-80280C48 27B584 0004+00 1/0 0/0 0/0 .text JSGSetProjectionAspect__Q26JStage7TCameraFf
  */
 void JStage::TCamera::JSGSetProjectionAspect(f32 param_0) {
     /* empty function */
 }
 
-/* 80280C48-80280C4C 0004+00 s=1 e=1 z=0  None .text JSGGetProjectionField__Q26JStage7TCameraCFPf
+/* 80280C48-80280C4C 27B588 0004+00 1/0 1/0 0/0 .text JSGGetProjectionField__Q26JStage7TCameraCFPf
  */
 void JStage::TCamera::JSGGetProjectionField(f32* param_0) const {
     /* empty function */
 }
 
-/* 80280C4C-80280C50 0004+00 s=1 e=1 z=0  None .text JSGSetProjectionField__Q26JStage7TCameraFPCf
+/* 80280C4C-80280C50 27B58C 0004+00 1/0 1/0 0/0 .text JSGSetProjectionField__Q26JStage7TCameraFPCf
  */
 void JStage::TCamera::JSGSetProjectionField(f32 const* param_0) {
     /* empty function */
 }
 
-/* 80280C50-80280C58 0008+00 s=1 e=1 z=0  None .text      JSGGetViewType__Q26JStage7TCameraCFv */
+/* 80280C50-80280C58 27B590 0008+00 1/0 1/0 0/0 .text JSGGetViewType__Q26JStage7TCameraCFv */
 bool JStage::TCamera::JSGGetViewType() const {
     return true;
 }
 
-/* 80280C58-80280C5C 0004+00 s=1 e=1 z=0  None .text
+/* 80280C58-80280C5C 27B598 0004+00 1/0 1/0 0/0 .text
  * JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView    */
 void JStage::TCamera::JSGSetViewType(JStage::TECameraView param_0) {
     /* empty function */
 }
 
-/* 80280C5C-80280C60 0004+00 s=1 e=0 z=0  None .text JSGGetViewPosition__Q26JStage7TCameraCFP3Vec
+/* 80280C5C-80280C60 27B59C 0004+00 1/0 0/0 0/0 .text JSGGetViewPosition__Q26JStage7TCameraCFP3Vec
  */
 void JStage::TCamera::JSGGetViewPosition(Vec* param_0) const {
     /* empty function */
 }
 
-/* 80280C60-80280C64 0004+00 s=1 e=0 z=0  None .text JSGSetViewPosition__Q26JStage7TCameraFRC3Vec
+/* 80280C60-80280C64 27B5A0 0004+00 1/0 0/0 0/0 .text JSGSetViewPosition__Q26JStage7TCameraFRC3Vec
  */
 void JStage::TCamera::JSGSetViewPosition(Vec const& param_0) {
     /* empty function */
 }
 
-/* 80280C64-80280C68 0004+00 s=1 e=0 z=0  None .text JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec
+/* 80280C64-80280C68 27B5A4 0004+00 1/0 0/0 0/0 .text JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec
  */
 void JStage::TCamera::JSGGetViewUpVector(Vec* param_0) const {
     /* empty function */
 }
 
-/* 80280C68-80280C6C 0004+00 s=1 e=0 z=0  None .text JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec
+/* 80280C68-80280C6C 27B5A8 0004+00 1/0 0/0 0/0 .text JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec
  */
 void JStage::TCamera::JSGSetViewUpVector(Vec const& param_0) {
     /* empty function */
 }
 
-/* 80280C6C-80280C70 0004+00 s=1 e=0 z=0  None .text
+/* 80280C6C-80280C70 27B5AC 0004+00 1/0 0/0 0/0 .text
  * JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec           */
 void JStage::TCamera::JSGGetViewTargetPosition(Vec* param_0) const {
     /* empty function */
 }
 
-/* 80280C70-80280C74 0004+00 s=1 e=0 z=0  None .text
+/* 80280C70-80280C74 27B5B0 0004+00 1/0 0/0 0/0 .text
  * JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec           */
 void JStage::TCamera::JSGSetViewTargetPosition(Vec const& param_0) {
     /* empty function */
 }
 
-/* 80280C74-80280C7C 0008+00 s=1 e=0 z=0  None .text      JSGGetViewRoll__Q26JStage7TCameraCFv */
-//	80280C74: 804553D8 (lit_319)
+/* 80280C74-80280C7C 27B5B4 0008+00 1/0 0/0 0/0 .text JSGGetViewRoll__Q26JStage7TCameraCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,7 +326,8 @@ asm void JStage::TCamera::JSGGetViewRoll() const {
 }
 #pragma pop
 
-/* 80280C7C-80280C80 0004+00 s=1 e=0 z=0  None .text      JSGSetViewRoll__Q26JStage7TCameraFf */
+/* 80280C7C-80280C80 27B5BC 0004+00 1/0 0/0 0/0 .text            JSGSetViewRoll__Q26JStage7TCameraFf
+ */
 void JStage::TCamera::JSGSetViewRoll(f32 param_0) {
     /* empty function */
 }

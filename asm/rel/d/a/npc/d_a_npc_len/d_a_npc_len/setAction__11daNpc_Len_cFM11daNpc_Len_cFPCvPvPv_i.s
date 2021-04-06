@@ -9,13 +9,13 @@ lbl_80A66030:
 /* 80A6604C  38 00 00 03 */	li r0, 3
 /* 80A66050  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A66054  38 7E 0F D8 */	addi r3, r30, 0xfd8
-/* 80A66058  4B 8F BF C0 */	b __ptmf_test
+/* 80A66058  4B 8F BF C1 */	bl __ptmf_test
 /* 80A6605C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A66060  41 82 00 18 */	beq lbl_80A66078
 /* 80A66064  7F C3 F3 78 */	mr r3, r30
 /* 80A66068  38 80 00 00 */	li r4, 0
 /* 80A6606C  39 9E 0F D8 */	addi r12, r30, 0xfd8
-/* 80A66070  4B 8F C0 14 */	b __ptmf_scall
+/* 80A66070  4B 8F C0 15 */	bl __ptmf_scall
 /* 80A66074  60 00 00 00 */	nop 
 lbl_80A66078:
 /* 80A66078  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A66078:
 /* 80A66090  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A66094  90 1E 0F E0 */	stw r0, 0xfe0(r30)
 /* 80A66098  38 7E 0F D8 */	addi r3, r30, 0xfd8
-/* 80A6609C  4B 8F BF 7C */	b __ptmf_test
+/* 80A6609C  4B 8F BF 7D */	bl __ptmf_test
 /* 80A660A0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A660A4  41 82 00 18 */	beq lbl_80A660BC
 /* 80A660A8  7F C3 F3 78 */	mr r3, r30
 /* 80A660AC  38 80 00 00 */	li r4, 0
 /* 80A660B0  39 9E 0F D8 */	addi r12, r30, 0xfd8
-/* 80A660B4  4B 8F BF D0 */	b __ptmf_scall
+/* 80A660B4  4B 8F BF D1 */	bl __ptmf_scall
 /* 80A660B8  60 00 00 00 */	nop 
 lbl_80A660BC:
 /* 80A660BC  38 60 00 01 */	li r3, 1

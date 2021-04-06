@@ -1,9 +1,9 @@
 lbl_80781AF8:
-/* 80781AF8  3C 80 80 78 */	lis r4, lit_3768@ha
-/* 80781AFC  C0 04 4D E0 */	lfs f0, lit_3768@l(r4)
+/* 80781AF8  3C 80 80 78 */	lis r4, lit_3768@ha /* 0x80784DE0@ha */
+/* 80781AFC  C0 04 4D E0 */	lfs f0, lit_3768@l(r4)  /* 0x80784DE0@l */
 /* 80781B00  D0 03 05 30 */	stfs f0, 0x530(r3)
-/* 80781B04  3C 80 80 78 */	lis r4, lit_3758@ha
-/* 80781B08  C0 04 4D D8 */	lfs f0, lit_3758@l(r4)
+/* 80781B04  3C 80 80 78 */	lis r4, lit_3758@ha /* 0x80784DD8@ha */
+/* 80781B08  C0 04 4D D8 */	lfs f0, lit_3758@l(r4)  /* 0x80784DD8@l */
 /* 80781B0C  D0 03 05 2C */	stfs f0, 0x52c(r3)
 /* 80781B10  D0 03 04 FC */	stfs f0, 0x4fc(r3)
 /* 80781B14  38 00 00 01 */	li r0, 1

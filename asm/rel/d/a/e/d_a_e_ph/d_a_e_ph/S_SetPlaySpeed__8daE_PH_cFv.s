@@ -21,13 +21,13 @@ lbl_8073EDA0:
 /* 8073EDEC  4E 80 04 21 */	bctrl 
 /* 8073EDF0  38 7F 06 24 */	addi r3, r31, 0x624
 /* 8073EDF4  C0 3F 06 20 */	lfs f1, 0x620(r31)
-/* 8073EDF8  3C 80 80 74 */	lis r4, lit_4548@ha
-/* 8073EDFC  C0 44 1C AC */	lfs f2, lit_4548@l(r4)
-/* 8073EE00  4B B3 19 40 */	b cLib_chaseF__FPfff
+/* 8073EDF8  3C 80 80 74 */	lis r4, lit_4548@ha /* 0x80741CAC@ha */
+/* 8073EDFC  C0 44 1C AC */	lfs f2, lit_4548@l(r4)  /* 0x80741CAC@l */
+/* 8073EE00  4B B3 19 41 */	bl cLib_chaseF__FPfff
 /* 8073EE04  38 7F 06 12 */	addi r3, r31, 0x612
 /* 8073EE08  A8 1F 06 10 */	lha r0, 0x610(r31)
-/* 8073EE0C  3C 80 80 74 */	lis r4, lit_4215@ha
-/* 8073EE10  C8 24 1C 74 */	lfd f1, lit_4215@l(r4)
+/* 8073EE0C  3C 80 80 74 */	lis r4, lit_4215@ha /* 0x80741C74@ha */
+/* 8073EE10  C8 24 1C 74 */	lfd f1, lit_4215@l(r4)  /* 0x80741C74@l */
 /* 8073EE14  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 8073EE18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8073EE1C  3C 00 43 30 */	lis r0, 0x4330
@@ -40,7 +40,7 @@ lbl_8073EDA0:
 /* 8073EE38  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 8073EE3C  80 81 00 1C */	lwz r4, 0x1c(r1)
 /* 8073EE40  38 A0 00 10 */	li r5, 0x10
-/* 8073EE44  4B B3 1D 4C */	b cLib_chaseAngleS__FPsss
+/* 8073EE44  4B B3 1D 4D */	bl cLib_chaseAngleS__FPsss
 /* 8073EE48  C0 1F 06 24 */	lfs f0, 0x624(r31)
 /* 8073EE4C  80 7F 07 1C */	lwz r3, 0x71c(r31)
 /* 8073EE50  D0 03 00 18 */	stfs f0, 0x18(r3)

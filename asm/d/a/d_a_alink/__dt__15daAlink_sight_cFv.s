@@ -5,19 +5,19 @@ lbl_800CFDF4:
 /* 800CFE00  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800CFE04  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800CFE08  41 82 00 48 */	beq lbl_800CFE50
-/* 800CFE0C  3C 60 80 3B */	lis r3, __vt__15daAlink_sight_c@ha
-/* 800CFE10  38 03 35 80 */	addi r0, r3, __vt__15daAlink_sight_c@l
+/* 800CFE0C  3C 60 80 3B */	lis r3, __vt__15daAlink_sight_c@ha /* 0x803B3580@ha */
+/* 800CFE10  38 03 35 80 */	addi r0, r3, __vt__15daAlink_sight_c@l /* 0x803B3580@l */
 /* 800CFE14  90 1F 00 00 */	stw r0, 0(r31)
 /* 800CFE18  34 1F 00 50 */	addic. r0, r31, 0x50
 /* 800CFE1C  41 82 00 10 */	beq lbl_800CFE2C
-/* 800CFE20  3C 60 80 3B */	lis r3, __vt__20daAlink_lockCursor_c@ha
-/* 800CFE24  38 03 35 90 */	addi r0, r3, __vt__20daAlink_lockCursor_c@l
+/* 800CFE20  3C 60 80 3B */	lis r3, __vt__20daAlink_lockCursor_c@ha /* 0x803B3590@ha */
+/* 800CFE24  38 03 35 90 */	addi r0, r3, __vt__20daAlink_lockCursor_c@l /* 0x803B3590@l */
 /* 800CFE28  90 1F 00 50 */	stw r0, 0x50(r31)
 lbl_800CFE2C:
 /* 800CFE2C  28 1F 00 00 */	cmplwi r31, 0
 /* 800CFE30  41 82 00 10 */	beq lbl_800CFE40
-/* 800CFE34  3C 60 80 3C */	lis r3, __vt__18daPy_sightPacket_c@ha
-/* 800CFE38  38 03 A1 4C */	addi r0, r3, __vt__18daPy_sightPacket_c@l
+/* 800CFE34  3C 60 80 3C */	lis r3, __vt__18daPy_sightPacket_c@ha /* 0x803BA14C@ha */
+/* 800CFE38  38 03 A1 4C */	addi r0, r3, __vt__18daPy_sightPacket_c@l /* 0x803BA14C@l */
 /* 800CFE3C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_800CFE40:
 /* 800CFE40  7C 80 07 35 */	extsh. r0, r4

@@ -1,14 +1,14 @@
 lbl_80A721E0:
-/* 80A721E0  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80A721E4  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80A721E0  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A721E4  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80A721E8  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A721EC  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A721F0  90 83 0F 84 */	stw r4, 0xf84(r3)
 /* 80A721F4  90 03 0F 88 */	stw r0, 0xf88(r3)
 /* 80A721F8  80 05 00 08 */	lwz r0, 8(r5)
 /* 80A721FC  90 03 0F 8C */	stw r0, 0xf8c(r3)
-/* 80A72200  3C 80 80 A7 */	lis r4, lit_4833@ha
-/* 80A72204  38 A4 3B 80 */	addi r5, r4, lit_4833@l
+/* 80A72200  3C 80 80 A7 */	lis r4, lit_4833@ha /* 0x80A73B80@ha */
+/* 80A72204  38 A4 3B 80 */	addi r5, r4, lit_4833@l /* 0x80A73B80@l */
 /* 80A72208  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A7220C  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A72210  90 83 0F 84 */	stw r4, 0xf84(r3)

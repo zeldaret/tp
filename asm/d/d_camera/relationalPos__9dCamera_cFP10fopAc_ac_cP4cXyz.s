@@ -9,8 +9,8 @@ lbl_80164D6C:
 /* 80164D88  7C BE 2B 79 */	or. r30, r5, r5
 /* 80164D8C  7C DF 33 78 */	mr r31, r6
 /* 80164D90  40 82 00 24 */	bne lbl_80164DB4
-/* 80164D94  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80164D98  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80164D94  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80164D98  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80164D9C  D0 1C 00 00 */	stfs f0, 0(r28)
 /* 80164DA0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80164DA4  D0 1C 00 04 */	stfs f0, 4(r28)

@@ -8,18 +8,18 @@ lbl_8036DB9C:
 /* 8036DBB4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8036DBB8  7C 7E 1B 78 */	mr r30, r3
 /* 8036DBBC  4B FF FA 61 */	bl TRKSetBufferPosition
-/* 8036DBC0  3C 60 80 3A */	lis r3, lit_126@ha
+/* 8036DBC0  3C 60 80 3A */	lis r3, lit_126@ha /* 0x803A2890@ha */
 /* 8036DBC4  88 BE 00 14 */	lbz r5, 0x14(r30)
-/* 8036DBC8  38 83 28 90 */	addi r4, r3, lit_126@l
+/* 8036DBC8  38 83 28 90 */	addi r4, r3, lit_126@l /* 0x803A2890@l */
 /* 8036DBCC  38 60 00 01 */	li r3, 1
 /* 8036DBD0  4C C6 31 82 */	crclr 6
 /* 8036DBD4  48 00 50 81 */	bl MWTRACE
 /* 8036DBD8  88 1E 00 14 */	lbz r0, 0x14(r30)
 /* 8036DBDC  28 00 00 1A */	cmplwi r0, 0x1a
 /* 8036DBE0  41 81 00 F8 */	bgt lbl_8036DCD8
-/* 8036DBE4  3C 60 80 3D */	lis r3, lit_128@ha
+/* 8036DBE4  3C 60 80 3D */	lis r3, lit_128@ha /* 0x803D3190@ha */
 /* 8036DBE8  54 00 10 3A */	slwi r0, r0, 2
-/* 8036DBEC  38 63 31 90 */	addi r3, r3, lit_128@l
+/* 8036DBEC  38 63 31 90 */	addi r3, r3, lit_128@l /* 0x803D3190@l */
 /* 8036DBF0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8036DBF4  7C 09 03 A6 */	mtctr r0
 /* 8036DBF8  4E 80 04 20 */	bctr 
@@ -79,9 +79,9 @@ lbl_8036DB9C:
 /* 8036DCD0  48 00 00 45 */	bl TRKDoSetOption
 /* 8036DCD4  7C 7F 1B 78 */	mr r31, r3
 lbl_8036DCD8:
-/* 8036DCD8  3C 60 80 3A */	lis r3, lit_127@ha
+/* 8036DCD8  3C 60 80 3A */	lis r3, lit_127@ha /* 0x803A28AC@ha */
 /* 8036DCDC  7F E5 FB 78 */	mr r5, r31
-/* 8036DCE0  38 83 28 AC */	addi r4, r3, lit_127@l
+/* 8036DCE0  38 83 28 AC */	addi r4, r3, lit_127@l /* 0x803A28AC@l */
 /* 8036DCE4  38 60 00 01 */	li r3, 1
 /* 8036DCE8  4C C6 31 82 */	crclr 6
 /* 8036DCEC  48 00 4F 69 */	bl MWTRACE

@@ -5,8 +5,8 @@ lbl_80119F64:
 /* 80119F70  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80119F74  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80119F78  7C 7F 1B 78 */	mr r31, r3
-/* 80119F7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80119F80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80119F7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80119F80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80119F84  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80119F88  54 00 01 09 */	rlwinm. r0, r0, 0, 4, 4
 /* 80119F8C  41 82 00 0C */	beq lbl_80119F98
@@ -84,8 +84,8 @@ lbl_8011A098:
 /* 8011A098  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 8011A09C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8011A0A0  40 80 00 10 */	bge lbl_8011A0B0
-/* 8011A0A4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8011A0A8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8011A0A4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8011A0A8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8011A0AC  48 00 00 70 */	b lbl_8011A11C
 lbl_8011A0B0:
 /* 8011A0B0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -119,8 +119,8 @@ lbl_8011A108:
 lbl_8011A10C:
 /* 8011A10C  2C 00 00 01 */	cmpwi r0, 1
 /* 8011A110  40 82 00 0C */	bne lbl_8011A11C
-/* 8011A114  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8011A118  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8011A114  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8011A118  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8011A11C:
 /* 8011A11C  C0 02 93 E4 */	lfs f0, lit_12328(r2)
 /* 8011A120  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -174,8 +174,8 @@ lbl_8011A1A8:
 /* 8011A1D0  41 82 00 20 */	beq lbl_8011A1F0
 /* 8011A1D4  7F E3 FB 78 */	mr r3, r31
 /* 8011A1D8  38 80 00 19 */	li r4, 0x19
-/* 8011A1DC  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 8011A1E0  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 8011A1DC  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 8011A1E0  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 8011A1E4  C0 25 00 1C */	lfs f1, 0x1c(r5)
 /* 8011A1E8  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011A1EC  4B F9 2D F5 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

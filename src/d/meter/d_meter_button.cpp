@@ -52,18 +52,18 @@ struct dMsgObject_c {
 
 struct JKRExpHeap {};
 
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-};
+struct J2DGrafContext {};
 
 struct JKRArchive {};
-
-struct J2DGrafContext {};
 
 struct J2DScreen {
     /* 802F8498 */ J2DScreen();
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
+};
+
+struct J2DPane {
+    /* 802F7100 */ void getBounds();
 };
 
 struct CPaneMgr {
@@ -181,15 +181,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
+};
+
+struct JUtility {
+    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -203,9 +203,9 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -312,19 +312,10 @@ extern "C" void hide_button__14dMeterButton_cFUc();
 extern "C" void pikariCheck__14dMeterButton_cFv();
 extern "C" void paneTrans__14dMeterButton_cFP8CPaneMgrffUc();
 extern "C" extern char const* const d_meter_d_meter_button__stringBase0;
-extern "C" extern void* __vt__14dMeterButton_c[4];
 
 //
 // External References:
 //
-
-void mDoExt_getCurrentHeap();
-void mDoExt_getMesgFont();
-void dComIfGs_isOneZoneSwitch(int, int);
-void dPaneClass_showNullPane(J2DScreen*);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -408,7 +399,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803BF1A8-803BF200 0058+00 s=1 e=0 z=0  None .data      @7807 */
+/* 803BF1A8-803BF200 -00001 0058+00 1/1 0/0 0/0 .data            @7807 */
 SECTION_DATA static void* lit_7807[22] = {
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x12C),
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x178),
@@ -434,7 +425,7 @@ SECTION_DATA static void* lit_7807[22] = {
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x6D0),
 };
 
-/* 803BF200-803BF258 0058+00 s=1 e=0 z=0  None .data      @7858 */
+/* 803BF200-803BF258 -00001 0058+00 1/1 0/0 0/0 .data            @7858 */
 SECTION_DATA static void* lit_7858[22] = {
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0xBC),
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0xE4),
@@ -460,20 +451,15 @@ SECTION_DATA static void* lit_7858[22] = {
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0x268),
 };
 
-/* 803BF258-803BF268 0010+00 s=2 e=0 z=0  None .data      __vt__14dMeterButton_c */
-SECTION_DATA void* __vt__14dMeterButton_c[4] = {
+/* 803BF258-803BF268 01C378 0010+00 2/2 0/0 0/0 .data            __vt__14dMeterButton_c */
+SECTION_DATA extern void* __vt__14dMeterButton_c[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMeterButton_cFv,
     (void*)__dt__14dMeterButton_cFv,
 };
 
-/* 80201328-80201370 0048+00 s=0 e=1 z=1  None .text      __ct__14dMeterButton_cFv */
-//	8020133C: 803A6F88 (__vt__12dDlst_base_c)
-//	80201340: 803A6F88 (__vt__12dDlst_base_c)
-//	80201348: 803BF258 (__vt__14dMeterButton_c)
-//	8020134C: 803BF258 (__vt__14dMeterButton_c)
-//	80201354: 802013CC (_create__14dMeterButton_cFv)
+/* 80201328-80201370 1FBC68 0048+00 0/0 1/1 1/1 .text            __ct__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -483,11 +469,7 @@ asm dMeterButton_c::dMeterButton_c() {
 }
 #pragma pop
 
-/* 80201370-802013CC 005C+00 s=1 e=0 z=0  None .text      __dt__14dMeterButton_cFv */
-//	80201390: 803BF258 (__vt__14dMeterButton_c)
-//	80201394: 803BF258 (__vt__14dMeterButton_c)
-//	8020139C: 80202A9C (_delete__14dMeterButton_cFv)
-//	802013AC: 802CED3C (__dl__FPv)
+/* 80201370-802013CC 1FBCB0 005C+00 1/0 0/0 0/0 .text            __dt__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -497,9 +479,7 @@ asm dMeterButton_c::~dMeterButton_c() {
 }
 #pragma pop
 
-/* 802013CC-80201404 0038+00 s=1 e=0 z=0  None .text      _create__14dMeterButton_cFv */
-//	802013E0: 802047E8 (screenInitButton__14dMeterButton_cFv)
-//	802013E8: 80205834 (screenInitText__14dMeterButton_cFv)
+/* 802013CC-80201404 1FBD0C 0038+00 1/1 0/0 0/0 .text            _create__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -510,7 +490,7 @@ asm void dMeterButton_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454748-8045474C 0004+00 s=36 e=0 z=0  None .sdata2    @4146 */
+/* 80454748-8045474C 002D48 0004+00 36/36 0/0 0/0 .sdata2          @4146 */
 SECTION_SDATA2 static u8 lit_4146[4] = {
     0x00,
     0x00,
@@ -518,64 +498,17 @@ SECTION_SDATA2 static u8 lit_4146[4] = {
     0x00,
 };
 
-/* 8045474C-80454750 0004+00 s=30 e=0 z=0  None .sdata2    @4147 */
+/* 8045474C-80454750 002D4C 0004+00 30/30 0/0 0/0 .sdata2          @4147 */
 SECTION_SDATA2 static f32 lit_4147 = 1.0f;
 
-/* 80454750-80454754 0004+00 s=2 e=0 z=0  None .sdata2    @4148 */
+/* 80454750-80454754 002D50 0004+00 2/2 0/0 0/0 .sdata2          @4148 */
 SECTION_SDATA2 static f32 lit_4148 = 10.0f;
 
-/* 80454754-80454758 0004+00 s=1 e=0 z=0  None .sdata2    @4149 */
+/* 80454754-80454758 002D54 0004+00 1/1 0/0 0/0 .sdata2          @4149 */
 SECTION_SDATA2 static f32 lit_4149 = 1.0f / 10.0f;
 
-/* 80201404-80202240 0E3C+00 s=0 e=1 z=0  None .text
+/* 80201404-80202240 1FBD44 0E3C+00 0/0 1/1 0/0 .text
  * _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb          */
-//	8020141C: 803621A0 (__save_gpr)
-//	80201464: 80205CA0 (updateButton__14dMeterButton_cFv)
-//	80201470: 80206978 (updateText__14dMeterButton_cFUl)
-//	8020147C: 804061C0 (g_dComIfG_gameInfo)
-//	80201480: 804061C0 (g_dComIfG_gameInfo)
-//	80201488: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	8020148C: 803790C0 (tempBitLabels__20dSv_event_tmp_flag_c)
-//	80201494: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	802014A0: 8023822C (getStatus__12dMsgObject_cFv)
-//	802014CC: 802032C4 (alphaAnimeButtonA__14dMeterButton_cFUlb)
-//	802014E0: 8020339C (alphaAnimeButtonB__14dMeterButton_cFUlb)
-//	802014F4: 802034A8 (alphaAnimeButtonR__14dMeterButton_cFUlb)
-//	80201508: 802035AC (alphaAnimeButtonZ__14dMeterButton_cFUlb)
-//	8020151C: 802036C0 (alphaAnimeButton3D__14dMeterButton_cFUlb)
-//	80201530: 802037B8 (alphaAnimeButtonC__14dMeterButton_cFUlb)
-//	80201544: 80203878 (alphaAnimeButtonS__14dMeterButton_cFUlb)
-//	80201558: 802038F4 (alphaAnimeButtonX__14dMeterButton_cFUlb)
-//	8020156C: 80203A08 (alphaAnimeButtonY__14dMeterButton_cFUlb)
-//	80201580: 80203B1C (alphaAnimeButtonNun__14dMeterButton_cFUlb)
-//	80201594: 80203C30 (alphaAnimeButtonRemo__14dMeterButton_cFUlb)
-//	802015A8: 80203D44 (alphaAnimeButtonRemo2__14dMeterButton_cFUlb)
-//	802015BC: 80203E58 (alphaAnimeButtonAR__14dMeterButton_cFUlb)
-//	802015D0: 80203F60 (alphaAnimeButton3DB__14dMeterButton_cFUlb)
-//	802015E4: 80204068 (alphaAnimeButtonNURE__14dMeterButton_cFUlb)
-//	802015F8: 80204170 (alphaAnimeButtonReel__14dMeterButton_cFUlb)
-//	8020160C: 80204278 (alphaAnimeButtonReel2__14dMeterButton_cFUlb)
-//	80201620: 80204368 (alphaAnimeButtonAB__14dMeterButton_cFUlb)
-//	80201634: 80204458 (alphaAnimeButtonTate__14dMeterButton_cFUlb)
-//	80201648: 80204548 (alphaAnimeButtonNunZ__14dMeterButton_cFUlb)
-//	8020165C: 80204620 (alphaAnimeButtonNunC__14dMeterButton_cFUlb)
-//	80201670: 802046F8 (alphaAnimeButtonBin__14dMeterButton_cFUlb)
-//	8020167C: 8020AA84 (pikariCheck__14dMeterButton_cFv)
-//	802018EC: 802092C0 (setAlphaButtonOAnimeMax__14dMeterButton_cFi)
-//	802018FC: 8020924C (setAlphaButtonOAnimeMin__14dMeterButton_cFi)
-//	80201B44: 802093D8 (setAlphaIconAnimeMax__14dMeterButton_cFv)
-//	80201B50: 80209368 (setAlphaIconAnimeMin__14dMeterButton_cFv)
-//	80201B60: 804061C0 (g_dComIfG_gameInfo)
-//	80201B64: 804061C0 (g_dComIfG_gameInfo)
-//	80201E88: 804061C0 (g_dComIfG_gameInfo)
-//	80201E8C: 804061C0 (g_dComIfG_gameInfo)
-//	802021AC: 80454748 (lit_4146)
-//	802021CC: 8045474C (lit_4147)
-//	802021D0: 80454750 (lit_4148)
-//	802021D4: 8026FA3C (cLib_addCalc2__FPffff)
-//	802021EC: 80454754 (lit_4149)
-//	80202208: 8020A540 (trans_button__14dMeterButton_cFif)
-//	8020222C: 803621EC (__restore_gpr)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -591,83 +524,23 @@ asm void dMeterButton_c::_execute(u32 param_0, bool param_1, bool param_2, bool 
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454758-8045475C 0004+00 s=23 e=0 z=0  None .sdata2    @4513 */
+/* 80454758-8045475C 002D58 0004+00 23/23 0/0 0/0 .sdata2          @4513 */
 SECTION_SDATA2 static f32 lit_4513 = -1.0f;
 
-/* 8045475C-80454760 0004+00 s=2 e=0 z=0  None .sdata2    @4514 */
+/* 8045475C-80454760 002D5C 0004+00 2/2 0/0 0/0 .sdata2          @4514 */
 SECTION_SDATA2 static f32 lit_4514 = 18.0f;
 
-/* 80454760-80454768 0004+04 s=1 e=0 z=0  None .sdata2    @4515 */
+/* 80454760-80454768 002D60 0004+04 1/1 0/0 0/0 .sdata2          @4515 */
 SECTION_SDATA2 static f32 lit_4515[1 + 1 /* padding */] = {
     9.0f / 5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454768-80454770 0008+00 s=3 e=0 z=0  None .sdata2    @4517 */
+/* 80454768-80454770 002D68 0008+00 3/3 0/0 0/0 .sdata2          @4517 */
 SECTION_SDATA2 static f64 lit_4517 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80202240-80202A9C 085C+00 s=1 e=0 z=0  None .text      draw__14dMeterButton_cFv */
-//	80202268: 803621BC (_savegpr_21)
-//	80202270: 804061C0 (g_dComIfG_gameInfo)
-//	80202274: 804061C0 (g_dComIfG_gameInfo)
-//	80202294: 80454748 (lit_4146)
-//	802022A0: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	802022B0: 80454748 (lit_4146)
-//	802022BC: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	802022C0: 80430188 (g_meter2_info)
-//	802022C4: 80430188 (g_meter2_info)
-//	802022D8: 80454748 (lit_4146)
-//	802022E4: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	802022FC: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80202308: 80368B2C (strcpy)
-//	80202310: 80454748 (lit_4146)
-//	8020231C: 802F8ED4 (draw__9J2DScreenFffPC14J2DGrafContext)
-//	8020235C: 80454758 (lit_4513)
-//	80202378: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80202380: 80368B2C (strcpy)
-//	80202390: 804061C0 (g_dComIfG_gameInfo)
-//	80202394: 804061C0 (g_dComIfG_gameInfo)
-//	80202398: 8042EBC8 (g_drawHIO)
-//	8020239C: 8042EBC8 (g_drawHIO)
-//	802023A0: 80430188 (g_meter2_info)
-//	802023A4: 80430188 (g_meter2_info)
-//	802023A8: 80454748 (lit_4146)
-//	802023F0: 8045475C (lit_4514)
-//	8020245C: 80454768 (lit_4517)
-//	80202498: 80454768 (lit_4517)
-//	802024CC: 8045474C (lit_4147)
-//	80202568: 80454748 (lit_4146)
-//	80202578: 8045475C (lit_4514)
-//	802025BC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802025EC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020261C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020264C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020267C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802026AC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802026DC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020270C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020273C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020278C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802027F4: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80202814: 8045475C (lit_4514)
-//	8020282C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80202840: 8045474C (lit_4147)
-//	80202848: 80454758 (lit_4513)
-//	80202854: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802028B4: 80454760 (lit_4515)
-//	802028D0: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80202928: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80202988: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80202998: 80206D70 (isFastSet__14dMeterButton_cFi)
-//	802029F4: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80202A4C: 802140DC
-//(drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc)
-//	80202A88: 80362208 (_restgpr_21)
+/* 80202240-80202A9C 1FCB80 085C+00 1/0 0/0 0/0 .text            draw__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -677,35 +550,7 @@ asm void dMeterButton_c::draw() {
 }
 #pragma pop
 
-/* 80202A9C-802032C4 0828+00 s=1 e=0 z=0  None .text      _delete__14dMeterButton_cFv */
-//	80202AAC: 803621D4 (_savegpr_27)
-//	80202AB4: 80430188 (g_meter2_info)
-//	80202AB8: 80430188 (g_meter2_info)
-//	80202ABC: 8021C218 (resetFloatingMessage__13dMeter2Info_cFv)
-//	80202AC0: 80238258 (getScrnDrawPtr__12dMsgObject_cFv)
-//	80202AD4: 804061C0 (g_dComIfG_gameInfo)
-//	80202AD8: 804061C0 (g_dComIfG_gameInfo)
-//	80202AE0: 802371B0 (isMidonaTalkWait__12dMsgObject_cFv)
-//	80202AEC: 804061C0 (g_dComIfG_gameInfo)
-//	80202AF0: 804061C0 (g_dComIfG_gameInfo)
-//	80202AF8: 802371E4 (isPlaceMessage__12dMsgObject_cFv)
-//	80202B08: 802370E8 (isHowlMessage__12dMsgObject_cFv)
-//	80202B18: 802371F8 (isBossMessage__12dMsgObject_cFv)
-//	80202B28: 8023720C (isBookMessage__12dMsgObject_cFv)
-//	80202B38: 80237214 (isStaffMessage__12dMsgObject_cFv)
-//	80202B48: 802370BC (isKanbanMessage__12dMsgObject_cFv)
-//	80202B64: 804061C0 (g_dComIfG_gameInfo)
-//	80202B68: 804061C0 (g_dComIfG_gameInfo)
-//	80202B80: 804061C0 (g_dComIfG_gameInfo)
-//	80202B84: 804061C0 (g_dComIfG_gameInfo)
-//	80202BA0: 802370A8 (isGetItemMessage__12dMsgObject_cFv)
-//	80202BAC: 804061C0 (g_dComIfG_gameInfo)
-//	80202BB0: 804061C0 (g_dComIfG_gameInfo)
-//	80202BD0: 802CE548 (free__7JKRHeapFPv)
-//	80203258: 80249D28 (__dt__12dMsgString_cFv)
-//	8020328C: 804061C0 (g_dComIfG_gameInfo)
-//	80203290: 804061C0 (g_dComIfG_gameInfo)
-//	802032B0: 80362220 (_restgpr_27)
+/* 80202A9C-802032C4 1FD3DC 0828+00 1/1 0/0 0/0 .text            _delete__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -715,12 +560,7 @@ asm void dMeterButton_c::_delete() {
 }
 #pragma pop
 
-/* 802032C4-8020339C 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonA__14dMeterButton_cFUlb */
-//	802032D4: 803621DC (_savegpr_29)
-//	802032EC: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203350: 80206CE0 (setAlphaButtonAAnimeMin__14dMeterButton_cFv)
-//	80203368: 80207060 (setAlphaButtonAAnimeMax__14dMeterButton_cFv)
-//	80203388: 80362228 (_restgpr_29)
+/* 802032C4-8020339C 1FDC04 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonA__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -730,14 +570,7 @@ asm void dMeterButton_c::alphaAnimeButtonA(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 8020339C-802034A8 010C+00 s=1 e=0 z=0  None .text      alphaAnimeButtonB__14dMeterButton_cFUlb */
-//	802033AC: 803621DC (_savegpr_29)
-//	802033C4: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203414: 804061C0 (g_dComIfG_gameInfo)
-//	80203418: 804061C0 (g_dComIfG_gameInfo)
-//	8020345C: 8020714C (setAlphaButtonBAnimeMin__14dMeterButton_cFv)
-//	80203474: 802071DC (setAlphaButtonBAnimeMax__14dMeterButton_cFv)
-//	80203494: 80362228 (_restgpr_29)
+/* 8020339C-802034A8 1FDCDC 010C+00 1/1 0/0 0/0 .text alphaAnimeButtonB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -747,14 +580,7 @@ asm void dMeterButton_c::alphaAnimeButtonB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802034A8-802035AC 0104+00 s=1 e=0 z=0  None .text      alphaAnimeButtonR__14dMeterButton_cFUlb */
-//	802034B8: 803621DC (_savegpr_29)
-//	802034D0: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203510: 804061C0 (g_dComIfG_gameInfo)
-//	80203514: 804061C0 (g_dComIfG_gameInfo)
-//	80203560: 802072C8 (setAlphaButtonRAnimeMin__14dMeterButton_cFv)
-//	80203578: 80207358 (setAlphaButtonRAnimeMax__14dMeterButton_cFv)
-//	80203598: 80362228 (_restgpr_29)
+/* 802034A8-802035AC 1FDDE8 0104+00 1/1 0/0 0/0 .text alphaAnimeButtonR__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -764,14 +590,7 @@ asm void dMeterButton_c::alphaAnimeButtonR(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802035AC-802036C0 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonZ__14dMeterButton_cFUlb */
-//	802035BC: 803621DC (_savegpr_29)
-//	802035D4: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203624: 804061C0 (g_dComIfG_gameInfo)
-//	80203628: 804061C0 (g_dComIfG_gameInfo)
-//	80203674: 80207444 (setAlphaButtonZAnimeMin__14dMeterButton_cFv)
-//	8020368C: 802074D4 (setAlphaButtonZAnimeMax__14dMeterButton_cFv)
-//	802036AC: 80362228 (_restgpr_29)
+/* 802035AC-802036C0 1FDEEC 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonZ__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -781,19 +600,7 @@ asm void dMeterButton_c::alphaAnimeButtonZ(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802036C0-802037B8 00F8+00 s=1 e=0 z=0  None .text      alphaAnimeButton3D__14dMeterButton_cFUlb
- */
-//	802036D0: 803621DC (_savegpr_29)
-//	802036E8: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203734: 802075C0 (setAlphaButton3DAnimeMin__14dMeterButton_cFv)
-//	8020373C: 80207740 (setAlphaButton3DVAnimeMin__14dMeterButton_cFv)
-//	80203750: 804061C0 (g_dComIfG_gameInfo)
-//	80203754: 804061C0 (g_dComIfG_gameInfo)
-//	80203768: 802075C0 (setAlphaButton3DAnimeMin__14dMeterButton_cFv)
-//	80203770: 80207744 (setAlphaButton3DVAnimeMax__14dMeterButton_cFv)
-//	8020377C: 80207654 (setAlphaButton3DAnimeMax__14dMeterButton_cFv)
-//	80203784: 80207740 (setAlphaButton3DVAnimeMin__14dMeterButton_cFv)
-//	802037A4: 80362228 (_restgpr_29)
+/* 802036C0-802037B8 1FE000 00F8+00 1/1 0/0 0/0 .text alphaAnimeButton3D__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -803,12 +610,7 @@ asm void dMeterButton_c::alphaAnimeButton3D(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802037B8-80203878 00C0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonC__14dMeterButton_cFUlb */
-//	802037C8: 803621DC (_savegpr_29)
-//	802037E0: 8023822C (getStatus__12dMsgObject_cFv)
-//	8020382C: 80207748 (setAlphaButtonCAnimeMin__14dMeterButton_cFv)
-//	80203844: 802077EC (setAlphaButtonCAnimeMax__14dMeterButton_cFv)
-//	80203864: 80362228 (_restgpr_29)
+/* 802037B8-80203878 1FE0F8 00C0+00 1/1 0/0 0/0 .text alphaAnimeButtonC__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -818,9 +620,7 @@ asm void dMeterButton_c::alphaAnimeButtonC(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203878-802038F4 007C+00 s=1 e=0 z=0  None .text      alphaAnimeButtonS__14dMeterButton_cFUlb */
-//	802038B0: 80207A28 (setAlphaButtonSAnimeMin__14dMeterButton_cFv)
-//	802038C4: 80207AB8 (setAlphaButtonSAnimeMax__14dMeterButton_cFv)
+/* 80203878-802038F4 1FE1B8 007C+00 1/1 0/0 0/0 .text alphaAnimeButtonS__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -830,14 +630,7 @@ asm void dMeterButton_c::alphaAnimeButtonS(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802038F4-80203A08 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonX__14dMeterButton_cFUlb */
-//	80203904: 803621DC (_savegpr_29)
-//	8020391C: 8023822C (getStatus__12dMsgObject_cFv)
-//	8020396C: 804061C0 (g_dComIfG_gameInfo)
-//	80203970: 804061C0 (g_dComIfG_gameInfo)
-//	802039BC: 80207BA4 (setAlphaButtonXAnimeMin__14dMeterButton_cFv)
-//	802039D4: 80207C34 (setAlphaButtonXAnimeMax__14dMeterButton_cFv)
-//	802039F4: 80362228 (_restgpr_29)
+/* 802038F4-80203A08 1FE234 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonX__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -847,14 +640,7 @@ asm void dMeterButton_c::alphaAnimeButtonX(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203A08-80203B1C 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonY__14dMeterButton_cFUlb */
-//	80203A18: 803621DC (_savegpr_29)
-//	80203A30: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203A80: 804061C0 (g_dComIfG_gameInfo)
-//	80203A84: 804061C0 (g_dComIfG_gameInfo)
-//	80203AD0: 80207D20 (setAlphaButtonYAnimeMin__14dMeterButton_cFv)
-//	80203AE8: 80207DB0 (setAlphaButtonYAnimeMax__14dMeterButton_cFv)
-//	80203B08: 80362228 (_restgpr_29)
+/* 80203A08-80203B1C 1FE348 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonY__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -864,15 +650,7 @@ asm void dMeterButton_c::alphaAnimeButtonY(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203B1C-80203C30 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNun__14dMeterButton_cFUlb
- */
-//	80203B2C: 803621DC (_savegpr_29)
-//	80203B44: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203B94: 804061C0 (g_dComIfG_gameInfo)
-//	80203B98: 804061C0 (g_dComIfG_gameInfo)
-//	80203BE4: 80207E9C (setAlphaButtonNunAnimeMin__14dMeterButton_cFv)
-//	80203BFC: 80207F34 (setAlphaButtonNunAnimeMax__14dMeterButton_cFv)
-//	80203C1C: 80362228 (_restgpr_29)
+/* 80203B1C-80203C30 1FE45C 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonNun__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -882,15 +660,8 @@ asm void dMeterButton_c::alphaAnimeButtonNun(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203C30-80203D44 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonRemo__14dMeterButton_cFUlb
+/* 80203C30-80203D44 1FE570 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonRemo__14dMeterButton_cFUlb
  */
-//	80203C40: 803621DC (_savegpr_29)
-//	80203C58: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203CA8: 804061C0 (g_dComIfG_gameInfo)
-//	80203CAC: 804061C0 (g_dComIfG_gameInfo)
-//	80203CF8: 80208028 (setAlphaButtonRemoAnimeMin__14dMeterButton_cFv)
-//	80203D10: 802080C0 (setAlphaButtonRemoAnimeMax__14dMeterButton_cFv)
-//	80203D30: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -900,15 +671,8 @@ asm void dMeterButton_c::alphaAnimeButtonRemo(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203D44-80203E58 0114+00 s=1 e=0 z=0  None .text alphaAnimeButtonRemo2__14dMeterButton_cFUlb
+/* 80203D44-80203E58 1FE684 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonRemo2__14dMeterButton_cFUlb
  */
-//	80203D54: 803621DC (_savegpr_29)
-//	80203D6C: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203DBC: 804061C0 (g_dComIfG_gameInfo)
-//	80203DC0: 804061C0 (g_dComIfG_gameInfo)
-//	80203E0C: 802081B4 (setAlphaButtonRemo2AnimeMin__14dMeterButton_cFv)
-//	80203E24: 8020824C (setAlphaButtonRemo2AnimeMax__14dMeterButton_cFv)
-//	80203E44: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -918,15 +682,7 @@ asm void dMeterButton_c::alphaAnimeButtonRemo2(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203E58-80203F60 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonAR__14dMeterButton_cFUlb
- */
-//	80203E68: 803621DC (_savegpr_29)
-//	80203E80: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203EC4: 804061C0 (g_dComIfG_gameInfo)
-//	80203EC8: 804061C0 (g_dComIfG_gameInfo)
-//	80203F14: 80208340 (setAlphaButtonARAnimeMin__14dMeterButton_cFv)
-//	80203F2C: 802083D8 (setAlphaButtonARAnimeMax__14dMeterButton_cFv)
-//	80203F4C: 80362228 (_restgpr_29)
+/* 80203E58-80203F60 1FE798 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonAR__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -936,15 +692,7 @@ asm void dMeterButton_c::alphaAnimeButtonAR(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203F60-80204068 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButton3DB__14dMeterButton_cFUlb
- */
-//	80203F70: 803621DC (_savegpr_29)
-//	80203F88: 8023822C (getStatus__12dMsgObject_cFv)
-//	80203FCC: 804061C0 (g_dComIfG_gameInfo)
-//	80203FD0: 804061C0 (g_dComIfG_gameInfo)
-//	8020401C: 802084D8 (setAlphaButton3DBAnimeMin__14dMeterButton_cFv)
-//	80204034: 80208570 (setAlphaButton3DBAnimeMax__14dMeterButton_cFv)
-//	80204054: 80362228 (_restgpr_29)
+/* 80203F60-80204068 1FE8A0 0108+00 1/1 0/0 0/0 .text alphaAnimeButton3DB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -954,15 +702,8 @@ asm void dMeterButton_c::alphaAnimeButton3DB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204068-80204170 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNURE__14dMeterButton_cFUlb
+/* 80204068-80204170 1FE9A8 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonNURE__14dMeterButton_cFUlb
  */
-//	80204078: 803621DC (_savegpr_29)
-//	80204090: 8023822C (getStatus__12dMsgObject_cFv)
-//	802040D4: 804061C0 (g_dComIfG_gameInfo)
-//	802040D8: 804061C0 (g_dComIfG_gameInfo)
-//	80204124: 80208670 (setAlphaButtonNUREAnimeMin__14dMeterButton_cFv)
-//	8020413C: 80208708 (setAlphaButtonNUREAnimeMax__14dMeterButton_cFv)
-//	8020415C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -972,15 +713,8 @@ asm void dMeterButton_c::alphaAnimeButtonNURE(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204170-80204278 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonReel__14dMeterButton_cFUlb
+/* 80204170-80204278 1FEAB0 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonReel__14dMeterButton_cFUlb
  */
-//	80204180: 803621DC (_savegpr_29)
-//	80204198: 8023822C (getStatus__12dMsgObject_cFv)
-//	802041DC: 804061C0 (g_dComIfG_gameInfo)
-//	802041E0: 804061C0 (g_dComIfG_gameInfo)
-//	8020422C: 80208808 (setAlphaButtonReelAnimeMin__14dMeterButton_cFv)
-//	80204244: 802088A0 (setAlphaButtonReelAnimeMax__14dMeterButton_cFv)
-//	80204264: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -990,15 +724,8 @@ asm void dMeterButton_c::alphaAnimeButtonReel(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204278-80204368 00F0+00 s=1 e=0 z=0  None .text alphaAnimeButtonReel2__14dMeterButton_cFUlb
+/* 80204278-80204368 1FEBB8 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonReel2__14dMeterButton_cFUlb
  */
-//	80204288: 803621DC (_savegpr_29)
-//	802042A0: 8023822C (getStatus__12dMsgObject_cFv)
-//	802042E4: 804061C0 (g_dComIfG_gameInfo)
-//	802042E8: 804061C0 (g_dComIfG_gameInfo)
-//	80204334: 802089A0 (setAlphaButtonReel2AnimeMin__14dMeterButton_cFv)
-//	80204340: 80208A38 (setAlphaButtonReel2AnimeMax__14dMeterButton_cFv)
-//	80204354: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1008,15 +735,7 @@ asm void dMeterButton_c::alphaAnimeButtonReel2(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204368-80204458 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonAB__14dMeterButton_cFUlb
- */
-//	80204378: 803621DC (_savegpr_29)
-//	80204390: 8023822C (getStatus__12dMsgObject_cFv)
-//	802043D4: 804061C0 (g_dComIfG_gameInfo)
-//	802043D8: 804061C0 (g_dComIfG_gameInfo)
-//	80204424: 80208AEC (setAlphaButtonABAnimeMin__14dMeterButton_cFv)
-//	80204430: 80208B84 (setAlphaButtonABAnimeMax__14dMeterButton_cFv)
-//	80204444: 80362228 (_restgpr_29)
+/* 80204368-80204458 1FECA8 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonAB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1026,15 +745,8 @@ asm void dMeterButton_c::alphaAnimeButtonAB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204458-80204548 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonTate__14dMeterButton_cFUlb
+/* 80204458-80204548 1FED98 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonTate__14dMeterButton_cFUlb
  */
-//	80204468: 803621DC (_savegpr_29)
-//	80204480: 8023822C (getStatus__12dMsgObject_cFv)
-//	802044C4: 804061C0 (g_dComIfG_gameInfo)
-//	802044C8: 804061C0 (g_dComIfG_gameInfo)
-//	80204514: 80208C38 (setAlphaButtonTateAnimeMin__14dMeterButton_cFv)
-//	80204520: 80208CD0 (setAlphaButtonTateAnimeMax__14dMeterButton_cFv)
-//	80204534: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1044,15 +756,8 @@ asm void dMeterButton_c::alphaAnimeButtonTate(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204548-80204620 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNunZ__14dMeterButton_cFUlb
+/* 80204548-80204620 1FEE88 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonNunZ__14dMeterButton_cFUlb
  */
-//	80204558: 803621DC (_savegpr_29)
-//	80204570: 8023822C (getStatus__12dMsgObject_cFv)
-//	8020459C: 804061C0 (g_dComIfG_gameInfo)
-//	802045A0: 804061C0 (g_dComIfG_gameInfo)
-//	802045EC: 80208D84 (setAlphaButtonNunZAnimeMin__14dMeterButton_cFv)
-//	802045F8: 80208E1C (setAlphaButtonNunZAnimeMax__14dMeterButton_cFv)
-//	8020460C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1062,15 +767,8 @@ asm void dMeterButton_c::alphaAnimeButtonNunZ(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204620-802046F8 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNunC__14dMeterButton_cFUlb
+/* 80204620-802046F8 1FEF60 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonNunC__14dMeterButton_cFUlb
  */
-//	80204630: 803621DC (_savegpr_29)
-//	80204648: 8023822C (getStatus__12dMsgObject_cFv)
-//	80204674: 804061C0 (g_dComIfG_gameInfo)
-//	80204678: 804061C0 (g_dComIfG_gameInfo)
-//	802046C4: 80208F1C (setAlphaButtonNunCAnimeMin__14dMeterButton_cFv)
-//	802046D0: 80208FB4 (setAlphaButtonNunCAnimeMax__14dMeterButton_cFv)
-//	802046E4: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1080,15 +778,7 @@ asm void dMeterButton_c::alphaAnimeButtonNunC(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802046F8-802047E8 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonBin__14dMeterButton_cFUlb
- */
-//	80204708: 803621DC (_savegpr_29)
-//	80204720: 8023822C (getStatus__12dMsgObject_cFv)
-//	80204764: 804061C0 (g_dComIfG_gameInfo)
-//	80204768: 804061C0 (g_dComIfG_gameInfo)
-//	802047B4: 802090B4 (setAlphaButtonBinAnimeMin__14dMeterButton_cFv)
-//	802047C0: 8020914C (setAlphaButtonBinAnimeMax__14dMeterButton_cFv)
-//	802047D4: 80362228 (_restgpr_29)
+/* 802046F8-802047E8 1FF038 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonBin__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1099,7 +789,7 @@ asm void dMeterButton_c::alphaAnimeButtonBin(u32 param_0, bool param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80398048-80398098 0050+00 s=1 e=0 z=0  None .rodata    text_tag$5461 */
+/* 80398048-80398098 0246A8 0050+00 1/1 0/0 0/0 .rodata          text_tag$5461 */
 SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x30, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x31,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x32, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x33,
@@ -1107,8 +797,9 @@ SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
+SECTION_DEAD void* const cg_80398048 = (void*)(&text_tag);
 
-/* 80398098-803980E8 0050+00 s=1 e=0 z=0  None .rodata    ftext_tag$5462 */
+/* 80398098-803980E8 0246F8 0050+00 1/1 0/0 0/0 .rodata          ftext_tag$5462 */
 SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x30, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x31,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x32, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x33,
@@ -1116,191 +807,36 @@ SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
+SECTION_DEAD void* const cg_80398098 = (void*)(&ftext_tag);
 
-/* 803980E8-80398158 006C+04 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
-SECTION_DEAD char const* const stringBase_80398109 = "";
-SECTION_DEAD char const* const stringBase_8039810A = "zelda_message_window_new.blo";
-SECTION_DEAD char const* const stringBase_80398127 = "zelda_message_window_text.blo";
-SECTION_DEAD char const* const stringBase_80398145 = "F_SP00";
-SECTION_DEAD char const* const stringBase_8039814C = "R_SP161";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
-#pragma pop
-
-/* 80454770-80454774 0004+00 s=4 e=0 z=0  None .sdata2    @5628 */
+/* 80454770-80454774 002D70 0004+00 4/4 0/0 0/0 .sdata2          @5628 */
 SECTION_SDATA2 static f32 lit_5628 = 0.5f;
 
-/* 80454774-80454778 0004+00 s=2 e=0 z=0  None .sdata2    @5629 */
+/* 80454774-80454778 002D74 0004+00 2/2 0/0 0/0 .sdata2          @5629 */
 SECTION_SDATA2 static f32 lit_5629 = 304.0f;
 
-/* 80454778-8045477C 0004+00 s=1 e=0 z=0  None .sdata2    @5630 */
+/* 80454778-8045477C 002D78 0004+00 1/1 0/0 0/0 .sdata2          @5630 */
 SECTION_SDATA2 static f32 lit_5630 = 8.0f;
 
-/* 8045477C-80454780 0004+00 s=1 e=0 z=0  None .sdata2    @5631 */
+/* 8045477C-80454780 002D7C 0004+00 1/1 0/0 0/0 .sdata2          @5631 */
 SECTION_SDATA2 static f32 lit_5631 = 307.25f;
 
-/* 80454780-80454784 0004+00 s=1 e=0 z=0  None .sdata2    @5632 */
+/* 80454780-80454784 002D80 0004+00 1/1 0/0 0/0 .sdata2          @5632 */
 SECTION_SDATA2 static f32 lit_5632 = 307.75f;
 
-/* 80454784-80454788 0004+00 s=1 e=0 z=0  None .sdata2    @5633 */
+/* 80454784-80454788 002D84 0004+00 1/1 0/0 0/0 .sdata2          @5633 */
 SECTION_SDATA2 static f32 lit_5633 = 300.0f;
 
-/* 80454788-8045478C 0004+00 s=1 e=0 z=0  None .sdata2    @5634 */
+/* 80454788-8045478C 002D88 0004+00 1/1 0/0 0/0 .sdata2          @5634 */
 SECTION_SDATA2 static f32 lit_5634 = 304.5f;
 
-/* 8045478C-80454790 0004+00 s=1 e=0 z=0  None .sdata2    @5635 */
+/* 8045478C-80454790 002D8C 0004+00 1/1 0/0 0/0 .sdata2          @5635 */
 SECTION_SDATA2 static f32 lit_5635 = 347.5f;
 
-/* 80454790-80454794 0004+00 s=1 e=0 z=0  None .sdata2    @5636 */
+/* 80454790-80454794 002D90 0004+00 1/1 0/0 0/0 .sdata2          @5636 */
 SECTION_SDATA2 static f32 lit_5636 = 367.25f;
 
-/* 802047E8-80205834 104C+00 s=1 e=0 z=0  None .text      screenInitButton__14dMeterButton_cFv */
-//	80204800: 803621C8 (_savegpr_24)
-//	8020480C: 802CEC4C (__nw__FUl)
-//	80204818: 802F8498 (__ct__9J2DScreenFv)
-//	80204828: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020482C: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80204834: 804061C0 (g_dComIfG_gameInfo)
-//	80204838: 804061C0 (g_dComIfG_gameInfo)
-//	80204840: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	80204848: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	80204858: 802CEC4C (__nw__FUl)
-//	8020487C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204890: 80454748 (lit_4146)
-//	802048C8: 80454748 (lit_4146)
-//	80204904: 80454770 (lit_5628)
-//	80204914: 80454774 (lit_5629)
-//	8020492C: 80454748 (lit_4146)
-//	80204934: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020493C: 802CEC4C (__nw__FUl)
-//	80204960: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204970: 80454748 (lit_4146)
-//	80204974: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020497C: 802555C8 (show__13CPaneMgrAlphaFv)
-//	80204984: 802CEC4C (__nw__FUl)
-//	802049A8: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	802049B8: 80454748 (lit_4146)
-//	802049BC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802049C4: 802555C8 (show__13CPaneMgrAlphaFv)
-//	802049CC: 802CEC4C (__nw__FUl)
-//	802049F0: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204A00: 80454748 (lit_4146)
-//	80204A04: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204A0C: 802555C8 (show__13CPaneMgrAlphaFv)
-//	80204A14: 802CEC4C (__nw__FUl)
-//	80204A38: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204AB8: 802CEC4C (__nw__FUl)
-//	80204ADC: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204AEC: 80454748 (lit_4146)
-//	80204AF0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204AF8: 802555C8 (show__13CPaneMgrAlphaFv)
-//	80204B00: 802CEC4C (__nw__FUl)
-//	80204B28: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204B38: 80454748 (lit_4146)
-//	80204B3C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204B44: 802555C8 (show__13CPaneMgrAlphaFv)
-//	80204BFC: 802CEC4C (__nw__FUl)
-//	80204C20: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204C30: 80454748 (lit_4146)
-//	80204C34: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204C3C: 802555C8 (show__13CPaneMgrAlphaFv)
-//	80204CF4: 802CEC4C (__nw__FUl)
-//	80204D18: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204D28: 80454748 (lit_4146)
-//	80204D2C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204D34: 802CEC4C (__nw__FUl)
-//	80204D58: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204D68: 80454748 (lit_4146)
-//	80204D6C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204D74: 802CEC4C (__nw__FUl)
-//	80204D98: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204DA8: 80454748 (lit_4146)
-//	80204DAC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204DC8: 802CEC4C (__nw__FUl)
-//	80204DEC: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204DFC: 80454748 (lit_4146)
-//	80204E00: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204E28: 802CEC4C (__nw__FUl)
-//	80204E50: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204E60: 80454748 (lit_4146)
-//	80204E64: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204E6C: 802CEC4C (__nw__FUl)
-//	80204E90: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204EA0: 80454748 (lit_4146)
-//	80204EA4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204EAC: 802CEC4C (__nw__FUl)
-//	80204ED4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204EE4: 80454748 (lit_4146)
-//	80204EE8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204EF0: 802CEC4C (__nw__FUl)
-//	80204F18: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80204F28: 80454748 (lit_4146)
-//	80204F2C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80204F30: 8000F1EC (mDoExt_getCurrentHeap__Fv)
-//	80204F44: 802CE4D4 (alloc__7JKRHeapFUli)
-//	80204F4C: 804061C0 (g_dComIfG_gameInfo)
-//	80204F50: 804061C0 (g_dComIfG_gameInfo)
-//	80204F60: 80033030 (getItem__17dSv_player_item_cCFib)
-//	80204F68: 80430188 (g_meter2_info)
-//	80204F6C: 80430188 (g_meter2_info)
-//	80204F78: 8021BBB4 (getCanoeFishing__13dMeter2Draw_cFv)
-//	80204FB4: 80430188 (g_meter2_info)
-//	80204FB8: 80430188 (g_meter2_info)
-//	80204FD4: 8021CF08
-//(readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei)
-//	80204FEC: 80398098 (ftext_tag)
-//	80204FF0: 80398098 (ftext_tag)
-//	80204FF4: 80398048 (text_tag)
-//	80204FF8: 80398048 (text_tag)
-//	80204FFC: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205000: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205054: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80205080: 8030074C (setString__10J2DTextBoxFsPCce)
-//	802050B0: 802F7100 (getBounds__7J2DPaneFv)
-//	802050CC: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	802050D0: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	802050D4: 80454748 (lit_4146)
-//	802050EC: 80368B2C (strcpy)
-//	8020514C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80205184: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802051BC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802051F4: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80205214: 80253930 (__ct__8CPaneMgrFv)
-//	80205254: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	802052AC: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	80205304: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	8020535C: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	802053B0: 80454770 (lit_5628)
-//	802053C4: 80253A18 (__dt__8CPaneMgrFv)
-//	802053DC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80205414: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	8020544C: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80205484: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802054BC: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802054DC: 80454778 (lit_5630)
-//	802054E8: 80454748 (lit_4146)
-//	80205510: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80205534: 80454748 (lit_4146)
-//	80205568: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802055A0: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802055D8: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	802055FC: 80454748 (lit_4146)
-//	80205608: 8045474C (lit_4147)
-//	80205754: 8045477C (lit_5631)
-//	8020575C: 80454780 (lit_5632)
-//	80205764: 80454784 (lit_5633)
-//	8020576C: 80454788 (lit_5634)
-//	80205774: 8045478C (lit_5635)
-//	8020577C: 804061C0 (g_dComIfG_gameInfo)
-//	80205780: 804061C0 (g_dComIfG_gameInfo)
-//	8020579C: 8045477C (lit_5631)
-//	802057AC: 80454790 (lit_5636)
-//	80205810: 80205CA0 (updateButton__14dMeterButton_cFv)
-//	80205820: 80362214 (_restgpr_24)
+/* 802047E8-80205834 1FF128 104C+00 1/1 0/0 0/0 .text screenInitButton__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1310,55 +846,8 @@ asm void dMeterButton_c::screenInitButton() {
 }
 #pragma pop
 
-/* 80205834-80205CA0 046C+00 s=1 e=0 z=0  None .text      screenInitText__14dMeterButton_cFv */
-//	80205854: 803621D0 (_savegpr_26)
-//	80205860: 802CEC4C (__nw__FUl)
-//	8020586C: 802F8498 (__ct__9J2DScreenFv)
-//	8020587C: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205880: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020588C: 804061C0 (g_dComIfG_gameInfo)
-//	80205890: 804061C0 (g_dComIfG_gameInfo)
-//	80205898: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	802058A0: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	802058A8: 802CEC4C (__nw__FUl)
-//	802058CC: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	802058DC: 80454748 (lit_4146)
-//	802058E0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80205908: 802F7100 (getBounds__7J2DPaneFv)
-//	80205910: 8043028C (g_MsgObject_HIO_c)
-//	80205914: 8043028C (g_MsgObject_HIO_c)
-//	80205944: 802F7100 (getBounds__7J2DPaneFv)
-//	8020594C: 8043028C (g_MsgObject_HIO_c)
-//	80205950: 8043028C (g_MsgObject_HIO_c)
-//	8020599C: 802CEC4C (__nw__FUl)
-//	802059C4: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	802059D4: 802CEC4C (__nw__FUl)
-//	802059E0: 802F8498 (__ct__9J2DScreenFv)
-//	802059F0: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	802059F4: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205A00: 804061C0 (g_dComIfG_gameInfo)
-//	80205A04: 804061C0 (g_dComIfG_gameInfo)
-//	80205A0C: 802F8648 (setPriority__9J2DScreenFPCcUlP10JKRArchive)
-//	80205A14: 802550E8 (dPaneClass_showNullPane__FP9J2DScreen)
-//	80205A1C: 802CEC4C (__nw__FUl)
-//	80205A44: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80205A54: 802CEC4C (__nw__FUl)
-//	80205A7C: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80205A8C: 802CEC4C (__nw__FUl)
-//	80205AB0: 80253984 (__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap)
-//	80205B60: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205B64: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205B74: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80205BA4: 8030074C (setString__10J2DTextBoxFsPCce)
-//	80205BB8: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80205BE0: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205BE4: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205BF0: 8030074C (setString__10J2DTextBoxFsPCce)
-//	80205C2C: 802CEC4C (__nw__FUl)
-//	80205C38: 80249C20 (__ct__12dMsgString_cFv)
-//	80205C48: 802CEC4C (__nw__FUl)
-//	80205C58: 80225C94 (__ct__10COutFont_cFUc)
-//	80205C8C: 8036221C (_restgpr_26)
+/* 80205834-80205CA0 200174 046C+00 1/1 0/0 0/0 .text            screenInitText__14dMeterButton_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1369,177 +858,25 @@ asm void dMeterButton_c::screenInitText() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454794-80454798 0004+00 s=1 e=0 z=0  None .sdata2    @6012 */
+/* 80454794-80454798 002D94 0004+00 1/1 0/0 0/0 .sdata2          @6012 */
 SECTION_SDATA2 static f32 lit_6012 = -25.0f;
 
-/* 80454798-8045479C 0004+00 s=1 e=0 z=0  None .sdata2    @6013 */
+/* 80454798-8045479C 002D98 0004+00 1/1 0/0 0/0 .sdata2          @6013 */
 SECTION_SDATA2 static f32 lit_6013 = 4.0f / 5.0f;
 
-/* 8045479C-804547A0 0004+00 s=1 e=0 z=0  None .sdata2    @6014 */
+/* 8045479C-804547A0 002D9C 0004+00 1/1 0/0 0/0 .sdata2          @6014 */
 SECTION_SDATA2 static f32 lit_6014 = -10.0f;
 
-/* 804547A0-804547A4 0004+00 s=1 e=0 z=0  None .sdata2    @6015 */
+/* 804547A0-804547A4 002DA0 0004+00 1/1 0/0 0/0 .sdata2          @6015 */
 SECTION_SDATA2 static f32 lit_6015 = 25.0f;
 
-/* 804547A4-804547A8 0004+00 s=1 e=0 z=0  None .sdata2    @6016 */
+/* 804547A4-804547A8 002DA4 0004+00 1/1 0/0 0/0 .sdata2          @6016 */
 SECTION_SDATA2 static f32 lit_6016 = 9.0f / 10.0f;
 
-/* 804547A8-804547AC 0004+00 s=2 e=0 z=0  None .sdata2    @6017 */
+/* 804547A8-804547AC 002DA8 0004+00 2/2 0/0 0/0 .sdata2          @6017 */
 SECTION_SDATA2 static f32 lit_6017 = 2.0f;
 
-/* 80205CA0-80206978 0CD8+00 s=2 e=0 z=0  None .text      updateButton__14dMeterButton_cFv */
-//	80205CC8: 803621D4 (_savegpr_27)
-//	80205CD0: 80454748 (lit_4146)
-//	80205CD8: 8045474C (lit_4147)
-//	80205CE8: 8042EBC8 (g_drawHIO)
-//	80205CEC: 8042EBC8 (g_drawHIO)
-//	80205D10: 8042EBC8 (g_drawHIO)
-//	80205D14: 8042EBC8 (g_drawHIO)
-//	80205D20: 80454748 (lit_4146)
-//	80205D28: 80430188 (g_meter2_info)
-//	80205D2C: 80430188 (g_meter2_info)
-//	80205D54: 80454794 (lit_6012)
-//	80205D5C: 80454748 (lit_4146)
-//	80205D64: 804061C0 (g_dComIfG_gameInfo)
-//	80205D68: 804061C0 (g_dComIfG_gameInfo)
-//	80205D74: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205D78: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205D80: 80368994 (strcmp)
-//	80205D90: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80205DA0: 8002C97C (getLayerNo__14dComIfG_play_cFi)
-//	80205DAC: 80454794 (lit_6012)
-//	80205DBC: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205DC0: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	80205DC8: 80368994 (strcmp)
-//	80205DDC: 8002DB64 (dComIfGs_isOneZoneSwitch__Fii)
-//	80205DE8: 80454794 (lit_6012)
-//	80205E00: 80454798 (lit_6013)
-//	80205E04: 804061C0 (g_dComIfG_gameInfo)
-//	80205E08: 804061C0 (g_dComIfG_gameInfo)
-//	80205E20: 8045479C (lit_6014)
-//	80205E24: 804547A0 (lit_6015)
-//	80205E28: 804547A4 (lit_6016)
-//	80205E64: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80205E6C: 8042EBC8 (g_drawHIO)
-//	80205E70: 8042EBC8 (g_drawHIO)
-//	80205EB0: 8042EBC8 (g_drawHIO)
-//	80205EB4: 8042EBC8 (g_drawHIO)
-//	80205ED8: 8042EBC8 (g_drawHIO)
-//	80205EDC: 8042EBC8 (g_drawHIO)
-//	80205F0C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80205F14: 8042EBC8 (g_drawHIO)
-//	80205F18: 8042EBC8 (g_drawHIO)
-//	80205F2C: 804061C0 (g_dComIfG_gameInfo)
-//	80205F30: 804061C0 (g_dComIfG_gameInfo)
-//	80205F68: 8042EBC8 (g_drawHIO)
-//	80205F6C: 8042EBC8 (g_drawHIO)
-//	80205F90: 8042EBC8 (g_drawHIO)
-//	80205F94: 8042EBC8 (g_drawHIO)
-//	80205FC4: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80205FCC: 8042EBC8 (g_drawHIO)
-//	80205FD0: 8042EBC8 (g_drawHIO)
-//	8020600C: 8042EBC8 (g_drawHIO)
-//	80206010: 8042EBC8 (g_drawHIO)
-//	80206034: 8042EBC8 (g_drawHIO)
-//	80206038: 8042EBC8 (g_drawHIO)
-//	80206068: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206070: 8042EBC8 (g_drawHIO)
-//	80206074: 8042EBC8 (g_drawHIO)
-//	802060B0: 8042EBC8 (g_drawHIO)
-//	802060B4: 8042EBC8 (g_drawHIO)
-//	802060D8: 8042EBC8 (g_drawHIO)
-//	802060DC: 8042EBC8 (g_drawHIO)
-//	8020610C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206114: 8042EBC8 (g_drawHIO)
-//	80206118: 8042EBC8 (g_drawHIO)
-//	80206154: 8042EBC8 (g_drawHIO)
-//	80206158: 8042EBC8 (g_drawHIO)
-//	8020617C: 8042EBC8 (g_drawHIO)
-//	80206180: 8042EBC8 (g_drawHIO)
-//	802061B0: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	802061B8: 8042EBC8 (g_drawHIO)
-//	802061BC: 8042EBC8 (g_drawHIO)
-//	802061F8: 8042EBC8 (g_drawHIO)
-//	802061FC: 8042EBC8 (g_drawHIO)
-//	80206220: 8042EBC8 (g_drawHIO)
-//	80206224: 8042EBC8 (g_drawHIO)
-//	80206254: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020625C: 8042EBC8 (g_drawHIO)
-//	80206260: 8042EBC8 (g_drawHIO)
-//	8020629C: 8042EBC8 (g_drawHIO)
-//	802062A0: 8042EBC8 (g_drawHIO)
-//	802062C4: 8042EBC8 (g_drawHIO)
-//	802062C8: 8042EBC8 (g_drawHIO)
-//	802062F8: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206300: 8042EBC8 (g_drawHIO)
-//	80206304: 8042EBC8 (g_drawHIO)
-//	80206340: 8042EBC8 (g_drawHIO)
-//	80206344: 8042EBC8 (g_drawHIO)
-//	80206368: 8042EBC8 (g_drawHIO)
-//	8020636C: 8042EBC8 (g_drawHIO)
-//	8020639C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	802063A4: 8042EBC8 (g_drawHIO)
-//	802063A8: 8042EBC8 (g_drawHIO)
-//	802063E4: 8042EBC8 (g_drawHIO)
-//	802063E8: 8042EBC8 (g_drawHIO)
-//	8020640C: 8042EBC8 (g_drawHIO)
-//	80206410: 8042EBC8 (g_drawHIO)
-//	80206440: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206448: 8042EBC8 (g_drawHIO)
-//	8020644C: 8042EBC8 (g_drawHIO)
-//	80206488: 8042EBC8 (g_drawHIO)
-//	8020648C: 8042EBC8 (g_drawHIO)
-//	802064B0: 8042EBC8 (g_drawHIO)
-//	802064B4: 8042EBC8 (g_drawHIO)
-//	802064E4: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	802064EC: 8042EBC8 (g_drawHIO)
-//	802064F0: 8042EBC8 (g_drawHIO)
-//	8020652C: 8042EBC8 (g_drawHIO)
-//	80206530: 8042EBC8 (g_drawHIO)
-//	80206554: 8042EBC8 (g_drawHIO)
-//	80206558: 8042EBC8 (g_drawHIO)
-//	80206588: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020659C: 8042EBC8 (g_drawHIO)
-//	802065A0: 8042EBC8 (g_drawHIO)
-//	802065C4: 8042EBC8 (g_drawHIO)
-//	802065C8: 8042EBC8 (g_drawHIO)
-//	802065E8: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	802065F0: 8042EBC8 (g_drawHIO)
-//	802065F4: 8042EBC8 (g_drawHIO)
-//	80206630: 8042EBC8 (g_drawHIO)
-//	80206634: 8042EBC8 (g_drawHIO)
-//	80206658: 8042EBC8 (g_drawHIO)
-//	8020665C: 8042EBC8 (g_drawHIO)
-//	8020667C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206684: 8042EBC8 (g_drawHIO)
-//	80206688: 8042EBC8 (g_drawHIO)
-//	802066C4: 8042EBC8 (g_drawHIO)
-//	802066C8: 8042EBC8 (g_drawHIO)
-//	802066EC: 8042EBC8 (g_drawHIO)
-//	802066F0: 8042EBC8 (g_drawHIO)
-//	802066FC: 80454748 (lit_4146)
-//	80206744: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020674C: 8042EBC8 (g_drawHIO)
-//	80206750: 8042EBC8 (g_drawHIO)
-//	8020678C: 8042EBC8 (g_drawHIO)
-//	80206790: 8042EBC8 (g_drawHIO)
-//	802067B4: 8042EBC8 (g_drawHIO)
-//	802067B8: 8042EBC8 (g_drawHIO)
-//	802067C4: 80454748 (lit_4146)
-//	8020680C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	80206814: 8042EBC8 (g_drawHIO)
-//	80206818: 8042EBC8 (g_drawHIO)
-//	80206884: 8042EBC8 (g_drawHIO)
-//	80206888: 8042EBC8 (g_drawHIO)
-//	802068AC: 8042EBC8 (g_drawHIO)
-//	802068B0: 8042EBC8 (g_drawHIO)
-//	802068BC: 80454748 (lit_4146)
-//	802068DC: 804547A8 (lit_6017)
-//	802068F8: 80454748 (lit_4146)
-//	80206904: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020690C: 8042EBC8 (g_drawHIO)
-//	80206910: 8042EBC8 (g_drawHIO)
-//	80206964: 80362220 (_restgpr_27)
+/* 80205CA0-80206978 2005E0 0CD8+00 2/2 0/0 0/0 .text            updateButton__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1549,41 +886,7 @@ asm void dMeterButton_c::updateButton() {
 }
 #pragma pop
 
-/* 80206978-80206CE0 0368+00 s=1 e=0 z=0  None .text      updateText__14dMeterButton_cFUl */
-//	80206990: 803621D4 (_savegpr_27)
-//	8020699C: 80430188 (g_meter2_info)
-//	802069A0: 80430188 (g_meter2_info)
-//	802069B4: 8042EBC8 (g_drawHIO)
-//	802069B8: 8042EBC8 (g_drawHIO)
-//	802069C0: 80454748 (lit_4146)
-//	802069C4: 802545B0 (paneTrans__8CPaneMgrFff)
-//	802069D0: 8042EBC8 (g_drawHIO)
-//	802069D4: 8042EBC8 (g_drawHIO)
-//	802069E0: 802545B0 (paneTrans__8CPaneMgrFff)
-//	802069F8: 80254EBC (getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs)
-//	80206A3C: 80430188 (g_meter2_info)
-//	80206A40: 80430188 (g_meter2_info)
-//	80206A78: 800149F0 (mDoExt_getMesgFont__Fv)
-//	80206AA8: 802380F4
-//(getString__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs) 80206AC4:
-// 80300658 (getStringPtr__10J2DTextBoxCFv) 	80206ACC: 80368B2C (strcpy) 	80206AD8: 80300658
-//(getStringPtr__10J2DTextBoxCFv) 	80206AE0: 80368B2C (strcpy) 	80206B00: 80300658
-//(getStringPtr__10J2DTextBoxCFv) 	80206B08: 80368B2C (strcpy) 	80206B1C: 80430188
-//(g_meter2_info) 	80206B20: 80430188 (g_meter2_info) 	80206B24: 8021C1F0
-//(decFloatingMessageTimer__13dMeter2Info_cFv) 	80206B28: 8045474C (lit_4147) 	80206B80: 80454768
-//(lit_4517) 	80206B9C: 80454750 (lit_4148) 	80206BB0: 80430188 (g_meter2_info) 	80206BB4: 80430188
-//(g_meter2_info) 	80206BB8: 8021C218 (resetFloatingMessage__13dMeter2Info_cFv) 	80206BD8: 80454768
-//(lit_4517) 	80206BF4: 80454750 (lit_4148) 	80206C04: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206C1C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206C30: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206C58: 80454748 (lit_4146)
-//	80206C5C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206C68: 80454748 (lit_4146)
-//	80206C74: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80206C88: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206C98: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80206CAC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206CCC: 80362220 (_restgpr_27)
+/* 80206978-80206CE0 2012B8 0368+00 1/1 0/0 0/0 .text            updateText__14dMeterButton_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1593,15 +896,8 @@ asm void dMeterButton_c::updateText(u32 param_0) {
 }
 #pragma pop
 
-/* 80206CE0-80206D70 0090+00 s=1 e=0 z=0  None .text setAlphaButtonAAnimeMin__14dMeterButton_cFv
+/* 80206CE0-80206D70 201620 0090+00 1/1 0/0 0/0 .text setAlphaButtonAAnimeMin__14dMeterButton_cFv
  */
-//	80206CF8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80206CFC: 80454748 (lit_4146)
-//	80206D20: 80454748 (lit_4146)
-//	80206D24: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80206D38: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80206D3C: 80454748 (lit_4146)
-//	80206D50: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1611,35 +907,7 @@ asm void dMeterButton_c::setAlphaButtonAAnimeMin() {
 }
 #pragma pop
 
-/* 80206D70-80207060 02F0+00 s=5 e=0 z=0  None .text      isFastSet__14dMeterButton_cFi */
-//	80206D70: 804061C0 (g_dComIfG_gameInfo)
-//	80206D74: 804061C0 (g_dComIfG_gameInfo)
-//	80206D94: 804061C0 (g_dComIfG_gameInfo)
-//	80206D98: 804061C0 (g_dComIfG_gameInfo)
-//	80206DB8: 804061C0 (g_dComIfG_gameInfo)
-//	80206DBC: 804061C0 (g_dComIfG_gameInfo)
-//	80206DDC: 804061C0 (g_dComIfG_gameInfo)
-//	80206DE0: 804061C0 (g_dComIfG_gameInfo)
-//	80206E00: 804061C0 (g_dComIfG_gameInfo)
-//	80206E04: 804061C0 (g_dComIfG_gameInfo)
-//	80206E24: 804061C0 (g_dComIfG_gameInfo)
-//	80206E28: 804061C0 (g_dComIfG_gameInfo)
-//	80206E48: 804061C0 (g_dComIfG_gameInfo)
-//	80206E4C: 804061C0 (g_dComIfG_gameInfo)
-//	80206E6C: 804061C0 (g_dComIfG_gameInfo)
-//	80206E70: 804061C0 (g_dComIfG_gameInfo)
-//	80206E90: 804061C0 (g_dComIfG_gameInfo)
-//	80206E94: 804061C0 (g_dComIfG_gameInfo)
-//	80206EB4: 804061C0 (g_dComIfG_gameInfo)
-//	80206EB8: 804061C0 (g_dComIfG_gameInfo)
-//	80206ED8: 804061C0 (g_dComIfG_gameInfo)
-//	80206EDC: 804061C0 (g_dComIfG_gameInfo)
-//	80206FE4: 804061C0 (g_dComIfG_gameInfo)
-//	80206FE8: 804061C0 (g_dComIfG_gameInfo)
-//	80207008: 804061C0 (g_dComIfG_gameInfo)
-//	8020700C: 804061C0 (g_dComIfG_gameInfo)
-//	8020702C: 804061C0 (g_dComIfG_gameInfo)
-//	80207030: 804061C0 (g_dComIfG_gameInfo)
+/* 80206D70-80207060 2016B0 02F0+00 5/5 0/0 0/0 .text            isFastSet__14dMeterButton_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1649,22 +917,8 @@ asm void dMeterButton_c::isFastSet(int param_0) {
 }
 #pragma pop
 
-/* 80207060-8020714C 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonAAnimeMax__14dMeterButton_cFv
+/* 80207060-8020714C 2019A0 00EC+00 1/1 0/0 0/0 .text setAlphaButtonAAnimeMax__14dMeterButton_cFv
  */
-//	80207078: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020707C: 8045474C (lit_4147)
-//	80207088: 804061C0 (g_dComIfG_gameInfo)
-//	8020708C: 804061C0 (g_dComIfG_gameInfo)
-//	802070A4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802070C0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802070C4: 80430188 (g_meter2_info)
-//	802070C8: 80430188 (g_meter2_info)
-//	802070DC: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802070E4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802070E8: 8045474C (lit_4147)
-//	80207108: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207120: 80454758 (lit_4513)
-//	8020712C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1674,15 +928,8 @@ asm void dMeterButton_c::setAlphaButtonAAnimeMax() {
 }
 #pragma pop
 
-/* 8020714C-802071DC 0090+00 s=1 e=0 z=0  None .text setAlphaButtonBAnimeMin__14dMeterButton_cFv
+/* 8020714C-802071DC 201A8C 0090+00 1/1 0/0 0/0 .text setAlphaButtonBAnimeMin__14dMeterButton_cFv
  */
-//	80207164: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207168: 80454748 (lit_4146)
-//	8020718C: 80454748 (lit_4146)
-//	80207190: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802071A4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802071A8: 80454748 (lit_4146)
-//	802071BC: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1692,22 +939,8 @@ asm void dMeterButton_c::setAlphaButtonBAnimeMin() {
 }
 #pragma pop
 
-/* 802071DC-802072C8 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonBAnimeMax__14dMeterButton_cFv
+/* 802071DC-802072C8 201B1C 00EC+00 1/1 0/0 0/0 .text setAlphaButtonBAnimeMax__14dMeterButton_cFv
  */
-//	802071F4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802071F8: 8045474C (lit_4147)
-//	80207204: 804061C0 (g_dComIfG_gameInfo)
-//	80207208: 804061C0 (g_dComIfG_gameInfo)
-//	80207220: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020723C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207240: 80430188 (g_meter2_info)
-//	80207244: 80430188 (g_meter2_info)
-//	80207258: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207260: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207264: 8045474C (lit_4147)
-//	80207284: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	8020729C: 80454758 (lit_4513)
-//	802072A8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1717,15 +950,8 @@ asm void dMeterButton_c::setAlphaButtonBAnimeMax() {
 }
 #pragma pop
 
-/* 802072C8-80207358 0090+00 s=1 e=0 z=0  None .text setAlphaButtonRAnimeMin__14dMeterButton_cFv
+/* 802072C8-80207358 201C08 0090+00 1/1 0/0 0/0 .text setAlphaButtonRAnimeMin__14dMeterButton_cFv
  */
-//	802072E0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802072E4: 80454748 (lit_4146)
-//	80207308: 80454748 (lit_4146)
-//	8020730C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207320: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207324: 80454748 (lit_4146)
-//	80207338: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1735,22 +961,8 @@ asm void dMeterButton_c::setAlphaButtonRAnimeMin() {
 }
 #pragma pop
 
-/* 80207358-80207444 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonRAnimeMax__14dMeterButton_cFv
+/* 80207358-80207444 201C98 00EC+00 1/1 0/0 0/0 .text setAlphaButtonRAnimeMax__14dMeterButton_cFv
  */
-//	80207370: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207374: 8045474C (lit_4147)
-//	80207380: 804061C0 (g_dComIfG_gameInfo)
-//	80207384: 804061C0 (g_dComIfG_gameInfo)
-//	8020739C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802073B8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802073BC: 80430188 (g_meter2_info)
-//	802073C0: 80430188 (g_meter2_info)
-//	802073D4: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802073DC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802073E0: 8045474C (lit_4147)
-//	80207400: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207418: 80454758 (lit_4513)
-//	80207424: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1760,15 +972,8 @@ asm void dMeterButton_c::setAlphaButtonRAnimeMax() {
 }
 #pragma pop
 
-/* 80207444-802074D4 0090+00 s=1 e=0 z=0  None .text setAlphaButtonZAnimeMin__14dMeterButton_cFv
+/* 80207444-802074D4 201D84 0090+00 1/1 0/0 0/0 .text setAlphaButtonZAnimeMin__14dMeterButton_cFv
  */
-//	8020745C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207460: 80454748 (lit_4146)
-//	80207484: 80454748 (lit_4146)
-//	80207488: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020749C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802074A0: 80454748 (lit_4146)
-//	802074B4: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1778,22 +983,8 @@ asm void dMeterButton_c::setAlphaButtonZAnimeMin() {
 }
 #pragma pop
 
-/* 802074D4-802075C0 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonZAnimeMax__14dMeterButton_cFv
+/* 802074D4-802075C0 201E14 00EC+00 1/1 0/0 0/0 .text setAlphaButtonZAnimeMax__14dMeterButton_cFv
  */
-//	802074EC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802074F0: 8045474C (lit_4147)
-//	802074FC: 804061C0 (g_dComIfG_gameInfo)
-//	80207500: 804061C0 (g_dComIfG_gameInfo)
-//	80207518: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207534: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207538: 80430188 (g_meter2_info)
-//	8020753C: 80430188 (g_meter2_info)
-//	80207550: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207558: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020755C: 8045474C (lit_4147)
-//	8020757C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207594: 80454758 (lit_4513)
-//	802075A0: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1803,15 +994,8 @@ asm void dMeterButton_c::setAlphaButtonZAnimeMax() {
 }
 #pragma pop
 
-/* 802075C0-80207654 0094+00 s=1 e=0 z=0  None .text setAlphaButton3DAnimeMin__14dMeterButton_cFv
+/* 802075C0-80207654 201F00 0094+00 1/1 0/0 0/0 .text setAlphaButton3DAnimeMin__14dMeterButton_cFv
  */
-//	802075D8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802075DC: 80454748 (lit_4146)
-//	80207600: 80454748 (lit_4146)
-//	80207604: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020761C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207620: 80454748 (lit_4146)
-//	80207634: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1821,22 +1005,8 @@ asm void dMeterButton_c::setAlphaButton3DAnimeMin() {
 }
 #pragma pop
 
-/* 80207654-80207740 00EC+00 s=1 e=0 z=0  None .text setAlphaButton3DAnimeMax__14dMeterButton_cFv
+/* 80207654-80207740 201F94 00EC+00 1/1 0/0 0/0 .text setAlphaButton3DAnimeMax__14dMeterButton_cFv
  */
-//	8020766C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207670: 8045474C (lit_4147)
-//	8020767C: 804061C0 (g_dComIfG_gameInfo)
-//	80207680: 804061C0 (g_dComIfG_gameInfo)
-//	80207698: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802076B4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802076B8: 80430188 (g_meter2_info)
-//	802076BC: 80430188 (g_meter2_info)
-//	802076D0: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802076D8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802076DC: 8045474C (lit_4147)
-//	802076FC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207714: 80454758 (lit_4513)
-//	80207720: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1846,27 +1016,20 @@ asm void dMeterButton_c::setAlphaButton3DAnimeMax() {
 }
 #pragma pop
 
-/* 80207740-80207744 0004+00 s=1 e=0 z=0  None .text setAlphaButton3DVAnimeMin__14dMeterButton_cFv
- */
+/* 80207740-80207744 202080 0004+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DVAnimeMin__14dMeterButton_cFv                */
 void dMeterButton_c::setAlphaButton3DVAnimeMin() {
     /* empty function */
 }
 
-/* 80207744-80207748 0004+00 s=1 e=0 z=0  None .text setAlphaButton3DVAnimeMax__14dMeterButton_cFv
- */
+/* 80207744-80207748 202084 0004+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DVAnimeMax__14dMeterButton_cFv                */
 void dMeterButton_c::setAlphaButton3DVAnimeMax() {
     /* empty function */
 }
 
-/* 80207748-802077EC 00A4+00 s=1 e=0 z=0  None .text setAlphaButtonCAnimeMin__14dMeterButton_cFv
+/* 80207748-802077EC 202088 00A4+00 1/1 0/0 0/0 .text setAlphaButtonCAnimeMin__14dMeterButton_cFv
  */
-//	80207760: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207764: 80454748 (lit_4146)
-//	80207788: 80454748 (lit_4146)
-//	8020778C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802077A0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802077A4: 80454748 (lit_4146)
-//	802077B8: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1876,31 +1039,8 @@ asm void dMeterButton_c::setAlphaButtonCAnimeMin() {
 }
 #pragma pop
 
-/* 802077EC-80207A28 023C+00 s=1 e=0 z=0  None .text setAlphaButtonCAnimeMax__14dMeterButton_cFv
+/* 802077EC-80207A28 20212C 023C+00 1/1 0/0 0/0 .text setAlphaButtonCAnimeMax__14dMeterButton_cFv
  */
-//	80207804: 803621DC (_savegpr_29)
-//	80207810: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207814: 8045474C (lit_4147)
-//	80207820: 804061C0 (g_dComIfG_gameInfo)
-//	80207824: 804061C0 (g_dComIfG_gameInfo)
-//	8020783C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207858: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020785C: 80430188 (g_meter2_info)
-//	80207860: 80430188 (g_meter2_info)
-//	80207874: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	8020787C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207880: 8045474C (lit_4147)
-//	802078A0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802078B8: 80454758 (lit_4513)
-//	802078C4: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802078D0: 8042EBC8 (g_drawHIO)
-//	802078D4: 8042EBC8 (g_drawHIO)
-//	80207940: 80454768 (lit_4517)
-//	8020797C: 80454768 (lit_4517)
-//	802079E8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802079F0: 80454748 (lit_4146)
-//	802079F4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207A14: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1910,15 +1050,8 @@ asm void dMeterButton_c::setAlphaButtonCAnimeMax() {
 }
 #pragma pop
 
-/* 80207A28-80207AB8 0090+00 s=1 e=0 z=0  None .text setAlphaButtonSAnimeMin__14dMeterButton_cFv
+/* 80207A28-80207AB8 202368 0090+00 1/1 0/0 0/0 .text setAlphaButtonSAnimeMin__14dMeterButton_cFv
  */
-//	80207A40: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207A44: 80454748 (lit_4146)
-//	80207A68: 80454748 (lit_4146)
-//	80207A6C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207A80: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207A84: 80454748 (lit_4146)
-//	80207A98: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1928,22 +1061,8 @@ asm void dMeterButton_c::setAlphaButtonSAnimeMin() {
 }
 #pragma pop
 
-/* 80207AB8-80207BA4 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonSAnimeMax__14dMeterButton_cFv
+/* 80207AB8-80207BA4 2023F8 00EC+00 1/1 0/0 0/0 .text setAlphaButtonSAnimeMax__14dMeterButton_cFv
  */
-//	80207AD0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207AD4: 8045474C (lit_4147)
-//	80207AE0: 804061C0 (g_dComIfG_gameInfo)
-//	80207AE4: 804061C0 (g_dComIfG_gameInfo)
-//	80207AFC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207B18: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207B1C: 80430188 (g_meter2_info)
-//	80207B20: 80430188 (g_meter2_info)
-//	80207B34: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207B3C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207B40: 8045474C (lit_4147)
-//	80207B60: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207B78: 80454758 (lit_4513)
-//	80207B84: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1953,15 +1072,8 @@ asm void dMeterButton_c::setAlphaButtonSAnimeMax() {
 }
 #pragma pop
 
-/* 80207BA4-80207C34 0090+00 s=1 e=0 z=0  None .text setAlphaButtonXAnimeMin__14dMeterButton_cFv
+/* 80207BA4-80207C34 2024E4 0090+00 1/1 0/0 0/0 .text setAlphaButtonXAnimeMin__14dMeterButton_cFv
  */
-//	80207BBC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207BC0: 80454748 (lit_4146)
-//	80207BE4: 80454748 (lit_4146)
-//	80207BE8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207BFC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207C00: 80454748 (lit_4146)
-//	80207C14: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1971,22 +1083,8 @@ asm void dMeterButton_c::setAlphaButtonXAnimeMin() {
 }
 #pragma pop
 
-/* 80207C34-80207D20 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonXAnimeMax__14dMeterButton_cFv
+/* 80207C34-80207D20 202574 00EC+00 1/1 0/0 0/0 .text setAlphaButtonXAnimeMax__14dMeterButton_cFv
  */
-//	80207C4C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207C50: 8045474C (lit_4147)
-//	80207C5C: 804061C0 (g_dComIfG_gameInfo)
-//	80207C60: 804061C0 (g_dComIfG_gameInfo)
-//	80207C78: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207C94: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207C98: 80430188 (g_meter2_info)
-//	80207C9C: 80430188 (g_meter2_info)
-//	80207CB0: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207CB8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207CBC: 8045474C (lit_4147)
-//	80207CDC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207CF4: 80454758 (lit_4513)
-//	80207D00: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1996,15 +1094,8 @@ asm void dMeterButton_c::setAlphaButtonXAnimeMax() {
 }
 #pragma pop
 
-/* 80207D20-80207DB0 0090+00 s=1 e=0 z=0  None .text setAlphaButtonYAnimeMin__14dMeterButton_cFv
+/* 80207D20-80207DB0 202660 0090+00 1/1 0/0 0/0 .text setAlphaButtonYAnimeMin__14dMeterButton_cFv
  */
-//	80207D38: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207D3C: 80454748 (lit_4146)
-//	80207D60: 80454748 (lit_4146)
-//	80207D64: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207D78: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207D7C: 80454748 (lit_4146)
-//	80207D90: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2014,22 +1105,8 @@ asm void dMeterButton_c::setAlphaButtonYAnimeMin() {
 }
 #pragma pop
 
-/* 80207DB0-80207E9C 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonYAnimeMax__14dMeterButton_cFv
+/* 80207DB0-80207E9C 2026F0 00EC+00 1/1 0/0 0/0 .text setAlphaButtonYAnimeMax__14dMeterButton_cFv
  */
-//	80207DC8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207DCC: 8045474C (lit_4147)
-//	80207DD8: 804061C0 (g_dComIfG_gameInfo)
-//	80207DDC: 804061C0 (g_dComIfG_gameInfo)
-//	80207DF4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207E10: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207E14: 80430188 (g_meter2_info)
-//	80207E18: 80430188 (g_meter2_info)
-//	80207E2C: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207E34: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207E38: 8045474C (lit_4147)
-//	80207E58: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207E70: 80454758 (lit_4513)
-//	80207E7C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2039,15 +1116,8 @@ asm void dMeterButton_c::setAlphaButtonYAnimeMax() {
 }
 #pragma pop
 
-/* 80207E9C-80207F34 0098+00 s=1 e=0 z=0  None .text setAlphaButtonNunAnimeMin__14dMeterButton_cFv
- */
-//	80207EBC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207EC0: 80454748 (lit_4146)
-//	80207EE4: 80454748 (lit_4146)
-//	80207EE8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207EFC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207F00: 80454748 (lit_4146)
-//	80207F14: 8020A94C (hide_button__14dMeterButton_cFUc)
+/* 80207E9C-80207F34 2027DC 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButtonNunAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2057,22 +1127,8 @@ asm void dMeterButton_c::setAlphaButtonNunAnimeMin() {
 }
 #pragma pop
 
-/* 80207F34-80208028 00F4+00 s=1 e=0 z=0  None .text setAlphaButtonNunAnimeMax__14dMeterButton_cFv
- */
-//	80207F54: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207F58: 8045474C (lit_4147)
-//	80207F64: 804061C0 (g_dComIfG_gameInfo)
-//	80207F68: 804061C0 (g_dComIfG_gameInfo)
-//	80207F80: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207F9C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80207FA0: 80430188 (g_meter2_info)
-//	80207FA4: 80430188 (g_meter2_info)
-//	80207FB8: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80207FC0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80207FC4: 8045474C (lit_4147)
-//	80207FE4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80207FFC: 80454758 (lit_4513)
-//	80208008: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 80207F34-80208028 202874 00F4+00 1/1 0/0 0/0 .text
+ * setAlphaButtonNunAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2082,15 +1138,8 @@ asm void dMeterButton_c::setAlphaButtonNunAnimeMax() {
 }
 #pragma pop
 
-/* 80208028-802080C0 0098+00 s=1 e=0 z=0  None .text
+/* 80208028-802080C0 202968 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemoAnimeMin__14dMeterButton_cFv               */
-//	80208048: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020804C: 80454748 (lit_4146)
-//	80208070: 80454748 (lit_4146)
-//	80208074: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208088: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020808C: 80454748 (lit_4146)
-//	802080A0: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2100,22 +1149,8 @@ asm void dMeterButton_c::setAlphaButtonRemoAnimeMin() {
 }
 #pragma pop
 
-/* 802080C0-802081B4 00F4+00 s=1 e=0 z=0  None .text
+/* 802080C0-802081B4 202A00 00F4+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemoAnimeMax__14dMeterButton_cFv               */
-//	802080E0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802080E4: 8045474C (lit_4147)
-//	802080F0: 804061C0 (g_dComIfG_gameInfo)
-//	802080F4: 804061C0 (g_dComIfG_gameInfo)
-//	8020810C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208128: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020812C: 80430188 (g_meter2_info)
-//	80208130: 80430188 (g_meter2_info)
-//	80208144: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	8020814C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208150: 8045474C (lit_4147)
-//	80208170: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208188: 80454758 (lit_4513)
-//	80208194: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2125,15 +1160,8 @@ asm void dMeterButton_c::setAlphaButtonRemoAnimeMax() {
 }
 #pragma pop
 
-/* 802081B4-8020824C 0098+00 s=1 e=0 z=0  None .text
+/* 802081B4-8020824C 202AF4 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemo2AnimeMin__14dMeterButton_cFv              */
-//	802081D4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802081D8: 80454748 (lit_4146)
-//	802081FC: 80454748 (lit_4146)
-//	80208200: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208214: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208218: 80454748 (lit_4146)
-//	8020822C: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2143,22 +1171,8 @@ asm void dMeterButton_c::setAlphaButtonRemo2AnimeMin() {
 }
 #pragma pop
 
-/* 8020824C-80208340 00F4+00 s=1 e=0 z=0  None .text
+/* 8020824C-80208340 202B8C 00F4+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemo2AnimeMax__14dMeterButton_cFv              */
-//	8020826C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208270: 8045474C (lit_4147)
-//	8020827C: 804061C0 (g_dComIfG_gameInfo)
-//	80208280: 804061C0 (g_dComIfG_gameInfo)
-//	80208298: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802082B4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802082B8: 80430188 (g_meter2_info)
-//	802082BC: 80430188 (g_meter2_info)
-//	802082D0: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802082D8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802082DC: 8045474C (lit_4147)
-//	802082FC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208314: 80454758 (lit_4513)
-//	80208320: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2168,15 +1182,8 @@ asm void dMeterButton_c::setAlphaButtonRemo2AnimeMax() {
 }
 #pragma pop
 
-/* 80208340-802083D8 0098+00 s=1 e=0 z=0  None .text setAlphaButtonARAnimeMin__14dMeterButton_cFv
+/* 80208340-802083D8 202C80 0098+00 1/1 0/0 0/0 .text setAlphaButtonARAnimeMin__14dMeterButton_cFv
  */
-//	80208360: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208364: 80454748 (lit_4146)
-//	80208388: 80454748 (lit_4146)
-//	8020838C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802083A0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802083A4: 80454748 (lit_4146)
-//	802083B8: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2186,23 +1193,8 @@ asm void dMeterButton_c::setAlphaButtonARAnimeMin() {
 }
 #pragma pop
 
-/* 802083D8-802084D8 0100+00 s=1 e=0 z=0  None .text setAlphaButtonARAnimeMax__14dMeterButton_cFv
+/* 802083D8-802084D8 202D18 0100+00 1/1 0/0 0/0 .text setAlphaButtonARAnimeMax__14dMeterButton_cFv
  */
-//	802083F8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802083FC: 8045474C (lit_4147)
-//	80208408: 804061C0 (g_dComIfG_gameInfo)
-//	8020840C: 804061C0 (g_dComIfG_gameInfo)
-//	8020842C: 8045474C (lit_4147)
-//	80208430: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020844C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208450: 80430188 (g_meter2_info)
-//	80208454: 80430188 (g_meter2_info)
-//	80208468: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80208470: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208474: 8045474C (lit_4147)
-//	80208494: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802084AC: 80454758 (lit_4513)
-//	802084B8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2212,15 +1204,8 @@ asm void dMeterButton_c::setAlphaButtonARAnimeMax() {
 }
 #pragma pop
 
-/* 802084D8-80208570 0098+00 s=1 e=0 z=0  None .text setAlphaButton3DBAnimeMin__14dMeterButton_cFv
- */
-//	802084F8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802084FC: 80454748 (lit_4146)
-//	80208520: 80454748 (lit_4146)
-//	80208524: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208538: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020853C: 80454748 (lit_4146)
-//	80208550: 8020A94C (hide_button__14dMeterButton_cFUc)
+/* 802084D8-80208570 202E18 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DBAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2230,23 +1215,8 @@ asm void dMeterButton_c::setAlphaButton3DBAnimeMin() {
 }
 #pragma pop
 
-/* 80208570-80208670 0100+00 s=1 e=0 z=0  None .text setAlphaButton3DBAnimeMax__14dMeterButton_cFv
- */
-//	80208590: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208594: 8045474C (lit_4147)
-//	802085A0: 804061C0 (g_dComIfG_gameInfo)
-//	802085A4: 804061C0 (g_dComIfG_gameInfo)
-//	802085C4: 8045474C (lit_4147)
-//	802085C8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802085E4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802085E8: 80430188 (g_meter2_info)
-//	802085EC: 80430188 (g_meter2_info)
-//	80208600: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80208608: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020860C: 8045474C (lit_4147)
-//	8020862C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208644: 80454758 (lit_4513)
-//	80208650: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 80208570-80208670 202EB0 0100+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DBAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2256,15 +1226,8 @@ asm void dMeterButton_c::setAlphaButton3DBAnimeMax() {
 }
 #pragma pop
 
-/* 80208670-80208708 0098+00 s=1 e=0 z=0  None .text
+/* 80208670-80208708 202FB0 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNUREAnimeMin__14dMeterButton_cFv               */
-//	80208690: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208694: 80454748 (lit_4146)
-//	802086B8: 80454748 (lit_4146)
-//	802086BC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802086D0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802086D4: 80454748 (lit_4146)
-//	802086E8: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2274,23 +1237,8 @@ asm void dMeterButton_c::setAlphaButtonNUREAnimeMin() {
 }
 #pragma pop
 
-/* 80208708-80208808 0100+00 s=1 e=0 z=0  None .text
+/* 80208708-80208808 203048 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNUREAnimeMax__14dMeterButton_cFv               */
-//	80208728: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020872C: 8045474C (lit_4147)
-//	80208738: 804061C0 (g_dComIfG_gameInfo)
-//	8020873C: 804061C0 (g_dComIfG_gameInfo)
-//	8020875C: 8045474C (lit_4147)
-//	80208760: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020877C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208780: 80430188 (g_meter2_info)
-//	80208784: 80430188 (g_meter2_info)
-//	80208798: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802087A0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802087A4: 8045474C (lit_4147)
-//	802087C4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	802087DC: 80454758 (lit_4513)
-//	802087E8: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2300,15 +1248,8 @@ asm void dMeterButton_c::setAlphaButtonNUREAnimeMax() {
 }
 #pragma pop
 
-/* 80208808-802088A0 0098+00 s=1 e=0 z=0  None .text
+/* 80208808-802088A0 203148 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonReelAnimeMin__14dMeterButton_cFv               */
-//	80208828: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020882C: 80454748 (lit_4146)
-//	80208850: 80454748 (lit_4146)
-//	80208854: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208868: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020886C: 80454748 (lit_4146)
-//	80208880: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2318,23 +1259,8 @@ asm void dMeterButton_c::setAlphaButtonReelAnimeMin() {
 }
 #pragma pop
 
-/* 802088A0-802089A0 0100+00 s=1 e=0 z=0  None .text
+/* 802088A0-802089A0 2031E0 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonReelAnimeMax__14dMeterButton_cFv               */
-//	802088C0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802088C4: 8045474C (lit_4147)
-//	802088D0: 804061C0 (g_dComIfG_gameInfo)
-//	802088D4: 804061C0 (g_dComIfG_gameInfo)
-//	802088F4: 8045474C (lit_4147)
-//	802088F8: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208914: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208918: 80430188 (g_meter2_info)
-//	8020891C: 80430188 (g_meter2_info)
-//	80208930: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80208938: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020893C: 8045474C (lit_4147)
-//	8020895C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208974: 80454758 (lit_4513)
-//	80208980: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2344,15 +1270,8 @@ asm void dMeterButton_c::setAlphaButtonReelAnimeMax() {
 }
 #pragma pop
 
-/* 802089A0-80208A38 0098+00 s=1 e=0 z=0  None .text
+/* 802089A0-80208A38 2032E0 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonReel2AnimeMin__14dMeterButton_cFv              */
-//	802089C0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802089C4: 80454748 (lit_4146)
-//	802089E8: 80454748 (lit_4146)
-//	802089EC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208A00: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208A04: 80454748 (lit_4146)
-//	80208A18: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2362,16 +1281,8 @@ asm void dMeterButton_c::setAlphaButtonReel2AnimeMin() {
 }
 #pragma pop
 
-/* 80208A38-80208AEC 00B4+00 s=1 e=0 z=0  None .text
+/* 80208A38-80208AEC 203378 00B4+00 1/1 0/0 0/0 .text
  * setAlphaButtonReel2AnimeMax__14dMeterButton_cFv              */
-//	80208A58: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208A5C: 8045474C (lit_4147)
-//	80208A70: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208A84: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208A88: 8045474C (lit_4147)
-//	80208AA8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208AC0: 80454758 (lit_4513)
-//	80208ACC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2381,15 +1292,8 @@ asm void dMeterButton_c::setAlphaButtonReel2AnimeMax() {
 }
 #pragma pop
 
-/* 80208AEC-80208B84 0098+00 s=1 e=0 z=0  None .text setAlphaButtonABAnimeMin__14dMeterButton_cFv
+/* 80208AEC-80208B84 20342C 0098+00 1/1 0/0 0/0 .text setAlphaButtonABAnimeMin__14dMeterButton_cFv
  */
-//	80208B0C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208B10: 80454748 (lit_4146)
-//	80208B34: 80454748 (lit_4146)
-//	80208B38: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208B4C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208B50: 80454748 (lit_4146)
-//	80208B64: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2399,16 +1303,8 @@ asm void dMeterButton_c::setAlphaButtonABAnimeMin() {
 }
 #pragma pop
 
-/* 80208B84-80208C38 00B4+00 s=1 e=0 z=0  None .text setAlphaButtonABAnimeMax__14dMeterButton_cFv
+/* 80208B84-80208C38 2034C4 00B4+00 1/1 0/0 0/0 .text setAlphaButtonABAnimeMax__14dMeterButton_cFv
  */
-//	80208BA4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208BA8: 8045474C (lit_4147)
-//	80208BBC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208BD0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208BD4: 8045474C (lit_4147)
-//	80208BF4: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208C0C: 80454758 (lit_4513)
-//	80208C18: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2418,15 +1314,8 @@ asm void dMeterButton_c::setAlphaButtonABAnimeMax() {
 }
 #pragma pop
 
-/* 80208C38-80208CD0 0098+00 s=1 e=0 z=0  None .text
+/* 80208C38-80208CD0 203578 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonTateAnimeMin__14dMeterButton_cFv               */
-//	80208C58: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208C5C: 80454748 (lit_4146)
-//	80208C80: 80454748 (lit_4146)
-//	80208C84: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208C98: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208C9C: 80454748 (lit_4146)
-//	80208CB0: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2436,16 +1325,8 @@ asm void dMeterButton_c::setAlphaButtonTateAnimeMin() {
 }
 #pragma pop
 
-/* 80208CD0-80208D84 00B4+00 s=1 e=0 z=0  None .text
+/* 80208CD0-80208D84 203610 00B4+00 1/1 0/0 0/0 .text
  * setAlphaButtonTateAnimeMax__14dMeterButton_cFv               */
-//	80208CF0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208CF4: 8045474C (lit_4147)
-//	80208D08: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208D1C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208D20: 8045474C (lit_4147)
-//	80208D40: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208D58: 80454758 (lit_4513)
-//	80208D64: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2455,15 +1336,8 @@ asm void dMeterButton_c::setAlphaButtonTateAnimeMax() {
 }
 #pragma pop
 
-/* 80208D84-80208E1C 0098+00 s=1 e=0 z=0  None .text
+/* 80208D84-80208E1C 2036C4 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunZAnimeMin__14dMeterButton_cFv               */
-//	80208DA4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208DA8: 80454748 (lit_4146)
-//	80208DCC: 80454748 (lit_4146)
-//	80208DD0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208DE4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208DE8: 80454748 (lit_4146)
-//	80208DFC: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2473,23 +1347,8 @@ asm void dMeterButton_c::setAlphaButtonNunZAnimeMin() {
 }
 #pragma pop
 
-/* 80208E1C-80208F1C 0100+00 s=1 e=0 z=0  None .text
+/* 80208E1C-80208F1C 20375C 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunZAnimeMax__14dMeterButton_cFv               */
-//	80208E3C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208E40: 8045474C (lit_4147)
-//	80208E4C: 804061C0 (g_dComIfG_gameInfo)
-//	80208E50: 804061C0 (g_dComIfG_gameInfo)
-//	80208E70: 8045474C (lit_4147)
-//	80208E74: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208E90: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208E94: 80430188 (g_meter2_info)
-//	80208E98: 80430188 (g_meter2_info)
-//	80208EAC: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80208EB4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208EB8: 8045474C (lit_4147)
-//	80208ED8: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80208EF0: 80454758 (lit_4513)
-//	80208EFC: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2499,15 +1358,8 @@ asm void dMeterButton_c::setAlphaButtonNunZAnimeMax() {
 }
 #pragma pop
 
-/* 80208F1C-80208FB4 0098+00 s=1 e=0 z=0  None .text
+/* 80208F1C-80208FB4 20385C 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunCAnimeMin__14dMeterButton_cFv               */
-//	80208F3C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208F40: 80454748 (lit_4146)
-//	80208F64: 80454748 (lit_4146)
-//	80208F68: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80208F7C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208F80: 80454748 (lit_4146)
-//	80208F94: 8020A94C (hide_button__14dMeterButton_cFUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2517,23 +1369,8 @@ asm void dMeterButton_c::setAlphaButtonNunCAnimeMin() {
 }
 #pragma pop
 
-/* 80208FB4-802090B4 0100+00 s=1 e=0 z=0  None .text
+/* 80208FB4-802090B4 2038F4 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunCAnimeMax__14dMeterButton_cFv               */
-//	80208FD4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80208FD8: 8045474C (lit_4147)
-//	80208FE4: 804061C0 (g_dComIfG_gameInfo)
-//	80208FE8: 804061C0 (g_dComIfG_gameInfo)
-//	80209008: 8045474C (lit_4147)
-//	8020900C: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80209028: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020902C: 80430188 (g_meter2_info)
-//	80209030: 80430188 (g_meter2_info)
-//	80209044: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	8020904C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209050: 8045474C (lit_4147)
-//	80209070: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80209088: 80454758 (lit_4513)
-//	80209094: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2543,15 +1380,8 @@ asm void dMeterButton_c::setAlphaButtonNunCAnimeMax() {
 }
 #pragma pop
 
-/* 802090B4-8020914C 0098+00 s=1 e=0 z=0  None .text setAlphaButtonBinAnimeMin__14dMeterButton_cFv
- */
-//	802090D4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802090D8: 80454748 (lit_4146)
-//	802090FC: 80454748 (lit_4146)
-//	80209100: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80209114: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209118: 80454748 (lit_4146)
-//	8020912C: 8020A94C (hide_button__14dMeterButton_cFUc)
+/* 802090B4-8020914C 2039F4 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButtonBinAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2561,23 +1391,8 @@ asm void dMeterButton_c::setAlphaButtonBinAnimeMin() {
 }
 #pragma pop
 
-/* 8020914C-8020924C 0100+00 s=1 e=0 z=0  None .text setAlphaButtonBinAnimeMax__14dMeterButton_cFv
- */
-//	8020916C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209170: 8045474C (lit_4147)
-//	8020917C: 804061C0 (g_dComIfG_gameInfo)
-//	80209180: 804061C0 (g_dComIfG_gameInfo)
-//	802091A0: 8045474C (lit_4147)
-//	802091A4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802091C0: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802091C4: 80430188 (g_meter2_info)
-//	802091C8: 80430188 (g_meter2_info)
-//	802091DC: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	802091E4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802091E8: 8045474C (lit_4147)
-//	80209208: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80209220: 80454758 (lit_4513)
-//	8020922C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 8020914C-8020924C 203A8C 0100+00 1/1 0/0 0/0 .text
+ * setAlphaButtonBinAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2587,15 +1402,8 @@ asm void dMeterButton_c::setAlphaButtonBinAnimeMax() {
 }
 #pragma pop
 
-/* 8020924C-802092C0 0074+00 s=1 e=0 z=0  None .text setAlphaButtonOAnimeMin__14dMeterButton_cFi
+/* 8020924C-802092C0 203B8C 0074+00 1/1 0/0 0/0 .text setAlphaButtonOAnimeMin__14dMeterButton_cFi
  */
-//	8020925C: 803621DC (_savegpr_29)
-//	80209274: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209278: 80454748 (lit_4146)
-//	8020928C: 80206D70 (isFastSet__14dMeterButton_cFi)
-//	80209294: 80454748 (lit_4146)
-//	80209298: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	802092AC: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2605,20 +1413,8 @@ asm void dMeterButton_c::setAlphaButtonOAnimeMin(int param_0) {
 }
 #pragma pop
 
-/* 802092C0-80209368 00A8+00 s=1 e=0 z=0  None .text setAlphaButtonOAnimeMax__14dMeterButton_cFi
+/* 802092C0-80209368 203C00 00A8+00 1/1 0/0 0/0 .text setAlphaButtonOAnimeMax__14dMeterButton_cFi
  */
-//	802092D0: 803621DC (_savegpr_29)
-//	802092E8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802092EC: 8045474C (lit_4147)
-//	80209300: 80206D70 (isFastSet__14dMeterButton_cFi)
-//	80209310: 8045474C (lit_4147)
-//	80209314: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020932C: 8045474C (lit_4147)
-//	80209330: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80209334: 80430188 (g_meter2_info)
-//	80209338: 80430188 (g_meter2_info)
-//	8020934C: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
-//	80209354: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2628,13 +1424,7 @@ asm void dMeterButton_c::setAlphaButtonOAnimeMax(int param_0) {
 }
 #pragma pop
 
-/* 80209368-802093D8 0070+00 s=1 e=0 z=0  None .text      setAlphaIconAnimeMin__14dMeterButton_cFv
- */
-//	80209380: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209384: 80454748 (lit_4146)
-//	802093A0: 80206D70 (isFastSet__14dMeterButton_cFi)
-//	802093A8: 80454748 (lit_4146)
-//	802093AC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
+/* 80209368-802093D8 203CA8 0070+00 1/1 0/0 0/0 .text setAlphaIconAnimeMin__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2644,18 +1434,7 @@ asm void dMeterButton_c::setAlphaIconAnimeMin() {
 }
 #pragma pop
 
-/* 802093D8-80209474 009C+00 s=1 e=0 z=0  None .text      setAlphaIconAnimeMax__14dMeterButton_cFv
- */
-//	802093F0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802093F4: 8045474C (lit_4147)
-//	80209410: 80206D70 (isFastSet__14dMeterButton_cFi)
-//	80209420: 8045474C (lit_4147)
-//	80209424: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020943C: 8045474C (lit_4147)
-//	80209440: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	80209444: 80430188 (g_meter2_info)
-//	80209448: 80430188 (g_meter2_info)
-//	8020945C: 8021AAA4 (setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas)
+/* 802093D8-80209474 203D18 009C+00 1/1 0/0 0/0 .text setAlphaIconAnimeMax__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2665,35 +1444,7 @@ asm void dMeterButton_c::setAlphaIconAnimeMax() {
 }
 #pragma pop
 
-/* 80209474-802095C0 014C+00 s=0 e=1 z=0  None .text      isClose__14dMeterButton_cFv */
-//	8020948C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209490: 80454748 (lit_4146)
-//	802094A0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802094A4: 80454748 (lit_4146)
-//	802094B4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802094B8: 80454748 (lit_4146)
-//	802094C8: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802094CC: 80454748 (lit_4146)
-//	802094DC: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802094E0: 80454748 (lit_4146)
-//	802094F0: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	802094F4: 80454748 (lit_4146)
-//	80209504: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209508: 80454748 (lit_4146)
-//	80209518: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020951C: 80454748 (lit_4146)
-//	8020952C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209530: 80454748 (lit_4146)
-//	80209540: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209544: 80454748 (lit_4146)
-//	80209554: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209558: 80454748 (lit_4146)
-//	80209568: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020956C: 80454748 (lit_4146)
-//	8020957C: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209580: 80454748 (lit_4146)
-//	80209590: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	80209594: 80454748 (lit_4146)
+/* 80209474-802095C0 203DB4 014C+00 0/0 1/1 0/0 .text            isClose__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2703,29 +1454,7 @@ asm void dMeterButton_c::isClose() {
 }
 #pragma pop
 
-/* 802095C0-80209CEC 072C+00 s=0 e=1 z=0  None .text      setString__14dMeterButton_cFPcUcUcUc */
-//	802095D0: 803621CC (_savegpr_25)
-//	802095FC: 80368994 (strcmp)
-//	8020962C: 80368994 (strcmp)
-//	802098B0: 8020A94C (hide_button__14dMeterButton_cFUc)
-//	802098CC: 80368994 (strcmp)
-//	80209B38: 80454748 (lit_4146)
-//	80209B50: 80368994 (strcmp)
-//	80209B64: 80368994 (strcmp)
-//	80209B8C: 80209D7C (getCenterPosCalc__14dMeterButton_cFUcPci)
-//	80209BA4: 80454748 (lit_4146)
-//	80209BB8: 804061C0 (g_dComIfG_gameInfo)
-//	80209BBC: 804061C0 (g_dComIfG_gameInfo)
-//	80209BCC: 80454748 (lit_4146)
-//	80209BDC: 8042EBC8 (g_drawHIO)
-//	80209BE0: 8042EBC8 (g_drawHIO)
-//	80209BF8: 80454770 (lit_5628)
-//	80209C24: 80368B2C (strcpy)
-//	80209C64: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80209C6C: 80368B2C (strcpy)
-//	80209CB8: 80300658 (getStringPtr__10J2DTextBoxCFv)
-//	80209CC0: 80368B2C (strcpy)
-//	80209CD8: 80362218 (_restgpr_25)
+/* 802095C0-80209CEC 203F00 072C+00 0/0 1/1 0/0 .text setString__14dMeterButton_cFPcUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2735,9 +1464,7 @@ asm void dMeterButton_c::setString(char* param_0, u8 param_1, u8 param_2, u8 par
 }
 #pragma pop
 
-/* 80209CEC-80209D7C 0090+00 s=0 e=1 z=0  None .text      hideAll__14dMeterButton_cFv */
-//	80209D5C: 80255608 (hide__13CPaneMgrAlphaFv)
-//	80209D64: 80255608 (hide__13CPaneMgrAlphaFv)
+/* 80209CEC-80209D7C 20462C 0090+00 0/0 1/1 0/0 .text            hideAll__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2747,33 +1474,7 @@ asm void dMeterButton_c::hideAll() {
 }
 #pragma pop
 
-/* 80209D7C-8020A540 07C4+00 s=2 e=0 z=0  None .text      getCenterPosCalc__14dMeterButton_cFUcPci
- */
-//	80209DA4: 803621D0 (_savegpr_26)
-//	80209DB4: 80430188 (g_meter2_info)
-//	80209DB8: 80430188 (g_meter2_info)
-//	80209DC0: 8021C6A4 (getStringLength__13dMeter2Info_cFP10J2DTextBoxPc)
-//	80209DC8: 8045474C (lit_4147)
-//	80209E58: 80454770 (lit_5628)
-//	80209E74: 80454748 (lit_4146)
-//	80209E90: 803BF1A8 (lit_7807)
-//	80209E94: 803BF1A8 (lit_7807)
-//	80209F94: 80253930 (__ct__8CPaneMgrFv)
-//	80209FD4: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	8020A02C: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	8020A084: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	8020A0DC: 80254C90 (getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs)
-//	8020A13C: 80253A18 (__dt__8CPaneMgrFv)
-//	8020A194: 804061C0 (g_dComIfG_gameInfo)
-//	8020A198: 804061C0 (g_dComIfG_gameInfo)
-//	8020A234: 80454748 (lit_4146)
-//	8020A244: 804061C0 (g_dComIfG_gameInfo)
-//	8020A248: 804061C0 (g_dComIfG_gameInfo)
-//	8020A290: 80454748 (lit_4146)
-//	8020A488: 80454748 (lit_4146)
-//	8020A4B0: 80454770 (lit_5628)
-//	8020A504: 80454770 (lit_5628)
-//	8020A52C: 8036221C (_restgpr_26)
+/* 80209D7C-8020A540 2046BC 07C4+00 2/1 0/0 0/0 .text getCenterPosCalc__14dMeterButton_cFUcPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2784,40 +1485,11 @@ asm void dMeterButton_c::getCenterPosCalc(u8 param_0, char* param_1, int param_2
 #pragma pop
 
 /* ############################################################################################## */
-/* 804547AC-804547B0 0004+00 s=1 e=0 z=0  None .sdata2    @7857 */
+/* 804547AC-804547B0 002DAC 0004+00 1/1 0/0 0/0 .sdata2          @7857 */
 SECTION_SDATA2 static f32 lit_7857 = 20.0f;
 
-/* 8020A540-8020A94C 040C+00 s=2 e=0 z=0  None .text      trans_button__14dMeterButton_cFif */
-//	8020A568: 803621D0 (_savegpr_26)
-//	8020A588: 80454748 (lit_4146)
-//	8020A594: 80454774 (lit_5629)
-//	8020A5B0: 80454770 (lit_5628)
-//	8020A5B4: 804547AC (lit_7857)
-//	8020A5E4: 803BF200 (lit_7858)
-//	8020A5E8: 803BF200 (lit_7858)
-//	8020A61C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A644: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A66C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A694: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A6CC: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A6F4: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A71C: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A748: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A770: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A7A0: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A7D0: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A7FC: 80454770 (lit_5628)
-//	8020A80C: 80454774 (lit_5629)
-//	8020A824: 804547AC (lit_7857)
-//	8020A848: 80454770 (lit_5628)
-//	8020A858: 80454774 (lit_5629)
-//	8020A870: 804547AC (lit_7857)
-//	8020A890: 80454770 (lit_5628)
-//	8020A8A0: 80454774 (lit_5629)
-//	8020A8E4: 804547A8 (lit_6017)
-//	8020A8F0: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A918: 8020AE68 (paneTrans__14dMeterButton_cFP8CPaneMgrffUc)
-//	8020A938: 8036221C (_restgpr_26)
+/* 8020A540-8020A94C 204E80 040C+00 2/1 0/0 0/0 .text            trans_button__14dMeterButton_cFif
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2827,23 +1499,8 @@ asm void dMeterButton_c::trans_button(int param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8020A94C-8020AA84 0138+00 s=23 e=0 z=0  None .text      hide_button__14dMeterButton_cFUc */
-//	8020A9B0: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020A9B4: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020A9BC: 80368B2C (strcpy)
-//	8020A9D4: 80255828 (getAlphaRate__13CPaneMgrAlphaFv)
-//	8020A9DC: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020A9F0: 80454748 (lit_4146)
-//	8020A9F4: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020A9FC: 80454748 (lit_4146)
-//	8020AA00: 802557D0 (setAlphaRate__13CPaneMgrAlphaFf)
-//	8020AA20: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020AA24: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020AA2C: 80368B2C (strcpy)
-//	8020AA54: 80454748 (lit_4146)
-//	8020AA60: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020AA64: 803980E8 (d_meter_d_meter_button__stringBase0)
-//	8020AA6C: 80368B2C (strcpy)
+/* 8020A94C-8020AA84 20528C 0138+00 23/23 0/0 0/0 .text            hide_button__14dMeterButton_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2853,13 +1510,7 @@ asm void dMeterButton_c::hide_button(u8 param_0) {
 }
 #pragma pop
 
-/* 8020AA84-8020AE68 03E4+00 s=1 e=0 z=0  None .text      pikariCheck__14dMeterButton_cFv */
-//	8020AA94: 804061C0 (g_dComIfG_gameInfo)
-//	8020AA98: 804061C0 (g_dComIfG_gameInfo)
-//	8020AA9C: 8042EBC8 (g_drawHIO)
-//	8020AAA0: 8042EBC8 (g_drawHIO)
-//	8020AE1C: 8045475C (lit_4514)
-//	8020AE34: 8045475C (lit_4514)
+/* 8020AA84-8020AE68 2053C4 03E4+00 1/1 0/0 0/0 .text            pikariCheck__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2869,9 +1520,8 @@ asm void dMeterButton_c::pikariCheck() {
 }
 #pragma pop
 
-/* 8020AE68-8020AE8C 0024+00 s=3 e=0 z=0  None .text      paneTrans__14dMeterButton_cFP8CPaneMgrffUc
+/* 8020AE68-8020AE8C 2057A8 0024+00 3/3 0/0 0/0 .text paneTrans__14dMeterButton_cFP8CPaneMgrffUc
  */
-//	8020AE78: 802545B0 (paneTrans__8CPaneMgrFff)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2879,4 +1529,18 @@ asm void dMeterButton_c::paneTrans(CPaneMgr* param_0, f32 param_1, f32 param_2, 
     nofralloc
 #include "asm/d/meter/d_meter_button/paneTrans__14dMeterButton_cFP8CPaneMgrffUc.s"
 }
+#pragma pop
+
+/* 803980E8-80398158 024748 006C+04 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
+SECTION_DEAD static char const* const stringBase_80398109 = "";
+SECTION_DEAD static char const* const stringBase_8039810A = "zelda_message_window_new.blo";
+SECTION_DEAD static char const* const stringBase_80398127 = "zelda_message_window_text.blo";
+SECTION_DEAD static char const* const stringBase_80398145 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039814C = "R_SP161";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
 #pragma pop

@@ -55,8 +55,8 @@ lbl_800CBCC8:
 /* 800CBCD8  4E 80 04 21 */	bctrl 
 /* 800CBCDC  28 03 00 00 */	cmplwi r3, 0
 /* 800CBCE0  41 82 00 30 */	beq lbl_800CBD10
-/* 800CBCE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBCE8  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 800CBCE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBCE8  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBCEC  80 65 5D B8 */	lwz r3, 0x5db8(r5)
 /* 800CBCF0  80 83 17 34 */	lwz r4, 0x1734(r3)
 /* 800CBCF4  7C 9E 23 78 */	mr r30, r4
@@ -113,8 +113,8 @@ lbl_800CBD8C:
 /* 800CBDA0  39 1D 01 0C */	addi r8, r29, 0x10c
 /* 800CBDA4  39 20 00 00 */	li r9, 0
 /* 800CBDA8  C0 A2 92 B8 */	lfs f5, lit_6040(r2)
-/* 800CBDAC  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 800CBDB0  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 800CBDAC  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 800CBDB0  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 800CBDB4  4B F6 2B 5D */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 800CBDB8  90 7D 31 A4 */	stw r3, 0x31a4(r29)
 /* 800CBDBC  83 DD 31 A4 */	lwz r30, 0x31a4(r29)
@@ -128,15 +128,15 @@ lbl_800CBDC0:
 /* 800CBDD8  80 1D 05 7C */	lwz r0, 0x57c(r29)
 /* 800CBDDC  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
 /* 800CBDE0  40 82 00 1C */	bne lbl_800CBDFC
-/* 800CBDE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBDE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CBDE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBDE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBDEC  38 63 61 C0 */	addi r3, r3, 0x61c0
 /* 800CBDF0  7F C4 F3 78 */	mr r4, r30
 /* 800CBDF4  80 BD 06 B8 */	lwz r5, 0x6b8(r29)
 /* 800CBDF8  4B F8 A1 25 */	bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBDFC:
-/* 800CBDFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBE00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CBDFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBE00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBE04  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800CBE08  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800CBE0C  41 82 00 14 */	beq lbl_800CBE20
@@ -149,8 +149,8 @@ lbl_800CBE20:
 /* 800CBE24  4B FF F7 19 */	bl checkShieldDraw__9daAlink_cFv
 /* 800CBE28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800CBE2C  41 82 00 1C */	beq lbl_800CBE48
-/* 800CBE30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBE34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CBE30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBE34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBE38  38 63 61 C0 */	addi r3, r3, 0x61c0
 /* 800CBE3C  7F C4 F3 78 */	mr r4, r30
 /* 800CBE40  80 BD 06 78 */	lwz r5, 0x678(r29)
@@ -183,8 +183,8 @@ lbl_800CBEA0:
 lbl_800CBEA4:
 /* 800CBEA4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800CBEA8  40 82 02 F0 */	bne lbl_800CC198
-/* 800CBEAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBEB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CBEAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBEB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBEB4  3B 83 61 C0 */	addi r28, r3, 0x61c0
 /* 800CBEB8  7F 83 E3 78 */	mr r3, r28
 /* 800CBEBC  7F C4 F3 78 */	mr r4, r30
@@ -204,8 +204,8 @@ lbl_800CBEE4:
 /* 800CBEF0  4B F8 A0 2D */	bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBEF4  48 00 02 A4 */	b lbl_800CC198
 lbl_800CBEF8:
-/* 800CBEF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CBEFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CBEF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CBEFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CBF00  3B E3 61 C0 */	addi r31, r3, 0x61c0
 /* 800CBF04  7F E3 FB 78 */	mr r3, r31
 /* 800CBF08  7F C4 F3 78 */	mr r4, r30
@@ -278,14 +278,14 @@ lbl_800CBFDC:
 /* 800CC000  C0 42 94 28 */	lfs f2, lit_14621(r2)
 /* 800CC004  C0 7D 38 08 */	lfs f3, 0x3808(r29)
 /* 800CC008  C0 8D 87 50 */	lfs f4, mGroundY__11fopAcM_gc_c(r13)
-/* 800CC00C  3C E0 80 3F */	lis r7, mGndCheck__11fopAcM_gc_c@ha
-/* 800CC010  38 E7 1C C4 */	addi r7, r7, mGndCheck__11fopAcM_gc_c@l
+/* 800CC00C  3C E0 80 3F */	lis r7, mGndCheck__11fopAcM_gc_c@ha /* 0x803F1CC4@ha */
+/* 800CC010  38 E7 1C C4 */	addi r7, r7, mGndCheck__11fopAcM_gc_c@l /* 0x803F1CC4@l */
 /* 800CC014  38 E7 00 14 */	addi r7, r7, 0x14
 /* 800CC018  39 1D 01 0C */	addi r8, r29, 0x10c
 /* 800CC01C  39 20 00 00 */	li r9, 0
 /* 800CC020  C0 A2 92 B8 */	lfs f5, lit_6040(r2)
-/* 800CC024  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 800CC028  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 800CC024  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 800CC028  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 800CC02C  4B F6 28 E5 */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 800CC030  90 7D 32 D4 */	stw r3, 0x32d4(r29)
 /* 800CC034  48 00 00 C4 */	b lbl_800CC0F8
@@ -304,8 +304,8 @@ lbl_800CC038:
 /* 800CC064  48 03 C9 B5 */	bl checkHookshotWait__9daAlink_cCFv
 /* 800CC068  2C 03 00 00 */	cmpwi r3, 0
 /* 800CC06C  41 82 00 28 */	beq lbl_800CC094
-/* 800CC070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC078  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 800CC07C  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 800CC080  40 82 00 14 */	bne lbl_800CC094
@@ -328,8 +328,8 @@ lbl_800CC094:
 /* 800CC0C0  7F C4 F3 78 */	mr r4, r30
 /* 800CC0C4  80 BD 07 10 */	lwz r5, 0x710(r29)
 /* 800CC0C8  4B F8 9E 55 */	bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
-/* 800CC0CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC0D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC0CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC0D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC0D4  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 800CC0D8  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 800CC0DC  40 82 00 14 */	bne lbl_800CC0F0
@@ -374,8 +374,8 @@ lbl_800CC14C:
 /* 800CC164  41 82 00 34 */	beq lbl_800CC198
 /* 800CC168  80 1D 28 14 */	lwz r0, 0x2814(r29)
 /* 800CC16C  90 01 00 10 */	stw r0, 0x10(r1)
-/* 800CC170  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800CC174  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800CC170  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800CC174  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800CC178  38 81 00 10 */	addi r4, r1, 0x10
 /* 800CC17C  4B F4 D6 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC180  7C 65 1B 79 */	or. r5, r3, r3
@@ -390,8 +390,8 @@ lbl_800CC198:
 /* 800CC1A0  28 00 FF FF */	cmplwi r0, 0xffff
 /* 800CC1A4  41 82 00 40 */	beq lbl_800CC1E4
 /* 800CC1A8  90 61 00 0C */	stw r3, 0xc(r1)
-/* 800CC1AC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800CC1B0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800CC1AC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800CC1B0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800CC1B4  38 81 00 0C */	addi r4, r1, 0xc
 /* 800CC1B8  4B F4 D6 41 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC1BC  28 03 00 00 */	cmplwi r3, 0
@@ -399,14 +399,14 @@ lbl_800CC198:
 /* 800CC1C4  80 A3 05 24 */	lwz r5, 0x524(r3)
 /* 800CC1C8  28 05 00 00 */	cmplwi r5, 0
 /* 800CC1CC  41 82 00 18 */	beq lbl_800CC1E4
-/* 800CC1D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC1D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC1D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC1D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC1D8  38 63 61 C0 */	addi r3, r3, 0x61c0
 /* 800CC1DC  7F C4 F3 78 */	mr r4, r30
 /* 800CC1E0  4B F8 9D 3D */	bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC1E4:
-/* 800CC1E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC1E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC1E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC1E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC1EC  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 800CC1F0  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 800CC1F4  41 82 00 50 */	beq lbl_800CC244
@@ -415,8 +415,8 @@ lbl_800CC1E4:
 /* 800CC200  28 00 FF FF */	cmplwi r0, 0xffff
 /* 800CC204  41 82 00 40 */	beq lbl_800CC244
 /* 800CC208  90 61 00 08 */	stw r3, 8(r1)
-/* 800CC20C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800CC210  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800CC20C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800CC210  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800CC214  38 81 00 08 */	addi r4, r1, 8
 /* 800CC218  4B F4 D5 E1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC21C  28 03 00 00 */	cmplwi r3, 0
@@ -424,8 +424,8 @@ lbl_800CC1E4:
 /* 800CC224  80 A3 05 24 */	lwz r5, 0x524(r3)
 /* 800CC228  28 05 00 00 */	cmplwi r5, 0
 /* 800CC22C  41 82 00 18 */	beq lbl_800CC244
-/* 800CC230  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC234  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC230  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC234  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC238  38 63 61 C0 */	addi r3, r3, 0x61c0
 /* 800CC23C  7F C4 F3 78 */	mr r4, r30
 /* 800CC240  4B F8 9C DD */	bl addReal__21dDlst_shadowControl_cFUlP8J3DModel

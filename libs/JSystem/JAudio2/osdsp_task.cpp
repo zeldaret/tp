@@ -11,19 +11,12 @@
 // Forward References:
 //
 
-void DsyncFrame2(u32, u32, u32);
-static void DsyncFrame3(u32, u32, u32, u32, u32);
-static void Dsp_Update_Request();
-void Dsp_Running_Check();
-void Dsp_Running_Start();
-
 extern "C" void __DSPHandler();
 extern "C" void DsyncFrame2__FUlUlUl();
 extern "C" static void DsyncFrame3__FUlUlUlUlUl();
 extern "C" static void Dsp_Update_Request__Fv();
 extern "C" void Dsp_Running_Check__Fv();
 extern "C" void Dsp_Running_Start__Fv();
-extern "C" extern u8 DSP_prior_task[4];
 extern "C" extern u8 data_80451310[8];
 extern "C" extern u8 data_80451318[8];
 extern "C" extern u8 data_80451320[8];
@@ -32,9 +25,6 @@ extern "C" extern u8 data_80451328[8];
 //
 // External References:
 //
-
-void DsyncFrame2ch(u32, u32, u32);
-void DsyncFrame4ch(u32, u32, u32, u32, u32);
 
 extern "C" void DsyncFrame2ch__FUlUlUl();
 extern "C" void DsyncFrame4ch__FUlUlUlUlUl();
@@ -54,96 +44,31 @@ extern "C" extern u8 __DSP_curr_task[4];
 //
 
 /* ############################################################################################## */
-/* 80451308-8045130C 0004+00 s=6 e=0 z=0  None .sbss      None */
+/* 80451308-8045130C -00001 0004+00 6/6 0/0 0/0 .sbss            None */
+/* 80451308 0001+00 data_80451308 None */
+/* 80451309 0003+00 data_80451309 None */
 static u8 struct_80451308[4];
 
-/* 8045130C-80451310 0004+00 s=1 e=2 z=0  None .sbss      DSP_prior_task */
+/* 8045130C-80451310 00080C 0004+00 1/1 2/2 0/0 .sbss            DSP_prior_task */
+extern u8 DSP_prior_task[4];
 u8 DSP_prior_task[4];
 
-/* 8029EB20-8029EE24 0304+00 s=0 e=1 z=0  None .text      __DSPHandler */
-//	8029EB54: 8033C000 (OSClearContext)
-//	8029EB5C: 8033BE38 (OSSetCurrentContext)
-//	8029EB60: 80451308 (struct_80451308)
-//	8029EB6C: 80451308 (struct_80451308)
-//	8029EB78: 8045130C (DSP_prior_task)
-//	8029EB7C: 80451914 (__DSP_curr_task)
-//	8029EB80: 80352440 (DSPCheckMailFromDSP)
-//	8029EB8C: 80352450 (DSPReadMailFromDSP)
-//	8029EB90: 80451914 (__DSP_curr_task)
-//	8029EC00: 80451914 (__DSP_curr_task)
-//	8029EC04: 8045130C (DSP_prior_task)
-//	8029EC10: 80451308 (struct_80451308)
-//	8029EC34: 80451914 (__DSP_curr_task)
-//	8029EC38: 8045130C (DSP_prior_task)
-//	8029EC44: 80451308 (struct_80451308)
-//	8029EC48: 8029EF00 (Dsp_Update_Request__Fv)
-//	8029EC4C: 80451914 (__DSP_curr_task)
-//	8029EC70: 80352468 (DSPSendMailToDSP)
-//	8029EC78: 80352430 (DSPCheckMailToDSP)
-//	8029EC84: 80451914 (__DSP_curr_task)
-//	8029EC90: 80451914 (__DSP_curr_task)
-//	8029ECA0: 80451309 (struct_80451308)
-//	8029ECAC: 8045130C (DSP_prior_task)
-//	8029ECB0: 803525D0 (__DSP_exec_task)
-//	8029ECB4: 8045130C (DSP_prior_task)
-//	8029ECBC: 80451309 (struct_80451308)
-//	8029ECC0: 80451914 (__DSP_curr_task)
-//	8029ECC8: 803525D0 (__DSP_exec_task)
-//	8029ECCC: 80451914 (__DSP_curr_task)
-//	8029ECD4: 80451914 (__DSP_curr_task)
-//	8029ECFC: 80352468 (DSPSendMailToDSP)
-//	8029ED00: 80352430 (DSPCheckMailToDSP)
-//	8029ED0C: 80451914 (__DSP_curr_task)
-//	8029ED18: 80451914 (__DSP_curr_task)
-//	8029ED28: 8045130C (DSP_prior_task)
-//	8029ED30: 803525D0 (__DSP_exec_task)
-//	8029ED34: 80451914 (__DSP_curr_task)
-//	8029ED38: 8035299C (__DSP_remove_task)
-//	8029ED3C: 8045130C (DSP_prior_task)
-//	8029ED40: 80451914 (__DSP_curr_task)
-//	8029ED4C: 803525D0 (__DSP_exec_task)
-//	8029ED50: 80451914 (__DSP_curr_task)
-//	8029ED58: 80451914 (__DSP_curr_task)
-//	8029ED60: 8035299C (__DSP_remove_task)
-//	8029ED84: 80451910 (__DSP_first_task)
-//	8029ED90: 80451309 (struct_80451308)
-//	8029EDA4: 80352468 (DSPSendMailToDSP)
-//	8029EDA8: 80352430 (DSPCheckMailToDSP)
-//	8029EDB4: 8045130C (DSP_prior_task)
-//	8029EDBC: 80451309 (struct_80451308)
-//	8029EDC0: 80451914 (__DSP_curr_task)
-//	8029EDC4: 8029EF00 (Dsp_Update_Request__Fv)
-//	8029EDD4: 80451308 (struct_80451308)
-//	8029EDDC: 80352468 (DSPSendMailToDSP)
-//	8029EDE0: 80352430 (DSPCheckMailToDSP)
-//	8029EDEC: 8045130C (DSP_prior_task)
-//	8029EDF0: 80451910 (__DSP_first_task)
-//	8029EDF4: 803525D0 (__DSP_exec_task)
-//	8029EDF8: 80451910 (__DSP_first_task)
-//	8029EDFC: 80451914 (__DSP_curr_task)
-//	8029EE04: 8033C000 (OSClearContext)
-//	8029EE0C: 8033BE38 (OSSetCurrentContext)
+/* 8029EB20-8029EE24 299460 0304+00 0/0 1/1 0/0 .text            __DSPHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-extern "C" asm void __DSPHandler() {
+asm void __DSPHandler() {
     nofralloc
 #include "asm/JSystem/JAudio2/osdsp_task/__DSPHandler.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80434060-80434078 0014+04 s=3 e=0 z=0  None .bss       sync_stack */
+/* 80434060-80434078 060D80 0014+04 3/3 0/0 0/0 .bss             sync_stack */
 static u8 sync_stack[20 + 4 /* padding */];
 
-/* 8029EE40-8029EE90 0050+00 s=1 e=1 z=0  None .text      DsyncFrame2__FUlUlUl */
-//	8029EE4C: 80451308 (struct_80451308)
-//	8029EE58: 80434060 (sync_stack)
-//	8029EE5C: 80434060 (sync_stack)
-//	8029EE64: 80451309 (struct_80451308)
-//	8029EE74: 8029E620 (DsyncFrame2ch__FUlUlUl)
-//	8029EE7C: 80451309 (struct_80451308)
+/* 8029EE40-8029EE90 299780 0050+00 1/1 1/1 0/0 .text            DsyncFrame2__FUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -154,43 +79,29 @@ asm void DsyncFrame2(u32 param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 8029EEA0-8029EEF8 0058+00 s=1 e=0 z=0  None .text      DsyncFrame3__FUlUlUlUlUl */
-//	8029EEAC: 80451308 (struct_80451308)
-//	8029EEB8: 80434060 (sync_stack)
-//	8029EEBC: 80434060 (sync_stack)
-//	8029EEC4: 80451309 (struct_80451308)
-//	8029EEDC: 8029E680 (DsyncFrame4ch__FUlUlUlUlUl)
-//	8029EEE4: 80451309 (struct_80451308)
+/* 8029EEA0-8029EEF8 2997E0 0058+00 1/1 0/0 0/0 .text            DsyncFrame3__FUlUlUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void DsyncFrame3(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+static asm void DsyncFrame3(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
     nofralloc
 #include "asm/JSystem/JAudio2/osdsp_task/DsyncFrame3__FUlUlUlUlUl.s"
 }
 #pragma pop
 
-/* 8029EF00-8029EF78 0078+00 s=1 e=0 z=0  None .text      Dsp_Update_Request__Fv */
-//	8029EF0C: 80451309 (struct_80451308)
-//	8029EF2C: 80434060 (sync_stack)
-//	8029EF30: 80434060 (sync_stack)
-//	8029EF40: 8029EE40 (DsyncFrame2__FUlUlUl)
-//	8029EF48: 80434060 (sync_stack)
-//	8029EF4C: 80434060 (sync_stack)
-//	8029EF64: 8029EEA0 (DsyncFrame3__FUlUlUlUlUl)
+/* 8029EF00-8029EF78 299840 0078+00 1/1 0/0 0/0 .text            Dsp_Update_Request__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-asm static void Dsp_Update_Request() {
+static asm void Dsp_Update_Request() {
     nofralloc
 #include "asm/JSystem/JAudio2/osdsp_task/Dsp_Update_Request__Fv.s"
 }
 #pragma pop
 
-/* 8029EF80-8029EF94 0014+00 s=0 e=1 z=0  None .text      Dsp_Running_Check__Fv */
-//	8029EF80: 80451308 (struct_80451308)
+/* 8029EF80-8029EF94 2998C0 0014+00 0/0 1/1 0/0 .text            Dsp_Running_Check__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,8 +112,7 @@ asm void Dsp_Running_Check() {
 }
 #pragma pop
 
-/* 8029EFA0-8029EFAC 000C+00 s=0 e=1 z=0  None .text      Dsp_Running_Start__Fv */
-//	8029EFA4: 80451308 (struct_80451308)
+/* 8029EFA0-8029EFAC 2998E0 000C+00 0/0 1/1 0/0 .text            Dsp_Running_Start__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -214,14 +124,18 @@ asm void Dsp_Running_Start() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451310-80451318 0008+00 s=0 e=3 z=0  None .sbss      None */
+/* 80451310-80451318 000810 0008+00 0/0 3/3 0/0 .sbss            None */
+extern u8 data_80451310[8];
 u8 data_80451310[8];
 
-/* 80451318-80451320 0008+00 s=0 e=7 z=0  None .sbss      None */
+/* 80451318-80451320 000818 0008+00 0/0 7/7 0/0 .sbss            None */
+extern u8 data_80451318[8];
 u8 data_80451318[8];
 
-/* 80451320-80451328 0008+00 s=0 e=4 z=0  None .sbss      None */
+/* 80451320-80451328 000820 0008+00 0/0 4/4 0/0 .sbss            None */
+extern u8 data_80451320[8];
 u8 data_80451320[8];
 
-/* 80451328-80451330 0008+00 s=0 e=3 z=0  None .sbss      None */
+/* 80451328-80451330 000828 0008+00 0/0 3/3 0/0 .sbss            None */
+extern u8 data_80451328[8];
 u8 data_80451328[8];

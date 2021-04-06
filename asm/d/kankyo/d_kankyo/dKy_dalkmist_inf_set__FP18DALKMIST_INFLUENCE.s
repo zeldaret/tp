@@ -1,8 +1,8 @@
 lbl_801A7814:
 /* 801A7814  38 E0 00 00 */	li r7, 0
 /* 801A7818  38 80 00 00 */	li r4, 0
-/* 801A781C  3C A0 80 43 */	lis r5, g_env_light@ha
-/* 801A7820  38 C5 CA 54 */	addi r6, r5, g_env_light@l
+/* 801A781C  3C A0 80 43 */	lis r5, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7820  38 C5 CA 54 */	addi r6, r5, g_env_light@l /* 0x8042CA54@l */
 /* 801A7824  38 00 00 0A */	li r0, 0xa
 /* 801A7828  7C 09 03 A6 */	mtctr r0
 lbl_801A782C:
@@ -10,8 +10,8 @@ lbl_801A782C:
 /* 801A7830  80 05 09 90 */	lwz r0, 0x990(r5)
 /* 801A7834  28 00 00 00 */	cmplwi r0, 0
 /* 801A7838  40 82 00 20 */	bne lbl_801A7858
-/* 801A783C  3C A0 80 43 */	lis r5, g_env_light@ha
-/* 801A7840  38 05 CA 54 */	addi r0, r5, g_env_light@l
+/* 801A783C  3C A0 80 43 */	lis r5, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7840  38 05 CA 54 */	addi r0, r5, g_env_light@l /* 0x8042CA54@l */
 /* 801A7844  7C 80 22 14 */	add r4, r0, r4
 /* 801A7848  90 64 09 90 */	stw r3, 0x990(r4)
 /* 801A784C  80 64 09 90 */	lwz r3, 0x990(r4)

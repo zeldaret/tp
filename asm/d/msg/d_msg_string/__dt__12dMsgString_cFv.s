@@ -7,8 +7,8 @@ lbl_80249D28:
 /* 80249D3C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80249D40  7C 9F 23 78 */	mr r31, r4
 /* 80249D44  41 82 00 54 */	beq lbl_80249D98
-/* 80249D48  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha
-/* 80249D4C  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l
+/* 80249D48  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha /* 0x803C1498@ha */
+/* 80249D4C  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l /* 0x803C1498@l */
 /* 80249D50  90 1E 00 00 */	stw r0, 0(r30)
 /* 80249D54  80 7E 00 24 */	lwz r3, 0x24(r30)
 /* 80249D58  28 03 00 00 */	cmplwi r3, 0

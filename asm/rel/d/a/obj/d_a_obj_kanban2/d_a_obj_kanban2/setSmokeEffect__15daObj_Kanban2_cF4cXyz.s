@@ -7,14 +7,14 @@ lbl_80582AAC:
 /* 80582AC0  38 68 09 E0 */	addi r3, r8, 0x9e0
 /* 80582AC4  38 88 09 E4 */	addi r4, r8, 0x9e4
 /* 80582AC8  38 C0 00 00 */	li r6, 0
-/* 80582ACC  3C E0 80 58 */	lis r7, lit_4555@ha
-/* 80582AD0  C8 27 56 88 */	lfd f1, lit_4555@l(r7)
+/* 80582ACC  3C E0 80 58 */	lis r7, lit_4555@ha /* 0x80585688@ha */
+/* 80582AD0  C8 27 56 88 */	lfd f1, lit_4555@l(r7)  /* 0x80585688@l */
 /* 80582AD4  C0 08 06 00 */	lfs f0, 0x600(r8)
 /* 80582AD8  FC 21 00 32 */	fmul f1, f1, f0
 /* 80582ADC  FC 20 08 18 */	frsp f1, f1
 /* 80582AE0  38 E8 01 0C */	addi r7, r8, 0x10c
 /* 80582AE4  39 00 00 01 */	li r8, 1
-/* 80582AE8  4B A9 A5 38 */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 80582AE8  4B A9 A5 39 */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 /* 80582AEC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80582AF0  7C 08 03 A6 */	mtlr r0
 /* 80582AF4  38 21 00 10 */	addi r1, r1, 0x10

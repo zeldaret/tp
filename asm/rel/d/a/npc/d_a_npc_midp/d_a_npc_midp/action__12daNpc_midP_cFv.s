@@ -10,8 +10,8 @@ lbl_80A71CC4:
 /* 80A71CE4  38 C0 00 00 */	li r6, 0
 /* 80A71CE8  38 60 00 00 */	li r3, 0
 /* 80A71CEC  7C C4 33 78 */	mr r4, r6
-/* 80A71CF0  3C A0 80 A7 */	lis r5, lit_4186@ha
-/* 80A71CF4  C0 05 3A 60 */	lfs f0, lit_4186@l(r5)
+/* 80A71CF0  3C A0 80 A7 */	lis r5, lit_4186@ha /* 0x80A73A60@ha */
+/* 80A71CF4  C0 05 3A 60 */	lfs f0, lit_4186@l(r5)  /* 0x80A73A60@l */
 /* 80A71CF8  38 00 00 02 */	li r0, 2
 /* 80A71CFC  7C 09 03 A6 */	mtctr r0
 lbl_80A71D00:
@@ -32,18 +32,18 @@ lbl_80A71D00:
 /* 80A71D38  B0 1F 0E 22 */	sth r0, 0xe22(r31)
 lbl_80A71D3C:
 /* 80A71D3C  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 80A71D40  4B 8F 02 D8 */	b __ptmf_test
+/* 80A71D40  4B 8F 02 D9 */	bl __ptmf_test
 /* 80A71D44  2C 03 00 00 */	cmpwi r3, 0
 /* 80A71D48  41 82 00 54 */	beq lbl_80A71D9C
 /* 80A71D4C  38 7F 0F 90 */	addi r3, r31, 0xf90
 /* 80A71D50  38 9F 0F 84 */	addi r4, r31, 0xf84
-/* 80A71D54  4B 8F 02 F4 */	b __ptmf_cmpr
+/* 80A71D54  4B 8F 02 F5 */	bl __ptmf_cmpr
 /* 80A71D58  2C 03 00 00 */	cmpwi r3, 0
 /* 80A71D5C  40 82 00 1C */	bne lbl_80A71D78
 /* 80A71D60  7F E3 FB 78 */	mr r3, r31
 /* 80A71D64  38 80 00 00 */	li r4, 0
 /* 80A71D68  39 9F 0F 90 */	addi r12, r31, 0xf90
-/* 80A71D6C  4B 8F 03 18 */	b __ptmf_scall
+/* 80A71D6C  4B 8F 03 19 */	bl __ptmf_scall
 /* 80A71D70  60 00 00 00 */	nop 
 /* 80A71D74  48 00 00 28 */	b lbl_80A71D9C
 lbl_80A71D78:

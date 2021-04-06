@@ -7,8 +7,8 @@ lbl_80183480:
 /* 80183494  7C 7C 1B 78 */	mr r28, r3
 /* 80183498  8B CD 87 E4 */	lbz r30, struct_80450D64+0x0(r13)
 /* 8018349C  7F DE 07 74 */	extsb r30, r30
-/* 801834A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801834A4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 801834A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801834A4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801834A8  38 7F 4E C4 */	addi r3, r31, 0x4ec4
 /* 801834AC  7F C4 F3 78 */	mr r4, r30
 /* 801834B0  4B EA 0E D5 */	bl getStatusRoomDt__20dStage_roomControl_cFi

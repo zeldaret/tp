@@ -25,8 +25,8 @@ lbl_802D99FC:
 /* 802D9A0C  7F 84 E3 78 */	mr r4, r28
 /* 802D9A10  7F A5 EB 78 */	mr r5, r29
 /* 802D9A14  7F C6 F3 78 */	mr r6, r30
-/* 802D9A18  3C E0 80 2E */	lis r7, doneProcess__10JKRDvdFileFlP11DVDFileInfo@ha
-/* 802D9A1C  38 E7 9A C4 */	addi r7, r7, doneProcess__10JKRDvdFileFlP11DVDFileInfo@l
+/* 802D9A18  3C E0 80 2E */	lis r7, doneProcess__10JKRDvdFileFlP11DVDFileInfo@ha /* 0x802D9AC4@ha */
+/* 802D9A1C  38 E7 9A C4 */	addi r7, r7, doneProcess__10JKRDvdFileFlP11DVDFileInfo@l /* 0x802D9AC4@l */
 /* 802D9A20  39 00 00 02 */	li r8, 2
 /* 802D9A24  48 06 F3 31 */	bl DVDReadAsyncPrio
 /* 802D9A28  2C 03 00 00 */	cmpwi r3, 0

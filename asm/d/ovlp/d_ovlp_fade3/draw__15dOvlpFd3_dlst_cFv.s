@@ -103,8 +103,8 @@ lbl_80252F28:
 /* 802530BC  48 10 CD 1D */	bl GXSetDither
 /* 802530C0  38 60 00 01 */	li r3, 1
 /* 802530C4  48 10 D5 0D */	bl GXSetClipMode
-/* 802530C8  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 802530CC  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 802530C8  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 802530CC  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 802530D0  38 80 00 00 */	li r4, 0
 /* 802530D4  48 10 D1 79 */	bl GXLoadPosMtxImm
 /* 802530D8  38 60 00 00 */	li r3, 0
@@ -115,7 +115,7 @@ lbl_80252F28:
 /* 802530EC  48 10 96 79 */	bl GXBegin
 /* 802530F0  38 80 00 00 */	li r4, 0
 /* 802530F4  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802530F8  B0 83 80 00 */	sth r4, 0x8000(r3)
+/* 802530F8  B0 83 80 00 */	sth r4, 0x8000(r3)  /* 0xCC008000@l */
 /* 802530FC  B0 83 80 00 */	sth r4, -0x8000(r3)
 /* 80253100  38 00 02 60 */	li r0, 0x260
 /* 80253104  B0 03 80 00 */	sth r0, -0x8000(r3)
@@ -134,8 +134,8 @@ lbl_80252F28:
 /* 80253138  38 61 00 24 */	addi r3, r1, 0x24
 /* 8025313C  38 80 00 00 */	li r4, 0
 /* 80253140  48 10 CF 95 */	bl GXSetProjection
-/* 80253144  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 80253148  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 80253144  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 80253148  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8025314C  80 8D 86 50 */	lwz r4, mFrameBufferTex__13mDoGph_gInf_c(r13)
 /* 80253150  38 A0 01 30 */	li r5, 0x130
 /* 80253154  38 C0 00 E0 */	li r6, 0xe0
@@ -144,8 +144,8 @@ lbl_80252F28:
 /* 80253160  39 20 00 00 */	li r9, 0
 /* 80253164  39 40 00 00 */	li r10, 0
 /* 80253168  48 10 AC D9 */	bl GXInitTexObj
-/* 8025316C  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 80253170  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 8025316C  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 80253170  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 80253174  38 80 00 01 */	li r4, 1
 /* 80253178  38 A0 00 01 */	li r5, 1
 /* 8025317C  C0 22 B4 5C */	lfs f1, lit_3800(r2)
@@ -155,8 +155,8 @@ lbl_80252F28:
 /* 8025318C  38 E0 00 00 */	li r7, 0
 /* 80253190  39 00 00 00 */	li r8, 0
 /* 80253194  48 10 AF 41 */	bl GXInitTexObjLOD
-/* 80253198  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 8025319C  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 80253198  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 8025319C  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 802531A0  38 80 00 00 */	li r4, 0
 /* 802531A4  48 10 B2 71 */	bl GXLoadTexObj
 /* 802531A8  38 60 00 01 */	li r3, 1
@@ -278,7 +278,7 @@ lbl_80252F28:
 /* 80253378  48 10 93 ED */	bl GXBegin
 /* 8025337C  38 C0 FE D0 */	li r6, -304
 /* 80253380  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
-/* 80253384  B0 C5 80 00 */	sth r6, 0x8000(r5)
+/* 80253384  B0 C5 80 00 */	sth r6, 0x8000(r5)  /* 0xCC008000@l */
 /* 80253388  38 60 00 E0 */	li r3, 0xe0
 /* 8025338C  B0 65 80 00 */	sth r3, -0x8000(r5)
 /* 80253390  38 80 00 00 */	li r4, 0
@@ -299,8 +299,8 @@ lbl_80252F28:
 /* 802533CC  B0 05 80 00 */	sth r0, -0x8000(r5)
 /* 802533D0  98 85 80 00 */	stb r4, -0x8000(r5)
 /* 802533D4  98 65 80 00 */	stb r3, -0x8000(r5)
-/* 802533D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802533DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802533D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802533DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802533E0  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 802533E4  C0 02 B4 5C */	lfs f0, lit_3800(r2)
 /* 802533E8  D0 01 00 14 */	stfs f0, 0x14(r1)

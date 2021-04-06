@@ -1,6 +1,6 @@
 lbl_801FE990:
-/* 801FE990  3C 80 80 3C */	lis r4, __vt__21dMeter_drawSkillHIO_c@ha
-/* 801FE994  38 04 F1 48 */	addi r0, r4, __vt__21dMeter_drawSkillHIO_c@l
+/* 801FE990  3C 80 80 3C */	lis r4, __vt__21dMeter_drawSkillHIO_c@ha /* 0x803BF148@ha */
+/* 801FE994  38 04 F1 48 */	addi r0, r4, __vt__21dMeter_drawSkillHIO_c@l /* 0x803BF148@l */
 /* 801FE998  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE99C  38 00 FF FF */	li r0, -1
 /* 801FE9A0  90 03 00 38 */	stw r0, 0x38(r3)

@@ -7,8 +7,8 @@ lbl_801CFCDC:
 /* 801CFCF0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801CFCF4  7C 9F 23 78 */	mr r31, r4
 /* 801CFCF8  41 82 02 20 */	beq lbl_801CFF18
-/* 801CFCFC  3C 60 80 3C */	lis r3, __vt__18dMenu_Fmap2DBack_c@ha
-/* 801CFD00  38 63 D7 60 */	addi r3, r3, __vt__18dMenu_Fmap2DBack_c@l
+/* 801CFCFC  3C 60 80 3C */	lis r3, __vt__18dMenu_Fmap2DBack_c@ha /* 0x803BD760@ha */
+/* 801CFD00  38 63 D7 60 */	addi r3, r3, __vt__18dMenu_Fmap2DBack_c@l /* 0x803BD760@l */
 /* 801CFD04  90 7E 00 00 */	stw r3, 0(r30)
 /* 801CFD08  38 03 00 0C */	addi r0, r3, 0xc
 /* 801CFD0C  90 1E 00 04 */	stw r0, 4(r30)
@@ -145,8 +145,8 @@ lbl_801CFED4:
 /* 801CFEE4  7F C3 F3 78 */	mr r3, r30
 /* 801CFEE8  48 00 12 0D */	bl deleteSpotPane__18dMenu_Fmap2DBack_cFv
 /* 801CFEEC  38 00 00 00 */	li r0, 0
-/* 801CFEF0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801CFEF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801CFEF0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801CFEF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801CFEF8  98 03 00 F2 */	stb r0, 0xf2(r3)
 /* 801CFEFC  38 7E 00 04 */	addi r3, r30, 4
 /* 801CFF00  38 80 00 00 */	li r4, 0

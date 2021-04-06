@@ -95,8 +95,8 @@ lbl_80296A70:
 /* 80296A7C  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80296A80  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80296A84  80 6D 8C D0 */	lwz r3, sLoadThread__13JASAramStream(r13)
-/* 80296A88  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha
-/* 80296A8C  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l
+/* 80296A88  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha /* 0x8029676C@ha */
+/* 80296A8C  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l /* 0x8029676C@l */
 /* 80296A90  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80296A94  38 C0 00 0C */	li r6, 0xc
 /* 80296A98  4B FF 90 C5 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl

@@ -12,25 +12,25 @@ lbl_80607924:
 /* 8060794C  7C BF 2B 78 */	mr r31, r5
 /* 80607950  FF C0 08 90 */	fmr f30, f1
 /* 80607954  FF E0 10 90 */	fmr f31, f2
-/* 80607958  3C 60 80 61 */	lis r3, stringBase0@ha
-/* 8060795C  38 63 00 84 */	addi r3, r3, stringBase0@l
+/* 80607958  3C 60 80 61 */	lis r3, d_a_b_mgn__stringBase0@ha /* 0x80610084@ha */
+/* 8060795C  38 63 00 84 */	addi r3, r3, d_a_b_mgn__stringBase0@l /* 0x80610084@l */
 /* 80607960  38 63 00 07 */	addi r3, r3, 7
-/* 80607964  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80607968  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80607964  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80607968  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060796C  3C A5 00 02 */	addis r5, r5, 2
 /* 80607970  38 C0 00 80 */	li r6, 0x80
 /* 80607974  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80607978  4B A3 49 74 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80607978  4B A3 49 75 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8060797C  7C 64 1B 78 */	mr r4, r3
 /* 80607980  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 80607984  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 80607988  FC 20 F0 90 */	fmr f1, f30
 /* 8060798C  FC 40 F8 90 */	fmr f2, f31
-/* 80607990  3C C0 80 61 */	lis r6, lit_3929@ha
-/* 80607994  C0 66 FD E4 */	lfs f3, lit_3929@l(r6)
-/* 80607998  3C C0 80 61 */	lis r6, lit_4762@ha
-/* 8060799C  C0 86 FE 54 */	lfs f4, lit_4762@l(r6)
-/* 806079A0  4B A0 94 D0 */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 80607990  3C C0 80 61 */	lis r6, lit_3929@ha /* 0x8060FDE4@ha */
+/* 80607994  C0 66 FD E4 */	lfs f3, lit_3929@l(r6)  /* 0x8060FDE4@l */
+/* 80607998  3C C0 80 61 */	lis r6, lit_4762@ha /* 0x8060FE54@ha */
+/* 8060799C  C0 86 FE 54 */	lfs f4, lit_4762@l(r6)  /* 0x8060FE54@l */
+/* 806079A0  4B A0 94 D1 */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 806079A4  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 806079A8  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 806079AC  E3 C1 00 18 */	psq_l f30, 24(r1), 0, 0 /* qr0 */

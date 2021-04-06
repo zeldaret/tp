@@ -1,10 +1,10 @@
 lbl_80362C20:
 /* 80362C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80362C24  7C 08 02 A6 */	mflr r0
-/* 80362C28  3C C0 80 3A */	lis r6, fix_pool_sizes@ha
+/* 80362C28  3C C0 80 3A */	lis r6, fix_pool_sizes@ha /* 0x803A2220@ha */
 /* 80362C2C  38 E0 00 00 */	li r7, 0
 /* 80362C30  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80362C34  38 C6 22 20 */	addi r6, r6, fix_pool_sizes@l
+/* 80362C34  38 C6 22 20 */	addi r6, r6, fix_pool_sizes@l /* 0x803A2220@l */
 /* 80362C38  48 00 00 0C */	b lbl_80362C44
 lbl_80362C3C:
 /* 80362C3C  38 C6 00 04 */	addi r6, r6, 4

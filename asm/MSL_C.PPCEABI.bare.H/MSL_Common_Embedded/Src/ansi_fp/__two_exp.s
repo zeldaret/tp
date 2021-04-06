@@ -9,17 +9,17 @@ lbl_8036367C:
 /* 80363698  38 1E 00 40 */	addi r0, r30, 0x40
 /* 8036369C  28 00 00 48 */	cmplwi r0, 0x48
 /* 803636A0  41 81 14 B8 */	bgt lbl_80364B58
-/* 803636A4  3C 60 80 3D */	lis r3, lit_1710@ha
+/* 803636A4  3C 60 80 3D */	lis r3, lit_1710@ha /* 0x803D2AF0@ha */
 /* 803636A8  54 00 10 3A */	slwi r0, r0, 2
-/* 803636AC  38 63 2A F0 */	addi r3, r3, lit_1710@l
+/* 803636AC  38 63 2A F0 */	addi r3, r3, lit_1710@l /* 0x803D2AF0@l */
 /* 803636B0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803636B4  7C 09 03 A6 */	mtctr r0
 /* 803636B8  4E 80 04 20 */	bctr 
 /* 803636BC  38 00 FF EC */	li r0, -20
-/* 803636C0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 803636C0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 803636C4  B0 1F 00 02 */	sth r0, 2(r31)
 /* 803636C8  38 80 00 00 */	li r4, 0
-/* 803636CC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803636CC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803636D0  98 9F 00 00 */	stb r4, 0(r31)
 /* 803636D4  38 A3 00 25 */	addi r5, r3, 0x25
 /* 803636D8  48 00 00 1C */	b lbl_803636F4
@@ -88,10 +88,10 @@ lbl_803637A8:
 /* 803637B0  4B FF FF C0 */	b lbl_80363770
 /* 803637B4  48 00 16 34 */	b lbl_80364DE8
 /* 803637B8  38 00 FF F0 */	li r0, -16
-/* 803637BC  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 803637BC  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 803637C0  B0 1F 00 02 */	sth r0, 2(r31)
 /* 803637C4  38 80 00 00 */	li r4, 0
-/* 803637C8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803637C8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803637CC  98 9F 00 00 */	stb r4, 0(r31)
 /* 803637D0  38 A3 00 53 */	addi r5, r3, 0x53
 /* 803637D4  48 00 00 1C */	b lbl_803637F0
@@ -160,10 +160,10 @@ lbl_803638A4:
 /* 803638AC  4B FF FF C0 */	b lbl_8036386C
 /* 803638B0  48 00 15 38 */	b lbl_80364DE8
 /* 803638B4  38 00 FF F6 */	li r0, -10
-/* 803638B8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 803638B8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 803638BC  B0 1F 00 02 */	sth r0, 2(r31)
 /* 803638C0  38 80 00 00 */	li r4, 0
-/* 803638C4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803638C4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803638C8  98 9F 00 00 */	stb r4, 0(r31)
 /* 803638CC  38 A3 00 7A */	addi r5, r3, 0x7a
 /* 803638D0  48 00 00 1C */	b lbl_803638EC
@@ -232,10 +232,10 @@ lbl_803639A0:
 /* 803639A8  4B FF FF C0 */	b lbl_80363968
 /* 803639AC  48 00 14 3C */	b lbl_80364DE8
 /* 803639B0  38 00 FF FB */	li r0, -5
-/* 803639B4  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 803639B4  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 803639B8  B0 1F 00 02 */	sth r0, 2(r31)
 /* 803639BC  38 80 00 00 */	li r4, 0
-/* 803639C0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803639C0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803639C4  98 9F 00 00 */	stb r4, 0(r31)
 /* 803639C8  38 A3 00 92 */	addi r5, r3, 0x92
 /* 803639CC  48 00 00 1C */	b lbl_803639E8
@@ -304,10 +304,10 @@ lbl_80363A9C:
 /* 80363AA4  4B FF FF C0 */	b lbl_80363A64
 /* 80363AA8  48 00 13 40 */	b lbl_80364DE8
 /* 80363AAC  38 00 FF FD */	li r0, -3
-/* 80363AB0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363AB0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363AB4  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363AB8  38 80 00 00 */	li r4, 0
-/* 80363ABC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363ABC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363AC0  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363AC4  38 A3 00 9F */	addi r5, r3, 0x9f
 /* 80363AC8  48 00 00 1C */	b lbl_80363AE4
@@ -376,10 +376,10 @@ lbl_80363B98:
 /* 80363BA0  4B FF FF C0 */	b lbl_80363B60
 /* 80363BA4  48 00 12 44 */	b lbl_80364DE8
 /* 80363BA8  38 00 FF FD */	li r0, -3
-/* 80363BAC  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363BAC  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363BB0  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363BB4  38 80 00 00 */	li r4, 0
-/* 80363BB8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363BB8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363BBC  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363BC0  38 A3 00 A6 */	addi r5, r3, 0xa6
 /* 80363BC4  48 00 00 1C */	b lbl_80363BE0
@@ -448,10 +448,10 @@ lbl_80363C94:
 /* 80363C9C  4B FF FF C0 */	b lbl_80363C5C
 /* 80363CA0  48 00 11 48 */	b lbl_80364DE8
 /* 80363CA4  38 00 FF FE */	li r0, -2
-/* 80363CA8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363CA8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363CAC  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363CB0  38 80 00 00 */	li r4, 0
-/* 80363CB4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363CB4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363CB8  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363CBC  38 A3 00 AC */	addi r5, r3, 0xac
 /* 80363CC0  48 00 00 1C */	b lbl_80363CDC
@@ -520,10 +520,10 @@ lbl_80363D90:
 /* 80363D98  4B FF FF C0 */	b lbl_80363D58
 /* 80363D9C  48 00 10 4C */	b lbl_80364DE8
 /* 80363DA0  38 00 FF FE */	li r0, -2
-/* 80363DA4  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363DA4  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363DA8  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363DAC  38 80 00 00 */	li r4, 0
-/* 80363DB0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363DB0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363DB4  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363DB8  38 A3 00 B2 */	addi r5, r3, 0xb2
 /* 80363DBC  48 00 00 1C */	b lbl_80363DD8
@@ -592,10 +592,10 @@ lbl_80363E8C:
 /* 80363E94  4B FF FF C0 */	b lbl_80363E54
 /* 80363E98  48 00 0F 50 */	b lbl_80364DE8
 /* 80363E9C  38 00 FF FE */	li r0, -2
-/* 80363EA0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363EA0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363EA4  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363EA8  38 80 00 00 */	li r4, 0
-/* 80363EAC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363EAC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363EB0  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363EB4  38 A3 00 B7 */	addi r5, r3, 0xb7
 /* 80363EB8  48 00 00 1C */	b lbl_80363ED4
@@ -664,10 +664,10 @@ lbl_80363F88:
 /* 80363F90  4B FF FF C0 */	b lbl_80363F50
 /* 80363F94  48 00 0E 54 */	b lbl_80364DE8
 /* 80363F98  38 00 FF FF */	li r0, -1
-/* 80363F9C  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80363F9C  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80363FA0  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80363FA4  38 80 00 00 */	li r4, 0
-/* 80363FA8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80363FA8  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80363FAC  98 9F 00 00 */	stb r4, 0(r31)
 /* 80363FB0  38 A3 00 BB */	addi r5, r3, 0xbb
 /* 80363FB4  48 00 00 1C */	b lbl_80363FD0
@@ -736,10 +736,10 @@ lbl_80364084:
 /* 8036408C  4B FF FF C0 */	b lbl_8036404C
 /* 80364090  48 00 0D 58 */	b lbl_80364DE8
 /* 80364094  38 00 FF FF */	li r0, -1
-/* 80364098  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364098  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 8036409C  B0 1F 00 02 */	sth r0, 2(r31)
 /* 803640A0  38 80 00 00 */	li r4, 0
-/* 803640A4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803640A4  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803640A8  98 9F 00 00 */	stb r4, 0(r31)
 /* 803640AC  38 A3 00 BF */	addi r5, r3, 0xbf
 /* 803640B0  48 00 00 1C */	b lbl_803640CC
@@ -808,10 +808,10 @@ lbl_80364180:
 /* 80364188  4B FF FF C0 */	b lbl_80364148
 /* 8036418C  48 00 0C 5C */	b lbl_80364DE8
 /* 80364190  38 00 FF FF */	li r0, -1
-/* 80364194  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364194  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364198  B0 1F 00 02 */	sth r0, 2(r31)
 /* 8036419C  38 80 00 00 */	li r4, 0
-/* 803641A0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 803641A0  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 803641A4  98 9F 00 00 */	stb r4, 0(r31)
 /* 803641A8  38 A3 00 C2 */	addi r5, r3, 0xc2
 /* 803641AC  48 00 00 1C */	b lbl_803641C8
@@ -880,9 +880,9 @@ lbl_8036427C:
 /* 80364284  4B FF FF C0 */	b lbl_80364244
 /* 80364288  48 00 0B 60 */	b lbl_80364DE8
 /* 8036428C  38 80 00 00 */	li r4, 0
-/* 80364290  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364290  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364294  B0 9F 00 02 */	sth r4, 2(r31)
-/* 80364298  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364298  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 8036429C  38 A3 00 C4 */	addi r5, r3, 0xc4
 /* 803642A0  98 9F 00 00 */	stb r4, 0(r31)
 /* 803642A4  48 00 00 1C */	b lbl_803642C0
@@ -951,9 +951,9 @@ lbl_80364374:
 /* 8036437C  4B FF FF C0 */	b lbl_8036433C
 /* 80364380  48 00 0A 68 */	b lbl_80364DE8
 /* 80364384  38 80 00 00 */	li r4, 0
-/* 80364388  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364388  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 8036438C  B0 9F 00 02 */	sth r4, 2(r31)
-/* 80364390  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364390  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364394  38 A3 00 C6 */	addi r5, r3, 0xc6
 /* 80364398  98 9F 00 00 */	stb r4, 0(r31)
 /* 8036439C  48 00 00 1C */	b lbl_803643B8
@@ -1022,9 +1022,9 @@ lbl_8036446C:
 /* 80364474  4B FF FF C0 */	b lbl_80364434
 /* 80364478  48 00 09 70 */	b lbl_80364DE8
 /* 8036447C  38 80 00 00 */	li r4, 0
-/* 80364480  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364480  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364484  B0 9F 00 02 */	sth r4, 2(r31)
-/* 80364488  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364488  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 8036448C  38 A3 00 C8 */	addi r5, r3, 0xc8
 /* 80364490  98 9F 00 00 */	stb r4, 0(r31)
 /* 80364494  48 00 00 1C */	b lbl_803644B0
@@ -1093,9 +1093,9 @@ lbl_80364564:
 /* 8036456C  4B FF FF C0 */	b lbl_8036452C
 /* 80364570  48 00 08 78 */	b lbl_80364DE8
 /* 80364574  38 80 00 00 */	li r4, 0
-/* 80364578  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364578  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 8036457C  B0 9F 00 02 */	sth r4, 2(r31)
-/* 80364580  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364580  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364584  38 A3 00 CA */	addi r5, r3, 0xca
 /* 80364588  98 9F 00 00 */	stb r4, 0(r31)
 /* 8036458C  48 00 00 1C */	b lbl_803645A8
@@ -1164,10 +1164,10 @@ lbl_8036465C:
 /* 80364664  4B FF FF C0 */	b lbl_80364624
 /* 80364668  48 00 07 80 */	b lbl_80364DE8
 /* 8036466C  38 00 00 01 */	li r0, 1
-/* 80364670  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364670  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364674  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80364678  38 80 00 00 */	li r4, 0
-/* 8036467C  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 8036467C  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364680  98 9F 00 00 */	stb r4, 0(r31)
 /* 80364684  38 A3 00 CC */	addi r5, r3, 0xcc
 /* 80364688  48 00 00 1C */	b lbl_803646A4
@@ -1236,10 +1236,10 @@ lbl_80364758:
 /* 80364760  4B FF FF C0 */	b lbl_80364720
 /* 80364764  48 00 06 84 */	b lbl_80364DE8
 /* 80364768  38 00 00 01 */	li r0, 1
-/* 8036476C  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 8036476C  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364770  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80364774  38 80 00 00 */	li r4, 0
-/* 80364778  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364778  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 8036477C  98 9F 00 00 */	stb r4, 0(r31)
 /* 80364780  38 A3 00 CF */	addi r5, r3, 0xcf
 /* 80364784  48 00 00 1C */	b lbl_803647A0
@@ -1308,10 +1308,10 @@ lbl_80364854:
 /* 8036485C  4B FF FF C0 */	b lbl_8036481C
 /* 80364860  48 00 05 88 */	b lbl_80364DE8
 /* 80364864  38 00 00 01 */	li r0, 1
-/* 80364868  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364868  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 8036486C  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80364870  38 80 00 00 */	li r4, 0
-/* 80364874  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364874  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364878  98 9F 00 00 */	stb r4, 0(r31)
 /* 8036487C  38 A3 00 D2 */	addi r5, r3, 0xd2
 /* 80364880  48 00 00 1C */	b lbl_8036489C
@@ -1380,10 +1380,10 @@ lbl_80364950:
 /* 80364958  4B FF FF C0 */	b lbl_80364918
 /* 8036495C  48 00 04 8C */	b lbl_80364DE8
 /* 80364960  38 00 00 02 */	li r0, 2
-/* 80364964  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364964  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364968  B0 1F 00 02 */	sth r0, 2(r31)
 /* 8036496C  38 80 00 00 */	li r4, 0
-/* 80364970  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364970  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364974  98 9F 00 00 */	stb r4, 0(r31)
 /* 80364978  38 A3 00 D5 */	addi r5, r3, 0xd5
 /* 8036497C  48 00 00 1C */	b lbl_80364998
@@ -1452,10 +1452,10 @@ lbl_80364A4C:
 /* 80364A54  4B FF FF C0 */	b lbl_80364A14
 /* 80364A58  48 00 03 90 */	b lbl_80364DE8
 /* 80364A5C  38 00 00 02 */	li r0, 2
-/* 80364A60  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364A60  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364A64  B0 1F 00 02 */	sth r0, 2(r31)
 /* 80364A68  38 80 00 00 */	li r4, 0
-/* 80364A6C  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364A6C  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364A70  98 9F 00 00 */	stb r4, 0(r31)
 /* 80364A74  38 A3 00 D9 */	addi r5, r3, 0xd9
 /* 80364A78  48 00 00 1C */	b lbl_80364A94
@@ -1560,8 +1560,8 @@ lbl_80364B58:
 /* 80364BDC  B0 01 00 30 */	sth r0, 0x30(r1)
 /* 80364BE0  40 81 00 FC */	ble lbl_80364CDC
 /* 80364BE4  38 A0 00 00 */	li r5, 0
-/* 80364BE8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
-/* 80364BEC  38 83 22 38 */	addi r4, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364BE8  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
+/* 80364BEC  38 83 22 38 */	addi r4, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364BF0  B0 A1 00 36 */	sth r5, 0x36(r1)
 /* 80364BF4  38 61 00 34 */	addi r3, r1, 0x34
 /* 80364BF8  98 A1 00 34 */	stb r5, 0x34(r1)
@@ -1632,10 +1632,10 @@ lbl_80364CD0:
 /* 80364CD8  4B FF FF C0 */	b lbl_80364C98
 lbl_80364CDC:
 /* 80364CDC  38 A0 00 00 */	li r5, 0
-/* 80364CE0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha
+/* 80364CE0  3C 60 80 3A */	lis r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@ha /* 0x803A2238@ha */
 /* 80364CE4  38 00 FF FF */	li r0, -1
 /* 80364CE8  98 A1 00 34 */	stb r5, 0x34(r1)
-/* 80364CEC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l
+/* 80364CEC  38 63 22 38 */	addi r3, r3, MSL_Common_Embedded_Src_ansi_fp__stringBase0@l /* 0x803A2238@l */
 /* 80364CF0  38 C3 00 C2 */	addi r6, r3, 0xc2
 /* 80364CF4  B0 01 00 36 */	sth r0, 0x36(r1)
 /* 80364CF8  38 61 00 34 */	addi r3, r1, 0x34

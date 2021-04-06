@@ -15,11 +15,11 @@ lbl_80137158:
 /* 8013715C  EC 20 00 72 */	fmuls f1, f0, f1
 /* 80137160  48 13 04 85 */	bl cM_rad2s__Ff
 /* 80137164  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 80137168  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013716C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80137168  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013716C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80137170  7C 43 04 2E */	lfsx f2, r3, r0
-/* 80137174  3C 60 80 39 */	lis r3, m__19daAlinkHIO_wlLie_c0@ha
-/* 80137178  38 63 F1 38 */	addi r3, r3, m__19daAlinkHIO_wlLie_c0@l
+/* 80137174  3C 60 80 39 */	lis r3, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 80137178  38 63 F1 38 */	addi r3, r3, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 8013717C  C0 23 00 34 */	lfs f1, 0x34(r3)
 /* 80137180  C0 1F 1F DC */	lfs f0, 0x1fdc(r31)
 /* 80137184  EC 01 00 32 */	fmuls f0, f1, f0

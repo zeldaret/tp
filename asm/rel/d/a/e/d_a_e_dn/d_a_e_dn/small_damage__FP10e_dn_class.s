@@ -31,11 +31,11 @@ lbl_804EAF4C:
 /* 804EAF54  38 03 80 00 */	addi r0, r3, -32768
 /* 804EAF58  7C 04 00 50 */	subf r0, r4, r0
 /* 804EAF5C  B0 1F 07 50 */	sth r0, 0x750(r31)
-/* 804EAF60  3C 60 80 4F */	lis r3, lit_4873@ha
-/* 804EAF64  C0 03 E9 70 */	lfs f0, lit_4873@l(r3)
+/* 804EAF60  3C 60 80 4F */	lis r3, lit_4873@ha /* 0x804EE970@ha */
+/* 804EAF64  C0 03 E9 70 */	lfs f0, lit_4873@l(r3)  /* 0x804EE970@l */
 /* 804EAF68  D0 1F 07 4C */	stfs f0, 0x74c(r31)
-/* 804EAF6C  3C 60 80 4F */	lis r3, lit_3812@ha
-/* 804EAF70  C0 03 E8 E0 */	lfs f0, lit_3812@l(r3)
+/* 804EAF6C  3C 60 80 4F */	lis r3, lit_3812@ha /* 0x804EE8E0@ha */
+/* 804EAF70  C0 03 E8 E0 */	lfs f0, lit_3812@l(r3)  /* 0x804EE8E0@l */
 /* 804EAF74  D0 1F 07 08 */	stfs f0, 0x708(r31)
 /* 804EAF78  A8 1F 10 C2 */	lha r0, 0x10c2(r31)
 /* 804EAF7C  B0 1F 07 0C */	sth r0, 0x70c(r31)

@@ -8,8 +8,8 @@ lbl_8028D9A4:
 /* 8028D9BC  7C 00 07 75 */	extsb. r0, r0
 /* 8028D9C0  40 82 00 4C */	bne lbl_8028DA0C
 /* 8028D9C4  38 00 00 00 */	li r0, 0
-/* 8028D9C8  3C 60 80 43 */	lis r3, aoData@ha
-/* 8028D9CC  38 A3 14 90 */	addi r5, r3, aoData@l
+/* 8028D9C8  3C 60 80 43 */	lis r3, aoData@ha /* 0x80431490@ha */
+/* 8028D9CC  38 A3 14 90 */	addi r5, r3, aoData@l /* 0x80431490@l */
 /* 8028D9D0  90 05 00 00 */	stw r0, 0(r5)
 /* 8028D9D4  C0 02 BB 10 */	lfs f0, lit_1470(r2)
 /* 8028D9D8  D0 05 00 04 */	stfs f0, 4(r5)
@@ -19,19 +19,19 @@ lbl_8028D9A4:
 /* 8028D9E8  38 00 00 02 */	li r0, 2
 /* 8028D9EC  90 05 00 10 */	stw r0, 0x10(r5)
 /* 8028D9F0  D0 05 00 14 */	stfs f0, 0x14(r5)
-/* 8028D9F4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8028D9F8  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)
+/* 8028D9F4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8028D9F8  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8028D9FC  38 00 FF FF */	li r0, -1
 /* 8028DA00  90 05 00 18 */	stw r0, 0x18(r5)
 /* 8028DA04  D0 05 00 1C */	stfs f0, 0x1c(r5)
 /* 8028DA08  98 8D 8C 78 */	stb r4, data_804511F8(r13)
 lbl_8028DA0C:
 /* 8028DA0C  7F E3 FB 78 */	mr r3, r31
-/* 8028DA10  3C 80 80 43 */	lis r4, aoData@ha
-/* 8028DA14  38 84 14 90 */	addi r4, r4, aoData@l
+/* 8028DA10  3C 80 80 43 */	lis r4, aoData@ha /* 0x80431490@ha */
+/* 8028DA14  38 84 14 90 */	addi r4, r4, aoData@l /* 0x80431490@l */
 /* 8028DA18  4B FF 87 A9 */	bl adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
-/* 8028DA1C  3C 60 80 43 */	lis r3, saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound@ha
-/* 8028DA20  38 03 14 F8 */	addi r0, r3, saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound@l
+/* 8028DA1C  3C 60 80 43 */	lis r3, saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound@ha /* 0x804314F8@ha */
+/* 8028DA20  38 03 14 F8 */	addi r0, r3, saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound@l /* 0x804314F8@l */
 /* 8028DA24  7C 04 03 78 */	mr r4, r0
 /* 8028DA28  48 00 00 2C */	b lbl_8028DA54
 lbl_8028DA2C:

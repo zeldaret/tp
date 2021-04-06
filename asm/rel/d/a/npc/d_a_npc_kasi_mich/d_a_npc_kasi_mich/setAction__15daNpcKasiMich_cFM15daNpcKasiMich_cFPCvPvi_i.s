@@ -9,13 +9,13 @@ lbl_80A27A84:
 /* 80A27AA0  38 00 FF FF */	li r0, -1
 /* 80A27AA4  B0 03 14 04 */	sth r0, 0x1404(r3)
 /* 80A27AA8  38 7E 14 08 */	addi r3, r30, 0x1408
-/* 80A27AAC  4B 93 A5 6C */	b __ptmf_test
+/* 80A27AAC  4B 93 A5 6D */	bl __ptmf_test
 /* 80A27AB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A27AB4  41 82 00 18 */	beq lbl_80A27ACC
 /* 80A27AB8  7F C3 F3 78 */	mr r3, r30
 /* 80A27ABC  38 80 00 00 */	li r4, 0
 /* 80A27AC0  39 9E 14 08 */	addi r12, r30, 0x1408
-/* 80A27AC4  4B 93 A5 C0 */	b __ptmf_scall
+/* 80A27AC4  4B 93 A5 C1 */	bl __ptmf_scall
 /* 80A27AC8  60 00 00 00 */	nop 
 lbl_80A27ACC:
 /* 80A27ACC  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A27ACC:
 /* 80A27AE4  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A27AE8  90 1E 14 10 */	stw r0, 0x1410(r30)
 /* 80A27AEC  38 7E 14 08 */	addi r3, r30, 0x1408
-/* 80A27AF0  4B 93 A5 28 */	b __ptmf_test
+/* 80A27AF0  4B 93 A5 29 */	bl __ptmf_test
 /* 80A27AF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A27AF8  41 82 00 18 */	beq lbl_80A27B10
 /* 80A27AFC  7F C3 F3 78 */	mr r3, r30
 /* 80A27B00  38 80 00 00 */	li r4, 0
 /* 80A27B04  39 9E 14 08 */	addi r12, r30, 0x1408
-/* 80A27B08  4B 93 A5 7C */	b __ptmf_scall
+/* 80A27B08  4B 93 A5 7D */	bl __ptmf_scall
 /* 80A27B0C  60 00 00 00 */	nop 
 lbl_80A27B10:
 /* 80A27B10  38 60 00 01 */	li r3, 1

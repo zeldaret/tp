@@ -10,9 +10,9 @@ lbl_8081727C:
 /* 8081729C  41 82 00 48 */	beq lbl_808172E4
 /* 808172A0  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 808172A4  38 63 00 0C */	addi r3, r3, 0xc
-/* 808172A8  3C 80 80 82 */	lis r4, lit_3910@ha
-/* 808172AC  C0 24 18 C4 */	lfs f1, lit_3910@l(r4)
-/* 808172B0  4B B1 11 7C */	b checkPass__12J3DFrameCtrlFf
+/* 808172A8  3C 80 80 82 */	lis r4, lit_3910@ha /* 0x808218C4@ha */
+/* 808172AC  C0 24 18 C4 */	lfs f1, lit_3910@l(r4)  /* 0x808218C4@l */
+/* 808172B0  4B B1 11 7D */	bl checkPass__12J3DFrameCtrlFf
 /* 808172B4  2C 03 00 00 */	cmpwi r3, 0
 /* 808172B8  41 82 00 2C */	beq lbl_808172E4
 /* 808172BC  3C 60 00 07 */	lis r3, 0x0007 /* 0x000702BB@ha */

@@ -2,8 +2,8 @@ lbl_80024078:
 /* 80024078  28 04 00 00 */	cmplwi r4, 0
 /* 8002407C  4D 82 00 20 */	beqlr 
 /* 80024080  80 C4 00 00 */	lwz r6, 0(r4)
-/* 80024084  3C A0 80 3F */	lis r5, l_RoomKeepDoorInfo@ha
-/* 80024088  84 E5 57 84 */	lwzu r7, l_RoomKeepDoorInfo@l(r5)
+/* 80024084  3C A0 80 3F */	lis r5, l_RoomKeepDoorInfo@ha /* 0x803F5784@ha */
+/* 80024088  84 E5 57 84 */	lwzu r7, l_RoomKeepDoorInfo@l(r5)  /* 0x803F5784@l */
 /* 8002408C  7C 06 3A 14 */	add r0, r6, r7
 /* 80024090  2C 00 00 40 */	cmpwi r0, 0x40
 /* 80024094  4C 80 00 20 */	bgelr 
@@ -60,8 +60,8 @@ lbl_80024154:
 /* 80024154  80 04 00 00 */	lwz r0, 0(r4)
 /* 80024158  7C 09 00 00 */	cmpw r9, r0
 /* 8002415C  41 80 FF 68 */	blt lbl_800240C4
-/* 80024160  3C 60 80 3F */	lis r3, l_RoomKeepDoorInfo@ha
-/* 80024164  84 03 57 84 */	lwzu r0, l_RoomKeepDoorInfo@l(r3)
+/* 80024160  3C 60 80 3F */	lis r3, l_RoomKeepDoorInfo@ha /* 0x803F5784@ha */
+/* 80024164  84 03 57 84 */	lwzu r0, l_RoomKeepDoorInfo@l(r3)  /* 0x803F5784@l */
 /* 80024168  7C 00 42 14 */	add r0, r0, r8
 /* 8002416C  90 03 00 00 */	stw r0, 0(r3)
 /* 80024170  4E 80 00 20 */	blr 

@@ -16,8 +16,8 @@ lbl_8011C9FC:
 /* 8011CA04  4B F9 05 7D */	bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011CA08  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8011CA0C  D0 1F 33 98 */	stfs f0, 0x3398(r31)
-/* 8011CA10  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011CA14  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011CA10  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011CA14  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011CA18  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011CA1C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011CA20  D0 1F 35 8C */	stfs f0, 0x358c(r31)

@@ -5,10 +5,10 @@ lbl_80474618:
 /* 80474624  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80474628  93 C1 00 08 */	stw r30, 8(r1)
 /* 8047462C  7C 7E 1B 78 */	mr r30, r3
-/* 80474630  3C 60 80 48 */	lis r3, l_cyl_info@ha
-/* 80474634  3B E3 99 0C */	addi r31, r3, l_cyl_info@l
+/* 80474630  3C 60 80 48 */	lis r3, l_cyl_info@ha /* 0x8047990C@ha */
+/* 80474634  3B E3 99 0C */	addi r31, r3, l_cyl_info@l /* 0x8047990C@l */
 /* 80474638  38 7E 05 74 */	addi r3, r30, 0x574
-/* 8047463C  4B C0 2D 68 */	b ClrMoveBGOnly__9dBgS_AcchFv
+/* 8047463C  4B C0 2D 69 */	bl ClrMoveBGOnly__9dBgS_AcchFv
 /* 80474640  80 1E 05 A0 */	lwz r0, 0x5a0(r30)
 /* 80474644  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 80474648  90 1E 05 A0 */	stw r0, 0x5a0(r30)
@@ -66,7 +66,7 @@ lbl_804746EC:
 /* 80474704  2C 00 00 03 */	cmpwi r0, 3
 /* 80474708  40 82 00 0C */	bne lbl_80474714
 /* 8047470C  38 7E 05 88 */	addi r3, r30, 0x588
-/* 80474710  4B C0 48 90 */	b ClrIronBall__16dBgS_PolyPassChkFv
+/* 80474710  4B C0 48 91 */	bl ClrIronBall__16dBgS_PolyPassChkFv
 lbl_80474714:
 /* 80474714  38 00 00 04 */	li r0, 4
 /* 80474718  98 1E 0C F1 */	stb r0, 0xcf1(r30)

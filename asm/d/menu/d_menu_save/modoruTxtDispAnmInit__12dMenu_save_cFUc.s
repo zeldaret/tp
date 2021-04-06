@@ -24,8 +24,8 @@ lbl_801F60E4:
 /* 801F60F4  B0 03 00 16 */	sth r0, 0x16(r3)
 /* 801F60F8  4E 80 00 20 */	blr 
 lbl_801F60FC:
-/* 801F60FC  3C 80 80 43 */	lis r4, g_msHIO@ha
-/* 801F6100  38 A4 E8 4C */	addi r5, r4, g_msHIO@l
+/* 801F60FC  3C 80 80 43 */	lis r4, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F6100  38 A4 E8 4C */	addi r5, r4, g_msHIO@l /* 0x8042E84C@l */
 /* 801F6104  88 05 00 08 */	lbz r0, 8(r5)
 /* 801F6108  80 83 01 A0 */	lwz r4, 0x1a0(r3)
 /* 801F610C  B0 04 00 16 */	sth r0, 0x16(r4)

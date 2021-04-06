@@ -6,8 +6,8 @@ lbl_8029631C:
 /* 8029632C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80296330  7C 7E 1B 78 */	mr r30, r3
 /* 80296334  7C 9F 23 78 */	mr r31, r4
-/* 80296338  3C 60 80 29 */	lis r3, dvdErrorCheck__13JASAramStreamFPv@ha
-/* 8029633C  38 63 6D 94 */	addi r3, r3, dvdErrorCheck__13JASAramStreamFPv@l
+/* 80296338  3C 60 80 29 */	lis r3, dvdErrorCheck__13JASAramStreamFPv@ha /* 0x80296D94@ha */
+/* 8029633C  38 63 6D 94 */	addi r3, r3, dvdErrorCheck__13JASAramStreamFPv@l /* 0x80296D94@l */
 /* 80296340  38 80 00 00 */	li r4, 0
 /* 80296344  48 00 7F 31 */	bl registerSubFrameCallback__9JASDriverFPFPv_lPv
 /* 80296348  54 60 06 3F */	clrlwi. r0, r3, 0x18

@@ -24,33 +24,33 @@ lbl_8024CAE0:
 /* 8024CAE8  48 00 00 54 */	b lbl_8024CB3C
 lbl_8024CAEC:
 /* 8024CAEC  38 00 00 01 */	li r0, 1
-/* 8024CAF0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8024CAF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8024CAF0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8024CAF4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8024CAF8  98 03 00 E3 */	stb r0, 0xe3(r3)
-/* 8024CAFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024CB00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024CAFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CB00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CB04  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB08  38 80 00 00 */	li r4, 0
 /* 8024CB0C  4B DE 78 5D */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8024CB10  48 00 00 5C */	b lbl_8024CB6C
 lbl_8024CB14:
 /* 8024CB14  38 00 00 01 */	li r0, 1
-/* 8024CB18  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8024CB1C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8024CB18  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8024CB1C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8024CB20  98 03 00 E4 */	stb r0, 0xe4(r3)
-/* 8024CB24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024CB28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024CB24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CB28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CB2C  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB30  38 80 00 01 */	li r4, 1
 /* 8024CB34  4B DE 78 35 */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8024CB38  48 00 00 34 */	b lbl_8024CB6C
 lbl_8024CB3C:
 /* 8024CB3C  38 00 00 01 */	li r0, 1
-/* 8024CB40  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8024CB44  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8024CB40  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8024CB44  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8024CB48  98 03 00 E5 */	stb r0, 0xe5(r3)
-/* 8024CB4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024CB50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024CB4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CB50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CB54  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB58  38 80 00 02 */	li r4, 2
 /* 8024CB5C  4B DE 78 0D */	bl onLightDropGetFlag__16dSv_light_drop_cFUc

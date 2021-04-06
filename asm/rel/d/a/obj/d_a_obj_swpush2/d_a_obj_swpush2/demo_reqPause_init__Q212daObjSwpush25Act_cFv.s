@@ -12,7 +12,7 @@ lbl_80CFF25C:
 /* 80CFF284  38 80 00 02 */	li r4, 2
 /* 80CFF288  38 A0 00 00 */	li r5, 0
 /* 80CFF28C  38 C0 00 00 */	li r6, 0
-/* 80CFF290  4B 31 C6 78 */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 80CFF290  4B 31 C6 79 */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 80CFF294  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CFF298  60 00 00 02 */	ori r0, r0, 2
 /* 80CFF29C  B0 1F 00 FA */	sth r0, 0xfa(r31)

@@ -49,9 +49,6 @@ extern "C" void calcMinMax__8cM3dGCylFP4cXyzP4cXyz();
 // External References:
 //
 
-void cM3d_Cross_CylSph(cM3dGCyl const*, cM3dGSph const*, Vec*, f32*);
-void cM3d_Cross_CylCyl(cM3dGCyl const*, cM3dGCyl const*, Vec*);
-
 extern "C" void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf();
 extern "C" void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec();
 extern "C" extern void* __vt__8cM3dGCyl[3];
@@ -60,12 +57,7 @@ extern "C" extern void* __vt__8cM3dGCyl[3];
 // Declarations:
 //
 
-/* 8026F0A8-8026F114 006C+00 s=0 e=1 z=0  None .text      __ct__8cM3dGCylFPC4cXyzff */
-//	8026F0CC: 803A720C (__vt__8cM3dGCyl)
-//	8026F0D0: 803A720C (__vt__8cM3dGCyl)
-//	8026F0D8: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	8026F0E4: 8026F200 (SetR__8cM3dGCylFf)
-//	8026F0F0: 8026F1F8 (SetH__8cM3dGCylFf)
+/* 8026F0A8-8026F114 2699E8 006C+00 0/0 1/1 0/0 .text            __ct__8cM3dGCylFPC4cXyzff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,10 +67,7 @@ asm cM3dGCyl::cM3dGCyl(cXyz const* param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8026F114-8026F180 006C+00 s=0 e=1 z=4  None .text      Set__8cM3dGCylFRC9cM3dGCylS */
-//	8026F14C: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	8026F158: 8026F200 (SetR__8cM3dGCylFf)
-//	8026F164: 8026F1F8 (SetH__8cM3dGCylFf)
+/* 8026F114-8026F180 269A54 006C+00 0/0 1/1 4/4 .text            Set__8cM3dGCylFRC9cM3dGCylS */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,10 +77,7 @@ asm void cM3dGCyl::Set(cM3dGCylS const& param_0) {
 }
 #pragma pop
 
-/* 8026F180-8026F1DC 005C+00 s=0 e=2 z=1  None .text      Set__8cM3dGCylFRC4cXyzff */
-//	8026F1A4: 8026F1DC (SetC__8cM3dGCylFRC4cXyz)
-//	8026F1B0: 8026F200 (SetR__8cM3dGCylFf)
-//	8026F1BC: 8026F1F8 (SetH__8cM3dGCylFf)
+/* 8026F180-8026F1DC 269AC0 005C+00 0/0 2/2 1/1 .text            Set__8cM3dGCylFRC4cXyzff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -101,7 +87,7 @@ asm void cM3dGCyl::Set(cXyz const& param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8026F1DC-8026F1F8 001C+00 s=3 e=13 z=257  None .text      SetC__8cM3dGCylFRC4cXyz */
+/* 8026F1DC-8026F1F8 269B1C 001C+00 3/3 13/13 257/257 .text            SetC__8cM3dGCylFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -111,7 +97,7 @@ asm void cM3dGCyl::SetC(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 8026F1F8-8026F200 0008+00 s=3 e=11 z=197  None .text      SetH__8cM3dGCylFf */
+/* 8026F1F8-8026F200 269B38 0008+00 3/3 11/11 197/197 .text            SetH__8cM3dGCylFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -121,7 +107,7 @@ asm void cM3dGCyl::SetH(f32 param_0) {
 }
 #pragma pop
 
-/* 8026F200-8026F208 0008+00 s=3 e=6 z=204  None .text      SetR__8cM3dGCylFf */
+/* 8026F200-8026F208 269B40 0008+00 3/3 6/6 204/204 .text            SetR__8cM3dGCylFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,8 +117,8 @@ asm void cM3dGCyl::SetR(f32 param_0) {
 }
 #pragma pop
 
-/* 8026F208-8026F22C 0024+00 s=0 e=1 z=0  None .text      cross__8cM3dGCylCFPC8cM3dGSphP4cXyz */
-//	8026F218: 8026BA48 (cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf)
+/* 8026F208-8026F22C 269B48 0024+00 0/0 1/1 0/0 .text            cross__8cM3dGCylCFPC8cM3dGSphP4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -142,8 +128,8 @@ asm void cM3dGCyl::cross(cM3dGSph const* param_0, cXyz* param_1) const {
 }
 #pragma pop
 
-/* 8026F22C-8026F24C 0020+00 s=0 e=1 z=0  None .text      cross__8cM3dGCylCFPC8cM3dGCylP4cXyz */
-//	8026F238: 8026C3B4 (cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec)
+/* 8026F22C-8026F24C 269B6C 0020+00 0/0 1/1 0/0 .text            cross__8cM3dGCylCFPC8cM3dGCylP4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -153,7 +139,8 @@ asm void cM3dGCyl::cross(cM3dGCyl const* param_0, cXyz* param_1) const {
 }
 #pragma pop
 
-/* 8026F24C-8026F2A8 005C+00 s=0 e=2 z=0  None .text      calcMinMax__8cM3dGCylFP4cXyzP4cXyz */
+/* 8026F24C-8026F2A8 269B8C 005C+00 0/0 2/2 0/0 .text            calcMinMax__8cM3dGCylFP4cXyzP4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

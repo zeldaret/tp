@@ -5,25 +5,25 @@ lbl_805B92F8:
 /* 805B9304  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805B9308  7C 7F 1B 78 */	mr r31, r3
 /* 805B930C  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 805B9310  3C 80 80 5C */	lis r4, stringBase0@ha
-/* 805B9314  38 84 A8 6C */	addi r4, r4, stringBase0@l
-/* 805B9318  4B A7 3C F0 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 805B9310  3C 80 80 5C */	lis r4, d_a_b_bq__stringBase0@ha /* 0x805BA86C@ha */
+/* 805B9314  38 84 A8 6C */	addi r4, r4, d_a_b_bq__stringBase0@l /* 0x805BA86C@l */
+/* 805B9318  4B A7 3C F1 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 805B931C  88 1F 13 9C */	lbz r0, 0x139c(r31)
 /* 805B9320  28 00 00 00 */	cmplwi r0, 0
 /* 805B9324  41 82 00 10 */	beq lbl_805B9334
 /* 805B9328  38 00 00 00 */	li r0, 0
-/* 805B932C  3C 60 80 5C */	lis r3, data_805BAD50@ha
-/* 805B9330  98 03 AD 50 */	stb r0, data_805BAD50@l(r3)
+/* 805B932C  3C 60 80 5C */	lis r3, data_805BAD50@ha /* 0x805BAD50@ha */
+/* 805B9330  98 03 AD 50 */	stb r0, data_805BAD50@l(r3)  /* 0x805BAD50@l */
 lbl_805B9334:
 /* 805B9334  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 805B9338  28 00 00 00 */	cmplwi r0, 0
 /* 805B933C  41 82 00 1C */	beq lbl_805B9358
 /* 805B9340  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
-/* 805B9344  4B A5 7F CC */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 805B9344  4B A5 7F CD */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 805B9348  38 7F 06 84 */	addi r3, r31, 0x684
-/* 805B934C  4B D0 4C AC */	b deleteObject__14Z2SoundObjBaseFv
+/* 805B934C  4B D0 4C AD */	bl deleteObject__14Z2SoundObjBaseFv
 /* 805B9350  38 7F 06 A4 */	addi r3, r31, 0x6a4
-/* 805B9354  4B D0 4C A4 */	b deleteObject__14Z2SoundObjBaseFv
+/* 805B9354  4B D0 4C A5 */	bl deleteObject__14Z2SoundObjBaseFv
 lbl_805B9358:
 /* 805B9358  38 60 00 01 */	li r3, 1
 /* 805B935C  83 E1 00 0C */	lwz r31, 0xc(r1)

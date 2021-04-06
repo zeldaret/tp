@@ -15,8 +15,8 @@ lbl_8031DFB4:
 /* 8031DFE8  3B E0 00 00 */	li r31, 0
 /* 8031DFEC  3B C0 00 00 */	li r30, 0
 /* 8031DFF0  3B 80 00 00 */	li r28, 0
-/* 8031DFF4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8031DFF8  3B 63 4A C8 */	addi r27, r3, j3dSys@l
+/* 8031DFF4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8031DFF8  3B 63 4A C8 */	addi r27, r3, j3dSys@l /* 0x80434AC8@l */
 lbl_8031DFFC:
 /* 8031DFFC  3B 3C 00 08 */	addi r25, r28, 8
 /* 8031E000  7F 3D CA 14 */	add r25, r29, r25

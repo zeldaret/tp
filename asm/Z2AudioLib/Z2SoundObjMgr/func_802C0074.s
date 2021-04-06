@@ -9,8 +9,8 @@ lbl_802C0074:
 /* 802C0090  7C BD 2B 78 */	mr r29, r5
 /* 802C0094  41 82 00 50 */	beq lbl_802C00E4
 /* 802C0098  3B C0 00 00 */	li r30, 0
-/* 802C009C  3C 60 80 3D */	lis r3, mEnemyInfo@ha
-/* 802C00A0  3B E3 AD 70 */	addi r31, r3, mEnemyInfo@l
+/* 802C009C  3C 60 80 3D */	lis r3, mEnemyInfo@ha /* 0x803CAD70@ha */
+/* 802C00A0  3B E3 AD 70 */	addi r31, r3, mEnemyInfo@l /* 0x803CAD70@l */
 /* 802C00A4  48 00 00 34 */	b lbl_802C00D8
 lbl_802C00A8:
 /* 802C00A8  7F 83 E3 78 */	mr r3, r28

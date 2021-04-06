@@ -19,7 +19,7 @@ lbl_80B7FD10:
 /* 80B7FD54  2C 03 00 00 */	cmpwi r3, 0
 /* 80B7FD58  41 82 00 34 */	beq lbl_80B7FD8C
 /* 80B7FD5C  38 7F 0C 18 */	addi r3, r31, 0xc18
-/* 80B7FD60  4B 5D 0E 5C */	b reverse__13daNpcF_Path_cFv
+/* 80B7FD60  4B 5D 0E 5D */	bl reverse__13daNpcF_Path_cFv
 /* 80B7FD64  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80B7FD68  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80B7FD6C  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
@@ -33,10 +33,10 @@ lbl_80B7FD10:
 lbl_80B7FD8C:
 /* 80B7FD8C  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 80B7FD90  38 81 00 20 */	addi r4, r1, 0x20
-/* 80B7FD94  4B 6F 0E 70 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80B7FD94  4B 6F 0E 71 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80B7FD98  7C 64 1B 78 */	mr r4, r3
-/* 80B7FD9C  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha
-/* 80B7FDA0  38 C3 C4 58 */	addi r6, r3, m__17daNpc_zrA_Param_c@l
+/* 80B7FD9C  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha /* 0x80B8C458@ha */
+/* 80B7FDA0  38 C3 C4 58 */	addi r6, r3, m__17daNpc_zrA_Param_c@l /* 0x80B8C458@l */
 /* 80B7FDA4  C0 26 00 94 */	lfs f1, 0x94(r6)
 /* 80B7FDA8  D0 3F 05 2C */	stfs f1, 0x52c(r31)
 /* 80B7FDAC  C0 06 00 9C */	lfs f0, 0x9c(r6)
@@ -46,7 +46,7 @@ lbl_80B7FD8C:
 /* 80B7FDBC  38 7F 04 DE */	addi r3, r31, 0x4de
 /* 80B7FDC0  A8 A6 00 9A */	lha r5, 0x9a(r6)
 /* 80B7FDC4  A8 C6 00 98 */	lha r6, 0x98(r6)
-/* 80B7FDC8  4B 6F 08 40 */	b cLib_addCalcAngleS2__FPssss
+/* 80B7FDC8  4B 6F 08 41 */	bl cLib_addCalcAngleS2__FPssss
 /* 80B7FDCC  A8 1F 04 DC */	lha r0, 0x4dc(r31)
 /* 80B7FDD0  B0 1F 08 F0 */	sth r0, 0x8f0(r31)
 /* 80B7FDD4  A8 1F 04 DE */	lha r0, 0x4de(r31)

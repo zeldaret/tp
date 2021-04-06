@@ -7,13 +7,13 @@ lbl_80267C1C:
 /* 80267C30  4B FF FF 1D */	bl __ct__8cBgS_ChkFv
 /* 80267C34  38 7F 00 14 */	addi r3, r31, 0x14
 /* 80267C38  48 00 04 3D */	bl __ct__13cBgS_PolyInfoFv
-/* 80267C3C  3C 60 80 3C */	lis r3, __vt__11cBgS_GndChk@ha
-/* 80267C40  38 63 3F 90 */	addi r3, r3, __vt__11cBgS_GndChk@l
+/* 80267C3C  3C 60 80 3C */	lis r3, __vt__11cBgS_GndChk@ha /* 0x803C3F90@ha */
+/* 80267C40  38 63 3F 90 */	addi r3, r3, __vt__11cBgS_GndChk@l /* 0x803C3F90@l */
 /* 80267C44  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80267C48  38 03 00 0C */	addi r0, r3, 0xc
 /* 80267C4C  90 1F 00 20 */	stw r0, 0x20(r31)
-/* 80267C50  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80267C54  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80267C50  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80267C54  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80267C58  D0 1F 00 24 */	stfs f0, 0x24(r31)
 /* 80267C5C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80267C60  D0 1F 00 28 */	stfs f0, 0x28(r31)

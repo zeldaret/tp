@@ -5,8 +5,8 @@ lbl_80015590:
 /* 8001559C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800155A0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800155A4  41 82 00 1C */	beq lbl_800155C0
-/* 800155A8  3C A0 80 3A */	lis r5, __vt__11J3DUClipper@ha
-/* 800155AC  38 05 34 98 */	addi r0, r5, __vt__11J3DUClipper@l
+/* 800155A8  3C A0 80 3A */	lis r5, __vt__11J3DUClipper@ha /* 0x803A3498@ha */
+/* 800155AC  38 05 34 98 */	addi r0, r5, __vt__11J3DUClipper@l /* 0x803A3498@l */
 /* 800155B0  90 1F 00 00 */	stw r0, 0(r31)
 /* 800155B4  7C 80 07 35 */	extsh. r0, r4
 /* 800155B8  40 81 00 08 */	ble lbl_800155C0

@@ -128,8 +128,8 @@ lbl_8019ACF8:
 /* 8019AEF0  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8019AEF4  38 80 00 01 */	li r4, 1
 /* 8019AEF8  48 1C 51 DD */	bl GXSetProjection
-/* 8019AEFC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8019AF00  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 8019AEFC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8019AF00  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8019AF04  38 80 00 00 */	li r4, 0
 /* 8019AF08  48 1C 53 45 */	bl GXLoadPosMtxImm
 /* 8019AF0C  38 60 00 00 */	li r3, 0
@@ -159,7 +159,7 @@ lbl_8019ACF8:
 /* 8019AF6C  48 1C 17 F9 */	bl GXBegin
 /* 8019AF70  38 A0 00 00 */	li r5, 0
 /* 8019AF74  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 8019AF78  98 A4 80 00 */	stb r5, 0x8000(r4)
+/* 8019AF78  98 A4 80 00 */	stb r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 8019AF7C  98 A4 80 00 */	stb r5, -0x8000(r4)
 /* 8019AF80  38 60 FF FB */	li r3, -5
 /* 8019AF84  98 64 80 00 */	stb r3, -0x8000(r4)

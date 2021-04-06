@@ -42,223 +42,221 @@ extern "C" void PPCSetFpNonIEEEMode();
 // Declarations:
 //
 
-/* 80339CC0-80339CC8 0008+00 s=0 e=5 z=0  None .text      PPCMfmsr */
+/* 80339CC0-80339CC8 334600 0008+00 0/0 5/5 0/0 .text            PPCMfmsr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMfmsr() {
+asm void PPCMfmsr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMfmsr.s"
 }
 #pragma pop
 
-/* 80339CC8-80339CD0 0008+00 s=0 e=4 z=0  None .text      PPCMtmsr */
+/* 80339CC8-80339CD0 334608 0008+00 0/0 4/4 0/0 .text            PPCMtmsr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtmsr() {
+asm void PPCMtmsr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtmsr.s"
 }
 #pragma pop
 
-/* 80339CD0-80339CD8 0008+00 s=1 e=1 z=0  None .text      PPCMfhid0 */
+/* 80339CD0-80339CD8 334610 0008+00 1/1 1/1 0/0 .text            PPCMfhid0 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMfhid0() {
+asm void PPCMfhid0() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMfhid0.s"
 }
 #pragma pop
 
-/* 80339CD8-80339CE0 0008+00 s=1 e=0 z=0  None .text      PPCMthid0 */
+/* 80339CD8-80339CE0 334618 0008+00 1/1 0/0 0/0 .text            PPCMthid0 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PPCMthid0() {
+static asm void PPCMthid0() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMthid0.s"
 }
 #pragma pop
 
-/* 80339CE0-80339CE8 0008+00 s=0 e=2 z=0  None .text      PPCMfl2cr */
+/* 80339CE0-80339CE8 334620 0008+00 0/0 2/2 0/0 .text            PPCMfl2cr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMfl2cr() {
+asm void PPCMfl2cr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMfl2cr.s"
 }
 #pragma pop
 
-/* 80339CE8-80339CF0 0008+00 s=0 e=2 z=0  None .text      PPCMtl2cr */
+/* 80339CE8-80339CF0 334628 0008+00 0/0 2/2 0/0 .text            PPCMtl2cr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtl2cr() {
+asm void PPCMtl2cr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtl2cr.s"
 }
 #pragma pop
 
-/* 80339CF0-80339CF8 0008+00 s=0 e=3 z=0  None .text      PPCMtdec */
+/* 80339CF0-80339CF8 334630 0008+00 0/0 3/3 0/0 .text            PPCMtdec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtdec() {
+asm void PPCMtdec() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtdec.s"
 }
 #pragma pop
 
-/* 80339CF8-80339D00 0008+00 s=0 e=9 z=0  None .text      PPCSync */
+/* 80339CF8-80339D00 334638 0008+00 0/0 9/9 0/0 .text            PPCSync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCSync() {
+asm void PPCSync() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCSync.s"
 }
 #pragma pop
 
-/* 80339D00-80339D14 0014+00 s=0 e=7 z=0  None .text      PPCHalt */
+/* 80339D00-80339D14 334640 0014+00 0/0 7/7 0/0 .text            PPCHalt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCHalt() {
+asm void PPCHalt() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCHalt.s"
 }
 #pragma pop
 
-/* 80339D14-80339D1C 0008+00 s=0 e=1 z=0  None .text      PPCMtmmcr0 */
+/* 80339D14-80339D1C 334654 0008+00 0/0 1/1 0/0 .text            PPCMtmmcr0 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtmmcr0() {
+asm void PPCMtmmcr0() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtmmcr0.s"
 }
 #pragma pop
 
-/* 80339D1C-80339D24 0008+00 s=0 e=1 z=0  None .text      PPCMtmmcr1 */
+/* 80339D1C-80339D24 33465C 0008+00 0/0 1/1 0/0 .text            PPCMtmmcr1 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtmmcr1() {
+asm void PPCMtmmcr1() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtmmcr1.s"
 }
 #pragma pop
 
-/* 80339D24-80339D2C 0008+00 s=0 e=1 z=0  None .text      PPCMtpmc1 */
+/* 80339D24-80339D2C 334664 0008+00 0/0 1/1 0/0 .text            PPCMtpmc1 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtpmc1() {
+asm void PPCMtpmc1() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtpmc1.s"
 }
 #pragma pop
 
-/* 80339D2C-80339D34 0008+00 s=0 e=1 z=0  None .text      PPCMtpmc2 */
+/* 80339D2C-80339D34 33466C 0008+00 0/0 1/1 0/0 .text            PPCMtpmc2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtpmc2() {
+asm void PPCMtpmc2() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtpmc2.s"
 }
 #pragma pop
 
-/* 80339D34-80339D3C 0008+00 s=0 e=1 z=0  None .text      PPCMtpmc3 */
+/* 80339D34-80339D3C 334674 0008+00 0/0 1/1 0/0 .text            PPCMtpmc3 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtpmc3() {
+asm void PPCMtpmc3() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtpmc3.s"
 }
 #pragma pop
 
-/* 80339D3C-80339D44 0008+00 s=0 e=1 z=0  None .text      PPCMtpmc4 */
+/* 80339D3C-80339D44 33467C 0008+00 0/0 1/1 0/0 .text            PPCMtpmc4 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtpmc4() {
+asm void PPCMtpmc4() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtpmc4.s"
 }
 #pragma pop
 
-/* 80339D44-80339D64 0020+00 s=0 e=2 z=0  None .text      PPCMffpscr */
+/* 80339D44-80339D64 334684 0020+00 0/0 2/2 0/0 .text            PPCMffpscr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMffpscr() {
+asm void PPCMffpscr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMffpscr.s"
 }
 #pragma pop
 
-/* 80339D64-80339D8C 0028+00 s=0 e=2 z=0  None .text      PPCMtfpscr */
+/* 80339D64-80339D8C 3346A4 0028+00 0/0 2/2 0/0 .text            PPCMtfpscr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtfpscr() {
+asm void PPCMtfpscr() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtfpscr.s"
 }
 #pragma pop
 
-/* 80339D8C-80339D94 0008+00 s=0 e=4 z=1  None .text      PPCMfhid2 */
+/* 80339D8C-80339D94 3346CC 0008+00 0/0 4/4 1/1 .text            PPCMfhid2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMfhid2() {
+asm void PPCMfhid2() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMfhid2.s"
 }
 #pragma pop
 
-/* 80339D94-80339D9C 0008+00 s=0 e=4 z=0  None .text      PPCMthid2 */
+/* 80339D94-80339D9C 3346D4 0008+00 0/0 4/4 0/0 .text            PPCMthid2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMthid2() {
+asm void PPCMthid2() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMthid2.s"
 }
 #pragma pop
 
-/* 80339D9C-80339DA4 0008+00 s=0 e=1 z=0  None .text      PPCMtwpar */
+/* 80339D9C-80339DA4 3346DC 0008+00 0/0 1/1 0/0 .text            PPCMtwpar */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCMtwpar() {
+asm void PPCMtwpar() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCMtwpar.s"
 }
 #pragma pop
 
-/* 80339DA4-80339DCC 0028+00 s=0 e=1 z=0  None .text      PPCDisableSpeculation */
-//	80339DB0: 80339CD0 (PPCMfhid0)
-//	80339DB8: 80339CD8 (PPCMthid0)
+/* 80339DA4-80339DCC 3346E4 0028+00 0/0 1/1 0/0 .text            PPCDisableSpeculation */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCDisableSpeculation() {
+asm void PPCDisableSpeculation() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCDisableSpeculation.s"
 }
 #pragma pop
 
-/* 80339DCC-80339DD4 0008+00 s=0 e=1 z=0  None .text      PPCSetFpNonIEEEMode */
+/* 80339DCC-80339DD4 33470C 0008+00 0/0 1/1 0/0 .text            PPCSetFpNonIEEEMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PPCSetFpNonIEEEMode() {
+asm void PPCSetFpNonIEEEMode() {
     nofralloc
 #include "asm/dolphin/base/PPCArch/PPCSetFpNonIEEEMode.s"
 }

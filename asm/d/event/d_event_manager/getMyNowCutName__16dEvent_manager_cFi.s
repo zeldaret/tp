@@ -1,6 +1,6 @@
 lbl_80047F5C:
-/* 80047F5C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80047F60  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80047F5C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80047F60  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80047F64  88 05 4F AC */	lbz r0, 0x4fac(r5)
 /* 80047F68  28 00 00 00 */	cmplwi r0, 0
 /* 80047F6C  40 82 00 0C */	bne lbl_80047F78

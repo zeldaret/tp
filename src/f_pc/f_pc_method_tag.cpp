@@ -21,11 +21,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fpcMtdTg_Do(process_method_tag_class*);
-void fpcMtdTg_ToMethodQ(node_list_class*, process_method_tag_class*);
-void fpcMtdTg_MethodQTo(process_method_tag_class*);
-void fpcMtdTg_Init(process_method_tag_class*, int (*)(void*), void*);
-
 extern "C" void fpcMtdTg_Do__FP24process_method_tag_class();
 extern "C" void fpcMtdTg_ToMethodQ__FP15node_list_classP24process_method_tag_class();
 extern "C" void fpcMtdTg_MethodQTo__FP24process_method_tag_class();
@@ -34,10 +29,6 @@ extern "C" void fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv();
 //
 // External References:
 //
-
-void cTg_SingleCut(create_tag_class*);
-void cTg_Addition(node_list_class*, create_tag_class*);
-void cTg_Create(create_tag_class*, void*);
 
 extern "C" void cTg_SingleCut__FP16create_tag_class();
 extern "C" void cTg_Addition__FP15node_list_classP16create_tag_class();
@@ -49,8 +40,7 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 80023788-800237B8 0030+00 s=0 e=1 z=0  None .text      fpcMtdTg_Do__FP24process_method_tag_class
- */
+/* 80023788-800237B8 01E0C8 0030+00 0/0 1/1 0/0 .text fpcMtdTg_Do__FP24process_method_tag_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -60,9 +50,8 @@ asm void fpcMtdTg_Do(process_method_tag_class* param_0) {
 }
 #pragma pop
 
-/* 800237B8-800237D8 0020+00 s=0 e=1 z=0  None .text
+/* 800237B8-800237D8 01E0F8 0020+00 0/0 1/1 0/0 .text
  * fpcMtdTg_ToMethodQ__FP15node_list_classP24process_method_tag_class */
-//	800237C4: 802669E4 (cTg_Addition__FP15node_list_classP16create_tag_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,9 +61,8 @@ asm void fpcMtdTg_ToMethodQ(node_list_class* param_0, process_method_tag_class* 
 }
 #pragma pop
 
-/* 800237D8-800237F8 0020+00 s=0 e=1 z=0  None .text
+/* 800237D8-800237F8 01E118 0020+00 0/0 1/1 0/0 .text
  * fpcMtdTg_MethodQTo__FP24process_method_tag_class             */
-//	800237E4: 802669A4 (cTg_SingleCut__FP16create_tag_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,11 +72,8 @@ asm void fpcMtdTg_MethodQTo(process_method_tag_class* param_0) {
 }
 #pragma pop
 
-/* 800237F8-80023844 004C+00 s=0 e=3 z=0  None .text
+/* 800237F8-80023844 01E138 004C+00 0/0 3/3 0/0 .text
  * fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv          */
-//	80023808: 803621DC (_savegpr_29)
-//	8002381C: 80266A34 (cTg_Create__FP16create_tag_classPv)
-//	80023830: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

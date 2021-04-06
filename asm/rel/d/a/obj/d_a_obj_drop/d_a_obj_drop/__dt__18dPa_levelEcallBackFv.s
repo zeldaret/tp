@@ -7,8 +7,8 @@ lbl_80BE1E6C:
 /* 80BE1E80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80BE1E84  7C 9F 23 78 */	mr r31, r4
 /* 80BE1E88  41 82 00 3C */	beq lbl_80BE1EC4
-/* 80BE1E8C  3C 80 80 BE */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 80BE1E90  38 04 21 B4 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 80BE1E8C  3C 80 80 BE */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x80BE21B4@ha */
+/* 80BE1E90  38 04 21 B4 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x80BE21B4@l */
 /* 80BE1E94  90 1E 00 00 */	stw r0, 0(r30)
 /* 80BE1E98  81 83 00 00 */	lwz r12, 0(r3)
 /* 80BE1E9C  81 8C 00 20 */	lwz r12, 0x20(r12)
@@ -16,11 +16,11 @@ lbl_80BE1E6C:
 /* 80BE1EA4  4E 80 04 21 */	bctrl 
 /* 80BE1EA8  7F C3 F3 78 */	mr r3, r30
 /* 80BE1EAC  38 80 00 00 */	li r4, 0
-/* 80BE1EB0  4B 69 C7 F4 */	b __dt__18JPAEmitterCallBackFv
+/* 80BE1EB0  4B 69 C7 F5 */	bl __dt__18JPAEmitterCallBackFv
 /* 80BE1EB4  7F E0 07 35 */	extsh. r0, r31
 /* 80BE1EB8  40 81 00 0C */	ble lbl_80BE1EC4
 /* 80BE1EBC  7F C3 F3 78 */	mr r3, r30
-/* 80BE1EC0  4B 6E CE 7C */	b __dl__FPv
+/* 80BE1EC0  4B 6E CE 7D */	bl __dl__FPv
 lbl_80BE1EC4:
 /* 80BE1EC4  7F C3 F3 78 */	mr r3, r30
 /* 80BE1EC8  83 E1 00 0C */	lwz r31, 0xc(r1)

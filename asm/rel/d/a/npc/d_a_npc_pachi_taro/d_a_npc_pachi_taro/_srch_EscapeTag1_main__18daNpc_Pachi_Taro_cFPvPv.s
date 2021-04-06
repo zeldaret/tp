@@ -4,7 +4,7 @@ lbl_80A9D3D0:
 /* 80A9D3D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A9D3DC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A9D3E0  7C 7F 1B 78 */	mr r31, r3
-/* 80A9D3E4  4B 57 B8 FC */	b fopAc_IsActor__FPv
+/* 80A9D3E4  4B 57 B8 FD */	bl fopAc_IsActor__FPv
 /* 80A9D3E8  2C 03 00 00 */	cmpwi r3, 0
 /* 80A9D3EC  40 82 00 0C */	bne lbl_80A9D3F8
 /* 80A9D3F0  38 60 00 00 */	li r3, 0

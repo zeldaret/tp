@@ -53,8 +53,8 @@ lbl_8028C14C:
 /* 8028C154  38 A1 00 08 */	addi r5, r1, 8
 lbl_8028C158:
 /* 8028C158  7F C3 F3 78 */	mr r3, r30
-/* 8028C15C  3C 80 80 3A */	lis r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha
-/* 8028C160  38 84 AA B4 */	addi r4, r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l
+/* 8028C15C  3C 80 80 3A */	lis r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha /* 0x8039AAB4@ha */
+/* 8028C160  38 84 AA B4 */	addi r4, r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l /* 0x8039AAB4@l */
 /* 8028C164  4B FF A0 A1 */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 lbl_8028C168:
 /* 8028C168  83 E1 00 5C */	lwz r31, 0x5c(r1)

@@ -1,6 +1,6 @@
 lbl_80D55520:
-/* 80D55520  3C 60 80 D5 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80D55524  38 83 59 74 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 80D55520  3C 60 80 D5 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80D55974@ha */
+/* 80D55524  38 83 59 74 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x80D55974@l */
 /* 80D55528  80 64 00 24 */	lwz r3, 0x24(r4)
 /* 80D5552C  80 04 00 28 */	lwz r0, 0x28(r4)
 /* 80D55530  90 64 01 5C */	stw r3, 0x15c(r4)

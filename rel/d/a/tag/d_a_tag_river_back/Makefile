@@ -3,18 +3,16 @@
 #
 
 M736_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back.plf
+M736_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back.lcf
+M736_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back.map
 
 M736_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_river_back/executor.cpp \
-	rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back.cpp \
 
 M736_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back.o \
 
@@ -31,15 +29,21 @@ M736_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map736.map\
+	-m _prolog \
+	-lcf $(M736_LDSCRIPT) \
+	-unused -map $(M736_MAP) \
+	-w off \
 
 $(M736_TARGET): $(M736_O_FILES) $(M736_LIBS)
+	@echo [736] creating $(M736_TARGET)
 	@echo $(M736_LIBS) $(M736_O_FILES) > build/M736_ofiles
-	$(LD) -opt_partial $(M736_LDFLAGS) -o $(M736_TARGET) @build/M736_ofiles
+	@python3 tools/lcf.py rel 736 --output $(M736_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M736_LDFLAGS) -o $(M736_TARGET) @build/M736_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_river_back/%.o: rel/d/a/tag/d_a_tag_river_back/%.cpp
+	@echo [736] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M736_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M736_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

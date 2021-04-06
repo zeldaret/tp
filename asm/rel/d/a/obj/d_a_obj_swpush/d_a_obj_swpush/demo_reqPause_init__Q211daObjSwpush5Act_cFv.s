@@ -12,7 +12,7 @@ lbl_80484580:
 /* 804845A8  38 80 00 02 */	li r4, 2
 /* 804845AC  38 A0 00 00 */	li r5, 0
 /* 804845B0  38 C0 00 00 */	li r6, 0
-/* 804845B4  4B B9 73 54 */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 804845B4  4B B9 73 55 */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 804845B8  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 804845BC  60 00 00 02 */	ori r0, r0, 2
 /* 804845C0  B0 1F 00 FA */	sth r0, 0xfa(r31)

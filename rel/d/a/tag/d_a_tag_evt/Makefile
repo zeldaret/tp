@@ -3,17 +3,15 @@
 #
 
 M31_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt.plf
+M31_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt.lcf
+M31_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt.map
 
 M31_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_evt/executor.cpp \
-	rel/d/a/tag/d_a_tag_evt/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_evt/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_evt/d_a_tag_evt.cpp \
 
 M31_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt.o \
 
 M31_LIBS := \
@@ -29,15 +27,21 @@ M31_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map31.map\
+	-m _prolog \
+	-lcf $(M31_LDSCRIPT) \
+	-unused -map $(M31_MAP) \
+	-w off \
 
 $(M31_TARGET): $(M31_O_FILES) $(M31_LIBS)
+	@echo [ 31] creating $(M31_TARGET)
 	@echo $(M31_LIBS) $(M31_O_FILES) > build/M31_ofiles
-	$(LD) -opt_partial $(M31_LDFLAGS) -o $(M31_TARGET) @build/M31_ofiles
+	@python3 tools/lcf.py rel 31 --output $(M31_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M31_LDFLAGS) -o $(M31_TARGET) @build/M31_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evt/%.o: rel/d/a/tag/d_a_tag_evt/%.cpp
+	@echo [ 31] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M31_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M31_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

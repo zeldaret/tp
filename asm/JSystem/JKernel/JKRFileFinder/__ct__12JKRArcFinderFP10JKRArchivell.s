@@ -4,14 +4,14 @@ lbl_802D4638:
 /* 802D4640  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802D4644  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D4648  7C 7F 1B 78 */	mr r31, r3
-/* 802D464C  3C E0 80 3D */	lis r7, __vt__13JKRFileFinder@ha
-/* 802D4650  38 07 C2 28 */	addi r0, r7, __vt__13JKRFileFinder@l
+/* 802D464C  3C E0 80 3D */	lis r7, __vt__13JKRFileFinder@ha /* 0x803CC228@ha */
+/* 802D4650  38 07 C2 28 */	addi r0, r7, __vt__13JKRFileFinder@l /* 0x803CC228@l */
 /* 802D4654  90 03 00 0C */	stw r0, 0xc(r3)
 /* 802D4658  38 00 00 00 */	li r0, 0
 /* 802D465C  98 03 00 10 */	stb r0, 0x10(r3)
 /* 802D4660  98 03 00 11 */	stb r0, 0x11(r3)
-/* 802D4664  3C E0 80 3D */	lis r7, __vt__12JKRArcFinder@ha
-/* 802D4668  38 07 C2 18 */	addi r0, r7, __vt__12JKRArcFinder@l
+/* 802D4664  3C E0 80 3D */	lis r7, __vt__12JKRArcFinder@ha /* 0x803CC218@ha */
+/* 802D4668  38 07 C2 18 */	addi r0, r7, __vt__12JKRArcFinder@l /* 0x803CC218@l */
 /* 802D466C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 802D4670  90 83 00 14 */	stw r4, 0x14(r3)
 /* 802D4674  7C 06 00 D0 */	neg r0, r6

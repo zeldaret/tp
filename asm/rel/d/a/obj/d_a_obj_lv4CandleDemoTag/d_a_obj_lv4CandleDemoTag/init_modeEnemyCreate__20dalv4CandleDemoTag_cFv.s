@@ -3,12 +3,12 @@ lbl_80C5CDC0:
 /* 80C5CDC4  7C 08 02 A6 */	mflr r0
 /* 80C5CDC8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80C5CDCC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C5CDD0  4B 70 54 08 */	b _savegpr_28
+/* 80C5CDD0  4B 70 54 09 */	bl _savegpr_28
 /* 80C5CDD4  7C 7C 1B 78 */	mr r28, r3
 /* 80C5CDD8  88 63 05 85 */	lbz r3, 0x585(r3)
 /* 80C5CDDC  88 1C 04 E2 */	lbz r0, 0x4e2(r28)
 /* 80C5CDE0  7C 04 07 74 */	extsb r4, r0
-/* 80C5CDE4  4B 3F 4A 08 */	b dPath_GetRoomPath__Fii
+/* 80C5CDE4  4B 3F 4A 09 */	bl dPath_GetRoomPath__Fii
 /* 80C5CDE8  7C 7E 1B 78 */	mr r30, r3
 /* 80C5CDEC  3B A0 00 00 */	li r29, 0
 /* 80C5CDF0  3B E0 00 00 */	li r31, 0
@@ -30,7 +30,7 @@ lbl_80C5CDF8:
 /* 80C5CE2C  38 E0 00 00 */	li r7, 0
 /* 80C5CE30  39 00 00 00 */	li r8, 0
 /* 80C5CE34  39 20 FF FF */	li r9, -1
-/* 80C5CE38  4B 3B CF 60 */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 80C5CE38  4B 3B CF 61 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 80C5CE3C  3B BD 00 01 */	addi r29, r29, 1
 /* 80C5CE40  3B FF 00 10 */	addi r31, r31, 0x10
 lbl_80C5CE44:
@@ -40,7 +40,7 @@ lbl_80C5CE44:
 /* 80C5CE50  38 00 00 01 */	li r0, 1
 /* 80C5CE54  98 1C 05 84 */	stb r0, 0x584(r28)
 /* 80C5CE58  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C5CE5C  4B 70 53 C8 */	b _restgpr_28
+/* 80C5CE5C  4B 70 53 C9 */	bl _restgpr_28
 /* 80C5CE60  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80C5CE64  7C 08 03 A6 */	mtlr r0
 /* 80C5CE68  38 21 00 30 */	addi r1, r1, 0x30

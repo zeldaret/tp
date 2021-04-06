@@ -12,25 +12,25 @@ lbl_80AF841C:
 /* 80AF8444  7C A0 00 38 */	and r0, r5, r0
 /* 80AF8448  90 03 09 9C */	stw r0, 0x99c(r3)
 /* 80AF844C  57 E0 18 38 */	slwi r0, r31, 3
-/* 80AF8450  3C A0 80 B0 */	lis r5, l_btpGetParamList@ha
-/* 80AF8454  38 C5 C2 D8 */	addi r6, r5, l_btpGetParamList@l
+/* 80AF8450  3C A0 80 B0 */	lis r5, l_btpGetParamList@ha /* 0x80AFC2D8@ha */
+/* 80AF8454  38 C5 C2 D8 */	addi r6, r5, l_btpGetParamList@l /* 0x80AFC2D8@l */
 /* 80AF8458  7C A6 00 2E */	lwzx r5, r6, r0
 /* 80AF845C  2C 05 00 00 */	cmpwi r5, 0
 /* 80AF8460  41 80 00 24 */	blt lbl_80AF8484
 /* 80AF8464  7C 86 02 14 */	add r4, r6, r0
 /* 80AF8468  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AF846C  54 00 10 3A */	slwi r0, r0, 2
-/* 80AF8470  3C 80 80 B0 */	lis r4, l_resNames@ha
-/* 80AF8474  38 84 C3 80 */	addi r4, r4, l_resNames@l
+/* 80AF8470  3C 80 80 B0 */	lis r4, l_resNames@ha /* 0x80AFC380@ha */
+/* 80AF8474  38 84 C3 80 */	addi r4, r4, l_resNames@l /* 0x80AFC380@l */
 /* 80AF8478  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80AF847C  4B 65 A6 EC */	b getTexPtrnAnmP__8daNpcF_cFPci
+/* 80AF847C  4B 65 A6 ED */	bl getTexPtrnAnmP__8daNpcF_cFPci
 /* 80AF8480  7C 64 1B 78 */	mr r4, r3
 lbl_80AF8484:
 /* 80AF8484  38 C0 00 00 */	li r6, 0
 /* 80AF8488  28 1F 00 0D */	cmplwi r31, 0xd
 /* 80AF848C  41 81 00 5C */	bgt lbl_80AF84E8
-/* 80AF8490  3C 60 80 B0 */	lis r3, lit_4441@ha
-/* 80AF8494  38 63 C4 5C */	addi r3, r3, lit_4441@l
+/* 80AF8490  3C 60 80 B0 */	lis r3, lit_4441@ha /* 0x80AFC45C@ha */
+/* 80AF8494  38 63 C4 5C */	addi r3, r3, lit_4441@l /* 0x80AFC45C@l */
 /* 80AF8498  57 E0 10 3A */	slwi r0, r31, 2
 /* 80AF849C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80AF84A0  7C 09 03 A6 */	mtctr r0
@@ -71,9 +71,9 @@ lbl_80AF84FC:
 /* 80AF8500  80 63 00 04 */	lwz r3, 4(r3)
 /* 80AF8504  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80AF8508  7F C3 F3 78 */	mr r3, r30
-/* 80AF850C  3C E0 80 B0 */	lis r7, lit_4296@ha
-/* 80AF8510  C0 27 BE 84 */	lfs f1, lit_4296@l(r7)
-/* 80AF8514  4B 65 A7 B0 */	b setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
+/* 80AF850C  3C E0 80 B0 */	lis r7, lit_4296@ha /* 0x80AFBE84@ha */
+/* 80AF8510  C0 27 BE 84 */	lfs f1, lit_4296@l(r7)  /* 0x80AFBE84@l */
+/* 80AF8514  4B 65 A7 B1 */	bl setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80AF8518  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF851C  41 82 00 2C */	beq lbl_80AF8548
 /* 80AF8520  80 1E 09 9C */	lwz r0, 0x99c(r30)

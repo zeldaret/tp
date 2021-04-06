@@ -10,8 +10,8 @@ lbl_802FF75C:
 /* 802FF77C  7C DD 33 78 */	mr r29, r6
 /* 802FF780  7C FA 3B 78 */	mr r26, r7
 /* 802FF784  4B FF 64 75 */	bl __ct__7J2DPaneFv
-/* 802FF788  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha
-/* 802FF78C  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l
+/* 802FF788  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha /* 0x803CD328@ha */
+/* 802FF78C  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l /* 0x803CD328@l */
 /* 802FF790  90 1B 00 00 */	stw r0, 0(r27)
 /* 802FF794  38 60 00 00 */	li r3, 0
 /* 802FF798  90 7B 01 00 */	stw r3, 0x100(r27)

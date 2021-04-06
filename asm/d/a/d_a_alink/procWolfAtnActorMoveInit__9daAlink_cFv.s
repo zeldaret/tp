@@ -22,8 +22,8 @@ lbl_8012DBF0:
 /* 8012DBF0  7F E3 FB 78 */	mr r3, r31
 /* 8012DBF4  4B FF B3 69 */	bl setWolfAtnMoveDirection__9daAlink_cFv
 /* 8012DBF8  7F E3 FB 78 */	mr r3, r31
-/* 8012DBFC  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012DC00  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 8012DBFC  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012DC00  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012DC04  C0 24 00 94 */	lfs f1, 0x94(r4)
 /* 8012DC08  4B FF B5 0D */	bl setBlendWolfAtnMoveAnime__9daAlink_cFf
 /* 8012DC0C  7F E3 FB 78 */	mr r3, r31

@@ -5,8 +5,8 @@ lbl_8030A410:
 /* 8030A41C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8030A420  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8030A424  41 82 00 1C */	beq lbl_8030A440
-/* 8030A428  3C A0 80 3D */	lis r5, __vt__12J2DAnmLoader@ha
-/* 8030A42C  38 05 D6 F0 */	addi r0, r5, __vt__12J2DAnmLoader@l
+/* 8030A428  3C A0 80 3D */	lis r5, __vt__12J2DAnmLoader@ha /* 0x803CD6F0@ha */
+/* 8030A42C  38 05 D6 F0 */	addi r0, r5, __vt__12J2DAnmLoader@l /* 0x803CD6F0@l */
 /* 8030A430  90 1F 00 00 */	stw r0, 0(r31)
 /* 8030A434  7C 80 07 35 */	extsh. r0, r4
 /* 8030A438  40 81 00 08 */	ble lbl_8030A440

@@ -10,8 +10,8 @@ lbl_800B9640:
 /* 800B9660  41 82 00 34 */	beq lbl_800B9694
 lbl_800B9664:
 /* 800B9664  B0 83 2F DE */	sth r4, 0x2fde(r3)
-/* 800B9668  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800B966C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800B9668  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B966C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B9670  80 04 5F 18 */	lwz r0, 0x5f18(r4)
 /* 800B9674  54 00 02 90 */	rlwinm r0, r0, 0, 0xa, 8
 /* 800B9678  90 04 5F 18 */	stw r0, 0x5f18(r4)

@@ -1,6 +1,6 @@
 lbl_80872F48:
-/* 80872F48  3C 60 80 88 */	lis r3, __THPInfo@ha
-/* 80872F4C  84 A3 9B C4 */	lwzu r5, __THPInfo@l(r3)
+/* 80872F48  3C 60 80 88 */	lis r3, __THPInfo@ha /* 0x80879BC4@ha */
+/* 80872F4C  84 A3 9B C4 */	lwzu r5, __THPInfo@l(r3)  /* 0x80879BC4@l */
 /* 80872F50  80 85 06 9C */	lwz r4, 0x69c(r5)
 /* 80872F54  38 04 00 02 */	addi r0, r4, 2
 /* 80872F58  90 05 06 9C */	stw r0, 0x69c(r5)

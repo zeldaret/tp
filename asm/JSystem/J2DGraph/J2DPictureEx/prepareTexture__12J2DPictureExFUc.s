@@ -18,8 +18,8 @@ lbl_803039CC:
 /* 80303A0C  48 00 00 90 */	b lbl_80303A9C
 lbl_80303A10:
 /* 80303A10  3B A0 00 00 */	li r29, 0
-/* 80303A14  3C 60 80 3A */	lis r3, j2dDefaultTexMtxInfo@ha
-/* 80303A18  3B C3 1B A0 */	addi r30, r3, j2dDefaultTexMtxInfo@l
+/* 80303A14  3C 60 80 3A */	lis r3, j2dDefaultTexMtxInfo@ha /* 0x803A1BA0@ha */
+/* 80303A18  3B C3 1B A0 */	addi r30, r3, j2dDefaultTexMtxInfo@l /* 0x803A1BA0@l */
 /* 80303A1C  57 FF 06 3E */	clrlwi r31, r31, 0x18
 /* 80303A20  48 00 00 6C */	b lbl_80303A8C
 lbl_80303A24:

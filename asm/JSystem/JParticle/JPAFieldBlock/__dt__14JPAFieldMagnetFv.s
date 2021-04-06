@@ -5,12 +5,12 @@ lbl_8027D61C:
 /* 8027D628  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027D62C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027D630  41 82 00 30 */	beq lbl_8027D660
-/* 8027D634  3C 60 80 3C */	lis r3, __vt__14JPAFieldMagnet@ha
-/* 8027D638  38 03 45 58 */	addi r0, r3, __vt__14JPAFieldMagnet@l
+/* 8027D634  3C 60 80 3C */	lis r3, __vt__14JPAFieldMagnet@ha /* 0x803C4558@ha */
+/* 8027D638  38 03 45 58 */	addi r0, r3, __vt__14JPAFieldMagnet@l /* 0x803C4558@l */
 /* 8027D63C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027D640  41 82 00 10 */	beq lbl_8027D650
-/* 8027D644  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha
-/* 8027D648  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l
+/* 8027D644  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha /* 0x803C44CC@ha */
+/* 8027D648  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l /* 0x803C44CC@l */
 /* 8027D64C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8027D650:
 /* 8027D650  7C 80 07 35 */	extsh. r0, r4

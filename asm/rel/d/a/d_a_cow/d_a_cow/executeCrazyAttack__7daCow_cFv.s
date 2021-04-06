@@ -5,8 +5,8 @@ lbl_8065F144:
 /* 8065F150  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8065F154  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8065F158  7C 7F 1B 78 */	mr r31, r3
-/* 8065F15C  3C 60 80 66 */	lis r3, lit_3987@ha
-/* 8065F160  3B C3 2D B0 */	addi r30, r3, lit_3987@l
+/* 8065F15C  3C 60 80 66 */	lis r3, lit_3987@ha /* 0x80662DB0@ha */
+/* 8065F160  3B C3 2D B0 */	addi r30, r3, lit_3987@l /* 0x80662DB0@l */
 /* 8065F164  88 1F 0C 61 */	lbz r0, 0xc61(r31)
 /* 8065F168  2C 00 00 01 */	cmpwi r0, 1
 /* 8065F16C  41 82 00 B0 */	beq lbl_8065F21C
@@ -22,11 +22,11 @@ lbl_8065F18C:
 /* 8065F18C  38 7F 05 2C */	addi r3, r31, 0x52c
 /* 8065F190  C0 3E 00 20 */	lfs f1, 0x20(r30)
 /* 8065F194  C0 5E 00 08 */	lfs f2, 8(r30)
-/* 8065F198  4B C1 15 A8 */	b cLib_chaseF__FPfff
+/* 8065F198  4B C1 15 A9 */	bl cLib_chaseF__FPfff
 /* 8065F19C  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 8065F1A0  38 63 00 0C */	addi r3, r3, 0xc
 /* 8065F1A4  C0 3E 00 2C */	lfs f1, 0x2c(r30)
-/* 8065F1A8  4B CC 92 84 */	b checkPass__12J3DFrameCtrlFf
+/* 8065F1A8  4B CC 92 85 */	bl checkPass__12J3DFrameCtrlFf
 /* 8065F1AC  2C 03 00 00 */	cmpwi r3, 0
 /* 8065F1B0  41 82 00 2C */	beq lbl_8065F1DC
 /* 8065F1B4  3C 60 00 05 */	lis r3, 0x0005 /* 0x0005007A@ha */
@@ -61,7 +61,7 @@ lbl_8065F21C:
 /* 8065F21C  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 8065F220  38 63 00 0C */	addi r3, r3, 0xc
 /* 8065F224  C0 3E 00 2C */	lfs f1, 0x2c(r30)
-/* 8065F228  4B CC 92 04 */	b checkPass__12J3DFrameCtrlFf
+/* 8065F228  4B CC 92 05 */	bl checkPass__12J3DFrameCtrlFf
 /* 8065F22C  2C 03 00 00 */	cmpwi r3, 0
 /* 8065F230  41 82 00 2C */	beq lbl_8065F25C
 /* 8065F234  3C 60 00 05 */	lis r3, 0x0005 /* 0x0005007A@ha */
@@ -78,7 +78,7 @@ lbl_8065F25C:
 /* 8065F25C  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 8065F260  38 63 00 0C */	addi r3, r3, 0xc
 /* 8065F264  C0 3E 00 20 */	lfs f1, 0x20(r30)
-/* 8065F268  4B CC 91 C4 */	b checkPass__12J3DFrameCtrlFf
+/* 8065F268  4B CC 91 C5 */	bl checkPass__12J3DFrameCtrlFf
 /* 8065F26C  2C 03 00 00 */	cmpwi r3, 0
 /* 8065F270  41 82 00 80 */	beq lbl_8065F2F0
 /* 8065F274  88 1F 0C 5F */	lbz r0, 0xc5f(r31)

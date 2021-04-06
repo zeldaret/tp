@@ -8,8 +8,8 @@ lbl_800D72BC:
 /* 800D72D4  7C 9E 23 79 */	or. r30, r4, r4
 /* 800D72D8  7C DF 33 78 */	mr r31, r6
 /* 800D72DC  41 81 00 48 */	bgt lbl_800D7324
-/* 800D72E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D72E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D72E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D72E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D72E8  C0 43 5D C0 */	lfs f2, 0x5dc0(r3)
 /* 800D72EC  7C 1E 00 D0 */	neg r0, r30
 /* 800D72F0  C8 22 92 B0 */	lfd f1, lit_6025(r2)
@@ -62,8 +62,8 @@ lbl_800D739C:
 /* 800D73A0  48 00 04 29 */	bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 800D73A4  2C 03 00 00 */	cmpwi r3, 0
 /* 800D73A8  41 82 00 24 */	beq lbl_800D73CC
-/* 800D73AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D73B0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 800D73AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D73B0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D73B4  80 64 5D C4 */	lwz r3, 0x5dc4(r4)
 /* 800D73B8  7C 1E 00 D0 */	neg r0, r30
 /* 800D73BC  1C 00 00 0A */	mulli r0, r0, 0xa
@@ -71,8 +71,8 @@ lbl_800D739C:
 /* 800D73C4  90 04 5D C4 */	stw r0, 0x5dc4(r4)
 /* 800D73C8  48 00 00 40 */	b lbl_800D7408
 lbl_800D73CC:
-/* 800D73CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D73D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D73CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D73D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D73D4  C0 43 5D C0 */	lfs f2, 0x5dc0(r3)
 /* 800D73D8  7C 1E 00 D0 */	neg r0, r30
 /* 800D73DC  C8 22 92 B0 */	lfd f1, lit_6025(r2)
@@ -94,8 +94,8 @@ lbl_800D7408:
 /* 800D7418  B0 1D 05 6E */	sth r0, 0x56e(r29)
 /* 800D741C  2C 1F 00 00 */	cmpwi r31, 0
 /* 800D7420  41 82 00 34 */	beq lbl_800D7454
-/* 800D7424  3C 60 80 39 */	lis r3, m__20daAlinkHIO_damage_c0@ha
-/* 800D7428  38 63 E5 4C */	addi r3, r3, m__20daAlinkHIO_damage_c0@l
+/* 800D7424  3C 60 80 39 */	lis r3, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800D7428  38 63 E5 4C */	addi r3, r3, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800D742C  A8 03 00 2A */	lha r0, 0x2a(r3)
 /* 800D7430  B0 1D 05 6C */	sth r0, 0x56c(r29)
 /* 800D7434  A8 7D 05 6C */	lha r3, 0x56c(r29)

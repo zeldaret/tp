@@ -127,14 +127,10 @@ extern "C" void removeResourceAll__14JKRCompArchiveFv();
 extern "C" void removeResource__14JKRCompArchiveFPv();
 extern "C" void getExpandedResSize__14JKRCompArchiveCFPCv();
 extern "C" extern char const* const JKRCompArchive__stringBase0;
-extern "C" extern void* __vt__14JKRCompArchive[20];
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
@@ -194,8 +190,8 @@ extern "C" extern u8 sAramObject__7JKRAram[4];
 //
 
 /* ############################################################################################## */
-/* 803CC3E8-803CC438 0050+00 s=2 e=0 z=0  None .data      __vt__14JKRCompArchive */
-SECTION_DATA void* __vt__14JKRCompArchive[20] = {
+/* 803CC3E8-803CC438 029508 0050+00 2/2 0/0 0/0 .data            __vt__14JKRCompArchive */
+SECTION_DATA extern void* __vt__14JKRCompArchive[20] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JKRCompArchiveFv,
@@ -218,17 +214,8 @@ SECTION_DATA void* __vt__14JKRCompArchive[20] = {
     (void*)getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry,
 };
 
-/* 802D87D4-802D887C 00A8+00 s=0 e=1 z=0  None .text
+/* 802D87D4-802D887C 2D3114 00A8+00 0/0 1/1 0/0 .text
  * __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection      */
-//	802D87E4: 803621DC (_savegpr_29)
-//	802D87F8: 802D6294 (__ct__10JKRArchiveFlQ210JKRArchive10EMountMode)
-//	802D87FC: 803CC3E8 (__vt__14JKRCompArchive)
-//	802D8800: 803CC3E8 (__vt__14JKRCompArchive)
-//	802D8814: 802D89BC (open__14JKRCompArchiveFl)
-//	802D8848: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D884C: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D8854: 802DBFF0 (prepend__10JSUPtrListFP10JSUPtrLink)
-//	802D8868: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,19 +225,7 @@ asm JKRCompArchive::JKRCompArchive(s32 param_0, JKRArchive::EMountDirection para
 }
 #pragma pop
 
-/* 802D887C-802D89BC 0140+00 s=1 e=0 z=0  None .text      __dt__14JKRCompArchiveFv */
-//	802D888C: 803621D8 (_savegpr_28)
-//	802D889C: 803CC3E8 (__vt__14JKRCompArchive)
-//	802D88A0: 803CC3E8 (__vt__14JKRCompArchive)
-//	802D88DC: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D88FC: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D893C: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D896C: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D8970: 80434354 (sVolumeList__13JKRFileLoader)
-//	802D8978: 802DC15C (remove__10JSUPtrListFP10JSUPtrLink)
-//	802D898C: 802D6334 (__dt__10JKRArchiveFv)
-//	802D899C: 802CED3C (__dl__FPv)
-//	802D89A8: 80362224 (_restgpr_28)
+/* 802D887C-802D89BC 2D31BC 0140+00 1/0 0/0 0/0 .text            __dt__14JKRCompArchiveFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -260,45 +235,7 @@ asm JKRCompArchive::~JKRCompArchive() {
 }
 #pragma pop
 
-/* 802D89BC-802D8F40 0584+00 s=1 e=0 z=0  None .text      open__14JKRCompArchiveFl */
-//	802D89CC: 803621CC (_savegpr_25)
-//	802D8A08: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8A10: 802CEC98 (__nw__FUlP7JKRHeapi)
-//	802D8A20: 802D96A0 (__ct__10JKRDvdFileFl)
-//	802D8A48: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8A54: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D8A94: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8AA0: 8033B580 (DCInvalidateRange)
-//	802D8B00: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D8B4C: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8B60: 8033B580 (DCInvalidateRange)
-//	802D8B80: 804513C8 (sAramObject__7JKRAram)
-//	802D8B8C: 802D2FBC (alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode)
-//	802D8BD4: 802DA874 (loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl)
-//	802D8C4C: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8C5C: 802CE4D4 (alloc__7JKRHeapFUli)
-//	802D8C9C: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D8CA8: 8033B580 (DCInvalidateRange)
-//	802D8CE0: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D8D0C: 802DB988 (orderSync__9JKRDecompFPUcPUcUlUl)
-//	802D8D10: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8D18: 802CE548 (free__7JKRHeapFPv)
-//	802D8D30: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D8D60: 802CEB18 (copyMemory__7JKRHeapFPvPvUl)
-//	802D8D80: 804513C8 (sAramObject__7JKRAram)
-//	802D8D8C: 802D2FBC (alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode)
-//	802D8DE0: 802D233C (mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl)
-//	802D8E80: 803650D0 (abs)
-//	802D8E98: 802CE474 (alloc__7JKRHeapFUliP7JKRHeap)
-//	802D8EAC: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8EB4: 802CE548 (free__7JKRHeapFPv)
-//	802D8ED4: 80003458 (memset)
-//	802D8EE0: 80451370 (sSystemHeap__7JKRHeap)
-//	802D8EE8: 802CE548 (free__7JKRHeapFPv)
-//	802D8F2C: 80362218 (_restgpr_25)
+/* 802D89BC-802D8F40 2D32FC 0584+00 1/1 0/0 0/0 .text            open__14JKRCompArchiveFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,12 +245,8 @@ asm void JKRCompArchive::open(s32 param_0) {
 }
 #pragma pop
 
-/* 802D8F40-802D90C0 0180+00 s=1 e=0 z=0  None .text
+/* 802D8F40-802D90C0 2D3880 0180+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl */
-//	802D8F50: 803621D8 (_savegpr_28)
-//	802D8FF8: 802D7914 (fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc)
-//	802D9058: 802D8474 (fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc)
-//	802D90AC: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,30 +256,8 @@ asm void JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry* param_0, u32* p
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039D220-8039D260 0039+07 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039D220 = "JKRCompArchive.cpp";
-SECTION_DEAD char const* const stringBase_8039D233 = "%s";
-SECTION_DEAD char const* const stringBase_8039D236 = "illegal archive.";
-SECTION_DEAD char const* const stringBase_8039D247 = "illegal resource.";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D259 = "\0\0\0\0\0\0";
-#pragma pop
-
-/* 802D90C0-802D9260 01A0+00 s=1 e=0 z=0  None .text
+/* 802D90C0-802D9260 2D3A00 01A0+00 1/0 0/0 0/0 .text
  * fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
-//	802D90D0: 803621D0 (_savegpr_26)
-//	802D9174: 802CEB18 (copyMemory__7JKRHeapFPvPvUl)
-//	802D91A4: 802D6F5C (fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli)
-//	802D91E0: 802D7858 (fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli)
-//	802D9210: 802D826C (fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii)
-//	802D921C: 8039D220 (JKRCompArchive__stringBase0)
-//	802D9220: 8039D220 (JKRCompArchive__stringBase0)
-//	802D9234: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D924C: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -357,10 +268,7 @@ asm void JKRCompArchive::fetchResource(void* param_0, u32 param_1,
 }
 #pragma pop
 
-/* 802D9260-802D92F4 0094+00 s=1 e=0 z=0  None .text      removeResourceAll__14JKRCompArchiveFv */
-//	802D9270: 803621D8 (_savegpr_28)
-//	802D92C0: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D92E0: 80362224 (_restgpr_28)
+/* 802D9260-802D92F4 2D3BA0 0094+00 1/0 0/0 0/0 .text removeResourceAll__14JKRCompArchiveFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -370,11 +278,8 @@ asm void JKRCompArchive::removeResourceAll() {
 }
 #pragma pop
 
-/* 802D92F4-802D9360 006C+00 s=1 e=0 z=0  None .text      removeResource__14JKRCompArchiveFPv */
-//	802D9304: 803621DC (_savegpr_29)
-//	802D9310: 802D6734 (findPtrResource__10JKRArchiveCFPCv)
-//	802D9338: 802CE500 (free__7JKRHeapFPvP7JKRHeap)
-//	802D934C: 80362228 (_restgpr_29)
+/* 802D92F4-802D9360 2D3C34 006C+00 1/0 0/0 0/0 .text            removeResource__14JKRCompArchiveFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,19 +289,7 @@ asm void JKRCompArchive::removeResource(void* param_0) {
 }
 #pragma pop
 
-/* 802D9360-802D9518 01B8+00 s=1 e=0 z=0  None .text      getExpandedResSize__14JKRCompArchiveCFPCv
- */
-//	802D9370: 803621DC (_savegpr_29)
-//	802D939C: 802D6734 (findPtrResource__10JKRArchiveCFPCv)
-//	802D9444: 802D25B4 (aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl)
-//	802D9450: 8033B580 (DCInvalidateRange)
-//	802D9490: 802D9C54
-//(loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl)
-//	802D949C: 8033B580 (DCInvalidateRange)
-//	802D94A4: 8039D220 (JKRCompArchive__stringBase0)
-//	802D94A8: 8039D220 (JKRCompArchive__stringBase0)
-//	802D94BC: 802E21FC (panic_f__12JUTExceptionFPCciPCce)
-//	802D9504: 80362228 (_restgpr_29)
+/* 802D9360-802D9518 2D3CA0 01B8+00 1/0 0/0 0/0 .text getExpandedResSize__14JKRCompArchiveCFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,4 +297,16 @@ asm void JKRCompArchive::getExpandedResSize(void const* param_0) const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRCompArchive/getExpandedResSize__14JKRCompArchiveCFPCv.s"
 }
+#pragma pop
+
+/* 8039D220-8039D260 029880 0039+07 2/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039D220 = "JKRCompArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D233 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D236 = "illegal archive.";
+SECTION_DEAD static char const* const stringBase_8039D247 = "illegal resource.";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D259 = "\0\0\0\0\0\0";
 #pragma pop

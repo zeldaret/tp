@@ -32,8 +32,8 @@ lbl_800FC1E0:
 /* 800FC1E8  4B FC 5D 85 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FC1EC  7F E3 FB 78 */	mr r3, r31
 /* 800FC1F0  38 80 00 91 */	li r4, 0x91
-/* 800FC1F4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FC1F8  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FC1F4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FC1F8  38 A5 E1 64 */	addi r5, r5, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FC1FC  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800FC200  4B FB 0E F5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FC204  A8 7F 30 6E */	lha r3, 0x306e(r31)

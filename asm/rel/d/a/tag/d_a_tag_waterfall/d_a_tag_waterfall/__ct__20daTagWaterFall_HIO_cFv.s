@@ -1,8 +1,8 @@
 lbl_80D6462C:
-/* 80D6462C  3C 80 80 D6 */	lis r4, lit_3758@ha
-/* 80D64630  38 A4 4D 74 */	addi r5, r4, lit_3758@l
-/* 80D64634  3C 80 80 D6 */	lis r4, __vt__20daTagWaterFall_HIO_c@ha
-/* 80D64638  38 04 4D E8 */	addi r0, r4, __vt__20daTagWaterFall_HIO_c@l
+/* 80D6462C  3C 80 80 D6 */	lis r4, lit_3758@ha /* 0x80D64D74@ha */
+/* 80D64630  38 A4 4D 74 */	addi r5, r4, lit_3758@l /* 0x80D64D74@l */
+/* 80D64634  3C 80 80 D6 */	lis r4, __vt__20daTagWaterFall_HIO_c@ha /* 0x80D64DE8@ha */
+/* 80D64638  38 04 4D E8 */	addi r0, r4, __vt__20daTagWaterFall_HIO_c@l /* 0x80D64DE8@l */
 /* 80D6463C  90 03 00 00 */	stw r0, 0(r3)
 /* 80D64640  38 00 FF FF */	li r0, -1
 /* 80D64644  98 03 00 04 */	stb r0, 4(r3)

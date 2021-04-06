@@ -1,7 +1,7 @@
 lbl_8019FA10:
 /* 8019FA10  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8019FA14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019FA18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019FA14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019FA18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019FA1C  C0 23 00 34 */	lfs f1, 0x34(r3)
 /* 8019FA20  C0 02 A2 AC */	lfs f0, lit_5347(r2)
 /* 8019FA24  EC 01 00 24 */	fdivs f0, f1, f0

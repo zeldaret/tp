@@ -5,10 +5,10 @@ lbl_80BE22B8:
 /* 80BE22C4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BE22C8  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BE22CC  7C 7E 1B 78 */	mr r30, r3
-/* 80BE22D0  3C 60 80 BE */	lis r3, lit_3673@ha
-/* 80BE22D4  3B E3 2F 98 */	addi r31, r3, lit_3673@l
-/* 80BE22D8  3C 60 80 BE */	lis r3, data_80BE30FC@ha
-/* 80BE22DC  38 63 30 FC */	addi r3, r3, data_80BE30FC@l
+/* 80BE22D0  3C 60 80 BE */	lis r3, lit_3673@ha /* 0x80BE2F98@ha */
+/* 80BE22D4  3B E3 2F 98 */	addi r31, r3, lit_3673@l /* 0x80BE2F98@l */
+/* 80BE22D8  3C 60 80 BE */	lis r3, data_80BE30FC@ha /* 0x80BE30FC@ha */
+/* 80BE22DC  38 63 30 FC */	addi r3, r3, data_80BE30FC@l /* 0x80BE30FC@l */
 /* 80BE22E0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BE22E4  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80BE22E8  C0 1E 04 D8 */	lfs f0, 0x4d8(r30)
@@ -22,17 +22,17 @@ lbl_80BE22B8:
 /* 80BE2308  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80BE230C  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80BE2310  D0 61 00 14 */	stfs f3, 0x14(r1)
-/* 80BE2314  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80BE2318  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80BE2314  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80BE2318  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80BE231C  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 80BE2320  7C 00 00 D0 */	neg r0, r0
 /* 80BE2324  7C 04 07 34 */	extsh r4, r0
-/* 80BE2328  4B 42 A0 B4 */	b mDoMtx_YrotS__FPA4_fs
-/* 80BE232C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80BE2330  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80BE2328  4B 42 A0 B5 */	bl mDoMtx_YrotS__FPA4_fs
+/* 80BE232C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80BE2330  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80BE2334  38 81 00 0C */	addi r4, r1, 0xc
 /* 80BE2338  7C 85 23 78 */	mr r5, r4
-/* 80BE233C  4B 76 4A 30 */	b PSMTXMultVec
+/* 80BE233C  4B 76 4A 31 */	bl PSMTXMultVec
 /* 80BE2340  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 80BE2344  C0 1F 00 10 */	lfs f0, 0x10(r31)
 /* 80BE2348  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -51,8 +51,8 @@ lbl_80BE22B8:
 /* 80BE237C  C0 1F 00 20 */	lfs f0, 0x20(r31)
 /* 80BE2380  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BE2384  40 80 00 EC */	bge lbl_80BE2470
-/* 80BE2388  3C 60 80 BE */	lis r3, data_80BE30F8@ha
-/* 80BE238C  38 63 30 F8 */	addi r3, r3, data_80BE30F8@l
+/* 80BE2388  3C 60 80 BE */	lis r3, data_80BE30F8@ha /* 0x80BE30F8@ha */
+/* 80BE238C  38 63 30 F8 */	addi r3, r3, data_80BE30F8@l /* 0x80BE30F8@l */
 /* 80BE2390  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BE2394  C0 43 05 2C */	lfs f2, 0x52c(r3)
 /* 80BE2398  C0 9F 00 00 */	lfs f4, 0(r31)
@@ -73,7 +73,7 @@ lbl_80BE22B8:
 /* 80BE23D4  C0 3F 00 30 */	lfs f1, 0x30(r31)
 /* 80BE23D8  C0 5F 00 34 */	lfs f2, 0x34(r31)
 /* 80BE23DC  C0 7F 00 38 */	lfs f3, 0x38(r31)
-/* 80BE23E0  4B 68 D5 9C */	b cLib_addCalc__FPfffff
+/* 80BE23E0  4B 68 D5 9D */	bl cLib_addCalc__FPfffff
 /* 80BE23E4  88 1E 05 E1 */	lbz r0, 0x5e1(r30)
 /* 80BE23E8  28 00 00 00 */	cmplwi r0, 0
 /* 80BE23EC  40 82 00 8C */	bne lbl_80BE2478
@@ -89,13 +89,13 @@ lbl_80BE22B8:
 /* 80BE2414  40 80 00 64 */	bge lbl_80BE2478
 /* 80BE2418  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80BE241C  7C 03 07 74 */	extsb r3, r0
-/* 80BE2420  4B 44 AC 4C */	b dComIfGp_getReverb__Fi
+/* 80BE2420  4B 44 AC 4D */	bl dComIfGp_getReverb__Fi
 /* 80BE2424  7C 67 1B 78 */	mr r7, r3
 /* 80BE2428  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008016C@ha */
 /* 80BE242C  38 03 01 6C */	addi r0, r3, 0x016C /* 0x0008016C@l */
 /* 80BE2430  90 01 00 08 */	stw r0, 8(r1)
-/* 80BE2434  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80BE2438  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80BE2434  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80BE2438  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80BE243C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BE2440  38 81 00 08 */	addi r4, r1, 8
 /* 80BE2444  38 BE 05 38 */	addi r5, r30, 0x538
@@ -105,7 +105,7 @@ lbl_80BE22B8:
 /* 80BE2454  C0 7F 00 48 */	lfs f3, 0x48(r31)
 /* 80BE2458  FC 80 18 90 */	fmr f4, f3
 /* 80BE245C  39 00 00 00 */	li r8, 0
-/* 80BE2460  4B 6C 95 24 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80BE2460  4B 6C 95 25 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80BE2464  38 00 00 01 */	li r0, 1
 /* 80BE2468  98 1E 05 E1 */	stb r0, 0x5e1(r30)
 /* 80BE246C  48 00 00 0C */	b lbl_80BE2478

@@ -5,12 +5,12 @@ lbl_8000B118:
 /* 8000B124  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000B128  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000B12C  41 82 00 30 */	beq lbl_8000B15C
-/* 8000B130  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 8000B134  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 8000B130  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 8000B134  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 8000B138  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000B13C  41 82 00 10 */	beq lbl_8000B14C
-/* 8000B140  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 8000B144  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 8000B140  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 8000B144  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 8000B148  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8000B14C:
 /* 8000B14C  7C 80 07 35 */	extsh. r0, r4

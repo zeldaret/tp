@@ -7,7 +7,7 @@ lbl_80B46BEC:
 /* 80B46C00  41 82 00 10 */	beq lbl_80B46C10
 /* 80B46C04  7C 80 07 35 */	extsh. r0, r4
 /* 80B46C08  40 81 00 08 */	ble lbl_80B46C10
-/* 80B46C0C  4B 78 81 30 */	b __dl__FPv
+/* 80B46C0C  4B 78 81 31 */	bl __dl__FPv
 lbl_80B46C10:
 /* 80B46C10  7F E3 FB 78 */	mr r3, r31
 /* 80B46C14  83 E1 00 0C */	lwz r31, 0xc(r1)

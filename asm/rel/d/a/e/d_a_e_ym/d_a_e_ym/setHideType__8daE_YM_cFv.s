@@ -11,18 +11,18 @@ lbl_80814AF0:
 /* 80814B14  3C 00 00 01 */	lis r0, 1
 /* 80814B18  90 03 09 9C */	stw r0, 0x99c(r3)
 /* 80814B1C  38 00 00 00 */	li r0, 0
-/* 80814B20  3C 60 80 81 */	lis r3, m_near_obj@ha
-/* 80814B24  90 03 5D 5C */	stw r0, m_near_obj@l(r3)
-/* 80814B28  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 80814B2C  C0 03 59 94 */	lfs f0, lit_3925@l(r3)
-/* 80814B30  3C 60 80 81 */	lis r3, m_obj_dist@ha
-/* 80814B34  D0 03 5D 60 */	stfs f0, m_obj_dist@l(r3)
-/* 80814B38  3C 60 80 81 */	lis r3, s_obj_sub__FPvPv@ha
-/* 80814B3C  38 63 86 98 */	addi r3, r3, s_obj_sub__FPvPv@l
+/* 80814B20  3C 60 80 81 */	lis r3, m_near_obj@ha /* 0x80815D5C@ha */
+/* 80814B24  90 03 5D 5C */	stw r0, m_near_obj@l(r3)  /* 0x80815D5C@l */
+/* 80814B28  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 80814B2C  C0 03 59 94 */	lfs f0, lit_3925@l(r3)  /* 0x80815994@l */
+/* 80814B30  3C 60 80 81 */	lis r3, m_obj_dist@ha /* 0x80815D60@ha */
+/* 80814B34  D0 03 5D 60 */	stfs f0, m_obj_dist@l(r3)  /* 0x80815D60@l */
+/* 80814B38  3C 60 80 81 */	lis r3, s_obj_sub__FPvPv@ha /* 0x80808698@ha */
+/* 80814B3C  38 63 86 98 */	addi r3, r3, s_obj_sub__FPvPv@l /* 0x80808698@l */
 /* 80814B40  7F E4 FB 78 */	mr r4, r31
-/* 80814B44  4B 80 C7 F4 */	b fpcEx_Search__FPFPvPv_PvPv
-/* 80814B48  3C 60 80 81 */	lis r3, m_near_obj@ha
-/* 80814B4C  38 63 5D 5C */	addi r3, r3, m_near_obj@l
+/* 80814B44  4B 80 C7 F5 */	bl fpcEx_Search__FPFPvPv_PvPv
+/* 80814B48  3C 60 80 81 */	lis r3, m_near_obj@ha /* 0x80815D5C@ha */
+/* 80814B4C  38 63 5D 5C */	addi r3, r3, m_near_obj@l /* 0x80815D5C@l */
 /* 80814B50  80 63 00 00 */	lwz r3, 0(r3)
 /* 80814B54  28 03 00 00 */	cmplwi r3, 0
 /* 80814B58  41 82 00 30 */	beq lbl_80814B88

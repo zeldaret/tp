@@ -5,8 +5,8 @@ lbl_8025C404:
 /* 8025C410  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025C414  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025C418  41 82 00 1C */	beq lbl_8025C434
-/* 8025C41C  3C A0 80 3C */	lis r5, __vt__23dSvBit_childItZoneHIO_c@ha
-/* 8025C420  38 05 33 3C */	addi r0, r5, __vt__23dSvBit_childItZoneHIO_c@l
+/* 8025C41C  3C A0 80 3C */	lis r5, __vt__23dSvBit_childItZoneHIO_c@ha /* 0x803C333C@ha */
+/* 8025C420  38 05 33 3C */	addi r0, r5, __vt__23dSvBit_childItZoneHIO_c@l /* 0x803C333C@l */
 /* 8025C424  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025C428  7C 80 07 35 */	extsh. r0, r4
 /* 8025C42C  40 81 00 08 */	ble lbl_8025C434

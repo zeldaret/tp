@@ -7,8 +7,8 @@ lbl_801DDC98:
 /* 801DDCAC  39 61 00 30 */	addi r11, r1, 0x30
 /* 801DDCB0  48 18 45 25 */	bl _savegpr_27
 /* 801DDCB4  7C 7F 1B 78 */	mr r31, r3
-/* 801DDCB8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801DDCBC  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l
+/* 801DDCB8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801DDCBC  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801DDCC0  A8 9D 07 5C */	lha r4, 0x75c(r29)
 /* 801DDCC4  3B C0 00 00 */	li r30, 0
 /* 801DDCC8  B3 DF 03 68 */	sth r30, 0x368(r31)

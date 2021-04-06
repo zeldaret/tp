@@ -8,9 +8,9 @@ lbl_80C33554:
 /* 80C3356C  38 80 00 00 */	li r4, 0
 /* 80C33570  38 1F 0B A3 */	addi r0, r31, 0xba3
 /* 80C33574  7C A3 00 50 */	subf r5, r3, r0
-/* 80C33578  4B 3C FE E0 */	b memset
-/* 80C3357C  3C 60 80 C3 */	lis r3, lit_4531@ha
-/* 80C33580  C0 03 3D 20 */	lfs f0, lit_4531@l(r3)
+/* 80C33578  4B 3C FE E1 */	bl memset
+/* 80C3357C  3C 60 80 C3 */	lis r3, lit_4531@ha /* 0x80C33D20@ha */
+/* 80C33580  C0 03 3D 20 */	lfs f0, lit_4531@l(r3)  /* 0x80C33D20@l */
 /* 80C33584  D0 1F 0B 0C */	stfs f0, 0xb0c(r31)
 /* 80C33588  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C3358C  80 01 00 14 */	lwz r0, 0x14(r1)

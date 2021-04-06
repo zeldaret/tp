@@ -10,8 +10,8 @@ lbl_801D2C4C:
 /* 801D2C6C  40 80 00 08 */	bge lbl_801D2C74
 /* 801D2C70  FC 20 00 90 */	fmr f1, f0
 lbl_801D2C74:
-/* 801D2C74  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D2C78  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801D2C74  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D2C78  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D2C7C  C0 03 00 9C */	lfs f0, 0x9c(r3)
 /* 801D2C80  EC 21 00 24 */	fdivs f1, f1, f0
 /* 801D2C84  4E 80 00 20 */	blr 

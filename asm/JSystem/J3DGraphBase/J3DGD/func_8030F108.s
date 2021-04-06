@@ -32,8 +32,8 @@ lbl_8030F16C:
 /* 8030F174  38 03 00 28 */	addi r0, r3, 0x28
 /* 8030F178  54 00 C0 0E */	slwi r0, r0, 0x18
 /* 8030F17C  57 44 07 3E */	clrlwi r4, r26, 0x1c
-/* 8030F180  3C 60 80 3D */	lis r3, c2r@ha
-/* 8030F184  38 63 D8 80 */	addi r3, r3, c2r@l
+/* 8030F180  3C 60 80 3D */	lis r3, c2r@ha /* 0x803CD880@ha */
+/* 8030F184  38 63 D8 80 */	addi r3, r3, c2r@l /* 0x803CD880@l */
 /* 8030F188  7C 63 20 AE */	lbzx r3, r3, r4
 /* 8030F18C  54 6A 98 18 */	slwi r10, r3, 0x13
 /* 8030F190  38 80 00 00 */	li r4, 0
@@ -47,8 +47,8 @@ lbl_8030F1A8:
 /* 8030F1AC  57 E8 78 20 */	slwi r8, r31, 0xf
 /* 8030F1B0  57 A7 64 66 */	rlwinm r7, r29, 0xc, 0x11, 0x13
 /* 8030F1B4  57 84 07 3E */	clrlwi r4, r28, 0x1c
-/* 8030F1B8  3C 60 80 3D */	lis r3, c2r@ha
-/* 8030F1BC  38 63 D8 80 */	addi r3, r3, c2r@l
+/* 8030F1B8  3C 60 80 3D */	lis r3, c2r@ha /* 0x803CD880@ha */
+/* 8030F1BC  38 63 D8 80 */	addi r3, r3, c2r@l /* 0x803CD880@l */
 /* 8030F1C0  7C 63 20 AE */	lbzx r3, r3, r4
 /* 8030F1C4  54 66 38 30 */	slwi r6, r3, 7
 /* 8030F1C8  57 C5 18 38 */	slwi r5, r30, 3

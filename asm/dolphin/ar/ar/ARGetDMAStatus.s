@@ -5,7 +5,7 @@ lbl_80350598:
 /* 803505A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803505A8  4B FE D1 4D */	bl OSDisableInterrupts
 /* 803505AC  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC00500A@ha */
-/* 803505B0  A0 04 50 0A */	lhz r0, 0x500A(r4)
+/* 803505B0  A0 04 50 0A */	lhz r0, 0x500A(r4)  /* 0xCC00500A@l */
 /* 803505B4  54 1F 05 AC */	rlwinm r31, r0, 0, 0x16, 0x16
 /* 803505B8  4B FE D1 65 */	bl OSRestoreInterrupts
 /* 803505BC  7F E3 FB 78 */	mr r3, r31

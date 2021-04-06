@@ -3,17 +3,15 @@
 #
 
 M747_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream.plf
+M747_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream.lcf
+M747_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream.map
 
 M747_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_stream/executor.cpp \
-	rel/d/a/tag/d_a_tag_stream/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_stream/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.cpp \
 
 M747_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.o \
 
 M747_LIBS := \
@@ -29,15 +27,21 @@ M747_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map747.map\
+	-m _prolog \
+	-lcf $(M747_LDSCRIPT) \
+	-unused -map $(M747_MAP) \
+	-w off \
 
 $(M747_TARGET): $(M747_O_FILES) $(M747_LIBS)
+	@echo [747] creating $(M747_TARGET)
 	@echo $(M747_LIBS) $(M747_O_FILES) > build/M747_ofiles
-	$(LD) -opt_partial $(M747_LDFLAGS) -o $(M747_TARGET) @build/M747_ofiles
+	@python3 tools/lcf.py rel 747 --output $(M747_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M747_LDFLAGS) -o $(M747_TARGET) @build/M747_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_stream/%.o: rel/d/a/tag/d_a_tag_stream/%.cpp
+	@echo [747] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M747_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M747_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,8 +1,8 @@
 lbl_807299EC:
-/* 807299EC  3C 80 80 73 */	lis r4, lit_3789@ha
-/* 807299F0  38 A4 C1 80 */	addi r5, r4, lit_3789@l
-/* 807299F4  3C 80 80 73 */	lis r4, __vt__12daE_NZ_HIO_c@ha
-/* 807299F8  38 04 C3 D4 */	addi r0, r4, __vt__12daE_NZ_HIO_c@l
+/* 807299EC  3C 80 80 73 */	lis r4, lit_3789@ha /* 0x8072C180@ha */
+/* 807299F0  38 A4 C1 80 */	addi r5, r4, lit_3789@l /* 0x8072C180@l */
+/* 807299F4  3C 80 80 73 */	lis r4, __vt__12daE_NZ_HIO_c@ha /* 0x8072C3D4@ha */
+/* 807299F8  38 04 C3 D4 */	addi r0, r4, __vt__12daE_NZ_HIO_c@l /* 0x8072C3D4@l */
 /* 807299FC  90 03 00 00 */	stw r0, 0(r3)
 /* 80729A00  38 00 FF FF */	li r0, -1
 /* 80729A04  98 03 00 04 */	stb r0, 4(r3)

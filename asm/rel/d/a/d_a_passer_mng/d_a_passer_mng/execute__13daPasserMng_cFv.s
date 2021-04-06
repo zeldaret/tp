@@ -3,25 +3,25 @@ lbl_80D45738:
 /* 80D4573C  7C 08 02 A6 */	mflr r0
 /* 80D45740  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80D45744  39 61 00 40 */	addi r11, r1, 0x40
-/* 80D45748  4B 61 CA 88 */	b _savegpr_26
+/* 80D45748  4B 61 CA 89 */	bl _savegpr_26
 /* 80D4574C  7C 7E 1B 78 */	mr r30, r3
-/* 80D45750  4B 46 6E 2C */	b dKy_darkworld_check__Fv
+/* 80D45750  4B 46 6E 2D */	bl dKy_darkworld_check__Fv
 /* 80D45754  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D45758  41 82 00 10 */	beq lbl_80D45768
-/* 80D4575C  4B 45 A3 D4 */	b dKy_getDarktime_minute__Fv
+/* 80D4575C  4B 45 A3 D5 */	bl dKy_getDarktime_minute__Fv
 /* 80D45760  7C 7C 1B 78 */	mr r28, r3
 /* 80D45764  48 00 00 0C */	b lbl_80D45770
 lbl_80D45768:
-/* 80D45768  4B 45 A2 D4 */	b dKy_getdaytime_minute__Fv
+/* 80D45768  4B 45 A2 D5 */	bl dKy_getdaytime_minute__Fv
 /* 80D4576C  7C 7C 1B 78 */	mr r28, r3
 lbl_80D45770:
-/* 80D45770  4B 46 6E 0C */	b dKy_darkworld_check__Fv
+/* 80D45770  4B 46 6E 0D */	bl dKy_darkworld_check__Fv
 /* 80D45774  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D45778  41 82 00 0C */	beq lbl_80D45784
-/* 80D4577C  4B 45 A3 78 */	b dKy_getDarktime_hour__Fv
+/* 80D4577C  4B 45 A3 79 */	bl dKy_getDarktime_hour__Fv
 /* 80D45780  48 00 00 08 */	b lbl_80D45788
 lbl_80D45784:
-/* 80D45784  4B 45 A2 8C */	b dKy_getdaytime_hour__Fv
+/* 80D45784  4B 45 A2 8D */	bl dKy_getdaytime_hour__Fv
 lbl_80D45788:
 /* 80D45788  1C 03 00 3C */	mulli r0, r3, 0x3c
 /* 80D4578C  7F FC 02 14 */	add r31, r28, r0
@@ -35,14 +35,14 @@ lbl_80D45788:
 /* 80D457AC  7C 1F 00 00 */	cmpw r31, r0
 /* 80D457B0  40 80 01 B0 */	bge lbl_80D45960
 lbl_80D457B4:
-/* 80D457B4  4B 46 6D C8 */	b dKy_darkworld_check__Fv
+/* 80D457B4  4B 46 6D C9 */	bl dKy_darkworld_check__Fv
 /* 80D457B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D457BC  41 82 00 10 */	beq lbl_80D457CC
-/* 80D457C0  4B 45 A3 FC */	b dKy_getDarktime_week__Fv
+/* 80D457C0  4B 45 A3 FD */	bl dKy_getDarktime_week__Fv
 /* 80D457C4  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 80D457C8  48 00 00 08 */	b lbl_80D457D0
 lbl_80D457CC:
-/* 80D457CC  4B 46 33 6C */	b dKy_get_dayofweek__Fv
+/* 80D457CC  4B 46 33 6D */	bl dKy_get_dayofweek__Fv
 lbl_80D457D0:
 /* 80D457D0  80 1E 05 80 */	lwz r0, 0x580(r30)
 /* 80D457D4  7C 00 18 00 */	cmpw r0, r3
@@ -61,7 +61,7 @@ lbl_80D45804:
 /* 80D45804  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 80D45808  7C 63 E8 2E */	lwzx r3, r3, r29
 /* 80D4580C  38 81 00 10 */	addi r4, r1, 0x10
-/* 80D45810  4B 2D 41 AC */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 80D45810  4B 2D 41 AD */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 80D45814  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 80D45818  28 00 00 00 */	cmplwi r0, 0
 /* 80D4581C  41 82 00 08 */	beq lbl_80D45824
@@ -88,7 +88,7 @@ lbl_80D45860:
 /* 80D45860  7C 04 07 34 */	extsh r4, r0
 /* 80D45864  A8 BE 04 DE */	lha r5, 0x4de(r30)
 /* 80D45868  38 C0 00 00 */	li r6, 0
-/* 80D4586C  4B 52 1B 88 */	b __ct__5csXyzFsss
+/* 80D4586C  4B 52 1B 89 */	bl __ct__5csXyzFsss
 /* 80D45870  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80D45874  7C 1A 07 74 */	extsb r26, r0
 /* 80D45878  28 1E 00 00 */	cmplwi r30, 0
@@ -110,7 +110,7 @@ lbl_80D4588C:
 /* 80D458B0  39 01 00 14 */	addi r8, r1, 0x14
 /* 80D458B4  39 20 00 00 */	li r9, 0
 /* 80D458B8  39 40 FF FF */	li r10, -1
-/* 80D458BC  4B 2D 46 34 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80D458BC  4B 2D 46 35 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80D458C0  80 9E 05 68 */	lwz r4, 0x568(r30)
 /* 80D458C4  80 1E 05 84 */	lwz r0, 0x584(r30)
 /* 80D458C8  54 00 10 3A */	slwi r0, r0, 2
@@ -156,7 +156,7 @@ lbl_80D45930:
 lbl_80D45960:
 /* 80D45960  38 60 00 01 */	li r3, 1
 /* 80D45964  39 61 00 40 */	addi r11, r1, 0x40
-/* 80D45968  4B 61 C8 B4 */	b _restgpr_26
+/* 80D45968  4B 61 C8 B5 */	bl _restgpr_26
 /* 80D4596C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80D45970  7C 08 03 A6 */	mtlr r0
 /* 80D45974  38 21 00 40 */	addi r1, r1, 0x40

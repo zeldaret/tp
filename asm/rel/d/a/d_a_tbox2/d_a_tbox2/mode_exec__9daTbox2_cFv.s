@@ -7,12 +7,12 @@ lbl_80497790:
 /* 804977A4  48 00 00 69 */	bl action__9daTbox2_cFv
 /* 804977A8  7F E3 FB 78 */	mr r3, r31
 /* 804977AC  38 80 00 00 */	li r4, 0
-/* 804977B0  4B B8 2F 1C */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 804977B0  4B B8 2F 1D */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 804977B4  38 7F 07 2C */	addi r3, r31, 0x72c
-/* 804977B8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 804977BC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 804977B8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804977BC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804977C0  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 804977C4  4B BD F2 E8 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 804977C4  4B BD F2 E9 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 804977C8  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 804977CC  D0 1F 05 50 */	stfs f0, 0x550(r31)
 /* 804977D0  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)

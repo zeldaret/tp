@@ -11,12 +11,12 @@ lbl_804E8D78:
 /* 804E8D9C  48 00 00 28 */	b lbl_804E8DC4
 lbl_804E8DA0:
 /* 804E8DA0  38 7F 0E 44 */	addi r3, r31, 0xe44
-/* 804E8DA4  4B B9 B5 1C */	b ChkAtHit__12dCcD_GObjInfFv
+/* 804E8DA4  4B B9 B5 1D */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 804E8DA8  28 03 00 00 */	cmplwi r3, 0
 /* 804E8DAC  41 82 00 14 */	beq lbl_804E8DC0
 /* 804E8DB0  38 7F 0E 44 */	addi r3, r31, 0xe44
-/* 804E8DB4  4B B9 B5 A4 */	b GetAtHitObj__12dCcD_GObjInfFv
-/* 804E8DB8  4B D7 AC 90 */	b GetAc__8cCcD_ObjFv
+/* 804E8DB4  4B B9 B5 A5 */	bl GetAtHitObj__12dCcD_GObjInfFv
+/* 804E8DB8  4B D7 AC 91 */	bl GetAc__8cCcD_ObjFv
 /* 804E8DBC  48 00 00 08 */	b lbl_804E8DC4
 lbl_804E8DC0:
 /* 804E8DC0  38 60 00 00 */	li r3, 0

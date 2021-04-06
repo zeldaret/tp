@@ -7,14 +7,14 @@ lbl_805AA5F8:
 /* 805AA60C  7C 7E 1B 78 */	mr r30, r3
 /* 805AA610  7C 9F 23 78 */	mr r31, r4
 /* 805AA614  38 7E 06 24 */	addi r3, r30, 0x624
-/* 805AA618  4B DB 7A 00 */	b __ptmf_test
+/* 805AA618  4B DB 7A 01 */	bl __ptmf_test
 /* 805AA61C  2C 03 00 00 */	cmpwi r3, 0
 /* 805AA620  41 82 00 1C */	beq lbl_805AA63C
 /* 805AA624  38 00 FF FF */	li r0, -1
 /* 805AA628  90 1E 06 3C */	stw r0, 0x63c(r30)
 /* 805AA62C  7F C3 F3 78 */	mr r3, r30
 /* 805AA630  39 9E 06 24 */	addi r12, r30, 0x624
-/* 805AA634  4B DB 7A 50 */	b __ptmf_scall
+/* 805AA634  4B DB 7A 51 */	bl __ptmf_scall
 /* 805AA638  60 00 00 00 */	nop 
 lbl_805AA63C:
 /* 805AA63C  80 7E 06 24 */	lwz r3, 0x624(r30)
@@ -33,7 +33,7 @@ lbl_805AA63C:
 /* 805AA670  90 1E 06 3C */	stw r0, 0x63c(r30)
 /* 805AA674  7F C3 F3 78 */	mr r3, r30
 /* 805AA678  39 9E 06 24 */	addi r12, r30, 0x624
-/* 805AA67C  4B DB 7A 08 */	b __ptmf_scall
+/* 805AA67C  4B DB 7A 09 */	bl __ptmf_scall
 /* 805AA680  60 00 00 00 */	nop 
 /* 805AA684  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 805AA688  83 C1 00 08 */	lwz r30, 8(r1)

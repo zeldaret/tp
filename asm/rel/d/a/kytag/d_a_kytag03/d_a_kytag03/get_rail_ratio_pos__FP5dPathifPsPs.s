@@ -3,7 +3,7 @@ lbl_80856124:
 /* 80856128  7C 08 02 A6 */	mflr r0
 /* 8085612C  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80856130  39 61 00 50 */	addi r11, r1, 0x50
-/* 80856134  4B B0 C0 A8 */	b _savegpr_29
+/* 80856134  4B B0 C0 A9 */	bl _savegpr_29
 /* 80856138  7C 7D 1B 78 */	mr r29, r3
 /* 8085613C  7C DE 33 78 */	mr r30, r6
 /* 80856140  7C FF 3B 78 */	mr r31, r7
@@ -37,25 +37,25 @@ lbl_80856124:
 /* 808561B0  38 61 00 2C */	addi r3, r1, 0x2c
 /* 808561B4  38 81 00 20 */	addi r4, r1, 0x20
 /* 808561B8  38 A1 00 08 */	addi r5, r1, 8
-/* 808561BC  4B 80 55 A4 */	b dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
+/* 808561BC  4B 80 55 A5 */	bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 808561C0  C0 01 00 08 */	lfs f0, 8(r1)
 /* 808561C4  EC 20 00 32 */	fmuls f1, f0, f0
 /* 808561C8  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 808561CC  EC 00 00 32 */	fmuls f0, f0, f0
 /* 808561D0  EC 21 00 2A */	fadds f1, f1, f0
-/* 808561D4  3C 60 80 85 */	lis r3, lit_3870@ha
-/* 808561D8  C0 03 76 58 */	lfs f0, lit_3870@l(r3)
+/* 808561D4  3C 60 80 85 */	lis r3, lit_3870@ha /* 0x80857658@ha */
+/* 808561D8  C0 03 76 58 */	lfs f0, lit_3870@l(r3)  /* 0x80857658@l */
 /* 808561DC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 808561E0  40 81 00 0C */	ble lbl_808561EC
 /* 808561E4  FC 00 08 34 */	frsqrte f0, f1
 /* 808561E8  EC 20 00 72 */	fmuls f1, f0, f1
 lbl_808561EC:
 /* 808561EC  C0 41 00 0C */	lfs f2, 0xc(r1)
-/* 808561F0  4B A1 14 84 */	b cM_atan2s__Fff
+/* 808561F0  4B A1 14 85 */	bl cM_atan2s__Fff
 /* 808561F4  B0 7E 00 00 */	sth r3, 0(r30)
 /* 808561F8  C0 21 00 08 */	lfs f1, 8(r1)
 /* 808561FC  C0 41 00 10 */	lfs f2, 0x10(r1)
-/* 80856200  4B A1 14 74 */	b cM_atan2s__Fff
+/* 80856200  4B A1 14 75 */	bl cM_atan2s__Fff
 /* 80856204  B0 7F 00 00 */	sth r3, 0(r31)
 /* 80856208  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 8085620C  D0 1D 00 00 */	stfs f0, 0(r29)
@@ -64,7 +64,7 @@ lbl_808561EC:
 /* 80856218  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8085621C  D0 1D 00 08 */	stfs f0, 8(r29)
 /* 80856220  39 61 00 50 */	addi r11, r1, 0x50
-/* 80856224  4B B0 C0 04 */	b _restgpr_29
+/* 80856224  4B B0 C0 05 */	bl _restgpr_29
 /* 80856228  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8085622C  7C 08 03 A6 */	mtlr r0
 /* 80856230  38 21 00 50 */	addi r1, r1, 0x50

@@ -4,7 +4,7 @@ lbl_8050D168:
 /* 8050D170  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8050D174  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8050D178  7C 7F 1B 78 */	mr r31, r3
-/* 8050D17C  4B B0 BB 64 */	b fopAc_IsActor__FPv
+/* 8050D17C  4B B0 BB 65 */	bl fopAc_IsActor__FPv
 /* 8050D180  2C 03 00 00 */	cmpwi r3, 0
 /* 8050D184  41 82 00 58 */	beq lbl_8050D1DC
 /* 8050D188  A8 1F 00 08 */	lha r0, 8(r31)
@@ -16,11 +16,11 @@ lbl_8050D168:
 /* 8050D1A0  A8 1F 05 B4 */	lha r0, 0x5b4(r31)
 /* 8050D1A4  2C 00 00 0A */	cmpwi r0, 0xa
 /* 8050D1A8  40 80 00 34 */	bge lbl_8050D1DC
-/* 8050D1AC  3C 60 80 52 */	lis r3, lit_4240@ha
-/* 8050D1B0  C0 23 85 DC */	lfs f1, lit_4240@l(r3)
-/* 8050D1B4  4B D5 A7 A0 */	b cM_rndF__Ff
-/* 8050D1B8  3C 60 80 52 */	lis r3, lit_4240@ha
-/* 8050D1BC  C0 03 85 DC */	lfs f0, lit_4240@l(r3)
+/* 8050D1AC  3C 60 80 52 */	lis r3, lit_4240@ha /* 0x805185DC@ha */
+/* 8050D1B0  C0 23 85 DC */	lfs f1, lit_4240@l(r3)  /* 0x805185DC@l */
+/* 8050D1B4  4B D5 A7 A1 */	bl cM_rndF__Ff
+/* 8050D1B8  3C 60 80 52 */	lis r3, lit_4240@ha /* 0x805185DC@ha */
+/* 8050D1BC  C0 03 85 DC */	lfs f0, lit_4240@l(r3)  /* 0x805185DC@l */
 /* 8050D1C0  EC 00 08 2A */	fadds f0, f0, f1
 /* 8050D1C4  FC 00 00 1E */	fctiwz f0, f0
 /* 8050D1C8  D8 01 00 08 */	stfd f0, 8(r1)

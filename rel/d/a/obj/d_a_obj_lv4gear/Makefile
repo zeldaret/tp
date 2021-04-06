@@ -3,17 +3,15 @@
 #
 
 M535_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear.plf
+M535_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear.lcf
+M535_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear.map
 
 M535_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4gear/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4gear/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4gear/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4gear/d_a_obj_lv4gear.cpp \
 
 M535_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/d_a_obj_lv4gear.o \
 
 M535_LIBS := \
@@ -29,15 +27,21 @@ M535_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map535.map\
+	-m _prolog \
+	-lcf $(M535_LDSCRIPT) \
+	-unused -map $(M535_MAP) \
+	-w off \
 
 $(M535_TARGET): $(M535_O_FILES) $(M535_LIBS)
+	@echo [535] creating $(M535_TARGET)
 	@echo $(M535_LIBS) $(M535_O_FILES) > build/M535_ofiles
-	$(LD) -opt_partial $(M535_LDFLAGS) -o $(M535_TARGET) @build/M535_ofiles
+	@python3 tools/lcf.py rel 535 --output $(M535_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M535_LDFLAGS) -o $(M535_TARGET) @build/M535_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4gear/%.o: rel/d/a/obj/d_a_obj_lv4gear/%.cpp
+	@echo [535] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M535_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M535_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

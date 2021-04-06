@@ -21,9 +21,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void cTgIt_MethodCall(create_tag_class*, method_filter*);
-void cTgIt_JudgeFilter(create_tag_class*, judge_filter*);
-
 extern "C" void cTgIt_MethodCall__FP16create_tag_classP13method_filter();
 extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
 
@@ -35,7 +32,7 @@ extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
 // Declarations:
 //
 
-/* 80266A7C-80266AB0 0034+00 s=0 e=4 z=0  None .text
+/* 80266A7C-80266AB0 2613BC 0034+00 0/0 4/4 0/0 .text
  * cTgIt_MethodCall__FP16create_tag_classP13method_filter       */
 #pragma push
 #pragma optimization_level 0
@@ -46,7 +43,7 @@ asm void cTgIt_MethodCall(create_tag_class* param_0, method_filter* param_1) {
 }
 #pragma pop
 
-/* 80266AB0-80266AE4 0034+00 s=0 e=5 z=0  None .text
+/* 80266AB0-80266AE4 2613F0 0034+00 0/0 5/5 0/0 .text
  * cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter       */
 #pragma push
 #pragma optimization_level 0

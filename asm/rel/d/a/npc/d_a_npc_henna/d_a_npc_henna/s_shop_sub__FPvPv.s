@@ -4,7 +4,7 @@ lbl_8054378C:
 /* 80543794  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80543798  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8054379C  7C 7F 1B 78 */	mr r31, r3
-/* 805437A0  4B AD 55 40 */	b fopAc_IsActor__FPv
+/* 805437A0  4B AD 55 41 */	bl fopAc_IsActor__FPv
 /* 805437A4  2C 03 00 00 */	cmpwi r3, 0
 /* 805437A8  41 82 00 28 */	beq lbl_805437D0
 /* 805437AC  A8 1F 00 08 */	lha r0, 8(r31)

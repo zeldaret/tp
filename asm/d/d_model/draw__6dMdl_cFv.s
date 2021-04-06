@@ -7,8 +7,8 @@ lbl_8009C4FC:
 /* 8009C510  7C 7F 1B 78 */	mr r31, r3
 /* 8009C514  80 83 00 10 */	lwz r4, 0x10(r3)
 /* 8009C518  80 04 00 A0 */	lwz r0, 0xa0(r4)
-/* 8009C51C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8009C520  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8009C51C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8009C520  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8009C524  90 03 01 0C */	stw r0, 0x10c(r3)
 /* 8009C528  80 04 00 A4 */	lwz r0, 0xa4(r4)
 /* 8009C52C  90 03 01 10 */	stw r0, 0x110(r3)
@@ -55,8 +55,8 @@ lbl_8009C4FC:
 /* 8009C5D0  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 8009C5D4  48 10 C0 7D */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 8009C5D8  83 9F 00 1C */	lwz r28, 0x1c(r31)
-/* 8009C5DC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8009C5E0  3B C3 4A C8 */	addi r30, r3, j3dSys@l
+/* 8009C5DC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8009C5E0  3B C3 4A C8 */	addi r30, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8009C5E4  48 00 00 44 */	b lbl_8009C628
 lbl_8009C5E8:
 /* 8009C5E8  7F C3 F3 78 */	mr r3, r30

@@ -18,8 +18,8 @@ lbl_8003F24C:
 /* 8003F28C  7C BD 2B 78 */	mr r29, r5
 /* 8003F290  7C DE 33 78 */	mr r30, r6
 /* 8003F294  7C FF 3B 78 */	mr r31, r7
-/* 8003F298  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003F29C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003F298  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003F29C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003F2A0  3B 43 4E 20 */	addi r26, r3, 0x4e20
 /* 8003F2A4  7F 43 D3 78 */	mr r3, r26
 /* 8003F2A8  81 9A 00 00 */	lwz r12, 0(r26)

@@ -17,9 +17,9 @@ lbl_80B9FD5C:
 /* 80B9FD98  41 82 00 34 */	beq lbl_80B9FDCC
 /* 80B9FD9C  7F E3 FB 78 */	mr r3, r31
 /* 80B9FDA0  7F C4 F3 78 */	mr r4, r30
-/* 80B9FDA4  4B 47 AB 70 */	b fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 80B9FDA8  3C 60 80 BA */	lis r3, lit_3749@ha
-/* 80B9FDAC  C0 03 11 68 */	lfs f0, lit_3749@l(r3)
+/* 80B9FDA4  4B 47 AB 71 */	bl fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80B9FDA8  3C 60 80 BA */	lis r3, lit_3749@ha /* 0x80BA1168@ha */
+/* 80B9FDAC  C0 03 11 68 */	lfs f0, lit_3749@l(r3)  /* 0x80BA1168@l */
 /* 80B9FDB0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80B9FDB4  40 80 00 18 */	bge lbl_80B9FDCC
 /* 80B9FDB8  7F E3 FB 78 */	mr r3, r31

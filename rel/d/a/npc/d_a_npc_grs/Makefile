@@ -3,19 +3,20 @@
 #
 
 M312_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs.plf
+M312_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs.lcf
+M312_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs.map
 
 M312_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_grs/executor.cpp \
-	rel/d/a/npc/d_a_npc_grs/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_grs/d_a_npc_grs.cpp \
 
 M312_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs/d_a_npc_grs.o \
 
 M312_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs/libRuntime.PPCEABI.H.a \
 
 M312_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M312_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map312.map\
+	-m _prolog \
+	-lcf $(M312_LDSCRIPT) \
+	-unused -map $(M312_MAP) \
+	-w off \
 
 $(M312_TARGET): $(M312_O_FILES) $(M312_LIBS)
+	@echo [312] creating $(M312_TARGET)
 	@echo $(M312_LIBS) $(M312_O_FILES) > build/M312_ofiles
-	$(LD) -opt_partial $(M312_LDFLAGS) -o $(M312_TARGET) @build/M312_ofiles
+	@python3 tools/lcf.py rel 312 --output $(M312_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M312_LDFLAGS) -o $(M312_TARGET) @build/M312_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grs/%.o: rel/d/a/npc/d_a_npc_grs/%.cpp
+	@echo [312] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M312_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M312_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_grs/libs/Runtime.PPCEABI.H/Makefile
 

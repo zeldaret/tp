@@ -4,8 +4,8 @@ lbl_80005AD8:
 /* 80005AE0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80005AE4  39 61 00 30 */	addi r11, r1, 0x30
 /* 80005AE8  48 35 C6 DD */	bl _savegpr_23
-/* 80005AEC  3C 60 80 3A */	lis r3, COPYDATE_STRING__7mDoMain@ha
-/* 80005AF0  3B 23 2E E0 */	addi r25, r3, COPYDATE_STRING__7mDoMain@l
+/* 80005AEC  3C 60 80 3A */	lis r3, COPYDATE_STRING__7mDoMain@ha /* 0x803A2EE0@ha */
+/* 80005AF0  3B 23 2E E0 */	addi r25, r3, COPYDATE_STRING__7mDoMain@l /* 0x803A2EE0@l */
 /* 80005AF4  88 0D 85 99 */	lbz r0, struct_80450B18+0x1(r13)
 /* 80005AF8  28 00 00 01 */	cmplwi r0, 1
 /* 80005AFC  41 80 00 20 */	blt lbl_80005B1C
@@ -26,8 +26,8 @@ lbl_80005B1C:
 /* 80005B34  41 82 02 00 */	beq lbl_80005D34
 /* 80005B38  38 60 01 DB */	li r3, 0x1db
 /* 80005B3C  38 80 00 64 */	li r4, 0x64
-/* 80005B40  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005B44  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005B40  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005B44  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005B48  38 A5 01 96 */	addi r5, r5, 0x196
 /* 80005B4C  4C C6 31 82 */	crclr 6
 /* 80005B50  48 2D A9 E1 */	bl JUTReport__FiiPCce
@@ -36,15 +36,15 @@ lbl_80005B1C:
 /* 80005B5C  7C 66 1B 78 */	mr r6, r3
 /* 80005B60  38 60 01 DB */	li r3, 0x1db
 /* 80005B64  38 80 00 72 */	li r4, 0x72
-/* 80005B68  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005B6C  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005B68  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005B6C  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005B70  38 A5 01 A0 */	addi r5, r5, 0x1a0
 /* 80005B74  4C C6 31 82 */	crclr 6
 /* 80005B78  48 2D A9 B9 */	bl JUTReport__FiiPCce
 /* 80005B7C  38 60 01 DB */	li r3, 0x1db
 /* 80005B80  38 80 00 80 */	li r4, 0x80
-/* 80005B84  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005B88  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005B84  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005B88  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005B8C  38 A5 01 50 */	addi r5, r5, 0x150
 /* 80005B90  4C C6 31 82 */	crclr 6
 /* 80005B94  48 2D A9 9D */	bl JUTReport__FiiPCce
@@ -53,8 +53,8 @@ lbl_80005B1C:
 /* 80005BA0  7C 66 1B 78 */	mr r6, r3
 /* 80005BA4  38 60 01 DB */	li r3, 0x1db
 /* 80005BA8  38 80 00 8E */	li r4, 0x8e
-/* 80005BAC  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005BB0  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005BAC  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005BB0  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005BB4  38 A5 01 A0 */	addi r5, r5, 0x1a0
 /* 80005BB8  4C C6 31 82 */	crclr 6
 /* 80005BBC  48 2D A9 75 */	bl JUTReport__FiiPCce
@@ -64,8 +64,8 @@ lbl_80005BC4:
 /* 80005BC8  41 82 01 6C */	beq lbl_80005D34
 /* 80005BCC  38 60 01 DB */	li r3, 0x1db
 /* 80005BD0  38 80 00 64 */	li r4, 0x64
-/* 80005BD4  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005BD8  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005BD4  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005BD8  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005BDC  38 A5 01 A3 */	addi r5, r5, 0x1a3
 /* 80005BE0  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 80005BE4  38 D9 00 34 */	addi r6, r25, 0x34
@@ -74,8 +74,8 @@ lbl_80005BC4:
 /* 80005BF0  48 2D A9 41 */	bl JUTReport__FiiPCce
 /* 80005BF4  38 60 01 DB */	li r3, 0x1db
 /* 80005BF8  38 80 00 72 */	li r4, 0x72
-/* 80005BFC  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha
-/* 80005C00  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l
+/* 80005BFC  3C A0 80 37 */	lis r5, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005C00  38 A5 39 A0 */	addi r5, r5, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 80005C04  38 A5 01 A3 */	addi r5, r5, 0x1a3
 /* 80005C08  88 0D 80 08 */	lbz r0, data_80450588(r13)
 /* 80005C0C  54 00 10 3A */	slwi r0, r0, 2
@@ -87,8 +87,8 @@ lbl_80005BC4:
 /* 80005C24  3B 80 00 00 */	li r28, 0
 /* 80005C28  3B 60 00 00 */	li r27, 0
 /* 80005C2C  3B 39 00 14 */	addi r25, r25, 0x14
-/* 80005C30  3C 60 80 37 */	lis r3, m_Do_m_Do_main__stringBase0@ha
-/* 80005C34  3B 43 39 A0 */	addi r26, r3, m_Do_m_Do_main__stringBase0@l
+/* 80005C30  3C 60 80 37 */	lis r3, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80005C34  3B 43 39 A0 */	addi r26, r3, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 lbl_80005C38:
 /* 80005C38  7E F9 D8 2E */	lwzx r23, r25, r27
 /* 80005C3C  83 17 00 08 */	lwz r24, 8(r23)

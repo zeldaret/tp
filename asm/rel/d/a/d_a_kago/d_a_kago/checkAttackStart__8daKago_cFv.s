@@ -10,8 +10,8 @@ lbl_8084B56C:
 /* 8084B58C  38 60 00 00 */	li r3, 0
 /* 8084B590  48 00 00 38 */	b lbl_8084B5C8
 lbl_8084B594:
-/* 8084B594  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 8084B598  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 8084B594  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8084B598  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8084B59C  80 04 00 34 */	lwz r0, 0x34(r4)
 /* 8084B5A0  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8084B5A4  41 82 00 20 */	beq lbl_8084B5C4

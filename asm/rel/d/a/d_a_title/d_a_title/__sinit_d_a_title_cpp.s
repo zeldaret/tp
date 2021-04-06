@@ -3,15 +3,15 @@ lbl_80D67A50:
 /* 80D67A54  7C 08 02 A6 */	mflr r0
 /* 80D67A58  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D67A5C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80D67A60  3C 60 80 D6 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80D67A64  3B E3 7C 40 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80D67A68  3C 60 80 D6 */	lis r3, g_daTitHIO@ha
-/* 80D67A6C  38 63 7D 8C */	addi r3, r3, g_daTitHIO@l
+/* 80D67A60  3C 60 80 D6 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80D67C40@ha */
+/* 80D67A64  3B E3 7C 40 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80D67C40@l */
+/* 80D67A68  3C 60 80 D6 */	lis r3, g_daTitHIO@ha /* 0x80D67D8C@ha */
+/* 80D67A6C  38 63 7D 8C */	addi r3, r3, g_daTitHIO@l /* 0x80D67D8C@l */
 /* 80D67A70  4B FF F0 9D */	bl __ct__11daTit_HIO_cFv
-/* 80D67A74  3C 80 80 D6 */	lis r4, __dt__11daTit_HIO_cFv@ha
-/* 80D67A78  38 84 7A 08 */	addi r4, r4, __dt__11daTit_HIO_cFv@l
-/* 80D67A7C  3C A0 80 D6 */	lis r5, lit_3998@ha
-/* 80D67A80  38 A5 7D 80 */	addi r5, r5, lit_3998@l
+/* 80D67A74  3C 80 80 D6 */	lis r4, __dt__11daTit_HIO_cFv@ha /* 0x80D67A08@ha */
+/* 80D67A78  38 84 7A 08 */	addi r4, r4, __dt__11daTit_HIO_cFv@l /* 0x80D67A08@l */
+/* 80D67A7C  3C A0 80 D6 */	lis r5, lit_3998@ha /* 0x80D67D80@ha */
+/* 80D67A80  38 A5 7D 80 */	addi r5, r5, lit_3998@l /* 0x80D67D80@l */
 /* 80D67A84  4B FF F0 15 */	bl __register_global_object
 /* 80D67A88  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 80D67A8C  80 1F 00 24 */	lwz r0, 0x24(r31)

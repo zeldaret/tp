@@ -24,8 +24,8 @@ lbl_80167EF4:
 /* 80167F4C  D0 01 00 A8 */	stfs f0, 0xa8(r1)
 /* 80167F50  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80167F54  D0 01 00 AC */	stfs f0, 0xac(r1)
-/* 80167F58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80167F5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80167F58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80167F5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80167F60  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 80167F64  7F E3 FB 78 */	mr r3, r31
 /* 80167F68  38 81 00 68 */	addi r4, r1, 0x68

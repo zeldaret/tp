@@ -9,13 +9,13 @@ lbl_80A44344:
 /* 80A44360  38 00 00 03 */	li r0, 3
 /* 80A44364  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A44368  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80A4436C  4B 91 DC AC */	b __ptmf_test
+/* 80A4436C  4B 91 DC AD */	bl __ptmf_test
 /* 80A44370  2C 03 00 00 */	cmpwi r3, 0
 /* 80A44374  41 82 00 18 */	beq lbl_80A4438C
 /* 80A44378  7F C3 F3 78 */	mr r3, r30
 /* 80A4437C  38 80 00 00 */	li r4, 0
 /* 80A44380  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80A44384  4B 91 DD 00 */	b __ptmf_scall
+/* 80A44384  4B 91 DD 01 */	bl __ptmf_scall
 /* 80A44388  60 00 00 00 */	nop 
 lbl_80A4438C:
 /* 80A4438C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A4438C:
 /* 80A443A4  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A443A8  90 1E 0E 5C */	stw r0, 0xe5c(r30)
 /* 80A443AC  38 7E 0E 54 */	addi r3, r30, 0xe54
-/* 80A443B0  4B 91 DC 68 */	b __ptmf_test
+/* 80A443B0  4B 91 DC 69 */	bl __ptmf_test
 /* 80A443B4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A443B8  41 82 00 18 */	beq lbl_80A443D0
 /* 80A443BC  7F C3 F3 78 */	mr r3, r30
 /* 80A443C0  38 80 00 00 */	li r4, 0
 /* 80A443C4  39 9E 0E 54 */	addi r12, r30, 0xe54
-/* 80A443C8  4B 91 DC BC */	b __ptmf_scall
+/* 80A443C8  4B 91 DC BD */	bl __ptmf_scall
 /* 80A443CC  60 00 00 00 */	nop 
 lbl_80A443D0:
 /* 80A443D0  38 60 00 01 */	li r3, 1

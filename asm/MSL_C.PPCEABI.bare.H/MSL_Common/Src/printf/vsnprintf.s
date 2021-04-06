@@ -8,9 +8,9 @@ lbl_80366690:
 /* 803666A8  38 81 00 08 */	addi r4, r1, 8
 /* 803666AC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 803666B0  7C 7E 1B 78 */	mr r30, r3
-/* 803666B4  3C 60 80 36 */	lis r3, __StringWrite@ha
+/* 803666B4  3C 60 80 36 */	lis r3, __StringWrite@ha /* 0x80366964@ha */
 /* 803666B8  93 C1 00 08 */	stw r30, 8(r1)
-/* 803666BC  38 63 69 64 */	addi r3, r3, __StringWrite@l
+/* 803666BC  38 63 69 64 */	addi r3, r3, __StringWrite@l /* 0x80366964@l */
 /* 803666C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803666C4  90 01 00 10 */	stw r0, 0x10(r1)
 /* 803666C8  48 00 03 61 */	bl __pformatter

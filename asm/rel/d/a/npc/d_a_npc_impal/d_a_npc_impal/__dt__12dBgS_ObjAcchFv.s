@@ -7,19 +7,19 @@ lbl_80A0C0F8:
 /* 80A0C10C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80A0C110  7C 9F 23 78 */	mr r31, r4
 /* 80A0C114  41 82 00 38 */	beq lbl_80A0C14C
-/* 80A0C118  3C 80 80 A1 */	lis r4, __vt__12dBgS_ObjAcch@ha
-/* 80A0C11C  38 84 C8 68 */	addi r4, r4, __vt__12dBgS_ObjAcch@l
+/* 80A0C118  3C 80 80 A1 */	lis r4, __vt__12dBgS_ObjAcch@ha /* 0x80A0C868@ha */
+/* 80A0C11C  38 84 C8 68 */	addi r4, r4, __vt__12dBgS_ObjAcch@l /* 0x80A0C868@l */
 /* 80A0C120  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80A0C124  38 04 00 0C */	addi r0, r4, 0xc
 /* 80A0C128  90 1E 00 14 */	stw r0, 0x14(r30)
 /* 80A0C12C  38 04 00 18 */	addi r0, r4, 0x18
 /* 80A0C130  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 80A0C134  38 80 00 00 */	li r4, 0
-/* 80A0C138  4B 66 9E 5C */	b __dt__9dBgS_AcchFv
+/* 80A0C138  4B 66 9E 5D */	bl __dt__9dBgS_AcchFv
 /* 80A0C13C  7F E0 07 35 */	extsh. r0, r31
 /* 80A0C140  40 81 00 0C */	ble lbl_80A0C14C
 /* 80A0C144  7F C3 F3 78 */	mr r3, r30
-/* 80A0C148  4B 8C 2B F4 */	b __dl__FPv
+/* 80A0C148  4B 8C 2B F5 */	bl __dl__FPv
 lbl_80A0C14C:
 /* 80A0C14C  7F C3 F3 78 */	mr r3, r30
 /* 80A0C150  83 E1 00 0C */	lwz r31, 0xc(r1)

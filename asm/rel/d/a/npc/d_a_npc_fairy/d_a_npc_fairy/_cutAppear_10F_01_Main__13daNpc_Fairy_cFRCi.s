@@ -3,8 +3,8 @@ lbl_809B48C4:
 /* 809B48C8  7C 08 02 A6 */	mflr r0
 /* 809B48CC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809B48D0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 809B48D4  3C A0 80 9C */	lis r5, m__19daNpc_Fairy_Param_c@ha
-/* 809B48D8  38 A5 92 E4 */	addi r5, r5, m__19daNpc_Fairy_Param_c@l
+/* 809B48D4  3C A0 80 9C */	lis r5, m__19daNpc_Fairy_Param_c@ha /* 0x809B92E4@ha */
+/* 809B48D8  38 A5 92 E4 */	addi r5, r5, m__19daNpc_Fairy_Param_c@l /* 0x809B92E4@l */
 /* 809B48DC  3B E0 00 00 */	li r31, 0
 /* 809B48E0  80 04 00 00 */	lwz r0, 0(r4)
 /* 809B48E4  2C 00 00 28 */	cmpwi r0, 0x28
@@ -44,7 +44,7 @@ lbl_809B4944:
 /* 809B495C  38 80 00 00 */	li r4, 0
 /* 809B4960  4B FF D3 85 */	bl setAnm__16_Fairy_Feather_cFi
 /* 809B4964  38 60 00 0B */	li r3, 0xb
-/* 809B4968  4B 7F 3E 7C */	b dKy_change_colpat__FUc
+/* 809B4968  4B 7F 3E 7D */	bl dKy_change_colpat__FUc
 /* 809B496C  3B E0 00 01 */	li r31, 1
 /* 809B4970  48 00 00 BC */	b lbl_809B4A2C
 lbl_809B4974:
@@ -93,7 +93,7 @@ lbl_809B4A04:
 /* 809B4A08  38 A0 00 00 */	li r5, 0
 /* 809B4A0C  38 C0 00 00 */	li r6, 0
 /* 809B4A10  38 E0 00 00 */	li r7, 0
-/* 809B4A14  4B 79 72 64 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 809B4A14  4B 79 72 65 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 809B4A18  2C 03 00 00 */	cmpwi r3, 0
 /* 809B4A1C  41 82 00 10 */	beq lbl_809B4A2C
 /* 809B4A20  3B E0 00 01 */	li r31, 1

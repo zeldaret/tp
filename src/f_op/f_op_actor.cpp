@@ -61,11 +61,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct csXyz {
     /* 80018BD0 */ ~csXyz();
 };
+
+struct cXyz {};
 
 struct _GXColor {};
 
@@ -97,12 +97,12 @@ struct create_tag_class {};
 
 struct J3DModel {};
 
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTextureSRTKey {
+    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -122,13 +122,6 @@ struct J3DLightInfo {
 // Forward References:
 //
 
-void fopAc_IsActor(void*);
-static void fopAc_Draw(void*);
-static void fopAc_Execute(void*);
-static void fopAc_IsDelete(void*);
-static void fopAc_Delete(void*);
-static void fopAc_Create(void*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__5csXyzFv();
 extern "C" void __ct__11J3DLightObjFv();
@@ -146,38 +139,11 @@ extern "C" void checkBallModelDraw__13fopEn_enemy_cFv();
 extern "C" void setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" void drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" extern char const* const f_op_f_op_actor__stringBase0;
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" extern u8 stopStatus__10fopAc_ac_c[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcTg_ToActorQ(create_tag_class*);
-void fopAcTg_ActorQTo(create_tag_class*);
-void fopAcTg_Init(create_tag_class*, void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_DeleteHeap(fopAc_ac_c*);
-void fopAcM_cullingCheck(fopAc_ac_c const*);
-void fopDwTg_ToDrawQ(create_tag_class*, int);
-void fopDwTg_DrawQTo(create_tag_class*);
-void fopDwTg_Init(create_tag_class*, void*);
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_MakeOfType(int*);
-void fpcLf_GetPriority(leafdraw_class const*);
-void fpcLf_DrawMethod(leafdraw_method_class*, void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
-void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
-void dKy_depth_dist_set(void*);
-void cLib_chaseF(f32*, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
@@ -236,14 +202,7 @@ extern "C" extern u8 struct_80451124[4];
 // Declarations:
 //
 
-/* 80018B64-80018BD0 006C+00 s=0 e=7 z=562  None .text      __ct__10fopAc_ac_cFv */
-//	80018B80: 800433F0 (__ct__11dEvt_info_cFv)
-//	80018B8C: 803A1EC8 (j3dDefaultLightInfo)
-//	80018B90: 803A1EC8 (j3dDefaultLightInfo)
-//	80018B94: 803256C4 (__as__12J3DLightInfoFRC12J3DLightInfo)
-//	80018B9C: 80018C0C (__ct__11J3DLightObjFv)
-//	80018BA0: 80018C0C (__ct__11J3DLightObjFv)
-//	80018BB0: 80361D60 (__construct_array)
+/* 80018B64-80018BD0 0134A4 006C+00 0/0 7/7 562/562 .text            __ct__10fopAc_ac_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,8 +212,7 @@ asm fopAc_ac_c::fopAc_ac_c() {
 }
 #pragma pop
 
-/* 80018BD0-80018C0C 003C+00 s=0 e=12 z=0  None .text      __dt__5csXyzFv */
-//	80018BF0: 802CED3C (__dl__FPv)
+/* 80018BD0-80018C0C 013510 003C+00 0/0 12/12 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,10 +222,7 @@ asm csXyz::~csXyz() {
 }
 #pragma pop
 
-/* 80018C0C-80018C44 0038+00 s=1 e=6 z=0  None .text      __ct__11J3DLightObjFv */
-//	80018C20: 803A1EC8 (j3dDefaultLightInfo)
-//	80018C24: 803A1EC8 (j3dDefaultLightInfo)
-//	80018C28: 803256C4 (__as__12J3DLightInfoFRC12J3DLightInfo)
+/* 80018C0C-80018C44 01354C 0038+00 1/1 6/6 0/0 .text            __ct__11J3DLightObjFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -278,8 +233,8 @@ asm J3DLightObj::J3DLightObj() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A35B0-803A35D0 0020+00 s=0 e=3 z=756  None .data      g_fopAc_Method */
-SECTION_DATA void* g_fopAc_Method[8] = {
+/* 803A35B0-803A35D0 -00001 0020+00 0/0 3/0 756/0 .data            g_fopAc_Method */
+SECTION_DATA extern void* g_fopAc_Method[8] = {
     (void*)fopAc_Create__FPv,
     (void*)fopAc_Delete__FPv,
     (void*)fopAc_Execute__FPv,
@@ -290,8 +245,8 @@ SECTION_DATA void* g_fopAc_Method[8] = {
     (void*)NULL,
 };
 
-/* 803A35D0-803A35E0 000C+04 s=2 e=1 z=0  None .data      __vt__11dEvt_info_c */
-SECTION_DATA void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
+/* 803A35D0-803A35E0 0006F0 000C+04 2/2 1/1 0/0 .data            __vt__11dEvt_info_c */
+SECTION_DATA extern void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11dEvt_info_cFv,
@@ -299,10 +254,7 @@ SECTION_DATA void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80018C44-80018C8C 0048+00 s=1 e=0 z=0  None .text      __dt__11dEvt_info_cFv */
-//	80018C5C: 803A35D0 (__vt__11dEvt_info_c)
-//	80018C60: 803A35D0 (__vt__11dEvt_info_c)
-//	80018C70: 802CED3C (__dl__FPv)
+/* 80018C44-80018C8C 013584 0048+00 1/0 0/0 0/0 .text            __dt__11dEvt_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -312,10 +264,7 @@ asm dEvt_info_c::~dEvt_info_c() {
 }
 #pragma pop
 
-/* 80018C8C-80018CE0 0054+00 s=0 e=5 z=270  None .text      __dt__10fopAc_ac_cFv */
-//	80018CAC: 803A35D0 (__vt__11dEvt_info_c)
-//	80018CB0: 803A35D0 (__vt__11dEvt_info_c)
-//	80018CC4: 802CED3C (__dl__FPv)
+/* 80018C8C-80018CE0 0135CC 0054+00 0/0 5/5 270/270 .text            __dt__10fopAc_ac_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,12 +275,10 @@ asm fopAc_ac_c::~fopAc_ac_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CB8-80450CBC 0004+00 s=2 e=0 z=0  None .sbss      g_fopAc_type */
+/* 80450CB8-80450CBC 0001B8 0004+00 2/2 0/0 0/0 .sbss            g_fopAc_type */
 static u8 g_fopAc_type[4];
 
-/* 80018CE0-80018D0C 002C+00 s=0 e=12 z=391  None .text      fopAc_IsActor__FPv */
-//	80018CF0: 80450CB8 (g_fopAc_type)
-//	80018CF8: 8002064C (fpcBs_Is_JustOfType__Fii)
+/* 80018CE0-80018D0C 013620 002C+00 0/0 12/12 391/391 .text            fopAc_IsActor__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,132 +289,78 @@ asm void fopAc_IsActor(void* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CBC-80450CC0 0004+00 s=2 e=1 z=0  None .sbss      stopStatus__10fopAc_ac_c */
+/* 80450CBC-80450CC0 0001BC 0004+00 2/2 1/1 0/0 .sbss            stopStatus__10fopAc_ac_c */
+extern u8 stopStatus__10fopAc_ac_c[4];
 u8 stopStatus__10fopAc_ac_c[4];
 
-/* 80018D0C-80018DD8 00CC+00 s=1 e=0 z=0  None .text      fopAc_Draw__FPv */
-//	80018D28: 804061C0 (g_dComIfG_gameInfo)
-//	80018D2C: 804061C0 (g_dComIfG_gameInfo)
-//	80018D44: 80042FA8 (moveApproval__14dEvt_control_cFPv)
-//	80018D54: 80450CBC (stopStatus__10fopAc_ac_c)
-//	80018D6C: 8001ACEC (fopAcM_cullingCheck__FPC10fopAc_ac_c)
-//	80018D98: 80021A24 (fpcLf_DrawMethod__FP21leafdraw_method_classPv)
+/* 80018D0C-80018DD8 01364C 00CC+00 1/0 0/0 0/0 .text            fopAc_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Draw(void* param_0) {
+static asm void fopAc_Draw(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Draw__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BC8-80451BCC 0004+00 s=1 e=0 z=0  None .sdata2    @4324 */
+/* 80451BC8-80451BCC 0001C8 0004+00 1/1 0/0 0/0 .sdata2          @4324 */
 SECTION_SDATA2 static f32 lit_4324 = 5000.0f;
 
-/* 80451BCC-80451BD0 0004+00 s=1 e=0 z=0  None .sdata2    @4325 */
+/* 80451BCC-80451BD0 0001CC 0004+00 1/1 0/0 0/0 .sdata2          @4325 */
 SECTION_SDATA2 static f32 lit_4325 = -9.999999848243207e+30f;
 
-/* 80018DD8-80018F78 01A0+00 s=1 e=0 z=0  None .text      fopAc_Execute__FPv */
-//	80018DF4: 804061C0 (g_dComIfG_gameInfo)
-//	80018DF8: 804061C0 (g_dComIfG_gameInfo)
-//	80018E08: 80451124 (struct_80451124)
-//	80018E14: 80450610 (g_dComIfAc_gameInfo)
-//	80018E24: 800314D4 (check__7daSus_cFP10fopAc_ac_c)
-//	80018E2C: 800434CC (beforeProc__11dEvt_info_cFv)
-//	80018E30: 804061C0 (g_dComIfG_gameInfo)
-//	80018E34: 804061C0 (g_dComIfG_gameInfo)
-//	80018E40: 80042FA8 (moveApproval__14dEvt_control_cFPv)
-//	80018E6C: 80450CBC (stopStatus__10fopAc_ac_c)
-//	80018EE0: 80022460 (fpcMtd_Execute__FP20process_method_classPv)
-//	80018F2C: 80451BC8 (lit_4324)
-//	80018F3C: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
-//	80018F44: 80451BCC (lit_4325)
-//	80018F58: 801AC2E8 (dKy_depth_dist_set__FPv)
+/* 80018DD8-80018F78 013718 01A0+00 1/0 0/0 0/0 .text            fopAc_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Execute(void* param_0) {
+static asm void fopAc_Execute(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Execute__FPv.s"
 }
 #pragma pop
 
-/* 80018F78-80018FCC 0054+00 s=1 e=0 z=0  None .text      fopAc_IsDelete__FPv */
-//	80018F98: 80022484 (fpcMtd_IsDelete__FP20process_method_classPv)
-//	80018FAC: 800204D4 (fopDwTg_DrawQTo__FP16create_tag_class)
+/* 80018F78-80018FCC 0138B8 0054+00 1/0 0/0 0/0 .text            fopAc_IsDelete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_IsDelete(void* param_0) {
+static asm void fopAc_IsDelete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_IsDelete__FPv.s"
 }
 #pragma pop
 
-/* 80018FCC-8001904C 0080+00 s=1 e=0 z=0  None .text      fopAc_Delete__FPv */
-//	80018FEC: 800224A8 (fpcMtd_Delete__FP20process_method_classPv)
-//	80019000: 80019860 (fopAcTg_ActorQTo__FP16create_tag_class)
-//	80019008: 800204D4 (fopDwTg_DrawQTo__FP16create_tag_class)
-//	80019010: 8001A138 (fopAcM_DeleteHeap__FP10fopAc_ac_c)
-//	80019014: 80450E20 (m_object__7dDemo_c)
-//	8001901C: 80039088 (getActor__14dDemo_object_cFUc)
-//	8001902C: 8003815C (setActor__13dDemo_actor_cFP10fopAc_ac_c)
+/* 80018FCC-8001904C 01390C 0080+00 1/0 0/0 0/0 .text            fopAc_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Delete(void* param_0) {
+static asm void fopAc_Delete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Delete__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BD0-80451BD4 0004+00 s=2 e=0 z=0  None .sdata2    @4431 */
+/* 80451BD0-80451BD4 0001D0 0004+00 2/2 0/0 0/0 .sdata2          @4431 */
 SECTION_SDATA2 static f32 lit_4431 = 1.0f / 10.0f;
 
-/* 80451BD4-80451BD8 0004+00 s=1 e=0 z=0  None .sdata2    @4432 */
+/* 80451BD4-80451BD8 0001D4 0004+00 1/1 0/0 0/0 .sdata2          @4432 */
 SECTION_SDATA2 static f32 lit_4432 = -100.0f;
 
-/* 80451BD8-80451BE0 0008+00 s=1 e=0 z=0  None .sdata2    @4434 */
+/* 80451BD8-80451BE0 0001D8 0008+00 1/1 0/0 0/0 .sdata2          @4434 */
 SECTION_SDATA2 static f64 lit_4434 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8001904C-800193FC 03B0+00 s=1 e=0 z=0  None .text      fopAc_Create__FPv */
-//	80019074: 80450CB8 (g_fopAc_type)
-//	80019078: 8002065C (fpcBs_MakeOfType__FPi)
-//	80019090: 80019880 (fopAcTg_Init__FP16create_tag_classPv)
-//	80019098: 80019834 (fopAcTg_ToActorQ__FP16create_tag_class)
-//	800190A4: 800204F4 (fopDwTg_Init__FP16create_tag_classPv)
-//	8001912C: 80451BD0 (lit_4431)
-//	80019134: 80451BD8 (lit_4434)
-//	80019234: 80451BD4 (lit_4432)
-//	800192AC: 801A88EC (dKy_tevstr_init__FP12dKy_tevstr_cScUc)
-//	800192B0: 80450D64 (struct_80450D64)
-//	800192BC: 804061C0 (g_dComIfG_gameInfo)
-//	800192C0: 804061C0 (g_dComIfG_gameInfo)
-//	800192C8: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	800192EC: 804061C0 (g_dComIfG_gameInfo)
-//	800192F0: 804061C0 (g_dComIfG_gameInfo)
-//	800192FC: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	80019330: 804061C0 (g_dComIfG_gameInfo)
-//	80019334: 804061C0 (g_dComIfG_gameInfo)
-//	80019340: 80035360 (isSwitch__10dSv_info_cCFii)
-//	8001936C: 804061C0 (g_dComIfG_gameInfo)
-//	80019370: 804061C0 (g_dComIfG_gameInfo)
-//	8001937C: 80035360 (isSwitch__10dSv_info_cCFii)
-//	800193A4: 800224CC (fpcMtd_Create__FP20process_method_classPv)
-//	800193B8: 80021A00 (fpcLf_GetPriority__FPC14leafdraw_class)
-//	800193C4: 800204AC (fopDwTg_ToDrawQ__FP16create_tag_classi)
+/* 8001904C-800193FC 01398C 03B0+00 1/0 0/0 0/0 .text            fopAc_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Create(void* param_0) {
+static asm void fopAc_Create(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Create__FPv.s"
 }
 #pragma pop
 
-/* 800193FC-80019404 0008+00 s=0 e=1 z=0  None .text      getFileListInfo__15dStage_roomDt_cCFv */
+/* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,33 +370,7 @@ asm void dStage_roomDt_c::getFileListInfo() const {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378878-80378880 0006+02 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop
-
-/* 80019404-800194FC 00F8+00 s=0 e=0 z=2  None .text      initBallModel__13fopEn_enemy_cFv */
-//	8001941C: 80378878 (f_op_f_op_actor__stringBase0)
-//	80019420: 80378878 (f_op_f_op_actor__stringBase0)
-//	80019428: 804061C0 (g_dComIfG_gameInfo)
-//	8001942C: 804061C0 (g_dComIfG_gameInfo)
-//	80019440: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80019450: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	8001946C: 80430CF4 (Zero__4cXyz)
-//	80019470: 80430CF4 (Zero__4cXyz)
-//	80019488: 80378878 (f_op_f_op_actor__stringBase0)
-//	8001948C: 80378878 (f_op_f_op_actor__stringBase0)
-//	8001949C: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	800194B0: 8032B1D4 (searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData)
-//	800194B4: 80378878 (f_op_f_op_actor__stringBase0)
-//	800194B8: 80378878 (f_op_f_op_actor__stringBase0)
-//	800194C8: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	800194DC: 8032B87C (searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData)
+/* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -513,7 +380,7 @@ asm void fopEn_enemy_c::initBallModel() {
 }
 #pragma pop
 
-/* 800194FC-80019520 0024+00 s=2 e=0 z=2  None .text      checkBallModelDraw__13fopEn_enemy_cFv */
+/* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -524,34 +391,18 @@ asm void fopEn_enemy_c::checkBallModelDraw() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BE0-80451BE8 0004+04 s=2 e=0 z=0  None .sdata2    @4505 */
+/* 80451BE0-80451BE8 0001E0 0004+04 2/2 0/0 0/0 .sdata2          @4505 */
 SECTION_SDATA2 static f32 lit_4505[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80451BE8-80451BF0 0008+00 s=1 e=0 z=0  None .sdata2    @4507 */
+/* 80451BE8-80451BF0 0001E8 0008+00 1/1 0/0 0/0 .sdata2          @4507 */
 SECTION_SDATA2 static f64 lit_4507 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80019520-800196A0 0180+00 s=0 e=0 z=2  None .text
+/* 80019520-800196A0 013E60 0180+00 0/0 0/0 2/2 .text
  * setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c          */
-//	80019530: 803621DC (_savegpr_29)
-//	8001954C: 80451BE0 (lit_4505)
-//	80019564: 80451BE8 (lit_4507)
-//	800195A8: 800194FC (checkBallModelDraw__13fopEn_enemy_cFv)
-//	800195C0: 80451BE0 (lit_4505)
-//	800195C4: 80451BD0 (lit_4431)
-//	800195C8: 80270740 (cLib_chaseF__FPfff)
-//	800195D8: 804061C0 (g_dComIfG_gameInfo)
-//	800195DC: 804061C0 (g_dComIfG_gameInfo)
-//	80019628: 80451BE0 (lit_4505)
-//	8001962C: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8001967C: 80451BE0 (lit_4505)
-//	80019680: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	8001968C: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -562,7 +413,7 @@ asm void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BF0-80451BF4 0004+00 s=1 e=0 z=0  None .sdata2    @4555 */
+/* 80451BF0-80451BF4 0001F0 0004+00 1/1 0/0 0/0 .sdata2          @4555 */
 SECTION_SDATA2 static u8 lit_4555[4] = {
     0x00,
     0x00,
@@ -570,33 +421,18 @@ SECTION_SDATA2 static u8 lit_4555[4] = {
     0x00,
 };
 
-/* 80451BF4-80451BF8 0004+00 s=1 e=0 z=0  None .sdata2    @4556 */
+/* 80451BF4-80451BF8 0001F4 0004+00 1/1 0/0 0/0 .sdata2          @4556 */
 SECTION_SDATA2 static f32 lit_4556 = 1.0f / 20.0f;
 
-/* 80451BF8-80451C00 0004+04 s=1 e=0 z=0  None .sdata2    @4557 */
+/* 80451BF8-80451C00 0001F8 0004+04 1/1 0/0 0/0 .sdata2          @4557 */
 SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {
     1.0f / 100.0f,
     /* padding */
     0.0f,
 };
 
-/* 800196A0-800197BC 011C+00 s=0 e=0 z=2  None .text
+/* 800196A0-800197BC 013FE0 011C+00 0/0 0/0 2/2 .text
  * drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c               */
-//	800196B0: 803621DC (_savegpr_29)
-//	800196CC: 800194FC (checkBallModelDraw__13fopEn_enemy_cFv)
-//	800196D8: 80451BE0 (lit_4505)
-//	800196E0: 80451BF0 (lit_4555)
-//	800196E8: 80451BF4 (lit_4556)
-//	800196EC: 80270740 (cLib_chaseF__FPfff)
-//	80019720: 80451BF8 (lit_4557)
-//	80019740: 803468E8 (PSMTXTrans)
-//	80019744: 8042CA54 (g_env_light)
-//	80019748: 8042CA54 (g_env_light)
-//	80019758: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80019778:
-// 8032FCC4 (entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey) 	80019798: 8032FE70
-//(entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey) 	800197A0: 8000DCC4
-//(mDoExt_modelUpdateDL__FP8J3DModel) 	800197A8: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -607,6 +443,16 @@ asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CC0-80450CC8 0004+04 s=0 e=9 z=0  None .sbss
+/* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
+extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
+
+/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037887E = "\0";
+#pragma pop

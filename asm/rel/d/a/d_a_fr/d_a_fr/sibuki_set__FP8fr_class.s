@@ -12,12 +12,12 @@ lbl_80519AB8:
 /* 80519AE0  C0 03 05 F0 */	lfs f0, 0x5f0(r3)
 /* 80519AE4  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80519AE8  38 61 00 08 */	addi r3, r1, 8
-/* 80519AEC  3C 80 80 52 */	lis r4, lit_3700@ha
-/* 80519AF0  C0 24 B9 F0 */	lfs f1, lit_3700@l(r4)
+/* 80519AEC  3C 80 80 52 */	lis r4, lit_3700@ha /* 0x8051B9F0@ha */
+/* 80519AF0  C0 24 B9 F0 */	lfs f1, lit_3700@l(r4)  /* 0x8051B9F0@l */
 /* 80519AF4  C0 05 04 EC */	lfs f0, 0x4ec(r5)
 /* 80519AF8  EC 21 00 32 */	fmuls f1, f1, f0
 /* 80519AFC  38 80 00 00 */	li r4, 0
-/* 80519B00  4B B0 5D 7C */	b fopKyM_createWpillar__FPC4cXyzfi
+/* 80519B00  4B B0 5D 7D */	bl fopKyM_createWpillar__FPC4cXyzfi
 /* 80519B04  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80519B08  7C 08 03 A6 */	mtlr r0
 /* 80519B0C  38 21 00 20 */	addi r1, r1, 0x20

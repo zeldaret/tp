@@ -26,15 +26,15 @@ lbl_80252CC4:
 /* 80252CC4  7F E3 FB 78 */	mr r3, r31
 /* 80252CC8  4B DC B8 55 */	bl fopOvlpM_Done__FP18overlap_task_class
 /* 80252CCC  38 00 00 01 */	li r0, 1
-/* 80252CD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80252CD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80252CD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80252CD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80252CD8  98 03 5D 44 */	stb r0, 0x5d44(r3)
 /* 80252CDC  98 03 5E B8 */	stb r0, 0x5eb8(r3)
 /* 80252CE0  48 00 00 18 */	b lbl_80252CF8
 lbl_80252CE4:
 /* 80252CE4  38 00 00 00 */	li r0, 0
-/* 80252CE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80252CEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80252CE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80252CEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80252CF0  98 03 5D 44 */	stb r0, 0x5d44(r3)
 /* 80252CF4  4B DC B7 91 */	bl fopOvlpM_SceneIsStop__Fv
 lbl_80252CF8:

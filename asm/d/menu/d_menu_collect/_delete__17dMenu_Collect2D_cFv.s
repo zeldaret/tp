@@ -9,8 +9,8 @@ lbl_801B0100:
 /* 801B011C  48 11 E6 69 */	bl getTotalFreeSize__7JKRHeapFv
 /* 801B0120  88 9F 02 58 */	lbz r4, 0x258(r31)
 /* 801B0124  88 1F 02 57 */	lbz r0, 0x257(r31)
-/* 801B0128  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801B012C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801B0128  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801B012C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801B0130  98 03 00 DF */	stb r0, 0xdf(r3)
 /* 801B0134  98 83 00 E0 */	stb r4, 0xe0(r3)
 /* 801B0138  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -302,8 +302,8 @@ lbl_801B050C:
 lbl_801B0534:
 /* 801B0534  38 00 00 00 */	li r0, 0
 /* 801B0538  90 1F 01 68 */	stw r0, 0x168(r31)
-/* 801B053C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B0540  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B053C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B0540  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B0544  80 63 5C B8 */	lwz r3, 0x5cb8(r3)
 /* 801B0548  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B054C  81 8C 00 24 */	lwz r12, 0x24(r12)

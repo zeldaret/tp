@@ -43,106 +43,71 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 803559E0-80355B90 01B0+00 s=0 e=3 z=0  None .text      __CARDCheckSum */
+/* 803559E0-80355B90 350320 01B0+00 0/0 3/3 0/0 .text            __CARDCheckSum */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDCheckSum() {
+asm void __CARDCheckSum() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/__CARDCheckSum.s"
 }
 #pragma pop
 
-/* 80355B90-80355E14 0284+00 s=2 e=0 z=0  None .text      VerifyID */
-//	80355CF8: 803401A0 (__OSLockSramEx)
-//	80355CFC: 8044CBC0 (__CARDBlock)
-//	80355D00: 8044CBC0 (__CARDBlock)
-//	80355D64: 80362694 (__shr2i)
-//	80355D84: 8034055C (__OSUnlockSramEx)
-//	80355DB4: 80362694 (__shr2i)
-//	80355DDC: 8034055C (__OSUnlockSramEx)
-//	80355DE0: 80353B74 (__CARDGetFontEncode)
+/* 80355B90-80355E14 3504D0 0284+00 2/2 0/0 0/0 .text            VerifyID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void VerifyID() {
+static asm void VerifyID() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyID.s"
 }
 #pragma pop
 
-/* 80355E14-80356054 0240+00 s=2 e=0 z=0  None .text      VerifyDir */
-//	80356004: 80003540 (memcpy)
+/* 80355E14-80356054 350754 0240+00 2/2 0/0 0/0 .text            VerifyDir */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void VerifyDir() {
+static asm void VerifyDir() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyDir.s"
 }
 #pragma pop
 
-/* 80356054-803562D8 0284+00 s=2 e=0 z=0  None .text      VerifyFAT */
-//	80356288: 80003540 (memcpy)
+/* 80356054-803562D8 350994 0284+00 2/2 0/0 0/0 .text            VerifyFAT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void VerifyFAT() {
+static asm void VerifyFAT() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/VerifyFAT.s"
 }
 #pragma pop
 
-/* 803562D8-80356364 008C+00 s=0 e=1 z=0  None .text      __CARDVerify */
-//	803562F0: 80355B90 (VerifyID)
-//	80356308: 80355E14 (VerifyDir)
-//	80356318: 80356054 (VerifyFAT)
+/* 803562D8-80356364 350C18 008C+00 0/0 1/1 0/0 .text            __CARDVerify */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDVerify() {
+asm void __CARDVerify() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/__CARDVerify.s"
 }
 #pragma pop
 
-/* 80356364-803568F4 0590+00 s=1 e=0 z=0  None .text      CARDCheckExAsync */
-//	803563A0: 80353BB4 (__CARDGetControlBlock)
-//	803563B4: 80355B90 (VerifyID)
-//	803563C4: 80353C6C (__CARDPutControlBlock)
-//	803563D4: 80355E14 (VerifyDir)
-//	803563E4: 80356054 (VerifyFAT)
-//	803563FC: 80353C6C (__CARDPutControlBlock)
-//	8035647C: 80003540 (memcpy)
-//	803564B8: 80003540 (memcpy)
-//	803564E0: 80003458 (memset)
-//	80356550: 80353C6C (__CARDPutControlBlock)
-//	803565A4: 80353C6C (__CARDPutControlBlock)
-//	8035661C: 80353C6C (__CARDPutControlBlock)
-//	80356848: 80003540 (memcpy)
-//	8035686C: 8035591C (__CARDUpdateDir)
-//	8035689C: 803556D0 (__CARDUpdateFatBlock)
-//	803568AC: 80353C6C (__CARDPutControlBlock)
-//	803568B8: 8033D6F4 (OSDisableInterrupts)
-//	803568D8: 8033D71C (OSRestoreInterrupts)
+/* 80356364-803568F4 350CA4 0590+00 1/1 0/0 0/0 .text            CARDCheckExAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDCheckExAsync() {
+static asm void CARDCheckExAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/CARDCheckExAsync.s"
 }
 #pragma pop
 
-/* 803568F4-80356948 0054+00 s=0 e=2 z=0  None .text      CARDCheck */
-//	803568F8: 80352A34 (__CARDSyncCallback)
-//	80356900: 80352A34 (__CARDSyncCallback)
-//	80356914: 80356364 (CARDCheckExAsync)
-//	80356930: 80353E20 (__CARDSync)
+/* 803568F4-80356948 351234 0054+00 0/0 2/2 0/0 .text            CARDCheck */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDCheck() {
+asm void CARDCheck() {
     nofralloc
 #include "asm/dolphin/card/CARDCheck/CARDCheck.s"
 }

@@ -42,13 +42,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
 struct csXyz {};
 
-struct dKy_tevstr_c {};
+struct cXyz {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -56,9 +56,9 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -70,11 +70,6 @@ struct LIGHT_INFLUENCE {};
 //
 // Forward References:
 //
-
-static void daTimeFire_Draw(daTimeFire_c*);
-static void daTimeFire_Execute(daTimeFire_c*);
-static void daTimeFire_Delete(daTimeFire_c*);
-static void daTimeFire_Create(fopAc_ac_c*);
 
 extern "C" void __ct__16daTimeFire_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -93,22 +88,10 @@ extern "C" static void daTimeFire_Delete__FP12daTimeFire_c();
 extern "C" static void daTimeFire_Create__FP10fopAc_ac_c();
 extern "C" void __dt__16daTimeFire_HIO_cFv();
 extern "C" void __sinit_d_a_obj_timeFire_cpp();
-extern "C" extern u32 const lit_3707;
-extern "C" extern void* g_profile_Obj_TimeFire[12];
-extern "C" extern void* __vt__16daTimeFire_HIO_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void dComIfGp_getReverb(int);
-void dKy_getdaytime_hour();
-void dKy_getdaytime_minute();
-void dKy_plight_set(LIGHT_INFLUENCE*);
-void dKy_plight_cut(LIGHT_INFLUENCE*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -138,7 +121,7 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80D0F100-80D0F120 0020+00 s=1 e=0 z=0  None .data      l_daTimeFire_Method */
+/* 80D0F100-80D0F120 -00001 0020+00 1/0 0/0 0/0 .data            l_daTimeFire_Method */
 SECTION_DATA static void* l_daTimeFire_Method[8] = {
     (void*)daTimeFire_Create__FP10fopAc_ac_c,
     (void*)daTimeFire_Delete__FP12daTimeFire_c,
@@ -150,8 +133,8 @@ SECTION_DATA static void* l_daTimeFire_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D0F120-80D0F150 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_TimeFire */
-SECTION_DATA void* g_profile_Obj_TimeFire[12] = {
+/* 80D0F120-80D0F150 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_TimeFire */
+SECTION_DATA extern void* g_profile_Obj_TimeFire[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01940000, (void*)&g_fpcLf_Method,
     (void*)0x000005C0, (void*)NULL,
@@ -160,25 +143,21 @@ SECTION_DATA void* g_profile_Obj_TimeFire[12] = {
     (void*)0x00060000, (void*)0x000E0000,
 };
 
-/* 80D0F150-80D0F15C 000C+00 s=2 e=0 z=0  None .data      __vt__16daTimeFire_HIO_c */
-SECTION_DATA void* __vt__16daTimeFire_HIO_c[3] = {
+/* 80D0F150-80D0F15C 000050 000C+00 2/2 0/0 0/0 .data            __vt__16daTimeFire_HIO_c */
+SECTION_DATA extern void* __vt__16daTimeFire_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16daTimeFire_HIO_cFv,
 };
 
-/* 80D0F15C-80D0F168 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA void* __vt__14mDoHIO_entry_c[3] = {
+/* 80D0F15C-80D0F168 00005C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80D0E8EC-80D0E910 0024+00 s=1 e=0 z=0  None .text      __ct__16daTimeFire_HIO_cFv */
-//	80D0E8EC: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0E8F0: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0E8F8: 80D0F150 (__vt__16daTimeFire_HIO_c)
-//	80D0E8FC: 80D0F150 (__vt__16daTimeFire_HIO_c)
+/* 80D0E8EC-80D0E910 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__16daTimeFire_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -188,10 +167,7 @@ asm daTimeFire_HIO_c::daTimeFire_HIO_c() {
 }
 #pragma pop
 
-/* 80D0E910-80D0E958 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
-//	80D0E928: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0E92C: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0E93C: 802CED3C (__dl__FPv)
+/* 80D0E910-80D0E958 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -201,13 +177,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80D0E958-80D0E9B0 0058+00 s=1 e=0 z=0  None .text      setBaseMtx__12daTimeFire_cFv */
-//	80D0E96C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D0E970: 803DD470 (now__14mDoMtx_stack_c)
-//	80D0E980: 803468E8 (PSMTXTrans)
-//	80D0E984: 803DD470 (now__14mDoMtx_stack_c)
-//	80D0E988: 803DD470 (now__14mDoMtx_stack_c)
-//	80D0E998: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
+/* 80D0E958-80D0E9B0 000158 0058+00 1/1 0/0 0/0 .text            setBaseMtx__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -218,29 +188,21 @@ asm void daTimeFire_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D0F0E4-80D0F0EC 0004+04 s=2 e=0 z=0  None .rodata    @3686 */
+/* 80D0F0E4-80D0F0EC 000000 0004+04 2/2 0/0 0/0 .rodata          @3686 */
 SECTION_RODATA static u32 const lit_3686[1 + 1 /* padding */] = {
     0x41200000,
     /* padding */
     0x00000000,
 };
+SECTION_DEAD void* const cg_80D0F0E4 = (void*)(&lit_3686);
 
-/* 80D0F0EC-80D0F0F4 0008+00 s=1 e=0 z=0  None .rodata    @3688 */
+/* 80D0F0EC-80D0F0F4 000008 0008+00 1/1 0/0 0/0 .rodata          @3688 */
 SECTION_RODATA static u8 const lit_3688[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_80D0F0EC = (void*)(&lit_3688);
 
-/* 80D0E9B0-80D0EACC 011C+00 s=1 e=0 z=0  None .text      create__12daTimeFire_cFv */
-//	80D0E9D8: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D0E9EC: 80D0E958 (setBaseMtx__12daTimeFire_cFv)
-//	80D0EA0C: 80D0EACC (lightInit__12daTimeFire_cFv)
-//	80D0EA30: 80D0F0EC (lit_3688)
-//	80D0EA34: 80D0F0EC (lit_3688)
-//	80D0EA50: 80D0F0E4 (lit_3686)
-//	80D0EA54: 80D0F0E4 (lit_3686)
-//	80D0EA70: 80D0ED68 (fireCheck__12daTimeFire_cFUc)
-//	80D0EA88: 80D0EB64 (cutLight__12daTimeFire_cFv)
-//	80D0EA9C: 80D0EB40 (setLight__12daTimeFire_cFv)
+/* 80D0E9B0-80D0EACC 0001B0 011C+00 1/1 0/0 0/0 .text            create__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -250,9 +212,19 @@ asm void daTimeFire_c::create() {
 }
 #pragma pop
 
-/* 80D0EACC-80D0EB40 0074+00 s=1 e=0 z=0  None .text      lightInit__12daTimeFire_cFv */
-//	80D0EACC: 80D0F0E4 (lit_3686)
-//	80D0EAD0: 80D0F0E4 (lit_3686)
+/* ############################################################################################## */
+/* 80D0F0F4-80D0F0F8 000010 0004+00 0/1 0/0 0/0 .rodata          @3707 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3707 = 0x43FA0000;
+SECTION_DEAD void* const cg_80D0F0F4 = (void*)(&lit_3707);
+#pragma pop
+
+/* 80D0F0F8-80D0F0FC 000014 0004+00 2/3 0/0 0/0 .rodata          @3708 */
+SECTION_RODATA static u32 const lit_3708 = 0x3F800000;
+SECTION_DEAD void* const cg_80D0F0F8 = (void*)(&lit_3708);
+
+/* 80D0EACC-80D0EB40 0002CC 0074+00 1/1 0/0 0/0 .text            lightInit__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -262,8 +234,7 @@ asm void daTimeFire_c::lightInit() {
 }
 #pragma pop
 
-/* 80D0EB40-80D0EB64 0024+00 s=2 e=0 z=0  None .text      setLight__12daTimeFire_cFv */
-//	80D0EB50: 801A7790 (dKy_plight_set__FP15LIGHT_INFLUENCE)
+/* 80D0EB40-80D0EB64 000340 0024+00 2/2 0/0 0/0 .text            setLight__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -273,8 +244,7 @@ asm void daTimeFire_c::setLight() {
 }
 #pragma pop
 
-/* 80D0EB64-80D0EB88 0024+00 s=2 e=0 z=0  None .text      cutLight__12daTimeFire_cFv */
-//	80D0EB74: 801A792C (dKy_plight_cut__FP15LIGHT_INFLUENCE)
+/* 80D0EB64-80D0EB88 000364 0024+00 2/2 0/0 0/0 .text            cutLight__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -285,41 +255,11 @@ asm void daTimeFire_c::cutLight() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D0F0F4-80D0F0F8 0004+00 s=0 e=0 z=0  None .rodata    @3707 */
-SECTION_RODATA u32 const lit_3707 = 0x43FA0000;
-
-/* 80D0F0F8-80D0F0FC 0004+00 s=2 e=0 z=0  None .rodata    @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x3F800000;
-
-/* 80D0F0FC-80D0F100 0004+00 s=2 e=0 z=0  None .rodata    @3757 */
+/* 80D0F0FC-80D0F100 000018 0004+00 2/2 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static u32 const lit_3757 = 0xBF800000;
+SECTION_DEAD void* const cg_80D0F0FC = (void*)(&lit_3757);
 
-/* 80D0EB88-80D0ED68 01E0+00 s=1 e=0 z=0  None .text      Execute__12daTimeFire_cFv */
-//	80D0EBA8: 80D0ED68 (fireCheck__12daTimeFire_cFUc)
-//	80D0EBC8: 80D0EB64 (cutLight__12daTimeFire_cFv)
-//	80D0EBDC: 80D0EB40 (setLight__12daTimeFire_cFv)
-//	80D0EBF4: 804061C0 (g_dComIfG_gameInfo)
-//	80D0EBF8: 804061C0 (g_dComIfG_gameInfo)
-//	80D0EC40: 80D0F0F8 (lit_3708)
-//	80D0EC44: 80D0F0F8 (lit_3708)
-//	80D0EC48: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80D0EC94: 80D0F0F8 (lit_3708)
-//	80D0EC98: 80D0F0F8 (lit_3708)
-//	80D0EC9C: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80D0ECE8: 80D0F0F8 (lit_3708)
-//	80D0ECEC: 80D0F0F8 (lit_3708)
-//	80D0ECF0: 8004D4CC
-//(set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf)
-//	80D0ED00: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D0ED14: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0ED18: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0ED2C: 80D0F0F8 (lit_3708)
-//	80D0ED30: 80D0F0F8 (lit_3708)
-//	80D0ED38: 80D0F0FC (lit_3757)
-//	80D0ED3C: 80D0F0FC (lit_3757)
-//	80D0ED48: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
+/* 80D0EB88-80D0ED68 000388 01E0+00 1/1 0/0 0/0 .text            Execute__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,36 +269,7 @@ asm void daTimeFire_c::Execute() {
 }
 #pragma pop
 
-/* 80D0ED68-80D0EF88 0220+00 s=2 e=0 z=0  None .text      fireCheck__12daTimeFire_cFUc */
-//	80D0ED78: 803621D8 (_savegpr_28)
-//	80D0EDA0: 804061C0 (g_dComIfG_gameInfo)
-//	80D0EDA4: 804061C0 (g_dComIfG_gameInfo)
-//	80D0EDB0: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80D0EDC8: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EDD8: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EDF0: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EE00: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EE24: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EE34: 8019FA3C (dKy_getdaytime_minute__Fv)
-//	80D0EE5C: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D0EE70: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0EE74: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0EE88: 80D0F0F8 (lit_3708)
-//	80D0EE8C: 80D0F0F8 (lit_3708)
-//	80D0EE94: 80D0F0FC (lit_3757)
-//	80D0EE98: 80D0F0FC (lit_3757)
-//	80D0EEA4: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D0EEC0: 8019FA10 (dKy_getdaytime_hour__Fv)
-//	80D0EED0: 8019FA3C (dKy_getdaytime_minute__Fv)
-//	80D0EEF8: 8002D06C (dComIfGp_getReverb__Fi)
-//	80D0EF0C: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0EF10: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80D0EF24: 80D0F0F8 (lit_3708)
-//	80D0EF28: 80D0F0F8 (lit_3708)
-//	80D0EF30: 80D0F0FC (lit_3757)
-//	80D0EF34: 80D0F0FC (lit_3757)
-//	80D0EF40: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80D0EF74: 80362224 (_restgpr_28)
+/* 80D0ED68-80D0EF88 000568 0220+00 2/2 0/0 0/0 .text            fireCheck__12daTimeFire_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,13 +279,12 @@ asm void daTimeFire_c::fireCheck(u8 param_0) {
 }
 #pragma pop
 
-/* 80D0EF88-80D0EF90 0008+00 s=1 e=0 z=0  None .text      Draw__12daTimeFire_cFv */
+/* 80D0EF88-80D0EF90 000788 0008+00 1/1 0/0 0/0 .text            Draw__12daTimeFire_cFv */
 bool daTimeFire_c::Draw() {
     return true;
 }
 
-/* 80D0EF90-80D0EFB8 0028+00 s=1 e=0 z=0  None .text      Delete__12daTimeFire_cFv */
-//	80D0EFA0: 801A792C (dKy_plight_cut__FP15LIGHT_INFLUENCE)
+/* 80D0EF90-80D0EFB8 000790 0028+00 1/1 0/0 0/0 .text            Delete__12daTimeFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,56 +294,50 @@ asm void daTimeFire_c::Delete() {
 }
 #pragma pop
 
-/* 80D0EFB8-80D0EFD8 0020+00 s=1 e=0 z=0  None .text      daTimeFire_Draw__FP12daTimeFire_c */
-//	80D0EFC4: 80D0EF88 (Draw__12daTimeFire_cFv)
+/* 80D0EFB8-80D0EFD8 0007B8 0020+00 1/0 0/0 0/0 .text            daTimeFire_Draw__FP12daTimeFire_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTimeFire_Draw(daTimeFire_c* param_0) {
+static asm void daTimeFire_Draw(daTimeFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timeFire/d_a_obj_timeFire/daTimeFire_Draw__FP12daTimeFire_c.s"
 }
 #pragma pop
 
-/* 80D0EFD8-80D0EFF8 0020+00 s=1 e=0 z=0  None .text      daTimeFire_Execute__FP12daTimeFire_c */
-//	80D0EFE4: 80D0EB88 (Execute__12daTimeFire_cFv)
+/* 80D0EFD8-80D0EFF8 0007D8 0020+00 1/0 0/0 0/0 .text daTimeFire_Execute__FP12daTimeFire_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTimeFire_Execute(daTimeFire_c* param_0) {
+static asm void daTimeFire_Execute(daTimeFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timeFire/d_a_obj_timeFire/daTimeFire_Execute__FP12daTimeFire_c.s"
 }
 #pragma pop
 
-/* 80D0EFF8-80D0F018 0020+00 s=1 e=0 z=0  None .text      daTimeFire_Delete__FP12daTimeFire_c */
-//	80D0F004: 80D0EF90 (Delete__12daTimeFire_cFv)
+/* 80D0EFF8-80D0F018 0007F8 0020+00 1/0 0/0 0/0 .text            daTimeFire_Delete__FP12daTimeFire_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTimeFire_Delete(daTimeFire_c* param_0) {
+static asm void daTimeFire_Delete(daTimeFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timeFire/d_a_obj_timeFire/daTimeFire_Delete__FP12daTimeFire_c.s"
 }
 #pragma pop
 
-/* 80D0F018-80D0F038 0020+00 s=1 e=0 z=0  None .text      daTimeFire_Create__FP10fopAc_ac_c */
-//	80D0F024: 80D0E9B0 (create__12daTimeFire_cFv)
+/* 80D0F018-80D0F038 000818 0020+00 1/0 0/0 0/0 .text            daTimeFire_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTimeFire_Create(fopAc_ac_c* param_0) {
+static asm void daTimeFire_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timeFire/d_a_obj_timeFire/daTimeFire_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D0F038-80D0F094 005C+00 s=2 e=0 z=0  None .text      __dt__16daTimeFire_HIO_cFv */
-//	80D0F050: 80D0F150 (__vt__16daTimeFire_HIO_c)
-//	80D0F054: 80D0F150 (__vt__16daTimeFire_HIO_c)
-//	80D0F060: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0F064: 80D0F15C (__vt__14mDoHIO_entry_c)
-//	80D0F078: 802CED3C (__dl__FPv)
+/* 80D0F038-80D0F094 000838 005C+00 2/1 0/0 0/0 .text            __dt__16daTimeFire_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -444,25 +348,17 @@ asm daTimeFire_HIO_c::~daTimeFire_HIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D0F170-80D0F17C 000C+00 s=1 e=0 z=0  None .bss       @3621 */
+/* 80D0F170-80D0F17C 000008 000C+00 1/1 0/0 0/0 .bss             @3621 */
 static u8 lit_3621[12];
 
-/* 80D0F17C-80D0F184 0008+00 s=1 e=0 z=0  None .bss       l_HIO */
+/* 80D0F17C-80D0F184 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[8];
 
-/* 80D0F094-80D0F0D0 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_timeFire_cpp */
-//	80D0F0A0: 80D0F17C (l_HIO)
-//	80D0F0A4: 80D0F17C (l_HIO)
-//	80D0F0A8: 80D0E8EC (__ct__16daTimeFire_HIO_cFv)
-//	80D0F0AC: 80D0F038 (__dt__16daTimeFire_HIO_cFv)
-//	80D0F0B0: 80D0F038 (__dt__16daTimeFire_HIO_cFv)
-//	80D0F0B4: 80D0F170 (lit_3621)
-//	80D0F0B8: 80D0F170 (lit_3621)
-//	80D0F0BC: 80D0E878 (__register_global_object)
+/* 80D0F094-80D0F0D0 000894 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_timeFire_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_timeFire_cpp() {
+asm void __sinit_d_a_obj_timeFire_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timeFire/d_a_obj_timeFire/__sinit_d_a_obj_timeFire_cpp.s"
 }

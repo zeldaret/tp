@@ -3,17 +3,15 @@
 #
 
 M124_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart.plf
+M124_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart.lcf
+M124_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart.map
 
 M124_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_gstart/executor.cpp \
-	rel/d/a/tag/d_a_tag_gstart/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_gstart/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart.cpp \
 
 M124_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/d_a_tag_gstart.o \
 
 M124_LIBS := \
@@ -29,15 +27,21 @@ M124_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map124.map\
+	-m _prolog \
+	-lcf $(M124_LDSCRIPT) \
+	-unused -map $(M124_MAP) \
+	-w off \
 
 $(M124_TARGET): $(M124_O_FILES) $(M124_LIBS)
+	@echo [124] creating $(M124_TARGET)
 	@echo $(M124_LIBS) $(M124_O_FILES) > build/M124_ofiles
-	$(LD) -opt_partial $(M124_LDFLAGS) -o $(M124_TARGET) @build/M124_ofiles
+	@python3 tools/lcf.py rel 124 --output $(M124_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M124_LDFLAGS) -o $(M124_TARGET) @build/M124_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_gstart/%.o: rel/d/a/tag/d_a_tag_gstart/%.cpp
+	@echo [124] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M124_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M124_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

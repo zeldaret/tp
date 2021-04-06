@@ -1,8 +1,8 @@
 lbl_80B25A0C:
-/* 80B25A0C  3C 80 80 B2 */	lis r4, lit_3768@ha
-/* 80B25A10  38 A4 65 7C */	addi r5, r4, lit_3768@l
-/* 80B25A14  3C 80 80 B2 */	lis r4, __vt__14daNPC_TR_HIO_c@ha
-/* 80B25A18  38 04 66 60 */	addi r0, r4, __vt__14daNPC_TR_HIO_c@l
+/* 80B25A0C  3C 80 80 B2 */	lis r4, lit_3768@ha /* 0x80B2657C@ha */
+/* 80B25A10  38 A4 65 7C */	addi r5, r4, lit_3768@l /* 0x80B2657C@l */
+/* 80B25A14  3C 80 80 B2 */	lis r4, __vt__14daNPC_TR_HIO_c@ha /* 0x80B26660@ha */
+/* 80B25A18  38 04 66 60 */	addi r0, r4, __vt__14daNPC_TR_HIO_c@l /* 0x80B26660@l */
 /* 80B25A1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80B25A20  38 00 FF FF */	li r0, -1
 /* 80B25A24  98 03 00 04 */	stb r0, 4(r3)

@@ -7,8 +7,8 @@ lbl_802A9158:
 /* 802A916C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A9170  7C 9F 23 78 */	mr r31, r4
 /* 802A9174  41 82 00 28 */	beq lbl_802A919C
-/* 802A9178  3C 80 80 3D */	lis r4, __vt__Q28JMessage6TParse@ha
-/* 802A917C  38 04 9C 94 */	addi r0, r4, __vt__Q28JMessage6TParse@l
+/* 802A9178  3C 80 80 3D */	lis r4, __vt__Q28JMessage6TParse@ha /* 0x803C9C94@ha */
+/* 802A917C  38 04 9C 94 */	addi r0, r4, __vt__Q28JMessage6TParse@l /* 0x803C9C94@l */
 /* 802A9180  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A9184  38 80 00 00 */	li r4, 0
 /* 802A9188  48 03 37 41 */	bl __dt__Q37JGadget6binary19TParse_header_blockFv

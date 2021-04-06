@@ -41,207 +41,150 @@ extern "C" extern u32 data_80450AF0;
 // Declarations:
 //
 
-/* 80372D2C-80372D30 0004+00 s=0 e=1 z=0  None .text      DBClose */
-extern "C" void DBClose() {
+/* 80372D2C-80372D30 36D66C 0004+00 0/0 1/1 0/0 .text            DBClose */
+void DBClose() {
     /* empty function */
 }
 
-/* 80372D30-80372D34 0004+00 s=0 e=1 z=0  None .text      DBOpen */
-extern "C" void DBOpen() {
+/* 80372D30-80372D34 36D670 0004+00 0/0 1/1 0/0 .text            DBOpen */
+void DBOpen() {
     /* empty function */
 }
 
-/* 80372D34-80372F94 0260+00 s=0 e=1 z=0  None .text      DBWrite */
-//	80372D4C: 8033D6F4 (OSDisableInterrupts)
-//	80372D80: 80373514 (DBGEXIImm)
-//	80372DA8: 80373514 (DBGEXIImm)
-//	80372DD0: 80450AF0 (data_80450AF0)
-//	80372DD8: 80450AF0 (data_80450AF0)
-//	80372DDC: 80450AF0 (data_80450AF0)
-//	80372E10: 803732B0 (DBGWrite)
-//	80372E40: 80373514 (DBGEXIImm)
-//	80372E64: 80373514 (DBGEXIImm)
-//	80372E8C: 80450AF0 (data_80450AF0)
-//	80372EC4: 80373514 (DBGEXIImm)
-//	80372F14: 80373514 (DBGEXIImm)
-//	80372F38: 80373514 (DBGEXIImm)
-//	80372F78: 8033D71C (OSRestoreInterrupts)
+/* 80372D34-80372F94 36D674 0260+00 0/0 1/1 0/0 .text            DBWrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DBWrite() {
+asm void DBWrite() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBWrite.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804519D0-804519D4 0004+00 s=2 e=0 z=0  None .sbss      MTRCallback */
+/* 804519D0-804519D4 000ED0 0004+00 2/2 0/0 0/0 .sbss            MTRCallback */
 static u8 MTRCallback[4];
 
-/* 804519D4-804519D8 0004+00 s=2 e=0 z=0  None .sbss      DBGCallback */
+/* 804519D4-804519D8 000ED4 0004+00 2/2 0/0 0/0 .sbss            DBGCallback */
 static u8 DBGCallback[4];
 
-/* 804519D8-804519DC 0004+00 s=2 e=0 z=0  None .sbss      SendMailData */
+/* 804519D8-804519DC 000ED8 0004+00 2/2 0/0 0/0 .sbss            SendMailData */
 static u8 SendMailData[4];
 
-/* 804519DC-804519E0 0004+00 s=2 e=0 z=0  None .sbss      RecvDataLeng */
+/* 804519DC-804519E0 000EDC 0004+00 2/2 0/0 0/0 .sbss            RecvDataLeng */
 static u8 RecvDataLeng[4];
 
-/* 804519E0-804519E4 0004+00 s=1 e=0 z=0  None .sbss      pEXIInputFlag */
+/* 804519E0-804519E4 000EE0 0004+00 1/1 0/0 0/0 .sbss            pEXIInputFlag */
 static u8 pEXIInputFlag[4];
 
-/* 804519E4-804519E8 0004+00 s=4 e=0 z=0  None .sbss      None */
+/* 804519E4-804519E8 000EE4 0004+00 4/4 0/0 0/0 .sbss            None */
 static u8 data_804519E4[4];
 
-/* 80372F94-80373020 008C+00 s=0 e=2 z=0  None .text      DBRead */
-//	80372FB4: 8033D6F4 (OSDisableInterrupts)
-//	80372FB8: 804519D8 (SendMailData)
-//	80372FE8: 8037338C (DBGRead)
-//	80372FF0: 804519DC (RecvDataLeng)
-//	80372FF8: 804519E4 (data_804519E4)
-//	80372FFC: 8033D71C (OSRestoreInterrupts)
+/* 80372F94-80373020 36D8D4 008C+00 0/0 2/2 0/0 .text            DBRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DBRead() {
+asm void DBRead() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBRead.s"
 }
 #pragma pop
 
-/* 80373020-803730BC 009C+00 s=0 e=2 z=0  None .text      DBQueryData */
-//	80373034: 804519DC (RecvDataLeng)
-//	80373038: 804519E4 (data_804519E4)
-//	80373044: 8033D6F4 (OSDisableInterrupts)
-//	80373050: 80373204 (DBGReadStatus)
-//	80373064: 80373468 (DBGReadMailbox)
-//	8037308C: 804519D8 (SendMailData)
-//	80373094: 804519DC (RecvDataLeng)
-//	80373098: 804519E4 (data_804519E4)
-//	803730A0: 8033D71C (OSRestoreInterrupts)
-//	803730A4: 804519DC (RecvDataLeng)
+/* 80373020-803730BC 36D960 009C+00 0/0 2/2 0/0 .text            DBQueryData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DBQueryData() {
+asm void DBQueryData() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBQueryData.s"
 }
 #pragma pop
 
-/* 803730BC-80373110 0054+00 s=0 e=1 z=0  None .text      DBInitInterrupts */
-//	803730D0: 8033DABC (__OSMaskInterrupts)
-//	803730D8: 8033DABC (__OSMaskInterrupts)
-//	803730DC: 803731C8 (MWCallback)
-//	803730E0: 803731C8 (MWCallback)
-//	803730E4: 80373188 (DBGHandler)
-//	803730E8: 804519D4 (DBGCallback)
-//	803730EC: 80373188 (DBGHandler)
-//	803730F4: 8033D740 (__OSSetInterruptHandler)
-//	803730FC: 8033DB44 (__OSUnmaskInterrupts)
+/* 803730BC-80373110 36D9FC 0054+00 0/0 1/1 0/0 .text            DBInitInterrupts */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DBInitInterrupts() {
+asm void DBInitInterrupts() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBInitInterrupts.s"
 }
 #pragma pop
 
-/* 80373110-80373188 0078+00 s=0 e=1 z=0  None .text      DBInitComm */
-//	80373130: 8033D6F4 (OSDisableInterrupts)
-//	80373134: 804519E4 (data_804519E4)
-//	80373138: 804519E0 (pEXIInputFlag)
-//	80373144: 804519E0 (pEXIInputFlag)
-//	80373150: 804519D0 (MTRCallback)
-//	80373154: 8033DABC (__OSMaskInterrupts)
-//	80373168: 8033D71C (OSRestoreInterrupts)
+/* 80373110-80373188 36DA50 0078+00 0/0 1/1 0/0 .text            DBInitComm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DBInitComm() {
+asm void DBInitComm() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBInitComm.s"
 }
 #pragma pop
 
-/* 80373188-803731C8 0040+00 s=1 e=0 z=0  None .text      DBGHandler */
-//	8037319C: 804519D4 (DBGCallback)
+/* 80373188-803731C8 36DAC8 0040+00 1/1 0/0 0/0 .text            DBGHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGHandler() {
+static asm void DBGHandler() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGHandler.s"
 }
 #pragma pop
 
-/* 803731C8-80373204 003C+00 s=1 e=0 z=0  None .text      MWCallback */
-//	803731D8: 804519D0 (MTRCallback)
-//	803731DC: 804519E4 (data_804519E4)
+/* 803731C8-80373204 36DB08 003C+00 1/1 0/0 0/0 .text            MWCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void MWCallback() {
+static asm void MWCallback() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/MWCallback.s"
 }
 #pragma pop
 
-/* 80373204-803732B0 00AC+00 s=1 e=0 z=0  None .text      DBGReadStatus */
-//	80373244: 80373514 (DBGEXIImm)
-//	8037326C: 80373514 (DBGEXIImm)
+/* 80373204-803732B0 36DB44 00AC+00 1/1 0/0 0/0 .text            DBGReadStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGReadStatus() {
+static asm void DBGReadStatus() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGReadStatus.s"
 }
 #pragma pop
 
-/* 803732B0-8037338C 00DC+00 s=1 e=0 z=0  None .text      DBGWrite */
-//	803732F8: 80373514 (DBGEXIImm)
-//	80373334: 80373514 (DBGEXIImm)
+/* 803732B0-8037338C 36DBF0 00DC+00 1/1 0/0 0/0 .text            DBGWrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGWrite() {
+static asm void DBGWrite() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGWrite.s"
 }
 #pragma pop
 
-/* 8037338C-80373468 00DC+00 s=1 e=0 z=0  None .text      DBGRead */
-//	803733D4: 80373514 (DBGEXIImm)
-//	80373404: 80373514 (DBGEXIImm)
+/* 8037338C-80373468 36DCCC 00DC+00 1/1 0/0 0/0 .text            DBGRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGRead() {
+static asm void DBGRead() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGRead.s"
 }
 #pragma pop
 
-/* 80373468-80373514 00AC+00 s=1 e=0 z=0  None .text      DBGReadMailbox */
-//	803734A8: 80373514 (DBGEXIImm)
-//	803734D0: 80373514 (DBGEXIImm)
+/* 80373468-80373514 36DDA8 00AC+00 1/1 0/0 0/0 .text            DBGReadMailbox */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGReadMailbox() {
+static asm void DBGReadMailbox() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGReadMailbox.s"
 }
 #pragma pop
 
-/* 80373514-803737AC 0298+00 s=5 e=0 z=0  None .text      DBGEXIImm */
+/* 80373514-803737AC 36DE54 0298+00 5/5 0/0 0/0 .text            DBGEXIImm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DBGEXIImm() {
+static asm void DBGEXIImm() {
     nofralloc
 #include "asm/odemuexi2/src/OdemuExi2Lib/DebuggerDriver/DBGEXIImm.s"
 }

@@ -6,8 +6,8 @@ lbl_802183A8:
 /* 802183B8  7C 7F 1B 78 */	mr r31, r3
 /* 802183BC  80 63 03 68 */	lwz r3, 0x368(r3)
 /* 802183C0  48 03 D4 69 */	bl getAlphaRate__13CPaneMgrAlphaFv
-/* 802183C4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802183C8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802183C4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802183C8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802183CC  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 802183D0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 802183D4  41 82 00 20 */	beq lbl_802183F4

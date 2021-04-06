@@ -29,14 +29,10 @@ extern "C" void __ct__8cM3dGCirFv();
 extern "C" void __dt__8cM2dGCirFv();
 extern "C" void __dt__8cM3dGCirFv();
 extern "C" void Set__8cM3dGCirFffff();
-extern "C" extern void* __vt__8cM3dGCir[3];
-extern "C" extern void* __vt__8cM2dGCir[3];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -45,25 +41,21 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C3FE0-803C3FEC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCir */
-SECTION_DATA void* __vt__8cM3dGCir[3] = {
+/* 803C3FE0-803C3FEC 021100 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCir */
+SECTION_DATA extern void* __vt__8cM3dGCir[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCirFv,
 };
 
-/* 803C3FEC-803C3FF8 000C+00 s=3 e=0 z=0  None .data      __vt__8cM2dGCir */
-SECTION_DATA void* __vt__8cM2dGCir[3] = {
+/* 803C3FEC-803C3FF8 02110C 000C+00 3/3 0/0 0/0 .data            __vt__8cM2dGCir */
+SECTION_DATA extern void* __vt__8cM2dGCir[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM2dGCirFv,
 };
 
-/* 8026EEB4-8026EED0 001C+00 s=0 e=1 z=0  None .text      __ct__8cM3dGCirFv */
-//	8026EEB4: 803C3FEC (__vt__8cM2dGCir)
-//	8026EEB8: 803C3FEC (__vt__8cM2dGCir)
-//	8026EEC0: 803C3FE0 (__vt__8cM3dGCir)
-//	8026EEC4: 803C3FE0 (__vt__8cM3dGCir)
+/* 8026EEB4-8026EED0 2697F4 001C+00 0/0 1/1 0/0 .text            __ct__8cM3dGCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -73,10 +65,7 @@ asm cM3dGCir::cM3dGCir() {
 }
 #pragma pop
 
-/* 8026EED0-8026EF18 0048+00 s=1 e=0 z=0  None .text      __dt__8cM2dGCirFv */
-//	8026EEE8: 803C3FEC (__vt__8cM2dGCir)
-//	8026EEEC: 803C3FEC (__vt__8cM2dGCir)
-//	8026EEFC: 802CED3C (__dl__FPv)
+/* 8026EED0-8026EF18 269810 0048+00 1/0 0/0 0/0 .text            __dt__8cM2dGCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,12 +75,7 @@ asm cM2dGCir::~cM2dGCir() {
 }
 #pragma pop
 
-/* 8026EF18-8026EF74 005C+00 s=1 e=4 z=386  None .text      __dt__8cM3dGCirFv */
-//	8026EF30: 803C3FE0 (__vt__8cM3dGCir)
-//	8026EF34: 803C3FE0 (__vt__8cM3dGCir)
-//	8026EF40: 803C3FEC (__vt__8cM2dGCir)
-//	8026EF44: 803C3FEC (__vt__8cM2dGCir)
-//	8026EF58: 802CED3C (__dl__FPv)
+/* 8026EF18-8026EF74 269858 005C+00 1/0 4/4 386/386 .text            __dt__8cM3dGCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -101,7 +85,7 @@ asm cM3dGCir::~cM3dGCir() {
 }
 #pragma pop
 
-/* 8026EF74-8026EF88 0014+00 s=0 e=1 z=0  None .text      Set__8cM3dGCirFffff */
+/* 8026EF74-8026EF88 2698B4 0014+00 0/0 1/1 0/0 .text            Set__8cM3dGCirFffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

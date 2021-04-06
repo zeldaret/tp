@@ -19,8 +19,8 @@ lbl_8011F7D8:
 /* 8011F81C  7C 64 1B 78 */	mr r4, r3
 /* 8011F820  38 61 00 10 */	addi r3, r1, 0x10
 /* 8011F824  48 24 93 09 */	bl strcpy
-/* 8011F828  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011F82C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011F828  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011F82C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011F830  3B E3 0D B4 */	addi r31, r3, 0xdb4
 /* 8011F834  7F E3 FB 78 */	mr r3, r31
 /* 8011F838  38 81 00 18 */	addi r4, r1, 0x18

@@ -86,8 +86,8 @@ lbl_802D9458:
 /* 802D949C  48 06 20 E5 */	bl DCInvalidateRange
 /* 802D94A0  48 00 00 20 */	b lbl_802D94C0
 lbl_802D94A4:
-/* 802D94A4  3C 60 80 3A */	lis r3, JKRCompArchive__stringBase0@ha
-/* 802D94A8  38 63 D2 20 */	addi r3, r3, JKRCompArchive__stringBase0@l
+/* 802D94A4  3C 60 80 3A */	lis r3, JKRCompArchive__stringBase0@ha /* 0x8039D220@ha */
+/* 802D94A8  38 63 D2 20 */	addi r3, r3, JKRCompArchive__stringBase0@l /* 0x8039D220@l */
 /* 802D94AC  38 80 03 AF */	li r4, 0x3af
 /* 802D94B0  38 A3 00 13 */	addi r5, r3, 0x13
 /* 802D94B4  38 C3 00 27 */	addi r6, r3, 0x27

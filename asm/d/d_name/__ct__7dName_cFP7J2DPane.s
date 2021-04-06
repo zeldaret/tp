@@ -4,14 +4,14 @@ lbl_8024E408:
 /* 8024E410  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8024E414  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8024E418  7C 7F 1B 78 */	mr r31, r3
-/* 8024E41C  3C A0 80 3C */	lis r5, __vt__7dName_c@ha
-/* 8024E420  38 05 2B 64 */	addi r0, r5, __vt__7dName_c@l
+/* 8024E41C  3C A0 80 3C */	lis r5, __vt__7dName_c@ha /* 0x803C2B64@ha */
+/* 8024E420  38 05 2B 64 */	addi r0, r5, __vt__7dName_c@l /* 0x803C2B64@l */
 /* 8024E424  90 03 00 00 */	stw r0, 0(r3)
-/* 8024E428  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha
-/* 8024E42C  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l
+/* 8024E428  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 8024E42C  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 8024E430  90 03 00 0C */	stw r0, 0xc(r3)
-/* 8024E434  3C A0 80 3C */	lis r5, __vt__14dDlst_NameIN_c@ha
-/* 8024E438  38 05 2B 38 */	addi r0, r5, __vt__14dDlst_NameIN_c@l
+/* 8024E434  3C A0 80 3C */	lis r5, __vt__14dDlst_NameIN_c@ha /* 0x803C2B38@ha */
+/* 8024E438  38 05 2B 38 */	addi r0, r5, __vt__14dDlst_NameIN_c@l /* 0x803C2B38@l */
 /* 8024E43C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8024E440  90 83 00 18 */	stw r4, 0x18(r3)
 /* 8024E444  48 00 01 E9 */	bl _create__7dName_cFv

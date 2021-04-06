@@ -1,6 +1,6 @@
 lbl_801DA650:
-/* 801DA650  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801DA654  38 63 D7 80 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801DA650  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BD780@ha */
+/* 801DA654  38 63 D7 80 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BD780@l */
 /* 801DA658  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 801DA65C  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 801DA660  90 83 00 48 */	stw r4, 0x48(r3)

@@ -7,8 +7,8 @@ lbl_8025546C:
 /* 80255480  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80255484  7C 9F 23 78 */	mr r31, r4
 /* 80255488  41 82 00 3C */	beq lbl_802554C4
-/* 8025548C  3C 60 80 3C */	lis r3, __vt__13CPaneMgrAlpha@ha
-/* 80255490  38 03 2E 28 */	addi r0, r3, __vt__13CPaneMgrAlpha@l
+/* 8025548C  3C 60 80 3C */	lis r3, __vt__13CPaneMgrAlpha@ha /* 0x803C2E28@ha */
+/* 80255490  38 03 2E 28 */	addi r0, r3, __vt__13CPaneMgrAlpha@l /* 0x803C2E28@l */
 /* 80255494  90 1E 00 00 */	stw r0, 0(r30)
 /* 80255498  80 9E 00 0C */	lwz r4, 0xc(r30)
 /* 8025549C  28 04 00 00 */	cmplwi r4, 0

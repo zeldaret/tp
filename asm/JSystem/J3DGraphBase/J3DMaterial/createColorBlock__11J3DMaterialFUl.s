@@ -23,22 +23,22 @@ lbl_803157E8:
 /* 803157EC  4B FB 94 61 */	bl __nw__FUl
 /* 803157F0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803157F4  41 82 00 5C */	beq lbl_80315850
-/* 803157F8  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha
-/* 803157FC  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l
+/* 803157F8  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha /* 0x803CDEA0@ha */
+/* 803157FC  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l /* 0x803CDEA0@l */
 /* 80315800  90 1F 00 00 */	stw r0, 0(r31)
-/* 80315804  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha
-/* 80315808  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l
+/* 80315804  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha /* 0x803CEA34@ha */
+/* 80315808  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l /* 0x803CEA34@l */
 /* 8031580C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80315810  38 7F 00 04 */	addi r3, r31, 4
-/* 80315814  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha
-/* 80315818  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l
+/* 80315814  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha /* 0x8000E538@ha */
+/* 80315818  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l /* 0x8000E538@l */
 /* 8031581C  38 A0 00 00 */	li r5, 0
 /* 80315820  38 C0 00 04 */	li r6, 4
 /* 80315824  38 E0 00 02 */	li r7, 2
 /* 80315828  48 04 C5 39 */	bl __construct_array
 /* 8031582C  38 7F 00 0E */	addi r3, r31, 0xe
-/* 80315830  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha
-/* 80315834  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l
+/* 80315830  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha /* 0x8000E47C@ha */
+/* 80315834  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l /* 0x8000E47C@l */
 /* 80315838  38 A0 00 00 */	li r5, 0
 /* 8031583C  38 C0 00 02 */	li r6, 2
 /* 80315840  38 E0 00 04 */	li r7, 4
@@ -53,29 +53,29 @@ lbl_80315858:
 /* 8031585C  4B FB 93 F1 */	bl __nw__FUl
 /* 80315860  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80315864  41 82 00 78 */	beq lbl_803158DC
-/* 80315868  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha
-/* 8031586C  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l
+/* 80315868  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha /* 0x803CDEA0@ha */
+/* 8031586C  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l /* 0x803CDEA0@l */
 /* 80315870  90 1F 00 00 */	stw r0, 0(r31)
-/* 80315874  3C 60 80 3D */	lis r3, __vt__20J3DColorBlockLightOn@ha
-/* 80315878  38 03 E6 78 */	addi r0, r3, __vt__20J3DColorBlockLightOn@l
+/* 80315874  3C 60 80 3D */	lis r3, __vt__20J3DColorBlockLightOn@ha /* 0x803CE678@ha */
+/* 80315878  38 03 E6 78 */	addi r0, r3, __vt__20J3DColorBlockLightOn@l /* 0x803CE678@l */
 /* 8031587C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80315880  38 7F 00 04 */	addi r3, r31, 4
-/* 80315884  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha
-/* 80315888  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l
+/* 80315884  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha /* 0x8000E538@ha */
+/* 80315888  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l /* 0x8000E538@l */
 /* 8031588C  38 A0 00 00 */	li r5, 0
 /* 80315890  38 C0 00 04 */	li r6, 4
 /* 80315894  38 E0 00 02 */	li r7, 2
 /* 80315898  48 04 C4 C9 */	bl __construct_array
 /* 8031589C  38 7F 00 0C */	addi r3, r31, 0xc
-/* 803158A0  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha
-/* 803158A4  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l
+/* 803158A0  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha /* 0x8000E538@ha */
+/* 803158A4  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l /* 0x8000E538@l */
 /* 803158A8  38 A0 00 00 */	li r5, 0
 /* 803158AC  38 C0 00 04 */	li r6, 4
 /* 803158B0  38 E0 00 02 */	li r7, 2
 /* 803158B4  48 04 C4 AD */	bl __construct_array
 /* 803158B8  38 7F 00 16 */	addi r3, r31, 0x16
-/* 803158BC  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha
-/* 803158C0  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l
+/* 803158BC  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha /* 0x8000E47C@ha */
+/* 803158C0  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l /* 0x8000E47C@l */
 /* 803158C4  38 A0 00 00 */	li r5, 0
 /* 803158C8  38 C0 00 02 */	li r6, 2
 /* 803158CC  38 E0 00 04 */	li r7, 4
@@ -91,34 +91,34 @@ lbl_803158E4:
 /* 803158EC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803158F0  41 82 00 90 */	beq lbl_80315980
 /* 803158F4  7F FE FB 78 */	mr r30, r31
-/* 803158F8  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha
-/* 803158FC  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l
+/* 803158F8  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha /* 0x803CDEA0@ha */
+/* 803158FC  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l /* 0x803CDEA0@l */
 /* 80315900  90 1F 00 00 */	stw r0, 0(r31)
-/* 80315904  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha
-/* 80315908  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l
+/* 80315904  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha /* 0x803CEA34@ha */
+/* 80315908  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l /* 0x803CEA34@l */
 /* 8031590C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80315910  38 7F 00 04 */	addi r3, r31, 4
-/* 80315914  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha
-/* 80315918  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l
+/* 80315914  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha /* 0x8000E538@ha */
+/* 80315918  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l /* 0x8000E538@l */
 /* 8031591C  38 A0 00 00 */	li r5, 0
 /* 80315920  38 C0 00 04 */	li r6, 4
 /* 80315924  38 E0 00 02 */	li r7, 2
 /* 80315928  48 04 C4 39 */	bl __construct_array
 /* 8031592C  38 7F 00 0E */	addi r3, r31, 0xe
-/* 80315930  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha
-/* 80315934  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l
+/* 80315930  3C 80 80 01 */	lis r4, __ct__12J3DColorChanFv@ha /* 0x8000E47C@ha */
+/* 80315934  38 84 E4 7C */	addi r4, r4, __ct__12J3DColorChanFv@l /* 0x8000E47C@l */
 /* 80315938  38 A0 00 00 */	li r5, 0
 /* 8031593C  38 C0 00 02 */	li r6, 2
 /* 80315940  38 E0 00 04 */	li r7, 4
 /* 80315944  48 04 C4 1D */	bl __construct_array
 /* 80315948  7F E3 FB 78 */	mr r3, r31
 /* 8031594C  48 00 1B 31 */	bl initialize__21J3DColorBlockLightOffFv
-/* 80315950  3C 60 80 3D */	lis r3, __vt__22J3DColorBlockAmbientOn@ha
-/* 80315954  38 03 E7 08 */	addi r0, r3, __vt__22J3DColorBlockAmbientOn@l
+/* 80315950  3C 60 80 3D */	lis r3, __vt__22J3DColorBlockAmbientOn@ha /* 0x803CE708@ha */
+/* 80315954  38 03 E7 08 */	addi r0, r3, __vt__22J3DColorBlockAmbientOn@l /* 0x803CE708@l */
 /* 80315958  90 1E 00 00 */	stw r0, 0(r30)
 /* 8031595C  38 7E 00 20 */	addi r3, r30, 0x20
-/* 80315960  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha
-/* 80315964  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l
+/* 80315960  3C 80 80 01 */	lis r4, __ct__10J3DGXColorFv@ha /* 0x8000E538@ha */
+/* 80315964  38 84 E5 38 */	addi r4, r4, __ct__10J3DGXColorFv@l /* 0x8000E538@l */
 /* 80315968  38 A0 00 00 */	li r5, 0
 /* 8031596C  38 C0 00 04 */	li r6, 4
 /* 80315970  38 E0 00 02 */	li r7, 2

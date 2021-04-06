@@ -1,6 +1,6 @@
 lbl_807BDBE4:
-/* 807BDBE4  3C C0 80 7C */	lis r6, m_attack_tt@ha
-/* 807BDBE8  84 06 24 04 */	lwzu r0, m_attack_tt@l(r6)
+/* 807BDBE4  3C C0 80 7C */	lis r6, m_attack_tt@ha /* 0x807C2404@ha */
+/* 807BDBE8  84 06 24 04 */	lwzu r0, m_attack_tt@l(r6)  /* 0x807C2404@l */
 /* 807BDBEC  7C 00 18 40 */	cmplw r0, r3
 /* 807BDBF0  40 82 00 0C */	bne lbl_807BDBFC
 /* 807BDBF4  38 00 00 00 */	li r0, 0

@@ -7,7 +7,7 @@ lbl_804EE85C:
 /* 804EE870  41 82 00 10 */	beq lbl_804EE880
 /* 804EE874  7C 80 07 35 */	extsh. r0, r4
 /* 804EE878  40 81 00 08 */	ble lbl_804EE880
-/* 804EE87C  4B DE 04 C0 */	b __dl__FPv
+/* 804EE87C  4B DE 04 C1 */	bl __dl__FPv
 lbl_804EE880:
 /* 804EE880  7F E3 FB 78 */	mr r3, r31
 /* 804EE884  83 E1 00 0C */	lwz r31, 0xc(r1)

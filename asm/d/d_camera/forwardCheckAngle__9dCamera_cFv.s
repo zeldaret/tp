@@ -111,8 +111,8 @@ lbl_8016623C:
 /* 8016623C  C8 02 9C D8 */	lfd f0, lit_6179(r2)
 /* 80166240  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80166244  40 80 00 10 */	bge lbl_80166254
-/* 80166248  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8016624C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80166248  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8016624C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80166250  48 00 00 70 */	b lbl_801662C0
 lbl_80166254:
 /* 80166254  D0 21 00 44 */	stfs f1, 0x44(r1)
@@ -146,8 +146,8 @@ lbl_801662AC:
 lbl_801662B0:
 /* 801662B0  2C 00 00 01 */	cmpwi r0, 1
 /* 801662B4  40 82 00 0C */	bne lbl_801662C0
-/* 801662B8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801662BC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801662B8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801662BC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_801662C0:
 /* 801662C0  C0 02 9C A8 */	lfs f0, lit_5658(r2)
 /* 801662C4  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -292,8 +292,8 @@ lbl_801664DC:
 /* 801664DC  C8 02 9C D8 */	lfd f0, lit_6179(r2)
 /* 801664E0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801664E4  40 80 00 10 */	bge lbl_801664F4
-/* 801664E8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 801664EC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 801664E8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 801664EC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801664F0  48 00 00 70 */	b lbl_80166560
 lbl_801664F4:
 /* 801664F4  D0 21 00 40 */	stfs f1, 0x40(r1)
@@ -327,8 +327,8 @@ lbl_8016654C:
 lbl_80166550:
 /* 80166550  2C 00 00 01 */	cmpwi r0, 1
 /* 80166554  40 82 00 0C */	bne lbl_80166560
-/* 80166558  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8016655C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80166558  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8016655C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80166560:
 /* 80166560  C0 02 9C A8 */	lfs f0, lit_5658(r2)
 /* 80166564  FC 01 00 40 */	fcmpo cr0, f1, f0

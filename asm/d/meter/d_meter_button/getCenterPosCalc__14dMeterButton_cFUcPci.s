@@ -13,8 +13,8 @@ lbl_80209D7C:
 /* 80209DA8  7C 7B 1B 78 */	mr r27, r3
 /* 80209DAC  7C 9D 23 78 */	mr r29, r4
 /* 80209DB0  7C DC 33 78 */	mr r28, r6
-/* 80209DB4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80209DB8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80209DB4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80209DB8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80209DBC  80 9B 00 84 */	lwz r4, 0x84(r27)
 /* 80209DC0  48 01 28 E5 */	bl getStringLength__13dMeter2Info_cFP10J2DTextBoxPc
 /* 80209DC4  57 9A 10 3A */	slwi r26, r28, 2
@@ -69,8 +69,8 @@ lbl_80209E38:
 /* 80209E84  D0 1E 01 EC */	stfs f0, 0x1ec(r30)
 /* 80209E88  28 00 00 15 */	cmplwi r0, 0x15
 /* 80209E8C  41 81 06 04 */	bgt lbl_8020A490
-/* 80209E90  3C 60 80 3C */	lis r3, lit_7807@ha
-/* 80209E94  38 63 F1 A8 */	addi r3, r3, lit_7807@l
+/* 80209E90  3C 60 80 3C */	lis r3, lit_7807@ha /* 0x803BF1A8@ha */
+/* 80209E94  38 63 F1 A8 */	addi r3, r3, lit_7807@l /* 0x803BF1A8@l */
 /* 80209E98  54 00 10 3A */	slwi r0, r0, 2
 /* 80209E9C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80209EA0  7C 09 03 A6 */	mtctr r0
@@ -266,8 +266,8 @@ lbl_8020A12C:
 /* 8020A188  C0 1B 05 24 */	lfs f0, 0x524(r27)
 /* 8020A18C  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8020A190  D0 1E 01 EC */	stfs f0, 0x1ec(r30)
-/* 8020A194  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020A198  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
+/* 8020A194  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020A198  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020A19C  88 1A 5E 2D */	lbz r0, 0x5e2d(r26)
 /* 8020A1A0  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8020A1A4  41 82 00 44 */	beq lbl_8020A1E8
@@ -312,8 +312,8 @@ lbl_8020A234:
 /* 8020A238  7C 7B EA 14 */	add r3, r27, r29
 /* 8020A23C  D0 03 03 04 */	stfs f0, 0x304(r3)
 /* 8020A240  48 00 02 50 */	b lbl_8020A490
-/* 8020A244  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020A248  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020A244  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020A248  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020A24C  80 03 5D 7C */	lwz r0, 0x5d7c(r3)
 /* 8020A250  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8020A254  41 82 00 48 */	beq lbl_8020A29C

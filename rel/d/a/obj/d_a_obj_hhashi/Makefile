@@ -3,17 +3,15 @@
 #
 
 M97_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi.plf
+M97_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi.lcf
+M97_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi.map
 
 M97_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hhashi/executor.cpp \
-	rel/d/a/obj/d_a_obj_hhashi/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_hhashi/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi.cpp \
 
 M97_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/d_a_obj_hhashi.o \
 
 M97_LIBS := \
@@ -29,15 +27,21 @@ M97_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map97.map\
+	-m _prolog \
+	-lcf $(M97_LDSCRIPT) \
+	-unused -map $(M97_MAP) \
+	-w off \
 
 $(M97_TARGET): $(M97_O_FILES) $(M97_LIBS)
+	@echo [ 97] creating $(M97_TARGET)
 	@echo $(M97_LIBS) $(M97_O_FILES) > build/M97_ofiles
-	$(LD) -opt_partial $(M97_LDFLAGS) -o $(M97_TARGET) @build/M97_ofiles
+	@python3 tools/lcf.py rel 97 --output $(M97_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M97_LDFLAGS) -o $(M97_TARGET) @build/M97_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hhashi/%.o: rel/d/a/obj/d_a_obj_hhashi/%.cpp
+	@echo [ 97] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M97_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M97_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

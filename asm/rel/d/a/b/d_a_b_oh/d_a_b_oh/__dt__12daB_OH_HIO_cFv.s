@@ -5,12 +5,12 @@ lbl_8061D93C:
 /* 8061D948  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8061D94C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8061D950  41 82 00 1C */	beq lbl_8061D96C
-/* 8061D954  3C A0 80 62 */	lis r5, __vt__12daB_OH_HIO_c@ha
-/* 8061D958  38 05 DB 60 */	addi r0, r5, __vt__12daB_OH_HIO_c@l
+/* 8061D954  3C A0 80 62 */	lis r5, __vt__12daB_OH_HIO_c@ha /* 0x8061DB60@ha */
+/* 8061D958  38 05 DB 60 */	addi r0, r5, __vt__12daB_OH_HIO_c@l /* 0x8061DB60@l */
 /* 8061D95C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8061D960  7C 80 07 35 */	extsh. r0, r4
 /* 8061D964  40 81 00 08 */	ble lbl_8061D96C
-/* 8061D968  4B CB 13 D4 */	b __dl__FPv
+/* 8061D968  4B CB 13 D5 */	bl __dl__FPv
 lbl_8061D96C:
 /* 8061D96C  7F E3 FB 78 */	mr r3, r31
 /* 8061D970  83 E1 00 0C */	lwz r31, 0xc(r1)

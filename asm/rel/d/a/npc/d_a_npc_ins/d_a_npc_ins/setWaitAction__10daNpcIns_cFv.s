@@ -4,8 +4,8 @@ lbl_80A11D44:
 /* 80A11D4C  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80A11D50  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80A11D54  7C 7F 1B 78 */	mr r31, r3
-/* 80A11D58  3C 60 80 A1 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80A11D5C  38 83 41 9C */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 80A11D58  3C 60 80 A1 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A1419C@ha */
+/* 80A11D5C  38 83 41 9C */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x80A1419C@l */
 /* 80A11D60  88 1F 0E 21 */	lbz r0, 0xe21(r31)
 /* 80A11D64  2C 00 00 01 */	cmpwi r0, 1
 /* 80A11D68  41 82 00 C4 */	beq lbl_80A11E2C
@@ -27,13 +27,13 @@ lbl_80A11D88:
 /* 80A11DA0  38 00 00 03 */	li r0, 3
 /* 80A11DA4  B0 1F 0E 1E */	sth r0, 0xe1e(r31)
 /* 80A11DA8  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11DAC  4B 95 02 6C */	b __ptmf_test
+/* 80A11DAC  4B 95 02 6D */	bl __ptmf_test
 /* 80A11DB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11DB4  41 82 00 18 */	beq lbl_80A11DCC
 /* 80A11DB8  7F E3 FB 78 */	mr r3, r31
 /* 80A11DBC  38 80 00 00 */	li r4, 0
 /* 80A11DC0  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11DC4  4B 95 02 C0 */	b __ptmf_scall
+/* 80A11DC4  4B 95 02 C1 */	bl __ptmf_scall
 /* 80A11DC8  60 00 00 00 */	nop 
 lbl_80A11DCC:
 /* 80A11DCC  80 7F 0D C8 */	lwz r3, 0xdc8(r31)
@@ -51,13 +51,13 @@ lbl_80A11DCC:
 /* 80A11DFC  80 01 00 28 */	lwz r0, 0x28(r1)
 /* 80A11E00  90 1F 0D D0 */	stw r0, 0xdd0(r31)
 /* 80A11E04  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11E08  4B 95 02 10 */	b __ptmf_test
+/* 80A11E08  4B 95 02 11 */	bl __ptmf_test
 /* 80A11E0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11E10  41 82 01 60 */	beq lbl_80A11F70
 /* 80A11E14  7F E3 FB 78 */	mr r3, r31
 /* 80A11E18  38 80 00 00 */	li r4, 0
 /* 80A11E1C  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11E20  4B 95 02 64 */	b __ptmf_scall
+/* 80A11E20  4B 95 02 65 */	bl __ptmf_scall
 /* 80A11E24  60 00 00 00 */	nop 
 /* 80A11E28  48 00 01 48 */	b lbl_80A11F70
 lbl_80A11E2C:
@@ -70,13 +70,13 @@ lbl_80A11E2C:
 /* 80A11E44  38 00 00 03 */	li r0, 3
 /* 80A11E48  B0 1F 0E 1E */	sth r0, 0xe1e(r31)
 /* 80A11E4C  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11E50  4B 95 01 C8 */	b __ptmf_test
+/* 80A11E50  4B 95 01 C9 */	bl __ptmf_test
 /* 80A11E54  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11E58  41 82 00 18 */	beq lbl_80A11E70
 /* 80A11E5C  7F E3 FB 78 */	mr r3, r31
 /* 80A11E60  38 80 00 00 */	li r4, 0
 /* 80A11E64  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11E68  4B 95 02 1C */	b __ptmf_scall
+/* 80A11E68  4B 95 02 1D */	bl __ptmf_scall
 /* 80A11E6C  60 00 00 00 */	nop 
 lbl_80A11E70:
 /* 80A11E70  80 7F 0D C8 */	lwz r3, 0xdc8(r31)
@@ -94,13 +94,13 @@ lbl_80A11E70:
 /* 80A11EA0  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80A11EA4  90 1F 0D D0 */	stw r0, 0xdd0(r31)
 /* 80A11EA8  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11EAC  4B 95 01 6C */	b __ptmf_test
+/* 80A11EAC  4B 95 01 6D */	bl __ptmf_test
 /* 80A11EB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11EB4  41 82 00 BC */	beq lbl_80A11F70
 /* 80A11EB8  7F E3 FB 78 */	mr r3, r31
 /* 80A11EBC  38 80 00 00 */	li r4, 0
 /* 80A11EC0  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11EC4  4B 95 01 C0 */	b __ptmf_scall
+/* 80A11EC4  4B 95 01 C1 */	bl __ptmf_scall
 /* 80A11EC8  60 00 00 00 */	nop 
 /* 80A11ECC  48 00 00 A4 */	b lbl_80A11F70
 lbl_80A11ED0:
@@ -113,13 +113,13 @@ lbl_80A11ED0:
 /* 80A11EE8  38 00 00 03 */	li r0, 3
 /* 80A11EEC  B0 1F 0E 1E */	sth r0, 0xe1e(r31)
 /* 80A11EF0  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11EF4  4B 95 01 24 */	b __ptmf_test
+/* 80A11EF4  4B 95 01 25 */	bl __ptmf_test
 /* 80A11EF8  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11EFC  41 82 00 18 */	beq lbl_80A11F14
 /* 80A11F00  7F E3 FB 78 */	mr r3, r31
 /* 80A11F04  38 80 00 00 */	li r4, 0
 /* 80A11F08  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11F0C  4B 95 01 78 */	b __ptmf_scall
+/* 80A11F0C  4B 95 01 79 */	bl __ptmf_scall
 /* 80A11F10  60 00 00 00 */	nop 
 lbl_80A11F14:
 /* 80A11F14  80 7F 0D C8 */	lwz r3, 0xdc8(r31)
@@ -137,13 +137,13 @@ lbl_80A11F14:
 /* 80A11F44  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 80A11F48  90 1F 0D D0 */	stw r0, 0xdd0(r31)
 /* 80A11F4C  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 80A11F50  4B 95 00 C8 */	b __ptmf_test
+/* 80A11F50  4B 95 00 C9 */	bl __ptmf_test
 /* 80A11F54  2C 03 00 00 */	cmpwi r3, 0
 /* 80A11F58  41 82 00 18 */	beq lbl_80A11F70
 /* 80A11F5C  7F E3 FB 78 */	mr r3, r31
 /* 80A11F60  38 80 00 00 */	li r4, 0
 /* 80A11F64  39 9F 0D C8 */	addi r12, r31, 0xdc8
-/* 80A11F68  4B 95 01 1C */	b __ptmf_scall
+/* 80A11F68  4B 95 01 1D */	bl __ptmf_scall
 /* 80A11F6C  60 00 00 00 */	nop 
 lbl_80A11F70:
 /* 80A11F70  83 E1 00 3C */	lwz r31, 0x3c(r1)

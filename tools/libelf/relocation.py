@@ -4,12 +4,24 @@ class RelocationException(Exception):
         super().__init__(message)
 
 class Relocation:
-    def __init__(self, symbol, section, offset, addend):
+    def __init__(self, type, symbol, section, offset, addend):
+        self.type = type
         self.offset = offset
         self.addend = addend
         self.symbol = symbol
         self.section = section
         self.symbol.used += 1
+
+    def __hash__(self):
+        return hash(self._key())
+
+    def __eq__(self, other):
+        if other == None:
+            return False
+        return self._key() == other._key()
+
+    def _key(self):
+        return (self.type,self.offset,self.addend,self.section.header)
 
     def size(self) -> bytes:
         fail("unknown relocation size")
@@ -33,12 +45,12 @@ class Relocation:
 
 
 class R_PPC_NONE(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
 class R_PPC_ADDR32(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 4
@@ -53,8 +65,8 @@ class R_PPC_ADDR32(Relocation):
             raise RelocationException("R_PPC_ADDR32: 0x%08X does not fit in relocation at 0x%08X" % (value, P))
 
 class R_PPC_ADDR16(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 2
@@ -74,8 +86,8 @@ class R_PPC_ADDR16(Relocation):
             raise RelocationException("R_PPC_ADDR16: 0x%04X (%i) does not fit in relocation at 0x%08X" % (value16, value16, P))
 
 class R_PPC_ADDR16_LO(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 2
@@ -90,8 +102,8 @@ class R_PPC_ADDR16_LO(Relocation):
             raise RelocationException("R_PPC_ADDR16_LO: 0x%04X (%i) does not fit in relocation at 0x%08X" % (value16, value16, P))
 
 class R_PPC_ADDR16_HI(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 2
@@ -106,8 +118,8 @@ class R_PPC_ADDR16_HI(Relocation):
             raise RelocationException("R_PPC_ADDR16_HI: 0x%04X (%i) does not fit in relocation at 0x%08X" % (value16, value16, P))
 
 class R_PPC_ADDR16_HA(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 2
@@ -124,8 +136,8 @@ class R_PPC_ADDR16_HA(Relocation):
             raise RelocationException("R_PPC_ADDR16_HA: 0x%04X (%i) does not fit in relocation at 0x%08X" % (ha16, ha16, P))
 
 class R_PPC_REL24(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 4
@@ -151,8 +163,8 @@ class R_PPC_REL24(Relocation):
             raise RelocationException("R_PPC_REL24: 0x%08X does not fit in relocation at 0x%08X" % (R, P))
 
 class R_PPC_REL14(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
     def size(self) -> bytes:
         return 4
@@ -178,8 +190,8 @@ class R_PPC_REL14(Relocation):
             raise RelocationException("R_PPC_REL24: 0x%08X does not fit in relocation at 0x%08X" % (R, P))
 
 class R_PPC_EMB_SDA21(Relocation):
-    def __init__(self, symbol, section, offset, addend):
-        super().__init__(symbol, section, offset, addend)
+    def __init__(self, type, symbol, section, offset, addend):
+        super().__init__(type, symbol, section, offset, addend)
 
         self.sections = {
             ".sdata": (13, 0x80458580),

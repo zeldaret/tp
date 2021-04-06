@@ -36,11 +36,6 @@ struct daTagPoFire_HIO_c {
 // Forward References:
 //
 
-static void daTagPoFire_Draw(daTagPoFire_c*);
-static void daTagPoFire_Execute(daTagPoFire_c*);
-static void daTagPoFire_Delete(daTagPoFire_c*);
-static void daTagPoFire_Create(fopAc_ac_c*);
-
 extern "C" void __ct__17daTagPoFire_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__13daTagPoFire_cFv();
@@ -54,17 +49,10 @@ extern "C" static void daTagPoFire_Delete__FP13daTagPoFire_c();
 extern "C" static void daTagPoFire_Create__FP10fopAc_ac_c();
 extern "C" void __dt__17daTagPoFire_HIO_cFv();
 extern "C" void __sinit_d_a_tag_poFire_cpp();
-extern "C" extern void* g_profile_Tag_poFire[12];
-extern "C" extern void* __vt__17daTagPoFire_HIO_c[3];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void fopAcM_delete(fopAc_ac_c*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -81,7 +69,7 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80D5DD5C-80D5DD7C 0020+00 s=1 e=0 z=0  None .data      l_daTagPoFire_Method */
+/* 80D5DD5C-80D5DD7C -00001 0020+00 1/0 0/0 0/0 .data            l_daTagPoFire_Method */
 SECTION_DATA static void* l_daTagPoFire_Method[8] = {
     (void*)daTagPoFire_Create__FP10fopAc_ac_c,
     (void*)daTagPoFire_Delete__FP13daTagPoFire_c,
@@ -93,8 +81,8 @@ SECTION_DATA static void* l_daTagPoFire_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D5DD7C-80D5DDAC 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_poFire */
-SECTION_DATA void* g_profile_Tag_poFire[12] = {
+/* 80D5DD7C-80D5DDAC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_poFire */
+SECTION_DATA extern void* g_profile_Tag_poFire[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x017A0000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,
@@ -103,25 +91,21 @@ SECTION_DATA void* g_profile_Tag_poFire[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80D5DDAC-80D5DDB8 000C+00 s=2 e=0 z=0  None .data      __vt__17daTagPoFire_HIO_c */
-SECTION_DATA void* __vt__17daTagPoFire_HIO_c[3] = {
+/* 80D5DDAC-80D5DDB8 000050 000C+00 2/2 0/0 0/0 .data            __vt__17daTagPoFire_HIO_c */
+SECTION_DATA extern void* __vt__17daTagPoFire_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17daTagPoFire_HIO_cFv,
 };
 
-/* 80D5DDB8-80D5DDC4 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA void* __vt__14mDoHIO_entry_c[3] = {
+/* 80D5DDB8-80D5DDC4 00005C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80D5DACC-80D5DAF0 0024+00 s=1 e=0 z=0  None .text      __ct__17daTagPoFire_HIO_cFv */
-//	80D5DACC: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DAD0: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DAD8: 80D5DDAC (__vt__17daTagPoFire_HIO_c)
-//	80D5DADC: 80D5DDAC (__vt__17daTagPoFire_HIO_c)
+/* 80D5DACC-80D5DAF0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daTagPoFire_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,10 +115,7 @@ asm daTagPoFire_HIO_c::daTagPoFire_HIO_c() {
 }
 #pragma pop
 
-/* 80D5DAF0-80D5DB38 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
-//	80D5DB08: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DB0C: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DB1C: 802CED3C (__dl__FPv)
+/* 80D5DAF0-80D5DB38 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -144,13 +125,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80D5DB38-80D5DB90 0058+00 s=1 e=0 z=0  None .text      setBaseMtx__13daTagPoFire_cFv */
-//	80D5DB4C: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5DB50: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5DB60: 803468E8 (PSMTXTrans)
-//	80D5DB64: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5DB68: 803DD470 (now__14mDoMtx_stack_c)
-//	80D5DB78: 8000C2A0 (mDoMtx_ZXYrotM__FPA4_fsss)
+/* 80D5DB38-80D5DB90 000158 0058+00 1/1 0/0 0/0 .text            setBaseMtx__13daTagPoFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -160,9 +135,7 @@ asm void daTagPoFire_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80D5DB90-80D5DBF0 0060+00 s=1 e=0 z=0  None .text      create__13daTagPoFire_cFv */
-//	80D5DBB8: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80D5DBD4: 80D5DB38 (setBaseMtx__13daTagPoFire_cFv)
+/* 80D5DB90-80D5DBF0 0001B0 0060+00 1/1 0/0 0/0 .text            create__13daTagPoFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,8 +145,7 @@ asm void daTagPoFire_c::create() {
 }
 #pragma pop
 
-/* 80D5DBF0-80D5DC20 0030+00 s=1 e=0 z=0  None .text      Execute__13daTagPoFire_cFv */
-//	80D5DC08: 80019C7C (fopAcM_delete__FP10fopAc_ac_c)
+/* 80D5DBF0-80D5DC20 000210 0030+00 1/1 0/0 0/0 .text            Execute__13daTagPoFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -183,66 +155,59 @@ asm void daTagPoFire_c::Execute() {
 }
 #pragma pop
 
-/* 80D5DC20-80D5DC28 0008+00 s=1 e=0 z=0  None .text      Draw__13daTagPoFire_cFv */
+/* 80D5DC20-80D5DC28 000240 0008+00 1/1 0/0 0/0 .text            Draw__13daTagPoFire_cFv */
 bool daTagPoFire_c::Draw() {
     return true;
 }
 
-/* 80D5DC28-80D5DC30 0008+00 s=1 e=0 z=0  None .text      Delete__13daTagPoFire_cFv */
+/* 80D5DC28-80D5DC30 000248 0008+00 1/1 0/0 0/0 .text            Delete__13daTagPoFire_cFv */
 bool daTagPoFire_c::Delete() {
     return true;
 }
 
-/* 80D5DC30-80D5DC50 0020+00 s=1 e=0 z=0  None .text      daTagPoFire_Draw__FP13daTagPoFire_c */
-//	80D5DC3C: 80D5DC20 (Draw__13daTagPoFire_cFv)
+/* 80D5DC30-80D5DC50 000250 0020+00 1/0 0/0 0/0 .text            daTagPoFire_Draw__FP13daTagPoFire_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagPoFire_Draw(daTagPoFire_c* param_0) {
+static asm void daTagPoFire_Draw(daTagPoFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire/daTagPoFire_Draw__FP13daTagPoFire_c.s"
 }
 #pragma pop
 
-/* 80D5DC50-80D5DC70 0020+00 s=1 e=0 z=0  None .text      daTagPoFire_Execute__FP13daTagPoFire_c */
-//	80D5DC5C: 80D5DBF0 (Execute__13daTagPoFire_cFv)
+/* 80D5DC50-80D5DC70 000270 0020+00 1/0 0/0 0/0 .text daTagPoFire_Execute__FP13daTagPoFire_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagPoFire_Execute(daTagPoFire_c* param_0) {
+static asm void daTagPoFire_Execute(daTagPoFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire/daTagPoFire_Execute__FP13daTagPoFire_c.s"
 }
 #pragma pop
 
-/* 80D5DC70-80D5DC90 0020+00 s=1 e=0 z=0  None .text      daTagPoFire_Delete__FP13daTagPoFire_c */
-//	80D5DC7C: 80D5DC28 (Delete__13daTagPoFire_cFv)
+/* 80D5DC70-80D5DC90 000290 0020+00 1/0 0/0 0/0 .text daTagPoFire_Delete__FP13daTagPoFire_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagPoFire_Delete(daTagPoFire_c* param_0) {
+static asm void daTagPoFire_Delete(daTagPoFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire/daTagPoFire_Delete__FP13daTagPoFire_c.s"
 }
 #pragma pop
 
-/* 80D5DC90-80D5DCB0 0020+00 s=1 e=0 z=0  None .text      daTagPoFire_Create__FP10fopAc_ac_c */
-//	80D5DC9C: 80D5DB90 (create__13daTagPoFire_cFv)
+/* 80D5DC90-80D5DCB0 0002B0 0020+00 1/0 0/0 0/0 .text            daTagPoFire_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagPoFire_Create(fopAc_ac_c* param_0) {
+static asm void daTagPoFire_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire/daTagPoFire_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D5DCB0-80D5DD0C 005C+00 s=2 e=0 z=0  None .text      __dt__17daTagPoFire_HIO_cFv */
-//	80D5DCC8: 80D5DDAC (__vt__17daTagPoFire_HIO_c)
-//	80D5DCCC: 80D5DDAC (__vt__17daTagPoFire_HIO_c)
-//	80D5DCD8: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DCDC: 80D5DDB8 (__vt__14mDoHIO_entry_c)
-//	80D5DCF0: 802CED3C (__dl__FPv)
+/* 80D5DCB0-80D5DD0C 0002D0 005C+00 2/1 0/0 0/0 .text            __dt__17daTagPoFire_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,25 +218,17 @@ asm daTagPoFire_HIO_c::~daTagPoFire_HIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5DDD0-80D5DDDC 000C+00 s=1 e=0 z=0  None .bss       @3617 */
+/* 80D5DDD0-80D5DDDC 000008 000C+00 1/1 0/0 0/0 .bss             @3617 */
 static u8 lit_3617[12];
 
-/* 80D5DDDC-80D5DDE4 0008+00 s=1 e=0 z=0  None .bss       l_HIO */
+/* 80D5DDDC-80D5DDE4 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[8];
 
-/* 80D5DD0C-80D5DD48 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_tag_poFire_cpp */
-//	80D5DD18: 80D5DDDC (l_HIO)
-//	80D5DD1C: 80D5DDDC (l_HIO)
-//	80D5DD20: 80D5DACC (__ct__17daTagPoFire_HIO_cFv)
-//	80D5DD24: 80D5DCB0 (__dt__17daTagPoFire_HIO_cFv)
-//	80D5DD28: 80D5DCB0 (__dt__17daTagPoFire_HIO_cFv)
-//	80D5DD2C: 80D5DDD0 (lit_3617)
-//	80D5DD30: 80D5DDD0 (lit_3617)
-//	80D5DD34: 80D5DA58 (__register_global_object)
+/* 80D5DD0C-80D5DD48 00032C 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_tag_poFire_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_tag_poFire_cpp() {
+asm void __sinit_d_a_tag_poFire_cpp() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_poFire/d_a_tag_poFire/__sinit_d_a_tag_poFire_cpp.s"
 }

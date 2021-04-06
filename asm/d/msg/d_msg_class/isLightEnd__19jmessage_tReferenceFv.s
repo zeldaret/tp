@@ -2,13 +2,13 @@ lbl_8022994C:
 /* 8022994C  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 80229950  28 00 00 08 */	cmplwi r0, 8
 /* 80229954  40 82 00 14 */	bne lbl_80229968
-/* 80229958  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8022995C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 80229958  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8022995C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80229960  A8 84 03 1C */	lha r4, 0x31c(r4)
 /* 80229964  48 00 00 10 */	b lbl_80229974
 lbl_80229968:
-/* 80229968  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8022996C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 80229968  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8022996C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80229970  A8 84 03 1A */	lha r4, 0x31a(r4)
 lbl_80229974:
 /* 80229974  7C 80 07 35 */	extsh. r0, r4

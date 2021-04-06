@@ -5,16 +5,16 @@ lbl_80C602B0:
 /* 80C602BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C602C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C602C4  7C 7E 1B 78 */	mr r30, r3
-/* 80C602C8  3C 60 80 C6 */	lis r3, lit_3629@ha
-/* 80C602CC  3B E3 08 04 */	addi r31, r3, lit_3629@l
+/* 80C602C8  3C 60 80 C6 */	lis r3, lit_3629@ha /* 0x80C60804@ha */
+/* 80C602CC  3B E3 08 04 */	addi r31, r3, lit_3629@l /* 0x80C60804@l */
 /* 80C602D0  38 7E 05 B4 */	addi r3, r30, 0x5b4
-/* 80C602D4  3C 80 80 C6 */	lis r4, l_HIO@ha
-/* 80C602D8  38 84 09 C4 */	addi r4, r4, l_HIO@l
+/* 80C602D4  3C 80 80 C6 */	lis r4, l_HIO@ha /* 0x80C609C4@ha */
+/* 80C602D8  38 84 09 C4 */	addi r4, r4, l_HIO@l /* 0x80C609C4@l */
 /* 80C602DC  C0 24 00 10 */	lfs f1, 0x10(r4)
 /* 80C602E0  C0 5F 00 28 */	lfs f2, 0x28(r31)
 /* 80C602E4  C0 64 00 08 */	lfs f3, 8(r4)
 /* 80C602E8  C0 9F 00 10 */	lfs f4, 0x10(r31)
-/* 80C602EC  4B 60 F6 90 */	b cLib_addCalc__FPfffff
+/* 80C602EC  4B 60 F6 91 */	bl cLib_addCalc__FPfffff
 /* 80C602F0  C0 1F 00 18 */	lfs f0, 0x18(r31)
 /* 80C602F4  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80C602F8  40 82 00 0C */	bne lbl_80C60304

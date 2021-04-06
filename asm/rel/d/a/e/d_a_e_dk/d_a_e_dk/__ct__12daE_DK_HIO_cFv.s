@@ -1,8 +1,8 @@
 lbl_806AA1EC:
-/* 806AA1EC  3C 80 80 6B */	lis r4, lit_3764@ha
-/* 806AA1F0  38 A4 D5 38 */	addi r5, r4, lit_3764@l
-/* 806AA1F4  3C 80 80 6B */	lis r4, __vt__12daE_DK_HIO_c@ha
-/* 806AA1F8  38 04 D7 E0 */	addi r0, r4, __vt__12daE_DK_HIO_c@l
+/* 806AA1EC  3C 80 80 6B */	lis r4, lit_3764@ha /* 0x806AD538@ha */
+/* 806AA1F0  38 A4 D5 38 */	addi r5, r4, lit_3764@l /* 0x806AD538@l */
+/* 806AA1F4  3C 80 80 6B */	lis r4, __vt__12daE_DK_HIO_c@ha /* 0x806AD7E0@ha */
+/* 806AA1F8  38 04 D7 E0 */	addi r0, r4, __vt__12daE_DK_HIO_c@l /* 0x806AD7E0@l */
 /* 806AA1FC  90 03 00 00 */	stw r0, 0(r3)
 /* 806AA200  38 00 FF FF */	li r0, -1
 /* 806AA204  98 03 00 04 */	stb r0, 4(r3)

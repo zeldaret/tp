@@ -6,8 +6,8 @@ lbl_800D76C4:
 /* 800D76D4  7C 7F 1B 78 */	mr r31, r3
 /* 800D76D8  38 80 00 AD */	li r4, 0xad
 /* 800D76DC  38 A0 00 02 */	li r5, 2
-/* 800D76E0  3C C0 80 39 */	lis r6, m__20daAlinkHIO_damage_c0@ha
-/* 800D76E4  38 C6 E5 4C */	addi r6, r6, m__20daAlinkHIO_damage_c0@l
+/* 800D76E0  3C C0 80 39 */	lis r6, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800D76E4  38 C6 E5 4C */	addi r6, r6, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800D76E8  38 C6 00 14 */	addi r6, r6, 0x14
 /* 800D76EC  4B FD 60 05 */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800D76F0  7F E3 FB 78 */	mr r3, r31

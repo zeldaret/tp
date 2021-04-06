@@ -8,8 +8,8 @@ lbl_800A3E98:
 /* 800A3EB0  7C BF 2B 78 */	mr r31, r5
 /* 800A3EB4  38 62 92 90 */	la r3, l_arcName(r2) /* 80452C90-_SDA2_BASE_ */
 /* 800A3EB8  54 84 04 3E */	clrlwi r4, r4, 0x10
-/* 800A3EBC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 800A3EC0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 800A3EBC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A3EC0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A3EC4  3C A5 00 02 */	addis r5, r5, 2
 /* 800A3EC8  38 C0 00 80 */	li r6, 0x80
 /* 800A3ECC  38 A5 C2 F8 */	addi r5, r5, -15624

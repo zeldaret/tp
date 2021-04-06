@@ -1,9 +1,9 @@
 lbl_801C4D54:
-/* 801C4D54  3C E0 80 3A */	lis r7, __vt__12dDlst_base_c@ha
-/* 801C4D58  38 07 6F 88 */	addi r0, r7, __vt__12dDlst_base_c@l
+/* 801C4D54  3C E0 80 3A */	lis r7, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801C4D58  38 07 6F 88 */	addi r0, r7, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801C4D5C  90 03 00 00 */	stw r0, 0(r3)
-/* 801C4D60  3C E0 80 3C */	lis r7, __vt__15dMenu_Fishing_c@ha
-/* 801C4D64  38 07 D0 74 */	addi r0, r7, __vt__15dMenu_Fishing_c@l
+/* 801C4D60  3C E0 80 3C */	lis r7, __vt__15dMenu_Fishing_c@ha /* 0x803BD074@ha */
+/* 801C4D64  38 07 D0 74 */	addi r0, r7, __vt__15dMenu_Fishing_c@l /* 0x803BD074@l */
 /* 801C4D68  90 03 00 00 */	stw r0, 0(r3)
 /* 801C4D6C  90 83 00 04 */	stw r4, 4(r3)
 /* 801C4D70  38 80 00 00 */	li r4, 0

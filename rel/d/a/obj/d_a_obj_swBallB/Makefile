@@ -3,17 +3,15 @@
 #
 
 M639_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB.plf
+M639_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB.lcf
+M639_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB.map
 
 M639_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swBallB/executor.cpp \
-	rel/d/a/obj/d_a_obj_swBallB/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swBallB/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swBallB/d_a_obj_swBallB.cpp \
 
 M639_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/d_a_obj_swBallB.o \
 
 M639_LIBS := \
@@ -29,15 +27,21 @@ M639_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map639.map\
+	-m _prolog \
+	-lcf $(M639_LDSCRIPT) \
+	-unused -map $(M639_MAP) \
+	-w off \
 
 $(M639_TARGET): $(M639_O_FILES) $(M639_LIBS)
+	@echo [639] creating $(M639_TARGET)
 	@echo $(M639_LIBS) $(M639_O_FILES) > build/M639_ofiles
-	$(LD) -opt_partial $(M639_LDFLAGS) -o $(M639_TARGET) @build/M639_ofiles
+	@python3 tools/lcf.py rel 639 --output $(M639_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M639_LDFLAGS) -o $(M639_TARGET) @build/M639_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallB/%.o: rel/d/a/obj/d_a_obj_swBallB/%.cpp
+	@echo [639] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M639_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

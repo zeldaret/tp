@@ -58,13 +58,6 @@ struct Z2EnvSeMgr {
 // Forward References:
 //
 
-static bool dEnvSe_Draw(dEnvSe_c*);
-static void dEnvSe_getNearPathPos(cXyz*, cXyz*, dPath*);
-static void dEnvSe_Execute(dEnvSe_c*);
-static bool dEnvSe_IsDelete(dEnvSe_c*);
-static bool dEnvSe_Delete(dEnvSe_c*);
-static void dEnvSe_Create(dEnvSe_c*);
-
 extern "C" static bool dEnvSe_Draw__FP8dEnvSe_c();
 extern "C" static void dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath();
 extern "C" void execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc();
@@ -79,11 +72,6 @@ extern "C" extern void* g_profile_ENVSE[10 + 1 /* padding */];
 //
 // External References:
 //
-
-void dComIfGp_getReverb(int);
-void dPath_GetRoomPath(int, int);
-void dPath_GetNextRoomPath(dPath const*, int);
-void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
 
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -127,134 +115,31 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
-/* 80182DD4-80182DDC 0008+00 s=1 e=0 z=0  None .text      dEnvSe_Draw__FP8dEnvSe_c */
+/* 80182DD4-80182DDC 17D714 0008+00 1/0 0/0 0/0 .text            dEnvSe_Draw__FP8dEnvSe_c */
 static bool dEnvSe_Draw(dEnvSe_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80456B80-80456B84 0004+00 s=1 e=0 z=0  None .sbss2     @3752 */
+/* 80456B80-80456B84 000020 0004+00 1/1 0/0 0/0 .sbss2           @3752 */
 SECTION_SBSS2 static u8 lit_3752[4];
 
-/* 80456B84-80456B88 0004+00 s=1 e=0 z=0  None .sbss2     None */
+/* 80456B84-80456B88 000024 0004+00 1/1 0/0 0/0 .sbss2           None */
 SECTION_SBSS2 static u8 data_80456B84[4];
 
-/* 80182DDC-80182FD8 01FC+00 s=1 e=0 z=0  None .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
+/* 80182DDC-80182FD8 17D71C 01FC+00 1/1 0/0 0/0 .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
  */
-//	80182DF4: 803621D0 (_savegpr_26)
-//	80182E08: 80456B80 (lit_3752)
-//	80182E0C: 80456B84 (data_80456B84)
-//	80182E18: 80450AE8 (__float_max)
-//	80182E1C: 80450AE8 (__float_max)
-//	80182E24: 803A78F8 (__vt__8cM3dGLin)
-//	80182E28: 803A78F8 (__vt__8cM3dGLin)
-//	80182E40: 8034739C (PSVECSquareDistance)
-//	80182E8C: 8026F31C (SetStartEnd__8cM3dGLinFRC3VecRC3Vec)
-//	80182EA0: 80268710 (cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf)
-//	80182EC8: 8026F31C (SetStartEnd__8cM3dGLinFRC3VecRC3Vec)
-//	80182EDC: 80268710 (cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf)
-//	80182F08: 8034739C (PSVECSquareDistance)
-//	80182FAC: 803A78F8 (__vt__8cM3dGLin)
-//	80182FB0: 803A78F8 (__vt__8cM3dGLin)
-//	80182FC4: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param_2) {
+static asm void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param_2) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80394308-80394310 0007+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80394308 = "sndtag";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039430F = "";
-#pragma pop
-
-/* 80182FD8-80183480 04A8+00 s=1 e=0 z=0  None .text
+/* 80182FD8-80183480 17D918 04A8+00 1/1 0/0 0/0 .text
  * execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc         */
-//	80182FF0: 803621C0 (_savegpr_22)
-//	80183000: 80450D64 (struct_80450D64)
-//	80183028: 804061C0 (g_dComIfG_gameInfo)
-//	8018302C: 804061C0 (g_dComIfG_gameInfo)
-//	8018304C: 80181E64 (Eye__9dCamera_cFv)
-//	80183074: 80394308 (d_d_envse__stringBase0)
-//	80183078: 80394308 (d_d_envse__stringBase0)
-//	8018308C: 8036608C (memcmp)
-//	801830B0: 8042DD70 (g_mEnvSeMgr)
-//	801830B4: 8042DD70 (g_mEnvSeMgr)
-//	801830C8: 802C6C84 (initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec)
-//	801830E4: 8002D06C (dComIfGp_getReverb__Fi)
-//	801830EC: 8042DD70 (g_mEnvSeMgr)
-//	801830F0: 8042DD70 (g_mEnvSeMgr)
-//	801830F4: 802C70C8 (startStaticEnvSe__10Z2EnvSeMgrFSc)
-//	80183118: 8042DD70 (g_mEnvSeMgr)
-//	8018311C: 8042DD70 (g_mEnvSeMgr)
-//	8018312C: 802C80F8 (initRiverSe__10Z2EnvSeMgrFUcUcUcUc)
-//	80183144: 800517EC (dPath_GetRoomPath__Fii)
-//	8018314C: 8042DD70 (g_mEnvSeMgr)
-//	80183150: 8042DD70 (g_mEnvSeMgr)
-//	80183164: 80182DDC (dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath)
-//	80183170: 802C8234 (registRiverSePos__10Z2EnvSeMgrFP3Vec)
-//	8018317C: 80051898 (dPath_GetNextRoomPath__FPC5dPathi)
-//	80183190: 8002D06C (dComIfGp_getReverb__Fi)
-//	80183198: 8042DD70 (g_mEnvSeMgr)
-//	8018319C: 8042DD70 (g_mEnvSeMgr)
-//	801831A0: 802C8300 (startRiverSe__10Z2EnvSeMgrFSc)
-//	801831B0: 80450AE8 (__float_max)
-//	801831B4: 80450AE8 (__float_max)
-//	801831C4: 8042DD70 (g_mEnvSeMgr)
-//	801831C8: 8042DD70 (g_mEnvSeMgr)
-//	801831D8: 802C8730 (initFallSe__10Z2EnvSeMgrFUcUcUcUc)
-//	80183208: 800517EC (dPath_GetRoomPath__Fii)
-//	80183210: 8042DD70 (g_mEnvSeMgr)
-//	80183214: 8042DD70 (g_mEnvSeMgr)
-//	80183228: 80182DDC (dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath)
-//	80183234: 8034739C (PSVECSquareDistance)
-//	80183264: 802C886C (registFallSePos__10Z2EnvSeMgrFP3Vec)
-//	80183270: 80051898 (dPath_GetNextRoomPath__FPC5dPathi)
-//	80183284: 8002D06C (dComIfGp_getReverb__Fi)
-//	8018328C: 8042DD70 (g_mEnvSeMgr)
-//	80183290: 8042DD70 (g_mEnvSeMgr)
-//	80183294: 802C8890 (startFallSe__10Z2EnvSeMgrFSc)
-//	801832B0: 8042DD70 (g_mEnvSeMgr)
-//	801832B4: 8042DD70 (g_mEnvSeMgr)
-//	801832C4: 802C8A90 (initEtcSe__10Z2EnvSeMgrFUcUcUcUc)
-//	801832DC: 800517EC (dPath_GetRoomPath__Fii)
-//	801832E4: 8042DD70 (g_mEnvSeMgr)
-//	801832E8: 8042DD70 (g_mEnvSeMgr)
-//	801832FC: 80182DDC (dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath)
-//	80183308: 802C8C24 (registEtcSePos__10Z2EnvSeMgrFP3Vec)
-//	80183314: 80051898 (dPath_GetNextRoomPath__FPC5dPathi)
-//	80183328: 8002D06C (dComIfGp_getReverb__Fi)
-//	80183330: 8042DD70 (g_mEnvSeMgr)
-//	80183334: 8042DD70 (g_mEnvSeMgr)
-//	80183338: 802C8C48 (startEtcSe__10Z2EnvSeMgrFSc)
-//	80183350: 800517EC (dPath_GetRoomPath__Fii)
-//	80183358: 8042DD70 (g_mEnvSeMgr)
-//	8018335C: 8042DD70 (g_mEnvSeMgr)
-//	80183370: 80182DDC (dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath)
-//	8018337C: 802C780C (registWindowPos__10Z2EnvSeMgrFP3Vec)
-//	80183388: 80051898 (dPath_GetNextRoomPath__FPC5dPathi)
-//	801833B4: 8042DD70 (g_mEnvSeMgr)
-//	801833B8: 8042DD70 (g_mEnvSeMgr)
-//	801833C8: 802C950C (initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc)
-//	801833E8: 800517EC (dPath_GetRoomPath__Fii)
-//	801833F0: 8042DD70 (g_mEnvSeMgr)
-//	801833F4: 8042DD70 (g_mEnvSeMgr)
-//	80183408: 80182DDC (dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath)
-//	80183418: 802C9F58 (registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec)
-//	80183424: 80051898 (dPath_GetNextRoomPath__FPC5dPathi)
-//	80183438: 8002D06C (dComIfGp_getReverb__Fi)
-//	80183440: 8042DD70 (g_mEnvSeMgr)
-//	80183444: 8042DD70 (g_mEnvSeMgr)
-//	80183448: 802CA794 (startLv3WaterSe__10Z2EnvSeMgrFSc)
-//	8018346C: 8036220C (_restgpr_22)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,17 +149,7 @@ asm void dEnvSe_c::execute_common(dStage_SoundInfo_c* param_0, s8* param_1, u8 p
 }
 #pragma pop
 
-/* 80183480-801835A0 0120+00 s=1 e=0 z=0  None .text      execute__8dEnvSe_cFv */
-//	80183490: 803621D8 (_savegpr_28)
-//	80183498: 80450D64 (struct_80450D64)
-//	801834A0: 804061C0 (g_dComIfG_gameInfo)
-//	801834A4: 804061C0 (g_dComIfG_gameInfo)
-//	801834B0: 80024384 (getStatusRoomDt__20dStage_roomControl_cFi)
-//	80183508: 80182FD8 (execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc)
-//	80183530: 80182FD8 (execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc)
-//	8018355C: 80182FD8 (execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc)
-//	80183584: 80182FD8 (execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc)
-//	8018358C: 80362224 (_restgpr_28)
+/* 80183480-801835A0 17DDC0 0120+00 1/1 0/0 0/0 .text            execute__8dEnvSe_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,47 +159,46 @@ asm void dEnvSe_c::execute() {
 }
 #pragma pop
 
-/* 801835A0-801835C0 0020+00 s=1 e=0 z=0  None .text      dEnvSe_Execute__FP8dEnvSe_c */
-//	801835AC: 80183480 (execute__8dEnvSe_cFv)
+/* 801835A0-801835C0 17DEE0 0020+00 1/0 0/0 0/0 .text            dEnvSe_Execute__FP8dEnvSe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_Execute(dEnvSe_c* param_0) {
+static asm void dEnvSe_Execute(dEnvSe_c* param_0) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_Execute__FP8dEnvSe_c.s"
 }
 #pragma pop
 
-/* 801835C0-801835C8 0008+00 s=1 e=0 z=0  None .text      dEnvSe_IsDelete__FP8dEnvSe_c */
+/* 801835C0-801835C8 17DF00 0008+00 1/0 0/0 0/0 .text            dEnvSe_IsDelete__FP8dEnvSe_c */
 static bool dEnvSe_IsDelete(dEnvSe_c* param_0) {
     return true;
 }
 
-/* 801835C8-801835D0 0008+00 s=1 e=0 z=0  None .text      dEnvSe_Delete__FP8dEnvSe_c */
+/* 801835C8-801835D0 17DF08 0008+00 1/0 0/0 0/0 .text            dEnvSe_Delete__FP8dEnvSe_c */
 static bool dEnvSe_Delete(dEnvSe_c* param_0) {
     return true;
 }
 
-/* 801835D0-801835F8 0028+00 s=1 e=0 z=0  None .text      dEnvSe_Create__FP8dEnvSe_c */
+/* 801835D0-801835F8 17DF10 0028+00 1/0 0/0 0/0 .text            dEnvSe_Create__FP8dEnvSe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_Create(dEnvSe_c* param_0) {
+static asm void dEnvSe_Create(dEnvSe_c* param_0) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_Create__FP8dEnvSe_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BA808-803BA81C 0014+00 s=1 e=0 z=0  None .data      l_dEnvSe_Method */
+/* 803BA808-803BA81C -00001 0014+00 1/0 0/0 0/0 .data            l_dEnvSe_Method */
 SECTION_DATA static void* l_dEnvSe_Method[5] = {
     (void*)dEnvSe_Create__FP8dEnvSe_c,  (void*)dEnvSe_Delete__FP8dEnvSe_c,
     (void*)dEnvSe_Execute__FP8dEnvSe_c, (void*)dEnvSe_IsDelete__FP8dEnvSe_c,
     (void*)dEnvSe_Draw__FP8dEnvSe_c,
 };
 
-/* 803BA81C-803BA848 0028+04 s=0 e=0 z=1  None .data      g_profile_ENVSE */
-SECTION_DATA void* g_profile_ENVSE[10 + 1 /* padding */] = {
+/* 803BA81C-803BA848 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_ENVSE */
+SECTION_DATA extern void* g_profile_ENVSE[10 + 1 /* padding */] = {
     (void*)0xFFFFFFFD,
     (void*)0x0002FFFD,
     (void*)0x00150000,
@@ -338,3 +212,12 @@ SECTION_DATA void* g_profile_ENVSE[10 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
+
+/* 80394308-80394310 020968 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80394308 = "sndtag";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039430F = "";
+#pragma pop

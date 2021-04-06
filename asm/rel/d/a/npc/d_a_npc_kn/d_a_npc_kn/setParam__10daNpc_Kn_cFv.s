@@ -3,13 +3,13 @@ lbl_80A2BD30:
 /* 80A2BD34  7C 08 02 A6 */	mflr r0
 /* 80A2BD38  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80A2BD3C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A2BD40  4B 93 64 94 */	b _savegpr_27
+/* 80A2BD40  4B 93 64 95 */	bl _savegpr_27
 /* 80A2BD44  7C 7F 1B 78 */	mr r31, r3
 /* 80A2BD48  48 00 14 51 */	bl selectAction__10daNpc_Kn_cFv
 /* 80A2BD4C  7F E3 FB 78 */	mr r3, r31
 /* 80A2BD50  48 00 04 E1 */	bl srchActors__10daNpc_Kn_cFv
-/* 80A2BD54  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha
-/* 80A2BD58  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l
+/* 80A2BD54  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BD58  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BD5C  AB A3 00 48 */	lha r29, 0x48(r3)
 /* 80A2BD60  AB C3 00 4A */	lha r30, 0x4a(r3)
 /* 80A2BD64  A8 A3 00 4C */	lha r5, 0x4c(r3)
@@ -17,8 +17,8 @@ lbl_80A2BD30:
 /* 80A2BD6C  88 1F 15 AC */	lbz r0, 0x15ac(r31)
 /* 80A2BD70  28 00 00 06 */	cmplwi r0, 6
 /* 80A2BD74  41 81 01 4C */	bgt lbl_80A2BEC0
-/* 80A2BD78  3C 60 80 A4 */	lis r3, lit_6810@ha
-/* 80A2BD7C  38 63 18 24 */	addi r3, r3, lit_6810@l
+/* 80A2BD78  3C 60 80 A4 */	lis r3, lit_6810@ha /* 0x80A41824@ha */
+/* 80A2BD7C  38 63 18 24 */	addi r3, r3, lit_6810@l /* 0x80A41824@l */
 /* 80A2BD80  54 00 10 3A */	slwi r0, r0, 2
 /* 80A2BD84  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A2BD88  7C 09 03 A6 */	mtctr r0
@@ -28,11 +28,11 @@ lbl_80A2BD90:
 /* 80A2BD94  48 01 0C 05 */	bl setParamTeach01__10daNpc_Kn_cFv
 /* 80A2BD98  90 7F 05 5C */	stw r3, 0x55c(r31)
 /* 80A2BD9C  38 7F 08 E4 */	addi r3, r31, 0x8e4
-/* 80A2BDA0  3C 80 80 A4 */	lis r4, lit_5395@ha
-/* 80A2BDA4  C0 24 09 38 */	lfs f1, lit_5395@l(r4)
-/* 80A2BDA8  4B 64 A1 98 */	b SetWallR__12dBgS_AcchCirFf
-/* 80A2BDAC  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha
-/* 80A2BDB0  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l
+/* 80A2BDA0  3C 80 80 A4 */	lis r4, lit_5395@ha /* 0x80A40938@ha */
+/* 80A2BDA4  C0 24 09 38 */	lfs f1, lit_5395@l(r4)  /* 0x80A40938@l */
+/* 80A2BDA8  4B 64 A1 99 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80A2BDAC  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BDB0  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BDB4  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A2BDB8  D0 1F 09 14 */	stfs f0, 0x914(r31)
 /* 80A2BDBC  48 00 01 70 */	b lbl_80A2BF2C
@@ -45,11 +45,11 @@ lbl_80A2BDC0:
 /* 80A2BDD4  48 01 0B C5 */	bl setParamTeach01__10daNpc_Kn_cFv
 /* 80A2BDD8  90 7F 05 5C */	stw r3, 0x55c(r31)
 /* 80A2BDDC  38 7F 08 E4 */	addi r3, r31, 0x8e4
-/* 80A2BDE0  3C 80 80 A4 */	lis r4, lit_5395@ha
-/* 80A2BDE4  C0 24 09 38 */	lfs f1, lit_5395@l(r4)
-/* 80A2BDE8  4B 64 A1 58 */	b SetWallR__12dBgS_AcchCirFf
-/* 80A2BDEC  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha
-/* 80A2BDF0  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l
+/* 80A2BDE0  3C 80 80 A4 */	lis r4, lit_5395@ha /* 0x80A40938@ha */
+/* 80A2BDE4  C0 24 09 38 */	lfs f1, lit_5395@l(r4)  /* 0x80A40938@l */
+/* 80A2BDE8  4B 64 A1 59 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80A2BDEC  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BDF0  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BDF4  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A2BDF8  D0 1F 09 14 */	stfs f0, 0x914(r31)
 /* 80A2BDFC  48 00 01 30 */	b lbl_80A2BF2C
@@ -115,32 +115,32 @@ lbl_80A2BEC0:
 /* 80A2BEC4  7F 63 DB 78 */	mr r3, r27
 /* 80A2BEC8  7C 9C 07 34 */	extsh r28, r4
 /* 80A2BECC  7F 84 E3 78 */	mr r4, r28
-/* 80A2BED0  4B 72 0B 48 */	b daNpcT_getDistTableIdx__Fii
+/* 80A2BED0  4B 72 0B 49 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A2BED4  98 7F 05 44 */	stb r3, 0x544(r31)
 /* 80A2BED8  7F 63 DB 78 */	mr r3, r27
 /* 80A2BEDC  7F 84 E3 78 */	mr r4, r28
-/* 80A2BEE0  4B 72 0B 38 */	b daNpcT_getDistTableIdx__Fii
+/* 80A2BEE0  4B 72 0B 39 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A2BEE4  98 7F 05 46 */	stb r3, 0x546(r31)
 /* 80A2BEE8  88 1F 05 44 */	lbz r0, 0x544(r31)
 /* 80A2BEEC  98 1F 05 45 */	stb r0, 0x545(r31)
 /* 80A2BEF0  7F A3 07 34 */	extsh r3, r29
 /* 80A2BEF4  7F C4 07 34 */	extsh r4, r30
-/* 80A2BEF8  4B 72 0B 20 */	b daNpcT_getDistTableIdx__Fii
+/* 80A2BEF8  4B 72 0B 21 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A2BEFC  98 7F 05 47 */	stb r3, 0x547(r31)
 /* 80A2BF00  38 00 00 0A */	li r0, 0xa
 /* 80A2BF04  90 1F 05 5C */	stw r0, 0x55c(r31)
 /* 80A2BF08  38 7F 08 E4 */	addi r3, r31, 0x8e4
-/* 80A2BF0C  3C 80 80 A4 */	lis r4, m__16daNpc_Kn_Param_c@ha
-/* 80A2BF10  38 84 09 70 */	addi r4, r4, m__16daNpc_Kn_Param_c@l
+/* 80A2BF0C  3C 80 80 A4 */	lis r4, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BF10  38 84 09 70 */	addi r4, r4, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BF14  C0 24 00 1C */	lfs f1, 0x1c(r4)
-/* 80A2BF18  4B 64 A0 28 */	b SetWallR__12dBgS_AcchCirFf
-/* 80A2BF1C  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha
-/* 80A2BF20  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l
+/* 80A2BF18  4B 64 A0 29 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80A2BF1C  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BF20  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BF24  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A2BF28  D0 1F 09 14 */	stfs f0, 0x914(r31)
 lbl_80A2BF2C:
-/* 80A2BF2C  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha
-/* 80A2BF30  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l
+/* 80A2BF2C  3C 60 80 A4 */	lis r3, m__16daNpc_Kn_Param_c@ha /* 0x80A40970@ha */
+/* 80A2BF30  38 63 09 70 */	addi r3, r3, m__16daNpc_Kn_Param_c@l /* 0x80A40970@l */
 /* 80A2BF34  C0 63 00 08 */	lfs f3, 8(r3)
 /* 80A2BF38  C0 1F 16 FC */	lfs f0, 0x16fc(r31)
 /* 80A2BF3C  EC 43 00 32 */	fmuls f2, f3, f0
@@ -167,7 +167,7 @@ lbl_80A2BF2C:
 /* 80A2BF90  C0 03 00 44 */	lfs f0, 0x44(r3)
 /* 80A2BF94  D0 1F 0A B8 */	stfs f0, 0xab8(r31)
 /* 80A2BF98  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A2BF9C  4B 93 62 84 */	b _restgpr_27
+/* 80A2BF9C  4B 93 62 85 */	bl _restgpr_27
 /* 80A2BFA0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80A2BFA4  7C 08 03 A6 */	mtlr r0
 /* 80A2BFA8  38 21 00 30 */	addi r1, r1, 0x30

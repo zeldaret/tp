@@ -7,8 +7,8 @@ lbl_802C3500:
 /* 802C3514  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802C3518  7C 9E 23 78 */	mr r30, r4
 /* 802C351C  41 82 00 C0 */	beq lbl_802C35DC
-/* 802C3520  3C 80 80 3D */	lis r4, __vt__14Z2CreatureLink@ha
-/* 802C3524  38 84 B9 80 */	addi r4, r4, __vt__14Z2CreatureLink@l
+/* 802C3520  3C 80 80 3D */	lis r4, __vt__14Z2CreatureLink@ha /* 0x803CB980@ha */
+/* 802C3524  38 84 B9 80 */	addi r4, r4, __vt__14Z2CreatureLink@l /* 0x803CB980@l */
 /* 802C3528  90 9F 00 00 */	stw r4, 0(r31)
 /* 802C352C  38 04 00 30 */	addi r0, r4, 0x30
 /* 802C3530  90 1F 00 90 */	stw r0, 0x90(r31)
@@ -18,8 +18,8 @@ lbl_802C3500:
 /* 802C3540  4E 80 04 21 */	bctrl 
 /* 802C3544  34 1F 00 94 */	addic. r0, r31, 0x94
 /* 802C3548  41 82 00 1C */	beq lbl_802C3564
-/* 802C354C  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha
-/* 802C3550  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l
+/* 802C354C  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 802C3550  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 802C3554  90 1F 00 A4 */	stw r0, 0xa4(r31)
 /* 802C3558  38 7F 00 94 */	addi r3, r31, 0x94
 /* 802C355C  38 80 00 00 */	li r4, 0
@@ -27,13 +27,13 @@ lbl_802C3500:
 lbl_802C3564:
 /* 802C3564  34 1F 00 90 */	addic. r0, r31, 0x90
 /* 802C3568  41 82 00 58 */	beq lbl_802C35C0
-/* 802C356C  3C 60 80 3D */	lis r3, __vt__18Z2LinkSoundStarter@ha
-/* 802C3570  38 03 B9 6C */	addi r0, r3, __vt__18Z2LinkSoundStarter@l
+/* 802C356C  3C 60 80 3D */	lis r3, __vt__18Z2LinkSoundStarter@ha /* 0x803CB96C@ha */
+/* 802C3570  38 03 B9 6C */	addi r0, r3, __vt__18Z2LinkSoundStarter@l /* 0x803CB96C@l */
 /* 802C3574  90 1F 00 90 */	stw r0, 0x90(r31)
 /* 802C3578  34 1F 00 90 */	addic. r0, r31, 0x90
 /* 802C357C  41 82 00 44 */	beq lbl_802C35C0
-/* 802C3580  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802C3584  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802C3580  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802C3584  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802C3588  90 1F 00 90 */	stw r0, 0x90(r31)
 /* 802C358C  34 1F 00 94 */	addic. r0, r31, 0x94
 /* 802C3590  41 82 00 24 */	beq lbl_802C35B4

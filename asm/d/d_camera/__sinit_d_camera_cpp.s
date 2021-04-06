@@ -1,6 +1,6 @@
 lbl_801825FC:
-/* 801825FC  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80182600  38 83 A1 60 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 801825FC  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BA160@ha */
+/* 80182600  38 83 A1 60 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x803BA160@l */
 /* 80182604  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 80182608  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 8018260C  90 64 00 FC */	stw r3, 0xfc(r4)

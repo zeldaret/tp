@@ -37,14 +37,6 @@ struct DynamicModuleControlBase {
 // Forward References:
 //
 
-static void print_f(char const*, ...);
-static void print(char const*);
-static void dispHeapInfo();
-static void dispGameInfo();
-static void dispDateInfo();
-static void dispConsoleToTerminal();
-void exception_addition(JUTConsole*);
-
 extern "C" static void print_f__FPCce();
 extern "C" static void print__FPCc();
 extern "C" static void dispHeapInfo__Fv();
@@ -88,182 +80,71 @@ extern "C" extern u8 sAramObject__7JKRAram[4];
 //
 
 /* ############################################################################################## */
-/* 80450C90-80450C98 0004+04 s=3 e=0 z=0  None .sbss      sConsole */
+/* 80450C90-80450C98 000190 0004+04 3/3 0/0 0/0 .sbss            sConsole */
 static u8 sConsole[4 + 4 /* padding */];
 
-/* 80017D7C-80017E08 008C+00 s=3 e=0 z=0  None .text      print_f__FPCce */
-//	80017DEC: 80450C90 (sConsole)
-//	80017DF4: 802E7F30 (JUTConsole_print_f_va_)
+/* 80017D7C-80017E08 0126BC 008C+00 3/3 0/0 0/0 .text            print_f__FPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void print_f(char const* param_0, ...) {
+static asm void print_f(char const* param_0, ...) {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/print_f__FPCce.s"
 }
 #pragma pop
 
-/* 80017E08-80017E30 0028+00 s=2 e=0 z=0  None .text      print__FPCc */
-//	80017E18: 80450C90 (sConsole)
-//	80017E1C: 802E7C38 (print__10JUTConsoleFPCc)
+/* 80017E08-80017E30 012748 0028+00 2/2 0/0 0/0 .text            print__FPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void print(char const* param_0) {
+static asm void print(char const* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/print__FPCc.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80374460-80374640 01DF+01 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80374460 = "--------------------------------------\n";
-SECTION_DEAD char const* const stringBase_80374488 = "-- Heap Free / TotalFree (KB) --\n";
-SECTION_DEAD char const* const stringBase_803744AA = "  Zelda %5d / %5d\n";
-SECTION_DEAD char const* const stringBase_803744BD = "   Game %5d / %5d\n";
-SECTION_DEAD char const* const stringBase_803744D0 = "Archive %5d / %5d\n";
-SECTION_DEAD char const* const stringBase_803744E3 = "--------------------------------\n";
-SECTION_DEAD char const* const stringBase_80374505 = "Start StageName:RoomNo [%s:%d]\n";
-SECTION_DEAD char const* const stringBase_80374525 = "------------- Date Infomation ---------\n";
-SECTION_DEAD char const* const stringBase_8037454E = " FINAL VERSION\n";
-SECTION_DEAD char const* const stringBase_8037455E = "COMPILE USER: FINAL\n";
-SECTION_DEAD char const* const stringBase_80374573 = "COPYDATE   : %17s\n";
-SECTION_DEAD char const* const stringBase_80374586 =
-    "PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD char const* const stringBase_803745B7 =
-    "HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD char const* const stringBase_803745E8 =
-    "PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD char const* const stringBase_80374616 = "---------------------------------------\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037463F = "";
-#pragma pop
-
-/* 80017E30-80017F8C 015C+00 s=1 e=0 z=0  None .text      dispHeapInfo__Fv */
-//	80017E40: 803621C4 (_savegpr_23)
-//	80017E44: 80450C2C (zeldaHeap)
-//	80017E4C: 80450C28 (gameHeap)
-//	80017E50: 80450C34 (archiveHeap)
-//	80017E54: 802CE72C (getFreeSize__7JKRHeapFv)
-//	80017E60: 802CE72C (getFreeSize__7JKRHeapFv)
-//	80017E6C: 802CE72C (getFreeSize__7JKRHeapFv)
-//	80017E78: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	80017E84: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	80017E90: 802CE784 (getTotalFreeSize__7JKRHeapFv)
-//	80017E98: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017E9C: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EA4: 80017E08 (print__FPCc)
-//	80017EA8: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EAC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EC0: 80017D7C (print_f__FPCce)
-//	80017EC4: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EC8: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EDC: 80017D7C (print_f__FPCce)
-//	80017EE0: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EE4: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017EF8: 80017D7C (print_f__FPCce)
-//	80017EFC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017F00: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017F08: 80017E08 (print__FPCc)
-//	80017F0C: 804513C8 (sAramObject__7JKRAram)
-//	80017F1C: 802D3218 (dump__11JKRAramHeapFv)
-//	80017F20: 80262470 (dump__24DynamicModuleControlBaseFv)
-//	80017F24: 804061C0 (g_dComIfG_gameInfo)
-//	80017F28: 804061C0 (g_dComIfG_gameInfo)
-//	80017F34: 8003C638 (dump__14dRes_control_cFv)
-//	80017F78: 80362210 (_restgpr_23)
+/* 80017E30-80017F8C 012770 015C+00 1/1 0/0 0/0 .text            dispHeapInfo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dispHeapInfo() {
+static asm void dispHeapInfo() {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/dispHeapInfo__Fv.s"
 }
 #pragma pop
 
-/* 80017F8C-80017FD0 0044+00 s=1 e=0 z=0  None .text      dispGameInfo__Fv */
-//	80017F98: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017F9C: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017FA4: 804061C0 (g_dComIfG_gameInfo)
-//	80017FA8: 804061C0 (g_dComIfG_gameInfo)
-//	80017FBC: 80017D7C (print_f__FPCce)
+/* 80017F8C-80017FD0 0128CC 0044+00 1/1 0/0 0/0 .text            dispGameInfo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dispGameInfo() {
+static asm void dispGameInfo() {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/dispGameInfo__Fv.s"
 }
 #pragma pop
 
-/* 80017FD0-80018124 0154+00 s=1 e=0 z=0  None .text      dispDateInfo__Fv */
-//	80017FDC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017FE0: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017FE8: 80017E08 (print__FPCc)
-//	80017FEC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017FF0: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80017FF8: 80017E08 (print__FPCc)
-//	80017FFC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018000: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018008: 80017E08 (print__FPCc)
-//	8001800C: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018010: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018018: 803A2EE0 (COPYDATE_STRING__7mDoMain)
-//	8001801C: 803A2EE0 (COPYDATE_STRING__7mDoMain)
-//	80018024: 80017D7C (print_f__FPCce)
-//	80018028: 80450B08 (sPowerOnTime__7mDoMain)
-//	8001802C: 80450B0C (data_80450B0C)
-//	80018034: 80342974 (OSTicksToCalendarTime)
-//	80018040: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018044: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	8001806C: 80017D7C (print_f__FPCce)
-//	80018070: 80450B10 (sHungUpTime__7mDoMain)
-//	80018074: 80450B14 (data_80450B14)
-//	8001807C: 80342974 (OSTicksToCalendarTime)
-//	80018088: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	8001808C: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	800180B4: 80017D7C (print_f__FPCce)
-//	800180B8: 80450B10 (sHungUpTime__7mDoMain)
-//	800180BC: 80450B14 (data_80450B14)
-//	800180C0: 80450B08 (sPowerOnTime__7mDoMain)
-//	800180C4: 80450B0C (data_80450B0C)
-//	800180D4: 80342974 (OSTicksToCalendarTime)
-//	800180D8: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	800180DC: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018100: 80017D7C (print_f__FPCce)
-//	80018104: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018108: 80374460 (m_Do_m_Do_machine_exception__stringBase0)
-//	80018110: 80017E08 (print__FPCc)
+/* 80017FD0-80018124 012910 0154+00 1/1 0/0 0/0 .text            dispDateInfo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dispDateInfo() {
+static asm void dispDateInfo() {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/dispDateInfo__Fv.s"
 }
 #pragma pop
 
-/* 80018124-8001814C 0028+00 s=1 e=0 z=0  None .text      dispConsoleToTerminal__Fv */
-//	80018130: 804511B8 (systemConsole__9JFWSystem)
-//	80018138: 802E7F7C (dumpToTerminal__10JUTConsoleFUi)
+/* 80018124-8001814C 012A64 0028+00 1/1 0/0 0/0 .text            dispConsoleToTerminal__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dispConsoleToTerminal() {
+static asm void dispConsoleToTerminal() {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/dispConsoleToTerminal__Fv.s"
 }
 #pragma pop
 
-/* 8001814C-8001817C 0030+00 s=0 e=1 z=0  None .text      exception_addition__FP10JUTConsole */
-//	80018158: 80450C90 (sConsole)
-//	8001815C: 80017E30 (dispHeapInfo__Fv)
-//	80018160: 80017FD0 (dispDateInfo__Fv)
-//	80018164: 80018124 (dispConsoleToTerminal__Fv)
-//	80018168: 80017F8C (dispGameInfo__Fv)
+/* 8001814C-8001817C 012A8C 0030+00 0/0 1/1 0/0 .text            exception_addition__FP10JUTConsole
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -274,8 +155,47 @@ asm void exception_addition(JUTConsole* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C98-80450C9C 0004+00 s=0 e=0 z=50  None .sbss      None */
+/* 80450C98-80450C9C -00001 0004+00 0/0 0/0 50/50 .sbss            None */
+/* 80450C98 0001+00 data_80450C98 None */
+/* 80450C99 0001+00 data_80450C99 None */
+/* 80450C9A 0001+00 data_80450C9A None */
+/* 80450C9B 0001+00 data_80450C9B None */
+extern u8 struct_80450C98[4];
 u8 struct_80450C98[4];
 
-/* 80450C9C-80450CA0 0004+00 s=0 e=0 z=6  None .sbss      None */
+/* 80450C9C-80450CA0 -00001 0004+00 0/0 0/0 6/6 .sbss            None */
+/* 80450C9C 0001+00 data_80450C9C None */
+/* 80450C9D 0001+00 data_80450C9D None */
+/* 80450C9E 0001+00 data_80450C9E None */
+/* 80450C9F 0001+00 data_80450C9F None */
+extern u8 struct_80450C9C[4];
 u8 struct_80450C9C[4];
+
+/* 80374460-80374640 000AC0 01DF+01 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80374460 =
+    "--------------------------------------\n";
+SECTION_DEAD static char const* const stringBase_80374488 = "-- Heap Free / TotalFree (KB) --\n";
+SECTION_DEAD static char const* const stringBase_803744AA = "  Zelda %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744BD = "   Game %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744D0 = "Archive %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744E3 = "--------------------------------\n";
+SECTION_DEAD static char const* const stringBase_80374505 = "Start StageName:RoomNo [%s:%d]\n";
+SECTION_DEAD static char const* const stringBase_80374525 =
+    "------------- Date Infomation ---------\n";
+SECTION_DEAD static char const* const stringBase_8037454E = " FINAL VERSION\n";
+SECTION_DEAD static char const* const stringBase_8037455E = "COMPILE USER: FINAL\n";
+SECTION_DEAD static char const* const stringBase_80374573 = "COPYDATE   : %17s\n";
+SECTION_DEAD static char const* const stringBase_80374586 =
+    "PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_803745B7 =
+    "HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_803745E8 =
+    "PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_80374616 =
+    "---------------------------------------\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037463F = "";
+#pragma pop

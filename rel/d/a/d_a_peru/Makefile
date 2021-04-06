@@ -3,19 +3,20 @@
 #
 
 M703_TARGET := $(BUILD_DIR)/rel/d/a/d_a_peru.plf
+M703_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_peru.lcf
+M703_MAP := $(BUILD_DIR)/rel/d/a/d_a_peru.map
 
 M703_CPP_FILES := \
-	rel/d/a/d_a_peru/executor.cpp \
-	rel/d/a/d_a_peru/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_peru/d_a_peru.cpp \
 
 M703_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_peru/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_peru/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_peru/d_a_peru.o \
 
 M703_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_peru/libRuntime.PPCEABI.H.a \
 
 M703_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M703_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map703.map\
+	-m _prolog \
+	-lcf $(M703_LDSCRIPT) \
+	-unused -map $(M703_MAP) \
+	-w off \
 
 $(M703_TARGET): $(M703_O_FILES) $(M703_LIBS)
+	@echo [703] creating $(M703_TARGET)
 	@echo $(M703_LIBS) $(M703_O_FILES) > build/M703_ofiles
-	$(LD) -opt_partial $(M703_LDFLAGS) -o $(M703_TARGET) @build/M703_ofiles
+	@python3 tools/lcf.py rel 703 --output $(M703_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M703_LDFLAGS) -o $(M703_TARGET) @build/M703_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_peru/%.o: rel/d/a/d_a_peru/%.cpp
+	@echo [703] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M703_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M703_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_peru/libs/Runtime.PPCEABI.H/Makefile
 

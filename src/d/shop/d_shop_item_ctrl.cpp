@@ -41,17 +41,10 @@ extern "C" void getCurrentPos__15dShopItemCtrl_cFi();
 extern "C" void isHomePos__15dShopItemCtrl_cFi();
 extern "C" void setRotateAnime__15dShopItemCtrl_cFi();
 extern "C" void setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb();
-extern "C" extern void* __vt__15dShopItemCtrl_c[3 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fpcSch_JudgeByID(void*, void*);
-void cLib_addCalcPos2(cXyz*, cXyz const&, f32, f32);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void operator delete(void*);
 
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fpcSch_JudgeByID__FPvPv();
@@ -73,8 +66,8 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 803BB888-803BB898 000C+04 s=2 e=0 z=0  None .data      __vt__15dShopItemCtrl_c */
-SECTION_DATA void* __vt__15dShopItemCtrl_c[3 + 1 /* padding */] = {
+/* 803BB888-803BB898 0189A8 000C+04 2/2 0/0 0/0 .data            __vt__15dShopItemCtrl_c */
+SECTION_DATA extern void* __vt__15dShopItemCtrl_c[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15dShopItemCtrl_cFv,
@@ -82,9 +75,7 @@ SECTION_DATA void* __vt__15dShopItemCtrl_c[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80196914-80196958 0044+00 s=0 e=0 z=10  None .text      __ct__15dShopItemCtrl_cFv */
-//	80196914: 803BB888 (__vt__15dShopItemCtrl_c)
-//	80196918: 803BB888 (__vt__15dShopItemCtrl_c)
+/* 80196914-80196958 191254 0044+00 0/0 0/0 10/10 .text            __ct__15dShopItemCtrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,10 +85,7 @@ asm dShopItemCtrl_c::dShopItemCtrl_c() {
 }
 #pragma pop
 
-/* 80196958-801969A0 0048+00 s=1 e=1 z=0  None .text      __dt__15dShopItemCtrl_cFv */
-//	80196970: 803BB888 (__vt__15dShopItemCtrl_c)
-//	80196974: 803BB888 (__vt__15dShopItemCtrl_c)
-//	80196984: 802CED3C (__dl__FPv)
+/* 80196958-801969A0 191298 0048+00 1/0 1/1 0/0 .text            __dt__15dShopItemCtrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,18 +96,15 @@ asm dShopItemCtrl_c::~dShopItemCtrl_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453AD0-80453AD8 0004+04 s=2 e=0 z=0  None .sdata2    @3659 */
+/* 80453AD0-80453AD8 0020D0 0004+04 2/2 0/0 0/0 .sdata2          @3659 */
 SECTION_SDATA2 static f32 lit_3659[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 801969A0-80196A3C 009C+00 s=0 e=3 z=3  None .text      getCurrentPos__15dShopItemCtrl_cFi */
-//	801969B4: 80453AD0 (lit_3659)
-//	801969E0: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	801969E4: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	801969EC: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
+/* 801969A0-80196A3C 1912E0 009C+00 0/0 3/3 3/3 .text            getCurrentPos__15dShopItemCtrl_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -129,11 +114,7 @@ asm void dShopItemCtrl_c::getCurrentPos(int param_0) {
 }
 #pragma pop
 
-/* 80196A3C-80196AF0 00B4+00 s=0 e=2 z=0  None .text      isHomePos__15dShopItemCtrl_cFi */
-//	80196A78: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196A7C: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196A84: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80196A90: 80037C1C (getPosP__12daShopItem_cFv)
+/* 80196A3C-80196AF0 19137C 00B4+00 0/0 2/2 0/0 .text            isHomePos__15dShopItemCtrl_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,14 +124,8 @@ asm void dShopItemCtrl_c::isHomePos(int param_0) {
 }
 #pragma pop
 
-/* 80196AF0-80196BA4 00B4+00 s=0 e=1 z=0  None .text      setRotateAnime__15dShopItemCtrl_cFi */
-//	80196B00: 803621D4 (_savegpr_27)
-//	80196B2C: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196B30: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196B38: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80196B44: 80037C14 (getRotateP__12daShopItem_cFv)
-//	80196B78: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80196B90: 80362220 (_restgpr_27)
+/* 80196AF0-80196BA4 191430 00B4+00 0/0 1/1 0/0 .text            setRotateAnime__15dShopItemCtrl_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -161,77 +136,30 @@ asm void dShopItemCtrl_c::setRotateAnime(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453AD8-80453AE0 0008+00 s=1 e=0 z=0  None .sdata2    @3838 */
+/* 80453AD8-80453AE0 0020D8 0008+00 1/1 0/0 0/0 .sdata2          @3838 */
 SECTION_SDATA2 static f64 lit_3838 = 0.5;
 
-/* 80453AE0-80453AE8 0008+00 s=1 e=0 z=0  None .sdata2    @3839 */
+/* 80453AE0-80453AE8 0020E0 0008+00 1/1 0/0 0/0 .sdata2          @3839 */
 SECTION_SDATA2 static f64 lit_3839 = 3.0;
 
-/* 80453AE8-80453AF0 0008+00 s=1 e=0 z=0  None .sdata2    @3840 */
+/* 80453AE8-80453AF0 0020E8 0008+00 1/1 0/0 0/0 .sdata2          @3840 */
 SECTION_SDATA2 static u8 lit_3840[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80453AF0-80453AF4 0004+00 s=1 e=0 z=0  None .sdata2    @3841 */
+/* 80453AF0-80453AF4 0020F0 0004+00 1/1 0/0 0/0 .sdata2          @3841 */
 SECTION_SDATA2 static f32 lit_3841 = 0.5f;
 
-/* 80453AF4-80453AF8 0004+00 s=1 e=0 z=0  None .sdata2    @3842 */
+/* 80453AF4-80453AF8 0020F4 0004+00 1/1 0/0 0/0 .sdata2          @3842 */
 SECTION_SDATA2 static f32 lit_3842 = 1.0f / 20.0f;
 
-/* 80453AF8-80453AFC 0004+00 s=1 e=0 z=0  None .sdata2    @3843 */
+/* 80453AF8-80453AFC 0020F8 0004+00 1/1 0/0 0/0 .sdata2          @3843 */
 SECTION_SDATA2 static f32 lit_3843 = 1.0f / 10.0f;
 
-/* 80453AFC-80453B00 0004+00 s=1 e=0 z=0  None .sdata2    @3844 */
+/* 80453AFC-80453B00 0020FC 0004+00 1/1 0/0 0/0 .sdata2          @3844 */
 SECTION_SDATA2 static f32 lit_3844 = 1.0f / 100.0f;
 
-/* 80196BA4-80197098 04F4+00 s=0 e=1 z=0  None .text      setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
- */
-//	80196BB4: 803621C4 (_savegpr_23)
-//	80196BEC: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196BF0: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	80196BF8: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	80196C04: 80037C1C (getPosP__12daShopItem_cFv)
-//	80196C30: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80196C78: 80347138 (PSVECSquareMag)
-//	80196C7C: 80453AD0 (lit_3659)
-//	80196C8C: 80453AD8 (lit_3838)
-//	80196C94: 80453AE0 (lit_3839)
-//	80196CDC: 80453AE8 (lit_3840)
-//	80196CE8: 80450AE0 (__float_nan)
-//	80196CEC: 80450AE0 (__float_nan)
-//	80196D58: 80450AE0 (__float_nan)
-//	80196D5C: 80450AE0 (__float_nan)
-//	80196D70: 80453AF0 (lit_3841)
-//	80196D74: 80453AF4 (lit_3842)
-//	80196D7C: 80270178 (cLib_addCalcPos2__FP4cXyzRC4cXyzff)
-//	80196D94: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80196DB4: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80196DC8: 80347138 (PSVECSquareMag)
-//	80196DCC: 80453AD0 (lit_3659)
-//	80196DDC: 80453AD8 (lit_3838)
-//	80196DE4: 80453AE0 (lit_3839)
-//	80196E2C: 80453AE8 (lit_3840)
-//	80196E38: 80450AE0 (__float_nan)
-//	80196E3C: 80450AE0 (__float_nan)
-//	80196EA8: 80450AE0 (__float_nan)
-//	80196EAC: 80450AE0 (__float_nan)
-//	80196EC0: 80453AF0 (lit_3841)
-//	80196EC4: 80453AF8 (lit_3843)
-//	80196ECC: 80270178 (cLib_addCalcPos2__FP4cXyzRC4cXyzff)
-//	80196EDC: 80266B34 (__mi__4cXyzCFRC3Vec)
-//	80196EFC: 80347138 (PSVECSquareMag)
-//	80196F00: 80453AD0 (lit_3659)
-//	80196F10: 80453AD8 (lit_3838)
-//	80196F18: 80453AE0 (lit_3839)
-//	80196F60: 80453AE8 (lit_3840)
-//	80196F6C: 80450AE0 (__float_nan)
-//	80196F70: 80450AE0 (__float_nan)
-//	80196FDC: 80450AE0 (__float_nan)
-//	80196FE0: 80450AE0 (__float_nan)
-//	80196FE4: 80453AFC (lit_3844)
-//	8019701C: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80197050: 80270540 (cLib_addCalcAngleS__FPsssss)
-//	80197084: 80362210 (_restgpr_23)
+/* 80196BA4-80197098 1914E4 04F4+00 0/0 1/1 0/0 .text setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

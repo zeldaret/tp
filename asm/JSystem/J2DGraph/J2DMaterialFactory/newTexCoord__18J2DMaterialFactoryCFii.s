@@ -21,8 +21,8 @@ lbl_802F3790:
 /* 802F37DC  98 03 00 02 */	stb r0, 2(r3)
 /* 802F37E0  4E 80 00 20 */	blr 
 lbl_802F37E4:
-/* 802F37E4  3C 80 80 3A */	lis r4, j2dDefaultTexCoordInfo@ha
-/* 802F37E8  8C 04 1B 80 */	lbzu r0, j2dDefaultTexCoordInfo@l(r4)
+/* 802F37E4  3C 80 80 3A */	lis r4, j2dDefaultTexCoordInfo@ha /* 0x803A1B80@ha */
+/* 802F37E8  8C 04 1B 80 */	lbzu r0, j2dDefaultTexCoordInfo@l(r4)  /* 0x803A1B80@l */
 /* 802F37EC  98 03 00 00 */	stb r0, 0(r3)
 /* 802F37F0  88 04 00 01 */	lbz r0, 1(r4)
 /* 802F37F4  98 03 00 01 */	stb r0, 1(r3)

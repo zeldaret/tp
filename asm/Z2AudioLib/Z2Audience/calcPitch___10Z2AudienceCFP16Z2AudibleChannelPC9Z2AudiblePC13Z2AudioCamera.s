@@ -18,8 +18,8 @@ lbl_802BDD48:
 /* 802BDD88  10 A0 08 3A */	ps_madd f5, f0, f0, f1
 /* 802BDD8C  10 A5 08 54 */	ps_sum0 f5, f5, f1, f1
 /* 802BDD90  C0 22 C1 18 */	lfs f1, lit_1271(r2)
-/* 802BDD94  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 802BDD98  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 802BDD94  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 802BDD98  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 802BDD9C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 802BDDA0  FC 05 00 40 */	fcmpo cr0, f5, f0
 /* 802BDDA4  4C 40 13 82 */	cror 2, 0, 2

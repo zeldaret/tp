@@ -14,8 +14,8 @@ lbl_801A794C:
 /* 801A7958  2C 00 00 32 */	cmpwi r0, 0x32
 /* 801A795C  4C 80 00 20 */	bgelr 
 /* 801A7960  38 80 00 00 */	li r4, 0
-/* 801A7964  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A7968  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A7964  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7968  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A796C  54 00 10 3A */	slwi r0, r0, 2
 /* 801A7970  7C 63 02 14 */	add r3, r3, r0
 /* 801A7974  90 83 03 F8 */	stw r4, 0x3f8(r3)

@@ -90,8 +90,8 @@ lbl_80139B7C:
 /* 80139BB4  38 03 FF FF */	addi r0, r3, -1
 /* 80139BB8  B0 1E 30 0A */	sth r0, 0x300a(r30)
 /* 80139BBC  C0 1E 34 90 */	lfs f0, 0x3490(r30)
-/* 80139BC0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtLock_c0@ha
-/* 80139BC4  38 83 F6 F4 */	addi r4, r3, m__22daAlinkHIO_wlAtLock_c0@l
+/* 80139BC0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtLock_c0@ha /* 0x8038F6F4@ha */
+/* 80139BC4  38 83 F6 F4 */	addi r4, r3, m__22daAlinkHIO_wlAtLock_c0@l /* 0x8038F6F4@l */
 /* 80139BC8  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 80139BCC  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 80139BD0  40 80 00 20 */	bge lbl_80139BF0
@@ -111,8 +111,8 @@ lbl_80139BF0:
 /* 80139C04  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 /* 80139C08  38 00 00 00 */	li r0, 0
 /* 80139C0C  90 01 00 08 */	stw r0, 8(r1)
-/* 80139C10  3C 60 80 14 */	lis r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@ha
-/* 80139C14  38 63 92 A8 */	addi r3, r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@l
+/* 80139C10  3C 60 80 14 */	lis r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@ha /* 0x801392A8@ha */
+/* 80139C14  38 63 92 A8 */	addi r3, r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@l /* 0x801392A8@l */
 /* 80139C18  38 81 00 08 */	addi r4, r1, 8
 /* 80139C1C  4B ED FB A1 */	bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80139C20  80 01 00 08 */	lwz r0, 8(r1)

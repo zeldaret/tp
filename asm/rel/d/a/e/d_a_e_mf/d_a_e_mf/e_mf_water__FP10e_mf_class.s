@@ -5,24 +5,24 @@ lbl_8070FD40:
 /* 8070FD4C  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8070FD50  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 8070FD54  7C 7F 1B 78 */	mr r31, r3
-/* 8070FD58  3C 60 80 71 */	lis r3, lit_3828@ha
-/* 8070FD5C  3B C3 39 74 */	addi r30, r3, lit_3828@l
+/* 8070FD58  3C 60 80 71 */	lis r3, lit_3828@ha /* 0x80713974@ha */
+/* 8070FD5C  3B C3 39 74 */	addi r30, r3, lit_3828@l /* 0x80713974@l */
 /* 8070FD60  80 7F 05 DC */	lwz r3, 0x5dc(r31)
 /* 8070FD64  80 63 00 04 */	lwz r3, 4(r3)
 /* 8070FD68  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 8070FD6C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8070FD70  38 63 00 60 */	addi r3, r3, 0x60
-/* 8070FD74  3C 80 80 45 */	lis r4, calc_mtx@ha
-/* 8070FD78  38 84 07 68 */	addi r4, r4, calc_mtx@l
+/* 8070FD74  3C 80 80 45 */	lis r4, calc_mtx@ha /* 0x80450768@ha */
+/* 8070FD78  38 84 07 68 */	addi r4, r4, calc_mtx@l /* 0x80450768@l */
 /* 8070FD7C  80 84 00 00 */	lwz r4, 0(r4)
-/* 8070FD80  4B C3 67 30 */	b PSMTXCopy
+/* 8070FD80  4B C3 67 31 */	bl PSMTXCopy
 /* 8070FD84  C0 1E 00 04 */	lfs f0, 4(r30)
 /* 8070FD88  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 8070FD8C  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8070FD90  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8070FD94  38 61 00 20 */	addi r3, r1, 0x20
 /* 8070FD98  38 81 00 14 */	addi r4, r1, 0x14
-/* 8070FD9C  4B B6 11 50 */	b MtxPosition__FP4cXyzP4cXyz
+/* 8070FD9C  4B B6 11 51 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 8070FDA0  38 00 00 0A */	li r0, 0xa
 /* 8070FDA4  B0 1F 06 C8 */	sth r0, 0x6c8(r31)
 /* 8070FDA8  A8 1F 05 B4 */	lha r0, 0x5b4(r31)
@@ -75,12 +75,12 @@ lbl_8070FE14:
 /* 8070FE58  38 61 00 08 */	addi r3, r1, 8
 /* 8070FE5C  C0 3E 00 74 */	lfs f1, 0x74(r30)
 /* 8070FE60  38 80 00 00 */	li r4, 0
-/* 8070FE64  4B 90 FA 18 */	b fopKyM_createWpillar__FPC4cXyzfi
+/* 8070FE64  4B 90 FA 19 */	bl fopKyM_createWpillar__FPC4cXyzfi
 /* 8070FE68  48 00 00 10 */	b lbl_8070FE78
 lbl_8070FE6C:
 /* 8070FE6C  38 61 00 08 */	addi r3, r1, 8
 /* 8070FE70  C0 3E 00 08 */	lfs f1, 8(r30)
-/* 8070FE74  4B 90 FA 98 */	b fopKyM_createMpillar__FPC4cXyzf
+/* 8070FE74  4B 90 FA 99 */	bl fopKyM_createMpillar__FPC4cXyzf
 lbl_8070FE78:
 /* 8070FE78  38 00 00 0A */	li r0, 0xa
 /* 8070FE7C  B0 1F 05 B4 */	sth r0, 0x5b4(r31)
@@ -92,12 +92,12 @@ lbl_8070FE84:
 /* 8070FE90  C0 3F 0A 3C */	lfs f1, 0xa3c(r31)
 /* 8070FE94  C0 5E 00 D0 */	lfs f2, 0xd0(r30)
 /* 8070FE98  C0 7E 00 7C */	lfs f3, 0x7c(r30)
-/* 8070FE9C  4B B5 FB A0 */	b cLib_addCalc2__FPffff
+/* 8070FE9C  4B B5 FB A1 */	bl cLib_addCalc2__FPffff
 /* 8070FEA0  38 7F 07 04 */	addi r3, r31, 0x704
 /* 8070FEA4  38 80 C0 00 */	li r4, -16384
 /* 8070FEA8  38 A0 00 04 */	li r5, 4
 /* 8070FEAC  38 C0 04 00 */	li r6, 0x400
-/* 8070FEB0  4B B6 07 58 */	b cLib_addCalcAngleS2__FPssss
+/* 8070FEB0  4B B6 07 59 */	bl cLib_addCalcAngleS2__FPssss
 /* 8070FEB4  A8 1F 06 C0 */	lha r0, 0x6c0(r31)
 /* 8070FEB8  2C 00 00 00 */	cmpwi r0, 0
 /* 8070FEBC  40 82 00 0C */	bne lbl_8070FEC8

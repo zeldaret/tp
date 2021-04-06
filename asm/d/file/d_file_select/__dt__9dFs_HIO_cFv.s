@@ -5,8 +5,8 @@ lbl_801913E0:
 /* 801913EC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801913F0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801913F4  41 82 00 1C */	beq lbl_80191410
-/* 801913F8  3C A0 80 3C */	lis r5, __vt__9dFs_HIO_c@ha
-/* 801913FC  38 05 B4 00 */	addi r0, r5, __vt__9dFs_HIO_c@l
+/* 801913F8  3C A0 80 3C */	lis r5, __vt__9dFs_HIO_c@ha /* 0x803BB400@ha */
+/* 801913FC  38 05 B4 00 */	addi r0, r5, __vt__9dFs_HIO_c@l /* 0x803BB400@l */
 /* 80191400  90 1F 00 00 */	stw r0, 0(r31)
 /* 80191404  7C 80 07 35 */	extsh. r0, r4
 /* 80191408  40 81 00 08 */	ble lbl_80191410

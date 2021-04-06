@@ -16,8 +16,8 @@ lbl_801F37A0:
 /* 801F37D8  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 801F37DC  7C 7B 02 14 */	add r3, r27, r0
 /* 801F37E0  80 63 00 F8 */	lwz r3, 0xf8(r3)
-/* 801F37E4  3C 80 80 43 */	lis r4, g_msHIO@ha
-/* 801F37E8  38 84 E8 4C */	addi r4, r4, g_msHIO@l
+/* 801F37E4  3C 80 80 43 */	lis r4, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F37E8  38 84 E8 4C */	addi r4, r4, g_msHIO@l /* 0x8042E84C@l */
 /* 801F37EC  88 84 00 07 */	lbz r4, 7(r4)
 /* 801F37F0  38 A0 00 00 */	li r5, 0
 /* 801F37F4  38 C0 00 FF */	li r6, 0xff
@@ -31,8 +31,8 @@ lbl_801F37A0:
 /* 801F3814  54 00 10 3A */	slwi r0, r0, 2
 /* 801F3818  7C BB 02 14 */	add r5, r27, r0
 /* 801F381C  80 85 00 74 */	lwz r4, 0x74(r5)
-/* 801F3820  3C 60 80 3C */	lis r3, SelEndFrameTbl@ha
-/* 801F3824  38 63 DF 90 */	addi r3, r3, SelEndFrameTbl@l
+/* 801F3820  3C 60 80 3C */	lis r3, SelEndFrameTbl@ha /* 0x803BDF90@ha */
+/* 801F3824  38 63 DF 90 */	addi r3, r3, SelEndFrameTbl@l /* 0x803BDF90@l */
 /* 801F3828  7C 03 00 2E */	lwzx r0, r3, r0
 /* 801F382C  7C 04 00 00 */	cmpw r4, r0
 /* 801F3830  41 82 00 7C */	beq lbl_801F38AC

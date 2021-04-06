@@ -1,13 +1,13 @@
 lbl_805EB028:
-/* 805EB028  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805EB02C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 805EB028  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805EB02C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805EB030  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 805EB034  88 84 05 68 */	lbz r4, 0x568(r4)
 /* 805EB038  38 04 FF FD */	addi r0, r4, -3
 /* 805EB03C  28 00 00 1C */	cmplwi r0, 0x1c
 /* 805EB040  4D 81 00 20 */	bgtlr 
-/* 805EB044  3C 80 80 5F */	lis r4, lit_9091@ha
-/* 805EB048  38 84 D5 6C */	addi r4, r4, lit_9091@l
+/* 805EB044  3C 80 80 5F */	lis r4, lit_9091@ha /* 0x805ED56C@ha */
+/* 805EB048  38 84 D5 6C */	addi r4, r4, lit_9091@l /* 0x805ED56C@l */
 /* 805EB04C  54 00 10 3A */	slwi r0, r0, 2
 /* 805EB050  7C 04 00 2E */	lwzx r0, r4, r0
 /* 805EB054  7C 09 03 A6 */	mtctr r0

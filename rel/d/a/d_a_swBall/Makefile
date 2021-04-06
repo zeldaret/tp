@@ -3,17 +3,15 @@
 #
 
 M707_TARGET := $(BUILD_DIR)/rel/d/a/d_a_swBall.plf
+M707_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_swBall.lcf
+M707_MAP := $(BUILD_DIR)/rel/d/a/d_a_swBall.map
 
 M707_CPP_FILES := \
-	rel/d/a/d_a_swBall/executor.cpp \
-	rel/d/a/d_a_swBall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_swBall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_swBall/d_a_swBall.cpp \
 
 M707_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_swBall/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swBall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swBall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_swBall/d_a_swBall.o \
 
 M707_LIBS := \
@@ -29,15 +27,21 @@ M707_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map707.map\
+	-m _prolog \
+	-lcf $(M707_LDSCRIPT) \
+	-unused -map $(M707_MAP) \
+	-w off \
 
 $(M707_TARGET): $(M707_O_FILES) $(M707_LIBS)
+	@echo [707] creating $(M707_TARGET)
 	@echo $(M707_LIBS) $(M707_O_FILES) > build/M707_ofiles
-	$(LD) -opt_partial $(M707_LDFLAGS) -o $(M707_TARGET) @build/M707_ofiles
+	@python3 tools/lcf.py rel 707 --output $(M707_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M707_LDFLAGS) -o $(M707_TARGET) @build/M707_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swBall/%.o: rel/d/a/d_a_swBall/%.cpp
+	@echo [707] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M707_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M707_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -8,8 +8,8 @@ lbl_8031322C:
 /* 80313244  83 6D 90 40 */	lwz r27, sTexGenBlock__17J3DDifferedTexMtx(r13)
 /* 80313248  83 ED 90 44 */	lwz r31, sTexMtxObj__17J3DDifferedTexMtx(r13)
 /* 8031324C  A0 9F 00 08 */	lhz r4, 8(r31)
-/* 80313250  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313254  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313250  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313254  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313258  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8031325C  54 00 00 43 */	rlwinm. r0, r0, 0, 1, 1
 /* 80313260  41 82 02 BC */	beq lbl_8031351C
@@ -41,8 +41,8 @@ lbl_803132A0:
 /* 803132C0  54 A0 06 BE */	clrlwi r0, r5, 0x1a
 /* 803132C4  28 00 00 0B */	cmplwi r0, 0xb
 /* 803132C8  41 81 02 1C */	bgt lbl_803134E4
-/* 803132CC  3C 60 80 3D */	lis r3, lit_1034@ha
-/* 803132D0  38 63 DB 40 */	addi r3, r3, lit_1034@l
+/* 803132CC  3C 60 80 3D */	lis r3, lit_1034@ha /* 0x803CDB40@ha */
+/* 803132D0  38 63 DB 40 */	addi r3, r3, lit_1034@l /* 0x803CDB40@l */
 /* 803132D4  54 00 10 3A */	slwi r0, r0, 2
 /* 803132D8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803132DC  7C 09 03 A6 */	mtctr r0
@@ -57,8 +57,8 @@ lbl_803132A0:
 /* 80313300  7C 03 02 14 */	add r0, r3, r0
 /* 80313304  7C 03 03 78 */	mr r3, r0
 /* 80313308  48 00 01 EC */	b lbl_803134F4
-/* 8031330C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313310  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8031330C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313310  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313314  38 81 00 88 */	addi r4, r1, 0x88
 /* 80313318  48 03 32 99 */	bl PSMTXInverse
 /* 8031331C  80 7F 00 00 */	lwz r3, 0(r31)
@@ -89,8 +89,8 @@ lbl_8031336C:
 /* 80313378  38 61 00 08 */	addi r3, r1, 8
 /* 8031337C  38 A1 00 88 */	addi r5, r1, 0x88
 /* 80313380  4B FF EA CD */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 80313384  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313388  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313384  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313388  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8031338C  38 81 00 48 */	addi r4, r1, 0x48
 /* 80313390  48 03 32 21 */	bl PSMTXInverse
 /* 80313394  38 61 00 88 */	addi r3, r1, 0x88
@@ -118,8 +118,8 @@ lbl_803133D8:
 /* 803133E8  4B FF E8 4D */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_803133EC:
 /* 803133EC  38 61 00 08 */	addi r3, r1, 8
-/* 803133F0  3C 80 80 3D */	lis r4, qMtx@ha
-/* 803133F4  38 84 DA B0 */	addi r4, r4, qMtx@l
+/* 803133F0  3C 80 80 3D */	lis r4, qMtx@ha /* 0x803CDAB0@ha */
+/* 803133F4  38 84 DA B0 */	addi r4, r4, qMtx@l /* 0x803CDAB0@l */
 /* 803133F8  7C 65 1B 78 */	mr r5, r3
 /* 803133FC  48 03 30 E9 */	bl PSMTXConcat
 /* 80313400  80 7F 00 04 */	lwz r3, 4(r31)
@@ -128,8 +128,8 @@ lbl_803133EC:
 /* 8031340C  38 61 00 08 */	addi r3, r1, 8
 /* 80313410  38 A1 00 88 */	addi r5, r1, 0x88
 /* 80313414  4B FF EA 39 */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 80313418  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8031341C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313418  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8031341C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313420  38 81 00 48 */	addi r4, r1, 0x48
 /* 80313424  48 03 31 8D */	bl PSMTXInverse
 /* 80313428  38 61 00 88 */	addi r3, r1, 0x88
@@ -157,8 +157,8 @@ lbl_8031346C:
 /* 8031347C  4B FF E7 B9 */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_80313480:
 /* 80313480  38 61 00 08 */	addi r3, r1, 8
-/* 80313484  3C 80 80 3D */	lis r4, qMtx2@ha
-/* 80313488  38 84 DA E0 */	addi r4, r4, qMtx2@l
+/* 80313484  3C 80 80 3D */	lis r4, qMtx2@ha /* 0x803CDAE0@ha */
+/* 80313488  38 84 DA E0 */	addi r4, r4, qMtx2@l /* 0x803CDAE0@l */
 /* 8031348C  7C 65 1B 78 */	mr r5, r3
 /* 80313490  48 03 30 55 */	bl PSMTXConcat
 /* 80313494  80 7F 00 04 */	lwz r3, 4(r31)
@@ -167,8 +167,8 @@ lbl_80313480:
 /* 803134A0  38 61 00 08 */	addi r3, r1, 8
 /* 803134A4  38 A1 00 88 */	addi r5, r1, 0x88
 /* 803134A8  4B FF E9 A5 */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 803134AC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803134B0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 803134AC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803134B0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803134B4  38 81 00 48 */	addi r4, r1, 0x48
 /* 803134B8  48 03 30 F9 */	bl PSMTXInverse
 /* 803134BC  38 61 00 88 */	addi r3, r1, 0x88
@@ -228,8 +228,8 @@ lbl_80313558:
 /* 80313578  54 80 06 BE */	clrlwi r0, r4, 0x1a
 /* 8031357C  28 00 00 0B */	cmplwi r0, 0xb
 /* 80313580  41 81 02 60 */	bgt lbl_803137E0
-/* 80313584  3C 60 80 3D */	lis r3, lit_1035@ha
-/* 80313588  38 63 DB 10 */	addi r3, r3, lit_1035@l
+/* 80313584  3C 60 80 3D */	lis r3, lit_1035@ha /* 0x803CDB10@ha */
+/* 80313588  38 63 DB 10 */	addi r3, r3, lit_1035@l /* 0x803CDB10@l */
 /* 8031358C  54 00 10 3A */	slwi r0, r0, 2
 /* 80313590  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80313594  7C 09 03 A6 */	mtctr r0
@@ -281,8 +281,8 @@ lbl_80313638:
 /* 80313644  38 61 00 08 */	addi r3, r1, 8
 /* 80313648  38 A1 00 88 */	addi r5, r1, 0x88
 /* 8031364C  4B FF E8 01 */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 80313650  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313654  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313650  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313654  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313658  38 81 00 48 */	addi r4, r1, 0x48
 /* 8031365C  48 03 2F 55 */	bl PSMTXInverse
 /* 80313660  38 61 00 88 */	addi r3, r1, 0x88
@@ -314,8 +314,8 @@ lbl_803136B4:
 /* 803136C4  4B FF E5 71 */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_803136C8:
 /* 803136C8  38 61 00 08 */	addi r3, r1, 8
-/* 803136CC  3C 80 80 3D */	lis r4, qMtx@ha
-/* 803136D0  38 84 DA B0 */	addi r4, r4, qMtx@l
+/* 803136CC  3C 80 80 3D */	lis r4, qMtx@ha /* 0x803CDAB0@ha */
+/* 803136D0  38 84 DA B0 */	addi r4, r4, qMtx@l /* 0x803CDAB0@l */
 /* 803136D4  7C 65 1B 78 */	mr r5, r3
 /* 803136D8  48 03 2E 0D */	bl PSMTXConcat
 /* 803136DC  80 7F 00 04 */	lwz r3, 4(r31)
@@ -324,8 +324,8 @@ lbl_803136C8:
 /* 803136E8  38 61 00 08 */	addi r3, r1, 8
 /* 803136EC  38 A1 00 88 */	addi r5, r1, 0x88
 /* 803136F0  4B FF E7 5D */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 803136F4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803136F8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 803136F4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803136F8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803136FC  38 81 00 48 */	addi r4, r1, 0x48
 /* 80313700  48 03 2E B1 */	bl PSMTXInverse
 /* 80313704  38 61 00 88 */	addi r3, r1, 0x88
@@ -357,8 +357,8 @@ lbl_80313758:
 /* 80313768  4B FF E4 CD */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_8031376C:
 /* 8031376C  38 61 00 08 */	addi r3, r1, 8
-/* 80313770  3C 80 80 3D */	lis r4, qMtx2@ha
-/* 80313774  38 84 DA E0 */	addi r4, r4, qMtx2@l
+/* 80313770  3C 80 80 3D */	lis r4, qMtx2@ha /* 0x803CDAE0@ha */
+/* 80313774  38 84 DA E0 */	addi r4, r4, qMtx2@l /* 0x803CDAE0@l */
 /* 80313778  7C 65 1B 78 */	mr r5, r3
 /* 8031377C  48 03 2D 69 */	bl PSMTXConcat
 /* 80313780  80 7F 00 04 */	lwz r3, 4(r31)
@@ -367,8 +367,8 @@ lbl_8031376C:
 /* 8031378C  38 61 00 08 */	addi r3, r1, 8
 /* 80313790  38 A1 00 88 */	addi r5, r1, 0x88
 /* 80313794  4B FF E6 B9 */	bl J3DMtxProjConcat__FPA4_fPA4_fPA4_f
-/* 80313798  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8031379C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80313798  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8031379C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803137A0  38 81 00 48 */	addi r4, r1, 0x48
 /* 803137A4  48 03 2E 0D */	bl PSMTXInverse
 /* 803137A8  38 61 00 88 */	addi r3, r1, 0x88

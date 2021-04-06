@@ -29,8 +29,8 @@ lbl_80140550:
 /* 801405BC  80 1F 1F 20 */	lwz r0, 0x1f20(r31)
 /* 801405C0  90 03 00 54 */	stw r0, 0x54(r3)
 /* 801405C4  38 C0 00 00 */	li r6, 0
-/* 801405C8  3C 60 80 0A */	lis r3, daAlink_wolfModelCallBack__FP8J3DJointi@ha
-/* 801405CC  38 63 EF F0 */	addi r3, r3, daAlink_wolfModelCallBack__FP8J3DJointi@l
+/* 801405C8  3C 60 80 0A */	lis r3, daAlink_wolfModelCallBack__FP8J3DJointi@ha /* 0x8009EFF0@ha */
+/* 801405CC  38 63 EF F0 */	addi r3, r3, daAlink_wolfModelCallBack__FP8J3DJointi@l /* 0x8009EFF0@l */
 /* 801405D0  48 00 00 1C */	b lbl_801405EC
 lbl_801405D4:
 /* 801405D4  80 BF 06 4C */	lwz r5, 0x64c(r31)

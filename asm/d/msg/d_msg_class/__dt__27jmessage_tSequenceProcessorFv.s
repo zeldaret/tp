@@ -7,13 +7,13 @@ lbl_8023299C:
 /* 802329B0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802329B4  7C 9F 23 78 */	mr r31, r4
 /* 802329B8  41 82 00 4C */	beq lbl_80232A04
-/* 802329BC  3C 60 80 3C */	lis r3, __vt__27jmessage_tSequenceProcessor@ha
-/* 802329C0  38 03 0A 3C */	addi r0, r3, __vt__27jmessage_tSequenceProcessor@l
+/* 802329BC  3C 60 80 3C */	lis r3, __vt__27jmessage_tSequenceProcessor@ha /* 0x803C0A3C@ha */
+/* 802329C0  38 03 0A 3C */	addi r0, r3, __vt__27jmessage_tSequenceProcessor@l /* 0x803C0A3C@l */
 /* 802329C4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802329C8  34 1E 00 4C */	addic. r0, r30, 0x4c
 /* 802329CC  41 82 00 1C */	beq lbl_802329E8
-/* 802329D0  3C 60 80 3C */	lis r3, __vt__26jmessage_tMeasureProcessor@ha
-/* 802329D4  38 03 0A 94 */	addi r0, r3, __vt__26jmessage_tMeasureProcessor@l
+/* 802329D0  3C 60 80 3C */	lis r3, __vt__26jmessage_tMeasureProcessor@ha /* 0x803C0A94@ha */
+/* 802329D4  38 03 0A 94 */	addi r0, r3, __vt__26jmessage_tMeasureProcessor@l /* 0x803C0A94@l */
 /* 802329D8  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 802329DC  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 802329E0  38 80 00 00 */	li r4, 0

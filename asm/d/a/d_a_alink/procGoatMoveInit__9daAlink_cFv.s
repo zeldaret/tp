@@ -32,8 +32,8 @@ lbl_800E938C:
 /* 800E93B4  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 800E93B8  38 03 C0 00 */	addi r0, r3, -16384
 /* 800E93BC  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800E93C0  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha
-/* 800E93C4  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l
+/* 800E93C0  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800E93C4  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800E93C8  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 800E93CC  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 800E93D0  7F E3 FB 78 */	mr r3, r31
@@ -41,8 +41,8 @@ lbl_800E938C:
 /* 800E93D8  4B FC 3B A9 */	bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800E93DC  38 00 00 00 */	li r0, 0
 /* 800E93E0  B0 1F 30 0C */	sth r0, 0x300c(r31)
-/* 800E93E4  3C 60 80 0F */	lis r3, daAlink_searchGoat__FP10fopAc_ac_cPv@ha
-/* 800E93E8  38 63 91 B0 */	addi r3, r3, daAlink_searchGoat__FP10fopAc_ac_cPv@l
+/* 800E93E4  3C 60 80 0F */	lis r3, daAlink_searchGoat__FP10fopAc_ac_cPv@ha /* 0x800E91B0@ha */
+/* 800E93E8  38 63 91 B0 */	addi r3, r3, daAlink_searchGoat__FP10fopAc_ac_cPv@l /* 0x800E91B0@l */
 /* 800E93EC  38 80 00 00 */	li r4, 0
 /* 800E93F0  4B F3 04 09 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800E93F4  7C 64 1B 79 */	or. r4, r3, r3

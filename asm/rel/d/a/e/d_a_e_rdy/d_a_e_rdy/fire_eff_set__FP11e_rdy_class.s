@@ -3,10 +3,10 @@ lbl_8077582C:
 /* 80775830  7C 08 02 A6 */	mflr r0
 /* 80775834  90 01 00 84 */	stw r0, 0x84(r1)
 /* 80775838  39 61 00 80 */	addi r11, r1, 0x80
-/* 8077583C  4B BE C9 84 */	b _savegpr_22
+/* 8077583C  4B BE C9 85 */	bl _savegpr_22
 /* 80775840  7C 7C 1B 78 */	mr r28, r3
-/* 80775844  3C 60 80 78 */	lis r3, lit_4018@ha
-/* 80775848  3B E3 9D FC */	addi r31, r3, lit_4018@l
+/* 80775844  3C 60 80 78 */	lis r3, lit_4018@ha /* 0x80779DFC@ha */
+/* 80775848  3B E3 9D FC */	addi r31, r3, lit_4018@l /* 0x80779DFC@l */
 /* 8077584C  88 1C 05 BA */	lbz r0, 0x5ba(r28)
 /* 80775850  28 00 00 04 */	cmplwi r0, 4
 /* 80775854  40 82 00 4C */	bne lbl_807758A0
@@ -53,11 +53,11 @@ lbl_807758DC:
 /* 807758F0  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 807758F4  38 61 00 44 */	addi r3, r1, 0x44
 /* 807758F8  38 81 00 38 */	addi r4, r1, 0x38
-/* 807758FC  4B AF B5 F0 */	b MtxPosition__FP4cXyzP4cXyz
+/* 807758FC  4B AF B5 F1 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 80775900  38 61 00 2C */	addi r3, r1, 0x2c
 /* 80775904  38 81 00 38 */	addi r4, r1, 0x38
 /* 80775908  38 BC 13 4C */	addi r5, r28, 0x134c
-/* 8077590C  4B AF 12 28 */	b __mi__4cXyzCFRC3Vec
+/* 8077590C  4B AF 12 29 */	bl __mi__4cXyzCFRC3Vec
 /* 80775910  C0 01 00 2C */	lfs f0, 0x2c(r1)
 /* 80775914  D0 1C 13 58 */	stfs f0, 0x1358(r28)
 /* 80775918  C0 01 00 30 */	lfs f0, 0x30(r1)
@@ -67,7 +67,7 @@ lbl_807758DC:
 /* 80775928  38 7C 13 58 */	addi r3, r28, 0x1358
 /* 8077592C  7C 64 1B 78 */	mr r4, r3
 /* 80775930  C0 3F 00 C8 */	lfs f1, 0xc8(r31)
-/* 80775934  4B BD 17 A4 */	b PSVECScale
+/* 80775934  4B BD 17 A5 */	bl PSVECScale
 /* 80775938  C0 01 00 38 */	lfs f0, 0x38(r1)
 /* 8077593C  D0 1C 13 4C */	stfs f0, 0x134c(r28)
 /* 80775940  C0 01 00 3C */	lfs f0, 0x3c(r1)
@@ -77,8 +77,8 @@ lbl_807758DC:
 /* 80775950  3B A0 00 00 */	li r29, 0
 /* 80775954  3B 60 00 00 */	li r27, 0
 /* 80775958  3B 40 00 00 */	li r26, 0
-/* 8077595C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80775960  3B 03 61 C0 */	addi r24, r3, g_dComIfG_gameInfo@l
+/* 8077595C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80775960  3B 03 61 C0 */	addi r24, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80775964  3A FC 13 58 */	addi r23, r28, 0x1358
 /* 80775968  3B 21 00 28 */	addi r25, r1, 0x28
 /* 8077596C  48 00 00 94 */	b lbl_80775A00
@@ -102,18 +102,18 @@ lbl_80775970:
 /* 807759B0  39 3C 04 E4 */	addi r9, r28, 0x4e4
 /* 807759B4  39 40 00 00 */	li r10, 0
 /* 807759B8  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 807759BC  4B 8D 7B 10 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 807759BC  4B 8D 7B 11 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 807759C0  7C 7C B1 2E */	stwx r3, r28, r22
 /* 807759C4  2C 1D 00 00 */	cmpwi r29, 0
 /* 807759C8  40 82 00 2C */	bne lbl_807759F4
 /* 807759CC  80 78 5D 3C */	lwz r3, 0x5d3c(r24)
 /* 807759D0  38 63 02 10 */	addi r3, r3, 0x210
 /* 807759D4  7C 9C B0 2E */	lwzx r4, r28, r22
-/* 807759D8  4B 8D 5F 40 */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 807759D8  4B 8D 5F 41 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 807759DC  28 03 00 00 */	cmplwi r3, 0
 /* 807759E0  41 82 00 14 */	beq lbl_807759F4
-/* 807759E4  3C 80 80 45 */	lis r4, mParticleTracePCB__13dPa_control_c@ha
-/* 807759E8  38 04 0E C8 */	addi r0, r4, mParticleTracePCB__13dPa_control_c@l
+/* 807759E4  3C 80 80 45 */	lis r4, mParticleTracePCB__13dPa_control_c@ha /* 0x80450EC8@ha */
+/* 807759E8  38 04 0E C8 */	addi r0, r4, mParticleTracePCB__13dPa_control_c@l /* 0x80450EC8@l */
 /* 807759EC  90 03 00 F0 */	stw r0, 0xf0(r3)
 /* 807759F0  92 E3 00 C0 */	stw r23, 0xc0(r3)
 lbl_807759F4:
@@ -124,7 +124,7 @@ lbl_80775A00:
 /* 80775A00  7C 1D F0 00 */	cmpw r29, r30
 /* 80775A04  41 80 FF 6C */	blt lbl_80775970
 /* 80775A08  39 61 00 80 */	addi r11, r1, 0x80
-/* 80775A0C  4B BE C8 00 */	b _restgpr_22
+/* 80775A0C  4B BE C8 01 */	bl _restgpr_22
 /* 80775A10  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 80775A14  7C 08 03 A6 */	mtlr r0
 /* 80775A18  38 21 00 80 */	addi r1, r1, 0x80

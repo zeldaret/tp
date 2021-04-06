@@ -7,19 +7,19 @@ lbl_80A20DE0:
 /* 80A20DF4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80A20DF8  7C 9F 23 78 */	mr r31, r4
 /* 80A20DFC  41 82 00 38 */	beq lbl_80A20E34
-/* 80A20E00  3C 80 80 A2 */	lis r4, __vt__12dBgS_ObjAcch@ha
-/* 80A20E04  38 84 17 64 */	addi r4, r4, __vt__12dBgS_ObjAcch@l
+/* 80A20E00  3C 80 80 A2 */	lis r4, __vt__12dBgS_ObjAcch@ha /* 0x80A21764@ha */
+/* 80A20E04  38 84 17 64 */	addi r4, r4, __vt__12dBgS_ObjAcch@l /* 0x80A21764@l */
 /* 80A20E08  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80A20E0C  38 04 00 0C */	addi r0, r4, 0xc
 /* 80A20E10  90 1E 00 14 */	stw r0, 0x14(r30)
 /* 80A20E14  38 04 00 18 */	addi r0, r4, 0x18
 /* 80A20E18  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 80A20E1C  38 80 00 00 */	li r4, 0
-/* 80A20E20  4B 65 51 74 */	b __dt__9dBgS_AcchFv
+/* 80A20E20  4B 65 51 75 */	bl __dt__9dBgS_AcchFv
 /* 80A20E24  7F E0 07 35 */	extsh. r0, r31
 /* 80A20E28  40 81 00 0C */	ble lbl_80A20E34
 /* 80A20E2C  7F C3 F3 78 */	mr r3, r30
-/* 80A20E30  4B 8A DF 0C */	b __dl__FPv
+/* 80A20E30  4B 8A DF 0D */	bl __dl__FPv
 lbl_80A20E34:
 /* 80A20E34  7F C3 F3 78 */	mr r3, r30
 /* 80A20E38  83 E1 00 0C */	lwz r31, 0xc(r1)

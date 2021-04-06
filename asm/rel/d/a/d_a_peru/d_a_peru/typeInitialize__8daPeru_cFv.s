@@ -5,13 +5,13 @@ lbl_80D4765C:
 /* 80D47668  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D4766C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80D47670  7C 7E 1B 78 */	mr r30, r3
-/* 80D47674  3C 60 80 D5 */	lis r3, m__14daPeru_Param_c@ha
-/* 80D47678  3B E3 C0 60 */	addi r31, r3, m__14daPeru_Param_c@l
+/* 80D47674  3C 60 80 D5 */	lis r3, m__14daPeru_Param_c@ha /* 0x80D4C060@ha */
+/* 80D47678  3B E3 C0 60 */	addi r31, r3, m__14daPeru_Param_c@l /* 0x80D4C060@l */
 /* 80D4767C  88 1E 11 28 */	lbz r0, 0x1128(r30)
 /* 80D47680  28 00 00 00 */	cmplwi r0, 0
 /* 80D47684  40 82 00 48 */	bne lbl_80D476CC
 /* 80D47688  38 60 01 27 */	li r3, 0x127
-/* 80D4768C  4B 40 54 20 */	b daNpcT_chkEvtBit__FUl
+/* 80D4768C  4B 40 54 21 */	bl daNpcT_chkEvtBit__FUl
 /* 80D47690  2C 03 00 00 */	cmpwi r3, 0
 /* 80D47694  41 82 00 A0 */	beq lbl_80D47734
 /* 80D47698  C0 5F 00 B8 */	lfs f2, 0xb8(r31)
@@ -31,14 +31,14 @@ lbl_80D476CC:
 /* 80D476CC  28 00 00 01 */	cmplwi r0, 1
 /* 80D476D0  40 82 00 34 */	bne lbl_80D47704
 /* 80D476D4  38 60 01 83 */	li r3, 0x183
-/* 80D476D8  4B 40 53 D4 */	b daNpcT_chkEvtBit__FUl
+/* 80D476D8  4B 40 53 D5 */	bl daNpcT_chkEvtBit__FUl
 /* 80D476DC  2C 03 00 00 */	cmpwi r3, 0
 /* 80D476E0  40 82 00 0C */	bne lbl_80D476EC
 /* 80D476E4  38 60 00 05 */	li r3, 5
 /* 80D476E8  48 00 00 50 */	b lbl_80D47738
 lbl_80D476EC:
 /* 80D476EC  38 60 01 1F */	li r3, 0x11f
-/* 80D476F0  4B 40 53 BC */	b daNpcT_chkEvtBit__FUl
+/* 80D476F0  4B 40 53 BD */	bl daNpcT_chkEvtBit__FUl
 /* 80D476F4  2C 03 00 00 */	cmpwi r3, 0
 /* 80D476F8  41 82 00 3C */	beq lbl_80D47734
 /* 80D476FC  38 60 00 05 */	li r3, 5
@@ -47,11 +47,11 @@ lbl_80D47704:
 /* 80D47704  28 00 00 02 */	cmplwi r0, 2
 /* 80D47708  40 82 00 2C */	bne lbl_80D47734
 /* 80D4770C  38 60 01 83 */	li r3, 0x183
-/* 80D47710  4B 40 53 9C */	b daNpcT_chkEvtBit__FUl
+/* 80D47710  4B 40 53 9D */	bl daNpcT_chkEvtBit__FUl
 /* 80D47714  2C 03 00 00 */	cmpwi r3, 0
 /* 80D47718  41 82 00 1C */	beq lbl_80D47734
 /* 80D4771C  38 60 01 1F */	li r3, 0x11f
-/* 80D47720  4B 40 53 8C */	b daNpcT_chkEvtBit__FUl
+/* 80D47720  4B 40 53 8D */	bl daNpcT_chkEvtBit__FUl
 /* 80D47724  2C 03 00 00 */	cmpwi r3, 0
 /* 80D47728  40 82 00 0C */	bne lbl_80D47734
 /* 80D4772C  38 60 00 05 */	li r3, 5

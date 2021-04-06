@@ -11,8 +11,8 @@ lbl_802A3104:
 /* 802A3128  38 7D 00 98 */	addi r3, r29, 0x98
 /* 802A312C  7F A4 EB 78 */	mr r4, r29
 /* 802A3130  48 03 8C CD */	bl __ct__10JSUPtrLinkFPv
-/* 802A3134  3C 60 80 3D */	lis r3, __vt__9JAIStream@ha
-/* 802A3138  38 03 99 D8 */	addi r0, r3, __vt__9JAIStream@l
+/* 802A3134  3C 60 80 3D */	lis r3, __vt__9JAIStream@ha /* 0x803C99D8@ha */
+/* 802A3138  38 03 99 D8 */	addi r0, r3, __vt__9JAIStream@l /* 0x803C99D8@l */
 /* 802A313C  90 1D 00 00 */	stw r0, 0(r29)
 /* 802A3140  38 7D 00 A8 */	addi r3, r29, 0xa8
 /* 802A3144  4B FF 32 65 */	bl __ct__13JASAramStreamFv

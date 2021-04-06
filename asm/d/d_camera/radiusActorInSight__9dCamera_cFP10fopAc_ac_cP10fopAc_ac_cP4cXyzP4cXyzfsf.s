@@ -24,8 +24,8 @@ lbl_80165238:
 /* 80165290  FF 60 10 90 */	fmr f27, f2
 /* 80165294  80 63 00 00 */	lwz r3, 0(r3)
 /* 80165298  4B EB 90 71 */	bl fopCamM_GetParam__FP12camera_class
-/* 8016529C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801652A0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8016529C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801652A0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801652A4  1C 03 00 38 */	mulli r0, r3, 0x38
 /* 801652A8  7C 64 02 14 */	add r3, r4, r0
 /* 801652AC  88 03 5D 78 */	lbz r0, 0x5d78(r3)
@@ -154,8 +154,8 @@ lbl_8016548C:
 /* 8016548C  C8 02 9C D8 */	lfd f0, lit_6179(r2)
 /* 80165490  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80165494  40 80 00 10 */	bge lbl_801654A4
-/* 80165498  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8016549C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80165498  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8016549C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 801654A0  48 00 00 70 */	b lbl_80165510
 lbl_801654A4:
 /* 801654A4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -189,8 +189,8 @@ lbl_801654FC:
 lbl_80165500:
 /* 80165500  2C 00 00 01 */	cmpwi r0, 1
 /* 80165504  40 82 00 0C */	bne lbl_80165510
-/* 80165508  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8016550C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80165508  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8016550C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80165510:
 /* 80165510  C0 62 9C A8 */	lfs f3, lit_5658(r2)
 /* 80165514  C0 02 9D 0C */	lfs f0, lit_8021(r2)

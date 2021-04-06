@@ -46,8 +46,8 @@ lbl_8025D44C:
 /* 8025D460  7F E3 FB 78 */	mr r3, r31
 /* 8025D464  48 00 05 8D */	bl getTimeMs__8dTimer_cFv
 /* 8025D468  7C 64 1B 78 */	mr r4, r3
-/* 8025D46C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D470  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D46C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D470  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D474  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 8025D478  7F C3 F3 78 */	mr r3, r30
 /* 8025D47C  4B DC F7 19 */	bl setTimerNowTimeMs__14dComIfG_play_cFi
@@ -61,8 +61,8 @@ lbl_8025D44C:
 /* 8025D49C  4B DC F7 19 */	bl setTimerMode__14dComIfG_play_cFi
 /* 8025D4A0  48 00 00 34 */	b lbl_8025D4D4
 lbl_8025D4A4:
-/* 8025D4A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D4A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D4A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D4A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D4AC  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 8025D4B0  7F C3 F3 78 */	mr r3, r30
 /* 8025D4B4  38 80 00 00 */	li r4, 0
@@ -74,18 +74,18 @@ lbl_8025D4A4:
 /* 8025D4CC  38 80 FF FF */	li r4, -1
 /* 8025D4D0  4B DC F6 E5 */	bl setTimerMode__14dComIfG_play_cFi
 lbl_8025D4D4:
-/* 8025D4D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D4D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D4D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D4D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D4DC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8025D4E0  38 80 00 00 */	li r4, 0
 /* 8025D4E4  4B DC F6 F1 */	bl setTimerPtr__14dComIfG_play_cFP8dTimer_c
 /* 8025D4E8  38 7F 01 08 */	addi r3, r31, 0x108
-/* 8025D4EC  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha
-/* 8025D4F0  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l
+/* 8025D4EC  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha /* 0x8039A3D8@ha */
+/* 8025D4F0  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l /* 0x8039A3D8@l */
 /* 8025D4F4  4B DC FB 15 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8025D4F8  38 00 00 00 */	li r0, 0
-/* 8025D4FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D500  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D4FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D500  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D504  90 03 5C E0 */	stw r0, 0x5ce0(r3)
 /* 8025D508  38 60 00 01 */	li r3, 1
 /* 8025D50C  83 E1 00 0C */	lwz r31, 0xc(r1)

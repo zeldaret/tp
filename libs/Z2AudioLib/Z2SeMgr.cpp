@@ -153,8 +153,6 @@ extern "C" void getDolbyPower__12Z2MultiSeMgrFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dt__14JAISoundHandleFv();
 extern "C" void __dt__12Z2MultiSeObjFv();
 extern "C" void stop__16JAISeCategoryMgrFUl();
@@ -232,23 +230,7 @@ extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802AB64C-802AB710 00C4+00 s=0 e=1 z=0  None .text      __ct__7Z2SeMgrFv */
-//	802AB660: 80450B88 (data_80450B88)
-//	802AB664: 802A4AC4 (__ct__14JAISoundHandleFv)
-//	802AB668: 802A4AC4 (__ct__14JAISoundHandleFv)
-//	802AB66C: 80007838 (__dt__14JAISoundHandleFv)
-//	802AB670: 80007838 (__dt__14JAISoundHandleFv)
-//	802AB67C: 80361D60 (__construct_array)
-//	802AB690: 802AB710 (__ct__12Z2MultiSeObjFv)
-//	802AB694: 802AB710 (__ct__12Z2MultiSeObjFv)
-//	802AB698: 80007888 (__dt__12Z2MultiSeObjFv)
-//	802AB69C: 80007888 (__dt__12Z2MultiSeObjFv)
-//	802AB6A8: 80361D60 (__construct_array)
-//	802AB6B0: 802AB710 (__ct__12Z2MultiSeObjFv)
-//	802AB6B4: 802AB710 (__ct__12Z2MultiSeObjFv)
-//	802AB6B8: 80007888 (__dt__12Z2MultiSeObjFv)
-//	802AB6BC: 80007888 (__dt__12Z2MultiSeObjFv)
-//	802AB6C8: 80361D60 (__construct_array)
+/* 802AB64C-802AB710 2A5F8C 00C4+00 0/0 1/1 0/0 .text            __ct__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,8 +240,7 @@ asm Z2SeMgr::Z2SeMgr() {
 }
 #pragma pop
 
-/* 802AB710-802AB750 0040+00 s=1 e=0 z=0  None .text      __ct__12Z2MultiSeObjFv */
-//	802AB724: 802AEB04 (__ct__12Z2MultiSeMgrFv)
+/* 802AB710-802AB750 2A6050 0040+00 1/1 0/0 0/0 .text            __ct__12Z2MultiSeObjFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -269,12 +250,7 @@ asm Z2MultiSeObj::Z2MultiSeObj() {
 }
 #pragma pop
 
-/* 802AB750-802AB80C 00BC+00 s=0 e=1 z=0  None .text      initSe__7Z2SeMgrFv */
-//	802AB760: 803621D4 (_savegpr_27)
-//	802AB788: 802AECBC (resetMultiSePos__12Z2MultiSeMgrFv)
-//	802AB7C8: 802AECBC (resetMultiSePos__12Z2MultiSeMgrFv)
-//	802AB7F0: 802AB80C (resetModY__7Z2SeMgrFv)
-//	802AB7F8: 80362220 (_restgpr_27)
+/* 802AB750-802AB80C 2A6090 00BC+00 0/0 1/1 0/0 .text            initSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,7 +260,7 @@ asm void Z2SeMgr::initSe() {
 }
 #pragma pop
 
-/* 802AB80C-802AB830 0024+00 s=1 e=1 z=0  None .text      resetModY__7Z2SeMgrFv */
+/* 802AB80C-802AB830 2A614C 0024+00 1/1 1/1 0/0 .text            resetModY__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,8 +270,8 @@ asm void Z2SeMgr::resetModY() {
 }
 #pragma pop
 
-/* 802AB830-802AB93C 010C+00 s=1 e=0 z=0  None .text      modHeightAtCamera__7Z2SeMgrFPPC3Vec */
-//	802AB8E8: 80450B44 (data_80450B44)
+/* 802AB830-802AB93C 2A6170 010C+00 1/1 0/0 0/0 .text            modHeightAtCamera__7Z2SeMgrFPPC3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -305,7 +281,7 @@ asm void Z2SeMgr::modHeightAtCamera(Vec const** param_0) {
 }
 #pragma pop
 
-/* 802AB93C-802AB960 0024+00 s=0 e=1 z=0  None .text      incrCrowdSize__7Z2SeMgrFv */
+/* 802AB93C-802AB960 2A627C 0024+00 0/0 1/1 0/0 .text            incrCrowdSize__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,7 +291,7 @@ asm void Z2SeMgr::incrCrowdSize() {
 }
 #pragma pop
 
-/* 802AB960-802AB984 0024+00 s=0 e=3 z=0  None .text      decrCrowdSize__7Z2SeMgrFv */
+/* 802AB960-802AB984 2A62A0 0024+00 0/0 3/3 0/0 .text            decrCrowdSize__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,13 +302,13 @@ asm void Z2SeMgr::decrCrowdSize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455870-80455874 0004+00 s=1 e=0 z=0  None .sdata2    @4038 */
+/* 80455870-80455874 003E70 0004+00 1/1 0/0 0/0 .sdata2          @4038 */
 SECTION_SDATA2 static f32 lit_4038 = 10000.0f;
 
-/* 80455874-80455878 0004+00 s=2 e=0 z=0  None .sdata2    @4039 */
+/* 80455874-80455878 003E74 0004+00 2/2 0/0 0/0 .sdata2          @4039 */
 SECTION_SDATA2 static f32 lit_4039 = 100.0f;
 
-/* 80455878-8045587C 0004+00 s=11 e=0 z=0  None .sdata2    @4040 */
+/* 80455878-8045587C 003E78 0004+00 11/11 0/0 0/0 .sdata2          @4040 */
 SECTION_SDATA2 static u8 lit_4040[4] = {
     0x00,
     0x00,
@@ -340,214 +316,83 @@ SECTION_SDATA2 static u8 lit_4040[4] = {
     0x00,
 };
 
-/* 8045587C-80455880 0004+00 s=2 e=0 z=0  None .sdata2    @4041 */
+/* 8045587C-80455880 003E7C 0004+00 2/2 0/0 0/0 .sdata2          @4041 */
 SECTION_SDATA2 static f32 lit_4041 = 1.0f / 5.0f;
 
-/* 80455880-80455884 0004+00 s=8 e=0 z=0  None .sdata2    @4042 */
+/* 80455880-80455884 003E80 0004+00 8/8 0/0 0/0 .sdata2          @4042 */
 SECTION_SDATA2 static f32 lit_4042 = 1.0f;
 
-/* 80455884-80455888 0004+00 s=3 e=0 z=0  None .sdata2    @4043 */
+/* 80455884-80455888 003E84 0004+00 3/3 0/0 0/0 .sdata2          @4043 */
 SECTION_SDATA2 static f32 lit_4043 = 7.0f / 10.0f;
 
-/* 80455888-8045588C 0004+00 s=1 e=0 z=0  None .sdata2    @4044 */
+/* 80455888-8045588C 003E88 0004+00 1/1 0/0 0/0 .sdata2          @4044 */
 SECTION_SDATA2 static f32 lit_4044 = 1.25f;
 
-/* 8045588C-80455890 0004+00 s=2 e=0 z=0  None .sdata2    @4045 */
+/* 8045588C-80455890 003E8C 0004+00 2/2 0/0 0/0 .sdata2          @4045 */
 SECTION_SDATA2 static f32 lit_4045 = 2.0f / 5.0f;
 
-/* 80455890-80455894 0004+00 s=1 e=0 z=0  None .sdata2    @4046 */
+/* 80455890-80455894 003E90 0004+00 1/1 0/0 0/0 .sdata2          @4046 */
 SECTION_SDATA2 static f32 lit_4046 = 1.5f;
 
-/* 80455894-80455898 0004+00 s=1 e=0 z=0  None .sdata2    @4047 */
+/* 80455894-80455898 003E94 0004+00 1/1 0/0 0/0 .sdata2          @4047 */
 SECTION_SDATA2 static f32 lit_4047 = 35.0f;
 
-/* 80455898-8045589C 0004+00 s=1 e=0 z=0  None .sdata2    @4048 */
+/* 80455898-8045589C 003E98 0004+00 1/1 0/0 0/0 .sdata2          @4048 */
 SECTION_SDATA2 static f32 lit_4048 = 261.0f;
 
-/* 8045589C-804558A0 0004+00 s=1 e=0 z=0  None .sdata2    @4049 */
+/* 8045589C-804558A0 003E9C 0004+00 1/1 0/0 0/0 .sdata2          @4049 */
 SECTION_SDATA2 static f32 lit_4049 = 1.0f / 20.0f;
 
-/* 804558A0-804558A4 0004+00 s=1 e=0 z=0  None .sdata2    @4050 */
+/* 804558A0-804558A4 003EA0 0004+00 1/1 0/0 0/0 .sdata2          @4050 */
 SECTION_SDATA2 static f32 lit_4050 = 7.0f / 5.0f;
 
-/* 804558A4-804558A8 0004+00 s=1 e=0 z=0  None .sdata2    @4051 */
+/* 804558A4-804558A8 003EA4 0004+00 1/1 0/0 0/0 .sdata2          @4051 */
 SECTION_SDATA2 static f32 lit_4051 = 47.0f;
 
-/* 804558A8-804558AC 0004+00 s=5 e=0 z=0  None .sdata2    @4052 */
+/* 804558A8-804558AC 003EA8 0004+00 5/5 0/0 0/0 .sdata2          @4052 */
 SECTION_SDATA2 static f32 lit_4052 = 0.5f;
 
-/* 804558AC-804558B0 0004+00 s=2 e=0 z=0  None .sdata2    @4053 */
+/* 804558AC-804558B0 003EAC 0004+00 2/2 0/0 0/0 .sdata2          @4053 */
 SECTION_SDATA2 static f32 lit_4053 = 9.0f / 10.0f;
 
-/* 804558B0-804558B4 0004+00 s=1 e=0 z=0  None .sdata2    @4054 */
+/* 804558B0-804558B4 003EB0 0004+00 1/1 0/0 0/0 .sdata2          @4054 */
 SECTION_SDATA2 static f32 lit_4054 = 41.0f;
 
-/* 804558B4-804558B8 0004+00 s=2 e=0 z=0  None .sdata2    @4055 */
+/* 804558B4-804558B8 003EB4 0004+00 2/2 0/0 0/0 .sdata2          @4055 */
 SECTION_SDATA2 static f32 lit_4055 = 3.0f / 10.0f;
 
-/* 804558B8-804558BC 0004+00 s=3 e=0 z=0  None .sdata2    @4056 */
+/* 804558B8-804558BC 003EB8 0004+00 3/3 0/0 0/0 .sdata2          @4056 */
 SECTION_SDATA2 static f32 lit_4056 = -1.0f;
 
-/* 804558BC-804558C0 0004+00 s=2 e=0 z=0  None .sdata2    @4057 */
+/* 804558BC-804558C0 003EBC 0004+00 2/2 0/0 0/0 .sdata2          @4057 */
 SECTION_SDATA2 static f32 lit_4057 = 400.0f;
 
-/* 804558C0-804558C4 0004+00 s=2 e=0 z=0  None .sdata2    @4058 */
+/* 804558C0-804558C4 003EC0 0004+00 2/2 0/0 0/0 .sdata2          @4058 */
 SECTION_SDATA2 static f32 lit_4058 = 4.0f / 5.0f;
 
-/* 804558C4-804558C8 0004+00 s=2 e=0 z=0  None .sdata2    @4059 */
+/* 804558C4-804558C8 003EC4 0004+00 2/2 0/0 0/0 .sdata2          @4059 */
 SECTION_SDATA2 static f32 lit_4059 = 11.0f / 10.0f;
 
-/* 804558C8-804558CC 0004+00 s=1 e=0 z=0  None .sdata2    @4060 */
+/* 804558C8-804558CC 003EC8 0004+00 1/1 0/0 0/0 .sdata2          @4060 */
 SECTION_SDATA2 static f32 lit_4060 = 15.0f;
 
-/* 804558CC-804558D0 0004+00 s=1 e=0 z=0  None .sdata2    @4061 */
+/* 804558CC-804558D0 003ECC 0004+00 1/1 0/0 0/0 .sdata2          @4061 */
 SECTION_SDATA2 static f32 lit_4061 = 60.0f;
 
-/* 804558D0-804558D4 0004+00 s=2 e=0 z=0  None .sdata2    @4062 */
+/* 804558D0-804558D4 003ED0 0004+00 2/2 0/0 0/0 .sdata2          @4062 */
 SECTION_SDATA2 static f32 lit_4062 = 127.0f;
 
-/* 804558D4-804558D8 0004+00 s=2 e=0 z=0  None .sdata2    @4063 */
+/* 804558D4-804558D8 003ED4 0004+00 2/2 0/0 0/0 .sdata2          @4063 */
 SECTION_SDATA2 static f32 lit_4063 = 6.0f / 5.0f;
 
-/* 804558D8-804558E0 0008+00 s=2 e=0 z=0  None .sdata2    @4067 */
+/* 804558D8-804558E0 003ED8 0008+00 2/2 0/0 0/0 .sdata2          @4067 */
 SECTION_SDATA2 static f64 lit_4067 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 804558E0-804558E8 0008+00 s=2 e=0 z=0  None .sdata2    @4070 */
+/* 804558E0-804558E8 003EE0 0008+00 2/2 0/0 0/0 .sdata2          @4070 */
 SECTION_SDATA2 static f64 lit_4070 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802AB984-802AC50C 0B88+00 s=1 e=196 z=549  None .text
+/* 802AB984-802AC50C 2A62C4 0B88+00 1/1 196/196 549/549 .text
  * seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc               */
-//	802AB9B4: 803621D0 (_savegpr_26)
-//	802ABA60: 802ADFF4 (setMultiTriggerSE__7Z2SeMgrFUlP3VecSc)
-//	802ABCB8: 80450B7C (data_80450B7C)
-//	802ABCBC: 802B617C (menuOut__11Z2StatusMgrFv)
-//	802ABCD4: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABCEC: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD08: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD20: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD3C: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD54: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD70: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABD90: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABDAC: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABDC8: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABDE0: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABDFC: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABE18: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABE30: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABE4C: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABE68: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABE90: 804558D8 (lit_4067)
-//	802ABEA8: 80455870 (lit_4038)
-//	802ABEB4: 80455874 (lit_4039)
-//	802ABEC8: 80455878 (lit_4040)
-//	802ABEE4: 80455870 (lit_4038)
-//	802ABF00: 804558D8 (lit_4067)
-//	802ABF18: 80455878 (lit_4040)
-//	802ABF1C: 80455874 (lit_4039)
-//	802ABF20: 8045587C (lit_4041)
-//	802ABF28: 80455880 (lit_4042)
-//	802ABF30: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ABF4C: 802A2C98 (getHandleSoundID__15JAISoundHandlesF10JAISoundID)
-//	802ABF68: 802A2C98 (getHandleSoundID__15JAISoundHandlesF10JAISoundID)
-//	802ABF90: 802AD8B0 (seStop__7Z2SeMgrF10JAISoundIDUl)
-//	802ABF98: 80450B7C (data_80450B7C)
-//	802ABF9C: 802B613C (menuIn__11Z2StatusMgrFv)
-//	802ABFA4: 80450B7C (data_80450B7C)
-//	802ABFA8: 802B617C (menuOut__11Z2StatusMgrFv)
-//	802ABFB8: 80455884 (lit_4043)
-//	802ABFBC: 80455888 (lit_4044)
-//	802ABFCC: 8045588C (lit_4045)
-//	802ABFD0: 80455890 (lit_4046)
-//	802ABFD8: 80450B7C (data_80450B7C)
-//	802ABFF0: 80450B7C (data_80450B7C)
-//	802ABFF4: 802B61BC (isMovieDemo__11Z2StatusMgrFv)
-//	802AC010: 80450B7C (data_80450B7C)
-//	802AC030: 802B61BC (isMovieDemo__11Z2StatusMgrFv)
-//	802AC04C: 80450B7C (data_80450B7C)
-//	802AC05C: 80450B80 (data_80450B80)
-//	802AC074: 80450B44 (data_80450B44)
-//	802AC0B8: 804558D8 (lit_4067)
-//	802AC0D0: 80455894 (lit_4047)
-//	802AC0D4: 80455898 (lit_4048)
-//	802AC0D8: 8045588C (lit_4045)
-//	802AC0DC: 8045589C (lit_4049)
-//	802AC0E0: 80455880 (lit_4042)
-//	802AC0E8: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC0FC: 804558A0 (lit_4050)
-//	802AC104: 804558D8 (lit_4067)
-//	802AC11C: 80455878 (lit_4040)
-//	802AC120: 804558A4 (lit_4051)
-//	802AC124: 8045588C (lit_4045)
-//	802AC128: 804558A8 (lit_4052)
-//	802AC12C: 804558AC (lit_4053)
-//	802AC134: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC140: 804558D8 (lit_4067)
-//	802AC158: 80455878 (lit_4040)
-//	802AC15C: 804558B0 (lit_4054)
-//	802AC160: 8045588C (lit_4045)
-//	802AC164: 804558B4 (lit_4055)
-//	802AC168: 80455880 (lit_4042)
-//	802AC170: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC17C: 804558D8 (lit_4067)
-//	802AC194: 80455878 (lit_4040)
-//	802AC198: 804558B0 (lit_4054)
-//	802AC19C: 8045588C (lit_4045)
-//	802AC1A0: 804558B4 (lit_4055)
-//	802AC1A4: 80455880 (lit_4042)
-//	802AC1AC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC1B8: 80450B44 (data_80450B44)
-//	802AC224: 80455880 (lit_4042)
-//	802AC22C: 804558B8 (lit_4056)
-//	802AC240: 804558D8 (lit_4067)
-//	802AC258: 80455878 (lit_4040)
-//	802AC25C: 804558BC (lit_4057)
-//	802AC260: 8045588C (lit_4045)
-//	802AC264: 804558A8 (lit_4052)
-//	802AC268: 80455880 (lit_4042)
-//	802AC270: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC278: 804558D8 (lit_4067)
-//	802AC290: 80455878 (lit_4040)
-//	802AC294: 804558BC (lit_4057)
-//	802AC298: 8045588C (lit_4045)
-//	802AC29C: 804558C0 (lit_4058)
-//	802AC2A0: 804558C4 (lit_4059)
-//	802AC2A8: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC2B4: 804558D8 (lit_4067)
-//	802AC2CC: 804558C8 (lit_4060)
-//	802AC2D0: 804558CC (lit_4061)
-//	802AC2D4: 8045588C (lit_4045)
-//	802AC2D8: 80455878 (lit_4040)
-//	802AC2DC: 80455880 (lit_4042)
-//	802AC2E4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC2F0: 804558D8 (lit_4067)
-//	802AC308: 80455878 (lit_4040)
-//	802AC30C: 804558D0 (lit_4062)
-//	802AC310: 8045587C (lit_4041)
-//	802AC320: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC324: 803620AC (__cvt_fp2unsigned)
-//	802AC32C: 804558D8 (lit_4067)
-//	802AC344: 80455878 (lit_4040)
-//	802AC348: 804558D0 (lit_4062)
-//	802AC34C: 8045587C (lit_4041)
-//	802AC354: 80455880 (lit_4042)
-//	802AC35C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC364: 804558D8 (lit_4067)
-//	802AC37C: 804558D0 (lit_4062)
-//	802AC380: 80455878 (lit_4040)
-//	802AC384: 8045587C (lit_4041)
-//	802AC388: 804558C0 (lit_4058)
-//	802AC38C: 804558D4 (lit_4063)
-//	802AC394: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC3A0: 80450B80 (data_80450B80)
-//	802AC3F0: 802AE524 (isLevelSe__7Z2SeMgrF10JAISoundID)
-//	802AC42C: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802AC444: 802AE5B0 (isSoundCulling__7Z2SeMgrF10JAISoundID)
-//	802AC45C: 802A2CF4 (getFreeHandle__15JAISoundHandlesFv)
-//	802AC478: 80450B74 (data_80450B74)
-//	802AC48C: 804558E0 (lit_4070)
-//	802AC4A8: 804558D0 (lit_4062)
-//	802AC4F8: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -559,7 +404,7 @@ asm void Z2SeMgr::seStart(JAISoundID param_0, Vec const* param_1, u32 param_2, s
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C9D98-803C9DF8 0060+00 s=1 e=0 z=0  None .data      @4619 */
+/* 803C9D98-803C9DF8 -00001 0060+00 1/1 0/0 0/0 .data            @4619 */
 SECTION_DATA static void* lit_4619[24] = {
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
@@ -587,472 +432,108 @@ SECTION_DATA static void* lit_4619[24] = {
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1020),
 };
 
-/* 804558E8-804558EC 0004+00 s=1 e=0 z=0  None .sdata2    @4586 */
+/* 804558E8-804558EC 003EE8 0004+00 1/1 0/0 0/0 .sdata2          @4586 */
 SECTION_SDATA2 static f32 lit_4586 = 25.0f;
 
-/* 804558EC-804558F0 0004+00 s=1 e=0 z=0  None .sdata2    @4587 */
+/* 804558EC-804558F0 003EEC 0004+00 1/1 0/0 0/0 .sdata2          @4587 */
 SECTION_SDATA2 static f32 lit_4587 = 1.0f / 10.0f;
 
-/* 804558F0-804558F4 0004+00 s=1 e=0 z=0  None .sdata2    @4588 */
+/* 804558F0-804558F4 003EF0 0004+00 1/1 0/0 0/0 .sdata2          @4588 */
 SECTION_SDATA2 static f32 lit_4588 = 10.0f;
 
-/* 804558F4-804558F8 0004+00 s=1 e=0 z=0  None .sdata2    @4589 */
+/* 804558F4-804558F8 003EF4 0004+00 1/1 0/0 0/0 .sdata2          @4589 */
 SECTION_SDATA2 static f32 lit_4589 = 2.0f;
 
-/* 804558F8-80455900 0004+04 s=2 e=0 z=0  None .sdata2    @4590 */
+/* 804558F8-80455900 003EF8 0004+04 2/2 0/0 0/0 .sdata2          @4590 */
 SECTION_SDATA2 static f32 lit_4590[1 + 1 /* padding */] = {
     13.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455900-80455908 0008+00 s=1 e=0 z=0  None .sdata2    @4591 */
+/* 80455900-80455908 003F00 0008+00 1/1 0/0 0/0 .sdata2          @4591 */
 SECTION_SDATA2 static f64 lit_4591 = 0.7;
 
-/* 80455908-80455910 0008+00 s=1 e=0 z=0  None .sdata2    @4592 */
+/* 80455908-80455910 003F08 0008+00 1/1 0/0 0/0 .sdata2          @4592 */
 SECTION_SDATA2 static f64 lit_4592 = 0.0006;
 
-/* 80455910-80455918 0008+00 s=1 e=0 z=0  None .sdata2    @4593 */
+/* 80455910-80455918 003F10 0008+00 1/1 0/0 0/0 .sdata2          @4593 */
 SECTION_SDATA2 static f64 lit_4593 = 1.0;
 
-/* 80455918-80455920 0008+00 s=1 e=0 z=0  None .sdata2    @4594 */
+/* 80455918-80455920 003F18 0008+00 1/1 0/0 0/0 .sdata2          @4594 */
 SECTION_SDATA2 static f64 lit_4594 = 0.0015;
 
-/* 80455920-80455928 0008+00 s=1 e=0 z=0  None .sdata2    @4595 */
+/* 80455920-80455928 003F20 0008+00 1/1 0/0 0/0 .sdata2          @4595 */
 SECTION_SDATA2 static f64 lit_4595 = 0.005;
 
-/* 80455928-80455930 0008+00 s=1 e=0 z=0  None .sdata2    @4596 */
+/* 80455928-80455930 003F28 0008+00 1/1 0/0 0/0 .sdata2          @4596 */
 SECTION_SDATA2 static f64 lit_4596 = 0.3;
 
-/* 80455930-80455938 0008+00 s=1 e=0 z=0  None .sdata2    @4597 */
+/* 80455930-80455938 003F30 0008+00 1/1 0/0 0/0 .sdata2          @4597 */
 SECTION_SDATA2 static f64 lit_4597 = 0.001;
 
-/* 80455938-8045593C 0004+00 s=1 e=0 z=0  None .sdata2    @4598 */
+/* 80455938-8045593C 003F38 0004+00 1/1 0/0 0/0 .sdata2          @4598 */
 SECTION_SDATA2 static f32 lit_4598 = 4000.0f;
 
-/* 8045593C-80455940 0004+00 s=1 e=0 z=0  None .sdata2    @4599 */
+/* 8045593C-80455940 003F3C 0004+00 1/1 0/0 0/0 .sdata2          @4599 */
 SECTION_SDATA2 static f32 lit_4599 = 3500.0f;
 
-/* 80455940-80455944 0004+00 s=1 e=0 z=0  None .sdata2    @4600 */
+/* 80455940-80455944 003F40 0004+00 1/1 0/0 0/0 .sdata2          @4600 */
 SECTION_SDATA2 static f32 lit_4600 = 26.0f;
 
-/* 80455944-80455948 0004+00 s=1 e=0 z=0  None .sdata2    @4601 */
+/* 80455944-80455948 003F44 0004+00 1/1 0/0 0/0 .sdata2          @4601 */
 SECTION_SDATA2 static f32 lit_4601 = 3.0f / 5.0f;
 
-/* 80455948-8045594C 0004+00 s=1 e=0 z=0  None .sdata2    @4602 */
+/* 80455948-8045594C 003F48 0004+00 1/1 0/0 0/0 .sdata2          @4602 */
 SECTION_SDATA2 static f32 lit_4602 = 64.0f;
 
-/* 8045594C-80455950 0004+00 s=1 e=0 z=0  None .sdata2    @4603 */
+/* 8045594C-80455950 003F4C 0004+00 1/1 0/0 0/0 .sdata2          @4603 */
 SECTION_SDATA2 static f32 lit_4603 = 4500.0f;
 
-/* 80455950-80455954 0004+00 s=1 e=0 z=0  None .sdata2    @4604 */
+/* 80455950-80455954 003F50 0004+00 1/1 0/0 0/0 .sdata2          @4604 */
 SECTION_SDATA2 static f32 lit_4604 = 40.0f;
 
-/* 80455954-80455958 0004+00 s=1 e=0 z=0  None .sdata2    @4605 */
+/* 80455954-80455958 003F54 0004+00 1/1 0/0 0/0 .sdata2          @4605 */
 SECTION_SDATA2 static f32 lit_4605 = 120.0f;
 
-/* 80455958-80455960 0004+04 s=1 e=0 z=0  None .sdata2    @4606 */
+/* 80455958-80455960 003F58 0004+04 1/1 0/0 0/0 .sdata2          @4606 */
 SECTION_SDATA2 static f32 lit_4606[1 + 1 /* padding */] = {
     5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455960-80455968 0008+00 s=1 e=0 z=0  None .sdata2    @4607 */
+/* 80455960-80455968 003F60 0008+00 1/1 0/0 0/0 .sdata2          @4607 */
 SECTION_SDATA2 static f64 lit_4607 = 0.5;
 
-/* 80455968-80455970 0008+00 s=1 e=0 z=0  None .sdata2    @4608 */
+/* 80455968-80455970 003F68 0008+00 1/1 0/0 0/0 .sdata2          @4608 */
 SECTION_SDATA2 static f64 lit_4608 = 3.0;
 
-/* 80455970-80455978 0008+00 s=1 e=0 z=0  None .sdata2    @4609 */
+/* 80455970-80455978 003F70 0008+00 1/1 0/0 0/0 .sdata2          @4609 */
 SECTION_SDATA2 static u8 lit_4609[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80455978-8045597C 0004+00 s=1 e=0 z=0  None .sdata2    @4610 */
+/* 80455978-8045597C 003F78 0004+00 1/1 0/0 0/0 .sdata2          @4610 */
 SECTION_SDATA2 static f32 lit_4610 = 2000.0f;
 
-/* 8045597C-80455980 0004+00 s=1 e=0 z=0  None .sdata2    @4611 */
+/* 8045597C-80455980 003F7C 0004+00 1/1 0/0 0/0 .sdata2          @4611 */
 SECTION_SDATA2 static f32 lit_4611 = 5000.0f;
 
-/* 80455980-80455984 0004+00 s=1 e=0 z=0  None .sdata2    @4612 */
+/* 80455980-80455984 003F80 0004+00 1/1 0/0 0/0 .sdata2          @4612 */
 SECTION_SDATA2 static f32 lit_4612 = 9.0f / 20.0f;
 
-/* 80455984-80455988 0004+00 s=1 e=0 z=0  None .sdata2    @4613 */
+/* 80455984-80455988 003F84 0004+00 1/1 0/0 0/0 .sdata2          @4613 */
 SECTION_SDATA2 static f32 lit_4613 = 50.0f;
 
-/* 80455988-8045598C 0004+00 s=1 e=0 z=0  None .sdata2    @4614 */
+/* 80455988-8045598C 003F88 0004+00 1/1 0/0 0/0 .sdata2          @4614 */
 SECTION_SDATA2 static f32 lit_4614 = 600.0f;
 
-/* 8045598C-80455990 0004+00 s=1 e=0 z=0  None .sdata2    @4615 */
+/* 8045598C-80455990 003F8C 0004+00 1/1 0/0 0/0 .sdata2          @4615 */
 SECTION_SDATA2 static f32 lit_4615 = 90.0f;
 
-/* 802AC50C-802AD8B0 13A4+00 s=3 e=19 z=199  None .text
+/* 802AC50C-802AD8B0 2A6E4C 13A4+00 3/2 19/19 199/199 .text
  * seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc          */
-//	802AC53C: 803621D0 (_savegpr_26)
-//	802AC5E4: 80450B7C (data_80450B7C)
-//	802AC5F4: 80450B80 (data_80450B80)
-//	802AC618: 802ADE5C (setLevObjSE__7Z2SeMgrFUlP3VecSc)
-//	802AC828: 804558D8 (lit_4067)
-//	802AC840: 804558E8 (lit_4586)
-//	802AC844: 804558D0 (lit_4062)
-//	802AC848: 8045588C (lit_4045)
-//	802AC84C: 804558EC (lit_4587)
-//	802AC850: 80455880 (lit_4042)
-//	802AC858: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC860: 804558D8 (lit_4067)
-//	802AC878: 804558E8 (lit_4586)
-//	802AC87C: 804558D0 (lit_4062)
-//	802AC880: 8045588C (lit_4045)
-//	802AC884: 80455884 (lit_4043)
-//	802AC888: 804558D4 (lit_4063)
-//	802AC890: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC89C: 804558D8 (lit_4067)
-//	802AC8B4: 80455878 (lit_4040)
-//	802AC8B8: 804558D0 (lit_4062)
-//	802AC8BC: 8045588C (lit_4045)
-//	802AC8C0: 804558EC (lit_4587)
-//	802AC8C4: 80455880 (lit_4042)
-//	802AC8CC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC8D4: 804558D8 (lit_4067)
-//	802AC8EC: 80455878 (lit_4040)
-//	802AC8F0: 804558D0 (lit_4062)
-//	802AC8F4: 8045588C (lit_4045)
-//	802AC8F8: 80455884 (lit_4043)
-//	802AC8FC: 804558D4 (lit_4063)
-//	802AC904: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC91C: 804558D8 (lit_4067)
-//	802AC934: 804558F0 (lit_4588)
-//	802AC938: 804558D0 (lit_4062)
-//	802AC93C: 804558F4 (lit_4589)
-//	802AC940: 80455878 (lit_4040)
-//	802AC944: 80455880 (lit_4042)
-//	802AC94C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC954: 804558D8 (lit_4067)
-//	802AC96C: 804558F0 (lit_4588)
-//	802AC970: 804558D0 (lit_4062)
-//	802AC974: 804558F4 (lit_4589)
-//	802AC978: 80455884 (lit_4043)
-//	802AC97C: 804558D4 (lit_4063)
-//	802AC984: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC998: 802AB830 (modHeightAtCamera__7Z2SeMgrFPPC3Vec)
-//	802AC9AC: 804558D8 (lit_4067)
-//	802AC9C4: 804558F0 (lit_4588)
-//	802AC9C8: 804558D0 (lit_4062)
-//	802AC9CC: 804558F4 (lit_4589)
-//	802AC9D0: 80455878 (lit_4040)
-//	802AC9D4: 80455880 (lit_4042)
-//	802AC9DC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AC9E4: 804558D8 (lit_4067)
-//	802AC9FC: 804558F0 (lit_4588)
-//	802ACA00: 804558D0 (lit_4062)
-//	802ACA04: 804558F4 (lit_4589)
-//	802ACA08: 80455884 (lit_4043)
-//	802ACA0C: 804558D4 (lit_4063)
-//	802ACA14: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACA2C: 804558D8 (lit_4067)
-//	802ACA44: 804558F0 (lit_4588)
-//	802ACA48: 804558D0 (lit_4062)
-//	802ACA4C: 804558F4 (lit_4589)
-//	802ACA50: 80455878 (lit_4040)
-//	802ACA54: 80455880 (lit_4042)
-//	802ACA5C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACA64: 804558D8 (lit_4067)
-//	802ACA7C: 804558F0 (lit_4588)
-//	802ACA80: 804558D0 (lit_4062)
-//	802ACA84: 804558F4 (lit_4589)
-//	802ACA88: 80455884 (lit_4043)
-//	802ACA8C: 804558D4 (lit_4063)
-//	802ACA94: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACAA0: 804558D8 (lit_4067)
-//	802ACAB8: 80455878 (lit_4040)
-//	802ACABC: 804558D0 (lit_4062)
-//	802ACAC0: 804558F4 (lit_4589)
-//	802ACAC4: 80455884 (lit_4043)
-//	802ACAC8: 804558D4 (lit_4063)
-//	802ACAD0: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACADC: 804558D8 (lit_4067)
-//	802ACAF4: 804558E8 (lit_4586)
-//	802ACAF8: 804558D0 (lit_4062)
-//	802ACAFC: 8045588C (lit_4045)
-//	802ACB04: 80455880 (lit_4042)
-//	802ACB0C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACB14: 804558D8 (lit_4067)
-//	802ACB2C: 804558E8 (lit_4586)
-//	802ACB30: 804558D0 (lit_4062)
-//	802ACB34: 8045588C (lit_4045)
-//	802ACB38: 804558C0 (lit_4058)
-//	802ACB3C: 80455880 (lit_4042)
-//	802ACB44: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACB5C: 804558D8 (lit_4067)
-//	802ACB74: 804558F0 (lit_4588)
-//	802ACB78: 804558D0 (lit_4062)
-//	802ACB7C: 804558F4 (lit_4589)
-//	802ACB80: 80455878 (lit_4040)
-//	802ACB84: 80455880 (lit_4042)
-//	802ACB8C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACB94: 804558D8 (lit_4067)
-//	802ACBAC: 804558F0 (lit_4588)
-//	802ACBB0: 804558D0 (lit_4062)
-//	802ACBB4: 804558F4 (lit_4589)
-//	802ACBB8: 80455884 (lit_4043)
-//	802ACBBC: 804558D4 (lit_4063)
-//	802ACBC4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACBF4: 80455880 (lit_4042)
-//	802ACBFC: 804558B8 (lit_4056)
-//	802ACC14: 80455880 (lit_4042)
-//	802ACC18: 804558F8 (lit_4590)
-//	802ACC20: 80455900 (lit_4591)
-//	802ACC24: 80455908 (lit_4592)
-//	802ACC28: 804558D8 (lit_4067)
-//	802ACC4C: 80455910 (lit_4593)
-//	802ACC64: 80455880 (lit_4042)
-//	802ACC68: 80455910 (lit_4593)
-//	802ACC6C: 80455918 (lit_4594)
-//	802ACC74: 804558D8 (lit_4067)
-//	802ACCA4: 80455878 (lit_4040)
-//	802ACCAC: 80455920 (lit_4595)
-//	802ACCB4: 804558D8 (lit_4067)
-//	802ACCE0: 804558C0 (lit_4058)
-//	802ACCF4: 80455880 (lit_4042)
-//	802ACD0C: 80455880 (lit_4042)
-//	802ACD14: 804558D4 (lit_4063)
-//	802ACD20: 802AB830 (modHeightAtCamera__7Z2SeMgrFPPC3Vec)
-//	802ACD30: 80455880 (lit_4042)
-//	802ACD38: 80455928 (lit_4596)
-//	802ACD3C: 80455930 (lit_4597)
-//	802ACD40: 804558D8 (lit_4067)
-//	802ACD6C: 802AB830 (modHeightAtCamera__7Z2SeMgrFPPC3Vec)
-//	802ACD7C: 802AB830 (modHeightAtCamera__7Z2SeMgrFPPC3Vec)
-//	802ACD84: 804558D8 (lit_4067)
-//	802ACD9C: 80455878 (lit_4040)
-//	802ACDA0: 80455938 (lit_4598)
-//	802ACDA4: 8045588C (lit_4045)
-//	802ACDA8: 804558B4 (lit_4055)
-//	802ACDAC: 80455880 (lit_4042)
-//	802ACDB4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACDBC: 804558D8 (lit_4067)
-//	802ACDD4: 80455878 (lit_4040)
-//	802ACDD8: 80455938 (lit_4598)
-//	802ACDDC: 8045588C (lit_4045)
-//	802ACDE0: 80455884 (lit_4043)
-//	802ACDE4: 804558D4 (lit_4063)
-//	802ACDEC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACDF8: 804558D8 (lit_4067)
-//	802ACE10: 80455878 (lit_4040)
-//	802ACE14: 8045593C (lit_4599)
-//	802ACE18: 8045588C (lit_4045)
-//	802ACE1C: 804558B4 (lit_4055)
-//	802ACE20: 80455880 (lit_4042)
-//	802ACE28: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACE30: 804558D8 (lit_4067)
-//	802ACE48: 80455878 (lit_4040)
-//	802ACE4C: 8045593C (lit_4599)
-//	802ACE50: 8045588C (lit_4045)
-//	802ACE54: 80455884 (lit_4043)
-//	802ACE58: 804558D4 (lit_4063)
-//	802ACE60: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACE6C: 804558D8 (lit_4067)
-//	802ACE84: 80455878 (lit_4040)
-//	802ACE88: 80455940 (lit_4600)
-//	802ACE8C: 8045588C (lit_4045)
-//	802ACE90: 80455944 (lit_4601)
-//	802ACE94: 80455880 (lit_4042)
-//	802ACE9C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACEA4: 804558D8 (lit_4067)
-//	802ACEBC: 80455878 (lit_4040)
-//	802ACEC0: 80455940 (lit_4600)
-//	802ACEC4: 8045588C (lit_4045)
-//	802ACEC8: 804558C0 (lit_4058)
-//	802ACECC: 804558D4 (lit_4063)
-//	802ACED4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACEE0: 804558D8 (lit_4067)
-//	802ACEF8: 80455878 (lit_4040)
-//	802ACEFC: 80455948 (lit_4602)
-//	802ACF00: 8045588C (lit_4045)
-//	802ACF04: 804558B4 (lit_4055)
-//	802ACF08: 80455880 (lit_4042)
-//	802ACF10: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACF18: 804558D8 (lit_4067)
-//	802ACF30: 80455878 (lit_4040)
-//	802ACF34: 80455948 (lit_4602)
-//	802ACF38: 8045588C (lit_4045)
-//	802ACF3C: 80455944 (lit_4601)
-//	802ACF40: 804558D4 (lit_4063)
-//	802ACF48: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACF54: 804558D8 (lit_4067)
-//	802ACF6C: 80455878 (lit_4040)
-//	802ACF70: 8045594C (lit_4603)
-//	802ACF74: 8045588C (lit_4045)
-//	802ACF78: 80455944 (lit_4601)
-//	802ACF7C: 80455880 (lit_4042)
-//	802ACF84: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACF8C: 804558D8 (lit_4067)
-//	802ACFA4: 80455878 (lit_4040)
-//	802ACFA8: 8045594C (lit_4603)
-//	802ACFAC: 8045588C (lit_4045)
-//	802ACFB0: 80455884 (lit_4043)
-//	802ACFB4: 804558D4 (lit_4063)
-//	802ACFBC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802ACFC8: 804558D8 (lit_4067)
-//	802ACFE0: 80455878 (lit_4040)
-//	802ACFE4: 80455950 (lit_4604)
-//	802ACFE8: 8045588C (lit_4045)
-//	802ACFF0: 80455880 (lit_4042)
-//	802ACFF8: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD000: 804558D8 (lit_4067)
-//	802AD018: 80455878 (lit_4040)
-//	802AD01C: 80455950 (lit_4604)
-//	802AD020: 8045588C (lit_4045)
-//	802AD024: 804558C0 (lit_4058)
-//	802AD028: 804558D4 (lit_4063)
-//	802AD030: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD03C: 804558D8 (lit_4067)
-//	802AD054: 80455878 (lit_4040)
-//	802AD058: 80455954 (lit_4605)
-//	802AD05C: 8045588C (lit_4045)
-//	802AD064: 80455880 (lit_4042)
-//	802AD06C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD074: 804558D8 (lit_4067)
-//	802AD08C: 80455878 (lit_4040)
-//	802AD090: 80455954 (lit_4605)
-//	802AD094: 8045588C (lit_4045)
-//	802AD098: 804558AC (lit_4053)
-//	802AD09C: 80455880 (lit_4042)
-//	802AD0A4: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD0B0: 804558D8 (lit_4067)
-//	802AD0C8: 80455878 (lit_4040)
-//	802AD0CC: 80455874 (lit_4039)
-//	802AD0D0: 8045588C (lit_4045)
-//	802AD0D8: 80455880 (lit_4042)
-//	802AD0E0: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD0EC: 804558D8 (lit_4067)
-//	802AD104: 80455878 (lit_4040)
-//	802AD108: 80455874 (lit_4039)
-//	802AD10C: 8045588C (lit_4045)
-//	802AD114: 80455880 (lit_4042)
-//	802AD11C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD128: 804558D8 (lit_4067)
-//	802AD140: 80455878 (lit_4040)
-//	802AD144: 80455874 (lit_4039)
-//	802AD148: 8045588C (lit_4045)
-//	802AD150: 80455880 (lit_4042)
-//	802AD158: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD164: 804558D8 (lit_4067)
-//	802AD17C: 80455878 (lit_4040)
-//	802AD180: 80455958 (lit_4606)
-//	802AD184: 8045588C (lit_4045)
-//	802AD188: 804558A8 (lit_4052)
-//	802AD18C: 80455880 (lit_4042)
-//	802AD194: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD19C: 804558D8 (lit_4067)
-//	802AD1B4: 80455878 (lit_4040)
-//	802AD1B8: 80455958 (lit_4606)
-//	802AD1BC: 8045588C (lit_4045)
-//	802AD1C0: 80455884 (lit_4043)
-//	802AD1C4: 80455880 (lit_4042)
-//	802AD1CC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD1D8: 804558D8 (lit_4067)
-//	802AD1F0: 80455878 (lit_4040)
-//	802AD1F4: 804558BC (lit_4057)
-//	802AD1F8: 8045588C (lit_4045)
-//	802AD1FC: 804558A8 (lit_4052)
-//	802AD200: 80455880 (lit_4042)
-//	802AD208: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD210: 804558D8 (lit_4067)
-//	802AD228: 80455878 (lit_4040)
-//	802AD22C: 804558BC (lit_4057)
-//	802AD230: 8045588C (lit_4045)
-//	802AD234: 804558C0 (lit_4058)
-//	802AD238: 804558C4 (lit_4059)
-//	802AD240: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD24C: 80450B80 (data_80450B80)
-//	802AD25C: 80450B80 (data_80450B80)
-//	802AD278: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802AD290: 8034739C (PSVECSquareDistance)
-//	802AD294: 80455878 (lit_4040)
-//	802AD2A4: 80455960 (lit_4607)
-//	802AD2AC: 80455968 (lit_4608)
-//	802AD2F4: 80455970 (lit_4609)
-//	802AD300: 80450AE0 (__float_nan)
-//	802AD304: 80450AE0 (__float_nan)
-//	802AD370: 80450AE0 (__float_nan)
-//	802AD374: 80450AE0 (__float_nan)
-//	802AD378: 80455880 (lit_4042)
-//	802AD37C: 80455978 (lit_4610)
-//	802AD388: 80455878 (lit_4040)
-//	802AD390: 80455938 (lit_4598)
-//	802AD39C: 8045597C (lit_4611)
-//	802AD3A0: 80455980 (lit_4612)
-//	802AD3A4: 80455878 (lit_4040)
-//	802AD3AC: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD3B4: 80450B84 (data_80450B84)
-//	802AD3B8: 80455878 (lit_4040)
-//	802AD3C8: 80455880 (lit_4042)
-//	802AD3E4: 804558D8 (lit_4067)
-//	802AD3FC: 80455878 (lit_4040)
-//	802AD400: 80455984 (lit_4613)
-//	802AD404: 8045588C (lit_4045)
-//	802AD408: 804558A8 (lit_4052)
-//	802AD40C: 80455880 (lit_4042)
-//	802AD414: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD420: 80455880 (lit_4042)
-//	802AD424: 80450B80 (data_80450B80)
-//	802AD434: 80451360 (mLinkPtr__14Z2CreatureLink)
-//	802AD444: 80455988 (lit_4614)
-//	802AD448: 8045593C (lit_4599)
-//	802AD44C: 804558EC (lit_4587)
-//	802AD454: 802A968C (linearTransform__6Z2CalcFfffffb)
-//	802AD45C: 80450B7C (data_80450B7C)
-//	802AD46C: 803C9D98 (lit_4619)
-//	802AD470: 803C9D98 (lit_4619)
-//	802AD484: 804558EC (lit_4587)
-//	802AD490: 8045587C (lit_4041)
-//	802AD49C: 804558B4 (lit_4055)
-//	802AD4A8: 8045588C (lit_4045)
-//	802AD4B4: 804558A8 (lit_4052)
-//	802AD4C0: 80455944 (lit_4601)
-//	802AD4CC: 80455884 (lit_4043)
-//	802AD4D8: 804558C0 (lit_4058)
-//	802AD4E4: 804558AC (lit_4053)
-//	802AD4F0: 804558AC (lit_4053)
-//	802AD4FC: 804558C0 (lit_4058)
-//	802AD508: 80455884 (lit_4043)
-//	802AD514: 804558A8 (lit_4052)
-//	802AD520: 8045588C (lit_4045)
-//	802AD52C: 8045587C (lit_4041)
-//	802AD538: 804558D8 (lit_4067)
-//	802AD554: 80455958 (lit_4606)
-//	802AD558: 8045598C (lit_4615)
-//	802AD55C: 8045587C (lit_4041)
-//	802AD560: 80455878 (lit_4040)
-//	802AD564: 80455880 (lit_4042)
-//	802AD56C: 802A96F4 (getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign)
-//	802AD5C8: 80450B44 (data_80450B44)
-//	802AD5D0: 802BD704 (calcOffMicSound__10Z2AudienceFf)
-//	802AD648: 80450B74 (data_80450B74)
-//	802AD658: 802AAEDC (setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc)
-//	802AD674: 804558E0 (lit_4070)
-//	802AD690: 804558D0 (lit_4062)
-//	802AD69C: 802A2E64 (moveFxMix__18JAISoundParamsMoveFfUl)
-//	802AD6A0: 80455880 (lit_4042)
-//	802AD6C0: 802A2E0C (movePitch__18JAISoundParamsMoveFfUl)
-//	802AD6C4: 80455880 (lit_4042)
-//	802AD6E4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802AD6E8: 804558B8 (lit_4056)
-//	802AD708: 802A2EBC (movePan__18JAISoundParamsMoveFfUl)
-//	802AD70C: 804558B8 (lit_4056)
-//	802AD72C: 802A2F14 (moveDolby__18JAISoundParamsMoveFfUl)
-//	802AD750: 802AE5B0 (isSoundCulling__7Z2SeMgrF10JAISoundID)
-//	802AD768: 802A2CF4 (getFreeHandle__15JAISoundHandlesFv)
-//	802AD784: 80450B74 (data_80450B74)
-//	802AD79C: 804558E0 (lit_4070)
-//	802AD7B8: 804558D0 (lit_4062)
-//	802AD80C: 80450B84 (data_80450B84)
-//	802AD820: 802AF010 (bgmStart__8Z2SeqMgrFUlUll)
-//	802AD830: 80450B44 (data_80450B44)
-//	802AD838: 802BD704 (calcOffMicSound__10Z2AudienceFf)
-//	802AD89C: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1063,11 +544,7 @@ asm void Z2SeMgr::seStartLevel(JAISoundID param_0, Vec const* param_1, u32 param
 }
 #pragma pop
 
-/* 802AD8B0-802AD94C 009C+00 s=1 e=0 z=4  None .text      seStop__7Z2SeMgrF10JAISoundIDUl */
-//	802AD8C0: 803621D4 (_savegpr_27)
-//	802AD914: 802A24DC (stop__8JAISoundFUl)
-//	802AD920: 802A2184 (releaseSound__14JAISoundHandleFv)
-//	802AD938: 80362220 (_restgpr_27)
+/* 802AD8B0-802AD94C 2A81F0 009C+00 1/1 0/0 4/4 .text            seStop__7Z2SeMgrF10JAISoundIDUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1077,18 +554,7 @@ asm void Z2SeMgr::seStop(JAISoundID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802AD94C-802AD9F4 00A8+00 s=0 e=1 z=0  None .text      seStopAll__7Z2SeMgrFUl */
-//	802AD964: 80450B60 (data_80450B60)
-//	802AD96C: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD978: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD984: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD990: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD99C: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD9A8: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD9B4: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD9C0: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD9CC: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
-//	802AD9D8: 8029FDE0 (stop__16JAISeCategoryMgrFUl)
+/* 802AD94C-802AD9F4 2A828C 00A8+00 0/0 1/1 0/0 .text            seStopAll__7Z2SeMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1098,29 +564,7 @@ asm void Z2SeMgr::seStopAll(u32 param_0) {
 }
 #pragma pop
 
-/* 802AD9F4-802ADB14 0120+00 s=3 e=5 z=1  None .text      seMoveVolumeAll__7Z2SeMgrFfUl */
-//	802ADA18: 80450B7C (data_80450B7C)
-//	802ADA28: 80455878 (lit_4040)
-//	802ADA2C: 80450B60 (data_80450B60)
-//	802ADA34: 804507FC (VOL_SE_LINK_VOICE_DEFAULT__7Z2Param)
-//	802ADA40: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADA48: 80450800 (VOL_SE_LINK_MOTION_DEFAULT__7Z2Param)
-//	802ADA54: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADA5C: 80450804 (VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param)
-//	802ADA68: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADA70: 80450810 (VOL_SE_OBJECT_DEFAULT__7Z2Param)
-//	802ADA7C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADA84: 80450808 (VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param)
-//	802ADA90: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADA98: 8045080C (VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param)
-//	802ADAA4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADAAC: 80450808 (VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param)
-//	802ADAB8: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADAC0: 80450810 (VOL_SE_OBJECT_DEFAULT__7Z2Param)
-//	802ADACC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADAD0: 80450B7C (data_80450B7C)
-//	802ADAE4: 80450814 (VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param)
-//	802ADAF0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802AD9F4-802ADB14 2A8334 0120+00 3/3 5/5 1/1 .text            seMoveVolumeAll__7Z2SeMgrFfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1130,9 +574,8 @@ asm void Z2SeMgr::seMoveVolumeAll(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802ADB14-802ADB50 003C+00 s=0 e=1 z=0  None .text      messageSePlay__7Z2SeMgrFUsP3VecSc */
-//	802ADB2C: 80450B70 (data_80450B70)
-//	802ADB3C: 802CCA18 (playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc)
+/* 802ADB14-802ADB50 2A8454 003C+00 0/0 1/1 0/0 .text            messageSePlay__7Z2SeMgrFUsP3VecSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1142,33 +585,7 @@ asm void Z2SeMgr::messageSePlay(u16 param_0, Vec* param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 802ADB50-802ADC54 0104+00 s=0 e=1 z=0  None .text      talkInSe__7Z2SeMgrFv */
-//	802ADB60: 80450B80 (data_80450B80)
-//	802ADB70: 80450B7C (data_80450B7C)
-//	802ADB80: 80455878 (lit_4040)
-//	802ADB88: 802AD9F4 (seMoveVolumeAll__7Z2SeMgrFfUl)
-//	802ADB8C: 80450B60 (data_80450B60)
-//	802ADB94: 8045081C (VOL_SE_SYSTEM_TALKING__7Z2Param)
-//	802ADB9C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBA4: 80450820 (VOL_SE_LINK_VOICE_TALKING__7Z2Param)
-//	802ADBAC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBB4: 80450824 (VOL_SE_LINK_MOTION_TALKING__7Z2Param)
-//	802ADBBC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBC4: 80450828 (VOL_SE_LINK_FOOTNOTE_TALKING__7Z2Param)
-//	802ADBCC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBD4: 80450834 (VOL_SE_OBJECT_TALKING__7Z2Param)
-//	802ADBDC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBE4: 8045082C (VOL_SE_CHAR_VOICE_TALKING__7Z2Param)
-//	802ADBEC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADBF4: 80450830 (VOL_SE_CHAR_MOVE_TALKING__7Z2Param)
-//	802ADBFC: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADC04: 8045082C (VOL_SE_CHAR_VOICE_TALKING__7Z2Param)
-//	802ADC0C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADC14: 80450834 (VOL_SE_OBJECT_TALKING__7Z2Param)
-//	802ADC1C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADC20: 80450B7C (data_80450B7C)
-//	802ADC34: 80450838 (VOL_SE_ATMOSPHERE_TALKING__7Z2Param)
-//	802ADC3C: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802ADB50-802ADC54 2A8490 0104+00 0/0 1/1 0/0 .text            talkInSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1178,33 +595,7 @@ asm void Z2SeMgr::talkInSe() {
 }
 #pragma pop
 
-/* 802ADC54-802ADD58 0104+00 s=0 e=2 z=0  None .text      talkOutSe__7Z2SeMgrFv */
-//	802ADC64: 80450B80 (data_80450B80)
-//	802ADC74: 80450B7C (data_80450B7C)
-//	802ADC84: 80455878 (lit_4040)
-//	802ADC8C: 802AD9F4 (seMoveVolumeAll__7Z2SeMgrFfUl)
-//	802ADC90: 80450B60 (data_80450B60)
-//	802ADC98: 804507F8 (VOL_SE_SYSTEM_DEFAULT__7Z2Param)
-//	802ADCA0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCA8: 804507FC (VOL_SE_LINK_VOICE_DEFAULT__7Z2Param)
-//	802ADCB0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCB8: 80450800 (VOL_SE_LINK_MOTION_DEFAULT__7Z2Param)
-//	802ADCC0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCC8: 80450804 (VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param)
-//	802ADCD0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCD8: 80450810 (VOL_SE_OBJECT_DEFAULT__7Z2Param)
-//	802ADCE0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCE8: 80450808 (VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param)
-//	802ADCF0: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADCF8: 8045080C (VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param)
-//	802ADD00: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADD08: 80450808 (VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param)
-//	802ADD10: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADD18: 80450810 (VOL_SE_OBJECT_DEFAULT__7Z2Param)
-//	802ADD20: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADD24: 80450B7C (data_80450B7C)
-//	802ADD38: 80450814 (VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param)
-//	802ADD40: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802ADC54-802ADD58 2A8594 0104+00 0/0 2/2 0/0 .text            talkOutSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1214,33 +605,7 @@ asm void Z2SeMgr::talkOutSe() {
 }
 #pragma pop
 
-/* 802ADD58-802ADE5C 0104+00 s=0 e=1 z=0  None .text      menuInSe__7Z2SeMgrFv */
-//	802ADD68: 80450B80 (data_80450B80)
-//	802ADD78: 80450B7C (data_80450B7C)
-//	802ADD88: 80455878 (lit_4040)
-//	802ADD90: 802AD9F4 (seMoveVolumeAll__7Z2SeMgrFfUl)
-//	802ADD94: 80450B60 (data_80450B60)
-//	802ADD9C: 80450840 (VOL_SE_SYSTEM_PAUSING__7Z2Param)
-//	802ADDA4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDAC: 80450844 (VOL_SE_LINK_VOICE_PAUSING__7Z2Param)
-//	802ADDB4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDBC: 80450848 (VOL_SE_LINK_MOTION_PAUSING__7Z2Param)
-//	802ADDC4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDCC: 8045084C (VOL_SE_LINK_FOOTNOTE_PAUSING__7Z2Param)
-//	802ADDD4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDDC: 80450858 (VOL_SE_OBJECT_PAUSING__7Z2Param)
-//	802ADDE4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDEC: 80450850 (VOL_SE_CHAR_VOICE_PAUSING__7Z2Param)
-//	802ADDF4: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADDFC: 80450854 (VOL_SE_CHAR_MOVE_PAUSING__7Z2Param)
-//	802ADE04: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADE0C: 80450850 (VOL_SE_CHAR_VOICE_PAUSING__7Z2Param)
-//	802ADE14: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADE1C: 80450858 (VOL_SE_OBJECT_PAUSING__7Z2Param)
-//	802ADE24: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
-//	802ADE28: 80450B7C (data_80450B7C)
-//	802ADE3C: 8045085C (VOL_SE_ATMOSPHERE_PAUSING__7Z2Param)
-//	802ADE44: 802A2DB4 (moveVolume__18JAISoundParamsMoveFfUl)
+/* 802ADD58-802ADE5C 2A8698 0104+00 0/0 1/1 0/0 .text            menuInSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1251,24 +616,16 @@ asm void Z2SeMgr::menuInSe() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B9F0-8039B9FC 000C+00 s=1 e=0 z=0  None .rodata    @5054 */
+/* 8039B9F0-8039B9FC 028050 000C+00 1/1 0/0 0/0 .rodata          @5054 */
 SECTION_RODATA static u8 const lit_5054[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_8039B9F0 = (void*)(&lit_5054);
 
-/* 80455990-80455994 0004+00 s=1 e=0 z=0  None .sdata2    @5085 */
+/* 80455990-80455994 003F90 0004+00 1/1 0/0 0/0 .sdata2          @5085 */
 SECTION_SDATA2 static f32 lit_5085 = 4.0f;
 
-/* 802ADE5C-802ADFF4 0198+00 s=1 e=0 z=0  None .text      setLevObjSE__7Z2SeMgrFUlP3VecSc */
-//	802ADE6C: 803621DC (_savegpr_29)
-//	802ADED8: 80455880 (lit_4042)
-//	802ADEDC: 8039B9F0 (lit_5054)
-//	802ADEE0: 8039B9F0 (lit_5054)
-//	802ADF20: 80450B44 (data_80450B44)
-//	802ADF94: 80455884 (lit_4043)
-//	802ADF9C: 80455990 (lit_5085)
-//	802ADFBC: 802AEB70 (registMultiSePos__12Z2MultiSeMgrFP3Vec)
-//	802ADFE0: 80362228 (_restgpr_29)
+/* 802ADE5C-802ADFF4 2A879C 0198+00 1/1 0/0 0/0 .text            setLevObjSE__7Z2SeMgrFUlP3VecSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1279,24 +636,16 @@ asm void Z2SeMgr::setLevObjSE(u32 param_0, Vec* param_1, s8 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B9FC-8039BA08 000C+00 s=1 e=0 z=0  None .rodata    @5100 */
+/* 8039B9FC-8039BA08 02805C 000C+00 1/1 0/0 0/0 .rodata          @5100 */
 SECTION_RODATA static u8 const lit_5100[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_8039B9FC = (void*)(&lit_5100);
 
-/* 80455994-80455998 0004+00 s=1 e=0 z=0  None .sdata2    @5134 */
+/* 80455994-80455998 003F94 0004+00 1/1 0/0 0/0 .sdata2          @5134 */
 SECTION_SDATA2 static f32 lit_5134 = 3.0f;
 
-/* 802ADFF4-802AE184 0190+00 s=1 e=0 z=0  None .text      setMultiTriggerSE__7Z2SeMgrFUlP3VecSc */
-//	802AE004: 803621DC (_savegpr_29)
-//	802AE070: 80455880 (lit_4042)
-//	802AE074: 8039B9FC (lit_5100)
-//	802AE078: 8039B9FC (lit_5100)
-//	802AE0B8: 80450B44 (data_80450B44)
-//	802AE124: 80455994 (lit_5134)
-//	802AE12C: 804558F8 (lit_4590)
-//	802AE14C: 802AEB70 (registMultiSePos__12Z2MultiSeMgrFP3Vec)
-//	802AE170: 80362228 (_restgpr_29)
+/* 802ADFF4-802AE184 2A8934 0190+00 1/1 0/0 0/0 .text setMultiTriggerSE__7Z2SeMgrFUlP3VecSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1306,27 +655,7 @@ asm void Z2SeMgr::setMultiTriggerSE(u32 param_0, Vec* param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 802AE184-802AE524 03A0+00 s=0 e=1 z=0  None .text      processSeFramework__7Z2SeMgrFv */
-//	802AE1AC: 803621D4 (_savegpr_27)
-//	802AE1B4: 80450B80 (data_80450B80)
-//	802AE1EC: 80455880 (lit_4042)
-//	802AE1F4: 804558B8 (lit_4056)
-//	802AE200: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802AE208: 80455880 (lit_4042)
-//	802AE230: 80455878 (lit_4040)
-//	802AE254: 802AEDC0 (getDolbyPower__12Z2MultiSeMgrFv)
-//	802AE260: 802AECE0 (getPanPower__12Z2MultiSeMgrFv)
-//	802AE27C: 80455880 (lit_4042)
-//	802AE28C: 802AC50C (seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802AE2C4: 802AECBC (resetMultiSePos__12Z2MultiSeMgrFv)
-//	802AE2EC: 80455880 (lit_4042)
-//	802AE314: 80455878 (lit_4040)
-//	802AE338: 802AEDC0 (getDolbyPower__12Z2MultiSeMgrFv)
-//	802AE344: 802AECE0 (getPanPower__12Z2MultiSeMgrFv)
-//	802AE360: 80455880 (lit_4042)
-//	802AE370: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	802AE3A8: 802AECBC (resetMultiSePos__12Z2MultiSeMgrFv)
-//	802AE510: 80362220 (_restgpr_27)
+/* 802AE184-802AE524 2A8AC4 03A0+00 0/0 1/1 0/0 .text            processSeFramework__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1336,7 +665,7 @@ asm void Z2SeMgr::processSeFramework() {
 }
 #pragma pop
 
-/* 802AE524-802AE5B0 008C+00 s=1 e=0 z=0  None .text      isLevelSe__7Z2SeMgrF10JAISoundID */
+/* 802AE524-802AE5B0 2A8E64 008C+00 1/1 0/0 0/0 .text            isLevelSe__7Z2SeMgrF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1346,17 +675,7 @@ asm void Z2SeMgr::isLevelSe(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AE5B0-802AEB04 0554+00 s=2 e=3 z=0  None .text      isSoundCulling__7Z2SeMgrF10JAISoundID */
-//	802AE5C4: 80450B84 (data_80450B84)
-//	802AE89C: 80450B80 (data_80450B80)
-//	802AE9B4: 80450B60 (data_80450B60)
-//	802AE9BC: 804558A8 (lit_4052)
-//	802AE9C0: 802AA9E8 (multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf)
-//	802AE9E8: 80450B60 (data_80450B60)
-//	802AE9F0: 802AA7DC (stopSoundID__10Z2SoundMgrF10JAISoundID)
-//	802AE9FC: 80450B60 (data_80450B60)
-//	802AEA04: 804558A8 (lit_4052)
-//	802AEA08: 802AA9E8 (multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf)
+/* 802AE5B0-802AEB04 2A8EF0 0554+00 2/2 3/3 0/0 .text isSoundCulling__7Z2SeMgrF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1366,8 +685,7 @@ asm void Z2SeMgr::isSoundCulling(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AEB04-802AEB34 0030+00 s=1 e=1 z=0  None .text      __ct__12Z2MultiSeMgrFv */
-//	802AEB18: 802AECBC (resetMultiSePos__12Z2MultiSeMgrFv)
+/* 802AEB04-802AEB34 2A9444 0030+00 1/1 1/1 0/0 .text            __ct__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1377,8 +695,7 @@ asm Z2MultiSeMgr::Z2MultiSeMgr() {
 }
 #pragma pop
 
-/* 802AEB34-802AEB70 003C+00 s=0 e=2 z=0  None .text      __dt__12Z2MultiSeMgrFv */
-//	802AEB54: 802CED3C (__dl__FPv)
+/* 802AEB34-802AEB70 2A9474 003C+00 0/0 2/2 0/0 .text            __dt__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1388,17 +705,7 @@ asm Z2MultiSeMgr::~Z2MultiSeMgr() {
 }
 #pragma pop
 
-/* 802AEB70-802AECBC 014C+00 s=2 e=6 z=0  None .text      registMultiSePos__12Z2MultiSeMgrFP3Vec */
-//	802AEBB8: 80450B44 (data_80450B44)
-//	802AEBC4: 802BD92C (convertAbsToRel__10Z2AudienceFR3VecP3Veci)
-//	802AEBC8: 80450B44 (data_80450B44)
-//	802AEBD8: 802BD95C (calcRelPosVolume__10Z2AudienceFRC3Vecfi)
-//	802AEBE0: 80455878 (lit_4040)
-//	802AEBF8: 80450B44 (data_80450B44)
-//	802AEC04: 802BDA44 (calcRelPosPan__10Z2AudienceFRC3Veci)
-//	802AEC0C: 80450B44 (data_80450B44)
-//	802AEC18: 802BDB44 (calcRelPosDolby__10Z2AudienceFRC3Veci)
-//	802AEC1C: 80455880 (lit_4042)
+/* 802AEB70-802AECBC 2A94B0 014C+00 2/2 6/6 0/0 .text registMultiSePos__12Z2MultiSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1408,8 +715,8 @@ asm void Z2MultiSeMgr::registMultiSePos(Vec* param_0) {
 }
 #pragma pop
 
-/* 802AECBC-802AECE0 0024+00 s=3 e=6 z=0  None .text      resetMultiSePos__12Z2MultiSeMgrFv */
-//	802AECC4: 80455878 (lit_4040)
+/* 802AECBC-802AECE0 2A95FC 0024+00 3/3 6/6 0/0 .text            resetMultiSePos__12Z2MultiSeMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1419,18 +726,7 @@ asm void Z2MultiSeMgr::resetMultiSePos() {
 }
 #pragma pop
 
-/* 802AECE0-802AEDC0 00E0+00 s=1 e=8 z=0  None .text      getPanPower__12Z2MultiSeMgrFv */
-//	802AECE4: 80455880 (lit_4042)
-//	802AECF4: 80455878 (lit_4040)
-//	802AED0C: 80455880 (lit_4042)
-//	802AED1C: 80455878 (lit_4040)
-//	802AED34: 80455878 (lit_4040)
-//	802AED40: 80455880 (lit_4042)
-//	802AED64: 80455880 (lit_4042)
-//	802AED74: 80455878 (lit_4040)
-//	802AED88: 80455880 (lit_4042)
-//	802AED98: 80455878 (lit_4040)
-//	802AEDB8: 804558A8 (lit_4052)
+/* 802AECE0-802AEDC0 2A9620 00E0+00 1/1 8/8 0/0 .text            getPanPower__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1440,18 +736,7 @@ asm void Z2MultiSeMgr::getPanPower() {
 }
 #pragma pop
 
-/* 802AEDC0-802AEEA0 00E0+00 s=1 e=8 z=0  None .text      getDolbyPower__12Z2MultiSeMgrFv */
-//	802AEDC4: 80455880 (lit_4042)
-//	802AEDD4: 80455878 (lit_4040)
-//	802AEDEC: 80455880 (lit_4042)
-//	802AEDFC: 80455878 (lit_4040)
-//	802AEE14: 80455878 (lit_4040)
-//	802AEE20: 80455880 (lit_4042)
-//	802AEE44: 80455880 (lit_4042)
-//	802AEE54: 80455878 (lit_4040)
-//	802AEE68: 80455880 (lit_4042)
-//	802AEE78: 80455878 (lit_4040)
-//	802AEE98: 804558A8 (lit_4052)
+/* 802AEDC0-802AEEA0 2A9700 00E0+00 1/1 8/8 0/0 .text            getDolbyPower__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

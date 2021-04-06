@@ -4,8 +4,8 @@ lbl_80019C7C:
 /* 80019C84  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80019C88  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80019C8C  7C 7F 1B 78 */	mr r31, r3
-/* 80019C90  3C 80 80 38 */	lis r4, f_op_f_op_actor_mng__stringBase0@ha
-/* 80019C94  38 84 88 C8 */	addi r4, r4, f_op_f_op_actor_mng__stringBase0@l
+/* 80019C90  3C 80 80 38 */	lis r4, f_op_f_op_actor_mng__stringBase0@ha /* 0x803788C8@ha */
+/* 80019C94  38 84 88 C8 */	addi r4, r4, f_op_f_op_actor_mng__stringBase0@l /* 0x803788C8@l */
 /* 80019C98  4B FF FF E1 */	bl fopAcM_Log__FPC10fopAc_ac_cPCc
 /* 80019C9C  7F E3 FB 78 */	mr r3, r31
 /* 80019CA0  48 00 84 79 */	bl fpcM_Delete__FPv

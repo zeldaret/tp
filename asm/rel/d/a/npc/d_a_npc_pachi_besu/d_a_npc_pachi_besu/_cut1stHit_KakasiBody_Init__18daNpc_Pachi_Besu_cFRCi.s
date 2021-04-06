@@ -20,11 +20,11 @@ lbl_80A9518C:
 /* 80A95190  2C 00 00 00 */	cmpwi r0, 0
 /* 80A95194  41 82 00 28 */	beq lbl_80A951BC
 /* 80A95198  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80A9519C  4B 6B 05 60 */	b remove__18daNpcT_ActorMngr_cFv
+/* 80A9519C  4B 6B 05 61 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80A951A0  38 00 00 00 */	li r0, 0
 /* 80A951A4  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 80A951A8  3C 60 80 A9 */	lis r3, lit_4347@ha
-/* 80A951AC  C0 03 6B 0C */	lfs f0, lit_4347@l(r3)
+/* 80A951A8  3C 60 80 A9 */	lis r3, lit_4347@ha /* 0x80A96B0C@ha */
+/* 80A951AC  C0 03 6B 0C */	lfs f0, lit_4347@l(r3)  /* 0x80A96B0C@l */
 /* 80A951B0  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 80A951B4  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 80A951B8  90 1F 0C E0 */	stw r0, 0xce0(r31)

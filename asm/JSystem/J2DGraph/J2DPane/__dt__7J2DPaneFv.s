@@ -7,8 +7,8 @@ lbl_802F658C:
 /* 802F65A0  7C 7D 1B 79 */	or. r29, r3, r3
 /* 802F65A4  7C 9E 23 78 */	mr r30, r4
 /* 802F65A8  41 82 00 A8 */	beq lbl_802F6650
-/* 802F65AC  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha
-/* 802F65B0  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l
+/* 802F65AC  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha /* 0x803CCFD0@ha */
+/* 802F65B0  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l /* 0x803CCFD0@l */
 /* 802F65B4  90 1D 00 00 */	stw r0, 0(r29)
 /* 802F65B8  83 FD 00 DC */	lwz r31, 0xdc(r29)
 /* 802F65BC  28 1F 00 00 */	cmplwi r31, 0

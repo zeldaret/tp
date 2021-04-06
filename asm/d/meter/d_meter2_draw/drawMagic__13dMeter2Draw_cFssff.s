@@ -49,8 +49,8 @@ lbl_80215290:
 /* 8021534C  80 83 01 D0 */	lwz r4, 0x1d0(r3)
 /* 80215350  C0 04 00 38 */	lfs f0, 0x38(r4)
 /* 80215354  D0 03 05 C0 */	stfs f0, 0x5c0(r3)
-/* 80215358  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8021535C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 80215358  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021535C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80215360  C0 04 00 40 */	lfs f0, 0x40(r4)
 /* 80215364  D0 03 05 CC */	stfs f0, 0x5cc(r3)
 /* 80215368  C0 04 00 40 */	lfs f0, 0x40(r4)

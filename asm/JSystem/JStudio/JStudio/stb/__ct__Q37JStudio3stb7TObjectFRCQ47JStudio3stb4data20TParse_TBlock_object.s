@@ -4,8 +4,8 @@ lbl_80288AC0:
 /* 80288AC8  38 86 00 0C */	addi r4, r6, 0xc
 /* 80288ACC  90 83 00 00 */	stw r4, 0(r3)
 /* 80288AD0  90 03 00 04 */	stw r0, 4(r3)
-/* 80288AD4  3C 80 80 3C */	lis r4, __vt__Q37JStudio3stb7TObject@ha
-/* 80288AD8  38 04 57 00 */	addi r0, r4, __vt__Q37JStudio3stb7TObject@l
+/* 80288AD4  3C 80 80 3C */	lis r4, __vt__Q37JStudio3stb7TObject@ha /* 0x803C5700@ha */
+/* 80288AD8  38 04 57 00 */	addi r0, r4, __vt__Q37JStudio3stb7TObject@l /* 0x803C5700@l */
 /* 80288ADC  90 03 00 08 */	stw r0, 8(r3)
 /* 80288AE0  38 A0 00 00 */	li r5, 0
 /* 80288AE4  90 A3 00 0C */	stw r5, 0xc(r3)

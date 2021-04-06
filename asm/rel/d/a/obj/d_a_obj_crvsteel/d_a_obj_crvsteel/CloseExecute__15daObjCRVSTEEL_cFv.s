@@ -17,11 +17,11 @@ lbl_80BD5C28:
 /* 80BD5C64  38 9F 05 A4 */	addi r4, r31, 0x5a4
 /* 80BD5C68  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 80BD5C6C  38 C0 00 00 */	li r6, 0
-/* 80BD5C70  3C E0 80 BD */	lis r7, lit_3789@ha
-/* 80BD5C74  C0 27 62 08 */	lfs f1, lit_3789@l(r7)
+/* 80BD5C70  3C E0 80 BD */	lis r7, lit_3789@ha /* 0x80BD6208@ha */
+/* 80BD5C74  C0 27 62 08 */	lfs f1, lit_3789@l(r7)  /* 0x80BD6208@l */
 /* 80BD5C78  38 FF 01 0C */	addi r7, r31, 0x10c
 /* 80BD5C7C  39 00 00 01 */	li r8, 1
-/* 80BD5C80  4B 44 73 A0 */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 80BD5C80  4B 44 73 A1 */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 /* 80BD5C84  38 00 00 00 */	li r0, 0
 /* 80BD5C88  B0 1F 05 A8 */	sth r0, 0x5a8(r31)
 lbl_80BD5C8C:

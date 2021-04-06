@@ -12,8 +12,8 @@ lbl_800C70F8:
 /* 800C7120  40 82 00 84 */	bne lbl_800C71A4
 /* 800C7124  7F E3 FB 78 */	mr r3, r31
 /* 800C7128  38 80 00 D7 */	li r4, 0xd7
-/* 800C712C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C7130  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800C712C  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C7130  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7134  C0 26 00 04 */	lfs f1, 4(r6)
 /* 800C7138  C0 42 93 44 */	lfs f2, lit_7977(r2)
 /* 800C713C  A8 A6 00 00 */	lha r5, 0(r6)
@@ -34,8 +34,8 @@ lbl_800C70F8:
 /* 800C7178  98 1F 2F 99 */	stb r0, 0x2f99(r31)
 /* 800C717C  C0 1F 35 8C */	lfs f0, 0x358c(r31)
 /* 800C7180  D0 1F 33 B0 */	stfs f0, 0x33b0(r31)
-/* 800C7184  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C7188  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800C7184  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C7188  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800C718C  D0 1F 34 D4 */	stfs f0, 0x34d4(r31)
 /* 800C7190  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7194  D0 1F 34 D8 */	stfs f0, 0x34d8(r31)
@@ -45,8 +45,8 @@ lbl_800C70F8:
 lbl_800C71A4:
 /* 800C71A4  7F E3 FB 78 */	mr r3, r31
 /* 800C71A8  38 80 00 D7 */	li r4, 0xd7
-/* 800C71AC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C71B0  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800C71AC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C71B0  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C71B4  4B FE 5F 41 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C71B8  2C 1E 00 01 */	cmpwi r30, 1
 /* 800C71BC  40 82 00 BC */	bne lbl_800C7278
@@ -75,8 +75,8 @@ lbl_800C71F0:
 /* 800C7214  40 82 00 3C */	bne lbl_800C7250
 /* 800C7218  A8 03 04 E6 */	lha r0, 0x4e6(r3)
 /* 800C721C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800C7220  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C7224  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800C7220  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C7224  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C7228  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800C722C  C0 22 95 18 */	lfs f1, lit_20824(r2)
 /* 800C7230  EC 01 00 32 */	fmuls f0, f1, f0
@@ -106,8 +106,8 @@ lbl_800C7278:
 lbl_800C7288:
 /* 800C7288  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800C728C  D0 1F 33 98 */	stfs f0, 0x3398(r31)
-/* 800C7290  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C7294  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l
+/* 800C7290  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C7294  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l /* 0x80425514@l */
 /* 800C7298  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C729C  D0 1F 33 B0 */	stfs f0, 0x33b0(r31)
 /* 800C72A0  C0 03 00 00 */	lfs f0, 0(r3)

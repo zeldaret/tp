@@ -7,7 +7,7 @@ lbl_80946DD4:
 /* 80946DE8  A0 A4 09 1C */	lhz r5, 0x91c(r4)
 /* 80946DEC  38 C0 00 00 */	li r6, 0
 /* 80946DF0  38 E0 00 00 */	li r7, 0
-/* 80946DF4  4B 90 31 9C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80946DF4  4B 90 31 9D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80946DF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80946DFC  7C 08 03 A6 */	mtlr r0
 /* 80946E00  38 21 00 10 */	addi r1, r1, 0x10

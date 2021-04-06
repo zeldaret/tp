@@ -4,8 +4,8 @@ lbl_80030954:
 /* 8003095C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80030960  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80030964  7C 7F 1B 78 */	mr r31, r3
-/* 80030968  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 8003096C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80030968  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8003096C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80030970  90 03 00 00 */	stw r0, 0(r3)
 /* 80030974  38 80 00 00 */	li r4, 0
 /* 80030978  48 2F 7A 85 */	bl init__12J3DFrameCtrlFs

@@ -5,8 +5,8 @@ lbl_801F6BD4:
 /* 801F6BE0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F6BE4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801F6BE8  41 82 00 1C */	beq lbl_801F6C04
-/* 801F6BEC  3C A0 80 3C */	lis r5, __vt__9dMs_HIO_c@ha
-/* 801F6BF0  38 05 E7 CC */	addi r0, r5, __vt__9dMs_HIO_c@l
+/* 801F6BEC  3C A0 80 3C */	lis r5, __vt__9dMs_HIO_c@ha /* 0x803BE7CC@ha */
+/* 801F6BF0  38 05 E7 CC */	addi r0, r5, __vt__9dMs_HIO_c@l /* 0x803BE7CC@l */
 /* 801F6BF4  90 1F 00 00 */	stw r0, 0(r31)
 /* 801F6BF8  7C 80 07 35 */	extsh. r0, r4
 /* 801F6BFC  40 81 00 08 */	ble lbl_801F6C04

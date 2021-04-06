@@ -9,8 +9,8 @@ lbl_801398A8:
 /* 801398C4  7F E3 FB 78 */	mr r3, r31
 /* 801398C8  38 80 00 6E */	li r4, 0x6e
 /* 801398CC  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 801398D0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAttack_c0@ha
-/* 801398D4  38 A5 F7 A4 */	addi r5, r5, m__22daAlinkHIO_wlAttack_c0@l
+/* 801398D0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAttack_c0@ha /* 0x8038F7A4@ha */
+/* 801398D4  38 A5 F7 A4 */	addi r5, r5, m__22daAlinkHIO_wlAttack_c0@l /* 0x8038F7A4@l */
 /* 801398D8  C0 45 00 20 */	lfs f2, 0x20(r5)
 /* 801398DC  4B FE FD FD */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 801398E0  7F E3 FB 78 */	mr r3, r31

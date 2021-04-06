@@ -7,8 +7,8 @@ lbl_804C6DCC:
 /* 804C6DE0  4D 82 00 20 */	beqlr 
 /* 804C6DE4  54 A0 06 31 */	rlwinm. r0, r5, 0, 0x18, 0x18
 /* 804C6DE8  41 82 00 18 */	beq lbl_804C6E00
-/* 804C6DEC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 804C6DF0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 804C6DEC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804C6DF0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804C6DF4  80 05 5D B4 */	lwz r0, 0x5db4(r5)
 /* 804C6DF8  7C 04 00 40 */	cmplw r4, r0
 /* 804C6DFC  4D 82 00 20 */	beqlr 

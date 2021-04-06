@@ -13,8 +13,8 @@ lbl_80BF89B0:
 /* 80BF89DC  80 03 07 80 */	lwz r0, 0x780(r3)
 /* 80BF89E0  28 00 00 00 */	cmplwi r0, 0
 /* 80BF89E4  40 82 00 5C */	bne lbl_80BF8A40
-/* 80BF89E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BF89EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BF89E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BF89EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BF89F0  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80BF89F4  38 80 00 00 */	li r4, 0
 /* 80BF89F8  90 81 00 08 */	stw r4, 8(r1)
@@ -31,9 +31,9 @@ lbl_80BF89B0:
 /* 80BF8A24  39 1F 04 DC */	addi r8, r31, 0x4dc
 /* 80BF8A28  39 3F 07 88 */	addi r9, r31, 0x788
 /* 80BF8A2C  39 40 00 FF */	li r10, 0xff
-/* 80BF8A30  3D 60 80 C0 */	lis r11, lit_3760@ha
-/* 80BF8A34  C0 2B 90 10 */	lfs f1, lit_3760@l(r11)
-/* 80BF8A38  4B 45 40 58 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80BF8A30  3D 60 80 C0 */	lis r11, lit_3760@ha /* 0x80BF9010@ha */
+/* 80BF8A34  C0 2B 90 10 */	lfs f1, lit_3760@l(r11)  /* 0x80BF9010@l */
+/* 80BF8A38  4B 45 40 59 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80BF8A3C  90 7F 07 80 */	stw r3, 0x780(r31)
 lbl_80BF8A40:
 /* 80BF8A40  83 E1 00 2C */	lwz r31, 0x2c(r1)

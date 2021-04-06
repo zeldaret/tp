@@ -30,8 +30,6 @@ extern "C" void __apl__5csXyzFR5csXyz();
 extern "C" void __mi__5csXyzFR5csXyz();
 extern "C" void __ml__5csXyzFf();
 extern "C" void __sinit_c_sxyz_cpp();
-extern "C" extern u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
 
 //
 // External References:
@@ -44,7 +42,7 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-/* 802673F4-80267404 0010+00 s=4 e=19 z=119  None .text      __ct__5csXyzFsss */
+/* 802673F4-80267404 261D34 0010+00 4/4 19/19 119/119 .text            __ct__5csXyzFsss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -54,8 +52,7 @@ asm csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
 }
 #pragma pop
 
-/* 80267404-8026745C 0058+00 s=0 e=0 z=3  None .text      __pl__5csXyzFR5csXyz */
-//	80267448: 802673F4 (__ct__5csXyzFsss)
+/* 80267404-8026745C 261D44 0058+00 0/0 0/0 3/3 .text            __pl__5csXyzFR5csXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,7 +62,7 @@ asm void csXyz::operator+(csXyz& param_0) {
 }
 #pragma pop
 
-/* 8026745C-80267490 0034+00 s=0 e=2 z=11  None .text      __apl__5csXyzFR5csXyz */
+/* 8026745C-80267490 261D9C 0034+00 0/0 2/2 11/11 .text            __apl__5csXyzFR5csXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,8 +72,7 @@ asm void csXyz::operator+=(csXyz& param_0) {
 }
 #pragma pop
 
-/* 80267490-802674E8 0058+00 s=0 e=0 z=1  None .text      __mi__5csXyzFR5csXyz */
-//	802674D4: 802673F4 (__ct__5csXyzFsss)
+/* 80267490-802674E8 261DD0 0058+00 0/0 0/0 1/1 .text            __mi__5csXyzFR5csXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -87,12 +83,10 @@ asm void csXyz::operator-(csXyz& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804550A0-804550A8 0008+00 s=1 e=0 z=0  None .sdata2    @151 */
+/* 804550A0-804550A8 0036A0 0008+00 1/1 0/0 0/0 .sdata2          @151 */
 SECTION_SDATA2 static f64 lit_151 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802674E8-8026758C 00A4+00 s=0 e=0 z=1  None .text      __ml__5csXyzFf */
-//	802674FC: 804550A0 (lit_151)
-//	80267578: 802673F4 (__ct__5csXyzFsss)
+/* 802674E8-8026758C 261E28 00A4+00 0/0 0/0 1/1 .text            __ml__5csXyzFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,29 +97,22 @@ asm void csXyz::operator*(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430DA8-80430DB8 000C+04 s=1 e=0 z=0  None .bss       @262 */
+/* 80430DA8-80430DB8 05DAC8 000C+04 1/1 0/0 0/0 .bss             @262 */
 static u8 lit_262[12 + 4 /* padding */];
 
-/* 80451160-80451164 0004+00 s=1 e=13 z=3  None .sbss      Zero__5csXyz */
+/* 80451160-80451164 000660 0004+00 1/1 13/13 3/3 .sbss            Zero__5csXyz */
+extern u8 Zero__5csXyz[4];
 u8 Zero__5csXyz[4];
 
-/* 80451164-80451168 0004+00 s=1 e=6 z=0  None .sbss      None */
+/* 80451164-80451168 000664 0004+00 1/1 6/13 0/2 .sbss            None */
+extern u8 data_80451164[4];
 u8 data_80451164[4];
 
-/* 8026758C-802675E4 0058+00 s=0 e=0 z=0  None .text      __sinit_c_sxyz_cpp */
-//	802675A8: 802673F4 (__ct__5csXyzFsss)
-//	802675B0: 80451160 (Zero__5csXyz)
-//	802675B8: 80451164 (data_80451164)
-//	802675BC: 80451160 (Zero__5csXyz)
-//	802675C0: 80018BD0 (__dt__5csXyzFv)
-//	802675C4: 80018BD0 (__dt__5csXyzFv)
-//	802675C8: 80430DA8 (lit_262)
-//	802675CC: 80430DA8 (lit_262)
-//	802675D0: 80361C24 (__register_global_object)
+/* 8026758C-802675E4 261ECC 0058+00 0/0 1/0 0/0 .text            __sinit_c_sxyz_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_c_sxyz_cpp() {
+asm void __sinit_c_sxyz_cpp() {
     nofralloc
 #include "asm/SSystem/SComponent/c_sxyz/__sinit_c_sxyz_cpp.s"
 }

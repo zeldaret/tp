@@ -17,8 +17,8 @@ lbl_80037788:
 /* 800377C4  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 800377C8  40 81 00 EC */	ble lbl_800378B4
 /* 800377CC  38 61 00 14 */	addi r3, r1, 0x14
-/* 800377D0  3C 80 80 43 */	lis r4, BaseY__4cXyz@ha
-/* 800377D4  38 84 0D 24 */	addi r4, r4, BaseY__4cXyz@l
+/* 800377D0  3C 80 80 43 */	lis r4, BaseY__4cXyz@ha /* 0x80430D24@ha */
+/* 800377D4  38 84 0D 24 */	addi r4, r4, BaseY__4cXyz@l /* 0x80430D24@l */
 /* 800377D8  7F E5 FB 78 */	mr r5, r31
 /* 800377DC  48 22 F4 E1 */	bl outprod__4cXyzCFRC3Vec
 /* 800377E0  C0 01 00 14 */	lfs f0, 0x14(r1)
@@ -43,8 +43,8 @@ lbl_80037788:
 /* 8003782C  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80037830  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80037834  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80037838  3C 60 80 43 */	lis r3, BaseY__4cXyz@ha
-/* 8003783C  38 63 0D 24 */	addi r3, r3, BaseY__4cXyz@l
+/* 80037838  3C 60 80 43 */	lis r3, BaseY__4cXyz@ha /* 0x80430D24@ha */
+/* 8003783C  38 63 0D 24 */	addi r3, r3, BaseY__4cXyz@l /* 0x80430D24@l */
 /* 80037840  38 81 00 20 */	addi r4, r1, 0x20
 /* 80037844  48 30 F9 51 */	bl PSVECDotProduct
 /* 80037848  48 33 4E 99 */	bl acos
@@ -66,8 +66,8 @@ lbl_80037864:
 /* 80037884  48 30 FB F1 */	bl C_QUATRotAxisRad
 /* 80037888  48 00 00 50 */	b lbl_800378D8
 lbl_8003788C:
-/* 8003788C  3C 60 80 38 */	lis r3, zero_quat@ha
-/* 80037890  C4 03 92 98 */	lfsu f0, zero_quat@l(r3)
+/* 8003788C  3C 60 80 38 */	lis r3, zero_quat@ha /* 0x80379298@ha */
+/* 80037890  C4 03 92 98 */	lfsu f0, zero_quat@l(r3)  /* 0x80379298@l */
 /* 80037894  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 80037898  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8003789C  D0 1E 00 04 */	stfs f0, 4(r30)
@@ -77,8 +77,8 @@ lbl_8003788C:
 /* 800378AC  D0 1E 00 0C */	stfs f0, 0xc(r30)
 /* 800378B0  48 00 00 28 */	b lbl_800378D8
 lbl_800378B4:
-/* 800378B4  3C 60 80 38 */	lis r3, zero_quat@ha
-/* 800378B8  C4 03 92 98 */	lfsu f0, zero_quat@l(r3)
+/* 800378B4  3C 60 80 38 */	lis r3, zero_quat@ha /* 0x80379298@ha */
+/* 800378B8  C4 03 92 98 */	lfsu f0, zero_quat@l(r3)  /* 0x80379298@l */
 /* 800378BC  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 800378C0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800378C4  D0 1E 00 04 */	stfs f0, 4(r30)

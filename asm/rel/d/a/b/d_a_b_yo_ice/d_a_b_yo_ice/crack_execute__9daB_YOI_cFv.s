@@ -2,8 +2,8 @@ lbl_8063CD14:
 /* 8063CD14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8063CD18  7C 08 02 A6 */	mflr r0
 /* 8063CD1C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8063CD20  3C 80 80 64 */	lis r4, lit_3776@ha
-/* 8063CD24  38 84 DC 84 */	addi r4, r4, lit_3776@l
+/* 8063CD20  3C 80 80 64 */	lis r4, lit_3776@ha /* 0x8063DC84@ha */
+/* 8063CD24  38 84 DC 84 */	addi r4, r4, lit_3776@l /* 0x8063DC84@l */
 /* 8063CD28  C0 03 04 D4 */	lfs f0, 0x4d4(r3)
 /* 8063CD2C  C0 24 00 14 */	lfs f1, 0x14(r4)
 /* 8063CD30  FC 00 08 40 */	fcmpo cr0, f0, f1
@@ -26,7 +26,7 @@ lbl_8063CD14:
 lbl_8063CD74:
 /* 8063CD74  38 63 06 C0 */	addi r3, r3, 0x6c0
 /* 8063CD78  C0 44 01 00 */	lfs f2, 0x100(r4)
-/* 8063CD7C  4B C3 39 C4 */	b cLib_chaseF__FPfff
+/* 8063CD7C  4B C3 39 C5 */	bl cLib_chaseF__FPfff
 lbl_8063CD80:
 /* 8063CD80  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8063CD84  7C 08 03 A6 */	mtlr r0

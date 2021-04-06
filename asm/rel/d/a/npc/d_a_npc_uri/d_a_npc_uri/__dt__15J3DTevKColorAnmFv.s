@@ -7,7 +7,7 @@ lbl_80B26ED0:
 /* 80B26EE4  41 82 00 10 */	beq lbl_80B26EF4
 /* 80B26EE8  7C 80 07 35 */	extsh. r0, r4
 /* 80B26EEC  40 81 00 08 */	ble lbl_80B26EF4
-/* 80B26EF0  4B 7A 7E 4C */	b __dl__FPv
+/* 80B26EF0  4B 7A 7E 4D */	bl __dl__FPv
 lbl_80B26EF4:
 /* 80B26EF4  7F E3 FB 78 */	mr r3, r31
 /* 80B26EF8  83 E1 00 0C */	lwz r31, 0xc(r1)

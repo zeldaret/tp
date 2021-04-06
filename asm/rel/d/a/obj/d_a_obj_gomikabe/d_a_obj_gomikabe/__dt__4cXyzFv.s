@@ -7,7 +7,7 @@ lbl_80BFE3FC:
 /* 80BFE410  41 82 00 10 */	beq lbl_80BFE420
 /* 80BFE414  7C 80 07 35 */	extsh. r0, r4
 /* 80BFE418  40 81 00 08 */	ble lbl_80BFE420
-/* 80BFE41C  4B 6D 09 20 */	b __dl__FPv
+/* 80BFE41C  4B 6D 09 21 */	bl __dl__FPv
 lbl_80BFE420:
 /* 80BFE420  7F E3 FB 78 */	mr r3, r31
 /* 80BFE424  83 E1 00 0C */	lwz r31, 0xc(r1)

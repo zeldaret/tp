@@ -7,8 +7,8 @@ lbl_802832C4:
 /* 802832D8  4B FF E3 B9 */	bl __ct__Q27JStudio14TFunctionValueFv
 /* 802832DC  38 7F 00 08 */	addi r3, r31, 8
 /* 802832E0  4B FF EA 39 */	bl __ct__Q27JStudio29TFunctionValueAttribute_rangeFv
-/* 802832E4  3C 60 80 3C */	lis r3, __vt__Q27JStudio22TFunctionValue_hermite@ha
-/* 802832E8  38 03 48 E0 */	addi r0, r3, __vt__Q27JStudio22TFunctionValue_hermite@l
+/* 802832E4  3C 60 80 3C */	lis r3, __vt__Q27JStudio22TFunctionValue_hermite@ha /* 0x803C48E0@ha */
+/* 802832E8  38 03 48 E0 */	addi r0, r3, __vt__Q27JStudio22TFunctionValue_hermite@l /* 0x803C48E0@l */
 /* 802832EC  90 1F 00 00 */	stw r0, 0(r31)
 /* 802832F0  38 00 00 00 */	li r0, 0
 /* 802832F4  90 1F 00 40 */	stw r0, 0x40(r31)

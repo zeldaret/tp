@@ -6,8 +6,8 @@ lbl_800248A8:
 /* 800248B8  48 33 D9 21 */	bl _savegpr_28
 /* 800248BC  3B 80 00 00 */	li r28, 0
 /* 800248C0  3B E0 00 00 */	li r31, 0
-/* 800248C4  3C 60 80 3A */	lis r3, mMemoryBlock__20dStage_roomControl_c@ha
-/* 800248C8  3B A3 69 20 */	addi r29, r3, mMemoryBlock__20dStage_roomControl_c@l
+/* 800248C4  3C 60 80 3A */	lis r3, mMemoryBlock__20dStage_roomControl_c@ha /* 0x803A6920@ha */
+/* 800248C8  3B A3 69 20 */	addi r29, r3, mMemoryBlock__20dStage_roomControl_c@l /* 0x803A6920@l */
 /* 800248CC  7F FE FB 78 */	mr r30, r31
 lbl_800248D0:
 /* 800248D0  7C 7D F8 2E */	lwzx r3, r29, r31

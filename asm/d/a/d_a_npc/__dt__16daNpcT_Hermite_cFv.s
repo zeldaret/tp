@@ -5,8 +5,8 @@ lbl_8014CBAC:
 /* 8014CBB8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8014CBBC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8014CBC0  41 82 00 1C */	beq lbl_8014CBDC
-/* 8014CBC4  3C A0 80 3B */	lis r5, __vt__16daNpcT_Hermite_c@ha
-/* 8014CBC8  38 05 3B 60 */	addi r0, r5, __vt__16daNpcT_Hermite_c@l
+/* 8014CBC4  3C A0 80 3B */	lis r5, __vt__16daNpcT_Hermite_c@ha /* 0x803B3B60@ha */
+/* 8014CBC8  38 05 3B 60 */	addi r0, r5, __vt__16daNpcT_Hermite_c@l /* 0x803B3B60@l */
 /* 8014CBCC  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 8014CBD0  7C 80 07 35 */	extsh. r0, r4
 /* 8014CBD4  40 81 00 08 */	ble lbl_8014CBDC

@@ -56,11 +56,11 @@ lbl_8009D48C:
 /* 8009D4E0  4B F6 AA B1 */	bl beginRender__13mDoGph_gInf_cFv
 /* 8009D4E4  38 60 00 00 */	li r3, 0
 /* 8009D4E8  48 2C 27 89 */	bl GXSetAlphaUpdate
-/* 8009D4EC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8009D4F0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8009D4EC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8009D4F0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8009D4F4  48 27 2B C9 */	bl drawInit__6J3DSysFv
-/* 8009D4F8  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 8009D4FC  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 8009D4F8  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 8009D4FC  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8009D500  80 8D 86 50 */	lwz r4, mFrameBufferTex__13mDoGph_gInf_c(r13)
 /* 8009D504  38 A0 01 30 */	li r5, 0x130
 /* 8009D508  38 C0 00 E0 */	li r6, 0xe0
@@ -70,8 +70,8 @@ lbl_8009D48C:
 /* 8009D518  39 20 00 00 */	li r9, 0
 /* 8009D51C  39 40 00 00 */	li r10, 0
 /* 8009D520  48 2C 09 21 */	bl GXInitTexObj
-/* 8009D524  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 8009D528  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 8009D524  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 8009D528  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8009D52C  38 80 00 01 */	li r4, 1
 /* 8009D530  38 A0 00 01 */	li r5, 1
 /* 8009D534  C0 22 92 18 */	lfs f1, lit_3758(r2)
@@ -81,8 +81,8 @@ lbl_8009D48C:
 /* 8009D544  38 E0 00 00 */	li r7, 0
 /* 8009D548  39 00 00 00 */	li r8, 0
 /* 8009D54C  48 2C 0B 89 */	bl GXInitTexObjLOD
-/* 8009D550  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 8009D554  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 8009D550  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 8009D554  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8009D558  38 80 00 00 */	li r4, 0
 /* 8009D55C  48 2C 0E B9 */	bl GXLoadTexObj
 /* 8009D560  38 60 00 00 */	li r3, 0
@@ -181,8 +181,8 @@ lbl_8009D48C:
 /* 8009D6D4  FC A0 08 90 */	fmr f5, f1
 /* 8009D6D8  C0 C2 92 3C */	lfs f6, lit_3767(r2)
 /* 8009D6DC  48 2A 99 1D */	bl C_MTXOrtho
-/* 8009D6E0  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8009D6E4  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 8009D6E0  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8009D6E4  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8009D6E8  38 80 00 00 */	li r4, 0
 /* 8009D6EC  48 2C 2B 61 */	bl GXLoadPosMtxImm
 /* 8009D6F0  38 61 00 20 */	addi r3, r1, 0x20

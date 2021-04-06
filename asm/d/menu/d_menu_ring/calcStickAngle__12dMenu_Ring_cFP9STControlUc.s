@@ -12,8 +12,8 @@ lbl_801EB8C0:
 /* 801EB8E8  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 801EB8EC  28 00 00 07 */	cmplwi r0, 7
 /* 801EB8F0  41 81 00 58 */	bgt lbl_801EB948
-/* 801EB8F4  3C 80 80 3C */	lis r4, lit_4795@ha
-/* 801EB8F8  38 84 DF 3C */	addi r4, r4, lit_4795@l
+/* 801EB8F4  3C 80 80 3C */	lis r4, lit_4795@ha /* 0x803BDF3C@ha */
+/* 801EB8F8  38 84 DF 3C */	addi r4, r4, lit_4795@l /* 0x803BDF3C@l */
 /* 801EB8FC  54 00 10 3A */	slwi r0, r0, 2
 /* 801EB900  7C 04 00 2E */	lwzx r0, r4, r0
 /* 801EB904  7C 09 03 A6 */	mtctr r0

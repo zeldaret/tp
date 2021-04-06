@@ -7,10 +7,10 @@ lbl_80CA8C94:
 /* 80CA8CA8  DB C1 00 40 */	stfd f30, 0x40(r1)
 /* 80CA8CAC  F3 C1 00 48 */	psq_st f30, 72(r1), 0, 0 /* qr0 */
 /* 80CA8CB0  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CA8CB4  4B 6B 95 20 */	b _savegpr_27
+/* 80CA8CB4  4B 6B 95 21 */	bl _savegpr_27
 /* 80CA8CB8  7C 7B 1B 78 */	mr r27, r3
-/* 80CA8CBC  3C 60 80 CB */	lis r3, lit_3655@ha
-/* 80CA8CC0  3B E3 9B 78 */	addi r31, r3, lit_3655@l
+/* 80CA8CBC  3C 60 80 CB */	lis r3, lit_3655@ha /* 0x80CA9B78@ha */
+/* 80CA8CC0  3B E3 9B 78 */	addi r31, r3, lit_3655@l /* 0x80CA9B78@l */
 /* 80CA8CC4  80 1B 05 D0 */	lwz r0, 0x5d0(r27)
 /* 80CA8CC8  54 04 BF FE */	rlwinm r4, r0, 0x17, 0x1f, 0x1f
 /* 80CA8CCC  54 03 E7 FE */	rlwinm r3, r0, 0x1c, 0x1f, 0x1f
@@ -41,13 +41,13 @@ lbl_80CA8D10:
 /* 80CA8D28  40 82 00 70 */	bne lbl_80CA8D98
 /* 80CA8D2C  88 1B 04 E2 */	lbz r0, 0x4e2(r27)
 /* 80CA8D30  7C 03 07 74 */	extsb r3, r0
-/* 80CA8D34  4B 38 43 38 */	b dComIfGp_getReverb__Fi
+/* 80CA8D34  4B 38 43 39 */	bl dComIfGp_getReverb__Fi
 /* 80CA8D38  7C 67 1B 78 */	mr r7, r3
 /* 80CA8D3C  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080038@ha */
 /* 80CA8D40  38 03 00 38 */	addi r0, r3, 0x0038 /* 0x00080038@l */
 /* 80CA8D44  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80CA8D48  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CA8D4C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CA8D48  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CA8D4C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CA8D50  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CA8D54  38 81 00 0C */	addi r4, r1, 0xc
 /* 80CA8D58  38 BB 05 38 */	addi r5, r27, 0x538
@@ -57,7 +57,7 @@ lbl_80CA8D10:
 /* 80CA8D68  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 80CA8D6C  FC 80 18 90 */	fmr f4, f3
 /* 80CA8D70  39 00 00 00 */	li r8, 0
-/* 80CA8D74  4B 60 2C 10 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CA8D74  4B 60 2C 11 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80CA8D78  80 1B 08 24 */	lwz r0, 0x824(r27)
 /* 80CA8D7C  60 00 00 01 */	ori r0, r0, 1
 /* 80CA8D80  90 1B 08 24 */	stw r0, 0x824(r27)
@@ -108,16 +108,16 @@ lbl_80CA8DE8:
 /* 80CA8E24  38 61 00 1C */	addi r3, r1, 0x1c
 /* 80CA8E28  C0 3F 00 58 */	lfs f1, 0x58(r31)
 /* 80CA8E2C  38 80 00 00 */	li r4, 0
-/* 80CA8E30  4B 37 6A 4C */	b fopKyM_createWpillar__FPC4cXyzfi
+/* 80CA8E30  4B 37 6A 4D */	bl fopKyM_createWpillar__FPC4cXyzfi
 /* 80CA8E34  88 1B 04 E2 */	lbz r0, 0x4e2(r27)
 /* 80CA8E38  7C 03 07 74 */	extsb r3, r0
-/* 80CA8E3C  4B 38 42 30 */	b dComIfGp_getReverb__Fi
+/* 80CA8E3C  4B 38 42 31 */	bl dComIfGp_getReverb__Fi
 /* 80CA8E40  7C 67 1B 78 */	mr r7, r3
 /* 80CA8E44  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008002A@ha */
 /* 80CA8E48  38 03 00 2A */	addi r0, r3, 0x002A /* 0x0008002A@l */
 /* 80CA8E4C  90 01 00 08 */	stw r0, 8(r1)
-/* 80CA8E50  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CA8E54  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CA8E50  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CA8E54  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CA8E58  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CA8E5C  38 81 00 08 */	addi r4, r1, 8
 /* 80CA8E60  38 BB 05 38 */	addi r5, r27, 0x538
@@ -127,7 +127,7 @@ lbl_80CA8DE8:
 /* 80CA8E70  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 80CA8E74  FC 80 18 90 */	fmr f4, f3
 /* 80CA8E78  39 00 00 00 */	li r8, 0
-/* 80CA8E7C  4B 60 2B 08 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CA8E7C  4B 60 2B 09 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80CA8E80:
 /* 80CA8E80  C0 1B 04 D0 */	lfs f0, 0x4d0(r27)
 /* 80CA8E84  D0 01 00 10 */	stfs f0, 0x10(r1)
@@ -167,14 +167,14 @@ lbl_80CA8EFC:
 /* 80CA8F00  38 81 00 10 */	addi r4, r1, 0x10
 /* 80CA8F04  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 80CA8F08  C0 5F 00 5C */	lfs f2, 0x5c(r31)
-/* 80CA8F0C  4B 37 42 00 */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 80CA8F0C  4B 37 42 01 */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 lbl_80CA8F10:
 /* 80CA8F10  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80CA8F14  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80CA8F18  E3 C1 00 48 */	psq_l f30, 72(r1), 0, 0 /* qr0 */
 /* 80CA8F1C  CB C1 00 40 */	lfd f30, 0x40(r1)
 /* 80CA8F20  39 61 00 40 */	addi r11, r1, 0x40
-/* 80CA8F24  4B 6B 92 FC */	b _restgpr_27
+/* 80CA8F24  4B 6B 92 FD */	bl _restgpr_27
 /* 80CA8F28  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80CA8F2C  7C 08 03 A6 */	mtlr r0
 /* 80CA8F30  38 21 00 60 */	addi r1, r1, 0x60

@@ -3,8 +3,8 @@ lbl_80878A6C:
 /* 80878A70  7C 08 02 A6 */	mflr r0
 /* 80878A74  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80878A78  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80878A7C  3C 60 80 94 */	lis r3, daMP_Fail_alloc@ha
-/* 80878A80  80 03 5B 08 */	lwz r0, daMP_Fail_alloc@l(r3)
+/* 80878A7C  3C 60 80 94 */	lis r3, daMP_Fail_alloc@ha /* 0x80945B08@ha */
+/* 80878A80  80 03 5B 08 */	lwz r0, daMP_Fail_alloc@l(r3)  /* 0x80945B08@l */
 /* 80878A84  2C 00 00 00 */	cmpwi r0, 0
 /* 80878A88  40 82 00 10 */	bne lbl_80878A98
 /* 80878A8C  4B FF FB 91 */	bl daMP_THPPlayerGetState__Fv
@@ -14,8 +14,8 @@ lbl_80878A98:
 /* 80878A98  38 60 00 00 */	li r3, 0
 /* 80878A9C  48 00 00 88 */	b lbl_80878B24
 lbl_80878AA0:
-/* 80878AA0  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80878AA4  38 A3 9B D0 */	addi r5, r3, daMP_ActivePlayer@l
+/* 80878AA0  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80878AA4  38 A3 9B D0 */	addi r5, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80878AA8  80 05 00 A0 */	lwz r0, 0xa0(r5)
 /* 80878AAC  2C 00 00 00 */	cmpwi r0, 0
 /* 80878AB0  41 82 00 30 */	beq lbl_80878AE0

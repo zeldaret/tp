@@ -3,19 +3,20 @@
 #
 
 M357_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2.plf
+M357_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2.lcf
+M357_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2.map
 
 M357_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seira2/executor.cpp \
-	rel/d/a/npc/d_a_npc_seira2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2.cpp \
 
 M357_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2.o \
 
 M357_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/libRuntime.PPCEABI.H.a \
 
 M357_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M357_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map357.map\
+	-m _prolog \
+	-lcf $(M357_LDSCRIPT) \
+	-unused -map $(M357_MAP) \
+	-w off \
 
 $(M357_TARGET): $(M357_O_FILES) $(M357_LIBS)
+	@echo [357] creating $(M357_TARGET)
 	@echo $(M357_LIBS) $(M357_O_FILES) > build/M357_ofiles
-	$(LD) -opt_partial $(M357_LDFLAGS) -o $(M357_TARGET) @build/M357_ofiles
+	@python3 tools/lcf.py rel 357 --output $(M357_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M357_LDFLAGS) -o $(M357_TARGET) @build/M357_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira2/%.o: rel/d/a/npc/d_a_npc_seira2/%.cpp
+	@echo [357] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M357_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M357_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seira2/libs/Runtime.PPCEABI.H/Makefile
 

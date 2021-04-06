@@ -19,11 +19,11 @@ lbl_802A535C:
 /* 802A53A0  28 03 00 00 */	cmplwi r3, 0
 /* 802A53A4  41 82 00 C8 */	beq lbl_802A546C
 /* 802A53A8  7C 7B 1B 78 */	mr r27, r3
-/* 802A53AC  3C 80 80 3D */	lis r4, __vt__16JAIStreamDataMgr@ha
-/* 802A53B0  38 04 9A 1C */	addi r0, r4, __vt__16JAIStreamDataMgr@l
+/* 802A53AC  3C 80 80 3D */	lis r4, __vt__16JAIStreamDataMgr@ha /* 0x803C9A1C@ha */
+/* 802A53B0  38 04 9A 1C */	addi r0, r4, __vt__16JAIStreamDataMgr@l /* 0x803C9A1C@l */
 /* 802A53B4  90 03 00 00 */	stw r0, 0(r3)
-/* 802A53B8  3C 60 80 3D */	lis r3, data_803C9B14@ha
-/* 802A53BC  38 03 9B 14 */	addi r0, r3, data_803C9B14@l
+/* 802A53B8  3C 60 80 3D */	lis r3, data_803C9B14@ha /* 0x803C9B14@ha */
+/* 802A53BC  38 03 9B 14 */	addi r0, r3, data_803C9B14@l /* 0x803C9B14@l */
 /* 802A53C0  90 1B 00 00 */	stw r0, 0(r27)
 /* 802A53C4  38 61 00 08 */	addi r3, r1, 8
 /* 802A53C8  48 00 20 59 */	bl __ct__18JAUStreamFileTableFv
@@ -83,13 +83,13 @@ lbl_802A5480:
 /* 802A5488  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802A548C  41 82 00 28 */	beq lbl_802A54B4
 /* 802A5490  7F 9B E3 78 */	mr r27, r28
-/* 802A5494  3C 60 80 3D */	lis r3, __vt__16JAIStreamDataMgr@ha
-/* 802A5498  38 03 9A 1C */	addi r0, r3, __vt__16JAIStreamDataMgr@l
+/* 802A5494  3C 60 80 3D */	lis r3, __vt__16JAIStreamDataMgr@ha /* 0x803C9A1C@ha */
+/* 802A5498  38 03 9A 1C */	addi r0, r3, __vt__16JAIStreamDataMgr@l /* 0x803C9A1C@l */
 /* 802A549C  90 1C 00 00 */	stw r0, 0(r28)
 /* 802A54A0  38 7B 00 04 */	addi r3, r27, 4
 /* 802A54A4  48 00 1F 7D */	bl __ct__18JAUStreamFileTableFv
-/* 802A54A8  3C 60 80 3D */	lis r3, __vt__32JAUStreamDataMgr_StreamFileTable@ha
-/* 802A54AC  38 03 9B 50 */	addi r0, r3, __vt__32JAUStreamDataMgr_StreamFileTable@l
+/* 802A54A8  3C 60 80 3D */	lis r3, __vt__32JAUStreamDataMgr_StreamFileTable@ha /* 0x803C9B50@ha */
+/* 802A54AC  38 03 9B 50 */	addi r0, r3, __vt__32JAUStreamDataMgr_StreamFileTable@l /* 0x803C9B50@l */
 /* 802A54B0  90 1B 00 00 */	stw r0, 0(r27)
 lbl_802A54B4:
 /* 802A54B4  38 7C 00 04 */	addi r3, r28, 4

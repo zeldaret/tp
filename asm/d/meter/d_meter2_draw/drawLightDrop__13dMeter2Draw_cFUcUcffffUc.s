@@ -20,8 +20,8 @@ lbl_80215B18:
 /* 80215B60  7C DB 33 78 */	mr r27, r6
 /* 80215B64  3B 80 00 00 */	li r28, 0
 /* 80215B68  3B 20 00 00 */	li r25, 0
-/* 80215B6C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80215B70  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l
+/* 80215B6C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80215B70  3B E3 EB C8 */	addi r31, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80215B74  54 9D 06 3E */	clrlwi r29, r4, 0x18
 lbl_80215B78:
 /* 80215B78  7F DA CA 14 */	add r30, r26, r25

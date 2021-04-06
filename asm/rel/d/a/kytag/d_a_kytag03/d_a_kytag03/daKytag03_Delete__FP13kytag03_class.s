@@ -7,7 +7,7 @@ lbl_808573FC:
 /* 80857410  80 63 05 6C */	lwz r3, 0x56c(r3)
 /* 80857414  28 03 00 00 */	cmplwi r3, 0
 /* 80857418  41 82 00 40 */	beq lbl_80857458
-/* 8085741C  4B A2 78 44 */	b deleteAllParticle__14JPABaseEmitterFv
+/* 8085741C  4B A2 78 45 */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 80857420  80 7F 05 6C */	lwz r3, 0x56c(r31)
 /* 80857424  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 80857428  60 00 00 01 */	ori r0, r0, 1

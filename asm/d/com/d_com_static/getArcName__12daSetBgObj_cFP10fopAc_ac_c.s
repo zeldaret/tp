@@ -4,8 +4,8 @@ lbl_80031870:
 /* 80031878  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003187C  7C 65 1B 78 */	mr r5, r3
 /* 80031880  38 6D 88 1C */	la r3, arcName(r13) /* 80450D9C-_SDA_BASE_ */
-/* 80031884  3C 80 80 38 */	lis r4, d_com_d_com_static__stringBase0@ha
-/* 80031888  38 84 90 B0 */	addi r4, r4, d_com_d_com_static__stringBase0@l
+/* 80031884  3C 80 80 38 */	lis r4, d_com_d_com_static__stringBase0@ha /* 0x803790B0@ha */
+/* 80031888  38 84 90 B0 */	addi r4, r4, d_com_d_com_static__stringBase0@l /* 0x803790B0@l */
 /* 8003188C  38 84 00 08 */	addi r4, r4, 8
 /* 80031890  80 05 00 B0 */	lwz r0, 0xb0(r5)
 /* 80031894  54 05 04 3E */	clrlwi r5, r0, 0x10

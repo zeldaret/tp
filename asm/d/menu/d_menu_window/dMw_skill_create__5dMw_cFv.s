@@ -23,11 +23,11 @@ lbl_801FCA88:
 /* 801FCA9C  48 0D 21 B1 */	bl __nw__FUl
 /* 801FCAA0  28 03 00 00 */	cmplwi r3, 0
 /* 801FCAA4  41 82 00 30 */	beq lbl_801FCAD4
-/* 801FCAA8  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha
-/* 801FCAAC  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l
+/* 801FCAA8  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801FCAAC  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801FCAB0  90 03 00 00 */	stw r0, 0(r3)
-/* 801FCAB4  3C 80 80 3C */	lis r4, __vt__20dDlst_MENU_CAPTURE_c@ha
-/* 801FCAB8  38 04 F0 D4 */	addi r0, r4, __vt__20dDlst_MENU_CAPTURE_c@l
+/* 801FCAB4  3C 80 80 3C */	lis r4, __vt__20dDlst_MENU_CAPTURE_c@ha /* 0x803BF0D4@ha */
+/* 801FCAB8  38 04 F0 D4 */	addi r0, r4, __vt__20dDlst_MENU_CAPTURE_c@l /* 0x803BF0D4@l */
 /* 801FCABC  90 03 00 00 */	stw r0, 0(r3)
 /* 801FCAC0  38 80 00 00 */	li r4, 0
 /* 801FCAC4  98 83 00 04 */	stb r4, 4(r3)

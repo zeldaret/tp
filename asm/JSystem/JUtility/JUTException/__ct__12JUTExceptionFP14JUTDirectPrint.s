@@ -10,29 +10,29 @@ lbl_802E1D5C:
 /* 802E1D7C  38 A0 00 10 */	li r5, 0x10
 /* 802E1D80  38 C0 00 00 */	li r6, 0
 /* 802E1D84  4B FE F7 E5 */	bl __ct__9JKRThreadFUlii
-/* 802E1D88  3C 60 80 3D */	lis r3, __vt__12JUTException@ha
-/* 802E1D8C  38 03 C6 A4 */	addi r0, r3, __vt__12JUTException@l
+/* 802E1D88  3C 60 80 3D */	lis r3, __vt__12JUTException@ha /* 0x803CC6A4@ha */
+/* 802E1D8C  38 03 C6 A4 */	addi r0, r3, __vt__12JUTException@l /* 0x803CC6A4@l */
 /* 802E1D90  90 1E 00 00 */	stw r0, 0(r30)
 /* 802E1D94  93 FE 00 80 */	stw r31, 0x80(r30)
 /* 802E1D98  38 60 00 02 */	li r3, 2
-/* 802E1D9C  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E1DA0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E1D9C  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E1DA0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E1DA4  48 05 A7 DD */	bl OSSetErrorHandler
 /* 802E1DA8  38 60 00 03 */	li r3, 3
-/* 802E1DAC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E1DB0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E1DAC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E1DB0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E1DB4  48 05 A7 CD */	bl OSSetErrorHandler
 /* 802E1DB8  38 60 00 06 */	li r3, 6
-/* 802E1DBC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E1DC0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E1DBC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E1DC0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E1DC4  48 05 A7 BD */	bl OSSetErrorHandler
 /* 802E1DC8  38 60 00 05 */	li r3, 5
-/* 802E1DCC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E1DD0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E1DCC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E1DD0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E1DD4  48 05 A7 AD */	bl OSSetErrorHandler
 /* 802E1DD8  38 60 00 0F */	li r3, 0xf
-/* 802E1DDC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E1DE0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E1DDC  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E1DE0  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E1DE4  48 05 A7 9D */	bl OSSetErrorHandler
 /* 802E1DE8  38 60 00 00 */	li r3, 0
 /* 802E1DEC  48 00 04 91 */	bl setFPException__12JUTExceptionFUl

@@ -4,7 +4,7 @@ lbl_807DBFAC:
 /* 807DBFB4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807DBFB8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807DBFBC  7C 7F 1B 78 */	mr r31, r3
-/* 807DBFC0  4B 83 CD 20 */	b fopAc_IsActor__FPv
+/* 807DBFC0  4B 83 CD 21 */	bl fopAc_IsActor__FPv
 /* 807DBFC4  2C 03 00 00 */	cmpwi r3, 0
 /* 807DBFC8  41 82 00 24 */	beq lbl_807DBFEC
 /* 807DBFCC  A8 1F 00 08 */	lha r0, 8(r31)
@@ -14,7 +14,7 @@ lbl_807DBFAC:
 /* 807DBFDC  7C 00 07 75 */	extsb. r0, r0
 /* 807DBFE0  40 82 00 0C */	bne lbl_807DBFEC
 /* 807DBFE4  7F E3 FB 78 */	mr r3, r31
-/* 807DBFE8  4B 83 DC 94 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 807DBFE8  4B 83 DC 95 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_807DBFEC:
 /* 807DBFEC  38 60 00 00 */	li r3, 0
 /* 807DBFF0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -5,14 +5,14 @@ lbl_804CA2EC:
 /* 804CA2F8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804CA2FC  7C 7F 1B 78 */	mr r31, r3
 /* 804CA300  C0 03 04 EC */	lfs f0, 0x4ec(r3)
-/* 804CA304  3C 80 80 4D */	lis r4, lit_4216@ha
-/* 804CA308  C0 24 C3 7C */	lfs f1, lit_4216@l(r4)
+/* 804CA304  3C 80 80 4D */	lis r4, lit_4216@ha /* 0x804CC37C@ha */
+/* 804CA308  C0 24 C3 7C */	lfs f1, lit_4216@l(r4)  /* 0x804CC37C@l */
 /* 804CA30C  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 804CA310  40 80 00 44 */	bge lbl_804CA354
 /* 804CA314  38 7F 04 EC */	addi r3, r31, 0x4ec
-/* 804CA318  3C 80 80 4D */	lis r4, lit_5458@ha
-/* 804CA31C  C0 44 C4 74 */	lfs f2, lit_5458@l(r4)
-/* 804CA320  4B DA 64 20 */	b cLib_chaseF__FPfff
+/* 804CA318  3C 80 80 4D */	lis r4, lit_5458@ha /* 0x804CC474@ha */
+/* 804CA31C  C0 44 C4 74 */	lfs f2, lit_5458@l(r4)  /* 0x804CC474@l */
+/* 804CA320  4B DA 64 21 */	bl cLib_chaseF__FPfff
 /* 804CA324  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 804CA328  D0 1F 04 F0 */	stfs f0, 0x4f0(r31)
 /* 804CA32C  C0 1F 04 EC */	lfs f0, 0x4ec(r31)

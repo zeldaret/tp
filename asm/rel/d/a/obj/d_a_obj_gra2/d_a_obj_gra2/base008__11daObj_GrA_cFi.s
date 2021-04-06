@@ -12,9 +12,9 @@ lbl_80C03DF0:
 lbl_80C03E18:
 /* 80C03E18  80 7F 07 54 */	lwz r3, 0x754(r31)
 /* 80C03E1C  38 63 00 0C */	addi r3, r3, 0xc
-/* 80C03E20  3C 80 80 C1 */	lis r4, lit_6321@ha
-/* 80C03E24  C0 24 FC DC */	lfs f1, lit_6321@l(r4)
-/* 80C03E28  4B 72 46 04 */	b checkPass__12J3DFrameCtrlFf
+/* 80C03E20  3C 80 80 C1 */	lis r4, lit_6321@ha /* 0x80C0FCDC@ha */
+/* 80C03E24  C0 24 FC DC */	lfs f1, lit_6321@l(r4)  /* 0x80C0FCDC@l */
+/* 80C03E28  4B 72 46 05 */	bl checkPass__12J3DFrameCtrlFf
 /* 80C03E2C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C03E30  41 82 00 2C */	beq lbl_80C03E5C
 /* 80C03E34  3C 60 00 05 */	lis r3, 0x0005 /* 0x00050088@ha */

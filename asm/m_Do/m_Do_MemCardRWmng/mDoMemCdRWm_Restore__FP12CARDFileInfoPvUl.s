@@ -8,8 +8,8 @@ lbl_8001769C:
 /* 800176B4  7C 95 23 78 */	mr r21, r4
 /* 800176B8  7C B6 2B 78 */	mr r22, r5
 /* 800176BC  3B 20 00 00 */	li r25, 0
-/* 800176C0  3C 80 80 3F */	lis r4, sTmpBuf@ha
-/* 800176C4  38 84 CF 40 */	addi r4, r4, sTmpBuf@l
+/* 800176C0  3C 80 80 3F */	lis r4, sTmpBuf@ha /* 0x803ECF40@ha */
+/* 800176C4  38 84 CF 40 */	addi r4, r4, sTmpBuf@l /* 0x803ECF40@l */
 /* 800176C8  7C 98 23 78 */	mr r24, r4
 /* 800176CC  3A E4 20 00 */	addi r23, r4, 0x2000
 /* 800176D0  38 A0 20 00 */	li r5, 0x2000
@@ -108,16 +108,16 @@ lbl_8001781C:
 /* 80017824  7E C5 B3 78 */	mr r5, r22
 /* 80017828  4B FE BD 19 */	bl memcpy
 /* 8001782C  80 18 00 04 */	lwz r0, 4(r24)
-/* 80017830  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80017834  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 80017830  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80017834  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80017838  90 03 1F F8 */	stw r0, 0x1ff8(r3)
 /* 8001783C  88 63 1F BC */	lbz r3, 0x1fbc(r3)
 /* 80017840  38 81 00 08 */	addi r4, r1, 8
 /* 80017844  48 34 19 15 */	bl CARDGetSerialNo
 /* 80017848  80 01 00 08 */	lwz r0, 8(r1)
 /* 8001784C  80 81 00 0C */	lwz r4, 0xc(r1)
-/* 80017850  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80017854  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 80017850  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80017854  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80017858  90 83 1F F4 */	stw r4, 0x1ff4(r3)
 /* 8001785C  90 03 1F F0 */	stw r0, 0x1ff0(r3)
 /* 80017860  38 60 00 00 */	li r3, 0

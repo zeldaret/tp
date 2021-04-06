@@ -5,8 +5,8 @@ lbl_80336450:
 /* 8033645C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80336460  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80336464  41 82 00 1C */	beq lbl_80336480
-/* 80336468  3C A0 80 3D */	lis r5, __vt__14J3DModelLoader@ha
-/* 8033646C  38 05 F1 F4 */	addi r0, r5, __vt__14J3DModelLoader@l
+/* 80336468  3C A0 80 3D */	lis r5, __vt__14J3DModelLoader@ha /* 0x803CF1F4@ha */
+/* 8033646C  38 05 F1 F4 */	addi r0, r5, __vt__14J3DModelLoader@l /* 0x803CF1F4@l */
 /* 80336470  90 1F 00 00 */	stw r0, 0(r31)
 /* 80336474  7C 80 07 35 */	extsh. r0, r4
 /* 80336478  40 81 00 08 */	ble lbl_80336480

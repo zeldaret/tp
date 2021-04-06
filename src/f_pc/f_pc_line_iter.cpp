@@ -25,20 +25,12 @@ struct create_tag_class {};
 // Forward References:
 //
 
-static void fpcLnIt_MethodCall(create_tag_class*, method_filter*);
-void fpcLnIt_Queue(int (*)(void*, void*));
-
 extern "C" static void fpcLnIt_MethodCall__FP16create_tag_classP13method_filter();
 extern "C" void fpcLnIt_Queue__FPFPvPv_i();
 
 //
 // External References:
 //
-
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-void cTrIt_Method(node_lists_tree_class*, int (*)(node_class*, void*), void*);
-void cTgIt_MethodCall(create_tag_class*, method_filter*);
 
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
 extern "C" void fpcLy_CurrentLayer__Fv();
@@ -52,28 +44,18 @@ extern "C" extern void* g_fpcLn_Queue[2];
 // Declarations:
 //
 
-/* 800236C0-80023728 0068+00 s=1 e=0 z=0  None .text
+/* 800236C0-80023728 01E000 0068+00 1/1 0/0 0/0 .text
  * fpcLnIt_MethodCall__FP16create_tag_classP13method_filter     */
-//	800236D0: 803621D8 (_savegpr_28)
-//	800236E4: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	800236F0: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	800236FC: 80266A7C (cTgIt_MethodCall__FP16create_tag_classP13method_filter)
-//	80023708: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80023714: 80362224 (_restgpr_28)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcLnIt_MethodCall(create_tag_class* param_0, method_filter* param_1) {
+static asm void fpcLnIt_MethodCall(create_tag_class* param_0, method_filter* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_line_iter/fpcLnIt_MethodCall__FP16create_tag_classP13method_filter.s"
 }
 #pragma pop
 
-/* 80023728-80023764 003C+00 s=0 e=1 z=0  None .text      fpcLnIt_Queue__FPFPvPv_i */
-//	80023740: 804505D8 (g_fpcLn_Queue)
-//	80023744: 800236C0 (fpcLnIt_MethodCall__FP16create_tag_classP13method_filter)
-//	80023748: 800236C0 (fpcLnIt_MethodCall__FP16create_tag_classP13method_filter)
-//	80023750: 80266540 (cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv)
+/* 80023728-80023764 01E068 003C+00 0/0 1/1 0/0 .text            fpcLnIt_Queue__FPFPvPv_i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

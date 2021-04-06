@@ -3,17 +3,15 @@
 #
 
 M511_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry.plf
+M511_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry.lcf
+M511_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry.map
 
 M511_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_laundry/executor.cpp \
-	rel/d/a/obj/d_a_obj_laundry/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_laundry/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry.cpp \
 
 M511_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry/d_a_obj_laundry.o \
 
 M511_LIBS := \
@@ -29,15 +27,21 @@ M511_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map511.map\
+	-m _prolog \
+	-lcf $(M511_LDSCRIPT) \
+	-unused -map $(M511_MAP) \
+	-w off \
 
 $(M511_TARGET): $(M511_O_FILES) $(M511_LIBS)
+	@echo [511] creating $(M511_TARGET)
 	@echo $(M511_LIBS) $(M511_O_FILES) > build/M511_ofiles
-	$(LD) -opt_partial $(M511_LDFLAGS) -o $(M511_TARGET) @build/M511_ofiles
+	@python3 tools/lcf.py rel 511 --output $(M511_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M511_LDFLAGS) -o $(M511_TARGET) @build/M511_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry/%.o: rel/d/a/obj/d_a_obj_laundry/%.cpp
+	@echo [511] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M511_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M511_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

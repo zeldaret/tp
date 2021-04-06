@@ -3,19 +3,20 @@
 #
 
 M418_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb.plf
+M418_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb.lcf
+M418_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb.map
 
 M418_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cb/executor.cpp \
-	rel/d/a/obj/d_a_obj_cb/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_cb/d_a_obj_cb.cpp \
 
 M418_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb/d_a_obj_cb.o \
 
 M418_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb/libRuntime.PPCEABI.H.a \
 
 M418_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M418_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map418.map\
+	-m _prolog \
+	-lcf $(M418_LDSCRIPT) \
+	-unused -map $(M418_MAP) \
+	-w off \
 
 $(M418_TARGET): $(M418_O_FILES) $(M418_LIBS)
+	@echo [418] creating $(M418_TARGET)
 	@echo $(M418_LIBS) $(M418_O_FILES) > build/M418_ofiles
-	$(LD) -opt_partial $(M418_LDFLAGS) -o $(M418_TARGET) @build/M418_ofiles
+	@python3 tools/lcf.py rel 418 --output $(M418_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M418_LDFLAGS) -o $(M418_TARGET) @build/M418_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cb/%.o: rel/d/a/obj/d_a_obj_cb/%.cpp
+	@echo [418] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M418_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M418_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_cb/libs/Runtime.PPCEABI.H/Makefile
 

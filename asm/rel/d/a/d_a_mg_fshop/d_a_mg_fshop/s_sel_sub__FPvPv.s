@@ -6,7 +6,7 @@ lbl_8086D48C:
 /* 8086D49C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8086D4A0  7C 7E 1B 78 */	mr r30, r3
 /* 8086D4A4  7C 9F 23 78 */	mr r31, r4
-/* 8086D4A8  4B 7A B8 38 */	b fopAc_IsActor__FPv
+/* 8086D4A8  4B 7A B8 39 */	bl fopAc_IsActor__FPv
 /* 8086D4AC  2C 03 00 00 */	cmpwi r3, 0
 /* 8086D4B0  41 82 00 34 */	beq lbl_8086D4E4
 /* 8086D4B4  A8 1E 00 08 */	lha r0, 8(r30)

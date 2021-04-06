@@ -8,8 +8,8 @@ lbl_8018E93C:
 /* 8018E954  48 0D 49 59 */	bl cAPICPad_ANY_BUTTON__FUl
 /* 8018E958  28 03 00 00 */	cmplwi r3, 0
 /* 8018E95C  41 82 00 40 */	beq lbl_8018E99C
-/* 8018E960  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8018E964  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8018E960  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8018E964  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018E968  A8 03 00 94 */	lha r0, 0x94(r3)
 /* 8018E96C  2C 00 00 00 */	cmpwi r0, 0
 /* 8018E970  40 82 00 2C */	bne lbl_8018E99C

@@ -5,8 +5,8 @@ lbl_804FDC90:
 /* 804FDC9C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 804FDCA0  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 804FDCA4  7C 7E 1B 78 */	mr r30, r3
-/* 804FDCA8  3C 80 80 50 */	lis r4, lit_3788@ha
-/* 804FDCAC  3B E4 0B 04 */	addi r31, r4, lit_3788@l
+/* 804FDCA8  3C 80 80 50 */	lis r4, lit_3788@ha /* 0x80500B04@ha */
+/* 804FDCAC  3B E4 0B 04 */	addi r31, r4, lit_3788@l /* 0x80500B04@l */
 /* 804FDCB0  A8 03 06 6C */	lha r0, 0x66c(r3)
 /* 804FDCB4  2C 00 00 01 */	cmpwi r0, 1
 /* 804FDCB8  41 82 00 88 */	beq lbl_804FDD40
@@ -51,8 +51,8 @@ lbl_804FDD40:
 /* 804FDD40  A8 9E 06 68 */	lha r4, 0x668(r30)
 /* 804FDD44  1C 04 03 84 */	mulli r0, r4, 0x384
 /* 804FDD48  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 804FDD4C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804FDD50  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 804FDD4C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804FDD50  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804FDD54  7C 23 04 2E */	lfsx f1, r3, r0
 /* 804FDD58  C0 1F 00 70 */	lfs f0, 0x70(r31)
 /* 804FDD5C  EC 20 00 72 */	fmuls f1, f0, f1
@@ -70,7 +70,7 @@ lbl_804FDD40:
 /* 804FDD8C  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 804FDD90  C0 1E 06 90 */	lfs f0, 0x690(r30)
 /* 804FDD94  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804FDD98  4B D7 1C A4 */	b cLib_addCalc2__FPffff
+/* 804FDD98  4B D7 1C A5 */	bl cLib_addCalc2__FPffff
 /* 804FDD9C  38 7E 04 D8 */	addi r3, r30, 0x4d8
 /* 804FDDA0  C0 3E 04 B0 */	lfs f1, 0x4b0(r30)
 /* 804FDDA4  C0 01 00 18 */	lfs f0, 0x18(r1)
@@ -79,7 +79,7 @@ lbl_804FDD40:
 /* 804FDDB0  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 804FDDB4  C0 1E 06 90 */	lfs f0, 0x690(r30)
 /* 804FDDB8  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804FDDBC  4B D7 1C 80 */	b cLib_addCalc2__FPffff
+/* 804FDDBC  4B D7 1C 81 */	bl cLib_addCalc2__FPffff
 /* 804FDDC0  88 1E 08 51 */	lbz r0, 0x851(r30)
 /* 804FDDC4  7C 00 07 75 */	extsb. r0, r0
 /* 804FDDC8  41 82 00 2C */	beq lbl_804FDDF4
@@ -91,7 +91,7 @@ lbl_804FDD40:
 /* 804FDDE0  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 804FDDE4  C0 1E 06 90 */	lfs f0, 0x690(r30)
 /* 804FDDE8  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804FDDEC  4B D7 1C 50 */	b cLib_addCalc2__FPffff
+/* 804FDDEC  4B D7 1C 51 */	bl cLib_addCalc2__FPffff
 /* 804FDDF0  48 00 00 28 */	b lbl_804FDE18
 lbl_804FDDF4:
 /* 804FDDF4  38 7E 04 D4 */	addi r3, r30, 0x4d4
@@ -102,13 +102,13 @@ lbl_804FDDF4:
 /* 804FDE08  C0 7F 00 50 */	lfs f3, 0x50(r31)
 /* 804FDE0C  C0 1E 06 90 */	lfs f0, 0x690(r30)
 /* 804FDE10  EC 63 00 32 */	fmuls f3, f3, f0
-/* 804FDE14  4B D7 1C 28 */	b cLib_addCalc2__FPffff
+/* 804FDE14  4B D7 1C 29 */	bl cLib_addCalc2__FPffff
 lbl_804FDE18:
 /* 804FDE18  38 7E 06 90 */	addi r3, r30, 0x690
 /* 804FDE1C  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 804FDE20  FC 40 08 90 */	fmr f2, f1
 /* 804FDE24  C0 7F 00 4C */	lfs f3, 0x4c(r31)
-/* 804FDE28  4B D7 1C 14 */	b cLib_addCalc2__FPffff
+/* 804FDE28  4B D7 1C 15 */	bl cLib_addCalc2__FPffff
 /* 804FDE2C  A8 1E 06 98 */	lha r0, 0x698(r30)
 /* 804FDE30  2C 00 00 32 */	cmpwi r0, 0x32
 /* 804FDE34  41 81 00 38 */	bgt lbl_804FDE6C
@@ -184,20 +184,20 @@ lbl_804FDF2C:
 /* 804FDF3C  38 80 40 00 */	li r4, 0x4000
 /* 804FDF40  38 A0 00 04 */	li r5, 4
 /* 804FDF44  38 C0 04 00 */	li r6, 0x400
-/* 804FDF48  4B D7 26 C0 */	b cLib_addCalcAngleS2__FPssss
+/* 804FDF48  4B D7 26 C1 */	bl cLib_addCalcAngleS2__FPssss
 /* 804FDF4C  48 00 00 18 */	b lbl_804FDF64
 lbl_804FDF50:
 /* 804FDF50  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 804FDF54  38 80 C0 00 */	li r4, -16384
 /* 804FDF58  38 A0 00 04 */	li r5, 4
 /* 804FDF5C  38 C0 04 00 */	li r6, 0x400
-/* 804FDF60  4B D7 26 A8 */	b cLib_addCalcAngleS2__FPssss
+/* 804FDF60  4B D7 26 A9 */	bl cLib_addCalcAngleS2__FPssss
 lbl_804FDF64:
 /* 804FDF64  38 7E 08 48 */	addi r3, r30, 0x848
 /* 804FDF68  C0 3F 00 2C */	lfs f1, 0x2c(r31)
 /* 804FDF6C  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 804FDF70  C0 7F 00 60 */	lfs f3, 0x60(r31)
-/* 804FDF74  4B D7 1A C8 */	b cLib_addCalc2__FPffff
+/* 804FDF74  4B D7 1A C9 */	bl cLib_addCalc2__FPffff
 /* 804FDF78  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 804FDF7C  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 804FDF80  80 01 00 34 */	lwz r0, 0x34(r1)

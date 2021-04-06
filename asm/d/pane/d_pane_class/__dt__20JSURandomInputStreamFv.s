@@ -7,8 +7,8 @@ lbl_80255328:
 /* 8025533C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80255340  7C 9F 23 78 */	mr r31, r4
 /* 80255344  41 82 00 28 */	beq lbl_8025536C
-/* 80255348  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha
-/* 8025534C  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l
+/* 80255348  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 8025534C  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 80255350  90 1E 00 00 */	stw r0, 0(r30)
 /* 80255354  38 80 00 00 */	li r4, 0
 /* 80255358  48 08 6E E5 */	bl __dt__14JSUInputStreamFv

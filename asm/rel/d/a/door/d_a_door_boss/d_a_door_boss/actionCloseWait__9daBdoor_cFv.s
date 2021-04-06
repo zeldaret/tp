@@ -7,14 +7,14 @@ lbl_80670328:
 /* 8067033C  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80670340  28 00 00 03 */	cmplwi r0, 3
 /* 80670344  40 82 00 3C */	bne lbl_80670380
-/* 80670348  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8067034C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80670348  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067034C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80670350  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80670354  3C 80 80 67 */	lis r4, l_staff_name@ha
-/* 80670358  38 84 09 6C */	addi r4, r4, l_staff_name@l
+/* 80670354  3C 80 80 67 */	lis r4, l_staff_name@ha /* 0x8067096C@ha */
+/* 80670358  38 84 09 6C */	addi r4, r4, l_staff_name@l /* 0x8067096C@l */
 /* 8067035C  38 A0 00 00 */	li r5, 0
 /* 80670360  38 C0 00 00 */	li r6, 0
-/* 80670364  4B 9D 77 B8 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 80670364  4B 9D 77 B9 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 80670368  90 7F 05 88 */	stw r3, 0x588(r31)
 /* 8067036C  7F E3 FB 78 */	mr r3, r31
 /* 80670370  4B FF F7 91 */	bl demoProc__9daBdoor_cFv
@@ -26,9 +26,9 @@ lbl_80670380:
 /* 80670384  2C 03 00 00 */	cmpwi r3, 0
 /* 80670388  41 82 00 20 */	beq lbl_806703A8
 /* 8067038C  38 7F 00 F4 */	addi r3, r31, 0xf4
-/* 80670390  3C 80 80 67 */	lis r4, l_door_open_demo@ha
-/* 80670394  38 84 09 54 */	addi r4, r4, l_door_open_demo@l
-/* 80670398  4B 9D 30 90 */	b setEventName__11dEvt_info_cFPc
+/* 80670390  3C 80 80 67 */	lis r4, l_door_open_demo@ha /* 0x80670954@ha */
+/* 80670394  38 84 09 54 */	addi r4, r4, l_door_open_demo@l /* 0x80670954@l */
+/* 80670398  4B 9D 30 91 */	bl setEventName__11dEvt_info_cFPc
 /* 8067039C  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 806703A0  60 00 00 04 */	ori r0, r0, 4
 /* 806703A4  B0 1F 00 FA */	sth r0, 0xfa(r31)

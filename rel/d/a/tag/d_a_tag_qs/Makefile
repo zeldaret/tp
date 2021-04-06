@@ -3,17 +3,15 @@
 #
 
 M734_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs.plf
+M734_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs.lcf
+M734_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs.map
 
 M734_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_qs/executor.cpp \
-	rel/d/a/tag/d_a_tag_qs/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_qs/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_qs/d_a_tag_qs.cpp \
 
 M734_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/d_a_tag_qs.o \
 
 M734_LIBS := \
@@ -29,15 +27,21 @@ M734_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map734.map\
+	-m _prolog \
+	-lcf $(M734_LDSCRIPT) \
+	-unused -map $(M734_MAP) \
+	-w off \
 
 $(M734_TARGET): $(M734_O_FILES) $(M734_LIBS)
+	@echo [734] creating $(M734_TARGET)
 	@echo $(M734_LIBS) $(M734_O_FILES) > build/M734_ofiles
-	$(LD) -opt_partial $(M734_LDFLAGS) -o $(M734_TARGET) @build/M734_ofiles
+	@python3 tools/lcf.py rel 734 --output $(M734_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M734_LDFLAGS) -o $(M734_TARGET) @build/M734_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_qs/%.o: rel/d/a/tag/d_a_tag_qs/%.cpp
+	@echo [734] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M734_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M734_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

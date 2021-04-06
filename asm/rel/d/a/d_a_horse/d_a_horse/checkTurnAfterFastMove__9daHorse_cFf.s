@@ -15,15 +15,15 @@ lbl_808409C0:
 /* 808409F4  48 00 01 1C */	b lbl_80840B10
 lbl_808409F8:
 /* 808409F8  C0 3F 17 58 */	lfs f1, 0x1758(r31)
-/* 808409FC  3C 60 80 84 */	lis r3, lit_5722@ha
-/* 80840A00  C0 03 56 78 */	lfs f0, lit_5722@l(r3)
+/* 808409FC  3C 60 80 84 */	lis r3, lit_5722@ha /* 0x80845678@ha */
+/* 80840A00  C0 03 56 78 */	lfs f0, lit_5722@l(r3)  /* 0x80845678@l */
 /* 80840A04  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80840A08  40 81 01 04 */	ble lbl_80840B0C
 /* 80840A0C  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 80840A10  A8 1F 16 EC */	lha r0, 0x16ec(r31)
 /* 80840A14  7C 03 00 50 */	subf r0, r3, r0
 /* 80840A18  7C 03 07 34 */	extsh r3, r0
-/* 80840A1C  4B B2 46 B4 */	b abs
+/* 80840A1C  4B B2 46 B5 */	bl abs
 /* 80840A20  7C 7E 1B 78 */	mr r30, r3
 /* 80840A24  88 7F 16 BC */	lbz r3, 0x16bc(r31)
 /* 80840A28  28 03 00 00 */	cmplwi r3, 0
@@ -42,8 +42,8 @@ lbl_80840A48:
 /* 80840A58  4B FF B4 F1 */	bl checkHorseNoMove__9daHorse_cFi
 /* 80840A5C  2C 03 00 00 */	cmpwi r3, 0
 /* 80840A60  40 82 00 28 */	bne lbl_80840A88
-/* 80840A64  3C 60 80 84 */	lis r3, m__14daHorse_hio_c0@ha
-/* 80840A68  38 63 54 CC */	addi r3, r3, m__14daHorse_hio_c0@l
+/* 80840A64  3C 60 80 84 */	lis r3, m__14daHorse_hio_c0@ha /* 0x808454CC@ha */
+/* 80840A68  38 63 54 CC */	addi r3, r3, m__14daHorse_hio_c0@l /* 0x808454CC@l */
 /* 80840A6C  C0 23 00 40 */	lfs f1, 0x40(r3)
 /* 80840A70  C0 1F 17 8C */	lfs f0, 0x178c(r31)
 /* 80840A74  EC 01 00 32 */	fmuls f0, f1, f0
@@ -67,8 +67,8 @@ lbl_80840AA8:
 /* 80840AB4  48 00 0C 55 */	bl procWaitInit__9daHorse_cFv
 /* 80840AB8  48 00 00 58 */	b lbl_80840B10
 lbl_80840ABC:
-/* 80840ABC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80840AC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80840ABC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80840AC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80840AC4  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80840AC8  A0 03 2F E8 */	lhz r0, 0x2fe8(r3)
 /* 80840ACC  28 00 00 3D */	cmplwi r0, 0x3d

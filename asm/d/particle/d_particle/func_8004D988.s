@@ -14,8 +14,8 @@ lbl_8004D988:
 /* 8004D9B8  7D 53 53 78 */	mr r19, r10
 /* 8004D9BC  8A 81 00 A3 */	lbz r20, 0xa3(r1)
 /* 8004D9C0  3A A0 00 00 */	li r21, 0
-/* 8004D9C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8004D9C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8004D9C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8004D9C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8004D9CC  39 C3 0F 38 */	addi r14, r3, 0xf38
 /* 8004D9D0  7D C3 73 78 */	mr r3, r14
 /* 8004D9D4  7E 24 8B 78 */	mr r4, r17
@@ -34,8 +34,8 @@ lbl_8004D9EC:
 /* 8004DA04  3B C0 00 00 */	li r30, 0
 /* 8004DA08  56 7C 00 00 */	rlwinm r28, r19, 0, 0, 0
 /* 8004DA0C  56 7B 03 DE */	rlwinm r27, r19, 0, 0xf, 0xf
-/* 8004DA10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8004DA14  39 C3 61 C0 */	addi r14, r3, g_dComIfG_gameInfo@l
+/* 8004DA10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8004DA14  39 C3 61 C0 */	addi r14, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_8004DA18:
 /* 8004DA18  7E 23 8B 78 */	mr r3, r17
 /* 8004DA1C  7F 24 CB 78 */	mr r4, r25
@@ -114,8 +114,8 @@ lbl_8004DB00:
 /* 8004DB18  28 1B 00 00 */	cmplwi r27, 0
 /* 8004DB1C  41 82 00 1C */	beq lbl_8004DB38
 /* 8004DB20  54 64 1D 78 */	rlwinm r4, r3, 3, 0x15, 0x1c
-/* 8004DB24  3C 60 80 3B */	lis r3, ringID@ha
-/* 8004DB28  38 03 83 2C */	addi r0, r3, ringID@l
+/* 8004DB24  3C 60 80 3B */	lis r3, ringID@ha /* 0x803A832C@ha */
+/* 8004DB28  38 03 83 2C */	addi r0, r3, ringID@l /* 0x803A832C@l */
 /* 8004DB2C  7F 00 22 14 */	add r24, r0, r4
 /* 8004DB30  82 E1 00 20 */	lwz r23, 0x20(r1)
 /* 8004DB34  48 00 00 3C */	b lbl_8004DB70
@@ -124,15 +124,15 @@ lbl_8004DB38:
 /* 8004DB3C  7C 00 28 39 */	and. r0, r0, r5
 /* 8004DB40  41 82 00 1C */	beq lbl_8004DB5C
 /* 8004DB44  54 64 1D 78 */	rlwinm r4, r3, 3, 0x15, 0x1c
-/* 8004DB48  3C 60 80 3B */	lis r3, ringID@ha
-/* 8004DB4C  38 03 83 2C */	addi r0, r3, ringID@l
+/* 8004DB48  3C 60 80 3B */	lis r3, ringID@ha /* 0x803A832C@ha */
+/* 8004DB4C  38 03 83 2C */	addi r0, r3, ringID@l /* 0x803A832C@l */
 /* 8004DB50  7F 00 22 14 */	add r24, r0, r4
 /* 8004DB54  7E 57 93 78 */	mr r23, r18
 /* 8004DB58  48 00 00 18 */	b lbl_8004DB70
 lbl_8004DB5C:
 /* 8004DB5C  54 64 1D 78 */	rlwinm r4, r3, 3, 0x15, 0x1c
-/* 8004DB60  3C 60 80 3B */	lis r3, normalID@ha
-/* 8004DB64  38 03 83 5C */	addi r0, r3, normalID@l
+/* 8004DB60  3C 60 80 3B */	lis r3, normalID@ha /* 0x803A835C@ha */
+/* 8004DB64  38 03 83 5C */	addi r0, r3, normalID@l /* 0x803A835C@l */
 /* 8004DB68  7F 00 22 14 */	add r24, r0, r4
 /* 8004DB6C  7E 57 93 78 */	mr r23, r18
 lbl_8004DB70:

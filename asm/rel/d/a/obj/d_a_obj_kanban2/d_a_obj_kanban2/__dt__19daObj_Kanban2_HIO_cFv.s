@@ -5,12 +5,12 @@ lbl_80585578:
 /* 80585584  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80585588  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8058558C  41 82 00 1C */	beq lbl_805855A8
-/* 80585590  3C A0 80 58 */	lis r5, __vt__19daObj_Kanban2_HIO_c@ha
-/* 80585594  38 05 5C 64 */	addi r0, r5, __vt__19daObj_Kanban2_HIO_c@l
+/* 80585590  3C A0 80 58 */	lis r5, __vt__19daObj_Kanban2_HIO_c@ha /* 0x80585C64@ha */
+/* 80585594  38 05 5C 64 */	addi r0, r5, __vt__19daObj_Kanban2_HIO_c@l /* 0x80585C64@l */
 /* 80585598  90 1F 00 00 */	stw r0, 0(r31)
 /* 8058559C  7C 80 07 35 */	extsh. r0, r4
 /* 805855A0  40 81 00 08 */	ble lbl_805855A8
-/* 805855A4  4B D4 97 98 */	b __dl__FPv
+/* 805855A4  4B D4 97 99 */	bl __dl__FPv
 lbl_805855A8:
 /* 805855A8  7F E3 FB 78 */	mr r3, r31
 /* 805855AC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -4,8 +4,8 @@ lbl_80D672EC:
 /* 80D672F4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D672F8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D672FC  7C 7F 1B 78 */	mr r31, r3
-/* 80D67300  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 80D67304  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 80D67300  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80D67304  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80D67308  80 84 00 34 */	lwz r4, 0x34(r4)
 /* 80D6730C  54 80 05 EF */	rlwinm. r0, r4, 0, 0x17, 0x17
 /* 80D67310  40 82 00 0C */	bne lbl_80D6731C

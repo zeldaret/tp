@@ -4,7 +4,7 @@ lbl_80C60A78:
 /* 80C60A80  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C60A84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C60A88  7C 7F 1B 78 */	mr r31, r3
-/* 80C60A8C  4B 3B 82 54 */	b fopAc_IsActor__FPv
+/* 80C60A8C  4B 3B 82 55 */	bl fopAc_IsActor__FPv
 /* 80C60A90  2C 03 00 00 */	cmpwi r3, 0
 /* 80C60A94  41 82 00 18 */	beq lbl_80C60AAC
 /* 80C60A98  A8 1F 00 08 */	lha r0, 8(r31)

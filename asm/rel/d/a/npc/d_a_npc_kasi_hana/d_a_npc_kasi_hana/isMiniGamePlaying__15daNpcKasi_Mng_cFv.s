@@ -5,7 +5,7 @@ lbl_80A1BB9C:
 /* 80A1BBA8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A1BBAC  3B E0 00 00 */	li r31, 0
 /* 80A1BBB0  38 63 00 18 */	addi r3, r3, 0x18
-/* 80A1BBB4  4B 73 4B 38 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80A1BBB4  4B 73 4B 39 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80A1BBB8  28 03 00 00 */	cmplwi r3, 0
 /* 80A1BBBC  41 82 00 0C */	beq lbl_80A1BBC8
 /* 80A1BBC0  8B E3 0E 08 */	lbz r31, 0xe08(r3)

@@ -5,8 +5,8 @@ lbl_8010C9F4:
 /* 8010CA00  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8010CA04  93 C1 00 08 */	stw r30, 8(r1)
 /* 8010CA08  7C 7F 1B 78 */	mr r31, r3
-/* 8010CA0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8010CA10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8010CA0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010CA10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010CA14  3B C4 5D 7C */	addi r30, r4, 0x5d7c
 /* 8010CA18  80 03 31 7C */	lwz r0, 0x317c(r3)
 /* 8010CA1C  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -17,8 +17,8 @@ lbl_8010C9F4:
 /* 8010CA30  4B FC 21 A9 */	bl checkSubjectEnd__9daAlink_cFi
 /* 8010CA34  2C 03 00 00 */	cmpwi r3, 0
 /* 8010CA38  41 82 00 34 */	beq lbl_8010CA6C
-/* 8010CA3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010CA40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010CA3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010CA40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010CA44  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8010CA48  54 00 04 E2 */	rlwinm r0, r0, 0, 0x13, 0x11
 /* 8010CA4C  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -30,8 +30,8 @@ lbl_8010C9F4:
 /* 8010CA64  90 1F 31 A0 */	stw r0, 0x31a0(r31)
 /* 8010CA68  48 00 00 7C */	b lbl_8010CAE4
 lbl_8010CA6C:
-/* 8010CA6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010CA70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010CA6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010CA70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010CA74  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8010CA78  54 00 04 A5 */	rlwinm. r0, r0, 0, 0x12, 0x12
 /* 8010CA7C  41 82 00 68 */	beq lbl_8010CAE4
@@ -136,8 +136,8 @@ lbl_8010CBB0:
 /* 8010CBEC  41 82 00 78 */	beq lbl_8010CC64
 lbl_8010CBF0:
 /* 8010CBF0  C0 3E 00 10 */	lfs f1, 0x10(r30)
-/* 8010CBF4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha
-/* 8010CBF8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l
+/* 8010CBF4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 8010CBF8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 8010CBFC  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 8010CC00  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8010CC04  40 81 00 60 */	ble lbl_8010CC64

@@ -9,8 +9,8 @@ lbl_8024D870:
 /* 8024D88C  4B FF D8 65 */	bl getParam__10dMsgFlow_cFPUsPUsPUc
 /* 8024D890  A0 01 00 08 */	lhz r0, 8(r1)
 /* 8024D894  54 04 28 34 */	slwi r4, r0, 5
-/* 8024D898  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024D89C  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 8024D898  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024D89C  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024D8A0  7C 60 22 14 */	add r3, r0, r4
 /* 8024D8A4  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8024D8A8  A0 81 00 0A */	lhz r4, 0xa(r1)

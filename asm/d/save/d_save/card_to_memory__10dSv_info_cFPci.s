@@ -6,15 +6,15 @@ lbl_80035A04:
 /* 80035A14  93 C1 00 08 */	stw r30, 8(r1)
 /* 80035A18  1C 05 0A 94 */	mulli r0, r5, 0xa94
 /* 80035A1C  7C 84 02 14 */	add r4, r4, r0
-/* 80035A20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035A24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035A20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035A24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035A28  38 A0 09 58 */	li r5, 0x958
 /* 80035A2C  4B FC DB 15 */	bl memcpy
 /* 80035A30  48 30 AB 61 */	bl OSGetSoundMode
 /* 80035A34  28 03 00 00 */	cmplwi r3, 0
 /* 80035A38  40 82 00 28 */	bne lbl_80035A60
-/* 80035A3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035A40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035A3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035A40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035A44  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 80035A48  38 80 00 00 */	li r4, 0
 /* 80035A4C  4B FF EC 41 */	bl setSound__19dSv_player_config_cFUc
@@ -23,8 +23,8 @@ lbl_80035A04:
 /* 80035A58  48 29 7E 31 */	bl setOutputMode__10Z2AudioMgrFUl
 /* 80035A5C  48 00 00 4C */	b lbl_80035AA8
 lbl_80035A60:
-/* 80035A60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035A64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035A60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035A64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035A68  3B E3 01 E0 */	addi r31, r3, 0x1e0
 /* 80035A6C  7F E3 FB 78 */	mr r3, r31
 /* 80035A70  4B FF EC 15 */	bl getSound__19dSv_player_config_cFv
@@ -43,8 +43,8 @@ lbl_80035A90:
 /* 80035AA0  38 80 00 01 */	li r4, 1
 /* 80035AA4  48 29 7D E5 */	bl setOutputMode__10Z2AudioMgrFUl
 lbl_80035AA8:
-/* 80035AA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035AAC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80035AA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035AAC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035AB0  A0 1F 00 02 */	lhz r0, 2(r31)
 /* 80035AB4  28 00 00 0C */	cmplwi r0, 0xc
 /* 80035AB8  40 80 00 0C */	bge lbl_80035AC4
@@ -54,8 +54,8 @@ lbl_80035AC4:
 /* 80035AC4  38 60 00 06 */	li r3, 6
 /* 80035AC8  38 80 00 00 */	li r4, 0
 /* 80035ACC  4B FF 95 75 */	bl dComIfGs_setKeyNum__FiUc
-/* 80035AD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035AD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035AD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035AD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035AD8  3B C3 00 9C */	addi r30, r3, 0x9c
 /* 80035ADC  7F C3 F3 78 */	mr r3, r30
 /* 80035AE0  38 80 00 09 */	li r4, 9
@@ -97,18 +97,18 @@ lbl_80035B60:
 /* 80035B68  38 7F 01 E0 */	addi r3, r31, 0x1e0
 /* 80035B6C  4B FF EB 29 */	bl getVibration__19dSv_player_config_cFv
 /* 80035B70  7C 64 1B 78 */	mr r4, r3
-/* 80035B74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035B78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035B74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035B78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035B7C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80035B80  4B FF 58 29 */	bl setNowVibration__14dComIfG_play_cFUc
-/* 80035B84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80035B88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80035B84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80035B88  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80035B8C  38 83 00 58 */	addi r4, r3, 0x58
-/* 80035B90  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80035B94  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80035B90  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80035B94  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80035B98  48 1E 86 F9 */	bl setSaveStageName__13dMeter2Info_cFPCc
-/* 80035B9C  3C 60 80 38 */	lis r3, d_save_d_save__stringBase0@ha
-/* 80035BA0  38 63 92 34 */	addi r3, r3, d_save_d_save__stringBase0@l
+/* 80035B9C  3C 60 80 38 */	lis r3, d_save_d_save__stringBase0@ha /* 0x80379234@ha */
+/* 80035BA0  38 63 92 34 */	addi r3, r3, d_save_d_save__stringBase0@l /* 0x80379234@l */
 /* 80035BA4  38 63 00 46 */	addi r3, r3, 0x46
 /* 80035BA8  38 80 09 58 */	li r4, 0x958
 /* 80035BAC  4C C6 31 82 */	crclr 6

@@ -14,18 +14,18 @@ lbl_804601D4:
 /* 80460204  4B FF F3 65 */	bl demoProc__10daKnob20_cFv
 /* 80460208  48 00 00 5C */	b lbl_80460264
 lbl_8046020C:
-/* 8046020C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80460210  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8046020C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80460210  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80460214  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80460218  28 00 00 00 */	cmplwi r0, 0
 /* 8046021C  41 82 00 44 */	beq lbl_80460260
 /* 80460220  38 64 4F F8 */	addi r3, r4, 0x4ff8
-/* 80460224  3C 80 80 46 */	lis r4, struct_804606C4+0x0@ha
-/* 80460228  38 84 06 C4 */	addi r4, r4, struct_804606C4+0x0@l
+/* 80460224  3C 80 80 46 */	lis r4, d_a_door_knob00__stringBase0@ha /* 0x804606C4@ha */
+/* 80460228  38 84 06 C4 */	addi r4, r4, d_a_door_knob00__stringBase0@l /* 0x804606C4@l */
 /* 8046022C  38 84 01 AA */	addi r4, r4, 0x1aa
 /* 80460230  38 A0 00 00 */	li r5, 0
 /* 80460234  38 C0 00 00 */	li r6, 0
-/* 80460238  4B BE 78 E4 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 80460238  4B BE 78 E5 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 8046023C  90 7F 05 BC */	stw r3, 0x5bc(r31)
 /* 80460240  80 1F 05 BC */	lwz r0, 0x5bc(r31)
 /* 80460244  2C 00 FF FF */	cmpwi r0, -1

@@ -5,8 +5,8 @@ lbl_80232A44:
 /* 80232A50  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80232A54  93 C1 00 08 */	stw r30, 8(r1)
 /* 80232A58  7C 7E 1B 78 */	mr r30, r3
-/* 80232A5C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80232A60  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80232A5C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80232A60  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80232A64  83 E4 5D AC */	lwz r31, 0x5dac(r4)
 /* 80232A68  4B DE 62 79 */	bl fopAc_IsActor__FPv
 /* 80232A6C  2C 03 00 00 */	cmpwi r3, 0

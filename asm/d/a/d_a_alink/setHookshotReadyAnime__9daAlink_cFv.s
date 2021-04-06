@@ -24,8 +24,8 @@ lbl_80109224:
 /* 80109238  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 8010923C  48 00 00 10 */	b lbl_8010924C
 lbl_80109240:
-/* 80109240  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha
-/* 80109244  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l
+/* 80109240  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80109244  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 80109248  C0 23 00 40 */	lfs f1, 0x40(r3)
 lbl_8010924C:
 /* 8010924C  7F A3 EB 78 */	mr r3, r29

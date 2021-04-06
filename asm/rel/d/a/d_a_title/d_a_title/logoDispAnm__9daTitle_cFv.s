@@ -5,19 +5,19 @@ lbl_80D6737C:
 /* 80D67388  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D6738C  7C 7F 1B 78 */	mr r31, r3
 /* 80D67390  38 7F 05 78 */	addi r3, r31, 0x578
-/* 80D67394  4B 2A 60 94 */	b play__14mDoExt_baseAnmFv
+/* 80D67394  4B 2A 60 95 */	bl play__14mDoExt_baseAnmFv
 /* 80D67398  38 7F 05 94 */	addi r3, r31, 0x594
-/* 80D6739C  4B 2A 60 8C */	b play__14mDoExt_baseAnmFv
+/* 80D6739C  4B 2A 60 8D */	bl play__14mDoExt_baseAnmFv
 /* 80D673A0  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 80D673A4  4B 2A 60 84 */	b play__14mDoExt_baseAnmFv
+/* 80D673A4  4B 2A 60 85 */	bl play__14mDoExt_baseAnmFv
 /* 80D673A8  38 7F 05 C4 */	addi r3, r31, 0x5c4
-/* 80D673AC  4B 2A 60 7C */	b play__14mDoExt_baseAnmFv
+/* 80D673AC  4B 2A 60 7D */	bl play__14mDoExt_baseAnmFv
 /* 80D673B0  38 80 00 01 */	li r4, 1
 /* 80D673B4  88 1F 05 B1 */	lbz r0, 0x5b1(r31)
 /* 80D673B8  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80D673BC  40 82 00 1C */	bne lbl_80D673D8
-/* 80D673C0  3C 60 80 D6 */	lis r3, lit_4139@ha
-/* 80D673C4  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)
+/* 80D673C0  3C 60 80 D6 */	lis r3, lit_4139@ha /* 0x80D67BF8@ha */
+/* 80D673C4  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)  /* 0x80D67BF8@l */
 /* 80D673C8  C0 1F 05 B8 */	lfs f0, 0x5b8(r31)
 /* 80D673CC  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80D673D0  41 82 00 08 */	beq lbl_80D673D8
@@ -29,8 +29,8 @@ lbl_80D673D8:
 /* 80D673E4  88 1F 05 C9 */	lbz r0, 0x5c9(r31)
 /* 80D673E8  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80D673EC  40 82 00 1C */	bne lbl_80D67408
-/* 80D673F0  3C 60 80 D6 */	lis r3, lit_4139@ha
-/* 80D673F4  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)
+/* 80D673F0  3C 60 80 D6 */	lis r3, lit_4139@ha /* 0x80D67BF8@ha */
+/* 80D673F4  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)  /* 0x80D67BF8@l */
 /* 80D673F8  C0 1F 05 D0 */	lfs f0, 0x5d0(r31)
 /* 80D673FC  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80D67400  41 82 00 08 */	beq lbl_80D67408
@@ -42,8 +42,8 @@ lbl_80D67408:
 /* 80D67414  88 1F 05 7D */	lbz r0, 0x57d(r31)
 /* 80D67418  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80D6741C  40 82 00 1C */	bne lbl_80D67438
-/* 80D67420  3C 60 80 D6 */	lis r3, lit_4139@ha
-/* 80D67424  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)
+/* 80D67420  3C 60 80 D6 */	lis r3, lit_4139@ha /* 0x80D67BF8@ha */
+/* 80D67424  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)  /* 0x80D67BF8@l */
 /* 80D67428  C0 1F 05 84 */	lfs f0, 0x584(r31)
 /* 80D6742C  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80D67430  41 82 00 08 */	beq lbl_80D67438
@@ -55,8 +55,8 @@ lbl_80D67438:
 /* 80D67444  88 1F 05 99 */	lbz r0, 0x599(r31)
 /* 80D67448  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80D6744C  40 82 00 1C */	bne lbl_80D67468
-/* 80D67450  3C 60 80 D6 */	lis r3, lit_4139@ha
-/* 80D67454  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)
+/* 80D67450  3C 60 80 D6 */	lis r3, lit_4139@ha /* 0x80D67BF8@ha */
+/* 80D67454  C0 23 7B F8 */	lfs f1, lit_4139@l(r3)  /* 0x80D67BF8@l */
 /* 80D67458  C0 1F 05 A0 */	lfs f0, 0x5a0(r31)
 /* 80D6745C  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80D67460  41 82 00 08 */	beq lbl_80D67468

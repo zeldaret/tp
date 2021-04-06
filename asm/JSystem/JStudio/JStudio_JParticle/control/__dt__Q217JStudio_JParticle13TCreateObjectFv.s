@@ -7,8 +7,8 @@ lbl_8028E3A0:
 /* 8028E3B4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028E3B8  7C 9F 23 78 */	mr r31, r4
 /* 8028E3BC  41 82 00 28 */	beq lbl_8028E3E4
-/* 8028E3C0  3C 80 80 3C */	lis r4, __vt__Q217JStudio_JParticle13TCreateObject@ha
-/* 8028E3C4  38 04 5A D8 */	addi r0, r4, __vt__Q217JStudio_JParticle13TCreateObject@l
+/* 8028E3C0  3C 80 80 3C */	lis r4, __vt__Q217JStudio_JParticle13TCreateObject@ha /* 0x803C5AD8@ha */
+/* 8028E3C4  38 04 5A D8 */	addi r0, r4, __vt__Q217JStudio_JParticle13TCreateObject@l /* 0x803C5AD8@l */
 /* 8028E3C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E3CC  38 80 00 00 */	li r4, 0
 /* 8028E3D0  4B FF 70 B9 */	bl __dt__Q27JStudio13TCreateObjectFv

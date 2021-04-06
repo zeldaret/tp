@@ -12,8 +12,8 @@ lbl_80C50488:
 /* 80C504B0  80 03 05 5C */	lwz r0, 0x55c(r3)
 /* 80C504B4  60 00 00 10 */	ori r0, r0, 0x10
 /* 80C504B8  90 03 05 5C */	stw r0, 0x55c(r3)
-/* 80C504BC  3C 80 80 C5 */	lis r4, lit_3721@ha
-/* 80C504C0  C0 04 0D 44 */	lfs f0, lit_3721@l(r4)
+/* 80C504BC  3C 80 80 C5 */	lis r4, lit_3721@ha /* 0x80C50D44@ha */
+/* 80C504C0  C0 04 0D 44 */	lfs f0, lit_3721@l(r4)  /* 0x80C50D44@l */
 /* 80C504C4  D0 03 05 2C */	stfs f0, 0x52c(r3)
 /* 80C504C8  A8 83 04 E6 */	lha r4, 0x4e6(r3)
 /* 80C504CC  48 00 02 A1 */	bl getGroundSlope__14daObjKznkarm_cFs

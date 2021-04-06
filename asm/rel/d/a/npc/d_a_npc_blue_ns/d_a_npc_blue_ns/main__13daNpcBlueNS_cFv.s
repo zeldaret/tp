@@ -5,37 +5,37 @@ lbl_80969F54:
 /* 80969F60  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80969F64  93 C1 00 08 */	stw r30, 8(r1)
 /* 80969F68  7C 7F 1B 78 */	mr r31, r3
-/* 80969F6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80969F70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80969F6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80969F70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80969F74  38 80 00 58 */	li r4, 0x58
 /* 80969F78  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80969F7C  7C 05 07 74 */	extsb r5, r0
-/* 80969F80  4B 6C B3 E0 */	b isSwitch__10dSv_info_cCFii
+/* 80969F80  4B 6C B3 E1 */	bl isSwitch__10dSv_info_cCFii
 /* 80969F84  2C 03 00 00 */	cmpwi r3, 0
 /* 80969F88  41 82 00 3C */	beq lbl_80969FC4
 /* 80969F8C  7F E3 FB 78 */	mr r3, r31
 /* 80969F90  38 80 00 01 */	li r4, 1
 /* 80969F94  4B FF F5 71 */	bl create_Yamijin__13daNpcBlueNS_cFi
 /* 80969F98  90 7F 0E 00 */	stw r3, 0xe00(r31)
-/* 80969F9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80969FA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80969F9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80969FA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80969FA4  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80969FA8  54 04 C6 3E */	rlwinm r4, r0, 0x18, 0x18, 0x1f
 /* 80969FAC  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80969FB0  7C 05 07 74 */	extsb r5, r0
-/* 80969FB4  4B 6C B2 4C */	b onSwitch__10dSv_info_cFii
+/* 80969FB4  4B 6C B2 4D */	bl onSwitch__10dSv_info_cFii
 /* 80969FB8  7F E3 FB 78 */	mr r3, r31
-/* 80969FBC  4B 6A FC C0 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80969FBC  4B 6A FC C1 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80969FC0  48 00 00 B4 */	b lbl_8096A074
 lbl_80969FC4:
 /* 80969FC4  38 7F 0D C4 */	addi r3, r31, 0xdc4
-/* 80969FC8  4B 9F 80 50 */	b __ptmf_test
+/* 80969FC8  4B 9F 80 51 */	bl __ptmf_test
 /* 80969FCC  2C 03 00 00 */	cmpwi r3, 0
 /* 80969FD0  41 82 00 18 */	beq lbl_80969FE8
 /* 80969FD4  7F E3 FB 78 */	mr r3, r31
 /* 80969FD8  38 80 00 00 */	li r4, 0
 /* 80969FDC  39 9F 0D C4 */	addi r12, r31, 0xdc4
-/* 80969FE0  4B 9F 80 A4 */	b __ptmf_scall
+/* 80969FE0  4B 9F 80 A5 */	bl __ptmf_scall
 /* 80969FE4  60 00 00 00 */	nop 
 lbl_80969FE8:
 /* 80969FE8  7F E3 FB 78 */	mr r3, r31

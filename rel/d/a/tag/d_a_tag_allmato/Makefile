@@ -3,17 +3,15 @@
 #
 
 M27_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato.plf
+M27_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato.lcf
+M27_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato.map
 
 M27_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_allmato/executor.cpp \
-	rel/d/a/tag/d_a_tag_allmato/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_allmato/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_allmato/d_a_tag_allmato.cpp \
 
 M27_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/d_a_tag_allmato.o \
 
 M27_LIBS := \
@@ -29,15 +27,21 @@ M27_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map27.map\
+	-m _prolog \
+	-lcf $(M27_LDSCRIPT) \
+	-unused -map $(M27_MAP) \
+	-w off \
 
 $(M27_TARGET): $(M27_O_FILES) $(M27_LIBS)
+	@echo [ 27] creating $(M27_TARGET)
 	@echo $(M27_LIBS) $(M27_O_FILES) > build/M27_ofiles
-	$(LD) -opt_partial $(M27_LDFLAGS) -o $(M27_TARGET) @build/M27_ofiles
+	@python3 tools/lcf.py rel 27 --output $(M27_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M27_LDFLAGS) -o $(M27_TARGET) @build/M27_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_allmato/%.o: rel/d/a/tag/d_a_tag_allmato/%.cpp
+	@echo [ 27] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M27_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M27_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

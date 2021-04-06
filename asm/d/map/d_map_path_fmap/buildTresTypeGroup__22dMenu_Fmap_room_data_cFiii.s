@@ -19,10 +19,10 @@ lbl_8003D868:
 /* 8003D8AC  48 29 13 A1 */	bl __nw__FUl
 /* 8003D8B0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8003D8B4  41 82 00 20 */	beq lbl_8003D8D4
-/* 8003D8B8  3C 80 80 04 */	lis r4, __ct__26fmpTresTypeGroupDataList_cFv@ha
-/* 8003D8BC  38 84 EC 90 */	addi r4, r4, __ct__26fmpTresTypeGroupDataList_cFv@l
-/* 8003D8C0  3C A0 80 04 */	lis r5, __dt__26fmpTresTypeGroupDataList_cFv@ha
-/* 8003D8C4  38 A5 EB 10 */	addi r5, r5, __dt__26fmpTresTypeGroupDataList_cFv@l
+/* 8003D8B8  3C 80 80 04 */	lis r4, __ct__26fmpTresTypeGroupDataList_cFv@ha /* 0x8003EC90@ha */
+/* 8003D8BC  38 84 EC 90 */	addi r4, r4, __ct__26fmpTresTypeGroupDataList_cFv@l /* 0x8003EC90@l */
+/* 8003D8C0  3C A0 80 04 */	lis r5, __dt__26fmpTresTypeGroupDataList_cFv@ha /* 0x8003EB10@ha */
+/* 8003D8C4  38 A5 EB 10 */	addi r5, r5, __dt__26fmpTresTypeGroupDataList_cFv@l /* 0x8003EB10@l */
 /* 8003D8C8  38 C0 00 08 */	li r6, 8
 /* 8003D8CC  38 E0 00 11 */	li r7, 0x11
 /* 8003D8D0  48 32 44 91 */	bl __construct_array

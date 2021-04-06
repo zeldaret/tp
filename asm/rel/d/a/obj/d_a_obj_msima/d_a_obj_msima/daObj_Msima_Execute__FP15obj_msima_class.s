@@ -3,17 +3,17 @@ lbl_80C9C25C:
 /* 80C9C260  7C 08 02 A6 */	mflr r0
 /* 80C9C264  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C9C268  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C9C26C  4B 6C 5F 70 */	b _savegpr_29
+/* 80C9C26C  4B 6C 5F 71 */	bl _savegpr_29
 /* 80C9C270  7C 7F 1B 78 */	mr r31, r3
-/* 80C9C274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C9C278  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80C9C274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C9C278  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C9C27C  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80C9C280  28 00 00 00 */	cmplwi r0, 0
 /* 80C9C284  41 82 00 24 */	beq lbl_80C9C2A8
-/* 80C9C288  3C 60 80 45 */	lis r3, m_midnaActor__9daPy_py_c@ha
-/* 80C9C28C  83 C3 10 18 */	lwz r30, m_midnaActor__9daPy_py_c@l(r3)
+/* 80C9C288  3C 60 80 45 */	lis r3, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 80C9C28C  83 C3 10 18 */	lwz r30, m_midnaActor__9daPy_py_c@l(r3)  /* 0x80451018@l */
 /* 80C9C290  80 64 5D B4 */	lwz r3, 0x5db4(r4)
-/* 80C9C294  4B 37 F8 80 */	b fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
+/* 80C9C294  4B 37 F8 81 */	bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80C9C298  7C 03 F0 40 */	cmplw r3, r30
 /* 80C9C29C  40 82 00 0C */	bne lbl_80C9C2A8
 /* 80C9C2A0  38 60 00 01 */	li r3, 1
@@ -45,7 +45,7 @@ lbl_80C9C2F4:
 /* 80C9C2F8  4B FF F7 39 */	bl action__FP15obj_msima_class
 /* 80C9C2FC  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80C9C300  7C 03 07 74 */	extsb r3, r0
-/* 80C9C304  4B 39 0D 68 */	b dComIfGp_getReverb__Fi
+/* 80C9C304  4B 39 0D 69 */	bl dComIfGp_getReverb__Fi
 /* 80C9C308  7C 65 1B 78 */	mr r5, r3
 /* 80C9C30C  38 7F 06 00 */	addi r3, r31, 0x600
 /* 80C9C310  38 80 00 00 */	li r4, 0
@@ -56,7 +56,7 @@ lbl_80C9C2F4:
 /* 80C9C324  38 60 00 0C */	li r3, 0xc
 /* 80C9C328  38 80 00 7B */	li r4, 0x7b
 /* 80C9C32C  38 A0 00 32 */	li r5, 0x32
-/* 80C9C330  4B 5C B6 A4 */	b cM_initRnd2__Fiii
+/* 80C9C330  4B 5C B6 A5 */	bl cM_initRnd2__Fiii
 /* 80C9C334  88 1F 05 70 */	lbz r0, 0x570(r31)
 /* 80C9C338  28 00 00 01 */	cmplwi r0, 1
 /* 80C9C33C  41 82 00 50 */	beq lbl_80C9C38C
@@ -86,7 +86,7 @@ lbl_80C9C38C:
 /* 80C9C38C  38 60 00 01 */	li r3, 1
 lbl_80C9C390:
 /* 80C9C390  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C9C394  4B 6C 5E 94 */	b _restgpr_29
+/* 80C9C394  4B 6C 5E 95 */	bl _restgpr_29
 /* 80C9C398  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C9C39C  7C 08 03 A6 */	mtlr r0
 /* 80C9C3A0  38 21 00 20 */	addi r1, r1, 0x20

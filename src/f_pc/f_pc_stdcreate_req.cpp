@@ -25,17 +25,6 @@ struct base_process_class {};
 // Forward References:
 //
 
-static void fpcSCtRq_phase_Load(standard_create_request_class*);
-static void fpcSCtRq_phase_CreateProcess(standard_create_request_class*);
-static void fpcSCtRq_phase_SubCreateProcess(standard_create_request_class*);
-static void fpcSCtRq_phase_IsComplete(standard_create_request_class*);
-static void fpcSCtRq_phase_PostMethod(standard_create_request_class*);
-static s32 fpcSCtRq_phase_Done(standard_create_request_class*);
-static void fpcSCtRq_Handler(standard_create_request_class*);
-static bool fpcSCtRq_Delete(standard_create_request_class*);
-static bool fpcSCtRq_Cancel(standard_create_request_class*);
-void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-
 extern "C" static void fpcSCtRq_phase_Load__FP29standard_create_request_class();
 extern "C" static void fpcSCtRq_phase_CreateProcess__FP29standard_create_request_class();
 extern "C" static void fpcSCtRq_phase_SubCreateProcess__FP29standard_create_request_class();
@@ -50,17 +39,6 @@ extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
 //
 // External References:
 //
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_Create(s16, unsigned int, void*);
-void fpcBs_SubCreate(base_process_class*);
-void fpcCtRq_Create(layer_class*, u32, create_request_method_class*);
-void fpcLy_IsCreatingMesg(layer_class*);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLd_Free(s16);
-void fpcLd_Load(s16);
-void cPhs_Set(request_of_phase_process_class*, int (**)(void*));
-void cPhs_Do(request_of_phase_process_class*, void*);
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_Create__FsUiPv();
@@ -80,109 +58,99 @@ extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80023B70-80023BC4 0054+00 s=1 e=0 z=0  None .text
+/* 80023B70-80023BC4 01E4B0 0054+00 1/0 0/0 0/5 .text
  * fpcSCtRq_phase_Load__FP29standard_create_request_class       */
-//	80023B80: 80022050 (fpcLd_Load__Fs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_phase_Load(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_phase_Load(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_phase_Load__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023BC4-80023C2C 0068+00 s=1 e=0 z=0  None .text
+/* 80023BC4-80023C2C 01E504 0068+00 1/0 0/0 0/9 .text
  * fpcSCtRq_phase_CreateProcess__FP29standard_create_request_class */
-//	80023BDC: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80023BEC: 80020820 (fpcBs_Create__FsUiPv)
-//	80023C04: 8002202C (fpcLd_Free__Fs)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_phase_CreateProcess(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_phase_CreateProcess(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_phase_CreateProcess__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023C2C-80023C64 0038+00 s=1 e=0 z=0  None .text
+/* 80023C2C-80023C64 01E56C 0038+00 1/0 0/0 0/3 .text
  * fpcSCtRq_phase_SubCreateProcess__FP29standard_create_request_class */
-//	80023C44: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80023C4C: 8002091C (fpcBs_SubCreate__FP18base_process_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_phase_SubCreateProcess(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_phase_SubCreateProcess(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_phase_SubCreateProcess__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023C64-80023CBC 0058+00 s=1 e=0 z=0  None .text
+/* 80023C64-80023CBC 01E5A4 0058+00 1/0 0/0 0/14 .text
  * fpcSCtRq_phase_IsComplete__FP29standard_create_request_class */
-//	80023C78: 80450D40 (g_fpcNd_type)
-//	80023C80: 8002064C (fpcBs_Is_JustOfType__Fii)
-//	80023C90: 800216A0 (fpcLy_IsCreatingMesg__FP11layer_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_phase_IsComplete(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_phase_IsComplete(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_phase_IsComplete__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023CBC-80023D0C 0050+00 s=1 e=0 z=0  None .text
+/* 80023CBC-80023D0C 01E5FC 0050+00 1/0 0/0 0/5 .text
  * fpcSCtRq_phase_PostMethod__FP29standard_create_request_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_phase_PostMethod(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_phase_PostMethod(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_phase_PostMethod__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023D0C-80023D14 0008+00 s=1 e=0 z=0  None .text
+/* 80023D0C-80023D14 01E64C 0008+00 1/0 0/0 0/0 .text
  * fpcSCtRq_phase_Done__FP29standard_create_request_class       */
 static s32 fpcSCtRq_phase_Done(standard_create_request_class* param_0) {
     return 2;
 }
 
-/* 80023D14-80023D84 0070+00 s=1 e=0 z=0  None .text
+/* 80023D14-80023D84 01E654 0070+00 1/0 0/0 0/2 .text
  * fpcSCtRq_Handler__FP29standard_create_request_class          */
-//	80023D30: 802666D8 (cPhs_Do__FP30request_of_phase_process_classPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcSCtRq_Handler(standard_create_request_class* param_0) {
+static asm void fpcSCtRq_Handler(standard_create_request_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_stdcreate_req/fpcSCtRq_Handler__FP29standard_create_request_class.s"
 }
 #pragma pop
 
-/* 80023D84-80023D8C 0008+00 s=1 e=0 z=0  None .text
+/* 80023D84-80023D8C 01E6C4 0008+00 1/0 0/0 0/0 .text
  * fpcSCtRq_Delete__FP29standard_create_request_class           */
 static bool fpcSCtRq_Delete(standard_create_request_class* param_0) {
     return true;
 }
 
-/* 80023D8C-80023D94 0008+00 s=1 e=0 z=0  None .text
+/* 80023D8C-80023D94 01E6CC 0008+00 1/0 0/0 0/1 .text
  * fpcSCtRq_Cancel__FP29standard_create_request_class           */
 static bool fpcSCtRq_Cancel(standard_create_request_class* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 803A3AF0-803A3AFC 000C+00 s=1 e=0 z=0  None .data      submethod$2261 */
+/* 803A3AF0-803A3AFC -00001 000C+00 1/1 0/0 0/0 .data            submethod$2261 */
 SECTION_DATA static void* submethod[3] = {
     (void*)fpcSCtRq_Handler__FP29standard_create_request_class,
     (void*)fpcSCtRq_Cancel__FP29standard_create_request_class,
     (void*)fpcSCtRq_Delete__FP29standard_create_request_class,
 };
 
-/* 803A3AFC-803A3B18 001C+00 s=1 e=0 z=0  None .data      method$2262 */
+/* 803A3AFC-803A3B18 -00001 001C+00 1/1 0/0 0/0 .data            method$2262 */
 SECTION_DATA static void* method[7] = {
     (void*)fpcSCtRq_phase_Load__FP29standard_create_request_class,
     (void*)fpcSCtRq_phase_CreateProcess__FP29standard_create_request_class,
@@ -193,16 +161,8 @@ SECTION_DATA static void* method[7] = {
     (void*)NULL,
 };
 
-/* 80023D94-80023E28 0094+00 s=0 e=12 z=0  None .text
+/* 80023D94-80023E28 01E6D4 0094+00 0/0 12/12 0/1 .text
  * fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv               */
-//	80023DA4: 803621D4 (_savegpr_27)
-//	80023DD0: 803A3AF0 (submethod)
-//	80023DD4: 803A3AF0 (submethod)
-//	80023DD8: 80020DB0 (fpcCtRq_Create__FP11layer_classUlP27create_request_method_class)
-//	80023DF0: 803A3AFC (method)
-//	80023DF4: 803A3AFC (method)
-//	80023DF8: 80266630 (cPhs_Set__FP30request_of_phase_process_classPPFPv_i)
-//	80023E14: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

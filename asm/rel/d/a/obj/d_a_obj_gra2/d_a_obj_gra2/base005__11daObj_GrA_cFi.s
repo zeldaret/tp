@@ -12,13 +12,13 @@ lbl_80C03CBC:
 lbl_80C03CE4:
 /* 80C03CE4  80 7F 07 54 */	lwz r3, 0x754(r31)
 /* 80C03CE8  C0 23 00 1C */	lfs f1, 0x1c(r3)
-/* 80C03CEC  3C 60 80 C1 */	lis r3, lit_10650@ha
-/* 80C03CF0  C0 03 FD F8 */	lfs f0, lit_10650@l(r3)
+/* 80C03CEC  3C 60 80 C1 */	lis r3, lit_10650@ha /* 0x80C0FDF8@ha */
+/* 80C03CF0  C0 03 FD F8 */	lfs f0, lit_10650@l(r3)  /* 0x80C0FDF8@l */
 /* 80C03CF4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C03CF8  4C 41 13 82 */	cror 2, 1, 2
 /* 80C03CFC  40 82 00 40 */	bne lbl_80C03D3C
-/* 80C03D00  3C 60 80 C1 */	lis r3, lit_10651@ha
-/* 80C03D04  C0 03 FD FC */	lfs f0, lit_10651@l(r3)
+/* 80C03D00  3C 60 80 C1 */	lis r3, lit_10651@ha /* 0x80C0FDFC@ha */
+/* 80C03D04  C0 03 FD FC */	lfs f0, lit_10651@l(r3)  /* 0x80C0FDFC@l */
 /* 80C03D08  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C03D0C  4C 40 13 82 */	cror 2, 0, 2
 /* 80C03D10  40 82 00 2C */	bne lbl_80C03D3C

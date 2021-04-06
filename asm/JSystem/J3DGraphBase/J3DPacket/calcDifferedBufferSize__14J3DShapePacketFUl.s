@@ -8,10 +8,10 @@ lbl_80312BD4:
 /* 80312BEC  7C 9E 23 78 */	mr r30, r4
 /* 80312BF0  3B E0 00 00 */	li r31, 0
 /* 80312BF4  38 60 00 00 */	li r3, 0
-/* 80312BF8  3C 80 80 3D */	lis r4, sDifferedRegister@ha
-/* 80312BFC  38 A4 D9 00 */	addi r5, r4, sDifferedRegister@l
-/* 80312C00  3C 80 80 3D */	lis r4, sSizeOfDiffered@ha
-/* 80312C04  38 84 D9 20 */	addi r4, r4, sSizeOfDiffered@l
+/* 80312BF8  3C 80 80 3D */	lis r4, sDifferedRegister@ha /* 0x803CD900@ha */
+/* 80312BFC  38 A4 D9 00 */	addi r5, r4, sDifferedRegister@l /* 0x803CD900@l */
+/* 80312C00  3C 80 80 3D */	lis r4, sSizeOfDiffered@ha /* 0x803CD920@ha */
+/* 80312C04  38 84 D9 20 */	addi r4, r4, sSizeOfDiffered@l /* 0x803CD920@l */
 /* 80312C08  38 00 00 08 */	li r0, 8
 /* 80312C0C  7C 09 03 A6 */	mtctr r0
 lbl_80312C10:

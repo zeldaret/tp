@@ -1,10 +1,10 @@
 lbl_8036D9D4:
 /* 8036D9D4  94 21 F7 20 */	stwu r1, -0x8e0(r1)
 /* 8036D9D8  7C 08 02 A6 */	mflr r0
-/* 8036D9DC  3C 60 80 3A */	lis r3, lit_121@ha
+/* 8036D9DC  3C 60 80 3A */	lis r3, lit_121@ha /* 0x803A2700@ha */
 /* 8036D9E0  90 01 08 E4 */	stw r0, 0x8e4(r1)
 /* 8036D9E4  93 E1 08 DC */	stw r31, 0x8dc(r1)
-/* 8036D9E8  3B E3 27 00 */	addi r31, r3, lit_121@l
+/* 8036D9E8  3B E3 27 00 */	addi r31, r3, lit_121@l /* 0x803A2700@l */
 /* 8036D9EC  93 C1 08 D8 */	stw r30, 0x8d8(r1)
 /* 8036D9F0  48 00 43 F1 */	bl TRKPollUART
 /* 8036D9F4  2C 03 00 00 */	cmpwi r3, 0

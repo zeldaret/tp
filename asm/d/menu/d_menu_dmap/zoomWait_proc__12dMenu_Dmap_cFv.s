@@ -7,13 +7,13 @@ lbl_801BFF88:
 /* 801BFF9C  88 03 01 7B */	lbz r0, 0x17b(r3)
 /* 801BFFA0  28 00 00 01 */	cmplwi r0, 1
 /* 801BFFA4  40 82 00 D4 */	bne lbl_801C0078
-/* 801BFFA8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801BFFAC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801BFFA8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801BFFAC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801BFFB0  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 801BFFB4  54 80 05 EF */	rlwinm. r0, r4, 0, 0x17, 0x17
 /* 801BFFB8  41 82 00 48 */	beq lbl_801C0000
-/* 801BFFBC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801BFFC0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801BFFBC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BFFC0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801BFFC4  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801BFFC8  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 801BFFCC  40 82 00 34 */	bne lbl_801C0000
@@ -32,8 +32,8 @@ lbl_801BFF88:
 lbl_801C0000:
 /* 801C0000  54 80 05 AD */	rlwinm. r0, r4, 0, 0x16, 0x16
 /* 801C0004  41 82 00 74 */	beq lbl_801C0078
-/* 801C0008  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C000C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801C0008  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C000C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C0010  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801C0014  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 801C0018  40 82 00 60 */	bne lbl_801C0078

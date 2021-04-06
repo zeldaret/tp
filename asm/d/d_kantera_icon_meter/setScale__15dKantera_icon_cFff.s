@@ -2,8 +2,8 @@ lbl_801AEBF4:
 /* 801AEBF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AEBF8  7C 08 02 A6 */	mflr r0
 /* 801AEBFC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801AEC00  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 801AEC04  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 801AEC00  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801AEC04  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801AEC08  C0 04 06 14 */	lfs f0, 0x614(r4)
 /* 801AEC0C  EC 42 00 32 */	fmuls f2, f2, f0
 /* 801AEC10  80 63 00 08 */	lwz r3, 8(r3)

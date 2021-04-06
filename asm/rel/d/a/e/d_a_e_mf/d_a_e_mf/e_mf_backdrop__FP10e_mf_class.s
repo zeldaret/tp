@@ -5,8 +5,8 @@ lbl_8070FBEC:
 /* 8070FBF8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8070FBFC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8070FC00  7C 7E 1B 78 */	mr r30, r3
-/* 8070FC04  3C 80 80 71 */	lis r4, lit_3828@ha
-/* 8070FC08  3B E4 39 74 */	addi r31, r4, lit_3828@l
+/* 8070FC04  3C 80 80 71 */	lis r4, lit_3828@ha /* 0x80713974@ha */
+/* 8070FC08  3B E4 39 74 */	addi r31, r4, lit_3828@l /* 0x80713974@l */
 /* 8070FC0C  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 8070FC10  2C 00 00 01 */	cmpwi r0, 1
 /* 8070FC14  41 82 00 7C */	beq lbl_8070FC90
@@ -62,7 +62,7 @@ lbl_8070FCC4:
 /* 8070FCC8  38 80 90 00 */	li r4, -28672
 /* 8070FCCC  38 A0 00 02 */	li r5, 2
 /* 8070FCD0  38 C0 08 00 */	li r6, 0x800
-/* 8070FCD4  4B B6 09 34 */	b cLib_addCalcAngleS2__FPssss
+/* 8070FCD4  4B B6 09 35 */	bl cLib_addCalcAngleS2__FPssss
 /* 8070FCD8  A8 1E 05 B4 */	lha r0, 0x5b4(r30)
 /* 8070FCDC  2C 00 00 02 */	cmpwi r0, 2
 /* 8070FCE0  40 82 00 48 */	bne lbl_8070FD28

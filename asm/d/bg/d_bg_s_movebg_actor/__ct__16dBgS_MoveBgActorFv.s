@@ -5,8 +5,8 @@ lbl_80078624:
 /* 80078630  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80078634  7C 7F 1B 78 */	mr r31, r3
 /* 80078638  4B FA 05 2D */	bl __ct__10fopAc_ac_cFv
-/* 8007863C  3C 60 80 3B */	lis r3, __vt__16dBgS_MoveBgActor@ha
-/* 80078640  38 03 B9 A0 */	addi r0, r3, __vt__16dBgS_MoveBgActor@l
+/* 8007863C  3C 60 80 3B */	lis r3, __vt__16dBgS_MoveBgActor@ha /* 0x803AB9A0@ha */
+/* 80078640  38 03 B9 A0 */	addi r0, r3, __vt__16dBgS_MoveBgActor@l /* 0x803AB9A0@l */
 /* 80078644  90 1F 05 9C */	stw r0, 0x59c(r31)
 /* 80078648  38 00 00 00 */	li r0, 0
 /* 8007864C  90 1F 05 68 */	stw r0, 0x568(r31)

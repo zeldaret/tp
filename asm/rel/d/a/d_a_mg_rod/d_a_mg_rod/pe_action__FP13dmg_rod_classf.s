@@ -3,10 +3,10 @@ lbl_804AD918:
 /* 804AD91C  7C 08 02 A6 */	mflr r0
 /* 804AD920  90 01 00 34 */	stw r0, 0x34(r1)
 /* 804AD924  39 61 00 30 */	addi r11, r1, 0x30
-/* 804AD928  4B EB 48 B0 */	b _savegpr_28
+/* 804AD928  4B EB 48 B1 */	bl _savegpr_28
 /* 804AD92C  7C 7E 1B 78 */	mr r30, r3
-/* 804AD930  3C 60 80 4C */	lis r3, lit_3879@ha
-/* 804AD934  3B E3 B5 34 */	addi r31, r3, lit_3879@l
+/* 804AD930  3C 60 80 4C */	lis r3, lit_3879@ha /* 0x804BB534@ha */
+/* 804AD934  3B E3 B5 34 */	addi r31, r3, lit_3879@l /* 0x804BB534@l */
 /* 804AD938  80 1E 14 F0 */	lwz r0, 0x14f0(r30)
 /* 804AD93C  2C 00 00 00 */	cmpwi r0, 0
 /* 804AD940  41 82 00 68 */	beq lbl_804AD9A8
@@ -17,8 +17,8 @@ lbl_804AD918:
 /* 804AD954  41 82 00 34 */	beq lbl_804AD988
 /* 804AD958  1C 03 13 88 */	mulli r0, r3, 0x1388
 /* 804AD95C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 804AD960  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804AD964  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 804AD960  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804AD964  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804AD968  7C 43 04 2E */	lfsx f2, r3, r0
 /* 804AD96C  C0 1F 00 4C */	lfs f0, 0x4c(r31)
 /* 804AD970  EC 00 00 B2 */	fmuls f0, f0, f2
@@ -81,7 +81,7 @@ lbl_804ADA38:
 /* 804ADA3C  A8 9E 0F FE */	lha r4, 0xffe(r30)
 /* 804ADA40  38 A0 00 04 */	li r5, 4
 /* 804ADA44  38 C0 2E E0 */	li r6, 0x2ee0
-/* 804ADA48  4B DC 2B C0 */	b cLib_addCalcAngleS2__FPssss
+/* 804ADA48  4B DC 2B C1 */	bl cLib_addCalcAngleS2__FPssss
 /* 804ADA4C  3B A0 00 04 */	li r29, 4
 /* 804ADA50  3B 80 01 F4 */	li r28, 0x1f4
 /* 804ADA54  88 1E 10 A4 */	lbz r0, 0x10a4(r30)
@@ -113,8 +113,8 @@ lbl_804ADAB4:
 /* 804ADAB4  A8 1E 05 78 */	lha r0, 0x578(r30)
 /* 804ADAB8  1C 00 05 DC */	mulli r0, r0, 0x5dc
 /* 804ADABC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 804ADAC0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804ADAC4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 804ADAC0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804ADAC4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804ADAC8  7C 23 04 2E */	lfsx f1, r3, r0
 /* 804ADACC  C0 1F 01 58 */	lfs f0, 0x158(r31)
 /* 804ADAD0  EC 00 00 72 */	fmuls f0, f0, f1
@@ -127,18 +127,18 @@ lbl_804ADAE8:
 /* 804ADAE8  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 804ADAEC  C0 3F 00 78 */	lfs f1, 0x78(r31)
 /* 804ADAF0  C0 5F 00 10 */	lfs f2, 0x10(r31)
-/* 804ADAF4  4B DC 1F 8C */	b cLib_addCalc0__FPfff
+/* 804ADAF4  4B DC 1F 8D */	bl cLib_addCalc0__FPfff
 /* 804ADAF8  38 7E 10 00 */	addi r3, r30, 0x1000
 /* 804ADAFC  A8 9E 10 02 */	lha r4, 0x1002(r30)
 /* 804ADB00  7F A5 EB 78 */	mr r5, r29
 /* 804ADB04  7F 86 E3 78 */	mr r6, r28
-/* 804ADB08  4B DC 2B 00 */	b cLib_addCalcAngleS2__FPssss
+/* 804ADB08  4B DC 2B 01 */	bl cLib_addCalcAngleS2__FPssss
 /* 804ADB0C  A8 7E 10 00 */	lha r3, 0x1000(r30)
 /* 804ADB10  7C 60 07 35 */	extsh. r0, r3
 /* 804ADB14  40 81 00 24 */	ble lbl_804ADB38
 /* 804ADB18  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 804ADB1C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804ADB20  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 804ADB1C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804ADB20  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804ADB24  7C 23 04 2E */	lfsx f1, r3, r0
 /* 804ADB28  C0 1F 01 34 */	lfs f0, 0x134(r31)
 /* 804ADB2C  EC 00 00 72 */	fmuls f0, f0, f1
@@ -149,7 +149,7 @@ lbl_804ADB38:
 /* 804ADB3C  D0 1E 05 94 */	stfs f0, 0x594(r30)
 lbl_804ADB40:
 /* 804ADB40  39 61 00 30 */	addi r11, r1, 0x30
-/* 804ADB44  4B EB 46 E0 */	b _restgpr_28
+/* 804ADB44  4B EB 46 E1 */	bl _restgpr_28
 /* 804ADB48  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 804ADB4C  7C 08 03 A6 */	mtlr r0
 /* 804ADB50  38 21 00 30 */	addi r1, r1, 0x30

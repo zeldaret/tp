@@ -4,8 +4,8 @@ lbl_8001659C:
 /* 800165A4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 800165A8  39 61 00 20 */	addi r11, r1, 0x20
 /* 800165AC  48 34 BC 31 */	bl _savegpr_29
-/* 800165B0  3C 60 80 3E */	lis r3, DvdErr_thread@ha
-/* 800165B4  3B E3 EC C0 */	addi r31, r3, DvdErr_thread@l
+/* 800165B0  3C 60 80 3E */	lis r3, DvdErr_thread@ha /* 0x803DECC0@ha */
+/* 800165B4  3B E3 EC C0 */	addi r31, r3, DvdErr_thread@l /* 0x803DECC0@l */
 /* 800165B8  88 0D 87 08 */	lbz r0, data_80450C88(r13)
 /* 800165BC  28 00 00 00 */	cmplwi r0, 0
 /* 800165C0  40 82 00 84 */	bne lbl_80016644
@@ -16,8 +16,8 @@ lbl_8001659C:
 /* 800165D4  48 32 B8 89 */	bl OSGetThreadPriority
 /* 800165D8  7C 68 1B 78 */	mr r8, r3
 /* 800165DC  38 7F 00 00 */	addi r3, r31, 0
-/* 800165E0  3C 80 80 01 */	lis r4, mDoDvdErr_Watch__FPv@ha
-/* 800165E4  38 84 66 A4 */	addi r4, r4, mDoDvdErr_Watch__FPv@l
+/* 800165E0  3C 80 80 01 */	lis r4, mDoDvdErr_Watch__FPv@ha /* 0x800166A4@ha */
+/* 800165E4  38 84 66 A4 */	addi r4, r4, mDoDvdErr_Watch__FPv@l /* 0x800166A4@l */
 /* 800165E8  38 A0 00 00 */	li r5, 0
 /* 800165EC  38 DF 03 20 */	addi r6, r31, 0x320
 /* 800165F0  38 E0 0C 00 */	li r7, 0xc00
@@ -33,11 +33,11 @@ lbl_8001659C:
 /* 80016618  7F A6 EB 78 */	mr r6, r29
 /* 8001661C  7F C5 F3 78 */	mr r5, r30
 /* 80016620  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000F8@ha */
-/* 80016624  80 04 00 F8 */	lwz r0, 0x00F8(r4)
+/* 80016624  80 04 00 F8 */	lwz r0, 0x00F8(r4)  /* 0x800000F8@l */
 /* 80016628  54 08 F0 BE */	srwi r8, r0, 2
 /* 8001662C  38 E0 00 00 */	li r7, 0
-/* 80016630  3C 80 80 01 */	lis r4, AlarmHandler__FP7OSAlarmP9OSContext@ha
-/* 80016634  39 24 67 04 */	addi r9, r4, AlarmHandler__FP7OSAlarmP9OSContext@l
+/* 80016630  3C 80 80 01 */	lis r4, AlarmHandler__FP7OSAlarmP9OSContext@ha /* 0x80016704@ha */
+/* 80016634  39 24 67 04 */	addi r9, r4, AlarmHandler__FP7OSAlarmP9OSContext@l /* 0x80016704@l */
 /* 80016638  48 32 45 89 */	bl OSSetPeriodicAlarm
 /* 8001663C  38 00 00 01 */	li r0, 1
 /* 80016640  98 0D 87 08 */	stb r0, data_80450C88(r13)

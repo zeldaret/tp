@@ -132,6 +132,7 @@ def parse(context: Context, module_id: int, linker_map_path: Path, executable_se
             sections[section.name].first_padding = section.first_padding + section.offset_padding
             sections[section.name].data = section.data
             sections[section.name].index = i
+            sections[section.name].alignment = section.alignment
 
     # for each section, go through all the lines and try to find sysmbols
     for section_name, lines in groups.items():

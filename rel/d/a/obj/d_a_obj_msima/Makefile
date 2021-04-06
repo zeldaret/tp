@@ -3,19 +3,20 @@
 #
 
 M577_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima.plf
+M577_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima.lcf
+M577_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima.map
 
 M577_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_msima/executor.cpp \
-	rel/d/a/obj/d_a_obj_msima/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_msima/d_a_obj_msima.cpp \
 
 M577_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/d_a_obj_msima.o \
 
 M577_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/libRuntime.PPCEABI.H.a \
 
 M577_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M577_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map577.map\
+	-m _prolog \
+	-lcf $(M577_LDSCRIPT) \
+	-unused -map $(M577_MAP) \
+	-w off \
 
 $(M577_TARGET): $(M577_O_FILES) $(M577_LIBS)
+	@echo [577] creating $(M577_TARGET)
 	@echo $(M577_LIBS) $(M577_O_FILES) > build/M577_ofiles
-	$(LD) -opt_partial $(M577_LDFLAGS) -o $(M577_TARGET) @build/M577_ofiles
+	@python3 tools/lcf.py rel 577 --output $(M577_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M577_LDFLAGS) -o $(M577_TARGET) @build/M577_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_msima/%.o: rel/d/a/obj/d_a_obj_msima/%.cpp
+	@echo [577] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M577_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_msima/libs/Runtime.PPCEABI.H/Makefile
 

@@ -26,8 +26,8 @@ lbl_8015B160:
 /* 8015B160  7F E3 FB 78 */	mr r3, r31
 /* 8015B164  48 00 00 2D */	bl setBaseMtx_0__8daItem_cFv
 lbl_8015B168:
-/* 8015B168  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8015B16C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8015B168  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8015B16C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8015B170  80 9F 05 74 */	lwz r4, 0x574(r31)
 /* 8015B174  38 84 00 24 */	addi r4, r4, 0x24
 /* 8015B178  48 1E B3 39 */	bl PSMTXCopy

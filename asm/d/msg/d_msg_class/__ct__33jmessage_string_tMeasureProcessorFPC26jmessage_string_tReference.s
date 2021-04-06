@@ -5,8 +5,8 @@ lbl_8022FB98:
 /* 8022FBA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022FBA8  7C 7F 1B 78 */	mr r31, r3
 /* 8022FBAC  48 07 8E D9 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
-/* 8022FBB0  3C 60 80 3C */	lis r3, __vt__33jmessage_string_tMeasureProcessor@ha
-/* 8022FBB4  38 03 09 A0 */	addi r0, r3, __vt__33jmessage_string_tMeasureProcessor@l
+/* 8022FBB0  3C 60 80 3C */	lis r3, __vt__33jmessage_string_tMeasureProcessor@ha /* 0x803C09A0@ha */
+/* 8022FBB4  38 03 09 A0 */	addi r0, r3, __vt__33jmessage_string_tMeasureProcessor@l /* 0x803C09A0@l */
 /* 8022FBB8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8022FBBC  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8022FBC0  90 1F 00 38 */	stw r0, 0x38(r31)

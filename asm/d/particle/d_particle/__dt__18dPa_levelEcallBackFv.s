@@ -7,8 +7,8 @@ lbl_8004FB18:
 /* 8004FB2C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FB30  7C 9F 23 78 */	mr r31, r4
 /* 8004FB34  41 82 00 3C */	beq lbl_8004FB70
-/* 8004FB38  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 8004FB3C  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 8004FB38  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x803A8554@ha */
+/* 8004FB3C  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x803A8554@l */
 /* 8004FB40  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FB44  81 83 00 00 */	lwz r12, 0(r3)
 /* 8004FB48  81 8C 00 20 */	lwz r12, 0x20(r12)

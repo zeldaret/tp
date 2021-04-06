@@ -5,8 +5,8 @@ lbl_80BEDDC0:
 /* 80BEDDCC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BEDDD0  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BEDDD4  7C 7E 1B 78 */	mr r30, r3
-/* 80BEDDD8  3C 60 80 BF */	lis r3, M_attr__12daObjFlag2_c@ha
-/* 80BEDDDC  3B E3 E0 DC */	addi r31, r3, M_attr__12daObjFlag2_c@l
+/* 80BEDDD8  3C 60 80 BF */	lis r3, M_attr__12daObjFlag2_c@ha /* 0x80BEE0DC@ha */
+/* 80BEDDDC  3B E3 E0 DC */	addi r31, r3, M_attr__12daObjFlag2_c@l /* 0x80BEE0DC@l */
 /* 80BEDDE0  88 1E 10 AC */	lbz r0, 0x10ac(r30)
 /* 80BEDDE4  28 00 00 00 */	cmplwi r0, 0
 /* 80BEDDE8  40 82 00 0C */	bne lbl_80BEDDF4
@@ -16,7 +16,7 @@ lbl_80BEDDF4:
 /* 80BEDDF4  38 7E 10 A0 */	addi r3, r30, 0x10a0
 /* 80BEDDF8  38 81 00 10 */	addi r4, r1, 0x10
 /* 80BEDDFC  38 A1 00 08 */	addi r5, r1, 8
-/* 80BEDE00  4B 46 D4 F8 */	b dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
+/* 80BEDE00  4B 46 D4 F9 */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 80BEDE04  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80BEDE08  C0 1F 00 18 */	lfs f0, 0x18(r31)
 /* 80BEDE0C  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -26,10 +26,10 @@ lbl_80BEDDF4:
 /* 80BEDE1C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80BEDE20  C0 1F 01 00 */	lfs f0, 0x100(r31)
 /* 80BEDE24  EC 20 00 72 */	fmuls f1, f0, f1
-/* 80BEDE28  4B 77 42 84 */	b __cvt_fp2unsigned
+/* 80BEDE28  4B 77 42 85 */	bl __cvt_fp2unsigned
 /* 80BEDE2C  7C 66 1B 78 */	mr r6, r3
-/* 80BEDE30  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80BEDE34  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80BEDE30  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80BEDE34  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80BEDE38  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BEDE3C  38 81 00 0C */	addi r4, r1, 0xc
 /* 80BEDE40  38 BE 10 A0 */	addi r5, r30, 0x10a0
@@ -39,7 +39,7 @@ lbl_80BEDDF4:
 /* 80BEDE50  C0 7F 01 08 */	lfs f3, 0x108(r31)
 /* 80BEDE54  FC 80 18 90 */	fmr f4, f3
 /* 80BEDE58  39 00 00 00 */	li r8, 0
-/* 80BEDE5C  4B 6B E6 B0 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80BEDE5C  4B 6B E6 B1 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80BEDE60:
 /* 80BEDE60  38 7E 07 00 */	addi r3, r30, 0x700
 /* 80BEDE64  4B FF EF 35 */	bl execute__11FlagCloth_cFv

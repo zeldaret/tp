@@ -23,12 +23,12 @@ lbl_800E1FB0:
 /* 800E1FB4  38 80 00 00 */	li r4, 0
 /* 800E1FB8  4B FF F3 F5 */	bl initCopyRodUpperAnimeSpeed__9daAlink_cFi
 /* 800E1FBC  7F E3 FB 78 */	mr r3, r31
-/* 800E1FC0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha
-/* 800E1FC4  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l
+/* 800E1FC0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E1FC4  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E1FC8  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 800E1FCC  4B FC CA A5 */	bl setBlendAtnMoveAnime__9daAlink_cFf
-/* 800E1FD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E1FD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E1FD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E1FD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E1FD8  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800E1FDC  60 00 00 80 */	ori r0, r0, 0x80
 /* 800E1FE0  90 03 5F 18 */	stw r0, 0x5f18(r3)

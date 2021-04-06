@@ -36,10 +36,7 @@ extern "C" extern void* __vt__11dBgS_WtrChk[12];
 // Declarations:
 //
 
-/* 80079164-800791C4 0060+00 s=0 e=2 z=3  None .text      __ct__11dBgS_WtrChkFv */
-//	80079178: 80078BB0 (__ct__14dBgS_SplGrpChkFv)
-//	8007917C: 803A37FC (__vt__11dBgS_WtrChk)
-//	80079180: 803A37FC (__vt__11dBgS_WtrChk)
+/* 80079164-800791C4 073AA4 0060+00 0/0 2/2 3/3 .text            __ct__11dBgS_WtrChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

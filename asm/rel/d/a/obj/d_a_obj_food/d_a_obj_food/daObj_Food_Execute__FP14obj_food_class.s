@@ -24,7 +24,7 @@ lbl_80BF1744:
 /* 80BF1750  4B FF FA 19 */	bl action__FP14obj_food_class
 /* 80BF1754  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BF1758  7C 03 07 74 */	extsb r3, r0
-/* 80BF175C  4B 43 B9 10 */	b dComIfGp_getReverb__Fi
+/* 80BF175C  4B 43 B9 11 */	bl dComIfGp_getReverb__Fi
 /* 80BF1760  7C 65 1B 78 */	mr r5, r3
 /* 80BF1764  38 7F 05 98 */	addi r3, r31, 0x598
 /* 80BF1768  38 80 00 00 */	li r4, 0

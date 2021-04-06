@@ -3,11 +3,11 @@ lbl_80542198:
 /* 8054219C  7C 08 02 A6 */	mflr r0
 /* 805421A0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 805421A4  39 61 00 30 */	addi r11, r1, 0x30
-/* 805421A8  4B E2 00 30 */	b _savegpr_28
+/* 805421A8  4B E2 00 31 */	bl _savegpr_28
 /* 805421AC  7C 7C 1B 78 */	mr r28, r3
 /* 805421B0  7C 9D 23 78 */	mr r29, r4
-/* 805421B4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 805421B8  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 805421B4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 805421B8  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 805421BC  3B C0 00 00 */	li r30, 0
 lbl_805421C0:
 /* 805421C0  80 1D 00 00 */	lwz r0, 0(r29)
@@ -37,14 +37,14 @@ lbl_80542200:
 /* 8054221C  38 E0 00 00 */	li r7, 0
 /* 80542220  39 00 00 00 */	li r8, 0
 /* 80542224  39 20 FF FF */	li r9, -1
-/* 80542228  4B AD 7B 70 */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 80542228  4B AD 7B 71 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 8054222C  3B DE 00 01 */	addi r30, r30, 1
 /* 80542230  2C 1E 00 64 */	cmpwi r30, 0x64
 /* 80542234  3B BD 00 14 */	addi r29, r29, 0x14
 /* 80542238  41 80 FF 88 */	blt lbl_805421C0
 lbl_8054223C:
 /* 8054223C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80542240  4B E1 FF E4 */	b _restgpr_28
+/* 80542240  4B E1 FF E5 */	bl _restgpr_28
 /* 80542244  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80542248  7C 08 03 A6 */	mtlr r0
 /* 8054224C  38 21 00 30 */	addi r1, r1, 0x30

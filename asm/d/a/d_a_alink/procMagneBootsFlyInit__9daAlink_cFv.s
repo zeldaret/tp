@@ -37,8 +37,8 @@ lbl_800E3218:
 /* 800E32A4  48 18 C1 65 */	bl crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz
 /* 800E32A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800E32AC  40 82 00 18 */	bne lbl_800E32C4
-/* 800E32B0  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800E32B4  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800E32B0  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800E32B4  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800E32B8  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800E32BC  38 60 00 00 */	li r3, 0
 /* 800E32C0  48 00 01 80 */	b lbl_800E3440
@@ -63,8 +63,8 @@ lbl_800E32C4:
 /* 800E3308  4B FF F1 A9 */	bl commonMagneLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800E330C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800E3310  40 82 00 18 */	bne lbl_800E3328
-/* 800E3314  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800E3318  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800E3314  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800E3318  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800E331C  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800E3320  38 60 00 00 */	li r3, 0
 /* 800E3324  48 00 01 1C */	b lbl_800E3440
@@ -82,8 +82,8 @@ lbl_800E334C:
 /* 800E334C  7F E3 FB 78 */	mr r3, r31
 /* 800E3350  38 80 00 CC */	li r4, 0xcc
 /* 800E3354  4B FD EC 19 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
-/* 800E3358  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E335C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E3358  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E335C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E3360  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800E3364  38 9F 1D C0 */	addi r4, r31, 0x1dc0
 /* 800E3368  38 A1 00 50 */	addi r5, r1, 0x50
@@ -125,8 +125,8 @@ lbl_800E33EC:
 lbl_800E33F4:
 /* 800E33F4  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800E33F8  D0 1F 34 78 */	stfs f0, 0x3478(r31)
-/* 800E33FC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800E3400  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800E33FC  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800E3400  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800E3404  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 800E3408  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 800E340C  38 00 00 00 */	li r0, 0
@@ -138,8 +138,8 @@ lbl_800E33F4:
 /* 800E3424  81 8C 01 14 */	lwz r12, 0x114(r12)
 /* 800E3428  7D 89 03 A6 */	mtctr r12
 /* 800E342C  4E 80 04 21 */	bctrl 
-/* 800E3430  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800E3434  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800E3430  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800E3434  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800E3438  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800E343C  38 60 00 01 */	li r3, 1
 lbl_800E3440:

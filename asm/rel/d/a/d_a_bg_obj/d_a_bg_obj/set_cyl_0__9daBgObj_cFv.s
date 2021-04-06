@@ -9,9 +9,9 @@ lbl_8045AE00:
 /* 8045AE1C  38 00 00 00 */	li r0, 0
 /* 8045AE20  98 03 0C C4 */	stb r0, 0xcc4(r3)
 /* 8045AE24  38 7F 0B 88 */	addi r3, r31, 0xb88
-/* 8045AE28  3C 80 80 46 */	lis r4, l_cyl_src@ha
-/* 8045AE2C  38 84 C9 B8 */	addi r4, r4, l_cyl_src@l
-/* 8045AE30  4B C2 9A 84 */	b Set__8dCcD_CylFRC11dCcD_SrcCyl
+/* 8045AE28  3C 80 80 46 */	lis r4, l_cyl_src@ha /* 0x8045C9B8@ha */
+/* 8045AE2C  38 84 C9 B8 */	addi r4, r4, l_cyl_src@l /* 0x8045C9B8@l */
+/* 8045AE30  4B C2 9A 85 */	bl Set__8dCcD_CylFRC11dCcD_SrcCyl
 /* 8045AE34  38 1F 05 DC */	addi r0, r31, 0x5dc
 /* 8045AE38  90 1F 0B CC */	stw r0, 0xbcc(r31)
 /* 8045AE3C  C0 1F 05 14 */	lfs f0, 0x514(r31)
@@ -25,13 +25,13 @@ lbl_8045AE54:
 lbl_8045AE58:
 /* 8045AE58  38 7F 0C AC */	addi r3, r31, 0xcac
 /* 8045AE5C  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 8045AE60  4B E1 43 7C */	b SetC__8cM3dGCylFRC4cXyz
+/* 8045AE60  4B E1 43 7D */	bl SetC__8cM3dGCylFRC4cXyz
 /* 8045AE64  38 7F 0C AC */	addi r3, r31, 0xcac
 /* 8045AE68  C0 3F 05 18 */	lfs f1, 0x518(r31)
-/* 8045AE6C  4B E1 43 8C */	b SetH__8cM3dGCylFf
+/* 8045AE6C  4B E1 43 8D */	bl SetH__8cM3dGCylFf
 /* 8045AE70  38 7F 0C AC */	addi r3, r31, 0xcac
 /* 8045AE74  FC 20 F8 90 */	fmr f1, f31
-/* 8045AE78  4B E1 43 88 */	b SetR__8cM3dGCylFf
+/* 8045AE78  4B E1 43 89 */	bl SetR__8cM3dGCylFf
 /* 8045AE7C  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 8045AE80  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 8045AE84  83 E1 00 0C */	lwz r31, 0xc(r1)

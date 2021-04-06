@@ -4,8 +4,8 @@ lbl_803254AC:
 /* 803254B4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803254B8  80 03 00 08 */	lwz r0, 8(r3)
 /* 803254BC  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 803254C0  3C 80 80 3D */	lis r4, drawFuncTable__13J3DDrawBuffer@ha
-/* 803254C4  38 04 EC 90 */	addi r0, r4, drawFuncTable__13J3DDrawBuffer@l
+/* 803254C0  3C 80 80 3D */	lis r4, drawFuncTable__13J3DDrawBuffer@ha /* 0x803CEC90@ha */
+/* 803254C4  38 04 EC 90 */	addi r0, r4, drawFuncTable__13J3DDrawBuffer@l /* 0x803CEC90@l */
 /* 803254C8  7C A0 2A 14 */	add r5, r0, r5
 /* 803254CC  80 85 00 00 */	lwz r4, 0(r5)
 /* 803254D0  80 05 00 04 */	lwz r0, 4(r5)

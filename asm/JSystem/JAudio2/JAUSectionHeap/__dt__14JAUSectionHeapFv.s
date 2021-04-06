@@ -7,8 +7,8 @@ lbl_802A6278:
 /* 802A628C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A6290  7C 9F 23 78 */	mr r31, r4
 /* 802A6294  41 82 01 90 */	beq lbl_802A6424
-/* 802A6298  3C 60 80 3D */	lis r3, __vt__14JAUSectionHeap@ha
-/* 802A629C  38 63 9A C0 */	addi r3, r3, __vt__14JAUSectionHeap@l
+/* 802A6298  3C 60 80 3D */	lis r3, __vt__14JAUSectionHeap@ha /* 0x803C9AC0@ha */
+/* 802A629C  38 63 9A C0 */	addi r3, r3, __vt__14JAUSectionHeap@l /* 0x803C9AC0@l */
 /* 802A62A0  90 7E 00 00 */	stw r3, 0(r30)
 /* 802A62A4  38 03 00 10 */	addi r0, r3, 0x10
 /* 802A62A8  90 1E 00 DC */	stw r0, 0xdc(r30)
@@ -60,8 +60,8 @@ lbl_802A6338:
 lbl_802A634C:
 /* 802A634C  28 1E 00 00 */	cmplwi r30, 0
 /* 802A6350  41 82 00 C4 */	beq lbl_802A6414
-/* 802A6354  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha
-/* 802A6358  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l
+/* 802A6354  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha /* 0x803C9B24@ha */
+/* 802A6358  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l /* 0x803C9B24@l */
 /* 802A635C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A6360  34 1E 00 38 */	addic. r0, r30, 0x38
 /* 802A6364  41 82 00 90 */	beq lbl_802A63F4

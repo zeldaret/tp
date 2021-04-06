@@ -4,8 +4,8 @@ lbl_806E31B0:
 /* 806E31B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 806E31BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806E31C0  7C 7F 1B 78 */	mr r31, r3
-/* 806E31C4  3C 80 80 6E */	lis r4, lit_3923@ha
-/* 806E31C8  C0 04 59 A0 */	lfs f0, lit_3923@l(r4)
+/* 806E31C4  3C 80 80 6E */	lis r4, lit_3923@ha /* 0x806E59A0@ha */
+/* 806E31C8  C0 04 59 A0 */	lfs f0, lit_3923@l(r4)  /* 0x806E59A0@l */
 /* 806E31CC  D0 03 05 B0 */	stfs f0, 0x5b0(r3)
 /* 806E31D0  80 83 05 BC */	lwz r4, 0x5bc(r3)
 /* 806E31D4  38 04 FF FF */	addi r0, r4, -1

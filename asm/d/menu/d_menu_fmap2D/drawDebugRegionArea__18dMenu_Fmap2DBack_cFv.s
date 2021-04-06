@@ -58,8 +58,8 @@ lbl_801D564C:
 /* 801D572C  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 801D5730  90 01 00 40 */	stw r0, 0x40(r1)
 /* 801D5734  3B C0 00 00 */	li r30, 0
-/* 801D5738  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D573C  3B E3 FC 60 */	addi r31, r3, g_fmapHIO@l
+/* 801D5738  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D573C  3B E3 FC 60 */	addi r31, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D5740  CB E2 A8 08 */	lfd f31, lit_4496(r2)
 /* 801D5744  3F 60 43 30 */	lis r27, 0x4330
 /* 801D5748  48 00 01 5C */	b lbl_801D58A4

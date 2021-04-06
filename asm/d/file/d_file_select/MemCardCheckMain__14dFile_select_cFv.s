@@ -4,8 +4,8 @@ lbl_8018E4CC:
 /* 8018E4D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8018E4D8  88 03 02 71 */	lbz r0, 0x271(r3)
 /* 8018E4DC  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8018E4E0  3C 80 80 3C */	lis r4, MemCardCheckProc@ha
-/* 8018E4E4  38 04 B1 2C */	addi r0, r4, MemCardCheckProc@l
+/* 8018E4E0  3C 80 80 3C */	lis r4, MemCardCheckProc@ha /* 0x803BB12C@ha */
+/* 8018E4E4  38 04 B1 2C */	addi r0, r4, MemCardCheckProc@l /* 0x803BB12C@l */
 /* 8018E4E8  7D 80 2A 14 */	add r12, r0, r5
 /* 8018E4EC  48 1D 3B 99 */	bl __ptmf_scall
 /* 8018E4F0  60 00 00 00 */	nop 

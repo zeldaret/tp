@@ -137,7 +137,7 @@ lbl_802FBA10:
 /* 802FBA80  38 A0 00 04 */	li r5, 4
 /* 802FBA84  48 06 0C E1 */	bl GXBegin
 /* 802FBA88  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802FBA8C  D3 C3 80 00 */	stfs f30, 0x8000(r3)
+/* 802FBA8C  D3 C3 80 00 */	stfs f30, 0x8000(r3)  /* 0xCC008000@l */
 /* 802FBA90  D3 E3 80 00 */	stfs f31, -0x8000(r3)
 /* 802FBA94  C0 02 C8 50 */	lfs f0, lit_2156(r2)
 /* 802FBA98  D0 03 80 00 */	stfs f0, -0x8000(r3)

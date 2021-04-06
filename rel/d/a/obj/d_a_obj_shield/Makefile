@@ -3,18 +3,16 @@
 #
 
 M619_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield.plf
+M619_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield.lcf
+M619_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield.map
 
 M619_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_shield/executor.cpp \
-	rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_shield/d_a_obj_shield.cpp \
 
 M619_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/d_a_obj_shield.o \
 
@@ -31,15 +29,21 @@ M619_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map619.map\
+	-m _prolog \
+	-lcf $(M619_LDSCRIPT) \
+	-unused -map $(M619_MAP) \
+	-w off \
 
 $(M619_TARGET): $(M619_O_FILES) $(M619_LIBS)
+	@echo [619] creating $(M619_TARGET)
 	@echo $(M619_LIBS) $(M619_O_FILES) > build/M619_ofiles
-	$(LD) -opt_partial $(M619_LDFLAGS) -o $(M619_TARGET) @build/M619_ofiles
+	@python3 tools/lcf.py rel 619 --output $(M619_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M619_LDFLAGS) -o $(M619_TARGET) @build/M619_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_shield/%.o: rel/d/a/obj/d_a_obj_shield/%.cpp
+	@echo [619] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M619_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M619_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -72,8 +72,8 @@ lbl_8006FC0C:
 lbl_8006FD24:
 /* 8006FD24  57 C0 07 FF */	clrlwi. r0, r30, 0x1f
 /* 8006FD28  41 82 00 50 */	beq lbl_8006FD78
-/* 8006FD2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8006FD30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8006FD2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8006FD30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8006FD34  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8006FD38  4B FC 49 0D */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FD3C  54 60 06 3E */	clrlwi r0, r3, 0x18

@@ -3,19 +3,20 @@
 #
 
 M322_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar.plf
+M322_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar.lcf
+M322_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar.map
 
 M322_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_jagar/executor.cpp \
-	rel/d/a/npc/d_a_npc_jagar/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_jagar/d_a_npc_jagar.cpp \
 
 M322_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/d_a_npc_jagar.o \
 
 M322_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/libRuntime.PPCEABI.H.a \
 
 M322_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M322_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map322.map\
+	-m _prolog \
+	-lcf $(M322_LDSCRIPT) \
+	-unused -map $(M322_MAP) \
+	-w off \
 
 $(M322_TARGET): $(M322_O_FILES) $(M322_LIBS)
+	@echo [322] creating $(M322_TARGET)
 	@echo $(M322_LIBS) $(M322_O_FILES) > build/M322_ofiles
-	$(LD) -opt_partial $(M322_LDFLAGS) -o $(M322_TARGET) @build/M322_ofiles
+	@python3 tools/lcf.py rel 322 --output $(M322_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M322_LDFLAGS) -o $(M322_TARGET) @build/M322_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_jagar/%.o: rel/d/a/npc/d_a_npc_jagar/%.cpp
+	@echo [322] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M322_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M322_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_jagar/libs/Runtime.PPCEABI.H/Makefile
 

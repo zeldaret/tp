@@ -9,8 +9,8 @@ lbl_8001884C:
 /* 80018868  38 60 00 04 */	li r3, 4
 /* 8001886C  48 00 00 14 */	b lbl_80018880
 lbl_80018870:
-/* 80018870  3C 80 80 3A */	lis r4, l_method@ha
-/* 80018874  38 84 35 90 */	addi r4, r4, l_method@l
+/* 80018870  3C 80 80 3A */	lis r4, l_method@ha /* 0x803A3590@ha */
+/* 80018874  38 84 35 90 */	addi r4, r4, l_method@l /* 0x803A3590@l */
 /* 80018878  38 A1 00 08 */	addi r5, r1, 8
 /* 8001887C  48 01 72 A5 */	bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 lbl_80018880:

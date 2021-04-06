@@ -140,11 +140,11 @@ lbl_8034F76C:
 /* 8034F7A8  98 04 00 09 */	stb r0, 9(r4)
 lbl_8034F7AC:
 /* 8034F7AC  88 E4 00 02 */	lbz r7, 2(r4)
-/* 8034F7B0  3C A0 80 45 */	lis r5, Type@ha
+/* 8034F7B0  3C A0 80 45 */	lis r5, Type@ha /* 0x8044CB70@ha */
 /* 8034F7B4  54 66 10 3A */	slwi r6, r3, 2
 /* 8034F7B8  38 07 FF 80 */	addi r0, r7, -128
 /* 8034F7BC  98 04 00 02 */	stb r0, 2(r4)
-/* 8034F7C0  38 05 CB 70 */	addi r0, r5, Type@l
+/* 8034F7C0  38 05 CB 70 */	addi r0, r5, Type@l /* 0x8044CB70@l */
 /* 8034F7C4  7C A0 32 14 */	add r5, r0, r6
 /* 8034F7C8  88 C4 00 03 */	lbz r6, 3(r4)
 /* 8034F7CC  38 06 FF 80 */	addi r0, r6, -128
@@ -182,10 +182,10 @@ lbl_8034F840:
 /* 8034F848  7C 00 1C 30 */	srw r0, r0, r3
 /* 8034F84C  7C A0 00 78 */	andc r0, r5, r0
 /* 8034F850  90 0D 92 E4 */	stw r0, BarrelBits(r13)
-/* 8034F854  3C A0 80 45 */	lis r5, Origin@ha
+/* 8034F854  3C A0 80 45 */	lis r5, Origin@ha /* 0x8044CB80@ha */
 /* 8034F858  1C 63 00 0C */	mulli r3, r3, 0xc
 /* 8034F85C  88 C4 00 02 */	lbz r6, 2(r4)
-/* 8034F860  38 05 CB 80 */	addi r0, r5, Origin@l
+/* 8034F860  38 05 CB 80 */	addi r0, r5, Origin@l /* 0x8044CB80@l */
 /* 8034F864  7C 60 1A 14 */	add r3, r0, r3
 /* 8034F868  88 E3 00 02 */	lbz r7, 2(r3)
 /* 8034F86C  7C E0 07 75 */	extsb. r0, r7

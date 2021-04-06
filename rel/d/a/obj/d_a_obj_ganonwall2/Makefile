@@ -3,17 +3,15 @@
 #
 
 M456_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2.plf
+M456_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2.lcf
+M456_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2.map
 
 M456_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ganonwall2/executor.cpp \
-	rel/d/a/obj/d_a_obj_ganonwall2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ganonwall2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ganonwall2/d_a_obj_ganonwall2.cpp \
 
 M456_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/d_a_obj_ganonwall2.o \
 
 M456_LIBS := \
@@ -29,15 +27,21 @@ M456_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map456.map\
+	-m _prolog \
+	-lcf $(M456_LDSCRIPT) \
+	-unused -map $(M456_MAP) \
+	-w off \
 
 $(M456_TARGET): $(M456_O_FILES) $(M456_LIBS)
+	@echo [456] creating $(M456_TARGET)
 	@echo $(M456_LIBS) $(M456_O_FILES) > build/M456_ofiles
-	$(LD) -opt_partial $(M456_LDFLAGS) -o $(M456_TARGET) @build/M456_ofiles
+	@python3 tools/lcf.py rel 456 --output $(M456_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M456_LDFLAGS) -o $(M456_TARGET) @build/M456_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ganonwall2/%.o: rel/d/a/obj/d_a_obj_ganonwall2/%.cpp
+	@echo [456] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M456_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M456_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

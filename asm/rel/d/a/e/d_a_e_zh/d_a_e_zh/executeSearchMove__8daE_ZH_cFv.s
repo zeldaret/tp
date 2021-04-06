@@ -5,8 +5,8 @@ lbl_8082B820:
 /* 8082B82C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8082B830  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8082B834  7C 7F 1B 78 */	mr r31, r3
-/* 8082B838  3C 80 80 83 */	lis r4, lit_3778@ha
-/* 8082B83C  3B C4 F2 08 */	addi r30, r4, lit_3778@l
+/* 8082B838  3C 80 80 83 */	lis r4, lit_3778@ha /* 0x8082F208@ha */
+/* 8082B83C  3B C4 F2 08 */	addi r30, r4, lit_3778@l /* 0x8082F208@l */
 /* 8082B840  80 83 06 64 */	lwz r4, 0x664(r3)
 /* 8082B844  28 04 00 00 */	cmplwi r4, 0
 /* 8082B848  40 82 00 14 */	bne lbl_8082B85C
@@ -52,7 +52,7 @@ lbl_8082B8D4:
 /* 8082B8D8  C0 21 00 10 */	lfs f1, 0x10(r1)
 /* 8082B8DC  C0 5E 00 68 */	lfs f2, 0x68(r30)
 /* 8082B8E0  C0 7E 00 04 */	lfs f3, 4(r30)
-/* 8082B8E4  4B A4 41 58 */	b cLib_addCalc2__FPffff
+/* 8082B8E4  4B A4 41 59 */	bl cLib_addCalc2__FPffff
 /* 8082B8E8  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)
 /* 8082B8EC  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 8082B8F0  EC 01 00 28 */	fsubs f0, f1, f0
@@ -99,7 +99,7 @@ lbl_8082B968:
 /* 8082B988  38 7F 04 D4 */	addi r3, r31, 0x4d4
 /* 8082B98C  C0 5E 00 68 */	lfs f2, 0x68(r30)
 /* 8082B990  C0 7E 00 04 */	lfs f3, 4(r30)
-/* 8082B994  4B A4 40 A8 */	b cLib_addCalc2__FPffff
+/* 8082B994  4B A4 40 A9 */	bl cLib_addCalc2__FPffff
 lbl_8082B998:
 /* 8082B998  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070456@ha */
 /* 8082B99C  38 03 04 56 */	addi r0, r3, 0x0456 /* 0x00070456@l */

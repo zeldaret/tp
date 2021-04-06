@@ -3,12 +3,12 @@ lbl_80838798:
 /* 8083879C  7C 08 02 A6 */	mflr r0
 /* 808387A0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 808387A4  39 61 00 30 */	addi r11, r1, 0x30
-/* 808387A8  4B B2 9A 34 */	b _savegpr_29
+/* 808387A8  4B B2 9A 35 */	bl _savegpr_29
 /* 808387AC  7C 7D 1B 78 */	mr r29, r3
-/* 808387B0  3C 60 80 84 */	lis r3, lit_3894@ha
-/* 808387B4  3B C3 54 AC */	addi r30, r3, lit_3894@l
-/* 808387B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808387BC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 808387B0  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
+/* 808387B4  3B C3 54 AC */	addi r30, r3, lit_3894@l /* 0x808454AC@l */
+/* 808387B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808387BC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808387C0  88 1F 4F AD */	lbz r0, 0x4fad(r31)
 /* 808387C4  28 00 00 00 */	cmplwi r0, 0
 /* 808387C8  40 82 01 24 */	bne lbl_808388EC
@@ -37,7 +37,7 @@ lbl_808387F4:
 /* 8083881C  41 82 00 B4 */	beq lbl_808388D0
 /* 80838820  7C 83 23 78 */	mr r3, r4
 /* 80838824  7F A4 EB 78 */	mr r4, r29
-/* 80838828  4B 7E 1E E8 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80838828  4B 7E 1E E9 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8083882C  B0 7D 17 06 */	sth r3, 0x1706(r29)
 /* 80838830  A8 7D 17 06 */	lha r3, 0x1706(r29)
 /* 80838834  2C 03 50 00 */	cmpwi r3, 0x5000
@@ -52,7 +52,7 @@ lbl_80838848:
 /* 80838854  B0 1D 17 06 */	sth r0, 0x1706(r29)
 /* 80838858  48 00 00 30 */	b lbl_80838888
 lbl_8083885C:
-/* 8083885C  4B B2 C8 74 */	b abs
+/* 8083885C  4B B2 C8 75 */	bl abs
 /* 80838860  2C 03 30 00 */	cmpwi r3, 0x3000
 /* 80838864  40 80 00 24 */	bge lbl_80838888
 /* 80838868  A8 1D 17 06 */	lha r0, 0x1706(r29)
@@ -76,7 +76,7 @@ lbl_80838888:
 /* 808388A8  38 80 00 03 */	li r4, 3
 /* 808388AC  38 A0 00 01 */	li r5, 1
 /* 808388B0  38 C1 00 08 */	addi r6, r1, 8
-/* 808388B4  4B 83 71 70 */	b StartShock__12dVibration_cFii4cXyz
+/* 808388B4  4B 83 71 71 */	bl StartShock__12dVibration_cFii4cXyz
 /* 808388B8  80 1D 17 44 */	lwz r0, 0x1744(r29)
 /* 808388BC  54 00 02 D7 */	rlwinm. r0, r0, 0, 0xb, 0xb
 /* 808388C0  41 82 00 2C */	beq lbl_808388EC
@@ -93,7 +93,7 @@ lbl_808388D0:
 /* 808388E8  48 00 87 9D */	bl setBoarHit__9daHorse_cFP10fopAc_ac_ci
 lbl_808388EC:
 /* 808388EC  39 61 00 30 */	addi r11, r1, 0x30
-/* 808388F0  4B B2 99 38 */	b _restgpr_29
+/* 808388F0  4B B2 99 39 */	bl _restgpr_29
 /* 808388F4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 808388F8  7C 08 03 A6 */	mtlr r0
 /* 808388FC  38 21 00 30 */	addi r1, r1, 0x30

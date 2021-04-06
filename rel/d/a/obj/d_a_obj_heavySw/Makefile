@@ -3,19 +3,20 @@
 #
 
 M476_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw.plf
+M476_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw.lcf
+M476_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw.map
 
 M476_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_heavySw/executor.cpp \
-	rel/d/a/obj/d_a_obj_heavySw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw.cpp \
 
 M476_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw.o \
 
 M476_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/libRuntime.PPCEABI.H.a \
 
 M476_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M476_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map476.map\
+	-m _prolog \
+	-lcf $(M476_LDSCRIPT) \
+	-unused -map $(M476_MAP) \
+	-w off \
 
 $(M476_TARGET): $(M476_O_FILES) $(M476_LIBS)
+	@echo [476] creating $(M476_TARGET)
 	@echo $(M476_LIBS) $(M476_O_FILES) > build/M476_ofiles
-	$(LD) -opt_partial $(M476_LDFLAGS) -o $(M476_TARGET) @build/M476_ofiles
+	@python3 tools/lcf.py rel 476 --output $(M476_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M476_LDFLAGS) -o $(M476_TARGET) @build/M476_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_heavySw/%.o: rel/d/a/obj/d_a_obj_heavySw/%.cpp
+	@echo [476] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M476_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M476_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_heavySw/libs/Runtime.PPCEABI.H/Makefile
 

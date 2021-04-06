@@ -1,8 +1,8 @@
 lbl_80550CA8:
-/* 80550CA8  3C 80 80 55 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80550CAC  38 C4 35 F8 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80550CB0  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80550CB4  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80550CA8  3C 80 80 55 */	lis r4, cNullVec__6Z2Calc@ha /* 0x805535F8@ha */
+/* 80550CAC  38 C4 35 F8 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x805535F8@l */
+/* 80550CB0  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80550CB4  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80550CB8  80 85 00 00 */	lwz r4, 0(r5)
 /* 80550CBC  80 05 00 04 */	lwz r0, 4(r5)
 /* 80550CC0  90 83 0F 8C */	stw r4, 0xf8c(r3)

@@ -1,9 +1,9 @@
 lbl_80298F5C:
-/* 80298F5C  3C 80 80 3C */	lis r4, __vt__13JASWaveHandle@ha
-/* 80298F60  38 04 77 54 */	addi r0, r4, __vt__13JASWaveHandle@l
+/* 80298F5C  3C 80 80 3C */	lis r4, __vt__13JASWaveHandle@ha /* 0x803C7754@ha */
+/* 80298F60  38 04 77 54 */	addi r0, r4, __vt__13JASWaveHandle@l /* 0x803C7754@l */
 /* 80298F64  90 03 00 00 */	stw r0, 0(r3)
-/* 80298F68  3C 80 80 3C */	lis r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@ha
-/* 80298F6C  38 04 77 98 */	addi r0, r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@l
+/* 80298F68  3C 80 80 3C */	lis r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@ha /* 0x803C7798@ha */
+/* 80298F6C  38 04 77 98 */	addi r0, r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@l /* 0x803C7798@l */
 /* 80298F70  90 03 00 00 */	stw r0, 0(r3)
 /* 80298F74  38 00 00 3C */	li r0, 0x3c
 /* 80298F78  98 03 00 05 */	stb r0, 5(r3)

@@ -7,12 +7,12 @@ lbl_80749ED0:
 /* 80749EE4  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 80749EE8  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80749EEC  7C 7E 1B 78 */	mr r30, r3
-/* 80749EF0  3C 60 80 75 */	lis r3, lit_3910@ha
-/* 80749EF4  3B E3 BF 3C */	addi r31, r3, lit_3910@l
+/* 80749EF0  3C 60 80 75 */	lis r3, lit_3910@ha /* 0x8074BF3C@ha */
+/* 80749EF4  3B E3 BF 3C */	addi r31, r3, lit_3910@l /* 0x8074BF3C@l */
 /* 80749EF8  38 61 00 0C */	addi r3, r1, 0xc
 /* 80749EFC  38 9E 06 DC */	addi r4, r30, 0x6dc
 /* 80749F00  38 BE 06 E8 */	addi r5, r30, 0x6e8
-/* 80749F04  4B B1 CC 30 */	b __mi__4cXyzCFRC3Vec
+/* 80749F04  4B B1 CC 31 */	bl __mi__4cXyzCFRC3Vec
 /* 80749F08  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80749F0C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80749F10  C0 01 00 10 */	lfs f0, 0x10(r1)
@@ -20,7 +20,7 @@ lbl_80749ED0:
 /* 80749F18  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80749F1C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80749F20  38 61 00 18 */	addi r3, r1, 0x18
-/* 80749F24  4B BF D2 14 */	b PSVECSquareMag
+/* 80749F24  4B BF D2 15 */	bl PSVECSquareMag
 /* 80749F28  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 80749F2C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80749F30  40 81 00 58 */	ble lbl_80749F88
@@ -49,8 +49,8 @@ lbl_80749F88:
 /* 80749F88  C8 1F 00 20 */	lfd f0, 0x20(r31)
 /* 80749F8C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80749F90  40 80 00 10 */	bge lbl_80749FA0
-/* 80749F94  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80749F98  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 80749F94  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80749F98  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80749F9C  48 00 00 78 */	b lbl_8074A014
 lbl_80749FA0:
 /* 80749FA0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -84,8 +84,8 @@ lbl_80749FF8:
 lbl_80749FFC:
 /* 80749FFC  2C 00 00 01 */	cmpwi r0, 1
 /* 8074A000  40 82 00 10 */	bne lbl_8074A010
-/* 8074A004  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8074A008  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8074A004  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8074A008  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8074A00C  48 00 00 08 */	b lbl_8074A014
 lbl_8074A010:
 /* 8074A010  FF E0 08 90 */	fmr f31, f1
@@ -98,7 +98,7 @@ lbl_8074A014:
 /* 8074A028  80 81 00 2C */	lwz r4, 0x2c(r1)
 /* 8074A02C  38 A0 00 05 */	li r5, 5
 /* 8074A030  38 C0 10 00 */	li r6, 0x1000
-/* 8074A034  4B B2 65 D4 */	b cLib_addCalcAngleS2__FPssss
+/* 8074A034  4B B2 65 D5 */	bl cLib_addCalcAngleS2__FPssss
 /* 8074A038  A8 1E 06 FC */	lha r0, 0x6fc(r30)
 /* 8074A03C  C8 5F 00 A0 */	lfd f2, 0xa0(r31)
 /* 8074A040  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -116,8 +116,8 @@ lbl_8074A014:
 /* 8074A070  B0 1E 06 FC */	sth r0, 0x6fc(r30)
 /* 8074A074  A8 1E 06 FC */	lha r0, 0x6fc(r30)
 /* 8074A078  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8074A07C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8074A080  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8074A07C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8074A080  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8074A084  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8074A088  38 7E 06 F4 */	addi r3, r30, 0x6f4
 /* 8074A08C  A8 1E 06 FA */	lha r0, 0x6fa(r30)
@@ -132,11 +132,11 @@ lbl_8074A014:
 /* 8074A0B0  80 81 00 4C */	lwz r4, 0x4c(r1)
 /* 8074A0B4  38 A0 00 05 */	li r5, 5
 /* 8074A0B8  38 C0 10 00 */	li r6, 0x1000
-/* 8074A0BC  4B B2 65 4C */	b cLib_addCalcAngleS2__FPssss
+/* 8074A0BC  4B B2 65 4D */	bl cLib_addCalcAngleS2__FPssss
 /* 8074A0C0  A8 1E 06 FC */	lha r0, 0x6fc(r30)
 /* 8074A0C4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8074A0C8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8074A0CC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8074A0C8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8074A0CC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8074A0D0  7C 43 04 2E */	lfsx f2, r3, r0
 /* 8074A0D4  38 7E 06 F8 */	addi r3, r30, 0x6f8
 /* 8074A0D8  A8 1E 06 FA */	lha r0, 0x6fa(r30)
@@ -153,7 +153,7 @@ lbl_8074A014:
 /* 8074A104  80 81 00 5C */	lwz r4, 0x5c(r1)
 /* 8074A108  38 A0 00 05 */	li r5, 5
 /* 8074A10C  38 C0 10 00 */	li r6, 0x1000
-/* 8074A110  4B B2 64 F8 */	b cLib_addCalcAngleS2__FPssss
+/* 8074A110  4B B2 64 F9 */	bl cLib_addCalcAngleS2__FPssss
 /* 8074A114  C0 1E 06 E8 */	lfs f0, 0x6e8(r30)
 /* 8074A118  D0 1E 06 DC */	stfs f0, 0x6dc(r30)
 /* 8074A11C  C0 1E 06 EC */	lfs f0, 0x6ec(r30)

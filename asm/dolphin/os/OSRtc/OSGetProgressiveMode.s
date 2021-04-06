@@ -1,10 +1,10 @@
 lbl_803406B4:
 /* 803406B4  7C 08 02 A6 */	mflr r0
-/* 803406B8  3C 60 80 45 */	lis r3, Scb@ha
+/* 803406B8  3C 60 80 45 */	lis r3, Scb@ha /* 0x8044BB20@ha */
 /* 803406BC  90 01 00 04 */	stw r0, 4(r1)
 /* 803406C0  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 803406C4  93 E1 00 14 */	stw r31, 0x14(r1)
-/* 803406C8  3B E3 BB 20 */	addi r31, r3, Scb@l
+/* 803406C8  3B E3 BB 20 */	addi r31, r3, Scb@l /* 0x8044BB20@l */
 /* 803406CC  4B FF D0 29 */	bl OSDisableInterrupts
 /* 803406D0  80 1F 00 48 */	lwz r0, 0x48(r31)
 /* 803406D4  38 9F 00 48 */	addi r4, r31, 0x48

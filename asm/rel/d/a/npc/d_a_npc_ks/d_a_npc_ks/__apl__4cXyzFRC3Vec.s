@@ -5,7 +5,7 @@ lbl_80A5DC64:
 /* 80A5DC70  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A5DC74  7C 7F 1B 78 */	mr r31, r3
 /* 80A5DC78  7F E5 FB 78 */	mr r5, r31
-/* 80A5DC7C  4B 8E 94 14 */	b PSVECAdd
+/* 80A5DC7C  4B 8E 94 15 */	bl PSVECAdd
 /* 80A5DC80  7F E3 FB 78 */	mr r3, r31
 /* 80A5DC84  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80A5DC88  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -3,19 +3,20 @@
 #
 
 M175_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi.plf
+M175_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi.lcf
+M175_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi.map
 
 M175_CPP_FILES := \
-	rel/d/a/e/d_a_e_bi/executor.cpp \
-	rel/d/a/e/d_a_e_bi/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_bi/d_a_e_bi.cpp \
 
 M175_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi/d_a_e_bi.o \
 
 M175_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi/libRuntime.PPCEABI.H.a \
 
 M175_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M175_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map175.map\
+	-m _prolog \
+	-lcf $(M175_LDSCRIPT) \
+	-unused -map $(M175_MAP) \
+	-w off \
 
 $(M175_TARGET): $(M175_O_FILES) $(M175_LIBS)
+	@echo [175] creating $(M175_TARGET)
 	@echo $(M175_LIBS) $(M175_O_FILES) > build/M175_ofiles
-	$(LD) -opt_partial $(M175_LDFLAGS) -o $(M175_TARGET) @build/M175_ofiles
+	@python3 tools/lcf.py rel 175 --output $(M175_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M175_LDFLAGS) -o $(M175_TARGET) @build/M175_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bi/%.o: rel/d/a/e/d_a_e_bi/%.cpp
+	@echo [175] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M175_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M175_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_bi/libs/Runtime.PPCEABI.H/Makefile
 

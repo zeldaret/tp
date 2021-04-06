@@ -9,11 +9,11 @@ lbl_802A5948:
 /* 802A5964  7C BC 2B 78 */	mr r28, r5
 /* 802A5968  28 1D 00 FF */	cmplwi r29, 0xff
 /* 802A596C  41 80 00 28 */	blt lbl_802A5994
-/* 802A5970  3C 60 80 3D */	lis r3, __files@ha
-/* 802A5974  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802A5970  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802A5974  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802A5978  38 63 00 A0 */	addi r3, r3, 0xa0
-/* 802A597C  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha
-/* 802A5980  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l
+/* 802A597C  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha /* 0x8039B950@ha */
+/* 802A5980  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l /* 0x8039B950@l */
 /* 802A5984  38 84 00 24 */	addi r4, r4, 0x24
 /* 802A5988  4C C6 31 82 */	crclr 6
 /* 802A598C  48 0C 0E 11 */	bl fprintf

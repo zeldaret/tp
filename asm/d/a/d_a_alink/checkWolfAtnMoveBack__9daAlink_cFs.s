@@ -1,6 +1,6 @@
 lbl_80128F0C:
-/* 80128F0C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80128F10  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 80128F0C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80128F10  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80128F14  54 80 04 38 */	rlwinm r0, r4, 0, 0x10, 0x1c
 /* 80128F18  7C 85 02 14 */	add r4, r5, r0
 /* 80128F1C  C0 24 00 04 */	lfs f1, 4(r4)

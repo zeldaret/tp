@@ -4,15 +4,15 @@ lbl_80141A1C:
 /* 80141A24  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80141A28  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80141A2C  3B E0 00 00 */	li r31, 0
-/* 80141A30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80141A34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80141A30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80141A34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80141A38  38 63 00 28 */	addi r3, r3, 0x28
 /* 80141A3C  38 80 00 03 */	li r4, 3
 /* 80141A40  4B EF 11 AD */	bl isTransformLV__21dSv_player_status_b_cCFi
 /* 80141A44  2C 03 00 00 */	cmpwi r3, 0
 /* 80141A48  41 82 00 24 */	beq lbl_80141A6C
-/* 80141A4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80141A50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80141A4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80141A50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80141A54  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 80141A58  38 80 1E 08 */	li r4, 0x1e08
 /* 80141A5C  4B EF 2F 61 */	bl isEventBit__11dSv_event_cCFUs

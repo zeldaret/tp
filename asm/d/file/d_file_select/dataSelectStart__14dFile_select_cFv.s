@@ -21,11 +21,11 @@ lbl_80185508:
 /* 80185554  88 1F 02 65 */	lbz r0, 0x265(r31)
 /* 80185558  54 00 10 3A */	slwi r0, r0, 2
 /* 8018555C  7F E3 FB 78 */	mr r3, r31
-/* 80185560  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha
-/* 80185564  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l
+/* 80185560  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha /* 0x803BA86C@ha */
+/* 80185564  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l /* 0x803BA86C@l */
 /* 80185568  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8018556C  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha
-/* 80185570  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l
+/* 8018556C  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha /* 0x803BA878@ha */
+/* 80185570  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l /* 0x803BA878@l */
 /* 80185574  7C A5 00 2E */	lwzx r5, r5, r0
 /* 80185578  48 00 04 1D */	bl selectDataMoveAnmInitSet__14dFile_select_cFii
 /* 8018557C  7F E3 FB 78 */	mr r3, r31
@@ -36,8 +36,8 @@ lbl_80185508:
 /* 80185590  88 9F 02 65 */	lbz r4, 0x265(r31)
 /* 80185594  38 A0 00 FF */	li r5, 0xff
 /* 80185598  38 C0 00 00 */	li r6, 0
-/* 8018559C  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 801855A0  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 8018559C  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 801855A0  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 801855A4  88 E7 00 08 */	lbz r7, 8(r7)
 /* 801855A8  48 00 80 A9 */	bl selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 801855AC  80 7F 00 28 */	lwz r3, 0x28(r31)
@@ -146,8 +146,8 @@ lbl_80185740:
 /* 80185744  28 00 00 00 */	cmplwi r0, 0
 /* 80185748  41 82 01 48 */	beq lbl_80185890
 /* 8018574C  38 00 00 80 */	li r0, 0x80
-/* 80185750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80185754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80185750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80185754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80185758  98 03 0F 19 */	stb r0, 0xf19(r3)
 /* 8018575C  98 83 0F 18 */	stb r4, 0xf18(r3)
 /* 80185760  38 00 00 A7 */	li r0, 0xa7
@@ -203,14 +203,14 @@ lbl_80185740:
 /* 80185828  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8018582C  7D 89 03 A6 */	mtctr r12
 /* 80185830  4E 80 04 21 */	bctrl 
-/* 80185834  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80185838  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80185834  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80185838  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018583C  38 80 03 82 */	li r4, 0x382
 /* 80185840  38 A1 00 10 */	addi r5, r1, 0x10
 /* 80185844  38 C0 00 00 */	li r6, 0
 /* 80185848  48 09 6A 09 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
-/* 8018584C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80185850  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8018584C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80185850  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80185854  38 7E 01 B4 */	addi r3, r30, 0x1b4
 /* 80185858  38 81 00 10 */	addi r4, r1, 0x10
 /* 8018585C  48 1E 32 D1 */	bl strcpy
@@ -228,8 +228,8 @@ lbl_80185740:
 /* 8018588C  48 00 00 E4 */	b lbl_80185970
 lbl_80185890:
 /* 80185890  38 00 00 00 */	li r0, 0
-/* 80185894  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80185898  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80185894  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80185898  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018589C  98 03 0F 19 */	stb r0, 0xf19(r3)
 /* 801858A0  38 00 00 6D */	li r0, 0x6d
 /* 801858A4  90 01 00 08 */	stw r0, 8(r1)
@@ -259,11 +259,11 @@ lbl_80185890:
 /* 80185904  88 1F 02 65 */	lbz r0, 0x265(r31)
 /* 80185908  54 00 10 3A */	slwi r0, r0, 2
 /* 8018590C  7F E3 FB 78 */	mr r3, r31
-/* 80185910  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha
-/* 80185914  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l
+/* 80185910  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha /* 0x803BA86C@ha */
+/* 80185914  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l /* 0x803BA86C@l */
 /* 80185918  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8018591C  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha
-/* 80185920  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l
+/* 8018591C  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha /* 0x803BA878@ha */
+/* 80185920  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l /* 0x803BA878@l */
 /* 80185924  7C A5 00 2E */	lwzx r5, r5, r0
 /* 80185928  48 00 00 6D */	bl selectDataMoveAnmInitSet__14dFile_select_cFii
 /* 8018592C  7F E3 FB 78 */	mr r3, r31
@@ -274,8 +274,8 @@ lbl_80185890:
 /* 80185940  88 9F 02 65 */	lbz r4, 0x265(r31)
 /* 80185944  38 A0 00 FF */	li r5, 0xff
 /* 80185948  38 C0 00 00 */	li r6, 0
-/* 8018594C  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 80185950  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 8018594C  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80185950  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80185954  88 E7 00 08 */	lbz r7, 8(r7)
 /* 80185958  48 00 7C F9 */	bl selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 8018595C  7F E3 FB 78 */	mr r3, r31

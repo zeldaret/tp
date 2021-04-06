@@ -5,8 +5,8 @@ lbl_80D3A8E8:
 /* 80D3A8F4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80D3A8F8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80D3A8FC  7C 7E 1B 78 */	mr r30, r3
-/* 80D3A900  3C 60 80 D4 */	lis r3, l_cyl_src@ha
-/* 80D3A904  3B E3 B6 38 */	addi r31, r3, l_cyl_src@l
+/* 80D3A900  3C 60 80 D4 */	lis r3, l_cyl_src@ha /* 0x80D3B638@ha */
+/* 80D3A904  3B E3 B6 38 */	addi r31, r3, l_cyl_src@l /* 0x80D3B638@l */
 /* 80D3A908  80 1E 05 B8 */	lwz r0, 0x5b8(r30)
 /* 80D3A90C  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80D3A910  41 82 00 34 */	beq lbl_80D3A944
@@ -21,7 +21,7 @@ lbl_80D3A8E8:
 lbl_80D3A934:
 /* 80D3A934  C0 3E 04 F8 */	lfs f1, 0x4f8(r30)
 /* 80D3A938  C0 5E 05 00 */	lfs f2, 0x500(r30)
-/* 80D3A93C  4B 52 CD 38 */	b cM_atan2s__Fff
+/* 80D3A93C  4B 52 CD 39 */	bl cM_atan2s__Fff
 /* 80D3A940  B0 7E 04 DE */	sth r3, 0x4de(r30)
 lbl_80D3A944:
 /* 80D3A944  80 1E 05 B8 */	lwz r0, 0x5b8(r30)
@@ -66,13 +66,13 @@ lbl_80D3A9CC:
 /* 80D3A9D4  40 82 00 50 */	bne lbl_80D3AA24
 /* 80D3A9D8  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80D3A9DC  7C 03 07 74 */	extsb r3, r0
-/* 80D3A9E0  4B 2F 26 8C */	b dComIfGp_getReverb__Fi
+/* 80D3A9E0  4B 2F 26 8D */	bl dComIfGp_getReverb__Fi
 /* 80D3A9E4  7C 67 1B 78 */	mr r7, r3
 /* 80D3A9E8  3C 60 00 08 */	lis r3, 0x0008 /* 0x0008024E@ha */
 /* 80D3A9EC  38 03 02 4E */	addi r0, r3, 0x024E /* 0x0008024E@l */
 /* 80D3A9F0  90 01 00 08 */	stw r0, 8(r1)
-/* 80D3A9F4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80D3A9F8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80D3A9F4  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80D3A9F8  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80D3A9FC  80 63 00 00 */	lwz r3, 0(r3)
 /* 80D3AA00  38 81 00 08 */	addi r4, r1, 8
 /* 80D3AA04  38 BE 05 38 */	addi r5, r30, 0x538
@@ -82,7 +82,7 @@ lbl_80D3A9CC:
 /* 80D3AA14  C0 7F 00 80 */	lfs f3, 0x80(r31)
 /* 80D3AA18  FC 80 18 90 */	fmr f4, f3
 /* 80D3AA1C  39 00 00 00 */	li r8, 0
-/* 80D3AA20  4B 57 0F 64 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80D3AA20  4B 57 0F 65 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80D3AA24:
 /* 80D3AA24  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80D3AA28  83 C1 00 18 */	lwz r30, 0x18(r1)

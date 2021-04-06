@@ -20,28 +20,28 @@ lbl_8046612C:
 /* 80466138  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 8046613C  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 80466140  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 80466144  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80466148  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80466144  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80466148  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8046614C  C0 1E 00 04 */	lfs f0, 4(r30)
 /* 80466150  EC 42 00 2A */	fadds f2, f2, f0
-/* 80466154  4B EE 07 94 */	b PSMTXTrans
-/* 80466158  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8046615C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80466154  4B EE 07 95 */	bl PSMTXTrans
+/* 80466158  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8046615C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80466160  A8 9F 04 DE */	lha r4, 0x4de(r31)
-/* 80466164  4B BA 62 D0 */	b mDoMtx_YrotM__FPA4_fs
+/* 80466164  4B BA 62 D1 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80466168  88 1E 00 09 */	lbz r0, 9(r30)
 /* 8046616C  28 00 00 01 */	cmplwi r0, 1
 /* 80466170  40 82 00 14 */	bne lbl_80466184
-/* 80466174  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80466178  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80466174  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80466178  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8046617C  38 80 7F FF */	li r4, 0x7fff
-/* 80466180  4B BA 62 B4 */	b mDoMtx_YrotM__FPA4_fs
+/* 80466180  4B BA 62 B5 */	bl mDoMtx_YrotM__FPA4_fs
 lbl_80466184:
-/* 80466184  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80466188  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80466184  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80466188  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8046618C  80 9E 00 00 */	lwz r4, 0(r30)
 /* 80466190  38 84 00 24 */	addi r4, r4, 0x24
-/* 80466194  4B EE 03 1C */	b PSMTXCopy
+/* 80466194  4B EE 03 1D */	bl PSMTXCopy
 lbl_80466198:
 /* 80466198  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8046619C  83 C1 00 18 */	lwz r30, 0x18(r1)

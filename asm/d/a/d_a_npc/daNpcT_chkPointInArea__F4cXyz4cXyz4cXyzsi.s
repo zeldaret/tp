@@ -16,8 +16,8 @@ lbl_8014C384:
 /* 8014C3BC  7C 9D 23 78 */	mr r29, r4
 /* 8014C3C0  7C BE 2B 78 */	mr r30, r5
 /* 8014C3C4  7C FF 3B 78 */	mr r31, r7
-/* 8014C3C8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8014C3CC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014C3C8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8014C3CC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8014C3D0  7C 06 00 D0 */	neg r0, r6
 /* 8014C3D4  7C 04 07 34 */	extsh r4, r0
 /* 8014C3D8  4B EC 00 05 */	bl mDoMtx_YrotS__FPA4_fs
@@ -28,8 +28,8 @@ lbl_8014C384:
 /* 8014C3EC  C0 1D 00 08 */	lfs f0, 8(r29)
 /* 8014C3F0  FC 60 00 50 */	fneg f3, f0
 /* 8014C3F4  4B EC 09 A9 */	bl transM__14mDoMtx_stack_cFfff
-/* 8014C3F8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8014C3FC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014C3F8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8014C3FC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8014C400  7F 84 E3 78 */	mr r4, r28
 /* 8014C404  38 A1 00 20 */	addi r5, r1, 0x20
 /* 8014C408  48 1F A9 65 */	bl PSMTXMultVec

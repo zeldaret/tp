@@ -5,8 +5,8 @@ lbl_80332B94:
 /* 80332BA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80332BA4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80332BA8  41 82 00 1C */	beq lbl_80332BC4
-/* 80332BAC  3C A0 80 3D */	lis r5, __vt__11J3DMaterial@ha
-/* 80332BB0  38 05 DC F0 */	addi r0, r5, __vt__11J3DMaterial@l
+/* 80332BAC  3C A0 80 3D */	lis r5, __vt__11J3DMaterial@ha /* 0x803CDCF0@ha */
+/* 80332BB0  38 05 DC F0 */	addi r0, r5, __vt__11J3DMaterial@l /* 0x803CDCF0@l */
 /* 80332BB4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80332BB8  7C 80 07 35 */	extsh. r0, r4
 /* 80332BBC  40 81 00 08 */	ble lbl_80332BC4

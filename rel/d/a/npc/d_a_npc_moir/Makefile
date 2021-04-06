@@ -3,19 +3,20 @@
 #
 
 M338_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir.plf
+M338_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir.lcf
+M338_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir.map
 
 M338_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_moir/executor.cpp \
-	rel/d/a/npc/d_a_npc_moir/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_moir/d_a_npc_moir.cpp \
 
 M338_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/d_a_npc_moir.o \
 
 M338_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/libRuntime.PPCEABI.H.a \
 
 M338_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M338_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map338.map\
+	-m _prolog \
+	-lcf $(M338_LDSCRIPT) \
+	-unused -map $(M338_MAP) \
+	-w off \
 
 $(M338_TARGET): $(M338_O_FILES) $(M338_LIBS)
+	@echo [338] creating $(M338_TARGET)
 	@echo $(M338_LIBS) $(M338_O_FILES) > build/M338_ofiles
-	$(LD) -opt_partial $(M338_LDFLAGS) -o $(M338_TARGET) @build/M338_ofiles
+	@python3 tools/lcf.py rel 338 --output $(M338_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M338_LDFLAGS) -o $(M338_TARGET) @build/M338_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_moir/%.o: rel/d/a/npc/d_a_npc_moir/%.cpp
+	@echo [338] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M338_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M338_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_moir/libs/Runtime.PPCEABI.H/Makefile
 

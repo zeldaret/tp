@@ -11,8 +11,8 @@ lbl_8013E240:
 /* 8013E264  48 02 0A 55 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013E268  7F E3 FB 78 */	mr r3, r31
 /* 8013E26C  38 80 00 50 */	li r4, 0x50
-/* 8013E270  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlAtNjump_c0@ha
-/* 8013E274  38 A5 F5 78 */	addi r5, r5, m__23daAlinkHIO_wlAtNjump_c0@l
+/* 8013E270  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlAtNjump_c0@ha /* 0x8038F578@ha */
+/* 8013E274  38 A5 F5 78 */	addi r5, r5, m__23daAlinkHIO_wlAtNjump_c0@l /* 0x8038F578@l */
 /* 8013E278  4B FE B5 D1 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013E27C  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8013E280  D0 1F 33 98 */	stfs f0, 0x3398(r31)

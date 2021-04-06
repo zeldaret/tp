@@ -34,11 +34,11 @@ lbl_80A9A1D0:
 /* 80A9A204  41 82 00 34 */	beq lbl_80A9A238
 lbl_80A9A208:
 /* 80A9A208  38 7E 0B A8 */	addi r3, r30, 0xba8
-/* 80A9A20C  4B 6A B4 F0 */	b remove__18daNpcT_ActorMngr_cFv
+/* 80A9A20C  4B 6A B4 F1 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80A9A210  38 00 00 00 */	li r0, 0
 /* 80A9A214  90 1E 0B C8 */	stw r0, 0xbc8(r30)
-/* 80A9A218  3C 60 80 AA */	lis r3, lit_4346@ha
-/* 80A9A21C  C0 03 B9 30 */	lfs f0, lit_4346@l(r3)
+/* 80A9A218  3C 60 80 AA */	lis r3, lit_4346@ha /* 0x80A9B930@ha */
+/* 80A9A21C  C0 03 B9 30 */	lfs f0, lit_4346@l(r3)  /* 0x80A9B930@l */
 /* 80A9A220  D0 1E 0C F4 */	stfs f0, 0xcf4(r30)
 /* 80A9A224  98 1E 0C FF */	stb r0, 0xcff(r30)
 /* 80A9A228  38 00 00 03 */	li r0, 3

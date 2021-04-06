@@ -1,7 +1,7 @@
 lbl_803260CC:
 /* 803260CC  80 03 00 6C */	lwz r0, 0x6c(r3)
-/* 803260D0  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 803260D4  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 803260D0  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 803260D4  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 803260D8  90 04 00 58 */	stw r0, 0x58(r4)
 /* 803260DC  80 03 00 A0 */	lwz r0, 0xa0(r3)
 /* 803260E0  90 04 01 0C */	stw r0, 0x10c(r4)

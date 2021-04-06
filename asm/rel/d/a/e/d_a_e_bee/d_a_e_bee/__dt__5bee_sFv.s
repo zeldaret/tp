@@ -9,17 +9,17 @@ lbl_806852FC:
 /* 80685318  41 82 00 34 */	beq lbl_8068534C
 /* 8068531C  34 1E 00 54 */	addic. r0, r30, 0x54
 /* 80685320  41 82 00 1C */	beq lbl_8068533C
-/* 80685324  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha
-/* 80685328  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l
+/* 80685324  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 80685328  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 8068532C  90 1E 00 64 */	stw r0, 0x64(r30)
 /* 80685330  38 7E 00 54 */	addi r3, r30, 0x54
 /* 80685334  38 80 00 00 */	li r4, 0
-/* 80685338  4B C3 8C 10 */	b __dt__14Z2SoundObjBaseFv
+/* 80685338  4B C3 8C 11 */	bl __dt__14Z2SoundObjBaseFv
 lbl_8068533C:
 /* 8068533C  7F E0 07 35 */	extsh. r0, r31
 /* 80685340  40 81 00 0C */	ble lbl_8068534C
 /* 80685344  7F C3 F3 78 */	mr r3, r30
-/* 80685348  4B C4 99 F4 */	b __dl__FPv
+/* 80685348  4B C4 99 F5 */	bl __dl__FPv
 lbl_8068534C:
 /* 8068534C  7F C3 F3 78 */	mr r3, r30
 /* 80685350  83 E1 00 0C */	lwz r31, 0xc(r1)

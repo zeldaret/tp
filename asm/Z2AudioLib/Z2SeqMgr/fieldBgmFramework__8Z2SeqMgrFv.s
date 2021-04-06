@@ -119,8 +119,8 @@ lbl_802B5AEC:
 /* 802B5AF0  41 81 03 7C */	bgt lbl_802B5E6C
 /* 802B5AF4  28 04 00 14 */	cmplwi r4, 0x14
 /* 802B5AF8  41 81 00 4C */	bgt lbl_802B5B44
-/* 802B5AFC  3C 60 80 3D */	lis r3, lit_6877@ha
-/* 802B5B00  38 63 A4 B4 */	addi r3, r3, lit_6877@l
+/* 802B5AFC  3C 60 80 3D */	lis r3, lit_6877@ha /* 0x803CA4B4@ha */
+/* 802B5B00  38 63 A4 B4 */	addi r3, r3, lit_6877@l /* 0x803CA4B4@l */
 /* 802B5B04  54 80 10 3A */	slwi r0, r4, 2
 /* 802B5B08  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802B5B0C  7C 09 03 A6 */	mtctr r0

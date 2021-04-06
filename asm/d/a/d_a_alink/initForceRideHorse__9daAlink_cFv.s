@@ -9,12 +9,12 @@ lbl_800ECB58:
 /* 800ECB74  38 00 00 01 */	li r0, 1
 /* 800ECB78  98 1E 2F AA */	stb r0, 0x2faa(r30)
 /* 800ECB7C  38 7E 28 14 */	addi r3, r30, 0x2814
-/* 800ECB80  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800ECB84  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
+/* 800ECB80  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800ECB84  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800ECB88  80 9F 5D B8 */	lwz r4, 0x5db8(r31)
 /* 800ECB8C  48 07 21 2D */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
-/* 800ECB90  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha
-/* 800ECB94  38 03 55 8C */	addi r0, r3, l_horseBaseAnime@l
+/* 800ECB90  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha /* 0x8042558C@ha */
+/* 800ECB94  38 03 55 8C */	addi r0, r3, l_horseBaseAnime@l /* 0x8042558C@l */
 /* 800ECB98  90 1E 38 4C */	stw r0, 0x384c(r30)
 /* 800ECB9C  80 7F 5D B8 */	lwz r3, 0x5db8(r31)
 /* 800ECBA0  39 83 18 EC */	addi r12, r3, 0x18ec

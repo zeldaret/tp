@@ -31,8 +31,8 @@ lbl_80290F9C:
 /* 80290FD4  90 01 00 70 */	stw r0, 0x70(r1)
 /* 80290FD8  38 01 00 08 */	addi r0, r1, 8
 /* 80290FDC  90 01 00 74 */	stw r0, 0x74(r1)
-/* 80290FE0  3C 60 80 43 */	lis r3, sMutex@ha
-/* 80290FE4  38 63 16 60 */	addi r3, r3, sMutex@l
+/* 80290FE0  3C 60 80 43 */	lis r3, sMutex@ha /* 0x80431660@ha */
+/* 80290FE4  38 63 16 60 */	addi r3, r3, sMutex@l /* 0x80431660@l */
 /* 80290FE8  90 61 00 68 */	stw r3, 0x68(r1)
 /* 80290FEC  48 0A E0 55 */	bl OSLockMutex
 /* 80290FF0  80 6D 8C A0 */	lwz r3, sBuffer(r13)

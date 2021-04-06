@@ -3,19 +3,20 @@
 #
 
 M548_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate.plf
+M548_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate.lcf
+M548_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate.map
 
 M548_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6SzGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6SzGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6SzGate/d_a_obj_lv6SzGate.cpp \
 
 M548_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/d_a_obj_lv6SzGate.o \
 
 M548_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/libRuntime.PPCEABI.H.a \
 
 M548_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M548_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map548.map\
+	-m _prolog \
+	-lcf $(M548_LDSCRIPT) \
+	-unused -map $(M548_MAP) \
+	-w off \
 
 $(M548_TARGET): $(M548_O_FILES) $(M548_LIBS)
+	@echo [548] creating $(M548_TARGET)
 	@echo $(M548_LIBS) $(M548_O_FILES) > build/M548_ofiles
-	$(LD) -opt_partial $(M548_LDFLAGS) -o $(M548_TARGET) @build/M548_ofiles
+	@python3 tools/lcf.py rel 548 --output $(M548_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M548_LDFLAGS) -o $(M548_TARGET) @build/M548_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SzGate/%.o: rel/d/a/obj/d_a_obj_lv6SzGate/%.cpp
+	@echo [548] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M548_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M548_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6SzGate/libs/Runtime.PPCEABI.H/Makefile
 

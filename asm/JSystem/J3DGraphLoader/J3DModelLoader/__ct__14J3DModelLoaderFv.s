@@ -1,6 +1,6 @@
 lbl_8033468C:
-/* 8033468C  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha
-/* 80334690  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l
+/* 8033468C  3C 80 80 3D */	lis r4, __vt__14J3DModelLoader@ha /* 0x803CF1F4@ha */
+/* 80334690  38 04 F1 F4 */	addi r0, r4, __vt__14J3DModelLoader@l /* 0x803CF1F4@l */
 /* 80334694  90 03 00 00 */	stw r0, 0(r3)
 /* 80334698  38 00 00 00 */	li r0, 0
 /* 8033469C  90 03 00 04 */	stw r0, 4(r3)

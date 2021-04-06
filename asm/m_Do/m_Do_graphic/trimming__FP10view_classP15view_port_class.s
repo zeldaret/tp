@@ -116,8 +116,8 @@ lbl_8000921C:
 /* 80009384  FC A0 08 90 */	fmr f5, f1
 /* 80009388  C0 C2 80 40 */	lfs f6, lit_4105(r2)
 /* 8000938C  48 33 DC 6D */	bl C_MTXOrtho
-/* 80009390  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80009394  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80009390  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80009394  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80009398  38 80 00 00 */	li r4, 0
 /* 8000939C  48 35 6E B1 */	bl GXLoadPosMtxImm
 /* 800093A0  48 35 21 ED */	bl GXClearVtxDesc
@@ -141,7 +141,7 @@ lbl_8000921C:
 /* 800093E8  48 35 33 7D */	bl GXBegin
 /* 800093EC  38 A0 00 00 */	li r5, 0
 /* 800093F0  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 800093F4  B0 A4 80 00 */	sth r5, 0x8000(r4)
+/* 800093F4  B0 A4 80 00 */	sth r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 800093F8  B0 A4 80 00 */	sth r5, -0x8000(r4)
 /* 800093FC  38 60 FF FB */	li r3, -5
 /* 80009400  B0 64 80 00 */	sth r3, -0x8000(r4)

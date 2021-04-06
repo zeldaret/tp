@@ -3,18 +3,16 @@
 #
 
 M678_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg.plf
+M678_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg.lcf
+M678_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg.map
 
 M678_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_warp_obrg/executor.cpp \
-	rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_warp_obrg/d_a_obj_warp_obrg.cpp \
 
 M678_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/d_a_obj_warp_obrg.o \
 
@@ -31,15 +29,21 @@ M678_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map678.map\
+	-m _prolog \
+	-lcf $(M678_LDSCRIPT) \
+	-unused -map $(M678_MAP) \
+	-w off \
 
 $(M678_TARGET): $(M678_O_FILES) $(M678_LIBS)
+	@echo [678] creating $(M678_TARGET)
 	@echo $(M678_LIBS) $(M678_O_FILES) > build/M678_ofiles
-	$(LD) -opt_partial $(M678_LDFLAGS) -o $(M678_TARGET) @build/M678_ofiles
+	@python3 tools/lcf.py rel 678 --output $(M678_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M678_LDFLAGS) -o $(M678_TARGET) @build/M678_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_warp_obrg/%.o: rel/d/a/obj/d_a_obj_warp_obrg/%.cpp
+	@echo [678] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M678_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M678_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

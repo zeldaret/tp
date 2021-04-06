@@ -4,8 +4,8 @@ lbl_8024C694:
 /* 8024C69C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8024C6A0  38 84 00 04 */	addi r4, r4, 4
 /* 8024C6A4  4B FF EA 8D */	bl getParam__10dMsgFlow_cFPUc
-/* 8024C6A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8024C6AC  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
+/* 8024C6A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C6AC  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C6B0  A8 85 5D CC */	lha r4, 0x5dcc(r5)
 /* 8024C6B4  7C 03 00 D0 */	neg r0, r3
 /* 8024C6B8  7C 00 07 34 */	extsh r0, r0

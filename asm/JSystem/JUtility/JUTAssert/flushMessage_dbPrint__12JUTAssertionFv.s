@@ -37,8 +37,8 @@ lbl_802E4A54:
 /* 802E4AE0  7F E3 FB 78 */	mr r3, r31
 /* 802E4AE4  38 81 00 0C */	addi r4, r1, 0xc
 /* 802E4AE8  4B FF A2 89 */	bl setCharColor__7JUTFontFQ28JUtility6TColor
-/* 802E4AEC  3C 60 80 43 */	lis r3, data_80434870@ha
-/* 802E4AF0  38 63 48 70 */	addi r3, r3, data_80434870@l
+/* 802E4AEC  3C 60 80 43 */	lis r3, data_80434870@ha /* 0x80434870@ha */
+/* 802E4AF0  38 63 48 70 */	addi r3, r3, data_80434870@l /* 0x80434870@l */
 /* 802E4AF4  48 08 40 F1 */	bl strlen
 /* 802E4AF8  7C 7E 1B 78 */	mr r30, r3
 /* 802E4AFC  7F E3 FB 78 */	mr r3, r31
@@ -69,13 +69,13 @@ lbl_802E4A54:
 /* 802E4B60  C0 22 C6 B8 */	lfs f1, lit_724(r2)
 /* 802E4B64  C0 42 C6 BC */	lfs f2, lit_725(r2)
 /* 802E4B68  FC 80 F8 90 */	fmr f4, f31
-/* 802E4B6C  3C 80 80 43 */	lis r4, data_80434870@ha
-/* 802E4B70  38 84 48 70 */	addi r4, r4, data_80434870@l
+/* 802E4B6C  3C 80 80 43 */	lis r4, data_80434870@ha /* 0x80434870@ha */
+/* 802E4B70  38 84 48 70 */	addi r4, r4, data_80434870@l /* 0x80434870@l */
 /* 802E4B74  7F C5 F3 78 */	mr r5, r30
 /* 802E4B78  38 C0 00 01 */	li r6, 1
 /* 802E4B7C  4B FF A2 AD */	bl drawString_size_scale__7JUTFontFffffPCcUlb
-/* 802E4B80  3C 60 80 43 */	lis r3, data_804348B0@ha
-/* 802E4B84  38 63 48 B0 */	addi r3, r3, data_804348B0@l
+/* 802E4B80  3C 60 80 43 */	lis r3, data_804348B0@ha /* 0x804348B0@ha */
+/* 802E4B84  38 63 48 B0 */	addi r3, r3, data_804348B0@l /* 0x804348B0@l */
 /* 802E4B88  48 08 40 5D */	bl strlen
 /* 802E4B8C  7C 7E 1B 78 */	mr r30, r3
 /* 802E4B90  7F E3 FB 78 */	mr r3, r31
@@ -106,8 +106,8 @@ lbl_802E4A54:
 /* 802E4BF4  C0 22 C6 B8 */	lfs f1, lit_724(r2)
 /* 802E4BF8  C0 42 C6 C0 */	lfs f2, lit_726(r2)
 /* 802E4BFC  FC 80 F8 90 */	fmr f4, f31
-/* 802E4C00  3C 80 80 43 */	lis r4, data_804348B0@ha
-/* 802E4C04  38 84 48 B0 */	addi r4, r4, data_804348B0@l
+/* 802E4C00  3C 80 80 43 */	lis r4, data_804348B0@ha /* 0x804348B0@ha */
+/* 802E4C04  38 84 48 B0 */	addi r4, r4, data_804348B0@l /* 0x804348B0@l */
 /* 802E4C08  7F C5 F3 78 */	mr r5, r30
 /* 802E4C0C  38 C0 00 01 */	li r6, 1
 /* 802E4C10  4B FF A2 19 */	bl drawString_size_scale__7JUTFontFffffPCcUlb

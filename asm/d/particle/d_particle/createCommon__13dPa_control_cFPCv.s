@@ -24,8 +24,8 @@ lbl_8004BBCC:
 /* 8004BBCC  90 1F 00 04 */	stw r0, 4(r31)
 /* 8004BBD0  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8004BBD4  80 8D 86 4C */	lwz r4, mFrameBufferTimg__13mDoGph_gInf_c(r13)
-/* 8004BBD8  3C A0 80 38 */	lis r5, d_particle_d_particle__stringBase0@ha
-/* 8004BBDC  38 A5 A1 2C */	addi r5, r5, d_particle_d_particle__stringBase0@l
+/* 8004BBD8  3C A0 80 38 */	lis r5, d_particle_d_particle__stringBase0@ha /* 0x8037A12C@ha */
+/* 8004BBDC  38 A5 A1 2C */	addi r5, r5, d_particle_d_particle__stringBase0@l /* 0x8037A12C@l */
 /* 8004BBE0  48 22 83 0D */	bl swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
 /* 8004BBE4  38 60 00 30 */	li r3, 0x30
 /* 8004BBE8  80 9F 00 00 */	lwz r4, 0(r31)
@@ -50,8 +50,8 @@ lbl_8004BC18:
 /* 8004BC30  4B FC 35 9D */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8004BC34  7C 7D 1B 78 */	mr r29, r3
 /* 8004BC38  3B 80 00 00 */	li r28, 0
-/* 8004BC3C  3C 60 80 3B */	lis r3, j_o_id__8dPa_name@ha
-/* 8004BC40  3B C3 85 D0 */	addi r30, r3, j_o_id__8dPa_name@l
+/* 8004BC3C  3C 60 80 3B */	lis r3, j_o_id__8dPa_name@ha /* 0x803A85D0@ha */
+/* 8004BC40  3B C3 85 D0 */	addi r30, r3, j_o_id__8dPa_name@l /* 0x803A85D0@l */
 /* 8004BC44  48 00 00 5C */	b lbl_8004BCA0
 lbl_8004BC48:
 /* 8004BC48  57 80 0B FC */	rlwinm r0, r28, 1, 0xf, 0x1e

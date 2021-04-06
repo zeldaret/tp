@@ -7,8 +7,8 @@ lbl_80007368:
 /* 8000737C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80007380  7C 9F 23 78 */	mr r31, r4
 /* 80007384  41 82 00 28 */	beq lbl_800073AC
-/* 80007388  3C 80 80 3A */	lis r4, __vt__17mDoAud_zelAudio_c@ha
-/* 8000738C  38 04 2F 40 */	addi r0, r4, __vt__17mDoAud_zelAudio_c@l
+/* 80007388  3C 80 80 3A */	lis r4, __vt__17mDoAud_zelAudio_c@ha /* 0x803A2F40@ha */
+/* 8000738C  38 04 2F 40 */	addi r0, r4, __vt__17mDoAud_zelAudio_c@l /* 0x803A2F40@l */
 /* 80007390  90 1E 05 14 */	stw r0, 0x514(r30)
 /* 80007394  38 80 00 00 */	li r4, 0
 /* 80007398  48 00 00 31 */	bl __dt__10Z2AudioMgrFv

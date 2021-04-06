@@ -4,8 +4,8 @@ lbl_802E431C:
 /* 802E4324  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802E4328  39 61 00 20 */	addi r11, r1, 0x20
 /* 802E432C  48 07 DE A9 */	bl _savegpr_27
-/* 802E4330  3C E0 80 3D */	lis r7, sAsciiTable__14JUTDirectPrint@ha
-/* 802E4334  38 E7 C6 B8 */	addi r7, r7, sAsciiTable__14JUTDirectPrint@l
+/* 802E4330  3C E0 80 3D */	lis r7, sAsciiTable__14JUTDirectPrint@ha /* 0x803CC6B8@ha */
+/* 802E4334  38 E7 C6 B8 */	addi r7, r7, sAsciiTable__14JUTDirectPrint@l /* 0x803CC6B8@l */
 /* 802E4338  2C 06 00 64 */	cmpwi r6, 0x64
 /* 802E433C  7C C8 33 78 */	mr r8, r6
 /* 802E4340  41 80 00 08 */	blt lbl_802E4348

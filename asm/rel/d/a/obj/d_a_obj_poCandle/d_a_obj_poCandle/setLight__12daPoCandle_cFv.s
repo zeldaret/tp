@@ -6,7 +6,7 @@ lbl_80CB1E00:
 /* 80CB1E10  28 00 00 00 */	cmplwi r0, 0
 /* 80CB1E14  41 82 00 0C */	beq lbl_80CB1E20
 /* 80CB1E18  38 63 05 F4 */	addi r3, r3, 0x5f4
-/* 80CB1E1C  4B 4F 59 74 */	b dKy_plight_set__FP15LIGHT_INFLUENCE
+/* 80CB1E1C  4B 4F 59 75 */	bl dKy_plight_set__FP15LIGHT_INFLUENCE
 lbl_80CB1E20:
 /* 80CB1E20  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80CB1E24  7C 08 03 A6 */	mtlr r0

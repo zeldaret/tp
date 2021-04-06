@@ -3,19 +3,20 @@
 #
 
 M205_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_kk.plf
+M205_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_kk.lcf
+M205_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_kk.map
 
 M205_CPP_FILES := \
-	rel/d/a/e/d_a_e_kk/executor.cpp \
-	rel/d/a/e/d_a_e_kk/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_kk/d_a_e_kk.cpp \
 
 M205_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/d_a_e_kk.o \
 
 M205_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kk/libRuntime.PPCEABI.H.a \
 
 M205_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M205_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map205.map\
+	-m _prolog \
+	-lcf $(M205_LDSCRIPT) \
+	-unused -map $(M205_MAP) \
+	-w off \
 
 $(M205_TARGET): $(M205_O_FILES) $(M205_LIBS)
+	@echo [205] creating $(M205_TARGET)
 	@echo $(M205_LIBS) $(M205_O_FILES) > build/M205_ofiles
-	$(LD) -opt_partial $(M205_LDFLAGS) -o $(M205_TARGET) @build/M205_ofiles
+	@python3 tools/lcf.py rel 205 --output $(M205_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M205_LDFLAGS) -o $(M205_TARGET) @build/M205_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_kk/%.o: rel/d/a/e/d_a_e_kk/%.cpp
+	@echo [205] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M205_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M205_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_kk/libs/Runtime.PPCEABI.H/Makefile
 

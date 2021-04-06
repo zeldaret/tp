@@ -110,8 +110,8 @@ lbl_8033694C:
 /* 80336958  7F BD 1A 14 */	add r29, r29, r3
 /* 8033695C  48 00 00 14 */	b lbl_80336970
 lbl_80336960:
-/* 80336960  3C 60 80 3A */	lis r3, J3DModelLoaderCalcSize__stringBase0@ha
-/* 80336964  38 63 20 E8 */	addi r3, r3, J3DModelLoaderCalcSize__stringBase0@l
+/* 80336960  3C 60 80 3A */	lis r3, J3DModelLoaderCalcSize__stringBase0@ha /* 0x803A20E8@ha */
+/* 80336964  38 63 20 E8 */	addi r3, r3, J3DModelLoaderCalcSize__stringBase0@l /* 0x803A20E8@l */
 /* 80336968  4C C6 31 82 */	crclr 6
 /* 8033696C  4B CD 01 51 */	bl OSReport
 lbl_80336970:

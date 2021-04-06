@@ -67,16 +67,16 @@ lbl_80107824:
 /* 80107834  40 82 00 B0 */	bne lbl_801078E4
 /* 80107838  A8 1F 04 E4 */	lha r0, 0x4e4(r31)
 /* 8010783C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80107840  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80107844  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80107840  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80107844  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80107848  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8010784C  C0 3F 33 98 */	lfs f1, 0x3398(r31)
 /* 80107850  FC 00 00 50 */	fneg f0, f0
 /* 80107854  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80107858  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 8010785C  C0 3F 04 FC */	lfs f1, 0x4fc(r31)
-/* 80107860  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha
-/* 80107864  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l
+/* 80107860  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107864  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80107868  C0 03 00 90 */	lfs f0, 0x90(r3)
 /* 8010786C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80107870  40 80 00 0C */	bge lbl_8010787C

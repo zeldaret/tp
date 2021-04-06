@@ -4,17 +4,17 @@ lbl_8055A1E0:
 /* 8055A1E8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8055A1EC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8055A1F0  7C 7F 1B 78 */	mr r31, r3
-/* 8055A1F4  3C 60 80 56 */	lis r3, lit_4937@ha
-/* 8055A1F8  C8 23 A6 DC */	lfd f1, lit_4937@l(r3)
+/* 8055A1F4  3C 60 80 56 */	lis r3, lit_4937@ha /* 0x8055A6DC@ha */
+/* 8055A1F8  C8 23 A6 DC */	lfd f1, lit_4937@l(r3)  /* 0x8055A6DC@l */
 /* 8055A1FC  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 8055A200  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8055A204  3C 00 43 30 */	lis r0, 0x4330
 /* 8055A208  90 01 00 08 */	stw r0, 8(r1)
 /* 8055A20C  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8055A210  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8055A214  4B D0 D7 40 */	b cM_rndF__Ff
-/* 8055A218  3C 60 80 56 */	lis r3, lit_4937@ha
-/* 8055A21C  C8 43 A6 DC */	lfd f2, lit_4937@l(r3)
+/* 8055A214  4B D0 D7 41 */	bl cM_rndF__Ff
+/* 8055A218  3C 60 80 56 */	lis r3, lit_4937@ha /* 0x8055A6DC@ha */
+/* 8055A21C  C8 43 A6 DC */	lfd f2, lit_4937@l(r3)  /* 0x8055A6DC@l */
 /* 8055A220  6F E0 80 00 */	xoris r0, r31, 0x8000
 /* 8055A224  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8055A228  3C 00 43 30 */	lis r0, 0x4330

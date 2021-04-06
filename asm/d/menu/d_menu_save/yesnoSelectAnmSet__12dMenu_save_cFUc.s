@@ -11,8 +11,8 @@ lbl_801F4510:
 /* 801F4534  41 82 00 C4 */	beq lbl_801F45F8
 /* 801F4538  38 A0 00 FF */	li r5, 0xff
 /* 801F453C  38 C0 00 00 */	li r6, 0
-/* 801F4540  3C E0 80 43 */	lis r7, g_msHIO@ha
-/* 801F4544  38 E7 E8 4C */	addi r7, r7, g_msHIO@l
+/* 801F4540  3C E0 80 43 */	lis r7, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F4544  38 E7 E8 4C */	addi r7, r7, g_msHIO@l /* 0x8042E84C@l */
 /* 801F4548  88 E7 00 0A */	lbz r7, 0xa(r7)
 /* 801F454C  48 00 20 BD */	bl yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc
 /* 801F4550  88 1E 01 B7 */	lbz r0, 0x1b7(r30)
@@ -27,8 +27,8 @@ lbl_801F4510:
 /* 801F4574  4E 80 04 21 */	bctrl 
 /* 801F4578  88 BE 01 B7 */	lbz r5, 0x1b7(r30)
 /* 801F457C  54 A4 18 38 */	slwi r4, r5, 3
-/* 801F4580  3C 60 80 3C */	lis r3, YnSelEndFrameTbl@ha
-/* 801F4584  38 03 DF C4 */	addi r0, r3, YnSelEndFrameTbl@l
+/* 801F4580  3C 60 80 3C */	lis r3, YnSelEndFrameTbl@ha /* 0x803BDFC4@ha */
+/* 801F4584  38 03 DF C4 */	addi r0, r3, YnSelEndFrameTbl@l /* 0x803BDFC4@l */
 /* 801F4588  7C 60 22 14 */	add r3, r0, r4
 /* 801F458C  57 E0 15 BA */	rlwinm r0, r31, 2, 0x16, 0x1d
 /* 801F4590  7C 83 00 2E */	lwzx r4, r3, r0
@@ -72,8 +72,8 @@ lbl_801F45F8:
 /* 801F4624  4E 80 04 21 */	bctrl 
 /* 801F4628  88 BE 01 B6 */	lbz r5, 0x1b6(r30)
 /* 801F462C  54 A4 18 38 */	slwi r4, r5, 3
-/* 801F4630  3C 60 80 3C */	lis r3, YnSelStartFrameTbl@ha
-/* 801F4634  38 03 DF B4 */	addi r0, r3, YnSelStartFrameTbl@l
+/* 801F4630  3C 60 80 3C */	lis r3, YnSelStartFrameTbl@ha /* 0x803BDFB4@ha */
+/* 801F4634  38 03 DF B4 */	addi r0, r3, YnSelStartFrameTbl@l /* 0x803BDFB4@l */
 /* 801F4638  7C 60 22 14 */	add r3, r0, r4
 /* 801F463C  57 E0 15 BA */	rlwinm r0, r31, 2, 0x16, 0x1d
 /* 801F4640  7C 83 00 2E */	lwzx r4, r3, r0

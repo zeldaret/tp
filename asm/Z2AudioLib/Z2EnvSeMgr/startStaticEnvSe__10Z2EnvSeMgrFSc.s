@@ -85,8 +85,8 @@ lbl_802C71E8:
 /* 802C720C  88 1F 00 38 */	lbz r0, 0x38(r31)
 /* 802C7210  28 00 00 0B */	cmplwi r0, 0xb
 /* 802C7214  41 81 04 4C */	bgt lbl_802C7660
-/* 802C7218  3C 60 80 3D */	lis r3, lit_4272@ha
-/* 802C721C  38 63 B9 F8 */	addi r3, r3, lit_4272@l
+/* 802C7218  3C 60 80 3D */	lis r3, lit_4272@ha /* 0x803CB9F8@ha */
+/* 802C721C  38 63 B9 F8 */	addi r3, r3, lit_4272@l /* 0x803CB9F8@l */
 /* 802C7220  54 00 10 3A */	slwi r0, r0, 2
 /* 802C7224  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802C7228  7C 09 03 A6 */	mtctr r0

@@ -3,19 +3,20 @@
 #
 
 M152_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_tn.plf
+M152_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_tn.lcf
+M152_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_tn.map
 
 M152_CPP_FILES := \
-	rel/d/a/b/d_a_b_tn/executor.cpp \
-	rel/d/a/b/d_a_b_tn/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/b/d_a_b_tn/d_a_b_tn.cpp \
 
 M152_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_tn/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_tn/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_tn/d_a_b_tn.o \
 
 M152_LIBS := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_tn/libRuntime.PPCEABI.H.a \
 
 M152_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M152_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map152.map\
+	-m _prolog \
+	-lcf $(M152_LDSCRIPT) \
+	-unused -map $(M152_MAP) \
+	-w off \
 
 $(M152_TARGET): $(M152_O_FILES) $(M152_LIBS)
+	@echo [152] creating $(M152_TARGET)
 	@echo $(M152_LIBS) $(M152_O_FILES) > build/M152_ofiles
-	$(LD) -opt_partial $(M152_LDFLAGS) -o $(M152_TARGET) @build/M152_ofiles
+	@python3 tools/lcf.py rel 152 --output $(M152_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M152_LDFLAGS) -o $(M152_TARGET) @build/M152_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_tn/%.o: rel/d/a/b/d_a_b_tn/%.cpp
+	@echo [152] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M152_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M152_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/b/d_a_b_tn/libs/Runtime.PPCEABI.H/Makefile
 

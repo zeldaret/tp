@@ -5,16 +5,16 @@ lbl_804E9544:
 /* 804E9550  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 804E9554  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804E9558  7C 7E 1B 78 */	mr r30, r3
-/* 804E955C  3C 80 80 4F */	lis r4, lit_3789@ha
-/* 804E9560  3B E4 E8 AC */	addi r31, r4, lit_3789@l
+/* 804E955C  3C 80 80 4F */	lis r4, lit_3789@ha /* 0x804EE8AC@ha */
+/* 804E9560  3B E4 E8 AC */	addi r31, r4, lit_3789@l /* 0x804EE8AC@l */
 /* 804E9564  38 A0 00 01 */	li r5, 1
 /* 804E9568  98 A3 06 F1 */	stb r5, 0x6f1(r3)
 /* 804E956C  98 A3 06 F4 */	stb r5, 0x6f4(r3)
 /* 804E9570  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 804E9574  28 00 00 08 */	cmplwi r0, 8
 /* 804E9578  41 81 01 AC */	bgt lbl_804E9724
-/* 804E957C  3C 80 80 4F */	lis r4, lit_5544@ha
-/* 804E9580  38 84 EA D4 */	addi r4, r4, lit_5544@l
+/* 804E957C  3C 80 80 4F */	lis r4, lit_5544@ha /* 0x804EEAD4@ha */
+/* 804E9580  38 84 EA D4 */	addi r4, r4, lit_5544@l /* 0x804EEAD4@l */
 /* 804E9584  54 00 10 3A */	slwi r0, r0, 2
 /* 804E9588  7C 04 00 2E */	lwzx r0, r4, r0
 /* 804E958C  7C 09 03 A6 */	mtctr r0
@@ -74,7 +74,7 @@ lbl_804E9640:
 /* 804E9654  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 804E9658  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 804E965C  C0 5F 00 60 */	lfs f2, 0x60(r31)
-/* 804E9660  4B D8 64 20 */	b cLib_addCalc0__FPfff
+/* 804E9660  4B D8 64 21 */	bl cLib_addCalc0__FPfff
 lbl_804E9664:
 /* 804E9664  80 7E 05 DC */	lwz r3, 0x5dc(r30)
 /* 804E9668  C0 23 00 1C */	lfs f1, 0x1c(r3)
@@ -91,11 +91,11 @@ lbl_804E9664:
 lbl_804E9694:
 /* 804E9694  38 00 00 05 */	li r0, 5
 /* 804E9698  B0 1E 06 E8 */	sth r0, 0x6e8(r30)
-/* 804E969C  4B B9 DD 38 */	b cc_pl_cut_bit_get__Fv
+/* 804E969C  4B B9 DD 39 */	bl cc_pl_cut_bit_get__Fv
 /* 804E96A0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 804E96A4  28 00 00 80 */	cmplwi r0, 0x80
 /* 804E96A8  41 82 00 14 */	beq lbl_804E96BC
-/* 804E96AC  4B B9 DD 28 */	b cc_pl_cut_bit_get__Fv
+/* 804E96AC  4B B9 DD 29 */	bl cc_pl_cut_bit_get__Fv
 /* 804E96B0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 804E96B4  28 00 08 00 */	cmplwi r0, 0x800
 /* 804E96B8  40 82 00 0C */	bne lbl_804E96C4

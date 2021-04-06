@@ -11,8 +11,8 @@ lbl_80199BF8:
 /* 80199C1C  4B FF DA 55 */	bl checkController__13dShopSystem_cFUcP10dMsgFlow_c
 /* 80199C20  7C 7F 1B 78 */	mr r31, r3
 /* 80199C24  38 00 00 22 */	li r0, 0x22
-/* 80199C28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80199C2C  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80199C28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80199C2C  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80199C30  98 04 5E 3C */	stb r0, 0x5e3c(r4)
 /* 80199C34  38 60 00 00 */	li r3, 0
 /* 80199C38  98 64 5E 57 */	stb r3, 0x5e57(r4)

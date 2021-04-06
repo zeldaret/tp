@@ -7,8 +7,8 @@ lbl_801C27B4:
 /* 801C27C8  7C 7A 1B 79 */	or. r26, r3, r3
 /* 801C27CC  7C 9B 23 78 */	mr r27, r4
 /* 801C27D0  41 82 00 EC */	beq lbl_801C28BC
-/* 801C27D4  3C 60 80 3C */	lis r3, __vt__16dMenuMapCommon_c@ha
-/* 801C27D8  38 03 D0 2C */	addi r0, r3, __vt__16dMenuMapCommon_c@l
+/* 801C27D4  3C 60 80 3C */	lis r3, __vt__16dMenuMapCommon_c@ha /* 0x803BD02C@ha */
+/* 801C27D8  38 03 D0 2C */	addi r0, r3, __vt__16dMenuMapCommon_c@l /* 0x803BD02C@l */
 /* 801C27DC  90 1A 00 00 */	stw r0, 0(r26)
 /* 801C27E0  3B 80 00 00 */	li r28, 0
 /* 801C27E4  3B E0 00 00 */	li r31, 0

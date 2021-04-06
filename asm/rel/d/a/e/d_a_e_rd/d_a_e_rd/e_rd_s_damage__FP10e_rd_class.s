@@ -5,8 +5,8 @@ lbl_8050AF78:
 /* 8050AF84  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8050AF88  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8050AF8C  7C 7E 1B 78 */	mr r30, r3
-/* 8050AF90  3C 60 80 52 */	lis r3, lit_4208@ha
-/* 8050AF94  3B E3 85 84 */	addi r31, r3, lit_4208@l
+/* 8050AF90  3C 60 80 52 */	lis r3, lit_4208@ha /* 0x80518584@ha */
+/* 8050AF94  3B E3 85 84 */	addi r31, r3, lit_4208@l /* 0x80518584@l */
 /* 8050AF98  A8 1E 05 B4 */	lha r0, 0x5b4(r30)
 /* 8050AF9C  2C 00 00 01 */	cmpwi r0, 1
 /* 8050AFA0  41 82 00 78 */	beq lbl_8050B018
@@ -24,10 +24,10 @@ lbl_8050AFB4:
 /* 8050AFCC  41 82 01 00 */	beq lbl_8050B0CC
 /* 8050AFD0  80 1E 09 8C */	lwz r0, 0x98c(r30)
 /* 8050AFD4  90 01 00 08 */	stw r0, 8(r1)
-/* 8050AFD8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8050AFDC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8050AFD8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8050AFDC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8050AFE0  38 81 00 08 */	addi r4, r1, 8
-/* 8050AFE4  4B B0 E8 14 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8050AFE4  4B B0 E8 15 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8050AFE8  28 03 00 00 */	cmplwi r3, 0
 /* 8050AFEC  41 82 00 18 */	beq lbl_8050B004
 /* 8050AFF0  A0 83 06 BE */	lhz r4, 0x6be(r3)
@@ -76,8 +76,8 @@ lbl_8050B078:
 /* 8050B088  48 00 00 3C */	b lbl_8050B0C4
 lbl_8050B08C:
 /* 8050B08C  7F C3 F3 78 */	mr r3, r30
-/* 8050B090  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8050B094  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8050B090  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8050B094  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8050B098  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 8050B09C  4B FF A9 09 */	bl other_bg_check__FP10e_rd_classP10fopAc_ac_c
 /* 8050B0A0  2C 03 00 00 */	cmpwi r3, 0
@@ -97,7 +97,7 @@ lbl_8050B0CC:
 /* 8050B0CC  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8050B0D0  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8050B0D4  C0 5F 00 4C */	lfs f2, 0x4c(r31)
-/* 8050B0D8  4B D6 49 A8 */	b cLib_addCalc0__FPfff
+/* 8050B0D8  4B D6 49 A9 */	bl cLib_addCalc0__FPfff
 /* 8050B0DC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8050B0E0  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 8050B0E4  80 01 00 24 */	lwz r0, 0x24(r1)

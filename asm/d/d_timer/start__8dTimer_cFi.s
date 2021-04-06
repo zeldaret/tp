@@ -35,16 +35,16 @@ lbl_8025D5A0:
 /* 8025D5B4  80 7E 00 FC */	lwz r3, 0xfc(r30)
 /* 8025D5B8  38 80 05 15 */	li r4, 0x515
 /* 8025D5BC  48 00 2F B9 */	bl createStart__21dDlst_TimerScrnDraw_cFUs
-/* 8025D5C0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025D5C4  38 83 EB C8 */	addi r4, r3, g_drawHIO@l
+/* 8025D5C0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025D5C4  38 83 EB C8 */	addi r4, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025D5C8  A8 64 0B E8 */	lha r3, 0xbe8(r4)
 /* 8025D5CC  A8 04 0B EA */	lha r0, 0xbea(r4)
 /* 8025D5D0  7C 03 02 14 */	add r0, r3, r0
 /* 8025D5D4  B0 1E 01 68 */	sth r0, 0x168(r30)
 /* 8025D5D8  48 00 00 14 */	b lbl_8025D5EC
 lbl_8025D5DC:
-/* 8025D5DC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025D5E0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025D5DC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025D5E0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025D5E4  A8 03 0B EA */	lha r0, 0xbea(r3)
 /* 8025D5E8  B0 1E 01 68 */	sth r0, 0x168(r30)
 lbl_8025D5EC:

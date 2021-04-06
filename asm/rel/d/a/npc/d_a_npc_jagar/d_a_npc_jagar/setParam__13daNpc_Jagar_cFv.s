@@ -3,14 +3,14 @@ lbl_80A153E8:
 /* 80A153EC  7C 08 02 A6 */	mflr r0
 /* 80A153F0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A153F4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A153F8  4B 94 CD E0 */	b _savegpr_28
+/* 80A153F8  4B 94 CD E1 */	bl _savegpr_28
 /* 80A153FC  7C 7E 1B 78 */	mr r30, r3
 /* 80A15400  48 00 0E 35 */	bl selectAction__13daNpc_Jagar_cFv
 /* 80A15404  7F C3 F3 78 */	mr r3, r30
 /* 80A15408  48 00 03 AD */	bl srchActors__13daNpc_Jagar_cFv
 /* 80A1540C  3B E0 00 0A */	li r31, 0xa
-/* 80A15410  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha
-/* 80A15414  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l
+/* 80A15410  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha /* 0x80A1A330@ha */
+/* 80A15414  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l /* 0x80A1A330@l */
 /* 80A15418  AB A3 00 48 */	lha r29, 0x48(r3)
 /* 80A1541C  AB 83 00 4A */	lha r28, 0x4a(r3)
 /* 80A15420  A8 83 00 4C */	lha r4, 0x4c(r3)
@@ -50,35 +50,35 @@ lbl_80A15488:
 lbl_80A15498:
 /* 80A15498  7C 83 07 34 */	extsh r3, r4
 /* 80A1549C  7C A4 07 34 */	extsh r4, r5
-/* 80A154A0  4B 73 75 78 */	b daNpcT_getDistTableIdx__Fii
+/* 80A154A0  4B 73 75 79 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A154A4  98 7E 05 44 */	stb r3, 0x544(r30)
 /* 80A154A8  88 1E 05 44 */	lbz r0, 0x544(r30)
 /* 80A154AC  98 1E 05 45 */	stb r0, 0x545(r30)
 /* 80A154B0  7F A3 07 34 */	extsh r3, r29
 /* 80A154B4  7F 84 07 34 */	extsh r4, r28
-/* 80A154B8  4B 73 75 60 */	b daNpcT_getDistTableIdx__Fii
+/* 80A154B8  4B 73 75 61 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A154BC  98 7E 05 47 */	stb r3, 0x547(r30)
 /* 80A154C0  88 1E 0F 80 */	lbz r0, 0xf80(r30)
 /* 80A154C4  28 00 00 01 */	cmplwi r0, 1
 /* 80A154C8  40 82 00 5C */	bne lbl_80A15524
 /* 80A154CC  67 FF 00 80 */	oris r31, r31, 0x80
-/* 80A154D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A154D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A154D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A154D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A154D8  83 A3 5D AC */	lwz r29, 0x5dac(r3)
 /* 80A154DC  80 7E 0F F0 */	lwz r3, 0xff0(r30)
 /* 80A154E0  80 9E 0F F4 */	lwz r4, 0xff4(r30)
-/* 80A154E4  4B 73 75 34 */	b daNpcT_getDistTableIdx__Fii
+/* 80A154E4  4B 73 75 35 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A154E8  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 80A154EC  7F C3 F3 78 */	mr r3, r30
 /* 80A154F0  7F A4 EB 78 */	mr r4, r29
 /* 80A154F4  88 DE 05 45 */	lbz r6, 0x545(r30)
-/* 80A154F8  4B 73 66 08 */	b getActorDistance__8daNpcT_cFP10fopAc_ac_cii
+/* 80A154F8  4B 73 66 09 */	bl getActorDistance__8daNpcT_cFP10fopAc_ac_cii
 /* 80A154FC  90 7E 0F EC */	stw r3, 0xfec(r30)
 /* 80A15500  80 1E 0F EC */	lwz r0, 0xfec(r30)
 /* 80A15504  2C 00 00 04 */	cmpwi r0, 4
 /* 80A15508  40 80 00 40 */	bge lbl_80A15548
-/* 80A1550C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80A15510  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80A1550C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80A15510  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80A15514  A0 03 00 AC */	lhz r0, 0xac(r3)
 /* 80A15518  60 00 00 01 */	ori r0, r0, 1
 /* 80A1551C  B0 03 00 AC */	sth r0, 0xac(r3)
@@ -95,8 +95,8 @@ lbl_80A15524:
 /* 80A15544  3B E0 00 02 */	li r31, 2
 lbl_80A15548:
 /* 80A15548  93 FE 05 5C */	stw r31, 0x55c(r30)
-/* 80A1554C  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha
-/* 80A15550  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l
+/* 80A1554C  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha /* 0x80A1A330@ha */
+/* 80A15550  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l /* 0x80A1A330@l */
 /* 80A15554  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80A15558  D0 1E 04 EC */	stfs f0, 0x4ec(r30)
 /* 80A1555C  D0 1E 04 F0 */	stfs f0, 0x4f0(r30)
@@ -114,9 +114,9 @@ lbl_80A15548:
 /* 80A1558C  D0 1E 0D F8 */	stfs f0, 0xdf8(r30)
 /* 80A15590  38 7E 08 A0 */	addi r3, r30, 0x8a0
 /* 80A15594  C0 3E 0D F0 */	lfs f1, 0xdf0(r30)
-/* 80A15598  4B 66 09 A8 */	b SetWallR__12dBgS_AcchCirFf
-/* 80A1559C  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha
-/* 80A155A0  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l
+/* 80A15598  4B 66 09 A9 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80A1559C  3C 60 80 A2 */	lis r3, m__19daNpc_Jagar_Param_c@ha /* 0x80A1A330@ha */
+/* 80A155A0  38 63 A3 30 */	addi r3, r3, m__19daNpc_Jagar_Param_c@l /* 0x80A1A330@l */
 /* 80A155A4  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A155A8  D0 1E 08 D0 */	stfs f0, 0x8d0(r30)
 /* 80A155AC  C0 03 00 0C */	lfs f0, 0xc(r3)
@@ -128,7 +128,7 @@ lbl_80A15548:
 /* 80A155C4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80A155C8  D0 1E 05 30 */	stfs f0, 0x530(r30)
 /* 80A155CC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A155D0  4B 94 CC 54 */	b _restgpr_28
+/* 80A155D0  4B 94 CC 55 */	bl _restgpr_28
 /* 80A155D4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A155D8  7C 08 03 A6 */	mtlr r0
 /* 80A155DC  38 21 00 20 */	addi r1, r1, 0x20

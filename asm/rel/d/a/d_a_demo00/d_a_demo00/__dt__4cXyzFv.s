@@ -7,7 +7,7 @@ lbl_804A449C:
 /* 804A44B0  41 82 00 10 */	beq lbl_804A44C0
 /* 804A44B4  7C 80 07 35 */	extsh. r0, r4
 /* 804A44B8  40 81 00 08 */	ble lbl_804A44C0
-/* 804A44BC  4B E2 A8 80 */	b __dl__FPv
+/* 804A44BC  4B E2 A8 81 */	bl __dl__FPv
 lbl_804A44C0:
 /* 804A44C0  7F E3 FB 78 */	mr r3, r31
 /* 804A44C4  83 E1 00 0C */	lwz r31, 0xc(r1)

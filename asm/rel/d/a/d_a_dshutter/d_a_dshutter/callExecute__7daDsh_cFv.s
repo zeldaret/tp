@@ -6,7 +6,7 @@ lbl_8046777C:
 /* 8046778C  7C 7F 1B 78 */	mr r31, r3
 /* 80467790  80 63 05 B4 */	lwz r3, 0x5b4(r3)
 /* 80467794  38 63 00 0C */	addi r3, r3, 0xc
-/* 80467798  4B EF A8 80 */	b __ptmf_test
+/* 80467798  4B EF A8 81 */	bl __ptmf_test
 /* 8046779C  2C 03 00 00 */	cmpwi r3, 0
 /* 804677A0  40 82 00 0C */	bne lbl_804677AC
 /* 804677A4  38 60 00 01 */	li r3, 1
@@ -15,7 +15,7 @@ lbl_804677AC:
 /* 804677AC  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
 /* 804677B0  39 83 00 0C */	addi r12, r3, 0xc
 /* 804677B4  7F E3 FB 78 */	mr r3, r31
-/* 804677B8  4B EF A8 CC */	b __ptmf_scall
+/* 804677B8  4B EF A8 CD */	bl __ptmf_scall
 /* 804677BC  60 00 00 00 */	nop 
 lbl_804677C0:
 /* 804677C0  83 E1 00 0C */	lwz r31, 0xc(r1)

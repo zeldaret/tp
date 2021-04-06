@@ -1,6 +1,6 @@
 lbl_8085BB80:
-/* 8085BB80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8085BB84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8085BB80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8085BB84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8085BB88  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 8085BB8C  38 60 00 01 */	li r3, 1
 /* 8085BB90  28 04 00 00 */	cmplwi r4, 0

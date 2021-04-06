@@ -4,11 +4,11 @@ lbl_80031648:
 /* 80031650  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80031654  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80031658  3B E0 00 00 */	li r31, 0
-/* 8003165C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80031660  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003165C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80031660  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80031664  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 80031668  3C 80 80 38 */	lis r4, d_com_d_com_static__stringBase0@ha
-/* 8003166C  38 84 90 B0 */	addi r4, r4, d_com_d_com_static__stringBase0@l
+/* 80031668  3C 80 80 38 */	lis r4, d_com_d_com_static__stringBase0@ha /* 0x803790B0@ha */
+/* 8003166C  38 84 90 B0 */	addi r4, r4, d_com_d_com_static__stringBase0@l /* 0x803790B0@l */
 /* 80031670  48 33 73 25 */	bl strcmp
 /* 80031674  2C 03 00 00 */	cmpwi r3, 0
 /* 80031678  40 82 00 18 */	bne lbl_80031690

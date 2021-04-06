@@ -36,11 +36,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -73,11 +73,11 @@ struct dBgS_AcchCir {
     /* 80CDE868 */ ~dBgS_AcchCir();
 };
 
+struct csXyz {};
+
 struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -123,12 +123,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daSmWStone_c_createHeap(fopAc_ac_c*);
-static void daSmWStone_create(daSmWStone_c*);
-static void daSmWStone_Delete(daSmWStone_c*);
-static void daSmWStone_execute(daSmWStone_c*);
-static void daSmWStone_draw(daSmWStone_c*);
-
 extern "C" static void daSmWStone_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__12daSmWStone_cFv();
 extern "C" void __dt__12daSmWStone_cFv();
@@ -149,28 +143,11 @@ extern "C" static void daSmWStone_execute__FP12daSmWStone_c();
 extern "C" static void daSmWStone_draw__FP12daSmWStone_c();
 extern "C" static void func_80CDEEDC();
 extern "C" static void func_80CDEEE4();
-extern "C" extern u32 const lit_4238;
-extern "C" extern u32 const lit_4239;
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_SmWStone[12];
-extern "C" extern void* __vt__12dBgS_AcchCir[3];
-extern "C" extern void* __vt__12dBgS_ObjAcch[9];
-extern "C" extern void* __vt__12daSmWStone_c[3];
+extern "C" extern char const* const d_a_obj_smw_stone__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGd_setShadow(u32, s8, J3DModel*, cXyz*, f32, f32, f32, f32, cBgS_PolyInfo&,
-                        dKy_tevstr_c*, s16, f32, _GXTexObj*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -223,54 +200,21 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80CDE518-80CDE538 0020+00 s=1 e=0 z=0  None .text      daSmWStone_c_createHeap__FP10fopAc_ac_c */
-//	80CDE524: 80CDEC04 (createHeap__12daSmWStone_cFv)
+/* 80CDE518-80CDE538 000078 0020+00 1/1 0/0 0/0 .text daSmWStone_c_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSmWStone_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daSmWStone_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/daSmWStone_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CDEEF4-80CDEF00 000C+00 s=1 e=0 z=0  None .rodata    @3776 */
-SECTION_RODATA static u8 const lit_3776[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* 80CDEF1C-80CDEF20 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_smw_stone__stringBase0;
 
-/* 80CDEF00-80CDEF04 0004+00 s=1 e=0 z=0  None .rodata    @4191 */
-SECTION_RODATA static u8 const lit_4191[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80CDEF04-80CDEF08 0004+00 s=1 e=0 z=0  None .rodata    @4192 */
-SECTION_RODATA static u32 const lit_4192 = 0x41200000;
-
-/* 80CDEF08-80CDEF0C 0004+00 s=0 e=0 z=0  None .rodata    @4238 */
-SECTION_RODATA u32 const lit_4238 = 0x43FA0000;
-
-/* 80CDEF0C-80CDEF10 0004+00 s=0 e=0 z=0  None .rodata    @4239 */
-SECTION_RODATA u32 const lit_4239 = 0x3F800000;
-
-/* 80CDEF10-80CDEF14 0004+00 s=1 e=0 z=0  None .rodata    @4350 */
-SECTION_RODATA static u32 const lit_4350 = 0x471C4000;
-
-/* 80CDEF14-80CDEF1C 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CDEF14 = "WStoneF";
-#pragma pop
-
-/* 80CDEF1C-80CDEF20 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80CDEF20-80CDEF40 0020+00 s=1 e=0 z=0  None .data      daSmWStone_METHODS */
+/* 80CDEF20-80CDEF40 -00001 0020+00 1/0 0/0 0/0 .data            daSmWStone_METHODS */
 SECTION_DATA static void* daSmWStone_METHODS[8] = {
     (void*)daSmWStone_create__FP12daSmWStone_c,
     (void*)daSmWStone_Delete__FP12daSmWStone_c,
@@ -282,8 +226,8 @@ SECTION_DATA static void* daSmWStone_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80CDEF40-80CDEF70 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_SmWStone */
-SECTION_DATA void* g_profile_Obj_SmWStone[12] = {
+/* 80CDEF40-80CDEF70 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SmWStone */
+SECTION_DATA extern void* g_profile_Obj_SmWStone[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x018D0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C8, (void*)NULL,
@@ -292,15 +236,15 @@ SECTION_DATA void* g_profile_Obj_SmWStone[12] = {
     (void*)0x00044100, (void*)0x03000000,
 };
 
-/* 80CDEF70-80CDEF7C 000C+00 s=2 e=0 z=0  None .data      __vt__12dBgS_AcchCir */
-SECTION_DATA void* __vt__12dBgS_AcchCir[3] = {
+/* 80CDEF70-80CDEF7C 000054 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
+SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_AcchCirFv,
 };
 
-/* 80CDEF7C-80CDEFA0 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
+/* 80CDEF7C-80CDEFA0 000060 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_ObjAcchFv,
@@ -312,18 +256,14 @@ SECTION_DATA void* __vt__12dBgS_ObjAcch[9] = {
     (void*)func_80CDEEDC,
 };
 
-/* 80CDEFA0-80CDEFAC 000C+00 s=2 e=0 z=0  None .data      __vt__12daSmWStone_c */
-SECTION_DATA void* __vt__12daSmWStone_c[3] = {
+/* 80CDEFA0-80CDEFAC 000084 000C+00 2/2 0/0 0/0 .data            __vt__12daSmWStone_c */
+SECTION_DATA extern void* __vt__12daSmWStone_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12daSmWStone_cFv,
 };
 
-/* 80CDE538-80CDE588 0050+00 s=2 e=0 z=0  None .text      __ct__12daSmWStone_cFv */
-//	80CDE54C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	80CDE550: 80CDEFA0 (__vt__12daSmWStone_c)
-//	80CDE554: 80CDEFA0 (__vt__12daSmWStone_c)
-//	80CDE560: 80268074 (__ct__13cBgS_PolyInfoFv)
+/* 80CDE538-80CDE588 000098 0050+00 2/2 0/0 0/0 .text            __ct__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -333,15 +273,7 @@ asm daSmWStone_c::daSmWStone_c() {
 }
 #pragma pop
 
-/* 80CDE588-80CDE614 008C+00 s=1 e=0 z=0  None .text      __dt__12daSmWStone_cFv */
-//	80CDE5A8: 80CDEFA0 (__vt__12daSmWStone_c)
-//	80CDE5AC: 80CDEFA0 (__vt__12daSmWStone_c)
-//	80CDE5C0: 80CDEF1C (l_arcName)
-//	80CDE5C4: 80CDEF1C (l_arcName)
-//	80CDE5CC: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
-//	80CDE5D8: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	80CDE5E4: 80018C8C (__dt__10fopAc_ac_cFv)
-//	80CDE5F4: 802CED3C (__dl__FPv)
+/* 80CDE588-80CDE614 0000E8 008C+00 1/0 0/0 0/0 .text            __dt__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -351,38 +283,27 @@ asm daSmWStone_c::~daSmWStone_c() {
 }
 #pragma pop
 
-/* 80CDE614-80CDE7F8 01E4+00 s=1 e=0 z=0  None .text      create__12daSmWStone_cFv */
-//	80CDE624: 803621D0 (_savegpr_26)
-//	80CDE640: 80CDE538 (__ct__12daSmWStone_cFv)
-//	80CDE660: 80CDEF1C (l_arcName)
-//	80CDE664: 80CDEF1C (l_arcName)
-//	80CDE66C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	80CDE680: 80CDE518 (daSmWStone_c_createHeap__FP10fopAc_ac_c)
-//	80CDE684: 80CDE518 (daSmWStone_c_createHeap__FP10fopAc_ac_c)
-//	80CDE68C: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	80CDE6A0: 804061C0 (g_dComIfG_gameInfo)
-//	80CDE6A4: 804061C0 (g_dComIfG_gameInfo)
-//	80CDE6B8: 80074A08 (Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c)
-//	80CDE6D0: 80CDED30 (init__12daSmWStone_cFv)
-//	80CDE6D8: 80CDEBA0 (setModelMtx__12daSmWStone_cFv)
-//	80CDE6EC: 80075EAC (__ct__12dBgS_AcchCirFv)
-//	80CDE6F8: 800760A0 (__ct__9dBgS_AcchFv)
-//	80CDE6FC: 80CDEF7C (__vt__12dBgS_ObjAcch)
-//	80CDE700: 80CDEF7C (__vt__12dBgS_ObjAcch)
-//	80CDE71C: 80078E68 (SetObj__16dBgS_PolyPassChkFv)
-//	80CDE724: 80CDEF00 (lit_4191)
-//	80CDE728: 80CDEF00 (lit_4191)
-//	80CDE72C: 80CDEF04 (lit_4192)
-//	80CDE730: 80CDEF04 (lit_4192)
-//	80CDE734: 80075F58 (SetWall__12dBgS_AcchCirFff)
-//	80CDE760: 80076248
-//(Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz) 	80CDE76C:
-//80076AAC (CrrPos__9dBgS_AcchFR4dBgS) 	80CDE798: 80CDEF7C (__vt__12dBgS_ObjAcch) 	80CDE79C:
-//80CDEF7C
-//(__vt__12dBgS_ObjAcch) 	80CDE7B4: 80075F94 (__dt__9dBgS_AcchFv) 	80CDE7B8: 80CDEF70
-//(__vt__12dBgS_AcchCir) 	80CDE7BC: 80CDEF70 (__vt__12dBgS_AcchCir) 	80CDE7CC: 8026EF18
-//(__dt__8cM3dGCirFv) 	80CDE7D8: 802680B0 (__dt__13cBgS_PolyInfoFv) 	80CDE7E4: 8036221C
-//(_restgpr_26)
+/* ############################################################################################## */
+/* 80CDEEF4-80CDEF00 000000 000C+00 1/1 0/0 0/0 .rodata          @3776 */
+SECTION_RODATA static u8 const lit_3776[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+SECTION_DEAD void* const cg_80CDEEF4 = (void*)(&lit_3776);
+
+/* 80CDEF00-80CDEF04 00000C 0004+00 1/2 0/0 0/0 .rodata          @4191 */
+SECTION_RODATA static u8 const lit_4191[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80CDEF00 = (void*)(&lit_4191);
+
+/* 80CDEF04-80CDEF08 000010 0004+00 1/1 0/0 0/0 .rodata          @4192 */
+SECTION_RODATA static u32 const lit_4192 = 0x41200000;
+SECTION_DEAD void* const cg_80CDEF04 = (void*)(&lit_4192);
+
+/* 80CDE614-80CDE7F8 000174 01E4+00 1/1 0/0 0/0 .text            create__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -392,11 +313,7 @@ asm void daSmWStone_c::create() {
 }
 #pragma pop
 
-/* 80CDE7F8-80CDE868 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
-//	80CDE818: 80CDEF7C (__vt__12dBgS_ObjAcch)
-//	80CDE81C: 80CDEF7C (__vt__12dBgS_ObjAcch)
-//	80CDE838: 80075F94 (__dt__9dBgS_AcchFv)
-//	80CDE848: 802CED3C (__dl__FPv)
+/* 80CDE7F8-80CDE868 000358 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -406,12 +323,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80CDE868-80CDE8D8 0070+00 s=1 e=0 z=0  None .text      __dt__12dBgS_AcchCirFv */
-//	80CDE888: 80CDEF70 (__vt__12dBgS_AcchCir)
-//	80CDE88C: 80CDEF70 (__vt__12dBgS_AcchCir)
-//	80CDE89C: 8026EF18 (__dt__8cM3dGCirFv)
-//	80CDE8A8: 802680B0 (__dt__13cBgS_PolyInfoFv)
-//	80CDE8B8: 802CED3C (__dl__FPv)
+/* 80CDE868-80CDE8D8 0003C8 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -421,9 +333,7 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 }
 #pragma pop
 
-/* 80CDE8D8-80CDE92C 0054+00 s=1 e=0 z=0  None .text      execute__12daSmWStone_cFv */
-//	80CDE908: 80CDEAA4 (exeModeHowl__12daSmWStone_cFv)
-//	80CDE910: 80CDEBA0 (setModelMtx__12daSmWStone_cFv)
+/* 80CDE8D8-80CDE92C 000438 0054+00 1/1 0/0 0/0 .text            execute__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -433,26 +343,22 @@ asm void daSmWStone_c::execute() {
 }
 #pragma pop
 
-/* 80CDE92C-80CDEA2C 0100+00 s=1 e=0 z=0  None .text      draw__12daSmWStone_cFv */
-//	80CDE93C: 803621DC (_savegpr_29)
-//	80CDE944: 80CDEEF4 (lit_3776)
-//	80CDE948: 80CDEEF4 (lit_3776)
-//	80CDE94C: 8042CA54 (g_env_light)
-//	80CDE950: 8042CA54 (g_env_light)
-//	80CDE960: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	80CDE964: 8042CA54 (g_env_light)
-//	80CDE968: 8042CA54 (g_env_light)
-//	80CDE978: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	80CDE97C:
-// 804061C0 (g_dComIfG_gameInfo) 	80CDE980: 804061C0 (g_dComIfG_gameInfo) 	80CDE988: 80434AC8
-// (j3dSys) 	80CDE98C: 80434AC8 (j3dSys) 	80CDE9A0: 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
-//	80CDE9A4: 804061C0 (g_dComIfG_gameInfo)
-//	80CDE9A8: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEA00: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80CDEA04: 804248D0 (mSimpleTexObj__21dDlst_shadowControl_c)
-//	80CDEA08: 8002E910
-//(dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj)
-//	80CDEA18: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80CDEF08-80CDEF0C 000014 0004+00 0/1 0/0 0/0 .rodata          @4238 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4238 = 0x43FA0000;
+SECTION_DEAD void* const cg_80CDEF08 = (void*)(&lit_4238);
+#pragma pop
+
+/* 80CDEF0C-80CDEF10 000018 0004+00 0/1 0/0 0/0 .rodata          @4239 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4239 = 0x3F800000;
+SECTION_DEAD void* const cg_80CDEF0C = (void*)(&lit_4239);
+#pragma pop
+
+/* 80CDE92C-80CDEA2C 00048C 0100+00 1/1 0/0 0/0 .text            draw__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,11 +368,7 @@ asm void daSmWStone_c::draw() {
 }
 #pragma pop
 
-/* 80CDEA2C-80CDEAA4 0078+00 s=1 e=0 z=0  None .text      Delete__12daSmWStone_cFv */
-//	80CDEA54: 802681D4 (ChkUsed__9cBgW_BgIdCFv)
-//	80CDEA60: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEA64: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEA70: 80074250 (Release__4cBgSFP9dBgW_Base)
+/* 80CDEA2C-80CDEAA4 00058C 0078+00 1/1 0/0 0/0 .text            Delete__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,16 +378,7 @@ asm void daSmWStone_c::Delete() {
 }
 #pragma pop
 
-/* 80CDEAA4-80CDEBA0 00FC+00 s=1 e=0 z=0  None .text      exeModeHowl__12daSmWStone_cFv */
-//	80CDEACC: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEAD0: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEADC: 80035360 (isSwitch__10dSv_info_cCFii)
-//	80CDEAFC: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEB00: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEB20: 802CB6EC (startWindStoneSound__13Z2WolfHowlMgrFScP3Vec)
-//	80CDEB30: 80CDED9C (chkWlfInRange__12daSmWStone_cFv)
-//	80CDEB50: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEB54: 804061C0 (g_dComIfG_gameInfo)
+/* 80CDEAA4-80CDEBA0 000604 00FC+00 1/1 0/0 0/0 .text            exeModeHowl__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -495,16 +388,7 @@ asm void daSmWStone_c::exeModeHowl() {
 }
 #pragma pop
 
-/* 80CDEBA0-80CDEC04 0064+00 s=2 e=0 z=0  None .text      setModelMtx__12daSmWStone_cFv */
-//	80CDEBB4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBC8: 803468E8 (PSMTXTrans)
-//	80CDEBCC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBD0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBD8: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80CDEBDC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBE0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDEBEC: 803464B0 (PSMTXCopy)
+/* 80CDEBA0-80CDEC04 000700 0064+00 2/2 0/0 0/0 .text            setModelMtx__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -514,28 +398,7 @@ asm void daSmWStone_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80CDEC04-80CDED30 012C+00 s=1 e=0 z=0  None .text      createHeap__12daSmWStone_cFv */
-//	80CDEC1C: 80CDEF1C (l_arcName)
-//	80CDEC20: 80CDEF1C (l_arcName)
-//	80CDEC2C: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEC30: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEC44: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80CDEC54: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
-//	80CDEC74: 802CEC4C (__nw__FUl)
-//	80CDEC80: 8007B970 (__ct__4dBgWFv)
-//	80CDECA0: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECA4: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECB4: 803468E8 (PSMTXTrans)
-//	80CDECB8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECBC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECC4: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	80CDECC8: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECCC: 803DD470 (now__14mDoMtx_stack_c)
-//	80CDECD4: 803464B0 (PSMTXCopy)
-//	80CDECD8: 80CDEF1C (l_arcName)
-//	80CDECDC: 80CDEF1C (l_arcName)
-//	80CDECF0: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	80CDED04: 80079F38 (Set__4cBgWFP6cBgD_tUlPA3_A4_f)
+/* 80CDEC04-80CDED30 000764 012C+00 1/1 0/0 0/0 .text            createHeap__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -545,10 +408,7 @@ asm void daSmWStone_c::createHeap() {
 }
 #pragma pop
 
-/* 80CDED30-80CDED9C 006C+00 s=1 e=0 z=0  None .text      init__12daSmWStone_cFv */
-//	80CDED4C: 804061C0 (g_dComIfG_gameInfo)
-//	80CDED50: 804061C0 (g_dComIfG_gameInfo)
-//	80CDED5C: 80035360 (isSwitch__10dSv_info_cCFii)
+/* 80CDED30-80CDED9C 000890 006C+00 1/1 0/0 0/0 .text            init__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -558,12 +418,12 @@ asm void daSmWStone_c::init() {
 }
 #pragma pop
 
-/* 80CDED9C-80CDEE28 008C+00 s=1 e=0 z=0  None .text      chkWlfInRange__12daSmWStone_cFv */
-//	80CDEDAC: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEDB0: 804061C0 (g_dComIfG_gameInfo)
-//	80CDEDF8: 8034739C (PSVECSquareDistance)
-//	80CDEDFC: 80CDEF10 (lit_4350)
-//	80CDEE00: 80CDEF10 (lit_4350)
+/* ############################################################################################## */
+/* 80CDEF10-80CDEF14 00001C 0004+00 1/1 0/0 0/0 .rodata          @4350 */
+SECTION_RODATA static u32 const lit_4350 = 0x471C4000;
+SECTION_DEAD void* const cg_80CDEF10 = (void*)(&lit_4350);
+
+/* 80CDED9C-80CDEE28 0008FC 008C+00 1/1 0/0 0/0 .text            chkWlfInRange__12daSmWStone_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -573,69 +433,72 @@ asm void daSmWStone_c::chkWlfInRange() {
 }
 #pragma pop
 
-/* 80CDEE28-80CDEE7C 0054+00 s=1 e=0 z=0  None .text      daSmWStone_create__FP12daSmWStone_c */
-//	80CDEE50: 80CDE538 (__ct__12daSmWStone_cFv)
-//	80CDEE64: 80CDE614 (create__12daSmWStone_cFv)
+/* 80CDEE28-80CDEE7C 000988 0054+00 1/0 0/0 0/0 .text            daSmWStone_create__FP12daSmWStone_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSmWStone_create(daSmWStone_c* param_0) {
+static asm void daSmWStone_create(daSmWStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/daSmWStone_create__FP12daSmWStone_c.s"
 }
 #pragma pop
 
-/* 80CDEE7C-80CDEE9C 0020+00 s=1 e=0 z=0  None .text      daSmWStone_Delete__FP12daSmWStone_c */
-//	80CDEE88: 80CDEA2C (Delete__12daSmWStone_cFv)
+/* 80CDEE7C-80CDEE9C 0009DC 0020+00 1/0 0/0 0/0 .text            daSmWStone_Delete__FP12daSmWStone_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSmWStone_Delete(daSmWStone_c* param_0) {
+static asm void daSmWStone_Delete(daSmWStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/daSmWStone_Delete__FP12daSmWStone_c.s"
 }
 #pragma pop
 
-/* 80CDEE9C-80CDEEBC 0020+00 s=1 e=0 z=0  None .text      daSmWStone_execute__FP12daSmWStone_c */
-//	80CDEEA8: 80CDE8D8 (execute__12daSmWStone_cFv)
+/* 80CDEE9C-80CDEEBC 0009FC 0020+00 1/0 0/0 0/0 .text daSmWStone_execute__FP12daSmWStone_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSmWStone_execute(daSmWStone_c* param_0) {
+static asm void daSmWStone_execute(daSmWStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/daSmWStone_execute__FP12daSmWStone_c.s"
 }
 #pragma pop
 
-/* 80CDEEBC-80CDEEDC 0020+00 s=1 e=0 z=0  None .text      daSmWStone_draw__FP12daSmWStone_c */
-//	80CDEEC8: 80CDE92C (draw__12daSmWStone_cFv)
+/* 80CDEEBC-80CDEEDC 000A1C 0020+00 1/0 0/0 0/0 .text            daSmWStone_draw__FP12daSmWStone_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSmWStone_draw(daSmWStone_c* param_0) {
+static asm void daSmWStone_draw(daSmWStone_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/daSmWStone_draw__FP12daSmWStone_c.s"
 }
 #pragma pop
 
-/* 80CDEEDC-80CDEEE4 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
-//	80CDEEE0: 80CDE7F8 (__dt__12dBgS_ObjAcchFv)
+/* 80CDEEDC-80CDEEE4 000A3C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80CDEEDC() {
+static asm void func_80CDEEDC() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/func_80CDEEDC.s"
 }
 #pragma pop
 
-/* 80CDEEE4-80CDEEEC 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
-//	80CDEEE8: 80CDE7F8 (__dt__12dBgS_ObjAcchFv)
+/* 80CDEEE4-80CDEEEC 000A44 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80CDEEE4() {
+static asm void func_80CDEEE4() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smw_stone/d_a_obj_smw_stone/func_80CDEEE4.s"
 }
+#pragma pop
+
+/* 80CDEF14-80CDEF1C 000020 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CDEF14 = "WStoneF";
 #pragma pop

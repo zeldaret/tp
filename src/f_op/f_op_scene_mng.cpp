@@ -17,14 +17,6 @@ struct scene_class {};
 // Forward References:
 //
 
-void fopScnM_SearchByID(unsigned int);
-void fopScnM_ChangeReq(scene_class*, s16, s16, u16);
-void fopScnM_DeleteReq(scene_class*);
-void fopScnM_CreateReq(s16, s16, u16, u32);
-void fopScnM_ReRequest(s16, u32);
-void fopScnM_Management();
-void fopScnM_Init();
-
 extern "C" void fopScnM_SearchByID__FUi();
 extern "C" void fopScnM_ChangeReq__FP11scene_classssUs();
 extern "C" void fopScnM_DeleteReq__FP11scene_class();
@@ -37,12 +29,6 @@ extern "C" void fopScnM_Init__Fv();
 // External References:
 //
 
-void fopScnIt_Judge(void* (*)(void*, void*), void*);
-void fopScnRq_Request(int, scene_class*, s16, void*, s16, u16);
-void fopScnRq_ReRequest(unsigned int, s16, void*);
-void fopScnRq_Handler();
-void fpcSch_JudgeByID(void*, void*);
-
 extern "C" void fopScnIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopScnRq_Request__FiP11scene_classsPvsUs();
 extern "C" void fopScnRq_ReRequest__FUisPv();
@@ -53,10 +39,7 @@ extern "C" void fpcSch_JudgeByID__FPvPv();
 // Declarations:
 //
 
-/* 8001ECB0-8001ECE0 0030+00 s=0 e=7 z=1  None .text      fopScnM_SearchByID__FUi */
-//	8001ECC0: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	8001ECC4: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	8001ECCC: 8001EC74 (fopScnIt_Judge__FPFPvPv_PvPv)
+/* 8001ECB0-8001ECE0 0195F0 0030+00 0/0 7/7 1/1 .text            fopScnM_SearchByID__FUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -67,16 +50,14 @@ asm void fopScnM_SearchByID(unsigned int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505B8-804505C0 0004+04 s=2 e=0 z=0  None .sdata     l_scnRqID */
+/* 804505B8-804505C0 000038 0004+04 2/2 0/0 0/0 .sdata           l_scnRqID */
 SECTION_SDATA static u32 l_scnRqID[1 + 1 /* padding */] = {
     0xFFFFFFFF,
     /* padding */
     0x00000000,
 };
 
-/* 8001ECE0-8001ED3C 005C+00 s=0 e=4 z=1  None .text      fopScnM_ChangeReq__FP11scene_classssUs */
-//	8001ED0C: 8001F034 (fopScnRq_Request__FiP11scene_classsPvsUs)
-//	8001ED24: 804505B8 (l_scnRqID)
+/* 8001ECE0-8001ED3C 019620 005C+00 0/0 4/4 1/1 .text fopScnM_ChangeReq__FP11scene_classssUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,8 +67,8 @@ asm void fopScnM_ChangeReq(scene_class* param_0, s16 param_1, s16 param_2, u16 p
 }
 #pragma pop
 
-/* 8001ED3C-8001ED84 0048+00 s=0 e=1 z=0  None .text      fopScnM_DeleteReq__FP11scene_class */
-//	8001ED60: 8001F034 (fopScnRq_Request__FiP11scene_classsPvsUs)
+/* 8001ED3C-8001ED84 01967C 0048+00 0/0 1/1 0/0 .text            fopScnM_DeleteReq__FP11scene_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -97,8 +78,7 @@ asm void fopScnM_DeleteReq(scene_class* param_0) {
 }
 #pragma pop
 
-/* 8001ED84-8001EDCC 0048+00 s=0 e=2 z=0  None .text      fopScnM_CreateReq__FssUsUl */
-//	8001EDA8: 8001F034 (fopScnRq_Request__FiP11scene_classsPvsUs)
+/* 8001ED84-8001EDCC 0196C4 0048+00 0/0 2/2 0/0 .text            fopScnM_CreateReq__FssUsUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,9 +88,7 @@ asm void fopScnM_CreateReq(s16 param_0, s16 param_1, u16 param_2, u32 param_3) {
 }
 #pragma pop
 
-/* 8001EDCC-8001EE10 0044+00 s=0 e=1 z=0  None .text      fopScnM_ReRequest__FsUl */
-//	8001EDE0: 804505B8 (l_scnRqID)
-//	8001EDFC: 8001F0FC (fopScnRq_ReRequest__FUisPv)
+/* 8001EDCC-8001EE10 01970C 0044+00 0/0 1/1 0/0 .text            fopScnM_ReRequest__FsUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -120,8 +98,7 @@ asm void fopScnM_ReRequest(s16 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 8001EE10-8001EE30 0020+00 s=0 e=1 z=0  None .text      fopScnM_Management__Fv */
-//	8001EE1C: 8001F11C (fopScnRq_Handler__Fv)
+/* 8001EE10-8001EE30 019750 0020+00 0/0 1/1 0/0 .text            fopScnM_Management__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,7 +108,7 @@ asm void fopScnM_Management() {
 }
 #pragma pop
 
-/* 8001EE30-8001EE34 0004+00 s=0 e=1 z=0  None .text      fopScnM_Init__Fv */
+/* 8001EE30-8001EE34 019770 0004+00 0/0 1/1 0/0 .text            fopScnM_Init__Fv */
 void fopScnM_Init() {
     /* empty function */
 }

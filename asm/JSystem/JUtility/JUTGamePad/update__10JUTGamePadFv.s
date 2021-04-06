@@ -5,8 +5,8 @@ lbl_802E0CD8:
 /* 802E0CE4  39 61 00 20 */	addi r11, r1, 0x20
 /* 802E0CE8  48 08 14 F1 */	bl _savegpr_28
 /* 802E0CEC  7C 7E 1B 78 */	mr r30, r3
-/* 802E0CF0  3C 60 80 43 */	lis r3, lit_525@ha
-/* 802E0CF4  38 63 43 D8 */	addi r3, r3, lit_525@l
+/* 802E0CF0  3C 60 80 43 */	lis r3, lit_525@ha /* 0x804343D8@ha */
+/* 802E0CF4  38 63 43 D8 */	addi r3, r3, lit_525@l /* 0x804343D8@l */
 /* 802E0CF8  A8 9E 00 7C */	lha r4, 0x7c(r30)
 /* 802E0CFC  2C 04 FF FF */	cmpwi r4, -1
 /* 802E0D00  41 82 02 8C */	beq lbl_802E0F8C
@@ -121,8 +121,8 @@ lbl_802E0E98:
 /* 802E0EA4  90 9E 00 A4 */	stw r4, 0xa4(r30)
 /* 802E0EA8  90 7E 00 A0 */	stw r3, 0xa0(r30)
 lbl_802E0EAC:
-/* 802E0EAC  3C 60 80 43 */	lis r3, sPatternList__19JUTGamePadLongPress@ha
-/* 802E0EB0  83 E3 45 6C */	lwz r31, sPatternList__19JUTGamePadLongPress@l(r3)
+/* 802E0EAC  3C 60 80 43 */	lis r3, sPatternList__19JUTGamePadLongPress@ha /* 0x8043456C@ha */
+/* 802E0EB0  83 E3 45 6C */	lwz r31, sPatternList__19JUTGamePadLongPress@l(r3)  /* 0x8043456C@l */
 /* 802E0EB4  48 00 00 B4 */	b lbl_802E0F68
 lbl_802E0EB8:
 /* 802E0EB8  83 9F 00 00 */	lwz r28, 0(r31)

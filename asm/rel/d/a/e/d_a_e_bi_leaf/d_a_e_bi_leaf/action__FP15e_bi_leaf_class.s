@@ -17,10 +17,10 @@ lbl_8068DD00:
 /* 8068DD08  40 82 00 B4 */	bne lbl_8068DDBC
 /* 8068DD0C  80 1F 04 A4 */	lwz r0, 0x4a4(r31)
 /* 8068DD10  90 01 00 10 */	stw r0, 0x10(r1)
-/* 8068DD14  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8068DD18  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8068DD14  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8068DD18  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8068DD1C  38 81 00 10 */	addi r4, r1, 0x10
-/* 8068DD20  4B 98 BA D8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8068DD20  4B 98 BA D9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8068DD24  28 03 00 00 */	cmplwi r3, 0
 /* 8068DD28  40 82 00 94 */	bne lbl_8068DDBC
 /* 8068DD2C  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
@@ -60,7 +60,7 @@ lbl_8068DD90:
 /* 8068DDA0  39 1F 04 DC */	addi r8, r31, 0x4dc
 /* 8068DDA4  39 20 00 00 */	li r9, 0
 /* 8068DDA8  39 40 FF FF */	li r10, -1
-/* 8068DDAC  4B 98 C1 44 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 8068DDAC  4B 98 C1 45 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 8068DDB0  90 7F 04 A4 */	stw r3, 0x4a4(r31)
 /* 8068DDB4  38 00 00 14 */	li r0, 0x14
 /* 8068DDB8  B0 1F 05 BE */	sth r0, 0x5be(r31)

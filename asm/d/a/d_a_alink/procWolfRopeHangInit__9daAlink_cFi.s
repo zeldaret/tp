@@ -15,8 +15,8 @@ lbl_80132738:
 /* 8013276C  B0 1F 30 0E */	sth r0, 0x300e(r31)
 /* 80132770  7F E3 FB 78 */	mr r3, r31
 /* 80132774  38 80 00 19 */	li r4, 0x19
-/* 80132778  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha
-/* 8013277C  38 C5 F4 6C */	addi r6, r5, m__20daAlinkHIO_wlRope_c0@l
+/* 80132778  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha /* 0x8038F46C@ha */
+/* 8013277C  38 C5 F4 6C */	addi r6, r5, m__20daAlinkHIO_wlRope_c0@l /* 0x8038F46C@l */
 /* 80132780  C0 26 00 28 */	lfs f1, 0x28(r6)
 /* 80132784  C0 42 92 C0 */	lfs f2, lit_6108(r2)
 /* 80132788  38 A0 00 10 */	li r5, 0x10
@@ -49,8 +49,8 @@ lbl_801327E0:
 /* 801327E4  38 80 00 22 */	li r4, 0x22
 lbl_801327E8:
 /* 801327E8  7F E3 FB 78 */	mr r3, r31
-/* 801327EC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha
-/* 801327F0  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l
+/* 801327EC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha /* 0x8038F46C@ha */
+/* 801327F0  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l /* 0x8038F46C@l */
 /* 801327F4  C0 25 00 28 */	lfs f1, 0x28(r5)
 /* 801327F8  C0 45 00 30 */	lfs f2, 0x30(r5)
 /* 801327FC  4B FF 6E DD */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
@@ -71,8 +71,8 @@ lbl_801327E8:
 /* 80132838  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 8013283C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80132840  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80132844  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80132848  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80132844  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80132848  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013284C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80132850  38 80 00 02 */	li r4, 2
 /* 80132854  38 A0 00 0F */	li r5, 0xf

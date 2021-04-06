@@ -41,8 +41,8 @@ lbl_800EEED0:
 lbl_800EEEF4:
 /* 800EEEF4  7F C3 F3 78 */	mr r3, r30
 /* 800EEEF8  4B FF E0 A5 */	bl setHorseSwordUpAnime__9daAlink_cFv
-/* 800EEEFC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha
-/* 800EEF00  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l
+/* 800EEEFC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800EEF00  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800EEF04  A8 03 00 50 */	lha r0, 0x50(r3)
 /* 800EEF08  B0 1E 30 02 */	sth r0, 0x3002(r30)
 lbl_800EEF0C:

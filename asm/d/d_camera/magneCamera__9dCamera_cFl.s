@@ -72,8 +72,8 @@ lbl_80176074:
 /* 8017618C  B0 01 00 5C */	sth r0, 0x5c(r1)
 /* 80176190  48 00 00 2C */	b lbl_801761BC
 lbl_80176194:
-/* 80176194  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80176198  38 03 2F D8 */	addi r0, r3, g_mDoMtx_identity@l
+/* 80176194  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80176198  38 03 2F D8 */	addi r0, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8017619C  7C 1E 03 78 */	mr r30, r0
 /* 801761A0  7C 1C 03 78 */	mr r28, r0
 /* 801761A4  38 61 00 48 */	addi r3, r1, 0x48

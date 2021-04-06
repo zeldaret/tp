@@ -3,19 +3,20 @@
 #
 
 M299_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy.plf
+M299_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy.lcf
+M299_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy.map
 
 M299_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_doorboy/executor.cpp \
-	rel/d/a/npc/d_a_npc_doorboy/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_doorboy/d_a_npc_doorboy.cpp \
 
 M299_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/d_a_npc_doorboy.o \
 
 M299_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/libRuntime.PPCEABI.H.a \
 
 M299_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M299_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map299.map\
+	-m _prolog \
+	-lcf $(M299_LDSCRIPT) \
+	-unused -map $(M299_MAP) \
+	-w off \
 
 $(M299_TARGET): $(M299_O_FILES) $(M299_LIBS)
+	@echo [299] creating $(M299_TARGET)
 	@echo $(M299_LIBS) $(M299_O_FILES) > build/M299_ofiles
-	$(LD) -opt_partial $(M299_LDFLAGS) -o $(M299_TARGET) @build/M299_ofiles
+	@python3 tools/lcf.py rel 299 --output $(M299_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M299_LDFLAGS) -o $(M299_TARGET) @build/M299_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doorboy/%.o: rel/d/a/npc/d_a_npc_doorboy/%.cpp
+	@echo [299] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M299_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M299_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_doorboy/libs/Runtime.PPCEABI.H/Makefile
 

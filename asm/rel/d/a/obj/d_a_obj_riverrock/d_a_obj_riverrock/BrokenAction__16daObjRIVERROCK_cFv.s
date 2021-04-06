@@ -6,12 +6,12 @@ lbl_80CBCCC0:
 /* 80CBCCD0  7C 7F 1B 78 */	mr r31, r3
 /* 80CBCCD4  A8 03 05 AA */	lha r0, 0x5aa(r3)
 /* 80CBCCD8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80CBCCDC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80CBCCE0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80CBCCDC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80CBCCE0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80CBCCE4  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80CBCCE8  A8 1F 05 B4 */	lha r0, 0x5b4(r31)
-/* 80CBCCEC  3C 60 80 CC */	lis r3, lit_3669@ha
-/* 80CBCCF0  C8 23 DA AC */	lfd f1, lit_3669@l(r3)
+/* 80CBCCEC  3C 60 80 CC */	lis r3, lit_3669@ha /* 0x80CBDAAC@ha */
+/* 80CBCCF0  C8 23 DA AC */	lfd f1, lit_3669@l(r3)  /* 0x80CBDAAC@l */
 /* 80CBCCF4  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80CBCCF8  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80CBCCFC  3C 00 43 30 */	lis r0, 0x4330
@@ -35,7 +35,7 @@ lbl_80CBCD2C:
 /* 80CBCD40  38 A0 08 00 */	li r5, 0x800
 /* 80CBCD44  38 C0 01 00 */	li r6, 0x100
 /* 80CBCD48  38 E0 00 00 */	li r7, 0
-/* 80CBCD4C  4B 5B 37 F4 */	b cLib_addCalcAngleS__FPsssss
+/* 80CBCD4C  4B 5B 37 F5 */	bl cLib_addCalcAngleS__FPsssss
 /* 80CBCD50  A8 7F 05 AA */	lha r3, 0x5aa(r31)
 /* 80CBCD54  A8 1F 05 B0 */	lha r0, 0x5b0(r31)
 /* 80CBCD58  7C 03 02 14 */	add r0, r3, r0
@@ -43,7 +43,7 @@ lbl_80CBCD2C:
 /* 80CBCD60  38 7F 05 B4 */	addi r3, r31, 0x5b4
 /* 80CBCD64  38 80 00 00 */	li r4, 0
 /* 80CBCD68  38 A0 00 20 */	li r5, 0x20
-/* 80CBCD6C  4B 5B 3E 24 */	b cLib_chaseAngleS__FPsss
+/* 80CBCD6C  4B 5B 3E 25 */	bl cLib_chaseAngleS__FPsss
 /* 80CBCD70  2C 03 00 00 */	cmpwi r3, 0
 /* 80CBCD74  41 82 00 0C */	beq lbl_80CBCD80
 /* 80CBCD78  38 00 00 03 */	li r0, 3

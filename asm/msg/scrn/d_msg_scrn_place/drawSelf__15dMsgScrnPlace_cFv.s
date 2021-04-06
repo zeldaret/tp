@@ -4,8 +4,8 @@ lbl_80246A44:
 /* 80246A4C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80246A50  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80246A54  7C 7F 1B 78 */	mr r31, r3
-/* 80246A58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80246A5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80246A58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80246A5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80246A60  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 80246A64  81 83 00 00 */	lwz r12, 0(r3)
 /* 80246A68  81 8C 00 18 */	lwz r12, 0x18(r12)

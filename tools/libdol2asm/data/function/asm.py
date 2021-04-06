@@ -40,32 +40,32 @@ class ASMFunction(Function):
     data: bytearray = None
 
     def gather_references(self, context, valid_range):
-        """
         addrs = static_analyze.function(self.data, self.addr, self.size)
         function_range = AddressRange(self.start, self.end)
-        self.references = [ 
+        self.implicit_references = set([ 
             addr 
             for addr in addrs.values() 
             if addr in valid_range and not addr in function_range
-        ]
-        """
+        ])
 
         collector = AccessCollector([])
         for i, addr in collector.execute_generator(self.addr, self.data, self.size):
             pass
 
         function_range = AddressRange(self.start, self.end)
-        self.references = [ 
+        self.references = set([ 
             access.addr 
             for access in collector.accesses.values() 
             if access.addr in valid_range and not access.addr in function_range
-        ]
+        ])
 
+        """
         self.test_references = [ 
             (access.at, access.addr)
             for access in collector.accesses.values() 
             if access.addr in valid_range and not access.addr in function_range
         ]
+        """
         
     async def export_function_body(self, exporter, builder: AsyncBuilder):
         await builder.write(f" {{")
@@ -76,14 +76,13 @@ class ASMFunction(Function):
     async def export_declaration(self, exporter, builder: AsyncBuilder):
         assert self.padding == 0
 
-
-        for k,v in self.test_references:
-            symbol_name = "???"
-            symbol = exporter.gst[-1, v]
-            if symbol:
-                symbol_name = symbol.label
-            await builder.write(f"//\t{k:08X}: {v:08X} ({symbol_name})")
-
+        if False:
+            for k,v in self.test_references:
+                symbol_name = "???"
+                symbol = exporter.gst[-1, v]
+                if symbol:
+                    symbol_name = symbol.label
+                await builder.write(f"//\t{k:08X}: {v:08X} ({symbol_name})")
 
         await builder.write("#pragma push")
         await builder.write("#pragma optimization_level 0")
@@ -91,7 +90,7 @@ class ASMFunction(Function):
         if self.alignment:
             await builder.write(f"#pragma function_align {self.alignment}")
 
-        await self.export_function_header(exporter, builder, forward=False, specialize_templates=self.has_template)
+        await self.export_function_header(exporter, builder, forward=False, c_export=False, full_qualified_name=True)
         await self.export_function_body(exporter, builder)
 
         await builder.write("#pragma pop")

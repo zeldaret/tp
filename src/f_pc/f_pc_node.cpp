@@ -25,15 +25,6 @@ struct layer_class {};
 // Forward References:
 //
 
-void fpcNd_DrawMethod(nodedraw_method_class*, void*);
-static void fpcNd_Draw(process_node_class*);
-static void fpcNd_Execute(process_node_class*);
-static void fpcNd_IsCreatingFromUnder(void*);
-void fpcNd_IsDeleteTiming(process_node_class*);
-static void fpcNd_IsDelete(process_node_class*);
-static void fpcNd_Delete(process_node_class*);
-static void fpcNd_Create(process_node_class*);
-
 extern "C" void fpcNd_DrawMethod__FP21nodedraw_method_classPv();
 extern "C" static void fpcNd_Draw__FP18process_node_class();
 extern "C" static void fpcNd_Execute__FP18process_node_class();
@@ -43,26 +34,10 @@ extern "C" static void fpcNd_IsDelete__FP18process_node_class();
 extern "C" static void fpcNd_Delete__FP18process_node_class();
 extern "C" static void fpcNd_Create__FP18process_node_class();
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_MakeOfType(int*);
-void fpcLy_IsDeletingMesg(layer_class*);
-void fpcLy_IsCreatingMesg(layer_class*);
-void fpcLy_SetCurrentLayer(layer_class*);
-void fpcLy_CurrentLayer();
-void fpcLy_Delete(layer_class*);
-void fpcLy_Create(layer_class*, void*, node_list_class*, int);
-void fpcLyIt_Judge(layer_class*, void* (*)(void*, void*), void*);
-void fpcMtd_Method(int (*)(void*), void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
 
 extern "C" void fpcBs_Is_JustOfType__Fii();
 extern "C" void fpcBs_MakeOfType__FPi();
@@ -85,9 +60,8 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 800224F0-80022514 0024+00 s=1 e=1 z=0  None .text fpcNd_DrawMethod__FP21nodedraw_method_classPv
- */
-//	80022500: 80022428 (fpcMtd_Method__FPFPv_iPv)
+/* 800224F0-80022514 01CE30 0024+00 1/1 1/1 0/0 .text
+ * fpcNd_DrawMethod__FP21nodedraw_method_classPv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -97,66 +71,52 @@ asm void fpcNd_DrawMethod(nodedraw_method_class* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 80022514-80022580 006C+00 s=1 e=0 z=0  None .text      fpcNd_Draw__FP18process_node_class */
-//	80022524: 803621DC (_savegpr_29)
-//	8002253C: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	80022548: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80022554: 800224F0 (fpcNd_DrawMethod__FP21nodedraw_method_classPv)
-//	80022560: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	8002256C: 80362228 (_restgpr_29)
+/* 80022514-80022580 01CE54 006C+00 1/0 0/0 0/0 .text            fpcNd_Draw__FP18process_node_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_Draw(process_node_class* param_0) {
+static asm void fpcNd_Draw(process_node_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_Draw__FP18process_node_class.s"
 }
 #pragma pop
 
-/* 80022580-800225DC 005C+00 s=1 e=0 z=0  None .text      fpcNd_Execute__FP18process_node_class */
-//	80022598: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	800225A4: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	800225B0: 80022460 (fpcMtd_Execute__FP20process_method_classPv)
-//	800225BC: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
+/* 80022580-800225DC 01CEC0 005C+00 1/0 0/0 0/0 .text fpcNd_Execute__FP18process_node_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_Execute(process_node_class* param_0) {
+static asm void fpcNd_Execute(process_node_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_Execute__FP18process_node_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450D40-80450D48 0004+04 s=2 e=11 z=0  None .sbss      g_fpcNd_type */
+/* 80450D40-80450D48 000240 0004+04 2/2 11/11 0/0 .sbss            g_fpcNd_type */
+extern u8 g_fpcNd_type[4 + 4 /* padding */];
 u8 g_fpcNd_type[4 + 4 /* padding */];
 
-/* 800225DC-8002265C 0080+00 s=1 e=0 z=0  None .text      fpcNd_IsCreatingFromUnder__FPv */
-//	800225F8: 80450D40 (g_fpcNd_type)
-//	80022600: 8002064C (fpcBs_Is_JustOfType__Fii)
-//	80022614: 800216A0 (fpcLy_IsCreatingMesg__FP11layer_class)
-//	80022630: 80021C28 (fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv)
+/* 800225DC-8002265C 01CF1C 0080+00 1/1 0/0 0/0 .text            fpcNd_IsCreatingFromUnder__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_IsCreatingFromUnder(void* param_0) {
+static asm void fpcNd_IsCreatingFromUnder(void* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_IsCreatingFromUnder__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505E0-804505E8 0004+04 s=1 e=0 z=0  None .sdata     g_fpcNd_IsCheckOfDeleteTiming */
+/* 804505E0-804505E8 000060 0004+04 1/1 0/0 0/0 .sdata           g_fpcNd_IsCheckOfDeleteTiming */
 SECTION_SDATA static u32 g_fpcNd_IsCheckOfDeleteTiming[1 + 1 /* padding */] = {
     0x00000001,
     /* padding */
     0x00000000,
 };
 
-/* 8002265C-8002269C 0040+00 s=0 e=2 z=0  None .text fpcNd_IsDeleteTiming__FP18process_node_class
+/* 8002265C-8002269C 01CF9C 0040+00 0/0 2/2 0/0 .text fpcNd_IsDeleteTiming__FP18process_node_class
  */
-//	80022668: 804505E0 (g_fpcNd_IsCheckOfDeleteTiming)
-//	80022674: 800225DC (fpcNd_IsCreatingFromUnder__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -166,50 +126,39 @@ asm void fpcNd_IsDeleteTiming(process_node_class* param_0) {
 }
 #pragma pop
 
-/* 8002269C-800226C4 0028+00 s=1 e=0 z=0  None .text      fpcNd_IsDelete__FP18process_node_class */
-//	800226B0: 80022484 (fpcMtd_IsDelete__FP20process_method_classPv)
+/* 8002269C-800226C4 01CFDC 0028+00 1/0 0/0 0/0 .text fpcNd_IsDelete__FP18process_node_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_IsDelete(process_node_class* param_0) {
+static asm void fpcNd_IsDelete(process_node_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_IsDelete__FP18process_node_class.s"
 }
 #pragma pop
 
-/* 800226C4-80022728 0064+00 s=1 e=0 z=0  None .text      fpcNd_Delete__FP18process_node_class */
-//	800226DC: 80021664 (fpcLy_IsDeletingMesg__FP11layer_class)
-//	800226F0: 800224A8 (fpcMtd_Delete__FP20process_method_classPv)
-//	80022708: 800217E8 (fpcLy_Delete__FP11layer_class)
+/* 800226C4-80022728 01D004 0064+00 1/0 0/0 0/0 .text fpcNd_Delete__FP18process_node_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_Delete(process_node_class* param_0) {
+static asm void fpcNd_Delete(process_node_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_Delete__FP18process_node_class.s"
 }
 #pragma pop
 
-/* 80022728-800227C4 009C+00 s=1 e=0 z=0  None .text      fpcNd_Create__FP18process_node_class */
-//	80022750: 80450D40 (g_fpcNd_type)
-//	80022754: 8002065C (fpcBs_MakeOfType__FPi)
-//	80022774: 800218C8 (fpcLy_Create__FP11layer_classPvP15node_list_classi)
-//	80022780: 800216F4 (fpcLy_CurrentLayer__Fv)
-//	8002278C: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
-//	80022798: 800224CC (fpcMtd_Create__FP20process_method_classPv)
-//	800227A4: 800216EC (fpcLy_SetCurrentLayer__FP11layer_class)
+/* 80022728-800227C4 01D068 009C+00 1/0 0/0 0/0 .text fpcNd_Create__FP18process_node_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcNd_Create(process_node_class* param_0) {
+static asm void fpcNd_Create(process_node_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_node/fpcNd_Create__FP18process_node_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3A20-803A3A38 0014+04 s=0 e=9 z=0  None .data      g_fpcNd_Method */
-SECTION_DATA void* g_fpcNd_Method[5 + 1 /* padding */] = {
+/* 803A3A20-803A3A38 -00001 0014+04 0/0 9/0 0/0 .data            g_fpcNd_Method */
+SECTION_DATA extern void* g_fpcNd_Method[5 + 1 /* padding */] = {
     (void*)fpcNd_Create__FP18process_node_class,
     (void*)fpcNd_Delete__FP18process_node_class,
     (void*)fpcNd_Execute__FP18process_node_class,

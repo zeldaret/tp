@@ -3,14 +3,14 @@ lbl_804E0DB4:
 /* 804E0DB8  7C 08 02 A6 */	mflr r0
 /* 804E0DBC  90 01 00 64 */	stw r0, 0x64(r1)
 /* 804E0DC0  39 61 00 60 */	addi r11, r1, 0x60
-/* 804E0DC4  4B E8 14 14 */	b _savegpr_28
+/* 804E0DC4  4B E8 14 15 */	bl _savegpr_28
 /* 804E0DC8  7C 7D 1B 78 */	mr r29, r3
-/* 804E0DCC  3C 60 80 4E */	lis r3, lit_1109@ha
-/* 804E0DD0  3B E3 1B E8 */	addi r31, r3, lit_1109@l
-/* 804E0DD4  3C 60 80 4E */	lis r3, l_light_color@ha
-/* 804E0DD8  3B 83 19 D4 */	addi r28, r3, l_light_color@l
-/* 804E0DDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804E0DE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804E0DCC  3C 60 80 4E */	lis r3, lit_1109@ha /* 0x804E1BE8@ha */
+/* 804E0DD0  3B E3 1B E8 */	addi r31, r3, lit_1109@l /* 0x804E1BE8@l */
+/* 804E0DD4  3C 60 80 4E */	lis r3, l_light_color@ha /* 0x804E19D4@ha */
+/* 804E0DD8  3B 83 19 D4 */	addi r28, r3, l_light_color@l /* 0x804E19D4@l */
+/* 804E0DDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804E0DE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804E0DE4  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 804E0DE8  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 804E0DEC  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -30,8 +30,8 @@ lbl_804E0DB4:
 /* 804E0E24  38 7F 00 B0 */	addi r3, r31, 0xb0
 /* 804E0E28  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804E0E2C  D0 23 00 08 */	stfs f1, 8(r3)
-/* 804E0E30  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E0E34  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E0E30  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E0E34  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E0E38  38 BF 00 88 */	addi r5, r31, 0x88
 /* 804E0E3C  4B FF ED 1D */	bl __register_global_object
 /* 804E0E40  C0 5C 00 08 */	lfs f2, 8(r28)
@@ -45,8 +45,8 @@ lbl_804E0DB4:
 /* 804E0E60  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 804E0E64  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 804E0E68  38 63 00 0C */	addi r3, r3, 0xc
-/* 804E0E6C  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E0E70  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E0E6C  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E0E70  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E0E74  38 BF 00 98 */	addi r5, r31, 0x98
 /* 804E0E78  4B FF EC E1 */	bl __register_global_object
 /* 804E0E7C  C0 5C 00 3C */	lfs f2, 0x3c(r28)
@@ -60,8 +60,8 @@ lbl_804E0DB4:
 /* 804E0E9C  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 804E0EA0  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 804E0EA4  38 63 00 18 */	addi r3, r3, 0x18
-/* 804E0EA8  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha
-/* 804E0EAC  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l
+/* 804E0EA8  3C 80 80 4E */	lis r4, __dt__4cXyzFv@ha /* 0x804E00A0@ha */
+/* 804E0EAC  38 84 00 A0 */	addi r4, r4, __dt__4cXyzFv@l /* 0x804E00A0@l */
 /* 804E0EB0  38 BF 00 A4 */	addi r5, r31, 0xa4
 /* 804E0EB4  4B FF EC A5 */	bl __register_global_object
 /* 804E0EB8  38 00 00 01 */	li r0, 1
@@ -118,8 +118,8 @@ lbl_804E0F5C:
 /* 804E0F70  C0 03 00 08 */	lfs f0, 8(r3)
 /* 804E0F74  D0 01 00 40 */	stfs f0, 0x40(r1)
 lbl_804E0F78:
-/* 804E0F78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804E0F7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804E0F78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804E0F7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804E0F80  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 804E0F84  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 804E0F88  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
@@ -165,7 +165,7 @@ lbl_804E1018:
 /* 804E101C  38 81 00 2C */	addi r4, r1, 0x2c
 /* 804E1020  A8 BE 04 E6 */	lha r5, 0x4e6(r30)
 /* 804E1024  38 C1 00 38 */	addi r6, r1, 0x38
-/* 804E1028  4B D8 FD 98 */	b cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
+/* 804E1028  4B D8 FD 99 */	bl cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
 /* 804E102C  C0 01 00 44 */	lfs f0, 0x44(r1)
 /* 804E1030  D0 1D 04 D0 */	stfs f0, 0x4d0(r29)
 /* 804E1034  C0 01 00 48 */	lfs f0, 0x48(r1)
@@ -174,7 +174,7 @@ lbl_804E1018:
 /* 804E1040  D0 1D 04 D8 */	stfs f0, 0x4d8(r29)
 lbl_804E1044:
 /* 804E1044  39 61 00 60 */	addi r11, r1, 0x60
-/* 804E1048  4B E8 11 DC */	b _restgpr_28
+/* 804E1048  4B E8 11 DD */	bl _restgpr_28
 /* 804E104C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 804E1050  7C 08 03 A6 */	mtlr r0
 /* 804E1054  38 21 00 60 */	addi r1, r1, 0x60

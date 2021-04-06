@@ -29,16 +29,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-void fpcPi_IsInQueue(process_priority_class*);
-static void fpcPi_QueueTo(process_priority_class*);
-static void fpcPi_ToQueue(process_priority_class*);
-static void fpcPi_GetFromQueue();
-void fpcPi_Delete(process_priority_class*);
-static void fpcPi_IsNormal(unsigned int, u16, u16);
-void fpcPi_Change(process_priority_class*, unsigned int, u16, u16);
-void fpcPi_Handler();
-void fpcPi_Init(process_priority_class*, void*, unsigned int, u16, u16);
-
 extern "C" void fpcPi_IsInQueue__FP22process_priority_class();
 extern "C" static void fpcPi_QueueTo__FP22process_priority_class();
 extern "C" static void fpcPi_ToQueue__FP22process_priority_class();
@@ -53,18 +43,6 @@ extern "C" extern u8 data_804505F0[8];
 //
 // External References:
 //
-
-void fpcLy_CancelQTo(process_method_tag_class*);
-void fpcLy_ToCancelQ(layer_class*, process_method_tag_class*);
-void fpcLy_Layer(unsigned int);
-void fpcLyTg_Move(layer_management_tag_class*, unsigned int, u16, u16);
-void fpcLnTg_Move(line_tag*, int);
-void fpcMtdTg_Init(process_method_tag_class*, int (*)(void*), void*);
-void cTg_IsUse(create_tag_class*);
-void cTg_GetFirst(node_list_class*);
-void cTg_SingleCut(create_tag_class*);
-void cTg_Addition(node_list_class*, create_tag_class*);
-void cTg_Create(create_tag_class*, void*);
 
 extern "C" void fpcLy_CancelQTo__FP24process_method_tag_class();
 extern "C" void fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class();
@@ -86,9 +64,8 @@ extern "C" void _restgpr_27();
 // Declarations:
 //
 
-/* 80023130-80023150 0020+00 s=0 e=1 z=0  None .text fpcPi_IsInQueue__FP22process_priority_class
+/* 80023130-80023150 01DA70 0020+00 0/0 1/1 0/0 .text fpcPi_IsInQueue__FP22process_priority_class
  */
-//	8002313C: 80266880 (cTg_IsUse__FP16create_tag_class)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -98,65 +75,47 @@ asm void fpcPi_IsInQueue(process_priority_class* param_0) {
 }
 #pragma pop
 
-/* 80023150-80023188 0038+00 s=1 e=0 z=0  None .text      fpcPi_QueueTo__FP22process_priority_class
- */
-//	80023164: 802669A4 (cTg_SingleCut__FP16create_tag_class)
-//	8002316C: 80021588 (fpcLy_CancelQTo__FP24process_method_tag_class)
+/* 80023150-80023188 01DA90 0038+00 1/1 0/0 0/0 .text fpcPi_QueueTo__FP22process_priority_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcPi_QueueTo(process_priority_class* param_0) {
+static asm void fpcPi_QueueTo(process_priority_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_priority/fpcPi_QueueTo__FP22process_priority_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803F4E58-803F4E68 000C+04 s=2 e=0 z=0  None .bss       l_fpcPi_Queue */
+/* 803F4E58-803F4E68 021B78 000C+04 2/2 0/0 0/0 .bss             l_fpcPi_Queue */
 static u8 l_fpcPi_Queue[12 + 4 /* padding */];
 
-/* 80023188-80023214 008C+00 s=1 e=0 z=0  None .text      fpcPi_ToQueue__FP22process_priority_class
- */
-//	800231A4: 803F4E58 (l_fpcPi_Queue)
-//	800231A8: 803F4E58 (l_fpcPi_Queue)
-//	800231B0: 802669E4 (cTg_Addition__FP15node_list_classP16create_tag_class)
-//	800231CC: 8002174C (fpcLy_Layer__FUi)
-//	800231D4: 800215A8 (fpcLy_ToCancelQ__FP11layer_classP24process_method_tag_class)
-//	800231E4: 802669A4 (cTg_SingleCut__FP16create_tag_class)
+/* 80023188-80023214 01DAC8 008C+00 1/1 0/0 0/0 .text fpcPi_ToQueue__FP22process_priority_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcPi_ToQueue(process_priority_class* param_0) {
+static asm void fpcPi_ToQueue(process_priority_class* param_0) {
     nofralloc
 #include "asm/f_pc/f_pc_priority/fpcPi_ToQueue__FP22process_priority_class.s"
 }
 #pragma pop
 
-/* 80023214-80023268 0054+00 s=1 e=0 z=0  None .text      fpcPi_GetFromQueue__Fv */
-//	80023224: 803F4E58 (l_fpcPi_Queue)
-//	80023228: 803F4E58 (l_fpcPi_Queue)
-//	8002322C: 8026696C (cTg_GetFirst__FP15node_list_class)
-//	80023244: 80021588 (fpcLy_CancelQTo__FP24process_method_tag_class)
+/* 80023214-80023268 01DB54 0054+00 1/1 0/0 0/0 .text            fpcPi_GetFromQueue__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcPi_GetFromQueue() {
+static asm void fpcPi_GetFromQueue() {
     nofralloc
 #include "asm/f_pc/f_pc_priority/fpcPi_GetFromQueue__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505E8-804505F0 0008+00 s=1 e=0 z=0  None .sdata     crear$2224 */
+/* 804505E8-804505F0 000068 0008+00 1/1 0/0 0/0 .sdata           crear$2224 */
 SECTION_SDATA static u8 crear[8] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
 
-/* 80023268-800232B4 004C+00 s=1 e=1 z=0  None .text      fpcPi_Delete__FP22process_priority_class
- */
-//	8002327C: 80023150 (fpcPi_QueueTo__FP22process_priority_class)
-//	80023280: 804505E8 (crear)
-//	80023288: 804505E8 (crear)
+/* 80023268-800232B4 01DBA8 004C+00 1/1 1/1 0/0 .text fpcPi_Delete__FP22process_priority_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -166,22 +125,18 @@ asm void fpcPi_Delete(process_priority_class* param_0) {
 }
 #pragma pop
 
-/* 800232B4-800232E8 0034+00 s=2 e=0 z=0  None .text      fpcPi_IsNormal__FUiUsUs */
+/* 800232B4-800232E8 01DBF4 0034+00 2/2 0/0 0/0 .text            fpcPi_IsNormal__FUiUsUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fpcPi_IsNormal(unsigned int param_0, u16 param_1, u16 param_2) {
+static asm void fpcPi_IsNormal(unsigned int param_0, u16 param_1, u16 param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_priority/fpcPi_IsNormal__FUiUsUs.s"
 }
 #pragma pop
 
-/* 800232E8-80023428 0140+00 s=0 e=3 z=0  None .text
+/* 800232E8-80023428 01DC28 0140+00 0/0 3/3 0/0 .text
  * fpcPi_Change__FP22process_priority_classUiUsUs               */
-//	800232F8: 803621D0 (_savegpr_26)
-//	80023334: 800232B4 (fpcPi_IsNormal__FUiUsUs)
-//	80023404: 80023188 (fpcPi_ToQueue__FP22process_priority_class)
-//	80023414: 8036221C (_restgpr_26)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -192,10 +147,7 @@ asm void fpcPi_Change(process_priority_class* param_0, unsigned int param_1, u16
 }
 #pragma pop
 
-/* 80023428-800234BC 0094+00 s=0 e=1 z=0  None .text      fpcPi_Handler__Fv */
-//	80023458: 80021E2C (fpcLyTg_Move__FP26layer_management_tag_classUiUsUs)
-//	8002346C: 800235A8 (fpcLnTg_Move__FP8line_tagi)
-//	80023494: 80023214 (fpcPi_GetFromQueue__Fv)
+/* 80023428-800234BC 01DD68 0094+00 0/0 1/1 0/0 .text            fpcPi_Handler__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -205,15 +157,8 @@ asm void fpcPi_Handler() {
 }
 #pragma pop
 
-/* 800234BC-80023564 00A8+00 s=0 e=1 z=0  None .text
+/* 800234BC-80023564 01DDFC 00A8+00 0/0 1/1 0/0 .text
  * fpcPi_Init__FP22process_priority_classPvUiUsUs               */
-//	800234CC: 803621D4 (_savegpr_27)
-//	800234F0: 800232B4 (fpcPi_IsNormal__FUiUsUs)
-//	80023530: 80266A34 (cTg_Create__FP16create_tag_classPv)
-//	80023538: 80023268 (fpcPi_Delete__FP22process_priority_class)
-//	8002353C: 80023268 (fpcPi_Delete__FP22process_priority_class)
-//	80023544: 800237F8 (fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv)
-//	80023550: 80362220 (_restgpr_27)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -225,7 +170,7 @@ asm void fpcPi_Init(process_priority_class* param_0, void* param_1, unsigned int
 #pragma pop
 
 /* ############################################################################################## */
-/* 804505F0-804505F8 0008+00 s=0 e=5 z=1  None .sdata     None */
-SECTION_SDATA u8 data_804505F0[8] = {
+/* 804505F0-804505F8 000070 0008+00 0/0 5/5 1/1 .sdata           None */
+SECTION_SDATA extern u8 data_804505F0[8] = {
     0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };

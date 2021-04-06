@@ -7,8 +7,8 @@ lbl_802720F8:
 /* 8027210C  7C 7D 1B 78 */	mr r29, r3
 /* 80272110  7C 9E 23 78 */	mr r30, r4
 /* 80272114  7C BF 2B 78 */	mr r31, r5
-/* 80272118  3C 80 80 3C */	lis r4, __vt__10JFWDisplay@ha
-/* 8027211C  38 04 40 A0 */	addi r0, r4, __vt__10JFWDisplay@l
+/* 80272118  3C 80 80 3C */	lis r4, __vt__10JFWDisplay@ha /* 0x803C40A0@ha */
+/* 8027211C  38 04 40 A0 */	addi r0, r4, __vt__10JFWDisplay@l /* 0x803C40A0@l */
 /* 80272120  90 03 00 00 */	stw r0, 0(r3)
 /* 80272124  38 00 FF FF */	li r0, -1
 /* 80272128  90 03 00 08 */	stw r0, 8(r3)

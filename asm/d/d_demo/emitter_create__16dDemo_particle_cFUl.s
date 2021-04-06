@@ -7,8 +7,8 @@ lbl_80039F1C:
 /* 80039F30  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80039F34  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80039F38  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80039F3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80039F40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80039F3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80039F40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80039F44  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80039F48  38 80 00 00 */	li r4, 0
 /* 80039F4C  90 81 00 08 */	stw r4, 8(r1)

@@ -2,8 +2,8 @@ lbl_80C9DF18:
 /* 80C9DF18  C0 23 04 AC */	lfs f1, 0x4ac(r3)
 /* 80C9DF1C  88 03 06 3C */	lbz r0, 0x63c(r3)
 /* 80C9DF20  54 00 10 3A */	slwi r0, r0, 2
-/* 80C9DF24  3C 80 80 CA */	lis r4, l_move_len@ha
-/* 80C9DF28  38 84 E8 BC */	addi r4, r4, l_move_len@l
+/* 80C9DF24  3C 80 80 CA */	lis r4, l_move_len@ha /* 0x80C9E8BC@ha */
+/* 80C9DF28  38 84 E8 BC */	addi r4, r4, l_move_len@l /* 0x80C9E8BC@l */
 /* 80C9DF2C  7C 04 04 2E */	lfsx f0, r4, r0
 /* 80C9DF30  EC 01 00 2A */	fadds f0, f1, f0
 /* 80C9DF34  D0 03 04 D4 */	stfs f0, 0x4d4(r3)

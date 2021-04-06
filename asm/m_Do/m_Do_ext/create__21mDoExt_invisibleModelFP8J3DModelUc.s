@@ -12,10 +12,10 @@ lbl_8000E53C:
 /* 8000E564  1C 7F 00 18 */	mulli r3, r31, 0x18
 /* 8000E568  38 63 00 10 */	addi r3, r3, 0x10
 /* 8000E56C  48 2C 07 59 */	bl __nwa__FUl
-/* 8000E570  3C 80 80 01 */	lis r4, __ct__19mDoExt_invJntPacketFv@ha
-/* 8000E574  38 84 E6 54 */	addi r4, r4, __ct__19mDoExt_invJntPacketFv@l
-/* 8000E578  3C A0 80 01 */	lis r5, __dt__19mDoExt_invJntPacketFv@ha
-/* 8000E57C  38 A5 E5 F8 */	addi r5, r5, __dt__19mDoExt_invJntPacketFv@l
+/* 8000E570  3C 80 80 01 */	lis r4, __ct__19mDoExt_invJntPacketFv@ha /* 0x8000E654@ha */
+/* 8000E574  38 84 E6 54 */	addi r4, r4, __ct__19mDoExt_invJntPacketFv@l /* 0x8000E654@l */
+/* 8000E578  3C A0 80 01 */	lis r5, __dt__19mDoExt_invJntPacketFv@ha /* 0x8000E5F8@ha */
+/* 8000E57C  38 A5 E5 F8 */	addi r5, r5, __dt__19mDoExt_invJntPacketFv@l /* 0x8000E5F8@l */
 /* 8000E580  38 C0 00 18 */	li r6, 0x18
 /* 8000E584  7F E7 FB 78 */	mr r7, r31
 /* 8000E588  48 35 39 8D */	bl __construct_new_array

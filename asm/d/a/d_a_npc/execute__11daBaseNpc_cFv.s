@@ -17,8 +17,8 @@ lbl_8014EAD0:
 /* 8014EB0C  38 9F 08 9C */	addi r4, r31, 0x89c
 /* 8014EB10  4B EC BB BD */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 8014EB14  38 7F 05 6C */	addi r3, r31, 0x56c
-/* 8014EB18  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8014EB1C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8014EB18  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014EB1C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014EB20  38 84 0F 38 */	addi r4, r4, 0xf38
 /* 8014EB24  4B F2 7F 89 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 8014EB28  80 1F 06 48 */	lwz r0, 0x648(r31)

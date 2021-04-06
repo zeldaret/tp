@@ -3,18 +3,16 @@
 #
 
 M622_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor.plf
+M622_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor.lcf
+M622_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor.map
 
 M622_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_smgdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_smgdoor/d_a_obj_smgdoor.cpp \
 
 M622_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/d_a_obj_smgdoor.o \
 
@@ -31,15 +29,21 @@ M622_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map622.map\
+	-m _prolog \
+	-lcf $(M622_LDSCRIPT) \
+	-unused -map $(M622_MAP) \
+	-w off \
 
 $(M622_TARGET): $(M622_O_FILES) $(M622_LIBS)
+	@echo [622] creating $(M622_TARGET)
 	@echo $(M622_LIBS) $(M622_O_FILES) > build/M622_ofiles
-	$(LD) -opt_partial $(M622_LDFLAGS) -o $(M622_TARGET) @build/M622_ofiles
+	@python3 tools/lcf.py rel 622 --output $(M622_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M622_LDFLAGS) -o $(M622_TARGET) @build/M622_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_smgdoor/%.o: rel/d/a/obj/d_a_obj_smgdoor/%.cpp
+	@echo [622] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M622_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M622_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

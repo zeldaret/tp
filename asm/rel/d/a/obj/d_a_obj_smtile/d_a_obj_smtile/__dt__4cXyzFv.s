@@ -7,7 +7,7 @@ lbl_80CDD3AC:
 /* 80CDD3C0  41 82 00 10 */	beq lbl_80CDD3D0
 /* 80CDD3C4  7C 80 07 35 */	extsh. r0, r4
 /* 80CDD3C8  40 81 00 08 */	ble lbl_80CDD3D0
-/* 80CDD3CC  4B 5F 19 70 */	b __dl__FPv
+/* 80CDD3CC  4B 5F 19 71 */	bl __dl__FPv
 lbl_80CDD3D0:
 /* 80CDD3D0  7F E3 FB 78 */	mr r3, r31
 /* 80CDD3D4  83 E1 00 0C */	lwz r31, 0xc(r1)

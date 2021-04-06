@@ -1,7 +1,7 @@
 lbl_80BEBE64:
 /* 80BEBE64  94 21 FF D0 */	stwu r1, -0x30(r1)
-/* 80BEBE68  3C 80 80 BF */	lis r4, M_attr__11daObjFlag_c@ha
-/* 80BEBE6C  38 84 C4 EC */	addi r4, r4, M_attr__11daObjFlag_c@l
+/* 80BEBE68  3C 80 80 BF */	lis r4, M_attr__11daObjFlag_c@ha /* 0x80BEC4EC@ha */
+/* 80BEBE6C  38 84 C4 EC */	addi r4, r4, M_attr__11daObjFlag_c@l /* 0x80BEC4EC@l */
 /* 80BEBE70  C0 04 00 60 */	lfs f0, 0x60(r4)
 /* 80BEBE74  EC 80 00 72 */	fmuls f4, f0, f1
 /* 80BEBE78  C0 04 00 64 */	lfs f0, 0x64(r4)
@@ -17,8 +17,8 @@ lbl_80BEBE88:
 lbl_80BEBE9C:
 /* 80BEBE9C  A9 03 05 E2 */	lha r8, 0x5e2(r3)
 /* 80BEBEA0  55 00 04 38 */	rlwinm r0, r8, 0, 0x10, 0x1c
-/* 80BEBEA4  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80BEBEA8  38 E5 9A 20 */	addi r7, r5, sincosTable___5JMath@l
+/* 80BEBEA4  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BEBEA8  38 E5 9A 20 */	addi r7, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BEBEAC  7C 67 04 2E */	lfsx f3, r7, r0
 /* 80BEBEB0  38 C4 00 00 */	addi r6, r4, 0
 /* 80BEBEB4  A8 06 00 14 */	lha r0, 0x14(r6)

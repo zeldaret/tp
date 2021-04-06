@@ -3,19 +3,20 @@
 #
 
 M310_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro.plf
+M310_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro.lcf
+M310_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro.map
 
 M310_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_gro/executor.cpp \
-	rel/d/a/npc/d_a_npc_gro/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_gro/d_a_npc_gro.cpp \
 
 M310_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/d_a_npc_gro.o \
 
 M310_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/libRuntime.PPCEABI.H.a \
 
 M310_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M310_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map310.map\
+	-m _prolog \
+	-lcf $(M310_LDSCRIPT) \
+	-unused -map $(M310_MAP) \
+	-w off \
 
 $(M310_TARGET): $(M310_O_FILES) $(M310_LIBS)
+	@echo [310] creating $(M310_TARGET)
 	@echo $(M310_LIBS) $(M310_O_FILES) > build/M310_ofiles
-	$(LD) -opt_partial $(M310_LDFLAGS) -o $(M310_TARGET) @build/M310_ofiles
+	@python3 tools/lcf.py rel 310 --output $(M310_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M310_LDFLAGS) -o $(M310_TARGET) @build/M310_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gro/%.o: rel/d/a/npc/d_a_npc_gro/%.cpp
+	@echo [310] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M310_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M310_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_gro/libs/Runtime.PPCEABI.H/Makefile
 

@@ -7,7 +7,7 @@ lbl_806BE43C:
 /* 806BE450  41 82 00 10 */	beq lbl_806BE460
 /* 806BE454  7C 80 07 35 */	extsh. r0, r4
 /* 806BE458  40 81 00 08 */	ble lbl_806BE460
-/* 806BE45C  4B C1 08 E0 */	b __dl__FPv
+/* 806BE45C  4B C1 08 E1 */	bl __dl__FPv
 lbl_806BE460:
 /* 806BE460  7F E3 FB 78 */	mr r3, r31
 /* 806BE464  83 E1 00 0C */	lwz r31, 0xc(r1)

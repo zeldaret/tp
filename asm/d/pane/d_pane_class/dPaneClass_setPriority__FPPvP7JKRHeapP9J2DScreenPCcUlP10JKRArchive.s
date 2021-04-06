@@ -39,19 +39,19 @@ lbl_802551D8:
 /* 80255210  41 82 00 8C */	beq lbl_8025529C
 /* 80255214  80 99 00 00 */	lwz r4, 0(r25)
 /* 80255218  38 61 00 08 */	addi r3, r1, 8
-/* 8025521C  3C C0 80 3C */	lis r6, __vt__10JSUIosBase@ha
-/* 80255220  38 06 2D F8 */	addi r0, r6, __vt__10JSUIosBase@l
+/* 8025521C  3C C0 80 3C */	lis r6, __vt__10JSUIosBase@ha /* 0x803C2DF8@ha */
+/* 80255220  38 06 2D F8 */	addi r0, r6, __vt__10JSUIosBase@l /* 0x803C2DF8@l */
 /* 80255224  90 01 00 08 */	stw r0, 8(r1)
 /* 80255228  38 00 00 00 */	li r0, 0
 /* 8025522C  98 01 00 0C */	stb r0, 0xc(r1)
-/* 80255230  3C C0 80 3D */	lis r6, __vt__14JSUInputStream@ha
-/* 80255234  38 06 C4 D4 */	addi r0, r6, __vt__14JSUInputStream@l
+/* 80255230  3C C0 80 3D */	lis r6, __vt__14JSUInputStream@ha /* 0x803CC4D4@ha */
+/* 80255234  38 06 C4 D4 */	addi r0, r6, __vt__14JSUInputStream@l /* 0x803CC4D4@l */
 /* 80255238  90 01 00 08 */	stw r0, 8(r1)
-/* 8025523C  3C C0 80 3D */	lis r6, __vt__20JSURandomInputStream@ha
-/* 80255240  38 06 C4 B0 */	addi r0, r6, __vt__20JSURandomInputStream@l
+/* 8025523C  3C C0 80 3D */	lis r6, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 80255240  38 06 C4 B0 */	addi r0, r6, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 80255244  90 01 00 08 */	stw r0, 8(r1)
-/* 80255248  3C C0 80 3D */	lis r6, __vt__20JSUMemoryInputStream@ha
-/* 8025524C  38 06 C4 F0 */	addi r0, r6, __vt__20JSUMemoryInputStream@l
+/* 80255248  3C C0 80 3D */	lis r6, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 8025524C  38 06 C4 F0 */	addi r0, r6, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 80255250  90 01 00 08 */	stw r0, 8(r1)
 /* 80255254  48 08 72 CD */	bl setBuffer__20JSUMemoryInputStreamFPCvl
 /* 80255258  7F A3 EB 78 */	mr r3, r29
@@ -60,11 +60,11 @@ lbl_802551D8:
 /* 80255264  7F E6 FB 78 */	mr r6, r31
 /* 80255268  48 0A 34 E1 */	bl setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
 /* 8025526C  7C 7D 1B 78 */	mr r29, r3
-/* 80255270  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha
-/* 80255274  38 03 C4 F0 */	addi r0, r3, __vt__20JSUMemoryInputStream@l
+/* 80255270  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 80255274  38 03 C4 F0 */	addi r0, r3, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 80255278  90 01 00 08 */	stw r0, 8(r1)
-/* 8025527C  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha
-/* 80255280  38 03 C4 B0 */	addi r0, r3, __vt__20JSURandomInputStream@l
+/* 8025527C  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 80255280  38 03 C4 B0 */	addi r0, r3, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 80255284  90 01 00 08 */	stw r0, 8(r1)
 /* 80255288  38 61 00 08 */	addi r3, r1, 8
 /* 8025528C  38 80 00 00 */	li r4, 0

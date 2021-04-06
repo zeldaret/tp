@@ -1,6 +1,6 @@
 lbl_800EC7B0:
-/* 800EC7B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EC7B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EC7B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EC7B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EC7B8  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800EC7BC  28 03 00 00 */	cmplwi r3, 0
 /* 800EC7C0  4D 82 00 20 */	beqlr 

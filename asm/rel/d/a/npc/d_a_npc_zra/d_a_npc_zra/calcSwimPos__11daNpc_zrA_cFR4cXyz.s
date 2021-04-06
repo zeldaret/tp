@@ -13,16 +13,16 @@ lbl_80B82584:
 /* 80B825B0  38 00 00 00 */	li r0, 0
 /* 80B825B4  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 80B825B8  38 61 00 08 */	addi r3, r1, 8
-/* 80B825BC  4B 48 A9 50 */	b ZXYrotS__14mDoMtx_stack_cFRC5csXyz
-/* 80B825C0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80B825C4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80B825BC  4B 48 A9 51 */	bl ZXYrotS__14mDoMtx_stack_cFRC5csXyz
+/* 80B825C0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80B825C4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80B825C8  7F E4 FB 78 */	mr r4, r31
 /* 80B825CC  7F E5 FB 78 */	mr r5, r31
-/* 80B825D0  4B 7C 47 9C */	b PSMTXMultVec
+/* 80B825D0  4B 7C 47 9D */	bl PSMTXMultVec
 /* 80B825D4  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80B825D8  7F E4 FB 78 */	mr r4, r31
 /* 80B825DC  7C 65 1B 78 */	mr r5, r3
-/* 80B825E0  4B 7C 4A B0 */	b PSVECAdd
+/* 80B825E0  4B 7C 4A B1 */	bl PSVECAdd
 /* 80B825E4  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80B825E8  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 80B825EC  80 01 00 24 */	lwz r0, 0x24(r1)

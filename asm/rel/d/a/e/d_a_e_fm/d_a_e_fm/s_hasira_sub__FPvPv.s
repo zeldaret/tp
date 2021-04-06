@@ -5,9 +5,9 @@ lbl_804EF29C:
 /* 804EF2A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804EF2AC  93 C1 00 08 */	stw r30, 8(r1)
 /* 804EF2B0  7C 7E 1B 78 */	mr r30, r3
-/* 804EF2B4  3C 80 80 50 */	lis r4, lit_1109@ha
-/* 804EF2B8  3B E4 AE 58 */	addi r31, r4, lit_1109@l
-/* 804EF2BC  4B B2 9A 24 */	b fopAc_IsActor__FPv
+/* 804EF2B4  3C 80 80 50 */	lis r4, lit_1109@ha /* 0x804FAE58@ha */
+/* 804EF2B8  3B E4 AE 58 */	addi r31, r4, lit_1109@l /* 0x804FAE58@l */
+/* 804EF2BC  4B B2 9A 25 */	bl fopAc_IsActor__FPv
 /* 804EF2C0  2C 03 00 00 */	cmpwi r3, 0
 /* 804EF2C4  41 82 00 28 */	beq lbl_804EF2EC
 /* 804EF2C8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -18,7 +18,7 @@ lbl_804EF29C:
 /* 804EF2DC  C0 3F 01 14 */	lfs f1, 0x114(r31)
 /* 804EF2E0  C0 5F 01 18 */	lfs f2, 0x118(r31)
 /* 804EF2E4  88 BF 01 1C */	lbz r5, 0x11c(r31)
-/* 804EF2E8  48 09 15 6C */	b Rolling__13daObjHHASHI_cFP4cXyzffSc
+/* 804EF2E8  48 09 15 6D */	bl Rolling__13daObjHHASHI_cFP4cXyzffSc
 lbl_804EF2EC:
 /* 804EF2EC  38 60 00 00 */	li r3, 0
 /* 804EF2F0  83 E1 00 0C */	lwz r31, 0xc(r1)

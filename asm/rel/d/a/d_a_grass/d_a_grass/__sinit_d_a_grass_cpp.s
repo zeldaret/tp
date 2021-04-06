@@ -1,6 +1,6 @@
 lbl_8051D7D0:
-/* 8051D7D0  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8051D7D4  38 83 31 D8 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 8051D7D0  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha /* 0x805231D8@ha */
+/* 8051D7D4  38 83 31 D8 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x805231D8@l */
 /* 8051D7D8  38 A4 08 20 */	addi r5, r4, 0x820
 /* 8051D7DC  54 A0 5E 3E */	rlwinm r0, r5, 0xb, 0x18, 0x1f
 /* 8051D7E0  38 64 17 40 */	addi r3, r4, 0x1740

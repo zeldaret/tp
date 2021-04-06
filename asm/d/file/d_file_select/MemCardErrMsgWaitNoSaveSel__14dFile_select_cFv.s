@@ -13,14 +13,14 @@ lbl_8018ED80:
 /* 8018EDAC  41 82 01 3C */	beq lbl_8018EEE8
 /* 8018EDB0  7F E3 FB 78 */	mr r3, r31
 /* 8018EDB4  48 00 14 A1 */	bl setInitSaveData__14dFile_select_cFv
-/* 8018EDB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018EDBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8018EDB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018EDBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018EDC0  38 9F 03 B8 */	addi r4, r31, 0x3b8
 /* 8018EDC4  38 A0 00 00 */	li r5, 0
 /* 8018EDC8  4B EA 6C 3D */	bl card_to_memory__10dSv_info_cFPci
 /* 8018EDCC  38 80 00 01 */	li r4, 1
-/* 8018EDD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018EDD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8018EDD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018EDD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018EDD8  98 83 0F 1A */	stb r4, 0xf1a(r3)
 /* 8018EDDC  38 00 00 00 */	li r0, 0
 /* 8018EDE0  98 03 0F 18 */	stb r0, 0xf18(r3)
@@ -40,19 +40,19 @@ lbl_8018EDF0:
 /* 8018EE14  80 7F 00 60 */	lwz r3, 0x60(r31)
 /* 8018EE18  C0 22 9F 40 */	lfs f1, lit_4611(r2)
 /* 8018EE1C  48 00 64 85 */	bl setAlphaRate__16dSelect_cursor_cFf
-/* 8018EE20  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8018EE24  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8018EE20  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8018EE24  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018EE28  38 80 03 82 */	li r4, 0x382
 /* 8018EE2C  38 A1 00 08 */	addi r5, r1, 8
 /* 8018EE30  38 C0 00 00 */	li r6, 0
 /* 8018EE34  48 08 D4 1D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
-/* 8018EE38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018EE3C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8018EE38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018EE3C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018EE40  38 7E 01 B4 */	addi r3, r30, 0x1b4
 /* 8018EE44  38 81 00 08 */	addi r4, r1, 8
 /* 8018EE48  48 1D 9C E5 */	bl strcpy
-/* 8018EE4C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8018EE50  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8018EE4C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8018EE50  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018EE54  38 80 03 83 */	li r4, 0x383
 /* 8018EE58  38 A1 00 08 */	addi r5, r1, 8
 /* 8018EE5C  38 C0 00 00 */	li r6, 0
@@ -91,8 +91,8 @@ lbl_8018EDF0:
 /* 8018EEE0  98 1F 02 6F */	stb r0, 0x26f(r31)
 /* 8018EEE4  48 00 00 60 */	b lbl_8018EF44
 lbl_8018EEE8:
-/* 8018EEE8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8018EEEC  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8018EEE8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8018EEEC  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8018EEF0  80 64 00 00 */	lwz r3, 0(r4)
 /* 8018EEF4  80 04 00 04 */	lwz r0, 4(r4)
 /* 8018EEF8  90 7F 02 84 */	stw r3, 0x284(r31)

@@ -33,72 +33,51 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80355414-8035541C 0008+00 s=0 e=5 z=0  None .text      __CARDGetFatBlock */
+/* 80355414-8035541C 34FD54 0008+00 0/0 5/5 0/0 .text            __CARDGetFatBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDGetFatBlock() {
+asm void __CARDGetFatBlock() {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/__CARDGetFatBlock.s"
 }
 #pragma pop
 
-/* 8035541C-803554F0 00D4+00 s=1 e=0 z=0  None .text      WriteCallback */
-//	80355440: 8044CBC0 (__CARDBlock)
-//	80355444: 8044CBC0 (__CARDBlock)
-//	80355478: 80003540 (memcpy)
-//	80355490: 80003540 (memcpy)
-//	803554A8: 80353C6C (__CARDPutControlBlock)
+/* 8035541C-803554F0 34FD5C 00D4+00 1/1 0/0 0/0 .text            WriteCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void WriteCallback() {
+static asm void WriteCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/WriteCallback.s"
 }
 #pragma pop
 
-/* 803554F0-803555B8 00C8+00 s=1 e=0 z=0  None .text      EraseCallback */
-//	80355504: 8044CBC0 (__CARDBlock)
-//	80355514: 8044CBC0 (__CARDBlock)
-//	80355528: 8035541C (WriteCallback)
-//	80355530: 8035541C (WriteCallback)
-//	80355550: 803553AC (__CARDWrite)
-//	80355570: 80353C6C (__CARDPutControlBlock)
+/* 803554F0-803555B8 34FE30 00C8+00 1/1 0/0 0/0 .text            EraseCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void EraseCallback() {
+static asm void EraseCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/EraseCallback.s"
 }
 #pragma pop
 
-/* 803555B8-803556D0 0118+00 s=0 e=1 z=0  None .text      __CARDAllocBlock */
-//	803555C8: 8044CBC0 (__CARDBlock)
-//	803555CC: 8044CBC0 (__CARDBlock)
-//	803556B4: 803556D0 (__CARDUpdateFatBlock)
+/* 803555B8-803556D0 34FEF8 0118+00 0/0 1/1 0/0 .text            __CARDAllocBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDAllocBlock() {
+asm void __CARDAllocBlock() {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/__CARDAllocBlock.s"
 }
 #pragma pop
 
-/* 803556D0-8035577C 00AC+00 s=1 e=1 z=0  None .text      __CARDUpdateFatBlock */
-//	8035570C: 8044CBC0 (__CARDBlock)
-//	80355714: 8044CBC0 (__CARDBlock)
-//	80355724: 803559E0 (__CARDCheckSum)
-//	80355730: 8033B5DC (DCStoreRange)
-//	80355738: 803554F0 (EraseCallback)
-//	8035573C: 803554F0 (EraseCallback)
-//	80355758: 803539B8 (__CARDEraseSector)
+/* 803556D0-8035577C 350010 00AC+00 1/1 1/1 0/0 .text            __CARDUpdateFatBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDUpdateFatBlock() {
+asm void __CARDUpdateFatBlock() {
     nofralloc
 #include "asm/dolphin/card/CARDBlock/__CARDUpdateFatBlock.s"
 }

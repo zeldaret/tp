@@ -19,11 +19,11 @@ lbl_809635EC:
 lbl_809635FC:
 /* 809635FC  3B E0 00 00 */	li r31, 0
 /* 80963600  38 60 00 3D */	li r3, 0x3d
-/* 80963604  4B 7E 94 A8 */	b daNpcT_chkEvtBit__FUl
+/* 80963604  4B 7E 94 A9 */	bl daNpcT_chkEvtBit__FUl
 /* 80963608  2C 03 00 00 */	cmpwi r3, 0
 /* 8096360C  41 82 00 14 */	beq lbl_80963620
 /* 80963610  38 60 00 35 */	li r3, 0x35
-/* 80963614  4B 7E 94 98 */	b daNpcT_chkEvtBit__FUl
+/* 80963614  4B 7E 94 99 */	bl daNpcT_chkEvtBit__FUl
 /* 80963618  2C 03 00 00 */	cmpwi r3, 0
 /* 8096361C  41 82 00 08 */	beq lbl_80963624
 lbl_80963620:
@@ -37,11 +37,11 @@ lbl_8096362C:
 lbl_80963634:
 /* 80963634  3B E0 00 00 */	li r31, 0
 /* 80963638  38 60 00 35 */	li r3, 0x35
-/* 8096363C  4B 7E 94 70 */	b daNpcT_chkEvtBit__FUl
+/* 8096363C  4B 7E 94 71 */	bl daNpcT_chkEvtBit__FUl
 /* 80963640  2C 03 00 00 */	cmpwi r3, 0
 /* 80963644  41 82 00 14 */	beq lbl_80963658
 /* 80963648  38 60 00 55 */	li r3, 0x55
-/* 8096364C  4B 7E 94 60 */	b daNpcT_chkEvtBit__FUl
+/* 8096364C  4B 7E 94 61 */	bl daNpcT_chkEvtBit__FUl
 /* 80963650  2C 03 00 00 */	cmpwi r3, 0
 /* 80963654  41 82 00 08 */	beq lbl_8096365C
 lbl_80963658:
@@ -52,11 +52,11 @@ lbl_8096365C:
 lbl_80963664:
 /* 80963664  3B E0 00 00 */	li r31, 0
 /* 80963668  38 60 00 55 */	li r3, 0x55
-/* 8096366C  4B 7E 94 40 */	b daNpcT_chkEvtBit__FUl
+/* 8096366C  4B 7E 94 41 */	bl daNpcT_chkEvtBit__FUl
 /* 80963670  2C 03 00 00 */	cmpwi r3, 0
 /* 80963674  41 82 00 14 */	beq lbl_80963688
 /* 80963678  38 60 00 40 */	li r3, 0x40
-/* 8096367C  4B 7E 94 30 */	b daNpcT_chkEvtBit__FUl
+/* 8096367C  4B 7E 94 31 */	bl daNpcT_chkEvtBit__FUl
 /* 80963680  2C 03 00 00 */	cmpwi r3, 0
 /* 80963684  41 82 00 08 */	beq lbl_8096368C
 lbl_80963688:
@@ -66,7 +66,7 @@ lbl_8096368C:
 /* 80963690  48 00 00 1C */	b lbl_809636AC
 lbl_80963694:
 /* 80963694  38 60 00 40 */	li r3, 0x40
-/* 80963698  4B 7E 94 14 */	b daNpcT_chkEvtBit__FUl
+/* 80963698  4B 7E 94 15 */	bl daNpcT_chkEvtBit__FUl
 /* 8096369C  7C 60 00 34 */	cntlzw r0, r3
 /* 809636A0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 809636A4  48 00 00 08 */	b lbl_809636AC

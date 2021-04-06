@@ -1,10 +1,10 @@
 lbl_8036FB20:
 /* 8036FB20  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8036FB24  7C 08 02 A6 */	mflr r0
-/* 8036FB28  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FB28  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FB2C  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8036FB30  BF 61 00 2C */	stmw r27, 0x2c(r1)
-/* 8036FB34  3B E3 F3 38 */	addi r31, r3, gTRKCPUState@l
+/* 8036FB34  3B E3 F3 38 */	addi r31, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FB38  83 7F 00 0C */	lwz r27, 0xc(r31)
 /* 8036FB3C  2C 1B 00 D1 */	cmpwi r27, 0xd1
 /* 8036FB40  41 82 00 40 */	beq lbl_8036FB80
@@ -26,9 +26,9 @@ lbl_8036FB20:
 lbl_8036FB80:
 /* 8036FB80  2C 1B 00 D2 */	cmpwi r27, 0xd2
 /* 8036FB84  40 82 00 50 */	bne lbl_8036FBD4
-/* 8036FB88  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FB88  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FB8C  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8036FB90  38 83 F3 38 */	addi r4, r3, gTRKCPUState@l
+/* 8036FB90  38 83 F3 38 */	addi r4, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FB94  80 04 00 14 */	lwz r0, 0x14(r4)
 /* 8036FB98  80 64 00 10 */	lwz r3, 0x10(r4)
 /* 8036FB9C  80 A4 00 18 */	lwz r5, 0x18(r4)
@@ -49,9 +49,9 @@ lbl_8036FBC8:
 lbl_8036FBD4:
 /* 8036FBD4  2C 1B 00 D3 */	cmpwi r27, 0xd3
 /* 8036FBD8  40 82 00 44 */	bne lbl_8036FC1C
-/* 8036FBDC  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FBDC  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FBE0  38 81 00 0C */	addi r4, r1, 0xc
-/* 8036FBE4  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l
+/* 8036FBE4  38 63 F3 38 */	addi r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FBE8  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8036FBEC  4B FF F2 A9 */	bl HandleCloseFileSupportRequest
 /* 8036FBF0  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -69,9 +69,9 @@ lbl_8036FC10:
 lbl_8036FC1C:
 /* 8036FC1C  2C 1B 00 D4 */	cmpwi r27, 0xd4
 /* 8036FC20  40 82 00 68 */	bne lbl_8036FC88
-/* 8036FC24  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FC24  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FC28  38 81 00 08 */	addi r4, r1, 8
-/* 8036FC2C  3B A3 F3 38 */	addi r29, r3, gTRKCPUState@l
+/* 8036FC2C  3B A3 F3 38 */	addi r29, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FC30  38 C1 00 0C */	addi r6, r1, 0xc
 /* 8036FC34  80 7D 00 14 */	lwz r3, 0x14(r29)
 /* 8036FC38  80 1D 00 18 */	lwz r0, 0x18(r29)
@@ -96,9 +96,9 @@ lbl_8036FC70:
 /* 8036FC80  90 03 00 00 */	stw r0, 0(r3)
 /* 8036FC84  48 00 00 70 */	b lbl_8036FCF4
 lbl_8036FC88:
-/* 8036FC88  3C 60 80 45 */	lis r3, gTRKCPUState@ha
+/* 8036FC88  3C 60 80 45 */	lis r3, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FC8C  20 1B 00 D1 */	subfic r0, r27, 0xd1
-/* 8036FC90  3B A3 F3 38 */	addi r29, r3, gTRKCPUState@l
+/* 8036FC90  3B A3 F3 38 */	addi r29, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FC94  38 C1 00 0C */	addi r6, r1, 0xc
 /* 8036FC98  83 9D 00 14 */	lwz r28, 0x14(r29)
 /* 8036FC9C  7C 00 00 34 */	cntlzw r0, r0
@@ -125,9 +125,9 @@ lbl_8036FCD8:
 /* 8036FCEC  80 9C 00 00 */	lwz r4, 0(r28)
 /* 8036FCF0  4B FF F8 59 */	bl TRK_flush_cache
 lbl_8036FCF4:
-/* 8036FCF4  3C 80 80 45 */	lis r4, gTRKCPUState@ha
+/* 8036FCF4  3C 80 80 45 */	lis r4, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 8036FCF8  7F C3 F3 78 */	mr r3, r30
-/* 8036FCFC  38 A4 F3 38 */	addi r5, r4, gTRKCPUState@l
+/* 8036FCFC  38 A4 F3 38 */	addi r5, r4, gTRKCPUState@l /* 0x8044F338@l */
 /* 8036FD00  80 85 00 80 */	lwz r4, 0x80(r5)
 /* 8036FD04  38 04 00 04 */	addi r0, r4, 4
 /* 8036FD08  90 05 00 80 */	stw r0, 0x80(r5)

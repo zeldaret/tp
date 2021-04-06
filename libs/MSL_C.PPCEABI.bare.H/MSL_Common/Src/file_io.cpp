@@ -29,42 +29,31 @@ extern "C" extern u8 __lower_map[256];
 // Declarations:
 //
 
-/* 8036581C-803658C0 00A4+00 s=0 e=1 z=0  None .text      __msl_strnicmp */
-//	80365844: 803D2D18 (__lower_map)
-//	8036584C: 803D2D18 (__lower_map)
-//	80365874: 803D2D18 (__lower_map)
-//	8036587C: 803D2D18 (__lower_map)
+/* 8036581C-803658C0 36015C 00A4+00 0/0 1/1 0/0 .text            __msl_strnicmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __msl_strnicmp() {
+asm void __msl_strnicmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/file_io/__msl_strnicmp.s"
 }
 #pragma pop
 
-/* 803658C0-803659F8 0138+00 s=0 e=4 z=0  None .text      fflush */
-//	803658DC: 8036300C (__flush_all)
-//	80365990: 80365E90 (ftell)
-//	803659A0: 803650E0 (__flush_buffer)
+/* 803658C0-803659F8 360200 0138+00 0/0 4/4 0/0 .text            fflush */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fflush() {
+asm void fflush() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/file_io/fflush.s"
 }
 #pragma pop
 
-/* 803659F8-80365BB4 01BC+00 s=0 e=1 z=0  None .text      fclose */
-//	80365A3C: 8036300C (__flush_all)
-//	80365AEC: 80365E90 (ftell)
-//	80365AFC: 803650E0 (__flush_buffer)
-//	80365B70: 80362B58 (free)
+/* 803659F8-80365BB4 360338 01BC+00 0/0 1/1 0/0 .text            fclose */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fclose() {
+asm void fclose() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/file_io/fclose.s"
 }

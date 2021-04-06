@@ -8,8 +8,8 @@ lbl_802DEF94:
 /* 802DEFAC  7C 9E 23 78 */	mr r30, r4
 /* 802DEFB0  7C BF 2B 78 */	mr r31, r5
 /* 802DEFB4  4B FF FD 45 */	bl __ct__7JUTFontFv
-/* 802DEFB8  3C 60 80 3D */	lis r3, __vt__10JUTResFont@ha
-/* 802DEFBC  38 03 C5 A0 */	addi r0, r3, __vt__10JUTResFont@l
+/* 802DEFB8  3C 60 80 3D */	lis r3, __vt__10JUTResFont@ha /* 0x803CC5A0@ha */
+/* 802DEFBC  38 03 C5 A0 */	addi r0, r3, __vt__10JUTResFont@l /* 0x803CC5A0@l */
 /* 802DEFC0  90 1D 00 00 */	stw r0, 0(r29)
 /* 802DEFC4  7F A3 EB 78 */	mr r3, r29
 /* 802DEFC8  48 00 00 E9 */	bl initialize_state__10JUTResFontFv

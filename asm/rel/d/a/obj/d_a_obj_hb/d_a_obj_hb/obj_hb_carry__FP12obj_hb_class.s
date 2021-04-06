@@ -3,12 +3,12 @@ lbl_80C19688:
 /* 80C1968C  7C 08 02 A6 */	mflr r0
 /* 80C19690  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C19694  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C19698  4B 74 8B 40 */	b _savegpr_28
+/* 80C19698  4B 74 8B 41 */	bl _savegpr_28
 /* 80C1969C  7C 7E 1B 78 */	mr r30, r3
-/* 80C196A0  3C 60 80 C2 */	lis r3, lit_3665@ha
-/* 80C196A4  38 83 B6 00 */	addi r4, r3, lit_3665@l
-/* 80C196A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C196AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C196A0  3C 60 80 C2 */	lis r3, lit_3665@ha /* 0x80C1B600@ha */
+/* 80C196A4  38 83 B6 00 */	addi r4, r3, lit_3665@l /* 0x80C1B600@l */
+/* 80C196A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C196AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C196B0  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 80C196B4  A8 1E 06 54 */	lha r0, 0x654(r30)
 /* 80C196B8  2C 00 00 01 */	cmpwi r0, 1
@@ -72,12 +72,12 @@ lbl_80C1976C:
 /* 80C1978C  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 80C19790  38 00 00 00 */	li r0, 0
 /* 80C19794  B0 1E 06 54 */	sth r0, 0x654(r30)
-/* 80C19798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C1979C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C19798  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C1979C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C197A0  3B 83 56 B8 */	addi r28, r3, 0x56b8
 /* 80C197A4  3B A0 00 01 */	li r29, 1
 /* 80C197A8  7F 83 E3 78 */	mr r3, r28
-/* 80C197AC  4B 45 A0 38 */	b LockonTruth__12dAttention_cFv
+/* 80C197AC  4B 45 A0 39 */	bl LockonTruth__12dAttention_cFv
 /* 80C197B0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80C197B4  40 82 00 14 */	bne lbl_80C197C8
 /* 80C197B8  80 1C 03 34 */	lwz r0, 0x334(r28)
@@ -89,7 +89,7 @@ lbl_80C197C8:
 /* 80C197CC  41 82 00 44 */	beq lbl_80C19810
 /* 80C197D0  7F 83 E3 78 */	mr r3, r28
 /* 80C197D4  38 80 00 00 */	li r4, 0
-/* 80C197D8  4B 45 9D 64 */	b LockonTarget__12dAttention_cFl
+/* 80C197D8  4B 45 9D 65 */	bl LockonTarget__12dAttention_cFl
 /* 80C197DC  28 03 00 00 */	cmplwi r3, 0
 /* 80C197E0  41 82 00 0C */	beq lbl_80C197EC
 /* 80C197E4  80 03 00 04 */	lwz r0, 4(r3)
@@ -126,14 +126,14 @@ lbl_80C19810:
 /* 80C19850  7C 04 07 34 */	extsh r4, r0
 /* 80C19854  38 A0 00 01 */	li r5, 1
 /* 80C19858  A8 DE 06 7C */	lha r6, 0x67c(r30)
-/* 80C1985C  4B 65 6D AC */	b cLib_addCalcAngleS2__FPssss
+/* 80C1985C  4B 65 6D AD */	bl cLib_addCalcAngleS2__FPssss
 /* 80C19860  38 7E 06 7C */	addi r3, r30, 0x67c
 /* 80C19864  38 80 20 00 */	li r4, 0x2000
 /* 80C19868  38 A0 00 01 */	li r5, 1
 /* 80C1986C  38 C0 01 00 */	li r6, 0x100
-/* 80C19870  4B 65 6D 98 */	b cLib_addCalcAngleS2__FPssss
+/* 80C19870  4B 65 6D 99 */	bl cLib_addCalcAngleS2__FPssss
 /* 80C19874  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C19878  4B 74 89 AC */	b _restgpr_28
+/* 80C19878  4B 74 89 AD */	bl _restgpr_28
 /* 80C1987C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C19880  7C 08 03 A6 */	mtlr r0
 /* 80C19884  38 21 00 20 */	addi r1, r1, 0x20

@@ -1,6 +1,6 @@
 lbl_80A7492C:
-/* 80A7492C  3C 80 80 A8 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80A74930  38 04 BE 1C */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80A7492C  3C 80 80 A8 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80A7BE1C@ha */
+/* 80A74930  38 04 BE 1C */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80A7BE1C@l */
 /* 80A74934  90 03 00 00 */	stw r0, 0(r3)
 /* 80A74938  38 80 00 00 */	li r4, 0
 /* 80A7493C  B0 83 00 04 */	sth r4, 4(r3)

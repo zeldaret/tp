@@ -5,13 +5,13 @@ lbl_8073A510:
 /* 8073A51C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8073A520  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8073A524  7C 7E 1B 78 */	mr r30, r3
-/* 8073A528  3C 60 80 74 */	lis r3, lit_3910@ha
-/* 8073A52C  3B E3 CE A8 */	addi r31, r3, lit_3910@l
+/* 8073A528  3C 60 80 74 */	lis r3, lit_3910@ha /* 0x8073CEA8@ha */
+/* 8073A52C  3B E3 CE A8 */	addi r31, r3, lit_3910@l /* 0x8073CEA8@l */
 /* 8073A530  80 1E 06 74 */	lwz r0, 0x674(r30)
 /* 8073A534  2C 00 00 04 */	cmpwi r0, 4
 /* 8073A538  41 82 02 60 */	beq lbl_8073A798
 /* 8073A53C  38 7E 08 CC */	addi r3, r30, 0x8cc
-/* 8073A540  4B 94 92 F0 */	b Move__10dCcD_GSttsFv
+/* 8073A540  4B 94 92 F1 */	bl Move__10dCcD_GSttsFv
 /* 8073A544  80 1E 0A 80 */	lwz r0, 0xa80(r30)
 /* 8073A548  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8073A54C  41 82 00 20 */	beq lbl_8073A56C
@@ -24,12 +24,12 @@ lbl_8073A510:
 /* 8073A568  4B FF FF 91 */	bl setActionMode__8daE_OT_cFii
 lbl_8073A56C:
 /* 8073A56C  38 7E 08 EC */	addi r3, r30, 0x8ec
-/* 8073A570  4B 94 A0 E8 */	b ChkCoHit__12dCcD_GObjInfFv
+/* 8073A570  4B 94 A0 E9 */	bl ChkCoHit__12dCcD_GObjInfFv
 /* 8073A574  28 03 00 00 */	cmplwi r3, 0
 /* 8073A578  41 82 00 3C */	beq lbl_8073A5B4
 /* 8073A57C  38 7E 08 EC */	addi r3, r30, 0x8ec
-/* 8073A580  4B 94 A1 70 */	b GetCoHitObj__12dCcD_GObjInfFv
-/* 8073A584  4B B2 94 C4 */	b GetAc__8cCcD_ObjFv
+/* 8073A580  4B 94 A1 71 */	bl GetCoHitObj__12dCcD_GObjInfFv
+/* 8073A584  4B B2 94 C5 */	bl GetAc__8cCcD_ObjFv
 /* 8073A588  A8 03 00 08 */	lha r0, 8(r3)
 /* 8073A58C  2C 00 02 00 */	cmpwi r0, 0x200
 /* 8073A590  40 82 00 24 */	bne lbl_8073A5B4
@@ -59,7 +59,7 @@ lbl_8073A5B4:
 /* 8073A5EC  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 8073A5F0  38 61 00 0C */	addi r3, r1, 0xc
 /* 8073A5F4  38 81 00 18 */	addi r4, r1, 0x18
-/* 8073A5F8  4B C0 CD A4 */	b PSVECSquareDistance
+/* 8073A5F8  4B C0 CD A5 */	bl PSVECSquareDistance
 /* 8073A5FC  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 8073A600  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8073A604  40 81 00 58 */	ble lbl_8073A65C
@@ -88,8 +88,8 @@ lbl_8073A65C:
 /* 8073A65C  C8 1F 00 20 */	lfd f0, 0x20(r31)
 /* 8073A660  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8073A664  40 80 00 10 */	bge lbl_8073A674
-/* 8073A668  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8073A66C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8073A668  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8073A66C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8073A670  48 00 00 70 */	b lbl_8073A6E0
 lbl_8073A674:
 /* 8073A674  D0 21 00 08 */	stfs f1, 8(r1)
@@ -123,8 +123,8 @@ lbl_8073A6CC:
 lbl_8073A6D0:
 /* 8073A6D0  2C 00 00 01 */	cmpwi r0, 1
 /* 8073A6D4  40 82 00 0C */	bne lbl_8073A6E0
-/* 8073A6D8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8073A6DC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8073A6D8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8073A6DC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8073A6E0:
 /* 8073A6E0  C0 1F 00 40 */	lfs f0, 0x40(r31)
 /* 8073A6E4  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -136,20 +136,20 @@ lbl_8073A6E0:
 /* 8073A6FC  48 00 00 9C */	b lbl_8073A798
 lbl_8073A700:
 /* 8073A700  38 7E 08 EC */	addi r3, r30, 0x8ec
-/* 8073A704  4B 94 9D 5C */	b ChkTgHit__12dCcD_GObjInfFv
+/* 8073A704  4B 94 9D 5D */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 8073A708  28 03 00 00 */	cmplwi r3, 0
 /* 8073A70C  41 82 00 8C */	beq lbl_8073A798
 /* 8073A710  38 7E 08 EC */	addi r3, r30, 0x8ec
-/* 8073A714  4B 94 9D E4 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 8073A714  4B 94 9D E5 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 8073A718  90 7E 0B 5C */	stw r3, 0xb5c(r30)
 /* 8073A71C  80 7E 0B 5C */	lwz r3, 0xb5c(r30)
-/* 8073A720  4B B2 93 28 */	b GetAc__8cCcD_ObjFv
+/* 8073A720  4B B2 93 29 */	bl GetAc__8cCcD_ObjFv
 /* 8073A724  7F C3 F3 78 */	mr r3, r30
 /* 8073A728  38 9E 0B 5C */	addi r4, r30, 0xb5c
-/* 8073A72C  4B 94 D4 D8 */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 8073A72C  4B 94 D4 D9 */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 8073A730  38 00 00 00 */	li r0, 0
-/* 8073A734  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha
-/* 8073A738  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)
+/* 8073A734  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
+/* 8073A738  98 03 11 25 */	stb r0, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
 /* 8073A73C  80 7E 0B 5C */	lwz r3, 0xb5c(r30)
 /* 8073A740  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8073A744  54 60 06 F7 */	rlwinm. r0, r3, 0, 0x1b, 0x1b

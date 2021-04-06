@@ -4,17 +4,17 @@ lbl_80AD46D4:
 /* 80AD46DC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80AD46E0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80AD46E4  7C 7F 1B 78 */	mr r31, r3
-/* 80AD46E8  3C 60 80 AD */	lis r3, lit_4860@ha
-/* 80AD46EC  C8 23 4B 38 */	lfd f1, lit_4860@l(r3)
+/* 80AD46E8  3C 60 80 AD */	lis r3, lit_4860@ha /* 0x80AD4B38@ha */
+/* 80AD46EC  C8 23 4B 38 */	lfd f1, lit_4860@l(r3)  /* 0x80AD4B38@l */
 /* 80AD46F0  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80AD46F4  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80AD46F8  3C 00 43 30 */	lis r0, 0x4330
 /* 80AD46FC  90 01 00 08 */	stw r0, 8(r1)
 /* 80AD4700  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80AD4704  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80AD4708  4B 79 32 4C */	b cM_rndF__Ff
-/* 80AD470C  3C 60 80 AD */	lis r3, lit_4860@ha
-/* 80AD4710  C8 43 4B 38 */	lfd f2, lit_4860@l(r3)
+/* 80AD4708  4B 79 32 4D */	bl cM_rndF__Ff
+/* 80AD470C  3C 60 80 AD */	lis r3, lit_4860@ha /* 0x80AD4B38@ha */
+/* 80AD4710  C8 43 4B 38 */	lfd f2, lit_4860@l(r3)  /* 0x80AD4B38@l */
 /* 80AD4714  6F E0 80 00 */	xoris r0, r31, 0x8000
 /* 80AD4718  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AD471C  3C 00 43 30 */	lis r0, 0x4330

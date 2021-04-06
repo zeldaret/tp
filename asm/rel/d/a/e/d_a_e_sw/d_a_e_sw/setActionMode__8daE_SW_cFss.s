@@ -3,8 +3,8 @@ lbl_807A7B64:
 /* 807A7B68  28 00 00 00 */	cmplwi r0, 0
 /* 807A7B6C  41 82 00 14 */	beq lbl_807A7B80
 /* 807A7B70  38 00 00 00 */	li r0, 0
-/* 807A7B74  3C C0 80 7B */	lis r6, struct_807B0200+0x0@ha
-/* 807A7B78  98 06 02 00 */	stb r0, struct_807B0200+0x0@l(r6)
+/* 807A7B74  3C C0 80 7B */	lis r6, struct_807B0200+0x0@ha /* 0x807B0200@ha */
+/* 807A7B78  98 06 02 00 */	stb r0, struct_807B0200+0x0@l(r6)  /* 0x807B0200@l */
 /* 807A7B7C  98 03 06 E6 */	stb r0, 0x6e6(r3)
 lbl_807A7B80:
 /* 807A7B80  38 00 00 00 */	li r0, 0

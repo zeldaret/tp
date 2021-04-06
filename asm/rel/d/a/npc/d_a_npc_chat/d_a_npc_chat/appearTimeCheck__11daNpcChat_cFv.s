@@ -4,20 +4,20 @@ lbl_80982C10:
 /* 80982C18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80982C1C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80982C20  7C 7F 1B 78 */	mr r31, r3
-/* 80982C24  4B 82 99 58 */	b dKy_darkworld_check__Fv
+/* 80982C24  4B 82 99 59 */	bl dKy_darkworld_check__Fv
 /* 80982C28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80982C2C  41 82 00 0C */	beq lbl_80982C38
-/* 80982C30  4B 81 CE C4 */	b dKy_getDarktime_hour__Fv
+/* 80982C30  4B 81 CE C5 */	bl dKy_getDarktime_hour__Fv
 /* 80982C34  48 00 00 08 */	b lbl_80982C3C
 lbl_80982C38:
-/* 80982C38  4B 81 CD D8 */	b dKy_getdaytime_hour__Fv
+/* 80982C38  4B 81 CD D9 */	bl dKy_getdaytime_hour__Fv
 lbl_80982C3C:
 /* 80982C3C  38 A0 00 00 */	li r5, 0
 /* 80982C40  88 1F 0E 22 */	lbz r0, 0xe22(r31)
 /* 80982C44  28 00 00 0F */	cmplwi r0, 0xf
 /* 80982C48  41 81 00 BC */	bgt lbl_80982D04
-/* 80982C4C  3C 80 80 99 */	lis r4, lit_5232@ha
-/* 80982C50  38 84 B7 A0 */	addi r4, r4, lit_5232@l
+/* 80982C4C  3C 80 80 99 */	lis r4, lit_5232@ha /* 0x8098B7A0@ha */
+/* 80982C50  38 84 B7 A0 */	addi r4, r4, lit_5232@l /* 0x8098B7A0@l */
 /* 80982C54  54 00 10 3A */	slwi r0, r0, 2
 /* 80982C58  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80982C5C  7C 09 03 A6 */	mtctr r0

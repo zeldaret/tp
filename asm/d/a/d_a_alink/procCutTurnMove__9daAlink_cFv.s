@@ -11,8 +11,8 @@ lbl_800D4EFC:
 /* 800D4F20  7C 7F 1B 78 */	mr r31, r3
 /* 800D4F24  38 80 00 00 */	li r4, 0
 /* 800D4F28  4B FD E8 0D */	bl setShapeAngleToAtnActor__9daAlink_cFi
-/* 800D4F2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D4F30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D4F2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D4F30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D4F34  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800D4F38  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800D4F3C  41 82 00 10 */	beq lbl_800D4F4C
@@ -101,8 +101,8 @@ lbl_800D5068:
 /* 800D5070  4B FD E1 E1 */	bl setDoStatus__9daAlink_cFUc
 /* 800D5074  48 00 00 14 */	b lbl_800D5088
 lbl_800D5078:
-/* 800D5078  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800D507C  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800D5078  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800D507C  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800D5080  A8 03 00 52 */	lha r0, 0x52(r3)
 /* 800D5084  B0 1F 30 7E */	sth r0, 0x307e(r31)
 lbl_800D5088:
@@ -114,8 +114,8 @@ lbl_800D5088:
 lbl_800D509C:
 /* 800D509C  2C 1E 00 00 */	cmpwi r30, 0
 /* 800D50A0  41 82 02 FC */	beq lbl_800D539C
-/* 800D50A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D50A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D50A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D50A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D50AC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800D50B0  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 800D50B4  4B F7 30 C9 */	bl cutEnd__16dEvent_manager_cFi
@@ -170,8 +170,8 @@ lbl_800D515C:
 /* 800D5168  40 82 00 28 */	bne lbl_800D5190
 lbl_800D516C:
 /* 800D516C  3B A0 00 77 */	li r29, 0x77
-/* 800D5170  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D5174  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D5170  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D5174  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D5178  C3 E3 00 58 */	lfs f31, 0x58(r3)
 /* 800D517C  C0 3F 33 98 */	lfs f1, 0x3398(r31)
 /* 800D5180  C0 02 92 98 */	lfs f0, lit_5943(r2)
@@ -195,8 +195,8 @@ lbl_800D51B4:
 /* 800D51C0  40 82 00 28 */	bne lbl_800D51E8
 lbl_800D51C4:
 /* 800D51C4  3B A0 00 76 */	li r29, 0x76
-/* 800D51C8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D51CC  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D51C8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D51CC  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D51D0  C3 E3 00 50 */	lfs f31, 0x50(r3)
 /* 800D51D4  C0 3F 33 98 */	lfs f1, 0x3398(r31)
 /* 800D51D8  C0 02 92 98 */	lfs f0, lit_5943(r2)
@@ -216,8 +216,8 @@ lbl_800D5208:
 /* 800D5208  88 1F 2F 98 */	lbz r0, 0x2f98(r31)
 /* 800D520C  7C 00 F0 00 */	cmpw r0, r30
 /* 800D5210  40 82 00 1C */	bne lbl_800D522C
-/* 800D5214  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D5218  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D5214  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D5218  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D521C  C0 23 00 60 */	lfs f1, 0x60(r3)
 /* 800D5220  C0 1F 33 AC */	lfs f0, 0x33ac(r31)
 /* 800D5224  EF C1 00 32 */	fmuls f30, f1, f0
@@ -235,36 +235,36 @@ lbl_800D5230:
 lbl_800D524C:
 /* 800D524C  7F E3 FB 78 */	mr r3, r31
 /* 800D5250  FC 20 F0 90 */	fmr f1, f30
-/* 800D5254  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D5258  38 84 DB 84 */	addi r4, r4, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D5254  3C 80 80 39 */	lis r4, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D5258  38 84 DB 84 */	addi r4, r4, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D525C  C0 44 00 64 */	lfs f2, 0x64(r4)
 /* 800D5260  4B FD E6 C5 */	bl setNormalSpeedF__9daAlink_cFff
 /* 800D5264  88 1F 2F 98 */	lbz r0, 0x2f98(r31)
 /* 800D5268  28 00 00 00 */	cmplwi r0, 0
 /* 800D526C  40 82 00 14 */	bne lbl_800D5280
-/* 800D5270  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D5274  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D5270  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D5274  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D5278  C3 C3 00 4C */	lfs f30, 0x4c(r3)
 /* 800D527C  48 00 00 48 */	b lbl_800D52C4
 lbl_800D5280:
 /* 800D5280  28 00 00 01 */	cmplwi r0, 1
 /* 800D5284  40 82 00 18 */	bne lbl_800D529C
-/* 800D5288  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D528C  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D5288  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D528C  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D5290  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 800D5294  FF C0 00 50 */	fneg f30, f0
 /* 800D5298  48 00 00 2C */	b lbl_800D52C4
 lbl_800D529C:
 /* 800D529C  28 00 00 03 */	cmplwi r0, 3
 /* 800D52A0  40 82 00 18 */	bne lbl_800D52B8
-/* 800D52A4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D52A8  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D52A4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D52A8  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D52AC  C0 03 00 54 */	lfs f0, 0x54(r3)
 /* 800D52B0  FF C0 00 50 */	fneg f30, f0
 /* 800D52B4  48 00 00 10 */	b lbl_800D52C4
 lbl_800D52B8:
-/* 800D52B8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D52BC  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D52B8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D52BC  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D52C0  C3 C3 00 54 */	lfs f30, 0x54(r3)
 lbl_800D52C4:
 /* 800D52C4  3B BF 1F D0 */	addi r29, r31, 0x1fd0

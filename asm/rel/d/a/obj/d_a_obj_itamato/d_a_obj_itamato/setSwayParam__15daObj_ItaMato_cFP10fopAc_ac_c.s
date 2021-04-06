@@ -5,11 +5,11 @@ lbl_80C2A630:
 /* 80C2A63C  DB E1 00 40 */	stfd f31, 0x40(r1)
 /* 80C2A640  F3 E1 00 48 */	psq_st f31, 72(r1), 0, 0 /* qr0 */
 /* 80C2A644  39 61 00 40 */	addi r11, r1, 0x40
-/* 80C2A648  4B 73 7B 94 */	b _savegpr_29
+/* 80C2A648  4B 73 7B 95 */	bl _savegpr_29
 /* 80C2A64C  7C 7E 1B 78 */	mr r30, r3
 /* 80C2A650  7C 9D 23 78 */	mr r29, r4
-/* 80C2A654  3C A0 80 C3 */	lis r5, m__21daObj_ItaMato_Param_c@ha
-/* 80C2A658  3B E5 AB 70 */	addi r31, r5, m__21daObj_ItaMato_Param_c@l
+/* 80C2A654  3C A0 80 C3 */	lis r5, m__21daObj_ItaMato_Param_c@ha /* 0x80C2AB70@ha */
+/* 80C2A658  3B E5 AB 70 */	addi r31, r5, m__21daObj_ItaMato_Param_c@l /* 0x80C2AB70@l */
 /* 80C2A65C  C3 FF 00 54 */	lfs f31, 0x54(r31)
 /* 80C2A660  80 BF 00 8C */	lwz r5, 0x8c(r31)
 /* 80C2A664  80 1F 00 90 */	lwz r0, 0x90(r31)
@@ -20,7 +20,7 @@ lbl_80C2A630:
 /* 80C2A678  38 BF 00 00 */	addi r5, r31, 0
 /* 80C2A67C  C0 05 00 10 */	lfs f0, 0x10(r5)
 /* 80C2A680  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80C2A684  4B 3F 00 8C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80C2A684  4B 3F 00 8D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80C2A688  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 80C2A68C  7C 60 18 50 */	subf r3, r0, r3
 /* 80C2A690  3C 63 00 01 */	addis r3, r3, 1
@@ -104,7 +104,7 @@ lbl_80C2A758:
 /* 80C2A7A4  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 80C2A7A8  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 80C2A7AC  39 61 00 40 */	addi r11, r1, 0x40
-/* 80C2A7B0  4B 73 7A 78 */	b _restgpr_29
+/* 80C2A7B0  4B 73 7A 79 */	bl _restgpr_29
 /* 80C2A7B4  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80C2A7B8  7C 08 03 A6 */	mtlr r0
 /* 80C2A7BC  38 21 00 50 */	addi r1, r1, 0x50

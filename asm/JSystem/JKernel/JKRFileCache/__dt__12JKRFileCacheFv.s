@@ -7,8 +7,8 @@ lbl_802D4C70:
 /* 802D4C84  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D4C88  7C 9F 23 78 */	mr r31, r4
 /* 802D4C8C  41 82 00 9C */	beq lbl_802D4D28
-/* 802D4C90  3C 80 80 3D */	lis r4, __vt__12JKRFileCache@ha
-/* 802D4C94  38 04 C2 38 */	addi r0, r4, __vt__12JKRFileCache@l
+/* 802D4C90  3C 80 80 3D */	lis r4, __vt__12JKRFileCache@ha /* 0x803CC238@ha */
+/* 802D4C94  38 04 C2 38 */	addi r0, r4, __vt__12JKRFileCache@l /* 0x803CC238@l */
 /* 802D4C98  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D4C9C  81 83 00 00 */	lwz r12, 0(r3)
 /* 802D4CA0  81 8C 00 24 */	lwz r12, 0x24(r12)
@@ -32,8 +32,8 @@ lbl_802D4CD4:
 /* 802D4CE0  80 6D 8D F0 */	lwz r3, sSystemHeap__7JKRHeap(r13)
 /* 802D4CE4  4B FF 98 65 */	bl free__7JKRHeapFPv
 lbl_802D4CE8:
-/* 802D4CE8  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
-/* 802D4CEC  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
+/* 802D4CE8  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha /* 0x80434354@ha */
+/* 802D4CEC  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l /* 0x80434354@l */
 /* 802D4CF0  38 9E 00 18 */	addi r4, r30, 0x18
 /* 802D4CF4  48 00 74 69 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D4CF8  34 1E 00 3C */	addic. r0, r30, 0x3c

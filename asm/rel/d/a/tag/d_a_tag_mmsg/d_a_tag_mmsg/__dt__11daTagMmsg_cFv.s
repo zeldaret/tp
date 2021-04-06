@@ -8,11 +8,11 @@ lbl_80D5BAB4:
 /* 80D5BACC  7C 9F 23 78 */	mr r31, r4
 /* 80D5BAD0  41 82 00 1C */	beq lbl_80D5BAEC
 /* 80D5BAD4  38 80 00 00 */	li r4, 0
-/* 80D5BAD8  4B 2B D1 B4 */	b __dt__10fopAc_ac_cFv
+/* 80D5BAD8  4B 2B D1 B5 */	bl __dt__10fopAc_ac_cFv
 /* 80D5BADC  7F E0 07 35 */	extsh. r0, r31
 /* 80D5BAE0  40 81 00 0C */	ble lbl_80D5BAEC
 /* 80D5BAE4  7F C3 F3 78 */	mr r3, r30
-/* 80D5BAE8  4B 57 32 54 */	b __dl__FPv
+/* 80D5BAE8  4B 57 32 55 */	bl __dl__FPv
 lbl_80D5BAEC:
 /* 80D5BAEC  7F C3 F3 78 */	mr r3, r30
 /* 80D5BAF0  83 E1 00 0C */	lwz r31, 0xc(r1)

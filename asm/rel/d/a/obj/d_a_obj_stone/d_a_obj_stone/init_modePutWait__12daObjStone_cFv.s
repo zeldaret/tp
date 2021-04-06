@@ -10,8 +10,8 @@ lbl_80CEAF88:
 /* 80CEAFA8  90 03 05 5C */	stw r0, 0x55c(r3)
 /* 80CEAFAC  88 03 09 06 */	lbz r0, 0x906(r3)
 /* 80CEAFB0  54 00 10 3A */	slwi r0, r0, 2
-/* 80CEAFB4  3C 80 80 CF */	lis r4, l_initial_offsetY@ha
-/* 80CEAFB8  38 84 CB 14 */	addi r4, r4, l_initial_offsetY@l
+/* 80CEAFB4  3C 80 80 CF */	lis r4, l_initial_offsetY@ha /* 0x80CECB14@ha */
+/* 80CEAFB8  38 84 CB 14 */	addi r4, r4, l_initial_offsetY@l /* 0x80CECB14@l */
 /* 80CEAFBC  7C 04 04 2E */	lfsx f0, r4, r0
 /* 80CEAFC0  D0 03 09 40 */	stfs f0, 0x940(r3)
 /* 80CEAFC4  38 00 00 00 */	li r0, 0

@@ -3,17 +3,15 @@
 #
 
 M29_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint.plf
+M29_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint.lcf
+M29_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint.map
 
 M29_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_chkpoint/executor.cpp \
-	rel/d/a/tag/d_a_tag_chkpoint/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_chkpoint/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_chkpoint/d_a_tag_chkpoint.cpp \
 
 M29_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/d_a_tag_chkpoint.o \
 
 M29_LIBS := \
@@ -29,15 +27,21 @@ M29_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map29.map\
+	-m _prolog \
+	-lcf $(M29_LDSCRIPT) \
+	-unused -map $(M29_MAP) \
+	-w off \
 
 $(M29_TARGET): $(M29_O_FILES) $(M29_LIBS)
+	@echo [ 29] creating $(M29_TARGET)
 	@echo $(M29_LIBS) $(M29_O_FILES) > build/M29_ofiles
-	$(LD) -opt_partial $(M29_LDFLAGS) -o $(M29_TARGET) @build/M29_ofiles
+	@python3 tools/lcf.py rel 29 --output $(M29_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M29_LDFLAGS) -o $(M29_TARGET) @build/M29_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chkpoint/%.o: rel/d/a/tag/d_a_tag_chkpoint/%.cpp
+	@echo [ 29] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M29_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M29_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

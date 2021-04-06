@@ -9,19 +9,19 @@ lbl_80D63CD8:
 /* 80D63CF4  40 82 00 1C */	bne lbl_80D63D10
 /* 80D63CF8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D63CFC  41 82 00 08 */	beq lbl_80D63D04
-/* 80D63D00  4B 2B 4E 64 */	b __ct__10fopAc_ac_cFv
+/* 80D63D00  4B 2B 4E 65 */	bl __ct__10fopAc_ac_cFv
 lbl_80D63D04:
 /* 80D63D04  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D63D08  60 00 00 08 */	ori r0, r0, 8
 /* 80D63D0C  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_80D63D10:
-/* 80D63D10  3C 60 80 D6 */	lis r3, lit_3831@ha
-/* 80D63D14  C0 23 3E 54 */	lfs f1, lit_3831@l(r3)
+/* 80D63D10  3C 60 80 D6 */	lis r3, lit_3831@ha /* 0x80D63E54@ha */
+/* 80D63D14  C0 23 3E 54 */	lfs f1, lit_3831@l(r3)  /* 0x80D63E54@l */
 /* 80D63D18  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
 /* 80D63D1C  EC 21 00 32 */	fmuls f1, f1, f0
-/* 80D63D20  3C 60 80 D6 */	lis r3, lit_3832@ha
-/* 80D63D24  C8 43 3E 5C */	lfd f2, lit_3832@l(r3)
-/* 80D63D28  4B 60 8A 58 */	b pow
+/* 80D63D20  3C 60 80 D6 */	lis r3, lit_3832@ha /* 0x80D63E5C@ha */
+/* 80D63D24  C8 43 3E 5C */	lfd f2, lit_3832@l(r3)  /* 0x80D63E5C@l */
+/* 80D63D28  4B 60 8A 59 */	bl pow
 /* 80D63D2C  FC 00 08 18 */	frsp f0, f1
 /* 80D63D30  D0 1F 05 68 */	stfs f0, 0x568(r31)
 /* 80D63D34  38 60 00 04 */	li r3, 4

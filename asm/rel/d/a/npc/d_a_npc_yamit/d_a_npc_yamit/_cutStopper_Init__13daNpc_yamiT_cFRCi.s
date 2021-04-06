@@ -8,7 +8,7 @@ lbl_80B4BA74:
 /* 80B4BA8C  48 00 00 0C */	b lbl_80B4BA98
 lbl_80B4BA90:
 /* 80B4BA90  80 63 0F 84 */	lwz r3, 0xf84(r3)
-/* 80B4BA94  48 21 A4 90 */	b offMidnaTagSw2__11daTagYami_cFv
+/* 80B4BA94  48 21 A4 91 */	bl offMidnaTagSw2__11daTagYami_cFv
 lbl_80B4BA98:
 /* 80B4BA98  38 60 00 01 */	li r3, 1
 /* 80B4BA9C  80 01 00 14 */	lwz r0, 0x14(r1)

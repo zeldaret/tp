@@ -5,8 +5,8 @@ lbl_80075EAC:
 /* 80075EB8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80075EBC  7C 7F 1B 78 */	mr r31, r3
 /* 80075EC0  48 1F 21 B5 */	bl __ct__13cBgS_PolyInfoFv
-/* 80075EC4  3C 60 80 3B */	lis r3, __vt__12dBgS_AcchCir@ha
-/* 80075EC8  38 03 B6 64 */	addi r0, r3, __vt__12dBgS_AcchCir@l
+/* 80075EC4  3C 60 80 3B */	lis r3, __vt__12dBgS_AcchCir@ha /* 0x803AB664@ha */
+/* 80075EC8  38 03 B6 64 */	addi r0, r3, __vt__12dBgS_AcchCir@l /* 0x803AB664@l */
 /* 80075ECC  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 80075ED0  38 7F 00 14 */	addi r3, r31, 0x14
 /* 80075ED4  48 1F 8F E1 */	bl __ct__8cM3dGCirFv

@@ -36,62 +36,41 @@ extern "C" void __div2i();
 // Declarations:
 //
 
-/* 80358C90-80358E88 01F8+00 s=2 e=0 z=0  None .text      UpdateIconOffsets */
+/* 80358C90-80358E88 3535D0 01F8+00 2/2 0/0 0/0 .text            UpdateIconOffsets */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void UpdateIconOffsets() {
+static asm void UpdateIconOffsets() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/UpdateIconOffsets.s"
 }
 #pragma pop
 
-/* 80358E88-80358F9C 0114+00 s=0 e=2 z=0  None .text      CARDGetStatus */
-//	80358EC0: 80353BB4 (__CARDGetControlBlock)
-//	80358ED4: 8035577C (__CARDGetDirBlock)
-//	80358EE8: 80357EA4 (__CARDIsReadable)
-//	80358F00: 80003540 (memcpy)
-//	80358F10: 80003540 (memcpy)
-//	80358F34: 80003540 (memcpy)
-//	80358F70: 80358C90 (UpdateIconOffsets)
-//	80358F7C: 80353C6C (__CARDPutControlBlock)
+/* 80358E88-80358F9C 3537C8 0114+00 0/0 2/2 0/0 .text            CARDGetStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDGetStatus() {
+asm void CARDGetStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDGetStatus.s"
 }
 #pragma pop
 
-/* 80358F9C-80359110 0174+00 s=1 e=0 z=0  None .text      CARDSetStatusAsync */
-//	80359018: 80353BB4 (__CARDGetControlBlock)
-//	8035902C: 8035577C (__CARDGetDirBlock)
-//	80359040: 80357D70 (__CARDIsWritable)
-//	80359050: 80353C6C (__CARDPutControlBlock)
-//	80359088: 80358C90 (UpdateIconOffsets)
-//	803590B8: 803426FC (OSGetTime)
-//	803590C4: 80362324 (__div2i)
-//	803590D4: 8035591C (__CARDUpdateDir)
-//	803590E8: 80353C6C (__CARDPutControlBlock)
+/* 80358F9C-80359110 3538DC 0174+00 1/1 0/0 0/0 .text            CARDSetStatusAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDSetStatusAsync() {
+static asm void CARDSetStatusAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDSetStatusAsync.s"
 }
 #pragma pop
 
-/* 80359110-80359158 0048+00 s=0 e=1 z=0  None .text      CARDSetStatus */
-//	80359114: 80352A34 (__CARDSyncCallback)
-//	8035911C: 80352A34 (__CARDSyncCallback)
-//	8035912C: 80358F9C (CARDSetStatusAsync)
-//	80359140: 80353E20 (__CARDSync)
+/* 80359110-80359158 353A50 0048+00 0/0 1/1 0/0 .text            CARDSetStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDSetStatus() {
+asm void CARDSetStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDSetStatus.s"
 }

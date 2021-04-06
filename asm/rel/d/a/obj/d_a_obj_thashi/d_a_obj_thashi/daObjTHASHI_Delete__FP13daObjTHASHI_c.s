@@ -2,7 +2,7 @@ lbl_80D0C2B8:
 /* 80D0C2B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80D0C2BC  7C 08 02 A6 */	mflr r0
 /* 80D0C2C0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80D0C2C4  4B 36 C6 18 */	b MoveBGDelete__16dBgS_MoveBgActorFv
+/* 80D0C2C4  4B 36 C6 19 */	bl MoveBGDelete__16dBgS_MoveBgActorFv
 /* 80D0C2C8  38 60 00 01 */	li r3, 1
 /* 80D0C2CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80D0C2D0  7C 08 03 A6 */	mtlr r0

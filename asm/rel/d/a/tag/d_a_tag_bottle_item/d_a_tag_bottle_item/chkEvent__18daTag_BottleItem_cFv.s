@@ -1,7 +1,7 @@
 lbl_80D56334:
 /* 80D56334  38 A0 00 01 */	li r5, 1
-/* 80D56338  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D5633C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D56338  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D5633C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D56340  38 00 00 00 */	li r0, 0
 /* 80D56344  88 84 4F AD */	lbz r4, 0x4fad(r4)
 /* 80D56348  28 04 00 00 */	cmplwi r4, 0

@@ -46,9 +46,7 @@ extern "C" extern void* __vt__8cM3dGLin[3];
 // Declarations:
 //
 
-/* 8026F2A8-8026F2E8 0040+00 s=0 e=8 z=1  None .text      __ct__8cM3dGLinFRC4cXyzRC4cXyz */
-//	8026F2A8: 803A78F8 (__vt__8cM3dGLin)
-//	8026F2AC: 803A78F8 (__vt__8cM3dGLin)
+/* 8026F2A8-8026F2E8 269BE8 0040+00 0/0 8/8 1/1 .text            __ct__8cM3dGLinFRC4cXyzRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -58,7 +56,7 @@ asm cM3dGLin::cM3dGLin(cXyz const& param_0, cXyz const& param_1) {
 }
 #pragma pop
 
-/* 8026F2E8-8026F31C 0034+00 s=0 e=8 z=10  None .text      SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz */
+/* 8026F2E8-8026F31C 269C28 0034+00 0/0 8/8 10/10 .text SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,7 +66,8 @@ asm void cM3dGLin::SetStartEnd(cXyz const& param_0, cXyz const& param_1) {
 }
 #pragma pop
 
-/* 8026F31C-8026F350 0034+00 s=0 e=7 z=4  None .text      SetStartEnd__8cM3dGLinFRC3VecRC3Vec */
+/* 8026F31C-8026F350 269C5C 0034+00 0/0 7/7 4/4 .text            SetStartEnd__8cM3dGLinFRC3VecRC3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,10 +77,7 @@ asm void cM3dGLin::SetStartEnd(Vec const& param_0, Vec const& param_1) {
 }
 #pragma pop
 
-/* 8026F350-8026F3C0 0070+00 s=0 e=3 z=0  None .text      CalcPos__8cM3dGLinCFP3Vecf */
-//	8026F380: 803470B4 (PSVECSubtract)
-//	8026F390: 803470D8 (PSVECScale)
-//	8026F3A0: 80347090 (PSVECAdd)
+/* 8026F350-8026F3C0 269C90 0070+00 0/0 3/3 0/0 .text            CalcPos__8cM3dGLinCFP3Vecf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -91,7 +87,7 @@ asm void cM3dGLin::CalcPos(Vec* param_0, f32 param_1) const {
 }
 #pragma pop
 
-/* 8026F3C0-8026F3DC 001C+00 s=0 e=1 z=0  None .text      SetEnd__8cM3dGLinFRC4cXyz */
+/* 8026F3C0-8026F3DC 269D00 001C+00 0/0 1/1 0/0 .text            SetEnd__8cM3dGLinFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

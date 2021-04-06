@@ -1,14 +1,14 @@
 lbl_80C8BD0C:
-/* 80C8BD0C  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C8BD10  38 04 CD 68 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C8BD0C  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C8CD68@ha */
+/* 80C8BD10  38 04 CD 68 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C8CD68@l */
 /* 80C8BD14  90 03 00 00 */	stw r0, 0(r3)
-/* 80C8BD18  3C 80 80 C9 */	lis r4, __vt__15daUdFloor_HIO_c@ha
-/* 80C8BD1C  38 04 CD 5C */	addi r0, r4, __vt__15daUdFloor_HIO_c@l
+/* 80C8BD18  3C 80 80 C9 */	lis r4, __vt__15daUdFloor_HIO_c@ha /* 0x80C8CD5C@ha */
+/* 80C8BD1C  38 04 CD 5C */	addi r0, r4, __vt__15daUdFloor_HIO_c@l /* 0x80C8CD5C@l */
 /* 80C8BD20  90 03 00 00 */	stw r0, 0(r3)
 /* 80C8BD24  38 00 00 3C */	li r0, 0x3c
 /* 80C8BD28  98 03 00 04 */	stb r0, 4(r3)
-/* 80C8BD2C  3C 80 80 C9 */	lis r4, lit_3628@ha
-/* 80C8BD30  C0 04 CB F0 */	lfs f0, lit_3628@l(r4)
+/* 80C8BD2C  3C 80 80 C9 */	lis r4, lit_3628@ha /* 0x80C8CBF0@ha */
+/* 80C8BD30  C0 04 CB F0 */	lfs f0, lit_3628@l(r4)  /* 0x80C8CBF0@l */
 /* 80C8BD34  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80C8BD38  38 00 00 04 */	li r0, 4
 /* 80C8BD3C  98 03 00 0C */	stb r0, 0xc(r3)

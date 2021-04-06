@@ -3,18 +3,16 @@
 #
 
 M641_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight.plf
+M641_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight.lcf
+M641_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight.map
 
 M641_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swLight/executor.cpp \
-	rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swLight/d_a_obj_swLight.cpp \
 
 M641_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/d_a_obj_swLight.o \
 
@@ -31,15 +29,21 @@ M641_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map641.map\
+	-m _prolog \
+	-lcf $(M641_LDSCRIPT) \
+	-unused -map $(M641_MAP) \
+	-w off \
 
 $(M641_TARGET): $(M641_O_FILES) $(M641_LIBS)
+	@echo [641] creating $(M641_TARGET)
 	@echo $(M641_LIBS) $(M641_O_FILES) > build/M641_ofiles
-	$(LD) -opt_partial $(M641_LDFLAGS) -o $(M641_TARGET) @build/M641_ofiles
+	@python3 tools/lcf.py rel 641 --output $(M641_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M641_LDFLAGS) -o $(M641_TARGET) @build/M641_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swLight/%.o: rel/d/a/obj/d_a_obj_swLight/%.cpp
+	@echo [641] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M641_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M641_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

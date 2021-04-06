@@ -19,11 +19,11 @@ struct fopAc_ac_c {
 
 struct e_bi_leaf_class {};
 
-struct cXyz {};
+struct J3DModelData {};
 
 struct dKy_tevstr_c {};
 
-struct J3DModelData {};
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -44,14 +44,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daE_BI_LEAF_Draw(e_bi_leaf_class*);
-static void action(e_bi_leaf_class*);
-static void daE_BI_LEAF_Execute(e_bi_leaf_class*);
-static bool daE_BI_LEAF_IsDelete(e_bi_leaf_class*);
-static void daE_BI_LEAF_Delete(e_bi_leaf_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daE_BI_LEAF_Create(fopAc_ac_c*);
-
 extern "C" static void daE_BI_LEAF_Draw__FP15e_bi_leaf_class();
 extern "C" static void action__FP15e_bi_leaf_class();
 extern "C" static void daE_BI_LEAF_Execute__FP15e_bi_leaf_class();
@@ -59,23 +51,12 @@ extern "C" static bool daE_BI_LEAF_IsDelete__FP15e_bi_leaf_class();
 extern "C" static void daE_BI_LEAF_Delete__FP15e_bi_leaf_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daE_BI_LEAF_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_e_bi_leaf__stringBase0;
 extern "C" extern void* g_profile_E_BI_LEAF[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fpcSch_JudgeByID(void*, void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -102,124 +83,74 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 8068DC58-8068DCD0 0078+00 s=1 e=0 z=0  None .text      daE_BI_LEAF_Draw__FP15e_bi_leaf_class */
-//	8068DC80: 8042CA54 (g_env_light)
-//	8068DC84: 8042CA54 (g_env_light)
-//	8068DC94: 801A37C4 (settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c)
-//	8068DC98: 8042CA54 (g_env_light)
-//	8068DC9C: 8042CA54 (g_env_light)
-//	8068DCAC: 801A4DA0
-//(setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c) 	8068DCB4:
-// 8000DCC4 (mDoExt_modelUpdateDL__FP8J3DModel)
+/* 8068DC58-8068DCD0 000078 0078+00 1/0 0/0 0/0 .text daE_BI_LEAF_Draw__FP15e_bi_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_BI_LEAF_Draw(e_bi_leaf_class* param_0) {
+static asm void daE_BI_LEAF_Draw(e_bi_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/daE_BI_LEAF_Draw__FP15e_bi_leaf_class.s"
 }
 #pragma pop
 
-/* 8068DCD0-8068DDD0 0100+00 s=1 e=0 z=0  None .text      action__FP15e_bi_leaf_class */
-//	8068DD14: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	8068DD18: 80023590 (fpcSch_JudgeByID__FPvPv)
-//	8068DD20: 800197F8 (fopAcIt_Judge__FPFPvPv_PvPv)
-//	8068DDAC: 80019EF0 (fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i)
+/* 8068DCD0-8068DDD0 0000F0 0100+00 1/1 0/0 0/0 .text            action__FP15e_bi_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void action(e_bi_leaf_class* param_0) {
+static asm void action(e_bi_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/action__FP15e_bi_leaf_class.s"
 }
 #pragma pop
 
-/* 8068DDD0-8068DE68 0098+00 s=2 e=0 z=0  None .text      daE_BI_LEAF_Execute__FP15e_bi_leaf_class
- */
-//	8068DDFC: 8068DCD0 (action__FP15e_bi_leaf_class)
-//	8068DE14: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE18: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE28: 803468E8 (PSMTXTrans)
-//	8068DE2C: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE30: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE38: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	8068DE3C: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE40: 803DD470 (now__14mDoMtx_stack_c)
-//	8068DE4C: 803464B0 (PSMTXCopy)
+/* 8068DDD0-8068DE68 0001F0 0098+00 2/1 0/0 0/0 .text daE_BI_LEAF_Execute__FP15e_bi_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_BI_LEAF_Execute(e_bi_leaf_class* param_0) {
+static asm void daE_BI_LEAF_Execute(e_bi_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/daE_BI_LEAF_Execute__FP15e_bi_leaf_class.s"
 }
 #pragma pop
 
-/* 8068DE68-8068DE70 0008+00 s=1 e=0 z=0  None .text      daE_BI_LEAF_IsDelete__FP15e_bi_leaf_class
- */
+/* 8068DE68-8068DE70 000288 0008+00 1/0 0/0 0/0 .text daE_BI_LEAF_IsDelete__FP15e_bi_leaf_class */
 static bool daE_BI_LEAF_IsDelete(e_bi_leaf_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8068DFE0-8068DFE8 0005+03 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8068DFE0 = "E_BI";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8068DFE5 = "\0\0";
-#pragma pop
-
-/* 8068DE70-8068DEA0 0030+00 s=1 e=0 z=0  None .text      daE_BI_LEAF_Delete__FP15e_bi_leaf_class */
-//	8068DE7C: 8068DFE0 (stringBase0)
-//	8068DE80: 8068DFE0 (stringBase0)
-//	8068DE88: 8002D008 (dComIfG_resDelete__FP30request_of_phase_process_classPCc)
+/* 8068DE70-8068DEA0 000290 0030+00 1/0 0/0 0/0 .text daE_BI_LEAF_Delete__FP15e_bi_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_BI_LEAF_Delete(e_bi_leaf_class* param_0) {
+static asm void daE_BI_LEAF_Delete(e_bi_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/daE_BI_LEAF_Delete__FP15e_bi_leaf_class.s"
 }
 #pragma pop
 
-/* 8068DEA0-8068DF24 0084+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
-//	8068DEC0: 8068DFE0 (stringBase0)
-//	8068DEC4: 8068DFE0 (stringBase0)
-//	8068DECC: 804061C0 (g_dComIfG_gameInfo)
-//	8068DED0: 804061C0 (g_dComIfG_gameInfo)
-//	8068DEE0: 8003C2EC (getRes__14dRes_control_cFPCclP11dRes_info_ci)
-//	8068DEF0: 80014C54 (mDoExt_J3DModel__create__FP12J3DModelDataUlUl)
+/* 8068DEA0-8068DF24 0002C0 0084+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8068DF24-8068DFD8 00B4+00 s=1 e=0 z=0  None .text      daE_BI_LEAF_Create__FP10fopAc_ac_c */
-//	8068DF50: 80018B64 (__ct__10fopAc_ac_cFv)
-//	8068DF64: 8068DFE0 (stringBase0)
-//	8068DF68: 8068DFE0 (stringBase0)
-//	8068DF6C: 8002CEBC (dComIfG_resLoad__FP30request_of_phase_process_classPCc)
-//	8068DF88: 8068DEA0 (useHeapInit__FP10fopAc_ac_c)
-//	8068DF8C: 8068DEA0 (useHeapInit__FP10fopAc_ac_c)
-//	8068DF94: 8001A4B0 (fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl)
-//	8068DFB8: 8068DDD0 (daE_BI_LEAF_Execute__FP15e_bi_leaf_class)
+/* 8068DF24-8068DFD8 000344 00B4+00 1/0 0/0 0/0 .text            daE_BI_LEAF_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_BI_LEAF_Create(fopAc_ac_c* param_0) {
+static asm void daE_BI_LEAF_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf/daE_BI_LEAF_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8068DFE8-8068E008 0020+00 s=1 e=0 z=0  None .data      l_daE_BI_LEAF_Method */
+/* 8068DFE8-8068E008 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_BI_LEAF_Method */
 SECTION_DATA static void* l_daE_BI_LEAF_Method[8] = {
     (void*)daE_BI_LEAF_Create__FP10fopAc_ac_c,
     (void*)daE_BI_LEAF_Delete__FP15e_bi_leaf_class,
@@ -231,8 +162,8 @@ SECTION_DATA static void* l_daE_BI_LEAF_Method[8] = {
     (void*)NULL,
 };
 
-/* 8068E008-8068E038 0030+00 s=0 e=0 z=1  None .data      g_profile_E_BI_LEAF */
-SECTION_DATA void* g_profile_E_BI_LEAF[12] = {
+/* 8068E008-8068E038 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_BI_LEAF */
+SECTION_DATA extern void* g_profile_E_BI_LEAF[12] = {
     (void*)0xFFFFFFFD, (void*)0x0009FFFD,
     (void*)0x03050000, (void*)&g_fpcLf_Method,
     (void*)0x000005D0, (void*)NULL,
@@ -240,3 +171,12 @@ SECTION_DATA void* g_profile_E_BI_LEAF[12] = {
     (void*)0x00940000, (void*)&l_daE_BI_LEAF_Method,
     (void*)0x00040000, (void*)NULL,
 };
+
+/* 8068DFE0-8068DFE8 000000 0005+03 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8068DFE0 = "E_BI";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8068DFE5 = "\0\0";
+#pragma pop

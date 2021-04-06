@@ -3,8 +3,8 @@ lbl_8006DA04:
 /* 8006DA08  7C 08 02 A6 */	mflr r0
 /* 8006DA0C  90 01 00 84 */	stw r0, 0x84(r1)
 /* 8006DA10  93 E1 00 7C */	stw r31, 0x7c(r1)
-/* 8006DA14  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006DA18  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006DA14  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006DA18  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006DA1C  83 E3 10 58 */	lwz r31, 0x1058(r3)
 /* 8006DA20  38 61 00 08 */	addi r3, r1, 8
 /* 8006DA24  4B FE D0 DD */	bl dKyw_get_wind_vecpow__Fv

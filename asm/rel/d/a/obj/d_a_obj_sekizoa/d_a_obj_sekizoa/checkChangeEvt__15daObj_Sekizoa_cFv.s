@@ -10,7 +10,7 @@ lbl_80CCF6BC:
 lbl_80CCF6DC:
 /* 80CCF6DC  38 00 00 07 */	li r0, 7
 /* 80CCF6E0  B0 03 0E 30 */	sth r0, 0xe30(r3)
-/* 80CCF6E4  4B 47 AB 40 */	b evtChange__8daNpcT_cFv
+/* 80CCF6E4  4B 47 AB 41 */	bl evtChange__8daNpcT_cFv
 /* 80CCF6E8  38 60 00 01 */	li r3, 1
 /* 80CCF6EC  48 00 00 08 */	b lbl_80CCF6F4
 lbl_80CCF6F0:

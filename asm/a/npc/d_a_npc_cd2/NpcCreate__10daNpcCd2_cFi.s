@@ -75,8 +75,8 @@ lbl_80157DD0:
 /* 80157E14  48 17 6E 39 */	bl __nw__FUl
 /* 80157E18  7C 7B 1B 79 */	or. r27, r3, r3
 /* 80157E1C  41 82 00 20 */	beq lbl_80157E3C
-/* 80157E20  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80157E24  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80157E20  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80157E24  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80157E28  90 1B 00 00 */	stw r0, 0(r27)
 /* 80157E2C  38 80 00 00 */	li r4, 0
 /* 80157E30  48 1D 05 CD */	bl init__12J3DFrameCtrlFs
@@ -106,8 +106,8 @@ lbl_80157E7C:
 /* 80157E84  90 1C 0A A4 */	stw r0, 0xaa4(r28)
 lbl_80157E88:
 /* 80157E88  1C 1D 00 0C */	mulli r0, r29, 0xc
-/* 80157E8C  3C 60 80 39 */	lis r3, a_transScaleTbl@ha
-/* 80157E90  38 63 39 94 */	addi r3, r3, a_transScaleTbl@l
+/* 80157E8C  3C 60 80 39 */	lis r3, a_transScaleTbl@ha /* 0x80393994@ha */
+/* 80157E90  38 63 39 94 */	addi r3, r3, a_transScaleTbl@l /* 0x80393994@l */
 /* 80157E94  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80157E98  D0 41 00 18 */	stfs f2, 0x18(r1)
 /* 80157E9C  7C 63 02 14 */	add r3, r3, r0
@@ -123,8 +123,8 @@ lbl_80157E88:
 /* 80157EC4  D0 23 00 44 */	stfs f1, 0x44(r3)
 /* 80157EC8  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 80157ECC  38 A0 00 00 */	li r5, 0
-/* 80157ED0  3C 60 80 15 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha
-/* 80157ED4  38 83 7C B4 */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l
+/* 80157ED0  3C 60 80 15 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha /* 0x80157CB4@ha */
+/* 80157ED4  38 83 7C B4 */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l /* 0x80157CB4@l */
 /* 80157ED8  48 00 00 18 */	b lbl_80157EF0
 lbl_80157EDC:
 /* 80157EDC  80 7F 00 28 */	lwz r3, 0x28(r31)

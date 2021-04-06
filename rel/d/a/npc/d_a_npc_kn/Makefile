@@ -3,19 +3,20 @@
 #
 
 M327_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn.plf
+M327_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn.lcf
+M327_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn.map
 
 M327_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kn/executor.cpp \
-	rel/d/a/npc/d_a_npc_kn/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kn/d_a_npc_kn.cpp \
 
 M327_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn/d_a_npc_kn.o \
 
 M327_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn/libRuntime.PPCEABI.H.a \
 
 M327_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M327_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map327.map\
+	-m _prolog \
+	-lcf $(M327_LDSCRIPT) \
+	-unused -map $(M327_MAP) \
+	-w off \
 
 $(M327_TARGET): $(M327_O_FILES) $(M327_LIBS)
+	@echo [327] creating $(M327_TARGET)
 	@echo $(M327_LIBS) $(M327_O_FILES) > build/M327_ofiles
-	$(LD) -opt_partial $(M327_LDFLAGS) -o $(M327_TARGET) @build/M327_ofiles
+	@python3 tools/lcf.py rel 327 --output $(M327_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M327_LDFLAGS) -o $(M327_TARGET) @build/M327_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kn/%.o: rel/d/a/npc/d_a_npc_kn/%.cpp
+	@echo [327] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M327_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M327_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kn/libs/Runtime.PPCEABI.H/Makefile
 

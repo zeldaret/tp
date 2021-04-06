@@ -70,8 +70,8 @@ lbl_8010D108:
 /* 8010D130  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 8010D134  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8010D138  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 8010D13C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010D140  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010D13C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010D140  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010D144  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8010D148  38 80 00 03 */	li r4, 3
 /* 8010D14C  38 A0 00 01 */	li r5, 1

@@ -16,8 +16,8 @@ lbl_802D1830:
 /* 802D1868  80 9F 00 50 */	lwz r4, 0x50(r31)
 /* 802D186C  80 BF 00 54 */	lwz r5, 0x54(r31)
 /* 802D1870  48 06 D1 25 */	bl OSInitMessageQueue
-/* 802D1874  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
-/* 802D1878  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l
+/* 802D1874  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha /* 0x8043428C@ha */
+/* 802D1878  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l /* 0x8043428C@l */
 /* 802D187C  38 9F 00 18 */	addi r4, r31, 0x18
 /* 802D1880  48 00 A6 CD */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802D1884  38 00 00 00 */	li r0, 0

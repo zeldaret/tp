@@ -1,8 +1,8 @@
 lbl_80C142AC:
 /* 80C142AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80C142B0  A8 03 06 32 */	lha r0, 0x632(r3)
-/* 80C142B4  3C 80 80 C1 */	lis r4, lit_3891@ha
-/* 80C142B8  C8 44 49 E8 */	lfd f2, lit_3891@l(r4)
+/* 80C142B4  3C 80 80 C1 */	lis r4, lit_3891@ha /* 0x80C149E8@ha */
+/* 80C142B8  C8 44 49 E8 */	lfd f2, lit_3891@l(r4)  /* 0x80C149E8@l */
 /* 80C142BC  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80C142C0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80C142C4  3C A0 43 30 */	lis r5, 0x4330
@@ -10,8 +10,8 @@ lbl_80C142AC:
 /* 80C142CC  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80C142D0  EC 00 10 28 */	fsubs f0, f0, f2
 /* 80C142D4  D0 03 06 3C */	stfs f0, 0x63c(r3)
-/* 80C142D8  3C 80 80 C1 */	lis r4, lit_3712@ha
-/* 80C142DC  C0 24 49 E4 */	lfs f1, lit_3712@l(r4)
+/* 80C142D8  3C 80 80 C1 */	lis r4, lit_3712@ha /* 0x80C149E4@ha */
+/* 80C142DC  C0 24 49 E4 */	lfs f1, lit_3712@l(r4)  /* 0x80C149E4@l */
 /* 80C142E0  D0 23 06 38 */	stfs f1, 0x638(r3)
 /* 80C142E4  38 80 00 00 */	li r4, 0
 /* 80C142E8  98 83 06 31 */	stb r4, 0x631(r3)

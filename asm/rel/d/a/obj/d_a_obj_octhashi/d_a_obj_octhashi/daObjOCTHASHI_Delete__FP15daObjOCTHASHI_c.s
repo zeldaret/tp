@@ -4,7 +4,7 @@ lbl_80CA4DB8:
 /* 80CA4DC0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CA4DC4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CA4DC8  7C 7F 1B 78 */	mr r31, r3
-/* 80CA4DCC  4B 3D 3B 10 */	b MoveBGDelete__16dBgS_MoveBgActorFv
+/* 80CA4DCC  4B 3D 3B 11 */	bl MoveBGDelete__16dBgS_MoveBgActorFv
 /* 80CA4DD0  38 7F 06 EC */	addi r3, r31, 0x6ec
 /* 80CA4DD4  81 9F 06 EC */	lwz r12, 0x6ec(r31)
 /* 80CA4DD8  81 8C 00 08 */	lwz r12, 8(r12)

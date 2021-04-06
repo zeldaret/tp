@@ -2,8 +2,8 @@ lbl_8024BB9C:
 /* 8024BB9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024BBA0  7C 08 02 A6 */	mflr r0
 /* 8024BBA4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8024BBA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024BBAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024BBA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024BBAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024BBB0  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8024BBB4  38 80 00 01 */	li r4, 1
 /* 8024BBB8  81 83 06 28 */	lwz r12, 0x628(r3)

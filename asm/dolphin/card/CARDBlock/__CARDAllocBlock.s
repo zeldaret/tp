@@ -3,8 +3,8 @@ lbl_803555B8:
 /* 803555BC  1C E3 01 10 */	mulli r7, r3, 0x110
 /* 803555C0  90 01 00 04 */	stw r0, 4(r1)
 /* 803555C4  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 803555C8  3C C0 80 45 */	lis r6, __CARDBlock@ha
-/* 803555CC  38 06 CB C0 */	addi r0, r6, __CARDBlock@l
+/* 803555C8  3C C0 80 45 */	lis r6, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 803555CC  38 06 CB C0 */	addi r0, r6, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803555D0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 803555D4  7D 20 3A 14 */	add r9, r0, r7
 /* 803555D8  93 C1 00 18 */	stw r30, 0x18(r1)

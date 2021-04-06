@@ -59,8 +59,8 @@ lbl_80A231D0:
 /* 80A231E4  41 82 00 80 */	beq lbl_80A23264
 /* 80A231E8  7F E3 FB 78 */	mr r3, r31
 /* 80A231EC  A0 9E 00 00 */	lhz r4, 0(r30)
-/* 80A231F0  3C A0 80 A2 */	lis r5, lit_4449@ha
-/* 80A231F4  C0 25 59 5C */	lfs f1, lit_4449@l(r5)
+/* 80A231F0  3C A0 80 A2 */	lis r5, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A231F4  C0 25 59 5C */	lfs f1, lit_4449@l(r5)  /* 0x80A2595C@l */
 /* 80A231F8  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80A231FC  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 80A23200  7D 89 03 A6 */	mtctr r12
@@ -72,24 +72,24 @@ lbl_80A231D0:
 /* 80A23218  A8 1F 09 E0 */	lha r0, 0x9e0(r31)
 /* 80A2321C  2C 00 00 0B */	cmpwi r0, 0xb
 /* 80A23220  40 82 00 14 */	bne lbl_80A23234
-/* 80A23224  3C 60 80 A2 */	lis r3, m__20daNpcKasiKyu_Param_c@ha
-/* 80A23228  38 63 58 B8 */	addi r3, r3, m__20daNpcKasiKyu_Param_c@l
+/* 80A23224  3C 60 80 A2 */	lis r3, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A23228  38 63 58 B8 */	addi r3, r3, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A2322C  C0 23 00 44 */	lfs f1, 0x44(r3)
 /* 80A23230  48 00 00 20 */	b lbl_80A23250
 lbl_80A23234:
-/* 80A23234  3C 60 80 A2 */	lis r3, lit_4449@ha
-/* 80A23238  C0 03 59 5C */	lfs f0, lit_4449@l(r3)
+/* 80A23234  3C 60 80 A2 */	lis r3, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A23238  C0 03 59 5C */	lfs f0, lit_4449@l(r3)  /* 0x80A2595C@l */
 /* 80A2323C  C0 5F 09 7C */	lfs f2, 0x97c(r31)
 /* 80A23240  FC 00 10 40 */	fcmpo cr0, f0, f2
 /* 80A23244  4C 40 13 82 */	cror 2, 0, 2
 /* 80A23248  40 82 00 08 */	bne lbl_80A23250
 /* 80A2324C  FC 20 10 90 */	fmr f1, f2
 lbl_80A23250:
-/* 80A23250  3C 60 80 A2 */	lis r3, lit_4449@ha
-/* 80A23254  C0 03 59 5C */	lfs f0, lit_4449@l(r3)
+/* 80A23250  3C 60 80 A2 */	lis r3, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A23254  C0 03 59 5C */	lfs f0, lit_4449@l(r3)  /* 0x80A2595C@l */
 /* 80A23258  D0 1F 09 78 */	stfs f0, 0x978(r31)
 /* 80A2325C  80 7F 05 68 */	lwz r3, 0x568(r31)
-/* 80A23260  4B 5E C9 1C */	b setMorf__13mDoExt_morf_cFf
+/* 80A23260  4B 5E C9 1D */	bl setMorf__13mDoExt_morf_cFf
 lbl_80A23264:
 /* 80A23264  A8 1F 09 DA */	lha r0, 0x9da(r31)
 /* 80A23268  B0 1F 09 DC */	sth r0, 0x9dc(r31)

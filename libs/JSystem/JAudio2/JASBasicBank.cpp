@@ -47,15 +47,10 @@ extern "C" void getInst__12JASBasicBankCFi();
 extern "C" void __dt__7JASBankFv();
 extern "C" void __dt__12JASBasicBankFv();
 extern "C" void getType__12JASBasicBankCFv();
-extern "C" extern void* __vt__12JASBasicBank[5];
-extern "C" extern void* __vt__7JASBank[5];
 
 //
 // External References:
 //
-
-void* operator new[](u32, JKRHeap*, int);
-void operator delete(void*);
 
 extern "C" void bzero__7JASCalcFPvUl();
 extern "C" void* __nwa__FUlP7JKRHeapi();
@@ -68,8 +63,8 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C76A8-803C76BC 0014+00 s=2 e=0 z=0  None .data      __vt__12JASBasicBank */
-SECTION_DATA void* __vt__12JASBasicBank[5] = {
+/* 803C76A8-803C76BC 0247C8 0014+00 2/2 0/0 0/0 .data            __vt__12JASBasicBank */
+SECTION_DATA extern void* __vt__12JASBasicBank[5] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JASBasicBankFv,
@@ -77,16 +72,12 @@ SECTION_DATA void* __vt__12JASBasicBank[5] = {
     (void*)getType__12JASBasicBankCFv,
 };
 
-/* 803C76BC-803C76D0 0014+00 s=3 e=2 z=0  None .data      __vt__7JASBank */
-SECTION_DATA void* __vt__7JASBank[5] = {
+/* 803C76BC-803C76D0 0247DC 0014+00 3/3 2/2 0/0 .data            __vt__7JASBank */
+SECTION_DATA extern void* __vt__7JASBank[5] = {
     (void*)NULL /* RTTI */, (void*)NULL, (void*)__dt__7JASBankFv, (void*)NULL, (void*)NULL,
 };
 
-/* 80297D78-80297DA4 002C+00 s=0 e=2 z=0  None .text      __ct__12JASBasicBankFv */
-//	80297D78: 803C76BC (__vt__7JASBank)
-//	80297D7C: 803C76BC (__vt__7JASBank)
-//	80297D8C: 803C76A8 (__vt__12JASBasicBank)
-//	80297D90: 803C76A8 (__vt__12JASBasicBank)
+/* 80297D78-80297DA4 2926B8 002C+00 0/0 2/2 0/0 .text            __ct__12JASBasicBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,10 +87,7 @@ asm JASBasicBank::JASBasicBank() {
 }
 #pragma pop
 
-/* 80297DA4-80297E00 005C+00 s=0 e=2 z=0  None .text      newInstTable__12JASBasicBankFUcP7JKRHeap
- */
-//	80297DD4: 802CED10 (__nwa__FUlP7JKRHeapi)
-//	80297DE8: 8028F480 (bzero__7JASCalcFPvUl)
+/* 80297DA4-80297E00 2926E4 005C+00 0/0 2/2 0/0 .text newInstTable__12JASBasicBankFUcP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -109,11 +97,8 @@ asm void JASBasicBank::newInstTable(u8 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 80297E00-80297E68 0068+00 s=1 e=0 z=0  None .text
+/* 80297E00-80297E68 292740 0068+00 1/0 0/0 0/0 .text
  * getInstParam__12JASBasicBankCFiiiP12JASInstParam             */
-//	80297E10: 803621DC (_savegpr_29)
-//	80297E20: 80297E80 (getInst__12JASBasicBankCFi)
-//	80297E54: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -124,7 +109,8 @@ asm void JASBasicBank::getInstParam(int param_0, int param_1, int param_2,
 }
 #pragma pop
 
-/* 80297E68-80297E80 0018+00 s=0 e=2 z=0  None .text      setInst__12JASBasicBankFiP7JASInst */
+/* 80297E68-80297E80 2927A8 0018+00 0/0 2/2 0/0 .text            setInst__12JASBasicBankFiP7JASInst
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -134,7 +120,7 @@ asm void JASBasicBank::setInst(int param_0, JASInst* param_1) {
 }
 #pragma pop
 
-/* 80297E80-80297EC4 0044+00 s=1 e=1 z=0  None .text      getInst__12JASBasicBankCFi */
+/* 80297E80-80297EC4 2927C0 0044+00 1/1 1/1 0/0 .text            getInst__12JASBasicBankCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -144,10 +130,7 @@ asm void JASBasicBank::getInst(int param_0) const {
 }
 #pragma pop
 
-/* 80297EC4-80297F0C 0048+00 s=1 e=0 z=0  None .text      __dt__7JASBankFv */
-//	80297EDC: 803C76BC (__vt__7JASBank)
-//	80297EE0: 803C76BC (__vt__7JASBank)
-//	80297EF0: 802CED3C (__dl__FPv)
+/* 80297EC4-80297F0C 292804 0048+00 1/0 0/0 0/0 .text            __dt__7JASBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -157,12 +140,7 @@ asm JASBank::~JASBank() {
 }
 #pragma pop
 
-/* 80297F0C-80297F68 005C+00 s=1 e=0 z=0  None .text      __dt__12JASBasicBankFv */
-//	80297F24: 803C76A8 (__vt__12JASBasicBank)
-//	80297F28: 803C76A8 (__vt__12JASBasicBank)
-//	80297F34: 803C76BC (__vt__7JASBank)
-//	80297F38: 803C76BC (__vt__7JASBank)
-//	80297F4C: 802CED3C (__dl__FPv)
+/* 80297F0C-80297F68 29284C 005C+00 1/0 0/0 0/0 .text            __dt__12JASBasicBankFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,7 +150,7 @@ asm JASBasicBank::~JASBasicBank() {
 }
 #pragma pop
 
-/* 80297F68-80297F74 000C+00 s=1 e=0 z=0  None .text      getType__12JASBasicBankCFv */
+/* 80297F68-80297F74 2928A8 000C+00 1/0 0/0 0/0 .text            getType__12JASBasicBankCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -57,14 +57,10 @@ extern "C" void
 create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object();
 extern "C" void
 createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject();
-extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __dt__Q27JStudio13TCreateObjectFv();
 extern "C" void
@@ -80,9 +76,8 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C5A68-803C5A78 0010+00 s=1 e=1 z=0  None .data      __vt__Q215JStudio_JAudio213TCreateObject
- */
-SECTION_DATA void* __vt__Q215JStudio_JAudio213TCreateObject[4] = {
+/* 803C5A68-803C5A78 022B88 0010+00 1/1 1/1 0/0 .data __vt__Q215JStudio_JAudio213TCreateObject */
+SECTION_DATA extern void* __vt__Q215JStudio_JAudio213TCreateObject[4] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q215JStudio_JAudio213TCreateObjectFv,
@@ -90,12 +85,8 @@ SECTION_DATA void* __vt__Q215JStudio_JAudio213TCreateObject[4] = {
         create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object,
 };
 
-/* 8028D550-8028D5B0 0060+00 s=1 e=0 z=0  None .text      __dt__Q215JStudio_JAudio213TCreateObjectFv
+/* 8028D550-8028D5B0 287E90 0060+00 1/0 0/0 0/0 .text __dt__Q215JStudio_JAudio213TCreateObjectFv
  */
-//	8028D570: 803C5A68 (__vt__Q215JStudio_JAudio213TCreateObject)
-//	8028D574: 803C5A68 (__vt__Q215JStudio_JAudio213TCreateObject)
-//	8028D580: 80285488 (__dt__Q27JStudio13TCreateObjectFv)
-//	8028D590: 802CED3C (__dl__FPv)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,13 +96,9 @@ asm JStudio_JAudio2::TCreateObject::~TCreateObject() {
 }
 #pragma pop
 
-/* 8028D5B0-8028D624 0074+00 s=1 e=0 z=0  None .text
+/* 8028D5B0-8028D624 287EF0 0074+00 1/0 0/0 0/0 .text
  * create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
-//	8028D5E4: 8028D624
-//(createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject)
-//	8028D5E8: 8028D624
-//(createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,17 +110,9 @@ JStudio_JAudio2::TCreateObject::create(JStudio::TObject** param_0,
 }
 #pragma pop
 
-/* 8028D624-8028D728 0104+00 s=1 e=0 z=0  None .text
+/* 8028D624-8028D728 287F64 0104+00 1/1 0/0 0/0 .text
  * createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject
  */
-//	8028D634: 803621DC (_savegpr_29)
-//	8028D644: 802CEC4C (__nw__FUl)
-//	8028D654: 8028D828
-//(__ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject) 	8028D67C:
-//802CEC4C
-//(__nw__FUl) 	8028D690: 80287B9C
-//(__ct__Q27JStudio13TObject_soundFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_sound)
-//	8028D714: 80362228 (_restgpr_29)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

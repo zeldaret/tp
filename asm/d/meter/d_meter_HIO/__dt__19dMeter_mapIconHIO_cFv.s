@@ -5,8 +5,8 @@ lbl_80201028:
 /* 80201034  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80201038  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8020103C  41 82 00 1C */	beq lbl_80201058
-/* 80201040  3C A0 80 3C */	lis r5, __vt__19dMeter_mapIconHIO_c@ha
-/* 80201044  38 05 F1 00 */	addi r0, r5, __vt__19dMeter_mapIconHIO_c@l
+/* 80201040  3C A0 80 3C */	lis r5, __vt__19dMeter_mapIconHIO_c@ha /* 0x803BF100@ha */
+/* 80201044  38 05 F1 00 */	addi r0, r5, __vt__19dMeter_mapIconHIO_c@l /* 0x803BF100@l */
 /* 80201048  90 1F 00 00 */	stw r0, 0(r31)
 /* 8020104C  7C 80 07 35 */	extsh. r0, r4
 /* 80201050  40 81 00 08 */	ble lbl_80201058

@@ -1,14 +1,14 @@
 lbl_80371B24:
-/* 80371B24  3C 80 80 45 */	lis r4, lc_base@ha
-/* 80371B28  38 84 F8 10 */	addi r4, r4, lc_base@l
+/* 80371B24  3C 80 80 45 */	lis r4, lc_base@ha /* 0x8044F810@ha */
+/* 80371B28  38 84 F8 10 */	addi r4, r4, lc_base@l /* 0x8044F810@l */
 /* 80371B2C  80 84 00 00 */	lwz r4, 0(r4)
 /* 80371B30  7C 03 20 40 */	cmplw r3, r4
 /* 80371B34  41 80 00 24 */	blt lbl_80371B58
 /* 80371B38  38 04 40 00 */	addi r0, r4, 0x4000
 /* 80371B3C  7C 03 00 40 */	cmplw r3, r0
 /* 80371B40  40 80 00 18 */	bge lbl_80371B58
-/* 80371B44  3C 80 80 45 */	lis r4, gTRKCPUState@ha
-/* 80371B48  38 84 F3 38 */	addi r4, r4, gTRKCPUState@l
+/* 80371B44  3C 80 80 45 */	lis r4, gTRKCPUState@ha /* 0x8044F338@ha */
+/* 80371B48  38 84 F3 38 */	addi r4, r4, gTRKCPUState@l /* 0x8044F338@l */
 /* 80371B4C  80 04 02 38 */	lwz r0, 0x238(r4)
 /* 80371B50  54 00 07 BF */	clrlwi. r0, r0, 0x1e
 /* 80371B54  4C 82 00 20 */	bnelr 

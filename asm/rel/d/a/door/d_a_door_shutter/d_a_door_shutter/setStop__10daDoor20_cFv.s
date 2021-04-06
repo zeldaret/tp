@@ -30,8 +30,8 @@ lbl_80465EE8:
 /* 80465EF8  4B FF FC 3D */	bl chkStopF__10daDoor20_cFv
 /* 80465EFC  98 7F 06 DA */	stb r3, 0x6da(r31)
 lbl_80465F00:
-/* 80465F00  3C 60 80 46 */	lis r3, lit_4256@ha
-/* 80465F04  C0 03 68 2C */	lfs f0, lit_4256@l(r3)
+/* 80465F00  3C 60 80 46 */	lis r3, lit_4256@ha /* 0x8046682C@ha */
+/* 80465F04  C0 03 68 2C */	lfs f0, lit_4256@l(r3)  /* 0x8046682C@l */
 /* 80465F08  D0 1F 06 D4 */	stfs f0, 0x6d4(r31)
 lbl_80465F0C:
 /* 80465F0C  83 E1 00 0C */	lwz r31, 0xc(r1)

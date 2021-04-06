@@ -5,8 +5,8 @@ lbl_8015E010:
 /* 8015E01C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015E020  7C 7F 1B 78 */	mr r31, r3
 /* 8015E024  4B EB AB 41 */	bl __ct__10fopAc_ac_cFv
-/* 8015E028  3C 60 80 3C */	lis r3, __vt__9dInsect_c@ha
-/* 8015E02C  38 03 A0 78 */	addi r0, r3, __vt__9dInsect_c@l
+/* 8015E028  3C 60 80 3C */	lis r3, __vt__9dInsect_c@ha /* 0x803BA078@ha */
+/* 8015E02C  38 03 A0 78 */	addi r0, r3, __vt__9dInsect_c@l /* 0x803BA078@l */
 /* 8015E030  90 1F 05 68 */	stw r0, 0x568(r31)
 /* 8015E034  38 00 FF FF */	li r0, -1
 /* 8015E038  90 1F 05 88 */	stw r0, 0x588(r31)

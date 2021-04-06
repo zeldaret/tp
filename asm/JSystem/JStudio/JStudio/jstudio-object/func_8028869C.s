@@ -7,8 +7,8 @@ lbl_8028869C:
 /* 802886B0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802886B4  7C 9F 23 78 */	mr r31, r4
 /* 802886B8  41 82 00 28 */	beq lbl_802886E0
-/* 802886BC  3C 80 80 3C */	lis r4, data_803C5670@ha
-/* 802886C0  38 04 56 70 */	addi r0, r4, data_803C5670@l
+/* 802886BC  3C 80 80 3C */	lis r4, data_803C5670@ha /* 0x803C5670@ha */
+/* 802886C0  38 04 56 70 */	addi r0, r4, data_803C5670@l /* 0x803C5670@l */
 /* 802886C4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802886C8  38 80 00 00 */	li r4, 0
 /* 802886CC  4B FF D7 41 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv

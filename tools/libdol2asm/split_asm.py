@@ -185,7 +185,7 @@ class Dol2AsmSplitter:
 
         info(f"found {found_rel_count} RELs in '{self.rels_archive_path}'")
 
-    def search_binary(self):
+    def search_binary(self, cache):
         print(f"{self.step_count:2} Search for symbols and build modules")
         self.step_count += 1
         # create '.dol' executable sections
@@ -207,7 +207,8 @@ class Dol2AsmSplitter:
                     cs.append((0, section.size))
 
             executable_section = ExecutableSection(
-                section.name, section.addr, section.size, 0, section.data, cs, {})
+                section.name, section.addr, section.size, 0, section.data, 
+                code_segments=cs, relocations={}, alignment=4)
             executable_sections.append(executable_section)
 
         # find symbols for all modules
@@ -244,7 +245,10 @@ class Dol2AsmSplitter:
 
                 exe_section = ExecutableSection(
                     section.name, section.addr, section.length, base_addr,
-                    section.data, cs, {})
+                    section.data, 
+                    code_segments=cs, 
+                    relocations={}, 
+                    alignment=section.alignment)
                 exe_section.raw_offset = offset
                 executable_sections.append(exe_section)
 
@@ -255,7 +259,8 @@ class Dol2AsmSplitter:
         start_time = time.time()
         # using 0 processes here is faster???
         self.modules = mp.progress(0, symbol_finder.search, module_tasks, shared={
-                                   'all_relocations': all_relocations})
+                                   'all_relocations': all_relocations,
+                                   'cache': cache})
         end_time = time.time()
         info(
             f"created {len(self.modules)} modules in {end_time-start_time:.2f} seconds")
@@ -277,7 +282,18 @@ class Dol2AsmSplitter:
 
         for module in self.modules:
             libs = list(module.libraries.values())
+            for lib in libs:
+                for tu in lib.translation_units.values():
+                    for sec in tu.sections.values():
+                        for symbol in sec.symbols:
+                            symbol.relative_addr = symbol.addr - sec.addr
+
             tools.calculate_function_alignments(self.context, libs)
+            for lib in libs:
+                for tu in lib.translation_units.values():
+                    for sec in tu.sections.values():
+                        tools.caluclate_symbol_data_alignment(
+                            self.context, sec)
             add_list, remove_list = tools.merge_symbols(self.context, libs)
             for symbol in remove_list:
                 self.symbol_table.remove_symbol(symbol)
@@ -342,26 +358,6 @@ class Dol2AsmSplitter:
                             self.symbol_table.add_symbol(new_symbol)
                             #require_resolve.append((section, new_symbol))
 
-    def resolve_symbols(self):
-        """
-        print(f"{self.step_count:2} Resolve symbol references")
-        self.step_count += 1
-
-        require_resolve = []
-        for module in self.modules:
-            for lib in module.libraries.values():
-                for tu in lib.translation_units.values():
-                    for section in tu.sections.values():
-                        for symbol in section.symbols:
-                            if isinstance(symbol, VirtualTable):
-                                require_resolve.append((section, symbol))
-                            elif isinstance(symbol, ReferenceArray):
-                                require_resolve.append((section, symbol))
-
-        for section, symbol in require_resolve:
-            symbol.resolve_references(self.context, self.symbol_table, section)
-        """
-
     def validate_symbols(self):
         # TODO: Move
         print(f"{self.step_count:2} Validate symbols")
@@ -405,7 +401,7 @@ class Dol2AsmSplitter:
                                         while pad_size > 0:
                                             max_size = min(pad_size, 8)
                                             assert max_size % 4 == 0
-                                            if symbol.padding_data:
+                                            if pad_data:
                                                 pads.append(ArbitraryData.create_with_data(
                                                     Identifier(
                                                         "pad", pad_addr, None),
@@ -448,8 +444,6 @@ class Dol2AsmSplitter:
         self.step_count += 1
 
         for module in self.modules:
-            if not module.index in self.gen_modules:
-                continue
             for lib in module.libraries.values():
                 for tu in lib.translation_units.values():
                     for section in tu.sections.values():
@@ -462,6 +456,10 @@ class Dol2AsmSplitter:
                                     f"module: {module.index}, addr: {location:08X}, parent: {relocation.parent}")
                                 debug(section.relocations)
                             assert symbol
+
+                            # skip applying relocations for zero-length symbol (symbol which will be generated by the compiler or linker)
+                            if isinstance(symbol, ArbitraryData) and symbol.zero_length:
+                                continue
 
                             if isinstance(symbol, ASMFunction) or isinstance(symbol, ReferenceArray):
                                 replace_offset = section.addr + relocation.offset
@@ -493,7 +491,7 @@ class Dol2AsmSplitter:
         entrypoint.add_reference(None)
 
         valid_range = AddressRange(
-            self.symbol_table.symbols.begin(), 
+            self.symbol_table.symbols.begin(),
             self.symbol_table.symbols.end())
 
         # these symbols are required to be external, because otherwise the linker will not find them
@@ -511,9 +509,7 @@ class Dol2AsmSplitter:
                                                 for x in tu.sections.values()])
 
         sinit_functions = set()
-        entrypoints = {
-            settings.ENTRY_POINT
-        }
+        entrypoints = set()
         with Progress(console=get_console(), transient=True, refresh_per_second=1) as progress:
             task1 = progress.add_task(
                 f"step 1...", total=total_rc_step_count)
@@ -529,17 +525,25 @@ class Dol2AsmSplitter:
                                     entrypoints.add(symbol.addr)
                                 elif symbol.identifier.name == "_epilog":
                                     entrypoints.add(symbol.addr)
+                                elif symbol.identifier.name == "_unresolved":
+                                    entrypoints.add(symbol.addr)
 
                                 symbol.gather_references(
                                     self.context, valid_range)
-                                references = self.symbol_table.all(
-                                    symbol.references)
-                                for reference in references:
+                                for reference in self.symbol_table.all(symbol.references):
                                     reference.add_reference(symbol)
+                                for reference in self.symbol_table.all(symbol.implicit_references):
+                                    reference.add_implicit_reference(symbol)
                             count += len(section.symbols)
                         progress.update(task1, advance=count)
 
+        for function in sinit_functions:
+            self.symbol_table[-1, function].add_reference(None)
 
+        for entrypoint in entrypoints:
+            self.symbol_table[-1, entrypoint].add_reference(None)
+
+        entrypoints.add(settings.ENTRY_POINT)
         for module in self.modules:
             found = set()
 
@@ -553,19 +557,18 @@ class Dol2AsmSplitter:
                     return
                 if symbol._module != module.index:
                     return
-                
+
                 #print(f"{pad}{current:08X} {symbol.identifier.name} ({len(symbol.references)})")
 
                 found.add(current)
                 for reference in symbol.references:
                     reachable(reference, depth + 1)
 
-            
             for entrypoint in entrypoints:
                 reachable(entrypoint, 0)
             for function in sinit_functions:
                 reachable(function, 0)
-            
+
             for lib in module.libraries.values():
                 for tu in lib.translation_units.values():
                     for section in tu.sections.values():
@@ -616,7 +619,7 @@ class Dol2AsmSplitter:
                 base.lib_path = self.rel_path
                 base.inc_path = self.inc_path.joinpath(f"rel/")
                 base.asm_path = self.asm_path.joinpath("rel/")
-                base.mk_path = self. rel_path
+                base.mk_path = self.rel_path
 
     def main(self):
         total_start_time = time.time()
@@ -625,6 +628,7 @@ class Dol2AsmSplitter:
         self.cpp_group_count = 4
         self.asm_group_count = 128
         self.step_count = 1
+        cache = False
 
         print(f"dol2asm {VERSION} for '{settings.GAME_NAME}'")
 
@@ -652,18 +656,64 @@ class Dol2AsmSplitter:
             error(f"please, select at least one module for generation...")
             fatal_exit()
 
-        self.search_binary()
+        self.search_binary(cache)
 
         start_time = time.time()
-        self.generate_symbol_table()
-        self.combine_symbols()
-        self.search_for_reference_arrays()
-        self.apply_relocations()
-        self.resolve_symbols()
-        self.reference_count()
+
+        cache_path = Path("build/full_cache_xx.dump")
+        if cache and cache_path.exists():
+            with cache_path.open('rb') as input:
+                self.modules, self.symbol_table = pickle.load(input)
+        else:
+            self.generate_symbol_table()
+            self.combine_symbols()
+            self.search_for_reference_arrays()
+            self.apply_relocations()
+
+            if cache:
+                util._create_dirs_for_file(cache_path)
+                with cache_path.open('wb') as output:
+                    pickle.dump((self.modules, self.symbol_table,), output)
+
+        cache_path = Path("build/full_cache_rc.dump")
+        if cache and cache_path.exists():
+            with cache_path.open('rb') as input:
+                self.modules, self.symbol_table = pickle.load(input)
+        else:
+            self.reference_count()
+
+            if cache:
+                util._create_dirs_for_file(cache_path)
+                with cache_path.open('wb') as output:
+                    pickle.dump((self.modules, self.symbol_table,), output)
+
         self.name_symbols()
         self.validate_symbols()
         self.library_paths()
+
+        if not self.select_modules and self.rel_gen:
+            global_destructor_chain_path = Path(__file__).parent.joinpath(
+                "global_destructor_chain.template.cpp")
+            executor_path = Path(__file__).parent.joinpath("executor.template.cpp")
+
+            if global_destructor_chain_path.exists():
+                output_path = self.rel_path.joinpath("global_destructor_chain.cpp")
+                util._create_dirs_for_file(output_path)
+                with global_destructor_chain_path.open('r') as input:
+                    with output_path.open('w') as output:
+                        output.write(input.read())
+            else:
+                LOG.warning(
+                    f"global_destructor_chain template not found: '{global_destructor_chain_path}'")
+
+            if executor_path.exists():
+                output_path = self.rel_path.joinpath("executor.cpp")
+                util._create_dirs_for_file(output_path)
+                with executor_path.open('r') as input:
+                    with output_path.open('w') as output:
+                        output.write(input.read())
+            else:
+                LOG.warning(f"executor template not found: '{executor_path}'")
 
         cpp_tasks = []
         asm_tasks = []
@@ -697,29 +747,35 @@ class Dol2AsmSplitter:
                 for lib_name, lib in module.libraries.items():
                     for tu_name, tu in lib.translation_units.items():
                         if len(self.select_tu) == 0 or tu_name in self.select_tu:
-                            cpp_tasks.append((tu, tu.source_path(lib), tu.include_path(
-                                lib), tu.include_path(lib).relative_to(self.inc_path),))
+                            if not tu.is_empty and tu.generate:
+                                cpp_tasks.append((
+                                    tu,
+                                    tu.source_path(lib),
+                                    tu.include_path(lib),
+                                    tu.include_path(lib).relative_to(self.inc_path),))
 
             if self.asm_gen:
                 asm_path_tasks = []
                 for lib in module.libraries.values():
                     for tu in lib.translation_units.values():
-                        for sec in tu.sections.values():
-                            functions = []
-                            for symbol in sec.symbols:
-                                if not isinstance(symbol, ASMFunction):
-                                    continue
-                                if self.no_file_generation:
-                                    if symbol.include_path.exists():
-                                        continue
+                        if len(self.select_tu) == 0 or tu_name in self.select_tu:
+                            if not tu.is_empty and tu.generate:
+                                for sec in tu.sections.values():
+                                    functions = []
+                                    for symbol in sec.symbols:
+                                        if not isinstance(symbol, ASMFunction):
+                                            continue
+                                        if self.no_file_generation:
+                                            if symbol.include_path.exists():
+                                                continue
 
-                                if len(self.select_asm) == 0 or symbol.label in self.select_asm:
-                                    asm_path_tasks.append(
-                                        util.create_dirs_for_file(symbol.include_path))
-                                    functions.append((symbol,))
-                            if functions:
-                                for fs in util.chunks(functions, self.asm_group_count):
-                                    asm_tasks.append((sec, fs))
+                                        if len(self.select_asm) == 0 or symbol.label in self.select_asm:
+                                            asm_path_tasks.append(
+                                                util.create_dirs_for_file(symbol.include_path))
+                                            functions.append((symbol,))
+                                    if functions:
+                                        for fs in util.chunks(functions, self.asm_group_count):
+                                            asm_tasks.append((sec, fs))
                 asyncio.run(util.wait_all(asm_path_tasks))
 
         if self.sym_gen:
@@ -753,7 +809,8 @@ class Dol2AsmSplitter:
                                 makefile_tasks.append(
                                     makefile.create_library(lib))
                     else:
-                        makefile_tasks.append(makefile.create_rel(module))
+                        makefile_tasks.append(
+                            makefile.create_rel(module, self.rel_path))
 
             makefile_tasks.append(makefile.create_obj_files(self.modules))
             makefile_tasks.append(makefile.create_include_link(self.modules))

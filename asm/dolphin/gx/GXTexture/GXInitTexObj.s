@@ -95,8 +95,8 @@ lbl_8035DF58:
 /* 8035DF9C  53 60 DA FE */	rlwimi r0, r27, 0x1b, 0xb, 0x1f
 /* 8035DFA0  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 8035DFA4  41 81 00 80 */	bgt lbl_8035E024
-/* 8035DFA8  3C 60 80 3D */	lis r3, lit_224@ha
-/* 8035DFAC  38 63 27 80 */	addi r3, r3, lit_224@l
+/* 8035DFA8  3C 60 80 3D */	lis r3, lit_224@ha /* 0x803D2780@ha */
+/* 8035DFAC  38 63 27 80 */	addi r3, r3, lit_224@l /* 0x803D2780@l */
 /* 8035DFB0  54 80 10 3A */	slwi r0, r4, 2
 /* 8035DFB4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8035DFB8  7C 09 03 A6 */	mtctr r0

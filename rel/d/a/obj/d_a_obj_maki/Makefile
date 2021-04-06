@@ -3,19 +3,20 @@
 #
 
 M567_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki.plf
+M567_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki.lcf
+M567_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki.map
 
 M567_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_maki/executor.cpp \
-	rel/d/a/obj/d_a_obj_maki/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_maki/d_a_obj_maki.cpp \
 
 M567_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/d_a_obj_maki.o \
 
 M567_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/libRuntime.PPCEABI.H.a \
 
 M567_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M567_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map567.map\
+	-m _prolog \
+	-lcf $(M567_LDSCRIPT) \
+	-unused -map $(M567_MAP) \
+	-w off \
 
 $(M567_TARGET): $(M567_O_FILES) $(M567_LIBS)
+	@echo [567] creating $(M567_TARGET)
 	@echo $(M567_LIBS) $(M567_O_FILES) > build/M567_ofiles
-	$(LD) -opt_partial $(M567_LDFLAGS) -o $(M567_TARGET) @build/M567_ofiles
+	@python3 tools/lcf.py rel 567 --output $(M567_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M567_LDFLAGS) -o $(M567_TARGET) @build/M567_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_maki/%.o: rel/d/a/obj/d_a_obj_maki/%.cpp
+	@echo [567] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M567_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M567_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_maki/libs/Runtime.PPCEABI.H/Makefile
 

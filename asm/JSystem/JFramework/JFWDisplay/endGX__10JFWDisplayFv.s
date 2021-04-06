@@ -59,11 +59,11 @@ lbl_80272764:
 /* 80272764  48 07 22 F1 */	bl flushMessage_dbPrint__12JUTAssertionFv
 lbl_80272768:
 /* 80272768  48 0E 97 65 */	bl GXFlush
-/* 8027276C  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 80272770  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 8027276C  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 80272770  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 80272774  90 01 00 08 */	stw r0, 8(r1)
-/* 80272778  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 8027277C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 80272778  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 8027277C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 80272780  90 01 00 08 */	stw r0, 8(r1)
 /* 80272784  83 E1 00 FC */	lwz r31, 0xfc(r1)
 /* 80272788  80 01 01 04 */	lwz r0, 0x104(r1)

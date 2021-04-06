@@ -5,8 +5,8 @@ lbl_80A23AB4:
 /* 80A23AC0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80A23AC4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80A23AC8  7C 7F 1B 78 */	mr r31, r3
-/* 80A23ACC  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha
-/* 80A23AD0  3B C4 58 B8 */	addi r30, r4, m__20daNpcKasiKyu_Param_c@l
+/* 80A23ACC  3C 80 80 A2 */	lis r4, m__20daNpcKasiKyu_Param_c@ha /* 0x80A258B8@ha */
+/* 80A23AD0  3B C4 58 B8 */	addi r30, r4, m__20daNpcKasiKyu_Param_c@l /* 0x80A258B8@l */
 /* 80A23AD4  A8 03 14 04 */	lha r0, 0x1404(r3)
 /* 80A23AD8  2C 00 00 02 */	cmpwi r0, 2
 /* 80A23ADC  41 82 01 98 */	beq lbl_80A23C74
@@ -25,14 +25,14 @@ lbl_80A23B04:
 /* 80A23B08  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80A23B0C  41 82 01 68 */	beq lbl_80A23C74
 /* 80A23B10  38 7F 0C 94 */	addi r3, r31, 0xc94
-/* 80A23B14  4B 72 CD EC */	b initialize__13daNpcF_Path_cFv
+/* 80A23B14  4B 72 CD ED */	bl initialize__13daNpcF_Path_cFv
 /* 80A23B18  38 7F 0C 94 */	addi r3, r31, 0xc94
 /* 80A23B1C  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80A23B20  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80A23B24  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80A23B28  7C 05 07 74 */	extsb r5, r0
 /* 80A23B2C  38 C0 00 00 */	li r6, 0
-/* 80A23B30  4B 72 CE 2C */	b setPathInfo__13daNpcF_Path_cFUcScUc
+/* 80A23B30  4B 72 CE 2D */	bl setPathInfo__13daNpcF_Path_cFUcScUc
 /* 80A23B34  7F E3 FB 78 */	mr r3, r31
 /* 80A23B38  48 00 02 91 */	bl getWolfPathNearIdx__14daNpcKasiKyu_cFv
 /* 80A23B3C  B0 7F 0C 94 */	sth r3, 0xc94(r31)
@@ -105,7 +105,7 @@ lbl_80A23C14:
 /* 80A23C38  38 7F 0C 94 */	addi r3, r31, 0xc94
 /* 80A23C3C  38 81 00 0C */	addi r4, r1, 0xc
 /* 80A23C40  38 A1 00 18 */	addi r5, r1, 0x18
-/* 80A23C44  4B 72 D1 9C */	b getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
+/* 80A23C44  4B 72 D1 9D */	bl getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
 /* 80A23C48  2C 03 00 00 */	cmpwi r3, 0
 /* 80A23C4C  41 82 00 18 */	beq lbl_80A23C64
 /* 80A23C50  38 00 00 01 */	li r0, 1

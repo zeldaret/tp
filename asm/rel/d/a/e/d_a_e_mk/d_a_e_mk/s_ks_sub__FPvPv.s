@@ -4,7 +4,7 @@ lbl_80719488:
 /* 80719490  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80719494  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80719498  7C 7F 1B 78 */	mr r31, r3
-/* 8071949C  4B 8F F8 44 */	b fopAc_IsActor__FPv
+/* 8071949C  4B 8F F8 45 */	bl fopAc_IsActor__FPv
 /* 807194A0  2C 03 00 00 */	cmpwi r3, 0
 /* 807194A4  41 82 00 24 */	beq lbl_807194C8
 /* 807194A8  A8 1F 00 08 */	lha r0, 8(r31)

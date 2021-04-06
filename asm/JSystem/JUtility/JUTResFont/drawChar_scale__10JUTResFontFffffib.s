@@ -212,7 +212,7 @@ lbl_802DF9AC:
 /* 802DFAF8  38 A0 00 04 */	li r5, 4
 /* 802DFAFC  48 07 CC 69 */	bl GXBegin
 /* 802DFB00  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802DFB04  D3 E3 80 00 */	stfs f31, 0x8000(r3)
+/* 802DFB04  D3 E3 80 00 */	stfs f31, 0x8000(r3)  /* 0xCC008000@l */
 /* 802DFB08  D3 43 80 00 */	stfs f26, -0x8000(r3)
 /* 802DFB0C  C0 02 C5 F0 */	lfs f0, lit_647(r2)
 /* 802DFB10  D0 03 80 00 */	stfs f0, -0x8000(r3)

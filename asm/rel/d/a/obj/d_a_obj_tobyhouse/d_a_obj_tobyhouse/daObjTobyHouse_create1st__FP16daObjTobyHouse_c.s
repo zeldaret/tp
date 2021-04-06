@@ -9,9 +9,9 @@ lbl_80D17618:
 /* 80D17634  40 82 00 28 */	bne lbl_80D1765C
 /* 80D17638  28 1F 00 00 */	cmplwi r31, 0
 /* 80D1763C  41 82 00 14 */	beq lbl_80D17650
-/* 80D17640  4B 36 0F E4 */	b __ct__16dBgS_MoveBgActorFv
-/* 80D17644  3C 60 80 D1 */	lis r3, __vt__16daObjTobyHouse_c@ha
-/* 80D17648  38 03 79 8C */	addi r0, r3, __vt__16daObjTobyHouse_c@l
+/* 80D17640  4B 36 0F E5 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80D17644  3C 60 80 D1 */	lis r3, __vt__16daObjTobyHouse_c@ha /* 0x80D1798C@ha */
+/* 80D17648  38 03 79 8C */	addi r0, r3, __vt__16daObjTobyHouse_c@l /* 0x80D1798C@l */
 /* 80D1764C  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_80D17650:
 /* 80D17650  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

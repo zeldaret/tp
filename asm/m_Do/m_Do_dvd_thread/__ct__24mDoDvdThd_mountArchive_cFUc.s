@@ -7,8 +7,8 @@ lbl_80015DA4:
 /* 80015DB8  7C 7E 1B 78 */	mr r30, r3
 /* 80015DBC  7C 9F 23 78 */	mr r31, r4
 /* 80015DC0  4B FF FD B5 */	bl __ct__19mDoDvdThd_command_cFv
-/* 80015DC4  3C 60 80 3A */	lis r3, __vt__24mDoDvdThd_mountArchive_c@ha
-/* 80015DC8  38 03 34 C8 */	addi r0, r3, __vt__24mDoDvdThd_mountArchive_c@l
+/* 80015DC4  3C 60 80 3A */	lis r3, __vt__24mDoDvdThd_mountArchive_c@ha /* 0x803A34C8@ha */
+/* 80015DC8  38 03 34 C8 */	addi r0, r3, __vt__24mDoDvdThd_mountArchive_c@l /* 0x803A34C8@l */
 /* 80015DCC  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80015DD0  9B FE 00 14 */	stb r31, 0x14(r30)
 /* 80015DD4  38 00 FF FF */	li r0, -1

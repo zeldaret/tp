@@ -3,19 +3,20 @@
 #
 
 M545_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap.plf
+M545_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap.lcf
+M545_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap.map
 
 M545_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6FurikoTrap/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6FurikoTrap/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6FurikoTrap/d_a_obj_lv6FurikoTrap.cpp \
 
 M545_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/d_a_obj_lv6FurikoTrap.o \
 
 M545_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/libRuntime.PPCEABI.H.a \
 
 M545_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M545_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map545.map\
+	-m _prolog \
+	-lcf $(M545_LDSCRIPT) \
+	-unused -map $(M545_MAP) \
+	-w off \
 
 $(M545_TARGET): $(M545_O_FILES) $(M545_LIBS)
+	@echo [545] creating $(M545_TARGET)
 	@echo $(M545_LIBS) $(M545_O_FILES) > build/M545_ofiles
-	$(LD) -opt_partial $(M545_LDFLAGS) -o $(M545_TARGET) @build/M545_ofiles
+	@python3 tools/lcf.py rel 545 --output $(M545_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M545_LDFLAGS) -o $(M545_TARGET) @build/M545_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.o: rel/d/a/obj/d_a_obj_lv6FurikoTrap/%.cpp
+	@echo [545] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M545_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M545_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6FurikoTrap/libs/Runtime.PPCEABI.H/Makefile
 

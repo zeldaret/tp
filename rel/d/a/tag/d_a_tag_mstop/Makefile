@@ -3,17 +3,15 @@
 #
 
 M131_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop.plf
+M131_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop.lcf
+M131_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop.map
 
 M131_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_mstop/executor.cpp \
-	rel/d/a/tag/d_a_tag_mstop/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_mstop/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.cpp \
 
 M131_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.o \
 
 M131_LIBS := \
@@ -29,15 +27,21 @@ M131_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map131.map\
+	-m _prolog \
+	-lcf $(M131_LDSCRIPT) \
+	-unused -map $(M131_MAP) \
+	-w off \
 
 $(M131_TARGET): $(M131_O_FILES) $(M131_LIBS)
+	@echo [131] creating $(M131_TARGET)
 	@echo $(M131_LIBS) $(M131_O_FILES) > build/M131_ofiles
-	$(LD) -opt_partial $(M131_LDFLAGS) -o $(M131_TARGET) @build/M131_ofiles
+	@python3 tools/lcf.py rel 131 --output $(M131_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M131_LDFLAGS) -o $(M131_TARGET) @build/M131_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mstop/%.o: rel/d/a/tag/d_a_tag_mstop/%.cpp
+	@echo [131] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M131_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M131_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

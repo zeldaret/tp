@@ -3,19 +3,20 @@
 #
 
 M601_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole.plf
+M601_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole.lcf
+M601_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole.map
 
 M601_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rfHole/executor.cpp \
-	rel/d/a/obj/d_a_obj_rfHole/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_rfHole/d_a_obj_rfHole.cpp \
 
 M601_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/d_a_obj_rfHole.o \
 
 M601_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/libRuntime.PPCEABI.H.a \
 
 M601_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M601_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map601.map\
+	-m _prolog \
+	-lcf $(M601_LDSCRIPT) \
+	-unused -map $(M601_MAP) \
+	-w off \
 
 $(M601_TARGET): $(M601_O_FILES) $(M601_LIBS)
+	@echo [601] creating $(M601_TARGET)
 	@echo $(M601_LIBS) $(M601_O_FILES) > build/M601_ofiles
-	$(LD) -opt_partial $(M601_LDFLAGS) -o $(M601_TARGET) @build/M601_ofiles
+	@python3 tools/lcf.py rel 601 --output $(M601_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M601_LDFLAGS) -o $(M601_TARGET) @build/M601_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rfHole/%.o: rel/d/a/obj/d_a_obj_rfHole/%.cpp
+	@echo [601] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M601_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M601_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_rfHole/libs/Runtime.PPCEABI.H/Makefile
 

@@ -6,7 +6,7 @@ lbl_809BFA88:
 /* 809BFA98  93 C1 00 08 */	stw r30, 8(r1)
 /* 809BFA9C  7C 7E 1B 78 */	mr r30, r3
 /* 809BFAA0  7C 9F 23 78 */	mr r31, r4
-/* 809BFAA4  4B 65 92 3C */	b fopAc_IsActor__FPv
+/* 809BFAA4  4B 65 92 3D */	bl fopAc_IsActor__FPv
 /* 809BFAA8  2C 03 00 00 */	cmpwi r3, 0
 /* 809BFAAC  41 82 00 2C */	beq lbl_809BFAD8
 /* 809BFAB0  A8 1E 00 08 */	lha r0, 8(r30)

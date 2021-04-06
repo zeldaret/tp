@@ -33,7 +33,7 @@ lbl_80724DA0:
 /* 80724DB0  90 1F 04 9C */	stw r0, 0x49c(r31)
 /* 80724DB4  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80724DB8  7C 03 07 74 */	extsb r3, r0
-/* 80724DBC  4B 90 82 B0 */	b dComIfGp_getReverb__Fi
+/* 80724DBC  4B 90 82 B1 */	bl dComIfGp_getReverb__Fi
 /* 80724DC0  7C 65 1B 78 */	mr r5, r3
 /* 80724DC4  38 7F 05 B4 */	addi r3, r31, 0x5b4
 /* 80724DC8  38 80 00 00 */	li r4, 0

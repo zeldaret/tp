@@ -19,8 +19,8 @@ lbl_8025D654:
 /* 8025D658  38 80 03 E3 */	li r4, 0x3e3
 /* 8025D65C  48 00 3B 2D */	bl dTimer_createStart2D__FlUs
 lbl_8025D660:
-/* 8025D660  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025D664  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025D660  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025D664  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025D668  A8 03 0B E6 */	lha r0, 0xbe6(r3)
 /* 8025D66C  B0 1F 01 68 */	sth r0, 0x168(r31)
 /* 8025D670  38 00 00 04 */	li r0, 4

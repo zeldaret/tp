@@ -29,8 +29,8 @@ lbl_8020BB84:
 /* 8020BBF0  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8020BBF4  C0 22 AD B0 */	lfs f1, lit_3742(r2)
 /* 8020BBF8  FC 40 08 90 */	fmr f2, f1
-/* 8020BBFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8020BC00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8020BBFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020BC00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020BC04  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 8020BC08  48 0E D2 CD */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 8020BC0C  83 E1 00 0C */	lwz r31, 0xc(r1)

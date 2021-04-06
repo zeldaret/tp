@@ -1,6 +1,6 @@
 lbl_803242A8:
-/* 803242A8  3C 60 80 43 */	lis r3, j3dZModeTable@ha
-/* 803242AC  38 A3 71 60 */	addi r5, r3, j3dZModeTable@l
+/* 803242A8  3C 60 80 43 */	lis r3, j3dZModeTable@ha /* 0x80437160@ha */
+/* 803242AC  38 A3 71 60 */	addi r5, r3, j3dZModeTable@l /* 0x80437160@l */
 /* 803242B0  39 00 00 00 */	li r8, 0
 /* 803242B4  38 60 00 00 */	li r3, 0
 lbl_803242B8:

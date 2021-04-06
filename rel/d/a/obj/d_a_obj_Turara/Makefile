@@ -3,19 +3,20 @@
 #
 
 M394_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara.plf
+M394_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara.lcf
+M394_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara.map
 
 M394_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_Turara/executor.cpp \
-	rel/d/a/obj/d_a_obj_Turara/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_Turara/d_a_obj_Turara.cpp \
 
 M394_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/d_a_obj_Turara.o \
 
 M394_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/libRuntime.PPCEABI.H.a \
 
 M394_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M394_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map394.map\
+	-m _prolog \
+	-lcf $(M394_LDSCRIPT) \
+	-unused -map $(M394_MAP) \
+	-w off \
 
 $(M394_TARGET): $(M394_O_FILES) $(M394_LIBS)
+	@echo [394] creating $(M394_TARGET)
 	@echo $(M394_LIBS) $(M394_O_FILES) > build/M394_ofiles
-	$(LD) -opt_partial $(M394_LDFLAGS) -o $(M394_TARGET) @build/M394_ofiles
+	@python3 tools/lcf.py rel 394 --output $(M394_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M394_LDFLAGS) -o $(M394_TARGET) @build/M394_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Turara/%.o: rel/d/a/obj/d_a_obj_Turara/%.cpp
+	@echo [394] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M394_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M394_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_Turara/libs/Runtime.PPCEABI.H/Makefile
 

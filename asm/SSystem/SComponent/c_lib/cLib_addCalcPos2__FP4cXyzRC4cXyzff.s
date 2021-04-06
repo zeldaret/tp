@@ -59,8 +59,8 @@ lbl_80270258:
 /* 80270258  C8 02 B7 F8 */	lfd f0, lit_2381(r2)
 /* 8027025C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80270260  40 80 00 10 */	bge lbl_80270270
-/* 80270264  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80270268  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80270264  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80270268  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8027026C  48 00 00 70 */	b lbl_802702DC
 lbl_80270270:
 /* 80270270  D0 21 00 08 */	stfs f1, 8(r1)
@@ -94,8 +94,8 @@ lbl_802702C8:
 lbl_802702CC:
 /* 802702CC  2C 00 00 01 */	cmpwi r0, 1
 /* 802702D0  40 82 00 0C */	bne lbl_802702DC
-/* 802702D4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 802702D8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 802702D4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 802702D8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_802702DC:
 /* 802702DC  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 802702E0  40 81 00 38 */	ble lbl_80270318

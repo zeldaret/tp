@@ -3,17 +3,15 @@
 #
 
 M296_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach.plf
+M296_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach.lcf
+M296_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach.map
 
 M296_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_coach/executor.cpp \
-	rel/d/a/npc/d_a_npc_coach/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_coach/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_coach/d_a_npc_coach.cpp \
 
 M296_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/d_a_npc_coach.o \
 
 M296_LIBS := \
@@ -29,15 +27,21 @@ M296_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map296.map\
+	-m _prolog \
+	-lcf $(M296_LDSCRIPT) \
+	-unused -map $(M296_MAP) \
+	-w off \
 
 $(M296_TARGET): $(M296_O_FILES) $(M296_LIBS)
+	@echo [296] creating $(M296_TARGET)
 	@echo $(M296_LIBS) $(M296_O_FILES) > build/M296_ofiles
-	$(LD) -opt_partial $(M296_LDFLAGS) -o $(M296_TARGET) @build/M296_ofiles
+	@python3 tools/lcf.py rel 296 --output $(M296_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M296_LDFLAGS) -o $(M296_TARGET) @build/M296_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_coach/%.o: rel/d/a/npc/d_a_npc_coach/%.cpp
+	@echo [296] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M296_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M296_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

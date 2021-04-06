@@ -1,16 +1,16 @@
 lbl_809DCE78:
-/* 809DCE78  3C 80 80 9E */	lis r4, cNullVec__6Z2Calc@ha
-/* 809DCE7C  38 C4 F2 F8 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 809DCE80  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 809DCE84  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 809DCE78  3C 80 80 9E */	lis r4, cNullVec__6Z2Calc@ha /* 0x809DF2F8@ha */
+/* 809DCE7C  38 C4 F2 F8 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x809DF2F8@l */
+/* 809DCE80  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809DCE84  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 809DCE88  80 85 00 00 */	lwz r4, 0(r5)
 /* 809DCE8C  80 05 00 04 */	lwz r0, 4(r5)
 /* 809DCE90  90 83 0D D4 */	stw r4, 0xdd4(r3)
 /* 809DCE94  90 03 0D D8 */	stw r0, 0xdd8(r3)
 /* 809DCE98  80 05 00 08 */	lwz r0, 8(r5)
 /* 809DCE9C  90 03 0D DC */	stw r0, 0xddc(r3)
-/* 809DCEA0  3C 80 80 9E */	lis r4, m__17daNpc_grO_Param_c@ha
-/* 809DCEA4  38 84 EF 7C */	addi r4, r4, m__17daNpc_grO_Param_c@l
+/* 809DCEA0  3C 80 80 9E */	lis r4, m__17daNpc_grO_Param_c@ha /* 0x809DEF7C@ha */
+/* 809DCEA4  38 84 EF 7C */	addi r4, r4, m__17daNpc_grO_Param_c@l /* 0x809DEF7C@l */
 /* 809DCEA8  88 04 00 6A */	lbz r0, 0x6a(r4)
 /* 809DCEAC  28 00 00 00 */	cmplwi r0, 0
 /* 809DCEB0  41 82 00 20 */	beq lbl_809DCED0

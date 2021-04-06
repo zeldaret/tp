@@ -3,17 +3,15 @@
 #
 
 M662_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki.plf
+M662_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki.lcf
+M662_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki.map
 
 M662_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_toaru_maki/executor.cpp \
-	rel/d/a/obj/d_a_obj_toaru_maki/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_toaru_maki/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki.cpp \
 
 M662_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki.o \
 
 M662_LIBS := \
@@ -29,15 +27,21 @@ M662_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map662.map\
+	-m _prolog \
+	-lcf $(M662_LDSCRIPT) \
+	-unused -map $(M662_MAP) \
+	-w off \
 
 $(M662_TARGET): $(M662_O_FILES) $(M662_LIBS)
+	@echo [662] creating $(M662_TARGET)
 	@echo $(M662_LIBS) $(M662_O_FILES) > build/M662_ofiles
-	$(LD) -opt_partial $(M662_LDFLAGS) -o $(M662_TARGET) @build/M662_ofiles
+	@python3 tools/lcf.py rel 662 --output $(M662_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M662_LDFLAGS) -o $(M662_TARGET) @build/M662_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_toaru_maki/%.o: rel/d/a/obj/d_a_obj_toaru_maki/%.cpp
+	@echo [662] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M662_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M662_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,12 +1,12 @@
 lbl_80798B4C:
-/* 80798B4C  3C 80 80 7A */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80798B50  38 04 DB 70 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80798B4C  3C 80 80 7A */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x8079DB70@ha */
+/* 80798B50  38 04 DB 70 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x8079DB70@l */
 /* 80798B54  90 03 00 00 */	stw r0, 0(r3)
-/* 80798B58  3C 80 80 7A */	lis r4, __vt__18fOpAcm_HIO_entry_c@ha
-/* 80798B5C  38 04 DB 64 */	addi r0, r4, __vt__18fOpAcm_HIO_entry_c@l
+/* 80798B58  3C 80 80 7A */	lis r4, __vt__18fOpAcm_HIO_entry_c@ha /* 0x8079DB64@ha */
+/* 80798B5C  38 04 DB 64 */	addi r0, r4, __vt__18fOpAcm_HIO_entry_c@l /* 0x8079DB64@l */
 /* 80798B60  90 03 00 00 */	stw r0, 0(r3)
-/* 80798B64  3C 80 80 7A */	lis r4, __vt__13daE_SM2_HIO_c@ha
-/* 80798B68  38 04 DB 58 */	addi r0, r4, __vt__13daE_SM2_HIO_c@l
+/* 80798B64  3C 80 80 7A */	lis r4, __vt__13daE_SM2_HIO_c@ha /* 0x8079DB58@ha */
+/* 80798B68  38 04 DB 58 */	addi r0, r4, __vt__13daE_SM2_HIO_c@l /* 0x8079DB58@l */
 /* 80798B6C  90 03 00 00 */	stw r0, 0(r3)
 /* 80798B70  38 00 00 04 */	li r0, 4
 /* 80798B74  B0 03 00 04 */	sth r0, 4(r3)

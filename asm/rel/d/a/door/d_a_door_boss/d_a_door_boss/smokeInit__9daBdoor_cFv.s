@@ -21,8 +21,8 @@ lbl_8067002C:
 /* 80670078  90 01 00 08 */	stw r0, 8(r1)
 /* 8067007C  90 61 00 0C */	stw r3, 0xc(r1)
 /* 80670080  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80670084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80670088  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80670084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80670088  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067008C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80670090  3C 80 00 01 */	lis r4, 0x0001 /* 0x00008156@ha */
 /* 80670094  38 84 81 56 */	addi r4, r4, 0x8156 /* 0x00008156@l */
@@ -32,7 +32,7 @@ lbl_8067002C:
 /* 806700A4  39 08 05 A4 */	addi r8, r8, 0x5a4
 /* 806700A8  39 20 00 00 */	li r9, 0
 /* 806700AC  39 40 00 00 */	li r10, 0
-/* 806700B0  4B 9D CF B8 */	b setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
+/* 806700B0  4B 9D CF B9 */	bl setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
 /* 806700B4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 806700B8  7C 08 03 A6 */	mtlr r0
 /* 806700BC  38 21 00 20 */	addi r1, r1, 0x20

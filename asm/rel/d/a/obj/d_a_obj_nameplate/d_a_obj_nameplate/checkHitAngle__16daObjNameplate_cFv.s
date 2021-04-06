@@ -4,10 +4,10 @@ lbl_80594754:
 /* 8059475C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80594760  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80594764  7C 7F 1B 78 */	mr r31, r3
-/* 80594768  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8059476C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80594768  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8059476C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80594770  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80594774  4B A8 5F 9C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80594774  4B A8 5F 9D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80594778  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8059477C  7C 00 18 50 */	subf r0, r0, r3
 /* 80594780  7C 03 07 35 */	extsh. r3, r0

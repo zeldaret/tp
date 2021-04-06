@@ -7,8 +7,8 @@ lbl_80312698:
 /* 803126AC  48 04 E9 31 */	bl GDPadCurr32
 /* 803126B0  80 6D 90 20 */	lwz r3, sInterruptFlag__17J3DDisplayListObj(r13)
 /* 803126B4  48 02 B0 69 */	bl OSRestoreInterrupts
-/* 803126B8  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha
-/* 803126BC  38 83 4C 70 */	addi r4, r3, sGDLObj__17J3DDisplayListObj@l
+/* 803126B8  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha /* 0x80434C70@ha */
+/* 803126BC  38 83 4C 70 */	addi r4, r3, sGDLObj__17J3DDisplayListObj@l /* 0x80434C70@l */
 /* 803126C0  80 64 00 00 */	lwz r3, 0(r4)
 /* 803126C4  80 04 00 08 */	lwz r0, 8(r4)
 /* 803126C8  7C 03 00 50 */	subf r0, r3, r0

@@ -3,17 +3,15 @@
 #
 
 M646_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner.plf
+M646_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner.lcf
+M646_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner.map
 
 M646_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swspinner/executor.cpp \
-	rel/d/a/obj/d_a_obj_swspinner/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swspinner/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.cpp \
 
 M646_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.o \
 
 M646_LIBS := \
@@ -29,15 +27,21 @@ M646_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map646.map\
+	-m _prolog \
+	-lcf $(M646_LDSCRIPT) \
+	-unused -map $(M646_MAP) \
+	-w off \
 
 $(M646_TARGET): $(M646_O_FILES) $(M646_LIBS)
+	@echo [646] creating $(M646_TARGET)
 	@echo $(M646_LIBS) $(M646_O_FILES) > build/M646_ofiles
-	$(LD) -opt_partial $(M646_LDFLAGS) -o $(M646_TARGET) @build/M646_ofiles
+	@python3 tools/lcf.py rel 646 --output $(M646_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M646_LDFLAGS) -o $(M646_TARGET) @build/M646_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swspinner/%.o: rel/d/a/obj/d_a_obj_swspinner/%.cpp
+	@echo [646] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M646_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M646_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

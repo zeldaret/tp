@@ -1,6 +1,6 @@
 lbl_801941E4:
-/* 801941E4  3C 80 80 3C */	lis r4, __vt__19dSelect_cursorHIO_c@ha
-/* 801941E8  38 04 B7 A8 */	addi r0, r4, __vt__19dSelect_cursorHIO_c@l
+/* 801941E4  3C 80 80 3C */	lis r4, __vt__19dSelect_cursorHIO_c@ha /* 0x803BB7A8@ha */
+/* 801941E8  38 04 B7 A8 */	addi r0, r4, __vt__19dSelect_cursorHIO_c@l /* 0x803BB7A8@l */
 /* 801941EC  90 03 00 00 */	stw r0, 0(r3)
 /* 801941F0  C0 22 A0 48 */	lfs f1, lit_3673(r2)
 /* 801941F4  D0 23 00 08 */	stfs f1, 8(r3)

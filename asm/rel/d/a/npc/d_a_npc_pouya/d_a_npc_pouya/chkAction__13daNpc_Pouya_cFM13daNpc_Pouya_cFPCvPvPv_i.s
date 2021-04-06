@@ -3,7 +3,7 @@ lbl_80AAFC24:
 /* 80AAFC28  7C 08 02 A6 */	mflr r0
 /* 80AAFC2C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AAFC30  38 63 0F BC */	addi r3, r3, 0xfbc
-/* 80AAFC34  4B 8B 24 14 */	b __ptmf_cmpr
+/* 80AAFC34  4B 8B 24 15 */	bl __ptmf_cmpr
 /* 80AAFC38  7C 60 00 34 */	cntlzw r0, r3
 /* 80AAFC3C  54 03 D9 7E */	srwi r3, r0, 5
 /* 80AAFC40  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -16,13 +16,13 @@ lbl_800E0010:
 lbl_800E0048:
 /* 800E0048  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 800E004C  41 82 00 14 */	beq lbl_800E0060
-/* 800E0050  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha
-/* 800E0054  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l
+/* 800E0050  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0054  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E0058  C0 23 00 38 */	lfs f1, 0x38(r3)
 /* 800E005C  48 00 00 10 */	b lbl_800E006C
 lbl_800E0060:
-/* 800E0060  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha
-/* 800E0064  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l
+/* 800E0060  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0064  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E0068  C0 23 00 34 */	lfs f1, 0x34(r3)
 lbl_800E006C:
 /* 800E006C  80 1E 31 A0 */	lwz r0, 0x31a0(r30)

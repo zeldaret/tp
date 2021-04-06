@@ -16,17 +16,17 @@ lbl_8012DD34:
 /* 8012DD3C  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 8012DD40  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 8012DD44  41 82 00 14 */	beq lbl_8012DD58
-/* 8012DD48  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012DD4C  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8012DD48  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012DD4C  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012DD50  C0 25 00 74 */	lfs f1, 0x74(r5)
 /* 8012DD54  48 00 00 10 */	b lbl_8012DD64
 lbl_8012DD58:
-/* 8012DD58  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8012DD5C  38 A5 EF 28 */	addi r5, r5, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 8012DD58  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8012DD5C  38 A5 EF 28 */	addi r5, r5, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8012DD60  C0 25 00 18 */	lfs f1, 0x18(r5)
 lbl_8012DD64:
-/* 8012DD64  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012DD68  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8012DD64  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012DD68  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012DD6C  C0 45 00 94 */	lfs f2, 0x94(r5)
 /* 8012DD70  4B FF B9 69 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8012DD74  7F E3 FB 78 */	mr r3, r31

@@ -5,8 +5,8 @@ lbl_80019A2C:
 /* 80019A38  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80019A3C  B0 61 00 08 */	sth r3, 8(r1)
 /* 80019A40  7C 9F 23 78 */	mr r31, r4
-/* 80019A44  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 80019A48  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 80019A44  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 80019A48  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 80019A4C  38 81 00 08 */	addi r4, r1, 8
 /* 80019A50  4B FF FD A9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80019A54  90 7F 00 00 */	stw r3, 0(r31)

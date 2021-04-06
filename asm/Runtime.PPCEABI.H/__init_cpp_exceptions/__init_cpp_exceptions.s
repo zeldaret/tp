@@ -5,9 +5,9 @@ lbl_80362870:
 /* 8036287C  80 0D 85 50 */	lwz r0, fragmentID(r13)
 /* 80362880  2C 00 FF FE */	cmpwi r0, -2
 /* 80362884  40 82 00 18 */	bne lbl_8036289C
-/* 80362888  3C 60 80 00 */	lis r3, data_8000569C@ha
+/* 80362888  3C 60 80 00 */	lis r3, data_8000569C@ha /* 0x8000569C@ha */
 /* 8036288C  7C 44 13 78 */	mr r4, r2
-/* 80362890  38 63 56 9C */	addi r3, r3, data_8000569C@l
+/* 80362890  38 63 56 9C */	addi r3, r3, data_8000569C@l /* 0x8000569C@l */
 /* 80362894  48 00 00 4D */	bl __register_fragment
 /* 80362898  90 6D 85 50 */	stw r3, fragmentID(r13)
 lbl_8036289C:

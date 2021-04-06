@@ -1,6 +1,6 @@
 lbl_80C881F0:
-/* 80C881F0  3C 80 80 C9 */	lis r4, l_HIO@ha
-/* 80C881F4  38 84 86 1C */	addi r4, r4, l_HIO@l
+/* 80C881F0  3C 80 80 C9 */	lis r4, l_HIO@ha /* 0x80C8861C@ha */
+/* 80C881F4  38 84 86 1C */	addi r4, r4, l_HIO@l /* 0x80C8861C@l */
 /* 80C881F8  C0 04 00 10 */	lfs f0, 0x10(r4)
 /* 80C881FC  D0 03 05 2C */	stfs f0, 0x52c(r3)
 /* 80C88200  88 04 00 18 */	lbz r0, 0x18(r4)

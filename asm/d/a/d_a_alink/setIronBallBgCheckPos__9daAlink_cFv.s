@@ -8,10 +8,10 @@ lbl_80112768:
 /* 80112780  4B EF A5 E5 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 80112784  80 7F 38 44 */	lwz r3, 0x3844(r31)
 /* 80112788  4B EF A7 BD */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
-/* 8011278C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80112790  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 80112794  3C 80 80 39 */	lis r4, l_ironBallCenterVec@ha
-/* 80112798  38 84 FB 50 */	addi r4, r4, l_ironBallCenterVec@l
+/* 8011278C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80112790  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80112794  3C 80 80 39 */	lis r4, l_ironBallCenterVec@ha /* 0x8038FB50@ha */
+/* 80112798  38 84 FB 50 */	addi r4, r4, l_ironBallCenterVec@l /* 0x8038FB50@l */
 /* 8011279C  38 A1 00 08 */	addi r5, r1, 8
 /* 801127A0  48 23 45 CD */	bl PSMTXMultVec
 /* 801127A4  C0 41 00 10 */	lfs f2, 0x10(r1)

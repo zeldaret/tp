@@ -7,15 +7,15 @@ lbl_805A8E3C:
 /* 805A8E50  7C 7E 1B 79 */	or. r30, r3, r3
 /* 805A8E54  7C 9F 23 78 */	mr r31, r4
 /* 805A8E58  41 82 00 28 */	beq lbl_805A8E80
-/* 805A8E5C  3C 80 80 5B */	lis r4, __vt__17dPa_YkgrPcallBack@ha
-/* 805A8E60  38 04 90 70 */	addi r0, r4, __vt__17dPa_YkgrPcallBack@l
+/* 805A8E5C  3C 80 80 5B */	lis r4, __vt__17dPa_YkgrPcallBack@ha /* 0x805A9070@ha */
+/* 805A8E60  38 04 90 70 */	addi r0, r4, __vt__17dPa_YkgrPcallBack@l /* 0x805A9070@l */
 /* 805A8E64  90 1E 00 00 */	stw r0, 0(r30)
 /* 805A8E68  38 80 00 00 */	li r4, 0
-/* 805A8E6C  4B CD 61 38 */	b __dt__19JPAParticleCallBackFv
+/* 805A8E6C  4B CD 61 39 */	bl __dt__19JPAParticleCallBackFv
 /* 805A8E70  7F E0 07 35 */	extsh. r0, r31
 /* 805A8E74  40 81 00 0C */	ble lbl_805A8E80
 /* 805A8E78  7F C3 F3 78 */	mr r3, r30
-/* 805A8E7C  4B D2 5E C0 */	b __dl__FPv
+/* 805A8E7C  4B D2 5E C1 */	bl __dl__FPv
 lbl_805A8E80:
 /* 805A8E80  7F C3 F3 78 */	mr r3, r30
 /* 805A8E84  83 E1 00 0C */	lwz r31, 0xc(r1)

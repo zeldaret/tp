@@ -29,9 +29,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -41,23 +41,15 @@ struct Z2SeMgr {
 // Forward References:
 //
 
-static void daScex_Create(fopAc_ac_c*);
-static void daScex_Execute(daScex_c*);
-
 extern "C" void checkWork__8daScex_cFv();
 extern "C" static void daScex_Create__FP10fopAc_ac_c();
 extern "C" static void daScex_Execute__FP8daScex_c();
 extern "C" void execute__8daScex_cFv();
-extern "C" extern u8 const lit_3840[4];
-extern "C" extern u32 const lit_3841;
-extern "C" extern u32 const lit_3842;
 extern "C" extern void* g_profile_SCENE_EXIT[13];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -81,23 +73,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80485838-80485974 013C+00 s=1 e=0 z=0  None .text      checkWork__8daScex_cFv */
-//	8048586C: 804061C0 (g_dComIfG_gameInfo)
-//	80485870: 804061C0 (g_dComIfG_gameInfo)
-//	80485880: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804858B8: 804061C0 (g_dComIfG_gameInfo)
-//	804858BC: 804061C0 (g_dComIfG_gameInfo)
-//	804858C8: 80035360 (isSwitch__10dSv_info_cCFii)
-//	804858EC: 804061C0 (g_dComIfG_gameInfo)
-//	804858F0: 804061C0 (g_dComIfG_gameInfo)
-//	804858FC: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80485900: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80485908: 800349BC (isEventBit__11dSv_event_cCFUs)
-//	8048592C: 804061C0 (g_dComIfG_gameInfo)
-//	80485930: 804061C0 (g_dComIfG_gameInfo)
-//	8048593C: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80485940: 803A7288 (saveBitLabels__16dSv_event_flag_c)
-//	80485948: 800349BC (isEventBit__11dSv_event_cCFUs)
+/* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,62 +84,62 @@ asm void daScex_c::checkWork() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485C98-80485C9C 0004+00 s=2 e=0 z=0  None .rodata    @3758 */
+/* 80485C98-80485C9C 000000 0004+00 2/2 0/0 0/0 .rodata          @3758 */
 SECTION_RODATA static u32 const lit_3758 = 0x42960000;
+SECTION_DEAD void* const cg_80485C98 = (void*)(&lit_3758);
 
-/* 80485C9C-80485CA0 0004+00 s=1 e=0 z=0  None .rodata    @3759 */
+/* 80485C9C-80485CA0 000004 0004+00 1/1 0/0 0/0 .rodata          @3759 */
 SECTION_RODATA static u32 const lit_3759 = 0x43160000;
+SECTION_DEAD void* const cg_80485C9C = (void*)(&lit_3759);
 
-/* 80485974-80485A30 00BC+00 s=1 e=0 z=0  None .text      daScex_Create__FP10fopAc_ac_c */
-//	8048599C: 80018B64 (__ct__10fopAc_ac_cFv)
-//	804859AC: 803DD470 (now__14mDoMtx_stack_c)
-//	804859B0: 803DD470 (now__14mDoMtx_stack_c)
-//	804859C0: 803468E8 (PSMTXTrans)
-//	804859C4: 803DD470 (now__14mDoMtx_stack_c)
-//	804859C8: 803DD470 (now__14mDoMtx_stack_c)
-//	804859D0: 8000C434 (mDoMtx_YrotM__FPA4_fs)
-//	804859D4: 803DD470 (now__14mDoMtx_stack_c)
-//	804859D8: 803DD470 (now__14mDoMtx_stack_c)
-//	804859E0: 803465B0 (PSMTXInverse)
-//	804859E8: 80485C98 (lit_3758)
-//	804859EC: 80485C98 (lit_3758)
-//	80485A08: 80485C9C (lit_3759)
-//	80485A0C: 80485C9C (lit_3759)
+/* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daScex_Create(fopAc_ac_c* param_0) {
+static asm void daScex_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_scene_exit/d_a_scene_exit/daScex_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80485A30-80485A50 0020+00 s=1 e=0 z=0  None .text      daScex_Execute__FP8daScex_c */
-//	80485A3C: 80485A50 (execute__8daScex_cFv)
+/* 80485A30-80485A50 000270 0020+00 1/0 0/0 0/0 .text            daScex_Execute__FP8daScex_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daScex_Execute(daScex_c* param_0) {
+static asm void daScex_Execute(daScex_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_scene_exit/d_a_scene_exit/daScex_Execute__FP8daScex_c.s"
 }
 #pragma pop
 
-/* 80485A50-80485C90 0240+00 s=1 e=0 z=0  None .text      execute__8daScex_cFv */
-//	80485A60: 803621DC (_savegpr_29)
-//	80485A68: 80485C98 (lit_3758)
-//	80485A6C: 80485C98 (lit_3758)
-//	80485A70: 804061C0 (g_dComIfG_gameInfo)
-//	80485A74: 804061C0 (g_dComIfG_gameInfo)
-//	80485A7C: 80485838 (checkWork__8daScex_cFv)
-//	80485A94: 80346D6C (PSMTXMultVec)
-//	80485BDC: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80485BE0: 80451368 (mAudioMgrPtr__10Z2AudioMgr)
-//	80485C0C: 802AB984 (seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc)
-//	80485C60: 804061C0 (g_dComIfG_gameInfo)
-//	80485C64: 804061C0 (g_dComIfG_gameInfo)
-//	80485C70: 80035200 (onSwitch__10dSv_info_cFii)
-//	80485C7C: 80362228 (_restgpr_29)
+/* ############################################################################################## */
+/* 80485CA0-80485CA4 000008 0004+00 0/1 0/0 0/0 .rodata          @3840 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3840[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+SECTION_DEAD void* const cg_80485CA0 = (void*)(&lit_3840);
+#pragma pop
+
+/* 80485CA4-80485CA8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3841 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3841 = 0x3F800000;
+SECTION_DEAD void* const cg_80485CA4 = (void*)(&lit_3841);
+#pragma pop
+
+/* 80485CA8-80485CAC 000010 0004+00 0/1 0/0 0/0 .rodata          @3842 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_3842 = 0xBF800000;
+SECTION_DEAD void* const cg_80485CA8 = (void*)(&lit_3842);
+#pragma pop
+
+/* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -174,21 +150,7 @@ asm void daScex_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80485CA0-80485CA4 0004+00 s=0 e=0 z=0  None .rodata    @3840 */
-SECTION_RODATA u8 const lit_3840[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80485CA4-80485CA8 0004+00 s=0 e=0 z=0  None .rodata    @3841 */
-SECTION_RODATA u32 const lit_3841 = 0x3F800000;
-
-/* 80485CA8-80485CAC 0004+00 s=0 e=0 z=0  None .rodata    @3842 */
-SECTION_RODATA u32 const lit_3842 = 0xBF800000;
-
-/* 80485CAC-80485CCC 0020+00 s=1 e=0 z=0  None .data      l_daScex_Method */
+/* 80485CAC-80485CCC -00001 0020+00 1/0 0/0 0/0 .data            l_daScex_Method */
 SECTION_DATA static void* l_daScex_Method[8] = {
     (void*)daScex_Create__FP10fopAc_ac_c,
     (void*)NULL,
@@ -200,8 +162,8 @@ SECTION_DATA static void* l_daScex_Method[8] = {
     (void*)NULL,
 };
 
-/* 80485CCC-80485D00 0034+00 s=0 e=0 z=1  None .data      g_profile_SCENE_EXIT */
-SECTION_DATA void* g_profile_SCENE_EXIT[13] = {
+/* 80485CCC-80485D00 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_SCENE_EXIT */
+SECTION_DATA extern void* g_profile_SCENE_EXIT[13] = {
     (void*)0xFFFFFFFD, (void*)0x000AFFFD,
     (void*)0x030C0000, (void*)&g_fpcLf_Method,
     (void*)0x0000059C, (void*)NULL,

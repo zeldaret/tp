@@ -5,8 +5,8 @@ lbl_80200E30:
 /* 80200E3C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200E40  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200E44  41 82 00 1C */	beq lbl_80200E60
-/* 80200E48  3C A0 80 3C */	lis r5, __vt__21dMeter_drawSkillHIO_c@ha
-/* 80200E4C  38 05 F1 48 */	addi r0, r5, __vt__21dMeter_drawSkillHIO_c@l
+/* 80200E48  3C A0 80 3C */	lis r5, __vt__21dMeter_drawSkillHIO_c@ha /* 0x803BF148@ha */
+/* 80200E4C  38 05 F1 48 */	addi r0, r5, __vt__21dMeter_drawSkillHIO_c@l /* 0x803BF148@l */
 /* 80200E50  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200E54  7C 80 07 35 */	extsh. r0, r4
 /* 80200E58  40 81 00 08 */	ble lbl_80200E60

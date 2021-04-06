@@ -8,8 +8,8 @@ lbl_8009C1F0:
 /* 8009C208  7C 9C 23 78 */	mr r28, r4
 /* 8009C20C  7C BF 2B 78 */	mr r31, r5
 /* 8009C210  48 00 01 51 */	bl getFirstData__7dTres_cFUc
-/* 8009C214  3C 80 80 42 */	lis r4, mTypeGroupListAll__7dTres_c@ha
-/* 8009C218  38 84 54 38 */	addi r4, r4, mTypeGroupListAll__7dTres_c@l
+/* 8009C214  3C 80 80 42 */	lis r4, mTypeGroupListAll__7dTres_c@ha /* 0x80425438@ha */
+/* 8009C218  38 84 54 38 */	addi r4, r4, mTypeGroupListAll__7dTres_c@l /* 0x80425438@l */
 /* 8009C21C  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 8009C220  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8009C224  7C 84 02 14 */	add r4, r4, r0

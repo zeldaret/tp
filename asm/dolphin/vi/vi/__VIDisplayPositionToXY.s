@@ -1,7 +1,7 @@
 lbl_8034DB40:
 /* 8034DB40  81 2D 92 A8 */	lwz r9, CurrTiming(r13)
-/* 8034DB44  3C E0 80 45 */	lis r7, HorVer@ha
-/* 8034DB48  38 E7 CB 18 */	addi r7, r7, HorVer@l
+/* 8034DB44  3C E0 80 45 */	lis r7, HorVer@ha /* 0x8044CB18@ha */
+/* 8034DB48  38 E7 CB 18 */	addi r7, r7, HorVer@l /* 0x8044CB18@l */
 /* 8034DB4C  A0 09 00 1A */	lhz r0, 0x1a(r9)
 /* 8034DB50  39 03 FF FF */	addi r8, r3, -1
 /* 8034DB54  80 E7 00 24 */	lwz r7, 0x24(r7)

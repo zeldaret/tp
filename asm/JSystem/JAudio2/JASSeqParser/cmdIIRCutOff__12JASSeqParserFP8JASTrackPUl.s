@@ -7,8 +7,8 @@ lbl_80294B70:
 /* 80294B84  40 80 00 1C */	bge lbl_80294BA0
 /* 80294B88  7C 83 23 78 */	mr r3, r4
 /* 80294B8C  54 05 18 38 */	slwi r5, r0, 3
-/* 80294B90  3C 80 80 3A */	lis r4, CUTOFF_TO_IIR_TABLE__7JASCalc@ha
-/* 80294B94  38 04 AB B8 */	addi r0, r4, CUTOFF_TO_IIR_TABLE__7JASCalc@l
+/* 80294B90  3C 80 80 3A */	lis r4, CUTOFF_TO_IIR_TABLE__7JASCalc@ha /* 0x8039ABB8@ha */
+/* 80294B94  38 04 AB B8 */	addi r0, r4, CUTOFF_TO_IIR_TABLE__7JASCalc@l /* 0x8039ABB8@l */
 /* 80294B98  7C 80 2A 14 */	add r4, r0, r5
 /* 80294B9C  4B FF DD 01 */	bl setIIR__8JASTrackFPCs
 lbl_80294BA0:

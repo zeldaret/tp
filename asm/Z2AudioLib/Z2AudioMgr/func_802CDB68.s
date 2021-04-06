@@ -7,12 +7,12 @@ lbl_802CDB68:
 /* 802CDB7C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802CDB80  7C 9F 23 78 */	mr r31, r4
 /* 802CDB84  41 82 00 68 */	beq lbl_802CDBEC
-/* 802CDB88  3C 60 80 3D */	lis r3, data_803CBF44@ha
-/* 802CDB8C  38 03 BF 44 */	addi r0, r3, data_803CBF44@l
+/* 802CDB88  3C 60 80 3D */	lis r3, data_803CBF44@ha /* 0x803CBF44@ha */
+/* 802CDB8C  38 03 BF 44 */	addi r0, r3, data_803CBF44@l /* 0x803CBF44@l */
 /* 802CDB90  90 1E 00 00 */	stw r0, 0(r30)
 /* 802CDB94  41 82 00 48 */	beq lbl_802CDBDC
-/* 802CDB98  3C 60 80 3D */	lis r3, data_803CBF58@ha
-/* 802CDB9C  38 03 BF 58 */	addi r0, r3, data_803CBF58@l
+/* 802CDB98  3C 60 80 3D */	lis r3, data_803CBF58@ha /* 0x803CBF58@ha */
+/* 802CDB9C  38 03 BF 58 */	addi r0, r3, data_803CBF58@l /* 0x803CBF58@l */
 /* 802CDBA0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802CDBA4  80 1E 00 40 */	lwz r0, 0x40(r30)
 /* 802CDBA8  28 00 00 00 */	cmplwi r0, 0
@@ -21,8 +21,8 @@ lbl_802CDB68:
 /* 802CDBB4  4B FC 29 31 */	bl free__7JASHeapFv
 lbl_802CDBB8:
 /* 802CDBB8  38 7E 00 08 */	addi r3, r30, 8
-/* 802CDBBC  3C 80 80 29 */	lis r4, __dt__7JASHeapFv@ha
-/* 802CDBC0  38 84 0B 54 */	addi r4, r4, __dt__7JASHeapFv@l
+/* 802CDBBC  3C 80 80 29 */	lis r4, __dt__7JASHeapFv@ha /* 0x80290B54@ha */
+/* 802CDBC0  38 84 0B 54 */	addi r4, r4, __dt__7JASHeapFv@l /* 0x80290B54@l */
 /* 802CDBC4  38 A0 00 44 */	li r5, 0x44
 /* 802CDBC8  38 C0 00 01 */	li r6, 1
 /* 802CDBCC  48 09 41 1D */	bl __destroy_arr

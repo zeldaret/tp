@@ -5,13 +5,13 @@ lbl_800888B8:
 /* 800888C4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800888C8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800888CC  41 82 00 34 */	beq lbl_80088900
-/* 800888D0  3C 60 80 3B */	lis r3, __vt__11dCamSetup_c@ha
-/* 800888D4  38 03 C5 00 */	addi r0, r3, __vt__11dCamSetup_c@l
+/* 800888D0  3C 60 80 3B */	lis r3, __vt__11dCamSetup_c@ha /* 0x803AC500@ha */
+/* 800888D4  38 03 C5 00 */	addi r0, r3, __vt__11dCamSetup_c@l /* 0x803AC500@l */
 /* 800888D8  90 1F 00 FC */	stw r0, 0xfc(r31)
 /* 800888DC  34 1F 01 00 */	addic. r0, r31, 0x100
 /* 800888E0  41 82 00 10 */	beq lbl_800888F0
-/* 800888E4  3C 60 80 3B */	lis r3, __vt__9dCstick_c@ha
-/* 800888E8  38 03 C5 18 */	addi r0, r3, __vt__9dCstick_c@l
+/* 800888E4  3C 60 80 3B */	lis r3, __vt__9dCstick_c@ha /* 0x803AC518@ha */
+/* 800888E8  38 03 C5 18 */	addi r0, r3, __vt__9dCstick_c@l /* 0x803AC518@l */
 /* 800888EC  90 1F 01 10 */	stw r0, 0x110(r31)
 lbl_800888F0:
 /* 800888F0  7C 80 07 35 */	extsh. r0, r4

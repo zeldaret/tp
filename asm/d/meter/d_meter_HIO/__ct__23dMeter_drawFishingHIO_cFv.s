@@ -4,10 +4,10 @@ lbl_801FE730:
 /* 801FE738  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801FE73C  39 61 00 40 */	addi r11, r1, 0x40
 /* 801FE740  48 16 3A 71 */	bl _savegpr_18
-/* 801FE744  3C 80 80 39 */	lis r4, fipaScale@ha
-/* 801FE748  39 04 7E 50 */	addi r8, r4, fipaScale@l
-/* 801FE74C  3C 80 80 3C */	lis r4, __vt__23dMeter_drawFishingHIO_c@ha
-/* 801FE750  38 04 F1 6C */	addi r0, r4, __vt__23dMeter_drawFishingHIO_c@l
+/* 801FE744  3C 80 80 39 */	lis r4, fipaScale@ha /* 0x80397E50@ha */
+/* 801FE748  39 04 7E 50 */	addi r8, r4, fipaScale@l /* 0x80397E50@l */
+/* 801FE74C  3C 80 80 3C */	lis r4, __vt__23dMeter_drawFishingHIO_c@ha /* 0x803BF16C@ha */
+/* 801FE750  38 04 F1 6C */	addi r0, r4, __vt__23dMeter_drawFishingHIO_c@l /* 0x803BF16C@l */
 /* 801FE754  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE758  38 00 00 0A */	li r0, 0xa
 /* 801FE75C  B0 03 02 1C */	sth r0, 0x21c(r3)

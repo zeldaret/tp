@@ -8,8 +8,8 @@ lbl_801F77B0:
 /* 801F77C8  80 03 00 08 */	lwz r0, 8(r3)
 /* 801F77CC  28 00 00 00 */	cmplwi r0, 0
 /* 801F77D0  41 82 01 68 */	beq lbl_801F7938
-/* 801F77D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F77D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F77D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F77D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F77DC  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801F77E0  80 7D 01 58 */	lwz r3, 0x158(r29)
 /* 801F77E4  8B C3 00 B2 */	lbz r30, 0xb2(r3)

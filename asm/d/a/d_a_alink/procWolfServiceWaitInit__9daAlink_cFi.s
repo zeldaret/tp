@@ -42,8 +42,8 @@ lbl_8012CC7C:
 /* 8012CC7C  7F C3 F3 78 */	mr r3, r30
 /* 8012CC80  38 80 00 0B */	li r4, 0xb
 /* 8012CC84  C0 22 92 B8 */	lfs f1, lit_6040(r2)
-/* 8012CC88  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 8012CC8C  38 C5 F1 38 */	addi r6, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 8012CC88  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 8012CC8C  38 C5 F1 38 */	addi r6, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 8012CC90  C0 46 00 08 */	lfs f2, 8(r6)
 /* 8012CC94  A8 A6 00 00 */	lha r5, 0(r6)
 /* 8012CC98  C0 66 00 0C */	lfs f3, 0xc(r6)

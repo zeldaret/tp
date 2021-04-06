@@ -5,8 +5,8 @@ lbl_809C8694:
 /* 809C86A0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 809C86A4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 809C86A8  7C 7F 1B 78 */	mr r31, r3
-/* 809C86AC  3C 80 80 9D */	lis r4, m__17daNpc_grA_Param_c@ha
-/* 809C86B0  3B C4 9D 98 */	addi r30, r4, m__17daNpc_grA_Param_c@l
+/* 809C86AC  3C 80 80 9D */	lis r4, m__17daNpc_grA_Param_c@ha /* 0x809C9D98@ha */
+/* 809C86B0  3B C4 9D 98 */	addi r30, r4, m__17daNpc_grA_Param_c@l /* 0x809C9D98@l */
 /* 809C86B4  A0 03 14 72 */	lhz r0, 0x1472(r3)
 /* 809C86B8  2C 00 00 02 */	cmpwi r0, 2
 /* 809C86BC  41 82 00 74 */	beq lbl_809C8730
@@ -60,19 +60,19 @@ lbl_809C8730:
 /* 809C8774  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 809C8778  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 809C877C  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 809C8780  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 809C8784  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 809C8780  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 809C8784  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 809C8788  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
-/* 809C878C  4B 64 3C 50 */	b mDoMtx_YrotS__FPA4_fs
-/* 809C8790  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 809C8794  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 809C878C  4B 64 3C 51 */	bl mDoMtx_YrotS__FPA4_fs
+/* 809C8790  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 809C8794  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 809C8798  38 81 00 0C */	addi r4, r1, 0xc
 /* 809C879C  7C 85 23 78 */	mr r5, r4
-/* 809C87A0  4B 97 E5 CC */	b PSMTXMultVec
+/* 809C87A0  4B 97 E5 CD */	bl PSMTXMultVec
 /* 809C87A4  38 61 00 0C */	addi r3, r1, 0xc
 /* 809C87A8  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 809C87AC  7C 65 1B 78 */	mr r5, r3
-/* 809C87B0  4B 97 E8 E0 */	b PSVECAdd
+/* 809C87B0  4B 97 E8 E1 */	bl PSVECAdd
 /* 809C87B4  7F E3 FB 78 */	mr r3, r31
 /* 809C87B8  38 81 00 0C */	addi r4, r1, 0xc
 /* 809C87BC  38 BE 00 00 */	addi r5, r30, 0
@@ -99,7 +99,7 @@ lbl_809C8800:
 /* 809C8800  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006004A@ha */
 /* 809C8804  38 03 00 4A */	addi r0, r3, 0x004A /* 0x0006004A@l */
 /* 809C8808  90 01 00 08 */	stw r0, 8(r1)
-/* 809C880C  4B 99 98 A0 */	b __cvt_fp2unsigned
+/* 809C880C  4B 99 98 A1 */	bl __cvt_fp2unsigned
 /* 809C8810  7C 65 1B 78 */	mr r5, r3
 /* 809C8814  38 7F 0B 48 */	addi r3, r31, 0xb48
 /* 809C8818  38 81 00 08 */	addi r4, r1, 8

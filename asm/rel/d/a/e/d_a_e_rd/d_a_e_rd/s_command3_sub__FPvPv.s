@@ -6,7 +6,7 @@ lbl_805082C8:
 /* 805082D8  93 C1 00 08 */	stw r30, 8(r1)
 /* 805082DC  7C 7E 1B 78 */	mr r30, r3
 /* 805082E0  7C 9F 23 78 */	mr r31, r4
-/* 805082E4  4B B1 09 FC */	b fopAc_IsActor__FPv
+/* 805082E4  4B B1 09 FD */	bl fopAc_IsActor__FPv
 /* 805082E8  2C 03 00 00 */	cmpwi r3, 0
 /* 805082EC  41 82 00 2C */	beq lbl_80508318
 /* 805082F0  A8 1E 00 08 */	lha r0, 8(r30)

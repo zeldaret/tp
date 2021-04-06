@@ -12,8 +12,8 @@ lbl_80121304:
 /* 8012132C  54 A0 04 3E */	clrlwi r0, r5, 0x10
 /* 80121330  1C 00 00 30 */	mulli r0, r0, 0x30
 /* 80121334  7C 63 02 14 */	add r3, r3, r0
-/* 80121338  3C 80 80 43 */	lis r4, BaseX__4cXyz@ha
-/* 8012133C  38 84 0D 0C */	addi r4, r4, BaseX__4cXyz@l
+/* 80121338  3C 80 80 43 */	lis r4, BaseX__4cXyz@ha /* 0x80430D0C@ha */
+/* 8012133C  38 84 0D 0C */	addi r4, r4, BaseX__4cXyz@l /* 0x80430D0C@l */
 /* 80121340  38 A1 00 08 */	addi r5, r1, 8
 /* 80121344  48 22 5B 09 */	bl PSMTXMultVecSR
 /* 80121348  38 61 00 08 */	addi r3, r1, 8

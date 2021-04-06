@@ -3,19 +3,20 @@
 #
 
 M165_TARGET := $(BUILD_DIR)/rel/d/a/d_a_do.plf
+M165_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_do.lcf
+M165_MAP := $(BUILD_DIR)/rel/d/a/d_a_do.map
 
 M165_CPP_FILES := \
-	rel/d/a/d_a_do/executor.cpp \
-	rel/d/a/d_a_do/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_do/d_a_do.cpp \
 
 M165_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_do/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_do/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_do/d_a_do.o \
 
 M165_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_do/libRuntime.PPCEABI.H.a \
 
 M165_CFLAGS := \
 	-sdata 0 \
@@ -28,16 +29,21 @@ M165_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map165.map\
+	-m _prolog \
+	-lcf $(M165_LDSCRIPT) \
+	-unused -map $(M165_MAP) \
+	-w off \
 
 $(M165_TARGET): $(M165_O_FILES) $(M165_LIBS)
+	@echo [165] creating $(M165_TARGET)
 	@echo $(M165_LIBS) $(M165_O_FILES) > build/M165_ofiles
-	$(LD) -opt_partial $(M165_LDFLAGS) -o $(M165_TARGET) @build/M165_ofiles
+	@python3 tools/lcf.py rel 165 --output $(M165_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M165_LDFLAGS) -o $(M165_TARGET) @build/M165_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_do/%.o: rel/d/a/d_a_do/%.cpp
+	@echo [165] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M165_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M165_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_do/libs/Runtime.PPCEABI.H/Makefile
 

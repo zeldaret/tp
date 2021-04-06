@@ -6,7 +6,7 @@ lbl_80C57164:
 /* 80C57174  28 00 00 00 */	cmplwi r0, 0
 /* 80C57178  41 82 00 0C */	beq lbl_80C57184
 /* 80C5717C  38 63 07 48 */	addi r3, r3, 0x748
-/* 80C57180  4B 55 06 10 */	b dKy_plight_set__FP15LIGHT_INFLUENCE
+/* 80C57180  4B 55 06 11 */	bl dKy_plight_set__FP15LIGHT_INFLUENCE
 lbl_80C57184:
 /* 80C57184  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C57188  7C 08 03 A6 */	mtlr r0

@@ -1,6 +1,6 @@
 lbl_80CCCA88:
-/* 80CCCA88  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CCCA8C  38 83 CC D0 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 80CCCA88  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CCCCD0@ha */
+/* 80CCCA8C  38 83 CC D0 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x80CCCCD0@l */
 /* 80CCCA90  80 64 00 2C */	lwz r3, 0x2c(r4)
 /* 80CCCA94  80 04 00 30 */	lwz r0, 0x30(r4)
 /* 80CCCA98  90 64 00 5C */	stw r3, 0x5c(r4)

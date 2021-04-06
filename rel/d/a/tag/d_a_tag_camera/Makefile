@@ -3,17 +3,15 @@
 #
 
 M28_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera.plf
+M28_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera.lcf
+M28_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera.map
 
 M28_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_camera/executor.cpp \
-	rel/d/a/tag/d_a_tag_camera/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_camera/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_camera/d_a_tag_camera.cpp \
 
 M28_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/d_a_tag_camera.o \
 
 M28_LIBS := \
@@ -29,15 +27,21 @@ M28_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map28.map\
+	-m _prolog \
+	-lcf $(M28_LDSCRIPT) \
+	-unused -map $(M28_MAP) \
+	-w off \
 
 $(M28_TARGET): $(M28_O_FILES) $(M28_LIBS)
+	@echo [ 28] creating $(M28_TARGET)
 	@echo $(M28_LIBS) $(M28_O_FILES) > build/M28_ofiles
-	$(LD) -opt_partial $(M28_LDFLAGS) -o $(M28_TARGET) @build/M28_ofiles
+	@python3 tools/lcf.py rel 28 --output $(M28_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M28_LDFLAGS) -o $(M28_TARGET) @build/M28_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_camera/%.o: rel/d/a/tag/d_a_tag_camera/%.cpp
+	@echo [ 28] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M28_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M28_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

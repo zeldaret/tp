@@ -5,18 +5,18 @@ lbl_806CDD8C:
 /* 806CDD98  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 806CDD9C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 806CDDA0  7C 7E 1B 78 */	mr r30, r3
-/* 806CDDA4  3C 60 80 6D */	lis r3, lit_3907@ha
-/* 806CDDA8  3B E3 0E 60 */	addi r31, r3, lit_3907@l
-/* 806CDDAC  3C 60 80 6D */	lis r3, m_cry_gi@ha
-/* 806CDDB0  80 03 11 64 */	lwz r0, m_cry_gi@l(r3)
+/* 806CDDA4  3C 60 80 6D */	lis r3, lit_3907@ha /* 0x806D0E60@ha */
+/* 806CDDA8  3B E3 0E 60 */	addi r31, r3, lit_3907@l /* 0x806D0E60@l */
+/* 806CDDAC  3C 60 80 6D */	lis r3, m_cry_gi@ha /* 0x806D1164@ha */
+/* 806CDDB0  80 03 11 64 */	lwz r0, m_cry_gi@l(r3)  /* 0x806D1164@l */
 /* 806CDDB4  28 00 00 00 */	cmplwi r0, 0
 /* 806CDDB8  40 82 01 04 */	bne lbl_806CDEBC
 /* 806CDDBC  48 00 30 79 */	bl checkNowWolf__9daPy_py_cFv
 /* 806CDDC0  28 03 00 00 */	cmplwi r3, 0
 /* 806CDDC4  40 82 00 2C */	bne lbl_806CDDF0
 /* 806CDDC8  C0 3F 00 64 */	lfs f1, 0x64(r31)
-/* 806CDDCC  3C 60 80 6D */	lis r3, l_HIO@ha
-/* 806CDDD0  38 63 11 38 */	addi r3, r3, l_HIO@l
+/* 806CDDCC  3C 60 80 6D */	lis r3, l_HIO@ha /* 0x806D1138@ha */
+/* 806CDDD0  38 63 11 38 */	addi r3, r3, l_HIO@l /* 0x806D1138@l */
 /* 806CDDD4  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 806CDDD8  EC 01 00 2A */	fadds f0, f1, f0
 /* 806CDDDC  FC 00 00 1E */	fctiwz f0, f0
@@ -26,8 +26,8 @@ lbl_806CDD8C:
 /* 806CDDEC  48 00 00 28 */	b lbl_806CDE14
 lbl_806CDDF0:
 /* 806CDDF0  C0 3F 00 64 */	lfs f1, 0x64(r31)
-/* 806CDDF4  3C 60 80 6D */	lis r3, l_HIO@ha
-/* 806CDDF8  38 63 11 38 */	addi r3, r3, l_HIO@l
+/* 806CDDF4  3C 60 80 6D */	lis r3, l_HIO@ha /* 0x806D1138@ha */
+/* 806CDDF8  38 63 11 38 */	addi r3, r3, l_HIO@l /* 0x806D1138@l */
 /* 806CDDFC  C0 03 00 20 */	lfs f0, 0x20(r3)
 /* 806CDE00  EC 01 00 2A */	fadds f0, f1, f0
 /* 806CDE04  FC 00 00 1E */	fctiwz f0, f0
@@ -36,8 +36,8 @@ lbl_806CDDF0:
 /* 806CDE10  90 1E 06 8C */	stw r0, 0x68c(r30)
 lbl_806CDE14:
 /* 806CDE14  80 9E 06 8C */	lwz r4, 0x68c(r30)
-/* 806CDE18  3C 60 80 6D */	lis r3, l_HIO@ha
-/* 806CDE1C  38 63 11 38 */	addi r3, r3, l_HIO@l
+/* 806CDE18  3C 60 80 6D */	lis r3, l_HIO@ha /* 0x806D1138@ha */
+/* 806CDE1C  38 63 11 38 */	addi r3, r3, l_HIO@l /* 0x806D1138@l */
 /* 806CDE20  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 806CDE24  FC 00 00 1E */	fctiwz f0, f0
 /* 806CDE28  D8 01 00 08 */	stfd f0, 8(r1)
@@ -60,11 +60,11 @@ lbl_806CDE14:
 /* 806CDE6C  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 806CDE70  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 806CDE74  90 1E 06 90 */	stw r0, 0x690(r30)
-/* 806CDE78  3C 60 80 6D */	lis r3, m_cry_gi@ha
-/* 806CDE7C  93 C3 11 64 */	stw r30, m_cry_gi@l(r3)
-/* 806CDE80  4B AB 37 C0 */	b dCam_getBody__Fv
+/* 806CDE78  3C 60 80 6D */	lis r3, m_cry_gi@ha /* 0x806D1164@ha */
+/* 806CDE7C  93 C3 11 64 */	stw r30, m_cry_gi@l(r3)  /* 0x806D1164@l */
+/* 806CDE80  4B AB 37 C1 */	bl dCam_getBody__Fv
 /* 806CDE84  7F C4 F3 78 */	mr r4, r30
-/* 806CDE88  4B AB 36 AC */	b ForceLockOn__9dCamera_cFP10fopAc_ac_c
+/* 806CDE88  4B AB 36 AD */	bl ForceLockOn__9dCamera_cFP10fopAc_ac_c
 /* 806CDE8C  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 806CDE90  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 806CDE94  7F C3 F3 78 */	mr r3, r30

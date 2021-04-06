@@ -27,84 +27,52 @@ extern "C" void ldexp();
 //
 
 /* ############################################################################################## */
-/* 803A2538-803A2548 0010+00 s=1 e=0 z=0  None .rodata    init_jk */
+/* 803A2538-803A2548 02EB98 0010+00 1/1 0/0 0/0 .rodata          init_jk */
 SECTION_RODATA static u8 const init_jk[16] = {
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x06,
 };
+SECTION_DEAD void* const cg_803A2538 = (void*)(&init_jk);
 
-/* 803A2548-803A2588 0040+00 s=1 e=0 z=0  None .rodata    PIo2 */
+/* 803A2548-803A2588 02EBA8 0040+00 1/1 0/0 0/0 .rodata          PIo2 */
 SECTION_RODATA static u8 const PIo2[64] = {
     0x3F, 0xF9, 0x21, 0xFB, 0x40, 0x00, 0x00, 0x00, 0x3E, 0x74, 0x44, 0x2D, 0x00, 0x00, 0x00, 0x00,
     0x3C, 0xF8, 0x46, 0x98, 0x80, 0x00, 0x00, 0x00, 0x3B, 0x78, 0xCC, 0x51, 0x60, 0x00, 0x00, 0x00,
     0x39, 0xF0, 0x1B, 0x83, 0x80, 0x00, 0x00, 0x00, 0x38, 0x7A, 0x25, 0x20, 0x40, 0x00, 0x00, 0x00,
     0x36, 0xE3, 0x82, 0x22, 0x80, 0x00, 0x00, 0x00, 0x35, 0x69, 0xF3, 0x1D, 0x00, 0x00, 0x00, 0x00,
 };
+SECTION_DEAD void* const cg_803A2548 = (void*)(&PIo2);
 
-/* 80456A08-80456A10 0008+00 s=1 e=0 z=0  None .sdata2    @436 */
+/* 80456A08-80456A10 005008 0008+00 1/1 0/0 0/0 .sdata2          @436 */
 SECTION_SDATA2 static u8 lit_436[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80456A10-80456A18 0008+00 s=1 e=0 z=0  None .sdata2    @437 */
+/* 80456A10-80456A18 005010 0008+00 1/1 0/0 0/0 .sdata2          @437 */
 SECTION_SDATA2 static f64 lit_437 = 5.960464477539063e-08;
 
-/* 80456A18-80456A20 0008+00 s=1 e=0 z=0  None .sdata2    @438 */
+/* 80456A18-80456A20 005018 0008+00 1/1 0/0 0/0 .sdata2          @438 */
 SECTION_SDATA2 static f64 lit_438 = 16777216.0;
 
-/* 80456A20-80456A28 0008+00 s=1 e=0 z=0  None .sdata2    @439 */
+/* 80456A20-80456A28 005020 0008+00 1/1 0/0 0/0 .sdata2          @439 */
 SECTION_SDATA2 static f64 lit_439 = 8.0;
 
-/* 80456A28-80456A30 0008+00 s=1 e=0 z=0  None .sdata2    @440 */
+/* 80456A28-80456A30 005028 0008+00 1/1 0/0 0/0 .sdata2          @440 */
 SECTION_SDATA2 static f64 lit_440 = 0.125;
 
-/* 80456A30-80456A38 0008+00 s=1 e=0 z=0  None .sdata2    @441 */
+/* 80456A30-80456A38 005030 0008+00 1/1 0/0 0/0 .sdata2          @441 */
 SECTION_SDATA2 static f64 lit_441 = 0.5;
 
-/* 80456A38-80456A40 0008+00 s=1 e=0 z=0  None .sdata2    @442 */
+/* 80456A38-80456A40 005038 0008+00 1/1 0/0 0/0 .sdata2          @442 */
 SECTION_SDATA2 static f64 lit_442 = 1.0;
 
-/* 80456A40-80456A48 0008+00 s=1 e=0 z=0  None .sdata2    @445 */
+/* 80456A40-80456A48 005040 0008+00 1/1 0/0 0/0 .sdata2          @445 */
 SECTION_SDATA2 static f64 lit_445 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8036AB9C-8036B9F0 0E54+00 s=0 e=1 z=0  None .text      __kernel_rem_pio2 */
-//	8036ABAC: 80362134 (_savefpr_25)
-//	8036ABC0: 803A2538 (init_jk)
-//	8036ABD0: 803A2538 (init_jk)
-//	8036AC0C: 80456A40 (lit_445)
-//	8036AC38: 80456A08 (lit_436)
-//	8036AC7C: 80456A08 (lit_436)
-//	8036ADDC: 80456A10 (lit_437)
-//	8036ADE0: 80456A40 (lit_445)
-//	8036ADE8: 80456A18 (lit_438)
-//	8036ADF0: 80456A28 (lit_440)
-//	8036ADF8: 80456A20 (lit_439)
-//	8036AE00: 80456A08 (lit_436)
-//	8036AF14: 8036C2D0 (ldexp)
-//	8036AF20: 8036C0FC (floor)
-//	8036AFA4: 80456A30 (lit_441)
-//	8036B070: 80456A38 (lit_442)
-//	8036B084: 8036C2D0 (ldexp)
-//	8036B184: 80456A08 (lit_436)
-//	8036B2F4: 80456A08 (lit_436)
-//	8036B33C: 8036C2D0 (ldexp)
-//	8036B340: 80456A18 (lit_438)
-//	8036B350: 80456A10 (lit_437)
-//	8036B368: 80456A40 (lit_445)
-//	8036B3D4: 80456A38 (lit_442)
-//	8036B3DC: 8036C2D0 (ldexp)
-//	8036B3F4: 80456A40 (lit_445)
-//	8036B3F8: 80456A10 (lit_437)
-//	8036B4F4: 803A2548 (PIo2)
-//	8036B504: 803A2548 (PIo2)
-//	8036B518: 80456A08 (lit_436)
-//	8036B58C: 80456A08 (lit_436)
-//	8036B62C: 80456A08 (lit_436)
-//	8036B914: 80456A08 (lit_436)
-//	8036B9D8: 80362180 (_restfpr_25)
+/* 8036AB9C-8036B9F0 3654DC 0E54+00 0/0 1/1 0/0 .text            __kernel_rem_pio2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __kernel_rem_pio2() {
+asm void __kernel_rem_pio2() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/k_rem_pio2/__kernel_rem_pio2.s"
 }

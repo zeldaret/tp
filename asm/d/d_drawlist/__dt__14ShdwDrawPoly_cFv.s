@@ -7,8 +7,8 @@ lbl_80054A6C:
 /* 80054A80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80054A84  7C 9F 23 78 */	mr r31, r4
 /* 80054A88  41 82 00 28 */	beq lbl_80054AB0
-/* 80054A8C  3C 80 80 3B */	lis r4, __vt__14ShdwDrawPoly_c@ha
-/* 80054A90  38 04 8D EC */	addi r0, r4, __vt__14ShdwDrawPoly_c@l
+/* 80054A8C  3C 80 80 3B */	lis r4, __vt__14ShdwDrawPoly_c@ha /* 0x803A8DEC@ha */
+/* 80054A90  38 04 8D EC */	addi r0, r4, __vt__14ShdwDrawPoly_c@l /* 0x803A8DEC@l */
 /* 80054A94  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80054A98  38 80 00 00 */	li r4, 0
 /* 80054A9C  48 21 35 35 */	bl __dt__13cBgS_ShdwDrawFv

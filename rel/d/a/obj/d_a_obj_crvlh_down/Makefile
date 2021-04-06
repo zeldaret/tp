@@ -3,17 +3,15 @@
 #
 
 M429_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down.plf
+M429_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down.lcf
+M429_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down.map
 
 M429_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvlh_down/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvlh_down/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvlh_down/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvlh_down/d_a_obj_crvlh_down.cpp \
 
 M429_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/d_a_obj_crvlh_down.o \
 
 M429_LIBS := \
@@ -29,15 +27,21 @@ M429_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
-	-lcf $(BUILD_DIR)/rel_ldscript.lcf \
-	-unused -map $(BUILD_DIR)/map429.map\
+	-m _prolog \
+	-lcf $(M429_LDSCRIPT) \
+	-unused -map $(M429_MAP) \
+	-w off \
 
 $(M429_TARGET): $(M429_O_FILES) $(M429_LIBS)
+	@echo [429] creating $(M429_TARGET)
 	@echo $(M429_LIBS) $(M429_O_FILES) > build/M429_ofiles
-	$(LD) -opt_partial $(M429_LDFLAGS) -o $(M429_TARGET) @build/M429_ofiles
+	@python3 tools/lcf.py rel 429 --output $(M429_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M429_LDFLAGS) -o $(M429_TARGET) @build/M429_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvlh_down/%.o: rel/d/a/obj/d_a_obj_crvlh_down/%.cpp
+	@echo [429] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M429_CFLAGS) -c -o $@ $<
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M429_CFLAGS) -c -o $@ $@.iconv.cpp
 
 
